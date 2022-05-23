@@ -1,0 +1,24 @@
+site_name: 观测云
+
+theme:
+  name: material
+  favicon: favicon.ico
+  logo: logo.png
+  language: zh
+  features:
+    - navigation.instant
+    - search.suggest
+
+copyright: '&copy; 2013-2022 上海驻云信息科技有限公司 沪公网安备 31011502010862号 | 沪ICP备 13034243号-30'
+
+extra:
+  generator: false
+
+plugins:
+  - awesome-pages
+  - section-index
+  - search:
+      separator: '[\s\u200b\-]'
+
+extra_css:
+  - stylesheets/extra.css
