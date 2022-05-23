@@ -1,8 +1,5 @@
-FROM nginx:1.18.0
+FROM python:3.7.7 as build
 
-ENV REPOSITORY="dataflux-doc"
-
-RUN mkdir /etc/nginx/ssl
 RUN mkdir /dataflux-doc
 WORKDIR /dataflux-doc
 
@@ -14,3 +11,11 @@ RUN pip install jieba
 COPY ./ /dataflux-doc
 
 RUN mkdocs build
+
+FROM nginx:1.18.0
+
+RUN mkdir /etc/nginx/ssl
+RUN mkdir /dataflux-doc
+WORKDIR /dataflux-doc
+
+COPY --from=build /dataflux-doc /dataflux-doc
