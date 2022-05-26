@@ -2,4 +2,3 @@ nav:
   - index.md
   - 'DQL 查询': query.md
   - 'DQL 定义': define.md
-  - 'DQL Demo': d1
