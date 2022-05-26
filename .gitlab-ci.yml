@@ -16,3 +16,15 @@ buildTesting:
   tags:
     - cloudcare-multiarch
 
+buildBasis:
+  stage: deploy
+  only:
+    - /basis-\d+/
+  script:
+    - docker buildx build --platform linux/arm64,linux/amd64 \
+      -t registry.jiagouyun.com/basis/mkdocs:8.2.15 \
+      -f Dockerfile.basis . \
+      --push
+  tags:
+    - cloudcare-multiarch
+

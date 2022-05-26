@@ -1,0 +1,9 @@
+FROM python:3.7.7
+
+RUN pip install --upgrade pip -i https://mirrors.aliyun.com/pypi/simple
+
+RUN pip install -i https://mirrors.aliyun.com/pypi/simple/ mkdocs-material==8.2.15
+RUN pip install -i https://mirrors.aliyun.com/pypi/simple/ mkdocs-awesome-pages-plugin==2.7.0
+RUN pip install -i https://mirrors.aliyun.com/pypi/simple/ mkdocs-section-index==0.3.4
+RUN pip install -i https://mirrors.aliyun.com/pypi/simple/ jieba==0.42.1
+
