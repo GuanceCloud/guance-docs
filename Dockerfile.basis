@@ -6,4 +6,6 @@ RUN pip install -i https://mirrors.aliyun.com/pypi/simple/ mkdocs-material==8.2.
 RUN pip install -i https://mirrors.aliyun.com/pypi/simple/ mkdocs-awesome-pages-plugin==2.7.0
 RUN pip install -i https://mirrors.aliyun.com/pypi/simple/ mkdocs-section-index==0.3.4
 RUN pip install -i https://mirrors.aliyun.com/pypi/simple/ jieba==0.42.1
+RUN pip install -i https://mirrors.aliyun.com/pypi/simple/ Markdown==3.3.7
+RUN pip install -i https://mirrors.aliyun.com/pypi/simple/ pymdown-extensions==9.4
 
