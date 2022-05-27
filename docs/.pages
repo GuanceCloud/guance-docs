@@ -1,5 +1,5 @@
 nav:
-  - 更新日志: release-notes.md
+  - 更新日志: release-notes
   - 快速入门: getting-started
   - DataKit: datakit
   - 集成: integrations
