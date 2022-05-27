@@ -1,4 +1,4 @@
-FROM registry.jiagouyun.com/basis/mkdocs:8.2.15 as build
+FROM registry.jiagouyun.com/basis/mkdocs:1.0 as build
 
 RUN mkdir /dataflux-doc
 WORKDIR /dataflux-doc
