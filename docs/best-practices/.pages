@@ -1,3 +1,4 @@
 nav:
   - index.md
   - '监控最佳实践': monitor
+  - 'APM': apm
