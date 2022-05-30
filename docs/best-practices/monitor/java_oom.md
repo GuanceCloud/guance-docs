@@ -11,7 +11,7 @@
 > 垃圾回收器就是内存回收的实践者，不同的产商、不同版本的虚拟机所包含的垃圾收集器都可能会有很大的差别，不同的虚拟机一般也都会提供各种参数供用户根据自己的应用特点和要求组合出各个内存分代所使用的收集器 ——《深入理解JAVA虚拟机》
 
 关于垃圾采集器（也叫垃圾回收器），在《深入理解JAVA虚拟机》第三版目录中，已经为我们罗列了大部分垃圾采集器。如下图所示：
-![1649670342(1).png](https://cdn.nlark.com/yuque/0/2022/png/22022417/1649670372216-10af77d8-d31d-44a4-bbf3-85452f775907.png#clientId=u40c8c1c7-fa57-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=792&id=u453f6e76&margin=%5Bobject%20Object%5D&name=1649670342%281%29.png&originHeight=792&originWidth=595&originalType=binary&ratio=1&rotation=0&showTitle=false&size=908182&status=done&style=none&taskId=u5b65b946-b123-493a-94c2-3dcc6aa58ff&title=&width=595)
+![java_oom_1.png](../images/java_oom_1.png)
 ### 查看本地 JVM 垃圾回收器
 通过命令` java -XX:+PrintFlagsFinal -version |FINDSTR /i ":"`查看本地垃圾回收器为 `Parallel`。
 ```shell
@@ -49,7 +49,7 @@ root@ruoyi-system-c9c54dbd5-ltcvf:/data/app#
 每个 jdk 垃圾回收机制均不太一样，同样内存结构也发生了很大的变化，尤其是 1.6、1.7、1.8 三个版本表现出比较明显，目前大部分企业用的是 jdk1.8 版本，本最佳实践也采用 jdk1.8 版本作为基础，如果是其他版本的jdk，可以借鉴思路。
 ### 2、接入JVM可观测。
 请先接入 [JVM可观测]()，从观测云视图上我们可以看出初始堆内存为`80 M` ,与我们启动时指定参数一致。
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/22022417/1649671935468-00368540-f29e-4674-a3b7-7c26b187e7ba.png#clientId=u40c8c1c7-fa57-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=612&id=uc53b1077&margin=%5Bobject%20Object%5D&name=image.png&originHeight=612&originWidth=1734&originalType=binary&ratio=1&rotation=0&showTitle=false&size=84450&status=done&style=none&taskId=u487b5fcf-3c28-4118-a5e5-19b551e950c&title=&width=1734)
+![image.png](../images/java_oom_2.png)
 ### 3、接入日志可观测
 **参考 **[**Kubernetes 集群中日志采集的几种玩法**](https://www.yuque.com/dataflux/bp/mk0gcl#Rx50y)**，本次主要是采用 socket 方式，也可以用其他方式。**
 ## 堆溢出 -java.lang.OutOfMemoryError: Java heap space
@@ -74,16 +74,27 @@ root@ruoyi-system-c9c54dbd5-ltcvf:/data/app#
 > -Ddd.agent.port=9529
 
 ### 2、请求
+
 浏览器访问地址：[http://localhost:9201/exec/stackOOM](http://localhost:9201/exec/stackOOM)
+
 ### 3、观测云查看日志
+
 瞬间创建线程，JVM 自带工具不在上报线程等相关监控指标，观测云仍然上报最新 JVM 监控指标。
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/22022417/1649677526411-28b9ed26-f5fc-4809-8e59-2cc40c70dcc1.png#clientId=u40c8c1c7-fa57-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=926&id=ubdf03160&margin=%5Bobject%20Object%5D&name=image.png&originHeight=926&originWidth=1742&originalType=binary&ratio=1&rotation=0&showTitle=false&size=117233&status=done&style=none&taskId=u5a63e0f6-ca87-42bd-b5d0-a2d6c56ac17&title=&width=1742)
+
+![image.png](../images/java_oom_3.png)
+
 一段时间后，JVM 自带工具出现异常。
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/22022417/1649677617074-da0b3131-4b56-4443-9f47-b720c98bfcc3.png#clientId=u40c8c1c7-fa57-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=231&id=uf2d0c3a9&margin=%5Bobject%20Object%5D&name=image.png&originHeight=231&originWidth=869&originalType=binary&ratio=1&rotation=0&showTitle=false&size=11359&status=done&style=none&taskId=ud5e6d307-d2ba-4520-87c0-ab360ec597c&title=&width=869)
+
+![image.png](../images/java_oom_4.png)
+
 随后系统就会出现假死现象。
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/22022417/1649679037722-7676222d-de5c-49fd-bc7c-7efc0bcb6c3e.png#clientId=u40c8c1c7-fa57-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=600&id=uc3b11ff6&margin=%5Bobject%20Object%5D&name=image.png&originHeight=600&originWidth=1745&originalType=binary&ratio=1&rotation=0&showTitle=false&size=76371&status=done&style=none&taskId=u33ad8dbb-1d9e-4b4f-a234-997e246ece1&title=&width=1745)
+
+![image.png](../images/java_oom_5.png)
+
 ## 栈溢出 -java.lang.StackOverFlowError
+
 主要表现在递归调用、死循环上，无论是由于栈帧太大还是虚拟机栈容量太小，当新的栈帧内存无非分配的时候，HotSpot 虚拟机抛出的都是 StackOverFlowError 异常。程序每次递归的时候，程序会把数据结果压入栈，包括里边的指针等，这个时候就需要帧栈大一些才能承受住更多的递归调用。
+
 ### 1、启动参数
 > -Xmx80m
 > -javaagent:C:/"Program Files"/datakit/data/dd-java-agent.jar
