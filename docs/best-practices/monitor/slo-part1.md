@@ -4,9 +4,9 @@
 
 [SLO 从方法论到实践: Part1 建立有效的 SLO](slo-part1.md)
 
-[SLO 从方法论到实践: Part2 SLO 工具选型](slo_part2.md)
+[SLO 从方法论到实践: Part2 SLO 工具选型](slo-part2.md)
 
-[SLO 从方法论到实践: Part3 使用观测云管理SLO的最佳实践](slo_part3.md)
+[SLO 从方法论到实践: Part3 使用观测云管理SLO的最佳实践](slo-part3.md)
 
 ## 关键术语
 在继续之前，让我们首先分解一些将在整个系列中使用的关键术语：
@@ -49,7 +49,8 @@
 当您开始选择 SLI 时，请记住一句简短但重要的说法：“**所有 SLI 都是指标，但并非所有指标都是好的 SLI。**” 这意味着虽然您可能要跟踪成百上千个指标，但您应该关注最重要的指标：最能捕捉用户体验的指标。
 
 您可以使用下表（来自Google 的 SRE 书籍）作为参考。
-![image.png](https://cdn.nlark.com/yuque/0/2021/png/22022417/1639549976725-9f35d08a-a618-4c27-b2a2-9ebdccec912d.png#clientId=uc6aa56d0-8cd4-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=318&id=Kh5uj&margin=%5Bobject%20Object%5D&name=image.png&originHeight=318&originWidth=872&originalType=binary&ratio=1&rotation=0&showTitle=false&size=42164&status=done&style=none&taskId=u1d8804af-b057-441d-a9cc-4dabf7e3d75&title=&width=872)
+
+![image.png](../images/opentelemetry-observable-1.png)
 
 现在，想象一下您的购物者卡在结账页面上，等待缓慢的支付端点返回响应。他们等待的时间越长，他们就越有可能对您的业务产生负面印象。除了声誉受损之外，客户放弃购物车可能会产生昂贵的后果。事实上，一些最大和最成功的组织发现，每一秒的延迟都与收入的显着减少相关。从这个例子中，我们可以看到响应延迟是在线零售商跟踪的一个特别重要的 SLI，以确保他们的客户能够快速完成关键业务交易。
 
@@ -76,5 +77,5 @@
 ### 现在您知道您的 SLO
 在这篇博文中，我们探讨了如何选择正确的 SLI 并将其转换为定义明确的 SLO 可以让您的组织走上成功之路。通过使用 SLI 来衡量您为用户提供的服务水平——并根据实际 SLO 跟踪您的性能——您将能够更好地做出决策以提高功能速度和系统可靠性。我们已将本指南总结为一个简单的清单，您可以在开始创建 SLO 和加入更多团队成员时参考该清单。
 
-继续阅读本系列的[下一部分](slo_part2.md)，了解技术和业务团队如何使用 [观测云](https://guance.com/) 通过管理 SLO 及其其余监控数据来更有效地协作。
+继续阅读本系列的[下一部分](slo-part2.md)，了解技术和业务团队如何使用 [观测云](https://guance.com/) 通过管理 SLO 及其其余监控数据来更有效地协作。
 
