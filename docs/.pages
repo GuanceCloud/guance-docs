@@ -19,5 +19,6 @@ nav:
   - 付费计划与账单: billing
   - OpenAPI: open-api
   - DataFlux Func: dataflux-func
+  - 最佳实践: best-practices
   - 相关协议: agreements
 
