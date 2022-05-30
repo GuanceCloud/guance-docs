@@ -38,7 +38,7 @@ logging.pattern.level = trace_id=%mdc{trace_id} span_id=%mdc{span_id} trace_flag
 ## [3、基于观测云-商业可观测性产品](https://www.yuque.com/dataflux/bp/ezuo9s)
 
 [观测云](https://www.guance.com)是一个集指标数据、日志数据、APM 、RUM、基础设施、容器、中间件、网络性能等多种数据统一收集管理平台。使用观测云可以为我们全方位观测应用，而不仅仅是日志链路之间的观测。更多观测云信息请跳转到[产品优势](https://www.yuque.com/dataflux/doc/advantage)阅读。
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/22022417/1653470074139-25a74040-f8e4-408c-a4e1-eb2cf3b2c1c3.png#clientId=u799f3231-c3e7-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=553&id=u2a228f54&margin=%5Bobject%20Object%5D&name=image.png&originHeight=498&originWidth=885&originalType=binary&ratio=1&rotation=0&showTitle=false&size=193664&status=done&style=none&taskId=u73742a3c-d3e6-485e-8f20-5340355d1ee&title=&width=983.3333593827714)
+![image.png](./images/opentelemetry_observable_guance.png)
 DataKit 是观测云的前置 gateway, 若要把数据打给观测云, 需要正确的配置 DataKit , 而且利用 DataKit 有以下优势:
 > 1.  主机环境下, 每个主机都有一个 datakit , 数据先打给本地的 datakit , 由 datakit 缓存,预处理,然后上报, 避免了网络抖动的同时,附带了边缘处理能力, 给后台数据处理缓解压力. 
 > 1.  k8 环境下, 每个 node 都有一个 DataKit 的 daemonset, 通过利用k8s 的 local traffic机制, 让每个 node所在 pod 的数据都先发送本地 node 的 DataKit , 避免网络抖动的同时, 给 apm 数据增加了 pod 和 node 标签, 分布式环境下便于定位. 
