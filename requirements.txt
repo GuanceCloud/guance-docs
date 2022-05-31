@@ -1,0 +1,6 @@
+mkdocs-material==8.2.15
+mkdocs-awesome-pages-plugin==2.7.0
+mkdocs-section-index==0.3.4
+jieba==0.42.1
+Markdown==3.3.7
+pymdown-extensions==9.4
