@@ -1,0 +1,12 @@
+nav:
+  - index.md
+  - 'DataKit DaemonSet 配置管理最佳实践': datakit-daemonset.md
+  - 'ddtrace 高级用法': ddtrace-skill.md
+  - '海量微服务项目的性能可观测最佳实践': mutil-micro-service.md
+  - 'Kubernetes 集群使用 ExternalName 映射 DataKit 服务': kubernetes-external-name.md
+  - '数据关联最佳实践': data-ship.md
+  - '页面渠道引流可观测最佳实践': page.md
+  - 'TAG在观测云中的最佳实践': tag.md
+  - 'Datakit版本更新最佳实践': datakit-update.md
+  - '观测云-数据采样最佳实践': data-simpling.md
+  - '日志数据备份到 OSS 最佳实践 (Function)': log-backup-to-oss-by-func.md
