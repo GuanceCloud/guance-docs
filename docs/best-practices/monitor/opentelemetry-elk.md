@@ -1,7 +1,10 @@
 
-Opentelemetry 有很多种开源组合方案，我们通过三种平台/架构来分别介绍并演示 Opentelemetry 在不同技术架构下部署
+OpenTelemetry 有很多种开源组合方案，我们通过三种平台/架构来分别介绍并演示 OpenTelemetry 在不同技术架构下部署
+
 > 1、[OpenTelemetry to Jeager 、Grafana、ELK](./opentelemetry-elk.md)
+
 > 2、[OpenTelemetry to Grafana](./opentelemetry-grafana.md)
+
 > 3、[OpenTelemetry to 观测云](./opentelemetry-guance.md)
 
 ## OpenTelemetry
@@ -18,7 +21,7 @@ OpenTelemetry Collector （以下简称“otel-collector”）针对如何接收
 
 ## OpenTelemetry-Java
 
-Opentelemetry基于java语言开发的sdk，支持将数据通过各种exporter 推送到不同的观测平台。
+OpenTelemetry基于java语言开发的sdk，支持将数据通过各种exporter 推送到不同的观测平台。
 
 ## OpenTelemetry-JS
 
@@ -39,7 +42,7 @@ OpenTelemetry 推出的基于前端 js 的链路追踪。
 
 方式一：通过 OTLP 上报日志
 
-应用 server 和 client 将 log 通过 otlp-exporter push 到 otel-collector，再通过 otel-collector exporter 到 Elasticsearch。由于 Opentelemetry log 方面还不稳定，所以推荐log单独处理，不走 otel-collector，在测试过程中也发下了 同时配置 log 和 metric 存在冲突问题，主要表现在 otel-collector 上，等待官方修复吧。
+应用 server 和 client 将 log 通过 otlp-exporter push 到 otel-collector，再通过 otel-collector exporter 到 Elasticsearch。由于 OpenTelemetry log 方面还不稳定，所以推荐log单独处理，不走 otel-collector，在测试过程中也发下了 同时配置 log 和 metric 存在冲突问题，主要表现在 otel-collector 上，等待官方修复吧。
 
 方式二：通过 Logback-logstash 上报日志
 
@@ -658,4 +661,4 @@ ELK 为 ElasticSearch 、Logstash 、Kibana 简称。
 
 ![zipkin-ui.gif](../images/opentelemetry-elk-10.gif)
 
-[下一篇 ](./opentelemetry-grafana.md)我们来介绍 Opentelemetry 是如何基于 grafana 相关组件进行可观测。
+[下一篇 ](./opentelemetry-grafana.md)我们来介绍 OpenTelemetry 是如何基于 grafana 相关组件进行可观测。
