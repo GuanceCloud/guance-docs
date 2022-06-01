@@ -1,0 +1,24 @@
+nav:
+  - 更新日志: release-notes
+  - 快速入门: getting-started
+  - DataKit: datakit
+  - 集成: integrations
+  - DQL: dql
+  - 场景: scene
+  - 事件: events
+  - 基础设施: infrastructure
+  - 指标: metrics
+  - 日志: logs
+  - 应用性能监测: application-performance-monitoring
+  - 用户访问监测: real-user-monitoring
+  - 可用性监测: usability-monitoring
+  - 安全巡检: security_checker
+  - CI 可视化: ci-visibility
+  - 监控: monitoring
+  - 工作空间管理: management
+  - 付费计划与账单: billing
+  - OpenAPI: open-api
+  - DataFlux Func: dataflux-func
+  - 最佳实践: best-practices
+  - 相关协议: agreements
+

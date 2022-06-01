@@ -1,0 +1,30 @@
+variables:
+  REPOSITORY: "dataflux-doc"
+  PROJECT: "dataflux-doc"
+
+stages:
+  - deploy
+
+buildTesting:
+  stage: deploy
+  only:
+    - dev
+  script:
+    - docker buildx build --platform linux/arm64,linux/amd64 
+      -t registry.jiagouyun.com/cloudcare-front/$REPOSITORY:testing . --push
+    - curl -sS -X POST -H "Authorization:Bearer ${PREPROD_RANCHER_TOKEN}"  ${RANCHER_API_BASE_URL}/v3/project/${PREPROD_PROJECT_ID}/workloads/deployment:${PREPROD_WORKLOAD}?action=redeploy
+  tags:
+    - cloudcare-multiarch
+
+buildBasis:
+  stage: deploy
+  only:
+    - /basis-\d+/
+  script:
+    - docker buildx build --platform linux/arm64,linux/amd64
+      -t registry.jiagouyun.com/basis/mkdocs:1.0
+      -f Dockerfile.basis .
+      --push
+  tags:
+    - cloudcare-multiarch
+

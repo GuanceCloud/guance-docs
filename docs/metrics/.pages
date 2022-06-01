@@ -1,0 +1,5 @@
+nav:
+  - index.md
+  - '指标采集': collection.md
+  - '指标字典': dictionary.md
+  - '指标管理': explorer.md
