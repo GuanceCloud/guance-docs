@@ -35,17 +35,17 @@ logging.pattern.level = trace_id=%mdc{trace_id} span_id=%mdc{span_id} trace_flag
 
 以下介绍三种基于 OpenTelemetry 进行端到端全链路可观测性建设：
 
-## [1、基于传统监控的大集合](https://www.yuque.com/dataflux/bp/gyfcts)
+## [1、基于传统监控的大集合](./opentelemetry-elk.md)
 
 主要是通过 otel-collector 将 log、metric、trace 分别推送到ELK、Prometheus和相关APM产商，如 Jaeger。
 
-## [2、基于 Grafana 全家桶](https://www.yuque.com/dataflux/bp/springboot-otel-tempo)
+## [2、基于 Grafana 全家桶](./opentelemetry-grafana.md)
 
 近年来，Grafana 也开始进军可观测领域，成立了 Grafana-Cloud 和 Grafana Labs，在可观测上也推出了自己的一套解决方案。Grafana Tempo 是一个开源、易于使用且大规模的分布式跟踪后端。Tempo 具有成本效益，只需要对象存储即可运行，并且与 Grafana、Prometheus 和 Loki 深度集成。Tempo 可与任何开源跟踪协议一起使用，包括 Jaeger、Zipkin 和 OpenTelemetry，所以 Tempo 可直接接收来自 OpenTelemetry 的 trace 数据， Loki 用于采集来自 OpenTelemetry 的 log 数据，Grafana 仍然采用 Prometheus 来接收metric 数据。
 
 > 以上两种方案虽然解决了数据格式问题，但是从某种意义上来说，只能称之为技术，而不能称之为产品，基本上算是开源工具的缝合怪，在遇到一些业务问题时，仍然需要访问不同的工具查看分析问题，相关 log、metric、trace 没有很好的融合，并没有减轻运维以及开发人员运维及沟通成本。基于统一log、metric、trace 的数据分析平台就显得尤为重要，Grafana也在朝着这方面不断努力，但并没有完全解决数据孤岛，不同结构的数据仍然采用了不同的查询语言，Grafana 目前实现了 log 数据关联 trace 数据，但 trace 数据并不能反向关联 log 数据，Grafana 团队仍需努力解决数据之间的互相关联查询分析。
 
-## [3、基于观测云-商业可观测性产品](https://www.yuque.com/dataflux/bp/ezuo9s)
+## [3、基于观测云-商业可观测性产品](./opentelemetry-guance.md)
 
 [观测云](https://www.guance.com)是一个集指标数据、日志数据、APM 、RUM、基础设施、容器、中间件、网络性能等多种数据统一收集管理平台。使用观测云可以为我们全方位观测应用，而不仅仅是日志链路之间的观测。更多观测云信息请跳转到[产品优势](https://www.yuque.com/dataflux/doc/advantage)阅读。
 
@@ -54,7 +54,7 @@ logging.pattern.level = trace_id=%mdc{trace_id} span_id=%mdc{span_id} trace_flag
 DataKit 是观测云的前置 gateway, 若要把数据打给观测云, 需要正确的配置 DataKit , 而且利用 DataKit 有以下优势:
 
 > 1.  主机环境下, 每个主机都有一个 datakit , 数据先打给本地的 datakit , 由 datakit 缓存,预处理,然后上报, 避免了网络抖动的同时,附带了边缘处理能力, 给后台数据处理缓解压力. 
-> 1.  k8 环境下, 每个 node 都有一个 DataKit 的 daemonset, 通过利用k8s 的 local traffic机制, 让每个 node所在 pod 的数据都先发送本地 node 的 DataKit , 避免网络抖动的同时, 给 apm 数据增加了 pod 和 node 标签, 分布式环境下便于定位. 
+> 2.  k8 环境下, 每个 node 都有一个 DataKit 的 daemonset, 通过利用k8s 的 local traffic机制, 让每个 node所在 pod 的数据都先发送本地 node 的 DataKit , 避免网络抖动的同时, 给 apm 数据增加了 pod 和 node 标签, 分布式环境下便于定位. 
 
 
 DataKit 的设计理念也是学习了 OpenTelemetry，兼容了oltp 协议的, 所以可以绕过 collector 直接打给 DataKit , 也可以把 collector 的 exporter 设置为 oltp(DataKit )
