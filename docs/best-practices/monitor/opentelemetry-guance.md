@@ -20,7 +20,7 @@ DataKit 是观测云的前置 gateway, 若要把数据打给观测云, 需要正
 
 由于 DataKit 是接收 oltp 协议的, 所以可以绕过 collector 直接打给 DataKit , 也可以把 collector 的 exporter 设置为 oltp(DataKit ) 
 
-# 架构
+## 架构
 ![image.png](../images/opentelemetry-guance-1.png)
 
 架构上仍然有两套方案供大家选择。
@@ -79,10 +79,6 @@ const otelExporter = new OTLPTraceExporter({
   headers: {},
 });
 ```
-
-# 安装部署
-
-以下安装方案一进行部署。
 
 ## 安装配置 DataKit
 
@@ -647,32 +643,32 @@ npm start
 
 默认端口`8090`
 
-# APM 与 RUM 关联
+## APM 与 RUM 关联
 
 APM 与 RUM 主要通过 header 参数进行关联，为了保持一直，需要配置统一的传播器（`Propagator`），这里RUM 采用的是 `B3`，所以 APM 也需要配置`B3`，只需要在 APM 启动参数加上`-Dotel.propagators=b3`即可。
 
-# APM 与 Log 关联
+## APM 与 Log 关联
 
 APM 与 Log 主要是通过在日志埋点 traceId 和 spanId。不同的日志接入方式，埋点有差异。
 
-# 观测云
+## 观测云
 
 通过访问前端url产生 trace 信息。
 
 ![image.png](../images/opentelemetry-guance-2.png)
 
-## 日志查看器
+### 日志查看器
 
 ![guance-log.gif](../images/opentelemetry-guance-4.gif)
-## 链路（**应用性能监测**）
+### 链路（**应用性能监测**）
 ![guance-trace.gif](../images/opentelemetry-guance-5.gif)
-## 从链路查看对应的 Log
+### 从链路查看对应的 Log
 ![guance-trace-log.gif](../images/opentelemetry-guance-6.gif)
-## 应用Metrics
+### 应用Metrics
 ![guance-metrics.gif](../images/opentelemetry-guance-7.gif)
-## Otelcol Metrics
+### Otelcol Metrics
 ![guance-otelcol-metrics.gif](../images/opentelemetry-guance-8.gif)
 
-## Otelcol 集成视图
+### Otelcol 集成视图
 ![Otelcol 集成视图](../images/opentelemetry-guance-9.png)
 

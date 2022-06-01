@@ -4,7 +4,7 @@ Opentelemetry 有很多种开源组合方案，我们通过三种平台/架构�
 > 2、[OpenTelemetry to Grafana](./opentelemetry-grafana.md)
 > 3、[OpenTelemetry to 观测云](./opentelemetry-guance.md)
 
-# OpenTelemetry
+## OpenTelemetry
 OTEL 是 OpenTelemetry 的简称， 是 CNCF 的一个可观测性项目，旨在提供可观测性领域的标准化方案，解决观测数据的数据模型、采集、处理、导出等的标准化问题，提供与三方 vendor 无关的服务。
 
 OpenTelemetry 是一组标准和工具的集合，旨在管理观测类数据，如 Traces、Metrics、Logs 等 (未来可能有新的观测类数据类型出现)。目前已经是业内的标准。
@@ -24,9 +24,9 @@ Opentelemetry基于java语言开发的sdk，支持将数据通过各种exporter 
 
 OpenTelemetry 推出的基于前端 js 的链路追踪。
 
-# 架构
+## 架构
 ![image.png](../images/opentelemetry-elk-1.png)
-## 架构说明
+### 架构说明
 1、应用 server 和 client 将 metric 、trace 数据通过 otlp-exporter push 到 otel-collector
 
 2、front-app 为前端链路，将链路信息 push 到 otel-collector，并访问应用服务 API
@@ -65,15 +65,15 @@ otel-collector 配置了四个 exporter.
 
 > 注意，所有的应用都部署在同一个机器上，机器 ip 为 192.168.0.17。如果应用和一些中间件单独分开部署，则注意修改对应的 IP。如果是云服务器，则注意开放相关端口，以免访问失败。
 
-# 安装部署
+## 安装部署
 
-## 安装 OpenTelemetry-Collector
+### 安装 OpenTelemetry-Collector
 
-### 源码地址
+#### 源码地址
 
 [https://github.com/lrwh/observable-demo/tree/main/opentelemetry-collector-to-all](https://github.com/lrwh/observable-demo/tree/main/opentelemetry-collector-to-all)
 
-### 配置 otel-collector-config.yaml
+#### 配置 otel-collector-config.yaml
 
 新增 collecter 配置，配置1个recevier（otlp）、4个exporter(prometheus、zipkin、jaeger 和 elasticsearch。
 
@@ -181,7 +181,7 @@ services:
 
 
 ```
-### 配置 Prometheus
+#### 配置 Prometheus
 ```yaml
 scrape_configs:
   - job_name: 'otel-collector'
@@ -190,13 +190,13 @@ scrape_configs:
       - targets: ['otel-collector:8889']
       - targets: ['otel-collector:8888']
 ```
-### 启动容器
+#### 启动容器
 
 ```yaml
 docker-compose up -d
 ```
 
-### 查看启动情况
+#### 查看启动情况
 
 ```yaml
 docker-compose ps
@@ -204,18 +204,18 @@ docker-compose ps
 
 ![image.png](../images/opentelemetry-elk-2.png)
 
-## Docker 安装 ELK
+### Docker 安装 ELK
 
 采用 Docker 安装 ELK ,简单又方便，相关组件版本为`7.16.2`。
 
-### 拉取镜像
+#### 拉取镜像
 
 ```shell
 docker pull docker.elastic.co/elasticsearch/elasticsearch:7.16.2
 docker pull docker.elastic.co/logstash/logstash:7.16.2
 docker pull docker.elastic.co/kibana/kibana:7.16.2
 ```
-### 配置目录
+#### 配置目录
 
 ```shell
 # Linux 特有配置
@@ -229,7 +229,7 @@ mkdir -p ~/elk/logstash
 chmod 777 ~/elk/elasticsearch/data
 ```
 
-### Logstash配置
+#### Logstash配置
 
 ```shell
 input {
@@ -253,7 +253,7 @@ input 参数说明：
 > port： tcp 端口
 > codec：json行解析
 
-### Docker-compose 配置
+#### Docker-compose 配置
 
 ```shell
 version: '3'
@@ -295,13 +295,13 @@ services:
       - 5601:5601
 ```
 
-### 启动容器
+#### 启动容器
 
 ```yaml
 docker-compose up -d
 ```
 
-### 查看启动情况
+#### 查看启动情况
 
 ```yaml
 docker-compose ps
@@ -309,13 +309,13 @@ docker-compose ps
 
 ![image.png](../images/opentelemetry-elk-3.png)
 
-## Springboot 应用接入（APM）
+### Springboot 应用接入（APM）
 
-### 源码地址
+#### 源码地址
 
 [https://github.com/lrwh/observable-demo/tree/main/springboot-server](https://github.com/lrwh/observable-demo/tree/main/springboot-server)
 
-### 启动 server
+#### 启动 server
 
 ```yaml
 java -javaagent:opentelemetry-javaagent-1.13.1.jar \
@@ -328,7 +328,7 @@ java -javaagent:opentelemetry-javaagent-1.13.1.jar \
 -jar springboot-server.jar --client=true
 ```
 
-### 启动 client
+#### 启动 client
 
 ```yaml
 java -javaagent:opentelemetry-javaagent-1.13.1.jar \
@@ -341,7 +341,7 @@ java -javaagent:opentelemetry-javaagent-1.13.1.jar \
 -jar springboot-client.jar
 ```
 
-### 参数说明
+#### 参数说明
 
 otel.traces.exporter：otlp # 配置exporter类型为 otlp，默认otlp。
 
@@ -357,13 +357,13 @@ otel.propagators： 配置trace的传播器。
 
 由于 OpenTelemetry log 方面并不成熟稳定，所以不推荐生产使用，测试过程中也出现一些 Bug，仅作为学习。
 
-## Springboot 应用接入（Log）
+### Springboot 应用接入（Log）
 
-### 方式一：通过 OTLP 上报日志
+#### 方式一：通过 OTLP 上报日志
 
 应用 server 和 client 将 log 通过 otlp-exporter push 到 otel-collector，再通过 otel-collector exporter 到 Elasticsearch。
 
-#### 修改启动参数
+##### 修改启动参数
 
 需要在应用启动时添加参数`-Dotel.logs.exporter=otlp`
 ```yaml
@@ -388,11 +388,11 @@ java -javaagent:opentelemetry-javaagent-1.13.1.jar \
 ```
 启动后，日志会通过 otlp 协议传输到 otel-collector，并由 otel-collector exporter 到 Elasticsearch。
 
-### 方式二：通过 Logstash-logback 上报日志
+#### 方式二：通过 Logstash-logback 上报日志
 
 主要是通过 Logstash-logback  提供的 socket 方式将日志上传到 Logstash 上，需要对代码做部分调整。
 
-#### 1、项目Maven引用 Logstash-logback
+##### 1、项目Maven引用 Logstash-logback
 
 ```toml
 <dependency>
@@ -479,7 +479,7 @@ java -javaagent:opentelemetry-javaagent-1.13.1.jar \
 </configuration>
 
 ```
-#### 3、新增 application-logstash.yml
+##### 3、新增 application-logstash.yml
 
 ```java
 logstash:
@@ -489,13 +489,13 @@ logging:
   config: classpath:logback-logstash.xml
 ```
 
-#### 4、重新打包
+##### 4、重新打包
 
 ```java
 mvn clean package -DskipTests
 ```
 
-#### 5、启动服务
+##### 5、启动服务
 
 ```yaml
 java -javaagent:opentelemetry-javaagent-1.13.1.jar \
@@ -523,13 +523,13 @@ java -javaagent:opentelemetry-javaagent-1.13.1.jar \
 --logstash.port=4560
 ```
 
-## JS 接入（RUM）
+### JS 接入（RUM）
 
-### 源码地址
+#### 源码地址
 
 [https://github.com/lrwh/observable-demo/tree/main/opentelemetry-js](https://github.com/lrwh/observable-demo/tree/main/opentelemetry-js)
 
-### 配置 OTLPTraceExporter
+#### 配置 OTLPTraceExporter
 
 ```javascript
 const otelExporter = new OTLPTraceExporter({
@@ -541,7 +541,7 @@ const otelExporter = new OTLPTraceExporter({
 
 此处 url 为 otel-collector 的 otlp 接收地址（ http 协议）。
 
-### 配置server_name
+#### 配置server_name
 
 ```javascript
 const providerWithZone = new WebTracerProvider({
@@ -552,38 +552,38 @@ const providerWithZone = new WebTracerProvider({
 );
 ```
 
-### 安装
+#### 安装
 
 ```toml
 npm install
 ```
 
-### 启动
+#### 启动
 
 ```toml
 npm start
 ```
 默认端口`8090`
 
-# APM 与 RUM 关联
+## APM 与 RUM 关联
 
 APM 与 RUM 主要通过 header 参数进行关联，为了保持一直，需要配置统一的传播器（`Propagator`），这里RUM 采用的是 `B3`，所以 APM 也需要配置`B3`，只需要在 APM 启动参数加上`-Dotel.propagators=b3`即可。
 
-# APM 与 Log 关联
+## APM 与 Log 关联
 
 APM 与 Log 主要是通过在日志埋点 traceId 和 spanId。不同的日志接入方式，埋点有差异。
 
-# UI展示
+## UI展示
 
 通过访问前端url产生 trace 信息。
 
 ![image.png](../images/opentelemetry-elk-4.png)
 
-## ELK 日志展示
+### ELK 日志展示
 
 ELK 为 ElasticSearch 、Logstash 、Kibana 简称。
 
-### 通过 OTLP 上报日志
+#### 通过 OTLP 上报日志
 
 ![otel-log-es.gif](../images/opentelemetry-elk-5.gif)
 
@@ -646,13 +646,13 @@ ELK 为 ElasticSearch 、Logstash 、Kibana 简称。
 
 通过 Logstash-logback 方式需要将 traceId 和 spanId 手动埋点。
 
-## Prometheus & Grafana 指标展示
+### Prometheus & Grafana 指标展示
 
 ![image.png](../images/opentelemetry-elk-7.png)
 
 ![image.png](../images/opentelemetry-elk-8.png)
 
-## Jeager、Zipkin 链路展示
+### Jeager、Zipkin 链路展示
 
 ![jaeger-ui.gif](../images/opentelemetry-elk-9.gif)
 
