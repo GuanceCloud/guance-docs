@@ -1,0 +1,12 @@
+nav:
+  - index.md
+  - 使用 Rancher 部署和管理 DataKit，快速构建Kubernetes 生态的可观测: rancher-datakit.md
+  - Kubernetes 集群日志上报到同节点的 DataKit 最佳实践: log-report-one-node.md
+  - Kubernetes 集群 应用使用 SkyWalking 采集链路数据: k8s-skywalking.md
+  - Kubernetes 应用的 RUM-APM-LOG 联动分析: k8s-rum-apm-log.md
+  - service mesh 微服务架构从研发到金丝雀发布全流程最佳实践(上): microservices1.md
+  - service mesh 微服务架构从研发到金丝雀发布全流程最佳实践(中): microservices2.md
+  - service mesh 微服务架构从研发到金丝雀发布全流程最佳实践(下): microservices3.md
+  - 基于阿里云 ASM 实现微服务可观测最佳实践: asm.md
+  - Spark On K8s Operator 可观测最佳实践: spark-on-kubernetes.md
+  - 基于 Istio 实现微服务可观测最佳实践: istio.md
