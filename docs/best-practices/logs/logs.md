@@ -162,7 +162,9 @@ Logstreaming 支持在 HTTP URL 中添加参数，对日志数据进行操作。
   </format>
 </match>
 ```
-修改配置之后重启 td-agent ，完成数据上报<br />![image.png](https://cdn.nlark.com/yuque/0/2021/png/21511854/1638429730845-fb04028f-e9c0-4f77-ac8b-a2157e1b843d.png#clientId=u05f6c49a-f3ae-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=321&id=ucf242841&margin=%5Bobject%20Object%5D&name=image.png&originHeight=642&originWidth=750&originalType=binary&ratio=1&rotation=0&showTitle=false&size=189684&status=done&style=none&taskId=ue35353b5-ab7b-4d38-9a09-0619f2935b9&title=&width=375)<br />**可以通过 **[DQL](https://www.yuque.com/dataflux/doc/fsnd2r)** 验证上报的数据：**
+修改配置之后重启 td-agent ，完成数据上报<br />
+![image](../images/logs/1.png)
+<br />**可以通过 **[DQL](https://www.yuque.com/dataflux/doc/fsnd2r)** 验证上报的数据：**
 ```bash
 dql > L::nginx_td LIMIT 1
 -----------------[ r1.nginx_td.s1 ]-----------------
@@ -480,14 +482,18 @@ datakit --pl nginx.p --txt '172.17.0.1 - - [06/Jan/2017:16:16:37 +0000] "GET /da
 No data extracted from pipeline
 ```
 ### 在线 Grok Debug
-利用 [GrokDebug 网站](http://grokdebug.herokuapp.com/)进行 Grok 调试<br />![image.png](https://cdn.nlark.com/yuque/0/2021/png/21511854/1638521193621-e877655d-402a-4fc3-855b-a4afc044efa9.png#clientId=u72685e64-ba32-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=491&id=u77363323&margin=%5Bobject%20Object%5D&name=image.png&originHeight=491&originWidth=1103&originalType=binary&ratio=1&rotation=0&showTitle=false&size=27811&status=done&style=none&taskId=u57f09948-36fa-4153-967d-2969467dae2&title=&width=1103)
+利用 [GrokDebug 网站](http://grokdebug.herokuapp.com/)进行 Grok 调试<br />
+![image](../images/logs/2.png)
 # 日志采集成本优化
 ## 通过观测云产品侧进行成本优化
 “观测云”支持通过设置日志黑名单的方式过滤掉符合条件的日志，即配置日志黑名单以后，符合条件的日志数据不再上报到“观测云” 工作空间，帮助用户节约日志数据存储费用。
 > 注意：此处的配置并不会以下发的方式下发给 DataKit，此处配置的生效是由 DataKit 主动 Get 请求中心的配置文件，然后读取配置文件并在本地执行过滤动作。
 
 ### 新建日志黑名单
-在 “观测云” 工作空间，点击「日志」-「黑名单」-「新建黑名单」，选择「日志来源」，添加一条或多条日志筛选过滤规则，点击确定即默认开启该日志过滤规则。您可以通过「日志黑名单」，查看全部日志过滤规则。<br />![image.png](https://cdn.nlark.com/yuque/0/2021/png/21516613/1631959541914-8f2b1973-aeeb-480f-a748-b05ba83e164e.png#clientId=u7651b444-8de9-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=692&id=u68dd6f05&margin=%5Bobject%20Object%5D&name=image.png&originHeight=692&originWidth=1896&originalType=binary&ratio=1&rotation=0&showTitle=false&size=77626&status=done&style=none&taskId=uf6bb721b-ebd2-4d0f-889e-b38e1d848e4&title=&width=1896)<br />![image.png](https://cdn.nlark.com/yuque/0/2021/png/21516613/1631959595697-da26f8be-0608-49fb-9d43-a891e99907b0.png#clientId=u7651b444-8de9-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=448&id=ua972e9ab&margin=%5Bobject%20Object%5D&name=image.png&originHeight=448&originWidth=698&originalType=binary&ratio=1&rotation=0&showTitle=false&size=19167&status=done&style=none&taskId=u379dbb26-b929-499c-800d-afb50eaf851&title=&width=698)<br />注意：日志过滤筛选条件为“**and（并且）**”的关系，即同时符合过滤筛选条件的日志数据，将不会被上报到工作空间。
+在 “观测云” 工作空间，点击「日志」-「黑名单」-「新建黑名单」，选择「日志来源」，添加一条或多条日志筛选过滤规则，点击确定即默认开启该日志过滤规则。您可以通过「日志黑名单」，查看全部日志过滤规则。<br />
+![image](../images/logs/3.png)<br />
+![image](../images/logs/4.png)
+<br />注意：日志过滤筛选条件为“**and（并且）**”的关系，即同时符合过滤筛选条件的日志数据，将不会被上报到工作空间。
 ## 采集流式日志前置成本优化
 以采集 Fluentd 日志为例，可以在`<match> </match>`中进行日志聚合来对日志进行压缩，或者在`<match> </match>`使用中来进行事件的过滤只将错误或告警日志上报至观测云来降低使用成本。
 # 更多内容

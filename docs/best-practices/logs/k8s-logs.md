@@ -368,11 +368,21 @@ data:
 # 异常检测
         当日志出现异常，对应用影响很大的时候，使用观测云的日志异常检测功能，并配置告警，能及时把异常通知到观测对象，观测云的告警支持邮箱、钉钉、短信、企业微信、飞书等通知方式。下面以邮箱为例介绍一下告警。
 ## 1 创建通知对象
-        登录 [观测云](https://console.guance.com/)，【管理】->【通知对象管理】-> 【新建通知对象】，选择邮件组，输入名称和邮件地址。<br />![4.png](https://cdn.nlark.com/yuque/0/2022/png/21583952/1647417288732-e5098c2b-99a1-43de-aa18-d64a0f0d964a.png#clientId=uebbd095a-2c80-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=517&id=ue69661dc&margin=%5Bobject%20Object%5D&name=4.png&originHeight=775&originWidth=1403&originalType=binary&ratio=1&rotation=0&showTitle=false&size=46502&status=done&style=none&taskId=u5a38c78c-83f1-4b9f-a41b-becc61fa9e1&title=&width=935.3333333333334)
+        登录 [观测云](https://console.guance.com/)，【管理】->【通知对象管理】-> 【新建通知对象】，选择邮件组，输入名称和邮件地址。<br />
+![image](../images/k8s-logs/1.png)	
 
 ## 2 新建监控器
-         点击【监控】->【新建监控器】-> 【日志监测】。<br />![1647417527(1).png](https://cdn.nlark.com/yuque/0/2022/png/21583952/1647417536019-9ba0998d-b80a-4bbd-b288-ee32da8ef230.png#clientId=uebbd095a-2c80-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=521&id=u6e9ac0d9&margin=%5Bobject%20Object%5D&name=1647417527%281%29.png&originHeight=782&originWidth=1838&originalType=binary&ratio=1&rotation=0&showTitle=false&size=104355&status=done&style=none&taskId=udb2ac612-fd3b-4a78-b195-d4639856102&title=&width=1225.3333333333333)<br />        输入规则名称，检测指标 log_fwd_demo 是采集日志时候配置的 source，后面的 error 是日志包含的内容，host_ip 是日志的标签，在事件内容可以使用 {{host_ip}} 把具体标签的值输出。触发条件填 1，标题和内容会以邮件的方式发送。填完后点击【保存】。<br />![1647418013(1).png](https://cdn.nlark.com/yuque/0/2022/png/21583952/1647418021961-4a91d5ad-1599-40e1-9541-213d3e0fb1ea.png#clientId=uebbd095a-2c80-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=530&id=u812769fb&margin=%5Bobject%20Object%5D&name=1647418013%281%29.png&originHeight=795&originWidth=1765&originalType=binary&ratio=1&rotation=0&showTitle=false&size=66418&status=done&style=none&taskId=u867b76fd-36d6-4ca4-95e4-9fa464b9067&title=&width=1176.6666666666667)<br />![1647417641(1).png](https://cdn.nlark.com/yuque/0/2022/png/21583952/1647417660110-1df942a1-eda6-4779-83c0-f4299d4aae09.png#clientId=uebbd095a-2c80-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=330&id=u87b1d4bd&margin=%5Bobject%20Object%5D&name=1647417641%281%29.png&originHeight=495&originWidth=1100&originalType=binary&ratio=1&rotation=0&showTitle=false&size=22417&status=done&style=none&taskId=u1749e487-6adb-4392-a86e-980c5462e3e&title=&width=733.3333333333334)
+         点击【监控】->【新建监控器】-> 【日志监测】。<br />
+![image](../images/k8s-logs/2.png)	
+    	 <br />        输入规则名称，检测指标 log_fwd_demo 是采集日志时候配置的 source，后面的 error 是日志包含的内容，host_ip 是日志的标签，在事件内容可以使用 {{host_ip}} 把具体标签的值输出。触发条件填 1，标题和内容会以邮件的方式发送。填完后点击【保存】。<br />
+![image](../images/k8s-logs/3.png)	
+
+![image](../images/k8s-logs/4.png)	
 ## 3 配置告警
-         在【监控器】界面，点击刚才创建的监控器，点击【告警配置】。<br />![1.png](https://cdn.nlark.com/yuque/0/2022/png/21583952/1647418264083-3f19fece-500c-4f4d-8e44-6444e09c941f.png#clientId=uebbd095a-2c80-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=571&id=u7f2591e9&margin=%5Bobject%20Object%5D&name=1.png&originHeight=857&originWidth=1857&originalType=binary&ratio=1&rotation=0&showTitle=false&size=125756&status=done&style=none&taskId=ud098fc2b-921e-4483-a37c-1096aa9ed08&title=&width=1238)<br />        告警通知对象选择第一步中创建的邮件组，选择告警沉默时间，点击【确定】。<br />![1647419177(1).png](https://cdn.nlark.com/yuque/0/2022/png/21583952/1647419185004-5e9e5002-f394-420d-a91a-8c4be35c3332.png#clientId=uebbd095a-2c80-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=226&id=u47bce570&margin=%5Bobject%20Object%5D&name=1647419177%281%29.png&originHeight=339&originWidth=721&originalType=binary&ratio=1&rotation=0&showTitle=false&size=11823&status=done&style=none&taskId=uc55a78a7-abcf-45a9-b2df-b42ae79b28e&title=&width=480.6666666666667)
+         在【监控器】界面，点击刚才创建的监控器，点击【告警配置】。<br />
+![image](../images/k8s-logs/5.png)	
+    	 <br />        告警通知对象选择第一步中创建的邮件组，选择告警沉默时间，点击【确定】。<br />
+![image](../images/k8s-logs/6.png)	
 ## 4 触发告警
-        应用触发 error 日志，这时会收到通知邮件。<br />![3.png](https://cdn.nlark.com/yuque/0/2022/png/21583952/1647418167244-6a107e3a-36f0-4301-a4ea-3fc13123868e.png#clientId=uebbd095a-2c80-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=436&id=u3029bef2&margin=%5Bobject%20Object%5D&name=3.png&originHeight=654&originWidth=727&originalType=binary&ratio=1&rotation=0&showTitle=false&size=41556&status=done&style=none&taskId=u4bf8e847-5516-4699-aadf-6c5c6b31c83&title=&width=484.6666666666667)
+        应用触发 error 日志，这时会收到通知邮件。<br />
+![image](../images/k8s-logs/7.png)	

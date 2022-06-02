@@ -50,7 +50,8 @@ Datakit部署完成后，按需采集指定的业务Pod日志、K8集群组件�
     # more_tag = "some_other_value"
 ```
 #### 实现效果
-这样就按需采集指定image名称的Pod日志，如下图：<br />![image.png](https://cdn.nlark.com/yuque/0/2022/png/21509255/1649911646100-b9b64ea0-fba0-4db6-b239-b9df5633b5b0.png#clientId=ue3e2f072-7080-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=700&id=u30ef378d&margin=%5Bobject%20Object%5D&name=image.png&originHeight=700&originWidth=1433&originalType=binary&ratio=1&rotation=0&showTitle=false&size=140266&status=done&style=none&taskId=u9ce32e6e-0f9c-42c9-b6fb-48757315369&title=&width=1433)
+这样就按需采集指定image名称的Pod日志，如下图：<br />
+![image](../images/stdout-log/1.png)
 ### 方式二 组合container_include_log = []和Annotation标记
 只采集集群组件coredns和nginx日志，同时通过Annotation对nginx标记，当然未在container_include_log中开启的白名单，比如：另外的镜像busybox，也可以通过Annotation方式标记后采集上来。这是由于Annotation标记的方式优先级高。详细见日志处理原理[《Datakit日志处理综述》](https://www.yuque.com/dataflux/datakit/datakit-logging-how) 一文。<br />Nginx的Annotation标记
 ```json
@@ -106,12 +107,13 @@ Datakit部署完成后，按需采集指定的业务Pod日志、K8集群组件�
     # more_tag = "some_other_value"
 ```
 #### 实现效果
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/21509255/1649915006956-a1017c26-f43c-41a1-8526-91d5828a0015.png#clientId=ue3e2f072-7080-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=689&id=ub1fc26fe&margin=%5Bobject%20Object%5D&name=image.png&originHeight=689&originWidth=1419&originalType=binary&ratio=1&rotation=0&showTitle=false&size=159626&status=done&style=none&taskId=u4acb7a27-63c7-4e95-8e7e-baf0af7bac8&title=&width=1419)
+![image](../images/stdout-log/2.png)
 ### 方式三 过滤Pod中的某容器日志
 只采集集群组件coredns和nginx日志，同时通过Annotation对nginx标记里的"only_images" 字段开启只需要容器的image，也就是在Pod内部也有个白名单策略。
 
 #### 开启Pod内白名单前
-如下图，nginx和busybox日志均采集<br />![image.png](https://cdn.nlark.com/yuque/0/2022/png/21509255/1649915492071-f0d2e9d9-a98f-4018-8c30-48563af427da.png#clientId=ue3e2f072-7080-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=689&id=udb3f0909&margin=%5Bobject%20Object%5D&name=image.png&originHeight=689&originWidth=1425&originalType=binary&ratio=1&rotation=0&showTitle=false&size=153402&status=done&style=none&taskId=u648fb53b-6bbe-46f5-9c95-e757830606d&title=&width=1425)
+如下图，nginx和busybox日志均采集<br />
+![image](../images/stdout-log/3.png)
 #### 开启Pod内白名单
 ```json
       labels:
@@ -131,7 +133,8 @@ Datakit部署完成后，按需采集指定的业务Pod日志、K8集群组件�
     spec: 
 ```
 #### 实现效果
-仅保留Pod内Nginx日志<br />![image.png](https://cdn.nlark.com/yuque/0/2022/png/21509255/1649915774838-e7fcba00-f5ee-4029-bdab-6b8b03d15e7b.png#clientId=ue3e2f072-7080-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=696&id=ud282990c&margin=%5Bobject%20Object%5D&name=image.png&originHeight=696&originWidth=1414&originalType=binary&ratio=1&rotation=0&showTitle=false&size=129726&status=done&style=none&taskId=u142da845-3f2a-4a79-9b43-7b7ff1ae307&title=&width=1414)
+仅保留Pod内Nginx日志<br />
+![image](../images/stdout-log/4.png)
 ## 总结
 其实不建议开启白名单策略，白名单可能会造成很多问题，且不好调试，白名单可能会有无法预期的效果，比如开发打个日志没看到，实际上是没加某个 Tag。要过滤日志来源，黑名单失效最差情况是数据采集上来，黑名单过滤比如在Datakit采集器container.conf中的
 ```json

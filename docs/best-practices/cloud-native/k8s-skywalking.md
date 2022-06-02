@@ -117,9 +117,12 @@ spec:
 kubectl apply -f skywalking-demo.yaml 
 ```
 ### 访问应用
-        查看 pod 端口。<br />![1651915364(1).png](https://cdn.nlark.com/yuque/0/2022/png/21583952/1651915410598-1eba502c-8bca-49e6-af15-d6d31b9124dc.png#clientId=ub4e0bb42-1e6c-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=79&id=ub4d4a85a&margin=%5Bobject%20Object%5D&name=1651915364%281%29.png&originHeight=106&originWidth=1535&originalType=binary&ratio=1&rotation=0&showTitle=false&size=12035&status=done&style=none&taskId=u94c55b4c-338f-427e-b4c9-ed29e307279&title=&width=1137.0371173602293)<br />      调用应用，生成链路数据
+        查看 pod 端口。
+![image](../images/k8s-skywalking/1.png)	
+		调用应用，生成链路数据
 ```
 curl 10.244.36.98:8090/ping
 ```
 ### 应用性能监测
-         登录『[观测云](https://console.guance.com/)』，进入『应用性能监测』模块，查看 skywalking-demo-master 应用。<br />![1651915533(1).png](https://cdn.nlark.com/yuque/0/2022/png/21583952/1651915572267-91d64a05-d795-4f32-96fb-2ebc4ab57f0d.png#clientId=ub4e0bb42-1e6c-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=641&id=u52bc9e09&margin=%5Bobject%20Object%5D&name=1651915533%281%29.png&originHeight=866&originWidth=1920&originalType=binary&ratio=1&rotation=0&showTitle=false&size=57618&status=done&style=none&taskId=uc59686ba-07bc-4f39-bc1d-332bd01bfbd&title=&width=1422.2223226916224)
+         登录『[观测云](https://console.guance.com/)』，进入『应用性能监测』模块，查看 skywalking-demo-master 应用。
+![image](../images/k8s-skywalking/2.png)	

@@ -275,5 +275,7 @@ kubectl apply -f pay-deployment.yaml
 ## 查看日志文件
         访问应用的接口，生成应用日志。登录[观测云](https://console.guance.com/)，【日志】->【数据采集】-> 选择 pay-socket-source 查看日志详情，这里可以看到 source 和 service 被外部传入的参数替代。
 
-![1646284049(1).png](https://cdn.nlark.com/yuque/0/2022/png/21583952/1646284066877-a7ddcd7c-0e00-441e-bef2-fc101f4b1866.png#clientId=uc7cef16d-5b69-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=465&id=PVV9l&margin=%5Bobject%20Object%5D&name=1646284049%281%29.png&originHeight=697&originWidth=1878&originalType=binary&ratio=1&rotation=0&showTitle=false&size=89939&status=done&style=none&taskId=u14e914d5-b2b3-4475-afca-ea3f74afbc6&title=&width=1252)<br />![1646284166.png](https://cdn.nlark.com/yuque/0/2022/png/21583952/1646284174247-cd376d77-595a-410e-94ac-9c8fbbcd4298.png#clientId=uc7cef16d-5b69-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=401&id=u2ae9fa4d&margin=%5Bobject%20Object%5D&name=1646284166.png&originHeight=601&originWidth=1469&originalType=binary&ratio=1&rotation=0&showTitle=false&size=41682&status=done&style=none&taskId=udcb79a74-e6ec-481f-ad4a-e26016eb17a&title=&width=979.3333333333334)
+![image](../images/logback-socket/1.png)
+<br />
+![image](../images/logback-socket/2.png)
 ## <br />

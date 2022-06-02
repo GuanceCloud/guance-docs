@@ -528,7 +528,10 @@ _ENTRYPOINT _["sh", "-ec", "exec java ${JAVA_OPTS}   -jar ${jar} ${PARAMS}  2>&1
 
 
 # 观测云查看日志
-日志查看器<br />![image.png](https://cdn.nlark.com/yuque/0/2022/png/22022417/1645512975489-d8c0386b-718f-4b19-9c83-e87c999ce440.png#clientId=ua0e952e8-23cb-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=953&id=u683dd1f8&margin=%5Bobject%20Object%5D&name=image.png&originHeight=953&originWidth=1916&originalType=binary&ratio=1&rotation=0&showTitle=false&size=147923&status=done&style=none&taskId=ua36a2b63-3ac1-4827-8e36-ec217e54d6a&title=&width=1916)<br />日志明细<br />![image.png](https://cdn.nlark.com/yuque/0/2022/png/22022417/1645513033820-311e9f9e-8e9d-46ac-afe7-39bd6f8a6661.png#clientId=ua0e952e8-23cb-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=817&id=u243927a8&margin=%5Bobject%20Object%5D&name=image.png&originHeight=817&originWidth=1917&originalType=binary&ratio=1&rotation=0&showTitle=false&size=128947&status=done&style=none&taskId=u3a9a723c-5939-4cab-b358-8f24be29eab&title=&width=1917)
+日志查看器<br />
+![image](../images/k8s-logback-socket/1.png)
+日志明细<br />
+![image](../images/k8s-logback-socket/2.png)
 # 相关最佳实践
 [**Kubernetes应用的RUM-APM-LOG联动分析**](https://www.yuque.com/dataflux/bp/k8s-rum-apm-log)<br />[观测云日志采集分析最佳实践](https://www.yuque.com/dataflux/bp/logging)<br />[Pod日志采集最佳实践 ](https://www.yuque.com/dataflux/bp/pod-log)<br />[Java日志关联链路数据](https://www.yuque.com/dataflux/doc/yyg3lp)
 

@@ -4,7 +4,8 @@
 ## 方案一
         DataKit 开通 Logfwd 采集器，Logfwd 以 Sidecar 模式收集业务容器日志。
 ### 1 开通 Logfwd 采集器
-        如果 Kubernetes 未集成 DataKit ，请登录[观测云](https://console.guance.com/)，【集成】->【Datakit】->【Kubernetes】，使用datakit.yaml 文件集成 DataKit 。<br />![1646026037(1).png](https://cdn.nlark.com/yuque/0/2022/png/21583952/1646026065778-e2913923-2c76-4ee1-99e9-eb859aef6a67.png#clientId=uc805b513-9582-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=578&id=uf80e935f&margin=%5Bobject%20Object%5D&name=1646026037%281%29.png&originHeight=867&originWidth=1543&originalType=binary&ratio=1&rotation=0&showTitle=false&size=121734&status=done&style=none&taskId=ucf441401-0e25-4c36-a2fe-7b0873f724e&title=&width=1028.6666666666667)
+        如果 Kubernetes 未集成 DataKit ，请登录[观测云](https://console.guance.com/)，【集成】->【Datakit】->【Kubernetes】，使用datakit.yaml 文件集成 DataKit 。<br />
+![image](../images/pod-log/1.png)
 
 下面修改 datakit.yaml文件，把 logfwdserver.conf 文件挂载到 DataKit 的 /usr/local/datakit/conf.d/log/ 目录。<br />在 datakit.yaml 中增加如下配置：
 ```
@@ -168,9 +169,10 @@ logfwd-conf 参数说明
 kubectl apply -f log-fwd-deployment.yaml
 ```
 ### 5 查看日志
-登录观测云->【日志】，数据源搜索log_fwd_demo。<br />![1648175294(1).png](https://cdn.nlark.com/yuque/0/2022/png/21583952/1648175324263-4fb2698b-ad61-4a29-872f-97e7315010ba.png#clientId=u0ff15c04-5975-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=624&id=ub4438c7b&margin=%5Bobject%20Object%5D&name=1648175294%281%29.png&originHeight=702&originWidth=1897&originalType=binary&ratio=1&rotation=0&showTitle=false&size=123427&status=done&style=none&taskId=ua4d81b02-749f-4c5b-885a-d030f14cf83&title=&width=1686.2222222222222)
+登录观测云->【日志】，数据源搜索log_fwd_demo。<br />
+![image](../images/pod-log/2.png)
 
-![1648175313(1).png](https://cdn.nlark.com/yuque/0/2022/png/21583952/1648175334540-404c6e29-7809-4fa6-9cad-28e38d28643c.png#clientId=u0ff15c04-5975-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=664&id=ud97e9630&margin=%5Bobject%20Object%5D&name=1648175313%281%29.png&originHeight=747&originWidth=1499&originalType=binary&ratio=1&rotation=0&showTitle=false&size=90023&status=done&style=none&taskId=u4538a821-5a94-4025-938a-1261552a15c&title=&width=1332.4444444444443)
+![image](../images/pod-log/3.png)
 ## 方案二
         DataKit 默认采集 Pod 中输出到 Stdout 中的日志。为了对日志格式进行特殊处理，通常会在部署 Pod 的Deployment 控制器的yaml文件中增加 Annotations。下面以 Springboot 的微服务项目做的一个日志采集示例，jar包是log-springboot-demo-1.0-SNAPSHOT.jar，日志使用 Logback。具体步骤如下：
 ### 1 编写logback-spring.xml
@@ -324,9 +326,10 @@ kuectl apply -f pod-log-service.yaml
 ```
 curl localhost:30053/ping
 ```
-登录[观测云](https://console.guance.com/) [日志]模块，输入 log-demo-service ，成功查看到日志。<br />![image.png](https://cdn.nlark.com/yuque/0/2021/png/21583952/1638328623505-f3ce2f4d-686d-410a-9b71-9b83f7d03f2e.png#clientId=u25a668e3-b9fc-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=320&id=u8cf50859&margin=%5Bobject%20Object%5D&name=image.png&originHeight=639&originWidth=1889&originalType=binary&ratio=1&rotation=0&showTitle=false&size=93862&status=done&style=none&taskId=u540a52dd-4c11-4e93-beb9-64c9590e82c&title=&width=944.5)
+登录[观测云](https://console.guance.com/) [日志]模块，输入 log-demo-service ，成功查看到日志。<br />
+![image](../images/pod-log/4.png)
 
-![image.png](https://cdn.nlark.com/yuque/0/2021/png/21583952/1638328517447-c4b06cb7-239e-4bc8-b35d-89fac5577da9.png#clientId=u25a668e3-b9fc-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=228&id=u73c6fcde&margin=%5Bobject%20Object%5D&name=image.png&originHeight=456&originWidth=1546&originalType=binary&ratio=1&rotation=0&showTitle=false&size=41684&status=done&style=none&taskId=u82f2fe9b-d2bc-4e4c-95c5-379a4baa8a9&title=&width=773)
+![image](../images/pod-log/5.png)
 
 ## 方案三
         Pod 挂载 Volume ，使用卷类型是 hostPath ，把日志文件挂载到宿主机上，再使用 Daemonset 部署DataKit ，同样挂载 hostPath 类型的 Volume ，这样datakit就能采集到 Pod 中的日志文件。
