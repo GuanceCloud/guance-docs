@@ -39,7 +39,7 @@ _**更多指标详见：**_[_**https://www.yuque.com/dataflux/doc/hlge69#Oi9n4**
 
 ## 三：最终效果图
 
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/21509337/1645084050637-2787b93e-f612-41b0-9ab6-96e2c7961be2.png#clientId=u3e32e04e-c9de-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=1334&id=u2b5bc093&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1334&originWidth=2388&originalType=binary&ratio=1&rotation=0&showTitle=false&size=306507&status=done&style=none&taskId=ucbbb42b7-b80e-4f95-819c-0b2a726aab3&title=&width=2388)
+![image.png](../images/page-5.png)
 
 ## 四：实现步骤
 

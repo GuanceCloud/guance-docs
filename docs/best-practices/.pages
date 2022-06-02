@@ -1,6 +1,8 @@
 nav:
   - index.md
   - 'APM': apm
+  - '自定义接入最佳实践': custom
+  - '场景最佳实践': scene
   - '观测云小妙招': guance-skill
   - '监控最佳实践': monitor
   - '技术理解': tech
