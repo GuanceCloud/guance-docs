@@ -22,7 +22,8 @@
         - name: ENV_DATAWAY
           value: https://openway.guance.com?token=<your-token>
 ```
-![](https://cdn.nlark.com/yuque/0/2022/png/21583952/1648545764623-52524aa3-2232-40cb-aa36-d54e4d0108d8.png#crop=0&crop=0&crop=1&crop=1&from=url&id=Eb2tb&margin=%5Bobject%20Object%5D&originHeight=810&originWidth=1532&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+![image](../images/microservices/1.png)	 
+
 #### 1.1.3 设置全局标签
         在 datakit.yaml 文件中的 ENV_GLOBAL_TAGS 环境变量值最后增加 cluster_name_k8s=k8s-istio，其中  k8s-istio 为您的集群名称，此步骤为集群设置全局 tag。
 ```
@@ -42,7 +43,11 @@
           value: cpu,disk,diskio,mem,swap,system,hostobject,net,host_processes,container,statsd,ddtrace
 ```
 #### 1.1.6 部署 DataKit
-         登录『Rancher』，在浏览集群标签下，选择『k8s-solution-cluster』集群，打开 datakit.yaml，根据资源文件内容，在 k8s-solution-cluster 集群中找到对应的菜单并一一创建资源。<br /> <br />![1648612746(1).png](https://cdn.nlark.com/yuque/0/2022/png/21583952/1648612752143-bdc6485d-8951-41b9-9c7a-d6ce133ac116.png#clientId=u4594850f-b855-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=652&id=u08c7e911&margin=%5Bobject%20Object%5D&name=1648612746%281%29.png&originHeight=733&originWidth=1892&originalType=binary&ratio=1&rotation=0&showTitle=false&size=43573&status=done&style=none&taskId=uc2d6a10d-778b-457a-b753-3f8086cb91f&title=&width=1681.7777777777778)<br />『注意』为了快速实现下一步操作，本次操作将合并 ConfigMap 后，直接使用 kubectl 命令部署 DataKit。
+         登录『Rancher』，在浏览集群标签下，选择『k8s-solution-cluster』集群，打开 datakit.yaml，根据资源文件内容，在 k8s-solution-cluster 集群中找到对应的菜单并一一创建资源。
+
+![image](../images/microservices/2.png)	 
+
+『注意』为了快速实现下一步操作，本次操作将合并 ConfigMap 后，直接使用 kubectl 命令部署 DataKit。
 ### 1.2 创建 ConfigMap
         开通 container 采集器和 zipkin 采集器，需要先定义 container.conf 和 zipkin.conf。
 ```
@@ -101,7 +106,12 @@ data:
 - `container_include` 和 `container_exclude` 必须以 `image` 开头，格式为 `"image:<glob规则>"`，表示 glob 规则是针对容器 image 生效
 - [Glob 规则](https://en.wikipedia.org/wiki/Glob_(programming))是一种轻量级的正则表达式，支持 `*` `?` 等基本匹配单元
 
-         然后登录『Rancher』，在浏览集群标签下，选择『k8s-solution-cluster』集群，依次进入『更多资源』-> 『Core』-> 『ConfigMaps』，使用 yaml 格式把上述定义的 ConfigMap 创建。<br />![1648609475(1).png](https://cdn.nlark.com/yuque/0/2022/png/21583952/1648609488580-68f33280-e960-4e62-96be-3535c6954cf8.png#clientId=u4594850f-b855-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=763&id=uff9ce419&margin=%5Bobject%20Object%5D&name=1648609475%281%29.png&originHeight=858&originWidth=1898&originalType=binary&ratio=1&rotation=0&showTitle=false&size=74883&status=done&style=none&taskId=ubb273295-5304-4125-a035-8924b5d5138&title=&width=1687.111111111111)<br />        最后在把 DataKit 与 ConfigMap 做下关联，在『k8s-solution-cluster』集群，进入 『工作负载』-> 『DaemonSets』找到 DataKit，在右边选择『编辑 YAML』，添加如下内容，最后点击『保存』。<br />![1648617535(1).png](https://cdn.nlark.com/yuque/0/2022/png/21583952/1648617699291-bd771b89-f3b9-4f60-be81-2fc7989688e7.png#clientId=u4594850f-b855-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=549&id=u486bb7f9&margin=%5Bobject%20Object%5D&name=1648617535%281%29.png&originHeight=618&originWidth=1366&originalType=binary&ratio=1&rotation=0&showTitle=false&size=37877&status=done&style=none&taskId=u3de81131-53ba-4b5d-a9fd-3ac30670c34&title=&width=1214.2222222222222)
+         然后登录『Rancher』，在浏览集群标签下，选择『k8s-solution-cluster』集群，依次进入『更多资源』-> 『Core』-> 『ConfigMaps』，使用 yaml 格式把上述定义的 ConfigMap 创建。
+
+![image](../images/microservices/3.png)	 
+
+        最后在把 DataKit 与 ConfigMap 做下关联，在『k8s-solution-cluster』集群，进入 『工作负载』-> 『DaemonSets』找到 DataKit，在右边选择『编辑 YAML』，添加如下内容，最后点击『保存』。
+![image](../images/microservices/4.png)	 
 ```
         - mountPath: /usr/local/datakit/conf.d/container/container.conf
           name: datakit-conf
@@ -114,7 +124,10 @@ data:
 
        
 ### 1.3 查看 DataKit 运行状态
-        DataKit 部署成功后，可以看到如下图的运行状态。<br />![1648617972(1).png](https://cdn.nlark.com/yuque/0/2022/png/21583952/1648617978073-517f040d-b7b7-4f8b-8eb3-39b619ea4a4c.png#clientId=u4594850f-b855-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=587&id=u934951d6&margin=%5Bobject%20Object%5D&name=1648617972%281%29.png&originHeight=660&originWidth=1896&originalType=binary&ratio=1&rotation=0&showTitle=false&size=51559&status=done&style=none&taskId=uf70547e3-70fd-4e01-8003-0e586db7fb9&title=&width=1685.3333333333333)
+        DataKit 部署成功后，可以看到如下图的运行状态。
+		
+![image](../images/microservices/5.png)	 
+
 ## 步骤 2： 映射 DataKit 服务
         使用 Istio 上报链路数据时，链路数据会被打到** **zipkin.istio-system的 Service上，且上报端口是 9411，由于 DataKit 服务的名称空间是 datakit，端口是 9529，所以这里需要做一下转换，详情请参考[Kubernetes 集群使用 ExternalName 映射 DataKit 服务](https://www.yuque.com/dataflux/bp/external-name)。
 
@@ -124,7 +137,13 @@ data:
 ### 2.1 下载源码
         下载 [istio-1.13.2.zip](https://github.com/istio/istio/releases)，后面使用的部署文件全部来自此压缩包，为了操作方便，将使用 kubectl 命令代替 Rancher 的图形化界面创建资源的操作。
 ### 2.2 开启 RUM
-         为了观测网站被调用的信息，需要开通前端的数据采集。登录『 [观测云](https://console.guance.com/)』，进入『用户访问监测』，新建应用 **devops-bookinfo** ，复制下方 JS。<br />![1652853576(1).png](https://cdn.nlark.com/yuque/0/2022/png/21583952/1652853589948-8e1d3db6-75e1-45a5-bc58-811aeab47b12.png#clientId=u84c75b42-2536-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=507&id=ubcfeba6d&margin=%5Bobject%20Object%5D&name=1652853576%281%29.png&originHeight=760&originWidth=1218&originalType=binary&ratio=1&rotation=0&showTitle=false&size=80053&status=done&style=none&taskId=ub495df50-8b2c-4478-9534-4538d238875&title=&width=812)<br />        上述的 JS 需要放置到 productpage 项目所有界面都能访问到的地方，本项目把上面的 JS 复制到 **istio-1.13.2\samples\bookinfo\src\productpage\templates\productpage.html** 文件中。<br />『注意』关于 RUM 数据上报的 DataKit 地址，请参考 [RUM 数据上报 DataKit 集群最佳实践](https://www.yuque.com/dataflux/bp/datakit-cluster)。<br />![](https://cdn.nlark.com/yuque/0/2022/png/21583952/1652848875108-546f755b-4e07-4674-9089-abd726832cf1.png#crop=0&crop=0&crop=1&crop=1&from=url&id=ZrdU9&margin=%5Bobject%20Object%5D&originHeight=374&originWidth=1150&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)<br />        然后对 productpage 重新发布镜像并上传到镜像仓库。
+         为了观测网站被调用的信息，需要开通前端的数据采集。登录『 [观测云](https://console.guance.com/)』，进入『用户访问监测』，新建应用 **devops-bookinfo** ，复制下方 JS。
+![image](../images/microservices/6.png)	 
+        上述的 JS 需要放置到 productpage 项目所有界面都能访问到的地方，本项目把上面的 JS 复制到 **istio-1.13.2\samples\bookinfo\src\productpage\templates\productpage.html** 文件中。<br />『注意』关于 RUM 数据上报的 DataKit 地址，请参考 [RUM 数据上报 DataKit 集群最佳实践](https://www.yuque.com/dataflux/bp/datakit-cluster)。
+
+![image](../images/microservices/7.png)	 
+
+        然后对 productpage 重新发布镜像并上传到镜像仓库。
 ```
 cd istio-1.13.2\samples\bookinfo\src\productpage
 docker build -t 172.16.0.238/df-demo/product-page:v1  .
@@ -451,16 +470,31 @@ kubectl apply -f bookinfo-gateway.yaml
 ```
 kubectl get svc -n istio-system
 ```
-![1648632432(1).png](https://cdn.nlark.com/yuque/0/2022/png/21583952/1648632448123-1ae4fc04-3bec-4e7a-94dd-4700259a7473.png#clientId=u4e1d4362-c866-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=163&id=uf5674b89&margin=%5Bobject%20Object%5D&name=1648632432%281%29.png&originHeight=183&originWidth=1531&originalType=binary&ratio=1&rotation=0&showTitle=false&size=18976&status=done&style=none&taskId=uc32dde67-6a78-4ffd-b4e0-291704c8309&title=&width=1360.888888888889)
 
-        根据虚拟服务规则，浏览器访问 [http://8.136.193.105:32156/productpage](http://8.136.193.105:32156/productpage)，即可访问 productpage，由于此时 reviews 服务还没部署，所以会出现** Sorry, product reviews are currently unavailable for this book** 的提示。<br />![1648632007(1).png](https://cdn.nlark.com/yuque/0/2022/png/21583952/1648632026700-0ce685e7-008f-410c-8052-1b00610a5e5f.png#clientId=u4e1d4362-c866-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=635&id=ue78e9d43&margin=%5Bobject%20Object%5D&name=1648632007%281%29.png&originHeight=714&originWidth=1893&originalType=binary&ratio=1&rotation=0&showTitle=false&size=40070&status=done&style=none&taskId=u4ffbe7f6-d6e5-4cee-a50d-a7d199af242&title=&width=1682.6666666666667)
+![image](../images/microservices/8.png)	 
+
+        根据虚拟服务规则，浏览器访问 [http://8.136.193.105:32156/productpage](http://8.136.193.105:32156/productpage)，即可访问 productpage，由于此时 reviews 服务还没部署，所以会出现** Sorry, product reviews are currently unavailable for this book** 的提示。
+		
+![image](../images/microservices/9.png)	 
+
 ## 步骤 5： 自动化部署
 ### 5.1 创建 Gitlab 项目
-        登录 Gitlab，创建 bookinfo-views 项目。<br />![1648634179(1).png](https://cdn.nlark.com/yuque/0/2022/png/21583952/1648634192491-ec7eba2f-b91f-45f6-9566-79b11069f54e.png#clientId=u4e1d4362-c866-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=449&id=u617cafdb&margin=%5Bobject%20Object%5D&name=1648634179%281%29.png&originHeight=505&originWidth=1832&originalType=binary&ratio=1&rotation=0&showTitle=false&size=33995&status=done&style=none&taskId=u1187c67b-ce83-4c4e-b651-8697fff1d09&title=&width=1628.4444444444443)<br /> 
+        登录 Gitlab，创建 bookinfo-views 项目。
+		
+![image](../images/microservices/10.png)
+	 
 ### 5.2 打通 Gitlab 与 DataKit
-        请参考 [gitlab 集成文档](https://www.yuque.com/dataflux/integrations/gitlab)打通 Gitlab 和 DataKit，这里只配置 Gitlab CI。<br />        登录『Gitlab』，进入『bookinfo-views』-> 『Settings』-> 『Webhooks』，在 url 中输入URL 中输入 DataKit 所在的主机 IP 和 DataKit 的 9529 端口，再加 /v1/gitlab。如下图。<br />![1652346256(1).png](https://cdn.nlark.com/yuque/0/2022/png/21583952/1652346270462-79354129-dd0a-4e03-a36a-1564e25ca4ea.png#clientId=ue2e9a766-85cf-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=626&id=ub85fba94&margin=%5Bobject%20Object%5D&name=1652346256%281%29.png&originHeight=845&originWidth=1899&originalType=binary&ratio=1&rotation=0&showTitle=false&size=131828&status=done&style=none&taskId=u21fa9b20-67db-4235-9494-b2b6ce49250&title=&width=1406.6667660371827)
+        请参考 [gitlab 集成文档](https://www.yuque.com/dataflux/integrations/gitlab)打通 Gitlab 和 DataKit，这里只配置 Gitlab CI。<br />        登录『Gitlab』，进入『bookinfo-views』-> 『Settings』-> 『Webhooks』，在 url 中输入URL 中输入 DataKit 所在的主机 IP 和 DataKit 的 9529 端口，再加 /v1/gitlab。如下图。
 
-        选中 Job events 和 Pipeline events，点击 Add webhook。<br />![1652346330(1).png](https://cdn.nlark.com/yuque/0/2022/png/21583952/1652346336359-691db6af-7cdd-430e-b0b0-61a42c932208.png#clientId=ue2e9a766-85cf-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=148&id=u9458bc94&margin=%5Bobject%20Object%5D&name=1652346330%281%29.png&originHeight=200&originWidth=451&originalType=binary&ratio=1&rotation=0&showTitle=false&size=9460&status=done&style=none&taskId=u2f070d12-d2bf-4d16-879f-e388a2cc440&title=&width=334.07409767391755)<br />         点击刚才创建的 Webhooks 右边的 Test，选择 Pipeline events，出现下图的 HTTP 200 说明配置成功。<br />![1652346373(1).png](https://cdn.nlark.com/yuque/0/2022/png/21583952/1652346379611-b4d3d016-5f8f-40f2-84d8-075fe59418b8.png#clientId=ue2e9a766-85cf-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=282&id=u3e289674&margin=%5Bobject%20Object%5D&name=1652346373%281%29.png&originHeight=381&originWidth=1508&originalType=binary&ratio=1&rotation=0&showTitle=false&size=54874&status=done&style=none&taskId=u8a76ab65-c097-43d6-8ba0-ca82b860b27&title=&width=1117.0371159473784)
+![image](../images/microservices/11.png)	 
+
+        选中 Job events 和 Pipeline events，点击 Add webhook。
+		
+![image](../images/microservices/12.png)
+
+	          点击刚才创建的 Webhooks 右边的 Test，选择 Pipeline events，出现下图的 HTTP 200 说明配置成功。
+			
+![image](../images/microservices/13.png)	 
 
        
 ### 5.3 为 reviews 微服务配置 Gitlab-CI
@@ -589,13 +623,32 @@ deploy_k8s:
 ### 
 ## 步骤 6：Gitlab CI 可观测
 ### 6.1 发布 reviews 微服务
-        修改 .gitlab-ci.yml 文件中的 APP_VERSION 的值为 "v1"，提交一次代码，修改成 "v2"，提交一次代码，修改成 "v3" 提交一次代码。<br />![1648635268(1).png](https://cdn.nlark.com/yuque/0/2022/png/21583952/1648635274583-f67fc40c-f230-4225-913b-2e240d6881ba.png#clientId=u4e1d4362-c866-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=719&id=ud651b62c&margin=%5Bobject%20Object%5D&name=1648635268%281%29.png&originHeight=809&originWidth=1422&originalType=binary&ratio=1&rotation=0&showTitle=false&size=59543&status=done&style=none&taskId=u0760d361-67c7-4e40-8285-b24110f9677&title=&width=1264)<br />        此时 Pipeline 被触发 3次。        <br />![1648634419(1).png](https://cdn.nlark.com/yuque/0/2022/png/21583952/1648634484952-fabac73d-e3a9-46d2-ab77-2efeb6904e21.png#clientId=u4e1d4362-c866-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=709&id=ub5703cdc&margin=%5Bobject%20Object%5D&name=1648634419%281%29.png&originHeight=798&originWidth=1901&originalType=binary&ratio=1&rotation=0&showTitle=false&size=93943&status=done&style=none&taskId=u3865b029-7b77-4865-b9e3-00284be64a8&title=&width=1689.7777777777778)
+        修改 .gitlab-ci.yml 文件中的 APP_VERSION 的值为 "v1"，提交一次代码，修改成 "v2"，提交一次代码，修改成 "v3" 提交一次代码。
+		
+![image](../images/microservices/14.png)
+	         此时 Pipeline 被触发 3次。
+
+![image](../images/microservices/15.png)	 
 
 ### 6.2 Gitlab CI 流水线可观测
-          登录『[观测云](https://console.guance.com/)』，进入『CI』，点击『概览』选择 bookinfo-views 项目，查看 Pipeline 和 Job 的执行情况。<br />![1652346915(1).png](https://cdn.nlark.com/yuque/0/2022/png/21583952/1652346992531-ed17a1ff-c5c3-4cb5-9fe6-fe241d3f032c.png#clientId=ue2e9a766-85cf-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=539&id=u39724ead&margin=%5Bobject%20Object%5D&name=1652346915%281%29.png&originHeight=727&originWidth=1696&originalType=binary&ratio=1&rotation=0&showTitle=false&size=63052&status=done&style=none&taskId=ud2ca02c4-4cc0-41b0-a973-8806c59ab8c&title=&width=1256.2963850442663)<br />![1652346926(1).png](https://cdn.nlark.com/yuque/0/2022/png/21583952/1652347000981-b26df358-34b8-4df4-b158-d5ee726cf200.png#clientId=ue2e9a766-85cf-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=425&id=u38d8c278&margin=%5Bobject%20Object%5D&name=1652346926%281%29.png&originHeight=574&originWidth=1681&originalType=binary&ratio=1&rotation=0&showTitle=false&size=50864&status=done&style=none&taskId=u57f1f983-7829-45bc-b674-0fc1e4941bb&title=&width=1245.1852731482381)
+          登录『[观测云](https://console.guance.com/)』，进入『CI』，点击『概览』选择 bookinfo-views 项目，查看 Pipeline 和 Job 的执行情况。
+		  
+![image](../images/microservices/16.png)	 
 
-         登录『[观测云](https://console.guance.com/)』，进入『CI』,点击『查看器』，选择 gitlab_pipeline。<br />![1652346801(1).png](https://cdn.nlark.com/yuque/0/2022/png/21583952/1652347030018-9b362337-6a28-4811-99e5-c13b8663ee2e.png#clientId=ue2e9a766-85cf-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=641&id=uea985760&margin=%5Bobject%20Object%5D&name=1652346801%281%29.png&originHeight=866&originWidth=1920&originalType=binary&ratio=1&rotation=0&showTitle=false&size=84893&status=done&style=none&taskId=u4f1a816f-4ec8-4ab9-b5f5-e224e0ca4d2&title=&width=1422.2223226916224)<br />![1652346830(1).png](https://cdn.nlark.com/yuque/0/2022/png/21583952/1652347039336-035d0ead-df34-4e21-94f8-ba9d11badcaa.png#clientId=ue2e9a766-85cf-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=627&id=ua26e9772&margin=%5Bobject%20Object%5D&name=1652346830%281%29.png&originHeight=847&originWidth=1521&originalType=binary&ratio=1&rotation=0&showTitle=false&size=56084&status=done&style=none&taskId=ub9f4e5bf-b548-400a-b3f9-6f8805ed704&title=&width=1126.6667462572696)
+![image](../images/microservices/17.png)	 
 
-         登录『[观测云](https://console.guance.com/)』，进入『CI』,点击『查看器』，选择 gitlab_job。<br />![1652346850(1).png](https://cdn.nlark.com/yuque/0/2022/png/21583952/1652347050514-c558ca42-53a0-4efe-9815-4ff6b2866bdd.png#clientId=ue2e9a766-85cf-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=641&id=udcd5e8b9&margin=%5Bobject%20Object%5D&name=1652346850%281%29.png&originHeight=866&originWidth=1920&originalType=binary&ratio=1&rotation=0&showTitle=false&size=87419&status=done&style=none&taskId=u1e38a660-c64e-4f64-adc3-031ab23479e&title=&width=1422.2223226916224)
-## ![1652346872(1).png](https://cdn.nlark.com/yuque/0/2022/png/21583952/1652347057510-95817121-5a04-451f-9e09-dd1ed5c62a83.png#clientId=ue2e9a766-85cf-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=626&id=u96cda42e&margin=%5Bobject%20Object%5D&name=1652346872%281%29.png&originHeight=845&originWidth=1523&originalType=binary&ratio=1&rotation=0&showTitle=false&size=56362&status=done&style=none&taskId=ubac69e57-86b5-4e1d-b7ab-0f4ad213d39&title=&width=1128.1482278434066)
-![1652346891(1).png](https://cdn.nlark.com/yuque/0/2022/png/21583952/1652347065026-2fb3484f-cd11-46ed-92fb-cebfff9c1f0e.png#clientId=ue2e9a766-85cf-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=627&id=ub14cc24e&margin=%5Bobject%20Object%5D&name=1652346891%281%29.png&originHeight=847&originWidth=1521&originalType=binary&ratio=1&rotation=0&showTitle=false&size=42463&status=done&style=none&taskId=u43228a4a-724b-439c-9bde-2c927635745&title=&width=1126.6667462572696)
+         登录『[观测云](https://console.guance.com/)』，进入『CI』,点击『查看器』，选择 gitlab_pipeline。
+		 
+![image](../images/microservices/18.png)	 
+
+![image](../images/microservices/19.png)	 
+
+         登录『[观测云](https://console.guance.com/)』，进入『CI』,点击『查看器』，选择 gitlab_job。
+		 
+![image](../images/microservices/20.png)	 
+## 
+
+![image](../images/microservices/21.png)	
+
+
+![image](../images/microservices/22.png)	

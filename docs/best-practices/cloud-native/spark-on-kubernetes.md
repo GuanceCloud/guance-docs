@@ -4,7 +4,7 @@
 - Spark 应用程序指标
 - Spark 队列指标
 # 场景视图
-![image.png](https://cdn.nlark.com/yuque/0/2021/png/21511854/1629680509763-bd17ade4-1a0b-4008-a8dd-d61119e75cd1.png#crop=0&crop=0&crop=1&crop=1&height=794&id=lgidE&margin=%5Bobject%20Object%5D&name=image.png&originHeight=794&originWidth=2483&originalType=binary&ratio=1&rotation=0&showTitle=false&size=99458&status=done&style=none&title=&width=2483)
+![image](../images/spark-on-kubernetes/1.png)
 ## 视图模板
 请您在新建视图时导入此模板<br />[operator.json](https://www.yuque.com/attachments/yuque/0/2021/json/21511854/1629721309291-db51708e-f76b-499c-a051-c823ade49d2b.json?_lake_card=%7B%22src%22%3A%22https%3A%2F%2Fwww.yuque.com%2Fattachments%2Fyuque%2F0%2F2021%2Fjson%2F21511854%2F1629721309291-db51708e-f76b-499c-a051-c823ade49d2b.json%22%2C%22name%22%3A%22operator.json%22%2C%22size%22%3A29839%2C%22type%22%3A%22application%2Fjson%22%2C%22ext%22%3A%22json%22%2C%22status%22%3A%22done%22%2C%22uid%22%3A%221629680575826-0%22%2C%22progress%22%3A%7B%22percent%22%3A99%7D%2C%22percent%22%3A0%2C%22refSrc%22%3A%22https%3A%2F%2Fwww.yuque.com%2Fattachments%2Fyuque%2F0%2F2021%2Fjson%2F21511854%2F1629680575682-13aaafaa-f2d1-4646-9699-5641e11c5036.json%22%2C%22id%22%3A%22L9rUF%22%2C%22card%22%3A%22file%22%7D)
 # 前置条件
@@ -360,7 +360,8 @@ data:
 ```
 # 监控指标说明
 ## 1 Spark 应用程序指标
-Spark 应用程序指标可以帮助我们观测 Spark Job 得任务状态和运行状态，方便我们对 spark 任务的运行状态进行观测。<br />![image.png](https://cdn.nlark.com/yuque/0/2021/png/21511854/1629689699038-489921e7-ffd7-4b4f-bf59-61aab1e6d506.png#crop=0&crop=0&crop=1&crop=1&height=483&id=c4DsI&margin=%5Bobject%20Object%5D&name=image.png&originHeight=483&originWidth=2484&originalType=binary&ratio=1&rotation=0&showTitle=false&size=61809&status=done&style=none&title=&width=2484)
+Spark 应用程序指标可以帮助我们观测 Spark Job 得任务状态和运行状态，方便我们对 spark 任务的运行状态进行观测。
+![image](../images/spark-on-kubernetes/2.png)
 
 | **指标描述** | **名称** | **度量标准** |
 | --- | --- | --- |
@@ -385,7 +386,8 @@ Spark 应用程序指标可以帮助我们观测 Spark Job 得任务状态和运
 #### 未完成的 Spark 应用程序总数
 当出现未完成的 Spark 的任务时，或者总数持续上升时，我们要及时的排查集群状态或 operator 状态来保障我们的业务可以平稳运行。
 ## 2 Spark 队列指标
-内存是影响 Linux 性能的主要因素之一，内存资源的充足与否直接影响应用系统的使用性能。<br />![image.png](https://cdn.nlark.com/yuque/0/2021/png/21511854/1629689709288-0bf1973d-6efd-43ae-93bc-5589d784fcc0.png#crop=0&crop=0&crop=1&crop=1&height=322&id=k6xn5&margin=%5Bobject%20Object%5D&name=image.png&originHeight=322&originWidth=2482&originalType=binary&ratio=1&rotation=0&showTitle=false&size=32756&status=done&style=none&title=&width=2482)
+内存是影响 Linux 性能的主要因素之一，内存资源的充足与否直接影响应用系统的使用性能。
+![image](../images/spark-on-kubernetes/3.png)
 
 | **指标描述** | **名称** | **度量标准** |
 | --- | --- | --- |
@@ -400,7 +402,9 @@ Spark 应用程序指标可以帮助我们观测 Spark Job 得任务状态和运
 我们可以关注这个指标来查看我们 spark job 执行的进度，如果这个指标的值出现异常增长那么可能有执行过慢的 job 请及时排查日志或者 code 逻辑来保障业务的正常运行。
 
 # 日志
-当提交 spark job 后可以在 dataflux 平台中查看对应 driver pod 和 executor pod 的运行日志方便我们进行问题定位和运行作业观测或者访问自己搭建的 spark history 进行日志查看。<br />![image.png](https://cdn.nlark.com/yuque/0/2021/png/21511854/1629693434029-c27c4310-9284-4e7f-990e-d66b210bbf28.png#crop=0&crop=0&crop=1&crop=1&height=1282&id=Jow1Q&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1282&originWidth=2485&originalType=binary&ratio=1&rotation=0&showTitle=false&size=385783&status=done&style=none&title=&width=2485)<br />![image.png](https://cdn.nlark.com/yuque/0/2021/png/21511854/1629693464167-9134f7aa-163d-48d5-90dd-b3fdbe6d8cab.png#crop=0&crop=0&crop=1&crop=1&height=1285&id=oQBaS&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1285&originWidth=2555&originalType=binary&ratio=1&rotation=0&showTitle=false&size=312764&status=done&style=none&title=&width=2555)
+当提交 spark job 后可以在 dataflux 平台中查看对应 driver pod 和 executor pod 的运行日志方便我们进行问题定位和运行作业观测或者访问自己搭建的 spark history 进行日志查看。
+![image](../images/spark-on-kubernetes/4.png)
+![image](../images/spark-on-kubernetes/5.png)
 ## 结论
 在本文中，我们提到了一些最有用的指标，您可以对其进行观测以在运行 spark jo b时及时发现并对问题进行处理。 如果您正在进行 spark 作业，那么监视下面的列表中的指标将使您可以很好地了解和管理作业的运行状况和可用性：
 

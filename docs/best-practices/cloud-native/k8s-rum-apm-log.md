@@ -6,13 +6,17 @@
 企业最重要的营收来源即是业务，而现当下，绝大多数企业的业务都是由对应的IT系统承载的，那如何保障企业的业务稳健，归根到企业内部就是如何保障企业内部的IT系统。当业务系统出现异常或故障时，往往是业务、应用开发、运维等多方面同事一起协调进行问题的排查，存在跨平台，跨部门，跨专业领域等多种问题，排查既耗时又费力，为了解决这一问题，目前业界已经比较成熟的方式即是通过 RUM+APM+LOG 实现对整个业务系统的前后端、日志进行统一监控，同时将三方数据通过关键字段进行打通，实现联动分析，从而提升相关工作人员的工作效率，保障系统平稳运行。<br />**APM**:（application performance monitoring：应用性能监控）<br />**RUM**:（real user moitoring：真实用户体验监控）<br />**LOG**：（日志）<br />本文将从如何接入这三方监控，以及如何利用 df 进行联动分析的角度进行阐述。<br />关于日志，本文将使用 datakit 的 logfwd 采集器采集业务 pod 的日志，datakit 开通 logfwd 采集器，pod 增加logfwd 的 sidecar 来采集业务容器的日志，推送给 datakit，由于业务对 sidecar 是可见的，所以日志文件不需要落到宿主机上，详细使用请在 system 模块查看。datakit接收到日志后，使用配置的 pipeline 做日志文件切割。
 # 前置条件
 ## 账号注册
-前往官方网站 [https://guance.com/](https://console.guance.com/) 注册账号，使用已注册的账号/密码登录。<br />![1631932979(1).png](https://cdn.nlark.com/yuque/0/2021/png/21583952/1631932989422-ea7eb977-8b4f-45a4-8df9-5accf1b36cfb.png#clientId=ub80d9813-1911-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=259&id=ub783b668&margin=%5Bobject%20Object%5D&name=1631932979%281%29.png&originHeight=517&originWidth=803&originalType=binary&ratio=1&rotation=0&showTitle=false&size=19763&status=done&style=none&taskId=u0f07d4a5-7a9f-4abb-b8e5-ed1ecba5f7e&title=&width=401.5)
+前往官方网站 [https://guance.com/](https://console.guance.com/) 注册账号，使用已注册的账号/密码登录。
+![image](../images/k8s-rum-apm-log/1.png)	 
 
 ---
 
 ## DaemonSet 方式部署 Datakit
 ### 获取 OpenWay 地址的 token 
-点击 [**管理**] 模块， [**基本设置**]，复制下图中的 token。<br />![1645164696(1).png](https://cdn.nlark.com/yuque/0/2022/png/21583952/1645164702540-8c5d311f-53fb-42e2-a377-4184d0635dd4.png#clientId=u1181371a-a1f9-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=403&id=ud34266ec&margin=%5Bobject%20Object%5D&name=1645164696%281%29.png&originHeight=604&originWidth=1741&originalType=binary&ratio=1&rotation=0&showTitle=false&size=50248&status=done&style=none&taskId=u06d51aa9-2f2e-488f-bda0-af6b310aed6&title=&width=1160.6666666666667)<br />点击[集成]->[Datakit]->[Daemonset] 获取最新的 datakit.yaml 文件。<br />![1645164545(1).png](https://cdn.nlark.com/yuque/0/2022/png/21583952/1645164568630-7143d0d1-4222-4dfd-9b27-743540df341e.png#clientId=u1181371a-a1f9-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=490&id=u56f6234a&margin=%5Bobject%20Object%5D&name=1645164545%281%29.png&originHeight=735&originWidth=1715&originalType=binary&ratio=1&rotation=0&showTitle=false&size=108525&status=done&style=none&taskId=u508ee905-2be4-4a8c-af9f-cfa5b608ce6&title=&width=1143.3333333333333)
+点击 [**管理**] 模块， [**基本设置**]，复制下图中的 token。
+![image](../images/k8s-rum-apm-log/2.png)
+点击[集成]->[Datakit]->[Daemonset] 获取最新的 datakit.yaml 文件。
+![image](../images/k8s-rum-apm-log/3.png)
 ### 执行安装
 按照上步中的yaml文件，新建 /usr/local/k8s/datakit.yaml 文件，并把上图获取的 token，替换文件中的 <your-token>，开启 kubernetes,container 采集器，yaml 完整内容如下文。<br />『注意』下载的 datakit.yaml 并没有 ConfigMap，通过 Daemonset 安装 DataKit 时开通采集器的方式是通过 ConfigMap 定义配置，然后再通过 volume 挂载到 DataKit 容器。
 ```
@@ -347,7 +351,8 @@ $ cd /usr/local/k8s/
 $ kubectl apply -f  datakit-default.yaml
 $ kubectl get pod -n datakit
 ```
-![image.png](https://cdn.nlark.com/yuque/0/2021/png/21583952/1628487428623-9cdbb26f-c07c-4fda-993a-1fa5bfee05dc.png#crop=0&crop=0&crop=1&crop=1&height=50&id=uf8409849&margin=%5Bobject%20Object%5D&name=image.png&originHeight=99&originWidth=641&originalType=binary&ratio=1&rotation=0&showTitle=false&size=12405&status=done&style=none&title=&width=320.5)<br />Datakit 安装完成后，已经默认开启 Linux 主机常用插件，可以在 DF——基础设施——内置视图查看。
+![image](../images/k8s-rum-apm-log/4.png)
+Datakit 安装完成后，已经默认开启 Linux 主机常用插件，可以在 DF——基础设施——内置视图查看。
 
 | 采集器名称 | 说明 |
 | --- | --- |
@@ -363,18 +368,23 @@ $ kubectl get pod -n datakit
 | kubernetes | 采集Kubernetes 集群指标 |
 | container | 采集主机上可能的容器对象以及容器日志 |
 
-点击 [**基础设施**] 模块，查看所有已安装 Datakit 的主机列表以及基础信息，如主机名，CPU，内存等。<br />![image.png](https://cdn.nlark.com/yuque/0/2021/png/21583952/1625555310346-0853634b-7532-4f66-993f-d1e102a497c9.png#crop=0&crop=0&crop=1&crop=1&height=477&id=u73b558cd&margin=%5Bobject%20Object%5D&name=image.png&originHeight=954&originWidth=1901&originalType=binary&ratio=1&rotation=0&showTitle=false&size=183035&status=done&style=none&title=&width=950.5)
+点击 [**基础设施**] 模块，查看所有已安装 Datakit 的主机列表以及基础信息，如主机名，CPU，内存等。
+![image](../images/k8s-rum-apm-log/5.png)
 
-点击 [**主机名**] 可以查看该主机的详细系统信息，集成运行情况 (该主机所有已安装的插件)，内置视图(主机)。<br />![image.png](https://cdn.nlark.com/yuque/0/2021/png/21583952/1625555174525-8b4b5762-e567-49e1-8ee0-e10d3328c802.png#crop=0&crop=0&crop=1&crop=1&height=453&id=u1a23a77e&margin=%5Bobject%20Object%5D&name=image.png&originHeight=906&originWidth=1521&originalType=binary&ratio=1&rotation=0&showTitle=false&size=114750&status=done&style=none&title=&width=760.5)
+点击 [**主机名**] 可以查看该主机的详细系统信息，集成运行情况 (该主机所有已安装的插件)，内置视图(主机)。
+![image](../images/k8s-rum-apm-log/6.png)
 
-点击 [**集成运行情况**] 任意插件名称 [**查看监控视图**] 可以看到该插件的内置视图。<br />![image.png](https://cdn.nlark.com/yuque/0/2021/png/21583952/1625555580831-8499535a-94db-46eb-aed5-9641e5751ca3.png#crop=0&crop=0&crop=1&crop=1&height=453&id=udd575f68&margin=%5Bobject%20Object%5D&name=image.png&originHeight=905&originWidth=1492&originalType=binary&ratio=1&rotation=0&showTitle=false&size=103631&status=done&style=none&title=&width=746)
+点击 [**集成运行情况**] 任意插件名称 [**查看监控视图**] 可以看到该插件的内置视图。
+![image](../images/k8s-rum-apm-log/7.png)
 ## 部署应用示例
 ### 示例说明
-    web 层通过网关访问后端的 auth 和 system 服务，web 是 vue 开发的，后端是 java 开发的，示例中开启statsd 采集 jvm，示例中使用的镜像仓库是 172.16.0.215:5000，示例中使用 ddtrace 采集 java 应用的 jvm 指标，示例中使用的 nacos、redis、mysql 的内网 ip 是 172.16.0.230。<br />![image.png](https://cdn.nlark.com/yuque/0/2021/png/21583952/1626227938361-0b8beae8-ec39-4484-af5d-0f53b13ee347.png#crop=0&crop=0&crop=1&crop=1&height=286&id=u54c64039&margin=%5Bobject%20Object%5D&name=image.png&originHeight=572&originWidth=743&originalType=binary&ratio=1&rotation=0&showTitle=false&size=27868&status=done&style=none&title=&width=371.5)
+    web 层通过网关访问后端的 auth 和 system 服务，web 是 vue 开发的，后端是 java 开发的，示例中开启statsd 采集 jvm，示例中使用的镜像仓库是 172.16.0.215:5000，示例中使用 ddtrace 采集 java 应用的 jvm 指标，示例中使用的 nacos、redis、mysql 的内网 ip 是 172.16.0.230。
+![image](../images/k8s-rum-apm-log/8.png)
 
     
 ### 编写 web 部署文件
-把 web 应用的内容复制到 /usr/local/k8s/dist 目录。<br />![image.png](https://cdn.nlark.com/yuque/0/2021/png/21583952/1626768609458-7da6c1a7-b898-439a-95f5-c51150278d2a.png#crop=0&crop=0&crop=1&crop=1&height=25&id=u26370e70&margin=%5Bobject%20Object%5D&name=image.png&originHeight=49&originWidth=497&originalType=binary&ratio=1&rotation=0&showTitle=false&size=5201&status=done&style=none&title=&width=248.5)
+把 web 应用的内容复制到 /usr/local/k8s/dist 目录。
+![image](../images/k8s-rum-apm-log/9.png)
 
 新建 /usr/local/k8s/DockerfileWeb 文件。
 ```
@@ -910,7 +920,8 @@ volumeMounts 下面增加：
 # 用户访问监测 (RUM)
 ## 
 ### 新建应用
-•登录[观测云平台]<br />•选择[**用户访问监测**]-[**新建应用**]-[**选择 web 类型**]-[**同步载入**] 应用名称输入 web-k8s-demo<br />![1640077907(1).png](https://cdn.nlark.com/yuque/0/2021/png/21583952/1640077919066-74ca8576-5d05-488a-b929-8075d59181c8.png#clientId=u8fef948c-8af6-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=375&id=u518e0c18&margin=%5Bobject%20Object%5D&name=1640077907%281%29.png&originHeight=749&originWidth=917&originalType=binary&ratio=1&rotation=0&showTitle=false&size=38388&status=done&style=none&taskId=u1fe596a2-5279-452a-8747-a7e33349452&title=&width=458.5)
+•登录[观测云平台]<br />•选择[**用户访问监测**]-[**新建应用**]-[**选择 web 类型**]-[**同步载入**] 应用名称输入 web-k8s-demo
+![image](../images/k8s-rum-apm-log/10.png)
 ### 开通前端 RUM 监控
 Datakit 默认开启了 RUM 采集器，用户访问监测使用的 Datakit 地址，需要客户的网络能够访问到的地址，需要修改 Datakit 的配置文件 /usr/local/datakit/conf.d/datakit.conf 的 listen="0.0.0.0:9529"。本示例使用的 Datakit 是 DaemonSet 方式部署的，已经修改了默认的配置。实际生产中 RUM 使用的 Datakit 建议部署到 kubernetes 外部。<br />修改 /usr/local/k8s/dist/index.html 文件，在 head 中增加如下内容：
 ```
@@ -982,7 +993,7 @@ response.headers.add('Access-Control-Allow-Headers','x-datadog-parent-id,x-datad
 
 # 日志
 ### 配置 logback.xml
-![1645164334(1).png](https://cdn.nlark.com/yuque/0/2022/png/21583952/1645164334662-47628f04-c2ac-41f8-b333-e18aa4226383.png#clientId=u1181371a-a1f9-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=444&id=uc90bdcbb&margin=%5Bobject%20Object%5D&name=1645164334%281%29.png&originHeight=666&originWidth=1224&originalType=binary&ratio=1&rotation=0&showTitle=false&size=92620&status=done&style=none&taskId=ua6615e8a-30aa-4bd9-967a-4b15f2ebf38&title=&width=816)
+![image](../images/k8s-rum-apm-log/11.png)
 ### 日志分割 pipeline
 使用 pipeline 分割 system 系统生成的日志，再用 configMap 挂载 pipeline，DaemonSet 部署 datakit 后，会在 /usr/local/datakit/pipeline/ 目录生成 demo_system.p 文件。由于本应用容器时区使用的东八区，这里要做一下时区转换，datakit.yaml 中增加如下内容：
 ```
@@ -1355,29 +1366,34 @@ $ kubectl apply -f system-deployment.yaml
 ```
 
 
-![image.png](https://cdn.nlark.com/yuque/0/2021/png/21583952/1626767442674-caa7277d-d091-45b8-883b-79f8de3e58d0.png#crop=0&crop=0&crop=1&crop=1&height=526&id=u597eee32&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1051&originWidth=1816&originalType=binary&ratio=1&rotation=0&showTitle=false&size=185165&status=done&style=none&title=&width=908)
+![image](../images/k8s-rum-apm-log/12.png)
 
 # 链路分析
 
 ### RUM APM 联动
-访问 web 应用，点击【系统管理】->【用户管理】，此时触发用户列表查询请求 list，dataflux-rum.js 会生成trace-id 存入 header 中，可以看到 list 接口对应的 trace-id 是 1373630955948661374。请求调用后端的 list 接口，后端的 ddtrace 会读取到 trace-id 并记录到自己的 trace 数据里，在 logback.xml 增加了 %X{dd.trace_id}，trace_id 会随日志输出，从而实现了 RUM、APM 和 Log 的联动。<br />![image.png](https://cdn.nlark.com/yuque/0/2021/png/21583952/1626081845609-d45c0829-5c3f-4865-af89-e4dfc28b10f0.png#crop=0&crop=0&crop=1&crop=1&height=461&id=u2b1c4a64&margin=%5Bobject%20Object%5D&name=image.png&originHeight=922&originWidth=1897&originalType=binary&ratio=1&rotation=0&showTitle=false&size=173421&status=done&style=none&title=&width=948.5)
+访问 web 应用，点击【系统管理】->【用户管理】，此时触发用户列表查询请求 list，dataflux-rum.js 会生成trace-id 存入 header 中，可以看到 list 接口对应的 trace-id 是 1373630955948661374。请求调用后端的 list 接口，后端的 ddtrace 会读取到 trace-id 并记录到自己的 trace 数据里，在 logback.xml 增加了 %X{dd.trace_id}，trace_id 会随日志输出，从而实现了 RUM、APM 和 Log 的联动。
+![image](../images/k8s-rum-apm-log/13.png)
 
 点击【用户访问监测】模块->【web-k8s-demo】->【查看器】->选择 view，点击列表中的 /system/user
 
-![image.png](https://cdn.nlark.com/yuque/0/2021/png/21583952/1626081709413-c94edc51-8d46-420e-a002-900a93892f9e.png#crop=0&crop=0&crop=1&crop=1&height=386&id=u21718810&margin=%5Bobject%20Object%5D&name=image.png&originHeight=771&originWidth=1920&originalType=binary&ratio=1&rotation=0&showTitle=false&size=142927&status=done&style=none&title=&width=960)
+![image](../images/k8s-rum-apm-log/14.png)
 
 点击【链路】
 
-![image.png](https://cdn.nlark.com/yuque/0/2021/png/21583952/1626081718563-388097c6-c70a-45f8-854d-eb19d9d1aac8.png#crop=0&crop=0&crop=1&crop=1&height=344&id=u17507aa7&margin=%5Bobject%20Object%5D&name=image.png&originHeight=688&originWidth=1920&originalType=binary&ratio=1&rotation=0&showTitle=false&size=116110&status=done&style=none&title=&width=960)<br />点击上图中的【prod-api/system/user/list】，prod-api 是 nginx 增加的转发请求，/system/user/list 是后端的 api 接口，进去后可以看到具体的请求及耗时情况。
+![image](../images/k8s-rum-apm-log/15.png)
+点击上图中的【prod-api/system/user/list】，prod-api 是 nginx 增加的转发请求，/system/user/list 是后端的 api 接口，进去后可以看到具体的请求及耗时情况。
 
-![image.png](https://cdn.nlark.com/yuque/0/2021/png/21583952/1626081732208-642a51ed-31b2-4beb-8512-9cfc8d8f56fe.png#crop=0&crop=0&crop=1&crop=1&height=447&id=uea252a0a&margin=%5Bobject%20Object%5D&name=image.png&originHeight=894&originWidth=1862&originalType=binary&ratio=1&rotation=0&showTitle=false&size=136372&status=done&style=none&title=&width=931)
+![image](../images/k8s-rum-apm-log/16.png)
 
 ### 日志分析
-点击【日志】 模块，选择全部来源，搜索栏输入“查询”，回车，默认查询最近 15 分钟的日志。点击查询记录，根据 logback.xml 配置找到对应 trace_id 是 704229736283371775<br />![image.png](https://cdn.nlark.com/yuque/0/2021/png/21583952/1625825456270-65f72041-365f-4473-9129-1027c7fc3204.png#crop=0&crop=0&crop=1&crop=1&height=405&id=uf85a8c55&margin=%5Bobject%20Object%5D&name=image.png&originHeight=810&originWidth=1907&originalType=binary&ratio=1&rotation=0&showTitle=false&size=140166&status=done&style=none&title=&width=953.5)
+点击【日志】 模块，选择全部来源，搜索栏输入“查询”，回车，默认查询最近 15 分钟的日志。点击查询记录，根据 logback.xml 配置找到对应 trace_id 是 704229736283371775
+![image](../images/k8s-rum-apm-log/17.png)
 
 点击【应用性能监控】模块->点击【链路】筛选框输入 trace_id:704229736283371775，回车检索出链路的调用情况。
 
-![image.png](https://cdn.nlark.com/yuque/0/2021/png/21583952/1625825645908-7230ae74-42a4-4cc7-a89a-2b239df4973b.png#crop=0&crop=0&crop=1&crop=1&height=356&id=ub2eb60cf&margin=%5Bobject%20Object%5D&name=image.png&originHeight=711&originWidth=1890&originalType=binary&ratio=1&rotation=0&showTitle=false&size=122325&status=done&style=none&title=&width=945)<br />点击【SysUserController.list】查看详细信息。<br />![image.png](https://cdn.nlark.com/yuque/0/2021/png/21583952/1625825697898-b4850294-608d-4160-8dbb-283944b4e24f.png#crop=0&crop=0&crop=1&crop=1&height=451&id=u1f6f3a7f&margin=%5Bobject%20Object%5D&name=image.png&originHeight=901&originWidth=1866&originalType=binary&ratio=1&rotation=0&showTitle=false&size=131951&status=done&style=none&title=&width=933)
+![image](../images/k8s-rum-apm-log/18.png)
+点击【SysUserController.list】查看详细信息。
+![image](../images/k8s-rum-apm-log/19.png)
 
 
 

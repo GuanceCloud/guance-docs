@@ -1,9 +1,11 @@
 # 前置条件
 ## 账号注册
-前往官方网站 [https://www.dataflux.cn/](https://www.dataflux.cn/) 注册账号，使用已注册的账号/密码登录。<br />![image.png](https://cdn.nlark.com/yuque/0/2021/png/21509337/1623982499481-3ad93680-df16-4aaa-a3b2-72da1c54e42d.png#clientId=u48405ed3-0f54-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=397&id=u045368dc&margin=%5Bobject%20Object%5D&name=image.png&originHeight=793&originWidth=818&originalType=binary&ratio=2&rotation=0&showTitle=false&size=52741&status=done&style=none&taskId=uaed5ecbf-0745-4195-9e8a-084523416f8&title=&width=409)
+前往官方网站 [https://www.dataflux.cn/](https://www.dataflux.cn/) 注册账号，使用已注册的账号/密码登录。
+![image](../images/ios/1.png)
 ## 安装 Datakit
 ### 获取命令
-点击 [**集成**] 模块，右上角 [**快速获取 DataKit 安装命令**]，根据您的操作系统和系统类型选择合适的安装命令。<br />![image.png](https://cdn.nlark.com/yuque/0/2021/png/21509337/1623982572409-e98df393-ae55-413a-abfb-e6edee9bb236.png#clientId=u48405ed3-0f54-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=352&id=u8b27d46e&margin=%5Bobject%20Object%5D&name=image.png&originHeight=704&originWidth=1899&originalType=binary&ratio=2&rotation=0&showTitle=false&size=122223&status=done&style=none&taskId=u81e8eb8a-a8e5-4410-96ae-fab313253b6&title=&width=949.5)
+点击 [**集成**] 模块，右上角 [**快速获取 DataKit 安装命令**]，根据您的操作系统和系统类型选择合适的安装命令。
+![image](../images/ios/2.png)
 ### 执行安装
 复制 Datakit 安装命令在需要被监控的服务器上直接运行。
 
@@ -27,10 +29,16 @@ Datakit 安装完成后，已经默认开启 Linux 主机常用插件，可以�
 | hostobject | 采集主机基础信息（如操作系统信息、硬件信息等） |
 | docker | 采集主机上可能的容器对象以及容器日志 |
 
-点击 [**基础设施**] 模块，查看所有已安装 Datakit 的主机列表以及基础信息，如主机名，CPU，内存等。<br />![image.png](https://cdn.nlark.com/yuque/0/2021/png/21509337/1623982867975-a6738949-14a6-4719-b135-23a5e9513925.png#clientId=u48405ed3-0f54-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=336&id=u67982b93&margin=%5Bobject%20Object%5D&name=image.png&originHeight=672&originWidth=1903&originalType=binary&ratio=2&rotation=0&showTitle=false&size=115412&status=done&style=none&taskId=u3394d6d7-d3a1-4379-90f6-22ce146aeb6&title=&width=951.5)<br />点击 [**主机名**] 可以查看该主机的详细系统信息，集成运行情况 (该主机所有已安装的插件)，内置视图(主机)。<br />![image.png](https://cdn.nlark.com/yuque/0/2021/png/21509337/1623982891121-18434f5f-af3e-4435-b324-79c200952aa0.png#clientId=u48405ed3-0f54-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=454&id=uad0f409b&margin=%5Bobject%20Object%5D&name=image.png&originHeight=907&originWidth=1511&originalType=binary&ratio=2&rotation=0&showTitle=false&size=130791&status=done&style=none&taskId=ua38b0728-c09d-4636-95a1-7fecc224d06&title=&width=755.5)<br />点击 [**集成运行情况**] 任意插件名称 [**查看监控视图**] 可以看到该插件的内置视图。<br />![image.png](https://cdn.nlark.com/yuque/0/2021/png/21509337/1623982926005-280d4183-6886-433c-8dba-7f6b83bd0833.png#clientId=u48405ed3-0f54-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=448&id=uc4a1344e&margin=%5Bobject%20Object%5D&name=image.png&originHeight=895&originWidth=1522&originalType=binary&ratio=2&rotation=0&showTitle=false&size=77862&status=done&style=none&taskId=u1f32d818-0f9e-4342-a1c3-fae3cc8f9ed&title=&width=761)
+点击 [**基础设施**] 模块，查看所有已安装 Datakit 的主机列表以及基础信息，如主机名，CPU，内存等。
+![image](../images/ios/3.png)
+点击 [**主机名**] 可以查看该主机的详细系统信息，集成运行情况 (该主机所有已安装的插件)，内置视图(主机)。
+![image](../images/ios/4.png)
+点击 [**集成运行情况**] 任意插件名称 [**查看监控视图**] 可以看到该插件的内置视图。
+![image](../images/ios/5.png)
 ## 创建一个iOS应用
 
-登录 DataFlux 控制台，进入「应用监测」页面，点击右上角「新建应用」，在新窗口输入「应用名称」，点击「创建」，即可开始配置。<br />![image.png](https://cdn.nlark.com/yuque/0/2021/png/21509337/1623985074831-baed8b07-6840-42d7-9623-fc6f0a2ef921.png#clientId=u48405ed3-0f54-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=241&id=u3bd47429&margin=%5Bobject%20Object%5D&name=image.png&originHeight=481&originWidth=829&originalType=binary&ratio=2&rotation=0&showTitle=false&size=28631&status=done&style=none&taskId=ubbe5bb10-5b9c-46f4-b959-c34672f28a9&title=&width=414.5)
+登录 DataFlux 控制台，进入「应用监测」页面，点击右上角「新建应用」，在新窗口输入「应用名称」，点击「创建」，即可开始配置。
+![image](../images/ios/6.png)
 # 应用采集数据属性说明
 ## 数据类型
 DataFlux 的用户访问监测包括六种数据类型。
@@ -226,7 +234,7 @@ DataFlux 的用户访问监测包括六种数据类型。
 
 > 版本说明 
 
-![image.png](https://cdn.nlark.com/yuque/0/2021/png/21509337/1623988072466-45fbe944-71bc-479a-a2f0-4b6ddaf2d356.png#clientId=u48405ed3-0f54-4&crop=0&crop=0&crop=1&crop=1&from=paste&id=xMb6L&margin=%5Bobject%20Object%5D&name=image.png&originHeight=412&originWidth=2096&originalType=binary&ratio=2&rotation=0&showTitle=false&size=326842&status=done&style=none&taskId=u00079003-81a4-46d2-9407-d66088d0b39&title=)
+![image](../images/ios/7.png)
 
 1. 配置 `Podfile` 文件。
 
@@ -248,7 +256,9 @@ end
 1. 从 [GitHub](https://github.com/DataFlux-cn/datakit-ios) 获取 SDK 的源代码。
 1. 将 **FTMobileSDK** 整个文件夹导入项目。
 
-![image.png](https://cdn.nlark.com/yuque/0/2021/png/21509337/1623987453619-4097b159-ec8c-44f4-84e0-49a0a65d6d31.png#clientId=u48405ed3-0f54-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=366&id=ubcba7083&margin=%5Bobject%20Object%5D&name=image.png&originHeight=732&originWidth=1014&originalType=binary&ratio=2&rotation=0&showTitle=false&size=281753&status=done&style=none&taskId=u716b0e6d-975c-4950-945a-c2afdfe6853&title=&width=507)<br />勾选 `Copy items id needed` <br />![image.png](https://cdn.nlark.com/yuque/0/2021/png/21509337/1623987513916-e3070a02-996e-49dd-aa91-327399a226a5.png#clientId=u48405ed3-0f54-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=425&id=ud686da84&margin=%5Bobject%20Object%5D&name=image.png&originHeight=850&originWidth=1456&originalType=binary&ratio=2&rotation=0&showTitle=false&size=291230&status=done&style=none&taskId=u753e2045-4f7c-4184-9fd0-7aaf00f3b2d&title=&width=728)
+![image](../images/ios/8.png)
+勾选 `Copy items id needed` 
+![image](../images/ios/9.png)
 
 3. 添加依赖库：项目设置 `Build Phase` -> `Link Binary With Libraries` 添加：`UIKit` 、 `Foundation` 、`libz.tb`。
 ## 初始化并调用SDK
@@ -557,12 +567,14 @@ typedef NS_ENUM(NSInteger, FTStatus) {
 4.  解析完成后会生成一个新的 **.Crash** 文件，这个文件中就是崩溃详细信息。 
 ### CocoaPods安装
 #### 1:pod install 出错，如下图
-![image.png](https://cdn.nlark.com/yuque/0/2021/png/21509337/1624005691651-06edd186-ba83-4783-aebc-e8454c8b5d0c.png#clientId=uee7aeaf7-ecb0-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=248&id=ud8f0736d&margin=%5Bobject%20Object%5D&name=image.png&originHeight=496&originWidth=1992&originalType=binary&ratio=2&rotation=0&showTitle=false&size=459434&status=done&style=none&taskId=u302ce616-8d46-4d69-9b85-e052916fdd4&title=&width=996)
+![image](../images/ios/10.png)
 
 解决方案：请使用` pod update` 命令
 
 #### 2:pod update 出错，如下图
-![image.png](https://cdn.nlark.com/yuque/0/2021/png/21509337/1624005830058-433c591a-efbb-46d4-9efe-65f69c09505c.png#clientId=uee7aeaf7-ecb0-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=559&id=ub04d6fd1&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1118&originWidth=2552&originalType=binary&ratio=2&rotation=0&showTitle=false&size=1116532&status=done&style=none&taskId=u822ed1f8-512a-456d-b82d-efd3f32aafc&title=&width=1276)<br />解决方案： github 链接问题，加个 vpn，或者使用` pod update` 命令 再次尝试<br />![image.png](https://cdn.nlark.com/yuque/0/2021/png/21509337/1624005933952-bea9bddd-7d9a-4dc5-9c73-2fcec30dae3a.png#clientId=uee7aeaf7-ecb0-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=417&id=u84171735&margin=%5Bobject%20Object%5D&name=image.png&originHeight=834&originWidth=1912&originalType=binary&ratio=2&rotation=0&showTitle=false&size=469003&status=done&style=none&taskId=uff5a91ed-53e7-4d4f-b6f9-4472305f33a&title=&width=956)
+![image](../images/ios/11.png)
+解决方案： github 链接问题，加个 vpn，或者使用` pod update` 命令 再次尝试
+![image](../images/ios/12.png)
 
 
 

@@ -6,7 +6,8 @@
 
 ## 安装 Datakit
 ### 获取命令
-点击 [**集成**] 模块，右上角 [**快速获取 DataKit 安装命令**]，根据您的操作系统和系统类型选择合适的安装命令。<br />![](https://cdn.nlark.com/yuque/0/2021/png/21516613/1625037390898-a133e9ed-8946-4075-a4fb-aafc06734f20.png#crop=0&crop=0&crop=1&crop=1&from=url&id=WOTjc&margin=%5Bobject%20Object%5D&originHeight=644&originWidth=1080&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+点击 [**集成**] 模块，右上角 [**快速获取 DataKit 安装命令**]，根据您的操作系统和系统类型选择合适的安装命令。
+![image](../images/web/1.png)
 ### 执行安装
 复制 Datakit 安装命令在需要被监控的服务器上直接运行。
 
@@ -27,7 +28,8 @@
 
 ## RUM 原理简介：
 
-**原理介绍：**RUM采集数据方式的变更经过了好几代更迭，目前市面上常见的是基于 W3C（万维网联盟）定义的[[navigation-timing](https://www.w3.org/TR/navigation-timing/)] 标准（见下图），该标准详细定义了各种浏览器事件，通过浏览器事件的简单计算就可以算出来前端页面的首屏、白屏、DOM 加载、HTML 加载等时长，相较于测试环境的 F12 检查者模式，能有更效的收集生产环境真实用户的前端体验，因此在当前 H5 应用场景越来越多的情况下极为流行，国内的商业软件（听云、博睿、云智慧、oneapm）均是依赖此标准定制的web监测体系，该标准适用于大多数 H5 场景。<br />![](https://cdn.nlark.com/yuque/0/2021/webp/21516613/1623822598971-9e7d7f82-e5b1-47ca-90bd-69722593a7ac.webp#clientId=u4a9cd322-b445-4&crop=0&crop=0&crop=1&crop=1&from=paste&id=ub8d0ab06&margin=%5Bobject%20Object%5D&originHeight=621&originWidth=1041&originalType=url&ratio=2&rotation=0&showTitle=false&status=done&style=none&taskId=u76b39af8-c5f8-43ac-a384-f7239dec1f4&title=)
+**原理介绍：**RUM采集数据方式的变更经过了好几代更迭，目前市面上常见的是基于 W3C（万维网联盟）定义的[[navigation-timing](https://www.w3.org/TR/navigation-timing/)] 标准（见下图），该标准详细定义了各种浏览器事件，通过浏览器事件的简单计算就可以算出来前端页面的首屏、白屏、DOM 加载、HTML 加载等时长，相较于测试环境的 F12 检查者模式，能有更效的收集生产环境真实用户的前端体验，因此在当前 H5 应用场景越来越多的情况下极为流行，国内的商业软件（听云、博睿、云智慧、oneapm）均是依赖此标准定制的web监测体系，该标准适用于大多数 H5 场景。
+![image](../images/web/2.png)
 
 随着浏览器（尤其是 chrome）以及前端技术的发展，navigation-timing 的局限性越来越明显，例如前后端分离下单页面越来越多，在这种场景下，基于 navigation-timing 进行数据采集会比较繁琐，因此，W3C 又推出了一个新的标准 [[PaintTiming-github](https://github.com/w3c/paint-timing/)] [[PaintTiming-api](https://developer.mozilla.org/en-US/docs/Web/API/PerformancePaintTiming)] ，该标准新提出的指标包括首次绘制（First Paint）、首次内容绘制（First Contentful Paint）等，更符合真实用户在访问WEB页面时的真实体验，DF-RUM 采用的即为支持PaingTiming 规范的数据采集，对该规范感兴趣的可以进一步阅读[[使用 Paint Timing API 提高性能](https://zhuanlan.zhihu.com/p/30389490)]    [[使用 painttiming](https://www.w3cplus.com/performance/paint-timing-api.html)]。
 
@@ -40,7 +42,8 @@ DF 官方目前支持的 RUM 监控方式有如下几种：<br />**WEB 应用**�
 ## Web 页面接入 RUM 相关步骤：
 #### 1、登录观测云
 #### 2、选择用户访问监测——新建应用——选择 web 类型——同步载入
-![1652849416(1).png](https://cdn.nlark.com/yuque/0/2022/png/21583952/1652849448937-d8d2326e-abd0-4c24-b42e-d99e6f935f33.png#clientId=ue41ddccc-eba4-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=722&id=ue918e351&margin=%5Bobject%20Object%5D&name=1652849416%281%29.png&originHeight=866&originWidth=1920&originalType=binary&ratio=1&rotation=0&showTitle=false&size=93861&status=done&style=stroke&taskId=u92be07cb-4bec-4fee-9853-c4881f8868e&title=&width=1599.9999364217147)<br />**备注：此处选择 CDN 同步载入**<br />•修改前端 index.html 页面（记得cp备份）<br />在       **</head>**   之前添加复制到的那一段 js 文件:
+![image](../images/web/3.png)
+**备注：此处选择 CDN 同步载入**<br />•修改前端 index.html 页面（记得cp备份）<br />在       **</head>**   之前添加复制到的那一段 js 文件:
 
 | 接入方式 | 简介 |
 | --- | --- |
@@ -98,7 +101,9 @@ $ vim index.html
 
 - **datakitOrigin**：数据传输地址，生产环境如若配置的是域名，可将域名请求转发至具体任意一台安装有datakit-9529 端口的服务器，如若前端访问量过大，可在域名与 datakit 所在服务器中间加一层 slb，前端 js 将数据发送至 slb，slb 将请求转发至多台安装 datakit-9529 所在的服务器。多台 datakit 承接 rum 数据，因前端请求复用因素，session 数据不会中断，对 rum 数据展现也无影响。
 
-       举例：<br />       ![1652849677(1).png](https://cdn.nlark.com/yuque/0/2022/png/21583952/1652849687247-7755b048-ec94-4962-98b7-b54b60b19c24.png#clientId=ue41ddccc-eba4-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=622&id=u92147f30&margin=%5Bobject%20Object%5D&name=1652849677%281%29.png&originHeight=746&originWidth=1168&originalType=binary&ratio=1&rotation=0&showTitle=false&size=72654&status=done&style=stroke&taskId=u30379373-b1f4-4014-bbe6-0d529bb5254&title=&width=973.3332946565431)<br />![image.png](https://cdn.nlark.com/yuque/0/2021/png/21516613/1626146120043-f6cfba4f-4b3a-403a-9fb1-8fd30e8243ae.png#clientId=u34390cd7-64c5-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=412&id=u966506c2&margin=%5Bobject%20Object%5D&name=image.png&originHeight=824&originWidth=1669&originalType=binary&ratio=1&rotation=0&showTitle=false&size=122876&status=done&style=none&taskId=u07e752cb-ae33-4a1d-ad2d-3821c8edb01&title=&width=834.5)
+       举例：
+![image](../images/web/4.png)
+![image](../images/web/5.png)
 
 - **allowedDDTracingOrigins**：实现前后端（APM 与 RUM）打通，该场景只有在前端部署 RUM，后端部署APM的情况才会生效，需在此处填写与前端页面有交互关系的后端应用服务器所对应的域名（生产环境）或IP（测试环境）。**应用场景**：前端用户访问出现慢，是由后端代码逻辑异常导致，可通过前端RUM慢请求数据直接跳转至APM数据查看当次后端代码调用情况，判定慢的根因。**实现原理**：用户访问前端应用，前端应用进行资源及请求调用，触发rum-js性能数据采集，rum-js 会生成 trace-id 写在请求的 request_header 里，请求到达后端，后端的 ddtrace 会读取到该 trace_id 并记录在自己的 trace 数据里，从而实现通过相同的 trace_id 来实现应用性能监测和用户访问监测数据联动
 - **env**：必填，应用所属环境，是test或product或其他字段。
@@ -106,15 +111,23 @@ $ vim index.html
 - **trackInteractions**：用户行为统计，例如点击按钮，提交信息等动作。
 - **traceType：**非必填，默认为ddtrace，目前支持 ddtrace、zipkin、skywalking_v3、jaeger、zipkin_single_header、w3c_traceparent 6种类型。
 
-![1652849859(1).png](https://cdn.nlark.com/yuque/0/2022/png/21583952/1652849867473-fcbe3e50-d043-45e0-898d-3ad4c413a82d.png#clientId=ue41ddccc-eba4-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=440&id=u18b35e56&margin=%5Bobject%20Object%5D&name=1652849859%281%29.png&originHeight=528&originWidth=1280&originalType=binary&ratio=1&rotation=0&showTitle=false&size=42191&status=done&style=stroke&taskId=u8ee20812-2a6b-4ace-9e5f-72ba393c4df&title=&width=1066.6666242811432)
+![image](../images/web/6.png)
 #### 4、保存、验证并发布页面
-打开浏览器访问目标页面，通过 F12 检查者模式查看页面网络请求中是否有 rum 相关的请求，状态码是否是 200。<br />![image.png](https://cdn.nlark.com/yuque/0/2021/png/21516613/1625626818799-896bf940-b442-45ec-b7bc-5e90c1ada474.png#clientId=ud8b930d3-b2b6-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=418&id=u3f7a80b6&margin=%5Bobject%20Object%5D&name=image.png&originHeight=835&originWidth=1908&originalType=binary&ratio=1&rotation=0&showTitle=false&size=144435&status=done&style=none&taskId=u7c040759-6306-4896-b854-795c34331a5&title=&width=954)<br />**注意事项**：如果在 F12 中发现 rum 相关的请求状态码是非 200 的，或者是 connection refused，可以 telnet IP:9529 验证端口是否通畅，不通的话，需要修改 /usr/local/datakit/conf.d/datakit.conf  http_listen 的 localhost为0.0.0.0（此配置用于控制当前服务器的 9529 端口是否可被外网请求访问，如果设置的是 127.0.0.1 或者localhost，就只允许本地或内网访问当前服务器的 9529 端口，设置为 0.0.0.0 后，当前服务器的内外网 9529 端口都可以被访问，rum 大多为外网数据，所以需要开通外网到 datakit 所在服务器的 9529 端口），例如：<br />![image.png](https://cdn.nlark.com/yuque/0/2021/png/21516613/1628134782884-ad93fe6e-b0d0-48f7-8bfd-99de05822405.png#clientId=u6edfceb8-38d6-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=406&id=u3d6ff023&margin=%5Bobject%20Object%5D&name=image.png&originHeight=513&originWidth=879&originalType=binary&ratio=1&rotation=0&showTitle=false&size=32826&status=done&style=none&taskId=u878d8d30-04c2-4fd5-ad51-21ecff66bf2&title=&width=696.5)
+打开浏览器访问目标页面，通过 F12 检查者模式查看页面网络请求中是否有 rum 相关的请求，状态码是否是 200。
+![image](../images/web/7.png)
+**注意事项**：如果在 F12 中发现 rum 相关的请求状态码是非 200 的，或者是 connection refused，可以 telnet IP:9529 验证端口是否通畅，不通的话，需要修改 /usr/local/datakit/conf.d/datakit.conf  http_listen 的 localhost为0.0.0.0（此配置用于控制当前服务器的 9529 端口是否可被外网请求访问，如果设置的是 127.0.0.1 或者localhost，就只允许本地或内网访问当前服务器的 9529 端口，设置为 0.0.0.0 后，当前服务器的内外网 9529 端口都可以被访问，rum 大多为外网数据，所以需要开通外网到 datakit 所在服务器的 9529 端口），例如：
+![image](../images/web/8.png)
 
 ---
 
 ## RUM 与 APM 数据打通（前后端通过traceid关联）：
-**前置条件**：后端应用服务器必须安装apm监控，即 ddtrace（dd-agent），详见[[链路追踪(APM)最佳实践](https://www.yuque.com/dataflux/bp/apm)]，前端添加 df-rum 监控。<br />**配置方式**：需要在前端 html 中已添加的 df-rum-js 中添加 **allowedDDTracingOrigins **标签，并填写前端对应的后端域名，例如 dataflux.cn 添加 rum 监控，需要在 allowedDDTracingOrigins 里配 https://www.dataflux.cn/ ，如若存在多个域名，需配置多个，用逗号隔开，第三方域名可以不配置。<br />![1652849967(1).png](https://cdn.nlark.com/yuque/0/2022/png/21583952/1652849974455-859b6c3c-efe0-4993-bd62-70aabb3502f7.png#clientId=ue41ddccc-eba4-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=352&id=u7b5340bb&margin=%5Bobject%20Object%5D&name=1652849967%281%29.png&originHeight=528&originWidth=1280&originalType=binary&ratio=1&rotation=0&showTitle=false&size=42734&status=done&style=stroke&taskId=u5eee7e7d-f652-41bd-b9d9-cfd0da329b0&title=&width=853.3333333333334)<br />打通后的效果示例：<br />![image.png](https://cdn.nlark.com/yuque/0/2021/png/21516613/1623821965875-ebce8bc3-4e74-4ea5-8c80-a59b0a57f629.png#clientId=u36c2568c-4b79-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=285&id=ua03032b8&margin=%5Bobject%20Object%5D&name=image.png&originHeight=500&originWidth=1901&originalType=binary&ratio=2&rotation=0&showTitle=false&size=67273&status=done&style=none&taskId=u42ae72cb-8a52-4304-b390-f128345f48e&title=&width=1082.5)<br />![image.png](https://cdn.nlark.com/yuque/0/2021/png/21516613/1623822001114-957e89ed-4e9e-4b22-a849-f604f3808f83.png#clientId=u36c2568c-4b79-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=329&id=u7ee78e78&margin=%5Bobject%20Object%5D&name=image.png&originHeight=580&originWidth=1902&originalType=binary&ratio=2&rotation=0&showTitle=false&size=93679&status=done&style=none&taskId=u9ed75892-2e36-422b-8b61-6985de7f975&title=&width=1079)![image.png](https://cdn.nlark.com/yuque/0/2021/png/21516613/1623822019472-29c40469-7927-4925-af34-c7651a17f71b.png#clientId=u36c2568c-4b79-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=299&id=uca997a5d&margin=%5Bobject%20Object%5D&name=image.png&originHeight=529&originWidth=1912&originalType=binary&ratio=2&rotation=0&showTitle=false&size=70955&status=done&style=none&taskId=u429e9a63-a831-4e29-a4ee-f44f2d22b0d&title=&width=1079)<br />![image.png](https://cdn.nlark.com/yuque/0/2021/png/21516613/1623822047767-86d72d7f-8d81-43e6-a4d0-c19e22a8a350.png#clientId=u36c2568c-4b79-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=516&id=ufae99576&margin=%5Bobject%20Object%5D&name=image.png&originHeight=902&originWidth=1915&originalType=binary&ratio=2&rotation=0&showTitle=false&size=136042&status=done&style=none&taskId=u18a5a46e-ddf7-4e87-8aa7-3e627447708&title=&width=1095.5)
-
+**前置条件**：后端应用服务器必须安装apm监控，即 ddtrace（dd-agent），详见[[链路追踪(APM)最佳实践](https://www.yuque.com/dataflux/bp/apm)]，前端添加 df-rum 监控。<br />**配置方式**：需要在前端 html 中已添加的 df-rum-js 中添加 **allowedDDTracingOrigins **标签，并填写前端对应的后端域名，例如 dataflux.cn 添加 rum 监控，需要在 allowedDDTracingOrigins 里配 https://www.dataflux.cn/ ，如若存在多个域名，需配置多个，用逗号隔开，第三方域名可以不配置。
+![image](../images/web/9.png)
+打通后的效果示例：
+![image](../images/web/10.png)
+![image](../images/web/11.png)
+![image](../images/web/12.png)
+![image](../images/web/13.png)
 ---
 
 # DF-WEB应用监控（RUM）应用分析：
@@ -143,26 +156,28 @@ DataFlux 的 Web 应用分析，接入谷歌网站核心指标（LCP、FID、CLS
 | FID(First Input Delay) | 计算用户首次与网页互动时的延迟时间 | 小于100ms |
 | CLS(Cumulative Layout Shift) | 计算网页载入时的内容是否会因动态加载而页面移动，0表示没有变化。 | 小于0.1 |
 
-![14.rum_web.png](https://cdn.nlark.com/yuque/0/2021/png/21511848/1623142164181-7a969408-8519-4277-a92a-bcc156134167.png#clientId=ucd7ea772-f766-4&crop=0&crop=0&crop=1&crop=1&from=drop&id=aOoqD&margin=%5Bobject%20Object%5D&name=14.rum_web.png&originHeight=1002&originWidth=1868&originalType=binary&ratio=1&rotation=0&showTitle=false&size=104804&status=done&style=stroke&taskId=u53d2a8a4-ddac-4330-bb95-dd300594af3&title=)
+![image](../images/web/14.png)
 ## 场景分析
 
 DataFlux 提供可视化的 Web 应用分析，内置多维度 Web 应用监测数据场景，包括概览、页面性能分析、资源加载分析、JS 错误分析。
 
 ### 概览
 
-Web 应用的概览场景统计页面访问的错误数、错误率、会话数、会话分布、浏览器、操作系统、最受欢迎页面、资源错误排行等内容，可视化的展示用户访问 Web 页面的数据统计，快速定位用户访问 Web 应用的问题，提高用户访问性能。可通过环境、版本筛选查看已经接入的 Web 应用。<br />![9.web_overview.png](https://cdn.nlark.com/yuque/0/2021/png/21511848/1622722383564-d8061ec2-786c-478a-84ff-e50f8871d226.png#clientId=u70221a91-5570-4&crop=0&crop=0&crop=1&crop=1&from=drop&id=u57836f6d&margin=%5Bobject%20Object%5D&name=9.web_overview.png&originHeight=1677&originWidth=1204&originalType=binary&ratio=1&rotation=0&showTitle=false&size=270936&status=done&style=stroke&taskId=ua57bf07c-3010-4723-98c5-c79269175d6&title=)
+Web 应用的概览场景统计页面访问的错误数、错误率、会话数、会话分布、浏览器、操作系统、最受欢迎页面、资源错误排行等内容，可视化的展示用户访问 Web 页面的数据统计，快速定位用户访问 Web 应用的问题，提高用户访问性能。可通过环境、版本筛选查看已经接入的 Web 应用。
+![image](../images/web/.png)15
 ### 性能分析
 
-Web 应用的页面性能分析，通过统计PV数、页面加载时间、网站核心指标、最受关注页面会话数、页面长任务分析、XHR & Fetch 分析、资源分析等指标，可视化的实时查看整体的 Web 应用页面性能情况，更精准的定位需要优化的页面，可通过环境、版本等筛选查看已经接入的 Web 应用。<br />![9.web_performance.png](https://cdn.nlark.com/yuque/0/2021/png/21511848/1622722395877-1e5ab605-ef9d-41a6-94b4-6844c23ac9d3.png#clientId=u70221a91-5570-4&crop=0&crop=0&crop=1&crop=1&from=drop&id=u157bf717&margin=%5Bobject%20Object%5D&name=9.web_performance.png&originHeight=2080&originWidth=1209&originalType=binary&ratio=1&rotation=0&showTitle=false&size=323916&status=done&style=stroke&taskId=u7e543cd1-6be5-4a7e-abf8-65e1382d73e&title=)
+Web 应用的页面性能分析，通过统计PV数、页面加载时间、网站核心指标、最受关注页面会话数、页面长任务分析、XHR & Fetch 分析、资源分析等指标，可视化的实时查看整体的 Web 应用页面性能情况，更精准的定位需要优化的页面，可通过环境、版本等筛选查看已经接入的 Web 应用。
+![image](../images/web/.png)16
 ### 资源分析
 
 Web 应用的资源分析，通过统计资源分类、XHR & Fetch 分析、资源耗时分析等指标，可视化的实时查看整体的Web 应用资源情况；通过统计资源请求排行，更精准的定位需要优化的资源；可通过环境、版本等筛选查看已经接入的 Web 应用。
 
-![9.web_resource.png](https://cdn.nlark.com/yuque/0/2021/png/21511848/1622722408397-f1f6c4f7-80de-41e5-b4dd-1e080a55439d.png#clientId=u70221a91-5570-4&crop=0&crop=0&crop=1&crop=1&from=drop&id=uac687b7e&margin=%5Bobject%20Object%5D&name=9.web_resource.png&originHeight=1359&originWidth=1204&originalType=binary&ratio=1&rotation=0&showTitle=false&size=229855&status=done&style=stroke&taskId=ud611a9d7-0390-432f-b21b-e37d670918e&title=)
+![image](../images/web/17.png)
 ### 错误分析
 
-Web 应用的 JS 错误分析，通过统计错误率、错误分类、错误版本、网络错误状态分布等指标，可视化的实时查看整体的 Web 应用错误情况；通过受影响的资源错误统计，可快速定位资源错误；可通过环境、版本等筛选查看已经接入的 Web 应用。<br />![9.web_error.png](https://cdn.nlark.com/yuque/0/2021/png/21511848/1622722420172-972c352c-06c8-4344-a002-5881b61e885b.png#clientId=u70221a91-5570-4&crop=0&crop=0&crop=1&crop=1&from=drop&id=ub224908f&margin=%5Bobject%20Object%5D&name=9.web_error.png&originHeight=613&originWidth=1206&originalType=binary&ratio=1&rotation=0&showTitle=false&size=91708&status=done&style=stroke&taskId=ub5461dbb-6bf4-466f-b014-04632f749ba&title=)
-
+Web 应用的 JS 错误分析，通过统计错误率、错误分类、错误版本、网络错误状态分布等指标，可视化的实时查看整体的 Web 应用错误情况；通过受影响的资源错误统计，可快速定位资源错误；可通过环境、版本等筛选查看已经接入的 Web 应用。
+![image](../images/web/19.png)
 
 
 
