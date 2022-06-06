@@ -1,0 +1,7 @@
+nav:
+  - index.md
+  - 'Nginx Ingress 可观测最佳实践': ingress-nginx.md
+  - '如何利用观测云观测 Fluentd': fluentd.md
+  - 'Elasticsearch 可观测最佳实践': elasticsearch.md
+  - 'Nginx 可观测最佳实践': nginx.md
+  - '主机可观测最佳实践': host.md
