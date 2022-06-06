@@ -1,2 +1,5 @@
 nav:
-  - index.md
+  - '服务协议': service-agreement.md
+  - '法律声明': legal-notices.md
+  - '数据安全保密协议': confidentiality.md
+  - '观测云移动应用隐私政策': app-privacy-policy.md

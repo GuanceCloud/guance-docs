@@ -1,2 +1,10 @@
 nav:
   - index.md
+  - '日志采集': collection.md
+  - '浏览器日志采集': browser-collection.md
+  - '小程序日志采集': miniapp-collection.md
+  - '日志查看器': explorer.md
+  - 'Pipelines': pipelines
+  - '生成指标': generate-metrics.md
+  - '日志黑名单': blacklist.md
+  - '日志备份': backup.md
