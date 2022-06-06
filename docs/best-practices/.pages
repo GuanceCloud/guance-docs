@@ -1,5 +1,7 @@
 nav:
   - index.md
+  - '云原生': cloud-native
+  - '日志': logs
   - 'APM': apm
   - '自定义接入最佳实践': custom
   - '场景最佳实践': scene
