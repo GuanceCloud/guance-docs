@@ -1,0 +1,10 @@
+nav:
+  - '主机可观测': host-observable.md
+  - '网络可观测': network-observable.md
+  - '全面观测 K8S 微服务架构': k8s-observable.md
+  - 'Nginx 日志采集与分析': nginx-collection-analysis.md
+  - '开启分布式应用性能观测（APM）': apm-observable.md
+  - '开启端到端的用户访问追踪（RUM）': rum-observable.md
+  - '网络站点可用性监测': website-monitoring.md
+  - '开启全方位安全巡检': security-checker.md
+  - '自定义场景和监控告警': scene-alert.md
