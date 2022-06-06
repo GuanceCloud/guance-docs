@@ -1,3 +1,7 @@
+# OpenTelemetry to Grafana
+
+---
+
 [上一篇](./opentelemetry-elk.md) 我们主要介绍并演示了基于 OpenTelemetry 传统的开源组件的可观测。随着这两年可观测的流行，Grafana 也开始进军可观测行业。
 ### 概念
 

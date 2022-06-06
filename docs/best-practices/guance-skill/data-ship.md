@@ -1,3 +1,7 @@
+# 数据关联最佳实践
+
+---
+
 ## 前言
 
 Opentelemetry 协议，是 CNCF (Cloud Native Computing Foundation -云原生计算基金会) 定义的最新一代可观测规范，该规范定义了可观测性的三大支柱：Metrics、Trace、Log (指标、链路、日志)，三者之间的关联数据分析成为了各大厂商的必争之地。

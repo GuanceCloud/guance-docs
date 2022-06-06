@@ -3,6 +3,7 @@ nav:
   - '云原生': cloud-native
   - '日志': logs
   - 'APM': apm
+  - '接入(集成)最佳实践' : integrations
   - '自定义接入最佳实践': custom
   - '场景最佳实践': scene
   - '观测云小妙招': guance-skill

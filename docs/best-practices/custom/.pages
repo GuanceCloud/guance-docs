@@ -1,5 +1,4 @@
 nav:
-  - index.md
   - '快速上手 Pythond 采集器的最佳实践': pythond.md
   - '阿里云 DTS 增量数据迁移最佳实践 (Function)': aliyun-dts-func.md
   - '阿里云产品可观测最佳实践 (Function)': aliyun-prod-func.md

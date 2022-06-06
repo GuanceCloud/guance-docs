@@ -1,3 +1,7 @@
+# Kubernetes 集群使用 ExternalName 映射 DataKit 服务
+
+---
+
 ## 简介
 
 在 Kubernets 集群中，以 DaemonSet 方式部署 DataKit 后，如果存在部署的某一应用以前是推送链路数据到 istio-system 名称空间的 zipkin 服务，端口是 9411，即访问地址是 zipkin.istio-system.svc.cluster.local:9411，客户又不想改推送地址怎么办呢？这时就需要用到了 Kubernetes 的 ExternalName 服务类型。先定义一个 ClusterIP 的 服务类型，把 9529 端口转成 9411，然后使用 ExternalName 的服务将 ClusterIP 的服务映射成 DNS 的名称。通过这两步转换，应用就可以与 DataKit 打通了。
