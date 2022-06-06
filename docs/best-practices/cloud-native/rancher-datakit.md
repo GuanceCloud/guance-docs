@@ -1,15 +1,19 @@
-# 简介
+# 使用 Rancher 部署和管理 DataKit，快速构建Kubernetes 生态的可观测
+
+---
+
+## 简介
 企业有一定规模后，服务器、kubernetes 环境、微服务应用会越来越多，如何高效地对这些资源进行可观测，节省人力、资源成本是企业面临的问题。通过一键部署Rancher应用商店内的 Datakit，观测云对 Rancher管控的 k8s 集群，提供了大量开箱即用的可观测功能。<br />本文通过一个耳熟能详的 service mesh 微服务架构Bookinfo 案例，详细解释下如何利用观测云一键提升 K8S , istio, 持续集成,金丝雀发布,以及微服务端到端全链路的可观测性。        <br />       观测云是一家致力于云原生领域可观测的头部企业，使用一个平台、部署 DataKit Agent 即可把主机、应用的指标、链路、日志串联起来。用户登录观测云即可实时主动观测自己的 k8s 运行时与微服务应用健康状态.
-# 案例假设
+## 案例假设
         假设一公司拥有若干台云服务器，两套 Kubernetes 集群，一套测试环境，一套生产环境，测试环境有一台 Master 节点，两台 Node 节点。在云服务器上部署了 Harbor、Gitlab、在 Kubernetes 测试环境部署了 Istio 项目bookinfo，现在使用观测云进行主机、Kubernetes 集群、Gitlab CI、金丝雀发布、RUM、APM、Istio 等做可观测。
-# 前置条件
+## 前置条件
 
 - 安装 [Kubernetes](https://kubernetes.io/docs/setup/production-environment/tools/) 1.18+。
 - 安装 [Rancher](https://rancher.com/docs/rancher/v2.6/en/installation/)，并有操作 Kubernetes 集群的权限。
 - 安装 [Gitlab](https://about.gitlab.com/  )。
 - 安装 [Helm](https://github.com/helm/helm) 3.0+。
 - 部署 harbor 仓库或其它镜像仓库。
-# 环境版本
+## 环境版本
         本次示例使用版本如下，DataKit 版本不同，配置可能存在差异。
 
 - Kubernetes 1.22.6
@@ -17,8 +21,8 @@
 - Gitlab 14.9.4
 - Istio 1.13.2
 - DataKit 1.4.0
-# 操作步骤
-## 步骤 1： 使用 Rancher 安装 DataKit
+## 操作步骤
+### 步骤 1： 使用 Rancher 安装 DataKit
          为方便管理，DataKit 安装到 datakit 命名空间。登录『Rancher』-> 『集群』-> 『项目/命名空间』，点击『创建命名空间』。
 ![image](../images/rancher-datakit/1.png)	  
         名称输入“datakit”,点击『创建』。
@@ -74,11 +78,11 @@
 		
 ![image](../images/rancher-datakit/14.png)
 
-## 步骤 2： 开启 Kubernetes 可观测
-### 2.1 ebpf 可观测
-#### 2.1.1 开启采集器
+### 步骤 2： 开启 Kubernetes 可观测
+#### 2.1 ebpf 可观测
+##### 2.1.1 开启采集器
         在部署 DataKit 时已经开启了 **ebpf 采集器。**
-#### 2.1.2 ebpf 视图
+##### 2.1.2 ebpf 视图
          登录『[观测云](https://console.guance.com/)』-> 『基础设施』，点击 **k8s-node1**。
 		 
 ![image](../images/rancher-datakit/15.png)
@@ -89,8 +93,8 @@
 
 ![image](../images/rancher-datakit/17.png)
 
-### 2.2 容器可观测
-#### 2.2.1 开启采集器
+#### 2.2 容器可观测
+##### 2.2.1 开启采集器
         DataKit 默认已开启 Container 采集器，这里介绍一下自定义采集器配置。登录『Rancher』-> 『集群』-> 『存储』-> 『ConfigMaps』，点击『创建』。
 		
 ![image](../images/rancher-datakit/18.png)
@@ -151,7 +155,7 @@
 ![image](../images/rancher-datakit/23.png)
 
 
-#### 2.2.2 Container 监控视图
+##### 2.2.2 Container 监控视图
         登录『[观测云](https://console.guance.com/)』-> 『基础设施』-> 『容器』，输入** host:k8s-node1**，显示 k8s-node1 节点的容器，点击 ingress。
 		
 ![image](../images/rancher-datakit/24.png)
@@ -160,10 +164,10 @@
 		
 ![image](../images/rancher-datakit/25.png)
 
-### 2.3 Kubernetes 监控视图
-#### 2.3.1 部署采集器
+#### 2.3 Kubernetes 监控视图
+##### 2.3.1 部署采集器
         在安装 DataKit 时已经安装了 metric-server 和 Kube-State-Metrics。
-#### 2.3.2 部署 Kubernetes 监控视图
+##### 2.3.2 部署 Kubernetes 监控视图
          登录『[观测云](https://console.guance.com/)』，进入『场景』模块，点击『新建仪表板』，输入“kubernetes 监控”，选择 “Kubernetes 监控视图”，点击『确定』。
 		 
 ![image](../images/rancher-datakit/26.png)
@@ -174,8 +178,8 @@
 
 ![image](../images/rancher-datakit/28.png)
 
-### 2.4 Kubernetes Overview with Kube State Metrics 监控视图
-#### 2.4.1 开启采集器
+#### 2.4 Kubernetes Overview with Kube State Metrics 监控视图
+##### 2.4.1 开启采集器
         登录『Rancher』-> 『集群』-> 『存储』-> 『ConfigMaps』，找到 datakit-conf，点击『编辑配置』。
 		
 ![image](../images/rancher-datakit/29.png)
@@ -197,7 +201,7 @@
             namespace = "$NAMESPACE"
             pod_name = "$PODNAME"
 ```
-#### 
+##### 
 
 ![image](../images/rancher-datakit/30.png)
 
@@ -207,7 +211,7 @@
 ![image](../images/rancher-datakit/31.png)
 
 
-#### 2.4.2 Kubernetes Overview with Kube State Metrics 监控视图
+##### 2.4.2 Kubernetes Overview with Kube State Metrics 监控视图
         登录『[观测云](https://console.guance.com/)』，进入『场景』模块，点击『新建仪表板』，输入“kubernetes Overview”，选择 “Kubernetes Overview with Kube State Metrics 监控视图”，点击『确定』。
 
 ![image](../images/rancher-datakit/32.png)
@@ -216,7 +220,7 @@
 		
 ![image](../images/rancher-datakit/33.png)
 
-### 2.5 Kubernetes Overview by Pods 监控视图
+#### 2.5 Kubernetes Overview by Pods 监控视图
         登录『[观测云](https://console.guance.com/)』，进入『场景』模块，点击『新建仪表板』，输入“kubernetes Overview by”，选择 “Kubernetes Overview by Pods 监控视图”，点击『确定』。
 		
 ![image](../images/rancher-datakit/34.png)
@@ -227,7 +231,7 @@
 
 ![image](../images/rancher-datakit/36.png)
 
-### 2.6 Kubernetes Services 监控视图
+#### 2.6 Kubernetes Services 监控视图
         登录『[观测云](https://console.guance.com/)』，进入『场景』模块，点击『新建仪表板』，输入“kubernetes Services”，选择 “Kubernetes Services 监控视图”，点击『确定』。
 		
 ![image](../images/rancher-datakit/37.png)
@@ -236,14 +240,14 @@
 		
 ![image](../images/rancher-datakit/38.png)
 
-## 步骤 3：  部署 Istio 及应用
-### 3.1 部署 Istio
+### 步骤 3：  部署 Istio 及应用
+#### 3.1 部署 Istio
         登录『Rancher』-> 『应用市场』-> 『Charts』，选择 Istio 进行安装。
 		
 ![image](../images/rancher-datakit/39.png)
 
 
-### 3.2 开通 Sidecar 注入
+#### 3.2 开通 Sidecar 注入
         新建 prod 命名空间，开启该空间下创建 Pod 时自动注入 Sidecar，让 Pod 的出入流量都转由 Sidecar 进行处理。登录『Rancher』-> 『集群』-> 『项目/命名空间』，点击『创建命名空间』。
 
 ![image](../images/rancher-datakit/40.png)
@@ -257,7 +261,7 @@
 ![image](../images/rancher-datakit/42.png)
 
 
-### 3.3 开启 Istiod 采集器
+#### 3.3 开启 Istiod 采集器
         登录『Rancher』-> 『集群』-> 『服务发现』-> 『Service』，查看 Service 名称是 istiod，空间是 istio-system。
 		
 ![image](../images/rancher-datakit/43.png)
@@ -289,7 +293,7 @@
 ![image](../images/rancher-datakit/46.png)
 
 
-### 3.4 开启 Zipkin 采集器
+#### 3.4 开启 Zipkin 采集器
         登录『Rancher』-> 『集群』-> 『存储』-> 『ConfigMaps』，找到 datakit-conf，点击『编辑配置』。
 		
 ![image](../images/rancher-datakit/47.png)
@@ -308,9 +312,9 @@
 		
 ![image](../images/rancher-datakit/49.png)
 
-### 3.5 映射 DataKit 服务
+#### 3.5 映射 DataKit 服务
        在 Kubernets 集群中，以 DaemonSet 方式部署 DataKit 后，如果存在部署的某一应用以前是推送链路数据到 istio-system 名称空间的 zipkin 服务，端口是 9411，即访问地址是 zipkin.istio-system.svc.cluster.local:9411，这时就需要用到了 Kubernetes 的 ExternalName 服务类型。先定义一个 ClusterIP 的 服务类型，把 9529 端口转成 9411，然后使用 ExternalName 的服务将 ClusterIP 的服务映射成 DNS 的名称。通过这两步转换，应用就可以与 DataKit 打通了。
-#### 3.5.1 定义 Cluster IP 服务
+##### 3.5.1 定义 Cluster IP 服务
         登录『Rancher』-> 『集群』-> 『服务发现』-> 『Service』，点击『创建』，选择“集群 IP”。
 		
 ![image](../images/rancher-datakit/50.png)
@@ -323,7 +327,7 @@
 	
 ![image](../images/rancher-datakit/52.png)
 
-#### 3.5.2 定义 ExternalName 的服务
+##### 3.5.2 定义 ExternalName 的服务
        『集群』-> 『服务发现』-> 『Service』，点击『创建』，选择“外部DNS服务名称”。
 	   
 ![image](../images/rancher-datakit/53.png)
@@ -332,7 +336,7 @@
 		
 ![image](../images/rancher-datakit/54.png)
 
-### 3.6 创建 Gateway 资源
+#### 3.6 创建 Gateway 资源
          登录『Rancher』-> 『集群』-> 『Istio』-> 『Gateways』，点击上方的“导入 YAML”图标。
 		 
 ![image](../images/rancher-datakit/55.png)
@@ -359,7 +363,7 @@ spec:
 
 ![image](../images/rancher-datakit/56.png)
 
-### 3.7 创建虚拟服务
+#### 3.7 创建虚拟服务
          登录『Rancher』-> 『集群』-> 『Istio』-> 『VirtualServices』，点击上方的“导入 YAML”图标。        命名空间输入“prod”，在输入如下内容，点击『导入』。
 ```
 apiVersion: networking.istio.io/v1alpha3
@@ -394,7 +398,7 @@ spec:
 
 ![image](../images/rancher-datakit/57.png)
 
-### 3.8 创建 productpage、details、ratings
+#### 3.8 创建 productpage、details、ratings
         这里使用为 Pod 增加 annotations 来采集 Pod 的指标，增加的内容如下所示。        
 ```
       annotations:
@@ -709,7 +713,7 @@ spec:
 ![image](../images/rancher-datakit/59.png)
 
 
-### 3.9 部署 reviews 流水线
+#### 3.9 部署 reviews 流水线
          登录 Gitlab，创建 bookinfo-views 项目。
 		 
 ![image](../images/rancher-datakit/60.png)
@@ -855,7 +859,7 @@ deploy_k8s:
 
 ![image](../images/rancher-datakit/65.png)
 
-### 3.10 访问 productpage
+#### 3.10 访问 productpage
         点击 Rancher 上方的“命令行”图标，输入“kubectl get svc -n istio-system”回车。
 		
 ![image](../images/rancher-datakit/66.png)
@@ -864,9 +868,9 @@ deploy_k8s:
 		
 ![image](../images/rancher-datakit/67.png)
 
-## 步骤 4： Istio 可观测
+### 步骤 4： Istio 可观测
         上述的步骤中，已经对 Istiod 及 bookinfo 应用做了指标采集，观测云默认提供了四个监控视图来观测 Istio 的运行情况。
-#### 4.1 Istio Workload 监控视图
+##### 4.1 Istio Workload 监控视图
         登录『[观测云](https://console.guance.com/)』，进入『场景』模块，点击『新建仪表板』，输入“Istio”，选择 “Istio Workload 监控视图”，点击『确定』。再点击新建的“Istio Workload 监控视图”进行观测 。
 		
 ![image](../images/rancher-datakit/68.png)
@@ -876,7 +880,7 @@ deploy_k8s:
 ![image](../images/rancher-datakit/70.png)
 
 
-#### 4.2 Istio Control Plane 监控视图
+##### 4.2 Istio Control Plane 监控视图
         登录『[观测云](https://console.guance.com/)』，进入『场景』模块，点击『新建仪表板』，输入“Istio”，选择 “Istio Control Plane 监控视图”，点击『确定』。再点击新建的“Istio Control Plane 监控视图”进行观测 。
 		
 ![image](../images/rancher-datakit/71.png)
@@ -886,19 +890,19 @@ deploy_k8s:
 ![image](../images/rancher-datakit/73.png)
 
 
-#### 4.3 Istio Service 监控视图
+##### 4.3 Istio Service 监控视图
         登录『[观测云](https://console.guance.com/)』，进入『场景』模块，点击『新建仪表板』，输入“Istio”，选择 “Istio Service 监控视图”，点击『确定』。再点击新建的“Istio Service 监控视图”进行观测 。
 
 ![image](../images/rancher-datakit/74.png)
 
-#### 4.4 Istio Mesh 监控视图
+##### 4.4 Istio Mesh 监控视图
         登录『[观测云](https://console.guance.com/)』，进入『场景』模块，点击『新建仪表板』，输入“Istio”，选择 “Istio Mesh 监控视图”，点击『确定』。再点击新建的“Istio Mesh 监控视图”进行观测 。
 		
 ![image](../images/rancher-datakit/75.png)
 
 
-## 步骤 5： RUM 可观测
-#### 5.1 新建用户访问监测
+### 步骤 5： RUM 可观测
+##### 5.1 新建用户访问监测
         登录『 [观测云](https://console.guance.com/)』，进入『用户访问监测』，新建应用 **devops-bookinfo** ，复制下方 JS。
 		
 ![image](../images/rancher-datakit/76.png)
@@ -906,7 +910,7 @@ deploy_k8s:
 ![image](../images/rancher-datakit/77.png)
 
 
-#### 5.2 制作 productpage 镜像
+##### 5.2 制作 productpage 镜像
         下载 [istio-1.13.2-linux-amd64.tar.gz](https://github.com/istio/istio/releases/download/1.13.2/istio-1.13.2-linux-amd64.tar.gz)，解压文件。上述的 JS 需要放置到 productpage 项目所有界面都能访问到的地方，本项目把上面的 JS 复制到 **istio-1.13.2\samples\bookinfo\src\productpage\templates\productpage.html** 文件中，其中 datakitOrigin 值是 DataKit 的地址。
 		
 ![image](../images/rancher-datakit/78.png)
@@ -926,7 +930,7 @@ cd istio-1.13.2\samples\bookinfo\src\productpage
 docker build -t 172.16.0.238/df-demo/product-page:v1  .
 docker push 172.16.0.238/df-demo/product-page:v1
 ```
-#### 5.3 替换 productpage 镜像
+##### 5.3 替换 productpage 镜像
          进入『集群』-> 『工作负载』->『Deployments』，找到 “productpage-v1”点击“编辑配置”。
 
 ![image](../images/rancher-datakit/79.png)
@@ -935,7 +939,7 @@ docker push 172.16.0.238/df-demo/product-page:v1
 		
 ![image](../images/rancher-datakit/80.png)
 
-#### 5.4 用户访问监测
+##### 5.4 用户访问监测
         登录『 [观测云](https://console.guance.com/)』，进入『用户访问监测』，找到  **devops-bookinfo **应用，点击进入，查看 UV、PV、会话数、访问的页面等信息。
 		
 ![image](../images/rancher-datakit/81.png)
@@ -951,12 +955,12 @@ docker push 172.16.0.238/df-demo/product-page:v1
 ![image](../images/rancher-datakit/84.png)
 
 
-## 步骤 6： 日志可观测
+### 步骤 6： 日志可观测
         根据部署 datakit 时的配置，默认采集输出到 /dev/stdout 的日志。 登录『 [观测云](https://console.guance.com/)』，进入『日志』，查看日志信息。此外观测云还提供了 RUM、APM 和日志直接的联动功能，请参考官方文档做相应的配置。
 		
 ![image](../images/rancher-datakit/85.png)
 
-## 步骤 7： Gitlab CI 可观测
+### 步骤 7： Gitlab CI 可观测
         登录『[观测云](https://console.guance.com/)』，进入『CI』，点击『概览』选择 bookinfo-views 项目，查看 Pipeline 和 Job 的执行情况。
 		
 ![image](../images/rancher-datakit/86.png)
@@ -974,15 +978,15 @@ docker push 172.16.0.238/df-demo/product-page:v1
 ![image](../images/rancher-datakit/90.png)
 
 
-## 步骤 8： 金丝雀发布可观测
+### 步骤 8： 金丝雀发布可观测
         操作步骤是先创建 DestinationRule 和 VirtualService，把流量只流向 reviews-v1版本，发布 reviews-v2，切 10% 流量到 reviews-v2，通过观测云验证通过后，把流量完全切到 reviews-v2，下线 reviews-v1。
-#### 8.1 创建 DestinationRule
+##### 8.1 创建 DestinationRule
         登录『Rancher』-> 『集群』-> 『Istio』-> 『DestinationRule』，点击『创建』。命名空间天“prod”，名称填“reviews”，Input a host填“reviews”，添加 Subset v1 和 Subset v2，详细信息如下图，最后点击『创建』。
 		
 ![image](../images/rancher-datakit/91.png)
 
 
-#### 8.2 创建 VirtualService
+##### 8.2 创建 VirtualService
         登录『Rancher』-> 『集群』-> 『Istio』-> 『VirtualServices』，点击上方的“导入YAML”图标，输入如下内容后，点击『导入』。
 ```
 apiVersion: networking.istio.io/v1alpha3
@@ -1000,7 +1004,7 @@ spec:
         subset: v1
 
 ```
-#### 8.3 发布 reviews-v2 版本
+##### 8.3 发布 reviews-v2 版本
          登录『gitlab』，找到 bookinfo-views 项目， 修改 .gitlab-ci.yml 文件中的 APP_VERSION 的值为 "v2"，提交一次代码。
 		 
 ![image](../images/rancher-datakit/92.png)
@@ -1009,7 +1013,7 @@ spec:
 	   
 ![image](../images/rancher-datakit/93.png)
 
-#### 8.4 切换流量到 reviews-v2 版本
+##### 8.4 切换流量到 reviews-v2 版本
         『Rancher』-> 『集群』-> 『Istio』-> 『VirtualServices』，点击“reviews”右边的“编辑 YAML”。
 		
 ![image](../images/rancher-datakit/94.png)
@@ -1018,7 +1022,7 @@ spec:
 		
 ![image](../images/rancher-datakit/95.png)
 
-#### 8.5 观测 reviews-v2 运行情况
+##### 8.5 观测 reviews-v2 运行情况
         登录『[观测云](https://console.guance.com/)』，进入『应用性能监测』模块，点击右上方的图标。
 		
 		
@@ -1053,7 +1057,7 @@ spec:
 ![image](../images/rancher-datakit/103.png)
 
 
-#### 8.6 完成发布
+##### 8.6 完成发布
         通过在观测云的操作，本次发布符合预期。『Rancher』-> 『集群』-> 『Istio』-> 『VirtualServices』，点击“reviews”右边的“编辑 YAML”，把“v2”权重设置成 100，“v1”去掉，点击“保存”。
 		
 ![image](../images/rancher-datakit/104.png)
@@ -1061,4 +1065,4 @@ spec:
         进入『集群』-> 『工作负载』->『Deployments』，找到 “reviews-v1”点击“删除”。
 		
 ![image](../images/rancher-datakit/105.png)
-## <br />
+### <br />

@@ -1,16 +1,21 @@
-# 应用场景介绍：
+# JAVA 应用 RUM-APM-LOG 联动分析
+
+---
+
+
+## 应用场景介绍：
 本文用于演示的 demo 为若依办公系统，具体内容可查看[[**从 0 到 1 利用 DF 构建业务系统的可观测性**](https://www.yuque.com/dataflux/bp/sample1)]
 
 企业最重要的营收来源即是业务，而现当下，绝大多数企业的业务都是由对应的IT系统承载的，那如何保障企业的业务稳健，归根到企业内部就是如何保障企业内部的IT系统。当业务系统出现异常或故障时，往往是业务、应用开发、运维等多方面同事一起协调进行问题的排查，存在跨平台，跨部门，跨专业领域等多种问题，排查既耗时又费力，为了解决这一问题，目前业界已经比较成熟的方式即是在基础设施监控之外，对应用层、日志层进行深度的监控，通过 RUM+APM+LOG 实现对整个业务系统最核心的的前后端应用、日志进行统一管理，能力强一些的监控还可以将这三方面数据通过关键字段进行打通，实现联动分析，从而提升相关工作人员的工作效率，保障系统平稳运行。目前 Dataflux 已具备这样的能力，本文将从如何接入 RUM+APM+LOG 这三方监控，以及如何利用df进行联动分析的角度进行阐述。
 
 **APM**:（application performance monitoring：应用性能监控）<br />**RUM**:（real user moitoring：真实用户体验监控）<br />**LOG**：（日志）
-# 安装Datakit：
-#### 1、登录[官网](https://www.guance.com)
-#### 2、新建工作空间
-#### 3、选择集成——datakit——选择适合自己环境额安装指令并复制
+## 安装Datakit：
+##### 1、登录[官网](https://www.guance.com)
+##### 2、新建工作空间
+##### 3、选择集成——datakit——选择适合自己环境额安装指令并复制
 ![image](../images/java-rum-apm-log/1.png)
-#### 4、在服务器上安装 datakit
-#### 5、执行 service datakit status （或者 systemctl status datakit）查询 datakit 状态
+##### 4、在服务器上安装 datakit
+##### 5、执行 service datakit status （或者 systemctl status datakit）查询 datakit 状态
 
 ![image](../images/java-rum-apm-log/2.png)
 ![image](../images/java-rum-apm-log/3.png)
@@ -31,12 +36,12 @@
 
 
 ![image](../images/java-rum-apm-log/4.png)
-# RUM（real user moitoring）：
+## RUM（real user moitoring）：
 详细步骤参见文档[[用户访问（RUM）可观测性最佳实践](https://www.yuque.com/dataflux/doc/eqs7v2)]
-#### 1、登录 Dataflux 平台
-#### 2、选择用户访问监测——新建应用——选择web类型——同步载入
+##### 1、登录 Dataflux 平台
+##### 2、选择用户访问监测——新建应用——选择web类型——同步载入
 ![image](../images/java-rum-apm-log/5.png)
-#### 3、在前端页面 index.html 中接入DF rum可观测性 js 文件
+##### 3、在前端页面 index.html 中接入DF rum可观测性 js 文件
 ```
 $ cd /usr/local/ruoyi/dist/index.html
 
@@ -81,16 +86,16 @@ $ vim index.html
 - **trackInteractions**：用户行为统计，例如点击按钮，提交信息等动作。
 
 ![image](../images/java-rum-apm-log/8.png)
-#### 4、保存、验证并发布页面
+##### 4、保存、验证并发布页面
 打开浏览器访问目标页面，通过 F12 检查者模式查看页面网络请求中是否有 rum 相关的请求，状态码是否是 200。
 ![image](../images/java-rum-apm-log/9.png)
 **注意！！**：如若 F12 检查者模式发现数据无法上报，显示端口 refused，可 telnet IP:9529 验证端口是否通畅，不通的话，需要修改 /usr/local/datakit/conf.d/datakit.conf 修改首行的 http_listen 为 0.0.0.0，如若还不通，请检查安全组是否已打开 9529 端口。
 ![image](../images/java-rum-apm-log/10.png)
-#### 5、在用户访问监测查看 rum 相关数据
+##### 5、在用户访问监测查看 rum 相关数据
 ![image](../images/java-rum-apm-log/11.png)
 # APM（application performance monitoring）：
 详细步骤参见文档[[链路追踪（APM）可观测性最佳实践](https://www.yuque.com/dataflux/bp/apm)]<br />**DF 支持的 APM 接入方式包含 ddtrace、skywalking、zipkin、jaejer 等多种支持 opentracing 协议的 APM 工具，此处示例采用 ddtrace 实现 APM 方面的可观测性。**
-#### 1、在 Datakit 中修改 APM（ddtrace）的 inputs
+##### 1、在 Datakit 中修改 APM（ddtrace）的 inputs
   **默认不需要修改 jvm 的 inputs，仅需复制生成 conf 文件即可**
 ```
 $ cd /usr/local/datakit/conf.d/ddtrace/
@@ -99,7 +104,7 @@ $ vim ddtrace.conf
 
 # 默认不需要修改
 ```
-#### 2、修改 java 应用启动脚本
+##### 2、修改 java 应用启动脚本
    APM 可观测性，需要在 java 应用中添加一个 agent，该 agent 在伴随应用启动时，会通过字节码注入的技术实现对应用内部方法层层调用、sql 调用、外部系统调用等相关性能数据的采集，从而实现对应用系统代码质量的可观测性。
 ```
 #原应用启动脚本
@@ -130,15 +135,15 @@ $ nohup java -Dfile.encoding=utf-8 -javaagent:dd-java-agent-0.80.0.jar -XX:Fligh
 - Ddd.service.mapping：当前应用调用到的 redis、mysql 等，可通过此参数添加别名，用以和其他应用调用到的 redis、mysql 进行区分，可选项，应用场景：例如项目 A 项目 B 都调用了mysql，且分别调用的 mysql-a，mysql-b，如没有添加 mapping 配置项，在 df 平台上会展现项目A项目B调用了同一个名为 mysql 的数据库，如果添加了 mapping 配置项，配置为 mysql-a，mysql-b，则在 df 平台上会展现项目 A 调用 mysql-a，项目 B 调用 mysql-b。
 - Ddd.agent.host：数据传输目标IP，默认为本机 localhost，可选项。
 - <br />
-#### 3、在DF平台查看APM数据
+##### 3、在DF平台查看APM数据
 APM（应用性能检测）是 DF 默认内置的模块，无需创建场景或视图即可进行查看。<br />路径：DF 平台——应用性能检测<br />视图示例:（通过该视图即可快速查看应用调用情况、拓扑图、异常数据等其他 APM 相关数据）
 ![image](../images/java-rum-apm-log/12.png)
 ![image](../images/java-rum-apm-log/13.png)
 调用链路的问题追踪：排查接口、数据库问题
 ![image](../images/java-rum-apm-log/14.png)
-# 日志（LOG）：
+## 日志（LOG）：
 详细步骤参见文档[[日志采集](https://www.yuque.com/dataflux/doc/ilhawc)]
-#### 1、标准日志采集（Nginx、mysql、redis等）
+##### 1、标准日志采集（Nginx、mysql、redis等）
   **    **通过开启Datakit内置的各种inputs，直接开启相关的日志采集，例如 [Ngnix](https://www.yuque.com/dataflux/datakit/nginx#62b5133f)、[Redis](https://www.yuque.com/dataflux/datakit/redis#62b5133f)、[Docker](https://www.yuque.com/dataflux/datakit/docker)、[ES](https://www.yuque.com/dataflux/datakit/elasticsearch#62b5133f) 等；<br />**示例：Nginx**
 ```
 $ cd /usr/local/datakit/conf.d/nginx/
@@ -157,7 +162,7 @@ $     pipeline = "nginx.p"
 **视图展示：**<br />
 ![image](../images/java-rum-apm-log/16.png)
 ![image](../images/java-rum-apm-log/17.png)
-#### 2、自定义日志采集（应用日志、业务日志等）
+##### 2、自定义日志采集（应用日志、业务日志等）
 **      示例：应用日志**<br />**      pipeline（日志 grok 切割）[ **[**df 官方文档**](https://www.yuque.com/dataflux/datakit/pipeline)**]**
 ```
 $ cd /usr/local/datakit/conf.d/log/
@@ -194,23 +199,23 @@ grok(_, "%{TIMESTAMP_ISO8601:time} %{NOTSPACE:thread_name} %{NOTSPACE:status}\\s
 default_time(time)
 ```
 ![image](../images/java-rum-apm-log/19.png)
-#### 3、在 DF 平台查看日志数据
+##### 3、在 DF 平台查看日志数据
 ![image](../images/java-rum-apm-log/20.png)
 ![image](../images/java-rum-apm-log/21.png)
-# RUM 跟 APM 联动数据演示：
+## RUM 跟 APM 联动数据演示：
 **      原理介绍**：用户访问前端应用（已添加 rum 监控且已配置 **allowedDDTracingOrigins **字段），前端应用调用资源及请求，触发 rum-js 性能数据采集，rum-js 会生成 trace-id 写在请求的 request_header 里，请求到达后端，后端的 ddtrace 会读取到该 trace_id 并记录在自己的 trace 数据里，从而实现通过相同的 trace_id 来实现应用性能监测和用户访问监测数据联动分析。<br />     **应用场景**：前后端关联，前端请求与后端方法执行性能数据进行一对一绑定，从而更方便定位前后端关联的问题，例如前端用户登录缓慢，是因为后端服务调用数据库查询用户耗时过长导致的，就可通过前后端联动分析迅速跨团队跨部门进行问题定位，示例如下：<br />**     配置方式**：[ [java 示例](https://www.yuque.com/dataflux/bp/web#fpjkl)] [ [python 示例](https://www.yuque.com/dataflux/doc/vg4y50)]
-#### 1、前端 RUM 数据
+##### 1、前端 RUM 数据
 ![image](../images/java-rum-apm-log/22.png)
-#### 
+##### 
 ![image](../images/java-rum-apm-log/23.png)
 2、跳转至后端 APM 数据
 ![image](../images/java-rum-apm-log/24.png)
 ![image](../images/java-rum-apm-log/25.png)
-# APM 跟 LOG 联动数据演示：
+## APM 跟 LOG 联动数据演示：
 原理：APM 与 LOG
-#### 1、开启 APM 监控
+##### 1、开启 APM 监控
       参考[ [APM](#DMMpN) ]，无需额外操作。
-#### 2、修改应用日志输出格式（需开发介入）
+##### 2、修改应用日志输出格式（需开发介入）
       修改应用日志输出格式文件 logback/log4j<br />**备注**：Ddtrace-agent  java-0.70 版本后会自动将跟踪标识注入，仅需修改 logback/log4j 的 xml 文件，在应用日志的输出内容中添加 trace_id 字段即可。<br />       可参考[ [datadog 官方文档](https://docs.datadoghq.com/logs/log_collection/java/?tab=logback)]
 ```
 ## 首先在 pom.xml 的 dependency 中引入 datadog 依赖
@@ -232,7 +237,7 @@ default_time(time)
 
 ```
   保存该 xml 文件并重新发布应用。
-#### 3、开启日志监控
+##### 3、开启日志监控
      参考[[自定义日志采集](#k7DXg)]<br />举例：
 ```xml
 $ cd /usr/local/datakit/conf.d/log/
@@ -245,7 +250,7 @@ $ vim ruoyi-system.conf
 ## Pipeline 可根据需求进行设置，pipeline 主要用作对日志进行字段切割，切割后的日志内容可转存成指标进行可视化展示，trace-id 相关内容没有可视化展示的必要，所以可以不用进行切割。
 ```
 ![image](../images/java-rum-apm-log/27.png)
-#### 4、APM&LOG 联动分析
+##### 4、APM&LOG 联动分析
 **正向关联[ APM——日志]**<br />在APM链路数据中，下方日志模块直接搜索 trace_id，即可查看此次链路调用所对应产生的应用日志。
 ![image](../images/java-rum-apm-log/28.png)
 ![image](../images/java-rum-apm-log/29.png)

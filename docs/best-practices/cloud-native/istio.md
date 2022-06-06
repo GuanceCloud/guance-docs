@@ -1,26 +1,30 @@
-# Istio
-## Service Mesh 是什么
+# 基于 Istio 实现微服务可观测最佳实践
+
+---
+
+## Istio
+### Service Mesh 是什么
         过去几年，微服务在软件应用中迅速普及，大型应用被分解成多个微服务，虽然每个微服务能通过容器化在单独的容器中运行，但是服务间通信的网络拓扑仍然非常复杂。既然微服务之间网络通信非常重要，具备通过实现多个服务代理，确保受控的服务到服务之间通信通道安全、健壮的基础组件就非常有必要。<br />        服务网格 ( Service Mesh )是用来描述组成这些应用程序的微服务网络以及它们之间的交互。单个服务调用，表现为 Sidecar。如果有大量的服务，就会表现出来网格，下图绿色方格代表应用微服务，蓝色方格代表 Sidecar，线条表示服务之间的调用关系，Sidecar 之间的连接就会形成一个网络。
 		
 ![image](../images/istio/1.png)
-## Istio简介 
+### Istio简介 
         Istio 是一个开源服务网格，它透明地分层到现有的分布式应用程序上。 提供了对整个服务网格的行为洞察和操作控制的能力，以及一个完整的满足微服务应用各种需求的解决方案。
-## Istio核心组件
+### Istio核心组件
        Istio 服务网格由数据平面和控制平面组成。
 
 - 数据平面由一组智能代理（Envoy）组成，Envoy 被部署为 sidecar ，微服务之间 Sidecar 的通信是通过策略控制和遥测收集（Mixer）实现。
 - 在控制平面负责管理和配置代理来路由流量。Citadel 通过内置身份和凭证管理可以提供强大的服务间和最终用户身份验证。Pilot 用于为 Envoy sidecar 提供服务发现，智能路由（例如 A/B 测试、金丝雀部署等）、流量管理和错误处理（超时、重试和熔断）功能。Galley 是 Istio 配置验证、获取、处理和分发组件。
 
 ![image](../images/istio/2.png)
-## Istio 链路追踪
+### Istio 链路追踪
         Envoy 原生支持 Jaeger，追踪所需 x-b3 开头的 Header (x-b3-traceid， x-b3-spanid, x-b3-parentspanid， x-b3-sampled， x-b3-flags）和 x-request-id 在不同的服务之间由业务逻辑进行传递，并由 Envoy 上报给 Jaeger，最终 Jaeger 生成完整的追踪信息。<br />        在 Istio 中，Envoy 和 Jaeger 的关系如下：
 
 ![image](../images/istio/3.png)
 
         图中 Front [Envoy](https://www.servicemesher.com/istio-handbook/GLOSSARY.html#envoy) 指的是第一个接收到请求的 [Envoy](https://www.servicemesher.com/istio-handbook/GLOSSARY.html#envoy) [Sidecar](https://www.servicemesher.com/istio-handbook/GLOSSARY.html#sidecar)，它会负责创建 Root Span 并追加到请求 Header 内，请求到达不同的服务时，[Envoy](https://www.servicemesher.com/istio-handbook/GLOSSARY.html#envoy) [Sidecar](https://www.servicemesher.com/istio-handbook/GLOSSARY.html#sidecar) 会将追踪信息进行上报。<br />        Envoy 链路追踪原生支持 Jaeger，Envoy 支持集成外部追踪服务，支持 zipkin、zipkin兼容的后端( jaeger )。Istio 链路追踪提供全局配置 zipkinAddress, [Envoy](https://www.servicemesher.com/istio-handbook/GLOSSARY.html#envoy)的上报地址通过 proxy_init 的 --zipkinAddress 参数传入。
-## Istio 可观测性
+### Istio 可观测性
         Istio 健壮的追踪、监控和日志特性让您能够深入的了解服务网格部署。通过 Istio 的监控能力，可以真正的了解到服务的性能是如何影响上游和下游的；而它的定制 Dashboard 提供了对所有服务性能的可视化能力，并让您看到它如何影响其他进程。所有这些特性都使您能够更有效地设置、监控和加强服务的 SLO。
-## BookInfo 简介
+### BookInfo 简介
         这个示例部署了一个用于演示多种 Istio 特性的应用，该应用由四个单独的微服务构成。这个应用模仿在线书店的一个分类，显示一本书的信息。页面上会显示一本书的描述，书籍的细节（ISBN、页数等），以及关于这本书的一些评论。<br />Bookinfo 应用程序分为四个单独的微服务：
 
 - productpage：productpage (python) 微服务调用 details 和 reviews 微服务来填充页面。
@@ -37,13 +41,13 @@ reviews 微服务提供了3个版本：
 ![image](../images/istio/4.png)
         Bookinfo 的链路数据，只需要修改 istio 的 configmap 中 zipkin.address 为 datakit 地址，datakit 需要开启zipkin 采集器，即能实现链路数据 push 到 datakit。
 ![image](../images/istio/5.png)
-# 环境部署
-## 前置条件
-### Kubernetes 
+## 环境部署
+### 前置条件
+#### Kubernetes 
         本示例在 CentOS7.9 通过 minikube 创建的版本是 1.21.2 的 kubernetes 集群。
-### 部署datakit 
+#### 部署datakit 
         参考< [Daemonset 部署 Datakit](https://www.yuque.com/dataflux/integrations/kubernetes) >。
-### 开启采集器 
+#### 开启采集器 
         使用 [Daemonset 部署 Datakit](https://www.yuque.com/dataflux/integrations/kubernetes)  的 datakit.yaml 文件，上传到 kubernetes 集群 的 master 节点 /usr/local/df-demo/datakit.yaml，修改 datakit.yaml 文件，增加 ConfigMap 并挂载文件来开通 zipkin 和 prom 采集器，最终结果是部署完成的 DataKit，增加文件 /usr/local/datakit/conf.d/zipkin/zipkin.conf  是开通 zipkin 采集器，增加 /usr/local/datakit/conf.d/prom/prom_istiod.conf 文件是开通 Istiod pod 的指标采集器。
 ![image](../images/istio/6.png)
         下面是 datakit.yaml 文件的修改部分。
@@ -94,20 +98,20 @@ spec:
           name: datakit-conf
           subPath: prom_istiod.conf
 ```
-### 替换 token
+#### 替换 token
 登录[观测云](https://console.guance.com/)，【集成】->【Datakit】复制 token，替换到 datalit.yam l中的 <your-token>。
 ![image](../images/istio/7.png)
 ![image](../images/istio/8.png)
-### 重新部署 Datakit 
+#### 重新部署 Datakit 
 ```
 cd /usr/local/df-demo
 kubectl apply -f datakit.yaml
 ```
 ![image](../images/istio/9.png)
-## 部署 Istio
-### 下载 Istio
+### 部署 Istio
+#### 下载 Istio
         [下载](https://github.com/istio/istio/releases ) **Source Code **和 **istio-1.11.2-linux-amd64.tar.gz**，
-### 安装 Istio
+#### 安装 Istio
 上传 istio-1.11.2-linux-amd64.tar.gz 到 /usr/local/df-demo/ 目录，查看 kubernetes 所在服务器的内网地址是_**172.16.0.15 **_所，请替换 _**172.16.0.15 **_为您的 ip。
 ```
 su minikube
@@ -120,14 +124,14 @@ cp -ar /usr/local/df-demo/istio-1.11.2/bin/istioctl /usr/bin/
 istioctl install --set profile=demo 
 
 ```
-### 验证安装
+#### 验证安装
 部署成功后，ingressgateway、egressgateway、istiod 会处于 Running 状态。
 ```
 kubectl get pods -n istio-system 
 ```
 ![image](../images/istio/10.png)
-## 部署 BookInfo
-### 文件拷贝
+### 部署 BookInfo
+#### 文件拷贝
 解压源码，拷贝 /usr/local/df-demo/istio-1.11.2/samples/bookinfo/src/productpage 目录到 /usr/local/df-demo/bookinfo 目录。拷贝部署 bookInfo 需要的 yaml。
 ```
 cp /usr/local/df-demo/istio-1.11.2/samples/bookinfo/networking/bookinfo-gateway.yaml /usr/local/df-demo/bookinfo/bookinfo-gateway.yaml
@@ -136,14 +140,14 @@ cp /usr/local/df-demo/istio-1.11.2/samples/bookinfo/platform/kube/bookinfo.yaml 
 ```
 
 ![image](../images/istio/11.png)
-### 开启自动注入
+#### 开启自动注入
 新建 prod 命名空间，开启该空间下创建 Pod 时自动注入 Sidecar，让 Pod 的出入流量都转由 Sidecar 进行处理。 
 ```
 kubectl create namespace prod
 kubectl label namespace prod istio-injection=enabled
 
 ```
-### 开启 RUM
+#### 开启 RUM
 
 - 1  登录[观测云](https://console.guance.com/)->【用户访问监测】->【新建应用】->输入bookinfo，复制 js 到 /usr/local/df-demo/bookinfo/productpage/templates/productpage.html，并修改<DATAKIT ORIGIN> 为
 
@@ -167,23 +171,23 @@ docker build -t product-page:v1  .
 替换 /usr/local/df-demo/bookinfo/bookinfo.yaml 中的 image: docker.io/istio/examples-bookinfo-productpage-v1:1.16.2 为 **image: product-page:v1**。
 ![image](../images/istio/15.png)
 
-### 打通 APM 和 Datakit
+#### 打通 APM 和 Datakit
 
 ```
 kubectl edit configmap istio -n istio-system -o yaml 
 ```
 ![image](../images/istio/16.png)
         在上图中，可以看到链路数据默认推送到 zipkin.istio-system:9411 这个地址。由于 DataKit 服务的名称空间是 datakit，端口是 9529，所以这里需要做一下转换，详情请参考[Kubernetes 集群使用 ExternalName 映射 DataKit 服务](https://www.yuque.com/dataflux/bp/external-name)。
-### 增加 namespace
+#### 增加 namespace
 修改 bookinfo 的 yaml，所有资源的 metadata 下增加 namespace: prod
 ```
 vi /usr/local/df-demo/bookinfo/bookinfo.yaml
 vi /usr/local/df-demo/bookinfo/bookinfo-gateway.yaml
 vi /usr/local/df-demo/bookinfo/virtual-service-ratings-test-delay.yaml
 ```
-### 
+####
 ![image](../images/istio/17.png)
-### 开启 Pod 自定义采集
+#### 开启 Pod 自定义采集
 修改 bookinfo.yaml
 ```
 vi /usr/local/df-demo/bookinfo/bookinfo.yaml
@@ -216,7 +220,7 @@ vi /usr/local/df-demo/bookinfo/bookinfo.yaml
             pod_name = "$PODNAME"
 
 ```
-### 
+#### 
 ![image](../images/istio/18.png)
 完整 bookinfo.yaml。
 ```
@@ -685,13 +689,13 @@ spec:
           number: 9080
 
 ```
-### 部署服务
+#### 部署服务
 ```
 cd /usr/local/df-demo/bookinfo
 kubectl apply -f bookinfo.yaml
 kubectl apply -f bookinfo-gateway.yaml
 ```
-### nginx 代理 productpage服务
+#### nginx 代理 productpage服务
        由于本示例使用 minikube，通过 nginx 代理集群内服务，所以要配置一下 nginx。
 
 - 查看 minikube http2 的 url：
@@ -710,29 +714,29 @@ vim  /etc/nginx/nginx.conf
 ```
 systemctl restart nginx
 ```
-### 访问 productpage
+#### 访问 productpage
 [http://121.43.225.226/productpage](http://121.43.225.226/productpage)
-# 可观测演练
-## 指标 (Metrics)
+## 可观测演练
+### 指标 (Metrics)
 部署 BookInfo 时，开启 Pod 自定义采集时，配置了 measurement_name = "istio_prom"。登录【观测云】->【指标】，查看 istio_prom 指标集。
 ![image](../images/istio/21.png)
-## 链路 (Traces)
-### RUM
+### 链路 (Traces)
+#### RUM
 通过用户访问监测模块，查看 UV、PV、会话数、访问的页面等信息。
 ![image](../images/istio/22.png)
 ![image](../images/istio/23.png)
-### APM
+#### APM
 通过应用性能监测，查看链路数据。
 ![image](../images/istio/24.png)
 
 ![image](../images/istio/25.png)
-## 日志 (logs)
-### stdout
+### 日志 (logs)
+#### stdout
 datakit 默认采集输出到 /dev/stdout 的日志，如果需要使用更深层的功能，请参考<[容器日志采集](https://www.yuque.com/dataflux/datakit/container#6a1b31bb)>。
 ![image](../images/istio/26.png)
-### log文件
+#### log文件
 本示例未涉及到日志文件的采集，如需要请参考<[开启 log 采集](https://www.yuque.com/dataflux/bp/k8s-rum-apm-log#j8FFp)>
-## 链路超时分析
+### 链路超时分析
 
 - 执行 virtual-service-ratings-test-delay.yaml 
 ```

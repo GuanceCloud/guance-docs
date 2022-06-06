@@ -1,15 +1,20 @@
-# 简介
+# 基于阿里云 ASM 实现微服务可观测最佳实践
+
+---
+
+
+## 简介
         随着以 Istio 为代表的服务网格的流行，阿里云也推出了全托管式的服务网格平台-阿里云服务网格（Alibaba Cloud Service Mesh，简称ASM），ASM 兼容社区 Istio 开源服务网格，用于简化服务的治理，包括服务调用之间的流量路由与拆分管理、服务间通信的认证安全以及网格可观测性能力。<br /> 	ASM 的可观测能力是一种开放式的设计，既可以通过阿里的 arms + sls，也可以通过开源的 zipkin，因为观测云是兼容 zipkin 的， 所以观测云可以一站式的把 ASM 相关的指标链路日志，关联起来放在一起观测。而且观测云的 DataKit 既可以通过 daemonSet 的方式部署，也可以作为集群内的 Service，自身具有强大的处理能力，比如自动关联指标日志链路，对 tracing 的数据进行上报之前的预处理， 相对阿里自身的方案和开源的方案，具有更强的灵活性和功能。<br />本文以阿里云 ASM 可观测最佳实践 [https://help.aliyun.com/document_detail/176527.html](https://help.aliyun.com/document_detail/176527.html) 为参照，开源项目 BookInfo 为例，换用观测云来实现部署在 ASM 平台的 BookInfo 微服务的可观测。
 
-# 前置条件
+## 前置条件
 
 - 已创建一个 ACK 集群。如果没有创建，请参见[创建 Kubernetes 专有版集群](https://help.aliyun.com/document_detail/86488.htm#task-skz-qwk-qfb)和[创建 Kubernetes 托管版集群](https://help.aliyun.com/document_detail/95108.htm#task-skz-qwk-qfb)。
 - 已创建一个 ASM 实例。如果没有创建，请参见[创建 ASM 实例](https://help.aliyun.com/document_detail/147793.htm#task-2370657)。**注意**，创建新网格时，请选择**自行搭建 Zipkin**。
 
 ![image](../images/asm/1.png)
 
-# 操作步骤
-# 步骤一 添加集群到 ASM 
+## 操作步骤
+## 步骤一 添加集群到 ASM 
 
 1. 登录 [ASM 控制台](https://servicemesh.console.aliyun.com/)。
 1. 在左侧导航栏，选择**服务网格 > 网格管理**。
@@ -22,7 +27,7 @@
 
 ![image](../images/asm/3.png)
 
-# 步骤二 创建入口网关
+## 步骤二 创建入口网关
 
 1. 登录 [ASM 控制台](https://servicemesh.console.aliyun.com/)。
 1. 在左侧导航栏，选择**服务网格 > 网格管理**。
@@ -37,7 +42,7 @@
 		 
 ![image](../images/asm/6.png)
 
-# 步骤三  开通 Sidecar 注入 
+## 步骤三  开通 Sidecar 注入 
 
 1. 登录[容器服务管理控制台](https://cs.console.aliyun.com/?spm=a2c4g.11186623.0.0.1b483e068AVz8k)。
 1. 在控制台左侧导航栏中，单击**集群**。
@@ -57,7 +62,7 @@
 ```
 kubectl label namespace default istio-injection=enabled
 ```
-# 步骤四  部署 BookInfo 
+## 步骤四  部署 BookInfo 
         在 Kubernetes 集群部署的 DataKit，会采集添加了 annotations 注解的 POD 的指标数据。
 
 ```
@@ -495,7 +500,7 @@ spec:
 
 ![image](../images/asm/10.png)
 
-# 步骤五  定义 Gateway 资源
+## 步骤五  定义 Gateway 资源
 
 1. 登录 [ASM 控制台](https://servicemesh.console.aliyun.com/)。
 1. 在左侧导航栏，选择**服务网格 > 网格管理**。
@@ -526,7 +531,7 @@ spec:
 		
 ![image](../images/asm/12.png)
 
-# 步骤六 定义虚拟服务
+## 步骤六 定义虚拟服务
 
 1. 登录 [ASM 控制台](https://servicemesh.console.aliyun.com/)。
 1. 在左侧导航栏，选择**服务网格 > 网格管理**。
@@ -568,7 +573,7 @@ spec:
 
 ![image](../images/asm/13.png)
 
-# 步骤七 部署 DataKit
+## 步骤七 部署 DataKit
         登录 [观测云](https://console.guance.com/)，【集成】->【Datakit】-> 【Kubernetes】，请按照指引在 Kubernetes 集群中安装 DataKit ，其中部署使用的 datakit.yaml 文件，在接下来的操作中会使用到。<br />        在观测云的一个工作空间中，可能收到多个集群的采集数据，为了区分集群，使用全局 Tag 为这个集群增加 **k8s-ac**k 的 Tag。
 ```
         - name: ENV_GLOBAL_TAGS
@@ -907,7 +912,7 @@ data:
 
 ![image](../images/asm/16.png)
 
-# 步骤八 映射 DataKit 服务
+## 步骤八 映射 DataKit 服务
         新增 ASM 时，如果选择了**自行搭建 Zipkin，**则链路数据会被打到** **zipkin.istio-system的 Service上，且上报端口是 9411，由于 DataKit 服务的名称空间是 datakit，端口是 9529，所以这里需要做一下转换，详情请参考[Kubernetes 集群使用 ExternalName 映射 DataKit 服务](https://www.yuque.com/dataflux/bp/external-name)。创建后的 Service 如下图：
 
 ![image](../images/asm/17.png)
@@ -980,19 +985,19 @@ spec:
           name: tmp
 ```
 
-# 步骤九 访问应用
+## 步骤九 访问应用
         在第二步配置入口网关时，有一个入口 IP，使用 [http://120.55.180.137/productpage](http://120.55.180.137/productpage) 就可以访问应用了。
 
 ![image](../images/asm/19.png)
 
-# 步骤十 开启 RUM
+## 步骤十 开启 RUM
         上述的部署中应用是可以启动的，如果想使用观测云的用户访问监测，需要重新制作 productpage 镜像。 
-#### 1 新建应用  
+##### 1 新建应用  
          登录 [观测云](https://console.guance.com/)，【用户访问监测】-> 新建应用 **ack-productpage** 。
 		 
 ![image](../images/asm/20.png)
 
-#### 2 制作 productpage 镜像 
+##### 2 制作 productpage 镜像 
         下载 [istio-1.13.2.zip](https://github.com/istio/istio/releases)。解压后，把上面的 JS 复制到 **istio-1.13.2\samples\bookinfo\src\productpage\templates\productpage.html** 文件中，并修改<DATAKIT ORIGIN> 为外网可访问的 DataKit 地址。
 		
 ![image](../images/asm/21.png)
@@ -1007,22 +1012,22 @@ spec:
 - trackInteractions：用户行为统计，例如点击按钮，提交信息等动作。
 - traceType：非必填，默认为ddtrace，目前支持 ddtrace、zipkin、skywalking_v3、jaeger、zipkin_single_header、w3c_traceparent 6种类型。
 
-#### 3 推送镜像到镜像仓库
+##### 3 推送镜像到镜像仓库
         修改完成后，执行下面命令推送镜像到镜像仓库，您在使用时请换成自己的镜像仓库。
 ```
 cd istio-1.13.2\samples\bookinfo\src\productpage\Dockerfile 
 docker build -t 172.168.3.28/product-page:v1  .
 docker push 172.168.3.28/product-page:v1
 ```
-#### 4 替换 productpage 镜像
+##### 4 替换 productpage 镜像
         登录[容器服务管理控制台](https://cs.console.aliyun.com/?spm=a2c4g.11186623.0.0.1b483e068AVz8k)，进入集群，单击**工作负载 > 无状态**，找到 productpage，单击**编辑，**替换镜像，点击**更新**。
 
 ![image](../images/asm/22.png)
 
 ![image](../images/asm/23.png)
 
-# 步骤十一 可观测
-### 场景
+## 步骤十一 可观测
+#### 场景
           登录 [观测云](https://console.guance.com/)，【场景】->【新建仪表板】-> 选择 **阿里云 ASM Workload 监控视图**<br />                                                                                        ** 阿里云 ASM Mesh 监控视图**<br />                                                                                        ** 阿里云 ASM Control Plane 监控视图**
 		  
 ![image](../images/asm/24.png)
@@ -1031,19 +1036,19 @@ docker push 172.168.3.28/product-page:v1
 ![image](../images/asm/27.png)
 ![image](../images/asm/28.png)
 
-### 链路
-#### APM
+#### 链路
+##### APM
           登录 [观测云](https://console.guance.com/)，进入**应用性能监测**。
 		  
 ![image](../images/asm/29.png)
 
 ![image](../images/asm/30.png)
 
-#### RUM
+##### RUM
         登录 [观测云](https://console.guance.com/)，**用户访问监测**。
 		
 ![image](../images/asm/31.png)
-# 日志
+## 日志
         本次部署未涉及到日志，如您的应用需要采集日志，请参考：<br />[Pod 日志采集最佳实践](https://www.yuque.com/dataflux/bp/pod-log)<br />[Kubernetes 集群中日志采集的几种玩法](https://www.yuque.com/dataflux/bp/mk0gcl)
 
 

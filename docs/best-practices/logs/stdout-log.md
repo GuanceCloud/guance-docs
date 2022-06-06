@@ -1,3 +1,7 @@
+# Kubernetes下Stdout日志白名单最佳实践
+
+---
+
 ## 环境准备
 已有Kubernetes环境（简称K8），本实践基于自建Kubernetesv1.23.1，观测云Datakit版本1.2.13，Nginx1.17。Datakit已经部署好，Datakit配置文件container.conf通过ConfigMap方式管理。
 

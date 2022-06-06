@@ -1,8 +1,13 @@
-# 简介
+# service mesh 微服务架构从研发到金丝雀发布全流程最佳实践(上)
+
+---
+
+
+## 简介
         一般企业创建自己的容器云环境后，企业为了简化繁琐的发布流程，一般会使用 GitlabCi 、Jenkins 进行应用部署。同时会考虑使用 Rancher 进行统一的资源编排管理，通过 Rancher 的应用商店简化应用管理。通过应用商店一键安装 Datakit （具体见 Datakit 文档的 Helm 安装方式），观测云对 Rancher管控的 k8s 集群，提供了大量开箱即用的可观测功能。本文通过一个耳熟能详的 Bookinfo 案例，详细解释如何利用观测云实现 GitlabCI、K8S 与微服务的可观测性。
-# 案例假设
+## 案例假设
        某公司利用 Rancher 管理了两套K8S ，一套研发测试，一套线上。公司在研发测试环境部署了 gitlab 做 CICD，BookInfo 项目是个电子书城，是个典型的多语言微服务项目。一个正在研发的发版本部署在研发测试环境，通过测试后，对线上环境的 BookInfo 做金丝雀灰度发布。该公司的可观测体系组成部分如下： <br />1.1 SRE 对整体两套环境的 K8s 资源情况在观测云上进行观测，做好容量规划和应急处理 <br />2.1 开发人员对 cicd 的流程进行观测从而了解软件迭代的速度和质量，及时处理出错的 pipeline。<br />2.2 SRE 对线上环境的金丝雀发布进行观测从而了解版本流量切换的状态，及时回滚避免对线上用户产生影响。 <br />3.1 SRE 通过 istio 对整个应用进行链路追踪，在观测云上查看应用的健康关键指标，及时处理异常请求。<br />3.2 开发对自己的日志进行管理，出现健康异常时，在观测云上及时通过链路追踪找到日志上下文解决问题<br />我们分三篇讲解整体实践。
-# 前置条件
+## 前置条件
 
 - 安装 [Kubernetes](https://kubernetes.io/docs/setup/production-environment/tools/)。
 - 安装 [Rancher](https://rancher.com/docs/rancher/v2.6/en/installation/)。
@@ -11,12 +16,12 @@
 - 部署 harbor 仓库或其它镜像仓库。
 - 部署 Istio，已熟悉[基于 Istio 实现微服务可观测最佳实践](https://www.yuque.com/dataflux/bp/istio)**。**
 - 配置 Gitlab-runner，已熟悉 [Gitlab-CI 可观测最佳实践](https://www.yuque.com/dataflux/bp/gitlab-cicd)。
-# 部署步骤
-## 步骤 1： 使用 Rancher 安装 DataKit
-### 1.1 部署 DataKit
-#### 1.1.1 下载部署文件
+## 部署步骤
+### 步骤 1： 使用 Rancher 安装 DataKit
+#### 1.1 部署 DataKit
+##### 1.1.1 下载部署文件
          登录『[观测云](https://console.guance.com/)』，点击『集成』模块，再点击左上角『DataKit』，选择『Kubernetes』，下载 datakit.yaml。
-#### 1.1.2 配置 token
+##### 1.1.2 配置 token
          登录『[观测云](https://console.guance.com/)』，进入『管理』模块，找到下图中 token，替换 datakit.yaml 文件中的 ENV_DATAWAY 环境变量的 value 值中的 <your-token>。
 ```
         - name: ENV_DATAWAY
@@ -24,31 +29,31 @@
 ```
 ![image](../images/microservices/1.png)	 
 
-#### 1.1.3 设置全局标签
+##### 1.1.3 设置全局标签
         在 datakit.yaml 文件中的 ENV_GLOBAL_TAGS 环境变量值最后增加 cluster_name_k8s=k8s-istio，其中  k8s-istio 为您的集群名称，此步骤为集群设置全局 tag。
 ```
         - name: ENV_GLOBAL_TAGS
           value: host=__datakit_hostname,host_ip=__datakit_ip,cluster_name_k8s=k8s-istio
 ```
-#### 1.1.4 设置名称空间
+##### 1.1.4 设置名称空间
         DataKit 在选举时为了区分不同集群，这里需要设置 ENV_NAMESPACE 环境变量，不同集群值不能相同。在 datakit.yaml 文件中的环境变量部分增加如下内容。
 ```
         - name: ENV_NAMESPACE
           value: k8s-istio
 ```
-#### 1.1.5 开通采集器
+##### 1.1.5 开通采集器
         开通 ddtrace 和 statsd 采集器，在 datakit.yaml 文件中找到 ENV_DEFAULT_ENABLED_INPUTS 环境变量，最后增加 statsd,ddtrace。
 ```
         - name: ENV_DEFAULT_ENABLED_INPUTS
           value: cpu,disk,diskio,mem,swap,system,hostobject,net,host_processes,container,statsd,ddtrace
 ```
-#### 1.1.6 部署 DataKit
+##### 1.1.6 部署 DataKit
          登录『Rancher』，在浏览集群标签下，选择『k8s-solution-cluster』集群，打开 datakit.yaml，根据资源文件内容，在 k8s-solution-cluster 集群中找到对应的菜单并一一创建资源。
 
 ![image](../images/microservices/2.png)	 
 
 『注意』为了快速实现下一步操作，本次操作将合并 ConfigMap 后，直接使用 kubectl 命令部署 DataKit。
-### 1.2 创建 ConfigMap
+#### 1.2 创建 ConfigMap
         开通 container 采集器和 zipkin 采集器，需要先定义 container.conf 和 zipkin.conf。
 ```
 apiVersion: v1
@@ -123,20 +128,20 @@ data:
         <br />        如果使用 kubectl 命令创建 Datakit，请把 ConfigMap 中定义的内容添加在 datakit.yaml 文件最后，再把上面的配置加到 文件中 volumeMounts 下面。<br />『注意』使用 --- 做分割。
 
        
-### 1.3 查看 DataKit 运行状态
+#### 1.3 查看 DataKit 运行状态
         DataKit 部署成功后，可以看到如下图的运行状态。
 		
 ![image](../images/microservices/5.png)	 
 
-## 步骤 2： 映射 DataKit 服务
+### 步骤 2： 映射 DataKit 服务
         使用 Istio 上报链路数据时，链路数据会被打到** **zipkin.istio-system的 Service上，且上报端口是 9411，由于 DataKit 服务的名称空间是 datakit，端口是 9529，所以这里需要做一下转换，详情请参考[Kubernetes 集群使用 ExternalName 映射 DataKit 服务](https://www.yuque.com/dataflux/bp/external-name)。
 
-## 步骤 3： DataFlux Function 配置 DataKit
+### 步骤 3： DataFlux Function 配置 DataKit
         在使用 Gitlab-CI 部署微服务时，为了收集 Gitlab 执行数据，需要部署 DataFlux Function 并配置 DataKit，详细步骤请参考 [Gitlab-CI 可观测最佳实践](https://www.yuque.com/dataflux/bp/gitlab-cicd)。
-## 步骤 4： 部署 Bookinfo
-### 2.1 下载源码
+### 步骤 4： 部署 Bookinfo
+#### 2.1 下载源码
         下载 [istio-1.13.2.zip](https://github.com/istio/istio/releases)，后面使用的部署文件全部来自此压缩包，为了操作方便，将使用 kubectl 命令代替 Rancher 的图形化界面创建资源的操作。
-### 2.2 开启 RUM
+#### 2.2 开启 RUM
          为了观测网站被调用的信息，需要开通前端的数据采集。登录『 [观测云](https://console.guance.com/)』，进入『用户访问监测』，新建应用 **devops-bookinfo** ，复制下方 JS。
 ![image](../images/microservices/6.png)	 
         上述的 JS 需要放置到 productpage 项目所有界面都能访问到的地方，本项目把上面的 JS 复制到 **istio-1.13.2\samples\bookinfo\src\productpage\templates\productpage.html** 文件中。<br />『注意』关于 RUM 数据上报的 DataKit 地址，请参考 [RUM 数据上报 DataKit 集群最佳实践](https://www.yuque.com/dataflux/bp/datakit-cluster)。
@@ -149,13 +154,13 @@ cd istio-1.13.2\samples\bookinfo\src\productpage
 docker build -t 172.16.0.238/df-demo/product-page:v1  .
 docker push 172.16.0.238/df-demo/product-page:v1
 ```
-### 2.3 开通 Sidecar 注入
+#### 2.3 开通 Sidecar 注入
         新建 prod 命名空间，开启该空间下创建 Pod 时自动注入 Sidecar，让 Pod 的出入流量都转由 Sidecar 进行处理。
 ```
 kubectl create ns prod 
 kubectl label namespace prod istio-injection=enabled
 ```
-### 2.4 部署 productpage、details、ratings
+#### 2.4 部署 productpage、details、ratings
         在 istio-1.13.2\samples\bookinfo\platform\kube\bookinfo.yaml 文件中，移除关于 reviews 微服务部署的部分，把 Service 和 Deployment 都部署到 prod 名称空间，并在所有 Deployment 控制器，Pod 模板上增加 annotations，来开启 Pod 的自定义采集。把 productpage 镜像修改为上步创建的。完整文件如下：
 ```
 
@@ -409,11 +414,11 @@ spec:
 ---
 
 ```
-### 
+#### 
 ```
 kubectl apply -f bookinfo.yaml
 ```
-### 2.5 创建 Gateway 资源和虚拟服务
+#### 2.5 创建 Gateway 资源和虚拟服务
         修改 istio-1.13.2\samples\bookinfo\networking\bookinfo-gateway.yaml 文件，增加 prod 名称空间。
 ```
 apiVersion: networking.istio.io/v1alpha3
@@ -465,7 +470,7 @@ spec:
 ```
 kubectl apply -f bookinfo-gateway.yaml 
 ```
-### 2.6 访问 productpage
+#### 2.6 访问 productpage
         查看 ingresgateway 对外暴露的端口。
 ```
 kubectl get svc -n istio-system
@@ -477,13 +482,13 @@ kubectl get svc -n istio-system
 		
 ![image](../images/microservices/9.png)	 
 
-## 步骤 5： 自动化部署
-### 5.1 创建 Gitlab 项目
+### 步骤 5： 自动化部署
+#### 5.1 创建 Gitlab 项目
         登录 Gitlab，创建 bookinfo-views 项目。
 		
 ![image](../images/microservices/10.png)
 	 
-### 5.2 打通 Gitlab 与 DataKit
+#### 5.2 打通 Gitlab 与 DataKit
         请参考 [gitlab 集成文档](https://www.yuque.com/dataflux/integrations/gitlab)打通 Gitlab 和 DataKit，这里只配置 Gitlab CI。<br />        登录『Gitlab』，进入『bookinfo-views』-> 『Settings』-> 『Webhooks』，在 url 中输入URL 中输入 DataKit 所在的主机 IP 和 DataKit 的 9529 端口，再加 /v1/gitlab。如下图。
 
 ![image](../images/microservices/11.png)	 
@@ -497,7 +502,7 @@ kubectl get svc -n istio-system
 ![image](../images/microservices/13.png)	 
 
        
-### 5.3 为 reviews 微服务配置 Gitlab-CI
+#### 5.3 为 reviews 微服务配置 Gitlab-CI
         登录『Gitlab』，进入『bookinfo-views』，根目录新建 deployment.yaml 和 .gitlab-ci.yml 文件。在 annotations 定义了 project、env、version 标签，用于不同项目、不同版本的区分。
 ```
 apiVersion: v1
@@ -620,9 +625,9 @@ deploy_k8s:
     - kubectl get pod  -n prod
 
 ```
-### 
-## 步骤 6：Gitlab CI 可观测
-### 6.1 发布 reviews 微服务
+#### 
+### 步骤 6：Gitlab CI 可观测
+#### 6.1 发布 reviews 微服务
         修改 .gitlab-ci.yml 文件中的 APP_VERSION 的值为 "v1"，提交一次代码，修改成 "v2"，提交一次代码，修改成 "v3" 提交一次代码。
 		
 ![image](../images/microservices/14.png)
@@ -630,7 +635,7 @@ deploy_k8s:
 
 ![image](../images/microservices/15.png)	 
 
-### 6.2 Gitlab CI 流水线可观测
+#### 6.2 Gitlab CI 流水线可观测
           登录『[观测云](https://console.guance.com/)』，进入『CI』，点击『概览』选择 bookinfo-views 项目，查看 Pipeline 和 Job 的执行情况。
 		  
 ![image](../images/microservices/16.png)	 
@@ -646,7 +651,7 @@ deploy_k8s:
          登录『[观测云](https://console.guance.com/)』，进入『CI』,点击『查看器』，选择 gitlab_job。
 		 
 ![image](../images/microservices/20.png)	 
-## 
+### 
 
 ![image](../images/microservices/21.png)	
 

@@ -1,8 +1,13 @@
-# 简介
+# service mesh 微服务架构从研发到金丝雀发布全流程最佳实践(中)
+
+---
+
+
+## 简介
         上篇文件介绍了在 Kubernetes 环境部署 DataKit，在 Istio 环境部署 Bookinfo 项目，为 reviews 微服务配置 CICD 的 Pipeline 并使用金丝雀发布 reviews 的三个版本。本篇将介绍 Kubernetes 的可观测和 Istio 的可观测。
 
-# 1 Kubernetes 可观测
-## 1.1 Docker 监控视图
+## 1 Kubernetes 可观测
+### 1.1 Docker 监控视图
 
         在 Kubernetes 集群中， Pod 是最小的调度单元，一个 Pod 可以包含一个或多个容器，在观测云中，可以使用 **Docker 监控视图**对容器进行可观测。<br />        登录『[观测云](https://console.guance.com/)』，点击『场景』->『新建仪表板』，选择** Docker 监控视图**。
 
@@ -15,7 +20,7 @@
 
 ![image](../images/microservices/25.png)
 
-## 1.2 Kubernetes 监控视图
+### 1.2 Kubernetes 监控视图
         登录『[观测云](https://console.guance.com/)』，点击『场景』->『新建仪表板』，选择** Kubernetes 监控视图**。
 
 ![image](../images/microservices/26.png)
@@ -30,8 +35,8 @@
 
 ![image](../images/microservices/29.png)
 
-## 1.3 ETCD 监控视图
-### 1.3.1 开通 ETCD 采集器
+### 1.3 ETCD 监控视图
+#### 1.3.1 开通 ETCD 采集器
         在 Kubernetes 集群，开通采集器需要使用 ConfigMap 定义配置，然后挂载到 DataKit 相应目录。etcd.conf 内容如下：
 ```
 apiVersion: v1
@@ -116,7 +121,7 @@ data:
 		
 ![image](../images/microservices/33.png)     
 
-### 1.3.2 挂载证书文件
+#### 1.3.2 挂载证书文件
         使用 https 采集 etcd 指标，需要使用 Kubernetes 集群的证书。即需要把 Kubeadmin 部署集群的 /etc/kubernetes/pki/etcd 目录，挂载到 datakit 的 /etc/kubernetes/pki/etcd 目录。
 ```
       volumes:
@@ -142,7 +147,7 @@ data:
 
 
 
-### 1.3.3 实现 ETCD 可观测
+#### 1.3.3 实现 ETCD 可观测
          登录『[观测云](https://console.guance.com/)』，点击『场景』->『新建仪表板』，选择** ETCD 监控视图**。
 
          仪表板名称填 **ETCD 监控视图**，名称可以自定义，点击『确定』。
@@ -154,8 +159,8 @@ data:
 ![image](../images/microservices/38.png)
 
        需要了解更多 ETCD 接入方式，请参考 [ETCD](https://www.yuque.com/dataflux/integrations/etcd) 集成文档。
-# 2 Istio 可观测
-## 2.1 Istio **Mesh  **监控视图
+## 2 Istio 可观测
+### 2.1 Istio **Mesh  **监控视图
         登录『[观测云](https://console.guance.com/)』，点击『场景』->『新建仪表板』，选择** Istio Mesh 监控视图**。
 		
 ![image](../images/microservices/39.png)
@@ -171,7 +176,7 @@ data:
 ![image](../images/microservices/42.png)
 
 
-## 2.2 Istio **Control Plane **监控视图
+### 2.2 Istio **Control Plane **监控视图
          登录『[观测云](https://console.guance.com/)』，点击『场景』->『新建仪表板』，选择** Istio Control Plane 监控视图**。
 		 
 ![image](../images/microservices/43.png)
@@ -184,7 +189,7 @@ data:
 
 ![image](../images/microservices/46.png)
 
-## 2.3 Istio **Service **监控视图
+### 2.3 Istio **Service **监控视图
          登录『[观测云](https://console.guance.com/)』，点击『场景』->『新建仪表板』，选择** Istio Service 监控视图**。
 
 ![image](../images/microservices/47.png)
@@ -195,7 +200,7 @@ data:
 
 ![image](../images/microservices/49.png)
 
-## 2.4 Istio **Workload **监控视图
+### 2.4 Istio **Workload **监控视图
          登录『[观测云](https://console.guance.com/)』，点击『场景』->『新建仪表板』，选择** Istio Workload 监控视图**。
 		 
 ![image](../images/microservices/50.png)

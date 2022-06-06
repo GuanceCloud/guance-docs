@@ -1,13 +1,17 @@
-# 简介
+# Kubernetes 集群 应用使用 SkyWalking 采集链路数据
+
+---
+
+## 简介
         在 Kubernetes 集群中，应用都是以镜像的方式来部署。在使用 SkyWalking 采集应用链路数据时，如果再按照传统的方式，把 SkyWalking 的 Agent 打入到每一个应用的镜像中再来部署，会造成镜像过于庞大，并且以后升级 SkyWalking 版本也不方便。本文介绍一种使用官方的 SkyWalking 镜像，以 initContainers 方式为应用提供 SkyWalking Agent 来采集链路数据。
-# 前置条件
-## 安装 DataKit
+## 前置条件
+### 安装 DataKit
 
 - <安装 [DataKit](https://www.yuque.com/dataflux/datakit/datakit-daemonset-deploy)>
 - DataKit 接入版本 >=1.2.18
-## 开启 Input 
+### 开启 Input 
         开通 Skywalking 采集器，即是在 DataKit 所在的服务器上增加 /usr/local/datakit/conf.d/skywalking/skywalking.conf 文件，在使用 DaemonSet 方式部署时，需要先定义 ConfigMap，再把文件挂载到 DataKit 容器中。接下来需要用到部署 DataKit 时用到的 datakit.yaml。
-### 定义 skywalking.conf
+#### 定义 skywalking.conf
         在 datakit.yaml 文件的 ConfigMap 资源中，增加 skywalking.conf 的定义。
 ```
 apiVersion: v1
@@ -22,22 +26,22 @@ data:
           ## skywalking grpc server listening on address
           address = "0.0.0.0:13800"
 ```
-### 挂载 skywalking.conf
+#### 挂载 skywalking.conf
         在 datakit.yaml 文件的 volumeMounts 下面新增如下内容。
 ```
         - mountPath: /usr/local/datakit/conf.d/skywalking/skywalking.conf
           name: datakit-conf
           subPath: skywalking.conf
 ```
-### 重启 DataKit
+#### 重启 DataKit
 ```
 kubectl delete -f datakit.yaml
 kubectl apply -f datakit.yaml
 ```
-## Java 链路数据接入
-### 编写测试应用
+### Java 链路数据接入
+#### 编写测试应用
         示例用到 [datakit-springboot-demo](https://github.com/stevenliu2020/datakit-springboot-demo)，下载后制作成 jar，即 service-demo-1.0-SNAPSHOT.jar。
-### 制作镜像
+#### 制作镜像
         编写 Dockerfile。
 ```
 FROM openjdk:8u292
@@ -58,7 +62,7 @@ docker build -t 172.16.0.246/df-demo/service-demo:v1  .
 docker push 172.16.0.246/df-demo/service-demo:v1
 ```
 
-### 部署应用
+#### 部署应用
         在应用部署的 skywalking-demo.yaml 文件中，使用 initContainers 初始化 apache/skywalking-java-agent:8.7.0-alpine 镜像 ，同 Pod 的应用即可访问到 skywalking-agent.jar，然后在 JAVA_OPTS 定义 jar 的启动命令，其中 -Dskywalking.agent.service_name=skywalking-demo-master 定义应用的别名是 skywalking-demo-master。      
 ```
 apiVersion: apps/v1
@@ -116,13 +120,13 @@ spec:
 ```
 kubectl apply -f skywalking-demo.yaml 
 ```
-### 访问应用
+#### 访问应用
         查看 pod 端口。
 ![image](../images/k8s-skywalking/1.png)	
 		调用应用，生成链路数据
 ```
 curl 10.244.36.98:8090/ping
 ```
-### 应用性能监测
+#### 应用性能监测
          登录『[观测云](https://console.guance.com/)』，进入『应用性能监测』模块，查看 skywalking-demo-master 应用。
 ![image](../images/k8s-skywalking/2.png)	
