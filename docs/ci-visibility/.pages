@@ -1,2 +1,5 @@
 nav:
   - index.md
+  - '数据采集': data-collection.md
+  - '概览': overview.md
+  - 'CI 查看器': explorer.md

@@ -1,2 +1,13 @@
 nav:
   - index.md
+  - '配置用户访问监测所需的DataKit': config-datakit.md
+  - '如何配置应用性能监测采样': sampling.md
+  - '生成指标': generate-metrics.md
+  - 'Sourcemap上传': sourcemap.md
+  - '查看器': explorer.md
+  - '自建追踪': self-tracking.md
+  - 'Web 监测': web
+  - 'Android 监测': android
+  - 'iOS 监测': ios
+  - '小程序监测': miniapp
+  - '第三方框架支持': third-party-framework
