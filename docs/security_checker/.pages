@@ -1,2 +1,5 @@
 nav:
   - index.md
+  - '数据采集': data-collection.md
+  - '生成指标': generate-metrics.md
+  - '安全巡检分析': explorer.md
