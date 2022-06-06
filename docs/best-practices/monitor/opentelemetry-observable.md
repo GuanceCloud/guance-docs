@@ -1,5 +1,10 @@
+# OpenTelemetry 可观测性
+
+---
+
 ## 建设可观测性需要解决的问题
 > 1. 链路追踪怎么前后端串联？
+>
 > 1. 链路追踪关联相应日志和指标？
 
 1、OpenTelemetry 实现了不同语言的SDK，前端链路主要通过`opentelemetry-js` 实现，后端也有相关语言的实现，比如 Java、Go、Python 等，不同语言将各自的 trace 信息统一上报到 opentelemetry-collector（以下简称`otel-collector`）。

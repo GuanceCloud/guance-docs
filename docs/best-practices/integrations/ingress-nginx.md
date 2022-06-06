@@ -1,3 +1,6 @@
+# Nginx Ingress 可观测最佳实践
+---
+
 ## 简介
 
 Kubernetes  提供了四层代理用来访问部署在 Pod 中的应用，这种具有四层代理的  Service ，Kubernetes  提供了四种访问方式：

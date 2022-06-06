@@ -1,5 +1,4 @@
 nav:
-  - index.md
   - 'DataKit DaemonSet 配置管理最佳实践': datakit-daemonset.md
   - 'ddtrace 高级用法': ddtrace-skill.md
   - '海量微服务项目的性能可观测最佳实践': mutil-micro-service.md

@@ -1,5 +1,4 @@
 nav:
-  - index.md
   - '观测云 VS ELK、EFK': guance-elk-efk.md
   - '观测云 vs 阿里云ARMS 3.0': guance-arms.md
   - 'InfluxDB 时间线简析': influxdb-descr.md
