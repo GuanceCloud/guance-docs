@@ -3,14 +3,23 @@
 ---
 
 ## 前置条件
+
 ### 账号注册
+
 前往官方网站 [https://www.dataflux.cn/](https://www.dataflux.cn/) 注册账号，使用已注册的账号/密码登录。
+
 ![image](../images/ios/1.png)
+
 ### 安装 Datakit
+
 #### 获取命令
+
 点击 [**集成**] 模块，右上角 [**快速获取 DataKit 安装命令**]，根据您的操作系统和系统类型选择合适的安装命令。
+
 ![image](../images/ios/2.png)
+
 #### 执行安装
+
 复制 Datakit 安装命令在需要被监控的服务器上直接运行。
 
 - 安装目录 /usr/local/datakit/
@@ -34,17 +43,27 @@ Datakit 安装完成后，已经默认开启 Linux 主机常用插件，可以�
 | docker | 采集主机上可能的容器对象以及容器日志 |
 
 点击 [**基础设施**] 模块，查看所有已安装 Datakit 的主机列表以及基础信息，如主机名，CPU，内存等。
+
 ![image](../images/ios/3.png)
+
 点击 [**主机名**] 可以查看该主机的详细系统信息，集成运行情况 (该主机所有已安装的插件)，内置视图(主机)。
+
 ![image](../images/ios/4.png)
+
 点击 [**集成运行情况**] 任意插件名称 [**查看监控视图**] 可以看到该插件的内置视图。
+
 ![image](../images/ios/5.png)
+
 ### 创建一个iOS应用
 
 登录 DataFlux 控制台，进入「应用监测」页面，点击右上角「新建应用」，在新窗口输入「应用名称」，点击「创建」，即可开始配置。
+
 ![image](../images/ios/6.png)
+
 ## 应用采集数据属性说明
+
 ### 数据类型
+
 DataFlux 的用户访问监测包括六种数据类型。
 
 | **类型** | **描述** |
@@ -59,13 +78,16 @@ DataFlux 的用户访问监测包括六种数据类型。
 ### 默认属性
 
 默认属性为全局属性，用户访问监测的场景构建和事件告警都可以通过下面的默认属性进行查询。
+
 #### SDK属性
+
 | **字段** | **类型** | **描述** |
 | --- | --- | --- |
 | sdk_name | string | 采集器名称，固定名称：df_ios_rum_sdk |
 | sdk_version | string | 采集器版本信息 |
 
 #### 应用属性
+
 | 字段 | 类型 | 描述 |
 | --- | --- | --- |
 | app_id | string | 必填，用户访问应用唯一ID标识，在DataFlux控制台上面创建应用监控时自动生成。 |
@@ -73,6 +95,7 @@ DataFlux 的用户访问监测包括六种数据类型。
 | version | string | 必填，版本号。 |
 
 #### 用户 & 会话属性
+
 | **字段** | **类型** | **描述** |
 | --- | --- | --- |
 | userid | string | 未登录用户使用 cookie 作为 userid，登录用户使用应用后台生成的用户 id。 |
@@ -81,6 +104,7 @@ DataFlux 的用户访问监测包括六种数据类型。
 | is_signin | boolean | 是否是注册用户，属性值：True / False。 |
 
 #### 设备 & 分辨率属性
+
 | **字段** | **类型** | **描述** |
 | --- | --- | --- |
 | device | string | 移动设备厂商 |
@@ -92,6 +116,7 @@ DataFlux 的用户访问监测包括六种数据类型。
 | screen_size | string | 屏幕分辨率 |
 
 #### 地理 & 网络属性
+
 | **字段** | **类型** | **描述** |
 | --- | --- | --- |
 | ip | string | 用户访问IP地址 |
@@ -103,6 +128,7 @@ DataFlux 的用户访问监测包括六种数据类型。
 | city | string | 城市 |
 
 #### View 属性
+
 | **字段** | **类型** | **描述** |
 | --- | --- | --- |
 | view_id | string | 每次访问页面时产生的唯一ID |
@@ -111,6 +137,7 @@ DataFlux 的用户访问监测包括六种数据类型。
 | view_name | string | 页面名称 |
 
 #### Action 属性
+
 | **字段** | **类型** | **描述** |
 | --- | --- | --- |
 | action_id | string | 用户页面操作时产生的唯一ID |
@@ -121,8 +148,11 @@ DataFlux 的用户访问监测包括六种数据类型。
 除了默认属性以外，还可以通过用户属性构建场景和配置事件告警。用户属性是非全局属性，通过用户属性，可以跟踪用户访问应用的整个过程，定位和发现用户受影响的访问情况，监控用户访问性能。
 
 ### 其他数据类型属性
+
 #### Session 
+
 ##### 统计指标
+
 | **字段** | **类型** | **描述** |
 | --- | --- | --- |
 | time_spent | number(ns) | 当前会话持续时长 |
@@ -133,6 +163,7 @@ DataFlux 的用户访问监测包括六种数据类型。
 | session_long_task_count | number | 当前会话产生长任务次数 |
 
 ##### 属性
+
 | 字段 | 类型 | 描述 |
 | --- | --- | --- |
 | session_id | string | 会话id（后台停留30s以上，会生成一个新的 session_id） |
@@ -145,13 +176,16 @@ DataFlux 的用户访问监测包括六种数据类型。
 
 
 #### View 
+
 ##### 指标
+
 | 字段 | 类型 | 描述 |
 | --- | --- | --- |
 | loading_time | number（ns） | 页面加载时间 |
 | time_spent | number（ns） | 页面停留时间 |
 
 ##### 统计指标
+
 | **字段** | **类型** | **描述** |
 | --- | --- | --- |
 | view_error_count | number | 每次页面加载时发生的错误次数 |
@@ -161,7 +195,9 @@ DataFlux 的用户访问监测包括六种数据类型。
 
 
 #### Resource
+
 ##### 指标
+
 | **字段** | **类型** | **描述** |
 | --- | --- | --- |
 | resource_size | number | 资源大小，默认单位：byte |
@@ -174,6 +210,7 @@ DataFlux 的用户访问监测包括六种数据类型。
 | duration | number（ns） | 资源加载时间<br />计算方式：duration(responseEnd-startTime) |
 
 ##### 属性
+
 | **字段** | **类型** | **描述** |
 | --- | --- | --- |
 | resource_url | string | 资源 URL |
@@ -188,7 +225,9 @@ DataFlux 的用户访问监测包括六种数据类型。
 
 
 #### Error
+
 ##### 属性
+
 | **字段** | **类型** | **描述** |
 | --- | --- | --- |
 | error_message | string | 错误信息 |
@@ -210,7 +249,9 @@ DataFlux 的用户访问监测包括六种数据类型。
 
 
 #### Long Task
+
 ##### 指标
+
 | **字段** | **类型** | **描述** |
 | --- | --- | --- |
 | duration | number（ns） | 卡顿时长 |
@@ -219,21 +260,25 @@ DataFlux 的用户访问监测包括六种数据类型。
 
 
 #### Action
+
 ##### 指标
+
 | **字段** | **类型** | **描述** |
 | --- | --- | --- |
 | duration | number（ns） | 页面操作花费时间 |
 
 ##### 统计指标
+
 | **字段** | **类型** | **描述** |
 | --- | --- | --- |
 | action_long_task_count | number | 操作关联长任务次数 |
 | action_resource_count | number | 操作关联资源请求次数 |
 | action_error_count | number | 操作关联的错误次数 |
 
-## <br />
 ## 应用集成
+
 ### 集成方式
+
 #### 方式一：CocoaPods 集成（推荐）
 
 > 版本说明 
@@ -258,17 +303,22 @@ end
 #### 方式二：手动集成（直接下载 SDK）
 
 1. 从 [GitHub](https://github.com/DataFlux-cn/datakit-ios) 获取 SDK 的源代码。
-1. 将 **FTMobileSDK** 整个文件夹导入项目。
+2. 将 **FTMobileSDK** 整个文件夹导入项目。
 
 ![image](../images/ios/8.png)
+
 勾选 `Copy items id needed` 
+
 ![image](../images/ios/9.png)
 
 3. 添加依赖库：项目设置 `Build Phase` -> `Link Binary With Libraries` 添加：`UIKit` 、 `Foundation` 、`libz.tb`。
+
 ### 初始化并调用SDK
+
 ### 添加头文件
 
 请将 `#import "FTMobileAgent.h"` 添加到 `AppDelegate.m` 引用头文件的位置。
+
 ### 添加初始化代码
 
 示例：
@@ -284,7 +334,9 @@ end
     return YES;
 }
 ```
+
 #### metricsUrl 数据上报地址：
+
 出于安全考虑，DataKit 的 HTTP 服务默认绑定在 localhost:9529 上，如果希望从外部访问，需编辑 ` /usr/local/datakit/conf.d/datakit.conf ` 中的 `http_listen` 字段，将其改成 `0.0.0.0:9529` 或其它网卡、端口。<br />举例：比如我公网 ip 是1.1.1.1 我先到配置中改0.0.0.0，app 中 metricsUrl 地址为 [http://1.1.1.1:9529](http://1.1.1.1:9529)
 
 ### FTMobileConfig 
@@ -317,8 +369,8 @@ end
 
 > **注意**： 设置 `appid` 后，RUM 才能开启。
 
-
 2.  RUM 设置采集率  
+
 ```objectivec
 /**
  * 采样配置，属性值：0或者100，100则表示百分百采集，不做数据样本压缩。默认：100
@@ -328,8 +380,8 @@ end
 
 > **注意**： 开启 `RUM` 后，日志中将不采集 Crash 信息，Crash 信息会采集到 `RUM`中。
 
+3.  RUM 设置是否追踪用户操作 
 
-3.  RUM 设置是否追踪用户操作  
 ```objectivec
 /**
  * 设置是否追踪用户操作，目前支持应用启动和点击操作
@@ -480,6 +532,7 @@ typedef NS_OPTIONS(NSUInteger, FTMonitorInfoType) {
 ```
 
 采集的数据会上传到 **RUM** 与日志中。
+
 ### 主动上报日志方法
 
 **上传机制** : 将数据存储到数据库中，等待时机进行上传。数据库存储量限制在 5000 条，如果网络异常等原因导致数据堆积，存储 5000 条后，会丢弃新传入的数据。
@@ -541,6 +594,7 @@ typedef NS_ENUM(NSInteger, FTStatus) {
 //登出后 注销当前用户
 [[FTMobileAgent sharedInstance] logout];
 ```
+
 ### 常见问题
 
 #### 关于崩溃日志分析
@@ -552,8 +606,8 @@ typedef NS_ENUM(NSInteger, FTStatus) {
 需要的文件：
 
 1. 需要从 **DataFlux** 下载 **SDK** 采集上传的崩溃日志。下载后将后缀改为 **.crash**。
-1. 需要 **App** 打包时产生的 **dSYM** 文件，必须使用当前应用打包的电脑所生成的 **dSYM** 文件，其他电脑生成的文件可能会导致分析不准确的问题，因此每次发包后建议根据应用的 **版本号** 或 **dSYM** 文件的 **UUID** 来对应保存 **dSYM** 文件。以备解析时，根据后台日志 tag 中的 `application_UUID` 对应的 **UUID** 来找到对应 **dSYM** 文件。
-1. 需要使用 **symbolicatecrash**，**Xcode** 自带的崩溃分析工具，使用这个工具可以更精确的定位崩溃所在的位置，将0x开头的地址替换为响应的代码和具体行数。
+2. 需要 **App** 打包时产生的 **dSYM** 文件，必须使用当前应用打包的电脑所生成的 **dSYM** 文件，其他电脑生成的文件可能会导致分析不准确的问题，因此每次发包后建议根据应用的 **版本号** 或 **dSYM** 文件的 **UUID** 来对应保存 **dSYM** 文件。以备解析时，根据后台日志 tag 中的 `application_UUID` 对应的 **UUID** 来找到对应 **dSYM** 文件。
+3. 需要使用 **symbolicatecrash**，**Xcode** 自带的崩溃分析工具，使用这个工具可以更精确的定位崩溃所在的位置，将0x开头的地址替换为响应的代码和具体行数。
 
 > 查找 **symbolicatecrash** 方法<br />终端输入<br />`find /Applications/Xcode.app -name symbolicatecrash -type f`
 
@@ -564,22 +618,29 @@ typedef NS_ENUM(NSInteger, FTStatus) {
 进行解析：
 
 1.  将 **symbolicatecrash** 与 **.crash** 和 **.app.dSYM** 放在同一文件夹中 
-1.  开启命令行工具，进入文件夹 
-1.  使用命令解析 **Crash** 文件，*号指的是具体的文件名  
+2.  开启命令行工具，进入文件夹 
+3.  使用命令解析 **Crash** 文件，*号指的是具体的文件名  
+
 ```
 ./symbolicatecrash ./*.crash ./*.app.dSYM > symbol.crash
 ```
 
 4.  解析完成后会生成一个新的 **.Crash** 文件，这个文件中就是崩溃详细信息。 
+
 #### CocoaPods安装
+
 ##### 1:pod install 出错，如下图
+
 ![image](../images/ios/10.png)
 
 解决方案：请使用` pod update` 命令
 
 ##### 2:pod update 出错，如下图
+
 ![image](../images/ios/11.png)
+
 解决方案： github 链接问题，加个 vpn，或者使用` pod update` 命令 再次尝试
+
 ![image](../images/ios/12.png)
 
 

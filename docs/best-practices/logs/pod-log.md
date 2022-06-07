@@ -3,15 +3,21 @@
 ---
 
 ## Pod 日志采集
+
 ### 采集方案
-        使用容器化部署微服务时，微服务运行在容器中。Pod 是由一个或一组紧耦合的容器组成，是 Kubernetes 中最小的调度单元，针对 Pod 中日志，本文列举了通过 DataKit 收集日志的三种方案。
+
+使用容器化部署微服务时，微服务运行在容器中。Pod 是由一个或一组紧耦合的容器组成，是 Kubernetes 中最小的调度单元，针对 Pod 中日志，本文列举了通过 DataKit 收集日志的三种方案。
 ### 方案一
-        DataKit 开通 Logfwd 采集器，Logfwd 以 Sidecar 模式收集业务容器日志。
+
+DataKit 开通 Logfwd 采集器，Logfwd 以 Sidecar 模式收集业务容器日志。
+
 #### 1 开通 Logfwd 采集器
-        如果 Kubernetes 未集成 DataKit ，请登录[观测云](https://console.guance.com/)，【集成】->【Datakit】->【Kubernetes】，使用datakit.yaml 文件集成 DataKit 。<br />
+
+如果 Kubernetes 未集成 DataKit ，请登录[观测云](https://console.guance.com/)，【集成】->【Datakit】->【Kubernetes】，使用datakit.yaml 文件集成 DataKit 。<br />
 ![image](../images/pod-log/1.png)
 
 下面修改 datakit.yaml文件，把 logfwdserver.conf 文件挂载到 DataKit 的 /usr/local/datakit/conf.d/log/ 目录。<br />在 datakit.yaml 中增加如下配置：
+
 ```bash
 ---
 apiVersion: v1
@@ -31,6 +37,7 @@ data:
         # more_tag = "some_other_value"
 ```
 在 Daemonset 资源中增加：
+
 ```bash
         - mountPath: /usr/local/datakit/conf.d/log/logfwdserver.conf
           name: datakit-conf
@@ -40,6 +47,7 @@ data:
 #### 2 挂载 Pipeline
 
 修改 datakit.yaml 文件，把 pod-logging-demo.p 文件挂载到 DataKit 的 /usr/local/datakit/pipeline/ 目录。<br />在 ConfigMap 资源中增加：
+
 ```bash
     pod-logging-demo.p: |-
         #日志样式
@@ -50,20 +58,25 @@ data:
         default_time(time,"Asia/Shanghai")
 ```
 在Daemonset资源中增加：
+
 ```bash
         - mountPath: /usr/local/datakit/pipeline/pod-logging-demo.p
           name: datakit-conf
           subPath: pod-logging-demo.p
 ```
+
 【注意】如果不需要使用 Pipeline 做日志切割，此步骤可忽略。
 
 #### 3 重启 Datakit
+
 ```bash
 kubectl delete -f datakit.yaml
 kubectl apply -f datakit.yaml
 ```
+
 #### 4 Logfwd side采集日志
-    把 Logfwd 镜像和业务镜像部署在同一个 Pod 中，下面以 log-demo-service:v1 作为业务镜像，生成 /data/app/logs/log.log 日志文件，使用logfwd以共享存储的方式读取日志文件，把日志传给 Datakit。使用 pod-logging-demo.p切割日志，使用日期做多行匹配。
+
+把 Logfwd 镜像和业务镜像部署在同一个 Pod 中，下面以 log-demo-service:v1 作为业务镜像，生成 /data/app/logs/log.log 日志文件，使用logfwd以共享存储的方式读取日志文件，把日志传给 Datakit。使用 pod-logging-demo.p切割日志，使用日期做多行匹配。
 
 ```bash
 apiVersion: apps/v1
@@ -129,9 +142,7 @@ spec:
       - configMap:
           name: logfwd-conf
         name: logfwd-config 
-
----
-        
+---        
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -153,7 +164,6 @@ data:
             ]
         }
     ]
-
 ```
 logfwd-conf 参数说明
 

@@ -2,41 +2,59 @@
 
 ---
 
-
 ## 简介
-        Kubernetes 集群中，在使用 DaemonSet 部署的 DataKit 来采集指标、链路、日志数据时，想要提高 Pod 与 DataKit 交互的性能，最好的方式是部署在该 Pod 所在的节点的 DataKit 来采集这些数据。以 DaemonSet 部署的 DataKit，集群的每一个节点都会启动一个 DataKit，只需要把流量路由到该节点的 DataKit 上，即可实现同节点的数据采集。
+
+Kubernetes 集群中，在使用 DaemonSet 部署的 DataKit 来采集指标、链路、日志数据时，想要提高 Pod 与 DataKit 交互的性能，最好的方式是部署在该 Pod 所在的节点的 DataKit 来采集这些数据。以 DaemonSet 部署的 DataKit，集群的每一个节点都会启动一个 DataKit，只需要把流量路由到该节点的 DataKit 上，即可实现同节点的数据采集。
+
 ![image](../images/log-report-one-node/1.png)
-		        在 Kubernetes 的 Service 资源中，有一个叫 “externalTrafficPolicy”的字段，可以设置 Cluster 或者 Local 策略，使用这个外部策略，要求 Service 的服务类型是 NodePort 或者 LoadBalancer。
+
+在 Kubernetes 的 Service 资源中，有一个叫 “externalTrafficPolicy”的字段，可以设置 Cluster 或者 Local 策略，使用这个外部策略，要求 Service 的服务类型是 NodePort 或者 LoadBalancer。
 
 1. Cluster：流量可以转发到其它节点的 Pod 上，这是默认模式。
-1. Local：流量只发给本机的 Pod 上。
+2. Local：流量只发给本机的 Pod 上。
 
-        默认的 Cluster 模式，Kube-proxy 收到请求流量，在转发时会做一次 SNAT(source network address translation)，把源 IP 变成了节点的 IP，这是为了确保请求按原路返回。改成 Local 模式之后，Kube-proxy 在转发请求时会保留源 IP，只转发到本节点上的 POD，绝不跨节点转发。
+默认的 Cluster 模式，Kube-proxy 收到请求流量，在转发时会做一次 SNAT(source network address translation)，把源 IP 变成了节点的 IP，这是为了确保请求按原路返回。改成 Local 模式之后，Kube-proxy 在转发请求时会保留源 IP，只转发到本节点上的 POD，绝不跨节点转发。
+
 ## 安装部署
+
 ### 部署 DataKit
+
 ##### 1.1.1 下载部署文件
-         登录『[观测云](https://console.guance.com/)』，点击『集成』模块，再点击左上角『DataKit』，选择『Kubernetes』，下载 datakit.yaml。
+
+登录『[观测云](https://console.guance.com/)』，点击『集成』模块，再点击左上角『DataKit』，选择『Kubernetes』，下载 datakit.yaml。
+
 ##### 1.1.2 配置 token
-         登录『[观测云](https://console.guance.com/)』，进入『管理』模块，找到下图中 token，替换 datakit.yaml 文件中的 ENV_DATAWAY 环境变量的 value 值中的 <your-token>。
+登录『[观测云](https://console.guance.com/)』，进入『管理』模块，找到下图中 token，替换 datakit.yaml 文件中的 ENV_DATAWAY 环境变量的 value 值中的 <your-token>。
+
 ```
         - name: ENV_DATAWAY
           value: https://openway.guance.com?token=<your-token>
 ```
+
 ![image](../images/log-report-one-node/2.png)
+
 ##### 1.1.3 设置全局 Tag
-      在 datakit.yaml 文件中的 ENV_GLOBAL_TAGS 环境变量值最后增加 cluster_name_k8s=k8s-istio，其中  k8s-istio 为全局 tag。
+
+在 datakit.yaml 文件中的 ENV_GLOBAL_TAGS 环境变量值最后增加 cluster_name_k8s=k8s-istio，其中  k8s-istio 为全局 tag。
+
 ```
         - name: ENV_GLOBAL_TAGS
           value: host=__datakit_hostname,host_ip=__datakit_ip,cluster_name_k8s=k8s-prod
 ```
+
 ##### 1.1.4 设置名称空间
-        DataKit 在选举时为了区分不同集群，这里需要设置 ENV_NAMESPACE 环境变量，不同集群值不能相同。在 datakit.yaml 文件中的环境变量部分增加如下内容。
+
+DataKit 在选举时为了区分不同集群，这里需要设置 ENV_NAMESPACE 环境变量，不同集群值不能相同。在 datakit.yaml 文件中的环境变量部分增加如下内容。
+
 ```
         - name: ENV_NAMESPACE
           value: guance-k8s
 ```
+
 ##### 1.1.5 开通采集器
-        本案例使用 logfwd 采集日志，所以需要开通 logfwd 及挂载 pipeline。
+
+本案例使用 logfwd 采集日志，所以需要开通 logfwd 及挂载 pipeline。
+
 ```
 
         volumeMounts:
@@ -48,6 +66,7 @@
           name: datakit-conf
           subPath: pod-logging-demo.p
 ```
+
 ```
 apiVersion: v1
 kind: ConfigMap
@@ -70,10 +89,13 @@ data:
         grok(_, "%{TIMESTAMP_ISO8601:time} %{NOTSPACE:thread_name} %{LOGLEVEL:status}%{SPACE}%{NOTSPACE:class_name} - \\[%{NOTSPACE:method_name},%{NUMBER:line}\\] -  - %{GREEDYDATA:msg}")
         default_time(time,"Asia/Shanghai")
 ```
+
 ##### 1.1.6 部署 DataKit
+
 ```
 kubectl apply -f datakit.yaml
 ```
+
 ```
 apiVersion: v1
 kind: Namespace
@@ -350,15 +372,21 @@ data:
         default_time(time,"Asia/Shanghai")
 
 ```
+
 ### 部署应用
+
 #### 编写微服务
-        为了方便查看日志是在哪个 node 节点输出的，编写代码输出日志时把节点服务器名打印出来，节点 IP来自环境变量 HOST_IP，节点服务器名来自环境变量 HOST_NAME。完整项目 [datakit-springboot-demo](https://github.com/stevenliu2020/datakit-springboot-demo)。
+
+为了方便查看日志是在哪个 node 节点输出的，编写代码输出日志时把节点服务器名打印出来，节点 IP来自环境变量 HOST_IP，节点服务器名来自环境变量 HOST_NAME。完整项目 [datakit-springboot-demo](https://github.com/stevenliu2020/datakit-springboot-demo)。
+
 ![image](../images/log-report-one-node/3.png)
 
 ![image](../images/log-report-one-node/4.png)
 
 #### 制作镜像
-        编写 Dockerfile
+
+编写 Dockerfile
+
 ```
 FROM openjdk:8u292
 
@@ -372,22 +400,31 @@ COPY ${jar} ${workdir}
 WORKDIR ${workdir}
 ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS} -jar ${jar} ${PARAMS} "]
 ```
-        把项目的 Jar 和 Dockerfile 放到相同目录。执行下面命令制作镜像，并上传到私有仓库。
+
+把项目的 Jar 和 Dockerfile 放到相同目录。执行下面命令制作镜像，并上传到私有仓库。
+
 ```
 docker build -t 172.16.0.238/df-demo/service-demo:v1  .
 docker push 172.16.0.238/df-demo/service-demo:v1
 ```
+
 #### 编写部署文件
-        编写 demo-service.yaml 部署文件，在 Service 资源文件中增加 externalTrafficPolicy: Local 来开启外部策略的 Local 模式。增加 HOST_IP 和 HOST_NAME 环境变量，用于输出 ip 和 服务器名称。
+
+编写 demo-service.yaml 部署文件，在 Service 资源文件中增加 externalTrafficPolicy: Local 来开启外部策略的 Local 模式。增加 HOST_IP 和 HOST_NAME 环境变量，用于输出 ip 和 服务器名称。
+
 ```
  kubectl  apply -f demo-service.yaml
 ```
-        关于 logfwd 的使用请参考 [Pod 日志采集最佳实践](https://www.yuque.com/dataflux/bp/pod-log)，在 logfwd 指定 DataKit 的环境变量中，使用 DataKit Service 的域名 datakit-service.datakit.svc.cluster.local。
+
+关于 logfwd 的使用请参考 [Pod 日志采集最佳实践](https://www.yuque.com/dataflux/bp/pod-log)，在 logfwd 指定 DataKit 的环境变量中，使用 DataKit Service 的域名 datakit-service.datakit.svc.cluster.local。
+
 ```
         - name: LOGFWD_DATAKIT_HOST
           value: "datakit-service.datakit.svc.cluster.local"
 ```
-        demo-service.yaml 完整内容如下。
+
+demo-service.yaml 完整内容如下。
+
 ```
 apiVersion: v1
 kind: Service
@@ -513,9 +550,13 @@ data:
 
 ```
 ### 流量验证
-        登录集群的 master 节点，执行如下命令来生成日志。
+
+登录集群的 master 节点，执行如下命令来生成日志。
+
 ![image](../images/log-report-one-node/5.png)         登录『[观测云](https://console.guance.com/)』，进入『日志』模块，根据数据来源搜索 log_fwd_demo，找到日志点击查看详情。<br />
+
 ![image](../images/log-report-one-node/6.png)       可以看到 host 与日志输出的服务器名称完全 一致，多次请求，上报的 host 还是相同。
+
 ![image](../images/log-report-one-node/7.png)
 
 

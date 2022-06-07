@@ -3,16 +3,22 @@
 ---
 
 ## 前置条件
-### 账号注册
-前往官方网站 [https://w](https://www.dataflux.cn/)ww.guance.com 注册账号，使用已注册的账号/密码登录。
 
+### 账号注册
+
+前往官方网站 [https://w](https://www.dataflux.cn/)ww.guance.com 注册账号，使用已注册的账号/密码登录。
 ---
 
 ### 安装 Datakit
+
 #### 获取命令
+
 点击 [**集成**] 模块，右上角 [**快速获取 DataKit 安装命令**]，根据您的操作系统和系统类型选择合适的安装命令。
+
 ![image](../images/web/1.png)
+
 #### 执行安装
+
 复制 Datakit 安装命令在需要被监控的服务器上直接运行。
 
 安装之后的目录结构如下:
@@ -33,20 +39,26 @@
 ### RUM 原理简介：
 
 **原理介绍：**RUM采集数据方式的变更经过了好几代更迭，目前市面上常见的是基于 W3C（万维网联盟）定义的[[navigation-timing](https://www.w3.org/TR/navigation-timing/)] 标准（见下图），该标准详细定义了各种浏览器事件，通过浏览器事件的简单计算就可以算出来前端页面的首屏、白屏、DOM 加载、HTML 加载等时长，相较于测试环境的 F12 检查者模式，能有更效的收集生产环境真实用户的前端体验，因此在当前 H5 应用场景越来越多的情况下极为流行，国内的商业软件（听云、博睿、云智慧、oneapm）均是依赖此标准定制的web监测体系，该标准适用于大多数 H5 场景。
+
 ![image](../images/web/2.png)
 
 随着浏览器（尤其是 chrome）以及前端技术的发展，navigation-timing 的局限性越来越明显，例如前后端分离下单页面越来越多，在这种场景下，基于 navigation-timing 进行数据采集会比较繁琐，因此，W3C 又推出了一个新的标准 [[PaintTiming-github](https://github.com/w3c/paint-timing/)] [[PaintTiming-api](https://developer.mozilla.org/en-US/docs/Web/API/PerformancePaintTiming)] ，该标准新提出的指标包括首次绘制（First Paint）、首次内容绘制（First Contentful Paint）等，更符合真实用户在访问WEB页面时的真实体验，DF-RUM 采用的即为支持PaingTiming 规范的数据采集，对该规范感兴趣的可以进一步阅读[[使用 Paint Timing API 提高性能](https://zhuanlan.zhihu.com/p/30389490)]    [[使用 painttiming](https://www.w3cplus.com/performance/paint-timing-api.html)]。
 
 ---
 
-DF 官方目前支持的 RUM 监控方式有如下几种：<br />**WEB 应用**：[[Web 应用接入 DF 监控](https://www.yuque.com/dataflux/doc/eqs7v2)]  [Web应用监控最佳实践]<br />**APP（Android & iOS）**：[ [Android 接入 DF 监控](https://www.yuque.com/dataflux/doc/pnzoyp)] [ [iOS 接入 DF 监控](https://www.yuque.com/dataflux/doc/gsto6k)] [APP监控最佳实践-待补充][]<br />**小程序（微信）**：[[微信小程序接入 DF 监控](https://www.yuque.com/dataflux/doc/clgea8)] [小程序监控最佳实践-待补充]
+DF 官方目前支持的 RUM 监控方式有如下几种：
+**WEB 应用**：[[Web 应用接入 DF 监控](https://www.yuque.com/dataflux/doc/eqs7v2)]  [Web应用监控最佳实践]<br />**APP（Android & iOS）**：[ [Android 接入 DF 监控](https://www.yuque.com/dataflux/doc/pnzoyp)] [ [iOS 接入 DF 监控](https://www.yuque.com/dataflux/doc/gsto6k)] [APP监控最佳实践-待补充][]<br />**小程序（微信）**：[[微信小程序接入 DF 监控](https://www.yuque.com/dataflux/doc/clgea8)] [小程序监控最佳实践-待补充]
 
 ---
 
 ### Web 页面接入 RUM 相关步骤：
+
 ##### 1、登录观测云
+
 ##### 2、选择用户访问监测——新建应用——选择 web 类型——同步载入
+
 ![image](../images/web/3.png)
+
 **备注：此处选择 CDN 同步载入**<br />•修改前端 index.html 页面（记得cp备份）<br />在       **</head>**   之前添加复制到的那一段 js 文件:
 
 | 接入方式 | 简介 |
@@ -56,6 +68,7 @@ DF 官方目前支持的 RUM 监控方式有如下几种：<br />**WEB 应用**�
 | CDN 同步加载 | 通过 CDN 加速缓存，以同步脚本引入的方式，引入 SDK 脚本，此方式可以确保能够收集到所有的错误，资源，请求，性能指标。不过可能会影响页面的加载性能。 |
 
 ##### 3、在前端页面 index.html 中接入 rum 可观测性 js 文件
+
 ```
 $ cd /usr/local/ruoyi/dist/index.html
 
@@ -98,15 +111,16 @@ $ vim index.html
     })
 </script>
 </head> 
-
-
 ```
+
 **注意事项：**
 
 - **datakitOrigin**：数据传输地址，生产环境如若配置的是域名，可将域名请求转发至具体任意一台安装有datakit-9529 端口的服务器，如若前端访问量过大，可在域名与 datakit 所在服务器中间加一层 slb，前端 js 将数据发送至 slb，slb 将请求转发至多台安装 datakit-9529 所在的服务器。多台 datakit 承接 rum 数据，因前端请求复用因素，session 数据不会中断，对 rum 数据展现也无影响。
 
-       举例：
+举例：
+
 ![image](../images/web/4.png)
+
 ![image](../images/web/5.png)
 
 - **allowedDDTracingOrigins**：实现前后端（APM 与 RUM）打通，该场景只有在前端部署 RUM，后端部署APM的情况才会生效，需在此处填写与前端页面有交互关系的后端应用服务器所对应的域名（生产环境）或IP（测试环境）。**应用场景**：前端用户访问出现慢，是由后端代码逻辑异常导致，可通过前端RUM慢请求数据直接跳转至APM数据查看当次后端代码调用情况，判定慢的根因。**实现原理**：用户访问前端应用，前端应用进行资源及请求调用，触发rum-js性能数据采集，rum-js 会生成 trace-id 写在请求的 request_header 里，请求到达后端，后端的 ddtrace 会读取到该 trace_id 并记录在自己的 trace 数据里，从而实现通过相同的 trace_id 来实现应用性能监测和用户访问监测数据联动
@@ -116,22 +130,35 @@ $ vim index.html
 - **traceType：**非必填，默认为ddtrace，目前支持 ddtrace、zipkin、skywalking_v3、jaeger、zipkin_single_header、w3c_traceparent 6种类型。
 
 ![image](../images/web/6.png)
+
 ##### 4、保存、验证并发布页面
+
 打开浏览器访问目标页面，通过 F12 检查者模式查看页面网络请求中是否有 rum 相关的请求，状态码是否是 200。
+
 ![image](../images/web/7.png)
+
 **注意事项**：如果在 F12 中发现 rum 相关的请求状态码是非 200 的，或者是 connection refused，可以 telnet IP:9529 验证端口是否通畅，不通的话，需要修改 /usr/local/datakit/conf.d/datakit.conf  http_listen 的 localhost为0.0.0.0（此配置用于控制当前服务器的 9529 端口是否可被外网请求访问，如果设置的是 127.0.0.1 或者localhost，就只允许本地或内网访问当前服务器的 9529 端口，设置为 0.0.0.0 后，当前服务器的内外网 9529 端口都可以被访问，rum 大多为外网数据，所以需要开通外网到 datakit 所在服务器的 9529 端口），例如：
+
 ![image](../images/web/8.png)
 
 ---
 
 ### RUM 与 APM 数据打通（前后端通过traceid关联）：
+
 **前置条件**：后端应用服务器必须安装apm监控，即 ddtrace（dd-agent），详见[[链路追踪(APM)最佳实践](https://www.yuque.com/dataflux/bp/apm)]，前端添加 df-rum 监控。<br />**配置方式**：需要在前端 html 中已添加的 df-rum-js 中添加 **allowedDDTracingOrigins **标签，并填写前端对应的后端域名，例如 dataflux.cn 添加 rum 监控，需要在 allowedDDTracingOrigins 里配 https://www.dataflux.cn/ ，如若存在多个域名，需配置多个，用逗号隔开，第三方域名可以不配置。
+
 ![image](../images/web/9.png)
+
 打通后的效果示例：
+
 ![image](../images/web/10.png)
+
 ![image](../images/web/11.png)
+
 ![image](../images/web/12.png)
+
 ![image](../images/web/13.png)
+
 ---
 
 ## DF-WEB应用监控（RUM）应用分析：
@@ -152,6 +179,7 @@ $ vim index.html
 
 
 ### 网站核心指标
+
 DataFlux 的 Web 应用分析，接入谷歌网站核心指标（LCP、FID、CLS）来衡量网站的载入速度、互动性和页面稳定性。
 
 | 指标 | 说明 | 目标值 |
@@ -161,6 +189,7 @@ DataFlux 的 Web 应用分析，接入谷歌网站核心指标（LCP、FID、CLS
 | CLS(Cumulative Layout Shift) | 计算网页载入时的内容是否会因动态加载而页面移动，0表示没有变化。 | 小于0.1 |
 
 ![image](../images/web/14.png)
+
 ### 场景分析
 
 DataFlux 提供可视化的 Web 应用分析，内置多维度 Web 应用监测数据场景，包括概览、页面性能分析、资源加载分析、JS 错误分析。
@@ -168,19 +197,25 @@ DataFlux 提供可视化的 Web 应用分析，内置多维度 Web 应用监测�
 #### 概览
 
 Web 应用的概览场景统计页面访问的错误数、错误率、会话数、会话分布、浏览器、操作系统、最受欢迎页面、资源错误排行等内容，可视化的展示用户访问 Web 页面的数据统计，快速定位用户访问 Web 应用的问题，提高用户访问性能。可通过环境、版本筛选查看已经接入的 Web 应用。
+
 ![image](../images/web/.png)15
+
 #### 性能分析
 
 Web 应用的页面性能分析，通过统计PV数、页面加载时间、网站核心指标、最受关注页面会话数、页面长任务分析、XHR & Fetch 分析、资源分析等指标，可视化的实时查看整体的 Web 应用页面性能情况，更精准的定位需要优化的页面，可通过环境、版本等筛选查看已经接入的 Web 应用。
+
 ![image](../images/web/.png)16
+
 #### 资源分析
 
 Web 应用的资源分析，通过统计资源分类、XHR & Fetch 分析、资源耗时分析等指标，可视化的实时查看整体的Web 应用资源情况；通过统计资源请求排行，更精准的定位需要优化的资源；可通过环境、版本等筛选查看已经接入的 Web 应用。
 
 ![image](../images/web/17.png)
+
 #### 错误分析
 
 Web 应用的 JS 错误分析，通过统计错误率、错误分类、错误版本、网络错误状态分布等指标，可视化的实时查看整体的 Web 应用错误情况；通过受影响的资源错误统计，可快速定位资源错误；可通过环境、版本等筛选查看已经接入的 Web 应用。
+
 ![image](../images/web/19.png)
 
 
