@@ -2,6 +2,7 @@ site_name: 观测云
 
 theme:
   name: material
+  custom_dir: overrides/
   favicon: favicon.ico
   logo: logo.png
   language: zh
