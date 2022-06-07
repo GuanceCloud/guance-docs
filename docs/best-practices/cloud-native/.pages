@@ -1,5 +1,4 @@
 nav:
-  - index.md
   - 使用 Rancher 部署和管理 DataKit，快速构建Kubernetes 生态的可观测: rancher-datakit.md
   - Kubernetes 集群日志上报到同节点的 DataKit 最佳实践: log-report-one-node.md
   - Kubernetes 集群 应用使用 SkyWalking 采集链路数据: k8s-skywalking.md

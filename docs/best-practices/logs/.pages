@@ -1,5 +1,4 @@
 nav:
-  - index.md
   - K8s日志采集之logback socket最佳实践: k8s-logback-socket.md
   - Kubernetes下Stdout日志白名单最佳实践: stdout-log.md
   - Kubernetes 集群中日志采集的几种玩法: k8s-logs.md 

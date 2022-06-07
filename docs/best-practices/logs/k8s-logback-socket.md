@@ -1,21 +1,27 @@
-# 应用场景介绍
+# K8s日志采集之logback socket最佳实践
+
+---
+
+## 应用场景介绍
 Logback日志输出除了常用的file和stdout外，还可以进行socket（TCP）输出，基于socket日志上报最大的优势在于降低了存储费用，程序生成的日志在本地进行一部分内存缓冲继而上报到采集端。同样datakit也支持socket日志采集。本文主要介绍基于K8s下springboot应用将日志通过logback socket方式推送至观测云平台进行观测。
 
-# 前置条件
+## 前置条件
 
 1. 您需要先创建一个[观测云账号](https://www.guance.com/)。
 1. springboot应用。
 1. docker-harbor。
 1. k8s集群。
 
-# 安装部署
-## K8s下Datakit 安装配置
+## 安装部署
+### K8s下Datakit 安装配置
 K8s下Datakit 安装参照文档[**Kubernetes应用的RUM-APM-LOG联动分析**](https://www.yuque.com/dataflux/bp/k8s-rum-apm-log#HGQ8d)。
-#### 
-### 配置日志采集文件logging-socket-demo.conf 
-接收日志，需要开启log socket，开启一个9541端口，并配置pipeline解析。
+##### 
+
+#### 配置日志采集文件logging-socket-demo.conf 
+接收日志，需要开启 log socket，开启一个9541端口，并配置pipeline解析。
+>
 > [[inputs.logging]]
->           ## required
+>         ## required
 >         #  logfiles = [
 >         #    "/var/log/syslog",
 >         #    "/var/log/message",
@@ -56,7 +62,7 @@ K8s下Datakit 安装参照文档[**Kubernetes应用的RUM-APM-LOG联动分析**]
 >             service = "socket-demo"
 
 
-### pipeline解析日志
+#### pipeline解析日志
  logback_socket_pipeline.p 用于解析socket日志格式，便于您在观测云平台查看使用。全文如下：
 > **        #------------------------------------   警告   -------------------------------------**
 > **        # 不要修改本文件，如果要更新，请拷贝至其它文件，最好以某种前缀区分，避免重启后被覆盖**
@@ -73,7 +79,7 @@ K8s下Datakit 安装参照文档[**Kubernetes应用的RUM-APM-LOG联动分析**]
 > **        default_time(time)**
 
 
-### datakit.yaml 全文
+#### datakit.yaml 全文
 配置如下，需要将token修改成您自己的token。
 > apiVersion: v1
 > kind: Namespace
@@ -456,7 +462,7 @@ K8s下Datakit 安装参照文档[**Kubernetes应用的RUM-APM-LOG联动分析**]
 > **            service = "sign"**
 
 
-### 部署
+#### 部署
 > kubectl apply -f datakit.yaml
 
 查看部署情况
@@ -466,17 +472,17 @@ K8s下Datakit 安装参照文档[**Kubernetes应用的RUM-APM-LOG联动分析**]
 > datakit-tj9zq   1/1     Running   0          22h
 
 
-## Springboot应用
+### Springboot 应用
 基于Springboot应用，操作如下步骤：
-### 新增pom依赖
+#### 新增pom依赖
 > <dependency><br />   <groupId>net.logstash.logback</groupId><br />   <artifactId>logstash-logback-encoder</artifactId><br />   <version>4.9</version><br /></dependency>
 
-### logback socket 配置
+#### logback socket 配置
 > _<!-- 对日志进行了json序列化处理，dk支持文本格式的日志，可以通过socket直接推送过去--><br />    _<appender _name_="socket" _class_="net.logstash.logback.appender.LogstashTcpSocketAppender"><br />        _<!-- datakit host: logsocket_port --><br />        _<destination>${dkSocketHost}:${dkSocketPort}</destination><br />        _<!-- 日志输出编码 --><br />        _<encoder _class_="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder"><br />            <providers><br />                <timestamp><br />                    <timeZone>UTC+8</timeZone><br />                </timestamp><br />                <pattern><br />                        <pattern><br />                            {<br />                            "severity": "%level",<br />                            "appName": "${logName:-}",<br />                            "trace": "%X{dd.trace_id:-}",<br />                            "span": "%X{dd.span_id:-}",<br />                            "pid": "${PID:-}",<br />                            "thread": "%thread",<br />                            "class": "%logger{40}",<br />                            "msg": "%message\n%exception"<br />                            }<br />                        </pattern><br />                </pattern><br />            </providers><br />        </encoder><br />    </appender>
 > 
 > <root _level_="info"><br />    <!-- socket appender --><br />    <appender-ref _ref_="socket" /><br /></root>
 
-### logback-spring.xml 全文
+#### logback-spring.xml 全文
 > <?_xml version_="1.0" _encoding_="UTF-8"?><br /><configuration _scan_="true" _scanPeriod_="30 seconds"><br />    _<!-- 部分参数需要来源于properties文件 --><br />    _<springProperty _scope_="context" _name_="logName" _source_="spring.application.name" _defaultValue_="localhost.log"/><br />    <springProperty _scope_="context" _name_="dkSocketHost" _source_="datakit.socket.host" /><br />    <springProperty _scope_="context" _name_="dkSocketPort" _source_="datakit.socket.port" /><br />    _<!-- 配置后可以动态修改日志级别--><br />    _<jmxConfigurator /><br />    <property _name_="log.pattern" _value_="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{20} - [%method,%line] %X{dd.service} %X{dd.trace_id} %X{dd.span_id} - %msg%n" />
 
     _<!-- %m输出的信息,%p日志级别,%t线程名,%d日期,%c类的全名,,,, --><br />    _<appender _name_="STDOUT" _class_="ch.qos.logback.core.ConsoleAppender"><br />        <encoder><br />            <pattern>${log.pattern}</pattern><br />            <charset>UTF-8</charset><br />        </encoder><br />    </appender>
@@ -492,27 +498,27 @@ K8s下Datakit 安装参照文档[**Kubernetes应用的RUM-APM-LOG联动分析**]
     <root _level_="info"><br />        <appender-ref _ref_="STDOUT" /><br />        <appender-ref _ref_="FILE" /><br />        <appender-ref _ref_="socket" />__    _</root><br /></configuration>
 
 _ps:可以根据实际应用情况进行调整。_
-### application.properties
+#### application.properties
 > datakit.socket.host=192.168.11.12
 > datakit.socket.port=9542
 > server.port=8080
 > spring.application.name=socket-demo
 
-### Dockfile
+#### Dockfile
 > _FROM _openjdk:8u292<br />_RUN /_bin_/_cp _/_usr_/_share_/_zoneinfo_/_Asia_/_Shanghai _/_etc_/_localtime<br />_RUN _echo 'Asia/Shanghai' _>/_etc_/_timezone
 
 _ENV _jar springboot-logback-socket-appender-demo.jar<br />_ENV _workdir _/_data_/_app_/<br />RUN _mkdir _-_p ${workdir}<br />_COPY _${jar} ${workdir}<br />_WORKDIR _${workdir}
 
 _ENTRYPOINT _["sh", "-ec", "exec java ${JAVA_OPTS}   -jar ${jar} ${PARAMS}  2>&1 > /dev/null"]
 
-### Docker镜像发布
+#### Docker镜像发布
 将jar copy 到当前目录<br />打包镜像
 > docker build -t registry.cn-shenzhen.aliyuncs.com/lr_715377484/springboot-logback-socket-appender-demo:v1 .
 
 推送到docker-hub，这里我推送到了阿里云hub仓库。
 > docker push registry.cn-shenzhen.aliyuncs.com/lr_715377484/springboot-logback-socket-appender-demo:v1
 
-### 部署
+#### 部署
 编写springboot-logback-socket-appender-demo-deployment.yaml文件，需要修改参数：<br />DATAKIT_SOCKET_PORT：datakit 日志socket 端口。<br />dd-java-agent 为datadog的Java-agent，用于trace，如果不需要的话，可以移除相关配置。<br />全文内容如下：
 > apiVersion: v1<br />kind: Service<br />metadata:<br />  name: logback-socket-service<br />  labels:<br />    app: logback-socket-service<br />spec:<br />  selector:<br />    app: logback-socket-service<br />  ports:<br />    - protocol: TCP<br />      port: 8080<br />      nodePort: 32100<br />      targetPort: 8080<br />  type: NodePort<br />---<br />apiVersion: apps/v1<br />kind: Deployment<br />metadata:<br />  name: logback-socket-service<br />  labels:<br />    app: logback-socket-service<br />spec:<br />  replicas: 1<br />  selector:<br />    matchLabels:<br />      app: logback-socket-service<br />  template:<br />    metadata:<br />      labels:<br />        app: logback-socket-service<br />    spec:<br />      nodeName: master<br />      containers:      <br />      - env:<br />        - name: POD_NAME<br />          valueFrom:<br />            fieldRef:<br />              fieldPath: metadata.name<br />        - name: DATAKIT_SOCKET_PORT<br />          value: "9541"<br />        - name: JAVA_OPTS<br />          value: |-<br />            -javaagent:/usr/dd-java-agent/agent/dd-java-agent.jar -Ddd.service=demo-k8s-logback-socket  -Ddd.tags=container_host:$(PODE_NAME) -Ddd.service.mapping=mysql:mysql-k8s,redis:redisk8s -Ddd.env=dev -Ddd.agent.port=9529<br />        - name: PARAMS<br />          value: "--datakit.socket.host=$(DD_AGENT_HOST) --datakit.socket.port=$(DATAKIT_SOCKET_PORT)"<br />        - name: DD_AGENT_HOST<br />          valueFrom:<br />            fieldRef:<br />              apiVersion: v1<br />              fieldPath: status.hostIP<br />        name: logback-socket-service<br />        image: registry.cn-shenzhen.aliyuncs.com/lr_715377484/springboot-logback-socket-appender-demo:v1<br />        _#command: ["sh","-c"]<br />        _ports:<br />        - containerPort: 8080<br />          protocol: TCP<br />        volumeMounts:<br />        - name: ddagent<br />          mountPath: /usr/dd-java-agent/agent<br />        resources:<br />          limits: <br />            memory: 512Mi<br />          requests:<br />            memory: 256Mi<br />      initContainers:<br />      - command:<br />        - sh<br />        - -c<br />        - set -ex;mkdir -p /ddtrace/agent;cp -r /usr/dd-java-agent/agent/* /ddtrace/agent;<br />        image: pubrepo.jiagouyun.com/datakit/dk-sidecar:1.0<br />        imagePullPolicy: Always<br />        name: ddtrace-agent-sidecar<br />        volumeMounts:<br />        - mountPath: /ddtrace/agent<br />          name: ddagent<br />      restartPolicy: Always<br />      volumes:<br />      - name: ddagent<br />        emptyDir: {}        
 
@@ -527,12 +533,12 @@ _ENTRYPOINT _["sh", "-ec", "exec java ${JAVA_OPTS}   -jar ${jar} ${PARAMS}  2>&1
 > logback-socket-service-74bd778fcf-cqcn9   1/1     Running   0          5h41m
 
 
-# 观测云查看日志
+## 观测云查看日志
 日志查看器<br />
 ![image](../images/k8s-logback-socket/1.png)
 日志明细<br />
 ![image](../images/k8s-logback-socket/2.png)
-# 相关最佳实践
+## 相关最佳实践
 [**Kubernetes应用的RUM-APM-LOG联动分析**](https://www.yuque.com/dataflux/bp/k8s-rum-apm-log)<br />[观测云日志采集分析最佳实践](https://www.yuque.com/dataflux/bp/logging)<br />[Pod日志采集最佳实践 ](https://www.yuque.com/dataflux/bp/pod-log)<br />[Java日志关联链路数据](https://www.yuque.com/dataflux/doc/yyg3lp)
 
 
