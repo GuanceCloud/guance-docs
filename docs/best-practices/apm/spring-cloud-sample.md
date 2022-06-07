@@ -261,7 +261,7 @@ $ nohup java -Dfile.encoding=utf-8 -javaagent:dd-java-agent-0.80.0.jar -XX:Fligh
 ### RUM（real user moitoring）：
 详细步骤参见文档[[用户访问（RUM）可观测性最佳实践](https://www.yuque.com/dataflux/doc/eqs7v2)]
 ##### 1、登录 Dataflux 平台
-#### 2、选择用户访问监测——新建应用——选择 web 类型——同步载入
+##### 2、选择用户访问监测——新建应用——选择 web 类型——同步载入
 ![image](../images/spring-cloud-sample/27.png)
 ##### 3、在前端页面 index.html 中接入观测云 rum 可观测性 js 文件
 
@@ -433,7 +433,7 @@ default_time(time)
 ![image](../images/spring-cloud-sample/44.png)
 ![image](../images/spring-cloud-sample/45.png)
 ### 创建 Nginx 日志异常检测：
-#### 1、打开观测云平台—>异常检测库—>新建检测库—>自定义监控
+##### 1、打开观测云平台—>异常检测库—>新建检测库—>自定义监控
 ##### 
 ![image](../images/spring-cloud-sample/46.png)
 ##### 2、点击新创建的检测库名称—>新建检测规则—>新建日志检测

@@ -12,7 +12,7 @@
 ![image](../images/pod-log/1.png)
 
 下面修改 datakit.yaml文件，把 logfwdserver.conf 文件挂载到 DataKit 的 /usr/local/datakit/conf.d/log/ 目录。<br />在 datakit.yaml 中增加如下配置：
-```
+```bash
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -31,7 +31,7 @@ data:
         # more_tag = "some_other_value"
 ```
 在 Daemonset 资源中增加：
-```
+```bash
         - mountPath: /usr/local/datakit/conf.d/log/logfwdserver.conf
           name: datakit-conf
           subPath: logfwdserver.conf 
@@ -40,7 +40,7 @@ data:
 #### 2 挂载 Pipeline
 
 修改 datakit.yaml 文件，把 pod-logging-demo.p 文件挂载到 DataKit 的 /usr/local/datakit/pipeline/ 目录。<br />在 ConfigMap 资源中增加：
-```
+```bash
     pod-logging-demo.p: |-
         #日志样式
         #2021-12-01 10:41:06.015 [http-nio-8090-exec-2] INFO  c.s.d.c.HealthController - [getPing,19] -  - 调用 ping接口
@@ -50,7 +50,7 @@ data:
         default_time(time,"Asia/Shanghai")
 ```
 在Daemonset资源中增加：
-```
+```bash
         - mountPath: /usr/local/datakit/pipeline/pod-logging-demo.p
           name: datakit-conf
           subPath: pod-logging-demo.p
@@ -58,14 +58,14 @@ data:
 【注意】如果不需要使用 Pipeline 做日志切割，此步骤可忽略。
 
 #### 3 重启 Datakit
-```
+```bash
 kubectl delete -f datakit.yaml
 kubectl apply -f datakit.yaml
 ```
 #### 4 Logfwd side采集日志
     把 Logfwd 镜像和业务镜像部署在同一个 Pod 中，下面以 log-demo-service:v1 作为业务镜像，生成 /data/app/logs/log.log 日志文件，使用logfwd以共享存储的方式读取日志文件，把日志传给 Datakit。使用 pod-logging-demo.p切割日志，使用日期做多行匹配。
 
-```
+```bash
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -171,7 +171,7 @@ logfwd-conf 参数说明
 
 - LOGFWD_DATAKIT_HOST:  DataKit 地址。
 - LOGFWD_DATAKIT_PORT:  Logfwd 端口
-```
+```bash
 kubectl apply -f log-fwd-deployment.yaml
 ```
 #### 5 查看日志
@@ -182,7 +182,7 @@ kubectl apply -f log-fwd-deployment.yaml
 ### 方案二
         DataKit 默认采集 Pod 中输出到 Stdout 中的日志。为了对日志格式进行特殊处理，通常会在部署 Pod 的Deployment 控制器的yaml文件中增加 Annotations。下面以 Springboot 的微服务项目做的一个日志采集示例，jar包是log-springboot-demo-1.0-SNAPSHOT.jar，日志使用 Logback。具体步骤如下：
 #### 1 编写logback-spring.xml
-```
+```bash
 <?xml version="1.0" encoding="UTF-8"?>
 
 <configuration scan="true" scanPeriod="60 seconds" debug="false">

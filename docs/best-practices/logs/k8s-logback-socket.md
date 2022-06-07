@@ -13,14 +13,15 @@ Logback日志输出除了常用的file和stdout外，还可以进行socket（TCP
 1. k8s集群。
 
 ## 安装部署
-## K8s下Datakit 安装配置
+### K8s下Datakit 安装配置
 K8s下Datakit 安装参照文档[**Kubernetes应用的RUM-APM-LOG联动分析**](https://www.yuque.com/dataflux/bp/k8s-rum-apm-log#HGQ8d)。
 ##### 
 
 #### 配置日志采集文件logging-socket-demo.conf 
-接收日志，需要开启log socket，开启一个9541端口，并配置pipeline解析。
+接收日志，需要开启 log socket，开启一个9541端口，并配置pipeline解析。
+>
 > [[inputs.logging]]
->           ## required
+>         ## required
 >         #  logfiles = [
 >         #    "/var/log/syslog",
 >         #    "/var/log/message",
@@ -471,7 +472,7 @@ K8s下Datakit 安装参照文档[**Kubernetes应用的RUM-APM-LOG联动分析**]
 > datakit-tj9zq   1/1     Running   0          22h
 
 
-### Springboot应用
+### Springboot 应用
 基于Springboot应用，操作如下步骤：
 #### 新增pom依赖
 > <dependency><br />   <groupId>net.logstash.logback</groupId><br />   <artifactId>logstash-logback-encoder</artifactId><br />   <version>4.9</version><br /></dependency>

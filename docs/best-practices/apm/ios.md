@@ -7,7 +7,7 @@
 前往官方网站 [https://www.dataflux.cn/](https://www.dataflux.cn/) 注册账号，使用已注册的账号/密码登录。
 ![image](../images/ios/1.png)
 ### 安装 Datakit
-### 获取命令
+#### 获取命令
 点击 [**集成**] 模块，右上角 [**快速获取 DataKit 安装命令**]，根据您的操作系统和系统类型选择合适的安装命令。
 ![image](../images/ios/2.png)
 #### 执行安装
@@ -269,7 +269,7 @@ end
 ### 添加头文件
 
 请将 `#import "FTMobileAgent.h"` 添加到 `AppDelegate.m` 引用头文件的位置。
-#### 添加初始化代码
+### 添加初始化代码
 
 示例：
 
@@ -284,11 +284,13 @@ end
     return YES;
 }
 ```
-##### metricsUrl 数据上报地址：
+#### metricsUrl 数据上报地址：
 出于安全考虑，DataKit 的 HTTP 服务默认绑定在 localhost:9529 上，如果希望从外部访问，需编辑 ` /usr/local/datakit/conf.d/datakit.conf ` 中的 `http_listen` 字段，将其改成 `0.0.0.0:9529` 或其它网卡、端口。<br />举例：比如我公网 ip 是1.1.1.1 我先到配置中改0.0.0.0，app 中 metricsUrl 地址为 [http://1.1.1.1:9529](http://1.1.1.1:9529)
 
 ### FTMobileConfig 
-### 可配置参数
+
+#### 可配置参数
+
 | **字段** | **类型** | **说明** | **必须** |
 | --- | --- | --- | --- |
 | metricsUrl | NSString | 数据上报地址 | 是 |
