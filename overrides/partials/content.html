@@ -1,0 +1,27 @@
+{#-
+  This file was automatically generated - do not edit
+-#}
+{% if page.edit_url %}
+  <a href="{{ page.edit_url }}" title="{{ lang.t('edit.link.title') }}" class="md-content__button md-icon">
+    {% include ".icons/material/pencil.svg" %}
+  </a>
+{% endif %}
+{% if "tags" in config.plugins %}
+  {% include "partials/tags.html" %}
+{% endif %}
+{% if not "\x3ch1" in page.content %}
+  <h1>{{ page.title | d(config.site_name, true)}}</h1>
+{% endif %}
+{{ page.content }}
+{% if page and page.meta and (
+  page.meta.git_revision_date_localized or
+  page.meta.revision_date
+) %}
+  {% include "partials/source-file.html" %}
+{% endif %}
+
+<p>观测云是一款面向开发、运维、测试及业务团队的实时数据监测平台，能够统一满足云、云原生、应用及业务上的监测需求，快速实现系统可观测。
+  <strong>立即前往观测云，开启一站式可观测之旅：</strong>
+  <a href="https://www.guance.com">www.guance.com</a>
+  <img alt="" src="/logo_2.png">
+</p>
