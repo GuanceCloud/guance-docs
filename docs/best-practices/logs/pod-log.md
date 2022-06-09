@@ -3,15 +3,21 @@
 ---
 
 ## Pod 日志采集
+
 ### 采集方案
-        使用容器化部署微服务时，微服务运行在容器中。Pod 是由一个或一组紧耦合的容器组成，是 Kubernetes 中最小的调度单元，针对 Pod 中日志，本文列举了通过 DataKit 收集日志的三种方案。
+
+使用容器化部署微服务时，微服务运行在容器中。Pod 是由一个或一组紧耦合的容器组成，是 Kubernetes 中最小的调度单元，针对 Pod 中日志，本文列举了通过 DataKit 收集日志的三种方案。
 ### 方案一
-        DataKit 开通 Logfwd 采集器，Logfwd 以 Sidecar 模式收集业务容器日志。
+
+DataKit 开通 Logfwd 采集器，Logfwd 以 Sidecar 模式收集业务容器日志。
+
 #### 1 开通 Logfwd 采集器
-        如果 Kubernetes 未集成 DataKit ，请登录[观测云](https://console.guance.com/)，【集成】->【Datakit】->【Kubernetes】，使用datakit.yaml 文件集成 DataKit 。<br />
+
+如果 Kubernetes 未集成 DataKit ，请登录[观测云](https://console.guance.com/)，【集成】->【Datakit】->【Kubernetes】，使用datakit.yaml 文件集成 DataKit 。<br />
 ![image](../images/pod-log/1.png)
 
 下面修改 datakit.yaml文件，把 logfwdserver.conf 文件挂载到 DataKit 的 /usr/local/datakit/conf.d/log/ 目录。<br />在 datakit.yaml 中增加如下配置：
+
 ```bash
 ---
 apiVersion: v1
@@ -31,6 +37,7 @@ data:
         # more_tag = "some_other_value"
 ```
 在 Daemonset 资源中增加：
+
 ```bash
         - mountPath: /usr/local/datakit/conf.d/log/logfwdserver.conf
           name: datakit-conf
@@ -40,6 +47,7 @@ data:
 #### 2 挂载 Pipeline
 
 修改 datakit.yaml 文件，把 pod-logging-demo.p 文件挂载到 DataKit 的 /usr/local/datakit/pipeline/ 目录。<br />在 ConfigMap 资源中增加：
+
 ```bash
     pod-logging-demo.p: |-
         #日志样式
@@ -50,20 +58,25 @@ data:
         default_time(time,"Asia/Shanghai")
 ```
 在Daemonset资源中增加：
+
 ```bash
         - mountPath: /usr/local/datakit/pipeline/pod-logging-demo.p
           name: datakit-conf
           subPath: pod-logging-demo.p
 ```
+
 【注意】如果不需要使用 Pipeline 做日志切割，此步骤可忽略。
 
 #### 3 重启 Datakit
+
 ```bash
 kubectl delete -f datakit.yaml
 kubectl apply -f datakit.yaml
 ```
+
 #### 4 Logfwd side采集日志
-    把 Logfwd 镜像和业务镜像部署在同一个 Pod 中，下面以 log-demo-service:v1 作为业务镜像，生成 /data/app/logs/log.log 日志文件，使用logfwd以共享存储的方式读取日志文件，把日志传给 Datakit。使用 pod-logging-demo.p切割日志，使用日期做多行匹配。
+
+把 Logfwd 镜像和业务镜像部署在同一个 Pod 中，下面以 log-demo-service:v1 作为业务镜像，生成 /data/app/logs/log.log 日志文件，使用logfwd以共享存储的方式读取日志文件，把日志传给 Datakit。使用 pod-logging-demo.p切割日志，使用日期做多行匹配。
 
 ```bash
 apiVersion: apps/v1
@@ -129,9 +142,7 @@ spec:
       - configMap:
           name: logfwd-conf
         name: logfwd-config 
-
----
-        
+---        
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -153,7 +164,6 @@ data:
             ]
         }
     ]
-
 ```
 logfwd-conf 参数说明
 
@@ -171,17 +181,23 @@ logfwd-conf 参数说明
 
 - LOGFWD_DATAKIT_HOST:  DataKit 地址。
 - LOGFWD_DATAKIT_PORT:  Logfwd 端口
+
 ```bash
 kubectl apply -f log-fwd-deployment.yaml
 ```
 #### 5 查看日志
-登录观测云->【日志】，数据源搜索log_fwd_demo。<br />
+
+登录观测云->【日志】，数据源搜索log_fwd_demo。
+
 ![image](../images/pod-log/2.png)
 
 ![image](../images/pod-log/3.png)
 ### 方案二
-        DataKit 默认采集 Pod 中输出到 Stdout 中的日志。为了对日志格式进行特殊处理，通常会在部署 Pod 的Deployment 控制器的yaml文件中增加 Annotations。下面以 Springboot 的微服务项目做的一个日志采集示例，jar包是log-springboot-demo-1.0-SNAPSHOT.jar，日志使用 Logback。具体步骤如下：
+
+DataKit 默认采集 Pod 中输出到 Stdout 中的日志。为了对日志格式进行特殊处理，通常会在部署 Pod 的Deployment 控制器的yaml文件中增加 Annotations。下面以 Springboot 的微服务项目做的一个日志采集示例，jar包是log-springboot-demo-1.0-SNAPSHOT.jar，日志使用 Logback。具体步骤如下：
+
 #### 1 编写logback-spring.xml
+
 ```bash
 <?xml version="1.0" encoding="UTF-8"?>
 
@@ -204,11 +220,12 @@ kubectl apply -f log-fwd-deployment.yaml
         <appender-ref ref="Console"/>
     </root>
 </configuration>
-
 ```
 #### 2 制作镜像
+
 Dockerfile 如下：
-```
+
+```bash
 FROM openjdk:8u292
 
 RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
@@ -220,15 +237,17 @@ RUN mkdir -p ${workdir}
 WORKDIR ${workdir}
 ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS} -jar ${jar} "]
 ```
+
 制作镜像并上传到harbor仓库：
-```
+
+```bash
  docker build -t <your-harbor>/log-demo-service:v1  .
  docker push <your-harbor>/log-demo-service:v1
 ```
 
 #### 3 编写 pod-log-service.yaml 文件
 
-```
+```bash
 apiVersion: v1
 kind: Service
 metadata:
@@ -303,7 +322,8 @@ Annotations 参数说明
 #### 4 配置 Pipeline
 
 datakit-default.yaml 文件的 ConfigMap 资源中增加 pod-logging-demo.p 部分
-```
+
+```bash
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -318,14 +338,18 @@ data:
         default_time(time)
 ```
 把 Pod-logging-demo.p 挂载到 DataKit 中
-```
+
+```bash
         - mountPath: /usr/local/datakit/pipeline/pod-logging-demo.p
           name: datakit-conf
           subPath: pod-logging-demo.p
 ```
+
 #### 5 查看日志
+
 执行如下命令部署 Pod :
-```
+
+```bash
 kuectl apply -f pod-log-service.yaml
 ```
 访问微服务:
@@ -333,9 +357,11 @@ kuectl apply -f pod-log-service.yaml
 curl localhost:30053/ping
 ```
 登录[观测云](https://console.guance.com/) [日志]模块，输入 log-demo-service ，成功查看到日志。<br />
+
 ![image](../images/pod-log/4.png)
 
 ![image](../images/pod-log/5.png)
 
 ### 方案三
-        Pod 挂载 Volume ，使用卷类型是 hostPath ，把日志文件挂载到宿主机上，再使用 Daemonset 部署DataKit ，同样挂载 hostPath 类型的 Volume ，这样datakit就能采集到 Pod 中的日志文件。
+
+Pod 挂载 Volume ，使用卷类型是 hostPath ，把日志文件挂载到宿主机上，再使用 Daemonset 部署DataKit ，同样挂载 hostPath 类型的 Volume ，这样datakit就能采集到 Pod 中的日志文件。
