@@ -11,15 +11,18 @@ _注：（阿里云容器服务（Alibaba Cloud Container Service for Kubernetes
 ## 前置条件
 Nginx日志在K8环境中的输出为Stdout方式，而非文件方式。观测云Datakit以DaemonSet部署后，默认采集K8内部所有Stdout日志输出，包括集群内部组件的Stdout输出方式，如CoreDNS（需开启日志）。本文涉及的日志均为Stdout方式输出。
 
-_注：Stdout是开发工程师写代码时，选择日志控制台的输出方式，_<br />_如：<appender name="console" class="ch.qos.logback.core.ConsoleAppender">_
-
+_注：Stdout是开发工程师写代码时，选择日志控制台的输出方式，
+如：
+```
+<appender name="console" class="ch.qos.logback.core.ConsoleAppender">_
+```
 ## 白名单需求
 
 Datakit部署完成后，按需采集指定的业务Pod日志、K8集群组件的日志，后续新增的未指定的业务Pod日志不会采集，另外对同一个Pod里的多容器日志采集只采集其中一个或多个。<br />本文通过观测云采集器Datakit不同的日志过滤方法来实现，使用给日志加Annotation标注（包括过滤Pod内部其他容器产生的日志）和container.conf中的container_include_log = []组合来实现。<br />更详细日志处理原理见[《Datakit日志处理综述》](https://www.yuque.com/dataflux/datakit/datakit-logging-how) 一文。
 
 ## 实现方式
 
-### 方式一 使用container_include_log = []
+### 方式一 使用 container_include_log = []
 
 只采集集群组件coredns和nginx日志，container_include_log用正则语法编写image的名称，具体见[《根据容器 image 配置指标和日志采集》](https://www.yuque.com/dataflux/datakit/container)
 
@@ -63,7 +66,7 @@ Datakit部署完成后，按需采集指定的业务Pod日志、K8集群组件�
 这样就按需采集指定image名称的Pod日志，如下图：<br />
 ![image](../images/stdout-log/1.png)
 
-### 方式二 组合container_include_log = []和Annotation标记
+### 方式二 组合 container_include_log = []和 Annotation 标记
 
 只采集集群组件coredns和nginx日志，同时通过Annotation对nginx标记，当然未在container_include_log中开启的白名单，比如：另外的镜像busybox，也可以通过Annotation方式标记后采集上来。这是由于Annotation标记的方式优先级高。详细见日志处理原理[《Datakit日志处理综述》](https://www.yuque.com/dataflux/datakit/datakit-logging-how) 一文。<br />Nginx的Annotation标记
 
@@ -85,7 +88,6 @@ Datakit部署完成后，按需采集指定的业务Pod日志、K8集群组件�
 ```
 
 ```toml
-
 [inputs.container]
   docker_endpoint = "unix:///var/run/docker.sock"
   containerd_address = "/var/run/containerd/containerd.sock"
@@ -131,6 +133,7 @@ Datakit部署完成后，按需采集指定的业务Pod日志、K8集群组件�
 #### 开启Pod内白名单前
 
 如下图，nginx和busybox日志均采集<br />
+
 ![image](../images/stdout-log/3.png)
 
 #### 开启Pod内白名单
@@ -156,6 +159,7 @@ Datakit部署完成后，按需采集指定的业务Pod日志、K8集群组件�
 #### 实现效果
 
 仅保留Pod内Nginx日志<br />
+
 ![image](../images/stdout-log/4.png)
 
 ## 总结

@@ -295,7 +295,6 @@ spec:
             # name = "cpu"         
             [inputs.prom.tags]
             namespace = "$NAMESPACE"
-            pod_name = "$PODNAME"
     spec:
       serviceAccountName: bookinfo-details
       containers:
@@ -366,7 +365,6 @@ spec:
             # name = "cpu"         
             [inputs.prom.tags]
             namespace = "$NAMESPACE"
-            pod_name = "$PODNAME"
     spec:
       serviceAccountName: bookinfo-ratings
       containers:
@@ -437,7 +435,6 @@ spec:
             # name = "cpu"         
             [inputs.prom.tags]
             namespace = "$NAMESPACE"
-            pod_name = "$PODNAME"
     spec:
       serviceAccountName: bookinfo-productpage
       containers:
@@ -614,7 +611,6 @@ spec:
             # name = "cpu"
             [inputs.prom.tags]
             namespace = "$NAMESPACE"
-            pod_name = "$PODNAME"
         proxy.istio.io/config: |
           tracing:
             zipkin:

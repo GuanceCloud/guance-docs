@@ -189,7 +189,7 @@ APM（应用性能检测）是 DF 默认内置的模块，无需创建场景或�
 
 ##### 1、标准日志采集（Nginx、mysql、redis等）
 
-**    **通过开启Datakit内置的各种inputs，直接开启相关的日志采集，例如 [Ngnix](https://www.yuque.com/dataflux/datakit/nginx#62b5133f)、[Redis](https://www.yuque.com/dataflux/datakit/redis#62b5133f)、[Docker](https://www.yuque.com/dataflux/datakit/docker)、[ES](https://www.yuque.com/dataflux/datakit/elasticsearch#62b5133f) 等；<br />**示例：Nginx**
+通过开启Datakit内置的各种inputs，直接开启相关的日志采集，例如 [Ngnix](https://www.yuque.com/dataflux/datakit/nginx#62b5133f)、[Redis](https://www.yuque.com/dataflux/datakit/redis#62b5133f)、[Docker](https://www.yuque.com/dataflux/datakit/docker)、[ES](https://www.yuque.com/dataflux/datakit/elasticsearch#62b5133f) 等；<br />**示例：Nginx**
 
 ```
 $ cd /usr/local/datakit/conf.d/nginx/
@@ -214,16 +214,15 @@ $     pipeline = "nginx.p"
 
 ##### 2、自定义日志采集（应用日志、业务日志等）
 
-**      示例：应用日志**<br />**      pipeline（日志 grok 切割）[ **[**df 官方文档**](https://www.yuque.com/dataflux/datakit/pipeline)**]**
+示例：应用日志
+pipeline（日志 grok 切割）[ **[**df 官方文档**](https://www.yuque.com/dataflux/datakit/pipeline)**]**
 
 ```
 $ cd /usr/local/datakit/conf.d/log/
 $ cp logging.conf.sample logging.conf
 $ vim logging.conf
-
 ## 修改 log 路径为正确的应用日志的路径
 ## source 与 service 为必填字段，可以直接用应用名称，用以区分不同的日志名称
-
 $  [inputs.nginx.log]
 $    logfiles = [
       "/usr/local/java/ruoyi/logs/ruoyi-system/error.log",
@@ -231,7 +230,6 @@ $    logfiles = [
 $    source = "ruoyi-system"
 $    service = "ruoyi-system"
 $    pipeline = "ruoyi_system.p"
-
 ## pipeline 即为 grok 语句，主要用来进行文本日志切割，如果该配置不放开，默认 df 平台上展示日志原始文本内容，如若填写，会对对应日志进行 grok 切割，此处填写的 .p文件 需要自己手动编写
 ```
 

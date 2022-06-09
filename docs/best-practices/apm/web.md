@@ -32,7 +32,7 @@
 
 ## Web 应用监控（RUM）介绍：
 
-**RUM **全称为 **_Real user monitor（真实用户体验管理）_**，随着移动互联网的发展，越来越多的企业，最终的业务表现形式都汇聚在了终端用户侧，也就是RUM端，具体形式有 Mobile-APP、web页面、小程序（微信、支付宝、头条等）。伴随着互联网行业发展，各行各业也都开始了近似于白热化的竞争，真实用户的终端体验，会直接影响终端用户的新增、留存、企业形象甚至企业的营收，那如何提升终端用户的使用体验，就成为了互联网行业乃至正在或即将进行数字化转型的传统企业必须要考虑的一个问题。
+**RUM**全称为 **_Real user monitor（真实用户体验管理）_**，随着移动互联网的发展，越来越多的企业，最终的业务表现形式都汇聚在了终端用户侧，也就是RUM端，具体形式有 Mobile-APP、web页面、小程序（微信、支付宝、头条等）。伴随着互联网行业发展，各行各业也都开始了近似于白热化的竞争，真实用户的终端体验，会直接影响终端用户的新增、留存、企业形象甚至企业的营收，那如何提升终端用户的使用体验，就成为了互联网行业乃至正在或即将进行数字化转型的传统企业必须要考虑的一个问题。
 
 ---
 
@@ -145,7 +145,7 @@ $ vim index.html
 
 ### RUM 与 APM 数据打通（前后端通过traceid关联）：
 
-**前置条件**：后端应用服务器必须安装apm监控，即 ddtrace（dd-agent），详见[[链路追踪(APM)最佳实践](https://www.yuque.com/dataflux/bp/apm)]，前端添加 df-rum 监控。<br />**配置方式**：需要在前端 html 中已添加的 df-rum-js 中添加 **allowedDDTracingOrigins **标签，并填写前端对应的后端域名，例如 dataflux.cn 添加 rum 监控，需要在 allowedDDTracingOrigins 里配 https://www.dataflux.cn/ ，如若存在多个域名，需配置多个，用逗号隔开，第三方域名可以不配置。
+**前置条件**：后端应用服务器必须安装apm监控，即 ddtrace（dd-agent），详见[[链路追踪(APM)最佳实践](https://www.yuque.com/dataflux/bp/apm)]，前端添加 df-rum 监控。<br />**配置方式**：需要在前端 html 中已添加的 df-rum-js 中添加 **allowedDDTracingOrigins**标签，并填写前端对应的后端域名，例如 dataflux.cn 添加 rum 监控，需要在 allowedDDTracingOrigins 里配 https://www.dataflux.cn/ ，如若存在多个域名，需配置多个，用逗号隔开，第三方域名可以不配置。
 
 ![image](../images/web/9.png)
 
@@ -198,13 +198,13 @@ DataFlux 提供可视化的 Web 应用分析，内置多维度 Web 应用监测�
 
 Web 应用的概览场景统计页面访问的错误数、错误率、会话数、会话分布、浏览器、操作系统、最受欢迎页面、资源错误排行等内容，可视化的展示用户访问 Web 页面的数据统计，快速定位用户访问 Web 应用的问题，提高用户访问性能。可通过环境、版本筛选查看已经接入的 Web 应用。
 
-![image](../images/web/.png)15
+![image](../images/web/15.png)
 
 #### 性能分析
 
 Web 应用的页面性能分析，通过统计PV数、页面加载时间、网站核心指标、最受关注页面会话数、页面长任务分析、XHR & Fetch 分析、资源分析等指标，可视化的实时查看整体的 Web 应用页面性能情况，更精准的定位需要优化的页面，可通过环境、版本等筛选查看已经接入的 Web 应用。
 
-![image](../images/web/.png)16
+![image](../images/web/16.png)
 
 #### 资源分析
 

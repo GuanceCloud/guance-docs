@@ -199,7 +199,7 @@ Logstreaming 支持在 HTTP URL 中添加参数，对日志数据进行操作。
 
 ![image](../images/logs/1.png)
 
-<br />**可以通过 **[DQL](https://www.yuque.com/dataflux/doc/fsnd2r)** 验证上报的数据：**
+**可以通过** [DQL](https://www.yuque.com/dataflux/doc/fsnd2r) **验证上报的数据：**
 ```bash
 dql > L::nginx_td LIMIT 1
 -----------------[ r1.nginx_td.s1 ]-----------------

@@ -176,7 +176,7 @@ DataKit 默认已开启 Container 采集器，这里介绍一下自定义采集�
 
 ##### 2.2.2 Container 监控视图
 
-登录『[观测云](https://console.guance.com/)』-> 『基础设施』-> 『容器』，输入** host:k8s-node1**，显示 k8s-node1 节点的容器，点击 ingress。
+登录『[观测云](https://console.guance.com/)』-> 『基础设施』-> 『容器』，输入**host:k8s-node1** ，显示 k8s-node1 节点的容器，点击 ingress。
 		
 ![image](../images/rancher-datakit/24.png)
 
@@ -323,7 +323,84 @@ DataKit 默认已开启 Container 采集器，这里介绍一下自定义采集�
 
 ![image](../images/rancher-datakit/46.png)
 
-#### 3.4 开启 Zipkin 采集器
+#### 3.4 开启 ingressgateway 和 egressgateway 采集器
+
+采集 ingressgateway 和 egressgateway 使用 Service 来访问 15020 端口，所以需要新建 ingressgateway 和 egressgateway 的 Service。 登录『Rancher』-> 『集群』，点击上方的“导入 YAML”图标，输入下面的内容，点击“导入”即完成 Service 的创建。
+
+```bash
+apiVersion: v1
+kind: Service
+metadata:
+  name: istio-ingressgateway-ext
+  namespace: istio-system
+spec:
+  ports:
+  - name: http-monitoring
+    port: 15020
+    protocol: TCP
+    targetPort: 15020
+  selector:
+    app: istio-ingressgateway
+    istio: ingressgateway
+  type: ClusterIP
+  
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: istio-egressgateway-ext
+  namespace: istio-system
+spec:
+  ports:
+  - name: http-monitoring
+    port: 15020
+    protocol: TCP
+    targetPort: 15020
+  selector:
+    app: istio-egressgateway
+    istio: egressgateway
+  type: ClusterIP
+```
+
+![image](../images/rancher-datakit/106.png)
+
+登录『Rancher』-> 『集群』-> 『存储』-> 『ConfigMaps』，找到 datakit-conf，点击『编辑配置』。      点击『添加』，键分别输入“prom-ingressgateway.conf”和 “prom-egressgateway.conf”，值参考如下内容。点击『保存』。
+
+```bash
+    #### ingressgateway
+    prom-ingressgateway.conf: |- 
+        [[inputs.prom]] 
+          url = "http://istio-ingressgateway-ext.istio-system.svc.cluster.local:15020/stats/prometheus"
+          source = "prom-ingressgateway"
+          metric_types = ["counter", "gauge", "histogram"]
+          interval = "10s"
+          #measurement_prefix = ""
+          measurement_name = "istio_prom"
+          #[[inputs.prom.measurements]]
+          # prefix = "cpu_"
+          # name ="cpu"
+    #### egressgateway
+    prom-egressgateway.conf: |- 
+        [[inputs.prom]] 
+          url = "http://istio-egressgateway-ext.istio-system.svc.cluster.local:15020/stats/prometheus"
+          source = "prom-egressgateway"
+          metric_types = ["counter", "gauge", "histogram"]
+          interval = "10s"
+          #measurement_prefix = ""
+          measurement_name = "istio_prom"
+          #[[inputs.prom.measurements]]
+          # prefix = "cpu_"
+          # name ="cpu"
+```
+
+![image](../images/rancher-datakit/107.png)
+
+进入『集群』-> 『工作负载』-> 『DaemonSets』，点击 datakit 行的右边，选择『编辑配置』。 点击『存储』，找到卷名称是“datakit-conf”的配置映射，点击『添加』，容器挂载路径填“/usr/local/datakit/conf.d/prom/prom-ingressgateway.conf”，卷内子路径输入“prom-ingressgateway.conf”，再点击『添加』，容器挂载路径填“/usr/local/datakit/conf.d/prom/prom-egressgateway.conf”，卷内子路径输入“prom-egressgateway.conf”，点击『保存』。
+
+![image](../images/rancher-datakit/108.png)
+
+#### 3.5 开启 Zipkin 采集器
 
 登录『Rancher』-> 『集群』-> 『存储』-> 『ConfigMaps』，找到 datakit-conf，点击『编辑配置』。
 		
@@ -344,10 +421,10 @@ DataKit 默认已开启 Container 采集器，这里介绍一下自定义采集�
 		
 ![image](../images/rancher-datakit/49.png)
 
-#### 3.5 映射 DataKit 服务
+#### 3.6 映射 DataKit 服务
 
 在 Kubernets 集群中，以 DaemonSet 方式部署 DataKit 后，如果存在部署的某一应用以前是推送链路数据到 istio-system 名称空间的 zipkin 服务，端口是 9411，即访问地址是 zipkin.istio-system.svc.cluster.local:9411，这时就需要用到了 Kubernetes 的 ExternalName 服务类型。先定义一个 ClusterIP 的 服务类型，把 9529 端口转成 9411，然后使用 ExternalName 的服务将 ClusterIP 的服务映射成 DNS 的名称。通过这两步转换，应用就可以与 DataKit 打通了。
-##### 3.5.1 定义 Cluster IP 服务
+##### 3.6.1 定义 Cluster IP 服务
 
 登录『Rancher』-> 『集群』-> 『服务发现』-> 『Service』，点击『创建』，选择“集群 IP”。
 		
@@ -361,7 +438,7 @@ DataKit 默认已开启 Container 采集器，这里介绍一下自定义采集�
 	
 ![image](../images/rancher-datakit/52.png)
 
-##### 3.5.2 定义 ExternalName 的服务
+##### 3.6.2 定义 ExternalName 的服务
 
 『集群』-> 『服务发现』-> 『Service』，点击『创建』，选择“外部DNS服务名称”。
 	   
@@ -371,7 +448,7 @@ DataKit 默认已开启 Container 采集器，这里介绍一下自定义采集�
 		
 ![image](../images/rancher-datakit/54.png)
 
-#### 3.6 创建 Gateway 资源
+#### 3.7 创建 Gateway 资源
 
 登录『Rancher』-> 『集群』-> 『Istio』-> 『Gateways』，点击上方的“导入 YAML”图标。
 		 
@@ -399,7 +476,7 @@ spec:
 
 ![image](../images/rancher-datakit/56.png)
 
-#### 3.7 创建虚拟服务
+#### 3.8 创建虚拟服务
 
 登录『Rancher』-> 『集群』-> 『Istio』-> 『VirtualServices』，点击上方的“导入 YAML”图标。        命名空间输入“prod”，在输入如下内容，点击『导入』。
 
@@ -435,7 +512,7 @@ spec:
 
 ![image](../images/rancher-datakit/57.png)
 
-#### 3.8 创建 productpage、details、ratings
+#### 3.9 创建 productpage、details、ratings
 
 这里使用为 Pod 增加 annotations 来采集 Pod 的指标，增加的内容如下所示。        
 
@@ -454,7 +531,6 @@ spec:
             # name = "cpu"         
             [inputs.prom.tags]
             namespace = "$NAMESPACE"
-            pod_name = "$PODNAME"
         proxy.istio.io/config: |
           tracing:
             zipkin:
@@ -543,8 +619,7 @@ spec:
             # prefix = "cpu_"
             # name = "cpu"         
             [inputs.prom.tags]
-            namespace = "$NAMESPACE"
-            pod_name = "$PODNAME"        
+            namespace = "$NAMESPACE"  
         proxy.istio.io/config: |
           tracing:
             zipkin:
@@ -629,7 +704,6 @@ spec:
             # name = "cpu"         
             [inputs.prom.tags]
             namespace = "$NAMESPACE"
-            pod_name = "$PODNAME"
         proxy.istio.io/config: |
           tracing:
             zipkin:
@@ -714,7 +788,6 @@ spec:
             # name = "cpu"         
             [inputs.prom.tags]
             namespace = "$NAMESPACE"
-            pod_name = "$PODNAME"
         proxy.istio.io/config: |
           tracing:
             zipkin:
@@ -753,7 +826,7 @@ spec:
 
 ![image](../images/rancher-datakit/59.png)
 
-#### 3.9 部署 reviews 流水线
+#### 3.10 部署 reviews 流水线
 
 登录 Gitlab，创建 bookinfo-views 项目。
 		 
@@ -830,7 +903,6 @@ spec:
             # name = "cpu"
             [inputs.prom.tags]
             namespace = "$NAMESPACE"
-            pod_name = "$PODNAME"
         proxy.istio.io/config: |
           tracing:
             zipkin:
@@ -900,7 +972,7 @@ deploy_k8s:
 
 ![image](../images/rancher-datakit/65.png)
 
-#### 3.10 访问 productpage
+#### 3.11 访问 productpage
 
 点击 Rancher 上方的“命令行”图标，输入“kubectl get svc -n istio-system”回车。
 		

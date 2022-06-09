@@ -3,7 +3,9 @@
 ---
 
 ## 简介
-        对一个公司来说，观测云的空间会收集到多个应用的日志，如何区分这些日志来源哪个 Service 是我们遇到的痛点。接下来我们将一起探索如何使用 Pipeline 给日志增加 Service 标签，用来区分日志来源。             <br />        DataKit 采集日志方式有很多，本文重点阐述 Java 的 Springboot 应用中通过 Socket 采集日志，通过Logback 的 Socket 把日志传到 DataKit 。首先由运维在 DataKit 中开启 Socket 采集器，重启 DataKit 。接下来由开发在应用的logback-spring.xml 文件增加 Appender ，并且声明 springProperty ，用来在启动 jar 的时候把Service 名写入到日志中。然后开发启动 jar，把需要写入日志的 Service 名传入应用。最后开发登录观测云，在日志模块的 Pipeline 标签下面新建 Pipeline ，指定运维开通的 Socket 采集器的 Source 。这样日志就会被做成 Tag区分出来了。<br />        下面提供的解决方案，将会按照开发和运维的角度来共同实现这个功能。
+
+对一个公司来说，观测云的空间会收集到多个应用的日志，如何区分这些日志来源哪个 Service 是我们遇到的痛点。接下来我们将一起探索如何使用 Pipeline 给日志增加 Service 标签，用来区分日志来源。             <br />        DataKit 采集日志方式有很多，本文重点阐述 Java 的 Springboot 应用中通过 Socket 采集日志，通过Logback 的 Socket 把日志传到 DataKit 。首先由运维在 DataKit 中开启 Socket 采集器，重启 DataKit 。接下来由开发在应用的logback-spring.xml 文件增加 Appender ，并且声明 springProperty ，用来在启动 jar 的时候把Service 名写入到日志中。然后开发启动 jar，把需要写入日志的 Service 名传入应用。最后开发登录观测云，在日志模块的 Pipeline 标签下面新建 Pipeline ，指定运维开通的 Socket 采集器的 Source 。这样日志就会被做成 Tag区分出来了。<br />        下面提供的解决方案，将会按照开发和运维的角度来共同实现这个功能。
+
 ## 解决方案
 
 ### 运维
@@ -105,8 +107,10 @@ kubectl apply -f datakit.yaml
 ### 开发
 
 #### 1 添加依赖
-        在项目的 pom.xml 添加依赖如下内容：
-```
+
+在项目的 pom.xml 添加依赖如下内容：
+
+```bash
 <dependency>
     <groupId>net.logstash.logback</groupId>
     <artifactId>logstash-logback-encoder</artifactId>
@@ -178,8 +182,9 @@ kubectl apply -f datakit.yaml
 
 #### 3 配置默认值
 
-        application.yml 文件中增加如下配置，这些默认参数将会传入到 Logback 中。
-```
+application.yml 文件中增加如下配置，这些默认参数将会传入到 Logback 中。
+
+```bash
 guangce:
   datakit:
     host_ip: 127.0.0.1  # datakit地址

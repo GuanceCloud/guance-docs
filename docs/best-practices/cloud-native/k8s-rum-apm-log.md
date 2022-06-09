@@ -958,8 +958,6 @@ volumeMounts 下面增加：
   subPath: ddtrace.conf  
 ```
 
----
-
 ## 用户访问监测 (RUM)
 
 #### 新建应用
@@ -1428,8 +1426,6 @@ $ docker push 172.16.0.215:5000/df-demo/demo-auth:v1
 $ docker build -t 172.16.0.215:5000/df-demo/demo-system:v1 -f DockerfileSystem .
 $ docker push 172.16.0.215:5000/df-demo/demo-system:v1
 ```
-
-#### 
 
 #### 部署
 

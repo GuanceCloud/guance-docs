@@ -20,14 +20,14 @@ ASM 的可观测能力是一种开放式的设计，既可以通过阿里的 arm
 
 ## 步骤一 添加集群到 ASM 
 
-1. 登录 [ASM 控制台](https://servicemesh.console.aliyun.com/)。
-2. 在左侧导航栏，选择**服务网格 > 网格管理**。
-3. 在**网格管理**页面，找到待配置的实例，单击实例的名称或在**操作**列中单击**管理**。
+1、 登录 [ASM 控制台](https://servicemesh.console.aliyun.com/)。
+2、 在左侧导航栏，选择**服务网格 > 网格管理**。
+3、 在**网格管理**页面，找到待配置的实例，单击实例的名称或在**操作**列中单击**管理**。
 
 ![image](../images/asm/2.png)
 
-4. 在网格详情页面左侧导航栏选择**集群与工作负载管理 > Kubernetes 集群**，然后在右侧页面单击**添加**。
-5. 在**添加集群**面板，选中需要添加的集群，然后单击**确定**。
+4、 在网格详情页面左侧导航栏选择**集群与工作负载管理 > Kubernetes 集群**，然后在右侧页面单击**添加**。
+5、 在**添加集群**面板，选中需要添加的集群，然后单击**确定**。
 
 ![image](../images/asm/3.png)
 
@@ -87,7 +87,6 @@ annotations:
             # name = "cpu"         
             [inputs.prom.tags]
             namespace = "$NAMESPACE"
-            pod_name = "$PODNAME"
 ```
 
 参数说明
@@ -157,7 +156,6 @@ spec:
             # name = "cpu"         
             [inputs.prom.tags]
             namespace = "$NAMESPACE"
-            pod_name = "$PODNAME"
     spec:
       serviceAccountName: bookinfo-details
       containers:
@@ -223,7 +221,6 @@ spec:
             # name = "cpu"         
             [inputs.prom.tags]
             namespace = "$NAMESPACE"
-            pod_name = "$PODNAME"
     spec:
       serviceAccountName: bookinfo-ratings
       containers:
@@ -289,7 +286,6 @@ spec:
             # name = "cpu"         
             [inputs.prom.tags]
             namespace = "$NAMESPACE"
-            pod_name = "$PODNAME"
     spec:
       serviceAccountName: bookinfo-reviews
       containers:
@@ -344,7 +340,6 @@ spec:
             # name = "cpu"         
             [inputs.prom.tags]
             namespace = "$NAMESPACE"
-            pod_name = "$PODNAME"
     spec:
       serviceAccountName: bookinfo-reviews
       containers:
@@ -399,7 +394,6 @@ spec:
             # name = "cpu"         
             [inputs.prom.tags]
             namespace = "$NAMESPACE"
-            pod_name = "$PODNAME"
     spec:
       serviceAccountName: bookinfo-reviews
       containers:
@@ -478,7 +472,6 @@ spec:
             # name = "cpu"         
             [inputs.prom.tags]
             namespace = "$NAMESPACE"
-            pod_name = "$PODNAME"
     spec:
       serviceAccountName: bookinfo-productpage
       containers:
@@ -922,9 +915,9 @@ data:
 1. 登录[容器服务管理控制台](https://cs.console.aliyun.com/?spm=a2c4g.11186623.0.0.1b483e068AVz8k)。
 2. 在控制台左侧导航栏中，单击**集群**。
 3. 在**集群列表**页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
-4. 在集群管理页左侧导航栏单击**工作负载 **> **守护进程集**，然后在右侧页面单击**使用 YAML 创建**。
-- 选择相应的命名空间。选择**所有名称空间**。
-- 在示例模板中，选择自定义。把上文的 datakit-ack.yaml 贴入模板中。
+4. 在集群管理页左侧导航栏单击**工作负载** > **守护进程集**，然后在右侧页面单击**使用 YAML 创建**。
+    - 选择相应的命名空间。选择**所有名称空间**。
+    - 在示例模板中，选择自定义。把上文的 datakit-ack.yaml 贴入模板中。
 
 点击创建后，在列表中可以看到部署的守护进程集、服务和配置项。
 		
@@ -1064,7 +1057,9 @@ docker push 172.168.3.28/product-page:v1
 
 #### 场景
 
-登录 [观测云](https://console.guance.com/)，【场景】->【新建仪表板】-> 选择 **阿里云 ASM Workload 监控视图**<br />                                                                                        ** 阿里云 ASM Mesh 监控视图**<br />                                                                                        ** 阿里云 ASM Control Plane 监控视图**
+登录 [观测云](https://console.guance.com/)，【场景】->【新建仪表板】-> 选择 **阿里云 ASM Workload 监控视图**
+**阿里云 ASM Mesh 监控视图**
+**阿里云 ASM Control Plane 监控视图**
 		  
 ![image](../images/asm/24.png)
 

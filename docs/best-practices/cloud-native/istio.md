@@ -63,15 +63,64 @@ Bookinfo 的链路数据，只需要修改 istio 的 configmap 中 zipkin.addres
 
 本示例在 CentOS7.9 通过 minikube 创建的版本是 1.21.2 的 kubernetes 集群。
 
-#### 部署datakit 
+#### 部署 datakit 
 
 参考< [Daemonset 部署 Datakit](https://www.yuque.com/dataflux/integrations/kubernetes) >。
 
 #### 开启采集器 
 
-使用 [Daemonset 部署 Datakit](https://www.yuque.com/dataflux/integrations/kubernetes)  的 datakit.yaml 文件，上传到 kubernetes 集群 的 master 节点 /usr/local/df-demo/datakit.yaml，修改 datakit.yaml 文件，增加 ConfigMap 并挂载文件来开通 zipkin 和 prom 采集器，最终结果是部署完成的 DataKit，增加文件 /usr/local/datakit/conf.d/zipkin/zipkin.conf  是开通 zipkin 采集器，增加 /usr/local/datakit/conf.d/prom/prom_istiod.conf 文件是开通 Istiod pod 的指标采集器。
+使用 [Daemonset 部署 Datakit](https://www.yuque.com/dataflux/integrations/kubernetes) 的 datakit.yaml 文件，上传到 kubernetes 集群 的 master 节点 /usr/local/df-demo/datakit.yaml，修改 datakit.yaml 文件，增加 ConfigMap 并挂载文件来开通 zipkin 和 prom 采集器，最终结果是部署完成的 DataKit，增加文件 /usr/local/datakit/conf.d/zipkin/zipkin.conf  是开通 zipkin 采集器，增加 /usr/local/datakit/conf.d/prom/prom_istiod.conf 文件是开通 Istiod pod 的指标采集器，增加文件 /usr/local/datakit/conf.d/prom/prom-ingressgateway.conf  是开通 ingressgateway 采集器，增加 /usr/local/datakit/conf.d/prom/prom-egressgateway.conf 文件是开通 egressgateway 的指标采集器。
 
 ![image](../images/istio/6.png)
+
+采集 ingressgateway 和 egressgateway 使用 Service 来访问 15020 端口，所以需要新建 ingressgateway 和 egressgateway 的 Service。
+
+istio-ingressgateway-service-ext.yaml 文件。
+
+```bash
+apiVersion: v1
+kind: Service
+metadata:
+  name: istio-ingressgateway-ext
+  namespace: istio-system
+spec:
+  ports:
+  - name: http-monitoring
+    port: 15020
+    protocol: TCP
+    targetPort: 15020
+  selector:
+    app: istio-ingressgateway
+    istio: ingressgateway
+  type: ClusterIP
+```
+
+istio-egressgateway-service-ext.yaml 文件。
+
+```bash
+apiVersion: v1
+kind: Service
+metadata:
+  name: istio-egressgateway-ext
+  namespace: istio-system
+spec:
+  ports:
+  - name: http-monitoring
+    port: 15020
+    protocol: TCP
+    targetPort: 15020
+  selector:
+    app: istio-egressgateway
+    istio: egressgateway
+  type: ClusterIP
+```
+
+创建 Service。
+
+```bash
+kubectl apply -f istio-ingressgateway-service-ext.yaml
+kubectl apply -f istio-egressgateway-service-ext.yaml
+```
 
 下面是 datakit.yaml 文件的修改部分。
 
@@ -101,6 +150,30 @@ data:
         # name ="cpu"
         [inputs.prom.tags]
           app_id="istiod"
+          
+    prom-ingressgateway.conf: |- 
+        [[inputs.prom]] 
+          url = "http://istio-ingressgateway-ext.istio-system.svc.cluster.local:15020/stats/prometheus"
+          source = "prom-ingressgateway"
+          metric_types = ["counter", "gauge", "histogram"]
+          interval = "10s"
+          #measurement_prefix = ""
+          measurement_name = "istio_prom"
+          #[[inputs.prom.measurements]]
+          # prefix = "cpu_"
+          # name ="cpu"
+
+    prom-egressgateway.conf: |- 
+        [[inputs.prom]] 
+          url = "http://istio-egressgateway-ext.istio-system.svc.cluster.local:15020/stats/prometheus"
+          source = "prom-egressgateway"
+          metric_types = ["counter", "gauge", "histogram"]
+          interval = "10s"
+          #measurement_prefix = ""
+          measurement_name = "istio_prom"
+          #[[inputs.prom.measurements]]
+          # prefix = "cpu_"
+          # name ="cpu"
 ```
 
 - 挂载 zipkin.conf 和 prom_istiod.conf
@@ -121,6 +194,12 @@ spec:
         - mountPath: /usr/local/datakit/conf.d/prom/prom_istiod.conf
           name: datakit-conf
           subPath: prom_istiod.conf
+        - mountPath: /usr/local/datakit/conf.d/prom/prom-ingressgateway.conf
+          name: datakit-conf
+          subPath: prom-ingressgateway.conf
+        - mountPath: /usr/local/datakit/conf.d/prom/prom-egressgateway.conf
+          name: datakit-conf
+          subPath: prom-egressgateway.conf     
 ```
 
 #### 替换 token

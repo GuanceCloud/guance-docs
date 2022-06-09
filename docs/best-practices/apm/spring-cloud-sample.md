@@ -87,14 +87,16 @@
 
 ### Nginx：
 
-详细步骤参见文档 [[Nginx 可观测最佳实践](https://www.yuque.com/dataflux/bp/nginx)]<br />前提条件：需先查看 nginx 的 **http_stub_status_module **模块是否已打开，**如已安装该模块，请直接跳过第1步。**
+详细步骤参见文档 [[Nginx 可观测最佳实践](https://www.yuque.com/dataflux/bp/nginx)]
+前提条件：需先查看 nginx 的 **http_stub_status_module** 模块是否已打开，**如已安装该模块，请直接跳过第1步。**
 
 ![image](../images/spring-cloud-sample/7.png)
 
 ##### 1、安装 with-http_stub_status_module 模块（linux）：
 
 开启该模块需要重新编译 nginx，具体命令如下：
-**    ./configure --with-http_stub_status_module**<br />configure 文件位置的查询方式：**find /| grep configure |grep nginx**
+**./configure --with-http_stub_status_module**
+configure 文件位置的查询方式：**find /| grep configure |grep nginx**
 
 ```
 $ find /| grep configure |grep nginx
@@ -194,9 +196,14 @@ $ service datakit restart
 
 ##### 2、在观测云平台创建 Mysql 视图并查看数据
 
-**创建步骤参考[**[**创建场景及视图**](#IVN7h)**]**<br />**步骤：场景——新建场景——新建空白场景——系统视图（创建 Mysql）**<br />**视图示例（通过该视图即可快速查看 Mysql 相关的指标及日志信息，从而断定 Mysql 的健康状态）:**
+**创建步骤参考[**[**创建场景及视图**](#IVN7h)**]**
+**步骤：场景——新建场景——新建空白场景——系统视图（创建 Mysql）**
+**视图示例（通过该视图即可快速查看 Mysql 相关的指标及日志信息，从而断定 Mysql 的健康状态）:**
+
 ![image](../images/spring-cloud-sample/14.png)
+
 ![image](../images/spring-cloud-sample/15.png)
+
 ### Redis：
 详细步骤参见文档 [[redis datakit 接入](https://www.yuque.com/dataflux/datakit/redis)]
 
@@ -237,7 +244,7 @@ $ service datakit restart
 
 ##### 1、在 Datakit 中修改 jvm 的 inputs
 
-  **默认不需要修改 jvm 的 inputs，仅需复制生成 conf 文件即可**
+**默认不需要修改 jvm 的 inputs，仅需复制生成 conf 文件即可**
 
 ```
 $ cd /usr/local/datakit/conf.d/statsd/
@@ -247,9 +254,9 @@ $ vim ddtrace-jvm-statsd.conf
 # 默认不需要修改
 ```
 
-##### 2、修改 jav a应用启动脚本
+##### 2、修改 java 应用启动脚本
 
-** ### 因 JVM 跟 APM 都是借由 ddtrace-agent 实现数据采集，应用启动脚本参见 APM 相关内容 [**[**APM**](https://www.yuque.com/dataflux/bp/sample1/edit#X4X7T)**] ###**
+**### 因 JVM 跟 APM 都是借由 ddtrace-agent 实现数据采集，应用启动脚本参见 APM 相关内容 [APM] ###**
 
 ##### 3、在观测云平台创建 JVM 视图并查看数据
 
@@ -385,7 +392,7 @@ $ vim index.html
 
 **注意事项：**
 
-- **datakitOrigin**：数据传输地址，生产环境如若配置的是域名，可将域名请求转发至具体任意一台安装有datakit-9529 端口的服务器，如若前端访问量过大，可在域名与 datakit 所在服务器中间加一层 slb，前端 js 将数据发送 至slb，slb 也需要开放 **9529 **端口，slb 将请求转发至多台安装 datakit-**9529 **所在的服务器。多台datakit 承接 rum 数据，因前端请求复用因素，session 数据不会中断，对 rum 数据展现也无影响。
+- **datakitOrigin**：数据传输地址，生产环境如若配置的是域名，可将域名请求转发至具体任意一台安装有datakit-9529 端口的服务器，如若前端访问量过大，可在域名与 datakit 所在服务器中间加一层 slb，前端 js 将数据发送 至slb，slb 也需要开放 **9529** 端口，slb 将请求转发至多台安装 datakit-**9529** 所在的服务器。多台datakit 承接 rum 数据，因前端请求复用因素，session 数据不会中断，对 rum 数据展现也无影响。
 
 举例：
 
@@ -428,7 +435,8 @@ $ vim index.html
 
 ### Security Checker（安全巡检）：
 
-**Security Checker简介：[**[**观测云官方简介**](https://www.yuque.com/dataflux/sec_checker/readme)**]     **<br />**注意：目前仅支持 linux**<br />详细步骤参见文档 [[Security Checker 安装和配置](https://www.yuque.com/dataflux/sec_checker/install)]
+**Security Checker简介：[**[**观测云官方简介**](https://www.yuque.com/dataflux/sec_checker/readme)**]注意：目前仅支持 **linux**
+详细步骤参见文档 [[Security Checker 安装和配置](https://www.yuque.com/dataflux/sec_checker/install)]
 
 ##### 1、安装 Security Checker
 
@@ -436,16 +444,12 @@ $ vim index.html
 ##  安装
 $ bash -c "$(curl https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/security-checker/install.sh)"
 ## 或者执行   sudo datakit --install scheck
- 
 ## 更新
 $ bash -c "$(curl https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/security-checker/install.sh) --upgrade"
-
 ## 启停命令
 $ systemctl start/stop/restart/status scheck
-
 ## 或者
 $ service scheck start/stop/restart/status
-
 ## 安装目录  /usr/local/scheck
 ```
 
@@ -477,8 +481,6 @@ $ vim scheck.conf
 ```
 
 ##### 3、查看 Security Checker 相关数据
-
-#### 
 
 ![image](../images/spring-cloud-sample/38.png)
 
@@ -513,7 +515,9 @@ $     pipeline = "nginx.p"
 
 ##### 2、自定义日志采集（应用日志、业务日志等）
 
-**      示例：应用日志**<br />**      pipeline（日志grok切割）[**[**观测云官方文档**](https://www.yuque.com/dataflux/datakit/pipeline)**]**
+**示例：应用日志**
+
+pipeline（日志grok切割）[**[**观测云官方文档**](https://www.yuque.com/dataflux/datakit/pipeline)**]
 
 ```
 $ cd /usr/local/datakit/conf.d/log/
@@ -647,28 +651,28 @@ $ kill -9 xxxxx
 
 #### 利用系统视图模板创建###<br />###举例 NGINX 视图创建###
 
-1. **场景——新建场景**
+1、 **场景——新建场景**
 
 ![image](../images/spring-cloud-sample/61.png)
 
-2. **新建空白场景**
+2、 **新建空白场景**
 
 ![image](../images/spring-cloud-sample/62.png)
 
-3. **输入场景名称——确定**
+3、 **输入场景名称——确定**
 
 ![image](../images/spring-cloud-sample/63.png)
 
-4. **系统视图——NGINX视图（创建）**
+4、 **系统视图——NGINX视图（创建）**
 
 ![image](../images/spring-cloud-sample/64.png)
 
-5. **查看 NGINX 视图**
+5、 **查看 NGINX 视图**
 
 ![image](../images/spring-cloud-sample/65.png)
 ![image](../images/spring-cloud-sample/66.png)
 
-6. **其他**
+6、 **其他**
 
 其他视图创建方法类似，如有自定义视图内容及布局需求，可以创建空白视图自己进行搭建。
 

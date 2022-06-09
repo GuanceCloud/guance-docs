@@ -172,7 +172,7 @@ data:
 
 ## 2 Istio 可观测
 
-### 2.1 Istio **Mesh  **监控视图
+### 2.1 Istio Mesh 监控视图
 
 登录『[观测云](https://console.guance.com/)』，点击『场景』->『新建仪表板』，选择** Istio Mesh 监控视图**。
 		
@@ -189,7 +189,7 @@ data:
 ![image](../images/microservices/42.png)
 
 
-### 2.2 Istio **Control Plane **监控视图
+### 2.2 Istio Control Plan 监控视图
 
 登录『[观测云](https://console.guance.com/)』，点击『场景』->『新建仪表板』，选择** Istio Control Plane 监控视图**。
 		 
@@ -203,7 +203,7 @@ data:
 
 ![image](../images/microservices/46.png)
 
-### 2.3 Istio **Service **监控视图
+### 2.3 Istio Service 监控视图
 
 登录『[观测云](https://console.guance.com/)』，点击『场景』->『新建仪表板』，选择** Istio Service 监控视图**。
 
@@ -215,7 +215,7 @@ data:
 
 ![image](../images/microservices/49.png)
 
-### 2.4 Istio **Workload **监控视图
+### 2.4 Istio Workload 监控视图
 
 登录『[观测云](https://console.guance.com/)』，点击『场景』->『新建仪表板』，选择** Istio Workload 监控视图**。
 		 

@@ -9,9 +9,9 @@
 
 ## 前置条件
 
-1、 您需要先创建一个[观测云账号](https://www.guance.com/)。
-2、 springboot 和 vue 应用。
-3、 一台部署了 nginx 的 Linux 服务器。
+1. 您需要先创建一个[观测云账号](https://www.guance.com/)。
+2. springboot 和 vue 应用。
+3. 一台部署了 nginx 的 Linux 服务器。
 
 ## 环境版本
 
@@ -81,7 +81,7 @@ systemctl restart datakit
 
 ![image](../images/skywalking-apm-rum-log/6.png)
 
-		** 特别说明：1、项目需要添加依赖。**
+**特别说明：1、项目需要添加依赖**
 
 ```
         <dependency>
@@ -91,7 +91,7 @@ systemctl restart datakit
         </dependency>
 ```
 
-**        2、输出日志，需要把 traceId 输出。**
+**2、输出日志，需要把 traceId 输出。**
 
 ![image](../images/skywalking-apm-rum-log/7.png)
 
