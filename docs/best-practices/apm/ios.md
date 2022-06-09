@@ -614,7 +614,6 @@ typedef NS_ENUM(NSInteger, FTStatus) {
 
 > /Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework/Versions/A/Resources/symbolicatecrash
 
-
 进行解析：
 
 1.  将 **symbolicatecrash** 与 **.crash** 和 **.app.dSYM** 放在同一文件夹中 

@@ -604,6 +604,119 @@ spec:
           name: datakit-conf
           subPath: zipkin.conf
 ```
+开通 istiod、ingressgateway 和 egressgateway 指标采集，需要 Service 支持。
+
+1. 登录[容器服务管理控制台](https://cs.console.aliyun.com/?spm=a2c4g.11186623.0.0.1b483e068AVz8k)。
+2. 在控制台左侧导航栏中，单击**集群**。
+3. 在**集群列表**页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
+4. 在集群管理页左侧导航栏单击**网络** > **服务**，然后在右侧页面单击**使用 YAML 创建**。
+   - 选择相应的命名空间。选择**所有名称空间**。
+   - 在示例模板中，选择自定义。把下面的内容贴入模板中， 点击创建。
+
+```bash
+apiVersion: v1
+kind: Service
+metadata:
+  name: istiod-ext
+  namespace: istio-system
+spec:
+  ports:
+  - name: http-monitoring
+    port: 15014
+    protocol: TCP
+    targetPort: 15014
+  selector:
+    app: istiod
+    istio: pilot
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: istio-ingressgateway-ext
+  namespace: istio-system
+spec:
+  ports:
+  - name: http-monitoring
+    port: 15020
+    protocol: TCP
+    targetPort: 15020
+  selector:
+    app: istio-ingressgateway
+    istio: ingressgateway
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: istio-egressgateway-ext
+  namespace: istio-system
+spec:
+  ports:
+  - name: http-monitoring
+    port: 15020
+    protocol: TCP
+    targetPort: 15020
+  selector:
+    app: istio-egressgateway
+    istio: egressgateway
+  type: ClusterIP  
+```
+
+在 ConfigMap 中增加：
+```bash
+    prom_istiod.conf: |-    
+      [[inputs.prom]] 
+        url = "http://istiod.istio-system.svc.cluster.local:15014/metrics"
+        source = "prom-istiod"
+        metric_types = ["counter", "gauge", "histogram"]
+        interval = "10s"
+        #measurement_prefix = ""
+        measurement_name = "istio_prom"
+        #[[inputs.prom.measurements]]
+        # prefix = "cpu_"
+        # name ="cpu"
+        [inputs.prom.tags]
+          app_id="istiod"
+
+    prom-ingressgateway.conf: |- 
+        [[inputs.prom]] 
+          url = "http://istio-ingressgateway-ext.istio-system.svc.cluster.local:15020/stats/prometheus"
+          source = "prom-ingressgateway"
+          metric_types = ["counter", "gauge", "histogram"]
+          interval = "10s"
+          #measurement_prefix = ""
+          measurement_name = "istio_prom"
+          #[[inputs.prom.measurements]]
+          # prefix = "cpu_"
+          # name ="cpu"
+
+    prom-egressgateway.conf: |- 
+        [[inputs.prom]] 
+          url = "http://istio-egressgateway-ext.istio-system.svc.cluster.local:15020/stats/prometheus"
+          source = "prom-egressgateway"
+          metric_types = ["counter", "gauge", "histogram"]
+          interval = "10s"
+          #measurement_prefix = ""
+          measurement_name = "istio_prom"
+          #[[inputs.prom.measurements]]
+          # prefix = "cpu_"
+          # name ="cpu"
+```
+
+然后再挂载 prom_istiod.conf、prom-ingressgateway.conf 和 prom-egressgateway.conf：
+
+```bash
+        - mountPath: /usr/local/datakit/conf.d/prom/prom_istiod.conf
+          name: datakit-conf
+          subPath: prom_istiod.conf        
+        - mountPath: /usr/local/datakit/conf.d/prom/prom-ingressgateway.conf
+          name: datakit-conf
+          subPath: prom-ingressgateway.conf
+        - mountPath: /usr/local/datakit/conf.d/prom/prom-egressgateway.conf
+          name: datakit-conf
+          subPath: prom-egressgateway.conf
+```
 
 本次使用的完整 datakit.yaml，您在使用时请使用最新的 datakit.yaml 做适当替换。  
 
@@ -758,7 +871,7 @@ spec:
           value: 0.0.0.0:9529
         - name: ENV_NAMESPACE
           value: guance-ack
-        image: pubrepo.jiagouyun.com/datakit/datakit:1.4.0
+        image: pubrepo.jiagouyun.com/datakit/datakit:1.4.1
         imagePullPolicy: Always
         name: datakit
         ports:
@@ -784,6 +897,15 @@ spec:
         - mountPath: /usr/local/datakit/conf.d/zipkin/zipkin.conf
           name: datakit-conf
           subPath: zipkin.conf
+        - mountPath: /usr/local/datakit/conf.d/prom/prom_istiod.conf
+          name: datakit-conf
+          subPath: prom_istiod.conf        
+        - mountPath: /usr/local/datakit/conf.d/prom/prom-ingressgateway.conf
+          name: datakit-conf
+          subPath: prom-ingressgateway.conf
+        - mountPath: /usr/local/datakit/conf.d/prom/prom-egressgateway.conf
+          name: datakit-conf
+          subPath: prom-egressgateway.conf
         - mountPath: /host/proc
           name: proc
           readOnly: true
@@ -850,25 +972,23 @@ metadata:
   namespace: datakit
 data:
     #### container
-    container.conf: |-           
+    container.conf: |-  
       [inputs.container]
-        endpoint = "unix:///var/run/docker.sock"
+        docker_endpoint = "unix:///var/run/docker.sock"
+        containerd_address = "/var/run/containerd/containerd.sock"
 
-        ## Containers metrics to include and exclude, default not collect. Globs accepted.
-        container_include_metric = []
-        container_exclude_metric = ["image:*"]
+        enable_container_metric = true
+        enable_k8s_metric = true
+        enable_pod_metric = true
 
         ## Containers logs to include and exclude, default collect all containers. Globs accepted.
-        #container_include_log = ["image:*"]
         container_include_log = []
-        container_exclude_log = ["image:pubrepo.jiagouyun.com/datakit/logfwd*"]
+        container_exclude_log = ["image:pubrepo.jiagouyun.com/datakit/logfwd*", "image:pubrepo.jiagouyun.com/datakit/datakit*"]
 
         exclude_pause_container = true
 
         ## Removes ANSI escape codes from text strings
         logging_remove_ansi_escape_codes = false
-        ## Maximum length of logging, default 32766 bytes.
-        max_logging_length = 32766
 
         kubernetes_url = "https://kubernetes.default:443"
 
@@ -908,6 +1028,43 @@ data:
       [[inputs.zipkin]]
         pathV1 = "/api/v1/spans"
         pathV2 = "/api/v2/spans"
+    prom_istiod.conf: |-    
+      [[inputs.prom]] 
+        url = "http://istiod.istio-system.svc.cluster.local:15014/metrics"
+        source = "prom-istiod"
+        metric_types = ["counter", "gauge", "histogram"]
+        interval = "10s"
+        #measurement_prefix = ""
+        measurement_name = "istio_prom"
+        #[[inputs.prom.measurements]]
+        # prefix = "cpu_"
+        # name ="cpu"
+        [inputs.prom.tags]
+          app_id="istiod"
+
+    prom-ingressgateway.conf: |- 
+        [[inputs.prom]] 
+          url = "http://istio-ingressgateway-ext.istio-system.svc.cluster.local:15020/stats/prometheus"
+          source = "prom-ingressgateway"
+          metric_types = ["counter", "gauge", "histogram"]
+          interval = "10s"
+          #measurement_prefix = ""
+          measurement_name = "istio_prom"
+          #[[inputs.prom.measurements]]
+          # prefix = "cpu_"
+          # name ="cpu"
+
+    prom-egressgateway.conf: |- 
+        [[inputs.prom]] 
+          url = "http://istio-egressgateway-ext.istio-system.svc.cluster.local:15020/stats/prometheus"
+          source = "prom-egressgateway"
+          metric_types = ["counter", "gauge", "histogram"]
+          interval = "10s"
+          #measurement_prefix = ""
+          measurement_name = "istio_prom"
+          #[[inputs.prom.measurements]]
+          # prefix = "cpu_"
+          # name ="cpu"
 ```
 
 部署步骤：

@@ -88,23 +88,23 @@ metadata:
   namespace: datakit
 data:
     #### container
-    container.conf: |-           
+    container.conf: |-  
       [inputs.container]
-        endpoint = "unix:///var/run/docker.sock"
+        docker_endpoint = "unix:///var/run/docker.sock"
+        containerd_address = "/var/run/containerd/containerd.sock"
 
-        ## Containers metrics to include and exclude, default not collect. Globs accepted.
-        container_include_metric = ["image:*"]
-        container_exclude_metric = []
+        enable_container_metric = true
+        enable_k8s_metric = true
+        enable_pod_metric = true
 
         ## Containers logs to include and exclude, default collect all containers. Globs accepted.
-        container_include_log = ["image:*"]
-        container_exclude_log = ["image:pubrepo.jiagouyun.com/datakit/logfwd*"]
+        container_include_log = []
+        container_exclude_log = ["image:pubrepo.jiagouyun.com/datakit/logfwd*", "image:pubrepo.jiagouyun.com/datakit/datakit*"]
+
         exclude_pause_container = true
 
         ## Removes ANSI escape codes from text strings
         logging_remove_ansi_escape_codes = false
-        ## Maximum length of logging, default 32766 bytes.
-        max_logging_length = 32766
 
         kubernetes_url = "https://kubernetes.default:443"
 
