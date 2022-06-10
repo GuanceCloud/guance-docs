@@ -17,8 +17,8 @@
 - 安装 [Gitlab](https://about.gitlab.com/  )。
 - 安装 [Metrics-Server 组件](https://github.com/kubernetes-sigs/metrics-server#installation)。
 - 部署 harbor 仓库或其它镜像仓库。
-- 部署 Istio，已熟悉[基于 Istio 实现微服务可观测最佳实践](https://www.yuque.com/dataflux/bp/istio)**。**
-- 配置 Gitlab-runner，已熟悉 [Gitlab-CI 可观测最佳实践](https://www.yuque.com/dataflux/bp/gitlab-cicd)。
+- 部署 Istio，已熟悉 [基于 Istio 实现微服务可观测最佳实践](./cloud-native/istio.md)。
+- 配置 Gitlab-runner，已熟悉 [Gitlab-CI 可观测最佳实践](./integrations/gitlab-ci.md)。
 
 ## 部署步骤
 
@@ -164,11 +164,11 @@ DataKit 部署成功后，可以看到如下图的运行状态。
 
 ### 步骤 2： 映射 DataKit 服务
 
-使用 Istio 上报链路数据时，链路数据会被打到** **zipkin.istio-system的 Service上，且上报端口是 9411，由于 DataKit 服务的名称空间是 datakit，端口是 9529，所以这里需要做一下转换，详情请参考[Kubernetes 集群使用 ExternalName 映射 DataKit 服务](https://www.yuque.com/dataflux/bp/external-name)。
+使用 Istio 上报链路数据时，链路数据会被打到** **zipkin.istio-system的 Service上，且上报端口是 9411，由于 DataKit 服务的名称空间是 datakit，端口是 9529，所以这里需要做一下转换，详情请参考 [Kubernetes 集群使用 ExternalName 映射 DataKit 服务](./guance-skill/kubernetes-external-name.md)。
 
 ### 步骤 3： DataFlux Function 配置 DataKit
 
-在使用 Gitlab-CI 部署微服务时，为了收集 Gitlab 执行数据，需要部署 DataFlux Function 并配置 DataKit，详细步骤请参考 [Gitlab-CI 可观测最佳实践](https://www.yuque.com/dataflux/bp/gitlab-cicd)。
+在使用 Gitlab-CI 部署微服务时，为了收集 Gitlab 执行数据，需要部署 DataFlux Function 并配置 DataKit，详细步骤请参考 [Gitlab-CI 可观测最佳实践](./integrations/gitlab-ci.md)。
 
 ### 步骤 4： 部署 Bookinfo
 
@@ -182,7 +182,8 @@ DataKit 部署成功后，可以看到如下图的运行状态。
 
 ![image](../images/microservices/6.png)	 
 
-上述的 JS 需要放置到 productpage 项目所有界面都能访问到的地方，本项目把上面的 JS 复制到 **istio-1.13.2\samples\bookinfo\src\productpage\templates\productpage.html** 文件中。<br />『注意』关于 RUM 数据上报的 DataKit 地址，请参考 [RUM 数据上报 DataKit 集群最佳实践](https://www.yuque.com/dataflux/bp/datakit-cluster)。
+上述的 JS 需要放置到 productpage 项目所有界面都能访问到的地方，本项目把上面的 JS 复制到 **istio-1.13.2\samples\bookinfo\src\productpage\templates\productpage.html** 文件中。
+『注意』关于 RUM 数据上报的 DataKit 地址，请参考 [RUM 数据上报 DataKit 集群最佳实践](./scene/rum-datakit-cluster.md)。
 
 ![image](../images/microservices/7.png)	 
 

@@ -20,13 +20,16 @@
 | Java | OpenJDK 1.8.0_292 | Statsd或 jolokia<br />（本示例使用statsd） |
 
 **办公系统架构：**<br />web 页面：放置在 Nginx 中<br />注册中心：Nacos<br />网关：Gateway<br />服务模块：Auth、System<br />数据库：Mysql<br />缓存：Redis<br />备注：此demo将所有服务模块都部署在同一台服务器上，利用不同端口进行服务的访问。
+
 ![image](../images/spring-cloud-sample/1.png)	
+
 ## 观测云简介：
-**简介：**[[观测云官方简介](https://www.yuque.com/dataflux/doc/kue3dg)]<br />观测云是一款旨在解决云计算，以及云原生时代系统为每一个完整的应用构建**全链路的可观测性**的云服务平台，与传统的监控系统有着本质的区别，传统的监控系统往往都是单一领域的监控系统，就好比企业内部建立的诸多烟囱，例如 APM、RUM、日志、NPM、zabbix 等都是单一且割裂的监控体系，有应用的、日志的、基础设施的等等，现象就是烟囱林立，而且监控系统的割裂也带来监控数据的割裂，也造成了企业内部的数据孤岛，往往在企业内部进行问题排查时，通常要跨部门，跨平台，耗费大量人力物力进行异常定位。而**可观测性**的概念是通过一套完整的体系对承载业务系统的IT体系进行可观测性，包含指标、日志、链路追踪三大组件，实现统一数据采集，统一存储，统一查询，统一展现，并且将指标、链路、日志所有的可观测数据关联起来，实现IT体系完整的可观测性。观测云就是基于这个理念研发出来的可观测性解决方案，致力于提升企业内部IT服务的质量，提升最终用户体验。<br />**观测云数据流向：**
+
+**简介：**[观测云官方简介]<br />观测云是一款旨在解决云计算，以及云原生时代系统为每一个完整的应用构建**全链路的可观测性**的云服务平台，与传统的监控系统有着本质的区别，传统的监控系统往往都是单一领域的监控系统，就好比企业内部建立的诸多烟囱，例如 APM、RUM、日志、NPM、zabbix 等都是单一且割裂的监控体系，有应用的、日志的、基础设施的等等，现象就是烟囱林立，而且监控系统的割裂也带来监控数据的割裂，也造成了企业内部的数据孤岛，往往在企业内部进行问题排查时，通常要跨部门，跨平台，耗费大量人力物力进行异常定位。而**可观测性**的概念是通过一套完整的体系对承载业务系统的IT体系进行可观测性，包含指标、日志、链路追踪三大组件，实现统一数据采集，统一存储，统一查询，统一展现，并且将指标、链路、日志所有的可观测数据关联起来，实现IT体系完整的可观测性。观测云就是基于这个理念研发出来的可观测性解决方案，致力于提升企业内部IT服务的质量，提升最终用户体验。<br />**观测云数据流向：**
 
 ![image](../images/spring-cloud-sample/2.png)
 
-备注：DQL为dataflux专门开发的QL语言，用以关联查询es以及influxdb的数据。
+备注：DQL 为 dataflux专门开发的 QL 语言，用以关联查询 es 以及 influxdb 的数据。
 
 ## 安装 Datakit：
 
@@ -87,7 +90,7 @@
 
 ### Nginx：
 
-详细步骤参见文档 [[Nginx 可观测最佳实践](https://www.yuque.com/dataflux/bp/nginx)]
+详细步骤参见文档 [[Nginx 可观测最佳实践](./integrations/nginx.md)]
 前提条件：需先查看 nginx 的 **http_stub_status_module** 模块是否已打开，**如已安装该模块，请直接跳过第1步。**
 
 ![image](../images/spring-cloud-sample/7.png)
@@ -268,7 +271,7 @@ $ vim ddtrace-jvm-statsd.conf
 
 ### APM（application performance monitoring）：
 
-详细步骤参见文档[[链路追踪（APM）可观测性最佳实践](https://www.yuque.com/dataflux/bp/apm)]<br />**观测云支持的 APM 接入方式包含 ddtrace、skywalking、zipkin、jaejer 等多种支持 opentracing 协议的 APM工具，此处示例采用 ddtrace 实现 APM 方面的可观测性。**
+详细步骤参见文档 [分布式链路追踪(APM)最佳实践](./apm/apm.md) <br />**观测云支持的 APM 接入方式包含 ddtrace、skywalking、zipkin、jaejer 等多种支持 opentracing 协议的 APM工具，此处示例采用 ddtrace 实现 APM 方面的可观测性。**
 
 ##### 1、在 Datakit 中修改 APM（ddtrace）的 inputs
 

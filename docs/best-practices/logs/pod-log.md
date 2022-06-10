@@ -7,6 +7,7 @@
 ### 采集方案
 
 使用容器化部署微服务时，微服务运行在容器中。Pod 是由一个或一组紧耦合的容器组成，是 Kubernetes 中最小的调度单元，针对 Pod 中日志，本文列举了通过 DataKit 收集日志的三种方案。
+
 ### 方案一
 
 DataKit 开通 Logfwd 采集器，Logfwd 以 Sidecar 模式收集业务容器日志。
@@ -14,9 +15,11 @@ DataKit 开通 Logfwd 采集器，Logfwd 以 Sidecar 模式收集业务容器日
 #### 1 开通 Logfwd 采集器
 
 如果 Kubernetes 未集成 DataKit ，请登录[观测云](https://console.guance.com/)，【集成】->【Datakit】->【Kubernetes】，使用datakit.yaml 文件集成 DataKit 。<br />
+
 ![image](../images/pod-log/1.png)
 
-下面修改 datakit.yaml文件，把 logfwdserver.conf 文件挂载到 DataKit 的 /usr/local/datakit/conf.d/log/ 目录。<br />在 datakit.yaml 中增加如下配置：
+下面修改 datakit.yaml文件，把 logfwdserver.conf 文件挂载到 DataKit 的 /usr/local/datakit/conf.d/log/ 目录。
+在 datakit.yaml 中增加如下配置：
 
 ```bash
 ---
@@ -36,6 +39,7 @@ data:
         # some_tag = "some_value"
         # more_tag = "some_other_value"
 ```
+
 在 Daemonset 资源中增加：
 
 ```bash
@@ -46,7 +50,8 @@ data:
 
 #### 2 挂载 Pipeline
 
-修改 datakit.yaml 文件，把 pod-logging-demo.p 文件挂载到 DataKit 的 /usr/local/datakit/pipeline/ 目录。<br />在 ConfigMap 资源中增加：
+修改 datakit.yaml 文件，把 pod-logging-demo.p 文件挂载到 DataKit 的 /usr/local/datakit/pipeline/ 目录。
+在 ConfigMap 资源中增加：
 
 ```bash
     pod-logging-demo.p: |-
@@ -57,6 +62,7 @@ data:
 
         default_time(time,"Asia/Shanghai")
 ```
+
 在Daemonset资源中增加：
 
 ```bash
@@ -192,6 +198,7 @@ kubectl apply -f log-fwd-deployment.yaml
 ![image](../images/pod-log/2.png)
 
 ![image](../images/pod-log/3.png)
+
 ### 方案二
 
 DataKit 默认采集 Pod 中输出到 Stdout 中的日志。为了对日志格式进行特殊处理，通常会在部署 Pod 的Deployment 控制器的yaml文件中增加 Annotations。下面以 Springboot 的微服务项目做的一个日志采集示例，jar包是log-springboot-demo-1.0-SNAPSHOT.jar，日志使用 Logback。具体步骤如下：
@@ -221,6 +228,7 @@ DataKit 默认采集 Pod 中输出到 Stdout 中的日志。为了对日志格�
     </root>
 </configuration>
 ```
+
 #### 2 制作镜像
 
 Dockerfile 如下：
@@ -352,11 +360,14 @@ data:
 ```bash
 kuectl apply -f pod-log-service.yaml
 ```
+
 访问微服务:
+
 ```
 curl localhost:30053/ping
 ```
-登录[观测云](https://console.guance.com/) [日志]模块，输入 log-demo-service ，成功查看到日志。<br />
+
+登录[观测云](https://console.guance.com/) [日志]模块，输入 log-demo-service ，成功查看到日志。
 
 ![image](../images/pod-log/4.png)
 

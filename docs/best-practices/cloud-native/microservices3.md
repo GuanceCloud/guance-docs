@@ -206,7 +206,7 @@ kubectl replace -f virtual-service-reviews.yaml
 
 ![image](../images/microservices/80.png)
 
-『温馨提示』如果是前后端分离的项目，可以在查看器中与后端链路和日志打通。详细操作步骤请参考[Kubernetes 应用的 RUM-APM-LOG 联动分析](https://www.yuque.com/dataflux/bp/k8s-rum-apm-log)。
+『温馨提示』如果是前后端分离的项目，可以在查看器中与后端链路和日志打通。详细操作步骤请参考 [Kubernetes 应用的 RUM-APM-LOG 联动分析](./cloud-native/k8s-rum-apm-log.md)。
 
 ![image](../images/microservices/81.png)
 
@@ -230,7 +230,11 @@ kubectl replace -f virtual-service-reviews.yaml
 		
 ![image](../images/microservices/86.png)
 
-『温馨提示』更多日志采集方式，请参考：<br />[Pod 日志采集最佳实践](https://www.yuque.com/dataflux/bp/pod-log)<br />[Kubernetes 集群中日志采集的几种玩法](https://www.yuque.com/dataflux/bp/mk0gcl)
+『温馨提示』更多日志采集方式，请参考：
+
+[Pod 日志采集最佳实践](./logs/pod-log.md)
+
+[Kubernetes 集群中日志采集的几种玩法](./logs/k8s-logs.md)
 
 ## 链路超时分析
 

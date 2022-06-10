@@ -307,7 +307,7 @@ kubectl edit configmap istio -n istio-system -o yaml
 
 ![image](../images/istio/16.png)
 
-在上图中，可以看到链路数据默认推送到 zipkin.istio-system:9411 这个地址。由于 DataKit 服务的名称空间是 datakit，端口是 9529，所以这里需要做一下转换，详情请参考[Kubernetes 集群使用 ExternalName 映射 DataKit 服务](https://www.yuque.com/dataflux/bp/external-name)。
+在上图中，可以看到链路数据默认推送到 **zipkin.istio-system:9411** 这个地址。由于 DataKit 服务的名称空间是 datakit，端口是 9529，所以这里需要做一下转换，详情请参考 [Kubernetes 集群使用 ExternalName 映射 DataKit 服务](./guance-skill/kubernetes-external-name.md)。
 
 #### 增加 namespace
 
@@ -905,7 +905,7 @@ datakit 默认采集输出到 /dev/stdout 的日志，如果需要使用更深�
 
 #### log文件
 
-本示例未涉及到日志文件的采集，如需要请参考<[开启 log 采集](https://www.yuque.com/dataflux/bp/k8s-rum-apm-log#j8FFp)>
+本示例未涉及到日志文件的采集，如需要请参考<[Kubernetes 应用的 RUM-APM-LOG 联动分析](./cloud-native/k8s-rum-apm-log.md)>
 
 ### 链路超时分析
 

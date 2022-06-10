@@ -17,7 +17,7 @@ Logback日志输出除了常用的file和stdout外，还可以进行socket（TCP
 
 ### K8s下Datakit 安装配置
 
-K8s下Datakit 安装参照文档 [**Kubernetes应用的RUM-APM-LOG联动分析**](https://www.yuque.com/dataflux/bp/k8s-rum-apm-log#HGQ8d)。
+Kubernetes 下 Datakit 安装参照文档 [Kubernetes 应用的 RUM-APM-LOG 联动分析](./cloud-native/k8s-rum-apm-log.md)。
 
 #### 配置日志采集文件logging-socket-demo.conf 
 
@@ -774,12 +774,10 @@ logback-socket-service-74bd778fcf-cqcn9   1/1     Running   0          5h41m
 
 ## 相关最佳实践
 
-[**Kubernetes应用的RUM-APM-LOG联动分析**](https://www.yuque.com/dataflux/bp/k8s-rum-apm-log)
+[Kubernetes 应用的 RUM-APM-LOG 联动分析](./cloud-native/k8s-rum-apm-log.md)
 
-[观测云日志采集分析最佳实践](https://www.yuque.com/dataflux/bp/logging)
+[观测云日志采集分析最佳实践](./logs/logs.md)
 
-[Pod日志采集最佳实践 ](https://www.yuque.com/dataflux/bp/pod-log)
-
-[Java日志关联链路数据](https://www.yuque.com/dataflux/doc/yyg3lp)
+[Pod 日志采集最佳实践](./logs/pod-log.md)
 
 

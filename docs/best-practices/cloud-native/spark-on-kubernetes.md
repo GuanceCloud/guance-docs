@@ -1106,7 +1106,11 @@
 
 ## 前置条件
 
-已安装 DataKit ([DataKit安装文档](https://www.yuque.com/dataflux/datakit/datakit-install))<br />已安装 K8s 并且已经开启 K8s 指标采集 ([K8s 最佳实践](https://www.yuque.com/dataflux/bp/k8s-rum-apm-log))<br />在 k8s 集群安装部署 spark-operator 时开启 `enable.metrics` 选项进行可观测指标收集参考命令如下：
+已安装 DataKit ([DataKit安装文档](https://www.yuque.com/dataflux/datakit/datakit-install))
+
+已安装 K8s 并且已经开启 K8s 指标采集 ([Kubernetes 应用的 RUM-APM-LOG 联动分析](./cloud-native/k8s-rum-apm-log.md))
+
+在 k8s 集群安装部署 spark-operator 时开启 `enable.metrics` 选项进行可观测指标收集参考命令如下：
 
 ```
 helm upgrade my-release spark-operator/spark-operator --namespace spark-operator --create-namespace --set webhook.enable=true --set image.repository="docker.io/pacher/spark-operator" --set image.tag="v1beta2-1.2.3-3.1.1" --set enable.metrics=true --set metrics.port=10254 --set metrics.endpoint=/metrics --set metrics.prefix=sparkMonitor

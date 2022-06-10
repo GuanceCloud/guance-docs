@@ -4,7 +4,7 @@
 
 ## 应用场景介绍
 
-本文用于演示的 demo 为若依权限管理系统，具体内容可查看 [[**从 0 到 1 利用 DF 构建业务系统的可观测性**](https://www.yuque.com/dataflux/bp/sample1)]
+本文用于演示的 demo 为若依权限管理系统，具体内容可查看 [从 0 到 1 利用观测云构建 Spring cloud 服务的可观测性](./apm/spring-cloud-sample.md)
 
 企业最重要的营收来源即是业务，而现当下，绝大多数企业的业务都是由对应的IT系统承载的，那如何保障企业的业务稳健，归根到企业内部就是如何保障企业内部的IT系统。当业务系统出现异常或故障时，往往是业务、应用开发、运维等多方面同事一起协调进行问题的排查，存在跨平台，跨部门，跨专业领域等多种问题，排查既耗时又费力，为了解决这一问题，目前业界已经比较成熟的方式即是通过 RUM+APM+LOG 实现对整个业务系统的前后端、日志进行统一监控，同时将三方数据通过关键字段进行打通，实现联动分析，从而提升相关工作人员的工作效率，保障系统平稳运行。<br />**APM**:（application performance monitoring：应用性能监控）<br />**RUM**:（real user moitoring：真实用户体验监控）<br />**LOG**：（日志）<br />本文将从如何接入这三方监控，以及如何利用 df 进行联动分析的角度进行阐述。<br />关于日志，本文将使用 datakit 的 logfwd 采集器采集业务 pod 的日志，datakit 开通 logfwd 采集器，pod 增加logfwd 的 sidecar 来采集业务容器的日志，推送给 datakit，由于业务对 sidecar 是可见的，所以日志文件不需要落到宿主机上，详细使用请在 system 模块查看。datakit接收到日志后，使用配置的 pipeline 做日志文件切割。
 
@@ -544,7 +544,7 @@ spec:
 pubrepo.jiagouyun.com/datakit/dk-sidecar:1.0
 ```
 
-本示例使用的是 sidecar 的方式，如果您想直接把jar打入镜像，请下载 [dd-java-agent](https://www.yuque.com/dataflux/datakit/ddtrace-java)，并在您的 Dockerfile 中参考下面的脚本把 jar 打入中镜像中，在部署的 yaml 中 -javaagent 使用的 jar 改成您打入的即可。
+本示例使用的是 sidecar 的方式，如果您想直接把jar打入镜像，请下载 [dd-java-agent](https://dtdg.co/latest-java-tracer)，并在您的 Dockerfile 中参考下面的脚本把 jar 打入中镜像中，在部署的 yaml 中 -javaagent 使用的 jar 改成您打入的即可。
 
 ```
 FROM openjdk:8u292
@@ -987,13 +987,20 @@ Datakit 默认开启了 RUM 采集器，用户访问监测使用的 Datakit 地�
 ```
 
 **applicationId:** 应用 id。
+
 **datakitOrigin:** 是用户可访问到的 datakit 的地址或域名，这里的 172.16.0.23 0是 k8s 的 node1 的 ip 地址。
+
 **env:** 必填，应用所属环境，是 test 或 product 或其他字段。
+
 **version:** 必填，应用所属版本号。
+
 **allowedDDTracingOrigins:** RUM 与 APM 打通，配置后端服务器地址或域名，由于本示例前端和后端访问地址都是 [http://8.136.193.105:30000/](http://8.136.193.105:30000/)，在配置时需要把 30000 端口加上。
+
 **trackInteractions:** 用户行为统计，例如点击按钮，提交信息等动作。
+
 **traceType:** 非必填，默认为ddtrace，目前支持 ddtrace、zipkin、skywalking_v3、jaeger、zipkin_single_header、w3c_traceparent 6种类型。
-需要详细了解用户访问监测，请访问 [web 应用监控 (RUM) 最佳实践](https://www.yuque.com/dataflux/bp/web)。
+
+需要详细了解用户访问监测，请访问 [web 应用监控（RUM）最佳实践](./apm/web.md)。
 
 ## 应用性能监测 (APM)
 
