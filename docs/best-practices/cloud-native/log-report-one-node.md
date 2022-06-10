@@ -549,13 +549,18 @@ data:
     ]
 
 ```
+
 ### 流量验证
 
 登录集群的 master 节点，执行如下命令来生成日志。
 
-![image](../images/log-report-one-node/5.png)         登录『[观测云](https://console.guance.com/)』，进入『日志』模块，根据数据来源搜索 log_fwd_demo，找到日志点击查看详情。<br />
+![image](../images/log-report-one-node/5.png)
 
-![image](../images/log-report-one-node/6.png)       可以看到 host 与日志输出的服务器名称完全 一致，多次请求，上报的 host 还是相同。
+登录『[观测云](https://console.guance.com/)』，进入『日志』模块，根据数据来源搜索 log_fwd_demo，找到日志点击查看详情。
+
+![image](../images/log-report-one-node/6.png)
+
+可以看到 host 与日志输出的服务器名称完全 一致，多次请求，上报的 host 还是相同。
 
 ![image](../images/log-report-one-node/7.png)
 

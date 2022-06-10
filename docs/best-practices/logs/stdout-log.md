@@ -6,15 +6,15 @@
 
 已有Kubernetes环境（简称K8），本实践基于自建Kubernetesv1.23.1，观测云Datakit版本1.2.13，Nginx1.17。Datakit已经部署好，Datakit配置文件container.conf通过ConfigMap方式管理。
 
-_注：（阿里云容器服务（Alibaba Cloud Container Service for Kubernetes）或其他云服务商的Kubernetes配置原理类似。_
+注：（阿里云容器服务（Alibaba Cloud Container Service for Kubernetes）或其他云服务商的Kubernetes配置原理类似。_
 
 ## 前置条件
 Nginx日志在K8环境中的输出为Stdout方式，而非文件方式。观测云Datakit以DaemonSet部署后，默认采集K8内部所有Stdout日志输出，包括集群内部组件的Stdout输出方式，如CoreDNS（需开启日志）。本文涉及的日志均为Stdout方式输出。
 
-_注：Stdout是开发工程师写代码时，选择日志控制台的输出方式，
-如：
+注：Stdout是开发工程师写代码时，选择日志控制台的输出方式，如：
+
 ```
-<appender name="console" class="ch.qos.logback.core.ConsoleAppender">_
+<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
 ```
 ## 白名单需求
 
@@ -27,43 +27,42 @@ Datakit部署完成后，按需采集指定的业务Pod日志、K8集群组件�
 只采集集群组件coredns和nginx日志，container_include_log用正则语法编写image的名称，具体见[《根据容器 image 配置指标和日志采集》](https://www.yuque.com/dataflux/datakit/container)
 
 ```toml
-[inputs.container]
-  docker_endpoint = "unix:///var/run/docker.sock"
-  containerd_address = "/var/run/containerd/containerd.sock"
+      [inputs.container]
+        docker_endpoint = "unix:///var/run/docker.sock"
+        containerd_address = "/var/run/containerd/containerd.sock"
 
-  ## Containers metrics to include and exclude, default not collect. Globs accepted.
-  container_include_metric = []
-  container_exclude_metric = ["image:*"]
+        enable_container_metric = true
+        enable_k8s_metric = true
+        enable_pod_metric = true
 
-  ## Containers logs to include and exclude, default collect all containers. Globs accepted.
-  container_include_log = ["image:*coredns*","image:*nginx*"]
-  container_exclude_log = []
+        ## Containers logs to include and exclude, default collect all containers. Globs accepted.
+        container_include_log = ["image:*coredns*","image:*nginx*"]
+        container_exclude_log = ["image:pubrepo.jiagouyun.com/datakit/logfwd*", "image:pubrepo.jiagouyun.com/datakit/datakit*"]
 
-  exclude_pause_container = true
+        exclude_pause_container = true
 
-  ## Removes ANSI escape codes from text strings
-  logging_remove_ansi_escape_codes = false
-  ## Maximum length of logging, default 32766 bytes.
-  max_logging_length = 32766
+        ## Removes ANSI escape codes from text strings
+        logging_remove_ansi_escape_codes = false
 
-  kubernetes_url = "https://kubernetes.default:443"
+        kubernetes_url = "https://kubernetes.default:443"
 
-  ## Authorization level:
-  ##   bearer_token -> bearer_token_string -> TLS
-  ## Use bearer token for authorization. ('bearer_token' takes priority)
-  ## linux at:   /run/secrets/kubernetes.io/serviceaccount/token
-  ## windows at: C:\var\run\secrets\kubernetes.io\serviceaccount\token
-  bearer_token = "/run/secrets/kubernetes.io/serviceaccount/token"
-  # bearer_token_string = "<your-token-string>"
+        ## Authorization level:
+        ##   bearer_token -> bearer_token_string -> TLS
+        ## Use bearer token for authorization. ('bearer_token' takes priority)
+        ## linux at:   /run/secrets/kubernetes.io/serviceaccount/token
+        ## windows at: C:\var\run\secrets\kubernetes.io\serviceaccount\token
+        bearer_token = "/run/secrets/kubernetes.io/serviceaccount/token"
+        # bearer_token_string = "<your-token-string>"
 
-  [inputs.container.tags]
-    # some_tag = "some_value"
-    # more_tag = "some_other_value"
+        [inputs.container.tags]
+          # some_tag = "some_value"
+          # more_tag = "some_other_value"
 ```
 
 #### 实现效果
 
-这样就按需采集指定image名称的Pod日志，如下图：<br />
+这样就按需采集指定image名称的Pod日志，如下图：
+
 ![image](../images/stdout-log/1.png)
 
 ### 方式二 组合 container_include_log = []和 Annotation 标记

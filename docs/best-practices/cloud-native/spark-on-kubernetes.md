@@ -1321,48 +1321,33 @@ metadata:
   namespace: datakit
 data:
     #### container
-    container.conf: |-
+    container.conf: |-  
       [inputs.container]
-        endpoint = "unix:///var/run/docker.sock"
+        docker_endpoint = "unix:///var/run/docker.sock"
+        containerd_address = "/var/run/containerd/containerd.sock"
 
-        enable_metric = true
-        enable_object = true
-        enable_logging = true
+        enable_container_metric = true
+        enable_k8s_metric = true
+        enable_pod_metric = true
 
-        metric_interval = "10s"
+        ## Containers logs to include and exclude, default collect all containers. Globs accepted.
+        container_include_log = []
+        container_exclude_log = ["image:pubrepo.jiagouyun.com/datakit/logfwd*", "image:pubrepo.jiagouyun.com/datakit/datakit*"]
 
-        ## TLS Config
-        # tls_ca = "/path/to/ca.pem"
-        # tls_cert = "/path/to/cert.pem"
-        # tls_key = "/path/to/key.pem"
-        ## Use TLS but skip chain & host verification
-        # insecure_skip_verify = false
+        exclude_pause_container = true
 
-        [inputs.container.kubelet]
-          kubelet_url = "http://127.0.0.1:10255"
+        ## Removes ANSI escape codes from text strings
+        logging_remove_ansi_escape_codes = false
 
-          ## Use bearer token for authorization. ('bearer_token' takes priority)
-          ## If both of these are empty, we'll use the default serviceaccount:
-          ## at: /run/secrets/kubernetes.io/serviceaccount/token
-          # bearer_token = "/path/to/bearer/token"
-          ## OR
-          # bearer_token_string = "abc_123"
+        kubernetes_url = "https://kubernetes.default:443"
 
-          ## Optional TLS Config
-          # tls_ca = /path/to/ca.pem
-          # tls_cert = /path/to/cert.pem
-          # tls_key = /path/to/key.pem
-          ## Use TLS but skip chain & host verification
-          # insecure_skip_verify = false
-
-        #[[inputs.container.logfilter]]
-        #  filter_message = [
-        #    '''<this-is-message-regexp''',
-        #    '''<this-is-another-message-regexp''',
-        #  ]
-        #  source = "<your-source-name>"
-        #  service = "<your-service-name>"
-        #  pipeline = "<pipeline.p>"
+        ## Authorization level:
+        ##   bearer_token -> bearer_token_string -> TLS
+        ## Use bearer token for authorization. ('bearer_token' takes priority)
+        ## linux at:   /run/secrets/kubernetes.io/serviceaccount/token
+        ## windows at: C:\var\run\secrets\kubernetes.io\serviceaccount\token
+        bearer_token = "/run/secrets/kubernetes.io/serviceaccount/token"
+        # bearer_token_string = "<your-token-string>"
 
         [inputs.container.tags]
           # some_tag = "some_value"

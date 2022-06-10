@@ -17,7 +17,7 @@ Logback日志输出除了常用的file和stdout外，还可以进行socket（TCP
 
 ### K8s下Datakit 安装配置
 
-K8s下Datakit 安装参照文档[**Kubernetes应用的RUM-APM-LOG联动分析**](https://www.yuque.com/dataflux/bp/k8s-rum-apm-log#HGQ8d)。
+K8s下Datakit 安装参照文档 [**Kubernetes应用的RUM-APM-LOG联动分析**](https://www.yuque.com/dataflux/bp/k8s-rum-apm-log#HGQ8d)。
 
 #### 配置日志采集文件logging-socket-demo.conf 
 
@@ -331,23 +331,24 @@ metadata:
   namespace: datakit
 data:
     #### container
-    container.conf: |- 
+    container.conf: |-  
       [inputs.container]
-        endpoint = "unix:///var/run/docker.sock"
+        docker_endpoint = "unix:///var/run/docker.sock"
+        containerd_address = "/var/run/containerd/containerd.sock"
 
-        ## Containers metrics to include and exclude, default not collect. Globs accepted.
-        container_include_metric = []
-        container_exclude_metric = ["image:*"]
+        enable_container_metric = true
+        enable_k8s_metric = true
+        enable_pod_metric = true
 
         ## Containers logs to include and exclude, default collect all containers. Globs accepted.
-        container_include_log = ["image:*"]
-        container_exclude_log = []
+        container_include_log = []
+        container_exclude_log = ["image:pubrepo.jiagouyun.com/datakit/logfwd*", "image:pubrepo.jiagouyun.com/datakit/datakit*"]
 
         exclude_pause_container = true
 
         ## Removes ANSI escape codes from text strings
         logging_remove_ansi_escape_codes = false
-  
+
         kubernetes_url = "https://kubernetes.default:443"
 
         ## Authorization level:
@@ -645,7 +646,7 @@ ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS}   -jar ${jar} ${PARAMS}  2>&1 >
 
 #### Docker镜像发布
 
-将jar copy 到当前目录，打包镜像
+将 jar copy 到当前目录，打包镜像
 
 ```bash
 docker build -t registry.cn-shenzhen.aliyuncs.com/lr_715377484/springboot-logback-socket-appender-demo:v1 .

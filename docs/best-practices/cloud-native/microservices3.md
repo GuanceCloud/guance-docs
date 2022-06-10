@@ -150,7 +150,7 @@ Span 列表中查看每个 Span 的执行耗时。
 
 ##### 2 Istio Mesh 监控视图
 
-登录『[观测云](https://console.guance.com/)』，点击『场景』->『新建仪表板』，选择** Istio Mesh 监控视图**。在这个视图里面可以看到调用 reviews-v1 和 reviews-v2 的比例基本是 9:1.
+登录『[观测云](https://console.guance.com/)』，点击『场景』->『新建仪表板』，选择 **Istio Mesh 监控视图**。在这个视图里面可以看到调用 reviews-v1 和 reviews-v2 的比例基本是 9:1.
 
 ![image](../images/microservices/75.png)	
 
@@ -190,13 +190,13 @@ kubectl replace -f virtual-service-reviews.yaml
 
 ![image](../images/microservices/77.png)	
 
-利用这些指标可以根据自身项目需要，制作类似上步介绍的** Istio Mesh 监控视图**。 
+利用这些指标可以根据自身项目需要，制作类似上步介绍的 **Istio Mesh 监控视图**。 
 
 ## 链路
 
 ### RUM
 
-登录『 [观测云](https://console.guance.com/)』，进入『用户访问监测』，找到  **devops-bookinfo **应用，点击进入。
+登录『 [观测云](https://console.guance.com/)』，进入『用户访问监测』，找到  **devops-bookinfo** 应用，点击进入。
 
 ![image](../images/microservices/78.png)
 

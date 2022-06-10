@@ -119,38 +119,36 @@ DataKit 默认已开启 Container 采集器，这里介绍一下自定义采集�
 命名空间输入“datakit”，名称输入“datakit-conf”，键输入“container.conf”，值输入如下内容。注意，生产环境建议设置 container_include_log = [] 且 container_exclude_log = ["image:*"]，然后在需要采集log 的 Pod 上增加 annotations 来采集指定 container 的日志。
 
 ```
-[inputs.container]
-  docker_endpoint = "unix:///var/run/docker.sock"
-  containerd_address = "/var/run/containerd/containerd.sock"
+      [inputs.container]
+        docker_endpoint = "unix:///var/run/docker.sock"
+        containerd_address = "/var/run/containerd/containerd.sock"
 
-  ## Containers metrics to include and exclude, default not collect. Globs accepted.
-  container_include_metric = []
-  container_exclude_metric = ["image:*"]
+        enable_container_metric = true
+        enable_k8s_metric = true
+        enable_pod_metric = true
 
-  ## Containers logs to include and exclude, default collect all containers. Globs accepted.
-  container_include_log = []
-  container_exclude_log = ["image:pubrepo.jiagouyun.com/datakit/logfwd*"]
+        ## Containers logs to include and exclude, default collect all containers. Globs accepted.
+        container_include_log = []
+        container_exclude_log = ["image:pubrepo.jiagouyun.com/datakit/logfwd*", "image:pubrepo.jiagouyun.com/datakit/datakit*"]
 
-  exclude_pause_container = true
+        exclude_pause_container = true
 
-  ## Removes ANSI escape codes from text strings
-  logging_remove_ansi_escape_codes = false
-  ## Maximum length of logging, default 32766 bytes.
-  max_logging_length = 32766
+        ## Removes ANSI escape codes from text strings
+        logging_remove_ansi_escape_codes = false
 
-  kubernetes_url = "https://kubernetes.default:443"
+        kubernetes_url = "https://kubernetes.default:443"
 
-  ## Authorization level:
-  ##   bearer_token -> bearer_token_string -> TLS
-  ## Use bearer token for authorization. ('bearer_token' takes priority)
-  ## linux at:   /run/secrets/kubernetes.io/serviceaccount/token
-  ## windows at: C:\var\run\secrets\kubernetes.io\serviceaccount\token
-  bearer_token = "/run/secrets/kubernetes.io/serviceaccount/token"
-  # bearer_token_string = "<your-token-string>"
+        ## Authorization level:
+        ##   bearer_token -> bearer_token_string -> TLS
+        ## Use bearer token for authorization. ('bearer_token' takes priority)
+        ## linux at:   /run/secrets/kubernetes.io/serviceaccount/token
+        ## windows at: C:\var\run\secrets\kubernetes.io\serviceaccount\token
+        bearer_token = "/run/secrets/kubernetes.io/serviceaccount/token"
+        # bearer_token_string = "<your-token-string>"
 
-  [inputs.container.tags]
-    # some_tag = "some_value"
-    # more_tag = "some_other_value"
+        [inputs.container.tags]
+          # some_tag = "some_value"
+          # more_tag = "some_other_value"
 ```
 
 填写内容如下图，点击『创建』。
