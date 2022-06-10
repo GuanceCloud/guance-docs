@@ -11,6 +11,8 @@ theme:
     - search.suggest
 
 markdown_extensions:
+  - attr_list
+  - md_in_html
   - toc:
       permalink: True
   - meta
@@ -19,11 +21,15 @@ markdown_extensions:
   - pymdownx.tilde
   - pymdownx.betterem
   - pymdownx.critic
+  - pymdownx.keys
+  - pymdownx.snippets
+  - pymdownx.details
+  - pymdownx.tabbed:
+      alternate_style: true
   - pymdownx.highlight:
       anchor_linenums: true
       auto_title: false
       linenums: true
-      anchor_linenums: true
   - pymdownx.inlinehilite
   - pymdownx.superfences
   - pymdownx.emoji:

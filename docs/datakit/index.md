@@ -1,18 +1,24 @@
-# 事件
----
+# 日志
 
 ## 概述
 
-“观测云” 支持用户一站式查看和审计基于「监控」产生的全部「异常事件数据」。异常事件是由监控器触发的告警事件，包括异常告警事件和SLO事件。例如，用户可在「事件」中查看在「监控」中定义的监控器-水位监测所产生的告警事件。
+DataKit 是一款开源、一体式的数据采集 Agent，它提供全平台操作系统（Linux/Windows/macOS）支持，拥有全面数据采集能力，涵盖主机、容器、中间件、Tracing、日志以及安全巡检等各种场景。
 
 ## 主要功能
 
-- 事件的查询与检索：支持对事件数据的检索、多标签筛选和聚合查询。
-- 事件的统计分析：支持对工作空间内持续被触发的未恢复告警事件进行统计分析。
-- 分组聚合：支持基于相关检测规则对事件进行分组分析。
-- 关联事件查询；支持通过匹配事件的标签，在大量事件数据中寻找关联。
-- 数据导出：支持导出数据到本地。方便用户对操作事件数据的备份和迁移。
+## 主要功能点
 
+- 支持主机、中间件、日志、APM 等领域的指标、日志以及 Tracing 几大类数据采集
+- 完整支持 Kubernetes 云原生生态
+- [Pipeline](pipeline)：简便的结构化数据提取
+- 支持接入其它第三方数据采集
+	- [Telegraf](telegraf)
+	- [Prometheus](prom)
+	- [Statsd](statsd)
+	- [Fluentd](logstreaming)
+	- [Filebeats](beats_output)
+	- [Function](https://www.yuque.com/dataflux/func/write-data-via-datakit)
+	- Tracing 相关（[OpenTelemetry]()/[DDTrace]()/[Zipkin]()/[Jaeger]()/[Skywalking]()）
 
 ---
 
