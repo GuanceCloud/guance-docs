@@ -16,7 +16,7 @@ nav:
       - hostdir.md
       - ssh.md
       - Windows 相关:
-        - 'Windows 事件': integrations/windows_event.md
+        - 'Windows 事件': windows_event.md
         - iis.md
 
   - '云原生':
