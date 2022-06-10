@@ -1,0 +1,8 @@
+nav:
+  - '创建一个仪表板': create.md
+  - '获取仪表板列表': list.md
+  - '删除一个仪表板': delete.md
+  - '修改一个仪表板': modify.md
+  - '获取一个仪表板': get.md
+  - '导出一个仪表板': export.md
+  - '导入一个仪表板': import.md

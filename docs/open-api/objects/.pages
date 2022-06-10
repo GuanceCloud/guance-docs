@@ -1,0 +1,3 @@
+nav:
+  - '获取所有label': labels.md
+  - '修改某台主机一个/多个label': modify-labels.md

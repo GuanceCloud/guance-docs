@@ -1,0 +1,4 @@
+nav:
+  - '获取笔记列表': list.md
+  - '导出一个笔记': export.md
+  - '导入一个笔记': import.md
