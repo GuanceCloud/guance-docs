@@ -1,2 +1,19 @@
 nav:
-  - index.md
+  - '使用API': index.md
+  - '公共请求参数': public-request-params.md
+  - '公共响应结构': public-response-params.md
+  - '签名认证': signature-certification.md
+  - '使用限制': api-limit.md
+  - '请求示例': example.md
+  - '公共错误定义': error-definition.md
+  - '常量配置': const
+  - '仪表板': board
+  - '笔记': notes
+  - '事件': keyevent
+  - '基础设施': objects
+  - '监视器分组': monitor
+  - '监视器': checker
+  - '静默配置': mute
+  - '工作空间成员': workspace-member
+  - '工作空间': workspace
+  - '快照': snapshot

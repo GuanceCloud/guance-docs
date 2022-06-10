@@ -1,0 +1,6 @@
+nav:
+  - '获取监控器列表': list.md
+  - '创建一个监控器': create.md
+  - '导出一个/多个监控器': export.md
+  - '导入一个/多个监控器': import.md
+  - '删除一个/多个监控器': delete.md
