@@ -2,7 +2,7 @@
 # DiskIO
 
 - DataKit 版本：1.4.0
-- 文档发布日期：2022-06-10 10:51:49
+- 文档发布日期：2022-06-12 10:58:47
 - 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
 diskio 采集器用于磁盘流量和时间的指标的采集
