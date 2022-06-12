@@ -1,7 +1,7 @@
 
 
 - DataKit 版本：1.4.0
-- 文档发布日期：2022-06-10 10:51:49
+- 文档发布日期：2022-06-12 10:58:47
 - 操作系统支持：全平台
 
 # Apply Pipeline Onto Datakit Tracing

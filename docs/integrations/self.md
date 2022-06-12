@@ -2,7 +2,7 @@
 # DataKit 自身指标
 
 - DataKit 版本：1.4.0
-- 文档发布日期：2022-06-10 10:51:49
+- 文档发布日期：2022-06-12 10:58:47
 - 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
 self 采集器用于 DataKit 自身基本信息的采集，包括运行环境信息、CPU、内存占用情况等。

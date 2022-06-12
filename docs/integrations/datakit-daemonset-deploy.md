@@ -2,7 +2,7 @@
 # DaemonSet 安装 DataKit 
 
 - DataKit 版本：1.4.0
-- 文档发布日期：2022-06-10 10:51:49
+- 文档发布日期：2022-06-12 10:58:47
 - 操作系统支持：Linux
 
 本文档介绍如何在 K8s 中通过 DaemonSet 方式安装 DataKit。

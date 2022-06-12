@@ -2,7 +2,7 @@
 # Apache
 
 - DataKit 版本：1.4.0
-- 文档发布日期：2022-06-10 10:51:49
+- 文档发布日期：2022-06-12 10:58:47
 - 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
 Apache 采集器可以从 Apache 服务中采集请求数、连接数等，并将指标采集到观测云，帮助监控分析 Apache 各种异常情况。

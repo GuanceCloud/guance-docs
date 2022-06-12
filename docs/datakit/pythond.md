@@ -2,7 +2,7 @@
 # 用 Python 开发自定义采集器
 
 - DataKit 版本：1.4.0
-- 文档发布日期：2022-06-10 10:51:49
+- 文档发布日期：2022-06-12 09:24:51
 - 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
 pythond 是定时触发用户自定义 python 采集脚本的一整套方案。
