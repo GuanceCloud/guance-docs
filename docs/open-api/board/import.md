@@ -1,5 +1,7 @@
 # 导入一个仪表板
 
+---
+
 <br />**post /api/v1/dashboards/\{dashboard_uuid\}/import**
 
 ## 概述
@@ -42,7 +44,7 @@ curl '<Endpoint>/api/v1/dashboards/dsbd_f3859af942c3466cb50b7f6d83f72a8e/import'
 
 
 ## 响应
-```python
+```shell
 {
     "code": 200,
     "content": {

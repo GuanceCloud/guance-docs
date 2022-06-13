@@ -1,5 +1,7 @@
 # 获取当前工作空间信息
 
+---
+
 <br />**get /api/v1/workspace/get**
 
 ## 概述
@@ -26,7 +28,7 @@ curl '<Endpoint>/api/v1/workspace/get' \
 
 
 ## 响应
-```python
+```shell
 {
     "code": 200,
     "content": {

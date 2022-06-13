@@ -1,5 +1,7 @@
 # 获取未恢复事件的列表
 
+---
+
 <br />**post /api/v1/events/abnormal/list**
 
 ## 概述
@@ -90,7 +92,7 @@ curl '<Endpoint>/api/v1/events/abnormal/list' \
 
 
 ## 响应
-```python
+```shell
 {
     "code": 200,
     "content": {

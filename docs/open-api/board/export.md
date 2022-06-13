@@ -1,5 +1,7 @@
 # 导出一个仪表板
 
+---
+
 <br />**get /api/v1/dashboards/\{dashboard_uuid\}/export**
 
 ## 概述
@@ -33,7 +35,7 @@ curl '<Endpoint>/api/v1/dashboards/dsbd_88b11831870a4446894034668043eb89/export'
 
 
 ## 响应
-```python
+```shell
 {
     "code": 200,
     "content": {

@@ -1,5 +1,7 @@
 # 删除一个仪表板
 
+---
+
 <br />**post /api/v1/dashboards/\{dashboard_uuid\}/delete**
 
 ## 概述
@@ -35,7 +37,7 @@ curl '<Endpoint>/api/v1/dashboards/dsbd_501b8277ba88479b82020dbfc92e110c/delete'
 
 
 ## 响应
-```python
+```shell
 {
     "code": 200,
     "content": {

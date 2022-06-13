@@ -1,5 +1,7 @@
 # 获取所有label
 
+---
+
 <br />**post /api/v1/object/hosts/label/list**
 
 ## 概述
@@ -35,7 +37,7 @@ curl '<Endpoint>/api/v1/object/hosts/label/list' \
 
 
 ## 响应
-```python
+```shell
 {
     "code": 200,
     "content": {
