@@ -5,3 +5,4 @@ nav:
   - 分布式链路追踪(APM)最佳实践: apm.md
   - web 应用监控（RUM）最佳实践: web.md
   - iOS 可观测最佳实践: ios.md
+  - GraalVM 与 Spring Native 项目实现链路可观测: spring-native.md
