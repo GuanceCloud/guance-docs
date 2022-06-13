@@ -66,6 +66,17 @@ def load_doc_list(doc_dir):
 
     return doc_list
 
+def prepare_doc(doc):
+    # 标题下插入分隔符
+    _lines = doc.split('\n', 1)
+    _lines.insert(1, '---\n')
+    doc = '\n'.join(_lines)
+
+    # 替换为 docs.guance.com
+    doc = doc.replace('https://func.guance.com/doc/', 'https://docs.guance.com/dataflux-func/')
+
+    return doc
+
 def download_docs(doc_list, doc_dir, base_url):
     if not base_url.endswith('/'):
         base_url += '/'
@@ -75,21 +86,19 @@ def download_docs(doc_list, doc_dir, base_url):
         doc_url  = urljoin(base_url, doc_file)
 
         # 下载文档
-        md_lines = requests.get(doc_url).text.splitlines()
+        doc = requests.get(doc_url).text
+        doc = prepare_doc(doc)
+        with open(doc_path, 'w') as _f:
+            _f.write(doc)
 
-        # 提取并转换图片路径
+        # 提取图片路径并下载
         images = []
-        for i, line in enumerate(md_lines):
+        for i, line in enumerate(doc.splitlines()):
             m = re.match('^\!\[(.*)\]\((.*)\)$', line.strip())
             if not m:
                 continue
-
-            img = os.path.normpath(os.path.join(doc_file, '..', m[2])) # xxx/yyy.png
-            images.append(img)
-            md_lines[i] = f'![{m[1]}]({img})'
-
-        with open(doc_path, 'w') as _f:
-            _f.write('\n'.join(md_lines))
+            else:
+                images.append(m[2])
 
         if images:
             for img in images:

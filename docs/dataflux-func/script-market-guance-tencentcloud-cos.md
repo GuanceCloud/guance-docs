@@ -1,8 +1,10 @@
 # 采集器「腾讯云-COS」配置手册
+---
+
 
 阅读本文前，请先阅读：
 
-- [观测云集成简介](https://func.guance.com/doc/func-script-market-guance-integration-intro)
+- [观测云集成简介](https://docs.guance.com/dataflux-func/script-market-guance-integration-intro)
 
 提示：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包
 
@@ -61,3 +63,4 @@ tencentcloud_configs = {
 
 - [地域和可用区](https://cloud.tencent.com/document/product/436/6224)
 - [对象存储COS](https://cloud.tencent.com/document/product/436/8291)
+

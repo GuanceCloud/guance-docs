@@ -1,4 +1,6 @@
 # 快速开始
+---
+
 
 DataFlux Func 是一个基于Python 的脚本开发、管理、执行平台。
 
@@ -48,8 +50,8 @@ DataFlux Func 是一个基于Python 的脚本开发、管理、执行平台。
 
 如希望在树莓派上安装，请参考以下文章：
 
-- [在树莓派上运行 - Ubuntu Server 64-bit](https://func.guance.com/doc/func-run-on-raspberry-pi-ubuntu)
-- [在树莓派上运行 - 官方Raspberry Pi OS](https://func.guance.com/doc/func-run-on-raspberry-pi-os)
+- [在树莓派上运行 - Ubuntu Server 64-bit](https://docs.guance.com/dataflux-func/run-on-raspberry-pi-ubuntu)
+- [在树莓派上运行 - 官方Raspberry Pi OS](https://docs.guance.com/dataflux-func/run-on-raspberry-pi-os)
 
 ### 1.2 软件准备
 

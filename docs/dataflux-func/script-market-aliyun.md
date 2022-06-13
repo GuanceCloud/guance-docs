@@ -1,4 +1,6 @@
 # 阿里云数据同步
+---
+
 
 ##### 旧版提示: 本脚本包可以继续使用，但建议迁移至新版「观测云集成」系列脚本。
 
@@ -17,12 +19,12 @@
 本文假设用户已经了解并安装了相关脚本包。
 有关如何在DataFlux Func 的脚本市场中安装脚本版，请参考：
 
-- [脚本市场简介](https://func.guance.com/doc/func-script-market-intro)
+- [脚本市场简介](https://docs.guance.com/dataflux-func/script-market-intro)
 
 本文假设用户已经在DataFlux Func 中正确连接了DataKit。
 有关如何在DataFlux Func 中连接DataKit，请参考：
 
-- [连接并操作DataKit](https://func.guance.com/doc/func-connect-to-datakit)
+- [连接并操作DataKit](https://docs.guance.com/dataflux-func/connect-to-datakit)
 
 ## 2. 关于本脚本包
 
@@ -271,3 +273,4 @@ def run():
 
 - [通过百度搜索](https://www.baidu.com/s?wd=%E6%A6%82%E8%A7%88%20%E7%9B%91%E6%8E%A7%E9%A1%B9%E7%B4%A2%E5%BC%95%E8%A1%A8%20site%3Ahelp.aliyun.com)
 - [通过必应搜索](https://cn.bing.com/search?q=%E6%A6%82%E8%A7%88+%E7%9B%91%E6%8E%A7%E9%A1%B9%E7%B4%A2%E5%BC%95%E8%A1%A8+site%3Ahelp.aliyun.com&qs=n&form=QBLH&sp=-1&pq=%E6%A6%82%E8%A7%88+%E7%9B%91%E6%8E%A7%E9%A1%B9%E7%B4%A2%E5%BC%95%E8%A1%A8+site%3Ahelp.aliyun.com)
+

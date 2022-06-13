@@ -1,4 +1,6 @@
 # 连接并操作DataKit
+---
+
 
 本文档主要介绍如何使用本系统连接Datakit。
 
@@ -12,13 +14,13 @@
 
 有关DataFlux Func 的安装，请参考：
 
-- [DataFlux Func 快速开始](https://func.guance.com/doc/func-quick-start)
+- [DataFlux Func 快速开始](https://docs.guance.com/dataflux-func/quick-start)
 
 有关DataFlux Func 的使用、维护，请参考：
 
-- [DataFlux Func 用户手册](https://func.guance.com/doc/func-user-guide)
-- [DataFlux Func 开发手册](https://func.guance.com/doc/func-development-guide)
-- [DataFlux Func 维护手册](https://func.guance.com/doc/func-maintenance-guide)
+- [DataFlux Func 用户手册](https://docs.guance.com/dataflux-func/user-guide)
+- [DataFlux Func 开发手册](https://docs.guance.com/dataflux-func/development-guide)
+- [DataFlux Func 维护手册](https://docs.guance.com/dataflux-func/maintenance-guide)
 
 ## 2. 确保DataKit 数据源及联通性
 
@@ -98,4 +100,4 @@ def datakit_demo():
 
 有关DataKit 操作对象的完整API文档，请参考：
 
-- [DataFlux Func 开发手册](https://func.guance.com/doc/func-development-guide) 中的「DataKit」章节
+- [DataFlux Func 开发手册](https://docs.guance.com/dataflux-func/development-guide) 中的「DataKit」章节
