@@ -72,8 +72,8 @@ def prepare_doc(doc):
     _lines.insert(1, '---\n')
     doc = '\n'.join(_lines)
 
-    # 替换为 docs.guance.com
-    doc = doc.replace('https://func.guance.com/doc/', 'https://docs.guance.com/dataflux-func/')
+    doc = doc.replace('https://func.guance.com/doc/', '/dataflux-func/')
+    doc = doc.replace('https://www.yuque.com/dataflux/', '/')
 
     return doc
 

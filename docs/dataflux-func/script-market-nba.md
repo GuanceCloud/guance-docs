@@ -17,12 +17,12 @@ NBA赛季一般从每年10月持续到次年6月，总共有1230场比赛，大�
 本文假设用户已经了解并安装了相关脚本包。
 有关如何在DataFlux Func 的脚本市场中安装脚本版，请参考：
 
-- [脚本市场简介](https://docs.guance.com/dataflux-func/script-market-intro)
+- [脚本市场简介](/dataflux-func/script-market-intro)
 
 本文假设用户已经在DataFlux Func 中正确连接了DataKit。
 有关如何在DataFlux Func 中连接DataKit，请参考：
 
-- [连接并操作DataKit](https://docs.guance.com/dataflux-func/connect-to-datakit)
+- [连接并操作DataKit](/dataflux-func/connect-to-datakit)
 
 本脚本包基于「[聚合数据](https://www.juhe.cn/)」提供的API实现，
 用户在使用本脚本包时，请先登录注册「聚合数据」，并获取Key后使用。

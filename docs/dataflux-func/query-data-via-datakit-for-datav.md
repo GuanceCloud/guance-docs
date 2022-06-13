@@ -19,7 +19,7 @@ DataFlux Func 作为Python 脚本管理、运行平台，可以提供更灵活�
 本文假设用户已经在DataFlux Func 中正确连接了DataKit。
 有关如何在DataFlux Func 中连接DataKit，请参考：
 
-- [连接并操作DataKit](https://docs.guance.com/dataflux-func/connect-to-datakit)
+- [连接并操作DataKit](/dataflux-func/connect-to-datakit)
 
 ## 2. 编写数据查询函数
 

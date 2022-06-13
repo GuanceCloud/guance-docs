@@ -38,8 +38,8 @@
 
 如希望在树莓派上安装，请参考以下文章：
 
-- [在树莓派上运行 - Ubuntu Server 64-bit](https://docs.guance.com/dataflux-func/run-on-raspberry-pi-ubuntu)
-- [在树莓派上运行 - 官方Raspberry Pi OS](https://docs.guance.com/dataflux-func/run-on-raspberry-pi-os)
+- [在树莓派上运行 - Ubuntu Server 64-bit](/dataflux-func/run-on-raspberry-pi-ubuntu)
+- [在树莓派上运行 - 官方Raspberry Pi OS](/dataflux-func/run-on-raspberry-pi-os)
 
 ### 1.2 软件准备
 
@@ -87,7 +87,7 @@
 | `x86_64`  | Ubuntu 16.04 LTS           | 虚拟机         | 兼容     |                                                                                                                   |
 | `x86_64`  | Ubuntu 14.04 LTS           | 虚拟机         | *不兼容* | 因Docker新特性要求，<br>无法使用新版Docker                                                                        |
 | `aarch64` | Ubuntu 18.04 LTS           | 阿里云         | 兼容     |                                                                                                                   |
-| `aarch64` | Ubuntu 20.04 LTS           | 树莓派4B 8GB版 | 兼容     | 详细请参考[在树莓派上运行 - Ubuntu Server 64-bit](https://docs.guance.com/dataflux-func/run-on-raspberry-pi-ubuntu) |
+| `aarch64` | Ubuntu 20.04 LTS           | 树莓派4B 8GB版 | 兼容     | 详细请参考[在树莓派上运行 - Ubuntu Server 64-bit](/dataflux-func/run-on-raspberry-pi-ubuntu) |
 
 #### 1.3.2 Debian 各版本实测
 
@@ -97,7 +97,7 @@
 | `x86_64`  | Debian 9.6 "stretch"                 | 阿里云         | 兼容   |                                                                                                                                               |
 | `x86_64`  | Debian 8.11 "jessie"                 | 阿里云         | 兼容   |                                                                                                                                               |
 | `aarch64` | Debian 10.9 "buster"                 | 阿里云         | 兼容   |                                                                                                                                               |
-| `aarch64` | Raspberry Pi OS (Debain 10 "buster") | 树莓派4B 8GB版 | 兼容   | 需要树莓派开启`arm64_bit`模式<br>详细请参考[在树莓派上运行 - 官方Raspberry Pi OS](https://docs.guance.com/dataflux-func/run-on-raspberry-pi-os) |
+| `aarch64` | Raspberry Pi OS (Debain 10 "buster") | 树莓派4B 8GB版 | 兼容   | 需要树莓派开启`arm64_bit`模式<br>详细请参考[在树莓派上运行 - 官方Raspberry Pi OS](/dataflux-func/run-on-raspberry-pi-os) |
 
 #### 1.3.3 CentOS 各版本实测
 

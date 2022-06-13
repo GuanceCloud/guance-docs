@@ -18,9 +18,9 @@
 
 | 相关文档                                       | 链接                                                                        |
 | ---------------------------------------------- | --------------------------------------------------------------------------- |
-| 有关如何安装DataFlux Func                      | [DataFlux Func 快速开始](https://docs.guance.com/dataflux-func/quick-start)   |
-| 有关如何在DataFlux Func 的脚本市场中安装脚本包 | [脚本市场简介](https://docs.guance.com/dataflux-func/script-market-intro)     |
-| 有关如何在DataFlux Func 中连接DataKit          | [连接并操作DataKit](https://docs.guance.com/dataflux-func/connect-to-datakit) |
+| 有关如何安装DataFlux Func                      | [DataFlux Func 快速开始](/dataflux-func/quick-start)   |
+| 有关如何在DataFlux Func 的脚本市场中安装脚本包 | [脚本市场简介](/dataflux-func/script-market-intro)     |
+| 有关如何在DataFlux Func 中连接DataKit          | [连接并操作DataKit](/dataflux-func/connect-to-datakit) |
 
 ## 2. 关于「阿里云集成」系列脚本包
 
