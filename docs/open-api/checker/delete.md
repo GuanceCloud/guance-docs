@@ -1,5 +1,7 @@
 # 删除一个/多个监控器
 
+---
+
 <br />**post /api/v1/monitor/check/delete**
 
 ## 概述
@@ -34,7 +36,7 @@ curl '<Endpoint>/api/v1/monitor/check/delete' \
 
 
 ## 响应
-```python
+```shell
 {
     "code": 200,
     "content": true,

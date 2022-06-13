@@ -1,5 +1,7 @@
 # 创建一个监控器分组
 
+---
+
 <br />**post /api/v1/monitor/group/create**
 
 ## 概述
@@ -85,7 +87,7 @@ curl '<Endpoint>/api/v1/monitor/group/create' \
 
 
 ## 响应
-```python
+```shell
 {
     "code": 200,
     "content": {

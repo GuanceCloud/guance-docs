@@ -1,5 +1,7 @@
 # 修改某台主机一个/多个label
 
+---
+
 <br />**post /api/v1/object/hosts/\{host\}/label/modify**
 
 ## 概述
@@ -31,7 +33,7 @@
 
 
 ## 响应
-```python
+```shell
 {
     "code": 200,
     "content": true,

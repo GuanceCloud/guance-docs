@@ -1,5 +1,7 @@
 # 修改一个仪表板
 
+---
+
 <br />**post /api/v1/dashboards/\{dashboard_uuid\}/modify**
 
 ## 概述
@@ -33,7 +35,7 @@
 
 
 ## 响应
-```python
+```shell
 {
     "code": 200,
     "content": {

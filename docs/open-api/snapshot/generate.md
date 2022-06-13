@@ -1,5 +1,7 @@
 # 创建一个快照
 
+---
+
 <br />**post /api/v1/snapshots/create**
 
 ## 概述
@@ -36,7 +38,7 @@ curl '<Endpoint>/api/v1/snapshots/create' \
 
 
 ## 响应
-```python
+```shell
 {
     "code": 200,
     "content": {
