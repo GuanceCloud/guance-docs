@@ -1,5 +1,7 @@
 # 概述
 
+---
+
 观测云 Open API 是一个简化的 HTTP REST API。
 * 只有 GET / POST 请求
 * 使用面向资源的 URL 调用 API

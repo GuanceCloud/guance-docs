@@ -1,5 +1,7 @@
 # 获取笔记列表
 
+---
+
 <br />**get /api/v1/notes/list**
 
 ## 概述
@@ -33,7 +35,7 @@ curl '<Endpoint>/api/v1/notes/list' \
 
 
 ## 响应
-```python
+```shell
 {
     "code": 200,
     "content": {

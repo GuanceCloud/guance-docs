@@ -1,5 +1,7 @@
 # 启用一个静默规则
 
+---
+
 <br />**post /api/v1/monitor/mute/\{mute_uuid\}/enable**
 
 ## 概述
@@ -35,7 +37,7 @@ curl '<Endpoint>/api/v1/monitor/mute/mute_d0736e059fd74d859cdcdce102687378/enabl
 
 
 ## 响应
-```python
+```shell
 {
     "code": 200,
     "content": true,

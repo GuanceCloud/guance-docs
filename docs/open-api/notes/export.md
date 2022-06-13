@@ -1,5 +1,7 @@
 # 导出一个笔记
 
+---
+
 <br />**get /api/v1/notes/\{notes_uuid\}/export**
 
 ## 概述
@@ -62,7 +64,7 @@ curl '<Endpoint>/api/v1/notes/notes_dec0b0bc6e6d4b41aa627132887de4dc/export' \
 
 
 ## 响应
-```python
+```shell
 {
     "code": 200,
     "content": {

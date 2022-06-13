@@ -1,5 +1,7 @@
 # 获取一个仪表板
 
+---
+
 <br />**get /api/v1/dashboards/\{dashboard_uuid\}/get**
 
 ## 概述
@@ -33,7 +35,7 @@ curl '<Endpoint>/api/v1/dashboards/dsbd_501b8277ba88479b82020dbfc92e110c/get' \
 
 
 ## 响应
-```python
+```shell
 {
     "code": 200,
     "content": {

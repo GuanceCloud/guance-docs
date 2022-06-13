@@ -1,5 +1,7 @@
 # 删除一个静默规则
 
+---
+
 <br />**post /api/v1/monitor/mute/\{mute_uuid\}/delete**
 
 ## 概述
@@ -35,7 +37,7 @@ curl '<Endpoint>/api/v1/monitor/mute/None/delete' \
 
 
 ## 响应
-```python
+```shell
 {
     "code": 200,
     "content": {},

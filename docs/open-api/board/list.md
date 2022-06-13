@@ -1,5 +1,7 @@
 # 获取仪表板列表
 
+---
+
 <br />**get /api/v1/dashboards/list**
 
 ## 概述
@@ -35,7 +37,7 @@ curl '<Endpoint>/api/v1/dashboards/list?pageIndex=1&pageSize=10' \
 
 
 ## 响应
-```python
+```shell
 {
     "code": 200,
     "content": [

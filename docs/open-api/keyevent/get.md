@@ -1,5 +1,7 @@
 # 获取一个事件的内容
 
+---
+
 <br />**get /api/v1/events/\{doc_id\}/get**
 
 ## 概述
@@ -33,7 +35,7 @@ curl '<Endpoint>/api/v1/events/E_c7jodqs24loo3v53qc30/get' \
 
 
 ## 响应
-```python
+```shell
 {
     "code": 200,
     "content": {

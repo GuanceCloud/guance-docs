@@ -1,5 +1,7 @@
 # 删除一个快照
 
+---
+
 <br />**post /api/v1/snapshots/\{snapshot_uuid\}/delete**
 
 ## 概述
@@ -35,7 +37,7 @@ curl '<Endpoint>/api/v1/snapshots/snap_f21905829a2946a7a22dc5e2b9280b26/delete' 
 
 
 ## 响应
-```python
+```shell
 {
     "code": 200,
     "content": true,
