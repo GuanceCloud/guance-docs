@@ -1,8 +1,8 @@
 
 # Net
+---
 
 - DataKit 版本：1.4.0
-- 文档发布日期：2022-06-12 09:24:51
 - 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
 net 采集器用于采集主机网络信息，如各网络接口的流量信息等。对于 Linux 将采集系统范围 TCP 和 UDP 统计信息。

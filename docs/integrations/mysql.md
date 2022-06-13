@@ -1,8 +1,8 @@
 
 # MySQL
+---
 
 - DataKit 版本：1.4.0
-- 文档发布日期：2022-06-12 10:58:47
 - 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
 MySQL 指标采集，收集以下数据：

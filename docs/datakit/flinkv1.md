@@ -1,8 +1,8 @@
 
 # Flink
+---
 
 - DataKit 版本：1.4.0
-- 文档发布日期：2022-06-12 09:24:51
 - 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
 Flink 采集器可以从 Flink 实例中采取很多指标，比如 Flink 服务器状态和网络的状态等多种指标，并将指标采集到 DataFlux ，帮助你监控分析 Flink 各种异常情况。
