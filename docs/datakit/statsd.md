@@ -1,8 +1,8 @@
 
 # Statsd 数据接入
+---
 
 - DataKit 版本：1.4.0
-- 文档发布日期：2022-06-12 09:24:51
 - 操作系统支持：`windows,linux,darwin`
 
 statsd 采集器用于接收网络上发送过来的 statsd 数据。
