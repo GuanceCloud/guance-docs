@@ -2,12 +2,12 @@
 ---
 
 
-“观测云” 支持通过调用 Open API 接口的方式来获取和更新观测云工作空间的数据，关于 API 详细清单，可查看 [观测云 OpenAPI 文档库](外链到OpenAPI 文档库) 。
+“观测云” 支持通过调用 Open API 接口的方式来获取和更新观测云工作空间的数据，关于 API 详细清单，可查看 [观测云 OpenAPI 文档库](../open-api/open-api.md) 。
 
 
 ## 认证方式
 
-在调用 API 接口前，需要先创建 API Key 作为认证方式。关于如何创建 API Key，可参考文档 [API Key 管理](./17-工作空间管理/03-API-Key.md) 。
+在调用 API 接口前，需要先创建 API Key 作为认证方式。关于如何创建 API Key，可参考文档 [API Key 管理](../../management/api-key.md) 。
 
 接口以 API KEY 为认证方式，每一次请求使用请求体 Header 中的 DF-API-KEY 的值作为有效性检验，以及本次请求的工作空间限定依据（取此 DF-API-KEY 所属的工作空间）。
 
@@ -112,4 +112,4 @@ curl -X GET "https://openapi.guance.com/api/v1/validate" \
 
 ---
 
-观测云是一款面向开发、运维、测试及业务团队的实时数据监测平台，能够统一满足云、云原生、应用及业务上的监测需求，快速实现系统可观测。**立即前往观测云，开启一站式可观测之旅：**[www.guance.com](https://www.guance.com)<br />![](../img/logo_2.png)
+
