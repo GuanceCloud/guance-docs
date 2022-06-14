@@ -7,15 +7,15 @@
 
 ## 前置条件
 
-- 安装 DataKit（[DataKit 安装文档](https://www.yuque.com/dataflux/datakit/datakit-how-to)）
+- 安装 DataKit（[DataKit 安装文档](../../datakit/datakit-how-to.md)）
 
-## Android 应用接入
+## Android 应用接入 
 
 登录 “观测云” 控制台，进入「应用监测」页面，点击右上角「新建应用」，在新窗口输入「应用名称」，点击「创建」，即可开始配置。
 
 ![](../img/image_4.png)
 
-## 安装
+## 安装 {#setup}
 
 ![](https://img.shields.io/maven-metadata/v?label=ft-sdk&metadataUrl=https%3A%2F%2Fmvnrepo.jiagouyun.com%2Frepository%2Fmaven-releases%2Fcom%2Fcloudcare%2Fft%2Fmobile%2Fsdk%2Ftracker%2Fagent%2Fft-sdk%2Fmaven-metadata.xml#crop=0&crop=0&crop=1&crop=1&id=qIyeD&originHeight=20&originWidth=138&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)![](https://img.shields.io/maven-metadata/v?label=ft-native&metadataUrl=https%3A%2F%2Fmvnrepo.jiagouyun.com%2Frepository%2Fmaven-releases%2Fcom%2Fcloudcare%2Fft%2Fmobile%2Fsdk%2Ftracker%2Fagent%2Fft-native%2Fmaven-metadata.xml#crop=0&crop=0&crop=1&crop=1&id=mC9jW&originHeight=20&originWidth=152&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)![](https://img.shields.io/maven-metadata/v?label=ft-plugin&metadataUrl=https%3A%2F%2Fmvnrepo.jiagouyun.com%2Frepository%2Fmaven-releases%2Fcom%2Fcloudcare%2Fft%2Fmobile%2Fsdk%2Ftracker%2Fplugin%2Fft-plugin%2Fmaven-metadata.xml#crop=0&crop=0&crop=1&crop=1&id=RzYsx&originHeight=20&originWidth=152&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
 
@@ -23,7 +23,7 @@ Demo：[https://github.com/GuanceCloud/datakit-android/demo](https://github.com/
 
 源码地址：[https://github.com/GuanceCloud/datakit-android](https://github.com/GuanceCloud/datakit-android)
 
-### Gradle 配置
+### Gradle 配置 
 
 在项目的根目录的 `build.gradle` 文件中添加 `DataFlux SDK` 的远程仓库地址
 
@@ -54,12 +54,12 @@ allprojects {
 }
 ```
 
-在项目主模块( app 模块)的 `build.gradle` 文件中添加 `DataFlux SDK` 的依赖及 `DataFlux Plugin` 的使用 和 Java 8 的支持
+在项目主模块 `app` 的 `build.gradle` 文件中添加 `DataFlux SDK` 的依赖及 `DataFlux Plugin` 的使用 和 Java 8 的支持
 
 ```groovy
 dependencies {
     //添加 DataFlux SDK 的依赖
-    implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-sdk:1.3.5-beta01'
+    implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-sdk:1.3.5-beta02'
     //捕获 native 层崩溃信息的依赖，需要配合 ft-sdk 使用不能单独使用
     implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-native:1.0.0-alpha04'
     //推荐使用这个版本，其他版本未做过充分兼容测试
@@ -117,12 +117,12 @@ class DemoApplication : Application() {
 | **方法名** | **含义** | **必须** | **注意** |
 | --- | --- | --- | --- |
 | metricsUrl | Datakit 安装地址 | 是 | datakit 安装地址 IP 地址，安装 SDK 设备需能访问这地址 |
-| setUseOAID | 是否使用 `OAID` 唯一识别 | 否 | 默认为 `false`，开启后替换 deviceUUID 进行使用，[了解 OAID](#as3yK) |
+| setUseOAID | 是否使用 `OAID` 唯一识别 | 否 | 默认为 `false`，开启后替换 deviceUUID 进行使用，[了解 OAID](#OAID) |
 | setXDataKitUUID | 设置数据采集端的识别 ID | 否 | 默认为随机`uuid` |
 | setDebug | 是否开启调试模式 | 否 | 默认为 `false`，开启后方可打印 SDK 运行日志 |
 | setEnv | 设置采集环境 | 否 | 默认为 `EnvType.PROD` |
 | setOnlySupportMainProcess | 是否只支持在主进程运行 | 否 | 默认为 `true` ，如果需要在其他进程中执行需要将该字段设置为 `false` |
-| addGlobalContext | 添加 SDK 全局属性 | 否 | 添加规则请查阅[此处](#IsVt4) |
+| addGlobalContext | 添加 SDK 全局属性 | 否 | 添加规则请查阅[此处](#key-conflict) |
 
 ### RUM 配置
 
@@ -143,15 +143,15 @@ FTSdk.initRUMWithConfig(
 
 | **方法名** | **含义** | **必须** | **注意** |
 | --- | --- | --- | --- |
-| setRumAppId | 设置`Rum AppId` | 是 | 对应设置 RUM `appid`，才会开启`RUM`的采集功能，[获取 appid 方法](#e2b33ee3) |
-| setEnableTrackAppCrash | 是否上报 App 崩溃日志 | 否 | 默认为 `false`，开启后会在错误分析中显示错误堆栈数据。<br> [关于崩溃日志中混淆内容转换的问题](#lR0q8) |
+| setRumAppId | 设置`Rum AppId` | 是 | 对应设置 RUM `appid`，才会开启`RUM`的采集功能，[获取 appid 方法](#setup) |
+| setEnableTrackAppCrash | 是否上报 App 崩溃日志 | 否 | 默认为 `false`，开启后会在错误分析中显示错误堆栈数据。<br> [关于崩溃日志中混淆内容转换的问题](#retrace-log) |
 | setExtraMonitorTypeWithError | 设置辅助监控信息 | 否 | 添加附加监控数据到 `Rum` 崩溃数据中，`MonitorType.BATTERY` 为电池余量，`MonitorType.Memory` 为内存用量，`MonitorType.CPU` 为 CPU 占有率 |
 | setEnableTrackAppANR | 是否开启  ANR 检测 | 否 | 默认为 `false` |
 | setEnableTrackAppUIBlock | 是否开启 UI 卡顿检测 | 否 | 默认为 `false` |
 | setEnableTraceUserAction | 是否自动追踪用户操作 | 否 | 目前只支持用户启动和点击操作，默认为 `false` |
 | setEnableTraceUserView | 是否自动追踪用户页面操作 | 否 | 默认为 `false` |
 | setEnableTraceUserResource | 是否自动追动用户网络请求 | 否 | 仅支持 `Okhttp`，默认为 `false` |
-| addGlobalContext | 添加自定义标签 | 否 | 添加标签数据，用于用户监测数据源区分，如果需要使用追踪功能，则参数 `key` 为 `track_id` ,`value` 为任意数值，添加规则注意事项请查阅[此处](#IsVt4) |
+| addGlobalContext | 添加自定义标签 | 否 | 添加标签数据，用于用户监测数据源区分，如果需要使用追踪功能，则参数 `key` 为 `track_id` ,`value` 为任意数值，添加规则注意事项请查阅[此处](#key-conflict) |
 
 #### 添加自定义标签
 
@@ -210,7 +210,7 @@ fun setDynamicParams(context: Context, value: String) {
         }
 ```
 
-3.最后重启应用，详细细节请见 [SDK Demo](#AUk2N)
+3.最后重启应用，详细细节请见 [SDK Demo](#setup)
 
 ### Log 配置
 
@@ -236,7 +236,7 @@ fun setDynamicParams(context: Context, value: String) {
 | setLogCacheDiscardStrategy | 设置频繁日志丢弃规则 | 否 | 默认为 `LogCacheDiscard.DISCARD`，`DISCARD` 为丢弃追加数据，`DISCARD_OLDEST` 丢弃老数据 |
 | setEnableCustomLog | 是否上传自定义日志 | 否 | 默认为 `false` |
 | setLogLevelFilters | 设置日志等级过滤 | 否 | 设置等级日志过滤，默认不设置 |
-| addGlobalContext | 添加 log 全局属性 | 否 | 添加规则请查阅[此处](#IsVt4) |
+| addGlobalContext | 添加 log 全局属性 | 否 | 添加规则请查阅[此处](#key-conflict) |
 
 ### Trace 配置
 
@@ -444,9 +444,9 @@ FTSdk.shutDown()
 > 关于如何申请动态权限，具体详情参考 [Android Developer](https://developer.android.google.cn/training/permissions/requesting?hl=en)
 
 
-## 常见问题
+## 常见问题 {#FAQ}
 
-### 关于 OAID
+### 关于 OAID {#OAID}
 
 #### 介绍
 
@@ -505,7 +505,7 @@ packagingOptions {
 > 以上步骤配置完成后，在配置 FT SDK 时调用 FTSDKConfig 的 setUseOAID(true) 方法即可
 
 
-### 日志混淆内容转换
+### 日志混淆内容转换 {#retrace-log}
 
 #### 问题描述
 
@@ -524,7 +524,7 @@ retrace.bat -verbose mapping.txt crash_log.txt
 
 -  上一步是通过 `retrace` 命令行来执行，当然也可以通过 `GUI` 工具。在 `<sdk-root>/tools/proguard/bin` 目录下有个 `proguardgui.bat` 或 `proguardgui.sh` GUI 工具。运行 `proguardgui.bat` 或者 `./proguardgui.sh` -> 从左侧的菜单中选择“`ReTrace`” -> 在上面的 `Mapping file` 中选择你的 `mapping` 文件，在下面输入框输入要还原的代码 ->点击右下方的“`ReTrace!`” 
 
-### 添加局变量避免冲突字段
+### 添加局变量避免冲突字段 {#key-conflict}
 
 为了避免自定义字段与 SDK 数据冲突，建议标签命名添加项目缩写的前缀，例如 `df_tag_name`，项目中使用 `key` 值可[查询源码](https://github.com/DataFlux-cn/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java)。SDK 全局变量中出现与 RUM、Log 相同变量时，RUM、Log 会覆盖 SDK 中的全局变量。
 
