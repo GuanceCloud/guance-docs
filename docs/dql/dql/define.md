@@ -265,7 +265,7 @@ O::ecs:(host, region)
 - `SHOW_NETWORK_SOURCE()` - 查看网络 eBPF 数据类型列表
 - `SHOW_SECURITY_SOURCE()` - 查看安全巡检数据类型列表
 
-更多 show 函数，参见 [函数文档](./20-DQL/03-DQL函数.md) 。
+更多 show 函数，参见 [函数文档](../dql/funcs.md) 。
 
 <a name="ymdvz"></a>
 ### 结果集函数结算
@@ -327,11 +327,10 @@ object::(     # 第二层查询
 <a name="6915eba9"></a>
 ## 函数说明
 
-参见 [DQL 函数](./20-DQL/03-DQL函数.md)
+参见 [DQL 函数](../dql/funcs.md)
 
-参见 [DQL 外层函数](./20-DQL/03-DQL外层函数.md)
+参见 [DQL 外层函数](../dql/out-funcs.md)
 
 
 ---
 
-观测云是一款面向开发、运维、测试及业务团队的实时数据监测平台，能够统一满足云、云原生、应用及业务上的监测需求，快速实现系统可观测。**立即前往观测云，开启一站式可观测之旅：**[www.guance.com](https://www.guance.com)<br />![](img/logo_2.png)
