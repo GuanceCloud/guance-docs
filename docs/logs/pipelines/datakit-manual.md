@@ -7,7 +7,7 @@ Pipeline 支持多种格式的日志数据切割，通过编写 Pipeline 脚本�
 
 ## 前置条件
 
-您需要先创建一个[观测云账号](https://www.guance.com/)，并在您的主机上[安装 DataKit](https://www.yuque.com/dataflux/datakit/datakit-install) ，开启 DataKit [日志采集](https://www.yuque.com/dataflux/datakit/logging)。
+您需要先创建一个[观测云账号](https://www.guance.com/)，并在您的主机上[安装 DataKit](../datakit/datakit-install.md) ，开启 DataKit [日志采集](../integrations/logging.md)。
 
 ## 步骤一：根据采集的日志，确定切割字段
 
@@ -39,7 +39,7 @@ rename("time", log_time) # 将 log_time 重名命名为 time
 default_time(time)       # 将 time 字段作为输出数据的时间戳
 ```
 
-更多 pipeline 编写规则可参考文档 [文本数据处理（Pipeline）](https://www.yuque.com/dataflux/datakit/pipeline) 。
+更多 pipeline 编写规则可参考文档 [文本数据处理（Pipeline）](../../datakit/pipeline.md) 。
 ### 保存pipeline文件
 
 Pipeline 文件编写好以后，需要保存为以`.p`为结尾的文件，存在 `/usr/local/datakit/pipeline` 目录下，如`datakit.p`。
@@ -128,13 +128,7 @@ grokq > 2022-01-12T18:40:51.962+0800
 
 以上就是 DataKit 日志为例的 Pipeline 使用手册，更多关于 pipeline 和 日志采集切割的内容，可参考如下文档。
 
-- [文本数据处理（Pipeline）](https://www.yuque.com/dataflux/datakit/pipeline#d29b7088)
-- [调试 Pipeline](https://www.yuque.com/dataflux/datakit/datakit-pl-how-to)
-- [日志](https://www.yuque.com/dataflux/datakit/logging)
-- [第三方日志接入](https://www.yuque.com/dataflux/datakit/logstreaming)
-
-
----
-
-观测云是一款面向开发、运维、测试及业务团队的实时数据监测平台，能够统一满足云、云原生、应用及业务上的监测需求，快速实现系统可观测。**立即前往观测云，开启一站式可观测之旅：**[www.guance.com](https://www.guance.com)
-![](../img/logo_2.png)
+- [文本数据处理（Pipeline）](../../datakit/pipeline.md)
+- [如何编写 Pipeline 脚本](../../datakit/datakit-pl-how-to.md)
+- [日志](../integrations/logging.md)
+- [第三方日志接入](../integrations/logstreaming.md)

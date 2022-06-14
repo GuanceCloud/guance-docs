@@ -10,13 +10,13 @@
 - 自定义日志数据采集，通过sdk接入客户端应用中，针对不同场景采集不同日志数据。
 - 可以自动收集应用端的错误信息（包括网络错误，console错误，以及js错误）上报到DataFlux。
 - 自定义错误等级（`debug`,`critical`,`error`,`info`,`warn`）,自定义Logger对象，以及自定义log字段
-- 可以自动收集[RUM](https://www.yuque.com/dataflux/doc/eqs7v2)相关数据，关联RUM业务场景。
+- 可以自动收集[RUM](../real-user-monitoring/web/app-access.md)相关数据，关联RUM业务场景。
 
 ## 开始使用
 
 ### 前置条件
 
-**datakit** 通过[datakit](https://www.yuque.com/dataflux/doc/oolclw)日志采集API发送日志数据到DataFlux平台
+**datakit** 通过datakit日志采集API发送日志数据到DataFlux平台
 
 **引入SDK** 可通过`NPM`,`CDN同步`或`CDN异步`的方式引入SDK到应用中
 
@@ -230,10 +230,3 @@ window.DATAFLUX_LOGS && DATAFLUX_LOGS.logger.log(<MESSAGE>,<JSON_ATTRIBUTES>,<ST
 | `<MESSAGE>` | Dataflux 日志中的 message 字段 |
 | `<JSON_ATTRIBUTES>` | 描述message的额外数据，是一个json对象 |
 | `<STATUS>` | 日志的等级，可选值`debug`,`info`,`warn`,`error`,`critical` |
-
-
-
----
-
-观测云是一款面向开发、运维、测试及业务团队的实时数据监测平台，能够统一满足云、云原生、应用及业务上的监测需求，快速实现系统可观测。**立即前往观测云，开启一站式可观测之旅：**[www.guance.com](https://www.guance.com)
-![](img/logo_2.png)

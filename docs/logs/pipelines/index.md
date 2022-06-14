@@ -1,12 +1,13 @@
 # Pipelines
+
 ---
 
 
 Pipeline 用于日志数据解析，通过定义解析规则，将格式各异的日志切割成符合我们要求的结构化数据。观测云提供三种日志 Pipeline 文本处理方式：
 
-- [DataKit](https://www.yuque.com/dataflux/doc/gxh1t2)：在服务器安装DataKit以后，在终端工具中配置DataKit的日志采集器及其对应的 pipeline 文件，对文本数据进行处理；
-- [DCA](https://www.yuque.com/dataflux/doc/fgcgug)：DataKit Control APP，是DataKit的桌面客户端应用，需要先安装，安装完成后可在客户端查看和编辑 DataKit 默认自带的日志 pipeline 文件和自定义手动添加 pipeline 文件；
-- [Pipelines](https://www.yuque.com/dataflux/doc/oftuof)：支持在观测云前端手动配置和查看日志 pipeline 文件，无需登录 DataKit 服务器进行操作，帮助您方便的使用Pipelines来切割您的日志。
+- [Pipelines](manual.md)：支持在观测云前端手动配置和查看日志 pipeline 文件，无需登录 DataKit 服务器进行操作，帮助您方便的使用Pipelines来切割您的日志；
+- [DataKit](datakit-manual.md)：在服务器安装DataKit以后，在终端工具中配置DataKit的日志采集器及其对应的 pipeline 文件，对文本数据进行处理；
+- DCA：DataKit Control APP，是DataKit的桌面客户端应用，需要先安装，安装完成后可在客户端查看和编辑 DataKit 默认自带的日志 pipeline 文件和自定义手动添加 pipeline 文件；
 
 本文档主要介绍如何使用观测云前端 Pipelines 功能来快速查看和配置日志 pipeline 文件。
 
@@ -43,7 +44,7 @@ Pipeline 用于日志数据解析，通过定义解析规则，将格式各异�
 
 ![](../img/6.pipeline_9.png)
 
-按照错误提示修改后，返回文本通过解析处理后日志展示结果。更多关于 pipeline 在 DataKit 的配置，可参考文档 [Pipeline使用手册](https://www.yuque.com/dataflux/doc/gxh1t2) 。
+按照错误提示修改后，返回文本通过解析处理后日志展示结果。更多关于 pipeline 在 DataKit 的配置，可参考文档 [Pipeline使用手册](datakit-manual.md) 。
 
 ![](../img/6.pipeline_10.png)
 
@@ -85,7 +86,7 @@ Pipeline 用于日志数据解析，通过定义解析规则，将格式各异�
 
 ## 注意事项
 
-若您从未通过 DataKit 配置过日志采集器，在观测云工作空间创建了pipeline文件以后，您需要在您的主机上[安装 DataKit](https://www.yuque.com/dataflux/datakit/datakit-install) ，且开启 pipeline 文件对应采集器的日志采集和pipeline功能。以 Nginx 为例，在 [Nginx 采集器](https://www.yuque.com/dataflux/datakit/nginx#224e2ccd)中开启日志采集并开启 `pipeline = "nginx.p"`，开启完成后重启 DataKit 即可生效。
+若您从未通过 DataKit 配置过日志采集器，在观测云工作空间创建了pipeline文件以后，您需要在您的主机上[安装 DataKit](../datakit/datakit-install.md) ，且开启 pipeline 文件对应采集器的日志采集和pipeline功能。以 Nginx 为例，在 [Nginx 采集器](../integrations/nginx.md)中开启日志采集并开启 `pipeline = "nginx.p"`，开启完成后重启 DataKit 即可生效。
 注意：`pipeline = "nginx.p"`中`nginx.p`可以不填，DataKit会根据您选择的日志来源自动匹配您创建的日志pipeline文件。若日志来源和pipeline文件名称不一致，则需要在`pipeline = "..."`填入对应的pipeline文件名称。
 
 ```
@@ -95,12 +96,3 @@ Pipeline 用于日志数据解析，通过定义解析规则，将格式各异�
 		files = ["/var/log/nginx/access.log","/var/log/nginx/error.log"]
 	  pipeline = "nginx.p"
 ```
-
-
----
-
-观测云是一款面向开发、运维、测试及业务团队的实时数据监测平台，能够统一满足云、云原生、应用及业务上的监测需求，快速实现系统可观测。**立即前往观测云，开启一站式可观测之旅：**[www.guance.com](https://www.guance.com)
-![](../img/logo_2.png)
-
-
-

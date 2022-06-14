@@ -3,7 +3,7 @@
 
 ## 简介
 
-在 “观测云” 的日志管理中，可以通过 pipeline 的方式对日志的文本内容进行切割，从而提取出特定的字段作为标签或者日志的时间戳。目前 “观测云” 支持 2 种日志提取方式：通过 pipeline 的方式提取和通过 Grok 辅助 pipeline 进行提取。 
+在 观测云的日志管理中，可以通过 pipeline 的方式对日志的文本内容进行切割，从而提取出特定的字段作为标签或者日志的时间戳。目前 “观测云” 支持 2 种日志提取方式：通过 pipeline 的方式提取和通过 Grok 辅助 pipeline 进行提取。 
 
 ## 基本规则：
 
@@ -60,10 +60,4 @@ drop_origin_data()
 	... # 其它配置
 ```
 
-重启采集器，即可切割对应的日志。[了解更多文本数据处理](https://www.yuque.com/dataflux/datakit/pipeline)。
-
-
----
-
-观测云是一款面向开发、运维、测试及业务团队的实时数据监测平台，能够统一满足云、云原生、应用及业务上的监测需求，快速实现系统可观测。**立即前往观测云，开启一站式可观测之旅：**[www.guance.com](https://www.guance.com)
-![logo_2.png](https://cdn.nlark.com/yuque/0/2022/png/21511848/1642759304539-35fd5c7a-5c9b-4eeb-abc7-8088f6fb46d5.png#clientId=ub1f4a825-2686-4&crop=0&crop=0&crop=1&crop=1&from=drop&id=u67fe2468&margin=%5Bobject%20Object%5D&name=logo_2.png&originHeight=169&originWidth=746&originalType=binary&ratio=1&rotation=0&showTitle=false&size=139415&status=done&style=none&taskId=u1de172b6-8be6-41e9-8bd6-e5811ca680d&title=)
+重启采集器，即可切割对应的日志。[了解更多文本数据处理](../../datakit/pipeline.md)。

@@ -7,13 +7,13 @@
 
 ## 前置条件
 
-- 安装 DataKit（[DataKit 安装文档](https://www.yuque.com/dataflux/datakit/datakit-install)）
+- 安装 DataKit（[DataKit 安装文档](../datakit/datakit-install.md)）
 
 ## 数据采集
 
 ### 主机
 
-完成 DataKit 安装后，系统会默认开启一批与主机相关的采集器，并主动上报主机数据至“观测云”工作空间。详情可参考 [DataKit 采集器使用](https://www.yuque.com/dataflux/datakit/datakit-how-to#182d338d) / [主机对象](https://www.yuque.com/dataflux/datakit/hostobject)。
+完成 DataKit 安装后，系统会默认开启一批与主机相关的采集器，并主动上报主机数据至“观测云”工作空间。详情可参考 [DataKit 采集器使用](../datakit/datakit-how-to.md) / [主机对象](../integrations/hostobject.md)。
 
 注意：主机采集开启后，变更主机名`host_name`会默认新增加一台主机，原主机名会继续在「基础设施」-「主机」列表中显示，一个小时后不会继续上报数据，直到24小时未上报数据后从列表中移除。由于 DataKit 数量是在 24 小时内取最大值，故在这个计费周期内会被统计为2台主机进行收费。
 
@@ -34,14 +34,14 @@
 
 ### 云主机
 
-开启云主机的数据采集，打开 DataKit 安装目录`/usr/local/datakit/conf.d`下的 `datakit.conf` 文件，设置主机对象的标签 `cloud_provider` 。配置完成后，重启datakit 即可。更多详情可参考文档 [开启云同步](https://www.yuque.com/dataflux/datakit/hostobject#031406b2) 。
+开启云主机的数据采集，打开 DataKit 安装目录`/usr/local/datakit/conf.d`下的 `datakit.conf` 文件，设置主机对象的标签 `cloud_provider` 。配置完成后，重启datakit 即可。更多详情可参考文档 [开启云同步](../integrations/hostobject.md) 。
 
 ### 容器
 
 开启容器数据采集，有两种方式：
 
-1. 在主机安装 DataKit 以后开始容器采集器，可参考文档 [容器](https://www.yuque.com/dataflux/datakit/container) 。
-1. 通过 DaemonSet方式安装 DataKit，可参考文档 [DaemonSet 安装](https://www.yuque.com/dataflux/datakit/datakit-daemonset-deploy) 。
+1. 在主机安装 DataKit 以后开始容器采集器，可参考文档 [容器](../integrations/container.md) 。
+1. 通过 DaemonSet方式安装 DataKit，可参考文档 [DaemonSet 安装](../datakit/datakit-daemonset-deploy.md) 。
 
 注意事项：
 
@@ -52,18 +52,12 @@
 
 开启进程数据采集，需要进入 DataKit 安装目录下的`conf.d/host` 目录，复制 `host_processes.conf.sample` 并命名为 `host_processes.conf`。配置完成后，重启datakit 即可。
 
-注意：进程采集器默认开启，但是默认不采集进程指标数据，如需采集指标相关数据，可在 `host_processes.conf` 中 将 `open_metric` 设置为 `true`。更多详情可参考文档 [进程](https://www.yuque.com/dataflux/datakit/host_processes)。
+注意：进程采集器默认开启，但是默认不采集进程指标数据，如需采集指标相关数据，可在 `host_processes.conf` 中 将 `open_metric` 设置为 `true`。更多详情可参考文档 [进程](../integrations/host_processes.md)。
 
 ### 自定义对象
 
 “观测云” 支持您上报自定义对象数据到工作空间，并同步对象数据到指定的对象分类。
 
 - 通过「基础设施」-「自定义」，您可以创建新的对象分类并自定义对象字段。
-- 上报自定义对象数据时，您需要先安装并连通 DataKIt 和 DataFlux Function，再通过 DataFlux Function 上报数据到 DataKit，最终由 DataKit 上报对象数据到 “观测云” 工作空间。具体操作过程可参考文档 [自定义对象数据上报](https://www.yuque.com/dataflux/doc/nw9bxt) 
-- 同步对象数据到指定的对象分类时，您需要同步[自定义对象数据上报](https://www.yuque.com/dataflux/doc/nw9bxt)（API数据上报）的数据格式和对象分类的数据格式（包括：对象分类和默认属性字段）
-
-
----
-
-观测云是一款面向开发、运维、测试及业务团队的实时数据监测平台，能够统一满足云、云原生、应用及业务上的监测需求，快速实现系统可观测。**立即前往观测云，开启一站式可观测之旅：**[www.guance.com](https://www.guance.com)
-![](img/logo_2.png)
+- 上报自定义对象数据时，您需要先安装并连通 DataKIt 和 DataFlux Function，再通过 DataFlux Function 上报数据到 DataKit，最终由 DataKit 上报对象数据到 “观测云” 工作空间。具体操作过程可参考文档 [自定义对象数据上报](custom/data-reporting.md) 
+- 同步对象数据到指定的对象分类时，您需要同步[自定义对象数据上报](custom/data-reporting.md)（API数据上报）的数据格式和对象分类的数据格式（包括：对象分类和默认属性字段）
