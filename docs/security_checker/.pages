@@ -1,5 +1,278 @@
 nav:
-  - index.md
-  - '数据采集': data-collection.md
-  - '生成指标': generate-metrics.md
-  - '安全巡检分析': explorer.md
+    - index.md
+    - '数据采集': data-collection.md
+    - '生成指标': generate-metrics.md
+    - '安全巡检分析': explorer.md
+    - "Scheck 版本历史": changelog.md
+    - "Scheck 使用入门": scheck-how-to.md
+    - "Scheck 最佳实践": best-practices.md
+    - "Scheck 安装、配置":
+        - "Scheck 安装": scheck-install.md
+        - "Scheck 配置": scheck-configure.md
+    - "Scheck 多端输出":
+        - "Scheck 连接Datakit": join-datakit.md
+        - "Scheck 连接阿里云日志": join-sls.md
+
+    - "Scheck 脚本二次开发":
+        - "检查敏感文件的变动实现": scheck-filechange.md
+        - "监控系统用户的变化": scheck-userchange.md
+        - "用户自定义规则及lib库": custom-how-to.md
+
+    - "lua内置标准库和lua-lib": lualib.md
+    - "Scheck Funcs支持清单": funcs.md
+
+    - "其他":
+        - "使用开发者模式查看缓存": cachedev.md
+        - "Scheck 并发策略": scheck-pool.md
+    - "规则库":
+    
+        - "container":
+       
+            - "0300-容器服务器内核版本是否为3.10或更高": 0300-docker-kernel.md
+       
+            - "0301-容器不允许使用lxc执行驱动程序": 0301-docker-lxc-notuse.md
+       
+            - "0303-docker.service文件权限没有设置为644或更高": 0303-docker-service-priv.md
+       
+            - "0304-registry.service文件所有权没有设置为root:root": 0304-docker-registry-ownership.md
+       
+            - "0305-docker.registry.service文件权限没有设置为644或更严格": 0305-docker-registry-service-priv.md
+       
+            - "0306-docker.socket文件所有权没有设置为root:root": 0306-docker-socket-ownership.md
+       
+            - "0307-docker.socket文件权限没有设置为644或更严格": 0307-docker-socket-priv.md
+       
+            - "0308-docker环境文件所有权没有设置为root:root": 0308-docker-env-ownership.md
+       
+            - "0309-docker环境文件文件权限没有设置为644或更严格": 0309-docker-env-priv.md
+       
+            - "0310-获取docker 运行时的run参数": 0310-docker-runlike.md
+       
+            - "0400-kubernetes 配置文件权限没有设置为644或更高": 0400-k8s-node-conf-priv.md
+       
+            - "0402-proxy kubeconfig file权限没有设置为644或更高": 0402-kubeproxy-conf-priv.md
+       
+            - "0422-kubelet 确保授权模式参数设置的不是：AlwaysAllow": 0422-k8s-authorization-mode.md
+       
+            - "0423-kubelet 确保根据需要设置了客户端ca文件参数": 0423-k8s-client-ca.md
+       
+            - "0424-kubelet 验证只读端口参数是否设置为0": 0424-k8s-readonlyport.md
+       
+            - "0425-确保流连接空闲超时 --streaming-connection-idle-timeout参数未设置为0": 0425-k8s-idle-timeout.md
+       
+            - "0426-确保保护内核默认参数设置为true": 0426-k8s-protect-kernel.md
+       
+            - "0427-允许Kubelet管理信息iptables": 0427-k8s-kubelet-iptable-chains.md
+       
+            - "0429-kubernetes上的事件qps标志可以用来限制收集事件的速率": 0429-k8s-qps.md
+       
+            - "4111-apiserver 配置文件权限没有设置为644或更高": 4111-k8s-apiserver-conf-priv.md
+       
+            - "4117-etcd 配置文件权限没有设置为644或更高": 4117-k8s-edct-conf-priv.md
+       
+            - "4118-k8s-etcd文件所有权没有设置为root:root": 4118-k8s-etcd-ownership.md
+       
+            - "4121-etcd 数据目录权限没有设置为700或更高": 4121-k8s-edct-dir-priv.md
+       
+            - "4122-k8s-etcd文件所有权没有设置为etcd:etcd": 4122-k8s-etcd-dir-ownership.md
+       
+            - "4132-禁用对apiserver的匿名请求": 4132-k8s-apiserver-anonymous.md
+       
+            - "4210-在kubernetes系统上设置TLS连接": 4210-k8s-kubelet-tls.md
+       
+            - "4211-确保--rotate-certificates参数没有设置为false": 4211-k8s-kubelet-rotate.md
+       
+            - "4212-确保kubelet启动时 证书设置为自动替换模式": 4212-k8s-kubelet-rotate-ca.md
+       
+            - "4213-确保Kubelet被配置为只使用加强型加密密码": 4213-k8s-kubelet-tls-cipher-suites.md
+       
+        - "db":
+       
+            - "0500-存在mysql弱密码": 0500-mysql-weak-psw.md
+       
+        - "network":
+       
+            - "0027-存在ssh隧道": 0027-ssh-tunnel.md
+       
+        - "storage":
+       
+            - "0012-新路径被挂载": 0012-mounts-add.md
+       
+            - "0013-路径被卸载": 0013-mounts-del.md
+       
+            - "0037-主机/etc/sudoers 被删除": 0037-sudoers-exist.md
+       
+            - "0057-cramfs 被启用": 0057-cramfs-disabled.md
+       
+            - "0058-squashfs 被启用": 0058-squashfs-disabled.md
+       
+            - "0059-udf 被启用": 0059-udf-disabled.md
+       
+            - "0060-vfat 被启用": 0060-fat-disabled.md
+       
+        - "system":
+       
+            - "0001-主机添加新用户": 0001-user-add.md
+       
+            - "0002-主机用户被删除": 0002-user-del.md
+       
+            - "0003-主机用户密码被修改": 0003-user-passwd.md
+       
+            - "0004-主机/etc/passwd不存在": 0004-user-passwd-exist.md
+       
+            - "0005-主机/etc/group不存在": 0005-user-group-exist.md
+       
+            - "0006-主机用户密码状态发生改变": 0006-user-passwdstatus.md
+       
+            - "0007-主机时区发生变化": 0007-time-zone.md
+       
+            - "0008-主机名被修改": 0008-hostname.md
+       
+            - "0009-主机内核版本发生改变": 0009-kernel-version.md
+       
+            - "0010-内核模块被添加": 0010-kernel-modules-add.md
+       
+            - "0016-resolv 被修改": 0016-resolv.md
+       
+            - "0017-Dns resolv 文件被删除": 0017-resolv-exist.md
+       
+            - "0018-hosts 被修改": 0018-hosts.md
+       
+            - "0019-hosts 被删除": 0019-hosts-exist.md
+       
+            - "0020-主机profile被修改": 0020-profile.md
+       
+            - "0021-全局环境变量文件是否存在": 0021-profile-exist.md
+       
+            - "0022-sshd 服务被重启": 0022-sshd-restart.md
+       
+            - "0023-sshd 文件是否被修改": 0023-sshd.md
+       
+            - "0028-fstab 被修改": 0028-fstab.md
+       
+            - "0029-fstab 被删除": 0029-fstab-exist.md
+       
+            - "0034-authorized_keys公钥差异变化": 0034-ssh-keys.md
+       
+            - "0036-sudoers 被修改": 0036-sudoers.md
+       
+            - "0038-sudoers文件权限是否变化": 0038-sudoers-priv.md
+       
+            - "0039-yum仓库被修改": 0039-yum-repos.d.md
+       
+            - "0040-新增yum仓库文件": 0040-yum-repos.d-add.md
+       
+            - "0041-yun仓库文件被删除": 0041-yum-repos.d-del.md
+       
+            - "0043-/bin目录下有文件权限被修改": 0043-libbin-priv.md
+       
+            - "0044-/bin 目录有文件被删除": 0044-libbin-del.md
+       
+            - "0045-/sbin 目录被添加文件": 0045-libsbin-add.md
+       
+            - "0046-/sbin目录下有文件权限被修改": 0046-libsbin-priv.md
+       
+            - "0047-/sbin 目录有文件被删除": 0047-libsbin-del.md
+       
+            - "0048-/usr/bin 目录被添加文件": 0048-libusrbin-add.md
+       
+            - "0049-/usr/bin目录下有文件权限被修改": 0049-libusrbin-priv.md
+       
+            - "0050-/usr/bin 目录有文件被删除": 0050-libusrbin-del.md
+       
+            - "0051-/usr/sbin 目录被添加文件": 0051-libusrsbin-add.md
+       
+            - "0052-/usr/sbin目录下有文件权限被修改": 0052-libusrsbin-priv.md
+       
+            - "0053-/usr/sbin 目录有文件被删除": 0053-libusrsbin-del.md
+       
+            - "0054-rc.local 文件被修改": 0054-rc.local.md
+       
+            - "0056-rc.local权限被修改": 0056-rc.local-priv.md
+       
+            - "0062-/dev/shm分区没有上设置noexec选项": 0062-shm-noexec.md
+       
+            - "0063-确保在/dev/shm分区上设置nodev选项": 0063-shm-nodev.md
+       
+            - "0064-/dev/shm分区上没有设置nosuid选项": 0064-shm-nosuid.md
+       
+            - "0065-禁用USB存储": 0065-usbstorage-disable.md
+       
+            - "0067-sudo 没有安装": 0067-sudo-install.md
+       
+            - "0068-sudo命令未使用pty": 0068-sudo-use-pty.md
+       
+            - "0069-sudo日志未配置或被删除": 0069-sudo-logfile.md
+       
+            - "0070-确保已配置引导加载程序配置的权限(-rw-------)": 0070-grub-priv.md
+       
+            - "0072-堆芯转储受到限制": 0072-coredumps-restricted.md
+       
+            - "0073-确保已启用地址空间布局随机化（ASLR）": 0073-addressspac-randomization-enable.md
+       
+            - "0074-预链接被安装": 0074-prelink-disable.md
+       
+            - "0075-确保未安装SETroubleshoot": 0075-SETroubleshoot-uninstalled.md
+       
+            - "0076-mcstrans服务 被安装了": 0076-Translation-uninstalled.md
+       
+            - "0078-确保motd权限(-rw-r--r--)": 0078-motd-priv.md
+       
+            - "0079-确保issue权限(-rw-r--r--)": 0079-issue-priv.md
+       
+            - "0080-issue.net不是644": 0080-issue.net-priv.md
+       
+            - "0081-GDM没有被删除或没有配置登录": 0081-gdm-config.md
+       
+            - "0082-xinetd被安装": 0082-xinetd-uninstalled.md
+       
+            - "0086-X11被安装": 0086-X11-uninstalled.md
+       
+            - "0087-Avahi被安装": 0087-avahi-uninstalled.md
+       
+            - "0088-cups被安装": 0088-cups-uninstalled.md
+       
+            - "0089-DHCP被安装": 0089-dhcp-uninstalled.md
+       
+            - "0090-LDAP被安装": 0090-ldap-uninstalled.md
+       
+            - "0091-rpcbind被安装": 0091-rpcbind-uninstalled.md
+       
+            - "0092-dns被安装": 0092-dns-uninstalled.md
+       
+            - "0093-vsftpd被安装": 0093-vsftpd-uninstalled.md
+       
+            - "0094-IMAP和POP3服务被安装": 0094-dovecot-uninstalled.md
+       
+            - "0095-确保未安装Samba": 0095-samba-uninstalled.md
+       
+            - "0096-确保未安装squid HTTP代理服务器": 0096-squid-uninstalled.md
+       
+            - "0097-确保未安装net-snmp": 0097-net-snmp-uninstalled.md
+       
+            - "0099-rsync被安装或rsyncd服务未屏蔽": 0099-rsync-uninstalled.md
+       
+            - "0100-NIS服务被安装": 0100-ypserv-uninstalled.md
+       
+            - "0101-telnet服务端被安装": 0101-telnetserver-uninstalled.md
+       
+            - "0102-NIS客户端被安装": 0102-ypbind-uninstalled.md
+       
+            - "0103-rsh 被安装": 0103-rsh-uninstalled.md
+       
+            - "0104-talk客户端被安装": 0104-talk-uninstalled.md
+       
+            - "0106-LDAP客户端被安装": 0106-openldapclients-uninstalled.md
+       
+            - "0142-crontab定时任务被添加": 0142-crontab-add.md
+       
+            - "0143-crontab定时任务被删除": 0143-crontab-del.md
+       
+            - "0144-crontab定时任务被修改": 0144-crontab.md
+       
+            - "0200-主机新端口被打开": 0200-listening-ports-add.md
+       
+            - "0201-主机端口被关闭": 0201-listening-ports-del.md
+       
+            - "0302-docker.service文件所有权没有设置为root:root": 0302-docker-service-ownership.md
+       
