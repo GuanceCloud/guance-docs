@@ -3,7 +3,7 @@
 
 ## 前置条件
 
-- 安装 DataKit（[DataKit 安装文档](https://www.yuque.com/dataflux/datakit/datakit-how-to)）
+- 安装 DataKit（[DataKit 安装文档](../../../dataflux/datakit/datakit-how-to.md)）
 
 ## 应用接入
 
@@ -31,7 +31,7 @@ npm install @cloudcare/react-native-mobile
 }
 ```
 
-> Android 需要在 app/android 目录下 build.gradle 安装 ft-plugin 配合使用，详细配置请见 [Android SDK](https://www.yuque.com/dataflux/doc/pnzoyp) 配置，或参考 demo
+> Android 需要在 app/android 目录下 build.gradle 安装 ft-plugin 配合使用，详细配置请见 [Android SDK](../android/app-access.md#Gradle-配置) 配置，或参考 demo
 
 
 现在在您的代码中，您可以使用：
@@ -70,7 +70,7 @@ FTMobileReactNative.sdkConfig(config)
 | debug | boolean | 否 | 设置是否允许打印日志，默认`false` |
 | datakitUUID | string | 否 | 请求`HTTP`请求头`X-Datakit-UUID` 数据采集端  如果用户不设置会自动配置 |
 | envType | enum EnvType | 否 | 环境，默认`prod` |
-| globalContext | NSDictionary | 否 | [添加自定义标签    ]() |
+| globalContext | NSDictionary | 否 | [添加自定义标签](#user-global-context ) |
 
 ## RUM 配置
 
@@ -98,7 +98,7 @@ FTReactNativeRUM.setConfig(rumConfig);
 | enableNativeUserView | boolean | 否 | 是否进行 `Native View` 自动追踪，纯 `React Native` 应用建议关闭，，默认为 `false` |
 | enableNativeUserResource | boolean | 否 | 是否开始 `Native Resource`自动追踪，由于 React-Native 的网络请求在 iOS、Android 端是使用系统 API 实现的，所以开启 enableNativeUserResource 后，所有 resource 数据能够一并采集。 |
 | monitorType | enum MonitorType | 否 | 监控补充类型 |
-| globalContext | object | 否 | [添加自定义标签    ]() |
+| globalContext | object | 否 | [添加自定义标签](#user-global-context) |
 
 
 ## Log 配置
@@ -119,7 +119,7 @@ FTReactNativeLog.logConfig(logConfig);
 | enableCustomLog | boolean | 否 | 是否开启自定义日志 |
 | discardStrategy | enum FTLogCacheDiscard | 否 | 日志丢弃策略，默认`FTLogCacheDiscard.discard` |
 | logLevelFilters | Array<FTLogStatus> | 否 | 日志等级过滤 |
-| globalContext | NSDictionary | 否 | [添加自定义标签    ]()    |
+| globalContext | NSDictionary | 否 | [添加自定义标签](#user-global-context) |
 
 ## Trace 配置
 
@@ -138,7 +138,7 @@ FTReactNativeLog.logConfig(logConfig);
 | traceType | enum TraceType | 否 | 链路类型，默认`TraceType.zipkin` |
 | enableLinkRUMData | boolean | 否 | 是否与 `RUM` 数据关联，默认`false` |
 | enableNativeAutoTrace | boolean | 否 | 是否开启原生网络网络自动追踪 iOS NSURLSession ,Android OKhttp(由于 `React Native`的网络请求在 iOS、Android 端是使用系统 API 实现的，所以开启 `enableNativeAutoTrace` 后，所有 `React Native` 数据能够一并追踪。） |
-| globalContext | NSDictionary | 否 | [添加自定义标签    ]()    |
+| globalContext | NSDictionary | 否 | [添加自定义标签](#user-global-context) |
 
 # RUM 用户数据追踪
 
@@ -244,7 +244,7 @@ FTMobileReactNative.bindRUMUserData('react-native-user')
 FTMobileReactNative.unbindRUMUserData()
 ```
 
-# 添加自定义标签
+# 添加自定义标签 {#user-global-context}
 
 ## 静态使用
 
@@ -317,8 +317,8 @@ AsyncStorage.setItem("track_id",valueString,(error)=>{
 
 # 常见问题
 
-- [iOS 相关](https://www.yuque.com/dataflux/doc/gsto6k#EiSnQ)
-- [Android 相关](https://www.yuque.com/dataflux/doc/pnzoyp#kikfc)
+- [iOS 相关](../ios/app-access.md#common-problem)
+- [Android 相关](../android/app-access.md#common-problem)
 
 
 ---
