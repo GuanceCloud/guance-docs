@@ -7,7 +7,7 @@
 
 ## 前置条件
 
-- 安装 DataKit（[DataKit 安装文档](https://www.yuque.com/dataflux/datakit/datakit-how-to)）
+- 安装 DataKit（[DataKit 安装文档](../../datakit/datakit-how-to.md)）
 
 ## iOS应用接入
 
@@ -15,10 +15,12 @@
 
 ![](../img/image_8.png)
 ## 安装
- 
+
 ![](https://img.shields.io/cocoapods/p/FTMobileAgent#crop=0&crop=0&crop=1&crop=1&id=xs5E2&originHeight=20&originWidth=82&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)![](https://img.shields.io/cocoapods/v/FTMobileSDK#crop=0&crop=0&crop=1&crop=1&id=Uyl38&originHeight=20&originWidth=122&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)![](https://img.shields.io/cocoapods/l/FTMobileSDK#crop=0&crop=0&crop=1&crop=1&id=SxRum&originHeight=20&originWidth=98&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)![](https://img.shields.io/badge/iOS-api%20%3E=%20iOS%2010-brightgreen#crop=0&crop=0&crop=1&crop=1&id=uFhFJ&originHeight=20&originWidth=118&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=) 
-Demo：[https://github.com/GuanceCloud/datakit-ios/demo](https://github.com/GuanceCloud/datakit-ios/tree/develop/demo)
-源码地址：[https://github.com/GuanceCloud/datakit-ios](https://github.com/GuanceCloud/datakit-ios)
+
+**Demo**：[https://github.com/GuanceCloud/datakit-ios/demo](https://github.com/GuanceCloud/datakit-ios/tree/develop/demo)
+
+**源码地址**：[https://github.com/GuanceCloud/datakit-ios](https://github.com/GuanceCloud/datakit-ios)
 ### 源码方式
 
 1. 从 GitHub 获取 SDK 的源代码。
@@ -70,7 +72,7 @@ end
 | enableSDKDebugLog | BOOL | 设置是否允许打印日志 | 否（默认NO） |
 | env | NS_ENUM | 环境 | 否  （默认FTEnvProd） |
 | XDataKitUUID | NSString | 请求HTTP请求头X-Datakit-UUID 数据采集端  如果用户不设置会自动配置 | 否 |
-| globalContext | NSDictionary | [添加自定义标签](https://www.yuque.com/dataflux/doc/gsto6k/#Ifjwv) |     否 |
+| globalContext | NSDictionary | [添加自定义标签](#user-global-context) |     否 |
 
 #### env 环境
 
@@ -110,7 +112,7 @@ typedef NS_ENUM(NSInteger, FTEnv) {
 | enableTrackAppFreeze | BOOL | 采集UI卡顿事件 | 否（默认NO） |
 | enableTraceUserAction | BOOL | 设置是否追踪用户 Action 操作 | 否（默认NO） |
 | enableTraceUserView | BOOL | 设置是否追踪用户 View 操作 | 否（默认NO） |
-| globalContext | NSDictionary | [添加自定义标签](https://www.yuque.com/dataflux/doc/gsto6k/#Ifjwv) |     否 |
+| globalContext | NSDictionary | [添加自定义标签](#user-global-context) |     否 |
 
 #### 监控数据配置
 
@@ -154,7 +156,7 @@ typedef NS_OPTIONS(NSUInteger, FTMonitorInfoType) {
 | logLevelFilter | NSArray | 设置要采集的自定义 log 的状态数组 | 否（默认全采集） |
 | enableLinkRumData | BOOL | 是否将 logger 数据与 rum 关联 | 否（默认NO） |
 | discardType | FTLogCacheDiscard | 设置日志废弃策略 | 否（默认丢弃最新数据） |
-| globalContext | NSDictionary | [添加自定义标签](https://www.yuque.com/dataflux/doc/gsto6k/#Ifjwv) |     否 |
+| globalContext | NSDictionary | [添加自定义标签](#user-global-context) |     否 |
 
 #### 日志废弃策略
 
@@ -172,7 +174,7 @@ typedef NS_ENUM(NSInteger, FTLogCacheDiscard)  {
 
 #### 采集控制台日志
 
-一般情况下， 因为 NSLog 的输出会消耗系统资源，而且输出的数据也可能会暴露出App里的保密数据， 所以在发布正式版时会把这些输出全部屏蔽掉。此时开启采集控制台日志，也并不能抓取到工程里打印的日志。建议使用 [自定义上报日志](#CfkBy) 来上传想查看的日志。 
+一般情况下， 因为 NSLog 的输出会消耗系统资源，而且输出的数据也可能会暴露出App里的保密数据， 所以在发布正式版时会把这些输出全部屏蔽掉。此时开启采集控制台日志，也并不能抓取到工程里打印的日志。建议使用 [自定义上报日志](#user-logger) 来上传想查看的日志。 
 
 - 开启采集控制台日志
 
@@ -366,7 +368,7 @@ typedef NS_ENUM(NSInteger, FTNetworkTraceType) {
 - (void)addResourceWithKey:(NSString *)key metrics:(nullable FTResourceMetricsModel *)metrics content:(FTResourceContentModel *)content;
 ```
 
-## Logger 日志打印
+## Logger 日志打印 {#user-logger}
 
 **上传机制** : 将数据存储到数据库中，等待时机进行上传。数据库存储量限制在 5000 条，如果网络异常等原因导致数据堆积，存储 5000 条后，会丢弃新传入的数据。
 
@@ -436,7 +438,7 @@ typedef NS_ENUM(NSInteger, FTStatus) {
 [[FTMobileAgent sharedInstance] logout];
 ```
 
-## 添加自定义标签
+## 添加自定义标签 {#user-global-context}
 
 ### 静态使用
 
@@ -450,9 +452,10 @@ typedef NS_ENUM(NSInteger, FTStatus) {
 
 ![](../img/image_10.png)
 
-3. 使用预编译指令：
+3.使用预编译指令：
 
-    
+ 
+
 ```objectivec
 #if PREPROD
 #define Track_id       @"0000000001"
@@ -468,7 +471,7 @@ rumConfig.globalContext = @{@"track_id":Track_id,@"static_tag":STATIC_TAG};
 ... //其他设置操作
 [[FTMobileAgent sharedInstance] startRumWithConfigOptions:rumConfig];
 ```
-  
+
 ### 动态使用
 
 因 RUM 启动后设置的 globalContext 不会生效，用户可自行本地保存，在下次应用启动时进行设置生效。
@@ -499,7 +502,7 @@ rumConfig.globalContext = @{@"dynamic_tag":dynamicTag};
 > 1. 在调用 -startRumWithConfigOptions 方法启动 RUM 前设置 globalContext 才能生效。
 > 1. `FTMobileConfig` 中配置的自定义标签将添加在所有类型的数据中。
 
-## 常见问题
+## 常见问题 {#FAQ}
 
 ### 关于崩溃日志分析
 
@@ -537,8 +540,3 @@ rumConfig.globalContext = @{@"dynamic_tag":dynamicTag};
 
 4.解析完成后会生成一个新的 **.Crash** 文件，这个文件中就是崩溃详细信息。 
 
-
----
-
-观测云是一款面向开发、运维、测试及业务团队的实时数据监测平台，能够统一满足云、云原生、应用及业务上的监测需求，快速实现系统可观测。**立即前往观测云，开启一站式可观测之旅：**[www.guance.com](https://www.guance.com)
-![](../img/logo_2.png)

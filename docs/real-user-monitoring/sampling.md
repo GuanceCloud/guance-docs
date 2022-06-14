@@ -11,7 +11,7 @@
 
 登录 “观测云” 控制台，进入「用户访问监测」页面，点击右上角「新建应用」，在新窗口输入「应用名称」，点击「创建」，即可选择应用类型获取接入方式。Web应用接入的有三种方式：NPM 接入、同步载入和异步载入。
 
-![](img/采样.png)
+![](img/sampling.png)
 
 以“同步载入”为例，在代码中加入`sampleRate: 90`，然后复制粘贴到需要接入的页面HTML的第一行，即可按90%的比例采集Web应用的用户访问数据。
 
@@ -31,16 +31,11 @@
 
 **注意：设置采样后，初始化会随机生成一个0-100之间的随机数，当这个随机数小于你设置的采集率时，那么会上报当前用户访问的相关数据，否则就不会上报。
 
-“NPM接入”和“异步载入”可以按照同样的方法进行设置。更多设置可参考文档[Web应用接入](https://www.yuque.com/dataflux/doc/eqs7v2)。
+“NPM接入”和“异步载入”可以按照同样的方法进行设置。更多设置可参考文档[Web应用接入](web/app-access.md)。
 
 ## 其他应用采样
 
-IOS采样设置可参考[IOS 应用接入](https://www.yuque.com/dataflux/doc/gsto6k#Zx9Q3)。
-Android采样设置可参考[Android 应用接入](https://www.yuque.com/dataflux/doc/pnzoyp#tBmrd)。
-小程序采样设置可参考[小程序应用接入](https://www.yuque.com/dataflux/doc/clgea8#MJwVt)。
+IOS采样设置可参考[IOS 应用接入](ios/app-access.md)。
+Android采样设置可参考[Android 应用接入](android/app-access.md)。
+小程序采样设置可参考[小程序应用接入](miniapp/app-access/index.md)。
 
-
----
-
-观测云是一款面向开发、运维、测试及业务团队的实时数据监测平台，能够统一满足云、云原生、应用及业务上的监测需求，快速实现系统可观测。**立即前往观测云，开启一站式可观测之旅：**[www.guance.com](https://www.guance.com)
-![](img/logo_2.png)

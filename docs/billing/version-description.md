@@ -36,10 +36,9 @@
 - 免费版不同计费项目若存在数据额度使用满载的情况，数据将停止上报更新；基础设施（object）、事件（event）这两类数据依旧支持上报更新，用户仍然可以看到基础设施列表数据，事件数据；
 - 时间线和备份日志统计的是全量数据，其他计费项都为增量数据；增量数据统计每天 0 点重置免费配额，当天有效。
 
-更多详情可参考文档 [免费开始](https://www.yuque.com/dataflux/doc/sw61zm)、[升级商业版](https://www.yuque.com/dataflux/doc/zaghkf)、[数据存储策略](https://www.yuque.com/dataflux/doc/evmgge) 和 [权限管理](https://www.yuque.com/dataflux/doc/nzlwt8#qW3j9) 。
+更多详情可参考文档 [免费开始](../billing/free-start.md)、[升级商业版](../billing/commercial-version.md)、[数据存储策略](../billing/billing-method/data-storage.md) 和 [权限管理](../management/access-management.md) 。
 
 
 ---
 
-观测云是一款面向开发、运维、测试及业务团队的实时数据监测平台，能够统一满足云、云原生、应用及业务上的监测需求，快速实现系统可观测。**立即前往观测云，开启一站式可观测之旅：**[www.guance.com](https://www.guance.com)
-![](img/logo_2.png)
+

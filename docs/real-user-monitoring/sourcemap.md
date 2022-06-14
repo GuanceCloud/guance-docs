@@ -115,9 +115,3 @@ curl -X DELETE '<dca_address>/v1/rum/sourcemap?app_id=<app_id>&env=<env>&version
 - 当前只支持 js 的 sourcemap 转换。
 - sourcemap 文件名称需要与原文件保持一致，如果未找到对应的 sourcemap 文件，将不进行转换。
 - 通过接口上传的 sourcemap 压缩包，不需要重启 DataKit 即可生效，但如果是手动上传，需要重启 DataKit ，方可生效。
-
-
----
-
-观测云是一款面向开发、运维、测试及业务团队的实时数据监测平台，能够统一满足云、云原生、应用及业务上的监测需求，快速实现系统可观测。**立即前往观测云，开启一站式可观测之旅：**[www.guance.com](https://www.guance.com)
-![](img/logo_2.png)

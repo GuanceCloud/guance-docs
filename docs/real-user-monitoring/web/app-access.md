@@ -118,7 +118,7 @@ datafluxRum.init({
 | `resourceSampleRate` | Number | 否 | `100` | 资源指标数据收集百分比: <br>`100`<br>表示全收集，<br>`0`<br>表示不收集 |
 | `sampleRate` | Number | 否 | `100` | 指标数据收集百分比: <br>`100`<br>表示全收集，<br>`0`<br>表示不收集 |
 | `trackSessionAcrossSubdomains` | Boolean | 否 | `false` | 同一个域名下面的子域名共享缓存 |
-| `traceType` | Enum | 否 | `ddtrace` | 【新增】配置链路追踪工具类型，如果不配置默认为`ddtrace`。目前支持 `ddtrace`、`zipkin`、`skywalking_v3`、`jaeger`、`zipkin_single_header`、`w3c_traceparent` 6 种数据类型。注： `opentelemetry` 支持 `zipkin_single_header`,`w3c_traceparent`,`zipkin`、`jaeger`4 种类型。<br><br>注意：配置相应类型的traceType 需要对相应的API服务 设置不同的 `Access-Control-Allow-Headers` 具体查看 [APM 如何关联 RUM ](https://www.yuque.com/dataflux/doc/vg4y50) |
+| `traceType` | Enum | 否 | `ddtrace` | 【新增】配置链路追踪工具类型，如果不配置默认为`ddtrace`。目前支持 `ddtrace`、`zipkin`、`skywalking_v3`、`jaeger`、`zipkin_single_header`、`w3c_traceparent` 6 种数据类型。注： `opentelemetry` 支持 `zipkin_single_header`,`w3c_traceparent`,`zipkin`、`jaeger`4 种类型。<br><br>注意：1.该配置的生效，需要依赖 allowedTracingOrigins 配置项。2.配置相应类型的traceType 需要对相应的API服务 设置不同的 Access-Control-Allow-Headers 具体查看 APM 如何关联 RUM，具体查看 [APM 如何关联 RUM ](../../application-performance-monitoring/collection/connect-web-app.md) |
 | `traceId128Bit` | Boolean | 否 | `false` | 是否以128字节的方式生成 `traceID`，与`traceType` 对应，目前支持类型 `zipkin`、`jaeger` |
 | `allowedDDTracingOrigins` | Array | 否 | `[]` | 【不建议使用】允许注入`trace`采集器所需header头部的所有请求列表。可以是请求的origin，也可以是是正则，origin:`协议（包括：//），域名（或IP地址）[和端口号]`<br> 例如：<br>`["https://api.example.com", /https:\\/\\/.*\\.my-api-domain\\.com/]` |
 | `allowedTracingOrigins` | Array | 否 | `[]` | 【新增】允许注入`trace`采集器所需header头部的所有请求列表。可以是请求的origin，也可以是是正则，origin: `协议（包括：//），域名（或IP地址）[和端口号]`<br> 例如：<br>`["https://api.example.com", /https:\\/\\/.*\\.my-api-domain\\.com/]` |
@@ -229,7 +229,3 @@ Timing-Allow-Origin: *
 [Measuring network performance with Resource Timing API](http://googledevelopers.blogspot.ca/2013/12/measuring-network-performance-with.html)
 
 
----
-
-观测云是一款面向开发、运维、测试及业务团队的实时数据监测平台，能够统一满足云、云原生、应用及业务上的监测需求，快速实现系统可观测。**立即前往观测云，开启一站式可观测之旅：**[www.guance.com](https://www.guance.com)
-![](../img/logo_2.png)
