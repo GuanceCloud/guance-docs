@@ -36,12 +36,7 @@
 
 ![](img/image_3.png)
 
-**Step 2**: 在 DataKit 中完成拨测节点的安装，并确保部署拨测节点的服务器可探测到目标节点（国家、地区、运营商），详情可参考[ 网络拨测](https://www.yuque.com/dataflux/datakit/dialtesting) 。
+**Step 2**: 在 DataKit 中完成拨测节点的安装，并确保部署拨测节点的服务器可探测到目标节点（国家、地区、运营商），详情可参考[ 网络拨测](../integrations/dialtesting.md) 。
 
 完成拨测节点的安装后，您就可以在配置「云拨测」时选择「自建」节点了。
 
-
----
-
-观测云是一款面向开发、运维、测试及业务团队的实时数据监测平台，能够统一满足云、云原生、应用及业务上的监测需求，快速实现系统可观测。**立即前往观测云，开启一站式可观测之旅：**[www.guance.com](https://www.guance.com)
-![](img/logo_2.png)
