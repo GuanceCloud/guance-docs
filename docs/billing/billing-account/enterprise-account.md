@@ -1,9 +1,9 @@
 # 观测云企业账号结算
 ---
 
-观测云支持[注册免费版](https://www.yuque.com/dataflux/doc/sw61zm#K12aK)或直接[注册商业版](https://www.yuque.com/dataflux/doc/zaghkf#wwMNd)，商业版注册完成后，默认开通企业账号结算，可以根据需求选择云账号结算。免费版注册时有两种选择：一种是注册观测云账号的时候直接选择开通观测云企业账号；另外一种是注册完成后登录到工作空间，升级商业版的时候注册企业账号进行开通，若已有企业账号，可直接选择绑定已有账号。
+观测云支持[注册免费版](../../billing/free-start.md)或直接[注册商业版](../../billing/commercial-version.md)，商业版注册完成后，默认开通企业账号结算，可以根据需求选择云账号结算。免费版注册时有两种选择：一种是注册观测云账号的时候直接选择开通观测云企业账号；另外一种是注册完成后登录到工作空间，升级商业版的时候注册企业账号进行开通，若已有企业账号，可直接选择绑定已有账号。
 
-本文将介绍注册观测云免费版，如何开通观测云企业账号结算。关于直接注册商业版如何开通企业账号结算，可参考文档 [注册商业版](https://www.yuque.com/dataflux/doc/zaghkf#wwMNd) 。
+本文将介绍注册观测云免费版，如何开通观测云企业账号结算。关于直接注册商业版如何开通企业账号结算，可参考文档 [注册商业版](../../billing/commercial-version.md) 。
 
 <a name="SqMH1"></a>
 ## 同步开通观测云企业账号
@@ -20,7 +20,7 @@
 <a name="gt5uI"></a>
 ### 2.升级商业版
 
-刚注册完的账号默认为免费版账号，在「付费计划与账单」，点击「升级」，进入套餐升级页面。<br />![8.upgrade_1.png](../img/8.upgrade_1.png)<br />在套餐升级页面，点击「升级」。观测云支持按需购买，按量计费。更多版本计费逻辑可参考文档 [计费方式](https://www.yuque.com/dataflux/doc/ateans) 。<br />![8.upgrade_2.png](../img/8.upgrade_2.png)<br />在套餐升级页面弹出的对话框，完善企业会员信息。<br />![8.upgrade_3.png](../img/8.upgrade_3.png)<br />查看开通协议并同意，协议同意后即可收到开通提醒邮件，该工作空间升级到商业版。<br />![8.upgrade_4.png](../img/8.upgrade_4.png)
+刚注册完的账号默认为免费版账号，在「付费计划与账单」，点击「升级」，进入套餐升级页面。<br />![8.upgrade_1.png](../img/8.upgrade_1.png)<br />在套餐升级页面，点击「升级」。观测云支持按需购买，按量计费。更多版本计费逻辑可参考文档 [计费方式](../../billing/billing-method.md) 。<br />![8.upgrade_2.png](../img/8.upgrade_2.png)<br />在套餐升级页面弹出的对话框，完善企业会员信息。<br />![8.upgrade_3.png](../img/8.upgrade_3.png)<br />查看开通协议并同意，协议同意后即可收到开通提醒邮件，该工作空间升级到商业版。<br />![8.upgrade_4.png](../img/8.upgrade_4.png)
 
 商业版升级成功，默认使用观测云企业账号结算，若需要更改其他结算方式，可以点击“绑定结算云账号”按钮。目前观测云支持三种结算方式：
 
@@ -35,7 +35,7 @@
 - 无登记云账号结算，开通“结算方式任意选择”：可选择所有站点所属的云平台账号，如“阿里云账号”或“AWS云账号”；
 - 无登记云账号结算，未开通“结算方式任意选择”：可选择当前站点所属的云平台账号，如“阿里云账号”（见下图示例）。
 
-![8.upgrade_6.png](../img/8.upgrade_6.png)<br />选择“阿里云账号”，在弹出的对话框中“前往阿里云免费开通观测云服务”，并填写“阿里用户 ID”和“商品实例 ID”，具体步骤可参考 [开通阿里云账号结算方式](https://www.yuque.com/dataflux/doc/vgdy2u#oL2g8) 。若是 AWS 云账号，可参考 [在 AWS 订阅观测云](https://www.yuque.com/dataflux/doc/zszq8p#VL6Qh) 。<br />![8.upgrade_7.png](../img/8.upgrade_7.png)<br />若选择使用费用中心账号结算，可直接关闭“更改结算方式”对话框。支持在观测云费用中心“工作空间管理”更改结算方式。<br />![8.upgrade_8.png](../img/8.upgrade_8.png)<br />返回观测云付费计划与账单，可以看到当前工作空间已经升级到“商业版”。<br />![8.upgrade_9.png](../img/8.upgrade_9.png)
+![8.upgrade_6.png](../img/8.upgrade_6.png)<br />选择“阿里云账号”，在弹出的对话框中“前往阿里云免费开通观测云服务”，并填写“阿里用户 ID”和“商品实例 ID”，具体步骤可参考 [开通阿里云账号结算方式](../../billing/billing-account/aliyun-account.md) 。若是 AWS 云账号，可参考 [在 AWS 订阅观测云](../../billing/billing-account/aws-account.md) 。<br />![8.upgrade_7.png](../img/8.upgrade_7.png)<br />若选择使用费用中心账号结算，可直接关闭“更改结算方式”对话框。支持在观测云费用中心“工作空间管理”更改结算方式。<br />![8.upgrade_8.png](../img/8.upgrade_8.png)<br />返回观测云付费计划与账单，可以看到当前工作空间已经升级到“商业版”。<br />![8.upgrade_9.png](../img/8.upgrade_9.png)
 <a name="n21qU"></a>
 ### 3.进入观测云费用中心
 
@@ -56,7 +56,7 @@
 <a name="jsbaX"></a>
 ### 2.升级商业版
 
-注册完成后，登录到观测云工作空间，在「付费计划与账单」，点击「升级」，进入套餐升级页面。<br />![5.update_3.png](../img/5.update_3.png)<br />在套餐升级页面，点击「升级」。观测云支持按需购买，按量计费。更多版本计费逻辑可参考文档 [计费方式](https://www.yuque.com/dataflux/doc/ateans) 。<br />![8.upgrade_11.png](../img/8.upgrade_11.png)<br />在弹出的对话框，输入已经在观测云费用中心注册账号进行绑定，此处会对“用户名”进行校验，请输入已开通观测云费用中心账号的“用户名”。<br />![8.upgrade_12.png](../img/8.upgrade_12.png)
+注册完成后，登录到观测云工作空间，在「付费计划与账单」，点击「升级」，进入套餐升级页面。<br />![5.update_3.png](../img/5.update_3.png)<br />在套餐升级页面，点击「升级」。观测云支持按需购买，按量计费。更多版本计费逻辑可参考文档 [计费方式](../../billing/billing-method.md) 。<br />![8.upgrade_11.png](../img/8.upgrade_11.png)<br />在弹出的对话框，输入已经在观测云费用中心注册账号进行绑定，此处会对“用户名”进行校验，请输入已开通观测云费用中心账号的“用户名”。<br />![8.upgrade_12.png](../img/8.upgrade_12.png)
 
 或点击“注册新账号”进行注册新的观测云费用中心账号后再绑定，此处会对“用户名”进行校验唯一性。<br />注意：观测云费用中心的用户名账号一旦注册不能修改。<br />![8.upgrade_13.png](../img/8.upgrade_13.png)<br />查看开通协议并同意，协议同意后即可收到开通提醒邮件，该工作空间升级到商业版。<br />![8.upgrade_14.png](../img/8.upgrade_14.png)<br />商业版升级成功，默认使用观测云费用中心账号结算，若需要更改其他结算方式，可以点击“绑定结算云账号”按钮。目前观测云支持三种结算方式：
 
@@ -71,7 +71,7 @@
 - 无登记云账号结算，开通“结算方式任意选择”：可选择所有站点所属的云平台账号，如“阿里云账号”或“AWS云账号”（见下图示例）；
 - 无登记云账号结算，未开通“结算方式任意选择”：可选择当前站点所属的云平台账号，如“阿里云账号”。
 
-![8.upgrade_16.png](../img/8.upgrade_16.png)<br />选择“阿里云账号”，在弹出的对话框中选择结算方式，具体步骤可参考 [开通阿里云账号结算方式](https://www.yuque.com/dataflux/doc/vgdy2u#oL2g8) 或 [在 AWS 订阅观测云](https://www.yuque.com/dataflux/doc/zszq8p#VL6Qh) 。<br />![8.upgrade_17.png](../img/8.upgrade_17.png)<br />若选择使用费用中心账号结算，可直接关闭“更改结算方式”对话框。支持在观测云费用中心“工作空间管理”更改结算方式。<br />![8.upgrade_18.png](../img/8.upgrade_18.png)<br />返回观测云付费计划与账单，可以看到当前工作空间已经升级到“商业版”。<br />![8.upgrade_19.png](../img/8.upgrade_19.png)
+![8.upgrade_16.png](../img/8.upgrade_16.png)<br />选择“阿里云账号”，在弹出的对话框中选择结算方式，具体步骤可参考 [开通阿里云账号结算方式](../../billing/billing-account/aliyun-account.md) 或 [在 AWS 订阅观测云](../../billing/billing-account/aws-account.md) 。<br />![8.upgrade_17.png](../img/8.upgrade_17.png)<br />若选择使用费用中心账号结算，可直接关闭“更改结算方式”对话框。支持在观测云费用中心“工作空间管理”更改结算方式。<br />![8.upgrade_18.png](../img/8.upgrade_18.png)<br />返回观测云付费计划与账单，可以看到当前工作空间已经升级到“商业版”。<br />![8.upgrade_19.png](../img/8.upgrade_19.png)
 
 <a name="jce35"></a>
 ### 3.进入观测云费用中心
@@ -81,4 +81,4 @@
 
 ---
 
-观测云是一款面向开发、运维、测试及业务团队的实时数据监测平台，能够统一满足云、云原生、应用及业务上的监测需求，快速实现系统可观测。**立即前往观测云，开启一站式可观测之旅：**[www.guance.com](https://www.guance.com)<br />![logo_2.png](../img/logo_2.png)
+
