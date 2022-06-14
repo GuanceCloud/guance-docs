@@ -23,7 +23,7 @@ Demo：[https://github.com/GuanceCloud/datakit-android/demo](https://github.com/
 
 源码地址：[https://github.com/GuanceCloud/datakit-android](https://github.com/GuanceCloud/datakit-android)
 
-### Gradle 配置 
+### Gradle 配置 {#gradle-setting}
 
 在项目的根目录的 `build.gradle` 文件中添加 `DataFlux SDK` 的远程仓库地址
 
@@ -529,7 +529,3 @@ retrace.bat -verbose mapping.txt crash_log.txt
 为了避免自定义字段与 SDK 数据冲突，建议标签命名添加项目缩写的前缀，例如 `df_tag_name`，项目中使用 `key` 值可[查询源码](https://github.com/DataFlux-cn/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java)。SDK 全局变量中出现与 RUM、Log 相同变量时，RUM、Log 会覆盖 SDK 中的全局变量。
 
 
----
-
-观测云是一款面向开发、运维、测试及业务团队的实时数据监测平台，能够统一满足云、云原生、应用及业务上的监测需求，快速实现系统可观测。**立即前往观测云，开启一站式可观测之旅：**[www.guance.com](https://www.guance.com)
-![](../img/logo_2.png)

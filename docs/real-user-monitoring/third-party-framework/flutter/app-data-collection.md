@@ -3,7 +3,7 @@
 
 ## 简介
 
-Flutter  数据采集依赖于 Android iOS Native 框架，为了与 Android iOS 数据采集做对比，以下灰色标记的为未能实现的部分。
+Flutter  数据采集依赖于 Android iOS Native 框架，为了与 Android iOS 数据采集做对比，以下删除线标记项为未能实现的部分。
 
 ## 数据类型
 
@@ -15,7 +15,7 @@ Flutter  数据采集依赖于 Android iOS Native 框架，为了与 Android iOS
 | view | 每次用户访问移动端应用程序的页面时，都会生成一个查看记录。当用户停留在同一页面上时，资源，长任务，错误和操作记录将通过view_id属性链接到相关的RUM视图。 |
 | resource | 用户访问页面时，加载的资源信息记录。 |
 | error | 移动应用程序发出的异常或崩溃。 |
-| long_task | 对于应用程序中任何阻塞主线程超过指定持续时间阈值的任务，都会生成一个长任务事件。 |
+| <del>long_task</del> | <del>对于应用程序中任何阻塞主线程超过指定持续时间阈值的任务，都会生成一个长任务事件。 </del>|
 | action | 记录移动应用程序中的用户活动（应用程序启动，点击，滑动，后退等）。每个动作都附加有唯一的action_id。 |
 
 
@@ -105,7 +105,7 @@ wifi &#124; 2g &#124; 3g &#124; 4g &#124; 5g &#124; unknown（未知网络）&#1
 | `session_error_count` | number | 当前会话产生错误个数 |
 | `session_resource_count` | number | 当前会话加载资源个数 |
 | `session_action_count` | number | 当前会话用户操作次数 |
-| `session_long_task_count` | number | 当前会话产生长任务次数 |
+| <del>`session_long_task_count`</del> | number | <del>当前会话产生长任务次数</del> |
 
 #### 属性
 
@@ -126,7 +126,7 @@ wifi &#124; 2g &#124; 3g &#124; 4g &#124; 5g &#124; unknown（未知网络）&#1
 
 | 字段 | 类型 | 描述 |
 | --- | --- | --- |
-| `loading_time` | number（ns） | 页面加载时间 |
+| <del>`loading_time`</del> | number（ns） | <del>页面加载时间</del> |
 | `time_spent` | number（ns） | 页面停留时间 |
 
 #### 统计指标
@@ -135,7 +135,7 @@ wifi &#124; 2g &#124; 3g &#124; 4g &#124; 5g &#124; unknown（未知网络）&#1
 | --- | --- | --- |
 | `view_error_count` | number | 每次页面加载时发生的错误次数 |
 | `view_resource_count` | number | 每次页面加载时请求的资源个数 |
-| `view_long_task_count` | number | 每次页面加载时产生的长任务个数 |
+| <del>`view_long_task_count`</del>| number | <del>每次页面加载时产生的长任务个数</del> |
 | `view_action_count` | number | 页面查看过程中操作的次数 |
 
 
@@ -145,14 +145,14 @@ wifi &#124; 2g &#124; 3g &#124; 4g &#124; 5g &#124; unknown（未知网络）&#1
 
 | **字段** | **类型** | **描述** |
 | --- | --- | --- |
-| `resource_size` | number | 资源大小，默认单位：byte |
-| `resource_dns` | number（ns） | 资源加载DNS解析时间<br>计算方式：domainLookupEnd - domainLookupStart |
-| `resource_tcp` | number（ns） | 资源加载TCP连接时间<br>计算方式：connectEnd - connectStart |
-| `resource_ssl` | number（ns） | 资源加载SSL连接时间<br>计算方式：connectEnd - secureConnectStart |
-| `resource_ttfb` | number（ns） | 资源加载请求响应时间<br>计算方式：responseStart - requestStart |
-| `resource_trans` | number（ns） | 资源加载内容传输时间<br>计算方式：responseEnd - responseStart |
-| `resource_first_byte` | number（ns） | 资源加载首包时间<br>计算方式：responseStart - domainLookupStart |
-| `duration` | number（ns） | 资源加载时间<br>计算方式：duration(responseEnd-startTime) |
+| <del>`resource_size` </del>| number | <del>资源大小，默认单位：byte </del>||
+| <del>`resource_dns` </del>| number（ns） | <del>资源加载DNS解析时间<br>计算方式：domainLookupEnd - domainLookupStart </del>|
+| <del>`resource_tcp` </del>| number（ns） | <del>资源加载TCP连接时间<br>计算方式：connectEnd - connectStart</del>|
+| <del>`resource_ssl` </del>| number（ns） |<del> 资源加载SSL连接时间<br>计算方式：connectEnd - secureConnectStart </del>|
+| <del>`resource_ttfb`</del>| number（ns） | <del>资源加载请求响应时间<br>计算方式：responseStart - requestStart</del> |
+|<del> `resource_trans` </del>| number（ns） | <del>资源加载内容传输时间<br>计算方式：responseEnd - responseStart </del>|
+| <del>`resource_first_byte` </del>| number（ns） | <del>资源加载首包时间<br>计算方式：responseStart - domainLookupStart </del>|
+| <del>`duration`</del>| number（ns） | <del>资源加载时间<br>计算方式：duration(responseEnd-startTime) </del>|
 
 #### 属性
 
@@ -230,6 +230,4 @@ wifi &#124; 2g &#124; 3g &#124; 4g &#124; 5g &#124; unknown（未知网络）&#1
 
 
 
----
-观测云是一款面向开发、运维、测试及业务团队的实时数据监测平台，能够统一满足云、云原生、应用及业务上的监测需求，快速实现系统可观测。**立即前往观测云，开启一站式可观测之旅：**[www.guance.com](https://www.guance.com)
-![](../../img/logo_2.png)
+

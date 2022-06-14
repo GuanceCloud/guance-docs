@@ -14,8 +14,10 @@
 ![](../../img/image_13.png)
 
 # 安装
-源码地址：[https://github.com/DataFlux-cn/datakit-react-native](https://github.com/DataFlux-cn/datakit-react-native)
-Demo 地址：[https://github.com/GuanceCloud/datakit-react-native/example](https://github.com/GuanceCloud/datakit-react-native/tree/dev/example)
+**源码地址**：[https://github.com/DataFlux-cn/datakit-react-native](https://github.com/DataFlux-cn/datakit-react-native)
+
+**Demo 地址**：[https://github.com/GuanceCloud/datakit-react-native/example](https://github.com/GuanceCloud/datakit-react-native/tree/dev/example)
+
 在项目路径下，终端运行命令：
 
 ```bash
@@ -31,7 +33,7 @@ npm install @cloudcare/react-native-mobile
 }
 ```
 
-> Android 需要在 app/android 目录下 build.gradle 安装 ft-plugin 配合使用，详细配置请见 [Android SDK](../android/app-access.md#Gradle-配置) 配置，或参考 demo
+> Android 需要在 app/android 目录下 build.gradle 安装 ft-plugin 配合使用，详细配置请见 [Android SDK](../android/app-access.md#gradle-setting) 配置，或参考 demo
 
 
 现在在您的代码中，您可以使用：
@@ -317,6 +319,6 @@ AsyncStorage.setItem("track_id",valueString,(error)=>{
 
 # 常见问题
 
-- [iOS 相关](../ios/app-access.md#common-problem)
-- [Android 相关](../android/app-access.md#common-problem)
+- [iOS 相关](../../ios/app-access.md#FAQ)
+- [Android 相关](../../android/app-access.md#FAQ)
 

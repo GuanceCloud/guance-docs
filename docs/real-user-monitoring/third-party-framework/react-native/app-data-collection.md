@@ -2,7 +2,7 @@
 ---
 
 ## 简介
-React Native  数据采集依赖于 Android iOS Native 框架，为了与 Android iOS 数据采集做对比，以下灰色标记的为未能实现的部分。
+React Native  数据采集依赖于 Android iOS Native 框架，为了与 Android iOS 数据采集做对比，以下删除线标记项为未能实现的部分。
 
 ## 数据类型
 
@@ -14,7 +14,7 @@ React Native  数据采集依赖于 Android iOS Native 框架，为了与 Androi
 | view | 每次用户访问移动端应用程序的页面时，都会生成一个查看记录。当用户停留在同一页面上时，资源，长任务，错误和操作记录将通过view_id属性链接到相关的RUM视图。 |
 | resource | 用户访问页面时，加载的资源信息记录。 |
 | error | 移动应用程序发出的异常或崩溃。 |
-| long_task | 对于应用程序中任何阻塞主线程超过指定持续时间阈值的任务，都会生成一个长任务事件。 |
+| <del>long_task</del> | <del>对于应用程序中任何阻塞主线程超过指定持续时间阈值的任务，都会生成一个长任务事件。 </del>|
 | action | 记录移动应用程序中的用户活动（应用程序启动，点击，滑动，后退等）。每个动作都附加有唯一的 action_id。 |
 
 
@@ -103,7 +103,7 @@ React Native  数据采集依赖于 Android iOS Native 框架，为了与 Androi
 | `session_error_count` | number | 当前会话产生错误个数 |
 | `session_resource_count` | number | 当前会话加载资源个数 |
 | `session_action_count` | number | 当前会话用户操作次数 |
-| `session_long_task_count` | number | 当前会话产生长任务次数 |
+| <del>`session_long_task_count`</del> | number | <del>当前会话产生长任务次数</del> |
 
 #### 属性
 
@@ -133,7 +133,7 @@ React Native  数据采集依赖于 Android iOS Native 框架，为了与 Androi
 | --- | --- | --- |
 | `view_error_count` | number | 每次页面加载时发生的错误次数 |
 | `view_resource_count` | number | 每次页面加载时请求的资源个数 |
-| `view_long_task_count` | number | 每次页面加载时产生的长任务个数 |
+| <del>`view_long_task_count`</del> | number | <del>每次页面加载时产生的长任务个数</del> |
 | `view_action_count` | number | 页面查看过程中操作的次数 |
 
 
@@ -197,9 +197,9 @@ React Native  数据采集依赖于 Android iOS Native 框架，为了与 Androi
 
 | **字段** | **类型** | **描述** |
 | --- | --- | --- |
-| `duration` | number（ns） | 卡顿时长 |
-| `long_task_message` | string | 卡顿信息 |
-| `long_task_stack` | string | 卡顿堆栈 |
+| <del>`duration`</del> | number（ns） | <del>卡顿时长</del> |
+| <del>`long_task_message`</del> | string | <del>卡顿信息</del> |
+| <del>`long_task_stack`</del> | string | <del>卡顿堆栈</del> |
 
 
 ### Action
@@ -214,7 +214,7 @@ React Native  数据采集依赖于 Android iOS Native 框架，为了与 Androi
 
 | **字段** | **类型** | **描述** |
 | --- | --- | --- |
-| `action_long_task_count` | number | 操作关联长任务次数 |
+| <del>`action_long_task_count`</del> | number | <del>操作关联长任务次数</del> |
 | `action_resource_count` | number | 操作关联资源请求次数 |
 | `action_error_count` | number | 操作关联的错误次数 |
 

@@ -39,7 +39,7 @@ dependencies:
 import 'package:ft_mobile_agent_flutter/ft_mobile_agent_flutter.dart';
 ```
 
-> Android 需要在 app/android 目录下 build.gradle 安装 ft-plugin 配合使用，并在创建自定义 Application，并且 AndroidMainifest.xml  中声明使用，代码如下，详细配置请见 [Android SDK](../../android/app-access.md) 配置，或参考 demo
+> Android 需要在 app/android 目录下 build.gradle 安装 ft-plugin 配合使用，并在创建自定义 Application，并且 AndroidMainifest.xml  中声明使用，代码如下，详细配置请见 [Android SDK](../../android/app-access.md#gradle-setting) 配置，或参考 demo
 
 ```kotlin
 import io.flutter.app.FlutterApplication
@@ -358,11 +358,7 @@ void httpClientGetHttp() async {
 
 ## 常见问题
 
-- [iOS 相关](https://www.yuque.com/dataflux/doc/gsto6k#EiSnQ)
+- [iOS 相关](../../ios/app-access.md#FAQ)
 - [Android 相关](../../android/app-access.md#FAQ)
 
 
----
-
-观测云是一款面向开发、运维、测试及业务团队的实时数据监测平台，能够统一满足云、云原生、应用及业务上的监测需求，快速实现系统可观测。**立即前往观测云，开启一站式可观测之旅：**[www.guance.com](https://www.guance.com)
-![](../../img/logo_2.png)
