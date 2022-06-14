@@ -20,7 +20,7 @@
 
 ![](../img/2.安装datakit.png)
 
-[了解更多DataKit 使用入门。](https://www.yuque.com/dataflux/datakit/datakit-service-how-to)
+[了解更多DataKit 使用入门。](../datakit/datakit-how-to.md)
 
 ## 安装 Function
 
@@ -39,7 +39,7 @@
 
 ![](../img/3.object_more_api_function_1.png)
 
-更多 Function 安装可参考文档 [Function 快速开始](https://www.yuque.com/dataflux/func/quick-start) 。
+更多 Function 安装可参考文档 [Function 快速开始](../dataflux-func/quick-start.md) 。
 
 ## 连接 Function 和 DataKit
 
@@ -53,14 +53,14 @@
 
 3.重启DataKit：`sudo datakit --restart`
 
-更多详情可参考文档 [连接并操作DataKit](https://www.yuque.com/dataflux/func/connect-to-datakit) 。
+更多详情可参考文档 [连接并操作DataKit](../dataflux-func/connect-to-datakit.md) 。
 
 ## 上报自定义对象数据
 
 Function和DataKit连通以后，可以在 Function中撰写函数来完成上报自定义对象数据。
 
-- 关于 Function 函数调用的接口说明可参考文档 [DataKit API](https://www.yuque.com/dataflux/datakit/apis) 。
-- 关于 Function 如何写入数据到 DataKit 的说明可参考文档 [通过DataKit 写入数据](https://www.yuque.com/dataflux/func/write-data-via-datakit) 。
+- 关于 Function 函数调用的接口说明可参考文档 [DataKit API](../datakit/apis.md) 。
+- 关于 Function 如何写入数据到 DataKit 的说明可参考文档 [通过DataKit 写入数据](../dataflux-func/write-data-via-datakit.md) 。
 
 ## 示例说明
 
@@ -90,7 +90,7 @@ Function和DataKit连通以后，可以在 Function中撰写函数来完成上�
 
 ![](../img/3.object_more_api_function_9.png)
 
-根据 [DataKit API](https://www.yuque.com/dataflux/datakit/apis) 文档获取上报API接口和撰写上报数据到DataFlux的脚本，根据[阿里云 API](https://next.api.aliyun.com/product/Ecs) 文档撰写获取阿里云产品基本信息的字段。
+根据 [DataKit API](../datakit/apis.md) 文档获取上报API接口和撰写上报数据到DataFlux的脚本，根据[阿里云 API](https://next.api.aliyun.com/product/Ecs) 文档撰写获取阿里云产品基本信息的字段。
 
 脚本写完以后，可以点击右上角的“执行”，查看是否可以正常执行代码。
 
@@ -155,9 +155,3 @@ def main():
 6.若需要定时执行脚本任务，可在 DataFlux Func 「管理」-「自动触发配置」创建定时上报任务。
 
 ![](../img/3.object_more_api_function_12.png)
-
-
----
-
-观测云是一款面向开发、运维、测试及业务团队的实时数据监测平台，能够统一满足云、云原生、应用及业务上的监测需求，快速实现系统可观测。**立即前往观测云，开启一站式可观测之旅：**[www.guance.com](https://www.guance.com)
-![](../img/logo_2.png)

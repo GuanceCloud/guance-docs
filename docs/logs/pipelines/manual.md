@@ -7,7 +7,7 @@ Pipeline 支持对不同格式的日志数据进行文本解析，通过编写 P
 
 ## 前置条件
 
-1. 您需要先创建一个[观测云账号](https://www.guance.com/)，并在您的主机上[安装 DataKit](https://www.yuque.com/dataflux/datakit/datakit-install) ；
+1. 您需要先创建一个[观测云账号](https://www.guance.com/)，并在您的主机上[安装 DataKit](../datakit/datakit-install.md) ；
 1. 开启日志采集器，并在配置文件中打开 Pipeline 功能；
 
 ## 自定义 Pipeline 脚本文件
@@ -77,7 +77,7 @@ rename("time", log_time) # 将 log_time 重名命名为 time
 default_time(time)       # 将 time 字段作为输出数据的时间戳
 ```
 
-更多 pipeline 解析规则可参考文档 [文本数据处理（Pipeline）](https://www.yuque.com/dataflux/datakit/pipeline) 。
+更多 pipeline 解析规则可参考文档 [文本数据处理（Pipeline）](../../datakit/pipeline.md) 。
 
 #### 日志样本测试
 脚本规则编写完成后，可以输入日志样本数据进行测试，来验证你配置的解析规则是否正确。
@@ -150,7 +150,7 @@ default_time(time)       # 将 time 字段作为输出数据的时间戳
         # ...
 ```
 
-配置完成后，使用命令行`datakit --restart`重启 DataKit 使配置生效。更多 Nginx 采集器配置可参考文档 [Nginx](https://www.yuque.com/dataflux/datakit/nginx) 。
+配置完成后，使用命令行`datakit --restart`重启 DataKit 使配置生效。更多 Nginx 采集器配置可参考文档 [Nginx](../integrations/nginx.md) 。
 ### 步骤二：根据采集的日志，确定切割字段
 
 开启 Nginx 采集器，配置日志文件路径，开启 Pipeline 以后，即可在观测云工作空间查看采集到的 Nginx 日志，在日志详情中，可查看按照 Pipeline 文件切割的字段属性。观察和分析日志，确定是否需要优化切割的字段。
@@ -162,14 +162,16 @@ default_time(time)       # 将 time 字段作为输出数据的时间戳
 在观测云工作空间「日志」-「Pipelines」，点击「Pipeline 官方库」，选择查看并克隆「nginx.p」的 Pipeline 文件。
 
 - 在「过滤日志」选择 “nginx”；
-- 在「定义解析规则」优化解析规则，更多解析规则可参考文档 [文本数据处理（Pipeline）](https://www.yuque.com/dataflux/datakit/pipeline)；
+- 在「定义解析规则」优化解析规则，更多解析规则可参考文档 [文本数据处理（Pipeline）](../../datakit/pipeline.md)；
 - 在「日志样本测试」输入 nginx 日志数据，根据配置的解析规则进行测试。
 
 注意：
 
 - Pipeline 官方库自带多个日志样本测试数据，在“克隆”前可选择符合自身需求的日志样本测试数据。
 - 克隆的 Pipeline 修改保存后， 日志样本测试数据同步保存。
-- 
+
+
+
 ```
 2022/02/23 14:26:19 [error] 632#632: *62 connect() failed (111: Connection refused) while connecting to upstream, client: ::1, server: _, request: "GET /server_status HTTP/1.1", upstream: "http://127.0.0.1:5000/server_status", host: "localhost"
 ```
@@ -204,13 +206,7 @@ default_time(time)       # 将 time 字段作为输出数据的时间戳
 
 以上观测云工作空间日志 Pipeline 使用手册，更多关于 Pipeline 和 日志采集切割的内容，可参考如下文档。
 
-- [文本数据处理（Pipeline）](https://www.yuque.com/dataflux/datakit/pipeline#d29b7088)
-- [调试 Pipeline](https://www.yuque.com/dataflux/datakit/datakit-pl-how-to)
-- [日志](https://www.yuque.com/dataflux/datakit/logging)
-- [第三方日志接入](https://www.yuque.com/dataflux/datakit/logstreaming)
-
-
----
-
-观测云是一款面向开发、运维、测试及业务团队的实时数据监测平台，能够统一满足云、云原生、应用及业务上的监测需求，快速实现系统可观测。**立即前往观测云，开启一站式可观测之旅：**[www.guance.com](https://www.guance.com)
-![](../img/logo_2.png)
+- [文本数据处理（Pipeline）](../../datakit/pipeline.md)
+- [如何编写 Pipeline 脚本](../../datakit/datakit-pl-how-to.md)
+- [日志](../integrations/logging.md)
+- [第三方日志接入](../integrations/logstreaming.md)

@@ -9,12 +9,11 @@ APM 通过`ddtrace`、`ddtrace`、`zipkin`、`skywalking`、`jaeger`、`opentele
 
 ## 前置条件
 
-- 在对应的web应用目标服务器配置[ddtrace](https://www.yuque.com/dataflux/datakit/ddtrace)、[skywalking](https://www.yuque.com/dataflux/datakit/skywalking)、[opentelemetry](https://www.yuque.com/dataflux/datakit/opentelemetry)、[jaeger](https://www.yuque.com/dataflux/datakit/jaeger)、[zipkin](https://www.yuque.com/dataflux/datakit/zipkin)
+- 在对应的web应用目标服务器配置[ddtrace](../../integrations/ddtrace.md)、[skywalking](../../integrations/skywalking.md)、[opentelemetry](../../integrations/opentelemetry.md)、[jaeger](../../integrations/jaeger.md)、[zipkin](../../integrations/zipkin.md)
 - 对于前后的分离的前端应用（有跨域的条件），需要对目标服务器允许跟踪的前端请求响应头设置header白名单。
 
   对应不同APM 工具，具体Access-Control-Allow-Headers的请求头对应的key 如下：
-    
-
+  
 - ddtrace ：`x-datadog-parent-id`,`x-datadog-sampled`,`x-datadog-sampling-priority`,`x-datadog-trace-id`。
 - skywalking: `sw8`。
 - jaeger: `uber-trace-id`。
@@ -42,7 +41,7 @@ def after_request(response):
 
 ### 前端RUM 设置步骤
 
-1. 在前端应用中引入RUM SDK[RUM 引入](https://www.yuque.com/dataflux/doc/eqs7v2#852abae7)
+1. 在前端应用中引入RUM SDK[RUM 引入](../../real-user-monitoring/web/app-access.md)
 2. 在初始化配置中添加 `allowedTracingOrigins`参数，配置允许跟踪的前端请求origin白名单，可以是字符串数组，也可以是正则表达式。 origin的定义：`<scheme> "://" <hostname> [ ":" <port> ]`
 
 示例：
@@ -58,10 +57,3 @@ datafluxRum.init({
   allowedTracingOrigins: ["https://api.example.com", /https:\/\/.*\.my-api-domain\.com/]
 })
 ```
-
-
-
----
-
-观测云是一款面向开发、运维、测试及业务团队的实时数据监测平台，能够统一满足云、云原生、应用及业务上的监测需求，快速实现系统可观测。**立即前往观测云，开启一站式可观测之旅：**[www.guance.com](https://www.guance.com)
-![](../img/logo_2.png)
