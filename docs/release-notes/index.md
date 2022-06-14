@@ -3,6 +3,157 @@
 
 本文档记录观测云每次上线发布的更新内容说明，包括 DataKit、Function、观测云最佳实践、观测云集成文档和观测云。
 
+## 2022 年 6月 6号
+
+### 观测云计费更新
+
+观测云计费优化[时间线](../billing/billing-method/index.md)计费逻辑，以及指标数据的[数据保存策略](../billing/billing-method/data-storage.md)。原每 300 条 3 元下调为每 1000 条 3 元。同时指标数据新增 3 天、7 天、14 天数据保存策略，指标集支持[自定义数据保存策略](../metrics/explorer.md)。
+
+时间线统计的是当前工作空间，上报的指标数据中基于标签可以组合而成的所有组合数量。数据保存策略即数据存储时长，是上报到当前工作空间的数据保存时间，超过存储时长的数据将会自动删除。
+
+时间线为全量统计，即每天产生的时间线在数据保存策略期间会依次累加，数据保存策略越长，时间线的费用就越高。
+
+此次优化通过下调时间线的费用以及缩短指标的数据保存策略，您可以更灵活的调整指标的数据保存策略，帮助您节约费用成本。
+
+### 观测云更新
+
+#### 新增 Jenkins CI 可观测
+
+观测云新增 Jenkins CI 可观测，您可以通过观测云的 CI 可视化功能直接查看在 Jenkins 的 CI 结果。CI 的过程是持续集成，开发人员在 push 代码的时候，若碰到问题，可以在观测云查看所有 CI 的 pipeline 及其成功率、失败原因、具体失败环节，帮助您提供代码更新保障。更多详情可参考 [CI 可视化](../ci-visibility/index.md) 。
+![](img/17.CI_2.png)
+
+#### 新增自定义查看器图表同步搜索
+
+自定义查看器新增图表同步搜索开关，用于决定搜索条件是否影响图表查询，默认开启。当搜索框有内容时，关闭开关，即图表查询回到默认状态；开启开关，即图表查询受到筛选内容的影响。
+![](img/6.custom_explorer_1.png)
+
+#### 新增网络拓扑和服务拓扑下钻分析
+
+在基础设施网络拓扑图，点击主机/Pod 图标，点击“查看上下游”，即可查看当前节点的上下游节点关联。在上下游节点，点击左上角“返回总览”可返回到原网络拓扑图，在搜索框进行搜索或筛选可过滤关联的上下游节点，根据搜索或筛选的结果显示匹配的关联上下游节点。更多详情可参考文档 [网络查看上下游](../infrastructure/network.md) 。
+![](img/11.network_1.png)
+在服务拓扑图，点击服务图标，点击“查看上下游”，即可查看当前服务的上下游服务关联。在上下游服务，点击左上角“返回总览”可返回到原服务拓扑图，在搜索框进行搜索或筛选可过滤关联的上下游服务，根据搜索或筛选的结果显示匹配的关联上下游服务。更多详情可参考文档 [服务查看上下游](../application-performance-monitoring/service.md) 。
+![](img/12.apm_service_1.png)
+
+#### 新增删除自定义对象的数据及索引
+
+观测云支持拥有者和管理员删除指定自定义对象分类以及所有自定义对象，进入「管理」-「基本设置」，点击「删除自定义对象」后，选择删除自定义对象的方式，即可删除对应的对象数据。
+
+- 指定自定义对象分类：仅删除所选对象分类下的数据，不会删除索引
+- 所有自定义对象：删除所有自定义对象数据及索引
+
+注意：所有自定义对象一旦删除，上报到基础设施自定义的所有数据及索引全部会被删除且无法恢复，所有设置的自定义对象分类数据需要重新上报，每天限制5次删除所有自定义对象操作。
+
+更多自定义对象介绍可参考文档 [自定义](../infrastructure/custom/index.md) 。
+![](img/7.custom_cloud_3.png)
+
+#### 新增查看器快照查看入口
+
+在观测云指标、日志、事件、应用性能监测、用户访问监测、云拨测、安全巡检、CI 可视化等查看器，保存快照以后，可直接点击右上角查看快照图标侧滑展开查看已经保存的快照。
+
+- 支持快照名称关键字搜索，通过关键词模糊匹配相关快照名称
+- 第一个为默认视图，不支持分享、复制链接和删除功能
+- 除第一个默认视图外，其他快照支持分享、复制链接和删除功能，点击「快照名称」即可在当前查看器打开对应的数据副本
+
+![](img/2.snapshot_1.png)
+#### 新增查看器筛选条件编辑功能
+
+在观测云查看器搜索栏通过“字段:值”的方式进行筛选时，支持点击“字段:值”对“字段:值”进行编辑修改，并以修改后的结果进行筛选。
+![](img/13.search_3.png)
+
+#### 优化用户访问 View 查看器关联链路为 Fetch/XHR
+
+在观测云用户访问监测 View 查看器详情页，切换至「Fetch/XHR」时，支持查看用户访问时向后端应用发出的每一个网络请求，包括发生时间、请求的链路和持续时间。
+![](img/4.rum_view_3.png)
+若网络请求存在对应的`trace_id`，在请求前会有提示的小图标，点击请求，可跳转至对应链路的详情页。
+![](img/4.rum_view_4.png)
+
+#### 新增图表数据加载高性能模式
+
+观测云支持图表数据加载高性能模式，默认关闭，可通过点击左下角账号，在「高性能模式」选择开启。高性能模式开启以后，所有图表不进行动态加载，在点击进入页面的时候直接同时加载，即在超出当前页面使用往下滑动查看时图表已全部加载完成，可直接查看展示结果。
+
+注意：高性能模式开启后仅针对当前用户查看图表。
+![](img/3.high_performance_1.png)
+
+#### 新增告警配置事件通知等级
+
+告警配置支持自定义选择事件通知等级，包括紧急、重要、警告、恢复、无数据、无数据恢复、无数据视为恢复 7 种选择，支持多选，支持一键清空选项，清空后选项清除，需手动选择对应值。更多告警配置可参考文档 [告警设置](../monitoring/alert-setting.md) 。
+![](14.monitor_alert_1.png)
+
+#### 其他功能优化
+
+- 场景仪表板组合图表支持隐藏/显示大标题
+- 优化事件详情页事件类型文案显示
+- 基础设施列表查看新增按照字段排序功能
+- 日志查看器新增隐藏分布图按钮
+- 查看器支持通过关键字搜索显示列，支持自定义显示列作为预设字段，后续通过Pipeline切割字段并上报数据后可直接显示上报的数据。
+- 在内置模板库和内置视图增加一键查看对应的集成文档，帮助您快速配置对应的采集器
+- 内置视图除支持在查看器绑定链路服务、应用、日志源、项目、标签等相关视图外，新增支持自定义 key 和 value 绑定相关视图，同时支持服务侧滑详情页绑定内置视图
+- 优化通知对象飞书机器人，支持自定义是否需要密钥安全校验
+- 配置监视器时，若配置的数据范围小于检测频率，触发提示配置会存在数据空洞问题
+
+## DataKit 更新（**2022/05/26**）
+
+- Pipeline 做了调整，所有数据类型，均可通过配置 Pipeline 来额外处理数据
+- grok() 支持直接将字段提取为指定类型，无需再额外通过 cast() 函数进行类型转换
+- Pipeline 增加多行字符串支持，对于很长的字符串（比如 grok 中的正则切割），可以通过将它们写成多行，提升了可读性
+- 每个 Pipeline 的运行情况，通过 datakit monitor -V 可直接查看
+- 增加 Kubernetes Pod 对象 CPU/内存指标
+- Helm 增加更多 Kubernetes 版本安装适配
+- 优化 OpenTelemetry，HTTP 协议增加 JSON 支持
+- DataKit 在自动纠错行协议时，对纠错行为增加了日志记录，便于调试数据问题
+- 移除时序类数据中的所有字符串指标
+- 在 DaemonSet 安装中，如果配置了选举的命名空间，对参与选举的采集器，其数据上均会新增特定的 tag（election_namespace）
+- CI 可观测，增加 Jenkins 支持
+
+#### Breaking changes
+
+对于 Docker 类容器日志的采集，需要将宿主机（Node）的 _/varl/lib_ 路径挂载到 DataKit 里面（因为 Docker 日志默认落在宿主机的 _/var/lib/_ 下面），在 _datakit.yaml_ 中，`volumeMounts` 和 `volumes` 中新增如下配置：
+
+```yaml
+volumeMounts:
+- mountPath: /var/lib
+  name: lib
+
+# 省略其它部分...
+
+volumes:
+- hostPath:
+    path: /var/lib
+  name: lib
+```
+
+## 最佳实践更新
+
+- APM
+   - 基于观测云，使用 SkyWalking 实现 RUM、APM 和日志联动分析
+   - 监控最佳实践
+   - OpenTelemetry 可观测建设
+   - OpenTelemetry to Jeager 、Grafana、ELK
+   - OpenTelemetry to Grafana
+   - OpenTelemetry to 观测云
+- 观测云小妙招
+   - OpenTelemetry 采样最佳实践
+
+更多最佳实践更新可参考 [最佳实践版本历史](../best-practices/index.md) 。
+
+## 集成模版更新
+#### 新增文档和视图
+
+- 数据采集
+   - Opentelemetry Collector
+- 容器编排
+   - Kubernetes Scheduler
+   - Kubernetes Controller Manager
+   - Kubernetes API Server
+   - Kubernetes Kubelet
+#### 新增视图
+
+- 容器编排
+   - Kubernetes Nodes Overview
+- 中间件
+   - JVM Kubernetes
+
+
 ## 2022 年 5月 19号
 
 ### 观测云更新
@@ -13,7 +164,7 @@
 
 #### 新增场景仪表板用户视图模版库
 
-观测云内置60余种系统视图模板，无需配置，即选即用，满足你各种监控场景的需求，您可以自定义视图作为用户视图模版来一键创建仪表板。更多仪表板的搭建可参考文档 [仪表板](https://www.yuque.com/dataflux/doc/gqatnx) 。
+观测云内置60余种系统视图模板，无需配置，即选即用，满足你各种监控场景的需求，您可以自定义视图作为用户视图模版来一键创建仪表板。更多仪表板的搭建可参考文档 [仪表板](../scene/dashboard.md) 。
 
 ![](img/1.dashboard_1.png)
 
@@ -38,13 +189,13 @@
 - 脱敏后的数据仅支持工作空间管理员及以上的成员进行查看，标准和只读成员无法查看脱敏后的信息。
 - 配置敏感字段仅支持工作空间管理员及以上的成员进行操作，标准和只读成员仅支持查看配置的敏感字段。
 
-更多详情可参考文档 [数据权限管理](https://www.yuque.com/dataflux/doc/hgn17u) 。
+更多详情可参考文档 [数据权限管理](../management/data-authorization.md) 。
 
 ![](img/3.data_7.png)
 
 #### 优化日志查看器及详情页
 
-观测云[日志查看器](https://www.yuque.com/dataflux/doc/ibg4fx)默认显示“time”和“message”字段，本次优化支持可隐藏“message”字段显示。
+观测云[日志查看器](../logs/explorer.md)默认显示“time”和“message”字段，本次优化支持可隐藏“message”字段显示。
 
 在日志详情页，日志内容根据 message 类型自动显示 Json 和文本两种查看模式。若日志没有 message 字段，则不显示日志内容部分，日志内容支持展开收起，默认为展开状态，收起后仅显示1行的高度。
 
@@ -54,13 +205,13 @@
 
 #### 新增网络数据检测监控器
 
-[网络数据检测](https://www.yuque.com/dataflux/doc/vbeqrd)用于监测工作空间内网络性能的指标数据，通过设置阈值范围，当指标到达阈值后触发告警。“观测云”支持对单个指标设置告警和自定义告警等级。在「监控器」中，点击「+新建监控器」，选择「网络数据检测」，进入检测规则的配置页面。
+[网络数据检测](../monitoring/monitor/network-detection.md)用于监测工作空间内网络性能的指标数据，通过设置阈值范围，当指标到达阈值后触发告警。“观测云”支持对单个指标设置告警和自定义告警等级。在「监控器」中，点击「+新建监控器」，选择「网络数据检测」，进入检测规则的配置页面。
 
 ![](img/6.monitor_3.png)
 
 #### 优化内置视图绑定功能
 
-观测云[内置视图](https://www.yuque.com/dataflux/doc/gyl9vv)包括系统视图和用户视图，本次优化取消自定义绑定系统视图为查看器视图，仅支持绑定用户视图为查看器视图，若需要绑定系统视图，可先克隆系统视图为用户视图，若系统视图和用户视图重名，在查看器优先显示用户视图。关于如何绑定用户视图为查看器视图，可参考文档 [绑定内置视图](https://www.yuque.com/dataflux/doc/dns233) 。
+观测云内置视图包括系统视图和用户视图，本次优化取消自定义绑定系统视图为查看器视图，仅支持绑定用户视图为查看器视图，若需要绑定系统视图，可先克隆系统视图为用户视图，若系统视图和用户视图重名，在查看器优先显示用户视图。关于如何绑定用户视图为查看器视图，可参考文档 [绑定内置视图](../management/built-in-view/bind-view.md) 。
 
 ![](img/4.view_4.png)
 
@@ -84,29 +235,29 @@
 - 调整 DaemonSet 模式下主机名获取策略
 - Trace 采集器支持通过服务名（`service`）通配来过滤资源（`resource`）
 
-更多 DataKit 更新可参考 [DataKit 版本历史](https://www.yuque.com/dataflux/datakit/changelog) 。
+更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md) 。
 
 ## 最佳实践更新
 
 - 云原生
-   - [利用观测云一键开启Rancher可观测之旅](https://www.yuque.com/dataflux/bp/rancher-datakit)
+   - 利用观测云一键开启Rancher可观测之旅
 - 微服务可观测最佳实践
-   - [Kubernetes 集群 应用使用 SkyWalking 采集链路数据](https://www.yuque.com/dataflux/bp/k8s-skywalking)
-   - [Kubernetes 集群日志上报到同节点的 DataKit 最佳实践](https://www.yuque.com/dataflux/bp/la0i12)
+   - Kubernetes 集群 应用使用 SkyWalking 采集链路数据
+   - Kubernetes 集群日志上报到同节点的 DataKit 最佳实践
 - Gitlab-CI 可观测最佳实践
-   - [Gitlab-CI 可观测最佳实践](https://www.yuque.com/dataflux/bp/gitlab-cicd)
+   - Gitlab-CI 可观测最佳实践
 
-更多最佳实践更新可参考 [最佳实践版本历史](https://www.yuque.com/dataflux/bp/changelog) 。
+更多最佳实践更新可参考 [最佳实践版本历史](../best-practices/index.md) 。
 
 ## 集成模版更新
 
 #### 新增文档和视图
 
 - 中间件
-   - [Resin](https://www.yuque.com/dataflux/integrations/resin)
-   - [Beats](https://www.yuque.com/dataflux/integrations/epsgce)
+   - Resin
+   - Beats
 - 主机系统
-   - [Procstat](https://www.yuque.com/dataflux/integrations/ubgene)
+   - Procstat
 #### 新增视图
 
 - 容器编排
@@ -114,7 +265,7 @@
 - 阿里云
    - ASM Service
 
-更多集成模版更新可参考 [集成文档版本历史](https://www.yuque.com/dataflux/integrations/changelog) 。
+
 
 ## 2022 年 5月 6 号
 
@@ -122,37 +273,37 @@
 
 #### 优化观测云商业版升级流程
 
-观测云升级到商业版默认开通[观测云费用中心账户结算](https://www.yuque.com/dataflux/doc/xcifgo)，支持更改结算方式为云账号结算，包括[阿里云账号](https://www.yuque.com/dataflux/doc/vgdy2u)和 [AWS 云账号](https://www.yuque.com/dataflux/doc/zszq8p)结算方式。
+观测云升级到商业版默认开通[观测云费用中心账户结算](../billing/billing-account/enterprise-account.md)，支持更改结算方式为云账号结算，包括[阿里云账号](../billing/billing-account/aliyun-account.md)和 [AWS 云账号](../billing/billing-account/aws-account.md)结算方式。
 
 #### 新增进程、日志、链路详情页关联网络
 
-观测云[进程](https://www.yuque.com/dataflux/doc/yoon4o#AiLrJ)、[日志](https://www.yuque.com/dataflux/doc/ibg4fx#X2gmO)、[链路](https://www.yuque.com/dataflux/doc/qp1efz#QVkkG)详情页新增关联网络数据分析，支持基于 IP/端口查看源主机/源进程服务到目标之间的网络流量和数据连接情况，通过可视化的方式进行实时展示，帮助企业实时了解业务系统的网络运行状态，快速分析、追踪和定位问题故障，预防或避免因网络性能下降或中断而导致的业务问题。
+观测云[进程](../infrastructure/process.md)、[日志](../logs/explorer.md)、[链路](../application-performance-monitoring/explorer.md)详情页新增关联网络数据分析，支持基于 IP/端口查看源主机/源进程服务到目标之间的网络流量和数据连接情况，通过可视化的方式进行实时展示，帮助企业实时了解业务系统的网络运行状态，快速分析、追踪和定位问题故障，预防或避免因网络性能下降或中断而导致的业务问题。
 
 ![](img/9.network_1.png)
 
 #### 场景模块优化
 
 ##### 优化仪表板，去掉编辑模式
-在场景[仪表板](https://www.yuque.com/dataflux/doc/gqatnx)顶部导航栏，去掉“编辑”按钮，新增“添加图表”为仪表板添加新的图表，图表添加完成后，点击右上角「完成添加」即可。
+在场景[仪表板](../scene/dashboard.md)顶部导航栏，去掉“编辑”按钮，新增“添加图表”为仪表板添加新的图表，图表添加完成后，点击右上角「完成添加」即可。
 
 ![](img/3.view_2.png)
 
-在[图表](https://www.yuque.com/dataflux/doc/rttwsy)中，点击「设置」按钮，选择「修改」，即可对图表进行编辑。
+在[图表](../scene/visual-chart//index.md)中，点击「设置」按钮，选择「修改」，即可对图表进行编辑。
 
 ![](img/3.view_1.png)
 
 ##### 新增图表链接显示开关
-观测云支持图表内置链接和自定义链接，可以帮助您实现从当前图表跳转至目标页面。内置链接是观测云默认为图表提供的关联链接，主要基于当前查询的时间范围和分组标签，帮助您查看对应的日志、进程、容器、链路，内置链接显示开关默认关闭，可在编辑图表时开启；自定义链接创建完成后，显示开关默认开启。更多详情可参考文档 [图表链接](https://www.yuque.com/dataflux/doc/nn6o31#fMzve) 。
+观测云支持图表内置链接和自定义链接，可以帮助您实现从当前图表跳转至目标页面。内置链接是观测云默认为图表提供的关联链接，主要基于当前查询的时间范围和分组标签，帮助您查看对应的日志、进程、容器、链路，内置链接显示开关默认关闭，可在编辑图表时开启；自定义链接创建完成后，显示开关默认开启。更多详情可参考文档 [图表链接](../scene/visual-chart/chart-link.md) 。
 
 ![](img/4.link_1.png)
 
 ##### 优化 DQL 查询与简单查询转换
-点击“[DQL 查询](https://www.yuque.com/dataflux/doc/gc6mwk)”右侧的切换按钮，可切换 DQL 查询为简单查询。<br />注意：「DQL查询」切换成「简单查询」时，若无法解析或者解析不完整：
+点击“DQL 查询”右侧的切换按钮，可切换 DQL 查询为简单查询。<br />注意：「DQL查询」切换成「简单查询」时，若无法解析或者解析不完整：
 
 - 在「简单查询」下未操作，直接切换回「DQL查询」则显示之前的 DQL 查询语句；
 - 在「简单查询」下调整了查询语句，再次切换回「DQL查询」将按照最新的「简单查询」进行解析。
 
-更多 DQL 查询和简单查询的应用，可参考文档 [图表查询](https://www.yuque.com/dataflux/doc/cxlbps) 。
+更多 DQL 查询和简单查询的应用，可参考文档 [图表查询](../scene/visual-chart/chart-query.md) 。
 
 ![](img/3.dql_2.png)
 
@@ -164,15 +315,15 @@
 ![](img/7.event_1.png)
 
 ##### 新增无数据事件名称和内容配置
-观测云监控器“阈值检测”、“水位检测”、“区间检测”、“突变检测”、“进程异常检测”、“应用性能指标检测”、“用户访问指标检测”新增无数据事件标题和内容配置，默认不可填写，当选择触发无数据事件时为可填写无数据事件名称，支持使用预置的模板变量，详情参考 [事件名称/内容模板](https://www.yuque.com/dataflux/doc/zvayo3) 。
+观测云监控器“阈值检测”、“水位检测”、“区间检测”、“突变检测”、“进程异常检测”、“应用性能指标检测”、“用户访问指标检测”新增无数据事件标题和内容配置，默认不可填写，当选择触发无数据事件时为可填写无数据事件名称，支持使用预置的模板变量，详情参考 [事件名称/内容模板](../monitoring/event-template.md) 。
 
 ![](img/6.monitor_2.png)
 
 ##### 优化可用性数据检测
-观测云监控器[可用性数据检测](https://www.yuque.com/dataflux/doc/he412g)，优化支持选择 HTTP、TCP、ICMP、WEBSOCKET 拨测类型。
+观测云监控器[可用性数据检测](../monitoring/monitor/usability-detection.md)，优化支持选择 HTTP、TCP、ICMP、WEBSOCKET 拨测类型。
 
 ##### 优化告警通知模版，增加关联跳转链接
-邮件、钉钉、微信、飞书收到的告警通知包含“观测云跳转链接”，点击可直接跳转到对应的观测云事件详情，时间范围为当前时间的往前15分钟，即18:45:00的事件，点击链接后跳转至事件详情页，时间范围固定为4.20 18:30:00 ~ 4.20 18:45:00。更多告警通知可参考文档 [告警设置](https://www.yuque.com/dataflux/doc/qxz5xz) 。
+邮件、钉钉、微信、飞书收到的告警通知包含“观测云跳转链接”，点击可直接跳转到对应的观测云事件详情，时间范围为当前时间的往前15分钟，即18:45:00的事件，点击链接后跳转至事件详情页，时间范围固定为4.20 18:30:00 ~ 4.20 18:45:00。更多告警通知可参考文档 [告警设置](../monitoring/alert-setting.md) 。
 
 #### 其他功能优化
 
@@ -183,23 +334,22 @@
 
 ## DataKit 更新
 
-- [进程采集器](https://www.yuque.com/dataflux/datakit/host_processes)的过滤功能仅作用于指标采集，对象采集不受影响
+- 进程采集器的过滤功能仅作用于指标采集，对象采集不受影响
 - 优化 DataKit 发送 DataWay 超时问题
-- 优化 [Gitlab 采集器](https://www.yuque.com/dataflux/datakit/gitlab) 
+- 优化 Gitlab 采集器
 - 修复日志采集截断的问题
 - 修复各种 trace 采集器 reload 后部分配置不生效的问题
 
-更多 DataKit 更新可参考 [DataKit 版本历史](https://www.yuque.com/dataflux/datakit/changelog) 。
+更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md) 。
 
 ## 集成模版更新
 
 #### 新增数据存储 Redis Sentinel 集成文档和视图
 
-[Redis-sentinel](https://www.yuque.com/dataflux/integrations/redis_sentinel) 观测场景主要展示了 Redis 的集群、slaves、节点分布信息等。
+Redis-sentinel 观测场景主要展示了 Redis 的集群、slaves、节点分布信息等。
 
 ![](img/777Z.png)
 
-更多集成模版更新可参考 [集成文档版本历史](https://www.yuque.com/dataflux/integrations/changelog) 。
 
 ## 2022 年 4 月 26 号
 
@@ -215,7 +365,7 @@
 - SSO 单点登录启用、配置更新、删除支持邮件通知和产生审计事件
 - SSO 单点登录用户支持删除和编辑，编辑时可升级权限至“管理员”
 
-更多 SSO 点单登录详情可参考文档 [SSO 管理](https://www.yuque.com/dataflux/doc/aoadgo) 。
+更多 SSO 点单登录详情可参考文档 [SSO 管理](../management/sso/index.md) 。
 
 ![](img/12.sso_4.png)
 
@@ -223,19 +373,19 @@
 
 ### 观测云社区版上线
 
-观测云社区版为老师、学生、云计算爱好者等社区用户提供一个简单易得又功能完备的产品化本地部署平台。欢迎免费申请并下载试用，搭建您自己的观测云平台，体验完整的产品功能。详情可参考文档 [社区版](https://www.yuque.com/dataflux/doc/wbql50#zeDMh) 。
+观测云社区版为老师、学生、云计算爱好者等社区用户提供一个简单易得又功能完备的产品化本地部署平台。欢迎免费申请并下载试用，搭建您自己的观测云平台，体验完整的产品功能。
 
 ### 观测云更新
 
 #### 新增 Gitlab CI 可观测
 
-观测云支持为 Gitlab 内置的 CI 的过程和结果进行可视化，您可以通过观测云的 CI 可视化功能直接查看在 Gitlab 的 CI 结果。CI 的过程是持续集成，开发人员在 push 代码的时候，若碰到问题，可以在观测云查看所有 CI 的 pipeline 及其成功率、失败原因、具体失败环节，帮助您提供代码更新保障。更多详情介绍可参考 [CI 查看器](https://www.yuque.com/dataflux/doc/bs4iss)。
+观测云支持为 Gitlab 内置的 CI 的过程和结果进行可视化，您可以通过观测云的 CI 可视化功能直接查看在 Gitlab 的 CI 结果。CI 的过程是持续集成，开发人员在 push 代码的时候，若碰到问题，可以在观测云查看所有 CI 的 pipeline 及其成功率、失败原因、具体失败环节，帮助您提供代码更新保障。更多详情介绍可参考 [CI 查看器](../ci-visibility/explorer.md)。
 
 ![](img/10.ci_7.1.png)
 
 #### 新增在线帮助奥布斯小助手
 
-观测云奥布斯小助手支持您在工作空间快速查看基础入门、进阶指南、最佳实践、DataKit、Func等文档，通过点击提供的关键词或者在搜索栏直接输入关键字进行搜素，帮助您快速获取相关的文档说明。更多详情介绍可参考文档 [帮助](https://www.yuque.com/dataflux/doc/uxga96) 。
+观测云奥布斯小助手支持您在工作空间快速查看基础入门、进阶指南、最佳实践、DataKit、Func等文档，通过点击提供的关键词或者在搜索栏直接输入关键字进行搜素，帮助您快速获取相关的文档说明。更多详情介绍可参考文档 [帮助](../management/help.md) 。
 
 ![](img/3.help_1.3.png)
 
@@ -253,7 +403,7 @@
 
 #### 新增集成 DataKit Kubernetes(Helm)安装引导页
 
-在观测云集成 DataKit 安装引导页，新增 Kubernetes(Helm)安装引导，介绍在 K8S 中如何使用 Helm 安装 DataKit。更多关于详情可参考文档 [DaemonSet 安装](https://www.yuque.com/dataflux/datakit/datakit-daemonset-deploy#e4d3facf) 。
+在观测云集成 DataKit 安装引导页，新增 Kubernetes(Helm)安装引导，介绍在 K8S 中如何使用 Helm 安装 DataKit。
 
 ![](img/11.changelog_12.png)
 
@@ -272,7 +422,7 @@
 ![](img/11.changelog_21.png)
 
 #### 优化 SSO 单点登录配置
-SSO 单点登录配置用户白名单调整为邮箱域名，用于校验单点登录处输入邮箱后缀是否匹配，匹配的邮箱可以在线获取 SSO 的登录链接。更多 SSO 配置详情可参考文档 [SSO管理](https://www.yuque.com/dataflux/doc/aoadgo) 。
+SSO 单点登录配置用户白名单调整为邮箱域名，用于校验单点登录处输入邮箱后缀是否匹配，匹配的邮箱可以在线获取 SSO 的登录链接。更多 SSO 配置详情可参考文档 [SSO管理](../management/sso/index.md) 。
 
 ![](img/12.sso_2.png)
 
@@ -287,29 +437,29 @@ SSO 单点登录配置用户白名单调整为邮箱域名，用于校验单点�
 
 ## DataKit 更新
 
-- Pipeline 模块修复 Grok 中[动态多行 pattern](https://www.yuque.com/dataflux/datakit/datakit-pl-how-to#88b72768) 问题
-- DaemonSet 优化 [Helm 安装](https://www.yuque.com/dataflux/datakit/datakit-daemonset-deploy#e4d3facf)，增加[开启 pprof 环境变量](https://www.yuque.com/dataflux/datakit/datakit-daemonset-deploy#cc08ec8c)配置，DaemonSet 中所有[默认开启采集器](https://www.yuque.com/dataflux/datakit/datakit-input-conf#764ffbc2)各个配置均支持通过环境变量配置
-- Tracing 采集器初步支持 Pipeline 数据处理，参考 [DDtrace 配置示例](https://www.yuque.com/dataflux/datakit/ddtrace#69995abe)。
+- Pipeline 模块修复 Grok 中动态多行 pattern 问题
+- DaemonSet 优化 Helm 安装，增加开启 pprof 环境变量配置，DaemonSet 中所有默认开启采集器各个配置均支持通过环境变量配置
+- Tracing 采集器初步支持 Pipeline 数据处理。
 - 拨测采集器增加失败任务退出机制
 - 日志新增 `unknown` 等级（status），对于未指定等级的日志均为 `unknown`
 - 容器采集器修复：
    - 修复 cluster 字段命名问题
    - 修复 namespace 字段命名问题
-   - 容器日志采集中，如果 Pod Annotation 不指定日志 `source`，那么 DataKit 将按照[此优先级来推导日志来源](https://www.yuque.com/dataflux/datakit/container#6de978c3)
+   - 容器日志采集中，如果 Pod Annotation 不指定日志 `source`，那么 DataKit 将按照此优先级来推导日志来源
    - 对象上报不再受 32KB 字长限制（因 Annotation 内容超 32KB），所有 Kubernetes 对象均删除 `annotation` 
 
-更多 DataKit 更新可参考 [DataKit 版本历史](https://www.yuque.com/dataflux/datakit/changelog) 。
+更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md) 。
 
 ## 最佳实践更新
 
 - 微服务可观测最佳实践
-   - [service mesh 微服务架构从研发到金丝雀发布全流程最佳实践(上)](https://www.yuque.com/dataflux/bp/microservices1)
-   - [service mesh 微服务架构从研发到金丝雀发布全流程最佳实践(下)](https://www.yuque.com/dataflux/bp/microservices3)
-   - [service mesh 微服务架构从研发到金丝雀发布全流程最佳实践(中)](https://www.yuque.com/dataflux/bp/microservices2)
+   - service mesh 微服务架构从研发到金丝雀发布全流程最佳实践(上)
+   - service mesh 微服务架构从研发到金丝雀发布全流程最佳实践(下)
+   - service mesh 微服务架构从研发到金丝雀发布全流程最佳实践(中)
 - 监控最佳实践
-   - [JAVA OOM异常可观测最佳实践](https://www.yuque.com/dataflux/bp/java-oom)
-
-更多最佳实践更新可参考 [最佳实践版本历史](https://www.yuque.com/dataflux/bp/changelog) 。
+   - JAVA OOM异常可观测最佳实践
+   
+更多最佳实践更新可参考 [最佳实践版本历史](../best-practices/index.md) 。
 
 ## 集成模版更新
 
@@ -338,7 +488,7 @@ SSO 单点登录配置用户白名单调整为邮箱域名，用于校验单点�
 - 中间件
    - RocketMQ
 
-更多集成模版更新可参考 [集成文档版本历史](https://www.yuque.com/dataflux/integrations/changelog) 。
+
 
 ## 2022 年 4 月 8 号
 
@@ -354,7 +504,7 @@ SSO 单点登录配置用户白名单调整为邮箱域名，用于校验单点�
 
 DQL 是专为观测云开发的语言，语法简单，方便使用，可在观测云工作空间或者终端设备通过 DQL 语言进行数据查询。
 
-在观测云工作空间，点击菜单栏的「DQL 查询」即可打开 DQL 查询查看器，或者您可以通过快捷键`Alt+Q`直接打开 DQL 查询。DQL 查询查看器支持表格和 JSON 两种返回结果，支持保存7天历史查询记录。更多使用操作说明可参考文档 [DQL 查询](https://www.yuque.com/dataflux/doc/gc6mwk) 。
+在观测云工作空间，点击菜单栏的「DQL 查询」即可打开 DQL 查询查看器，或者您可以通过快捷键`Alt+Q`直接打开 DQL 查询。DQL 查询查看器支持表格和 JSON 两种返回结果，支持保存7天历史查询记录。
 
 ![](img/3.dql_1.png)
 
@@ -366,19 +516,19 @@ DQL 是专为观测云开发的语言，语法简单，方便使用，可在观�
 
 #### 新增基础设施网络模块
 
-在基础设施，原主机网络 Map 和 Pod 网络 Map 从主机和容器模块迁移至新增模块“网络”下，支持查看主机和 Pod 的网络 Map。Pod 网络 Map 填充指标新增七层网络指标：每秒请求数、错误率以及平均响应时间。更多详情可参考文档 [网络](https://www.yuque.com/dataflux/doc/quyskl) 。
+在基础设施，原主机网络 Map 和 Pod 网络 Map 从主机和容器模块迁移至新增模块“网络”下，支持查看主机和 Pod 的网络 Map。Pod 网络 Map 填充指标新增七层网络指标：每秒请求数、错误率以及平均响应时间。更多详情可参考文档 [网络](../infrastructure/network.md) 。
 
 ![](img/5.network_2.png)
 
 #### 基础设施容器 Pod 新增 HTTP 七层网络数据展示
 
-基础设施容器 Pod 新增 HTTP 七层网络数据采集和展示，Pod 网络数据采集成功后会上报到观测云工作空间，在「基础设施」-「容器」-「Pod」详情页中的「网络」，您可以查看到工作空间内全部 Pod 网络性能监测数据信息。查看基础更多详情可参考文档 [Pod 网络](https://www.yuque.com/dataflux/doc/gy7lei#PqtQj) 。
+基础设施容器 Pod 新增 HTTP 七层网络数据采集和展示，Pod 网络数据采集成功后会上报到观测云工作空间，在「基础设施」-「容器」-「Pod」详情页中的「网络」，您可以查看到工作空间内全部 Pod 网络性能监测数据信息。查看基础更多详情可参考文档 [Pod 网络](../infrastructure/contrainer.md) 。
 
 ![](img/5.network_4.png)
 
 #### 新增查看器快捷筛选“反选”和“重置”功能
 
-在任意查看器的“快捷筛选”，支持在选择字段筛选内容时进行“反选”或者“重置”，“反选”表示选中的字段筛选内容不展示（再次点击“反选”可返回字段选中状态），“重置”可清空筛选条件。更多详情说明可参考 [日志查看器快捷筛选 ](https://www.yuque.com/dataflux/doc/ibg4fx#av1Zj)。
+在任意查看器的“快捷筛选”，支持在选择字段筛选内容时进行“反选”或者“重置”，“反选”表示选中的字段筛选内容不展示（再次点击“反选”可返回字段选中状态），“重置”可清空筛选条件。更多详情说明可参考 [日志查看器快捷筛选 ](../logs/explorer.md)。
 
 ![](img/1.log_7.png)
 
@@ -392,7 +542,7 @@ DQL 是专为观测云开发的语言，语法简单，方便使用，可在观�
 - 满足任意一个过滤条件，触发黑名单过滤
 - 满足所有过滤条件，触发黑名单过滤
 
-更多黑名单配置可参考文档 [日志黑名单](https://www.yuque.com/dataflux/doc/na6x2c) 。
+更多黑名单配置可参考文档 [日志黑名单](../logs/blacklist.md) 。
 
 ![](img/1.log_10.png)
 
@@ -406,13 +556,13 @@ DQL 是专为观测云开发的语言，语法简单，方便使用，可在观�
 
 ### DataKit 更新
 
-- 增加宿主机运行时的[内存限制](https://www.yuque.com/dataflux/datakit/datakit-conf#4e7ff8f3)，安装阶段即支持[内存限制配置](https://www.yuque.com/dataflux/datakit/datakit-install#03be369a)，
-- CPU 采集器增加 [load5s 指标](https://www.yuque.com/dataflux/datakit/cpu#13e60209)
+- 增加宿主机运行时的内存限制，安装阶段即支持内存限制配置，
+- CPU 采集器增加 load5s 指标
 - 支持观测云优化的日志黑名单功能，调整 monitor 布局，增加黑名单过滤情况展示
-- DaemonSet 安装增加 [Helm 支持](https://www.yuque.com/dataflux/datakit/datakit-daemonset-deploy)，新增 [DaemonSet 安装最佳实践](https://www.yuque.com/dataflux/datakit/datakit-daemonset-bp)
-- eBPF 增加 [HTTP 协议采集](https://www.yuque.com/dataflux/datakit/ebpf#905896c5)，主机安装时，eBPF 采集器默认不再会安装，如需安装[需用特定的安装指令](https://www.yuque.com/dataflux/datakit/ebpf#852abae7)，DaemonSet 安装不受影响
+- DaemonSet 安装增加 Helm 支持，新增 DaemonSet 安装最佳实践
+- eBPF 增加 HTTP 协议采集，主机安装时，eBPF 采集器默认不再会安装，如需安装需用特定的安装指令，DaemonSet 安装不受影响
 
-更多 DataKit 更新可参考 [DataKit 版本历史](https://www.yuque.com/dataflux/datakit/changelog) 。
+更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md) 。
 
 ### 观测云移动端 APP 更新
 
@@ -423,54 +573,52 @@ DQL 是专为观测云开发的语言，语法简单，方便使用，可在观�
 - 支持用户查看当前空间下的全部仪表板，并通过下拉菜单切换“全部仪表板”，“我的收藏”、“导入项目”、“我的创建”和“经常浏览”，以快速过滤查找对应的仪表板。
 - 支持用户在「事件」查看器中，通过「全部」查看、搜索和过滤异常检测库触发的全部未恢复事件内容；通过「我的」事件，查看通过邮件、钉钉机器人、企业微信机器人、Webhook等通知到用户的当前仍未恢复的事件内容。
 
-更多详情可参考文档 [移动端](https://www.yuque.com/dataflux/doc/atdydg) 。
 
 ### 最佳实践更新
 
 - 观测云小妙招
-   - [多微服务项目的性能可观测实践](https://www.yuque.com/dataflux/bp/nce2kw)
-   - [ddtrace 高级用法](https://www.yuque.com/dataflux/bp/ddtrace)
-   - [Kubernetes 集群使用 ExternalName 映射 DataKit 服务](https://www.yuque.com/dataflux/bp/external-name)
+   - 多微服务项目的性能可观测实践
+   - ddtrace 高级用法
+   - Kubernetes 集群使用 ExternalName 映射 DataKit 服务
 - 接入(集成)最佳实践
-   - [OpenTelemetry 链路数据接入最佳实践](https://www.yuque.com/dataflux/bp/opentelemetry)
+   - OpenTelemetry 链路数据接入最佳实践
 - 微服务可观测最佳实践
-   - [基于阿里云 ASM 实现微服务可观测最佳实践](https://www.yuque.com/dataflux/bp/asm)
-
-更多最佳实践更新可参考 [最佳实践版本历史](https://www.yuque.com/dataflux/bp/changelog) 。
+   - 基于阿里云 ASM 实现微服务可观测最佳实践
+   
+更多最佳实践更新可参考 [最佳实践版本历史](../best-practices/index.md) 。
 
 ### 集成模版更新
 
 #### 新增阿里云 PolarDB Oracle 集成文档、视图和监控器
 
-[阿里云 PolarDB Oracle](https://www.yuque.com/dataflux/integrations/oqh2z2) 指标展示，包括 CPU 使用率，内存使用率，网络流量，连接数，IOPS，TPS，数据盘大小等
+阿里云 PolarDB Oracle 指标展示，包括 CPU 使用率，内存使用率，网络流量，连接数，IOPS，TPS，数据盘大小等
 
 ![](img/image57.png)
 
 #### 新增阿里云 PolarDB PostgreSQL 集成文档、视图和监控器
 
-[阿里云 PolarDB PostgreSQL](https://www.yuque.com/dataflux/integrations/qm36w8) 指标展示，包括 CPU 使用率，内存使用率，网络流量，连接数，IOPS，TPS，数据盘大小等
+阿里云 PolarDB PostgreSQL 指标展示，包括 CPU 使用率，内存使用率，网络流量，连接数，IOPS，TPS，数据盘大小等
 
 ![](img/image56.png)
 
 #### 新增阿里云 RDS SQLServer 集成文档、视图和检测库
 
-[阿里云 RDS SQLServer](https://www.yuque.com/dataflux/integrations/ub9hfh) 指标展示，包括 CPU 使用率，磁盘使用率，IOPS，网络带宽，TPS，QPS 等
+阿里云 RDS SQLServer 指标展示，包括 CPU 使用率，磁盘使用率，IOPS，网络带宽，TPS，QPS 等
 
 ![](img/image55.png)
 
 #### 新增 DataKit 集成文档、视图和监控器
 
-[DataKit](https://www.yuque.com/dataflux/integrations/qwtrhy) 性能指标展示，包括 CPU 使用率，内存信息，运行时间，日志记录等
+DataKit 性能指标展示，包括 CPU 使用率，内存信息，运行时间，日志记录等
 
 ![](img/image54.png)
 
 #### 新增 Nacos 集成文档、视图
 
-[Nacos](https://www.yuque.com/dataflux/integrations/nacos) 性能指标展示：Nacos 在线时长、Nacos config 长链接数、Nacos config 配置个数、Service Count、http请求次数等。
+Nacos 性能指标展示：Nacos 在线时长、Nacos config 长链接数、Nacos config 配置个数、Service Count、http请求次数等。
 
 ![](img/image53.png)
 
-更多集成模版更新可参考 [集成文档版本历史](https://www.yuque.com/dataflux/integrations/changelog) 。
 
 ## 2022 年 3 月 24 号
 
@@ -478,7 +626,7 @@ DQL 是专为观测云开发的语言，语法简单，方便使用，可在观�
 
 观测云支持多站点登录和注册，新增“海外区1（俄勒冈）”站点，原“中国区1（阿里云）”变更为“中国区1（杭州）”，原“中国区2（AWS）”并更为“中国区2（宁夏）”。
 
-不同站点的账号和数据相互独立，无法互相共享和迁移数据。您可以根据使用资源的情况，选择适合的站点进行注册登录。目前观测云支持以下三个站点。关于如何选择站点，可参考文档 [观测云站点](https://www.yuque.com/dataflux/doc/qfigg3) 。
+不同站点的账号和数据相互独立，无法互相共享和迁移数据。您可以根据使用资源的情况，选择适合的站点进行注册登录。目前观测云支持以下三个站点。关于如何选择站点，可参考文档 [观测云站点](../getting-started/necessary-for-beginners/select-site.md) 。
 
 | 站点 | 登录地址 URL | 运营商 |
 | --- | --- | --- |
@@ -492,13 +640,13 @@ DQL 是专为观测云开发的语言，语法简单，方便使用，可在观�
 
 #### 新增工作空间数据授权
 
-观测云支持通过数据授权的方式，授权多个工作空间的数据给到当前的工作空间，通过场景仪表板和笔记的图表组件进行查询和展示。若有多个工作空间，配置数据授权后，即可在一个工作空间查看所有工作空间的数据。更多配置详情，可参考文档 [数据授权](https://www.yuque.com/dataflux/doc/hgn17u) 。
+观测云支持通过数据授权的方式，授权多个工作空间的数据给到当前的工作空间，通过场景仪表板和笔记的图表组件进行查询和展示。若有多个工作空间，配置数据授权后，即可在一个工作空间查看所有工作空间的数据。更多配置详情，可参考文档 [数据授权](../management/data-authorization.md) 。
 
 1.在「管理」-「数据授权」配置需要授权查看数据的工作空间
 
 ![](img/9.dataauth_16.png)
 
-2.在工作空间获得数据授权后，打开「场景」-「[仪表板](https://www.yuque.com/dataflux/doc/gqatnx)或者[笔记](https://www.yuque.com/dataflux/doc/qvf618)」，选择图表组件，在“设置”的“工作空间”选择被授权查看的工作空间，然后就可以通过[图表查询](https://www.yuque.com/dataflux/doc/cxlbps)查看和分析被授权工作空间的数据。
+2.在工作空间获得数据授权后，打开「场景」-「仪表板或者笔记」，选择图表组件，在“设置”的“工作空间”选择被授权查看的工作空间，然后就可以通过[图表查询](../scene/visual-chart/chart-query.md)查看和分析被授权工作空间的数据。
 
 ![](img/9.dataauth_7.png)
 
@@ -509,7 +657,7 @@ DQL 是专为观测云开发的语言，语法简单，方便使用，可在观�
 - 自定义 Pipeline 脚本规则编写完成后，可以输入日志样本数据进行测试，来验证你配置的解析规则是否正确，自定义 Pipeline 保存后， 日志样本测试数据同步保存。
 - Pipeline 官方库自带多个日志样本测试数据，在“克隆”前可选择符合自身需求的日志样本测试数据，克隆的 Pipeline 修改保存后， 日志样本测试数据同步保存。
 
-更多在线 Pipeline 功能详情，可参考文档 [Pipelines](https://www.yuque.com/dataflux/doc/caczze) 。
+更多在线 Pipeline 功能详情，可参考文档 [Pipelines](../logs/pipelines/index.md) 。
 
 ![](img/10.pipeline_1.png)
 
@@ -517,13 +665,13 @@ DQL 是专为观测云开发的语言，语法简单，方便使用，可在观�
 
 在观测云工作空间，通过 「基础设施」-「自定义」-「添加对象分类」，您可以创建新的对象分类，并自定义对象分类名称和对象字段。
 
-添加完自定义对象分类以后，即可通过 [Func 函数处理平台](https://www.yuque.com/dataflux/func/quick-start)进行自定义数据上报。关于如何通过 Func 向观测云工作空间上报数据，可参考文档 [自定义对象数据上报](https://www.yuque.com/dataflux/doc/nw9bxt) 。
+添加完自定义对象分类以后，即可通过 [Func 函数处理平台](../dataflux-func/quick-start.md)进行自定义数据上报。关于如何通过 Func 向观测云工作空间上报数据，可参考文档 [自定义对象数据上报](../infrastructure/custom/data-reporting.md) 。
 
 ![](img/11.custom_1.png)
 
 #### 优化快照分享支持永久有效的链接
 
-快照分享支持设置有效时间，支持选择 “48 小时”或者“永久有效”。在快照列表，点击分享按钮，即可在弹出对话框中进行高级设置“隐藏顶部栏”。更多快照分享详情，可参考文档 [快照](https://www.yuque.com/dataflux/doc/uuy378) 。
+快照分享支持设置有效时间，支持选择 “48 小时”或者“永久有效”。在快照列表，点击分享按钮，即可在弹出对话框中进行高级设置“隐藏顶部栏”。更多快照分享详情，可参考文档 [快照](../management/snapshot/md) 。
 
 注意：永久有效分享容易存在数据安全风险，请谨慎使用。
 
@@ -531,13 +679,13 @@ DQL 是专为观测云开发的语言，语法简单，方便使用，可在观�
 
 #### 优化图表时间间隔
 
-在场景仪表板的图表设置中时间间隔选择“自动对齐”， 在预览图表时，图表右上角会出现时间间隔选项，您可以按照您的实际情况选择时间间隔查看您的数据。更多详情可参考文档 [视图分析](https://www.yuque.com/dataflux/doc/rr32l0) 。
+在场景仪表板的图表设置中时间间隔选择“自动对齐”， 在预览图表时，图表右上角会出现时间间隔选项，您可以按照您的实际情况选择时间间隔查看您的数据。
 
 ![](img/8.table_1.png)
 
 #### 优化进程、应用性能、用户访问检测无数据触发策略
 
-在观测云监控功能模块，配置[进程异常检测](https://www.yuque.com/dataflux/doc/uskqmx)、[应用性能指标检测](https://www.yuque.com/dataflux/doc/tag1nx)、[用户访问指标检测](https://www.yuque.com/dataflux/doc/qnpqmm)监控时，无数据状态支持「触发无数据事件」、「触发恢复事件」、「不触发事件」三种配置，需要手动配置无数据处理策略。
+在观测云监控功能模块，配置进程异常检测、应用性能指标检测、用户访问指标检测监控时，无数据状态支持「触发无数据事件」、「触发恢复事件」、「不触发事件」三种配置，需要手动配置无数据处理策略。
 
 #### 其他功能优化
 
@@ -548,33 +696,32 @@ DQL 是专为观测云开发的语言，语法简单，方便使用，可在观�
 
 ### DataKit 更新
 
-- 增加 [DataKit 命令行补全](https://www.yuque.com/dataflux/datakit/datakit-tools-how-to#9e4e5d5f)功能，帮助您在终端操作的时候进行命令提示和补全参数
-- 允许 DataKit [升级到非稳定版](https://www.yuque.com/dataflux/datakit/datakit-update#42d8b0e4)，体验最新的试验性功能，若您是生产环境，请谨慎升级
-- 初步支持 [Kubernetes/Containerd 架构的数据采集](https://www.yuque.com/dataflux/datakit/container)
-- [网络拨测](https://www.yuque.com/dataflux/datakit/dialtesting)增加 TCP/UDP/ICMP/Websocket 几种协议支持
+- 增加 DataKit 命令行补全功能，帮助您在终端操作的时候进行命令提示和补全参数
+- 允许 DataKit 升级到非稳定版，体验最新的试验性功能，若您是生产环境，请谨慎升级
+- 初步支持 Kubernetes/Containerd 架构的数据采集
+- 网络拨测增加 TCP/UDP/ICMP/Websocket 几种协议支持
 - 调整 Remote Pipeline 的在 DataKit 本地的存储，避免不同文件系统差异导致的文件名大小写问题
-- Pipeline新增 [decode()](https://www.yuque.com/dataflux/datakit/pipeline#837c4e09) 函数，可以避免在日志采集器中去配置编码，在 Pipeline 中实现编码转换；[add_pattern()](https://www.yuque.com/dataflux/datakit/pipeline#89bd3d4e) 增加作用域管理
+- Pipeline新增 decode() 函数，可以避免在日志采集器中去配置编码，在 Pipeline 中实现编码转换；add_pattern() 增加作用域管理
 
-更多 DataKit 更新可参考 [DataKit 版本历史](https://www.yuque.com/dataflux/datakit/changelog) 。
+更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md) 。
 
 ### 最佳实践更新
 
 - 场景最佳实践
-   - [RUM 数据上报 DataKit 集群最佳实践](https://www.yuque.com/dataflux/bp/datakit-cluster)
+   - RUM 数据上报 DataKit 集群最佳实践
 - 日志最佳实践
-   - [Pod 日志采集最佳实践](https://www.yuque.com/dataflux/bp/pod-log)
+   - Pod 日志采集最佳实践
 
-更多最佳实践更新可参考 [最佳实践版本历史](https://www.yuque.com/dataflux/bp/changelog) 。
+更多最佳实践更新可参考 [最佳实践版本历史](../best-practices/index.md) 。
 
 ### 集成模版更新
 
 #### 新增阿里云 PolarDB Mysql 集成文档、视图和检测库
 
-[阿里云 PolarDB Mysql](https://www.yuque.com/dataflux/integrations/oe08qg) 指标展示，包括 CPU 使用率，内存命中率，网络流量，连接数，QPS，TPS，只读节点延迟等
+阿里云 PolarDB Mysql 指标展示，包括 CPU 使用率，内存命中率，网络流量，连接数，QPS，TPS，只读节点延迟等
 
 ![](img/image51.png)
 
-更多集成模版更新可参考 [集成文档版本历史](https://www.yuque.com/dataflux/integrations/changelog) 。
 
 
 ## 2022 年 3 月 10 号
@@ -583,7 +730,7 @@ DQL 是专为观测云开发的语言，语法简单，方便使用，可在观�
 
 #### 新增观测云计费储值卡
 
-观测云储值卡支持通过账户现金余额进行购买，适用于所有观测云的消费模式，包括按量付费和包年套餐。登录到观测云[费用中心](https://boss.guance.com)，点击“管理储值卡”，即可进入储值卡管理页面购买，储值卡购买并支付费用后，按照实付金额开具等额发票。更多详情可参考 [储值卡管理](https://www.yuque.com/dataflux/doc/woqm59#EYClJ) 。
+观测云储值卡支持通过账户现金余额进行购买，适用于所有观测云的消费模式，包括按量付费和包年套餐。登录到观测云[费用中心](https://boss.guance.com)，点击“管理储值卡”，即可进入储值卡管理页面购买，储值卡购买并支付费用后，按照实付金额开具等额发票。更多详情可参考 [储值卡管理](../billing/cost-center/account-wallet/index.md) 。
 
 ### 观测云更新
 
@@ -591,7 +738,7 @@ DQL 是专为观测云开发的语言，语法简单，方便使用，可在观�
 
 用户访问监测查看器可以帮助您查看与分析用户访问应用程序的详细信息。在观测云工作空间内打开「用户访问监测」，点击任意一个应用后即可通过「查看器」了解每个用户会话、页面性能、资源、长任务、动态组件中的错误、延迟对用户的影响、帮助你通过搜索、筛选和关联分析全面了解和改善应用的运行状态和使用情况，提高用户体验。
 
-观测云用户访问监测查看器包括 session（会话）、view（页面）、resource（资源）、action（操作）、long_task（长任务）、error（错误）。更多详情可参考 [用户访问监测查看器](https://www.yuque.com/dataflux/doc/dh5lg9) 。
+观测云用户访问监测查看器包括 session（会话）、view（页面）、resource（资源）、action（操作）、long_task（长任务）、error（错误）。更多详情可参考 [用户访问监测查看器](../real-user-monitoring/explorer.md) 。
 
 | 查看器类型 | 概述 |
 | --- | --- |
@@ -611,27 +758,27 @@ Pod 网络数据采集成功后会上报到观测云控制台，在「基础设�
 
 ![](img/7.pod_1.png)
 
-在「基础设施」-「容器」-「Pod」，点击左上角网络分布图的小图标，即可切换到查看 Pod 网络分布情况。在「网络分布图」，你能够可视化查询当前工作空间 Pod 与 Pod 之间的网络流量，快速分析不同 Pod 之间的 TCP延迟、TCP波动、TCP重传次数、TCP连接次数以及 TCP关闭次数。更多详情可参考 [Pod 网络分布图](https://www.yuque.com/dataflux/doc/gy7lei#yKAcN) 。
+在「基础设施」-「容器」-「Pod」，点击左上角网络分布图的小图标，即可切换到查看 Pod 网络分布情况。在「网络分布图」，你能够可视化查询当前工作空间 Pod 与 Pod 之间的网络流量，快速分析不同 Pod 之间的 TCP延迟、TCP波动、TCP重传次数、TCP连接次数以及 TCP关闭次数。更多详情可参考 [Pod 网络分布图](../infrastructure/contrainer.md) 。
 
 ![](img/7.pod_3.png)
 
 ### DataKit 更新
 
-- DataKit 采集器新增支持 SkyWalking、Jaeger、Zipkin 数据配置采样策略，更多详情可参考 [Datakit Tracing Frontend ](https://www.yuque.com/dataflux/datakit/datakit-tracing#64df2902)。
-- DataKit 采集器新增支持 [OpenTelemetry 数据接入](https://www.yuque.com/dataflux/datakit/opentelemetry) 。
-- DataKit 文档库新增文档 [DataKit 整体日志采集介绍](https://www.yuque.com/dataflux/datakit/datakit-logging)，包括从磁盘文件获取日志、通过调用环境 API 获取日志、远程推送日志给 DataKit、Sidecar 形式的日志采集四种方式。
+- DataKit 采集器新增支持 SkyWalking、Jaeger、Zipkin 数据配置采样策略。
+- DataKit 采集器新增支持 OpenTelemetry 数据接入。
+- DataKit 文档库新增文档 DataKit 整体日志采集介绍，包括从磁盘文件获取日志、通过调用环境 API 获取日志、远程推送日志给 DataKit、Sidecar 形式的日志采集四种方式。
 
 #### Breaking Changes
 
 **2022/03/22**
 
 -  本次对 Tracing 数据采集做了较大的调整，涉及几个方面的不兼容： 
-   - [DDtrace](ddtrace) 原有 conf 中配置的 `ignore_resources` 字段需改成 `close_resource`，且字段类型由原来的数组（`[...]`）形式改成了字典数组（`map[string][...]`）形式（可参照 [conf.sample](ddtrace#69995abe) 来配置）
-   - DDTrace 原数据中采集的 [tag ](ddtrace#01b88adb)`[type](ddtrace#01b88adb)`[ 字段改成 ](ddtrace#01b88adb)`[source_type](ddtrace#01b88adb)`
+   - DDtrace 原有 conf 中配置的 `ignore_resources` 字段需改成 `close_resource`，且字段类型由原来的数组（`[...]`）形式改成了字典数组（`map[string][...]`）形式
+   - DDTrace 原数据中采集的 tag `[type](ddtrace#01b88adb)` 字段改成 `[source_type](ddtrace#01b88adb)`
 
 **2022/03/04**
 
-- 老版本的 DataKit 如果开启了 RUM 功能，升级上来后，需[重新安装 IP 库](datakit-tools-how-to#ab5cd5ad)，老版本的 IP 库将无法使用。
+- 老版本的 DataKit 如果开启了 RUM 功能，升级上来后，需重新安装 IP 库，老版本的 IP 库将无法使用。
 
 **2021/12/30**
 
@@ -649,27 +796,27 @@ DK_UPGRADE=1 bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
 $env:DK_UPGRADE="1"; Set-ExecutionPolicy Bypass -scope Process -Force; Import-Module bitstransfer; start-bitstransfer -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1; powershell .install.ps1;
 ```
 
-更多 DataKit 更新可参考 [DataKit 版本历史](https://www.yuque.com/dataflux/datakit/changelog) 。
+更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md) 。
 
 ### SDK 更新
 
-用户访问监测兼容 Opentracing 协议链路追踪工具，[Web](https://www.yuque.com/dataflux/doc/eqs7v2)、[小程序](https://www.yuque.com/dataflux/doc/clgea8)、[Android](https://www.yuque.com/dataflux/doc/pnzoyp)、[iOS](https://www.yuque.com/dataflux/doc/gsto6k) SDK 支持 OTEL、SkyWalking、Jaeger 等链路追踪工具数据联动。
+用户访问监测兼容 Opentracing 协议链路追踪工具，Web、小程序、Android、iOS SDK 支持 OTEL、SkyWalking、Jaeger 等链路追踪工具数据联动。
 
 ### 最佳实践更新
 
 - 自定义接入最佳实践
-   - [快速上手 pythond 采集器的最佳实践](https://www.yuque.com/dataflux/bp/vdpvse)
-   - [阿里云“云监控数据”集成最佳实践](https://www.yuque.com/dataflux/bp/aliyun-monitoring)
+   - 快速上手 pythond 采集器的最佳实践
+   - 阿里云“云监控数据”集成最佳实践
 - 日志最佳实践
-   - [logback socket 日志采集最佳实践](https://www.yuque.com/dataflux/bp/k8s-socket)
+   - logback socket 日志采集最佳实践
 
-更多最佳实践更新可参考 [最佳实践版本历史](https://www.yuque.com/dataflux/bp/changelog) 。
+更多最佳实践更新可参考 [最佳实践版本历史](../best-practices/index.md) 。
 
 ### 场景模版更新
 
 #### 新增场景自定义查看器 MySQL 数据库查看器模板
 
-观测云的场景自定义查看器新增 MySQL 数据库查看器模版，可帮助你一键搭建 MySQL 日志的查看器。在观测云工作空间「场景」-「查看器」-「内置查看器模版」，点击「MySQL 查看器模版」，即可直接创建 MySQL 日志查看器，若已经采集相关日志，即可通过该日志查看器进行数据查看和分析。更多详情可参考 [场景自定义查看器](https://www.yuque.com/dataflux/doc/uynpbs) 。
+观测云的场景自定义查看器新增 MySQL 数据库查看器模版，可帮助你一键搭建 MySQL 日志的查看器。在观测云工作空间「场景」-「查看器」-「内置查看器模版」，点击「MySQL 查看器模版」，即可直接创建 MySQL 日志查看器，若已经采集相关日志，即可通过该日志查看器进行数据查看和分析。
 
 ![](img/11.changelog_11.png)
 
@@ -677,17 +824,16 @@ $env:DK_UPGRADE="1"; Set-ExecutionPolicy Bypass -scope Process -Force; Import-Mo
 
 #### 新增主机系统 EthTool 集成文档和视图
 
-[EthTool](https://www.yuque.com/dataflux/integrations/gpv332) 指标包括网络接口入/出流量，入/出数据包，丢弃的数据包等。
+EthTool 指标包括网络接口入/出流量，入/出数据包，丢弃的数据包等。
 
 ![](img/image44.png)
 
 #### 新增主机系统 Conntrack 集成文档和视图
 
-[Conntrack](https://www.yuque.com/dataflux/integrations/pnnltg) 性能指标包括成功搜索条目数，插入的包数，连接数量等。
+Conntrack 性能指标包括成功搜索条目数，插入的包数，连接数量等。
 
 ![](img/image43.png)
 
-更多集成模版更新可参考 [集成文档版本历史](https://www.yuque.com/dataflux/integrations/changelog) 。
 
 ## 2022 年 2 月 22 号
 
@@ -695,21 +841,21 @@ $env:DK_UPGRADE="1"; Set-ExecutionPolicy Bypass -scope Process -Force; Import-Mo
 
 Pipeline 用于日志数据解析，通过定义解析规则，将格式各异的日志切割成符合我们要求的结构化数据。观测云提供三种日志 Pipeline 文本处理方式：
 
-- [DataKit](https://www.yuque.com/dataflux/doc/gxh1t2)：在服务器安装DataKit以后，在终端工具中配置DataKit的日志采集器及其对应的 pipeline 文件，对文本数据进行处理；
-- [DCA](https://www.yuque.com/dataflux/doc/fgcgug)：DataKit Control APP，是DataKit的桌面客户端应用，需要先安装，安装完成后可在客户端查看和编辑 DataKit 默认自带的日志 pipeline 文件和自定义手动添加 pipeline 文件；
-- [Pipelines](https://www.yuque.com/dataflux/doc/caczze)：支持在观测云工作空间手动配置和查看日志 pipeline 文件，无需登录 DataKit 服务器进行操作。
+- DataKit：在服务器安装DataKit以后，在终端工具中配置DataKit的日志采集器及其对应的 pipeline 文件，对文本数据进行处理；
+- DCA：DataKit Control APP，是DataKit的桌面客户端应用，需要先安装，安装完成后可在客户端查看和编辑 DataKit 默认自带的日志 pipeline 文件和自定义手动添加 pipeline 文件；
+- Pipelines：支持在观测云工作空间手动配置和查看日志 pipeline 文件，无需登录 DataKit 服务器进行操作。
 
 ![](img/6.pipeline_1.png)
 
 #### 新增 IFrame 图表组件
 
-观测云新增 IFrame 图表组件，支持您配置 https 或者 http 链接地址。在 IFrame URL 可直接输入外网地址查看，或者在 IFrame URL 使用模版变量查看，更多配置详情可参考文档 [IFrame](https://www.yuque.com/dataflux/doc/yehahh) 。
+观测云新增 IFrame 图表组件，支持您配置 https 或者 http 链接地址。在 IFrame URL 可直接输入外网地址查看，或者在 IFrame URL 使用模版变量查看，更多配置详情可参考文档 [IFrame](../scene/visual-chart/iframe.md) 。
 
 ![](img/7.ifram_2.png)
 
 #### 新增事件详情历史记录、关联 SLO
 
-观测在事件详情页优化基础属性、状态&趋势和关联事件布局，并新增历史记录和关联 SLO ，在异常事件列表中点击事件名称，即可查看。更多详情可参考文档 [事件](https://www.yuque.com/dataflux/doc/vzall6#cPhc7) 。
+观测在事件详情页优化基础属性、状态&趋势和关联事件布局，并新增历史记录和关联 SLO ，在异常事件列表中点击事件名称，即可查看。
 
 新增事件的历史记录，支持查看检测对象主机、异常/恢复时间和持续时长。
 
@@ -726,7 +872,7 @@ Pipeline 用于日志数据解析，通过定义解析规则，将格式各异�
 - 若在保存快照的时候选择开启绝对时间，分享后则显示保存快照时的绝对时间。如保存快照时，选择最近15分钟，您在14：00点开快照链接，显示之前的绝对时间的数据；
 - 若在保存快照的时候选择关闭绝对时间，分享后则显示保存快照时的绝对时间。如保存快照时，选择最近15分钟，您在14：00点开快照链接，显示13：45 ~ 14：00的数据。
 
-更多快照分享详情可参考文档 [快照](https://www.yuque.com/dataflux/doc/uuy378) 。
+更多快照分享详情可参考文档 [快照](../management/snapshot.md) 。
 
 ![](img/8.snap_1.png)
 
@@ -741,11 +887,11 @@ Pipeline 用于日志数据解析，通过定义解析规则，将格式各异�
 
 #### 优化图表查询表达式计算单位
 
-观测云优化图表查询表达式计算单位逻辑。若查询 A 带单位，查询 A 与数字的运算结果同样带单位。例如：A 的单位是 KB，那么A+100的单位也是 KB。更多详情可参考文档 [图表查询](https://www.yuque.com/dataflux/doc/cxlbps#S37pM) 。
+观测云优化图表查询表达式计算单位逻辑。若查询 A 带单位，查询 A 与数字的运算结果同样带单位。例如：A 的单位是 KB，那么A+100的单位也是 KB。更多详情可参考文档 [图表查询](../scene/visual-chart/chart-query.md) 。
 
 #### 新增“时间线”按量付费模式
 
-观测云新增“时间线”按量付费模式，并优化“DataKit+时间线”按量付费模式，具体计费模式可参考文档 [按量付费](https://www.yuque.com/dataflux/doc/ateans#BhPoQ)。
+观测云新增“时间线”按量付费模式，并优化“DataKit+时间线”按量付费模式，具体计费模式可参考文档 [按量付费](../billing/billing-method/index.md)。
 
 #### 其他优化功能
 
@@ -757,13 +903,13 @@ Pipeline 用于日志数据解析，通过定义解析规则，将格式各异�
 #### 
 #### 新增 Open API 及 API Key 管理
 
-“观测云” 支持通过调用 Open API 接口的方式来获取和更新观测云工作空间的数据，在调用 API 接口前，需要先创建 API Key 作为认证方式。更多详情，可参考文档 [API Key 管理](https://www.yuque.com/dataflux/doc/ag17mc) 。
+“观测云” 支持通过调用 Open API 接口的方式来获取和更新观测云工作空间的数据，在调用 API 接口前，需要先创建 API Key 作为认证方式。更多详情，可参考文档 [API Key 管理](../management/api-key/index.md) 。
 
 ![](img/image42.png)
 
 #### 新增指标字典、指标单位管理
 
-指标数据采集后，可以在观测云工作空间的「指标字典」查看所有采集的指标集及其指标和标签，支持为自定义指标数据手动设置单位。更多详情，可参考文档 [指标字典](https://www.yuque.com/dataflux/doc/mq149i) 。
+指标数据采集后，可以在观测云工作空间的「指标字典」查看所有采集的指标集及其指标和标签，支持为自定义指标数据手动设置单位。更多详情，可参考文档 [指标字典](../metrics/dictionary.md) 。
 
 - 指标可以帮助您了解系统的整体可用性，比如说服务器 CPU 使用情况，网站的加载耗时等，配合观测云提供的日志和链路追踪，可以帮助您快速定位和解决故障。
 - 标签可以帮助您关联数据，观测云支持把所有的指标、日志、链路数据统一上报到工作空间，通过对采集的数据打上相同的标签进行关联查询，可以帮您进行关联分析，发现并解决存在的潜在风险。
@@ -772,7 +918,7 @@ Pipeline 用于日志数据解析，通过定义解析规则，将格式各异�
 
 #### 新增场景图表漏斗图
 
-漏斗图一般适用于具有规范性、周期长、环节多的流程分析，通过漏斗图比较各环节的数据，能够直观地对比问题。另外漏斗图还适用于网站业务流程分析，展示用户从进入网站到实现购买的最终转化率，及每个步骤的转化率。更多详情，可参考文档 [漏斗图](https://www.yuque.com/dataflux/doc/hf6x84) 。
+漏斗图一般适用于具有规范性、周期长、环节多的流程分析，通过漏斗图比较各环节的数据，能够直观地对比问题。另外漏斗图还适用于网站业务流程分析，展示用户从进入网站到实现购买的最终转化率，及每个步骤的转化率。更多详情，可参考文档 [漏斗图](../scene/visual-chart/funnel-chart.md) 。
 
 ![](img/image41.png)
 
@@ -782,20 +928,21 @@ Pipeline 用于日志数据解析，通过定义解析规则，将格式各异�
 
 ![](img/4.dashboad_1.png)
 
-仪表板视图保存到内置视图时，支持选择绑定关系，选择绑定关系“label”。保存到内置视图后，即可在观测云工作空间「管理」-「内置视图」的「用户视图」查看保存的仪表版视图。同时因为设置了绑定关系`label:*`，在基础设施设置过 “Label 属性”的主机、容器详情页即可查看绑定的内置视图。更多详情，可参考文档 [保存仪表板为内置视图](https://www.yuque.com/dataflux/doc/gqatnx#dP9Qb) 。
+仪表板视图保存到内置视图时，支持选择绑定关系，选择绑定关系“label”。保存到内置视图后，即可在观测云工作空间「管理」-「内置视图」的「用户视图」查看保存的仪表版视图。同时因为设置了绑定关系`label:*`，在基础设施设置过 “Label 属性”的主机、容器详情页即可查看绑定的内置视图。更多详情，可参考文档 [保存仪表板为内置视图](../scene/dashboard.md) 。
 
 ![](img/4.dashboad_3.png)
 
 #### 新增容器详情页关联 Pod
 
-在容器详情页，支持您通过详情页查看相关 Pod（关联字段：pod_name）的基本信息和**在选定时间组件范围内**的性能指标状态。更多容器关联查询，可参考文档 [容器](https://www.yuque.com/dataflux/doc/gy7lei/) 。<br />注意：在容器详情中查看相关 Pod，需要匹配字段“pod_name”，否则无法在容器详情查看到相关 Pod 的页面。
+在容器详情页，支持您通过详情页查看相关 Pod（关联字段： pod_name ）的基本信息和**在选定时间组件范围内**的性能指标状态。更多容器关联查询，可参考文档 [容器](../infrastructure/contrainer.md) 。<br />注意：在容器详情中查看相关 Pod，需要匹配字段“pod_name”，否则无法在容器详情查看到相关 Pod 的页面。
 
 ![](img/8.contrainer_1.png)
 
 #### 新增监控器分组管理
 
-观测云新增的分组功能支持您在设定监控器时，自定义创建有意义的监测器组合，支持通过「分组」筛选出对应监控器，方便分组管理各项监控器。更多详情，可参考文档 [分组管理](https://www.yuque.com/dataflux/doc/hd5ior#joogr) 。<br />注意：
+观测云新增的分组功能支持您在设定监控器时，自定义创建有意义的监测器组合，支持通过「分组」筛选出对应监控器，方便分组管理各项监控器。
 
+注意：
 - 每个监控器创建时必须选择一个分组，默认选中「默认分组」；
 - 当某个分组被删除时，删除分组下的监控器将自动归类到「默认分组」下。
 
@@ -803,13 +950,13 @@ Pipeline 用于日志数据解析，通过定义解析规则，将格式各异�
 
 #### 新增日志查看器、表格图、日志流图格式化配置
 
-观测云新增的格式化配置可以让您隐藏敏感日志数据内容或者突出需要查看的日志数据内容，还可以通过替换原有日志内容进行快速筛选。支持在[日志查看器](https://www.yuque.com/dataflux/doc/uynpbs#TBmik)、[表格图](https://www.yuque.com/dataflux/doc/gd2mzn#ZZgmL)、[日志流图](https://www.yuque.com/dataflux/doc/nyca45#ZZgmL)进行格式化配置。
+观测云新增的格式化配置可以让您隐藏敏感日志数据内容或者突出需要查看的日志数据内容，还可以通过替换原有日志内容进行快速筛选。支持在日志查看器、表格图、日志流图进行格式化配置。
 
 ![](img/5.browser_5.png)
 
 #### 优化静默管理，新增禁用/启用规则
 
-观测云新增静默规则禁用/启用功能，帮助您快速禁用/启用静默任务。更多详情，可参考文档 [静默管理](https://www.yuque.com/dataflux/doc/gn55dz) 。
+观测云新增静默规则禁用/启用功能，帮助您快速禁用/启用静默任务。更多详情，可参考文档 [静默管理](../monitoring/silent-management.md) 。
 
 - 启用：静默规则按照正常流程执行
 - 禁用：静默规则不生效；若有设置静默通知策略，选择的是开始前“xx分钟”且静默通知操作还未执行的情况下，通知不会执行
@@ -820,7 +967,7 @@ Pipeline 用于日志数据解析，通过定义解析规则，将格式各异�
 
 #### 新增日志 pipeline 使用手册
 
-观测云新增日志的 [pipeline 使用手册](https://www.yuque.com/dataflux/doc/gxh1t2)，帮助您了解如何通过 DataKit 内置的调试工具，来辅助编写 Pipeline 脚本。
+观测云新增日志的 pipeline 使用手册，帮助您了解如何通过 DataKit 内置的调试工具，来辅助编写 Pipeline 脚本。
 ```
 # 调试脚本示例
 datakit --pl datakit.p --txt '2022-01-12T18:40:51.962+0800 WARN diskio diskio/input.go:320 Error gathering disk info: open /run/udev/data/b252:1: no such file or directory'
@@ -844,13 +991,13 @@ Extracted data(drop: false, cost: 3.108038ms):
 - rate()：计算某个指标一定时间范围内的平均变化率。适合警报和缓慢移动的计数器。
 - irate()：计算某个指标一定时间范围内的瞬时变化率，适合绘制易失性、快速变化的计数器。
 
-更多详情，可参考文档 [DQL 外层函数](https://www.yuque.com/dataflux/doc/wgrf10#hwbBA) 。
+更多详情，可参考文档 [DQL 外层函数](../dql/out-funcs.md) 。
 
 ## 2021 年 12 月 30 号
 
 #### 优化绑定内置视图
 
-“观测云” 支持通过将内置视图与不同的链路服务、应用、日志源、项目等字段进行关联绑定，根据绑定字段可在对应的查看器详情页查看绑定的内置视图（系统视图、用户视图），支持的查看器包括场景自定义查看器、基础设施、日志、链路、用户访问、安全巡检、可用性等查看器。更多详情介绍可参考文档 [绑定内置视图](https://www.yuque.com/dataflux/doc/dns233) 。
+“观测云” 支持通过将内置视图与不同的链路服务、应用、日志源、项目等字段进行关联绑定，根据绑定字段可在对应的查看器详情页查看绑定的内置视图（系统视图、用户视图），支持的查看器包括场景自定义查看器、基础设施、日志、链路、用户访问、安全巡检、可用性等查看器。
 
 ![](img/4.view_bang_2.png)
 
@@ -858,7 +1005,7 @@ Extracted data(drop: false, cost: 3.108038ms):
 
 - 在日志查看器，左侧来源列表首次登录默认展开，可手动收起，查看器会默认记住最后一次的状态；
 - 在日志查看器，点击左侧设置按钮，可手动添加筛选字段进行快捷筛选；
-- 在日志数据列表，您可以使用“鼠标悬停”至日志内容，展开查看日志的全部内容，点击“复制”按钮可把整条日志内容复制到粘贴板。展开时若可以系统会将该条日志JSON格式化，若不可以则正常展示该日志内容。更多日志查看器的介绍，可参考文档 [日志分析](https://www.yuque.com/dataflux/doc/ibg4fx) 。
+- 在日志数据列表，您可以使用“鼠标悬停”至日志内容，展开查看日志的全部内容，点击“复制”按钮可把整条日志内容复制到粘贴板。展开时若可以系统会将该条日志JSON格式化，若不可以则正常展示该日志内容。
 
 ![](img/6.log_12.png)
 
@@ -866,25 +1013,25 @@ Extracted data(drop: false, cost: 3.108038ms):
 
 在日志、基础设施、链路、安全巡检查看器详情页优化关联显示，包括主机、指标、链路、容器、日志、Pod等关联查询显示，支持两种关联显示：固定显示和非固定显示（需要根据是否包含关联字段来显示关联查询）。
 
-以日志查看器详情页关联主机为例，关联字段分别为“host”，在日志详情中查看相关主机，需要匹配字段“host”，否则无法在日志详情查看到相关主机的页面。字段匹配后，在关联主机下可以查看主机的基本信息和指标性能状态。更多详情可参考 [日志分析](https://www.yuque.com/dataflux/doc/ibg4fx#MDXYO) 。
+以日志查看器详情页关联主机为例，关联字段分别为“host”，在日志详情中查看相关主机，需要匹配字段“host”，否则无法在日志详情查看到相关主机的页面。字段匹配后，在关联主机下可以查看主机的基本信息和指标性能状态。
 
 - 属性视图：包括主机的基本信息、集成运行情况，若开启云主机的采集，还可查看云厂商的信息。
 
 ![](img/7.host_1.png)
 
-- 指标视图：可查看默认15分种内，相关主机的CPU、内存等性能指标视图。点击「打开该视图」至内置视图，可通过克隆的方式对主机视图进行自定义修改，并作为用户视图保存，用户视图可通过绑定在日志详情页查看，更多配置详情，可参考[绑定内置视图](https://www.yuque.com/dataflux/doc/dns233/)。
+- 指标视图：可查看默认15分种内，相关主机的CPU、内存等性能指标视图。点击「打开该视图」至内置视图，可通过克隆的方式对主机视图进行自定义修改，并作为用户视图保存，用户视图可通过绑定在日志详情页查看。
 
 ![](img/7.host_2.png)
 
 #### 优化快照分享
 
-快照分享支持隐藏分享页面的顶部栏，在快照列表，点击分享按钮，即可在弹出对话框中进行高级设置“隐藏顶部栏”。更多详情介绍可参考文档 [快照](https://www.yuque.com/dataflux/doc/uuy378#ZpIz5) 。
+快照分享支持隐藏分享页面的顶部栏，在快照列表，点击分享按钮，即可在弹出对话框中进行高级设置“隐藏顶部栏”。
 
 ![](img/12.share_pic_1.png)
 
 #### 优化图表查询结果显示千分位
 
-观测云仪表板图表查询结果支持自动加上数据千分位格式显示，若设置了单位，则按照设置的单位显示数据格式，设置完成后可以在预览情况下查看。更多详情可参考文档 [图表查询](https://www.yuque.com/dataflux/doc/cxlbps#zR8G0) 。
+观测云仪表板图表查询结果支持自动加上数据千分位格式显示，若设置了单位，则按照设置的单位显示数据格式，设置完成后可以在预览情况下查看。
 
 ![](img/13.table_4.png)
 
@@ -901,7 +1048,7 @@ Extracted data(drop: false, cost: 3.108038ms):
 
 #### 新增时序图相似性指标查询
 
-在时序图的分析模式下，支持选中“图表查询”为指标查询的趋势线/柱，可“查看相似趋势指标”。通过框选的绝对时间范围，可查询空间内相似的指标趋势。更多详情可参考文档 [时序图相似趋势指标](https://www.yuque.com/dataflux/doc/sqg3vu#ATVjL) 。  
+在时序图的分析模式下，支持选中“图表查询”为指标查询的趋势线/柱，可“查看相似趋势指标”。通过框选的绝对时间范围，可查询空间内相似的指标趋势。  
 
 ![](img/12.changelog_8.png)
 
@@ -918,7 +1065,7 @@ Extracted data(drop: false, cost: 3.108038ms):
 
 #### 新增查看器搜索match匹配
 
-观测云支持在查看器的搜索栏通过字段筛选如“host:cc*”格式进行`wildcard`搜索，可用于如命名开头一致的主机日志数据筛选。同时在查看器搜索栏右侧增加“删除号”，支持文本输入一键删除。更多查看器搜索详情可参考文档 [查看器搜索说明](https://www.yuque.com/dataflux/doc/wi8yz6) 。
+观测云支持在查看器的搜索栏通过字段筛选如“host:cc*”格式进行`wildcard`搜索，可用于如命名开头一致的主机日志数据筛选。同时在查看器搜索栏右侧增加“删除号”，支持文本输入一键删除。
 
 ![](img/12.changelog4.png)
 
@@ -930,19 +1077,17 @@ Extracted data(drop: false, cost: 3.108038ms):
 - 通过近似文本查看器，可查看Pattern聚类后关联日志的详情
 - 日志查看器的鼠标悬浮hover提示去掉颜色
 
-更多日志优化详情可参考文档 [日志分析](https://www.yuque.com/dataflux/doc/ibg4fx) 。
-
 ![](img/image36.png)
 
 #### 优化沉默策略，支持针对监控器规则设置沉默
 
-观测云支持用户在「监控」功能中，通过“静默管理”是对当前空间的全部静默规则进行管理。“观测云”提供了三种静默类型，包括主机静默、监控器静默、分组静默，支持对不同的主机、监控器、分组进行静默管理，使静默对象在静默时间内不向任一告警通知对象发送告警通知。更多详情可参考文档 [静默管理](https://www.yuque.com/dataflux/doc/gn55dz) 。
+观测云支持用户在「监控」功能中，通过“静默管理”是对当前空间的全部静默规则进行管理。“观测云”提供了三种静默类型，包括主机静默、监控器静默、分组静默，支持对不同的主机、监控器、分组进行静默管理，使静默对象在静默时间内不向任一告警通知对象发送告警通知。
 
 ![](img/image35.png)
 
 #### 优化监控器管理
 
-监控器列表出现重复的监控器会影响用户快速定位监控对象，“观测云”支持选择是否从模版新建重复的监控器。同时，用户可通过新增的”批量管理”工具，自定义导出/删除监控器。更多详情可参考文档 [监控器管理](https://www.yuque.com/dataflux/doc/hd5ior) 。 
+监控器列表出现重复的监控器会影响用户快速定位监控对象，“观测云”支持选择是否从模版新建重复的监控器。同时，用户可通过新增的”批量管理”工具，自定义导出/删除监控器。 
 
 ![](img/12.changelog_5.png)
 
@@ -953,7 +1098,6 @@ Extracted data(drop: false, cost: 3.108038ms):
 - 支持通过鼠标悬浮（hover）拖动视图变量以调节先后顺序
 - 去除视图变量的「设置」按钮，可直接在视图变量列表中使用“排序”、“隐藏”和“删除”功能
 
-更多详情可参考文档 [视图变量](https://www.yuque.com/dataflux/doc/mgpxkf ) 。
 
 ![](img/12.changelog_6.png)
 
@@ -973,19 +1117,19 @@ Extracted data(drop: false, cost: 3.108038ms):
 
 #### 新增拥有者成员角色
 
-观测云新增当前工作空间的拥有者角色，目前支持定义四种工作空间成员权限，包括“拥有者”、“管理员”、“标准成员”和“只读成员”，分别对不同成员类别的管理权限、配置权限、操作权限、浏览权限进行了约束。“拥有者”角色拥有最高操作权限，可以指定当前空间“管理员”并进行任意的管理、配置、操作和数据浏览。在观测云工作空间的「管理」-「成员管理」-「修改」，即可编辑更新成员的权限。详情可参考文档 [权限管理](https://www.yuque.com/dataflux/doc/nzlwt8) 。
+观测云新增当前工作空间的拥有者角色，目前支持定义四种工作空间成员权限，包括“拥有者”、“管理员”、“标准成员”和“只读成员”，分别对不同成员类别的管理权限、配置权限、操作权限、浏览权限进行了约束。“拥有者”角色拥有最高操作权限，可以指定当前空间“管理员”并进行任意的管理、配置、操作和数据浏览。在观测云工作空间的「管理」-「成员管理」-「修改」，即可编辑更新成员的权限。
 
 ![](img/6.changelog_4.png)
 
 #### 场景新增自定义查看器
 
-“观测云”在场景提供了可快速搭建的基于日志数据范围的查看器，支持空间成员共同搭建基于自定义场景的查看器，定制化查看需求。制作完成的“查看器”可导出分享给他人，共享查看器模版。详情可参考文档 [查看器](https://www.yuque.com/dataflux/doc/uynpbs) 。
+“观测云”在场景提供了可快速搭建的基于日志数据范围的查看器，支持空间成员共同搭建基于自定义场景的查看器，定制化查看需求。制作完成的“查看器”可导出分享给他人，共享查看器模版。
 
 ![](img/image32.png)
 
 #### 新增导出用户视图到仪表板
 
-“观测云”支持在「内置视图」中，导出已创建的用户视图为一份json文件，json文件可用于不同工作空间的场景或内置视图导入。详情可参考文档 [内置视图](https://www.yuque.com/dataflux/doc/gyl9vv) 。
+“观测云”支持在「内置视图」中，导出已创建的用户视图为一份json文件，json文件可用于不同工作空间的场景或内置视图导入。
 
 ![](img/6.changelog_5.png)
 
@@ -995,7 +1139,7 @@ Extracted data(drop: false, cost: 3.108038ms):
 
 ![](img/6.changelog_1.png)
 
-通过点击「查看网络流数据」，支持默认查看最近2天的网络流数据，包括时间、源IP/端口、目标IP/端口、源主机、传输方向、协议、发送字节数等。支持自定义显示字段，或添加筛选条件，筛选所有字符串类型的keyword字段。详情可参考文档 [主机网络](https://www.yuque.com/dataflux/doc/mwqbgr#PqtQj) 。
+通过点击「查看网络流数据」，支持默认查看最近2天的网络流数据，包括时间、源IP/端口、目标IP/端口、源主机、传输方向、协议、发送字节数等。支持自定义显示字段，或添加筛选条件，筛选所有字符串类型的keyword字段。
 
 ![](img/6.changelog_2.png)
 
@@ -1003,13 +1147,13 @@ Extracted data(drop: false, cost: 3.108038ms):
 
 应用在生产环境中发布的时候，为了防止代码泄露等安全问题，一般打包过程中会针对文件做转换、压缩等操作。以上举措在保障代码安全的同时也致使收集到的错误堆栈信息是经过混淆后的，无法直接定位问题，为后续 Bug 排查带来了不便。
 
-为了解决以上的问题，"观测云" 为 Web 应用程序提供 sourcemap 功能，支持还原混淆后的代码，方便错误排查时定位源码，帮助用户更快解决问题。详情可参考文档 [Sourcemap上传](https://www.yuque.com/dataflux/doc/qefigz) 。
+为了解决以上的问题，"观测云" 为 Web 应用程序提供 sourcemap 功能，支持还原混淆后的代码，方便错误排查时定位源码，帮助用户更快解决问题。
 
 ![](img/image33.png)
 
 #### 新增主机关联安全巡检数据分析
 
-“观测云”支持查看最近一天内与该主机相关的安全巡检数据，并对这些安全巡检数据进行关键字搜索、多标签筛选和数据排序。详情可参考文档 [关联安全巡检](https://www.yuque.com/dataflux/doc/mwqbgr#JAbqW) 。
+“观测云”支持查看最近一天内与该主机相关的安全巡检数据，并对这些安全巡检数据进行关键字搜索、多标签筛选和数据排序。
 
 ![](img/6.changelog_6.png)
 
@@ -1021,23 +1165,23 @@ Extracted data(drop: false, cost: 3.108038ms):
 
 #### 优化用户访问监测关联链路查询
 
-“观测云”支持在链路详情页和用户访问页面性能详情页（用户访问监测view查看器），将属性添加到当前筛选或复制（复制该标签至本地粘贴板）。详情可参考文档 [用户访问监测查看器](https://www.yuque.com/dataflux/doc/dh5lg9) 。
+“观测云”支持在链路详情页和用户访问页面性能详情页（用户访问监测view查看器），将属性添加到当前筛选或复制（复制该标签至本地粘贴板）。
 
 ![](img/image34.png)
 
 #### 优化注册升级流程
 
-观测云新增注册账号时直接选择开通观测云计费平台，并对登录到工作空间后，升级到敏捷版的流程进行优化，详情请参考文档 [观测云计费平台结算](https://www.yuque.com/dataflux/doc/xcifgo) 。
+观测云新增注册账号时直接选择开通观测云计费平台，并对登录到工作空间后，升级到敏捷版的流程进行优化，
 
 #### 计费降价调整
 
-观测云采用最新的技术，优化数据存储成本，故对计费进行降价调整，新增基于[数据存储策略](https://www.yuque.com/dataflux/doc/evmgge)的梯度计费模式，包括日志类数据、应用性能 Trace、用户访问 PV 这三个计费项。更多价格和数据过期策略详情请参考文档 [按量付费](https://www.yuque.com/dataflux/doc/ateans) 。
+观测云采用最新的技术，优化数据存储成本，故对计费进行降价调整，新增基于数据存储策略的梯度计费模式，包括日志类数据、应用性能 Trace、用户访问 PV 这三个计费项。
 
-另外为了助力企业以更优惠的价格，更全面的观测IT基础设施、应用系统等企业资产，观测云根据企业的不同发展阶段推出三种套餐包：初创加速包、创业发展包以及企业标准包，以及可叠加流量包供企业按照自身需求和套餐叠加使用。更多套餐包详情请参考文档 [套餐说明](https://www.yuque.com/dataflux/doc/fbpn8y) 。
+另外为了助力企业以更优惠的价格，更全面的观测IT基础设施、应用系统等企业资产，观测云根据企业的不同发展阶段推出三种套餐包：初创加速包、创业发展包以及企业标准包，以及可叠加流量包供企业按照自身需求和套餐叠加使用。
 
 #### 其他优化功能
 
-- 监控器用户访问指标检测新增 LCP、FID、CLS、FCP 相关检测指标。在观测云工作空间「监控」-「监控器」，点击「+新建监控器」，选择「用户访问指标检测」，即可进入检测规则的配置页面。详情可参考文档 [用户访问指标检测](https://www.yuque.com/dataflux/doc/qnpqmm) 。 
+- 监控器用户访问指标检测新增 LCP、FID、CLS、FCP 相关检测指标。在观测云工作空间「监控」-「监控器」，点击「+新建监控器」，选择「用户访问指标检测」，即可进入检测规则的配置页面。
 - 监控器简单查询中的分组更改为检测维度，检测维度决定着检测规则基于哪个维度触发，即触发对象。“观测云”支持添加多个检测维度，任意一个检测维度的指标满足告警条件则触发告警。
 - 优化导航菜单显示，“观测云”工作台的导航栏呈收起状态时，二级菜单顶格显示该功能的导航名称。
 
@@ -1045,13 +1189,13 @@ Extracted data(drop: false, cost: 3.108038ms):
 
 #### 新增SSO登录
 
-观测云支持用户基于工作空间创建身份提供商，用户在登录时通过输入公司邮箱，获取对应SSO登录链接，点击SSO登录链接实现对应验证登录。在观测云工作空间「管理」-「SSO管理」-「新建身份提供商」，即可为员工设置SSO单点登录。更多详情可参考文档 [SSO管理](https://www.yuque.com/dataflux/doc/aoadgo) 。
+观测云支持用户基于工作空间创建身份提供商，用户在登录时通过输入公司邮箱，获取对应SSO登录链接，点击SSO登录链接实现对应验证登录。在观测云工作空间「管理」-「SSO管理」-「新建身份提供商」，即可为员工设置SSO单点登录。
 
 ![](img/image31.png)
 
 #### 新增仪表板和笔记SLO图表
 
-在场景仪表板和笔记新增SLO图表，SLO图表可直接选择设置的监控SLO进行SLO数据展示，通过选择不同的SLO名称，同步展示SLO数据结果。更多详情可参考文档 [SLO](https://www.yuque.com/dataflux/doc/nmbghv) 。
+在场景仪表板和笔记新增SLO图表，SLO图表可直接选择设置的监控SLO进行SLO数据展示，通过选择不同的SLO名称，同步展示SLO数据结果。
 
 ![](img/7.slo_1.png)
 
@@ -1069,7 +1213,7 @@ Extracted data(drop: false, cost: 3.108038ms):
 
 #### 优化图表链接
 
-观测云支持添加内置链接和自定义链接到图表，通过链接可从当前图表跳转至目标页面，并通过模板变量修改链接中对应的变量值将数据信息传送过去，完成数据联动。图表链接支持从新页面、当前页面、侧滑详情页打开，实现联动分析。更多详细介绍可参考文档 [图表链接](https://www.yuque.com/dataflux/doc/nn6o31) 。
+观测云支持添加内置链接和自定义链接到图表，通过链接可从当前图表跳转至目标页面，并通过模板变量修改链接中对应的变量值将数据信息传送过去，完成数据联动。图表链接支持从新页面、当前页面、侧滑详情页打开，实现联动分析。
 
 ![](img/8.changelog_1.png)
 
@@ -1078,7 +1222,6 @@ Extracted data(drop: false, cost: 3.108038ms):
 - 每天DataKit 单价下调为每台 3 元 
 - 可用性 API 拨测调整为 每 1 万次 1元
 
-更多价格和数据过期策略详情请参考文档 [按量付费](https://www.yuque.com/dataflux/doc/ateans) 。
 
 #### 其他优化功能
 
@@ -1117,12 +1260,12 @@ Extracted data(drop: false, cost: 3.108038ms):
 - 模版（原指“内置检测库”），“观测云”内置多种开箱即用的可用性监控模版，支持一键创建Docker、Elasticsearch、Host、Redis监控。成功新建模版后，即自动添加对应的官方监控器至当前工作空间。
 - 分组（原指“自定义监测库”），分组功能支持您自定义创建有意义的监测器组合，方便分组管理各项监控器。
 
-  <br />更多详情内容可参考文档 [监视器管理](https://www.yuque.com/dataflux/doc/hd5ior) 。
+ 
 
 ![](img/6.changelog_1.png)
 
 #### 新增监控SLO功能，支持导出到仪表板<br /><br />
-「监控」新增SLO监控，支持在云时代背景下，对系统服务提供者（Provider）的服务质量评分，对比检测对应的SLI（Service Level Indicator）是否满足目标需要。同时，“观测云”还支持导出SLO为视图至仪表板，以便利在仪表板同步进行SLO监控。更多详情可参考文档 [SLO](https://www.yuque.com/dataflux/doc/aisb71) 。
+「监控」新增SLO监控，支持在云时代背景下，对系统服务提供者（Provider）的服务质量评分，对比检测对应的SLI（Service Level Indicator）是否满足目标需要。同时，“观测云”还支持导出SLO为视图至仪表板，以便利在仪表板同步进行SLO监控。
 
 ![](img/image27.png)
 
@@ -1141,25 +1284,25 @@ Extracted data(drop: false, cost: 3.108038ms):
 
 #### 新增主机网络分布图
 
-新增主机网络分布图，提供基础设施网络可观测。在「基础设施」-「主机」，点击左上角的小图标，即可切换到查看主机网络分布情况。在「网络分布图」，您能够可视化查询当前工作空间主机与主机之间的网络流量，快速分析不同主机之间的 TCP延迟、TCP波动、TCP重传次数、TCP连接次数以及 TCP关闭次数。更多详情介绍，可参考文档 [主机网络分布图](https://www.yuque.com/dataflux/doc/mwqbgr#yKAcN) 。
+新增主机网络分布图，提供基础设施网络可观测。在「基础设施」-「主机」，点击左上角的小图标，即可切换到查看主机网络分布情况。在「网络分布图」，您能够可视化查询当前工作空间主机与主机之间的网络流量，快速分析不同主机之间的 TCP延迟、TCP波动、TCP重传次数、TCP连接次数以及 TCP关闭次数。
 
 ![](img/3.host_netmap_4.png)
 
 #### 新增用户访问监测追踪功能
 
-新增用户访问监测「追踪」功能。支持用户通过「用户访问监测」新建追踪任务，对自定义的链路追踪轨迹进行实时监控。通过预先设定链路追踪轨迹，可以集中筛选链路数据，精准查询用户访问体验，及时发现漏洞、异常和风险。详情可参考文档 [自建追踪](https://www.yuque.com/dataflux/doc/olc625) 。
+新增用户访问监测「追踪」功能。支持用户通过「用户访问监测」新建追踪任务，对自定义的链路追踪轨迹进行实时监控。通过预先设定链路追踪轨迹，可以集中筛选链路数据，精准查询用户访问体验，及时发现漏洞、异常和风险。
 
 ![](img/image25.png)
 
 #### 新增场景图表 Json 格式查询
 
-在「场景」编辑图表时，每一个正确的图表查询都对应一个json文本，支持工作台内的 json文本和图表查询可互相解析，帮助您洞察图表绘制详情。详情可参考文档 [图表查询](https://www.yuque.com/dataflux/doc/cxlbps) 。
+在「场景」编辑图表时，每一个正确的图表查询都对应一个json文本，支持工作台内的 json文本和图表查询可互相解析，帮助您洞察图表绘制详情。
 
 ![](img/image24.png)
 
 #### 优化 DCA 桌面客户端应用
 
-优化 DCA 桌面客户端 UI 展示，增加主机状态，更多详情可参考文档 [DCA](https://www.yuque.com/dataflux/doc/fgcgug) 。
+优化 DCA 桌面客户端 UI 展示，增加主机状态。
 
 - online：说明数据上报正常，可通过 DCA 查看 DataKit 的运行情况和配置采集器；
 - unknown：说明远程管理配置未开启，或者不在一个局域网内；
@@ -1169,7 +1312,7 @@ Extracted data(drop: false, cost: 3.108038ms):
 
 #### 优化事件主机联动查询及检测规则查询
 
-优化事件模块，支持对事件的关联主机进行联动查询，可实时监控与该事件相关的主机在选定时间组件范围内的日志、容器、进程，链路，巡检事件；支持一键查看事件关联的检测规则，并查询对应检测规则下的其他被触发事件。详情可参考文档 [事件分析](https://www.yuque.com/dataflux/doc/vzall6) 。
+优化事件模块，支持对事件的关联主机进行联动查询，可实时监控与该事件相关的主机在选定时间组件范围内的日志、容器、进程，链路，巡检事件；支持一键查看事件关联的检测规则，并查询对应检测规则下的其他被触发事件。
 
 ![](img/image23.png)
 
@@ -1178,13 +1321,12 @@ Extracted data(drop: false, cost: 3.108038ms):
 - 按节点登录方式，选择计费结算方式，包括CloudCare账号、Aliyun、AWS。其中CloudCare账号结算为通用方式，阿里云登录节点对应可选择Aliyun账号结算方式（上线中），AWS登录节点对应可选择AWS账号结算方式（已上线）。
 - 去除Session数量和Browser拨测数量计费维度，在「付费计划与账单」去除Session数量和Browser拨测数量统计及视图，新增安全巡检数量统计图。
 
-更多计费规则和数据过期策略详情可参考文档 [按量付费](https://www.yuque.com/dataflux/doc/ateans) 。<br />更多版本升级和结算方式详情可参考文档 [付费计划与账单](https://www.yuque.com/dataflux/doc/fb8rwv) 。
 
 #### 其他优化功能
 
 - 优化场景添加图表功能，去掉「编辑」模式下「添加图表」按钮，所有可添加的图表类型在场景顶部可选；
-- 优化场景[图表分组](https://www.yuque.com/dataflux/doc/zr8h0h)功能，支持仅删除分组，并保留原有图表进入默认分组下；
-- 新增[中国地图](https://www.yuque.com/dataflux/doc/lhm393)/[世界地图](https://www.yuque.com/dataflux/doc/eplxkm)的「地区排名」开关，默认关闭地区排名；
+- 优化场景图表分组功能，支持仅删除分组，并保留原有图表进入默认分组下；
+- 新增中国地图/世界地图的「地区排名」开关，默认关闭地区排名；
 - 优化查看器查询方式，合并搜索与筛选栏，支持基于标签、字段、文本进行关键词搜索、标签字段筛选、关联搜索。
 
 ## 2021 年 9 月 28 号
@@ -1193,12 +1335,12 @@ Extracted data(drop: false, cost: 3.108038ms):
 
 主机网络性能监测支持查看主机服务、容器和任意带标签的基础设施等之间的网络流量。支持基于 IP/端口查看源主机到目标之间的网络流量和数据连接情况，通过可视化的方式进行实时展示，帮助企业实时了解业务系统的网络运行状态，快速分析、追踪和定位问题故障，预防或避免因网络性能下降或中断而导致的业务问题。
 
-主机网络数据采集成功后会上报到观测云控制台，在「基础设施」-「主机」详情页中的「网络」，您可以查看到工作空间内全部网络性能监测数据信息。更多详情可参考文档 [主机网络](https://www.yuque.com/dataflux/doc/mwqbgr#PqtQj) 。
+主机网络数据采集成功后会上报到观测云控制台，在「基础设施」-「主机」详情页中的「网络」，您可以查看到工作空间内全部网络性能监测数据信息。
 
 ![](img/3.network_1.png)
 #### 新增图表联动查询
 
-在场景视图，支持通过单击鼠标查看该图表的DQL查询语句、关联的链接等，或关联查询不同分组查询标签下的相关日志、容器、进程、链路等。当图表查询存在主机（host) 信息时，支持查看相关的主机监控视图。如点击图中任意图表，即可查看图表的DQL查询语句、设置的链接以及关联查询相关日志、容器、进程、链路、主机监控视图等。更多详情可参考文档 [视图分析](https://www.yuque.com/dataflux/doc/rr32l0) 。
+在场景视图，支持通过单击鼠标查看该图表的DQL查询语句、关联的链接等，或关联查询不同分组查询标签下的相关日志、容器、进程、链路等。当图表查询存在主机（host) 信息时，支持查看相关的主机监控视图。如点击图中任意图表，即可查看图表的DQL查询语句、设置的链接以及关联查询相关日志、容器、进程、链路、主机监控视图等。
 
 ![](img/1.changelog.png)
 
@@ -1210,19 +1352,19 @@ Extracted data(drop: false, cost: 3.108038ms):
 
 #### 新增应用性能和用户访问监测关联查询
 
-在应用性能监测链路详情内，支持通过页面上方的「相关view」查看关联（相同trace_id）的真实用户访问体验数据。此功能不仅能够帮助您查看主动式监测的应用性能数据，还能够帮助您快速透视真实用户的访问情况。更多应用性能监测可参考文档 [链路分析](https://www.yuque.com/dataflux/doc/qp1efz) 。
+在应用性能监测链路详情内，支持通过页面上方的「相关view」查看关联（相同trace_id）的真实用户访问体验数据。此功能不仅能够帮助您查看主动式监测的应用性能数据，还能够帮助您快速透视真实用户的访问情况。更多应用性能监测可参考文档 [链路分析](../application-performance-monitoring/explorer.md) 。
 
 ![](img/image22.png)
 
 #### 新增基础设施查询绝对时间范围
 
-基础设施新增「[主机](https://www.yuque.com/dataflux/doc/mwqbgr)」、「[容器](https://www.yuque.com/dataflux/doc/gy7lei)」、「[进程](https://www.yuque.com/dataflux/doc/yoon4o)」查询范围绝对时间，默认展示最近24小时的主机数据、最近十分钟内的容器数据、最近十分钟的进程数据，可通过手动方式刷新查询范围。鼠标悬停在离线的主机，可查看主机离线处理提示。
+基础设施新增「主机」、「容器」、「进程」查询范围绝对时间，默认展示最近24小时的主机数据、最近十分钟内的容器数据、最近十分钟的进程数据，可通过手动方式刷新查询范围。鼠标悬停在离线的主机，可查看主机离线处理提示。
 
 ![](img/7.changelog_host.png)
 
 #### 优化图表同期对比功能
 
-优化图表同期对比功能，支持对[时序图](https://www.yuque.com/dataflux/doc/sqg3vu)、[概览图](https://www.yuque.com/dataflux/doc/nlqqgk)等的同期数据进行比较，可选择同比（相邻时间段中某一相同时间点的比较）或环比（相邻时间段的对比）。根据图表锁定时间，可选择环比、日环比、周环比、月环比、周同比、月同比等选项。
+优化图表同期对比功能，支持对时序图、概览图等的同期数据进行比较，可选择同比（相邻时间段中某一相同时间点的比较）或环比（相邻时间段的对比）。根据图表锁定时间，可选择环比、日环比、周环比、月环比、周同比、月同比等选项。
 
 ![](img/3.view_2.png)
 
@@ -1233,14 +1375,14 @@ Extracted data(drop: false, cost: 3.108038ms):
 
 #### 云拨测调整为可用性监测
 
-云拨测分成 API 拨测和 Browser 拨测，调整为可用性拨测以后，保留 API 拨测。其他功能如概览分析、查看器分析、自建节点功能保持不变。更多详情可参考文档 [可用性监测](https://www.yuque.com/dataflux/doc/rgcad6) 。
+云拨测分成 API 拨测和 Browser 拨测，调整为可用性拨测以后，保留 API 拨测。其他功能如概览分析、查看器分析、自建节点功能保持不变。更多详情可参考文档 [可用性监测](../usability-monitoring/index.md) 。
 
 #### 计费降价调整
 
 - 日志价格从每100万条1元调整为每100万条0.5元
 - 用户访问监测价格去除 Session 计费维度，调整为每1000个 PV 0.3元
 
-更多价格和数据过期策略详情请参考文档 [按量付费](https://www.yuque.com/dataflux/doc/ateans) 。
+更多价格和数据过期策略详情请参考文档 [按量付费](../billing/billing-method/index.md) 。
 ## 2021 年 9 月 9 号
 
 #### DataFlux 更名为“观测云”
@@ -1265,7 +1407,7 @@ Extracted data(drop: false, cost: 3.108038ms):
 
 #### 新增容器Jobs和Cron Jobs查看器
 
-“观测云”新增容器「Jobs」、「Cron Jobs」查看器, 在「基础设施」-「容器」的左侧对象列表选择对应的查看器，支持查看 Kubernetes 中 Job 和 Cron Job 的运行状态和服务能力相关指标，进而实现对 Kubernetes 集群以及其中部署的各类资源的实时监测。详情可参考文档 [容器](https://www.yuque.com/dataflux/doc/gy7lei) 。
+“观测云”新增容器「Jobs」、「Cron Jobs」查看器, 在「基础设施」-「容器」的左侧对象列表选择对应的查看器，支持查看 Kubernetes 中 Job 和 Cron Job 的运行状态和服务能力相关指标，进而实现对 Kubernetes 集群以及其中部署的各类资源的实时监测。详情可参考文档 [容器](../infrastructure/contrainer.md) 。
 
 ![](img/15.changelog_1.1.png)
 
@@ -1273,7 +1415,7 @@ Extracted data(drop: false, cost: 3.108038ms):
 
 DCA，DataKit Control APP，是一款桌面客户端应用，旨在方便管理已经安装和配置的采集器，支持查看集成列表、配置文件管理、Pipeline管理、集成配置文档在线查看等功能。您可以通过 DCA 远程连接 DataKit ，在线变更采集器，变更完成后保存更新即可生效。
 
-在“观测云”工作空间，依次点击「集成」-「DCA」，即可下载安装包。下载完成后，可安装在您的电脑远程管理 DataKit 。更多使用说明可参考文档 [DCA](https://www.yuque.com/dataflux/doc/fgcgug) 。
+在“观测云”工作空间，依次点击「集成」-「DCA」，即可下载安装包。下载完成后，可安装在您的电脑远程管理 DataKit 。
 
 ![](img/1.dca_1.png)
 
@@ -1281,70 +1423,69 @@ DCA，DataKit Control APP，是一款桌面客户端应用，旨在方便管理�
 
 DataFlux Mobile 可以帮助您在移动设备上随时随地查看来自观测云的日志数据、场景视图等，接收通过邮件、钉钉机器人、企业微信机器人、Webhook等通知到您的全部告警事件。
 
-在观测云的工作空间内，您可以通过「集成」-「移动端」进行 DataFlux Mobile APP的下载。更多使用说明可参考文档 [DataFlux Mobile 移动端APP](https://www.yuque.com/dataflux/doc/atdydg) 。
+在观测云的工作空间内，您可以通过「集成」-「移动端」进行 DataFlux Mobile APP的下载。
 
 ![](img/15.changelog_2.png)
 
 #### 新增指标的标签筛选功能，优化指标的三种查看模式
 
-DataKit 采集器会默认给采集到的所有数据追加标签 `host=<DataKit所在主机名>`，更多介绍可参考文档 [DataKit 使用入门](https://www.yuque.com/dataflux/datakit/datakit-how-to#cdcbfcc9) 。
+DataKit 采集器会默认给采集到的所有数据追加标签 `host=<DataKit所在主机名>`，
 
 标签是标识一个数据点采集对象的属性的集合，标签分为标签名和标签值，在「指标」页面可选择需要查看的标签值对应的指标视图。如下图所示：在标签栏筛选主机，并查看其 `usage_system`、`usage_total`、`usage_user`、`usage_iowait`等指标视图。
 
 ![](img/3.metric_3.1.png)
 
-在「指标」页面左侧可选择切换指标查看模式，支持三种查看模式：平铺模式、混合模式、列表模式，默认选中平铺模式。更多查看模式介绍，可参考文档 [指标管理](https://www.yuque.com/dataflux/doc/mx0gcw#HIH5l) 。
+在「指标」页面左侧可选择切换指标查看模式，支持三种查看模式：平铺模式、混合模式、列表模式，默认选中平铺模式。
 
 #### 优化异常检测
 
-新增window（窗口）函数在异常检测规则查询和图表查询的使用，即支持以选定的时间间隔为窗口（记录集合），以检测频率为偏移，重新对每条记录执行统计计算。更过详情可参考 [事件分析](https://www.yuque.com/dataflux/doc/vzall6) 。
+新增window（窗口）函数在异常检测规则查询和图表查询的使用，即支持以选定的时间间隔为窗口（记录集合），以检测频率为偏移，重新对每条记录执行统计计算。
 
 •  在进行图表查询时，支持添加窗口函数，即以选定的时间间隔为窗口（支持选择1分钟、5分钟、15分钟、30分钟、1小时、3小时），结合聚合函数对每条记录都执行统计计算。<br />•  在配置异常检测规则配置时，新增window函数为查询结果的绘图展示区域，返回用于触发告警的实时异常检测指标数据。
 
 ![](img/image16.png)
 
-新增percent()函数在异常规则查询和图表查询的聚合函数中使用。支持在聚合函数中添加percent()函数，包括 p50(取中位数值)、p75（取处于75%位置的值）、p90（取处于90%位置的值）、p99(取处于99%位置的值)。 更多图表查询函数应用可参考文档 [图表查询](https://www.yuque.com/dataflux/doc/cxlbps) 。
+新增percent()函数在异常规则查询和图表查询的聚合函数中使用。支持在聚合函数中添加percent()函数，包括 p50(取中位数值)、p75（取处于75%位置的值）、p90（取处于90%位置的值）、p99(取处于99%位置的值)。 
 
-新增lable筛选在异常规则查询和图表查询中使用，支持选择主机 label 属性进行筛选显示。在查询中选择 label 之前，您需在「基础设施」-「主机」中为主机设置 label 属性。 关于如何添加 label 属性，可参考文档 [主机标签属性](https://www.yuque.com/dataflux/doc/mwqbgr#MP3rm) 。
+新增lable筛选在异常规则查询和图表查询中使用，支持选择主机 label 属性进行筛选显示。在查询中选择 label 之前，您需在「基础设施」-「主机」中为主机设置 label 属性。 
 
 #### 优化未恢复事件显示样式
 
-在未恢复事件列表中，您可以预览事件最近 6 小时的window函数：<br />•  虚线边框的展示效果为异常事件影响的时间段<br />•  检测库规则类型为阈值、日志、应用性能指标、用户访问指标检测、安全巡检、异常进程、云拨测检测时，根据不同告警等级对应的色块可查看相关异常检测指标数据，包括紧急、错误、警告。<br />•  检测库规则类型为突变、区间、水位时，根据图表“竖线”可快速识别出当前事件触发的时间点。<br />更多详情可参考文档 [事件分析](https://www.yuque.com/dataflux/doc/vzall6) 。 
+在未恢复事件列表中，您可以预览事件最近 6 小时的window函数：<br />•  虚线边框的展示效果为异常事件影响的时间段<br />•  检测库规则类型为阈值、日志、应用性能指标、用户访问指标检测、安全巡检、异常进程、云拨测检测时，根据不同告警等级对应的色块可查看相关异常检测指标数据，包括紧急、错误、警告。<br />•  检测库规则类型为突变、区间、水位时，根据图表“竖线”可快速识别出当前事件触发的时间点。 
 
 ![](img/image15.png)
 
-在事件的详情页面支持查看异常事件的状态分布、DQL函数和窗口函数折线图。<br />•  状态分布：展示选定时间范围内（默认展示最近6小时）的事件状态 (紧急、重要、警告、无数据)<br />•  DQL查询语句：基于异常检测规则的自定义查询语句返回的实时指标数据，默认展示最近6小时的实时指标数据<br />•  window 函数：基于异常检测规则，以选定的时间范围为窗口（记录集合），以检测频率为偏移，重新对每条记录执行统计计算，返回用于触发告警的实时异常检测指标数据。默认展示最近6小时的实时异常检测指标数据<br />更多详情可参考文档 [事件分析](https://www.yuque.com/dataflux/doc/vzall6) 。
+在事件的详情页面支持查看异常事件的状态分布、DQL函数和窗口函数折线图。<br />•  状态分布：展示选定时间范围内（默认展示最近6小时）的事件状态 (紧急、重要、警告、无数据)<br />•  DQL查询语句：基于异常检测规则的自定义查询语句返回的实时指标数据，默认展示最近6小时的实时指标数据<br />•  window 函数：基于异常检测规则，以选定的时间范围为窗口（记录集合），以检测频率为偏移，重新对每条记录执行统计计算，返回用于触发告警的实时异常检测指标数据。默认展示最近6小时的实时异常检测指标数据
 
 ![](img/6.57.31.png)
 
 
 #### 优化场景视图分析
 
-在预览模式下，通过双击图表，即可放大图表进入分析模式查看。在编辑模式下，双击图表可进入编辑模式。对图表进行增删改查。详情可参考文档 [视图分析](https://www.yuque.com/dataflux/doc/rr32l0) 。  
+在预览模式下，通过双击图表，即可放大图表进入分析模式查看。在编辑模式下，双击图表可进入编辑模式。对图表进行增删改查。  
 
 #### 优化基础设施绑定内置视图
 
-选择内置视图时，会过滤重名视图，当系统视图和用户视图重名时，优先展示用户视图，即只能选择用户视图，若需要选择系统视图，则需更改或者删除重名的用户视图。更多详情可参考文档 [绑定内置视图](https://www.yuque.com/dataflux/doc/dns233) 。
+选择内置视图时，会过滤重名视图，当系统视图和用户视图重名时，优先展示用户视图，即只能选择用户视图，若需要选择系统视图，则需更改或者删除重名的用户视图。
 
 #### 优化计费方式，新增云拨测计费，调整数据过期策略
 
 - 新增 PV 数量统计：Session 数量和 PV 数量按照实际产生的费用低那个作为最终费用
-- 新增云拨测任务次数费用统计：开放云拨测自建节点管理，支持任何空间管理员在全球范围内自建新的拨测节点；云拨测的计费维度将根据当前工作空间的云拨测任务调用次数收费；免费版工作空间最多可创建 5 个拨测任务，且仅支持“中国区”拨测节点的使用；敏捷版及以上版本工作空间支持创建更多拨测任务，并且使用更多的国外拨测节点。更多详情可参考文档 [云拨测数据采集](https://www.yuque.com/dataflux/doc/qnfc4a) 。
+- 新增云拨测任务次数费用统计：开放云拨测自建节点管理，支持任何空间管理员在全球范围内自建新的拨测节点；云拨测的计费维度将根据当前工作空间的云拨测任务调用次数收费；免费版工作空间最多可创建 5 个拨测任务，且仅支持“中国区”拨测节点的使用；敏捷版及以上版本工作空间支持创建更多拨测任务，并且使用更多的国外拨测节点。
 
-更多价格和数据过期策略详情请参考文档 [按量付费](https://www.yuque.com/dataflux/doc/ateans) 。
 
 ## 2021 年 8 月 26 号
 ### DataFlux Studio
 
 #### 新增图表查询label筛选
 
-DataFlux 支持选择主机 label 属性进行筛选显示，在图表查询中选择 label 之前，需在「基础设施」-「主机」中为主机设置 label 属性。如下图中，包含“production” label 属性有两台主机，故显示两台主机的数据。有关主机 label 设置可参考文档 [主机](https://www.yuque.com/dataflux/doc/mwqbgr#MP3rm) 。
+DataFlux 支持选择主机 label 属性进行筛选显示，在图表查询中选择 label 之前，需在「基础设施」-「主机」中为主机设置 label 属性。如下图中，包含“production” label 属性有两台主机，故显示两台主机的数据。
 
 ![](img/3.query_4.1.png)
 
 #### 新增基础设施容器 Cluster、Replicate Set、Node查看器 
 
-DataFlux 新增容器 Cluster、Replicate Set、Node查看器, 支持查看 Kubernetes 中 Cluster、Replicate Set、Node 的运行状态和服务能力相关指标，进而实现对Kubernetes集群以及其中部署的各类资源的实时监测。详情可参考文档 [容器](https://www.yuque.com/dataflux/doc/gy7lei) 。
+DataFlux 新增容器 Cluster、Replicate Set、Node查看器, 支持查看 Kubernetes 中 Cluster、Replicate Set、Node 的运行状态和服务能力相关指标，进而实现对Kubernetes集群以及其中部署的各类资源的实时监测。
 
 ![](img/image14.png)
 
@@ -1360,7 +1501,7 @@ DataFlux 支持在 View 查看器，点击左侧快速筛选的设置按钮，�
 
 #### 新增导航菜单帮助入口，新增多个查看器数据采集引导入口
 
-DataFlux 在导航菜单新增帮助文档入口，同时当查看器未上传数据时，DataFlux 为您提供了快捷访问 “如何开始数据采集”的入口，以帮助您在不同查看器下及时开启数据实时监测之路。包括[如何开启日志监测](https://www.yuque.com/dataflux/doc/zwvm0b)、[如何开启云拨测](https://www.yuque.com/dataflux/doc/qdp9u5)、[如何采集主机对象](https://www.yuque.com/dataflux/doc/si9tnv)等。
+DataFlux 在导航菜单新增帮助文档入口，同时当查看器未上传数据时，DataFlux 为您提供了快捷访问 “如何开始数据采集”的入口，以帮助您在不同查看器下及时开启数据实时监测之路。包括如何开启日志监测、如何开启云拨测、如何采集主机对象等。
 
 #### 优化日志查看器
 
@@ -1379,7 +1520,7 @@ DataFlux 优化日志查看器，采用不同的颜色高亮日志的不同内�
 
 #### 优化安全巡检概览统计
 
-DataFlux 支持自定义安全巡检概览页面的视图，通过点击「跳转」按钮，可跳转至概览页面对应的内置视图进行查看，并对该视图进行编辑、复制和导出。详情可参考文档 [安全巡检分析](https://www.yuque.com/dataflux/doc/dpx1qg#cATaT) 。
+DataFlux 支持自定义安全巡检概览页面的视图，通过点击「跳转」按钮，可跳转至概览页面对应的内置视图进行查看，并对该视图进行编辑、复制和导出。
 
 ![](img/image13.png)
 
@@ -1413,13 +1554,13 @@ DataFlux 新增系统主题颜色“自动”选项，可根据电脑外观设�
 
 DataFlux 目前支持定义三种工作空间成员权限，包括“管理员”、“标准成员”和“只读成员”，分别对不同成员类别的管理权限、操作权限、浏览权限进行了约束。“管理员”能够自定义成员的权限范围，如：限定只读成员可访问的场景视图、限定标准成员可编辑的场景视图等。
 
-在 DataFlux 工作空间的「管理」-「成员管理」-「修改」，即可编辑更新成员的权限。详情可参考文档 [权限管理](https://www.yuque.com/dataflux/doc/nzlwt8) 。
+在 DataFlux 工作空间的「管理」-「成员管理」-「修改」，即可编辑更新成员的权限。
 
 ![](img/12.changelog_1.png)
 
 #### 新增基础设施主机详情查看连接追踪和文件及布局优化
 
-DataFlux 支持在基础设施主机详情页查看主机系统信息，包括主机名称、操作系统、处理器、内存，网络，硬盘以及连接追踪数、文件句柄数等数据。更多主机详情页的说明可参考文档 [主机](https://www.yuque.com/dataflux/doc/mwqbgr#mPkpY) 。
+DataFlux 支持在基础设施主机详情页查看主机系统信息，包括主机名称、操作系统、处理器、内存，网络，硬盘以及连接追踪数、文件句柄数等数据。
 
 ![](img/3.host_7.png)
 
@@ -1437,7 +1578,7 @@ DataFlux 支持在基础设施主机详情页查看主机系统信息，包括�
 
 #### 新增图表和快照分享管理
 
-DataFlux 支持对当前空间内分享的图表和快照进行统一管理。如在「场景视图中」完成图表分享后，通过「管理」-「分享管理」-「图表分享」可以查看当前空间内的图表分享列表，并进行图表查看，查看嵌入代码和取消分享。详情可参考文档 [分享管理](https://www.yuque.com/dataflux/doc/eybvlv) 。
+DataFlux 支持对当前空间内分享的图表和快照进行统一管理。如在「场景视图中」完成图表分享后，通过「管理」-「分享管理」-「图表分享」可以查看当前空间内的图表分享列表，并进行图表查看，查看嵌入代码和取消分享。
 
 ![](img/image.png)
 
@@ -1449,15 +1590,15 @@ DataFlux 支持对当前空间内分享的图表和快照进行统一管理。�
 
 #### 新增自定义用户访问监测 SDK 采集数据内容
 
-DataFlux 支持自定义用户访问监测 SDK 采集数据内容，通过自定义设置用户标识、自定义设置会话以及自定义添加额外的数据 TAG ，帮助用户在特定场景下，通过设置不同类型的标识来定位分析数据。详情可参考文档 [自定义用户访问监测 SDK 采集数据内容](https://www.yuque.com/dataflux/doc/xu6qg3) 。
+DataFlux 支持自定义用户访问监测 SDK 采集数据内容，通过自定义设置用户标识、自定义设置会话以及自定义添加额外的数据 TAG ，帮助用户在特定场景下，通过设置不同类型的标识来定位分析数据。
 
 #### 新增付费版 Session 、任务调度、Trace 免费额度
 
-DataFlux 付费版本新增每台 DataKit 每天赠送 100 万条日志类数据、100 个 Session 数量、1 万次任务调度次数以及 100万个Trace数量。更多计费逻辑可参考文档 [按量付费](https://www.yuque.com/dataflux/doc/ateans) 。
+DataFlux 付费版本新增每台 DataKit 每天赠送 100 万条日志类数据、100 个 Session 数量、1 万次任务调度次数以及 100万个Trace数量。
 
 #### 优化场景图表分析模式
 
-DataFlux 支持在时序图的分析模式下，通过图表下方的时间轴，预览对象数据在四倍查询周期内的交互变化，并且通过拖动时间轴选择时序图展示的时间范围。如：当前时间点为14:00，时间范围选择【10:00-11:00】，那么时间轴范围【08:00-12:00】。详情可参考文档 [时序图](https://www.yuque.com/dataflux/doc/sqg3vu) 。
+DataFlux 支持在时序图的分析模式下，通过图表下方的时间轴，预览对象数据在四倍查询周期内的交互变化，并且通过拖动时间轴选择时序图展示的时间范围。如：当前时间点为14:00，时间范围选择【10:00-11:00】，那么时间轴范围【08:00-12:00】。
 
 ![](img/12.changelog_2.png)
 
@@ -1494,11 +1635,11 @@ m
 
 DataFlux支持通过「Container」、「Pod」、「Services」、「Deployments」等查看器，从不同的维度全面展示容器的状态。
 
-在工作空间「基础设施」-「容器」，通过左上角的数据类型筛选栏，可以切换至「[Services](https://www.yuque.com/dataflux/doc/gy7lei#Xbgsf)」查看空间内留存的全部 Service 的详尽信息，包括Service 名称、服务类型、Cluster IP、External IP、运行时长等。
+在工作空间「基础设施」-「容器」，通过左上角的数据类型筛选栏，可以切换至「Services」查看空间内留存的全部 Service 的详尽信息，包括Service 名称、服务类型、Cluster IP、External IP、运行时长等。
 
 ![](img/1.contrainer_services_1.png)
 
-切换至「[Deployments](https://www.yuque.com/dataflux/doc/gy7lei#cszE8)」可查看空间内留存的全部 Deployment 的详尽信息，包括Deployment 名称、可用副本、已升级副本、准备就绪、运行时长等。
+切换至「Deployments」可查看空间内留存的全部 Deployment 的详尽信息，包括Deployment 名称、可用副本、已升级副本、准备就绪、运行时长等。
 
 ![](img/1.contrainer_deployments_1.png)
 
@@ -1519,7 +1660,7 @@ DataFlux 新增基础设施全局 Label 功能，支持用户针对主机、容�
 
 #### 新增短信通知对象；新增付费计划与账单短信费用统计
 
-DataFlux支持用户管理发送告警的通知对象，目前支持添加钉钉机器人、企业微信机器人、飞书机器人、Webhook自定义、邮件组和短信组。更多配置详情参考文档 [通知对象管理](https://www.yuque.com/dataflux/doc/osstog) 。
+DataFlux支持用户管理发送告警的通知对象，目前支持添加钉钉机器人、企业微信机器人、飞书机器人、Webhook自定义、邮件组和短信组
 
 **注意：**
 
@@ -1541,7 +1682,7 @@ DataFlux 支持当前空间管理员变更空间内的Token，并自定义当前
 **注意：**
 
 - 更换Token后，原有Token会在指定时间内失效。如有任何代理使用该Token，都将立刻停止数据上报，请务必及时检查集成配置；
-- 更换Token会触发「[操作事件](https://www.yuque.com/dataflux/doc/dlxizg)」和「[通知](https://www.yuque.com/dataflux/doc/tyqtg8)」。
+- 更换Token会触发「操作事件」和「通知」。
 
 ![](img/WX20210727-154205.png)
 
@@ -1553,7 +1694,7 @@ DataFlux 支持在工作空间「指标」，切换「搜索」为「DQL 查询�
 
 #### 优化日志查看器多行显示
 
-DataFlux 支持在日志查看器的“设置”中选择日志显示“1行”、“3行”或“10行”来查看完整的日志内容。更多日志查看器的说明，可查看文档 [日志分析](https://www.yuque.com/dataflux/doc/ibg4fx) 。
+DataFlux 支持在日志查看器的“设置”中选择日志显示“1行”、“3行”或“10行”来查看完整的日志内容。
 
 ![](img/9.log_1.1.png)
 
@@ -1563,19 +1704,19 @@ DataFlux 支持「服务」和「链路」查看器互相切换时，默认保�
 
 ![](img/11.changelog_1.png)
 
-切换至应用性能监测「链路」，筛选条件和「服务」保持一致。更多有关应用性能监测的说明，可参考文档 [链路分析](https://www.yuque.com/dataflux/doc/qp1efz) 。
+切换至应用性能监测「链路」，筛选条件和「服务」保持一致。
 
 ![](img/11.changelog_2.png)
 
 #### 优化DataKit采集器安装指南
 
-DataFlux 支持在安装 DataKit 的时候自定义安装选项，如云厂商、命名空间、全局 tag 等；DataKit 离线安装支持直接点击下载不同操作系统的离线安装包。 更多 DataKit 安装说明可参考文档 [DataKit 使用入门](https://www.yuque.com/dataflux/datakit/datakit-how-to) 。
+DataFlux 支持在安装 DataKit 的时候自定义安装选项，如云厂商、命名空间、全局 tag 等；DataKit 离线安装支持直接点击下载不同操作系统的离线安装包。
 
 ![](img/11.changelog_3.png)
 
 #### 优化火焰图同步、异步调用展示
 
-DataFlux 应用性能监测的火焰图支持查看服务同步和异步调用链路性能的数据详情。如通过火焰图可以清晰查看哪几条请求是异步进行的，从什么时候开始、什么时候结束以及总共花了多少时间。更多火焰图的详细说明，参考文档 [链路分析](https://www.yuque.com/dataflux/doc/qp1efz#709bc06a) 。
+DataFlux 应用性能监测的火焰图支持查看服务同步和异步调用链路性能的数据详情。如通过火焰图可以清晰查看哪几条请求是异步进行的，从什么时候开始、什么时候结束以及总共花了多少时间。
 
 ![](img/2.trace_huoyantupng)
 
@@ -1587,20 +1728,20 @@ DataFlux 支持为查看器显示的字段自定义别名，如在基础设施�
 
 #### 优化云拨测自建节点
 
-DataFlux 云拨测自建节点地理位置拆分成两个筛选框：国家和省份（或城市）。如果国家筛选框选中的是China，则后一个筛选框会过滤出省份的列表；如果国家选中的为非China，则后一个筛选框过滤显示城市的列表。筛选框默认显示 20条，支持模糊搜索。关于如何创建和管理云拨测自建节点，可参考文档 [自建节点管理](https://www.yuque.com/dataflux/doc/phmtep) 。
+DataFlux 云拨测自建节点地理位置拆分成两个筛选框：国家和省份（或城市）。如果国家筛选框选中的是China，则后一个筛选框会过滤出省份的列表；如果国家选中的为非China，则后一个筛选框过滤显示城市的列表。筛选框默认显示 20条，支持模糊搜索。
 
 ![](img/11.changelog_4.png)
 
 #### 优化 DQL 查询函数
 
-DataFlux DQL 新增exists、wildcard、with_labels等多种查询函数，更多 DQL 函数使用说明，可参考文档 [DQL 函数](https://www.yuque.com/dataflux/doc/ziezwr) 。
+DataFlux DQL 新增exists、wildcard、with_labels等多种查询函数。
 
 ## 2021 年 7 月 15 号
 ### DataFlux Studio
 
 #### 新增用户访问第三方开发工具接入
 
-DataFlux 新增基于uniapp开发框架的小程序接入，通过引入 sdk 文件，监控小程序的性能指标、错误 log 以及资源请求情况数据，并上报到 DataFlux 平台。更多配置详情可参考文档 [基于uniapp开发框架的小程序接入](https://www.yuque.com/dataflux/doc/vayk4z) 。
+DataFlux 新增基于uniapp开发框架的小程序接入，通过引入 sdk 文件，监控小程序的性能指标、错误 log 以及资源请求情况数据，并上报到 DataFlux 平台。
 
 #### 新增无数据异常检测
 
@@ -1673,7 +1814,7 @@ DataFlux 支持在「成员管理」通过搜索功能，快速基于邮箱或�
 
 #### 新增绑定内置视图到基础设施对象
 
-DataFlux 支持**当前空间管理员**绑定内置视图（系统视图、用户视图）到基础设施对象的详情页面。如下图中绑定了内置系统视图“Disk 监控视图”。更多配置详情，可参考文档 [绑定内置视图](https://www.yuque.com/dataflux/doc/dns233/) 。
+DataFlux 支持**当前空间管理员**绑定内置视图（系统视图、用户视图）到基础设施对象的详情页面。如下图中绑定了内置系统视图“Disk 监控视图”。
 
 ![](img/12.changlog_5.png)
 
@@ -1684,7 +1825,7 @@ DataFlux 支持在事件列表支持根据不同的检测库类型显示对应�
 - 当检测库规则类型为阈值、突变、区间、水位、应用性能指标、用户访问指标检测时，根据配置的触发条件显示对应的基线及其对应信息，包括紧急、错误、警告。
 - 当检测库规则类型为日志、安全巡检、异常进程、云拨测检测时，查询异常事件统计的所有日志数据。
 
-如下图中有三种不同的检测库类型，包括阈值检测、安全巡检检测和进程数据检测，更多检测库介绍和配置可参考文档 [自定义检测库 ](https://www.yuque.com/dataflux/doc/ytk7ug)。
+如下图中有三种不同的检测库类型，包括阈值检测、安全巡检检测和进程数据检测。
 
 ![](img/10.event_1.png)
 
@@ -1712,7 +1853,7 @@ DataFlux 各查看器快捷筛选若当前字段对应值过长，超出的部�
 
 #### 新增未恢复事件统计查看器
 
-DataFlux 新增未恢复事件统计查看器，在DataFlux工作空间的「事件」，通过切换左上角的查看器，您可以查看到空间内持续被触发的全部未恢复事件，及不同告警级别下未恢复事件的数据量统计、告警信息详情等。更多详情可参考文档 [未恢复事件统计](https://www.yuque.com/dataflux/doc/vzall6#wDArf) 。
+DataFlux 新增未恢复事件统计查看器，在DataFlux工作空间的「事件」，通过切换左上角的查看器，您可以查看到空间内持续被触发的全部未恢复事件，及不同告警级别下未恢复事件的数据量统计、告警信息详情等。
 
 ![](img/1.changelog_5.png)
 
@@ -1726,13 +1867,13 @@ DataFlux 新增时序图、柱状图、概览图、仪表盘、饼图、排行�
 
 ![](img/1.changelog_3.png)
 
-链接添加完成后，点击图表即可查看可以点击打开的“自定义链接”。更多详情可参考文档 [图表链接](https://www.yuque.com/dataflux/doc/nn6o31) 。
+链接添加完成后，点击图表即可查看可以点击打开的“自定义链接”。
 
 ![](img/1.changelog_1.png)
 
 #### 新增应用性能监测绑定链接和内置视图
 
-DataFlux 支持在单个服务详情中添加内置视图，包括[内置视图](https://www.yuque.com/dataflux/doc/gyl9vv)和可链接的网页地址。在服务列表中，点击「设置」，您可以可添加一个或多个跳转链接地址或[内置视图](https://www.yuque.com/dataflux/doc/gyl9vv)，并自定义名称。
+DataFlux 支持在单个服务详情中添加内置视图，包括内置视图和可链接的网页地址。在服务列表中，点击「设置」，您可以可添加一个或多个跳转链接地址或内置视图，并自定义名称。
 
 ![](img/1.changelog_7.png)
 
@@ -1748,22 +1889,22 @@ DataFlux 新增用户访问监测的Web、iOS、Android和小程序场景PV/UV�
 
 #### 新增通知对象：飞书机器人
 
-DataFlux支持用户管理发送告警的通知对象，目前支持添加邮件、钉钉机器人、企业微信机器人、飞书机器人和Webhook自定义。更多配置详情参考文档 [通知对象管理](https://www.yuque.com/dataflux/doc/osstog) 。
+DataFlux支持用户管理发送告警的通知对象，目前支持添加邮件、钉钉机器人、企业微信机器人、飞书机器人和Webhook自定义。
 
 ![](img/1.changelog_4.png)
 
 #### 优化基础设施自定义对象
 
-基础设施除了主机、容器、进程以外的对象数据都可以通过DataFlux Function自定义上报数据到「基础设施」-「自定义」进行查看和分析。支持为自定义对象数据绑定内置视图，手动添加标签进行筛选。更多详情可参考文档 [基础设施自定义对象](https://www.yuque.com/dataflux/doc/ssyuyz) 。
+基础设施除了主机、容器、进程以外的对象数据都可以通过DataFlux Function自定义上报数据到「基础设施」-「自定义」进行查看和分析。支持为自定义对象数据绑定内置视图，手动添加标签进行筛选。
 
 ![](img/4.object_more_view_9.png)
 
-自定义对象数据上报需要先安装并连通 DataKIt 和 Function，再通过 Function 上报数据到 DataKit，最终 DataKit 上报数据到 DataFlux 工作空间。关于如何通过DataFlux Function上报数据，可参考文档 [自定义对象数据上报](https://www.yuque.com/dataflux/doc/nw9bxt) 。
+自定义对象数据上报需要先安装并连通 DataKIt 和 Function，再通过 Function 上报数据到 DataKit，最终 DataKit 上报数据到 DataFlux 工作空间。
 
 
 #### 优化异常检测库的检测规则
 
-DataFlux 新增异常事件恢复告警配置；新增筛选条件支持正则匹配样式调整，优化`＝～`为`match` ，新增`not match`；新增触发条件支持非数值型数据匹配，新增 `match`、`not match`正则匹配，新增`between`。更多检测规则说明可以参考文档 [自定义检测库](https://www.yuque.com/dataflux/doc/ytk7ug) 。
+DataFlux 新增异常事件恢复告警配置；新增筛选条件支持正则匹配样式调整，优化`＝～`为`match` ，新增`not match`；新增触发条件支持非数值型数据匹配，新增 `match`、`not match`正则匹配，新增`between`。
 
 ![](img/4.1.changelog_10.png)
 
@@ -1794,13 +1935,13 @@ DataFlux 支持在链路侧滑详情页中关联的日志页面基于`trace_id`�
 
 #### 新增日志分析模式
 
-DataFlux 支持通过日志的分组功能，对庞大的原始数据基于**1-3个标签**进行分组处理，以反映出分组数据在不同时间的分布特征与趋势。DataFlux 支持三种分组数据浏览方式：折线图，面积图、柱状图。[了解更多日志分析模式](https://www.yuque.com/dataflux/doc/ibg4fx#FVX3T)。
+DataFlux 支持通过日志的分组功能，对庞大的原始数据基于**1-3个标签**进行分组处理，以反映出分组数据在不同时间的分布特征与趋势。DataFlux 支持三种分组数据浏览方式：折线图，面积图、柱状图。
 
 ![](img/8.log_1.png)
 
 #### 新增日志过滤
 
-新增日志过滤功能（日志黑名单），支持设置过滤规则过滤掉符合条件的日志，即配置日志过滤以后，符合条件的日志数据不再上报到DataFlux 工作空间，帮助用户节约日志数据存储费用。[了解更多日志过滤采集](https://www.yuque.com/dataflux/doc/ilhawc)。
+新增日志过滤功能（日志黑名单），支持设置过滤规则过滤掉符合条件的日志，即配置日志过滤以后，符合条件的日志数据不再上报到DataFlux 工作空间，帮助用户节约日志数据存储费用。
 
 在「日志」-「过滤规则」－「新建规则」，选择“日志来源”，添加一个或多个关系为**and（并且）** 的数据筛选条件，对采集的日志数据进行过滤。符合筛选条件的日志数据，将不会被上报到工作台。
 
@@ -1830,13 +1971,13 @@ DataFlux 在「基础设施」-「容器」新增Pod查看器，通过左上角�
 
 #### 新增图表分享
 
-DataFlux 支持图表分享，可用于在 DataFlux 以外的平台代码中插入图表进行可视化数据展示和分析，分享的图表会根据 DataFlux 中图表的变化而变化。DataFlux在场景视图分享的图表统一存储在「集成」-「内嵌分享」中。[了解更多图表分享嵌入代码。](https://www.yuque.com/dataflux/doc/fnsiyf)
+DataFlux 支持图表分享，可用于在 DataFlux 以外的平台代码中插入图表进行可视化数据展示和分析，分享的图表会根据 DataFlux 中图表的变化而变化。DataFlux在场景视图分享的图表统一存储在「集成」-「内嵌分享」中。
 
 ![](img/2.table_share_4.png)
 
 #### 优化图表查询和图表样式及设置
 
-调整优化场景视图中的可视化图表查询、样式和设置布局，新增图表标题隐藏、时间分片设置、概览图数据精度设置、排行榜基线设置、地图/蜂窝图色系填充设置等功能。[了解更多可视化图表](https://www.yuque.com/dataflux/doc/rttwsy)。
+调整优化场景视图中的可视化图表查询、样式和设置布局，新增图表标题隐藏、时间分片设置、概览图数据精度设置、排行榜基线设置、地图/蜂窝图色系填充设置等功能。
 
 ![](img/6.view_shixu_1.png)
 
@@ -1844,15 +1985,15 @@ DataFlux 支持图表分享，可用于在 DataFlux 以外的平台代码中插�
 
 DataFlux支持在集成中查看所有支持的采集器、DataKit安装指令、DataKit升级命令、Function安装指令，以及内嵌分享的图表代码。
 
-在 DataFlux 工作空间，点击 左侧「集成」菜单，即可查看目前支持的所有采集器，点击采集器即可查看该采集器的配置详情。更多采集器介绍，可参考文档 [采集器](https://www.yuque.com/dataflux/datakit/hostobject) 。
+在 DataFlux 工作空间，点击 左侧「集成」菜单，即可查看目前支持的所有采集器，点击采集器即可查看该采集器的配置详情。
 
 ![](img/3.intergrate_1.png)
 
-在 DataFlux 工作空间，点击 「集成」- 「DataKit」，即可获取 DataKit 安装指令，包括Linux、Windows、MacOS三大操作系统以及离线安装方式。若 DataKit 已经安装但是版本不是最新，可以通过此处的“DataKit升级”获取更新脚本。更多 Datakit 使用介绍，可参考文档 [DataKit 使用入门](https://www.yuque.com/dataflux/datakit/datakit-how-to) 。
+在 DataFlux 工作空间，点击 「集成」- 「DataKit」，即可获取 DataKit 安装指令，包括Linux、Windows、MacOS三大操作系统以及离线安装方式。若 DataKit 已经安装但是版本不是最新，可以通过此处的“DataKit升级”获取更新脚本。
 
 ![](img/4.intergrate_datakit.png)
 
-在 DataFlux 工作空间，点击 「集成」- 「Function」，即可获取 Function 安装指令。更多 Function 使用介绍，可参考文档 [DataFlux Func 快速开始](https://www.yuque.com/dataflux/func/quick-start) 。
+在 DataFlux 工作空间，点击 「集成」- 「Function」，即可获取 Function 安装指令。
 
 ![](img/5.intergrate_function.png)
 
@@ -1867,11 +2008,11 @@ DataFlux支持在集成中查看所有支持的采集器、DataKit安装指令�
 
 #### 新增浏览器日志采集
 
-DataFlux支持通过web浏览器或者javascript客户端主动发送不同等级的[日志数据](https://www.yuque.com/dataflux/datakit/logging)(`对应的source:browser_log`指标类型日志数据)到DataFlux。[了解更多浏览器日志采集](https://www.yuque.com/dataflux/doc/iirxfs)。
+DataFlux支持通过web浏览器或者javascript客户端主动发送不同等级的日志数据(`对应的source:browser_log`指标类型日志数据)到DataFlux。
 
 #### 新增用户访问监测Session查看器
 
-DataFlux用户访问监测查看器新增查看与Web/小程序/Android/iOS应用相关的的用户访问行为监测数据（会话数据）和会话数据详情。在工作空间内打开「用户访问监测」-「选择任一应用」-「查看器」，可切换到会话查看器（Session）。会话查看器统计整个会话的时长、页面数、操作数、错误数等内容，点击单条会话可查看整个会话下的详情记录。通过对会话数据的查看和分析，可以从多维度了解用户真实访问数据情况，帮助提升应用性能体验。[了解更多用户访问监测查看器分析](https://www.yuque.com/dataflux/doc/dh5lg9)。
+DataFlux用户访问监测查看器新增查看与Web/小程序/Android/iOS应用相关的的用户访问行为监测数据（会话数据）和会话数据详情。在工作空间内打开「用户访问监测」-「选择任一应用」-「查看器」，可切换到会话查看器（Session）。会话查看器统计整个会话的时长、页面数、操作数、错误数等内容，点击单条会话可查看整个会话下的详情记录。通过对会话数据的查看和分析，可以从多维度了解用户真实访问数据情况，帮助提升应用性能体验。
 
 ![](img/1.session.png)
 
@@ -1879,19 +2020,19 @@ DataFlux用户访问监测查看器新增查看与Web/小程序/Android/iOS应�
 
 1. **浏览器拨测**
 
-DataFlux新增浏览器拨测，在 DataFlux「云拨测」，点击「新建」-「Browser拨测」即可新建Browser拨测任务，实时获取Web页面的用户访问体验数据，包括页面加载时间、资源加载时间等。[了解更多浏览器拨测配置](https://www.yuque.com/dataflux/doc/qnfc4a)。
+DataFlux新增浏览器拨测，在 DataFlux「云拨测」，点击「新建」-「Browser拨测」即可新建Browser拨测任务，实时获取Web页面的用户访问体验数据，包括页面加载时间、资源加载时间等。
 
 ![](img/image03.png)
 
 2. **异常检测模版**
 
-「云拨测数据检测」用于监控工作空间内的云拨测数据，通过对一定时间段内拨测任务产生的指定数据量设置阈值（边界）范围，当数据量到达阈值范围后即可触发告警。同时您可以自定义告警等级，当指定数据量到达不同的阈值范围时，即可出发不同等级的告警事件。[了解更多云拨测异常检测配置](https://www.yuque.com/dataflux/doc/he412g)。
+「云拨测数据检测」用于监控工作空间内的云拨测数据，通过对一定时间段内拨测任务产生的指定数据量设置阈值（边界）范围，当数据量到达阈值范围后即可触发告警。同时您可以自定义告警等级，当指定数据量到达不同的阈值范围时，即可出发不同等级的告警事件。
 
 ![](img/image02.png)
 
 3. **自建节点**
 
-DataFlux云拨测自建节点新增“节点Code”，用于获取节点信息的Code码，在当前空间内节点Code不支持重复。[了解更多自建节点配置](https://www.yuque.com/dataflux/doc/phmtep)。
+DataFlux云拨测自建节点新增“节点Code”，用于获取节点信息的Code码，在当前空间内节点Code不支持重复。
 
 ![](img/image01.png)
 
@@ -1903,9 +2044,8 @@ DataFlux账号注册登录后提示欢迎页面，可查看DataFlux介绍小视�
 
 #### 新增免费版支持DataFlux Func、调整计费项
 
-DataFlux所有版本全面支持DataFlux Func平台自定义函数，DataFlux Func 是一个基于Python 的类ServerLess 的脚本开发、管理及执行平台。关于如何安装及使用，可参考文档 [DataFlux Func 快速开始](https://www.yuque.com/dataflux/func/quick-start) 。
-
-同时为了降低用户使用DataFlux的费用成本，DataFlux调整了应用性能监测和用户访问监测的计费逻辑，调整后应用性能监测统计trace数量，用户访问监测统计每日session数量，更多计费逻辑可参考文档 [按量付费](https://www.yuque.com/dataflux/doc/ateans) 。 
+DataFlux所有版本全面支持DataFlux Func平台自定义函数，DataFlux Func 是一个基于Python 的类ServerLess 的脚本开发、管理及执行平台。
+同时为了降低用户使用DataFlux的费用成本，DataFlux调整了应用性能监测和用户访问监测的计费逻辑，调整后应用性能监测统计trace数量，用户访问监测统计每日session数量。 
 
 #### 优化生成指标
 
@@ -1949,7 +2089,7 @@ DataFlux支持向视图中添加全局变量，当你想要在视图中，动态
 
 ![](img/2.vailable_1.png)
 
-开启后，可通过「*」查看所有主机的综合视图，可手动选择变量筛选查看。[了解更多视图变量配置方法](https://www.yuque.com/dataflux/doc/mgpxkf)。
+开启后，可通过「*」查看所有主机的综合视图，可手动选择变量筛选查看。
 
 ![](img/12.view_available.png)
 
@@ -1966,7 +2106,7 @@ DataFlux支持向视图中添加全局变量，当你想要在视图中，动态
 
 #### 新增保存快照
 
-DataFlux快照支持为基础设施、日志、事件、应用性能监测、用户访问监测、云拨测、安全巡检的查看器创建快照，通过快照，你可以快速查看和分析不同时间段、不同标签的数据及其异常情况。[了解更多保存快照](https://www.yuque.com/dataflux/doc/uuy378)。
+DataFlux快照支持为基础设施、日志、事件、应用性能监测、用户访问监测、云拨测、安全巡检的查看器创建快照，通过快照，你可以快速查看和分析不同时间段、不同标签的数据及其异常情况。
 
 ![](img/1.snapshot_save_name.png)
 
@@ -1986,27 +2126,27 @@ DataFlux快照支持为基础设施、日志、事件、应用性能监测、用
 
 #### 新增进程、应用性能监测和用户访问监测检查规则
 
-「进程异常检测」用于监控工作空间内的进程数据，支持对进程数据的一个或多个字段类型设置触发告警。如：你可以基于进程数据中 ‘host’ 字段为 ‘izaqbin’ 并且 ‘state’ 的字段为 ‘sleep’ 出现的次数设置告警。[了解更多进程异常检测](https://www.yuque.com/dataflux/doc/uskqmx)。
+「进程异常检测」用于监控工作空间内的进程数据，支持对进程数据的一个或多个字段类型设置触发告警。如：你可以基于进程数据中 ‘host’ 字段为 ‘izaqbin’ 并且 ‘state’ 的字段为 ‘sleep’ 出现的次数设置告警。
 
 ![](img/13.changelog_process.png)
 
-「用户访问指标检测」用于监控工作空间内「用户访问监测」的指标数据，通过设置阈值范围，当指标到达阈值后触发告警，支持对单个指标设置告警和自定义告警等级。[了解更多用户访问指标检测](https://www.yuque.com/dataflux/doc/qnpqmm)。
+「用户访问指标检测」用于监控工作空间内「用户访问监测」的指标数据，通过设置阈值范围，当指标到达阈值后触发告警，支持对单个指标设置告警和自定义告警等级。
 
 ![](img/13.changelog_user.png)
 
-「应用性能指标检测」用于监控工作空间内「应用性能监测」的指标数据，通过设置阈值范围，当指标到达阈值后触发告警，支持对单个指标设置告警和自定义告警等级。[了解更多应用性能指标检测](https://www.yuque.com/dataflux/doc/tag1nx)。
+「应用性能指标检测」用于监控工作空间内「应用性能监测」的指标数据，通过设置阈值范围，当指标到达阈值后触发告警，支持对单个指标设置告警和自定义告警等级。
 
 ![](img/13.changelog_performance.png)
 
 #### 优化集成
 
-登录DataFlux工作空间，进入「集成」页面，即可查看所有支持的采集器。同时可点击右上角的“快速获取 DataKit 安装命令”，直接获取DataKit的安装指令进行安装，安装完成后即可开启更多采集器收集数据指标。[了解更多如何安装DataKit](https://www.yuque.com/dataflux/datakit/datakit-how-to) 。
+登录DataFlux工作空间，进入「集成」页面，即可查看所有支持的采集器。同时可点击右上角的“快速获取 DataKit 安装命令”，直接获取DataKit的安装指令进行安装，安装完成后即可开启更多采集器收集数据指标。
 
 ![](img/7.metric.png)
 
 #### 优化日志生成指标
 
-日志生成指标新增选择日志来源，可以通过选择日志来源、筛选日志、配置维度、聚合频率、定义指标集、指标名和聚合规则生成指标。[了解更多日志生成指标](https://www.yuque.com/dataflux/doc/mgcvm9) 。
+日志生成指标新增选择日志来源，可以通过选择日志来源、筛选日志、配置维度、聚合频率、定义指标集、指标名和聚合规则生成指标。[了解更多日志生成指标]
 
 ![](img/8.metric_overview.png)
 
@@ -2024,7 +2164,7 @@ DataFlux快照支持为基础设施、日志、事件、应用性能监测、用
 
 切换至「链路」时，支持查看向后端应用发出的请求，包括跳用资源的发生时间、内容和持续时间。如：你可以查看通过xhr对象返回的每一个ajax请求。
 
-切换至「错误」时，你可以通过错误发生的详细信息，包括错误信息、错误类型和发生时间快速定位前端错误。[了解更多用户访问监测查看器](https://www.yuque.com/dataflux/doc/dh5lg9)。
+切换至「错误」时，你可以通过错误发生的详细信息，包括错误信息、错误类型和发生时间快速定位前端错误。
 
 #### 优化内置视图
 
@@ -2047,7 +2187,7 @@ DataFlux快照支持为基础设施、日志、事件、应用性能监测、用
 
 DataFlux基础日志最多存储60天，如果需要更长时间的存储和查看需要对基础日志进行备份。DataFlux支持备份日志最多存储长达720天。
 
-进入「日志」-[「备份日志」](https://www.yuque.com/dataflux/doc/tgl0i9)页面，默认数据为空，选择时间范围即可查看对应的备份日志，DataFlux 支持通过选择时间范围、搜索关键字，筛选等方式查询和分析日志。点击日志可查看该条日志详情包括日志产生的时间和内容等。
+进入「日志」-「备份日志」页面，默认数据为空，选择时间范围即可查看对应的备份日志，DataFlux 支持通过选择时间范围、搜索关键字，筛选等方式查询和分析日志。点击日志可查看该条日志详情包括日志产生的时间和内容等。
 
 ![](img/1.5.7_backup_overveiw.png)
 
@@ -2055,7 +2195,7 @@ DataFlux基础日志最多存储60天，如果需要更长时间的存储和查�
 
 DataFlux 支持你通过「安全巡检」及时监控、查询和关联全部巡检事件。在及时发现漏洞，异常和风险的同时，帮助你提高巡检质量、问题分析和问题处理的能力。
 
-在开始安全巡检之前需要先安装`[DataKit](https://www.yuque.com/dataflux/datakit/datakit-how-to)`及`[security-checker](https://www.yuque.com/dataflux/datakit/sec-checker)`，配置完成后即可进入「安全巡检」并通过选择时间范围、搜索关键字，筛选等方式查询和分析。。
+在开始安全巡检之前需要先安装[DataKit]及[security-checker]，配置完成后即可进入「安全巡检」并通过选择时间范围、搜索关键字，筛选等方式查询和分析。。
 
 ![](img/2.5.7_security_viewer.png)
 
@@ -2105,7 +2245,7 @@ DataFlux 支持通过柱状图堆叠的方式查看不同时间点发生的、�
 
 #### 优化应用性能监测拓扑图
 
-在「应用性能监测」的[「服务」](https://www.yuque.com/dataflux/doc/te4k3x)列表中，可切换列表至拓扑图模式查看各个服务之间的调用关系。
+在「应用性能监测」的「服务」列表中，可切换列表至拓扑图模式查看各个服务之间的调用关系。
 
 - 新增按照时间轴选取时间范围
 - 新增拓扑图放大缩小，放大状态可在左下角查看小缩略图
@@ -2139,13 +2279,13 @@ DataFlux 为用户提供开箱即用的云测解决方案，支持 HTTP 协议�
 
 ![](img/cloudtest_viewer.png)
 
-DataFlux 云拨测支持从地理和趋势两个维度分析当前拨测任务的响应时间和可用率情况。更多详情参考文档 [云拨测分析](https://www.yuque.com/dataflux/doc/tglyg8) 。
+DataFlux 云拨测支持从地理和趋势两个维度分析当前拨测任务的响应时间和可用率情况。
 
 ![](img/cloudtest_detail.png)
 
 #### 新增容器对象分布图
 
-[容器对象](https://www.yuque.com/dataflux/doc/gy7lei) 新增蜂窝分布图。在容器列表页面，通过点击列表左侧的图标，即可切换到容器分布图显示。通过分布图，你能够可视化查询容器分布信息。分布图支持以下功能:
+[容器对象]新增蜂窝分布图。在容器列表页面，通过点击列表左侧的图标，即可切换到容器分布图显示。通过分布图，你能够可视化查询容器分布信息。分布图支持以下功能:
 
 - 搜索：输入搜索关键词
 - 筛选：筛选标签并选择过滤对象，可多选
@@ -2169,7 +2309,7 @@ DataFlux 云拨测支持从地理和趋势两个维度分析当前拨测任务�
 
 #### 新增链路快速筛选项「持续时间」
 
-- 默认进度条最小值、最大值为 [链路](https://www.yuque.com/dataflux/doc/qp1efz) 数据列表里最小和最大的持续时间
+- 默认进度条最小值、最大值为 [链路] 数据列表里最小和最大的持续时间
 - 支持拖动进度条调整最大/最小值，输入框中的值同步变化
 - 支持手动输入最大/最小值，"按回车键"或"点击输入框外"进行过滤搜索
 - 输入不规范时输入框变红，不进行搜索，正确格式：纯“数字”或“数字+ns/μs/ms/s/min”
@@ -2180,11 +2320,11 @@ DataFlux 云拨测支持从地理和趋势两个维度分析当前拨测任务�
 
 #### 新增邮件组
 
-在 [通知对象](https://www.yuque.com/dataflux/doc/osstog) 管理新增邮件组通知对象，邮件组可同时添加多个成员，添加完成后在异常检测库的“告警设置”选择该邮件组，告警邮件即可同时发送到添加的成员邮箱。
+在 [通知对象] 管理新增邮件组通知对象，邮件组可同时添加多个成员，添加完成后在异常检测库的“告警设置”选择该邮件组，告警邮件即可同时发送到添加的成员邮箱。
 
 #### 优化异常检测库
 
-DataFlux 内置多种检测库，开箱即用。支持主机等多种内置检测库，开启后，即可接收到相关的异常事件告警。详情可参考文档 [内置检测库](https://www.yuque.com/dataflux/doc/br0rm2) 。
+DataFlux 内置多种检测库，开箱即用。支持主机等多种内置检测库，开启后，即可接收到相关的异常事件告警。
 
 ![](img/internal_input.png)
 
@@ -2207,21 +2347,20 @@ DataFlux 内置多种检测库，开箱即用。支持主机等多种内置检�
 
 #### 新增视图变量对象映射
 
-使用「对象映射」时，必须先定义一个基于对象类字段的视图变量，在「视图变量」中配置完对象映射以后，需要在「图表查询」中以映射的标签字段作为分组，在「图表设置」中开启「字段映射」，然后就可以在视图图表中查看设置的对象映射显示。具体设置的步骤可参考帮助文档 [视图变量](https://www.yuque.com/dataflux/doc/mgpxkf) 。
+使用「对象映射」时，必须先定义一个基于对象类字段的视图变量，在「视图变量」中配置完对象映射以后，需要在「图表查询」中以映射的标签字段作为分组，在「图表设置」中开启「字段映射」，然后就可以在视图图表中查看设置的对象映射显示。
 
 ![](img/variable9.6.png)
 
 #### 优化事件分组
 
-DataFlux 支持「异常事件」按照「检测项」分组聚合相关事件，点击查看「聚合事件」，可以快速查看关联事件列表、不同主机的异常事件状态分布和指标监控等。异常事件状态分布包括 `critial` 、 `error` 、 `warning` 、 `ok` 和 `静默` ，对应五种状态颜色，底色为绿色，按照事件发生的时间点向后填充对应状态颜色，填充范围即检测频率，当分组中存在`host`，且设置了主机静默，静默时间范围显示为灰色。更多可参考文档 [事件分析](https://www.yuque.com/dataflux/doc/vzall6) 和 [告警设置](https://www.yuque.com/dataflux/doc/qxz5xz) 。
+DataFlux 支持「异常事件」按照「检测项」分组聚合相关事件，点击查看「聚合事件」，可以快速查看关联事件列表、不同主机的异常事件状态分布和指标监控等。异常事件状态分布包括 `critial` 、 `error` 、 `warning` 、 `ok` 和 `静默` ，对应五种状态颜色，底色为绿色，按照事件发生的时间点向后填充对应状态颜色，填充范围即检测频率，当分组中存在`host`，且设置了主机静默，静默时间范围显示为灰色。
 
 ![](img/event_group1.png)
 
 
 #### 优化检测项查询
 
-「异常检测库」中「检测规则」的「检测指标」只允许添加一条查询，默认添加「简单查询」，支持「简单查询」和「表达式查询」来回切换；统一将「检测规则」的「触发条件」`M1`修改为`Result`；支持为查询添加`AS`别名。更多可参考文档 [检测规则管理](https://www.yuque.com/dataflux/doc/hd5ior) 。
-
+「异常检测库」中「检测规则」的「检测指标」只允许添加一条查询，默认添加「简单查询」，支持「简单查询」和「表达式查询」来回切换；统一将「检测规则」的「触发条件」`M1`修改为`Result`；支持为查询添加`AS`别名。
 ![](img/event_check.png)
 
 ### DataKit（v1.1.4-rc2）
@@ -2234,7 +2373,7 @@ DataFlux 支持「异常事件」按照「检测项」分组聚合相关事件�
 
 #### 新增云服务关联
 
-DataFlux 支持通过通过「云关联」统一集中管理云服务账号的 AccessKey 信息，配置完成以后可在 [基础设施-主机](https://www.yuque.com/dataflux/doc/mwqbgr) 定期同步所属云账号下的云主机信息，展示所有云主机信息，如CPU、内存、网络、磁盘等。
+DataFlux 支持通过通过「云关联」统一集中管理云服务账号的 AccessKey 信息，配置完成以后可在 [基础设施-主机] 定期同步所属云账号下的云主机信息，展示所有云主机信息，如CPU、内存、网络、磁盘等。
 
 ![](img/cloud_connect.png)
 
@@ -2254,23 +2393,23 @@ DataFlux 支持对工作空间的操作事件进行安全审计，操作事件�
 
 ![](img/cloud_silent.png)
 
-所有静默的主机列表可在「异常检测库」-「主机静默管理」中查看。删除静默的主机后，可以重新接收到对应主机的告警通知。更多详情可参考文档 [告警设置](https://www.yuque.com/dataflux/doc/qxz5xz) 。
+所有静默的主机列表可在「异常检测库」-「主机静默管理」中查看。删除静默的主机后，可以重新接收到对应主机的告警通知。
 
 ![](img/cloud_allsilent.png)
 
 #### 新增通知对象：企业微信机器人
 
-DataFlux支持用户管理发送告警的通知对象，目前支持添加邮件、钉钉机器人、企业微信机器人和Webhook自定义。更多配置详情参考文档 [通知对象管理](https://www.yuque.com/dataflux/doc/osstog) 。
+DataFlux支持用户管理发送告警的通知对象，目前支持添加邮件、钉钉机器人、企业微信机器人和Webhook自定义。
 
 #### 优化事件查看器，新增事件分组聚合查看
 
-在事件列表查看器，通过分组功能，DataFlux支持快速依据分组标签聚合和统计相关事件。例如，在「异常事件」中，基于"检测项“分组，你可以快速获取基于该检测项触发的全部事件。通过切换聚合事件列表，你可以查看这些事件的详情。更多事件优化详情可查看文档 [事件分析](https://www.yuque.com/dataflux/doc/vzall6) 。
+在事件列表查看器，通过分组功能，DataFlux支持快速依据分组标签聚合和统计相关事件。例如，在「异常事件」中，基于"检测项“分组，你可以快速获取基于该检测项触发的全部事件。通过切换聚合事件列表，你可以查看这些事件的详情。
 
 ![](img/exception-detail1.png)
 
 #### 优化链路服务筛选及拓扑图
 
-在「应用性能监测」的「服务」列表中，支持切换列表至拓扑图模式查看各个服务之间的调用关系。支持通过不同的性能指标进行筛选显示，并可自定义链路服务性能指标颜色区间。更多链路服务详情可查看文档 [链路服务](https://www.yuque.com/dataflux/doc/te4k3x) 。
+在「应用性能监测」的「服务」列表中，支持切换列表至拓扑图模式查看各个服务之间的调用关系。支持通过不同的性能指标进行筛选显示，并可自定义链路服务性能指标颜色区间。
 
 ![](img/service_chart3.png)
 
@@ -2290,7 +2429,7 @@ DataFlux支持用户管理发送告警的通知对象，目前支持添加邮件
 
 - 增加文件采集器、拨测采集器以及HTTP报文采集器
 - 内置支持 ActiveMQ/Kafka/RabbitMQ/gin（Gin HTTP访问日志）/Zap（第三方日志框架）日志切割
-- 丰富 [http://localhost:9529/stats](http://localhost:9529/stats) 页面统计信息，增加诸如采集频率（n/min），每次采集的数据量大小等
+- 丰富 [http://localhost:9529/stats] 页面统计信息，增加诸如采集频率（n/min），每次采集的数据量大小等
 - DataKit 本身增加一定的缓存空间（重启即失效），避免偶然的网络原因导致数据丢失
 - 改进 Pipeline 日期转换函数，提升准确性。另外增加了更多 Pipeline 函数（parse_duration()/parse_date()）
 - trace 数据增加更多业务字段（project/env/version/http_method/http_status_code）
@@ -2590,13 +2729,13 @@ DataFlux 支持采集Web、Android、iOS和小程序应用数据，并提供了�
 
 -  DataKit 新增 15 个数据源：Containerd 、GitLab、Yarn、Harbor、Tailf、Rsyslog 、Jira 、AWS CloudWatch Log、、RaspberryPi（树莓派）、Go 运行时指标、Neo4j 监控指标、目录监控指标、阿里云安全指标、百度指数以及主机对象数据采集 
 -  DataKit 支持通过 Zipkin 和 Jaeger 采集链路追踪的数据 
--  调整了 DataKit 安装命令，DataKit 安装支持更多的平台，同时支持离线安装（[DataKit 使用文档](03-%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86/02-datakit%E9%87%87%E9%9B%86%E5%99%A8/index.md)） 
--  调整了 DataKit 相关配置，部分采集器有一些字段上的调整，不建议 copy 原 conf.d 目录到新的采集器中，[点击查看详情](03-%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86/02-datakit%E9%87%87%E9%9B%86%E5%99%A8/changlog.md) 
--  整理了 DataKit 配置文件目录结构和默认安装路径，[点击查看详情](03-%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86/02-datakit%E9%87%87%E9%9B%86%E5%99%A8/changlog.md) 
+-  调整了 DataKit 安装命令，DataKit 安装支持更多的平台，同时支持离线安装 
+-  调整了 DataKit 相关配置，部分采集器有一些字段上的调整，不建议 copy 原 conf.d 目录到新的采集器中 
+-  整理了 DataKit 配置文件目录结构和默认安装路径
 
 ### DataWay
 
-- DataWay 新增写入日志数据、对象数据的接口同时调整了事件数据的写入接口（[DataWay API](12-API/01-DataWay/01-DataWay_API%E8%AF%B4%E6%98%8E%E6%96%87%E6%A1%A3.md)）
+- DataWay 新增写入日志数据、对象数据的接口同时调整了事件数据的写入接口
 
 ## 2020 年 5 月 7 号
 
@@ -2885,8 +3024,3 @@ DataFlux 支持采集Web、Android、iOS和小程序应用数据，并提供了�
 DataFlux 正式发布上线
 
 
----
-
-观测云是一款面向开发、运维、测试及业务团队的实时数据监测平台，能够统一满足云、云原生、应用及业务上的监测需求，快速实现系统可观测。**立即前往观测云，开启一站式可观测之旅：**[www.guance.com](https://www.guance.com)<br />
-![](img/logo_2.png)
-img

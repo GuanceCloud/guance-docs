@@ -28,10 +28,9 @@
 | 维度 | 检测指标的触发维度，即触发对象。任意一个触发对象的指标满足告警条件则触发告警，不支持 int 型字段为触发维度，且最多支持选择三个字段 |
 | 时间范围 | 当前检测指标的数据时间范围，默认为 5 分钟 |
 
-[**Web**](https://www.yuque.com/dataflux/doc/hlge69) / [**Miniapp**](https://www.yuque.com/dataflux/doc/dmhe97) **指标说明**
+[**Web**](../../real-user-monitoring/web/app-data-collection.md) / [**Miniapp**](../../real-user-monitoring/miniapp/app-data-collection.md) **指标说明**
 
 <table>
-
 <tr>
 <td> 指标 </td> <td> 查询示例 </td>
 </tr>
@@ -177,8 +176,7 @@ R::view:(percentile(`first_contentful_paint`,99)){`app_id` = '#{appid}'}
 
 </table>
 
-
-[**Android**](https://www.yuque.com/dataflux/doc/rqyiny) **/** [**IOS**](https://www.yuque.com/dataflux/doc/nnlr2x) **指标说明**
+[**Android**](../../real-user-monitoring/android/app-data-collection.md) **/** [**IOS**](../../real-user-monitoring/ios/app-data-collection.md) **指标说明**
 
 <table>
 
@@ -277,7 +275,7 @@ R::view:(avg(`view_load`)) {`app_id` = '#{appid}'}
 <tr>
 <td> 资源加载平均耗时 </td> 
 <td>
- 
+
 ```
 R::resource:(avg(`resource_load`)) { `app_id` = '#{appid}'}
 ```
@@ -344,23 +342,16 @@ R::freeze:(count(`freeze_type`) as count) {`app_id` = '#{appid}'}
 | 异常已恢复 | 若自定义检测周期为15分钟，最后一次事件产生时间不到15分钟时 | 无恢复事件 |
 | 异常已恢复 | 若自定义检测周期为15分钟，最后一次事件产生时间在15分钟时 | 产生恢复事件 |
 
-注意：恢复告警事件不受[告警沉默](https://www.yuque.com/dataflux/doc/qxz5xz#WsTxH)限制。若未设置恢复告警事件检测周期，则告警事件不会恢复，且一直会出现在「事件」-「未恢复事件列表」中。
+注意：恢复告警事件不受[告警沉默](../alert-setting.md)限制。若未设置恢复告警事件检测周期，则告警事件不会恢复，且一直会出现在「事件」-「未恢复事件列表」中。
 
 ![](../img/6.monitor_1.png)
 
-6）**事件名称：**设置告警触发条件的事件名称，支持使用预置的模板变量，详情参考 [模版变量](https://www.yuque.com/dataflux/doc/zvayo3) 。
+6）**事件名称：**设置告警触发条件的事件名称，支持使用预置的模板变量，详情参考 [模版变量](../event-template.md) 。
 
-7）**事件内容：**设置告警触发条件的事件内容，支持使用预置的模板变量，详情参考 [模版变量](https://www.yuque.com/dataflux/doc/zvayo3) 。
+7）**事件内容：**设置告警触发条件的事件内容，支持使用预置的模板变量，详情参考 [模版变量](../event-template.md) 。
 
-8）**无数据事件名称：**默认不可填写，当选择触发无数据事件时为可填写无数据事件名称，支持使用预置的模板变量，详情参考 [模版变量](https://www.yuque.com/dataflux/doc/zvayo3) 。
+8）**无数据事件名称：**默认不可填写，当选择触发无数据事件时为可填写无数据事件名称，支持使用预置的模板变量，详情参考 [模版变量](../event-template.md) 。
 
-9）**无数据事件内容：**默认不可填写，当选择触发无数据事件时为可填写无数据事件内容，支持使用预置的模板变量，详情参考 [模版变量](https://www.yuque.com/dataflux/doc/zvayo3) 。
+9）**无数据事件内容：**默认不可填写，当选择触发无数据事件时为可填写无数据事件内容，支持使用预置的模板变量，详情参考 [模版变量](../event-template.md) 。
 
 10）**检测频率：**当前检测规则的执行频率，即检测周期，默认 1 分钟检测一次。
-
-
----
-
-观测云是一款面向开发、运维、测试及业务团队的实时数据监测平台，能够统一满足云、云原生、应用及业务上的监测需求，快速实现系统可观测。**立即前往观测云，开启一站式可观测之旅：**[www.guance.com](https://www.guance.com)
-![](../img/logo_2.png)
-
