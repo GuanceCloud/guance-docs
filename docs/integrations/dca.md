@@ -1,8 +1,8 @@
 
 # DCA 客户端(beta)
+---
 
 - DataKit 版本：0.0.2 (beta)
-- 文档发布日期：2022-06-12 10:58:47
 - 操作系统支持：`windows/amd64,windows/386,darwin/amd64`
 
 DCA 是一款桌面客户端应用，旨在方便管理 DataKit，目前支持查看列表、配置文件管理、Pipeline 管理以及帮助文档的查看等功能。

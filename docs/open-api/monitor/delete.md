@@ -1,5 +1,7 @@
 # 删除一个监控器分组
 
+---
+
 <br />**post /api/v1/monitor/group/\{monitor_uuid\}/delete**
 
 ## 概述
@@ -35,7 +37,7 @@ curl '<Endpoint>/api/v1/monitor/group/monitor_70a7e8549ea54bbeaeb9e4eaec52bad2/d
 
 
 ## 响应
-```python
+```shell
 {
     "code": 200,
     "content": {

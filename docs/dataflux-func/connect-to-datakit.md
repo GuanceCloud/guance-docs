@@ -1,4 +1,6 @@
 # 连接并操作DataKit
+---
+
 
 本文档主要介绍如何使用本系统连接Datakit。
 
@@ -12,13 +14,13 @@
 
 有关DataFlux Func 的安装，请参考：
 
-- [DataFlux Func 快速开始](https://func.guance.com/doc/func-quick-start)
+- [DataFlux Func 快速开始](/dataflux-func/quick-start)
 
 有关DataFlux Func 的使用、维护，请参考：
 
-- [DataFlux Func 用户手册](https://func.guance.com/doc/func-user-guide)
-- [DataFlux Func 开发手册](https://func.guance.com/doc/func-development-guide)
-- [DataFlux Func 维护手册](https://func.guance.com/doc/func-maintenance-guide)
+- [DataFlux Func 用户手册](/dataflux-func/user-guide)
+- [DataFlux Func 开发手册](/dataflux-func/development-guide)
+- [DataFlux Func 维护手册](/dataflux-func/maintenance-guide)
 
 ## 2. 确保DataKit 数据源及联通性
 
@@ -45,7 +47,7 @@ DataKit 位于DataFlux Func 宿主机上时的参考操作：
 4. 确认可以通过`docker0`访问DataKit：`curl -i http://172.17.0.1:9529/v1/ping`
 5. 返回`HTTP/1.1 200 OK`即表示成功
 
-DataKit的安装、部署等文档见[DataKit 文档](https://www.yuque.com/dataflux/datakit/datakit-how-to)
+DataKit的安装、部署等文档见[DataKit 文档](/datakit/datakit-how-to)
 
 ### 2.1 直接使用自动生成的DataKit 数据源
 
@@ -98,4 +100,4 @@ def datakit_demo():
 
 有关DataKit 操作对象的完整API文档，请参考：
 
-- [DataFlux Func 开发手册](https://func.guance.com/doc/func-development-guide) 中的「DataKit」章节
+- [DataFlux Func 开发手册](/dataflux-func/development-guide) 中的「DataKit」章节

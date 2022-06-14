@@ -1,8 +1,10 @@
 # 采集器「腾讯云-云监控」配置手册
+---
+
 
 阅读本文前，请先阅读：
 
-- [观测云集成简介](https://func.guance.com/doc/func-script-market-guance-integration-intro)
+- [观测云集成简介](/dataflux-func/script-market-guance-integration-intro)
 
 > 提示1：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包
 
@@ -451,3 +453,4 @@ collectors = [
 - [地域列表](https://cloud.tencent.com/document/api/248/30346#.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8)
 - [腾讯云的命名空间](https://cloud.tencent.com/document/api/248/44374?!editLang=%22qbk3vol)
 - [监控指标](https://cloud.tencent.com/document/product/248/6843)
+

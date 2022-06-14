@@ -1,8 +1,8 @@
 
 # DataKit 服务管理
+---
 
 - DataKit 版本：1.4.0
-- 文档发布日期：2022-06-12 10:58:47
 - 操作系统支持：全平台
 
 [DataKit 安装](datakit-install)完后，有必要对安装好的 DataKit 做一些基本的介绍。

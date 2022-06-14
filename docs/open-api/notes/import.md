@@ -1,5 +1,7 @@
 # 导入一个笔记
 
+---
+
 <br />**post /api/v1/notes/\{notes_uuid\}/import**
 
 ## 概述
@@ -41,7 +43,7 @@ curl '<Endpoint>/api/v1/notes/notes_4f843212aaca4c9eabb3c43ab569dbe0/import' \
 
 
 ## 响应
-```python
+```shell
 {
     "code": 200,
     "content": {

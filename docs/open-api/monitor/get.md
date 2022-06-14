@@ -1,5 +1,7 @@
 # 获取一个监控器分组
 
+---
+
 <br />**get /api/v1/monitor/group/\{monitor_uuid\}/get**
 
 ## 概述
@@ -33,7 +35,7 @@ curl '<Endpoint>/api/v1/monitor/group/monitor_70a7e8549ea54bbeaeb9e4eaec52bad2/g
 
 
 ## 响应
-```python
+```shell
 {
     "code": 200,
     "content": {

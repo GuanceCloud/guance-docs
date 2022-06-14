@@ -1,4 +1,6 @@
 # 通过 Helm 部署
+---
+
 
 本文档主要介绍如何通过 Helm 部署 DataFlux Func。
 
@@ -203,4 +205,5 @@ func-resources   Bound     pvc-0cc6f1df-666c-4512-bea9-baa40461c81c   10G    RWX
 > 提示：func-server 的 func 为` {Release Name}`，会随`{Release Name}`的更改而改变。
 
 ![](deploy-via-helm-guide/install-via-error-timeout.png)
+
 

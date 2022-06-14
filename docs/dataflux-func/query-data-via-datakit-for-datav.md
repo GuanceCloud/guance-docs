@@ -1,4 +1,6 @@
 # 通过DataKit 查询数据并在DataV 展示
+---
+
 
 本文档主要介绍如何使用本系统通过DataKit 查询数据，并将数据在DataV 中展示。
 
@@ -17,7 +19,7 @@ DataFlux Func 作为Python 脚本管理、运行平台，可以提供更灵活�
 本文假设用户已经在DataFlux Func 中正确连接了DataKit。
 有关如何在DataFlux Func 中连接DataKit，请参考：
 
-- [连接并操作DataKit](https://func.guance.com/doc/func-connect-to-datakit)
+- [连接并操作DataKit](/dataflux-func/connect-to-datakit)
 
 ## 2. 编写数据查询函数
 

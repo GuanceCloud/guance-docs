@@ -1,5 +1,7 @@
 # 修改一个监控器分组
 
+---
+
 <br />**post /api/v1/monitor/group/\{monitor_uuid\}/modify**
 
 ## 概述
@@ -33,7 +35,7 @@
 
 
 ## 响应
-```python
+```shell
 {
     "code": 200,
     "content": {

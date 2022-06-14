@@ -1,4 +1,6 @@
 # 通过DataKit 写入数据
+---
+
 
 本文档主要介绍如何使用本系统向DataKit 写入数据。
 （即：将DataFlux Func 作为采集器对接DataKit）
@@ -17,7 +19,7 @@
 本文假设用户已经在DataFlux Func 中正确连接了DataKit。
 有关如何在DataFlux Func 中连接DataKit，请参考：
 
-- [连接并操作DataKit](https://func.guance.com/doc/func-connect-to-datakit)
+- [连接并操作DataKit](/dataflux-func/connect-to-datakit)
 
 ## 2. 编写数据写入函数
 

@@ -1,8 +1,10 @@
 # 采集器「AWS-S3」配置手册
+---
+
 
 阅读本文前，请先阅读：
 
-- [观测云集成简介](https://func.guance.com/doc/func-script-market-guance-integration-intro)
+- [观测云集成简介](/dataflux-func/script-market-guance-integration-intro)
 
 提示：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包
 

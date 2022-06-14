@@ -1,5 +1,7 @@
 # 分享一个快照
 
+---
+
 <br />**post /api/v1/snapshots/\{snapshot_uuid\}/share**
 
 ## 概述
@@ -30,7 +32,7 @@
 
 
 ## 响应
-```python
+```shell
 {
     "code": 200,
     "content": {

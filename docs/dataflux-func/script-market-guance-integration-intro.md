@@ -1,4 +1,6 @@
 # 观测云集成简介
+---
+
 
 本文档主要介绍如何使用脚本市场中「观测云集成」系列脚本包同步阿里云、AWS平台的相关数据。
 
@@ -16,9 +18,9 @@
 
 | 相关文档                                       | 链接                                                                        |
 | ---------------------------------------------- | --------------------------------------------------------------------------- |
-| 有关如何安装DataFlux Func                      | [DataFlux Func 快速开始](https://func.guance.com/doc/func-quick-start)   |
-| 有关如何在DataFlux Func 的脚本市场中安装脚本包 | [脚本市场简介](https://func.guance.com/doc/func-script-market-intro)     |
-| 有关如何在DataFlux Func 中连接DataKit          | [连接并操作DataKit](https://func.guance.com/doc/func-connect-to-datakit) |
+| 有关如何安装DataFlux Func                      | [DataFlux Func 快速开始](/dataflux-func/quick-start)   |
+| 有关如何在DataFlux Func 的脚本市场中安装脚本包 | [脚本市场简介](/dataflux-func/script-market-intro)     |
+| 有关如何在DataFlux Func 中连接DataKit          | [连接并操作DataKit](/dataflux-func/connect-to-datakit) |
 
 ## 2. 关于「阿里云集成」系列脚本包
 

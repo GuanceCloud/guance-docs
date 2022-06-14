@@ -1,5 +1,7 @@
 # 创建一个仪表板
 
+---
+
 <br />**post /api/v1/dashboards/create**
 
 ## 概述
@@ -106,7 +108,7 @@ curl '<Endpoint>/api/v1/dashboards/create' \
 
 
 ## 响应
-```python
+```shell
 {
     "code": 200,
     "content": {
