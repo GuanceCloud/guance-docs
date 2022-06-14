@@ -3,7 +3,7 @@
 
 ## 前置条件
 
-- 安装 DataKit（[DataKit 安装文档](../../../dataflux/datakit/datakit-how-to.md)）
+- 安装 DataKit（[DataKit 安装文档](../datakit/datakit-how-to.md)）
 
 ## 应用接入
 
@@ -320,8 +320,3 @@ AsyncStorage.setItem("track_id",valueString,(error)=>{
 - [iOS 相关](../ios/app-access.md#common-problem)
 - [Android 相关](../android/app-access.md#common-problem)
 
-
----
-
-观测云是一款面向开发、运维、测试及业务团队的实时数据监测平台，能够统一满足云、云原生、应用及业务上的监测需求，快速实现系统可观测。**立即前往观测云，开启一站式可观测之旅：**[www.guance.com](https://www.guance.com)
-![](../../img/logo_2.png)
