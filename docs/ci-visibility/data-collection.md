@@ -9,18 +9,11 @@
 
 ## 前提条件
 
-你需要先创建一个 [观测云账号](https://auth.guance.com/register?channel=语雀)，并在你的主机上 [安装 DataKit](https://www.yuque.com/dataflux/datakit/datakit-install)。
+你需要先创建一个 [观测云账号](https://auth.guance.com/register?channel=语雀)，并在你的主机上 [安装 DataKit](../datakit/datakit-install.md)。
 
 ## 数据采集
 
-DataKit 安装完成后，您可以在 DataKit 安装目录开启 [Gitlab 采集器](https://www.yuque.com/dataflux/datakit/gitlab)，重启 DataKit 以后，即可获取 Gitlab 的 
+DataKit 安装完成后，您可以在 DataKit 安装目录开启 [Gitlab 采集器](../integrations/gitlab.md)，重启 DataKit 以后，即可获取 Gitlab 的 
 CI 相关数据。
-
-
----
-
-观测云是一款面向开发、运维、测试及业务团队的实时数据监测平台，能够统一满足云、云原生、应用及业务上的监测需求，快速实现系统可观测。**立即前往观测云，开启一站式可观测之旅：**[www.guance.com](https://www.guance.com)
-![](img/logo_2.png)
-
 
 
