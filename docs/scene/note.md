@@ -13,8 +13,8 @@
 
 输入笔记标题，使用文本图表输入文本，使用其他图表展示指标的可视化数据分析，支持在编辑笔记时查看帮助文档，支持复制、删除、编辑文本和可视化图表组件。
 
-- 关于文本输入，可参考文档 [如何撰写文本文档](https://www.yuque.com/dataflux/doc/lovki1) 。
-- 关于图表制作，可参考文档 [可视化图表](https://www.yuque.com/dataflux/doc/rttwsy) 。
+- 关于文本输入，可参考文档 [如何撰写文本文档](../others/write-text.md) 。
+- 关于图表制作，可参考文档 [可视化图表](visual-chart/index.md) 。
 
 ![](img/1.notebook_1.png)
 
@@ -22,7 +22,7 @@
 
 ![](img/1.notebook_2.png)
 
-在导航栏「设置」，笔记支持「导出笔记JSON」、「导入笔记JSON」、「导出为PDF」以及「[保存快照](https://www.yuque.com/dataflux/doc/uuy378)」。
+在导航栏「设置」，笔记支持「导出笔记JSON」、「导入笔记JSON」、「导出为PDF」以及「[保存快照](../management/snapshot.md)」。
 
 点击「导出笔记JSON」即可导出对应的 json 文件至本地，打开 json 文件即可看到“模板代码”。
 
@@ -55,7 +55,3 @@
 
 ![](img/5.notebook_1.png)
 
----
-
-观测云是一款面向开发、运维、测试及业务团队的实时数据监测平台，能够统一满足云、云原生、应用及业务上的监测需求，快速实现系统可观测。**立即前往观测云，开启一站式可观测之旅：**[www.guance.com](https://www.guance.com)
-![](img/logo_2.png)
