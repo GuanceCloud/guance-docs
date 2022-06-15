@@ -107,7 +107,7 @@ curl -X GET "https://openapi.guance.com/api/v1/validate" \
 | InternalError | 503 | 未知的错误 |
 | ... |  |  |
 
-更多关于 API 接口列表，可查看 [观测云 OpenAPI 文档库](外链到OpenAPI 文档库) 。
+更多关于 API 接口列表，可查看 [观测云 OpenAPI 文档库](../../open-api/index.md) 。
 
 
 ---
