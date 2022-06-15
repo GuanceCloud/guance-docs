@@ -55,6 +55,8 @@ def load_doc_list(doc_dir):
             if isinstance(x, str):
                 if x.startswith('http://') or x.startswith('https://'):
                     continue
+                elif x.endswith('/'):
+                    continue
                 else:
                     doc_list.append(x)
 

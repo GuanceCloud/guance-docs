@@ -1,52 +1,56 @@
 nav:
+
   - 手册:
-    - quick-start.md
-    - user-guide.md
+    - 快速开始: quick-start.md
     - development-guide.md
     - maintenance-guide.md
     - deploy-via-helm-guide.md
-    - diy-guide.md
     - sidecar-guide.md
     - trouble-shooting.md
-    - changelog.md
+
   - 实践:
-    - connect-to-datakit.md
+    - 连接并操作DataKit: connect-to-datakit.md
     - write-data-via-datakit.md
     - query-data-via-datakit-for-datav.md
     - run-on-raspberry-pi-os.md
     - run-on-raspberry-pi-ubuntu.md
     - guance-alert-webhook-integration.md
+
   - 脚本市场:
     - script-market-intro.md
     - 观测云集成:
       - script-market-guance-integration-intro.md
-      - 阿里云:
-        - script-market-guance-aliyun-monitor.md
-        - script-market-guance-aliyun-ecs.md
-        - script-market-guance-aliyun-rds.md
-        - script-market-guance-aliyun-slb.md
-        - script-market-guance-aliyun-oss.md
-        - script-market-guance-aliyun-redis.md
-        - script-market-guance-aliyun-dcdn.md
-        - script-market-guance-aliyun-cdn.md
-        - script-market-guance-aliyun-nat.md
-        - script-market-guance-aliyun-mongodb.md
-      - 亚马逊云（AWS）:
-        - script-market-guance-aws-cloudwatch.md
-        - script-market-guance-aws-ec2.md
-        - script-market-guance-aws-rds.md
-        - script-market-guance-aws-elb.md
-        - script-market-guance-aws-s3.md
-      - 腾讯云:
-        - script-market-guance-tencentcloud-monitor.md
-        - script-market-guance-tencentcloud-cvm.md
-        - script-market-guance-tencentcloud-cdb.md
-        - script-market-guance-tencentcloud-clb.md
-        - script-market-guance-tencentcloud-cos.md
+      - 阿里云采集:
+        - 云监控: script-market-guance-aliyun-monitor.md
+        - ECS  : script-market-guance-aliyun-ecs.md
+        - RDS  : script-market-guance-aliyun-rds.md
+        - SLB  : script-market-guance-aliyun-slb.md
+        - OSS  : script-market-guance-aliyun-oss.md
+        - Redis: script-market-guance-aliyun-redis.md
+        - DCDN : script-market-guance-aliyun-dcdn.md
+        - CDN  : script-market-guance-aliyun-cdn.md
+        - NAT  : script-market-guance-aliyun-nat.md
+        - Mongo: script-market-guance-aliyun-mongodb.md
+      - AWS采集:
+        - 云监控: script-market-guance-aws-cloudwatch.md
+        - EC2: script-market-guance-aws-ec2.md
+        - RDS: script-market-guance-aws-rds.md
+        - ELB: script-market-guance-aws-elb.md
+        - S3 : script-market-guance-aws-s3.md
+      - 腾讯云采集:
+        - 云监控: script-market-guance-tencentcloud-monitor.md
+        - CVM: script-market-guance-tencentcloud-cvm.md
+        - CDB: script-market-guance-tencentcloud-cdb.md
+        - CLB: script-market-guance-tencentcloud-clb.md
+        - COS: script-market-guance-tencentcloud-cos.md
+
     - 生活日常:
+      - 天气信息: script-market-weather.md
       - script-market-nba.md
       - script-market-stock.md
-      - script-market-weather.md
+
     - 旧版归档:
-      - script-market-aliyun.md
+      - 阿里云数据同步: script-market-aliyun.md
       - script-market-aliyun-metric.md
+
+  - 变更记录: changelog.md
