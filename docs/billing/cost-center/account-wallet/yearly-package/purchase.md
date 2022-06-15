@@ -6,7 +6,7 @@
 <a name="SFSA6"></a>
 ## 1.升级到商业版
 
-购买套餐可在观测云工作空间升级到商业版后，点击右上角的“进入费用中心”，进入观测云[费用中心](https://boss.guance.com)。关于如何升级到商业版可参考文档 [付费计划与账单](../../../../billing/billing.md) 。<br />![](../../../img/11.account_center_10.png)
+购买套餐可在观测云工作空间升级到商业版后，点击右上角的“进入费用中心”，进入观测云[费用中心](https://boss.guance.com)。关于如何升级到商业版可参考文档 [付费计划与账单](../../../../billing/index.md) 。<br />![](../../../img/11.account_center_10.png)
 <a name="tr5vY"></a>
 ## 2.购买套餐包
 
@@ -14,17 +14,17 @@
 <a name="aJWr1"></a>
 ## 3.选择套餐包
 
-在套餐购买页面，选择需要的套餐类型：初创加速包、创业发展包、企业标准包。关于套餐的价格说明可参考文档 [套餐说明](../../../../billing/cost-center/account-wallet/yearly-package.md) 。<br />![](../../../img/1.package_3.png)
+在套餐购买页面，选择需要的套餐类型：初创加速包、创业发展包、企业标准包。关于套餐的价格说明可参考文档 [套餐说明](../../../../billing/cost-center/account-wallet/yearly-package/index.md) 。<br />![](../../../img/1.package_3.png)
 <a name="EyliR"></a>
 ## 4.选择流量包
 
-在套餐购买页面，选择需要的流量包。流量包和套餐可叠加使用，具体计算方式可参考文档 [套餐说明](../../../../billing/cost-center/account-wallet/yearly-package.md) 中的计费示例。<br />![](../../../img/1.package_4.png)
+在套餐购买页面，选择需要的流量包。流量包和套餐可叠加使用，具体计算方式可参考文档 [套餐说明](../../../../billing/cost-center/account-wallet/yearly-package/index.md) 中的计费示例。<br />![](../../../img/1.package_4.png)
 <a name="bepgK"></a>
 ## 5.选择工作空间
 
 在套餐购买页面，选择需要使用套餐包的工作空间。工作空间可多选，假如选择两个工作空间，则优先满足其中单一工作空间的流量，剩余的流量用于另外一个工作空间进行抵扣，超出套餐以外的流量按量进行收费。
 
-例：假设购买初创套餐包，用于两个工作空间A和B，日志类数据额度为1.5亿，工作空间A和B一天的日志数据使用量为各1亿，套餐的抵扣方式为工作空间A完全抵扣，工作空间B抵扣0.5亿，剩下0.5亿的日志数据按量进行收费。具体费用的计算方式可参考文档 [套餐说明](../../../../billing/cost-center/account-wallet/yearly-package.md) 。<br />![](../../../img/1.package_5.png)
+例：假设购买初创套餐包，用于两个工作空间A和B，日志类数据额度为1.5亿，工作空间A和B一天的日志数据使用量为各1亿，套餐的抵扣方式为工作空间A完全抵扣，工作空间B抵扣0.5亿，剩下0.5亿的日志数据按量进行收费。具体费用的计算方式可参考文档 [套餐说明](../../../../billing/cost-center/account-wallet/yearly-package/index.md) 。<br />![](../../../img/1.package_5.png)
 
 <a name="swG9V"></a>
 ## 6.确认并提交订单
