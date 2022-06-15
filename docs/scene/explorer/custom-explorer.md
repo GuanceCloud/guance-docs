@@ -42,11 +42,6 @@
 
 ## 更多参考
 
-- [场景 - 查看器帮助文档](https://www.yuque.com/dataflux/doc/uynpbs)
-- [绑定内置视图](https://www.yuque.com/dataflux/doc/dns233)
+- [场景 - 查看器帮助文档](index.md)
+- [绑定内置视图](../../management/built-in-view/bind-view.md)
 
-
----
-
-观测云是一款面向开发、运维、测试及业务团队的实时数据监测平台，能够统一满足云、云原生、应用及业务上的监测需求，快速实现系统可观测。**立即前往观测云，开启一站式可观测之旅：**[www.guance.com](https://www.guance.com)
-![](../img/logo_2.png)

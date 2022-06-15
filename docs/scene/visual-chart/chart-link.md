@@ -3,21 +3,21 @@
 
 ## 简介
 
-“观测云” 支持图表内置关联链接和自定义关联链接，可以帮助您实现从当前图表跳转至目标页面，并通过模板变量修改链接中对应的变量值将数据信息传送过去，完成数据联动。
+观测云支持图表内置关联链接和自定义关联链接，可以帮助您实现从当前图表跳转至目标页面，并通过模板变量修改链接中对应的变量值将数据信息传送过去，完成数据联动。
 
 ## 变量说明
 
-“观测云” 支持 3 种模板变量，分别为时间变量、标签变量和视图变量。
+观测云支持 3 种模板变量，分别为时间变量、标签变量和视图变量。
 
 | 变量类型 | 变量 | 说明 |
 | --- | --- | --- |
 | 时间变量 | #{TR} | 当前图表查询的时间范围，例如 <br />`time=#{TR}` |
 | 标签变量 | #{T} | 当前图表查询的所有分组标签，是将当前图表查询的全部分组标签作为查询条件。<br />假设当前图表查询为：<br />`M::`datakit`:(LAST(`cpu_usage`)) { `vserion` = '1.0.0-rc1' } BY `host`, `vserion`, `os``<br />模版变量：`&tags=#{T} `同为 `&tags={“host","os","linux"}` |
 |  | #{T.name} | name 为系统自动识别的当前图表查询对应的分组标签名称。<br />假设当前图表查询存在分组标签“host"：<br />- 模版变量 `#{T.host}`<br />-  `tags={"host":"{T.host}"}`<br /> |
-| 视图变量 | #{V} | 仪表板中的所有视图变量的当前值集合，是将当前仪表板的全部视图变量作为查询条件。<br />假设当前仪表板的视图变量为：<br />"version"="V1.7.0" 和 "region":"cn-hangzhou"<br />模版变量` &variable=#{V}  `同为 `&variable={"version":"V1.7.0","region":"cn-hangzhou"}` |
-|  | #{V.name} | name 为系统自动识别的当前仪表版存在的视图变量名称。<br />假设当前仪表板存在视图变量“version"<br />- 模版变量 `#{V.version}`<br />- `variable={"v":"{V.version}"}`<br /> |
+| 视图变量 | #{V} | 仪表板中的所有视图变量的当前值集合，是将当前仪表板的全部视图变量作为查询条件。<br />假设当前仪表板的视图变量为：<br />"version"="V1.7.0" 和 "region":"cn-hangzhou"<br />模版变量` &tags=#{V}  `同为 `&tags={"version":"V1.7.0","region":"cn-hangzhou"}` |
+|  | #{V.name} | name 为系统自动识别的当前仪表版存在的视图变量名称。<br />假设当前仪表板存在视图变量“version"<br />- 模版变量 `#{V.version}`<br />- `tags={"version":"{V.version}"}`<br /> |
 
-链接中视图变量通常有以下几种用法：<br />1）`&variable=#{V}`  ，链接中传递所有视图变量的条件<br />2）`&variable={"version":"{V.version}"}`，链接中仅传视图变量version的条件<br />3）`&tags={"host":"#{V.host}"}`，链接中传递标签 host 的条件，host 值即为当前视图变量 host 的选值
+链接中视图变量通常有以下几种用法：<br />1）`&tags=#{V}`  ，链接中传递所有视图变量的条件<br />2）`&tags={"version":"{V.version}"}`，链接中仅传视图变量version的条件<br />3）`&tags={"host":"#{V.host}"}`，链接中传递标签 host 的条件，host 值即为当前视图变量 host 的选值
 ## 内置链接
 
 内置链接是“观测云”默认为图表提供的关联链接，主要基于当前查询的时间范围和分组标签，帮助您查看对应的日志、进程、容器、链路，内置链接默认关闭，可在编辑图表时开启显示。
@@ -44,10 +44,10 @@
 
 在「仪表板」编辑模式下，选择「图表」-「链接」，即可查看可使用的模版变量。
 
-1）在网址链接后面输入变量模版，如<br />`https://console.guance.cn/logndi/log?time=#{TR}&tags=#{T}&variable={"version":"#{V.version}"}`
+1）在网址链接后面输入变量模版，如<br />`https://console.guance.cn/logndi/log?time=#{TR}&tags={"version":"#{V.version}"}`
 
 - `https://console.guance.com/logIndi/log/?`为网址链接
-- `time=#{TR}&tags=#{T}&variable={"version"="#{V.version}"}`为模版变量的内容。
+- `time=#{TR}&tags={"version"="#{V.version}"}`为模版变量的内容。
 
 2）在网址链接中修改变量模版，如
 
@@ -65,7 +65,7 @@
 
 - 使用视图变量后：
 
-`https://console.guance.cn/logndi/log?time=#{TR}&tags=#{T}&variable={"version"="#{V.version}"}`
+`https://console.guance.cn/logndi/log?time=#{TR}&tags={"version"="#{V.version}"}`
 
 **注意：**
 
@@ -135,8 +135,3 @@
 
 ![](../img/2.link_14.png)
 
-
----
-
-观测云是一款面向开发、运维、测试及业务团队的实时数据监测平台，能够统一满足云、云原生、应用及业务上的监测需求，快速实现系统可观测。**立即前往观测云，开启一站式可观测之旅：**[www.guance.com](https://www.guance.com)
-![](../img/logo_2.png)
