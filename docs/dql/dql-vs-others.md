@@ -130,7 +130,7 @@ T::my_service { duration > 1000 } [10m] BY operation
 | PromQL | `# 单行注释` | [支持](https://prometheus.io/docs/prometheus/latest/querying/api/) | 不支持 | [promql-cli](https://github.com/nalbury/promql-cli) |
 | LogQL | `# 单行注释` | [支持](https://grafana.com/docs/loki/latest/api/) | 支持 | [logcli](https://grafana.com/docs/loki/latest/getting-started/logcli/) |
 | SQL | `-- 单行注释`<br /> 或 `/* 多行注释 */` | 不支持 | 不支持 | 各种 SQL 客户端，此处不再赘述 |
-| DQL | `# 单行注释` | [支持](../../datakit/apis.md) | 不支持（在 DataKit 端已预先切割好） | 需[安装DataKit](../../datakit/datakit-install.md)<br />，再执行[查询](../dql/data-how-to.md) |
+| DQL | `# 单行注释` | [支持](../datakit/apis.md) | 不支持（在 DataKit 端已预先切割好） | 需[安装DataKit](../datakit/datakit-install.md)<br />，再执行[查询](../datakit/datakit-dql-how-to.md) |
 
 
 <a name="1b8fbe0e"></a>

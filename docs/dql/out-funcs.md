@@ -52,6 +52,7 @@ difference(dql=`R::resource:(resource_load) {resource_load > 100} [1614239472:16
 ### abs()
 
 - 说明: 计算处理集每个元素的绝对值
+
 | 参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | `dql` | DQL 查询语句 | string | 是 |  | `M::cpu [5m]` |
@@ -104,6 +105,7 @@ abs(dql=`R::resource:(resource_load) {resource_load > 100} limit 3`)
 ### avg()
 
 - 说明: 计算处理集的平均值
+
 | 参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | `dql` | DQL 查询语句 | string | 是 |  | `M::cpu [5m]` |
@@ -152,6 +154,7 @@ avg(dql=`R::resource:(resource_load) {resource_load > 100} limit 3`)
 ### count()
 
 - 说明: 对返回结果，统计数量
+
 | 参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | `dql` | DQL 查询语句 | string | 是 |  | `M::cpu [5m]` |
@@ -196,6 +199,7 @@ count(`L::nginxlog:(status) {client_ip='127.0.0.1'}`)
 ### count_distinct()
 
 - 说明: 对处理集, 去重统计数量
+
 | 参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | `dql` | DQL 查询语句 | string | 是 |  | `M::cpu [5m]` |
@@ -240,6 +244,8 @@ count_distinct(`L::nginxlog:(status) {client_ip='127.0.0.1'}`)
 ### count_filter()
 
 - 说明: 对于查询结果集，过滤部分数据
+
+
 | 参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | `dql` | DQL 查询语句 | string | 是 |  | `M::cpu [5m]` |
@@ -292,6 +298,7 @@ count_filter(
 ### cumsum()
 
 - 说明: 对处理集累计求和
+
 | 参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | `dql` | DQL 查询语句 | string | 是 |  | `M::cpu [5m]` |
@@ -345,6 +352,7 @@ cumsum(dql=`R::resource:(resource_load) {resource_load > 100} limit 3`)
 ### derivative()
 
 - 说明: 计算处理集相邻元素的导数
+
 | 参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | `dql` | DQL 查询语句 | string | 是 |  | `M::cpu [5m]` |
@@ -396,6 +404,7 @@ derivative(dql=`R::resource:(resource_load) {resource_load > 100} limit 3`)
 ### difference()
 
 - 说明: 计算处理集相邻元素的差值
+
 | 参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | `dql` | DQL 查询语句 | string | 是 |  | `M::cpu [5m]` |
@@ -447,6 +456,7 @@ difference(dql=`R::resource:(resource_load) {resource_load > 100} limit 3`)
 ### eval()
 
 - 说明: 简单的表达式计算函数, 当前eval函数支持的运算符为: (1) 加减乘除四则运算 (+ - * /) ;(2) 取模 (%) ; (3)指数运算 (^)
+
 | 参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | 表达式 | 表达式计算 | string | 是 |  | `A.a1 + B.b1 + 10` |
@@ -504,6 +514,7 @@ eval(A.a1 + B.b1 + 10 , A='M::`cpu`:(avg(usage_total) as `a1`) {  } [2h::1h]', B
 ### first()
 
 - 说明: 计算处理集的最早有意义的值
+
 | 参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | `dql` | DQL 查询语句 | string | 是 |  | `M::cpu [5m]` |
@@ -549,6 +560,7 @@ first(dql=`R::resource:(resource_load) {resource_load > 100} limit 3`)
 
 - 说明: 计算某个指标一定时间范围内的变化率
 - 详见: [prometheus irate](https://prometheus.io/docs/prometheus/latest/querying/functions/#irate)
+
 | 参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | `dql` | DQL 查询语句 | string | 是 |  | `M::cpu [5m]` |
@@ -600,6 +612,7 @@ irate(dql=`R::resource:(resource_load) {resource_load > 100} limit 3`)
 ### last()
 
 - 说明: 计算处理集的最近有意义的值
+
 | 参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | `dql` | DQL 查询语句 | string | 是 |  | `M::cpu [5m]` |
@@ -644,6 +657,7 @@ last(dql=`R::resource:(resource_load) {resource_load > 100} limit 3`)
 ### log10()
 
 - 说明: 计算处理集每个元素的 log10 值
+
 | 参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | `dql` | DQL 查询语句 | string | 是 |  | `M::cpu [5m]` |
@@ -700,6 +714,7 @@ log10(dql=`R::resource:(resource_load) {resource_load > 100} limit 3`)
 ### log2()
 
 - 说明：计算处理集每个元素的 log2 值
+
 | 参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | `dql` | DQL 查询语句 | string | 是 |  | `M::cpu [5m]` |
@@ -755,6 +770,7 @@ log2(dql=`R::resource:(resource_load) {resource_load > 100} limit 3`)
 ### max()
 
 - 说明：计算处理集的最大值
+
 | 参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | `dql` | DQL 查询语句 | string | 是 |  | `M::cpu [5m]` |
@@ -799,6 +815,7 @@ max(dql=`R::resource:(resource_load) {resource_load > 100} limit 3`)
 ### min()
 
 - 说明: 计算处理集的最小值
+
 | 参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | `dql` | DQL 查询语句 | string | 是 |  | `M::cpu [5m]` |
@@ -843,6 +860,7 @@ min(dql=`R::resource:(resource_load) {resource_load > 100} limit 3`)
 ### moving_average()
 
 - 说明: 计算处理集的移动平均值
+
 | 参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | `dql` | DQL 查询语句 | string | 是 |  | `M::cpu [5m]` |
@@ -895,6 +913,7 @@ moving_average(dql=`R::resource:(resource_load) {resource_load > 100} limit 3`,s
 ### non_negative_derivative()
 
 - 说明: 计算处理集相邻元素的非负导数
+
 | 参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | `dql` | DQL 查询语句 | string | 是 |  | `M::cpu [5m]` |
@@ -942,6 +961,7 @@ non_negative_derivative(dql=`R::resource:(resource_load) {resource_load > 100} l
 ### non_negative_difference()
 
 - 说明: 计算处理集相邻元素的非负差值
+
 | 参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | `dql` | DQL 查询语句 | string | 是 |  | `M::cpu [5m]` |
@@ -990,6 +1010,7 @@ non_negative_difference(dql=`R::resource:(resource_load) {resource_load > 100} l
 
 - 说明: 计算某个指标一定时间范围内的变化率
 - 详见: [prometheus rate](https://prometheus.io/docs/prometheus/latest/querying/functions/#rate)
+
 | 参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | `dql` | DQL 查询语句 | string | 是 |  | `M::cpu [5m]` |
@@ -1041,6 +1062,7 @@ rate(dql=`R::resource:(resource_load) {resource_load > 100} limit 3`)
 ### series_sum()
 
 - 说明: 当`group by`产生多个 `series`, 根据时间点，合并为1个`series`。其中，相同时间点的多个 `series` 求和
+
 | 参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | `dql` | DQL 查询语句 | string | 是 |  | `M::cpu [5m]` |
