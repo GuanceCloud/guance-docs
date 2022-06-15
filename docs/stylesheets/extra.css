@@ -188,7 +188,8 @@
 .md-typeset .doc_footer .doc-content-section .text-link .hover-item {
     display: none;
     position: absolute;
-    top: 110%;
+    bottom: 110%;
+    left: -15px;
     padding: 0.2rem;
     background-color: #fff;
     color: #333;
