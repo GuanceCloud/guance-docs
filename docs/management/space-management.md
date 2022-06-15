@@ -25,7 +25,7 @@
 <br />注意：
 
 - 更换Token会触发「操作事件」和「通知」，详情可参考「[操作审计](../management/operation-audit.md)」「[通知](../management/system-notification.md)」
-- 更换Token后，原有Token会在指定时间内失效。失效时间包括：立即失效、10分钟、6小时、12小时、24小时。立即失效一般用于 Token 泄露，选择立即失效后，原有 Token 将立刻停止数据上报，若设置了异常检测，则无法触发事件及告警通知，直至在 DataKit 采集器的`datakit.conf`中把原有 Token 修改成新生成的 Token 。关于`datakit.conf` 文件的存储目录，可参考文档 [DataKit 使用入门](../datakit/datakit-service-how-to.md) 。
+- 更换Token后，原有Token会在指定时间内失效。失效时间包括：立即失效、10分钟、6小时、12小时、24小时。立即失效一般用于 Token 泄露，选择立即失效后，原有 Token 将立刻停止数据上报，若设置了异常检测，则无法触发事件及告警通知，直至在 DataKit 采集器的`datakit.conf`中把原有 Token 修改成新生成的 Token 。关于`datakit.conf` 文件的存储目录，可参考文档 [DataKit 使用入门](../datakit/datakit-conf.md) 。
 
 ![](img/datakit.png)
 
