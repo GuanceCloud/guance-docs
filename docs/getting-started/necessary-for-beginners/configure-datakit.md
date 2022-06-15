@@ -53,7 +53,7 @@ DataKit 安装完成后，你可以进入DataKit的安装目录查看所有的�
 └── [1.2K]  log       # Windows 平台
 ```
 
-更多详情可参考文档 [服务安装和管理](https://www.yuque.com/dataflux/datakit/datakit-service-how-to) 。
+更多详情可参考文档 [DataKit 服务管理](../../datakit/datakit-service-how-to.md) 。
 ## 采集器配置文件
 
 各个采集器的配置文件均存放在 `conf.d` 目录下，且分门别类，存放在各个子分类中，如 `conf.d/host` 目录下存放着各种主机相关的采集器配置示例，以 Linux 为例：
@@ -81,16 +81,8 @@ DataKit 安装完成后，你可以进入DataKit的安装目录查看所有的�
 └── sqlserver.conf.sample
 ```
 
-复制`yyy.conf.sample`，命名为 `yyy.conf`，打开`.conf`文件，开启`inputs`，配置相关参数即可开启并配置采集器。更多详情可参考文档 [采集器配置](https://www.yuque.com/dataflux/datakit/datakit-conf-how-to) 。
+复制`yyy.conf.sample`，命名为 `yyy.conf`，打开`.conf`文件，开启`inputs`，配置相关参数即可开启并配置采集器。更多详情可参考文档 [采集器配置](../../datakit/datakit-input-conf.md) 。
 
 注意：DataKit 只会搜索 `conf.d/` 目录下的 `.conf` 文件，复制出来的 `yyy.conf`，必须放在 `conf.d` 目录下，且必须以 `.conf` 作为文件后缀，不然 DataKit 会忽略该配置文件的处理。如果要暂时移除掉某个采集配置，只需将其后缀改一下即可，如 `yyy.conf` 改成 `yyy.conf.bak`。
 
-了解了如何安装 DataKit 和配置采集器，我们可以通过[开启日志采集器](https://www.yuque.com/dataflux/doc/aknpsg)来操作一下采集器的具体开启和配置。
-
-
----
-
-观测云是一款面向开发、运维、测试及业务团队的实时数据监测平台，能够统一满足云、云原生、应用及业务上的监测需求，快速实现系统可观测。**立即前往观测云，开启一站式可观测之旅：**[www.guance.com](https://www.guance.com)
-![](../img/logo_2.png)
-
-
+了解了如何安装 DataKit 和配置采集器，我们可以通过[开启日志采集](enable-log-collection.md)来操作一下采集器的具体开启和配置。

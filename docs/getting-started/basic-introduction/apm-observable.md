@@ -8,13 +8,13 @@
 本文档将使用 Python 应用，介绍如何通过 ddtrace 实现 APM 可观测。
 ## 前置条件
 
-您需要先创建一个[观测云账号](https://www.guance.com/)，并在您的主机上[安装 DataKit](https://www.yuque.com/dataflux/datakit/datakit-install)。
+您需要先创建一个[观测云账号](https://www.guance.com/)，并在您的主机上[安装 DataKit](../../datakit/datakit-install.md)。
 
 ## 方法/步骤
 
 ### Step1: 开启并配置 ddtrace.conf 采集器
  <br />进入 DataKit 安装目录下的 `conf.d/ddtrace` 目录，复制 `ddtrace.conf.sample` 并命名为 `ddtrace.conf`，打开`ddtrace.conf`，`inputs`默认开启，无需修改。
- 
+
 ```
 ## 进入ddtrace目录
 cd /usr/local/datakit/conf.d/ddtrace/
@@ -33,11 +33,11 @@ datakit --restart  或者  service datakit restart  或者 systemctl restart dat
 
 注意：`endpoints` 默认开启，不要修改。
 
-观测云支持为应用性能监测自定义标签来做关联查询，可通过命令行注入环境变量或者在`ddtrace.conf`中开启`inputs.ddtrace.tags`并添加`tag`的方式，详细配置可参考文档 [ddtrace 环境变量设置](https://www.yuque.com/dataflux/datakit/ddtrace#433be19b) 。
+观测云支持为应用性能监测自定义标签来做关联查询，可通过命令行注入环境变量或者在`ddtrace.conf`中开启`inputs.ddtrace.tags`并添加`tag`的方式，详细配置可参考文档 [ddtrace 环境变量设置](../../integrations/ddtrace.md) 。
 
 ### Step2: 安装 ddtrace
 
-通过 ddtrace 采集链路数据需要根据当前需要监测的应用对应的语言，本文以 Python 应用为例，Java 或者其他语言应用可参考文档 [分布式链路追踪(APM)最佳实践](https://www.yuque.com/dataflux/bp/apm) 。
+通过 ddtrace 采集链路数据需要根据当前需要监测的应用对应的语言，本文以 Python 应用为例，Java 或者其他语言应用可参考文档 [分布式链路追踪(APM)最佳实践](../../best-practices/apm/apm.md) 。
 
 在终端执行命令`pip install ddtrace`安装 ddtrace。
 
@@ -63,7 +63,7 @@ tracer.configure(
 ddtrace-run python your_app.py
 ```
 
-详见文档 [Python 示例](https://www.yuque.com/dataflux/datakit/ddtrace-python) 。
+详见文档 [Python 示例](../../integrations/ddtrace-python.md) 。
 
 #### 方法二：直接在启动脚本文件中配置 DataKit 服务地址
 
@@ -103,7 +103,7 @@ DD_AGENT_HOST=localhost DATADOG_TRACE_AGENT_PORT=9529 ddtrace-run python your_ap
 
 ![](../img/5.apm_8.png)
 
-链路相关名词解释如下。更多链路介绍可参考文档 [链路分析](https://www.yuque.com/dataflux/doc/qp1efz) 。
+链路相关名词解释如下。更多链路介绍可参考文档 [链路分析](../../application-performance-monitoring/explorer.md) 。
 
 | 关键词 | 释义 |
 | --- | --- |
@@ -117,7 +117,7 @@ DD_AGENT_HOST=localhost DATADOG_TRACE_AGENT_PORT=9529 ddtrace-run python your_ap
 
 ### 配置关联日志
 
-1）进入主机 DataKit 安装目录`/usr/local/datakit`下的`conf.d/log`目录，复制`logging.conf.sample`并命名为`logging.conf`。编辑`logging.conf`文件，在`logfiles`填入您应用的服务日志存储路径，在`source`填入日志来源名，保存后重启 DataKit 。更多日志采集器详情和日志 pipeline 切割可参考文档 [日志](https://www.yuque.com/dataflux/datakit/logging) 。
+1）进入主机 DataKit 安装目录`/usr/local/datakit`下的`conf.d/log`目录，复制`logging.conf.sample`并命名为`logging.conf`。编辑`logging.conf`文件，在`logfiles`填入您应用的服务日志存储路径，在`source`填入日志来源名，保存后重启 DataKit 。更多日志采集器详情和日志 pipeline 切割可参考文档 [日志](../../integrations/logging.md) 。
 
 ```
 ## 进入log目录
@@ -133,7 +133,7 @@ vim logging.conf
 datakit --restart  或者  service datakit restart  或者 systemctl restart datakit
 ```
 
-2）在启动脚本文件中配置执行命令（注入环境变量关联链路日志），更多详情配置可参考文档 [应用性能监测关联日志](https://www.yuque.com/dataflux/doc/poomgb) 。
+2）在启动脚本文件中配置执行命令（注入环境变量关联链路日志），更多详情配置可参考文档 [应用性能监测关联日志](../../application-performance-monitoring/collection/connect-log/index.md) 。
 
 ```
 DD_LOGS_INJECTION="true" DD_AGENT_HOST=localhost DATADOG_TRACE_AGENT_PORT=9529 ddtrace-run python your_app.py
@@ -157,7 +157,7 @@ DD_LOGS_INJECTION="true" DD_AGENT_HOST=localhost DATADOG_TRACE_AGENT_PORT=9529 d
 
 用户性能监测通过`ddtrace`、`RUM`采集器能够跟踪一个web端应用程序完整的前端到后端的请求数据，使用来自前端的用户访问数据，以及注入到后端的`trace_id`，可以快速的定位调用堆栈，提高排障效率。
 
-1）在 Python 应用的初始化文件中，增加以下配置，设置对目标服务器允许跟踪的前端请求响应头header白名单。更多详情可参考文档 [关联Web应用访问](https://www.yuque.com/dataflux/doc/vg4y50) 。
+1）在 Python 应用的初始化文件中，增加以下配置，设置对目标服务器允许跟踪的前端请求响应头header白名单。更多详情可参考文档 [关联Web应用访问](../../application-performance-monitoring/collection/connect-web-app.md) 。
 
 ```
 @app.after_request
@@ -190,7 +190,7 @@ def after_request(response):
 </script>
 ```
 
-其中`allowedDDTracingOrigins`是用于前后端（ rum 与 apm ）打通的配置项，可按需进行设置，需在此处填写与前端页面有交互关系的后端服务器所对应的域名或 IP，其他配置项是用于采集用户访问数据，更多用户访问监测配置可参考文档 [web应用监控（RUM）最佳实践](https://www.yuque.com/dataflux/bp/web#MZjtD) 。
+其中`allowedDDTracingOrigins`是用于前后端（ rum 与 apm ）打通的配置项，可按需进行设置，需在此处填写与前端页面有交互关系的后端服务器所对应的域名或 IP，其他配置项是用于采集用户访问数据，更多用户访问监测配置可参考文档 [web应用监控（RUM）最佳实践](../../best-practices/apm/web.md) 。
 
 示意图如：
 
@@ -202,15 +202,9 @@ def after_request(response):
 
 ### 配置采样
 
-“观测云” 的「应用性能监测」功能支持对ddtrace等符合 Opentracing 协议的采集器所采集的链路数据进行分析和管理。默认情况下，按照全量的方式采集应用性能数据，即每次调用都会产生数据，若不加以限制，采集到的数据量大，会占用过多的数据存储。你可以通过设置采样的方式采集应用性能数据，节约数据存储量，降低成本费用。更多配置详情可参考文档 [如何配置应用性能监测采样](https://www.yuque.com/dataflux/doc/urnk14) 。
+“观测云” 的「应用性能监测」功能支持对ddtrace等符合 Opentracing 协议的采集器所采集的链路数据进行分析和管理。默认情况下，按照全量的方式采集应用性能数据，即每次调用都会产生数据，若不加以限制，采集到的数据量大，会占用过多的数据存储。你可以通过设置采样的方式采集应用性能数据，节约数据存储量，降低成本费用。更多配置详情可参考文档 [如何配置应用性能监测采样](../../application-performance-monitoring/collection/sampling.md) 。
 
 ## 更多参考
 
-### [通过 skywalking 采集应用性能数据](https://www.yuque.com/dataflux/datakit/skywalking)
-### [通过 jaeger 采集应用性能数据](https://www.yuque.com/dataflux/datakit/jaeger)
-
-
----
-
-观测云是一款面向开发、运维、测试及业务团队的实时数据监测平台，能够统一满足云、云原生、应用及业务上的监测需求，快速实现系统可观测。**立即前往观测云，开启一站式可观测之旅：**[www.guance.com](https://www.guance.com)
-![](../img/logo_2.png)
+### [通过 skywalking 采集应用性能数据](../../integrations/skywalking.md)
+### [通过 jaeger 采集应用性能数据](../../integrations/jaeger.md)

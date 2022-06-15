@@ -5,16 +5,16 @@
 
 无论是在本地服务器还是云上环境运行，现代服务和应用程序都尤其依赖于网络性能。网络的稳定性对于业务系统来说至关重要。如果关键业务应用程序出现故障，程序无法使用，您可能需要通过梳理日志、查看系统、访问程序、查看进程、调试服务等等去找到故障点，这样会花费很多宝贵时间。
 
-所以对网络的全面可见性成为监控应用程序运行状态和性能的关键部分，但随着您的应用程序规模不断扩大，越来越复杂，获得这种可见性就变得具有挑战性。“[观测云](https://www.guance.com/)”将为提供主机网络的全面可观测。
+所以对网络的全面可见性成为监控应用程序运行状态和性能的关键部分，但随着您的应用程序规模不断扩大，越来越复杂，获得这种可见性就变得具有挑战性。[观测云](https://www.guance.com/)将为提供主机网络的全面可观测。
 
 ## 前置条件
 
 - 您需要先创建一个 [观测云账号](https://www.guance.com)；
-- 在您的主机上 [安装 DataKit](https://www.yuque.com/dataflux/datakit/datakit-install)；
+- 在您的主机上 [安装 DataKit](../../datakit/datakit-install.md)；
 
 ## 方法步骤
 
-### Step1：开启 [eBPF](https://www.yuque.com/dataflux/datakit/ebpf) 集成的运行，采集网络数据
+### Step1：开启 [eBPF](../../integrations/ebpf.md) 集成的运行，采集网络数据
 
 ebpf 采集器，采集主机网络 tcp、udp 连接信息，bash 执行日志等，包含 ebpf-net 及 ebpf-bash:
 
@@ -83,7 +83,7 @@ ebpf 采集器，操作系统支持：`linux/amd64`，除 CentOS 7.6+ 和 Ubuntu
 
 ### Step3：进阶用法-主机网络分布图
 
-在「基础设施」-「主机」，点击左上角网络分布图的小图标![3.host_netmap_2.png](https://cdn.nlark.com/yuque/0/2021/png/21511848/1634699082776-086c9dc0-c952-45e4-9300-ec928ccec30c.png#clientId=uc0541857-b38c-4&crop=0&crop=0&crop=1&crop=1&from=drop&id=ucae425c3&margin=%5Bobject%20Object%5D&name=3.host_netmap_2.png&originHeight=16&originWidth=16&originalType=binary&ratio=1&rotation=0&showTitle=false&size=7373&status=done&style=none&taskId=uc846671b-38dc-40e3-9c1c-f5de464a879&title=)，即可切换到查看主机网络分布情况。在「网络分布图」，您能够可视化查询当前工作空间主机与主机之间的网络流量，快速分析不同主机之间的 TCP延迟、TCP波动、TCP重传次数、TCP连接次数以及 TCP关闭次数。
+在「基础设施」-「主机」，点击左上角网络分布图的小图标，即可切换到查看主机网络分布情况。在「网络分布图」，您能够可视化查询当前工作空间主机与主机之间的网络流量，快速分析不同主机之间的 TCP延迟、TCP波动、TCP重传次数、TCP连接次数以及 TCP关闭次数。
 
 - 时间控件：默认获取最近 48 小时的数据且不支持自动刷新，需手动点击刷新获取新的数据；
 - 搜索和筛选：您可以快速基于关键词模糊匹配搜索主机名称；或基于筛选 Tag 标签显示主机节点及其关联关系。
@@ -105,10 +105,4 @@ ebpf 采集器，操作系统支持：`linux/amd64`，除 CentOS 7.6+ 和 Ubuntu
 ![](../img/22.gif)
 
 ## 更多参考
-更多关于网络性能监测可参考：<br />[ebpf 采集器](https://www.yuque.com/dataflux/datakit/ebpf)<br />[通过网络分析快速定位问题](https://www.yuque.com/dataflux/ikyp0a/edte9z)
-
-
----
-
-观测云是一款面向开发、运维、测试及业务团队的实时数据监测平台，能够统一满足云、云原生、应用及业务上的监测需求，快速实现系统可观测。**立即前往观测云，开启一站式可观测之旅：**[www.guance.com](https://www.guance.com)
-![](../img/logo_2.png)
+更多关于网络性能监测可参考：[ebpf 采集器](../../integrations/ebpf.md)

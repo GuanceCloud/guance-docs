@@ -13,7 +13,7 @@
 
 ## 前置条件
 
-您需要先创建一个[观测云账号](https://www.guance.com)，并在您的主机上[安装 DataKit](https://www.yuque.com/dataflux/datakit/datakit-install)，开启相关集成的运行，进行数据采集。
+您需要先创建一个[观测云账号](https://www.guance.com)，并在您的主机上[安装 DataKit](../../datakit/datakit-install.md)，开启相关集成的运行，进行数据采集。
 
 ## 使用场景方法步骤
 
@@ -39,7 +39,7 @@
 
 #### 种类丰富的图表组件：
 
-“观测云” 内置20余种标准的可视化图表：包括[时序图](https://www.yuque.com/dataflux/doc/sqg3vu)、[概览图](https://www.yuque.com/dataflux/doc/nlqqgk)、饼图、柱状图、[排行榜](https://www.yuque.com/dataflux/doc/yi684q)、[仪表盘](https://www.yuque.com/dataflux/doc/vnio9q)、散点图、气泡图、表格图、中国地图、世界地图、蜂窝图、[日志流图](https://www.yuque.com/dataflux/doc/nyca45)等，可快速根据不同业务需求快速创建不同的监控视图看板，满足对数据个性化、全面的展示需求。
+“观测云” 内置20余种标准的可视化图表：包括时序图、概览图、饼图、柱状图、排行榜、仪表盘、散点图、气泡图、表格图、中国地图、世界地图、蜂窝图、日志流图等，可快速根据不同业务需求快速创建不同的监控视图看板，满足对数据个性化、全面的展示需求。
 
 ### Step2: 快速创建您的笔记
 
@@ -51,14 +51,14 @@
 
 输入笔记标题，使用文本图表输入文本，使用其他图表展示指标的可视化数据分析。
 
-- 关于文本输入，可参考文档 [如何撰写文本文档](https://www.yuque.com/dataflux/doc/lovki1) 。
-- 关于图表制作，可参考文档 [可视化图表](https://www.yuque.com/dataflux/doc/rttwsy) 。
+- 关于文本输入，可参考文档 [如何撰写文本文档](../../scene/visual-chart/text.md) 。
+- 关于图表制作，可参考文档 [可视化图表](../../scene/visual-chart/index.md) 。
 
 笔记完成后，点击“保存笔记”，即可完成笔记的创建。
 
 ![](../img/5.notebook_4.png)
 
-在导航栏「设置」，笔记支持「导出笔记JSON」、「导入笔记JSON」、「导出为PDF」以及「[保存快照](https://www.yuque.com/dataflux/doc/uuy378)」。
+在导航栏「设置」，笔记支持「导出笔记JSON」、「导入笔记JSON」、「导出为PDF」以及「保存快照」。
 
 点击「导出笔记JSON」即可导出对应的 json 文件至本地，打开 json 文件即可看到“模板代码”。
 
@@ -79,11 +79,11 @@
 
 在新创建的查看器，选择日志的数据范围后进行编辑，包括：3个时序图图表、1个快速筛选、1个数据列表。
 
-- 时序图图表：用于显示数据在相等时间间隔下的趋势变化，同时可用来分析多组指标数据之间的作用及影响。支持自定义图表查询，并展示为折线图、面积图或柱状图，详情可参考[图表查询](https://www.yuque.com/dataflux/doc/cxlbps)和[时序图](https://www.yuque.com/dataflux/doc/sqg3vu)。
+- 时序图图表：用于显示数据在相等时间间隔下的趋势变化，同时可用来分析多组指标数据之间的作用及影响。支持自定义图表查询，并展示为折线图、面积图或柱状图，详情可参考[图表查询](../../scene/visual-chart/chart-query.md)和[时序图](../../scene/visual-chart/timeseries-chart.md)。
 - 快捷筛选：默认显示 主机、状态 两个字段；支持用户自定义快捷筛选列表；
 - 数据列表：默认配置 时间、内容 两个字段，支持用户自定义显示列表字段；
 
-更多详情可参考文档 [快速搭建自定义日志查看器](https://www.yuque.com/dataflux/doc/pxgdh7) 。
+更多详情可参考文档 [快速搭建自定义日志查看器](../../scene/explorer/custom-explorer.md) 。
 
 ![](../img/5.browser_3.png)
 
@@ -130,16 +130,17 @@
 
 ![](../img/s2.png)
 
-- [阈值检测](https://www.yuque.com/dataflux/doc/zdeogm)：基于设置的阈值对指标数据进行异常检测，当数据达到阈值时，触发告警并通知用户。
-- [日志检测](https://www.yuque.com/dataflux/doc/usqo8y)：基于工作空间内的日志数据进行异常检测，多适用于 IT 监控场景下的代码异常或任务调度检测等。
-- [突变检测](https://www.yuque.com/dataflux/doc/dgk8e5)：基于历史数据对指标的突发反常表现进行异常检测，多适用于业务数据、时间窗短的场景。
-- [区间检测](https://www.yuque.com/dataflux/doc/kcngg6)：基于动态阈值范围对指标的异常数据点进行检测，当数据超出设定的区间范围后，产生告警并通知用户，多适用于趋势稳定时间线的场景。
-- [水位检测](https://www.yuque.com/dataflux/doc/wbi2y4)：基于历史数据对指标的持续反常表现进行异常检测，可避免突发检测的毛刺告警。
-- [安全巡检](https://www.yuque.com/dataflux/doc/bbp4o4)：基于工作空间内安全巡检数据进行异常检测，用于监控工作空间内系统、容器、网络等存在的漏洞、异常和风险。
-- [应用性能指标检测](https://www.yuque.com/dataflux/doc/tag1nx)：基于工作空间内「应用性能监测」的指标数据，当指标到达设置的阈值范围后触发告警。
-- [用户访问指标检测](https://www.yuque.com/dataflux/doc/qnpqmm)：基于工作空间内「用户访问监测」的指标数据，当指标到达设置的阈值范围后触发告警。
-- [进程异常检测](https://www.yuque.com/dataflux/doc/uskqmx)：基于工作空间内的进程数据，支持对进程数据的一个或多个字段类型设置触发告警。
-- [可用性监测数据检测](https://www.yuque.com/dataflux/doc/he412g)：基于工作空间内的可用性监测数据，通过对一定时间段内可用性监测任务产生的指定数据量设置阈值范围后触发告警。
+- [阈值检测](../../monitoring/monitor/threshold-detection.md)：基于设置的阈值对指标数据进行异常检测，当数据达到阈值时，触发告警并通知用户。
+- [日志检测](../../monitoring/monitor/log-detection.md)：基于工作空间内的日志数据进行异常检测，多适用于 IT 监控场景下的代码异常或任务调度检测等。
+- [突变检测](../../monitoring/monitor/mutation-detection.md)：基于历史数据对指标的突发反常表现进行异常检测，多适用于业务数据、时间窗短的场景。
+- [区间检测](../../monitoring/monitor/interval-detection.md)：基于动态阈值范围对指标的异常数据点进行检测，当数据超出设定的区间范围后，产生告警并通知用户，多适用于趋势稳定时间线的场景。
+- [水位检测](../../monitoring/monitor/water-level-detection.md)：基于历史数据对指标的持续反常表现进行异常检测，可避免突发检测的毛刺告警。
+- [安全巡检](../../monitoring/monitor/security_checker.md)：基于工作空间内安全巡检数据进行异常检测，用于监控工作空间内系统、容器、网络等存在的漏洞、异常和风险。
+- [应用性能指标检测](../../monitoring/monitor/application-performance-detection.md)：基于工作空间内「应用性能监测」的指标数据，当指标到达设置的阈值范围后触发告警。
+- [用户访问指标检测](../../monitoring/monitor/real-user-detection.md)：基于工作空间内「用户访问监测」的指标数据，当指标到达设置的阈值范围后触发告警。
+- [进程异常检测](../../monitoring/monitor/process-detection.md)：基于工作空间内的进程数据，支持对进程数据的一个或多个字段类型设置触发告警。
+- [可用性监测数据检测](../../monitoring/monitor/usability-detection.md)：基于工作空间内的云拨测数据，通过对一定时间段内拨测任务产生的指定数据量设置阈值范围后触发告警。
+- [网络数据检测](../../monitoring/monitor/network-detection.md)：用于监控工作空间内「网络性能监测」的指标数据，通过设置阈值范围，当指标到达阈值后触发告警。
 
 
 ### Step2: 快速创建您的告警配置
@@ -151,10 +152,10 @@
 告警通知支持选择不同的通知类型，对多个对象发送告警通知。“观测云”支持多种通知类型，包括「空间成员」、「邮件组」、「钉钉机器人」、「企业微信机器人」、「飞书机器人」和「Webhook自定义」。
 
 - 空间成员：邮件通知，通过在「管理」-「成员管理」，添加通知对象，可参考此文档中的「告警示例」。
-- 邮件组：邮件通知，一个邮件组可添加多个空间成员，通过在「管理」-「[通知对象管理](https://www.yuque.com/dataflux/doc/osstog) 」，添加通知对象。
-- 钉钉机器人、企业微信机器人、飞书机器人：群通知，通过在「管理」-「[通知对象管理](https://www.yuque.com/dataflux/doc/osstog)」，添加通知对象。
-- Webhook自定义：用户自行设定，通过在「管理」-「[通知对象管理](https://www.yuque.com/dataflux/doc/osstog)」，添加通知对象。
-- 短信：短信通知，一个短信组可以添加多个空间成员，通过在「管理」-「[通知对象管理](https://www.yuque.com/dataflux/doc/osstog)」，添加通知对象。“观测云”免费版无短信通知，其他版本短信通知0.1 元 / 条，按天计费，没有免费额度。
+- 邮件组：邮件通知，一个邮件组可添加多个空间成员，通过在「管理」-「[通知对象管理](../../management/notify-object.md) 」，添加通知对象。
+- 钉钉机器人、企业微信机器人、飞书机器人：群通知，通过在「管理」-「[通知对象管理](../../management/notify-object.md)」，添加通知对象。
+- Webhook自定义：用户自行设定，通过在「管理」-「[通知对象管理](../../management/notify-object.md)」，添加通知对象。
+- 短信：短信通知，一个短信组可以添加多个空间成员，通过在「管理」-「[通知对象管理](../../management/notify-object.md)」，添加通知对象。“观测云”免费版无短信通知，其他版本短信通知0.1 元 / 条，按天计费，没有免费额度。
 
 **注意：邮件、钉钉、微信、飞书、短信告警通知都是每分钟合并了发送，并不是产生后立刻发送，会存在约一分钟的延迟。**
 
@@ -179,16 +180,7 @@
 | 名称 | SLO任务名称。最多支持64个字符输入。 |
 | 目标 | SLO目标百分比（0-100%），支持选定两个目标，包括“目标”和“最低目标”，<br />- 目标：当 SLO百分比 < 目标百分比，且 >= 最低目标百分比时，被认定为 **不健康**SLA<br />- 最低目标：当 SLO百分比 < 最低目标百分比时，被认定为 **不达标 **SLA<br /> |
 | SLI | 衡量系统稳定性的指标。支持自定义添加一个或多个监控器作为测量指标 |
-| 异常通知对象 | 告警通知对象，支持空间成员、邮件组、企业微信机器人、钉钉机器人、飞书机器人、短信等通知方式，详情可参考[告警设置](https://www.yuque.com/dataflux/doc/qxz5xz) |
+| 异常通知对象 | 告警通知对象，支持空间成员、邮件组、企业微信机器人、钉钉机器人、飞书机器人、短信等通知方式，详情可参考[告警设置](../../monitoring/alert-setting.md) |
 | 通知沉默 | 若同一个事件不是非常紧急，但是告警通知频率高，可以通过设置通知沉默的方式减少通知频率。**注意：通知沉默设置后事件会继续产生，但是通知不会再发送，产生的事件会存入事件管理** |
 | 检测频率 | SLO检测频率，即以一定时间范围为周期，监测SLO任务中监控器是否出现异常事件。目前支持5分钟、10分钟两种检测频率。 |
 | 描述 | 描述性信息，最多支持256个字符。 |
-
-## 更多参考
-[实现仪表板与查看器之间的联动性](https://www.yuque.com/dataflux/ikyp0a/zmkt9d)<br />[将监控告警与仪表板关联](https://www.yuque.com/dataflux/ikyp0a/trfvig)<br />[如何优雅的设计仪表板](https://www.yuque.com/dataflux/ikyp0a/youfau)
-
-
----
-
-观测云是一款面向开发、运维、测试及业务团队的实时数据监测平台，能够统一满足云、云原生、应用及业务上的监测需求，快速实现系统可观测。**立即前往观测云，开启一站式可观测之旅：**[www.guance.com](https://www.guance.com)
-![](../img/logo_2.png)

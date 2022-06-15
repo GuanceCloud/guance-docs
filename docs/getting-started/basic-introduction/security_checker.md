@@ -10,7 +10,7 @@
 ## 前置条件
 
 - 您需要先创建一个 [观测云账号](https://www.guance.com)；
-- 在您的主机上 [安装 DataKit](https://www.yuque.com/dataflux/datakit/datakit-install)；
+- 在您的主机上 [安装 DataKit](../../datakit/datakit-install.md)；
 
 ## 方法步骤
 
@@ -53,7 +53,7 @@ systemctl restart scheck
 检测规则放在规则目录中：由配置文件中 `rule_dir` 指定。每项规则对应两个文件：
 
 1. 脚本文件：使用 [Lua](http://www.lua.org/) 语言来编写，必须以 `.lua` 为后缀名。
-1. 清单文件：使用 [TOML](https://toml.io/en/) 格式，必须以 `.manifest` 为后缀名，[详情](#%E6%B8%85%E5%8D%95%E6%96%87%E4%BB%B6)。
+1. 清单文件：使用 [TOML](https://toml.io/en/) 格式，必须以 `.manifest` 为后缀名。
 
 通过添加/修改清单文件以及 Lua 代码，即可完成检测规则的配置。
 
@@ -129,10 +129,5 @@ crontab -e
 
 在主机控制台执行命令：userdel xlsm
 ## 更多参考
-更多关于安全巡检可参考：<br />[安全巡检库](https://www.yuque.com/dataflux/sec_checker)
+更多可参考文档[安全巡检](../../security_checker/explorer.md)。
 
-
----
-
-观测云是一款面向开发、运维、测试及业务团队的实时数据监测平台，能够统一满足云、云原生、应用及业务上的监测需求，快速实现系统可观测。**立即前往观测云，开启一站式可观测之旅：**[www.guance.com](https://www.guance.com)
-![](../img/logo_2.png)

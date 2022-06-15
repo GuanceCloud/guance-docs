@@ -9,8 +9,8 @@
 
 ## 前置条件
 
-- 安装 DataKit（[DataKit 安装文档](https://www.yuque.com/dataflux/datakit/datakit-install)）
-- 将 DataKit 部署成公网可访问（[RUM 配置文档](https://www.yuque.com/dataflux/datakit/rum#852abae7)）
+- 安装 DataKit（[DataKit 安装文档](../../datakit/datakit-install.md)）
+- 将 DataKit 部署成公网可访问（[RUM 配置文档](../../integrations/rum.md)）
 - 操作系统支持：全平台
 
 ## 方法/步骤
@@ -38,14 +38,14 @@ c.  修改完成后保存退出
 
 更多详情可参考：
 
-- 配置 [Web 应用接入](https://www.yuque.com/dataflux/doc/eqs7v2)
-- 配置 [Android 应用接入](https://www.yuque.com/dataflux/doc/pnzoyp)
-- 配置 [iOS 应用接入](https://www.yuque.com/dataflux/doc/gsto6k)
-- 配置 [小程序应用接入](https://www.yuque.com/dataflux/doc/clgea8)
+- 配置 [Web 应用接入](../../real-user-monitoring/web/app-access.md)
+- 配置 [Android 应用接入](../../real-user-monitoring/android/app-access.md)
+- 配置 [iOS 应用接入](../../real-user-monitoring/ios/app-access.md)
+- 配置 [小程序应用接入](../../real-user-monitoring/miniapp/app-access.md)
 
 ### Step3: 查看用户访问数据
 
-在 “观测云” 工作空间「用户访问监测」，点击任意一个应用，即可通过「查看器」对该应用相关的用户访问行为、会话、页面性能、资源勤秋、异常错误等数据进行查看。
+在观测云工作空间「用户访问监测」，点击任意一个应用，即可通过「查看器」对该应用相关的用户访问行为、会话、页面性能、资源勤秋、异常错误等数据进行查看。
 
 - Web监测：包含页面性能、资源加载、JS错误等多个场景；查看器支持页面、资源、JS错误等数据的快速检索和筛选查看。
 - Android监测：包含页面性能、资源加载等多个场景；查看器支持页面、资源、崩溃、卡顿等数据的快速检索和筛选查看。
@@ -62,7 +62,7 @@ c.  修改完成后保存退出
 
 下面将以Web 应用为例，介绍如何收集90％的Web应用用户访问数据。
 
-1. 在 “观测云” 控制台进入「用户访问监测」，通过「新建应用」获取 Web应用的三种方式：NPM 接入、同步载入和异步载入。
+1. 在观测云控制台进入「用户访问监测」，通过「新建应用」获取 Web应用的三种方式：NPM 接入、同步载入和异步载入。
 1. 以“同步载入”为例，在代码中加入`sampleRate: 90`，然后复制粘贴到需要接入的页面HTML的第一行，即可按90%的比例采集Web应用的用户访问数据。
 
 ```
@@ -82,9 +82,9 @@ c.  修改完成后保存退出
 
 其他应用采样可参考：
 
-- IOS采样设置可参考[IOS 应用接入](https://www.yuque.com/dataflux/doc/gsto6k#Zx9Q3)。
-- Android采样设置可参考[Android 应用接入](https://www.yuque.com/dataflux/doc/pnzoyp#tBmrd)。
-- 小程序采样设置可参考[小程序应用接入](https://www.yuque.com/dataflux/doc/clgea8#MJwVt)。
+- IOS采样设置可参考[IOS 应用接入](../../real-user-monitoring/ios/app-access.md)。
+- Android采样设置可参考[Android 应用接入](../../real-user-monitoring/android/app-access.md)。
+- 小程序采样设置可参考[小程序应用接入](../../real-user-monitoring/miniapp/app-access.md)。
 
 ### 生成指标
 
@@ -114,7 +114,7 @@ c.  修改完成后保存退出
 
 ![](../img/q4.png)
 
-更多详情可参考：[用户访问监测-生成指标](https://www.yuque.com/dataflux/doc/sbyggu)
+更多详情可参考：[用户访问监测-生成指标](../../real-user-monitoring/generate-metrics.md)
 
 ### Souremap
 
@@ -233,11 +233,3 @@ cur1 －X DELETE ＇<dca_address>/v1/rum/sourcemap?app_id=<app_id>＆env=＆vers
 生成追踪ID后，需要根据追踪ID信息在应用中引入代码。以Web应用的”NPM引入“为例，配置步骤如下：<br />a.  复制当前页面的代码。<br />b.  初始化 SDK 后，使用所复制的代码添加追踪ID<br />c.  修改完成后保存退出
 
 ![](../img/q7.png)
-
-详细步骤请参考：[追踪配置示例](https://www.yuque.com/dataflux/doc/gxavg8)
-
-
----
-
-观测云是一款面向开发、运维、测试及业务团队的实时数据监测平台，能够统一满足云、云原生、应用及业务上的监测需求，快速实现系统可观测。**立即前往观测云，开启一站式可观测之旅：**[www.guance.com](https://www.guance.com)
-![](../img/logo_2.png)

@@ -7,7 +7,7 @@
 
 ## 前提条件
 
-在开始使用观测云监控云主机之前，你需要先注册一个 [观测云账号](https://auth.guance.com/register?channel=语雀) ，注册完成后登录到观测云工作空间，即可获取DataKit 安装指令，部署你的第一个 DataKit。
+在开始使用观测云监控云主机之前，你需要先注册一个 [观测云账号](https://auth.guance.com/register?channel=帮助文档) ，注册完成后登录到观测云工作空间，即可获取DataKit 安装指令，部署你的第一个 DataKit。
 
 DataKit 是观测云官方发布的数据采集应用，支持上百种数据的采集，可实时采集如主机、进程、容器、日志、应用性能、用户访问等多种数据。
 
@@ -31,10 +31,4 @@ DataKit 成功安装完成后，主机对象采集器`hostobject`已经默认开
 
 ![](../img/a1.png)
 
-安装完 DataKit，我们就可以开始 [配置采集器](https://www.yuque.com/dataflux/doc/tyqgkt)，来采集更多不同的数据。
-
-
----
-
-观测云是一款面向开发、运维、测试及业务团队的实时数据监测平台，能够统一满足云、云原生、应用及业务上的监测需求，快速实现系统可观测。**立即前往观测云，开启一站式可观测之旅：**[www.guance.com](https://www.guance.com)
-![](../img/logo_2.png)
+安装完 DataKit，我们就可以开始 [配置采集器](configure-datakit.md)，来采集更多不同的数据。

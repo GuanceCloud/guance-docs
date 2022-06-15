@@ -5,7 +5,7 @@
 
 ## 前置条件
 
-您需要先创建一个[观测云账号](https://www.guance.com/)，并在您的主机上[安装 DataKit](https://www.yuque.com/dataflux/datakit/datakit-install) 。
+您需要先创建一个[观测云账号](https://www.guance.com/)，并在您的主机上[安装 DataKit](../../datakit/datakit-install.md) 。
 
 ## 方法/步骤
 
@@ -43,7 +43,7 @@
         # ...
 ```
 
-配置完成后，使用命令行`datakit --restart`重启 DataKit 使配置生效。更多 Nginx 采集器配置可参考文档 [Nginx](https://www.yuque.com/dataflux/datakit/nginx) 。
+配置完成后，使用命令行`datakit --restart`重启 DataKit 使配置生效。更多 Nginx 采集器配置可参考文档 [Nginx](../../integrations/nginx.md) 。
 
 ### Step2: 在观测云工作空间查看和分析日志数据
 
@@ -51,7 +51,7 @@
 
 ![](../img/13.log_2.png)
 
-在观测云工作空间的日志下，选择 nginx 的日志，在日志详情页，我们可以看到产生日志的主机及其属性指标视图、日志来源、通过pipeline切割的日志属性、日志内容详情等数据，通过[配置链路关联日志](https://www.yuque.com/dataflux/doc/wygkmq#SBMno)，我们还可以在日志详情页查看相关的链路详情，帮助您快速做数据关联分析。
+在观测云工作空间的日志下，选择 nginx 的日志，在日志详情页，我们可以看到产生日志的主机及其属性指标视图、日志来源、通过pipeline切割的日志属性、日志内容详情等数据，通过[配置链路关联日志](../../application-performance-monitoring/collection/connect-log/index.md)，我们还可以在日志详情页查看相关的链路详情，帮助您快速做数据关联分析。
 
 ![](../img/13.log_1.png)
 
@@ -61,13 +61,14 @@
 
 观测云提供三种日志 Pipeline 文本处理方式：
 
-- [DataKit](https://www.yuque.com/dataflux/doc/gxh1t2)：在服务器安装DataKit以后，在终端工具中配置DataKit的日志采集器及其对应的 pipeline 文件，对文本数据进行处理；
-- [Pipelines](https://www.yuque.com/dataflux/doc/oftuof)：支持在观测云工作空间手动配置和查看日志 pipeline 文件，无需登录 DataKit 服务器进行操作，帮助您方便的使用在线日志Pipeline功能来切割您的日志；
-- [DCA](https://www.yuque.com/dataflux/doc/fgcgug)：DataKit Control APP，是DataKit的桌面客户端应用，需要先安装，安装完成后可在客户端查看和编辑 DataKit 默认自带的日志 pipeline 文件和自定义手动添加 pipeline 文件。
+- [Pipelines](../../logs/pipelines/manual.md)：支持在观测云工作空间手动配置和查看日志 pipeline 文件，无需登录 DataKit 服务器进行操作，帮助您方便的使用在线日志Pipeline功能来切割您的日志；
+
+- [DataKit](../../logs/pipelines/datakit-manual.md)：在服务器安装DataKit以后，在终端工具中配置DataKit的日志采集器及其对应的 pipeline 文件，对文本数据进行处理；
+- DCA：DataKit Control APP，是DataKit的桌面客户端应用，需要先安装，安装完成后可在客户端查看和编辑 DataKit 默认自带的日志 pipeline 文件和自定义手动添加 pipeline 文件。
 
 ### 生成指标
 
-观测云支持通过生成指标的方式，基于当前工作空间内的现有数据来自定义指标数据。在观测云工作空间「日志」-「生成指标」页面，点击「新建规则」即可开始创建新的生成指标规则。更多详情参考文档 [生成指标](https://www.yuque.com/dataflux/doc/mgcvm9) 。
+观测云支持通过生成指标的方式，基于当前工作空间内的现有数据来自定义指标数据。在观测云工作空间「日志」-「生成指标」页面，点击「新建规则」即可开始创建新的生成指标规则。更多详情参考文档 [生成指标](../../logs/generate-metrics.md) 。
 
 ![](../img/13.log_9.png)
 
@@ -87,7 +88,7 @@
 
 ![](../img/13.log_3.png)
 
-在日志黑名单设置了过滤掉所有日志来源为“nginx”的日志，在设置生效后，我们可以看到“02/24 15:06:28”之后，nginx日志不再上报到工作空间。更多详情参考文档 [日志黑名单](https://www.yuque.com/dataflux/doc/na6x2c) 。
+在日志黑名单设置了过滤掉所有日志来源为“nginx”的日志，在设置生效后，我们可以看到“02/24 15:06:28”之后，nginx日志不再上报到工作空间。更多详情参考文档 [日志黑名单](../../logs/blacklist.md) 。
 
 ![](../img/13.log_4.1.png)
 
@@ -96,7 +97,7 @@
 观测云基础日志最多存储60天，如果需要更长时间的存储和查看需要对基础日志进行备份。日志备份支持两种方式：
 
 - 备份到 “观测云”：支持备份日志最多存储长达720天。
-- 备份到外部存储：支持备份日志到阿里云 OSS，具体可参考文档 [日志数据备份到 OSS 最佳实践](https://www.yuque.com/dataflux/bp/vrcgen) 。
+- 备份到外部存储：支持备份日志到阿里云 OSS，具体可参考文档 [日志数据备份到 OSS 最佳实践](../../best-practices/guance-skill/log-backup-to-oss-by-func.md) 。
 
 在日志「备份日志」页面，点击「日志备份管理」-「新建规则」，输入「规则名称」即可添加一条新的规则，支持通过「过滤条件」和「搜索关键字」更精准定位需要备份的日志，节省备份日志存储费用。<br />**注意：**
 
@@ -105,12 +106,6 @@
 
 ![](../img/13.log_6.png)
 
-设置日志备份规则以后，在日志「备份日志」页面，默认数据为空，需要先选择查看备份日志的时间范围。更多详情可参考文档 [日志备份](https://www.yuque.com/dataflux/doc/tgl0i9) 。
+设置日志备份规则以后，在日志「备份日志」页面，默认数据为空，需要先选择查看备份日志的时间范围。更多详情可参考文档 [日志备份](../../logs/backup.md) 。
 
 ![](../img/13.log_10.1.png)
-
-
----
-
-观测云是一款面向开发、运维、测试及业务团队的实时数据监测平台，能够统一满足云、云原生、应用及业务上的监测需求，快速实现系统可观测。**立即前往观测云，开启一站式可观测之旅：**[www.guance.com](https://www.guance.com)
-![](../img/logo_2.png)
