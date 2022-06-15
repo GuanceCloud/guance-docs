@@ -68,7 +68,7 @@
     {% endif %}
     {% if "search" in config["plugins"] %}
       <label class="md-header__button md-icon" for="__search">
-        {% include ".icons/material/magnify.svg" %}
+        <img style="width: 1.2rem; height:1.2rem;" src="/images/search.png" alt="">
       </label>
       {% include "partials/search.html" %}
     {% endif %}
@@ -78,7 +78,7 @@
       </div>
     {% endif %}
     <div class="loginBtn">
-      <a class="register-btn" target="_blank" href="https://console.guance.com/pageloading/register">进入观测云</a>
+      <a class="register-btn" target="_blank" href="https://console.guance.com">进入观测云</a>
     </div>
   </nav>
   {% if "navigation.tabs.sticky" in features %}
