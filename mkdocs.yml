@@ -1,6 +1,8 @@
 site_name: 观测云
 
 theme:
+  palette:
+    primary: white
   name: material
   custom_dir: overrides/
   favicon: favicon.ico
