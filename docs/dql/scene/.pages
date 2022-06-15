@@ -1,7 +1,0 @@
-nav:
-  - index.md
-  - '仪表板': dashboard.md
-  - '笔记': note.md
-  - '查看器': explorer
-  - '视图变量': view-variable.md
-  - '可视化图表': visual-chart.md

@@ -130,7 +130,7 @@ T::my_service { duration > 1000 } [10m] BY operation
 | PromQL | `# 单行注释` | [支持](https://prometheus.io/docs/prometheus/latest/querying/api/) | 不支持 | [promql-cli](https://github.com/nalbury/promql-cli) |
 | LogQL | `# 单行注释` | [支持](https://grafana.com/docs/loki/latest/api/) | 支持 | [logcli](https://grafana.com/docs/loki/latest/getting-started/logcli/) |
 | SQL | `-- 单行注释`<br /> 或 `/* 多行注释 */` | 不支持 | 不支持 | 各种 SQL 客户端，此处不再赘述 |
-| DQL | `# 单行注释` | [支持](https://www.yuque.com/dataflux/datakit/apis#6c639732) | 不支持（在 DataKit 端已预先切割好） | 需[安装DataKit](https://www.yuque.com/dataflux/datakit/datakit-install)<br />，再执行[查询](https://www.yuque.com/dataflux/datakit/datakit-how-to#cb421e00) |
+| DQL | `# 单行注释` | [支持](../../datakit/apis.md) | 不支持（在 DataKit 端已预先切割好） | 需[安装DataKit](../../datakit/datakit-install.md)<br />，再执行[查询](../dql/data-how-to.md) |
 
 
 <a name="1b8fbe0e"></a>
@@ -139,7 +139,7 @@ T::my_service { duration > 1000 } [10m] BY operation
 - [PromQL 支持的函数列表](https://prometheus.io/docs/prometheus/latest/querying/functions/#functions)
 - [LogQL 支持的函数列表](https://grafana.com/docs/loki/latest/logql/#metric-queries)
 - [MySQL 支持的函数列表](https://dev.mysql.com/doc/refman/8.0/en/aggregate-functions.html)
-- [DQL 支持的函数列表](./20-DQL/03-DQL函数.md)
+- [DQL 支持的函数列表](../dql/funcs.md)
 
 <a name="c05ceae0"></a>
 ## 常见查询语句写法对比
@@ -245,4 +245,3 @@ show_logging_source() # 查看日志分类列表
 
 ---
 
-观测云是一款面向开发、运维、测试及业务团队的实时数据监测平台，能够统一满足云、云原生、应用及业务上的监测需求，快速实现系统可观测。**立即前往观测云，开启一站式可观测之旅：**[www.guance.com](https://www.guance.com)<br />![](img/logo_2.png)

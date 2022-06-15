@@ -1,8 +1,0 @@
-nav:
-  - index.md
-  - 'SSO配置常见问题': configuration-faq.md
-  - 'Azure AD单点登录示例': azure-ad.md
-  - 'Authing单点登录示例': authing.md
-  - 'Okta单点登录示例': okta.md
-  - 'Keycloak单点登录示例': keycloak.md
-  - '阿里云IDaaS单点登录示例': aliyun-idaas.md

@@ -1,5 +1,0 @@
-nav:
-  - '自定义用户访问监测 SDK 采集数据内容': custom-sdk
-  - 'Web 应用数据采集': app-data-collection.md
-  - 'Web 应用接入': app-access.md
-  - 'Web 应用分析': app-analysis.md

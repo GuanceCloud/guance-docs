@@ -1,8 +1,0 @@
-nav:
-  - index.md
-  - '费用中心': cost-center
-  - '免费开始': free-start.md
-  - '版本说明': version-description.md
-  - '升级商业版': commercial-version.md
-  - '计费方式': billing-method
-  - '观测云结算方式': billing-account
