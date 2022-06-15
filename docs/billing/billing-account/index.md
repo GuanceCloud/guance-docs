@@ -9,7 +9,7 @@
 
 在观测云费用中心可以对企业账号进行现金充值、管理代金券、管理储值卡、购买套餐包和流量包、更换结算方式等操作，同时通过费用中心还可管理账户、查看账单明细、账户余额、已购套餐、已绑工作空间等相关信息。
 
-关于如何开通观测云企业账号结算方式，可参考文档 [观测云企业账号结算](../billing/billing-account/enterprise-account.md) 。
+关于如何开通观测云企业账号结算方式，可参考文档 [观测云企业账号结算](../../billing/billing-account/enterprise-account.md) 。
 
 ## 阿里云账号结算
 
@@ -17,7 +17,7 @@
 
 注意：阿里云账号结算支持优先使用观测云提供的代金券或者储值卡进行扣费，代金券或者储值卡中的费用扣完以后，再继续扣阿里云账号中的费用。
 
-关于如何开通阿里云账号结算方式，可参考文档 [阿里云账号结算](../billing/billing-account/aliyun-account.md) 。
+关于如何开通阿里云账号结算方式，可参考文档 [阿里云账号结算](../../billing/billing-account/aliyun-account.md) 。
 
 ## AWS账号结算
 
@@ -25,7 +25,7 @@ AWS账号是指直接通过AWS账户进行充值结算，一个AWS账号支持�
 
 注意：AWS账号结算支持优先使用观测云提供的代金券或者储值卡进行扣费。代金券或者储值卡中的费用扣完以后，再继续扣AWS账号中的费用。
 
-关于如何开通AWS账号结算方式，可参考文档 [AWS账号结算](../billing/billing-account/aws-account.md) 。
+关于如何开通AWS账号结算方式，可参考文档 [AWS账号结算](../../billing/billing-account/aws-account.md) 。
 
 
 
