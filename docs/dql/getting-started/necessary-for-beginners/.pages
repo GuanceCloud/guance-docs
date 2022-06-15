@@ -1,6 +1,0 @@
-nav:
-  - '选择注册站点': select-site.md
-  - '部署第一个DataKit': deploy-datakit.md
-  - '配置采集器': configure-datakit.md
-  - '开启日志采集': enable-log-collection.md
-  - '自定义仪表板': custom-dashboard.md
