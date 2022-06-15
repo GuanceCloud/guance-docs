@@ -164,7 +164,7 @@
 }
 
 .md-typeset .doc_footer > .doc-content-section {
-    flex: 2;
+    flex: 2.5;
     margin-right: 0;
 }
 
@@ -175,11 +175,15 @@
     white-space: nowrap;
 }
 
+.md-typeset .doc_footer > .doc-content-section .section-title {
+    margin-bottom: 1rem;
+}
+
 .md-typeset .doc_footer .section {
     flex: 1;
     display: flex;
     justify-content: space-between;
-    margin-right: 8rem;
+    margin-right: 7rem;
 }
 
 .md-typeset .doc_footer .doc-content-section .text-link {
