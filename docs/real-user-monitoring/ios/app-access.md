@@ -27,7 +27,7 @@ Demo：[https://github.com/GuanceCloud/datakit-ios/demo](https://github.com/Guan
 
 ### CocoaPods 方式
 
-1.配置 `Podfile` 文件。
+1. 配置 `Podfile` 文件。
 
 ```objectivec
 target 'yourProjectName' do
@@ -38,13 +38,30 @@ pod 'FTMobileSDK', '1.3.4-alpha.3'
 end
 ```
 
-2.在 `Podfile` 目录下执行 `pod install` 安装 SDK。
+2. 在 `Podfile` 目录下执行 `pod install` 安装 SDK。
+
+### Carthage 方式
+
+1. 配置 `Cartfile` 文件。
+
+   ```
+   github "GuanceCloud/datakit-ios" == 1.3.4-beta.2
+   ```
+
+2. 在 `Cartfile` 目录下执行  `carthage update --platform iOS` ， 并将  `FTMobileSDK.framework` 拖拽到您的项目中使用。若出现 "Building universal frameworks with common architectures is not possible. The device and simulator slices for "FTMobileSDK.framework" both build for: arm64" 错误，请执行  `carthage update --platform iOS --use-xcframeworks` 命令，生成  `FTMobileSDK.xcframework `，与普通的 Framework 使用方法相同，请将它拖拽到您的项目中使用。
+
+3. debug 模式下，为了方便 SDK 调试，建议使用 debug 模式的静态库。在命令后添加  `--configuration Debug`  获取 debug 模式的静态库。
+4. 在`TARGETS`  -> `Build Setting` ->  `Other Linker Flags`  添加  `-ObjC`。
+5. 目前只支持 1.3.4-beta.2 及以上的版本。
 
 ### 添加头文件
 
 ```objectivec
+//使用 Carthage 方式
 #import <FTMobileAgent/FTMobileAgent.h>
 ...
+//使用 源码 或 CocoaPods 方式
+#import "FTMobileAgent.h"
 ```
 
 ## SDK 初始化
@@ -442,7 +459,7 @@ typedef NS_ENUM(NSInteger, FTStatus) {
 
 采用创建多 target ，使用预编译指令进行设置值
 
-1.创建多 target ：
+1. 创建多 target ：
 
 ![](../img/image_9.png)
 
