@@ -69,6 +69,7 @@ show_object_source()
 ### show_object_field()
 
 - 说明：展示对象的 `fileds` 列表
+
 | 非命名参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | 对象分类名 | 对象类型 | `string` | 否 | 无 | `HOST` |
@@ -110,6 +111,7 @@ show_object_field('servers')
 ### show_object_label()
 
 - 说明：展示对象包含的标签信息
+
 | 参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | `class` | 对象来源类型 | `string` | 是 |  | `HOST` |
@@ -494,6 +496,7 @@ show_workspaces()
 ### avg()
 
 - 说明：返回字段的平均值。参数有且只有一个，参数类型是字段名
+
 | 非命名参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | field | 字段名称 | 数值型 | 是 | 无 | `host` |
@@ -540,6 +543,7 @@ L::nginx:(avg(connect_total)) {__errorCode='200'}
 ### bottom()
 
 - 说明： 返回最小的 n 个 field 值
+
 | 非命名参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | field | 字段名称 | 字段名 | 是 | 无 | `host` |
@@ -591,6 +595,7 @@ L::nginx:(bottom(host, 2)) {__errorCode='200'}
 ### top()
 
 - 说明：返回最大的 n 个 field 值
+
 | 非命名参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | field | 字段名称 | 字段名 | 是 | 无 | `host` |
@@ -607,6 +612,7 @@ L::nginx:(bottom(host, 2)) {__errorCode='200'}
 ### count()
 
 - 说明：返回非空字段值的汇总值
+
 | 非命名参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | field | 字段名称/函数调用 | 数值型 | 是 | 无 | `host` |
@@ -652,6 +658,7 @@ L::nginx:(count(host)) {__errorCode='200'}
 ### count_distinct()
 
 - 说明：统计字段不同值的数量
+
 | 非命名参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | field | 字段名称 | 字段名 | 是 | 无 | `ip` |
@@ -694,6 +701,7 @@ L::nginx:(count_distinct(host)) {__errorCode='200'}
 ### derivative()
 
 - 说明：返回字段的相邻两个点的变化率
+
 | 非命名参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | field | 字段名称 | 数值型 | 是 | 无 | `usage` |
@@ -743,6 +751,7 @@ M::cpu:(derivative(usage_idle)) limit 2
 ### difference()
 
 - 说明：差值
+
 | 非命名参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | field | 字段名称 | 数值型 | 是 | 无 | `usage` |
@@ -789,6 +798,7 @@ M::cpu:(difference(usage_idle)) limit 2
 ### distinct()
 
 - 说明：返回 `field` 的不同值列表
+
 | 非命名参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | field | 字段名称 | 字段名 | 是 | 无 | `usage` |
@@ -835,6 +845,7 @@ R::js_error:(distinct(error_message))
 ### distinct_by_collapse()
 
 - 说明：返回 `field` 的不同值列表
+
 | 非命名参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | field | 字段名称 | 字段名 | 是 | 无 | `usage` |
@@ -883,6 +894,7 @@ R::js_error:(distinct_by_collapse(error_message) as d1)
 
 - 说明: 条件过滤聚合，计数
 - 参考: [Elasticsearch filter aggs](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-filter-aggregation.html)
+
 | 非命名参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | field | 字段名称 | 字段名 | 是 | 无 | `service` |
@@ -932,6 +944,7 @@ L::`*`:(count_filter(service,['browser', 'df_rum_ios']) as c1 ) by status
 ### first()
 
 - 说明：返回时间戳最早的值
+
 | 非命名参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | field | 字段名称 | 字段名 | 是 | 无 | `usage` |
@@ -977,6 +990,7 @@ L::nginx:(first(host)) {__errorCode='200'}
 ### float()
 
 - 说明： 类型转换函数，将 string 类型数据转为 float 数值
+
 | 非命名参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | field | 字段名称 | 字段名 | 是 | 无 | `usage` |
@@ -991,6 +1005,7 @@ L::nginx:(first(host)) {__errorCode='200'}
 ### int()
 
 - 说明：类型转换函数，将 string 类型数据转为 int 数值
+
 | 非命名参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | field | 字段名称 | 字段名 | 是 | 无 | `usage` |
@@ -1005,6 +1020,7 @@ L::nginx:(first(host)) {__errorCode='200'}
 ### histogram()
 
 - 说明：直方图范围聚合
+
 | 非命名参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | field | 数值型 | 字段名 | 是 | 无 | `usage` |
@@ -1057,6 +1073,7 @@ E::`monitor`:(histogram(date_range, 300, 6060, 100, 1))
 ### last()
 
 - 说明：返回时间戳最近的值
+
 | 非命名参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | field | 字段名称 | 字段名 | 是 | 无 | `usage` |
@@ -1072,6 +1089,7 @@ E::`monitor`:(histogram(date_range, 300, 6060, 100, 1))
 ### log()
 
 - 说明：求对数
+
 | 非命名参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | field | 字段名称 | 数值型 | 是 | 无 | `usage` |
@@ -1118,6 +1136,7 @@ M::cpu:(log(usage_idle, 10)) limit 2
 ### max()
 
 - 说明：返回最大的字段值
+
 | 非命名参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | field | 字段名称 | 数值型 | 是 |  | `connect_total` |
@@ -1160,6 +1179,7 @@ L::nginx:(max(connect_total)) {__errorCode='200'}
 ### median()
 
 - 说明：返回排好序的字段的中位数
+
 | 非命名参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | field | 字段名称 | 数值型 | 是 |  | `usage_idle` |
@@ -1205,6 +1225,7 @@ M::`cpu`:(median(`usage_idle`))  by host  slimit 1
 ### min()
 
 - 说明：返回最小的字段值
+
 | 非命名参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | field | 字段名称 | 数值型 | 是 |  | `connect_total` |
@@ -1217,6 +1238,7 @@ M::`cpu`:(median(`usage_idle`))  by host  slimit 1
 ### mode()
 
 - 说明：返回字段中出现频率最高的值
+
 | 非命名参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | field | 字段名称 | 数值型 | 是 |  | `usage_idle` |
@@ -1262,6 +1284,7 @@ M::`cpu`:(mode(`usage_idle`))  by host  slimit 1
 ### moving_average()
 
 - 说明：平均移动
+
 | 非命名参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | field | 字段名称 | 数值型 | 是 |  | `connect_total` |
@@ -1308,6 +1331,7 @@ M::cpu:(moving_average(usage_idle, 2)) limit 2
 ### non_negative_derivative()
 
 - 说明：数据的非负变化率
+
 | 非命名参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | field | 字段名称 | 数值型 | 是 |  | `connect_total` |
@@ -1354,6 +1378,7 @@ M::cpu:(non_negative_derivative(usage_idle)) limit 2
 ### percentile()
 
 - 说明：返回较大百分之 n 的字段值
+
 | 非命名参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | field | 字段名称 | 数值型 | 是 |  | `usage_idle` |
@@ -1396,6 +1421,7 @@ M::cpu:(percentile(usage_idle, 5)) limit 2
 ### round()
 
 - 说明：返回排好序的字段的中位数
+
 | 非命名参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | field | 字段名称 | 数值型 | 是 |  | `usage_idle` |
@@ -1445,6 +1471,7 @@ M::`cpu`:(round(`usage_idle`))  by host  limit 2 slimit 1
 ### spread()
 
 - 说明：返回字段中最大和最小值的差值
+
 | 非命名参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | field | 字段名称 | 数值型 | 是 |  | `usage_idle` |
@@ -1490,6 +1517,7 @@ M::`cpu`:(spread(`usage_idle`))  by host  slimit 1
 ### stddev()
 
 - 说明：返回字段的标准差
+
 | 非命名参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | field | 字段名称 | 数值型 | 是 |  | `usage_idle` |
@@ -1535,6 +1563,7 @@ M::`cpu`:(stddev(`usage_idle`))  by host  slimit 1
 ### sum()
 
 - 说明：返回字段值的和
+
 | 非命名参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | field | 字段名称 | 数值型 | 是 |  | `usage_idle` |
@@ -1582,6 +1611,7 @@ L::nginx:(sum(connect_total)) {__errorCode='200'}
 ### exists()
 
 - 说明：文档中，指定字段必须存在
+
 | 非命名参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | field | 字段名称 | 数值型 | 是 |  | `usage_idle` |
@@ -1626,6 +1656,7 @@ rum::js_error:(sdk_name, error_message) { sdk_name=exists() } limit 1
 ### match()
 
 - 说明：全文搜索（模糊搜索）
+
 | 非命名参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | 字段值 | 查询的字段值 | `void` | 是 |  | `host1` |
@@ -1670,6 +1701,7 @@ rum::js_error:(sdk_name, error_message) { error_message=match('not defined') } l
 ### re()
 
 - 说明：通过正则过滤查询
+
 | 非命名参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | 字段值 | 查询的字段值 | `void` | 是 |  | `host1` |
@@ -1727,6 +1759,7 @@ rum::js_error:(sdk_name, error_message) { error_message=re('.*not defined.*') } 
 ### query_string()
 
 - 说明：字符串查询。DQL 将使用特殊语法解析器，解析输入的字符串，查询文档
+
 | 非命名参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | 查询条件 | 查询输入字符串 | `string` | 是 |  | `info OR warnning` |
@@ -1791,6 +1824,7 @@ L::datakit:(host,message) {message=query_string('/[telegraf|GIN]/ OR /[rum|GIN]/
 ### wildcard()
 
 - 说明：通配查询。通配字符 `*` 表示匹配 0 或多个任意字符；`?` 表示匹配 1 个任意字符
+
 | 非命名参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | 查询条件 | 查询输入字符串 | `string` | 是 |  | `info OR warnning` |
@@ -1844,6 +1878,7 @@ L::datakit:(host,message) {message=wildcard('*write*')} limit 1
 ### with_labels()
 
 - 说明：通过对象标签，查询对象信息
+
 | 参数 | 描述 | 类型 | 是否必填 | 默认值 | 示例 |
 | --- | --- | --- | --- | --- | --- |
 | `object_class` | 对象来源类型 | `string` | 是 |  | `HOST` |
