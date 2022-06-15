@@ -1,10 +1,10 @@
 # 开启日志采集
 ---
 
-“观测云” 支持自定义日志采集和标准日志采集。
+观测云支持自定义日志采集和标准日志采集。
 
-- 自定义日志采集：进入 DataKit 安装目录下的 conf.d/log 目录，复制 logging.conf.sample 并命名为 logging.conf进行配置。配置完成后，重启 DataKit 即可生效。详情可参考[开启自定义日志采集](#GmCCV)。
-- 标准日志采集：通过开启“观测云”支持的日志采集器，如[Nginx](https://www.yuque.com/dataflux/datakit/nginx#62b5133f)、[Redis](https://www.yuque.com/dataflux/datakit/redis#62b5133f)、[Docker](https://www.yuque.com/dataflux/datakit/docker)、[ElasticSearch](https://www.yuque.com/dataflux/datakit/elasticsearch#62b5133f)等，可以一键开启日志采集。
+- 自定义日志采集：进入 DataKit 安装目录下的 conf.d/log 目录，复制 logging.conf.sample 并命名为 logging.conf进行配置。配置完成后，重启 DataKit 即可生效。
+- 标准日志采集：通过开启观测云支持的日志采集器，如[Nginx](../../integrations/nginx.md)、[Redis](../../integrations/redis.md)、[ElasticSearch](../../integrations/elasticsearch.md)等，可以一键开启日志采集。
 
 ## 开启自定义日志采集
 
@@ -44,7 +44,7 @@
 
 ![](../img/13.nginx_3.png)
 
-Nginx的`files`的地址可通过`ls /var/log`查看，[了解更多Nginx日志数据采集配置](https://www.yuque.com/dataflux/datakit/nginx#62b5133f)。
+Nginx的`files`的地址可通过`ls /var/log`查看，[了解更多Nginx日志数据采集配置](../../integrations/nginx.md)。
 
 ![](../img/13.nginx_1.png)
 
@@ -54,12 +54,6 @@ Nginx的`files`的地址可通过`ls /var/log`查看，[了解更多Nginx日志�
 
 ![](../img/13.nginx_4.png)
 
-日志数据采集以后，我们可以通过观测云提供的日志 Pipeline 工具对日志进行切割，使日志的数据更容易被搜索和关联分析，关于如何开启并使用日志 Pipeline 工具，可参考文档 [如何快速分析 Nginx 日志](https://www.yuque.com/dataflux/doc/rwmsly) 。
+日志数据采集以后，我们可以通过观测云提供的日志 Pipeline 工具对日志进行切割，使日志的数据更容易被搜索和关联分析，关于如何开启并使用日志 Pipeline 工具，可参考文档 [如何快速分析 Nginx 日志](../basic-introduction/nginx-collection-analysis.md) 。
 
-另外 DataKit 安装采集数据，我们还可以为采集的数据[搭建场景仪表板](https://www.yuque.com/dataflux/doc/gswwgf)进行数据可视化分析并进行监控告警，详情可参考文档 [如何快速使用场景和监控](https://www.yuque.com/dataflux/doc/tf384f) 。
-
-
----
-
-观测云是一款面向开发、运维、测试及业务团队的实时数据监测平台，能够统一满足云、云原生、应用及业务上的监测需求，快速实现系统可观测。**立即前往观测云，开启一站式可观测之旅：**[www.guance.com](https://www.guance.com)
-![](../img/logo_2.png)
+另外 DataKit 安装采集数据，我们还可以为采集的数据[搭建场景仪表板](custom-dashboard.md)，若需要进行数据可视化分析并进行监控告警，详情可参考文档 [如何快速使用场景和监控](../basic-introduction/scene-alert.md) 。
