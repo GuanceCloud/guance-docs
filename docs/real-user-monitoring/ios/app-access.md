@@ -23,38 +23,41 @@
 **源码地址**：[https://github.com/GuanceCloud/datakit-ios](https://github.com/GuanceCloud/datakit-ios)
 ### 源码方式
 
-1. 从 GitHub 获取 SDK 的源代码。
-2. 将 SDK 源代码导入 App 项目，并选中 `Copy items if needed`。直接将 **FTMobileSDK** 整个文件夹导入项目。
+1.从 GitHub 获取 SDK 的源代码。
+
+2.将 SDK 源代码导入 App 项目，并选中 `Copy items if needed`。直接将 **FTMobileSDK** 整个文件夹导入项目。
 
 
 ### CocoaPods 方式
 
-1. 配置 `Podfile` 文件。
+1.配置 `Podfile` 文件。
 
 ```objectivec
 target 'yourProjectName' do
 
 # Pods for your project
-pod 'FTMobileSDK', '1.3.4-alpha.3'
+pod 'FTMobileSDK', '1.3.4-beta.2'
     
 end
 ```
 
-2. 在 `Podfile` 目录下执行 `pod install` 安装 SDK。
+2.在 `Podfile` 目录下执行 `pod install` 安装 SDK。
 
 ### Carthage 方式
 
-1. 配置 `Cartfile` 文件。
+1.配置 `Cartfile` 文件。
 
-   ```
-   github "GuanceCloud/datakit-ios" == 1.3.4-beta.2
-   ```
+```
+github "GuanceCloud/datakit-ios" == 1.3.4-beta.2
+```
 
-2. 在 `Cartfile` 目录下执行  `carthage update --platform iOS` ， 并将  `FTMobileSDK.framework` 拖拽到您的项目中使用。若出现 "Building universal frameworks with common architectures is not possible. The device and simulator slices for "FTMobileSDK.framework" both build for: arm64" 错误，请执行  `carthage update --platform iOS --use-xcframeworks` 命令，生成  `FTMobileSDK.xcframework `，与普通的 Framework 使用方法相同，请将它拖拽到您的项目中使用。
+2.在 `Cartfile` 目录下执行  `carthage update --platform iOS` ， 并将  `FTMobileSDK.framework` 拖拽到您的项目中使用。若出现 "Building universal frameworks with common architectures is not possible. The device and simulator slices for "FTMobileSDK.framework" both build for: arm64" 错误，请执行  `carthage update --platform iOS --use-xcframeworks` 命令，生成  `FTMobileSDK.xcframework `，与普通的 Framework 使用方法相同，请将它拖拽到您的项目中使用。
 
-3. debug 模式下，为了方便 SDK 调试，建议使用 debug 模式的静态库。在命令后添加  `--configuration Debug`  获取 debug 模式的静态库。
-4. 在`TARGETS`  -> `Build Setting` ->  `Other Linker Flags`  添加  `-ObjC`。
-5. 目前只支持 1.3.4-beta.2 及以上的版本。
+3.debug 模式下，为了方便 SDK 调试，建议使用 debug 模式的静态库。在命令后添加  `--configuration Debug` 获取 debug 模式的静态库。
+
+4.在 `TARGETS`  -> `Build Setting` ->  `Other Linker Flags`  添加  `-ObjC`。
+
+5.目前只支持 1.3.4-beta.2 及以上的版本。
 
 ### 添加头文件
 
