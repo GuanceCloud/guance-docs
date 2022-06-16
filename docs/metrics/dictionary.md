@@ -22,7 +22,7 @@
 采集指标有两种方式，前提是都需要先创建一个[观测云账号](https://auth.guance.com/register)，并在主机上[安装 DataKit](../datakit/datakit-install.md) 。
 
 - DataKit 集成超过100种技术栈，指标采集的第一种方式是安装完 DataKit 以后，开启需要采集指标的采集器，如[CPU采集器](../integrations/cpu.md)、[Nginx采集器](../integrations/nginx.md)等等；
-- 第二种方式是通过 [DataKit API](../datakit/apis.md) 方式，[通过 DataKit 自定义写入指标数据](../dataflux-func/write-data-via-datakit.md)，观测云提供了 [DataFlux Func 函数处理平台](https://www.yuque.com/dataflux/func/quick-start)，集成大量现成的函数，帮您快速上报数据进行整体可观测。
+- 第二种方式是通过 [DataKit API](../datakit/apis.md) 方式，[通过 DataKit 自定义写入指标数据](../dataflux-func/write-data-via-datakit.md)，观测云提供了 [DataFlux Func 函数处理平台](../dataflux-func/quick-start.md)，集成大量现成的函数，帮您快速上报数据进行整体可观测。
 
 ### 指标单位
 

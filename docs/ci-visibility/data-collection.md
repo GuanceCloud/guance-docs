@@ -9,11 +9,10 @@
 
 ## 前提条件
 
-你需要先创建一个 [观测云账号](https://auth.guance.com/register?channel=语雀)，并在你的主机上 [安装 DataKit](../datakit/datakit-install.md)。
+你需要先创建一个 [观测云账号](https://auth.guance.com/register?channel=帮助文档)，并在你的主机上 [安装 DataKit](../datakit/datakit-install.md)。
 
 ## 数据采集
 
 DataKit 安装完成后，您可以在 DataKit 安装目录开启 [Gitlab 采集器](../integrations/gitlab.md)，重启 DataKit 以后，即可获取 Gitlab 的 
 CI 相关数据。
-
 
