@@ -161,9 +161,9 @@ $ service datakit restart
 
 ### Mysql：
 
-详细步骤参见文档 [[Mysql datakit 接入](https://www.yuque.com/dataflux/datakit/mysql)]
+详细步骤参见文档 [[Mysql datakit 接入](../../datakit/mysql.md)]
 
-```xml
+```bash
 # 登录 mysql 
 $ mysql -uroot -p  
 # 输入密码：Solution****
@@ -208,7 +208,7 @@ $ service datakit restart
 ![image](../images/spring-cloud-sample/15.png)
 
 ### Redis：
-详细步骤参见文档 [[redis datakit 接入](https://www.yuque.com/dataflux/datakit/redis)]
+详细步骤参见文档 [[redis datakit 接入](../../datakit/redis.md)]
 
 ##### 1、在 Datakit 中修改 redis 的 inputs
 
@@ -243,7 +243,7 @@ $ service datakit restart
 
 ### JVM：
 
-详细步骤参见文档 [[jvm datakit 接入](https://www.yuque.com/dataflux/datakit/jvm)]
+详细步骤参见文档 [[jvm datakit 接入](../../datakit/jvm.md)]
 
 ##### 1、在 Datakit 中修改 jvm 的 inputs
 
@@ -349,7 +349,7 @@ $ nohup java -Dfile.encoding=utf-8 -javaagent:dd-java-agent-0.80.0.jar -XX:Fligh
 
 ### RUM（real user moitoring）：
 
-详细步骤参见文档[[用户访问（RUM）可观测性最佳实践](https://www.yuque.com/dataflux/doc/eqs7v2)]
+详细步骤参见文档[[用户访问（RUM）可观测性最佳实践](web.md)]
 
 ##### 1、登录 Dataflux 平台
 
@@ -426,7 +426,9 @@ $ vim index.html
 
 ##### 6、RUM 跟 APM 打通数据演示
 
-配置方式：[[java示例](https://www.yuque.com/dataflux/bp/web#fpjkl)] [[python示例](https://www.yuque.com/dataflux/doc/vg4y50)]<br />     应用场景：前后端关联，前端请求与后端方法执行性能数据进行一对一绑定，从而更方便定位前后端关联的问题，例如前端用户访问缓慢，是因为后端服务调用异常导致的，可以迅速跨团队跨部门进行问题定位，示例如下：
+配置方式：[[java示例](web.md#fpjkl)]
+
+应用场景：前后端关联，前端请求与后端方法执行性能数据进行一对一绑定，从而更方便定位前后端关联的问题，例如前端用户访问缓慢，是因为后端服务调用异常导致的，可以迅速跨团队跨部门进行问题定位，示例如下：
 
 ![image](../images/spring-cloud-sample/34.png)
 
@@ -438,8 +440,8 @@ $ vim index.html
 
 ### Security Checker（安全巡检）：
 
-**Security Checker简介：[**[**观测云官方简介**](https://www.yuque.com/dataflux/sec_checker/readme)**]注意：目前仅支持 **linux**
-详细步骤参见文档 [[Security Checker 安装和配置](https://www.yuque.com/dataflux/sec_checker/install)]
+**Security Checker简介：[**[**观测云官方简介**](../../security_checker/index.md)**]注意：目前仅支持 **linux**
+详细步骤参见文档 [[Security Checker 安装和配置](../../security_checker/scheck-install.md)]
 
 ##### 1、安装 Security Checker
 
@@ -489,11 +491,11 @@ $ vim scheck.conf
 
 ### 日志：
 
-详细步骤参见文档 [[日志采集](https://www.yuque.com/dataflux/doc/ilhawc)]
+详细步骤参见文档 [[日志采集](../../integrations/logging.md)]
 
 ##### 1、标准日志采集（Nginx、Mysql、Redis 等）
 
-通过开启 Datakit 内置的各种 inputs，直接开启相关的日志采集，例如 [Ngnix](https://www.yuque.com/dataflux/datakit/nginx#62b5133f)、[Redis](https://www.yuque.com/dataflux/datakit/redis#62b5133f)、[Docker](https://www.yuque.com/dataflux/datakit/docker)、[ES](https://www.yuque.com/dataflux/datakit/elasticsearch#62b5133f) 等；<br />**示例：Nginx**
+通过开启 Datakit 内置的各种 inputs，直接开启相关的日志采集，例如 [Ngnix](../../datakit/nginx.md#62b5133f)、[Redis](../../datakit/redis.md#62b5133f)、[Docker](../../integrations/container.md)、[ES](../../integrations/elasticsearch.md#62b5133f) 等；<br />**示例：Nginx**
 
 ```
 $ cd /usr/local/datakit/conf.d/nginx/
@@ -520,7 +522,7 @@ $     pipeline = "nginx.p"
 
 **示例：应用日志**
 
-pipeline（日志grok切割）[**[**观测云官方文档**](https://www.yuque.com/dataflux/datakit/pipeline)**]
+pipeline（日志grok切割）[**[**观测云官方文档**](../../datakit/pipeline.md)**]
 
 ```
 $ cd /usr/local/datakit/conf.d/log/

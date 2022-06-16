@@ -65,11 +65,11 @@ Bookinfo 的链路数据，只需要修改 istio 的 configmap 中 zipkin.addres
 
 #### 部署 datakit 
 
-参考< [Daemonset 部署 Datakit](https://www.yuque.com/dataflux/integrations/kubernetes) >。
+参考< [Daemonset 部署 Datakit](../../datakit/datakit-daemonset-deploy.md) >。
 
 #### 开启采集器 
 
-使用 [Daemonset 部署 Datakit](https://www.yuque.com/dataflux/integrations/kubernetes) 的 datakit.yaml 文件，上传到 kubernetes 集群 的 master 节点 /usr/local/df-demo/datakit.yaml，修改 datakit.yaml 文件，增加 ConfigMap 并挂载文件来开通 zipkin 和 prom 采集器，最终结果是部署完成的 DataKit，增加文件 /usr/local/datakit/conf.d/zipkin/zipkin.conf  是开通 zipkin 采集器，增加 /usr/local/datakit/conf.d/prom/prom_istiod.conf 文件是开通 Istiod pod 的指标采集器，增加文件 /usr/local/datakit/conf.d/prom/prom-ingressgateway.conf  是开通 ingressgateway 采集器，增加 /usr/local/datakit/conf.d/prom/prom-egressgateway.conf 文件是开通 egressgateway 的指标采集器。
+使用 [Daemonset 部署 Datakit](../../datakit/datakit-daemonset-deploy.md) 的 datakit.yaml 文件，上传到 kubernetes 集群 的 master 节点 /usr/local/df-demo/datakit.yaml，修改 datakit.yaml 文件，增加 ConfigMap 并挂载文件来开通 zipkin 和 prom 采集器，最终结果是部署完成的 DataKit，增加文件 /usr/local/datakit/conf.d/zipkin/zipkin.conf  是开通 zipkin 采集器，增加 /usr/local/datakit/conf.d/prom/prom_istiod.conf 文件是开通 Istiod pod 的指标采集器，增加文件 /usr/local/datakit/conf.d/prom/prom-ingressgateway.conf  是开通 ingressgateway 采集器，增加 /usr/local/datakit/conf.d/prom/prom-egressgateway.conf 文件是开通 egressgateway 的指标采集器。
 
 ![image](../images/istio/6.png)
 
@@ -899,7 +899,7 @@ systemctl restart nginx
 
 #### stdout
 
-datakit 默认采集输出到 /dev/stdout 的日志，如果需要使用更深层的功能，请参考<[容器日志采集](https://www.yuque.com/dataflux/datakit/container#6a1b31bb)>。
+datakit 默认采集输出到 /dev/stdout 的日志，如果需要使用更深层的功能，请参考<[容器日志采集](../../integrations/container.md)>。
 
 ![image](../images/istio/26.png)
 

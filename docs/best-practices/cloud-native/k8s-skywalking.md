@@ -10,7 +10,7 @@
 
 ### 安装 DataKit
 
-- <安装 [DataKit](https://www.yuque.com/dataflux/datakit/datakit-daemonset-deploy)>
+- <安装 [DataKit](../../datakit/datakit-daemonset-deploy.md)>
 - DataKit 接入版本 >=1.2.18
 
 ### 开启 Input 

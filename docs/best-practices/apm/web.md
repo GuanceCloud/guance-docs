@@ -47,7 +47,7 @@
 ---
 
 DF 官方目前支持的 RUM 监控方式有如下几种：
-**WEB 应用**：[[Web 应用接入 DF 监控](https://www.yuque.com/dataflux/doc/eqs7v2)]  [Web应用监控最佳实践]<br />**APP（Android & iOS）**：[ [Android 接入 DF 监控](https://www.yuque.com/dataflux/doc/pnzoyp)] [ [iOS 接入 DF 监控](https://www.yuque.com/dataflux/doc/gsto6k)] [APP监控最佳实践-待补充][]<br />**小程序（微信）**：[[微信小程序接入 DF 监控](https://www.yuque.com/dataflux/doc/clgea8)] [小程序监控最佳实践-待补充]
+**WEB 应用**：[[Web 应用接入 DF 监控](../../real-user-monitoring/web/app-access.md)]  [Web应用监控最佳实践]<br />**APP（Android & iOS）**：[ [Android 接入 DF 监控](../../mobile/index.md)] [ [iOS 接入 DF 监控](../../mobile/index.md)] [APP监控最佳实践-待补充][]<br />**小程序（微信）**：[f] [小程序监控最佳实践-待补充]
 
 ---
 

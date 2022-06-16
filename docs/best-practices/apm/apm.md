@@ -1,4 +1,4 @@
-# 分布式链路追踪(APM)最佳实践
+# 分布式链路追踪 (APM) 最佳实践
 
 ---
 
@@ -305,7 +305,7 @@ net start w3svc
 
 #### Python（ddtrace）接入
 
-[[Python 相关部署介绍](https://www.yuque.com/dataflux/datakit/ddtrace)]
+[[Python 相关部署介绍](../../datakit/ddtrace.md)]
 
 ---
 

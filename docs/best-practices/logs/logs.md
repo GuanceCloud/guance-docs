@@ -204,7 +204,8 @@ Logstreaming 支持在 HTTP URL 中添加参数，对日志数据进行操作。
 
 ![image](../images/logs/1.png)
 
-**可以通过** [DQL](https://www.yuque.com/dataflux/doc/fsnd2r) **验证上报的数据：**
+**可以通过** [DQL](../../dql/define.md) **验证上报的数据：**
+
 ```bash
 dql > L::nginx_td LIMIT 1
 -----------------[ r1.nginx_td.s1 ]-----------------
@@ -290,7 +291,7 @@ nullif(upstream, "")
 default_time(time)
 ```
 
-> 注意，切割过程中，需避免[可能出现的跟 tag key 重名的问题(Pipeline 字段命名注意事项)](https://www.yuque.com/dataflux/datakit/datakit-pl-how-to#5cf855c0)
+> 注意，切割过程中，需避免[可能出现的跟 tag key 重名的问题(Pipeline 字段命名注意事项)](../../datakit/datakit-pl-how-to.md#5cf855c0)
 
 #### 调试 Pipeline 文件
 
@@ -582,4 +583,10 @@ No data extracted from pipeline
 以采集 Fluentd 日志为例，可以在`<match> </match>`中进行日志聚合来对日志进行压缩，或者在`<match> </match>`使用中来进行事件的过滤只将错误或告警日志上报至观测云来降低使用成本。
 
 ## 更多内容
-[文本数据处理（ Pipeline ）](https://www.yuque.com/dataflux/datakit/pipeline#d29b7088)<br />[调试 Pipeline](https://www.yuque.com/dataflux/datakit/datakit-pl-how-to)<br />[日志](https://www.yuque.com/dataflux/datakit/logging)<br />[第三方日志接入](https://www.yuque.com/dataflux/datakit/logstreaming)
+[文本数据处理（ Pipeline ）](../../datakit/pipeline.md#d29b7088)<br />
+
+[调试 Pipeline](../../datakit/datakit-pl-how-to.md)<br />
+
+[日志](../../integrations/logging.md)
+
+[第三方日志接入](../../integrations/logstreaming.md)

@@ -538,7 +538,7 @@ kubectl get svc -n istio-system
 	 
 #### 5.2 打通 Gitlab 与 DataKit
 
-请参考 [gitlab 集成文档](https://www.yuque.com/dataflux/integrations/gitlab)打通 Gitlab 和 DataKit，这里只配置 Gitlab CI。<br />        登录『Gitlab』，进入『bookinfo-views』-> 『Settings』-> 『Webhooks』，在 url 中输入URL 中输入 DataKit 所在的主机 IP 和 DataKit 的 9529 端口，再加 /v1/gitlab。如下图。
+请参考 [gitlab 集成文档](../../integrations/gitlab.md) 打通 Gitlab 和 DataKit，这里只配置 Gitlab CI。<br />        登录『Gitlab』，进入『bookinfo-views』-> 『Settings』-> 『Webhooks』，在 url 中输入URL 中输入 DataKit 所在的主机 IP 和 DataKit 的 9529 端口，再加 /v1/gitlab。如下图。
 
 ![image](../images/microservices/11.png)	 
 

@@ -1106,7 +1106,7 @@
 
 ## 前置条件
 
-已安装 DataKit ([DataKit安装文档](https://www.yuque.com/dataflux/datakit/datakit-install))
+已安装 DataKit ([DataKit 安装文档](../../datakit/datakit-daemonset-deploy.md))
 
 已安装 K8s 并且已经开启 K8s 指标采集 ([Kubernetes 应用的 RUM-APM-LOG 联动分析](./cloud-native/k8s-rum-apm-log.md))
 
