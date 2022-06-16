@@ -6,6 +6,20 @@
     margin-left: 0 !important;
 }
 
+.homepage-title + a.headerlink {
+    display: none;
+}
+
+.home-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-page > img {
+    border: none !important;
+}
+
 .md-typeset img, .md-typeset svg {
     border: 0.0454rem solid #ECEEF0;
 }
@@ -80,6 +94,7 @@
 
 .md-content {
     max-width: 960px;
+    min-height: 711px;
 }
 
 .md-search-result__more summary {
@@ -285,6 +300,9 @@
 }
 
 @media screen and (max-width: 59.9375em) {
+    .md-content {
+        min-height: unset;
+    }
     .md-search__icon .zy__search {
         display: none;
     }
