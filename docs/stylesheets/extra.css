@@ -2,6 +2,10 @@
     max-width: 70rem !important;
 }
 
+.md-header__title {
+    margin-left: 0 !important;
+}
+
 .md-typeset img, .md-typeset svg {
     border: 0.0454rem solid #ECEEF0;
 }
