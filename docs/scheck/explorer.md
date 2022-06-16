@@ -1,5 +1,9 @@
 # 安全巡检查看器
 ---
+- 版本：1.0.7-3-g7183440
+- 发布日期：2022-06-16 11:26:09
+- 操作系统支持：windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64
+
 
 ## 简介
 
