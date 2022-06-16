@@ -12,7 +12,7 @@ nav:
   - 应用性能监测: application-performance-monitoring
   - 用户访问监测: real-user-monitoring
   - 可用性监测: usability-monitoring
-  - 安全巡检: security_checker
+  - 安全巡检: scheck
   - CI 可视化: ci-visibility
   - 监控: monitoring
   - 工作空间管理: management
@@ -21,5 +21,6 @@ nav:
   - DataFlux Func: dataflux-func
   - 最佳实践: best-practices
   - 移动端: mobile
+  - 常见问题: faq
   - 相关协议: agreements
 
