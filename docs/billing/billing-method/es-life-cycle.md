@@ -1,9 +1,10 @@
+# 观测云 ES多租户生命周期管理实践
 ---
 
-<a name="re3m4"></a>
+
 ## 一、生命周期管理(ilm) 
 
-<a name="kQsVI"></a>
+
 ### 1.1 数据阶段
 | **阶段名称** | **描述** | **写入** | **查询** |
 | --- | --- | --- | --- |
@@ -14,15 +15,14 @@
 | delete | 删除数据阶段 | 不能写入 | 无法查询 |
 
 
-<a name="K6UIn"></a>
 ### 1.2 索引操作
 
 
 注意：<br />（1）热数据阶段，滚动时间起始点为索引创建时间<br />（2）其他数据阶段（除了热数据阶段），时间计算起始点为滚动结束时间
-<a name="VOqr4"></a>
+
 ### 1.3 示例<br /><br />
 ![](../img/es-1.png)
-<a name="mr1bM"></a>
+
 ## 二、观测云实际应用
 
 
@@ -40,17 +40,17 @@
 | es_rp720d | 数据保存 720 天（近2年） | min_age = 0<br />rollover {30gb, 720d} | min_age = 1d<br />forcemerge {1}<br />shrink {1} | min_age=720d <br />delete |
 | es_rp7 | 数据保存 1095 天（3年） | min_age = 0<br />rollover {30gb, 1095d} | min_age = 1d<br />forcemerge {1}<br />shrink {1} | min_age=1095d <br />delete |
 
-<a name="fYPMP"></a>
+
 ## 三、常见问题
-<a name="VbdNy"></a>
+
 ### 3.1 数据保存时间缩短
 
 修改保存策略后，会滚动出新的索引，之前索引数据不会被删除，一直到满足删除日期条件才会被删除，也即之前索引数据会一直计量收费<br />![](../img/image.png)
-<a name="xng1c"></a>
+
 ### 3.2 数据保存时间变长
 
 修改保存策略后，会滚动出新的索引，之前索引数据保存时间不会变长，新的索引保存时间使用新的配置<br />![](../img/image.png)
-<a name="Wkb67"></a>
+
 ## 四、参考<br /><br />
 [ILM: Manage the index lifecycleedit](https://www.elastic.co/guide/en/elasticsearch/reference/current/index-lifecycle-management.html)<br />[使用索引生命周期管理实现热温冷架构](https://www.elastic.co/cn/blog/implementing-hot-warm-cold-in-elasticsearch-with-index-lifecycle-management)<br />[【最新】Elasticsearch 6.6 Index Lifecycle Management 尝鲜](https://elasticsearch.cn/article/6358)
 
