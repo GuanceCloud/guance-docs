@@ -5,6 +5,7 @@ mkdocs-section-index==0.3.4
 jieba==0.42.1
 Markdown==3.3.7
 pymdown-extensions==9.4
+markupsafe==2.0.1
 
 # mkdocs-material 8.2.15 depends on jinja2>=2.11.1
 Jinja2==2.11.1
