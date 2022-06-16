@@ -254,103 +254,6 @@ spec:
 
 
 
-#### `kube_pod`
-
-Kubernetes pod 指标数据
-
-- 标签
-
-
-| 标签名 | 描述    |
-|  ----  | --------|
-|`namespace`|Namespace defines the space within each name must be unique.|
-|`pod`|Name must be unique within a namespace.|
-
-- 指标列表
-
-
-| 指标 | 描述| 数据类型 | 单位   |
-| ---- |---- | :---:    | :----: |
-|`count`|Number of pods|int|count|
-|`cpu_usage`|The percentage of cpu used|float|percent|
-|`memory_usage_bytes`|The number of memory used in bytes|float|B|
-|`ready`|Describes whether the pod is ready to serve requests.|int|count|
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#### `kube_daemonset`
-
-Kubernetes Daemonset 指标数据
-
-- 标签
-
-
-| 标签名 | 描述    |
-|  ----  | --------|
-|`daemonset`|Name must be unique within a namespace.|
-|`namespace`|Namespace defines the space within each name must be unique.|
-
-- 指标列表
-
-
-| 指标 | 描述| 数据类型 | 单位   |
-| ---- |---- | :---:    | :----: |
-|`count`|Number of daemonsets|int|count|
-|`daemons_unavailable`|The number of nodes that should be running the daemon pod and have none of the daemon pod running and available (ready for at least spec.minReadySeconds).|int|count|
-|`desired`|The total number of nodes that should be running the daemon pod (including nodes correctly running the daemon pod).|int|count|
-|`misscheduled`|The number of nodes that are running the daemon pod, but are not supposed to run the daemon pod.|int|count|
-|`ready`|The number of nodes that should be running the daemon pod and have one or more of the daemon pod running and ready.|int|count|
-|`scheduled`|The number of nodes that are running at least one daemon pod and are supposed to run the daemon pod.|int|count|
-|`updated`|The total number of nodes that are running updated daemon pod.|int|count|
-
-
-
-
-
-
-#### `kube_job`
-
-Kubernetes Job 指标数据
-
-- 标签
-
-
-| 标签名 | 描述    |
-|  ----  | --------|
-|`job`|Name must be unique within a namespace.|
-|`namespace`|Namespace defines the space within each name must be unique.|
-
-- 指标列表
-
-
-| 指标 | 描述| 数据类型 | 单位   |
-| ---- |---- | :---:    | :----: |
-|`completion_failed`|The job has failed its execution.|int|count|
-|`completion_succeeded`|The job has completed its execution.|int|count|
-|`count`|Number of jobs|int|count|
-|`failed`|The number of pods which reached phase Failed.|int|count|
-|`succeeded`|The number of pods which reached phase Succeeded.|int|count|
-
-
-
-
-
-
 
 
 
@@ -388,78 +291,6 @@ Kubernetes Node 指标数据
 
 
 
-
-
-#### `docker_containers`
-
-容器指标数据，只采集正在运行的容器
-
-- 标签
-
-
-| 标签名 | 描述    |
-|  ----  | --------|
-|`container_id`|容器 ID|
-|`container_name`|容器名称（containerd 容器会在 labels 中取 'io.kubernetes.container.name'，如果值为空则默认是 unknown|
-|`container_type`|容器类型，表明该容器由谁创建，kubernetes/docker/containerd|
-|`deployment`|deployment 名称（容器由 k8s 创建时存在，containerd 缺少此字段）|
-|`docker_image`|镜像全称，例如 `nginx.org/nginx:1.21.0` （Depercated, use image）|
-|`image`|镜像全称，例如 `nginx.org/nginx:1.21.0`|
-|`image_name`|镜像名称，例如 `nginx.org/nginx`|
-|`image_short_name`|镜像名称精简版，例如 `nginx`|
-|`image_tag`|镜像 tag，例如 `1.21.0`|
-|`linux_namespace`|该容器所在的 [linux namespace](https://man7.org/linux/man-pages/man7/namespaces.7.html)|
-|`namespace`|pod 的 k8s 命名空间（k8s 创建容器时，会打上一个形如 'io.kubernetes.pod.namespace' 的 label，DataKit 将其命名为 'namespace'）|
-|`pod_name`|pod 名称（容器由 k8s 创建时存在）|
-|`state`|运行状态，running（containerd 缺少此字段）|
-
-- 指标列表
-
-
-| 指标 | 描述| 数据类型 | 单位   |
-| ---- |---- | :---:    | :----: |
-|`block_read_byte`|从容器文件系统读取的总字节数（containerd 缺少此字段）|int|B|
-|`block_write_byte`|向容器文件系统写入的总字节数（containerd 缺少此字段）|int|B|
-|`cpu_delta`|容器 CPU 增量（containerd 缺少此字段）|int|ns|
-|`cpu_numbers`|CPU 核心数（containerd 缺少此字段）|int|count|
-|`cpu_system_delta`|系统 CPU 增量，仅支持 Linux（containerd 缺少此字段）|int|ns|
-|`cpu_usage`|CPU 占主机总量的使用率|float|percent|
-|`mem_failed_count`|内存分配失败的次数（containerd 缺少此字段）|int|B|
-|`mem_limit`|内存可用总量，如果未对容器做内存限制，则为主机内存容量|int|B|
-|`mem_usage`|内存使用量|int|B|
-|`mem_used_percent`|内存使用率，使用量除以可用总量|float|percent|
-|`network_bytes_rcvd`|从网络接收到的总字节数（containerd 缺少此字段）|int|B|
-|`network_bytes_sent`|向网络发送出的总字节数（containerd 缺少此字段）|int|B|
-
-
-
-
-
-
-
-
-
-
-#### `kube_cronjob`
-
-Kubernetes cron job 指标数据
-
-- 标签
-
-
-| 标签名 | 描述    |
-|  ----  | --------|
-|`cronjob`|Name must be unique within a namespace.|
-|`namespace`|Namespace defines the space within each name must be unique.|
-
-- 指标列表
-
-
-| 指标 | 描述| 数据类型 | 单位   |
-| ---- |---- | :---:    | :----: |
-|`count`|Number of cronjobs|int|count|
-|`duration_since_last_schedule`|The duration since the last time the cronjob was scheduled.|int|s|
-|`spec_suspend`|This flag tells the controller to suspend subsequent executions.|bool|-|
 
 
 
@@ -543,6 +374,88 @@ Kubernetes Deployment 指标数据
 
 
 
+#### `kube_job`
+
+Kubernetes Job 指标数据
+
+- 标签
+
+
+| 标签名 | 描述    |
+|  ----  | --------|
+|`job`|Name must be unique within a namespace.|
+|`namespace`|Namespace defines the space within each name must be unique.|
+
+- 指标列表
+
+
+| 指标 | 描述| 数据类型 | 单位   |
+| ---- |---- | :---:    | :----: |
+|`completion_failed`|The job has failed its execution.|int|count|
+|`completion_succeeded`|The job has completed its execution.|int|count|
+|`count`|Number of jobs|int|count|
+|`failed`|The number of pods which reached phase Failed.|int|count|
+|`succeeded`|The number of pods which reached phase Succeeded.|int|count|
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#### `docker_containers`
+
+容器指标数据，只采集正在运行的容器
+
+- 标签
+
+
+| 标签名 | 描述    |
+|  ----  | --------|
+|`container_id`|容器 ID|
+|`container_name`|容器名称（containerd 容器会在 labels 中取 'io.kubernetes.container.name'，如果值为空则默认是 unknown|
+|`container_type`|容器类型，表明该容器由谁创建，kubernetes/docker/containerd|
+|`deployment`|deployment 名称（容器由 k8s 创建时存在，containerd 缺少此字段）|
+|`docker_image`|镜像全称，例如 `nginx.org/nginx:1.21.0` （Depercated, use image）|
+|`image`|镜像全称，例如 `nginx.org/nginx:1.21.0`|
+|`image_name`|镜像名称，例如 `nginx.org/nginx`|
+|`image_short_name`|镜像名称精简版，例如 `nginx`|
+|`image_tag`|镜像 tag，例如 `1.21.0`|
+|`linux_namespace`|该容器所在的 [linux namespace](https://man7.org/linux/man-pages/man7/namespaces.7.html)|
+|`namespace`|pod 的 k8s 命名空间（k8s 创建容器时，会打上一个形如 'io.kubernetes.pod.namespace' 的 label，DataKit 将其命名为 'namespace'）|
+|`pod_name`|pod 名称（容器由 k8s 创建时存在）|
+|`state`|运行状态，running（containerd 缺少此字段）|
+
+- 指标列表
+
+
+| 指标 | 描述| 数据类型 | 单位   |
+| ---- |---- | :---:    | :----: |
+|`block_read_byte`|从容器文件系统读取的总字节数（containerd 缺少此字段）|int|B|
+|`block_write_byte`|向容器文件系统写入的总字节数（containerd 缺少此字段）|int|B|
+|`cpu_delta`|容器 CPU 增量（containerd 缺少此字段）|int|ns|
+|`cpu_numbers`|CPU 核心数（containerd 缺少此字段）|int|count|
+|`cpu_system_delta`|系统 CPU 增量，仅支持 Linux（containerd 缺少此字段）|int|ns|
+|`cpu_usage`|CPU 占主机总量的使用率|float|percent|
+|`mem_failed_count`|内存分配失败的次数（containerd 缺少此字段）|int|B|
+|`mem_limit`|内存可用总量，如果未对容器做内存限制，则为主机内存容量|int|B|
+|`mem_usage`|内存使用量|int|B|
+|`mem_used_percent`|内存使用率，使用量除以可用总量|float|percent|
+|`network_bytes_rcvd`|从网络接收到的总字节数（containerd 缺少此字段）|int|B|
+|`network_bytes_sent`|向网络发送出的总字节数（containerd 缺少此字段）|int|B|
+
+
 
 
 
@@ -577,6 +490,66 @@ Kubernetes count 指标数据
 
 
 
+
+
+
+
+#### `kube_cronjob`
+
+Kubernetes cron job 指标数据
+
+- 标签
+
+
+| 标签名 | 描述    |
+|  ----  | --------|
+|`cronjob`|Name must be unique within a namespace.|
+|`namespace`|Namespace defines the space within each name must be unique.|
+
+- 指标列表
+
+
+| 指标 | 描述| 数据类型 | 单位   |
+| ---- |---- | :---:    | :----: |
+|`count`|Number of cronjobs|int|count|
+|`duration_since_last_schedule`|The duration since the last time the cronjob was scheduled.|int|s|
+|`spec_suspend`|This flag tells the controller to suspend subsequent executions.|bool|-|
+
+
+
+
+
+
+#### `kube_daemonset`
+
+Kubernetes Daemonset 指标数据
+
+- 标签
+
+
+| 标签名 | 描述    |
+|  ----  | --------|
+|`daemonset`|Name must be unique within a namespace.|
+|`namespace`|Namespace defines the space within each name must be unique.|
+
+- 指标列表
+
+
+| 指标 | 描述| 数据类型 | 单位   |
+| ---- |---- | :---:    | :----: |
+|`count`|Number of daemonsets|int|count|
+|`daemons_unavailable`|The number of nodes that should be running the daemon pod and have none of the daemon pod running and available (ready for at least spec.minReadySeconds).|int|count|
+|`desired`|The total number of nodes that should be running the daemon pod (including nodes correctly running the daemon pod).|int|count|
+|`misscheduled`|The number of nodes that are running the daemon pod, but are not supposed to run the daemon pod.|int|count|
+|`ready`|The number of nodes that should be running the daemon pod and have one or more of the daemon pod running and ready.|int|count|
+|`scheduled`|The number of nodes that are running at least one daemon pod and are supposed to run the daemon pod.|int|count|
+|`updated`|The total number of nodes that are running updated daemon pod.|int|count|
+
+
+
+
+
+
 #### `kube_endpoint`
 
 Kubernetes Endpoints 指标数据
@@ -603,84 +576,36 @@ Kubernetes Endpoints 指标数据
 
 
 
+#### `kube_pod`
+
+Kubernetes pod 指标数据
+
+- 标签
+
+
+| 标签名 | 描述    |
+|  ----  | --------|
+|`namespace`|Namespace defines the space within each name must be unique.|
+|`pod`|Name must be unique within a namespace.|
+
+- 指标列表
+
+
+| 指标 | 描述| 数据类型 | 单位   |
+| ---- |---- | :---:    | :----: |
+|`count`|Number of pods|int|count|
+|`cpu_usage`|The percentage of cpu used|float|percent|
+|`memory_usage_bytes`|The number of memory used in bytes|float|B|
+|`ready`|Describes whether the pod is ready to serve requests.|int|count|
+
+
+
+
+
+
 
 
 ### 对象 {#objects}
-
-
-
-
-
-
-
-
-
-#### `kubelet_pod`
-
-Kubernetes pod 对象数据
-
-- 标签
-
-
-| 标签名 | 描述    |
-|  ----  | --------|
-|`cluster_name`|The name of the cluster which the object belongs to.|
-|`deployment`|The name of the deployment which the object belongs to. (Probably empty)|
-|`name`|UID|
-|`namespace`|Namespace defines the space within each name must be unique.|
-|`node_name`|NodeName is a request to schedule this pod onto a specific node.|
-|`phase`|The phase of a Pod is a simple, high-level summary of where the Pod is in its lifecycle.(Pending/Running/Succeeded/Failed/Unknown)|
-|`pod_name`|Name must be unique within a namespace.|
-|`qos_class`|The Quality of Service (QOS) classification assigned to the pod based on resource requirements|
-|`replica_set`|The name of the replicaSet which the object belongs to. (Probably empty)|
-|`state`|Reason the container is not yet running. (Depercated, use status)|
-|`status`|Reason the container is not yet running.|
-
-- 指标列表
-
-
-| 指标 | 描述| 数据类型 | 单位   |
-| ---- |---- | :---:    | :----: |
-|`age`|age (seconds)|int|s|
-|`available`|Number of containers|string|-|
-|`cpu_usage`|The percentage of cpu used|float|percent|
-|`create_time`|CreationTimestamp is a timestamp representing the server time when this object was created.(milliseconds)|int|sec|
-|`memory_usage_bytes`|The number of memory used in bytes|float|B|
-|`message`|object details|string|-|
-|`ready`|Describes whether the pod is ready to serve requests.|string|-|
-|`restart`|The number of times the container has been restarted. (Depercated, use restarts)|int|count|
-|`restarts`|The number of times the container has been restarted.|int|count|
-
-
-
-
-
-
-#### `kubernetes_replica_sets`
-
-Kubernetes replicaset 对象数据
-
-- 标签
-
-
-| 标签名 | 描述    |
-|  ----  | --------|
-|`cluster_name`|The name of the cluster which the object belongs to.|
-|`deployment`|The name of the deployment which the object belongs to.|
-|`name`|UID|
-|`namespace`|Namespace defines the space within each name must be unique.|
-|`replica_set_name`|Name must be unique within a namespace.|
-
-- 指标列表
-
-
-| 指标 | 描述| 数据类型 | 单位   |
-| ---- |---- | :---:    | :----: |
-|`age`|age (seconds)|int|s|
-|`available`|The number of available replicas (ready for at least minReadySeconds) for this replica set.|int|-|
-|`message`|object details|string|-|
-|`ready`|The number of ready replicas for this replica set.|int|-|
-
 
 
 
@@ -724,9 +649,9 @@ Kubernetes cron job 对象数据
 
 
 
-#### `kubernetes_jobs`
+#### `kubernetes_deployments`
 
-Kubernetes Job 对象数据
+Kubernetes Deployment 对象数据
 
 - 标签
 
@@ -734,7 +659,7 @@ Kubernetes Job 对象数据
 | 标签名 | 描述    |
 |  ----  | --------|
 |`cluster_name`|The name of the cluster which the object belongs to.|
-|`job_name`|Name must be unique within a namespace.|
+|`deployment_name`|Name must be unique within a namespace.|
 |`name`|UID|
 |`namespace`|Namespace defines the space within each name must be unique.|
 
@@ -743,19 +668,47 @@ Kubernetes Job 对象数据
 
 | 指标 | 描述| 数据类型 | 单位   |
 | ---- |---- | :---:    | :----: |
-|`active`|The number of actively running pods.|int|count|
-|`active_deadline`|Specifies the duration in seconds relative to the startTime that the job may be active before the system tries to terminate it|int|s|
 |`age`|age (seconds)|int|s|
-|`backoff_limit`|Specifies the number of retries before marking this job failed.|int|count|
-|`completions`|Specifies the desired number of successfully finished pods the job should be run with.|int|count|
-|`failed`|The number of pods which reached phase Failed.|int|count|
+|`available`|Total number of available pods (ready for at least minReadySeconds) targeted by this deployment.|int|-|
+|`max_surge`|The maximum number of pods that can be scheduled above the desired number of pods|int|count|
+|`max_unavailable`|The maximum number of pods that can be unavailable during the update.|int|count|
 |`message`|object details|string|-|
-|`parallelism`|Specifies the maximum desired number of pods the job should run at any given time.|int|count|
-|`succeeded`|The number of pods which reached phase Succeeded.|int|count|
+|`ready`|Total number of ready pods targeted by this deployment.|string|-|
+|`strategy`|Type of deployment. Can be "Recreate" or "RollingUpdate". Default is RollingUpdate.|string|-|
+|`unavailable`|Total number of unavailable pods targeted by this deployment.|int|-|
+|`up_dated`|Total number of non-terminated pods targeted by this deployment that have the desired template spec.|int|-|
 
 
 
 
+
+
+#### `kubernetes_nodes`
+
+Kubernetes node 对象数据
+
+- 标签
+
+
+| 标签名 | 描述    |
+|  ----  | --------|
+|`cluster_name`|The name of the cluster which the object belongs to.|
+|`internal_ip`|Node internal IP|
+|`name`|UID|
+|`namespace`|Namespace defines the space within each name must be unique.|
+|`node_ip`|Node IP (depercated)|
+|`node_name`|Name must be unique within a namespace.|
+|`role`|Node role. (master/node)|
+|`status`|NodePhase is the recently observed lifecycle phase of the node. (Pending/Running/Terminated)|
+
+- 指标列表
+
+
+| 指标 | 描述| 数据类型 | 单位   |
+| ---- |---- | :---:    | :----: |
+|`age`|age (seconds)|int|s|
+|`kubelet_version`|Kubelet Version reported by the node.|string|-|
+|`message`|object details|string|-|
 
 
 
@@ -827,32 +780,6 @@ Kubernetes Job 对象数据
 
 
 
-#### `kubernetes_nodes`
-
-Kubernetes node 对象数据
-
-- 标签
-
-
-| 标签名 | 描述    |
-|  ----  | --------|
-|`cluster_name`|The name of the cluster which the object belongs to.|
-|`internal_ip`|Node internal IP|
-|`name`|UID|
-|`namespace`|Namespace defines the space within each name must be unique.|
-|`node_ip`|Node IP (depercated)|
-|`node_name`|Name must be unique within a namespace.|
-|`role`|Node role. (master/node)|
-|`status`|NodePhase is the recently observed lifecycle phase of the node. (Pending/Running/Terminated)|
-
-- 指标列表
-
-
-| 指标 | 描述| 数据类型 | 单位   |
-| ---- |---- | :---:    | :----: |
-|`age`|age (seconds)|int|s|
-|`kubelet_version`|Kubelet Version reported by the node.|string|-|
-|`message`|object details|string|-|
 
 
 
@@ -861,11 +788,9 @@ Kubernetes node 对象数据
 
 
 
+#### `kubernetes_jobs`
 
-
-#### `kubernetes_cluster_roles`
-
-Kubernetes cluster role 对象数据
+Kubernetes Job 对象数据
 
 - 标签
 
@@ -873,34 +798,7 @@ Kubernetes cluster role 对象数据
 | 标签名 | 描述    |
 |  ----  | --------|
 |`cluster_name`|The name of the cluster which the object belongs to.|
-|`cluster_role_name`|Name must be unique within a namespace.|
-|`name`|UID|
-
-- 指标列表
-
-
-| 指标 | 描述| 数据类型 | 单位   |
-| ---- |---- | :---:    | :----: |
-|`age`|age (seconds)|int|s|
-|`create_time`|CreationTimestamp is a timestamp representing the server time when this object was created.(milliseconds)|int|sec|
-|`message`|object details|string|-|
-
-
-
-
-
-
-#### `kubernetes_deployments`
-
-Kubernetes Deployment 对象数据
-
-- 标签
-
-
-| 标签名 | 描述    |
-|  ----  | --------|
-|`cluster_name`|The name of the cluster which the object belongs to.|
-|`deployment_name`|Name must be unique within a namespace.|
+|`job_name`|Name must be unique within a namespace.|
 |`name`|UID|
 |`namespace`|Namespace defines the space within each name must be unique.|
 
@@ -909,35 +807,45 @@ Kubernetes Deployment 对象数据
 
 | 指标 | 描述| 数据类型 | 单位   |
 | ---- |---- | :---:    | :----: |
+|`active`|The number of actively running pods.|int|count|
+|`active_deadline`|Specifies the duration in seconds relative to the startTime that the job may be active before the system tries to terminate it|int|s|
 |`age`|age (seconds)|int|s|
-|`available`|Total number of available pods (ready for at least minReadySeconds) targeted by this deployment.|int|-|
-|`max_surge`|The maximum number of pods that can be scheduled above the desired number of pods|int|count|
-|`max_unavailable`|The maximum number of pods that can be unavailable during the update.|int|count|
+|`backoff_limit`|Specifies the number of retries before marking this job failed.|int|count|
+|`completions`|Specifies the desired number of successfully finished pods the job should be run with.|int|count|
+|`failed`|The number of pods which reached phase Failed.|int|count|
 |`message`|object details|string|-|
-|`ready`|Total number of ready pods targeted by this deployment.|string|-|
-|`strategy`|Type of deployment. Can be "Recreate" or "RollingUpdate". Default is RollingUpdate.|string|-|
-|`unavailable`|Total number of unavailable pods targeted by this deployment.|int|-|
-|`up_dated`|Total number of non-terminated pods targeted by this deployment that have the desired template spec.|int|-|
+|`parallelism`|Specifies the maximum desired number of pods the job should run at any given time.|int|count|
+|`succeeded`|The number of pods which reached phase Succeeded.|int|count|
 
 
 
 
 
 
+#### `kubernetes_replica_sets`
+
+Kubernetes replicaset 对象数据
+
+- 标签
 
 
+| 标签名 | 描述    |
+|  ----  | --------|
+|`cluster_name`|The name of the cluster which the object belongs to.|
+|`deployment`|The name of the deployment which the object belongs to.|
+|`name`|UID|
+|`namespace`|Namespace defines the space within each name must be unique.|
+|`replica_set_name`|Name must be unique within a namespace.|
+
+- 指标列表
 
 
-
-
-
-
-
-
-
-
-
-
+| 指标 | 描述| 数据类型 | 单位   |
+| ---- |---- | :---:    | :----: |
+|`age`|age (seconds)|int|s|
+|`available`|The number of available replicas (ready for at least minReadySeconds) for this replica set.|int|-|
+|`message`|object details|string|-|
+|`ready`|The number of ready replicas for this replica set.|int|-|
 
 
 
@@ -975,6 +883,98 @@ Kubernetes service 对象数据
 
 
 
+
+
+
+
+
+
+
+
+
+
+#### `kubernetes_cluster_roles`
+
+Kubernetes cluster role 对象数据
+
+- 标签
+
+
+| 标签名 | 描述    |
+|  ----  | --------|
+|`cluster_name`|The name of the cluster which the object belongs to.|
+|`cluster_role_name`|Name must be unique within a namespace.|
+|`name`|UID|
+
+- 指标列表
+
+
+| 指标 | 描述| 数据类型 | 单位   |
+| ---- |---- | :---:    | :----: |
+|`age`|age (seconds)|int|s|
+|`create_time`|CreationTimestamp is a timestamp representing the server time when this object was created.(milliseconds)|int|sec|
+|`message`|object details|string|-|
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#### `kubelet_pod`
+
+Kubernetes pod 对象数据
+
+- 标签
+
+
+| 标签名 | 描述    |
+|  ----  | --------|
+|`cluster_name`|The name of the cluster which the object belongs to.|
+|`deployment`|The name of the deployment which the object belongs to. (Probably empty)|
+|`name`|UID|
+|`namespace`|Namespace defines the space within each name must be unique.|
+|`node_name`|NodeName is a request to schedule this pod onto a specific node.|
+|`phase`|The phase of a Pod is a simple, high-level summary of where the Pod is in its lifecycle.(Pending/Running/Succeeded/Failed/Unknown)|
+|`pod_name`|Name must be unique within a namespace.|
+|`qos_class`|The Quality of Service (QOS) classification assigned to the pod based on resource requirements|
+|`replica_set`|The name of the replicaSet which the object belongs to. (Probably empty)|
+|`state`|Reason the container is not yet running. (Depercated, use status)|
+|`status`|Reason the container is not yet running.|
+
+- 指标列表
+
+
+| 指标 | 描述| 数据类型 | 单位   |
+| ---- |---- | :---:    | :----: |
+|`age`|age (seconds)|int|s|
+|`available`|Number of containers|string|-|
+|`cpu_usage`|The percentage of cpu used|float|percent|
+|`create_time`|CreationTimestamp is a timestamp representing the server time when this object was created.(milliseconds)|int|sec|
+|`memory_usage_bytes`|The number of memory used in bytes|float|B|
+|`message`|object details|string|-|
+|`ready`|Describes whether the pod is ready to serve requests.|string|-|
+|`restart`|The number of times the container has been restarted. (Depercated, use restarts)|int|count|
+|`restarts`|The number of times the container has been restarted.|int|count|
+
+
+
+
 ### 日志 {#logging}
 
 
@@ -989,36 +989,31 @@ Kubernetes service 对象数据
 
 
 
+#### `容器日志`
+
+日志来源设置，参见[这里](container#6de978c3)
+
+- 标签
 
 
+| 标签名 | 描述    |
+|  ----  | --------|
+|`container_id`|容器ID|
+|`container_name`|容器名称|
+|`container_type`|容器类型，表明该容器由谁创建，kubernetes/docker|
+|`deployment`|deployment 名称（容器由 k8s 创建时存在，containerd 日志缺少此字段）|
+|`namespace`|pod 的 k8s 命名空间（k8s 创建容器时，会打上一个形如 'io.kubernetes.pod.namespace' 的 label，DataKit 将其命名为 'namespace'）|
+|`pod_name`|pod 名称（容器由 k8s 创建时存在）|
+|`service`|服务名称|
+|`stream`|数据流方式，stdout/stderr/tty（containerd 日志缺少此字段）|
+
+- 字段列表
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+| 指标 | 描述| 数据类型 | 单位   |
+| ---- |---- | :---:    | :----: |
+|`message`|日志源数据|string|-|
+|`status`|日志状态，info/emerg/alert/critical/error/warning/debug/OK/unknown|string|-|
 
 
 
@@ -1078,31 +1073,36 @@ Kubernetes event 日志数据
 
 
 
-#### `容器日志`
-
-日志来源设置，参见[这里](container#6de978c3)
-
-- 标签
 
 
-| 标签名 | 描述    |
-|  ----  | --------|
-|`container_id`|容器ID|
-|`container_name`|容器名称|
-|`container_type`|容器类型，表明该容器由谁创建，kubernetes/docker|
-|`deployment`|deployment 名称（容器由 k8s 创建时存在，containerd 日志缺少此字段）|
-|`namespace`|pod 的 k8s 命名空间（k8s 创建容器时，会打上一个形如 'io.kubernetes.pod.namespace' 的 label，DataKit 将其命名为 'namespace'）|
-|`pod_name`|pod 名称（容器由 k8s 创建时存在）|
-|`service`|服务名称|
-|`stream`|数据流方式，stdout/stderr/tty（containerd 日志缺少此字段）|
-
-- 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
-| ---- |---- | :---:    | :----: |
-|`message`|日志源数据|string|-|
-|`status`|日志状态，info/emerg/alert/critical/error/warning/debug/OK/unknown|string|-|
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
