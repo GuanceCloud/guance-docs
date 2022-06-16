@@ -7,7 +7,8 @@
 
 ## 数据采集
 
-登录控制台，进入「集成」页面，即可查看所有支持的采集器。同时可点击「集成」-「DataKit」，选择 安装系统、系统类型、DataWay 地址等信息，即可复制「安装指令」安装DataKit，安装完成后即可开启更多采集器收集数据指标。[了解更多如何安装DataKit](https://www.yuque.com/dataflux/datakit/datakit-install)。
+登录控制台，进入「集成」页面，即可查看所有支持的采集器。同时可点击「集成」-「DataKit」，选择 安装系统、系统类型、DataWay 地址等信息，即可复制「安装指令」安装DataKit，安装完成后即可开启更多采集器收集数据指标。[了解更多如何安装DataKit](../datakit/datakit-install.md)。
+
 ![](img/2.datakit_1.png)
 
 ## 删除指标数据

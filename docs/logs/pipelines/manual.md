@@ -7,7 +7,7 @@ Pipeline 支持对不同格式的日志数据进行文本解析，通过编写 P
 
 ## 前置条件
 
-1. 您需要先创建一个[观测云账号](https://www.guance.com/)，并在您的主机上[安装 DataKit](../datakit/datakit-install.md) ；
+1. 您需要先创建一个[观测云账号](https://www.guance.com/)，并在您的主机上[安装 DataKit](../../datakit/datakit-install.md) ；
 1. 开启日志采集器，并在配置文件中打开 Pipeline 功能；
 
 ## 自定义 Pipeline 脚本文件
@@ -150,7 +150,7 @@ default_time(time)       # 将 time 字段作为输出数据的时间戳
         # ...
 ```
 
-配置完成后，使用命令行`datakit --restart`重启 DataKit 使配置生效。更多 Nginx 采集器配置可参考文档 [Nginx](../integrations/nginx.md) 。
+配置完成后，使用命令行`datakit --restart`重启 DataKit 使配置生效。更多 Nginx 采集器配置可参考文档 [Nginx](../../integrations/nginx.md) 。
 ### 步骤二：根据采集的日志，确定切割字段
 
 开启 Nginx 采集器，配置日志文件路径，开启 Pipeline 以后，即可在观测云工作空间查看采集到的 Nginx 日志，在日志详情中，可查看按照 Pipeline 文件切割的字段属性。观察和分析日志，确定是否需要优化切割的字段。
@@ -208,5 +208,5 @@ default_time(time)       # 将 time 字段作为输出数据的时间戳
 
 - [文本数据处理（Pipeline）](../../datakit/pipeline.md)
 - [如何编写 Pipeline 脚本](../../datakit/datakit-pl-how-to.md)
-- [日志](../integrations/logging.md)
-- [第三方日志接入](../integrations/logstreaming.md)
+- [日志](../../integrations/logging.md)
+- [第三方日志接入](../../integrations/logstreaming.md)
