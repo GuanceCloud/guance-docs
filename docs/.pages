@@ -20,5 +20,6 @@ nav:
   - OpenAPI: open-api
   - DataFlux Func: dataflux-func
   - 最佳实践: best-practices
+  - 移动端: mobile
   - 相关协议: agreements
 
