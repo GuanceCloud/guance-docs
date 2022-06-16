@@ -16,8 +16,6 @@
     align-items: center;
 }
 
-
-
 .home-page > img {
     border: none !important;
 }
@@ -302,6 +300,9 @@
 }
 
 @media screen and (max-width: 59.9375em) {
+    .md-content {
+        min-height: unset;
+    }
     .md-search__icon .zy__search {
         display: none;
     }
