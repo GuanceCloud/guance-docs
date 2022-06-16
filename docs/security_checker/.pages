@@ -1,14 +1,15 @@
 nav:
     - index.md
-    - '数据采集': data-collection.md
-    - '生成指标': generate-metrics.md
-    - '安全巡检分析': explorer.md
     - "Scheck 版本历史": changelog.md
-    - "Scheck 使用入门": scheck-how-to.md
-    - "Scheck 最佳实践": best-practices.md
     - "Scheck 安装、配置":
         - "Scheck 安装": scheck-install.md
         - "Scheck 配置": scheck-configure.md
+        - "安装配置示例": example.md
+
+    - '安全巡检查看器': explorer.md
+    - '生成指标': generate-metrics.md
+    - "Scheck 使用入门": scheck-how-to.md
+    - "Scheck 最佳实践": best-practices.md
     - "Scheck 多端输出":
         - "Scheck 连接Datakit": join-datakit.md
         - "Scheck 连接阿里云日志": join-sls.md
