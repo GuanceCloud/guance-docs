@@ -66,4 +66,4 @@ curl "http://testing-ft2x-open-api.cloudcare.cn/api/v1/dashboards/${dashboard_uu
 
 ## 说明
 
-${DF_API_KEY}：  表示调用者 API KEY，获取方式见[API Key 管理](https://www.yuque.com/dataflux/doc/ag17mc)
+${DF_API_KEY}：  表示调用者 API KEY，获取方式见[API Key 管理](../management/api-key/open-api.md)
