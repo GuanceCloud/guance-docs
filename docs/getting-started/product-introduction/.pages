@@ -1,0 +1,7 @@
+nav:
+  - index.md
+  - '前言': preface.md
+  - '产品优势': advantages.md
+  - '客户价值': customer-value.md
+  - '按量的商业模式': business-model.md
+  - '名词解释': glossary.md
