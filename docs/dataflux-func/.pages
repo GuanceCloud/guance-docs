@@ -1,7 +1,8 @@
 nav:
 
   - 手册:
-    - 快速开始: quick-start.md
+    - guide-doc-intro.md
+    - quick-start.md
     - development-guide.md
     - maintenance-guide.md
     - deploy-via-helm-guide.md
@@ -9,7 +10,8 @@ nav:
     - trouble-shooting.md
 
   - 实践:
-    - 连接并操作DataKit: connect-to-datakit.md
+    - practice-doc-intro.md
+    - connect-to-datakit.md
     - write-data-via-datakit.md
     - query-data-via-datakit-for-datav.md
     - run-on-raspberry-pi-os.md
@@ -17,10 +19,11 @@ nav:
     - guance-alert-webhook-integration.md
 
   - 脚本市场:
-    - script-market-intro.md
+    - script-market-doc-intro.md
+    - 基本操作: script-market-basic-usage.md
     - 观测云集成:
-      - script-market-guance-integration-intro.md
-      - 阿里云采集:
+      - script-market-guance-integration.md
+      - 阿里云采集器:
         - 云监控: script-market-guance-aliyun-monitor.md
         - ECS  : script-market-guance-aliyun-ecs.md
         - RDS  : script-market-guance-aliyun-rds.md
@@ -31,13 +34,13 @@ nav:
         - CDN  : script-market-guance-aliyun-cdn.md
         - NAT  : script-market-guance-aliyun-nat.md
         - Mongo: script-market-guance-aliyun-mongodb.md
-      - AWS采集:
+      - AWS采集器:
         - 云监控: script-market-guance-aws-cloudwatch.md
         - EC2: script-market-guance-aws-ec2.md
         - RDS: script-market-guance-aws-rds.md
         - ELB: script-market-guance-aws-elb.md
         - S3 : script-market-guance-aws-s3.md
-      - 腾讯云采集:
+      - 腾讯云采集器:
         - 云监控: script-market-guance-tencentcloud-monitor.md
         - CVM: script-market-guance-tencentcloud-cvm.md
         - CDB: script-market-guance-tencentcloud-cdb.md
