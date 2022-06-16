@@ -20,7 +20,7 @@
 
 ![](../img/13.logging_2.png)
 
-`logfiles`的地址可通过`ls /var/log`查看是哪个目录，并通过`tail -f /var/log/syslog`确认该目录下是否有日志。更多配置可参考文档 [日志采集器](https://www.yuque.com/dataflux/datakit/logging) 。
+`logfiles`的地址可通过`ls /var/log`查看是哪个目录，并通过`tail -f /var/log/syslog`确认该目录下是否有日志。更多配置可参考文档 [日志采集器](../../integrations/logging.md) 。
 
 ![](../img/13.logging_1.png)
 
