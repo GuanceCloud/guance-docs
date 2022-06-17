@@ -107,13 +107,12 @@ kubectl apply -f deploy.yaml
             # measurement_prefix = ""
             measurement_name = "prom_ingress"
             interval = "10s"
-            # tags_ignore = ["xxxx"]
+            tags_ignore = ["build","le","method","release","repository"]
             [[inputs.prom.measurements]]
               prefix = "nginx_ingress_controller_"
               name = "prom_ingress"
             [inputs.prom.tags]
             namespace = "$NAMESPACE"
-            pod_name = "$PODNAME"
             
 ```
 
@@ -125,18 +124,18 @@ kubectl apply -f deploy.yaml
 
 - url:   Exporter URLs，多个url用逗号分割，示例["[http://127.0.0.1:9100/metrics",](http://127.0.0.1:9100/metrics",) "[http://127.0.0.1:9200/metrics"]](http://127.0.0.1:9200/metrics"])
 
-- source:  采集器别名
-- metric_types:  指标类型，可选值是 counter,  gauge,  histogram, summary
-- measurement_name:  指标集名称
-- interval: 采集频率
-- inputs.prom.measurements: 指标集为 prefix 的前缀归为 name 的指标集
+- source:  采集器别名。
+- metric_types:  指标类型，可选值是 counter,  gauge,  histogram, summary。
+- measurement_name:  指标集名称。
+- interval: 采集频率。
+- inputs.prom.measurements: 指标集为 prefix 的前缀归为 name 的指标集。
+- tags_ignore: 忽略的 tag。
 
 annotations中支持如下几个通配符：
 
 - `$IP`：通配 Pod 的内网 IP
 
 - `$NAMESPACE`：Pod Namespace
-- `$PODNAME`：Pod Name
 
 
 ### 重启 Ingress  Controller
