@@ -9,6 +9,7 @@
 ## 1. 背景
 
 某些情况下，独立安装部署的DataFlux Func 也需要与观测云进行交互，包括且不限于：
+
 - DataFlux Func 充当采集器，向观测云上报数据
 - DataFlux Func 中的业务处理需要观测云中的数据
 
