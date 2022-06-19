@@ -2,14 +2,14 @@
 # CoreDNS
 ---
 
-- DataKit 版本：1.4.0
+- DataKit 版本：1.4.2
 - 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
 CoreDNS 采集器用于采集 CoreDNS 相关的指标数据。
 
 ## 前置条件 {#requirements}
 
-- CoreDNS [配置](https://coredns.io/plugins/metrics/)启用 `prometheus` 插件
+- CoreDNS [配置](https://coredns.io/plugins/metrics/){:target="_blank"}启用 `prometheus` 插件
 
 ## 配置 {#input-config}
 

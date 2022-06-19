@@ -2,7 +2,7 @@
 # MySQL
 ---
 
-- DataKit 版本：1.4.0
+- DataKit 版本：1.4.2
 - 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
 MySQL 指标采集，收集以下数据：
@@ -134,7 +134,7 @@ Error 1045: Access denied for user 'datakit'@'::1' (using password: YES)
 SHOW VARIABLES LIKE 'log_bin';
 ```
 
-binlog 开启，参见[这个问答](https://stackoverflow.com/questions/40682381/how-do-i-enable-mysql-binary-logging)，或者[这个问答](https://serverfault.com/questions/706699/enable-binlog-in-mysql-on-ubuntu)
+binlog 开启，参见[这个问答](https://stackoverflow.com/questions/40682381/how-do-i-enable-mysql-binary-logging){:target="_blank"}，或者[这个问答](https://serverfault.com/questions/706699/enable-binlog-in-mysql-on-ubuntu){:target="_blank"}
 
 ### 数据库性能指标采集
 

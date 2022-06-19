@@ -2,7 +2,7 @@
 # 通过本地 JSON 定义拨测任务
 ---
 
-- DataKit 版本：1.4.0
+- DataKit 版本：1.4.2
 
 某些情况下，可能不能连接 SAAS 的拨测任务服务，此时，我们可以通过本地的 json 文件来定义拨测任务。
 
@@ -106,7 +106,7 @@
 }
 ```
 
->  编辑完这个 JSON 后，建议找一些在线工具（[这个](https://www.json.cn/)或[这个](https://jsonformatter.curiousconcept.com/#)）验证下 JSON 格式是不是正确。如果 JSON 格式不对，那么会导致拨测不生效。
+>  编辑完这个 JSON 后，建议找一些在线工具（[这个](https://www.json.cn/){:target="_blank"}或[这个](https://jsonformatter.curiousconcept.com/#){:target="_blank"}）验证下 JSON 格式是不是正确。如果 JSON 格式不对，那么会导致拨测不生效。
 
 配置好后，重启 DataKit 即可。
 

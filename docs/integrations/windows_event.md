@@ -2,7 +2,7 @@
 # Windows 事件
 ---
 
-- DataKit 版本：1.4.0
+- DataKit 版本：1.4.2
 - 操作系统支持：`windows`
 
 Windows 事件日志采集是采集应用程序、安全、系统等 Windows 事件日志
