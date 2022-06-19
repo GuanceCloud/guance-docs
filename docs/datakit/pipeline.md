@@ -2,12 +2,12 @@
 # 文本数据处理（Pipeline）
 ---
 
-- DataKit 版本：1.4.0
+- DataKit 版本：1.4.2
 - 操作系统支持：全平台
 
 以下是文本处理器定义。随着不同语法的逐步支持，该文档会做不同程度的调整和增删。
 
-## 基本规则：
+## 基本规则 {#basic-syntax}
 
 - 函数名大小写不敏感
 - 以 `#` 为行注释字符。不支持行内注释
@@ -56,7 +56,7 @@ group_between(status_code, [200, 300], "HTTP_OK", "http_status")
 drop_origin_data()
 ```
 
-> 注意，切割过程中，需避免[可能出现的跟 tag key 重名的问题](datakit-pl-how-to#5cf855c0)
+> 注意，切割过程中，需避免[可能出现的跟 tag key 重名的问题](datakit-pl-how-to.md#naming)
 
 - 第二步：配置对应的采集器来使用上面的 pipeline
 
@@ -78,7 +78,7 @@ drop_origin_data()
     ... # 其它配置
 ```
 
-重启采集器，即可切割对应的日志。关于 Pipeline 编写、调试以及注意事项，参见[这里](datakit-pl-how-to)。
+重启采集器，即可切割对应的日志。关于 Pipeline 编写、调试以及注意事项，参见[这里](datakit-pl-how-to.md)。
 
 ## Grok 模式分类
 
@@ -343,7 +343,7 @@ Pipeline 的目录搜索优先级是:
 - 以下提到的所有 `key` 参数，都指已经过初次提取（通过 `grok()` 或 `json()`）之后，生成的 `key`
 - 待处理json的路径，支持标识符的写法，不能使用字符串，如果是生成新key，需要使用字符串
 
-### `add_key()`
+### `add_key()` {#fn-add-key}
 
 函数原型：`add_key(key-name=required, key-value=required)`
 
@@ -370,7 +370,7 @@ add_key(city, "shanghai")
     "city": "shanghai"
 }
 ```
-### `add_pattern()`
+### `add_pattern()` {#fn-add-pattern}
 
 函数原型：`add_pattern(name=required, pattern=required)`
 
@@ -424,7 +424,8 @@ if false {
     "message": "33,abc,end3"
 }
 ```
-### `adjust_timezone()`
+
+### `adjust_timezone()` {#fn-adjust-timezone}
 
 函数原型：`adjust_timezone(key=required)`
 
@@ -432,14 +433,14 @@ if false {
 
 函数参数
 
-- `key`: 纳秒时间戳，如 default_time(time) 函数处理后得到的时间戳
+- `key`: 纳秒时间戳，如 `default_time(time)` 函数处理后得到的时间戳
 
 示例:
 
 ```python
 # 原始 json
 {
-    "time":"10 Dec 2021 03:49:20.937", 
+    "time":"10 Dec 2021 03:49:20.937",
     "second":2,
     "third":"abc",
     "forth":true
@@ -447,7 +448,7 @@ if false {
 
 # pipeline 脚本
 json(_, time)      # 提取 time 字段 (若容器中时区 UTC+0000)
-default_time(time) # 将提取到的 time 字段转换成时间戳 
+default_time(time) # 将提取到的 time 字段转换成时间戳
                    # (对无时区数据使用本地时区 UTC+0800/UTC+0900...解析)
 adjust_timezone(time)
                    # 自动(重新)选择时区，校准时间偏差
@@ -456,7 +457,9 @@ adjust_timezone(time)
   "time": 1639108160937000000,
 }
 ```
-### `cast()`
+
+
+### `cast()` {#fn-cast}
 
 函数原型：`cast(key=required, type=required)`
 
@@ -465,7 +468,7 @@ adjust_timezone(time)
 函数参数
 
 - `key`: 已提取的某字段
-- `type`：转换的目标类型，支持 `"str", "float", "int", "bool"` 这几种，目标类型需要用英文状态双引号括起来
+- `type`：转换的目标类型，支持 `\"str\", \"float\", \"int\", \"bool\"` 这几种，目标类型需要用英文状态双引号括起来
 
 示例:
 
@@ -477,10 +480,11 @@ json(_, first) cast(first, "str")
 
 # 处理结果
 {
-  "first":"1"
+  "first": "1"
 }
 ```
-### `cover()`
+
+### `cover()` {#fn-cover}
 
 函数原型：`cover(key=required, range=require)`
 
@@ -506,7 +510,8 @@ json(_, str) cover(str, [1, 1])
 # 待处理数据 {"str": "小阿卡"}
 json(_, str) cover(str, [2, 2])
 ```
-### `datetime()`
+
+### `datetime()` {#fn-datetime}
 
 函数原型：`datetime(key=required, precision=required, fmt=required)`
 
@@ -535,7 +540,7 @@ Kitchen     = "3:04PM"
 示例:
 
 ```python
-# 待处理数据: 
+# 待处理数据:
 #    {
 #        "a":{
 #            "timestamp": "1610960605000",
@@ -547,7 +552,8 @@ Kitchen     = "3:04PM"
 # 处理脚本
 json(_, a.timestamp) datetime(a.timestamp, 'ms', 'RFC3339')
 ```
-### `decode()`
+
+### `decode()` {#fn-decode}
 
 函数原型：`decode(text, text-encode)`
 
@@ -561,7 +567,8 @@ decode("wwwwww", "gbk")
 #   "message": "wwwwww",
 # }
 ```
-### `default_time()`
+
+### `default_time()` {#fn-defalt-time}
 
 函数原型：`default_time(key=required, timezone=optional)`
 
@@ -638,7 +645,9 @@ rename("time", log_time)
   "time": 1610358231887000000,
 }
 ```
-### `drop()`
+
+
+### `drop()` {#fn-drop}
 
 函数原型：`drop()`
 
@@ -659,7 +668,9 @@ json(_, str_b)
 #   "str_a": "2"
 # }
 ```
-### `drop_key()`
+
+
+### `drop_key()` {#fn-drop-key}
 
 函数原型：`drop_key(key=required)`
 
@@ -672,7 +683,7 @@ json(_, str_b)
 示例:
 
 ```python
-data = `{"age": 17, "name": "zhangsan", "height": 180}`
+data = `{\"age\": 17, \"name\": \"zhangsan\", \"height\": 180}`
 
 # 处理脚本
 json(_, age,)
@@ -686,7 +697,9 @@ drop_key(height)
     "name": "zhangsan"
 }
 ```
-### `drop_origin_data()`
+
+
+### `drop_origin_data()` {#fn-drop-origin-data}
 
 函数原型：`drop_origin_data()`
 
@@ -700,7 +713,9 @@ drop_key(height)
 # 结果集中删除 message 内容
 drop_origin_data()
 ```
-### `duration_precision()`
+
+
+### `duration_precision()` {#fn-duration-precision}
 
 函数原型：`duration_precision(key=required, old_precision=require, new_precision=require)`
 
@@ -718,7 +733,9 @@ duration_precision(ts, "ms", "ns")
 #   "ts": 12345000000
 # }
 ```
-### `exit()`
+
+
+### `exit()` {#fn-exit}
 
 函数原型：`exit()`
 
@@ -738,7 +755,9 @@ json(_, str_b)
 #   "str_a": "2"
 # }
 ```
-### `geoip()`
+
+
+### `geoip()` {#fn-geoip}
 
 函数原型：`geoip(key=required)`
 
@@ -772,7 +791,7 @@ geoip(ip)
   "message"  : "{\"ip\": \"1.2.3.4\"}",
 }
 ```
-### `grok()`
+### `grok()` {#fn-grok}
 
 函数原型：`grok(input=required, pattern=required)`
 
@@ -797,7 +816,7 @@ grok(key, pattern)  # 对之前已经提取出来的某个 key，做再次 grok
 add_pattern("_second", "(?:(?:[0-5]?[0-9]|60)(?:[:.,][0-9]+)?)")
 add_pattern("_minute", "(?:[0-5][0-9])")
 add_pattern("_hour", "(?:2[0123]|[01]?[0-9])")
-add_pattern("time", "([^0-9]?)%{_hour:hour:string}:%{_minute:minute:int}(?::%{_second:second:float})([^0-9]?)")
+add_pattern("time", "([^0-9]?)%{_hour:hour:string}:%{_minute:minute:int}(?::%{_second:second:float})([^0-9]?)
 grok(_, "%{DATE_US:date} %{time}")
 
 # 处理结果
@@ -809,7 +828,8 @@ grok(_, "%{DATE_US:date} %{time}")
   "second": 14.123
 }
 ```
-### `group_between()`
+
+### `group_between()` {#fn-group-between}
 
 函数原型：`group_between(key=required, between=required, new-value=required, new-key=optional)`
 
@@ -848,7 +868,9 @@ group_between(http_status, [200, 300], "OK", status)
     "status": "OK"
 }
 ```
-### `group_in()`
+
+
+### `group_in()` {#fn-group-in}
 
 函数原型：`group_in(key=required, in=required, new-value=required, new-key=optional)`
 
@@ -863,7 +885,9 @@ group_in(log_level, ["info", "debug"], "OK")
 # 如果字段 http_status 值在指定列表中，则新建 status 字段，其值为 "not-ok"
 group_in(log_level, ["error", "panic"], "not-ok", status)
 ```
-### `json()`
+
+
+### `json()` {#fn-json}
 
 函数原型：`json(input=required, jsonPath=required, newkey=optional)`
 
@@ -895,7 +919,7 @@ json(zhangsan, age, "年龄")
 
 # 处理结果
 {
-    "message": "{\"info\": {\"age\": 17, \"name\": \"zhangsan\", \"height\": 180}}",
+    "message": "{\"info\": {\"age\": 17, \"name\": \"zhangsan\", \"height\": 180}}
     "zhangsan": {
         "age": 17,
         "height": 180,
@@ -937,7 +961,8 @@ json(_, name) json(name, first)
 # 处理脚本, json数组处理
 json(_, [0].nets[-1])
 ```
-### `lowercase()`
+
+### `lowercase()` {#fn-lowercase}
 
 函数原型：`lowercase(key=required)`
 
@@ -957,10 +982,12 @@ json(_, first) lowercase(first)
 
 # 处理结果
 {
-    "first": "hello"
+		"first": "hello"
 }
 ```
-### `nullif()`
+
+
+### `nullif()` {#fn-nullif}
 
 函数原型：`nullif(key=required, value=required)`
 
@@ -992,7 +1019,9 @@ if first == "1" {
 	drop_key(first)
 }
 ```
-### `parse_date()`
+
+
+### `parse_date()` {#fn-parse-date}
 
 函数原型：`parse_date(new-key=required, yy=require, MM=require, dd=require, hh=require, mm=require, ss=require, ms=require, zone=require)`
 
@@ -1008,7 +1037,7 @@ if first == "1" {
 - `mm`: 分钟字符串
 - `ss`: 秒字符串
 - `ms`: 毫秒字符串
-- `zone`: 时区字符串，“+8”或"Asia/Shanghai"形式
+- `zone`: 时区字符串，“+8”或\"Asia/Shanghai\"形式
 
 示例:
 
@@ -1021,7 +1050,9 @@ parse_date(aa, "2021", "12", "12", "10", "10", "34", "100", "Asia/Shanghai") # �
 
 parse_date(aa, "20", "February", "12", "10", "10", "34", "", "+8") 结果 aa=1581473434000000000
 ```
-### `parse_duration()`
+
+
+### `parse_duration()` {#fn-parse-duration}
 
 函数原型：`parse_duration(key=required)`
 
@@ -1053,7 +1084,9 @@ parse_duration(abc) # 结果 abc = -3500000000
 parse_duration(abc) # 结果 abc = -2300000000
 
 ```
-### `rename()`
+
+
+### `rename()` {#fn-rename}
 
 函数原型：`rename(new-key=required, old-key=required)`
 
@@ -1091,7 +1124,9 @@ json(_, info.name, "姓名")
   }
 }
 ```
-### `replace()`
+
+
+### `replace()` {#fn-replace}
 
 函数原型：`replace(key=required, regex=required, replaceStr=required)`
 
@@ -1122,7 +1157,9 @@ replace(str, "([1-9]{4})[0-9]{10}([0-9]{4})", "$1**********$2")
 json(_, str)
 replace(str, '([\u4e00-\u9fa5])[\u4e00-\u9fa5]([\u4e00-\u9fa5])', "$1＊$2")
 ```
-### `set_measurement()`
+
+
+### `set_measurement()` {#fn-set-measurement}
 
 函数原型：`set_measurement(key=required, disable_delete_key=optional)`
 
@@ -1132,7 +1169,9 @@ replace(str, '([\u4e00-\u9fa5])[\u4e00-\u9fa5]([\u4e00-\u9fa5])', "$1＊$2")
 
 - `key`: 取 key 值作为 mesaurement name
 - `value`: 默认值为 false 删除 key ，可以为 true 或 false
-### `set_tag()`
+
+
+### `set_tag()` {#fn-set-tag}
 
 函数原型：`set_tag(key=required, value=optional)`
 
@@ -1175,8 +1214,9 @@ set_tag(str_a, str_b) # str_a == str_b == "3"
 #   "str_a#": "3",
 #   "str_b": "3"
 # }
-```
-### `sql_cover()`
+				"```
+
+### `sql_cover()` {#fn-sql-cover}
 
 函数原型：`sql_cover(sql_test)`
 
@@ -1191,7 +1231,8 @@ sql_cover(_)
 #   "message": "select abc from def where x > ? and y < ?"
 # }
 ```
-### `strfmt()`
+
+### `strfmt()` {#fn-strfmt}
 
 函数原型：`strfmt(key=required, fmt=required, key1=optional, key2, ...)`
 
@@ -1215,7 +1256,9 @@ cast(a.second, "int")
 json(_, a.forth)
 strfmt(bb, "%v %s %v", a.second, a.thrid, a.forth)
 ```
-### `uppercase()`
+
+
+### `uppercase()` {#fn-uppercase}
 
 函数原型：`uppercase(key=required)`
 
@@ -1238,7 +1281,9 @@ json(_, first) uppercase(first)
    "first": "HELLO"
 }
 ```
-### `url_decode()`
+
+
+### `url_decode()` {#fn-url-decode}
 
 函数原型：`url_decode(key=required)`
 
@@ -1262,7 +1307,9 @@ json(_, url) url_decode(url)
   "url": "http://www.baidu.com/s?wd=测试"
 }
 ```
-### `user_agent()`
+
+
+### `user_agent()` {#fn-user-agent}
 
 函数原型：`user_agent(key=required)`
 

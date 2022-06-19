@@ -2,7 +2,7 @@
 # Oracle
 ---
 
-- DataKit 版本：1.4.0
+- DataKit 版本：1.4.2
 - 操作系统支持：`linux/amd64`
 
 Oracle 监控指标采集，具有以下数据收集功能
@@ -31,7 +31,7 @@ GRANT SELECT ON sys.dba_tablespace_usage_metrics TO datakit;
 
 - 安装依赖包
 
-根据操作系统和 Oracle 版本选择安装对应的安装包,参考[这里](https://oracle.github.io/odpi/doc/installation.html)，如：
+根据操作系统和 Oracle 版本选择安装对应的安装包,参考[这里](https://oracle.github.io/odpi/doc/installation.html){:target="_blank"}，如：
 
 ```shell
 wget https://download.oracle.com/otn_software/linux/instantclient/211000/instantclient-basiclite-linux.x64-21.1.0.0.0.zip
