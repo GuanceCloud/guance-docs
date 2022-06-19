@@ -1,7 +1,7 @@
 
 # Apply Pipeline Onto Datakit Tracing
 
-- DataKit 版本：1.4.0
+- DataKit 版本：1.4.2
 - 操作系统支持：全平台
 
 ## Prerequisit

@@ -2,16 +2,16 @@
 # Zipkin
 ---
 
-- DataKit 版本：1.4.0
+- DataKit 版本：1.4.2
 - 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
 Datakit 内嵌的 Zipkin Agent 用于接收，运算，分析 Zipkin Tracing 协议数据。
 
 ## Zipkin 文档
 
-- [Quickstart](https://zipkin.io/pages/quickstart.html)
-- [Docs](https://zipkin.io/pages/instrumenting.html)
-- [Souce Code](https://github.com/openzipkin/zipkin)
+- [Quickstart](https://zipkin.io/pages/quickstart.html){:target="_blank"}
+- [Docs](https://zipkin.io/pages/instrumenting.html){:target="_blank"}
+- [Souce Code](https://github.com/openzipkin/zipkin){:target="_blank"}
 
 ## 配置 Zipkin Agent
 

@@ -2,14 +2,14 @@
 # NSQ
 ---
 
-- DataKit 版本：1.4.0
+- DataKit 版本：1.4.2
 - 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
 采集 NSQ 运行数据并以指标的方式上报到观测云。
 
 ## 前置条件
 
-- 已安装 NSQ（[NSQ 官方网址](https://nsq.io/)）
+- 已安装 NSQ（[NSQ 官方网址](https://nsq.io/){:target="_blank"}）
 
 - NSQ 版本 >= 1.0.0
 
@@ -53,7 +53,7 @@ NSQ 采集器提供两种配置方式，分别为 `lookupd` 和 `nsqd`，具体�
 
 配置好后，重启 DataKit 即可。
 
-此 input 支持选举功能，[关于选举](election)。
+此 input 支持选举功能，[关于选举](election.md)。
 
 ## 指标集
 
