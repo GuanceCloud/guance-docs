@@ -13,7 +13,7 @@
 
 ### 主机
 
-完成 DataKit 安装后，系统会默认开启一批与主机相关的采集器，并主动上报主机数据至“观测云”工作空间。详情可参考 [DataKit 采集器使用](../datakit/datakit-how-to.md) / [主机对象](../integrations/hostobject.md)。
+完成 DataKit 安装后，系统会默认开启一批与主机相关的采集器，并主动上报主机数据至“观测云”工作空间。详情可参考 [DataKit 采集器使用](../datakit/datakit-input-conf.md) / [主机对象](../integrations/hostobject.md)。
 
 注意：主机采集开启后，变更主机名`host_name`会默认新增加一台主机，原主机名会继续在「基础设施」-「主机」列表中显示，一个小时后不会继续上报数据，直到24小时未上报数据后从列表中移除。由于 DataKit 数量是在 24 小时内取最大值，故在这个计费周期内会被统计为2台主机进行收费。
 

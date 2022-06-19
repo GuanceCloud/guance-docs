@@ -5,3 +5,4 @@ nav:
   - '服务': service.md
   - '概览': overview.md
   - '链路查看器': explorer.md
+  - 'Profile': profile.md

@@ -5,9 +5,14 @@
 
 ## 安装
 
-在观测云的工作空间内，您可以通过「集成」-「移动端」进行下载，也可以通过下方扫码或跳转至App Store 进行下载。
+在观测云的工作空间内，您可以通过「集成」-「移动端」进行下载，也可以通过下方扫码进行下载。
 ![](img/app_1.png)
-                     [ iOS 系统下载 ](https://apps.apple.com/cn/app/dataflux-mobile/id1494097190)                                                  [Android 系统下载](https://android.myapp.com/myapp/detail.htm?apkName=com.cloudcare.ft.dataflux.mobile&info=BC6B6D70A723FAA93DB84F11BF50AE8A)
+
+或者您也可以直接点击如下链接进行下载。             
+
+- [ iOS 系统下载 ](https://apps.apple.com/cn/app/dataflux-mobile/id1494097190)
+
+- [Android 系统下载](https://android.myapp.com/myapp/detail.htm?apkName=com.cloudcare.ft.dataflux.mobile&info=BC6B6D70A723FAA93DB84F11BF50AE8A)
 
 ## 功能说明
 
@@ -22,7 +27,7 @@
 
 在登入观测云移动端后， 您需要选择一个默认的工作空间查看相对应的数据；在使用过程中，如若您需要切换至另一个工作空间，您可以通过「我的」-「切换工作空间」变更工作空间。
 
-如果您当前没有工作空间，可以前往观测云网页版 [创建新的工作空间](../../management/space-management.md) ，或者由其他空间的空间管理员 [邀请您成为其他空间的新成员](../../management/member-management.md) 。
+如果您当前没有工作空间，可以前往观测云网页版 [创建新的工作空间](../management/space-management.md) ，或者由其他空间的空间管理员 [邀请您成为其他空间的新成员](../management/member-management.md) 。
 
 ### 消息通知
 

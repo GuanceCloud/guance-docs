@@ -2,7 +2,7 @@
 ---
 
 - 版本：1.0.7-3-g7183440
-- 发布日期：2022-06-14 06:31:52
+- 发布日期：2022-06-17 04:24:59
 - 操作系统支持：windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64
 
 ## scheck规则介绍

@@ -7,7 +7,7 @@ Pipeline 支持多种格式的日志数据切割，通过编写 Pipeline 脚本�
 
 ## 前置条件
 
-您需要先创建一个[观测云账号](https://www.guance.com/)，并在您的主机上[安装 DataKit](../datakit/datakit-install.md) ，开启 DataKit [日志采集](../integrations/logging.md)。
+您需要先创建一个[观测云账号](https://www.guance.com/)，并在您的主机上[安装 DataKit](../../datakit/datakit-install.md) ，开启 DataKit [日志采集](../../integrations/logging.md)。
 
 ## 步骤一：根据采集的日志，确定切割字段
 
@@ -130,5 +130,5 @@ grokq > 2022-01-12T18:40:51.962+0800
 
 - [文本数据处理（Pipeline）](../../datakit/pipeline.md)
 - [如何编写 Pipeline 脚本](../../datakit/datakit-pl-how-to.md)
-- [日志](../integrations/logging.md)
-- [第三方日志接入](../integrations/logstreaming.md)
+- [日志](../../integrations/logging.md)
+- [第三方日志接入](../../integrations/logstreaming.md)

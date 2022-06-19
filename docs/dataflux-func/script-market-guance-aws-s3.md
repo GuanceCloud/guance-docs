@@ -53,7 +53,9 @@ collector_configs = {
 *注意：*`*tags*`*、*`*fields*`*中的字段可能会随后续更新有所变动*
 
 > 提示：`tags.name`值为实例名称，作为唯一识别
+>
 > 提示2：`fields.message`为JSON序列化后字符串
+>
 > 提示3: `fields.Grants`为bucket 访问控制列表
 
 ## X. 附录

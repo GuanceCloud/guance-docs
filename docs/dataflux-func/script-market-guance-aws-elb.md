@@ -78,6 +78,7 @@ collector_configs = {
 > 对应的`tags.name`为`net/k8s-forethou-kodongin-xxxxa46f01/xxxxe75ae81d08c2`
 
 > 提示3：
+>
 > - `fields.message`、`tags.AvailabilityZones` 为 JSON 序列化后字符
 > - `tags.state`字段表示Load Balancers状态，取值：`active`、`provisioning`、`active_impaired`、`failed` （"classic" 类型负载均衡实例没有该字段）
 > - `tags.Type`字段表示Load Balancers类型，取值：`application`、`network`、`gateway`、`classic`

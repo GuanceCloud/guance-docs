@@ -374,6 +374,7 @@ sudo docker network inspect ingress
 ```
 
 如果重复，可以通过以下方式修改：
+
 1. 停止DataFlux Func
 2. 删除先有网络：`sudo docker network rm ingress`
 3. 重建网络：`docker network create --driver overlay --ingress --subnet 10.255.0.0/16 --gateway 10.255.0.1 ingress`

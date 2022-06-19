@@ -7,9 +7,10 @@
 
 ## 主要功能
 
-- [日志查询和分析](https://www.yuque.com/dataflux/doc/ibg4fx)：支持统计各个时间点下产生不同等级的日志数量；支持全文检索、关键词检索、模糊匹配、标签筛选、快捷筛选和分组查询分析 
-- [保存快照](https://www.yuque.com/dataflux/doc/uuy378)：支持保存当前状态的数据集合为副本，通过「快照」功能可反复查看
-- [生成指标](https://www.yuque.com/dataflux/doc/mgcvm9)：支持基于日志，自定义生成监控指标的规则
-- [日志黑名单](https://www.yuque.com/dataflux/doc/na6x2c)：支持自定义日志采集的过滤规则，实时过滤日志数据
-- [日志备份](https://www.yuque.com/dataflux/doc/tgl0i9)：支持对日志进行备份，帮助节约使用成本
-- [文本处理（pipeline）](https://www.yuque.com/dataflux/doc/wqccue)：支持通过 pipeline 的方式对日志的文本内容进行切割，从而提取出特定的字段作为标签或者日志的时间戳
+- [日志查询和分析](explorer.md)：支持统计各个时间点下产生不同等级的日志数量；支持全文检索、关键词检索、模糊匹配、标签筛选、快捷筛选和分组查询分析 
+- [保存快照](../management/snapshot.md)：支持保存当前状态的数据集合为副本，通过「快照」功能可反复查看
+- [生成指标](generate-metrics.md)：支持基于日志，自定义生成监控指标的规则
+- [日志黑名单](blacklist.md)：支持自定义日志采集的过滤规则，实时过滤日志数据
+- [日志备份](backup.md)：支持对日志进行备份，帮助节约使用成本
+- [文本处理（pipeline）](pipelines/index.md)：支持通过 pipeline 的方式对日志的文本内容进行切割，从而提取出特定的字段作为标签或者日志的时间戳
+

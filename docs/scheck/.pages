@@ -1,30 +1,30 @@
 nav:
     - index.md
-    - "Scheck 版本历史": changelog.md
-    - "Scheck 安装、配置":
-        - "Scheck 安装": scheck-install.md
-        - "Scheck 配置": scheck-configure.md
-        - "安装配置示例": example.md
+    - "版本历史": changelog.md
+    - "安装、配置":
+        - "安装": scheck-install.md
+        - "配置": scheck-configure.md
+        - "示例": example.md
 
     - '安全巡检查看器': explorer.md
     - '生成指标': generate-metrics.md
-    - "Scheck 使用入门": scheck-how-to.md
-    - "Scheck 最佳实践": best-practices.md
-    - "Scheck 多端输出":
-        - "Scheck 连接Datakit": join-datakit.md
-        - "Scheck 连接阿里云日志": join-sls.md
+    - "使用入门": scheck-how-to.md
+    - "最佳实践": best-practices.md
+    - "多端输出":
+        - "连接Datakit": join-datakit.md
+        - "连接阿里云日志": join-sls.md
 
-    - "Scheck 脚本二次开发":
+    - "脚本二次开发":
         - "检查敏感文件的变动实现": scheck-filechange.md
         - "监控系统用户的变化": scheck-userchange.md
         - "用户自定义规则及lib库": custom-how-to.md
 
     - "lua内置标准库和lua-lib": lualib.md
-    - "Scheck Funcs支持清单": funcs.md
+    - "Funcs支持清单": funcs.md
 
     - "其他":
         - "使用开发者模式查看缓存": cachedev.md
-        - "Scheck 并发策略": scheck-pool.md
+        - "并发策略": scheck-pool.md
     - "规则库":
     
         - "container":
