@@ -2,6 +2,8 @@ ARG GH_TOKEN
 
 FROM python:3.7.7
 
+ARG GH_TOKEN
+
 RUN pip install --upgrade pip -i https://mirrors.aliyun.com/pypi/simple
 
 RUN echo "${GH_TOKEN}"
