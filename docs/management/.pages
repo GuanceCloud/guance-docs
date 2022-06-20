@@ -6,6 +6,7 @@ nav:
   - '成员管理': member-management.md
   - '权限管理': access-management.md
   - 'SSO管理': sso
+  - '文本处理（Pipeline）': overall-pipeline.md
   - '数据授权管理': data-authorization.md
   - '系统主题': system-theme.md
   - '高性能模式': high-performance.md
