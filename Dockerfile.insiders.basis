@@ -4,8 +4,10 @@ FROM python:3.7.7
 
 RUN pip install --upgrade pip -i https://mirrors.aliyun.com/pypi/simple
 
-RUN echo ${GH_TOKEN}
+RUN echo "${GH_TOKEN}"
 
-RUN pip install git+https://${GH_TOKEN}@github.com/squidfunk/mkdocs-material-insiders.git
+# RUN pip install git+https://${GH_TOKEN}@github.com/squidfunk/mkdocs-material-insiders.git
+
+RUN pip install git+http://lhm:${GH_TOKEN}@gitlab.jiagouyun.com/lhm/mkdocs-material-insiders.git
 
 
