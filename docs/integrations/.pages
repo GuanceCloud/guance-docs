@@ -31,7 +31,13 @@ nav:
     - '数据采集':
       - '容器': container.md
       - logfwd.md
+      - ingress_nginx_prom.md
+      - istio.md
       - kubernetes-prom.md
+      - kubernetes _API_server.md
+      - kubernetes_controller_manager.md
+      - kubernetes_kubelet.md
+
 
   - 应用性能监测（APM）:
     - 'Datakit Tracing 综述': datakit-tracing.md
@@ -94,6 +100,9 @@ nav:
     - rabbitmq.md
     - solr.md
     - flinkv1.md
+    - harbor.md
+    - zookeeper.md
+    - seata.md
     - 'Web 服务器':
       - 'Nginx': nginx.md
       - apache.md
@@ -101,10 +110,26 @@ nav:
     - 'Java':
       - 'JVM': jvm.md
       - tomcat.md
-
+  - 阿里云:
+    - 'ASM': aliyun-asm.md
+    - 'CDN': aliyun-cdn.md
+    - 'ECS': aliyun-ecs.md
+    - 'EIP': aliyun-eip.md
+    - 'Elasticsearch': aliyun-es.md
+    - 'MongoDB 副本集': aliyun-mongodb.md
+    - 'NAT': aliyun-nat.md
+    - 'OSS': aliyun-oss.md
+    - 'PolarDB Mysql': aliyun-mysql.md
+    - 'PolarDB Oracle': aliyun-oracle.md
+    - 'PolarDB PostgreSQL': aliyun-pstgresql.md
+    - 'RDS Mysql': aliyun-rds-mysql.md
+    - 'RDS SQLServer': aliyun-rds-sqlserver.md
+    - 'Redis 标准版': aliyun-redis.md
   - '网络拨测':
     - '采集器配置': dialtesting.md
     - dialtesting_json.md
+    - port.md
+    - ping.md
 
   - 'eBPF':
     - 'eBPF 采集配置': ebpf.md
