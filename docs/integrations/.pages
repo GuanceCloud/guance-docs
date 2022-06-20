@@ -7,7 +7,7 @@ nav:
     - host_processes.md
     - '主机指标':
       - 'CPU': cpu.md
-      - chrony
+      - chrony.md
       - conntrack.md
       - disk.md
       - diskio.md
