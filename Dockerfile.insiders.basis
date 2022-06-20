@@ -4,7 +4,7 @@ FROM python:3.9.2-alpine3.13
 
 ARG GH_TOKEN
 
-# RUN pip install --upgrade pip -i https://mirrors.aliyun.com/pypi/simple
+RUN pip install --upgrade pip -i https://mirrors.aliyun.com/pypi/simple
 
 # RUN pip install git+https://${GH_TOKEN}@github.com/squidfunk/mkdocs-material-insiders.git
 
