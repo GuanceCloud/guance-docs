@@ -124,3 +124,5 @@ datakit 运行状态正常，即可在观测云工作空间「基础设施」-�
 ### [Kubernetes 扩展指标采集](../../integrations/kubernetes-x.md)
 
 ### [Kubernetes 集群中自定义 Exporter 指标采集](../../integrations/kubernetes-prom.md)
+
+### [Kubernetes Kubelet](../integrations/kubernetes_kubelet.md)
