@@ -25,7 +25,7 @@
 
 ## 请求例子
 ```shell
-curl '<Endpoint>/api/v1/notes/list' \
+curl 'https://openapi.guance.com/api/v1/notes/list' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed \
 --insecure
