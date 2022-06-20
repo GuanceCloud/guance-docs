@@ -143,6 +143,7 @@ data:
         source = "prom-istiod"
         metric_types = ["counter", "gauge", "histogram"]
         interval = "10s"
+        tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
         #measurement_prefix = ""
         measurement_name = "istio_prom"
         #[[inputs.prom.measurements]]
@@ -150,13 +151,14 @@ data:
         # name ="cpu"
         [inputs.prom.tags]
           app_id="istiod"
-          
+
     prom-ingressgateway.conf: |- 
         [[inputs.prom]] 
           url = "http://istio-ingressgateway-ext.istio-system.svc.cluster.local:15020/stats/prometheus"
           source = "prom-ingressgateway"
           metric_types = ["counter", "gauge", "histogram"]
           interval = "10s"
+          tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
           #measurement_prefix = ""
           measurement_name = "istio_prom"
           #[[inputs.prom.measurements]]
@@ -168,6 +170,7 @@ data:
           url = "http://istio-egressgateway-ext.istio-system.svc.cluster.local:15020/stats/prometheus"
           source = "prom-egressgateway"
           metric_types = ["counter", "gauge", "histogram"]
+          tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
           interval = "10s"
           #measurement_prefix = ""
           measurement_name = "istio_prom"
@@ -226,6 +229,7 @@ kubectl apply -f datakit.yaml
 [下载](https://github.com/istio/istio/releases ) **Source Code **和 **istio-1.11.2-linux-amd64.tar.gz**，
 
 #### 安装 Istio
+
 上传 istio-1.11.2-linux-amd64.tar.gz 到 /usr/local/df-demo/ 目录，查看 kubernetes 所在服务器的内网地址是_**172.16.0.15 **_所，请替换 _**172.16.0.15 **_为您的 ip。
 
 ```
@@ -265,6 +269,7 @@ cp /usr/local/df-demo/istio-1.11.2/samples/bookinfo/platform/kube/bookinfo.yaml 
 ![image](../images/istio/11.png)
 
 #### 开启自动注入
+
 新建 prod 命名空间，开启该空间下创建 Pod 时自动注入 Sidecar，让 Pod 的出入流量都转由 Sidecar 进行处理。 
 ```
 kubectl create namespace prod
@@ -327,7 +332,7 @@ vi /usr/local/df-demo/bookinfo/virtual-service-ratings-test-delay.yaml
 
 修改 bookinfo.yaml
 
-```
+```bash
 vi /usr/local/df-demo/bookinfo/bookinfo.yaml
 ```
 
@@ -340,9 +345,9 @@ vi /usr/local/df-demo/bookinfo/bookinfo.yaml
 - interval：采集指标频率，s秒
 - $IP：通配 Pod 的内网 IP
 - $NAMESPACE：Pod所在命名空间
-- $PODNAME:  Pod名称
+- tags_ignore:  忽略的 tag。
 
-```
+```bash
       annotations:
         datakit/prom.instances: |
           [[inputs.prom]]
@@ -350,6 +355,7 @@ vi /usr/local/df-demo/bookinfo/bookinfo.yaml
             source = "minik8s-istio-product"
             metric_types = ["counter", "gauge"]
             interval = "10s"
+            tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
             #measurement_prefix = ""
             measurement_name = "istio_prom"
             #[[inputs.prom.measurements]]
@@ -365,7 +371,7 @@ vi /usr/local/df-demo/bookinfo/bookinfo.yaml
 
 完整 bookinfo.yaml。
 
-```
+```bash
 apiVersion: v1
 kind: Service
 metadata:
@@ -415,6 +421,7 @@ spec:
             source = "minik8s-istio-details"
             metric_types = ["counter", "gauge", "histogram"]
             interval = "10s"
+			tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
             #measurement_prefix = ""
             measurement_name = "istio_prom"
             #[[inputs.prom.measurements]]
@@ -422,7 +429,6 @@ spec:
             # name = "cpu"         
             [inputs.prom.tags]
             namespace = "$NAMESPACE"
-            pod_name = "$PODNAME"
     spec:
       serviceAccountName: bookinfo-details
       containers:
@@ -486,6 +492,7 @@ spec:
             source = "minik8s-istio-ratings"
             metric_types = ["counter", "gauge", "histogram"]
             interval = "10s"
+			tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
             #measurement_prefix = ""
             measurement_name = "istio_prom"
             #[[inputs.prom.measurements]]
@@ -493,7 +500,6 @@ spec:
             # name = "cpu"         
             [inputs.prom.tags]
             namespace = "$NAMESPACE"
-            pod_name = "$PODNAME"
     spec:
       serviceAccountName: bookinfo-ratings
       containers:
@@ -557,6 +563,7 @@ spec:
             source = "minik8s-istio-review1"
             metric_types = ["counter", "gauge", "histogram"]
             interval = "10s"
+			tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
             #measurement_prefix = ""
             measurement_name = "istio_prom"
             #[[inputs.prom.measurements]]
@@ -564,7 +571,6 @@ spec:
             # name = "cpu"         
             [inputs.prom.tags]
             namespace = "$NAMESPACE"
-            pod_name = "$PODNAME"
     spec:
       serviceAccountName: bookinfo-reviews
       containers:
@@ -615,6 +621,7 @@ spec:
             source = "minik8s-istio-review2"
             metric_types = ["counter", "gauge", "histogram"]
             interval = "10s"
+			tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
             #measurement_prefix = ""
             measurement_name = "istio_prom"
             #[[inputs.prom.measurements]]
@@ -622,7 +629,6 @@ spec:
             # name = "cpu"         
             [inputs.prom.tags]
             namespace = "$NAMESPACE"
-            pod_name = "$PODNAME"
     spec:
       serviceAccountName: bookinfo-reviews
       containers:
@@ -673,6 +679,7 @@ spec:
             source = "minik8s-istio-review3"
             metric_types = ["counter", "gauge", "histogram"]
             interval = "10s"
+			tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
             #measurement_prefix = ""
             measurement_name = "istio_prom"
             #[[inputs.prom.measurements]]
@@ -680,7 +687,6 @@ spec:
             # name = "cpu"         
             [inputs.prom.tags]
             namespace = "$NAMESPACE"
-            pod_name = "$PODNAME"
     spec:
       serviceAccountName: bookinfo-reviews
       containers:
@@ -757,6 +763,7 @@ spec:
             source = "minik8s-istio-product"
             metric_types = ["counter", "gauge", "histogram"]
             interval = "10s"
+			tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
             #measurement_prefix = ""
             measurement_name = "istio_prom"
             #[[inputs.prom.measurements]]
@@ -764,7 +771,6 @@ spec:
             # name = "cpu"         
             [inputs.prom.tags]
             namespace = "$NAMESPACE"
-            pod_name = "$PODNAME"
     spec:
       serviceAccountName: bookinfo-productpage
       containers:
@@ -785,8 +791,10 @@ spec:
 ---
 
 ```
+
 完整 bookinfo-gateway.yaml。
-```
+
+```bash
 kind: Gateway
 metadata:
   name: bookinfo-gateway

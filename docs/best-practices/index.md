@@ -1,12 +1,20 @@
+## (2022/06/24)
+### 更新记录
+- 云原生
+  - [使用 Rancher 部署和管理 Datakit，快速构建 Kubernetes 生态的可观测](./cloud-native/rancher-datakit.md)，<font color="red" > 忽略部分 tag。</font>
+  - [service mesh 微服务架构从研发到金丝雀发布全流程最佳实践(上)](./cloud-native/microservices1.md)，<font color="red" > 忽略部分 tag。</font>
+  - [基于 Istio 实现微服务可观测最佳实践](./cloud-native/istio.md)，<font color="red" > 忽略部分 tag。</font>
+  - [基于阿里云 ASM 实现微服务可观测最佳实践](./cloud-native/asm.md)，<font color="red" > 忽略部分 tag。</font>
+
 ## (2022/06/17)
 ### 新增最佳实践
 - APM
     - [GraalVM 与 Spring Native 项目实现链路可观测](./apm/spring-native.md)
 - 接入集成
-    - [主机可观测最佳实践 (Linux)]()
+    - [主机可观测最佳实践 (Linux)](./integrations/host.md)
 ### 更新记录
 - 观测云小妙招
-    - [ddtrace 高级用法]()，<font color="red" > 新增了 采样、过滤Resource、入侵式埋点、log 配置。</font>
+    - [ddtrace 高级用法](./guance-skill/ddtrace-skill.md)，<font color="red" > 新增了 采样、过滤Resource、入侵式埋点、log 配置。</font>
 - 接入（集成）最佳实践
     - [Nginx Ingress可观测最佳实践](./integrations/ingress-nginx.md)，<font color="red" > 默认忽略  build、le、method 等 tag。</font>
 

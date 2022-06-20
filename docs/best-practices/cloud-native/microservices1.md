@@ -208,7 +208,8 @@ kubectl label namespace prod istio-injection=enabled
 
 在 istio-1.13.2\samples\bookinfo\platform\kube\bookinfo.yaml 文件中，移除关于 reviews 微服务部署的部分，把 Service 和 Deployment 都部署到 prod 名称空间，并在所有 Deployment 控制器，Pod 模板上增加 annotations，来开启 Pod 的自定义采集。把 productpage 镜像修改为上步创建的。完整文件如下：
 
-```
+```bash
+
 # Copyright Istio Authors
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
@@ -289,6 +290,7 @@ spec:
             source = "bookinfo-istio-details"
             metric_types = ["counter", "gauge"]
             interval = "10s"
+			tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
             #measurement_prefix = ""
             measurement_name = "istio_prom"
             #[[inputs.prom.measurements]]
@@ -359,6 +361,7 @@ spec:
             source = "bookinfo-istio-ratings"
             metric_types = ["counter", "gauge"]
             interval = "10s"
+			tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
             #measurement_prefix = ""
             measurement_name = "istio_prom"
             #[[inputs.prom.measurements]]
@@ -429,6 +432,7 @@ spec:
             source = "bookinfo-istio-product"
             metric_types = ["counter", "gauge"]
             interval = "10s"
+			tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
             #measurement_prefix = ""
             measurement_name = "istio_prom"
             #[[inputs.prom.measurements]]
@@ -454,6 +458,7 @@ spec:
       - name: tmp
         emptyDir: {}
 ---
+
 ```
 
 ```
@@ -605,6 +610,7 @@ spec:
             source = "bookinfo-istio-review"
             metric_types = ["counter", "gauge"]
             interval = "10s"
+            tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
             #measurement_prefix = ""
             measurement_name = "istio_prom"
             #[[inputs.prom.measurements]]

@@ -80,6 +80,7 @@ annotations:
             source = "ack-istio-product"
             metric_types = ["counter", "gauge", "histogram"]
             interval = "10s"
+            tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
             #measurement_prefix = ""
             measurement_name = "prom_asm_istio"
             #[[inputs.prom.measurements]]
@@ -98,11 +99,11 @@ annotations:
 - interval：采集指标频率，s秒
 - $IP：通配 Pod 的内网 IP
 - $NAMESPACE：Pod所在命名空间
-- $PODNAME:  Pod名称
+- tags_ignore:  忽略的 tag。
 
 更改后的 [bookinfo.yaml](https://github.com/istio/istio/blob/master/samples/bookinfo/platform/kube/bookinfo.yaml) 文件如下：
 
-```
+```bash
 apiVersion: v1
 kind: Service
 metadata:
@@ -149,6 +150,7 @@ spec:
             source = "ack-istio-details"
             metric_types = ["counter", "gauge", "histogram"]
             interval = "10s"
+			tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
             #measurement_prefix = ""
             measurement_name = "prom_asm_istio"
             #[[inputs.prom.measurements]]
@@ -214,6 +216,7 @@ spec:
             source = "ack-istio-ratings"
             metric_types = ["counter", "gauge", "histogram"]
             interval = "10s"
+			tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
             #measurement_prefix = ""
             measurement_name = "prom_asm_istio"
             #[[inputs.prom.measurements]]
@@ -279,6 +282,7 @@ spec:
             source = "ack-istio-review1"
             metric_types = ["counter", "gauge", "histogram"]
             interval = "10s"
+			tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
             #measurement_prefix = ""
             measurement_name = "prom_asm_istio"
             #[[inputs.prom.measurements]]
@@ -333,6 +337,7 @@ spec:
             source = "ack-istio-review2"
             metric_types = ["counter", "gauge", "histogram"]
             interval = "10s"
+			tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
             #measurement_prefix = ""
             measurement_name = "prom_asm_istio"
             #[[inputs.prom.measurements]]
@@ -387,6 +392,7 @@ spec:
             source = "ack-istio-review3"
             metric_types = ["counter", "gauge", "histogram"]
             interval = "10s"
+			tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
             #measurement_prefix = ""
             measurement_name = "prom_asm_istio"
             #[[inputs.prom.measurements]]
@@ -465,6 +471,7 @@ spec:
             source = "ack-istio-product"
             metric_types = ["counter", "gauge", "histogram"]
             interval = "10s"
+			tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
             #measurement_prefix = ""
             measurement_name = "prom_asm_istio"
             #[[inputs.prom.measurements]]
@@ -665,12 +672,13 @@ spec:
 
 在 ConfigMap 中增加：
 ```bash
-    prom_istiod.conf: |-    
+     prom_istiod.conf: |-    
       [[inputs.prom]] 
         url = "http://istiod.istio-system.svc.cluster.local:15014/metrics"
         source = "prom-istiod"
         metric_types = ["counter", "gauge", "histogram"]
         interval = "10s"
+        tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
         #measurement_prefix = ""
         measurement_name = "istio_prom"
         #[[inputs.prom.measurements]]
@@ -685,6 +693,7 @@ spec:
           source = "prom-ingressgateway"
           metric_types = ["counter", "gauge", "histogram"]
           interval = "10s"
+          tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
           #measurement_prefix = ""
           measurement_name = "istio_prom"
           #[[inputs.prom.measurements]]
@@ -697,6 +706,7 @@ spec:
           source = "prom-egressgateway"
           metric_types = ["counter", "gauge", "histogram"]
           interval = "10s"
+          tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
           #measurement_prefix = ""
           measurement_name = "istio_prom"
           #[[inputs.prom.measurements]]
@@ -720,7 +730,7 @@ spec:
 
 本次使用的完整 datakit.yaml，您在使用时请使用最新的 datakit.yaml 做适当替换。  
 
-```
+```bash
 apiVersion: v1
 kind: Namespace
 metadata:
@@ -1034,6 +1044,7 @@ data:
         source = "prom-istiod"
         metric_types = ["counter", "gauge", "histogram"]
         interval = "10s"
+        tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
         #measurement_prefix = ""
         measurement_name = "istio_prom"
         #[[inputs.prom.measurements]]
@@ -1048,6 +1059,7 @@ data:
           source = "prom-ingressgateway"
           metric_types = ["counter", "gauge", "histogram"]
           interval = "10s"
+          tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
           #measurement_prefix = ""
           measurement_name = "istio_prom"
           #[[inputs.prom.measurements]]
@@ -1060,6 +1072,7 @@ data:
           source = "prom-egressgateway"
           metric_types = ["counter", "gauge", "histogram"]
           interval = "10s"
+          tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
           #measurement_prefix = ""
           measurement_name = "istio_prom"
           #[[inputs.prom.measurements]]
