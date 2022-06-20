@@ -25,7 +25,7 @@
 
 ## 请求例子
 ```shell
-curl '<Endpoint>/api/v1/dashboards/dsbd_501b8277ba88479b82020dbfc92e110c/delete' \
+curl 'https://openapi.guance.com/api/v1/dashboards/dsbd_501b8277ba88479b82020dbfc92e110c/delete' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw 'null' \
