@@ -7,9 +7,11 @@ nav:
     - host_processes.md
     - '主机指标':
       - 'CPU': cpu.md
+      - chrony.md
       - conntrack.md
       - disk.md
       - diskio.md
+      - ethtool.md
       - mem.md
       - swap.md
       - net.md
@@ -27,7 +29,13 @@ nav:
     - '数据采集':
       - '容器': container.md
       - logfwd.md
+      - ingress_nginx_prom.md
+      - istio.md
       - kubernetes-prom.md
+      - kubernetes _API_server.md
+      - kubernetes_controller_manager.md
+      - kubernetes_kubelet.md
+
 
   - 应用性能监测（APM）:
     - 'Datakit Tracing 综述': datakit-tracing.md
@@ -82,6 +90,9 @@ nav:
     - rabbitmq.md
     - solr.md
     - flinkv1.md
+    - harbor.md
+    - zookeeper.md
+    - seata.md
     - 'Web 服务器':
       - 'Nginx': nginx.md
       - apache.md
@@ -107,6 +118,8 @@ nav:
   - '网络拨测':
     - '采集器配置': dialtesting.md
     - dialtesting_json.md
+    - port.md
+    - ping.md
 
   - 'eBPF':
     - 'eBPF 采集配置': ebpf.md

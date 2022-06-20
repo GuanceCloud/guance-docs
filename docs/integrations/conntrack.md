@@ -9,7 +9,7 @@ Conntrack 性能指标展示，包括成功搜索条目数，插入的包数，�
 操作系统支持：Linux 
 ## 前置条件
 
-- 服务器 <[安装 Datakit](https://docs.guance.com/datakit/datakit-install/)>
+- 服务器 <[安装 Datakit](/datakit/datakit-install/)>
 ## 安装配置
 说明：示例 Linux 版本为：CentOS Linux release 7.8.2003 (Core)
 ### 部署实施
@@ -37,7 +37,7 @@ Conntrack 性能指标展示，包括成功搜索条目数，插入的包数，�
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 system 指标都会带有 app = oa 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](https://docs.guance.com/best-practices/guance-skill/tag/)>
+- 相关文档 <[DataFlux Tag 应用最佳实践](/best-practices/guance-skill/tag/)>
 ```
 # 示例
 [inputs.system.tags]
@@ -66,7 +66,7 @@ systemctl restart datakit
 | `stat_search_restart` | 由于hash表大小修改而导致跟踪表查询重启的数目 | int | count |
 
 ## 常见问题排查
-<[无数据上报排查](https://docs.guance.com/datakit/why-no-data/)>
+<[无数据上报排查](/datakit/why-no-data/)>
 
 ## 进一步阅读
-<[主机可观测最佳实践](https://docs.guance.com/best-practices/integrations/host/)>
+<[主机可观测最佳实践](/best-practices/integrations/host/)>
