@@ -4,7 +4,8 @@
 操作系统支持：Linux
 
 ## 视图预览
-Kubernetes 性能指标展示：包括 pod 数量、deployment 数量、job 数量、endpoint 数量、service 数量、CPU、内存、Pod 分布等。<br />
+Kubernetes 性能指标展示：包括 pod 数量、deployment 数量、job 数量、endpoint 数量、service 数量、CPU、内存、Pod 分布等。
+
 ![image.png](imgs/input-kube-metric-server-01.png)<br />
 ![image.png](imgs/input-kube-metric-server-02.png)<br />
 ![image.png](imgs/input-kube-metric-server-03.png)<br />
@@ -230,13 +231,17 @@ spec:
 
 
 #### Daemonset 部署 DataKit (必选)
+
 登录[观测云](https://console.guance.com/)，【集成】->【DataKit】-> 【Kubernetes】，下载 `datakit.yaml`（命名无要求）。
 
-1. 修改 `datakit.yaml` 中的 dataway 配置
+1、 修改 `datakit.yaml` 中的 dataway 配置
 
-      进入【管理】模块，找到下图中 token。
+进入【管理】模块，找到下图中 token。
 
-![1648545757(1).png](imgs/input-kube-metric-server-08.png)<br />替换 datakit.yaml 文件中的 ENV_DATAWAY 环境变量的 value 值中的 <your-token>。
+![1648545757(1).png](imgs/input-kube-metric-server-08.png)
+
+替换 datakit.yaml 文件中的 ENV_DATAWAY 环境变量的 value 值中的 <your-token>。
+
 ```
         - name: ENV_DATAWAY
           value: https://openway.guance.com?token=<your-token>
@@ -249,19 +254,20 @@ spec:
 ```
 更多环境变量请参考 [DataKit 环境变量设置](https://www.yuque.com/dataflux/datakit/datakit-daemonset-deploy)。
 
-2. 增加 ENV_NAMESPACE 环境变量 
+2、 增加 ENV_NAMESPACE 环境变量 
 
-      修改 `datakit.yaml`，增加 ENV_NAMESPACE 环境变量，这个环境变量是为了区分不同集群的选举，多个集群 value 值不能相同。
+修改 `datakit.yaml`，增加 ENV_NAMESPACE 环境变量，这个环境变量是为了区分不同集群的选举，多个集群 value 值不能相同。
+
 ```
         - name: ENV_NAMESPACE
           value: xxx
 ```
 
-3. 定义ConfigMap
+3、 定义ConfigMap
 
 『注意』下载的 datakit.yaml 并没有 ConfigMap，定义的 ConfigMap 可一起放到 datakit.yaml 。
+
 ```
----
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -304,6 +310,7 @@ data:
 [inputs.container]参数说明
 
 - enable_container_metric：是否开启 container 指标采集，请设置为true。
+
 - enable_k8s_metric：是否开启 kubernetes 指标采集。
 - enable_pod_metric：是否开启 Pod 指标采集。
 - container_include_log：须要采集的容器日志。
@@ -311,21 +318,24 @@ data:
 
 `container_include_log` 和 `container_exclude_log` 必须以 `image` 开头，格式为 `"image:<glob规则>"`，表示 glob 规则是针对容器 image 生效。[Glob 规则](https://en.wikipedia.org/wiki/Glob_(programming))是一种轻量级的正则表达式，支持 `*` `?` 等基本匹配单元
 
-4. 使用ConfigMap
+4、 使用ConfigMap
 
-        在 datakit.yaml 文件中的 volumeMounts 下面增加：
+在 datakit.yaml 文件中的 volumeMounts 下面增加：
+
 ```
-        - mountPath: /usr/local/datakit/conf.d/container/container.conf
-          name: datakit-conf
-          subPath: container.conf
+    - mountPath: /usr/local/datakit/conf.d/container/container.conf
+      name: datakit-conf
+      subPath: container.conf
 ```
 
-5. 部署Datakit
+5、 部署Datakit
+
 ```
 kubectl apply -f datakit.yaml
 ```
 
 #### 日志采集 
+
 默认自动收集输出到控制台的日志，如果采集不输出到控制台且输出文件的日志，请参考<<[Kubernetes 应用的 RUM-APM-LOG 联动分析](https://www.yuque.com/dataflux/bp/k8s-rum-apm-log)>>的日志配置部分。
 
 
@@ -333,8 +343,9 @@ kubectl apply -f datakit.yaml
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
+
 - 以下示例配置完成后，所有 kubernetes 指标都会带有 tag1 = "val1" 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](https://www.yuque.com/dataflux/bp/tag)>
+- 相关文档 <[DataFlux Tag 应用最佳实践](/best-practices/guance-skill/tag/)>
 ```
           [inputs.kubernetes.tags]
            #tag1 = "val1"
@@ -343,7 +354,10 @@ kubectl apply -f datakit.yaml
 
 
 ## 场景视图
-场景 - 新建仪表板 - Kubernetes 监控视图<br />相关文档 <[DataFlux 场景管理](https://www.yuque.com/dataflux/doc/trq02t)> 
+
+场景 - 新建仪表板 - Kubernetes 监控视图
+
+相关文档 <[DataFlux 场景管理](https://www.yuque.com/dataflux/doc/trq02t)> 
 
 ## 异常检测
 暂无
@@ -356,5 +370,5 @@ kubectl apply -f datakit.yaml
 暂无
 
 ## 故障排查
-<[无数据上报排查](https://www.yuque.com/dataflux/datakit/why-no-data)>
+<[无数据上报排查](why-no-data.md)>
 

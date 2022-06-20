@@ -34,9 +34,14 @@ nav:
       - ingress_nginx_prom.md
       - istio.md
       - kubernetes-prom.md
-      - kubernetes _API_server.md
+      - kubernetes_API_server.md
       - kubernetes_controller_manager.md
       - kubernetes_kubelet.md
+      - kube-metric-server.md
+      - kube-scheduler.md
+      - kube-state-metrics.md
+      - kubernetes-x.md
+      - kubernetes-x.md
 
 
   - 应用性能监测（APM）:
@@ -103,6 +108,8 @@ nav:
     - harbor.md
     - zookeeper.md
     - seata.md
+    - ruby.md
+    - haproxy.md
     - 'Web 服务器':
       - 'Nginx': nginx.md
       - apache.md

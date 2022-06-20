@@ -11,7 +11,7 @@
 
 ## 前置条件
 
--  <[安装 Datakit](https://www.yuque.com/dataflux/datakit/datakit-install)>
+- [安装 Datakit](datakit-install.md)
 
 ## 部署实施
 
@@ -156,4 +156,4 @@ systemctl restart datakit
 
 ## 常见问题排查
 
-<[无数据上报排查](https://www.yuque.com/dataflux/datakit/why-no-data)>
+<[无数据上报排查](why-no-data.md)>

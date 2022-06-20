@@ -15,7 +15,7 @@ Istio 版本： [istio](https://github.com/istio/istio)。
 
 - 已部署 [Kubernetes](https://kubernetes.io/docs/setup/production-environment/tools/)。
 
-- 已部署 DataKit，请参考  [Daemonset 部署 Datakit](https://www.yuque.com/dataflux/integrations/kubernetes) 。
+- 已部署 DataKit，请参考  [Daemonset 部署 Datakit](kube-metric-server.md) 。
 
 ## 安装配置
 
@@ -772,7 +772,7 @@ DataKit 默认的配置，采集容器输出到 /dev/stdout 的日志。更多�
 
 ## 常见问题排查
 
-<[无数据上报排查](https://www.yuque.com/dataflux/datakit/why-no-data)>
+<[无数据上报排查](why-no-data.md)>
 
 ## 进一步阅读
 

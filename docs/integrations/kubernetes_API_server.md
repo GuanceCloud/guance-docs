@@ -15,7 +15,7 @@ Kubernetes 版本：1.18+
 
 ## 前置条件
 
-- Kubernetes 集群 <[安装 Datakit](https://www.yuque.com/dataflux/integrations/kubernetes)>
+- Kubernetes 集群 <[安装 Datakit](kube-metric-server.md)>
 
 ## 安装配置
 
@@ -143,7 +143,7 @@ kubectl apply -f datakit.yaml
 
 - 以下示例配置完成后，api-server 指标都会带有 app = oa 的标签，可以进行快速查询
 - 采集 api-server 指标，必填的 key 是 instance，值是 api-server 的地址
-- 相关文档 <[DataFlux Tag 应用最佳实践](https://www.yuque.com/dataflux/bp/tag)>
+- 相关文档 <[DataFlux Tag 应用最佳实践](/best-practices/guance-skill/tag/)>
 
 ```
        ## 自定义Tags
@@ -175,7 +175,7 @@ kubectl apply -f datakit.yaml
 
 ## 常见问题排查
 
-<[无数据上报排查](https://www.yuque.com/dataflux/datakit/why-no-data)>
+<[无数据上报排查](why-no-data.md)>
 
 ## 进一步阅读
 

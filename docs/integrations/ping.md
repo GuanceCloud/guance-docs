@@ -13,7 +13,7 @@ Ping 指标展示，包括响应时间，丢包率，发送/接收数据包等
 
 ## 前置条件
 
-- 服务器 <[安装 Datakit](https://www.yuque.com/dataflux/datakit/datakit-install)>
+- 服务器 <[安装 Datakit](datakit-install.md)>
 
 - 服务器安装 Telegraf
 
@@ -124,7 +124,7 @@ systemctl start telegraf
 - 该配置为自定义标签，可以填写任意 key-value 值
 
 - 以下示例配置完成后，所有 ping 指标都会带有 app = oa 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](https://www.yuque.com/dataflux/bp/tag)>
+- 相关文档 <[DataFlux Tag 应用最佳实践](/best-practices/guance-skill/tag/)>
 
 ```
 # 示例
@@ -162,16 +162,20 @@ systemctl restart telegraf
 
 ## 常见问题排查
 
-<[无数据上报排查](https://www.yuque.com/dataflux/datakit/why-no-data)>
+<[无数据上报排查](why-no-data.md)>
 
-Q：如果想监控多个地址，怎么配置？<br />A：可以在 urls 填写数组。
+Q：如果想监控多个地址，怎么配置？
+
+A：可以在 urls 填写数组。
 
 ```
 [[inputs.ping]]
   urls = ["www.guance.com","www.baidu.com"]
 ```
 
-Q：如果检测地址过多，会出现 too many open files 错误，如何解决？<br />A：扩大 telegraf 文件限制数 (使用命令进入 nano 编辑器)
+Q：如果检测地址过多，会出现 too many open files 错误，如何解决？
+
+A：扩大 telegraf 文件限制数 (使用命令进入 nano 编辑器)
 
 ```
 systemctl edit telegraf
