@@ -24,7 +24,7 @@ RUN \
     libffi-dev \
     libxml2-dev \
     libxslt-dev \
-    musl-dev \
+    musl-dev
 
 RUN pip install --upgrade pip -i https://mirrors.aliyun.com/pypi/simple
 
