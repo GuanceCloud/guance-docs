@@ -9,7 +9,10 @@
 
 ## 采样设置
 
-登录 “观测云” 控制台，进入「用户访问监测」页面，点击右上角「新建应用」，在新窗口输入「应用名称」，点击「创建」，即可选择应用类型获取接入方式。Web应用接入的有三种方式：NPM 接入、同步载入和异步载入。
+登录 “观测云” 控制台，进入「用户访问监测」页面，点击右上角「新建应用」，在新窗口输入「应用名称」并自定义「应用ID」，点击「创建」，即可选择应用类型获取接入方式。Web应用接入的有三种方式：NPM 接入、同步载入和异步载入。
+
+- 应用名称（必填项）：用于识别当前实施用户访问监控的应用名称。
+- 应用ID（选填）：当前空间内唯一的应用ID标识，支持用于数据上传匹配；应用ID标识最多为 20 个字符，仅支持输入大小写字母。
 
 ![](img/sampling.png)
 
@@ -20,7 +23,7 @@
 <script>
   window.DATAFLUX_RUM &&
     window.DATAFLUX_RUM.init({
-      applicationId: 'appid_48617201757b4dcc86f3e3291dfa7e4b',
+      applicationId: 'ssnsakdjkajd_appid_UjUsdXxYNE24YKzjSqtbsK',
       datakitOrigin: '<DATAKIT ORIGIN>', // 协议（包括：//），域名（或IP地址）[和端口号]
       sampleRate: 90,
       //  env: 'production',
