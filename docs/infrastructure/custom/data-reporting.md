@@ -2,19 +2,15 @@
 ---
 
 
-自定义对象数据上报需要先安装并连通 DataKIt 和 Function，再通过 Function 上报数据到 DataKit，最终 DataKit 上报数据到 “观测云” 工作空间。
+自定义对象数据上报需要先安装并连通 DataKIt 和 DataFlux Func ，再通过 DataFlux Func 上报数据到 DataKit，最终 DataKit 上报数据到观测云工作空间。
 
 ![](../img/自定义对象.png)
 
 ## 安装 DataKit
 
-在到“观测云”工作空间，依次点击「集成」-「DataKit」，选择DataKit安装方式，见如下信息，然后复制「安装指令」在主机执行。
+在到观测云工作空间，依次点击「集成」-「DataKit」，选择 DataKit 安装方式，见如下信息，然后复制「安装指令」在主机执行。
 
-- 安装系统：Linux
-- 系统类型：X86 amd64
-- DataWay 地址：OpenWay
-
-![](../img/image_15.png)
+![](../img/1.datakit_install.png)
 
 打开命令行终端工具，登录到主机，执行复制的「安装指令」，安装完成后会提示`Install Success`。
 
@@ -24,9 +20,9 @@
 
 ## 安装 Function
 
-在“观测云”工作空间，依次点击「集成」-「Function」，根据如下步骤在命令行终端工具进行安装 Function 。
+在观测云工作空间，依次点击「集成」-「Func」，根据如下步骤在命令行终端工具进行安装 Func 。
 
-![](../img/3.object_more_api_function.png)
+![](../img/1.func_install.png)
 
 1）下载携带版。
 
@@ -39,13 +35,13 @@
 
 ![](../img/3.object_more_api_function_1.png)
 
-更多 Function 安装可参考文档 [Function 快速开始](../../dataflux-func/quick-start.md) 。
+更多 Func 安装可参考文档 [快速开始](../../dataflux-func/quick-start.md) 。
 
 ## 连接 Function 和 DataKit
 
-在使用DataFlux Func 向 DataFlux DataKit 写入数据之前，首先要确保连通性。因此，在DataFlux DataKit 安装完成后，需要调整配置，允许 DataFlux Func 连接。
+在使用 DataFlux Func 向 DataKit 写入数据之前，首先要确保连通性。因此，在 DataKit 安装完成后，需要调整配置，允许 DataFlux Func 连接。
 
-1.打开DataKit配置：`sudo vim /usr/local/datakit/conf.d/datakit.conf`
+1.打开 DataKit 配置：`sudo vim /usr/local/datakit/conf.d/datakit.conf`
 
 2.将`http_listen = "localhost:9529"`修改为`http_listen = "0.0.0.0:9529"`
 
@@ -57,16 +53,16 @@
 
 ## 上报自定义对象数据
 
-Function和DataKit连通以后，可以在 Function中撰写函数来完成上报自定义对象数据。
+DataFlux Func 和 DataKit 连通以后，可以在 DataFlux Func 中撰写函数来完成上报自定义对象数据。
 
-- 关于 Function 函数调用的接口说明可参考文档 [DataKit API](../../datakit/apis.md) 。
-- 关于 Function 如何写入数据到 DataKit 的说明可参考文档 [通过DataKit 写入数据](../../dataflux-func/write-data-via-datakit.md) 。
+- 关于 DataFlux Func 函数调用的接口说明可参考文档 [DataKit API](../../datakit/apis.md) 。
+- 关于 DataFlux Func 如何写入数据到 DataKit 的说明可参考文档 [通过DataKit 写入数据](../../dataflux-func/write-data-via-datakit.md) 。
 
 ## 示例说明
 
-下面的示例主要以阿里云产品为例，说明如何通过 Function 上报自定义对象数据。
+下面的示例主要以阿里云产品为例，说明如何通过 DataFlux Func 上报自定义对象数据。
 
-前提条件：已经完成 DataKit 和 Function 安装及连通。
+前提条件：已经完成 DataKit 和 DataFlux Func 安装及连通。
 
 1.在浏览器输入 `http://服务器IP地址:8088`，输入账号和密码，可在初始化时配置，默认为`admin/admin`。
 
@@ -76,13 +72,13 @@ Function和DataKit连通以后，可以在 Function中撰写函数来完成上�
 
 ![](../img/3.object_more_api_function_5.png)
 
-3.DataFlux Func支持通过python撰写脚本上报数据。在开始添加脚本之前，需要先安装阿里云的Python SDK。
+3.DataFlux Func 支持通过python撰写脚本上报数据。在开始添加脚本之前，需要先安装阿里云的 Python SDK。
 
 1）在 DataFlux Func 「管理」-「实验性功能」- 「开启PIP工具模块」。
 
 ![](../img/3.object_more_api_function_6.png)
 
-2）在「PIP工具」模块，点击打开[阿里云的Python SDK](https://help.aliyun.com/document_detail/53090.html?spm=a2c4g.11186623.6.556.3533694ccdcH5B)的网址，复制`aliyun-python-sdk-core`进行安装。
+2）在「PIP工具」模块，点击打开 [阿里云的Python SDK](https://help.aliyun.com/document_detail/53090.html?spm=a2c4g.11186623.6.556.3533694ccdcH5B) 的网址，复制`aliyun-python-sdk-core`进行安装。
 
 ![](../img/3.object_more_api_function_8.png)
 
@@ -90,7 +86,7 @@ Function和DataKit连通以后，可以在 Function中撰写函数来完成上�
 
 ![](../img/3.object_more_api_function_9.png)
 
-根据 [DataKit API](../../datakit/apis.md) 文档获取上报API接口和撰写上报数据到DataFlux的脚本，根据[阿里云 API](https://next.api.aliyun.com/product/Ecs) 文档撰写获取阿里云产品基本信息的字段。
+根据 [DataKit API](../../datakit/apis.md) 文档获取上报API接口和撰写上报数据到DataFlux的脚本，根据 [阿里云 API](https://next.api.aliyun.com/product/Ecs) 文档撰写获取阿里云产品基本信息的字段。
 
 脚本写完以后，可以点击右上角的“执行”，查看是否可以正常执行代码。
 
