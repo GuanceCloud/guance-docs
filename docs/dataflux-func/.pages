@@ -25,16 +25,18 @@ nav:
       - script-market-guance-integration.md
       - 阿里云采集器:
         - 云监控: script-market-guance-aliyun-monitor.md
-        - ECS  : script-market-guance-aliyun-ecs.md
-        - RDS  : script-market-guance-aliyun-rds.md
-        - SLB  : script-market-guance-aliyun-slb.md
-        - OSS  : script-market-guance-aliyun-oss.md
-        - Redis: script-market-guance-aliyun-redis.md
-        - DCDN : script-market-guance-aliyun-dcdn.md
-        - CDN  : script-market-guance-aliyun-cdn.md
-        - NAT  : script-market-guance-aliyun-nat.md
-        - Mongo: script-market-guance-aliyun-mongodb.md
-      - AWS采集器:
+        - ECS    : script-market-guance-aliyun-ecs.md
+        - RDS    : script-market-guance-aliyun-rds.md
+        - SLB    : script-market-guance-aliyun-slb.md
+        - OSS    : script-market-guance-aliyun-oss.md
+        - Redis  : script-market-guance-aliyun-redis.md
+        - DCDN   : script-market-guance-aliyun-dcdn.md
+        - CDN    : script-market-guance-aliyun-cdn.md
+        - NAT    : script-market-guance-aliyun-nat.md
+        - Mongo  : script-market-guance-aliyun-mongodb.md
+        - Mongo  : script-market-guance-aliyun-mongodb.md
+        - PolarDB: script-market-guance-aliyun-polardb.md
+      - AWS 采集器:
         - 云监控: script-market-guance-aws-cloudwatch.md
         - EC2: script-market-guance-aws-ec2.md
         - RDS: script-market-guance-aws-rds.md
@@ -46,6 +48,7 @@ nav:
         - CDB: script-market-guance-tencentcloud-cdb.md
         - CLB: script-market-guance-tencentcloud-clb.md
         - COS: script-market-guance-tencentcloud-cos.md
+      - script-market-guance-tencentcloud-sdk-module-issue.md
 
     - 生活日常:
       - 天气信息: script-market-weather.md

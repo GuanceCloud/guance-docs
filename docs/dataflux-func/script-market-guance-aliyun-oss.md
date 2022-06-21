@@ -4,7 +4,7 @@
 
 阅读本文前，请先阅读：
 
-- [观测云集成简介](/dataflux-func/script-market-guance-integration-intro)
+- [观测云集成简介](/dataflux-func/script-market-guance-integration)
 
 > 提示：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包
 
@@ -12,10 +12,10 @@
 
 本采集器配置结构如下：
 
-| 字段         | 类型 | 是否必须 | 说明                                      |
-| ------------ | ---- | -------- | ----------------------------------------- |
-| `regions`    | list | 必须     | 所需采集的地域列表                        |
-| `regions[#]` | str  | 必须     | 地域ID。如：`'cn-hangzhou'`<br>总表见附录 |
+| 字段         | 类型 | 是否必须 | 说明                                       |
+| ------------ | ---- | -------- | ------------------------------------------ |
+| `regions`    | list | 必须     | 所需采集的地域列表                         |
+| `regions[#]` | str  | 必须     | 地域 ID。如：`'cn-hangzhou'`<br>总表见附录 |
 
 ## 2. 配置示例
 
@@ -49,7 +49,7 @@ collector_configs = {
     "extranet_endpoint": "oss-cn-hangzhou.aliyuncs.com",
     "intranet_endpoint": "oss-cn-hangzhou-internal.aliyuncs.com",
     "creation_date"    : 1638415082,
-    "message"          : "{实例JSON数据}"
+    "message"          : "{实例 JSON 数据}"
   }
 }
 ~~~
@@ -58,7 +58,7 @@ collector_configs = {
 
 > 提示：`tags.name` 值为 Bucket 名称，作为唯一识别
 
-> 提示2：`fields.message`为JSON序列化后字符串
+> 提示 2：`fields.message`为 JSON 序列化后字符串
 
 ## X. 附录
 

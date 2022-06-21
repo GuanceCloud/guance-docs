@@ -2,14 +2,14 @@
 ---
 
 
-本文档主要面向开发者，提供有关DataFlux Func 代码编写等相关介绍。
+本文档主要面向开发者，提供有关 DataFlux Func 代码编写等相关介绍。
 
 在阅读本文档前，请确保已经阅读过「DataFlux Func 用户手册」，
-且已经对DataFlux Func 以及在DataFlux Func 中编写脚本有了初步的了解。
+且已经对 DataFlux Func 以及在 DataFlux Func 中编写脚本有了初步的了解。
 
 ## A. 重要提示
 
-*在DataFlux Func 的使用过程中，*
+*在 DataFlux Func 的使用过程中，*
 
 *请勿多人登录同一个账号，也不要多人同时编辑同一份代码。*
 
@@ -17,15 +17,15 @@
 
 ## B. 一般约定
 
-DataFlux Func 中，存在脚本集、脚本、函数等概念，当提及这些概念的ID时，具体如下：
+DataFlux Func 中，存在脚本集、脚本、函数等概念，当提及这些概念的 ID 时，具体如下：
 
-假设存在一个脚本集，ID为`demo`；其下有脚本，ID为`demo__test`；包含一个函数`def hello(...)`。那么：
+假设存在一个脚本集，ID 为`demo`；其下有脚本，ID 为`demo__test`；包含一个函数`def hello(...)`。那么：
 
-| 项目     | ID                 |
-| -------- | ------------------ |
-| 脚本集ID | `demo`             |
-| 脚本ID   | `demo__test`       |
-| 函数ID   | `demo__test.hello` |
+| 项目      | ID                 |
+| --------- | ------------------ |
+| 脚本集 ID | `demo`             |
+| 脚本 ID   | `demo__test`       |
+| 函数 ID   | `demo__test.hello` |
 
 ## C. 内置功能的参数传递
 
@@ -37,10 +37,10 @@ some_func(opt_arg=value)
 
 ## 1. 开始编写第一个函数
 
-在DataFlux Func 中编写代码，与正常编写Python 代码并无太大区别。
-对于需要导出为API的函数，添加内置的`@DFF.API(...)`装饰器即可实现。
+在 DataFlux Func 中编写代码，与正常编写 Python 代码并无太大区别。
+对于需要导出为 API 的函数，添加内置的`@DFF.API(...)`装饰器即可实现。
 
-函数的返回值即接口的返回值，当返回值为`dict`、`list`时，系统会自动当作JSON 返回。
+函数的返回值即接口的返回值，当返回值为`dict`、`list`时，系统会自动当作 JSON 返回。
 
 一个典型的函数如下：
 
@@ -53,7 +53,7 @@ def hello_world(message=None):
     return ret
 ```
 
-此时，为本函数创建一个授权链接，即可实现在公网通过HTTP 的方式调用本函数。
+此时，为本函数创建一个授权链接，即可实现在公网通过 HTTP 的方式调用本函数。
 
 ### 1.1 支持文件上传的函数
 
@@ -62,13 +62,13 @@ DataFlux Func 也支持向授权链接接口上传文件。
 需要处理上传的文件时，可以为函数添加`files`参数接收上传的文件信息。
 文件在上传后，DataFlux Func 会自动将文件存储到一个临时上传目录供脚本进行后续处理。
 
-具体Python代码示例如下：
+具体 Python 代码示例如下：
 
 ```python
-# 接收Excel文件，并将Sheet1内容返回
+# 接收 Excel 文件，并将 Sheet1 内容返回
 from openpyxl import load_workbook
 
-@DFF.API('读取Excel')
+@DFF.API('读取 Excel')
 def read_excel(files=None):
     excel_data = []
     if files:
@@ -79,7 +79,7 @@ def read_excel(files=None):
     return excel_data
 ```
 
-`files`参数由DataFlux Func 系统自动填入，内容如下：
+`files`参数由 DataFlux Func 系统自动填入，内容如下：
 
 ```json
 [
@@ -87,7 +87,7 @@ def read_excel(files=None):
         "filePath"    : "<文件临时存放地址>",
         "originalname": "<文件原始文件名>",
         "encoding"    : "<编码>",
-        "mimetype"    : "<MIME类型>",
+        "mimetype"    : "<MIME 类型>",
         "size"        : "<文件大小>"
     },
     ...
@@ -96,17 +96,15 @@ def read_excel(files=None):
 
 > 上传文件的示例命令见「调用授权链接 - `POST`简化传参」
 
-
-
 ## 2. 调用函数
 
 DataFlux Func 平台提供了多种执行功能用于调用被`DFF.API(...)`修饰的函数：
 
-| 执行功能 | 特点                                               | 适用场景                                   |
-| -------- | -------------------------------------------------- | ------------------------------------------ |
-| 授权链接 | 生成同步HTTP API。调用后直接返回处理结果           | 处理时间较短，客户端需要立刻获得结果的情况 |
-| 自动触发 | 基于Crontab 语法自动执行                           | 定期同步/缓存数据，定时任务等情况          |
-| 批处理   | 生成异步HTTP API。调用后立刻响应，但不返回处理结果 | 处理时间较长，接口调用仅作为启动信号的场景 |
+| 执行功能 | 特点                                                | 适用场景                                   |
+| -------- | --------------------------------------------------- | ------------------------------------------ |
+| 授权链接 | 生成同步 HTTP API。调用后直接返回处理结果           | 处理时间较短，客户端需要立刻获得结果的情况 |
+| 自动触发 | 基于 Crontab 语法自动执行                           | 定期同步/缓存数据，定时任务等情况          |
+| 批处理   | 生成异步 HTTP API。调用后立刻响应，但不返回处理结果 | 处理时间较长，接口调用仅作为启动信号的场景 |
 
 用户可以在「管理」中的对应入口，创建上述配置。
 
@@ -117,16 +115,16 @@ DataFlux Func 平台提供了多种执行功能用于调用被`DFF.API(...)`修�
 
 此外，`POST`方式的「简化」形式还支持文件上传，以下是各种调用方式的功能支持列表：
 
-| 调用方式       | 传递`kwargs`参数 | `kwargs`参数类型 | 传递`options` | 文件上传 | 提交任意格式的`Body`<br>`1.6.9`以后可用 |
-| -------------- | ---------------- | ---------------- | ------------- | -------- | --------------------------------------- |
-| `GET`简化形式  | 支持             | *仅限字符串*     | *不支持*      | *不支持* | *不支持*                                |
-| `GET`标准形式  | 支持             | JSON中的数据类型 | 支持          | *不支持* | *不支持*                                |
-| `POST`简化形式 | 支持             | *仅限字符串*     | *不支持*      | 支持     | 支持                                    |
-| `POST`标准形式 | 支持             | JSON中的数据类型 | 支持          | *不支持* | *不支持*                                |
+| 调用方式       | 传递`kwargs`参数 | `kwargs`参数类型  | 传递`options` | 文件上传 | 提交任意格式的`Body`<br>`1.6.9`以后可用 |
+| -------------- | ---------------- | ----------------- | ------------- | -------- | --------------------------------------- |
+| `GET`简化形式  | 支持             | *仅限字符串*      | *不支持*      | *不支持* | *不支持*                                |
+| `GET`标准形式  | 支持             | JSON 中的数据类型 | 支持          | *不支持* | *不支持*                                |
+| `POST`简化形式 | 支持             | *仅限字符串*      | *不支持*      | 支持     | 支持                                    |
+| `POST`标准形式 | 支持             | JSON 中的数据类型 | 支持          | *不支持* | *不支持*                                |
 
 > 提示：对于*`kwargs`中参数只能传递字符串*的调用方式，需要在函数中对参数进行类型转换
 
-> 在授权链接列表，可以点击「API调用示例」来查看具体调用方式
+> 在授权链接列表，可以点击「API 调用示例」来查看具体调用方式
 
 #### 典型示例
 
@@ -138,7 +136,7 @@ def my_func(x, y):
     pass
 ```
 
-为此函数创建的授权链接ID为`auln-xxxxx`，传递的参数为`x` = `100`（整数）, `y` = `"hello"`（字符串）。
+为此函数创建的授权链接 ID 为`auln-xxxxx`，传递的参数为`x` = `100`（整数）, `y` = `"hello"`（字符串）。
 
 那么，各种不同的调用方式如下：
 
@@ -146,7 +144,7 @@ def my_func(x, y):
 
 如果函数的参数比较简单，可以使用`GET`简化形式传递参数，接口将更加直观。
 
-由于URL中传递参数时，无法区分字符串的`"100"`和整数的`100`，
+由于 URL 中传递参数时，无法区分字符串的`"100"`和整数的`100`，
 所以函数在被调用时，接收到的参数都是字符串。
 函数需要自行对参数进行类型转换。
 
@@ -154,14 +152,14 @@ def my_func(x, y):
 GET /api/v1/al/auln-xxxxx/simplified?x=100&y=hello
 ```
 
-*注意：为了便于阅读，示例为URLEncode之前的内容，实际URL参数需要进行URLEncode*
+*注意：为了便于阅读，示例为 URLEncode 之前的内容，实际 URL 参数需要进行 URLEncode*
 
 ##### `GET`标准形式传参
 
-在某些情况下，如果无法发送POST请求，也可以使用GET方式调用接口。
+在某些情况下，如果无法发送 POST 请求，也可以使用 GET 方式调用接口。
 
-`GET`标准形式传参时，将整个`kwargs`进行JSON序列化后，作为URL参数传递即可。
-由于参数实际还是以JSON格式发送，因此参数的原始类型都会保留。
+`GET`标准形式传参时，将整个`kwargs`进行 JSON 序列化后，作为 URL 参数传递即可。
+由于参数实际还是以 JSON 格式发送，因此参数的原始类型都会保留。
 函数无需再对参数进行类型转换。
 
 如本例中，函数接收到的`x`参数即为整数，无需类型转换。
@@ -170,14 +168,14 @@ GET /api/v1/al/auln-xxxxx/simplified?x=100&y=hello
 GET /api/v1/al/auln-xxxxx?kwargs={"x":100,"y":"hello"}
 ```
 
-*注意：为了便于阅读，示例为URLEncode之前的内容，实际URL参数需要进行URLEncode*
+*注意：为了便于阅读，示例为 URLEncode 之前的内容，实际 URL 参数需要进行 URLEncode*
 
 ##### `POST`简化形式传参
 
-在某些情况下，如果无法发送请求体为JSON的HTTP请求，
-那么也可以类似Form表单的形式传递参数，各字段名即为参数名。
+在某些情况下，如果无法发送请求体为 JSON 的 HTTP 请求，
+那么也可以类似 Form 表单的形式传递参数，各字段名即为参数名。
 
-由于Form表单提交数据时，无法区分字符串的`"100"`和整数的`100`，
+由于 Form 表单提交数据时，无法区分字符串的`"100"`和整数的`100`，
 所以函数在被调用时，接收到的参数都是字符串。
 函数需要自行对参数进行类型转换。
 
@@ -201,12 +199,12 @@ x=100&y=hello
         <input id="submit" type="submit" value="上传"/>
     </body>
     <script>
-        // 授权链接地址（如本页面与DataFlux Func 不在同一个域名下，需要写全 http://域名:端口/api/v1/al/auln-xxxxx/simplified
+        // 授权链接地址（如本页面与 DataFlux Func 不在同一个域名下，需要写全 http://域名：端口/api/v1/al/auln-xxxxx/simplified
         // 注意：上传文件必须使用简化形式授权链接
         var AUTH_LINK_URL = '/api/v1/al/auln-xxxxx/simplified';
 
         document.querySelector('#submit').addEventListener('click', function(event) {
-            // 点击上传按钮后，生成FormData 对象后作为请求体发送请求
+            // 点击上传按钮后，生成 FormData 对象后作为请求体发送请求
             var data = new FormData();
             data.append('x', '100');
             data.append('y', 'hello');
@@ -223,7 +221,7 @@ x=100&y=hello
 ##### `POST`标准形式传参
 
 `POST`标准形式传参是最常见的调用方式。
-由于参数以JSON格式通过请求体发送，因此参数的原始类型都会保留。
+由于参数以 JSON 格式通过请求体发送，因此参数的原始类型都会保留。
 函数无需再对参数进行类型转换。
 
 如本例中，函数接收到的`x`参数即为整数，无需类型转换。
@@ -242,11 +240,11 @@ Content-Type: application/json
 
 #### 处理非 JSON、From 数据
 
-> 此功能在`1.6.9`以后版本可用
+> `1.6.9`版本新增
 
 在某些情况下，请求可能由第三方系统或应用按照其特有的格式发起，且请求体不属于 JSON 或 Form 格式，那么可以使用`**data`作为入参，并以 POST 简化形式来调用。
 
-系统在接收到文本、无法解析的数据时，会自动打包为`{ "text": "<文本>" }`或`{ "base64": "<Base64格式的二进制数据>"}`并传递给函数。
+系统在接收到文本、无法解析的数据时，会自动打包为`{ "text": "<文本>" }`或`{ "base64": "<Base64 格式的二进制数据>"}`并传递给函数。
 
 示例代码如下：
 
@@ -254,7 +252,7 @@ Content-Type: application/json
 import json
 import binascii
 
-@DFF.API('接受任意格式Body的函数')
+@DFF.API('接受任意格式 Body 的函数')
 def tiger_balm(**data):
     if 'text' in data:
         # 当请求体为文本（如：Content-Type: text/plain）时
@@ -263,8 +261,8 @@ def tiger_balm(**data):
 
     elif 'base64' in data:
         # 当请求体为无法解析的格式（Content-Type: application/xxx）时
-        # `data`参数中固定包含一个单独`base64`字段存放请求体的Base64字符串
-        # Base64字符串可以使用`binascii.a2b_base64(...)`转换为Python的二进制数据
+        # `data`参数中固定包含一个单独`base64`字段存放请求体的 Base64 字符串
+        # Base64 字符串可以使用`binascii.a2b_base64(...)`转换为 Python 的二进制数据
         b = binascii.a2b_base64(data['base64'])
         return f"Base64：{data['base64']} -> {b}"
 ~~~
@@ -299,7 +297,7 @@ Base64：aGVsbG8sIHdvcmxkIQ== -> b'hello, world!'
 
 ### 2.2 通过自动触发配置调用
 
-为函数创建自动触发配置后，函数则会所指定的Crontab 表达式定时执行，不需要外部进行调用。
+为函数创建自动触发配置后，函数则会所指定的 Crontab 表达式定时执行，不需要外部进行调用。
 
 正因为如此，所执行的函数的所有参数必须都已满足，即：
 
@@ -327,28 +325,28 @@ def my_func(x, y):
 
 > 批处理除了不返回处理结果外，调用方式与「授权链接」相同，请参考上文「通过授权链接调用」进行操作。
 
-### 2.4 额外的API认证
+### 2.4 额外的 API 认证
 
 > `1.3.2`版本新增
 
-对于「授权链接」和「批处理」所生成的HTTP API，可以额外添加接口认证。
+对于「授权链接」和「批处理」所生成的 HTTP API，可以额外添加接口认证。
 
 目前支持的接口认证如下：
 
-| 认证类型    | 说明                                                       |
-| ----------- | ---------------------------------------------------------- |
-| 固定字段    | 验证请求的Header, Query 或 Body 中必须包含具有特定值的字段 |
-| HTTP Basic  | 标准HTTP Basic 认证（在浏览器中访问可弹出登录框）          |
-| HTTP Digest | 标准HTTP Digest 认证（在浏览器中访问可弹出登录框）         |
-| 认证函数    | 指定自行编写的函数作为认证函数                             |
+| 认证类型    | 说明                                                        |
+| ----------- | ----------------------------------------------------------- |
+| 固定字段    | 验证请求的 Header, Query 或 Body 中必须包含具有特定值的字段 |
+| HTTP Basic  | 标准 HTTP Basic 认证（在浏览器中访问可弹出登录框）          |
+| HTTP Digest | 标准 HTTP Digest 认证（在浏览器中访问可弹出登录框）         |
+| 认证函数    | 指定自行编写的函数作为认证函数                              |
 
-用户可以在「管理 - API认证」添加认证配置，随后在「授权链接/批处理 配置」中指定所添加的认证配置。
+用户可以在「管理 - API 认证」添加认证配置，随后在「授权链接/批处理 配置」中指定所添加的认证配置。
 
-*注意：如对安全性有较高要求，请务必使用HTTPS 方式访问接口*
+*注意：如对安全性有较高要求，请务必使用 HTTPS 方式访问接口*
 
 #### 固定字段认证
 
-固定字段认证是最简单的认证方式，即客户端与DataFlux Func 约定在请求的某处（Header、Query 或 Body）包含一个特定的字段和字段值，在每次调用时附带此内容以完成认证。
+固定字段认证是最简单的认证方式，即客户端与 DataFlux Func 约定在请求的某处（Header、Query 或 Body）包含一个特定的字段和字段值，在每次调用时附带此内容以完成认证。
 
 假设约定每次请求中，请求头必须包含`x-auth-token`=`"my-auth-token"`，那么按照以下方式调用即可完成认证：
 
@@ -359,7 +357,7 @@ x-auth-token: my-auth-token
 
 *注意：配置多个固定字段认证时，有一个匹配即认为通过认证*
 
-*注意：对于Query 和Body 中用于认证的字段，认证通过后系统会自动将其删除，不会传递到函数*
+*注意：对于 Query 和 Body 中用于认证的字段，认证通过后系统会自动将其删除，不会传递到函数*
 
 #### HTTP Basic / HTTP Digest
 
@@ -388,19 +386,19 @@ resp = requests.get(url_2, auth=HTTPDigestAuth('user', 'password'))
 
 参数`req`是一个`dict`，具体结构如下：
 
-| 字段名      | 字段值类型 | 说明                                                                                           |
-| ----------- | ---------- | ---------------------------------------------------------------------------------------------- |
-| method      | `str`      | 请求方法（大写）<br>如：`"GET"`、`"POST"`                                                      |
-| originalUrl | `str`      | 请求原始URL。包含`?`后的部分<br>如：`/api/v1/al/auln-xxxxx?q=1`                                |
-| url         | `str`      | 请求URL。不包含`?`后的部分<br>如：`/api/v1/al/auln-xxxxx`                                      |
-| headers     | `dict`     | 请求Header，字段名均为小写                                                                     |
-| query       | `dict`     | 请求Query，字段名和字段值都为字符串                                                            |
-| body        | `dict`     | 请求Body                                                                                       |
-| hostname    | `str`      | 请求访问的主机名。不包含端口号部分<br>如：`example.com`                                        |
-| ip          | `str`      | 客户端IP<br>*注意：此字段需要Nginx、阿里云SLB等正确配置才有意义*                               |
-| ips         | `list`     | 客户端IP及所有中间代理服务器IP地址列表<br>*注意：此字段需要Nginx、阿里云SLB等正确配置才有意义* |
-| ips[#]      | `str`      | 中间代理服务器IP                                                                               |
-| xhr         | `bool`     | 是否为ajax 请求                                                                                |
+| 字段名      | 字段值类型 | 说明                                                                                                  |
+| ----------- | ---------- | ----------------------------------------------------------------------------------------------------- |
+| method      | `str`      | 请求方法（大写）<br>如：`"GET"`、`"POST"`                                                             |
+| originalUrl | `str`      | 请求原始 URL。包含`?`后的部分<br>如：`/api/v1/al/auln-xxxxx?q=1`                                      |
+| url         | `str`      | 请求 URL。不包含`?`后的部分<br>如：`/api/v1/al/auln-xxxxx`                                            |
+| headers     | `dict`     | 请求 Header，字段名均为小写                                                                           |
+| query       | `dict`     | 请求 Query，字段名和字段值都为字符串                                                                  |
+| body        | `dict`     | 请求 Body                                                                                             |
+| hostname    | `str`      | 请求访问的主机名。不包含端口号部分<br>如：`example.com`                                               |
+| ip          | `str`      | 客户端 IP<br>*注意：此字段需要 Nginx、阿里云 SLB 等正确配置才有意义*                                  |
+| ips         | `list`     | 客户端 IP 及所有中间代理服务器 IP 地址列表<br>*注意：此字段需要 Nginx、阿里云 SLB 等正确配置才有意义* |
+| ips[#]      | `str`      | 中间代理服务器 IP                                                                                     |
+| xhr         | `bool`     | 是否为 ajax 请求                                                                                      |
 
 一个简单的示例如下：
 
@@ -412,20 +410,20 @@ def my_auth_func(req):
 
 ## 3. 使用内置功能
 
-为了方便脚本编写，以及在脚本中使用各种DataFlux Func提供的功能。
-DataFlux Func在脚本运行上下文注入了一些额外功能。
+为了方便脚本编写，以及在脚本中使用各种 DataFlux Func 提供的功能。
+DataFlux Func 在脚本运行上下文注入了一些额外功能。
 
-这些功能都封装在DFF对象中（如上文出现的`@DFF.API(...)`）
+这些功能都封装在 DFF 对象中（如上文出现的`@DFF.API(...)`）
 
 ### 3.1 输出日志 `print(...)`
 
-由于脚本编辑器是Web应用程序，
-不同于一般意义上的IDE，不支持进行单步调试等操作。
+由于脚本编辑器是 Web 应用程序，
+不同于一般意义上的 IDE，不支持进行单步调试等操作。
 因此，调试可以依靠运行时输出日志进行。
 
-为了让日志输出能够被DataFlux Func搜集并显示到脚本编辑器中，
-DataFlux Func重新封装了`print(...)`函数，
-使其可以将输出内容通过Web页面展现出来。如：
+为了让日志输出能够被 DataFlux Func 搜集并显示到脚本编辑器中，
+DataFlux Func 重新封装了`print(...)`函数，
+使其可以将输出内容通过 Web 页面展现出来。如：
 
 ```python
 print('Some log message')
@@ -433,7 +431,7 @@ print('Some log message')
 
 ### 3.2 导出函数 `DFF.API(...)`
 
-一个装饰器，用于将被修饰的函数对外开放，允许使用API方式调用。
+一个装饰器，用于将被修饰的函数对外开放，允许使用 API 方式调用。
 
 详细参数列表如下：
 
@@ -444,9 +442,9 @@ print('Some log message')
 | `tags`               | list                |          | `None`      | 函数标签列表，主要用于函数列表的分类/筛选                                    |
 | `tags[#]`            | str                 | 必须     |             | 函数标签                                                                     |
 | `timeout`            | int                 |          | `30`/`3600` | 函数超时时间。<br>单位：秒，取值范围`1 ~ 3600`                               |
-| `api_timeout`        | int                 |          | `10`        | 通过API调用函数时，API调用超时时间。<br>单位：秒，取值范围`1 ~ 180`          |
+| `api_timeout`        | int                 |          | `10`        | 通过 API 调用函数时，API 调用超时时间。<br>单位：秒，取值范围`1 ~ 180`       |
 | `cache_result`       | int                 |          | `None`      | 缓存结果数据时长。<br>单位：秒，`None`表示不缓存                             |
-| `fixed_crontab`      | str(Crontab-format) |          | `None`      | 当函数由自动触发执行时，强制固定的Crontab配置。<br>最小支持分钟级            |
+| `fixed_crontab`      | str(Crontab-format) |          | `None`      | 当函数由自动触发执行时，强制固定的 Crontab 配置。<br>最小支持分钟级          |
 | `delayed_crontab`    | list                |          | `None`      | 当函数由自动触发执行时，启动后延迟执行时间，设置多个表示按照不同延迟多次执行 |
 | `delayed_crontab[#]` | int                 | 必须     |             | 延迟执行秒数。<br>单位：秒                                                   |
 
@@ -454,7 +452,7 @@ print('Some log message')
 
 #### 参数`title`
 
-函数标题支持中文，方便在DataFlux Func 各种操作界面/文档中展示函数名称。
+函数标题支持中文，方便在 DataFlux Func 各种操作界面/文档中展示函数名称。
 
 示例如下：
 
@@ -480,25 +478,25 @@ def my_func():
 指定后，可通过指定筛选参数来过滤函数列表，如：
 
 ```
-# 根据category筛选
+# 根据 category 筛选
 GET /api/v1/func-list?category=demo
 
-# 根据tags筛选（指定多个tag表示「同时包含」）
+# 根据 tags 筛选（指定多个 tag 表示「同时包含」）
 GET /api/v1/func-list?tags=tag1,tag2
 ```
 
 #### 参数`timeout`/`api_timeout`
 
-为了保护系统，所有在DataFlux Func 中运行的函数都有运行时长限制，不允许无限制地运行下去。
-其中，`timeout`控制「函数本身的运行时长」，而`api_timeout`控制在「授权链接中，API返回的超时时长」。
+为了保护系统，所有在 DataFlux Func 中运行的函数都有运行时长限制，不允许无限制地运行下去。
+其中，`timeout`控制「函数本身的运行时长」，而`api_timeout`控制在「授权链接中，API 返回的超时时长」。
 
 以下是两者控制范围：
 
-| 场景         | `timeout`参数，默认值                                                                               | `api_timeout`参数           |
-| ------------ | --------------------------------------------------------------------------------------------------- | --------------------------- |
-| 授权链接     | 默认值`30`<br>当大于`api_timeout`时，自动缩短到与`api_timeout`相同<br>即`MIN(timeout, api_timeout)` | 控制API返回超时，默认值`10` |
-| 自动触发配置 | 默认值`30`                                                                                          | *不起作用*                  |
-| 批处理       | 默认值`3600`                                                                                        | *不起作用*                  |
+| 场景         | `timeout`参数，默认值                                                                               | `api_timeout`参数             |
+| ------------ | --------------------------------------------------------------------------------------------------- | ----------------------------- |
+| 授权链接     | 默认值`30`<br>当大于`api_timeout`时，自动缩短到与`api_timeout`相同<br>即`MIN(timeout, api_timeout)` | 控制 API 返回超时，默认值`10` |
+| 自动触发配置 | 默认值`30`                                                                                          | *不起作用*                    |
+| 批处理       | 默认值`3600`                                                                                        | *不起作用*                    |
 
 授权链接`timeout`详细取值逻辑如下：
 
@@ -516,18 +514,18 @@ GET /api/v1/func-list?tags=tag1,tag2
 @DFF.API('我的函数', timeout=30, api_timeout=15):
 def my_func():
     # 此函数
-    # 1. 在「授权链接」中最多运行15秒
-    # 2. 在「自动触发配置」「批处理」中最多运行30秒
+    # 1. 在「授权链接」中最多运行 15 秒
+    # 2. 在「自动触发配置」「批处理」中最多运行 30 秒
     pass
 ```
 
-*注意：一个HTTP接口响应时间超过3秒即可认为非常缓慢。应当注意不要为函数配置无意义的超长超时时间*
+*注意：一个 HTTP 接口响应时间超过 3 秒即可认为非常缓慢。应当注意不要为函数配置无意义的超长超时时间*
 
 *注意：大量长耗时授权链接请求会导致任务队列堵塞，必要时应使用缓存技术*
 
 #### 参数`cache_result`
 
-DataFlux Func 内置了API层面的缓存处理。
+DataFlux Func 内置了 API 层面的缓存处理。
 在指定的缓存参数后，当调用完全相同的函数和参数时，系统会直接返回缓存的结果。
 
 示例如下：
@@ -538,9 +536,9 @@ def my_func():
     pass
 ```
 
-*注意：命中缓存后，API会直接返回结果，而函数并不会实际执行*
+*注意：命中缓存后，API 会直接返回结果，而函数并不会实际执行*
 
-命中缓存后，返回的HTTP 请求头会添加如下标示：
+命中缓存后，返回的 HTTP 请求头会添加如下标示：
 
 ```
 X-Dataflux-Func-Cache: Cached
@@ -549,7 +547,7 @@ X-Dataflux-Func-Cache: Cached
 #### 参数`fixed_crontab`
 
 对于某些会用于自动触发配置的函数，函数编写者可能会对自动运行的频率有要求。
-此时，可以指定本参数，将属于本函数的自动触发配置固定为指定的Crontab 表达式。
+此时，可以指定本参数，将属于本函数的自动触发配置固定为指定的 Crontab 表达式。
 
 示例如下：
 
@@ -561,7 +559,7 @@ def my_func():
 
 #### 参数`delayed_crontab`
 
-对于某些用于自动触发配置的函数，函数编写者可能希望以更精确的时间运行（如在`* * * * *`的基础上，延迟10秒运行）。
+对于某些用于自动触发配置的函数，函数编写者可能希望以更精确的时间运行（如在`* * * * *`的基础上，延迟 10 秒运行）。
 此时，可以指定本参数，在指定延迟的秒数。同时，也可以传入秒数的数组，到达各个指定延迟时运行。
 
 *注意：本参数只能保证在指定的时间后运行，并不能保证到达指定的时间后一定运行*
@@ -574,14 +572,14 @@ def my_func():
 @DFF.API('我的函数', delayed_crontab=10):
 def my_func():
     '''
-    延迟10秒执行
+    延迟 10 秒执行
     '''
     pass
 
-@DFF.API('我的函数2', delayed_crontab=[0, 10]):
+@DFF.API('我的函数 2', delayed_crontab=[0, 10]):
 def my_func_2():
     '''
-    延迟0、10秒执行，共执行2次
+    延迟 0、10 秒执行，共执行 2 次
     '''
     pass
 ```
@@ -593,7 +591,7 @@ def my_func_2():
 示例如下：
 
 ```python
-@DFF.API('InfluxDB操作演示')
+@DFF.API('InfluxDB 操作演示')
 def influxdb_demo():
     db = DFF.SRC('demo_influxdb')
     return db.query('SELECT * FROM demo LIMIT 3')
@@ -601,7 +599,7 @@ def influxdb_demo():
 
 如数据源配置了默认数据库，则查询会在默认数据库进行。
 
-如数据源没有配置默认数据库，或在查询时需要查询不同的数据库，可在获取数据源操作对象时，指定数据库database参数，如：
+如数据源没有配置默认数据库，或在查询时需要查询不同的数据库，可在获取数据源操作对象时，指定数据库 database 参数，如：
 
 ```python
 db = DFF.SRC('demo_influxdb', database='my_database')
@@ -609,7 +607,7 @@ db = DFF.SRC('demo_influxdb', database='my_database')
 
 *注意：某些数据库不支持查询时更换数据库。需要操作不同数据库时，可以创建多个数据源来进行操作。*
 
-对于DataWay，可以获取数据源操作对象时指定`rp`和`token`参数，如：
+对于 DataWay，可以获取数据源操作对象时指定`rp`和`token`参数，如：
 
 ```python
 dataway = DFF.SRC('df_dataway', token='xxxxx', rp='rp0')
@@ -617,12 +615,12 @@ dataway = DFF.SRC('df_dataway', token='xxxxx', rp='rp0')
 
 由于数据源具有不同类型，使用`DFF.SRC(...)`时，各个数据源操作对象的可选参数，支持方法并不相同。
 
-具体不同类型数据源的详细API接口见下文
+具体不同类型数据源的详细 API 接口见下文
 
 ### 3.4 获取环境变量 `DFF.ENV(...)`
 
 在脚本编辑器左侧边栏配置的所有环境变量，
-都可以在脚本中使用配置的ID获取对应的环境变量值。
+都可以在脚本中使用配置的 ID 获取对应的环境变量值。
 
 示例代码如下：
 
@@ -650,50 +648,50 @@ except Exception as e:
 
 ### 3.5 接口响应控制（数据） `DFF.RESP(...)`
 
-函数的返回值，除了以往直接返回字符串、JSON外，可使用`DFF.RESP(...)`进行细节控制。
+函数的返回值，除了以往直接返回字符串、JSON 外，可使用`DFF.RESP(...)`进行细节控制。
 
 | 参数           | 类型          | 是否必须 | 默认值  | 说明                                                                               |
 | -------------- | ------------- | -------- | ------- | ---------------------------------------------------------------------------------- |
 | `data`         | str/dict/list | 必须     |         | 指定返回的数据                                                                     |
 | `status_code`  | int           |          | `200`   | 指定响应状态码                                                                     |
 | `content_type` | str           |          | `None`  | 指定响应体类型，如`json`, `text`, `html`等                                         |
-| `headers`      | dict          |          | `None`  | 指定HTTP响应头（此处不需要重复填写`Content-Type`）                                 |
-| `allow_304`    | bool          |          | `False` | 指定为`True`时，允许浏览器304缓存                                                  |
+| `headers`      | dict          |          | `None`  | 指定 HTTP 响应头（此处不需要重复填写`Content-Type`）                               |
+| `allow_304`    | bool          |          | `False` | 指定为`True`时，允许浏览器 304 缓存                                                |
 | `download`     | str           |          | `False` | 指定下载文件名，并将数据作为文件下载<br>*指定本参数后，`content_type`参数不再起效* |
 
-*注意：如果开启`allow_304`，允许浏览器304缓存，可以实现接口性能提升。但也可能会因为缓存导致客户端无法及时从接口获取最新内容*
+*注意：如果开启`allow_304`，允许浏览器 304 缓存，可以实现接口性能提升。但也可能会因为缓存导致客户端无法及时从接口获取最新内容*
 
 *注意：指定`download`参数后，系统会自动根据文件扩展名填充`Content-Type`，而`content_type`参数会被忽略*
 
 常见用例如下：
 
 ```python
-@DFF.API('用例1')
+@DFF.API('用例 1')
 def case_1():
     '''
-    返回一个由函数内生成的HTML页面
+    返回一个由函数内生成的 HTML 页面
     '''
     data = '''<h1>Hello, World!</h1>'''
     return DFF.RESP(data, content_type='html')
 
-@DFF.API('用例2')
+@DFF.API('用例 2')
 def case_2():
     '''
-    返回由函数生成的JSON数据
+    返回由函数生成的 JSON 数据
     与 return {"hello": "world"} 等价
     '''
     data = '''{"hello": "world"}'''
     return DFF.RESP(data, content_type='json')
 
-@DFF.API('用例3')
+@DFF.API('用例 3')
 def case_3():
     '''
-    下载由函数生成的文件，并命名为`文章.txt`
+    下载由函数生成的文件，并命名为`文章。txt`
     '''
     data = '''Some text'''
-    return DFF.RESP(data, download='文章.txt')
+    return DFF.RESP(data, download='文章。txt')
 
-@DFF.API('用例4')
+@DFF.API('用例 4')
 def case_4():
     '''
     指定额外的响应头
@@ -718,42 +716,42 @@ def case_4():
 | `auto_delete` | bool     |          | `False` | 指定为`True`时，文件下载后自动从磁盘中删除                                                                                      |
 | `download`    | bool/str |          | `True`  | 默认下载文件且保存名与原始文件名相同<br>指定为`False`时，让浏览器尽可能直接打开文件<br>指定为字符串时，按指定的值作为下载文件名 |
 
-> 提示：`DFF.RESP_FILE(...)`会自动根据文件扩展名填充HTTP的`Content-Type`头，默认以`file_path`为准，指定`download`字符串时则以`download`值作为文件名下载
+> 提示：`DFF.RESP_FILE(...)`会自动根据文件扩展名填充 HTTP 的`Content-Type`头，默认以`file_path`为准，指定`download`字符串时则以`download`值作为文件名下载
 
 > 提示：「资源文件目录」指的是容器内的`/data/resources`文件夹，正常部署后此文件夹会挂载到宿主机磁盘实现持久化存储
 
 示例如下：
 
 ```python
-@DFF.API('用例1')
+@DFF.API('用例 1')
 def case_1():
     '''
-    下载资源文件目录下user-guide.pdf文件
+    下载资源文件目录下 user-guide.pdf 文件
     '''
     return DFF.RESP_FILE('user-guide.pdf')
 
-@DFF.API('用例2')
+@DFF.API('用例 2')
 def case_2():
     '''
     让浏览器在线打开资源目录下的`user-guide.pdf`文件
     '''
     return DFF.RESP_FILE('user-guide.pdf', download=False)
 
-@DFF.API('用例3')
+@DFF.API('用例 3')
 def case_3():
     '''
-    浏览器打开资源目录下index.html页面
+    浏览器打开资源目录下 index.html 页面
     '''
     return DFF.RESP_FILE('index.html', download=False)
 
-@DFF.API('用例4')
+@DFF.API('用例 4')
 def case_4():
     '''
-    下载资源文件目录下的servey.xlsx文件，并保存为「调查表.xlsx」
+    下载资源文件目录下的 servey.xlsx 文件，并保存为「调查表。xlsx」
     '''
-    return DFF.RESP_FILE('servey.xlsx', download='调查表.xlsx')
+    return DFF.RESP_FILE('servey.xlsx', download='调查表。xlsx')
 
-@DFF.API('用例5')
+@DFF.API('用例 5')
 def case_5():
     '''
     指定额外的响应头
@@ -768,7 +766,7 @@ def case_5():
 
 > `1.3.0`版本新增
 
-当需要返回大量内容（MB级别及以上）时，直接通过`return`方式返回可能会因系统内部通讯处理等导致性能大幅下降。
+当需要返回大量内容（MB 级别及以上）时，直接通过`return`方式返回可能会因系统内部通讯处理等导致性能大幅下降。
 此时，可使用`DFF.RESP_LARGE_DATA(...)`提升性能。
 
 | 参数           | 类型          | 是否必须 | 默认值 | 说明                                       |
@@ -776,44 +774,44 @@ def case_5():
 | `data`         | str/dict/list | 必须     |        | 指定返回的数据                             |
 | `content_type` | str           |          | `None` | 指定响应体类型，如`json`, `text`, `html`等 |
 
-*注意：使用此方法时，必须保证资源目录配置、挂载正确，所有的Web服务器和工作单元都能正常访问到同一个共享目录*
+*注意：使用此方法时，必须保证资源目录配置、挂载正确，所有的 Web 服务器和工作单元都能正常访问到同一个共享目录*
 
 常见用例如下：
 
 ```python
-@DFF.API('用例1')
+@DFF.API('用例 1')
 def case_1():
-    data = {} # 大量数据（MB级别及以上）
+    data = {} # 大量数据（MB 级别及以上）
 
     return DFF.RESP_LARGE_DATA(data)
 ```
 
 #### 原理说明
 
-DataFlux Func 底层由Web服务器和工作单元通过作为消息队列的Redis组合而成。直接`return`的数据，会被序列化后送入消息队列，再由Web服务器返回给调用方。
+DataFlux Func 底层由 Web 服务器和工作单元通过作为消息队列的 Redis 组合而成。直接`return`的数据，会被序列化后送入消息队列，再由 Web 服务器返回给调用方。
 
-由于JSON的序列化/反序列化，Redis上进行的入队出队、内部网络通讯等，都会因为单个JSON数据尺寸过大而导致性能下降。
+由于 JSON 的序列化/反序列化，Redis 上进行的入队出队、内部网络通讯等，都会因为单个 JSON 数据尺寸过大而导致性能下降。
 
 本函数在底层实质上做了如下操作：
 1. 将需要返回的数据作为文件保存到资源目录`download`目录下
 2. 将请求作为「文件下载」响应（即上文中的`DFF.RESP_FILE`）
-3. Web服务器直接从资源目录中读取上述1. 中保存的文件返回给客户端
+3. Web 服务器直接从资源目录中读取上述 1. 中保存的文件返回给客户端
 
 通过此「绕行」的方法，使得系统内部通讯层面的处理轻量化以提升性能。
 
 #### 性能对比
 
-以下是同样返回大约3.5MB大小的JSON时的性能对比：
+以下是同样返回大约 3.5MB 大小的 JSON 时的性能对比：
 
-- 通过`return data`直接返回JSON时，耗费18秒时间
+- 通过`return data`直接返回 JSON 时，耗费 18 秒时间
 
 ```shell
 $ time wget http://172.16.35.143:8089/api/v1/al/auln-Ljo3y8HMUl91
 --2021-09-16 22:40:09--  http://172.16.35.143:8089/api/v1/al/auln-Ljo3y8HMUl91
 正在连接 172.16.35.143:8089... 已连接。
-已发出 HTTP 请求，正在等待回应... 200 OK
+已发出 HTTP 请求，正在等待回应。.. 200 OK
 长度：3363192 (3.2M) [application/json]
-正在保存至: “auln-Ljo3y8HMUl91”
+正在保存至：“auln-Ljo3y8HMUl91”
 
 auln-Ljo3y8HMUl91            100%[=============================================>]   3.21M  --.-KB/s  用时 0.06s
 
@@ -822,15 +820,15 @@ auln-Ljo3y8HMUl91            100%[=============================================>
 wget http://172.16.35.143:8089/api/v1/al/auln-Ljo3y8HMUl91  0.00s user 0.02s system 0% cpu 18.321 total
 ```
 
-- 通过`return DFF.RESP_LARGE_DATA(data)`返回JSON时，仅耗费不足1秒时间
+- 通过`return DFF.RESP_LARGE_DATA(data)`返回 JSON 时，仅耗费不足 1 秒时间
 
 ```shell
 $ time wget http://172.16.35.143:8089/api/v1/al/auln-HPrfGRKIhYET
 --2021-09-16 22:40:50--  http://172.16.35.143:8089/api/v1/al/auln-HPrfGRKIhYET
 正在连接 172.16.35.143:8089... 已连接。
-已发出 HTTP 请求，正在等待回应... 200 OK
+已发出 HTTP 请求，正在等待回应。.. 200 OK
 长度：3687382 (3.5M) [application/json]
-正在保存至: “auln-HPrfGRKIhYET”
+正在保存至：“auln-HPrfGRKIhYET”
 
 auln-HPrfGRKIhYET            100%[=============================================>]   3.52M  --.-KB/s  用时 0.02s
 
@@ -839,12 +837,12 @@ auln-HPrfGRKIhYET            100%[=============================================>
 wget http://172.16.35.143:8089/api/v1/al/auln-HPrfGRKIhYET  0.00s user 0.02s system 12% cpu 0.174 total
 ```
 
-### 3.8 内置简易Scope-Key-Value 存储 `DFF.STORE`
+### 3.8 内置简易 Scope-Key-Value 存储 `DFF.STORE`
 
 DataFlux Func 内置了简易的持久化存储功能。
 对于一些有数据存储需求，同时需求并不复杂的场景，可以直接使用本内置存储功能。
 
-存储功能为`Scope-Key-Value`结构，不同命名空间下，允许存在相同的Key。
+存储功能为`Scope-Key-Value`结构，不同命名空间下，允许存在相同的 Key。
 
 > 提示：写入的数据会自动序列化，同时读取时也会自动反序列化。使用时无需手工做序列化处理
 
@@ -852,13 +850,13 @@ DataFlux Func 内置了简易的持久化存储功能。
 
 `DFF.STORE.set(...)`方法用于存储数据，参数如下：
 
-| 参数         | 类型                 | 是否必须 | 默认值     | 说明                                         |
-| ------------ | -------------------- | -------- | ---------- | -------------------------------------------- |
-| `key`        | str                  | 必须     |            | 键名                                         |
-| `value`      | 任意可JSON序列化对象 | 必须     |            | 数据                                         |
-| `scope`      | str                  |          | 当前脚本名 | 命名空间                                     |
-| `expire`     | int                  |          | `None`     | 过期时间。<br>单位：秒<br>`None`表示永不过期 |
-| `not_exists` | bool                 |          | `False`    | 是否仅在数据不存在时写入                     |
+| 参数         | 类型                   | 是否必须 | 默认值     | 说明                                         |
+| ------------ | ---------------------- | -------- | ---------- | -------------------------------------------- |
+| `key`        | str                    | 必须     |            | 键名                                         |
+| `value`      | 任意可 JSON 序列化对象 | 必须     |            | 数据                                         |
+| `scope`      | str                    |          | 当前脚本名 | 命名空间                                     |
+| `expire`     | int                    |          | `None`     | 过期时间。<br>单位：秒<br>`None`表示永不过期 |
+| `not_exists` | bool                   |          | `False`    | 是否仅在数据不存在时写入                     |
 
 示例如下：
 
@@ -902,12 +900,12 @@ DFF.STORE.get('user:user-001', scope='users')
 DFF.STORE.delete('user:user-001', scope='users')
 ```
 
-### 3.9 内置简易Scope-Key-Value 缓存 `DFF.CACHE`
+### 3.9 内置简易 Scope-Key-Value 缓存 `DFF.CACHE`
 
-DataFlux Func 内置了基于Redis的简易缓存功能。
+DataFlux Func 内置了基于 Redis 的简易缓存功能。
 对于一些有缓存需求，同时需求并不复杂的场景，可以直接使用本内置缓存功能。
 
-存储功能为`Scope-Key-Value`结构，不同命名空间下，允许存在相同的Key。
+存储功能为`Scope-Key-Value`结构，不同命名空间下，允许存在相同的 Key。
 
 > 提示：写入/读取数据不会自动自动序列化/反序列化，使用时需要在脚本中自行处理
 
@@ -1011,7 +1009,6 @@ DFF.CACHE.delete('user:count', scope='stat')
 
 ```python
 DFF.CACHE.incr('user:count', scope='stat')
-DFF.CACHE.incr('user:count', scope='stat')
 # 此时缓存值为：'2'
 ```
 
@@ -1102,7 +1099,6 @@ DFF.CACHE.hmset('user:001', { 'name': 'Tom', 'city': 'Beijing' }, scope='cachedI
 示例如下：
 
 ```python
-DFF.CACHE.hincr('user:001', 'signCount', scope='cachedInfo')
 DFF.CACHE.hincr('user:001', 'signCount', scope='cachedInfo')
 # 此时缓存值为：{ 'signCount': '2' }
 ```
@@ -1292,8 +1288,8 @@ DFF.CACHE.lpush('userQueue', '003', scope='queue')
 
 DFF.CACHE.rpoplpush('userQueue', 'userQueue2', scope='queue')
 # '001'
-# 此时userQueue 缓存值为：[ '003', '002' ]
-# 此时userQueue2缓存值为：[ '001' ]
+# 此时 userQueue 缓存值为：[ '003', '002' ]
+# 此时 userQueue2 缓存值为：[ '001' ]
 ```
 
 小技巧：队列滚动
@@ -1313,16 +1309,16 @@ DFF.CACHE.rpoplpush('userQueue', scope='queue')
 # 此时缓存值为：[ '002', '001', '003' ]
 ```
 
-### 3.10 SQL语句格式化 `DFF.SQL(...)`
+### 3.10 SQL 语句格式化 `DFF.SQL(...)`
 
-使用`DFF.SQL(...)`可以方便地生成动态SQL语句，避免手工拼接SQL导致SQL注入问题。
+使用`DFF.SQL(...)`可以方便地生成动态 SQL 语句，避免手工拼接 SQL 导致 SQL 注入问题。
 
-| 参数         | 类型 | 是否必须 | 默认值 | 说明                                                                               |
-| ------------ | ---- | -------- | ------ | ---------------------------------------------------------------------------------- |
-| `sql`        | str  | 必须     |        | SQL语句，可包含参数占位符。<br>`?`表示需要转义的参数；<br>`??`表示不需要转义的参数 |
-| `sql_params` | list |          | `None` | SQL参数                                                                            |
+| 参数         | 类型 | 是否必须 | 默认值 | 说明                                                                                |
+| ------------ | ---- | -------- | ------ | ----------------------------------------------------------------------------------- |
+| `sql`        | str  | 必须     |        | SQL 语句，可包含参数占位符。<br>`?`表示需要转义的参数；<br>`??`表示不需要转义的参数 |
+| `sql_params` | list |          | `None` | SQL 参数                                                                            |
 
-> 提示：绝大多数通过`DFF.SRC(...)`创建的，支持SQL语句的数据源操作对象都已经内置了此功能，可以直接使用
+> 提示：绝大多数通过`DFF.SRC(...)`创建的，支持 SQL 语句的数据源操作对象都已经内置了此功能，可以直接使用
 
 示例如下：
 
@@ -1363,15 +1359,15 @@ with open(DFF.RSRC('demo/data.txt')) as f:
 
 | 内置变量               | 类型 | 适用范围         | 说明                     | 示例值                      |
 | ---------------------- | ---- | ---------------- | ------------------------ | --------------------------- |
-| `_DFF_SCRIPT_SET_ID`   | str  | 全部             | 脚本集ID                 | `"demo"`                    |
-| `_DFF_SCRIPT_ID`       | str  | 全部             | 脚本ID                   | `"demo__basic"`             |
-| `_DFF_FUNC_ID`         | str  | 全部             | 函数ID                   | `"demo__basic.hello_world"` |
+| `_DFF_SCRIPT_SET_ID`   | str  | 全部             | 脚本集 ID                | `"demo"`                    |
+| `_DFF_SCRIPT_ID`       | str  | 全部             | 脚本 ID                  | `"demo__basic"`             |
+| `_DFF_FUNC_ID`         | str  | 全部             | 函数 ID                  | `"demo__basic.hello_world"` |
 | `_DFF_FUNC_NAME`       | str  | 全部             | 函数名                   | `"hello_world"`             |
 | `_DFF_START_TIME`      | int  | 全部             | 实际启动时间             | `1625651910`                |
 | `_DFF_START_TIME_MS`   | int  | 全部             | 实际启动时间（毫秒版本） | `1625651910630`             |
 | `_DFF_TRIGGER_TIME`    | int  | 全部             | 计划启动时间             | `1625651909`                |
 | `_DFF_TRIGGER_TIME_MS` | int  | 全部             | 计划启动时间（毫秒版本） | `1625651909582`             |
-| `_DFF_CRONTAB`         | str  | 自动触发配置     | Crontab表达式            | `* * * * *`                 |
+| `_DFF_CRONTAB`         | str  | 自动触发配置     | Crontab 表达式           | `* * * * *`                 |
 | `_DFF_HTTP_REQUEST`    | dict | 授权链接、批处理 | 接口调用时请求体         | 见下文                      |
 
 #### `_DFF_START_TIME`和`_DFF_TRIGGER_TIME`区别
@@ -1380,12 +1376,12 @@ with open(DFF.RSRC('demo/data.txt')) as f:
 
 而`_DFF_TRIGGER_TIME`指的是函数触发时间，不会因为队列拥堵而改变，可以认为是「计划启动的时间」，取值如下：
 
-| 函数调用方式 | 取值                            |
-| ------------ | ------------------------------- |
-| UI执行函数   | 后端API服务接收到HTTP请求的时间 |
-| 授权链接     | 后端API服务接收到HTTP请求的时间 |
-| 自动触发配置 | Crontab表达式所对应的整点时间   |
-| 批处理       | 后端API服务接收到HTTP请求的时间 |
+| 函数调用方式 | 取值                                |
+| ------------ | ----------------------------------- |
+| UI 执行函数  | 后端 API 服务接收到 HTTP 请求的时间 |
+| 授权链接     | 后端 API 服务接收到 HTTP 请求的时间 |
+| 自动触发配置 | Crontab 表达式所对应的整点时间      |
+| 批处理       | 后端 API 服务接收到 HTTP 请求的时间 |
 
 > 提示：当使用自动触发配置按照固定时间间隔获取时序数据时，应当以`_DFF_TRIGGER_TIME`和`_DFF_TRIGGER_TIME_MS`为基准，*不要*自行在代码中使用`time.time()`获取当前时间
 
@@ -1426,34 +1422,34 @@ _DFF_HTTP_REQUEST['headers']['User-Agent']
 _DFF_HTTP_REQUEST['headers']['USER-AGENT']
 ```
 
-## 4. `DFF.SRC(...)`数据源对象API
+## 4. `DFF.SRC(...)`数据源对象 API
 
-不同的数据源对象具有不同的API及操作方式，使用时应以实际情况为准。
+不同的数据源对象具有不同的 API 及操作方式，使用时应以实际情况为准。
 
-此外，DataWay 和DataKit 由于迭代更新较快，其本身的接口也存在变化的情况。因此本文档始终以最新版为准。
+此外，DataWay 和 DataKit 由于迭代更新较快，其本身的接口也存在变化的情况。因此本文档始终以最新版为准。
 
 ### 4.1 DataKit
 
-DataKit数据源操作对象主要提供数据写入方法。
+DataKit 数据源操作对象主要提供数据写入方法。
 
 `DFF.SRC(...)`参数如下：
 
-| 参数             | 类型 | 是否必须 | 默认值 | 说明                                                            |
-| ---------------- | ---- | -------- | ------ | --------------------------------------------------------------- |
-| `data_source_id` | str  | 必须     |        | 数据源ID                                                        |
-| `source`         | str  |          | `None` | 指定Source（注意不要填写`"mysql"`等，防止与其他采集器冲突混淆） |
+| 参数             | 类型 | 是否必须 | 默认值 | 说明                                                             |
+| ---------------- | ---- | -------- | ------ | ---------------------------------------------------------------- |
+| `data_source_id` | str  | 必须     |        | 数据源 ID                                                        |
+| `source`         | str  |          | `None` | 指定 Source（注意不要填写`"mysql"`等，防止与其他采集器冲突混淆） |
 
 #### `DataKit.write_by_category(...)`
 
-`write_by_category(...)`方法用于向DataKit写入特定类型的数据，参数如下：
+`write_by_category(...)`方法用于向 DataKit 写入特定类型的数据，参数如下：
 
-| 参数          | 类型           | 是否必须 | 默认值     | 说明                                                                                                 |
-| ------------- | -------------- | -------- | ---------- | ---------------------------------------------------------------------------------------------------- |
-| `category`    | str            | 必须     |            | 数据类型，详见[DataKit API 文档，`/v1/write/:category`](/datakit/apis) |
-| `measurement` | str            | 必须     |            | 指标集名称                                                                                           |
-| `tags`        | dict           | 必须     |            | 标签。键名和键值必须都为字符串                                                                       |
-| `fields`      | dict           | 必须     |            | 指标。键名必须为字符串，键值可以为字符串/整数/浮点数/布尔值之一                                      |
-| `timestamp`   | int/long/float |          | {当前时间} | 时间戳，支持秒/毫秒/微秒/纳秒。                                                                      |
+| 参数          | 类型           | 是否必须 | 默认值     | 说明                                                                                                  |
+| ------------- | -------------- | -------- | ---------- | ----------------------------------------------------------------------------------------------------- |
+| `category`    | str            | 必须     |            | 数据类型，详见 [DataKit API 文档，`/v1/write/:category`](/datakit/apis) |
+| `measurement` | str            | 必须     |            | 指标集名称                                                                                            |
+| `tags`        | dict           | 必须     |            | 标签。键名和键值必须都为字符串                                                                        |
+| `fields`      | dict           | 必须     |            | 指标。键名必须为字符串，键值可以为字符串/整数/浮点数/布尔值之一                                       |
+| `timestamp`   | int/long/float |          | {当前时间} | 时间戳，支持秒/毫秒/微秒/纳秒。                                                                       |
 
 示例如下：
 
@@ -1465,14 +1461,14 @@ status_code, result = dk.write_by_category(category='metric', measurement='主�
 
 `write_by_category(...)`的批量版本，参数如下：
 
-| 参数                  | 类型           | 是否必须 | 默认值     | 说明                                                                                                 |
-| --------------------- | -------------- | -------- | ---------- | ---------------------------------------------------------------------------------------------------- |
-| `category`            | str            | 必须     |            | 数据类型，详见[DataKit API 文档，`/v1/write/:category`](/datakit/apis) |
-| `data`                | list           | 必须     |            | 数据点列表                                                                                           |
-| `data[#].measurement` | str            | 必须     |            | 指标集名称                                                                                           |
-| `data[#].tags`        | dict           | 必须     |            | 标签。键名和键值必须都为字符串                                                                       |
-| `data[#].fields`      | dict           | 必须     |            | 指标。键名必须为字符串，键值可以为字符串/整数/浮点数/布尔值之一                                      |
-| `data[#].timestamp`   | int/long/float |          | {当前时间} | 时间戳，支持秒/毫秒/微秒/纳秒。                                                                      |
+| 参数                  | 类型           | 是否必须 | 默认值     | 说明                                                                                                  |
+| --------------------- | -------------- | -------- | ---------- | ----------------------------------------------------------------------------------------------------- |
+| `category`            | str            | 必须     |            | 数据类型，详见 [DataKit API 文档，`/v1/write/:category`](/datakit/apis) |
+| `data`                | list           | 必须     |            | 数据点列表                                                                                            |
+| `data[#].measurement` | str            | 必须     |            | 指标集名称                                                                                            |
+| `data[#].tags`        | dict           | 必须     |            | 标签。键名和键值必须都为字符串                                                                        |
+| `data[#].fields`      | dict           | 必须     |            | 指标。键名必须为字符串，键值可以为字符串/整数/浮点数/布尔值之一                                       |
+| `data[#].timestamp`   | int/long/float |          | {当前时间} | 时间戳，支持秒/毫秒/微秒/纳秒。                                                                       |
 
 示例如下：
 
@@ -1488,7 +1484,7 @@ status_code, result = dk.write_by_category_many(category='metric', data=data)
 
 #### `DataKit.write_metric(...)`
 
-`write_metric(...)`方法用于向DataKit写入指标数据，参数如下：
+`write_metric(...)`方法用于向 DataKit 写入指标数据，参数如下：
 
 | 参数          | 类型           | 是否必须 | 默认值     | 说明                                                            |
 | ------------- | -------------- | -------- | ---------- | --------------------------------------------------------------- |
@@ -1529,21 +1525,21 @@ status_code, result = dk.write_metric_many(data=data)
 
 #### `DataKit.write_logging(...)`/`DataKit.write_logging_many(...)`
 
-用于向DataKit写入日志数据，参数与`DataKit.write_metric(...)`/`DataKit.write_metric_many(...)`相同
+用于向 DataKit 写入日志数据，参数与`DataKit.write_metric(...)`/`DataKit.write_metric_many(...)`相同
 
 #### `DataKit.query(...)`
 
-`query(...)`方法用于通过DataKit执行DQL语句，参数如下：
+`query(...)`方法用于通过 DataKit 执行 DQL 语句，参数如下：
 
-| 参数                | 类型 | 是否必须 | 默认值  | 说明                                                  |
-| ------------------- | ---- | -------- | ------- | ----------------------------------------------------- |
-| `dql`               | str  | 必须     |         | DQL语句                                               |
-| `dict_output`       | bool |          | `False` | 是否自动转换数据为`dict`。                            |
-| `raw`               | bool |          | `False` | 是否返回原始响应。开启后`dict_output`参数无效。       |
-| `all_series`        | bool |          | `False` | 是否自动通过`slimit`和`soffset`翻页以获取全部时间线。 |
-| `{DataKit原生参数}` |      |          |         | 透传至`queries[0].{DataKit原生参数}`        |
+| 参数                 | 类型 | 是否必须 | 默认值  | 说明                                                  |
+| -------------------- | ---- | -------- | ------- | ----------------------------------------------------- |
+| `dql`                | str  | 必须     |         | DQL 语句                                              |
+| `dict_output`        | bool |          | `False` | 是否自动转换数据为`dict`。                            |
+| `raw`                | bool |          | `False` | 是否返回原始响应。开启后`dict_output`参数无效。       |
+| `all_series`         | bool |          | `False` | 是否自动通过`slimit`和`soffset`翻页以获取全部时间线。 |
+| `{DataKit 原生参数}` |      |          |         | 透传至`queries[0].{DataKit 原生参数}`                 |
 
-> 本方法支持 DataKit API DQL查询接口中的参数，详细文档见 [DataKit API文档 - POST /v1/query/raw](/datakit/apis#6c639732)。
+> 本方法支持 DataKit API DQL 查询接口中的参数，详细文档见 [DataKit API 文档 - POST /v1/query/raw](/datakit/apis#6c639732)。
 
 示例如下：
 
@@ -1557,7 +1553,7 @@ import json
 def run_dql_via_datakit():
     datakit = DFF.SRC('datakit')
 
-    # 使用 DataKit 原生参数`time_range`，限制最近1小时数据
+    # 使用 DataKit 原生参数`time_range`，限制最近 1 小时数据
     time_range = [
         int(time.time() - 3600) * 1000,
         int(time.time()) * 1000,
@@ -1610,7 +1606,7 @@ import json
 def run_dql_via_datakit():
     datakit = DFF.SRC('datakit')
 
-    # 添加raw参数，获取DQL查询原始值
+    # 添加 raw 参数，获取 DQL 查询原始值
     time_range = [
         int(time.time() - 3600) * 1000,
         int(time.time()) * 1000,
@@ -1665,19 +1661,19 @@ def run_dql_via_datakit():
 
 #### `DataKit.get(...)`
 
-`get(...)`方法用于向DataKit发送一个GET请求，参数如下：
+`get(...)`方法用于向 DataKit 发送一个 GET 请求，参数如下：
 
 | 参数      | 类型 | 是否必须 | 默认值 | 说明           |
 | --------- | ---- | -------- | ------ | -------------- |
 | `path`    | str  | 必须     |        | 请求路径       |
-| `query`   | dict |          | `None` | 请求URL参数    |
-| `headers` | dict |          | `None` | 请求Header参数 |
+| `query`   | dict |          | `None` | 请求 URL 参数    |
+| `headers` | dict |          | `None` | 请求 Header 参数 |
 
-> 本方法为通用处理方法，具体参数格式、内容等请参考 [DataKit API文档](/datakit/apis)
+> 本方法为通用处理方法，具体参数格式、内容等请参考 [DataKit API 文档](/datakit/apis)
 
 #### `DataKit.post_line_protocol(...)`
 
-`post_line_protocol(...)`方法用于向DataKit以行协议格式发送一个POST请求，参数如下：
+`post_line_protocol(...)`方法用于向 DataKit 以行协议格式发送一个 POST 请求，参数如下：
 
 | 参数                    | 类型           | 是否必须 | 默认值     | 说明                                                            |
 | ----------------------- | -------------- | -------- | ---------- | --------------------------------------------------------------- |
@@ -1687,43 +1683,43 @@ def run_dql_via_datakit():
 | `points[#].tags`        | dict           | 必须     |            | 标签。键名和键值必须都为字符串                                  |
 | `points[#].fields`      | dict           | 必须     |            | 指标。键名必须为字符串，键值可以为字符串/整数/浮点数/布尔值之一 |
 | `points[#].timestamp`   | int/long/float |          | {当前时间} | 时间戳，支持秒/毫秒/微秒/纳秒。                                 |
-| `query`                 | dict           |          | `None`     | 请求URL参数                                                     |
-| `headers`               | dict           |          | `None`     | 请求Header参数                                                  |
+| `query`                 | dict           |          | `None`     | 请求 URL 参数                                                   |
+| `headers`               | dict           |          | `None`     | 请求 Header 参数                                                |
 
-> 本方法为通用处理方法，具体参数格式、内容等请参考 [DataKit API文档](/datakit/apis)
+> 本方法为通用处理方法，具体参数格式、内容等请参考 [DataKit API 文档](/datakit/apis)
 
 *注意：从`1.6.8`开始，参数`path`调整为第一个参数*
 
 #### `DataKit.post_json(...)`
 
-`post_json(...)`方法用于向DataKit以JSON格式发送一个POST请求，参数如下：
+`post_json(...)`方法用于向 DataKit 以 JSON 格式发送一个 POST 请求，参数如下：
 
-| 参数       | 类型      | 是否必须 | 默认值 | 说明               |
-| ---------- | --------- | -------- | ------ | ------------------ |
-| `path`     | str       | 必须     |        | 请求路径           |
-| `json_obj` | dict/list | 必须     |        | 需要发送的JSON对象 |
-| `query`    | dict      |          | `None` | 请求URL参数        |
-| `headers`  | dict      |          | `None` | 请求Header参数     |
+| 参数       | 类型      | 是否必须 | 默认值 | 说明                 |
+| ---------- | --------- | -------- | ------ | -------------------- |
+| `path`     | str       | 必须     |        | 请求路径             |
+| `json_obj` | dict/list | 必须     |        | 需要发送的 JSON 对象 |
+| `query`    | dict      |          | `None` | 请求 URL 参数        |
+| `headers`  | dict      |          | `None` | 请求 Header 参数     |
 
-> 本方法为通用处理方法，具体参数格式、内容等请参考 [DataKit API文档](/datakit/apis)
+> 本方法为通用处理方法，具体参数格式、内容等请参考 [DataKit API 文档](/datakit/apis)
 
 *注意：从`1.6.8`开始，参数`path`调整为第一个参数*
 
 ### 4.2 DataWay
 
-DataWay数据源操作对象主要提供数据写入方法。
+DataWay 数据源操作对象主要提供数据写入方法。
 
 `DFF.SRC(...)`参数如下：
 
-| 参数             | 类型 | 是否必须 | 默认值 | 说明      |
-| ---------------- | ---- | -------- | ------ | --------- |
-| `data_source_id` | str  | 必须     |        | 数据源ID  |
-| `token`          | str  |          | `None` | 指定Token |
-| `rp`             | str  |          | `None` | 制定rp    |
+| 参数             | 类型 | 是否必须 | 默认值 | 说明       |
+| ---------------- | ---- | -------- | ------ | ---------- |
+| `data_source_id` | str  | 必须     |        | 数据源 ID  |
+| `token`          | str  |          | `None` | 指定 Token |
+| `rp`             | str  |          | `None` | 制定 rp    |
 
 #### `DataWay.write_point(...)`/`write_metric(...)`
 
-`write_point(...)`方法用于向DataWay写入数据点，参数如下：
+`write_point(...)`方法用于向 DataWay 写入数据点，参数如下：
 
 | 参数          | 类型           | 是否必须 | 默认值     | 说明                                                            |
 | ------------- | -------------- | -------- | ---------- | --------------------------------------------------------------- |
@@ -1764,19 +1760,19 @@ status_code, result = dw.write_points(points)
 
 #### `DataWay.get(...)`
 
-`get(...)`方法用于向DataWay发送一个GET请求，参数如下：
+`get(...)`方法用于向 DataWay 发送一个 GET 请求，参数如下：
 
-| 参数      | 类型 | 是否必须 | 默认值 | 说明           |
-| --------- | ---- | -------- | ------ | -------------- |
-| `path`    | str  | 必须     |        | 请求路径       |
-| `query`   | dict |          | `None` | 请求URL参数    |
-| `headers` | dict |          | `None` | 请求Header参数 |
+| 参数      | 类型 | 是否必须 | 默认值 | 说明             |
+| --------- | ---- | -------- | ------ | ---------------- |
+| `path`    | str  | 必须     |        | 请求路径         |
+| `query`   | dict |          | `None` | 请求 URL 参数    |
+| `headers` | dict |          | `None` | 请求 Header 参数 |
 
-> 本方法为通用处理方法，具体参数格式、内容等请参考DataWay官方文档
+> 本方法为通用处理方法，具体参数格式、内容等请参考 DataWay 官方文档
 
 #### `DataWay.post_line_protocol(...)`
 
-`post_line_protocol(...)`方法用于向DataWay以行协议格式发送一个POST请求，参数如下：
+`post_line_protocol(...)`方法用于向 DataWay 以行协议格式发送一个 POST 请求，参数如下：
 
 | 参数                    | 类型           | 是否必须 | 默认值     | 说明                                                            |
 | ----------------------- | -------------- | -------- | ---------- | --------------------------------------------------------------- |
@@ -1786,54 +1782,54 @@ status_code, result = dw.write_points(points)
 | `points[#].fields`      | dict           | 必须     |            | 指标。键名必须为字符串，键值可以为字符串/整数/浮点数/布尔值之一 |
 | `points[#].timestamp`   | int/long/float |          | {当前时间} | 时间戳，支持秒/毫秒/微秒/纳秒。                                 |
 | `path`                  | str            |          | `None`     | 请求路径                                                        |
-| `query`                 | dict           |          | `None`     | 请求URL参数                                                     |
-| `headers`               | dict           |          | `None`     | 请求Header参数                                                  |
-| `with_rp`               | bool           |          | `False`    | 是否自动将配置的rp信息附在query中作为参数一起发送               |
+| `query`                 | dict           |          | `None`     | 请求 URL 参数                                                   |
+| `headers`               | dict           |          | `None`     | 请求 Header 参数                                                |
+| `with_rp`               | bool           |          | `False`    | 是否自动将配置的 rp 信息附在 query 中作为参数一起发送           |
 
-> 本方法为通用处理方法，具体参数格式、内容等请参考DataWay官方文档
+> 本方法为通用处理方法，具体参数格式、内容等请参考 DataWay 官方文档
 
 #### `DataWay.post_json(...)`
 
-`post_json(...)`方法用于向DataWay以JSON格式发送一个POST请求，参数如下：
+`post_json(...)`方法用于向 DataWay 以 JSON 格式发送一个 POST 请求，参数如下：
 
-| 参数       | 类型      | 是否必须 | 默认值  | 说明                                              |
-| ---------- | --------- | -------- | ------- | ------------------------------------------------- |
-| `json_obj` | dict/list | 必须     |         | 需要发送的JSON对象                                |
-| `path`     | str       | 必须     |         | 请求路径                                          |
-| `query`    | dict      |          | `None`  | 请求URL参数                                       |
-| `headers`  | dict      |          | `None`  | 请求Header参数                                    |
-| `with_rp`  | bool      |          | `False` | 是否自动将配置的rp信息附在query中作为参数一起发送 |
+| 参数       | 类型      | 是否必须 | 默认值  | 说明                                                  |
+| ---------- | --------- | -------- | ------- | ----------------------------------------------------- |
+| `json_obj` | dict/list | 必须     |         | 需要发送的 JSON 对象                                  |
+| `path`     | str       | 必须     |         | 请求路径                                              |
+| `query`    | dict      |          | `None`  | 请求 URL 参数                                         |
+| `headers`  | dict      |          | `None`  | 请求 Header 参数                                      |
+| `with_rp`  | bool      |          | `False` | 是否自动将配置的 rp 信息附在 query 中作为参数一起发送 |
 
-> 本方法为通用处理方法，具体参数格式、内容等请参考DataWay官方文档
+> 本方法为通用处理方法，具体参数格式、内容等请参考 DataWay 官方文档
 
 ### 4.3 Sidecar
 
-使用Sidecar 数据源操作对象允许用户调用Sidecar 执行Shell 命令。
+使用 Sidecar 数据源操作对象允许用户调用 Sidecar 执行 Shell 命令。
 
 `DFF.SRC(...)`参数如下：
 
-| 参数             | 类型 | 是否必须 | 默认值 | 说明     |
-| ---------------- | ---- | -------- | ------ | -------- |
-| `data_source_id` | str  | 必须     |        | 数据源ID |
+| 参数             | 类型 | 是否必须 | 默认值 | 说明      |
+| ---------------- | ---- | -------- | ------ | --------- |
+| `data_source_id` | str  | 必须     |        | 数据源 ID |
 
-> 有关Sidecar 的完整使用文档，请参考「Sidecar手册」
+> 有关 Sidecar 的完整使用文档，请参考「Sidecar 手册」
 
 #### SidecarHelper.shell(...)
 
-`shell(...)`方法用于执行调用Sidecar 执行Shell 命令，参数如下：
+`shell(...)`方法用于执行调用 Sidecar 执行 Shell 命令，参数如下：
 
-| 参数           | 类型 | 是否必须 | 默认值 | 说明                                                                                                                                                     |
-| -------------- | ---- | -------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `cmd`          | str  | 必须     |        | 需要执行的Shell命令<br>如：`"ls -l"`                                                                                                                     |
-| `wait`         | bool |          | `True` | 是否等待执行完成<br>设置为`False`时，本函数会立刻返回，并且不会返回终端输出                                                                              |
-| `workdir`      | str  |          | `None` | Shell命令执行的工作目录<br>如：`"/home/dev"`                                                                                                             |
-| `envs`         | dict |          | `None` | 环境变量，键和值都为字符串<br>如：`{"MY_NAME": "Tom"}`                                                                                                   |
-| `callback_url` | str  |          | `None` | 回调地址，命令执行后，将`stdout`和`stderr`使用POST方式发送至指定URL<br>一般和`wait=False`参数一起使用，实现异步回调                                      |
-| `timeout`      | int  |          | 3      | 请求超时时间<br>*注意：本参数并不是Shell命令的超时时间，而是Func请求Sidecar的超时时间*<br>即Func请求Sidecar可能会超时，但所执行的Shell命令并不会因此停止 |
+| 参数           | 类型 | 是否必须 | 默认值 | 说明                                                                                                                                                                 |
+| -------------- | ---- | -------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `cmd`          | str  | 必须     |        | 需要执行的 Shell 命令<br>如：`"ls -l"`                                                                                                                               |
+| `wait`         | bool |          | `True` | 是否等待执行完成<br>设置为`False`时，本函数会立刻返回，并且不会返回终端输出                                                                                          |
+| `workdir`      | str  |          | `None` | Shell 命令执行的工作目录<br>如：`"/home/dev"`                                                                                                                        |
+| `envs`         | dict |          | `None` | 环境变量，键和值都为字符串<br>如：`{"MY_NAME": "Tom"}`                                                                                                               |
+| `callback_url` | str  |          | `None` | 回调地址，命令执行后，将`stdout`和`stderr`使用 POST 方式发送至指定 URL<br>一般和`wait=False`参数一起使用，实现异步回调                                               |
+| `timeout`      | int  |          | 3      | 请求超时时间<br>*注意：本参数并不是 Shell 命令的超时时间，而是 Func 请求 Sidecar 的超时时间*<br>即 Func 请求 Sidecar 可能会超时，但所执行的 Shell 命令并不会因此停止 |
 
 #### 执行后回调
 
-调用`SidecarHelper.shell(...)`并指定`callback_url`参数后，Sidecar 会在执行完Shell 命令后将标准输出`stdout`和标准错误`stderr`以POST方式发送至此地址。
+调用`SidecarHelper.shell(...)`并指定`callback_url`参数后，Sidecar 会在执行完 Shell 命令后将标准输出`stdout`和标准错误`stderr`以 POST 方式发送至此地址。
 
 具体结构如下：
 
@@ -1849,32 +1845,32 @@ Content-Type: application/json
 }
 ```
 
-> 此结构与DataFlux Func 的「授权链接*标准POST方式*」匹配，可直接使用「授权链接」接收执行后的回调。
+> 此结构与 DataFlux Func 的「授权链接*标准 POST 方式*」匹配，可直接使用「授权链接」接收执行后的回调。
 
 ### 4.4 InfluxDB
 
-InfluxDB数据源操作对象为Python第三方包influxdb（版本5.2.3）的封装，主要提供一些用于查询InfluxDB的方法。
+InfluxDB 数据源操作对象为 Python 第三方包 influxdb（版本 5.2.3）的封装，主要提供一些用于查询 InfluxDB 的方法。
 本数据源兼容以下数据库：
 
-- 阿里云时序数据库InfluxDB 版
+- 阿里云时序数据库 InfluxDB 版
 
 `DFF.SRC(...)`参数如下：
 
 | 参数             | 类型 | 是否必须 | 默认值 | 说明       |
 | ---------------- | ---- | -------- | ------ | ---------- |
-| `data_source_id` | str  | 必须     |        | 数据源ID   |
+| `data_source_id` | str  | 必须     |        | 数据源 ID  |
 | `database`       | str  |          | `None` | 指定数据库 |
 
 #### `InfluxDBHelper.query(...)`
 
-`query(...)`方法用于执行InfluxQL语句，参数如下：
+`query(...)`方法用于执行 InfluxQL 语句，参数如下：
 
-| 参数          | 类型 | 是否必须 | 默认值  | 说明                                                  |
-| ------------- | ---- | -------- | ------- | ----------------------------------------------------- |
-| `sql`         | str  | 必须     |         | InfluxQL语句，可包含绑定参数占位符，形式为`$var_name` |
-| `bind_params` | dict |          | `None`  | 绑定参数                                              |
-| `database`    | str  |          | `None`  | 本次查询指定数据库                                    |
-| `dict_output` | dict |          | `False` | 返回数据自动转换为{列名:值}形式                       |
+| 参数          | 类型 | 是否必须 | 默认值  | 说明                                                   |
+| ------------- | ---- | -------- | ------- | ------------------------------------------------------ |
+| `sql`         | str  | 必须     |         | InfluxQL 语句，可包含绑定参数占位符，形式为`$var_name` |
+| `bind_params` | dict |          | `None`  | 绑定参数                                               |
+| `database`    | str  |          | `None`  | 本次查询指定数据库                                     |
+| `dict_output` | dict |          | `False` | 返回数据自动转换为{列名：值}形式                       |
 
 示例如下：
 
@@ -1892,14 +1888,14 @@ db_res = db.query(sql, bind_params=bind_params, database='demo', dict_output=Tru
 
 #### `InfluxDBHelper.query2(...)`
 
-`query2(...)`方法同样用于执行InfluxQL语句，但参数占位符不同，使用问号`?`作为参数占位符。参数如下：
+`query2(...)`方法同样用于执行 InfluxQL 语句，但参数占位符不同，使用问号`?`作为参数占位符。参数如下：
 
-| 参数          | 类型 | 是否必须 | 默认值  | 说明                                                                                    |
-| ------------- | ---- | -------- | ------- | --------------------------------------------------------------------------------------- |
-| `sql`         | str  | 必须     |         | InfluxQL语句，可包含参数占位符。<br>`?`表示需要转义的参数；<br>`??`表示不需要转义的参数 |
-| `sql_params`  | list |          | `None`  | InfluxQL参数                                                                            |
-| `database`    | str  |          | `None`  | 本次查询指定数据库                                                                      |
-| `dict_output` | dict |          | `False` | 返回数据自动转换为`{"列名": "值"}`形式                                                  |
+| 参数          | 类型 | 是否必须 | 默认值  | 说明                                                                                     |
+| ------------- | ---- | -------- | ------- | ---------------------------------------------------------------------------------------- |
+| `sql`         | str  | 必须     |         | InfluxQL 语句，可包含参数占位符。<br>`?`表示需要转义的参数；<br>`??`表示不需要转义的参数 |
+| `sql_params`  | list |          | `None`  | InfluxQL 参数                                                                            |
+| `database`    | str  |          | `None`  | 本次查询指定数据库                                                                       |
+| `dict_output` | dict |          | `False` | 返回数据自动转换为`{"列名": "值"}`形式                                                   |
 
 示例如下：
 
@@ -1915,13 +1911,13 @@ db_res = db.query2(sql, sql_params=sql_params, dict_output=True)
 
 `write_point(...)`方法用于写入单个数据点。参数如下：
 
-| 参数          | 类型                          | 是否必须 | 默认值 | 说明                                                                      |
-| ------------- | ----------------------------- | -------- | ------ | ------------------------------------------------------------------------- |
-| `measurement` | str                           | 是       |        | 指标集                                                                    |
-| `fields`      | dict{str: str/int/float/bool} | 是       |        | 字段<br>键名必须为str<br>键值可以为str/int/float/bool                     |
-| `tags`        | dict{str: str}                |          | `None` | 标签<br>键名、键值必须为都为str                                           |
-| `timestamp`   | str/int                       |          | `None` | 时间<br>ISO格式，如：`2020-01-01T01:02:03Z`<br>UNIX时间戳如：`1577840523` |
-| `database`    | str                           |          | `None` | 本次写入指定数据库                                                        |
+| 参数          | 类型                          | 是否必须 | 默认值 | 说明                                                                        |
+| ------------- | ----------------------------- | -------- | ------ | --------------------------------------------------------------------------- |
+| `measurement` | str                           | 是       |        | 指标集                                                                      |
+| `fields`      | dict{str: str/int/float/bool} | 是       |        | 字段<br>键名必须为 str<br>键值可以为 str/int/float/bool                     |
+| `tags`        | dict{str: str}                |          | `None` | 标签<br>键名、键值必须为都为 str                                            |
+| `timestamp`   | str/int                       |          | `None` | 时间<br>ISO 格式，如：`2020-01-01T01:02:03Z`<br>UNIX 时间戳如：`1577840523` |
+| `database`    | str                           |          | `None` | 本次写入指定数据库                                                          |
 
 示例如下：
 
@@ -1937,14 +1933,14 @@ db_res = db.write_point(measurement='host_monitor', fields=fields, tags=tags)
 
 `write_points(...)`方法用于批量写入数据点。参数如下：
 
-| 参数                       | 类型                          | 是否必须 | 默认值 | 说明                                                                      |
-| -------------------------- | ----------------------------- | -------- | ------ | ------------------------------------------------------------------------- |
-| `points`                   | list                          | 是       |        | 数据点数组                                                                |
-| `points[#]['measurement']` | str                           | 是       |        | 指标集                                                                    |
-| `points[#]['fields']`      | dict{str: str/int/float/bool} | 是       |        | 字段<br>键名必须为str<br>键值可以为str/int/float/bool                     |
-| `points[#]['tags']`        | dict{str: str}                |          | `None` | 标签<br>键名、键值必须为都为str                                           |
-| `points[#]['time']`        | str/int                       |          | `None` | 时间<br>ISO格式，如：`2020-01-01T01:02:03Z`<br>UNIX时间戳如：`1577840523` |
-| `database`                 | str                           |          | `None` | 本次写入指定数据库                                                        |
+| 参数                       | 类型                          | 是否必须 | 默认值 | 说明                                                                        |
+| -------------------------- | ----------------------------- | -------- | ------ | --------------------------------------------------------------------------- |
+| `points`                   | list                          | 是       |        | 数据点数组                                                                  |
+| `points[#]['measurement']` | str                           | 是       |        | 指标集                                                                      |
+| `points[#]['fields']`      | dict{str: str/int/float/bool} | 是       |        | 字段<br>键名必须为 str<br>键值可以为 str/int/float/bool                     |
+| `points[#]['tags']`        | dict{str: str}                |          | `None` | 标签<br>键名、键值必须为都为 str                                            |
+| `points[#]['time']`        | str/int                       |          | `None` | 时间<br>ISO 格式，如：`2020-01-01T01:02:03Z`<br>UNIX 时间戳如：`1577840523` |
+| `database`                 | str                           |          | `None` | 本次写入指定数据库                                                          |
 
 ```python
 points = [
@@ -1959,30 +1955,30 @@ db_res = db.write_points(points)
 
 ### 4.5 MySQL
 
-MySQL数据源操作对象主要提供一些操作MySQL的方法。
+MySQL 数据源操作对象主要提供一些操作 MySQL 的方法。
 本数据源以下数据库：
 
 - MariaDB
 - Percona Server for MySQL
-- 阿里云PolarDB MySQL
-- 阿里云OceanBase
-- 阿里云分析型数据库(ADB) MySQL 版
+- 阿里云 PolarDB MySQL
+- 阿里云 OceanBase
+- 阿里云分析型数据库 (ADB) MySQL 版
 
 `DFF.SRC(...)`参数如下：
 
 | 参数             | 类型 | 是否必须 | 默认值 | 说明       |
 | ---------------- | ---- | -------- | ------ | ---------- |
-| `data_source_id` | str  | 必须     |        | 数据源ID   |
+| `data_source_id` | str  | 必须     |        | 数据源 ID  |
 | `database`       | str  |          | `None` | 指定数据库 |
 
 #### MySQLHelper.query(...)
 
-`query(...)`方法用于执行SQL语句，参数如下：
+`query(...)`方法用于执行 SQL 语句，参数如下：
 
-| 参数         | 类型 | 是否必须 | 默认值 | 说明                                                                               |
-| ------------ | ---- | -------- | ------ | ---------------------------------------------------------------------------------- |
-| `sql`        | str  | 必须     |        | SQL语句，可包含参数占位符。<br>`?`表示需要转义的参数；<br>`??`表示不需要转义的参数 |
-| `sql_params` | list |          | `None` | SQL参数                                                                            |
+| 参数         | 类型 | 是否必须 | 默认值 | 说明                                                                                |
+| ------------ | ---- | -------- | ------ | ----------------------------------------------------------------------------------- |
+| `sql`        | str  | 必须     |        | SQL 语句，可包含参数占位符。<br>`?`表示需要转义的参数；<br>`??`表示不需要转义的参数 |
+| `sql_params` | list |          | `None` | SQL 参数                                                                            |
 
 示例如下：
 
@@ -1994,12 +1990,12 @@ db_res = db.query(sql, sql_params=sql_params)
 
 #### MySQLHelper.non_query(...)
 
-`non_query(...)`方法用于执行增、删、改等SQL语句，返回影响行数。参数如下：
+`non_query(...)`方法用于执行增、删、改等 SQL 语句，返回影响行数。参数如下：
 
-| 参数         | 类型 | 是否必须 | 默认值 | 说明                                                                               |
-| ------------ | ---- | -------- | ------ | ---------------------------------------------------------------------------------- |
-| `sql`        | str  | 必须     |        | SQL语句，可包含参数占位符。<br>`?`表示需要转义的参数；<br>`??`表示不需要转义的参数 |
-| `sql_params` | list |          | `None` | SQL参数                                                                            |
+| 参数         | 类型 | 是否必须 | 默认值 | 说明                                                                                |
+| ------------ | ---- | -------- | ------ | ----------------------------------------------------------------------------------- |
+| `sql`        | str  | 必须     |        | SQL 语句，可包含参数占位符。<br>`?`表示需要转义的参数；<br>`??`表示不需要转义的参数 |
+| `sql_params` | list |          | `None` | SQL 参数                                                                            |
 
 示例如下：
 
@@ -2011,22 +2007,22 @@ effected_rows = db.non_query(sql, sql_params=sql_params)
 
 ### 4.6 Redis
 
-Redis数据源操作对象主要提供Redis的操作方法。
+Redis 数据源操作对象主要提供 Redis 的操作方法。
 
 `DFF.SRC(...)`参数如下：
 
 | 参数             | 类型 | 是否必须 | 默认值 | 说明       |
 | ---------------- | ---- | -------- | ------ | ---------- |
-| `data_source_id` | str  | 必须     |        | 数据源ID   |
+| `data_source_id` | str  | 必须     |        | 数据源 ID  |
 | `database`       | str  |          | `None` | 指定数据库 |
 
 #### `RedisHelper.query(...)`
 
-`query(...)`方法用于执行Redis命令，参数如下：
+`query(...)`方法用于执行 Redis 命令，参数如下：
 
-| 参数    | 类型  | 是否必须 | 默认值 | 说明            |
-| ------- | ----- | -------- | ------ | --------------- |
-| `*args` | [str] | 必须     |        | Redis命令及参数 |
+| 参数    | 类型  | 是否必须 | 默认值 | 说明             |
+| ------- | ----- | -------- | ------ | ---------------- |
+| `*args` | [str] | 必须     |        | Redis 命令及参数 |
 
 示例如下：
 
@@ -2036,7 +2032,7 @@ db_res = db.query('GET', 'myKey')
 # b'myValue'
 ```
 
-*注意：Redis返回的值类型为`bytes`。实际操作时，可以根据需要进行类型转换*
+*注意：Redis 返回的值类型为`bytes`。实际操作时，可以根据需要进行类型转换*
 
 ```python
 db_res = db.query('GET', 'intValue')
@@ -2051,21 +2047,21 @@ print(json.loads(db_res))
 
 ### 4.7 Memcached
 
-Memcached数据源操作对象主要提供Memcached的操作方法。
+Memcached 数据源操作对象主要提供 Memcached 的操作方法。
 
 `DFF.SRC(...)`参数如下：
 
-| 参数             | 类型 | 是否必须 | 默认值 | 说明     |
-| ---------------- | ---- | -------- | ------ | -------- |
-| `data_source_id` | str  | 必须     |        | 数据源ID |
+| 参数             | 类型 | 是否必须 | 默认值 | 说明      |
+| ---------------- | ---- | -------- | ------ | --------- |
+| `data_source_id` | str  | 必须     |        | 数据源 ID |
 
 #### `MemcachedHelper.query(...)`
 
-`query(...)`方法用于执行Memcached命令，参数如下：
+`query(...)`方法用于执行 Memcached 命令，参数如下：
 
-| 参数    | 类型  | 是否必须 | 默认值 | 说明                |
-| ------- | ----- | -------- | ------ | ------------------- |
-| `*args` | [str] | 必须     |        | Memcached命令及参数 |
+| 参数    | 类型  | 是否必须 | 默认值 | 说明                 |
+| ------- | ----- | -------- | ------ | -------------------- |
+| `*args` | [str] | 必须     |        | Memcached 命令及参数 |
 
 示例如下：
 
@@ -2077,23 +2073,23 @@ db_res = db.query('GET', 'myKey')
 
 ### 4.8 ClickHouse
 
-ClickHouse数据源操作对象主要提供一些数据方法。
+ClickHouse 数据源操作对象主要提供一些数据方法。
 
 `DFF.SRC(...)`参数如下：
 
 | 参数             | 类型 | 是否必须 | 默认值 | 说明       |
 | ---------------- | ---- | -------- | ------ | ---------- |
-| `data_source_id` | str  | 必须     |        | 数据源ID   |
+| `data_source_id` | str  | 必须     |        | 数据源 ID  |
 | `database`       | str  |          | `None` | 指定数据库 |
 
 #### `ClickHouseHelper.query(...)`
 
-`query(...)`方法用于执行SQL语句，参数如下：
+`query(...)`方法用于执行 SQL 语句，参数如下：
 
-| 参数         | 类型 | 是否必须 | 默认值 | 说明                                                                               |
-| ------------ | ---- | -------- | ------ | ---------------------------------------------------------------------------------- |
-| `sql`        | str  | 必须     |        | SQL语句，可包含参数占位符。<br>`?`表示需要转义的参数；<br>`??`表示不需要转义的参数 |
-| `sql_params` | list |          | `None` | SQL参数                                                                            |
+| 参数         | 类型 | 是否必须 | 默认值 | 说明                                                                                |
+| ------------ | ---- | -------- | ------ | ----------------------------------------------------------------------------------- |
+| `sql`        | str  | 必须     |        | SQL 语句，可包含参数占位符。<br>`?`表示需要转义的参数；<br>`??`表示不需要转义的参数 |
+| `sql_params` | list |          | `None` | SQL 参数                                                                            |
 
 示例如下：
 
@@ -2105,23 +2101,23 @@ db_res = helper.query(sql, sql_params=sql_params)
 
 ### 4.9 Oracle Database
 
-Oracle Database数据源操作对象主要提供Oracle Database的操作方法。
+Oracle Database 数据源操作对象主要提供 Oracle Database 的操作方法。
 
 `DFF.SRC(...)`参数如下：
 
 | 参数             | 类型 | 是否必须 | 默认值 | 说明       |
 | ---------------- | ---- | -------- | ------ | ---------- |
-| `data_source_id` | str  | 必须     |        | 数据源ID   |
+| `data_source_id` | str  | 必须     |        | 数据源 ID  |
 | `database`       | str  |          | `None` | 指定数据库 |
 
 #### `OracleDatabaseHelper.query(...)`
 
-`query(...)`方法用于执行SQL语句，参数如下：
+`query(...)`方法用于执行 SQL 语句，参数如下：
 
-| 参数         | 类型 | 是否必须 | 默认值 | 说明                                                                               |
-| ------------ | ---- | -------- | ------ | ---------------------------------------------------------------------------------- |
-| `sql`        | str  | 必须     |        | SQL语句，可包含参数占位符。<br>`?`表示需要转义的参数；<br>`??`表示不需要转义的参数 |
-| `sql_params` | list |          | `None` | SQL参数                                                                            |
+| 参数         | 类型 | 是否必须 | 默认值 | 说明                                                                                |
+| ------------ | ---- | -------- | ------ | ----------------------------------------------------------------------------------- |
+| `sql`        | str  | 必须     |        | SQL 语句，可包含参数占位符。<br>`?`表示需要转义的参数；<br>`??`表示不需要转义的参数 |
+| `sql_params` | list |          | `None` | SQL 参数                                                                            |
 
 示例如下：
 
@@ -2133,23 +2129,23 @@ db_res = db.query(sql, sql_params=sql_params)
 
 ### 4.10 Microsoft SQL Server
 
-Microsoft SQL Server数据源操作对象主要提供Microsoft SQL Server的操作方法。
+Microsoft SQL Server 数据源操作对象主要提供 Microsoft SQL Server 的操作方法。
 
 `DFF.SRC(...)`参数如下：
 
 | 参数             | 类型 | 是否必须 | 默认值 | 说明       |
 | ---------------- | ---- | -------- | ------ | ---------- |
-| `data_source_id` | str  | 必须     |        | 数据源ID   |
+| `data_source_id` | str  | 必须     |        | 数据源 ID  |
 | `database`       | str  |          | `None` | 指定数据库 |
 
 #### `SQLServerHelper.query(...)`
 
-`query(...)`方法用于执行SQL语句，参数如下：
+`query(...)`方法用于执行 SQL 语句，参数如下：
 
-| 参数         | 类型 | 是否必须 | 默认值 | 说明                                                                               |
-| ------------ | ---- | -------- | ------ | ---------------------------------------------------------------------------------- |
-| `sql`        | str  | 必须     |        | SQL语句，可包含参数占位符。<br>`?`表示需要转义的参数；<br>`??`表示不需要转义的参数 |
-| `sql_params` | list |          | `None` | SQL参数                                                                            |
+| 参数         | 类型 | 是否必须 | 默认值 | 说明                                                                                |
+| ------------ | ---- | -------- | ------ | ----------------------------------------------------------------------------------- |
+| `sql`        | str  | 必须     |        | SQL 语句，可包含参数占位符。<br>`?`表示需要转义的参数；<br>`??`表示不需要转义的参数 |
+| `sql_params` | list |          | `None` | SQL 参数                                                                            |
 
 示例如下：
 
@@ -2161,28 +2157,28 @@ db_res = db.query(sql, sql_params=sql_params)
 
 ### 4.11 PostgreSQL
 
-PostgreSQL数据源操作对象主要提供一些操作PostgreSQL的方法。
+PostgreSQL 数据源操作对象主要提供一些操作 PostgreSQL 的方法。
 本数据源以下数据库：
 
 - Greenplum Database
-- 阿里云PolarDB MySQL
-- 阿里云分析型数据库(ADB) PostgreSQL 版
+- 阿里云 PolarDB MySQL
+- 阿里云分析型数据库 (ADB) PostgreSQL 版
 
 `DFF.SRC(...)`参数如下：
 
 | 参数             | 类型 | 是否必须 | 默认值 | 说明       |
 | ---------------- | ---- | -------- | ------ | ---------- |
-| `data_source_id` | str  | 必须     |        | 数据源ID   |
+| `data_source_id` | str  | 必须     |        | 数据源 ID  |
 | `database`       | str  |          | `None` | 指定数据库 |
 
 #### `PostgreSQLHelper.query(...)`
 
-`query(...)`方法用于执行SQL语句，参数如下：
+`query(...)`方法用于执行 SQL 语句，参数如下：
 
-| 参数         | 类型 | 是否必须 | 默认值 | 说明                                                                               |
-| ------------ | ---- | -------- | ------ | ---------------------------------------------------------------------------------- |
-| `sql`        | str  | 必须     |        | SQL语句，可包含参数占位符。<br>`?`表示需要转义的参数；<br>`??`表示不需要转义的参数 |
-| `sql_params` | list |          | `None` | SQL参数                                                                            |
+| 参数         | 类型 | 是否必须 | 默认值 | 说明                                                                                |
+| ------------ | ---- | -------- | ------ | ----------------------------------------------------------------------------------- |
+| `sql`        | str  | 必须     |        | SQL 语句，可包含参数占位符。<br>`?`表示需要转义的参数；<br>`??`表示不需要转义的参数 |
+| `sql_params` | list |          | `None` | SQL 参数                                                                            |
 
 示例如下：
 
@@ -2194,13 +2190,13 @@ db_res = db.query(sql, sql_params=sql_params)
 
 ### 4.12 mongoDB
 
-mongoDB数据源操作对象主要提供一些操作mongoDB的方法。
+mongoDB 数据源操作对象主要提供一些操作 mongoDB 的方法。
 
 `DFF.SRC(...)`参数如下：
 
 | 参数             | 类型 | 是否必须 | 默认值 | 说明       |
 | ---------------- | ---- | -------- | ------ | ---------- |
-| `data_source_id` | str  | 必须     |        | 数据源ID   |
+| `data_source_id` | str  | 必须     |        | 数据源 ID  |
 | `database`       | str  |          | `None` | 指定数据库 |
 
 #### `MongoDBHelper.db(...)`
@@ -2228,7 +2224,7 @@ data = helper.db('some_db')['some_collection'].find_one()
 
 #### `MongoDBHelper.run_method(...)`
 
-run_method()方法用于获取数据库列表或集合列表，参数如下：
+run_method() 方法用于获取数据库列表或集合列表，参数如下：
 
 | 参数      | 类型 | 是否必须 | 默认值 | 说明                                                                                                |
 | --------- | ---- | -------- | ------ | --------------------------------------------------------------------------------------------------- |
@@ -2243,27 +2239,27 @@ collection_list = helper.run_method('list_collection_names')
 collection_list = helper.run_method('list_collection_names', db_name='some_db')
 ```
 
-具体查询语法、格式等，请参考mongoDB官方文档
+具体查询语法、格式等，请参考 mongoDB 官方文档
 
 ### 4.13 elasticsearch
 
-elasticsearch数据源操作对象主要提供一些操作elasticsearch的方法。
+elasticsearch 数据源操作对象主要提供一些操作 elasticsearch 的方法。
 
 `DFF.SRC(...)`参数如下：
 
-| 参数             | 类型 | 是否必须 | 默认值 | 说明     |
-| ---------------- | ---- | -------- | ------ | -------- |
-| `data_source_id` | str  | 必须     |        | 数据源ID |
+| 参数             | 类型 | 是否必须 | 默认值 | 说明      |
+| ---------------- | ---- | -------- | ------ | --------- |
+| `data_source_id` | str  | 必须     |        | 数据源 ID |
 
 #### `ElasticSearchHelper.query(...)`
 
-`query(...)`方法用于向elasticsearch发送HTTP请求，参数如下：
+`query(...)`方法用于向 elasticsearch 发送 HTTP 请求，参数如下：
 
 | 参数     | 类型 | 是否必须 | 默认值 | 说明                      |
 | -------- | ---- | -------- | ------ | ------------------------- |
 | `method` | str  | 必须     |        | 请求方法：`GET`，`POST`等 |
 | `path`   | str  |          | `None` | 请求路径                  |
-| `query`  | dict |          | `None` | 请求URL参数               |
+| `query`  | dict |          | `None` | 请求 URL 参数             |
 | `body`   | dict |          | `None` | 请求体                    |
 
 示例如下：
@@ -2274,9 +2270,7 @@ db_res = db.query('GET', '/some_index/_search', query={...})
 db_res = db.query('GET', '/some_index/_search', body={...})
 ```
 
-具体查询语法、格式等，请参考elasticsearch官方文档
-
-
+具体查询语法、格式等，请参考 elasticsearch 官方文档
 
 ## 5. 脚本集、脚本规划设计
 
@@ -2298,11 +2292,11 @@ db_res = db.query('GET', '/some_index/_search', body={...})
 导入另一个脚本时，必须按照固定写法：
 
 ```python
-# import <脚本集ID>__<脚本ID>
+# import <脚本集 ID>__<脚本 ID>
 import demo__script
 
 # 或使用别名缩短长度
-# import <脚本集ID>__<脚本ID> as 别名
+# import <脚本集 ID>__<脚本 ID> as 别名
 import demo__script as script
 ```
 
@@ -2311,19 +2305,19 @@ import demo__script as script
 *注意：如果需要导出脚本集，那么，这个脚本集中依赖的其他脚本也需要一起导出。
 否则导出的脚本集会因为缺少函数而实际无法运行！*
 
-*注意：脚本或脚本集并不是Python模块，原本不能import导入。
-但DataFlux Func内部实现了动态加载机制，并允许使用import语句加载动态代码。
+*注意：脚本或脚本集并不是 Python 模块，原本不能 import 导入。
+但 DataFlux Func 内部实现了动态加载机制，并允许使用 import 语句加载动态代码。
 因此，以下写法都是错误的。*
 
 ```python
-# 错误写法1：将脚本集当作模块导入
+# 错误写法 1：将脚本集当作模块导入
 import demo
 
-# 错误写法2：将脚本当作模块导入
+# 错误写法 2：将脚本当作模块导入
 import demo.script
 from demo import script
 
-# 错误写法3：只导入某个函数
+# 错误写法 3：只导入某个函数
 from demo__script import some_func
 ```
 
@@ -2346,21 +2340,21 @@ import demo__script1
 
 ### 5.3 单个脚本的代码量及依赖链
 
-由于DataFlux Func运行脚本时，采用动态加载需要的脚本执行。
+由于 DataFlux Func 运行脚本时，采用动态加载需要的脚本执行。
 如果其中一个脚本导入了另一个脚本，被导入的脚本也会被动态加载。
 
 因此，如果某个脚本中的某些函数会被特别频繁地调用，可以考虑将其单独提取为独立的脚本，减少加载消耗。
-单个脚本大小建议控制在1000行以内。
+单个脚本大小建议控制在 1000 行以内。
 
 此外，也要尽量避免过长的依赖链，导致无意义的性能损耗。如：
 
-- 脚本1依赖脚本2
-- 脚本2依赖脚本3
-- 脚本3依赖脚本4
-- 脚本4依赖脚本5
+- 脚本 1 依赖脚本 2
+- 脚本 2 依赖脚本 3
+- 脚本 3 依赖脚本 4
+- 脚本 4 依赖脚本 5
 - ...
 
-Python内置模块和第三方模块不受此限制影响
+Python 内置模块和第三方模块不受此限制影响
 
 ### 5.4 不划分脚本的情况
 
@@ -2380,9 +2374,9 @@ Python内置模块和第三方模块不受此限制影响
 
 *此功能在`1.1.0rc51`版本引入*
 
-在同一个脚本集下，脚本之间引用可以不写脚本集ID部分（即只写`__`开头部分）。
+在同一个脚本集下，脚本之间引用可以不写脚本集 ID 部分（即只写`__`开头部分）。
 
-方便在脚本集克隆，改变了脚本集ID后，内部函数之间依然可以正确引用。
+方便在脚本集克隆，改变了脚本集 ID 后，内部函数之间依然可以正确引用。
 
 如：
 
@@ -2407,9 +2401,9 @@ def my_func(msg):
 
 Python 是一门多范式的编程语言，可以使用简单的过程式编程，同样也能够使用面向对象的方式编程。
 
-但在DataFlux Func 中，为了方便调试，`建议使用偏向过程式的编程方式`编写代码，避免过度封装。
+但在 DataFlux Func 中，为了方便调试，`建议使用偏向过程式的编程方式`编写代码，避免过度封装。
 
-如，同样的功能，可以使用2中不同的方式实现：
+如，同样的功能，可以使用 2 中不同的方式实现：
 
 ~~~python
 import requests
@@ -2441,26 +2435,26 @@ def test_api_query(url, params):
 
 ## 6. 常见代码处理方式
 
-Python是相当便捷的语言，特定的问题都有比较套路化的处理方式。
+Python 是相当便捷的语言，特定的问题都有比较套路化的处理方式。
 以下是一些常见问题的处理方式：
 
 ### 6.1 使用列表生成器语法
 
-Python的列表生成器语法可以快速生成列表，在逻辑相对简单时，非常适合。
+Python 的列表生成器语法可以快速生成列表，在逻辑相对简单时，非常适合。
 但要注意的是，过分复杂的处理逻辑会使代码难以阅读。
 因此复杂逻辑建议直接使用`for`循环处理。
 
 示例如下：
 
 ```python
-# 按时间生成dps数据
+# 按时间生成 dps 数据
 import time
 dps = [ [(int(time.time()) + i) * 1000, i ** 2] for i in range(5) ]
 dps = list(dps)
 print(dps)
 # [[1583172382000, 0], [1583172383000, 1], [1583172384000, 4], [1583172385000, 9], [1583172386000, 16]]
 
-# 将输入的dps乘方
+# 将输入的 dps 乘方
 dps = [
     [1583172563000, 0],
     [1583172564000, 1],
@@ -2474,17 +2468,16 @@ print(dps)
 # [[1583172563000, 0], [1583172564000, 1], [1583172565000, 4], [1583172566000, 9], [1583172567000, 16]]
 ```
 
-
 ### 6.2 使用内置`map`函数处理列表
 
-Python内置的`map`函数是另一个方便处理列表的函数。
-逻辑简单时，可以使用lambda表达式；
+Python 内置的`map`函数是另一个方便处理列表的函数。
+逻辑简单时，可以使用 lambda 表达式；
 逻辑复杂时，可以先定义函数后作为参数传入。
 
 示例如下：
 
 ```python
-# 使用lambda表达式将输入的dps乘方
+# 使用 lambda 表达式将输入的 dps 乘方
 dps = [
     [1583172563000, 0],
     [1583172564000, 1],
@@ -2497,7 +2490,7 @@ dps = list(dps)
 print(dps)
 # [[1583172563000, 0], [1583172564000, 1], [1583172565000, 4], [1583172566000, 9], [1583172567000, 16]]
 
-# 使用传入函数将输入的dps乘方
+# 使用传入函数将输入的 dps 乘方
 dps = [
     [1583172563000, 0],
     [1583172564000, 1],
@@ -2516,15 +2509,15 @@ print(dps)
 # [[1583172563000, 0], [1583172564000, 1], [1583172565000, 4], [1583172566000, 9], [1583172567000, 16]]
 ```
 
-### 6.3 获取JSON数据中多层嵌套中的值
+### 6.3 获取 JSON 数据中多层嵌套中的值
 
-有时函数会获取到一个嵌套层数较多的JSON，同时需要获取某个层级下的值。
+有时函数会获取到一个嵌套层数较多的 JSON，同时需要获取某个层级下的值。
 可以使用`try`语法快速获取。
 
 示例如下：
 
 ```python
-# 获取level3的值
+# 获取 level3 的值
 input_data = {
     'level1': {
         'level2': {
@@ -2546,7 +2539,7 @@ print(value)
 
 ### 6.4 使用`arrow`库正确处理时间
 
-Python内置的日期处理模块在使用上有一定复杂度，并且对时区的支持并不好。
+Python 内置的日期处理模块在使用上有一定复杂度，并且对时区的支持并不好。
 在处理时间时，建议使用第三方`arrow`模块。
 
 > `arrow`模块已经内置，可直接`import`后使用
@@ -2556,7 +2549,7 @@ Python内置的日期处理模块在使用上有一定复杂度，并且对时�
 ```python
 import arrow
 
-# 获取当前Unix时间戳
+# 获取当前 Unix 时间戳
 print(arrow.utcnow().timestamp)
 # 1583174345
 
@@ -2564,15 +2557,15 @@ print(arrow.utcnow().timestamp)
 print(arrow.now('Asia/Shanghai').format('YYYY-MM-DD HH:mm:ss'))
 # 2020-03-03 02:39:05
 
-# 获取当前北京时间的ISO8601格式字符串
+# 获取当前北京时间的 ISO8601 格式字符串
 print(arrow.now('Asia/Shanghai').isoformat())
 # 2020-03-03T02:39:05.013290+08:00
 #
-# 从Unix时间戳解析，并输出北京时间字符串
+# 从 Unix 时间戳解析，并输出北京时间字符串
 print(arrow.get(1577808000).to('Asia/Shanghai').format('YYYY-MM-DD HH:mm:ss'))
 # 2020-01-01 00:00:00
 
-# 从ISO8601时间字符串解析，并输出北京时间字符串
+# 从 ISO8601 时间字符串解析，并输出北京时间字符串
 print(arrow.get('2019-12-31T16:00:00Z').to('Asia/Shanghai').format('YYYY-MM-DD HH:mm:ss'))
 # 2020-01-01 00:00:00
 
@@ -2588,27 +2581,27 @@ print(arrow.get('2019-12-31T16:00:00Z').shift(days=-1).to('Asia/Shanghai').forma
 更详细内容，请参考`arrow`官方文档：
 [https://arrow.readthedocs.io/](https://arrow.readthedocs.io/)
 
-### 6.5 向外部发送HTTP请求
+### 6.5 向外部发送 HTTP 请求
 
-Python内置的`http`处理模块在使用上有一定复杂度。
-在发送http请求时，建议使用第三方`requests`模块。
+Python 内置的`http`处理模块在使用上有一定复杂度。
+在发送 http 请求时，建议使用第三方`requests`模块。
 
 示例如下：
 
 ```python
 import requests
 
-# 发送GET请求
+# 发送 GET 请求
 r = requests.get('https://api.github.com/')
 print(r.status_code)
 print(r.json())
 
-# form方式发送POST请求
+# form 方式发送 POST 请求
 r = requests.post('https://httpbin.org/post', data={'key':'value'})
 print(r.status_code)
 print(r.json())
 
-# json方式发送POST请求
+# json 方式发送 POST 请求
 r = requests.post('https://httpbin.org/post', json={'key':'value'})
 print(r.status_code)
 print(r.json())
@@ -2619,8 +2612,8 @@ print(r.json())
 
 ### 6.6 发送钉钉机器人消息
 
-钉钉自定义机器人可以简单的通过POST请求将消息推送到群中，是作为消息提示的不二选择。
-由于只需要发送HTTP请求即可，因此可以直接使用`requests`模块。
+钉钉自定义机器人可以简单的通过 POST 请求将消息推送到群中，是作为消息提示的不二选择。
+由于只需要发送 HTTP 请求即可，因此可以直接使用`requests`模块。
 
 示例如下：
 
@@ -2647,10 +2640,10 @@ requests.post(url, json=body)
 更详细内容，请参考钉钉机器人官方文档：
 [https://developers.dingtalk.com/document/app/custom-robot-access](https://developers.dingtalk.com/document/app/custom-robot-access)
 
-### 6.7 避免SQL注入
+### 6.7 避免 SQL 注入
 
-当需要将函数的传入参数作为SQL语句的参数时，需要注意避免SQL注入问题。
-应当始终使用内置的数据源操作对象提供的`sql_params`参数，而不要直接拼接SQL语句字符串。
+当需要将函数的传入参数作为 SQL 语句的参数时，需要注意避免 SQL 注入问题。
+应当始终使用内置的数据源操作对象提供的`sql_params`参数，而不要直接拼接 SQL 语句字符串。
 
 以下为正确示例：
 
@@ -2667,32 +2660,30 @@ helper.query("SELECT * FROM table WHERE id = '%s'" % target_id)
 
 实际各类型的数据源操作对象使用方法略有不同，请参考「操作数据源 `DFF.SRC(...)`」章节
 
-百度百科「SQL注入」词条：
+百度百科「SQL 注入」词条：
 [https://baike.baidu.com/item/sql%E6%B3%A8%E5%85%A5](https://baike.baidu.com/item/sql%E6%B3%A8%E5%85%A5)
 
 W3Cschool「MySQL 及 SQL 注入」章节：
 [https://www.w3cschool.cn/mysql/mysql-sql-injection.html](https://www.w3cschool.cn/mysql/mysql-sql-injection.html)
 
-
-
 ## 7. 对接外部黑盒系统
 
-某些情况下，开发者需要从第三方获取数据，但第三方又不提供标准HTTP的访问接口，如：
+某些情况下，开发者需要从第三方获取数据，但第三方又不提供标准 HTTP 的访问接口，如：
 
-1. 第三方接口是HTTP接口，但是需要签名认证，且签名方法不公开的
+1. 第三方接口是 HTTP 接口，但是需要签名认证，且签名方法不公开的
 2. 第三方接口为订阅接口，需要程序长时间监听的
 3. 第三方接口为私有协议，必须使用第三方提供的客户端才能访问的
-4. 第三方接口无法提供Python版的SDK，或提供的Python版SDK只支持Python 2.7的
-5. 其他无法直接在DataFlux Func 函数中访问的情况
+4. 第三方接口无法提供 Python 版的 SDK，或提供的 Python 版 SDK 只支持 Python 2.7 的
+5. 其他无法直接在 DataFlux Func 函数中访问的情况
 
-在这些情况下，如果依然需要DataFlux Func 来处理数据的话，
-可以使用适配器`adapter`方式来实现DataFlux Func 间接支持第三方接口。
+在这些情况下，如果依然需要 DataFlux Func 来处理数据的话，
+可以使用适配器`adapter`方式来实现 DataFlux Func 间接支持第三方接口。
 
 ### 7.1 对方接口为「请求-响应」模式
 
 「请求-响应」模式指的是，服务端不会主动向客户端发送数据，
 一次数据请求必须是由客户端发起请求，服务端对这个请求进行响应的流程。
-典型例子：HTTP协议。
+典型例子：HTTP 协议。
 
 那么，可以使用以下流程实现对接：
 
@@ -2713,13 +2704,13 @@ W3Cschool「MySQL 及 SQL 注入」章节：
 ```
 
 适配器`Adapter`在上述流程中，扮演协议转换器的角色，
-将标准HTTP协议和第三方黑盒协议相互转换，以实现对接目的。
+将标准 HTTP 协议和第三方黑盒协议相互转换，以实现对接目的。
 
 ### 7.2 对方接口为「订阅-发布」模式
 
 「订阅-发布」模式指的是，客户端长连接到服务器，并订阅特定主题，
 之后即可接收来自服务器端，或者其他客户端发布到这个主题的数据。
-典型例子为：Redis的PubSub功能、Kafka、各种消息队列。
+典型例子为：Redis 的 PubSub 功能、Kafka、各种消息队列。
 
 那么，可以使用以下流程实现对接：
 
@@ -2742,14 +2733,14 @@ W3Cschool「MySQL 及 SQL 注入」章节：
 适配器`Adapter`在上述流程中，扮演第三方服务客户端和数据转发者的角色，
 并在启动后，直接向第三方服务注册/订阅。
 
-- DataFlux Func 发布消息：函数中调用适配器的HTTP接口，适配器将数据发布到第三方服务
-- DataFlux Func 接收消息：适配器在收到特定消息后，调用DataFlux Func 的对应授权链接
+- DataFlux Func 发布消息：函数中调用适配器的 HTTP 接口，适配器将数据发布到第三方服务
+- DataFlux Func 接收消息：适配器在收到特定消息后，调用 DataFlux Func 的对应授权链接
 
-## 8. 在DataFlux Func 中使用第三方包
+## 8. 在 DataFlux Func 中使用第三方包
 
-DataFlux Func 安装完毕后，由于DataFlux Func 本身就需要第三方包，因此这些包可以在脚本中直接使用，无需另外安装。
+DataFlux Func 安装完毕后，由于 DataFlux Func 本身就需要第三方包，因此这些包可以在脚本中直接使用，无需另外安装。
 
-| 预装的Python包          | 版本    | 备注                   |
+| 预装的 Python 包        | 版本    | 备注                   |
 | ----------------------- | ------- | ---------------------- |
 | arrow                   | 0.15.7  |                        |
 | celery[redis]           | 4.4.6   |                        |
@@ -2794,19 +2785,19 @@ DataFlux Func 安装完毕后，由于DataFlux Func 本身就需要第三方包�
 
 用户如果需要额外安装第三方包，可以根据具体情况进行选择
 
-### 8.1 可以访问公网时，安装Pypi中的包
+### 8.1 可以访问公网时，安装 Pypi 中的包
 
-如果需要额外第三方包的DataFlux Func 可以直接访问公网，那么可以直接使用系统自带的「PIP工具」进行安装。
+如果需要额外第三方包的 DataFlux Func 可以直接访问公网，那么可以直接使用系统自带的「PIP 工具」进行安装。
 
-#### 第1步：开启「PIP工具」
+#### 第 1 步：开启「PIP 工具」
 
-在「管理 - 实验性功能」中开启「PIP工具」。
+在「管理 - 实验性功能」中开启「PIP 工具」。
 
 ![](development-guide/enable-pip-tool.png)
 
-#### 第2步：使用「PIP工具」安装第三方包
+#### 第 2 步：使用「PIP 工具」安装第三方包
 
-在「PIP工具」中，可以选择Pypi镜像，输入包名后，即可安装。
+在「PIP 工具」中，可以选择 Pypi 镜像，输入包名后，即可安装。
 
 如果需要指定版本号，可以使用`package==1.2.3`的格式来安装。
 
@@ -2814,43 +2805,43 @@ DataFlux Func 安装完毕后，由于DataFlux Func 本身就需要第三方包�
 
 #### 注意事项
 
-由于浏览器限制，在安装一些特别巨大，或者耗时较长的第三方包（如各种AI库、机器学习库等），可能会产生页面超时的问题。
+由于浏览器限制，在安装一些特别巨大，或者耗时较长的第三方包（如各种 AI 库、机器学习库等），可能会产生页面超时的问题。
 
-此时，可以选择登录DataFlux Func 所在服务器，使用命令进行安装。
+此时，可以选择登录 DataFlux Func 所在服务器，使用命令进行安装。
 
-具体安装命令在「PIP工具」中会给出提示：
+具体安装命令在「PIP 工具」中会给出提示：
 
 ![](development-guide/pip-cmd-tips.png)
 
-### 8.2 无法访问公网时，安装Pypi中的包
+### 8.2 无法访问公网时，安装 Pypi 中的包
 
-如果DataFlux Func 所在服务器因各种原因，无法访问外网，那么通常的PIP 方式无法安装第三方包。
+如果 DataFlux Func 所在服务器因各种原因，无法访问外网，那么通常的 PIP 方式无法安装第三方包。
 
-此时，需要另外一个*相同架构*，且可以访问公网的DataFlux Func，用来安装第三方包。安装完成后，将安装后的内容拷贝至无法访问公网的DataFlux Func中即可。
+此时，需要另外一个*相同架构*，且可以访问公网的 DataFlux Func，用来安装第三方包。安装完成后，将安装后的内容拷贝至无法访问公网的 DataFlux Func 中即可。
 
-下文中，可以访问公网的DataFlux Func 简称「有网Func」；无法访问公网的DataFlux Func 简称「无网Func」
+下文中，可以访问公网的 DataFlux Func 简称「有网 Func」；无法访问公网的 DataFlux Func 简称「无网 Func」
 
-#### 第1步：部署「有网Func」，并安装所需第三方包
+#### 第 1 步：部署「有网 Func」，并安装所需第三方包
 
-此步骤请参考上文「可以访问公网时，安装Pypi中的包」
+此步骤请参考上文「可以访问公网时，安装 Pypi 中的包」
 
-#### 第2步：开启「文件管理器模块」
+#### 第 2 步：开启「文件管理器模块」
 
 在「管理 - 实验性功能」中开启「文件管理器模块」。
 
 ![](development-guide/enable-file-manager.png)
 
-#### 第3步：使用「文件管理器」下载第三方包存放目录
+#### 第 3 步：使用「文件管理器」下载第三方包存放目录
 
-找到`extra-python-packages`目录（所有额外安装的Python 包内容都会存放于此），选择「更多 - 压缩」，并下载zip 文件。
+找到`extra-python-packages`目录（所有额外安装的 Python 包内容都会存放于此），选择「更多 - 压缩」，并下载 zip 文件。
 
 ![](development-guide/zip-pkg.png)
 
 ![](development-guide/download-pkg.png)
 
-#### 第4步：在「无网Func」中，上传第三方包存放目录
+#### 第 4 步：在「无网 Func」中，上传第三方包存放目录
 
-前往「无网Func」，删除原先的第三方包存放目录，并上传上一步中下载的zip文件，并解压。
+前往「无网 Func」，删除原先的第三方包存放目录，并上传上一步中下载的 zip 文件，并解压。
 
 ![](development-guide/delete-pkg.png)
 
@@ -2860,32 +2851,32 @@ DataFlux Func 安装完毕后，由于DataFlux Func 本身就需要第三方包�
 
 ![](development-guide/unzip-pkg-done.png)
 
-#### 第5步：重启DataFlux Func
+#### 第 5 步：重启 DataFlux Func
 
 此步骤请参考上文「维护文档 - 日常维护 - 重启系统」
 
 #### 注意事项
 
-DataFlux Func 运行在Docker 中，Python 的运行环境也依赖容器中的环境。
+DataFlux Func 运行在 Docker 中，Python 的运行环境也依赖容器中的环境。
 
-*因此，请勿将本机，或其他非DataFlux Func 容器内的Python 安装后的内容拷贝至DataFlux Func 中。否则往往会产生奇怪的问题。*
+*因此，请勿将本机，或其他非 DataFlux Func 容器内的 Python 安装后的内容拷贝至 DataFlux Func 中。否则往往会产生奇怪的问题。*
 
-*此外：「有网Func」和「无网Func」必须保证为相同的硬件架构，如均为`x86_64`或`aarch64`*
+*此外：「有网 Func」和「无网 Func」必须保证为相同的硬件架构，如均为`x86_64`或`aarch64`*
 
-### 8.3 上传Wheel 包进行安装
+### 8.3 上传 Wheel 包进行安装
 
 > 敬请期待
 
-### 8.4 上传Python 文件供脚本引入
+### 8.4 上传 Python 文件供脚本引入
 
 > 敬请期待
 
 ### 8.5 为什么？
 
-#### 为什么不建议通过上传Wheel包的方式直接安装Python包？
+#### 为什么不建议通过上传 Wheel 包的方式直接安装 Python 包？
 
-向服务器上传Wheel包后，直接通过PIP安装的方式，理论上是可行的，但实际绝大多数情况下并不能成功。
+向服务器上传 Wheel 包后，直接通过 PIP 安装的方式，理论上是可行的，但实际绝大多数情况下并不能成功。
 
-原因在于所上传的Wheel包本身可能还依赖其他包，单纯上传代码中直接使用的Wheel包无法满足依赖关系。越是功能强大的包，一般来说所依赖的其他包更多，依赖层级更深。最终可能让操作者陷入依赖地狱。
+原因在于所上传的 Wheel 包本身可能还依赖其他包，单纯上传代码中直接使用的 Wheel 包无法满足依赖关系。越是功能强大的包，一般来说所依赖的其他包更多，依赖层级更深。最终可能让操作者陷入依赖地狱。
 
-因此，除非所需安装的包不依赖其他任何包，否则一般不建议使用上传Wheel包的方式安装Python第三方包。
+因此，除非所需安装的包不依赖其他任何包，否则一般不建议使用上传 Wheel 包的方式安装 Python 第三方包。
