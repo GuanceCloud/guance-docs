@@ -66,4 +66,4 @@ curl "https://openapi.guance.com/api/v1/dashboards/${dashboard_uuid}/delete" \
 
 ## 说明
 
-${DF_API_KEY}：  表示调用者 API KEY，获取方式见[API Key 管理](https://www.yuque.com/dataflux/doc/ag17mc)
+${DF_API_KEY}：  表示调用者 API KEY，获取方式见[API Key 管理](../management/api-key/open-api.md)
