@@ -7,20 +7,138 @@
 
 ### 观测云更新
 
-#### 新增 Jenkins CI 可观测
+#### 观测云帮助文档全新上线
 
-观测云新增 Jenkins CI 可观测，您可以通过观测云的 CI 可视化功能直接查看在 Jenkins 的 CI 结果。CI 的过程是持续集成，开发人员在 push 代码的时候，若碰到问题，可以在观测云查看所有 CI 的 pipeline 及其成功率、失败原因、
+为了提高观测云帮助文档的阅读体验，观测云帮助文档已迁至观测云域名下，您可以更简单、更快速的查看观测云帮助文档。新的观测云帮助文档地址为：https://docs.guance.com 。
 
-### DataKit 更新（**2022/05/26**）
+#### 新增 Profile 可观测
+
+Profile 支持采集使用 Java / Python 等不同语言环境下应用程序运行过程中的动态性能数据，帮助用户查看 CPU、内存、IO 的性能问题。采集 profile 数据需要先 [安装 DataKit](../datakit/datakit-install.md) ，并配置 [ddtrace 采集器](../integrations/ddtrace.md)，配置完成后，DataKit 会将采集到的 profile 数据上传到您的观测云工作空间，您可以通过 Profile 实时数据查看器了解您的程序代码性能。更多详情可参考文档 [Profile](../application-performance-monitoring/profile.md) 。
+
+![](img/6.profile_3.png)
+
+
+
+#### Pipeline 新增除日志数据以外的其他数据类型脚本配置
+
+文本处理（Pipeline）用于数据解析，通过定义解析规则，将各种数据类型切割成符合我们要求的结构化数据。在观测云工作空间「管理」-「文本处理（Pipeline）」，点击「新建Pipeline」即可创建一个新的 pipeline 文件。更多详情可参考文档 [文本处理（Pipeline）](../management/overall-pipeline.md) 。
+
+![](img/5.pipeline_3.png)
+
+
+
+#### 新增 Deployment 网络详情及网络分布
+
+Deployment 网络支持查看 Deployment 之间的网络流量。支持基于 IP/端口查看源 IP 到目标 IP 之间的网络流量和数据连接情况，通过可视化的方式进行实时展示，帮助企业实时了解业务系统的网络运行状态，快速分析、追踪和定位问题故障，预防或避免因网络性能下降或中断而导致的业务问题。
+
+Deployment 网络数据采集成功后会上报到观测云控制台，您可以在「基础设施」-「容器」-「Deployment」详情页中的「网络」，查看到Deployment 的网络性能监测数据信息；在「基础设施」-「网络」-「Deployment」，您可以查看到工作空间内全部 Deployment 的网络分布与数据连接情况。更多详情可参考 [Deployment 网络](../infrastructure/network.md#deployment_1)。
+
+![](img/5.network.png)
+
+
+
+#### 优化事件检测维度跳转到其他查看器
+
+在事件未恢复查看器，支持点击检测维度查看相关容器、进程、日志、链路、RUM、可用性检测、安全巡检、CI 等。若相关查看器无相关数据，对应跳转链接为灰色不可点击。更多详情可参考文档 [事件检测维度](../events/explorer.md) 。
+
+![](img/9.event_11.png)
+
+
+
+#### 新增日志查看器 JSON 格式的 message 信息搜索
+
+日志查看器新增搜索 JSON 格式的日志内容（message），搜索格式为：`@key.key:value` 。
+
+注意：JSON 搜索仅支持功能上线后创建的工作空间。
+
+![](img/7.log_json.png)
+
+
+
+#### 新增用户访问监测新建应用时支持用户自定义输入 app_id 信息
+
+新增自定义应用ID功能。支持在使用用户访问监测新建应用的功能时，自定义输入 app_id ，生成当前空间内唯一的应用 ID 标识，可用于区分应用类型、数据上传匹配等。
+
+- 应用名称（必填项）：用于识别当前实施用户访问监控的应用名称。
+- 应用ID（选填）：当前空间内唯一的应用 ID 标识，支持用于数据上传匹配；应用 ID 标识最多为 20 个字符，仅支持输入大小写字母。
+
+![](img/7.changelog_1.png)
+
+#### 优化进程检测为基础设施对象检测
+
+进程检测优化为基础设施对象监测，新增主机、容器、进程、Pod、Deployment、Replicaset、Job、自定义对象等基础对象选择，用于监控工作空间内的基础设施对象数据。更多详情可参考文档 [基础设施对象检测](../monitor/infrastructure-detection.md) 。
+
+#### 其他功能优化
+
+- 基础设施POD查看器蜂窝模式下新增 CPU 使用率、内存使用量填充指标
+- 优化日志黑名单配置。支持手动输入日志来源，作为日志黑名单的来源；
+- 优化应用性能监测服务列表数据查询时间组件，支持自定义时间范围选择；
+- 优化在 K8S 上安装 DataKit 引导文案，配置 DataWay 数据网关地址中自动增加当前工作空间的 token 。
+- 监控器配置 UI 样式优化
+
+### DataKit 更新
+
+#### 2022/06/16
+
+- 日志采集支持记录采集位置，避免因为 DataKit 重启等情况导致的数据漏采
+
+- 调整 Pipeline 在处理不同类数据时的设定
+
+- 支持接收 SkyWalking 指标数据
+
+- 优化日志黑名单调试功能： 
+
+- - 在 Monitor 中会展示被过滤掉的点数
+
+- - 在 datakit/data 目录下会增加一个 *.filter* 文件，用来记录拉取到的过滤器
+
+- Monitor 中增加 DataKit 打开文件数显示
+
+- DataKit 编译器升级到 golang 1.18.3
+
+#### 2022/06/07
+
+- 增加TCP/UDP 端口检测采集器
+- DataKit 跟 DataWay 之间增加 DNS 检测，支持 DataWay DNS 动态切换
+- [eBPF](../integrations/ebpf.md) L4/L7 流量数据增加 k8s deployment name 字段
+- 优化 [OpenTelemetry](../datakit/opentelemetry.md) 指标数据
+- [ElasticSearch](https://preprod-docs.cloudcare.cn/datakit/changelog/elasticsearch) 增加 AWS OpenSearch 支持
+- [行协议限制](../datakit/apis.md)中，字符串长度限制放宽到 32MB
+- [prom](../integrations/prom.md) 采集器增加额外配置，支持忽略指定的 tag=value 的匹配，以减少不必要的时序时间线
+- Sink 增加 Jaeger 支持
+- Kubernetes 相关的指标采集，默认全部关闭，以避免时间线暴增问题
+- DataKit Monitor 增加动态发现（比如 prom）的采集器列表刷新
+
+更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md) 。
 
 
 ### 最佳实践更新
 
+- APM
 
+- - [GraalVM 与 Spring Native 项目实现链路可观测](../best-practices/apm/spring-native.md)
+
+- 接入集成
+
+- - [主机可观测最佳实践 (Linux)](../best-practices/integrations/host.md)
 
 更多最佳实践更新可参考 [最佳实践版本历史](../best-practices/index.md) 。
 
 ### 集成模版更新
+
+#### 新增文档
+
+- 阿里云
+
+- - 阿里云 NAT
+  - 阿里云 CDN
+
+#### 新增视图
+
+- 阿里云
+
+- - 阿里云 NAT
+  - 阿里云 CDN
 
 
 
