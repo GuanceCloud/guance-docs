@@ -1,5 +1,7 @@
 nav:
 
+  - index.md
+
   - 手册:
     - guide-doc-intro.md
     - quick-start.md

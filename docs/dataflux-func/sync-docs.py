@@ -65,6 +65,7 @@ def load_doc_list(doc_dir):
 
     fetch_doc_list(index.get('nav'))
     doc_list = list(set(doc_list))
+    doc_list.sort()
 
     return doc_list
 
