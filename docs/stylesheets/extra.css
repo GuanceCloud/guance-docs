@@ -24,8 +24,19 @@
     border: 0.0454rem solid #ECEEF0;
 }
 
+.md-nav--primary {
+    line-height: 1.6;
+}
+
+.md-nav__link {
+    align-items: center;
+}
+
 .md-nav__link svg {
     color: #a2a2a2;
+    font-size: 16px;
+    width: 18px;
+    height: 18px;
 }
 
 .md-nav[data-md-level="0"] > .md-nav__list .md-nav__link:hover svg {
@@ -44,7 +55,7 @@
     color: #4051b5;;
 }
 
-.md-nav[data-md-level="0"] > .md-nav__list .md-nav__link {
+.md-nav[data-md-level="0"] > .md-nav__list .md-nav__item {
     color: #333333;
     font-weight: 500;
 }
