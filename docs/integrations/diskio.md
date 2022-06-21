@@ -1,102 +1,114 @@
-{{.CSS}}
+
 # DiskIO
 ---
 
-- DataKit 版本：{{.Version}}
-- 操作系统支持：`{{.AvailableArchs}}`
+- DataKit 版本：1.4.2
+- 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
 diskio 采集器用于磁盘流量和时间的指标的采集
 
-## 视图预览
-Diskio 性能指标展示，包括磁盘读写，磁盘读写时间，IOPS等
-![image.png](imgs/input-diskio-01.png)
-
 ## 前置条件
 
-- 服务器 <[安装 Datakit](datakit-install)>
+对于部分旧版本 Windows 操作系统，如若遇到 Datakit 报错： **"The system cannot find the file specified."**
 
-## 安装配置
-说明：示例 Linux 版本为：CentOS Linux release 7.8.2003 (Core)，Windows 版本请修改对应的配置文件
+请以管理员身份运行 PowerShell，并执行：
 
-### 部署实施
-(Linux / Windows 环境相同)
-
-#### 指标采集 (默认)
-
-1. Diskio 数据采集默认开启，对应配置文件 /usr/local/datakit/conf.d/host/diskio.conf
-
-参数说明
-
-- interval：数据采集频率
-- devices：设备名称 (支持正则匹配)
-- skip_serial_number：是否忽略序列号 (默认忽略)
-- device_tags：设备标签
-- name_templates：名称模板 (设备标签关联)
+```powershell
+diskperf -Y
 ```
-[[inputs.disk]]
+
+在执行成功后需要重启 Datakit 服务。
+
+## 配置
+
+进入 DataKit 安装目录下的 `conf.d/host` 目录，复制 `diskio.conf.sample` 并命名为 `diskio.conf`。示例如下：
+
+```toml
+
+[[inputs.diskio]]
+  ##(optional) collect interval, default is 10 seconds
   interval = '10s'
+  ##
+  ## By default, gather stats for all devices including
+  ## disk partitions.
+  ## Setting interfaces using regular expressions will collect these expected devices.
   # devices = ['''^sda\d*''', '''^sdb\d*''', '''vd.*''']
+  #
+  ## If the disk serial number is not required, please uncomment the following line.
   # skip_serial_number = true
+  #
+  ## On systems which support it, device metadata can be added in the form of
+  ## tags.
+  ## Currently only Linux is supported via udev properties. You can view
+  ## available properties for a device by running:
+  ## 'udevadm info -q property -n /dev/sda'
+  ## Note: Most, but not all, udev properties can be accessed this way. Properties
+  ## that are currently inaccessible include DEVTYPE, DEVNAME, and DEVPATH.
   # device_tags = ["ID_FS_TYPE", "ID_FS_USAGE"]
+  #
+  ## Using the same metadata source as device_tags,
+  ## you can also customize the name of the device through a template.
+  ## The "name_templates" parameter is a list of templates to try to apply equipment.
+  ## The template can contain variables of the form "$PROPERTY" or "${PROPERTY}".
+  ## The first template that does not contain any variables that do not exist
+  ## for the device is used as the device name label.
+  ## A typical use case for LVM volumes is to obtain VG/LV names,
+  ## not DM-0 names which are almost meaningless.
+  ## In addition, "device" is reserved specifically to indicate the device name.
   # name_templates = ["$ID_FS_LABEL","$DM_VG_NAME/$DM_LV_NAME", "$device:$ID_FS_TYPE"]
-```
+  #
 
-2. Diskio 指标采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|diskio"
-
-![image.png](imgs/input-diskio-02.png)
-
-指标预览
-![image.png](imgs/input-diskio-03.png)
-
-#### 插件标签 (非必选)
-参数说明
-
-- 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，所有 diskio 指标都会带有 app = oa 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](best-practices/guance-skill/tag/)>
-```
-# 示例
 [inputs.diskio.tags]
-   app = "oa"
-```
-重启 Datakit
-```
-systemctl restart datakit
+  # some_tag = "some_value"
+  # more_tag = "some_other_value"
 ```
 
-## 场景视图
-<场景 - 新建仪表板 - 内置模板库 - Diskio>
+配置好后，重启 DataKit 即可。
 
-## 异常检测
-<监控 - 模板新建 - 主机检测库>
+支持以环境变量的方式修改配置参数（只在 DataKit 以 K8s daemonset 方式运行时生效，主机部署的 DataKit 不支持此功能）：
+
+| 环境变量名                            | 对应的配置参数项     | 参数示例                                                     |
+| :---                                  | ---                  | ---                                                          |
+| `ENV_INPUT_DISKIO_SKIP_SERIAL_NUMBER` | `skip_serial_number` | `true`/`false`                                               |
+| `ENV_INPUT_DISKIO_TAGS`               | `tags`               | `tag1=value1,tag2=value2` 如果配置文件中有同名 tag，会覆盖它 |
+| `ENV_INPUT_DISKIO_INTERVAL` | `interval` | `10s`|
+| `ENV_INPUT_DISKIO_DEVICES` | `devices` | `'''^sdb\d*'''` |
+| `ENV_INPUT_DISKIO_DEVICE_TAGS` | `device_tags` | `"ID_FS_TYPE", "ID_FS_USAGE"` 以英文逗号隔开 |
+| `ENV_INPUT_DISKIO_NAME_TEMPLATES` | `name_templates` | `"$ID_FS_LABEL", "$DM_VG_NAME/$DM_LV_NAME"` 以英文逗号隔开 |
 
 ## 指标集
 
-以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[[inputs.{{.InputName}}.tags]]` 另择 host 来命名。
+以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[[inputs.diskio.tags]]` 另择 host 来命名。
 
-{{ range $i, $m := .Measurements }}
 
-### `{{$m.Name}}`
+
+### `diskio`
 
 -  标签
 
-{{$m.TagsMarkdownTable}}
+
+| 标签名 | 描述    |
+|  ----  | --------|
+|`host`|主机名|
+|`name`|磁盘设备名|
 
 - 指标列表
 
-{{$m.FieldsMarkdownTable}}
 
-{{ end }}
+| 指标 | 描述| 数据类型 | 单位   |
+| ---- |---- | :---:    | :----: |
+|`io_time`|time spent doing I/Os|int|ms|
+|`iops_in_progress`|I/Os currently in progress|int|count|
+|`merged_reads`|reads merged|int|count|
+|`merged_writes`|writes merged|int|count|
+|`read_bytes`|read bytes|int|B|
+|`read_bytes/sec`|read bytes per second|int|B/S|
+|`read_time`|time spent reading|int|ms|
+|`reads`|reads completed successfully|int|count|
+|`weighted_io_time`|weighted time spent doing I/Os|int|ms|
+|`write_bytes`|write bytes|int|B|
+|`write_bytes/sec`|write bytes per second|int|B/S|
+|`write_time`|time spent writing|int|ms|
+|`writes`|writes completed|int|count|
 
 
-## 常见问题排查
-<[无数据上报排查](why-no-data)>
-
-F： Windows 服务器 diskio 数据无法正常采集
-Q：需要先开启磁盘性能计数器 (Powershell 执行命令)，并重启 Datakit
-```
-diskperf  -Y
-```
-
-## 进一步阅读
-<[主机可观测最佳实践](hostobject)>
