@@ -11,8 +11,21 @@ buildTesting:
     - dev
   script:
     - docker buildx build --platform linux/arm64,linux/amd64 
+      --build-arg release_env="peprod"
       -t registry.jiagouyun.com/cloudcare-front/$REPOSITORY:testing . --push
     - curl -sS -X POST -H "Authorization:Bearer ${PREPROD_RANCHER_TOKEN}"  ${RANCHER_API_BASE_URL}/v3/project/${PREPROD_PROJECT_ID}/workloads/deployment:${PREPROD_WORKLOAD}?action=redeploy
+  tags:
+    - cloudcare-multiarch
+
+buildMain:
+  stage: deploy
+  only:
+    - main
+  script:
+    - docker buildx build --platform linux/arm64,linux/amd64
+      --build-arg release_env="saas_production"
+      -t registry.jiagouyun.com/cloudcare-front/$REPOSITORY:prod . --push
+    - curl -sS -X POST -H "Authorization:Bearer ${PROD_RANCHER_TOKEN}"  ${RANCHER_API_BASE_URL}/v3/project/${PROD_PROJECT_ID}/workloads/deployment:${PROD_WORKLOAD}?action=redeploy
   tags:
     - cloudcare-multiarch
 
