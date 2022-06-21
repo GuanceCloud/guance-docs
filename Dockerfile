@@ -9,12 +9,12 @@ WORKDIR /dataflux-doc
 COPY ./ /dataflux-doc
 
 RUN \
-    if [ "$release_env" == "saas_production" ];then \
+    if [ $release_env = "saas_production" ]; then \
         echo "SaaS Build ..." \
-        cp -r overrides-saas/ overrides/ \
-    elif [ "$release_env" == "rtm" ];then \
+        cp -r overrides-saas/ overrides/; \
+    elif [ $release_env = "rtm" ]; then \
         echo "RTM Build ..." \
-        cp -r overrides-deploy/ overrides/ \
+        cp -r overrides-deploy/ overrides/; \
     fi
 
 RUN mkdocs build
