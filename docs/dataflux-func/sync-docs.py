@@ -53,7 +53,9 @@ def load_doc_list(doc_dir):
                 x = list(x.values())[0]
 
             if isinstance(x, str):
-                if x.startswith('http://') or x.startswith('https://'):
+                if x == 'index.md':
+                    continue
+                elif x.startswith('http://') or x.startswith('https://'):
                     continue
                 elif x.endswith('/'):
                     continue
