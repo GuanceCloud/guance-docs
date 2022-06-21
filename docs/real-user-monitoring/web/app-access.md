@@ -21,7 +21,7 @@
 
 ## 前置条件
 
-- 安装 DataKit（[DataKit 安装文档](https://www.yuque.com/dataflux/datakit/datakit-how-to)）
+- 安装 DataKit（[DataKit 安装文档](../../datakit/datakit-install.md)）
 
   
 ## Web应用接入
@@ -227,5 +227,4 @@ Timing-Allow-Origin: *
 [Resource Timing practical tips; Steve Souders](http://www.stevesouders.com/blog/2014/08/21/resource-timing-practical-tips/)
 
 [Measuring network performance with Resource Timing API](http://googledevelopers.blogspot.ca/2013/12/measuring-network-performance-with.html)
-
 

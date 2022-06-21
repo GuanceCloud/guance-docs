@@ -4,15 +4,15 @@
 
 ## 简介
 
-“观测云” 支持采集主机、系统、容器、网络等存在的漏洞和异常，并上报到工作空间。
+观测云支持采集主机、系统、容器、网络等存在的漏洞和异常，并上报到工作空间。
 
 ## 前置条件
 
-- 安装 DataKit（[DataKit 安装文档](https://www.yuque.com/dataflux/datakit/datakit-install)）
+- 安装 DataKit（[DataKit 安装文档](../datakit/datakit-install.md)）
 
 ## 数据采集
 
-Datakit 可以直接接入 Security Checker 的数据。复制 Security Checker 的安装指令到服务器中执行安装，安装完成后，可进入默认安装目录，打开配置文件进行配置，配置完成后，重启 DataKit 即可生效。更多详情可参考文档 [Security Checker接入](https://www.yuque.com/dataflux/datakit/sec-checker)。
+Datakit 可以直接接入 Security Checker 的数据。复制 Security Checker 的安装指令到服务器中执行安装，安装完成后，可进入默认安装目录，打开配置文件进行配置，配置完成后，重启 DataKit 即可生效。
 
 ## 字段说明
 | 字段名 | 说明 |
@@ -29,9 +29,7 @@ Datakit 可以直接接入 Security Checker 的数据。复制 Security Checker 
 
 ## 示例说明
 ### 1. 安装 DataKit
-在“观测云”工作空间「集成」-「DataKit」，选择DataKit安装方式，获取「安装指令」在主机执行。
-
-![](img/2.安装datakit.png)
+在观测云工作空间「集成」-「DataKit」，选择DataKit安装方式，获取「安装指令」在主机执行。
 
 ### 2. 安装安全巡检采集器
 在主机上执行如下命令安装安全巡检采集器。
@@ -56,16 +54,7 @@ $ sudo datakit --install scheck
 
 ![](img/2.check_4.png)
 
-更多安全巡检安装和配置可参考文档 [Security Checker  安装和配置](https://www.yuque.com/dataflux/datakit/sec-checker)。
-
-### 5. 在“观测云”工作空间查看安全巡检数据
+### 5. 在观测云工作空间查看安全巡检数据
 安装、配置、重启完安全巡检采集器后，即可在“观测云”工作空间的「安全巡检」，查看到主机根据安全脚本触发的巡检事件。
 
 ![](img/2.check_5.png)
-
-
----
-
-观测云是一款面向开发、运维、测试及业务团队的实时数据监测平台，能够统一满足云、云原生、应用及业务上的监测需求，快速实现系统可观测。**立即前往观测云，开启一站式可观测之旅：**[www.guance.com](https://www.guance.com)
-![](img/logo_2.png)
-%!(EXTRA string=1.0.7-3-g7183440, string=2022-06-17 04:24:59)
