@@ -323,7 +323,8 @@ systemctl restart datakit
 ```
 ## 场景视图
 <场景 - 新建仪表板 - 内置模板库 - Opentelemetry Collector 监控视图>
-# 指标详解
+
+## 指标详解
 
 | 指标 | 描述 |
 | --- | --- |
@@ -336,7 +337,7 @@ systemctl restart datakit
 | receiver_accepted_metric_points | reveiver  接收 metric 记录数 |
 | receiver_accepted_spans | reveiver  接收 span 记录数 |
 
-# 常见问题排查
+## 常见问题排查
 <[无数据上报排查](why-no-data.md)>
-# 进一步阅读
+## 进一步阅读
 <[**OpenTelemetry 链路数据接入最佳实践**](/best-practices/integrations/opentelemetry)><br /><[Opentelemetry to 观测云](/best-practices/monitor/opentelemetry-guance)>
