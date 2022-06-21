@@ -14,7 +14,7 @@
 
 ## 前置条件
 
-- 安装 DataKit（[DataKit 安装文档](https://www.yuque.com/dataflux/datakit/datakit-how-to)）
+- 安装 DataKit（[DataKit 安装文档](../../../datakit/datakit-install.md)）
 ## 小程序应用接入
 
 登录 “观测云” 控制台，进入「应用监测」页面，点击右上角「新建应用」，在新窗口输入「应用名称」，点击「创建」，即可开始配置。
