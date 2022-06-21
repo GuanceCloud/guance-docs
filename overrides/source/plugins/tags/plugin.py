@@ -27,7 +27,6 @@ from markdown.extensions.toc import slugify
 from mkdocs import utils
 from mkdocs.commands.build import DuplicateFilter
 from mkdocs.config.config_options import Type
-from mkdocs.exceptions import ConfigurationError
 from mkdocs.plugins import BasePlugin
 
 # -----------------------------------------------------------------------------
@@ -48,7 +47,7 @@ class TagsPlugin(BasePlugin):
         self.tags_file = None
         self.slugify = None
 
-    # Retrieve configuration for anchor generation
+    # Determine slugify function and tag mappings
     def on_config(self, config):
         if "toc" in config["markdown_extensions"]:
             toc = { "slugify": slugify, "separator": "-" }
@@ -59,6 +58,9 @@ class TagsPlugin(BasePlugin):
             self.slugify = lambda value: (
                 toc["slugify"](str(value), toc["separator"])
             )
+
+        # Retrieve tags mapping from configuration
+        self.mapping = config["extra"].get("tags", {})
 
     # Hack: 2nd pass for tags index page
     def on_nav(self, nav, files, **kwargs):
@@ -75,7 +77,7 @@ class TagsPlugin(BasePlugin):
     # Build and render tags index page
     def on_page_markdown(self, markdown, page, **kwargs):
         if page.file == self.tags_file:
-            return self.__render_tag_index(markdown)
+            return self._render_tag_index(markdown)
 
         # Add page to tags index
         for tag in page.meta.get("tags", []):
@@ -85,34 +87,37 @@ class TagsPlugin(BasePlugin):
     def on_page_context(self, context, page, **kwargs):
         if "tags" in page.meta:
             context["tags"] = [
-                self.__render_tag(tag)
+                self._render_tag(tag)
                     for tag in page.meta["tags"]
             ]
 
     # -------------------------------------------------------------------------
 
     # Render tags index
-    def __render_tag_index(self, markdown):
+    def _render_tag_index(self, markdown):
         if not "[TAGS]" in markdown:
             markdown += "\n[TAGS]"
 
         # Replace placeholder in Markdown with rendered tags index
         return markdown.replace("[TAGS]", "\n".join([
-            self.__render_tag_links(*args)
+            self._render_tag_links(*args)
                 for args in sorted(self.tags.items())
         ]))
 
     # Render the given tag and links to all pages with occurrences
-    def __render_tag_links(self, tag, pages):
-        content = [f"## <span class=\"md-tag\">{tag}</span>", ""]
+    def _render_tag_links(self, tag, pages):
+        icon = f"md-tag-icon md-tag-icon--{self.slugify(tag)}"
+        content = [f"## <span class=\"md-tag {icon}\">{tag}</span>", ""]
         for page in pages:
+
+            # Ensure forward slashes, as we have to use the path of the source
+            # file which contains the operating system's path separator.
             url = utils.get_relative_url(
                 page.file.src_path.replace(os.path.sep, "/"),
                 self.tags_file.src_path.replace(os.path.sep, "/")
             )
 
-            # Ensure forward slashes, as we have to use the path of the source
-            # file which contains the operating system's path separator.
+            # Render link to page
             content.append("- [{}]({})".format(
                 page.meta.get("title", page.title),
                 url
@@ -122,13 +127,13 @@ class TagsPlugin(BasePlugin):
         return "\n".join(content)
 
     # Render the given tag, linking to the tags index (if enabled)
-    def __render_tag(self, tag):
+    def _render_tag(self, tag):
+        type = self.mapping.get(tag)
         if not self.tags_file or not self.slugify:
-            return dict(name = tag)
+            return dict(name = tag, type = type)
         else:
-            url = self.tags_file.url
-            url += f"#{self.slugify(tag)}"
-            return dict(name = tag, url = url)
+            url = f"{self.tags_file.url}#{self.slugify(tag)}"
+            return dict(name = tag, type = type, url = url)
 
 # -----------------------------------------------------------------------------
 # Data

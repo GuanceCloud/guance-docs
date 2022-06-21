@@ -16,29 +16,24 @@ buildTesting:
   tags:
     - cloudcare-multiarch
 
+buildPreprod:
+  stage: deploy
+  only:
+    - /^pre-(\d-?)+/
+  script:
+    - docker buildx build --platform linux/arm64,linux/amd64 
+      -t registry.jiagouyun.com/cloudcare-front/$REPOSITORY:$CI_COMMIT_REF_NAME . --push
+  tags:
+    - cloudcare-multiarch
+
 buildBasis:
   stage: deploy
   only:
     - /^basis-\d+/
   script:
     - docker buildx build --platform linux/arm64,linux/amd64
-      -t registry.jiagouyun.com/basis/mkdocs:1.0
+      -t registry.jiagouyun.com/basis/mkdocs:2.0
       -f Dockerfile.basis .
       --push
   tags:
     - cloudcare-multiarch
-
-
-buildInsidersBasis:
-  stage: deploy
-  only:
-    - /^insiders-basis-\d+/
-  script:
-    - docker buildx build --platform linux/arm64,linux/amd64
-      -t registry.jiagouyun.com/basis/mkdocs-material-insiders:4.18.2
-      --build-arg GH_TOKEN="${GH_TOKEN}"
-      -f Dockerfile.insiders.basis .
-      --push
-  tags:
-    - cloudcare-multiarch
-
