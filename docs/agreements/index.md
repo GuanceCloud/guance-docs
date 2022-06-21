@@ -1,3 +1,6 @@
+---
+icon: zy/agreements
+---
 # 相关协议
 ---
 

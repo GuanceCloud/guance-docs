@@ -11,6 +11,7 @@ theme:
   features:
     - navigation.instant
     - search.suggest
+    - toc.follow
 
 markdown_extensions:
   - attr_list

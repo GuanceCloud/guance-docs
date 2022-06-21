@@ -1,3 +1,7 @@
+---
+icon: zy/getting-started
+---
+
 # 快速入门
 ---
 

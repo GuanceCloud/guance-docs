@@ -1,3 +1,6 @@
+---
+icon: zy/monitoring
+---
 # 监控
 ---
 

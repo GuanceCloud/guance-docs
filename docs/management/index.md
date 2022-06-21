@@ -1,3 +1,6 @@
+---
+icon: zy/management
+---
 # 工作空间管理
 ---
 

@@ -24,6 +24,18 @@
     border: 0.0454rem solid #ECEEF0;
 }
 
+.md-nav__link svg {
+    color: #a2a2a2;
+}
+
+.md-nav[data-md-level="0"] > .md-nav__list .md-nav__link:hover svg {
+    color: var(--md-accent-fg-color);
+}
+
+.md-nav[data-md-level="0"] .md-nav__list .md-nav__item .md-nav__link--active svg {
+    color: var(--md-typeset-a-color);
+}
+
 .md-typeset h1,h2,h3,h4 {
     font-weight: 600 !important;
 }

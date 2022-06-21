@@ -1,3 +1,7 @@
+---
+icon: zy/release-notes
+---
+
 # 更新日志
 ---
 

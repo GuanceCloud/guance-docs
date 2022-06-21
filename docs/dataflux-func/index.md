@@ -1,3 +1,7 @@
+---
+icon: zy/dataflux-func
+---
+
 # DataFlux Func
 ---
 
