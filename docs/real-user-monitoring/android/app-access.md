@@ -153,7 +153,7 @@ FTSdk.initRUMWithConfig(
 | setEnableTraceUserResource | 是否自动追动用户网络请求 | 否 | 仅支持 `Okhttp`，默认为 `false` |
 | addGlobalContext | 添加自定义标签 | 否 | 添加标签数据，用于用户监测数据源区分，如果需要使用追踪功能，则参数 `key` 为 `track_id` ,`value` 为任意数值，添加规则注意事项请查阅[此处](#key-conflict) |
 
-#### 添加自定义标签
+#### 添加自定义标签 {#track}
 
 ##### 静态使用
 
@@ -527,5 +527,4 @@ retrace.bat -verbose mapping.txt crash_log.txt
 ### 添加局变量避免冲突字段 {#key-conflict}
 
 为了避免自定义字段与 SDK 数据冲突，建议标签命名添加项目缩写的前缀，例如 `df_tag_name`，项目中使用 `key` 值可[查询源码](https://github.com/DataFlux-cn/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java)。SDK 全局变量中出现与 RUM、Log 相同变量时，RUM、Log 会覆盖 SDK 中的全局变量。
-
 
