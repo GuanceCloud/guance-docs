@@ -1,9 +1,9 @@
-{{.CSS}}
+
 # JVM
 ---
 
-- DataKit 版本：{{.Version}}
-- 操作系统支持：`{{.AvailableArchs}}`
+- DataKit 版本：1.4.2
+- 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
 这里我们提供俩类 JVM 指标采集方式，一种方案是 Jolokia，一种是 ddtrace。如何选择的方式，我们有如下建议：
 
@@ -12,7 +12,7 @@
 
 ## 通过 ddtrace 采集 JVM 指标
 
-DataKit 内置了 [statsd 采集器](statsd)，用于接收网络上发送过来的 statsd 协议的数据。此处我们利用 ddtrace 来采集 JVM 的指标数据，并通过 statsd 协议发送给 DataKit。
+DataKit 内置了 [statsd 采集器](statsd.md)，用于接收网络上发送过来的 statsd 协议的数据。此处我们利用 ddtrace 来采集 JVM 的指标数据，并通过 statsd 协议发送给 DataKit。
 
 ### 准备 statsd 配置
 
@@ -101,7 +101,7 @@ java -javaagent:dd-java-agent.jar \
 
 注意：
 
-- 关于 `dd-jave-agent.jar` 包的下载，参见 [这里](ddtrace)
+- 关于 `dd-jave-agent.jar` 包的下载，参见 [这里](ddtrace.md)
 - 建议给如下几个字段命名：
 	- `service` 用于表示该 JVM 数据来自哪个应用
 	- `env` 用于表示该 JVM 数据来自某个应用的哪个环境（如 prod/testing/preprod 等）
@@ -163,7 +163,7 @@ JVM 采集器可以通过 JMX 来采取很多指标，并将指标采集到观�
 
 ### 前置条件
 
-安装或下载 [Jolokia](https://search.maven.org/remotecontent?filepath=org/jolokia/jolokia-jvm/1.6.2/jolokia-jvm-1.6.2-agent.jar)。DataKit 安装目录下的 `data` 目录中已经有下载好的 Jolokia jar 包。通过如下方式开启 Java 应用： 
+安装或下载 [Jolokia](https://search.maven.org/remotecontent?filepath=org/jolokia/jolokia-jvm/1.6.2/jolokia-jvm-1.6.2-agent.jar){:target="_blank"}。DataKit 安装目录下的 `data` 目录中已经有下载好的 Jolokia jar 包。通过如下方式开启 Java 应用： 
 
 ```shell
 java -javaagent:/path/to/jolokia-jvm-agent.jar=port=8080,host=localhost -jar your_app.jar
@@ -171,38 +171,214 @@ java -javaagent:/path/to/jolokia-jvm-agent.jar=port=8080,host=localhost -jar you
 
 ### 配置
 
-进入 DataKit 安装目录下的 `conf.d/{{.Catalog}}` 目录，复制 `{{.InputName}}.conf.sample` 并命名为 `{{.InputName}}.conf`。示例如下：
+进入 DataKit 安装目录下的 `conf.d/jvm` 目录，复制 `jvm.conf.sample` 并命名为 `jvm.conf`。示例如下：
 
 ```toml
-{{.InputSample}}
+[[inputs.jvm]]
+  # default_tag_prefix      = ""
+  # default_field_prefix    = ""
+  # default_field_separator = "."
+
+  # username = ""
+  # password = ""
+  # response_timeout = "5s"
+
+  ## Optional TLS config
+  # tls_ca   = "/var/private/ca.pem"
+  # tls_cert = "/var/private/client.pem"
+  # tls_key  = "/var/private/client-key.pem"
+  # insecure_skip_verify = false
+
+  ## Monitor Intreval
+  # interval   = "60s"
+
+  # Add agents URLs to query
+  urls = ["http://localhost:8080/jolokia"]
+
+  ## Add metrics to read
+  [[inputs.jvm.metric]]
+    name  = "java_runtime"
+    mbean = "java.lang:type=Runtime"
+    paths = ["Uptime"]
+
+  [[inputs.jvm.metric]]
+    name  = "java_memory"
+    mbean = "java.lang:type=Memory"
+    paths = ["HeapMemoryUsage", "NonHeapMemoryUsage", "ObjectPendingFinalizationCount"]
+
+  [[inputs.jvm.metric]]
+    name     = "java_garbage_collector"
+    mbean    = "java.lang:name=*,type=GarbageCollector"
+    paths    = ["CollectionTime", "CollectionCount"]
+    tag_keys = ["name"]
+
+  [[inputs.jvm.metric]]
+    name  = "java_threading"
+    mbean = "java.lang:type=Threading"
+    paths = ["TotalStartedThreadCount", "ThreadCount", "DaemonThreadCount", "PeakThreadCount"]
+
+  [[inputs.jvm.metric]]
+    name  = "java_class_loading"
+    mbean = "java.lang:type=ClassLoading"
+    paths = ["LoadedClassCount", "UnloadedClassCount", "TotalLoadedClassCount"]
+
+  [[inputs.jvm.metric]]
+    name     = "java_memory_pool"
+    mbean    = "java.lang:name=*,type=MemoryPool"
+    paths    = ["Usage", "PeakUsage", "CollectionUsage"]
+    tag_keys = ["name"]
+
+  [inputs.jvm.tags]
+  # some_tag = "some_value"
+  # more_tag = "some_other_value"
+  # ...
 ```
 
 配置好后，重启 DataKit 即可。
 
 ### 指标集
 
-以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.{{.InputName}}.tags]` 指定其它标签：
+以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.jvm.tags]` 指定其它标签：
 
 ``` toml
- [inputs.{{.InputName}}.tags]
+ [inputs.jvm.tags]
   # some_tag = "some_value"
   # more_tag = "some_other_value"
   # ...
 ```
 
-{{ range $i, $m := .Measurements }}
 
-### `{{$m.Name}}`
+
+### `java_runtime`
 
 -  标签
 
-{{$m.TagsMarkdownTable}}
+
+| 标签名 | 描述    |
+|  ----  | --------|
+|`jolokia_agent_url`|jolokia agent url path|
 
 - 指标列表
 
-{{$m.FieldsMarkdownTable}}
 
-{{ end }}
+| 指标 | 描述| 数据类型 | 单位   |
+| ---- |---- | :---:    | :----: |
+|`Uptime`|The total runtime.|int|ms|
+
+
+
+### `java_memory`
+
+-  标签
+
+
+| 标签名 | 描述    |
+|  ----  | --------|
+|`jolokia_agent_url`|jolokia agent url path|
+
+- 指标列表
+
+
+| 指标 | 描述| 数据类型 | 单位   |
+| ---- |---- | :---:    | :----: |
+|`HeapMemoryUsagecommitted`|The total Java heap memory committed to be used.|int|B|
+|`HeapMemoryUsageinit`|The initial Java heap memory allocated.|int|B|
+|`HeapMemoryUsagemax`|The maximum Java heap memory available.|int|B|
+|`HeapMemoryUsageused`|The total Java heap memory used.|int|B|
+|`NonHeapMemoryUsagecommitted`|The total Java non-heap memory committed to be used.|int|B|
+|`NonHeapMemoryUsageinit`|The initial Java non-heap memory allocated.|int|B|
+|`NonHeapMemoryUsagemax`|The maximum Java non-heap memory available.|int|B|
+|`NonHeapMemoryUsageused`|The total Java non-heap memory used.|int|B|
+|`ObjectPendingFinalizationCount`|The count of object pending finalization.|int|count|
+
+
+
+### `java_garbage_collector`
+
+-  标签
+
+
+| 标签名 | 描述    |
+|  ----  | --------|
+|`jolokia_agent_url`|jolokia agent url path|
+|`name`|the name of GC generation|
+
+- 指标列表
+
+
+| 指标 | 描述| 数据类型 | 单位   |
+| ---- |---- | :---:    | :----: |
+|`CollectionCount`|The number of GC that have occurred.|int|count|
+|`CollectionTime`|The approximate GC collection time elapsed.|int|B|
+
+
+
+### `java_threading`
+
+-  标签
+
+
+| 标签名 | 描述    |
+|  ----  | --------|
+|`jolokia_agent_url`|jolokia agent url path|
+
+- 指标列表
+
+
+| 指标 | 描述| 数据类型 | 单位   |
+| ---- |---- | :---:    | :----: |
+|`DaemonThreadCount`|The count of daemon thread.|int|count|
+|`PeakThreadCount`|The peak count of thread.|int|count|
+|`ThreadCount`|The count of thread.|int|count|
+|`TotalStartedThreadCount`|The total count of started thread.|int|count|
+
+
+
+### `java_class_loading`
+
+-  标签
+
+
+| 标签名 | 描述    |
+|  ----  | --------|
+|`jolokia_agent_url`|jolokia agent url path|
+
+- 指标列表
+
+
+| 指标 | 描述| 数据类型 | 单位   |
+| ---- |---- | :---:    | :----: |
+|`LoadedClassCount`|The count of loaded class.|int|count|
+|`TotalLoadedClassCount`|The total count of loaded class.|int|count|
+|`UnloadedClassCount`|The count of unloaded class.|int|count|
+
+
+
+### `java_memory_pool`
+
+-  标签
+
+
+| 标签名 | 描述    |
+|  ----  | --------|
+|`jolokia_agent_url`|jolokia agent url path|
+|`name`|the name of space|
+
+- 指标列表
+
+
+| 指标 | 描述| 数据类型 | 单位   |
+| ---- |---- | :---:    | :----: |
+|`PeakUsagecommitted`|The total peak Java memory pool committed to be used|int|B|
+|`PeakUsageinit`|The initial peak Java memory pool allocated|int|B|
+|`PeakUsagemax`|The maximum peak Java  memory pool available.|int|B|
+|`PeakUsageused`|The total peak Java memory pool used.|int|B|
+|`Usagecommitted`|The total Java memory pool committed to be used|int|B|
+|`Usageinit`|The initial Java memory pool allocated|int|B|
+|`Usagemax`|The maximum Java  memory pool available.|int|B|
+|`Usageused`|The total Java memory pool used.|int|B|
+
+
 
 ## 视图预览
 
@@ -462,120 +638,6 @@ spec:
 ## 异常检测
 
 暂无
-
-## 指标详解
-
-### `java_runtime`
-
-- 标签
-  | 标签名 | 描述 |
-  | --- | --- |
-  | `jolokia_agent_url` | jolokia agent url path |
-
-
-- 指标列表
-  | 指标 | 描述 | 数据类型 | 单位 |
-  | --- | --- | --- | --- |
-  | `Uptime` | The total runtime. | int | ms |
-
-
-### `java_memory`
-
-- 标签
-  | 标签名 | 描述 |
-  | --- | --- |
-  | `jolokia_agent_url` | jolokia agent url path |
-
-
-- 指标列表
-  | 指标 | 描述 | 数据类型 | 单位 |
-  | --- | --- | --- | --- |
-  | `HeapMemoryUsagecommitted` | The total Java heap memory committed to be used. | int | B |
-  | `HeapMemoryUsageinit` | The initial Java heap memory allocated. | int | B |
-  | `HeapMemoryUsagemax` | The maximum Java heap memory available. | int | B |
-  | `HeapMemoryUsageused` | The total Java heap memory used. | int | B |
-  | `NonHeapMemoryUsagecommitted` | The total Java non-heap memory committed to be used. | int | B |
-  | `NonHeapMemoryUsageinit` | The initial Java non-heap memory allocated. | int | B |
-  | `NonHeapMemoryUsagemax` | The maximum Java non-heap memory available. | int | B |
-  | `NonHeapMemoryUsageused` | The total Java non-heap memory used. | int | B |
-  | `ObjectPendingFinalizationCount` | The count of object pending finalization. | int | count |
-
-
-### `java_garbage_collector`
-
-- 标签
-  | 标签名 | 描述 |
-  | --- | --- |
-  | `jolokia_agent_url` | jolokia agent url path |
-  | `name` | the name of GC generation |
-
-
-- 指标列表
-  | 指标 | 描述 | 数据类型 | 单位 |
-  | --- | --- | --- | --- |
-  | `CollectionCount` | The number of GC that have occurred. | int | count |
-  | `CollectionTime` | The approximate GC collection time elapsed. | int | B |
-
-
-### `java_threading`
-
-- 标签
-  | 标签名 | 描述 |
-  | --- | --- |
-  | `jolokia_agent_url` | jolokia agent url path |
-
-
-- 指标列表
-  | 指标 | 描述 | 数据类型 | 单位 |
-  | --- | --- | --- | --- |
-  | `DaemonThreadCount` | The count of daemon thread. | int | count |
-  | `PeakThreadCount` | The peak count of thread. | int | count |
-  | `ThreadCount` | The count of thread. | int | count |
-  | `TotalStartedThreadCount` | The total count of started thread. | int | count |
-
-
-### `java_class_loading`
-
-- 标签
-  | 标签名 | 描述 |
-  | --- | --- |
-  | `jolokia_agent_url` | jolokia agent url path |
-
-
-- 指标列表
-  | 指标 | 描述 | 数据类型 | 单位 |
-  | --- | --- | --- | --- |
-  | `LoadedClassCount` | The count of loaded class. | int | count |
-  | `TotalLoadedClassCount` | The total count of loaded class. | int | count |
-  | `UnloadedClassCount` | The count of unloaded class. | int | count |
-
-
-### `java_memory_pool`
-
-- 标签
-  | 标签名 | 描述 |
-  | --- | --- |
-  | `jolokia_agent_url` | jolokia agent url path |
-  | `name` | the name of space |
-
-- 指标列表
-  | 指标 | 描述 | 数据类型 | 单位 |
-  | --- | --- | --- | --- |
-  | `PeakUsagecommitted` | The total peak Java memory pool committed to be used | int | B |
-  | `PeakUsageinit` | The initial peak Java memory pool allocated | int | B |
-  | `PeakUsagemax` | The maximum peak Java  memory pool available. | int | B |
-  | `PeakUsageused` | The total peak Java memory pool used. | int | B |
-  | `Usagecommitted` | The total Java memory pool committed to be used | int | B |
-  | `Usageinit` | The initial Java memory pool allocated | int | B |
-  | `Usagemax` | The maximum Java  memory pool available. | int | B |
-  | `Usageused` | The total Java memory pool used. | int | B |
-
-
-## 延伸阅读
-
-- [DDTrace Java 示例](ddtrace-java)
-- [SkyWalking](skywalking)
-- [Opentelemetry Java 示例](opentelemetry-java)
 
 ## 最佳实践
 
