@@ -88,7 +88,7 @@ nav:
     - mysql.md
     - oracle.md
     - nsq.md
-    - fluentd.md
+    - fluentd-metric.md
     - redis.md
     - redis-sentinel.md
     - memcached.md
