@@ -4,7 +4,7 @@
 
 阅读本文前，请先阅读：
 
-- [观测云集成简介](/dataflux-func/script-market-guance-integration-intro)
+- [观测云集成简介](/dataflux-func/script-market-guance-integration)
 
 > 提示：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包
 
@@ -12,10 +12,10 @@
 
 本采集器配置结构如下：
 
-| 字段         | 类型 | 是否必须 | 说明                                      |
-| ------------ | ---- | -------- | ----------------------------------------- |
-| `regions`    | list | 必须     | 所需采集的地域列表                        |
-| `regions[#]` | str  | 必须     | 地域ID。如：`'cn-hangzhou'`<br>总表见附录 |
+| 字段         | 类型 | 是否必须 | 说明                                       |
+| ------------ | ---- | -------- | ------------------------------------------ |
+| `regions`    | list | 必须     | 所需采集的地域列表                         |
+| `regions[#]` | str  | 必须     | 地域 ID。如：`'cn-hangzhou'`<br>总表见附录 |
 
 ## 2. 配置示例
 
@@ -47,6 +47,7 @@ collector_configs = {
     "DBInstanceId"         : "dds-bpxxxxxxx",
     "ZoneId"               : "cn-hangzhou",
     "RegionId"             : "cn-hangzhou-h",
+    "VPCId"                : "vpc-bpxxxxxxxx",
     "EngineVersion"        : "4.2",
     "CurrentKernelVersion" : "mongodb_20210204_4.0.14",
     "StorageEngine"        : "WiredTiger",
@@ -55,20 +56,19 @@ collector_configs = {
   "fields": {
     "ExpireTime"       : "2020-11-18T08:47:11Z",
     "DBInstanceStorage": "20",
-    "VPCId"            : "vpc-bpxxxxxxxx",
-    "ReplicaSets"      : "{连接地址json数据}"
+    "ReplicaSets"      : "{连接地址 json 数据}"
   }
 }
 ~~~
 
 *注意：`tags`、`fields`中的字段可能会随后续更新有所变动*
 
-> 提示：`tags.name`值为实例ID，作为唯一识别
+> 提示：`tags.name`值为实例 ID，作为唯一识别
 
-> 提示2：`fields.message`为JSON序列化后字符串
+> 提示 2：`fields.message`为 JSON 序列化后字符串
 
 ## X. 附录
 
 请参考阿里云官方文档：
 
-- [云数据库mongodb地域ID](https://help.aliyun.com/document_detail/72379.html)
+- [云数据库 mongodb 地域 ID](https://help.aliyun.com/document_detail/72379.html)

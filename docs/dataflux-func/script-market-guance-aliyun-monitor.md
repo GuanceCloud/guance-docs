@@ -4,7 +4,7 @@
 
 阅读本文前，请先阅读：
 
-- [观测云集成简介](/dataflux-func/script-market-guance-integration-intro)
+- [观测云集成简介](/dataflux-func/script-market-guance-integration)
 
 > 提示：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包
 
@@ -23,7 +23,7 @@
 
 ### 指定特定指标
 
-采集ECS中名称为`CPUUtilization`、`concurrentConnections`的2个指标
+采集 ECS 中名称为`CPUUtilization`、`concurrentConnections`的 2 个指标
 
 ~~~python
 collector_configs = {
@@ -142,7 +142,7 @@ collector_configs = {
 
 ## 4. 与自定义对象采集器联动
 
-当同一个DataFlux Func 中运行了其他自定义对象采集器（如ECS、RDS）时，本采集器会自动根据`tags.instanceId`等字段尝试匹配自定义对象中的`tags.name`字段。
+当同一个 DataFlux Func 中运行了其他自定义对象采集器（如 ECS、RDS）时，本采集器会自动根据`tags.instanceId`等字段尝试匹配自定义对象中的`tags.name`字段。
 
 由于需要先获知自定义对象信息才能在云监控类采集器中进行联动，因此一般建议将云监控的采集器放置在列表末尾，如：
 
@@ -174,7 +174,7 @@ collector_configs = {
 }
 ~~~
 
-同时，阿里云ECS采集器采集到的自定义对象数据如下：
+同时，阿里云 ECS 采集器采集到的自定义对象数据如下：
 
 ~~~json
 {
@@ -211,4 +211,4 @@ collector_configs = {
 
 请参考阿里云官方文档：
 
-- [云监控 / 附录1 云服务监控项 / 概览](https://help.aliyun.com/document_detail/163515.html)
+- [云监控 / 附录 1 云服务监控项 / 概览](https://help.aliyun.com/document_detail/163515.html)
