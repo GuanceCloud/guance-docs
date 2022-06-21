@@ -1,5 +1,5 @@
 nav:
-  - '使用API': index.md
+  - index.md
   - '公共请求参数': public-request-params.md
   - '公共响应结构': public-response-params.md
   - '签名认证': signature-certification.md

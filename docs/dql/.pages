@@ -1,4 +1,5 @@
 nav:
+  - index.md
   - 'DQL查询': query.md
   - 'DQL定义': define.md
   - 'DQL函数': funcs.md
