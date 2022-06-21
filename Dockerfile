@@ -1,10 +1,10 @@
-FROM registry.jiagouyun.com/basis/mkdocs:1.0 as build
+FROM registry.jiagouyun.com/basis/mkdocs:2.0 as build
 
 RUN mkdir /dataflux-doc
 WORKDIR /dataflux-doc
 COPY ./ /dataflux-doc
 
-RUN mkdocs build
+RUN mkdocs build --config-file mkdocs.insiders.yml
 
 # build static site
 FROM nginx:1.18.0
