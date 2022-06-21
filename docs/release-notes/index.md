@@ -53,7 +53,7 @@ Deployment 网络数据采集成功后会上报到观测云控制台，您可以
 
 日志查看器新增搜索 JSON 格式的日志内容（message），搜索格式为：`@key.key:value` 。
 
-注意：JSON 搜索仅支持功能上线后创建的工作空间。
+注意：JSON 搜索仅支持此次功能上线后创建的工作空间。
 
 ![](img/7.log_json.png)
 
@@ -74,30 +74,40 @@ Deployment 网络数据采集成功后会上报到观测云控制台，您可以
 
 #### 其他功能优化
 
-- 基础设施POD查看器蜂窝模式下新增 CPU 使用率、内存使用量填充指标
+- 基础设施POD查看器蜂窝模式下新增 CPU 使用率、内存使用量填充指标；
 - 优化日志黑名单配置。支持手动输入日志来源，作为日志黑名单的来源；
 - 优化应用性能监测服务列表数据查询时间组件，支持自定义时间范围选择；
-- 优化在 K8S 上安装 DataKit 引导文案，配置 DataWay 数据网关地址中自动增加当前工作空间的 token 。
-- 监控器配置 UI 样式优化
+- 优化在 K8S 上安装 DataKit 引导文案，配置 DataWay 数据网关地址中自动增加当前工作空间的 token ；
+- 优化监控器配置 UI 样式。
 
 ### DataKit 更新
+
+#### 2022/06/21
+
+- gitrepo 支持无密码模式
+- prom 采集器
+    - 支持日志模式采集
+    - 支持配置 HTTP 请求头
+- 支持超 16KB 长度的容器日志采集
+- 支持 TDEngine 采集器
+- Pipeline
+    - 支持 XML 解析
+    - 远程调试支持多类数据类型
+    - 支持 Pipeline 通过 `use()` 函数调用外部 Pipeline 脚本
+- 新增 IP 库（MaxMindIP）支持
+- 新增 DDTrace Profile 集成
+- Containerd 日志采集支持通过 image 和 K8s Annotation 配置过滤规则(#849)
+- 文档库整体切换
 
 #### 2022/06/16
 
 - 日志采集支持记录采集位置，避免因为 DataKit 重启等情况导致的数据漏采
-
 - 调整 Pipeline 在处理不同类数据时的设定
-
 - 支持接收 SkyWalking 指标数据
-
 - 优化日志黑名单调试功能： 
-
-- - 在 Monitor 中会展示被过滤掉的点数
-
-- - 在 datakit/data 目录下会增加一个 *.filter* 文件，用来记录拉取到的过滤器
-
+    - 在 Monitor 中会展示被过滤掉的点数
+    - 在 datakit/data 目录下会增加一个 *.filter* 文件，用来记录拉取到的过滤器
 - Monitor 中增加 DataKit 打开文件数显示
-
 - DataKit 编译器升级到 golang 1.18.3
 
 #### 2022/06/07
