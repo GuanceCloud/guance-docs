@@ -13,8 +13,10 @@ nav:
       - diskio.md
       - ethtool.md
       - mem.md
+      - netstat.md
       - swap.md
       - net.md
+      - procstat.md
       - socket.md
       - system.md
       - hostdir.md
@@ -32,9 +34,13 @@ nav:
       - ingress_nginx_prom.md
       - istio.md
       - kubernetes-prom.md
-      - kubernetes _API_server.md
+      - kubernetes_API_server.md
       - kubernetes_controller_manager.md
       - kubernetes_kubelet.md
+      - kube-metric-server.md
+      - kube-scheduler.md
+      - kube-state-metrics.md
+      - kubernetes-x.md
 
 
   - 应用性能监测（APM）:
@@ -58,6 +64,7 @@ nav:
       - 'OpenTelemetry 采集配置': opentelemetry.md
       - opentelemetry-go.md
       - opentelemetry-java.md
+      - opentelemetry-collector.md
 
     - 'Zipkin':
       - 'Zipkin 采集器配置': zipkin.md
@@ -76,14 +83,22 @@ nav:
 
   - 中间件:
     - 'ClickHouse': clickhousev1.md
+    - aerospike.md
+    - activemq.md
     - mysql.md
     - oracle.md
     - nsq.md
+    - fluentd-metric.md
     - redis.md
+    - redis-sentinel.md
     - memcached.md
     - mongodb.md
+    - ntpq.md
+    - dns-query.md
     - influxdb.md
+    - nacos.md
     - sqlserver.md
+    - rocketmq.md
     - postgresql.md
     - elasticsearch.md
     - kafka.md
@@ -93,6 +108,8 @@ nav:
     - harbor.md
     - zookeeper.md
     - seata.md
+    - ruby.md
+    - haproxy.md
     - 'Web 服务器':
       - 'Nginx': nginx.md
       - apache.md

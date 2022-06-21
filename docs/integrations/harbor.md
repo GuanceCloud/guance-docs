@@ -13,7 +13,7 @@ harbor展示：包括项目数量、镜像仓库数、Components health、服务
 
 ### 前置条件
 
-- [安装 Datakit](https://www.yuque.com/dataflux/datakit/datakit-install)
+- [安装 Datakit](datakit-install.md)
 
 ### harbor 安装
 
@@ -203,7 +203,9 @@ prom-harbor.conf 全文如下：
 
 ## 场景视图
 
-场景 - 仪表盘 - 新建仪表板 - harbor<br />相关文档 <[DataFlux 场景管理](https://www.yuque.com/dataflux/doc/trq02t)> 
+场景 - 仪表盘 - 新建仪表板 - harbor
+
+相关文档 <[DataFlux 场景管理](https://www.yuque.com/dataflux/doc/trq02t)> 
 
 ## 异常检测
 
@@ -215,5 +217,5 @@ prom-harbor.conf 全文如下：
 
 ## 故障排查
 
-<[无数据上报排查](https://www.yuque.com/dataflux/datakit/why-no-data)>
+<[无数据上报排查](why-no-data.md)>
 

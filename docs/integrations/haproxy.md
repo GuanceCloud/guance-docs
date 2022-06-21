@@ -2,8 +2,11 @@
 ---
 
 ## 视图预览
-HAProxy 指标展示，包括服务状态，网络流量，队列信息，会话等<br />![image.png](imgs/input-haproxy-01.png)<br />
-![image.png](imgs/input-haproxy-02.png)<br />
+HAProxy 指标展示，包括服务状态，网络流量，队列信息，会话等
+![image.png](imgs/input-haproxy-01.png)
+
+![image.png](imgs/input-haproxy-02.png)
+
 ![image.png](imgs/input-haproxy-03.png)
 
 ## 版本支持
@@ -11,7 +14,7 @@ HAProxy 指标展示，包括服务状态，网络流量，队列信息，会话
 
 ## 前置条件
 
-- 服务器 <[安装 Datakit](https://www.yuque.com/dataflux/datakit/datakit-install)>
+- 服务器 <[安装 Datakit](datakit-install.md)>
 - 服务器安装 Telegraf
 - HAProxy 开启 stats 页面
 
@@ -119,7 +122,7 @@ systemctl start telegraf
 ```
 有数据返回 (行协议)，代表能够正常采集
 
-#### ![image.png](imgs/input-haproxy-04.png)
+![image.png](imgs/input-haproxy-04.png)
 
 7. 指标预览
 
@@ -129,8 +132,9 @@ systemctl start telegraf
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
+
 - 以下示例配置完成后，所有 haproxy 指标都会带有 app = oa 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](https://www.yuque.com/dataflux/bp/tag)>
+- 相关文档 <[DataFlux Tag 应用最佳实践](/best-practices/guance-skill/tag/)>
 ```
 # 示例
 [inputs.haproxy.tags]
@@ -148,6 +152,7 @@ systemctl restart telegraf
 <监控 - 模板新建 - HAProxy 检测库>
 
 ## 指标详解
+
 | 指标 | 描述 | 数据类型 |
 | --- | --- | --- |
 | act | 是否活动 | int |
@@ -177,7 +182,7 @@ systemctl restart telegraf
 
 
 ## 常见问题排查
-<[无数据上报排查](https://www.yuque.com/dataflux/datakit/why-no-data)>
+<[无数据上报排查](why-no-data.md)>
 
 ## 进一步阅读
 <[Haproxy 配置详解](https://blog.csdn.net/tantexian/article/details/50056199)>

@@ -79,7 +79,9 @@ kubectl apply -f deploy.yaml
 
 ## 场景视图
 
-场景 - 新建仪表板 - Nginx Ingress Controller<br />相关文档 <[DataFlux 场景管理](https://www.yuque.com/dataflux/doc/trq02t)> 
+场景 - 新建仪表板 - Nginx Ingress Controller
+
+相关文档 <[DataFlux 场景管理](https://www.yuque.com/dataflux/doc/trq02t)> 
 
 ## 异常检测
 
@@ -113,8 +115,8 @@ nginx_ingress_controller_requests指标在观测云上的指标就是prom_ingres
 
 ## 最佳实践
 
-<[Nginx Ingress可观测最佳实践](https://www.yuque.com/dataflux/bp/ingress)>
+<[Nginx Ingress可观测最佳实践](/best-practices/integrations/ingress-nginx.md)>
 
 ## 故障排查
 
-<[无数据上报排查](https://www.yuque.com/dataflux/datakit/why-no-data)>
+<[无数据上报排查](why-no-data.md)>

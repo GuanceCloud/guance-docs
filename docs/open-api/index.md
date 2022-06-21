@@ -3,7 +3,6 @@
 ---
 
 观测云 Open API 是一个简化的 HTTP REST API。
-
 * 只有 GET / POST 请求
 * 使用面向资源的 URL 调用 API
 * 使用状态码指示请求成功或失败
@@ -12,10 +11,11 @@
 
 ## 支持Endpoint
 
-| 部署类型  | 节点名   | Endpoint                     |
-|-------|-------|------------------------------|
-| SaaS 部署 | 阿里云   | https://openapi.guance.com   |
-| SaaS 部署 | AWS   | https://aws-openapi.guance.com |
+| 部署类型  | 节点名   | Endpoint                    |
+|-------|-------|-----------------------------|
+| SaaS 部署 | 中国区1（杭州）   | https://openapi.guance.com  |
+| SaaS 部署 | 中国区2（宁夏）   | https://aws-openapi.guance.com |
+| SaaS 部署 | 海外区1（俄勒冈）   | https://us1-openapi.guance.com |
 | 私有部署版 | 私有部署版 | 以实际部署的 Endpoint 为准    |
 
 
@@ -24,7 +24,7 @@
 | 参数名        | 类型      | 说明                                                                 |
 |:-----------|:--------|:-------------------------------------------------------------------|
 | Content-Type | string  | application/json                                                   |
-| DF-API-KEY | string  | 调用者标识, 获取方式见[API Key 管理](../management/api-key/open-api.md)|
+| DF-API-KEY | string  | 调用者标识, 获取方式见[API Key 管理](https://www.yuque.com/dataflux/doc/ag17mc)|
 
 
 ## 认证方式

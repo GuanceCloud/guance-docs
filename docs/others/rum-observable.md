@@ -1,16 +1,16 @@
-# 开启端到端的用户访问追踪（RUM）
+# 如何开启用户访问监测
 ---
 
 ## 简介
 
 在全民互联网时代，用户访问Web、小程序、Android、iOS等媒介的时间越来越长，努力赚取用户注意力的应用越来越多，产品与服务的更新也越来越频繁。在这样的大环境下，详细了解用户从哪里来，看了哪些页面，停留多长时间，访问速度快慢……不仅有利于挖掘每一个用户行为背后的真实需求，稳定并提升现存流量的转化率，还能反哺产品与服务的双重优化，真正实现用户增长和业绩提升。
 
-“观测云” 提供了Web、Android、iOS和小程序的用户访问数据监测。完成应用接入后，即可在工作台的「用户访问监测」快速查看和分析各类应用的用户浏览行为及应用相关的性能指标，用于衡量网站及应用的程序的最终用户体验效果。
+观测云提供了Web、Android、iOS和小程序的用户访问数据监测。完成应用接入后，即可在工作台的「用户访问监测」快速查看和分析各类应用的用户浏览行为及应用相关的性能指标，用于衡量网站及应用的程序的最终用户体验效果。
 
 ## 前置条件
 
-- 安装 DataKit（[DataKit 安装文档](../../datakit/datakit-install.md)）
-- 将 DataKit 部署成公网可访问（[RUM 配置文档](../../integrations/rum.md)）
+- 安装 DataKit（[DataKit 安装文档](../datakit/datakit-install.md)）
+- 将 DataKit 部署成公网可访问（[RUM 配置文档](../integrations/rum.md)）
 - 操作系统支持：全平台
 
 ## 方法/步骤
@@ -19,10 +19,10 @@ DataKit 默认支持用户访问监测数据的接入，您仅需要完成应用
 
 ### Step1: 新建任务
 
-1. 登录 “观测云” 控制台，进入「用户访问监测」页面，点击右上角「新建应用」，在新窗口输入「应用名称」，点击「创建」即可创建新的用户访问监测任务。
+1. 登录观测云控制台，进入「用户访问监测」页面，点击右上角「新建应用」，在新窗口输入「应用名称」，点击「创建」即可创建新的用户访问监测任务。
 1. 创建任务后，您需要依据选择的「应用类型」完成下方对应的配置，即可开启相关应用的用户访问监测。
 
-![](../img/WX20210706-162824.png)
+![](img/WX20210706-162824.png)
 
 ### Step2: 配置应用接入
 
@@ -30,7 +30,7 @@ DataKit 默认支持用户访问监测数据的接入，您仅需要完成应用
 
 a.  复制当前页面的代码，并依据要求修改当前代码所需的配置信息。如：修改脚本 datakitOrigin 地址为  DataKit 地址（安装DataKit的主机地址）
 
-![](../img/q1.png)
+![](img/q1.png)
 
 b.  进入监测的目标应用，在对应页面HTML中的第一行添加所复制的代码
 
@@ -38,10 +38,10 @@ c.  修改完成后保存退出
 
 更多详情可参考：
 
-- 配置 [Web 应用接入](../../real-user-monitoring/web/app-access.md)
-- 配置 [Android 应用接入](../../real-user-monitoring/android/app-access.md)
-- 配置 [iOS 应用接入](../../real-user-monitoring/ios/app-access.md)
-- 配置 [小程序应用接入](../../real-user-monitoring/miniapp/index.md)
+- 配置 [Web 应用接入](../real-user-monitoring/web/app-access.md)
+- 配置 [Android 应用接入](../real-user-monitoring/android/app-access.md)
+- 配置 [iOS 应用接入](../real-user-monitoring/ios/app-access.md)
+- 配置 [小程序应用接入](../real-user-monitoring/miniapp/index.md)
 
 ### Step3: 查看用户访问数据
 
@@ -52,7 +52,7 @@ c.  修改完成后保存退出
 - iOS监测：包含页面性能、资源加载等多个场景；查看器支持页面、资源、崩溃、卡顿等数据的快速检索和筛选查看。
 - 小程序监测：包含页面性能、资源加载、请求加载、JS错误等多个场景；查看器支持页面、资源、请求、JS错误等数据的快速检索和筛选查看。
 
-![](../img/q2.png)
+![](img/q2.png)
 
 ## 进阶参考
 
@@ -82,15 +82,15 @@ c.  修改完成后保存退出
 
 其他应用采样可参考：
 
-- IOS采样设置可参考[IOS 应用接入](../../real-user-monitoring/ios/app-access.md)。
-- Android采样设置可参考[Android 应用接入](../../real-user-monitoring/android/app-access.md)。
-- 小程序采样设置可参考[小程序应用接入](../../real-user-monitoring/miniapp/index.md)。
+- IOS采样设置可参考[IOS 应用接入](../real-user-monitoring/ios/app-access.md)。
+- Android采样设置可参考[Android 应用接入](../real-user-monitoring/android/app-access.md)。
+- 小程序采样设置可参考[小程序应用接入](../real-user-monitoring/miniapp/index.md)。
 
 ### 生成指标
 
 为了便于您依据需求设计并实现新的技术指标。“观测云” 支持基于当前空间内的现有数据生成新的指标数据。通过选择「用户访问检测」-「生成指标」功能，参考以下步骤可以帮助您生成新的用户访问数据：
 
-![](../img/q3.png)
+![](img/q3.png)
 
 **Step 1**: 数据筛选。筛选出当前空间已有的全部/单个应用数据来源，并基于此数据源开始生成新的数据（**“ * ”表示为全部数据来源）。**
 
@@ -112,15 +112,15 @@ c.  修改完成后保存退出
 
 所有已添加的规则都将展示在「生成指标」的界面中，用户可进行「编辑」「删除」「启用/禁用」和「查看指标」
 
-![](../img/q4.png)
+![](img/q4.png)
 
-更多详情可参考：[用户访问监测-生成指标](../../real-user-monitoring/generate-metrics.md)
+更多详情可参考：[用户访问监测-生成指标](../real-user-monitoring/generate-metrics.md)
 
 ### Souremap
 
 应用在生产环境中发布的时候，为了防止代码泄露等安全问题，一般打包过程中会针对文件做转换、压缩等操作。Souremap 作为一类信息文件，记录了转换压缩后的代码所对应的转换前的源代码位置，构建了处理前以及处理后的代码之间的一座桥梁，方便定位生产环境中出现 bug 的位置。"观测云" 为 Web 应用程序提供 Sourcemap 功能，支持还原混淆后的代码，方便错误排查时在源码中debug，及时帮助用户更快解决问题。
 
-![](../img/a.png)
+![](img/a.png)
 
 **Step 1: **开始使用 Sourcemap前，您需要将应用对应的map文件上传到 “观测云”，“观测云” 会根据拿到的 map文件自动完成映射还原。具体步骤如下：
 
@@ -201,9 +201,9 @@ cur1 －x POST ＇<dca_address>/v1/rum/sourcemap?app_id=<app_id>＆env=＆versio
 cur1 －X DELETE ＇<dca_address>/v1/rum/sourcemap?app_id=<app_id>＆env=＆version=<vers
 ```
 
-**Step 2: **通过访问“观测云”「用户访问监测」，在页面性能数据（view) 和会话数据（session） 详情页面，点击「错误」数据，通过「查看 sourcemap」您可以及时发现错误堆栈信息（真实的代码发生错误的地方）。
+**Step 2: **通过访问观测云「用户访问监测」，在页面性能数据（view) 和会话数据（session） 详情页面，点击「错误」数据，通过「查看 sourcemap」您可以及时发现错误堆栈信息（真实的代码发生错误的地方）。
 
-![](../img/q5.png)
+![](img/q5.png)
 
 **注意事项：**
 
@@ -214,7 +214,7 @@ cur1 －X DELETE ＇<dca_address>/v1/rum/sourcemap?app_id=<app_id>＆env=＆vers
 
 ### 自建追踪
 
-“观测云” 支持你通过「用户访问监测」新建追踪任务，对自定义的链路追踪轨迹进行实时监控。通过预先设定链路追踪轨迹，可以集中筛选链路数据，精准查询用户访问体验，及时发现漏洞、异常和风险。
+观测云支持你通过「用户访问监测」新建追踪任务，对自定义的链路追踪轨迹进行实时监控。通过预先设定链路追踪轨迹，可以集中筛选链路数据，精准查询用户访问体验，及时发现漏洞、异常和风险。
 
 **Step 1: **新建追踪
 
@@ -226,10 +226,10 @@ cur1 －X DELETE ＇<dca_address>/v1/rum/sourcemap?app_id=<app_id>＆env=＆vers
 - 标签：定义链路追踪字段。支持通过下拉框选择当前应用下的标签（ key:value )，支持多选
 - 追踪ID：点击「生成追踪ID」即可新建追踪轨迹，并由系统生成的唯一追踪ID标识。
 
-![](../img/q6.png)
+![](img/q6.png)
 
 **Step 2: **配置引入方式
 
 生成追踪ID后，需要根据追踪ID信息在应用中引入代码。以Web应用的”NPM引入“为例，配置步骤如下：<br />a.  复制当前页面的代码。<br />b.  初始化 SDK 后，使用所复制的代码添加追踪ID<br />c.  修改完成后保存退出
 
-![](../img/q7.png)
+![](img/q7.png)

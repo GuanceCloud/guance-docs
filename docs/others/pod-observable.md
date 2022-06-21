@@ -5,10 +5,6 @@
 
 观测云支持采集当前主机上 Kubelet Pod 指标和对象，并上报到观测云中。在工作空间「基础设施」-「容器」-「Pods」，您可以快速查看和分析 pod 的数据信息。采集 Pod 对象数据可以在 Kubernetes 中通过 DaemonSet 方式安装 DataKit。
 
-## 简介
-
-观测云支持对 Kubernetes 中各类资源的运行状态和服务能力进行监测，包括 Containers、Pods、Services、Deployments、Clusters、Nodes、Replica Sets、Jobs、Cron Jobs 等。您可以在 Kubernetes 中通过 DaemonSet 方式安装 DataKit，进而完成对 Kubernetes 资源的数据采集。最终，在观测云中实时监测 Kubernetes 各类资源的运行情况。
-
 ## 前置条件
 
 您需要先创建一个[观测云账号](https://www.guance.com/)。
@@ -38,7 +34,7 @@ $ helm repo add datakit  https://pubrepo.guance.com/chartrepo/datakit
 $ helm repo update 
 ```
 
-![](/Users/wendy/dataflux-doc/docs/others/img/2.helm_1.png)
+![](img/2.helm_1.png)
 
 #### Step2：Helm 安装 DataKit
 
@@ -50,11 +46,11 @@ $ helm install datakit datakit/datakit -n datakit --set datakit.dataway_url="htt
 
 token 可以在观测云工作空间的「管理」-「基本设置」获取。
 
-![](/Users/wendy/dataflux-doc/docs/others/img/1.contrainer_2.png)
+![](img/1.contrainer_2.png)
 
 token 替换后，执行 Helm 安装 DataKit 代码。
 
-![](/Users/wendy/dataflux-doc/docs/others/img/2.helm_2.png)
+![](img/2.helm_2.png)
 
 
 
@@ -62,15 +58,15 @@ token 替换后，执行 Helm 安装 DataKit 代码。
 
 DataKit 安装完成后，即可通过 `$ helm -n datakit list` 查看部署状态。
 
-![](/Users/wendy/dataflux-doc/docs/others/img/2.helm_3.png)
+![](img/2.helm_3.png)
 
 
 
-#### Step4：在观测云工作空间查看和分析采集的K8S数据
+#### Step4：在观测云工作空间查看和分析采集的 Pod 数据
 
 DataKit 部署状态正常，即可在观测云工作空间「基础设施」-「容器」查看和分析采集的 K8S 数据。
 
-![](/Users/wendy/dataflux-doc/docs/others/img/2.helm_4.png)
+![](img/3.yaml_7.png)
 
 ### Yaml 安装
 
@@ -82,7 +78,7 @@ DataKit 部署状态正常，即可在观测云工作空间「基础设施」-�
 wget https://static.guance.com/datakit/datakit.yaml
 ```
 
-![](/Users/wendy/dataflux-doc/docs/others/img/3.yaml_3.png)
+![](img/3.yaml_3.png)
 
 #### Step2：修改 datakit.yaml 文件
 
@@ -95,33 +91,33 @@ wget https://static.guance.com/datakit/datakit.yaml
 
 token 可以在观测云工作空间的「管理」-「基本设置」获取。
 
-![](/Users/wendy/dataflux-doc/docs/others/img/1.contrainer_2.png)
+![](img/1.contrainer_2.png)
 
 token 替换后，保存 datakit.yaml 文件。
 
-![](/Users/wendy/dataflux-doc/docs/others/img/3.yaml_2.png)
+![](img/3.yaml_2.png)
 
 #### Step3：安装 yaml 文件
 
 datakit.yaml 文件的数据网关修改完成后，使用命令`kubectl apply -f datakit.yaml`安装 yaml 文件，其中`datakit.yaml`为文件名，以您保存的文件名为准。
 
-![](/Users/wendy/dataflux-doc/docs/others/img/3.yaml_4.png)
+![](img/3.yaml_4.png)
 
 #### Step4：查看 datakit 运行状态
 
 yaml 文件安装完后，会创建一个 datakit 的 DaemonSet 部署，可通过命令`kubectl get pod -n datakit`查看 datakit 的运行状态。
 
-![](/Users/wendy/dataflux-doc/docs/others/img/3.yaml_5.png)
+![](img/3.yaml_5.png)
 
 #### Step5：在观测云工作空间查看和分析采集的K8S数据
 
 datakit 运行状态正常，即可在观测云工作空间「基础设施」-「容器」查看和分析采集的 K8S 数据。
 
-![](/Users/wendy/dataflux-doc/docs/others/img/3.yaml_6.png)
+![](img/3.yaml_7.png)
 
 
 
 ## 其他
 
-更多详细的Pod数据采集的配置方法和指标说明，可查看[容器采集](https://www.yuque.com/dataflux/datakit/container)。
+Pod 对象数据采集上来以后，指标数据采集默认关闭，采集 Pod 指标数据，可查看 [容器](../integrations/container.md) 。
 

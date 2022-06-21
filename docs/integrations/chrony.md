@@ -11,7 +11,7 @@ Chrony 指标展示，包括轮询速率，时间偏移，可达性寄存器等
 - 服务器 <[安装 Datakit](/datakit/datakit-install/)>
 - 服务器安装 Telegraf
 ### 安装 Telegraf
-以 ** **CentOS 为例，其他系统参考 [[Telegraf 官方文档](https://docs.influxdata.com/telegraf/v1.19/introduction/installation/)]
+以 CentOS 为例，其他系统参考 [[Telegraf 官方文档](https://docs.influxdata.com/telegraf/v1.19/introduction/installation/)]
 
 1. 添加 yum 源
 ```

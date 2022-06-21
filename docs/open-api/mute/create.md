@@ -72,7 +72,7 @@
 
 ## 请求例子
 ```shell
-curl '<Endpoint>/api/v1/monitor/mute/create' \
+curl 'https://openapi.guance.com/api/v1/monitor/mute/create' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"type": "monitor", "tags": [{"monitorUUID": "monitor_d7ec79c705b24e01a9fd882f76c5c75c", "name": "7788"}], "start": 1643263794, "end": 1643267394, "notifyTargets": []}' \
