@@ -7,7 +7,7 @@
 
 ## 前置条件
 
-- 安装 DataKit（[DataKit 安装文档](../../datakit/datakit-how-to.md)）
+- 安装 DataKit（[DataKit 安装文档](../../datakit/datakit-install.md)）
 
 ## iOS应用接入
 

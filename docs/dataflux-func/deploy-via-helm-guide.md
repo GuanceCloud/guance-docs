@@ -6,7 +6,7 @@
 
 ## 1. 系统及环境要求
 
-安装DataFlux Func 之前，请务必确认环境已经满足以下条件。
+安装 DataFlux Func 之前，请务必确认环境已经满足以下条件。
 
 ### 1.1 系统要求
 
@@ -17,8 +17,8 @@
 - 网络带宽 >= 10Mbps
 - 内存容量 >= 4GB
 - CPU 核心数 >= 2
-- 使用外部 MySQL 时，MySQL 版本必须为5.7以上
-- 使用外部 Redis 时，Redis 版本必须为4.0以上，且*不是*集群版
+- 使用外部 MySQL 时，MySQL 版本必须为 5.7 以上
+- 使用外部 Redis 时，Redis 版本必须为 4.0 以上，且*不是*集群版
 
 *注意：DataFlux Func 不支持集群版 Redis，有高可用需要请选择主从版*
 
@@ -57,7 +57,7 @@ helm install {Release Name} func/func -n {Namespace} --create-namespace  \
     --set ingress.enabled=true,ingress.hostName="{Host Name}"
 ```
 
-*注意：{Release Name} 为Helm 别名，{Namespace} 如果没有会被创建，{Storage Class} 为步骤一的存储类名称，{Host Name} 为 ingress 的域名，安装成功可以访问*
+*注意：{Release Name} 为 Helm 别名，{Namespace} 如果没有会被创建，{Storage Class} 为步骤一的存储类名称，{Host Name} 为 ingress 的域名，安装成功可以访问*
 
 > 提示：Helm 部署默认会安装 MySQL 和 MySQL。您也可以使用外部的 redis 和 mysql。详细部署方式见 charts 包中的 README 文档
 
@@ -134,7 +134,7 @@ helm ls -n {Namespace}
 
 ## 4. 其他问题
 
-### 4.1 浏览器返回502
+### 4.1 浏览器返回 502
 
 如果 Helm 状态显示 `deployed`, 可以按照如下步骤进行排查：
 
@@ -191,6 +191,7 @@ func-resources   Bound     pvc-0cc6f1df-666c-4512-bea9-baa40461c81c   10G    RWX
 你可以将旧的 `{Release Name}` 删除后安装，也可以更换 `{Release Name}`。
 
 ### 4.3 产生`连接到数据源超时`错误
+
 如果创建数据源发现`连接到数据源超时` 的错误，请*重启所有*与 func 相关的 pod。
 
 以下为 func 相关的 deployment：
@@ -205,5 +206,3 @@ func-resources   Bound     pvc-0cc6f1df-666c-4512-bea9-baa40461c81c   10G    RWX
 > 提示：func-server 的 func 为` {Release Name}`，会随`{Release Name}`的更改而改变。
 
 ![](deploy-via-helm-guide/install-via-error-timeout.png)
-
-

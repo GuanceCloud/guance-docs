@@ -4,32 +4,32 @@
 
 本文档主要介绍如何使用脚本市场中的「天气信息」脚本包获取最新的天气数据、生活指数等信息。
 
-> 提示：请始终使用最新版DataFlux Func 进行操作。
+> 提示：请始终使用最新版 DataFlux Func 进行操作。
 
-> 提示2: 本脚本包会不断加入新功能，请随时关注本文档页。
+> 提示 2: 本脚本包会不断加入新功能，请随时关注本文档页。
 
 ## 1. 背景
 
 天气情况对每个人的日常生活有着重要的影响。因此，DataFlux Func 提供天气信息信息脚本。用户可以从脚本市场安装相关的数据同步脚本包，进行简单的配置后，即可查看每天的天气信息以及生活指数。
 
 本文假设用户已经了解并安装了相关脚本包。
-有关如何在DataFlux Func 的脚本市场中安装脚本版，请参考：
+有关如何在 DataFlux Func 的脚本市场中安装脚本版，请参考：
 
 - [脚本市场基本操作](/dataflux-func/script-market-basic-usage)
 
-本文假设用户已经在DataFlux Func 中正确连接了DataKit。
-有关如何在DataFlux Func 中连接DataKit，请参考：
+本文假设用户已经在 DataFlux Func 中正确连接了 DataKit。
+有关如何在 DataFlux Func 中连接 DataKit，请参考：
 
-- [连接并操作DataKit](/dataflux-func/connect-to-datakit)
+- [连接并操作 DataKit](/dataflux-func/connect-to-datakit)
 
-本脚本包基于「[聚合数据](https://www.juhe.cn/)」提供的API实现，
-用户在使用本脚本包时，请先登录注册「聚合数据」，并获取Key后使用。
+本脚本包基于「[聚合数据](https://www.juhe.cn/)」提供的 API 实现，
+用户在使用本脚本包时，请先登录注册「聚合数据」，并获取 Key 后使用。
 
 ## 2. 关于本脚本包
 
 本脚本包主要用于天气信息的获取并同步至观测云。
 
-使用本脚本包，需要配置所关注的城市以及关注的生活指数，以及温度骤降指数，同时为了实现钉钉通知功能，需要您配置钉钉机器人的Webhook和加签密钥，其中加签密钥是可选的，您可以在钉钉「智能群助手」-「添加机器人」中进行配置。
+使用本脚本包，需要配置所关注的城市以及关注的生活指数，以及温度骤降指数，同时为了实现钉钉通知功能，需要您配置钉钉机器人的 Webhook 和加签密钥，其中加签密钥是可选的，您可以在钉钉「智能群助手」-「添加机器人」中进行配置。
 
 *注意：配置关注的生活指数必须使用完整的生活指数名称，所有生活指数详见附录*
 
@@ -39,16 +39,16 @@
 
 示例如下：
 
-| 字段名                     | 类型    | 是否必须 | 说明                                                                                     |
-| -------------------------- | ------- | -------- | ---------------------------------------------------------------------------------------- |
-| key                        | String  | 必须     |                                                                                          |
-| focus_city_list            | List    | 必须     | 关注的城市列表，如['宁波','武汉','怀化']                                                 |
-| focus_life_index           | List    |          | 关注的生活指数列表，如['空调','舒适度','带伞']                                           |
-| temp_sudden_drop_threshold | Integer |          | 当温度降低超过该阈值时，发出温度骤降预警                                                 |
-| dingtalk_secret            | String  |          | 钉钉加签密钥，如:`"SECf135eaba81d4f3442a56cfdde4e23f10cdb49fe1ee5e612b56a8ecaf13d6238b"` |
-| dingtalk_webhook           | String  | 必须     | 钉钉通知api:，如`https://oapi.dingtalk.com/robot/send?access_token=<token>`              |
-| datakit_id                 | String  |          | DataKit数据源ID                                                                          |
-| measurement                | String  |          | 指标集名称，如天气信息                                                                   |
+| 字段名                     | 类型    | 是否必须 | 说明                                                                                      |
+| -------------------------- | ------- | -------- | ----------------------------------------------------------------------------------------- |
+| key                        | String  | 必须     |                                                                                           |
+| focus_city_list            | List    | 必须     | 关注的城市列表，如 ['宁波','武汉','怀化']                                                 |
+| focus_life_index           | List    |          | 关注的生活指数列表，如 ['空调','舒适度','带伞']                                           |
+| temp_sudden_drop_threshold | Integer |          | 当温度降低超过该阈值时，发出温度骤降预警                                                  |
+| dingtalk_secret            | String  |          | 钉钉加签密钥，如：`"SECf135eaba81d4f3442a56cfdde4e23f10cdb49fe1ee5e612b56a8ecaf13d6238b"` |
+| dingtalk_webhook           | String  | 必须     | 钉钉通知 API，如：`https://oapi.dingtalk.com/robot/send?access_token=<token>`             |
+| datakit_id                 | String  |          | DataKit 数据源 ID                                                                         |
+| measurement                | String  |          | 指标集名称，如天气信息                                                                    |
 
 ## 3. 典型代码示例
 

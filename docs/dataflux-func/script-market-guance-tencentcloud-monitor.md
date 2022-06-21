@@ -4,34 +4,30 @@
 
 阅读本文前，请先阅读：
 
-- [观测云集成简介](/dataflux-func/script-market-guance-integration-intro)
+- [观测云集成简介](/dataflux-func/script-market-guance-integration)
 
-> 提示1：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包
+> 提示 1：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包
 
-> 提示2：采集腾讯云云监控数据前，必须先配置对应产品的自定义对象采集器。
-
-
+> 提示 2：采集腾讯云云监控数据前，必须先配置对应产品的自定义对象采集器。
 
 ## 1. 配置结构
 
 本采集器配置结构如下：
 
-| 字段                    | 类型 | 是否必须 | 说明                                                                                                                                     |
-| ----------------------- | ---- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `Regions`               | List | 必须     | 所需采集的云监控地域列表                                                                                                                 |
-| `regions[#]`            | str  | 必须     | 地域 ID 如：`ap-shanghai`<br />总表见附录                                                                                                |
-| `targets`               | list | 必须     | 云监控采集对象配置列表<br />相同命名空间的多个配置之间逻辑关系为「且」                                                                   |
-| `targets[#].namespace`  | str  | 必须     | 所需采集的云监控命名空间。如：`QCE/CVM`总表见附录                                                                                        |
-| `targets[#].metrics`    | list | 必须     | 所需采集的云监控指标名列表<br />总表见附录                                                                                               |
-| `targets[#].metrics[#]` | str  | 必须     | 指标名模式，支持`"NOT"`、通配符方式匹配<br />正常情况下，多个之间逻辑关系为「或」 包含`"NOT"`标记时，多个之间逻辑关系为「且」。 详见下文 |
-
-
+| 字段                    | 类型 | 是否必须 | 说明                                                                                                                                   |
+| ----------------------- | ---- | -------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `Regions`               | List | 必须     | 所需采集的云监控地域列表                                                                                                               |
+| `regions[#]`            | str  | 必须     | 地域 ID 如：`ap-shanghai`<br>总表见附录                                                                                                |
+| `targets`               | list | 必须     | 云监控采集对象配置列表<br>相同命名空间的多个配置之间逻辑关系为「且」                                                                   |
+| `targets[#].namespace`  | str  | 必须     | 所需采集的云监控命名空间。如：`QCE/CVM`总表见附录                                                                                      |
+| `targets[#].metrics`    | list | 必须     | 所需采集的云监控指标名列表<br>总表见附录                                                                                               |
+| `targets[#].metrics[#]` | str  | 必须     | 指标名模式，支持`"NOT"`、通配符方式匹配<br>正常情况下，多个之间逻辑关系为「或」 包含`"NOT"`标记时，多个之间逻辑关系为「且」。 详见下文 |
 
 ## 2. 配置示例
 
 ### 指定特定指标
 
-采集`QCE/CVM`中名称为`WanOuttraffic`、`WanOutpkg`的2个指标
+采集`QCE/CVM`中名称为`WanOuttraffic`、`WanOutpkg`的 2 个指标
 
 ```python
 tencentcloud_monitor_configs = {
@@ -127,13 +123,13 @@ tencentcloud_monitor_configs = {
 
 ### 云产品配置信息
 
-| 产品名称         | 命名空间(Namespace) | 维度(Dimension)              | 说明                                                                           |
-| ---------------- | ------------------- | ---------------------------- | ------------------------------------------------------------------------------ |
-| 云服务器         | `QCE/CVM`           | `InstanceId`                 | `vm_uuid`、`vmUuid`、 `uuid`、`InstanceId` 统一识别为对象数据中的 `InstanceId` |
-| 云数据库 Mysql   | `QCE/CDB`           | `InstanceId`、`InstanceType` |                                                                                |
-| 对象存储监控     | `QCE/COS`           | `BucketName`                 |                                                                                |
-| 公网负载均衡监控 | `QCE/LB_PUBLIC`     | `vip`                        | 对象数据中的` Address `字段被识别为`vip`                                       |
-| 内网负载均衡监控 | `QCE/LB_PRIVATE`    | `vip`、`vpcId`               |                                                                                |
+| 产品名称         | 命名空间 (Namespace) | 维度 (Dimension)             | 说明                                                                           |
+| ---------------- | -------------------- | ---------------------------- | ------------------------------------------------------------------------------ |
+| 云服务器         | `QCE/CVM`            | `InstanceId`                 | `vm_uuid`、`vmUuid`、 `uuid`、`InstanceId` 统一识别为对象数据中的 `InstanceId` |
+| 云数据库 Mysql   | `QCE/CDB`            | `InstanceId`、`InstanceType` |                                                                                |
+| 对象存储监控     | `QCE/COS`            | `BucketName`                 |                                                                                |
+| 公网负载均衡监控 | `QCE/LB_PUBLIC`      | `vip`                        | 对象数据中的` Address `字段被识别为`vip`                                       |
+| 内网负载均衡监控 | `QCE/LB_PRIVATE`     | `vip`、`vpcId`               |                                                                                |
 
 ### 监控指标配置信息
 
@@ -143,41 +139,41 @@ tencentcloud_monitor_configs = {
 
 - [云服务器监控指标](https://cloud.tencent.com/document/product/248/6843)
 
-| 指标英文名(MetricName) | 指标中文名                   |
-| ---------------------- | ---------------------------- |
-| WanInpkg               | 外网入包量                   |
-| WanIntraffic           | 外网入带宽                   |
-| WanOutpkg              | 外网出包量                   |
-| WanOuttraffic          | 外网出带宽                   |
-| AccOuttraffic          | 外网出流量                   |
-| BaseCpuUsage           | 基础 CPU 使用率              |
-| CpuLoadavg             | CPU 一分钟平均负载           |
-| CPUUsage               | CPU 利用率                   |
-| Cpuloadavg5m           | CPU 五分钟平均负载           |
-| Cpuloadavg15m          | CPU 十五分钟平均负载         |
-| CvmDiskUsage           | 磁盘利用率                   |
-| LanInpkg               | 内网入包量                   |
-| LanOutpkg              | 内网出包量                   |
-| LanIntraffic           | 内网入带宽                   |
-| LanOuttraffic          | 内网出带宽                   |
-| MemUsage               | 内存利用率                   |
-| MemUsed                | 内存使用量                   |
-| TcpCurrEstab           | TCP 连接数                   |
-| TimeOffset             | 子机 utc 时间和 ntp 时间差值 |
-| GpuMemTotal            | GPU 内存总量                 |
-| GpuMemUsage            | GPU 内存使用率               |
-| GpuMemUsed             | GPU 内存使用量               |
-| GpuPowDraw             | GPU 功耗使用量               |
-| GpuPowLimit            | GPU 功耗总量                 |
-| GpuPowUsage            | GPU 功耗使用率               |
-| GpuTemp                | GPU 温度                     |
-| GpuUtil                | GPU 使用率                   |
+| 指标英文名 (MetricName) | 指标中文名                   |
+| ----------------------- | ---------------------------- |
+| WanInpkg                | 外网入包量                   |
+| WanIntraffic            | 外网入带宽                   |
+| WanOutpkg               | 外网出包量                   |
+| WanOuttraffic           | 外网出带宽                   |
+| AccOuttraffic           | 外网出流量                   |
+| BaseCpuUsage            | 基础 CPU 使用率              |
+| CpuLoadavg              | CPU 一分钟平均负载           |
+| CPUUsage                | CPU 利用率                   |
+| Cpuloadavg5m            | CPU 五分钟平均负载           |
+| Cpuloadavg15m           | CPU 十五分钟平均负载         |
+| CvmDiskUsage            | 磁盘利用率                   |
+| LanInpkg                | 内网入包量                   |
+| LanOutpkg               | 内网出包量                   |
+| LanIntraffic            | 内网入带宽                   |
+| LanOuttraffic           | 内网出带宽                   |
+| MemUsage                | 内存利用率                   |
+| MemUsed                 | 内存使用量                   |
+| TcpCurrEstab            | TCP 连接数                   |
+| TimeOffset              | 子机 utc 时间和 ntp 时间差值 |
+| GpuMemTotal             | GPU 内存总量                 |
+| GpuMemUsage             | GPU 内存使用率               |
+| GpuMemUsed              | GPU 内存使用量               |
+| GpuPowDraw              | GPU 功耗使用量               |
+| GpuPowLimit             | GPU 功耗总量                 |
+| GpuPowUsage             | GPU 功耗使用率               |
+| GpuTemp                 | GPU 温度                     |
+| GpuUtil                 | GPU 使用率                   |
 
 #### QCE/CDB
 
 - [云数据库 MySQL 监控指标](https://cloud.tencent.com/document/product/248/45147)
 
-| 指标英文名(MetricName)       | 指标中文名                      |
+| 指标英文名 (MetricName)      | 指标中文名                      |
 | ---------------------------- | ------------------------------- |
 | BytesReceived                | 内网入流量                      |
 | BytesSent                    | 内网出流量                      |
@@ -215,7 +211,7 @@ tencentcloud_monitor_configs = {
 | InnodbRowsInserted           | InnoDB 行插入量                 |
 | InnodbRowsRead               | InnoDB 行读取量                 |
 | InnodbRowsUpdated            | InnoDB 行更新量                 |
-| IOPS                         | 每秒的输入输出量(或读写次数)    |
+| IOPS                         | 每秒的输入输出量（或读写次数）  |
 | KeyBlocksUnused              | 键缓存内未使用的块数量          |
 | KeyBlocksUsed                | 键缓存内使用的块数量            |
 | KeyCacheHitRate              | myisam 缓存命中率               |
@@ -254,70 +250,70 @@ tencentcloud_monitor_configs = {
 
 - [对象存储监控指标](https://cloud.tencent.com/document/product/248/45140)
 
-| 指标英文名(MetricName) | 指标中文名           |
-| ---------------------- | -------------------- |
-| StdReadRequests        | 标准存储读请求       |
-| StdRetrieval           | 标准数据读取量       |
-| StdWriteRequests       | 标准存储写请求       |
-| IaRetrieval            | 低频数据读取量       |
-| IaWriteRequests        | 低频存储写请求       |
-| IaReadRequests         | 低频存储读请求       |
-| NlWriteRequests        | Nl写请求             |
-| NlRetrieval            | Nl取量               |
-| CdnOriginTraffic       | CDN 回源流量         |
-| InternetTraffic        | 外网下行流量         |
-| InternalTraffic        | 内网下行流量         |
-| InboundTraffic         | 外网、内网上传总流量 |
+| 指标英文名 (MetricName) | 指标中文名           |
+| ----------------------- | -------------------- |
+| StdReadRequests         | 标准存储读请求       |
+| StdRetrieval            | 标准数据读取量       |
+| StdWriteRequests        | 标准存储写请求       |
+| IaRetrieval             | 低频数据读取量       |
+| IaWriteRequests         | 低频存储写请求       |
+| IaReadRequests          | 低频存储读请求       |
+| NlWriteRequests         | Nl 写请求            |
+| NlRetrieval             | Nl 取量              |
+| CdnOriginTraffic        | CDN 回源流量         |
+| InternetTraffic         | 外网下行流量         |
+| InternalTraffic         | 内网下行流量         |
+| InboundTraffic          | 外网、内网上传总流量 |
 
 #### QCE/LB_PRIVATE
 
 - [内网负载均衡监控指标](https://cloud.tencent.com/document/product/248/51899)
 
-| 指标英文名(MetricName) | 指标中文名                 |
-| ---------------------- | -------------------------- |
-| ClientConnum           | 客户端到 LB 的活跃连接数   |
-| ClientInactiveConn     | 客户端到 LB 的非活跃连接数 |
-| ClientConcurConn       | 客户端到 LB 的并发连接数   |
-| ClientNewConn          | 客户端到 LB 的新建连接数   |
-| ClientInpkg            | 客户端到 LB 的入包量       |
-| ClientOutpkg           | 客户端到 LB 的出包量       |
-| ClientAccIntraffic     | 客户端到 LB 的入流量       |
-| ClientAccOuttraffic    | 客户端到 LB 的出流量       |
-| ClientOuttraffic       | 客户端到 LB 的出带宽       |
-| ClientIntraffic        | 客户端到 LB 的入带宽       |
-| DropTotalConns         | 丢弃连接数                 |
-| InDropBits             | 丢弃入带宽                 |
-| OutDropBits            | 丢弃出带宽                 |
-| InDropPkts             | 丢弃流入数据包             |
-| OutDropPkts            | 丢弃流出数据包             |
-| IntrafficVipRatio      | 入带宽利用率               |
-| OuttrafficVipRatio     | 出带宽利用率               |
-| UnhealthRsCount        | 健康检查异常数             |
+| 指标英文名 (MetricName) | 指标中文名                 |
+| ----------------------- | -------------------------- |
+| ClientConnum            | 客户端到 LB 的活跃连接数   |
+| ClientInactiveConn      | 客户端到 LB 的非活跃连接数 |
+| ClientConcurConn        | 客户端到 LB 的并发连接数   |
+| ClientNewConn           | 客户端到 LB 的新建连接数   |
+| ClientInpkg             | 客户端到 LB 的入包量       |
+| ClientOutpkg            | 客户端到 LB 的出包量       |
+| ClientAccIntraffic      | 客户端到 LB 的入流量       |
+| ClientAccOuttraffic     | 客户端到 LB 的出流量       |
+| ClientOuttraffic        | 客户端到 LB 的出带宽       |
+| ClientIntraffic         | 客户端到 LB 的入带宽       |
+| DropTotalConns          | 丢弃连接数                 |
+| InDropBits              | 丢弃入带宽                 |
+| OutDropBits             | 丢弃出带宽                 |
+| InDropPkts              | 丢弃流入数据包             |
+| OutDropPkts             | 丢弃流出数据包             |
+| IntrafficVipRatio       | 入带宽利用率               |
+| OuttrafficVipRatio      | 出带宽利用率               |
+| UnhealthRsCount         | 健康检查异常数             |
 
 #### QCE/LB_PUBLIC
 
 - [公网负载均衡监控指标](https://cloud.tencent.com/document/product/248/51898)
 
-| 指标英文名(MetricName) | 指标中文名                       |
-| ---------------------- | -------------------------------- |
-| ClientConnum           | 客户端到 LB 的活跃连接数         |
-| ClientInactiveConn     | 客户端到 LB 的非活跃连接数       |
-| ClientConcurConn       | 客户端到 LB 的并发连接数         |
-| ClientNewConn          | 客户端到 LB 的新建连接数         |
-| ClientInpkg            | 客户端到 LB 的入包量             |
-| ClientOutpkg           | 客户端到 LB 的出包量             |
-| ClientAccIntraffic     | 客户端到 LB 的入流量             |
-| ClientAccOuttraffic    | 客户端到 LB 的出流量             |
-| ClientIntraffic        | 客户端到 LB 的入带宽             |
-| ClientOuttraffic       | 客户端到 LB 的出带宽             |
-| DropTotalConns         | 丢弃连接数                       |
-| IntrafficVipRatio      | 公网入带宽利用率（未必有该指标） |
-| InDropBits             | 丢弃入带宽                       |
-| InDropPkts             | 丢弃流入数据包                   |
-| OuttrafficVipRatio     | 公网出带宽利用率（未必有该指标） |
-| OutDropBits            | 丢弃出带宽                       |
-| OutDropPkts            | 丢弃流出数据包                   |
-| UnhealthRsCount        | 健康检查异常数                   |
+| 指标英文名 (MetricName) | 指标中文名                       |
+| ----------------------- | -------------------------------- |
+| ClientConnum            | 客户端到 LB 的活跃连接数         |
+| ClientInactiveConn      | 客户端到 LB 的非活跃连接数       |
+| ClientConcurConn        | 客户端到 LB 的并发连接数         |
+| ClientNewConn           | 客户端到 LB 的新建连接数         |
+| ClientInpkg             | 客户端到 LB 的入包量             |
+| ClientOutpkg            | 客户端到 LB 的出包量             |
+| ClientAccIntraffic      | 客户端到 LB 的入流量             |
+| ClientAccOuttraffic     | 客户端到 LB 的出流量             |
+| ClientIntraffic         | 客户端到 LB 的入带宽             |
+| ClientOuttraffic        | 客户端到 LB 的出带宽             |
+| DropTotalConns          | 丢弃连接数                       |
+| IntrafficVipRatio       | 公网入带宽利用率（未必有该指标） |
+| InDropBits              | 丢弃入带宽                       |
+| InDropPkts              | 丢弃流入数据包                   |
+| OuttrafficVipRatio      | 公网出带宽利用率（未必有该指标） |
+| OutDropBits             | 丢弃出带宽                       |
+| OutDropPkts             | 丢弃流出数据包                   |
+| UnhealthRsCount         | 健康检查异常数                   |
 
 ## 4. 数据上报格式
 
@@ -325,13 +321,13 @@ tencentcloud_monitor_configs = {
 
 以如下采集器配置为例：
 
-```json
+```python
 tencentcloud_monitor_configs = {
   'regions' : ['ap-shanghai'],
   'targets': [
     {
-      'namespace'   : 'QCE/CVM',
-      'metrics'     : ['WanOutpkg'],
+      'namespace': 'QCE/CVM',
+      'metrics'  : ['WanOutpkg'],
     },
   ],
 }
@@ -353,13 +349,11 @@ tencentcloud_monitor_configs = {
 
 > 提示：所有的指标值都会以`float`类型上报。
 >
-> 提示2：本采集器采集了 QCE/CVM 命名空间(Namespace)下 WanOutpkg 指标数据，详情见[数据采集说明](#3. 数据采集说明)表格。
-
-
+> 提示 2：本采集器采集了 QCE/CVM 命名空间 (Namespace) 下 WanOutpkg 指标数据，详情见 [数据采集说明](#3. 数据采集说明)表格。
 
 ## 5. 与自定义对象采集器联动
 
-当同一个 DataFlux Func 中运行了其他自定义对象采集器（如： CVM ）时，本采集器会根据[数据采集说明](#云产品配置信息)的维度信息补充字段。例如 CVM 根据云监控数据返回的`InstanceId`字段尝试匹配自定义对象中的`tags.name`字段。
+当同一个 DataFlux Func 中运行了其他自定义对象采集器（如： CVM ）时，本采集器会根据 [数据采集说明](#云产品配置信息)的维度信息补充字段。例如 CVM 根据云监控数据返回的`InstanceId`字段尝试匹配自定义对象中的`tags.name`字段。
 
 由于需要先获知自定义对象信息才能在云监控采集器中进行联动，因此一般建议将云监控的采集器放置在列表末尾，如：
 
@@ -416,8 +410,6 @@ collectors = [
 },
 ```
 
-
-
 ## 注意事项
 
 #### 触发任务抛错情况以及解决方法
@@ -428,7 +420,7 @@ collectors = [
 
    解决方法：
 
-   - 适当加大对任务的timeout设置（如：`@DFF.API('执行采集', timeout=120, fixed_crontab="* * * * *")`，表示将任务的超时时间设置成120秒）。
+   - 适当加大对任务的 timeout 设置（如：`@DFF.API('执行采集', timeout=120, fixed_crontab="* * * * *")`，表示将任务的超时时间设置成 120 秒）。
 
 2. `[TencentCloudSDKException] code:InvalidParameterValue message:cannot find metricName=xxx configure`
 
@@ -436,13 +428,11 @@ collectors = [
 
    解决方法：
 
-   - 建议参考本文[监控指标配置信息](#监控指标配置信息)，配置有效的指标名。
+   - 建议参考本文 [监控指标配置信息](#监控指标配置信息)，配置有效的指标名。
 
 3. `[TencentCloudSDKException] code:InvalidParameterValue message: xxxxx does not belong to the developer ....`
 
    原因：采集某个账号下某个产品云监控数据时，该产品已经被释放了，造成接口抛错，可以忽视。
-
-
 
 ## X. 附录
 
@@ -453,4 +443,3 @@ collectors = [
 - [地域列表](https://cloud.tencent.com/document/api/248/30346#.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8)
 - [腾讯云的命名空间](https://cloud.tencent.com/document/api/248/44374?!editLang=%22qbk3vol)
 - [监控指标](https://cloud.tencent.com/document/product/248/6843)
-

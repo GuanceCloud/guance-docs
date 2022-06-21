@@ -4,7 +4,7 @@
 
 阅读本文前，请先阅读：
 
-- [观测云集成简介](/dataflux-func/script-market-guance-integration-intro)
+- [观测云集成简介](/dataflux-func/script-market-guance-integration)
 
 提示：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包
 
@@ -12,10 +12,10 @@
 
 本采集器配置结构如下：
 
-| 字段         | 类型 | 是否必须 | 说明                                     |
-| ------------ | ---- | -------- | ---------------------------------------- |
-| `regions`    | list | 必须     | 所需采集的地域列表                       |
-| `regions[#]` | str  | 必须     | 地域ID。如：`'cn-north-1'`<br>总表见附录 |
+| 字段         | 类型 | 是否必须 | 说明                                      |
+| ------------ | ---- | -------- | ----------------------------------------- |
+| `regions`    | list | 必须     | 所需采集的地域列表                        |
+| `regions[#]` | str  | 必须     | 地域 ID。如：`'cn-north-1'`<br>总表见附录 |
 
 ## 2. 配置示例
 
@@ -44,8 +44,8 @@ collector_configs = {
   },
   "fields": {
     "CreationDate": "2022-03-09T06:13:31Z",
-    "Grants"      : "{JSON数据}",
-    "message"     : "{实例JSON数据}"
+    "Grants"      : "{JSON 数据}",
+    "message"     : "{实例 JSON 数据}"
   }
 }
 ```
@@ -54,13 +54,13 @@ collector_configs = {
 
 > 提示：`tags.name`值为实例名称，作为唯一识别
 >
-> 提示2：`fields.message`为JSON序列化后字符串
+> 提示 2：`fields.message`为 JSON 序列化后字符串
 >
-> 提示3: `fields.Grants`为bucket 访问控制列表
+> 提示 3: `fields.Grants`为 bucket 访问控制列表
 
 ## X. 附录
 
-请参考AWS官方文档：
+请参考 AWS 官方文档：
 
 - [Elastic Load Balancing Documentation](https://docs.aws.amazon.com/elasticloadbalancing/index.html)
 - [Amazon Simple Storage Service](https://docs.aws.amazon.com/zh_cn/s3/index.html)

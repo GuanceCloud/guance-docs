@@ -3,6 +3,7 @@
 ---
 
 观测云 Open API 是一个简化的 HTTP REST API。
+
 * 只有 GET / POST 请求
 * 使用面向资源的 URL 调用 API
 * 使用状态码指示请求成功或失败
@@ -24,7 +25,7 @@
 | 参数名        | 类型      | 说明                                                                 |
 |:-----------|:--------|:-------------------------------------------------------------------|
 | Content-Type | string  | application/json                                                   |
-| DF-API-KEY | string  | 调用者标识, 获取方式见[API Key 管理](https://www.yuque.com/dataflux/doc/ag17mc)|
+| DF-API-KEY | string  | 调用者标识, 获取方式见[API Key 管理](../management/api-key/open-api.md)|
 
 
 ## 认证方式
