@@ -4,7 +4,7 @@ RUN mkdir /dataflux-doc
 WORKDIR /dataflux-doc
 COPY ./ /dataflux-doc
 
-RUN mkdocs build --config-file mkdocs.insiders.yml
+RUN mkdocs build
 
 # build static site
 FROM nginx:1.18.0

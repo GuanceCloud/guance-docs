@@ -4,6 +4,8 @@ FROM python:3.9.2-alpine3.13
 
 ARG GH_TOKEN
 
+RUN pip install --upgrade pip -i https://mirrors.aliyun.com/pypi/simple
+
 
 RUN \
   apk upgrade --update-cache -a \
@@ -17,8 +19,9 @@ RUN \
     libxml2 \
     libxslt \
     openssh \
-    zlib-dev \
-&& \
+    zlib-dev
+
+RUN \
   apk add --no-cache --virtual .build \
     gcc \
     libffi-dev \
@@ -26,9 +29,4 @@ RUN \
     libxslt-dev \
     musl-dev
 
-RUN pip install --upgrade pip -i https://mirrors.aliyun.com/pypi/simple
-
-# RUN pip install git+https://${GH_TOKEN}@github.com/squidfunk/mkdocs-material-insiders.git
-
-RUN pip install git+http://lhm:${GH_TOKEN}@gitlab.jiagouyun.com/lhm/mkdocs-material-insiders.git
-
+RUN pip install git+https://${GH_TOKEN}@github.com/squidfunk/mkdocs-material-insiders.git
