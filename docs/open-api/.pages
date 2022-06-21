@@ -6,7 +6,6 @@ nav:
   - '使用限制': api-limit.md
   - '请求示例': example.md
   - '公共错误定义': error-definition.md
-  - '常量配置': const
   - '仪表板': board
   - '笔记': notes
   - '事件': keyevent
