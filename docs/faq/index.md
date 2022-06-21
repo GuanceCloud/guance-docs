@@ -1,5 +1,5 @@
 ---
-icon: octicons/question-16
+icon: zy/faq
 ---
 # 常见问题
 
