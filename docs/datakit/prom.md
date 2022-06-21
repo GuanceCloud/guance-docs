@@ -95,6 +95,11 @@ Prom 采集器可以获取各种 Prometheus Exporters 暴露出来的指标数�
   # key1 = [ "val1.*", "val2.*"]
   # key2 = [ "val1.*", "val2.*"]
 
+  # 在数据拉取的 HTTP 请求中添加额外的请求头
+  [inputs.prom.http_headers]
+  # Root = "passwd"
+  # Michael = "1234"
+
   # 重命名 prom 数据中的 tag key
   [inputs.prom.tags_rename]
     overwrite_exist_tags = false
@@ -103,6 +108,12 @@ Prom 采集器可以获取各种 Prometheus Exporters 暴露出来的指标数�
     # tag2 = "new-name-2"
     # tag3 = "new-name-3"
 
+  # 将采集到的指标作为日志打到中心
+  # service 字段留空时，会把 service tag 设为指标集名称
+  [inputs.prom.as_logging]
+    enable = false
+    service = "service_name"
+
   # 自定义Tags
   [inputs.prom.tags]
   # some_tag = "some_value"
@@ -110,6 +121,16 @@ Prom 采集器可以获取各种 Prometheus Exporters 暴露出来的指标数�
 ```
 
 配置好后，重启 DataKit 即可。
+
+### 配置额外的 header
+
+Prom 采集器支持在数据拉取的 HTTP 请求中配置额外的请求头，如下：
+
+```toml
+  [inputs.prom.http_headers]
+  Root = "passwd"
+  Michael = "1234"
+```
 
 ### 关于 tag 重命名
 

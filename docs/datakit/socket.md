@@ -18,7 +18,7 @@ UDP 指标需要操作系统有 `nc` 程序
 ```toml
 
 [[inputs.socket]]
-  ## support tcp, udp
+  ## support tcp, udp.If the quantity to be detected is too large, it is recommended to open more collectors
   dest_url = ["tcp://host:port", "udp://host:port"]
 
   ## @param interval - number - optional - default: 30

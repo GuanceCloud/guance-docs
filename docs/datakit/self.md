@@ -61,6 +61,7 @@ self 采集器会自动运行，无需配置，且无法关闭。
 |`min_heap_sys`|Minimal bytes of heap memory obtained from OS since DataKit start|int|B|
 |`min_num_goroutines`|Minimal number of goroutines since DataKit start|int|count|
 |`num_goroutines`|Number of goroutines that currently exitst|int|count|
+|`open_files`|open files of DataKit(Only Linux support, others are -1)|int|count|
 |`pid`|DataKit process ID|int|-|
 |`uptime`|Uptime of DataKit|int|s|
 
