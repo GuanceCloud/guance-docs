@@ -36,7 +36,6 @@ nav:
         - CDN    : script-market-guance-aliyun-cdn.md
         - NAT    : script-market-guance-aliyun-nat.md
         - Mongo  : script-market-guance-aliyun-mongodb.md
-        - Mongo  : script-market-guance-aliyun-mongodb.md
         - PolarDB: script-market-guance-aliyun-polardb.md
       - AWS 采集器:
         - 云监控: script-market-guance-aws-cloudwatch.md
