@@ -41,7 +41,6 @@ nav:
       - kube-scheduler.md
       - kube-state-metrics.md
       - kubernetes-x.md
-      - kubernetes-x.md
 
 
   - 应用性能监测（APM）:
@@ -65,6 +64,7 @@ nav:
       - 'OpenTelemetry 采集配置': opentelemetry.md
       - opentelemetry-go.md
       - opentelemetry-java.md
+      - opentelemetry-collector.md
 
     - 'Zipkin':
       - 'Zipkin 采集器配置': zipkin.md
