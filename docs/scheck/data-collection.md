@@ -8,7 +8,7 @@
 
 ## 前置条件
 
-- 安装 DataKit（[DataKit 安装文档](https://www.yuque.com/dataflux/datakit/datakit-install)）
+- 安装 DataKit（[DataKit 安装文档](../datakit/datakit-install.md)）
 
 ## 数据采集
 
@@ -68,4 +68,4 @@ $ sudo datakit --install scheck
 
 观测云是一款面向开发、运维、测试及业务团队的实时数据监测平台，能够统一满足云、云原生、应用及业务上的监测需求，快速实现系统可观测。**立即前往观测云，开启一站式可观测之旅：**[www.guance.com](https://www.guance.com)
 ![](img/logo_2.png)
-%!(EXTRA string=1.0.7-3-g7183440, string=2022-06-21 07:45:18)
+%!(EXTRA string=1.0.7-3-g7183440, string=2022-06-22 10:05:03)
