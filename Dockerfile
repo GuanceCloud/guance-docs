@@ -10,10 +10,10 @@ COPY ./ /dataflux-doc
 
 RUN \
     if [ $release_env = "saas_production" ]; then \
-        echo "SaaS Build ..." \
+        echo "SaaS Build ..."; \
         cp -r -f overrides-saas/* overrides/; \
     elif [ $release_env = "rtm" ]; then \
-        echo "RTM Build ..." \
+        echo "RTM Build ..."; \
         cp -r -f overrides-deploy/* overrides/; \
     fi
 
