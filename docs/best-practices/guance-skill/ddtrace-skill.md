@@ -110,7 +110,7 @@ ddtrace 提供两种添加 tag 方式，效果一样。但还是推荐使用 dd.
 
 效果如图<br />![image.png](../images/ddtrace-skill-5.png)
 
-> 注意：如果自定义tag 包含了 [tag 关键字](https://www.yuque.com/dataflux/datakit/ddtrace#6393771b)，则会当成标签显示。
+> 注意：如果自定义tag 包含了 [tag 关键字](/datakit/ddtrace/#tags)，则会当成标签显示。
 
 ## 显示数据库实例名称
 

@@ -89,7 +89,7 @@ DataKit 安装完成后，已经默认开启 Linux 主机常用插件，可以�
 
 #### Linux 环境：
 
-yum 安装的  Nginx  可在控制台输入 **ngixn -V **查询是否开启 **with-http_stub_status_module **模块，如查询已存在该模块，可直接跳至 [**Datakit 开启 Nginx .inputs**](https://www.yuque.com/dataflux/bp/nginx/edit#IZF4O) 环节。
+yum 安装的  Nginx  可在控制台输入 **ngixn -V **查询是否开启 **with-http_stub_status_module **模块，如查询已存在该模块，可直接跳至 [**Datakit 开启 Nginx .inputs**](#datakit-nginx-inputs) 环节。
 
 ```
 $ nginx -V
@@ -97,7 +97,7 @@ $ nginx -V
 
 ![image.png](../images/nginx-7.png)
 
-如果是自定义安装的  Nginx ，可通过在控制台输入 **/usr/local/ Nginx /sbin/ Nginx  -V** 查看，如查询已存在该模块，可直接跳至 [**Datakit 开启 Nginx .inputs**](https://www.yuque.com/dataflux/bp/nginx/edit#IZF4O) 环节。
+如果是自定义安装的  Nginx ，可通过在控制台输入 **/usr/local/ Nginx /sbin/ Nginx  -V** 查看，如查询已存在该模块，可直接跳至 [**Datakit 开启 Nginx .inputs**](#datakit-nginx-inputs) 环节。
 
 ```
 $ /usr/local/nginx/sbin/nginx -V
@@ -107,7 +107,7 @@ $ /usr/local/nginx/sbin/nginx -V
 
 #### Windows环境：
 
-在 powershell 中执行 **.\ Nginx .exe -V **查看，如查询已存在该模块，可直接跳至 [**Datakit 开启 Nginx .inputs**](https://www.yuque.com/dataflux/bp/nginx/edit#IZF4O) 环节。
+在 powershell 中执行 **.\ Nginx .exe -V **查看，如查询已存在该模块，可直接跳至 [**Datakit 开启 Nginx .inputs**](#datakit-nginx-inputs) 环节。
 ```
 $  .\nginx.exe -V
 ```
@@ -197,7 +197,7 @@ pipeline = "nginx.p"
 
 **保存  Nginx .conf 文件后重启 datakit**
 
-**# 如需对 pipeline 进行定制化修改，可参考[ **[**文本处理（Pipeline）**](https://www.yuque.com/dataflux/doc/wqccue)**]**
+**# 如需对 pipeline 进行定制化修改，可参考[ **[**文本处理（Pipeline）**](/logs/pipelines/text-processing.md)**]**
 
 #### Windows 环境：
 
@@ -308,7 +308,7 @@ Total（全部）是客户请求的累积计数。请注意，单个客户端连
 以固定的时间间隔采样请求数据(** Nginx 开源版本的 Requests，或 Nginx  Plus中的 Total **)可以为您提供每单位时间内接收的请求数量——通常是分钟或秒。监控这个指标可以提醒你进入的网络流量的峰值，无论合法或恶意的，还是突然的下降，这通常代表欧着存在问题。每秒请求的剧烈变化可以提醒您环境中某个地方正在发生的问题，虽然它并不能确切地告诉您这些问题发生在哪里。注意，所有的请求都会被记数，不管它们的 url 是什么。
 
 #### 收集活动指标
-开源 Nginx 在一个简单的状态页面上公开了这些基本服务器指标。因为状态信息以标准化形式显示，因此几乎可以配置任何图形或监控工具来解析相关数据，以便进行分析，可视化或发出报警。 Nginx  Plus 提供了具有更丰富数据的 JSON feed。阅读有关[ Nginx 指标收集](https://www.yuque.com/dataflux/datakit/nginx)的配套文章，以获取有关启用指标收集的说明。
+开源 Nginx 在一个简单的状态页面上公开了这些基本服务器指标。因为状态信息以标准化形式显示，因此几乎可以配置任何图形或监控工具来解析相关数据，以便进行分析，可视化或发出报警。 Nginx  Plus 提供了具有更丰富数据的 JSON feed。阅读有关[ Nginx 指标收集](/integrations/nginx.md)的配套文章，以获取有关启用指标收集的说明。
 
 ### 错误指标
 
@@ -349,7 +349,7 @@ Nginx 错误度量标准告诉您服务器返回了错误而不是处理了有�
 
 #### 收集处理时间指标
 
- Nginx 和 Nginx  Plus 用户可以通过将 $request_time 变量添加到访问日志格式来捕获处理时间的数据。有关配置日志以进行监控的更多详细信息，请参见我们有关[ Nginx 日志](https://www.yuque.com/dataflux/datakit/nginx#62b5133f)配套文章。
+ Nginx 和 Nginx  Plus 用户可以通过将 $request_time 变量添加到访问日志格式来捕获处理时间的数据。有关配置日志以进行监控的更多详细信息，请参见我们有关[ Nginx 日志](/datakit/nginx.md)配套文章。
 
 ### 反向代理指标
 
@@ -393,7 +393,5 @@ Nginx 错误度量标准告诉您服务器返回了错误而不是处理了有�
 
 ## 更多请关注：
 
-### [如何利用 DataKit 采集 Nginx 指标](https://www.yuque.com/dataflux/datakit/nginx)
-
-### [如何接入 Nginx 集成 ](https://www.yuque.com/dataflux/integrations/nginx)
+[如何利用 DataKit 采集 Nginx 指标](/datakit/nginx.md)
 

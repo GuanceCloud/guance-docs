@@ -211,14 +211,14 @@ processors:
 
 1、下载源码：[https://github.com/lrwh/observable-demo/tree/main/opentelemetry-collector-sampling](https://github.com/lrwh/observable-demo/tree/main/opentelemetry-collector-sampling)
 
-2、确保已经安装了 [DataKit](https://www.yuque.com/dataflux/datakit/datakit-install)
+2、确保已经安装了 [DataKit](/datakit/datakit-install.md)
 
 | 服务名称              | 端口        | 描述                                                                                                                                                                             |
 | ----------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | otel-collector    |           | otel/opentelemetry-collector-contrib:0.51.0                                                                                                                                    |
 | springboot_server | 8080:8080 | opentelemetry-agent 版本 1.13.1， 源码地址：[https://github.com/lrwh/observable-demo/tree/main/springboot-server](https://github.com/lrwh/observable-demo/tree/main/springboot-server) |
 
-3、Datakit 开启 OpenTelemetry 采集，参照最佳实践[OpenTelemetry 链路数据接入最佳实践](https://www.yuque.com/dataflux/bp/opentelemetry#jGukI) 。
+3、Datakit 开启 OpenTelemetry 采集，参照最佳实践[OpenTelemetry 链路数据接入最佳实践](../integrations/opentelemetry.md) 。
 
 ### 启动服务
 
