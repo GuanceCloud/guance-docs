@@ -60,7 +60,7 @@ root@ruoyi-system-c9c54dbd5-ltcvf:/data/app#
 
 ### 3、接入日志可观测
 
-**参考 **[**Kubernetes 集群中日志采集的几种玩法**](https://www.yuque.com/dataflux/bp/mk0gcl#Rx50y)**，本次主要是采用 socket 方式，也可以用其他方式。**
+**参考 **[**Kubernetes 集群中日志采集的几种玩法**](/best-practices/logs/k8s-logs.md)**，本次主要是采用 socket 方式，也可以用其他方式。**
 
 ## 堆溢出 -java.lang.OutOfMemoryError: Java heap space
 

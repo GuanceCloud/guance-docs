@@ -285,10 +285,12 @@ sudo datakit --restart
 
 ## 1.7. 效果图
 
-如果一切顺利的话，大概 1 分钟内我们就能在中心看到指标图。<br />![14.pythond.png](../images/pythond-1.png)
+如果一切顺利的话，大概 1 分钟内我们就能在中心看到指标图。
+
+![14.pythond.png](../images/pythond-1.png)
 
 ## 1.8. 参考文档
 
-- [官方手册: 用 Python 开发自定义采集器](https://www.yuque.com/dataflux/datakit/pythond)
+- [官方手册: 用 Python 开发自定义采集器](/datakit/pythond.md)
 
-- [官方手册: 通过 Git 管理配置文件](https://www.yuque.com/dataflux/datakit/datakit-conf-how-to#5dd2079e)
+- [官方手册: 通过 Git 管理配置文件](/datakit/git-config-how-to.md)

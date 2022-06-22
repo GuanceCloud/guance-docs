@@ -78,7 +78,7 @@ $ vim /usr/local/datakit/conf.d/datakit.conf
 
 ### 1、配置nginx自身指标监控
 
-详细配置参考[[nginx可观测性最佳实践](https://www.yuque.com/dataflux/bp/nginx)]
+详细配置参考[[nginx可观测性最佳实践](../integrations/nginx.md)]
 
 #### 开启nginx.conf自身性能指标统计模块
 
@@ -194,8 +194,6 @@ $ vim nginx18889.conf
 ![image.png](../images/tag-9.png)
 
 ### 3、配置自定义视图（通过tag区分域名）
-
-**创建步骤参考[**[**创建场景及视图**](https://www.yuque.com/dataflux/bp/sample1#IVN7h)**]**
 
 **步骤：登录观测云—>场景—>新建场景—>新建空白场景—>系统视图（创建NGINX）**
 
