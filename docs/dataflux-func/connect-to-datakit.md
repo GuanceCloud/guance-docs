@@ -48,7 +48,7 @@ DataKit 位于 DataFlux Func 宿主机上时的参考操作：
 4. 确认可以通过`docker0`访问 DataKit：`curl -i http://172.17.0.1:9529/v1/ping`
 5. 返回`HTTP/1.1 200 OK`即表示成功
 
-DataKit 的安装、部署等文档见 [DataKit 文档](/datakit/datakit-how-to)
+DataKit 的安装、部署等文档见 [DataKit 文档](/datakit/)
 
 ### 2.1 直接使用自动生成的 DataKit 数据源
 
