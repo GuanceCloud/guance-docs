@@ -35,7 +35,7 @@ Profile 支持采集使用 Java / Python 等不同语言环境下应用程序运
 
 Deployment 网络支持查看 Deployment 之间的网络流量。支持基于 IP/端口查看源 IP 到目标 IP 之间的网络流量和数据连接情况，通过可视化的方式进行实时展示，帮助企业实时了解业务系统的网络运行状态，快速分析、追踪和定位问题故障，预防或避免因网络性能下降或中断而导致的业务问题。
 
-Deployment 网络数据采集成功后会上报到观测云控制台，您可以在「基础设施」-「容器」-「Deployment」详情页中的「网络」，查看到Deployment 的网络性能监测数据信息；在「基础设施」-「网络」-「Deployment」，您可以查看到工作空间内全部 Deployment 的网络分布与数据连接情况。更多详情可参考 [Deployment 网络](../infrastructure/network.md#deployment_1)。
+Deployment 网络数据采集成功后会上报到观测云控制台，您可以在「基础设施」-「容器」-「Deployment」详情页中的「网络」，查看到Deployment 的网络性能监测数据信息；在「基础设施」-「网络」-「Deployment」，您可以查看到工作空间内全部 Deployment 的网络分布与数据连接情况。更多详情可参考 [Deployment 网络](../infrastructure/network.md#deployment_1) 。
 
 ![](img/5.network.png)
 
@@ -74,11 +74,11 @@ Deployment 网络数据采集成功后会上报到观测云控制台，您可以
 
 #### 其他功能优化
 
-- 基础设施POD查看器蜂窝模式下新增 CPU 使用率、内存使用量填充指标；
-- 优化日志黑名单配置。支持手动输入日志来源，作为日志黑名单的来源；
-- 优化应用性能监测服务列表数据查询时间组件，支持自定义时间范围选择；
-- 优化在 K8S 上安装 DataKit 引导文案，配置 DataWay 数据网关地址中自动增加当前工作空间的 token ；
-- 优化监控器配置 UI 样式。
+- 基础设施POD查看器蜂窝模式下新增 CPU 使用率、内存使用量填充指标
+- 优化日志黑名单配置。支持手动输入日志来源，作为日志黑名单的来源
+- 优化应用性能监测服务列表数据查询时间组件，支持自定义时间范围选择
+- 优化在 K8S 上安装 DataKit 引导文案，配置 DataWay 数据网关地址中自动增加当前工作空间的 token
+- 优化监控器配置 UI 样式
 
 ### DataKit 更新
 
@@ -129,12 +129,9 @@ Deployment 网络数据采集成功后会上报到观测云控制台，您可以
 ### 最佳实践更新
 
 - APM
-
-- - [GraalVM 与 Spring Native 项目实现链路可观测](../best-practices/apm/spring-native.md)
-
+    - [GraalVM 与 Spring Native 项目实现链路可观测](../best-practices/apm/spring-native.md)
 - 接入集成
-
-- - [主机可观测最佳实践 (Linux)](../best-practices/integrations/host.md)
+    - [主机可观测最佳实践 (Linux)](../best-practices/integrations/host.md)
 
 更多最佳实践更新可参考 [最佳实践版本历史](../best-practices/index.md) 。
 
@@ -143,25 +140,21 @@ Deployment 网络数据采集成功后会上报到观测云控制台，您可以
 #### 新增文档
 
 - 阿里云
-
-- - 阿里云 NAT
-  - 阿里云 CDN
+    - 阿里云 NAT
+    - 阿里云 CDN
 
 #### 新增视图
 
 - 阿里云
-
-- - 阿里云 NAT
-  - 阿里云 CDN
-
-
+    - 阿里云 NAT
+    - 阿里云 CDN
 
 
 ## 2022 年 6 月 6 号
 
 ### 观测云计费更新
 
-观测云计费优化[时间线](../billing/billing-method/index.md)计费逻辑，以及指标数据的[数据保存策略](../billing/billing-method/data-storage.md)。原每 300 条 3 元下调为每 1000 条 3 元。同时指标数据新增 3 天、7 天、14 天数据保存策略，指标集支持[自定义数据保存策略](../metrics/explorer.md)。
+观测云计费优化 [时间线](../billing/billing-method/index.md) 计费逻辑，以及指标数据的 [数据保存策略](../billing/billing-method/data-storage.md) 。原每 300 条 3 元下调为每 1000 条 3 元。同时指标数据新增 3 天、7 天、14 天数据保存策略，指标集支持 [自定义数据保存策略](../metrics/explorer.md) 。
 
 时间线统计的是当前工作空间，上报的指标数据中基于标签可以组合而成的所有组合数量。数据保存策略即数据存储时长，是上报到当前工作空间的数据保存时间，超过存储时长的数据将会自动删除。
 
@@ -231,7 +224,7 @@ Deployment 网络数据采集成功后会上报到观测云控制台，您可以
 #### 新增告警配置事件通知等级
 
 告警配置支持自定义选择事件通知等级，包括紧急、重要、警告、恢复、无数据、无数据恢复、无数据视为恢复 7 种选择，支持多选，支持一键清空选项，清空后选项清除，需手动选择对应值。更多告警配置可参考文档 [告警设置](../monitoring/alert-setting.md) 。
-![](14monitor.png)
+![](img/14monitor.png)
 
 #### 其他功能优化
 
@@ -279,14 +272,14 @@ volumes:
 ### 最佳实践更新
 
 - APM
-   - 基于观测云，使用 SkyWalking 实现 RUM、APM 和日志联动分析
-   - 监控最佳实践
-   - OpenTelemetry 可观测建设
-   - OpenTelemetry to Jeager 、Grafana、ELK
-   - OpenTelemetry to Grafana
-   - OpenTelemetry to 观测云
+    - 基于观测云，使用 SkyWalking 实现 RUM、APM 和日志联动分析
+- 监控最佳实践
+    - OpenTelemetry 可观测建设
+    - OpenTelemetry to Jeager 、Grafana、ELK
+    - OpenTelemetry to Grafana
+    - OpenTelemetry to 观测云
 - 观测云小妙招
-   - OpenTelemetry 采样最佳实践
+    - OpenTelemetry 采样最佳实践
 
 更多最佳实践更新可参考 [最佳实践版本历史](../best-practices/index.md) 。
 
@@ -294,18 +287,18 @@ volumes:
 #### 新增文档和视图
 
 - 数据采集
-   - Opentelemetry Collector
+    - Opentelemetry Collector
 - 容器编排
-   - Kubernetes Scheduler
-   - Kubernetes Controller Manager
-   - Kubernetes API Server
-   - Kubernetes Kubelet
+    - Kubernetes Scheduler
+    - Kubernetes Controller Manager
+    - Kubernetes API Server
+    - Kubernetes Kubelet
 #### 新增视图
 
 - 容器编排
-   - Kubernetes Nodes Overview
+    - Kubernetes Nodes Overview
 - 中间件
-   - JVM Kubernetes
+    - JVM Kubernetes
 
 
 ## 2022 年 5 月 19 号
@@ -349,7 +342,7 @@ volumes:
 
 #### 优化日志查看器及详情页
 
-观测云[日志查看器](../logs/explorer.md)默认显示“time”和“message”字段，本次优化支持可隐藏“message”字段显示。
+观测云 [日志查看器](../logs/explorer.md) 默认显示“time”和“message”字段，本次优化支持可隐藏“message”字段显示。
 
 在日志详情页，日志内容根据 message 类型自动显示 Json 和文本两种查看模式。若日志没有 message 字段，则不显示日志内容部分，日志内容支持展开收起，默认为展开状态，收起后仅显示1行的高度。
 
@@ -359,7 +352,7 @@ volumes:
 
 #### 新增网络数据检测监控器
 
-[网络数据检测](../monitoring/monitor/network-detection.md)用于监测工作空间内网络性能的指标数据，通过设置阈值范围，当指标到达阈值后触发告警。“观测云”支持对单个指标设置告警和自定义告警等级。在「监控器」中，点击「+新建监控器」，选择「网络数据检测」，进入检测规则的配置页面。
+[网络数据检测](../monitoring/monitor/network-detection.md) 用于监测工作空间内网络性能的指标数据，通过设置阈值范围，当指标到达阈值后触发告警。“观测云”支持对单个指标设置告警和自定义告警等级。在「监控器」中，点击「+新建监控器」，选择「网络数据检测」，进入检测规则的配置页面。
 
 ![](img/6.monitor_3.png)
 
@@ -394,12 +387,12 @@ volumes:
 ### 最佳实践更新
 
 - 云原生
-   - 利用观测云一键开启Rancher可观测之旅
+    - 利用观测云一键开启Rancher可观测之旅
 - 微服务可观测最佳实践
-   - Kubernetes 集群 应用使用 SkyWalking 采集链路数据
-   - Kubernetes 集群日志上报到同节点的 DataKit 最佳实践
+    - Kubernetes 集群 应用使用 SkyWalking 采集链路数据
+    - Kubernetes 集群日志上报到同节点的 DataKit 最佳实践
 - Gitlab-CI 可观测最佳实践
-   - Gitlab-CI 可观测最佳实践
+    - Gitlab-CI 可观测最佳实践
 
 更多最佳实践更新可参考 [最佳实践版本历史](../best-practices/index.md) 。
 
@@ -408,16 +401,16 @@ volumes:
 #### 新增文档和视图
 
 - 中间件
-   - Resin
-   - Beats
+    - Resin
+    - Beats
 - 主机系统
-   - Procstat
+    - Procstat
 #### 新增视图
 
 - 容器编排
-   - Istio Service
+    - Istio Service
 - 阿里云
-   - ASM Service
+    - ASM Service
 
 
 ## 2022 年 5 月 6 号
@@ -426,22 +419,22 @@ volumes:
 
 #### 优化观测云商业版升级流程
 
-观测云升级到商业版默认开通[观测云费用中心账户结算](../billing/billing-account/enterprise-account.md)，支持更改结算方式为云账号结算，包括[阿里云账号](../billing/billing-account/aliyun-account.md)和 [AWS 云账号](../billing/billing-account/aws-account.md)结算方式。
+观测云升级到商业版默认开通 [观测云费用中心账户结算](../billing/billing-account/enterprise-account.md) ，支持更改结算方式为云账号结算，包括 [阿里云账号](../billing/billing-account/aliyun-account.md) 和 [AWS 云账号](../billing/billing-account/aws-account.md) 结算方式。
 
 #### 新增进程、日志、链路详情页关联网络
 
-观测云[进程](../infrastructure/process.md)、[日志](../logs/explorer.md)、[链路](../application-performance-monitoring/explorer.md)详情页新增关联网络数据分析，支持基于 IP/端口查看源主机/源进程服务到目标之间的网络流量和数据连接情况，通过可视化的方式进行实时展示，帮助企业实时了解业务系统的网络运行状态，快速分析、追踪和定位问题故障，预防或避免因网络性能下降或中断而导致的业务问题。
+观测云 [进程](../infrastructure/process.md)、[日志](../logs/explorer.md)、[链路](../application-performance-monitoring/explorer.md) 详情页新增关联网络数据分析，支持基于 IP/端口查看源主机/源进程服务到目标之间的网络流量和数据连接情况，通过可视化的方式进行实时展示，帮助企业实时了解业务系统的网络运行状态，快速分析、追踪和定位问题故障，预防或避免因网络性能下降或中断而导致的业务问题。
 
 ![](img/9.network_1.png)
 
 #### 场景模块优化
 
 ##### 优化仪表板，去掉编辑模式
-在场景[仪表板](../scene/dashboard.md)顶部导航栏，去掉“编辑”按钮，新增“添加图表”为仪表板添加新的图表，图表添加完成后，点击右上角「完成添加」即可。
+在场景 [仪表板](../scene/dashboard.md) 顶部导航栏，去掉“编辑”按钮，新增“添加图表”为仪表板添加新的图表，图表添加完成后，点击右上角「完成添加」即可。
 
 ![](img/3.view_2.png)
 
-在[图表](../scene/visual-chart//index.md)中，点击「设置」按钮，选择「修改」，即可对图表进行编辑。
+在 [图表](../scene/visual-chart//index.md) 中，点击「设置」按钮，选择「修改」，即可对图表进行编辑。
 
 ![](img/3.view_1.png)
 
@@ -473,7 +466,7 @@ volumes:
 ![](img/6.monitor_2.png)
 
 ##### 优化可用性数据检测
-观测云监控器[可用性数据检测](../monitoring/monitor/usability-detection.md)，优化支持选择 HTTP、TCP、ICMP、WEBSOCKET 拨测类型。
+观测云监控器 [可用性数据检测](../monitoring/monitor/usability-detection.md) ，优化支持选择 HTTP、TCP、ICMP、WEBSOCKET 拨测类型。
 
 ##### 优化告警通知模版，增加关联跳转链接
 邮件、钉钉、微信、飞书收到的告警通知包含“观测云跳转链接”，点击可直接跳转到对应的观测云事件详情，时间范围为当前时间的往前15分钟，即18:45:00的事件，点击链接后跳转至事件详情页，时间范围固定为4.20 18:30:00 ~ 4.20 18:45:00。更多告警通知可参考文档 [告警设置](../monitoring/alert-setting.md) 。
@@ -596,22 +589,21 @@ SSO 单点登录配置用户白名单调整为邮箱域名，用于校验单点�
 - 拨测采集器增加失败任务退出机制
 - 日志新增 `unknown` 等级（status），对于未指定等级的日志均为 `unknown`
 - 容器采集器修复：
-   - 修复 cluster 字段命名问题
-   - 修复 namespace 字段命名问题
-   - 容器日志采集中，如果 Pod Annotation 不指定日志 `source`，那么 DataKit 将按照此优先级来推导日志来源
-   - 对象上报不再受 32KB 字长限制（因 Annotation 内容超 32KB），所有 Kubernetes 对象均删除 `annotation` 
+    - 修复 cluster 字段命名问题
+    - 修复 namespace 字段命名问题
+    - 容器日志采集中，如果 Pod Annotation 不指定日志 `source`，那么 DataKit 将按照此优先级来推导日志来源
+    - 对象上报不再受 32KB 字长限制（因 Annotation 内容超 32KB），所有 Kubernetes 对象均删除 `annotation` 
 
 更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md) 。
 
 ### 最佳实践更新
 
 - 微服务可观测最佳实践
-   - service mesh 微服务架构从研发到金丝雀发布全流程最佳实践(上)
-   - service mesh 微服务架构从研发到金丝雀发布全流程最佳实践(下)
-   - service mesh 微服务架构从研发到金丝雀发布全流程最佳实践(中)
+    - service mesh 微服务架构从研发到金丝雀发布全流程最佳实践(上)
+    - service mesh 微服务架构从研发到金丝雀发布全流程最佳实践(下)
+    - service mesh 微服务架构从研发到金丝雀发布全流程最佳实践(中)
 - 监控最佳实践
-   - JAVA OOM异常可观测最佳实践
-   
+    - JAVA OOM异常可观测最佳实践
 
 更多最佳实践更新可参考 [最佳实践版本历史](../best-practices/index.md) 。
 
@@ -620,27 +612,27 @@ SSO 单点登录配置用户白名单调整为邮箱域名，用于校验单点�
 #### 新增文档
 
 - 应用性能监测 (APM)
-   - Node.JS
-   - Ruby
+    - Node.JS
+    - Ruby
 - 中间件
-   - RocketMQ
+    - RocketMQ
 - 容器编排
-   - Istio
-   - Kube State Metrics
+    - Istio
+    - Kube State Metrics
 - 数据存储
-   - Aerospike
+    - Aerospike
 #### 新增视图
 
 - 容器编排
-   - Kubernetes Overview by Pods
-   - Istio Mesh
-   - Istio Control Plane
+    - Kubernetes Overview by Pods
+    - Istio Mesh
+    - Istio Control Plane
 - 阿里云
-   - 阿里云 ASM Mesh
-   - 阿里云 ASM Control Plane
-   - 阿里云 ASM Workload
+    - 阿里云 ASM Mesh
+    - 阿里云 ASM Control Plane
+    - 阿里云 ASM Workload
 - 中间件
-   - RocketMQ
+    - RocketMQ
 
 
 ## 2022 年 4 月 8 号
@@ -730,14 +722,14 @@ DQL 是专为观测云开发的语言，语法简单，方便使用，可在观�
 ### 最佳实践更新
 
 - 观测云小妙招
-   - 多微服务项目的性能可观测实践
-   - ddtrace 高级用法
-   - Kubernetes 集群使用 ExternalName 映射 DataKit 服务
+    - 多微服务项目的性能可观测实践
+    - ddtrace 高级用法
+    - Kubernetes 集群使用 ExternalName 映射 DataKit 服务
 - 接入(集成)最佳实践
-   - OpenTelemetry 链路数据接入最佳实践
+    - OpenTelemetry 链路数据接入最佳实践
 - 微服务可观测最佳实践
-   - 基于阿里云 ASM 实现微服务可观测最佳实践
-   
+    - 基于阿里云 ASM 实现微服务可观测最佳实践
+
 
 更多最佳实践更新可参考 [最佳实践版本历史](../best-practices/index.md) 。
 
@@ -818,7 +810,7 @@ Nacos 性能指标展示：Nacos 在线时长、Nacos config 长链接数、Naco
 
 在观测云工作空间，通过 「基础设施」-「自定义」-「添加对象分类」，您可以创建新的对象分类，并自定义对象分类名称和对象字段。
 
-添加完自定义对象分类以后，即可通过 [Func 函数处理平台](../dataflux-func/quick-start.md)进行自定义数据上报。关于如何通过 Func 向观测云工作空间上报数据，可参考文档 [自定义对象数据上报](../infrastructure/custom/data-reporting.md) 。
+添加完自定义对象分类以后，即可通过 [Func 函数处理平台](../dataflux-func/quick-start.md) 进行自定义数据上报。关于如何通过 Func 向观测云工作空间上报数据，可参考文档 [自定义对象数据上报](../infrastructure/custom/data-reporting.md) 。
 
 ![](img/11.custom_1.png)
 
@@ -861,9 +853,9 @@ Nacos 性能指标展示：Nacos 在线时长、Nacos config 长链接数、Naco
 ### 最佳实践更新
 
 - 场景最佳实践
-   - RUM 数据上报 DataKit 集群最佳实践
+    - RUM 数据上报 DataKit 集群最佳实践
 - 日志最佳实践
-   - Pod 日志采集最佳实践
+    - Pod 日志采集最佳实践
 
 更多最佳实践更新可参考 [最佳实践版本历史](../best-practices/index.md) 。
 
@@ -925,8 +917,8 @@ Pod 网络数据采集成功后会上报到观测云控制台，在「基础设�
 **2022/03/22**
 
 -  本次对 Tracing 数据采集做了较大的调整，涉及几个方面的不兼容： 
-   - DDtrace 原有 conf 中配置的 `ignore_resources` 字段需改成 `close_resource`，且字段类型由原来的数组（`[...]`）形式改成了字典数组（`map[string][...]`）形式
-   - DDTrace 原数据中采集的 tag `[type](ddtrace#01b88adb)` 字段改成 `[source_type](ddtrace#01b88adb)`
+    - DDtrace 原有 conf 中配置的 `ignore_resources` 字段需改成 `close_resource`，且字段类型由原来的数组（`[...]`）形式改成了字典数组（`map[string][...]`）形式
+    - DDTrace 原数据中采集的 tag `[type](ddtrace#01b88adb)` 字段改成 `[source_type](ddtrace#01b88adb)`
 
 **2022/03/04**
 
@@ -957,10 +949,10 @@ $env:DK_UPGRADE="1"; Set-ExecutionPolicy Bypass -scope Process -Force; Import-Mo
 ### 最佳实践更新
 
 - 自定义接入最佳实践
-   - 快速上手 pythond 采集器的最佳实践
-   - 阿里云“云监控数据”集成最佳实践
+    - 快速上手 pythond 采集器的最佳实践
+    - 阿里云“云监控数据”集成最佳实践
 - 日志最佳实践
-   - logback socket 日志采集最佳实践
+    - logback socket 日志采集最佳实践
 
 更多最佳实践更新可参考 [最佳实践版本历史](../best-practices/index.md) 。
 
@@ -1425,11 +1417,11 @@ Extracted data(drop: false, cost: 3.108038ms):
 #### 其他优化功能
 
 - 图表优化：
-   - 概览图去掉分组的选择；
-   - 时序图、饼图、柱状图图表选择样式调整；
-   - 时间分片新增提示信息；
-   - 图表json支持编辑，和查询/设置联动，支持对输入的Json进行校验，若有错误则显示错误提示；
-   - 时序图分析模式下的样式优化；
+    - 概览图去掉分组的选择；
+    - 时序图、饼图、柱状图图表选择样式调整；
+    - 时间分片新增提示信息；
+    - 图表json支持编辑，和查询/设置联动，支持对输入的Json进行校验，若有错误则显示错误提示；
+    - 时序图分析模式下的样式优化；
 - 付费计划与账单新增提示，结算方式选择aliyun或者aws，账单列表直接显示跳转到对应云服务控制台查看账单信息。
 
 
