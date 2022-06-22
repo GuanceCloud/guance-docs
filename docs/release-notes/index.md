@@ -663,7 +663,7 @@ DQL 是专为观测云开发的语言，语法简单，方便使用，可在观�
 
 #### 可用性监测新增 TCP/ICMP/Websocket 拨测协议
 
-观测云支持自定义拨测任务。通过创建基于`[HTTP](https://www.yuque.com/dataflux/doc/kwbu7h)、[TCP](https://www.yuque.com/dataflux/doc/qgx4ai)、[ICMP](https://www.yuque.com/dataflux/doc/mcmful)、[WEBSOCKET](https://www.yuque.com/dataflux/doc/yytvyg)`等不同协议的拨测任务，全面监测不同地区、不同运营商到各个服务的网络性能、网络质量、网络数据传输稳定性等状况。
+观测云支持自定义拨测任务。通过创建基于 HTTP、TCP、ICMP、WEBSOCKET 等不同协议的拨测任务，全面监测不同地区、不同运营商到各个服务的网络性能、网络质量、网络数据传输稳定性等状况。
 
 ![](img/4.dailtesting_tcp_1.1.png)
 
@@ -906,7 +906,7 @@ Nacos 性能指标展示：Nacos 在线时长、Nacos config 长链接数、Naco
 
 Pod 网络支持查看 Pod 之间的网络流量。支持基于 IP/端口查看源 IP 到目标 IP 之间的网络流量和数据连接情况，通过可视化的方式进行实时展示，帮助企业实时了解业务系统的网络运行状态，快速分析、追踪和定位问题故障，预防或避免因网络性能下降或中断而导致的业务问题。
 
-Pod 网络数据采集成功后会上报到观测云控制台，在「基础设施」-「容器」-「Pod」详情页中的「网络」，您可以查看到工作空间内全部 Pod 网络性能监测数据信息。更多详情可参考 [Pod 网络](https://www.yuque.com/dataflux/doc/gy7lei#PqtQj) 。
+Pod 网络数据采集成功后会上报到观测云控制台，在「基础设施」-「容器」-「Pod」详情页中的「网络」，您可以查看到工作空间内全部 Pod 网络性能监测数据信息。更多详情可参考 [Pod 网络](../infrastructure/contrainer.md) 。
 
 ![](img/7.pod_1.png)
 
