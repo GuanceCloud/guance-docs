@@ -96,7 +96,7 @@ Deployment 网络数据采集成功后会上报到观测云控制台，您可以
     - 支持 Pipeline 通过 `use()` 函数调用外部 Pipeline 脚本
 - 新增 IP 库（MaxMindIP）支持
 - 新增 DDTrace Profile 集成
-- Containerd 日志采集支持通过 image 和 K8s Annotation 配置过滤规则(#849)
+- Containerd 日志采集支持通过 image 和 K8s Annotation 配置过滤规则
 - 文档库整体切换
 
 #### 2022/06/16
