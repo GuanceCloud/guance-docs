@@ -64,17 +64,17 @@
     color: var(--md-accent-fg-color);
 }
 
-.md-nav[data-md-level="1"] > .md-nav__list .md-nav__link {
+.md-nav[data-md-level="1"] > .md-nav__list .md-nav__item {
     color: #333333;
     font-weight: 400;
 }
 
-.md-nav[data-md-level="2"] > .md-nav__list .md-nav__link {
+.md-nav[data-md-level="2"] > .md-nav__list .md-nav__item {
     color: #666666;
     font-weight: 400;
 }
 
-.md-nav[data-md-level="3"] > .md-nav__list .md-nav__link {
+.md-nav[data-md-level="3"] > .md-nav__list .md-nav__item {
     color: #999999;
     font-weight: 400;
 }
