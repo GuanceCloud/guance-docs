@@ -2,7 +2,7 @@
 # Prometheus Exportor 数据采集
 ---
 
-- DataKit 版本：1.4.2
+- DataKit 版本：1.4.3
 - 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
 Prom 采集器可以获取各种 Prometheus Exporters 暴露出来的指标数据，只要配置相应的 Exporter 地址，就可以将指标数据接入。

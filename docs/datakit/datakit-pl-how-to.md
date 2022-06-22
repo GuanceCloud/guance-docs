@@ -2,7 +2,7 @@
 # 如何编写 Pipeline 脚本
 ---
 
-- DataKit 版本：1.4.2
+- DataKit 版本：1.4.3
 - 操作系统支持：全平台
 
 Pipeline 编写较为麻烦，为此，DataKit 中内置了简单的调试工具，用以辅助大家来编写 Pipeline 脚本。
