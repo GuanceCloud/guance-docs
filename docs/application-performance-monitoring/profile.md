@@ -7,7 +7,7 @@ Profile 支持采集使用 Java / Python 等不同语言环境下应用程序运
 
 ## 查看器数据分析
 
-采集 profile 数据需要先 [安装 DataKit](../datakit/datakit-install.md) ，并配置 [ddtrace 采集器](../integrations/ddtrace.md)，配置完成后，DataKit 会将采集到的 profile 数据上传到您的观测云工作空间，您可以通过 Profile 实时数据查看器了解您的程序代码性能。
+采集 profile 数据需要先 [安装 DataKit](../datakit/datakit-install.md) ，并配置 Profile 采集器，配置完成后，DataKit 会将采集到的 profile 数据上传到您的观测云工作空间，您可以通过 Profile 实时数据查看器了解您的程序代码性能。
 
 注意：Profile 数据默认保存 7 天。
 
