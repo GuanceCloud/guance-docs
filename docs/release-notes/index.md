@@ -70,7 +70,7 @@ Deployment 网络数据采集成功后会上报到观测云控制台，您可以
 
 #### 优化进程检测为基础设施对象检测
 
-进程检测优化为基础设施对象监测，新增主机、容器、进程、Pod、Deployment、Replicaset、Job、自定义对象等基础对象选择，用于监控工作空间内的基础设施对象数据。更多详情可参考文档 [基础设施对象检测](../monitor/infrastructure-detection.md) 。
+进程检测优化为基础设施对象监测，新增主机、容器、进程、Pod、Deployment、Replicaset、Job、自定义对象等基础对象选择，用于监控工作空间内的基础设施对象数据。更多详情可参考文档 [基础设施对象检测](../monitoring/monitor/infrastructure-detection.md) 。
 
 #### 其他功能优化
 
