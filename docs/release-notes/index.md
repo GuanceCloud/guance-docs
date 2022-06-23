@@ -23,7 +23,7 @@ Profile 支持采集使用 Java / Python 等不同语言环境下应用程序运
 
 
 
-#### Pipeline 新增除日志数据以外的其他数据类型脚本配置
+#### Pipeline 覆盖全数据的文本分析处理
 
 文本处理（Pipeline）用于数据解析，通过定义解析规则，将各种数据类型切割成符合我们要求的结构化数据。在观测云工作空间「管理」-「文本处理（Pipeline）」，点击「新建Pipeline」即可创建一个新的 pipeline 文件。更多详情可参考文档 [文本处理（Pipeline）](../management/overall-pipeline.md) 。
 
