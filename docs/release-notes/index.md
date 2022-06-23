@@ -17,7 +17,7 @@ icon: zy/release-notes
 
 #### 新增 Profile 可观测
 
-Profile 支持采集使用 Java / Python 等不同语言环境下应用程序运行过程中的动态性能数据，帮助用户查看 CPU、内存、IO 的性能问题。采集 profile 数据需要先 [安装 DataKit](../datakit/datakit-install.md) ，并配置 [ddtrace 采集器](../integrations/ddtrace.md)，配置完成后，DataKit 会将采集到的 profile 数据上传到您的观测云工作空间，您可以通过 Profile 实时数据查看器了解您的程序代码性能。更多详情可参考文档 [Profile](../application-performance-monitoring/profile.md) 。
+Profile 支持采集使用 Java / Python 等不同语言环境下应用程序运行过程中的动态性能数据，帮助用户查看 CPU、内存、IO 的性能问题。采集 profile 数据需要先安装 DataKit，并配置 Profile 采集器，配置完成后，DataKit 会将采集到的 profile 数据上传到您的观测云工作空间，您可以通过 Profile 实时数据查看器了解您的程序代码性能。更多详情可参考文档 [Profile](../application-performance-monitoring/profile.md) 。
 
 ![](img/6.profile_3.png)
 
