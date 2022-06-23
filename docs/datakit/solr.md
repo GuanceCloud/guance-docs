@@ -11,11 +11,7 @@ solr 采集器，用于采集 solr cache 和 request times 等的统计信息。
 
 DataKit 使用 Solr Metrics API 采集指标数据，支持 Solr 7.0 及以上版本。可用于 Solr 6.6，但指标数据不完整。
 
-## 安装部署
-
-#### 指标采集 (必选)
-
-1. 开启 Datakit Solr 插件，复制 sample 文件
+## 配置
 
 进入 DataKit 安装目录下的 `conf.d/db` 目录，复制 `solr.conf.sample` 并命名为 `solr.conf`。示例如下：
 
@@ -44,60 +40,127 @@ DataKit 使用 Solr Metrics API 采集指标数据，支持 Solr 7.0 及以上�
 
 ```
 
-2. 修改 `solr.conf` 配置文件
-```bash
-vi solr.conf
-```
-参数说明
+配置好后，重启 DataKit 即可。
 
-- interval：采集指标频率
-- servers：solr server地址
-- username：用户名
-- password：密码
+## 指标集
 
-```yaml
-[[inputs.solr]]
-  ##(optional) collect interval, default is 10 seconds
-  interval = '10s'
+以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.solr.tags]` 指定其它标签：
 
-  ## specify a list of one or more Solr servers
-  servers = ["http://localhost:8983"]
-
-  ## Optional HTTP Basic Auth Credentials
-  # username = "username"
-  # password = "pa$$word"
-
+``` toml
+ [inputs.solr.tags]
+  # some_tag = "some_value"
+  # more_tag = "some_other_value"
+  # ...
 ```
 
-3. 重启 Datakit (如果需要开启日志，请配置日志采集再重启)
-```bash
-systemctl restart datakit
-```
-
-4. Solr 指标采集验证 `/usr/local/datakit/datakit -M |egrep "最近采集|solr"`
-
-![image.png](../imgs/solr-1.png)
-
-5. 指标预览
-
-![image.png](../imgs/solr-2.png)
 
 
-### 日志采集
+### `solr_cache`
+
+-  标签
+
+
+| 标签名 | 描述    |
+|  ----  | --------|
+|`category`|category name|
+|`core`|solr core|
+|`group`|metric group|
+|`host`|host name|
+|`instance`|instance name, generated based on server address|
+|`name`|cache name|
+
+- 指标列表
+
+
+| 指标 | 描述| 数据类型 | 单位   |
+| ---- |---- | :---:    | :----: |
+|`cumulative_evictions`|Number of cache evictions across all caches since this node has been running.|int|count|
+|`cumulative_hitratio`|Ratio of cache hits to lookups across all the caches since this node has been running.|float|percent|
+|`cumulative_hits`|Number of cache hits across all the caches since this node has been running.|int|count|
+|`cumulative_inserts`|Number of cache insertions across all the caches since this node has been running.|int|count|
+|`cumulative_lookups`|Number of cache lookups across all the caches since this node has been running.|int|count|
+|`evictions`|Number of cache evictions for the current index searcher.|int|count|
+|`hitratio`|Ratio of cache hits to lookups for the current index searcher.|float|percent|
+|`hits`|Number of hits for the current index searcher.|int|count|
+|`inserts`|Number of inserts into the cache.|int|count|
+|`lookups`|Number of lookups against the cache.|int|count|
+|`max_ram`|Maximum heap that should be used by the cache beyond which keys will be evicted.|int|MB|
+|`ram_bytes_used`|Actual heap usage of the cache at that particular instance.|int|B|
+|`size`|Number of entries in the cache at that particular instance.|int|count|
+|`warmup`|Warm-up time for the registered index searcher. This time is taken in account for the "auto-warming" of caches.|int|ms|
+
+
+
+### `solr_request_times`
+
+-  标签
+
+
+| 标签名 | 描述    |
+|  ----  | --------|
+|`category`|category name|
+|`core`|solr core|
+|`group`|metric group|
+|`handler`|request handler|
+|`host`|host name|
+|`instance`|instance name, generated based on server address|
+
+- 指标列表
+
+
+| 指标 | 描述| 数据类型 | 单位   |
+| ---- |---- | :---:    | :----: |
+|`count`|Total number of requests made since the Solr process was started.|int|count|
+|`max`|Max of all the request processing time.|float|ms|
+|`mean`|Mean of all the request processing time.|float|ms|
+|`median`|Median of all the request processing time.|float|ms|
+|`min`|Min of all the request processing time.|float|ms|
+|`p75`|Request processing time for the request which belongs to the 75th Percentile.|float|ms|
+|`p95`|Request processing time in milliseconds for the request which belongs to the 95th Percentile. |float|ms|
+|`p99`|Request processing time in milliseconds for the request which belongs to the 99th Percentile. |float|ms|
+|`p999`|Request processing time in milliseconds for the request which belongs to the 99.9th Percentile. |float|ms|
+|`rate_15min`|Requests per second received over the past 15 minutes.|float|reqps|
+|`rate_1min`|Requests per second received over the past 1 minutes.|float|reqps|
+|`rate_5min`|Requests per second received over the past 5 minutes.|float|reqps|
+|`rate_mean`|Average number of requests per second received|float|reqps|
+|`stddev`|Stddev of all the request processing time.|float|ms|
+
+
+
+### `solr_searcher`
+
+-  标签
+
+
+| 标签名 | 描述    |
+|  ----  | --------|
+|`category`|category name|
+|`core`|solr core|
+|`group`|metric group|
+|`host`|host name|
+|`instance`|instance name, generated based on server address|
+
+- 指标列表
+
+
+| 指标 | 描述| 数据类型 | 单位   |
+| ---- |---- | :---:    | :----: |
+|`deleted_docs`|The number of deleted documents.|int|count|
+|`max_docs`|The largest possible document number.|int|count|
+|`num_docs`|The total number of indexed documents.|int|count|
+|`warmup`|The time spent warming up.|int|ms|
+
+
+
+## 日志采集
 
 如需采集 Solr 的日志，可在 solr.conf 中 将 `files` 打开，并写入 Solr 日志文件的绝对路径。比如：
 
 ```toml
 [inputs.solr.log]
     # 填入绝对路径
-    files = ["/path/to/demo.log"] 
+    files = ["/path/to/demo.log"]
 ```
-
-
-参数说明
-
-- files：日志文件路径 (通常填写访问日志和错误日志)
-- pipeline：日志切割文件(内置)，实际文件路径 /usr/local/datakit/pipeline/solr.p
 
 切割日志示例：
 
@@ -113,19 +176,3 @@ systemctl restart datakit
 | status   | INFO                          |
 | thread   | org.apache.solr.core.SolrCore |
 | time     | 1380630788319000000           |
-
-
-日志预览
-
-![image.png](../imgs/solr-3.png)
-
-## 场景视图
-场景 - 新建场景 - Solr 监控场景
-## 异常检测
-异常检测库 - 新建检测库 - Solr 检测库
-
-## 故障排查
-- [无数据上报排查](why-no-data.md)
-
-## 进一步阅读
-[DataFlux pipeline 文本数据处理](/datakit/pipeline.md)
