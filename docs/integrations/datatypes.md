@@ -1,6 +1,6 @@
 
 
-- DataKit 版本：1.4.2
+- DataKit 版本：1.4.3
 
 # DataKit 支持的数据类型
 

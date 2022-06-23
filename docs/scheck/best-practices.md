@@ -2,7 +2,7 @@
 ---
 
 - 版本：1.0.7-3-g7183440
-- 发布日期：2022-06-21 07:45:18
+- 发布日期：2022-06-22 10:39:36
 - 操作系统支持：windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64
 
 # 简介
@@ -20,8 +20,8 @@
 
 | 服务名称 | 版本                                                         | 是否必须安装 | 用途            |
 | -------- | ------------------------------------------------------------ | ------------ | --------------- |
-| Datakit  | 1.1.6 以上 [安装方法](https://www.yuque.com/dataflux/datakit/datakit-install) | 必须         | 接受scheck 信号 |
-| DataFlux | [DataFlux SaaS](https://dataflux.cn) 或其他私有部署版本      | 必须         | 查看安全巡检    |
+| Datakit  | 1.1.6 以上 [安装方法](../datakit/datakit-install.md) | 必须         | 接受scheck 信号 |
+| DataFlux | [DataFlux SaaS](https://guance.com) 或其他私有部署版本      | 必须         | 查看安全巡检    |
 
 
 

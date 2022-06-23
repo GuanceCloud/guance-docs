@@ -23,7 +23,7 @@ Chia 用户需要对多个主机的 Harvesters 进行全实时监测，细致的
 
 ## 前置条件
 
-已安装 DataKit ([DataKit 安装文档](https://www.yuque.com/dataflux/datakit/datakit-install))
+已安装 DataKit ([DataKit 安装文档](/datakit/datakit-install.md))
 
 ## 配置
 

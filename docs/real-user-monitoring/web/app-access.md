@@ -10,7 +10,7 @@
 
 2021.5.20 
 
--  配合V2 版本指标数据变更，需要升级DataKit 1.1.7-rc0之后的版本 参考[DataKit配置](https://www.yuque.com/dataflux/datakit/rum)。 
+-  配合V2 版本指标数据变更，需要升级DataKit 1.1.7-rc0之后的版本 参考 [DataKit配置](../../integrations/rum.md) 。 
 -  SDK升级V2版本，CDN地址变更为 `https://static.dataflux.cn/browser-sdk/v2/dataflux-rum.js`。
 - 删除 `rum_web_page_performance`,  `rum_web_resource_performance`,` js_error`, `page` 指标数据收集，新增 `view`, `action`, `long_task`, `error` 指标数据采集。
 - 初始化新增 `trackInteractions` 配置，用于开启action（用户行为数据）采集，默认关闭状态。

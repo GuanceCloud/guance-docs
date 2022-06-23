@@ -40,7 +40,7 @@ M::`cpu`:(LAST(`usage_total`)) BY `host`
 
 #### 进程
 
-**查看相关进程**，即可跳转至进程模块，快速查询该主机上所有的进程 (需要开启 [Processes 采集](https://www.yuque.com/dataflux/integrations/yf8iup))
+**查看相关进程**，即可跳转至进程模块，快速查询该主机上所有的进程 (需要开启 [Processes 采集](/integrations/host_processes.md))
 
 ![image.png](../images/data-ship-3.png)
 
@@ -76,7 +76,7 @@ M::`cpu`:(LAST(`usage_total`)) BY `host`
 
 #### 进程
 
-**查看相关进程**，即可跳转至进程模块，快速查询该主机上所有的进程 (需要开启 [Processes 采集](https://www.yuque.com/dataflux/integrations/yf8iup))
+**查看相关进程**，即可跳转至进程模块，快速查询该主机上所有的进程 (需要开启 [Processes 采集](/integrations/host_processes.md))
 
 ![image.png](../images/data-ship-7.png)
 
@@ -88,7 +88,7 @@ M::`cpu`:(LAST(`usage_total`)) BY `host`
 
 #### 安全
 
-**查看相关巡检**，即可跳转至安全巡检模块，快速查询该主机上的安全漏洞 (需要部署 [Scheck](https://www.yuque.com/dataflux/integrations/rls0qo))
+**查看相关巡检**，即可跳转至安全巡检模块，快速查询该主机上的安全漏洞 (需要部署 [Scheck](/integrations/sec-checker.md))
 
 ![image.png](../images/data-ship-9.png)
 
@@ -121,7 +121,7 @@ M::`cpu`:(LAST(`usage_total`)) BY `host`
 
 #### 自定义关联
 
-管理 - 内置视图 - 用户视图 - 创建视图，支持五种字段，分别对应不同的数据 <[更多详情参考](https://www.yuque.com/dataflux/doc/dns233)>
+管理 - 内置视图 - 用户视图 - 创建视图，支持五种字段，分别对应不同的数据
 
 - service (链路服务)
 

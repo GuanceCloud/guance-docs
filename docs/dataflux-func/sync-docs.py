@@ -77,8 +77,9 @@ def prepare_doc(doc):
     _lines.insert(1, '---\n')
     doc = '\n'.join(_lines)
 
+    # 本站文档替换为相对路径
     doc = doc.replace('https://func.guance.com/doc/', '/dataflux-func/')
-    doc = doc.replace('https://www.yuque.com/dataflux/', '/')
+    doc = doc.replace('https://docs.guance.com/', '/')
 
     return doc
 

@@ -2,7 +2,7 @@
 # System
 ---
 
-- DataKit 版本：1.4.2
+- DataKit 版本：1.4.3
 - 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
 system 采集器收集系统负载、正常运行时间、CPU 核心数量以及登录的用户数。

@@ -82,7 +82,7 @@ java  ${JAVA_OPTS} -jar your-app.jar
 -Ddd.trace.health.metrics.statsd.port=8125  自身指标数据采集发送端口，选填   
 -Ddd.service.mapping:应用调用的redis、mysql等别名，选填 
 ```
-如需详细了解 JVM，请参考 [JVM](https://www.yuque.com/dataflux/datakit/jvm) 采集器
+如需详细了解 JVM，请参考 [JVM](/integrations/jvm.md) 采集器
 ### 1. jar 使用方式
 
 开启 statsd
@@ -202,7 +202,7 @@ $ docker-compose up -d
 
 #### 3.1 部署Datakit
 
-在 kubernetes 中使用 DaemonSet 方式部署 Datakit，请参考 `[Datakit DaemonSet安装](https://www.yuque.com/dataflux/datakit/datakit-daemonset-deploy)`，
+在 kubernetes 中使用 DaemonSet 方式部署 Datakit，请参考 `[Datakit DaemonSet安装](/datakit/datakit-daemonset-deploy.md)`，
 
 采集 JVM 指标需要开通 ddtrace 和 statsd 采集器，通过 DaemonSet 方式部署的 datakit，是在 yaml 文件的ENV_DEFAULT_ENABLED_INPUTS环境变量中增加 statsd, ddtrace。
 ```
@@ -855,5 +855,5 @@ OOM（Out of Memory）异常常见有以下几个原因：
 | thread_count | 线程总数量 | int | count |
 
 ## 更多请关注：
-### [如何利用 Dataflux 采集 JVM指标](https://www.yuque.com/dataflux/datakit/jvm)
-### [如何利用 Dataflux 监控 JVM](https://www.yuque.com/dataflux/inputs_view/oi40ga)
+
+- [如何利用 Dataflux 采集 JVM指标](/integrations/jvm.md)

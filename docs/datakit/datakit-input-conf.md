@@ -2,7 +2,7 @@
 # 采集器配置
 ---
 
-- DataKit 版本：1.4.2
+- DataKit 版本：1.4.3
 - 操作系统支持：全平台
 
 DataKit 中采集器配置均使用 [Toml 格式](https://toml.io/cn){:target="_blank"}，所有采集器配置均位于 *conf.d* 目录下：

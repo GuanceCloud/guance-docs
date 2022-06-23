@@ -39,7 +39,7 @@
 
 **由上图可看到，用户访问监测中，其实指标“action_name”按钮名称已经被采集上来了，我们可以利用这一点进行按钮点击次数分析**
 
-_**更多指标详见：**_[_**https://www.yuque.com/dataflux/doc/hlge69#Oi9n4**_](https://www.yuque.com/dataflux/doc/hlge69#Oi9n4)
+_**更多指标详见：**_[Web 应用数据采集](/real-user-monitoring/web/app-data-collection.md)
 
 ## 三：最终效果图
 
@@ -49,11 +49,11 @@ _**更多指标详见：**_[_**https://www.yuque.com/dataflux/doc/hlge69#Oi9n4**
 
 ### 1：集成rum，可根据自己真实情况接入
 
-网站接入参考：[web-rum接入](https://www.yuque.com/dataflux/doc/eqs7v2)
+网站接入参考：[web-rum接入](/real-user-monitoring/web/app-access.md)
 
-APP接入参考：[iOS-rum接入](https://www.yuque.com/dataflux/doc/gsto6k) / [Android-rum接入](https://www.yuque.com/dataflux/doc/pnzoyp)
+APP接入参考：[iOS-rum接入](/real-user-monitoring/ios/app-access.md) / [Android-rum接入](/real-user-monitoring/android/app-access.md)
 
-小程序接入参考：[小程序-rum接入](https://www.yuque.com/dataflux/doc/clgea8)
+小程序接入参考：[小程序-rum接入](/real-user-monitoring/miniapp/app-access.md)
 
 
 ### 2：场景中新建仪表板

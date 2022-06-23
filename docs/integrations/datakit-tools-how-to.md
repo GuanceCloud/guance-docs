@@ -2,7 +2,7 @@
 # 各种其它工具使用
 ---
 
-- DataKit 版本：1.4.2
+- DataKit 版本：1.4.3
 - 操作系统支持：全平台
 
 DataKit 内置很多不同的小工具，便于大家日常使用。可通过如下命令来查看 DataKit 的命令行帮助：
@@ -162,7 +162,6 @@ create_time 1639657028706
 ## DataKit 更新 IP 数据库文件 {#install-ipdb}
 
 可直接使用如下命令安装/更新 IP 地理信息库,安装geolite2只需把iploc换成geolite2：
-
 
 ```shell
 datakit install --ipdb iploc
