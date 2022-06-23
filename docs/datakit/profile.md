@@ -1,5 +1,9 @@
-# Profile
+
+# Profile 采集配置
 ---
+
+- DataKit 版本：1.4.3
+- 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
 Profile 支持采集使用 Java / Python 等不同语言环境下应用程序运行过程中的动态性能数据，帮助用户查看 CPU、内存、IO 的性能问题。
 
@@ -22,6 +26,58 @@ endpoints = ["/profiling/v1/input"]
 ```shell
 sudo datakit service --restart
 ```
+
+## 指标集 {#measurements}
+
+以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.profile.tags]` 指定其它标签：
+
+``` toml
+ [inputs.profile.tags]
+  # some_tag = "some_value"
+  # more_tag = "some_other_value"
+  # ...
+```
+
+
+
+### `profile`
+
+
+
+-  标签
+
+
+| 标签名 | 描述    |
+|  ----  | --------|
+|`container_host`|container hostname|
+|`endpoint`|endpoint info|
+|`env`|application environment info|
+|`http_method`|http request method name|
+|`http_status_code`|http response code|
+|`operation`|span name|
+|`project`|project name|
+|`service`|service name|
+|`source_type`|tracing source type|
+|`span_type`|span type|
+|`status`|span status|
+|`version`|application version info|
+
+- 指标列表
+
+
+| 指标 | 描述| 数据类型 | 单位   |
+| ---- |---- | :---:    | :----: |
+|`duration`|duration of span|int|μs|
+|`message`|origin content of span|string|-|
+|`parent_id`|parent span ID of current span|string|-|
+|`pid`|application process id.|string|-|
+|`priority`||int|-|
+|`resource`|resource name produce current span|string|-|
+|`span_id`|span id|string|-|
+|`start`|start time of span.|int|usec|
+|`trace_id`|trace id|string|-|
+
+
 
 ## 安装运行 Profiling Agent {#install}
 
