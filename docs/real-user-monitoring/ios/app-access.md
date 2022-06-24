@@ -11,9 +11,13 @@
 
 ## iOS应用接入
 
-登录 “观测云” 控制台，进入「应用监测」页面，点击右上角「新建应用」，在新窗口输入「应用名称」，点击「创建」，即可开始配置。
+登录观测云控制台，进入「用户访问监测」页面，点击右上角「新建应用」，在新窗口输入「应用名称」并自定义「应用 ID 标识」，点击「创建」，即可选择应用类型获取接入方式。
 
-![](../img/image_8.png)
+- 应用名称（必填项）：用于识别当前实施用户访问监测的应用名称。
+- 应用 ID 标识（选填）：当前空间内唯一的应用 ID 标识，支持自定义，可用于数据上传匹配；应用ID标识最多为 20 个字符，仅支持输入大小写字母。
+- 应用 ID：若创建应用时填写了应用 ID 标识，点击创建应用以后，会把填写的应用 ID 标识信息拼接到应用 ID 的前面，便于区分应用进行查询和筛选。
+
+![](../img/13.rum_access_3.png)
 ## 安装
 
 ![](https://img.shields.io/cocoapods/p/FTMobileAgent#crop=0&crop=0&crop=1&crop=1&id=xs5E2&originHeight=20&originWidth=82&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)![](https://img.shields.io/cocoapods/v/FTMobileSDK#crop=0&crop=0&crop=1&crop=1&id=Uyl38&originHeight=20&originWidth=122&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)![](https://img.shields.io/cocoapods/l/FTMobileSDK#crop=0&crop=0&crop=1&crop=1&id=SxRum&originHeight=20&originWidth=98&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)![](https://img.shields.io/badge/iOS-api%20%3E=%20iOS%2010-brightgreen#crop=0&crop=0&crop=1&crop=1&id=uFhFJ&originHeight=20&originWidth=118&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=) 
