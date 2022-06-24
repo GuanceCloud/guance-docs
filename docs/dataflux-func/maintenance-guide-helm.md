@@ -1,4 +1,4 @@
-# 通过 Helm 部署
+# 维护手册 - 通过 Helm 部署
 ---
 
 
@@ -61,7 +61,7 @@ helm install {Release Name} func/func -n {Namespace} --create-namespace  \
 
 > 提示：Helm 部署默认会安装 MySQL 和 MySQL。您也可以使用外部的 redis 和 mysql。详细部署方式见 charts 包中的 README 文档
 
-![](deploy-via-helm-guide/install-via-cli.png)
+![](maintenance-guide-helm/install-via-cli.png)
 
 ### 2.4 验证安装
 
@@ -71,7 +71,7 @@ helm install {Release Name} func/func -n {Namespace} --create-namespace  \
 helm ls -n {Namespace}
 ```
 
-![](deploy-via-helm-guide/verify-via-cli.png)
+![](maintenance-guide-helm/verify-via-cli.png)
 
 > 提示：STATUS 为 `deployed` 表示成功
 
@@ -81,9 +81,9 @@ helm ls -n {Namespace}
 
 浏览器访问设置的 ingress 域名，可以直接使用默认配置进行初始化 自定义你的配置，也可以默认保存和初始化数据库。
 
-![](deploy-via-helm-guide/init-func.png)
+![](maintenance-guide-helm/init-func.png)
 
-![](deploy-via-helm-guide/login-func.png)
+![](maintenance-guide-helm/login-func.png)
 
 ## 3. Rancher 可视化方式部署
 
@@ -96,45 +96,81 @@ helm ls -n {Namespace}
 
 登录 Rancher 平台，`应用&应用市场 - Chart 仓库`, 创建仓库，仓库地址为 [https://pubrepo.guance.com/chartrepo/func](https://pubrepo.guance.com/chartrepo/func)
 
-![](deploy-via-helm-guide/chart-repo.png)
+![](maintenance-guide-helm/chart-repo.png)
 
-![](deploy-via-helm-guide/chart-repo-add.png)
+![](maintenance-guide-helm/chart-repo-add.png)
 
 ### 3.3 配置和安装
 
 选择「`Charts` - `Func`」
 
-![](deploy-via-helm-guide/config-charts.png)
+![](maintenance-guide-helm/config-charts.png)
 
 点击安装
 
-![](deploy-via-helm-guide/install-via-rancher.png)
+![](maintenance-guide-helm/install-via-rancher.png)
 
 设置命名空间
 
-![](deploy-via-helm-guide/install-via-rancher-2.png)
+![](maintenance-guide-helm/install-via-rancher-2.png)
 
 设置存储
 
-![](deploy-via-helm-guide/install-via-rancher-3.png)
+![](maintenance-guide-helm/install-via-rancher-3.png)
 
 设置访问方式
 
-![](deploy-via-helm-guide/install-via-rancher-4.png)
+![](maintenance-guide-helm/install-via-rancher-4.png)
 
 ### 3.4 验证安装
 
 选择 `应用&应用市场`-`已安装的应用`
 
-![](deploy-via-helm-guide/verify-via-rancher.png)
+![](maintenance-guide-helm/verify-via-rancher.png)
 
 ### 3.5 初始化系统
 
 > 提示：此步骤与「命令行方式部署 - 初始化系统」相同
 
-## 4. 其他问题
+## 4. Func 升级
 
-### 4.1 浏览器返回 502
+### 4.1 升级 Func Helm 仓库
+
+执行命令：
+
+```bash
+helm repo update
+```
+
+### 4.2 获取当前 Func 版本
+
+执行命令：
+
+```bash
+helm ls -n {Namespace}
+```
+### 4.3 升级 Func
+
+执行命令：
+
+```
+helm upgrade {Release Name} func/func -n {Namespace} --create-namespace  \
+    --set storage.pvc.enabled=true,storage.pvc.storageClass="{Storage Class}" \
+    --set ingress.enabled=true,ingress.hostName="{Host Name}"
+```
+*注意：Helm 升级的参数一定和安装时的参数一样*
+
+### 4.4 验证升级结果
+
+执行命令：
+
+```bash
+helm ls -n {Namespace}
+```
+
+## 5. 其他问题
+
+### 5.1 浏览器返回 502
 
 如果 Helm 状态显示 `deployed`, 可以按照如下步骤进行排查：
 
@@ -184,13 +220,13 @@ func-redis       Pening    pvc-cfceb581-c711-4e1d-9ae9-8063ca1ee1a9   10G    RWX
 func-resources   Bound     pvc-0cc6f1df-666c-4512-bea9-baa40461c81c   10G    RWX    nfs-client    15m
 ```
 
-### 4.2 产生`cannot re-use a name that is still in use`错误
+### 5.2 产生`cannot re-use a name that is still in use`错误
 
 如果部署发现`cannot re-use a name that is still in use` 的错误，说明当前 namespace 已经有了 `{Release Name}`,。
 
 你可以将旧的 `{Release Name}` 删除后安装，也可以更换 `{Release Name}`。
 
-### 4.3 产生`连接到数据源超时`错误
+### 5.3 产生`连接到数据源超时`错误
 
 如果创建数据源发现`连接到数据源超时` 的错误，请*重启所有*与 func 相关的 pod。
 
@@ -205,4 +241,4 @@ func-resources   Bound     pvc-0cc6f1df-666c-4512-bea9-baa40461c81c   10G    RWX
 
 > 提示：func-server 的 func 为` {Release Name}`，会随`{Release Name}`的更改而改变。
 
-![](deploy-via-helm-guide/install-via-error-timeout.png)
+![](maintenance-guide-helm/install-via-error-timeout.png)

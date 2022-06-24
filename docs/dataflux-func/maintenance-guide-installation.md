@@ -1,83 +1,20 @@
-# 快速开始
+# 维护手册 - 安装部署
 ---
 
 
-DataFlux Func 是一个基于 Python 的脚本开发、管理、执行平台。
+本文主要介绍如何在服务器上直接安装、部署 DataFlux Func。
 
-> `DataFlux Func`读作`data flux function`，系统内有时会缩写为`DFF`。
+有关在 k8s 中使用 Helm 安装 DataFlux Func，请参考 [通过 Helm 部署](/dataflux-func/deploy-via-helm-guide/)
 
-前身为 [观测云](https://guance.com/) 下属的一个函数计算组件，目前已成为可独立运行的系统。
+## 1. 使用「携带版」离线安装【推荐】
 
-#### 携带版下载命令
-
-```shell
-/bin/bash -c "$(curl -fsSL t.guance.com/func-portable-download)"
-```
-
-## 0. 阅读前提示
-
-*注意：本文所有涉及到的 shell 命令，在 root 用户下可直接运行，非 root 用户下需要添加 sudo 运行*
-
-*注意：本文仅提供最常见的操作步骤，详细安装部署请参考「维护手册」*
-
-## 1. 系统及环境要求
-
-安装 DataFlux Func 之前，请务必确认环境已经满足以下条件。
-
-### 1.1 系统要求
-
-运行 DataFlux Func 的主机需要满足以下条件：
-
-- CPU 核心数 >= 2
-- 内存容量 >= 4GB
-- 磁盘空间 >= 20GB
-- 网络带宽 >= 10Mbps
-- 操作系统为 Ubuntu 16.04 LTS/CentOS 7.2 以上
-- 纯净系统（安装完操作系统后，除了配置网络外没有进行过其他操作）
-- 开放`8088`端口（本系统默认使用`8088`端口，请确保防火墙、安全组等配置允许`8088`入方向访问）
-- 使用外部 MySQL 时，MySQL 版本必须为 5.7 以上
-- 使用外部 Redis 时，Redis 版本必须为 4.0 以上
-
-*注意：DataFlux Func 不支持 macOS、Windows，您可以选择在虚拟机、云主机中安装 DataFlux Func*
-
-*注意：DataFlux Func 不支持集群版 Redis，有高可用需要请选择主从版*
-
-*注意：如果在阿里云 ECS 上安装 DataFlux Func，并且开启了阿里云盾插件。由于云盾本身占用资源较多，所以系统配置应适当提高*
-
-> 详细操作系统兼容性实测结果，可参考「维护手册 - 已实测操作系统兼容性」
-
-如希望在树莓派上安装，请参考以下文章：
-
-- [在树莓派上运行 - Ubuntu Server 64-bit](/dataflux-func/run-on-raspberry-pi-ubuntu)
-- [在树莓派上运行 - 官方 Raspberry Pi OS](/dataflux-func/run-on-raspberry-pi-os)
-
-### 1.2 软件准备
-
-本系统基于 Docker Stack 运行，因此要求操作系统可以正常使用 Docker 和 Docker Stack
-
-安装脚本本身已经自带了 Docker 的安装包并会在安装时自动安装。
-用户也可以自行安装 Docker 并初始化 Docker Swarm，然后运行安装脚本，
-安装脚本在发现 Docker 已经安装后会自动跳过这部分处理。
-
-- Docker Swarm 初始化命令为：`sudo docker swarm init`
-
-如果本机存在多个网卡，需要在上述初始化命令中指定网卡
-
-- 存在多网卡的建议用户自行安装 Docker 并初始化 Docker Swarm
-- Docker Swarm 指定网卡的初始化命令为：`sudo docker swarm init --advertise-addr={网卡名} --default-addr-pool={默认地址池}`
-- 本机网卡列表可以通过`ifconfig`或者`ip addr`查询
-
-*注意：自动安装脚本在进行`docker swarm init`时，`--advertise-addr`参数会指定为`127.0.0.1`，`--default-addr-pool`参数会指定为`10.255.0.0/16`*
-
-*注意：DataFlux Func 不支持在 snap 版 Docker 上运行*
-
-## 2. 使用「携带版」离线安装
+*本方式为推荐安装方式*
 
 DataFlux Func 支持将所需安装文件下载后，通过 U 盘等移动设备带入无公网环境安装的「携带版」。
 
 下载的「携带版」本身附带了自动安装脚本，执行即可进行安装（详情见下文）
 
-### 2.1 一键命令下载「携带版」安装文件
+### 1.1 一键命令下载「携带版」安装文件
 
 对于 Linux、macOS 等系统，推荐使用官方提供的 shell 命令下载「携带版」。
 
@@ -89,12 +26,26 @@ DataFlux Func 支持将所需安装文件下载后，通过 U 盘等移动设备
 /bin/bash -c "$(curl -fsSL t.guance.com/func-portable-download)"
 ```
 
+如需要下载指定架构的版本，可以使用以下命令下载：
+
+- `Intel x86_64`处理器
+
+```shell
+/bin/bash -c "$(curl -fsSL t.guance.com/func-portable-download)" -- --arch x86_64
+```
+
+- `ARM aarch64`处理器（即 ARM64v8，如：树莓派等）
+
+```shell
+/bin/bash -c "$(curl -fsSL t.guance.com/func-portable-download)" -- --arch aarch64
+```
+
 命令执行完成后，所有安装文件都保存在自动创建的`dataflux-func-portable-{架构}-{版本号}`目录下。
 
 - 对于需要将 DataFlux Func 安装到*无公网*的服务器时，可以先在本机下载，之后将整个目录通过 U 盘等移动存储设备，或`scp`工具等复制到目标机器中
 - 对于需要将 DataFlux Func 安装到可以访问公网的服务器，直接在服务器上下载即可
 
-### 2.2 手工下载「携带版」安装文件
+### 1.2 手工下载「携带版」安装文件
 
 对于不便使用 shell 命令的系统，可手工下载所需安装文件。
 
@@ -118,7 +69,7 @@ DataFlux Func 支持将所需安装文件下载后，通过 U 盘等移动设备
 
 *注意：手工下载时，如使用浏览器等下载时，请注意不要下载到缓存的旧内容！！*
 
-### 2.3 使用自动安装脚本执行安装
+### 1.3 使用「携带版」附带的脚本执行安装
 
 运行安装文件所在目录下的`run-portable.sh`，即可自动配置并最终启动整个 DataFlux Func：
 
@@ -134,14 +85,6 @@ sudo /bin/bash run-portable.sh
 sudo /bin/bash {安装文件所在目录}/run-portable.sh
 ```
 
-系统默认使用`8088`端口，如需要安装时指定端口号，可以加上`--port {端口号}`参数：
-
-```shell
-sudo /bin/bash run-portable.sh --port 9000
-```
-
-> 更多配置参数见下文「安装选项」或「维护手册」-「安装选项」
-
 使用自动安装脚本可以实现几分钟内快速安装运行，自动配置的内容如下：
 
 - 运行 MySQL、Redis、DataFlux Func（包含 Server，Worker，Beat）
@@ -150,7 +93,7 @@ sudo /bin/bash run-portable.sh --port 9000
 - Redis 不设密码
 - MySQL、Redis 不提供外部访问
 
-执行完成后，可以使用浏览器访问`http://{服务器 IP 地址/域名}:{端口}`进行初始化操作界面。
+执行完成后，可以使用浏览器访问`http://{服务器 IP 地址/域名}:8088`进行初始化操作界面。
 
 *注意：如果运行环境性能较差，应当使用`docker ps`命令确认所有组件成功启动后，方可访问（见以下列表）*
 
@@ -163,11 +106,7 @@ sudo /bin/bash run-portable.sh --port 9000
 7. `dataflux-func_worker-8-9`
 8. `dataflux-func_beat`
 
-## 3. 安装选项
-
-自动安装脚本支持一些安装选项，用于适应不同的安装需求
-
-### 3.1 「携带版」指定安装选项
+### 1.4 「携带版」指定安装选项
 
 安装「携带版」时，只需要在自动安装命令后添加`--{参数}[ 参数配置（如有）]`，即可指定安装选项
 
@@ -177,11 +116,99 @@ sudo /bin/bash run-portable.sh --port 9000
 sudo /bin/bash run-portable.sh --port 9000
 ```
 
-### 3.2 可用安装选项
+> 可用安装选项见下文
 
-具体参数详情见下文
+## 2. 使用一键安装命令在线安装【不推荐】
 
-##### `--mini`：安装迷你版
+*注意：由于涉及驻云镜像库登录等事宜，本方式不做为首推方案*
+
+*注意：需要事先已经安装好 Docker 且配置好 Docker Swarm，并已经登录驻云官方镜像库`pubrepo.jiagouyun.com`*
+
+DataFlux Func 提供了一键在线安装脚本，可以在数分钟内完成安装并运行。
+
+运行以下命令，即可自动下载配置脚本并最终启动整个 DataFlux Func：
+
+```shell
+sudo /bin/bash -c "$(curl -fsSL t.guance.com/func-docker-stack-run)"
+```
+
+使用自动安装脚本可以实现几分钟内快速安装运行，自动配置的内容如下：
+
+- 运行 MySQL、Redis、DataFlux Func（包含 Server，Worker，Beat）
+- 自动创建并将所有数据保存于`/usr/local/dataflux-func/`目录下（包括 MySQL 数据、Redis 数据、DataFlux Func 配置、日志等文件）
+- 随机生成 MySQL `root`用户密码、系统 Secret，并保存于 DataFlux Func 配置文件中
+- Redis 不设密码
+- MySQL、Redis 不提供外部访问
+
+执行完成后，可以使用浏览器访问`http://localhost:8088`进行初始化操作界面。
+
+*注意：如果运行环境性能较差，应当使用`docker ps`命令确认所有组件成功启动后，方可访问（见以下列表）*
+
+1. `dataflux-func_mysql`
+2. `dataflux-func_redis`
+3. `dataflux-func_server`
+4. `dataflux-func_worker-0`
+5. `dataflux-func_worker-1-6`
+6. `dataflux-func_worker-7`
+7. `dataflux-func_worker-8-9`
+8. `dataflux-func_beat`
+
+### 2.1 在线安装版指定安装选项
+
+使用一键安装命令在线安装时，只需要在自动安装命令后添加`-- --{参数}[ 参数配置（如有）]`，即可指定安装选项
+
+如，指定安装目录：
+
+```shell
+sudo /bin/bash -c "$(curl -fsSL t.guance.com/func-docker-stack-run)" -- --install-dir /home/dev/datafluxfunc
+```
+
+*注意：参数前确实有`--`，表示参数传递给需要执行的脚本，此处不是笔误*
+
+> 可用安装选项见下文
+
+## 3. 验证安装
+
+DataFlux Func 默认安装完成后，就已经附带了一些示例脚本。
+
+依次执行以下操作，即可验证安装：
+
+1. 点击顶部导航条的「脚本编辑器」，在左侧栏依次选择「脚本库」-「示例」-「基础演示」
+2. 在右侧脚本编辑器顶部，点击「编辑」进入编辑模式，选择「hello_world」函数并点击「执行」按钮执行函数
+3. 此时，如果在底部「脚本输出」中，能够正常看到函数的返回值
+
+至此，验证安装完毕
+
+### 3.1 各服务说明
+
+默认情况下，DataFlux Func 正常启动后，共有如下服务运行：
+
+| 名称                       | 说明                                                                         |
+| -------------------------- | ---------------------------------------------------------------------------- |
+| `dataflux-func_server`     | DataFlux Func 的前端服务。<br>主要用于提供 Web 界面、API 接口等              |
+| `dataflux-func_worker-0`   | 监听#0 号队列的 Python 工作单元。<br>主要处理 DataFlux Func 的内部任务       |
+| `dataflux-func_worker-1-6` | 监听#1~#6 号队列的 Python 工作单元。<br>主要处理同步任务（授权链接）         |
+| `dataflux-func_worker-7`   | 监听#7 号队列的 Python 工作单元。<br>主要处理在 Web 界面中运行脚本的调试任务 |
+| `dataflux-func_worker-8-9` | 监听#1~#6 号队列的 Python 工作单元。<br>主要处理异步任务（自动触发、批处理） |
+| `dataflux-func_beat`       | 自动触发任务的触发器，全局只能开启 1 个                                      |
+| `dataflux-func_mysql`      | DataFlux Func 自带的内置 MySQL                                               |
+| `dataflux-func_redis`      | DataFlux Func 自带的内置 Redis                                               |
+
+### 3.2 数据保存位置
+
+DataFlux Func 运行需要存储各种不同的数据，大致内容及存储位置如下：
+
+| 存储    | 存储内容                                                                                                                                                                            |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `MySQL` | 绝大部分在 UI 操作中产生的数据，包括且不限于：<br>1. 脚本、数据源配置、环境变量<br>2. 用户信息、授权链接配置、自动触发配置、批处理配置<br>3. 操作记录、脚本运行记录、导入导出记录等 |
+| `Redis` | 主要用于缓存和队列，包括且不限于：<br>1. 用户登录信息<br>2. 脚本运行时建立的各种缓存<br>3. 脚本执行任务队列<br>4. Func 自身监控数据等                                               |
+| `磁盘`  | 主要用于必须以文件形式存在的数据，包括且不限于：<br>1. DataFlux Func 系统配置<br>2. PIP 工具安装的第三方包<br>3. 用户上传的文件<br>4. 数据库备份文件等                              |
+
+## 4. 安装选项
+
+在执行安装脚本时，可以指定安装选项以满足个性化需求：
+
+### `--mini`：安装迷你版
 
 针对低配置环境下，需要节约资源时的安装模式。
 
@@ -195,28 +222,22 @@ sudo /bin/bash run-portable.sh --port 9000
     - 内存容量 >= 2GB
 - 如不使用内置的 MySQL、Redis，系统要求可以进一步降低
 
-##### `--port {端口号}`：指定监听端口号
+### `--port {端口号}`：指定监听端口号
 
 DataFlux Func 默认使用`8088`端口访问，如果此端口被其他程序占用，可以选择其他端口，如：`9000`。
 
-##### `--install-dir {安装目录}`：指定安装目录
+### `--install-dir {安装目录}`：指定安装目录
 
 需要安装到与默认路径`/usr/local/dataflux-func`不同的路径下时，可指定此参数
 
-##### `--no-mysql`：禁用内置 MySQL
+### `--no-mysql`：禁用内置 MySQL
 
 需要使用已有的 MySQL 数据库时，可指定此参数，禁止在本机启动 MySQL。
 
 *注意：启用此选项后，需要在安装完成后的配置页面指定正确的 MySQL 连接信息*
 
-##### `--no-redis`：禁用内置 Redis
+### `--no-redis`：禁用内置 Redis
 
 需要使用已有的 Redis 数据库时，可指定此参数，禁止在本机启动 Redis。
 
 *注意：启用此选项后，需要在安装完成后的配置页面指定正确的 Redis 连接信息*
-
-## 4. 相关链接
-
-- [观测云官方网站](https://guance.com/)
-- [DataFlux Func 官方网站](https://func.guance.com/)
-- [DataFlux Func 宣传小册子](https://t.guance.com/func-intro)

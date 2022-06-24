@@ -5,9 +5,19 @@ nav:
   - 手册:
     - guide-doc-intro.md
     - quick-start.md
-    - development-guide.md
-    - maintenance-guide.md
-    - deploy-via-helm-guide.md
+    - 开发手册:
+      - development-guide.md
+      - 基础: development-guide-basic.md
+      - 内置功能: development-guide-builtin-features.md
+      - 数据源对象 API: development-guide-data-source-api.md
+      - 设计与实践: development-guide-design-and-practice.md
+      - 第三方包: development-guide-3rd-party-package.md
+    - 维护手册:
+      - maintenance-guide.md
+      - 系统要求: maintenance-guide-requirement.md
+      - 安装部署: maintenance-guide-installation.md
+      - 通过 Helm 部署: maintenance-guide-helm.md
+      - 日常维护: maintenance-guide-daily-operation.md
     - sidecar-guide.md
     - trouble-shooting.md
 
