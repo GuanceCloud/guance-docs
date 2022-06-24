@@ -10,7 +10,7 @@
 
 脚本市场中腾讯云采集器底层使用了腾讯云的官方 SDK`tencentcloud-sdk-python`。
 
-腾讯云官方 SDK 区分「总包」和「散包」，总包为包含所有产品的 SDK、散包为每个产品单独的 SDK，且两者能同时使用。
+腾讯云官方 SDK 区分「总包」和「散包」，总包为包含所有产品的 SDK、散包为每个产品单独的 SDK，且两者*不能*同时使用。
 
 腾讯云 SDK 的 [官方文档](https://github.com/TencentCloud/tencentcloud-sdk-python#%E9%80%9A%E8%BF%87-pip-%E5%AE%89%E8%A3%85%E6%8E%A8%E8%8D%90) 也证实了这一点：
 
@@ -39,13 +39,13 @@ def test():
 
 可以通过以下方法检查是否同时安装了腾讯云 SDK 的总包和散包：
 
-### 第 1 步
+### 第 1 步：进入第三方包安装目录
 
 打开 DataFlux Func 的「管理 - 实验性功能 - 文件管理器」，进入`extra-python-packages/`目录：
 
 ![](script-market-guance-tencentcloud-sdk-module-issue/open-file-manager.png)
 
-### 第 2 步
+### 第 2 步：检查腾讯云 SDK 包
 
 查找`tencentcloud`开头的目录，如果同时存在`tencentcloud_sdk_python-{版本号}.dist-info`和`tencentcloud_sdk_python_{common 或具体产品名}-{版本号}.dist-info`等目录，则说明同时安装了总包和散包：
 
@@ -55,17 +55,17 @@ def test():
 
 如果已经产生了上述问题，那么，可以通过删除已经安装的包文件来修复此问题。
 
-### 第 1 步
+### 第 1 步：进入第三方包安装目录
 
 在 DataFlux Func 的「管理 - 实验性功能 - 文件管理器」，进入`extra-python-packages/`目录，删除所有`tencentcloud`开头的文件夹：
 
 ![](script-market-guance-tencentcloud-sdk-module-issue/delete-package-folder.png)
 
-### 第 2 步
+### 第 2 步：重启 DataFlux Func
 
 重启整个 DataFlux Func。
 
-### 第 3 步
+### 第 3 步：重新安装腾讯云 SDK
 
 重新使用「PIP 工具」安装总包`tencentcloud-sdk-python`，并且*以后也不要再安装任何散包*。
 
