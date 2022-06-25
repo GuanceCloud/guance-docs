@@ -32,7 +32,7 @@ markdown_extensions:
   - pymdownx.tabbed:
       alternate_style: true
   - pymdownx.highlight:
-      anchor_linenums: false
+      anchor_linenums: true
       auto_title: false
       linenums: false
   - pymdownx.inlinehilite

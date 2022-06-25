@@ -39,7 +39,7 @@
 
 	引入(可参考uniapp官方[npm引入方式](https://uniapp.dcloud.net.cn/frame?id=npm%e6%94%af%e6%8c%81))
 
-	```javascript
+	```javascript hl_lines="5"
 	...
 	//#ifndef H5 || APP-PLUS || APP-NVUE || APP-PLUS-NVUE
 	import { datafluxRum } from '@cloudcare/rum-uniapp'
@@ -80,7 +80,7 @@
 
 	下载文件本地方式引入([下载地址](https://static.dataflux.cn/miniapp-sdk/v2/dataflux-rum-uniapp.js))
 
-	```javascript
+	```javascript hl_lines="5"
 	...
 	//#ifndef H5 || APP-PLUS || APP-NVUE || APP-PLUS-NVUE
 	import { datafluxRum } from './dataflux-rum-miniapp.js'; // js文件本地路径
