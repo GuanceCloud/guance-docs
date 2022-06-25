@@ -36,100 +36,99 @@
 
 
 
-| 接入方式 | 简介 |
-| --- | --- |
-| NPM | 通过把 SDK 代码一起打包到你的前端项目中，此方式可以确保对前端页面的性能不会有任何影响，不过可能会错过 SDK 初始化之前的的请求、错误的收集。 |
+| 接入方式     | 简介                                                                                                                                                             |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| NPM          | 通过把 SDK 代码一起打包到你的前端项目中，此方式可以确保对前端页面的性能不会有任何影响，不过可能会错过 SDK 初始化之前的的请求、错误的收集。                       |
 | CDN 异步加载 | 通过 CDN 加速缓存，以异步脚本引入的方式，引入 SDK 脚本，此方式可以确保 SDK 脚本的下载不会影响页面的加载性能，不过可能会错过 SDK 初始化之前的的请求、错误的收集。 |
-| CDN 同步加载 | 通过 CDN 加速缓存，以同步脚本引入的方式，引入 SDK 脚本，此方式可以确保能够收集到所有的错误，资源，请求，性能指标。不过可能会影响页面的加载性能。 |
+| CDN 同步加载 | 通过 CDN 加速缓存，以同步脚本引入的方式，引入 SDK 脚本，此方式可以确保能够收集到所有的错误，资源，请求，性能指标。不过可能会影响页面的加载性能。                 |
 
+=== "NPM"
 
-### NPM
+    ```javascript
+    import { datafluxRum } from '@cloudcare/browser-rum'
 
-```javascript
-import { datafluxRum } from '@cloudcare/browser-rum'
-
-datafluxRum.init({
-  applicationId: '<DATAFLUX_APPLICATION_ID>',
-  datakitOrigin: '<DATAKIT ORIGIN>',
-  env: 'production',
-  version: '1.0.0',
-  trackInteractions: true,
-})
-```
-
-### CDN 异步加载
-
-```javascript
-<script>
-  (function (h, o, u, n, d) {
-    h = h[d] = h[d] || {
-      q: [],
-      onReady: function (c) {
-        h.q.push(c)
-      }
-    }
-    d = o.createElement(u)
-    d.async = 1
-    d.src = n
-    n = o.getElementsByTagName(u)[0]
-    n.parentNode.insertBefore(d, n)
-  })(
-    window,
-    document,
-    'script',
-    'https://static.dataflux.cn/browser-sdk/v2/dataflux-rum.js',
-    'DATAFLUX_RUM'
-  )
-  DATAFLUX_RUM.onReady(function () {
-    DATAFLUX_RUM.init({
-      applicationId: '<DATAFLUX_APPLICATION_ID>',
-      datakitOrigin: '<DATAKIT ORIGIN>',
-      env: 'production',
-      version: '1.0.0',
-      trackInteractions: true,
+    datafluxRum.init({
+        applicationId: '<DATAFLUX_APPLICATION_ID>',
+        datakitOrigin: '<DATAKIT ORIGIN>',
+        env: 'production',
+        version: '1.0.0',
+        trackInteractions: true,
     })
-  })
-</script>
-```
+    ```
 
-### CDN 同步加载
+=== "CDN 异步加载"
 
-```javascript
-<script
-  src="https://static.dataflux.cn/browser-sdk/v2/dataflux-rum.js" 
-  type="text/javascript"
-></script>
-<script>
-  window.DATAFLUX_RUM &&
-    window.DATAFLUX_RUM.init({
-      applicationId: '<DATAFLUX_APPLICATION_ID>',
-      datakitOrigin: '<DATAKIT ORIGIN>',
-      env: 'production',
-      version: '1.0.0',
-    	trackInteractions: true,
+    ```javascript
+    <script>
+    (function (h, o, u, n, d) {
+        h = h[d] = h[d] || {
+        q: [],
+        onReady: function (c) {
+            h.q.push(c)
+        }
+        }
+        d = o.createElement(u)
+        d.async = 1
+        d.src = n
+        n = o.getElementsByTagName(u)[0]
+        n.parentNode.insertBefore(d, n)
+    })(
+        window,
+        document,
+        'script',
+        'https://static.dataflux.cn/browser-sdk/v2/dataflux-rum.js',
+        'DATAFLUX_RUM'
+    )
+    DATAFLUX_RUM.onReady(function () {
+        DATAFLUX_RUM.init({
+            applicationId: '<DATAFLUX_APPLICATION_ID>',
+            datakitOrigin: '<DATAKIT ORIGIN>',
+            env: 'production',
+            version: '1.0.0',
+            trackInteractions: true,
+        })
     })
-</script>
-```
+    </script>
+    ```
+
+=== "CDN 同步加载"
+
+    ```javascript
+    <script
+    src="https://static.dataflux.cn/browser-sdk/v2/dataflux-rum.js" 
+    type="text/javascript"
+    ></script>
+    <script>
+    window.DATAFLUX_RUM &&
+        window.DATAFLUX_RUM.init({
+            applicationId: '<DATAFLUX_APPLICATION_ID>',
+            datakitOrigin: '<DATAKIT ORIGIN>',
+            env: 'production',
+            version: '1.0.0',
+            trackInteractions: true,
+        })
+    </script>
+    ```
 
 ## 配置
 
 ### 初始化参数
 
-| 参数 | 类型 | 是否必须 | 默认值 | 描述 |
-| --- | --- | --- | --- | --- |
-| `applicationId` | String | 是 |  | 从观测云创建的应用 ID |
-| `datakitOrigin` | String | 是 |  | datakit 数据上报 Origin 注释: <br>`协议（包括：//），域名（或IP地址）[和端口号]`<br> 例如：<br>[https://www.datakit.com](https://www.datakit.com), <br>[http://100.20.34.3:8088](http://100.20.34.3:8088) |
-| `env` | String | 否 |  | web 应用当前环境， 如 prod：线上环境；gray：灰度环境；pre：预发布环境 common：日常环境；local：本地环境； |
-| `version` | String | 否 |  | web 应用的版本号 |
-| `resourceSampleRate` | Number | 否 | `100` | 资源指标数据收集百分比: <br>`100`<br>表示全收集，<br>`0`<br>表示不收集 |
-| `sampleRate` | Number | 否 | `100` | 指标数据收集百分比: <br>`100`<br>表示全收集，<br>`0`<br>表示不收集 |
-| `trackSessionAcrossSubdomains` | Boolean | 否 | `false` | 同一个域名下面的子域名共享缓存 |
-| `traceType` | Enum | 否 | `ddtrace` | 【新增】配置链路追踪工具类型，如果不配置默认为`ddtrace`。目前支持 `ddtrace`、`zipkin`、`skywalking_v3`、`jaeger`、`zipkin_single_header`、`w3c_traceparent` 6 种数据类型。注： `opentelemetry` 支持 `zipkin_single_header`,`w3c_traceparent`,`zipkin`、`jaeger`4 种类型。<br><br>注意：1.该配置的生效，需要依赖 allowedTracingOrigins 配置项。2.配置相应类型的traceType 需要对相应的API服务 设置不同的 Access-Control-Allow-Headers 具体查看 APM 如何关联 RUM，具体查看 [APM 如何关联 RUM ](../../application-performance-monitoring/collection/connect-web-app.md) |
-| `traceId128Bit` | Boolean | 否 | `false` | 是否以128字节的方式生成 `traceID`，与`traceType` 对应，目前支持类型 `zipkin`、`jaeger` |
-| `allowedDDTracingOrigins` | Array | 否 | `[]` | 【不建议使用】允许注入`trace`采集器所需header头部的所有请求列表。可以是请求的origin，也可以是是正则，origin:`协议（包括：//），域名（或IP地址）[和端口号]`<br> 例如：<br>`["https://api.example.com", /https:\\/\\/.*\\.my-api-domain\\.com/]` |
-| `allowedTracingOrigins` | Array | 否 | `[]` | 【新增】允许注入`trace`采集器所需header头部的所有请求列表。可以是请求的origin，也可以是是正则，origin: `协议（包括：//），域名（或IP地址）[和端口号]`<br> 例如：<br>`["https://api.example.com", /https:\\/\\/.*\\.my-api-domain\\.com/]` |
-| `trackInteractions` | Boolean | 否 | `false` | 是否开启用户行为采集 |
-| `isServerError` | Function | 否 | `function(request) {return false}` | 默认情况下，请求如果status code>= 500 则定义为错误请求，会相应的采集为error 指标数据。为满足部分场景可能并非是通过status code 来判断业务请求的错误情况，提供可通过用户自定义的方式来判断请求是否为`error`请求，callback参数为请求对应的相关返回参数： `{ isAborted: false, method:"get",response: "{...}",status: 200,url: "xxxx" }`, 如果方法返回为true，则该请求相关数据会被采集为`error`指标 <br>*该参数 方法返回结果必须为Boolean 类型， 否则认为是无效参数* |
+| 参数                           | 类型     | 是否必须 | 默认值                             | 描述                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| ------------------------------ | -------- | -------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `applicationId`                | String   | 是       |                                    | 从观测云创建的应用 ID                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| `datakitOrigin`                | String   | 是       |                                    | datakit 数据上报 Origin 注释: <br>`协议（包括：//），域名（或IP地址）[和端口号]`<br> 例如：<br>[https://www.datakit.com](https://www.datakit.com), <br>[http://100.20.34.3:8088](http://100.20.34.3:8088)                                                                                                                                                                                                                                                                                                                                                           |
+| `env`                          | String   | 否       |                                    | web 应用当前环境， 如 prod：线上环境；gray：灰度环境；pre：预发布环境 common：日常环境；local：本地环境；                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| `version`                      | String   | 否       |                                    | web 应用的版本号                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `resourceSampleRate`           | Number   | 否       | `100`                              | 资源指标数据收集百分比: <br>`100`<br>表示全收集，<br>`0`<br>表示不收集                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| `sampleRate`                   | Number   | 否       | `100`                              | 指标数据收集百分比: <br>`100`<br>表示全收集，<br>`0`<br>表示不收集                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `trackSessionAcrossSubdomains` | Boolean  | 否       | `false`                            | 同一个域名下面的子域名共享缓存                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `traceType`                    | Enum     | 否       | `ddtrace`                          | 【新增】配置链路追踪工具类型，如果不配置默认为`ddtrace`。目前支持 `ddtrace`、`zipkin`、`skywalking_v3`、`jaeger`、`zipkin_single_header`、`w3c_traceparent` 6 种数据类型。注： `opentelemetry` 支持 `zipkin_single_header`,`w3c_traceparent`,`zipkin`、`jaeger`4 种类型。<br><br>注意：1.该配置的生效，需要依赖 allowedTracingOrigins 配置项。2.配置相应类型的traceType 需要对相应的API服务 设置不同的 Access-Control-Allow-Headers 具体查看 APM 如何关联 RUM，具体查看 [APM 如何关联 RUM ](../../application-performance-monitoring/collection/connect-web-app.md) |
+| `traceId128Bit`                | Boolean  | 否       | `false`                            | 是否以128字节的方式生成 `traceID`，与`traceType` 对应，目前支持类型 `zipkin`、`jaeger`                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| `allowedDDTracingOrigins`      | Array    | 否       | `[]`                               | 【不建议使用】允许注入`trace`采集器所需header头部的所有请求列表。可以是请求的origin，也可以是是正则，origin:`协议（包括：//），域名（或IP地址）[和端口号]`<br> 例如：<br>`["https://api.example.com", /https:\\/\\/.*\\.my-api-domain\\.com/]`                                                                                                                                                                                                                                                                                                                      |
+| `allowedTracingOrigins`        | Array    | 否       | `[]`                               | 【新增】允许注入`trace`采集器所需header头部的所有请求列表。可以是请求的origin，也可以是是正则，origin: `协议（包括：//），域名（或IP地址）[和端口号]`<br> 例如：<br>`["https://api.example.com", /https:\\/\\/.*\\.my-api-domain\\.com/]`                                                                                                                                                                                                                                                                                                                           |
+| `trackInteractions`            | Boolean  | 否       | `false`                            | 是否开启用户行为采集                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `isServerError`                | Function | 否       | `function(request) {return false}` | 默认情况下，请求如果status code>= 500 则定义为错误请求，会相应的采集为error 指标数据。为满足部分场景可能并非是通过status code 来判断业务请求的错误情况，提供可通过用户自定义的方式来判断请求是否为`error`请求，callback参数为请求对应的相关返回参数： `{ isAborted: false, method:"get",response: "{...}",status: 200,url: "xxxx" }`, 如果方法返回为true，则该请求相关数据会被采集为`error`指标 <br>*该参数 方法返回结果必须为Boolean 类型， 否则认为是无效参数*                                                                                                    |
 
 
 ## 问题

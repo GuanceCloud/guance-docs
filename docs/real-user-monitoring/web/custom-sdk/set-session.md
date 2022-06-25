@@ -6,29 +6,29 @@
 
 ### 添加session
 
-#### CDN 同步
+=== "CDN 同步"
 
-```javascript
-window.DATAFLUX_RUM && window.DATAFLUX_RUM.addDebugSession('debug_session_xx') 
-// session ID 最好能指定为特定场景下，可以识别的字符
-```
+    ```javascript
+    window.DATAFLUX_RUM && window.DATAFLUX_RUM.addDebugSession('debug_session_xx') 
+    // session ID 最好能指定为特定场景下，可以识别的字符
+    ```
 
-#### CDN 异步
+=== "CDN 异步"
 
-```javascript
-DATAFLUX_RUM.onReady(function() {
-    DATAFLUX_RUM.addDebugSession('debug_session_xx') 
-})
-// session ID 最好能指定为特定场景下，可以识别的字符
-```
+    ```javascript
+    DATAFLUX_RUM.onReady(function() {
+        DATAFLUX_RUM.addDebugSession('debug_session_xx') 
+    })
+    // session ID 最好能指定为特定场景下，可以识别的字符
+    ```
 
-#### NPM
+=== "NPM"
 
-```javascript
-import { datafluxRum } from '@cloudcare/browser-rum'
-datafluxRum.addDebugSession()
-// session ID 最好能指定为特定场景下，可以识别的字符
-```
+    ```javascript
+    import { datafluxRum } from '@cloudcare/browser-rum'
+    datafluxRum.addDebugSession()
+    // session ID 最好能指定为特定场景下，可以识别的字符
+    ```
 
 注意：设置的 session ID 默认情况下在无任何操作或者不主动移除的情况，会话过期时长为15分钟。 
 
@@ -36,63 +36,63 @@ datafluxRum.addDebugSession()
 
 如果在设置了自定义 session 的情况下，通过获取 session 信息 API ，能够获取当前状态下设置的 id(session ID)、created(创建时间)。
 
-#### CDN 同步
+=== "CDN 同步"
 
-```javascript
-window.DATAFLUX_RUM && window.DATAFLUX_RUM.getDebugSession() 
-// {
-//	created: 1628653003152, 毫秒时间戳,
-//  format_created: 2021-08-11 11:39:32.455, 格式化时间,
-//  id: xxxx, 设置的自定义id
-// }
-```
-
-#### CDN异步
-
-```javascript
-DATAFLUX_RUM.onReady(function() {
-    DATAFLUX_RUM.getDebugSession() 
+    ```javascript
+    window.DATAFLUX_RUM && window.DATAFLUX_RUM.getDebugSession() 
     // {
     //	created: 1628653003152, 毫秒时间戳,
     //  format_created: 2021-08-11 11:39:32.455, 格式化时间,
     //  id: xxxx, 设置的自定义id
     // }
-})
+    ```
 
-```
+=== "CDN异步"
 
-#### NPM
+    ```javascript
+    DATAFLUX_RUM.onReady(function() {
+        DATAFLUX_RUM.getDebugSession() 
+        // {
+        //	created: 1628653003152, 毫秒时间戳,
+        //  format_created: 2021-08-11 11:39:32.455, 格式化时间,
+        //  id: xxxx, 设置的自定义id
+        // }
+    })
 
-```javascript
-import { datafluxRum } from '@cloudcare/browser-rum'
-datafluxRum.getDebugSession()
-// {
-//	created: 1628653003152, 毫秒时间戳,
-//  format_created: 2021-08-11 11:39:32.455, 格式化时间,
-//  id: xxxx, 设置的自定义id
-// }
+    ```
 
-```
+=== "NPM"
+
+    ```javascript
+    import { datafluxRum } from '@cloudcare/browser-rum'
+    datafluxRum.getDebugSession()
+    // {
+    //	created: 1628653003152, 毫秒时间戳,
+    //  format_created: 2021-08-11 11:39:32.455, 格式化时间,
+    //  id: xxxx, 设置的自定义id
+    // }
+
+    ```
 
 ### 移除自定义session
-#### CDN 同步
+=== "CDN 同步"
 
-```javascript
-window.DATAFLUX_RUM && window.DATAFLUX_RUM.clearDebugSession() 
-```
+    ```javascript
+    window.DATAFLUX_RUM && window.DATAFLUX_RUM.clearDebugSession() 
+    ```
 
-#### CDN 异步
+=== "CDN 异步"
 
-```javascript
-DATAFLUX_RUM.onReady(function() {
-    DATAFLUX_RUM.clearDebugSession() 
-})
+    ```javascript
+    DATAFLUX_RUM.onReady(function() {
+        DATAFLUX_RUM.clearDebugSession() 
+    })
 
-```
+    ```
 
-#### NPM
+=== "NPM"
 
-```javascript
-import { datafluxRum } from '@cloudcare/browser-rum'
-datafluxRum.clearDebugSession()
-```
+    ```javascript
+    import { datafluxRum } from '@cloudcare/browser-rum'
+    datafluxRum.clearDebugSession()
+    ```
