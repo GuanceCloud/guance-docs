@@ -44,7 +44,7 @@ buildBasis:
     - cloudcare-multiarch
 
 buildRTM:
-  stage: build
+  stage: deploy
   only:
     - /\d+\.\d+\.\d+-\w+-\d+-prod/
   script:
@@ -58,7 +58,7 @@ buildRTM:
     - cloudcare-multiarch 
 
 buildRTMPrev:
-  stage: build
+  stage: deploy
   only:
     - /\d+\.\d+\.\d+\.\d+-\w+-prev/
   script:
