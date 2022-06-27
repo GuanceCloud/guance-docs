@@ -17,7 +17,7 @@ SDK 默认情况下，自动会给用户生成一个唯一标识ID。这个ID不
 
 === "CDN" 
 
-    下载文件本地方式引入([下载地址](https://static.dataflux.cn/miniapp-sdk/v2/dataflux-rum-miniapp.js))
+    下载文件本地方式引入([下载地址](https://static.guance.com/miniapp-sdk/v2/dataflux-rum-miniapp.js))
 
     ```javascript
     const { datafluxRum } = require('./lib/dataflux-rum-miniapp.js')
@@ -44,7 +44,7 @@ SDK 默认情况下，自动会给用户生成一个唯一标识ID。这个ID不
 ### 移除用户标识
 === "CDN" 
 
-    下载文件本地方式引入([下载地址](https://static.dataflux.cn/miniapp-sdk/v2/dataflux-rum-miniapp.js))
+    下载文件本地方式引入([下载地址](https://static.guance.com/miniapp-sdk/v2/dataflux-rum-miniapp.js))
 
     ```javascript
     const { datafluxRum } = require('./lib/dataflux-rum-miniapp.js')

@@ -70,28 +70,28 @@ $env:DK_PROXY_TYPE="nginx"; $env:DK_NGINX_IP="1.2.3.4"; $env:DK_DATAWAY="https:/
 
 > Safari 浏览器下载时，后缀名可能不同（如将 `.tar.gz` 文件下载成 `.tar`），会导致安装失败。建议用 Chrome 浏览器下载。
 
-先下载数据包，每个平台都一样： https://static.dataflux.cn/datakit/data.tar.gz
+先下载数据包，每个平台都一样： https://static.guance.com/datakit/data.tar.gz
 
 然后再下载俩个安装程序：
 
 - Windows 32 位：
   - [Installer](https://static.guance.cn/datakit/installer-windows-386.exe){:target="_blank"}
-  - [DataKit](https://static.dataflux.cn/datakit/datakit-windows-386-1.4.3.tar.gz){:target="_blank"}
+  - [DataKit](https://static.guance.com/datakit/datakit-windows-386-1.4.3.tar.gz){:target="_blank"}
 - Windows 64 位：
   - [Installer](https://static.guance.cn/datakit/installer-windows-amd64.exe){:target="_blank"}
-  - [DataKit](https://static.dataflux.cn/datakit/datakit-windows-amd64-1.4.3.tar.gz){:target="_blank"}
+  - [DataKit](https://static.guance.com/datakit/datakit-windows-amd64-1.4.3.tar.gz){:target="_blank"}
 - Linux X86 32 位：
   - [Installer](https://static.guance.cn/datakit/installer-linux-386){:target="_blank"}
-  - [DataKit](https://static.dataflux.cn/datakit/datakit-linux-386-1.4.3.tar.gz){:target="_blank"}
+  - [DataKit](https://static.guance.com/datakit/datakit-linux-386-1.4.3.tar.gz){:target="_blank"}
 - Linux X86 64 位
   - [Installer](https://static.guance.cn/datakit/installer-linux-amd64){:target="_blank"}
-  - [DataKit](https://static.dataflux.cn/datakit/datakit-linux-amd64-1.4.3.tar.gz){:target="_blank"}
+  - [DataKit](https://static.guance.com/datakit/datakit-linux-amd64-1.4.3.tar.gz){:target="_blank"}
 - Linux Arm 32 位
   - [Installer](https://static.guance.cn/datakit/installer-linux-arm){:target="_blank"}
-  - [DataKit](https://static.dataflux.cn/datakit/datakit-linux-arm-1.4.3.tar.gz){:target="_blank"}
+  - [DataKit](https://static.guance.com/datakit/datakit-linux-arm-1.4.3.tar.gz){:target="_blank"}
 - Linux Arm 64 位
   - [Installer](https://static.guance.cn/datakit/installer-linux-arm64){:target="_blank"}
-  - [DataKit](https://static.dataflux.cn/datakit/datakit-linux-arm64-1.4.3.tar.gz){:target="_blank"}
+  - [DataKit](https://static.guance.com/datakit/datakit-linux-arm64-1.4.3.tar.gz){:target="_blank"}
 
 下载完后，应该有三个文件（此处 `<OS-ARCH>` 指特定平台的安装包）：
 

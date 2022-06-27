@@ -23,11 +23,11 @@
 **支持的浏览器** 支持所有pc端，移动端的浏览器
 
 ### 你可以从下面几种方式中选择一种接入到你的 Web 应用中
-| 接入方式 | 简介 |
-| --- | --- |
-| NPM | 通过把 SDK 代码一起打包到你的前端项目中，此方式可以确保对前端页面的性能不会有任何影响，不过可能会错过 SDK 初始化之前的的请求、错误的收集。 |
+| 接入方式     | 简介                                                                                                                                                             |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| NPM          | 通过把 SDK 代码一起打包到你的前端项目中，此方式可以确保对前端页面的性能不会有任何影响，不过可能会错过 SDK 初始化之前的的请求、错误的收集。                       |
 | CDN 异步加载 | 通过 CDN 加速缓存，以异步脚本引入的方式，引入 SDK 脚本，此方式可以确保 SDK 脚本的下载不会影响页面的加载性能，不过可能会错过 SDK 初始化之前的的请求、错误的收集。 |
-| CDN 同步加载 | 通过 CDN 加速缓存，以同步脚本引入的方式，引入 SDK 脚本，此方式可以确保能够收集到所有的错误，资源，请求，性能指标。不过可能会影响页面的加载性能。 |
+| CDN 同步加载 | 通过 CDN 加速缓存，以同步脚本引入的方式，引入 SDK 脚本，此方式可以确保能够收集到所有的错误，资源，请求，性能指标。不过可能会影响页面的加载性能。                 |
 
 
 ### NPM
@@ -61,7 +61,7 @@ datafluxLogs.init({
     window,
     document,
     'script',
-    'https://static.dataflux.cn/browser-sdk/v1/dataflux-logs.js',
+    'https://static.guance.com/browser-sdk/v1/dataflux-logs.js',
     'DATAFLUX_LOGS'
   )
   DATAFLUX_LOGS.onReady(function () {
@@ -78,7 +78,7 @@ datafluxLogs.init({
 
 ```html
 <script
-  src="https://static.dataflux.cn/browser-sdk/v1/dataflux-logs.js" 
+  src="https://static.guance.com/browser-sdk/v1/dataflux-logs.js" 
   type="text/javascript"
 ></script>
 <script>
@@ -94,15 +94,15 @@ datafluxLogs.init({
 ## 配置
 
 ### 初始化参数
-| **参数** | **类型** | **是否必须** | **默认值** | **描述** |
-| --- | --- | --- | --- | --- |
-| `datakitOrigin` | String | 是 |  | datakit 数据上报 Origin 注释:`协议（包括：//），域名（或IP地址）[和端口号] `例如：https://www.datakit.com, http://100.20.34.3:8088 |
-| `service` | String | 否 | `browser` | 日志service名称 |
-| `env` | String | 否 |  | web 应用当前环境， 如 prod：线上环境；gray：灰度环境；pre：预发布环境 common：日常环境；local：本地环境； |
-| `version` | String | 否 |  | web 应用的版本号 |
-| `sampleRate` | Number | 否 | `100` | 指标数据收集百分比:`100`表示全收集，`0`表示不收集 |
-| `forwardErrorsToLogs` | Boolean | 否 | `true` | 设置为``false 表示停止采集console.error、 js、以及网络错误上报到DataFlux日志数据中 |
-| `silentMultipleInit` | Boolean | 否 | `false` | 不允许有多个日志对象被初始化 |
+| **参数**              | **类型** | **是否必须** | **默认值** | **描述**                                                                                                                           |
+| --------------------- | -------- | ------------ | ---------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `datakitOrigin`       | String   | 是           |            | datakit 数据上报 Origin 注释:`协议（包括：//），域名（或IP地址）[和端口号] `例如：https://www.datakit.com, http://100.20.34.3:8088 |
+| `service`             | String   | 否           | `browser`  | 日志service名称                                                                                                                    |
+| `env`                 | String   | 否           |            | web 应用当前环境， 如 prod：线上环境；gray：灰度环境；pre：预发布环境 common：日常环境；local：本地环境；                          |
+| `version`             | String   | 否           |            | web 应用的版本号                                                                                                                   |
+| `sampleRate`          | Number   | 否           | `100`      | 指标数据收集百分比:`100`表示全收集，`0`表示不收集                                                                                  |
+| `forwardErrorsToLogs` | Boolean  | 否           | `true`     | 设置为``false 表示停止采集console.error、 js、以及网络错误上报到DataFlux日志数据中                                                 |
+| `silentMultipleInit`  | Boolean  | 否           | `false`    | 不允许有多个日志对象被初始化                                                                                                       |
 
 
 ## 使用
@@ -225,8 +225,8 @@ window.DATAFLUX_LOGS && DATAFLUX_LOGS.logger.log(<MESSAGE>,<JSON_ATTRIBUTES>,<ST
 ```
 
 ## 参数说明
-| **参数** | **描述** |
-| --- | --- |
-| `<MESSAGE>` | Dataflux 日志中的 message 字段 |
-| `<JSON_ATTRIBUTES>` | 描述message的额外数据，是一个json对象 |
-| `<STATUS>` | 日志的等级，可选值`debug`,`info`,`warn`,`error`,`critical` |
+| **参数**            | **描述**                                                   |
+| ------------------- | ---------------------------------------------------------- |
+| `<MESSAGE>`         | Dataflux 日志中的 message 字段                             |
+| `<JSON_ATTRIBUTES>` | 描述message的额外数据，是一个json对象                      |
+| `<STATUS>`          | 日志的等级，可选值`debug`,`info`,`warn`,`error`,`critical` |

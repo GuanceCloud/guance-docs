@@ -60,7 +60,7 @@ datafluxRum.init({
 ```
 
 #### 方式2:**CDN 本地方式引入（推荐）**
-> JS下载地址：[https://static.dataflux.cn/js-sdk/dataflux-rum-miniapp.js](https://static.dataflux.cn/js-sdk/dataflux-rum-miniapp.js)
+> JS下载地址：[https://static.guance.com/js-sdk/dataflux-rum-miniapp.js](https://static.guance.com/js-sdk/dataflux-rum-miniapp.js)
 
 ```html
 const { datafluxRum } = require('./js拖到项目中的路径')
