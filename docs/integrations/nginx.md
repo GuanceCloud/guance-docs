@@ -1,10 +1,9 @@
 
+Nginx
+---
 
 - DataKit 版本：1.4.3
-- 文档发布日期：2022-06-23 12:44:58
 - 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
-
-# nginx
 
 NGINX 采集器可以从 NGINX 实例中采取很多指标，比如请求总数连接数、缓存等多种指标，并将指标采集到观测云 ，帮助监控分析 NGINX 各种异常情况。
 

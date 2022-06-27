@@ -122,7 +122,7 @@ $ sudo vi /etc/hosts
 192.168.1.66 openway.guance.com
 192.168.1.66 dflux-dial.guance.com
 
-192.168.1.66 static.guance.com
+192.168.1.66 static.dataflux.cn
 192.168.1.66 openway.dataflux.cn
 192.168.1.66 dflux-dial.dataflux.cn
 
