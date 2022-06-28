@@ -322,6 +322,91 @@
     opacity: 0.7;
 }
 
+/* homepage样式 */
+.md-content .homepage-title {
+    position: absolute;
+    left: 50%;
+}
+
+.md-content .homepage {
+    max-width: 1200px;
+    position: absolute;
+    margin-right: 1.2rem;
+    margin-top: 1.25rem;
+}
+
+.md-content .homepage img {
+    border: none;
+}
+
+.md-content .homepage .title {
+    font-weight: 400;
+    color: #333333;
+    box-shadow: 0px 0px 7px 0px rgba(225, 230, 243, 0.59);
+    border-radius: 8px;
+    padding: 20px;
+    font-size: 15px;
+    position: relative;
+}
+
+.md-content .homepage .title::after {
+    content: '';
+    background: url('/images/homepage/quotes.png') no-repeat center;
+    position: absolute;
+    right: 20px;
+    bottom: 15px;
+    width: 28px;
+    height: 28px;
+}
+
+.md-content .homepage .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+    padding-bottom: 1.2rem;
+}
+
+.md-content .homepage .content > div {
+    display: flex;
+}
+
+.md-content .homepage .content .content-mid {
+    position: relative;
+    top: -25px;
+}
+
+.md-content .homepage .content .content-bottom {
+    position: relative;
+    top: -50px;
+}
+
+.md-content .homepage .content .content-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 164px;
+    height: 164px;
+    cursor: pointer;
+    background: url('/images/homepage/bg.png') no-repeat center;
+}
+
+.md-content .homepage .content .content-item:hover {
+    background: url('/images/homepage/bg-hover.png') no-repeat center;
+}
+
+.md-content .homepage .content .content-item .item-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.md-content .homepage .content .content-item .item-content span {
+    color: #333333;
+    margin-top: 0.3632rem;
+    font-size: 15px;
+}
+
 @media screen and (max-width: 59.9375em) {
     .md-content {
         min-height: unset;
@@ -342,10 +427,55 @@
     .md-typeset .doc_footer .section .doc-content-section:first-child {
         margin-right: 4rem;
     }
+
+    .md-content .homepage {
+        position: static;
+        margin-right: 0;
+        margin-top: 3.25rem;
+    }
+
+    /* .md-content .homepage {
+        position: static;
+        margin-right: 0;
+    }
+    
+    .md-content .homepage .content {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        overflow-x: auto;
+    }
+    .md-content .homepage .content .content-mid {
+        position: static;
+    }
+    .md-content .homepage .content .content-bottom {
+        position: static;
+    } */
 }
 
 @media screen and (min-width: 30em) and (max-width: 58.5714em) {
     .md-typeset .doc_footer .section {
         margin-right: 4rem;
+    }
+}
+
+@media screen and (max-width: 51.25em) {
+    .md-content .homepage .content {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        overflow-x: auto;
+    }
+    .md-content .homepage .content .content-mid {
+        position: static;
+    }
+    .md-content .homepage .content .content-bottom {
+        position: static;
+    }
+}
+
+@media screen and (max-width: 76.25em) {
+    .md-content .homepage-title {
+        transform: translateX(-50%);
     }
 }
