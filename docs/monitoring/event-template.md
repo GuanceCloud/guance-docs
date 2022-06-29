@@ -257,3 +257,8 @@ O::HOST:(host, host_ip, os, datakit_ver) { host = 'my_server' }
 
 1. 内嵌 DQL 查询函数所赋值的变量名，*不要*与现有的任何模板变量、模板函数重名，否则会产生不可预料的问题
 2. 由于内嵌 DQL 查询函数位于事件内容模板中，建议写在整个内容模板的最开头，系统会自动去除内容前后的空行
+
+### 附录
+
+- 有关 DQL 语句帮助文档，请参考 [帮助 - DQL](/dql/)
+- 所有可用`namespace`，请参考 [帮助 - DQL - DQL 定义 - namespace](/dql/define/#namespace)
