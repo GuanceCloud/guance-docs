@@ -2,7 +2,7 @@
 # TDengine
 ---
 
-- DataKit 版本：1.4.3
+- DataKit 版本：1.4.5
 - 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
 TDEngine 是一款高性能、分布式、支持 SQL 的时序数据库 (Database)。在开通采集器之前请先阅读一些：[TDEngine-基本概念](https://docs.taosdata.com/concept/)
