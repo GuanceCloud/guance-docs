@@ -14,7 +14,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: nowrap;
 }
 
 .home-page > img {
@@ -327,10 +326,11 @@
 .md-content .homepage-title {
     position: absolute;
     left: 50%;
+    white-space: nowrap;
 }
 
 .md-content .homepage {
-    max-width: 1200px;
+    max-width: 100%;
     position: absolute;
     margin-right: 1.2rem;
     margin-top: 1.25rem;
