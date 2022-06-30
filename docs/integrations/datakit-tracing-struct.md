@@ -2,7 +2,7 @@
 # Datakit Tracing 数据结构
 ---
 
-- DataKit 版本：1.4.2
+- DataKit 版本：1.4.3
 - 操作系统支持：全平台
 
 ## 简述

@@ -1,37 +1,37 @@
-# NBA赛事信息
+# NBA 赛事信息
 ---
 
 
-本文档主要介绍如何使用脚本市场中的「NBA赛事信息」脚本包获取NBA球队最新的赛事信息。
+本文档主要介绍如何使用脚本市场中的「NBA 赛事信息」脚本包获取 NBA 球队最新的赛事信息。
 
-> 提示：请始终使用最新版DataFlux Func 进行操作。
+> 提示：请始终使用最新版 DataFlux Func 进行操作。
 
-> 提示2: 本脚本包会不断加入新功能，请随时关注本文档页。
+> 提示 2: 本脚本包会不断加入新功能，请随时关注本文档页。
 
 ## 1. 背景
 
-NBA赛季一般从每年10月持续到次年6月，总共有1230场比赛，大部分篮球爱好者无法每场比赛都观看。
+NBA 赛季一般从每年 10 月持续到次年 6 月，总共有 1230 场比赛，大部分篮球爱好者无法每场比赛都观看。
 
-因此，DataFlux Func 提供NBA赛事信息脚本。用户可以从脚本市场安装相关的数据同步脚本包，进行简单的配置后，即可查看每天的NBA赛事信息。
+因此，DataFlux Func 提供 NBA 赛事信息脚本。用户可以从脚本市场安装相关的数据同步脚本包，进行简单的配置后，即可查看每天的 NBA 赛事信息。
 
 本文假设用户已经了解并安装了相关脚本包。
-有关如何在DataFlux Func 的脚本市场中安装脚本版，请参考：
+有关如何在 DataFlux Func 的脚本市场中安装脚本版，请参考：
 
 - [脚本市场基本操作](/dataflux-func/script-market-basic-usage)
 
-本文假设用户已经在DataFlux Func 中正确连接了DataKit。
-有关如何在DataFlux Func 中连接DataKit，请参考：
+本文假设用户已经在 DataFlux Func 中正确连接了 DataKit。
+有关如何在 DataFlux Func 中连接 DataKit，请参考：
 
-- [连接并操作DataKit](/dataflux-func/connect-to-datakit)
+- [连接并操作 DataKit](/dataflux-func/connect-to-datakit)
 
-本脚本包基于「[聚合数据](https://www.juhe.cn/)」提供的API实现，
-用户在使用本脚本包时，请先登录注册「聚合数据」，并获取Key后使用。
+本脚本包基于「[聚合数据](https://www.juhe.cn/)」提供的 API 实现，
+用户在使用本脚本包时，请先登录注册「聚合数据」，并获取 Key 后使用。
 
 ## 2. 关于本脚本包
 
-本脚本包主要用于NBA赛事信息的获取并同步至观测云。
+本脚本包主要用于 NBA 赛事信息的获取并同步至观测云。
 
-使用本脚本包，需要配置所关注的球队，同时为了实现钉钉通知功能，需要您配置钉钉机器人的Webhook和加签密钥，其中加签密钥是可选的，您可以在钉钉「智能群助手」-「添加机器人」中进行配置。
+使用本脚本包，需要配置所关注的球队，同时为了实现钉钉通知功能，需要您配置钉钉机器人的 Webhook 和加签密钥，其中加签密钥是可选的，您可以在钉钉「智能群助手」-「添加机器人」中进行配置。
 
 *注意：配置关注球队必须使用球队完整队名，使用简称，如「湖人」、「勇士」无法获得其相关赛事信息，所有球队的完整队名详见附录*
 
@@ -39,20 +39,20 @@ NBA赛季一般从每年10月持续到次年6月，总共有1230场比赛，大�
 
 示例如下：
 
-| 字段名           | 类型   | 是否必须 | 说明                                                                                     |
-| ---------------- | ------ | -------- | ---------------------------------------------------------------------------------------- |
-| key              | String | 必须     | 聚合数据API调用Key                                                                       |
-| focus_team_list  | List   | 必须     | 关注球队列表，如:`['金州勇士','洛杉矶湖人','布鲁克林篮网']`                              |
-| datakit_id       | String | 必须     | DataKit数据源ID                                                                          |
-| measurement      | String |          | 指定写入的指标集名称，默认：`"NBA排名"`                                                  |
-| dingtalk_webhook | String | 必须     | 钉钉通知API，如`https://oapi.dingtalk.com/robot/send?access_token=<token>`               |
-| dingtalk_secret  | String |          | 钉钉加签密钥，如:`"SECf135eaba81d4f3442a56cfdde4e23f10cdb49fe1ee5e612b56a8ecaf13d6238b"` |
+| 字段名           | 类型   | 是否必须 | 说明                                                                                      |
+| ---------------- | ------ | -------- | ----------------------------------------------------------------------------------------- |
+| key              | String | 必须     | 聚合数据 API 调用 Key                                                                     |
+| focus_team_list  | List   | 必须     | 关注球队列表，如：`['金州勇士','洛杉矶湖人','布鲁克林篮网']`                              |
+| datakit_id       | String | 必须     | DataKit 数据源 ID                                                                         |
+| measurement      | String |          | 指定写入的指标集名称，默认：`"NBA 排名"`                                                  |
+| dingtalk_webhook | String | 必须     | 钉钉通知 API，如：`https://oapi.dingtalk.com/robot/send?access_token=<token>`             |
+| dingtalk_secret  | String |          | 钉钉加签密钥，如：`"SECf135eaba81d4f3442a56cfdde4e23f10cdb49fe1ee5e612b56a8ecaf13d6238b"` |
 
 ## 3. 典型代码示例
 
-通过简单的配置和极少量代码，即可实现NBA赛事信息的同步功能。
+通过简单的配置和极少量代码，即可实现 NBA 赛事信息的同步功能。
 
-以下典型代码示例为实现NBA赛事信息同步功能的最简单配置。
+以下典型代码示例为实现 NBA 赛事信息同步功能的最简单配置。
 
 ### 3.1 功能配置
 
@@ -60,7 +60,7 @@ NBA赛季一般从每年10月持续到次年6月，总共有1230场比赛，大�
 CONFIG = {
     'key'             : '<key>',
     'datakit_id'      : 'datakit',
-    'measurement'     : 'NBA排名',
+    'measurement'     : 'NBA_ranking',
     'dingtalk_webhook': 'https://oapi.dingtalk.com/robot/send?access_token=<token>',
     'dingtalk_secret' : '<secret>',
     'focus_team'      : ['金州勇士','洛杉矶湖人','布鲁克林篮网']
@@ -72,31 +72,31 @@ CONFIG = {
 ```python
 nba.config(**CONFIG)
 
-@DFF.API('NBA赛前提醒'):
+@DFF.API('NBA 赛前提醒'):
 def nba_before_notice():
     return nba.before_game_notice()
 
-@DFF.API('NBA赛后播报')
+@DFF.API('NBA 赛后播报')
 def nba_after_notice():
     return nba.after_game_notice()
 
-@DFF.API('NBA排名播报')
+@DFF.API('NBA 排名播报')
 def nba_rank_data():
     return nba.rank_data_notice()
 ```
 
-### 3.3 NBA数据存储
+### 3.3 NBA 数据存储
 
 ```python
-@DFF.API('NBA数据存储')
+@DFF.API('NBA 数据存储')
 def nba_data_save():
     return nba.save_nba_rank_data()
 ```
 
-### 3.4 NBA胜率预测
+### 3.4 NBA 胜率预测
 
 ```python
-@DFF.API('NBA胜率预测')
+@DFF.API('NBA 胜率预测')
 def nba_win_rate():
     return nba.win_rate_forecast()
 ```
@@ -109,13 +109,13 @@ def nba_win_rate():
 
 之后在「管理」-「自动触发配置」中，可以为编写的脚本创建自动触发配置选项。
 
-*注意：接口更新数据存在延迟，获取当天的比赛、排名信息建议设置自动触发配置的时间在当天14：00之后*
+*注意：接口更新数据存在延迟，获取当天的比赛、排名信息建议设置自动触发配置的时间在当天 14：00 之后*
 
 ## X. 附录
 
 本脚本中所涉及的相关配置项目，根据本附录查询。
 
-### X.1 NBA球队完整队名列表
+### X.1 NBA 球队完整队名列表
 
 | 东部联盟                                             |                                                          |                                                          |
 | ---------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
@@ -123,7 +123,7 @@ def nba_win_rate():
 | [亚特兰大老鹰](https://china.nba.com/teams/#!/hawks) | [波士顿凯尔特人](https://china.nba.com/teams/#!/celtics) | [芝加哥公牛](https://china.nba.com/teams/#!/bulls)       |
 | [夏洛特黄蜂](https://china.nba.com/teams/#!/hornets) | [布鲁克林篮网](https://china.nba.com/teams/#!/nets)      | [克利夫兰骑士](https://china.nba.com/teams/#!/cavaliers) |
 | [迈阿密热火](https://china.nba.com/teams/#!/heat)    | [纽约尼克斯](https://china.nba.com/teams/#!/knicks)      | [底特律活塞](https://china.nba.com/teams/#!/pistons)     |
-| [奥兰多魔术](https://china.nba.com/teams/#!/magic)   | [费城76人](https://china.nba.com/teams/#!/sixers)        | [印第安纳步行者](https://china.nba.com/teams/#!/pacers)  |
+| [奥兰多魔术](https://china.nba.com/teams/#!/magic)   | [费城 76 人](https://china.nba.com/teams/#!/sixers)      | [印第安纳步行者](https://china.nba.com/teams/#!/pacers)  |
 | [华盛顿奇才](https://china.nba.com/teams/#!/wizards) | [多伦多猛龙](https://china.nba.com/teams/#!/raptors)     | [密尔沃基雄鹿](https://china.nba.com/teams/#!/bucks)     |
 
 | 西部联盟                                                 |                                                               |                                                        |

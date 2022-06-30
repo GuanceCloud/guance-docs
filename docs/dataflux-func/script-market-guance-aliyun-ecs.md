@@ -4,7 +4,7 @@
 
 阅读本文前，请先阅读：
 
-- [观测云集成简介](/dataflux-func/script-market-guance-integration-intro)
+- [观测云集成简介](/dataflux-func/script-market-guance-integration)
 
 > 提示：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包
 
@@ -12,10 +12,10 @@
 
 本采集器配置结构如下：
 
-| 字段         | 类型 | 是否必须 | 说明                                      |
-| ------------ | ---- | -------- | ----------------------------------------- |
-| `regions`    | list | 必须     | 所需采集的地域列表                        |
-| `regions[#]` | str  | 必须     | 地域ID。如：`'cn-hangzhou'`<br>总表见附录 |
+| 字段         | 类型 | 是否必须 | 说明                                       |
+| ------------ | ---- | -------- | ------------------------------------------ |
+| `regions`    | list | 必须     | 所需采集的地域列表                         |
+| `regions[#]` | str  | 必须     | 地域 ID。如：`'cn-hangzhou'`<br>总表见附录 |
 
 ## 2. 配置示例
 
@@ -53,21 +53,21 @@ collector_configs = {
     "CreationTime"      : "2022-01-01T00:00Z",
     "StartTime"         : "2022-01-02T00:00Z",
     "ExpiredTime"       : "2023-01-01T00:00Z",
-    "message"           : "{实例JSON数据}",
-    "disks"             : "[ {关联磁盘JSON数据}, ... ]",
-    "network_interfaces": "[ {关联网卡JSON数据}, ... ]"
+    "message"           : "{实例 JSON 数据}",
+    "disks"             : "[ {关联磁盘 JSON 数据}, ... ]",
+    "network_interfaces": "[ {关联网卡 JSON 数据}, ... ]"
   }
 }
 ~~~
 
 *注意：`tags`、`fields`中的字段可能会随后续更新有所变动*
 
-> 提示：`tags.name`值为实例ID，作为唯一识别
+> 提示：`tags.name`值为实例 ID，作为唯一识别
 
-> 提示2：`fields.message`、`fields.disks`、`fields.network_interfaces`均为JSON序列化后字符串
+> 提示 2：`fields.message`、`fields.disks`、`fields.network_interfaces`均为 JSON 序列化后字符串
 
 ## X. 附录
 
 请参考阿里云官方文档：
 
-- [云服务器ECS / 产品简介 / 地域和可用区](https://help.aliyun.com/document_detail/188196.html)
+- [云服务器 ECS / 产品简介 / 地域和可用区](https://help.aliyun.com/document_detail/188196.html)

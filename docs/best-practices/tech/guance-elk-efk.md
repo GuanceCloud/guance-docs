@@ -233,7 +233,7 @@ Fluentd 中包含 8 种类型的插件--输入，解析器，过滤器，输出�
 
 ### ![image.png](../images/guance-elk-efk-6.png)
 
-### [DataKit 插件](https://www.yuque.com/dataflux/integrations)
+### [DataKit 插件](/integrations.md)
 
 DataKit 中包含强大的内置功能--动态 grok 语法查询调试、基于自研语法 DQL 的快速数据查询、实时的 inputs 采集运行观测、边缘计算能力和可视化客户端方式配置、部署采集源等，同时支持 200+ 官方维护数据源接入和技术栈支持更兼容Telefraf、Beats、Logstash、Fluentd 等多种外部数据接入，对用户来说更友好的是支持客户端可视化的进行插件和 agent 管理并且能实时查看数据收集情况。
 

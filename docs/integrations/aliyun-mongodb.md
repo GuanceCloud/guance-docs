@@ -1,5 +1,4 @@
-
-# MongoDB 副本集
+# MongoDB
 ---
 
 ## 视图预览

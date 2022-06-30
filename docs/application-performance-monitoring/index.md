@@ -1,3 +1,6 @@
+---
+icon: zy/application-performance-monitoring
+---
 # 应用性能监测
 ---
 

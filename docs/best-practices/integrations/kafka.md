@@ -52,7 +52,7 @@ Kafka 的复制功能通过有选择地将每个分区保留在多个 brokers �
 
 ### 前置条件
 
-[安装 Datakit](https://www.yuque.com/dataflux/datakit/datakit-install)
+[安装 Datakit](/datakit/datakit-install.md)
 
 ### 监控指标采集
 

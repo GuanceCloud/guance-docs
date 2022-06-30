@@ -2,7 +2,7 @@
 # Jenkins
 ---
 
-- DataKit 版本：1.4.2
+- DataKit 版本：1.4.3
 - 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
 Jenkins 采集器是通过插件 `Metrics` 采集数据监控 Jenkins，包括但不限于任务数，系统 cpu 使用，`jvm cpu`使用等
@@ -235,8 +235,8 @@ Jenkins CI Visibility 开启方法：
 
 切割后的字段列表如下：
 
-| 字段名  |  字段值  | 说明 |
-| ---    | ---     | --- |
-|  status   | info     | 日志等级 |
-|  id   | 32     | id |
-|  time   | 1621278538000000000     | 纳秒时间戳（作为行协议时间）|
+| 字段名 | 字段值              | 说明                         |
+| ---    | ---                 | ---                          |
+| status | info                | 日志等级                     |
+| id     | 32                  | id                           |
+| time   | 1621278538000000000 | 纳秒时间戳（作为行协议时间） |

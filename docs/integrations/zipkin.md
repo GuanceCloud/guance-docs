@@ -2,7 +2,7 @@
 # Zipkin
 ---
 
-- DataKit 版本：1.4.2
+- DataKit 版本：1.4.3
 - 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
 Datakit 内嵌的 Zipkin Agent 用于接收，运算，分析 Zipkin Tracing 协议数据。
@@ -45,24 +45,9 @@ Datakit 内嵌的 Zipkin Agent 用于接收，运算，分析 Zipkin Tracing 协
     # ...
 
   ## Sampler config uses to set global sampling strategy.
-  ## priority uses to set tracing data propagation level, the valid values are -1, 0, 1
-  ##  -1: always reject any tracing data send to datakit
-  ##   0: accept tracing data and calculate with sampling_rate
-  ##   1: always send to data center and do not consider sampling_rate
-  ## sampling_rate used to set global sampling rate
+  ## sampling_rate used to set global sampling rate.
   # [inputs.zipkin.sampler]
-    # priority = 0
     # sampling_rate = 1.0
-
-  ## Piplines use to manipulate message and meta data. If this item configured right then
-  ## the current input procedure will run the scripts wrote in pipline config file against the data
-  ## present in span message.
-  ## The string on the left side of the equal sign must be identical to the service name that
-  ## you try to handle.
-  # [inputs.zipkin.pipelines]
-    # service1 = "service1.p"
-    # service2 = "service2.p"
-    # ...
 
   # [inputs.zipkin.tags]
     # key1 = "value1"
@@ -70,3 +55,49 @@ Datakit 内嵌的 Zipkin Agent 用于接收，运算，分析 Zipkin Tracing 协
     # ...
 
 ```
+
+## Tracing 数据
+
+
+
+
+
+### `zipkin`
+
+
+
+- 标签
+
+
+| 标签名 | 描述    |
+|  ----  | --------|
+|`container_host`|container hostname|
+|`endpoint`|endpoint info|
+|`env`|application environment info|
+|`http_method`|http request method name|
+|`http_status_code`|http response code|
+|`operation`|span name|
+|`project`|project name|
+|`service`|service name|
+|`source_type`|tracing source type|
+|`span_type`|span type|
+|`status`|span status|
+|`version`|application version info|
+
+- 指标列表
+
+
+| 指标 | 描述| 数据类型 | 单位   |
+| ---- |---- | :---:    | :----: |
+|`duration`|duration of span|int|μs|
+|`message`|origin content of span|string|-|
+|`parent_id`|parent span ID of current span|string|-|
+|`pid`|application process id.|string|-|
+|`priority`||int|-|
+|`resource`|resource name produce current span|string|-|
+|`span_id`|span id|string|-|
+|`start`|start time of span.|int|usec|
+|`trace_id`|trace id|string|-|
+
+
+

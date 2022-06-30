@@ -3,10 +3,7 @@
 
 
 ## 视图预览
-Scheduler 性能指标展示：调度队列 pending pod 数、进入调度队列 pod 速率、http 请求数量、CPU、Memory、Goroutines等。
-
-![1651892867(1).png](imgs/input-kube-scheduler-01.png)
-
+Scheduler 性能指标展示：调度队列 pending pod 数、进入调度队列 pod 速率、http 请求数量、CPU、Memory、Goroutines等。<br />![1651892867(1).png](imgs/input-kube-scheduler-01.png)<br />
 ![1651892881(1).png](imgs/input-kube-scheduler-02.png)
 
 ## 版本支持
@@ -14,7 +11,7 @@ Scheduler 性能指标展示：调度队列 pending pod 数、进入调度队列
 
 ## 前置条件
 
-- Kubernetes 集群 <[安装 Datakit](datakit-install.md)>
+- Kubernetes 集群 <[安装 Datakit](https://www.yuque.com/dataflux/integrations/kubernetes)>
 
 ## 安装配置
 说明：示例 Kubernetes 版本为 1.22.6，DataKit 版本为 1.2.17，各个不同版本指标可能存在差异。
@@ -127,38 +124,31 @@ kubectl delete -f datakit.yaml
 kubectl apply -f datakit.yaml
 ```
 
-指标预览
-
-![1651892600(1).png](imgs/input-kube-scheduler-03.png)
+指标预览<br />![1651892600(1).png](imgs/input-kube-scheduler-03.png)
 
 #### 插件标签 (必选）
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-
 - 以下示例配置完成后，scheduler 指标都会带有 app = oa 的标签，可以进行快速查询
 - 采集 scheduler  指标，必填的 key 是 instance，值是 scheduler  metrics 的 ip + 端口
-- 相关文档 <[DataFlux Tag 应用最佳实践](/best-practices/guance-skill/tag/)>
+- 相关文档 <[DataFlux Tag 应用最佳实践](https://www.yuque.com/dataflux/bp/tag)>
 
 ```
            ## 自定义Tags
           [inputs.prom.tags]
             instance = "172.16.0.229:10259"   
 ```
-
-如果增加了自定义 tag，重启 Datakit 。
-
+   <br />如果增加了自定义 tag，重启 Datakit 。
 ```
 kubectl delete -f datakit.yaml
 kubectl apply -f datakit.yaml
 ```
 
 ## 场景视图
-
 <场景 - 新建仪表板 - 内置模板库 - Kubernetes Scheduler 监控视图>
 
 ## 指标详解
-
 | 指标 | 描述 | 数据类型 | 单位 |
 | --- | --- | --- | --- |
 | scheduler_pending_pods | Number of pending pods, by the queue type. | int | <br /> |
@@ -170,7 +160,7 @@ kubectl apply -f datakit.yaml
 
 
 ## 常见问题排查
-<[无数据上报排查](why-no-data.md)>
+<[无数据上报排查](../datakit/why-no-data.md)>
 
 ## 进一步阅读
 暂无

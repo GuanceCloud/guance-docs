@@ -1,13 +1,161 @@
+---
+icon: zy/release-notes
+---
+
 # 更新日志
 ---
 
 本文档记录观测云每次上线发布的更新内容说明，包括 DataKit、Function、观测云最佳实践、观测云集成文档和观测云。
 
-## 2022 年 6月 6号
+## 2022 年 6 月 21 号
+
+### 观测云更新
+
+#### 观测云帮助文档全新上线
+
+为了提高观测云帮助文档的阅读体验，观测云帮助文档已迁至观测云域名下，您可以更简单、更快速的查看观测云帮助文档。新的观测云帮助文档地址为：[https://docs.guance.com](https://docs.guance.com) 。
+
+#### 新增 Profile 可观测
+
+Profile 支持采集使用 Java / Python 等不同语言环境下应用程序运行过程中的动态性能数据，帮助用户查看 CPU、内存、IO 的性能问题。采集 profile 数据需要先安装 DataKit，并配置 Profile 采集器，配置完成后，DataKit 会将采集到的 profile 数据上传到您的观测云工作空间，您可以通过 Profile 实时数据查看器了解您的程序代码性能。更多详情可参考文档 [Profile](../application-performance-monitoring/profile.md) 。
+
+![](img/6.profile_3.png)
+
+
+
+#### Pipeline 覆盖全数据的文本分析处理
+
+文本处理（Pipeline）用于数据解析，通过定义解析规则，将各种数据类型切割成符合我们要求的结构化数据。在观测云工作空间「管理」-「文本处理（Pipeline）」，点击「新建Pipeline」即可创建一个新的 pipeline 文件。更多详情可参考文档 [文本处理（Pipeline）](../management/overall-pipeline.md) 。
+
+![](img/5.pipeline_3.png)
+
+
+
+#### 新增 Deployment 网络详情及网络分布
+
+Deployment 网络支持查看 Deployment 之间的网络流量。支持基于 IP/端口查看源 IP 到目标 IP 之间的网络流量和数据连接情况，通过可视化的方式进行实时展示，帮助企业实时了解业务系统的网络运行状态，快速分析、追踪和定位问题故障，预防或避免因网络性能下降或中断而导致的业务问题。
+
+Deployment 网络数据采集成功后会上报到观测云控制台，您可以在「基础设施」-「容器」-「Deployment」详情页中的「网络」，查看到Deployment 的网络性能监测数据信息；在「基础设施」-「网络」-「Deployment」，您可以查看到工作空间内全部 Deployment 的网络分布与数据连接情况。更多详情可参考 [Deployment 网络](../infrastructure/network.md#deployment_1) 。
+
+![](img/5.network.png)
+
+
+
+#### 优化事件检测维度跳转到其他查看器
+
+在事件未恢复查看器，支持点击检测维度查看相关容器、进程、日志、链路、RUM、可用性检测、安全巡检、CI 等。若相关查看器无相关数据，对应跳转链接为灰色不可点击。更多详情可参考文档 [事件检测维度](../events/explorer.md) 。
+
+![](img/9.event_11.png)
+
+
+
+#### 新增日志查看器 JSON 格式的 message 信息搜索
+
+日志查看器新增搜索 JSON 格式的日志内容（message），搜索格式为：`@key.key:value` 。
+
+注意：JSON 搜索仅支持此次功能上线后创建的工作空间。
+
+![](img/7.log_json.png)
+
+
+
+#### 新增用户访问监测新建应用时支持用户自定义输入 app_id 信息
+
+新增自定义应用 ID 功能。支持在使用用户访问监测新建应用的功能时，自定义输入 app_id ，生成当前空间内唯一的应用 ID 标识，可用于区分应用类型、数据上传匹配等。
+
+- 应用名称（必填项）：用于识别当前实施用户访问监测的应用名称。
+- 应用 ID 标识（选填）：当前空间内唯一的应用 ID 标识，支持自定义，可用于数据上传匹配；应用ID标识最多为 20 个字符，仅支持输入大小写字母。
+- 应用 ID：若创建应用时填写了应用 ID 标识，点击创建应用以后，会把填写的应用 ID 标识信息拼接到应用 ID 的前面，便于区分应用进行查询和筛选。
+
+![](img/7.changelog_1.png)
+
+#### 优化进程检测为基础设施对象检测
+
+进程检测优化为基础设施对象监测，新增主机、容器、进程、Pod、Deployment、Replicaset、Job、自定义对象等基础对象选择，用于监控工作空间内的基础设施对象数据。更多详情可参考文档 [基础设施对象检测](../monitoring/monitor/infrastructure-detection.md) 。
+
+#### 其他功能优化
+
+- 基础设施POD查看器蜂窝模式下新增 CPU 使用率、内存使用量填充指标
+- 优化日志黑名单配置。支持手动输入日志来源，作为日志黑名单的来源
+- 优化应用性能监测服务列表数据查询时间组件，支持自定义时间范围选择
+- 优化在 K8S 上安装 DataKit 引导文案，配置 DataWay 数据网关地址中自动增加当前工作空间的 token
+- 优化监控器配置 UI 样式
+
+### DataKit 更新
+
+#### 2022/06/21
+
+- gitrepo 支持无密码模式
+- prom 采集器
+    - 支持日志模式采集
+    - 支持配置 HTTP 请求头
+- 支持超 16KB 长度的容器日志采集
+- 支持 TDEngine 采集器
+- Pipeline
+    - 支持 XML 解析
+    - 远程调试支持多类数据类型
+    - 支持 Pipeline 通过 `use()` 函数调用外部 Pipeline 脚本
+- 新增 IP 库（MaxMindIP）支持
+- 新增 DDTrace Profile 集成
+- Containerd 日志采集支持通过 image 和 K8s Annotation 配置过滤规则
+- 文档库整体切换
+
+#### 2022/06/16
+
+- 日志采集支持记录采集位置，避免因为 DataKit 重启等情况导致的数据漏采
+- 调整 Pipeline 在处理不同类数据时的设定
+- 支持接收 SkyWalking 指标数据
+- 优化日志黑名单调试功能： 
+    - 在 Monitor 中会展示被过滤掉的点数
+    - 在 datakit/data 目录下会增加一个 *.filter* 文件，用来记录拉取到的过滤器
+- Monitor 中增加 DataKit 打开文件数显示
+- DataKit 编译器升级到 golang 1.18.3
+
+#### 2022/06/07
+
+- 增加TCP/UDP 端口检测采集器
+- DataKit 跟 DataWay 之间增加 DNS 检测，支持 DataWay DNS 动态切换
+- [eBPF](../integrations/ebpf.md) L4/L7 流量数据增加 k8s deployment name 字段
+- 优化 [OpenTelemetry](../datakit/opentelemetry.md) 指标数据
+- [ElasticSearch](https://preprod-docs.cloudcare.cn/datakit/changelog/elasticsearch) 增加 AWS OpenSearch 支持
+- [行协议限制](../datakit/apis.md)中，字符串长度限制放宽到 32MB
+- [prom](../integrations/prom.md) 采集器增加额外配置，支持忽略指定的 tag=value 的匹配，以减少不必要的时序时间线
+- Sink 增加 Jaeger 支持
+- Kubernetes 相关的指标采集，默认全部关闭，以避免时间线暴增问题
+- DataKit Monitor 增加动态发现（比如 prom）的采集器列表刷新
+
+更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md) 。
+
+
+### 最佳实践更新
+
+- APM
+    - [GraalVM 与 Spring Native 项目实现链路可观测](../best-practices/apm/spring-native.md)
+- 接入集成
+    - [主机可观测最佳实践 (Linux)](../best-practices/integrations/host.md)
+
+更多最佳实践更新可参考 [最佳实践版本历史](../best-practices/index.md) 。
+
+### 集成模版更新
+
+#### 新增文档
+
+- 阿里云
+    - 阿里云 NAT
+    - 阿里云 CDN
+
+#### 新增视图
+
+- 阿里云
+    - 阿里云 NAT
+    - 阿里云 CDN
+
+
+## 2022 年 6 月 6 号
 
 ### 观测云计费更新
 
-观测云计费优化[时间线](../billing/billing-method/index.md)计费逻辑，以及指标数据的[数据保存策略](../billing/billing-method/data-storage.md)。原每 300 条 3 元下调为每 1000 条 3 元。同时指标数据新增 3 天、7 天、14 天数据保存策略，指标集支持[自定义数据保存策略](../metrics/explorer.md)。
+观测云计费优化 [时间线](../billing/billing-method/index.md) 计费逻辑，以及指标数据的 [数据保存策略](../billing/billing-method/data-storage.md) 。原每 300 条 3 元下调为每 1000 条 3 元。同时指标数据新增 3 天、7 天、14 天数据保存策略，指标集支持 [自定义数据保存策略](../metrics/explorer.md) 。
 
 时间线统计的是当前工作空间，上报的指标数据中基于标签可以组合而成的所有组合数量。数据保存策略即数据存储时长，是上报到当前工作空间的数据保存时间，超过存储时长的数据将会自动删除。
 
@@ -77,7 +225,7 @@
 #### 新增告警配置事件通知等级
 
 告警配置支持自定义选择事件通知等级，包括紧急、重要、警告、恢复、无数据、无数据恢复、无数据视为恢复 7 种选择，支持多选，支持一键清空选项，清空后选项清除，需手动选择对应值。更多告警配置可参考文档 [告警设置](../monitoring/alert-setting.md) 。
-![](14.monitor_alert_1.png)
+![](img/14monitor.png)
 
 #### 其他功能优化
 
@@ -91,7 +239,7 @@
 - 优化通知对象飞书机器人，支持自定义是否需要密钥安全校验
 - 配置监视器时，若配置的数据范围小于检测频率，触发提示配置会存在数据空洞问题
 
-## DataKit 更新（**2022/05/26**）
+### DataKit 更新（**2022/05/26**）
 
 - Pipeline 做了调整，所有数据类型，均可通过配置 Pipeline 来额外处理数据
 - grok() 支持直接将字段提取为指定类型，无需再额外通过 cast() 函数进行类型转换
@@ -122,39 +270,39 @@ volumes:
   name: lib
 ```
 
-## 最佳实践更新
+### 最佳实践更新
 
 - APM
-   - 基于观测云，使用 SkyWalking 实现 RUM、APM 和日志联动分析
-   - 监控最佳实践
-   - OpenTelemetry 可观测建设
-   - OpenTelemetry to Jeager 、Grafana、ELK
-   - OpenTelemetry to Grafana
-   - OpenTelemetry to 观测云
+    - 基于观测云，使用 SkyWalking 实现 RUM、APM 和日志联动分析
+- 监控最佳实践
+    - OpenTelemetry 可观测建设
+    - OpenTelemetry to Jeager 、Grafana、ELK
+    - OpenTelemetry to Grafana
+    - OpenTelemetry to 观测云
 - 观测云小妙招
-   - OpenTelemetry 采样最佳实践
+    - OpenTelemetry 采样最佳实践
 
 更多最佳实践更新可参考 [最佳实践版本历史](../best-practices/index.md) 。
 
-## 集成模版更新
+### 集成模版更新
 #### 新增文档和视图
 
 - 数据采集
-   - Opentelemetry Collector
+    - Opentelemetry Collector
 - 容器编排
-   - Kubernetes Scheduler
-   - Kubernetes Controller Manager
-   - Kubernetes API Server
-   - Kubernetes Kubelet
+    - Kubernetes Scheduler
+    - Kubernetes Controller Manager
+    - Kubernetes API Server
+    - Kubernetes Kubelet
 #### 新增视图
 
 - 容器编排
-   - Kubernetes Nodes Overview
+    - Kubernetes Nodes Overview
 - 中间件
-   - JVM Kubernetes
+    - JVM Kubernetes
 
 
-## 2022 年 5月 19号
+## 2022 年 5 月 19 号
 
 ### 观测云更新
 
@@ -195,7 +343,7 @@ volumes:
 
 #### 优化日志查看器及详情页
 
-观测云[日志查看器](../logs/explorer.md)默认显示“time”和“message”字段，本次优化支持可隐藏“message”字段显示。
+观测云 [日志查看器](../logs/explorer.md) 默认显示“time”和“message”字段，本次优化支持可隐藏“message”字段显示。
 
 在日志详情页，日志内容根据 message 类型自动显示 Json 和文本两种查看模式。若日志没有 message 字段，则不显示日志内容部分，日志内容支持展开收起，默认为展开状态，收起后仅显示1行的高度。
 
@@ -205,7 +353,7 @@ volumes:
 
 #### 新增网络数据检测监控器
 
-[网络数据检测](../monitoring/monitor/network-detection.md)用于监测工作空间内网络性能的指标数据，通过设置阈值范围，当指标到达阈值后触发告警。“观测云”支持对单个指标设置告警和自定义告警等级。在「监控器」中，点击「+新建监控器」，选择「网络数据检测」，进入检测规则的配置页面。
+[网络数据检测](../monitoring/monitor/network-detection.md) 用于监测工作空间内网络性能的指标数据，通过设置阈值范围，当指标到达阈值后触发告警。“观测云”支持对单个指标设置告警和自定义告警等级。在「监控器」中，点击「+新建监控器」，选择「网络数据检测」，进入检测规则的配置页面。
 
 ![](img/6.monitor_3.png)
 
@@ -224,7 +372,7 @@ volumes:
 - 增加快捷入口，DQL查询和快照菜单移至快捷入口下
 - 观测云管理后台补充模版管理分类信息
 
-## DataKit 更新（2022/5/12）
+### DataKit 更新（2022/5/12）
 
 - eBPF 增加 arm64 支持
 - 行协议构造支持自动纠错
@@ -237,58 +385,57 @@ volumes:
 
 更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md) 。
 
-## 最佳实践更新
+### 最佳实践更新
 
 - 云原生
-   - 利用观测云一键开启Rancher可观测之旅
+    - 利用观测云一键开启Rancher可观测之旅
 - 微服务可观测最佳实践
-   - Kubernetes 集群 应用使用 SkyWalking 采集链路数据
-   - Kubernetes 集群日志上报到同节点的 DataKit 最佳实践
+    - Kubernetes 集群 应用使用 SkyWalking 采集链路数据
+    - Kubernetes 集群日志上报到同节点的 DataKit 最佳实践
 - Gitlab-CI 可观测最佳实践
-   - Gitlab-CI 可观测最佳实践
+    - Gitlab-CI 可观测最佳实践
 
 更多最佳实践更新可参考 [最佳实践版本历史](../best-practices/index.md) 。
 
-## 集成模版更新
+### 集成模版更新
 
 #### 新增文档和视图
 
 - 中间件
-   - Resin
-   - Beats
+    - Resin
+    - Beats
 - 主机系统
-   - Procstat
+    - Procstat
 #### 新增视图
 
 - 容器编排
-   - Istio Service
+    - Istio Service
 - 阿里云
-   - ASM Service
+    - ASM Service
 
 
-
-## 2022 年 5月 6 号
+## 2022 年 5 月 6 号
 
 ### 观测云更新
 
 #### 优化观测云商业版升级流程
 
-观测云升级到商业版默认开通[观测云费用中心账户结算](../billing/billing-account/enterprise-account.md)，支持更改结算方式为云账号结算，包括[阿里云账号](../billing/billing-account/aliyun-account.md)和 [AWS 云账号](../billing/billing-account/aws-account.md)结算方式。
+观测云升级到商业版默认开通 [观测云费用中心账户结算](../billing/billing-account/enterprise-account.md) ，支持更改结算方式为云账号结算，包括 [阿里云账号](../billing/billing-account/aliyun-account.md) 和 [AWS 云账号](../billing/billing-account/aws-account.md) 结算方式。
 
 #### 新增进程、日志、链路详情页关联网络
 
-观测云[进程](../infrastructure/process.md)、[日志](../logs/explorer.md)、[链路](../application-performance-monitoring/explorer.md)详情页新增关联网络数据分析，支持基于 IP/端口查看源主机/源进程服务到目标之间的网络流量和数据连接情况，通过可视化的方式进行实时展示，帮助企业实时了解业务系统的网络运行状态，快速分析、追踪和定位问题故障，预防或避免因网络性能下降或中断而导致的业务问题。
+观测云 [进程](../infrastructure/process.md)、[日志](../logs/explorer.md)、[链路](../application-performance-monitoring/explorer.md) 详情页新增关联网络数据分析，支持基于 IP/端口查看源主机/源进程服务到目标之间的网络流量和数据连接情况，通过可视化的方式进行实时展示，帮助企业实时了解业务系统的网络运行状态，快速分析、追踪和定位问题故障，预防或避免因网络性能下降或中断而导致的业务问题。
 
 ![](img/9.network_1.png)
 
 #### 场景模块优化
 
 ##### 优化仪表板，去掉编辑模式
-在场景[仪表板](../scene/dashboard.md)顶部导航栏，去掉“编辑”按钮，新增“添加图表”为仪表板添加新的图表，图表添加完成后，点击右上角「完成添加」即可。
+在场景 [仪表板](../scene/dashboard.md) 顶部导航栏，去掉“编辑”按钮，新增“添加图表”为仪表板添加新的图表，图表添加完成后，点击右上角「完成添加」即可。
 
 ![](img/3.view_2.png)
 
-在[图表](../scene/visual-chart//index.md)中，点击「设置」按钮，选择「修改」，即可对图表进行编辑。
+在 [图表](../scene/visual-chart//index.md) 中，点击「设置」按钮，选择「修改」，即可对图表进行编辑。
 
 ![](img/3.view_1.png)
 
@@ -320,7 +467,7 @@ volumes:
 ![](img/6.monitor_2.png)
 
 ##### 优化可用性数据检测
-观测云监控器[可用性数据检测](../monitoring/monitor/usability-detection.md)，优化支持选择 HTTP、TCP、ICMP、WEBSOCKET 拨测类型。
+观测云监控器 [可用性数据检测](../monitoring/monitor/usability-detection.md) ，优化支持选择 HTTP、TCP、ICMP、WEBSOCKET 拨测类型。
 
 ##### 优化告警通知模版，增加关联跳转链接
 邮件、钉钉、微信、飞书收到的告警通知包含“观测云跳转链接”，点击可直接跳转到对应的观测云事件详情，时间范围为当前时间的往前15分钟，即18:45:00的事件，点击链接后跳转至事件详情页，时间范围固定为4.20 18:30:00 ~ 4.20 18:45:00。更多告警通知可参考文档 [告警设置](../monitoring/alert-setting.md) 。
@@ -332,7 +479,7 @@ volumes:
 - 新增指标查看器标签支持级联筛选
 - 优化 DQL 查询返回报错提示
 
-## DataKit 更新
+### DataKit 更新
 
 - 进程采集器的过滤功能仅作用于指标采集，对象采集不受影响
 - 优化 DataKit 发送 DataWay 超时问题
@@ -342,7 +489,7 @@ volumes:
 
 更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md) 。
 
-## 集成模版更新
+### 集成模版更新
 
 #### 新增数据存储 Redis Sentinel 集成文档和视图
 
@@ -435,7 +582,7 @@ SSO 单点登录配置用户白名单调整为邮箱域名，用于校验单点�
 - 优化告警通知短信模版
 - 优化可用性监测新建拨测列表，支持直接选择 HTTP、TCP、ICMP、WEBSOCKET 拨测
 
-## DataKit 更新
+### DataKit 更新
 
 - Pipeline 模块修复 Grok 中动态多行 pattern 问题
 - DaemonSet 优化 Helm 安装，增加开启 pprof 环境变量配置，DaemonSet 中所有默认开启采集器各个配置均支持通过环境变量配置
@@ -443,51 +590,50 @@ SSO 单点登录配置用户白名单调整为邮箱域名，用于校验单点�
 - 拨测采集器增加失败任务退出机制
 - 日志新增 `unknown` 等级（status），对于未指定等级的日志均为 `unknown`
 - 容器采集器修复：
-   - 修复 cluster 字段命名问题
-   - 修复 namespace 字段命名问题
-   - 容器日志采集中，如果 Pod Annotation 不指定日志 `source`，那么 DataKit 将按照此优先级来推导日志来源
-   - 对象上报不再受 32KB 字长限制（因 Annotation 内容超 32KB），所有 Kubernetes 对象均删除 `annotation` 
+    - 修复 cluster 字段命名问题
+    - 修复 namespace 字段命名问题
+    - 容器日志采集中，如果 Pod Annotation 不指定日志 `source`，那么 DataKit 将按照此优先级来推导日志来源
+    - 对象上报不再受 32KB 字长限制（因 Annotation 内容超 32KB），所有 Kubernetes 对象均删除 `annotation` 
 
 更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md) 。
 
-## 最佳实践更新
+### 最佳实践更新
 
 - 微服务可观测最佳实践
-   - service mesh 微服务架构从研发到金丝雀发布全流程最佳实践(上)
-   - service mesh 微服务架构从研发到金丝雀发布全流程最佳实践(下)
-   - service mesh 微服务架构从研发到金丝雀发布全流程最佳实践(中)
+    - service mesh 微服务架构从研发到金丝雀发布全流程最佳实践(上)
+    - service mesh 微服务架构从研发到金丝雀发布全流程最佳实践(下)
+    - service mesh 微服务架构从研发到金丝雀发布全流程最佳实践(中)
 - 监控最佳实践
-   - JAVA OOM异常可观测最佳实践
-   
+    - JAVA OOM异常可观测最佳实践
+
 更多最佳实践更新可参考 [最佳实践版本历史](../best-practices/index.md) 。
 
-## 集成模版更新
+### 集成模版更新
 
-### 新增文档
+#### 新增文档
 
 - 应用性能监测 (APM)
-   - Node.JS
-   - Ruby
+    - Node.JS
+    - Ruby
 - 中间件
-   - RocketMQ
+    - RocketMQ
 - 容器编排
-   - Istio
-   - Kube State Metrics
+    - Istio
+    - Kube State Metrics
 - 数据存储
-   - Aerospike
-### 新增视图
+    - Aerospike
+#### 新增视图
 
 - 容器编排
-   - Kubernetes Overview by Pods
-   - Istio Mesh
-   - Istio Control Plane
+    - Kubernetes Overview by Pods
+    - Istio Mesh
+    - Istio Control Plane
 - 阿里云
-   - 阿里云 ASM Mesh
-   - 阿里云 ASM Control Plane
-   - 阿里云 ASM Workload
+    - 阿里云 ASM Mesh
+    - 阿里云 ASM Control Plane
+    - 阿里云 ASM Workload
 - 中间件
-   - RocketMQ
-
+    - RocketMQ
 
 
 ## 2022 年 4 月 8 号
@@ -510,7 +656,7 @@ DQL 是专为观测云开发的语言，语法简单，方便使用，可在观�
 
 #### 可用性监测新增 TCP/ICMP/Websocket 拨测协议
 
-观测云支持自定义拨测任务。通过创建基于`[HTTP](https://www.yuque.com/dataflux/doc/kwbu7h)、[TCP](https://www.yuque.com/dataflux/doc/qgx4ai)、[ICMP](https://www.yuque.com/dataflux/doc/mcmful)、[WEBSOCKET](https://www.yuque.com/dataflux/doc/yytvyg)`等不同协议的拨测任务，全面监测不同地区、不同运营商到各个服务的网络性能、网络质量、网络数据传输稳定性等状况。
+观测云支持自定义拨测任务。通过创建基于 HTTP、TCP、ICMP、WEBSOCKET 等不同协议的拨测任务，全面监测不同地区、不同运营商到各个服务的网络性能、网络质量、网络数据传输稳定性等状况。
 
 ![](img/4.dailtesting_tcp_1.1.png)
 
@@ -577,14 +723,15 @@ DQL 是专为观测云开发的语言，语法简单，方便使用，可在观�
 ### 最佳实践更新
 
 - 观测云小妙招
-   - 多微服务项目的性能可观测实践
-   - ddtrace 高级用法
-   - Kubernetes 集群使用 ExternalName 映射 DataKit 服务
+    - 多微服务项目的性能可观测实践
+    - ddtrace 高级用法
+    - Kubernetes 集群使用 ExternalName 映射 DataKit 服务
 - 接入(集成)最佳实践
-   - OpenTelemetry 链路数据接入最佳实践
+    - OpenTelemetry 链路数据接入最佳实践
 - 微服务可观测最佳实践
-   - 基于阿里云 ASM 实现微服务可观测最佳实践
-   
+    - 基于阿里云 ASM 实现微服务可观测最佳实践
+
+
 更多最佳实践更新可参考 [最佳实践版本历史](../best-practices/index.md) 。
 
 ### 集成模版更新
@@ -635,7 +782,6 @@ Nacos 性能指标展示：Nacos 在线时长、Nacos config 长链接数、Naco
 | 海外区1（俄勒冈） | [https://us1-auth.guance.com/](https://us1-auth.guance.com/) | AWS（美国俄勒冈） |
 
 
-## 如何选择站点
 ### 观测云更新
 
 #### 新增工作空间数据授权
@@ -665,7 +811,7 @@ Nacos 性能指标展示：Nacos 在线时长、Nacos config 长链接数、Naco
 
 在观测云工作空间，通过 「基础设施」-「自定义」-「添加对象分类」，您可以创建新的对象分类，并自定义对象分类名称和对象字段。
 
-添加完自定义对象分类以后，即可通过 [Func 函数处理平台](../dataflux-func/quick-start.md)进行自定义数据上报。关于如何通过 Func 向观测云工作空间上报数据，可参考文档 [自定义对象数据上报](../infrastructure/custom/data-reporting.md) 。
+添加完自定义对象分类以后，即可通过 [Func 函数处理平台](../dataflux-func/quick-start.md) 进行自定义数据上报。关于如何通过 Func 向观测云工作空间上报数据，可参考文档 [自定义对象数据上报](../infrastructure/custom/data-reporting.md) 。
 
 ![](img/11.custom_1.png)
 
@@ -708,9 +854,9 @@ Nacos 性能指标展示：Nacos 在线时长、Nacos config 长链接数、Naco
 ### 最佳实践更新
 
 - 场景最佳实践
-   - RUM 数据上报 DataKit 集群最佳实践
+    - RUM 数据上报 DataKit 集群最佳实践
 - 日志最佳实践
-   - Pod 日志采集最佳实践
+    - Pod 日志采集最佳实践
 
 更多最佳实践更新可参考 [最佳实践版本历史](../best-practices/index.md) 。
 
@@ -721,7 +867,6 @@ Nacos 性能指标展示：Nacos 在线时长、Nacos config 长链接数、Naco
 阿里云 PolarDB Mysql 指标展示，包括 CPU 使用率，内存命中率，网络流量，连接数，QPS，TPS，只读节点延迟等
 
 ![](img/image51.png)
-
 
 
 ## 2022 年 3 月 10 号
@@ -754,7 +899,7 @@ Nacos 性能指标展示：Nacos 在线时长、Nacos config 长链接数、Naco
 
 Pod 网络支持查看 Pod 之间的网络流量。支持基于 IP/端口查看源 IP 到目标 IP 之间的网络流量和数据连接情况，通过可视化的方式进行实时展示，帮助企业实时了解业务系统的网络运行状态，快速分析、追踪和定位问题故障，预防或避免因网络性能下降或中断而导致的业务问题。
 
-Pod 网络数据采集成功后会上报到观测云控制台，在「基础设施」-「容器」-「Pod」详情页中的「网络」，您可以查看到工作空间内全部 Pod 网络性能监测数据信息。更多详情可参考 [Pod 网络](https://www.yuque.com/dataflux/doc/gy7lei#PqtQj) 。
+Pod 网络数据采集成功后会上报到观测云控制台，在「基础设施」-「容器」-「Pod」详情页中的「网络」，您可以查看到工作空间内全部 Pod 网络性能监测数据信息。更多详情可参考 [Pod 网络](../infrastructure/contrainer.md) 。
 
 ![](img/7.pod_1.png)
 
@@ -773,8 +918,8 @@ Pod 网络数据采集成功后会上报到观测云控制台，在「基础设�
 **2022/03/22**
 
 -  本次对 Tracing 数据采集做了较大的调整，涉及几个方面的不兼容： 
-   - DDtrace 原有 conf 中配置的 `ignore_resources` 字段需改成 `close_resource`，且字段类型由原来的数组（`[...]`）形式改成了字典数组（`map[string][...]`）形式
-   - DDTrace 原数据中采集的 tag `[type](ddtrace#01b88adb)` 字段改成 `[source_type](ddtrace#01b88adb)`
+    - DDtrace 原有 conf 中配置的 `ignore_resources` 字段需改成 `close_resource`，且字段类型由原来的数组（`[...]`）形式改成了字典数组（`map[string][...]`）形式
+    - DDTrace 原数据中采集的 tag `[type](ddtrace#01b88adb)` 字段改成 `[source_type](ddtrace#01b88adb)`
 
 **2022/03/04**
 
@@ -805,10 +950,10 @@ $env:DK_UPGRADE="1"; Set-ExecutionPolicy Bypass -scope Process -Force; Import-Mo
 ### 最佳实践更新
 
 - 自定义接入最佳实践
-   - 快速上手 pythond 采集器的最佳实践
-   - 阿里云“云监控数据”集成最佳实践
+    - 快速上手 pythond 采集器的最佳实践
+    - 阿里云“云监控数据”集成最佳实践
 - 日志最佳实践
-   - logback socket 日志采集最佳实践
+    - logback socket 日志采集最佳实践
 
 更多最佳实践更新可参考 [最佳实践版本历史](../best-practices/index.md) 。
 
@@ -895,12 +1040,13 @@ Pipeline 用于日志数据解析，通过定义解析规则，将格式各异�
 
 #### 其他优化功能
 
-- 图表查询数据来源日志、应用性能、安全巡检和网络支持全选（*）;
+- 图表查询数据来源日志、应用性能、安全巡检和网络支持全选（`*`）;
 - 图表查询文案、按钮样式以及文字提示优化；
 - 工作空间操作按钮图标化，如编辑、删除等等。
 - 其他 UI 显示优化
+
 ## 2022 年 1 月 20 号
-#### 
+
 #### 新增 Open API 及 API Key 管理
 
 “观测云” 支持通过调用 Open API 接口的方式来获取和更新观测云工作空间的数据，在调用 API 接口前，需要先创建 API Key 作为认证方式。更多详情，可参考文档 [API Key 管理](../management/api-key/index.md) 。
@@ -1092,7 +1238,7 @@ Extracted data(drop: false, cost: 3.108038ms):
 ![](img/12.changelog_5.png)
 
 #### 优化视图变量的查询显示
- 
+
 
 - 仪表板视图变量新增默认值，支持预览当前视图变量的全部变量，并选择在仪表板默认查看的初始变量
 - 支持通过鼠标悬浮（hover）拖动视图变量以调节先后顺序
@@ -1272,11 +1418,11 @@ Extracted data(drop: false, cost: 3.108038ms):
 #### 其他优化功能
 
 - 图表优化：
-   - 概览图去掉分组的选择；
-   - 时序图、饼图、柱状图图表选择样式调整；
-   - 时间分片新增提示信息；
-   - 图表json支持编辑，和查询/设置联动，支持对输入的Json进行校验，若有错误则显示错误提示；
-   - 时序图分析模式下的样式优化；
+    - 概览图去掉分组的选择；
+    - 时序图、饼图、柱状图图表选择样式调整；
+    - 时间分片新增提示信息；
+    - 图表json支持编辑，和查询/设置联动，支持对输入的Json进行校验，若有错误则显示错误提示；
+    - 时序图分析模式下的样式优化；
 - 付费计划与账单新增提示，结算方式选择aliyun或者aws，账单列表直接显示跳转到对应云服务控制台查看账单信息。
 
 
@@ -1724,7 +1870,7 @@ DataFlux 应用性能监测的火焰图支持查看服务同步和异步调用�
 
 DataFlux 支持为查看器显示的字段自定义别名，如在基础设施主机对象，用户可以在“添加显示列”修改字段别名，修改以后可以在查看器以及详情中查看。
 
-![](img/16.host_12.1.png)
+![](img/6.host_12.1.png)
 
 #### 优化云拨测自建节点
 
@@ -3022,5 +3168,4 @@ DataFlux 支持采集Web、Android、iOS和小程序应用数据，并提供了�
 ## 2019 年 12 月 24 号
 
 DataFlux 正式发布上线
-
 

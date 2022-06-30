@@ -1,8 +1,8 @@
 
-# JVM
+JVM
 ---
 
-- DataKit 版本：1.4.2
+- DataKit 版本：1.4.3
 - 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
 这里我们提供俩类 JVM 指标采集方式，一种方案是 Jolokia，一种是 ddtrace。如何选择的方式，我们有如下建议：
@@ -68,7 +68,7 @@ DataKit 内置了 [statsd 采集器](statsd.md)，用于接收网络上发送过
   #max_ttl = "1000h"
 
   [inputs.statsd.tags]
-  # some_tag = "your-tag-value" 
+  # some_tag = "your-tag-value"
   # some_other_tag = "your-other-tag-value"
 ```
 
@@ -163,7 +163,7 @@ JVM 采集器可以通过 JMX 来采取很多指标，并将指标采集到观�
 
 ## 前置条件
 
-安装或下载 [Jolokia](https://search.maven.org/remotecontent?filepath=org/jolokia/jolokia-jvm/1.6.2/jolokia-jvm-1.6.2-agent.jar){:target="_blank"}。DataKit 安装目录下的 `data` 目录中已经有下载好的 Jolokia jar 包。通过如下方式开启 Java 应用： 
+安装或下载 [Jolokia](https://search.maven.org/remotecontent?filepath=org/jolokia/jolokia-jvm/1.6.2/jolokia-jvm-1.6.2-agent.jar){:target="_blank"}。DataKit 安装目录下的 `data` 目录中已经有下载好的 Jolokia jar 包。通过如下方式开启 Java 应用：
 
 ```shell
 java -javaagent:/path/to/jolokia-jvm-agent.jar=port=8080,host=localhost -jar your_app.jar

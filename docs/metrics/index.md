@@ -1,3 +1,6 @@
+---
+icon: zy/metrics
+---
 # 指标
 ---
 

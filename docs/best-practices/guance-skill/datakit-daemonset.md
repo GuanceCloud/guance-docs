@@ -4,9 +4,9 @@
 
 ## 背景介绍
 
-由于[Datakit DaemonSet](https://www.yuque.com/dataflux/datakit/datakit-daemonset-deploy) 配置管理非常复杂，此篇文章将介绍配置管理最佳实践。
+由于[Datakit DaemonSet](/datakit/datakit-daemonset-deploy.md) 配置管理非常复杂，此篇文章将介绍配置管理最佳实践。
 
-本篇将描述2种不同部署的方式的配置方法，[Helm 部署配置最佳实践](https://www.yuque.com/dataflux/bp/vbxw94/edit#lj4l3)，[启用git 部署配置最佳实践](https://www.yuque.com/dataflux/bp/vbxw94/edit#cXnIK)。
+本篇将描述2种不同部署的方式的配置方法。
 
 ## Helm 部署配置最佳实践
 
@@ -149,7 +149,7 @@ kubectl get pods -n datakit
 
 ## 启用git 部署配置最佳实践
 
-Datakit[启用git](https://www.yuque.com/dataflux/datakit/datakit-conf#2639613a)管理
+Datakit[启用git](/datakit/datakit-conf.md)管理
 
 ### 前提条件
 

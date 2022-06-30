@@ -1,3 +1,6 @@
+---
+icon: zy/usability-monitoring
+---
 # 可用性监测
 ---
 

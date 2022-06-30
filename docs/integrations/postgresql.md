@@ -2,7 +2,7 @@
 # PostgreSQL
 ---
 
-- DataKit 版本：1.4.2
+- DataKit 版本：1.4.3
 - 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
 Postgresql 采集器可以从 Postgresql 实例中采集实例运行状态指标，并将指标采集到观测云，帮助监控分析 Postgresql 各种异常情况
@@ -108,7 +108,7 @@ Postgresql 采集器可以从 Postgresql 实例中采集实例运行状态指标
 
 ```
 logging_collector = on    # 开启日志写入文件功能
-                          
+
 log_directory = 'pg_log'  # 设置文件存放目录，绝对路径或相对路径(相对PGDATA)
 
 log_filename = 'pg.log'   # 日志文件名称
@@ -127,7 +127,7 @@ log_file_mode = 0644
 
 ```
 [[inputs.postgresql]]
-  
+
   ...
 
   [inputs.postgresql.log]
@@ -143,12 +143,15 @@ log_file_mode = 0644
 ## 日志 pipeline 功能切割字段说明
 
 原始日志为
-`2021-05-31 15:23:45.110 CST [74305] test [pgAdmin 4 - DB:postgres] postgres [127.0.0.1] 60b48f01.12241 LOG:  statement: 
-		SELECT psd.*, 2^31 - age(datfrozenxid) as wraparound, pg_database_size(psd.datname) as pg_database_size 
-		FROM pg_stat_database psd 
-		JOIN pg_database pd ON psd.datname = pd.datname 
-		WHERE psd.datname not ilike 'template%'   AND psd.datname not ilike 'rdsadmin'   
-		AND psd.datname not ilike 'azure_maintenance'   AND psd.datname not ilike 'postgres'`
+
+```
+2021-05-31 15:23:45.110 CST [74305] test [pgAdmin 4 - DB:postgres] postgres [127.0.0.1] 60b48f01.12241 LOG:  statement:
+		SELECT psd.*, 2^31 - age(datfrozenxid) as wraparound, pg_database_size(psd.datname) as pg_database_size
+		FROM pg_stat_database psd
+		JOIN pg_database pd ON psd.datname = pd.datname
+		WHERE psd.datname not ilike 'template%'   AND psd.datname not ilike 'rdsadmin'
+		AND psd.datname not ilike 'azure_maintenance'   AND psd.datname not ilike 'postgres'
+```
 
 切割后的字段说明：
 
@@ -162,4 +165,3 @@ log_file_mode = 0644
 | user             | postgres                | 当前访问用户名                                            |
 | status           | LOG                     | 当前日志的级别(LOG,ERROR,FATAL,PANIC,WARNING,NOTICE,INFO) |
 | time             | 1622445825110000000     | 日志产生时间                                              |
-

@@ -28,7 +28,7 @@
 
 #### java
 
-[[部署方式详见集成文档](https://www.yuque.com/dataflux/integrations/java#Q7Kn5)]
+[[部署方式详见集成文档](/integrations/jvm.md)]
 
 启动脚本添加参数：Ddd.trace.sample.rate=1
 
@@ -49,7 +49,7 @@
 
 #### PHP
 
-[[部署方式详见集成文档](https://www.yuque.com/dataflux/integrations/php)]
+[[部署方式详见集成文档](/integrations/php.md)]
 
 环境变量添加参数：DD_SAMPLING_RATE=1
 
@@ -64,7 +64,7 @@
 在rum-js添加的地方，添加`sampleRate: 90`，举例如下（同步载入方式）：
 
 ```
-<script src="https://static.dataflux.cn/browser-sdk/v2/dataflux-rum.js" type="text/javascript"></script>
+<script src="https://static.guance.com/browser-sdk/v2/dataflux-rum.js" type="text/javascript"></script>
 <script>
   window.DATAFLUX_RUM &&
     window.DATAFLUX_RUM.init({

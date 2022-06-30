@@ -2,7 +2,7 @@
 # Solr
 ---
 
-- DataKit 版本：1.4.2
+- DataKit 版本：1.4.3
 - 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
 solr 采集器，用于采集 solr cache 和 request times 等的统计信息。
@@ -159,7 +159,7 @@ DataKit 使用 Solr Metrics API 采集指标数据，支持 Solr 7.0 及以上�
 ```toml
 [inputs.solr.log]
     # 填入绝对路径
-    files = ["/path/to/demo.log"] 
+    files = ["/path/to/demo.log"]
 ```
 
 切割日志示例：
@@ -176,4 +176,3 @@ DataKit 使用 Solr Metrics API 采集指标数据，支持 Solr 7.0 及以上�
 | status   | INFO                          |
 | thread   | org.apache.solr.core.SolrCore |
 | time     | 1380630788319000000           |
-

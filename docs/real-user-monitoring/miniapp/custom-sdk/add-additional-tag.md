@@ -6,99 +6,115 @@
 
 ### 添加TAG
 
-#### CDN 下载文件本地方式引入([下载地址](https://static.dataflux.cn/miniapp-sdk/v2/dataflux-rum-miniapp.js))
+=== "CDN" 
 
-```javascript
-const { datafluxRum } = require('./lib/dataflux-rum-miniapp.js')
-datafluxRum.addRumGlobalContext('<CONTEXT_KEY>', '<CONTEXT_VALUE>');
+    下载文件本地方式引入([下载地址](https://static.guance.com/miniapp-sdk/v2/dataflux-rum-miniapp.js))
 
-// Code example
-datafluxRum.addRumGlobalContext('isvip', 'xxxx');
+    ```javascript
+    const { datafluxRum } = require('./lib/dataflux-rum-miniapp.js')
+    datafluxRum.addRumGlobalContext('<CONTEXT_KEY>', '<CONTEXT_VALUE>');
 
-datafluxRum.addRumGlobalContext('activity', {
-    hasPaid: true,
-    amount: 23.42
-});
+    // Code example
+    datafluxRum.addRumGlobalContext('isvip', 'xxxx');
 
-```
+    datafluxRum.addRumGlobalContext('activity', {
+        hasPaid: true,
+        amount: 23.42
+    });
 
-#### npm 引入(可参考微信官方[npm引入方式](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html))
+    ```
 
-```javascript
-const { datafluxRum } = require('@cloudcare/rum-miniapp')
-datafluxRum.addRumGlobalContext('<CONTEXT_KEY>', '<CONTEXT_VALUE>');
+=== "NPM"
 
-// Code example
-datafluxRum.addRumGlobalContext('isvip', 'xxxx');
+    引入(可参考微信官方[npm引入方式](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html))
 
-datafluxRum.addRumGlobalContext('activity', {
-    hasPaid: true,
-    amount: 23.42
-});
-```
+    ```javascript
+    const { datafluxRum } = require('@cloudcare/rum-miniapp')
+    datafluxRum.addRumGlobalContext('<CONTEXT_KEY>', '<CONTEXT_VALUE>');
+
+    // Code example
+    datafluxRum.addRumGlobalContext('isvip', 'xxxx');
+
+    datafluxRum.addRumGlobalContext('activity', {
+        hasPaid: true,
+        amount: 23.42
+    });
+    ```
 
 ### 替换TAG（覆盖）
 
-#### CDN 下载文件本地方式引入([下载地址](https://static.dataflux.cn/miniapp-sdk/v2/dataflux-rum-miniapp.js))
+=== "CDN"
 
-```javascript
-const { datafluxRum } = require('./lib/dataflux-rum-miniapp.js')
+    下载文件本地方式引入([下载地址](https://static.guance.com/miniapp-sdk/v2/dataflux-rum-miniapp.js))
 
-datafluxRum.setRumGlobalContext({ '<CONTEXT_KEY>': '<CONTEXT_VALUE>' });
+    ```javascript
+    const { datafluxRum } = require('./lib/dataflux-rum-miniapp.js')
 
-// Code example
-datafluxRum.setRumGlobalContext({
-    codeVersion: 34,
-});
-```
+    datafluxRum.setRumGlobalContext({ '<CONTEXT_KEY>': '<CONTEXT_VALUE>' });
 
-#### npm 引入(可参考微信官方[npm引入方式](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html))
+    // Code example
+    datafluxRum.setRumGlobalContext({
+        codeVersion: 34,
+    });
+    ```
 
-```javascript
-const { datafluxRum } = require('@cloudcare/rum-miniapp')
+=== "NPM"
 
-datafluxRum.setRumGlobalContext({ '<CONTEXT_KEY>': '<CONTEXT_VALUE>' });
+    引入(可参考微信官方[npm引入方式](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html))
 
-// Code example
-datafluxRum.setRumGlobalContext({
-    codeVersion: 34,
-});
-```
+    ```javascript
+    const { datafluxRum } = require('@cloudcare/rum-miniapp')
+
+    datafluxRum.setRumGlobalContext({ '<CONTEXT_KEY>': '<CONTEXT_VALUE>' });
+
+    // Code example
+    datafluxRum.setRumGlobalContext({
+        codeVersion: 34,
+    });
+    ```
 
 ### 获取所有设置的自定义TAG
 
-#### CDN 下载文件本地方式引入([下载地址](https://static.dataflux.cn/miniapp-sdk/v2/dataflux-rum-miniapp.js))
+=== "CDN"
 
-```javascript
-const { datafluxRum } = require('./lib/dataflux-rum-miniapp.js')
+    下载文件本地方式引入([下载地址](https://static.guance.com/miniapp-sdk/v2/dataflux-rum-miniapp.js))
 
-const context = datafluxRum.getRumGlobalContext();
-```
+    ```javascript
+    const { datafluxRum } = require('./lib/dataflux-rum-miniapp.js')
 
-#### npm 引入(可参考微信官方[npm引入方式](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html))
+    const context = datafluxRum.getRumGlobalContext();
+    ```
 
-```javascript
-const { datafluxRum } = require('@cloudcare/rum-miniapp')
+=== "NPM"
 
-const context = datafluxRum.getRumGlobalContext();
+    引入(可参考微信官方[npm引入方式](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html))
 
-```
+    ```javascript
+    const { datafluxRum } = require('@cloudcare/rum-miniapp')
+
+    const context = datafluxRum.getRumGlobalContext();
+
+    ```
 
 ### 移除特定key对应的自定义TAG
 
-#### CDN 下载文件本地方式引入([下载地址](https://static.dataflux.cn/miniapp-sdk/v2/dataflux-rum-miniapp.js))
+=== "CDN"
 
-```javascript
-const { datafluxRum } = require('./lib/dataflux-rum-miniapp.js');
+    下载文件本地方式引入([下载地址](https://static.guance.com/miniapp-sdk/v2/dataflux-rum-miniapp.js))
 
-const context = datafluxRum.removeRumGlobalContext('<CONTEXT_KEY>');
-```
+    ```javascript
+    const { datafluxRum } = require('./lib/dataflux-rum-miniapp.js');
 
-#### npm 引入(可参考微信官方[npm引入方式](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html))
+    const context = datafluxRum.removeRumGlobalContext('<CONTEXT_KEY>');
+    ```
 
-```javascript
-const { datafluxRum } = require('@cloudcare/rum-miniapp')
+=== "NPM"
 
-const context = datafluxRum.removeRumGlobalContext('<CONTEXT_KEY>');
-```
+    引入(可参考微信官方[npm引入方式](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html))
+
+    ```javascript
+    const { datafluxRum } = require('@cloudcare/rum-miniapp')
+
+    const context = datafluxRum.removeRumGlobalContext('<CONTEXT_KEY>');
+    ```
 

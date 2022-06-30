@@ -8,13 +8,13 @@
 
 ## 前置条件
 
-1、 服务器 <[安装 Datakit](https://www.yuque.com/dataflux/datakit/datakit-install)>
+1、 服务器 <[安装 DataKit](/datakit/datakit-install.md)>
 
 登录观测云，点击 **集成** - **Datakit**，复制安装命令至服务器运行即可 (其中 token 为该工作空间唯一标识)
 
 ![image.png](../images/aliyun-prod-func-1.png)
 
-2、 服务器 <[安装 Func 携带版](https://www.yuque.com/dataflux/func/quick-start)>
+2、 服务器 <[安装 Func 携带版](/dataflux-func/quick-start.md)>
 
 登录观测云，点击 **集成** - **Func**，下载脚本并执行安装命令即可
 
@@ -162,10 +162,8 @@ def run():
 
 ## 进一步阅读
 
-<[阿里云-云监控指标概览](https://help.aliyun.com/document_detail/163515.html)>
+- [阿里云-云监控指标概览](https://help.aliyun.com/document_detail/163515.html)
 
-<[DataFlux Func 观测云集成简介](https://www.yuque.com/dataflux/func/script-market-guance-integration-intro)>
+- [DataFlux Func 观测云集成简介](/dataflux-func/script-market-guance-integration.md)
 
-<[DataFlux Func 阿里云-云监控配置手册](https://www.yuque.com/dataflux/func/script-market-guance-aliyun-monitor)>
-
-![](../../logo_2.png)
+- [DataFlux Func 阿里云-云监控配置手册](/dataflux-func/script-market-guance-aliyun-monitor.md)

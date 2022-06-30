@@ -10,9 +10,24 @@ buildTesting:
   only:
     - dev
   script:
-    - docker buildx build --platform linux/arm64,linux/amd64 
-      -t registry.jiagouyun.com/cloudcare-front/$REPOSITORY:testing . --push
+    - docker build --build-arg release_env="peprod" -t $REPOSITORY:testing .
+    - docker tag $REPOSITORY:testing registry.jiagouyun.com/cloudcare-front/$REPOSITORY:testing
+    - docker push registry.jiagouyun.com/cloudcare-front/$REPOSITORY:testing
+
     - curl -sS -X POST -H "Authorization:Bearer ${PREPROD_RANCHER_TOKEN}"  ${RANCHER_API_BASE_URL}/v3/project/${PREPROD_PROJECT_ID}/workloads/deployment:${PREPROD_WORKLOAD}?action=redeploy
+  tags:
+    - cloudcare-multiarch
+
+buildMain:
+  stage: deploy
+  only:
+    - main
+  script:
+    - docker build --build-arg release_env="saas_production" -t $REPOSITORY:prod .
+    - docker tag $REPOSITORY:prod registry.jiagouyun.com/cloudcare-front/$REPOSITORY:prod
+    - docker push registry.jiagouyun.com/cloudcare-front/$REPOSITORY:prod
+    
+    - curl -sS -X POST -H "Authorization:Bearer ${PROD_RANCHER_TOKEN}"  ${RANCHER_API_BASE_URL}/v3/project/${PROD_PROJECT_ID}/workloads/deployment:${PROD_WORKLOAD}?action=redeploy
   tags:
     - cloudcare-multiarch
 
@@ -27,4 +42,32 @@ buildBasis:
       --push
   tags:
     - cloudcare-multiarch
+
+buildRTM:
+  stage: deploy
+  only:
+    - /\d+\.\d+\.\d+-\w+-\d+-prod/
+  script:
+    - V=(${CI_COMMIT_REF_NAME//[\.-]/ })
+    - VDIR=${V[0]}.${V[1]}.${V[2]}
+    - REPO=dataflux/$VDIR
+    - TAG=${PROJECT}-${V[3]}-${V[4]}
+    
+    - docker buildx build --platform linux/arm64,linux/amd64 -t pubrepo.jiagouyun.com/$REPO:$TAG . --push
+  tags:
+    - cloudcare-multiarch 
+
+buildRTMPrev:
+  stage: deploy
+  only:
+    - /\d+\.\d+\.\d+\.\d+-\w+-prev/
+  script:
+    - V=(${CI_COMMIT_REF_NAME//[\.-]/ })
+    - VDIR=${V[0]}.${V[1]}.${V[2]}.${V[3]}
+    - REPO=dataflux-prev/$VDIR
+    - TAG=${PROJECT}-${V[4]}
+
+    - docker buildx build --platform linux/arm64,linux/amd64 -t pubrepo.jiagouyun.com/$REPO:$TAG . --push
+  tags:
+    - cloudcare-multiarch 
 

@@ -1,3 +1,6 @@
+---
+icon: zy/real-user-monitoring
+---
 # 用户访问监测
 ---
 

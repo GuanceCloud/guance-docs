@@ -6,6 +6,7 @@ set -e
 rm -f .pages
 wget https://func.guance.com/doc/.pages -O .pages
 sed -i "/# FUNC SITE ONLY START/,/# FUNC SITE ONLY END/d" .pages
+sed -i "s/# GUANCE HELP PLACEHOLDER/- index.md/" .pages
 
 # 下载Func文档
 python ./sync-docs.py --base-url="${DOC_DOWNLOAD_BASE_URL}"

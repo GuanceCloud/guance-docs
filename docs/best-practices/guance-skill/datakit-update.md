@@ -14,24 +14,24 @@
 
 **【在 Linux 上安装】**
 
-| X86 amd64 | `sudo -- sh -c 'curl https://static.dataflux.cn/datakit/installer-linux-amd64 -o dk-installer && chmod +x ./dk-installer && ./dk-installer -upgrade && rm -rf ./dk-installer'` |
-| --- | --- |
-| X86 i386 | `sudo -- sh -c 'curl https://static.dataflux.cn/datakit/installer-linux-386 -o dk-installer && chmod +x ./dk-installer && ./dk-installer -upgrade && rm -rf ./dk-installer'` |
-| arm | `sudo -- sh -c 'curl https://static.dataflux.cn/datakit/installer-linux-arm -o dk-installer && chmod +x ./dk-installer && ./dk-installer -upgrade && rm -rf ./dk-installer'` |
-| arm64 | `sudo -- sh -c 'https://static.dataflux.cn/datakit/installer-linux-arm64 -o dk-installer && chmod +x ./dk-installer && ./dk-installer -upgrade && rm -rf ./dk-installer'` |
+| X86 amd64 | `sudo -- sh -c 'curl https://static.guance.com/datakit/installer-linux-amd64 -o dk-installer && chmod +x ./dk-installer && ./dk-installer -upgrade && rm -rf ./dk-installer'` |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| X86 i386  | `sudo -- sh -c 'curl https://static.guance.com/datakit/installer-linux-386 -o dk-installer && chmod +x ./dk-installer && ./dk-installer -upgrade && rm -rf ./dk-installer'`   |
+| arm       | `sudo -- sh -c 'curl https://static.guance.com/datakit/installer-linux-arm -o dk-installer && chmod +x ./dk-installer && ./dk-installer -upgrade && rm -rf ./dk-installer'`   |
+| arm64     | `sudo -- sh -c 'https://static.guance.com/datakit/installer-linux-arm64 -o dk-installer && chmod +x ./dk-installer && ./dk-installer -upgrade && rm -rf ./dk-installer'`      |
 
 
 
 **【在 Windows 上安装】**
 
-| 64位 | `Import-Module bitstransfer; start-bitstransfer -source [https://static.dataflux.cn/datakit/installer-windows-amd64.exe](https://static.dataflux.cn/datakit/installer-windows-amd64.exe) -destination .dk-installer.exe; .dk-installer.exe -upgrade; rm .dk-installer.exe` |
-| --- | --- |
-| 32位 | `Import-Module bitstransfer; start-bitstransfer -source [https://static.dataflux.cn/datakit/installer-windows-386.exe](https://static.dataflux.cn/datakit/installer-windows-amd64.exe) -destination .dk-installer.exe; .dk-installer.exe -upgrade; rm .dk-installer.exe` |
+| 64位 | `Import-Module bitstransfer; start-bitstransfer -source [https://static.guance.com/datakit/installer-windows-amd64.exe](https://static.guance.com/datakit/installer-windows-amd64.exe) -destination .dk-installer.exe; .dk-installer.exe -upgrade; rm .dk-installer.exe` |
+| ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 32位 | `Import-Module bitstransfer; start-bitstransfer -source [https://static.guance.com/datakit/installer-windows-386.exe](https://static.guance.com/datakit/installer-windows-amd64.exe) -destination .dk-installer.exe; .dk-installer.exe -upgrade; rm .dk-installer.exe`   |
 
 **【在 MacOS 上安装 上安装】**
 
-| all | `sudo -- sh -c "curl [https://static.dataflux.cn/datakit/installer-darwin-amd64](https://static.dataflux.cn/datakit/installer-darwin-amd64) -o dk-installer && chmod +x ./dk-installer && ./dk-installer -upgrade && rm -rf ./dk-installer"` |
-| --- | --- |
+| all | `sudo -- sh -c "curl [https://static.guance.com/datakit/installer-darwin-amd64](https://static.guance.com/datakit/installer-darwin-amd64) -o dk-installer && chmod +x ./dk-installer && ./dk-installer -upgrade && rm -rf ./dk-installer"` |
+| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 
 ## 二：自动更新（目前自动更新只支持 Linux）
 
@@ -44,7 +44,7 @@
 # Update DataKit if new version available
 
 otalog=/usr/local/datakit/ota-update.log
-installer=https://static.dataflux.cn/datakit/installer-linux-amd64
+installer=https://static.guance.com/datakit/installer-linux-amd64
 
 # 注意：如果不希望更新 RC 版本的 DataKit，可移除 `--accept-rc-version`
 /usr/local/datakit/datakit --check-update --accept-rc-version --update-log $otalog

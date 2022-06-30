@@ -53,7 +53,9 @@ def load_doc_list(doc_dir):
                 x = list(x.values())[0]
 
             if isinstance(x, str):
-                if x.startswith('http://') or x.startswith('https://'):
+                if x == 'index.md':
+                    continue
+                elif x.startswith('http://') or x.startswith('https://'):
                     continue
                 elif x.endswith('/'):
                     continue
@@ -65,6 +67,7 @@ def load_doc_list(doc_dir):
 
     fetch_doc_list(index.get('nav'))
     doc_list = list(set(doc_list))
+    doc_list.sort()
 
     return doc_list
 
@@ -74,8 +77,9 @@ def prepare_doc(doc):
     _lines.insert(1, '---\n')
     doc = '\n'.join(_lines)
 
+    # 本站文档替换为相对路径
     doc = doc.replace('https://func.guance.com/doc/', '/dataflux-func/')
-    doc = doc.replace('https://www.yuque.com/dataflux/', '/')
+    doc = doc.replace('https://docs.guance.com/', '/')
 
     return doc
 
@@ -83,7 +87,10 @@ def download_docs(doc_list, doc_dir, base_url):
     if not base_url.endswith('/'):
         base_url += '/'
 
-    for doc_file in doc_list:
+    print(f'\nDownloading... 0/{len(doc_list)}', end='')
+    for index, doc_file in enumerate(doc_list):
+        print(f'\rDownloading... {index + 1}/{len(doc_list)}', end='')
+
         doc_path = os.path.normpath(os.path.join(doc_dir, doc_file))
         doc_url  = urljoin(base_url, doc_file)
 
@@ -114,6 +121,8 @@ def download_docs(doc_list, doc_dir, base_url):
                 _bin = requests.get(img_url).content
                 with open(img_path, 'wb') as _f:
                     _f.write(_bin)
+
+    print()
 
 def main(options):
     doc_dir  = options.get('doc_dir')

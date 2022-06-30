@@ -1,8 +1,8 @@
 
-# MySQL
+MySQL
 ---
 
-- DataKit 版本：1.4.2
+- DataKit 版本：1.4.3
 - 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
 MySQL 指标采集，收集以下数据：
@@ -157,10 +157,10 @@ dbm = true
 ## 监控指标配置
 [inputs.mysql.dbm_metric]
   enabled = true
-  
+
 ## 监控采样配置
 [inputs.mysql.dbm_sample]
-  enabled = true  
+  enabled = true
 ...
 
 ```
@@ -674,7 +674,7 @@ SELECT * FROM fruit f1, fruit f2, fruit f3, fruit f4, fruit f5
 切割后的字段列表如下：
 
 | 字段名              | 字段值                                                                                      | 说明                           |
-| ------------------- | ------------------------------------------------------------------------------------------- | ------------------------------ |
+| ---                 | ---                                                                                         | ---                            |
 | `bytes_sent`        | `123456`                                                                                    | 发送字节数                     |
 | `db_host`           | `localhost`                                                                                 | hostname                       |
 | `db_ip`             | `1.2.3.4`                                                                                   | ip                             |

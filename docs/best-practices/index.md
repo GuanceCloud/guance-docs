@@ -1,3 +1,7 @@
+---
+icon: zy/best-practices
+---
+
 ## (2022/06/24)
 ### 更新记录
 - 云原生
@@ -115,7 +119,7 @@
 - 微服务可观测最佳实践
     - [基于 Istio 实现微服务可观测最佳实践](./cloud-native/istio.md)，<font color="red" >更新 istiod pod 的指标采集。</font>
    
-    - [Elasticsearch 可观测最佳实践](https://www.yuque.com/dataflux/bp/cm5wsv)，<font color="red" >更新一些链接和描述。</font>
+    - [Elasticsearch 可观测最佳实践](integrations/elasticsearch.md)，<font color="red" >更新一些链接和描述。</font>
     - [基于阿里云 ASM 实现微服务可观测最佳实践](./cloud-native/asm.md) <font color="red" >更新场景视图名称。</font>
 ## (2022/04/15)
 ### 新增最佳实践
@@ -139,7 +143,7 @@
     - [OpenTelemetry 链路数据接入最佳实践](./integrations/opentelemetry.md)
    
 - 微服务可观测最佳实践
-    - [基于阿里云 ASM 实现微服务可观测最佳实践](https://www.yuque.com/dataflux/bp/asm)
+    - [基于阿里云 ASM 实现微服务可观测最佳实践](cloud-native/asm.md)
    
 ### 更新记录
 

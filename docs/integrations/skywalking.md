@@ -2,7 +2,7 @@
 # SkyWalking
 ---
 
-- DataKit 版本：1.4.2
+- DataKit 版本：1.4.3
 - 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
 Datakit 内嵌的 SkyWalking Agent 用于接收，运算，分析 Skywalking Tracing 协议数据。
@@ -34,7 +34,7 @@ collector.backend_service=${SW_AGENT_COLLECTOR_BACKEND_SERVICES:<datakit-ip:skyw
 ```toml
 
 [[inputs.skywalking]]
-  ## skywalking grpc server listening on address
+  ## skywalking grpc server listening on address.
   address = "localhost:13800"
 
   ## customer_tags is a list of keys contains keys set by client code like span.SetTag(key, value)
@@ -59,24 +59,9 @@ collector.backend_service=${SW_AGENT_COLLECTOR_BACKEND_SERVICES:<datakit-ip:skyw
     # ...
 
   ## Sampler config uses to set global sampling strategy.
-  ## priority uses to set tracing data propagation level, the valid values are -1, 0, 1
-  ##  -1: always reject any tracing data send to datakit
-  ##   0: accept tracing data and calculate with sampling_rate
-  ##   1: always send to data center and do not consider sampling_rate
-  ## sampling_rate used to set global sampling rate
+  ## sampling_rate used to set global sampling rate.
   # [inputs.skywalking.sampler]
-    # priority = 0
     # sampling_rate = 1.0
-
-  ## Piplines use to manipulate message and meta data. If this item configured right then
-  ## the current input procedure will run the scripts wrote in pipline config file against the data
-  ## present in span message.
-  ## The string on the left side of the equal sign must be identical to the service name that
-  ## you try to handle.
-  # [inputs.skywalking.pipelines]
-    # service1 = "service1.p"
-    # service2 = "service2.p"
-    # ...
 
   # [inputs.skywalking.tags]
     # key1 = "value1"
@@ -85,8 +70,58 @@ collector.backend_service=${SW_AGENT_COLLECTOR_BACKEND_SERVICES:<datakit-ip:skyw
 
 ```
 
+以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.skywalking.tags]` 指定其它标签：
+
+```toml
+ [inputs.skywalking.tags]
+  # some_tag = "some_value"
+  # more_tag = "some_other_value"
+  # ...
+```
+
 ## 启动 Java Client
 
 ```command
 java -javaagent:/path/to/skywalking/agent -jar /path/to/your/service.jar
 ```
+
+## SkyWalking JVM 指标集
+
+
+
+jvm metrics collected by skywalking language agent.
+
+- 标签
+
+
+| 标签名 | 描述    |
+|  ----  | --------|
+|`service`|service name|
+
+- 指标列表
+
+
+| 指标 | 描述| 数据类型 | 单位   |
+| ---- |---- | :---:    | :----: |
+|`class_loaded_count`|loaded class count.|int|count|
+|`class_total_loaded_count`|total loaded class count.|int|count|
+|`class_total_unloaded_class_count`|total unloaded class count.|int|count|
+|`cpu_usage_percent`|cpu usage percentile|float|percent|
+|`gc_phrase_old/new_count`|gc old or new count.|int|count|
+|`heap/stack_committed`|heap or stack committed amount of memory.|int|count|
+|`heap/stack_init`|heap or stack initialized amount of memory.|int|count|
+|`heap/stack_max`|heap or stack max amount of memory.|int|count|
+|`heap/stack_used`|heap or stack used amount of memory.|int|count|
+|`pool_*_committed`|committed amount of memory in variety of pool(code_cache_usage,newgen_usage,oldgen_usage,survivor_usage,permgen_usage,metaspace_usage).|int|count|
+|`pool_*_init`|initialized amount of memory in variety of pool(code_cache_usage,newgen_usage,oldgen_usage,survivor_usage,permgen_usage,metaspace_usage).|int|count|
+|`pool_*_max`|max amount of memory in variety of pool(code_cache_usage,newgen_usage,oldgen_usage,survivor_usage,permgen_usage,metaspace_usage).|int|count|
+|`pool_*_used`|used amount of memory in variety of pool(code_cache_usage,newgen_usage,oldgen_usage,survivor_usage,permgen_usage,metaspace_usage).|int|count|
+|`thread_blocked_state_count`|blocked state thread count|int|count|
+|`thread_daemon_count`|thread daemon count.|int|count|
+|`thread_live_count`|thread live count.|int|count|
+|`thread_peak_count`|thread peak count.|int|count|
+|`thread_runnable_state_count`|runnable state thread count.|int|count|
+|`thread_time_waiting_state_count`|time waiting state thread count.|int|count|
+|`thread_waiting_state_count`|waiting state thread count.|int|count|
+
+

@@ -1,21 +1,14 @@
-{{.CSS}}
+
 # Filebeat
 ---
 
-- DataKit 版本: {{.Version}}
+- DataKit 版本: 1.4.3
 - 操作系统支持: 全平台
 
-本文档主要介绍 [Elastic Beats](https://www.elastic.co/products/beats/) 接收器。目前支持:
+本文档主要介绍 [Elastic Beats](https://www.elastic.co/products/beats/){:target="_blank"} 接收器。目前支持:
 
-- [Filebeat](https://www.elastic.co/beats/filebeat/) ([下载地址](http://www.elastic.co/cn/downloads/past-releases/filebeat-7-17-3))
-
-## 视图预览
-Beats 指标展示，包括 CPU 负载，内存，事件，配置，输出流量等
-![image.png](imgs/input-beats-output-01.png)
-
-## 前置条件
-
-- 服务器 <[安装 Datakit](datakit-install)>
+- [Filebeat](https://www.elastic.co/beats/filebeat/){:target="_blank"}
+- [下载地址](http://www.elastic.co/cn/downloads/past-releases/filebeat-7-17-3){:target="_blank"}
 
 ## 配置采集器 {#config-input}
 
@@ -317,39 +310,38 @@ processors:
 
 ## 指标集 {#measurements}
 
-以下所有数据采集, 默认会追加名为 `host`(值为 Filebeat 所在主机名) 和 `filepath`(值为 Filebeat 采集文件的全路径) 的全局 tag, 也可以在配置中通过 `[inputs.{{.InputName}}.tags]` 指定其它标签:
+以下所有数据采集, 默认会追加名为 `host`(值为 Filebeat 所在主机名) 和 `filepath`(值为 Filebeat 采集文件的全路径) 的全局 tag, 也可以在配置中通过 `[inputs.beats_output.tags]` 指定其它标签:
 
 ``` toml
- [inputs.{{.InputName}}.tags]
+ [inputs.beats_output.tags]
   # some_tag = "some_value"
   # more_tag = "some_other_value"
   # ...
 ```
 
-{{ range $i, $m := .Measurements }}
 
-### `{{$m.Name}}`
 
-{{$m.Desc}}
+### `Elastic Beats 接收器`
+
+使用配置文件中的 `source` 字段值，如果该值为空，则默认为 `default`
 
 -  标签
 
-{{$m.TagsMarkdownTable}}
+
+| 标签名 | 描述    |
+|  ----  | --------|
+|`filepath`|此条记录来源的文件名，全路径|
+|`host`|主机名|
+|`service`|service 名称，对应配置文件中的 `service` 字段值|
 
 - 指标列表
 
-{{$m.FieldsMarkdownTable}}
 
-{{ end }} 
+| 指标 | 描述| 数据类型 | 单位   |
+| ---- |---- | :---:    | :----: |
+|`message`|记录正文，默认存在，可以使用 pipeline 删除此字段|string|-|
 
-## 场景视图
-<场景 - 新建仪表板 - 内置模板库 - Beats 监控视图>
-
-## 常见问题排查
-<[无数据上报排查](why-no-data)>
-
-## 进一步阅读
-<[Elastic Beats 数据采集](https://www.elastic.co/beats/)>
+ 
 
 ## 其它 {#others}
 

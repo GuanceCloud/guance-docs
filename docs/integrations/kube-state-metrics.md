@@ -3,8 +3,7 @@
 
 
 ## 视图预览
-Kubernetes 性能指标展示：Pod desired、Pod desired、Pods ready、Pods Available、Pod Unavailable等。
-
+Kubernetes 性能指标展示：Pod desired、Pod desired、Pods ready、Pods Available、Pod Unavailable等。<br />
 ![1649841130(1).png](imgs/input-kube-state-metrics-01.png)<br />
 ![1649841147(1).png](imgs/input-kube-state-metrics-02.png)<br />
 ![1649841167(1).png](imgs/input-kube-state-metrics-03.png)<br />
@@ -13,14 +12,11 @@ Kubernetes 性能指标展示：Pod desired、Pod desired、Pods ready、Pods Av
 ![1649841214(1).png](imgs/input-kube-state-metrics-06.png)
 
 ## 版本支持
-kube-state-metrics/ Kubernetes
-
-![1649843207(1).png](imgs/input-kube-state-metrics-07.png)
+kube-state-metrics/ Kubernetes<br />![1649843207(1).png](imgs/input-kube-state-metrics-07.png)
 
 ## 前置条件
 
-- Kubernetes 集群 <[安装 Datakit](kube-metric-server.md)>
-
+- Kubernetes 集群 <[安装 Datakit](https://www.yuque.com/dataflux/integrations/kubernetes)>
 - 下载 [kube-state-metrics-2.3.0.zip](https://github.com/kubernetes/kube-state-metrics/releases/tag/v2.3.0)
 
 ## 安装配置
@@ -134,7 +130,7 @@ dist：
 
 
 ## 常见问题排查
-<[无数据上报排查](why-no-data.md)>
+<[无数据上报排查](https://www.yuque.com/dataflux/datakit/why-no-data)>
 
 ## 进一步阅读
 暂无

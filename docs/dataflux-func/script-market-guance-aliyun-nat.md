@@ -4,7 +4,7 @@
 
 阅读本文前，请先阅读：
 
-- [观测云集成简介](/dataflux-func/script-market-guance-integration-intro)
+- [观测云集成简介](/dataflux-func/script-market-guance-integration)
 
 提示：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包
 
@@ -12,10 +12,10 @@
 
 本采集器配置结构如下：
 
-| 字段         | 类型 | 是否必须 | 说明                                      |
-| ------------ | ---- | -------- | ----------------------------------------- |
-| `regions`    | list | 必须     | 所需采集的地域列表                        |
-| `regions[#]` | str  | 必须     | 地域ID。如：`'cn-hangzhou'`<br>总表见附录 |
+| 字段         | 类型 | 是否必须 | 说明                                       |
+| ------------ | ---- | -------- | ------------------------------------------ |
+| `regions`    | list | 必须     | 所需采集的地域列表                         |
+| `regions[#]` | str  | 必须     | 地域 ID。如：`'cn-hangzhou'`<br>总表见附录 |
 
 ## 2. 配置示例
 
@@ -50,20 +50,20 @@ collector_configs = {
   "fields": {
     "CreationTime": "2021-01-27T06:15:48Z",
     "ExpiredTime" : "2022-04-27T16:00Z",
-    "message"     : "{实例JSON数据}"
+    "message"     : "{实例 JSON 数据}"
   }
 }
 ```
 
 *注意：*`*tags*`*、*`*fields*`*中的字段可能会随后续更新有所变动*
 
-> 提示：`tags.name`值为NAT网关的ID，作为唯一识别
+> 提示：`tags.name`值为 NAT 网关的 ID，作为唯一识别
 
-> 提示2：`fields.message`为JSON序列化后字符串
+> 提示 2：`fields.message`为 JSON 序列化后字符串
 
 ## X. 附录
 
 请参考阿里云官方文档：
 
-- [VPC支持的地域信息](https://help.aliyun.com/document_detail/199009.html)
+- [VPC 支持的地域信息](https://help.aliyun.com/document_detail/199009.html)
 - [NAT 网关产品文档](https://help.aliyun.com/product/44413.html)

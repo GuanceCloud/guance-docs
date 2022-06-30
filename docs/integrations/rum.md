@@ -1,19 +1,19 @@
 
-# 用户访问监测（RUM）
+# 采集器配置
 ---
 
-- DataKit 版本：1.4.2
+- DataKit 版本：1.4.3
 - 操作系统支持：全平台
 
 RUM（Real User Monitor）采集器用于收集网页端或移动端上报的用户访问监测数据。
 
 ## 接入方式 {#supported-platforms}
 
-- [Web 端](https://www.yuque.com/dataflux/doc/eqs7v2){:target="_blank"}
-- [微信小程序](https://www.yuque.com/dataflux/doc/clgea8){:target="_blank"}
-- [Android](https://www.yuque.com/dataflux/doc/pnzoyp){:target="_blank"}
-- [iOS](https://www.yuque.com/dataflux/doc/gsto6k){:target="_blank"}
-- [Flutter](https://www.yuque.com/dataflux/doc/nst0ca){:target="_blank"}
+- [Web 端](../integrations/rum-web-h5.md)
+- [微信小程序](../integrations/rum-miniapp.md)
+- [Android](../integrations/rum-android.md)
+- [iOS](../integrations/rum-ios.md)
+- [Flutter](../real-user-monitoring/third-party-framework/flutter/app-access.md)
 
 ## 前置条件 {#requirements}
 

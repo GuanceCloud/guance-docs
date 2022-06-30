@@ -31,18 +31,18 @@
 
 **Datakit 安装好后，默认会对如下内容进行采集，可直接在 Dataflux——基础设施——主机查看相关数据**<br />**选择不同的集成 inputs 名称，就可以查看对应的监控视图，监控视图下方还可以查看其它数据，例如日志、进程、容器等信息。**
 
-| 采集器名称 | 说明 |
-| --- | --- |
-| cpu | 采集主机的 CPU 使用情况 |
-| disk | 采集磁盘占用情况 |
-| diskio | 采集主机的磁盘 IO 情况 |
-| mem | 采集主机的内存使用情况 |
-| swap | 采集 Swap 内存使用情况 |
-| system | 采集主机操作系统负载 |
-| net | 采集主机网络流量情况 |
-| host_process | 采集主机上常驻<br />（存活 10min 以上）进程列表 |
-| hostobject | 采集主机基础信息<br />（如操作系统信息、硬件信息等） |
-| docker | 采集主机上可能的容器对象以及容器日志 |
+| 采集器名称   | 说明                                                 |
+| ------------ | ---------------------------------------------------- |
+| cpu          | 采集主机的 CPU 使用情况                              |
+| disk         | 采集磁盘占用情况                                     |
+| diskio       | 采集主机的磁盘 IO 情况                               |
+| mem          | 采集主机的内存使用情况                               |
+| swap         | 采集 Swap 内存使用情况                               |
+| system       | 采集主机操作系统负载                                 |
+| net          | 采集主机网络流量情况                                 |
+| host_process | 采集主机上常驻<br />（存活 10min 以上）进程列表      |
+| hostobject   | 采集主机基础信息<br />（如操作系统信息、硬件信息等） |
+| docker       | 采集主机上可能的容器对象以及容器日志                 |
 
 
 ![image](../images/java-rum-apm-log/4.png)
@@ -74,7 +74,7 @@ $ cp index.html index.html.bkd
 
 $ vim index.html
 
-<script src="https://static.dataflux.cn/browser-sdk/v2/dataflux-rum.js" type="text/javascript"></script>
+<script src="https://static.guance.com/browser-sdk/v2/dataflux-rum.js" type="text/javascript"></script>
 <script>
   window.DATAFLUX_RUM &&
     window.DATAFLUX_RUM.init({

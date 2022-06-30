@@ -1,3 +1,6 @@
+---
+icon: zy/ci-visibility
+---
 # CI 可视化
 ---
 

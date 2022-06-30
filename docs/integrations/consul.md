@@ -1,16 +1,11 @@
-{{.CSS}}
+
 # Consul
 ---
 
-- DataKit 版本：{{.Version}}
-- 操作系统支持：`{{.AvailableArchs}}`
+- DataKit 版本：1.4.3
+- 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
 Consul 采集器用于采集 Consul 相关的指标数据，目前只支持 Prometheus 格式的数据
-
-## 视图预览
-consul性能指标展示：包括监控状态、集群中服务数量、集群中成员数量、集群中成员的状态等。
-![1640240067(1).png](imgs/input-consul-01.png)
-
 
 ## 前置条件 {#requirements}
 
@@ -33,29 +28,133 @@ consul性能指标展示：包括监控状态、集群中服务数量、集群�
 
 ## 配置 {#input-config}
 
-进入 DataKit 安装目录下的 `conf.d/{{.Catalog}}` 目录，复制 `{{.InputName}}.conf.sample` 并命名为 `{{.InputName}}.conf`。
+进入 DataKit 安装目录下的 `conf.d/consul` 目录，复制 `consul.conf.sample` 并命名为 `consul.conf`。
 配置如下：
 ```toml
-{{.InputSample}}
+
+[[inputs.prom]]
+  ## Exporter 地址
+  url = "http://127.0.0.1:9107/metrics"
+
+  ## 采集器别名
+  source = "consul"
+
+  ## 指标类型过滤, 可选值为 counter, gauge, histogram, summary
+  # 默认只采集 counter 和 gauge 类型的指标
+  # 如果为空，则不进行过滤
+  metric_types = ["counter", "gauge"]
+
+  ## 指标名称过滤
+  # 支持正则，可以配置多个，即满足其中之一即可
+  # 如果为空，则不进行过滤
+  metric_name_filter = ["consul_raft_leader", "consul_raft_peers", "consul_serf_lan_members", "consul_catalog_service", "consul_catalog_service_node_healthy", "consul_health_node_status", "consul_serf_lan_member_status"]
+
+  ## 指标集名称前缀
+  # 配置此项，可以给指标集名称添加前缀
+  measurement_prefix = ""
+
+  ## 过滤tags, 可配置多个tag
+  # 匹配的tag将被忽略
+  tags_ignore = ["check"]
+
+  ## 采集间隔 "ns", "us" (or "µs"), "ms", "s", "m", "h"
+  interval = "10s"
+
+  ## 自定义指标集名称
+  # 可以将包含前缀prefix的指标归为一类指标集
+  # 自定义指标集名称配置优先measurement_name配置项
+  [[inputs.prom.measurements]]
+  	prefix = "consul_"
+	name = "consul"
+
 ```
 
 配置好后，重启 DataKit 即可。
 
 ## 指标集 {#measurements}
 
-{{ range $i, $m := .Measurements }}
 
-### `{{$m.Name}}`
+
+### `consul_host`
 
 - 标签
 
-{{$m.TagsMarkdownTable}}
+
+| 标签名 | 描述    |
+|  ----  | --------|
+|`host`|主机名称|
 
 - 指标列表
 
-{{$m.FieldsMarkdownTable}}
 
-{{ end }}
+| 指标 | 描述| 数据类型 | 单位   |
+| ---- |---- | :---:    | :----: |
+|`catalog_service`|集群中服务数量|int|count|
+|`raft_leader`|raft集群中leader数量|int|count|
+|`raft_peers`|raft集群中peer数量|int|count|
+|`serf_lan_members`|集群中成员数量|int|count|
+
+
+
+### `consul_service`
+
+- 标签
+
+
+| 标签名 | 描述    |
+|  ----  | --------|
+|`host`|主机名称|
+|`node`|结点名称|
+|`service_id`|服务id|
+|`service_name`|服务名称|
+
+- 指标列表
+
+
+| 指标 | 描述| 数据类型 | 单位   |
+| ---- |---- | :---:    | :----: |
+|`catalog_service_node_healthy`|该服务在该结点上是否健康|int|-|
+
+
+
+### `consul_health`
+
+- 标签
+
+
+| 标签名 | 描述    |
+|  ----  | --------|
+|`host`|主机名称|
+|`node`|结点名称|
+|`status`|状态，status有critical, maintenance, passing,warning四种|
+
+- 指标列表
+
+
+| 指标 | 描述| 数据类型 | 单位   |
+| ---- |---- | :---:    | :----: |
+|`health_node_status`|结点的健康检查状态|int|-|
+
+
+
+### `consul_member`
+
+- 标签
+
+
+| 标签名 | 描述    |
+|  ----  | --------|
+|`host`|主机名称|
+|`member`|成员名称|
+
+- 指标列表
+
+
+| 指标 | 描述| 数据类型 | 单位   |
+| ---- |---- | :---:    | :----: |
+|`serf_lan_member_status`|集群里成员的状态，其中1表示Alive，2表示Leaving，3表示Left，4表示Failed|int|-|
+
+
 
 ## 日志 {#logging}
 
@@ -119,39 +218,3 @@ Sep 18 19:30:23 derrick-ThinkPad-X230 consul[11803]: 2021-09-18T19:30:23.522+080
 | `level`     | `INFO`                                                             | 日志级别 |
 | `character` | `agent.server.connect`                                             | 角色     |
 | `msg`       | `initialized primary datacenter CA with provider: provider=consul` | 日志内容 |
-
-
-## 指标预览
-
-![1640240030(1).png](imgs/input-consul-01.png)
-
-#### 插件标签 (非必选)
-参数说明
-
-- 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，所有 consul 指标都会带有 app = oa 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](https://www.yuque.com/dataflux/bp/tag)>
-```
-[inputs.prom.tags]
-  metrics_from="consul"  
-```
-重启 Datakit
-```
-systemctl restart datakit
-```
-
-
-## 场景视图
-<场景 - 新建仪表板 - 内置模板库 - Consul 监控视图>
-
-
-## 异常检测
-暂无
-
-
-## 常见问题排查
-<[无数据上报排查](why-no-data)>
-
-
-## 进一步阅读
-<[Consul 详解](https://blog.csdn.net/qq_40652202/article/details/108494585)>

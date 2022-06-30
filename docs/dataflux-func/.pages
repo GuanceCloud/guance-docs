@@ -1,11 +1,23 @@
 nav:
 
+  - index.md
+
   - 手册:
     - guide-doc-intro.md
     - quick-start.md
-    - development-guide.md
-    - maintenance-guide.md
-    - deploy-via-helm-guide.md
+    - 开发手册:
+      - development-guide.md
+      - 基础: development-guide-basic.md
+      - 内置功能: development-guide-builtin-features.md
+      - 数据源对象 API: development-guide-data-source-api.md
+      - 设计与实践: development-guide-design-and-practice.md
+      - 第三方包: development-guide-3rd-party-package.md
+    - 维护手册:
+      - maintenance-guide.md
+      - 系统要求: maintenance-guide-requirement.md
+      - 安装部署: maintenance-guide-installation.md
+      - 通过 Helm 部署: maintenance-guide-helm.md
+      - 日常维护: maintenance-guide-daily-operation.md
     - sidecar-guide.md
     - trouble-shooting.md
 
@@ -25,16 +37,17 @@ nav:
       - script-market-guance-integration.md
       - 阿里云采集器:
         - 云监控: script-market-guance-aliyun-monitor.md
-        - ECS  : script-market-guance-aliyun-ecs.md
-        - RDS  : script-market-guance-aliyun-rds.md
-        - SLB  : script-market-guance-aliyun-slb.md
-        - OSS  : script-market-guance-aliyun-oss.md
-        - Redis: script-market-guance-aliyun-redis.md
-        - DCDN : script-market-guance-aliyun-dcdn.md
-        - CDN  : script-market-guance-aliyun-cdn.md
-        - NAT  : script-market-guance-aliyun-nat.md
-        - Mongo: script-market-guance-aliyun-mongodb.md
-      - AWS采集器:
+        - ECS    : script-market-guance-aliyun-ecs.md
+        - RDS    : script-market-guance-aliyun-rds.md
+        - SLB    : script-market-guance-aliyun-slb.md
+        - OSS    : script-market-guance-aliyun-oss.md
+        - Redis  : script-market-guance-aliyun-redis.md
+        - DCDN   : script-market-guance-aliyun-dcdn.md
+        - CDN    : script-market-guance-aliyun-cdn.md
+        - NAT    : script-market-guance-aliyun-nat.md
+        - Mongo  : script-market-guance-aliyun-mongodb.md
+        - PolarDB: script-market-guance-aliyun-polardb.md
+      - AWS 采集器:
         - 云监控: script-market-guance-aws-cloudwatch.md
         - EC2: script-market-guance-aws-ec2.md
         - RDS: script-market-guance-aws-rds.md
@@ -46,6 +59,7 @@ nav:
         - CDB: script-market-guance-tencentcloud-cdb.md
         - CLB: script-market-guance-tencentcloud-clb.md
         - COS: script-market-guance-tencentcloud-cos.md
+      - script-market-guance-tencentcloud-sdk-module-issue.md
 
     - 生活日常:
       - 天气信息: script-market-weather.md

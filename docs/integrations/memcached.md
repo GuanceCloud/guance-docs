@@ -2,7 +2,7 @@
 # Memcached
 ---
 
-- DataKit 版本：1.4.2
+- DataKit 版本：1.4.3
 - 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
 Memcached 采集器可以从 Memcached 实例中采集实例运行状态指标，并将指标采集到观测云，帮助监控分析 Memcached 各种异常情况
@@ -103,4 +103,4 @@ Memcached 采集器可以从 Memcached 实例中采集实例运行状态指标�
 |`touch_misses`|Number of items that have been touched and not found|int|count|
 |`uptime`|Number of secs since the server started|int|count|
 
- 
+
