@@ -1,10 +1,6 @@
 
-<<<<<<< HEAD
-MySQL
-=======
 # MySQL
 
->>>>>>> mkdocs
 ---
 
 - DataKit 版本：1.4.5
