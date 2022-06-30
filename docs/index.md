@@ -1,7 +1,7 @@
-# <div class="homepage-title">欢迎使用 观测云</div>
+# <div class="homepage-title">欢迎使用观测云</div>
 <div class="homepage">
   <div class="title">
-    “观测云”是一款面向开发、运维、测试及业务团队的实时数据监测平台，能够统一满足云、云原生、应用及业务上的监测需求，快速实现基础设施、中间件、应用层和业务层的可观测。基础设施监测、日志与指标管理、应用性能监测、用户访问监测、可用性监测、异常检测、系统级安全巡检、场景和仪表板等是“观测云”的可观测解决方案，通过统一的数据采集、全面的数据监控、无缝的关联分析、自定义的场景搭建、高度的可编程性，敏捷的成员协作，为用户提供了最快、最轻松、最全面、最自由的系统可观测平台。
+    【观测云】是一款面向开发、运维、测试及业务团队的实时数据监测平台，能够统一满足云、云原生、应用及业务上的监测需求，快速实现基础设施、中间件、应用层和业务层的可观测。基础设施监测、日志与指标管理、应用性能监测、用户访问监测、可用性监测、异常检测、系统级安全巡检、场景和仪表板等是“观测云”的可观测解决方案，通过统一的数据采集、全面的数据监控、无缝的关联分析、自定义的场景搭建、高度的可编程性，敏捷的成员协作，为用户提供了最快、最轻松、最全面、最自由的系统可观测平台。
   </div>
   <div class="content">
     <div class="content-top">
@@ -81,7 +81,7 @@
           <span>DataKit</span>
         </div>
       </a>
-      <a href="/dataflux-func" class="content-item">
+      <a href="/dataflux-func/quick-start" class="content-item">
         <div class="item-content">
           <img src='/images/homepage/func.png' alt="" />
           <span>DataFlux Func</span>
