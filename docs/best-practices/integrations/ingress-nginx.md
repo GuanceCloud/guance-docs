@@ -106,8 +106,9 @@ kubectl apply -f deploy.yaml
             # metric_name_filter = ["cpu"]
             # measurement_prefix = ""
             measurement_name = "prom_ingress"
-            interval = "10s"
+            interval = "60s"
             tags_ignore = ["build","le","method","release","repository"]
+            metric_name_filter = ["nginx_process_cpu_seconds_total","nginx_process_resident_memory_bytes","request_size_sum","response_size_sum","requests","success","config_last_reload_successful"]
             [[inputs.prom.measurements]]
               prefix = "nginx_ingress_controller_"
               name = "prom_ingress"
