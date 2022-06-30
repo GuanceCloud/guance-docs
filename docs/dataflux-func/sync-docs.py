@@ -87,7 +87,10 @@ def download_docs(doc_list, doc_dir, base_url):
     if not base_url.endswith('/'):
         base_url += '/'
 
-    for doc_file in doc_list:
+    print(f'\nDownloading... 0/{len(doc_list)}', end='')
+    for index, doc_file in enumerate(doc_list):
+        print(f'\rDownloading... {index + 1}/{len(doc_list)}', end='')
+
         doc_path = os.path.normpath(os.path.join(doc_dir, doc_file))
         doc_url  = urljoin(base_url, doc_file)
 
@@ -118,6 +121,8 @@ def download_docs(doc_list, doc_dir, base_url):
                 _bin = requests.get(img_url).content
                 with open(img_path, 'wb') as _f:
                     _f.write(_bin)
+
+    print()
 
 def main(options):
     doc_dir  = options.get('doc_dir')

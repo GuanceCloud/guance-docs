@@ -12,8 +12,10 @@ theme:
     - navigation.instant
     - search.suggest
     - toc.follow
+    - content.tabs.link
 
 markdown_extensions:
+  - tables
   - attr_list
   - md_in_html
   - toc:
@@ -32,7 +34,7 @@ markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
       auto_title: false
-      linenums: true
+      linenums: false
   - pymdownx.inlinehilite
   - pymdownx.superfences
   - pymdownx.emoji:

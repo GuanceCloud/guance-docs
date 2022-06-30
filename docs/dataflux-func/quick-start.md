@@ -218,6 +218,5 @@ DataFlux Func 默认使用`8088`端口访问，如果此端口被其他程序占
 ## 4. 相关链接
 
 - [观测云官方网站](https://guance.com/)
-- [DataFlux Func 官方网站](https://function.guance.com/)
+- [DataFlux Func 官方网站](https://func.guance.com/)
 - [DataFlux Func 宣传小册子](https://t.guance.com/func-intro)
-- [DataFlux Func 用户手册](https://static.guance.com/dataflux-func/resource/docs/user-guide.pdf)

@@ -1,4 +1,4 @@
-# 通过 DataKit 查询数据并在 DataV 展示
+# 通过 DataV 展示数据
 ---
 
 

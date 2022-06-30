@@ -42,3 +42,32 @@ buildBasis:
       --push
   tags:
     - cloudcare-multiarch
+
+buildRTM:
+  stage: deploy
+  only:
+    - /\d+\.\d+\.\d+-\w+-\d+-prod/
+  script:
+    - V=(${CI_COMMIT_REF_NAME//[\.-]/ })
+    - VDIR=${V[0]}.${V[1]}.${V[2]}
+    - REPO=dataflux/$VDIR
+    - TAG=${PROJECT}-${V[3]}-${V[4]}
+    
+    - docker buildx build --platform linux/arm64,linux/amd64 -t pubrepo.jiagouyun.com/$REPO:$TAG . --push
+  tags:
+    - cloudcare-multiarch 
+
+buildRTMPrev:
+  stage: deploy
+  only:
+    - /\d+\.\d+\.\d+\.\d+-\w+-prev/
+  script:
+    - V=(${CI_COMMIT_REF_NAME//[\.-]/ })
+    - VDIR=${V[0]}.${V[1]}.${V[2]}.${V[3]}
+    - REPO=dataflux-prev/$VDIR
+    - TAG=${PROJECT}-${V[4]}
+
+    - docker buildx build --platform linux/arm64,linux/amd64 -t pubrepo.jiagouyun.com/$REPO:$TAG . --push
+  tags:
+    - cloudcare-multiarch 
+

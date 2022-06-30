@@ -8,16 +8,16 @@
 **系统介绍**：
 该系统是一套开源的后台管理系统，同时也是一个 Java EE 企业级快速开发平台，基于诸多经典技术组合（Spring Boot、Apache Shiro、MyBatis、Thymeleaf， Bootstrap 等），内置模块诸多如：部门管理、角色用户、菜单及按钮授权、数据权限、系统参数、日志管理、通知公告等，主要目的让开发者注重专注业务，降低技术难度，从而节省人力成本，缩短项目周期，提高软件安全质量。该项目可以用于所有的Web应用程序，如网站管理后台，网站会员中心，CMS，CRM，OA等等，同时支持自定义深度定制，企业可以做出更强大的系统，所有前端后台代码封装过后十分精简易上手，出错概率低。同时已支持移动客户端访问。<br />**项目功能模块：**<br />•用户管理：用户是系统操作者，该功能主要完成系统用户配置。<br />•部门管理：配置系统组织机构（公司、部门、小组），树结构展现支持数据权限。<br />•岗位管理：配置系统用户所属担任职务。<br />•菜单管理：配置系统菜单，操作权限，按钮权限标识等。<br />•角色管理：角色菜单权限分配、设置角色按机构进行数据范围权限划分。<br />•字典管理：对系统中经常使用的一些较为固定的数据进行维护。<br />•参数管理：对系统动态配置常用参数。<br />•通知公告：系统通知公告信息发布维护。<br />•操作日志：系统正常操作日志记录和查询；系统异常信息日志记录和查询。<br />•登录日志：系统登录日志记录查询包含登录异常。<br />•在线用户：当前系统中活跃用户状态监控。<br />•定时任务：在线（添加、修改、删除)任务调度包含执行结果日志。<br />•代码生成：前后端代码的生成（java、html、xml、sql) 支持 CRUD 下载 。<br />•系统接口：根据业务代码自动生成相关的api接口文档。<br />•服务监控：监视当前系统 CPU、内存、磁盘、堆栈等相关信息。<br />•缓存监控：对系统的缓存查询，查看、清理等操作。<br />•在线构建器：拖动表单元素生成相应的 HTML 代码。<br />**办公系统中涉及的技术栈：**
 
-| 技术 | 版本 | 需开启观测云可观测性inputs |
-| --- | --- | --- |
-| SpringBoot | 2.3.7.RELEASE | ddtrace |
-| SpringCloud | Hoxton.SR9 | ddtrace |
-| SpringCloud Alibaba | 2.2.5.RELEASE | ddtrace |
-| Nginx | 1.16.1 | nginx |
-| Mysql | 5.7.17 | mysql |
-| Redis | 3.2.12 | redis |
-| Vue | 2.6.0 | rum |
-| Java | OpenJDK 1.8.0_292 | Statsd或 jolokia<br />（本示例使用statsd） |
+| 技术                | 版本              | 需开启观测云可观测性inputs                 |
+| ------------------- | ----------------- | ------------------------------------------ |
+| SpringBoot          | 2.3.7.RELEASE     | ddtrace                                    |
+| SpringCloud         | Hoxton.SR9        | ddtrace                                    |
+| SpringCloud Alibaba | 2.2.5.RELEASE     | ddtrace                                    |
+| Nginx               | 1.16.1            | nginx                                      |
+| Mysql               | 5.7.17            | mysql                                      |
+| Redis               | 3.2.12            | redis                                      |
+| Vue                 | 2.6.0             | rum                                        |
+| Java                | OpenJDK 1.8.0_292 | Statsd或 jolokia<br />（本示例使用statsd） |
 
 **办公系统架构：**<br />web 页面：放置在 Nginx 中<br />注册中心：Nacos<br />网关：Gateway<br />服务模块：Auth、System<br />数据库：Mysql<br />缓存：Redis<br />备注：此demo将所有服务模块都部署在同一台服务器上，利用不同端口进行服务的访问。
 
@@ -53,40 +53,40 @@
 
 **选择不同的集成 inputs 名称，就可以查看对应的监控视图，监控视图下方还可以查看其它数据，例如日志、进程、容器等信息。**
 
-| 采集器名称 | 说明 |
-| --- | --- |
-| cpu | 采集主机的 CPU 使用情况 |
-| disk | 采集磁盘占用情况 |
-| diskio | 采集主机的磁盘 IO 情况 |
-| mem | 采集主机的内存使用情况 |
-| swap | 采集 Swap 内存使用情况 |
-| system | 采集主机操作系统负载 |
-| net | 采集主机网络流量情况 |
-| host_process | 采集主机上常驻<br />（存活 10min 以上）进程列表 |
-| hostobject | 采集主机基础信息<br />（如操作系统信息、硬件信息等） |
-| docker | 采集主机上可能的容器对象以及容器日志 |
+| 采集器名称   | 说明                                                 |
+| ------------ | ---------------------------------------------------- |
+| cpu          | 采集主机的 CPU 使用情况                              |
+| disk         | 采集磁盘占用情况                                     |
+| diskio       | 采集主机的磁盘 IO 情况                               |
+| mem          | 采集主机的内存使用情况                               |
+| swap         | 采集 Swap 内存使用情况                               |
+| system       | 采集主机操作系统负载                                 |
+| net          | 采集主机网络流量情况                                 |
+| host_process | 采集主机上常驻<br />（存活 10min 以上）进程列表      |
+| hostobject   | 采集主机基础信息<br />（如操作系统信息、硬件信息等） |
+| docker       | 采集主机上可能的容器对象以及容器日志                 |
 
 
 ![image](../images/spring-cloud-sample/6.png)
 
 ## 开启具体的 inputs：
 
-| 涉及组件 | 需开启inputs | inputs所在目录 | 相关指标 |
-| --- | --- | --- | --- |
-| Nginx | √ | •/usr/local/datakit/conf.d/nginx     | 请求信息，日志，请求耗时等 |
-| Mysql | √ | •/usr/local/datakit/conf.d/db   | 连接数、QPS、读写情况、慢查询 |
-| Redis | √ | •/usr/local/datakit/conf.d/db     | 连接数、CPU 消耗、内存消耗、命中率、丢失率 |
-| JVM | √ | •/usr/local/datakit/conf.d/statsd | 堆内存、GC次 数、GC耗时 |
-| APM | √ | •/usr/local/datakit/conf.d/ddtrace    | 响应时间、错误次数、错误率 |
-| RUM | 默认已开启 | —— | uv/pv、LCP、FID、CLS、js错误 |
+| 涉及组件 | 需开启inputs | inputs所在目录                     | 相关指标                                   |
+| -------- | ------------ | ---------------------------------- | ------------------------------------------ |
+| Nginx    | √            | •/usr/local/datakit/conf.d/nginx   | 请求信息，日志，请求耗时等                 |
+| Mysql    | √            | •/usr/local/datakit/conf.d/db      | 连接数、QPS、读写情况、慢查询              |
+| Redis    | √            | •/usr/local/datakit/conf.d/db      | 连接数、CPU 消耗、内存消耗、命中率、丢失率 |
+| JVM      | √            | •/usr/local/datakit/conf.d/statsd  | 堆内存、GC次 数、GC耗时                    |
+| APM      | √            | •/usr/local/datakit/conf.d/ddtrace | 响应时间、错误次数、错误率                 |
+| RUM      | 默认已开启   | ——                                 | uv/pv、LCP、FID、CLS、js错误               |
 
 **备注：**
 
-| RUM指标说明 | 说明 | 目标值 |
-| --- | --- | --- |
-| LCP(Largest Contentful Paint) | 计算网页可视范围内最大的内容元件需花多少时间载入 | 小于2.5s |
-| FID(First Input Delay) | 计算用户首次与网页互动时的延迟时间 | 小于100ms |
-| CLS(Cumulative Layout Shift) | 计算网页载入时的内容是否会因动态加载而页面移动，0表示没有变化。 | 小于0.1 |
+| RUM指标说明                   | 说明                                                            | 目标值    |
+| ----------------------------- | --------------------------------------------------------------- | --------- |
+| LCP(Largest Contentful Paint) | 计算网页可视范围内最大的内容元件需花多少时间载入                | 小于2.5s  |
+| FID(First Input Delay)        | 计算用户首次与网页互动时的延迟时间                              | 小于100ms |
+| CLS(Cumulative Layout Shift)  | 计算网页载入时的内容是否会因动态加载而页面移动，0表示没有变化。 | 小于0.1   |
 
 ### Nginx：
 
@@ -370,7 +370,7 @@ $ cp index.html index.html.bkd
 
 $ vim index.html
 
-<script src="https://static.dataflux.cn/browser-sdk/v2/dataflux-rum.js" type="text/javascript"></script>
+<script src="https://static.guance.com/browser-sdk/v2/dataflux-rum.js" type="text/javascript"></script>
 <script>
   window.DATAFLUX_RUM &&
     window.DATAFLUX_RUM.init({

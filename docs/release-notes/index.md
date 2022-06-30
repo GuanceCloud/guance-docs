@@ -17,13 +17,13 @@ icon: zy/release-notes
 
 #### 新增 Profile 可观测
 
-Profile 支持采集使用 Java / Python 等不同语言环境下应用程序运行过程中的动态性能数据，帮助用户查看 CPU、内存、IO 的性能问题。采集 profile 数据需要先 [安装 DataKit](../datakit/datakit-install.md) ，并配置 [ddtrace 采集器](../integrations/ddtrace.md)，配置完成后，DataKit 会将采集到的 profile 数据上传到您的观测云工作空间，您可以通过 Profile 实时数据查看器了解您的程序代码性能。更多详情可参考文档 [Profile](../application-performance-monitoring/profile.md) 。
+Profile 支持采集使用 Java / Python 等不同语言环境下应用程序运行过程中的动态性能数据，帮助用户查看 CPU、内存、IO 的性能问题。采集 profile 数据需要先安装 DataKit，并配置 Profile 采集器，配置完成后，DataKit 会将采集到的 profile 数据上传到您的观测云工作空间，您可以通过 Profile 实时数据查看器了解您的程序代码性能。更多详情可参考文档 [Profile](../application-performance-monitoring/profile.md) 。
 
 ![](img/6.profile_3.png)
 
 
 
-#### Pipeline 新增除日志数据以外的其他数据类型脚本配置
+#### Pipeline 覆盖全数据的文本分析处理
 
 文本处理（Pipeline）用于数据解析，通过定义解析规则，将各种数据类型切割成符合我们要求的结构化数据。在观测云工作空间「管理」-「文本处理（Pipeline）」，点击「新建Pipeline」即可创建一个新的 pipeline 文件。更多详情可参考文档 [文本处理（Pipeline）](../management/overall-pipeline.md) 。
 
@@ -61,16 +61,17 @@ Deployment 网络数据采集成功后会上报到观测云控制台，您可以
 
 #### 新增用户访问监测新建应用时支持用户自定义输入 app_id 信息
 
-新增自定义应用ID功能。支持在使用用户访问监测新建应用的功能时，自定义输入 app_id ，生成当前空间内唯一的应用 ID 标识，可用于区分应用类型、数据上传匹配等。
+新增自定义应用 ID 功能。支持在使用用户访问监测新建应用的功能时，自定义输入 app_id ，生成当前空间内唯一的应用 ID 标识，可用于区分应用类型、数据上传匹配等。
 
-- 应用名称（必填项）：用于识别当前实施用户访问监控的应用名称。
-- 应用ID（选填）：当前空间内唯一的应用 ID 标识，支持用于数据上传匹配；应用 ID 标识最多为 20 个字符，仅支持输入大小写字母。
+- 应用名称（必填项）：用于识别当前实施用户访问监测的应用名称。
+- 应用 ID 标识（选填）：当前空间内唯一的应用 ID 标识，支持自定义，可用于数据上传匹配；应用ID标识最多为 20 个字符，仅支持输入大小写字母。
+- 应用 ID：若创建应用时填写了应用 ID 标识，点击创建应用以后，会把填写的应用 ID 标识信息拼接到应用 ID 的前面，便于区分应用进行查询和筛选。
 
 ![](img/7.changelog_1.png)
 
 #### 优化进程检测为基础设施对象检测
 
-进程检测优化为基础设施对象监测，新增主机、容器、进程、Pod、Deployment、Replicaset、Job、自定义对象等基础对象选择，用于监控工作空间内的基础设施对象数据。更多详情可参考文档 [基础设施对象检测](../monitor/infrastructure-detection.md) 。
+进程检测优化为基础设施对象监测，新增主机、容器、进程、Pod、Deployment、Replicaset、Job、自定义对象等基础对象选择，用于监控工作空间内的基础设施对象数据。更多详情可参考文档 [基础设施对象检测](../monitoring/monitor/infrastructure-detection.md) 。
 
 #### 其他功能优化
 
@@ -96,7 +97,7 @@ Deployment 网络数据采集成功后会上报到观测云控制台，您可以
     - 支持 Pipeline 通过 `use()` 函数调用外部 Pipeline 脚本
 - 新增 IP 库（MaxMindIP）支持
 - 新增 DDTrace Profile 集成
-- Containerd 日志采集支持通过 image 和 K8s Annotation 配置过滤规则(#849)
+- Containerd 日志采集支持通过 image 和 K8s Annotation 配置过滤规则
 - 文档库整体切换
 
 #### 2022/06/16

@@ -61,11 +61,11 @@ DF 官方目前支持的 RUM 监控方式有如下几种：
 
 **备注：此处选择 CDN 同步载入**<br />•修改前端 index.html 页面（记得cp备份）<br />在       **</head>**   之前添加复制到的那一段 js 文件:
 
-| 接入方式 | 简介 |
-| --- | --- |
-| NPM | 通过把 SDK 代码一起打包到你的前端项目中，此方式可以确保对前端页面的性能不会有任何影响，不过可能会错过 SDK 初始化之前的的请求、错误的收集。 |
+| 接入方式     | 简介                                                                                                                                                             |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| NPM          | 通过把 SDK 代码一起打包到你的前端项目中，此方式可以确保对前端页面的性能不会有任何影响，不过可能会错过 SDK 初始化之前的的请求、错误的收集。                       |
 | CDN 异步加载 | 通过 CDN 加速缓存，以异步脚本引入的方式，引入 SDK 脚本，此方式可以确保 SDK 脚本的下载不会影响页面的加载性能，不过可能会错过 SDK 初始化之前的的请求、错误的收集。 |
-| CDN 同步加载 | 通过 CDN 加速缓存，以同步脚本引入的方式，引入 SDK 脚本，此方式可以确保能够收集到所有的错误，资源，请求，性能指标。不过可能会影响页面的加载性能。 |
+| CDN 同步加载 | 通过 CDN 加速缓存，以同步脚本引入的方式，引入 SDK 脚本，此方式可以确保能够收集到所有的错误，资源，请求，性能指标。不过可能会影响页面的加载性能。                 |
 
 ##### 3、在前端页面 index.html 中接入 rum 可观测性 js 文件
 
@@ -84,7 +84,7 @@ $ cp index.html index.html.bkd
 
 $ vim index.html
 
-<script src="https://static.dataflux.cn/browser-sdk/v2/dataflux-rum.js" type="text/javascript"></script>
+<script src="https://static.guance.com/browser-sdk/v2/dataflux-rum.js" type="text/javascript"></script>
 <script>
   window.DATAFLUX_RUM &&
     window.DATAFLUX_RUM.init({
@@ -165,28 +165,28 @@ $ vim index.html
 
 **相关参数介绍：**
 
-| 参数 | 类型 | 是否必须 | 默认值 | 描述 |
-| --- | --- | --- | --- | --- |
-| `applicationId` | String | 是 |  | 从 dataflux 创建的应用 ID |
-| `datakitOrigin` | String | 是 |  | datakit 数据上报 Origin 注释: <br />`协议（包括：//），域名（或IP地址）[和端口号]`<br /> 例如：<br />[https://www.datakit.com](https://www.datakit.com), <br />[http://100.20.34.3:8088](http://100.20.34.3:8088) |
-| `env` | String | 否 |  | web 应用当前环境， 如 prod：线上环境；gray：灰度环境；pre：预发布环境 common：日常环境；local：本地环境； |
-| `version` | String | 否 |  | web 应用的版本号 |
-| `resourceSampleRate` | Number | 否 | `100` | 资源指标数据收集百分比: <br />`100`<br />表示全收集，<br />`0`<br />表示不收集 |
-| `sampleRate` | Number | 否 | `100` | 指标数据收集百分比: <br />`100`<br />表示全收集，<br />`0`<br />表示不收集 |
-| `trackSessionAcrossSubdomains` | Boolean | 否 | `false` | 同一个域名下面的子域名共享缓存 |
-| `allowedDDTracingOrigins` | Array | 否 | `[]` | 允许注入<br />`ddtrace`<br /> 采集器所需header头部的所有请求列表。可以是请求的origin，也可以是是正则，origin: <br />`协议（包括：//），域名（或IP地址）[和端口号]`<br /> 例如：<br />`["https://api.example.com", /https:\\/\\/.*\\.my-api-domain\\.com/]` |
-| `trackInteractions`<br /> | Boolean | 否 | `false` | 是否开启用户行为采集 |
+| 参数                           | 类型    | 是否必须 | 默认值  | 描述                                                                                                                                                                                                                                                       |
+| ------------------------------ | ------- | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `applicationId`                | String  | 是       |         | 从 dataflux 创建的应用 ID                                                                                                                                                                                                                                  |
+| `datakitOrigin`                | String  | 是       |         | datakit 数据上报 Origin 注释: <br />`协议（包括：//），域名（或IP地址）[和端口号]`<br /> 例如：<br />[https://www.datakit.com](https://www.datakit.com), <br />[http://100.20.34.3:8088](http://100.20.34.3:8088)                                          |
+| `env`                          | String  | 否       |         | web 应用当前环境， 如 prod：线上环境；gray：灰度环境；pre：预发布环境 common：日常环境；local：本地环境；                                                                                                                                                  |
+| `version`                      | String  | 否       |         | web 应用的版本号                                                                                                                                                                                                                                           |
+| `resourceSampleRate`           | Number  | 否       | `100`   | 资源指标数据收集百分比: <br />`100`<br />表示全收集，<br />`0`<br />表示不收集                                                                                                                                                                             |
+| `sampleRate`                   | Number  | 否       | `100`   | 指标数据收集百分比: <br />`100`<br />表示全收集，<br />`0`<br />表示不收集                                                                                                                                                                                 |
+| `trackSessionAcrossSubdomains` | Boolean | 否       | `false` | 同一个域名下面的子域名共享缓存                                                                                                                                                                                                                             |
+| `allowedDDTracingOrigins`      | Array   | 否       | `[]`    | 允许注入<br />`ddtrace`<br /> 采集器所需header头部的所有请求列表。可以是请求的origin，也可以是是正则，origin: <br />`协议（包括：//），域名（或IP地址）[和端口号]`<br /> 例如：<br />`["https://api.example.com", /https:\\/\\/.*\\.my-api-domain\\.com/]` |
+| `trackInteractions`<br />      | Boolean | 否       | `false` | 是否开启用户行为采集                                                                                                                                                                                                                                       |
 
 
 ### 网站核心指标
 
 DataFlux 的 Web 应用分析，接入谷歌网站核心指标（LCP、FID、CLS）来衡量网站的载入速度、互动性和页面稳定性。
 
-| 指标 | 说明 | 目标值 |
-| --- | --- | --- |
-| LCP(Largest Contentful Paint) | 计算网页可视范围内最大的内容元件需花多少时间载入 | 小于2.5s |
-| FID(First Input Delay) | 计算用户首次与网页互动时的延迟时间 | 小于100ms |
-| CLS(Cumulative Layout Shift) | 计算网页载入时的内容是否会因动态加载而页面移动，0表示没有变化。 | 小于0.1 |
+| 指标                          | 说明                                                            | 目标值    |
+| ----------------------------- | --------------------------------------------------------------- | --------- |
+| LCP(Largest Contentful Paint) | 计算网页可视范围内最大的内容元件需花多少时间载入                | 小于2.5s  |
+| FID(First Input Delay)        | 计算用户首次与网页互动时的延迟时间                              | 小于100ms |
+| CLS(Cumulative Layout Shift)  | 计算网页载入时的内容是否会因动态加载而页面移动，0表示没有变化。 | 小于0.1   |
 
 ![image](../images/web/14.png)
 
