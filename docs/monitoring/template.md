@@ -1,23 +1,23 @@
-# 模版
+# 模板
 ---
 
 ## 概述
 
-观测云内置多种开箱即用的监控模版，支持通过「+ 从模版新建」一键创建主机、Docker、Elasticsearch、Redis、阿里云 RDS、阿里云 SLB、Flink 监控。成功新建模版后，即自动添加对应的官方监控器至当前工作空间。
+观测云内置多种开箱即用的监控模板，支持通过「+ 从模板新建」一键创建主机、Docker、Elasticsearch、Redis、阿里云 RDS、阿里云 SLB、Flink 监控。成功新建模板后，即自动添加对应的官方监控器至当前工作空间。
 
-**注意：**新建模版前需在主机上 [安装 DataKit ](../datakit/datakit-install.md) ，并开启配置相关采集器，否则模版对应的监控器无法产生告警事件。
+**注意：**新建模板前需在主机上 [安装 DataKit ](../datakit/datakit-install.md) ，并开启配置相关采集器，否则模板对应的监控器无法产生告警事件。
 
-## 新建模版
+## 新建模板
 
-在「监控器」中，选择「+ 从模版新建」，即可添加指定官方监控模版至当前空间。目前支持主机、Docker、Elasticsearch、Redis、阿里云 RDS、阿里云 SLB、Flink 监控模版，无需手动配置，开箱即用。
+在「监控器」中，选择「+ 从模板新建」，即可添加指定官方监控模板至当前空间。目前支持主机、Docker、Elasticsearch、Redis、阿里云 RDS、阿里云 SLB、Flink 监控模板，无需手动配置，开箱即用。
 
 ![](img/2.monitor_sample_1.png)
 
-## 模版列表
+## 模板列表
 
-观测云已提供官方监控模版，包括主机、Docker、Elasticsearch、Redis、阿里云 RDS、阿里云 SLB、Flink 监控模版等。
+观测云已提供官方监控模板，包括主机、Docker、Elasticsearch、Redis、阿里云 RDS、阿里云 SLB、Flink 监控模板等。
 
-| **模版（分组）** | **监控器** |
+| **模板（分组）** | **监控器** |
 | --- | --- |
 | 主机检测库 | 主机 CPU IOwait 过高<br>主机文件系统剩余 inode 过低<br>主机内存 Swap 使用率过高<br>主机剩余磁盘空间过低<br>主机 CPU 平均负载过高<br>主机内存小于 100M<br>主机 CPU 使用率过高<br>主机内存使用率过高 |
 | Docker 检测库 | Docker 容器 CPU 使用率过高<br>Docker 容器内存使用率过高<Docker 容器状态检测> |
