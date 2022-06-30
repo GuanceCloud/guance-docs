@@ -23,7 +23,7 @@ Profile 支持采集使用 Java / Python 等不同语言环境下应用程序运
 
 
 
-#### Pipeline 新增除日志数据以外的其他数据类型脚本配置
+#### Pipeline 覆盖全数据的文本分析处理
 
 文本处理（Pipeline）用于数据解析，通过定义解析规则，将各种数据类型切割成符合我们要求的结构化数据。在观测云工作空间「管理」-「文本处理（Pipeline）」，点击「新建Pipeline」即可创建一个新的 pipeline 文件。更多详情可参考文档 [文本处理（Pipeline）](../management/overall-pipeline.md) 。
 
@@ -70,7 +70,7 @@ Deployment 网络数据采集成功后会上报到观测云控制台，您可以
 
 #### 优化进程检测为基础设施对象检测
 
-进程检测优化为基础设施对象监测，新增主机、容器、进程、Pod、Deployment、Replicaset、Job、自定义对象等基础对象选择，用于监控工作空间内的基础设施对象数据。更多详情可参考文档 [基础设施对象检测](../monitor/infrastructure-detection.md) 。
+进程检测优化为基础设施对象监测，新增主机、容器、进程、Pod、Deployment、Replicaset、Job、自定义对象等基础对象选择，用于监控工作空间内的基础设施对象数据。更多详情可参考文档 [基础设施对象检测](../monitoring/monitor/infrastructure-detection.md) 。
 
 #### 其他功能优化
 
@@ -96,7 +96,7 @@ Deployment 网络数据采集成功后会上报到观测云控制台，您可以
     - 支持 Pipeline 通过 `use()` 函数调用外部 Pipeline 脚本
 - 新增 IP 库（MaxMindIP）支持
 - 新增 DDTrace Profile 集成
-- Containerd 日志采集支持通过 image 和 K8s Annotation 配置过滤规则(#849)
+- Containerd 日志采集支持通过 image 和 K8s Annotation 配置过滤规则
 - 文档库整体切换
 
 #### 2022/06/16

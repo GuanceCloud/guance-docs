@@ -195,5 +195,4 @@ log_file_mode = 0644
 
 ## 进一步阅读
 
-- [PostgreSQL 简介](https://blog.csdn.net/qq_40223688/article/details/89451616)
-
+- [PostgreSQL 简介](https://blog.csdn.net/qq_40223688/article/details/89451616){:target="_blank"}。
