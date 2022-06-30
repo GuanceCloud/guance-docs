@@ -2,7 +2,7 @@
 # Cloudprober 接入
 ---
 
-- DataKit 版本：1.4.2
+- DataKit 版本：1.4.5
 - 操作系统支持：全平台
 
 Cloudprober 是一个开源的跟踪和监控应用程序。DataKit 通过简单的配置即可接入 Cloudprober 采集的数据集。

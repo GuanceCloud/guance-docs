@@ -2,7 +2,7 @@
 # 内存
 ---
 
-- DataKit 版本：1.4.2
+- DataKit 版本：1.4.5
 - 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
 mem 采集器用于收集系统内存信息，一些通用的指标如主机总内存、用的内存、已使用的内存等  
@@ -30,10 +30,10 @@ mem 采集器用于收集系统内存信息，一些通用的指标如主机总�
 
 支持以环境变量的方式修改配置参数（只在 DataKit 以 K8s daemonset 方式运行时生效，主机部署的 DataKit 不支持此功能）：
 
-| 环境变量名           | 对应的配置参数项 | 参数示例                                                     |
-| :---                 | ---              | ---                                                          |
-| `ENV_INPUT_MEM_TAGS` | `tags`           | `tag1=value1,tag2=value2` 如果配置文件中有同名 tag，会覆盖它 |
-| `ENV_INPUT_MEM_INTERVAL` | `interval` | `10s` |
+| 环境变量名               | 对应的配置参数项 | 参数示例                                                     |
+| :---                     | ---              | ---                                                          |
+| `ENV_INPUT_MEM_TAGS`     | `tags`           | `tag1=value1,tag2=value2` 如果配置文件中有同名 tag，会覆盖它 |
+| `ENV_INPUT_MEM_INTERVAL` | `interval`       | `10s`                                                        |
 
 ## 指标集
 

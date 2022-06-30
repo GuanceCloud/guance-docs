@@ -2,7 +2,7 @@
 # 网络拨测
 ---
 
-- DataKit 版本：1.4.2
+- DataKit 版本：1.4.5
 - 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
 # dialtesting
@@ -11,7 +11,7 @@
 
 ## 私有拨测节点部署
 
-私有拨测节点部署，需在 [观测云页面创建私有拨测节点](https://www.yuque.com/dataflux/doc/phmtep)。创建完成后，将页面上相关信息填入 `conf.d/network/dialtesting.conf` 即可：
+私有拨测节点部署，需在 [观测云页面创建私有拨测节点](../usability-monitoring/self-node.md)。创建完成后，将页面上相关信息填入 `conf.d/network/dialtesting.conf` 即可：
 
 ```toml
 #  中心任务存储的服务地址

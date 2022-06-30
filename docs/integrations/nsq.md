@@ -2,7 +2,7 @@
 # NSQ
 ---
 
-- DataKit 版本：1.4.2
+- DataKit 版本：1.4.5
 - 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
 采集 NSQ 运行数据并以指标的方式上报到观测云。

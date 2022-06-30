@@ -2,7 +2,7 @@
 # DataKit 自身指标
 ---
 
-- DataKit 版本：1.4.2
+- DataKit 版本：1.4.5
 - 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
 self 采集器用于 DataKit 自身基本信息的采集，包括运行环境信息、CPU、内存占用情况等。
@@ -61,6 +61,7 @@ self 采集器会自动运行，无需配置，且无法关闭。
 |`min_heap_sys`|Minimal bytes of heap memory obtained from OS since DataKit start|int|B|
 |`min_num_goroutines`|Minimal number of goroutines since DataKit start|int|count|
 |`num_goroutines`|Number of goroutines that currently exitst|int|count|
+|`open_files`|open files of DataKit(Only Linux support, others are -1)|int|count|
 |`pid`|DataKit process ID|int|-|
 |`uptime`|Uptime of DataKit|int|s|
 

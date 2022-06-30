@@ -2,7 +2,7 @@
 # Net
 ---
 
-- DataKit 版本：1.4.2
+- DataKit 版本：1.4.5
 - 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
 net 采集器用于采集主机网络信息，如各网络接口的流量信息等。对于 Linux 将采集系统范围 TCP 和 UDP 统计信息。
@@ -52,8 +52,8 @@ net 采集器用于采集主机网络信息，如各网络接口的流量信息�
 | `ENV_INPUT_NET_IGNORE_PROTOCOL_STATS`     | `ignore_protocol_stats`     | `true`/`false`                                               |
 | `ENV_INPUT_NET_ENABLE_VIRTUAL_INTERFACES` | `enable_virtual_interfaces` | `true`/`false`                                               |
 | `ENV_INPUT_NET_TAGS`                      | `tags`                      | `tag1=value1,tag2=value2` 如果配置文件中有同名 tag，会覆盖它 |
-| `ENV_INPUT_NET_INTERVAL` | `interval` | `10s` |
-| `ENV_INPUT_NET_INTERFACES` | `interfaces` | `'''eth[\w-]+''', '''lo'''` 以英文逗号隔开 |
+| `ENV_INPUT_NET_INTERVAL`                  | `interval`                  | `10s`                                                        |
+| `ENV_INPUT_NET_INTERFACES`                | `interfaces`                | `'''eth[\w-]+''', '''lo'''` 以英文逗号隔开                   |
 
 ## 指标集
 

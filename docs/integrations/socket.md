@@ -2,7 +2,7 @@
 # TCP/UDP
 ---
 
-- DataKit 版本：1.4.2
+- DataKit 版本：1.4.5
 - 操作系统支持：`linux,darwin`
 
 socket 采集器用于采集 UDP/TCP 端口信息。
@@ -18,7 +18,7 @@ UDP 指标需要操作系统有 `nc` 程序
 ```toml
 
 [[inputs.socket]]
-  ## support tcp, udp
+  ## support tcp, udp.If the quantity to be detected is too large, it is recommended to open more collectors
   dest_url = ["tcp://host:port", "udp://host:port"]
 
   ## @param interval - number - optional - default: 30

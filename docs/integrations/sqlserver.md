@@ -2,7 +2,7 @@
 # SQLServer
 ---
 
-- DataKit 版本：1.4.2
+- DataKit 版本：1.4.5
 - 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
 SQL Server 采集器采集 SQL Server `waitstats`、`database_io` 等相关指标
@@ -225,14 +225,14 @@ GO
         files = ["/var/opt/mssql/log/error.log"]
 ```
 
-  
+
 开启日志采集以后，默认会产生日志来源（`source`）为 `sqlserver` 的日志。
 
 >注意：必须将 DataKit 安装在 SQL Server 所在主机才能采集 SQL Server 日志
 
 ## 日志 pipeline 功能切割字段说明
 
-- SQL Server 通用日志切割 
+- SQL Server 通用日志切割
 
 通用日志文本示例：
 ```
@@ -247,4 +247,3 @@ GO
 | time   | 1622169967780000000 | 纳秒时间戳（作为行协议时间）                 |
 | origin | spid10s             | 源                                           |
 | status | info                | 由于日志没有明确字段说明日志等级，默认为info |
-

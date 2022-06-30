@@ -2,12 +2,15 @@
 # CPU
 ---
 
-- DataKit 版本：1.4.2
+- DataKit 版本：1.4.5
 - 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
 CPU 采集器用于系统 CPU 使用率的采集。
 
-![](imgs/input-cpu-1.png) 
+<figure markdown>
+  ![](imgs/input-cpu-1.png){ width="800" }
+  <figcaption>CPU 视图预览</figcaption>
+</figure>
 
 ## 前置条件
 
@@ -45,7 +48,10 @@ CPU 采集器用于系统 CPU 使用率的采集。
 
 数据采集上来后，即可在页面上看到如下 CPU 指标数据：
 
-![](imgs/input-cpu-2.png) 
+<figure markdown>
+  ![](imgs/input-cpu-2.png){ width="800" }
+  <figcaption>CPU 指标查看</figcaption>
+</figure>
 
 ### 通过环境变量修改配置参数 {#envs}
 

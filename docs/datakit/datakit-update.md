@@ -2,7 +2,7 @@
 # DataKit 更新
 ---
 
-- DataKit 版本：1.4.2
+- DataKit 版本：1.4.5
 - 操作系统支持：全平台
 
 DataKit 支持手动更新和自动更新两种方式。
@@ -27,7 +27,7 @@ $ datakit version
         Commit: e9ccdfbae4
         Branch: testing
  Build At(UTC): 2022-03-11 11:07:06
-Golang Version: go version go1.16.4 linux/amd64
+Golang Version: go version go1.18.3 linux/amd64
       Uploader: xxxxxxxxxxxxx/xxxxxxx/xxxxxxx
 ReleasedInputs: all
 ---------------------------------------------------
@@ -45,7 +45,7 @@ $ datakit.exe version
         Commit: e9ccdfbae4
         Branch: testing
  Build At(UTC): 2022-03-11 11:07:36
-Golang Version: go version go1.16.4 linux/amd64
+Golang Version: go version go1.18.3 linux/amd64
       Uploader: xxxxxxxxxxxxx/xxxxxxx/xxxxxxx
 ReleasedInputs: all
 ---------------------------------------------------

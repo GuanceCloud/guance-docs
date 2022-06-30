@@ -1,11 +1,11 @@
 
-# Tomcat
+Tomcat
 ---
 
-- DataKit 版本：1.4.2
+- DataKit 版本：1.4.5
 - 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
-采集 tomcat 指标。
+采集 tomcat 指标
 
 ## 前置条件
 
@@ -33,11 +33,11 @@ $ vim $tomcat_dir/conf/tomcat-users.xml
  43 -->
  44   <role rolename="jolokia"/>
  45   <user username="jolokia_user" password="secPassWd@123" roles="jolokia"/>
- 46 
+ 46
  47 </tomcat-users>
 
 
-$ $tomcat_dir/bin/startup.sh 
+$ $tomcat_dir/bin/startup.sh
 
  ...
  Tomcat started.
@@ -287,17 +287,15 @@ $ $tomcat_dir/bin/startup.sh
 06-Sep-2021 22:33:30.513 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Xmx256m
 ```
 
-
-
 切割后的字段列表如下：
 
-|字段名|字段值|说明|
-|---|---|---|
-|time|1630938810513000000|日志产生的时间|
-|status|INFO|日志等级|
-|thread_name|main|线程名|
-|report_source|org.apache.catalina.startup.VersionLoggerListener.log|ClassName.MethodName|
-|msg|Command line argument: -Xmx256m|消息|
+| 字段名        | 字段值                                                | 说明                 |
+| ---           | ---                                                   | ---                  |
+| time          | 1630938810513000000                                   | 日志产生的时间       |
+| status        | INFO                                                  | 日志等级             |
+| thread_name   | main                                                  | 线程名               |
+| report_source | org.apache.catalina.startup.VersionLoggerListener.log | ClassName.MethodName |
+| msg           | Command line argument: -Xmx256m                       | 消息                 |
 
 **注意**
 
