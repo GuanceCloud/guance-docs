@@ -18,7 +18,7 @@
 === "VUE 2" 
 
 	引入(可参考uniapp官方[npm引入方式](https://uniapp.dcloud.net.cn/frame?id=npm%e6%94%af%e6%8c%81))
-
+	
 	```javascript
 	...
 	import Vue from 'vue'
@@ -38,7 +38,7 @@
 === "VUE 3" 
 
 	引入(可参考uniapp官方[npm引入方式](https://uniapp.dcloud.net.cn/frame?id=npm%e6%94%af%e6%8c%81))
-
+	
 	```javascript hl_lines="5"
 	...
 	//#ifndef H5 || APP-PLUS || APP-NVUE || APP-PLUS-NVUE
@@ -59,7 +59,7 @@
 === "VUE 2" 
 
 	下载文件本地方式引入([下载地址](https://static.guance.com/miniapp-sdk/v2/dataflux-rum-uniapp.js))
-
+	
 	```javascript
 	...
 	import Vue from 'vue'
@@ -79,7 +79,7 @@
 === "VUE 3" 
 
 	下载文件本地方式引入([下载地址](https://static.guance.com/miniapp-sdk/v2/dataflux-rum-uniapp.js))
-
+	
 	```javascript hl_lines="5"
 	...
 	//#ifndef H5 || APP-PLUS || APP-NVUE || APP-PLUS-NVUE
@@ -118,7 +118,7 @@
 1. `datakitOrigin` 所对应的datakit域名必须在小程序管理后台加上request白名单
 2. 目前各平台小程序在性能数据api暴露这块，并没有完善统一，所以导致一些性能数据并不能完善收集，比如`小程序启动`、`小程序包下载`、`脚本注入` 等一些数据除微信平台外，都有可能会存在缺失的情况。
 3. 目前各平台小程序请求资源API`uni.request`、`uni.downloadFile`返回数据中`profile`字段目前只有微信小程序ios系统不支持返回，所以会导致收集的资源信息中和timing相关的数据收集不全。目前暂无解决方案，[request](https://developers.weixin.qq.com/miniprogram/dev/api/network/request/wx.request.html), [downloadFile](https://developers.weixin.qq.com/miniprogram/dev/api/network/download/wx.downloadFile.html) ;[API支持情况](https://developers.weixin.qq.com/community/develop/doc/000ecaa8b580c80601cac8e6f56000?highLine=%2520request%2520profile)
-4. `trackInteractions` 用户行为采集开启后，因为微信小程序的限制，无法采集到控件的内容和结构数据，所以在小程序 SDK 里面我们采取的是声明式编程，通过在 模版 里面设置 data-name 属性，可以给 交互元素 添加名称，方便后续统计是定位操作记录， 例如：
+4. `trackInteractions` 用户行为采集开启后，因为微信小程序的限制，无法采集到控件的内容和结构数据，所以在小程序 SDK 里面我们采取的是声明式编程，通过在 模板 里面设置 data-name 属性，可以给 交互元素 添加名称，方便后续统计是定位操作记录， 例如：
 
 ```javascript
  <button bindtap="bindSetData" data-name="setData">setData</button>
