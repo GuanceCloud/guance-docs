@@ -1,7 +1,7 @@
 # Scheck 连接阿里云日志系统方案
 
-- 版本：1.0.7-3-g7183440
-- 发布日期：2022-06-22 10:39:36
+- 版本：1.0.7-4-g582a075
+- 发布日期：2022-06-30 08:10:08
 - 操作系统支持：windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64
 
 ## 前提条件
@@ -15,7 +15,7 @@
 
 - 创建用户
 
-  登陆RAM访问控制-左边栏[身份管理-用户]-创建用户
+  登录RAM访问控制-左边栏[身份管理-用户]-创建用户
 
   创建用户，设置为登录名称scheck，选择*Open API 调用访问*
 
@@ -116,11 +116,11 @@ $docker restart grafana
 - 浏览器登录http://127.0.0.1:3000 用户名：admin 密码：admin
 - 访问http://127.0.0.1:3000/datasources，添加数据源选择log-service-datasource，Name 设置为sc，下面继续填信息。
 
-#### 4.导入scheck模版
+#### 4.导入scheck模板
 
-- [下载模版](https://security-checker-prod.oss-cn-hangzhou.aliyuncs.com/img/grafana/zhuyun-scheck-1629358061303.json)
+- [下载模板](https://security-checker-prod.oss-cn-hangzhou.aliyuncs.com/img/grafana/zhuyun-scheck-1629358061303.json)
 
-- 访问http://127.0.0.1:3000/dashboard/import 上传json 模版
+- 访问http://127.0.0.1:3000/dashboard/import 上传json 模板
 
 ![](../img/scheck-grafana.png)
 
