@@ -16,3 +16,4 @@ nav:
   - 'Redis 可观测最佳实践': redis.md
   - 'Jenkins 可观测最佳实践': jenkins.md
   - 'Gitlab-CI 可观测最佳实践': gitlab-ci.md
+  - 'Minio 可观测最佳实践': minio.md
