@@ -84,7 +84,7 @@ data:
           # measurement_name = "prom"
 
           ## 采集间隔 "ns", "us" (or "µs"), "ms", "s", "m", "h"
-          interval = "10s"
+          interval = "60s"
 
           ## 过滤tags, 可配置多个tag
           # 匹配的tag将被忽略
