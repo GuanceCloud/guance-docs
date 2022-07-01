@@ -1,8 +1,8 @@
 nav:
   - index.md
   - '监控器': monitor
-  - '模版': template.md
+  - '监控器模板': template.md
   - '告警设置': alert-setting.md
   - 'SLO': slo.md
   - '静默管理': silent-management.md
-  - '事件名称/内容模版': event-template.md
+  - '事件标题、内容模板': event-template.md

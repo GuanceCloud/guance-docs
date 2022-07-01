@@ -5,7 +5,7 @@
 <br />**get /api/v1/dashboards/\{dashboard_uuid\}/export**
 
 ## 概述
-根据`dashboard_uuid`将指定的仪表板导出为视图模版结构
+根据`dashboard_uuid`将指定的仪表板导出为视图模板结构
 
 
 

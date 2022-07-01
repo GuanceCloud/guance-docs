@@ -12,7 +12,7 @@
 
 ## 事件采集
 
-您需要通过在「监控器」配置异常检测规则，以完成事件数据的采集。在观测云[监控器](../monitoring/index.md)，支持通过手动配置自定义监控器或者直接通过[监控器模版](../monitoring/template.md)一键创建，只需为主机 [安装 DataKit](../datakit/datakit-install.md) 即可使用。
+您需要通过在「监控器」配置异常检测规则，以完成事件数据的采集。在观测云[监控器](../monitoring/index.md)，支持通过手动配置自定义监控器或者直接通过[监控器模板](../monitoring/template.md)一键创建，只需为主机 [安装 DataKit](../datakit/datakit-install.md) 即可使用。
 
 ## 字段说明
 | 字段名 | 说明 |
