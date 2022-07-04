@@ -30,7 +30,7 @@ RUN mkdocs build
 RUN \
     if [ $release_env = "saas_production" ]; then \
         echo "upload to OSS bucket..."; \
-        OSS_UPLOAD_PATH="oss://${GUANCE_HELPS_OSS_BUCKET}/dataflux-docs"; \
+        OSS_UPLOAD_PATH="oss://${GUANCE_HELPS_OSS_BUCKET}/"; \
         tools/ossutil64 cp site ${OSS_UPLOAD_PATH} -r -f -e ${GUANCE_HELPS_OSS_ENDPOINT} -i ${GUANCE_HELPS_OSS_AK_ID} -k ${GUANCE_HELPS_OSS_AK_SECRET}; \
     fi
 
