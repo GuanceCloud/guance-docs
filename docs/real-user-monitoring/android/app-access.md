@@ -63,7 +63,7 @@ allprojects {
 ```groovy
 dependencies {
     //添加 DataFlux SDK 的依赖
-    implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-sdk:1.3.5-beta02'
+    implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-sdk:1.3.6-beta01'
     //捕获 native 层崩溃信息的依赖，需要配合 ft-sdk 使用不能单独使用
     implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-native:1.0.0-alpha04'
     //推荐使用这个版本，其他版本未做过充分兼容测试
@@ -107,7 +107,6 @@ class DemoApplication : Application() {
     override fun onCreate() {
         val config = FTSDKConfig
             .builder(DATAKIT_URL)//Datakit 安装地址
-            .setUseOAID(true)
             .setDebug(true)
             .setXDataKitUUID("ft-dataKit-uuid-001");
 
@@ -121,7 +120,6 @@ class DemoApplication : Application() {
 | **方法名** | **含义** | **必须** | **注意** |
 | --- | --- | --- | --- |
 | metricsUrl | Datakit 安装地址 | 是 | datakit 安装地址 IP 地址，安装 SDK 设备需能访问这地址 |
-| setUseOAID | 是否使用 `OAID` 唯一识别 | 否 | 默认为 `false`，开启后替换 deviceUUID 进行使用，[了解 OAID](#OAID) |
 | setXDataKitUUID | 设置数据采集端的识别 ID | 否 | 默认为随机`uuid` |
 | setDebug | 是否开启调试模式 | 否 | 默认为 `false`，开启后方可打印 SDK 运行日志 |
 | setEnv | 设置采集环境 | 否 | 默认为 `EnvType.PROD` |
@@ -449,65 +447,6 @@ FTSdk.shutDown()
 
 
 ## 常见问题 {#FAQ}
-
-### 关于 OAID {#OAID}
-
-#### 介绍
-
-在 `Android 10` 版本中，非系统应用将不能获取到系统的 `IMEI`、`MAC`等信息。面对该问题移动安全联盟联合国内的手机厂商推出了
-补充设备标准体系方案，选择用 `OAID` 字段作为IMEI等系统信息的替代字段。`OAID` 字段是由中国信通院联合华为、小米、OPPO、
-VIVO 等厂商共同推出的设备识别字段，具有一定的权威性。目前 DataFlux SDK 使用的是 `oaid_sdk_1.0.22.aar`
-
-> 关于 OAID 可移步参考[移动安全联盟](http://www.msa-alliance.cn/col.jsp?id=120)
-
-#### 使用
-
-使用方式和资源下载可参考[移动安全联盟的集成文档](http://www.msa-alliance.cn/col.jsp?id=120)
-
-#### 示例
-
-下载好资源文件后，将 oaid_sdk_1.0.22.aar 拷贝到项目的 libs 目录下，并设置依赖
-[获取最新版本](http://www.msa-alliance.cn/col.jsp?id=120)
-
-![](../img/image_5.png)
-
-将下载的资源中的 `supplierconfig.json` 文件拷贝到主项目的 `assets` 目录下，并修改里面对应的内容，特别是需要设置 `appid` 的部分。需要设置 `appid` 的部分需要去对应厂商的应用商店里注册自己的 `app`。
-
-![](../img/image_6.png)
-
-![](../img/image_7.png)
-
-##### 设置依赖
-
-```groovy
-implementation files('libs/oaid_sdk_1.0.22.arr')
-```
-
-##### 混淆设置
-
-```
- -keep class com.bun.miitmdid.core.**{*;}
-```
-
-##### 设置 gradle
-
-编译选项，这块可以根据自己的对平台的选择进行合理的配置
-
-```groovy
-ndk {
-    abiFilters 'armeabi-v7a','x86','arm64-v8a','x86_64','armeabi'
-}
-packagingOptions {
-    doNotStrip "*/armeabi-v7a/*.so"
-    doNotStrip "*/x86/*.so"
-    doNotStrip "*/arm64-v8a/*.so"
-    doNotStrip "*/x86_64/*.so"
-    doNotStrip "armeabi.so"
-}
-```
-
-> 以上步骤配置完成后，在配置 FT SDK 时调用 FTSDKConfig 的 setUseOAID(true) 方法即可
-
 
 ### 日志混淆内容转换 {#retrace-log}
 
