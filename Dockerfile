@@ -21,7 +21,7 @@ RUN \
         echo "SaaS Build ..."; \
         cp -r -f overrides-saas/* overrides/; \
         \
-        OSS_UPLOAD_PATH = oss://${GUANCE_HELPS_OSS_BUCKET}/dataflux-docs; \
+        OSS_UPLOAD_PATH="oss://${GUANCE_HELPS_OSS_BUCKET}/dataflux-docs"; \
         tools/ossutil64 cp site ${OSS_UPLOAD_PATH} -r -f -e ${GUANCE_HELPS_OSS_ENDPOINT} -i ${GUANCE_HELPS_OSS_AK_ID} -k ${GUANCE_HELPS_OSS_AK_SECRET}; \
     elif [ $release_env = "rtm" ]; then \
         echo "RTM Build ..."; \
