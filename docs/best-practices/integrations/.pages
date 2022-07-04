@@ -17,3 +17,4 @@ nav:
   - 'Jenkins 可观测最佳实践': jenkins.md
   - 'Gitlab-CI 可观测最佳实践': gitlab-ci.md
   - 'Minio 可观测最佳实践': minio.md
+  - 'Skywalking 采集 JVM 可观测最佳实践': skywalking-jvm.md
