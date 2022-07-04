@@ -2,7 +2,7 @@
 # 磁盘 S.M.A.R.T
 ---
 
-- DataKit 版本：1.4.3
+- DataKit 版本：1.4.5
 - 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
 计算机硬盘运行状态数据采集

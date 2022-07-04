@@ -2,7 +2,7 @@
 # DataKit API
 ---
 
-- DataKit 版本：1.4.3
+- DataKit 版本：1.4.5
 - 操作系统支持：全平台
 
 本文档主要描述 DataKit 开放出来 HTTP API 接口。
@@ -158,7 +158,7 @@ slb,name=zzz,tag2=b f1=1i,f2=1.2,f3="abc",message="xxx" 1620723870000000000
 
 ### RUM {#api-rum}
 
-参见 [RUM 文档](rum.md)
+参见 [RUM 文档](../integrations/rum.md)
 
 ## `/v1/ping` {#api-ping}
 
@@ -541,4 +541,4 @@ HTTP Code: 40x
 
 - [API 访问设置](datakit-conf.md#config-http-server)
 - [API 限流配置](datakit-conf.md#set-http-api-limit)
-- [API 安全控制](rum.md#security-setting)
+- [API 安全控制](../integrations/rum.md#security-setting)

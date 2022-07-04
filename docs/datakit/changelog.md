@@ -1,6 +1,25 @@
 # DataKit 版本历史
 ---
 
+## 1.4.5(2022/06/29) {#cl-1.4.5}
+
+本次发布属于 Hotfix 发布，主要修复日志采集器因同名文件快速删除并新建而导致采集中断问题(#883)
+
+如果大家有计划任务在定期打包日志，可能会触发这个 Bug，**建议升级**。
+
+---
+
+## 1.4.4(2022/06/27) {#cl-1.4.4}
+
+本次发布属于 Hotfix 发布，主要更新如下内容：
+
+- 修复日志采集因 pos 处理不当导的不采集问题，该问题自 1.4.2 引入，**建议升级** (#873)
+- 修复 TDEngine 可能导致的 crash 问题
+- 优化 eBPF 数据发送流程，避免积攒过多消耗太多内存导致 OOM(#871)
+- 修复采集器文档错误
+
+---
+
 ## 1.4.3(2022/06/22) {#cl-1.4.3}
 
 本次发布属于迭代发布，主要更新如下内容：
@@ -464,12 +483,12 @@ volumes:
 
 ### 采集器更新
 
-- 重构 Kubernetes 云原生采集器，将其整合进[容器采集器](container.md)。原有 Kubernetes 采集器不再生效(#492)
-- [Redis 采集器](redis.md)
-    - 支持配置 [Redis 用户名](redis.md)(#260)
+- 重构 Kubernetes 云原生采集器，将其整合进[容器采集器](../integrations/container.md)。原有 Kubernetes 采集器不再生效(#492)
+- [Redis 采集器](../integrations/redis.md)
+    - 支持配置 [Redis 用户名](../integrations/redis.md)(#260)
     - 增加 Latency 以及 Cluster 指标集(#396)
-- [Kafka 采集器](kafka)增强，支持 topic/broker/consumer/connnetion 等维度的指标(#397)
-- 新增 [ClickHouse](clickhousev1) 以及 [Flink](flinkv1) 采集器(#458/#459)
+- [Kafka 采集器](../integrations/kafka.md)增强，支持 topic/broker/consumer/connnetion 等维度的指标(#397)
+- 新增 [ClickHouse](../integrations/clickhousev1.md) 以及 [Flink](../integrations/flinkv1.md) 采集器(#458/#459)
 - [主机对象采集器](hostobject)
     - 支持从 [`ENV_CLOUD_PROVIDER`](hostobject#224e2ccd) 读取云同步配置(#501)
     - 优化磁盘采集，默认不会再采集无效磁盘（比如总大小为 0 的一些磁盘）(#505)

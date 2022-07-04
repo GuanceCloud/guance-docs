@@ -2,7 +2,7 @@
 # 通过 Sidecar 方式采集 Pod 日志
 ---
 
-- DataKit 版本：1.4.3
+- DataKit 版本：1.4.5
 - 操作系统支持：Linux
 
 为了便于在 Kubernetes Pod 中采集应用容器的日志，提供一个轻量的日志采集客户端，以 sidecar 方式挂载到 Pod 中，并将采集到的日志发送给 DataKit。
@@ -29,7 +29,7 @@
 
 配置好后，重启 DataKit 即可。
 
-> 注：如果 DataKit 是以 daemonset 方式部署，此段配置需要添加到 `ConfigMap` 并通过 `volumeMounts` 挂载，详见 DataKit daemonset 安装[文档](datakit-daemonset-deploy.md)。
+> 注：如果 DataKit 是以 daemonset 方式部署，此段配置需要添加到 `ConfigMap` 并通过 `volumeMounts` 挂载，详见 DataKit daemonset 安装[文档](../datakit/datakit-daemonset-deploy.md)。
 
 ### logfwd 使用和配置 {#config}
 
@@ -106,7 +106,7 @@ spec:
         fieldRef:
           apiVersion: v1
           fieldPath: metadata.namespace
-    image: pubrepo.jiagouyun.com/datakit/logfwd:1.4.3
+    image: pubrepo.jiagouyun.com/datakit/logfwd:1.4.5
     imagePullPolicy: Always
     volumeMounts:
     - name: varlog
@@ -200,7 +200,7 @@ spec:
         fieldRef:
           apiVersion: v1
           fieldPath: metadata.namespace
-    image: pubrepo.jiagouyun.com/datakit/logfwd:1.4.3
+    image: pubrepo.jiagouyun.com/datakit/logfwd:1.4.5
     imagePullPolicy: Always
     volumeMounts:
     - name: varlog
@@ -283,6 +283,6 @@ MiB Swap:   2048.0 total,      0.0 free,   2048.0 used.   8793.3 avail Mem
 - [Kubernetes 中指定 Pod 的日志采集配置](container.md#logging-with-annotation-or-label)
 - [第三方日志接入](logstreaming.md)
 - [Kubernetes 环境下 DataKit 配置方式介绍](k8s-config-how-to.md)
-- [以 DaemonSet 形式安装 DataKit](datakit-daemonset-deploy.md)
+- [以 DaemonSet 形式安装 DataKit](../datakit/datakit-daemonset-deploy.md)
 - [在 DataKit 上部署 `logfwdserver`](logfwdserver.md)
-- [正确使用正则表达式来配置](datakit-input-conf.md#debug-regex) 
+- [正确使用正则表达式来配置](../datakit/datakit-input-conf.md#debug-regex) 

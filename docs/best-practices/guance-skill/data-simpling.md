@@ -64,7 +64,7 @@
 在rum-js添加的地方，添加`sampleRate: 90`，举例如下（同步载入方式）：
 
 ```
-<script src="https://static.dataflux.cn/browser-sdk/v2/dataflux-rum.js" type="text/javascript"></script>
+<script src="https://static.guance.com/browser-sdk/v2/dataflux-rum.js" type="text/javascript"></script>
 <script>
   window.DATAFLUX_RUM &&
     window.DATAFLUX_RUM.init({

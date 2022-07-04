@@ -47,7 +47,7 @@
 
 === "CDN" 
 
-	下载文件本地方式引入([下载地址](https://static.dataflux.cn/miniapp-sdk/v2/dataflux-rum-miniapp.js))
+	下载文件本地方式引入([下载地址](https://static.guance.com/miniapp-sdk/v2/dataflux-rum-miniapp.js))
 
 	```javascript
 	const { datafluxRum } = require('./lib/dataflux-rum-miniapp.js')

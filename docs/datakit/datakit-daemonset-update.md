@@ -2,7 +2,7 @@
 # DaemonSet 升级
 ---
 
-- DataKit 版本：1.4.3
+- DataKit 版本：1.4.5
 - 操作系统支持：全平台
 
 DataKit DaemonSet 支持两种方式安装，Helm 部署和 yaml 文件部署。此篇文章将讲述两种部署的升级方式。
