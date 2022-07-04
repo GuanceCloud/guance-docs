@@ -1,8 +1,16 @@
 ARG release_env
+ARG GUANCE_HELPS_OSS_AK_ID
+ARG GUANCE_HELPS_OSS_AK_SECRET
+ARG GUANCE_HELPS_OSS_BUCKET
+ARG GUANCE_HELPS_OSS_ENDPOINT
 
 FROM registry.jiagouyun.com/basis/mkdocs:2.0 as build
 
 ARG release_env
+ARG GUANCE_HELPS_OSS_AK_ID
+ARG GUANCE_HELPS_OSS_AK_SECRET
+ARG GUANCE_HELPS_OSS_BUCKET
+ARG GUANCE_HELPS_OSS_ENDPOINT
 
 RUN mkdir /dataflux-doc
 WORKDIR /dataflux-doc
@@ -12,6 +20,9 @@ RUN \
     if [ $release_env = "saas_production" ]; then \
         echo "SaaS Build ..."; \
         cp -r -f overrides-saas/* overrides/; \
+        \
+        OSS_UPLOAD_PATH = oss://${GUANCE_HELPS_OSS_BUCKET}/dataflux-docs; \
+        tools/ossutil64 cp site ${OSS_UPLOAD_PATH} -r -f -e ${GUANCE_HELPS_OSS_ENDPOINT} -i ${GUANCE_HELPS_OSS_AK_ID} -k ${GUANCE_HELPS_OSS_AK_SECRET}; \
     elif [ $release_env = "rtm" ]; then \
         echo "RTM Build ..."; \
         cp -r -f overrides-deploy/* overrides/; \
