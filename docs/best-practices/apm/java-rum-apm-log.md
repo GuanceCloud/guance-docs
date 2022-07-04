@@ -3,7 +3,7 @@
 ---
 
 ## 应用场景介绍：
-本文用于演示的 demo 为若依办公系统，具体内容可查看 [从 0 到 1 利用观测云构建 Spring cloud 服务的可观测性](./apm/spring-cloud-sample.md)。
+本文用于演示的 demo 为若依办公系统，具体内容可查看 [从 0 到 1 利用观测云构建 Spring cloud 服务的可观测性](/best-practices/apm/spring-cloud-sample)。
 
 企业最重要的营收来源即是业务，而现当下，绝大多数企业的业务都是由对应的IT系统承载的，那如何保障企业的业务稳健，归根到企业内部就是如何保障企业内部的IT系统。当业务系统出现异常或故障时，往往是业务、应用开发、运维等多方面同事一起协调进行问题的排查，存在跨平台，跨部门，跨专业领域等多种问题，排查既耗时又费力，为了解决这一问题，目前业界已经比较成熟的方式即是在基础设施监控之外，对应用层、日志层进行深度的监控，通过 RUM+APM+LOG 实现对整个业务系统最核心的的前后端应用、日志进行统一管理，能力强一些的监控还可以将这三方面数据通过关键字段进行打通，实现联动分析，从而提升相关工作人员的工作效率，保障系统平稳运行。目前 Dataflux 已具备这样的能力，本文将从如何接入 RUM+APM+LOG 这三方监控，以及如何利用df进行联动分析的角度进行阐述。
 
@@ -49,7 +49,7 @@
 
 ## RUM（real user moitoring）：
 
-详细步骤参见文档 [web 应用监控（RUM）最佳实践](./apm/web.md)
+详细步骤参见文档 [web 应用监控（RUM）最佳实践](/best-practices/apm/web)
 
 ##### 1、登录 Dataflux 平台
 
@@ -121,7 +121,7 @@ $ vim index.html
 
 # APM（application performance monitoring）：
 
-详细步骤参见文档 [分布式链路追踪(APM)最佳实践](./apm/apm.md)<br />**DF 支持的 APM 接入方式包含 ddtrace、skywalking、zipkin、jaejer 等多种支持 opentracing 协议的 APM 工具，此处示例采用 ddtrace 实现 APM 方面的可观测性。**
+详细步骤参见文档 [分布式链路追踪(APM)最佳实践](/best-practices/apm)<br />**DF 支持的 APM 接入方式包含 ddtrace、skywalking、zipkin、jaejer 等多种支持 opentracing 协议的 APM 工具，此处示例采用 ddtrace 实现 APM 方面的可观测性。**
 
 ##### 1、在 Datakit 中修改 APM（ddtrace）的 inputs
 
@@ -181,7 +181,7 @@ APM（应用性能检测）是 DF 默认内置的模块，无需创建场景或�
 
 调用链路的问题追踪：排查接口、数据库问题
 
-![image](../images/java-rum-apm-log/14.png)
+![image](../images/java-rum-apm-log/14.jpg)
 
 ## 日志（LOG）：
 
@@ -189,7 +189,7 @@ APM（应用性能检测）是 DF 默认内置的模块，无需创建场景或�
 
 ##### 1、标准日志采集（Nginx、mysql、redis等）
 
-通过开启Datakit内置的各种inputs，直接开启相关的日志采集，例如 [Ngnix](../../datakit/nginx.md#62b5133f)、 [Redis](../../datakit/redis.md#62b5133f)、[Docker](../../integrations/container.md)、[ES](../../integrations/elasticsearch.md#62b5133f) 等；<br />**示例：Nginx**
+通过开启Datakit内置的各种inputs，直接开启相关的日志采集，例如 [Ngnix](/integrations/nginx)、 [Redis](/integrations/redis)、[容器](/integrations/container)、[ES](/integrations/elasticsearch) 等；<br />**示例：Nginx**
 
 ```
 $ cd /usr/local/datakit/conf.d/nginx/
@@ -260,7 +260,11 @@ default_time(time)
 
 ## RUM 跟 APM 联动数据演示：
 
-**      原理介绍**：用户访问前端应用（已添加 rum 监控且已配置 **allowedDDTracingOrigins **字段），前端应用调用资源及请求，触发 rum-js 性能数据采集，rum-js 会生成 trace-id 写在请求的 request_header 里，请求到达后端，后端的 ddtrace 会读取到该 trace_id 并记录在自己的 trace 数据里，从而实现通过相同的 trace_id 来实现应用性能监测和用户访问监测数据联动分析。<br />     **应用场景**：前后端关联，前端请求与后端方法执行性能数据进行一对一绑定，从而更方便定位前后端关联的问题，例如前端用户登录缓慢，是因为后端服务调用数据库查询用户耗时过长导致的，就可通过前后端联动分析迅速跨团队跨部门进行问题定位，示例如下：<br />**     配置方式**：[ [java 示例](web.md#fpjkl)] 
+**原理介绍**：用户访问前端应用（已添加 rum 监控且已配置 **allowedDDTracingOrigins** 字段），前端应用调用资源及请求，触发 rum-js 性能数据采集，rum-js 会生成 trace-id 写在请求的 request_header 里，请求到达后端，后端的 ddtrace 会读取到该 trace_id 并记录在自己的 trace 数据里，从而实现通过相同的 trace_id 来实现应用性能监测和用户访问监测数据联动分析。
+
+**应用场景**：前后端关联，前端请求与后端方法执行性能数据进行一对一绑定，从而更方便定位前后端关联的问题，例如前端用户登录缓慢，是因为后端服务调用数据库查询用户耗时过长导致的，就可通过前后端联动分析迅速跨团队跨部门进行问题定位，示例如下：
+
+**配置方式**：[ [java 示例](web.md)] 
 
 ##### 1、前端 RUM 数据
 
@@ -282,7 +286,7 @@ default_time(time)
 
 ##### 1、开启 APM 监控
 
-参考 [Kubernetes 应用的 RUM-APM-LOG 联动分析](./cloud-native/k8s-rum-apm-log.md) APM 部分，无需额外操作。
+参考 [Kubernetes 应用的 RUM-APM-LOG 联动分析](/best-practices/cloud-native/k8s-rum-apm-log/) APM 部分，无需额外操作。
 
 ##### 2、修改应用日志输出格式（需开发介入）
 
@@ -312,7 +316,9 @@ default_time(time)
 
 ##### 3、开启日志监控
 
-参考 [JAVA应用-RUM-APM-LOG 联动分析](./apm/java-rum-apm-log.md) 自定义日志采集部分<br />举例：
+参考 [JAVA应用-RUM-APM-LOG 联动分析](/best-practices/apm/java-rum-apm-log.md) 自定义日志采集部分
+
+举例：
 
 ```bash
 $ cd /usr/local/datakit/conf.d/log/
@@ -337,7 +343,9 @@ $ vim ruoyi-system.conf
 ![image](../images/java-rum-apm-log/29.png)
 
 **反向关联[日志——APM]**
-查看异常日志，在日志中复制 trace_id，在链路追踪页面搜索框直接检索该 trace_id，即可搜出于该 id 相关的所有 trace 及 span 数据，点击查看即可。<br />![image](../images/java-rum-apm-log/30.png)
+查看异常日志，在日志中复制 trace_id，在链路追踪页面搜索框直接检索该 trace_id，即可搜出于该 id 相关的所有 trace 及 span 数据，点击查看即可。
+
+![image](../images/java-rum-apm-log/30.png)
 
 ![image](../images/java-rum-apm-log/31.png)
 
