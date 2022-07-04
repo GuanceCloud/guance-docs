@@ -50,7 +50,7 @@ buildLHM:
       --build-arg GUANCE_HELPS_OSS_BUCKET="${GUANCE_HELPS_OSS_BUCKET}"
       --build-arg GUANCE_HELPS_OSS_ENDPOINT="${GUANCE_HELPS_OSS_ENDPOINT}"
       -t $REPOSITORY:testing .
-    - docker tag $REPOSITORY:prod registry.jiagouyun.com/cloudcare-front/$REPOSITORY:testing
+    - docker tag $REPOSITORY:testing registry.jiagouyun.com/cloudcare-front/$REPOSITORY:testing
     - docker push registry.jiagouyun.com/cloudcare-front/$REPOSITORY:testing
   tags:
     - cloudcare-multiarch
