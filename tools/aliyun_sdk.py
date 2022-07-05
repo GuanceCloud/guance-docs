@@ -157,19 +157,19 @@ PRODUCT_API_CONFIG_MAP = {
 }
 
 def ensure_str(s):
-    if isinstance(s, unicode):
+    if isinstance(s, str):
         return s.encode('utf8')
     else:
-        return str(s).decode('utf8').encode('utf8')
+        return str(s).encode('utf8')
 
 def percent_encode(s):
     # I fell sick...
-    if isinstance(s, unicode):
+    if isinstance(s, str):
         s = s.encode('utf8')
     else:
-        s = str(s).decode('utf8').encode('utf8')
+        s = str(s).encode('utf8')
 
-    encoded = urllib.quote(s, '')
+    encoded = urllib.parse.quote(s, '')
     encoded = encoded.replace('+', '%20')
     encoded = encoded.replace('*', '%2A')
     encoded = encoded.replace('%7E', '~')
@@ -195,10 +195,11 @@ class AliyunClient(object):
 
         string_to_sign = 'POST&%2F&' + percent_encode(canonicalized_query_string)
 
-        h = hmac.new(self.access_key_secret + "&", string_to_sign, hashlib.sha1)
+        v = (self.access_key_secret.decode() + "&").encode('utf8')
+        h = hmac.new(v, string_to_sign.encode('utf8'), hashlib.sha1)
         signature = base64.encodestring(h.digest()).strip()
 
-        return signature
+        return signature.decode('utf-8')
 
     def verify(self):
         status_code, _ = self.ecs(Action='DescribeRegions')
@@ -208,7 +209,7 @@ class AliyunClient(object):
         api_params = {
             'Format'          : 'json',
             'Version'         : version,
-            'AccessKeyId'     : self.access_key_id,
+            'AccessKeyId'     : self.access_key_id.decode('utf8'),
             'SignatureVersion': '1.0',
             'SignatureMethod' : 'HMAC-SHA1',
             'SignatureNonce'  : str(uuid.uuid4()),
