@@ -37,25 +37,6 @@ buildMain:
   tags:
     - cloudcare-multiarch
 
-
-buildLHM:
-  stage: deploy
-  only:
-    - /feature.*/ 
-  script:
-    - docker build 
-      --build-arg release_env="saas_production"
-      --build-arg GUANCE_HELPS_OSS_AK_ID="${GUANCE_HELPS_OSS_AK_ID}"
-      --build-arg GUANCE_HELPS_OSS_AK_SECRET="${GUANCE_HELPS_OSS_AK_SECRET}"
-      --build-arg GUANCE_HELPS_OSS_BUCKET="${GUANCE_HELPS_OSS_BUCKET}"
-      --build-arg GUANCE_HELPS_OSS_ENDPOINT="${GUANCE_HELPS_OSS_ENDPOINT}"
-      -t $REPOSITORY:testing .
-    - docker tag $REPOSITORY:testing registry.jiagouyun.com/cloudcare-front/$REPOSITORY:testing
-    - docker push registry.jiagouyun.com/cloudcare-front/$REPOSITORY:testing
-  tags:
-    - cloudcare-multiarch
-
-
 buildBasis:
   stage: deploy
   only:
