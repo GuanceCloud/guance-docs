@@ -1,6 +1,11 @@
 # -*- coding: utf-8 -*-
 
-import base64
+try:
+    from base64 import encodebytes
+except ImportError:
+    from base64 import encodestring as encodebytes
+
+
 import hashlib
 import hmac
 import time
@@ -197,7 +202,7 @@ class AliyunClient(object):
 
         v = (self.access_key_secret.decode() + "&").encode('utf8')
         h = hmac.new(v, string_to_sign.encode('utf8'), hashlib.sha1)
-        signature = base64.encodestring(h.digest()).strip()
+        signature = encodebytes(h.digest()).strip()
 
         return signature.decode('utf-8')
 
