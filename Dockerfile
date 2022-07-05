@@ -32,9 +32,10 @@ RUN \
         echo "upload to OSS bucket..."; \
         OSS_UPLOAD_PATH="oss://${GUANCE_HELPS_OSS_BUCKET}"; \
         CDN_REFRESH_PATH="docs.guance.com/"; \
-        pip install -r tools/requirements.txt; \
+        pip install -r tools/requirements.txt -i https://mirrors.aliyun.com/pypi/simple; \
         tools/ossutil64 cp site ${OSS_UPLOAD_PATH} -r -f -e ${GUANCE_HELPS_OSS_ENDPOINT} -i ${GUANCE_HELPS_OSS_AK_ID} -k ${GUANCE_HELPS_OSS_AK_SECRET}; \
         tools/ossutil64 cp tools/rum-config.js ${OSS_UPLOAD_PATH}/assets/javascripts/rum-config.js -r -f -e ${GUANCE_HELPS_OSS_ENDPOINT} -i ${GUANCE_HELPS_OSS_AK_ID} -k ${GUANCE_HELPS_OSS_AK_SECRET}; \
+        echo "refresh CDN ..." ; /
         python tools/cdn-refresh-tool.py Directory ${CDN_REFRESH_PATH} -i ${GUANCE_HELPS_OSS_AK_ID} -k ${GUANCE_HELPS_OSS_AK_SECRET}; \
     fi
 
