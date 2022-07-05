@@ -31,8 +31,11 @@ RUN \
     if [ $release_env = "saas_production" ]; then \
         echo "upload to OSS bucket..."; \
         OSS_UPLOAD_PATH="oss://${GUANCE_HELPS_OSS_BUCKET}"; \
-        tools/ossutil64 cp site ${OSS_UPLOAD_PATH} -r -f -e ${GUANCE_HELPS_OSS_ENDPOINT}/ -i ${GUANCE_HELPS_OSS_AK_ID} -k ${GUANCE_HELPS_OSS_AK_SECRET}; \
+        CDN_REFRESH_PATH="docs.guance.com/"; \
+        pip install -r tools/requirements.txt; \
+        tools/ossutil64 cp site ${OSS_UPLOAD_PATH} -r -f -e ${GUANCE_HELPS_OSS_ENDPOINT} -i ${GUANCE_HELPS_OSS_AK_ID} -k ${GUANCE_HELPS_OSS_AK_SECRET}; \
         tools/ossutil64 cp tools/rum-config.js ${OSS_UPLOAD_PATH}/assets/javascripts/rum-config.js -r -f -e ${GUANCE_HELPS_OSS_ENDPOINT} -i ${GUANCE_HELPS_OSS_AK_ID} -k ${GUANCE_HELPS_OSS_AK_SECRET}; \
+        python tools/cdn-refresh-tool.py Directory ${CDN_REFRESH_PATH} -i ${GUANCE_HELPS_OSS_AK_ID} -k ${GUANCE_HELPS_OSS_AK_SECRET}; \
     fi
 
 # build static site
