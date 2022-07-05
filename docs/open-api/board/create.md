@@ -5,7 +5,7 @@
 <br />**post /api/v1/dashboards/create**
 
 ## 概述
-创建一个空仪表板，或者是根据`仪表板模版`创建一个仪表板
+创建一个空仪表板，或者是根据`仪表板模板`创建一个仪表板
 规则:
   - 禁止创建同名仪表板
   - 参数中的`name`字段将覆盖`templateInfo`中的`title`
@@ -21,20 +21,20 @@
 | extend | json |  | 仪表板的额外数据, 默认为{}<br>例子: {} <br>允许为空: False <br> |
 | mapping | array |  | 视图变量的字段映射信息，默认为 []<br>例子: [{'class': 'host_processes', 'field': 'create_time', 'mapping': 'username', 'datasource': 'object'}] <br>允许为空: False <br> |
 | tagNames | array |  | 关联的 tag 列表<br>允许为空: False <br> |
-| templateInfo | json |  | 仪表板模版数据<br>例子: {} <br>允许为空: False <br>允许空字符串: False <br> |
+| templateInfo | json |  | 仪表板模板数据<br>例子: {} <br>允许为空: False <br>允许空字符串: False <br> |
 
 ## 参数补充说明
 
 参数说明:
 
-模版的基础结构组成包含: 视图结构(含图表结构, 视图变量结构，图表分组结构)
+模板的基础结构组成包含: 视图结构(含图表结构, 视图变量结构，图表分组结构)
 
 **`templateInfo`的主体结构说明**
 
 |  参数名                |   type  | 必选  |          说明          |
 |-----------------------|----------|----|------------------------|
 |title             |string | 必须 |  视图标题名称 |
-|summary             |string |  |  模版的摘要信息 |
+|summary             |string |  |  模板的摘要信息 |
 |dashboardType       |string |  |  已废弃，默认为`CUSTOM` |
 |dashboardExtend     |json |  |  视图额外数据信息 |
 |dashboardMapping    |array[json] |  |  视图变量的字段映射配置列表 |
@@ -44,7 +44,7 @@
 |icon             |string |   |  仪表版小图标文件名 |
 |thumbnail             |string |   |  仪表版中等图标文件名 |
 |main             |json |   |  仪表板内容结构 |
-|main.type    |string     |   | 模版类型, 该字段为系统字段，可忽略|
+|main.type    |string     |   | 模板类型, 该字段为系统字段，可忽略|
 |main.vars    |array[json]     |   | 视图变量配置列表 |
 |main.vars[#]    |json     |   | 视图变量配置结构 |
 |main.groups    |array[string]     |   | 图表分组名列表 |

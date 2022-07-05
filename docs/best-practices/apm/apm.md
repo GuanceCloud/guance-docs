@@ -305,7 +305,7 @@ net start w3svc
 
 #### Python（ddtrace）接入
 
-[[Python 相关部署介绍](../../datakit/ddtrace.md)]
+[[Python 相关部署介绍](/integrations/ddtrace-python)]
 
 ---
 

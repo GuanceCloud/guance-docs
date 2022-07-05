@@ -184,7 +184,7 @@ CPU 使用率：{{ (Result * 100) | to_round(2) }}%
 内嵌 DQL 查询函数支持在本工作空间下执行任意 DQL 语句，通常情况下，查询所得的第一条数据可在模板种作为模板变量使用，使用方式如下：
 
 ```
-{% set dql_data = DQL("{需要执行的 DQL 语句}") %}
+{% set dql_data = DQL("需要执行的 DQL 语句") %}
 
 xxx 字段：{{ dql_data.xxx }}
 ```
@@ -194,7 +194,7 @@ xxx 字段：{{ dql_data.xxx }}
 执行 DQL 查询时，一个典型示例如下：
 
 ```
-{% set dql_data = DQL("O::HOST:(host, host_ip, os, datakit_ver) { host = 'my_server' }") %}`
+{% set dql_data = DQL("O::HOST:(host, host_ip, os, datakit_ver) { host = 'my_server' }") %}
 
 主机 OS：{{ dql_data.os }}
 ```
