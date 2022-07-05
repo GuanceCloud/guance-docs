@@ -1,9 +1,0 @@
-nav:
-  - JAVA OOM异常可观测最佳实践: java-oom.md
-  - SLO 从方法论到实践：Part1 建立有效的 SLO: slo-part1.md
-  - SLO 从方法论到实践：Part2 SLO 工具选型: slo-part2.md
-  - SLO 从方法论到实践：Part3 使用观测云管理SLO 的最佳实践: slo-part3.md
-  - OpenTelemetry 可观测性: opentelemetry-observable.md
-  - OpenTelemetry to Jeager 、Grafana、ELK: opentelemetry-elk.md
-  - OpenTelemetry to Grafana: opentelemetry-grafana.md
-  - OpenTelemetry to 观测云: opentelemetry-guance.md
