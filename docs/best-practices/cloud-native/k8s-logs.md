@@ -206,7 +206,7 @@ data:
 
 ### 2 logfwd 采集
 
-这是一种使用 Sidecar 模式的日志采集方式， 即利用同一个 POD 内的容器共享存储，让 logfwd 以 Sidecar 的模式读取业务容器的日志文件，然后发送给 DataKit。具体使用，请参考 [Pod 日志采集最佳实践](./logs/pod-log.md) 方案二。
+这是一种使用 Sidecar 模式的日志采集方式， 即利用同一个 POD 内的容器共享存储，让 logfwd 以 Sidecar 的模式读取业务容器的日志文件，然后发送给 DataKit。具体使用，请参考 [Pod 日志采集最佳实践](../pod-log) 方案二。
 
 ### 3 socket 采集
 
@@ -332,7 +332,7 @@ data:
         # more_tag = "some_other_value"
 ```
 
-关于 Socket 日志采集的更多内容，请参考 [logback socket 日志采集最佳实践](./logs/logback-socket.md)。
+关于 Socket 日志采集的更多内容，请参考 [logback socket 日志采集最佳实践](../logback-socket)。
 
 ### 4 日志文件采集
 
@@ -413,9 +413,9 @@ data:
 
 [Pipeline](pipeline) 主要用于切割非结构化的文本数据，或者用于从结构化的文本中（如 JSON）提取部分信息。对日志来说主要是提取日志产生时间、日志级别等信息。这里特别说明 Socket 采集到的日志是 JSON 格式，需要切割后才能在搜索框按关键字搜索。Pipeline 使用详情，请参阅下面的文章。
 
-- [Pod 日志采集最佳实践](./logs/pod-log.md)
-- [logback socket 日志采集最佳实践](./logs/logback-socket.md)
-- [Kubernetes 应用的 RUM-APM-LOG 联动分析](./cloud-native/k8s-rum-apm-log.md)
+- [Pod 日志采集最佳实践](../pod-log)
+- [logback socket 日志采集最佳实践](../logback-socket)
+- [Kubernetes 应用的 RUM-APM-LOG 联动分析](../k8s-rum-apm-log)
 
 ## 异常检测
 

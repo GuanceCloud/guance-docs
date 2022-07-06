@@ -145,7 +145,7 @@ $ vim index.html
 
 ### RUM 与 APM 数据打通（前后端通过traceid关联）：
 
-**前置条件**：后端应用服务器必须安装apm监控，即 ddtrace（dd-agent），详见 [分布式链路追踪(APM)最佳实践](./apm/apm.md)，前端添加 df-rum 监控。<br />**配置方式**：需要在前端 html 中已添加的 df-rum-js 中添加 **allowedDDTracingOrigins**标签，并填写前端对应的后端域名，例如 dataflux.cn 添加 rum 监控，需要在 allowedDDTracingOrigins 里配 https://www.dataflux.cn/ ，如若存在多个域名，需配置多个，用逗号隔开，第三方域名可以不配置。
+**前置条件**：后端应用服务器必须安装apm监控，即 ddtrace（dd-agent），详见 [分布式链路追踪(APM)最佳实践](../monitoring/apm)，前端添加 df-rum 监控。<br />**配置方式**：需要在前端 html 中已添加的 df-rum-js 中添加 **allowedDDTracingOrigins**标签，并填写前端对应的后端域名，例如 dataflux.cn 添加 rum 监控，需要在 allowedDDTracingOrigins 里配 https://www.dataflux.cn/ ，如若存在多个域名，需配置多个，用逗号隔开，第三方域名可以不配置。
 
 ![image](../images/web/9.png)
 

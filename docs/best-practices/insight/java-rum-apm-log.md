@@ -3,7 +3,7 @@
 ---
 
 ## 应用场景介绍：
-本文用于演示的 demo 为若依办公系统，具体内容可查看 [从 0 到 1 利用观测云构建 Spring cloud 服务的可观测性](/best-practices/apm/spring-cloud-sample)。
+本文用于演示的 demo 为若依办公系统，具体内容可查看 [从 0 到 1 利用观测云构建 Spring cloud 服务的可观测性](../spring-cloud-sample)。
 
 企业最重要的营收来源即是业务，而现当下，绝大多数企业的业务都是由对应的IT系统承载的，那如何保障企业的业务稳健，归根到企业内部就是如何保障企业内部的IT系统。当业务系统出现异常或故障时，往往是业务、应用开发、运维等多方面同事一起协调进行问题的排查，存在跨平台，跨部门，跨专业领域等多种问题，排查既耗时又费力，为了解决这一问题，目前业界已经比较成熟的方式即是在基础设施监控之外，对应用层、日志层进行深度的监控，通过 RUM+APM+LOG 实现对整个业务系统最核心的的前后端应用、日志进行统一管理，能力强一些的监控还可以将这三方面数据通过关键字段进行打通，实现联动分析，从而提升相关工作人员的工作效率，保障系统平稳运行。目前 Dataflux 已具备这样的能力，本文将从如何接入 RUM+APM+LOG 这三方监控，以及如何利用df进行联动分析的角度进行阐述。
 
@@ -49,7 +49,7 @@
 
 ## RUM（real user moitoring）：
 
-详细步骤参见文档 [web 应用监控（RUM）最佳实践](/best-practices/apm/web)
+详细步骤参见文档 [web 应用监控（RUM）最佳实践](../web)
 
 ##### 1、登录 Dataflux 平台
 
@@ -121,7 +121,7 @@ $ vim index.html
 
 # APM（application performance monitoring）：
 
-详细步骤参见文档 [分布式链路追踪(APM)最佳实践](/best-practices/apm)<br />**DF 支持的 APM 接入方式包含 ddtrace、skywalking、zipkin、jaejer 等多种支持 opentracing 协议的 APM 工具，此处示例采用 ddtrace 实现 APM 方面的可观测性。**
+详细步骤参见文档 [分布式链路追踪(APM)最佳实践](../apm)<br />**DF 支持的 APM 接入方式包含 ddtrace、skywalking、zipkin、jaejer 等多种支持 opentracing 协议的 APM 工具，此处示例采用 ddtrace 实现 APM 方面的可观测性。**
 
 ##### 1、在 Datakit 中修改 APM（ddtrace）的 inputs
 
@@ -185,7 +185,7 @@ APM（应用性能检测）是 DF 默认内置的模块，无需创建场景或�
 
 ## 日志（LOG）：
 
-详细步骤参见文档[[日志采集](../../integrations/logging.md)]
+详细步骤参见文档[[日志采集](/integrations/logging)]
 
 ##### 1、标准日志采集（Nginx、mysql、redis等）
 
@@ -264,7 +264,7 @@ default_time(time)
 
 **应用场景**：前后端关联，前端请求与后端方法执行性能数据进行一对一绑定，从而更方便定位前后端关联的问题，例如前端用户登录缓慢，是因为后端服务调用数据库查询用户耗时过长导致的，就可通过前后端联动分析迅速跨团队跨部门进行问题定位，示例如下：
 
-**配置方式**：[ [java 示例](web.md)] 
+**配置方式**：[ [java 示例]](web) 
 
 ##### 1、前端 RUM 数据
 
@@ -316,7 +316,7 @@ default_time(time)
 
 ##### 3、开启日志监控
 
-参考 [JAVA应用-RUM-APM-LOG 联动分析](/best-practices/apm/java-rum-apm-log.md) 自定义日志采集部分
+参考 [JAVA应用-RUM-APM-LOG 联动分析](/best-practices/monitoring/java-rum-apm-log.md) 自定义日志采集部分
 
 举例：
 

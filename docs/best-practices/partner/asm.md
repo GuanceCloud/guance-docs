@@ -1099,7 +1099,7 @@ data:
 
 ## 步骤八 映射 DataKit 服务
 
-新增 ASM 时，如果选择了**自行搭建 Zipkin**，则链路数据会被打到 **zipkin.istio-system** 的 Service上，且上报端口是 9411，由于 DataKit 服务的名称空间是 datakit，端口是 9529，所以这里需要做一下转换，详情请参考[Kubernetes 集群使用 ExternalName 映射 DataKit 服务](./guance-skill/kubernetes-external-name.md)。创建后的 Service 如下图：
+新增 ASM 时，如果选择了**自行搭建 Zipkin**，则链路数据会被打到 **zipkin.istio-system** 的 Service上，且上报端口是 9411，由于 DataKit 服务的名称空间是 datakit，端口是 9529，所以这里需要做一下转换，详情请参考[Kubernetes 集群使用 ExternalName 映射 DataKit 服务](../cloud-native/kubernetes-external-name)。创建后的 Service 如下图：
 
 ![image](../images/asm/17.png)
 
@@ -1261,9 +1261,9 @@ docker push 172.168.3.28/product-page:v1
 
 本次部署未涉及到日志，如您的应用需要采集日志，请参考：
 
-[Pod 日志采集最佳实践](./logs/pod-log.md)
+[Pod 日志采集最佳实践](../cloud-native/pod-log)
 
-[Kubernetes 集群中日志采集的几种玩法](./logs/k8s-logs.md)
+[Kubernetes 集群中日志采集的几种玩法](../cloud-native/k8s-logs)
 
 参考文献：<br />[https://help.aliyun.com/document_detail/149552.html](https://help.aliyun.com/document_detail/149552.html)
 

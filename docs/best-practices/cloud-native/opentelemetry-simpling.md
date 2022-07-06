@@ -218,7 +218,7 @@ processors:
 | otel-collector    |           | otel/opentelemetry-collector-contrib:0.51.0                                                                                                                                    |
 | springboot_server | 8080:8080 | opentelemetry-agent 版本 1.13.1， 源码地址：[https://github.com/lrwh/observable-demo/tree/main/springboot-server](https://github.com/lrwh/observable-demo/tree/main/springboot-server) |
 
-3、Datakit 开启 OpenTelemetry 采集，参照最佳实践[OpenTelemetry 链路数据接入最佳实践](../integrations/opentelemetry.md) 。
+3、Datakit 开启 OpenTelemetry 采集，参照最佳实践[OpenTelemetry 链路数据接入最佳实践](../opentelemetry) 。
 
 ### 启动服务
 

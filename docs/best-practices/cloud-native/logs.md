@@ -59,7 +59,7 @@
 
 自定义 tags 配置为自定义标签，可以填写任意 key-value 值
 ●配置完成后，所有指标都会带有 app = oa 的标签，可以进行快速查询
-●相关文档 < [DataFlux Tag 应用最佳实践](./guance-skill/tag.md)> 
+●相关文档 < [DataFlux Tag 应用最佳实践](../insight/tag.md)> 
 重启 Datakit
 
 ```bash
