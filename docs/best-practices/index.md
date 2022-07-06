@@ -6,7 +6,7 @@ icon: zy/best-practices
 ### 新增最佳实践
 
 - 接入（集成）最佳实践
-    - [Skywalking 采集 JVM 可观测最佳实践](./integrations/skywalking-jvm.md)。
+    - [Skywalking 采集 JVM 可观测最佳实践](./monitoring/skywalking-jvm.md)。
   
 ## (2022/07/01)
 ### 新增最佳实践
