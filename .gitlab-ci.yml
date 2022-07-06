@@ -23,11 +23,17 @@ buildMain:
   only:
     - main
   script:
-    - docker build --build-arg release_env="saas_production" -t $REPOSITORY:prod .
+    - docker build 
+      --build-arg release_env="saas_production"
+      --build-arg GUANCE_HELPS_OSS_AK_ID="${GUANCE_HELPS_OSS_AK_ID}"
+      --build-arg GUANCE_HELPS_OSS_AK_SECRET="${GUANCE_HELPS_OSS_AK_SECRET}"
+      --build-arg GUANCE_HELPS_OSS_BUCKET="${GUANCE_HELPS_OSS_BUCKET}"
+      --build-arg GUANCE_HELPS_OSS_ENDPOINT="${GUANCE_HELPS_OSS_ENDPOINT}"
+      -t $REPOSITORY:prod .
     - docker tag $REPOSITORY:prod registry.jiagouyun.com/cloudcare-front/$REPOSITORY:prod
     - docker push registry.jiagouyun.com/cloudcare-front/$REPOSITORY:prod
-    
-    - curl -sS -X POST -H "Authorization:Bearer ${PROD_RANCHER_TOKEN}"  ${RANCHER_API_BASE_URL}/v3/project/${PROD_PROJECT_ID}/workloads/deployment:${PROD_WORKLOAD}?action=redeploy
+
+    # - curl -sS -X POST -H "Authorization:Bearer ${PROD_RANCHER_TOKEN}"  ${RANCHER_API_BASE_URL}/v3/project/${PROD_PROJECT_ID}/workloads/deployment:${PROD_WORKLOAD}?action=redeploy
   tags:
     - cloudcare-multiarch
 

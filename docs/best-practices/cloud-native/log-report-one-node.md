@@ -416,7 +416,7 @@ docker push 172.16.0.238/df-demo/service-demo:v1
  kubectl  apply -f demo-service.yaml
 ```
 
-关于 logfwd 的使用请参考 [Pod 日志采集最佳实践](./logs/pod-log.md)，在 logfwd 指定 DataKit 的环境变量中，使用 DataKit Service 的域名 datakit-service.datakit.svc.cluster.local。
+关于 logfwd 的使用请参考 [Pod 日志采集最佳实践](../pod-log)，在 logfwd 指定 DataKit 的环境变量中，使用 DataKit Service 的域名 datakit-service.datakit.svc.cluster.local。
 
 ```
         - name: LOGFWD_DATAKIT_HOST

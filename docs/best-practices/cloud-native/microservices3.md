@@ -128,7 +128,7 @@ kubectl replace -f virtual-service-reviews.yaml
 
 登录『观测云』->『应用性能监测』-> 右上角拓扑图表。打开区分环境和版本开关，reviews 有两个版本，其中 reviews:test:v2 调用 ratings 服务。
 		
-![image](../images/microservices/69.png)	
+![image](../images/microservices/69.jpg)	
 
 ![image](../images/microservices/70.png)	
 
@@ -206,7 +206,7 @@ kubectl replace -f virtual-service-reviews.yaml
 
 ![image](../images/microservices/80.png)
 
-『温馨提示』如果是前后端分离的项目，可以在查看器中与后端链路和日志打通。详细操作步骤请参考 [Kubernetes 应用的 RUM-APM-LOG 联动分析](./cloud-native/k8s-rum-apm-log.md)。
+『温馨提示』如果是前后端分离的项目，可以在查看器中与后端链路和日志打通。详细操作步骤请参考 [Kubernetes 应用的 RUM-APM-LOG 联动分析](../k8s-rum-apm-log)。
 
 ![image](../images/microservices/81.png)
 
@@ -232,9 +232,9 @@ kubectl replace -f virtual-service-reviews.yaml
 
 『温馨提示』更多日志采集方式，请参考：
 
-[Pod 日志采集最佳实践](./logs/pod-log.md)
+[Pod 日志采集最佳实践](../pod-log)
 
-[Kubernetes 集群中日志采集的几种玩法](./logs/k8s-logs.md)
+[Kubernetes 集群中日志采集的几种玩法](../k8s-logs)
 
 ## 链路超时分析
 

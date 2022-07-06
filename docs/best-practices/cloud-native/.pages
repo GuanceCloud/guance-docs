@@ -1,11 +1,36 @@
 nav:
-  - 使用 Rancher 部署和管理 DataKit，快速构建Kubernetes 生态的可观测: rancher-datakit.md
-  - Kubernetes 集群日志上报到同节点的 DataKit 最佳实践: log-report-one-node.md
-  - Kubernetes 集群 应用使用 SkyWalking 采集链路数据: k8s-skywalking.md
-  - Kubernetes 应用的 RUM-APM-LOG 联动分析: k8s-rum-apm-log.md
-  - service mesh 微服务架构从研发到金丝雀发布全流程最佳实践(上): microservices1.md
-  - service mesh 微服务架构从研发到金丝雀发布全流程最佳实践(中): microservices2.md
-  - service mesh 微服务架构从研发到金丝雀发布全流程最佳实践(下): microservices3.md
-  - 基于阿里云 ASM 实现微服务可观测最佳实践: asm.md
-  - Spark On K8s Operator 可观测最佳实践: spark-on-kubernetes.md
-  - 基于 Istio 实现微服务可观测最佳实践: istio.md
+  - '微服务 (Microservices)': 
+    - '海量微服务项目的性能可观测最佳实践': mutil-micro-service.md
+    - 'Kubernetes 集群使用 ExternalName 映射 DataKit 服务': kubernetes-external-name.md
+
+  - '服务网格 (Service Mesh)':
+    - 基于 Istio 实现微服务可观测最佳实践: istio.md
+    - service mesh 微服务架构从研发到金丝雀发布全流程最佳实践(上): microservices1.md
+    - service mesh 微服务架构从研发到金丝雀发布全流程最佳实践(中): microservices2.md
+    - service mesh 微服务架构从研发到金丝雀发布全流程最佳实践(下): microservices3.md
+
+  - 'OpenTelemetry':
+    - OpenTelemetry 可观测性: opentelemetry-observable.md
+    - OpenTelemetry to Jeager 、Grafana、ELK: opentelemetry-elk.md
+    - OpenTelemetry to Grafana: opentelemetry-grafana.md
+    - OpenTelemetry to 观测云: opentelemetry-guance.md
+    - 'OpenTelemetry 链路数据接入最佳实践': opentelemetry.md
+    - 'OpenTelemetry 采样最佳实践': opentelemetry-simpling.md
+
+  - '日志 (Logs)':
+    - K8s日志采集之logback socket最佳实践: k8s-logback-socket.md
+    - Kubernetes下Stdout日志白名单最佳实践: stdout-log.md
+    - Kubernetes 集群中日志采集的几种玩法: k8s-logs.md 
+    - Pod 日志采集最佳实践: pod-log.md
+    - Logback Socket 日志采集最佳实践: logback-socket.md
+    - 观测云日志采集分析最佳实践: logs.md
+    - Kubernetes 集群日志上报到同节点的 DataKit 最佳实践: log-report-one-node.md
+
+  - '存储 (Storage)':
+    - 'Minio 可观测最佳实践': minio.md
+
+  - '其他 (Others)':
+    - Kubernetes 集群 应用使用 SkyWalking 采集链路数据: k8s-skywalking.md
+    - Kubernetes 应用的 RUM-APM-LOG 联动分析: k8s-rum-apm-log.md
+    - Spark On K8s Operator 可观测最佳实践: spark-on-kubernetes.md
+    - 'Nginx Ingress 可观测最佳实践': ingress-nginx.md
