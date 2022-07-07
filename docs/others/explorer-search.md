@@ -74,7 +74,7 @@
 
 ![](img/7.log_json.png)
 
-## 快捷筛选
+## 快捷筛选 {#quick-filter}
 
 ### 自定义快捷筛选字段
 
@@ -104,14 +104,12 @@
 
 ![](img/12.explorer_search_9.png)
 
-点击快捷筛选“All”，日志内容所有的数据。
+点击快捷筛选“All”，日志内容显示所有的数据。
 
 ![](img/12.explorer_search_10.png)
 
 ### 正选和反选
 
 若在搜索框同时包括正选和反选，则对应的快捷筛选标签置灰不可选择。
-
-
 
 ![](img/12.explorer_search_11.png)
