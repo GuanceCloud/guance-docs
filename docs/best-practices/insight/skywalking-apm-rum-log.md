@@ -73,7 +73,7 @@ systemctl restart datakit
 ### 步骤 2 ：部署应用
 
 #### 2.1 部署后端服务
-下载[ skywalking-demo ](skywalking-demo)项目，使用 Idea 打开，点击右边“package”，即可生成 skywalking-user-service.jar 文件。
+下载[ skywalking-demo ](https://github.com/stevenliu2020/skywalking-demo)项目，使用 Idea 打开，点击右边“package”，即可生成 skywalking-user-service.jar 文件。
 
 ![image](../images/skywalking-apm-rum-log/5.png)
 
