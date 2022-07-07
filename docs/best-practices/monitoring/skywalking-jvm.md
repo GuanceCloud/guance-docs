@@ -93,7 +93,7 @@ cp skywalking.conf.sample skywalking.conf
 
 ## 步骤 2： 部署应用
 
-下载[ skywalking-demo ](skywalking-demo)项目，使用 Idea 打开，点击右边“package”，即可生成 skywalking-user-service.jar 文件。下载 [Skywalking ](https://archive.apache.org/dist/skywalking/8.7.0/apache-skywalking-apm-8.7.0.tar.gz)解压把 agent 目录复制到主机上与  skywalking-user-service.jar 存放到相同目录。执行下面命令启动应用。
+下载[ skywalking-demo ](https://github.com/stevenliu2020/skywalking-demo)项目，使用 Idea 打开，点击右边“package”，即可生成 skywalking-user-service.jar 文件。下载 [Skywalking ](https://archive.apache.org/dist/skywalking/8.7.0/apache-skywalking-apm-8.7.0.tar.gz)解压把 agent 目录复制到主机上与  skywalking-user-service.jar 存放到相同目录。执行下面命令启动应用。
 
 ```bash
 java  -javaagent:agent/skywalking-agent.jar \
