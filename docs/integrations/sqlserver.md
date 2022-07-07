@@ -2,10 +2,12 @@
 # SQLServer
 ---
 
-- DataKit 版本：1.4.5
+- DataKit 版本：1.4.6
 - 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
 SQL Server 采集器采集 SQL Server `waitstats`、`database_io` 等相关指标
+
+![](imgs/input-sqlserver-1.png)
 
 ## 前置条件
 
@@ -68,6 +70,10 @@ GO
 ```
 
 配置好后，重启 DataKit 即可。
+
+## 指标预览
+
+![](imgs/input-sqlserver-2.png)
 
 ## 指标集
 

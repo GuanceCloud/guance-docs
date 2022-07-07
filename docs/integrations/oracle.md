@@ -2,7 +2,7 @@
 # Oracle
 ---
 
-- DataKit 版本：1.4.5
+- DataKit 版本：1.4.6
 - 操作系统支持：`linux/amd64`
 
 Oracle 监控指标采集，具有以下数据收集功能
@@ -11,6 +11,9 @@ Oracle 监控指标采集，具有以下数据收集功能
 - tablespace 相关数据
 - system 数据采集
 - 自定义查询数据采集
+
+![](imgs/input-oracle-1.png)
+![](imgs/input-oracle-2.png)
 
 ## 前置条件
 
@@ -96,6 +99,14 @@ apt-get install -y libaio-dev libaio1
 配置好后，重启 DataKit 即可。
 
 > 注意：Oracle 采集器的日志在 `/usr/local/datakit/external/oracle.log` 中
+
+## 指标预览
+
+![](imgs/input-oracle-4.png)
+
+## 日志预览
+
+![](imgs/input-oracle-3.png)
 
 ## 指标集
 
@@ -194,6 +205,10 @@ apt-get install -y libaio-dev libaio1
 |`user_rollbacks`|Number of user rollbacks|float|count|
 
 
+
+## 异常检测
+
+<异常检测库 - 新建检测库 - Oracle 检测库>
 
 ## FAQ
 

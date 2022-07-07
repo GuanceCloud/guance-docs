@@ -2,8 +2,10 @@
 JVM
 ---
 
-- DataKit 版本：1.4.5
+- DataKit 版本：1.4.6
 - 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
+
+![](imgs/input-jvm-1.png)
 
 这里我们提供俩类 JVM 指标采集方式，一种方案是 Jolokia，一种是 ddtrace。如何选择的方式，我们有如下建议：
 
@@ -235,6 +237,10 @@ java -javaagent:/path/to/jolokia-jvm-agent.jar=port=8080,host=localhost -jar you
 ```
 
 配置好后，重启 DataKit 即可。
+
+## 指标预览
+
+![](imgs/input-jvm-2.png)
 
 ## 指标集
 

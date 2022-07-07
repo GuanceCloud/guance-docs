@@ -2,8 +2,8 @@
 # 主机目录
 ---
 
-- DataKit 版本：1.4.5
-- 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
+- DataKit 版本：1.4.6
+- 操作系统支持：windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64
 
 hostdir 采集器用于目录文件的采集，例如文件个数，所有文件大小等。
 
@@ -151,7 +151,7 @@ systemctl restart datakit
 
 ## 常见问题排查
 
-<[无数据上报排查](why-no-data.md)>
+<[无数据上报排查](../datakit/why-no-data.md)>
 
 Q：如果想监控多个目录，怎么配置？<br />A：需要填写多个 input 配置。
 ```
@@ -166,4 +166,4 @@ Q：如果想监控多个目录，怎么配置？<br />A：需要填写多个 in
 
 ## 进一步阅读
 
-<[主机可观测最佳实践](./best-practices/integrations/host.md)>
+<[主机可观测最佳实践](../best-practices/integrations/host.md)>

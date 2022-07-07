@@ -2,7 +2,7 @@
 # DataKit 选举
 ---
 
-- DataKit 版本：1.4.5
+- DataKit 版本：1.4.6
 - 操作系统支持：全平台
 
 当集群中只有一个被采集对象（如 Kubernetes），但是在批量部署情况下，多个 DataKit 的配置完全相同，都开启了对该中心对象的采集，为了避免重复采集，我们可以开启 DataKit 的选举功能。
@@ -36,25 +36,25 @@ namespace = "dk-namespace-example"
     - 关于工作空间，在 datakit.conf 中，通过 DataWay 地址串中的 `token` URL 参数来表示，每个工作空间，都有其对应 token
     - 关于命名空间，在 datakit.conf 中，通过 `namespace` 配置项来表示，命名空间是工作空间的下层，一个工作空间可以配置多个命名空间
 
-## 支持选举的采集列表
+## 支持选举的采集列表 {#inputs}
 
 目前支持选举的采集器列表如下：
 
-- [Apache](apache.md)
-- [ElasticSearch](elasticsearch.md)
-- [Gitlab](gitlab.md)
-- [InfluxDB](influxdb.md)
-- [Kubernetes](kubernetes.md)
-- [MongoDB](mongodb.md)
-- [MySQL](mysql.md)
-- [NSQ](nsq.md)
-- [Nginx](nginx.md)
-- [PostgreSQL](postgresql.md)
-- [Prometheus 指标采集](prom.md)
-- [RabbitMQ](rabbitmq.md)
-- [Redis](redis.md)
-- [Solr](solr.md)
-- [TDengine](tdengine)
+- [Apache](../integrations/apache.md)
+- [ElasticSearch](../integrations/elasticsearch.md)
+- [Gitlab](../integrations/gitlab.md)
+- [InfluxDB](../integrations/influxdb.md)
+- [Container](../integrations/container.md)
+- [MongoDB](../integrations/mongodb.md)
+- [MySQL](../integrations/mysql.md)
+- [NSQ](../integrations/nsq.md)
+- [Nginx](../integrations/nginx.md)
+- [PostgreSQL](../integrations/postgresql.md)
+- [Prometheus 指标采集](../integrations/prom.md)
+- [RabbitMQ](../integrations/rabbitmq.md)
+- [Redis](../integrations/redis.md)
+- [Solr](../integrations/solr.md)
+- [TDengine](../integrations/tdengine.md)
 
 ## FAQ
 

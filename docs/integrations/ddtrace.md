@@ -2,7 +2,7 @@
 # DDTrace
 ---
 
-- DataKit 版本：1.4.5
+- DataKit 版本：1.4.6
 - 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
 Datakit 内嵌的 DDTrace Agent 用于接收，运算，分析 DataDog Tracing 协议数据。
@@ -102,7 +102,7 @@ tail -f /var/log/datakit/gin.log
 ...
 ```
 
-> 注意：如果没有 trace 发送过来，在 [monitor 页面](datakit-tools-how-to.md#monitor)是看不到 ddtrace 的采集信息的。
+> 注意：如果没有 trace 发送过来，在 [monitor 页面](../datakit/datakit-tools-how-to.md#monitor)是看不到 ddtrace 的采集信息的。
 
 ## ddtrace 环境变量设置
 
@@ -211,4 +211,4 @@ customer_tags = [
 
 - [DataKit Tracing 字段定义](datakit-tracing-struct.md)
 - [DataKit 通用 Tracing 数据采集说明](datakit-tracing.md)
-- [正确使用正则表达式来配置](datakit-input-conf.md#debug-regex) 
+- [正确使用正则表达式来配置](../datakit/datakit-input-conf.md#debug-regex) 

@@ -3,7 +3,9 @@
 
 本文档主要介绍如何将现有的集成文档合并进 datakit 的文档中。现有集成文档在[这里](https://www.yuque.com/dataflux/integrations){:target="_blank"}。
 
-> 注意： datakit 集成相关的文档，均不建议直接在 *dataflux-doc/docs/integrations* 中修改，因为 datakit 自身的文档导出是覆盖式写到该目录的，可能导致手动添加到 *dataflux-doc/docs/integrations* 的文档被覆盖。
+???+ Attention
+
+    DataKit 集成相关的文档，均不建议直接在 *dataflux-doc/docs/integrations* 中修改，因为 datakit 自身的文档导出是覆盖式写到该目录的，可能导致手动添加到 *dataflux-doc/docs/integrations* 的文档被覆盖。
 
 名词定义：
 
@@ -73,7 +75,9 @@ cp man/manuals/resin.md $integration_docs_dir/
 
 ## 文档生成和导出 {#export}
 
-在 datakit 现有仓库中，直接执行 mkdocs.sh 即可实现编译、发布两个步骤。在 mkdocs.sh 中，目前直接将文档导出成两份，分别同步到文档库的 datakit 和 integrations 两个目录下。目前这两个目录下的文件基本都是一样的（除了各自文档库的 *imgs* 目录）
+在 datakit 现有仓库中，直接执行 mkdocs.sh 即可实现编译、发布两个步骤。在 mkdocs.sh 中，目前直接将文档分成两份导出，分别同步到文档库的 datakit 和 integrations 两个目录下。
+
+如果要在文档中插入图片，在 datakit 和 integrations 各自的 *imgs* 目录下放置图片即可。如何引用图片，参考[上面的例子](#merge)。
 
 下面具体说下文档库的本地操作方式。主要以下几个步骤。
 
@@ -82,16 +86,16 @@ cp man/manuals/resin.md $integration_docs_dir/
 ``` shell
 git clone ssh://git@gitlab.jiagouyun.com:40022/zy-docs/dataflux-doc.git
 cd dataflux-doc
-pip install -R requirement.txt # 期间可能要求你更新 pip 版本
+pip install -r requirements.txt # 期间可能要求你更新 pip 版本
 ```
 
-!!! warn
+???+ attention
 
-	mkdocs 安装完成后，可能需要设置 $PATH，Mac 的设置可能是这样的（具体可以 find  下 mkdocs 二进制位置）：
-
-	``` shell
-	PATH="/System/Volumes/Data/Users/<user-name>/Library/Python/3.8/bin:$PATH"
-	```
+    mkdocs 安装完成后，可能需要设置 $PATH，Mac 的设置可能是这样的（具体可以 find  下 mkdocs 二进制位置）：
+    
+    ``` shell
+    PATH="/System/Volumes/Data/Users/<user-name>/Library/Python/3.8/bin:$PATH"
+    ```
 
 - 启动本地文档库
 
@@ -101,3 +105,62 @@ mkdocs serve
 
 - 访问本地 http://localhost:8000 即可看到
 - 调试完成后，提交 Merge Request 到 datakit 项目的 `mkdocs` 分支
+
+## Mkdocs 技巧分享 {#mkdocs-tips}
+
+### 标记实验性功能 {#experimental}
+
+在一些新发布的功能中，如果是实验性的功能，可以在章节中加入特殊的标记，比如：
+
+```markdown
+## 这是一个新功能 {#ref-to-new-feature}
+
+[:octicons-beaker-24: Experimental](index.md#experimental)
+
+新功能正文描述...
+```
+
+其效果就是会在章节的下面增加一个这样的图例：
+
+[:octicons-beaker-24: Experimental](index.md#experimental)
+
+点击该图例，就会跳转到实验性功能的说明。
+
+### 外链跳转 {#outer-linkers}
+
+部分文档中，我们需要增加一些外链说明，最好对外链做一些处理，使得其新开一个浏览器 tab，而不是直接跳出当前文档库：
+
+```markdown
+[请参考这里](https://some-outer-links.com){:target="_blank"}
+```
+
+### 预置章节链接 {#set-links}
+
+我们可以在文档的章节处预先定义其链接，比如：
+
+```markdown
+// some-doc.md
+## 这是一个新的章节 {#new-feature}
+```
+
+那么在其他地方，我们就能直接引用到这里：
+
+```markdown
+请参考这个[新功能](some-doc.md#new-feature)
+```
+
+如果是在文档内引用：
+
+```markdown
+请参考这个[新功能](#new-feature)
+```
+
+如果跨文档库引用：
+
+```markdown
+请参考集成库中的这个[新功能](../integrations/some-doc.md#new-feature)
+```
+
+## 更多阅读
+
+- [Material for  Mkdocs](https://squidfunk.github.io/mkdocs-material/reference/admonitions/)

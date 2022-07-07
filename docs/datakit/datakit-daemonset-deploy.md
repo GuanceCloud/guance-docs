@@ -2,7 +2,7 @@
 # DaemonSet 安装 DataKit 
 ---
 
-- DataKit 版本：1.4.5
+- DataKit 版本：1.4.6
 - 操作系统支持：Linux
 
 本文档介绍如何在 K8s 中通过 DaemonSet 方式安装 DataKit。
@@ -63,7 +63,7 @@ $ helm uninstall datakit -n datakit
 
 先下载 [datakit.yaml](https://static.guance.com/datakit/datakit.yaml){:target="_blank"}，其中开启了很多[默认采集器](datakit-input-conf.md#default-enabled-inputs)，无需配置。
 
-> 如果要修改这些采集器的默认配置，可通过 [Configmap 方式挂载单独的 conf](k8s-config-how-to.md#via-configmap-conf) 来配置。部分采集器可以直接通过环境变量的方式来调整，具体参见具体采集器的文档（[容器采集器示例](container.md#env-config)）。总而言之，不管是默认开启的采集器，还是其它采集器，在 DaemonSet 方式部署 DataKit 时，通过 [Configmap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/){:target="_blank"} 来配置采集器总是生效的。
+> 如果要修改这些采集器的默认配置，可通过 [Configmap 方式挂载单独的 conf](../integrations/k8s-config-how-to.md#via-configmap-conf) 来配置。部分采集器可以直接通过环境变量的方式来调整，具体参见具体采集器的文档（[容器采集器示例](../integrations/container.md#env-config)）。总而言之，不管是默认开启的采集器，还是其它采集器，在 DaemonSet 方式部署 DataKit 时，通过 [Configmap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/){:target="_blank"} 来配置采集器总是生效的。
 
 #### 修改配置
 
@@ -171,12 +171,22 @@ DataKit 支持的环境变量如下各表所示。
 
 ### 最常用环境变量 {#env-common}
 
-| 环境变量名称               | 默认值 | 必须   | 说明                                                                                 |
-| ---------:                 | ---:   | ------ | ----                                                                                 |
-| ENV_DATAWAY                | 无     | 是     | 配置 DataWay 地址，如 `https://openway.guance.com?token=xxx`                         |
+| 环境变量名称               | 默认值 | 必须   | 说明                                                                                                  |
+| ---------:                 | ---:   | ------ | ----                                                                                                  |
+| ENV_DATAWAY                | 无     | 是     | 配置 DataWay 地址，如 `https://openway.guance.com?token=xxx`                                          |
 | ENV_DEFAULT_ENABLED_INPUTS | 无     | 否     | 默认开启[采集器列表](datakit-input-conf.md#default-enabled-inputs)，以英文逗号分割，如 `cpu,mem,disk` |
-| ENV_ENABLE_INPUTS          | 无     | 否     | ==已弃用==，同 ENV_DEFAULT_ENABLED_INPUTS                                            |
-| ENV_GLOBAL_TAGS            | 无     | 否     | 全局 tag，多个 tag 之间以英文逗号分割，如 `tag1=val,tag2=val2`                       |
+| ENV_ENABLE_INPUTS          | 无     | 否     | ==已弃用==，改用 ENV_DEFAULT_ENABLED_INPUTS                                                             |
+| ENV_GLOBAL_TAGS            | 无     | 否     | ==已弃用==，改用 ENV_GLOBAL_HOST_TAGS                                                                 |
+| ENV_GLOBAL_HOST_TAGS       | 无     | 否     | 全局 tag，多个 tag 之间以英文逗号分割，如 `tag1=val,tag2=val2`                                        |
+| ENV_GLOBAL_ENV_TAGS        | 无     | 否     | 全局环境 tag，多个 tag 之间以英文逗号分割，如 `tag1=val,tag2=val2`                                    |
+
+???+ note "区分全局主机 tag 和 环境 tag"
+
+    `ENV_GLOBAL_HOST_TAGS` 用来指定主机类全局 tag，这些 tag 的值一般跟随主机变迁，比如主机名、主机 IP 等。当然，其它不跟随主机变迁的 tag 也能加进来。所有非选举类采集器，会默认带上 `ENV_GLOBAL_HOST_TAGS` 中指定的 tag。
+
+    而 `ENV_GLOBAL_ENV_TAGS` 建议只添加不随主机切换而变迁的 tags，如集群名、项目名等。对于[参与选举的采集器](election.md#inputs)，只会添加 `ENV_GLOBAL_ENV_TAGS` 中指定的 tag，不会增加 `ENV_GLOBAL_HOST_TAGS` 中指定的 tag。
+
+    不管是主机类全局 tag 还是环境类全局 tag，如果原始数据中已经有对应 tag，则不会追加已存在的 tag，我们认为应该沿用原始数据中的 tag。
 
 ### 日志配置相关环境变量 {#env-log}
 
@@ -188,10 +198,10 @@ DataKit 支持的环境变量如下各表所示。
 
 ###  DataKit pprof 相关 {#env-pprof}
 
-| 环境变量名称  | 默认值                     | 必须   | 说明                                            |
-| ---------:    | ---:                       | ------ | ----                                            |
-| ENV_ENABLE_PPROF   | false | 否     | 是否开启 `pprof` |
-| ENV_PPROF_LISTEN       | 无     | 否     | `pprof`服务监听地址 |
+| 环境变量名称              | 默认值 | 必须   | 说明                                                                                  |
+| ---------:                | ---:   | ------ | ----                                                                                  |
+| ENV_ENABLE_PPROF          | false  | 否     | 是否开启 `pprof`                                                                      |
+| ENV_PPROF_LISTEN          | 无     | 否     | `pprof`服务监听地址                                                                   |
 
 ### 选举相关环境变量 {#env-elect}
 
@@ -202,14 +212,16 @@ DataKit 支持的环境变量如下各表所示。
 
 ### HTTP/API 相关环境变量 {#env-http-api}
 
-| 环境变量名称             | 默认值            | 必须   | 说明                                                 |
-| ---------:               | ---:              | ------ | ----                                                 |
-| ENV_DISABLE_404PAGE      | 无                | 否     | 禁用 DataKit 404 页面（公网部署 DataKit RUM 时常用） |
-| ENV_HTTP_LISTEN          | localhost:9529    | 否     | 可修改地址，使得外部可以调用 [DataKit 接口](apis)    |
-| ENV_REQUEST_RATE_LIMIT   | 无(float)         | 否     | 限制 9529 [API 每秒请求数](datakit-conf.md#set-http-api-limit) |
-| ENV_RUM_ORIGIN_IP_HEADER | `X-Forwarded-For` | 否     | RUM 专用                                             |
-| ENV_RUM_APP_ID_WHITE_LIST | 无 | 否     | RUM app-id 白名单列表，以 `,` 分割，如 `appid-1,appid-2`|
-| ENV_HTTP_PUBLIC_APIS | 无 | 否     | 允许外部访问的 DataKit [API 列表](apis)，当 DataKit 部署在公网时，可以禁用部分 API|
+| 环境变量名称                   | 默认值            | 必须   | 说明                                                                                  |
+| ---------:                     | ---:              | ------ | ----                                                                                  |
+| ENV_DISABLE_404PAGE            | 无                | 否     | 禁用 DataKit 404 页面（公网部署 DataKit RUM 时常用）                                  |
+| ENV_HTTP_LISTEN                | localhost:9529    | 否     | 可修改地址，使得外部可以调用 [DataKit 接口](apis)                                     |
+| ENV_HTTP_PUBLIC_APIS           | 无                | 否     | 允许外部访问的 DataKit [API 列表](apis)，当 DataKit 部署在公网时，可以禁用部分 API    |
+| ENV_HTTP_TIMEOUT               | 30s               | 否     | 设置 9529 HTTP API 服务端超时时间  [:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6) · [:octicons-beaker-24: Experimental](index.md#experimental)                                                    |
+| ENV_HTTP_CLOSE_IDLE_CONNECTION | false             | 否     | 如果开启，则 9529 HTTP server 会主动关闭闲置连接（闲置时间等同于 `ENV_HTTP_TIMEOUT`） [:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6) · [:octicons-beaker-24: Experimental](index.md#experimental) |
+| ENV_REQUEST_RATE_LIMIT         | 无(float)         | 否     | 限制 9529 [API 每秒请求数](datakit-conf.md#set-http-api-limit)                        |
+| ENV_RUM_ORIGIN_IP_HEADER       | `X-Forwarded-For` | 否     | RUM 专用                                                                              |
+| ENV_RUM_APP_ID_WHITE_LIST      | 无                | 否     | RUM app-id 白名单列表，以 `,` 分割，如 `appid-1,appid-2`                              |
 
 ### Git 配置相关环境变量 {#env-git}
 
@@ -237,9 +249,13 @@ DataKit 支持的环境变量如下各表所示。
 
 ### IO 模块配置相关环境变量 {#env-io}
 
-| 环境变量名称 | 默认值 | 必须   | 说明                              |
-| ---------:   | ---:   | ------ | ----                              |
-| ENV_IO_FILTERS | 无   | 否   | 添加[行协议过滤器](datakit-filter)  |
+| 环境变量名称             | 默认值 | 必须   | 说明                               |
+| ---------:               | ---:   | ------ | ----                               |
+| ENV_IO_FILTERS           | 无     | 否     | 添加[行协议过滤器](datakit-filter) |
+| ENV_IO_MAX_CACHE_COUNT   | 1024   | 否     | IO cache 大小                      |
+| ENV_IO_ENABLE_CACHE      | false  | 否     | 开启 IO 磁盘 cache                 |
+| ENV_IO_CACHE_MAX_SIZE_GB | 1      | 否     | IO 磁盘 cache 大小                 |
+| ENV_IO_FLUSH_INTERVAL    | 10s    | 否     | IO 发送时间频率                    |
 
 `ENV_IO_FILTERS` 是一个 json 字符串，示例如下:
 
@@ -294,5 +310,5 @@ DataKit 支持的环境变量如下各表所示。
 ## 延伸阅读
 
 - [DataKit 选举](election.md)
-- [DataKit 的几种配置方式](k8s-config-how-to.md)
-- [DataKit DaemonSet 配置管理最佳实践](datakit-daemonset-bp.md)
+- [DataKit 的几种配置方式](../integrations/k8s-config-how-to.md)
+- [DataKit DaemonSet 配置管理最佳实践](../integrations/datakit-daemonset-bp.md)

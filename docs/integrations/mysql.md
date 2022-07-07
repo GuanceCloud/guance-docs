@@ -1,13 +1,9 @@
 
-<<<<<<< HEAD
-MySQL
-=======
 # MySQL
 
->>>>>>> mkdocs
 ---
 
-- DataKit 版本：1.4.5
+- DataKit 版本：1.4.6
 - 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
 MySQL 指标采集，收集以下数据：
@@ -16,6 +12,9 @@ MySQL 指标采集，收集以下数据：
 - Scheam 相关数据
 - InnoDB 相关指标
 - 支持自定义查询数据采集
+
+![](imgs/input-mysql-1.png)
+![](imgs/input-mysql-2.png)
 
 ## 前置条件
 
@@ -143,9 +142,7 @@ binlog 开启，参见[这个问答](https://stackoverflow.com/questions/4068238
 
 ### 数据库性能指标采集
 
-数据库性能指标来源于 MySQL 的内置数据库 `performance_schema`, 该数据库提供了一个能够在运行时获取服务器内部执行情况的方法。通过该数据库，DataKit 能够采集历史查询语句的各种指标统计和查询语句的执行计划，以及其他相关性能指标。
-
-**配置**
+数据库性能指标来源于 MySQL 的内置数据库 `performance_schema`, 该数据库提供了一个能够在运行时获取服务器内部执行情况的方法。通过该数据库，DataKit 能够采集历史查询语句的各种指标统计和查询语句的执行计划，以及其他相关性能指标。采集的性能指标数据保存为日志，source 分别为 `mysql_dbm_metric` 和 `mysql_dbm_sample`。
 
 如需开启，需要执行以下步骤。
 
@@ -154,16 +151,16 @@ binlog 开启，参见[这个问答](https://stackoverflow.com/questions/4068238
 ```toml
 [[inputs.mysql]]
 
-## 开启数据库性能指标采集
+#### 开启数据库性能指标采集
 dbm = true
 
 ...
 
-## 监控指标配置
+#### 监控指标配置
 [inputs.mysql.dbm_metric]
   enabled = true
 
-## 监控采样配置
+#### 监控采样配置
 [inputs.mysql.dbm_sample]
   enabled = true
 ...
@@ -174,7 +171,7 @@ dbm = true
 
 修改配置文件(如`mysql.conf`)，开启 `MySQL Performance Schema`， 并配置相关参数：
 
-```
+```toml
 [mysqld]
 performance_schema = on
 max_digest_length = 4096
@@ -190,14 +187,14 @@ performance-schema-consumer-events-statements-history = on
 
 账号授权
 
-```
+```sql
 GRANT REPLICATION CLIENT ON *.* TO datakit@'%' WITH MAX_USER_CONNECTIONS 5;
 GRANT PROCESS ON *.* TO datakit@'%';
 ```
 
 创建数据库
 
-```
+```sql
 CREATE SCHEMA IF NOT EXISTS datakit;
 GRANT EXECUTE ON datakit.* to datakit@'%';
 GRANT CREATE TEMPORARY TABLES ON datakit.* TO datakit@'%';
@@ -205,7 +202,7 @@ GRANT CREATE TEMPORARY TABLES ON datakit.* TO datakit@'%';
 
 创建存储过程 `explain_statement`，用于获取 sql 执行计划
 
-```
+```sql
 DELIMITER $$
 CREATE PROCEDURE datakit.explain_statement(IN query TEXT)
     SQL SECURITY DEFINER
@@ -220,7 +217,7 @@ DELIMITER ;
 
 为需要采集执行计划的数据库单独创建存储过程（可选）
 
-```
+```sql
 DELIMITER $$
 CREATE PROCEDURE <数据库名称>.explain_statement(IN query TEXT)
     SQL SECURITY DEFINER
@@ -238,7 +235,7 @@ GRANT EXECUTE ON PROCEDURE <数据库名称>.explain_statement TO datakit@'%';
 
 方法一（推荐）：通过 `DataKit` 动态配置 `performance_schema.events_statements_*`，需要创建以下存储过程：
 
-```
+```sql
 DELIMITER $$
 CREATE PROCEDURE datakit.enable_events_statements_consumers()
     SQL SECURITY DEFINER
@@ -252,21 +249,25 @@ GRANT EXECUTE ON PROCEDURE datakit.enable_events_statements_consumers TO datakit
 
 方法二：手动配置 `consumers`
 
-```
+```sql
 UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name LIKE 'events_statements_%';
 ```
 
-**采集的指标**
+## 指标预览
 
-性能指标根据`service`划分为两类，即`mysql_dbm_metric`和`mysql_dbm_sample`，存储在【日志】中，具体介绍见后续指标列表部分。
+![](imgs/input-mysql-3.png)
 
-## 指标
+## 日志预览
+
+![](imgs/input-mysql-4.png)
+
+### 指标 {#metric}
 
 
 
 
 
-### `mysql`
+#### `mysql`
 
 
 
@@ -277,7 +278,7 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name LIKE 'eve
 |  ----  | --------|
 |`server`|Server addr|
 
-- 指标列表
+- 字段列表
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -363,7 +364,7 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name LIKE 'eve
 
 
 
-### `mysql_schema`
+#### `mysql_schema`
 
 具体字段，以实际采集上来的数据为准，部分字段，会因 MySQL 配置、已有数据等原因，采集不到
 
@@ -375,7 +376,7 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name LIKE 'eve
 |`schema_name`|Schema name|
 |`server`|Server addr|
 
-- 指标列表
+- 字段列表
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -388,7 +389,7 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name LIKE 'eve
 
 
 
-### `mysql_innodb`
+#### `mysql_innodb`
 
 
 
@@ -399,7 +400,7 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name LIKE 'eve
 |  ----  | --------|
 |`server`|Server addr|
 
-- 指标列表
+- 字段列表
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -474,7 +475,7 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name LIKE 'eve
 
 
 
-### `mysql_table_schema`
+#### `mysql_table_schema`
 
 MySQL 表指标
 
@@ -490,7 +491,7 @@ MySQL 表指标
 |`table_type`|BASE TABLE for a table, VIEW for a view, or SYSTEM VIEW for an INFORMATION_SCHEMA table.|
 |`version`|The version number of the table's .frm file.|
 
-- 指标列表
+- 字段列表
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -505,7 +506,7 @@ MySQL 表指标
 
 
 
-### `mysql_user_status`
+#### `mysql_user_status`
 
 MySQL 用户指标
 
@@ -516,7 +517,7 @@ MySQL 用户指标
 |  ----  | --------|
 |`user`|user|
 
-- 指标列表
+- 字段列表
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -540,7 +541,39 @@ MySQL 用户指标
 
 
 
-### `mysql_dbm_metric`
+
+
+
+
+
+
+### 日志 {#logging}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#### `mysql_dbm_metric`
 
 记录查询语句的执行次数、等待耗时、锁定时间和查询的记录行数等。
 
@@ -549,12 +582,14 @@ MySQL 用户指标
 
 | 标签名 | 描述    |
 |  ----  | --------|
-|`digest`| The digest hash value computed from the original normalized statement. |
-|`query_signature`| The hash value computed from digest_text|
+|`digest`|The digest hash value computed from the original normalized statement. |
+|`host`|The server host address|
+|`query_signature`|The hash value computed from digest_text|
 |`schema_name`|The schema name|
-|`server`| The server address|
+|`server`|The server address|
+|`service`|The service name and the value is 'mysql'|
 
-- 指标列表
+- 字段列表
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -577,7 +612,7 @@ MySQL 用户指标
 
 
 
-### `mysql_dbm_sample`
+#### `mysql_dbm_sample`
 
 选取部分执行耗时较高的 SQL 语句，获取其执行计划，并采集实际执行过程中的各种性能指标。
 
@@ -588,6 +623,7 @@ MySQL 用户指标
 |  ----  | --------|
 |`current_schema`|The name of the current schema.|
 |`digest`|The digest hash value computed from the original normalized statement. |
+|`host`| The server host address|
 |`network_client_ip`|The ip address of the client|
 |`plan_definition`|The plan definition of JSON format.|
 |`plan_signature`|The hash value computed from plan definition.|
@@ -596,8 +632,9 @@ MySQL 用户指标
 |`query_signature`|The hash value computed from digest_text.|
 |`query_truncated`|It indicates whether the query is truncated.|
 |`resource_hash`|The hash value computed from sql text.|
+|`service`|The service name and the value is 'mysql'|
 
-- 指标列表
+- 字段列表
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -625,7 +662,7 @@ MySQL 用户指标
 
 
 
-## 日志
+## MySQL 运行日志 {#mysql-logging}
 
 如需采集 MySQL 的日志，将配置中 log 相关的配置打开，如需要开启 MySQL 慢查询日志，需要开启慢查询日志，在 MySQL 中执行以下语句
 
@@ -636,7 +673,7 @@ SET GLOBAL slow_query_log = 'ON';
 set global log_queries_not_using_indexes = 'ON';
 ```
 
-```python
+```toml
 [inputs.mysql.log]
     # 填入绝对路径
     files = ["/var/log/mysql/*.log"]
@@ -646,7 +683,7 @@ set global log_queries_not_using_indexes = 'ON';
 
 MySQL 日志分为普通日志和慢日志两种。
 
-### MySQL 普通日志
+### MySQL 普通日志 {#mysql-app-logging}
 
 日志原文：
 
@@ -662,7 +699,7 @@ MySQL 日志分为普通日志和慢日志两种。
 | `msg`    | `System table 'plugin' is expected to be transactional.` | 日志内容                     |
 | `time`   | `1514520249954078000`                                    | 纳秒时间戳（作为行协议时间） |
 
-### MySQL 慢查询日志
+### MySQL 慢查询日志 {#mysql-slow-logging}
 
 日志原文：
 
@@ -692,3 +729,11 @@ SELECT * FROM fruit f1, fruit f2, fruit f3, fruit f4, fruit f5
 | `rows_sent`         | `248832`                                                                                    | 查询返回的行数                 |
 | `thread_id`         | `55`                                                                                        | 线程 id                        |
 | `time`              | `1514520249954078000`                                                                       | 纳秒时间戳（作为行协议时间）   |
+
+## 场景视图
+
+<场景 - 新建场景 - MySQL 监控场景>
+
+## 异常检测
+
+<异常检测库 - 新建检测库 - MySQL 检测库>

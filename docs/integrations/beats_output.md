@@ -2,7 +2,7 @@
 # Filebeat
 ---
 
-- DataKit 版本: 1.4.5
+- DataKit 版本: 1.4.6
 - 操作系统支持: 全平台
 
 本文档主要介绍 [Elastic Beats](https://www.elastic.co/products/beats/){:target="_blank"} 接收器。目前支持:

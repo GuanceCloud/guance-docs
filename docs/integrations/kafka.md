@@ -2,10 +2,12 @@
 # Kafka
 ---
 
-- DataKit 版本：1.4.5
+- DataKit 版本：1.4.6
 - 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
 采集 Kafka 指标和日志上报到观测云，帮助你监控分析 Kafka 各种异常情况
+
+![](imgs/input-kafka-1.png)
 
 ## 前置条件
 
@@ -192,6 +194,14 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
   # more_tag = "some_other_value"
 
 ```
+
+## 指标预览
+
+![](imgs/input-kafka-2.png)
+
+## 日志预览
+
+![](imgs/input-kafka-3.png)
 
 ## 指标集
 
@@ -1288,10 +1298,10 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 如需采集 Kafka 的日志，可在 kafka.conf 中 将 `files` 打开，并写入 kafka 日志文件的绝对路径。比如：
 
 ```toml
-    [[inputs.kafka]]
-      ...
-      [inputs.kafka.log]
-		files = ["/usr/local/var/log/kafka/error.log","/usr/local/var/log/kafka/kafka.log"]
+[[inputs.kafka]]
+  ...
+  [inputs.kafka.log]
+    files = ["/usr/local/var/log/kafka/error.log","/usr/local/var/log/kafka/kafka.log"]
 ```
 
 
@@ -1313,3 +1323,11 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 | name   | io.confluent.connect.s3.storage.S3OutputStream:286     |
 | status | DEBUG                                                  |
 | time   | 1594105469333000000                                    |
+
+## 场景视图
+
+<场景 - 新建场景 - kafka 监控场景>
+
+## 异常检测
+
+<异常检测库 - 新建检测库 - kafka 检测库>
