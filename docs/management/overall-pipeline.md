@@ -54,10 +54,10 @@
 
 - 日志数据可在样本解析测试输入 message 内容进行测试，更多详情可参考文档 [日志 Pipeline 使用手册](../logs/pipelines/manual.md) ；
 
-- 其他数据类型定义解析规则后，需要在样本解析测试输入转换成“[行协议](../datakit/apis.md)”的内容进行测试；
+- 其他数据类型定义解析规则后，需要在样本解析测试输入转换成“[行协议](../datakit/apis.md)”的内容进行测试，支持「一键获取」样本解析测试样列；
 
   - 关于如何编写和调试解析规则，可参考文档 [如何编写 Pipeline 脚本](../datakit/datakit-pl-how-to.md) 
-  - 关于获取行协议数据的方式，可在`conf.d/datakit.conf` 中配置 `output_file` 的输出文件，并在该文件中查看行协议
+  - 更多行协议数据的获取方式，可在`conf.d/datakit.conf` 中配置 `output_file` 的输出文件，并在该文件中查看行协议
 
   ```
   [io]
@@ -72,7 +72,7 @@
 
 **调试示例：**
 
-![](img/5.pipeline_4.png)
+![](img/9.pipeline_2.png)
 
 ## 编辑/删除/启用/禁用 Pipeline
 
