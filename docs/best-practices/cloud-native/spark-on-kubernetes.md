@@ -1108,7 +1108,7 @@
 
 已安装 DataKit ([DataKit 安装文档](../../datakit/datakit-daemonset-deploy.md))
 
-已安装 K8s 并且已经开启 K8s 指标采集 ([Kubernetes 应用的 RUM-APM-LOG 联动分析](./cloud-native/k8s-rum-apm-log.md))
+已安装 K8s 并且已经开启 K8s 指标采集 ([Kubernetes 应用的 RUM-APM-LOG 联动分析](../k8s-rum-apm-log))
 
 在 k8s 集群安装部署 spark-operator 时开启 `enable.metrics` 选项进行可观测指标收集参考命令如下：
 

@@ -56,6 +56,24 @@ Pipeline (DataKit Pipeline)，是由驻云官方提供的数据处理工具，�
 ### 标签
 标识一个数据点采集对象属性的集合，标签分为标签名和标签值，一个数据点可以有多个标签。例如采集的指标“cpu使用率”时会标识 host、os、product 等属性信息，这些属性统称为标签
 
+### 时间线
+
+当前工作空间，上报的指标数据中基于标签可以组合而成的所有组合数量。在 “观测云”中时间线是由指标、标签（字段）、数据存储时长组合而成的，“指标”和“标签（字段）的组合”是数据存储的主键。相关名词解释如下：
+
+- Database：数据库
+- Measurement：数据表，可以理解为 mysql 里的 table，指标集
+- Field：InfluxDB 中记录真实数据的键值对 (在 Influxdb 中是必须的，不会被索引)，指标
+- Field Set：Field 键值对的集合
+- Field Key：组成 Field 键值对里的键
+- Field Value：组成 Field 键值对里的值 (真正的数据)
+- Tag：用来描述 Field 的键值对 (在 Influxdb 中是可选的，会被索引)，标签
+- Tag Set：Tag 键值对的集合
+- Tag Key：组成 Tag 键值对里的键
+- Tag Value：组成 Tag 键值对里的值
+- TimeStamp：数据点关联的日期和时间
+- Retention Policy：数据存储时间 (数据保存策略)
+- Series：时间线由 Retention Policy、Measurement、Tag Set 三部分组成
+
 ### 分组
 用户可以基于标签属性，选择数据进行维度分析，多用于图表查询分析和异常检测。
 

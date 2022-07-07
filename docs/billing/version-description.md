@@ -39,6 +39,4 @@
 更多详情可参考文档 [免费开始](../billing/free-start.md)、[升级商业版](../billing/commercial-version.md)、[数据存储策略](../billing/billing-method/data-storage.md) 和 [权限管理](../management/access-management.md) 。
 
 
----
-
 

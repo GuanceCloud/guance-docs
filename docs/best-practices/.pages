@@ -1,11 +1,6 @@
 nav:
   - index.md
   - '云原生': cloud-native
-  - '日志': logs
-  - 'APM': apm
-  - '接入(集成)最佳实践' : integrations
-  - '自定义接入最佳实践': custom
-  - '场景最佳实践': scene
-  - '观测云小妙招': guance-skill
-  - '监控最佳实践': monitor
-  - '技术理解': tech
+  - '云平台接入': partner
+  - '监控 Monitoring': monitoring
+  - '洞见 Insight': insight

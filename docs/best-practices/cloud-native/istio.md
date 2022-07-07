@@ -65,11 +65,11 @@ Bookinfo 的链路数据，只需要修改 istio 的 configmap 中 zipkin.addres
 
 #### 部署 datakit 
 
-参考< [Daemonset 部署 Datakit](../../datakit/datakit-daemonset-deploy.md) >。
+参考< [Daemonset 部署 Datakit](../insight/datakit-daemonset.md) >。
 
 #### 开启采集器 
 
-使用 [Daemonset 部署 Datakit](../../datakit/datakit-daemonset-deploy.md) 的 datakit.yaml 文件，上传到 kubernetes 集群 的 master 节点 /usr/local/df-demo/datakit.yaml，修改 datakit.yaml 文件，增加 ConfigMap 并挂载文件来开通 zipkin 和 prom 采集器，最终结果是部署完成的 DataKit，增加文件 /usr/local/datakit/conf.d/zipkin/zipkin.conf  是开通 zipkin 采集器，增加 /usr/local/datakit/conf.d/prom/prom_istiod.conf 文件是开通 Istiod pod 的指标采集器，增加文件 /usr/local/datakit/conf.d/prom/prom-ingressgateway.conf  是开通 ingressgateway 采集器，增加 /usr/local/datakit/conf.d/prom/prom-egressgateway.conf 文件是开通 egressgateway 的指标采集器。
+使用 [Daemonset 部署 Datakit](../insight/datakit-daemonset.md) 的 datakit.yaml 文件，上传到 kubernetes 集群 的 master 节点 /usr/local/df-demo/datakit.yaml，修改 datakit.yaml 文件，增加 ConfigMap 并挂载文件来开通 zipkin 和 prom 采集器，最终结果是部署完成的 DataKit，增加文件 /usr/local/datakit/conf.d/zipkin/zipkin.conf  是开通 zipkin 采集器，增加 /usr/local/datakit/conf.d/prom/prom_istiod.conf 文件是开通 Istiod pod 的指标采集器，增加文件 /usr/local/datakit/conf.d/prom/prom-ingressgateway.conf  是开通 ingressgateway 采集器，增加 /usr/local/datakit/conf.d/prom/prom-egressgateway.conf 文件是开通 egressgateway 的指标采集器。
 
 ![image](../images/istio/6.png)
 
@@ -141,9 +141,10 @@ data:
       [[inputs.prom]] 
         url = "http://istiod.istio-system.svc.cluster.local:15014/metrics"
         source = "prom-istiod"
-        metric_types = ["counter", "gauge", "histogram"]
-        interval = "10s"
+        metric_types = ["counter", "gauge"]
+        interval = "60s"
         tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
+        metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
         #measurement_prefix = ""
         measurement_name = "istio_prom"
         #[[inputs.prom.measurements]]
@@ -156,9 +157,10 @@ data:
         [[inputs.prom]] 
           url = "http://istio-ingressgateway-ext.istio-system.svc.cluster.local:15020/stats/prometheus"
           source = "prom-ingressgateway"
-          metric_types = ["counter", "gauge", "histogram"]
-          interval = "10s"
+          metric_types = ["counter", "gauge"]
+          interval = "60s"
           tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
+          metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
           #measurement_prefix = ""
           measurement_name = "istio_prom"
           #[[inputs.prom.measurements]]
@@ -169,9 +171,10 @@ data:
         [[inputs.prom]] 
           url = "http://istio-egressgateway-ext.istio-system.svc.cluster.local:15020/stats/prometheus"
           source = "prom-egressgateway"
-          metric_types = ["counter", "gauge", "histogram"]
+          metric_types = ["counter", "gauge"]
           tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
-          interval = "10s"
+          interval = "60s"
+          metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
           #measurement_prefix = ""
           measurement_name = "istio_prom"
           #[[inputs.prom.measurements]]
@@ -226,11 +229,11 @@ kubectl apply -f datakit.yaml
 
 #### 下载 Istio
 
-[下载](https://github.com/istio/istio/releases ) **Source Code **和 **istio-1.11.2-linux-amd64.tar.gz**，
+[下载](https://github.com/istio/istio/releases ) **Source Code** 和 **istio-1.11.2-linux-amd64.tar.gz**，
 
 #### 安装 Istio
 
-上传 istio-1.11.2-linux-amd64.tar.gz 到 /usr/local/df-demo/ 目录，查看 kubernetes 所在服务器的内网地址是_**172.16.0.15 **_所，请替换 _**172.16.0.15 **_为您的 ip。
+上传 `istio-1.11.2-linux-amd64.tar.gz` 到 `/usr/local/df-demo/` 目录，查看 kubernetes 所在服务器的内网地址是 _**172.16.0.15**_ ，请替换 _**172.16.0.15**_ 为您的 ip。
 
 ```
 su minikube
@@ -312,7 +315,7 @@ kubectl edit configmap istio -n istio-system -o yaml
 
 ![image](../images/istio/16.png)
 
-在上图中，可以看到链路数据默认推送到 **zipkin.istio-system:9411** 这个地址。由于 DataKit 服务的名称空间是 datakit，端口是 9529，所以这里需要做一下转换，详情请参考 [Kubernetes 集群使用 ExternalName 映射 DataKit 服务](./guance-skill/kubernetes-external-name.md)。
+在上图中，可以看到链路数据默认推送到 **zipkin.istio-system:9411** 这个地址。由于 DataKit 服务的名称空间是 datakit，端口是 9529，所以这里需要做一下转换，详情请参考 [Kubernetes 集群使用 ExternalName 映射 DataKit 服务](../kubernetes-external-name)。
 
 #### 增加 namespace
 
@@ -354,8 +357,9 @@ vi /usr/local/df-demo/bookinfo/bookinfo.yaml
             url = "http://$IP:15020/stats/prometheus"
             source = "minik8s-istio-product"
             metric_types = ["counter", "gauge"]
-            interval = "10s"
+            interval = "60s"
             tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
+            metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
             #measurement_prefix = ""
             measurement_name = "istio_prom"
             #[[inputs.prom.measurements]]
@@ -419,9 +423,10 @@ spec:
           [[inputs.prom]]
             url = "http://$IP:15020/stats/prometheus"
             source = "minik8s-istio-details"
-            metric_types = ["counter", "gauge", "histogram"]
-            interval = "10s"
+            metric_types = ["counter", "gauge"]
+            interval = "60s"
 			tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
+            metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
             #measurement_prefix = ""
             measurement_name = "istio_prom"
             #[[inputs.prom.measurements]]
@@ -490,9 +495,10 @@ spec:
           [[inputs.prom]]
             url = "http://$IP:15020/stats/prometheus"
             source = "minik8s-istio-ratings"
-            metric_types = ["counter", "gauge", "histogram"]
-            interval = "10s"
+            metric_types = ["counter", "gauge"]
+            interval = "60s"
 			tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
+            metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
             #measurement_prefix = ""
             measurement_name = "istio_prom"
             #[[inputs.prom.measurements]]
@@ -561,10 +567,11 @@ spec:
           [[inputs.prom]]
             url = "http://$IP:15020/stats/prometheus"
             source = "minik8s-istio-review1"
-            metric_types = ["counter", "gauge", "histogram"]
-            interval = "10s"
+            metric_types = ["counter", "gauge"]
+            interval = "60s"
 			tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
             #measurement_prefix = ""
+            metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
             measurement_name = "istio_prom"
             #[[inputs.prom.measurements]]
             # prefix = "cpu_"
@@ -619,10 +626,11 @@ spec:
           [[inputs.prom]]
             url = "http://$IP:15020/stats/prometheus"
             source = "minik8s-istio-review2"
-            metric_types = ["counter", "gauge", "histogram"]
-            interval = "10s"
+            metric_types = ["counter", "gauge"]
+            interval = "60s"
 			tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
             #measurement_prefix = ""
+            metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
             measurement_name = "istio_prom"
             #[[inputs.prom.measurements]]
             # prefix = "cpu_"
@@ -677,9 +685,10 @@ spec:
           [[inputs.prom]]
             url = "http://$IP:15020/stats/prometheus"
             source = "minik8s-istio-review3"
-            metric_types = ["counter", "gauge", "histogram"]
-            interval = "10s"
+            metric_types = ["counter", "gauge"]
+            interval = "60s"
 			tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
+            metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
             #measurement_prefix = ""
             measurement_name = "istio_prom"
             #[[inputs.prom.measurements]]
@@ -761,9 +770,10 @@ spec:
           [[inputs.prom]]
             url = "http://$IP:15020/stats/prometheus"
             source = "minik8s-istio-product"
-            metric_types = ["counter", "gauge", "histogram"]
-            interval = "10s"
+            metric_types = ["counter", "gauge"]
+            interval = "60s"
 			tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
+            metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
             #measurement_prefix = ""
             measurement_name = "istio_prom"
             #[[inputs.prom.measurements]]
@@ -907,13 +917,13 @@ systemctl restart nginx
 
 #### stdout
 
-datakit 默认采集输出到 /dev/stdout 的日志，如果需要使用更深层的功能，请参考<[容器日志采集](../../integrations/container.md)>。
+datakit 默认采集输出到 /dev/stdout 的日志，如果需要使用更深层的功能，请参考<[容器日志采集](/integrations/container.md)>。
 
 ![image](../images/istio/26.png)
 
 #### log文件
 
-本示例未涉及到日志文件的采集，如需要请参考<[Kubernetes 应用的 RUM-APM-LOG 联动分析](./cloud-native/k8s-rum-apm-log.md)>
+本示例未涉及到日志文件的采集，如需要请参考<[Kubernetes 应用的 RUM-APM-LOG 联动分析](../k8s-rum-apm-log)>
 
 ### 链路超时分析
 

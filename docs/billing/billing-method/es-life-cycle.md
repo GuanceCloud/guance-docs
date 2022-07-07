@@ -17,10 +17,14 @@
 
 ### 1.2 索引操作
 
+注意：
 
-注意：<br />（1）热数据阶段，滚动时间起始点为索引创建时间<br />（2）其他数据阶段（除了热数据阶段），时间计算起始点为滚动结束时间
+（1）热数据阶段，滚动时间起始点为索引创建时间
 
-### 1.3 示例<br /><br />
+（2）其他数据阶段（除了热数据阶段），时间计算起始点为滚动结束时间
+
+### 1.3 示例
+
 ![](../img/es-1.png)
 
 ## 二、观测云实际应用
@@ -45,12 +49,21 @@
 
 ### 3.1 数据保存时间缩短
 
-修改保存策略后，会滚动出新的索引，之前索引数据不会被删除，一直到满足删除日期条件才会被删除，也即之前索引数据会一直计量收费<br />![](../img/image.png)
+修改保存策略后，会滚动出新的索引，之前索引数据不会被删除，一直到满足删除日期条件才会被删除，也即之前索引数据会一直计量收费
+
+![](../img/image.png)
 
 ### 3.2 数据保存时间变长
 
-修改保存策略后，会滚动出新的索引，之前索引数据保存时间不会变长，新的索引保存时间使用新的配置<br />![](../img/image.png)
+修改保存策略后，会滚动出新的索引，之前索引数据保存时间不会变长，新的索引保存时间使用新的配置
 
-## 四、参考<br /><br />
-[ILM: Manage the index lifecycleedit](https://www.elastic.co/guide/en/elasticsearch/reference/current/index-lifecycle-management.html)<br />[使用索引生命周期管理实现热温冷架构](https://www.elastic.co/cn/blog/implementing-hot-warm-cold-in-elasticsearch-with-index-lifecycle-management)<br />[【最新】Elasticsearch 6.6 Index Lifecycle Management 尝鲜](https://elasticsearch.cn/article/6358)
+![](../img/image.png)
+
+## 四、参考
+
+[ILM: Manage the index lifecycleedit](https://www.elastic.co/guide/en/elasticsearch/reference/current/index-lifecycle-management.html)
+
+[使用索引生命周期管理实现热温冷架构](https://www.elastic.co/cn/blog/implementing-hot-warm-cold-in-elasticsearch-with-index-lifecycle-management)
+
+[【最新】Elasticsearch 6.6 Index Lifecycle Management 尝鲜](https://elasticsearch.cn/article/6358)
 
