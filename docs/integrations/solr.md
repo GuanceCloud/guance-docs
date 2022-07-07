@@ -2,7 +2,7 @@
 # Solr
 ---
 
-- DataKit 版本：1.4.5
+- DataKit 版本：1.4.6
 - 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
 solr 采集器，用于采集 solr cache 和 request times 等的统计信息。

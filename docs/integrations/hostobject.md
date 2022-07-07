@@ -2,7 +2,7 @@
 # 主机对象
 ---
 
-- DataKit 版本：1.4.5
+- DataKit 版本：1.4.6
 - 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
 hostobject 用于收集主机基本信息，如硬件型号、基础资源消耗等。

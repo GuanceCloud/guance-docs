@@ -2,7 +2,7 @@
 # 主机目录
 ---
 
-- DataKit 版本：1.4.5
+- DataKit 版本：1.4.6
 - 操作系统支持：windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64
 
 hostdir 采集器用于目录文件的采集，例如文件个数，所有文件大小等。

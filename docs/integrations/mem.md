@@ -2,7 +2,7 @@
 # 内存
 ---
 
-- DataKit 版本：1.4.5
+- DataKit 版本：1.4.6
 - 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
 mem 采集器用于收集系统内存信息，一些通用的指标如主机总内存、用的内存、已使用的内存等  

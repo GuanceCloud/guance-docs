@@ -2,7 +2,7 @@
 # TCP/UDP
 ---
 
-- DataKit 版本：1.4.5
+- DataKit 版本：1.4.6
 - 操作系统支持：`linux,darwin`
 
 socket 采集器用于采集 UDP/TCP 端口信息。

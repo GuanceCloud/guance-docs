@@ -2,7 +2,7 @@
 # 容器
 ---
 
-- DataKit 版本：1.4.5
+- DataKit 版本：1.4.6
 - 操作系统支持：linux
 
 采集 container 和 Kubernetes 的指标数据、对象数据和容器日志，上报到观测云。

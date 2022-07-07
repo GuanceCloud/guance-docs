@@ -2,7 +2,7 @@
 # DataKit 主配置
 ---
 
-- DataKit 版本：1.4.5
+- DataKit 版本：1.4.6
 - 操作系统支持：全平台
 
 DataKit 主配置用来配置 DataKit 自己的运行行为，其目录一般位于：
