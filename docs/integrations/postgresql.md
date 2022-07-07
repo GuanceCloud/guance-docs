@@ -7,6 +7,8 @@
 
 Postgresql 采集器可以从 Postgresql 实例中采集实例运行状态指标，并将指标采集到观测云，帮助监控分析 Postgresql 各种异常情况
 
+![](imgs/input-postgresql-1.png)
+
 ## 前置条件
 
 - Postgresql 版本 >= 9.0
@@ -51,6 +53,10 @@ Postgresql 采集器可以从 Postgresql 实例中采集实例运行状态指标
 ```
 
 配置好后，重启 DataKit 即可。
+
+## 指标预览
+
+![](imgs/input-postgresql-2.png)
 
 ## 指标集
 
@@ -140,7 +146,7 @@ log_file_mode = 0644
 
 - 日志采集仅支持已安装 DataKit 主机上的日志。
 
-## 日志 pipeline 功能切割字段说明
+## 日志 pipeline 切割
 
 原始日志为
 

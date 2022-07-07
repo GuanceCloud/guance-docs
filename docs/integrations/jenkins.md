@@ -7,6 +7,8 @@
 
 Jenkins 采集器是通过插件 `Metrics` 采集数据监控 Jenkins，包括但不限于任务数，系统 cpu 使用，`jvm cpu`使用等
 
+![](imgs/input-jenkins-1.png)
+
 ## 前置条件
 
 - JenKins 版本 >= 2.277.4
@@ -80,6 +82,10 @@ Jenkins CI Visibility 开启方法：
 - 点击 `Save` 保存设置。
 
 配置完成后 Jenkins 能够通过 Datadog Plugin 将 CI 事件发送到 Datakit。
+
+## 指标预览
+
+![](imgs/input-jenkins-2.png)
 
 ## 指标集
 
@@ -230,7 +236,7 @@ Jenkins CI Visibility 开启方法：
 
 通用日志文本示例:
 ```
-2021-05-18 03:08:58.053+0000 [id=32]	INFO	jenkins.InitReactorRunner$1#onAttained: Started all plugins
+2021-05-18 03:08:58.053+0000 [id=32] INFO jenkins.InitReactorRunner$1#onAttained: Started all plugins
 ```
 
 切割后的字段列表如下：
@@ -240,3 +246,7 @@ Jenkins CI Visibility 开启方法：
 | status | info                | 日志等级                     |
 | id     | 32                  | id                           |
 | time   | 1621278538000000000 | 纳秒时间戳（作为行协议时间） |
+
+## 场景视图
+
+<场景 - 新建仪表板 - Jenkins 监控视图>

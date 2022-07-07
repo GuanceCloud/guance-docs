@@ -7,6 +7,8 @@
 
 self 采集器用于 DataKit 自身基本信息的采集，包括运行环境信息、CPU、内存占用情况等。
 
+![](imgs/input-self-1.png)
+
 ## 前置条件
 
 暂无
@@ -37,7 +39,6 @@ self 采集器会自动运行，无需配置，且无法关闭。
 |`os_version_detail`|Operation System release of the DataKit, such as Ubuntu 20.04.2 LTS, macOS 10.15 Catalina|
 |`uuid`|**Deprecated**, currently use `hostname` as DataKit's UUID|
 |`version`|DataKit version|
-|`vserion`|**Deprecated**, same as `version`|
 
 - 字段列表
 
@@ -67,6 +68,18 @@ self 采集器会自动运行，无需配置，且无法关闭。
 
 
 
+
+## 指标预览
+
+![](imgs/input-self-2.png)
+
+## 场景视图
+
+<场景 - 新建仪表板 - 内置模板库 - Datakit>
+
+## 异常检测
+
+<监控 - 模板新建 - 主机检测库>
 
 ## 延申阅读
 

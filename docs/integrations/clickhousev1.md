@@ -7,6 +7,8 @@
 
 ClickHouse 采集器可以采集 ClickHouse 服务器实例主动暴露的多种指标，比如语句执行数量和内存存储量，IO交互等多种指标，并将指标采集到观测云，帮助你监控分析 ClickHouse 各种异常情况。
 
+![](imgs/input-clickhouse-1.png)
+
 ## 前置条件 {#requirements}
 
 - ClickHouse 版本 >=v20.1.2.4
@@ -122,6 +124,10 @@ vim /etc/clickhouse-server/config.xml
 ```
 
 配置好后，重启 DataKit 即可。
+
+## 指标预览
+
+![](imgs/input-clickhouse-2.png)
 
 ## 指标集 {#measurements}
 
@@ -728,6 +734,8 @@ vim /etc/clickhouse-server/config.xml
 | 指标 | 描述| 数据类型 | 单位   |
 | ---- |---- | :---:    | :----: |
 |`DictionaryStatus`|Dictionary Status.|int|count|
+
+
 
 
 
