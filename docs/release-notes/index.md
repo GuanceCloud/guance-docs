@@ -107,12 +107,36 @@ icon: zy/release-notes
 - 监控器事件通知内容支持配置模版变量字段映射，支持通过在 DQL 查询语句配置模版变量对应值。
 - 帮助中心首页新增重点功能快捷跳转入口
 
+### DataKit 更新
+
+- 调整全局 tag 的行为，避免选举类采集的 tag 分裂
+- SQLServer 采集器增加选举支持
+- 行协议过滤器支持所有数据类型
+- 9529 HTTP 服务增加超时机制
+- MySQL
+    - dbm 指标集名字调整
+    - service 字段冲突问题
+- 容器对象增加字段 container_runtime_name 以区分不同层次的容器名
+- Redis 调整 slowlog 采集，将其数据改为日志存储
+- 优化 TDEngine 采集
+- 完善 Containerd 日志采集
+- Pipeline 增加 Profile 类数据支持
+- 容器/Pod 日志采集支持在 Label/Annotation 上额外追加 tag
+- 修复 Jenkins CI 数据采集的时间精度问题
+- 修复 Tracing resource-type 值不统一的问题
+- eBPF 增加 HTTPS 支持
+- 修复日志采集器可能的奔溃问题
+- 修复 prom 采集器泄露问题
+- 支持通过环境变量配置 io 磁盘缓存
+- 增加 Kubernetes CRD 支持
+
+更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md) 。
 
 ### 最佳实践更新
 
 - 接入集成
-  - [Skywalking 采集 JVM 可观测最佳实践](../best-practices/monitoring/skywalking-jvm.md)
-  - [Minio 可观测最佳实践](../best-practices/cloud-native/minio.md)
+    - [Skywalking 采集 JVM 可观测最佳实践](../best-practices/monitoring/skywalking-jvm.md)
+    - [Minio 可观测最佳实践](../best-practices/cloud-native/minio.md)
 
 更多最佳实践更新可参考 [最佳实践版本历史](../best-practices/index.md) 。
 
