@@ -2,12 +2,6 @@
 
 # Datakit Tracing 综述
 
----
-
-# Datakit Tracing 综述
-
----
-
 - DataKit 版本：1.4.6
 - 操作系统支持：全平台
 
@@ -18,6 +12,8 @@
 - OpenTelemetry
 - Skywalking
 - Zipkin
+
+---
 
 ## Tracing Frontend {#frontend}
 

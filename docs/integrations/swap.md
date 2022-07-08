@@ -7,7 +7,7 @@
 
 swap 采集器用于采集主机 swap 内存的使用情况
 
-![](imgs/input-swap-1.png)
+![](imgs/input-swap-01.png)
 
 ## 前置条件
 
@@ -42,7 +42,7 @@ swap 采集器用于采集主机 swap 内存的使用情况
 
 ## 指标预览
 
-![](imgs/input-swap-2.png)
+![](imgs/input-swap-02.png)
 
 ## 指标集
 
