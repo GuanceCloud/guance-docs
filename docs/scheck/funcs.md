@@ -1,7 +1,7 @@
 # Scheck Funcs支持清单
 
 - 版本：1.0.7-4-g582a075
-- 发布日期：2022-06-30 08:10:08
+- 发布日期：2022-07-08 09:30:42
 - 操作系统支持：windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64
 
 ## 介绍
