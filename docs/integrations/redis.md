@@ -373,6 +373,8 @@ ACL SETUSER username on +ping
 
 ### 日志 {#logging}
 
+[:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)
+
 
 
 

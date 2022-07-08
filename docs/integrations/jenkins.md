@@ -172,7 +172,7 @@ Jenkins CI Visibility 开启方法：
 | ---- |---- | :---:    | :----: |
 |`commit_message`|触发该 pipeline 的代码的最近一次提交附带的 message|string|-|
 |`created_at`|pipeline 创建的秒时间戳|int|sec|
-|`duration`|pipeline 持续时长（秒）|int|s|
+|`duration`|pipeline 持续时长（us）|int|μs|
 |`finished_at`|pipeline 结束的秒时间戳|int|sec|
 |`message`|该 pipeline 的 id，与 pipeline_id 相同|string|-|
 |`pipeline_id`|pipeline id|string|-|
