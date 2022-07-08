@@ -133,7 +133,7 @@ echo `kubectl get pod -o=jsonpath="{.items[0].spec.containers[0].image}"`
 | `pipeline`        | N    | 字符串           | 无     | 适用该日志的 Pipeline 脚本，默认值为与日志来源匹配的脚本名（`<source>.p`）                                                                                 |
 | `only_images`     | N    | 字符串数组       | 无     | 针对 Pod 内部多容器情景，如果填写了任何 image 通配，则只采集能匹配这些 image 的容器的日志，类似白名单功能；如果字段为空，即认为采集该 Pod 中所有容器的日志 |
 | `multiline_match` | N    | 正则表达式字符串 | 无     | 用于多行日志匹配时的首行识别，例如 `"multiline_match":"^\\d{4}"` 表示行首是4个数字，在正则表达式规则中`\d` 是数字，前面的 `\` 是用来转义                   |
-| `tags`            | N    | key/value 键值对 | 无     | 添加额外的 tags，如果已经存在同名的 key 将以此为准                                                                                                         |
+| `tags`            | N    | key/value 键值对 | 无     | 添加额外的 tags，如果已经存在同名的 key 将以此为准（[:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6) ）                                            |
 
 如果是在配置文件或终端命令行添加 Labels/Annotations，两边是英文状态双引号，需要添加转义字符。
 
@@ -282,7 +282,7 @@ spec:
 |  ----  | --------|
 |`container_id`|容器 ID|
 |`container_name`|k8s 命名的容器名（在 labels 中取 'io.kubernetes.container.name'），如果值为空则跟 container_runtime_name 相同|
-|`container_runtime_name`|由 runtime 命名的容器名（例如 docker ps 查看），如果值为空则默认是 unknown|
+|`container_runtime_name`|由 runtime 命名的容器名（例如 docker ps 查看），如果值为空则默认是 unknown（[:octicons-tag-24: Version-1.4.6](../datakit/changelog.md#cl-1.4.6)）|
 |`container_type`|容器类型，表明该容器由谁创建，kubernetes/docker/containerd|
 |`deployment`|deployment 名称（容器由 k8s 创建时存在，containerd 缺少此字段）|
 |`docker_image`|镜像全称，例如 `nginx.org/nginx:1.21.0` （Depercated, use image）|
