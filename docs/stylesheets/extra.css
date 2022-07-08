@@ -14,7 +14,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: nowrap;
 }
 
 .home-page > img {
@@ -118,7 +117,7 @@
 
 .md-content {
     max-width: 960px;
-    min-height: 730px;
+    min-height: 711px;
 }
 
 .md-search-result__more summary {
@@ -325,15 +324,14 @@
 
 /* homepage样式 */
 .md-content .homepage-title {
-    position: absolute;
-    left: 50%;
+    display: none;
 }
 
 .md-content .homepage {
-    max-width: 1200px;
+    max-width: 100%;
     position: absolute;
     margin-right: 1.2rem;
-    margin-top: 1.25rem;
+    margin-top: -1.25rem;
 }
 
 .md-content .homepage img {
@@ -472,11 +470,5 @@
     }
     .md-content .homepage .content .content-bottom {
         position: static;
-    }
-}
-
-@media screen and (max-width: 76.25em) {
-    .md-content .homepage-title {
-        transform: translateX(-50%);
     }
 }

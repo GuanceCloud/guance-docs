@@ -34,32 +34,54 @@ nav:
     - script-market-doc-intro.md
     - 基本操作: script-market-basic-usage.md
     - 观测云集成:
-      - script-market-guance-integration.md
-      - 阿里云采集器:
-        - 云监控: script-market-guance-aliyun-monitor.md
-        - ECS    : script-market-guance-aliyun-ecs.md
-        - RDS    : script-market-guance-aliyun-rds.md
-        - SLB    : script-market-guance-aliyun-slb.md
-        - OSS    : script-market-guance-aliyun-oss.md
-        - Redis  : script-market-guance-aliyun-redis.md
-        - DCDN   : script-market-guance-aliyun-dcdn.md
-        - CDN    : script-market-guance-aliyun-cdn.md
-        - NAT    : script-market-guance-aliyun-nat.md
-        - Mongo  : script-market-guance-aliyun-mongodb.md
-        - PolarDB: script-market-guance-aliyun-polardb.md
-      - AWS 采集器:
-        - 云监控: script-market-guance-aws-cloudwatch.md
-        - EC2: script-market-guance-aws-ec2.md
-        - RDS: script-market-guance-aws-rds.md
-        - ELB: script-market-guance-aws-elb.md
-        - S3 : script-market-guance-aws-s3.md
-      - 腾讯云采集器:
-        - 云监控: script-market-guance-tencentcloud-monitor.md
-        - CVM: script-market-guance-tencentcloud-cvm.md
-        - CDB: script-market-guance-tencentcloud-cdb.md
-        - CLB: script-market-guance-tencentcloud-clb.md
-        - COS: script-market-guance-tencentcloud-cos.md
-      - script-market-guance-tencentcloud-sdk-module-issue.md
+      - 基本操作: script-market-guance-integration.md
+      - 注意事项: script-market-guance-integration-matters-needing-attention.md
+      - 采集器配置手册:
+        - 阿里云:
+          - 云监控: script-market-guance-aliyun-monitor.md
+          - 云服务器 ECS: script-market-guance-aliyun-ecs.md
+          - 负载均衡 SLB: script-market-guance-aliyun-slb.md
+          - 对象存储 OSS: script-market-guance-aliyun-oss.md
+          - 数据库:
+            - 云数据库 RDS: script-market-guance-aliyun-rds.md
+            - 云数据库 RDS 慢查询: script-market-guance-aliyun-rds-slowlog.md
+            - 云数据库 Redis: script-market-guance-aliyun-redis.md
+            - 云数据库 MongoDB: script-market-guance-aliyun-mongodb.md
+            - PolarDB: script-market-guance-aliyun-polardb.md
+          - 安全:
+            - Web 应用防火墙: script-market-guance-aliyun-waf.md
+            - 数字证书管理服务 CAS: script-market-guance-aliyun-cas.md
+            - 云安全中心: script-market-guance-aliyun-tds.md
+            - 云安全中心日志: script-market-guance-aliyun-tds-log.md
+            - 云防火墙: script-market-guance-aliyun-cloudfw.md
+          - 网络与CDN:
+            - 专有网络 VPC: script-market-guance-aliyun-vpc.md
+            - 云解析 PrivateZone: script-market-guance-aliyun-private-zone.md
+            - NAT 网关: script-market-guance-aliyun-nat.md
+            - 弹性公网 IP: script-market-guance-aliyun-eip.md
+            - 全站加速 DCDN: script-market-guance-aliyun-dcdn.md
+            - CDN: script-market-guance-aliyun-cdn.md
+            - VPN 网关: script-market-guance-aliyun-vpn.md
+            - 数据传输服务 DTS: script-market-guance-aliyun-dts.md
+          - 域名与网站:
+            - 域名: script-market-guance-aliyun-domain.md
+            - 云解析 DNS: script-market-guance-aliyun-dns.md
+            - 云解析 DNS 日志: script-market-guance-aliyun-dns-logs.md
+        - 亚马逊 AWS:
+          - CloudWatch: script-market-guance-aws-cloudwatch.md
+          - Elastic Compute Cloud (EC2): script-market-guance-aws-ec2.md
+          - Relational Database Service (RDS): script-market-guance-aws-rds.md
+          - Elastic Load Balancing (ELB): script-market-guance-aws-elb.md
+          - Simple Storage Service (S3) : script-market-guance-aws-s3.md
+          - ElastiCache: script-market-guance-aws-elasticache.md
+          - OpenSearch Service: script-market-guance-aws-open-search.md
+        - 腾讯云采集器:
+          - 腾讯云 SDK 模块问题: script-market-guance-tencentcloud-sdk-module-issue.md
+          - 云监控: script-market-guance-tencentcloud-monitor.md
+          - 云服务器 CVM: script-market-guance-tencentcloud-cvm.md
+          - 云数据库 CDB（MySQL）: script-market-guance-tencentcloud-cdb.md
+          - 负载均衡 CLB: script-market-guance-tencentcloud-clb.md
+          - 对象存储 COS: script-market-guance-tencentcloud-cos.md
 
     - 生活日常:
       - 天气信息: script-market-weather.md

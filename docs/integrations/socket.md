@@ -2,7 +2,7 @@
 # TCP/UDP
 ---
 
-- DataKit 版本：1.4.3
+- DataKit 版本：1.4.6
 - 操作系统支持：`linux,darwin`
 
 socket 采集器用于采集 UDP/TCP 端口信息。
@@ -23,7 +23,7 @@ UDP 指标需要操作系统有 `nc` 程序
 
   ## @param interval - number - optional - default: 30
   interval = "30s"
-  ## @param interval - number - optional - default: 10	
+  ## @param interval - number - optional - default: 10
   udp_timeout = "10s"
   ## @param interval - number - optional - default: 10
   tcp_timeout = "10s"

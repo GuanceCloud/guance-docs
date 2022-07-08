@@ -55,7 +55,7 @@ collector_configs = {
 }
 ```
 
-*注意：*`*tags*`*、*`*fields*`*中的字段可能会随后续更新有所变动*
+*注意：`tags`、`fields`中的字段可能会随后续更新有所变动*
 
 > 提示：`tags.name`值为 NAT 网关的 ID，作为唯一识别
 

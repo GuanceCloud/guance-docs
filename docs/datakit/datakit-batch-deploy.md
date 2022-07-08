@@ -2,7 +2,7 @@
 # 批量部署
 ---
 
-- DataKit 版本：1.4.3
+- DataKit 版本：1.4.6
 - 操作系统支持：全平台
 
 我们可以通过 Ansible 等方式来批量安装 DataKit。
@@ -44,7 +44,7 @@ Ansible `install.yaml` 文件配置示例
   gather_facts: no
   tasks:
   - name: install
-		win_shell: $env:DK_DATAWAY="https://openway.guance.com?token=<TOKEN>"; Set-ExecutionPolicy Bypass -scope Process -Force; Import-Module bitstransfer; start-bitstransfer -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1; powershell .install.ps1;
+    win_shell: $env:DK_DATAWAY="https://openway.guance.com?token=<TOKEN>"; Set-ExecutionPolicy Bypass -scope Process -Force; Import-Module bitstransfer; start-bitstransfer -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1; powershell .install.ps1;
     async: 120
     poll: 10
 ```

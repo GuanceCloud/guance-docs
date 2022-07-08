@@ -17,8 +17,8 @@
 - 安装 [Gitlab](https://about.gitlab.com/  )。
 - 安装 [Metrics-Server 组件](https://github.com/kubernetes-sigs/metrics-server#installation)。
 - 部署 harbor 仓库或其它镜像仓库。
-- 部署 Istio，已熟悉 [基于 Istio 实现微服务可观测最佳实践](./cloud-native/istio.md)。
-- 配置 Gitlab-runner，已熟悉 [Gitlab-CI 可观测最佳实践](./integrations/gitlab-ci.md)。
+- 部署 Istio，已熟悉 [基于 Istio 实现微服务可观测最佳实践](../istio)。
+- 配置 Gitlab-runner，已熟悉 [Gitlab-CI 可观测最佳实践](../monitoring/gitlab-ci)。
 
 ## 部署步骤
 
@@ -164,11 +164,11 @@ DataKit 部署成功后，可以看到如下图的运行状态。
 
 ### 步骤 2： 映射 DataKit 服务
 
-使用 Istio 上报链路数据时，链路数据会被打到** **zipkin.istio-system的 Service上，且上报端口是 9411，由于 DataKit 服务的名称空间是 datakit，端口是 9529，所以这里需要做一下转换，详情请参考 [Kubernetes 集群使用 ExternalName 映射 DataKit 服务](./guance-skill/kubernetes-external-name.md)。
+使用 Istio 上报链路数据时，链路数据会被打到 **zipkin.istio-system** 的 Service上，且上报端口是 9411，由于 DataKit 服务的名称空间是 datakit，端口是 9529，所以这里需要做一下转换，详情请参考 [Kubernetes 集群使用 ExternalName 映射 DataKit 服务](../kubernetes-external-name)。
 
 ### 步骤 3： DataFlux Function 配置 DataKit
 
-在使用 Gitlab-CI 部署微服务时，为了收集 Gitlab 执行数据，需要部署 DataFlux Function 并配置 DataKit，详细步骤请参考 [Gitlab-CI 可观测最佳实践](./integrations/gitlab-ci.md)。
+在使用 Gitlab-CI 部署微服务时，为了收集 Gitlab 执行数据，需要部署 DataFlux Function 并配置 DataKit，详细步骤请参考 [Gitlab-CI 可观测最佳实践](../monitoring/gitlab-ci)。
 
 ### 步骤 4： 部署 Bookinfo
 
@@ -183,7 +183,7 @@ DataKit 部署成功后，可以看到如下图的运行状态。
 ![image](../images/microservices/6.png)	 
 
 上述的 JS 需要放置到 productpage 项目所有界面都能访问到的地方，本项目把上面的 JS 复制到 **istio-1.13.2\samples\bookinfo\src\productpage\templates\productpage.html** 文件中。
-『注意』关于 RUM 数据上报的 DataKit 地址，请参考 [RUM 数据上报 DataKit 集群最佳实践](./scene/rum-datakit-cluster.md)。
+『注意』关于 RUM 数据上报的 DataKit 地址，请参考 [RUM 数据上报 DataKit 集群最佳实践](../monitoring/rum-datakit-cluster)。
 
 ![image](../images/microservices/7.png)	 
 
@@ -289,9 +289,10 @@ spec:
             url = "http://$IP:15020/stats/prometheus"
             source = "bookinfo-istio-details"
             metric_types = ["counter", "gauge"]
-            interval = "10s"
+            interval = "60s"
 			tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
             #measurement_prefix = ""
+            metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
             measurement_name = "istio_prom"
             #[[inputs.prom.measurements]]
             # prefix = "cpu_"
@@ -360,9 +361,10 @@ spec:
             url = "http://$IP:15020/stats/prometheus"
             source = "bookinfo-istio-ratings"
             metric_types = ["counter", "gauge"]
-            interval = "10s"
+            interval = "60s"
 			tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
             #measurement_prefix = ""
+            metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
             measurement_name = "istio_prom"
             #[[inputs.prom.measurements]]
             # prefix = "cpu_"
@@ -431,8 +433,9 @@ spec:
             url = "http://$IP:15020/stats/prometheus"
             source = "bookinfo-istio-product"
             metric_types = ["counter", "gauge"]
-            interval = "10s"
+            interval = "60s"
 			tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
+            metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
             #measurement_prefix = ""
             measurement_name = "istio_prom"
             #[[inputs.prom.measurements]]
@@ -543,7 +546,7 @@ kubectl get svc -n istio-system
 	 
 #### 5.2 打通 Gitlab 与 DataKit
 
-请参考 [gitlab 集成文档](../../integrations/gitlab.md) 打通 Gitlab 和 DataKit，这里只配置 Gitlab CI。<br />        登录『Gitlab』，进入『bookinfo-views』-> 『Settings』-> 『Webhooks』，在 url 中输入URL 中输入 DataKit 所在的主机 IP 和 DataKit 的 9529 端口，再加 /v1/gitlab。如下图。
+请参考 [gitlab 集成文档](/integrations/gitlab) 打通 Gitlab 和 DataKit，这里只配置 Gitlab CI。<br />        登录『Gitlab』，进入『bookinfo-views』-> 『Settings』-> 『Webhooks』，在 url 中输入URL 中输入 DataKit 所在的主机 IP 和 DataKit 的 9529 端口，再加 /v1/gitlab。如下图。
 
 ![image](../images/microservices/11.png)	 
 
@@ -609,8 +612,9 @@ spec:
             url = "http://$IP:15020/stats/prometheus"
             source = "bookinfo-istio-review"
             metric_types = ["counter", "gauge"]
-            interval = "10s"
+            interval = "60s"
             tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
+            metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
             #measurement_prefix = ""
             measurement_name = "istio_prom"
             #[[inputs.prom.measurements]]

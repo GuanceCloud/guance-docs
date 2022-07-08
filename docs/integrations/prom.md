@@ -2,7 +2,7 @@
 # Prometheus Exportor 数据采集
 ---
 
-- DataKit 版本：1.4.3
+- DataKit 版本：1.4.6
 - 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
 Prom 采集器可以获取各种 Prometheus Exporters 暴露出来的指标数据，只要配置相应的 Exporter 地址，就可以将指标数据接入。
@@ -59,9 +59,6 @@ Prom 采集器可以获取各种 Prometheus Exporters 暴露出来的指标数�
   # 最终的指标集名称会添加上measurement_prefix前缀
   # measurement_name = "prom"
 
-  # 采集间隔 "ns", "us" (or "µs"), "ms", "s", "m", "h"
-  interval = "10s"
-
   # TLS 配置
   tls_open = false
   # tls_ca = "/tmp/ca.crt"
@@ -78,7 +75,6 @@ Prom 采集器可以获取各种 Prometheus Exporters 暴露出来的指标数�
   # type = "bearer_token"
   # token = "xxxxxxxx"
   # token_file = "/tmp/token"
-
   # 自定义指标集名称
   # 可以将包含前缀 prefix 的指标归为一类指标集
   # 自定义指标集名称配置优先 measurement_name 配置项

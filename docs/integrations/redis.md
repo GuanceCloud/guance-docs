@@ -2,7 +2,7 @@
 # Redis
 ---
 
-- DataKit 版本：1.4.3
+- DataKit 版本：1.4.6
 - 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
 Redis 指标采集器，采集以下数据：
@@ -13,6 +13,7 @@ Redis 指标采集器，采集以下数据：
 - bigkey scan 监控
 - 主从replication
 
+![](imgs/input-redis-1.png)
 
 ## 前置条件
 
@@ -104,6 +105,15 @@ ACL SETUSER username on +ping
 
 配置好后，重启 DataKit 即可。
 
+## 指标预览
+
+![](imgs/input-redis-2.png)
+
+
+## 日志预览
+
+![](imgs/input-redis-3.png)
+
 ## 指标集
 
 以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.redis.tags]` 指定其它标签：
@@ -115,11 +125,17 @@ ACL SETUSER username on +ping
   # ...
 ```
 
+### 指标 {#metric}
 
 
-### `redis_bigkey`
 
--  标签
+
+
+#### `redis_bigkey`
+
+
+
+- 标签
 
 
 | 标签名 | 描述    |
@@ -128,7 +144,7 @@ ACL SETUSER username on +ping
 |`key`|monitor key|
 |`server`|Server addr|
 
-- 指标列表
+- 字段列表
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -137,9 +153,14 @@ ACL SETUSER username on +ping
 
 
 
-### `redis_client`
 
--  标签
+
+
+#### `redis_client`
+
+
+
+- 标签
 
 
 | 标签名 | 描述    |
@@ -147,7 +168,7 @@ ACL SETUSER username on +ping
 |`name`|The name set by the client with CLIENT SETNAME, default unknown|
 |`server`|Server addr|
 
-- 指标列表
+- 字段列表
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -162,16 +183,21 @@ ACL SETUSER username on +ping
 
 
 
-### `redis_cluster`
 
--  标签
+
+
+#### `redis_cluster`
+
+
+
+- 标签
 
 
 | 标签名 | 描述    |
 |  ----  | --------|
 |`server`|Server addr|
 
-- 指标列表
+- 字段列表
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -190,9 +216,14 @@ ACL SETUSER username on +ping
 
 
 
-### `redis_command_stat`
 
--  标签
+
+
+#### `redis_command_stat`
+
+
+
+- 标签
 
 
 | 标签名 | 描述    |
@@ -200,7 +231,7 @@ ACL SETUSER username on +ping
 |`method`|Command type|
 |`server`|Server addr|
 
-- 指标列表
+- 字段列表
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -211,16 +242,21 @@ ACL SETUSER username on +ping
 
 
 
-### `redis_db`
 
--  标签
+
+
+#### `redis_db`
+
+
+
+- 标签
 
 
 | 标签名 | 描述    |
 |  ----  | --------|
 |`db`|db name|
 
-- 指标列表
+- 字段列表
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -231,16 +267,21 @@ ACL SETUSER username on +ping
 
 
 
-### `redis_info`
 
--  标签
+
+
+#### `redis_info`
+
+
+
+- 标签
 
 
 | 标签名 | 描述    |
 |  ----  | --------|
 |`server`|Server addr|
 
-- 指标列表
+- 字段列表
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -299,16 +340,21 @@ ACL SETUSER username on +ping
 
 
 
-### `redis_latency`
 
--  标签
+
+
+#### `redis_latency`
+
+
+
+- 标签
 
 
 | 标签名 | 描述    |
 |  ----  | --------|
 |`server`|Server addr|
 
-- 指标列表
+- 字段列表
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -320,35 +366,89 @@ ACL SETUSER username on +ping
 
 
 
-### `redis_slowlog`
 
--  标签
+
+
+
+
+### 日志 {#logging}
+
+[:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#### `redis_slowlog`
+
+Redis 慢查询命令历史，这里我们将其以日志的形式采集
+
+- 标签
 
 
 | 标签名 | 描述    |
 |  ----  | --------|
+|`host`|host|
+|`message`|log message|
 |`server`|server|
 
-- 指标列表
+- 字段列表
 
 
 | 指标 | 描述| 数据类型 | 单位   |
 | ---- |---- | :---:    | :----: |
-|`command`|slow command|string|-|
+|`command`|slow command|int|μs|
+|`slowlog_id`|slowlog unique id|int|-|
 |`slowlog_micros`|cost time|int|μs|
 
 
 
-## 日志采集
-需要采集redis日志，需要开启Redis `redis.config`中日志文件输出配置
+
+## 日志采集 {#redis-logging}
+
+需要采集 Redis 日志，需要开启 Redis `redis.config`中日志文件输出配置：
 
 ```toml
 [inputs.redis.log]
     # 日志路径需要填入绝对路径
-    files = ["/var/log/redis/*.log"] # 在使用日志采集时，需要将datakit安装在redis服务同一台主机中，或使用其它方式将日志挂载到外部系统中
+    files = ["/var/log/redis/*.log"]
 ```
 
-## 日志 pipeline 功能切割字段说明
+???+ attention
+
+    在配置日志采集时，需要将 DataKit 安装在 Redis 服务同一台主机中，或使用其它方式将日志挂载到 DataKit 所在机器。
+
+    在 K8s 中，可以将 Redis 日志暴露到 stdout，DataKit 能自动找到其对应的日志。
+
+### Pipeline 日志切割 {#pipeline}
 
 原始日志为
 
@@ -366,3 +466,15 @@ ACL SETUSER username on +ping
 | `statu`     | `notice`                                    | 日志级别                     |
 | `msg`       | `Background saving terminated with success` | 日志内容                     |
 | `time`      | `1557861100164000000`                       | 纳秒时间戳（作为行协议时间） |
+
+## 场景视图
+
+<场景 - 新建场景 - Redis 监控场景>
+
+## 异常检测
+
+<异常检测库 - 新建检测库 - Redis 检测库>
+
+## 更多阅读
+
+- [Redis 可观测最佳实践](../best-practices/integrations/redis.md)

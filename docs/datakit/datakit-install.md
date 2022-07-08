@@ -2,7 +2,7 @@
 # 主机安装
 ---
 
-- DataKit 版本：1.4.3
+- DataKit 版本：1.4.6
 - 操作系统支持：全平台
 
 本文介绍 DataKit 的基本安装。
@@ -17,47 +17,57 @@
 
 > 注意，以下 Linux/Mac/Windows 安装程序，能自动识别硬件平台（arm/x86, 32bit/64bit），无需做硬件平台选择。
 
-### Linux/Mac
+=== "Linux"
 
-命令大概如下：
+    命令大概如下：
+    
+    ```shell
+    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
+    ```
+    
+    安装完成后，在终端会看到安装成功的提示。
+    
+=== "Mac"
 
-```shell
-DK_DATAWAY=https://openway.guance.com?token=<TOKEN> bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
-```
+    Mac 下安装命令跟 Linux 基本一样：
+    
+    ```shell
+    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
+    ```
+    
+    安装完成后，在终端会看到安装成功的提示。
 
-安装完成后，在终端会看到安装成功的提示。
+=== "Windows"
 
-#### Mac 安装注意事项
+    Windows 上安装需在 Powershell 命令行安装，且必须以管理员身份运行 Powershell。按下 Windows 键，输入 powershell 即可看到弹出的 powershell 图标，右键选择「以管理员身份运行」即可。
+    
+    ```powershell
+    $env:DK_DATAWAY="https://openway.guance.com?token=<TOKEN>"; Set-ExecutionPolicy Bypass -scope Process -Force; Import-Module bitstransfer; start-bitstransfer -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1; powershell .install.ps1;
+    ```
 
-Mac 上安装时，如果安装/升级过程中出现
+???+ attention "Mac 安装问题"
 
-```shell
-"launchctl" failed with stderr: /Library/LaunchDaemons/cn.dataflux.datakit.plist: Service is disabled
-# 或者
-"launchctl" failed with stderr: /Library/LaunchDaemons/com.guance.datakit.plist: Service is disabled
-```
-
-执行
-
-```shell
-sudo launchctl enable system/datakit
-```
-
-然后再执行如下命令即可
-
-```shell
-sudo launchctl load -w /Library/LaunchDaemons/cn.dataflux.datakit.plist
-# 或者
-sudo launchctl load -w /Library/LaunchDaemons/com.guance.datakit.plist
-```
-
-### Windows
-
-> Windows 上安装需在 Powershell 命令行安装，且必须以管理员身份运行 Powershell。按下 Windows 键，输入 powershell 即可看到弹出的 powershell 图标，右键选择「以管理员身份运行」即可。
-
-```powershell
-$env:DK_DATAWAY="https://openway.guance.com?token=<TOKEN>"; Set-ExecutionPolicy Bypass -scope Process -Force; Import-Module bitstransfer; start-bitstransfer -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1; powershell .install.ps1;
-```
+    Mac 上安装时，如果安装/升级过程中出现
+    
+    ```shell
+    "launchctl" failed with stderr: /Library/LaunchDaemons/cn.dataflux.datakit.plist: Service is disabled
+    # 或者
+    "launchctl" failed with stderr: /Library/LaunchDaemons/com.guance.datakit.plist: Service is disabled
+    ```
+    
+    执行
+    
+    ```shell
+    sudo launchctl enable system/datakit
+    ```
+    
+    然后再执行如下命令即可
+    
+    ```shell
+    sudo launchctl load -w /Library/LaunchDaemons/cn.dataflux.datakit.plist
+    # 或者
+    sudo launchctl load -w /Library/LaunchDaemons/com.guance.datakit.plist
+    ```
 
 ## 额外支持的安装变量 {#extra-envs}
 
@@ -86,7 +96,9 @@ NAME1="value1" NAME2="value2"
 ### 最常用环境变量
 
 - `DK_DATAWAY`：指定 DataWay 地址，目前 DataKit 安装命令已经默认带上
-- `DK_GLOBAL_TAGS`：支持安装阶段填写全局 tag，格式范例：`project=abc,owner=张三`（多个 tag 之间以英文逗号分隔）
+- `DK_GLOBAL_TAGS`：已弃用，改用 DK_GLOBAL_HOST_TAG
+- `DK_GLOBAL_HOST_TAGS`：支持安装阶段填写全局主机 tag，格式范例：`host=__datakit_hostname,host_ip=__datakit_ip`（多个 tag 之间以英文逗号分隔）
+- `DK_GLOBAL_ENV_TAGS`：支持安装阶段填写全局环境 tag，格式范例：`project=my-porject,cluster=my-cluster`（多个 tag 之间以英文逗号分隔）
 - `DK_DEF_INPUTS`：默认开启的采集器名称列表，格式范例：`cpu,mem,disk`
   - 由于[默认会开启很多采集器](datakit-input-conf.md#default-enabled-inputs)，这个环境变量用于调整这个默认的采集器列表，比如，可以选择只开启 cpu,mem,disk 三个采集的话，传入 `DK_DEF_INPUTS="cpu,mem,disk"` 即可
 - `DK_CLOUD_PROVIDER`：支持安装阶段填写云厂商(`aliyun/aws/tencent/hwcloud/azure`)

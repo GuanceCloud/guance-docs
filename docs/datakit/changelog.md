@@ -1,6 +1,45 @@
 # DataKit 版本历史
 ---
 
+## 1.4.6(2022/07/07) {#cl-1.4.6}
+
+- 调整[全局 tag](datakit-conf.md#set-global-tag) 的行为，避免选举类采集的 tag 分裂(#870)
+- [SQLServer 采集器](../integrations/sqlserver.md)增加选举支持(#882)
+- [行协议过滤器](datakit-filter.md)支持所有数据类型(#855) 
+- 9529 HTTP 服务增加[超时机制](datakit-conf.md#http-other-settings)(#900)
+- MySQL
+    - [dbm 指标集名字](../integrations/mysql.md#logging)调整(#898)
+    - `service` 字段冲突问题(#895) 
+- [容器对象](../integrations/container.md#docker_containers)增加字段 `container_runtime_name` 以区分不同层次的容器名(#891)
+- Redis 调整 [slowlog 采集](../integrations/redis.md#redis_slowlog)，将其数据改为日志存储(#885) 
+- 优化 [TDEngine 采集](../integrations/tdengine.md)(#877)
+- 完善 Containerd 日志采集，支持默认格式的日志自动解析(#869)
+- [Pipeline](pipeline.md) 增加 [Profile 类数](../integrations/profile.md)据支持(#866)
+- 容器/Pod 日志采集支持在 Label/Annotation 上[额外追加 tag](../integrations/container.md#logging-with-annotation-or-label)(#861)
+- 修复 [Jenkins CI](../integrations/jenkins.md#jenkins_pipeline) 数据采集的时间精度问题(#860)
+- 修复 Tracing resource-type 值不统一的问题(#856)
+- eBPF 增加 [HTTPS 支持](../integrations/ebpf.md#https)(#782)
+- 修复日志采集器可能的奔溃问题(#893)
+- 修复 prom 采集器泄露问题(#880)
+- 支持通过[环境变量配置 io 磁盘缓存](datakit-conf.md#using-cache)(#906)
+- 增加 [Kubernetes CRD](kubernetes-crd.md) 支持(#726)
+- 其它 bug 修复(#901/#899)
+
+<!--
+[:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6) ·
+[:octicons-beaker-24: Experimental](index.md#experimental)
+-->
+
+---
+
+## 1.4.5(2022/06/29) {#cl-1.4.5}
+
+本次发布属于 Hotfix 发布，主要修复日志采集器因同名文件快速删除并新建而导致采集中断问题(#883)
+
+如果大家有计划任务在定期打包日志，可能会触发这个 Bug，**建议升级**。
+
+---
+
 ## 1.4.4(2022/06/27) {#cl-1.4.4}
 
 本次发布属于 Hotfix 发布，主要更新如下内容：
@@ -43,7 +82,7 @@
 - 修复 stdout 多行日志采集问题(#859)
 ---
 
-## 1.4.2(2022/06/16)
+## 1.4.2(2022/06/16) {#cl-1.4.2}
 
 本次发布属于迭代发布，主要更新如下内容：
 
@@ -52,9 +91,9 @@
 - 支持接收 SkyWalking 指标数据(#780)
 - 优化日志黑名单调试功能：
     - 在 Monitor 中会展示被过滤掉的点数(#827)
-    - 在 datakit/data 目录下会增加一个 *.filter* 文件，用来记录拉取到的过滤器
+    - 在 datakit/data 目录下会增加一个 *.pull* 文件，用来记录拉取到的过滤器
 - Monitor 中增加 DataKit 打开文件数显示(#828)
-- DataKit 编译器升级到 golang 1.18.3(#674)
+- DataKit 编译器升级到 Golang 1.18.3(#674)
 
 ### Bug 修复
 
@@ -228,7 +267,7 @@ volumes:
     - 修复 namespace 字段命名问题(#724)
     - 容器日志采集中，如果 Pod Annotation 不指定日志 `source`，那么 DataKit 将按照[此优先级来推导日志来源](container#6de978c3)(#708/#723)
     - 对象上报不再受 32KB 字长限制（因 Annotation 内容超 32KB）(#709)
-	  - 所有 Kubernetes 对象均删除 `annotation` 这一 field
+    - 所有 Kubernetes 对象均删除 `annotation` 这一 field
     - 修复 prom 采集器不会随 Pod 退出而停止的问题(#716)
 - 其它问题修复(#721)
 
@@ -475,12 +514,12 @@ volumes:
 
 ### 采集器更新
 
-- 重构 Kubernetes 云原生采集器，将其整合进[容器采集器](container.md)。原有 Kubernetes 采集器不再生效(#492)
-- [Redis 采集器](redis.md)
-    - 支持配置 [Redis 用户名](redis.md)(#260)
+- 重构 Kubernetes 云原生采集器，将其整合进[容器采集器](../integrations/container.md)。原有 Kubernetes 采集器不再生效(#492)
+- [Redis 采集器](../integrations/redis.md)
+    - 支持配置 [Redis 用户名](../integrations/redis.md)(#260)
     - 增加 Latency 以及 Cluster 指标集(#396)
-- [Kafka 采集器](kafka)增强，支持 topic/broker/consumer/connnetion 等维度的指标(#397)
-- 新增 [ClickHouse](clickhousev1) 以及 [Flink](flinkv1) 采集器(#458/#459)
+- [Kafka 采集器](../integrations/kafka.md)增强，支持 topic/broker/consumer/connnetion 等维度的指标(#397)
+- 新增 [ClickHouse](../integrations/clickhousev1.md) 以及 [Flink](../integrations/flinkv1.md) 采集器(#458/#459)
 - [主机对象采集器](hostobject)
     - 支持从 [`ENV_CLOUD_PROVIDER`](hostobject#224e2ccd) 读取云同步配置(#501)
     - 优化磁盘采集，默认不会再采集无效磁盘（比如总大小为 0 的一些磁盘）(#505)

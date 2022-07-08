@@ -1,0 +1,38 @@
+nav:
+  - '应用性能监控 (APM)':
+    - '调用链 (Tracing)':
+      - 分布式链路追踪(APM)最佳实践: apm.md
+      - 'SkyWalking 链路数据接入最佳实践': skywalking.md
+      - 'Jaeger 链路数据接入最佳实践': jaeger.md
+      - 'ddtrace 高级用法': ddtrace-skill.md
+      - 'JVM 可观测最佳实践': jvm.md
+      - GraalVM 与 Spring Native 项目实现链路可观测: spring-native.md
+      - JAVA OOM异常可观测最佳实践: java-oom.md
+      - 从 0 到 1 利用观测云构建 Springcloud 服务的可观测性: spring-cloud-sample.md
+      - Skywalking 采集 JVM 可观测最佳实践: skywalking-jvm.md
+
+    - '中间件 (Middleware)':
+      - 'Nginx 可观测最佳实践': nginx.md
+      - 'Redis 可观测最佳实践': redis.md
+      - 'Kafka可观测最佳实践': kafka.md
+      - 'Elasticsearch 可观测最佳实践': elasticsearch.md
+      - '如何利用观测云观测 Fluentd': fluentd.md
+      - '利用观测云观测 Apache Flink': flink.md
+
+  - '用户体验监控 (RUM)':
+    - web 应用监控（RUM）最佳实践: web.md
+    - iOS 可观测最佳实践: ios.md
+    - 'RUM 数据上报 DataKit 集群最佳实践': rum-datakit-cluster.md
+    - '页面渠道引流可观测最佳实践': page.md
+
+  - '基础设施监控 (ITIM)':
+    - '主机可观测最佳实践': host.md
+    - 'Prometheus 体系数据接入最佳实践': prometheus.md
+
+  - '持续集成和部署 (CI/CD)':
+    - 'Jenkins 可观测最佳实践': jenkins.md
+    - 'Gitlab-CI 可观测最佳实践': gitlab-ci.md
+
+  - '区块链 (Blockchain)':
+    - 'Swarm Bee 可观测性最佳实践': swarm-bee.md
+    - 'Chia Harvesters 保障最佳实践': chai-havesters.md

@@ -2,7 +2,7 @@
 # DataKit API
 ---
 
-- DataKit 版本：1.4.3
+- DataKit 版本：1.4.6
 - 操作系统支持：全平台
 
 本文档主要描述 DataKit 开放出来 HTTP API 接口。
@@ -22,14 +22,17 @@ DataKit 目前只支持 HTTP 接口，主要涉及数据写入，数据查询。
 
 本 API 用于给 DataKit 上报各类数据（`category`），参数说明如下：
 
-| 参数名               | 类型   | 是否必选 | 默认值    | 说明                                                                                                                       |
-| -------------------- | ------ | -------- | --------- | --------------------------------------------------                                                                         |
-| `category`           | string | true     | 无        | 目前支持 `metric/logging/rum/object/custom_object`                                                                         |
-| `precision`          | string | false    | `n`       | 数据精度(支持 `n/u/ms/s/m/h`)                                                                                              |
-| `input`              | string | false    | `datakit` | 数据源名称                                                                                                                 |
-| `ignore_global_tags` | string | false    | 无        | 给任意值（如 `true`）即认为忽略 DataKit 上的全局 tag                                                                                    |
-| `version`            | string | false    | 无        | 当前采集器的版本号                                                                                                         |
-| `source`             | string | false    | 无        | 仅仅针对 logging 支持指定该字段（即 `category` 为 `logging`）。如果不指定 `source`，则上传的日志数据不会执行 Pipeline 切割 |
+| 参数名                    | 类型   | 是否必选 | 默认值    | 说明                                                                                                                       |
+| --------------------      | ------ | -------- | --------- | --------------------------------------------------                                                                         |
+| `category`                | string | true     | 无        | 目前支持 `metric/logging/rum/object/custom_object`                                                                         |
+| `precision`               | string | false    | `n`       | 数据精度(支持 `n/u/ms/s/m/h`)                                                                                              |
+| `input`                   | string | false    | `datakit` | 数据源名称                                                                                                                 |
+| `ignore_global_tags`      | string | false    | 无        | 已弃用，改用 `ignore_global_host_tags`                                                                                     |
+| `ignore_global_host_tags` | string | false    | 无        | 给任意值（如 `true`）即认为忽略 DataKit 上的全局 tag（[:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)）                                                                      |
+| `global_env_tags`         | string | false    | 无        | 给任意值（如 `true`）即认为追加全局环境类 tag（[:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)）                                                                     |
+| `echo_line_proto`         | string | false    | 无        | 给任意值（如 `true`）即返回 json 行协议类容，默认不返回                                                                    |
+| `version`                 | string | false    | 无        | 当前采集器的版本号                                                                                                         |
+| `source`                  | string | false    | 无        | 仅仅针对 logging 支持指定该字段（即 `category` 为 `logging`）。如果不指定 `source`，则上传的日志数据不会执行 Pipeline 切割 |
 
 HTTP body 支持行协议以及 JSON 俩种形式。关于数据结构（不管是行协议形式还是 JSON 形式）的约束，参见[这里](#lineproto-limitation)。
 
@@ -158,7 +161,7 @@ slb,name=zzz,tag2=b f1=1i,f2=1.2,f3="abc",message="xxx" 1620723870000000000
 
 ### RUM {#api-rum}
 
-参见 [RUM 文档](rum.md)
+参见 [RUM 文档](../integrations/rum.md)
 
 ## `/v1/ping` {#api-ping}
 
@@ -202,7 +205,7 @@ Content-Type: application/json
 ### 示例
 
 ```http
-GET /v1/worksapce HTTP/1.1
+GET /v1/workspace HTTP/1.1
 
 HTTP/1.1 200 OK
 
@@ -541,4 +544,4 @@ HTTP Code: 40x
 
 - [API 访问设置](datakit-conf.md#config-http-server)
 - [API 限流配置](datakit-conf.md#set-http-api-limit)
-- [API 安全控制](rum.md#security-setting)
+- [API 安全控制](../integrations/rum.md#security-setting)

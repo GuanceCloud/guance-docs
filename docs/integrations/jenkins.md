@@ -2,10 +2,12 @@
 # Jenkins
 ---
 
-- DataKit 版本：1.4.3
+- DataKit 版本：1.4.6
 - 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
 Jenkins 采集器是通过插件 `Metrics` 采集数据监控 Jenkins，包括但不限于任务数，系统 cpu 使用，`jvm cpu`使用等
+
+![](imgs/input-jenkins-1.png)
 
 ## 前置条件
 
@@ -80,6 +82,10 @@ Jenkins CI Visibility 开启方法：
 - 点击 `Save` 保存设置。
 
 配置完成后 Jenkins 能够通过 Datadog Plugin 将 CI 事件发送到 Datakit。
+
+## 指标预览
+
+![](imgs/input-jenkins-2.png)
 
 ## 指标集
 
@@ -166,7 +172,7 @@ Jenkins CI Visibility 开启方法：
 | ---- |---- | :---:    | :----: |
 |`commit_message`|触发该 pipeline 的代码的最近一次提交附带的 message|string|-|
 |`created_at`|pipeline 创建的秒时间戳|int|sec|
-|`duration`|pipeline 持续时长（秒）|int|s|
+|`duration`|pipeline 持续时长（us）|int|μs|
 |`finished_at`|pipeline 结束的秒时间戳|int|sec|
 |`message`|该 pipeline 的 id，与 pipeline_id 相同|string|-|
 |`pipeline_id`|pipeline id|string|-|
@@ -230,7 +236,7 @@ Jenkins CI Visibility 开启方法：
 
 通用日志文本示例:
 ```
-2021-05-18 03:08:58.053+0000 [id=32]	INFO	jenkins.InitReactorRunner$1#onAttained: Started all plugins
+2021-05-18 03:08:58.053+0000 [id=32] INFO jenkins.InitReactorRunner$1#onAttained: Started all plugins
 ```
 
 切割后的字段列表如下：
@@ -240,3 +246,7 @@ Jenkins CI Visibility 开启方法：
 | status | info                | 日志等级                     |
 | id     | 32                  | id                           |
 | time   | 1621278538000000000 | 纳秒时间戳（作为行协议时间） |
+
+## 场景视图
+
+<场景 - 新建仪表板 - Jenkins 监控视图>
