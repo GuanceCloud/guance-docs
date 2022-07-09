@@ -3,7 +3,7 @@
 ---
 
 - DataKit 版本：1.4.6
-- 操作系统支持：Linux
+- 操作系统支持：:fontawesome-brands-linux:
 
 ## 介绍
 

@@ -3,7 +3,7 @@
 ---
 
 - DataKit 版本：1.4.6
-- 操作系统支持：`windows,linux,darwin`
+- 操作系统支持：:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple:
 
 statsd 采集器用于接收网络上发送过来的 statsd 数据。
 

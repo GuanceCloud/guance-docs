@@ -3,7 +3,7 @@ Nginx
 ---
 
 - DataKit 版本：1.4.6
-- 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
+- 操作系统支持：:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple:
 
 NGINX 采集器可以从 NGINX 实例中采取很多指标，比如请求总数连接数、缓存等多种指标，并将指标采集到观测云 ，帮助监控分析 NGINX 各种异常情况。
 

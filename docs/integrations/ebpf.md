@@ -3,7 +3,7 @@
 ---
 
 - DataKit 版本：1.4.6
-- 操作系统支持：`linux/amd64,linux/arm64`
+- 操作系统支持：:fontawesome-brands-linux:
 
 eBPF 采集器，采集主机网络 TCP、UDP 连接信息，Bash 执行日志等。本采集器主要包含 `ebpf-net` 及 `ebpf-bash` 俩类:
 
