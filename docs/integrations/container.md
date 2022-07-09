@@ -3,7 +3,7 @@
 ---
 
 - DataKit 版本：1.4.6
-- 操作系统支持：linux
+- 操作系统支持：:fontawesome-brands-linux:
 
 采集 container 和 Kubernetes 的指标数据、对象数据和容器日志，上报到观测云。
 
@@ -647,7 +647,7 @@ Kubernetes replicaset 指标数据
 |`container_host`|容器内部的主机名（containerd 缺少此字段）|
 |`container_id`|容器 ID|
 |`container_name`|k8s 命名的容器名（在 labels 中取 'io.kubernetes.container.name'），如果值为空则跟 container_runtime_name 相同|
-|`container_runtime_name`|由 runtime 命名的容器名（例如 docker ps 查看），如果值为空则默认是 unknown|
+|`container_runtime_name`|由 runtime 命名的容器名（例如 docker ps 查看），如果值为空则默认是 unknown（[:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)）|
 |`container_type`|容器类型，表明该容器由谁创建，kubernetes/docker/containerd|
 |`deployment`|deployment 名称（容器由 k8s 创建时存在）（containerd 缺少此字段）|
 |`docker_image`|镜像全称，例如 `nginx.org/nginx:1.21.0` （Depercated, use image）|
@@ -655,7 +655,7 @@ Kubernetes replicaset 指标数据
 |`image_name`|镜像名称，例如 `nginx.org/nginx`|
 |`image_short_name`|镜像名称精简版，例如 `nginx`|
 |`image_tag`|镜像tag，例如 `1.21.0`|
-|`linux_namespace`|该容器所在的 [linux namespace](https://man7.org/linux/man-pages/man7/namespaces.7.html)|
+|`linux_namespace`|该容器所在的 [linux namespace](https://man7.org/linux/man-pages/man7/namespaces.7.html){:target="_blank"}|
 |`name`|对象数据的指定 ID|
 |`namespace`|pod 的 k8s 命名空间（k8s 创建容器时，会打上一个形如 'io.kubernetes.pod.namespace' 的 label，DataKit 将其命名为 'namespace'）|
 |`pod_name`|pod 名称（容器由 k8s 创建时存在）|
@@ -1009,7 +1009,7 @@ Kubernetes service 对象数据
 |  ----  | --------|
 |`container_id`|容器ID|
 |`container_name`|k8s 命名的容器名（在 labels 中取 'io.kubernetes.container.name'），如果值为空则跟 container_runtime_name 相同|
-|`container_runtime_name`|由 runtime 命名的容器名（例如 docker ps 查看），如果值为空则默认是 unknown|
+|`container_runtime_name`|由 runtime 命名的容器名（例如 docker ps 查看），如果值为空则默认是 unknown（[:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)）|
 |`container_type`|容器类型，表明该容器由谁创建，kubernetes/docker|
 |`deployment`|deployment 名称（容器由 k8s 创建时存在，containerd 日志缺少此字段）|
 |`namespace`|pod 的 k8s 命名空间（k8s 创建容器时，会打上一个形如 'io.kubernetes.pod.namespace' 的 label，DataKit 将其命名为 'namespace'）|
@@ -1021,7 +1021,7 @@ Kubernetes service 对象数据
 
 | 指标 | 描述| 数据类型 | 单位   |
 | ---- |---- | :---:    | :----: |
-|`log_read_lines`|采集到的行数计数（多行数据算成一行）|int|count|
+|`log_read_lines`|采集到的行数计数，多行数据算成一行（[:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)）|int|count|
 |`message`|日志源数据|string|-|
 |`status`|日志状态，info/emerg/alert/critical/error/warning/debug/OK/unknown|string|-|
 
