@@ -26,8 +26,7 @@ Minio 版本：ALL
 
 Minio 默认已暴露 [metric](https://docs.min.io/minio/baremetal/monitoring/metrics-alerts/collect-minio-metrics-using-prometheus.html?ref=con#minio-metrics-collect-using-prometheus)，可以直接通过 Prometheus 来采集相关指标。
 
-1. 使用minio-client（简称`mc`）创建授权信息
-
+1.使用minio-client（简称`mc`）创建授权信息  
 ```
 $ mc alias set myminio http://192.168.0.210:9000 minioadmin minioadmin
 
@@ -39,16 +38,13 @@ scrape_configs:
   static_configs:
   - targets: ['192.168.0.210:9000']
 ```
-
-2. 开启 Datakit promtheus 插件
+2.开启 Datakit promtheus 插件  
 ```shell
 cd /usr/local/datakit/conf.d/prom/
 cp prom.conf.sample prom-minio.conf
 ```
-
-3. 修改 prom-minio.conf 配置文件
-
-主要参数说明
+3.修改 prom-minio.conf 配置文件  
+主要参数说明  
 
 - urls：promethues 指标地址，这里填写 Minio 暴露出来的指标 url
 - source：采集器别名，建议写成`minio`
@@ -57,9 +53,8 @@ cp prom.conf.sample prom-minio.conf
 - tls_open：TLS 配置
 - metric_types：指标类型，不填，代表采集所有指标
 - tags_ignore： 忽略不需要的tag
-- [inputs.prom.auth]：配置授权信息
-
-  - token : bearer_token值
+- [inputs.prom.auth]：配置授权信息  
+    - token : bearer_token值
 
 ```
 [[inputs.prom]]
@@ -134,13 +129,13 @@ cp prom.conf.sample prom-minio.conf
   # some_tag = "some_value"
   # more_tag = "some_other_value"
 ```
-
-4. 重启 Datakit
+  
+4.重启 Datakit  
 ```shell
 systemctl restart datakit
 ```
 
-5. Minio 指标采集验证，使用命令 `datakit monitor` 查看指标是否采集成功
+5.Minio 指标采集验证，使用命令 `datakit monitor` 查看指标是否采集成功  
 
 ![image.png](../images/minio-2.png)
 
