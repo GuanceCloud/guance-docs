@@ -2,7 +2,7 @@
 # DataKit API
 ---
 
-- DataKit 版本：1.4.6
+- DataKit 版本：1.4.7
 - 操作系统支持：全平台
 
 本文档主要描述 DataKit 开放出来 HTTP API 接口。

@@ -2,7 +2,7 @@
 # CPU
 ---
 
-- DataKit 版本：1.4.6
+- DataKit 版本：1.4.7
 - 操作系统支持：:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple:
 
 CPU 采集器用于系统 CPU 使用率的采集。

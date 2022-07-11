@@ -2,7 +2,7 @@
 # Prometheus Exportor 指标采集
 ---
 
-- DataKit 版本：1.4.6
+- DataKit 版本：1.4.7
 - 操作系统支持：:fontawesome-brands-linux:
 
 ## 介绍
