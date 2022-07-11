@@ -2,7 +2,7 @@
 # InfluxDB
 ---
 
-- DataKit 版本：1.4.6
+- DataKit 版本：1.4.7
 - 操作系统支持：:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple:
 
 InfluxDB 采集器，用于采集 InfluxDB 的数据。

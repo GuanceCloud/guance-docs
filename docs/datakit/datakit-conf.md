@@ -2,7 +2,7 @@
 # DataKit 主配置
 ---
 
-- DataKit 版本：1.4.6
+- DataKit 版本：1.4.7
 - 操作系统支持：全平台
 
 DataKit 主配置用来配置 DataKit 自己的运行行为，其目录一般位于：
@@ -126,7 +126,7 @@ DataKit 默认日志等级为 `info`。编辑 `datakit.conf`，可修改日志�
   # 允许 CPU 最大使用率（百分制）
   cpu_max = 20.0
 
-  # 允许 CPU 最使用率（百分制）
+  # 允许 CPU 最小使用率（百分制）
   cpu_min = 5.0
 
   # 默认允许 4GB 内存(memory + swap)占用

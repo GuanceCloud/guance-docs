@@ -2,7 +2,7 @@
 # NodeJS 示例
 ---
 
-- DataKit 版本：1.4.6
+- DataKit 版本：1.4.7
 - 操作系统支持：全平台
 
 # Tracing NodeJS Application

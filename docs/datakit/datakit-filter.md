@@ -2,7 +2,7 @@
 # 行协议过滤器
 ---
 
-- DataKit 版本：1.4.6
+- DataKit 版本：1.4.7
 - 操作系统支持：全平台
 
 本文档主要描述 DataKit Filter 基本使用以及注意事项。
@@ -173,7 +173,7 @@ Filter 的主要功能就是数据筛选，其筛选依据是通过一定的筛�
 [io]
   ...
   [io.Filters]
-      profile = [ # 针对 Profile 过滤
+    profile = [ # 针对 Profile 过滤
       "{ service = 'python-profiling-manual' }",
     ]
 ```

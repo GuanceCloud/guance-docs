@@ -2,7 +2,7 @@
 # Swap
 ---
 
-- DataKit 版本：1.4.6
+- DataKit 版本：1.4.7
 - 操作系统支持：:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple:
 
 swap 采集器用于采集主机 swap 内存的使用情况
