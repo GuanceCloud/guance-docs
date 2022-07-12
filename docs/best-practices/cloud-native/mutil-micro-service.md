@@ -87,13 +87,12 @@ projectB 相关微服务 yaml ，部分配置如下：
         [[inputs.ddtrace]]
           endpoints = ["/v0.3/traces", "/v0.4/traces", "/v0.5/traces"]
           customer_tags = ["app_id"]
-          [inputs.ddtrace.close_resource]
-             demo-k8s-auth = ["GET /nacos/v1/ns/instance/list","PUT /nacos/v1/ns/instance/beat","POST /nacos/v1/cs/configs/listener"]
-             demo-k8s-system = ["GET /nacos/v1/ns/instance/list","PUT /nacos/v1/ns/instance/beat","POST /nacos/v1/cs/configs/listener"]
-             demo-k8s-gateway = ["GET /nacos/v1/ns/instance/list","PUT /nacos/v1/ns/instance/beat","POST /nacos/v1/cs/configs/listener"]
+            [inputs.ddtrace.close_resource]
+               "*" = ["PUT /nacos/*","GET /nacos/*","POST /nacos/*"]
+
 ```
 
-Nacos 注册中心心跳上报检查主要用到了三个 URL ：` GET /nacos/v1/ns/instance/list`、`PUT /nacos/v1/ns/instance/beat`、`POST /nacos/v1/cs/configs/listener`。<br />您需要把每一个相关的服务都配置上去，按照上面的规则，复制粘贴即可。
+Nacos 注册中心心跳上报检查主要用到了三个 URL ：` GET /nacos/v1/ns/instance/list`、`PUT /nacos/v1/ns/instance/beat`、`POST /nacos/v1/cs/configs/listener`。这里采用了正则的方式进行过滤。
 
 重启 DataKit 和 应用，至此，优化配置基本完成，快去看看效果吧。
 
