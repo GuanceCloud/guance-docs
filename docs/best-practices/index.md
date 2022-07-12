@@ -2,6 +2,13 @@
 icon: zy/best-practices
 ---
 
+## (2022/07/15)
+### 新增最佳实践
+
+- 云平台接入
+    - [Rancher 部署 DataKit 最佳实践](./partner/rancher-datakit-install.md)。
+
+
 ## (2022/07/08)
 ### 新增最佳实践
 
