@@ -12,11 +12,11 @@ nav:
       - 数据源对象 API: development-guide-data-source-api.md
       - 设计与实践: development-guide-design-and-practice.md
       - 第三方包: development-guide-3rd-party-package.md
-    - 维护手册:
+    - 部署和维护手册:
       - maintenance-guide.md
       - 系统要求: maintenance-guide-requirement.md
       - 安装部署: maintenance-guide-installation.md
-      - 通过 Helm 部署: maintenance-guide-helm.md
+      - 通过 Helm 在 k8s 中部署: maintenance-guide-helm.md
       - 日常维护: maintenance-guide-daily-operation.md
     - sidecar-guide.md
     - trouble-shooting.md
@@ -41,8 +41,9 @@ nav:
           - 云监控: script-market-guance-aliyun-monitor.md
           - 云服务器 ECS: script-market-guance-aliyun-ecs.md
           - 负载均衡 SLB: script-market-guance-aliyun-slb.md
-          - 对象存储 OSS: script-market-guance-aliyun-oss.md
-          - 数据库:
+          - 数据库和存储:
+            - 对象存储 OSS: script-market-guance-aliyun-oss.md
+            - 文件存储 NAS: script-market-guance-aliyun-nas.md
             - 云数据库 RDS: script-market-guance-aliyun-rds.md
             - 云数据库 RDS 慢查询: script-market-guance-aliyun-rds-slowlog.md
             - 云数据库 Redis: script-market-guance-aliyun-redis.md
@@ -80,6 +81,7 @@ nav:
           - 云监控: script-market-guance-tencentcloud-monitor.md
           - 云服务器 CVM: script-market-guance-tencentcloud-cvm.md
           - 云数据库 CDB（MySQL）: script-market-guance-tencentcloud-cdb.md
+          - 云数据库 CDB（MySQL）慢查询: script-market-guance-tencentcloud-cdb-slowlog.md
           - 负载均衡 CLB: script-market-guance-tencentcloud-clb.md
           - 对象存储 COS: script-market-guance-tencentcloud-cos.md
 
