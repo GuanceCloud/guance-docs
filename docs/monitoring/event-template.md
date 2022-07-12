@@ -9,21 +9,31 @@
 
 用于渲染事件字段的语法为`{{ 字段名 }}`，可用于文案渲染的事件字段如下：
 
-| 模板变量                     | 类型           | 说明                                                                                                                        |
-| ---------------------------- | -------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| `date`、`timestamp`          | Integer        | 事件产生时间，单位为秒                                                                                                      |
-| `df_dimension_tags`          | String         | 事件维度，即根据监控器中配置的`by`后的排列组合，用于标识检测对象<br>如：`{"host":"web-001"}`                                |
-| `df_event_id`                | String         | 事件 ID（唯一标识）                                                                                                         |
-| `df_monitor_checker_id`      | String         | 检测器 ID<br>_如果对检测有疑问，可以将此 ID 反馈给我们_                                                                     |
-| `df_monitor_checker_name`    | String         | 检测器名称，即在创建检测器时填写的名称                                                                                      |
-| `df_monitor_checker_value`   | String         | 检测值，即产生本事件时，检测到的值<br>注意：检测值会强制转换为 String 类型以保证兼容性                                      |
-| `df_monitor_id`              | String         | 检测分组 ID<br>_如果对检测有疑问，可以将此 ID 反馈给我们_                                                                   |
-| `df_monitor_name`            | String         | 检测分组名称，即在创建检测器时指定的分组名                                                                                  |
-| `df_status`                  | String(Enum)   | 事件状态，可能的值为：<br>紧急`critical`<br>重要`error`<br>警告`warning`<br>正常`ok`<br>无数据`nodata`                      |
-| `df_workspace_name`          | String         | 所属工作空间名                                                                                                              |
-| `df_workspace_uuid`          | String         | 所属工作空间 ID<br>_如果对检测有疑问，可以将此 ID 反馈给我们_                                                               |
-| `Result`                     | Integer, Float | 检测值，与`df_monitor_checker_value`一样为产生本事件时，检测到的值，但字段类型为检测时获得的原始类型，不会强制转换为 String |
-| 其他在检测时，指定的`by`字段 | String         | 如检测时指定指定了`by region, host`，那么此处同时会额外产生对应的`region`和`host`字段。                                     |
+| 模板变量                           | 类型           | 说明                                                                                                                        |
+| ---------------------------------- | -------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `date`、`timestamp`                | Integer        | 事件产生时间，单位为秒                                                                                                      |
+| `df_dimension_tags`                | String         | 事件维度，即根据监控器中配置的`by`后的排列组合，用于标识检测对象<br>如：`{"host":"web-001"}`                                |
+| `df_event_id`                      | String         | 事件 ID（唯一标识）                                                                                                         |
+| `df_monitor_checker_id`            | String         | 检测器 ID<br>_如果对检测有疑问，可以将此 ID 反馈给我们_                                                                     |
+| `df_monitor_checker_name`          | String         | 检测器名称，即在创建检测器时填写的名称                                                                                      |
+| `df_monitor_checker_value`         | String         | 检测值，即产生本事件时，检测到的值<br>注意：检测值会强制转换为 String 类型以保证兼容性                                      |
+| `df_monitor_id`                    | String         | 检测分组 ID<br>_如果对检测有疑问，可以将此 ID 反馈给我们_                                                                   |
+| `df_monitor_name`                  | String         | 检测分组名称，即在创建检测器时指定的分组名                                                                                  |
+| `df_status`                        | String(Enum)   | 事件状态，可能的值为：<br>紧急`critical`<br>重要`error`<br>警告`warning`<br>正常`ok`<br>无数据`nodata`                      |
+| `df_workspace_name`                | String         | 所属工作空间名                                                                                                              |
+| `df_workspace_uuid`                | String         | 所属工作空间 ID<br>_如果对检测有疑问，可以将此 ID 反馈给我们_                                                               |
+| `Result`                           | Integer, Float | 检测值，与`df_monitor_checker_value`一样为产生本事件时，检测到的值，但字段类型为检测时获得的原始类型，不会强制转换为 String |
+| {检测配置中指定的`by`或`维度`字段} | String         | 如检测时指定指定了`by region, host`，那么此处同时会额外产生对应的`region`和`host`字段。                                     |
+
+### 用户访问指标检测（RUM）
+
+在「用户访问指标检测（RUM）」检测器中，除了上述通用的模板变量外，额外支持下列模板变量：
+
+| 模板变量   | 类型   | 说明     |
+| ---------- | ------ | -------- |
+| `app_id`   | String | 应用 ID  |
+| `app_name` | String | 应用名称 |
+| `app_type` | String | 应用类型 |
 
 ### 模板变量示例
 
