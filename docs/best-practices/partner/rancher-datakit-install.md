@@ -1,5 +1,6 @@
 # Rancher 部署 DataKit 最佳实践
-
+创作人： 刘玉杰  
+审稿人：
 ---
 
 ## 简介
@@ -160,6 +161,7 @@ Project name 输入 datakit-conf，点击『Create Project』。
 升级完成后，DataKit 版本已经是 1.4.6 版本。
 
 ![image](../images/rancher-install-20.png)
+
 
 
 
