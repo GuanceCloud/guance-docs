@@ -218,40 +218,12 @@ xxx 字段：{{ dql_data.xxx }}
 那么，结合内嵌 DQL 查询功能，可以使用如下方式展示`load5s`大于`10`的主机的其他相关信息：
 
 ```
-{% set dql_data = DQL("O::HOST:(host, host_ip, os, datakit_ver) { host = ?, project = ? }",  host, project) %}
+{% set dql_data = DQL("O::HOST:(host_ip, os) { host = ?, project = ? }",  host, project) %}
 
 主机信息：
 IP：{{ dql_data.host_ip }}
 OS: {{ dql_data.os }}
-DataKit 版本：{{ dql_data.datakit_ver }}
 ```
-
-#### 模版变量字段映射示例
-
-**DQL 示例：**`M::cpu:(avg(cpu_usage)) by instanceid` 
-
-该种情况下，`instanceid` 是可以作为模板变量使用的，但是因为 `instanceid` 是用于系统唯一的标识，不具备可读性，那么我们可以通过映射功能，将` instanceid` 映射成 `host` 显示。
-
-**事件通知内容示例：**
-
-```
-状态：{{df_status}}
-
-检测对象：{{instanceid}}（M::cpu:(last(host)) {instanceid = {{instanceid}}}）
-
-通知内容：当前主机 CPU 使用率异常，触发值 {{Result}}，请及时查看。
-```
-
-**边界条件：**
-
-事件通知内容处的 DQL 查询模式共如下 6 种：
-
-- 多列但不使用模板变量，不管有没有分组条件，仅使用返回数据的第一条的第一列数据点
-- 多列且使用模板变量，不管有没有分组条件，仅使用返回数据的第一条的第一列数据点
-- 单列但不使用模板变量，有分组条件，仅使用返回数据的第一条的第一个数据点
-- 单列但不使用模板变量，没有分组条件，返回数据有且只有一个数据点（正常显示）
-- 单列且使用模板变量，有分组条件，仅使用返回数据的第一条的第一个数据点
-- 单列且使用模板变量，没有分组条件，返回数据有且只有一个数据点（正常显示）
 
 ### 内嵌 DQL 查询函数细节
 
