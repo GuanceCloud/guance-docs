@@ -1,7 +1,8 @@
 nav:
-  - 'Rancher': 
+  - 'Rancher':
     - 使用 Rancher 部署和管理 DataKit，快速构建Kubernetes 生态的可观测: rancher-datakit.md
-    
+    - Rancher 部署 DataKit 最佳实践: rancher-datakit-install.md
+
   - '阿里云':
     - 基于阿里云 ASM 实现微服务可观测最佳实践: asm.md
     - '阿里云 DTS 增量数据迁移最佳实践 (Function)': aliyun-dts-func.md
