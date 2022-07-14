@@ -10,6 +10,7 @@
 
 > 提示 2：本脚本的代码运行依赖 RDS 实例对象采集，如果未配置 RDS 的自定义对象采集，慢日志脚本无法采集到慢日志数据
 
+> 提示 3：因阿里云统计数据返回有6~8小时的延迟，所以采集器更新数据可能会有延迟，详细参考阿里云文档:云数据库 RDS 查询慢日志统计
 ## 1. 配置结构
 
 本采集器配置结构如下：
@@ -86,3 +87,5 @@ collector_configs = {
 请参考阿里云官方文档：
 
 - [云数据库 RDS 地域 ID](https://help.aliyun.com/document_detail/140601.html?spm=5176.21213303.J_6704733920.7.78b053c9peQg3b&scm=20140722.S_help%40%40%E6%96%87%E6%A1%A3%40%40140601.S_os%2Bhot.ID_140601-RL_region-LOC_main-OR_ser-V_2-P0_0)
+
+- [云数据库 RDS 查询慢日志统计](https://help.aliyun.com/document_detail/26288.htm?spm=a2c4g.11186623.0.0.7fd56d97B7H0DH#t8142.html)
