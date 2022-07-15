@@ -145,6 +145,13 @@ nginx -s reload
 
 ![image](../images/skywalking-apm-rum-log/15.png)
 
+如果微服务使用了 springcloud gateway，必须把 agent/optional-plugins/ 目录下的 apm-spring-cloud-gateway-2.1.x-plugin-8.7.0.jar 和 apm-spring-webflux-5.x-plugin-8.7.0.jar 复制到 skywalking-agent/plugins/ 目录下，注意 apm-spring-cloud-gateway 的版本需要和具体使用的 springcloud gateway 版本相对应。
+
+```bash
+cp /usr/local/df-demo/skywalking/agent/optional-plugins/apm-spring-cloud-gateway-2.1.x-plugin-8.7.0.jar /usr/local/df-demo/skywalking/agent/plugins/
+cp /usr/local/df-demo/skywalking/agent/optional-plugins/apm-spring-webflux-5.x-plugin-8.7.0.jar /usr/local/df-demo/skywalking/agent/plugins/
+```
+
 执行如下命令，启动后端服务，点击前端界面的按钮，调用后端服务。
 
 ```

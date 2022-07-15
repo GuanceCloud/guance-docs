@@ -85,9 +85,9 @@ systemctl restart datakit
 tar -zxvf /usr/local/java/apache-skywalking-apm-8.6.0.tar.gz 
 ```
 
-3、 复制插件
+3、 <font color="red" >复制插件</font>
 
-本示例使用了 Spring Cloud Gateway，由于 Gateway 是基于 Webflux 实现的，必须把 skywalking-agent/optional-plugins/ 目录下的 apm-spring-cloud-gateway-2.1.x-plugin-8.3.0.jar 和 apm-spring-webflux-5.x-plugin-8.3.0.jar 复制到 skywalking-agent/plugins/ 目录下。
+本示例使用了 Spring Cloud Gateway，由于 Gateway 是基于 Webflux 实现的，必须把 skywalking-agent/optional-plugins/ 目录下的 apm-spring-cloud-gateway-2.1.x-plugin-8.6.0.jar 和 apm-spring-webflux-5.x-plugin-8.6.0.jar 复制到 skywalking-agent/plugins/ 目录下。
 
 ```
 cp /usr/local/java/skywalking-agent/optional-plugins/apm-spring-cloud-gateway-2.1.x-plugin-8.6.0.jar /usr/local/java/skywalking-agent/plugins/
