@@ -1,4 +1,4 @@
-# 维护手册 - 通过 Helm 部署
+# 部署和维护手册 - 通过 Helm 在 k8s 中部署
 ---
 
 
@@ -59,7 +59,7 @@ helm install {Release Name} func/func -n {Namespace} --create-namespace  \
 
 *注意：{Release Name} 为 Helm 别名，{Namespace} 如果没有会被创建，{Storage Class} 为步骤一的存储类名称，{Host Name} 为 ingress 的域名，安装成功可以访问*
 
-> 提示：Helm 部署默认会安装 MySQL 和 MySQL。您也可以使用外部的 redis 和 mysql。详细部署方式见 charts 包中的 README 文档
+> 提示：Helm 部署默认会安装 MySQL 和 Redis。您也可以使用外部的 MySQL 和 Redis。详细部署方式见 charts 包中的 README 文档
 
 ![](maintenance-guide-helm/install-via-cli.png)
 

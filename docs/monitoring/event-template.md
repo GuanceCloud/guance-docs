@@ -9,21 +9,31 @@
 
 用于渲染事件字段的语法为`{{ 字段名 }}`，可用于文案渲染的事件字段如下：
 
-| 模板变量                     | 类型           | 说明                                                                                                                        |
-| ---------------------------- | -------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| `date`、`timestamp`          | Integer        | 事件产生时间，单位为秒                                                                                                      |
-| `df_dimension_tags`          | String         | 事件维度，即根据监控器中配置的`by`后的排列组合，用于标识检测对象<br>如：`{"host":"web-001"}`                                |
-| `df_event_id`                | String         | 事件 ID（唯一标识）                                                                                                         |
-| `df_monitor_checker_id`      | String         | 检测器 ID<br>_如果对检测有疑问，可以将此 ID 反馈给我们_                                                                     |
-| `df_monitor_checker_name`    | String         | 检测器名称，即在创建检测器时填写的名称                                                                                      |
-| `df_monitor_checker_value`   | String         | 检测值，即产生本事件时，检测到的值<br>注意：检测值会强制转换为 String 类型以保证兼容性                                      |
-| `df_monitor_id`              | String         | 检测分组 ID<br>_如果对检测有疑问，可以将此 ID 反馈给我们_                                                                   |
-| `df_monitor_name`            | String         | 检测分组名称，即在创建检测器时指定的分组名                                                                                  |
-| `df_status`                  | String(Enum)   | 事件状态，可能的值为：<br>紧急`critical`<br>重要`error`<br>警告`warning`<br>正常`ok`<br>无数据`nodata`                      |
-| `df_workspace_name`          | String         | 所属工作空间名                                                                                                              |
-| `df_workspace_uuid`          | String         | 所属工作空间 ID<br>_如果对检测有疑问，可以将此 ID 反馈给我们_                                                               |
-| `Result`                     | Integer, Float | 检测值，与`df_monitor_checker_value`一样为产生本事件时，检测到的值，但字段类型为检测时获得的原始类型，不会强制转换为 String |
-| 其他在检测时，指定的`by`字段 | String         | 如检测时指定指定了`by region, host`，那么此处同时会额外产生对应的`region`和`host`字段。                                     |
+| 模板变量                           | 类型           | 说明                                                                                                                        |
+| ---------------------------------- | -------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `date`、`timestamp`                | Integer        | 事件产生时间，单位为秒                                                                                                      |
+| `df_dimension_tags`                | String         | 事件维度，即根据监控器中配置的`by`后的排列组合，用于标识检测对象<br>如：`{"host":"web-001"}`                                |
+| `df_event_id`                      | String         | 事件 ID（唯一标识）                                                                                                         |
+| `df_monitor_checker_id`            | String         | 检测器 ID<br>_如果对检测有疑问，可以将此 ID 反馈给我们_                                                                     |
+| `df_monitor_checker_name`          | String         | 检测器名称，即在创建检测器时填写的名称                                                                                      |
+| `df_monitor_checker_value`         | String         | 检测值，即产生本事件时，检测到的值<br>注意：检测值会强制转换为 String 类型以保证兼容性                                      |
+| `df_monitor_id`                    | String         | 检测分组 ID<br>_如果对检测有疑问，可以将此 ID 反馈给我们_                                                                   |
+| `df_monitor_name`                  | String         | 检测分组名称，即在创建检测器时指定的分组名                                                                                  |
+| `df_status`                        | String(Enum)   | 事件状态，可能的值为：<br>紧急`critical`<br>重要`error`<br>警告`warning`<br>正常`ok`<br>无数据`nodata`                      |
+| `df_workspace_name`                | String         | 所属工作空间名                                                                                                              |
+| `df_workspace_uuid`                | String         | 所属工作空间 ID<br>_如果对检测有疑问，可以将此 ID 反馈给我们_                                                               |
+| `Result`                           | Integer, Float | 检测值，与`df_monitor_checker_value`一样为产生本事件时，检测到的值，但字段类型为检测时获得的原始类型，不会强制转换为 String |
+| {检测配置中指定的`by`或`维度`字段} | String         | 如检测时指定指定了`by region, host`，那么此处同时会额外产生对应的`region`和`host`字段。                                     |
+
+### 用户访问指标检测（RUM）
+
+在「用户访问指标检测（RUM）」检测器中，除了上述通用的模板变量外，额外支持下列模板变量：
+
+| 模板变量   | 类型   | 说明     |
+| ---------- | ------ | -------- |
+| `app_id`   | String | 应用 ID  |
+| `app_name` | String | 应用名称 |
+| `app_type` | String | 应用类型 |
 
 ### 模板变量示例
 
@@ -181,7 +191,7 @@ CPU 使用率：{{ (Result * 100) | to_round(2) }}%
 
 在某些情况下，单纯的模板变量不足以展示所需的信息。此时，可以使用内嵌 DQL 查询函数实现额外的查询。
 
-内嵌 DQL 查询函数支持在本工作空间下执行任意 DQL 语句，通常情况下，查询所得的第一条数据可在模板种作为模板变量使用，使用方式如下：
+内嵌 DQL 查询函数支持在本工作空间下执行任意 DQL 语句，通常情况下，查询所得的第一条数据可在模板中作为模板变量使用，使用方式如下：
 
 ```
 {% set dql_data = DQL("需要执行的 DQL 语句") %}
@@ -203,9 +213,11 @@ xxx 字段：{{ dql_data.xxx }}
 
 此后的模板中即可使用`{{ dql_data.xxx }}`输出查询结果中的具体字段。
 
-> 提示：变量名可以为任意英文开头，仅包含英文、数字、下划线的字符串
+*注意：变量名遵循一般变成语言的命名要求，可以为任意英文开头，且仅包含英文、数字、下划线的字符串。不建议使用 emoji*
 
-### 在 DQL 查询函数中使用模板变量作为参数
+*注意：如果在 DQL 中对字段使用了函数（如：`O::HOST:( last(host) )`，建议使用`AS`为字段取别名来方便后续使用（如：`O::HOST:( last(host) AS last_host )`）*
+
+### 使用模板变量传递 DQL 参数
 
 本功能更常见的用法，则是使用模板变量作为参数，查询对应监控对象的相关数据。
 
@@ -218,40 +230,12 @@ xxx 字段：{{ dql_data.xxx }}
 那么，结合内嵌 DQL 查询功能，可以使用如下方式展示`load5s`大于`10`的主机的其他相关信息：
 
 ```
-{% set dql_data = DQL("O::HOST:(host, host_ip, os, datakit_ver) { host = ?, project = ? }",  host, project) %}
+{% set dql_data = DQL("O::HOST:(host_ip, os) { host = ?, project = ? }",  host, project) %}
 
 主机信息：
 IP：{{ dql_data.host_ip }}
 OS: {{ dql_data.os }}
-DataKit 版本：{{ dql_data.datakit_ver }}
 ```
-
-#### 模版变量字段映射示例
-
-**DQL 示例：**`M::cpu:(avg(cpu_usage)) by instanceid` 
-
-该种情况下，`instanceid` 是可以作为模板变量使用的，但是因为 `instanceid` 是用于系统唯一的标识，不具备可读性，那么我们可以通过映射功能，将` instanceid` 映射成 `host` 显示。
-
-**事件通知内容示例：**
-
-```
-状态：{{df_status}}
-
-检测对象：{{instanceid}}（M::cpu:(last(host)) {instanceid = {{instanceid}}}）
-
-通知内容：当前主机 CPU 使用率异常，触发值 {{Result}}，请及时查看。
-```
-
-**边界条件：**
-
-事件通知内容处的 DQL 查询模式共如下 6 种：
-
-- 多列但不使用模板变量，不管有没有分组条件，仅使用返回数据的第一条的第一列数据点
-- 多列且使用模板变量，不管有没有分组条件，仅使用返回数据的第一条的第一列数据点
-- 单列但不使用模板变量，有分组条件，仅使用返回数据的第一条的第一个数据点
-- 单列但不使用模板变量，没有分组条件，返回数据有且只有一个数据点（正常显示）
-- 单列且使用模板变量，有分组条件，仅使用返回数据的第一条的第一个数据点
-- 单列且使用模板变量，没有分组条件，返回数据有且只有一个数据点（正常显示）
 
 ### 内嵌 DQL 查询函数细节
 
@@ -284,6 +268,7 @@ O::HOST:(host, host_ip, os, datakit_ver) { host = 'my_server' }
 
 1. 内嵌 DQL 查询函数所赋值的变量名，*不要*与现有的任何模板变量、模板函数重名，否则会产生不可预料的问题
 2. 由于内嵌 DQL 查询函数位于事件内容模板中，建议写在整个内容模板的最开头，系统会自动去除内容前后的空行
+3. 如果在 DQL 中对字段使用了函数（如：`O::HOST:( last(host) )`，建议使用`AS`为字段取别名来方便后续使用（如：`O::HOST:( last(host) AS last_host )`）
 
 ### 附录
 

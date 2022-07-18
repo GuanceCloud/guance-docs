@@ -12,11 +12,11 @@ nav:
       - 数据源对象 API: development-guide-data-source-api.md
       - 设计与实践: development-guide-design-and-practice.md
       - 第三方包: development-guide-3rd-party-package.md
-    - 维护手册:
+    - 部署和维护手册:
       - maintenance-guide.md
       - 系统要求: maintenance-guide-requirement.md
       - 安装部署: maintenance-guide-installation.md
-      - 通过 Helm 部署: maintenance-guide-helm.md
+      - 通过 Helm 在 k8s 中部署: maintenance-guide-helm.md
       - 日常维护: maintenance-guide-daily-operation.md
     - sidecar-guide.md
     - trouble-shooting.md
@@ -36,13 +36,16 @@ nav:
     - 观测云集成:
       - 基本操作: script-market-guance-integration.md
       - 注意事项: script-market-guance-integration-matters-needing-attention.md
+      - 变更日志: script-market-guance-changelog.md
       - 采集器配置手册:
         - 阿里云:
+          - 阿里云帮助中心: https://help.aliyun.com/
           - 云监控: script-market-guance-aliyun-monitor.md
           - 云服务器 ECS: script-market-guance-aliyun-ecs.md
           - 负载均衡 SLB: script-market-guance-aliyun-slb.md
-          - 对象存储 OSS: script-market-guance-aliyun-oss.md
-          - 数据库:
+          - 数据库和存储:
+            - 对象存储 OSS: script-market-guance-aliyun-oss.md
+            - 文件存储 NAS: script-market-guance-aliyun-nas.md
             - 云数据库 RDS: script-market-guance-aliyun-rds.md
             - 云数据库 RDS 慢查询: script-market-guance-aliyun-rds-slowlog.md
             - 云数据库 Redis: script-market-guance-aliyun-redis.md
@@ -68,6 +71,7 @@ nav:
             - 云解析 DNS: script-market-guance-aliyun-dns.md
             - 云解析 DNS 日志: script-market-guance-aliyun-dns-logs.md
         - 亚马逊 AWS:
+          - AWS Documentation: https://docs.aws.amazon.com/index.html
           - CloudWatch: script-market-guance-aws-cloudwatch.md
           - Elastic Compute Cloud (EC2): script-market-guance-aws-ec2.md
           - Relational Database Service (RDS): script-market-guance-aws-rds.md
@@ -75,13 +79,23 @@ nav:
           - Simple Storage Service (S3) : script-market-guance-aws-s3.md
           - ElastiCache: script-market-guance-aws-elasticache.md
           - OpenSearch Service: script-market-guance-aws-open-search.md
-        - 腾讯云采集器:
+        - 腾讯云:
+          - 腾讯云文档中心: https://cloud.tencent.com/document/product
           - 腾讯云 SDK 模块问题: script-market-guance-tencentcloud-sdk-module-issue.md
           - 云监控: script-market-guance-tencentcloud-monitor.md
           - 云服务器 CVM: script-market-guance-tencentcloud-cvm.md
           - 云数据库 CDB（MySQL）: script-market-guance-tencentcloud-cdb.md
+          - 云数据库 CDB（MySQL）慢查询: script-market-guance-tencentcloud-cdb-slowlog.md
           - 负载均衡 CLB: script-market-guance-tencentcloud-clb.md
           - 对象存储 COS: script-market-guance-tencentcloud-cos.md
+        - 华为云:
+          - 华为云帮助中心: https://support.huaweicloud.com/index.html
+          - 云监控服务 CES: script-market-guance-huaweicloud-ces.md
+          - 弹性云服务器 ECS: script-market-guance-huaweicloud-ecs.md
+          - 云数据库 RDS: script-market-guance-huaweicloud-rds.md
+          - 云数据库 RDS 慢查询: script-market-guance-huaweicloud-rds-slowlog.md
+          - 弹性负载均衡 ELB: script-market-guance-huaweicloud-elb.md
+          - 对象存储服务 OBS: script-market-guance-huaweicloud-obs.md
 
     - 生活日常:
       - 天气信息: script-market-weather.md

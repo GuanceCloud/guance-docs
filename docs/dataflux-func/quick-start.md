@@ -215,7 +215,11 @@ DataFlux Func 默认使用`8088`端口访问，如果此端口被其他程序占
 
 *注意：启用此选项后，需要在安装完成后的配置页面指定正确的 Redis 连接信息*
 
-## 4. 相关链接
+## 4. 使用 Helm 在 k8s 中安装
+
+请参考文档 [部署和维护手册 - 通过 Helm 在 k8s 中部署](/dataflux-func/maintenance-guide-helm/)
+
+## 5. 相关链接
 
 - [观测云官方网站](https://guance.com/)
 - [DataFlux Func 官方网站](https://func.guance.com/)
