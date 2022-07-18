@@ -10,4 +10,5 @@ nav:
     - '解决阿里云 API 签名问题实现账单分析': aliyun-bill.md
     - '日志数据备份到 OSS 最佳实践 (Function)': log-backup-to-oss-by-func.md
 
-  - '腾讯云': index.md
+  - '腾讯云': 
+    - 腾讯云产品可观测最佳实践 (Function): tencent-prod-func.md
