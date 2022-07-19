@@ -161,11 +161,33 @@ ddtrace 提供两种添加 tag 方式，效果一样。但还是推荐使用 dd.
 
 ## 使用 Baggage 让业务关键 tag 在后端链路进行传递
 
-ddtrace 提供了`Baggage` 方式，让指定的 tag 在链路上进行传递。比如用户名、岗位等信息，方便分析用户行为。
+ddtrace 提供了`Baggage` 方式，准确的说，应该是 ddtrace 使用 opentracing 提供的`Baggage` 功能，让指定的 tag 在链路上进行传递。比如用户名、岗位等信息，方便分析用户行为。
 
 > span.setBaggageItem("username","liurui");
 
-前端发起请求，携带两个 header ：dd-username、dd-job，系统会识别`dd`开头的 header 参数，并通过 `setBaggageItem` 进行 tag 传递。后端以 Java 实现为例，通过 TraceBaggageFilter 方式拦截请求，并将 request header 相关参数 通过 baggage 方式进行传递。
+### 引用 opentracing 依赖
+
+``` 
+    <dependency>
+        <groupId>com.datadoghq</groupId>
+        <artifactId>dd-trace-api</artifactId>
+        <version>0.102.0</version>
+    </dependency>
+    <dependency>
+        <groupId>io.opentracing</groupId>
+        <artifactId>opentracing-api</artifactId>
+        <version>0.33.0</version>
+    </dependency>
+    <dependency>
+        <groupId>io.opentracing</groupId>
+        <artifactId>opentracing-util</artifactId>
+        <version>0.33.0</version>
+    </dependency>
+```
+
+### 编写 TraceBaggageFilter  
+
+通过 TraceBaggageFilter 方式拦截请求，并将 request header 相关参数通过 baggage 方式进行传递。
 
 ``` java
 package com.zy.observable.ddtrace;
@@ -215,8 +237,6 @@ public class TraceBaggageFilter implements Filter {
 }
 ```
 
-![](../images/ddtrace-skill-14.png)
-
 ### datakit 配置  
 
 这里需要配合 datakit 的 ddtrace 采集器配置一起使用，需要通过`customer_tags`方式新增自定义 tag ，否则这部分数据只存在`meta`里面。
@@ -224,6 +244,12 @@ public class TraceBaggageFilter implements Filter {
 ```toml
 customer_tags = ["username", "job"]
 ```
+
+### 发起一个请求
+
+发起一个 gateway 请求，携带两个 header ：dd-username、dd-job，系统会识别`dd`开头的 header 参数并在当前所有的链路 span 进行传递。
+
+![](../images/ddtrace-skill-14.png)
 
 ### 在观测云上的效果
 
