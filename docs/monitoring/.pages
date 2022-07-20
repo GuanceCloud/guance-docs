@@ -3,7 +3,7 @@ nav:
   - '监控器': monitor
   - '监控器模板': template.md
   - '告警设置': alert-setting.md
-  - '智能巡检': watchdog
+  - '智能巡检': bot-obs
   - 'SLO': slo.md
   - '静默管理': silent-management.md
   - '事件标题、内容模板': event-template.md
