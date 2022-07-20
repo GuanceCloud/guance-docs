@@ -19,6 +19,7 @@ nav:
   - 付费计划与账单: billing
   - OpenAPI: open-api
   - DataFlux Func: dataflux-func
+  - DCA: dca
   - 最佳实践: best-practices
   - 移动端: mobile
   - 常见问题: faq
