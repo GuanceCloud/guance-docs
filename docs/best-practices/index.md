@@ -1,6 +1,12 @@
 ---
 icon: zy/best-practices
 ---
+## (2022/07/22)
+### 更新记录
+
+- 监控 Monitoring
+    - [ddtrace 高级用法](./monitoring/ddtrace-skill.md),<font color="red" > 新增“使用 Baggage 让业务关键 tag 在后端链路进行传递”、“采样”、“过滤Resource”、“log”等使用方法</font>。
+
 
 ## (2022/07/15)
 ### 新增最佳实践
