@@ -38,7 +38,7 @@ icon: zy/release-notes
 - 空间级筛选项：由管理员/拥有者进行配置，点击快捷筛选旁的「设置」按钮，即可配置空间级筛选项
 - 个人级筛选项：所有成员都可以配置基于 「个人+浏览器」的快捷筛选项，点击快捷筛选右侧的「编辑」，即可配置个人级筛选项
 
-更多详情可参考文档 [查看器的搜索和筛选](../getting-started/necessary-for-beginners/explorer-search.md#url) 。
+更多详情可参考文档 [查看器的搜索和筛选](../getting-started/necessary-for-beginners/explorer-search.md) 。
 
 ![](img/1.search_2.png)
 
@@ -57,7 +57,7 @@ icon: zy/release-notes
 仪表板视图变量新增「日志」、「应用性能」、「用户访问」、「安全巡检」数据来源配置，同时优化仪表板新建和编辑视图变量的交互。
 
 - 在未添加过视图变量的仪表板，顶部导航栏增加「添加视图变量」按钮，点击即可添加视图变量
-- 若仪表板已添加过视图变量，顶部导航栏下面会直接显示视图变量名称，点击右侧「编辑」按钮，即可进入视图变量编辑界面
+- 若仪表板已添加过视图变量，顶部导航栏下面会直接显示视图变量名称，点击右侧「编辑」按钮，即可进入视图变量编辑页面
 
 更多详情可查看文档 [视图变量](../scene/view-variable.md) 。
 
@@ -93,9 +93,9 @@ icon: zy/release-notes
 
 ### 最佳实践更新
 
-- 接入集成
-  - [Skywalking 采集 JVM 可观测最佳实践](../best-practices/monitoring/skywalking-jvm.md)
-  - [Minio 可观测最佳实践](../best-practices/cloud-native/minio.md)
+- 云平台接入
+  - [Rancher 部署 DataKit 最佳实践](../best-practices/partner/rancher-datakit-install.md)
+  - [腾讯云产品可观测最佳实践 (Function)](../best-practices/partner/tencent-prod-func.md)
 
 更多最佳实践更新可参考 [最佳实践版本历史](../best-practices/index.md) 。
 
