@@ -2,7 +2,7 @@
 # Solr
 ---
 
-- DataKit 版本：1.4.7
+- DataKit 版本：1.4.8
 - 操作系统支持：:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple:
 
 solr 采集器，用于采集 solr cache 和 request times 等的统计信息。

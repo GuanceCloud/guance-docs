@@ -3,7 +3,7 @@
 
 ---
 
-- DataKit 版本：1.4.7
+- DataKit 版本：1.4.8
 - 操作系统支持：:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple:
 
 MySQL 指标采集，收集以下数据：
@@ -188,7 +188,13 @@ performance-schema-consumer-events-statements-history = on
 账号授权
 
 ```sql
+-- 	MySQL 5.6 & 5.7
 GRANT REPLICATION CLIENT ON *.* TO datakit@'%' WITH MAX_USER_CONNECTIONS 5;
+GRANT PROCESS ON *.* TO datakit@'%';
+
+-- MySQL >= 8.0
+ALTER USER datakit@'%' WITH MAX_USER_CONNECTIONS 5;
+GRANT REPLICATION CLIENT ON *.* TO datakit@'%';
 GRANT PROCESS ON *.* TO datakit@'%';
 ```
 
@@ -549,7 +555,7 @@ MySQL 用户指标
 
 ### 日志 {#logging}
 
-[:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)
+[:octicons-tag-24: Version-1.4.6](../datakit/changelog.md#cl-1.4.6)
 
 
 

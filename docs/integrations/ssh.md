@@ -2,7 +2,7 @@
 # SSH
 ---
 
-- DataKit 版本：1.4.7
+- DataKit 版本：1.4.8
 - 操作系统支持：:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple:
 
 监控 SSH/SFTP 服务，并把数据上报到观测云。

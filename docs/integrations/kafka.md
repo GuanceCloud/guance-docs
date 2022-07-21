@@ -2,7 +2,7 @@
 # Kafka
 ---
 
-- DataKit 版本：1.4.7
+- DataKit 版本：1.4.8
 - 操作系统支持：:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple:
 
 采集 Kafka 指标和日志上报到观测云，帮助你监控分析 Kafka 各种异常情况

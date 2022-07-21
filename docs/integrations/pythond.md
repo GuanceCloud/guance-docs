@@ -2,7 +2,7 @@
 # 用 Python 开发自定义采集器
 ---
 
-- DataKit 版本：1.4.7
+- DataKit 版本：1.4.8
 - 操作系统支持：:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple:
 
 pythond 是定时触发用户自定义 python 采集脚本的一整套方案。

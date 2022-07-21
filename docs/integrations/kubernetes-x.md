@@ -1,6 +1,6 @@
 
 
-- DataKit 版本：1.4.7
+- DataKit 版本：1.4.8
 - 操作系统支持：Linux
 
 # Kubernetes 扩展指标采集
@@ -182,7 +182,7 @@ spec:
           value: enable
         - name: ENV_HTTP_LISTEN
           value: 0.0.0.0:9529
-        image: pubrepo.jiagouyun.com/datakit/datakit:1.4.7
+        image: pubrepo.jiagouyun.com/datakit/datakit:1.4.8
         imagePullPolicy: Always
         name: datakit
         ports:
@@ -539,7 +539,7 @@ spec:
           value: enable
         - name: ENV_HTTP_LISTEN
           value: 0.0.0.0:9529
-        image: pubrepo.jiagouyun.com/demo/datakit-win:1.4.7
+        image: pubrepo.jiagouyun.com/demo/datakit-win:1.4.8
         imagePullPolicy: Always
         name: datakit-win
         ports:
