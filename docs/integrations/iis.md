@@ -2,7 +2,7 @@
 # IIS
 ---
 
-- DataKit 版本：1.4.7
+- DataKit 版本：1.4.8
 - 操作系统支持：windows/amd64
 
 Microsoft IIS 采集器

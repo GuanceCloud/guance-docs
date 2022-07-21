@@ -2,7 +2,7 @@
 # Jaeger
 ---
 
-- DataKit 版本：1.4.7
+- DataKit 版本：1.4.8
 - 操作系统支持：:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple:
 
 Datakit 内嵌的 Jaeger Agent 用于接收，运算，分析 Jaeger Tracing 协议数据。
@@ -60,6 +60,15 @@ Datakit 内嵌的 Jaeger Agent 用于接收，运算，分析 Jaeger Tracing 协
     # key1 = "value1"
     # key2 = "value2"
     # ...
+
+  ## Threads config controls how many goroutines an agent cloud start.
+  ## buffer is the size of jobs' buffering of worker channel.
+  ## threads is the total number fo goroutines at running time.
+  ## timeout is the duration(ms) before a job can return a result.
+  # [inputs.jaeger.threads]
+    # buffer = 100
+    # threads = 8
+    # timeout = 1000
 
 ```
 

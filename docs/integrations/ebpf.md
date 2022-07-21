@@ -2,7 +2,7 @@
 # eBPF
 ---
 
-- DataKit 版本：1.4.7
+- DataKit 版本：1.4.8
 - 操作系统支持：:fontawesome-brands-linux:
 
 eBPF 采集器，采集主机网络 TCP、UDP 连接信息，Bash 执行日志等。本采集器主要包含 `ebpf-net` 及 `ebpf-bash` 俩类:
@@ -31,8 +31,8 @@ eBPF 采集器，采集主机网络 TCP、UDP 连接信息，Bash 执行日志�
 
 ### HTTPS 支持 {#https}
 
-[:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6) ·
-[:octicons-beaker-24: Experimental](index.md#experimental)
+[:octicons-tag-24: Version-1.4.6](../datakit/changelog.md#cl-1.4.6) ·
+[:octicons-beaker-24: Experimental](../datakit/index.md#experimental)
 
 若需要 ebpf-net 开启对容器内的进程采集 https 请求数据采集支持，则需要挂载 overlay 目录到容器
 
@@ -117,7 +117,7 @@ setenforce 0
   
   ## all supported plugins:
   ## - "ebpf-net"  :
-  ##     contains L4-network, dns collection
+  ##     contains L4-network(netflow), L7-network(httpflow, dnsflow) collection
   ## - "ebpf-bash" :
   ##     log bash
   ##
@@ -125,12 +125,18 @@ setenforce 0
     "ebpf-net",
   ]
 
-  # 可选: httpflow, httpflow-tls
-  # 默认不开启 httpflow 中的 https 采集
-  l7net_disabled = [
-    # "httpflow",
-    "httpflow-tls"
+  ## 若开启 ebpf-net 插件，需选配: 
+  ##  - "httpflow" (* 默认开启)
+  ##  - "httpflow-tls"
+  ##
+  l7net_enabled = [
+    "httpflow",
+    # "httpflow-tls"
   ]
+
+  ## if the system does not enable ipv6, it needs to be changed to true
+  ##
+  ipv6_disabled = false
 
   [inputs.ebpf.tags]
     # some_tag = "some_value"

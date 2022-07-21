@@ -2,7 +2,7 @@
 # 容器
 ---
 
-- DataKit 版本：1.4.7
+- DataKit 版本：1.4.8
 - 操作系统支持：:fontawesome-brands-linux:
 
 采集 container 和 Kubernetes 的指标数据、对象数据和容器日志，上报到观测云。
@@ -48,6 +48,9 @@
 
   [inputs.container.logging_extra_source_map]
     # source_regexp = "new_source"
+
+  [inputs.container.logging_source_multiline_map]
+    # source = '''^\d{4}'''
 
   [inputs.container.tags]
     # some_tag = "some_value"
@@ -126,6 +129,10 @@ echo `kubectl get pod -o=jsonpath="{.items[0].spec.containers[0].image}"`
 ]
 ```
 
+???+ warnning
+
+    如无必要，不要轻易在 Annotation/Label 中显式配置 pipeline，一般情况下，通过 `source` 字段自动推导即可。
+
 各个字段说明：
 
 | 字段名            | 必填 | 取值             | 默认值 | 说明                                                                                                                                                       |
@@ -136,17 +143,21 @@ echo `kubectl get pod -o=jsonpath="{.items[0].spec.containers[0].image}"`
 | `pipeline`        | N    | 字符串           | 无     | 适用该日志的 Pipeline 脚本，默认值为与日志来源匹配的脚本名（`<source>.p`）                                                                                 |
 | `only_images`     | N    | 字符串数组       | 无     | 针对 Pod 内部多容器情景，如果填写了任何 image 通配，则只采集能匹配这些 image 的容器的日志，类似白名单功能；如果字段为空，即认为采集该 Pod 中所有容器的日志 |
 | `multiline_match` | N    | 正则表达式字符串 | 无     | 用于多行日志匹配时的首行识别，例如 `"multiline_match":"^\\d{4}"` 表示行首是4个数字，在正则表达式规则中`\d` 是数字，前面的 `\` 是用来转义                   |
-| `tags`            | N    | key/value 键值对 | 无     | 添加额外的 tags，如果已经存在同名的 key 将以此为准（[:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6) ）                                            |
+| `tags`            | N    | key/value 键值对 | 无     | 添加额外的 tags，如果已经存在同名的 key 将以此为准（[:octicons-tag-24: Version-1.4.6](../datakit/changelog.md#cl-1.4.6) ）                                            |
 
 如果是在配置文件或终端命令行添加 Labels/Annotations，两边是英文状态双引号，需要添加转义字符。
 
-> 注意：`multiline_match` 的值是双重转义，4 根斜杠才能表示实际的 1 根，例如 `\"multiline_match\":\"^\\\\d{4}\"` 等价 `"multiline_match":"^\d{4}"`。
+???+ warnning
+
+    `multiline_match` 的值是双重转义，4 根斜杠才能表示实际的 1 根，例如 `\"multiline_match\":\"^\\\\d{4}\"` 等价 `"multiline_match":"^\d{4}"`。
 
 ```shell
 kubectl annotate pods my-pod datakit/logs="[{\"disable\":false,\"source\":\"testing-source\",\"service\":\"testing-service\",\"pipeline\":\"test.p\",\"only_images\":[\"image:<your_image_regexp>\"],\"multiline_match\":\"^\\\\d{4}-\\\\d{2}\"}]"
 ```
 
-> 关于 Docker 容器添加 Label 的方法，参见[这里](https://docs.docker.com/engine/reference/commandline/run/#set-metadata-on-container--l---label---label-file){:target="_blank"}。
+???+ info
+
+    关于 Docker 容器添加 Label 的方法，参见[这里](https://docs.docker.com/engine/reference/commandline/run/#set-metadata-on-container--l---label---label-file){:target="_blank"}。
 
 在 Kubernetes 可以在创建 Deployment 时，以 `template` 模式添加 Pod Annotations，例如：
 
@@ -189,24 +200,25 @@ spec:
 
 > 只有 DataKit 以 K8s DaemonSet 方式运行时生效，yaml 配置的参数需要用英文双引号括起来，主机部署时，以下环境变量不生效。
 
-| 环境变量名                                             | 对应的配置参数项                              | 参数示例（yaml 配置时需要用英文双引号括起来）                  |
-| :----------------------------------------------------- | -----------------------------------           | ------------------------------------------------------------   |
-| `ENV_INPUT_CONTAINER_DOCKER_ENDPOINT`                  | `docker_endpoint`                             | `"unix:///var/run/docker.sock"`                                |
-| `ENV_INPUT_CONTAINER_CONTAINERD_ADDRESS`               | `containerd_address`                          | `"/var/run/containerd/containerd.sock"`                        |
-| `ENV_INPUT_CONTIANER_EXCLUDE_PAUSE_CONTAINER`          | `exclude_pause_container`                     | `"true"`/`"false"`                                             |
-| `ENV_INPUT_CONTAINER_LOGGING_REMOVE_ANSI_ESCAPE_CODES` | `logging_remove_ansi_escape_codes `           | `"true"`/`"false"`                                             |
-| `ENV_INPUT_CONTAINER_TAGS`                             | `tags`                                        | `"tag1=value1,tag2=value2"` 如果配置文件中有同名 tag，会覆盖它 |
-| `ENV_INPUT_CONTAINER_ENABLE_CONTAINER_METRIC`          | `enable_container_metric`                     | `"true"`/`"false"`                                             |
-| `ENV_INPUT_CONTAINER_ENABLE_K8S_METRIC`                | `enable_k8s_metric`                           | `"true"`/`"false"`                                             |
-| `ENV_INPUT_CONTAINER_ENABLE_POD_METRIC`                | `enable_pod_metric`                           | `"true"`/`"false"`                                             |
-| `ENV_INPUT_CONTAINER_CONTAINER_INCLUDE_LOG`            | `container_include_log`                       | `"image:pubrepo.jiagouyun.com/datakit/logfwd*"` 以英文逗号隔开 |
-| `ENV_INPUT_CONTAINER_CONTAINER_EXCLUDE_LOG`            | `container_exclude_log`                       | `"image:pubrepo.jiagouyun.com/datakit/logfwd*"` 以英文逗号隔开 |
-| `ENV_INPUT_CONTAINER_MAX_LOGGING_LENGTH`               | `max_logging_length`                          | `"32766"`                                                      |
-| `ENV_INPUT_CONTAINER_KUBERNETES_URL`                   | `kubernetes_url`                              | `"https://kubernetes.default:443"`                             |
-| `ENV_INPUT_CONTAINER_BEARER_TOKEN`                     | `bearer_token`                                | `"/run/secrets/kubernetes.io/serviceaccount/token"`            |
-| `ENV_INPUT_CONTAINER_BEARER_TOKEN_STRING`              | `bearer_token_string`                         | `"<your-token-string>"`                                        |
-| `ENV_INPUT_CONTAINER_LOGGING_EXTRA_SOURCE_MAP`         | `logging_extra_source_map`                    | `"source_regex*=new_source,regex*=new_source2"` 以英文逗号隔开 |
-| `ENV_K8S_CLUSTER_NAME`                                 | k8s `cluster_name` 字段的缺省值               | `"kube"`                                                       |
+| 环境变量名                                              | 对应的配置参数项                    | 参数示例（yaml 配置时需要用英文双引号括起来）                                                  |
+| :-----------------------------------------------------  | ----------------------------------- | ------------------------------------------------------------                                   |
+| `ENV_INPUT_CONTAINER_DOCKER_ENDPOINT`                   | `docker_endpoint`                   | `"unix:///var/run/docker.sock"`                                                                |
+| `ENV_INPUT_CONTAINER_CONTAINERD_ADDRESS`                | `containerd_address`                | `"/var/run/containerd/containerd.sock"`                                                        |
+| `ENV_INPUT_CONTIANER_EXCLUDE_PAUSE_CONTAINER`           | `exclude_pause_container`           | `"true"`/`"false"`                                                                             |
+| `ENV_INPUT_CONTAINER_LOGGING_REMOVE_ANSI_ESCAPE_CODES`  | `logging_remove_ansi_escape_codes ` | `"true"`/`"false"`                                                                             |
+| `ENV_INPUT_CONTAINER_TAGS`                              | `tags`                              | `"tag1=value1,tag2=value2"` 如果配置文件中有同名 tag，会覆盖它                                 |
+| `ENV_INPUT_CONTAINER_ENABLE_CONTAINER_METRIC`           | `enable_container_metric`           | `"true"`/`"false"`                                                                             |
+| `ENV_INPUT_CONTAINER_ENABLE_K8S_METRIC`                 | `enable_k8s_metric`                 | `"true"`/`"false"`                                                                             |
+| `ENV_INPUT_CONTAINER_ENABLE_POD_METRIC`                 | `enable_pod_metric`                 | `"true"`/`"false"`                                                                             |
+| `ENV_INPUT_CONTAINER_CONTAINER_INCLUDE_LOG`             | `container_include_log`             | `"image:pubrepo.jiagouyun.com/datakit/logfwd*"` 以英文逗号隔开                                 |
+| `ENV_INPUT_CONTAINER_CONTAINER_EXCLUDE_LOG`             | `container_exclude_log`             | `"image:pubrepo.jiagouyun.com/datakit/logfwd*"` 以英文逗号隔开                                 |
+| `ENV_INPUT_CONTAINER_MAX_LOGGING_LENGTH`                | `max_logging_length`                | `"32766"`                                                                                      |
+| `ENV_INPUT_CONTAINER_KUBERNETES_URL`                    | `kubernetes_url`                    | `"https://kubernetes.default:443"`                                                             |
+| `ENV_INPUT_CONTAINER_BEARER_TOKEN`                      | `bearer_token`                      | `"/run/secrets/kubernetes.io/serviceaccount/token"`                                            |
+| `ENV_INPUT_CONTAINER_BEARER_TOKEN_STRING`               | `bearer_token_string`               | `"<your-token-string>"`                                                                        |
+| `ENV_INPUT_CONTAINER_LOGGING_EXTRA_SOURCE_MAP`          | `logging_extra_source_map`          | `"source_regex*=new_source,regex*=new_source2"` 以英文逗号隔开                                 |
+| `ENV_INPUT_CONTAINER_LOGGING_SOURCE_MULTILINE_MAP_JSON` | `logging_source_multiline_map`      | `'{"source":"^\d{4}"}'` JSON 格式的 map，key 为 source 名，value 是对应的 multiline_match 配置 |
+| `ENV_K8S_CLUSTER_NAME`                                  | k8s `cluster_name` 字段的缺省值     | `"kube"`                                                                                       |
 
 补充：
 
@@ -217,6 +229,9 @@ spec:
     3. 默认值 `kubernetes`
 
 - `ENV_INPUT_CONTAINER_LOGGING_EXTRA_SOURCE_MAP` 作用是指定替换 source，参数格式是 `正则表达式=new_source`，当某个 source 能够匹配正则表达式，则这个 source 会被 new_source 替换。如果能够替换成功，则不再使用 `annotations/labels` 配置的 source（[:octicons-tag-24: Version-1.4.7](../datakit/changelog.md#cl-1.4.7)）
+- 补充：如果要做到精确匹配，需要使用 `^` 和 `$` 将内容括起来。比如正则表达式写成 `datakit`，不仅可以匹配 `datakit` 字样，还能匹配到 `datakit123`；写成 `^datakit$` 则只能匹配到的 `datakit`
+
+- `ENV_INPUT_CONTAINER_LOGGING_SOURCE_MULTILINE_MAP_JSON` 用来指定 source 到多行配置的映射，如果某个日志没有配置 `multiline_match`，就会根据它的 source 来此处查找和使用对应的 `multiline_match'。因为 `multiline_match` 值是正则表达式较为复杂，所以 value 格式是 JSON 字符串，可以使用 [json.cn](json.cn) 辅助编写并压缩成一行
 
 ### 支持 Kubernetes 自定义 Export {#k8s-prom-exporter}
 
@@ -1031,6 +1046,7 @@ Kubernetes service 对象数据
 | 指标 | 描述| 数据类型 | 单位   |
 | ---- |---- | :---:    | :----: |
 |`log_read_lines`|采集到的行数计数，多行数据算成一行（[:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)）|int|count|
+|`log_read_offset`|当前数据在文件中的偏移位置（beta）|int|-|
 |`message`|日志源数据|string|-|
 |`status`|日志状态，info/emerg/alert/critical/error/warning/debug/OK/unknown|string|-|
 
