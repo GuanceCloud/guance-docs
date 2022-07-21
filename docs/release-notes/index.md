@@ -21,9 +21,7 @@ icon: zy/release-notes
 - [磁盘使用率](../monitoring/bot-obs/disk-usage.md)：检测当前工作空间主机的磁盘是否存在使用率过高问题
 - [应用性能检测](../monitoring/bot-obs/apm.md)：检测当前工作空间服务 QPS、平均响应时间、P90响应时间以及错误率是否存在波动变化
 
-
-
-![](img/1.bot_obs_1.png)
+![](img/1.bot_obs_1.1.png)
 
 
 
@@ -37,8 +35,8 @@ icon: zy/release-notes
 
 2.查看器快捷筛选新增空间级和个人级筛选方式
 
-- 空间级筛选：由管理员/拥有者进行配置，这部分筛选字段，工作空间普通成员和标准成员不支持编辑、删除、移动位置 
-- 个人级筛选：所有成员都可以配置基于 「个人+浏览器」的快捷筛选项，不会影响其他成员查看器
+- 空间级筛选项：由管理员/拥有者进行配置，点击快捷筛选旁的「设置」按钮，即可配置空间级筛选项
+- 个人级筛选项：所有成员都可以配置基于 「个人+浏览器」的快捷筛选项，点击快捷筛选右侧的「编辑」，即可配置个人级筛选项
 
 更多详情可参考文档 [查看器的搜索和筛选](../getting-started/necessary-for-beginners/explorer-search.md#url) 。
 
@@ -48,7 +46,7 @@ icon: zy/release-notes
 
 #### 新增修改 URL 中的时间范围进行数据查询
 
-观测云支持在浏览器的 URL 中直接修改当前工作空间的时间范围（time）的参数进行数据查询，支持秒、分、时、天 4 种单位，如 time=30s、time=20m、time=6h、time=2d 等，每种单位只能独立使用，不可组合。如下图所示在浏览器修改 `time=2h` ，查看器展示最近 2 小时的数据。更多详情可参考文档 [URL的时间范围](../getting-started/necessary-for-beginners/explorer-search.md#url) 。
+观测云支持在浏览器的 URL 中直接修改当前工作空间查看器/仪表板的 `time` 参数的时间范围进行数据查询，支持秒、分、时、天 4 种单位，如 time=30s、time=20m、time=6h、time=2d 等，如下图所示在浏览器修改 `time=2h` ，查看器展示最近 2 小时的数据。更多详情可参考文档 [URL 的时间范围](../getting-started/necessary-for-beginners/explorer-search.md#url) 。
 
 ![](img/4.url_1.png)
 
@@ -61,7 +59,7 @@ icon: zy/release-notes
 - 在未添加过视图变量的仪表板，顶部导航栏增加「添加视图变量」按钮，点击即可添加视图变量
 - 若仪表板已添加过视图变量，顶部导航栏下面会直接显示视图变量名称，点击右侧「编辑」按钮，即可进入视图变量编辑界面
 
-更多详情可查看文档 [视图变量](../scene/view-variable.md)
+更多详情可查看文档 [视图变量](../scene/view-variable.md) 。
 
 ![](img/2.view_variable_3.png)
 
@@ -79,7 +77,7 @@ icon: zy/release-notes
 
 #### 新增用户访问指标检测事件通知模板变量
 
-在「用户访问指标检测（RUM）」监控器中配置通知事件，除了通用的模板变量外，额外支持下列模板变量。更多详情可参考文档 [事件标题、内容模版](../monitoring/template.md) 。
+在「用户访问指标检测（RUM）」监控器中配置通知事件，除了通用的模板变量外，额外支持下列模板变量。更多详情可参考文档 [事件标题、内容模版](../monitoring/event-template.md) 。
 
 | 模板变量   | 类型   | 说明     |
 | ---------- | ------ | -------- |
@@ -93,7 +91,13 @@ icon: zy/release-notes
 
 配置监控器时，在事件内容添加链接，当触发事件后，在事件详情页的「事件内容」，点击链接即可打开新页跳转页面。
 
+### 最佳实践更新
 
+- 接入集成
+  - [Skywalking 采集 JVM 可观测最佳实践](../best-practices/monitoring/skywalking-jvm.md)
+  - [Minio 可观测最佳实践](../best-practices/cloud-native/minio.md)
+
+更多最佳实践更新可参考 [最佳实践版本历史](../best-practices/index.md) 。
 
 ## 2022 年 7 月 7 号
 
