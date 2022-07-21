@@ -94,8 +94,8 @@ icon: zy/release-notes
 ### 最佳实践更新
 
 - 云平台接入
-  - [Rancher 部署 DataKit 最佳实践](../best-practices/partner/rancher-datakit-install.md)
-  - [腾讯云产品可观测最佳实践 (Function)](../best-practices/partner/tencent-prod-func.md)
+    - [Rancher 部署 DataKit 最佳实践](../best-practices/partner/rancher-datakit-install.md)
+    - [腾讯云产品可观测最佳实践 (Function)](../best-practices/partner/tencent-prod-func.md)
 
 更多最佳实践更新可参考 [最佳实践版本历史](../best-practices/index.md) 。
 
