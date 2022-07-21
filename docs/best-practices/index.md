@@ -2,6 +2,12 @@
 icon: zy/best-practices
 ---
 ## (2022/07/22)
+
+### 新增最佳实践
+
+- 云平台接入
+    - 腾讯云 - [腾讯云产品可观测最佳实践 (Function)](./partner/tencent-prod-func.md)。
+
 ### 更新记录
 
 - 监控 Monitoring
