@@ -91,6 +91,39 @@ icon: zy/release-notes
 
 配置监控器时，在事件内容添加链接，当触发事件后，在事件详情页的「事件内容」，点击链接即可打开新页跳转页面。
 
+### DataKit 更新
+
+- prom 采集器的内置超时时长为 3 秒
+- 日志相关问题修复：
+    - 添加日志采集的 `log_read_offset` 字段
+    - 修复日志文件在 rotate 后没有正确 readAll 的 bug
+- 容器采集相关问题修复：
+    - 修复对环境变量 `NODE_NAME` 的不兼容问题
+    - k8s 自动发现的 prom 采集器改为串行式的、node 分散采集
+    - 添加日志 source 和多行的的映射配置
+    - 修复容器日志替换 source 后还使用之前的 multiline 和 pipeline 的 bug
+    - 修正容器日志，设置文件活跃时长是 12 小时
+    - 优化 docker 容器日志的 image 字段
+    - 优化 k8s pod 对象的 host 字段
+    - 修复容器指标和对象采集没有添加 host tag 的问题
+- eBPF 相关：
+    - 修复 uprobe event name 命名冲突问题
+    - 增加更多环境变量配置，便于云 k8s 环境的部署
+- 优化 APM 数据接收接口的数据处理，缓解卡死客户端以及内存占用问题
+- SQLServer 采集器修复：
+    - 恢复 TLS1.0 支持
+    - 支持通过 instance 采集过滤，以减少时间线消耗
+- Pipeline 函数 `adjust_timezone()` 有所调整
+- IO 模块优化，提高整体数据处理能力，保持内存消耗的相对可控
+- Monitor 更新：
+    - 修复繁忙时 Monitor 可能导致的长时间卡顿
+    - 优化 Monitor 展示，增加 IO 模块的信息展示，便于用于调整 IO 模块参数
+- 修复 Redis 奔溃问题
+- 去掉部分繁杂的冗余日志
+- 修复选举类采集器在非选举模式下不追加主机 tag 的问题
+
+更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md) 。
+
 ### 最佳实践更新
 
 - 云平台接入
