@@ -16,6 +16,7 @@ theme:
 
 markdown_extensions:
   - tables
+  - footnotes
   - attr_list
   - md_in_html
   - toc:
