@@ -4,7 +4,7 @@
 
 阅读本文前，请先阅读：
 
-- [观测云集成简介](/dataflux-func/script-market-guance-integration)
+- [观测云集成 - 基本操作](/dataflux-func/script-market-guance-integration)
 
 > 提示：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包，必须确认已经开通 dcdn 加速服务。
 
@@ -36,6 +36,6 @@
 
 *注意：`tags`、`fields`中的字段可能会随后续更新有所变动*
 
->提示：`tags.name`值为域名，作为唯一识别
+> 提示：`tags.name`值为域名，作为唯一识别
 
->提示 2：`fields.message`为 JSON 序列化后字符串
+> 提示 2：`fields.message`为 JSON 序列化后字符串

@@ -4,7 +4,7 @@
 
 阅读本文前，请先阅读：
 
-- [观测云集成简介](/dataflux-func/script-market-guance-integration)
+- [观测云集成 - 基本操作](/dataflux-func/script-market-guance-integration)
 
 > 提示：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包
 
@@ -39,13 +39,13 @@ collector_configs = {
 {
   "measurement": "aws_opensearch",
   "tags": {
+    "name"                  : "df-prd-es",
     "EngineVersion"         : "Elasticsearch_7.10",
     "DomainId"              : "5882XXXXX135/df-prd-es",
     "DomainName"            : "df-prd-es",
     "ClusterConfig"         : "{域中的实例类型和实例数量 JSON 数据}",
     "ServiceSoftwareOptions": "{服务软件的当前状态 JSON 数据}",
     "region"                : "cn-northwest-1",
-    "name"                  : "df-prd-es",
     "RegionId"              : "cn-northwest-1"
   },
   "fields": {

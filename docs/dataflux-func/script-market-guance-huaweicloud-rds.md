@@ -4,7 +4,7 @@
 
 阅读本文前，请先阅读：
 
-- [观测云集成简介](/dataflux-func/script-market-guance-integration-intro)
+- [观测云集成 - 基本操作](/dataflux-func/script-market-guance-integration)
 
 > 提示：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包
 
@@ -26,7 +26,7 @@
 ~~~python
 collector_configs = {
     'region_projects': {
-        'cn-north-4' : ['c631f046252d4exxxxxxxxxxx', '15c6ce1c12da40xxxxxxxx9'],
+        'cn-north-4': ['c631f046252d4exxxxxxxxxxx', '15c6ce1c12da40xxxxxxxx9'],
     }
 }
 ~~~
@@ -41,6 +41,7 @@ collector_configs = {
 {
   "measurement": "huaweicloud_rds",
   "tags": {
+    "name"                   : "1d0c91561f4644daxxxxx68304b0520din01",
     "id"                     : "1d0c91561f4644dxxxxxxd68304b0520din01",
     "instance_name"          : "rds-df54-xxxx",
     "status"                 : "ACTIVE",
@@ -52,8 +53,7 @@ collector_configs = {
     "project_id"             : "c631f046252dxxxxxxxf253c62d48585",
     "time_zone"              : "UTC+08:00",
     "enable_ssl"             : "False",
-    "charge_info.charge_mode": "postPaid",
-    "name"                   : "1d0c91561f4644daxxxxx68304b0520din01"
+    "charge_info.charge_mode": "postPaid"
   },
   "fields": {
     "created"         : "2022-06-21T06:17:27+0000",

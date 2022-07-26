@@ -4,9 +4,9 @@
 
 阅读本文前，请先阅读：
 
-- [观测云集成简介](/dataflux-func/script-market-guance-integration)
+- [观测云集成 - 基本操作](/dataflux-func/script-market-guance-integration)
 
-> 提示 1：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包
+> 提示：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包
 
 > 提示 2：采集腾讯云云监控数据前，必须先配置对应产品的自定义对象采集器。
 
@@ -31,13 +31,13 @@
 
 ```python
 tencentcloud_monitor_configs = {
-  'regions' : ['ap-shanghai'],
-  'targets': [
-    {
-      'namespace': 'QCE/CVM',
-      'metrics'  : ['WanOuttraffic', 'WanOutpkg'],
-    }
-  ],
+    'regions': ['ap-shanghai'],
+    'targets': [
+        {
+            'namespace': 'QCE/CVM',
+            'metrics'  : ['WanOuttraffic', 'WanOutpkg'],
+        }
+    ],
 }
 ```
 
@@ -57,13 +57,13 @@ tencentcloud_monitor_configs = {
 
 ```python
 tencentcloud_monitor_configs = {
-  'regions' : ['ap-shanghai'],
-  'targets': [
-    {
-      'namespace': 'QCE/CVM',
-      'metrics'  : ['WanOutpkg', 'Wan*', '*Outpkg', '*Out*'],
-    }
-  ],
+    'regions': ['ap-shanghai'],
+    'targets': [
+        {
+            'namespace': 'QCE/CVM',
+            'metrics'  : ['WanOutpkg', 'Wan*', '*Outpkg', '*Out*'],
+        }
+    ],
 }
 ```
 
@@ -83,13 +83,13 @@ tencentcloud_monitor_configs = {
 
 ```python
 tencentcloud_monitor_configs = {
-  'regions' : ['ap-shanghai'],
-  'targets': [
-    {
-      'namespace': 'QCE/CVM',
-      'metrics'  : ['NOT', 'WanOutpkg', 'Wan*', '*Outpkg', '*Out*'],
-    }
-  ],
+    'regions': ['ap-shanghai'],
+    'targets': [
+        {
+            'namespace': 'QCE/CVM',
+            'metrics'  : ['NOT', 'WanOutpkg', 'Wan*', '*Outpkg', '*Out*'],
+        }
+    ],
 }
 ```
 
@@ -105,17 +105,17 @@ tencentcloud_monitor_configs = {
 
 ```python
 tencentcloud_monitor_configs = {
-  'regions' : ['ap-shanghai'],
-  'targets': [
-    {
-      'namespace'   : 'QCE/CVM',
-      'metrics'     : ['*Out*'],
-    },
-    {
-      'namespace'   : 'QCE/CVM',
-      'metrics'     : ['NOT', 'WanOutpkg'],
-    },
-  ],
+    'regions': ['ap-shanghai'],
+    'targets': [
+        {
+            'namespace': 'QCE/CVM',
+            'metrics'  : ['*Out*'],
+        },
+        {
+            'namespace': 'QCE/CVM',
+            'metrics'  : ['NOT', 'WanOutpkg'],
+        },
+    ],
 }
 ```
 
@@ -129,7 +129,8 @@ tencentcloud_monitor_configs = {
 | 云数据库 Mysql   | `QCE/CDB`            | `InstanceId`、`InstanceType` |                                                                                |
 | 对象存储监控     | `QCE/COS`            | `BucketName`                 |                                                                                |
 | 公网负载均衡监控 | `QCE/LB_PUBLIC`      | `vip`                        | 对象数据中的` Address `字段被识别为`vip`                                       |
-| 内网负载均衡监控 | `QCE/LB_PRIVATE`     | `vip`、`vpcId`               |                                                                                |
+| 内网负载均衡监控 | `QCE/LB_PRIVATE`     | `vip`、`vpcId`               |                                                              |
+| 云数据库 Redis   | `QCE/REDIS_MEM`      | `InstanceId`                 | 目前仅支持 Redis 实例监控，暂不支持节点监控                                                            |
 
 ### 监控指标配置信息
 
@@ -315,6 +316,46 @@ tencentcloud_monitor_configs = {
 | OutDropPkts             | 丢弃流出数据包                   |
 | UnhealthRsCount         | 健康检查异常数                   |
 
+#### QCE/REDIS_MEM
+
+- [云数据库 Redis 内存版监控指标（5秒）](https://cloud.tencent.com/document/product/248/49729)
+
+| 指标英文名 (MetricName) | 指标中文名          |
+| ----------------------- | ------------------- |
+| CpuUtil                 | CPU 使用率          |
+| CpuMaxUtil              | 节点最大 CPU 使用率 |
+| MemUsed                 | 内存使用量          |
+| MemUtil                 | 内存使用率          |
+| MemMaxUtil              | 节点最大内存使用率  |
+| Keys                    | Key 总个数          |
+| Expired                 | Key 过期数          |
+| Evicted                 | Key 驱逐数          |
+| Connections             | 连接数量            |
+| ConnectionsUtil         | 连接使用率          |
+| InFlow                  | 入流量              |
+| InBandwidthUtil         | 入流量使用率        |
+| InFlowLimit             | 入流量限流触发      |
+| OutFlow                 | 出流量              |
+| OutBandwidthUtil        | 出流量使用率        |
+| OutFlowLimit            | 出流量限流触发      |
+| LatencyAvg              | 平均执行时延        |
+| LatencyMax              | 最大执行时延        |
+| LatencyRead             | 读平均时延          |
+| LatencyWrite            | 写平均时延          |
+| LatencyOther            | 其他命令平均时延    |
+| Commands                | 总请求              |
+| CmdRead                 | 读请求              |
+| CmdWrite                | 写请求              |
+| CmdOther                | 其他请求            |
+| CmdBigValue             | 大 Value 请求       |
+| CmdKeyCount             | Key 请求数          |
+| CmdMget                 | Mget 请求数         |
+| CmdSlow                 | 慢查询              |
+| CmdHits                 | 读请求命中          |
+| CmdMiss                 | 读请求Miss          |
+| CmdErr                  | 执行错误            |
+| CmdHitsRatio            | 读请求命中率        |
+
 ## 4. 数据上报格式
 
 数据正常同步后，可以在观测云的「指标」中查看数据。
@@ -323,13 +364,13 @@ tencentcloud_monitor_configs = {
 
 ```python
 tencentcloud_monitor_configs = {
-  'regions' : ['ap-shanghai'],
-  'targets': [
-    {
-      'namespace': 'QCE/CVM',
-      'metrics'  : ['WanOutpkg'],
-    },
-  ],
+    'regions': ['ap-shanghai'],
+    'targets': [
+        {
+            'namespace': 'QCE/CVM',
+            'metrics'  : ['WanOutpkg'],
+        },
+    ],
 }
 ```
 
@@ -339,12 +380,12 @@ tencentcloud_monitor_configs = {
 {
   "measurement": "tencentcloud_QCE/CVM",
   "tags": {
-    	"InstanceId": "i-xxx"
+    "InstanceId": "i-xxx"
   },
   "fields": {
-      "WanOutpkg_max": 0.005,
-  },
-},
+    "WanOutpkg_max": 0.005
+  }
+}
 ```
 
 > 提示：所有的指标值都会以`float`类型上报。
@@ -360,8 +401,8 @@ tencentcloud_monitor_configs = {
 ```python
 # 创建采集器
 collectors = [
-  tencentcloud_cvm.DataCollector(account, common_tencentcloud_configs),
-  tencentcloud_monitor.DataCollector(account, tencentcloud_monitor_configs) # 云监控采集器一般放在最末尾
+    tencentcloud_cvm.DataCollector(account, common_tencentcloud_configs),
+    tencentcloud_monitor.DataCollector(account, tencentcloud_monitor_configs) # 云监控采集器一般放在最末尾
 ]
 ```
 
@@ -373,10 +414,10 @@ collectors = [
 {
   "measurement": "tencentcloud_QCE/CVM",
   "tags": {
-    "InstanceId": "i-xxx",
+    "InstanceId": "i-xxx"
   },
-  "fields": { "内容略" },
-},
+  "fields": { "内容略" }
+}
 ```
 
 同时，腾讯云 CVM 采集器采集到的自定义对象数据如下：
@@ -401,13 +442,13 @@ collectors = [
   "measurement": "tencentcloud_QCE/CVM",
   "tags": {
     "name"            : "i-xxx",
-    "InstanceId"		  : "i-xxx", //云监控原始字段
+    "InstanceId"		  : "i-xxx",   // 云监控原始字段
     "InstanceType"    : "c6g.xxx", // 来自自定义对象 CVM 的字段
-    "PlatformDetails" : "xxx", // 来自自定义对象 CVM 的字段
+    "PlatformDetails" : "xxx",     // 来自自定义对象 CVM 的字段
     "{其他字段略}"
   },
-  "fields": { "内容略" },
-},
+  "fields": { "内容略" }
+}
 ```
 
 ## 注意事项

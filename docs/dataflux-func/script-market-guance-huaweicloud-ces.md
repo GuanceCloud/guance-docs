@@ -4,7 +4,7 @@
 
 阅读本文前，请先阅读：
 
-- [观测云集成简介](https://www.yuque.com/dataflux/func/script-market-guance-integration-intro)
+- [观测云集成 - 基本操作](/dataflux-func/script-market-guance-integration)
 
 > 提示：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包
 
@@ -29,15 +29,15 @@
 
 ```python
 huaweicloud_ces_configs = {
-  'region_projects': {
-    'cn-north-4': ['c63xxx', '15cxxx'],
-  },
-  'targets': [
-    {
-      'namespace': 'SYS.OBS',
-      'metrics'  : ['capacity_total', 'capacity_archive'],
-    }
-  ],
+    'region_projects': {
+        'cn-north-4': ['c63xxx', '15cxxx'],
+    },
+    'targets': [
+        {
+            'namespace': 'SYS.OBS',
+            'metrics'  : ['capacity_total', 'capacity_archive'],
+        }
+    ],
 }
 ```
 
@@ -54,15 +54,15 @@ huaweicloud_ces_configs = {
 
 ```python
 huaweicloud_ces_configs = {
-  'region_projects': {
-    'cn-north-4': ['c63xxx', '15cxxx'],
-  },
-  'targets': [
-    {
-      'namespace': 'SYS.OBS',
-      'metrics'  : ['capacity_total', 'capacity*', '*total', '*capacity*'],
-    }
-  ],
+    'region_projects': {
+        'cn-north-4': ['c63xxx', '15cxxx'],
+    },
+    'targets': [
+        {
+            'namespace': 'SYS.OBS',
+            'metrics'  : ['capacity_total', 'capacity*', '*total', '*capacity*'],
+      }
+    ],
 }
 ```
 
@@ -79,15 +79,15 @@ huaweicloud_ces_configs = {
 
 ```python
 huaweicloud_ces_configs = {
-  'region_projects': {
-    'cn-north-4': ['c63xxx', '15cxxx'],
-  },
-  'targets': [
-    {
-      'namespace': 'SYS.OBS',
-      'metrics'  : ['NOT', 'capacity_total', 'capacity*', '*total', '*capacity*'],
-    }
-  ],
+    'region_projects': {
+        'cn-north-4': ['c63xxx', '15cxxx'],
+    },
+    'targets': [
+        {
+            'namespace': 'SYS.OBS',
+            'metrics'  : ['NOT', 'capacity_total', 'capacity*', '*total', '*capacity*'],
+        }
+    ],
 }
 ```
 
@@ -102,19 +102,19 @@ huaweicloud_ces_configs = {
 
 ```python
 huaweicloud_ces_configs = {
-  'region_projects': {
-    'cn-north-4': ['c63xxx', '15cxxx'],
-  },
-  'targets': [
-    {
-      'namespace': 'SYS.OBS',
-      'metrics'  : ['*capacity*'],
+    'region_projects': {
+        'cn-north-4': ['c63xxx', '15cxxx'],
     },
-    {
-      'namespace': 'SYS.OBS',
-      'metrics'  : ['NOT', 'capacity_total'],
-    },
-  ],
+    'targets': [
+        {
+            'namespace': 'SYS.OBS',
+            'metrics'  : ['*capacity*'],
+        },
+        {
+            'namespace': 'SYS.OBS',
+            'metrics'  : ['NOT', 'capacity_total'],
+        },
+    ],
 }
 ```
 
@@ -128,17 +128,18 @@ huaweicloud_ces_configs = {
 | 弹性云服务器               | `SYS.ECS`            | `instance_id`                                                             | 弹性云服务器的基础监控指标                               |
 | 弹性云服务器中操作系统监控 | `AGT.ECS`            | `instance_id`                                                             | 弹性云服务器操作系统监控的监控指标（安装 Agent，简洁版） |
 | 关系型数据库               | `SYS.RDS`            | `rds_cluster_id`<br>`postgresql_cluster_id`<br>`rds_cluster_sqlserver_id` | 分别对应<br>MySQL<br>PostgreSQL<br>SQL Server            |
-| 弹性负载均衡               | `SYS.ELB`            | `lbaas_instance_id`                                                       |                                                          |
+| 弹性负载均衡               | `SYS.ELB`            | `lbaas_instance_id`                                          |                                                          |
+| 分布式缓存服务             | `SYS.DCS`            | `dcs_instance_id`                                            |                                                          |
 
 ### 缓存机制
 
-> 提示：华为云云监控在获取指标维度信息时引入了缓存机制。用户若频繁创建删除实例，需要等待 1 小时，采集器开始获取新的监控数据
+华为云云监控在获取指标维度信息时引入了缓存机制。用户若频繁创建删除实例，需要等待 1 小时，采集器开始获取新的监控数据
 
 ### 监控指标配置信息
 
-> 提示 1：目前采集器只支持采集实例级别的指标。
+目前采集器只支持采集实例级别的指标。
 
-> 提示 2：建议用户按照各命名空间对应的指标名配置，如果用户 [配置了 ALL](#所有指标)，不保证下文不存在指标的准确性。
+> 提示：建议用户按照各命名空间对应的指标名配置
 
 ## 4. 数据上报格式
 
@@ -148,15 +149,15 @@ huaweicloud_ces_configs = {
 
 ```python
 huaweicloud_ces_configs = {
-  'region_projects': {
-    'cn-north-4': ['c63xxx', '15cxxx'],
-  },
-  'targets': [
-    {
-      'namespace': 'SYS.OBS',
-      'metrics'  : ['capacity_total'],
+    'region_projects': {
+        'cn-north-4': ['c63xxx', '15cxxx'],
     },
-  ],
+    'targets': [
+        {
+            'namespace': 'SYS.OBS',
+            'metrics'  : ['capacity_total'],
+        },
+    ],
 }
 ```
 
@@ -166,16 +167,16 @@ huaweicloud_ces_configs = {
 {
   "measurement": "huaweicloud_SYS.OBS",
   "tags": {
-      "bucket_name": "i-xxx"
+    "bucket_name": "i-xxx"
   },
   "fields": {
-      "capacity_total_average" : xxx,
-      "capacity_total_max"     : xxx,
-      "capacity_total_min"     : xxx,
-      "capacity_total_sum"     : xxx,
-      "capacity_total_variance": xxx,
-  },
-},
+    "capacity_total_average" : "{略}",
+    "capacity_total_max"     : "{略}",
+    "capacity_total_min"     : "{略}",
+    "capacity_total_sum"     : "{略}",
+    "capacity_total_variance": "{略}"
+  }
+}
 ```
 
 > 提示：所有的指标值都会以`float`类型上报。
@@ -191,8 +192,8 @@ huaweicloud_ces_configs = {
 ```python
 # 创建采集器
 collectors = [
-  huaweicloud_obs.DataCollector(account, common_huaweicloud_configs),
-  huaweicloud_ces.DataCollector(account, huaweicloud_ces_configs) # 云监控采集器一般放在最末尾
+    huaweicloud_obs.DataCollector(account, common_huaweicloud_configs),
+    huaweicloud_ces.DataCollector(account, huaweicloud_ces_configs) # 云监控采集器一般放在最末尾
 ]
 ```
 
@@ -204,9 +205,9 @@ collectors = [
 {
   "measurement": "huaweicloud_SYS.OBS",
   "tags": {
-    "bucket_name": "i-xxx",
+    "bucket_name": "i-xxx"
   },
-  "fields": { "内容略" },
+  "fields": { "内容略" }
 },
 ```
 
@@ -237,8 +238,8 @@ collectors = [
     "PlatformDetails" : "xxx", // 来自自定义对象 OBS 的字段
     "{其他字段略}"
   },
-  "fields": { "内容略" },
-},
+  "fields": { "内容略" }
+}
 ```
 
 ## 4. 故障排除

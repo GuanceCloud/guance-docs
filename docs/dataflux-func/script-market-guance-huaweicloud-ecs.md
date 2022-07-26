@@ -4,7 +4,7 @@
 
 阅读本文前，请先阅读：
 
-- [观测云集成简介](/dataflux-func/script-market-guance-integration)
+- [观测云集成 - 基本操作](/dataflux-func/script-market-guance-integration)
 
 > 提示：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包
 
@@ -14,7 +14,7 @@
 
 | 字段                 | 类型     | 是否必须 | 说明                                                                                                       |
 | -------------------- | -------- | -------- | ---------------------------------------------------------------------------------------------------------- |
-| `region_projects`    | dic      | 必须     | 所需采集数据的「地域 - 项目 ID」列表                                                                       |
+| `region_projects`    | dict     | 必须     | 所需采集数据的「地域 - 项目 ID」列表                                                                       |
 | `region_projects[#]` | str:list | 必须     | 键值对中：<br>Key 代表地域（如：`'cn-north-4'`）<br>Value 代表该地域下所需采集的项目 ID 列表<br>总表见附录 |
 
 ## 2. 配置示例
@@ -27,6 +27,7 @@
 collector_configs = {
     'region_projects':{
         'cn-north-4': ['c631f046252d4exxxxxxxxxxx', '15c6ce1c12da40xxxxxxxx9']
+    }
 }
 ~~~
 
@@ -38,29 +39,29 @@ collector_configs = {
 
 ~~~json
 {
-    "measurement": "huaweicloud_ecs",
-    "tags": {
-      "status"                     : "ACTIVE",
-      "id"                         : "xxxxx",
-      "OS-EXT-AZ:availability_zone": "cn-southeast-1",
-      "name"                       : "xxxxx",
-      "project_id"                 : "xxxxxxx",
-      "vpc_id"                     : "3dda7d4b-aec0-4838-a91a-28xxxxxxxx",
-      "instance_name"              : "ecs-3384",
-      "charging_mode"              : "0",
-      "resource_spec_code"         : "sn3.small.1.linux",
-      "resource_type"              : "1",
-      "metadata_os_type"           : "Linux",
-      "RegionId"                   : "cn-north-4"
-    },
-    "fields": {
-        "hostId"                              : "1e122315dac18163814b9e0d0fc6xxxxxx",
-        "created"                             : "2022-06-16T10:13:24Z",
-        "description"                         : "{JSON 数据}",
-        "addresses"                           : "{IPJSON 数据}",
-        "os-extended-volumes:volumes_attached": "{JSON 数据}",
-        "message"                             : "{实例 JSON 数据}",
-		}
+  "measurement": "huaweicloud_ecs",
+  "tags": {
+    "name"                       : "xxxxx",
+    "status"                     : "ACTIVE",
+    "id"                         : "xxxxx",
+    "OS-EXT-AZ:availability_zone": "cn-southeast-1",
+    "project_id"                 : "xxxxxxx",
+    "vpc_id"                     : "3dda7d4b-aec0-4838-a91a-28xxxxxxxx",
+    "instance_name"              : "ecs-3384",
+    "charging_mode"              : "0",
+    "resource_spec_code"         : "sn3.small.1.linux",
+    "resource_type"              : "1",
+    "metadata_os_type"           : "Linux",
+    "RegionId"                   : "cn-north-4"
+  },
+  "fields": {
+    "hostId"                              : "1e122315dac18163814b9e0d0fc6xxxxxx",
+    "created"                             : "2022-06-16T10:13:24Z",
+    "description"                         : "{JSON 数据}",
+    "addresses"                           : "{IPJSON 数据}",
+    "os-extended-volumes:volumes_attached": "{JSON 数据}",
+    "message"                             : "{实例 JSON 数据}"
+  }
 }
 ~~~
 
@@ -81,9 +82,9 @@ charging_mode（云服务器付费类型）取值含义：
 
 *注意：`tags`、`fields`中的字段可能会随后续更新有所变动*
 
->提示：`tags.name`值为实例 ID，作为唯一识别
+> 提示：`tags.name`值为实例 ID，作为唯一识别
 
->提示 2：`status`取值范围及对应含义请见附录云服务器状态
+> 提示 2：`status`取值范围及对应含义请见附录云服务器状态
 
 ## X. 附录
 

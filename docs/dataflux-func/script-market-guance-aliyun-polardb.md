@@ -4,7 +4,7 @@
 
 阅读本文前，请先阅读：
 
-- [观测云集成简介](/dataflux-func/script-market-guance-integration)
+- [观测云集成 - 基本操作](/dataflux-func/script-market-guance-integration)
 
 > 提示：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包
 
@@ -37,37 +37,37 @@ collector_configs = {
 
 ~~~json
 {
-    "measurement": "aliyun_polardb",
-    "tags": {
-        "name"                : "pc-xxxx",
-        "RegionId"            : "cn-hangzhou",
-        "VpcId"               : "vpc-xxxx",
-        "DBNodeNumber"        : "2",
-        "PayType"             : "Postpaid",
-        "DBType"              : "MySQL",
-        "LockMode"            : "Unlock",
-        "DBVersion"           : "8.0",
-        "DBClusterId"         : "pc-xxxx",
-        "DBClusterNetworkType": "VPC",
-        "ZoneId"              : "cn-hangzhou-i",
-        "Engine"              : "POLARDB",
-        "Category"            : "Normal",
-        "DBClusterDescription": "pc-xxxx",
-        "DBNodeClass"         : "polar.mysql.x4.medium"
-    },
-    "fields": {
-        "DBNodes"   : "{节点列表 JSON 数据}",
-        "Database"  : "[数据库详情 JSON 数据]",
-        "ExpireTime": "",
-        "CreateTime": "2022-06-17T06:07:19Z",
-        "message"   : "{实例 JSON 数据}"
-    }
+  "measurement": "aliyun_polardb",
+  "tags": {
+    "name"                : "pc-xxxx",
+    "RegionId"            : "cn-hangzhou",
+    "VpcId"               : "vpc-xxxx",
+    "DBNodeNumber"        : "2",
+    "PayType"             : "Postpaid",
+    "DBType"              : "MySQL",
+    "LockMode"            : "Unlock",
+    "DBVersion"           : "8.0",
+    "DBClusterId"         : "pc-xxxx",
+    "DBClusterNetworkType": "VPC",
+    "ZoneId"              : "cn-hangzhou-i",
+    "Engine"              : "POLARDB",
+    "Category"            : "Normal",
+    "DBClusterDescription": "pc-xxxx",
+    "DBNodeClass"         : "polar.mysql.x4.medium"
+  },
+  "fields": {
+    "DBNodes"   : "{节点列表 JSON 数据}",
+    "Database"  : "[数据库详情 JSON 数据]",
+    "ExpireTime": "",
+    "CreateTime": "2022-06-17T06:07:19Z",
+    "message"   : "{实例 JSON 数据}"
+  }
 }
 ~~~
 
 部分参数说明如下
 
-tags.Category（集群系列）取值含义
+tags.Category（集群系列）取值含义：
 
 | 取值      | 说明   |
 | --------- | ------ |
@@ -77,7 +77,7 @@ tags.Category（集群系列）取值含义
 
 *注意：`tags`、`fields`中的字段可能会随后续更新有所变动*
 
-> 提示 1：`tags.DBClusterId`值为实例 ID，作为唯一识别
+> 提示：`tags.DBClusterId`值为实例 ID，作为唯一识别
 
 ## X. 附录
 

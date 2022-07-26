@@ -4,9 +4,9 @@
 
 阅读本文前，请先阅读：
 
-- [观测云集成简介](/dataflux-func/script-market-guance-integration)
+- [观测云集成 - 基本操作](/dataflux-func/script-market-guance-integration)
 
-提示：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包
+> 提示：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包
 
 ## 1. 配置结构
 
@@ -32,21 +32,21 @@ aliyun_dts_configs = {
 上报的数据示例如下：
 
 ```json
-  {
-    "measurement": "aliyun_dts",
-    "tags": {
-      "DtsInstanceID": "dtsy4is3g56xxxxx",
-      "JobType"      : "online",
-      "PayType"      : "PostPaid",
-      "RegionId"     : "cn-hangzhou",
-      "Status"       : "Finished",
-      "name"         : "dtsy4is3g56xxxxx"
-    },
-    "fields": {
-      "message"   : "{实例 JSON 数据}",
-      "CreateTime": "2022-03-23T09:48:12Z",
-    },
+{
+  "measurement": "aliyun_dts",
+  "tags": {
+    "name"         : "dtsy4is3g56xxxxx",
+    "DtsInstanceID": "dtsy4is3g56xxxxx",
+    "JobType"      : "online",
+    "PayType"      : "PostPaid",
+    "RegionId"     : "cn-hangzhou",
+    "Status"       : "Finished"
   },
+  "fields": {
+    "CreateTime": "2022-03-23T09:48:12Z",
+    "message"   : "{实例 JSON 数据}"
+  }
+}
 ```
 
 *注意：`tags`、`fields`中的字段可能会随后续更新有所变动*
