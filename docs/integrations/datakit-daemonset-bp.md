@@ -2,7 +2,7 @@
 # DataKit DaemonSet 部署最佳实践
 ---
 
-- DataKit 版本：1.4.8
+- DataKit 版本：1.4.9
 
 ## 背景介绍
 

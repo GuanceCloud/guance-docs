@@ -2,7 +2,7 @@
 JVM
 ---
 
-- DataKit 版本：1.4.8
+- DataKit 版本：1.4.9
 - 操作系统支持：:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple:
 
 ![](imgs/input-jvm-1.png)

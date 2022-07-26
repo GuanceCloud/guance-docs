@@ -2,7 +2,7 @@
 # logstreaming
 ---
 
-- DataKit 版本：1.4.8
+- DataKit 版本：1.4.9
 - 操作系统支持：全平台
 
 启动一个 HTTP Server，接收日志文本数据，上报到观测云。

@@ -2,7 +2,7 @@
 # DiskIO
 ---
 
-- DataKit 版本：1.4.8
+- DataKit 版本：1.4.9
 - 操作系统支持：:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple:
 
 diskio 采集器用于磁盘流量和时间的指标的采集

@@ -2,7 +2,7 @@
 # DaemonSet 安装 DataKit 
 ---
 
-- DataKit 版本：1.4.8
+- DataKit 版本：1.4.9
 - 操作系统支持：Linux
 
 本文档介绍如何在 K8s 中通过 DaemonSet 方式安装 DataKit。
@@ -201,11 +201,12 @@ spec:
 
 ### 日志配置相关环境变量 {#env-log}
 
-| 环境变量名称  | 类型   | 默认值                     | 必须   | 说明                                                             |
-| ---------:    | ----:  | ---:                       | ------ | ----                                                             |
-| ENV_GIN_LOG   | string | */var/log/datakit/gin.log* | 否     | 如果改成 `stdout`，DataKit 自身 gin 日志将不写文件，而是终端输出 |
-| ENV_LOG       | string | */var/log/datakit/log*     | 否     | 如果改成 `stdout`，DatakIt 自身日志将不写文件，而是终端输出      |
-| ENV_LOG_LEVEL | string | info                       | 否     | 设置 DataKit 自身日志等级，可选 `info/debug`                     |
+| 环境变量名称          | 类型   | 默认值                     | 必须   | 说明                                                             |
+| ---------:            | ----:  | ---:                       | ------ | ----                                                             |
+| ENV_GIN_LOG           | string | */var/log/datakit/gin.log* | 否     | 如果改成 `stdout`，DataKit 自身 gin 日志将不写文件，而是终端输出 |
+| ENV_LOG               | string | */var/log/datakit/log*     | 否     | 如果改成 `stdout`，DatakIt 自身日志将不写文件，而是终端输出      |
+| ENV_LOG_LEVEL         | string | info                       | 否     | 设置 DataKit 自身日志等级，可选 `info/debug`                     |
+| ENV_DISABLE_LOG_COLOR | bool   | -                          | 否     | 关闭日志颜色                                                     |
 
 ###  DataKit pprof 相关 {#env-pprof}
 

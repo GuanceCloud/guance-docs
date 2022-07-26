@@ -2,7 +2,7 @@
 # Prometheus Remote Write 支持
 ---
 
-- DataKit 版本：1.4.8
+- DataKit 版本：1.4.9
 - 操作系统支持：:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple:
 
 监听 Prometheus Remote Write 数据，上报到观测云。
