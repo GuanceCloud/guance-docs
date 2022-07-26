@@ -4,13 +4,14 @@
 
 阅读本文前，请先阅读：
 
-- [观测云集成简介](/dataflux-func/script-market-guance-integration)
+- [观测云集成 - 基本操作](/dataflux-func/script-market-guance-integration)
 
-> 提示 1：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包
+> 提示：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包
 
 > 提示 2：本脚本的代码运行依赖 RDS 实例对象采集，如果未配置 RDS 的自定义对象采集，慢日志脚本无法采集到慢日志数据
 
-> 提示 3：因阿里云统计数据返回有6~8小时的延迟，所以采集器更新数据可能会有延迟，详细参考阿里云文档:云数据库 RDS 查询慢日志统计
+> 提示 3：因阿里云统计数据返回有 6~8 小时的延迟，所以采集器更新数据可能会有延迟，详细参考阿里云文档：云数据库 RDS 查询慢日志统计
+
 ## 1. 配置结构
 
 本采集器配置结构如下：
@@ -40,35 +41,34 @@ collector_configs = {
 
 ~~~json
 {
-    "category": "logging",
-    "tags": {
-      "DBName"               : "cloudcare_core",
-      "DBInstanceId"         : "rm-bp1xxxxxxxxxx",
-      "RegionId"             : "cn-hangzhou",
-      "name"                 : "rm-xxxxx",
-      "DBInstanceType"       : "Primary",
-      "PayType"              : "Prepaid",
-      "Engine"               : "MySQL",
-      "DBInstanceClass"      : "rds.mysql.s2.large",
-      "ZoneId"               : "cn-shanghai-h",
-      "DBInstanceDescription": "业务系统"
-    },
-    "fields": {
-      "SQLHASH"                     : "436f9dd030e0a87920bbcd818b34f271",
-      "SQLText"                     : "{sql 语句}",
-      "CreateTime"                  : "2022-06-05Z",
-      "SQLServerTotalExecutionTimes": 0,
-      "MaxExecutionTime"            : 1,
-      "MaxLockTime"                 : 0,
-      "AvgExecutionTime"            : 0,
-      "SQLServerAvgExecutionTime"   : 0,
-      "message"                     : "{实例 JSON 数据}"
-    },
-    "measurement": "aliyun_rds_slowlog",
-
+  "measurement": "aliyun_rds_slowlog",
+  "tags": {
+    "name"                 : "rm-xxxxx",
+    "DBName"               : "cloudcare_core",
+    "DBInstanceId"         : "rm-bp1xxxxxxxxxx",
+    "RegionId"             : "cn-hangzhou",
+    "DBInstanceType"       : "Primary",
+    "PayType"              : "Prepaid",
+    "Engine"               : "MySQL",
+    "DBInstanceClass"      : "rds.mysql.s2.large",
+    "ZoneId"               : "cn-shanghai-h",
+    "DBInstanceDescription": "业务系统"
+  },
+  "fields": {
+    "SQLHASH"                     : "436f9dd030e0a87920bbcd818b34f271",
+    "SQLText"                     : "{SQL 语句}",
+    "CreateTime"                  : "2022-06-05Z",
+    "SQLServerTotalExecutionTimes": 0,
+    "MaxExecutionTime"            : 1,
+    "MaxLockTime"                 : 0,
+    "AvgExecutionTime"            : 0,
+    "SQLServerAvgExecutionTime"   : 0,
+    "message"                     : "{实例 JSON 数据}"
   }
+}
 ~~~
-部分参数说明如下
+
+部分参数说明如下：
 
 | 字段                           | 类型 | 说明                              |
 | ------------------------------ | ---- | --------------------------------- |

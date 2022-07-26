@@ -4,7 +4,7 @@
 
 阅读本文前，请先阅读：
 
-- [观测云集成简介](/dataflux-func/script-market-guance-integration)
+- [观测云集成 - 基本操作](/dataflux-func/script-market-guance-integration)
 
 > 提示：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包
 
@@ -37,17 +37,17 @@ collector_configs = {
 
 ~~~json
 {
-    "measurement": "huaweicloud_obs",
-    "tags": {
-        "name"       : "test0-6153",
-        "RegionId"   : "cn-north-4",
-        "bucket_type": "OBJECT",
-        "location"   : "cn-north-4"
-    },
-    "fields": {
-        "create_date": "2022/06/16 10:51:16",
-        "message"    : "{实例 JSON 数据}"
-    }
+  "measurement": "huaweicloud_obs",
+  "tags": {
+    "name"       : "test0-6153",
+    "RegionId"   : "cn-north-4",
+    "bucket_type": "OBJECT",
+    "location"   : "cn-north-4"
+  },
+  "fields": {
+    "create_date": "2022/06/16 10:51:16",
+    "message"    : "{实例 JSON 数据}"
+  }
 }
 ~~~
 

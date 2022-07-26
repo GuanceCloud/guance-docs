@@ -2,6 +2,20 @@
 ---
 
 
+## 1.6.13（2022-07-26 发布）
+
+- *【新功能】*编辑器快速选择器新增跳转到类、TODO 标签。支持的 TODO 标签如下：
+    - `XXX`
+    - `TEST`
+    - `TODO`
+    - `BUG`
+    - `FIXME`
+    - `HACK`
+
+具体效果如下：
+
+![](changelog/code-viewer-editor-quick-jump.png)
+
 ## 1.6.12（2022-07-19 发布）
 
 - *【重要】*从本版本开始，许可协议改为 AGPLv3
