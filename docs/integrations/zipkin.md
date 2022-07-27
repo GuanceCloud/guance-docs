@@ -2,7 +2,6 @@
 # Zipkin
 ---
 
-- DataKit 版本：1.4.9
 - 操作系统支持：:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple:
 
 Datakit 内嵌的 Zipkin Agent 用于接收，运算，分析 Zipkin Tracing 协议数据。

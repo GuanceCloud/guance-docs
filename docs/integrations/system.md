@@ -2,7 +2,6 @@
 # System
 ---
 
-- DataKit 版本：1.4.9
 - 操作系统支持：:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple:
 
 system 采集器收集系统负载、正常运行时间、CPU 核心数量以及登录的用户数。

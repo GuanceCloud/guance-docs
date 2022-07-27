@@ -2,7 +2,6 @@
 Tomcat
 ---
 
-- DataKit 版本：1.4.9
 - 操作系统支持：:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple:
 
 采集 tomcat 指标

@@ -1,7 +1,6 @@
 
 
-- DataKit 版本：1.4.9
-- 操作系统支持：Linux
+- 操作系统支持：:fontawesome-brands-linux
 
 # Kubernetes 扩展指标采集
 
