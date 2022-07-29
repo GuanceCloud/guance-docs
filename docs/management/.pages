@@ -7,6 +7,7 @@ nav:
   - '权限管理': access-management.md
   - 'SSO管理': sso
   - '文本处理（Pipeline）': overall-pipeline.md
+  - '黑名单': overall-blacklist.md
   - '数据授权管理': data-authorization.md
   - '系统主题': system-theme.md
   - '高性能模式': high-performance.md
