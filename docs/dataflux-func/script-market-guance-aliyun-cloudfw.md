@@ -4,7 +4,7 @@
 
 阅读本文前，请先阅读：
 
-- [观测云集成简介](/dataflux-func/script-market-guance-integration)
+- [观测云集成 - 基本操作](/dataflux-func/script-market-guance-integration)
 
 > 提示：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包
 
@@ -20,28 +20,28 @@
 
 ~~~json
 {
-  "measurement"             : "aliyun_cloudfw",
+  "measurement": "aliyun_cloudfw",
   "tags": {
-    "AttackApp"             : "MySql",
-    "EventId"               : "2b58efae-xxxx",
-    "EventName"             : "WEB 目录穿越攻击",
-    "RuleId"                : "1000xxxx",
-    "AttackType"            : "1",
-    "ResourceType"          : "EcsPublicIP",
-    "DstIP"                 : "192.0.XXXX",
-    "EventCount"            : "100",
-    "RuleResult"            : "2",
-    "RuleSource"            : "1",
-    "VulLevel"              : "1"
+    "AttackApp"   : "MySql",
+    "EventId"     : "2b58efae-xxxx",
+    "EventName"   : "WEB 目录穿越攻击",
+    "RuleId"      : "1000xxxx",
+    "AttackType"  : "1",
+    "ResourceType": "EcsPublicIP",
+    "DstIP"       : "192.0.XXXX",
+    "EventCount"  : "100",
+    "RuleResult"  : "2",
+    "RuleSource"  : "1",
+    "VulLevel"    : "1"
   },
   "fields": {
-    "Description"           : "检测到 HTTP 请求的 WEB 访问中使用了目录穿越攻击",
-    "FirstEventTime"        : 1534408189,
-    "LastEventTime"         : 1534408267,
-    "ResourcePrivateIPList" : "{该入侵防御事件的私网 IP 信息}",
-    "VpcSrcInfo"            : "{该入侵防御事件的源 VPC 信息}",
-    "VpcDstInfo"            : "{该入侵防御事件的目的 VPC 信息}",
-    "message"               : "{实例 JSON 数据}"
+    "Description"          : "检测到 HTTP 请求的 WEB 访问中使用了目录穿越攻击",
+    "FirstEventTime"       : 1534408189,
+    "LastEventTime"        : 1534408267,
+    "ResourcePrivateIPList": "{该入侵防御事件的私网 IP 信息}",
+    "VpcSrcInfo"           : "{该入侵防御事件的源 VPC 信息}",
+    "VpcDstInfo"           : "{该入侵防御事件的目的 VPC 信息}",
+    "message"              : "{实例 JSON 数据}"
   }
 }
 ~~~

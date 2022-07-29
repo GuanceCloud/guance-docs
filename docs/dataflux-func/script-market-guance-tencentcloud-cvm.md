@@ -4,7 +4,7 @@
 
 阅读本文前，请先阅读：
 
-- [观测云集成简介](/dataflux-func/script-market-guance-integration)
+- [观测云集成 - 基本操作](/dataflux-func/script-market-guance-integration)
 
 > 提示：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包
 
@@ -37,27 +37,27 @@ collector_configs = {
 
 ~~~json
 {
-    "tags": {
-      "RegionId"          : "ap-shanghai",
-      "InstanceId"        : "ins-bahxxxx",
-      "InstanceChargeType": "POSTPAID_BY_HOUR",
-      "InstanceType"      : "SA2.MEDIUM2",
-      "OsName"            : "TencentOS Server 3.1 (TK4)",
-      "name"              : "ins-bahxxxx"
-    },
-    "fields": {
-      "CPU"               : 2,
-      "Memory"            : 2,
-      "InstanceState"     : "RUNNING",
-      "PublicIpAddresses" : "{公网 IP 数据}",
-      "PrivateIpAddresses": "{私网 IP 数据}",
-      "SystemDisk"        : "{系统盘 JSON 数据}",
-      "DataDisks"         : "{数据盘 JSON 数据}",
-      "Placement"         : "{地区 JSON 数据}",
-      "ExpiredTime"       : "2022-05-07T01:51:38Z",
-      "message"           : "{实例 JSON 数据}"
-    },
-    "measurement": "tencentcloud_cvm",
+  "measurement": "tencentcloud_cvm",
+  "tags": {
+    "name"              : "ins-bahxxxx",
+    "RegionId"          : "ap-shanghai",
+    "InstanceId"        : "ins-bahxxxx",
+    "InstanceChargeType": "POSTPAID_BY_HOUR",
+    "InstanceType"      : "SA2.MEDIUM2",
+    "OsName"            : "TencentOS Server 3.1 (TK4)"
+  },
+  "fields": {
+    "CPU"               : 2,
+    "Memory"            : 2,
+    "InstanceState"     : "RUNNING",
+    "PublicIpAddresses" : "{公网 IP 数据}",
+    "PrivateIpAddresses": "{私网 IP 数据}",
+    "SystemDisk"        : "{系统盘 JSON 数据}",
+    "DataDisks"         : "{数据盘 JSON 数据}",
+    "Placement"         : "{地区 JSON 数据}",
+    "ExpiredTime"       : "2022-05-07T01:51:38Z",
+    "message"           : "{实例 JSON 数据}"
+  }
 }
 ~~~
 

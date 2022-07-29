@@ -4,7 +4,7 @@
 
 阅读本文前，请先阅读：
 
-- [观测云集成简介](/dataflux-func/script-market-guance-integration)
+- [观测云集成 - 基本操作](/dataflux-func/script-market-guance-integration)
 
 > 提示：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包
 
@@ -39,19 +39,19 @@ collector_configs = {
 {
   "measurement": "aliyun_eip",
   "tags": {
-    "name"                    : "eip-xxxxx",
-    "AllocationId"            : "eip-bp1lfsikwo4roa0mcqg9u",
-    "RegionId"                : "cn-hangzhou",
-    "Bandwidth"               : "1",
-    "IpAddress"               : "47.96.22.249",
-    "InternetChargeType"      : "PayByTraffic",
-    "BusinessStatus"          : "Normal",
-    "ChargeType"              : "PostPaid"
+    "name"              : "eip-xxxxx",
+    "AllocationId"      : "eip-bp1lfsikwo4roa0mcqg9u",
+    "RegionId"          : "cn-hangzhou",
+    "Bandwidth"         : "1",
+    "IpAddress"         : "47.96.22.249",
+    "InternetChargeType": "PayByTraffic",
+    "BusinessStatus"    : "Normal",
+    "ChargeType"        : "PostPaid"
   },
   "fields": {
-    "AllocationTime"          : "2022-01-20T03:06:51Z",
-    "ExpiredTime"             : "",
-    "message"                 : "{实例 JSON 数据}"
+    "AllocationTime": "2022-01-20T03:06:51Z",
+    "ExpiredTime"   : "",
+    "message"       : "{实例 JSON 数据}"
   }
 }
 ~~~

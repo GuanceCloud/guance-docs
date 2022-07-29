@@ -6,9 +6,12 @@ import json
 import re
 import shutil
 from urllib.parse import urljoin
+from concurrent.futures import ThreadPoolExecutor
 
 import yaml
 import requests
+
+download_count = 0
 
 def colored(s, color=None):
     if not color:
@@ -84,12 +87,14 @@ def prepare_doc(doc):
     return doc
 
 def download_docs(doc_list, doc_dir, base_url):
+    global download_count
+    download_count = 0
+
     if not base_url.endswith('/'):
         base_url += '/'
 
-    print(f'\nDownloading... 0/{len(doc_list)}', end='')
-    for index, doc_file in enumerate(doc_list):
-        print(f'\rDownloading... {index + 1}/{len(doc_list)}', end='')
+    def _do_download(doc_file):
+        global download_count
 
         doc_path = os.path.normpath(os.path.join(doc_dir, doc_file))
         doc_url  = urljoin(base_url, doc_file)
@@ -121,6 +126,16 @@ def download_docs(doc_list, doc_dir, base_url):
                 _bin = requests.get(img_url).content
                 with open(img_path, 'wb') as _f:
                     _f.write(_bin)
+
+        download_count = download_count + 1
+        print(f'\rDownloading... {download_count}/{len(doc_list)}', end='')
+
+    print(f'\nDownloading... {download_count}/{len(doc_list)}', end='')
+
+    with ThreadPoolExecutor(max_workers=10) as executor:
+        futures = [ executor.submit(_do_download, doc_file) for doc_file in doc_list ]
+        for index, f in enumerate(futures):
+            f.result()
 
     print()
 

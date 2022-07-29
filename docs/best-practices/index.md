@@ -1,6 +1,18 @@
 ---
 icon: zy/best-practices
 ---
+## (2022/07/22)
+
+### 新增最佳实践
+
+- 云平台接入
+    - 腾讯云 - [腾讯云产品可观测最佳实践 (Function)](./partner/tencent-prod-func.md)。
+
+### 更新记录
+
+- 监控 Monitoring
+    - [ddtrace 高级用法](./monitoring/ddtrace-skill.md),<font color="red" > 新增“使用 Baggage 让业务关键 tag 在后端链路进行传递”、“采样”、“过滤Resource”、“log”等使用方法</font>。
+
 
 ## (2022/07/15)
 ### 新增最佳实践

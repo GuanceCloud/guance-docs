@@ -4,7 +4,7 @@
 
 阅读本文前，请先阅读：
 
-- [观测云集成简介](/dataflux-func/script-market-guance-integration)
+- [观测云集成 - 基本操作](/dataflux-func/script-market-guance-integration)
 
 > 提示：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包
 
@@ -39,25 +39,25 @@ collector_configs = {
 {
   "measurement": "aliyun_vpn",
   "tags": {
-    "name"              : "vpn-xxxx",
-    "VpnGatewayId"      : "vpn-xxxx",
-    "vpn_gateway_name"  : "DMS 测试",
-    "InternetIp"        : "47.xxxx",
-    "RegionId"          : "cn-hangzhou",
-    "VpcId"             : "vpc-xxxx",
-    "BusinessStatus"    : "Normal"
+    "name"            : "vpn-xxxx",
+    "VpnGatewayId"    : "vpn-xxxx",
+    "vpn_gateway_name": "DMS 测试",
+    "InternetIp"      : "47.xxxx",
+    "RegionId"        : "cn-hangzhou",
+    "VpcId"           : "vpc-xxxx",
+    "BusinessStatus"  : "Normal"
   },
   "fields": {
-    "CreateTime"        : 1650357175000,
-    "EndTime"           : 1652976000000,
-    "message"           : "{实例 JSON 数据}"
+    "CreateTime": 1650357175000,
+    "EndTime"   : 1652976000000,
+    "message"   : "{实例 JSON 数据}"
   }
 }
 ~~~
 
 *注意：`tags`、`fields`中的字段可能会随后续更新有所变动*
 
-> 提示 1：`tags.name`值为实例 ID，作为唯一识别
+> 提示：`tags.name`值为实例 ID，作为唯一识别
 
 > 提示 2：`fields.message`均为 JSON 序列化后字符串
 
