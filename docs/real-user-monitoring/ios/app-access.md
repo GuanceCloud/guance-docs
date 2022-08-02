@@ -40,7 +40,7 @@
 target 'yourProjectName' do
 
 # Pods for your project
-pod 'FTMobileSDK', '1.3.4-beta.2'
+pod 'FTMobileSDK', '1.3.6-alpha.3'
     
 end
 ```
