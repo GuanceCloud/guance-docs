@@ -5,7 +5,7 @@ icon: zy/dca
 
 ---
 
-DCA 是 DataKit 的 Web 端管理工具，旨在方便管理已经安装和配置的采集器，支持查看采集器运行情况、采集器配置管理、Pipeline管理、黑名单管理以及采集器文档帮助等功能。您可以通过 DCA 远程连接 DataKit ，在线变更采集器，变更完成后保存更新即可生效。
+DCA 是 DataKit 的 Web 端管理工具，旨在方便管理已经安装和配置的采集器，支持查看采集器运行情况、采集器配置管理、Pipeline管理、黑名单管理以及采集器文档帮助等功能。
 
 注意：DCA 目前仅支持在同一个局域网内的 DataKit 远程管理。
 
@@ -34,7 +34,11 @@ white_list = ["0.0.0.0/0", "192.168.1.0/24"]
 
 ## 安装 DCA
 
-通过 DCA Web 端远程管理 DataKit ，需在远程管理的主机安装 DCA 。目前 DCA Web 端支持 Docker 镜像安装，下载 DCA 镜像后运行即可使用。
+通过 DCA Web 端远程管理 DataKit ，需在远程管理的主机安装 DCA ，下载 DCA 镜像后运行即可使用。在观测云「集成」-「DCA」可查看 DCA 的部署步骤。
+
+注意：目前 DCA Web 端支持 Docker 镜像安装，可参考文档 [安装 Docker](https://docs.docker.com/engine/install/) 。
+
+![](img/2.dca_9.png)
 
 - 下载 DCA 镜像
 
