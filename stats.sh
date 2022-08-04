@@ -7,7 +7,7 @@ file_count=0
 for f in $files; do
     head -n1 $f
 
-    c=$(cat $f | wc -c)
+    c=$(cat $f | wc -m)
     char_count=$(($char_count + $c))
     file_count=$(($file_count + 1))
 
