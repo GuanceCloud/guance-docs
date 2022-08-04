@@ -39,3 +39,9 @@
 > 提示：`tags.name`值为域名，作为唯一识别
 
 > 提示 2：`fields.message`为 JSON 序列化后字符串
+
+## X. 附录
+
+请参考阿里云官方文档：
+
+- [阿里云-DCDN](https://help.aliyun.com/document_detail/131406.html)

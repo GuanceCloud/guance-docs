@@ -87,8 +87,6 @@ collector_configs = {
 > 提示 2：以下字段均为 JSON 序列化后字符串
 > - `fields.message`
 > - `tags.az_codes`
-> - `tags.no_password_access`
-> - `tags.enable_publicip`
 
 ## X. 附录
 

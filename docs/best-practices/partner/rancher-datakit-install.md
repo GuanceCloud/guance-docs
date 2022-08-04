@@ -104,7 +104,7 @@ Project name 输入 datakit-conf，点击『Create Project』。
 
 命名空间选择 **datakit**，点击『下一步』。
 
-![1656997814525.png](![image](../images/rancher-install-9.png)
+![image](../images/rancher-install-9.png)
 
 点击**Datakit Configuration**，把 **<your-token>** 替换成观测云的 token，由于本次使用自定义 container 采集器配置，所以把 **Enable the default Inputs** 中的 **,container** 去掉。
 
@@ -112,7 +112,7 @@ Project name 输入 datakit-conf，点击『Create Project』。
 
 点击 **Git Management Configurations**来设置 git 仓库信息。选中 **Enable Use Git Management Configurations**，**The Git Hub Url** 填 dk-config 的 git 地址 [http://120.26.37.252/root/dk-config.git](http://120.26.37.252/root/dk-config.git)，并把 git 的用户名 root，密码 xxxxxx 放到 **http://** 后面，请参考下图。**The Git Branch** 填分支 main。然后点击『安装』 。注意，如果选中 **Enable git SSH key**，即是通过 SSH 方式来拉取 Git 仓库中的配置。
 
-![1656998040184.png](![image](../images/rancher-install-11.png)
+![image](../images/rancher-install-11.png)
 
 点击**Kube-State-Metrics**，选中**Deployment KubeState Metrics Deployment**，即会安装 kube-state-metrics 组件，如不需要可以不选。
 
