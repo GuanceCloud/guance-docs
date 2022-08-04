@@ -40,7 +40,7 @@
 target 'yourProjectName' do
 
 # Pods for your project
-pod 'FTMobileSDK', '1.3.4-beta.2'
+pod 'FTMobileSDK', '1.3.6-alpha.3'
     
 end
 ```
@@ -122,7 +122,8 @@ typedef NS_ENUM(NSInteger, FTEnv) {
     rumConfig.enableTrackAppANR = YES;
     rumConfig.enableTrackAppFreeze = YES;
     rumConfig.enableTraceUserAction = YES;
-	rumConfig.enableTraceUserVIew = YES;
+	  rumConfig.enableTraceUserVIew = YES;
+    rumConfig.deviceMetricsMonitorType = FTDeviceMetricsMonitorAll;
     [[FTMobileAgent sharedInstance] startRumWithConfigOptions:rumConfig];
 ```
 
@@ -130,17 +131,19 @@ typedef NS_ENUM(NSInteger, FTEnv) {
 | --- | --- | --- | --- |
 | appid | NSString | DataFlux rum应用唯一ID标识，在DataFlux控制台上面创建监控时自动生成。 | 否（开启RUM 必选） |
 | samplerate | int | 采样采集率 | 否（默认100） |
-| monitorInfoType | NS_OPTIONS | 采集数据 | 否 |
+| errorMonitorType | NS_OPTIONS | error数据中的采集数据 | 否 |
 | enableTrackAppCrash | BOOL | 设置是否需要采集崩溃日志 | 否（默认NO） |
 | enableTrackAppANR | BOOL | 采集ANR卡顿无响应事件 | 否（默认NO） |
 | enableTrackAppFreeze | BOOL | 采集UI卡顿事件 | 否（默认NO） |
 | enableTraceUserAction | BOOL | 设置是否追踪用户 Action 操作 | 否（默认NO） |
 | enableTraceUserView | BOOL | 设置是否追踪用户 View 操作 | 否（默认NO） |
 | globalContext | NSDictionary | [添加自定义标签](#user-global-context) |     否 |
+| deviceMetricsMonitorType | NS_OPTIONS | 监控类型 | 否（未设置则不开启监控） |
+| monitorFrequency | NS_OPTIONS | 设置监控采样周期 | 否 |
 
 #### 监控数据配置
 
-配置 `FTMobileConfig` 的 `FTMonitorInfoType` 属性，将在采集的崩溃数据中添加对应的信息。可采集的类型如下：
+配置 `FTRumConfig` 的 `errorMonitorType` 属性，将在采集的崩溃数据中添加对应的信息。可采集的类型如下：
 
 ```objectivec
 /**
@@ -157,6 +160,39 @@ typedef NS_OPTIONS(NSUInteger, FTMonitorInfoType) {
     FTMonitorInfoTypeCpu          = 1 << 3,
 };
 ```
+
+配置 `FTRumConfig` 的 `deviceMetricsMonitorType` 属性，将在采集的  **View** 数据中添加对应监控项信息，同时可配置 `monitorFrequency` 来设置监控采样周期。可采集的类型与采样周期如下：
+
+```objective-c
+/**
+ * 监控项
+ * @constant
+ *  FTDeviceMetricsMonitorMemory   - 平均内存、最高内存
+ *  FTDeviceMetricsMonitorCpu      - CPU跳动最大、平均数
+ *  FTDeviceMetricsMonitorFps      - fps 最低帧率、平均帧率
+ */
+typedef NS_OPTIONS(NSUInteger, FTDeviceMetricsMonitorType){
+    FTDeviceMetricsMonitorAll      = 0xFFFFFFFF,
+    FTDeviceMetricsMonitorCpu      = 1 << 1,
+    FTDeviceMetricsMonitorMemory   = 1 << 2,
+    FTDeviceMetricsMonitorFps      = 1 << 3,
+};
+
+/**
+ * 监控项采样周期
+ * @constant
+ *  FTMonitorFrequencyDefault   - 500ms (默认)
+ *  FTMonitorFrequencyFrequent  - 100ms
+ *  FTMonitorFrequencyRare      - 1000ms
+ */
+typedef NS_OPTIONS(NSUInteger, FTMonitorFrequency) {
+    FTMonitorFrequencyDefault,
+    FTMonitorFrequencyFrequent,
+    FTMonitorFrequencyRare,
+};
+```
+
+
 
 ### Log 配置
 
