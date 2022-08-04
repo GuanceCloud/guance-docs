@@ -99,7 +99,9 @@ DCA 开启和安装以后，即可在浏览器输入地址 `localhost:8000` 打�
 
 ### 查看黑名单
 
-远程连接到 DataKit 以后，点击「黑名单」，即可查看在观测云工作配置的黑名单。如下图所示 `source = default and (status in [unknown])` 即为配置的黑名单条件。 
+远程连接到 DataKit 以后，点击「黑名单」，即可查看在观测云工作配置的黑名单，如下图所示 `source = default and (status in [unknown])` 即为配置的黑名单条件。
+
+注意：通过观测云创建的黑名单文件统一保存在路径：`/usr/local/datakit/data/.pull` 。
 
 ![](img/2.dca_8.png)
 
