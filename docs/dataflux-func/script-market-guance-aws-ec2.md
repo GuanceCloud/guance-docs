@@ -43,7 +43,9 @@ collector_configs = {
     "InstanceId"     : "i-0d7620xxxxxxx",
     "InstanceType"   : "c6g.xlarge"　　,
     "PlatformDetails": "Linux/UNIX",
-    "RegionId"       : "cn-northwest-1"
+    "RegionId"       : "cn-northwest-1",
+    "InstanceName"   : "test"
+
   },
   "fields": {
     "BlockDeviceMappings": "{设备 JSON 数据}",
