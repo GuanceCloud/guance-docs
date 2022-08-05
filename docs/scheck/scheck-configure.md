@@ -1,7 +1,7 @@
 # Scheck 配置
 
 - 版本：1.0.7-4-g582a075
-- 发布日期：2022-07-11 02:27:55
+- 发布日期：2022-08-05 02:45:20
 - 操作系统支持：windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64
 
 ## 配置描述
