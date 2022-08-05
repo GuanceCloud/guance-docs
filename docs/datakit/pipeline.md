@@ -818,7 +818,7 @@ geoip(ip)
 ```
 ### `grok()` {#fn-grok}
 
-函数原型：`grok(input=required, pattern=required)`
+函数原型：`grok(input=required, pattern=required, trim_space=optional)`
 
 函数说明：通过 `pattern` 提取文本串 `input` 中的内容。
 
@@ -826,6 +826,7 @@ geoip(ip)
 
 - `input`：待提取文本，可以是原始文本（`_`）或经过初次提取之后的某个 `key`
 - `pattern`: grok 表达式，表达式中支持指定 key 的数据类型：bool, float, int, string，默认为 string
+- `trim_space`: 删除提取出的字符中的空白首尾字符，默认值为 true
 
 ```python
 grok(_, pattern)    # 直接使用输入的文本作为原始数据
@@ -914,7 +915,7 @@ group_in(log_level, ["error", "panic"], "not-ok", status)
 
 ### `json()` {#fn-json}
 
-函数原型：`json(input=required, jsonPath=required, newkey=optional)`
+函数原型：`json(input=required, jsonPath=required, newkey=required, trim_space=optional)`
 
 函数说明：提取 json 中的指定字段，并可将其命名成新的字段。
 
@@ -923,6 +924,7 @@ group_in(log_level, ["error", "panic"], "not-ok", status)
 - `input`: 待提取 json，可以是原始文本（`_`）或经过初次提取之后的某个 `key`
 - `jsonPath`: json 路径信息
 - `newkey`：提取后数据写入新 key
+- `trim_space`: 删除提取出的字符中的空白首尾字符，默认值为 true
 
 ```python
 # 直接提取原始输入 json 中的x.y字段，并可将其命名成新字段abc
@@ -1282,6 +1284,31 @@ json(_, a.forth)
 strfmt(bb, "%v %s %v", a.second, a.thrid, a.forth)
 ```
 
+### `trim()` {#fn-trim}
+
+函数原型：`trim(key=required, cutset=optional)`
+
+函数说明：删除 key 中首尾中指定的字符，cutset 为空字符串时默认删除所有空白符
+
+函数参数：
+
+- `key`: 已提取的某字段，字符串类型
+- `cutset`: 删除 key 中出现在 cutset 字符串的中首尾字符
+
+示例:
+
+```python
+# 待处理数据: "trim(key, cutset)"
+
+# 处理脚本
+add_key(test_data, "ACCAA_test_DataA_ACBA")
+trim(test_data, "ABC_")
+
+# 处理结果
+{
+  "test_data": "test_Data"
+}
+```
 
 ### `uppercase()` {#fn-uppercase}
 

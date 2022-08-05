@@ -37,6 +37,9 @@
       ## Removes ANSI escape codes from text strings
       logging_remove_ansi_escape_codes = false
     
+      ## If the data sent failure, will retry forevery
+      logging_blocking_mode = false
+    
       kubernetes_url = "https://kubernetes.default:443"
     
       ## Authorization level:

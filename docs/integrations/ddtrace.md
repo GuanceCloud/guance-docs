@@ -87,7 +87,13 @@ Datakit 内嵌的 DDTrace Agent 用于接收，运算，分析 DataDog Tracing �
   # [inputs.ddtrace.threads]
     # buffer = 100
     # threads = 8
-    # timeout = 1000
+
+  ## Storage config a local storage space in hard dirver to cache trace data.
+  ## path is the local file path used to cache data.
+  ## capacity is total space size(MB) used to store data.
+  # [inputs.ddtrace.storage]
+    # path = "./ddtrace_storage"
+    # capacity = 5120
 
 ```
 
