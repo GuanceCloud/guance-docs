@@ -34,25 +34,23 @@ white_list = ["0.0.0.0/0", "192.168.1.0/24"]
 
 ## 安装 DCA
 
-通过 DCA Web 端远程管理 DataKit ，需在远程管理的主机安装 DCA ，下载 DCA 镜像后运行即可使用。在观测云「集成」-「DCA」可查看 DCA 的部署步骤。
+通过 DCA Web 端远程管理 DataKit ，只需任意选择一台主机安装 DCA ，下载 DCA 镜像后运行即可使用。在观测云「集成」-「DCA」可查看 DCA 的部署步骤。
 
 注意：目前 DCA Web 端支持 Docker 镜像安装，可参考文档 [安装 Docker](https://docs.docker.com/engine/install/) 。
 
-![](img/2.dca_9.png)
-
-- 下载 DCA 镜像
+1.下载 DCA 镜像
 
 ```
-docker pull pubrepo.jiagouyun.com/cloudcare-tools-pub/dca
+docker pull pubrepo.guance.com/tools/dca
 ```
 
-- 创建和启动 DCA 容器，容器默认暴露访问端口是 80
+2.创建和启动 DCA 容器，容器默认暴露访问端口是 80
 
 ```
-docker run -d --name dca -p 8000:80 pubrepo.jiagouyun.com/cloudcare-tools-pub/dca
+docker run -d --name dca -p 8000:80 pubrepo.guance.com/tools/dca
 ```
 
-![](img/2.dca_1.png)
+![](img/2.dca_10.png)
 
 
 
