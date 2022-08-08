@@ -131,6 +131,29 @@ icon: zy/release-notes
 
 
 
+### DataKit 更新
+
+- 部分数据类型发送失败后，支持缓存到磁盘，延后再发送
+- 支持通过不同的 dataway 地址，将满足条件的数据发送到不同的工作空间
+- Sourcemap 增加 Android 和 iOS 支持
+- 容器采集器相关更新：
+    - 修复 Kubernetes 中 Node 主机操作系统信息采集错误
+    - Kubernetes 中 Prom 采集不再自动追加 pod 相关信息，避免时间线暴增
+    - Pod 对象中追加对应 yaml 信息
+- Pipeline 相关更新：
+    - 优化 Pipeline 执行步骤
+    - [grok()](../datakit/pipeline/#fn-grok) 和 [json()](../datakit/pipeline/#fn-json) 函数默认执行 trim-space 操作
+- DDTrace 相关更新：
+    - 修复潜在的 goroutine 泄露问题
+    - 支持配置磁盘缓存来缓解内存占用问题
+- 其它 Bug 修复：
+    - 优化行协议构造
+    - 日志采集中，移除定期清理尾部数据功能，以缓解可能导致的日志截断问题
+
+更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md) 。
+
+
+
 ## 2022 年 7 月 21 号
 
 ### 观测云更新
