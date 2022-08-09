@@ -32,7 +32,8 @@
 
 #### 执行安装
 
-按照上步中的yaml文件，新建 /usr/local/k8s/datakit.yaml 文件，并把上图获取的 token，替换文件中的 <your-token>，开启 kubernetes,container 采集器，yaml 完整内容如下文。<br />『注意』下载的 datakit.yaml 并没有 ConfigMap，通过 Daemonset 安装 DataKit 时开通采集器的方式是通过 ConfigMap 定义配置，然后再通过 volume 挂载到 DataKit 容器。
+按照上步中的yaml文件，新建 /usr/local/k8s/datakit.yaml 文件，并把上图获取的 token，替换文件中的 <your-token>，开启 container 采集器、logfwd 采集器、ddtrace 采集器，yaml 完整内容如下文。  
+『注意』DataKit 版本不同，配置可能存在差异，请以最新版为准。此 yaml 是本次部署完整配置，已包含后面针对 DataKit 的操作步骤。
 
 ```
 apiVersion: v1
@@ -64,7 +65,6 @@ rules:
   - events
   - services
   - endpoints
-  - ingresses
   verbs:
   - get
   - list
@@ -89,6 +89,13 @@ rules:
   - get
   - list
   - watch
+- apiGroups:
+  - guance.com
+  resources:
+  - datakits
+  verbs:
+  - get
+  - list
 - apiGroups:
   - metrics.k8s.io
   resources:
@@ -156,13 +163,6 @@ spec:
     metadata:
       labels:
         app: daemonset-datakit
-      annotations:
-        datakit/logs: |
-          [
-            {
-              "disable": true
-            }
-          ]
     spec:
       hostNetwork: true
       dnsPolicy: ClusterFirstWithHostNet
@@ -173,27 +173,31 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: status.hostIP
-        - name: NODE_NAME
+        - name: ENV_K8S_NODE_NAME
           valueFrom:
             fieldRef:
               apiVersion: v1
               fieldPath: spec.nodeName
         - name: ENV_DATAWAY
-          value: https://openway.guance.com?token=<your-token>
-        - name: ENV_GLOBAL_TAGS
-          value: host=__datakit_hostname,host_ip=__datakit_ip,cluster_name_k8s=k8s-dev
+          value: https://openway.guance.com?token=XXXXXX
+        - name: ENV_GLOBAL_HOST_TAGS   # 非选举类的tag 
+          value: host=__datakit_hostname,host_ip=__datakit_ip,cluster_name_k8s=k8s-prod
         - name: ENV_DEFAULT_ENABLED_INPUTS
-          value: cpu,disk,diskio,mem,swap,system,hostobject,net,host_processes,container,statsd,ddtrace
+          value: cpu,disk,diskio,mem,swap,system,hostobject,net,host_processes,container,statsd,ebpf
         - name: ENV_ENABLE_ELECTION
           value: enable
+        - name: ENV_GLOBAL_ENV_TAGS  # 只对选举类的tag有用
+          value: cluster_name_k8s=k8s-prod
         - name: ENV_HTTP_LISTEN
           value: 0.0.0.0:9529
-        - name: ENV_NAMESPACE
-          value: k8s-dev
-        - name: ENV_LOG_LEVEL
-          value: info
-        image: pubrepo.jiagouyun.com/datakit/datakit:1.2.6
-        imagePullPolicy: IfNotPresent
+        - name: ENV_NAMESPACE  # 选举用的
+          value: guance-k8s-demo
+        #- name: ENV_LOG_LEVEL
+        #  value: debug
+        #- name: ENV_K8S_CLUSTER_NAME
+        #  value: k8s-prod
+        image: pubrepo.jiagouyun.com/datakit/datakit:1.4.7
+        imagePullPolicy: Always
         name: datakit
         ports:
         - containerPort: 9529
@@ -203,18 +207,24 @@ spec:
         securityContext:
           privileged: true
         volumeMounts:
-        - mountPath: /var/run/docker.sock
-          name: docker-socket
-          readOnly: true
+        - mountPath: /var/run
+          name: run
+        - mountPath: /var/lib
+          name: lib
+        - mountPath: /var/log
+          name: log
+        #- mountPath: /var/run/containerd/containerd.sock
+        #  name: containerd-socket
+        #  readOnly: true
         - mountPath: /usr/local/datakit/conf.d/container/container.conf
           name: datakit-conf
           subPath: container.conf
-        - mountPath: /usr/local/datakit/conf.d/log/logging.conf
+        - mountPath: /usr/local/datakit/conf.d/log/logfwdserver.conf
           name: datakit-conf
-          subPath: logging.conf
-        - mountPath: /usr/local/datakit/pipeline/demo_system.p
+          subPath: logfwdserver.conf
+        - mountPath: /usr/local/datakit/conf.d/ddtrace/ddtrace.conf
           name: datakit-conf
-          subPath: log_demo_system.p
+          subPath: ddtrace.conf         
         - mountPath: /host/proc
           name: proc
           readOnly: true
@@ -228,19 +238,29 @@ spec:
           name: rootfs
         - mountPath: /sys/kernel/debug
           name: debugfs
+ 
         workingDir: /usr/local/datakit
       hostIPC: true
       hostPID: true
       restartPolicy: Always
       serviceAccount: datakit
       serviceAccountName: datakit
+      tolerations:
+      - operator: Exists
       volumes:
       - configMap:
           name: datakit-conf
         name: datakit-conf
       - hostPath:
-          path: /var/run/docker.sock
-        name: docker-socket
+          path: /var/run
+        name: run
+      - hostPath:
+          path: /var/lib
+        name: lib
+      - hostPath:
+          path: /var/log
+        name: log
+
       - hostPath:
           path: /proc
           type: ""
@@ -273,23 +293,25 @@ metadata:
   namespace: datakit
 data:
     #### container
-    container.conf: |- 
+    container.conf: |-  
       [inputs.container]
-        endpoint = "unix:///var/run/docker.sock"
+        docker_endpoint = "unix:///var/run/docker.sock"
+        containerd_address = "/var/run/containerd/containerd.sock"
 
-        ## Containers metrics to include and exclude, default not collect. Globs accepted.
-        container_include_metric = []
-        container_exclude_metric = ["image:*"]
+        enable_container_metric = true
+        enable_k8s_metric = true
+        enable_pod_metric = true
 
         ## Containers logs to include and exclude, default collect all containers. Globs accepted.
-        container_include_log = ["image:*"]
-        container_exclude_log = []
+        container_include_log = []
+        container_exclude_log = ["image:*"]
+        #container_exclude_log = ["image:pubrepo.jiagouyun.com/datakit/logfwd*", "image:pubrepo.jiagouyun.com/datakit/datakit*"]
 
         exclude_pause_container = true
 
         ## Removes ANSI escape codes from text strings
         logging_remove_ansi_escape_codes = false
-  
+
         kubernetes_url = "https://kubernetes.default:443"
 
         ## Authorization level:
@@ -305,61 +327,31 @@ data:
           # more_tag = "some_other_value"
 
 
-
-           
-
-          
-    #### logging
-    logging.conf: |-
-        [[inputs.logging]]
-          ## required
-          logfiles = [
-            "/rootfs/var/log/k8s/demo-system/info.log",
-            "/rootfs/var/log/k8s/demo-system/error.log",
-          ]
-
-          ## glob filteer
-          ignore = [""]
-
-          ## your logging source, if it's empty, use 'default'
-          source = "k8s-demo-system"
-
-          ## add service tag, if it's empty, use $source.
-          service = "k8s-demo-system"
-
-          ## grok pipeline script path
-          pipeline = "demo_system.p"
-
-          ## optional status:
-          ##   "emerg","alert","critical","error","warning","info","debug","OK"
-          ignore_status = []
-
-          ## optional encodings:
-          ##    "utf-8", "utf-16le", "utf-16le", "gbk", "gb18030" or ""
-          character_encoding = ""
-
-          ## The pattern should be a regexp. Note the use of '''this regexp'''
-          ## regexp link: https://golang.org/pkg/regexp/syntax/#hdr-Syntax
-          multiline_match = '''^\d{4}-\d{2}-\d{2}'''
-
-          [inputs.logging.tags]
+    #### ddtrace
+    ddtrace.conf: |- 
+      [[inputs.ddtrace]]
+        endpoints = ["/v0.3/traces", "/v0.4/traces", "/v0.5/traces"]
+        # ignore_resources = []
+        customer_tags = ["node_ip"]
+        [inputs.ddtrace.close_resource]
+          "*" = ["PUT /nacos/*","GET /nacos/*","POST /nacos/*"]
+        ## tags is ddtrace configed key value pairs
+        # [inputs.ddtrace.tags]
           # some_tag = "some_value"
           # more_tag = "some_other_value"
-          
+    
+    #### logfwdserver
+    logfwdserver.conf: |-
+      [inputs.logfwdserver]
+        ## logfwd 接收端监听地址和端口
+        address = "0.0.0.0:9531"
 
-          
-    #### system-log
-    log_demo_system.p: |-
-        #日志样式
-        #2022-02-18 13:07:27.652 [http-nio-9201-exec-6] INFO  c.r.s.c.SysMenuController - [list,49] - demo-k8s-system 8754136045240195346 3167851246701836031 - 查询菜单列表开始
-
-        grok(_, "%{TIMESTAMP_ISO8601:time} %{NOTSPACE:thread_name} %{LOGLEVEL:status}%{SPACE}%{NOTSPACE:class_name} - \\[%{NOTSPACE:method_name},%{NUMBER:line}\\] - %{DATA:service_name} %{DATA:trace_id} %{DATA:span_id} - %{GREEDYDATA:msg}")
-
-        default_time(time,"Asia/Shanghai")
-
+        [inputs.logfwdserver.tags]
+        # some_tag = "some_value"
+        # more_tag = "some_other_value"   
 ```
 
-不同的 kubernetes 集群，为区分集群内 daemonset 部署的 datakit 选举，需要增加 ENV_NAMESPACE 环境变量，同一个 token下值不能重复。同一个 token 下为区分不同的 kubernetes 集群，需要增加全局 tag，值是cluster_name_k8s=k8s-dev，这里的 k8s-dev 是集群的名称。
+不同的 kubernetes 集群，为区分集群内 daemonset 部署的 datakit 选举，需要增加 ENV_NAMESPACE 环境变量，同一个 token下值不能重复。同一个 token 下为区分不同的 kubernetes 集群，需要增加全局 tag，值是cluster_name_k8s=k8s-prod。
 
 执行命令
 
@@ -387,15 +379,13 @@ Datakit 安装完成后，已经默认开启 Linux 主机常用插件，可以�
 | kubernetes | 采集Kubernetes 集群指标 |
 | container | 采集主机上可能的容器对象以及容器日志 |
 
-点击 [**基础设施**] 模块，查看所有已安装 Datakit 的主机列表以及基础信息，如主机名，CPU，内存等。
+点击 [**基础设施**] 模块，查看所有已安装 Datakit 的主机列表。
 
 ![image](../images/k8s-rum-apm-log/5.png)
 
-点击 [**主机名**] 可以查看该主机的详细系统信息，集成运行情况 (该主机所有已安装的插件)，内置视图(主机)。
+点击 [**主机名**] 可以查看该主机的详细系统信息，集成运行情况 (该主机所有已安装的插件)。
 
 ![image](../images/k8s-rum-apm-log/6.png)
-
-点击 [**集成运行情况**] 任意插件名称 [**查看监控视图**] 可以看到该插件的内置视图。
 
 ![image](../images/k8s-rum-apm-log/7.png)
 
@@ -778,7 +768,7 @@ WORKDIR ${workdir}
 ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS}   -jar ${jar} ${PARAMS}  2>&1 > /dev/null"]
 ```
 
-新建 /usr/local/k8s/system-deployment.yaml ，pod 中使用了 3 个镜像 172.16.0.238/df-ruoyi/demo-system:v1、pubrepo.jiagouyun.com/datakit/logfwd:1.2.7、pubrepo.jiagouyun.com/datakit/dk-sidecar:1.0，其中 dk-sidecar 是提供 dd-java-agent.jar 文件给 system-container 业务容器使用，logfwd 采集业务容器的日志文件。logfwd 的配置文件是通过 ConfigMap 来挂载到容器中的，在配置文件中指明需要采集的日志文件位置，pipeline 的名称，source 名称等。system-deployment.yaml 完整内容如下：
+新建 /usr/local/k8s/system-deployment.yaml ，pod 中使用了 3 个镜像 172.16.0.238/df-ruoyi/demo-system:v1、pubrepo.jiagouyun.com/datakit/logfwd:1.2.7、pubrepo.jiagouyun.com/datakit/dk-sidecar:1.0，其中 dk-sidecar 是提供 dd-java-agent.jar 文件给 system-container 业务容器使用，logfwd 采集业务容器的日志文件。logfwd 的配置文件是通过 ConfigMap 来挂载到容器中的，在配置文件中指明需要采集的日志文件位置，source 名称等。system-deployment.yaml 完整内容如下：
 
 ```
 apiVersion: v1
@@ -913,8 +903,7 @@ data:
             "loggings": [
                 {
                     "logfiles": ["/var/log/info.log","/var/log/error.log"],
-                    "source": "k8s-log-system",                    
-                    "pipeline": "log_demo_system.p",
+                    "source": "k8s-log-system",  
                     "multiline_match": "^\\d{4}-\\d{2}-\\d{2}"
                 }
             ]
@@ -1006,13 +995,7 @@ Datakit 默认开启了 RUM 采集器，用户访问监测使用的 Datakit 地�
 
 #### 开通 ddtrace
 
-修改 /usr/local/k8s/datakit.yaml 文件中的 ENV_ENABLE_INPUTS，增加 ddtrace
-
-```
- - name: ENV_ENABLE_INPUTS
-   value: cpu,disk,diskio,mem,swap,system,hostobject,net,host_processes,container,ddtrace
-        
-```
+详见链路数据增加 node_ip 标签。
 
 #### Java 应用接入 ddtrace
 
@@ -1066,30 +1049,9 @@ response.headers.add('Access-Control-Allow-Headers','x-datadog-parent-id,x-datad
 
 #### 配置 logback.xml
 
+修改 logback.xml，把 traceId 、spanId 和 service 输出到日志，用来与链路关联。
+
 ![image](../images/k8s-rum-apm-log/11.png)
-
-#### 日志分割 pipeline
-
-使用 pipeline 分割 system 系统生成的日志，再用 configMap 挂载 pipeline，DaemonSet 部署 datakit 后，会在 /usr/local/datakit/pipeline/ 目录生成 demo_system.p 文件。由于本应用容器时区使用的东八区，这里要做一下时区转换，datakit.yaml 中增加如下内容：
-
-```
-     log_demo_system.p: |-
-        #日志样式
-        #2022-02-18 13:07:27.652 [http-nio-9201-exec-6] INFO  c.r.s.c.SysMenuController - [list,49] - demo-k8s-system 8754136045240195346 3167851246701836031 - 查询菜单列表开始
-
-        grok(_, "%{TIMESTAMP_ISO8601:time} %{NOTSPACE:thread_name} %{LOGLEVEL:status}%{SPACE}%{NOTSPACE:class_name} - \\[%{NOTSPACE:method_name},%{NUMBER:line}\\] - %{DATA:service_name} %{DATA:trace_id} %{DATA:span_id} - %{GREEDYDATA:msg}")
-
-        default_time(time,"Asia/Shanghai")
-        #default_time(time)
-```
-
-volumeMounts 下面增加：
-
-```
-- mountPath: /usr/local/datakit/pipeline/demo_system.p
-  name: datakit-conf
-  subPath: log-demo-system.p
-```
 
 #### 开启 log 采集
 
@@ -1114,313 +1076,20 @@ volumeMounts 下面增加：
           subPath: logfwdserver.conf    
 ```
 
-#### 完整 datakit.yaml
+#### 日志分割 pipeline
 
-【注意】不同 datakit 版本之间配置有差异，建议参照对应的版本配置 datakit
+使用 pipeline 分割 system 系统生成的日志，把关键信息切成 tag，比如 traceID，这样可以与链路做关联。
+点击 [**日志****] 模块，进入 [**Pipelines**]，过滤中选择 System 模块采集日志时设置的 Source：k8s-log-system，输入如下内容，测试成功后点击保存。
 
 ```
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: datakit
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: datakit
-rules:
-- apiGroups:
-  - rbac.authorization.k8s.io
-  resources:
-  - clusterroles
-  verbs:
-  - get
-  - list
-  - watch
-- apiGroups:
-  - ""
-  resources:
-  - nodes
-  - nodes/proxy
-  - namespaces
-  - pods
-  - pods/log
-  - events
-  - services
-  - endpoints
-  verbs:
-  - get
-  - list
-  - watch
-- apiGroups:
-  - apps
-  resources:
-  - deployments
-  - daemonsets
-  - statefulsets
-  - replicasets
-  verbs:
-  - get
-  - list
-  - watch
-- apiGroups:
-  - batch
-  resources:
-  - jobs
-  - cronjobs
-  verbs:
-  - get
-  - list
-  - watch
-- apiGroups:
-  - metrics.k8s.io
-  resources:
-  - pods
-  - nodes
-  verbs:
-  - get
-  - list
-- nonResourceURLs: ["/metrics"]
-  verbs: ["get"]
+#2022-08-09 13:39:57.392 [http-nio-9201-exec-4] INFO  c.r.s.c.SysUserController - [list,70] - demo-k8s-system 1241118275256671447 9052729774571622516 - 查询用户列表开始
 
----
+grok(_, "%{TIMESTAMP_ISO8601:time} %{NOTSPACE:thread_name} %{LOGLEVEL:status}%{SPACE}%{NOTSPACE:class_name} - \\[%{NOTSPACE:method_name},%{NUMBER:line}\\] - %{DATA:service_name} %{DATA:trace_id} %{DATA:span_id} - %{GREEDYDATA:msg}")
 
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: datakit
-  namespace: datakit
-
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: datakit-service
-  namespace: datakit
-spec:
-  selector:
-    app: daemonset-datakit
-  ports:
-    - protocol: TCP
-      port: 9529
-      targetPort: 9529
-
----
-
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: datakit
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: datakit
-subjects:
-- kind: ServiceAccount
-  name: datakit
-  namespace: datakit
-
----
-
-apiVersion: apps/v1
-kind: DaemonSet
-metadata:
-  labels:
-    app: daemonset-datakit
-  name: datakit
-  namespace: datakit
-spec:
-  revisionHistoryLimit: 10
-  selector:
-    matchLabels:
-      app: daemonset-datakit
-  template:
-    metadata:
-      labels:
-        app: daemonset-datakit
-      annotations:
-        datakit/logs: |
-          [
-            {
-              "disable": true
-            }
-          ]
-    spec:
-      hostNetwork: true
-      dnsPolicy: ClusterFirstWithHostNet
-      containers:
-      - env:
-        - name: HOST_IP
-          valueFrom:
-            fieldRef:
-              apiVersion: v1
-              fieldPath: status.hostIP
-        - name: NODE_NAME
-          valueFrom:
-            fieldRef:
-              apiVersion: v1
-              fieldPath: spec.nodeName
-        - name: ENV_DATAWAY
-          value: https://openway.guance.com?token=<your-token>
-        - name: ENV_GLOBAL_TAGS
-          value: host=__datakit_hostname,host_ip=__datakit_ip,cluster_name_k8s=k8s-dev
-        - name: ENV_DEFAULT_ENABLED_INPUTS
-          value: cpu,disk,diskio,mem,swap,system,hostobject,net,host_processes,container,statsd
-        - name: ENV_ENABLE_ELECTION
-          value: enable
-        - name: ENV_HTTP_LISTEN
-          value: 0.0.0.0:9529
-        - name: ENV_NAMESPACE
-          value: k8s-dev
-        - name: ENV_LOG_LEVEL
-          value: info
-        image: pubrepo.jiagouyun.com/datakit/datakit:1.2.6
-        imagePullPolicy: IfNotPresent
-        name: datakit
-        ports:
-        - containerPort: 9529
-          hostPort: 9529
-          name: port
-          protocol: TCP
-        securityContext:
-          privileged: true
-        volumeMounts:
-        - mountPath: /var/run/docker.sock
-          name: docker-socket
-          readOnly: true
-        - mountPath: /usr/local/datakit/conf.d/container/container.conf
-          name: datakit-conf
-          subPath: container.conf
-        - mountPath: /usr/local/datakit/conf.d/log/logfwdserver.conf
-          name: datakit-conf
-          subPath: logfwdserver.conf
-        - mountPath: /usr/local/datakit/pipeline/demo_system.p
-          name: datakit-conf
-          subPath: log_demo_system.p
-        - mountPath: /usr/local/datakit/conf.d/ddtrace/ddtrace.conf
-          name: datakit-conf
-          subPath: ddtrace.conf  
-        - mountPath: /host/proc
-          name: proc
-          readOnly: true
-        - mountPath: /host/dev
-          name: dev
-          readOnly: true
-        - mountPath: /host/sys
-          name: sys
-          readOnly: true
-        - mountPath: /rootfs
-          name: rootfs
-        - mountPath: /sys/kernel/debug
-          name: debugfs
-        workingDir: /usr/local/datakit
-      hostIPC: true
-      hostPID: true
-      restartPolicy: Always
-      serviceAccount: datakit
-      serviceAccountName: datakit
-      volumes:
-      - configMap:
-          name: datakit-conf
-        name: datakit-conf
-      - hostPath:
-          path: /var/run/docker.sock
-        name: docker-socket
-      - hostPath:
-          path: /proc
-          type: ""
-        name: proc
-      - hostPath:
-          path: /dev
-          type: ""
-        name: dev
-      - hostPath:
-          path: /sys
-          type: ""
-        name: sys
-      - hostPath:
-          path: /
-          type: ""
-        name: rootfs
-      - hostPath:
-          path: /sys/kernel/debug
-          type: ""
-        name: debugfs
-  updateStrategy:
-    rollingUpdate:
-      maxUnavailable: 1
-    type: RollingUpdate
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: datakit-conf
-  namespace: datakit
-data:
-    #### container
-    container.conf: |- 
-      [inputs.container]
-        endpoint = "unix:///var/run/docker.sock"
-
-        ## Containers metrics to include and exclude, default not collect. Globs accepted.
-        container_include_metric = []
-        container_exclude_metric = ["image:*"]
-
-        ## Containers logs to include and exclude, default collect all containers. Globs accepted.
-        container_include_log = ["image:*"]
-        container_exclude_log = []
-
-        exclude_pause_container = true
-
-        ## Removes ANSI escape codes from text strings
-        logging_remove_ansi_escape_codes = false
-  
-        kubernetes_url = "https://kubernetes.default:443"
-
-        ## Authorization level:
-        ##   bearer_token -> bearer_token_string -> TLS
-        ## Use bearer token for authorization. ('bearer_token' takes priority)
-        ## linux at:   /run/secrets/kubernetes.io/serviceaccount/token
-        ## windows at: C:\var\run\secrets\kubernetes.io\serviceaccount\token
-        bearer_token = "/run/secrets/kubernetes.io/serviceaccount/token"
-        # bearer_token_string = "<your-token-string>"
-
-        [inputs.container.tags]
-          # some_tag = "some_value"
-          # more_tag = "some_other_value" 
-
-    #### ddtrace
-    ddtrace.conf: |- 
-      [[inputs.ddtrace]]
-        endpoints = ["/v0.3/traces", "/v0.4/traces", "/v0.5/traces"]
-        # ignore_resources = []
-        customer_tags = ["node_ip"]
-
-        ## tags is ddtrace configed key value pairs
-        # [inputs.ddtrace.tags]
-          # some_tag = "some_value"
-          # more_tag = "some_other_value"
-    #### logfwdserver
-    logfwdserver.conf: |-
-      [inputs.logfwdserver]
-        ## logfwd 接收端监听地址和端口
-        address = "0.0.0.0:9531"
-
-        [inputs.logfwdserver.tags]
-        # some_tag = "some_value"
-        # more_tag = "some_other_value"        
-
-          
-    #### system-log
-    log_demo_system.p: |-
-        #日志样式
-        #2022-02-18 13:07:27.652 [http-nio-9201-exec-6] INFO  c.r.s.c.SysMenuController - [list,49] - demo-k8s-system 8754136045240195346 3167851246701836031 - 查询菜单列表开始
-
-        grok(_, "%{TIMESTAMP_ISO8601:time} %{NOTSPACE:thread_name} %{LOGLEVEL:status}%{SPACE}%{NOTSPACE:class_name} - \\[%{NOTSPACE:method_name},%{NUMBER:line}\\] - %{DATA:service_name} %{DATA:trace_id} %{DATA:span_id} - %{GREEDYDATA:msg}")
-
-        default_time(time,"Asia/Shanghai")
+default_time(time,"Asia/Shanghai")  
 ```
+
+![image](../images/k8s-rum-apm-log/22.png)
 
 ## 部署应用
 
@@ -1457,15 +1126,15 @@ $ kubectl apply -f system-deployment.yaml
 
 #### RUM APM 联动
 
-访问 web 应用，点击【系统管理】->【用户管理】，此时触发用户列表查询请求 list，dataflux-rum.js 会生成trace-id 存入 header 中，可以看到 list 接口对应的 trace-id 是 1373630955948661374。请求调用后端的 list 接口，后端的 ddtrace 会读取到 trace-id 并记录到自己的 trace 数据里，在 logback.xml 增加了 %X{dd.trace_id}，trace_id 会随日志输出，从而实现了 RUM、APM 和 Log 的联动。
+访问 web 应用，点击【系统管理】->【用户管理】，此时触发用户列表查询请求 list，dataflux-rum.js 会生成trace-id 存入 header 中，可以看到 list 接口对应的 trace-id 是 2772508174716324531。请求调用后端的 list 接口，后端的 ddtrace 会读取到 trace-id 并记录到自己的 trace 数据里，在 logback.xml 增加了 %X{dd.trace_id}，trace_id 会随日志输出，从而实现了 RUM、APM 和 Log 的联动。
 
 ![image](../images/k8s-rum-apm-log/13.png)
 
-点击【用户访问监测】模块->【web-k8s-demo】->【查看器】->选择 view，点击列表中的 /system/user
+点击【用户访问监测】模块->【ruoyi-k8s-web】->【查看器】-> 选择 view，前面操作是用户管理列表的查询，所以点击列表中的 /system/user。
 
 ![image](../images/k8s-rum-apm-log/14.png)
 
-点击【链路】
+点击【Fetch/XHR】
 
 ![image](../images/k8s-rum-apm-log/15.png)
 
@@ -1473,18 +1142,23 @@ $ kubectl apply -f system-deployment.yaml
 
 ![image](../images/k8s-rum-apm-log/16.png)
 
-#### 日志分析
-点击【日志】 模块，选择全部来源，搜索栏输入“查询”，回车，默认查询最近 15 分钟的日志。点击查询记录，根据 logback.xml 配置找到对应 trace_id 是 704229736283371775
-
 ![image](../images/k8s-rum-apm-log/17.png)
-
-点击【应用性能监控】模块->点击【链路】筛选框输入 trace_id:704229736283371775，回车检索出链路的调用情况。
 
 ![image](../images/k8s-rum-apm-log/18.png)
 
-点击【SysUserController.list】查看详细信息。
+#### 日志分析
+
+点击【日志】 模块，选择全部来源，默认查询最近 15 分钟的日志。根据 前端生成的 trace_id   2772508174716324531，填写在搜索栏，回车进行搜索。
 
 ![image](../images/k8s-rum-apm-log/19.png)
+
+点击【应用性能监控】模块->点击【链路】筛选框输入 trace_id:704229736283371775，回车检索出链路的调用情况。
+
+![image](../images/k8s-rum-apm-log/20.png)
+
+点击【SysUserController.list】查看详细信息。
+
+![image](../images/k8s-rum-apm-log/21.png)
 
 
 
