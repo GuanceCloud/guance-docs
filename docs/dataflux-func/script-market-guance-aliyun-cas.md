@@ -4,9 +4,9 @@
 
 阅读本文前，请先阅读：
 
-- [观测云集成简介](/dataflux-func/script-market-guance-integration)
+- [观测云集成 - 基本操作](/dataflux-func/script-market-guance-integration)
 
-提示：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包
+> 提示：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包
 
 ## 1. 配置结构
 
@@ -29,9 +29,9 @@
     "buyInAliyun": false,
     "endDate"    : "2022-10-08",
     "expired"    : false,
-    "message"    : "{示例 json 数据}",
     "sans"       : "*.jixx.com,jixx.com",
-    "startDate"  : "2021-10-08"
+    "startDate"  : "2021-10-08",
+    "message"    : "{示例 JSON 数据}"
   }
 }
 ```

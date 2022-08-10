@@ -705,7 +705,7 @@ sql_params = ['demo', 1]
 db_res = db.query(sql, sql_params=sql_params)
 ```
 
-## 1.0 Microsoft SQL Server
+## 10. Microsoft SQL Server
 
 Microsoft SQL Server 数据源操作对象主要提供 Microsoft SQL Server 的操作方法。
 
@@ -733,7 +733,7 @@ sql_params = ['demo', 1]
 db_res = db.query(sql, sql_params=sql_params)
 ```
 
-## 1.1 PostgreSQL
+## 11. PostgreSQL
 
 PostgreSQL 数据源操作对象主要提供一些操作 PostgreSQL 的方法。
 本数据源以下数据库：
@@ -766,7 +766,7 @@ sql_params = ['demo', 1]
 db_res = db.query(sql, sql_params=sql_params)
 ```
 
-## 1.2 mongoDB
+## 12. mongoDB
 
 mongoDB 数据源操作对象主要提供一些操作 mongoDB 的方法。
 
@@ -819,7 +819,7 @@ collection_list = helper.run_method('list_collection_names', db_name='some_db')
 
 具体查询语法、格式等，请参考 mongoDB 官方文档
 
-## 1.3 elasticsearch
+## 13. elasticsearch
 
 elasticsearch 数据源操作对象主要提供一些操作 elasticsearch 的方法。
 

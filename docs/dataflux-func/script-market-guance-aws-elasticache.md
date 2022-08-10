@@ -4,7 +4,7 @@
 
 阅读本文前，请先阅读：
 
-- [观测云集成简介](/dataflux-func/script-market-guance-integration)
+- [观测云集成 - 基本操作](/dataflux-func/script-market-guance-integration)
 
 > 提示：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包
 
@@ -39,6 +39,7 @@ collector_configs = {
 {
   "measurement": "aws_elasticache",
   "tags": {
+    "name"                     : "test",
     "CacheClusterId"           : "test",
     "CacheNodeType"            : "cache.t3.small",
     "Engine"                   : "redis",
@@ -46,8 +47,7 @@ collector_configs = {
     "CacheClusterStatus"       : " available",
     "PreferredAvailabilityZone": "cn-northwest-1b",
     "ARN"                      : "arn:aws-cn:elasticache:cn-northwest-1:5881335135:cluster:test",
-    "RegionId"                 : "cn-north-1",
-    "name"                     : "test"
+    "RegionId"                 : "cn-north-1"
   },
   "fields": {
     "SecurityGroups": "{安全组 JSON 数据}}",

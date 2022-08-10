@@ -4,7 +4,7 @@
 
 阅读本文前，请先阅读：
 
-- [观测云集成简介](/dataflux-func/script-market-guance-integration)
+- [观测云集成 - 基本操作](/dataflux-func/script-market-guance-integration)
 
 > 提示：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包
 
@@ -29,13 +29,13 @@
 
 ```python
 aws_cloudwatch_configs = {
-  'regions' : ['cn-northwest-1'],
-  'targets': [
-    {
-      'namespace'   : 'AWS/EC2',
-      'metrics'     : ['CPUCreditBalance', 'MetadataNoToken'],
-    }
-  ],
+    'regions': ['cn-northwest-1'],
+    'targets': [
+        {
+            'namespace': 'AWS/EC2',
+            'metrics'  : ['CPUCreditBalance', 'MetadataNoToken'],
+        }
+    ],
 }
 ```
 
@@ -55,13 +55,13 @@ aws_cloudwatch_configs = {
 
 ```python
 aws_cloudwatch_configs = {
-  'regions' : ['cn-northwest-1'],
-  'targets': [
-    {
-      'namespace'   : 'AWS/EC2',
-      'metrics'     : ['CPUCreditBalance', 'CPU*', '*Balance', '*Credit*'],
-    }
-  ],
+    'regions': ['cn-northwest-1'],
+    'targets': [
+        {
+            'namespace': 'AWS/EC2',
+            'metrics'  : ['CPUCreditBalance', 'CPU*', '*Balance', '*Credit*'],
+        }
+    ],
 }
 ```
 
@@ -81,13 +81,13 @@ aws_cloudwatch_configs = {
 
 ```python
 aws_cloudwatch_configs = {
-  'regions' : ['cn-northwest-1'],
-  'targets': [
-    {
-      'namespace'   : 'AWS/EC2',
-      'metrics'     : ['NOT', 'CPUCreditBalance', 'CPU*', '*Balance', '*Credit*'],
-    }
-  ],
+    'regions': ['cn-northwest-1'],
+    'targets': [
+        {
+            'namespace': 'AWS/EC2',
+            'metrics'  : ['NOT', 'CPUCreditBalance', 'CPU*', '*Balance', '*Credit*'],
+        }
+    ],
 }
 ```
 
@@ -103,17 +103,17 @@ aws_cloudwatch_configs = {
 
 ```python
 aws_cloudwatch_configs = {
-  'regions' : ['cn-northwest-1'],
-  'targets': [
-    {
-      'namespace'   : 'AWS/EC2',
-      'metrics'     : ['*CPU*'],
-    },
-    {
-      'namespace'   : 'AWS/EC2',
-      'metrics'     : ['NOT', 'CPUCreditBalance'],
-    },
-  ],
+    'regions': ['cn-northwest-1'],
+    'targets': [
+        {
+            'namespace': 'AWS/EC2',
+            'metrics'  : ['*CPU*'],
+        },
+        {
+            'namespace': 'AWS/EC2',
+            'metrics'  : ['NOT', 'CPUCreditBalance'],
+        },
+    ],
 }
 ```
 
@@ -138,15 +138,15 @@ aws_cloudwatch_configs = {
 
 以如下采集器配置为例：
 
-```json
+```python
 aws_cloudwatch_configs = {
-  'regions' : ['cn-northwest-1'],
-  'targets': [
-    {
-      'namespace'   : 'AWS/EC2',
-      'metrics'     : ['CPUCreditBalance'],
-    },
-  ],
+    'regions': ['cn-northwest-1'],
+    'targets': [
+        {
+            'namespace': 'AWS/EC2',
+            'metrics'  : ['CPUCreditBalance'],
+        },
+    ],
 }
 ```
 
@@ -156,16 +156,16 @@ aws_cloudwatch_configs = {
 {
   "measurement": "aws_AWS/EC2",
   "tags": {
-    	"InstanceId": "i-xxx",
+    "InstanceId": "i-xxx"
   },
   "fields": {
-      "CPUCreditBalance_Average": 576.0,
-      "CPUCreditBalance_Maximum": 576.0,
-      "CPUCreditBalance_Minimum": 576.0,
-      "CPUCreditBalance_SampleCount": 1.0,
-      "CPUCreditBalance_Sum": 576.0
-  },
-},
+    "CPUCreditBalance_Average"    : 576.0,
+    "CPUCreditBalance_Maximum"    : 576.0,
+    "CPUCreditBalance_Minimum"    : 576.0,
+    "CPUCreditBalance_SampleCount": 1.0,
+    "CPUCreditBalance_Sum"        : 576.0
+  }
+}
 ```
 
 > 提示：所有的指标值都会以`float`类型上报
@@ -181,8 +181,8 @@ aws_cloudwatch_configs = {
 ```python
 # 创建采集器
 collectors = [
-  aws_ec2.DataCollector(account, common_aws_configs),
-  aws_cloudwatch.DataCollector(account, aws_cloudwatch_configs) # CloudWatch 采集器一般放在最末尾
+    aws_ec2.DataCollector(account, common_aws_configs),
+    aws_cloudwatch.DataCollector(account, aws_cloudwatch_configs) # CloudWatch 采集器一般放在最末尾
 ]
 ```
 
@@ -194,9 +194,9 @@ collectors = [
 {
   "measurement": "aws_AWS/EC2",
   "tags": {
-    "InstanceId": "i-xxx",
+    "InstanceId": "i-xxx"
   },
-  "fields": { "内容略" },
+  "fields": { "内容略" }
 },
 ```
 
@@ -208,7 +208,7 @@ collectors = [
   "tags": {
     "InstanceType"   : "c6g.xxx",
     "PlatformDetails": "xxx",
-    "{其他字段略}"
+    "{其他字段}"     : "{略}"
   },
   "fields": { "内容略" }
 }
@@ -220,12 +220,12 @@ collectors = [
 {
   "measurement": "aws_AWS/EC2",
   "tags": {
-    "InstanceId"		  : "i-xxx", // CloudWatch 原始字段
+    "InstanceId"		  : "i-xxx",   // CloudWatch 原始字段
     "InstanceType"    : "c6g.xxx", // 来自自定义对象 EC2 的字段
-    "PlatformDetails" : "xxx", // 来自自定义对象 EC2 的字段
-    "{其他字段略}"
+    "PlatformDetails" : "xxx",     // 来自自定义对象 EC2 的字段
+    "{其他字段}"      : "{略}"
   },
-  "fields": { "内容略" },
+  "fields": { "内容略" }
 },
 ```
 

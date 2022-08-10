@@ -256,6 +256,9 @@ customer_tags = ["username", "job"]
 ![](../images/ddtrace-skill-13.gif)
 
 
+## [使用 extract + TextMapAdapter 实现了自定义 traceId](ddtrace-custom-traceId.md)
+
+
 ## 显示数据库实例名称
 
 显示数据库的名称，默认显示数据库的类型，如需要显示数据库名称，将值设置成`TRUE`

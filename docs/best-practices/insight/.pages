@@ -23,4 +23,8 @@ nav:
     - '观测云-数据采样最佳实践': data-simpling.md
     - '快速上手 Pythond 采集器的最佳实践': pythond.md
 
-  - '场景 (Scene)': index.md
+  - '场景 (Scene)': 
+    - 'CDB': tencent-cdb.md
+    - tencent-clb.md
+    - tencent-cos.md
+    - tencent-cvm.md

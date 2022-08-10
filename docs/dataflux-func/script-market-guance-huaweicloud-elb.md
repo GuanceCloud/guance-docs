@@ -4,9 +4,9 @@
 
 阅读本文前，请先阅读：
 
-- [观测云集成简介](https://www.yuque.com/dataflux/func/script-market-guance-integration-intro)
+- [观测云集成 - 基本操作](/dataflux-func/script-market-guance-integration)
 
-提示：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包
+> 提示：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包
 
 ## 1. 配置结构
 
@@ -20,11 +20,11 @@
 ## 2. 配置示例
 
 ```python
-    configs = {
-        'region_projects':{
-            'cn-north-4': ['c631f046252d4ebdxxxxxxxxxxx', '15c6ce1c12da4059a8xxxxxxxxxx']
-        }
+configs = {
+    'region_projects':{
+        'cn-north-4': ['c631f046252d4ebdxxxxxxxxxxx', '15c6ce1c12da4059a8xxxxxxxxxx']
     }
+}
 ```
 
 ## 3. 数据上报格式
@@ -34,25 +34,24 @@
 上报的数据示例如下：
 
 ```json
-  {
-    "category": "custom_object",
-    "measurement": "huaweicloud_elb",
-    "tags": {
-      "description"     : "",
-      "id"              : "e9cb54b0-63e0-46c5xxxxxxxxxx",
-      "RegionId"        : "cn-north-4",
-      "instance_name"   : "elb-xxxx",
-      "name"            : "e9cb54b0-63e0-46c5xxxxxxxx",
-      "operating_status": "ONLINE",
-      "project_id"      : "c631f046252d4ebdaxxxxxxxxxx"
-    },
-      "fields": {
-      "created_at": "2022-06-22T02:41:57",
-      "listeners" : "{实例 JSON 数据}",
-      "message"   : "{实例 JSON 数据}",
-      "updated_at": "2022-06-22T02:41:57"
-    },
+{
+  "measurement": "huaweicloud_elb",
+  "tags": {
+    "name"            : "e9cb54b0-63e0-46c5xxxxxxxx",
+    "description"     : "",
+    "id"              : "e9cb54b0-63e0-46c5xxxxxxxxxx",
+    "RegionId"        : "cn-north-4",
+    "instance_name"   : "elb-xxxx",
+    "operating_status": "ONLINE",
+    "project_id"      : "c631f046252d4ebdaxxxxxxxxxx"
   },
+  "fields": {
+    "created_at": "2022-06-22T02:41:57",
+    "listeners" : "{实例 JSON 数据}",
+    "updated_at": "2022-06-22T02:41:57",
+    "message"   : "{实例 JSON 数据}"
+  }
+}
 ```
 
 *注意：`tags`、`fields`中的字段可能会随后续更新有所变动*

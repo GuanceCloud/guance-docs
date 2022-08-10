@@ -4,9 +4,9 @@
 
 阅读本文前，请先阅读：
 
-- [观测云集成简介](/dataflux-func/script-market-guance-integration)
+- [观测云集成 - 基本操作](/dataflux-func/script-market-guance-integration)
 
-提示：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包
+> 提示：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包
 
 ## 1. 配置结构
 
@@ -19,22 +19,22 @@
 上报的数据示例如下：
 
 ```json
-  {
-    "measurement": "aliyun_waf",
-    "tags": {
-		  "InstanceId"        : "waf-4haczyzxxxxx",
-      "PayType"         : "1",
-      "Region"          : "cn",
-      "Status"          : "1",
-      "SubscriptionType": "Subscription",
-      "Version"         : "version_2",
-      "name"            : "waf-4haczyxxxxx"
-    },
-    "fields": {
-      "message": "{实例 JSON 数据}",
-     	"EndDate": 1669651200,
-    },
+{
+  "measurement": "aliyun_waf",
+  "tags": {
+    "name"            : "waf-4haczyxxxxx",
+    "InstanceId"      : "waf-4haczyzxxxxx",
+    "PayType"         : "1",
+    "Region"          : "cn",
+    "Status"          : "1",
+    "SubscriptionType": "Subscription",
+    "Version"         : "version_2"
   },
+  "fields": {
+    "EndDate": 1669651200,
+    "message": "{实例 JSON 数据}",
+  }
+}
 ```
 
 *注意：`tags`、`fields`中的字段可能会随后续更新有所变动*

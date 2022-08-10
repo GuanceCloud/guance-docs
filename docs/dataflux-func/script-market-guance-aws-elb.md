@@ -4,9 +4,9 @@
 
 阅读本文前，请先阅读：
 
-- [观测云集成简介](/dataflux-func/script-market-guance-integration)
+- [观测云集成 - 基本操作](/dataflux-func/script-market-guance-integration)
 
-提示：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包
+> 提示：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包
 
 ## 1. 配置结构
 
@@ -51,7 +51,7 @@ collector_configs = {
   "fields": {
     "CreatedTime"         : "2022-03-09T06:13:31Z",
     "ListenerDescriptions": "{JSON 数据}",
-    "AvailabilityZones"   : "{可用区 json 数据}",
+    "AvailabilityZones"   : "{可用区 JSON 数据}",
     "message"             : "{实例 JSON 数据}"
   }
 }

@@ -40,6 +40,7 @@ nav:
       - 采集器配置手册:
         - 阿里云:
           - 阿里云帮助中心: https://help.aliyun.com/
+          - 账单: script-market-guance-aliyun-billing.md
           - 云监控: script-market-guance-aliyun-monitor.md
           - 云服务器 ECS: script-market-guance-aliyun-ecs.md
           - 负载均衡 SLB: script-market-guance-aliyun-slb.md
@@ -57,7 +58,7 @@ nav:
             - 云安全中心: script-market-guance-aliyun-tds.md
             - 云安全中心日志: script-market-guance-aliyun-tds-log.md
             - 云防火墙: script-market-guance-aliyun-cloudfw.md
-          - 网络与CDN:
+          - 网络与 CDN:
             - 专有网络 VPC: script-market-guance-aliyun-vpc.md
             - 云解析 PrivateZone: script-market-guance-aliyun-private-zone.md
             - NAT 网关: script-market-guance-aliyun-nat.md
@@ -82,20 +83,24 @@ nav:
         - 腾讯云:
           - 腾讯云文档中心: https://cloud.tencent.com/document/product
           - 腾讯云 SDK 模块问题: script-market-guance-tencentcloud-sdk-module-issue.md
+          - 账单: script-market-guance-tencentcloud-billing.md
           - 云监控: script-market-guance-tencentcloud-monitor.md
           - 云服务器 CVM: script-market-guance-tencentcloud-cvm.md
           - 云数据库 CDB（MySQL）: script-market-guance-tencentcloud-cdb.md
           - 云数据库 CDB（MySQL）慢查询: script-market-guance-tencentcloud-cdb-slowlog.md
+          - 云数据库 Redis: script-market-guance-tencentcloud-redis.md
           - 负载均衡 CLB: script-market-guance-tencentcloud-clb.md
           - 对象存储 COS: script-market-guance-tencentcloud-cos.md
         - 华为云:
           - 华为云帮助中心: https://support.huaweicloud.com/index.html
+          - 账单: script-market-guance-huaweicloud-billing.md
           - 云监控服务 CES: script-market-guance-huaweicloud-ces.md
           - 弹性云服务器 ECS: script-market-guance-huaweicloud-ecs.md
           - 云数据库 RDS: script-market-guance-huaweicloud-rds.md
           - 云数据库 RDS 慢查询: script-market-guance-huaweicloud-rds-slowlog.md
           - 弹性负载均衡 ELB: script-market-guance-huaweicloud-elb.md
           - 对象存储服务 OBS: script-market-guance-huaweicloud-obs.md
+          - 分布式缓存服务 DCS: script-market-guance-huaweicloud-dcs.md
 
     - 生活日常:
       - 天气信息: script-market-weather.md

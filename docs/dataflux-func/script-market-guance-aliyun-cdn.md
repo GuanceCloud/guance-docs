@@ -4,7 +4,7 @@
 
 阅读本文前，请先阅读：
 
-- [观测云集成简介](/dataflux-func/script-market-guance-integration)
+- [观测云集成 - 基本操作](/dataflux-func/script-market-guance-integration)
 
 > 提示：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包。
 
@@ -22,11 +22,11 @@
 {
   "measurement": "aliyun_cdn",
   "tags": {
+    "name"        : "xxxxx.com",
     "CdnType"     : "web",
     "DomainName"  : "xxxxx.com",
     "DomainStatus": "online",
-    "SslProtocol" : "on",
-    "name"        : "xxxxx.com"
+    "SslProtocol" : "on"
   },
   "fields": {
     "CertExpireTime": "2022-12-13T16:00:00Z",
@@ -41,3 +41,9 @@
 > 提示：`tags.name`值为域名，作为唯一识别
 
 > 提示 2：`fields.message`为 JSON 序列化后字符串
+
+## X. 附录
+
+请参考阿里云官方文档：
+
+- [阿里云-CDN](https://help.aliyun.com/document_detail/91188.htm)

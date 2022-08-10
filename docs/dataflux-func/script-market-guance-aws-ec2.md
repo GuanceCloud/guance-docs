@@ -4,7 +4,7 @@
 
 阅读本文前，请先阅读：
 
-- [观测云集成简介](/dataflux-func/script-market-guance-integration)
+- [观测云集成 - 基本操作](/dataflux-func/script-market-guance-integration)
 
 > 提示：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包
 
@@ -39,18 +39,20 @@ collector_configs = {
 {
   "measurement": "aws_ec2",
   "tags": {
+    "name"           : "i-0d7620xxxxxxx",
     "InstanceId"     : "i-0d7620xxxxxxx",
     "InstanceType"   : "c6g.xlarge"　　,
     "PlatformDetails": "Linux/UNIX",
     "RegionId"       : "cn-northwest-1",
-    "name"           : "i-0d7620xxxxxxx",
+    "InstanceName"   : "test"
+
   },
   "fields": {
     "BlockDeviceMappings": "{设备 JSON 数据}",
     "LaunchTime"         : "2021-10-26T07:00:44Z",
     "NetworkInterfaces"  : "{网络 JSON 数据}",
     "Placement"          : "{可用区 JSON 数据}",
-    "message"            : "{实例 JSON 数据}",
+    "message"            : "{实例 JSON 数据}"
   }
 }
 ~~~

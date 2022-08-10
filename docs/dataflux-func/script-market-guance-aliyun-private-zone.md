@@ -4,11 +4,11 @@
 
 阅读本文前，请先阅读：
 
-- [观测云集成简介](/dataflux-func/script-market-guance-integration)
+- [观测云集成 - 基本操作](/dataflux-func/script-market-guance-integration)
 
 > 提示：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包
 
-> 提示：PrivateZone 采集器不需要配置地域参数
+> 提示 2：PrivateZone 采集器不需要配置地域参数
 
 ## 1. 数据上报格式
 
@@ -20,18 +20,18 @@
 {
   "measurement": "aliyun_private_zone",
   "tags": {
+    "name"        : "3fbfxxxxxxxxxxxxxxxxd90",
     "Status"      : "OPENED",
     "ZoneId"      : "3fbfxxxxxxxxxxxxxxxxbd90",
     "ZoneName"    : "xxxxxx",
     "ProxyPattern": "RECORD",
     "ZoneType"    : "AUTH_ZONE",
-    "IsPtr"       : "false",
-    "name"        : "3fbfxxxxxxxxxxxxxxxxd90"
+    "IsPtr"       : "false"
   },
   "fields": {
     "CreateTime": "2022-03-30T10:17Z",
     "BindVpcs"  : "[ {绑定的 VPC JSON 数据}, ... ]",
-    "message"   : "{实例 json 数据}"
+    "message"   : "{实例 JSON 数据}"
   }
 }
 ~~~

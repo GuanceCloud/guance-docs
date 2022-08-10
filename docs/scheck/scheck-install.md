@@ -1,7 +1,7 @@
 # Scheck 安装
 
 - 版本：1.0.7-4-g582a075
-- 发布日期：2022-07-11 02:27:55
+- 发布日期：2022-08-05 03:12:31
 - 操作系统支持：windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64
 
 

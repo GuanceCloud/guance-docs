@@ -5,6 +5,7 @@ nav:
       - 'SkyWalking 链路数据接入最佳实践': skywalking.md
       - 'Jaeger 链路数据接入最佳实践': jaeger.md
       - 'ddtrace 高级用法': ddtrace-skill.md
+      - ddtrace-custom-traceId.md
       - 'JVM 可观测最佳实践': jvm.md
       - GraalVM 与 Spring Native 项目实现链路可观测: spring-native.md
       - JAVA OOM异常可观测最佳实践: java-oom.md
@@ -26,7 +27,7 @@ nav:
     - '页面渠道引流可观测最佳实践': page.md
 
   - '基础设施监控 (ITIM)':
-    - '主机可观测最佳实践': host.md
+    - '主机可观测最佳实践': host-linux.md
     - 'Prometheus 体系数据接入最佳实践': prometheus.md
 
   - '持续集成和部署 (CI/CD)':

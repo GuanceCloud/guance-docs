@@ -4,9 +4,9 @@
 
 阅读本文前，请先阅读：
 
-- [观测云集成简介](/dataflux-func/script-market-guance-integration)
+- [观测云集成 - 基本操作](/dataflux-func/script-market-guance-integration)
 
-提示：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包
+> 提示：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包
 
 ## 1. 配置结构
 
@@ -45,7 +45,7 @@ collector_configs = {
     "VpcId"             : "vpc-bp1l3jzwhv8cnu9p8u4yh",
     "Spec"              : "Small",
     "InstanceChargeType": "PrePaid",
-    "RegionId"          : "cn-hangzhou",
+    "RegionId"          : "cn-hangzhou"
   },
   "fields": {
     "CreationTime": "2021-01-27T06:15:48Z",
