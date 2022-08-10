@@ -2,8 +2,7 @@
 # 文件日志
 ---
 
-- DataKit 版本：1.4.8
-- 操作系统支持：全平台
+- 操作系统支持：:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
 
 本文档主要介绍本地磁盘日志采集和 Socket 日志采集：
 
@@ -66,6 +65,9 @@
   ## 忽略不活跃的文件，例如文件最后一次修改是 20 分钟之前，距今超出 10m，则会忽略此文件
   ## 时间单位支持 "ms", "s", "m", "h"
   ignore_dead_log = "10m"
+
+  ## 是否开启阻塞模式，阻塞模式会在数据发送失败后持续重试，而不是丢弃该数据
+  blocking_mode = true
 
   # 自定义 tags
   [inputs.logging.tags]
@@ -294,12 +296,14 @@ Pipeline 的几个注意事项：
 
 | 指标 | 描述| 数据类型 | 单位   |
 | ---- |---- | :---:    | :----: |
-|`log_read_lines`|采集到的行数计数，多行数据算成一行（[:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)）|int|count|
-|`log_read_offset`|当前数据在文件中的偏移位置（beta）|int|-|
+|`log_read_lines`|采集到的行数计数，多行数据算成一行（[:octicons-tag-24: Version-1.4.6](../datakit/changelog.md#cl-1.4.6)）|int|count|
+|`log_read_offset`|当前数据在文件中的偏移位置（[:octicons-tag-24: Version-1.4.8](../datakit/changelog.md#cl-1.4.8) · [:octicons-beaker-24: Experimental](index.md#experimental)）|int|-|
 |`message`|日志正文，默认存在，可以使用 pipeline 删除此字段|string|-|
-|`status`|日志状态，默认为 `unknown`，采集器会该字段做支持映射，映射表见上述 pipelie 配置和使用|string|-|
+|`status`|日志状态，默认为 `unknown`，采集器会该字段做支持映射，映射表见上述 pipelie 配置和使用[^1]|string|-|
 
  
+
+[^1]: 早期 Pipeline 实现的时候，只能切割出 field，而 status 大部分都是通过 Pipeline 切割出来的，故将其归类到 field 中。但语义上，它应该属于 tag 的范畴。
 
 ## FAQ
 

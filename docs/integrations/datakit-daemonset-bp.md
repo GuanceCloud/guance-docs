@@ -2,10 +2,6 @@
 # DataKit DaemonSet 部署最佳实践
 ---
 
-- DataKit 版本：1.4.8
-
-## 背景介绍
-
 由于 [Datakit DaemonSet](../datakit/datakit-daemonset-deploy.md) 配置管理非常复杂，此篇文章将介绍配置管理最佳实践。本篇将以配置 MySQL 和 Java Pipeline 为演示案例。
 
 本篇将描述以下2种不同的管理方法:
@@ -237,11 +233,11 @@ yaml 配置复杂，建议使用 [Helm 部署](#helm-install)。先下载 [datak
 修改 datakit.yaml，添加各种 env 配置：
 
 ```yaml
-        - name: ENV_GIT_URL
+        - name: DK_GIT_URL
           value: "http://username:password@github.com/path/to/repository.git"
-        - name: ENV_GIT_BRANCH
+        - name: DK_GIT_BRANCH
           value: "master"
-        - name: ENV_GIT_INTERVAL
+        - name: DK_GIT_INTERVAL
           value: "1m"
 ```
 
@@ -290,13 +286,13 @@ metadata:
 - 添加 env 配置：
 
 ```yaml
-        - name: ENV_GIT_URL
+        - name: DK_GIT_URL
           value: "git@github.com:path/to/repository.git"
-        - name: ENV_GIT_KEY_PATH
+        - name: DK_GIT_KEY_PATH
           value: "/usr/local/datakit/id_rsa"
-        - name: ENV_GIT_BRANCH
+        - name: DK_GIT_BRANCH
           value: "master"
-        - name: ENV_GIT_INTERVAL
+        - name: DK_GIT_INTERVAL
           value: "1m"
 ```
 

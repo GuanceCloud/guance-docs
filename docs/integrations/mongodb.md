@@ -2,7 +2,6 @@
 # MongoDB
 ---
 
-- DataKit 版本：1.4.8
 - 操作系统支持：:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple:
 
 MongoDb 数据库，Collection， MongoDb 数据库集群运行状态数据采集。

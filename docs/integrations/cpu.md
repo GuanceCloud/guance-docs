@@ -2,7 +2,6 @@
 # CPU
 ---
 
-- DataKit 版本：1.4.8
 - 操作系统支持：:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple:
 
 CPU 采集器用于系统 CPU 使用率的采集。
@@ -18,31 +17,46 @@ CPU 采集器用于系统 CPU 使用率的采集。
 
 ## 配置  {#input-config}
 
-进入 DataKit 安装目录下的 `conf.d/host` 目录，复制 `cpu.conf.sample` 并命名为 `cpu.conf`。示例如下：
+=== "datakit.conf"
 
-```toml
+    进入 DataKit 安装目录下的 `conf.d/host` 目录，复制 `cpu.conf.sample` 并命名为 `cpu.conf`。示例如下：
+    
+    ```toml
+        
+    [[inputs.cpu]]
+      ## Collect interval, default is 10 seconds. (optional)
+      interval = '10s'
+      ##
+      ## Collect CPU usage per core, default is false. (optional)
+      percpu = false
+      ##
+      ## Setting disable_temperature_collect to false will collect cpu temperature stats for linux.
+      ##
+      # disable_temperature_collect = false
+      enable_temperature = true
+      ##
+      enable_load5s = true
+      ##
+      [inputs.cpu.tags]
+        # some_tag = "some_value"
+        # more_tag = "some_other_value"
+    
+    ```
 
-[[inputs.cpu]]
-  ## Collect interval, default is 10 seconds. (optional)
-  interval = '10s'
-  ##
-  ## Collect CPU usage per core, default is false. (optional)
-  percpu = false
-  ##
-  ## Setting disable_temperature_collect to false will collect cpu temperature stats for linux.
-  ##
-  # disable_temperature_collect = false
-  enable_temperature = true
-  ##
-  enable_load5s = true
-  ##
-  [inputs.cpu.tags]
-    # some_tag = "some_value"
-    # more_tag = "some_other_value"
+    配置好后，重启 DataKit 即可。
 
-```
+=== "Kubernetes"
 
-配置好后，重启 DataKit 即可。
+    Kubernetes 中支持以环境变量的方式修改配置参数：
+
+    | 环境变量名                                  | 对应的配置参数项              | 参数示例                                                                              |
+    | :---                                        | ---                           | ---                                                                                   |
+    | `ENV_INPUT_CPU_PERCPU`                      | `percpu`                      | `true/false`                                                                          |
+    | `ENV_INPUT_CPU_ENABLE_TEMPERATURE`          | `enable_temperature`          | `true/false`                                                                          |
+    | `ENV_INPUT_CPU_TAGS`                        | `tags`                        | `tag1=value1,tag2=value2` 如果配置文件中有同名 tag，会覆盖它                          |
+    | `ENV_INPUT_CPU_INTERVAL`                    | `interval`                    | `10s`                                                                                 |
+    | `ENV_INPUT_CPU_DISABLE_TEMPERATURE_COLLECT` | `disable_temperature_collect` | `false/true`。给任意字符串就认为是 `true`，没定义就是 `false`。                       |
+    | `ENV_INPUT_CPU_ENABLE_LOAD5S`               | `enable_load5s`               | `false/true`。给任意字符串就认为是。给任意字符串就认为是 `true`，没定义就是 `false`。 |
 
 ## 指标查看
 
@@ -52,19 +66,6 @@ CPU 采集器用于系统 CPU 使用率的采集。
   ![](imgs/input-cpu-2.png){ width="800" }
   <figcaption>CPU 指标查看</figcaption>
 </figure>
-
-### 通过环境变量修改配置参数 {#envs}
-
-支持以环境变量的方式修改配置参数（只在 Daemonset 方式运行时生效）：
-
-| 环境变量名                                  | 对应的配置参数项              | 参数示例                                                                              |
-| :---                                        | ---                           | ---                                                                                   |
-| `ENV_INPUT_CPU_PERCPU`                      | `percpu`                      | `true/false`                                                                          |
-| `ENV_INPUT_CPU_ENABLE_TEMPERATURE`          | `enable_temperature`          | `true/false`                                                                          |
-| `ENV_INPUT_CPU_TAGS`                        | `tags`                        | `tag1=value1,tag2=value2` 如果配置文件中有同名 tag，会覆盖它                          |
-| `ENV_INPUT_CPU_INTERVAL`                    | `interval`                    | `10s`                                                                                 |
-| `ENV_INPUT_CPU_DISABLE_TEMPERATURE_COLLECT` | `disable_temperature_collect` | `false/true`。给任意字符串就认为是 `true`，没定义就是 `false`。                       |
-| `ENV_INPUT_CPU_ENABLE_LOAD5S`               | `enable_load5s`               | `false/true`。给任意字符串就认为是。给任意字符串就认为是 `true`，没定义就是 `false`。 |
 
 ## 指标集 {#measurements}
 

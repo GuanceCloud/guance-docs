@@ -2,7 +2,6 @@
 # 网络拨测
 ---
 
-- DataKit 版本：1.4.8
 - 操作系统支持：:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple:
 
 # dialtesting

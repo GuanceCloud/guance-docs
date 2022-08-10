@@ -2,8 +2,7 @@
 # DaemonSet 安装 DataKit 
 ---
 
-- DataKit 版本：1.4.8
-- 操作系统支持：Linux
+- 操作系统支持：:fontawesome-brands-linux:
 
 本文档介绍如何在 K8s 中通过 DaemonSet 方式安装 DataKit。
 
@@ -63,7 +62,9 @@ $ helm uninstall datakit -n datakit
 
 先下载 [datakit.yaml](https://static.guance.com/datakit/datakit.yaml){:target="_blank"}，其中开启了很多[默认采集器](datakit-input-conf.md#default-enabled-inputs)，无需配置。
 
-> 如果要修改这些采集器的默认配置，可通过 [Configmap 方式挂载单独的 conf](../integrations/k8s-config-how-to.md#via-configmap-conf) 来配置。部分采集器可以直接通过环境变量的方式来调整，具体参见具体采集器的文档（[容器采集器示例](../integrations/container.md#env-config)）。总而言之，不管是默认开启的采集器，还是其它采集器，在 DaemonSet 方式部署 DataKit 时，通过 [Configmap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/){:target="_blank"} 来配置采集器总是生效的。
+???+ attention
+
+    如果要修改这些采集器的默认配置，可通过 [Configmap 方式挂载单独的 conf](../integrations/k8s-config-how-to.md#via-configmap-conf) 来配置。部分采集器可以直接通过环境变量的方式来调整，具体参见具体采集器的文档。总而言之，不管是默认开启的采集器，还是其它采集器，在 DaemonSet 方式部署 DataKit 时，通过 [Configmap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/){:target="_blank"} 来配置采集器总是生效的。
 
 #### 修改配置
 
@@ -172,6 +173,7 @@ spec:
 以下环境变量的取值分为如下几种数据类型：
 
 - string：字符串类型
+- json：一些较为复杂的配置，需要以 json 字符串形式来设置环境变量
 - bool：开关类型，给定**任何非空字符串**即表示开启该功能，建议均以 `"on"` 作为其开启时的取值。如果不开启，必须将其删除或注释掉。
 - string-list：以英文逗号分割的字符串，一般用于表示列表
 - duration：一种字符串形式的时间长度表示，比如 `10s` 表示 10 秒，这里的单位支持 h/m/s/ms/us/ns。==不要给负值==。
@@ -201,11 +203,12 @@ spec:
 
 ### 日志配置相关环境变量 {#env-log}
 
-| 环境变量名称  | 类型   | 默认值                     | 必须   | 说明                                                             |
-| ---------:    | ----:  | ---:                       | ------ | ----                                                             |
-| ENV_GIN_LOG   | string | */var/log/datakit/gin.log* | 否     | 如果改成 `stdout`，DataKit 自身 gin 日志将不写文件，而是终端输出 |
-| ENV_LOG       | string | */var/log/datakit/log*     | 否     | 如果改成 `stdout`，DatakIt 自身日志将不写文件，而是终端输出      |
-| ENV_LOG_LEVEL | string | info                       | 否     | 设置 DataKit 自身日志等级，可选 `info/debug`                     |
+| 环境变量名称          | 类型   | 默认值                     | 必须   | 说明                                                             |
+| ---------:            | ----:  | ---:                       | ------ | ----                                                             |
+| ENV_GIN_LOG           | string | */var/log/datakit/gin.log* | 否     | 如果改成 `stdout`，DataKit 自身 gin 日志将不写文件，而是终端输出 |
+| ENV_LOG               | string | */var/log/datakit/log*     | 否     | 如果改成 `stdout`，DatakIt 自身日志将不写文件，而是终端输出      |
+| ENV_LOG_LEVEL         | string | info                       | 否     | 设置 DataKit 自身日志等级，可选 `info/debug`                     |
+| ENV_DISABLE_LOG_COLOR | bool   | -                          | 否     | 关闭日志颜色                                                     |
 
 ###  DataKit pprof 相关 {#env-pprof}
 
@@ -258,16 +261,19 @@ spec:
 | ENV_SINK_T   | string | 无     | 否     | 安装时指定 Tracing 的 sink。      |
 | ENV_SINK_R   | string | 无     | 否     | 安装时指定 RUM 的 sink。          |
 | ENV_SINK_S   | string | 无     | 否     | 安装时指定 Security 的 sink。     |
+| ENV_SINK_P   | string | 无     | 否     | 安装时指定 Profile 的 sink。      |
 
 ### IO 模块配置相关环境变量 {#env-io}
 
-| 环境变量名称             | 默认值 | 必须   | 说明                               |
-| ---------:               | ---:   | ------ | ----                               |
-| ENV_IO_FILTERS           | 无     | 否     | 添加[行协议过滤器](datakit-filter) |
-| ENV_IO_FLUSH_INTERVAL    | 10s    | 否     | IO 发送时间频率                    |
-| ENV_IO_BLOCKING_MODE     | false  | 否     | 阻塞模式 [:octicons-tag-24: Version-1.4.8](changelog.md#cl-1.4.8) · [:octicons-beaker-24: Experimental](index.md#experimental)|
-| ENV_IO_MAX_CACHE_COUNT   | 512    | 否     | 发送 buffer（点数）大小 |
-| ENV_IO_QUEUE_SIZE        | 4096   | 否     | IO 模块数据处理队列长度 |
+| 环境变量名称             | 类型     | 默认值 | 必须   | 说明                                                                                                                           |
+| ---------:               | ---:     | ---:   | ------ | ----                                                                                                                           |
+| ENV_IO_FILTERS           | json     | 无     | 否     | 添加[行协议过滤器](datakit-filter)                                                                                             |
+| ENV_IO_FLUSH_INTERVAL    | duration | 10s    | 否     | IO 发送时间频率                                                                                                                |
+| ENV_IO_BLOCKING_MODE     | bool     | -      | 否     | 阻塞模式 [:octicons-tag-24: Version-1.4.8](changelog.md#cl-1.4.8) · [:octicons-beaker-24: Experimental](index.md#experimental) |
+| ENV_IO_MAX_CACHE_COUNT   | int      | 64     | 否     | 发送 buffer（点数）大小                                                                                                        |
+| ENV_IO_QUEUE_SIZE        | int      | 128    | 否     | IO 模块数据处理队列长度                                                                                                        |
+| ENV_IO_ENABLE_CACHE      | bool     | -      | 否     | 是否开启发送失败的磁盘缓存                                                                                                     |
+| ENV_IO_CACHE_MAX_SIZE_GB | int      | 1      | 否     | 发送失败缓存的磁盘大小（单位 GB）                                                                                              |
 
 ???+ note "关于 buffer 和 queue 的说明"
 
@@ -276,12 +282,6 @@ spec:
 ???+ warning "阻塞和非阻塞模式"
 
     `ENV_IO_BLOCKING_MODE` 默认是关闭的，即非阻塞模式。在非阻塞模式下，如果处理队列（`ENV_IO_QUEUE_SIZE`）拥塞，将导致采集器上报的数据被丢弃，但不会影响新数据的采集。而在阻塞模式下，如果队列拥塞，那么数据采集也一并阻塞住，直到处理队列空闲，才会恢复新数据的采集。
-
-<!--
-| ENV_IO_ENABLE_CACHE      | false  | 否     | 开启 IO 磁盘 cache                 |
-| ENV_IO_CACHE_MAX_SIZE_GB | 1      | 否     | IO 磁盘 cache 大小                 |
-| ENV_IO_MAX_CACHE_COUNT   | 1024   | 否     | IO cache 大小                      |
--->
 
 `ENV_IO_FILTERS` 是一个 json 字符串，示例如下:
 

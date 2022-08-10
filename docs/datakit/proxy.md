@@ -2,7 +2,6 @@
 # DataKit 代理
 ---
 
-- DataKit 版本：1.4.8
 - 操作系统支持：:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple:
 
 当 Datakit 无法访问外网时，可在内网部署一个代理将流量发送出来。本文提供俩种实现方式：
@@ -131,32 +130,32 @@ $ sudo vi /etc/hosts
 
 在被代理机器上，测试代理是否正常：
 
-Linux/Unix:
+=== "Linux/Unix Shell"
 
-```shell
-curl -H "application/x-www-form-urlencoded; param=value" \
-  -d 'proxy_test_nginx,name=test c=123i' \
-  "https://openway.guance.com/v1/write/metrics?token=<YOUR-TOKEN>"
-```
+    ```shell
+    curl -H "application/x-www-form-urlencoded; param=value" \
+      -d 'proxy_test_nginx,name=test c=123i' \
+      "https://openway.guance.com/v1/write/metrics?token=<YOUR-TOKEN>"
+    ```
 
-PowerShell:
+=== "Windows PowerShell"
 
-```PowerShell
-curl -uri 'https://openway.guance.com/v1/write/metrics?token=<YOUR-TOKEN>' -Headers @{"param"="value"} -ContentType 'application/x-www-form-urlencoded' -body 'proxy_test_nginx,name=test c=123i' -method 'POST'
-```
-
-注意: PowerShell 有的机器上会报 `curl : 请求被中止: 未能创建 SSL/TLS 安全通道。` 的错误，这是因为服务端证书加密版本号在本地默认不被支持造成的，可以通过命令 `[Net.ServicePointManager]::SecurityProtocol` 查看支持的协议。如果想要本地支持可以做以下操作:
-
-```PowerShell
-# 64 bit PowerShell
-Set-ItemProperty -Path 'HKLM:\SOFTWARE\Wow6432Node\Microsoft\.NetFramework\v4.0.30319' -Name 'SchUseStrongCrypto' -Value '1' -Type DWord
-
-# 32 bit PowerShell
-Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\.NetFramework\v4.0.30319' -Name 'SchUseStrongCrypto' -Value '1' -Type DWord
-```
-
-关闭 PowerShell 窗口，打开一个新的 PowerShell 窗口，执行以下代码查看支持的协议:
-
-```PowerShell
-[Net.ServicePointManager]::SecurityProtocol
-```
+    ```PowerShell
+    curl -uri 'https://openway.guance.com/v1/write/metrics?token=<YOUR-TOKEN>' -Headers @{"param"="value"} -ContentType 'application/x-www-form-urlencoded' -body 'proxy_test_nginx,name=test c=123i' -method 'POST'
+    ```
+    
+    注意: PowerShell 有的机器上会报 `curl : 请求被中止: 未能创建 SSL/TLS 安全通道。` 的错误，这是因为服务端证书加密版本号在本地默认不被支持造成的，可以通过命令 `[Net.ServicePointManager]::SecurityProtocol` 查看支持的协议。如果想要本地支持可以做以下操作:
+    
+    ```PowerShell
+    # 64 bit PowerShell
+    Set-ItemProperty -Path 'HKLM:\SOFTWARE\Wow6432Node\Microsoft\.NetFramework\v4.0.30319' -Name 'SchUseStrongCrypto' -Value '1' -Type DWord
+    
+    # 32 bit PowerShell
+    Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\.NetFramework\v4.0.30319' -Name 'SchUseStrongCrypto' -Value '1' -Type DWord
+    ```
+    
+    关闭 PowerShell 窗口，打开一个新的 PowerShell 窗口，执行以下代码查看支持的协议:
+    
+    ```PowerShell
+    [Net.ServicePointManager]::SecurityProtocol
+    ```

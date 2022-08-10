@@ -2,7 +2,6 @@
 # Oracle
 ---
 
-- DataKit 版本：1.4.8
 - 操作系统支持：:fontawesome-brands-linux:
 
 Oracle 监控指标采集，具有以下数据收集功能

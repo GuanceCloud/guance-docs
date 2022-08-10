@@ -2,7 +2,6 @@
 # SQLServer
 ---
 
-- DataKit 版本：1.4.8
 - 操作系统支持：:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple:
 
 SQL Server 采集器采集 SQL Server `waitstats`、`database_io` 等相关指标

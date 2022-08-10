@@ -2,7 +2,6 @@
 # Redis
 ---
 
-- DataKit 版本：1.4.8
 - 操作系统支持：:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple:
 
 Redis 指标采集器，采集以下数据：
@@ -373,7 +372,7 @@ ACL SETUSER username on +ping
 
 ### 日志 {#logging}
 
-[:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)
+[:octicons-tag-24: Version-1.4.6](../datakit/changelog.md#cl-1.4.6)
 
 
 
