@@ -233,11 +233,11 @@ yaml 配置复杂，建议使用 [Helm 部署](#helm-install)。先下载 [datak
 修改 datakit.yaml，添加各种 env 配置：
 
 ```yaml
-        - name: ENV_GIT_URL
+        - name: DK_GIT_URL
           value: "http://username:password@github.com/path/to/repository.git"
-        - name: ENV_GIT_BRANCH
+        - name: DK_GIT_BRANCH
           value: "master"
-        - name: ENV_GIT_INTERVAL
+        - name: DK_GIT_INTERVAL
           value: "1m"
 ```
 
@@ -286,13 +286,13 @@ metadata:
 - 添加 env 配置：
 
 ```yaml
-        - name: ENV_GIT_URL
+        - name: DK_GIT_URL
           value: "git@github.com:path/to/repository.git"
-        - name: ENV_GIT_KEY_PATH
+        - name: DK_GIT_KEY_PATH
           value: "/usr/local/datakit/id_rsa"
-        - name: ENV_GIT_BRANCH
+        - name: DK_GIT_BRANCH
           value: "master"
-        - name: ENV_GIT_INTERVAL
+        - name: DK_GIT_INTERVAL
           value: "1m"
 ```
 
