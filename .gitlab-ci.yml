@@ -21,7 +21,7 @@ buildTesting:
 buildMain:
   stage: deploy
   only:
-    - main
+    - master
   script:
     - docker build 
       --build-arg release_env="saas_production"
