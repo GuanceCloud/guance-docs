@@ -1,6 +1,19 @@
 ---
 icon: zy/best-practices
 ---
+## (2022/08/12)
+
+### 新增最佳实践
+
+- 洞见
+    - 场景 - [内网场景 Dubbo 微服务接入观测云](./insight/scene-dubbo.md)。
+
+### 更新记录
+
+- 云原生
+    - 其它 - [Kubernetes 应用的 RUM-APM-LOG 联动分析](./cloud-native/k8s-rum-apm-log.md)，<font color="red" > 升级 DataKit，更新截图。</font>
+
+
 ## (2022/07/22)
 
 ### 新增最佳实践
