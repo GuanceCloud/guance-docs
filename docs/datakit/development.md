@@ -92,90 +92,90 @@ datakit -M --vvv            # 检查所有采集器的运行情况
   - 如果某个指标集需满足特定的条件，那么应该在指标集的 `MeasurementInfo.Desc` 中做说明
   - 如果是指标集的某个指标有特定前置条件，应该在 `FieldInfo.Desc` 上做说明。
 
-## Windows/Mac/Liux 平台编译环境搭建
+## 编译环境搭建
 
-### Linux
+=== "Linux"
 
-#### 安装 Golang
+    #### 安装 Golang
+    
+    当前 Go 版本 [1.18.3](https://golang.org/dl/go1.18.3.linux-amd64.tar.gz)
+    
+    #### CI 设置
+    
+    > 假定 go 安装在 /root/golang 目录下
+    
+    - 设置目录
+    
+    ```
+    # 创建 Go 项目路径
+    mkdir /root/go
+    ```
+    
+    - 设置如下环境变量
+    
+    ```
+    export GO111MODULE=on
+    # Set the GOPROXY environment variable
+    export GOPRIVATE=gitlab.jiagouyun.com/*
+    
+    export GOPROXY=https://goproxy.io
+    
+    # 假定 golang 安装在 /root 目录下
+    export GOROOT=/root/golang-1.18.3
+    # 将 go 代码 clone 到 GOPATH 里面
+    export GOPATH=/root/go
+    export PATH=$GOROOT/bin:~/go/bin:$PATH
+    ```
+    
+    在 `~/.ossenv` 下创建一组环境变量，填写 OSS Access Key 以及 Secret Key，用于版本发布：
+    
+    ```shell
+    export RELEASE_OSS_ACCESS_KEY='LT**********************'
+    export RELEASE_OSS_SECRET_KEY='Cz****************************'
+    export RELEASE_OSS_BUCKET='zhuyun-static-files-production'
+    export RELEASE_OSS_PATH=''
+    export RELEASE_OSS_HOST='oss-cn-hangzhou-internal.aliyuncs.com'
+    ```
+    
+    #### 安装 packr2
+    
+    安装 [packr2](https://github.com/gobuffalo/packr/tree/master/v2){:target="_blank"}（可能需要翻墙）
+    
+    `go install github.com/gobuffalo/packr/v2/packr2@v2.8.3`
+    
+    #### 安装常见工具
+    
+    - tree
+    - make
+    - [goyacc](https://gist.github.com/tlightsky/9a163e59b6f3b05dbac8fc6b459a43c0): `go install golang.org/x/tools/cmd/goyacc@master`
+    - [golangci-lint](https://golangci-lint.run/usage/install/#local-installation): `go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.46.2`
+    - gofumpt: `go install mvdan.cc/gofumpt@v0.1.1`
+    - wget
+    - docker
+    - curl
+    - [llvm](https://apt.llvm.org/): 版本 >= 10.0
+    - clang: 版本 >= 10.0
+    - linux 内核（>= 5.4.0-99-generic）头文件：`apt-get install -y linux-headers-$(uname -r)` 
+    - go-bindata: `apt install go-bindata` `go get -u github.com/go-bindata/go-bindata/...`
+    
+    #### 安装第三方库
+    
+    - `gcc-multilib`
+    
+    ```shell
+    # Debian/Ubuntu
+    sudo apt-get install -y gcc-multilib
+    sudo apt-get install -y linux-headers-$(uname -r)
+    # Centos: TODO
+    ```
 
-当前 Go 版本 [1.18.3](https://golang.org/dl/go1.18.3.linux-amd64.tar.gz)
+=== "Mac"
 
-#### CI 设置
+    暂不支持
 
-> 假定 go 安装在 /root/golang 目录下
+=== "Windows"
 
-- 设置目录
-
-```
-# 创建 Go 项目路径
-mkdir /root/go
-```
-
-- 设置如下环境变量
-
-```
-export GO111MODULE=on
-# Set the GOPROXY environment variable
-export GOPRIVATE=gitlab.jiagouyun.com/*
-
-export GOPROXY=https://goproxy.io
-
-# 假定 golang 安装在 /root 目录下
-export GOROOT=/root/golang-1.18.3
-# 将 go 代码 clone 到 GOPATH 里面
-export GOPATH=/root/go
-export PATH=$GOROOT/bin:~/go/bin:$PATH
-```
-
-在 `~/.ossenv` 下创建一组环境变量，填写 OSS Access Key 以及 Secret Key，用于版本发布：
-
-```shell
-export RELEASE_OSS_ACCESS_KEY='LT**********************'
-export RELEASE_OSS_SECRET_KEY='Cz****************************'
-export RELEASE_OSS_BUCKET='zhuyun-static-files-production'
-export RELEASE_OSS_PATH=''
-export RELEASE_OSS_HOST='oss-cn-hangzhou-internal.aliyuncs.com'
-```
-
-#### 安装 packr2
-
-安装 [packr2](https://github.com/gobuffalo/packr/tree/master/v2){:target="_blank"}（可能需要翻墙）
-
-`go install github.com/gobuffalo/packr/v2/packr2@v2.8.3`
-
-#### 安装常见工具
-
-- tree
-- make
-- [goyacc](https://gist.github.com/tlightsky/9a163e59b6f3b05dbac8fc6b459a43c0): `go get -u golang.org/x/tools/cmd/goyacc`
-- [golangci-lint](https://golangci-lint.run/usage/install/#local-installation): `go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.46.2`
-- gofumpt: `go install mvdan.cc/gofumpt@v0.1.1`
-- wget
-- docker
-- curl
-- [llvm](https://apt.llvm.org/): 版本 >= 10.0
-- clang: 版本 >= 10.0
-- linux 内核（>= 5.4.0-99-generic）头文件：`apt-get install -y linux-headers-$(uname -r)` 
-- go-bindata: `apt install go-bindata` `go get -u github.com/go-bindata/go-bindata/...`
-
-#### 安装第三方库
-
-- `gcc-multilib`
-
-```shell
-# Debian/Ubuntu
-sudo apt-get install -y gcc-multilib
-sudo apt-get install -y linux-headers-$(uname -r)
-# Centos: TODO
-```
-
-### Mac
-
-TODO
-
-### Windows
-
-TODO
+    暂不支持
 
 ## 安装、升级测试 
 
@@ -350,7 +350,49 @@ cmd := exec.Command("/bin/bash", "-c", string(body)) //nolint:gosec
 ```
 - 其它可能确实需要关闭检查的地方，慎重对待
 
-## 排查 DataKit 内存泄露
+## 排查 DATA RACE 问题 {#data-race}
+
+在 DataKit 中存在较多的 DATA RACE 问题，这些问题可以通过在编译 DataKit 时加入特定的 option，让编译出来的二进制在运行期间自动检测出现 DATA RACE 的代码。
+
+编译带 DATA RACE 自动检测的 DataKit 需满足如下条件：
+
+- 必须开启 CGO，故只能 make local（默认执行 make 即可）
+- 必须传入 Makefile 变量： `make RACE_DETECTION=on`
+
+编译出来的二进制会增加一点，但无关紧要，我们只需要本地测试它。DATA RACE 自动检测有一个特征，只有代码运行到特定的代码才能检测到，故建议大家在日常测试自己的功能时，自动带上 `RACE_DETECTION=on` 编译，以尽早发现所有导致 DATA RACE 的代码。
+
+### DATA RACE 不一定真的导致数据错乱
+
+带有 DATA RACE 检测功能的二进制运行时，如果碰到 >=2 的 goroutine 访问同一份数据，且其中一个 goroutine 执行的是 write 逻辑，那么会在终端打印出类似如下的代码：
+
+```shell hl_lines="8 9 10 11"
+==================
+WARNING: DATA RACE
+Read at 0x00c000d40160 by goroutine 33:
+  gitlab.jiagouyun.com/cloudcare-tools/datakit/vendor/gitlab.jiagouyun.com/cloudcare-tools/kodo/dialtesting.(*HTTPTask).GetResults()
+	  /Users/tanbiao/go/src/gitlab.jiagouyun.com/cloudcare-tools/datakit/vendor/gitlab.jiagouyun.com/cloudcare-tools/kodo/dialtesting/http.go:208 +0x103c
+	...
+
+Previous write at 0x00c000d40160 by goroutine 74:
+  gitlab.jiagouyun.com/cloudcare-tools/datakit/vendor/gitlab.jiagouyun.com/cloudcare-tools/kodo/dialtesting.(*HTTPTask).Run.func2()
+	  /Users/tanbiao/go/src/gitlab.jiagouyun.com/cloudcare-tools/datakit/vendor/gitlab.jiagouyun.com/cloudcare-tools/kodo/dialtesting/http.go:306 +0x8c
+	...
+```
+
+通过这两个信息，即可得知两处的代码共同操作了某个数据对象，且其中至少有一个是 Write 操作。但要注意的是，这里打印的只是 WARNING 信息，即表示这段代码不一定会导致数据问题，最终的问题还需需要我们人工来甄别，比如以下的代码并不会有数据问题：
+
+```golang
+
+a = setupObject()
+
+go func() {
+	for {
+		updateObject(a)
+	}
+}()
+```
+
+## 排查 DataKit 内存泄露 {#mem-leak}
 
 编辑 datakit.conf，顶部增加如下配置字段即可开启 DataKit 远程 pprof 功能：
 
@@ -367,7 +409,7 @@ enable_pprof = true
 
 重启 DataKit 生效。
 
-### 获取 pprof 文件
+### 获取 pprof 文件 {#get-pprof}
 
 ```shell
 # 下载当前 DataKit 活跃内存 pprof 文件
@@ -381,7 +423,7 @@ wget http://<datakit-ip>:6060/debug/pprof/allocs
 
 另外通过 web 访问 `http://<datakit-ip>:6060/debug/pprof/heap?=debug=1` 也能查看一些内存分配信息。
 
-### 查看 pprof 文件
+### 查看 pprof 文件 {#use-pprof}
 
 下载到本地后，运行如下命令，进入交互命令后，可输入 top 即可查看内存消耗的 top10 热点：
 
@@ -424,7 +466,7 @@ Generating report in profile001.pdf
 
 除了[官方文档](datakit-tools-how-to.md)列出的部分辅助功能外，DataKit 还支持其它功能，这些主要在开发过程中使用。
 
-### 检查 sample config 是否正确
+### 检查 sample config 是否正确 {#check-sample-config}
 
 ```shell
 datakit --check-sample

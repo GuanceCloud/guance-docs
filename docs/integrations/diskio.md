@@ -2,7 +2,6 @@
 # DiskIO
 ---
 
-- DataKit 版本：1.4.7
 - 操作系统支持：:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple:
 
 diskio 采集器用于磁盘流量和时间的指标的采集
@@ -77,10 +76,6 @@ diskperf -Y
 | `ENV_INPUT_DISKIO_DEVICES`            | `devices`            | `'''^sdb\d*'''`                                              |
 | `ENV_INPUT_DISKIO_DEVICE_TAGS`        | `device_tags`        | `"ID_FS_TYPE", "ID_FS_USAGE"` 以英文逗号隔开                 |
 | `ENV_INPUT_DISKIO_NAME_TEMPLATES`     | `name_templates`     | `"$ID_FS_LABEL", "$DM_VG_NAME/$DM_LV_NAME"` 以英文逗号隔开   |
-
-## 指标预览
-
-![](imgs/input-diskio-02.png)
 
 ## 指标集
 

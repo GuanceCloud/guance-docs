@@ -1,6 +1,7 @@
 ---
 icon: zy/best-practices
 ---
+
 ## (2022/08/12)
 
 ### 新增最佳实践
@@ -12,6 +13,28 @@ icon: zy/best-practices
 
 - 云原生
     - 其它 - [Kubernetes 应用的 RUM-APM-LOG 联动分析](./cloud-native/k8s-rum-apm-log.md)，<font color="red" > 升级 DataKit，更新截图。</font>
+
+
+## (2022/08/05)
+
+### 新增最佳实践
+
+- 监控 Monitoring  
+    - [使用 extract + TextMapAdapter 实现了自定义 traceId](../monitoring/ddtrace-custom-traceId.md) 。
+
+- 洞见 Insight  
+    - 场景 (Scene) - [CDB](../insight/tencent-cdb.md)。
+	- 场景 (Scene) - [CLB](../insight/tencent-clb.md)。
+	- 场景 (Scene) - [COS](../insight/tencent-cos.md)。
+	- 场景 (Scene) - [CVM](../insight/tencent-cvm.md)。
+
+### 更新记录
+
+- 监控 Monitoring  
+    - [主机可观测最佳实践 (Linux)](../monitoring/host-linux.md),<font color="red" > 优化指标和采集流程</font>。
+	
+- 洞见 Insight  
+    - [基于观测云，使用 SkyWalking 实现 RUM、APM 和日志联动分析](insight/skywalking-apm-rum-log.md),<font color="red" > 新增skywalking 增加apm-spring-cloud-gateway 的使用说明</font>。
 
 
 ## (2022/07/22)

@@ -2,14 +2,13 @@
 # DDTrace
 ---
 
-- DataKit 版本：1.4.7
 - 操作系统支持：:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple:
 
 Datakit 内嵌的 DDTrace Agent 用于接收，运算，分析 DataDog Tracing 协议数据。
 
-## DDTrace 文档
+## DDTrace SDK {#sdk}
 
-### Referenc
+### 文档 {#docs}
 
 - [Java](https://docs.datadoghq.com/tracing/setup_overview/setup/java?tab=containers){:target="_blank"} 
 - [Python](https://docs.datadoghq.com/tracing/setup_overview/setup/python?tab=containers){:target="_blank"}
@@ -21,7 +20,7 @@ Datakit 内嵌的 DDTrace Agent 用于接收，运算，分析 DataDog Tracing �
 - [.Net Core](https://docs.datadoghq.com/tracing/setup_overview/setup/dotnet-core?tab=windows){:target="_blank"}
 - [.Net Framework](https://docs.datadoghq.com/tracing/setup_overview/setup/dotnet-framework?tab=windows){:target="_blank"}
 
-### Source Code
+### 源码 {#source-code}
 
 - [Java](https://github.com/DataDog/dd-trace-java){:target="_blank"}
 - [Python](https://github.com/DataDog/dd-trace-py){:target="_blank"}
@@ -34,7 +33,7 @@ Datakit 内嵌的 DDTrace Agent 用于接收，运算，分析 DataDog Tracing �
 
 > Java： DataKit 安装目录 `data` 目录下，有预先准备好的 `dd-java-agent.jar`（推荐使用）。也可以直接去 [Maven 下载](https://mvnrepository.com/artifact/com.datadoghq/dd-java-agent){:target="_blank"}
 
-## 配置 DDTrace Agent
+## 配置 DDTrace Agent {#config}
 
 进入 DataKit 安装目录下的 `conf.d/ddtrace` 目录，复制 `ddtrace.conf.sample` 并命名为 `ddtrace.conf`。示例如下：
 
@@ -81,6 +80,21 @@ Datakit 内嵌的 DDTrace Agent 用于接收，运算，分析 DataDog Tracing �
     # key2 = "value2"
     # ...
 
+  ## Threads config controls how many goroutines an agent cloud start.
+  ## buffer is the size of jobs' buffering of worker channel.
+  ## threads is the total number fo goroutines at running time.
+  ## timeout is the duration(ms) before a job can return a result.
+  # [inputs.ddtrace.threads]
+    # buffer = 100
+    # threads = 8
+
+  ## Storage config a local storage space in hard dirver to cache trace data.
+  ## path is the local file path used to cache data.
+  ## capacity is total space size(MB) used to store data.
+  # [inputs.ddtrace.storage]
+    # path = "./ddtrace_storage"
+    # capacity = 5120
+
 ```
 
 > 注意：不要修改这里的 `endpoints` 列表。
@@ -104,9 +118,7 @@ tail -f /var/log/datakit/gin.log
 
 > 注意：如果没有 trace 发送过来，在 [monitor 页面](../datakit/datakit-tools-how-to.md#monitor)是看不到 ddtrace 的采集信息的。
 
-## ddtrace 环境变量设置
-
-### 基本环境变量
+## ddtrace 环境变量设置 {#dd-envs}
 
 - `DD_TRACE_ENABLED`: Enable global tracer (部分语言平台支持)
 - `DD_AGENT_HOST`: DDtrace agent host address
@@ -136,32 +148,27 @@ DD_TAGS="project:your_project_name,env=test,version=v1" ddtrace-run python app.p
 	 more_tag = "some_other_value"
 ```
 
-## 关于 Tags
 
-### 在代码中添加业务 tag
+## 在代码中添加业务 tag {#add-tags}
 
-在应用代码中，可通过诸如 `span.SetTag(some-tag-key, some-tag-value)`（不同语言方式不同） 这样的方式来设置业务自定义 tag。对于这些业务自定义 tag，可通过配置 `customer_tags` 来识别并提取：
-
-```toml
-customer_tags = []
-```
-
-注意，这些 tag-key 中不能包含英文字符 '.'，带 `.` 的 tag-key 会替换为 `_`，示例：
+在应用代码中，可通过诸如 `span.SetTag(some-tag-key, some-tag-value)`（不同语言方式不同） 这样的方式来设置业务自定义 tag。对于这些业务自定义 tag，可通过在 ddtrace.conf 中配置 `customer_tags` 来识别并提取：
 
 ```toml
 customer_tags = [
 	"order_id",
 	"task_id",
-	"some.invalid.key",  #替换为 some_ivalid_key
+	"some.key",  # 被重命名为 some_key
 ]
 ```
 
-### 应用代码中添加业务 tag 注意事项
+注意，这些 tag-key 中不能包含英文字符 '.'，带 `.` 的 tag-key 会替换为 `_`。
 
-- 务必在 `customer_tags` 中添加 tag-key 列表，否则 DataKit 不会进行业务 tag 的提取
-- 在开启了采样的情况下，部分添加了 tag 的 span 有可能被舍弃
+???+ Attention "应用代码中添加业务 tag 注意事项"
 
-## Tracing 数据
+    - 在应用代码中添加了对应的 tag 后，必须在 ddtrace.conf 的 `customer_tags` 中也同步添加对应的 tag-key 列表，否则 DataKit 不会对这些业务 tag 进行提取
+    - 在开启了采样的情况下，部分添加了 tag 的 span 有可能被舍弃
+
+## 指标集 {#measurements}
 
 
 
@@ -207,7 +214,7 @@ customer_tags = [
 
 
 
-## 延伸阅读
+## 延伸阅读 {#more-reading}
 
 - [DataKit Tracing 字段定义](datakit-tracing-struct.md)
 - [DataKit 通用 Tracing 数据采集说明](datakit-tracing.md)

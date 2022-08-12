@@ -6,13 +6,91 @@
 [:octicons-beaker-24: Experimental](index.md#experimental)
 -->
 
+## 1.4.10(2022/08/05) {#cl-1.4.10}
+本次发布属于迭代发布，主要有如下更新：
+
+- 部分数据类型发送失败后，支持缓存到磁盘，延后再发送(#945)
+- 支持通过不同的 dataway 地址，将满足条件的数据发送到不同的工作空间(#896)
+- Sourcemap 增加 Android 和 iOS 支持(#886)
+
+- 容器采集器相关更新：
+    - 修复 Kubernetes 中 Node 主机操作系统信息采集错误(#950)
+    - Kubernetes 中 Prom 采集不再自动追加 pod 相关信息，避免时间线暴增(#965)
+    - Pod 对象中追加对应 yaml 信息(#969) 
+
+- Pipeline 相关更新：
+    - 优化 Pipeline 执行步骤(#1007)
+    - [grok()](pipeline.md#fn-grok) 和 [json()](pipeline.md#fn-json) 函数默认执行 trim-space 操作(#1001)
+
+- DDTrace 相关更新：
+    - 修复潜在的 goroutine 泄露问题(#1008)
+    - 支持配置磁盘缓存来缓解内存占用问题(#1014)
+
+- 其它 Bug 修复：
+    - 优化行协议构造(#1016)
+    - 日志采集中，移除定期清理尾部数据功能，以缓解可能导致的日志截断问题(#1012)
+
+---
+
+## 1.4.9(2022/07/26) {#cl-1.4.9}
+
+本次发布属于 Hotfix 发布，主要有如下更新：
+
+- eBPF httpflow 增加 Linux 4.5 及以上内核版本支持(#985)
+- 修复 external 类采集器选举模式下的问题(#976/#946)
+- 修复容器采集器导致的奔溃问题(#956/#979/#980)
+- 修复 Redis slowlog 采集问题(#986)
+
+--- 
+
+## 1.4.8(2022/07/21) {#cl-1.4.8}
+
+本次发布属于迭代发布，主要有如下更新：
+
+- prom 采集器的内置超时改为 3 秒(#958)
+
+- 日志相关问题修复：
+    - 添加日志采集的 `log_read_offset` 字段(#905)
+    - 修复日志文件在 rotate 后没有正确读取尾部遗留内容的问题(#936)
+
+- 容器采集相关问题修复：
+    - 修复对环境变量 `NODE_NAME` 的不兼容问题(#957)
+    - k8s 自动发现的 prom 采集器改为串行式的分散采集，每个 k8s node 只采集自己机器上的 prom 指标(#811/#957)
+    - 添加日志 source 和多行的的[映射配置](../integrations/container.md#env-config)(#937)
+    - 修复容器日志替换 source 后还使用之前的 multiline 和 pipeline 的 bug(#934/#923)
+    - 修正容器日志，设置文件活跃时长是 12 小时(#930)
+    - 优化 docker 容器日志的 image 字段(#929)
+    - 优化 k8s pod 对象的 host 字段(#924)
+    - 修复容器指标和对象采集没有添加 host tag 的问题(#962)
+
+- eBPF 相关：
+    - 修复 uprobe event name 命名冲突问题
+    - 增加更多[环境变量配置](../integrations/ebpf.md#config)，便于 k8s 环境的部署 
+
+- 优化 APM 数据接收接口的数据处理，缓解卡死客户端以及内存占用问题(#902)
+
+- SQLServer 采集器修复：
+    - 恢复 TLS1.0 支持(#909)
+    - 支持通过 instance 采集过滤，以减少时间线消耗(#931)
+
+- Pipeline 函数 `adjust_timezone()` 有所调整(#917)
+- [IO 模块优化](datakit-conf.md#io-tuning)，提高整体数据处理能力，保持内存消耗的相对可控(#912)
+- Monitor 更新：
+    - 修复繁忙时 Monitor 可能导致的长时间卡顿(#933)
+    - 优化 Monitor 展示，增加 IO 模块的信息展示，便于用于调整 IO 模块参数
+- 修复 Redis 奔溃问题(#935)
+- 去掉部分繁杂的冗余日志(#939)
+- 修复选举类采集器在非选举模式下不追加主机 tag 的问题(#968)
+
+---
+
 ## 1.4.7(2022/07/11) {#cl-1.4.7}
 
 本次发布属于 Hotfix 发布，主要修复如下问题
 
 - 选举有关
     - 修复 `election_namespace` 设置错误的问题(#915)
-    - `enable_election_namespace` 这个 tag 的设置默认关闭，可[手动开启](datakit-daemonset-deploy.md#env-elect)
+    - `enable_election_namespace` 这个 tag 的设置默认关闭，需[手动开启](election.md#config)
     - datakit.conf 中 `namespace` 字段将被弃用（仍然可用），改名为 `election_namespace`
 
 - 修复采集器堵塞问题(#916)
@@ -37,7 +115,7 @@
 - Redis 调整 [slowlog 采集](../integrations/redis.md#redis_slowlog)，将其数据改为日志存储(#885) 
 - 优化 [TDEngine 采集](../integrations/tdengine.md)(#877)
 - 完善 Containerd 日志采集，支持默认格式的日志自动解析(#869)
-- [Pipeline](pipeline.md) 增加 [Profile 类数](../integrations/profile.md)据支持(#866)
+- [Pipeline](pipeline.md) 增加 [Profiling 类数据](../integrations/profile.md)支持(#866)
 - 容器/Pod 日志采集支持在 Label/Annotation 上[额外追加 tag](../integrations/container.md#logging-with-annotation-or-label)(#861)
 - 修复 [Jenkins CI](../integrations/jenkins.md#jenkins_pipeline) 数据采集的时间精度问题(#860)
 - 修复 Tracing resource-type 值不统一的问题(#856)
@@ -45,7 +123,7 @@
 - 修复日志采集器可能的奔溃问题(#893)
 - 修复 prom 采集器泄露问题(#880)
 - 支持通过[环境变量配置 io 磁盘缓存](datakit-conf.md#using-cache)(#906)
-- 增加 [Kubernetes CRD](kubernetes-crd.md) 支持(#726)
+- 增加 [Kubernetes CRD](../integrations/kubernetes-crd.md) 支持(#726)
 - 其它 bug 修复(#901/#899)
 
 ---
@@ -84,7 +162,7 @@
     - 远程调试支持多类数据类型(#833)
     - 支持 Pipeline 通过 `use()` 函数调用外部 Pipeline 脚本(#824)
 - 新增 IP 库（MaxMindIP）支持(#799)
-- 新增 DDTrace Profile 集成(#656)
+- 新增 DDTrace Profiling 集成(#656)
 - Containerd 日志采集支持通过 image 和 K8s Annotation 配置过滤规则(#849)
 - 文档库整体切换到 MkDocs(#745)
 - 其它杂项(#822)

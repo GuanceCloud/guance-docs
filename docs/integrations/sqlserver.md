@@ -2,7 +2,6 @@
 # SQLServer
 ---
 
-- DataKit 版本：1.4.7
 - 操作系统支持：:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple:
 
 SQL Server 采集器采集 SQL Server `waitstats`、`database_io` 等相关指标
@@ -57,6 +56,14 @@ GO
 
   ## (optional) collection interval, default is 10s
   interval = "10s"
+
+  ## by default, support TLS 1.2 and above.
+  ## set to true if server side uses TLS 1.0 or TLS 1.1
+  allow_tls10 = false
+
+  ## configure db_filter to filter out metrics from certain databases according to their database_name tag.
+  ## If leave blank, no metric from any database is filtered out.
+  # db_filter = ["some_db_instance_name", "other_db_instance_name"]
 
   # [inputs.sqlserver.log]
   # files = []

@@ -2,12 +2,11 @@
 # Consul
 ---
 
-- DataKit 版本：1.4.7
 - 操作系统支持：:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple:
 
 Consul 采集器用于采集 Consul 相关的指标数据，目前只支持 Prometheus 格式的数据
 
-![](imgs/input-consul-1.png)
+![](imgs/input-consul-01.png)
 
 ## 前置条件 {#requirements}
 
@@ -75,7 +74,7 @@ Consul 采集器用于采集 Consul 相关的指标数据，目前只支持 Prom
 
 ## 指标预览
 
-![](imgs/input-consul-2.png)
+![](imgs/input-consul-02.png)
 
 ## 指标集 {#measurements}
 

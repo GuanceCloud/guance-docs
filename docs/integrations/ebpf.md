@@ -2,7 +2,6 @@
 # eBPF
 ---
 
-- DataKit 版本：1.4.7
 - 操作系统支持：:fontawesome-brands-linux:
 
 eBPF 采集器，采集主机网络 TCP、UDP 连接信息，Bash 执行日志等。本采集器主要包含 `ebpf-net` 及 `ebpf-bash` 俩类:
@@ -16,7 +15,7 @@ eBPF 采集器，采集主机网络 TCP、UDP 连接信息，Bash 执行日志�
     * 数据类别: Logging
     * 采集 Bash 的执行日志，包含 Bash 进程号、用户名、执行的命令和时间等;
 
-## 前置条件
+## 前置条件 {#requirements}
 
 由于该采集器的可执行文件体积较大，自 v1.2.13 起不再打包在 DataKit 中，但 DataKit 容器镜像默认包含该采集器；对于新装 DataKit，需执行安装命令进行安装，有以下两种方法：
 
@@ -31,8 +30,8 @@ eBPF 采集器，采集主机网络 TCP、UDP 连接信息，Bash 执行日志�
 
 ### HTTPS 支持 {#https}
 
-[:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6) ·
-[:octicons-beaker-24: Experimental](index.md#experimental)
+[:octicons-tag-24: Version-1.4.6](../datakit/changelog.md#cl-1.4.6) ·
+[:octicons-beaker-24: Experimental](../datakit/index.md#experimental)
 
 若需要 ebpf-net 开启对容器内的进程采集 https 请求数据采集支持，则需要挂载 overlay 目录到容器
 
@@ -71,21 +70,24 @@ datakit.yaml 参考修改:
 
 可通过 `cat /proc/mounts` 查看 overlay 挂载点
 
-
-### Linux 内核版本要求
+### Linux 内核版本要求 {#kernel}
 
 目前 Linux 3.10 内核的项目生命周期已经结束，建议您升级至 Linux 4.9 及以上 LTS 版内核。
 
 除 CentOS 7.6+ 和 Ubuntu 16.04 以外，其他发行版本需要 Linux 内核版本高于 4.0.0, 可使用命令 `uname -r` 查看，如下：
 
-```sh
+```shell
 uname -r 
 5.11.0-25-generic
 ```
 
-对于 CentOS 7.6+ 和 Ubuntu 16.04 不能开启 ebpf-net 类别中的 httpflow 数据采集，由于其 Linux 3.10.x 内核不支持 eBPF 程序中的 BPF_PROG_TYPE_SOCKET_FILTER 类型
+???+ warning "内核限制"
 
-### 已启用 SELinux 的系统
+    对于 CentOS 7.6+ 和 Ubuntu 16.04 不能开启 ebpf-net 类别中的 httpflow 数据采集，由于其 Linux 3.10.x 内核不支持 eBPF 程序中的 BPF_PROG_TYPE_SOCKET_FILTER 类型;
+
+    由于 BPF_FUNC_skb_load_bytes 不存在于 Linux Kernel <= 4.4，若需开启 httpflow，需要 Linux Kernel >= 4.5，此问题待后续优化；
+
+### 已启用 SELinux 的系统 {#selinux}
 
 对于启用了 SELinux 的系统，需要关闭其(待后续优化)，执行以下命令进行关闭:
 
@@ -93,75 +95,94 @@ uname -r
 setenforce 0
 ```
 
-## 配置
+## 配置 {#config}
 
-进入 DataKit 安装目录下的 `conf.d/host` 目录，复制 `ebpf.conf.sample` 并命名为 `ebpf.conf`。示例如下：
+=== "datakit.conf"
 
-```toml
+    进入 DataKit 安装目录下的 `conf.d/host` 目录，复制 `ebpf.conf.sample` 并命名为 `ebpf.conf`。示例如下：
+    
+    ```toml
+        
+    [[inputs.ebpf]]
+      daemon = true
+      name = 'ebpf'
+      cmd = "/usr/local/datakit/externals/datakit-ebpf"
+      args = [
+        "--datakit-apiserver", "0.0.0.0:9529",
+      ]
+      envs = []
+    
+      ## automatically takes effect when running DataKit in 
+      ## Kubernetes daemonset mode
+      ##
+      # kubernetes_url = "https://kubernetes.default:443"
+      # bearer_token = "/run/secrets/kubernetes.io/serviceaccount/token"
+      # or # bearer_token_string = "<your-token-string>"
+      
+      ## all supported plugins:
+      ## - "ebpf-net"  :
+      ##     contains L4-network(netflow), L7-network(httpflow, dnsflow) collection
+      ## - "ebpf-bash" :
+      ##     log bash
+      ##
+      enabled_plugins = [
+        "ebpf-net",
+      ]
+    
+      ## 若开启 ebpf-net 插件，需选配: 
+      ##  - "httpflow" (* 默认开启)
+      ##  - "httpflow-tls"
+      ##
+      l7net_enabled = [
+        "httpflow",
+        # "httpflow-tls"
+      ]
+    
+      ## if the system does not enable ipv6, it needs to be changed to true
+      ##
+      ipv6_disabled = false
+    
+      [inputs.ebpf.tags]
+        # some_tag = "some_value"
+        # more_tag = "some_other_value"
+    
+    #############################
+    # 参数说明(若标 * 为必选项)
+    #############################
+    #  --hostname               : 主机名，此参数可改变该采集器上传数据时 host tag 的值, 优先级为: 指定该参数 > datakit.conf 中的 ENV_HOSTNAME 值(若非空，启动时自动添加该参数) > 采集器自行获取(默认值)
+    #  --datakit-apiserver      : DataKit API Server 地址, 默认值 0.0.0.0:9529
+    #  --log                    : 日志输出路径, 默认值 DataKitInstallDir/externals/datakit-ebpf.log
+    #  --log-level              : 日志级别，默认 info
+    #  --service                : 默认值 ebpf
+    
+    ```
+    
+    默认配置不开启 ebpf-bash，若需开启在 `enabled_plugins` 配置项中添加 `ebpf-bash`；
+    
+    配置好后，重启 DataKit 即可。
 
-[[inputs.ebpf]]
-  daemon = true
-  name = 'ebpf'
-  cmd = "/usr/local/datakit/externals/datakit-ebpf"
-  args = [
-    "--datakit-apiserver", "0.0.0.0:9529",
-  ]
-  envs = []
+=== "Kubernetes"
 
-  ## automatically takes effect when running DataKit in 
-  ## Kubernetes daemonset mode
-  ##
-  # kubernetes_url = "https://kubernetes.default:443"
-  # bearer_token = "/run/secrets/kubernetes.io/serviceaccount/token"
-  # or # bearer_token_string = "<your-token-string>"
-  
-  ## all supported plugins:
-  ## - "ebpf-net"  :
-  ##     contains L4-network, dns collection
-  ## - "ebpf-bash" :
-  ##     log bash
-  ##
-  enabled_plugins = [
-    "ebpf-net",
-  ]
+    Kubernetes 中可以通过 ConfigMap 或者直接默认启用 ebpf 采集器两种方式来开启采集：
 
-  # 可选: httpflow, httpflow-tls
-  # 默认不开启 httpflow 中的 https 采集
-  l7net_disabled = [
-    # "httpflow",
-    "httpflow-tls"
-  ]
+    1. ConfigMap 方式参照通用的[安装示例](../datakit/datakit-daemonset-deploy.md#configmap-setting)。
+    2. 在 datakit.yaml 中的环境变量 `ENV_ENABLE_INPUTS` 中追加 `ebpf`，此时使用默认配置，即仅开启 ebpf-net 网络数据采集
+    
+    ```yaml
+    - name: ENV_ENABLE_INPUTS
+           value: cpu,disk,diskio,mem,swap,system,hostobject,net,host_processes,container,ebpf
+    ```
 
-  [inputs.ebpf.tags]
-    # some_tag = "some_value"
-    # more_tag = "some_other_value"
+    通过以下环境变量可以调整 Kubernetes 中 ebpf 采集配置：
+    
+    | 环境变量名                                  | 对应的配置参数项              | 参数示例                                                                              |
+    | :---                                        | ---                           | ---                                                                                   |
+    | `ENV_INPUT_EBPF_ENABLED_PLUGINS`            | `enabled_plugins`             | `ebpf-net,ebpf-bash`                                                                          |
+    | `ENV_INPUT_EBPF_L7NET_ENABLED`              | `l7net_enabled`               | `httpflow,httpflow-tls`                                                                       |
+    | `ENV_INPUT_EBPF_IPV6_DISABLED`              | `ipv6_disabled`               | `false/true`                                                |
+    
 
-#############################
-# 参数说明(若标 * 为必选项)
-#############################
-#  --hostname               : 主机名，此参数可改变该采集器上传数据时 host tag 的值, 优先级为: 指定该参数 > datakit.conf 中的 ENV_HOSTNAME 值(若非空，启动时自动添加该参数) > 采集器自行获取(默认值)
-#  --datakit-apiserver      : DataKit API Server 地址, 默认值 0.0.0.0:9529
-#  --log                    : 日志输出路径, 默认值 DataKitInstallDir/externals/datakit-ebpf.log
-#  --log-level              : 日志级别，默认 info
-#  --service                : 默认值 ebpf
-
-```
-
-默认配置不开启 ebpf-bash，若需开启在 `enabled_plugins` 配置项中添加 `ebpf-bash`；
-
-配置好后，重启 DataKit 即可。
-
-### Kubernetes 安装
-
-1. 参照通用的 [ConfigMap 安装示例](../datakit/datakit-daemonset-deploy.md#configmap-setting)。
-2. 在 datakit.yaml 中的环境变量 `ENV_ENABLE_INPUTS` 中追加 `ebpf`，此时使用默认配置，即仅开启 ebpf-net 网络数据采集
-
-```yaml
-   - name: ENV_ENABLE_INPUTS
-          value: cpu,disk,diskio,mem,swap,system,hostobject,net,host_processes,container,ebpf
-```
-
-## 指标集
+## 指标集 {measurements}
 
 以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.ebpf.tags]` 指定其它标签：
 

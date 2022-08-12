@@ -2,7 +2,6 @@
 # TCP/UDP
 ---
 
-- DataKit 版本：1.4.7
 - 操作系统支持：:fontawesome-brands-linux: :fontawesome-brands-apple:
 
 socket 采集器用于采集 UDP/TCP 端口信息。

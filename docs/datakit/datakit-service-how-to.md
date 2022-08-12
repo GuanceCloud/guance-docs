@@ -2,8 +2,7 @@
 # DataKit 服务管理
 ---
 
-- DataKit 版本：1.4.7
-- 操作系统支持：全平台
+- 操作系统支持：:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple:
 
 [DataKit 安装](datakit-install.md)完后，有必要对安装好的 DataKit 做一些基本的介绍。
 
@@ -11,11 +10,13 @@
 
 DataKit 目前支持 Linux/Windows/Mac 三种主流平台：
 
-| 操作系统                                                                  | 架构                | 安装路径                                                                   |
-| ---------                                                                 | ---                 | ------                                                                     |
-| Linux 内核 2.6.23 或更高版本                                              | amd64/386/arm/arm64 | `/usr/local/datakit`                                                       |
-| macOS 10.12 或更高版本([原因](https://github.com/golang/go/issues/25633){:target="_blank"}) | amd64               | `/usr/local/datakit`                                                       |
-| Windows 7, Server 2008R2 或更高版本                                       | amd64/386           | 64位：`C:\Program Files\datakit`<br />32位：`C:\Program Files(32)\datakit` |
+| 操作系统                            | 架构                | 安装路径                                                                   |
+| ---------                           | ---                 | ------                                                                     |
+| Linux 内核 2.6.23 或更高版本        | amd64/386/arm/arm64 | `/usr/local/datakit`                                                       |
+| macOS 10.13 或更高版本[^1]          | amd64               | `/usr/local/datakit`                                                       |
+| Windows 7, Server 2008R2 或更高版本 | amd64/386           | 64位：`C:\Program Files\datakit`<br />32位：`C:\Program Files(32)\datakit` |
+
+[^1]: Golang 1.18 要求 macOS-amd64 版本为 10.13。
 
 > Tips：查看内核版本
 
