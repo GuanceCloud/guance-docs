@@ -28,3 +28,4 @@ nav:
     - tencent-clb.md
     - tencent-cos.md
     - tencent-cvm.md
+    - '内网场景 Dubbo 微服务接入观测云': scene-dubbo.md

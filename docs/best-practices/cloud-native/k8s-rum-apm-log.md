@@ -26,7 +26,7 @@
 
 ![image](../images/k8s-rum-apm-log/2.png)
 
-点击[集成]->[Datakit]->[Daemonset] 获取最新的 datakit.yaml 文件。
+点击[集成]->[Datakit]->[Kubernetes] 获取最新的 datakit.yaml 文件。
 
 ![image](../images/k8s-rum-apm-log/3.png)
 
@@ -183,7 +183,7 @@ spec:
         - name: ENV_GLOBAL_HOST_TAGS   # 非选举类的tag 
           value: host=__datakit_hostname,host_ip=__datakit_ip,cluster_name_k8s=k8s-prod
         - name: ENV_DEFAULT_ENABLED_INPUTS
-          value: cpu,disk,diskio,mem,swap,system,hostobject,net,host_processes,container,statsd,ebpf
+          value: cpu,disk,diskio,mem,swap,system,hostobject,net,host_processes,container,statsd,ebpf,rum
         - name: ENV_ENABLE_ELECTION
           value: enable
         - name: ENV_GLOBAL_ENV_TAGS  # 只对选举类的tag有用
@@ -196,7 +196,7 @@ spec:
         #  value: debug
         #- name: ENV_K8S_CLUSTER_NAME
         #  value: k8s-prod
-        image: pubrepo.jiagouyun.com/datakit/datakit:1.4.7
+        image: pubrepo.jiagouyun.com/datakit/datakit:1.4.10
         imagePullPolicy: Always
         name: datakit
         ports:
@@ -957,7 +957,14 @@ volumeMounts 下面增加：
 
 #### 开通前端 RUM 监控
 
-Datakit 默认开启了 RUM 采集器，用户访问监测使用的 Datakit 地址，需要客户的网络能够访问到的地址，需要修改 Datakit 的配置文件 /usr/local/datakit/conf.d/datakit.conf 的 listen="0.0.0.0:9529"。本示例使用的 Datakit 是 DaemonSet 方式部署的，已经修改了默认的配置。实际生产中 RUM 使用的 Datakit 建议部署到 kubernetes 外部。<br />修改 /usr/local/k8s/dist/index.html 文件，在 head 中增加如下内容：
+Datakit 开启 RUM 采集器是通过环境变量配置的。
+
+```
+        - name: ENV_DEFAULT_ENABLED_INPUTS
+          value: rum
+```
+
+用户访问监测使用的 Datakit 地址，需要客户的网络能够访问到的地址，需要修改 Datakit 的配置文件 /usr/local/datakit/conf.d/datakit.conf 的 listen="0.0.0.0:9529"。本示例使用的 Datakit 是 DaemonSet 方式部署的，已经修改了默认的配置。实际生产中 RUM 使用的 Datakit 建议部署到 kubernetes 外部。<br />修改 /usr/local/k8s/dist/index.html 文件，在 head 中增加如下内容：
 
 ```
 <script src="https://static.guance.com/browser-sdk/v2/dataflux-rum.js" type="text/javascript"></script>

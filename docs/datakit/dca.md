@@ -45,6 +45,10 @@ DCA 主要用于管理 DataKit，如 DataKit 列表查看、配置文件管理�
 
     重启 DataKit
 
+=== "Kubernetes"
+
+    参见[这里](datakit-daemonset-deploy.md#env-dca)
+
 ---
 
 ???+ Attention
