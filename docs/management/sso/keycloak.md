@@ -70,7 +70,7 @@ Keycloak环境搭建完成后，在浏览器输入`https://IP地址:8443/auth`�
 
 ### 3.获取 KeyCloak 元数据文档
 
-注意：本步骤可获取在观测云创建身份提供商的元数据文档。<br />1）在“Clients”的“Installation”，选择“Mod Auth Mellon files”，点击“Download”下载元数据文档。<br />![](../img/05_keycloak_10.png)<br />2） 在下载的文件夹中，选择“ipd-metadata.xml”。<br />![](../img/05_keycloak_11.png)<br />3）由于 Keycloak 的云数据文档是“域”级别的，需要在元数据文档“idp-metadata.xml”中的访问地址增加客户端的参数`/clients/<IDP Initiated SSO URL Name>`，此文档中由于设置了`IDP Initiated SSO URL Name：gcy`，故在xml文件中填入`/clients/gcy`，见下图。添加完成后保存xml文件。<br />![](../img/05_keycloak_12.png)
+注意：本步骤可获取在观测云创建身份提供商的元数据文档。<br />1）在“Clients”的“Installation”，选择“Mod Auth Mellon files”，点击“Download”下载元数据文档。<br />![](../img/05_keycloak_10.png)<br />2） 在下载的文件夹中，选择“idp-metadata.xml”。<br />![](../img/05_keycloak_11.png)<br />3）由于 Keycloak 的云数据文档是“域”级别的，需要在元数据文档“idp-metadata.xml”中的访问地址增加客户端的参数`/clients/<IDP Initiated SSO URL Name>`，此文档中由于设置了`IDP Initiated SSO URL Name：gcy`，故在xml文件中填入`/clients/gcy`，见下图。添加完成后保存xml文件。<br />![](../img/05_keycloak_12.png)
 
 
 ### 4.配置 Keycloak 用户
