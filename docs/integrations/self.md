@@ -68,9 +68,40 @@ self 采集器会自动运行，无需配置，且无法关闭。
 
 
 
+
+
+### `datakit_http`
+
+
+
+- 标签
+
+
+| 标签名 | 描述    |
+|  ----  | --------|
+|`api`|API router of the DataKit HTTP|
+
+- 字段列表
+
+
+| 指标 | 描述| 数据类型 | 单位   |
+| ---- |---- | :---:    | :----: |
+|`2XX`|HTTP status code 2xx count|int|count|
+|`3XX`|HTTP status code 3xx count|int|count|
+|`4XX`|HTTP status code 4xx count|int|count|
+|`5XX`|HTTP status code 5xx count|int|count|
+|`avg_latency`|HTTP average latency|int|ns|
+|`limited`|HTTP limited|int|count|
+|`max_latency`|HTTP max latency|int|ns|
+|`total_request_count`|HTTP total request count|int|count|
+
+
+
+
 ## 指标预览
 
-![](imgs/input-self-02.png)
+![datakit](imgs/input-self-02.png)
+![datakit_http](imgs/input-self-03.jpg)
 
 ## 场景视图
 
