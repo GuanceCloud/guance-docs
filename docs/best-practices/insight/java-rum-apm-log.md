@@ -3,6 +3,7 @@
 ---
 
 ## 应用场景介绍：
+
 本文用于演示的 demo 为若依办公系统，具体内容可查看 [从 0 到 1 利用观测云构建 Spring cloud 服务的可观测性](../spring-cloud-sample)。
 
 企业最重要的营收来源即是业务，而现当下，绝大多数企业的业务都是由对应的IT系统承载的，那如何保障企业的业务稳健，归根到企业内部就是如何保障企业内部的IT系统。当业务系统出现异常或故障时，往往是业务、应用开发、运维等多方面同事一起协调进行问题的排查，存在跨平台，跨部门，跨专业领域等多种问题，排查既耗时又费力，为了解决这一问题，目前业界已经比较成熟的方式即是在基础设施监控之外，对应用层、日志层进行深度的监控，通过 RUM+APM+LOG 实现对整个业务系统最核心的的前后端应用、日志进行统一管理，能力强一些的监控还可以将这三方面数据通过关键字段进行打通，实现联动分析，从而提升相关工作人员的工作效率，保障系统平稳运行。目前 Dataflux 已具备这样的能力，本文将从如何接入 RUM+APM+LOG 这三方监控，以及如何利用df进行联动分析的角度进行阐述。
@@ -13,7 +14,7 @@
 
 ## 安装Datakit：
 
-##### 1、登录[官网](https://www.guance.com)
+##### 1、登录[观测云](https://www.guance.com)
 
 ##### 2、新建工作空间
 
@@ -23,7 +24,7 @@
 
 ##### 4、在服务器上安装 datakit
 
-##### 5、执行 service datakit status （或者 systemctl status datakit）查询 datakit 状态
+##### 5、执行 systemctl status datakit 查询 datakit 状态
 
 ![image](../images/java-rum-apm-log/2.png)
 
@@ -57,71 +58,52 @@
 
 ![image](../images/java-rum-apm-log/5.png)
 
-##### 3、在前端页面 index.html 中接入DF rum可观测性 js 文件
+##### 3、在前端页面 /usr/local/ruoyi/dist/index.html 的 head 中粘贴 JS。
 
 ```
-$ cd /usr/local/ruoyi/dist/index.html
-
-// 记得备份
-$ cp index.html index.html.bkd
-
-// 在 index.html 中添加 df-js
-// 复制 DF 平台上的 j s内容，放至 index.html 内的 </head> 之前，然后保存文件,示例如下
-// datakitOrigin：datakit 地址，df 中 rum 数据流向为：rum.js 文件——datakit——dataway——DF 平台
-   如若是生产环境，需将该 IP 设置为域名，测试环境需填写内网IP，对应有 datakit 的服务器 9529 端口
-// trackInteractions：用户行为采集配置项，可实现页面端用户操作行为统计
-// allowedDDTracingOrigins：前后端（ rum 与 apm ）打通的配置项，可按需进行设置，需在此处填写与前端页面有交互关系的后端服务器所对应的域名或 IP，127.0.0.1 仅为示例。
-
-$ vim index.html
-
 <script src="https://static.guance.com/browser-sdk/v2/dataflux-rum.js" type="text/javascript"></script>
 <script>
   window.DATAFLUX_RUM &&
     window.DATAFLUX_RUM.init({
-      applicationId: 'xxxxxxxxxxxxxxxxxxxxxxxxxx',
-      datakitOrigin: 'http://127.0.0.1:9529'
-      env: 'test',
-      version: '1.0.0',
+      applicationId: 'appid_9c7fd257fd824300ba70f7e6d3f5083e',
+      datakitOrigin: 'http://112.124.52.73:9529', 
+      env: 'dev',
+      version: '1.0',
       trackInteractions: true,
-      allowedDDTracingOrigins:["http://127.0.0.1"]
-      })
-</script></head> 
+      traceType: 'ddtrace',
+      allowedTracingOrigins: ['http://112.124.52.73']
+    })
+</script>
 ```
 
 **注意事项：**
 
-- **datakitOrigin**：数据传输地址，生产环境如若配置的是域名，可将域名请求转发至具体任意一台安装有datakit-9529 端口的服务器，如若前端访问量过大，可在域名与 datakit 所在服务器中间加一层 slb，前端 js 将数据发送至 slb，slb 将请求转发至多台安装 datakit-9529 所在的服务器。多台 datakit 承接 rum 数据，因前端请求复用因素，session 数据不会中断，对 rum 数据展现也无影响。
-
-举例：
-
-![image](../images/java-rum-apm-log/6.png)
-
-![image](../images/java-rum-apm-log/7.png)
-
+- **datakitOrigin**：数据传输地址，生产环境如若配置的是域名，可将域名请求转发至具体任意一台安装有 datakit-9529 端口的服务器，如若前端访问量过大，可在域名与 datakit 所在服务器中间加一层 slb，前端 js 将数据发送至 slb，slb 将请求转发至多台安装 datakit-9529 所在的服务器。多台 datakit 承接 rum 数据，因前端请求复用因素，session 数据不会中断，对 rum 数据展现也无影响。
 - **allowedDDTracingOrigins**：实现前后端（APM 与 RUM）打通，该场景只有在前端部署 RUM，后端部署APM 的情况才会生效，需在此处填写与前端页面有交互关系的后端应用服务器所对应的域名（生产环境）或IP（测试环境）。**应用场景**：前端用户访问出现慢，是由后端代码逻辑异常导致，可通过前端 RUM 慢请求数据直接跳转至 APM 数据查看当次后端代码调用情况，判定慢的根因。**实现原理**：用户访问前端应用，前端应用进行资源及请求调用，触发 rum-js 性能数据采集，rum-js 会生成 trace-id 写在请求的 request_header 里，请求到达后端，后端的 ddtrace 会读取到该 trace_id 并记录在自己的 trace 数据里，从而实现通过相同的 trace_id 来实现应用性能监测和用户访问监测数据联动
 - **env**：必填，应用所属环境，是test或product或其他字段。
 - **version**：必填，应用所属版本号。
 - **trackInteractions**：用户行为统计，例如点击按钮，提交信息等动作。
 
-![image](../images/java-rum-apm-log/8.png)
+![image](../images/java-rum-apm-log/6.png)
 
 ##### 4、保存、验证并发布页面
 
 打开浏览器访问目标页面，通过 F12 检查者模式查看页面网络请求中是否有 rum 相关的请求，状态码是否是 200。
 
-![image](../images/java-rum-apm-log/9.png)
+![image](../images/java-rum-apm-log/7.png)
 
 **注意！！**：如若 F12 检查者模式发现数据无法上报，显示端口 refused，可 telnet IP:9529 验证端口是否通畅，不通的话，需要修改 /usr/local/datakit/conf.d/datakit.conf 修改首行的 http_listen 为 0.0.0.0，如若还不通，请检查安全组是否已打开 9529 端口。
 
-![image](../images/java-rum-apm-log/10.png)
+![image](../images/java-rum-apm-log/8.png)
 
 ##### 5、在用户访问监测查看 rum 相关数据
 
-![image](../images/java-rum-apm-log/11.png)
+![image](../images/java-rum-apm-log/9.png)
 
 # APM（application performance monitoring）：
 
-详细步骤参见文档 [分布式链路追踪(APM)最佳实践](../apm)<br />**DF 支持的 APM 接入方式包含 ddtrace、skywalking、zipkin、jaejer 等多种支持 opentracing 协议的 APM 工具，此处示例采用 ddtrace 实现 APM 方面的可观测性。**
+详细步骤参见文档 [分布式链路追踪(APM)最佳实践](../apm)
+**DF 支持的 APM 接入方式包含 ddtrace、skywalking、zipkin、jaejer 等多种支持 opentracing 协议的 APM 工具，此处示例采用 ddtrace 实现 APM 方面的可观测性。**
 
 ##### 1、在 Datakit 中修改 APM（ddtrace）的 inputs
 
@@ -169,19 +151,19 @@ $ nohup java -Dfile.encoding=utf-8 -javaagent:dd-java-agent-0.80.0.jar -XX:Fligh
 - Ddd.service.mapping：当前应用调用到的 redis、mysql 等，可通过此参数添加别名，用以和其他应用调用到的 redis、mysql 进行区分，可选项，应用场景：例如项目 A 项目 B 都调用了mysql，且分别调用的 mysql-a，mysql-b，如没有添加 mapping 配置项，在 df 平台上会展现项目A项目B调用了同一个名为 mysql 的数据库，如果添加了 mapping 配置项，配置为 mysql-a，mysql-b，则在 df 平台上会展现项目 A 调用 mysql-a，项目 B 调用 mysql-b。
 - Ddd.agent.host：数据传输目标IP，默认为本机 localhost，可选项。
 
-##### 3、在DF平台查看APM数据
+##### 3、在 DF 平台查看 APM 数据
 
 APM（应用性能检测）是 DF 默认内置的模块，无需创建场景或视图即可进行查看。
 路径：DF 平台——应用性能检测
 视图示例:（通过该视图即可快速查看应用调用情况、拓扑图、异常数据等其他 APM 相关数据）
 
-![image](../images/java-rum-apm-log/12.png)
+![image](../images/java-rum-apm-log/10.png)
 
-![image](../images/java-rum-apm-log/13.png)
+![image](../images/java-rum-apm-log/11.png)
 
 调用链路的问题追踪：排查接口、数据库问题
 
-![image](../images/java-rum-apm-log/14.jpg)
+![image](../images/java-rum-apm-log/12.png)
 
 ## 日志（LOG）：
 
@@ -189,7 +171,7 @@ APM（应用性能检测）是 DF 默认内置的模块，无需创建场景或�
 
 ##### 1、标准日志采集（Nginx、mysql、redis等）
 
-通过开启Datakit内置的各种inputs，直接开启相关的日志采集，例如 [Ngnix](/integrations/nginx)、 [Redis](/integrations/redis)、[容器](/integrations/container)、[ES](/integrations/elasticsearch) 等；<br />**示例：Nginx**
+通过开启 Datakit 内置的各种 inputs，直接开启相关的日志采集，例如 [Ngnix](/integrations/nginx)、 [Redis](/integrations/redis)、[容器](/integrations/container)、[ES](/integrations/elasticsearch) 等；<br />**示例：Nginx**
 
 ```
 $ cd /usr/local/datakit/conf.d/nginx/
@@ -204,13 +186,13 @@ $     pipeline = "nginx.p"
 ## pipeline 即为 grok 语句，主要用来进行文本日志切割，datakit 已内置多种 pipeline，包括nginx、mysql 等，pipeline 默认目录为 /usr/local/datakit/pipeline/ ，此处无需修改 pipeline 路径，datakit 默认会自动读取。
 ```
 
-![image](../images/java-rum-apm-log/15.png)
+![image](../images/java-rum-apm-log/13.png)
 
 **视图展示：**
 
-![image](../images/java-rum-apm-log/16.png)
+![image](../images/java-rum-apm-log/14.png)
 
-![image](../images/java-rum-apm-log/17.png)
+![image](../images/java-rum-apm-log/15.png)
 
 ##### 2、自定义日志采集（应用日志、业务日志等）
 
@@ -219,44 +201,68 @@ pipeline（日志 grok 切割）[ **[**df 官方文档**](../../datakit/pipeline
 
 ```
 $ cd /usr/local/datakit/conf.d/log/
-$ cp logging.conf.sample logging.conf
-$ vim logging.conf
+$ cp logging.conf.sample system-logging.conf
+$ vim system-logging.conf
+
 ## 修改 log 路径为正确的应用日志的路径
 ## source 与 service 为必填字段，可以直接用应用名称，用以区分不同的日志名称
-$  [inputs.nginx.log]
-$    logfiles = [
-      "/usr/local/java/ruoyi/logs/ruoyi-system/error.log",
-      "/usr/local/java/ruoyi/logs/ruoyi-system/info.log",]
-$    source = "ruoyi-system"
-$    service = "ruoyi-system"
-$    pipeline = "ruoyi_system.p"
+
+[[inputs.logging]]
+  ## required
+  logfiles = [
+    "/usr/local/java/ruoyi/logs/ruoyi-system/info.log",
+    "/usr/local/java/ruoyi/logs/ruoyi-system/error.log",
+  ]
+
+  ## glob filteer
+  ignore = [""]
+
+  ## your logging source, if it's empty, use 'default'
+  source = "system-log"
+
+  ## add service tag, if it's empty, use $source.
+  service = "system-log"
+
+  ## grok pipeline script path
+  pipeline = "log_demo_system.p"
+
+  ## optional status:
+  ##   "emerg","alert","critical","error","warning","info","debug","OK"
+  ignore_status = []
+
+  ## optional encodings:
+  ##    "utf-8", "utf-16le", "utf-16le", "gbk", "gb18030" or ""
+  character_encoding = ""
+
+  ## The pattern should be a regexp. Note the use of '''this regexp'''
+  ## regexp link: https://golang.org/pkg/regexp/syntax/#hdr-Syntax
+  multiline_match = '''^\d{4}-\d{2}-\d{2}'''
+
+  ## removes ANSI escape codes from text strings
+  remove_ansi_escape_codes = false
+
+
+
 ## pipeline 即为 grok 语句，主要用来进行文本日志切割，如果该配置不放开，默认 df 平台上展示日志原始文本内容，如若填写，会对对应日志进行 grok 切割，此处填写的 .p文件 需要自己手动编写
 ```
 
-![image](../images/java-rum-apm-log/18.png)
+![image](../images/java-rum-apm-log/16.png)
 
 ```
 $ /usr/local/datakit/pipeline/
 $ vim ruoyi_system.p
 
-##示例：
-#日志样式 
-#2021-06-25 14:27:51.952 [http-nio-9201-exec-7] INFO  c.r.s.c.SysUserController - [list,70] ruoyi-08-system 5430221015886118174 6503455222153372731 - 查询用户
-
-##示例 grok
-
-grok(_, "%{TIMESTAMP_ISO8601:time} %{NOTSPACE:thread_name} %{NOTSPACE:status}\\s+%{NOTSPACE:class_name} - \\[%{NOTSPACE:method_name},%{NOTSPACE:line}\\] %{NOTSPACE:app_name} %{NOTSPACE:trace_id} %{NOTSPACE:span_id} - %{NOTSPACE:msg}")
+grok(_, "%{TIMESTAMP_ISO8601:time} %{NOTSPACE:thread_name} %{LOGLEVEL:status}%{SPACE}%{NOTSPACE:class_name} - \\[%{NOTSPACE:method_name},%{N
+UMBER:line}\\] - %{DATA:service1} %{DATA:trace_id} %{DATA:span_id} - %{GREEDYDATA:msg}")
 
 default_time(time)
 ```
 
-![image](../images/java-rum-apm-log/19.png)
+![image](../images/java-rum-apm-log/17.png)
 
 ##### 3、在 DF 平台查看日志数据
 
-![image](../images/java-rum-apm-log/20.png)
-
-![image](../images/java-rum-apm-log/21.png)
+![image](../images/java-rum-apm-log/18.png)
 
 ## RUM 跟 APM 联动数据演示：
 
@@ -268,17 +274,13 @@ default_time(time)
 
 ##### 1、前端 RUM 数据
 
-![image](../images/java-rum-apm-log/22.png)
-
-##### 
-
-![image](../images/java-rum-apm-log/23.png)
+![image](../images/java-rum-apm-log/19.png)
 
 2、跳转至后端 APM 数据
 
-![image](../images/java-rum-apm-log/24.png)
+![image](../images/java-rum-apm-log/20.png)
 
-![image](../images/java-rum-apm-log/25.png)
+![image](../images/java-rum-apm-log/21.png)
 
 ## APM 跟 LOG 联动数据演示：
 
@@ -304,7 +306,7 @@ default_time(time)
 ## 0.83.0 为对应 agent 版本号，请查看datakit/data 中的 agent 版本号
 ```
 
-![image](../images/java-rum-apm-log/26.png)
+![image](../images/java-rum-apm-log/22.png)
 
 ```xml
 <!-- 日志输出格式 -->
@@ -331,22 +333,18 @@ $ vim ruoyi-system.conf
 ## Pipeline 可根据需求进行设置，pipeline 主要用作对日志进行字段切割，切割后的日志内容可转存成指标进行可视化展示，trace-id 相关内容没有可视化展示的必要，所以可以不用进行切割。
 ```
 
-![image](../images/java-rum-apm-log/27.png)
+![image](../images/java-rum-apm-log/23.png)
 
 ##### 4、APM&LOG 联动分析
 
 **正向关联[ APM——日志]**
 在APM链路数据中，下方日志模块直接搜索 trace_id，即可查看此次链路调用所对应产生的应用日志。
 
-![image](../images/java-rum-apm-log/28.png)
-
-![image](../images/java-rum-apm-log/29.png)
+![image](../images/java-rum-apm-log/24.png)
 
 **反向关联[日志——APM]**
 查看异常日志，在日志中复制 trace_id，在链路追踪页面搜索框直接检索该 trace_id，即可搜出于该 id 相关的所有 trace 及 span 数据，点击查看即可。
 
-![image](../images/java-rum-apm-log/30.png)
+![image](../images/java-rum-apm-log/25.png)
 
-![image](../images/java-rum-apm-log/31.png)
-
-![image](../images/java-rum-apm-log/32.png)
+![image](../images/java-rum-apm-log/26.png)
