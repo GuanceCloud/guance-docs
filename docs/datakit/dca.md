@@ -6,32 +6,28 @@
 
 DCA 主要用于管理 DataKit，如 DataKit 列表查看、配置文件管理、Pipeline 管理以及帮助文档的查看等功能。目前支持两种使用方式，即桌面端和网页端。
 
-
-
 ## 开启 DCA 服务 {#config}
 
-=== "安装即启用 DCA 功能"
+=== "主机安装时启用 DCA 功能"
 
     在安装命令前添加以下环境变量：
     
-    - `DK_DCA_ENABLE`: 是否开启，开启设置为 1
+    - `DK_DCA_ENABLE`: 是否开启，开启设置为 `on`
     - `DK_DCA_WHITE_LIST`: 访问服务白名单，支持 IP 地址或 CIDR 格式地址，多个地址请以逗号分割。
     
     示例：
     
     ```shell
-    DK_DCA_ENABLE=1 DK_DCA_WHITE_LIST="192.168.1.101,10.100.68.101/24" DK_DATAWAY=https://openway.guance.com?token=<TOKEN> bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
-
+    DK_DCA_ENABLE=on DK_DCA_WHITE_LIST="192.168.1.101,10.100.68.101/24" DK_DATAWAY=https://openway.guance.com?token=<TOKEN> bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
     ```
     
     安装成功后，DCA 服务将启动，默认端口是 9531。如需修改监听地址和端口，可设置环境变量 `DK_DCA_LISTEN`，如 `DK_DCA_LISTEN=192.168.1.101:9531`。
 
 === "datakit.conf"
 
-    请修改配置文件 `datakit.conf`:
+    修改配置文件 `datakit.conf`:
     
     ```toml
-    
     [dca]
         # 开启
         enable = true
@@ -39,7 +35,7 @@ DCA 主要用于管理 DataKit，如 DataKit 列表查看、配置文件管理�
         # 监听地址和端口
         listen = "0.0.0.0:9531"
 
-        # 白名单，支持指定IP地址或者CIDR格式网络地址
+        # 白名单，支持指定IP地址或者 CIDR 格式网络地址
         white_list = ["0.0.0.0/0", "192.168.1.0/24"]
     ```
 
@@ -61,7 +57,7 @@ DCA 主要用于管理 DataKit，如 DataKit 列表查看、配置文件管理�
 
     不同版本的 DataKit 接口可能存在差异，为了更好地使用 DCA，建议升级 DataKit 为最新版本。另外，Web 版的 DCA 跟桌面版之间还存在一些功能的缺失，后面会慢慢增补进来，*并逐步弃用现在的桌面版*。
 
-DCA web 是 DCA 客户端的 web 版本，它通过部署一个后端服务来提供 DataKit 的接口代理，并提供前端 Web 页面来实现对 DataKit 的访问。目前服务仅支持 docker 镜像安装，可参考文档[安装 Docker](https://docs.docker.com/desktop/install/linux-install/)。
+DCA web 是 DCA 客户端的 web 版本，它通过部署一个后端服务来提供 DataKit 的接口代理，并提供前端 Web 页面来实现对 DataKit 的访问。目前服务仅支持 Docker 镜像安装，可参考文档[安装 Docker](https://docs.docker.com/desktop/install/linux-install/)。
 
 - 下载镜像
 

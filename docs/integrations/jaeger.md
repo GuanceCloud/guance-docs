@@ -67,7 +67,6 @@ Datakit 内嵌的 Jaeger Agent 用于接收，运算，分析 Jaeger Tracing 协
   # [inputs.jaeger.threads]
     # buffer = 100
     # threads = 8
-    # timeout = 1000
 
 ```
 
