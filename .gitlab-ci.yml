@@ -43,7 +43,7 @@ buildBasis:
     - /basis-\d+/
   script:
     - docker buildx build --platform linux/arm64,linux/amd64
-      -t registry.jiagouyun.com/basis/mkdocs:1.0
+      -t registry.jiagouyun.com/basis/mkdocs:2.1
       -f Dockerfile.basis .
       --push
   tags:
