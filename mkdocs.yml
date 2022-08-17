@@ -55,7 +55,8 @@ plugins:
   - section-index
   - git-authors
   - git-revision-date-localized:
-      type: date
+      type: custom
+      custom_format: '%Y-%m-%d'
       enable_creation_date: true
       fallback_to_build_date: true
   - search:

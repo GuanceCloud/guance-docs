@@ -8,6 +8,5 @@ jieba==0.42.1
 markupsafe==2.0.1
 mkdocs-awesome-pages-plugin==2.7.0
 
-mkdocs-material
 mkdocs-git-authors-plugin
 mkdocs-git-revision-date-localized-plugin
