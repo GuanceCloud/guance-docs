@@ -1,4 +1,4 @@
-site_name: 观测云
+site_name: 观测云文档
 
 theme:
   palette:
@@ -9,6 +9,7 @@ theme:
   logo: logo.png
   language: zh
   features:
+    - navigation.prune
     - navigation.instant
     - search.suggest
     - toc.follow
@@ -48,10 +49,15 @@ copyright: '&copy; 2013-2022 上海驻云信息科技有限公司 沪公网安�
 
 extra:
   generator: false
-
+  homepage: https://docs.guance.com
 plugins:
   - awesome-pages
   - section-index
+  - git-authors
+  - git-revision-date-localized:
+      type: date
+      enable_creation_date: true
+      fallback_to_build_date: true
   - search:
       separator: '[\s\u200b\-]'
 
