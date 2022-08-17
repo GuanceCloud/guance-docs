@@ -2,6 +2,15 @@
 icon: zy/best-practices
 ---
 
+## (2022/08/19)
+
+### 更新记录
+
+- 洞见
+    - 数据关联 - [JAVA 应用 RUM-APM-LOG 联动分析](./insight/java-rum-apm-log.md)，<font color="red" > 更新截图。</font>
+
+
+
 ## (2022/08/12)
 
 ### 新增最佳实践
