@@ -63,6 +63,9 @@ RabbitMQ 采集器是通过插件 `rabbitmq-management` 采集数据监控 Rabbi
   ## Use TLS but skip chain & host verification
   insecure_skip_verify = false
 
+  ## Set true to enable election
+  election = true
+
   # [inputs.rabbitmq.log]
   # files = []
   # #grok pipeline script path

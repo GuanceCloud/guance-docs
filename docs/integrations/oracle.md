@@ -66,6 +66,10 @@ apt-get install -y libaio-dev libaio1
   daemon = true
   name = 'oracle'
   cmd  = "/usr/local/datakit/externals/oracle"
+  
+  ## Set true to enable election
+  election = true
+
   args = [
     '--interval'       , '1m'                        ,
     '--host'           , '<your-oracle-host>'        ,

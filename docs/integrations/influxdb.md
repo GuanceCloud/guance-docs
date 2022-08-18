@@ -78,6 +78,9 @@ InfluxDB 采集器仅适用于 InfluxDB v1.x, 对于 InfluxDB v2.x 需要使用 
   ## http request & header timeout
   timeout = "5s"
 
+  ## Set true to enable election
+  election = true
+
   ## (Optional) TLS connection config
   # [inputs.influxdb.tlsconf]
   # ca_certs = ["/path/to/ca.pem"]

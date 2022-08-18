@@ -35,6 +35,9 @@ GitLab 设置完成后，对 DataKit 进行配置。注意，根据 GitLab 版�
     ## datakit can listen to gitlab ci data at /v1/gitlab when enabled
     enable_ci_visibility = true
 
+    ## Set true to enable election
+    election = true
+
     ## extra tags for gitlab-ci data.
     ## these tags will not overwrite existing tags.
     [inputs.gitlab.ci_extra_tags]

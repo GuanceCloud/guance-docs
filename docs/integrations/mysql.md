@@ -97,6 +97,9 @@ Error 1045: Access denied for user 'datakit'@'::1' (using password: YES)
   ## grok pipeline script path
   #pipeline = "mysql.p"
 
+  ## Set true to enable election
+  election = true
+
   # [[inputs.mysql.custom_queries]]
   #   sql = "SELECT foo, COUNT(*) FROM table.events GROUP BY foo"
   #   metric = "xxxx"

@@ -29,6 +29,9 @@
   
   ## time units are "ms", "s", "m", "h"
   interval = "10s"
+
+  ## Set true to enable election
+  election = true
   
   ## Optional TLS Config
   # tls_ca = "/etc/telegraf/ca.pem"
