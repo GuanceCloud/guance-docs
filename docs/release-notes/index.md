@@ -115,9 +115,9 @@ icon: zy/release-notes
 
 - 洞见 Insight
     - 场景 (Scene) - [CDB](../best-practices/insight/tencent-cdb.md)
-    - 场景 (Scene) - [CLB](../best-practices/partner/insight/tencent-clb.md)
-    - 场景 (Scene) - [COS](../best-practices/partner/insight/tencent-cos.md)
-    - 场景 (Scene) - [CVM](../best-practices/partner/insight/tencent-cvm.md)
+    - 场景 (Scene) - [CLB](../best-practices/insight/tencent-clb.md)
+    - 场景 (Scene) - [COS](../best-practices/insight/tencent-cos.md)
+    - 场景 (Scene) - [CVM](../best-practices/insight/tencent-cvm.md)
     - 场景 - [内网场景 Dubbo 微服务接入观测云](../best-practices/insight/scene-dubbo.md)
 
 更多最佳实践更新可参考 [最佳实践版本历史](../best-practices/index.md) 。
