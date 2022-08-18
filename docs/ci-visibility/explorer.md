@@ -9,7 +9,7 @@
 
 ### Pipeline 查看器
 
-通过左上角的数据类型筛选栏，您可以切换至「gitlab_pipeline」查看器对 CI Pipeline 的过程进行查询和分析，包括 Pipeline ID、名称、持续时长、提交内容、提交时间等等。
+在查看器左上角，您可以切换至「Gitlab Pipeline」查看器对 CI Pipeline 的过程进行查询和分析，包括 Pipeline ID、名称、持续时长、提交内容、提交时间等等。
 
 ![](img/10.ci_5.png)
 
@@ -51,7 +51,7 @@ CI 可视化主要采集的是 CI 过程中 Pipeline 和 Job 的数据，Pipelin
 
 ### Job 查看器
 
-通过左上角的数据类型筛选栏，您可以切换至「Job 查看器」对 CI Pipeline 的 Job 过程进行查询和分析，包括 Pipeline ID、Job 名称、持续时长、提交内容、提交时间等等。
+在查看器左上角，您可以切换至「Gitlab Job」对 CI Pipeline 的 Job 过程进行查询和分析，包括 Pipeline ID、Job 名称、持续时长、提交内容、提交时间等等。
 
 ![](img/10.ci_6.png)
 
@@ -94,17 +94,13 @@ CI 可视化主要采集的是 CI 过程中 Pipeline 和 Job 的数据，Pipelin
 
 ### 数据导出
 
-在查看器列表，您可以先筛选出想要的数据导出后进行查看和分析，支持导出到CSV文件、仪表板和笔记
-
-![](img/10.ci_10.png)
-
-
+在查看器列表，您可以先筛选出想要的数据导出后进行查看和分析，支持点击「设置」小图标导出到 CSV 文件、仪表板和笔记。
 
 ## Jenkins
 
 ### Pipeline 查看器
 
-通过左上角的数据类型筛选栏，您可以切换至「jenkins_pipeline」查看器对CI Pipeline 的过程进行查询和分析，包括 Pipeline ID、名称、持续时长、提交内容、提交时间等等。
+在查看器左上角，您可以切换至「Jenkins Pipeline」查看器对CI Pipeline 的过程进行查询和分析，包括 Pipeline ID、名称、持续时长、提交内容、提交时间等等。
 
 ![](img/17.CI_4.png)
 

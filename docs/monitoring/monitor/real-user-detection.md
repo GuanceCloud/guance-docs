@@ -24,9 +24,8 @@
 | 应用类型 | 「用户访问监测」支持的应用类型，包括Web、Android、iOS、Miniapp |
 | 应用名称 | 基于应用类型获取对应的应用列表，支持全选和单选 |
 | 指标 | 基于应用类型获取的指标列表，<br>**Web/Miniapp**（包括JS错误数、JS错误率、资源错误数、资源错误率、首次渲染平均时间、页面加载平均耗时、LCP(largest_contentful_paint)、FID(first_input_delay)、CLS(cumulative_layout_shift)、FCP(first_contentful_paint) 等）<br>**Android/IOS**（包括启动耗时、总崩溃数、总崩溃率、资源错误数、资源错误率、FPS、页面加载平均耗时等） |
-| 筛选条件 | 基于指标的标签对检测指标的数据进行筛选，限定检测的数据范围。支持添加一个或多个标签筛选 |
+| 筛选条件 | 基于指标的标签对检测指标的数据进行筛选，限定检测的数据范围。支持添加一个或多个标签筛选，支持模糊匹配和模糊不匹配的筛选条件。 |
 | 维度 | 检测指标的触发维度，即触发对象。任意一个触发对象的指标满足告警条件则触发告警，不支持 int 型字段为触发维度，且最多支持选择三个字段 |
-| 时间范围 | 当前检测指标的数据时间范围，默认为 5 分钟 |
 
 [**Web**](../../real-user-monitoring/web/app-data-collection.md) / [**Miniapp**](../../real-user-monitoring/miniapp/app-data-collection.md) **指标说明**
 
@@ -354,4 +353,4 @@ R::freeze:(count(`freeze_type`) as count) {`app_id` = '#{appid}'}
 
 9）**无数据事件内容：**默认不可填写，当选择触发无数据事件时为可填写无数据事件内容，支持使用预置的模板变量，详情参考 [模板变量](../event-template.md) 。
 
-10）**检测频率：**当前检测规则的执行频率，即检测周期，默认 1 分钟检测一次。
+10）**检测频率：**当前检测规则的执行频率，默认 1 分钟检测一次，时间范围默认为 5 分钟。

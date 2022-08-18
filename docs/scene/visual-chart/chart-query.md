@@ -53,6 +53,19 @@
 
 支持通过标签进行筛选。点击「漏斗」图标，即可为该查询添加筛选条件，支持添加多个筛选条件，每个筛选条件之间可以有「并且」和「或」两种取值方式。
 
+| 筛选条件       | 说明                                     | 支持的筛选条件类型           |
+| -------------- | ---------------------------------------- | ---------------------------- |
+| `=`            | 等于                                     | `Integer`、`Float`、`String` |
+| `!=`           | 不等于                                   | `Integer`、`Float`、`String` |
+| `>=`           | 大于等于                                 | `Integer`、`Float`、`String` |
+| `<=`           | 小于等于                                 | `Integer`、`Float`、`String` |
+| `>`            | 大于                                     | `Integer`、`Float`、`String` |
+| `<`            | 小于                                     | `Integer`、`Float`、`String` |
+| `match`        | 包含                                     | `String`                     |
+| `not match`    | 不包含                                   | `String`                     |
+| `wildcard`     | 模糊匹配（支持除指标以外的日志类数据）   | `String`                     |
+| `not wildcard` | 模糊不匹配（支持除指标以外的日志类数据） | `String`                     |
+
 **注意：筛选条件内容中的「#{host}」为视图变量，详情参考文档  [视图变量](../view-variable.md)  。**
 
 ![](../img/3.chart_6.png)
