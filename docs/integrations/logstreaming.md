@@ -18,6 +18,13 @@ HTTP URL 固定为：`/v1/write/logstreaming`，即 `http://Datakit_IP:PORT/v1/w
 
 [inputs.logstreaming]
   ignore_url_tags = true
+
+  ## Threads config controls how many goroutines an agent cloud start.
+  ## buffer is the size of jobs' buffering of worker channel.
+  ## threads is the total number fo goroutines at running time.
+  # [inputs.logstreaming.threads]
+    # buffer = 100
+    # threads = 8
  
 ```
 

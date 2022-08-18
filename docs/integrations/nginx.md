@@ -62,6 +62,9 @@ NGINX 采集器可以从 NGINX 实例中采取很多指标，比如请求总数�
 	# HTTP response timeout (default: 5s)
 	response_timeout = "20s"
 
+    ## Set true to enable election
+	election = true
+
 	[inputs.nginx.log]
 	#	files = ["/var/log/nginx/access.log","/var/log/nginx/error.log"]
 	#	# grok pipeline script path

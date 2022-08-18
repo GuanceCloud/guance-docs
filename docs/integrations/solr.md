@@ -27,6 +27,9 @@ DataKit 使用 Solr Metrics API 采集指标数据，支持 Solr 7.0 及以上�
   # username = "username"
   # password = "pa$$word"
 
+  ## Set true to enable election
+  election = true
+
   # [inputs.solr.log]
   # files = []
   # #grok pipeline script path

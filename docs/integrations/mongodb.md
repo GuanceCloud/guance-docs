@@ -56,6 +56,9 @@ MongoDb 数据库，Collection， MongoDb 数据库集群运行状态数据采�
   ## When true, collect top command stats.
   # gather_top_stat = true
 
+  ## Set true to enable election
+  election = true
+
   ## TLS connection config
   # ca_certs = ["/etc/ssl/certs/mongod.cert.pem"]
   # cert = "/etc/ssl/certs/mongo.cert.pem"

@@ -77,6 +77,9 @@ ACL SETUSER username on +ping
   ## @param command_stats - boolean - optional - default: false
   ## Collect INFO COMMANDSTATS output as metrics.
   # command_stats = false
+
+  ## Set true to enable election
+  election = true
   
   # [inputs.redis.log]
   # #required, glob logfiles

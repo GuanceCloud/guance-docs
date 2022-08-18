@@ -178,6 +178,9 @@ PUT _plugins/_security/api/roles/monitor
   ## Use TLS but skip chain & host verification
   # insecure_skip_verify = false
 
+  ## Set true to enable election
+  election = true
+
   # [inputs.elasticsearch.log]
   # files = []
   # #grok pipeline script path

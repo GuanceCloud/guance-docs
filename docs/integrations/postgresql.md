@@ -38,6 +38,9 @@ Postgresql 采集器可以从 Postgresql 实例中采集实例运行状态指标
   # 单位 "ns", "us" (or "µs"), "ms", "s", "m", "h"
   interval = "10s"
 
+  ## Set true to enable election
+  election = true
+
   ## 日志采集
   # [inputs.postgresql.log]
   # files = []

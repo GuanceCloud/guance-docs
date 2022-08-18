@@ -182,7 +182,7 @@ setenforce 0
     | `ENV_INPUT_EBPF_IPV6_DISABLED`              | `ipv6_disabled`               | `false/true`                                                |
     
 
-## 指标集 {measurements}
+## 指标集 {#measurements}
 
 以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.ebpf.tags]` 指定其它标签：
 
@@ -214,6 +214,7 @@ setenforce 0
 |`family`|TCP/IP 协议族 (IPv4/IPv6)|
 |`host`|主机名|
 |`pid`|进程号|
+|`process_name`|进程名|
 |`source`|固定值: netflow|
 |`src_ip`|源 IP|
 |`src_ip_type`|源 IP 类型 (other/private/multicast)|

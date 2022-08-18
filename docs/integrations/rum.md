@@ -37,6 +37,9 @@ RUM（Real User Monitor）采集器用于收集网页端或移动端上报的用
     ## Default value set as below. DO NOT MODIFY THESE ENDPOINTS if not necessary.
     endpoints = ["/v1/write/rum"]
     
+    # Android command-line-tools HOME
+    android_cmdline_home = "/usr/local/datakit/data/rum/tools/cmdline-tools"
+    
     # proguard HOME
     proguard_home = "/usr/local/datakit/data/rum/tools/proguard"
     
@@ -116,7 +119,18 @@ RUM 采集器默认会采集如下几个指标集：
 
 DataKit 支持这种源代码文件信息的映射，方法是将对应符号表文件进行 zip 压缩打包，命名格式为 `<app_id>-<env>-<version>.zip`，上传至`<DataKit安装目录>/data/rum/<platform>`，这样就可以对上报的`error`指标集数据自动进行转换，并追加 `error_stack_source` 字段至该指标集中。
 
-**打包说明** 
+**安装sourcemap工具集**
+
+首先需要安装相应的符号还原工具，datakit 提供了一键安装命令来简化工具的安装：
+
+```shell
+sudo datakit install --symbol-tools
+```
+
+如果安装过程中出现某个软件安装失败的情况，你可能需要根据错误提示手动安装对应的软件
+
+
+**zip包打包说明** 
 
 === "Web"
 
@@ -273,32 +287,6 @@ DataKit 支持这种源代码文件信息的映射，方法是将对应符号表
                 └── DWARF
                     └── App
     
-    ```
-
-    转换前 `error_stack` :
-
-    ```
-    4   App                                         0x0000000104fd0728 0x104f30000 + 657192
-    5   App                                         0x0000000104fd00bc 0x104f30000 + 655548
-    6   App                                         0x0000000104f7e5d4 0x104f30000 + 320980
-    7   App                                         0x0000000104f7e218 0x104f30000 + 320024
-    8   App                                         0x0000000104f5b424 0x104f30000 + 177188
-    9   App                                         0x0000000104f7d870 0x104f30000 + 317552
-    10  App                                         0x0000000104f7d158 0x104f30000 + 315736
-    ...
-    ```
-    
-    转换后 `error_stack_source` :
-
-    ```
-    4   App                                         0x0000000104fd0728 +[ZLChineseToPinyin returnSortObjectArrar:key:] (in App) (ZLChineseToPinyin.m:186)
-    5   App                                         0x0000000104fd00bc +[ZLChineseToPinyin indexWithArray:Key:] (in App) (ZLChineseToPinyin.m:128)
-    6   App                                         0x0000000104f7e5d4 -[ChooseAssignVC dealGroupDataWithIgnoreIndex:] (in App) (ChooseAssignVC.m:160)
-    7   App                                         0x0000000104f7e218 -[ChooseAssignVC dealMemberWithDatas:] (in App) (ChooseAssignVC.m:145)
-    8   App                                         0x0000000104f5b424 -[UserManager getTeamMember:] (in App) (UserManager.m:381)
-    9   App                                         0x0000000104f7d870 -[ChooseAssignVC createUI] (in App) (ChooseAssignVC.m:61)
-    10  App                                         0x0000000104f7d158 -[ChooseAssignVC viewDidLoad] (in App) (ChooseAssignVC.m:37)
-    ...
     ```
 
 **文件上传和删除**
