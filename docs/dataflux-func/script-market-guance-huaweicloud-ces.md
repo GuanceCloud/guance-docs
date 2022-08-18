@@ -30,14 +30,14 @@
 ```python
 huaweicloud_ces_configs = {
     'region_projects': {
-        'cn-north-4': ['c63xxx', '15cxxx'],
+        'cn-north-4': ['c63xxx', '15cxxx']
     },
     'targets': [
         {
             'namespace': 'SYS.OBS',
-            'metrics'  : ['capacity_total', 'capacity_archive'],
+            'metrics'  : ['capacity_total', 'capacity_archive']
         }
-    ],
+    ]
 }
 ```
 
@@ -55,14 +55,14 @@ huaweicloud_ces_configs = {
 ```python
 huaweicloud_ces_configs = {
     'region_projects': {
-        'cn-north-4': ['c63xxx', '15cxxx'],
+        'cn-north-4': ['c63xxx', '15cxxx']
     },
     'targets': [
         {
             'namespace': 'SYS.OBS',
-            'metrics'  : ['capacity_total', 'capacity*', '*total', '*capacity*'],
-      }
-    ],
+            'metrics'  : ['capacity_total', 'capacity*', '*total', '*capacity*']
+        }
+    ]
 }
 ```
 
@@ -80,14 +80,14 @@ huaweicloud_ces_configs = {
 ```python
 huaweicloud_ces_configs = {
     'region_projects': {
-        'cn-north-4': ['c63xxx', '15cxxx'],
+        'cn-north-4': ['c63xxx', '15cxxx']
     },
     'targets': [
         {
             'namespace': 'SYS.OBS',
-            'metrics'  : ['NOT', 'capacity_total', 'capacity*', '*total', '*capacity*'],
+            'metrics'  : ['NOT', 'capacity_total', 'capacity*', '*total', '*capacity*']
         }
-    ],
+    ]
 }
 ```
 
@@ -103,18 +103,18 @@ huaweicloud_ces_configs = {
 ```python
 huaweicloud_ces_configs = {
     'region_projects': {
-        'cn-north-4': ['c63xxx', '15cxxx'],
+        'cn-north-4': ['c63xxx', '15cxxx']
     },
     'targets': [
         {
             'namespace': 'SYS.OBS',
-            'metrics'  : ['*capacity*'],
+            'metrics'  : ['*capacity*']
         },
         {
             'namespace': 'SYS.OBS',
-            'metrics'  : ['NOT', 'capacity_total'],
-        },
-    ],
+            'metrics'  : ['NOT', 'capacity_total']
+        }
+    ]
 }
 ```
 
@@ -122,24 +122,23 @@ huaweicloud_ces_configs = {
 
 ### 云产品配置信息
 
-| 产品名称                   | 命名空间 (Namespace) | 维度 (Dimension)                                                          | 说明                                                     |
-| -------------------------- | -------------------- | ------------------------------------------------------------------------- | -------------------------------------------------------- |
-| 对象存储服务               | `SYS.OBS`            | `instance_id`                                                             |                                                          |
-| 弹性云服务器               | `SYS.ECS`            | `instance_id`                                                             | 弹性云服务器的基础监控指标                               |
-| 弹性云服务器中操作系统监控 | `AGT.ECS`            | `instance_id`                                                             | 弹性云服务器操作系统监控的监控指标（安装 Agent，简洁版） |
+| 产品名称                   | 命名空间 (Namespace) | 维度 (Dimension)                                             | 说明                                                     |
+| -------------------------- | -------------------- | ------------------------------------------------------------ | -------------------------------------------------------- |
+| 对象存储服务               | `SYS.OBS`            | `instance_id`                                                |                                                          |
+| 弹性云服务器               | `SYS.ECS`            | `instance_id`                                                | 弹性云服务器的基础监控指标                               |
+| 弹性云服务器中操作系统监控 | `AGT.ECS`            | `instance_id`                                                | 弹性云服务器操作系统监控的监控指标（安装 Agent，简洁版） |
 | 关系型数据库               | `SYS.RDS`            | `rds_cluster_id`<br>`postgresql_cluster_id`<br>`rds_cluster_sqlserver_id` | 分别对应<br>MySQL<br>PostgreSQL<br>SQL Server            |
 | 弹性负载均衡               | `SYS.ELB`            | `lbaas_instance_id`                                          |                                                          |
 | 分布式缓存服务             | `SYS.DCS`            | `dcs_instance_id`                                            |                                                          |
+| 裸金属服务器               | `SERVICE.BMS`        | `instance_id`                                                | 支持裸金属服务器支持的监控指标（安装 Agent，简洁版）      |
+| 文档数据库服务             | `SYS.DDS`            | `mongodb_instance_id`                                        |                                                          |
+
+> 提示： [裸金属服务器指标](https://support.huaweicloud.com/usermanual-bms/bms_01_0130.html) 文档中存在前缀为 `mountPointPrefix_` 的指标，例如 `mountPointPrefix_disk_free`，在实际采集中并不存在此类指标，如若需要指定指标 `disk_free`，可忽略 `mountPointPrefix_` 前缀，直接配置 `disk_free`。
 
 ### 缓存机制
 
 华为云云监控在获取指标维度信息时引入了缓存机制。用户若频繁创建删除实例，需要等待 1 小时，采集器开始获取新的监控数据
 
-### 监控指标配置信息
-
-目前采集器只支持采集实例级别的指标。
-
-> 提示：建议用户按照各命名空间对应的指标名配置
 
 ## 4. 数据上报格式
 
@@ -150,14 +149,14 @@ huaweicloud_ces_configs = {
 ```python
 huaweicloud_ces_configs = {
     'region_projects': {
-        'cn-north-4': ['c63xxx', '15cxxx'],
+        'cn-north-4': ['c63xxx', '15cxxx']
     },
     'targets': [
         {
             'namespace': 'SYS.OBS',
-            'metrics'  : ['capacity_total'],
-        },
-    ],
+            'metrics'  : ['capacity_total']
+        }
+    ]
 }
 ```
 
@@ -208,7 +207,7 @@ collectors = [
     "bucket_name": "i-xxx"
   },
   "fields": { "内容略" }
-},
+}
 ```
 
 同时，华为云 OBS 采集器采集到的自定义对象数据如下：

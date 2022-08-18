@@ -41,7 +41,7 @@ collector_configs = {
   "tags": {
     "name"              : "ngw-bp1b3urqh0t7xxxxx",
     "NatGatewayId"      : "ngw-bp1b3urqh0t7xxxxx",
-    "Name"              : "Operator",
+    "instance_name"              : "Operator",
     "VpcId"             : "vpc-bp1l3jzwhv8cnu9p8u4yh",
     "Spec"              : "Small",
     "InstanceChargeType": "PrePaid",
@@ -57,7 +57,7 @@ collector_configs = {
 
 *注意：`tags`、`fields`中的字段可能会随后续更新有所变动*
 
-> 提示：`tags.name`值为 NAT 网关的 ID，作为唯一识别
+> 提示：`tags.name`值为 NAT 网关的 ID，作为唯一识别，`instance_name` 值为 NAT 网关名称
 
 > 提示 2：`fields.message`为 JSON 序列化后字符串
 
