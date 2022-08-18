@@ -95,6 +95,7 @@ $ docker run -d --name dca -p 8000:80 pubrepo.guance.com/tools/dca
 ```shell
 $ docker run -d --name dca -p 8000:80 -e DCA_LOG_ENABLE_STDOUT=true -e DCA_LOG_LEVEL=WARN pubrepo.guance.com/tools/dca
 ```
+
 ### 登录 DCA
 
 DCA 开启和安装以后，即可在浏览器输入地址 `localhost:8000` 打开 DCA  Web 端，登录账号，即可开始使用。若无账号，可先注册 [观测云账号](https://auth.guance.com/register?channel=帮助文档)。
