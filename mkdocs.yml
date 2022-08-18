@@ -9,7 +9,6 @@ theme:
   logo: logo.png
   language: zh
   features:
-    - navigation.prune
     - navigation.instant
     - search.suggest
     - toc.follow
