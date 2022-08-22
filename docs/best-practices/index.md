@@ -2,6 +2,14 @@
 icon: zy/best-practices
 ---
 
+## (2022/08/26)
+
+### 新增最佳实践
+
+- 监控 Monitoring
+    - 应用性能监控 (APM) - [DDtrace 自定义 Instrumentation](./monitoring/ddtrace-instrumentation.md)。
+
+
 ## (2022/08/19)
 
 ### 更新记录
@@ -91,7 +99,7 @@ icon: zy/best-practices
 - APM
     - [GraalVM 与 Spring Native 项目实现链路可观测](./monitoring/spring-native.md)
 - 接入集成
-    - [主机可观测最佳实践 (Linux)](./monitoring/host.md)
+    - [主机可观测最佳实践 (Linux)](./monitoring/host-linux.md)
 ### 更新记录
 - 观测云小妙招
     - [ddtrace 高级用法](./monitoring/ddtrace-skill.md)，<font color="red" > 新增了 采样、过滤Resource、入侵式埋点、log 配置。</font>
