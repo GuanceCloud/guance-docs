@@ -105,6 +105,43 @@ icon: zy/release-notes
 - 时序图图例值新增 `sum` 求和统计，同时优化图例显示和交互；
 - 监控器、图表查询日志类数据时筛选条件新增 wildcard 和 not wildcard 。
 
+### DataKit 更新
+
+#### 新功能
+- Pipeline 中新增 reftable 功能
+- DataKit 9529 HTTP 支持绑定到 domain socket
+    - 对应的 eBPF 采集 和 Oracle 采集，其配置方式也需做对应变更。
+- RUM sourcemap 增加 Android R8 支持
+- CRD 增加日志配置支持
+    - 完整示例
+
+#### 优化
+- 优化容器采集器文档
+- 新增 常见 Tag 文档
+- 优化选举的配置和一些相关的命名
+- 选举类采集器在 DataKit 开启选举的情况下，仍然支持在特定的采集器上关闭选举功能
+- 支持指定数据类型的 io block 配置
+- DDTrace 采集器的采样增加 meta 信息识别
+- DataKit 自身指标集增加 9529 HTTP 请求相关指标
+- 优化 Zipkin 采集的内存使用
+- DDTrace 采集器在开启磁盘缓存后，默认变成阻塞式 IO feed
+- eBPF 增加进程名（process_name）字段
+- DCA 新版本发布
+- 日志类 HTTP 数据写入（logstreaming/Jaeger/OpenTelemetry/Zipkin）均增加队列支持
+- 日志采集增加自动多行支持
+
+#### Bug 修复
+- 修复 MySQL 采集器 连接泄露问题
+- 修复 Pipeline Json 取值问题
+- 修复 macOS 上 ulimit 设置无效问题
+- 修复 sinker-Dataway 在 Kubernetes 中无效问题
+- 修复 HTTP 数据写入类接口数据校验问题
+- 修复 eBPF 采集器因内核变更后结构体偏移计算失败问题
+- 修复 DDTrace close-resource 问题
+
+更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md) 。
+
+
 ### 最佳实践更新
 
 - 监控 Monitoring
