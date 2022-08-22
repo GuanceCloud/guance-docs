@@ -6,7 +6,7 @@
 总体而言，DataKit 有如下几种日志采集方案：
 
 - 从[磁盘文件获取日志](logging.md)
-- 通过调用环境 API 获取日志
+- 采集容器 stdout 日志 
 - 远程推送日志给 DataKit
 - [Sidecar 形式的日志采集](logfwd.md)
 
@@ -32,13 +32,13 @@
 
 正因为这个特性，如果日志文件持续在更新，中间停止 DataKit，==该空窗期的日志也不会被采集到==，后面可能会做一些策略来缓解这个问题。
 
-## 通过调用环境 API 获取日志
+## 容器 stdout 日志
 
-这种采集方式目前主要针对[容器环境中的 stdout 日志](container.md)，这种日志要求运行在容器（或 Kubernetes Pod）中的应用将日志输出到 stdout，然后通过 Docker 的日志接口，将对应 stdout 上的日志同步到 DataKit。
+这种采集方式目前主要针对[容器环境中的 stdout 日志](container.md)，这种日志要求运行在容器（或 Kubernetes Pod）中的应用将日志输出到 stdout，这些 stdout 日志实际上会在 Node 上落盘，DataKit 通过对应的容器 ID 能找到对应的日志文件，然后按照普通磁盘文件的方式对其进行采集。
 
 <figure markdown>
   ![](imgs/datakit-logging-stdout.png){ width="300" }
-  <figcaption>从 API 获取日志</figcaption>
+  <figcaption>采集容器 stdout 日志</figcaption>
 </figure>
 
 在 DataKit 现有 stdout 采集方案中（主要针对 k8s 环境），日志的采集有如下几个特点：
@@ -49,9 +49,6 @@
 	- 染色标记：[通过 Annotation 修改 Pod 标注](container.md#logging-with-annotation-or-label)，DataKit 能识别到这些特殊的 Pod，进而对其 stdout 日志进行采集
 
 这也是这种策略的一个缺陷，即要求应用将日志输出到 stdout，在一般的应用开发中，日志不太会直接写到 stdout（但主流的日志框架一般都支持输出到 stdout），需要开发者调整日志配置。但是，随着容器化部署方案不断普及，这种方案不失为一种可行的日志采集方式。
-
-> - 随着 k8s 逐渐摒弃 Docker，通过 Docker API 获取日志这一方案可能会不再适用新的 k8s 发布，届时社区可能会提供配套的类似实现
-> - 在 [1.2.20](../datakit/changelog.md#cl-1.2.20) 中，容器日志已不再依赖 Docker 日志 API
 
 ## 远程推送日志给 DataKit
 
