@@ -54,7 +54,7 @@ Flink 会将数据处理任务拆分为一个或多个并行处理的子任务�
 
 观测云的 flink overview 提供了 Flink 子任务缓冲池使用情况的概览，以帮助确定子任务是否背压。例如，如果看到位于发送方子任务的输出缓冲池中的所有缓冲区都已满 ( flink_taskmanager_task_Shuffle_Netty_Output_Buffers_outPoolUsage)，假如上图中的的利用率为 100% 利用率，则意味着该子任务处于背压状态。或者接收器子任务的输入缓冲池完全耗尽 ( flink_taskmanager_task_Shuffle_Netty_Input_Buffers_inPoolUsage)，则意味着所有缓冲区都在使用中，背压可能会扩展到上游并影响发送器的性能。要修复该问题就要首先检查它是否可能是由 Flink 建议的这些[根本原因](https://flink.apache.org/2019/07/23/flink-network-stack-2.html#system-resources)之一引起的，以便您可以采取适当的措施。
 
-## 对高 JVM 资源使用率发出警报并解决瓶颈
+## 对高 JVM 资源使用率发出告警并解决瓶颈
 
 每个 Flink 集群都至少有一个 JobManager 和 TaskManager。JobManager 的作用是协调作业调度和管理资源，而 TaskManager 将执行 Flink 作业中的每一个单独的任务。观测云的 flink overview 提供了 JobManager 和 TaskManager 的 JVM 资源使用情况的高级概述，以帮助识别和诊断性能瓶颈。
 
