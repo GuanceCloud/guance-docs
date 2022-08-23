@@ -606,20 +606,14 @@ FT_ENV="common"
 
 1. 添加预设宏：`Target —> Build Settings -> + -> Add User-Defined Setting` 
 
-<div align="left">
-  <img src="../img/multi-environment-configuration1.png" alt="multi-environment-configuration1";/>
-</div>
+![](../img/multi-environment-configuration1.png)
 
-<div align="left">
-  <img src="../img/multi-environment-configuration2.png" alt="multi-environment-configuration2";/>
-</div>
+![](../img/multi-environment-configuration2.png)
+
 
 2. 使用多 Xcconfig 来实现多环境，新建 Xcconfig
 
-<div align="left">
-  <img src="../img/multi-environment-configuration3.png" alt="multi-environment-configuration3"; height="150px"/>
-</div>
-
+![](../img/multi-environment-configuration3.png)
 
 
 .xcconfig 文件中配置预设宏：
@@ -636,15 +630,12 @@ SDK_DEA_ADDRESS = http:\$()\xxxxxxxx:9531
 
 3. 配置自定义编译环境
 
-<div align="left">
-  <img src="../img/multi-environment-configuration4.png" alt="multi-environment-configuration4";/>                                                                                               
-</div>
+![](../img/multi-environment-configuration4.png)
 
 
 
-<div align="left">
-  <img src="../img/multi-environment-configuration5.png" alt="multi-environment-configuration5";/>
-</div>
+![](../img/multi-environment-configuration5.png)
+
 
 4. 使用
 
@@ -664,30 +655,26 @@ FT_ENV=SDK_ENV
 
 方法一：对指定文件进行配置：-D'SDK_APP_ID=@"$(SDK_APP_ID)"'
 
-<div align="left">
-  <img src="../img/multi-environment-configuration6.png" alt="multi-environment-configuration6";/>                                                                                               
-</div>
+![](../img/multi-environment-configuration6.png)
+
 
 
  在指定文件中可以使用
 
- <div align="left">
-    <img src="../img/multi-environment-configuration7.png" alt="multi-environment-configuration7";/>                                                                                               
- </div>
+![](../img/multi-environment-configuration7.png)
+
 
 
 方法二：映射到  `Info.plist` 文件中
 
- <div align="left">
-    <img src="../img/multi-environment-configuration8.png" alt="multi-environment-configuration8";/>                                                                                               
- </div>
+![](../img/multi-environment-configuration8.png)
+
 
 
 在文件中可以使用
 
- <div align="left">
-    <img src="../img/multi-environment-configuration9.png" alt="multi-environment-configuration9";/>                                                                                               
- </div>
+![](../img/multi-environment-configuration9.png)
+
 
 详细细节请见 [SDK Demo](https://github.com/DataFlux-cn/datakit-ios/tree/develop/demo)。
 
@@ -714,17 +701,17 @@ XCode Release 编译默认会生成 dSYM 文件，而 Debug 编译默认不会�
 
  ` Build Settings -> Code Generation -> Generate Debug Symbols -> Yes` 
 
-<div align="left">
-  <img src="../img/dsym_config1.png" alt="dsym_config1";/>
-</div>
+![](../img/dsym_config1.png)
+
+
+
 
 
 
 ` Build Settings -> Build Option -> Debug Information Format -> DWARF with dSYM File`
 
-<div align="left">
-  <img src="../img/dsym_config2.png" alt="dsym_config2";/>
-</div>
+![](../img/dsym_config2.png)
+
 
 
 
@@ -750,29 +737,23 @@ XCode Release 编译默认会生成 dSYM 文件，而 Debug 编译默认不会�
 
 2. 选择 `Archives`  标签
 
-   <div align="left">
-     <img src="../img/xcode_find_dsym2.png" alt="xcode_find_dsym2" height="150px";/>
-     </div>
-
+   ![](../img/xcode_find_dsym2.png)
+   
 3. 找到发布的归档包，右键点击对应归档包，选择Show in Finder操作
 
-   <div align="left">
-     <img src="../img/xcode_find_dsym3.png" alt="xcode_find_dsym3" height="150px";/>
-     </div>
+   ![](../img/xcode_find_dsym3.png)
+   
    
    
 4. 右键选择定位到的归档文件，选择显示包内容操作 
 
-   <div align="left">
-     <img src="../img/xcode_find_dsym4.png" alt="xcode_find_dsym4" height="150px";/>
-     </div>
+   ![](../img/xcode_find_dsym4.png)
+   
    
    
 5. 选择dSYMs目录，目录内即为下载到的 dSYM 文件
 
-   <div align="left">
-     <img src="../img/xcode_find_dsym5.png" alt="xcode_find_dsym5" height="150px";/>
-     </div>
+   ![](../img/xcode_find_dsym5.png)
 
 ##### 通过 iTunes Connect 找回
 
@@ -784,9 +765,8 @@ XCode Release 编译默认会生成 dSYM 文件，而 Debug 编译默认不会�
 
 在通过 Xcode 找到 dSYM 文件时，可以看到 BCSymbolMaps 目录
 
-<div align="left">
-  <img src="../img/BCSymbolMaps.png" alt="BCSymbolMaps" height="150px";/>
-  </div>
+![](../img/BCSymbolMaps.png)
+
 
 打开终端并使用以下命令进行去混淆处理
 
