@@ -6,7 +6,7 @@
 观测云基础日志最多存储60天，如果需要更长时间的存储和查看需要对基础日志进行备份。日志备份支持两种方式：
 
 - 备份到 “观测云”：支持备份日志最多存储长达720天。
-- 备份到外部存储：支持备份日志到阿里云 OSS，具体可参考文档 [日志数据备份到 OSS 最佳实践](../best-practices/guance-skill/log-backup-to-oss-by-func.md) 。
+- 备份到外部存储：支持备份日志到阿里云 OSS，具体可参考文档 [日志数据备份到 OSS 最佳实践](../best-practices/partner/log-backup-to-oss-by-func.md) 。
 ## 日志备份到观测云
 
 ### 新建规则

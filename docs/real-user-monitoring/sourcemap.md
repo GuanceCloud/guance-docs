@@ -90,7 +90,7 @@ at <anonymous> @ webpack:///src/components/header/header.vue:101:0
 
 ### **步骤3 上传及删除**
 
-可以手动上传至 datakit 相关目录， `<Datakit 安装目录>/data/rum/`，这样就可以对上报的 error 数据自动进行转换，并追加 error_stack_source 字段至该指标集中。也可以使用 http 接口上传和删除该文件，前提是开启 DCA 服务。
+可以手动上传至 datakit 相关目录， `<Datakit 安装目录>/data/rum/web`，这样就可以对上报的 error 数据自动进行转换，并追加 error_stack_source 字段至该指标集中。也可以使用 http 接口上传和删除该文件，前提是开启 DCA 服务。
 上传：
 
 ```shell
@@ -115,3 +115,9 @@ curl -X DELETE '<dca_address>/v1/rum/sourcemap?app_id=<app_id>&env=<env>&version
 - 当前只支持 js 的 sourcemap 转换。
 - sourcemap 文件名称需要与原文件保持一致，如果未找到对应的 sourcemap 文件，将不进行转换。
 - 通过接口上传的 sourcemap 压缩包，不需要重启 DataKit 即可生效，但如果是手动上传，需要重启 DataKit ，方可生效。
+
+## iOS & Android 的 Sourcemap 上传
+
+- [iOS sourcemap 上传](../integrations/rum.md#sourcemap)
+- [Android sourcemap 上传](../integrations/rum.md#sourcemap)
+
