@@ -44,7 +44,7 @@ buildscript {
     dependencies {
         //...省略部分代码
         //添加 DataFlux Plugin 的插件依赖
-        classpath 'com.cloudcare.ft.mobile.sdk.tracker.plugin:ft-plugin:1.1.0-alpha02'
+        classpath 'com.cloudcare.ft.mobile.sdk.tracker.plugin:ft-plugin:1.1.2-beta01'
     }
 }
 allprojects {
@@ -63,9 +63,9 @@ allprojects {
 ```groovy
 dependencies {
     //添加 DataFlux SDK 的依赖
-    implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-sdk:1.3.7-beta01'
+    implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-sdk:1.3.8-beta01'
     //捕获 native 层崩溃信息的依赖，需要配合 ft-sdk 使用不能单独使用
-    implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-native:1.0.0-alpha04'
+    implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-native:1.0.0-alpha05'
     //推荐使用这个版本，其他版本未做过充分兼容测试
     implementation 'com.google.code.gson:gson:2.8.5'
 
@@ -414,9 +414,29 @@ client.newCall(builder.build()).execute()
 //可以在用户登录成功后调用此方法用来绑定用户信息
 FTSdk.bindRumUserData("001")
 
+val userData = UserData()
+userData.name = "test.user"
+userData.id = "test.id"
+userData("test@mail.com")
+val extMap = HashMap<String, String>()
+extMap["ft_key"] = "ft_value"
+userData.setExts(extMap)
+            
+FTSdk.bindRumUserData(userData)
+
 //可以在用户退出登录后调用此方法来解绑用户信息
 FTSdk.unbindRumUserData()
 ```
+
+### UserData
+| **方法名** | **含义** | **必须** | **说明** |
+| --- | --- | --- | --- |
+| setId |  设置用户 ID | 否 | |
+| setName | 设置用户名 | 否 | |
+| setEmail | 设置邮箱 | 否 | |
+| setExts | 设置用户扩展 | 否 | 添加规则请查阅[此处](#key-conflict)|
+
+
 
 ## 关闭 SDK
 
@@ -425,7 +445,7 @@ FTSdk.unbindRumUserData()
 FTSdk.shutDown()
 ```
 
-## Proguard 混淆配置
+## R8 / Proguard 混淆配置
 
 ```c
 -dontwarn com.ft.sdk.**
@@ -434,10 +454,43 @@ FTSdk.shutDown()
 
 -keep class ftnative.*{*;}
 
--keep class com.bun.miitmdid.core.**{*;}
-
 -keepnames class * extends android.view.View
 ```
+
+## 符号文件上传
+### plugin 上传
+`ft-plugin` 版本需要 `1.1.2` 以上版本支持符号文件上传，支持 `productFlavor` 多版本区分管理，plugin 会在 `gradle task assembleRelease` 之后执行上传符号文件，详细配置可以参考 [SDK Demo](#setup)
+
+``` groovy
+FTExt {
+	//...
+    autoUploadMap = true
+    autoUploadNativeDebugSymbol = true
+    datakitDCAUrl = 'https://datakit.url:9531'//datakit 安装地址，默认 9531 
+    appId = "appid_xxxxx"// appid
+    env = 'common'
+
+    prodFlavors { //prodFlavors 配置会覆盖外层设置
+        prodTest {
+            autoUploadMap = false
+            autoUploadNativeDebugSymbol = false
+            datakitDCAUrl = 'https://datakit.test.url:9531'
+            appId = "appid_prodTest"
+            env = "gray"
+        }
+        prodPublish {
+            autoUploadMap = true
+            autoUploadNativeDebugSymbol = true
+            datakitDCAUrl = 'https://datakit.publish.url:9531'
+            appId = "appid_prodPublish"
+            env = "prod"
+        }
+    }
+}
+
+```
+### 手动上传
+需要开发者将符号文件自行打包成 `zip` 文件，然后自行上传至 `datakit` ，推荐使用 `zip` 命令行进行打包，避免将一些系统隐藏文件打入 `zip` 包中，符号上传请参考 [sourcemap 上传](../../integrations/rum.md#sourcemap)
 
 ## 权限配置说明
 
@@ -449,26 +502,6 @@ FTSdk.shutDown()
 
 
 ## 常见问题 {#FAQ}
-
-### 日志混淆内容转换 {#retrace-log}
-
-#### 问题描述
-
-当你的应用发生崩溃且你已经接入 `DataFlux SDK` 同时你也开启了崩溃日志上报的开关时，你可以到 `DataFlux` 后台你的工作空间下的日志模块找到相应
-的崩溃日志。如果你的应用开启了混淆，此时你会发现崩溃日志的堆栈信息也被混淆，无法直接定位具体的崩溃位置，因此你需要按以下方式来解决该问题。
-
-#### 解决方式
-
--  找到 mapping 文件。如果你开启了混淆，那么在打包的时候会在该目录下（`module-name` -> `build`-> `outputs` -> `mapping`）生成一个混淆文件映射表（`mapping.txt`）,该文件就是源代码与混淆后的类、方法和属性名称之间的映射。因此每次发包后应该根据应用的版本号保存好对应 `mapping.txt` 文件，以备根据后台日志 `tag` 中的版本名字段（`app_version_name`）来找到对应 `mapping.txt` 文件。 
--  下载崩溃日志文件。到 DataFlux 的后台中把崩溃日志下载到本地，这里假设下载到本地的文件名为 `crash_log.txt` 
--  运行 `retrace` 命令转换崩溃日志。`Android SDK` 中自带 `retrace` 工具（该工具在目录 `sdk-root/tools/proguard` 下，`windows` 版本是 `retrace.bat,Mac/Linux` 版本是 `retrace.sh`），通过该工具可以恢复崩溃日志的堆栈信息。命令示例  
-
-```
-retrace.bat -verbose mapping.txt crash_log.txt
-```
-
--  上一步是通过 `retrace` 命令行来执行，当然也可以通过 `GUI` 工具。在 `<sdk-root>/tools/proguard/bin` 目录下有个 `proguardgui.bat` 或 `proguardgui.sh` GUI 工具。运行 `proguardgui.bat` 或者 `./proguardgui.sh` -> 从左侧的菜单中选择“`ReTrace`” -> 在上面的 `Mapping file` 中选择你的 `mapping` 文件，在下面输入框输入要还原的代码 ->点击右下方的“`ReTrace!`” 
-
 ### 添加局变量避免冲突字段 {#key-conflict}
 
 为了避免自定义字段与 SDK 数据冲突，建议标签命名添加项目缩写的前缀，例如 `df_tag_name`，项目中使用 `key` 值可[查询源码](https://github.com/DataFlux-cn/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java)。SDK 全局变量中出现与 RUM、Log 相同变量时，RUM、Log 会覆盖 SDK 中的全局变量。

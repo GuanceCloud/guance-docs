@@ -40,7 +40,7 @@
 target 'yourProjectName' do
 
 # Pods for your project
-pod 'FTMobileSDK', '1.3.6-beta.1'
+pod 'FTMobileSDK', '1.3.7-beta.1'
     
 end
 ```
@@ -52,7 +52,7 @@ end
 1.配置 `Cartfile` 文件。
 
 ```
-github "GuanceCloud/datakit-ios" == 1.3.6-beta.1
+github "GuanceCloud/datakit-ios" == 1.3.7-beta.1
 ```
 
 2.在 `Cartfile` 目录下执行  `carthage update --platform iOS` ， 并将  `FTMobileSDK.framework` 拖拽到您的项目中使用。若出现 "Building universal frameworks with common architectures is not possible. The device and simulator slices for "FTMobileSDK.framework" both build for: arm64" 错误，请执行  `carthage update --platform iOS --use-xcframeworks` 命令，生成  `FTMobileSDK.xcframework `，与普通的 Framework 使用方法相同，请将它拖拽到您的项目中使用。
@@ -260,7 +260,7 @@ typedef NS_ENUM(NSInteger, FTLogCacheDiscard)  {
     //开启 trace
     FTTraceConfig *traceConfig = [[FTTraceConfig alloc]init];
     traceConfig.enableLinkRumData = YES;
-	traceConfig.enableAutoTrace = YES;
+	  traceConfig.enableAutoTrace = YES;
     traceConfig.networkTraceType = FTNetworkTraceTypeDDtrace;
     [[FTMobileAgent sharedInstance] startTraceWithConfigOptions:traceConfig];
 ```
@@ -491,8 +491,17 @@ typedef NS_ENUM(NSInteger, FTStatus) {
 ## 用户的绑定与注销
 
 ```objectivec
-//登录后 绑定用户信息
-[[FTMobileAgent sharedInstance] bindUserWithUserID:userId];
+/**
+ * 登录后 绑定用户信息
+ * @param Id        用户Id
+ * @param userName  用户名称
+ * @param extra     用户的额外信息
+*/
+[[FTMobileAgent sharedInstance] bindUserWithUserID:USERID];
+//or
+[[FTMobileAgent sharedInstance] bindUserWithUserID:USERID userName:USERNAME userEmail:USEREMAIL];
+//or
+[[FTMobileAgent sharedInstance] bindUserWithUserID:USERID userName:USERNAME userEmail:USEREMAIL extra:@{EXTRA_KEY:EXTRA_VALUE}];
 
 //登出后 注销当前用户
 [[FTMobileAgent sharedInstance] logout];
@@ -502,28 +511,29 @@ typedef NS_ENUM(NSInteger, FTStatus) {
 
 ### 静态使用
 
-采用创建多 target ，使用预编译指令进行设置值
+可采用创建多 Configurations ，使用预编译指令进行设置值
 
-1. 创建多 target ：
+1. 创建多 Configurations ：
 
 ![](../img/image_9.png)
 
-2.设置预设属性来区分不同target:
+2. 设置预设属性来区分不同 Configurations:
 
 ![](../img/image_10.png)
 
-3.使用预编译指令：
-
- 
+3. 使用预编译指令：
 
 ```objectivec
-#if PREPROD
+//Target -> Build Settings -> GCC_PREPROCESSOR_DEFINITIONS 进行配置预设定义
+#if PRE
 #define Track_id       @"0000000001"
-#define STATIC_TAG     @"APP_PREPROD"
-#else
+#define STATIC_TAG     @"preprod"
+#elif  DEVELOP
 #define Track_id       @"0000000002"
-#define STATIC_TAG     @"APP"
-
+#define STATIC_TAG     @"common"
+#else
+#define Track_id       @"0000000003"
+#define STATIC_TAG     @"prod"
 #endif
    
 FTRumConfig *rumConfig = [[FTRumConfig alloc]init]; 
@@ -536,7 +546,7 @@ rumConfig.globalContext = @{@"track_id":Track_id,@"static_tag":STATIC_TAG};
 
 因 RUM 启动后设置的 globalContext 不会生效，用户可自行本地保存，在下次应用启动时进行设置生效。
 
-1.通过存文件本地保存，例如`NSUserDefaults`，配置使用 `SDK`，在配置处添加获取标签数据的代码。
+1. 通过存文件本地保存，例如`NSUserDefaults`，配置使用 `SDK`，在配置处添加获取标签数据的代码。
 
 ```objectivec
 NSString *dynamicTag = [[NSUserDefaults standardUserDefaults] valueForKey:@"DYNAMIC_TAG"]?:@"NO_VALUE";
@@ -547,20 +557,136 @@ rumConfig.globalContext = @{@"dynamic_tag":dynamicTag};
 [[FTMobileAgent sharedInstance] startRumWithConfigOptions:rumConfig];
 ```
 
-2.在任意处添加改变文件数据的方法。
+2. 在任意处添加改变文件数据的方法。
 
 ```objectivec
  [[NSUserDefaults standardUserDefaults] setValue:@"dynamic_tags" forKey:@"DYNAMIC_TAG"];
 ```
 
-3.最后重启应用，详细细节请见 [SDK Demo](https://github.com/DataFlux-cn/datakit-ios/tree/develop/demo)。
+3. 最后重启应用生效。
 
-> 注意：
+### 注意
 
-> 1. 特殊 key : track_id (在 RUM 中配置，用于追踪功能)  
-> 1. 当用户通过 globalContext 添加自定义标签与 SDK 自有标签相同时，SDK 的标签会覆盖用户设置的，建议标签命名添加项目缩写的前缀，例如 `df_tag_name`。
-> 1. 在调用 -startRumWithConfigOptions 方法启动 RUM 前设置 globalContext 才能生效。
-> 1. `FTMobileConfig` 中配置的自定义标签将添加在所有类型的数据中。
+1. 特殊 key : track_id (在 RUM 中配置，用于追踪功能)  
+
+2. 当用户通过 globalContext 添加自定义标签与 SDK 自有标签相同时，SDK 的标签会覆盖用户设置的，建议标签命名添加项目缩写的前缀，例如 `df_tag_name`。
+
+3. 在调用 -startRumWithConfigOptions 方法启动 RUM 前设置 globalContext 才能生效。
+
+4. `FTMobileConfig` 中配置的自定义标签将添加在所有类型的数据中。
+
+详细细节请见 [SDK Demo](https://github.com/DataFlux-cn/datakit-ios/tree/develop/demo)。
+
+## 崩溃日志符号化
+
+### 上传符号表
+
+#### 方法一：脚本集成到 Xcode 工程的 Target
+
+1. XCode 添加自定义 Run Script Phase：` Build Phases -> + -> New Run Script Phase`
+2. 将脚本复制到 Xcode 项目的构建阶段运行脚本中，脚本中需要设置参数如：＜app_id＞、＜dea_address＞、＜env＞、＜version＞(脚本默认配置的版本格式为 `CFBundleShortVersionString`)。
+3. [脚本](https://github.com/GuanceCloud/datakit-ios/blob/develop/demo/FTdSYMUploader.sh)
+
+```sh
+#脚本中需要配置的参数
+#＜app_id＞
+FT_APP_ID="YOUR_APP_ID"
+#＜dea_address＞
+FT_DEA_ADDRESS="YOUR_DEA_ADDRESS"
+# ＜env＞ 环境字段。属性值：prod/gray/pre/common/local。需要与 SDK 设置一致
+FT_ENV="common"
+#
+#＜version＞ 脚本默认配置的版本格式为CFBundleShortVersionString,如果你修改默认的版本格式, 请设置此变量。注意：需要确保在此填写的与SDK设置的一致。
+# FT_VERSION=""
+```
+
+##### 多环境便捷的配置参数
+
+示例：使用预设宏和 .xcconfig 配置文件
+
+1. 添加预设宏：`Target —> Build Settings -> + -> Add User-Defined Setting` 
+
+![](../img/multi-environment-configuration1.png)
+
+![](../img/multi-environment-configuration2.png)
+
+
+2. 使用多 Xcconfig 来实现多环境，新建 Xcconfig
+
+![](../img/multi-environment-configuration3.png)
+
+
+.xcconfig 文件中配置预设宏：
+
+```sh
+//如果有使用 cocoapods 将 pods 的.xcconfig路径 添加到你的 .xcconfig文件中 如果路径不清楚可以终端进入项目文件夹，pod install ,终端会有提示路径，将该路径复制后引用就可以。
+
+#include "Pods/Target Support Files/Pods-testDemo/Pods-testDemo.debug.xcconfig"
+
+SDK_APP_ID = app_id_common
+SDK_ENV = common
+SDK_DEA_ADDRESS = http:\$()\xxxxxxxx:9531 
+```
+
+3. 配置自定义编译环境
+
+![](../img/multi-environment-configuration4.png)
+
+
+
+![](../img/multi-environment-configuration5.png)
+
+
+4. 使用
+
+**脚本中**
+
+```sh
+#脚本中需要配置的参数
+#＜app_id＞
+FT_APP_ID=SDK_APP_ID
+#＜dea_address＞
+FT_DEA_ADDRESS=SDK_DEA_ADDRESS
+# ＜env＞ 环境字段。属性值：prod/gray/pre/common/local。需要与 SDK 设置一致
+FT_ENV=SDK_ENV
+```
+
+**项目某一文件中** 
+
+方法一：对指定文件进行配置：-D'SDK_APP_ID=@"$(SDK_APP_ID)"'
+
+![](../img/multi-environment-configuration6.png)
+
+
+
+ 在指定文件中可以使用
+
+![](../img/multi-environment-configuration7.png)
+
+
+
+方法二：映射到  `Info.plist` 文件中
+
+![](../img/multi-environment-configuration8.png)
+
+
+
+在文件中可以使用
+
+![](../img/multi-environment-configuration9.png)
+
+
+详细细节请见 [SDK Demo](https://github.com/DataFlux-cn/datakit-ios/tree/develop/demo)。
+
+#### 方法二：终端运行脚本
+
+找到 .dSYM 文件放在一个文件夹内，命令行下输入应用基本信息, .dSYM 文件的父目录路径, 输出文件目录即可
+
+`sh FTdSYMUpload.sh <dea_address> <app_id> <version> <env> <dSYMBOL_src_dir> <dSYMBOL_dest_dir>`
+
+#### 方法三：手动上传
+
+[Sourcemap 上传](../../integrations/rum.md#sourcemap)
 
 ## 常见问题 {#FAQ}
 
@@ -569,34 +695,82 @@ rumConfig.globalContext = @{@"dynamic_tag":dynamicTag};
 在开发时的 **Debug** 和 **Release** 模式下， **Crash** 时捕获的线程回溯是被符号化的。
 而发布包没带符号表，异常线程的关键回溯，会显示镜像的名字，不会转化为有效的代码符号，获取到的 **crash log** 中的相关信息都是 16 进制的内存地址，并不能定位崩溃的代码，所以需要将 16 进制的内存地址解析为对应的类及方法。
 
-#### 利用命令行工具解析 Crash
+#### XCode 编译后没有生成 dSYM 文件？
 
-需要的文件：
+XCode Release 编译默认会生成 dSYM 文件，而 Debug 编译默认不会生成，对应的 Xcode 配置如下：
 
-1. 需要从 **DataFlux** 下载 **SDK** 采集上传的崩溃日志。下载后将后缀改为 **.crash**。
-2. 需要 **App** 打包时产生的 **dSYM** 文件，必须使用当前应用打包的电脑所生成的 **dSYM** 文件，其他电脑生成的文件可能会导致分析不准确的问题，因此每次发包后建议根据应用的 **版本号** 或 **dSYM** 文件的 **UUID** 来对应保存 **dSYM** 文件。以备解析时，根据后台日志 tag 中的 `application_UUID` 对应的 **UUID** 来找到对应 **dSYM** 文件。
-3. 需要使用 **symbolicatecrash**，**Xcode** 自带的崩溃分析工具，使用这个工具可以更精确的定位崩溃所在的位置，将0x开头的地址替换为响应的代码和具体行数。
+ ` Build Settings -> Code Generation -> Generate Debug Symbols -> Yes` 
 
-> 查找 **symbolicatecrash** 方法
-> 
-终端输入
-`find /Applications/Xcode.app -name symbolicatecrash -type f`
+![](../img/dsym_config1.png)
 
 
-> /Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework/Versions/A/Resources/symbolicatecrash
 
 
-进行解析：
 
-1.将 **symbolicatecrash** 与 **.crash** 和 **.app.dSYM** 放在同一文件夹中 
 
-2.开启命令行工具，进入文件夹
+` Build Settings -> Build Option -> Debug Information Format -> DWARF with dSYM File`
 
-3.使用命令解析 **Crash** 文件，*号指的是具体的文件名  
+![](../img/dsym_config2.png)
 
-```
-./symbolicatecrash ./*.crash ./*.app.dSYM > symbol.crash
-```
 
-4.解析完成后会生成一个新的 **.Crash** 文件，这个文件中就是崩溃详细信息。 
+
+
+#### 开启了 bitCode 怎么上传符号表？
+
+当你上传你的 bitcode App 到 App Store，在提交对话框里勾选声明符号文件（dSYM文件）的生成：
+
+- 在配置符号表文件之前，需要从App Store中把该版本对应的dSYM文件下载回本地，然后用脚本根据输入参数处理上传符号表文件。
+- 不需要将脚本集成到 Xcode 工程的 Target 了，也不要用本地生成的 dSYM 文件来生成符号表文件，因为本地编译生成的 dSYM 文件的符号表信息都被隐藏了。如果用本地编译生成的 dSYM 文件上传，还原出来的结果将是类似于“__hiden#XXX”这样的符号。
+
+#### 如何找回已发布到 App Store 的 App 对应的 dSYM 文件？
+
+| 应用上传到App  Store Connect的Distribution options | dSym文件                                                     |
+| -------------------------------------------------- | ------------------------------------------------------------ |
+| Don’t include bitcode<br>Upload symbols            | 通过 Xcode 找回                                              |
+| Include bitcode<br>Upload symbols                  | 通过 iTunes Connect 找回<br />通过 Xcode 找回， 需要使用 `.bcsymbolmap` 去混淆处理。 |
+| Include bitcode<br>Don’t upload symbols            | 通过 Xcode 找回， 需要使用 `.bcsymbolmap` 去混淆处理。       |
+| Don’t include bitcode<br>Don’t upload symbols      | 通过 Xcode 找回                                              |
+
+##### 通过 Xcode 找回
+
+1. `Xcode -> Window -> Organizer ` 
+
+2. 选择 `Archives`  标签
+
+   ![](../img/xcode_find_dsym2.png)
+   
+3. 找到发布的归档包，右键点击对应归档包，选择Show in Finder操作
+
+   ![](../img/xcode_find_dsym3.png)
+   
+   
+   
+4. 右键选择定位到的归档文件，选择显示包内容操作 
+
+   ![](../img/xcode_find_dsym4.png)
+   
+   
+   
+5. 选择dSYMs目录，目录内即为下载到的 dSYM 文件
+
+   ![](../img/xcode_find_dsym5.png)
+
+##### 通过 iTunes Connect 找回
+
+1. 登录[App Store Connect](https://appstoreconnect.apple.com)；
+2. 进入"我的App（My Apps）"
+3. 在 "App Store" 或 "TestFlight" 中选择某一个版本"，点击 "构建版本元数据（Build Metadata）" 在此页面，点击按钮 "下载dSYM（Download dSYM）" 下载 dSYM 文件
+
+##### .bcsymbolmap 去混淆处理
+
+在通过 Xcode 找到 dSYM 文件时，可以看到 BCSymbolMaps 目录
+
+![](../img/BCSymbolMaps.png)
+
+
+打开终端并使用以下命令进行去混淆处理
+
+`xcrun dsymutil -symbol-map <BCSymbolMaps_path> <.dSYM_path>`
+
+
 
