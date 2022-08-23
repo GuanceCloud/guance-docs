@@ -163,7 +163,7 @@ Kafka 指标可以分为三类：
 
 ## Broker 指标
 
-由于所有消息都必须通过 Kafka broker 才能被使用，因此，对在 broker 群集中出现的问题进行监视和警报至关重要。 Broker 指标可以分为三类：
+由于所有消息都必须通过 Kafka broker 才能被使用，因此，对在 broker 群集中出现的问题进行监视和告警至关重要。 Broker 指标可以分为三类：
 
 - Kafka-emitted 指标
 
@@ -211,7 +211,7 @@ Kafka 指标可以分为三类：
 
 #### 告警指标：UncleanLeaderElectionsPerSec
 
-当 Kafka brokers 中没有合格的分区 leader 时，就会发生 unclean 的 leader 选举。 通常，当作为分区 leader 的代理脱机时，将从该分区的 ISR 集中选举出新的 leader。 默认情况下，在 Kafka 版本 0.11 及更高版本中，unclean leader 选举是禁用的，这意味着如果没有任何 ISR 选出新的 leader，则该分区将脱机。 如果将 Kafka配置为允许进行 unclean leader 选举，则会从不同步的副本中选择一个 leader，并且在丢失前任 leader 之前未同步的任何消息都将永远丢失。 从本质上讲，unclean leader 选举牺牲了可用性的一致性。 您应该对此指标发出警报，因为它表示数据丢失。
+当 Kafka brokers 中没有合格的分区 leader 时，就会发生 unclean 的 leader 选举。 通常，当作为分区 leader 的代理脱机时，将从该分区的 ISR 集中选举出新的 leader。 默认情况下，在 Kafka 版本 0.11 及更高版本中，unclean leader 选举是禁用的，这意味着如果没有任何 ISR 选出新的 leader，则该分区将脱机。 如果将 Kafka配置为允许进行 unclean leader 选举，则会从不同步的副本中选择一个 leader，并且在丢失前任 leader 之前未同步的任何消息都将永远丢失。 从本质上讲，unclean leader 选举牺牲了可用性的一致性。 您应该对此指标发出告警，因为它表示数据丢失。
 
 #### 观测指标：TotalTimeMs
 
@@ -265,7 +265,7 @@ Kafka 从一开始就被设计为利用内核的页面缓存，以提供可靠�
 
 #### 告警指标: Disk usage
 
-由于 Kafka 将所有数据持久保存到磁盘，因此有必要监视 Kafka 可用的可用磁盘空间量。 如果 Kafka 的磁盘已满，则它将失败。因此，重要的是要跟踪磁盘随时间的增长，并设置警报以在适当的时间通知管理员，直到磁盘空间用完为止。
+由于 Kafka 将所有数据持久保存到磁盘，因此有必要监视 Kafka 可用的可用磁盘空间量。 如果 Kafka 的磁盘已满，则它将失败。因此，重要的是要跟踪磁盘随时间的增长，并设置告警以在适当的时间通知管理员，直到磁盘空间用完为止。
 
 #### 观测指标: CPU usage
 
@@ -377,7 +377,7 @@ Kafka 生产者是独立的过程，将消息推送到代理主题进行消费�
 
 #### 观测指标: records consumed rate
 
-每条 Kafka 消息都是一条数据记录。 每秒消耗的记录速率可能与消耗的字节速率没有很强的相关性，因为消息的大小可能是可变的。 根据您的生产者和工作负载，在典型的部署中，您应该期望这个数字保持相当稳定。 通过随着时间的推移监控此指标，您可以发现数据消耗的趋势并创建可以发出警报的基线。
+每条 Kafka 消息都是一条数据记录。 每秒消耗的记录速率可能与消耗的字节速率没有很强的相关性，因为消息的大小可能是可变的。 根据您的生产者和工作负载，在典型的部署中，您应该期望这个数字保持相当稳定。 通过随着时间的推移监控此指标，您可以发现数据消耗的趋势并创建可以发出告警的基线。
 
 #### 观测指标: fetch rate
 
@@ -409,9 +409,9 @@ ZooKeeper 通过 MBean、使用 “the four-letter words"的命令行界面以�
 #### 观测指标: Number of alive connections
 ZooKeeper 通过 `num_alive_connections` 指标报告连接到它的客户端数量。 这表示所有连接，包括与非 ZooKeeper 节点的连接。 在大多数环境中，这个数字应该保持相当稳定——通常，消费者、生产者、Brokers 和 ZooKeeper 节点的数量应该保持相对稳定。 您应该注意此值的意外下降； 由于 Kafka 使用 ZooKeeper 来协调工作，因此与 ZooKeeper 的连接丢失可能会产生许多不同的影响，具体取决于断开连接的客户端。
 #### 观测指标: Followers (leader only)
-followers 的数量应该等于 ZooKeeper 集合的总大小减一。 （leader 不包括在 followers 计数中）。 您应该对该值的任何更改发出警报，因为您的集合的大小应该仅因用户干预而更改（例如，管理员停用一个节点）。
+followers 的数量应该等于 ZooKeeper 集合的总大小减一。 （leader 不包括在 followers 计数中）。 您应该对该值的任何更改发出告警，因为您的集合的大小应该仅因用户干预而更改（例如，管理员停用一个节点）。
 #### 观测指标: Pending syncs (leader only)
-事务日志是 ZooKeeper 中性能最关键的部分。 ZooKeeper 必须在返回响应之前将事务同步到磁盘，因此大量挂起的同步将导致延迟增加。 在长时间未完成的同步之后，性能无疑会受到影响，因为 ZooKeeper 在执行同步之前无法为请求提供服务。 您应该考虑在 `pending_syncs` 值大于 10 时发出警报。
+事务日志是 ZooKeeper 中性能最关键的部分。 ZooKeeper 必须在返回响应之前将事务同步到磁盘，因此大量挂起的同步将导致延迟增加。 在长时间未完成的同步之后，性能无疑会受到影响，因为 ZooKeeper 在执行同步之前无法为请求提供服务。 您应该考虑在 `pending_syncs` 值大于 10 时发出告警。
 #### 观测指标: Open file descriptor count
 ZooKeeper 在文件系统上维护状态，每个 `znode` 对应磁盘上的一个子目录。 Linux 具有有限数量的可用文件描述符。 这是可配置的，因此您应该将此指标与系统配置的限制进行比较，并根据需要增加限制。
 ### ZooKeeper系统指标
@@ -429,7 +429,7 @@ ZooKeeper 在文件系统上维护状态，每个 `znode` 对应磁盘上的一�
 #### 观测指标: Usable memory
 ZooKeeper 应该完全驻留在 RAM 中，如果它必须分页到磁盘，将会受到很大影响。 因此，跟踪可用内存量对于确保 ZooKeeper 以最佳方式执行是必要的。 请记住，因为 ZooKeeper 用于存储状态，所以整个集群都会感觉到 ZooKeeper 性能的下降。 配置为 ZooKeeper 节点的机器应该有足够的内存缓冲区来处理负载激增。
 #### 观测指标: Swap usage
-如果 ZooKeeper 内存不足，swap 内存使用量上升，这将导致它变慢。 您应该对任何交换使用情况发出警报，以便您可以配置更多内存。
+如果 ZooKeeper 内存不足，swap 内存使用量上升，这将导致它变慢。 您应该对任何交换使用情况发出告警，以便您可以配置更多内存。
 #### 观测指标: Disk latency
 尽管 ZooKeeper 应该驻留在 RAM 中，但它仍然利用文件系统来定期对其当前状态进行快照并维护所有事务的日志。 鉴于 ZooKeeper 必须在更新发生之前将事务写入非易失性存储，这使得磁盘访问成为潜在的瓶颈。 磁盘延迟的峰值会导致与 ZooKeeper 通信的所有主机的服务质量下降，因此除了为您的整体配备 SSD 之外，您还应该密切关注磁盘延迟。
 ## 监控您的Kafka部署
