@@ -6,6 +6,7 @@ nav:
       - 'Jaeger 链路数据接入最佳实践': jaeger.md
       - 'ddtrace 高级用法': ddtrace-skill.md
       - ddtrace-custom-traceId.md
+      - ddtrace-instrumentation.md
       - 'JVM 可观测最佳实践': jvm.md
       - GraalVM 与 Spring Native 项目实现链路可观测: spring-native.md
       - JAVA OOM异常可观测最佳实践: java-oom.md
