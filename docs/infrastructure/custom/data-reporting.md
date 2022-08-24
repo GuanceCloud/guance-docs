@@ -14,8 +14,6 @@
 
 打开命令行终端工具，登录到主机，执行复制的「安装指令」，安装完成后会提示`Install Success`。
 
-![](../img/2.安装datakit.png)
-
 [了解更多DataKit 使用入门。](../../datakit/datakit-service-how-to.md)
 
 ## 安装 Function
