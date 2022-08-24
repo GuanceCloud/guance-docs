@@ -115,14 +115,3 @@ datakit 运行状态正常，即可在观测云工作空间「基础设施」-�
 
 ![](img/3.yaml_6.png)
 
-## 更多参考
-
-更多关于 K8S 的配置方法和指标说明可参考：
-
-### [Kubernetes 环境下的 DataKit 配置](../../integrations/k8s-config-how-to.md) 
-
-### [Kubernetes 扩展指标采集](../../integrations/kubernetes-x.md)
-
-### [Kubernetes 集群中自定义 Exporter 指标采集](../../integrations/kubernetes-prom.md)
-
-### [Kubernetes Kubelet](../integrations/kubernetes_kubelet.md)

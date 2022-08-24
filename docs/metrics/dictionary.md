@@ -63,7 +63,7 @@
 
 标签是指标识一个数据点采集对象的属性的集合，标签分为标签名和标签值，一个数据点可以有多个标签。在观测云工作空间指标管理详情页，支持到搜索和导出标签列表，支持通过点击标签值“复制”和“在指标中打开”。
 
-DataKit 采集器会默认给采集到的所有数据追加标签 `host=<DataKit所在主机名>`，更多介绍可参考文档 [DataKit 使用入门](../datakit/datakit-how-to.md) 。
+DataKit 采集器会默认给采集到的所有数据追加标签 `host=<DataKit所在主机名>`，更多介绍可参考文档 [DataKit 使用入门](../datakit/datakit-conf.md#set-global-tag) 。
 
 ![](img/7.metrics_4.png)
 

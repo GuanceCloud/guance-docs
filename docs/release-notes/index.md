@@ -674,7 +674,7 @@ Deployment 网络数据采集成功后会上报到观测云控制台，您可以
 - 增加TCP/UDP 端口检测采集器
 - DataKit 跟 DataWay 之间增加 DNS 检测，支持 DataWay DNS 动态切换
 - [eBPF](../integrations/ebpf.md) L4/L7 流量数据增加 k8s deployment name 字段
-- 优化 [OpenTelemetry](../datakit/opentelemetry.md) 指标数据
+- 优化OpenTelemetry指标数据
 - [ElasticSearch](https://preprod-docs.cloudcare.cn/datakit/changelog/elasticsearch) 增加 AWS OpenSearch 支持
 - [行协议限制](../datakit/apis.md)中，字符串长度限制放宽到 32MB
 - [prom](../integrations/prom.md) 采集器增加额外配置，支持忽略指定的 tag=value 的匹配，以减少不必要的时序时间线
@@ -688,9 +688,9 @@ Deployment 网络数据采集成功后会上报到观测云控制台，您可以
 ### 最佳实践更新
 
 - APM
-    - [GraalVM 与 Spring Native 项目实现链路可观测](../best-practices/apm/spring-native.md)
+    - [GraalVM 与 Spring Native 项目实现链路可观测](../best-practices/monitoring/spring-native.md)
 - 接入集成
-    - [主机可观测最佳实践 (Linux)](../best-practices/integrations/host.md)
+    - [主机可观测最佳实践 (Linux)](../best-practices/monitoring/host-linux.md)
 
 更多最佳实践更新可参考 [最佳实践版本历史](../best-practices/index.md) 。
 
@@ -2435,7 +2435,7 @@ DataFlux 支持在安装 DataKit 的时候自定义安装选项，如云厂商�
 
 DataFlux 应用性能监测的火焰图支持查看服务同步和异步调用链路性能的数据详情。如通过火焰图可以清晰查看哪几条请求是异步进行的，从什么时候开始、什么时候结束以及总共花了多少时间。
 
-![](img/2.trace_huoyantupng)
+![](img/2.trace_huoyantu.png)
 
 #### 优化查看器显示列自定义字段别名
 
