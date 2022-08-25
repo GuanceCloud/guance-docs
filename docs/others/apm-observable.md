@@ -37,7 +37,7 @@ datakit --restart  或者  service datakit restart  或者 systemctl restart dat
 
 ### Step2: 安装 ddtrace
 
-通过 ddtrace 采集链路数据需要根据当前需要监测的应用对应的语言，本文以 Python 应用为例，Java 或者其他语言应用可参考文档 [分布式链路追踪(APM)最佳实践](../best-practices/apm/apm.md) 。
+通过 ddtrace 采集链路数据需要根据当前需要监测的应用对应的语言，本文以 Python 应用为例，Java 或者其他语言应用可参考文档 [分布式链路追踪(APM)最佳实践](../best-practices/monitoring/apm.md) 。
 
 在终端执行命令`pip install ddtrace`安装 ddtrace。
 
@@ -190,7 +190,7 @@ def after_request(response):
 </script>
 ```
 
-其中`allowedDDTracingOrigins`是用于前后端（ rum 与 apm ）打通的配置项，可按需进行设置，需在此处填写与前端页面有交互关系的后端服务器所对应的域名或 IP，其他配置项是用于采集用户访问数据，更多用户访问监测配置可参考文档 [web应用监控（RUM）最佳实践](../best-practices/apm/web.md) 。
+其中`allowedDDTracingOrigins`是用于前后端（ rum 与 apm ）打通的配置项，可按需进行设置，需在此处填写与前端页面有交互关系的后端服务器所对应的域名或 IP，其他配置项是用于采集用户访问数据，更多用户访问监测配置可参考文档 [web应用监控（RUM）最佳实践](../best-practices/monitoring/web.md) 。
 
 示意图如：
 

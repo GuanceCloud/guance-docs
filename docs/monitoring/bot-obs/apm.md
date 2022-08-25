@@ -55,7 +55,7 @@
 
 ![](../img/1.bot_obs_11.png)
 
-- 内置视图：支持手动添加 `tags` 关联的内置视图结合智能巡检进行分析。关于如何配置内置视图可参考文档 [绑定内置视图](../management/built-in-view/bind-view.md) 。
+- 内置视图：支持手动添加 `tags` 关联的内置视图结合智能巡检进行分析。关于如何配置内置视图可参考文档 [绑定内置视图](../../management/built-in-view/bind-view.md) 。
 
 ## 根因分析
 
