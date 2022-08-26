@@ -49,36 +49,35 @@
 
 开启 Nginx 采集器，配置日志文件路径，开启 Pipeline 以后，即可在观测云工作空间查看采集到的 Nginx 日志。
 
-![](../img/13.log_2.png)
+![](../img/9.ppt_nginx_7.png)
 
-在观测云工作空间的日志下，选择 nginx 的日志，在日志详情页，我们可以看到产生日志的主机及其属性指标视图、日志来源、通过pipeline切割的日志属性、日志内容详情等数据，通过[配置链路关联日志](../../application-performance-monitoring/collection/connect-log/index.md)，我们还可以在日志详情页查看相关的链路详情，帮助您快速做数据关联分析。
+在观测云工作空间的日志下，选择 nginx 的日志，在日志详情页，我们可以看到产生日志的主机、日志来源、日志内容、以及关联主机、网络、绑定内置视图等，通过 [配置链路关联日志](../../application-performance-monitoring/collection/connect-log/index.md) ，我们还可以在日志详情页查看相关的链路详情，帮助您快速做数据关联分析。
 
-![](../img/13.log_1.png)
+![](../img/9.ppt_nginx_8.png)
 
 ## 进阶参考
 
 ### 日志文本处理（Pipeline）
 
-观测云提供三种日志 Pipeline 文本处理方式：
+观测云提供在前端页面或者终端进行日志 Pipeline 文本处理：
 
 - [Pipelines](../../logs/pipelines/manual.md)：支持在观测云工作空间手动配置和查看日志 pipeline 文件，无需登录 DataKit 服务器进行操作，帮助您方便的使用在线日志Pipeline功能来切割您的日志；
 
 - [DataKit](../../logs/pipelines/datakit-manual.md)：在服务器安装DataKit以后，在终端工具中配置DataKit的日志采集器及其对应的 pipeline 文件，对文本数据进行处理；
-- DCA：DataKit Control APP，是DataKit的桌面客户端应用，需要先安装，安装完成后可在客户端查看和编辑 DataKit 默认自带的日志 pipeline 文件和自定义手动添加 pipeline 文件。
 
 ### 生成指标
 
 观测云支持通过生成指标的方式，基于当前工作空间内的现有数据来自定义指标数据。在观测云工作空间「日志」-「生成指标」页面，点击「新建规则」即可开始创建新的生成指标规则。更多详情参考文档 [生成指标](../../logs/generate-metrics.md) 。
 
-![](../img/13.log_9.png)
+![](../img/9.ppt_nginx_10.png)
 
 生成的指标可统一在观测云「指标」中查看，或者在「生成指标」页面，点击规则右侧的「查看指标」，跳转至「指标」页面查看对应的指标集和指标。
 
-![](../img/13.log_9.1.png)
+![](../img/9.ppt_nginx_11.png)
 
 生成的指标支持在观测云「场景」搭建仪表板，结合其他指标对采集的日志数据进行全面的可视化监测。
 
-![](../img/13.log_9.2.png)
+![](../img/9.ppt_nginx_12.png)
 
 ### 日志黑名单
 
