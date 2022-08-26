@@ -181,7 +181,7 @@ spec:
           value: enable
         - name: ENV_HTTP_LISTEN
           value: 0.0.0.0:9529
-        image: pubrepo.jiagouyun.com/datakit/datakit:1.4.11
+        image: pubrepo.jiagouyun.com/datakit/datakit:1.4.12
         imagePullPolicy: Always
         name: datakit
         ports:
@@ -538,7 +538,7 @@ spec:
           value: enable
         - name: ENV_HTTP_LISTEN
           value: 0.0.0.0:9529
-        image: pubrepo.jiagouyun.com/demo/datakit-win:1.4.11
+        image: pubrepo.jiagouyun.com/demo/datakit-win:1.4.12
         imagePullPolicy: Always
         name: datakit-win
         ports:
