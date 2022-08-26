@@ -45,6 +45,7 @@ self 采集器会自动运行，无需配置，且无法关闭。
 | 指标 | 描述| 数据类型 | 单位   |
 | ---- |---- | :---:    | :----: |
 |`cpu_usage`|CPU usage of the datakit|float|percent|
+|`cpu_usage_top`|CPU usage(command `top`) of the datakit|float|percent|
 |`dropped_point_total`|Total dropped points due to cache clean|int|count|
 |`dropped_points`|Current dropped points due to cache clean|int|count|
 |`elected`|Elected duration, if not elected, the value is 0|int|s|

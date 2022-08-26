@@ -105,7 +105,7 @@ spec:
         fieldRef:
           apiVersion: v1
           fieldPath: metadata.namespace
-    image: pubrepo.jiagouyun.com/datakit/logfwd:1.4.11
+    image: pubrepo.jiagouyun.com/datakit/logfwd:1.4.12
     imagePullPolicy: Always
     volumeMounts:
     - name: varlog
@@ -199,7 +199,7 @@ spec:
         fieldRef:
           apiVersion: v1
           fieldPath: metadata.namespace
-    image: pubrepo.jiagouyun.com/datakit/logfwd:1.4.11
+    image: pubrepo.jiagouyun.com/datakit/logfwd:1.4.12
     imagePullPolicy: Always
     volumeMounts:
     - name: varlog

@@ -62,7 +62,7 @@
       # multiline_match = '''^\S'''
 
       ## 是否开启自动多行模式，开启后会在 patterns 列表中匹配适用的多行规则
-      auto_multiline_detection = false
+      auto_multiline_detection = true
       ## 配置自动多行的 patterns 列表，内容是多行规则的数组，即多个 multiline_match，如果为空则使用默认规则详见文档
       auto_multiline_extra_patterns = []
     
@@ -369,6 +369,7 @@ Pipeline 的几个注意事项：
 | ---- |---- | :---:    | :----: |
 |`log_read_lines`|采集到的行数计数，多行数据算成一行（[:octicons-tag-24: Version-1.4.6](../datakit/changelog.md#cl-1.4.6)）|int|count|
 |`log_read_offset`|当前数据在文件中的偏移位置（[:octicons-tag-24: Version-1.4.8](../datakit/changelog.md#cl-1.4.8) · [:octicons-beaker-24: Experimental](index.md#experimental)）|int|-|
+|`log_read_time`|数据从文件中读取到的这一刻的时间戳，单位是秒|s|-|
 |`message`|日志正文，默认存在，可以使用 pipeline 删除此字段|string|-|
 |`status`|日志状态，默认为 `unknown`，采集器会该字段做支持映射，映射表见上述 pipelie 配置和使用[^1]|string|-|
 
