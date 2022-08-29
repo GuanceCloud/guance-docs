@@ -3,14 +3,14 @@
 
 ## 前置条件
 
-- 安装 DataKit（[DataKit 安装文档](../../../datakit/datakit-install.md)）
+- 安装 DataKit（[DataKit 安装文档](../../datakit/datakit-install.md)）
 
 ## 应用接入
 当前 Flutter 版本暂只支持 Android 和 iOS 平台。登录 “观测云” 控制台，进入「应用监测」页面，点击右上角「新建应用」，在新窗口输入「应用名称」，点击「创建」，然后相应接入的平台，即可开始配置。
 
-![](../../img/image_12.png)
+![](../img/image_12.png)
 
-![](../../img/image_13.png)
+![](../img/image_13.png)
 
 ## 安装
 
@@ -39,7 +39,7 @@ dependencies:
 import 'package:ft_mobile_agent_flutter/ft_mobile_agent_flutter.dart';
 ```
 
-> Android 需要在 app/android 目录下 build.gradle 安装 ft-plugin 配合使用，并在创建自定义 Application，并且 AndroidMainifest.xml  中声明使用，代码如下，详细配置请见 [Android SDK](../../android/app-access.md#gradle-setting) 配置，或参考 demo
+> Android 需要在 app/android 目录下 build.gradle 安装 ft-plugin 配合使用，并在创建自定义 Application，并且 AndroidMainifest.xml  中声明使用，代码如下，详细配置请见 [Android SDK](../android/app-access.md#gradle-setting) 配置，或参考 demo
 
 ```kotlin
 import io.flutter.app.FlutterApplication
@@ -358,6 +358,6 @@ void httpClientGetHttp() async {
 
 ## 常见问题
 
-- [iOS 相关](../../ios/app-access.md#FAQ)
-- [Android 相关](../../android/app-access.md#FAQ)
+- [iOS 相关](../ios/app-access.md#FAQ)
+- [Android 相关](../android/app-access.md#FAQ)
 
