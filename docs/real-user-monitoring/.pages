@@ -10,4 +10,5 @@ nav:
   - 'Android 监测': android
   - 'iOS 监测': ios
   - '小程序监测': miniapp
-  - '第三方框架支持': third-party-framework
+  - 'React Native 监测': react-native
+  - 'Flutter 监测': flutter
