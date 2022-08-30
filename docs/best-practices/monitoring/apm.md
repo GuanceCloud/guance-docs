@@ -140,7 +140,7 @@ $ datakit --restart
 
 ---
 
-### 应用接入链路追踪（APM）相关步骤
+### 应用接入链路追踪（APM）相关步骤 {#ddtrace}
 
 ddtrace 探针下载地址
 
