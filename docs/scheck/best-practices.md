@@ -1,8 +1,8 @@
 # Scheck 最佳实践
 ---
 
-- 版本：1.0.7-4-g582a075
-- 发布日期：2022-08-05 03:12:31
+- 版本：1.0.7-5-gb83de2d
+- 发布日期：2022-08-30 03:31:26
 - 操作系统支持：windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64
 
 # 简介
@@ -66,7 +66,9 @@ $ systemctl status datakit
 
 ### 3 登录DataFlux控制台查看安全巡检记录（[Saas平台](https://dataflux.cn)）
 
-- 选择左侧栏-安全巡检 查看巡检内容	![](../img/bestpractices-2.png)
+- 选择左侧栏-安全巡检 查看巡检内容	
+
+  ![](img/bestpractices-2.png)
 
 
 
