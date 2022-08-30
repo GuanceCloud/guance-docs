@@ -1,7 +1,7 @@
 # Scheck 连接阿里云日志系统方案
 
-- 版本：1.0.7-4-g582a075
-- 发布日期：2022-08-05 03:12:31
+- 版本：1.0.7-5-gb83de2d
+- 发布日期：2022-08-30 03:31:26
 - 操作系统支持：windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64
 
 ## 前提条件
@@ -122,5 +122,5 @@ $docker restart grafana
 
 - 访问http://127.0.0.1:3000/dashboard/import 上传json 模板
 
-![](../img/scheck-grafana.png)
+![](img/scheck-grafana.png)
 
