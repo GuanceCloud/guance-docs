@@ -1,0 +1,6 @@
+nav:
+  - index.md
+  - '采集器': pythond.md
+  - 'DDtrace': ddtrace.md
+  - 'Scheck': scheck.md
+  - '对象': object.md
