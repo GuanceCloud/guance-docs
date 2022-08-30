@@ -1,8 +1,8 @@
 # 用户自定义属于自己的规则文件及lib库
 ---
 
-- 版本：1.0.7-4-g582a075
-- 发布日期：2022-08-05 03:12:31
+- 版本：1.0.7-5-gb83de2d
+- 发布日期：2022-08-30 03:31:26
 - 操作系统支持：windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64
 
 ## scheck规则介绍
@@ -93,7 +93,7 @@ systemctl restart scheck.service
 
 登录[观测云](https://www.guance.com) 控制台->导航栏->安全巡检：查看安装巡检信息，发现有一条消息是修改了主机名
 
-   ![](../img/image-hostname.png)
+   ![](img/image-hostname.png)
 
 
 ## 规则库
