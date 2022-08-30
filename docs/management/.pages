@@ -4,7 +4,6 @@ nav:
   - '空间管理': space-management.md
   - 'API Key管理': api-key
   - '成员管理': member-management.md
-  - '权限管理': access-management.md
   - 'SSO管理': sso
   - '文本处理（Pipeline）': overall-pipeline.md
   - '黑名单': overall-blacklist.md
