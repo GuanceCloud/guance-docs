@@ -2,5 +2,8 @@ nav:
   - index.md
   - '采集器': pythond.md
   - 'DDtrace': ddtrace.md
-  - 'Scheck': scheck.md
-  - '对象': object.md
+  - 'Scheck': 
+      - "检查敏感文件的变动实现": scheck-filechange.md
+      - "监控系统用户的变化": scheck-userchange.md
+      - "用户自定义规则及lib库": custom-how-to.md
+  - '基础设施对象': object.md
