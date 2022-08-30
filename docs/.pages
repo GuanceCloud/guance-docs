@@ -3,6 +3,7 @@ nav:
   - 快速入门: getting-started
   - DataKit: datakit
   - 集成: integrations
+  - 自定义开发: developers
   - DQL: dql
   - 场景: scene
   - 事件: events
