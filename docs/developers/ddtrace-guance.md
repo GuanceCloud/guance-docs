@@ -15,9 +15,9 @@
 ## 说明
 在使用 dd-trace-java 之前，您可事先了解:
 
-- [datakit-ddtrace 采集器配置](../../integrations/ddtrace.md)
-- [ddtrace 配置](./apm.md#ddtrace) 
-- [ddtrace 高级用法](./ddtrace-skill.md)
+- [datakit-ddtrace 采集器配置](../integrations/ddtrace.md)
+- [ddtrace 配置](../best-practices/monitoring/apm.md/#ddtrace) 
+- [ddtrace 高级用法](../best-practices/monitoring/ddtrace-skill.md)
 
 ---
 ## (2022-08-30) Version:guance-0.107.0
