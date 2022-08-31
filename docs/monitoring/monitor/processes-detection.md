@@ -1,70 +1,48 @@
-# 基础设施对象检测
+# 进程异常检测
 ---
 
 ## 概述
 
-「基础设施对象检测」用于监控工作空间内的基础设施对象数据，基础设施对象支持选择：主机、容器、进程、Pod、Deployment、Replicaset、Job、自定义对象。支持对基础设施对象数据的一个或多个字段类型设置触发告警，如：你可以基于进程数据中 ‘host’ 字段为 ‘izaqbin’ 并且 ‘state’ 的字段为 ‘sleep’ 出现的次数设置告警。
+「进程异常检测」用于监控工作空间内的进程数据，支持对进程数据的一个或多个字段类型设置触发告警。如：你可以基于进程数据中 ‘host’ 字段为 ‘izaqbin’ 并且 ‘state’ 的字段为 ‘sleep’ 出现的次数设置告警。
 
 ## 规则说明
 
-在「监控器」中，点击「+新建监控器」，选择「基础设施对象监控」，进入检测规则的配置页面。
+在「监控器」中，点击「+新建监控器」，选择「进程异常监控」，进入检测规则的配置页面。
 
-![](../img/6.monitor_9.png)
+### 步骤1.基本信息
+
+![](../img/6.monitor01.png)
 
 1）**规则名称：**检测规则的名称。
 
-2）**分组**：自定义创建的监测器组合。每个监控器只能归属于一个分组。
+2）**关联仪表板：**每一个监控器都支持关联一个仪表板，即通过「关联仪表板」功能能够自定义快速跳转的仪表板（监控器关联的仪表板，支持快速跳转查看监控视图）。
 
-3）**关联仪表板：**每一个监控器都支持关联一个仪表板，即通过「关联仪表板」功能能够自定义快速跳转的仪表板。
+### 步骤2.检测配置
 
-4）**检测指标：**设置检测的指标数据。支持设置当前工作空间内基础设施对象数据中一个或多个字段类型关键词在一定时间范围内出现的次数。
+![](../img/6.monitor11.png)
+
+3）**检测频率：**检测规则的执行频率，包含1m/5m/15/30m/1h/6h（默认选中5m）。
+
+4）**检测区间：**下拉选项与检测频率有联动，支持用户自定义。
+
+| 检测频率 | 检测区间（下拉可选项） | 自定义区间限制 |
+| --- | --- | --- |
+| 1m | 1m/5m/15m/30m/1h/3h | <=3h |
+| 5m | 5m/15m/30m/1h/3h | <=3h |
+| 15m | 15m/30m/1h/3h/6h | <=6h |
+| 30m | 30m/1h/3h/6h | <=6h |
+| 1h | 1h/3h/6h/12h/24h | <=24h |
+| 6h | 6h/12h/24h | <=24h |
+
+5）**检测指标：**设置检测的指标数据。支持设置当前工作空间内进程数据中一个或多个字段类型关键词在一定时间范围内出现的次数。
 
 | 字段 | 说明 |
 | --- | --- |
-| 基础对象 | 选择基础对象，包括：主机、容器、进程、Pod、Deployment、Replicaset、Job、自定义对象 |
-| 对象名称 | 输入对象名称，进行wildcard搜索 |
-| 指标 | 基于基础设施对象获取的指标列表，<br>**主机**（包括CPU使用率、MEM使用率、系统负载、主机数量等）<br>**容器**（包括容器CPU使用率、容器内存使用量、容器内存使用率、内存分配失败的次数、接收总字节数、发送总字节数、容器数量等）<br>**进程**（包括CPU使用占比、内存使用占比、进程数量等）<br>**Deployment**（包括Pod可用数、不可用的Pod数、非终止Pod数、Deployment数量等）<br>**Job**（包括Pod成功数、Pod失败数、执行成功数、执行失败数、Job数量等）<br>**replicaset**（包括就绪副本数、可用副本数、Replicaset数量等）<br>**Pod**（包括集群CPU使用率、集群内存使用量、容器重启次数、Pod阶段、就绪pod数、Pod数量等） |
-| 筛选条件 | 支持对基础设施对象数据的字段进行筛选，限定检测的数据范围。支持添加一个或多个标签筛选，支持模糊匹配和模糊不匹配的筛选条件。 |
+| 进程 | 需要手动输入进程名称，支持输入通配符进行模糊匹配，多个值之间用 “,” 分隔 |
+| 筛选条件 | 支持对进程数据的字段进行筛选，限定检测的数据范围。支持添加一个或多个标签筛选 |
 | 维度 | 检测指标的触发维度，即触发对象。任意一个触发对象的指标满足告警条件则触发告警，不支持 int 型字段为触发维度，且最多支持选择三个字段 |
 
-**指标说明**
-
-| 基础对象 | 指标 | DQL |
-| --- | --- | --- |
-| 主机 | CPU使用率 | O::`HOST`:(LAST(`cpu_usage`)) |
-|  | MEM使用率 | O::`HOST`:(LAST(`mem_used_percent`)) |
-|  | 系统负载 | O::`HOST`:(LAST(`load`)) |
-|  | 主机数量 | O::`HOST`:(COUNT(`__docid`)) |
-| 容器 | 容器CPU使用率 | O::`docker_containers`:(LAST(`cpu_usage`)) |
-|  | 容器内存使用量 | O::`docker_containers`:(LAST(`mem_usage`)) |
-|  | 容器内存使用率 | O::`docker_containers`:(LAST(`mem_used_percent`)) |
-|  | 内存分配失败的次数 | O::`docker_containers`:(SUM(`mem_failed_count`)) |
-|  | 接收总字节数 | O::`docker_containers`:(SUM(`network_bytes_rcvd`)) |
-|  | 发送总字节数 | O::`docker_containers`:(SUM(`network_bytes_sent`)) |
-|  | 容器数量 | O::`docker_containers`:(COUNT(`__docid`)) |
-| 进程 | CPU使用占比 | O::`host_processes`:(LAST(`cpu_usage`)) |
-|  | 内存使用占比 | O::`host_processes`:(LAST(`mem_used_percent`)) |
-|  | 进程数量 | O::`host_processes`:(COUNT(`__docid`)) |
-| Deployment | Pod可用数 | O::`kubernetes_deployments`:(SUM(`available`)) |
-|  | 不可用的Pod数 | O::`kubernetes_deployments`:(SUM(`unavailable`)) |
-|  | 非终止Pod数 | O::`kubernetes_deployments`:(SUM(`up_dated`)) |
-|  | Deployment数量 | O::`kubernetes_deployments`:(COUNT(`__docid`)) |
-| Job | Pod成功数 | O::`kubernetes_jobs`:(SUM(`succeeded`)) |
-|  | Pod失败数 | O::`kubernetes_jobs`:(SUM(`failed`)) |
-|  | 执行成功数 | O::`kubernetes_jobs`:(SUM(`completion_succeeded`)) |
-|  | 执行失败数 | O::`kubernetes_jobs`:(SUM(`completion_failed`)) |
-|  | Job数量 | O::`kubernetes_jobs`:(COUNT(`__docid`)) |
-| replicaset | 就绪副本数 | O::`kubernetes_replica_sets`:(SUM(`ready`)) |
-|  | 可用副本数 | O::`kubernetes_replica_sets`:(SUM(`available`)) |
-|  | Replicaset数量 | O::`kubernetes_replica_sets`:(COUNT(`__docid`)) |
-| Pod | 集群CPU使用率 | O::`kubelet_pod`:(Last(`cpu_usage`)) |
-|  | 集群内存使用量 | O::`kubelet_pod`:(SUM(`memory_usage_bytes`)) |
-|  | 容器重启次数 | O::`kubelet_pod`:(SUM(`restarts`)) |
-|  | Pod阶段 | O::`kubelet_pod`:(LAST(`phase`)) |
-|  | 就绪pod数 | O::`kubelet_pod`:(SUM(`ready`)) |
-|  | Pod数量 | O::`kubelet_pod`:(COUNT(`__docid`)) |
-
-5）**触发条件：**设置告警级别的触发条件。
+6）**触发条件：**设置告警级别的触发条件。
 
 - 告警级别：包含紧急（红色）、重要（橙色）、警告（黄色）、无数据（灰色）、正常（绿色）五个等级，每个等级只能设置一个触发条件。
 - 触发条件：基于配置条件判断操作符和检测周期。若查询结果带单位，则提示单位进位后的结果。
@@ -111,14 +89,12 @@
 
 注意：恢复告警事件不受[告警沉默](../alert-setting.md)限制。若未设置恢复告警事件检测周期，则告警事件不会恢复，且一直会出现在「事件」-「未恢复事件列表」中。
 
-![](../img/6.monitor_1.png)
+### 步骤3.事件通知
 
-6）**事件名称：**设置告警触发条件的事件名称，支持使用预置的模板变量，详情参考 [模板变量](../event-template.md) 。
+![](../img/6.monitor03.png)
 
-7）**事件内容：**设置告警触发条件的事件内容，支持添加链接并点击打开新页跳转，支持使用预置的模板变量，详情参考 [模板变量](../event-template.md) 。
+7）**事件标题：**设置告警触发条件的事件名称，支持使用预置的模板变量，详情参考 [模板变量](../event-template.md) 。
 
-8）**无数据事件名称：**默认不可填写，当选择触发无数据事件时为可填写无数据事件名称，支持使用预置的模板变量，详情参考 [模板变量](../event-template.md) 。
+8）**事件内容：**设置告警触发条件的事件内容，支持添加链接并点击打开新页跳转，支持使用预置的模板变量，详情参考 [模板变量](../event-template.md) 。
 
-9）**无数据事件内容：**默认不可填写，当选择触发无数据事件时为可填写无数据事件内容，支持使用预置的模板变量，详情参考 [模板变量](../event-template.md) 。
-
-10）**检测频率：**当前检测规则的执行频率，默认 1 分钟检测一次，时间范围默认为 5 分钟。
+9）**告警策略：**监控满足触发条件后，立即发送告警消息给指定的通知对象。告警策略中包含需要通知的事件等级、通知对象、以及告警沉默周期。
