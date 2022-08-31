@@ -9,10 +9,14 @@
 
 开源地址：[GuanceCloud-ddtrace](https://github.com/GuanceCloud/dd-trace-java)，并持续更新。如您在使用过程中有任务问题或有好的建议可在 github 上提 Issue 或者联系对接人员。 
 
+### 下载
 
-最新版本下载地址 : https://static.guance.com/ddtrace/dd-java-agent.jar
+[最新版本下载地址](https://static.guance.com/ddtrace/dd-java-agent.jar)
 
-## 说明
+[观测云 github-releases](https://github.com/GuanceCloud/dd-trace-java/releases)
+
+## 更多
+
 在使用 dd-trace-java 之前，您可事先了解:
 
 - [datakit-ddtrace 采集器配置](../integrations/ddtrace.md)
@@ -20,23 +24,25 @@
 - [ddtrace 高级用法](../best-practices/monitoring/ddtrace-skill.md)
 
 ---
+## 历史版本：
+
 ## (2022-08-30) Version:guance-0.107.0
 
 合并 DataDog 107版本，进行编译。
 
-- 下载地址 github： https://github.com/GuanceCloud/dd-trace-java/releases
+- [github下载地址](https://github.com/GuanceCloud/dd-trace-java/releases)
 
-- 下载地址 guance: https://static.guance.com/ddtrace/dd-java-agent.jar
+- [观测云下载地址](https://static.guance.com/ddtrace/dd-java-agent.jar)
 
 ---
 
 ## (2022-08-23) Version:guance-0.105.0
 
-当前版本下载地址: https://static.guance.com/ddtrace/dd-java-agent-guance-0.106.0-SNAPSHOT.jar
+[当前版本下载地址](https://static.guance.com/ddtrace/dd-java-agent-guance-0.106.0-SNAPSHOT.jar)
 
 ### 新增功能说明
-- 增加 RocketMq 探针。
-- 增加 Dubbo 探针。
+- 增加 RocketMq 探针 支持的版本(不低于4.8.0)。
+- 增加 Dubbo 探针 支持的版本(不低于2.7.0)。
 - 增加 Sql 脱敏功能：开启后将原始的 sql 语句添加到链路中以方便排查问题，启动 Agent 时增加配置参数 `-Ddd.jdbc.sql.obfuscation=true`
  
 脱敏功能使用方式 
