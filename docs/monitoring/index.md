@@ -17,15 +17,16 @@ icon: zy/monitoring
 - [安全巡检](monitor/security_checker.md)：基于工作空间内安全巡检数据进行异常检测，用于监控工作空间内系统、容器、网络等存在的漏洞、异常和风险。
 - [应用性能指标检测](monitor/application-performance-detection.md)：基于工作空间内「应用性能监测」的指标数据，当指标到达设置的阈值范围后触发告警。
 - [用户访问指标检测](monitor/real-user-detection.md)：基于工作空间内「用户访问监测」的指标数据，当指标到达设置的阈值范围后触发告警。
-- [基础设施对象检测](monitor/infrastructure-detection.md)：基于工作空间内的基础设施对象数据，支持对基础设施对象数据的一个或多个字段类型设置触发告警。
+-  [进程异常检测] (monitor/processes-detection.md)：用于监控工作空间内的进程数据，支持对进程数据的一个或多个字段类型设置触发告警。
+- [基础设施存活检测](monitor/infrastructure-detection.md)：用于监控基础设施的运行状态。
 - [可用性监测数据检测](monitor/usability-detection.md)：基于工作空间内的云拨测数据，通过对一定时间段内拨测任务产生的指定数据量设置阈值范围后触发告警。
 - [网络数据检测](monitor/network-detection.md)：用于监控工作空间内「网络性能监测」的指标数据，通过设置阈值范围，当指标到达阈值后触发告警。
 
 ## 模板
-（原指“内置检测库”），“观测云”内置多种开箱即用的监控模板，支持一键创建Docker、Elasticsearch、Host、Redis监控。成功新建模板后，即自动添加对应的官方监控器至当前工作空间。详情可参考文档 [模板](template.md) 。
+（原指“内置检测库”），“观测云”内置多种开箱即用的监控模板，支持一键创建Docker、Elasticsearch、Host、Redis监控等。成功新建模板后，即自动添加对应的官方监控器至当前工作空间。详情可参考文档 [模板](template.md) 。
 
-## 分组
-（原指“自定义监测库”），分组功能支持您自定义创建有意义的监测器组合，方便分组管理各项监控器。
+## 告警策略
+（原指“分组”），告警策略功能支持您自定义创建有意义的监测器组合，方便告警策略管理各项监控器。
 
 ## SLO
 （Service Level Objective），是服务等级目标的简称，即预先设定的系统稳定性目标。“观测云”支持测试当前系统服务状态等级，对比检测对应的SLI（Service Level Indicator是测量指标，对应监控器所测量的指标）是否满足目标需要。
