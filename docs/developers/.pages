@@ -3,8 +3,6 @@ nav:
   - '采集器': pythond.md
   - DDtrace
     - '观测云二次开发版本': ddtrace-guance.md
-  - 'Scheck': scheck.md
-  - '对象': object.md
   - 'Scheck': 
     - "检查敏感文件的变动实现": scheck-filechange.mdd
     - "监控系统用户的变化": scheck-userchange.md
