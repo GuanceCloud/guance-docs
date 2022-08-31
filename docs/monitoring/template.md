@@ -11,7 +11,7 @@
 
 在「监控器」中，选择「+ 从模板新建」，即可添加指定官方监控模板至当前空间。目前支持主机、Docker、Elasticsearch、Redis、阿里云 RDS、阿里云 SLB、Flink 监控模板，无需手动配置，开箱即用。
 
-![](img/monitor_sample_1.png)
+![](img/monitor_sample1.png)
 
 ## 模板列表
 
