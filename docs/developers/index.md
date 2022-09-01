@@ -1,8 +1,14 @@
 ---
-icon: zy/dql
+icon: zy/custom
 ---
-# DQL
+# 自定义开发 
 
 ---
 
-DQL 是专为观测云开发的语言，语法简单，方便使用，可在观测云控制台或者终端设备通过 DQL 语言进行数据查询。
+观测云支持通过简单而强大的编程能力，来实现丰富的数据关联、查询、函数开发等，满足各种业务需求，保障业务系统的丰富性和稳定性。
+
+- [自定义采集器](pythond.md) ：支持通过 pythond 来开发自定义采集器，实现采集更多的业务数据
+- [自定义DDtrace](ddtrace-guance.md) ：支持基于`dd-trace-java` 的源码基础上进行二次开发，实现自定义应用性能数据采集
+- [自定义Scheck](scheck-filechange) ：支持基于 Scheck 的脚本进行二次开发，实现自定义安全巡检库
+- [自定义基础设施对象](../dataflux-func/index.md)：支持通过 [DataFlux Func](../dataflux-func/index.md) 来自定义上报对象数据
+
