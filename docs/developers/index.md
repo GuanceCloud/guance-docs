@@ -10,5 +10,5 @@ icon: zy/custom
 - [自定义采集器](pythond.md) ：支持通过 pythond 来开发自定义采集器，实现采集更多的业务数据
 - [自定义DDtrace](ddtrace-guance.md) ：支持基于`dd-trace-java` 的源码基础上进行二次开发，实现自定义应用性能数据采集
 - [自定义Scheck](scheck-filechange) ：支持基于 Scheck 的脚本进行二次开发，实现自定义安全巡检库
-- [自定义基础设施对象](../dataflux-func/index.md)：支持通过 [DataFlux Func](../dataflux-func/index.md) 来自定义上报对象数据
+- [自定义对象](custom-object.md)：支持通过 [DataFlux Func](../dataflux-func/index.md) 来自定义上报对象数据
 
