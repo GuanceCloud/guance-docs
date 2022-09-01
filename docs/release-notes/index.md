@@ -17,8 +17,6 @@ icon: zy/release-notes
 - 新增自定义开发目录，可查看自定义采集器（Pythond）、自定义安全巡检（Scheck）、自定义 DDtrace 等文档；
 - 新增私有化部署目录，可查看观测云部署的相关文档。
 
-
-
 #### 新增 DEMO 工作空间查看入口
 
 观测云提供工作空间 Demo 帮助您更好的使用观测云的各项功能模块。您可以点击左上角的「工作空间」，在弹出的对话框中点击「体验 Demo 空间」，即可进入 Demo 空间进行查看。
@@ -148,7 +146,16 @@ icon: zy/release-notes
 - 链路详情页针对时间的字段做格式化显示，把时间戳转换成日期格式显示
 - 部署版管理后台支持修改工作空间的数据保存策略
 
+### 最佳实践更新
 
+- 云原生
+    - [使用 CRD 开启您的 Ingress 可观测之路](../best-practices/cloud-native/ingress-crd.md)
+
+- 监控 Monitoring
+    - 应用性能监控 (APM) - [DDtrace 自定义 Instrumentation](../best-practices/monitoring/ddtrace-instrumentation.md)
+    - 应用性能监控 (APM) - [DDtrace 观测云二次开发实践](../best-practices/monitoring/ddtrace-guance.md)
+
+更多最佳实践更新可参考 [最佳实践版本历史](../best-practices/index.md) 。
 
 ## 2022 年 8 月 18 号
 
