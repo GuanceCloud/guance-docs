@@ -8,6 +8,7 @@ nav:
     - "安全部署方案": security-deployment.md
     - "混合云部署方案": hybrid-cloud-deployment.md
     - "如何选择部署版本方案": how-to-select-deployment-version.md
+  - '版本历史': changelog.md
   - '产品使用':
     - "如何开始": how-to-start.md
     - "升级商业版": upgrade-version.md
