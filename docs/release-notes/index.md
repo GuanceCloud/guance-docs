@@ -35,7 +35,7 @@ icon: zy/release-notes
 
 #### 优化日志上下文
 
-在日志详情页查看上下文打开新的日志查看器时，会以 “host”、“source”、“service”、“filename” 为筛选条件，以查看器的开始时间作为日志上下文的开始时间，以当前日志后第 10 条日志的时间作为结束时间，带到时间控件上进行上下文日志筛选。
+在日志详情页查看上下文打开新的日志查看器时，会以 “host”、“source”、“service”、“filename” 为筛选条件，查看当前日志时间前后的数据。
 
 ![](img/2.log_updown_2.png)
 
@@ -106,7 +106,7 @@ icon: zy/release-notes
 
 ##### 新增「基础设施存活检测」
 
-「基础设施存活检测」用于监控基础设施的运行状态。更多详情可参考 [新增基础设施存活检测](../monitoring/monitor/infrastructure-detection.md) 。
+「基础设施存活检测」用于监控基础设施的运行状态。更多详情可参考 [基础设施存活检测](../monitoring/monitor/infrastructure-detection.md) 。
 
 ![](img/5.changelog_12.png)
 
@@ -119,7 +119,11 @@ icon: zy/release-notes
 
 ![](img/5.changelog_13.png)
 
+##### 优化「应用性能指标检测」
 
+「应用性能指标检测」检测指标新增「链路统计」，默认选中函数为 `Count`，统计字段为 `*`，若选中其他字段，函数自动变为 `Count_distinct` 。更多详情可参考 [应用性能指标检测](../monitoring/monitor/application-performance-detection.md) 
+
+![](img/5.changelog_11.png)
 
 #### 优化成员管理
 
@@ -132,12 +136,11 @@ icon: zy/release-notes
 
 #### 其他功能优化
 
-- 图表中指标聚合函数从默认的 last 变更为 avg
-- 优化时序图、饼图图例复制体验，点击复制之后提示“复制成功/失败”
+- 图表中指标聚合函数从默认的 last 变更为 avg，日志类数据聚合函数从默认的 last 变更为 count
+- 优化时序图、饼图图例复制体验
 - 优化笔记编辑模式下的交互显示
 - 快照支持保存当前查看器的显示列信息 
-- 链路详情页针对时间的字段做格式化显示，把时间戳转换成日志格式显示
-  日期格式
+- 链路详情页针对时间的字段做格式化显示，把时间戳转换成日期格式显示
 - 部署版管理后台支持修改工作空间的数据保存策略
 
 
