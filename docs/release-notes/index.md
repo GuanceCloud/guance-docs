@@ -135,8 +135,6 @@ icon: zy/release-notes
 
 更多详情可参考 [成员管理](../management/member-management.md) 。
 
-
-
 #### 其他功能优化
 
 - 图表中指标聚合函数从默认的 last 变更为 avg，日志类数据聚合函数从默认的 last 变更为 count
@@ -145,6 +143,45 @@ icon: zy/release-notes
 - 快照支持保存当前查看器的显示列信息 
 - 链路详情页针对时间的字段做格式化显示，把时间戳转换成日期格式显示
 - 部署版管理后台支持修改工作空间的数据保存策略
+
+### DataKit 更新
+
+#### 采集器功能调整
+
+- 优化 IO 模块的数据处理，提升数据吞吐效率
+- 在各类 Trace 上加上的磁盘缓存功能
+- DataKit 自身指标集增加 goroutine 使用有关的指标集（`datakit_goroutine`）
+- MySQL 采集器增加 `mysql_dbm_activity` 指标集
+- 增加 [netstat 采集器](../datakit/netstat.md)
+- TDEngine 增加日志采集
+- 优化磁盘采集器中的 fstype 过滤，默认只采集常见的文件系统
+- 日志采集器中，针对每条日志，增加字段 `message_length` 表示当前日志长度，便于通过长度来过滤日志
+- CRD 支持通过 Daemonset 来定位 Pod 范围
+- eBPF 移除 go-bindata 依赖
+- 容器采集器中默认会打开 [k8s 和容器相关的指标](../datakit/container.md#metrics)，这在一定程度上会消耗额外的时间线
+
+#### Bug 修复
+
+- 修复 DataKit 自身 CPU 使用率计算错误
+- 修复 Skywaling 中间件识别问题
+- 修复 Oracle 退出问题
+- 修复 Sink Dataway 失效问题
+- 修复 HTTP /v1/write/:category 接口 JSON 写入问题
+
+#### Breaking changes
+
+- Gitlab 以及 Jinkens 采集器中，CI/CD 数据有关的时间字段做了调整，以统一前端页面的数据展示效果
+
+#### 文档调整
+
+- 几乎每个章节都增加了跳转标签，便于其它文档永久性引用
+- pythond 文档已转移到自定义开发目录
+- 采集器文档从原来「集成」挪到 「DataKit」文档库
+- DataKit 文档目录结构调整，减少了目录层级
+- 几乎每个采集器都增加了 k8s 配置入口
+- 调整文档头部显示，除了操作系统标识外，对支持选举的采集器，增加选举标识
+
+更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md) 。
 
 ### 最佳实践更新
 
