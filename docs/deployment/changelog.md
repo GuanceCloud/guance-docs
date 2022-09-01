@@ -1,0 +1,628 @@
+# 版本历史
+## v1.47.103
+| 2022年8月18日 | pubrepo.jiagouyun.com/dataflux/1.47.103:launcher-e472ac9-1661174654 |
+| --- | --- |
+| 观测云计费更新
+- 观测云计费项应用性能、用户访问、日志新增数据保存策略以及对应单价
+
+
+观测云更新
+**1**）优化查看器
+- 新增筛选历史
+- 新增快捷筛选值排序
+- 新增时间控件输入格式提示页
+- 新增显示列字段分割线及文案提示
+
+2）新增场景仪表板**/**笔记**/**查看器的查看权限。
+3）新增快照的查看权限
+4）优化监控器和事件
+- 新增监控器测试
+- 优化智能巡检信息展示
+- 优化事件详情页
+
+5）其他功能优化
+- 观测云新增支持邮箱验证方式认证
+- 查看器详情页关联网络页面优化主机、Pod、Deployment 类型显示；
+- 仪表板和内置视图等地方添加图表时新增切换图标，调整视图变量编辑按钮位置；
+- 时序图图例值新增 sum 求和统计，同时优化图例显示和交互；
+- 监控器、图表查询日志类数据时筛选条件新增 wildcard 和 not wildcard 。
+
+
+DataKit 更新
+1）新功能
+- Pipeline 中新增 reftable 功能
+- DataKit 9529 HTTP 支持绑定到 domain socket
+   - 对应的 eBPF 采集和 Oracle 采集，其配置方式也需做对应变更。
+- RUM sourcemap 增加 Android R8 支持
+- CRD 增加日志配置支持
+   - 完整示例
+
+2）优化
+- 优化容器采集器文档
+- 新增常见 Tag 文档
+- 优化选举的配置和一些相关的命名
+- 选举类采集器在 DataKit 开启选举的情况下，仍然支持在特定的采集器上关闭选举功能
+- 支持指定数据类型的 io block 配置
+- DDTrace 采集器的采样增加 meta 信息识别
+- DataKit 自身指标集增加 9529 HTTP 请求相关指标
+- 优化 Zipkin 采集的内存使用
+- DDTrace 采集器在开启磁盘缓存后，默认变成阻塞式 IO feed
+- eBPF 增加进程名（process_name）字段
+- DCA 新版本发布
+- 日志类 HTTP 数据写入（logstreaming/Jaeger/OpenTelemetry/Zipkin）均增加队列支持
+- 日志采集增加自动多行支持
+
+3）Bug 修复
+- 修复 MySQL 采集器连接泄露问题
+- 修复 Pipeline Json 取值问题
+- 修复 macOS 上 ulimit 设置无效问题
+- 修复 sinker-Dataway 在 Kubernetes 中无效问题
+- 修复 HTTP 数据写入类接口数据校验问题
+- 修复 eBPF 采集器因内核变更后结构体偏移计算失败问题
+- 修复 DDTrace close-resource 问题
+
+
+最佳实践更新
+1）监控 Monitoring
+- 使用 extract + TextMapAdapter 实现了自定义 traceId
+
+2）洞见 Insight
+- 场景(Scene) - CDB
+- 场景(Scene) - CLB
+- 场景(Scene) - COS
+- 场景(Scene) - CVM
+- 场景(Scene) - 内网场景 Dubbo 微服务接入观测云
+
+
+更多详情可参考帮助文档：[https://docs.guance.com/release-notes/](https://docs.guance.com/release-notes/) |  |
+
+## v1.46.102
+| 2022年8月10日 | pubrepo.jiagouyun.com/dataflux/1.46.102:launcher-9765d09-1660104260 |
+| --- | --- |
+| 观测云更新
+1）Func 平台小 bug 修复
+
+更多详情可参考帮助文档：[https://docs.guance.com/release-notes/](https://docs.guance.com/release-notes/) |  |
+
+## v1.46.101
+| 2022年8月9日 | pubrepo.jiagouyun.com/dataflux/1.46.101:launcher-a785aaa-1660058667 |
+| --- | --- |
+| 观测云更新
+1）DCA Web 端上线
+2）优化查看器搜索、快捷筛选、时间控件、显示列
+3）优化查看器详情页
+4）新增全局的查看器自动刷新配置
+5）新增全局黑名单功能
+6）新增自定义功能菜单
+7）新增图表查询别名
+8）新增时序图、饼图图例样式
+9）优化对象历史数据保存策略
+10）调整保存快照的位置
+11）其他功能优化
+  •  时序图时间间隔新增到毫秒级
+  •  管理后台新增工作空间级别的索引配置调整入口
+  •  日志查看器分布图新增支持自定义选择时间间隔
+  •  RUM查看器页面新增当前数据扩展字段页面展示
+
+更多详情可参考帮助文档：[https://docs.guance.com/release-notes/](https://docs.guance.com/release-notes/) |  |
+
+## v1.45.100
+| 2022年8月4日 | pubrepo.jiagouyun.com/dataflux/1.45.100:launcher-38e7844-1659597427 |
+| --- | --- |
+| 1. 观测云更新
+1）优化链路写入性能
+2） 其他的一些 bug 修复
+
+更多详情可参考帮助文档：[https://docs.guance.com/release-notes/](https://docs.guance.com/release-notes/)
+
+ |  |
+
+## v1.45.99
+| 2022年7月26日 | pubrepo.jiagouyun.com/dataflux/1.45.99:launcher-fe8f074-1658756821 |
+| --- | --- |
+| 1. 观测云更新
+1）新增智能巡检功能：内存泄漏、磁盘使用率、应用性能检测
+2）优化查看器搜索和筛选功能：搜索新增「not wildcard 反向模糊匹配」、快捷筛选新增空间级和个人级筛选方式
+3）新增修改** URL **中的时间范围进行数据查询
+4）新增仪表板视图变量日志、应用性能、用户访问、安全巡检数据来源配置
+5）优化图表查询交互
+6）新增用户访问指标检测事件通知模板变量
+7）优化事件内容一键打开链接
+更多详情可参考帮助文档：[https://docs.guance.com/release-notes/](https://docs.guance.com/release-notes/)
+
+2. 最佳实践更新
+- [Rancher部署DataKit最佳实践](https://preprod-docs.cloudcare.cn/best-practices/partner/rancher-datakit-install/)
+- [腾讯云产品可观测最佳实践(Function)](https://preprod-docs.cloudcare.cn/best-practices/partner/tencent-prod-func/)
+
+更多详情可参考最佳实践帮助文档：[https://docs.guance.com/best-practices/](https://docs.guance.com/best-practices/)
+
+3.DataKit 更新
+1）prom 采集器的内置超时时长为 3 秒
+2）日志相关问题修复：
+   - 添加日志采集的 log_read_offset 字段
+   - 修复日志文件在 rotate 后没有正确 readAll 的 bug
+
+3）容器采集相关问题修复：
+   - 修复对环境变量 NODE_NAME 的不兼容问题
+   - k8s 自动发现的 prom 采集器改为串行式的、node 分散采集
+   - 添加日志 source 和多行的的映射配置
+   - 修复容器日志替换 source 后还使用之前的 multiline 和 pipeline 的 bug
+   - 修正容器日志，设置文件活跃时长是 12 小时
+   - 优化 docker 容器日志的 image 字段
+   - 优化 k8s pod 对象的 host 字段
+   - 修复容器指标和对象采集没有添加 host tag 的问题
+
+4）eBPF 相关：
+   - 修复 uprobe event name 命名冲突问题
+   - 增加更多环境变量配置，便于云 k8s 环境的部署
+
+5）优化 APM 数据接收接口的数据处理，缓解卡死客户端以及内存占用问题
+6）SQLServer 采集器修复：
+   - 恢复 TLS1.0 支持
+   - 支持通过 instance 采集过滤，以减少时间线消耗
+
+7）Pipeline 函数 adjust_timezone() 有所调整
+8）IO 模块优化，提高整体数据处理能力，保持内存消耗的相对可控
+9）Monitor 更新：
+   - 修复繁忙时 Monitor 可能导致的长时间卡顿
+   - 优化 Monitor 展示，增加 IO 模块的信息展示，便于用于调整 IO 模块参数
+
+10）修复 Redis 奔溃问题
+11）去掉部分繁杂的冗余日志
+12）修复选举类采集器在非选举模式下不追加主机 tag 的问题
+
+更多详情可参考 DataKit 帮助文档：[https://docs.guance.com/datakit/changelog/](https://docs.guance.com/datakit/changelog/) |  |
+
+## v1.44.98
+| 2022年7月7日 | pubrepo.jiagouyun.com/dataflux/1.44.98:launcher-75d7974-1657638696 |
+| --- | --- |
+| 1. 观测云更新
+1）优化查看器正选、反选、模糊匹配三种筛选模式
+2）优化查看器快捷筛选
+3）新增查看器显示列多种快捷操作
+4）优化查看器详情页属性/字段快捷筛选
+5）优化历史快照功能，支持三种时间保存策略
+6）新增 Pipeline 一键获取样本测试数据
+7）新增场景自定义查看器文本分析模式
+8）新增日志查看器详情页关联网络 pod 和 deployment 视图
+9）新增查看器详情页关联网络 48 小时数据回放功能
+10）调整未恢复事件保存策略，支持手动恢复事件
+11）其他功能优化
+  •  图表锁定时间新增【最新5分钟】时间范围，时间间隔新增【5s】【10s】【30s】三个秒级时间选择
+  •  场景查看器显示列、视图变量基础对象字段属性/标签支持自定义输入
+  •  调整事件详情关联仪表板位置
+  •  在指标管理新增时间线数量统计
+  •  优化日志详情页关联链路，根据日志当中的 trace_id 和 span_id 显示火焰图并选中对应span的所有数据
+  •  优化用户访问监测服务显示及交互
+  •  RUM、网络、可用性监测、CI 查看器下拉选项调整为平铺显示
+  •  监控器事件通知内容支持配置模版变量字段映射，支持通过在 DQL 查询语句配置模版变量对应值。
+  •  帮助中心首页新增重点功能快捷跳转入口
+更多详情可参考帮助文档：[https://docs.guance.com/release-notes/](https://docs.guance.com/release-notes/)
+
+2. DataKit 更新
+  •  调整全局 tag 的行为，避免选举类采集的 tag 分裂
+  •  SQLServer 采集器增加选举支持
+  •  行协议过滤器支持所有数据类型
+  •  9529 HTTP 服务增加超时机制
+  •  MySQL：dbm 指标集名字调整、service 字段冲突问题
+  •  容器对象增加字段 container_runtime_name 以区分不同层次的容器名
+  •  Redis 调整 slowlog 采集，将其数据改为日志存储
+  •  优化 TDEngine 采集
+  •  完善 Containerd 日志采集
+  •  Pipeline 增加 Profile 类数据支持
+  •  容器/Pod 日志采集支持在 Label/Annotation 上额外追加 tag
+  •  修复 Jenkins CI 数据采集的时间精度问题
+  •  修复 Tracing resource-type 值不统一的问题
+  •  eBPF 增加 HTTPS 支持
+  •  修复日志采集器可能的奔溃问题
+  •  修复 prom 采集器泄露问题
+  •  支持通过环境变量配置 io 磁盘缓存
+  •  增加 Kubernetes CRD 支持
+更多详情可参考 DataKit 帮助文档：[https://docs.guance.com/datakit/changelog/](https://docs.guance.com/datakit/changelog/)
+
+3. 最佳实践更新
+  •  Skywalking 采集 JVM 可观测最佳实践
+  •  Minio 可观测最佳实践
+更多详情可参考最佳实践帮助文档：[https://docs.guance.com/best-practices/](https://docs.guance.com/best-practices/) |  |
+
+## v1.43.97
+
+| 2022年6月22日 | pubrepo.jiagouyun.com/dataflux/1.43.97:launcher-508cfe1-1656344897 |
+| --- | --- |
+| 
+
+1.  观测云更新
+1）观测云帮助文档全新上线
+2）新增 Profile 可观测
+3）Pipeline 覆盖了全数据的文本分析处理
+4）新增 Deployment 网络详情及网络分布
+5）优化事件检测维度跳转到其他查看器
+6）新增日志查看器 JSON 格式的 message 信息搜索
+7）新增用户访问监测新建应用时支持用户自定义输入 app_id 信息
+8）优化进程检测为基础设施对象检测
+9）其他功能优化
+•  基础设施POD查看器蜂窝模式下新增 CPU 使用率、内存使用量填充指标
+•  优化日志黑名单配置。支持手动输入日志来源，作为日志黑名单的来源
+•  优化应用性能监测服务列表数据查询时间组件，支持自定义时间范围选择
+•  优化在 K8S 上安装 DataKit 引导文案，配置 DataWay 数据网关地址中自动增加当前工作空间的 token
+•  优化监控器配置 UI 样式 
+1.  DataKit 更新
+•  gitrepo 支持无密码模式
+•  prom 采集器
+•  支持日志模式采集
+•  支持配置 HTTP 请求头
+•  支持超 16KB 长度的容器日志采集
+•  支持 TDEngine 采集器
+•  Pipeline
+•  支持 XML 解析
+•  远程调试支持多类数据类型
+•  支持 Pipeline 通过 use() 函数调用外部 Pipeline 脚本
+•  新增 IP 库（MaxMindIP）支持
+•  新增 DDTrace Profile 集成
+•  Containerd 日志采集支持通过 image 和 K8s Annotation 配置过滤规则
+•  文档库整体切换 
+1.  最佳实践更新
+1）APM：GraalVM 与 Spring Native 项目实现链路可观测
+2）接入集成：主机可观测最佳实践 (Linux) 
+1.  集成模版更新
+1）新增文档
+•  阿里云 NAT
+•  阿里云 CDN
+2）新增视图
+•  阿里云 NAT
+•  阿里云 CDN 
+
+
+更多详情可参考帮助文档：[https://docs.guance.com/release-notes/](https://docs.guance.com/release-notes/) |  |
+
+## v1.42.95
+| 2022年6月10日 | pubrepo.jiagouyun.com/dataflux/1.42.95:launcher-8478e83-1654839989 |
+| --- | --- |
+| 1.观测云计费更新
+1）优化时间线计费逻辑，以及指标数据的数据保存策略
+
+2. 观测云更新
+1）新增 Jenkins CI 可观测
+2）新增自定义查看器图表同步搜索
+3）新增网络拓扑和服务拓扑下钻分析
+4）新增删除自定义对象的数据及索引
+5）新增查看器快照查看入口
+6）新增查看器筛选条件编辑功能
+7）优化用户访问 View 查看器关联链路为 Fetch/XHR
+8）新增图表数据加载高性能模式
+9）新增告警配置事件通知等级
+10）其他功能优化
+  •  场景仪表板组合图表支持隐藏/显示大标题
+  •  优化事件详情页事件类型文案显示
+  •  基础设施列表查看新增按照字段排序功能
+  •  日志查看器新增隐藏分布图按钮
+  •  查看器支持通过关键字搜索显示列，支持自定义显示列作为预设字段，后续通过Pipeline切割字段并上报数据后可直接显示上报的数据。
+  •  在内置模板库和内置视图增加一键查看对应的集成文档，帮助您快速配置对应的采集器
+  •  内置视图除支持在查看器绑定链路服务、应用、日志源、项目、标签等相关视图外，新增支持自定义 key 和 value 绑定相关视图，同时支持服务侧滑详情页绑定内置视图
+  •  优化通知对象飞书机器人，支持自定义是否需要密钥安全校验
+  •  配置监视器时，若配置的数据范围小于检测频率，触发提示配置会存在数据空洞问题
+
+3. DataKit 更新（2022/5/12）
+  •  Pipeline 做了调整，所有数据类型，均可通过配置 Pipeline 来额外处理数据
+  •  grok() 支持直接将字段提取为指定类型，无需再额外通过 cast() 函数进行类型转换
+  •  Pipeline 增加多行字符串支持，对于很长的字符串（比如 grok 中的正则切割），可以通过将它们写成多行，提升了可读性
+  •  每个 Pipeline 的运行情况，通过 datakit monitor -V 可直接查看
+  •  增加 Kubernetes Pod 对象 CPU/内存指标
+  •  Helm 增加更多 Kubernetes 版本安装适配
+  •  优化 OpenTelemetry，HTTP 协议增加 JSON 支持
+  •  DataKit 在自动纠错行协议时，对纠错行为增加了日志记录，便于调试数据问题
+  •  移除时序类数据中的所有字符串指标
+  •  在 DaemonSet 安装中，如果配置了选举的命名空间，对参与选举的采集器，其数据上均会新增特定的 tag（election_namespace）
+  •  CI 可观测，增加 Jenkins 支持
+
+4. 最佳实践更新
+  •  APM
+  •  基于观测云，使用 SkyWalking 实现 RUM、APM 和日志联动分析
+  •  监控最佳实践
+  •  OpenTelemetry 可观测建设
+  •  OpenTelemetry to Jeager 、Grafana、ELK
+  •  OpenTelemetry to Grafana
+  •  OpenTelemetry to 观测云
+  •  观测云小妙招
+  •  OpenTelemetry 采样最佳实践
+
+5. 集成模版更新
+1）新增文档和视图
+  •  数据采集
+  •  Opentelemetry Collector
+  •  容器编排
+  •  Kubernetes Scheduler
+  •  Kubernetes Controller Manager
+  •  Kubernetes API Server
+  •  Kubernetes Kubelet
+2）新增视图
+  •  容器编排
+  •  Kubernetes Nodes Overview
+  •  中间件
+  •  JVM Kubernetes
+
+更多详情可参考帮助文档：[https://www.yuque.com/dataflux/doc/hahbey](https://www.yuque.com/dataflux/doc/hahbey) |  |
+
+## v1.41.94
+| 2022年5月28日 | pubrepo.jiagouyun.com/dataflux/1.41.94:launcher-249ba21-1653737335 |
+| --- | --- |
+| 1. 观测云更新
+1）优化观测云商业版注册流程
+2）新增场景仪表板用户视图模版库
+3）新增场景自定义查看器日志来源及筛选联动
+4）新增事件详情页内容复制为Json格式
+5）新增日志数据脱敏处理
+6）优化日志查看器及详情页
+7）新增网络数据检测监控器
+8）优化内置视图绑定功能
+9）其他功能优化
+  •  付费计划与账单新增储值卡余额
+  •  基础设施详情样式优化
+  •  链路详情页属性换行显示优化
+  •  监控器配置模版变量显示优化
+  •  增加快捷入口，DQL查询和快照菜单移至快捷入口下
+  •  观测云管理后台补充模版管理分类信息
+
+2. DataKit 更新（2022/5/12）
+  •  eBPF 增加 arm64 支持
+  •  行协议构造支持自动纠错
+  •  DataKit 主配置增加示例配置
+  •  Prometheus Remote Write 支持 tag 重命名
+  •  合并社区版 DataKit 已有的功能，主要包含 Sinker 功能以及 filebeat 采集器
+  •  调整容器日志采集，DataKit 直接支持 containerd 下容器 stdout/stderr 日志采集
+  •  调整 DaemonSet 模式下主机名获取策略
+  •  Trace 采集器支持通过服务名（service）通配来过滤资源（resource）
+
+3. 最佳实践更新
+  •  云原生
+  •  利用观测云一键开启Rancher可观测之旅
+  •  微服务可观测最佳实践
+  •  Kubernetes 集群 应用使用 SkyWalking 采集链路数据
+  •  Kubernetes 集群日志上报到同节点的 DataKit 最佳实践
+  •  Gitlab-CI 可观测最佳实践
+  •  Gitlab-CI 可观测最佳实践
+
+4. 集成模版更新
+新增文档和视图
+  •  中间件
+  •  Resin
+  •  Beats
+  •  主机系统
+  •  Procstat
+新增视图
+  •  容器编排
+  •  Istio Service
+  •  阿里云
+  •  ASM Service
+
+更多详情可参考帮助文档：[https://www.yuque.com/dataflux/doc/hahbey](https://www.yuque.com/dataflux/doc/hahbey) |  |
+
+## v1.40.93
+| 2022年5月9日 | pubrepo.jiagouyun.com/dataflux/1.40.93:launcher-aa97377-1652102035 |
+| --- | --- |
+| 1. 观测云更新
+1) 优化观测云商业版升级流程
+2) 新增进程、日志、链路详情页关联网络
+3)场景模块优化
+  •  优化仪表板，去掉编辑模式
+  •  新增图表链接显示开关
+  •  优化 DQL 查询与简单查询转换
+4) 监控器和事件模块优化
+  •  新增事件关联信息
+  •  新增无数据事件名称和内容配置
+  •  优化可用性数据检测
+  •  优化告警通知模版，增加关联跳转链接
+5) 其他功能优化
+  •  优化服务 servicemap 指标查询性能
+  •  新增查看器数值型字段支持 > &#124; >= &#124; < &#124; <= &#124; [] 5种写法
+  •  新增指标查看器标签支持级联筛选
+  •  优化 DQL 查询返回报错提示
+
+2. DataKit 更新
+  •  进程采集器的过滤功能仅作用于指标采集，对象采集不受影响
+  •  优化 DataKit 发送 DataWay 超时问题
+  •  优化 Gitlab 采集器 
+  •  修复日志采集截断的问题
+  •  修复各种 trace 采集器 reload 后部分配置不生效的问题
+
+3. 集成模版更新
+  •  新增数据存储 Redis Sentinel 集成文档和视图
+ 更多详情可参考帮助文档：[https://www.yuque.com/dataflux/doc/hahbey](https://www.yuque.com/dataflux/doc/hahbey) |  |
+
+## v1.39.92
+| 2022年5月5日 | pubrepo.jiagouyun.com/dataflux/1.39.92:launcher-ffcd8f2-1651715327 |
+| --- | --- |
+| 
+1. 安装器 Launcher：
+   - 支持更换域名的 TLS 证书
+   - 适配 Ingress Kind 的 networking.k8s.i0/v1、extensions/v1beta1 两种 apiVersion
+   - 其他一些小 Bug 修复
+ |  |
+
+## v1.39.91
+| 2022年4月26日 | pubrepo.jiagouyun.com/dataflux/1.39.91:launcher-8943ead-1650979666 |
+| --- | --- |
+| 
+1. 观测云更新
+   - 一些前端 Bug 修复
+ |  |
+
+## v1.39.90
+| 2022年4月25日 | pubrepo.jiagouyun.com/dataflux/1.39.90:launcher-23f161d-1650898148 |
+| --- | --- |
+| 1.观测云社区版上线
+
+2. 观测云更新
+1) 新增 Gitlab CI 可观测
+2) 新增在线帮助手册
+3) 新增仪表板设置刷新频率
+4) 新增进程 48 小时回放
+5) 新增集成 DataKit Kubernetes(Helm)安装引导页
+6) 新增应用性能全局概览、服务分类筛选、服务拓扑图区分环境和版本
+7) 其他功能优化
+  •  新增链路详情页中关联日志“全部来源”选项 
+  •  新增指标筛选支持反选，聚合函数位置调整
+  •  优化日志、应用性能、用户访问、安全巡检生成指标，“频率”所选时间也作为聚合周期
+  •  优化观测云部署版工作空间拥有者移交权限功能取消，支持管理后台设置
+  •  优化告警通知短信模版
+  •  优化可用性监测新建拨测列表，支持直接选择 HTTP、TCP、ICMP、WEBSOCKET 拨测
+  •  SSO登录配置用户白名单调整为邮箱域名，用于校验单点登录处输入邮箱后缀是否匹配，匹配的邮箱可以在线获取SSO的登录链接
+
+3. DataKit 更新
+1）Pipeline 模块修复 Grok 中动态多行 pattern 问题
+2）DaemonSet 优化 Helm 安装，增加开启 pprof 环境变量配置，DaemonSet 中所有默认开启采集器各个配置均支持通过环境变量配置
+3）Tracing 采集器初步支持 Pipeline 数据处理，参考 DDtrace 配置示例。
+4）拨测采集器增加失败任务退出机制
+5）日志新增 unknown 等级（status），对于未指定等级的日志均为 unknown
+6）容器采集器修复：
+  •  修复 cluster 字段命名问题
+  •  修复 namespace 字段命名问题
+  •  容器日志采集中，如果 Pod Annotation 不指定日志 source，那么 source 默认的取值顺序依次为
+  •  对象上报不再受 32KB 字长限制（因 Annotation 内容超 32KB），所有 Kubernetes 对象均删除 annotation 
+  •  修复 prom 采集器不因 Pod 退出的问题
+  4. 最佳实践更新
+1）微服务可观测最佳实践
+  •  service mesh 微服务架构从研发到金丝雀发布全流程最佳实践(上)
+  •  service mesh 微服务架构从研发到金丝雀发布全流程最佳实践(下)
+  •  service mesh 微服务架构从研发到金丝雀发布全流程最佳实践(中)
+2）监控最佳实践
+  •  JAVA OOM异常可观测最佳实践
+
+5. 集成模版更新
+1）新增文档
+  •  应用性能监测 (APM)：Node.JS
+  •  中间件：RocketMQ
+2）新增视图
+  •  容器编排：K8s Pods Overview 和 Istio Mesh
+  •  阿里云：阿里云 ASM Mesh、阿里云 ASM Control Plane 和 阿里云 ASM Workload
+  •  中间件：RocketMQ
+
+更多详情可参考帮助文档：[https://www.yuque.com/dataflux/doc/hahbey](https://www.yuque.com/dataflux/doc/hahbey) |  |
+
+## v1.38.89
+| 2022年4月10日 | pubrepo.jiagouyun.com/dataflux/1.38.89:launcher-db22a51-1649942760 |
+| --- | --- |
+| 1.观测云计费更新
+新增阿里云账户结算方式
+2. 观测云更新
+1) 新增 DQL 查询查看器
+2) 可用性监测新增 TCP/ICMP/Websocket 拨测协议
+3) 新增基础设施网络模块
+4) 基础设施容器 Pod 新增 HTTP 七层网络数据展示
+5) 新增查看器快捷筛选“反选”和“重置”功能
+6) 优化日志黑名单
+7) 其他功能优化
+• 新增链路详情页 span 数量统计
+• 优化链路关联主机时间线绘制方式
+• 优化概览图时间分片，取消选项，若之前的概览图开启了时间分片，优化后默认更改为不开启时间分片
+• 优化组合图表在浏览器缩放情况下，进入编辑后无法实现组合图表切换编辑不同的图表查询
+• 优化日志查看器手动暂停页面刷新后，滚轴滑动到顶部不触发自动刷新 
+3. DataKit 更新
+• 增加宿主机运行时的内存限制，安装阶段即支持内存限制配置，
+• CPU 采集器增加 load5s 指标
+• 支持观测云优化的日志黑名单功能，调整 monitor 布局，增加黑名单过滤情况展示
+• DaemonSet 安装增加 Helm 支持，新增 DaemonSet 安装最佳实践
+• eBPF 增加 HTTP 协议采集，主机安装时，eBPF 采集器默认不再会安装，如需安装需用特定的安装指令，DaemonSet 安装不受影响
+4. 观测云移动端 APP 更新
+新增站点登陆的能力，优化场景、事件查看器，保持了与网页端查看器相同的访问体验。 5. 最佳实践更新
+1) 观测云小妙招
+• 多微服务项目的性能可观测实践
+• ddtrace 高级用法
+• Kubernetes 集群使用 ExternalName 映射 DataKit 服务
+2) 接入(集成)最佳实践
+• OpenTelemetry 链路数据接入最佳实践
+3) 微服务可观测最佳实践
+• 基于阿里云 ASM 实现微服务可观测最佳实践
+6. 集成模版更新
+• 新增阿里云 PolarDB Oracle 集成文档、视图和监控器
+• 新增阿里云 PolarDB PostgreSQL 集成文档、视图和监控器
+• 新增阿里云 RDS SQLServer 集成文档、视图和检测库
+• 新增阿里云 DataKit 集成文档、视图和监控器
+• 新增阿里云 Nacos 集成文档、视图
+更多详情可参考帮助文档：[https://www.yuque.com/dataflux/doc/hahbey](https://www.yuque.com/dataflux/doc/hahbey) |  |
+
+## v1.37.86
+| 2022年3月28日 | pubrepo.jiagouyun.com/dataflux/1.37.86:launcher-bd2650e-1648456839 |
+| --- | --- |
+| 1.观测云站点更新
+  •  新增“海外区1（俄勒冈）”站点，原“中国区1（阿里云）”变更为“中国区1（杭州）”，原“中国区2（AWS）”变更为“中国区2（宁夏）”。
+
+2.观测云更新
+1）新增工作空间数据授权
+2）新增保存在线 Pipeline 样本测试数据
+3）优化自定义对象查看器
+4）优化快照分享支持永久有效的链接
+5）优化图表时间间隔
+6）优化进程、应用性能、用户访问检测无数据触发策略
+7）其他功能优化
+  •  优化集成DataKit、Func 安装引导页
+  •  优化日志查看器单条日志完全展示
+  •  新增查看器关联搜索 NOT 组合
+  •  优化编辑成员权限显示
+
+3.DataKit 更新
+  •  增加 DataKit 命令行补全功能，帮助您在终端操作的时候进行命令提示和补全参数
+  •  允许 DataKit 升级到非稳定版，体验最新的试验性功能，若您是生产环境，请谨慎升级
+  •  初步支持 Kubernetes/Containerd 架构的数据采集
+  •  网络拨测增加 TCP/UDP/ICMP/Websocket 几种协议支持
+  •  调整 Remote Pipeline 的在 DataKit 本地的存储，避免不同文件系统差异导致的文件名大小写问题
+  •  Pipeline新增 decode() 函数，可以避免在日志采集器中去配置编码，在 Pipeline 中实现编码转换；add_pattern() 增加作用域管理
+
+5.最佳实践更新
+  •  场景最佳实践：RUM 数据上报 DataKit 集群最佳实践
+  •  日志最佳实践：Pod 日志采集最佳实践
+
+7.集成模板更新
+  •  新增阿里云 PolarDB Mysql 集成文档、视图和检测库
+
+更多详情可参考帮助文档：[https://www.yuque.com/dataflux/doc/hahbey](https://www.yuque.com/dataflux/doc/hahbey) |  |
+
+## v1.36.85
+| 2022年3月14日 | pubrepo.jiagouyun.com/dataflux/1.36.85:launcher-d8e6ee9-1647272237 |
+| --- | --- |
+| 1.观测云计费更新
+• 新增观测云计费储值卡
+2.观测云更新
+• 新增用户访问监测 resource（资源）、action（操作）、long_task（长任务）、error（错误）查看器
+• 新增 Pod 网络详情及网络分布
+3.DataKit 更新
+• DataKit 采集器新增支持 SkyWalking、Jaeger、Zipkin 数据配置采样策略，更多详情可参考 Datakit Tracing Frontend 。
+• DataKit 采集器新增支持 OpenTelemetry 数据接入 。
+• DataKit 文档库新增文档 DataKit 整体日志采集介绍，包括从磁盘文件获取日志、通过调用环境 API 获取日志、远程推送日志给 DataKit、Sidecar 形式的日志采集四种方式。
+4.SDK 更新
+• 用户访问监测兼容 Opentracing 协议链路追踪工具，Web、小程序、Android、iOS SDK 支持 OTEL、SkyWalking、Jaeger 等链路追踪工具数据联动。
+5.最佳实践更新
+• 快速上手 pythond 采集器的最佳实践
+• 阿里云“云监控数据”集成最佳实践
+• logback socket 日志采集最佳实践
+6.场景模板更新
+• 新增场景自定义查看器 MySQL 数据库查看器模板
+7.集成模板更新
+• 新增主机系统 EthTool 集成文档和视图
+• 新增主机系统 Conntrack 集成文档和视图 |  |
+
+
+## v1.35.84
+| 2022年2月22日 | pubrepo.jiagouyun.com/dataflux/1.35.84:launcher-191ef71-1645780061 |
+| --- | --- |
+| **1.**新增日志配置** pipeline **脚本
+**2.**新增** IFrame **图表组件
+**3.**新增事件详情历史记录、关联** SLO**
+**4.**新增保存快照默认开启绝对时间
+**5.**优化监控器无数据触发事件配置及触发条件单位提示
+**6.**优化图表查询表达式计算单位
+**7.**新增“时间线”按量付费模式
+**8.**其他优化功能
+- 图表查询数据来源日志、应用性能、安全巡检和网络支持全选（*）;
+- 图表查询文案、按钮样式以及文字提示优化；
+- 工作空间操作按钮图标化，如编辑、删除等等。
+- 其他 UI 显示优化
+ |  |
+
+
+
+
+---
+
+观测云是一款面向开发、运维、测试及业务团队的实时数据监测平台，能够统一满足云、云原生、应用及业务上的监测需求，快速实现系统可观测。**立即前往观测云，开启一站式可观测之旅：**[www.guance.com](https://www.guance.com)
+![logo_2.png](https://cdn.nlark.com/yuque/0/2022/png/21511848/1642761909015-750c7ecd-81ba-4abf-b446-7b8e97abe76e.png#clientId=ucc58c24e-d7a9-4&crop=0&crop=0&crop=1&crop=1&from=drop&id=u1f1c3a96&margin=%5Bobject%20Object%5D&name=logo_2.png&originHeight=169&originWidth=746&originalType=binary&ratio=1&rotation=0&showTitle=false&size=139415&status=done&style=none&taskId=u420e6521-1eac-4f17-897f-53a63d36ff8&title=)
