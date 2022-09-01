@@ -2,7 +2,9 @@
 # DataKit 代理
 ---
 
-- 操作系统支持：:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple:
+:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
+
+---
 
 当 Datakit 无法访问外网时，可在内网部署一个代理将流量发送出来。本文提供俩种实现方式：
 
@@ -110,7 +112,7 @@ nginx -t        # 测试配置
 nginx -s reload # reload配置
 ```
 
-### 配置 `Datakit` 被代理机器上的域名
+# 配置 `Datakit` 被代理机器上的域名
 
 下面假设 `192.168.1.66` 是 nginx 透明代理服务器的 IP 地址。
 

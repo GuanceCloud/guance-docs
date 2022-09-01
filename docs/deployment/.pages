@@ -1,0 +1,21 @@
+nav:
+  - index.md
+  - '产品部署': 
+    - "产品部署说明": deployment-description.md
+    - "云上部署手册": cloud-deployment-manual.md
+    - "线下环境部署手册": offline-deployment-manual.md
+    - "版本升级安装": version-upgrade.md
+    - "安全部署方案": security-deployment.md
+    - "混合云部署方案": hybrid-cloud-deployment.md
+    - "如何选择部署版本方案": how-to-select-deployment-version.md
+  - '版本历史': changelog.md
+  - '产品使用':
+    - "如何开始": how-to-start.md
+    - "升级商业版": upgrade-version.md
+  - '常见问题': faq.md
+  - '管理后台': 
+    - "工作空间管理": space.md
+    - "用户管理": user.md
+    - "集成管理": integration.md
+    - "数据网关": dataway.md
+    - "设置管理": setting.md
