@@ -1,14 +1,17 @@
-# 1 前言
-## 1.1 产品简介
+# 线下环境部署手册
+---
+
+## 1 前言
+### 1.1 产品简介
 “观测云”是一款旨在解决云计算，以及云原生时代系统为每一个完整的应用构建全链路的可观测性的云服务平台。“观测云”是由驻云科技自2018年以来全力打造的产品，产品的目标是为中国的广大基于云计算的开发项目组提供服务，相较于复杂多变的开源产品，如ELK，Prometheus，Grafana，Skywalking等，“观测云”不单纯的只是提供一种监控类的产品，更重要的是提供整体可观测性的服务，我们除了在底层存储和系统架构上是一体化的基础上，也把所有关于云计算及云原生相关的技术栈进行了完整的分析和解构，任何项目团队可以非常轻松的使用我们的产品，无需再投入太多的精力去研究或者改造不成熟的开源产品，同时“观测云”是以服务方式，按需按量的方式收取费用，完全根据用户产生的数据量收取费用，无需投入硬件，同时对于付费客户，我们还会建立专业的服务团队，帮助客户构建基于数据的核心保障体系，具有实时性、灵活性、易扩展、易部署等特点，支持云端 SaaS 和本地部署模式。
-## 1.2 本文档说明
+### 1.2 本文档说明
 本文档主要以在线下部署（包括但不限于物理服务器、IDC机房），介绍从资源规划、配置开始，到部署观测云、运行的完整步骤。
 
 **说明：**
 
 - 本文档以 **dataflux.cn** 为主域名示例，实际部署替换为相应的域名。
 
-## 1.3 关键词
+### 1.3 关键词
 | **词条** | **说明** |
 | --- | --- |
 | Launcher | 用于部署安装 观测云 的 WEB 应用，根据 Launcher 服务的引导步骤来完成 观测云 的安装与升级 |
@@ -16,11 +19,11 @@
 | 部署操作机 | 在浏览器访问 launcher 服务来完成 观测云 引导、安装、调试的机器 |
 | kubectl | Kubernetes 的命令行客户端工具，安装在运维操作机上 |
 
-## 1.4 部署架构
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/936517/1646121168734-a60a5fdc-5c4c-436b-a623-a68febb25f6e.png#clientId=u23f93daf-b867-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=542&id=u697e36f4&margin=%5Bobject%20Object%5D&name=image.png&originHeight=542&originWidth=1224&originalType=binary&ratio=1&rotation=0&showTitle=false&size=164589&status=done&style=none&taskId=ucd1fe94e-af26-4b8f-acbd-e09dfc3e19c&title=&width=1224)
+### 1.4 部署架构
+![](img/8.deployment_1.png)
 
-# 2 资源准备
-## 2.1 资源清单
+## 2 资源准备
+### 2.1 资源清单
 | **用途** | **资源类型** | **最低规格** | **推荐规格** | **数量** | **备注** |
 | --- | --- | --- | --- | --- | --- |
 | **Kubernetes 集群** | 物理服务器&#124;虚拟机 | 4C8GB 100GB | 8C16GB  100GB | 3 | k8s集群Master节点&#124;Etcd集群 
@@ -45,8 +48,8 @@
 1. “最低配置” 适合 POC 场景部署，只作功能验证，不适合作为生产环境使用。
 1. 作为生产部署以实际接入数据量做评估，接入的数据量越多，InfluxDB、Elasticsearch 的存储与规格配置相应也需要越高。
 
-## 2.2 创建资源
-### 2.2.1 kubernetes 集群资源创建
+### 2.2 创建资源
+#### 2.2.1 kubernetes 集群资源创建
 
 **重要！！！ **
 
@@ -57,11 +60,15 @@
 kubernetes 集群部署参考 [https://kubernetes.io/zh/docs/home/](https://kubernetes.io/zh/docs/home/)
 集群资源创建完成后进行集群功能验证，确保集群在正常运行。包括节点状态、集群状态、服务解析情况等。参考下图：
 
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/936517/1646638969146-8fea521c-4ca1-43d4-a82d-d6b26a3d9a61.png#clientId=ue5ccef1b-a89c-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=352&id=ciObb&margin=%5Bobject%20Object%5D&name=image.png&originHeight=352&originWidth=1227&originalType=binary&ratio=1&rotation=0&showTitle=false&size=260582&status=done&style=none&taskId=u2f2c21c7-5ffb-4234-8e5f-9fb99d0a6eb&title=&width=1227)
+![](img/8.deployment_2.png)
+
 默认情况下 kube-proxy 使用iptables 模式，该模式下宿主机无法ping通 svc 地址，ipvs 模式下可以直接ping通 svc 地址
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/936517/1646638667369-fe02da66-2743-4e55-a4e7-f7258509caae.png#clientId=ue5ccef1b-a89c-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=213&id=uY2R3&margin=%5Bobject%20Object%5D&name=image.png&originHeight=213&originWidth=826&originalType=binary&ratio=1&rotation=0&showTitle=false&size=82110&status=done&style=none&taskId=ud7f2eefc-3d2a-4e87-8970-27e44536429&title=&width=826)
+
+![](img/8.deployment_3.png)
+
 在未使用 Node Local  DNS 配置时，容器获取的 dns 服务地址和 svc 地址段一致
 kubernetes ingress  组件部署参考 [https://github.com/kubernetes/ingress-nginx](https://github.com/kubernetes/ingress-nginx)
+
 ```yaml
 # 某些k8s版本无法创建ingress资源，需要删除资源执行命令 kubectl  delete  validatingwebhookconfigurations.admissionregistration.k8s.io  ingress-nginx-admission
 apiVersion: v1
@@ -726,7 +733,7 @@ spec:
 
 ```
 kubernetes  nfs subdir external provisioner  组件部署参考 [https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner](https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner)
- 
+
 ```yaml
 ---
 apiVersion: v1
@@ -855,10 +862,10 @@ parameters:
 ```
 
 
-### 2.2.2 基础资源及中间件资源创建
-#### **Mysql、Redis、InfluxDB、Elasticsearch、NFS 存储**按配置要求创建。
-## 2.3 资源配置
-### 2.3.1 MySQL
+#### 2.2.2 基础资源及中间件资源创建
+##### **Mysql、Redis、InfluxDB、Elasticsearch、NFS 存储**按配置要求创建。
+### 2.3 资源配置
+#### 2.3.1 MySQL
 
 - 创建管理员账号（必须是**管理员账号**，后续安装初始化需要用此账号去创建和初始化各应用 DB，若需要远程连接需自行开启）
 ```yaml
@@ -988,7 +995,7 @@ spec:
 
 ```
 **注：如果部署不成功，可以使用docker部署mysql的方式进行部署**
-### 2.3.2 Redis
+#### 2.3.2 Redis
 
 - 需设置 Redis 密码
 ```yaml
@@ -1063,7 +1070,7 @@ spec:
       port: 6379
       targetPort: redis-port
 ```
-### 2.3.3 InfluxDB
+#### 2.3.3 InfluxDB
 
 - 部署InfluxDB之前需先给选定节点打上标签，
 
@@ -1214,7 +1221,7 @@ spec:
   sessionAffinity: None
   type: NodePort
 ```
-### 2.3.4 Elasticsearch
+#### 2.3.4 Elasticsearch
 k8s集群中部署es参考示例
 注：该yaml适用于poc环境，便于测试。
 
@@ -1487,7 +1494,7 @@ $  ./bin/elasticsearch-plugin install https://github.com/medcl/elasticsearch-ana
 ./analysis-ik/plugin-descriptor.properties
 ./analysis-ik/plugin-security.policy
 ```
-### 2.3.5 外部服务导入到集群内部（可选）
+#### 2.3.5 外部服务导入到集群内部（可选）
 
 - 如何将外部服务导入到集群内部使用，参考： [https://kubernetes.io/docs/tutorials/stateless-application/expose-external-ip-address/](https://kubernetes.io/docs/tutorials/stateless-application/expose-external-ip-address/)
 
@@ -1514,18 +1521,18 @@ subsets:
      - port: 23306  # 外部服务真实提供的端口
 
 ```
-# 3 kubectl 安装及配置
-## 3.1 安装 kubectl
+## 3 kubectl 安装及配置
+### 3.1 安装 kubectl
 kubectl 是一个 kubernetes 的一个命令行客户端工具，可以通过此命令行工具去部署应用、检查和管理集群资源等。
 我们的 Launcher 就是基于此命令行工具，去部署应用的，具体安装方式可以看官方文档：
 
 [https://kubernetes.io/docs/tasks/tools/install-kubectl/](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 
-## 3.2 配置 kube config
+### 3.2 配置 kube config
 kubectl 要获得管理集群的能力，需要将集群的 kubeconfig 利用kubeadm部署的集群完成后  kubeconfig 文件魔默认文件为 /etc/kubernetes/admin.conf   需将文件内容写入到客户端用户路劲  **$HOME/.kube/config** 文件内。
 
-# 4 开始安装 观测云
-## 4.1 观测云离线安装镜像下载地址
+## 4 开始安装 观测云
+### 4.1 观测云离线安装镜像下载地址
 
 如果是离线网络环境下安装，需要先手工下载最新的观测云镜像包，通过  docker load  命令将所有镜像导入到各个 kubernetes 工作节点上后，再进行后续的引导安装。
 
@@ -1548,20 +1555,20 @@ $ gunzip guance-latest.tar.gz
 $ ctr -n=k8s.io images import guance-latest.tar
 ```
 **注：如果 kubernetes 节点主机可以访问公网，不需要通过以上离线导入的方式导入镜像，安装程序会自动下载镜像。**
-## 4.2 Launcher 服务安装配置
-### 4.2.1 Launcher 安装
+### 4.2 Launcher 服务安装配置
+#### 4.2.1 Launcher 安装
 Launcher 安装有2种方式：
 
 - Helm 安装
 - 原始  YAML 安装
 
 **!! 注意选一种安装方式即可**
-#### 4.2.1.1 Helm 安装
+##### 4.2.1.1 Helm 安装
 前提条件：
 
 - 已安装[Helm3](https://helm.sh/zh/docs/intro/install/)
 - 已完成存储配置
-##### 4.2.1.1.1 安装
+###### 4.2.1.1.1 安装
 ```shell
 # 添加仓库
 $ helm repo add launcher https://pubrepo.guance.com/chartrepo/launcher
@@ -1581,7 +1588,7 @@ $ helm install my-launcher launcher/launcher -n launcher --create-namespace  \
         --set-file configyaml="/Users/buleleaf/.kube/config" \
   --set ingress.hostName="launcher.my.com",storageClassName=nfs-client
 ```
-##### 4.2.1.1.2 社区版安装
+###### 4.2.1.1.2 社区版安装
 如果部署社区版，可以先获取[社区版部署镜像](https://www.yuque.com/dataflux/rtm/cfvi8s) ，添加 --set image.repository=<镜像地址>，--set image.tag=<镜像tag> 参数进行部署。
 ```shell
 # 此命令为演示命令，请根据自身需求修改内容
@@ -1590,12 +1597,12 @@ $ helm install my-launcher launcher/launcher -n launcher --create-namespace  \
   --set ingress.hostName="launcher.my.com",storageClassName=nfs-client \
  --set image.repository=pubrepo.jiagouyun.com/dataflux/1.40.93,image.tag=launcher-aa97377-1652102035
 ```
-##### 4.2.1.1.3 如何卸载
+###### 4.2.1.1.3 如何卸载
 Launcher 安装成功，非正常情况请勿卸载。
 ```shell
 helm uninstall <RELEASE_NAME> -n launcher
 ```
-#### 4.2.1.2 YAML 安装
+##### 4.2.1.2 YAML 安装
 Launcher YAML 下载：
  https://static.guance.com/launcher/launcher.yaml
 
@@ -1603,38 +1610,40 @@ Launcher YAML 下载：
 
 - {{ launcher_image }} 替换为最新版的 Launcher 应用的镜像地址
    - 如果是离线安装，上述通过 docker load 离线镜像导入后，通过 docker images | grep launcher 命令，拿到已导入到 Worker 节点中的最新版本 Launcher 镜像地址。
-   - 如果是在线安装，可以在 [私有化部署版本镜像](https://www.yuque.com/dataflux/rtm/cfvi8s) 文档中获取到最新版本的 Launcher 安装镜像地址。
+   - 如果是在线安装，可以在 [私有化部署版本镜像](changelog.md) 文档中获取到最新版本的 Launcher 安装镜像地址。
 - {{ domain }} 替换为主域名，如使用 dataflux.cn
 - {{ kube_config }}替换为kube config，launcher 需要获取到集群权限，去自动部署应用，注意缩进
 - {{ storageClassName }}替换为storage class name，必须和kubernetes  nfs subdir external provisioner   中配置的 name 一致。 (在配置了默认storageclass的前提下 storageClassName 字段可删除)
 
         配置了默认storageclass 的资源会显示defalut 参考下图：
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/936517/1646640913975-f0fd7966-1a63-4cc1-b0a5-d82c2d576c02.png#clientId=ub4666e9d-70b0-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=127&id=u432409fe&margin=%5Bobject%20Object%5D&name=image.png&originHeight=127&originWidth=1210&originalType=binary&ratio=1&rotation=0&showTitle=false&size=100030&status=done&style=none&taskId=u314f6897-fb97-4cbe-bc08-542722f3b68&title=&width=1210)
-### 4.2.2 导入 Launcher 服务
+
+    ![](img/8.deployment_4.png)
+#### 4.2.2 导入 Launcher 服务
 在**运维操作机**上执行以下 **kubectl** 命令，在导入 **Launcher** 服务：
 kubectl apply -f ./laucher.yaml
-### 4.2.3 解析 launcher 域名到 launcher 服务
+
+#### 4.2.3 解析 launcher 域名到 launcher 服务
 因为 launcher 服务为部署和升级 观测云 使用，不需要对用户开放访问，所以域名不要在公网解析，可以在**安装操作机**上，绑定 host 的方式，模拟域名解析，在 /etc/hosts 中添加 **launcher.dataflux.cn** 的域名绑定：
 
 192.168.0.1  launcher.dataflux.cn
 实际以边缘节点ingress的地址为准（或通过修改 launcher 服务为 NodePort 形式 通过 集群节点IP+Port的方式访问）
 
-## 4.3 应用安装引导步骤
+### 4.3 应用安装引导步骤
 在**安装操作机**的浏览器中访问 **launcher.dataflux.cn**，根据引导步骤一步一步完成安装配置。
-### 4.3.1 数据库配置
+#### 4.3.1 数据库配置
 
 - 集群内部服务通过服务名进行连接，集群为服务建议到如到集群内部使用。
 - 账号必须使用管理员账号，因为需要此账号去初始化多个子应用的数据库及数据库访问账号
-### 4.3.2 Redis 配置
+#### 4.3.2 Redis 配置
 
 - Redis 连接地址必须与集群物理节点能通信。
 - 集群内部服务通过服务名进行连接，集群为服务建议到如到集群内部使用。
-### 4.3.3 InfluxDB 配置
+#### 4.3.3 InfluxDB 配置
 
 - 集群内部服务通过服务名进行连接
 - 账号必须使用管理员账号，因为需要使用此账号去初始化 DB 以及 RP 待信息
 - 可添加多个 InfluxDB 实例
-### 4.3.4 其他设置
+#### 4.3.4 其他设置
 
 - 观测云管理后台的管理员账号初始账号名与邮箱（默认密码为 **admin，**建议登录后立即修改默认密码）
 - 集群节点内网 IP（会自动获取，需要确认是否正确）
@@ -1650,21 +1659,21 @@ kubectl apply -f ./laucher.yaml
    - df-kodo 【**kodo**】
 
 - TLS 域名证书填写
-### 4.3.5 安装信息
+#### 4.3.5 安装信息
 汇总显示刚才填写的信息，如有信息填写错误可返回上一步修改
-### 4.3.6 应用配置文件
+#### 4.3.6 应用配置文件
 安装程序会自动根据前面步骤提供的安装信息，初始化应用配置模板，但还是需要逐个检查所有应用模板，修改个性化应用配置，具体配置说明见安装界面。
 
 确认无误后，提交创建配置文件。
-### 4.3.7 应用镜像
+#### 4.3.7 应用镜像
 
 - 选择正确的**共享存储**，即你前面步骤中创建的 **storage class** 名称
 - 应用镜像会根据你选的 **Launcher** 版本，自动填写无需修改，确认无误后开始 **创建应用**
-### 4.3.8 应用状态
+#### 4.3.8 应用状态
 此处会列出所有应用服务的启动状态，此过程需要下载所有镜像，可能需要几分钟到十几分钟，待全部服务都成功启动之后，即表示已安装成功。
 
 **注意：服务启动过程中，必须停留在此页面不要关闭，到最后看到“版本信息写入成功”的提示，且没有弹出错误窗口，才表示安装成功！**
-## 4.4 域名解析
+### 4.4 域名解析
 将除 **df-kodo.dataflux.cn** 之外的其他所有子域名，都解析到 边缘节点 ingress 地址：
 
 - dataflux.dataflux.cn
@@ -1855,23 +1864,15 @@ backend vip_2_servers
 
 ```
 
-## 4.5 安装完成后
-部署成功手，可以参考手册 [如何开始使用](https://www.yuque.com/dataflux/ilwh4z/weiyg5) 
+### 4.5 安装完成后
+部署成功手，可以参考手册 [如何开始使用](how-to-start.md) 
 
-如果安装过程中发生问题，需要重新安装，可参考手册 [维护手册](https://www.yuque.com/dataflux/rtm/vohxyr#j5IOp)
-## 4.6 很重要的步骤！！！
-## 4.6.1 安装器服务下线
+如果安装过程中发生问题，需要重新安装，可参考手册 [维护手册](faq.md)
+### 4.6 很重要的步骤！！！
+### 4.6.1 安装器服务下线
 经过以上步骤，观测云安装完毕，可以进行验证，验证无误后一个很重要的步骤，将 launcher 服务下线，防止被误访问而破坏应用配置，可在**运维操作机**上执行以下命令，将 launcher 服务的 pod 副本数设为 0：
 ```yaml
 kubectl scale deployment -n launcher --replicas=0  launcher
 或
 kubectl patch deployment launcher -p '{"spec": {"replicas": 0}}' -n launcher
 ```
-
-
-
----
-
-观测云是一款面向开发、运维、测试及业务团队的实时数据监测平台，能够统一满足云、云原生、应用及业务上的监测需求，快速实现系统可观测。**立即前往观测云，开启一站式可观测之旅：**[www.guance.com](https://www.guance.com)
-![logo_2.png](https://cdn.nlark.com/yuque/0/2022/png/21511848/1642761909015-750c7ecd-81ba-4abf-b446-7b8e97abe76e.png#clientId=ucc58c24e-d7a9-4&crop=0&crop=0&crop=1&crop=1&from=drop&id=u1f1c3a96&margin=%5Bobject%20Object%5D&name=logo_2.png&originHeight=169&originWidth=746&originalType=binary&ratio=1&rotation=0&showTitle=false&size=139415&status=done&style=none&taskId=u420e6521-1eac-4f17-897f-53a63d36ff8&title=)
-
