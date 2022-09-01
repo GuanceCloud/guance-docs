@@ -126,7 +126,7 @@ icon: zy/release-notes
 
 ##### 优化「应用性能指标检测」
 
-「应用性能指标检测」检测指标新增「链路统计」，默认选中函数为 `Count`，统计字段为 `*`，若选中其他字段，函数自动变为 `Count_distinct` 。更多详情可参考 [应用性能指标检测](../monitoring/monitor/application-performance-detection.md) 
+「应用性能指标检测」中新增「链路统计」检测方式，统计规定时间内符合条件的链路数量，当超出自定义阈值则触发异常事件。可用于服务链路异常错误通知。更多详情可参考 [应用性能指标检测](../monitoring/monitor/application-performance-detection.md) 
 
 ![](img/5.changelog_11.png)
 
