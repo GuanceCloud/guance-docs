@@ -17,18 +17,22 @@
 ### 开启 Input
 
 1、 开启 ddtrace
-```
+
+```shell
 cd /usr/local/datakit/conf.d/ddtrace
 cp ddtrace.conf.sample ddtrace.conf  
 ```
 
 2、 编写 Pipeline
-```
+
+```shell
 cd /usr/local/datakit/pipeline
 vi log_book_order.p
 ```
+
 其中 **%{DATA:username}** 是下单人，**%{DATA:order_no}** 是订单号，**%{DATA:order_status}** 是订单状态。
-```
+
+```toml
 #2021-12-22 10:09:53.443 [http-nio-7001-exec-7] INFO  c.d.s.b.s.i.OrderServiceImpl - [createOrder,164] - ecs009-book-order 7547183777837932733 2227975860088333788 test d6a3337d-ff82-4b00-9b4d-c07fb00c0cfb - 用户:test 已下单,订单号: d6a3337d-ff82-4b00-9b4d-c07fb00c0cfb
 
 
@@ -40,12 +44,13 @@ default_time(time)
 
 3、 开启 Logging插件，复制 sample文件
 
-```
+```shell
 cd /usr/local/datakit/conf.d/log
 cp logging.conf.sample log_book_order.conf
 ```
 修改 log_book_order.conf文件，logfiles指定日志文件，Pipeline 指定上步创建的 log_book_order.p。source 指定log_book_order，方便在视图中使用该日志。
-```
+
+```toml
 [[inputs.logging]]
   ## required
   logfiles = [
@@ -87,8 +92,9 @@ cp logging.conf.sample log_book_order.conf
 
 ```
 
-4. 重启 DataKit 
-```
+4、 重启 DataKit 
+
+```shell
 systemctl restart datakit
 ```
 ### 电商数据接入
@@ -101,7 +107,7 @@ systemctl restart datakit
 
 新建切片，把 userName、orderNo、orderStatus 添加到 MDC ，请求结束再移出。
 
-```
+```java
 @Component
 @Aspect
 public class LogAop {
@@ -138,14 +144,15 @@ public class LogAop {
 
 3、 配置 logback-spring.xml
 
-```
+```xml
 <property name="CONSOLE_LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{20} - [%method,%line] - %X{dd.service} %X{dd.trace_id} %X{dd.span_id} %X{userName} %X{orderNo} %X{orderStatus} - %msg%n" />
 ```
 
 ### 打包发布
 
--  前端打包，会生成 build 目录
-```
+- 前端打包，会生成 build 目录
+
+```shell
 cd bookstore-frontend-react-app
 yarn  build
 ```
@@ -164,7 +171,7 @@ bookstore-eureka-discovery-service-0.0.1-SNAPSHOT.jar，
 
 bookstore-order-service-0.0.1-SNAPSHOT.jar 
 
-```
+```shell
 mvn clean install -DskipTests
 ```
 ### 开启RUM
@@ -183,6 +190,7 @@ mvn clean install -DskipTests
 ![image.png](../images/order-3.png)
 
 - 安装 Nginx ，部署 web 项目
+
 ```
 server {
         listen       80;
@@ -196,11 +204,12 @@ server {
 }
 
 ```
+
 ### 开启 APM
 
 观测云获取 Trace 数据，需要使用: /usr/local/datakit/data/dd-java-agent.jar。
 
-```
+```shell
 java -jar bookstore-eureka-discovery-service-0.0.1-SNAPSHOT.jar
  
  

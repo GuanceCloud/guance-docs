@@ -21,7 +21,7 @@
 
 在 datakit.yaml 文件的 ConfigMap 资源中，增加 skywalking.conf 的定义。
 
-```
+```yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -39,7 +39,7 @@ data:
 
 在 datakit.yaml 文件的 volumeMounts 下面新增如下内容。
 
-```
+```yaml
         - mountPath: /usr/local/datakit/conf.d/skywalking/skywalking.conf
           name: datakit-conf
           subPath: skywalking.conf
@@ -47,7 +47,7 @@ data:
 
 #### 重启 DataKit
 
-```
+```shell
 kubectl delete -f datakit.yaml
 kubectl apply -f datakit.yaml
 ```
@@ -78,7 +78,7 @@ ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS} -jar ${jar} ${PARAMS} "]
 
 制作镜像并上传到镜像仓库。
 
-```
+```shell
 docker build -t 172.16.0.246/df-demo/service-demo:v1  .
 docker push 172.16.0.246/df-demo/service-demo:v1
 ```
@@ -87,7 +87,7 @@ docker push 172.16.0.246/df-demo/service-demo:v1
 
 在应用部署的 skywalking-demo.yaml 文件中，使用 initContainers 初始化 apache/skywalking-java-agent:8.7.0-alpine 镜像 ，同 Pod 的应用即可访问到 skywalking-agent.jar，然后在 JAVA_OPTS 定义 jar 的启动命令，其中 -Dskywalking.agent.service_name=skywalking-demo-master 定义应用的别名是 skywalking-demo-master。      
 
-```
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -140,7 +140,7 @@ spec:
           emptyDir: {}
 ```
 
-```
+```shell
 kubectl apply -f skywalking-demo.yaml 
 ```
 
@@ -152,7 +152,7 @@ kubectl apply -f skywalking-demo.yaml
 
 调用应用，生成链路数据
 
-```
+```shell
 curl 10.244.36.98:8090/ping
 ```
 

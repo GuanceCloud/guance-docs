@@ -23,7 +23,7 @@ vi logging-socket.conf
 
 logging-socket.conf 文件内容如下：
 
-```
+```toml
       [[inputs.logging]]
         # only two protocols are supported:TCP and UDP
         sockets = [
@@ -46,7 +46,7 @@ logging-socket.conf 文件内容如下：
 
 ##### 2 重启 DataKit 
 
-```
+```shell
 systemctl restart datakit
 ```
 
@@ -56,7 +56,7 @@ systemctl restart datakit
 
 ##### 1 ConfigMap 增加配置
 
-```
+```yaml
     logging-socket.conf: |-
       [[inputs.logging]]
         # only two protocols are supported:TCP and UDP
@@ -80,7 +80,7 @@ systemctl restart datakit
 
 ##### 2 挂载 logging-socket.conf
 
-```
+```yaml
         - mountPath: /usr/local/datakit/conf.d/log/logging-socket.conf
           name: datakit-conf
           subPath: logging-socket.conf
@@ -88,7 +88,7 @@ systemctl restart datakit
 
 ##### 3 重启 DataKit 
 
-```
+```shell
 kubectl delete -f datakit.yaml
 kubectl apply -f datakit.yaml
 ```
@@ -110,7 +110,7 @@ kubectl apply -f datakit.yaml
 
 在项目的 pom.xml 添加依赖如下内容：
 
-```bash
+```xml
 <dependency>
     <groupId>net.logstash.logback</groupId>
     <artifactId>logstash-logback-encoder</artifactId>
@@ -122,7 +122,7 @@ kubectl apply -f datakit.yaml
 
 本步骤中我们把 DataKit 的地址、Socket 端口、Service 、Source 定义成外部可传入的参数。在项目的logback-spring.xml 文件中添加 Appender ，定义 datakitHostIP 、datakitSocketPort 、datakitSource 、datakitService ，值分别通过 guangce.datakit.host_ip 、guangce.datakit.socket_port 、guangce.datakit.source 、guangce.datakit.service 从外部传入。
 
-```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
@@ -184,7 +184,7 @@ kubectl apply -f datakit.yaml
 
 application.yml 文件中增加如下配置，这些默认参数将会传入到 Logback 中。
 
-```bash
+```yaml
 guangce:
   datakit:
     host_ip: 127.0.0.1  # datakit地址
@@ -199,7 +199,7 @@ guangce:
 
 执行如下命令，启动应用，如果不传入参数，将会使用 application.yml 中默认值。
 
-```
+```shell
 java -jar  pay-service-1.0-SNAPSHOT.jar --guangce.datakit.host_ip=172.26.0.231 --guangce.datakit.socket_port=9542 --guangce.datakit.source=pay-socket-source --guangce.datakit.service=pay-socket-service
 ```
 
@@ -220,14 +220,14 @@ WORKDIR ${workdir}
 ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS} -jar ${jar} ${PARAMS} 2>&1 > /dev/null"]
 ```
 
-```
+```shell
 docker build -t 172.16.0.238/df-demo/istio-pay:v1 -f DockerfilePay .
 docker push 172.16.0.238/df-demo/istio-pay:v1
 ```
 
 编写部署 pay-deployment.yaml 文件，增加 PARAMS 环境变量，在这里传入 guangce.datakit.host_ip 、guangce.datakit.socket_port 、guangce.datakit.source 、guangce.datakit.service 值，如果不传将会使用默认值。
 
-```
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -273,7 +273,7 @@ spec:
         name: datadir
 ```
 
-```
+```shell
 kubectl apply -f pay-deployment.yaml
 ```
 
@@ -281,7 +281,7 @@ kubectl apply -f pay-deployment.yaml
 
 由于 Socker Appender 输出的日志是 json 格式，DataKit 需要使用 Pipeline 把 json 字符串切割出来，其中source 和 service 是默认的 Tag ，所以需要用到 set_tag 。<br />         登录[观测云](https://console.guance.com/)，【日志】->【Pipelines】，点击【新建Pipeline】，选择运维开启 Socket 采集器时定义的source 名称 socketdefault 。定义解析规则如下：
 
-```
+```toml
         json(_,msg,"message")
         json(_,class,"class")
         json(_,thread,"thread")
@@ -298,7 +298,7 @@ kubectl apply -f pay-deployment.yaml
 
 使用日志样本测试通过后，点击【保存】。注意这里的解析规则与 logback-spring.xml 文件中添加 pattern 是对应的。
 
-```
+```toml
                     <pattern>
                         {
                         "severity": "%level",

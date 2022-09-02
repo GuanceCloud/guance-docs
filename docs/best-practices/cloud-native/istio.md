@@ -77,7 +77,7 @@ Bookinfo 的链路数据，只需要修改 istio 的 configmap 中 zipkin.addres
 
 istio-ingressgateway-service-ext.yaml 文件。
 
-```bash
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -97,7 +97,7 @@ spec:
 
 istio-egressgateway-service-ext.yaml 文件。
 
-```bash
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -125,7 +125,8 @@ kubectl apply -f istio-egressgateway-service-ext.yaml
 下面是 datakit.yaml 文件的修改部分。
 
 - ConfigMap 增加
-```
+
+```yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -184,7 +185,7 @@ data:
 
 - 挂载 zipkin.conf 和 prom_istiod.conf
 
-```
+```yaml
 apiVersion: apps/v1
 kind: DaemonSet
 ...
@@ -218,7 +219,7 @@ spec:
 
 #### 重新部署 Datakit 
 
-```
+```bash
 cd /usr/local/df-demo
 kubectl apply -f datakit.yaml
 ```
@@ -235,7 +236,7 @@ kubectl apply -f datakit.yaml
 
 上传 `istio-1.11.2-linux-amd64.tar.gz` 到 `/usr/local/df-demo/` 目录，查看 kubernetes 所在服务器的内网地址是 _**172.16.0.15**_ ，请替换 _**172.16.0.15**_ 为您的 ip。
 
-```
+```bash
 su minikube
 cd /usr/local/df-demo/
 tar zxvf istio-1.11.2-linux-amd64.tar.gz  
@@ -251,7 +252,7 @@ istioctl install --set profile=demo
 
 部署成功后，ingressgateway、egressgateway、istiod 会处于 Running 状态。
 
-```
+```bash
 kubectl get pods -n istio-system 
 ```
 
@@ -263,7 +264,7 @@ kubectl get pods -n istio-system
 
 解压源码，拷贝 /usr/local/df-demo/istio-1.11.2/samples/bookinfo/src/productpage 目录到 /usr/local/df-demo/bookinfo 目录。拷贝部署 bookInfo 需要的 yaml。
 
-```
+```bash
 cp /usr/local/df-demo/istio-1.11.2/samples/bookinfo/networking/bookinfo-gateway.yaml /usr/local/df-demo/bookinfo/bookinfo-gateway.yaml
 cp /usr/local/df-demo/istio-1.11.2/samples/bookinfo/networking/virtual-service-ratings-test-delay.yaml /usr/local/df-demo/bookinfo/virtual-service-ratings-test-delay.yaml
 cp /usr/local/df-demo/istio-1.11.2/samples/bookinfo/platform/kube/bookinfo.yaml /usr/local/df-demo/bookinfo/bookinfo.yaml
@@ -274,7 +275,8 @@ cp /usr/local/df-demo/istio-1.11.2/samples/bookinfo/platform/kube/bookinfo.yaml 
 #### 开启自动注入
 
 新建 prod 命名空间，开启该空间下创建 Pod 时自动注入 Sidecar，让 Pod 的出入流量都转由 Sidecar 进行处理。 
-```
+
+```bash
 kubectl create namespace prod
 kubectl label namespace prod istio-injection=enabled
 ```
@@ -295,7 +297,7 @@ http://<your-外网ip>:9529。
 
 - 3  制作镜像
 
-```
+```bash
 cd /usr/local/df-demo/bookinfo/productpage
 eval $(minikube docker-env)
 docker build -t product-page:v1  .
@@ -309,7 +311,7 @@ docker build -t product-page:v1  .
 
 #### 打通 APM 和 Datakit
 
-```
+```bash
 kubectl edit configmap istio -n istio-system -o yaml 
 ```
 
@@ -321,7 +323,7 @@ kubectl edit configmap istio -n istio-system -o yaml
 
 修改 bookinfo 的 yaml，所有资源的 metadata 下增加 namespace: prod
 
-```
+```bash
 vi /usr/local/df-demo/bookinfo/bookinfo.yaml
 vi /usr/local/df-demo/bookinfo/bookinfo-gateway.yaml
 vi /usr/local/df-demo/bookinfo/virtual-service-ratings-test-delay.yaml
@@ -350,7 +352,7 @@ vi /usr/local/df-demo/bookinfo/bookinfo.yaml
 - $NAMESPACE：Pod所在命名空间
 - tags_ignore:  忽略的 tag。
 
-```bash
+```yaml
       annotations:
         datakit/prom.instances: |
           [[inputs.prom]]
@@ -375,7 +377,7 @@ vi /usr/local/df-demo/bookinfo/bookinfo.yaml
 
 完整 bookinfo.yaml。
 
-```bash
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -804,7 +806,7 @@ spec:
 
 完整 bookinfo-gateway.yaml。
 
-```bash
+```yaml
 kind: Gateway
 metadata:
   name: bookinfo-gateway
@@ -851,7 +853,7 @@ spec:
 
 #### 部署服务
 
-```
+```bash
 cd /usr/local/df-demo/bookinfo
 kubectl apply -f bookinfo.yaml
 kubectl apply -f bookinfo-gateway.yaml
@@ -871,7 +873,7 @@ minikube service istio-ingressgateway -n istio-system
 
 - root 账号登录服务器，修改 proxy_pass为http2 的服务地址
 
-```
+```bash
 vim  /etc/nginx/nginx.conf
 ```
 
@@ -879,7 +881,7 @@ vim  /etc/nginx/nginx.conf
 
 - 重启 nginx
 
-```
+```bash
 systemctl restart nginx
 ```
 
@@ -929,7 +931,7 @@ datakit 默认采集输出到 /dev/stdout 的日志，如果需要使用更深�
 
 - 执行 virtual-service-ratings-test-delay.yaml 
 
-```
+```bash
 cd /usr/local/df-demo/bookinfo
 kubectl apply -f virtual-service-ratings-test-delay.yaml 
 ```

@@ -1,4 +1,5 @@
 # JVM 可观测最佳实践
+
 ---
 
 ## 前置条件
@@ -47,11 +48,14 @@ DataKit 安装完成后，已经默认开启 Linux 主机常用插件，可以�
 ## JVM 采集相关配置：
 ###  JAVA_OPTS 声明
  本示例使用 ddtrace 采集 Java 应用的 jvm 指标，先根据您的需求定义 JAVA_OPTS，在启动应用的时候替换JAVA_OPTS，启动 jar 方式如下：
-```
+
+```java
 java  ${JAVA_OPTS} -jar your-app.jar
 ```
+
 完整 JAVA_OPTS 如下：
-```bash
+
+```java
 -javaagent:/usr/local/datakit/data/dd-java-agent.jar \
  -XX:FlightRecorderOptions=stackdepth=256 \
  -Ddd.profiling.enabled=true  \
@@ -67,7 +71,9 @@ java  ${JAVA_OPTS} -jar your-app.jar
  -Ddd.trace.health.metrics.statsd.port=8125   \
  
 ```
+
 详细说明：
+
 ```
 -Ddd.env：应用的环境类型，选填 
 -Ddd.tags：自定义标签，选填    
@@ -86,21 +92,28 @@ java  ${JAVA_OPTS} -jar your-app.jar
 ### 1. jar 使用方式
 
 开启 statsd
-```
+
+```shell
 $ cd /usr/local/datakit/conf.d/statsd
 $ cp statsd.conf.sample statsd.conf
 ```
+
 开启 ddtrace
-```
+
+```shell
 $ cd /usr/local/datakit/conf.d/ddtrace
 $ cp ddtrace.conf.sample  ddtrace.conf
 ```
+
 重启 datakit
-```
+
+```shell
 $ datakit --restart
 ```
+
 启动 jar，请用您的应用名替换下面的 your-app，如果应用未连接 mysql，请去掉 -Ddd.service.mapping=mysql:mysql01，其中 mysql01 是 dataflux 应用性能监控看到的 mysql 的别名
-```
+
+```shell
 nohup java -Dfile.encoding=utf-8  \
  -javaagent:/usr/local/datakit/data/dd-java-agent.jar \
  -Ddd.service=your-app   \
@@ -122,10 +135,12 @@ nohup java -Dfile.encoding=utf-8  \
 
 重启 datakit
 
-```
+```shell
 $ datakit --restart
 ```
+
 请在您的 Dockerfile 中的 ENTRYPOINT 启动参数使用环境变量 JAVA_OPTS，Dockerfile 文件示例如下：
+
 ```bash
 FROM openjdk:8u292-jdk
 
@@ -137,23 +152,27 @@ WORKDIR ${workdir}
 
 ENTRYPOINT ["sh", "-ec", "exec java  ${JAVA_OPTS} -jar ${jar} "]
 ```
+
 制作镜像
 
 把上面的内容保存到 /usr/local/java/Dockerfile 文件中
-```
+
+```shell
 $ cd /usr/local/java
 $ docker build -t your-app-image:v1 .
 ```
 拷贝 /usr/local/datakit/data/dd-java-agent.jar 放到 /tmp/work 目录
 
 **Docker run 启动**，请修改 172.16.0.215 为您的服务器的内网 ip 地址，替换 9299 为您应用的端口，替换 your-app 为您的应用名，替换 your-app-image:v1 为您的镜像名
-```
+
+```shell
 docker run  -v /tmp/work:/tmp/work -e JAVA_OPTS="-javaagent:/tmp/work/dd-java-agent.jar -Ddd.service=your-app  -Ddd.service.mapping=mysql:mysql01 -Ddd.env=dev  -Ddd.agent.host=172.16.0.215 -Ddd.agent.port=9529  -Ddd.jmxfetch.statsd.host=172.16.0.215  " --name your-app -d -p 9299:9299 your-app-image:v1
 
 ```
 **Docker compose 启动**
 
 Dockerfile 需要声明 ARG 参数来接收 docker-compose 传过来的参数，示例如下：
+
 ```bash
 FROM openjdk:8u292-jdk
 
@@ -167,7 +186,9 @@ WORKDIR ${workdir}
 
 ENTRYPOINT ["sh", "-ec", "exec java  ${JAVA_OPTS} -jar ${jar} "]
 ```
+
 把上面的内容保存到 /usr/local/java/DockerfileTest 文件中，在同目录新建 docker-compose.yml 文件，请修改 172.16.0.215 为您的服务器的内网 ip 地址，替换 9299 为您应用的端口，替换 your-app 为您的应用名，替换your-app-image:v1 为您的镜像名。docker-compose.yml 示例如下：
+
 ```bash
 version: "3.9"
 services:
@@ -189,8 +210,10 @@ networks:
   myNet:
     driver: bridge
 ```
+
 启动
-```bash
+
+```shell
 $ cd /usr/local/java
 #制作镜像
 $ docker build -t your-app-image:v1 .
@@ -205,13 +228,16 @@ $ docker-compose up -d
 在 kubernetes 中使用 DaemonSet 方式部署 Datakit，请参考 `[Datakit DaemonSet安装](/datakit/datakit-daemonset-deploy.md)`，
 
 采集 JVM 指标需要开通 ddtrace 和 statsd 采集器，通过 DaemonSet 方式部署的 datakit，是在 yaml 文件的ENV_DEFAULT_ENABLED_INPUTS环境变量中增加 statsd, ddtrace。
-```
+
+```yaml
 - name: ENV_DEFAULT_ENABLED_INPUTS
   value: cpu,disk,diskio,mem,swap,system,hostobject,net,host_processes,kubernetes,container,statsd,ddtrace
         
 ```
+
 本示例的部署文件是 /usr/local/k8s/datakit-default.yaml，内容如下：
-```
+
+```yaml
 apiVersion: v1
 kind: Namespace
 metadata:
@@ -516,7 +542,7 @@ data:
 
 部署 Datakit
 
-```
+```shell
 $ cd /usr/local/k8s
 $ kubectl apply -f datakit-default.yaml
 $ kubectl get pod -n datakit
@@ -525,12 +551,14 @@ $ kubectl get pod -n datakit
 ![image.png](../images/jvm-4.png)
 
 本示例如果采集系统日志，请参考下面的内容：
-```
+
+```yaml
 #- mountPath: /usr/local/datakit/conf.d/log/demo-system.conf
 #  name: datakit-conf
 #  subPath: demo-system.conf
 ```
-```
+
+```yaml
     #### kubernetes
     demo-system.conf: |-
         [[inputs.logging]]
@@ -568,7 +596,9 @@ $ kubectl get pod -n datakit
           # some_tag = "some_value"
           # more_tag = "some_other_value"
 ```
+
 #### 3.2 sidecar 镜像
+
 在jar使用方式中使用到了 dd-java-agent.jar，而在用户的镜像中并不一定存在这个 jar，为了不侵入客户的业务镜像，我们需要制作一个包含 dd-java-agent.jar 的镜像，再以 sidecar 的方式先于业务容器启动，以共享存储的方式提供 dd-java-agent.jar。
 
 ```
@@ -577,7 +607,8 @@ pubrepo.jiagouyun.com/datakit/dk-sidecar:1.0
 
 #### 3.3 编写 Java 应用的 Dockerfile
 请在您的 Dockerfile 中的 ENTRYPOINT 启动参数使用环境变量 JAVA_OPTS，Dockerfile 文件示例如下：
-```
+
+```bash
 FROM openjdk:8u292
 
 ENV jar your-app.jar
@@ -587,16 +618,20 @@ COPY ${jar} ${workdir}
 WORKDIR ${workdir}
 ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS} -jar ${jar}"]
 ```
+
 制作镜像并上传到 harbor 仓库，请用您的镜像仓库替换下面的 172.16.0.215:5000/dk
-```
+
+```shell
 $ cd /usr/local/k8s/agent
 $ docker build -t 172.16.0.215:5000/dk/your-app-image:v1 . 
 $ docker push 172.16.0.215:5000/dk/your-app-image:v1  
 ```
 
 #### 3.4 编写 deployment
+
 新建 /usr/local/k8s/your-app-deployment-yaml 文件，内容如下：
-```
+
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -670,18 +705,20 @@ spec:
       
 
 ```
+
 说明 JAVA_OPTS 中的 -Ddd.tags=container_host:$(PODE_NAME) 是把环境变量 PODE_NAME 的值，传到标签 container_host 中，请替换 9299 为您应用的端口，替换 your-app-name 为您的服务名，替换 30001 为您的应用对外暴露的端口，替换 172.16.0.215:5000/dk/your-app-image:v1 为您的镜像名
 
 ![image.png](../images/jvm-6.png)
 
 启动
 
-```
+```shell
 $ cd /usr/local/k8s/
 $ kubectl apply -f your-app-deployment-yaml
 ```
 
 ###  新建 JVM 可观测场景：
+
 登录[观测云](https://guance.com/)进入空间，点击【新建场景】
 
 ![1631933819(1).png](../images/jvm-7.png)

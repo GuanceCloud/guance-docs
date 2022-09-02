@@ -44,9 +44,9 @@
 ![image.png](../images/aliyun-prod-func-6.png)  
 3、 依次添加脚本集
 
-   1. 观测云集成 (核心包)
-   1. 观测云集成 (腾讯云-云监控)
-   1. 观测云集成 (腾讯云-产品xxx)
+   1、 观测云集成 (核心包)
+   2、 观测云集成 (腾讯云-云监控)
+   3、 观测云集成 (腾讯云-产品xxx)
 
 _注：在安装「核心包」后，系统会提示安装第三方依赖包 pip，按照正常步骤点击安装即可_
 
@@ -85,7 +85,7 @@ _注：在安装「核心包」后，系统会提示安装第三方依赖包 pip
 
 _注：腾讯云-云监控采集器必须写在末尾 (tencentcloud_monitor.DataCollector)_
 
-``` bash
+``` python
 from guance_integration__runner import Runner                      # 引入启动器
 import guance_tencentcloud_clb__main as tencentcloud_clb           # 引入腾讯云clb采集器
 import guance_tencentcloud_cvm__main as tencentcloud_cvm           # 引入腾讯云cvm采集器
@@ -154,6 +154,7 @@ def run():
 5、 点击** 保存 **配置并 **发布** (发布后才能添加定时任务)
 
 ![image.png](../images/tencent-prod-func-12.png)
+
 ## 定时任务
 
 1、添加自动触发任务，**管理** - **自动触发配置** - **新建任务**
@@ -169,6 +170,7 @@ def run():
 ![image.png](../images/tencent-prod-func-15.png)
 
 ## 场景视图
+
 登录观测云，**场景** - **新建仪表板 **- **内置模板库** - **腾讯云产品 xxx，**即可查看对应视图模板
 
 示例为 腾讯云 CVM
@@ -176,6 +178,7 @@ def run():
 ![](../images/tencent-prod-func-16.png)
 
 ## 监控规则
+
 登录观测云，**监控** - **模板新建** - **腾讯云产品 xxx 检测库**，即可添加对应规则模板
 
 示例为 腾讯云 CDB 检测库

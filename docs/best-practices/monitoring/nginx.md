@@ -91,7 +91,7 @@ DataKit 安装完成后，已经默认开启 Linux 主机常用插件，可以�
 
 yum 安装的  Nginx  可在控制台输入 **ngixn -V **查询是否开启 **with-http_stub_status_module **模块，如查询已存在该模块，可直接跳至 [**Datakit 开启 Nginx .inputs**](#datakit-nginx-inputs) 环节。
 
-```
+```shell
 $ nginx -V
 ```
 
@@ -99,7 +99,7 @@ $ nginx -V
 
 如果是自定义安装的  Nginx ，可通过在控制台输入 **/usr/local/ Nginx /sbin/ Nginx  -V** 查看，如查询已存在该模块，可直接跳至 [**Datakit 开启 Nginx .inputs**](#datakit-nginx-inputs) 环节。
 
-```
+```shell
 $ /usr/local/nginx/sbin/nginx -V
 ```
 
@@ -108,7 +108,8 @@ $ /usr/local/nginx/sbin/nginx -V
 #### Windows环境：
 
 在 powershell 中执行 **.\ Nginx .exe -V **查看，如查询已存在该模块，可直接跳至 [**Datakit 开启 Nginx .inputs**](#datakit-nginx-inputs) 环节。
-```
+
+```shell
 $  .\nginx.exe -V
 ```
 
@@ -125,7 +126,7 @@ $  .\nginx.exe -V
 
 configure 文件位置的查询方式：**find /| grep configure |grep  Nginx**
 
-```
+```shell
 $ find /| grep configure |grep nginx
 $ cd /usr/local/src/nginx-1.20.0/
 $ ./configure --with-http_stub_status_module
@@ -136,6 +137,7 @@ $ ./configure --with-http_stub_status_module
 ---
 
 #### 在  Nginx .conf 中增添  Nginx _status 的 location 转发 (举例)
+
 ```
 
 $ cd /etc/nginx   
@@ -175,7 +177,7 @@ windows 环境：**浏览器访问 http://127.0.0.1/ Nginx _status**
 
 #### Linux 环境：
 
-```
+```shell
 $ cd /usr/local/datakit/conf.d/nginx/
 $ cp nginx.conf.sample nginx.conf
 $ vim  nginx.conf
@@ -183,7 +185,7 @@ $ vim  nginx.conf
 
 修改如下内容
 
-```
+```toml
 [[inputs.nginx]]
     url = http://localhost/nginx_status
 [inputs.nginx.log]
@@ -208,7 +210,8 @@ pipeline = "nginx.p"
 **$ 编辑  Nginx .conf 文件**
 
 修改如下内容
-```
+
+```toml
 [[inputs.nginx]]
     url = http://localhost/nginx_status
 [inputs.nginx.log]

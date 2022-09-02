@@ -58,7 +58,7 @@ https://kubernetes.io/docs/setup/production-environment/tools/
 
 #### 1 下载 deploy.yaml
 
-```
+```shell
 wget https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.1/deploy/static/provider/baremetal/deploy.yaml
 ```
 
@@ -77,7 +77,7 @@ registry.cn-hangzhou.aliyuncs.com/google_containers/kube-webhook-certgen:v1.1.1
 
 找到kind: Deployment部分，修改如下内容：
 
-```
+```yaml
 kind: DaemonSet  #修改 
 
 ... 
@@ -86,7 +86,7 @@ kind: DaemonSet  #修改
       dnsPolicy: ClusterFirstWithHostNet  #修改
 ```
 
-```
+```shell
 kubectl apply -f deploy.yaml
 ```
 
@@ -96,7 +96,7 @@ kubectl apply -f deploy.yaml
 
 观测云接入 Ingress 指标数据，需要 datakit 开启 prom 插件，在 prom 插件配置中指定 exporter 的 url，在 Kubernetes 集群中采集 Ingress  Controller指标，推荐使用 annotations 增加注解的方式。打开部署 Ingress 的deploy.yaml 文件，找到上步中修改的 DaemonSet 部分 ，增加 annotations。
 
-```
+```yaml
       annotations:
         datakit/prom.instances: |
           [[inputs.prom]]
@@ -141,7 +141,7 @@ annotations中支持如下几个通配符：
 
 ### 重启 Ingress  Controller
         
-```
+```shell
 kubectl delete -f deploy.yaml
 kubectl apply -f deploy.yaml
 ```
@@ -149,7 +149,7 @@ kubectl apply -f deploy.yaml
 
 编写 Nginx  的部署文件  nginx-deployment.yaml。
 
-```
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -189,7 +189,8 @@ spec:
     targetPort: 80      
 ```
 编写对应的 nginx-ingress .yaml，根据这个规则，如果域名是mynginx .com则转发到 Nginx  - Service 这个 Service 。
-```
+
+```yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -212,14 +213,14 @@ spec:
 
 部署示例
 
-```
+```shell
 kubectl apply -f  nginx-deployment.yaml
 kubectl apply -f  nginx-ingress.yaml
 ```
 
 测试请求，其中8.136.204.98是 Kubernetes 集群中部署了 Ingress 的节点ip，mynginx.com是 nginx-ingress .yaml中对应的host。
 
-```
+```shell
 curl -v http://8.136.204.98 -H 'host: mynginx.com'
 ```
 
