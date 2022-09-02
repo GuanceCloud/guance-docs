@@ -40,7 +40,7 @@
 
 配置概率采样器
 
-```toml
+```yaml
 processors:
   # 概率采样器
   probabilistic_sampler:
@@ -50,7 +50,7 @@ processors:
 
 启用概率采样器
 
-```toml
+```yaml
 service:
   extensions: [pprof, zpages, health_check]
   pipelines:
@@ -230,7 +230,7 @@ docker-compose up -d
 
 配置尾部采样器
 
-```toml
+```yaml
 processors:
   # 尾部采样器
   tail_sampling:
@@ -256,7 +256,7 @@ processors:
 
 启用尾部采样器
 
-```toml
+```yaml
 service:
   extensions: [pprof, zpages, health_check]
   pipelines:

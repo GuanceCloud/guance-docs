@@ -22,13 +22,13 @@ DataKit 只需开启 OpenTelemetry Input，即可采集 OpenTelemetry Agent上�
 ### 开启 Input
 
 1. 开启 OpenTelemetry 插件，复制 Sample 文件
-```shell
+``` shell
 cd /usr/local/datakit/conf.d/opentelemetry
 cp opentelemetry.conf.sample opentelemetry.conf
 ```
 
 2. 修改 opentelemetry.conf
-```shell
+``` toml
 [[inputs.opentelemetry]]
   ## 在创建'trace',Span','resource'时，会加入很多标签，这些标签最终都会出现在'Span'中
   ## 当您不希望这些标签太多造成网络上不必要的流量损失时，可选择忽略掉这些标签
