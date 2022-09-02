@@ -28,7 +28,7 @@
 
 定义目标地址，为 reviews Service 做服务发现时划分 subsets，分别是 v1 和 v2，为了使用 kubectl 部署该资源，把以下内容保存到 destination-rule-reviews.yaml 文件。
 
-```
+```yaml
 apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
@@ -45,7 +45,7 @@ spec:
       version: v2
 ```
 
-```
+```shell
 kubectl create -f destination-rule-reviews.yaml
 ```
 
@@ -53,7 +53,7 @@ kubectl create -f destination-rule-reviews.yaml
 
 再没发布 v2 之前，先把流量完全切换到 v1。把下面的内容存入 virtual-service-reviews.yaml 文件。
 
-```
+```yaml
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
@@ -89,7 +89,7 @@ kubectl create -f virtual-service-reviews.yaml
 
 修改 virtual-service-reviews.yaml 文件，内容如下：
 
-```
+```yaml
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
@@ -112,7 +112,7 @@ spec:
 
 重新部署。
 
-```
+```shell
 kubectl replace -f virtual-service-reviews.yaml
 ```
 
@@ -158,7 +158,7 @@ Span 列表中查看每个 Span 的执行耗时。
 
 在 reviews-v2 版本的微服务经过验证正常后，流量可以完全切换到 v2 版本。 修改 virtual-service-reviews.yaml 文件，内容如下：
 
-```
+```yaml
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
@@ -176,7 +176,7 @@ spec:
 
 重新部署。
 
-```
+```shell
 kubectl replace -f virtual-service-reviews.yaml
 ```
 
@@ -240,7 +240,7 @@ kubectl replace -f virtual-service-reviews.yaml
 
 Bookinfo 项目有个演示超时的示例，使用 jason 用户登录，ratings 服务会超时。新建 virtual-service-ratings-test-delay.yaml  内容如下：
 
-```
+```yaml
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
@@ -272,7 +272,7 @@ spec:
 
 创建资源。
 
-```
+```shell
 kubectl apply -f virtual-service-ratings-test-delay.yaml 
 ```
 

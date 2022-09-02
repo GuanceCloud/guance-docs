@@ -27,7 +27,7 @@ Kubernetes 版本：1.18+
 
 在部署 DataKit 使用的 datakit.yaml 文件中，ConfigMap 资源中增加 controller-manager.conf。
 
-```
+```yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -120,7 +120,7 @@ data:
 
 在 datakit.yaml 文件的 volumeMounts 下面增加下面内容。
 
-```
+```yaml
         - mountPath: /usr/local/datakit/conf.d/prom/controller-manager.conf
           name: datakit-conf
           subPath: controller-manager.conf
@@ -128,7 +128,7 @@ data:
 
 3、 重启 DataKit 
 
-```
+```shell
 kubectl delete -f datakit.yaml
 kubectl apply -f datakit.yaml
 ```
@@ -136,7 +136,7 @@ kubectl apply -f datakit.yaml
 
 指标预览
 
-![1651903198(1).png](../imgs/kubernetes_controller_manager-1.png)
+![image](../imgs/kubernetes_controller_manager-1.png)
 
 #### 插件标签 (必选）
 
@@ -148,15 +148,15 @@ kubectl apply -f datakit.yaml
 - 采集 controller-manager 指标，必填的 key 是 instance，值是 controller-manager 的地址
 
     
-```
+```toml
           ## 自定义Tags
           [inputs.prom.tags]
             instance = "172.16.0.229:10257"   
 ```
 
-重启datakit
+重启 DataKit
 
-```
+```shell
 kubectl delete -f datakit.yaml
 kubectl apply -f datakit.yaml
 ```
@@ -167,33 +167,31 @@ kubectl apply -f datakit.yaml
 
 ## 指标集
 
-以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.{{.InputName}}.tags]` 指定其它标签：
-
-``` toml
- [inputs.{{.InputName}}.tags]
-  # some_tag = "some_value"
-  # more_tag = "some_other_value"
-  # ...
-```
-
-{{ range $i, $m := .Measurements }}
-
-### `{{$m.Name}}`
-
--  标签
-
-{{$m.TagsMarkdownTable}}
-
-- 指标列表
-
-{{$m.FieldsMarkdownTable}}
-
-{{ end }}
+| 指标 | 描述 | 数据类型 | 单位 |
+| --- | --- | --- | --- |
+| node_collector_unhealthy_nodes_in_zone | Gauge measuring number of not Ready Nodes per zones. | int |  |
+| deployment_controller_rate_limiter_use | A metric measuring the saturation of the rate limiter for deployment_controller. | int |  |
+| daemon_controller_rate_limiter_use | A metric measuring the saturation of the rate limiter for daemon_controller | int |  |
+| endpoint_controller_rate_limiter_use | A metric measuring the saturation of the rate limiter for endpoint_controller. | int |  |
+| cronjob_controller_rate_limiter_use | A metric measuring the saturation of the rate limiter for cronjob_controller. | int |  |
+| job_controller_rate_limiter_use | A metric measuring the saturation of the rate limiter for cronjob_controller. | int |  |
+| node_ipam_controller_rate_limiter_use | A metric measuring the saturation of the rate limiter for node_ipam_controller. | int |  |
+| replicaset_controller_rate_limiter_use | A metric measuring the saturation of the rate limiter for replicaset_controller. | int |  |
+| replication_controller_rate_limiter_use | A metric measuring the saturation of the rate limiter for replication_controller. | int |  |
+| service_controller_rate_limiter_use | A metric measuring the saturation of the rate limiter for service_controller. | int |  |
+| gc_controller_rate_limiter_use | A metric measuring the saturation of the rate limiter for gc_controller. | int |  |
+| serviceaccount_controller_rate_limiter_use | A metric measuring the saturation of the rate limiter for serviceaccount_controller. | int |  |
+| serviceaccount_tokens_controller_rate_limiter_use | A metric measuring the saturation of the rate limiter for serviceaccount_tokens_controller. | int |  |
+| job_controller_job_finished_total | The number of finished job. | int |  |
+| token_cleaner_rate_limiter_use | A metric measuring the saturation of the rate limiter for token_cleaner. | int |  |
+| process_resident_memory_bytes | Resident memory size in bytes. | B |  |
+| process_cpu_seconds_total | Total user and system CPU time spent in seconds. | float |  |
+| go_goroutines | Number of goroutines that currently exist. | int |  |
 
 ## 常见问题排查
 
-- [无数据上报排查](why-no-data.md)
+- <[无数据上报排查](../datakit/why-no-data.md)>
 
 ## 进一步阅读
 
-- [DataFlux Tag 应用最佳实践](/best-practices/guance-skill/tag.md)
+- [DataFlux Tag 应用最佳实践](../best-practices/insight/tag.md)

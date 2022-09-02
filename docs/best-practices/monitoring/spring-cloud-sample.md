@@ -89,15 +89,15 @@
 
 ## 安装 Datakit：
 
-1. 登录 console.guance.com
+1、 登录 console.guance.com
 
-2. 新建工作空间
+2、 新建工作空间
 
-3. 选择集成——datakit——选择适合自己环境额安装指令并复制
+3、 选择集成——datakit——选择适合自己环境额安装指令并复制
 
-4. 在服务器上安装 datakit
+4、 在服务器上安装 datakit
 
-5. 执行 service datakit status （或者 systemctl status datakit）查询 datakit 状态
+5、 执行 service datakit status （或者 systemctl status datakit）查询 datakit 状态
 ![image](../images/spring-cloud-sample/3.png)
 ![image](../images/spring-cloud-sample/4.png)
 ![image](../images/spring-cloud-sample/5.png)
@@ -148,25 +148,30 @@
 
 ![image](../images/spring-cloud-sample/7.png)
 
-1. 安装 with-http_stub_status_module 模块（linux）：  
+1、 安装 with-http_stub_status_module 模块（linux）：  
 开启该模块需要重新编译 nginx，具体命令如下：  
 **`./configure --with-http_stub_status_module`**  
 configure 文件位置的查询方式：  
-**`find /| grep configure |grep nginx`**        
-```
+**`find /| grep configure |grep nginx`**      
+
+```shell
 $ find /| grep configure |grep nginx
   
 $ cd /usr/local/src/nginx-1.20.0/
 $ ./configure --with-http_stub_status_module
 ```  
+
 ![image](../images/spring-cloud-sample/8.png)  
 
-2. 在 Nginx.conf 中增添 nginx_status 的 location 转发  
-```
+2、 在 Nginx.conf 中增添 nginx_status 的 location 转发  
+
+```shell
 $ cd /etc/nginx   
    ## nginx 路径根据实际情况而定
 $ vim nginx.conf
+```
 
+```toml
 $  server{
      listen 80;   
      server_name localhost;
@@ -181,12 +186,16 @@ $  server{
           }
 ```
 
-3. 在 Datakit 中修改 nginx 的 inputs  
-```
+3、 在 Datakit 中修改 nginx 的 inputs  
+
+```shell
 $ cd /usr/local/datakit/conf.d/nginx/
 $ cp nginx.conf.sample nginx.conf
 $ vim  nginx.conf
 
+```
+
+```toml
 #修改如下内容
 [[inputs.nginx]]
         url = http://localhost/nginx_status
@@ -196,22 +205,27 @@ $ vim  nginx.conf
 #保存文件后重启 datakit    
 $ service datakit restart
 ```  
+
 ![image](../images/spring-cloud-sample/9.png)  
+
 **验证数据：`curl 127.0.0.1/nginx_status`**  
+
 ![image](../images/spring-cloud-sample/10.png)
 
-4. 在观测云平台创建 Nginx 视图并查看数据  
+4、 在观测云平台创建 Nginx 视图并查看数据  
 **创建步骤参考[**[**创建场景及视图**](#IVN7h)**]**  
 **步骤：场景 —> 新建场景 —> 新建空白场景 —> 系统视图（创建 Nginx ）**  
 **视图示例（通过该视图即可快速查看 Nginx 相关的指标及日志信息，从而断定 Nginx 的健康状态）:**  
+
 ![image](../images/spring-cloud-sample/11.png)
+
 ![image](../images/spring-cloud-sample/12.png)
 
 ### Mysql：
 
 详细步骤参见文档 [[Mysql datakit 接入](/integrations/mysql)]
 
-```bash
+```shell
 # 登录 mysql 
 $ mysql -uroot -p  
 # 输入密码：Solution****
@@ -228,7 +242,7 @@ flush privileges;
 
 ##### 1、在 Datakit 中修改 mysql 的 inputs
 
-```
+```shell
 $ cd /usr/local/datakit/conf.d/db/
 $ cp mysql.conf.sample mysql.conf
 $ vim mysql.conf
@@ -256,11 +270,12 @@ $ service datakit restart
 ![image](../images/spring-cloud-sample/15.png)
 
 ### Redis：
+
 详细步骤参见文档 [[redis datakit 接入](/integrations/redis.md)]
 
 ##### 1、在 Datakit 中修改 redis 的 inputs
 
-```
+```shell
 $ cd /usr/local/datakit/conf.d/db/
 $ cp redis.conf.sample redis.conf
 $ vim redis.conf
@@ -297,7 +312,7 @@ $ service datakit restart
 
 **默认不需要修改 jvm 的 inputs，仅需复制生成 conf 文件即可**
 
-```
+```shell
 $ cd /usr/local/datakit/conf.d/statsd/
 $ cp statsd.conf.sample ddtrace-jvm-statsd.conf 
 $ vim ddtrace-jvm-statsd.conf
@@ -326,7 +341,7 @@ $ vim ddtrace-jvm-statsd.conf
 
   **默认不需要修改 jvm 的 inputs，仅需复制生成 conf 文件即可**
 
-```
+```shell
 $ cd /usr/local/datakit/conf.d/ddtrace/
 $ cp ddtrace.conf.sample ddtrace.conf
 $ vim ddtrace.conf
@@ -338,7 +353,7 @@ $ vim ddtrace.conf
 
 APM 可观测性，需要在 java 应用中添加一个 agent，该 agent 在伴随应用启动时，会通过字节码注入的技术实现对应用内部方法层层调用、sql 调用、外部系统调用等相关性能数据的采集，从而实现对应用系统代码质量的可观测性。
 
-```xml
+```shell
 #原应用启动脚本
 $ cd /usr/local/ruoyi/
 $ nohup java -Dfile.encoding=utf-8   -jar ruoyi-gateway.jar > logs/gateway.log  2>&1 & 
@@ -350,7 +365,7 @@ $ nohup java -Dfile.encoding=utf-8   -jar ruoyi-modules-system.jar > logs/system
 
 ![image](../images/spring-cloud-sample/20.png)
 
-```
+```shell
 #添加 ddtrace-agent 后的应用启动脚本
 
 $ cd /usr/local/ruoyi/
@@ -412,7 +427,7 @@ $ nohup java -Dfile.encoding=utf-8 -javaagent:dd-java-agent-0.80.0.jar -XX:Fligh
 
 ##### 3、在前端页面 index.html 中接入观测云 rum 可观测性 js 文件
 
-```
+```shell
 $ cd /usr/local/ruoyi/dist/
 
 // 记得备份
@@ -422,7 +437,9 @@ $ cp index.html index.html.bkd
 // 复制 DF 平台上的 js 内容，放至 index.html 内的 </head> 之前，然后保存文件,示例如下
 
 $ vim index.html
+```
 
+```javascript
 <script src="https://static.guance.com/browser-sdk/v2/dataflux-rum.js" type="text/javascript"></script>
 <script>
   window.DATAFLUX_RUM &&
@@ -517,7 +534,7 @@ $ service scheck start/stop/restart/status
 
 将 Security Checker 数据打至 datakit，然后再转发至 dataflux 平台。
 
-```
+```shell
 $ cd /usr/local/scheck/
 $ vim scheck.conf
  
@@ -554,7 +571,7 @@ $ vim scheck.conf
 
 **示例：Nginx**
 
-```
+```toml
 $ cd /usr/local/datakit/conf.d/nginx/
 $ cp nginx.conf.sample nginx.conf
 $ vim nginx.conf
@@ -581,7 +598,7 @@ $     pipeline = "nginx.p"
 
 pipeline（日志grok切割）[**[**观测云官方文档**](/datakit/pipeline/)**]
 
-```
+```shell
 $ cd /usr/local/datakit/conf.d/log/
 $ cp logging.conf.sample logging.conf
 $ vim logging.conf
@@ -603,7 +620,7 @@ $    service = "ruoyi-system"
 
 ![image](../images/spring-cloud-sample/42.png)
 
-```
+```shell
 $ cd /usr/local/datakit/pipeline/
 $ vim ruoyi_system.p
 
@@ -652,33 +669,42 @@ default_time(time)
 ### 验证异常检测机制：
 
 1. 服务器上查询 ruoyi-gateway 相关进程并kill掉
-```xml
+2. 
+```shell
 $ ps -ef|grep ruoyi-gateway
 $ kill -9 xxxxx
 ```
+
 ![image](../images/spring-cloud-sample/49.png)
 
 2. 访问 ruoyi 网站（可以多刷新几次，至少5次以上）
+
 ![image](../images/spring-cloud-sample/50.png)
 
 3. 查看观测云平台事件相关内容
+
 ![image](../images/spring-cloud-sample/51.png)
+
 ![image](../images/spring-cloud-sample/52.png)
 
 4. 查看 nginx 日志相关内容及相关视图
+
 ![image](../images/spring-cloud-sample/53.png)
+
 ![image](../images/spring-cloud-sample/54.png)
 
 ### 开启 inputs 过程中问题排查方式：
 
-1. 查看 inputs 报错信息  
+1、 查看 inputs 报错信息  
 观测云已默认将inputs的状态信息以一定的频率上传至观测云平台，可以直接在基础设施——具体主机内查看集成情况。  
 **示例：apache 服务宕机，inputs 显示报错**
+
 ![image](../images/spring-cloud-sample/55.png)
 ![image](../images/spring-cloud-sample/56.png)
 ![image](../images/spring-cloud-sample/57.png)
 
-2. 查看数据上报信息  
+2、 查看数据上报信息  
+
 **方式1：**  
 **浏览器或者控制台输入 `curl 127.0.0.1:9529/monitor` 查看**
 ![image](../images/spring-cloud-sample/58.png)  
@@ -686,7 +712,8 @@ $ kill -9 xxxxx
 **浏览器或者控制台输入 `curl 127.0.0.1:9529/stats` 查看**
 ![image](../images/spring-cloud-sample/59.png)
 
-3. 查看 datakit 日志  
+3、 查看 datakit 日志  
+
 **datakit 日志目录：cd /var/log/datakit**
 ![image](../images/spring-cloud-sample/60.png)
 
@@ -695,23 +722,28 @@ $ kill -9 xxxxx
 
 #### 利用系统视图模板创建 (以 Nginx 为例) ###
 
-1. **场景 —— 新建场景**
+1、 **场景 —— 新建场景**
+
 ![image](../images/spring-cloud-sample/61.png)
 
-2. **新建空白场景**
+2、 **新建空白场景**
+
 ![image](../images/spring-cloud-sample/62.png)
 
-3. **输入场景名称——确定**
+3、 **输入场景名称——确定**
+
 ![image](../images/spring-cloud-sample/63.png)
 
-4. **系统视图 —— Nginx视图（创建）**
+4、 **系统视图 —— Nginx视图（创建）**
+
 ![image](../images/spring-cloud-sample/64.png)
 
-5. **查看 Nginx 视图**
+5、 **查看 Nginx 视图**
+
 ![image](../images/spring-cloud-sample/65.png)
 ![image](../images/spring-cloud-sample/66.png)
 
-6. **其他**
+6、 **其他**
 
   *其他视图创建方法类似，如有自定义视图内容及布局需求，可以创建空白视图自己进行搭建。*
 

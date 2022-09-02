@@ -1,9 +1,10 @@
+
 # Kubernetes Kubelet
 ---
 
 ## 视图预览
 
-![1653442677(1).png](../imgs/kubernetes-kubelet-1.png)
+![image](imgs/kubernetes-kubelet-1.png)
 
 ## 版本支持
 
@@ -27,7 +28,7 @@ Kubernetes 版本：1.18+
 
 在部署 DataKit 使用的 datakit.yaml 文件中，ConfigMap 资源中增加 kubelet.conf。
 
-```
+```yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -120,7 +121,7 @@ data:
 
 在 datakit.yaml 文件的 volumeMounts 下面增加下面内容。
 
-```
+```yaml
 - mountPath: /usr/local/datakit/conf.d/prom/kubelet.conf
   name: datakit-conf
   subPath: kubelet.conf  
@@ -128,14 +129,14 @@ data:
 
 3、 重启 DataKit
 
-```
+```yaml
 kubectl delete -f datakit.yaml
 kubectl apply -f datakit.yaml
 ```
 
 指标预览
 
-![1653445079(1).png](../imgs/kubernetes-kubelet-2.png)
+![image](imgs/kubernetes-kubelet-2.png)
 
 #### 插件标签 (必选）
 
@@ -146,7 +147,7 @@ kubectl apply -f datakit.yaml
 - 以下示例配置完成后，kubelet 指标都会带有 app = oa 的标签，可以进行快速查询
 - 采集 kubelet 指标，必填的 key 是 instance，值是 kubeletmetrics 的 ip + 端口
 
-```
+```toml
 
 ## 自定义Tags
 [inputs.prom.tags]
@@ -155,7 +156,7 @@ kubectl apply -f datakit.yaml
 
 如果增加了自定义 tag，重启 Datakit 
 
-```
+```shell
 kubectl delete -f datakit.yaml
 kubectl apply -f datakit.yaml
 ```
@@ -191,9 +192,9 @@ kubectl apply -f datakit.yaml
 
 ## 常见问题排查
 
-- [无数据上报排查](why-no-data.md)
+- <[无数据上报排查](../datakit/why-no-data.md)>
 
 ## 进一步阅读
 
-- [DataFlux Tag 应用最佳实践](/best-practices/guance-skill/tag.md)
+- [DataFlux Tag 应用最佳实践](../best-practices/insight/tag.md)
 

@@ -60,7 +60,7 @@
 
 ##### 3、在前端页面 /usr/local/ruoyi/dist/index.html 的 head 中粘贴 JS。
 
-```
+```javascript
 <script src="https://static.guance.com/browser-sdk/v2/dataflux-rum.js" type="text/javascript"></script>
 <script>
   window.DATAFLUX_RUM &&
@@ -109,7 +109,7 @@
 
 **默认不需要修改 jvm 的 inputs，仅需复制生成 conf 文件即可**
 
-```
+```shell
 $ cd /usr/local/datakit/conf.d/ddtrace/
 $ cp ddtrace.conf.sample ddtrace.conf
 $ vim ddtrace.conf
@@ -121,7 +121,7 @@ $ vim ddtrace.conf
 
 APM 可观测性，需要在 java 应用中添加一个 agent，该 agent 在伴随应用启动时，会通过字节码注入的技术实现对应用内部方法层层调用、sql 调用、外部系统调用等相关性能数据的采集，从而实现对应用系统代码质量的可观测性。
 
-```
+```shell
 #原应用启动脚本
 $ cd /usr/local/ruoyi/
 $ nohup java -Dfile.encoding=utf-8   -jar ruoyi-gateway.jar > logs/gateway.log  2>&1 & 
@@ -171,7 +171,7 @@ APM（应用性能检测）是 DF 默认内置的模块，无需创建场景或�
 
 通过开启 Datakit 内置的各种 inputs，直接开启相关的日志采集，例如 [Ngnix](../../integrations/nginx.md)、 [Redis](/integrations/redis)、[容器](/integrations/container)、[ES](/integrations/elasticsearch) 等；<br />**示例：Nginx**
 
-```
+```shell
 $ cd /usr/local/datakit/conf.d/nginx/
 $ cp nginx.conf.sample nginx.conf
 $ vim nginx.conf
@@ -197,7 +197,7 @@ $     pipeline = "nginx.p"
 示例：应用日志
 pipeline（日志 grok 切割）[**df 官方文档**](../../datakit/pipeline.md)
 
-```
+```shell
 $ cd /usr/local/datakit/conf.d/log/
 $ cp logging.conf.sample system-logging.conf
 $ vim system-logging.conf
@@ -246,7 +246,7 @@ $ vim system-logging.conf
 
 ![image](../images/java-rum-apm-log/16.png)
 
-```
+```shell
 $ /usr/local/datakit/pipeline/
 $ vim ruoyi_system.p
 
@@ -292,7 +292,7 @@ default_time(time)
 
 修改应用日志输出格式文件 logback/log4j<br />**备注**：Ddtrace-agent  java-0.70 版本后会自动将跟踪标识注入，仅需修改 logback/log4j 的 xml 文件，在应用日志的输出内容中添加 trace_id 字段即可。<br />       可参考[ [datadog 官方文档](https://docs.datadoghq.com/logs/log_collection/java/?tab=logback)]
 
-```
+```xml
 ## 首先在 pom.xml 的 dependency 中引入 datadog 依赖
 
 <dependency>
@@ -318,7 +318,7 @@ default_time(time)
 
 举例：
 
-```bash
+```shell
 $ cd /usr/local/datakit/conf.d/log/
 $ cp log.conf.sample ruoyi-system.conf
 $ vim ruoyi-system.conf

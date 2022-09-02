@@ -64,7 +64,7 @@ ASM 的可观测能力是一种开放式的设计，既可以通过阿里的 arm
 
 **说明** 您也可以通过 kubectl 执行以下命令为命名空间添加标签。
 
-```
+```shell
 kubectl label namespace default istio-injection=enabled
 ```
 
@@ -72,7 +72,7 @@ kubectl label namespace default istio-injection=enabled
 
 在 Kubernetes 集群部署的 DataKit，会采集添加了 annotations 注解的 POD 的指标数据。
 
-```
+```yaml
 annotations:
         datakit/prom.instances: |
           [[inputs.prom]]
@@ -104,7 +104,7 @@ annotations:
 
 更改后的 [bookinfo.yaml](https://github.com/istio/istio/blob/master/samples/bookinfo/platform/kube/bookinfo.yaml) 文件如下：
 
-```bash
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -529,7 +529,7 @@ spec:
 - 选择相应的命名空间。本文以选择 **default **命名空间为例。
 - 在文本框中，定义服务网关。可参考以下YAML定义，详情请参见 [Istio官方示例](https://github.com/istio/istio/blob/master/samples/bookinfo/networking/bookinfo-gateway.yaml)。
 
-```
+```yaml
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
@@ -560,7 +560,7 @@ spec:
    a. 选择相应的命名空间。本文以选择 **default **命名空间为例。
    b. 在文本框中，定义 Istio 虚拟服务。可参考以下 YAML 定义，详情请参见 [Istio 官方示例](https://github.com/istio/istio/blob/master/samples/bookinfo/networking/bookinfo-gateway.yaml#L16)。
 
-```
+```yaml
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
@@ -597,14 +597,14 @@ spec:
 登录 [观测云](https://console.guance.com/)，【集成】->【Datakit】-> 【Kubernetes】，请按照指引在 Kubernetes 集群中安装 DataKit ，其中部署使用的 datakit.yaml 文件，在接下来的操作中会使用到。
 在观测云的一个工作空间中，可能收到多个集群的采集数据，为了区分集群，使用全局 Tag 为这个集群增加 **k8s-ac**k 的 Tag。
 
-```
+```yaml
         - name: ENV_GLOBAL_TAGS
           value: host=__datakit_hostname,host_ip=__datakit_ip,cluster_name_k8s=k8s-ack
 ```
 
 收集 ASM 的链路数据，需要开通 Zipkin 采集器，即在 ConfigMap 中增加：
 
-```
+```yaml
     zipkin.conf: |-
       [[inputs.zipkin]]
         pathV1 = "/api/v1/spans"
@@ -627,7 +627,7 @@ spec:
    - 选择相应的命名空间。选择**所有名称空间**。
    - 在示例模板中，选择自定义。把下面的内容贴入模板中， 点击创建。
 
-```bash
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -678,7 +678,8 @@ spec:
 ```
 
 在 ConfigMap 中增加：
-```bash
+
+```yaml
      prom_istiod.conf: |-    
       [[inputs.prom]] 
         url = "http://istiod.istio-system.svc.cluster.local:15014/metrics"
@@ -726,7 +727,7 @@ spec:
 
 然后再挂载 prom_istiod.conf、prom-ingressgateway.conf 和 prom-egressgateway.conf：
 
-```bash
+```yaml
         - mountPath: /usr/local/datakit/conf.d/prom/prom_istiod.conf
           name: datakit-conf
           subPath: prom_istiod.conf        
@@ -740,7 +741,7 @@ spec:
 
 本次使用的完整 datakit.yaml，您在使用时请使用最新的 datakit.yaml 做适当替换。  
 
-```bash
+```yaml
 apiVersion: v1
 kind: Namespace
 metadata:
@@ -1120,7 +1121,7 @@ data:
 
 **说明** 如果不使用 ExternalName 映射 DataKit 服务，也可以使用在 POD 上增加 annotations 的方式，即使用下面的方式指定 DataKit 的服务地址。
 
-```
+```yaml
       annotations:
         proxy.istio.io/config: |
           tracing:
@@ -1129,7 +1130,8 @@ data:
 ```
 
 完整的 productpage 部署文件如下，仅供参考。
-```
+
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:

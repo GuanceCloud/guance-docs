@@ -35,7 +35,7 @@
 按照上步中的yaml文件，新建 /usr/local/k8s/datakit.yaml 文件，并把上图获取的 token，替换文件中的 <your-token>，开启 container 采集器、logfwd 采集器、ddtrace 采集器，yaml 完整内容如下文。  
 『注意』DataKit 版本不同，配置可能存在差异，请以最新版为准。此 yaml 是本次部署完整配置，已包含后面针对 DataKit 的操作步骤。
 
-```
+```yaml
 apiVersion: v1
 kind: Namespace
 metadata:
@@ -355,7 +355,7 @@ data:
 
 执行命令
 
-```
+```shell
 $ cd /usr/local/k8s/
 $ kubectl apply -f  datakit-default.yaml
 $ kubectl get pod -n datakit
@@ -405,7 +405,7 @@ web 层通过网关访问后端的 auth 和 system 服务，web 是 vue 开发�
 
 新建 /usr/local/k8s/DockerfileWeb 文件。
 
-```
+```shell
 $ vim /usr/local/k8s/DockerfileWeb
 ```
 
@@ -427,7 +427,7 @@ EXPOSE 443
 
 新建 /usr/local/k8s/nginx.conf，内容如下：
 
-```
+```toml
 events {
     worker_connections  1024;
 }
@@ -479,7 +479,7 @@ http {
 
 新建 /usr/local/k8s/web-deployment.yaml ，文件内容如下：
 
-```
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -548,7 +548,7 @@ COPY  dd-java-agent.jar ${workdir}  #此处是把dd-java-agent打入镜像
 
 新建 /usr/local/k8s/DockerfileGateway。
 
-```
+```bash
 $ vim /usr/local/k8s/DockerfileGateway
 ```
 
@@ -568,7 +568,7 @@ ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS} -jar ${jar} ${PARAMS} 2>&1 > /d
 
 新建 /usr/local/k8s/gateway-deployment.yaml ，文件内容如下：
 
-```
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -649,7 +649,7 @@ spec:
 
 新建 /usr/local/k8s/DockerfileAuth。
 
-```
+```shell
 $ vim  /usr/local/k8s/DockerfileAuth
 ```
 
@@ -669,7 +669,7 @@ ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS} -jar ${jar} ${PARAMS} 2>&1 > /d
 
 新建 /usr/local/k8s/auth-deployment.yaml ，文件内容如下：
 
-```
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -749,7 +749,7 @@ spec:
 
 新建/ usr/local/k8s/DockerfileSystem。
 
-```
+```shell
 $ vim /usr/local/k8s/DockerfileSystem
 ```
 
@@ -770,7 +770,7 @@ ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS}   -jar ${jar} ${PARAMS}  2>&1 >
 
 新建 /usr/local/k8s/system-deployment.yaml ，pod 中使用了 3 个镜像 172.16.0.238/df-ruoyi/demo-system:v1、pubrepo.jiagouyun.com/datakit/logfwd:1.2.7、pubrepo.jiagouyun.com/datakit/dk-sidecar:1.0，其中 dk-sidecar 是提供 dd-java-agent.jar 文件给 system-container 业务容器使用，logfwd 采集业务容器的日志文件。logfwd 的配置文件是通过 ConfigMap 来挂载到容器中的，在配置文件中指明需要采集的日志文件位置，source 名称等。system-deployment.yaml 完整内容如下：
 
-```
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -931,7 +931,7 @@ logfwd-conf参数说明：
 
 在 datakit.yaml 增加 ConfigMap：
 
-```
+```toml
 ddtrace.conf: |- 
   [[inputs.ddtrace]]
     endpoints = ["/v0.3/traces", "/v0.4/traces", "/v0.5/traces"]
@@ -941,7 +941,7 @@ ddtrace.conf: |-
 
 volumeMounts 下面增加：
 
-```
+```yaml
 - mountPath: /usr/local/datakit/conf.d/ddtrace/ddtrace.conf
   name: datakit-conf
   subPath: ddtrace.conf  
@@ -959,7 +959,7 @@ volumeMounts 下面增加：
 
 Datakit 开启 RUM 采集器是通过环境变量配置的。
 
-```
+```yaml
         - name: ENV_DEFAULT_ENABLED_INPUTS
           value: rum
 ```
@@ -1040,7 +1040,7 @@ JAVA_OPTS 详细说明：
 
 『注意』 JAVA_OPTS 中并没有指定链路数据上报到的 DataKit 地址，而是通过在 yaml 中定义环境变量 DD_AGENT_HOST 来指定链路数据上报的 DataKit 地址。在 Kubernetes 集群中，链路数据上报的原则是 POD 链路数据上报到部署在同宿主机内的 DataKit 上，详细配置请参考 system-deployment.yaml。
 
-```
+```yaml
         - name: DD_AGENT_HOST
           valueFrom:
             fieldRef:
@@ -1064,7 +1064,7 @@ response.headers.add('Access-Control-Allow-Headers','x-datadog-parent-id,x-datad
 
 kubernetes 日志采集，推荐使用 datakit 的 logfwd 采集器，
 
-```
+```toml
     logfwdserver.conf: |-
       [inputs.logfwdserver]
         ## logfwd 接收端监听地址和端口
@@ -1077,7 +1077,7 @@ kubernetes 日志采集，推荐使用 datakit 的 logfwd 采集器，
 
 volumeMounts 下面增加：
 
-```
+```yaml
         - mountPath: /usr/local/datakit/conf.d/log/logfwdserver.conf
           name: datakit-conf
           subPath: logfwdserver.conf    
@@ -1102,7 +1102,7 @@ default_time(time,"Asia/Shanghai")
 
 #### 制作镜像并上传到 harbor 仓库
 
-```
+```shell
 $ cd /usr/local/k8s/
 $ docker build -t 172.16.0.215:5000/df-demo/demo-web:v1 -f DockerfileWeb .
 $ docker push 172.16.0.215:5000/df-demo/demo-web:v1
@@ -1119,7 +1119,7 @@ $ docker push 172.16.0.215:5000/df-demo/demo-system:v1
 
 #### 部署
 
-```
+```shell
 $ cd /usr/local/k8s/
 $ kubectl apply -f web-deployment.yaml
 $ kubectl apply -f gateway-deployment.yaml

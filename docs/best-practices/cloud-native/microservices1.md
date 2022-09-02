@@ -34,7 +34,7 @@
 
 登录『[观测云](https://console.guance.com/)』，进入『管理』模块，找到下图中 token，替换 datakit.yaml 文件中的 ENV_DATAWAY 环境变量的 value 值中的 <your-token>。
 
-```
+```yaml
         - name: ENV_DATAWAY
           value: https://openway.guance.com?token=<your-token>
 ```
@@ -45,7 +45,7 @@
 
 在 datakit.yaml 文件中的 ENV_GLOBAL_TAGS 环境变量值最后增加 cluster_name_k8s=k8s-istio，其中  k8s-istio 为您的集群名称，此步骤为集群设置全局 tag。
 
-```
+```yaml
         - name: ENV_GLOBAL_TAGS
           value: host=__datakit_hostname,host_ip=__datakit_ip,cluster_name_k8s=k8s-istio
 ```
@@ -54,7 +54,7 @@
 
 DataKit 在选举时为了区分不同集群，这里需要设置 ENV_NAMESPACE 环境变量，不同集群值不能相同。在 datakit.yaml 文件中的环境变量部分增加如下内容。
 
-```
+```yaml
         - name: ENV_NAMESPACE
           value: k8s-istio
 ```
@@ -63,7 +63,7 @@ DataKit 在选举时为了区分不同集群，这里需要设置 ENV_NAMESPACE 
 
 开通 ddtrace 和 statsd 采集器，在 datakit.yaml 文件中找到 ENV_DEFAULT_ENABLED_INPUTS 环境变量，最后增加 statsd,ddtrace。
 
-```
+```yaml
         - name: ENV_DEFAULT_ENABLED_INPUTS
           value: cpu,disk,diskio,mem,swap,system,hostobject,net,host_processes,container,statsd,ddtrace
 ```
@@ -80,7 +80,7 @@ DataKit 在选举时为了区分不同集群，这里需要设置 ENV_NAMESPACE 
 
 开通 container 采集器和 zipkin 采集器，需要先定义 container.conf 和 zipkin.conf。
 
-```
+```yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -145,7 +145,7 @@ data:
 
 ![image](../images/microservices/4.png)	 
 
-```
+```yaml
         - mountPath: /usr/local/datakit/conf.d/container/container.conf
           name: datakit-conf
           subPath: container.conf
@@ -189,7 +189,7 @@ DataKit 部署成功后，可以看到如下图的运行状态。
 
 然后对 productpage 重新发布镜像并上传到镜像仓库。
 
-```
+```shell
 cd istio-1.13.2\samples\bookinfo\src\productpage
 docker build -t 172.16.0.238/df-demo/product-page:v1  .
 docker push 172.16.0.238/df-demo/product-page:v1
@@ -199,7 +199,7 @@ docker push 172.16.0.238/df-demo/product-page:v1
 
 新建 prod 命名空间，开启该空间下创建 Pod 时自动注入 Sidecar，让 Pod 的出入流量都转由 Sidecar 进行处理。
 
-```
+```shell
 kubectl create ns prod 
 kubectl label namespace prod istio-injection=enabled
 ```
@@ -208,7 +208,7 @@ kubectl label namespace prod istio-injection=enabled
 
 在 istio-1.13.2\samples\bookinfo\platform\kube\bookinfo.yaml 文件中，移除关于 reviews 微服务部署的部分，把 Service 和 Deployment 都部署到 prod 名称空间，并在所有 Deployment 控制器，Pod 模板上增加 annotations，来开启 Pod 的自定义采集。把 productpage 镜像修改为上步创建的。完整文件如下：
 
-```bash
+```yaml
 
 # Copyright Istio Authors
 #
@@ -464,7 +464,7 @@ spec:
 
 ```
 
-```
+```shell
 kubectl apply -f bookinfo.yaml
 ```
 
@@ -472,7 +472,7 @@ kubectl apply -f bookinfo.yaml
 
 修改 istio-1.13.2\samples\bookinfo\networking\bookinfo-gateway.yaml 文件，增加 prod 名称空间。
 
-```
+```yaml
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
@@ -518,7 +518,7 @@ spec:
           number: 9080
 ```
 
-```
+```shell
 kubectl apply -f bookinfo-gateway.yaml 
 ```
 
@@ -526,7 +526,7 @@ kubectl apply -f bookinfo-gateway.yaml
 
 查看 ingresgateway 对外暴露的端口。
 
-```
+```shell
 kubectl get svc -n istio-system
 ```
 
@@ -563,7 +563,7 @@ kubectl get svc -n istio-system
 
 登录『Gitlab』，进入『bookinfo-views』，根目录新建 deployment.yaml 和 .gitlab-ci.yml 文件。在 annotations 定义了 project、env、version 标签，用于不同项目、不同版本的区分。
 
-```
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -661,7 +661,7 @@ spec:
         emptyDir: {}
 ```
 
-```
+```yaml
 variables:
   APP_VERSION: "v1"
 

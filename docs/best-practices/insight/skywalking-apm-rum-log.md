@@ -39,7 +39,7 @@
 
 开通 RUM，需要让用户远程访问到 DataKit 的 9529 端口，编辑下面文件。
 
-```
+```shell
 vi /usr/local/datakit/conf.d/datakit.conf
 ```
 修改 listen 的值是“0.0.0.0:9529”。   
@@ -48,14 +48,14 @@ vi /usr/local/datakit/conf.d/datakit.conf
 
 复制 conf 文件，开通 Skywalking 采集器。
 
-```
+```shell
 cd /usr/local/datakit/conf.d/skywalking
 cp skywalking.conf.sample skywalking.conf
 ```
 
 开通日志采集器。
 
-```
+```shell
 cd /usr/local/datakit/conf.d/log
 cp logging.conf.sample skywalking-service-log.conf
 ```
@@ -66,13 +66,14 @@ cp logging.conf.sample skywalking-service-log.conf
 
 #### 1.3 重启 DataKit
 
-```
+```shell
 systemctl restart datakit
 ```
 
 ### 步骤 2 ：部署应用
 
 #### 2.1 部署后端服务
+
 下载[ skywalking-demo ](https://github.com/stevenliu2020/skywalking-demo)项目，使用 Idea 打开，点击右边“package”，即可生成 skywalking-user-service.jar 文件。
 
 ![image](../images/skywalking-apm-rum-log/5.png)
@@ -83,7 +84,7 @@ systemctl restart datakit
 
 **特别说明：1、项目需要添加依赖**
 
-```
+```xml
         <dependency>
             <groupId>org.apache.skywalking</groupId>
             <artifactId>apm-toolkit-logback-1.x</artifactId>
@@ -113,7 +114,7 @@ systemctl restart datakit
 
 编辑 /etc/nginx/nginx.conf 文件，增加如下内容。
 
-```
+```toml
    location / {
             root   /usr/local/web;
             try_files $uri $uri/ /index.html;
@@ -127,7 +128,7 @@ systemctl restart datakit
 
 nginx 重新加载配置。
 
-```
+```shell
 nginx -s reload
 ```
 
@@ -147,14 +148,14 @@ nginx -s reload
 
 如果微服务使用了 springcloud gateway，必须把 agent/optional-plugins/ 目录下的 apm-spring-cloud-gateway-2.1.x-plugin-8.7.0.jar 和 apm-spring-webflux-5.x-plugin-8.7.0.jar 复制到 skywalking-agent/plugins/ 目录下，注意 apm-spring-cloud-gateway 的版本需要和具体使用的 springcloud gateway 版本相对应。
 
-```bash
+```shell
 cp /usr/local/df-demo/skywalking/agent/optional-plugins/apm-spring-cloud-gateway-2.1.x-plugin-8.7.0.jar /usr/local/df-demo/skywalking/agent/plugins/
 cp /usr/local/df-demo/skywalking/agent/optional-plugins/apm-spring-webflux-5.x-plugin-8.7.0.jar /usr/local/df-demo/skywalking/agent/plugins/
 ```
 
 执行如下命令，启动后端服务，点击前端界面的按钮，调用后端服务。
 
-```
+```shell
 cd /usr/local/df-demo/skywalking
 java  -javaagent:agent/skywalking-agent.jar -Dskywalking.agent.service_name=skywalking-log  -Dskywalking.collector.backend_service=localhost:13800 -jar skywalking-user-service.jar
 ```
