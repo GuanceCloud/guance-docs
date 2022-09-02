@@ -82,7 +82,7 @@ DF 官方目前支持所有支持 Opentracing 协议的 APM 监控工具，例�
 
 ### 开启 datakit.conf 中链路追踪 inputs
 
-```
+```shell
 ###########--------linux环境---------##########
 $ cd /usr/local/datakit/conf.d/
 
@@ -181,7 +181,7 @@ Ddd.host：数据传输目标IP，默认为本机localhost （可选项）
 
 在 catalina.sh 添加 ddtrace 启动参数后，重启 tomcat。代码段中的 xxx 需替换为绝对路径
 
-```
+```shell
 $ cd /xxx/tomcat/bin
 $ vim catalina.sh
 
@@ -201,7 +201,7 @@ $ ./bin/startup.sh
 
 直接在启动脚本中添加 ddtrace 的启动参数，重启应用。代码段中的 xxx 需替换为绝对路径
 
-```
+```shell
 ## 原启动脚本：
 $ nohup java -jar mall-admin.jar &
 
@@ -217,7 +217,7 @@ $ nohup java -javaagent:/xxx/dd-java-agent-0.72.0.jar -Ddd.service.name=mall-adm
 
 Docker 环境下接入方式有多种，示例会展示两种方式：<br />1、修改 Dockerfile，重新打包 **代码段中的 xxx 需替换为绝对路径**
 
-```
+```shell
 $ vim Dockerfile
 
 ##Dockerfile中添加ddteace-agent路径,xxx指代绝对路径
@@ -228,7 +228,7 @@ $ wq!
 
 ![image](../images/apm/10.png)
 
-```
+```shell
 ## build & run
 $ docker build -t mall/mall-admin:v1 .  [ “.” 必须添加]
 
@@ -238,7 +238,7 @@ $ docker run -p 8080:8080 --name mall-admin --link mysql:db --link redis:redis -
 
 2、不修改 Dockerfile，用启动参数覆盖原有启动命令（某些场景下可能不适用）
 
-```
+```shell
 ## 原有启动命令
 $ docker run -p 8080:8080 --name mall-admin --link mysql:db --link redis:redis -v /etc/localtime:/etc/localtime -v /mydata/app/admin/logs:/var/logs -d mall/mall-admin:v1
 
@@ -258,7 +258,7 @@ $ docker run -p 8080:8080 --name mall-admin --link mysql:db --link redis:redis -
 
 备注：[[dotnet-agent下载链接](https://github.com/DataDog/dd-trace-dotnet/releases/)] ，可根据需求下载 x86、arm64 或者其他版本的 agent。
 
-1. **添加服务器环境变量**
+1、 **添加服务器环境变量**
 
 ```
 ## 点击 此电脑右键——属性——高级系统设置——环境变量
@@ -283,15 +283,15 @@ DD_TRACE_SERVICE_MAPPING=  举例 mysql:main-mysql-db    （可选）
 
 ![image](../images/apm/11.png)
 
-2. **安装 ddtrace-agent**
+2、 **安装 ddtrace-agent**
 
 已管理员权限运行 dotnet-agent 安装包，点击下一步，直到安装成功。
 
 ![image](../images/apm/12.png)
 
-3. **在 PowerShell 执行如下命令，重启iis**
+3、 **在 PowerShell 执行如下命令，重启iis**
 
-```
+```shell
 ## 停止 iis 服务
 net stop /y was
 
@@ -313,9 +313,9 @@ net start w3svc
 
 备注：[[dotnet.core-agent下载链接](https://github.com/DataDog/dd-trace-dotnet/releases/)] ，.NET Tracer 目前支持 .NET Core 2.1、3.1 和 .NET 5 上的应用追踪。
 
-1. **分环境运行如下命令命令安装 .net core-agent**
+1、 **分环境运行如下命令命令安装 .net core-agent**
 
-```
+```shell
 Debian 或 Ubuntu
 sudo dpkg -i ./datadog-dotnet-apm_<TRACER_VERSION>_amd64.deb && /opt/datadog/createLogPath.sh
 
@@ -329,12 +329,12 @@ sudo tar -xzf -C /opt/datadog datadog-dotnet-apm<TRACER_VERSION>-musl.tar.gz && 
 sudo tar -xzf -C /opt/datadog datadog-dotnet-apm<TRACER_VERSION>-tar.gz && /opt/datadog/createLogPath.sh
 ```
 
-2. **添加应用环境变量**
+2、 **添加应用环境变量**
 
 在应用已配置的环境变量中添加如下配置
 此处仅供参考，实际配置中 service 名称需要改动
 
-```
+```shell
 export CORECLR_ENABLE_PROFILING=1
 export CORECLR_PROFILER_PATH=/opt/datadog/Datadog.Trace.ClrProfiler.Native.so
 export DD_INTEGRATIONS=/opt/datadog/integrations.json
@@ -343,7 +343,7 @@ export DD_TRACE_AGENT_URL=http://localhost:9529
 export DD_SERVICE=service_test
 ```
 
-3. **重启应用**
+3、 **重启应用**
 
 ---
 
@@ -353,7 +353,7 @@ export DD_SERVICE=service_test
 
 ddtrace-agent 的启动参数一定要放置在 java 应用启动 -jar之前，最终形式为 java -javaagent -jar
 
-```xml
+```shell
 ## 原启动脚本：
 $ java -jar mall-admin.jar
 
@@ -365,7 +365,7 @@ $ java -javaagent:/xxx/dd-java-agent-0.72.0.jar -Ddd.service.name=mall-admin -Dd
 
 在 catalina.sh 添加 ddtrace 启动参数后，重启 tomcat。代码段中的 xxx 需替换为绝对路径<br />CATALINA_OPTS 相关配置务必要让 catalina.sh 内的应用启动脚本读到，否则应用正常启动不会启动 ddtrace-agent
 
-```
+```shell
 $ cd /xxx/tomcat/bin
 $ vim catalina.sh
 

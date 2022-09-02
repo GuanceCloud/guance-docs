@@ -303,7 +303,7 @@ DataKit 默认已开启 Container 采集器，这里介绍一下自定义采集�
 点击『添加』，键输入“prom-istiod.conf”，值输入如下内容。点击『保存』。
 		
 ```toml
-[[inputs.prom]] 
+        [[inputs.prom]] 
           url = "http://istiod.istio-system.svc.cluster.local:15014/metrics"
           source = "prom-istiod"
           metric_types = ["counter", "gauge"]
@@ -415,7 +415,7 @@ spec:
 点击『添加』，键输入“zipkin.conf”，值输入如下内容。点击『保存』。
 
 ```toml
-[[inputs.zipkin]]
+      [[inputs.zipkin]]
         pathV1 = "/api/v1/spans"
         pathV2 = "/api/v2/spans"
         customer_tags = ["project","version","env"]

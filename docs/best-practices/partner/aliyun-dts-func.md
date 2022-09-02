@@ -72,7 +72,7 @@
 
 - [Function DataKit 数据对接](/dataflux-func/development-guide.md)
 
-```
+```python
 # -*- coding: utf-8 -*-
 
 import sys
@@ -154,7 +154,8 @@ def write_metrics(points: list):
 ```
 
 7. 主函数前添加装饰器 (导出函数为 HTTP API 接口) 
-```
+
+```python
 @DFF.API('名称', timeout=300)
 ```
 

@@ -86,7 +86,7 @@ kind: DaemonSet  #修改
       dnsPolicy: ClusterFirstWithHostNet  #修改
 ```
 
-```
+```shell
 kubectl apply -f deploy.yaml
 ```
 
@@ -141,7 +141,7 @@ annotations中支持如下几个通配符：
 
 ### 重启 Ingress  Controller
         
-```
+```shell
 kubectl delete -f deploy.yaml
 kubectl apply -f deploy.yaml
 ```

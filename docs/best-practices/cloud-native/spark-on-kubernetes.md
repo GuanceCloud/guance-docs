@@ -1112,7 +1112,7 @@
 
 在 k8s 集群安装部署 spark-operator 时开启 `enable.metrics` 选项进行可观测指标收集参考命令如下：
 
-```
+```shell
 helm upgrade my-release spark-operator/spark-operator --namespace spark-operator --create-namespace --set webhook.enable=true --set image.repository="docker.io/pacher/spark-operator" --set image.tag="v1beta2-1.2.3-3.1.1" --set enable.metrics=true --set metrics.port=10254 --set metrics.endpoint=/metrics --set metrics.prefix=sparkMonitor
 ```
 
@@ -1122,7 +1122,7 @@ helm upgrade my-release spark-operator/spark-operator --namespace spark-operator
 
 在您 datakit-default.yaml 存放目录中更改 datakit-default.yaml 文件添加`inputs.prom`并且完成目录挂载后对指标收集，yaml 文件完整内容如下：
 
-```
+```yaml
 apiVersion: v1
 kind: Namespace
 metadata:

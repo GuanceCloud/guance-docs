@@ -71,7 +71,7 @@
 
 - <[Function 开发手册 - DataKit.Query](https://function.dataflux.cn/#/read?q=development-guide.md)>
 
-```
+```python
 import time
 import json
 import oss2

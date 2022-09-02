@@ -83,7 +83,7 @@ _注：在安装「核心包」后，系统会提示安装第三方依赖包 pip
 
 _注：阿里云-云监控采集器必须写在末尾 (aliyun_monitor.DataCollector)_
 
-```
+```python
 from guance_integration__runner import Runner        # 引入启动器
 import guance_aliyun_ecs__main as aliyun_ecs         # 引入阿里云ECS采集器
 import guance_aliyun_rds__main as aliyun_rds         # 引入阿里云RDS采集器
