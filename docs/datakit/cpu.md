@@ -14,7 +14,7 @@ CPU 采集器用于系统 CPU 使用率的采集。
 
 ## 配置  {#input-config}
 
-=== "datakit.conf"
+=== "主机部署"
 
     进入 DataKit 安装目录下的 `conf.d/host` 目录，复制 `cpu.conf.sample` 并命名为 `cpu.conf`。示例如下：
     
