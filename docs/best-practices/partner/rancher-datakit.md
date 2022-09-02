@@ -118,7 +118,7 @@ DataKit 默认已开启 Container 采集器，这里介绍一下自定义采集�
 
 命名空间输入“datakit”，名称输入“datakit-conf”，键输入“container.conf”，值输入如下内容。注意，生产环境建议设置 container_include_log = [] 且 container_exclude_log = ["image:*"]，然后在需要采集log 的 Pod 上增加 annotations 来采集指定 container 的日志。
 
-```
+```toml
       [inputs.container]
         docker_endpoint = "unix:///var/run/docker.sock"
         containerd_address = "/var/run/containerd/containerd.sock"
@@ -210,7 +210,7 @@ DataKit 默认已开启 Container 采集器，这里介绍一下自定义采集�
 
 点击『添加』，键输入“kube-state-metrics.conf”，值输入如下内容，点击『保存』。
 		
-```
+```toml
           [[inputs.prom]]
             urls = ["http://datakit-kube-state-metrics.datakit.svc.cluster.local:8080/metrics","http://datakit-kube-state-metrics.datakit.svc.cluster.local:8081/metrics"]
             source = "prom_state_metrics"
@@ -302,7 +302,7 @@ DataKit 默认已开启 Container 采集器，这里介绍一下自定义采集�
 
 点击『添加』，键输入“prom-istiod.conf”，值输入如下内容。点击『保存』。
 		
-```
+```toml
 [[inputs.prom]] 
           url = "http://istiod.istio-system.svc.cluster.local:15014/metrics"
           source = "prom-istiod"
@@ -329,7 +329,7 @@ DataKit 默认已开启 Container 采集器，这里介绍一下自定义采集�
 
 采集 ingressgateway 和 egressgateway 使用 Service 来访问 15020 端口，所以需要新建 ingressgateway 和 egressgateway 的 Service。 登录『Rancher』-> 『集群』，点击上方的“导入 YAML”图标，输入下面的内容，点击“导入”即完成 Service 的创建。
 
-```bash
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -369,7 +369,7 @@ spec:
 
 登录『Rancher』-> 『集群』-> 『存储』-> 『ConfigMaps』，找到 datakit-conf，点击『编辑配置』。      点击『添加』，键分别输入“prom-ingressgateway.conf”和 “prom-egressgateway.conf”，值参考如下内容。点击『保存』。
 
-```bash
+```yaml
     #### ingressgateway
     prom-ingressgateway.conf: |- 
         [[inputs.prom]] 
@@ -414,7 +414,7 @@ spec:
 
 点击『添加』，键输入“zipkin.conf”，值输入如下内容。点击『保存』。
 
-```
+```toml
 [[inputs.zipkin]]
         pathV1 = "/api/v1/spans"
         pathV2 = "/api/v2/spans"
@@ -462,7 +462,7 @@ spec:
 
 命名空间输入“prod”，在输入如下内容，点击『导入』。
 		
-```
+```yaml
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
@@ -486,7 +486,7 @@ spec:
 
 登录『Rancher』-> 『集群』-> 『Istio』-> 『VirtualServices』，点击上方的“导入 YAML”图标。        命名空间输入“prod”，在输入如下内容，点击『导入』。
 
-```
+```yaml
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
@@ -522,7 +522,7 @@ spec:
 
 这里使用为 Pod 增加 annotations 来采集 Pod 的指标，增加的内容如下所示。        
 
-```
+```yaml
       annotations:
         datakit/prom.instances: |
           [[inputs.prom]]
@@ -568,7 +568,7 @@ spec:
 
 下面是 productpage、details、ratings 的完整部署文件。
 
-```bash
+```yaml
 ##################################################################################################
 # Details service
 ##################################################################################################
@@ -861,7 +861,7 @@ spec:
 
 进入“bookinfo-views”项目，根目录新建 deployment.yaml 和 .gitlab-ci.yml 文件。在 annotations 定义了 project、env、version 标签，用于不同项目、不同版本的区分。
 		
-```bash
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -959,7 +959,8 @@ spec:
         emptyDir: {}
 
 ```
-```
+
+```yaml
 variables:
   APP_VERSION: "v1"
 
@@ -1063,7 +1064,7 @@ deploy_k8s:
 
 制作镜像，并上传到镜像仓库。
 
-```
+```shell
 cd istio-1.13.2\samples\bookinfo\src\productpage
 docker build -t 172.16.0.238/df-demo/product-page:v1  .
 docker push 172.16.0.238/df-demo/product-page:v1
@@ -1136,7 +1137,7 @@ docker push 172.16.0.238/df-demo/product-page:v1
 
 登录『Rancher』-> 『集群』-> 『Istio』-> 『VirtualServices』，点击上方的“导入YAML”图标，输入如下内容后，点击『导入』。
 
-```
+```yaml
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:

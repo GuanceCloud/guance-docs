@@ -26,7 +26,7 @@ Kubernetes 集群中，在使用 DaemonSet 部署的 DataKit 来采集指标、�
 ##### 1.1.2 配置 token
 登录『[观测云](https://console.guance.com/)』，进入『管理』模块，找到下图中 token，替换 datakit.yaml 文件中的 ENV_DATAWAY 环境变量的 value 值中的 <your-token>。
 
-```
+```yaml
         - name: ENV_DATAWAY
           value: https://openway.guance.com?token=<your-token>
 ```
@@ -37,7 +37,7 @@ Kubernetes 集群中，在使用 DaemonSet 部署的 DataKit 来采集指标、�
 
 在 datakit.yaml 文件中的 ENV_GLOBAL_TAGS 环境变量值最后增加 cluster_name_k8s=k8s-istio，其中  k8s-istio 为全局 tag。
 
-```
+```yaml
         - name: ENV_GLOBAL_TAGS
           value: host=__datakit_hostname,host_ip=__datakit_ip,cluster_name_k8s=k8s-prod
 ```
@@ -46,7 +46,7 @@ Kubernetes 集群中，在使用 DaemonSet 部署的 DataKit 来采集指标、�
 
 DataKit 在选举时为了区分不同集群，这里需要设置 ENV_NAMESPACE 环境变量，不同集群值不能相同。在 datakit.yaml 文件中的环境变量部分增加如下内容。
 
-```
+```yaml
         - name: ENV_NAMESPACE
           value: guance-k8s
 ```
@@ -55,7 +55,7 @@ DataKit 在选举时为了区分不同集群，这里需要设置 ENV_NAMESPACE 
 
 本案例使用 logfwd 采集日志，所以需要开通 logfwd 及挂载 pipeline。
 
-```
+```yaml
 
         volumeMounts:
         # 下面是新增内容
@@ -67,7 +67,7 @@ DataKit 在选举时为了区分不同集群，这里需要设置 ENV_NAMESPACE 
           subPath: pod-logging-demo.p
 ```
 
-```
+```yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -96,7 +96,7 @@ data:
 kubectl apply -f datakit.yaml
 ```
 
-```
+```yaml
 apiVersion: v1
 kind: Namespace
 metadata:
@@ -403,7 +403,7 @@ ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS} -jar ${jar} ${PARAMS} "]
 
 把项目的 Jar 和 Dockerfile 放到相同目录。执行下面命令制作镜像，并上传到私有仓库。
 
-```
+```shell
 docker build -t 172.16.0.238/df-demo/service-demo:v1  .
 docker push 172.16.0.238/df-demo/service-demo:v1
 ```
@@ -412,20 +412,20 @@ docker push 172.16.0.238/df-demo/service-demo:v1
 
 编写 demo-service.yaml 部署文件，在 Service 资源文件中增加 externalTrafficPolicy: Local 来开启外部策略的 Local 模式。增加 HOST_IP 和 HOST_NAME 环境变量，用于输出 ip 和 服务器名称。
 
-```
+```shell
  kubectl  apply -f demo-service.yaml
 ```
 
 关于 logfwd 的使用请参考 [Pod 日志采集最佳实践](../pod-log)，在 logfwd 指定 DataKit 的环境变量中，使用 DataKit Service 的域名 datakit-service.datakit.svc.cluster.local。
 
-```
+```yaml
         - name: LOGFWD_DATAKIT_HOST
           value: "datakit-service.datakit.svc.cluster.local"
 ```
 
 demo-service.yaml 完整内容如下。
 
-```
+```yaml
 apiVersion: v1
 kind: Service
 metadata:

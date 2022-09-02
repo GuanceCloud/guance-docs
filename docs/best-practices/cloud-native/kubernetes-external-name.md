@@ -8,7 +8,7 @@
 
 ### 1 定义 ClusterIP 的服务
 
-```
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -27,7 +27,7 @@ spec:
 
 ### 2 定义 ExternalName 的服务 
 
-```
+```yaml
 apiVersion: v1
 kind: Service
 metadata:

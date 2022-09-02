@@ -38,7 +38,7 @@ CRD 全称是 Custom Resource Definition，是 Kubernetes 的一种内置资源�
 
 打开 datakit.yaml 文件，把复制的 Token 替换文件中的 <your-token>，为了区分集群和选举，增加几个环境变量，k8s-containerd 可以自己定义。
 
-```
+```yaml
         - name: ENV_GLOBAL_HOST_TAGS
           value: host=__datakit_hostname,host_ip=__datakit_ip,cluster_name_k8s=k8s-containerd
         - name: ENV_NAMESPACE   
@@ -51,7 +51,7 @@ CRD 全称是 Custom Resource Definition，是 Kubernetes 的一种内置资源�
 
 把 datakit.yaml 上传到 Kubernetes 集群的 master 节点，执行命令部署 DataKit。
 
-```
+```shell
 kubectl apply -f datakit.yaml
 ```
 
@@ -59,7 +59,7 @@ kubectl apply -f datakit.yaml
 
 #### 2.1 编写 ingress-deployment.yaml
 
-```
+```yaml
 
 apiVersion: v1
 kind: Namespace
@@ -762,7 +762,7 @@ spec:
 
 把 ingress-deployment.yaml 文件上传到 Kubernetes 集群的 master 节点，执行命令部署 Ingress。
 
-```
+```shell
 kubectl apply -f ingress-deployment.yaml
 ```
 
@@ -770,7 +770,7 @@ kubectl apply -f ingress-deployment.yaml
 
 #### 3.1 编写 nginx-deployment.yaml
 
-```
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -813,7 +813,7 @@ spec:
 
 #### 3.2 编写 nginx-ingress.yaml
 
-```
+```yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -840,7 +840,7 @@ spec:
 
 把 nginx-deployment.yaml 和 nginx-ingress.yaml 上传到 Kubernetes 集群的 master 节点，执行命令。
 
-```
+```shell
 kubectl apply -f nginx-deployment.yaml
 kubectl apply -f nginx-ingress.yaml
 ```
@@ -849,7 +849,7 @@ kubectl apply -f nginx-ingress.yaml
 
 #### 4.1 编写 datakit-crd.yaml
 
-```
+```yaml
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -892,7 +892,7 @@ spec:
 
 #### 4.2 编写 ingress-crd.yaml
 
-```
+```yaml
 apiVersion: "guance.com/v1beta1"
 kind: Datakit
 metadata:
@@ -924,7 +924,7 @@ spec:
 
 把文件上传到 Kubernets 集群的 master 节点，执行命令。
 
-```
+```shell
 kubectl apply -f datakit-crd.yaml
 kubectl apply -f ingress-crd.yaml
 ```
@@ -939,7 +939,7 @@ kubectl apply -f ingress-crd.yaml
 
 使用节点 [8.136.207.182](http://8.136.207.182) 来访问 Nginx。
 
-```
+```shell
 while true; do sleep 1;curl -v http://8.136.207.182 -H 'host: mynginx.com'; done
 ```
 

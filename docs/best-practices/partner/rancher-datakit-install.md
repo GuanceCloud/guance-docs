@@ -38,7 +38,7 @@ Project name 输入 datakit-conf，点击『Create Project』。
 
 进入 dk-config 项目，新建 container.conf 文件，内容如下，container 开启了指标采集，关闭所有镜像的 stdout 日志采集。
 
-```
+```toml
 [inputs.container]
   docker_endpoint = "unix:///var/run/docker.sock"
   containerd_address = "/var/run/containerd/containerd.sock"
@@ -132,7 +132,7 @@ Project name 输入 datakit-conf，点击『Create Project』。
 
 登录『Rancher』，点击右上方的命令行图标，执行如下命令进入 datakit，查看 gitrepos 目录下有 container.conf  文件即表示能正常拉取 git 仓库配置了。
 
-```
+```shell
  kubectl get pods -n datakit
  kubectl exec -it datakit-qc58m -n datakit bash
  cd gitrepos/
