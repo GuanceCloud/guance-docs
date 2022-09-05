@@ -138,6 +138,11 @@
 
 通过左上角的数据类型筛选栏，您可以切换至「error 查看器」对用户访问时的发生的代码错误进行查询和分析，您可以快速查看用户访问时的页面地址、代码错误类型、错误内容等。
 
+注意：
+
+- 错误内容 Load failed：是没有 response 的错误，默认 SDK 加了 Load failed
+- 错误内容 Network request failed：是 response 返回错误
+
 ![](img/6.error_1.png)
 
 ### error 详情页
