@@ -230,7 +230,7 @@ kubectl apply -f ./laucher.yaml
 192.168.0.1  launcher.dataflux.cn
 192.168.0.1 实际为前面步骤中创建 ACK 时自动创建的 SLB 实例的公网 IP 地址。
 
-### 4.3 应用安装引导步骤
+### 4.3 应用安装引导步骤 {#deploy-steps}
 在**安装操作机**的浏览器中访问 **launcher.dataflux.cn**，根据引导步骤一步一步完成安装配置。
 #### 4.3.1 数据库配置
 
