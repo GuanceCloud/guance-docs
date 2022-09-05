@@ -911,8 +911,8 @@ spec:
           # measurement_prefix = ""
           measurement_name = "prom_ingress"
           interval = "60s"
-          tags_ignore = ["build","le","method","release","repository"]
-          metric_name_filter = ["nginx_process_cpu_seconds_total","nginx_process_resident_memory_bytes","request_size_sum","response_size_sum","requests","success","config_last_reload_successful"]
+          tags_ignore = ["build","le","path","method","release","repository"]
+          metric_name_filter = ["nginx_process_cpu_seconds_total","nginx_process_resident_memory_bytes","request_size","response_size","requests","success","config_last_reload_successful"]
           [[inputs.prom.measurements]]
             prefix = "nginx_ingress_controller_"
             name = "prom_ingress"
