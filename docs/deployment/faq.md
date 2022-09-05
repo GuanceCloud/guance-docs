@@ -97,43 +97,43 @@ rancher server 可以正常运行。升级到 Rancher v2.0.14+ 、v2.1.9+、v2.2
    1. 正常升级 rancher 版本到 v2.0.14+ 、v2.1.9+、v2.2.2+；
    1. 执行以下命令：
    - 2.0 或 2.1 版本
-```yaml
-    docker exec -ti <rancher_server_id>mv /var/lib/rancher/management-state/certs/bundle.json /var/lib/rancher/management-state/certs/bundle.json-bak
+```shell
+docker exec -ti <rancher_server_id>mv /var/lib/rancher/management-state/certs/bundle.json /var/lib/rancher/management-state/certs/bundle.json-bak
 ```
 
    - 2.2 +
-```yaml
+```shell
 docker exec -ti <rancher_server_id>mv /var/lib/rancher/management-state/tls/localhost.crt /var/lib/rancher/management-state/tls/localhost.crt-bak
 ```
 
    - 2.3 +
-```yaml
-    docker exec -ti <rancher_server_id>mv /var/lib/rancher/k3s/server/tls /var/lib/rancher/k3s/server/tlsbak
-    
-    # 执行两侧，第一次用于申请证书，第二次用于加载证书并启动
-    docker restart <rancher_server_id>
+```shell
+ docker exec -ti <rancher_server_id>mv /var/lib/rancher/k3s/server/tls /var/lib/rancher/k3s/server/tlsbak
+ 
+ # 执行两侧，第一次用于申请证书，第二次用于加载证书并启动
+ docker restart <rancher_server_id>
 ```
 
    - 2.4 +
       1. exec 到 rancher server
-```yaml
+```shell
 kubectl --insecure-skip-tls-verify -n kube-system delete secrets k3s-serving
 kubectl --insecure-skip-tls-verify delete secret serving-cert -n cattle-system
 rm -f /var/lib/rancher/k3s/server/tls/dynamic-cert.json
 ```
 
       2. 重启 rancher-server
-```yaml
+```shell
 docker restart <rancher_server_id>
 ```
 
       3. 执行以下命令刷新参数
-```yaml
+```shell
 curl --insecure -sfL https://server-url/v3
 ```
 
    3.   重启 Rancher Server 容器
-```yaml
+```shell
 docker restart <rancher_server_id>
 ```
 ## 5 rancher server 证书已过期导致无法纳管k8s集群处理
@@ -141,7 +141,7 @@ docker restart <rancher_server_id>
 ### 5.1 解决方法
 可以手动设置节点的时间，把时间往后调整一些。因为Agent只与K8S master和Rancher Server通信，如果 Rancher Server 证书未过期，那就只需调整K8S master节点时间。
 调整命令：
-```yaml
+```shell
 # 关闭ntp同步，不然时间会自动更新
 timedatectl set-ntp false
 # 修改节点时间
@@ -149,11 +149,11 @@ timedatectl set-time '2019-01-01 00:00:00'
 ```
 
 然后再对 Rancher Server 进行升级，等到证书轮换完成后再把时间同步回来。
-```yaml
+```shell
 timedatectl set-ntp true
 ```
 检查证书有效期
-```yaml
+```shell
 openssl x509 -in /etc/kubernetes/ssl/kube-apiserver.pem -noout -dates
 ```
 
