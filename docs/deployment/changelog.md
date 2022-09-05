@@ -1,4 +1,85 @@
 # 版本历史
+## v1.48.104(2022年9月1日)
+
+ 
+
+### 观测云更新
+
+- 计费更新
+- 帮助文档目录更新
+- 新增 DEMO 工作空间
+- 时序图新增事件关联分析
+- 日志新增多索引模式
+- 优化备份日志规则
+- 优化日志上下文
+- 优化用户访问监测
+    - 新增自定义用户访问监测应用 ID
+    - 新增用户访问监测网络请求 ERROR 错误关联链路查看
+- 智能巡检全面升级
+- 优化监控
+    - 调整分组为告警策略
+    - 优化监控器配置
+    - 新增「基础设施存活检测」
+    - 新增「进程异常检测」
+    - 优化「应用性能指标检测」
+- 优化成员管理
+- 其他功能优化
+    - 图表中指标聚合函数从默认的 last 变更为 avg，日志类数据聚合函数从默认的 last 变更为 count
+    - 优化时序图、饼图图例复制体验
+    - 优化笔记编辑模式下的交互显示
+    - 快照支持保存当前查看器的显示列信息
+    - 链路详情页针对时间的字段做格式化显示，把时间戳转换成日期格式显示
+    - 部署版管理后台支持修改工作空间的数据保存策略
+
+### DataKit 更新
+
+**1.Breaking changes**
+
+- Gitlab 以及 Jenkins 采集器中，CI/CD 数据有关的时间字段做了调整，以统一前端页面的数据展示效果
+
+**2.采集器功能调整**
+
+- 优化 IO 模块的数据处理，提升数据吞吐效率
+- 在各类 Trace 上加上的磁盘缓存功能
+- DataKit 自身指标集增加 goroutine 使用有关的指标集（`datakit_goroutine`）
+- MySQL 采集器增加 `mysql_dbm_activity` 指标集
+- 增加netstat 采集器
+- TDengine 增加日志采集
+- 优化磁盘采集器中的 fstype 过滤，默认只采集常见的文件系统
+- 日志采集器中，针对每条日志，增加字段 `message_length` 表示当前日志长度，便于通过长度来过滤日志
+- CRD 支持通过 DaemonSet 来定位 Pod 范围
+- eBPF 移除 go-bindata 依赖
+- 容器采集器中默认会打开k8s 和容器相关的指标，这在一定程度上会消耗额外的时间线
+
+**3.Bug 修复**
+
+- 修复 DataKit 自身 CPU 使用率计算错误
+- 修复 SkyWalking 中间件识别问题
+- 修复 Oracle 退出问题
+- 修复 Sink DataWay 失效问题
+- 修复 HTTP /v1/write/:category 接口 JSON 写入问题
+
+**4.文档调整**
+
+- 几乎每个章节都增加了跳转标签，便于其它文档永久性引用
+- pythond 文档已转移到自定义开发目录
+- 采集器文档从原来「集成」迁移到 「DataKit」文档库
+- DataKit 文档目录结构调整，减少了目录层级
+- 几乎每个采集器都增加了 k8s 配置入口
+- 调整文档头部显示，除了操作系统标识外，对支持选举的采集器，增加选举标识
+
+更多 DataKit 更新可参考 [DataKit 版本历史](https://docs.guance.com/datakit/changelog/) 。
+
+### 最佳实践更新
+
+- 云原生
+    - [使用 CRD 开启您的 Ingress 可观测之路](https://docs.guance.com/best-practices/cloud-native/ingress-crd/)
+- 监控 Monitoring
+    - 应用性能监控 (APM) - [DDtrace 自定义 Instrumentation](https://docs.guance.com/best-practices/monitoring/ddtrace-instrumentation/)
+    - 应用性能监控 (APM) - [DDtrace 观测云二次开发实践](https://docs.guance.com/developers/ddtrace-guance/)
+
+更多最佳实践更新可参考 [最佳实践版本历史](https://docs.guance.com/best-practices/) 。
+
 ## v1.47.103(2022年8月18日)
 
 pubrepo.jiagouyun.com/dataflux/1.47.103:launcher-e472ac9-1661174654 
