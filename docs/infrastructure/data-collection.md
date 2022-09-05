@@ -13,7 +13,7 @@
 
 ### 主机
 
-完成 DataKit 安装后，系统会默认开启一批与主机相关的采集器，并主动上报主机数据至“观测云”工作空间。详情可参考 [DataKit 采集器使用](../datakit/datakit-input-conf.md) / [主机对象](../integrations/hostobject.md)。
+在需要被观测的主机上完成 DataKit 安装后，系统会默认开启一批与主机相关的采集器，并主动上报数据至“观测云”工作空间。详情可参考 [DataKit 采集器使用](../datakit/datakit-input-conf.md) / [主机对象](../integrations/hostobject.md)。
 
 注意：主机采集开启后，变更主机名`host_name`会默认新增加一台主机，原主机名会继续在「基础设施」-「主机」列表中显示，一个小时后不会继续上报数据，直到24小时未上报数据后从列表中移除。由于 DataKit 数量是在 24 小时内取最大值，故在这个计费周期内会被统计为2台主机进行收费。
 
@@ -30,11 +30,12 @@
 | `net` | 采集主机网络流量情况 |
 | `host_process` | 采集主机上常驻（存活 10min 以上）进程列表 |
 | `hostobject` | 采集主机基础信息（如操作系统信息、硬件信息等） |
+| container | 采集主机上可能的容器或 Kubernetes 数据，假定主机上没有容器，则采集器会直接退出 |
 
 
 ### 云主机
 
-开启云主机的数据采集，打开 DataKit 安装目录`/usr/local/datakit/conf.d`下的 `datakit.conf` 文件，设置主机对象的标签 `cloud_provider` 。配置完成后，重启datakit 即可。更多详情可参考文档 [开启云同步](../integrations/hostobject.md) 。
+假如 DataKit 所在的主机是云主机，通过 `cloud_provider` 标签即可开启云同步。配置完成后，重启datakit 即可。更多详情可参考文档 [开启云同步](../integrations/hostobject.md) 。
 
 ### 容器
 
@@ -60,4 +61,3 @@
 
 - 通过「基础设施」-「自定义」，您可以创建新的对象分类并自定义对象字段。
 - 上报自定义对象数据时，您需要先安装并连通 DataKIt 和 DataFlux Function，再通过 DataFlux Function 上报数据到 DataKit，最终由 DataKit 上报对象数据到 “观测云” 工作空间。具体操作过程可参考文档 [自定义对象数据上报](custom/data-reporting.md) 
-- 同步对象数据到指定的对象分类时，您需要同步[自定义对象数据上报](custom/data-reporting.md)（API数据上报）的数据格式和对象分类的数据格式（包括：对象分类和默认属性字段）
