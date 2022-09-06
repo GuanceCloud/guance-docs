@@ -26,13 +26,27 @@
 ---
 ## 历史版本：
 
+## (2022-09-06) Version:0.108.1
+
+合并 DataDog v0.108.1版本，进行编译。
+
+- [github下载地址](https://github.com/GuanceCloud/dd-trace-java/releases/tag/v0.108.1)
+
+
+### 新增功能说明
+
+- 增加 xxl_job 探针( xxl_job 版本 >= 2.3.0)
+
+---
+
+## 历史版本：
+
 ## (2022-08-30) Version:guance-0.107.0
 
-合并 DataDog 107版本，进行编译。
+合并 DataDog 107 版本，进行编译。
 
-- [github下载地址](https://github.com/GuanceCloud/dd-trace-java/releases)
+- [github下载地址](https://github.com/GuanceCloud/dd-trace-java/releases/tag/guance-107)
 
-- [观测云下载地址](https://static.guance.com/ddtrace/dd-java-agent.jar)
 
 ---
 
