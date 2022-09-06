@@ -17,7 +17,7 @@
 
 视图变量支持的数据来源包括「指标」、「DQL」、「系统对象」、「自定义对象」、「日志」、「应用性能」、「用户访问」、「安全巡检」和「自定义」。
 
-![](img/2.view_variable_3.png)
+![](img/variable.png)
 
 ### DQL 查询
 
@@ -125,9 +125,9 @@ SHOW_TAG_VALUE(from=["cpu"],keyin=["host"])
 
 ### 添加映射
 
-选择【对象分类】以及需要映射的两个【属性字段】。如下图所示：将`container_id` 映射显示为`container_name`。
+选择【数据来源】【对象分类】以及需要映射的两个【属性字段】。如下图所示：将`container_id` 映射显示为`container_name`。
 
-![](img/x8.png)
+![](img/variable001.png)
 
 ### 如何使用对象映射
 
@@ -139,11 +139,12 @@ SHOW_TAG_VALUE(from=["cpu"],keyin=["host"])
 
 举例说明：
 
-1）在【对象映射】中设置`container_id`映射为`container_name`。<br />2）在【视图变量】中添加了container_id变量（如下图所示）。
+1）在【对象映射】中设置`container_id`映射为`container_name`。<br />2）在【视图变量】中添加了host变量（如下图所示）。
 
-![](img/x9.png)
+![](img/variable001.png)
+![](img/variable002.png)
 
-3）此时在视图中变量显示为：container_name(container_id)。
+3）此时在视图中变量显示为：`container_name(container_id)`。
 
 ![](img/x10.png)
 
@@ -155,7 +156,7 @@ SHOW_TAG_VALUE(from=["cpu"],keyin=["host"])
 
 1）在【对象映射】中设置`host`映射为`name`（如下图所示）。
 
-![](img/x11.png)
+![](img/variable003.png)
 
 
 2）在图表查询中使用该字段，并且在【设置】中开启【字段映射】，那么在图表中显示格式为`name(host)`。
