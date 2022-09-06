@@ -18,7 +18,7 @@
 
 #### 时间控件
 
-容器对象列表支持查看**最近十分钟内**采集的Containers、Pods、Services、Deployments、Clusters、Nodes、Replica  Sets、Jobs、Cron Jobs 数据，通过「刷新 :material-**refresh**: 」按钮可以刷新至当前时间范围，重新获取数据列表。
+容器对象列表支持查看**最近十分钟内**采集的Containers、Pods、Services、Deployments、Clusters、Nodes、Replica  Sets、Jobs、Cron Jobs 数据，通过「 :material-**refresh**: 刷新 」按钮可以刷新至当前时间范围，重新获取数据列表。
 
 #### 搜索与筛选
 
@@ -30,7 +30,7 @@
 
 #### 自定义显示列
 
-在容器查看器列表，可通过「显示列」自定义添加、编辑、删除、拖动显示列。当鼠标放在查看器显示列上时，点击「设置 :material-cog: 」按钮，支持对显示列进行升序、降序、向左移动列、向右移动列、向左添加列、向右添加列、替换列、添加到快捷筛选、添加到分组、移除列等操作。更多自定义显示列可参考文档 [显示列说明](../getting-started/necessary-for-beginners/explorer-search.md#columns) 。
+在容器查看器列表，可通过「显示列」自定义添加、编辑、删除、拖动显示列。当鼠标放在查看器显示列上时，点击「 :material-cog: 设置」按钮，支持对显示列进行升序、降序、向左移动列、向右移动列、向左添加列、向右添加列、替换列、添加到快捷筛选、添加到分组、移除列等操作。更多自定义显示列可参考文档 [显示列说明](../getting-started/necessary-for-beginners/explorer-search.md#columns) 。
 
 #### 排序
 
@@ -38,11 +38,11 @@
 
 #### 分组
 
-通过分组对容器对象数据进行相关聚合，聚合的结果将显示分组排行榜Top10。分组支持多标签筛选。通过点击分组排行榜，该分组对应的字段将被做为筛选条件显示查询结果，即您可查看对应分组里的对象数据；点击分组右侧的"设置 :material-cog: "按钮，可自定义添加分组标签（仅管理员可添加），添加完成后，可选择按照添加分组标签进行分组聚合展示。
+通过分组对容器对象数据进行相关聚合，聚合的结果将显示分组排行榜Top10。分组支持多标签筛选。通过点击分组排行榜，该分组对应的字段将被做为筛选条件显示查询结果，即您可查看对应分组里的对象数据；点击分组右侧的" :material-cog: 设置"按钮，可自定义添加分组标签（仅管理员可添加），添加完成后，可选择按照添加分组标签进行分组聚合展示。
 
 #### 设置
 
-通过页面左上角的"设置  :material-cog: "图标，支持导出当前对象列表数据到CSV文件或场景仪表板和笔记。
+通过页面左上角的" :material-cog: 设置"图标，支持导出当前对象列表数据到CSV文件或场景仪表板和笔记。
 
 ![](img/container_01.png)
 
@@ -108,10 +108,13 @@
 
     在容器详情页，支持您通过详情页下方的「进程」，快速查看当前容器正在运行的全部进程。如需查看更详细的进程信息，您可以点击进程内容跳转到对应进程的详情页面，或点击「跳转」至进程查看与该容器相关的全部进程。
 
-==== "关联 Pod"
+=== "关联 Pod"
 
     在容器详情页，支持您通过详情页查看相关 Pod（关联字段：pod_name）的基本信息和**在选定时间组件范围内**的性能指标状态。
     **注意：在容器详情中查看相关 Pod，需要匹配字段“pod_name”，否则无法在容器详情查看到相关 Pod 的页面**。
+
+![](img/7.pod_4.png)
+
 
 
 ### Pods 列表
@@ -147,41 +150,35 @@
 
 #### 标签属性
 
-点击 Pod 对象列表中的 Pod 名称，即可划出详情页为 Pod 添加标签「Label 属性」。Pod 标签添加后，可在 Pod 对象列表通过添加的标签筛选展示相同标签的 Pod 列表。
+「Label 属性」随Pod信息默认自动上传。已有的Pod 标签，可在 Pod 对象列表通过快捷筛选展示相同标签的 Pod 数据。
 
-![](img/7.pod_2.1.png)
+![](img/1.container_1.png)
 
-#### 关联指标
+#### 关联分析
 
-支持查看当前 pod 容器的性能状态，包括CPU Cores、CPU使用率、内存等。
-**注意：若Pod关联字段“service”、“project”、“namespace”，则可以在Pod详情页查看该三个字段对应的视图。**
+观测云支持对每一个基础设施对象进行关联分析，在Pod对象的详情页，您不仅能够了解Pod的基本信息，还可以一站式关联对应Pod的指标、容器、日志、网络、主机等，更快更全面的监测Pod运行情况。
 
-![](img/9.pod_2.png)
+=== "指标"
 
-#### 关联容器
+    支持查看当前 pod 容器的性能状态，包括CPU Cores、CPU使用率、内存等。
+    **注意：若Pod关联字段“service”、“project”、“namespace”，则可以在Pod详情页查看该三个字段对应的视图。**
 
-支持查看 Pod 对应容器，点击容器或点击「跳转」按钮至容器查看与该 Pod 相关的全部容器。
+=== "容器"
 
-![](img/9.pod_5.png)
+    支持查看 Pod 对应容器，点击容器或点击「跳转」按钮至容器查看与该 Pod 相关的全部容器。
 
-#### 关联日志
+=== " 日志"
 
-支持查看 Pod 对应日志，点击日志或点击「跳转」按钮至日志查看与该 Pod 相关的全部日志。
+    支持查看 Pod 对应日志，点击日志或点击「跳转」按钮至日志查看与该 Pod 相关的全部日志。
 
-![](img/9.pod_6.png)
+=== " 主机"
 
-#### 关联主机
+    在Pod详情页，支持您通过详情页中的，查看相关主机（关联字段：host）的基本信息和**在选定时间组件范围内**的性能指标状态。
+    **注意：在进程详情中查看相关主机，需要匹配字段“host”，否则无法在进程详情查看到相关主机的页面**。
+    - 属性视图：包括主机的基本信息、集成运行情况，若开启云主机的采集，还可查看云厂商的信息。
+    - 指标视图：可查看默认24小时内，相关主机的CPU、内存等性能指标视图。点击「打开该视图」至内置视图，可通过克隆的方式对主机视图进行自定义修改，并作为用户视图保存，用户视图可通过绑定在Pod详情页查看，更多配置详情，可参考[绑定内置视图](../management/built-in-view/bind-view.md)。
 
-在Pod详情页，支持您通过详情页中的，查看相关主机（关联字段：host）的基本信息和**在选定时间组件范围内**的性能指标状态。
-注意：在进程详情中查看相关主机，需要匹配字段“host”，否则无法在进程详情查看到相关主机的页面。
-
-- 属性视图：包括主机的基本信息、集成运行情况，若开启云主机的采集，还可查看云厂商的信息。
-
-![](img/9.pod_4.png)
-
-- 指标视图：可查看默认24小时内，相关主机的CPU、内存等性能指标视图。点击「打开该视图」至内置视图，可通过克隆的方式对主机视图进行自定义修改，并作为用户视图保存，用户视图可通过绑定在Pod详情页查看，更多配置详情，可参考[绑定内置视图](../management/built-in-view/bind-view.md)。
-
-![](img/9.pod_3.png)
+![](img/5.pod_3.png)
 
 #### Pod 网络
 
@@ -280,9 +277,9 @@ Pod 网络支持基于 HTTP 协议的七层网络性能监测。
 
 #### 标签属性
 
-点击 Service 对象列表中的 Service 名称，即可划出详情页为 Service 添加标签「Label 属性」。Service 标签添加后，可在 Services 对象列表通过添加的标签筛选展示相同标签的 Service 列表。
+「Label 属性」随 Service 信息默认自动上传。已有的标签，可在 Service 对象列表通过快捷筛选展示相同标签的  Service  数据。
 
-![](img/8.services_2.1.png)
+![](img/1.container_1.png)
 
 ### Deployments 列表
 
@@ -293,7 +290,7 @@ Pod 网络支持基于 HTTP 协议的七层网络性能监测。
 点击 Deployments 列表中的 Deployment 名称即可划出详情页查看 Deployment 的详细信息，包括名称、基础信息、 Label 标签属性和其他字段属性。支持查看关联的日志、Replica Set 、 Pod 、以及网络数据。
 **注意：若 Deployment 关联字段“namespace”，则可以在Service详情页查看该字段对应的指标视图。**
 
-![](img/9.deployments_2.png)
+![](img/9.deployments_4.png)
 
 通过点击 Deployment 详情页的标签「主机」，您可以进行以下操作：
 
@@ -309,9 +306,9 @@ Pod 网络支持基于 HTTP 协议的七层网络性能监测。
 
 #### 标签属性
 
-点击 Deployment 对象列表中的容器名称，即可划出详情页为 Deployment 添加标签「Label 属性」。Deployment 标签添加后，可在 Deployments 对象列表通过添加的标签筛选展示相同标签的 Deployment 列表。
+「Label 属性」随 Deployment 信息默认自动上传。已有的标签，可在 Deployment 对象列表通过快捷筛选展示相同标签的  Deployment 数据。
 
-![](img/9.deployments_2.1.png)
+![](img/1.container_1.png)
 
 #### Deployment 网络
 
@@ -410,8 +407,11 @@ Pod 网络支持基于 HTTP 协议的七层网络性能监测。
 
 #### 标签属性
 
-通过 Clusters 详情页的「编辑Label」，您可以对 Clusters 的label标签进行添加、编辑、删除。label 标签添加后，可在 Clusters 列表通过添加的标签筛选展示相同标签的 Clusters 列表。
-![](img/10.clusters_2.1.png)
+「Label 属性」随 Clusters 信息默认自动上传。已有的标签，可在 Clusters 对象列表通过快捷筛选展示相同标签的  Clusters 数据。
+
+![](img/1.container_1.png)
+
+
 
 ### Nodes 列表
 
@@ -437,9 +437,9 @@ Pod 网络支持基于 HTTP 协议的七层网络性能监测。
 
 #### 标签属性
 
-通过 Node 详情页的「编辑Label」，您可以对 Node 的label标签进行添加、编辑、删除。label 标签添加后，可在 Nodes 列表通过添加的标签筛选展示相同标签的 Nodes 列表。
+「Label 属性」随 Node 信息默认自动上传。已有的标签，可在 Node 对象列表通过快捷筛选展示相同标签的  Node 数据。
 
-![](img/11.nodes_2.1.png)
+![](img/1.container_1.png)
 
 ### Replica Sets 列表
 
@@ -466,9 +466,11 @@ Pod 网络支持基于 HTTP 协议的七层网络性能监测。
 
 #### 标签属性
 
-通过 Replica Set 详情页的「编辑Label」，您可以对 Replica Set 的label标签进行添加、编辑、删除。label 标签添加后，可在 Replica Set 列表通过添加的标签筛选展示相同标签的 Replica Sets 列表。
+「Label 属性」随 Replica Set 信息默认自动上传。已有的标签，可在 Replica Set 对象列表通过快捷筛选展示相同标签的 Replica Set 数据。
 
-![](img/12.sets_2.1.png)
+![](img/1.container_1.png)
+
+
 
 ### Jobs 列表
 
@@ -494,9 +496,9 @@ Pod 网络支持基于 HTTP 协议的七层网络性能监测。
 
 #### 标签属性
 
-通过 Job 详情页的「编辑Label」，您可以对 Job 的label标签进行添加、编辑、删除。label 标签添加后，可在 Jobs 列表通过添加的标签筛选展示相同标签的 Jobs 列表。
+「Label 属性」随 Job 信息默认自动上传。已有的标签，可在 Job 对象列表通过快捷筛选展示相同标签的 Job 数据。
 
-![](img/13.jobs_2.1.png)
+![](img/1.container_1.png)
 
 ### Cron Jobs 列表
 
@@ -522,9 +524,9 @@ Pod 网络支持基于 HTTP 协议的七层网络性能监测。
 
 #### 标签属性
 
-通过 Cron Job 详情页的「编辑Label」，您可以对 Cron Job 的label标签进行添加、编辑、删除。label 标签添加后，可在 Cron Jobs 列表通过添加的标签筛选展示相同标签的 Cron Jobs 列表。
+「Label 属性」随 Cron Job 信息默认自动上传。已有的标签，可在 Cron Job 对象列表通过快捷筛选展示相同标签的 Job 数据
 
-![](img/14.cronjobs_2.1.png)
+![](img/1.container_1.png)
 
 ## 容器分布图
 
