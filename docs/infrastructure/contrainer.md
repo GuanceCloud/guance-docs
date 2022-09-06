@@ -18,7 +18,7 @@
 
 #### 时间控件
 
-容器对象列表支持查看**最近十分钟内**采集的Containers、Pods、Services、Deployments、Clusters、Nodes、Replica  Sets、Jobs、Cron Jobs 数据，通过「刷新」按钮可以刷新至当前时间范围，重新获取数据列表。
+容器对象列表支持查看**最近十分钟内**采集的Containers、Pods、Services、Deployments、Clusters、Nodes、Replica  Sets、Jobs、Cron Jobs 数据，通过「刷新 :material-**refresh**: 」按钮可以刷新至当前时间范围，重新获取数据列表。
 
 #### 搜索与筛选
 
