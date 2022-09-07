@@ -223,7 +223,6 @@ Launcher YAML 下载：
 
 - {{ launcher_image }} 替换为最新版的 Launcher 应用的镜像地址，可以在 [社区版部署镜像](changelog.md) 文档中获取到最新版本的 Launcher 安装镜像地址
 - {{ domain }} 替换为主域名，如使用 dataflux.cn
-- {{ kube_config }}替换为kube config，launcher 需要获取到集群权限，去自动部署应用，注意缩进
 - {{ storageClassName }}替换为storage class name，如前一步的 storage_class.yaml 中配置的 name： alicloud-nas
 
 在**运维操作机**上执行以下 **kubectl** 命令，在导入 **Launcher** 服务：
