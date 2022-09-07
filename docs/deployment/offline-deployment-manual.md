@@ -24,24 +24,19 @@
 
 ## 2 资源准备
 ### 2.1 资源清单
+
 | **用途** | **资源类型** | **最低规格** | **推荐规格** | **数量** | **备注** |
 | --- | --- | --- | --- | --- | --- |
-| **Kubernetes 集群** | 物理服务器&#124;虚拟机 | 4C8GB 100GB | 8C16GB  100GB | 3 | k8s集群Master节点&#124;Etcd集群 
-注：若是为虚拟机需适当提高资源规格 |
+| **Kubernetes 集群** | 物理服务器&#124;虚拟机 | 4C8GB 100GB | 8C16GB  100GB | 3 | k8s集群Master节点&#124;Etcd集群 **注：若是为虚拟机需适当提高资源规格** |
 |  | 物理服务器&#124;虚拟机 | 4C8GB 100GB | 8C16GB  100GB | 4 | k8s集群worker节点，承载观测云应用、k8s组件、基础组件服务Mysql 5.7.18、Redis 6.0.6 |
-|  | 物理服务器&#124;虚拟机 | 2C4GB  100GB | 4C8GB    200GB | 1 | 【可选】用于部署反向代理服务器部署，代理到ingress 边缘节点
-注： 出于安全考虑不直接将集群边缘节点直接暴露 |
+|  | 物理服务器&#124;虚拟机 | 2C4GB  100GB | 4C8GB    200GB | 1 | 【可选】用于部署反向代理服务器部署，代理到ingress 边缘节点 **注： 出于安全考虑不直接将集群边缘节点直接暴露** |
 |  | 物理服务器&#124;虚拟机 | 2C4GB 200G B | 4C8GB 1TB 高性能磁盘 | 1 | 部署网络文件系统、网络存储服务，默认NFS |
 | **DataWay** | 物理服务器&#124;虚拟机 | 2C4GB  100GB | 4C8GB    100GB | 1 | 用户部署 DataWay |
-| **ElasticSearch** | 物理服务器&#124;虚拟机 | 4C8GB 1TB | 8C16G   1TB | 3 | 独立二进制部署ES集群 
-版本：7.4+（**推荐7.10**）
-注：需要开启密码认证，安装匹配版本分词插件analysis-ik |
-| **InfluxDB** | 物理服务器&#124;虚拟机 | 4C8GB  500GB | 8C16G 1TB | 1 | k8s集群节点、承载Influxdb服务器
-版本：1.7.8 |
+| **ElasticSearch** | 物理服务器&#124;虚拟机 | 4C8GB 1TB | 8C16G   1TB | 3 | 独立二进制部署ES集群 版本：7.4+（**推荐7.10**） **注：需要开启密码认证，安装匹配版本分词插件 analysis-ik** |
+| **InfluxDB** | 物理服务器&#124;虚拟机 | 4C8GB  500GB | 8C16G 1TB | 1 | k8s集群节点、承载Influxdb服务器 版本：1.7.8 |
 | **其他** | 邮件服务器/短信 | - | - | 1 | 短信网关，邮件服务器，告警通道 |
 |  | 已备案正式通配符域名 | - | - | 1 | 主域名需备案 |
 |  | SSL/TLS证书 | 通配符域名证书 | 通配符域名证书 | 1 | 保障站点安全 |
-
 
 注：
 
@@ -51,7 +46,7 @@
 ### 2.2 创建资源
 #### 2.2.1 kubernetes 集群资源创建
 
-**重要！！！ **
+**重要！！！**
 
 - 部署之前需要给集群几点打上对应的节点标签，标签和yaml中nodeSelector 字段对应，否则通过实例yaml部署会报错。请仔细查看实例yaml文件。
 - NFS 服务器节点需要安装server端和客户端，并验证服务状况，别的集群节点需要安装nfs客户端，并验挂载情况。
@@ -1070,13 +1065,17 @@ spec:
       port: 6379
       targetPort: redis-port
 ```
+
 #### 2.3.3 InfluxDB
 
-- 部署InfluxDB之前需先给选定节点打上标签，
+- 部署InfluxDB之前需先给选定节点打上标签:
 
-       kubectl label nodes <node名称> app01: influxdb
+```shell
+$ kubectl label nodes <node名称> app01: influxdb
+```
 
 - 创建管理员账号（必须是**管理员账号**，后续安装初始化需要用此账号去创建和初始化 DB 及 RP等信息）
+
 ```yaml
 ---
 apiVersion: v1
@@ -1439,9 +1438,11 @@ spec:
 ```shell
 $  kubectl exec -ti -n middleware es-cluster-0 -- bin/elasticsearch-users useradd copriwolf -p sayHi2Elastic -r superuser 
 ```
-**       注： 需要将相关账号信息保存（使用内置账号需自行持久化elasticsearch.keystore文件避免重启之后无法正常使用|或使用自行创建的管理员账号）**
 
-_       _修改elastic密码
+**注： 需要将相关账号信息保存（使用内置账号需自行持久化elasticsearch.keystore文件避免重启之后无法正常使用|或使用自行创建的管理员账号）**
+
+- 修改elastic密码
+
 ```shell
 $  kubectl exec -ti -n middleware es-cluster-0 -- curl -u copriwolf:sayHi2Elastic \
        -XPUT "http://localhost:9200/_xpack/security/user/elastic/_password?pretty" \
@@ -1449,13 +1450,15 @@ $  kubectl exec -ti -n middleware es-cluster-0 -- curl -u copriwolf:sayHi2Elasti
        -d '{"password": "4dIv4VJQG5t5dcJOL8R5"}'
 ```
 
-        安装ES 安装中文分词插件
+- 安装ES 安装中文分词插件
+
 ```shell
 $  kubectl exec -ti es-cluster-0 bash -n middleware
 $  ./bin/elasticsearch-plugin install https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v7.5.1/elasticsearch-analysis-ik-7.5.1.zip
 ```
 
-        设置禁止自动创建索引
+- 设置禁止自动创建索引
+
 ```shell
  $  kubectl exec -ti -n middleware es-cluster-0 -- curl -X PUT -u elastic:4dIv4VJQG5t5dcJOL8R5 "elasticsearch.middleware:9200/_cluster/settings?pretty" -H 'Content-Type: application/json' -d'{
   "persistent": {
@@ -1468,7 +1471,8 @@ $  ./bin/elasticsearch-plugin install https://github.com/medcl/elasticsearch-ana
 - 安装中文分词插件：
    1. 下载对应 ES 版本的分词插件：[https://github.com/medcl/elasticsearch-analysis-ik/releases](https://github.com/medcl/elasticsearch-analysis-ik/releases)（有网络的情况可以通过 bin/elasticsearch-plugin install [plugin_name] 方式安装(需将config目录下插件名称目录下config配置文件移动到插件持久化目录)]
    1. 解压后，放到 elasticsearch 目录的 plugins 目录内，如：
-```
+
+```shell
 [root@ft-elasticsearch-867fb8d9bb-xchnm plugins]# find .
 .
 ./analysis-ik
@@ -1581,7 +1585,9 @@ $ helm install <RELEASE_NAME> launcher/launcher -n launcher --create-namespace  
         --set-file configyaml="<Kubeconfig Path>" \
   --set ingress.hostName="<Hostname>",storageClassName=<Stroageclass>
 ```
-**注意：**`**<RELEASE_NAME>**`** 为发布名称，可设置为 launcher,**`**<Kubeconfig Path>**`** 为 2.3 章节的 kube config 文件路径可设置为 /root/.kube/config，**`**<Hostname> **`**为 Launcher ingress 域名，**`**<Stroageclass>**`** 为 4.1.2章节存储类名称，可执行**`** kubectl get sc**`** 获取。**
+
+**注意：** `<RELEASE_NAME>` 为发布名称，可设置为 launcher,`<Kubeconfig Path>` 为 2.3 章节的 kube config 文件路径可设置为 /root/.kube/config，`<Hostname> `为 Launcher ingress 域名，`<Stroageclass>` 为 4.1.2章节存储类名称，可执行` kubectl get sc` 获取。
+
 ```shell
 # 此命令为演示命令，请根据自身需求修改内容
 $ helm install my-launcher launcher/launcher -n launcher --create-namespace  \
@@ -1589,7 +1595,9 @@ $ helm install my-launcher launcher/launcher -n launcher --create-namespace  \
   --set ingress.hostName="launcher.my.com",storageClassName=nfs-client
 ```
 ###### 4.2.1.1.2 社区版安装
+
 如果部署社区版，可以先获取[社区版部署镜像](https://www.yuque.com/dataflux/rtm/cfvi8s) ，添加 --set image.repository=<镜像地址>，--set image.tag=<镜像tag> 参数进行部署。
+
 ```shell
 # 此命令为演示命令，请根据自身需求修改内容
 $ helm install my-launcher launcher/launcher -n launcher --create-namespace  \
@@ -1598,11 +1606,14 @@ $ helm install my-launcher launcher/launcher -n launcher --create-namespace  \
  --set image.repository=pubrepo.jiagouyun.com/dataflux/1.40.93,image.tag=launcher-aa97377-1652102035
 ```
 ###### 4.2.1.1.3 如何卸载
+
 Launcher 安装成功，非正常情况请勿卸载。
+
 ```shell
 helm uninstall <RELEASE_NAME> -n launcher
 ```
 ##### 4.2.1.2 YAML 安装
+
 Launcher YAML 下载：
  https://static.guance.com/launcher/launcher.yaml
 
@@ -1615,9 +1626,10 @@ Launcher YAML 下载：
 - {{ kube_config }}替换为kube config，launcher 需要获取到集群权限，去自动部署应用，注意缩进
 - {{ storageClassName }}替换为storage class name，必须和kubernetes  nfs subdir external provisioner   中配置的 name 一致。 (在配置了默认storageclass的前提下 storageClassName 字段可删除)
 
-        配置了默认storageclass 的资源会显示defalut 参考下图：
+配置了默认storageclass 的资源会显示defalut 参考下图：
 
-    ![](img/8.deployment_4.png)
+![](img/8.deployment_4.png)
+
 #### 4.2.2 导入 Launcher 服务
 在**运维操作机**上执行以下 **kubectl** 命令，在导入 **Launcher** 服务：
 kubectl apply -f ./laucher.yaml
@@ -1728,7 +1740,9 @@ spec:
 
 
 ```
+
 配置完成后可部署haproxy或nginx等服务在集群外的机器上进行域名代理。
+
 ```bash
  #---------------------------------------------------------------------
 # Example configuration for a possible web application.  See the
@@ -1871,8 +1885,13 @@ backend vip_2_servers
 ### 4.6 很重要的步骤！！！
 ### 4.6.1 安装器服务下线
 经过以上步骤，观测云安装完毕，可以进行验证，验证无误后一个很重要的步骤，将 launcher 服务下线，防止被误访问而破坏应用配置，可在**运维操作机**上执行以下命令，将 launcher 服务的 pod 副本数设为 0：
-```yaml
+
+```shell
 kubectl scale deployment -n launcher --replicas=0  launcher
+```
+
 或
+
+```shell
 kubectl patch deployment launcher -p '{"spec": {"replicas": 0}}' -n launcher
 ```

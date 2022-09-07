@@ -44,8 +44,8 @@
 
 注：
 
-1. “**最低配置**”** **只适合 POC 场景部署，只作功能验证，不适合作为生产环境使用。
-1. “**推荐配置**”** **适合 InfluxDB 少于15 万时间线，Elasticsearch 少于 70 亿文档数（日志、链路、用户访问监测、事件等文档数总和）的数据量场景使用。
+1. “**最低配置**” 只适合 POC 场景部署，只作功能验证，不适合作为生产环境使用。
+1. “**推荐配置**” 适合 InfluxDB 少于15 万时间线，Elasticsearch 少于 70 亿文档数（日志、链路、用户访问监测、事件等文档数总和）的数据量场景使用。
 1. 作为生产部署以实际接入数据量做评估，接入的数据量越多，InfluxDB、Elasticsearch 的存储与规格配置相应也需要越高。
 
 ### 2.2 创建资源
@@ -151,17 +151,21 @@ Storage Class YAML 下载：
 
 将上面的 YAML 内容保存为 **storage_class.yaml** 文件，放到**运维操作机**上，然后替换文档内的变量部分：
 
-- **{{ nas_server_id }}  **替换为前面创建的 NAS 存储的 Server ID。
+- **{{ nas_server_id }}** 替换为前面创建的 NAS 存储的 Server ID。
 
 #### 4.1.3 导入存储配置
 
 - 导入**controller.yaml**，在**运维操作机**上执行命令： 
 
-kubectl apply -f ./nas_controller.yaml
+```shell
+$ kubectl apply -f ./nas_controller.yaml
+```
 
 - 导入 **storage_class.yaml**，在**运维操作机**上执行命令：  
 
-kubectl apply -f ./storage_class.yaml
+```shell
+$ kubectl apply -f ./storage_class.yaml
+```
 
 ### 4.2 Launcher 服务安装配置
 #### 4.2.1 Launcher 安装
@@ -189,7 +193,9 @@ $ helm install <RELEASE_NAME> launcher/launcher -n launcher --create-namespace  
         --set-file configyaml="<Kubeconfig Path>" \
   --set ingress.hostName="<Hostname>",storageClassName=<Stroageclass>
 ```
-**注意：**`**<RELEASE_NAME>**`** 为发布名称，可设置为 launcher,**`**<Kubeconfig Path>**`** 为 2.3 章节的 kube config 文件路径可设置为 /root/.kube/config，**`**<Hostname> **`**为 Launcher ingress 域名，**`**<Stroageclass>**`** 为 4.1.2章节存储类名称，可执行**`** kubectl get sc**`** 获取。**
+
+**注意：** `<RELEASE_NAME>` 为发布名称，可设置为 launcher, `<Kubeconfig Path>` 为 2.3 章节的 kube config 文件路径可设置为 /root/.kube/config，`<Hostname>` 为 Launcher ingress 域名， `<Stroageclass>` 为 4.1.2章节存储类名称，可执行 `kubectl get sc` 获取。
+
 ```shell
 helm install my-launcher launcher/launcher -n launcher --create-namespace  \
         --set-file configyaml="/Users/buleleaf/.kube/config" \
@@ -262,21 +268,30 @@ kubectl apply -f ./laucher.yaml
 **注：df-kodo 服务可选择是否使用内网SLB，如 DataWay 与 kodo 是在同一个内网网络，安装时可选择使用内网。**
 
 - TLS 域名证书填写
+
 #### 4.3.5 安装信息
+
 汇总显示刚才填写的信息，如有信息填写错误可返回上一步修改
+
 #### 4.3.6 应用配置文件
+
 安装程序会自动根据前面步骤提供的安装信息，初始化应用配置模板，但还是需要逐个检查所有应用模板，修改个性化应用配置，具体配置说明见安装界面。
 
 确认无误后，提交创建配置文件。
+
 #### 4.3.7 应用镜像
 
 - 选择正确的**共享存储**，即你前面步骤中创建的 **storage class** 名称
 - 应用镜像会根据你选的 **Launcher** 版本，自动填写无需修改，确认无误后开始 **创建应用**
+
 #### 4.3.8 应用状态
+
 此处会列出所有应用服务的启动状态，此过程需要下载所有镜像，可能需要几分钟到十几分钟，待全部服务都成功启动之后，即表示已安装成功。
 
 **注意：服务启动过程中，必须停留在此页面不要关闭，到最后看到“版本信息写入成功”的提示，且没有弹出错误窗口，才表示安装成功！**
+
 ### 4.4 域名解析
+
 将除 **df-kodo.dataflux.cn** 之外的其他所有子域名，都解析到 ACK 自动创建的 SLB 公网 IP 地址上：
 
 - dataflux.dataflux.cn
@@ -303,12 +318,16 @@ service.beta.kubernetes.io/alibaba-cloud-loadbalancer-id: lb-k2j4h4nlg2vgiwi9jyg
 service.beta.kubernetes.io/alibaba-cloud-loadbalancer-protocol-port: '"https:443"'  ## 协议类型 ##
 ```
 ### 4.5 安装完成后
+
 部署成功手，可以参考手册 [如何开始使用](how-to-start.md) 
 
 如果安装过程中发生问题，需要重新安装，可参考手册 [维护手册](faq.md)
+
 ### 4.6 很重要的步骤！！！
+
 经过以上步骤，观测云 都安装完毕，可以进行验证，验证无误后一个很重要的步骤，将 launcher 服务下线，防止被误访问而破坏应用配置，可在**运维操作机**上执行以下命令，将 launcher 服务的 pod 副本数设为 0：
-```
+
+```shell
 kubectl patch deployment launcher \
 -p '{"spec": {"replicas": 0}}' \
 -n launcher
