@@ -29,5 +29,5 @@
 
 ## 示例图
 
-![](../img/15.veiw_object.png)
+![](../img/object.png)
 

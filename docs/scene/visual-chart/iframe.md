@@ -17,7 +17,7 @@ IFrame 支持您配置 https 或者 http 链接地址。
 
 ![](../img/7.ifram_1.png)
 
-2.在 IFrame URL 使用模板变量查看，更多配置详情可参考文档 [图表链接](chart-link.md) 。
+2.在 IFrame URL 使用模板变量查看，更多配置可参考文档 [图表链接](chart-link.md) 。
 
 ![](../img/7.ifram_2.png)
 

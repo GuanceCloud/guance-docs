@@ -27,5 +27,5 @@
 
 ## 示例图
 
-![](../img/14.view_warning.png)
+![](../img/warning.png)
 

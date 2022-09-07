@@ -34,5 +34,5 @@
 
 ## 示例图
 
-![](../img/16.view_log.png)
+![](../img/log.png)
 

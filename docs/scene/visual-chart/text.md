@@ -15,5 +15,5 @@
 
 ## 示例图
 
-![](../img/20.view_content.png)
+![](../img/text.png)
 

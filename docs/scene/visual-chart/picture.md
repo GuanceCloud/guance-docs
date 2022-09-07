@@ -13,5 +13,5 @@
 
 ## 示例图
 
-![](../img/19.view_picture.png)
+![](../img/picture.png)
 
