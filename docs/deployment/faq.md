@@ -4,35 +4,38 @@
 本节介绍的是如果想要在不升级观测云版本的情况下，离线环境需要手工更新 **视图模板包**、**指标字典**、**官方 Pipeline 包**等，如何手工操作。
 ### 1.1 离线环境如何更新视图模板包
 
-1. 下载最新的视图模板包：
+1.下载最新的视图模板包：
 
 [https://gitee.com/dataflux/dataflux-template](https://gitee.com/dataflux/dataflux-template)
 
-2. 上传到容器持久存储中：
+2.上传到容器持久存储中：
 
 上传目录为forethought-core => inner 容器挂载的 /config/cloudcare-forethought-backend/sysconfig/staticFolder 目录对应的持久化存储目录中，上传的目录结构如下：
+
 ![](img/14.deployment_1.tiff)
 
-3. 进入 forethought-core => inner 容器，路径为默认工作目录：/config/cloudcare-forethought-backend
-3. 执行 Python 命令，进入 Python 环境：
+3.进入 forethought-core => inner 容器，路径为默认工作目录：/config/cloudcare-forethought-backend
+
+4.执行 Python 命令，进入 Python 环境：
 
 ![](img/14.deployment_2.png)
 
-5. 执行如下两条 Python 命令：
+5.执行如下两条 Python 命令：
 
 from forethought.tasks.timed_sync_integration import execute_update_integration
 execute_update_integration()
 
 **看到如下提示，表示成功执行成功：**
+
 ![](img/14.deployment_3.png)
 
 ### 1.2 离线环境如何更新指标字典 json
 
-1.  下载最新的指标字典 JSON 文件 
+1.下载最新的指标字典 JSON 文件 
 
 [https://static.guance.com/datakit/measurements-meta.json](https://static.guance.com/datakit/measurements-meta.json)
 
-2. 上传到容器持久存储中
+2.上传到容器持久存储中
 
 上传目录为forethought-core => inner 容器挂载的 /config/cloudcare-forethought-backend/sysconfig/staticFolder/metric 目录对应的持久化存储目录中，文件名为 metric_config.json ，上传的目录结构如下：
 
@@ -40,11 +43,11 @@ execute_update_integration()
 
 ### 1.3 离线环境如何更新官方 Pipeline 库
 
-1.  下载最新的指标字典 JSON 文件 
+1.下载最新的指标字典 JSON 文件 
 
 [https://static.guance.com/datakit/internal-pipelines.json](https://static.guance.com/datakit/internal-pipelines.json)
 
-2. 上传到容器持久存储中
+2.上传到容器持久存储中
 
 上传目录为forethought-core => inner 容器挂载的 /config/cloudcare-forethought-backend/sysconfig/staticFolder/ 目录对应的持久化存储目录中，文件名为 internal-pipelines.json ，上传的目录结构如下：
 
@@ -94,19 +97,24 @@ rancher server 可以正常运行。升级到 Rancher v2.0.14+ 、v2.1.9+、v2.2
 ### 4.2 证书已过期如何处理
  rancher server 无法正常运行。即使升级到 Rancher v2.0.14+ 、v2.1.9+、v2.2.2+ 也可能会提示证书错误。如果出现这种情况，可通过以下操作进行处理：
 
-   1. 正常升级 rancher 版本到 v2.0.14+ 、v2.1.9+、v2.2.2+；
-   1. 执行以下命令：
-   - 2.0 或 2.1 版本
+1.正常升级 rancher 版本到 v2.0.14+ 、v2.1.9+、v2.2.2+；
+
+2.执行以下命令：
+
+- 2.0 或 2.1 版本
+
 ```shell
 docker exec -ti <rancher_server_id>mv /var/lib/rancher/management-state/certs/bundle.json /var/lib/rancher/management-state/certs/bundle.json-bak
 ```
 
-   - 2.2 +
+- 2.2 +
+
 ```shell
 docker exec -ti <rancher_server_id>mv /var/lib/rancher/management-state/tls/localhost.crt /var/lib/rancher/management-state/tls/localhost.crt-bak
 ```
 
-   - 2.3 +
+- 2.3 +
+
 ```shell
  docker exec -ti <rancher_server_id>mv /var/lib/rancher/k3s/server/tls /var/lib/rancher/k3s/server/tlsbak
  
@@ -114,25 +122,30 @@ docker exec -ti <rancher_server_id>mv /var/lib/rancher/management-state/tls/loca
  docker restart <rancher_server_id>
 ```
 
-   - 2.4 +
-      1. exec 到 rancher server
+- 2.4 +
+
+​       a. exec 到 rancher server
+
 ```shell
 kubectl --insecure-skip-tls-verify -n kube-system delete secrets k3s-serving
 kubectl --insecure-skip-tls-verify delete secret serving-cert -n cattle-system
 rm -f /var/lib/rancher/k3s/server/tls/dynamic-cert.json
 ```
 
-      2. 重启 rancher-server
+​      b. 重启 rancher-server
+
 ```shell
 docker restart <rancher_server_id>
 ```
 
-      3. 执行以下命令刷新参数
+​      c. 执行以下命令刷新参数
+
 ```shell
 curl --insecure -sfL https://server-url/v3
 ```
 
-   3.   重启 Rancher Server 容器
+3.重启 Rancher Server 容器
+
 ```shell
 docker restart <rancher_server_id>
 ```

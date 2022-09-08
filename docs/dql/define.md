@@ -1,29 +1,32 @@
 # DQL定义
 ---
 
-
 以下是 DataFlux 查询语言（dql）定义。随着不同语法的逐步支持，该文档会做不同程度的调整和增删。
 
 全局约束如下：
 
--  非关键字（如指标名、标签名等）大小写敏感，**关键字及函数名大小写不敏感** 
--  以 `#` 为行注释字符，不支持行内注释 
--  支持的操作符： 
-   - `+`  - 加法
-   - `-`  - 减法
-   - `*`  - 乘法
-   - `/`  - 除法
-   - `%`  - 取模
-   - `=` - 等于
-   - `!=` - 不等于
-   - `<=` - 小于等于
-   - `<` - 小于
-   - `>=` - 大于等于
-   - `>` -  大于
-   - `^` - 指数运算
-   - `&&` - 逻辑与
-   - `||` - 逻辑或
--  支持的关键字： 
+- 非关键字（如指标名、标签名等）大小写敏感，**关键字及函数名大小写不敏感**
+
+- 以 `#` 为行注释字符，不支持行内注释
+
+- 支持的操作符：
+
+  - `+`  - 加法
+  - `-`  - 减法
+  - `*`  - 乘法
+  - `/`  - 除法
+  - `%`  - 取模
+  - `=` - 等于
+  - `!=` - 不等于
+  - `<=` - 大于等于
+  - `<` - 小于
+  - `>=` - 大于等于
+  - `>` -  大于
+  - `^` - 指数运算
+  - `&&` - 逻辑与
+  - `||` - 逻辑或
+
+- 支持的关键字：
 
 ```
 AND AS ASC AUTO
@@ -33,24 +36,45 @@ NIL OFFSET OR PREVIOUS
 SLIMIT SOFFSET TRUE WITH
 ```
 
--  标识符：标识符有几种形式，便于兼容各种变量命名形式 
-   - 正常变量名中只能出现 `[_a-zA-Z0-9]` 这些字符，且首字符不能是数字。如 `_abc, _abc123, _123ab`
-   - 其它形式的变量名处理方式： 
-      - `this+is-a*xx/yy^zz?variable`，`by` 需写成 ``this+is-a*xx/yy^zz?variable``，``by``，前者变量中带运算符，后者的 `by` 是 DQL 关键字
-      - 支持中文等 UTF8 标识符，如 `M::cpu:(usage AS 使用率) [5m]` 
-         - 支持表情符号：`M::cpu:(usage AS 使用率👍) [5m]`
-      - 变量中就带了一个反引号，`this`is-a-vairalbe` 需写成 ``identifier("this`is-a-vairalbe")`` 来修饰
--  字符串值可用双引号和单引号： `"this is a string"` 和 `'this is a string'` 是等价的 
--  数据类型：支持浮点（`123.4`, `5.67E3`）、整形（`123`, `-1`）、字符串（`'张三'`, `"hello world"`）、Boolean（`true`, `false`）四种类型 
--  特殊函数 
-   -  `re('regex')` - 表示正则表达式，如 `re("*abc")`。对于比较复杂的正则，可用 ``complex-regex`` 这种形式来避免对 `'` 和 `"` 的转义。 
-   -  `tz()` - 时区，有两种形式支持 
-      - `tz(+-12)` 以 24 个时区的偏移来指定，如 `tz(+8),tz(8), tz('Asia/Shanghai')` 是一样的，夏令时不能通过这种形式来指定。
-      - `tz('Asia/Shanghai')` 以国际标准形式来指定时区。对于夏令时，只能通过这种形式来指定。
-   -  `identifier()` 用于修饰变量名中带 ``` 字符的变量 
-   -  `int()` 和 `float()` 对返回的数据做类型转换，仅适用于时序数据。 
+- 标识符：标识符有几种形式，便于兼容各种变量命名形式
 
-<a name="Elkz0"></a>
+  - 正常变量名中只能出现 `[_a-zA-Z0-9]` 这些字符，且首字符不能是数字。如 `_abc, _abc123, _123ab`
+  - 其它形式的变量名处理方式：
+    - `this+is-a*xx/yy^zz?variable`，`by` 需写成 `` `this+is-a*xx/yy^zz?variable` ``，`` `by` ``，前者变量中带运算符，后者的 `by` 是 DQL 关键字
+    - 支持中文等 UTF8 标识符，如 `M::cpu:(usage AS 使用率) [5m]`
+      - 支持表情符号：`M::cpu:(usage AS 使用率👍) [5m]`
+    - 变量中就带了一个反引号，`` this`is-a-vairalbe `` 需写成 `` `identifier("this`is-a-vairalbe")` `` 来修饰
+
+- 字符串值可用双引号和单引号： `"this is a string"` 和 `'this is a string'` 是等价的
+
+- 特殊字符串
+  - base64 字符串：DQL 支持处理 base64 字符串，对于 bas64 字符串，DQL 在查询时能自动解出原始字符串，其写法如下：
+    - `` b64`some-base64-string` ``
+    - `b64'some-base64-string'`
+    - `b64"some-base64-string"`
+
+  - 正则表达式字符串：原 `re('xxx')` 已弃用，建议使用如下形式来标识正则字符串。
+    - `` re`some-regexp` ``（推荐）
+    - `re'some-regexp'`
+    - `re"some-regexp"`
+
+- 支持数据类型：
+  - 支持浮点（`123.4`, `5.67E3`）
+  - 整形（`123`, `-1`）
+  - 字符串（`'张三'`, `"hello world"`）
+  - Boolean（`true`, `false`）
+  - Duration（`1y`, `1w`, `1d`, `1h`, `1m`, `1s`, `1ms`, `1us`, `1ns` 分别表示 1 年/周/天/时/分/秒/毫秒/微秒/纳秒）
+
+- 特殊函数
+
+  - `tz()` - 时区，有两种形式支持
+    - `tz(+-12)` 以 24 个时区的偏移来指定，如 `tz(+8),tz(8), tz('Asia/Shanghai')` 是一样的，夏令时不能通过这种形式来指定。
+    - `tz('Asia/Shanghai')` 以国际标准形式来指定时区。对于夏令时，只能通过这种形式来指定。
+
+  - `identifier()` 用于修饰变量名中带 `` ` `` 字符的变量
+
+  - `int()` 和 `float()` 对返回的数据做类型转换，仅适用于时序数据。
+
 ## 查询
 
 查询遵循如下的语法范式，注意，各个部分之间的相对顺序不能调换，如 `time-expr` 不能出现在 `filter-clause` 之前。
@@ -62,6 +86,7 @@ namespace::
 	filter-clause
 	time-expr
 	by-clause
+	order-by-clause
 	limit-clause
 	offset-clause
 	slimit-clause
@@ -74,7 +99,7 @@ namespace::
 
 ```python
 # 获取指标集 cpu 最近 5 分钟所有字段的数据
-M::cpu [5m]
+M::cpu [5m]}
 
 # 查找匹配正则表达式 *db 的所有指标最近 5 分钟的数据
 M::re('*db') [5m]
@@ -109,10 +134,8 @@ M   :: cpu :   (time_active, time_guest_nice)
 	{ host = "host-name", cpu = "cpu0" } [5m]
 ```
 
-<a name="KgyiE"></a>
 ## 语句
 
-<a name="qPk9K"></a>
 ### namespace
 
 语义层面，目前支持以下几种种数据源：
@@ -136,7 +159,6 @@ data-source ::
 
 在具体的查询中，如果不指定数据源，则默认为 `metric`（或 `M`），即时序指标是 DQL 的默认数据源。
 
-<a name="rFJdU"></a>
 ### target-clause
 
 查询的结果列表：
@@ -148,7 +170,6 @@ M::cpu:(time_active, system_usage) {host="biz_prod"} [5m]
 M::cpu:(time_active+1, time_active/time_guest_nice) [5m]
 ```
 
-<a name="MnkaQ"></a>
 ### filter-clause
 
 过滤子句用来对结果数据做过滤，类似 SQL 中的 `where` 条件：
@@ -184,7 +205,6 @@ O::human:(height) { age in [30, 40, 50], weight > 70}
 
 > 注意：多个过滤条件之间。默认是 `AND` 的关系，但如果要表达 `OR` 的关系，就用 `||` 操作符即可。如下两个语句的意思是相等的：
 
-
 ```python
 O::human:(height) { age > 31, sex != re("男") }
 O::human:(height) { age > 31 && sex != re("男") }
@@ -196,7 +216,6 @@ O::human:(height) { age > 31 && sex != re("男") }
 M::some_metric {(a>123.45 && b!=re("abc")) || (z!="abc"), c=re("xyz")} [1d::30m]
 ```
 
-<a name="mrHOE"></a>
 ### time-expr
 
 DataFlux 数据特点均有时间属性，故将时间的表达用单独的子句来表示：
@@ -204,9 +223,9 @@ DataFlux 数据特点均有时间属性，故将时间的表达用单独的子�
 - `[5m]` - 最近 5 分钟
 - `[10m:5m]` - 最近 10 分钟到最近 5 分钟
 - `[10m:5m:1m]` - 最近 10 分钟到最近 5 分钟，且结果按照 1 分钟的间隔聚合
-- `[2019-01-01 12:13:14:5m:1w]` -  2019/1/1 12:13:14 到最近 5 分钟，且结果按照 1 周的间隔聚合。注意，指定日期时，只能精确到秒级别。且只有两种日期格式： 
-   - `2006-01-02 15:04:05`：这里的时间指 UTC 时区的时间，不支持指定时区。
-   - `2006-01-02`
+- `[2019-01-01 12:13:14:5m:1w]` -  2019/1/1 12:13:14 到最近 5 分钟，且结果按照 1 周的间隔聚合。注意，指定日期时，只能精确到秒级别。且只有两种日期格式：
+  - `2006-01-02 15:04:05`：这里的时间指 UTC 时区的时间，不支持指定时区。
+  - `2006-01-02`
 
 时间单位支持如下几种：
 
@@ -220,12 +239,26 @@ DataFlux 数据特点均有时间属性，故将时间的表达用单独的子�
 - `w` - 周
 - `y` - 年，指定为 365d，不区分闰年。
 
-<a name="cdoRB"></a>
 ### by-clause 语句
 
 `BY` 子句用来对结果进行分类聚合。类似 MySQL 中的 `GROUP BY`
 
-<a name="HXiUn"></a>
+### order-by-clause 语句
+
+`ORDER BY` 子句会对结果进行排序，类似 MySQL 中的 `ORDER BY`
+
+⚠️ 时序数据，只支持对 time 字段排序
+
+```python
+# 获取不同主机的CPU 最大使用率，按照时间逆序
+M::cpu:(max('usage_total')) by host order by time desc
+```
+
+```python
+# 获取不同主机下，处理请求响应时间，按照响应时间升序
+L::`*`:(max('response_time') as m1) by host order by m1 asc
+```
+
 ### filter-clause 语句
 
 `FILTER ... WITH ...` 用来对不同数据集合做过滤计算：
@@ -235,7 +268,6 @@ DataFlux 数据特点均有时间属性，故将时间的表达用单独的子�
 M::cpu:(host, usage) FILTER O::ecs:(hostname) WITH {host = hostname}
 ```
 
-<a name="lXtMP"></a>
 ### link-with 语句
 
 `LINK ... WITH ...` 用来对不同数据集做合并输出：
@@ -250,7 +282,36 @@ O::ecs:(host, region)
     WITH {host = hostname}
 ```
 
-<a name="XqVQ9"></a>
+### limit 语句
+
+用于指定返回行数，
+
+注意: 
+
+对于时序数据，如果dql语句中同时包含了by短语和limit短语，limit约束的是每个聚合组中的返回条数
+
+```python
+# 返回三条cpu记录
+M::cpu:() limit 3
+
+# 返回每个主机的三条cpu记录
+M::cpu:() by host limit 3
+```
+
+### slimit 语句
+
+用于指定分组数量
+
+```python
+# 返回三台主机的cpu使用信息
+M::cpu:(last(usage_total)) by host slimit 3
+
+# 返回三台主机cpu信息，其中，每一台主机，返回三条记录
+M::cpu:() by host limit 3 slimit 3
+```
+
+
+
 ### SHOW 语句
 
 `SHOW_xxx` 用来浏览数据（函数名不区分大小写）：
@@ -264,10 +325,10 @@ O::ecs:(host, region)
 - `SHOW_RUM_TYPE()` - 查看 RUM 数据类型列表
 - `SHOW_NETWORK_SOURCE()` - 查看网络 eBPF 数据类型列表
 - `SHOW_SECURITY_SOURCE()` - 查看安全巡检数据类型列表
+- `SHOW_WORKSPACES()` - 查看当前工作空间及其授权工作空间信息
 
-更多 show 函数，参见 [函数文档](../dql/funcs.md) 。
+更多 show 函数，参见[函数文档](funcs.md)
 
-<a name="ymdvz"></a>
 ### 结果集函数结算
 
 DQL 支持对查询结果进行二次计算：
@@ -287,7 +348,6 @@ F::dataflux__dql:(EXPR_EVAL(
 	data2=dql('O::ecs:(f1, f2)'),))
 ```
 
-<a name="zoFWH"></a>
 ### 嵌套查询以及语句块
 
 以 `()` 来表示子查询和外层查询的分隔，如两层嵌套
@@ -324,12 +384,26 @@ object::(     # 第二层查询
 			):(f1,f2)
 	):(f1)
 ```
-<a name="6915eba9"></a>
+
+## 特殊用法
+
+如 message 字段是 json 的数据类型（目前有 L/O/T/R 等支持），那么支持以如下形式直接通过 DQL 来提取字段：
+
+```python
+L::nginx { @abc.def = "xyz" }
+
+
+它等价于下面的查询，即用 `@` 表示 `message@json`，这是一种简写。
+
+``` python
+L::nginx { `message@jons.abc.def` = "xyz" }
+```
+
 ## 函数说明
 
-参见 [DQL 函数](../dql/funcs.md)
+参见 [DQL 函数](funcs.md)
 
-参见 [DQL 外层函数](../dql/out-funcs.md)
+参见 [DQL 外层函数](out-funcs.md)
 
 
 ---
