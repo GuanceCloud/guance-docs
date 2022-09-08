@@ -1623,7 +1623,6 @@ Launcher YAML 下载：
    - 如果是离线安装，上述通过 docker load 离线镜像导入后，通过 docker images | grep launcher 命令，拿到已导入到 Worker 节点中的最新版本 Launcher 镜像地址。
    - 如果是在线安装，可以在 [私有化部署版本镜像](changelog.md) 文档中获取到最新版本的 Launcher 安装镜像地址。
 - {{ domain }} 替换为主域名，如使用 dataflux.cn
-- {{ kube_config }}替换为kube config，launcher 需要获取到集群权限，去自动部署应用，注意缩进
 - {{ storageClassName }}替换为storage class name，必须和kubernetes  nfs subdir external provisioner   中配置的 name 一致。 (在配置了默认storageclass的前提下 storageClassName 字段可删除)
 
 配置了默认storageclass 的资源会显示defalut 参考下图：
