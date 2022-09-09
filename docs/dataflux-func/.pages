@@ -44,12 +44,14 @@ nav:
           - 云监控: script-market-guance-aliyun-monitor.md
           - 云服务器 ECS: script-market-guance-aliyun-ecs.md
           - 负载均衡 SLB: script-market-guance-aliyun-slb.md
+          - 应用型负载均衡 ALB: script-market-guance-aliyun-alb.md
           - 数据库和存储:
             - 对象存储 OSS: script-market-guance-aliyun-oss.md
             - 文件存储 NAS: script-market-guance-aliyun-nas.md
             - 云数据库 RDS: script-market-guance-aliyun-rds.md
             - 云数据库 RDS 慢查询: script-market-guance-aliyun-rds-slowlog.md
             - 云数据库 Redis: script-market-guance-aliyun-redis.md
+            - 云数据库 Redis 慢查询: script-market-guance-aliyun-redis-slowlog.md
             - 云数据库 MongoDB: script-market-guance-aliyun-mongodb.md
             - PolarDB: script-market-guance-aliyun-polardb.md
           - 安全:
@@ -58,6 +60,8 @@ nav:
             - 云安全中心: script-market-guance-aliyun-tds.md
             - 云安全中心日志: script-market-guance-aliyun-tds-log.md
             - 云防火墙: script-market-guance-aliyun-cloudfw.md
+            - DDoS 基础防护: script-market-guance-aliyun-ddos-event.md
+            - DDoS 高防（新 BGP/国际）: script-market-guance-aliyun-ddoscoo.md
           - 网络与 CDN:
             - 专有网络 VPC: script-market-guance-aliyun-vpc.md
             - 云解析 PrivateZone: script-market-guance-aliyun-private-zone.md
@@ -82,7 +86,6 @@ nav:
           - OpenSearch Service: script-market-guance-aws-open-search.md
         - 腾讯云:
           - 腾讯云文档中心: https://cloud.tencent.com/document/product
-          - 腾讯云 SDK 模块问题: script-market-guance-tencentcloud-sdk-module-issue.md
           - 账单: script-market-guance-tencentcloud-billing.md
           - 云监控: script-market-guance-tencentcloud-monitor.md
           - 云服务器 CVM: script-market-guance-tencentcloud-cvm.md
@@ -101,6 +104,12 @@ nav:
           - 弹性负载均衡 ELB: script-market-guance-huaweicloud-elb.md
           - 对象存储服务 OBS: script-market-guance-huaweicloud-obs.md
           - 分布式缓存服务 DCS: script-market-guance-huaweicloud-dcs.md
+          - 分布式缓存服务 DCS 慢查询: script-market-guance-huaweicloud-dcs-slowlog.md
+          - 文档数据库服务 DDS: script-market-guance-huaweicloud-dds.md
+          - 裸金属服务器 BMS: script-market-guance-huaweicloud-bms.md
+          - 虚拟私有云 VPC: script-market-guance-huaweicloud-vpc.md
+      - 常见问题:
+        - 腾讯云 SDK 模块问题: script-market-guance-tencentcloud-sdk-module-issue.md
 
     - 生活日常:
       - 天气信息: script-market-weather.md
@@ -110,5 +119,6 @@ nav:
     - 旧版归档:
       - 阿里云数据同步: script-market-aliyun.md
       - script-market-aliyun-metric.md
+
 
   - 变更记录: changelog.md
