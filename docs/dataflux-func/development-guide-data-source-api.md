@@ -352,17 +352,17 @@ status_code, result = dw.write_points(points)
 
 `post_line_protocol(...)`方法用于向 DataWay 以行协议格式发送一个 POST 请求，参数如下：
 
-| 参数                    | 类型           | 必须/默认值 | 说明                                                            |
-| ----------------------- | -------------- | ----------- | --------------------------------------------------------------- |
-| `points`                | list           | 必须        | 数据点格式的数据列表                                            |
-| `points[#].measurement` | str            | 必须        | 指标集名称                                                      |
-| `points[#].tags`        | dict           | 必须        | 标签。键名和键值必须都为字符串                                  |
-| `points[#].fields`      | dict           | 必须        | 指标。键名必须为字符串，键值可以为字符串/整数/浮点数/布尔值之一 |
-| `points[#].timestamp`   | int/long/float | {当前时间}  | 时间戳，支持秒/毫秒/微秒/纳秒。                                 |
-| `path`                  | str            | `None`      | 请求路径                                                        |
-| `query`                 | dict           | `None`      | 请求 URL 参数                                                   |
-| `headers`               | dict           | `None`      | 请求 Header 参数                                                |
-| `with_rp`               | bool           | `False`     | 是否自动将配置的 rp 信息附在 query 中作为参数一起发送           |
+| 参数                    | 类型           | 必须/默认值          | 说明                                                            |
+| ----------------------- | -------------- | -------------------- | --------------------------------------------------------------- |
+| `points`                | list           | 必须                 | 数据点格式的数据列表                                            |
+| `points[#].measurement` | str            | 必须                 | 指标集名称                                                      |
+| `points[#].tags`        | dict           | 必须                 | 标签。键名和键值必须都为字符串                                  |
+| `points[#].fields`      | dict           | 必须                 | 指标。键名必须为字符串，键值可以为字符串/整数/浮点数/布尔值之一 |
+| `points[#].timestamp`   | int/long/float | {当前时间}           | 时间戳，支持秒/毫秒/微秒/纳秒。                                 |
+| `path`                  | str            | `"/v1/write/metric"` | 请求路径<br>默认写入指标，需要写入其他数据的请指定本参数        |
+| `query`                 | dict           | `None`               | 请求 URL 参数                                                   |
+| `headers`               | dict           | `None`               | 请求 Header 参数                                                |
+| `with_rp`               | bool           | `False`              | 是否自动将配置的 rp 信息附在 query 中作为参数一起发送           |
 
 > 本方法为通用处理方法，具体参数格式、内容等请参考 DataWay 官方文档
 

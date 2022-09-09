@@ -6,7 +6,7 @@
 
 - [观测云集成 - 基本操作](/dataflux-func/script-market-guance-integration)
 
-> 提示：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包
+> 提示：使用本采集器前，必须安装「观测云集成 Core 核心包」及其配套的第三方依赖包
 
 ## 1. 配置结构
 
@@ -47,7 +47,8 @@ collector_configs = {
     "DBInstanceId"         : "rm-xxxxx",
     "ZoneId"               : "cn-shanghai-h",
     "RegionId"             : "cn-shanghai",
-    "DBInstanceDescription": "业务系统"
+    "DBInstanceDescription": "业务系统",
+    "LockMode"             : "Unlock",
   },
   "fields": {
     "ExpireTime"       : "2022-12-13T16:00:00Z",
