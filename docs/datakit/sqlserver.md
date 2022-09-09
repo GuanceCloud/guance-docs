@@ -50,9 +50,6 @@ GO
       host = ""
     
       ## your sqlserver user,password
-    	## We recommend **use simple password** here, only use [a-zA-Z_0-9], do not
-    	## use special characters, such as #, @, $, theses characters may cause
-    	## error on parsing sqlserver connection string.
       user = ""
       password = ""
     
@@ -228,6 +225,27 @@ GO
 |`total_scheduler_delay_ms`|Applies to: SQL Server 2016 (13.x) and laterThe time between one worker switching out and another one switching in|int|ms|
 |`work_queue_count`|Number of tasks in the pending queue. These tasks are waiting for a worker to pick them up|int|count|
 |`yield_count`|Internal value that is used to indicate progress on this scheduler. This value is used by the Scheduler Monitor to determine whether a worker on the scheduler is not yielding to other workers on time.|int|count|
+
+
+
+### `sqlserver_volumespace`
+
+-  标签
+
+
+| 标签名 | 描述    |
+|  ----  | --------|
+|`sqlserver_host`|host name which installed sqlserver|
+|`volume_mount_point`|Mount point at which the volume is rooted. Can return an empty string. Returns null on Linux operating system.|
+
+- 指标列表
+
+
+| 指标 | 描述| 数据类型 | 单位   |
+| ---- |---- | :---:    | :----: |
+|`volume_available_space_bytes`|Available free space on the volume|int|B|
+|`volume_total_space_bytes`|Total size in bytes of the volume|int|B|
+|`volume_used_space_bytes`|Used size in bytes of the volume|int|B|
 
 
 
