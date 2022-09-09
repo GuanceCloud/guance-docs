@@ -14,7 +14,7 @@
 
 ## 日志采集器配置
 
-DataKit 安装完成后，您可以通过开启标准日志采集或者自定义日志采集两种方式，对来自于系统日志、应用日志如 Nginx、Redis、Docker、ES等多种日志数据进行日志采集。
+DataKit 安装完成后，您可以通过开启标准日志采集或者自定义日志采集两种方式，对来自于系统日志、应用日志如 Nginx、Redis、Docker、ES 等多种日志数据进行日志采集。
 
 === "自定义日志采集器"
 
@@ -22,7 +22,7 @@ DataKit 安装完成后，您可以通过开启标准日志采集或者自定义
 
 === "标准日志采集器"
 
-    通过开启观测云支持的日志采集器，如[Nginx](../datakit/nginx.md)、[Redis](../datakit/redis.md)、[ES](../datakit/elasticsearch.md)等，您可以一键开启日志采集。
+    通过开启观测云支持的标准日志采集器，如 [Nginx](../datakit/nginx.md)、[Redis](../datakit/redis.md)、[ES](../datakit/elasticsearch.md) 等，您可以一键开启日志采集。
 
 ???+ attention
 
