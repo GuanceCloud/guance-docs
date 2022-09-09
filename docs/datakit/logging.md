@@ -263,7 +263,7 @@ Traceback (most recent call last):
 
 ### Pipeline 配置和使用 {#pipeline}
 
-[Pipeline](../datakit/pipeline.md) 主要用于切割非结构化的文本数据，或者用于从结构化的文本中（如 JSON）提取部分信息。
+[Pipeline](../developers/pipeline.md) 主要用于切割非结构化的文本数据，或者用于从结构化的文本中（如 JSON）提取部分信息。
 
 对日志数据而言，主要提取两个字段：
 
@@ -369,8 +369,8 @@ Pipeline 的几个注意事项：
 
 | 指标 | 描述| 数据类型 | 单位   |
 | ---- |---- | :---:    | :----: |
-|`log_read_lines`|采集到的行数计数，多行数据算成一行（[:octicons-tag-24: Version-1.4.6](../datakit/changelog.md#cl-1.4.6)）|int|count|
-|`log_read_offset`|当前数据在文件中的偏移位置（[:octicons-tag-24: Version-1.4.8](../datakit/changelog.md#cl-1.4.8) · [:octicons-beaker-24: Experimental](index.md#experimental)）|int|-|
+|`log_read_lines`|采集到的行数计数，多行数据算成一行（[:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)）|int|count|
+|`log_read_offset`|当前数据在文件中的偏移位置（[:octicons-tag-24: Version-1.4.8](changelog.md#cl-1.4.8) · [:octicons-beaker-24: Experimental](index.md#experimental)）|int|-|
 |`log_read_time`|数据从文件中读取到的这一刻的时间戳，单位是秒|s|-|
 |`message`|日志正文，默认存在，可以使用 pipeline 删除此字段|string|-|
 |`message_length`|message 字段的长度，单位字节|B|count|
@@ -457,14 +457,14 @@ bytes * 2 * 8 /1024/1024 = xxx MBit
 
 ??? info
 
-    此处 `*2` 考虑到了 [Pipeline 切割](../datakit/pipeline.md)导致的实际数据膨胀，而一般情况下，切割完都是要带上原始数据的，故按照最坏情况考虑，此处以加倍方式来计算。
+    此处 `*2` 考虑到了 [Pipeline 切割](../developers/pipeline.md)导致的实际数据膨胀，而一般情况下，切割完都是要带上原始数据的，故按照最坏情况考虑，此处以加倍方式来计算。
 
 ## 延伸阅读 {#more-reading}
 
 - [DataKit 日志采集综述](datakit-logging.md)
-- [Pipeline: 文本数据处理](../datakit/pipeline.md)
-- [Pipeline 调试](../datakit/datakit-pl-how-to.md)
-- [Pipeline 性能测试和对比](../datakit/logging-pipeline-bench.md)
+- [Pipeline: 文本数据处理](../developers/pipeline.md)
+- [Pipeline 调试](../developers/datakit-pl-how-to.md)
+- [Pipeline 性能测试和对比](logging-pipeline-bench.md)
 - [容器采日志采集](container#config)
 - [通过 Sidecar(logfwd) 采集容器内部日志](logfwd.md)
 - [正确使用正则表达式来配置](datakit-input-conf#debug-regex) 

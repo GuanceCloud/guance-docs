@@ -3,6 +3,11 @@ nav:
   - '用 Python 开发自定义采集器': pythond.md
   - 'DDtrace':
     - ddtrace-guance.md
+  - '文本数据处理':
+    - 'Pipeline 介绍': pipeline.md
+    - datakit-pl-how-to.md
+    - datakit-pl-global.md
+    - datakit-refer-table.md
   - 'Scheck': 
     - "检查敏感文件的变动实现": scheck-filechange.md
     - "监控系统用户的变化": scheck-userchange.md
