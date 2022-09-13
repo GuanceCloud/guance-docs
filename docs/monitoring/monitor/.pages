@@ -1,6 +1,7 @@
 nav:
   - index.md
-  - '监控器管理': monitor-management.md
+  - '运算符说明': operator-description.md
+  - '真值表说明': table-description.md
   - '阈值检测': threshold-detection.md
   - '日志检测': log-detection.md
   - '突变检测': mutation-detection.md
