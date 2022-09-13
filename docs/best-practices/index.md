@@ -29,7 +29,7 @@ icon: zy/best-practices
 ### 新增最佳实践
 
 - 监控 Monitoring
-  - 应用性能监控 (APM) - [DDtrace 观测云二次开发实践](./monitoring/ddtrace-guance.md)。
+  - 应用性能监控 (APM) - [DDtrace 观测云版本](/developers/ddtrace-guance.md)。
 
 
 
