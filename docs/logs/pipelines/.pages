@@ -1,5 +1,4 @@
 nav:
   - index.md
-  - '日志Pipeline使用手册': manual.md
-  - 'DataKit Pipeline使用手册': datakit-manual.md
-  - '文本处理（Pipeline）': text-processing.md
+  - '日志 Pipeline 使用手册': manual.md
+  - 'DataKit Pipeline 使用手册': datakit-manual.md
