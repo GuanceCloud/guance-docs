@@ -53,7 +53,7 @@ icon: zy/release-notes
 
 ##### Profile 查看器详情页优化
 
-在 Profile 查看器详情页新增快捷操作，包括快捷搜索、复制和快捷选择方法。更多详情可参考文档 [快捷操作说明](../application-performance-monitoring/profile.md#operate) 。
+在 Profile 查看器详情页新增快捷操作，包括搜索、复制和点击选择查看方法。更多详情可参考文档 [快捷操作说明](../application-performance-monitoring/profile.md#operate) 。
 
 ![](img/9.apm_explorer_12.png)
 
