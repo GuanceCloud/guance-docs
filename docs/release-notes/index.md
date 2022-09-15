@@ -7,7 +7,7 @@ icon: zy/release-notes
 
 本文档记录观测云每次上线发布的更新内容说明，包括 DataKit、观测云最佳实践、观测云集成文档和观测云。
 
-## 2022 年 9 月 14 号
+## 2022 年 9 月 15 号
 
 ### 观测云更新
 
@@ -78,7 +78,11 @@ icon: zy/release-notes
 
 - 免费注册流程删除同步开通观测云企业账号
 
+### 最佳实践更新
 
+- 监控 Monitoring\- 中间件（Middleware） -  [洞见 MySQL](../best-practices/monitoring/mysql.md) 。
+
+更多最佳实践更新可参考 [最佳实践版本历史](../best-practices/index.md) 。
 
 ## 2022 年 9 月 1 号
 
