@@ -7,6 +7,84 @@ icon: zy/release-notes
 
 本文档记录观测云每次上线发布的更新内容说明，包括 DataKit、观测云最佳实践、观测云集成文档和观测云。
 
+## 2022 年 9 月 15 号
+
+### 观测云更新
+
+#### 优化笔记文本组件 Markdown 格式
+
+在场景笔记，文本组件 Markdown 输入框增加工具栏及预览模式，您可以更简单、快速的调整输入的文本格式。
+
+![](img/10.changelog_4.png)
+
+
+
+#### 新增基础设施 YAML 显示
+
+在基础设施容器「Pods」、「Deployments」、「Services」查看器，您可以在详情页查看和复制对应的 YAML 文件。
+
+![](img/10.changelog_1.1.png)
+
+
+
+#### 新增日志查看器 DQL 搜索模式
+
+在日志查看器，您可以通过点击搜索栏的切换小图标 ![](img/8.explorer_2.png) ，切换到 DQL 手动输入查询模式，支持自定义输入筛选条件和搜索条件。
+
+- 筛选条件：支持 `and / or`  任意组合，支持使用 `()` 括号表示执行搜索的优先级，支持 `=` 、`!=` 等操作符；
+- 搜索条件：支持通过 `message = query_string()` 对日志的内容进行关键字搜索。
+
+更多详情可参考文档 [DQL 搜索](../getting-started/necessary-for-beginners/explorer-search.md#dql) 。
+
+![](img/8.explorer_1.1.png)
+
+#### 优化应用性能监测
+
+##### 链路查看器详情页优化
+
+- 优化详情页布局显示，新增持续时间、http 方法、http url 、http 状态码、TraceId 等
+- 火焰图新增缩略图、双击 Span 放大展示、点击服务名称高亮展示对应 Span
+- Span 列表新增搜索、点击选择 Span 切换到火焰图同步展示
+- 服务调用关系新增搜索 
+
+更多详情可参考文档 [链路查看器](../application-performance-monitoring/explorer.md) 。
+
+![](img/9.apm_explorer_17.png)
+
+##### Profile 查看器详情页优化
+
+在 Profile 查看器详情页新增快捷操作，包括搜索、复制和点击选择查看方法。更多详情可参考文档 [快捷操作说明](../application-performance-monitoring/profile.md#operate) 。
+
+![](img/9.apm_explorer_12.png)
+
+#### 优化监控器事件通知内容编辑模式
+
+在创建监控器时，满足触发条件时发送的事件通知内容，支持输入和预览 markdown 格式文本信息，支持使用模版变量。
+
+![](img/10.changelog_3.png)
+
+#### 新增静默管理支持配置周期性静默
+
+静默管理新增周期性静默功能，在静默时间中可选择「仅一次」、「重复」。更多详情可参考 [静默管理](../monitoring/silent-management.md) 。
+
+![](img/10.changelog_5.1.png)
+
+#### 其他功能优化
+
+- 场景仪表板分组显示优化
+- 基础设施查看器显示优化，新增显示列 CPU 使用率、MEM 使用率等提示信息
+- 指标查看器删除列表查看模式，保留平铺查看模式和混合查看模式
+
+- 日志多索引支持跳转查看
+- 查看器快捷筛选值 TOP 5 支持查看占比数量，查看器时间字段格式优化，默认显示格式为 `2022/09/15 20:53:40`
+- 链路查看器时序图新增图例显示、快捷筛选新增 HTTP 相关字段
+
+### 最佳实践更新
+
+- 监控 Monitoring\- 中间件（Middleware） -  [洞见 MySQL](../best-practices/monitoring/mysql.md) 。
+
+更多最佳实践更新可参考 [最佳实践版本历史](../best-practices/index.md) 。
+
 ## 2022 年 9 月 1 号
 
 ### 观测云更新

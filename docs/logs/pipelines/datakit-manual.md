@@ -39,7 +39,7 @@ rename("time", log_time) # 将 log_time 重名命名为 time
 default_time(time)       # 将 time 字段作为输出数据的时间戳
 ```
 
-更多 pipeline 编写规则可参考文档 [文本数据处理（Pipeline）](../../datakit/pipeline.md) 。
+更多 pipeline 编写规则可参考文档 [文本数据处理（Pipeline）](../../developers/pipeline.md) 。
 ### 保存pipeline文件
 
 Pipeline 文件编写好以后，需要保存为以`.p`为结尾的文件，存在 `/usr/local/datakit/pipeline` 目录下，如`datakit.p`。
@@ -118,6 +118,7 @@ grokq > 2022-01-12T18:40:51.962+0800
 在观测云工作空间的日志下，选择 datakit 的日志。
 
 ![](../img/image_15.png)
+
 在日志详情页，可以看到“属性”下的字段和字段值，这个就是我们日志切割后显示的字段和字段值。如
 
 - `code: diskio/input.go:320`
@@ -128,7 +129,7 @@ grokq > 2022-01-12T18:40:51.962+0800
 
 以上就是 DataKit 日志为例的 Pipeline 使用手册，更多关于 pipeline 和 日志采集切割的内容，可参考如下文档。
 
-- [文本数据处理（Pipeline）](../../datakit/pipeline.md)
-- [如何编写 Pipeline 脚本](../../datakit/datakit-pl-how-to.md)
-- [日志](../../integrations/logging.md)
-- [第三方日志接入](../../integrations/logstreaming.md)
+- [文本数据处理（Pipeline）](../../developers/pipeline.md)
+- [如何编写 Pipeline 脚本](../../developers/datakit-pl-how-to.md)
+- [日志](../../datakit/logging.md)
+- [第三方日志接入](../../datakit/logstreaming.md)

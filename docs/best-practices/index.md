@@ -4,6 +4,11 @@ icon: zy/best-practices
 
 ## (2022/09/16)
 
+### 新增最佳实践
+
+- 监控 Monitoring
+    - 应用性能监控 (APM) - 中间件（Middleware） - [洞见 MySQL](./monitoring/mysql.md)。
+
 ### 更新记录
 
 - 监控 Monitoring
