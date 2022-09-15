@@ -12,7 +12,6 @@ nav:
       - JAVA OOM异常可观测最佳实践: java-oom.md
       - 从 0 到 1 利用观测云构建 Springcloud 服务的可观测性: spring-cloud-sample.md
       - Skywalking 采集 JVM 可观测最佳实践: skywalking-jvm.md
-
     - '中间件 (Middleware)':
       - 'Nginx 可观测最佳实践': nginx.md
       - 'Redis 可观测最佳实践': redis.md
@@ -20,6 +19,7 @@ nav:
       - 'Elasticsearch 可观测最佳实践': elasticsearch.md
       - '如何利用观测云观测 Fluentd': fluentd.md
       - '利用观测云观测 Apache Flink': flink.md
+      - '洞见 MySQL': mysql.md
 
   - '用户体验监控 (RUM)':
     - web 应用监控（RUM）最佳实践: web.md
