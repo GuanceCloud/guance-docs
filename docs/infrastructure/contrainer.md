@@ -279,7 +279,6 @@ Pod 网络支持基于 HTTP 协议的七层网络性能监测。
 === "YAML"
 
     支持查看 Deployment 对应的yaml文件。在基础设施 Deployment 的详情页，点击「YAML」，即可查看对应的yaml文件。
-    ![Image title](img/1.yaml_2.png)
     
 
 === " 日志"
