@@ -56,7 +56,7 @@ MySQL 连接通常是一个用户请求一个连接，如果请求操作长时�
 
 ![image.png](../images/mysql/mysql-3.png)
 
-#### 锁信息
+### 锁信息
 
 ![image.png](../images/mysql/mysql-4.png)
 
