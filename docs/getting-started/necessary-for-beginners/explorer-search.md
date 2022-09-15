@@ -48,15 +48,15 @@
 - 筛选条件：支持 `and / or`  任意组合，支持使用 `()` 括号表示执行搜索的优先级，支持 `=` 、`!=` 等操作符；
 - 搜索条件：支持通过 `message = query_string()` 对日志的内容进行关键字搜索；
 
-更多 DQL 语法可参考文档 [DQL 定义](../dql/define.md) 。
+更多 DQL 语法可参考文档 [DQL 定义](../../dql/define.md) 。
 
 **示例说明**
 
-```yaml
+```json
 source in ['kube-controller-manager','http_dial_testing'] and (status != 'unknown' or host != 'izbp152ke14timzud0du15z') and message = query_string('500')
 ```
 
-在本示例中，我们对日志的来源、状态、主机以及内容进行了搜索和筛选，返回的结果如下：
+在本示例中，对日志的来源、状态、主机以及内容进行了搜索和筛选，返回的结果如下：
 
 - 日志状态不等于 `unknown` 或者主机不等于 `izbp152ke14timzud0du15z` ；
 - 日志来源仅限于 `kube-controller-manager` 和 `http_dial_testing` ；
