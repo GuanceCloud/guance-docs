@@ -198,7 +198,7 @@
 观测云查看器默认展示最近 15 分钟的日志数据，通过右上角的「时间控件」，您可以选择日志数据展示的时间范围。更多详情可参考文档 [时间控件说明](../getting-started/necessary-for-beginners/explorer-search.md#time) 。
 
 ### 搜索与筛选
-在日志查看器搜索栏，支持关键字搜索、通配符搜索、关联搜索、JSON 搜索等多种搜索方式，支持通过 `标签/属性` 进行值的筛选，包括正向筛选、反向筛选、模糊匹配、反向模糊匹配、存在和不存在等多种筛选方式。更多搜索与筛选可参考文档 [查看器的搜索和筛选](../getting-started/necessary-for-beginners/explorer-search.md) 。
+在日志查看器搜索栏，支持关键字搜索、通配符搜索、关联搜索、JSON 搜索、DQL 手动搜索等多种搜索方式，支持通过 `标签/属性` 进行值的筛选，包括正向筛选、反向筛选、模糊匹配、反向模糊匹配、存在和不存在等多种筛选方式。更多搜索与筛选可参考文档 [查看器的搜索说明](../getting-started/necessary-for-beginners/explorer-search.md) 。
 
 ### 快捷筛选
 
