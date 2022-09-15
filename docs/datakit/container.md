@@ -31,6 +31,7 @@
       enable_container_metric = true
       enable_k8s_metric = true
       enable_pod_metric = true
+      extract_k8s_label_as_tags = false
     
       ## Containers logs to include and exclude, default collect all containers. Globs accepted.
       container_include_log = []
@@ -83,6 +84,7 @@
     | `ENV_INPUT_CONTIANER_EXCLUDE_PAUSE_CONTAINER`                    | 是否忽略 k8s 的 pause 容器                                                 | true                                              | `"true"`/`"false"`                                                               |
     | `ENV_INPUT_CONTAINER_ENABLE_CONTAINER_METRIC`                    | 开启容器指标采集                                                           | true                                              | `"true"`/`"false"`                                                               |
     | `ENV_INPUT_CONTAINER_ENABLE_K8S_METRIC`                          | 开启 k8s 指标采集                                                          | true                                              | `"true"`/`"false"`                                                               |
+    | `ENV_INPUT_CONTAINER_EXTRACT_K8S_LABEL_AS_TAGS`                 | 是否追加 pod label 到采集的指标 tag 中                                       | false                                              | `"true"`/`"false"`                                                               |
     | `ENV_INPUT_CONTAINER_ENABLE_POD_METRIC`                          | 开启 Pod 指标采集                                                          | true                                              | `"true"`/`"false"`                                                               |
     | `ENV_INPUT_CONTAINER_CONTAINER_INCLUDE_LOG`                      | 容器日志的 include 条件，使用 image 过滤                                   | 无                                                | `"image:pubrepo.jiagouyun.com/datakit/logfwd*"`                                  |
     | `ENV_INPUT_CONTAINER_CONTAINER_EXCLUDE_LOG`                      | 容器日志的 exclude 条件，使用 image 过滤                                   | 无                                                | `"image:pubrepo.jiagouyun.com/datakit/logfwd*"`                                  |
@@ -637,6 +639,7 @@ Kubernetes pod 指标数据
 
 | 标签名 | 描述    |
 |  ----  | --------|
+|`[POD_LABEL]`|The pod labels will be extracted as tags if `extract_k8s_label_as_tags` is enabled.|
 |`namespace`|Namespace defines the space within each name must be unique.|
 |`pod`|Name must be unique within a namespace.|
 |`pod_name`|Name must be unique within a namespace. (depercated)|
@@ -1085,6 +1088,7 @@ Kubernetes service 对象数据
 
 | 标签名 | 描述    |
 |  ----  | --------|
+|`[POD_LABEL]`|如果该容器是由 k8s 创建，且配置参数 `extract_k8s_label_as_tags` 开启，则会将 pod 的 label 添加至标签中|
 |`container_id`|容器ID|
 |`container_name`|k8s 命名的容器名（在 labels 中取 'io.kubernetes.container.name'），如果值为空则跟 container_runtime_name 相同|
 |`container_runtime_name`|由 runtime 命名的容器名（例如 docker ps 查看），如果值为空则默认是 unknown（[:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)）|

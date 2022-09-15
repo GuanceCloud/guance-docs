@@ -345,8 +345,8 @@ PUT _plugins/_security/api/roles/monitor
 
 | 标签名 | 描述    |
 |  ----  | --------|
+|`cluster_name`|Name of the cluster.|
 |`cluster_status`|The cluster status: red, yellow, green.|
-|`name`|Name of the cluster.|
 
 - 指标列表
 

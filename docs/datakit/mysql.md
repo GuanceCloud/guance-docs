@@ -310,16 +310,16 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name = 'events
 |`Binlog_space_usage_bytes`|-|int|B|
 |`Bytes_received`|The number of bytes received from all clients.|int|B|
 |`Bytes_sent`|The number of bytes sent to all clients.|int|B|
-|`Com_delete`|The rate of delete statements.|int|count|
-|`Com_delete_multi`|The rate of delete-multi statements.|int|count|
-|`Com_insert`|The rate of insert statements.|int|count|
-|`Com_insert_select`|The rate of insert-select statements.|int|count|
-|`Com_load`|The rate of load statements.|int|count|
-|`Com_replace`|The rate of replace statements.|int|count|
-|`Com_replace_select`|The rate of replace-select statements.|int|count|
-|`Com_select`|The rate of select statements.|int|count|
-|`Com_update`|The rate of update statements.|int|count|
-|`Com_update_multi`|The rate of update-multi.|int|count|
+|`Com_delete`|The number of times of delete statement has been executed.|int|count|
+|`Com_delete_multi`|The number of times of delete-multi statement has been executed.|int|count|
+|`Com_insert`|The number of times of insert statement has been executed.|int|count|
+|`Com_insert_select`|The number of times of insert-select statement has been executed.|int|count|
+|`Com_load`|The number of times of load statement has been executed.|int|count|
+|`Com_replace`|The number of times of replace statement has been executed.|int|count|
+|`Com_replace_select`|The number of times of replace-select statement has been executed.|int|count|
+|`Com_select`|The number of times of select statement has been executed.|int|count|
+|`Com_update`|The number of times of update statement has been executed.|int|count|
+|`Com_update_multi`|The number of times of update-mult has been executed.|int|count|
 |`Connections`|The rate of connections to the server.|int|count|
 |`Created_tmp_disk_tables`|The rate of internal on-disk temporary tables created by second by the server while executing statements.|int|count|
 |`Created_tmp_files`|The rate of temporary files created by second.|int|count|
@@ -472,10 +472,10 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name = 'events
 |`innodb_rwlock_x_spin_waits`|Number of rwlock spin waits due to exclusive latch request|int|count|
 |`lock_deadlocks`|Number of deadlocks|int|count|
 |`lock_row_lock_current_waits`|Number of row locks currently being waited for (innodb_row_lock_current_waits)|int|count|
-|`lock_row_lock_time`|Time spent in acquiring row locks, in milliseconds (innodb_row_lock_time)|int|count|
-|`lock_row_lock_time_avg`|The average time to acquire a row lock, in milliseconds (innodb_row_lock_time_avg)|int|count|
-|`lock_row_lock_time_max`|The maximum time to acquire a row lock, in milliseconds (innodb_row_lock_time_max)|int|count|
-|`lock_row_lock_waits`|Number of times a row lock had to be waited for (innodb_row_lock_waits)|int|ms|
+|`lock_row_lock_time`|Time spent in acquiring row locks, in milliseconds (innodb_row_lock_time)|int|ms|
+|`lock_row_lock_time_avg`|The average time to acquire a row lock, in milliseconds (innodb_row_lock_time_avg)|int|ms|
+|`lock_row_lock_time_max`|The maximum time to acquire a row lock, in milliseconds (innodb_row_lock_time_max)|int|ms|
+|`lock_row_lock_waits`|Number of times a row lock had to be waited for (innodb_row_lock_waits)|int|count|
 |`lock_timeouts`|Number of lock timeouts|int|count|
 |`log_padded`|Bytes of log padded for log write ahead|int|count|
 |`log_waits`|Number of log waits due to small log buffer (innodb_log_waits)|int|count|
@@ -714,11 +714,12 @@ MySQL 用户指标
 |`event_id`|The event id|string|-|
 |`event_name`|The name of the instrument that produced the event|string|-|
 |`event_source`|The name of the source file|string|-|
-|`event_timer_end`|The time when event timing ended|string|ps|
-|`event_timer_start`|The time when event timing started|string|ps|
+|`event_timer_end`|The time when event timing ended|int|ns|
+|`event_timer_start`|The time when event timing started|int|ns|
+|`event_timer_wait`|The time the event has elapsed so far|int|ns|
 |`index_name`|The name of the index used|string|-|
 |`ip`|The client IP address|string|-|
-|`lock_time`|The time spent waiting for table locks|string|ps|
+|`lock_time`|The time spent waiting for table locks|int|ns|
 |`message`|The text of the normalized sql text|string|-|
 |`object_name`|The name of the object being acted on|string|-|
 |`object_schema`|The schema of th object being acted on|string|-|
@@ -735,8 +736,8 @@ MySQL 用户指标
 |`sql_text`|The statement the thread is executing|string|-|
 |`thread_id`|The thread id|string|-|
 |`wait_event`|The name of the wait event|string|-|
-|`wait_timer_end`|The time when the waiting event timing ended|string|ps|
-|`wait_timer_start`|The time when the waiting event timing started|string|ps|
+|`wait_timer_end`|The time when the waiting event timing ended|int|ns|
+|`wait_timer_start`|The time when the waiting event timing started|int|ns|
 
 
 
