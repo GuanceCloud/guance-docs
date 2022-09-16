@@ -30,7 +30,7 @@
 
 ```yaml
 dependencies:
-  ft_mobile_agent_flutter: ^0.2.6-dev.1
+  ft_mobile_agent_flutter: ^0.2.7-dev.2
 ```
 
 现在在您的 Dart 代码中，您可以使用：
@@ -212,11 +212,33 @@ FTRUMManager().startAction("action name", "action type");
 ### View
 
 ```dart
-FTRUMManager().starView("Current Page Name");
-
 FTRUMManager().createView("Current Page Name",100000000)
+
+FTRUMManager().starView("Current Page Name");
          
 FTRUMManager().stopView();
+```
+ 
+如果需要采集应用休眠和唤醒行为需要添加如下代码：
+
+```dart
+class _HomeState extends State<HomeRoute> {
+	
+	@override
+	void initState(){
+	
+		//添加应用休眠和唤醒监听
+		FTLifeRecycleHandler().initObserver();
+	}
+	
+	@override
+	void dispose(){
+	
+		//移除应用休眠和唤醒监听
+		FTLifeRecycleHandler().removeObserver();
+	}
+}
+
 ```
 
 ### Error
