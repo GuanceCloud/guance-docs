@@ -30,7 +30,7 @@
 
 ```yaml
 dependencies:
-  ft_mobile_agent_flutter: ^0.2.1-dev.5
+  ft_mobile_agent_flutter: ^0.2.7-dev.2
 ```
 
 现在在您的 Dart 代码中，您可以使用：
@@ -187,6 +187,7 @@ String customDynamicValue = prefs.getString("customDynamicValue")?? "not set";
 ```dart
 await FTTracer().setConfig(
   enableLinkRUMData: true,
+  enableAutoTrace:false,
   enableNativeAutoTrace: false
 );
 ```
@@ -197,7 +198,8 @@ await FTTracer().setConfig(
 | serviceName | String | 否 | 服务名 |
 | traceType | enum TraceType | 否 | 链路类型，默认`TraceType.ddTrace` |
 | enableLinkRUMData | bool | 否 | 是否与 `RUM` 数据关联，默认`false` |
-| enableNativeAutoTrace |  bool | 否 | 是否开启原生网络网络自动追踪 iOS `NSURLSession` ,Android `OKhttp`，默认`false` |
+| enableAutoTrace | bool | 否 | 是否开启 flutter 网络追踪，默认`false` |
+| enableNativeAutoTrace |  bool | 否 | 是否开启原生网络自动追踪 iOS `NSURLSession` ,Android `OKhttp`，默认`false` |
 
 ## RUM 用户数据追踪
 
@@ -210,11 +212,33 @@ FTRUMManager().startAction("action name", "action type");
 ### View
 
 ```dart
-FTRUMManager().starView("Current Page Name");
-
 FTRUMManager().createView("Current Page Name",100000000)
+
+FTRUMManager().starView("Current Page Name");
          
 FTRUMManager().stopView();
+```
+ 
+如果需要采集应用休眠和唤醒行为需要添加如下代码：
+
+```dart
+class _HomeState extends State<HomeRoute> {
+	
+	@override
+	void initState(){
+	
+		//添加应用休眠和唤醒监听
+		FTLifeRecycleHandler().initObserver();
+	}
+	
+	@override
+	void dispose(){
+	
+		//移除应用休眠和唤醒监听
+		FTLifeRecycleHandler().removeObserver();
+	}
+}
+
 ```
 
 ### Error
