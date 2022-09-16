@@ -79,6 +79,22 @@ icon: zy/release-notes
 - 查看器快捷筛选值 TOP 5 支持查看占比数量，查看器时间字段格式优化，默认显示格式为 `2022/09/15 20:53:40`
 - 链路查看器时序图新增图例显示、快捷筛选新增 HTTP 相关字段
 
+### DataKit 更新
+
+- 增加自动云同步功能，不再需要手动指定云厂商
+- 支持将 k8s label 作为 tag 同步到 pod 的指标和日志中
+- 支持将 k8s 中各类 yaml 信息采集到对应的[对象数据](../datakit/container.md#objects)上
+- Trace 采集支持自动提取一些关键 meta 信息
+- 支持安装过程中指定安装源地址，以简化[离线安装](../datakit/datakit-offline-install.md)流程
+- Pipeline 新增功能：
+    - 新增 for 循环/字典/数组支持
+    - 新增算数表达式支持
+    - Pipeline 出错信息将在采集的数据上展示
+    - 如果时间字段切割出错，支持自动修正时间字段(`time`)，以避免控制台页面上时间无法展示
+    - 新增 [len()](../developers/pipeline.md#fn-len) 函数
+
+更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md) 。
+
 ### 最佳实践更新
 
 - 监控 Monitoring\- 中间件（Middleware） -  [洞见 MySQL](../best-practices/monitoring/mysql.md) 。
