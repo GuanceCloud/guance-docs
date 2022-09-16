@@ -12,3 +12,5 @@ nav:
   - '用户访问指标检测': real-user-detection.md
   - '可用性监测数据检测': usability-detection.md
   - '网络数据检测': network-detection.md
+  - '运算符说明': operator-description.md
+  - '真值表说明': table-description.md
