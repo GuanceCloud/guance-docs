@@ -1,23 +1,25 @@
-# 开发手册 - 数据源对象 API
+# 开发手册 - 连接器对象 API
 ---
 
 
-不同的数据源对象具有不同的 API 及操作方式，使用时应以实际情况为准。
+不同的连接器对象具有不同的 API 及操作方式，使用时应以实际情况为准。
 
 此外，DataWay 和 DataKit 由于迭代更新较快，其本身的接口也存在变化的情况。因此本文档始终以最新版为准。
 
+> 提示：在较早版本中，曾名为「数据源」，现版本已改为「连接器」
+
 ## 1. DataKit
 
-DataKit 数据源操作对象主要提供数据写入方法。
+DataKit 连接器操作对象主要提供数据写入方法。
 
 `DFF.SRC(...)`参数如下：
 
 | 参数             | 类型 | 必须/默认值 | 说明                                                             |
 | ---------------- | ---- | ----------- | ---------------------------------------------------------------- |
-| `data_source_id` | str  | 必须        | 数据源 ID                                                        |
+| `data_source_id` | str  | 必须        | 连接器 ID                                                        |
 | `source`         | str  | `None`      | 指定 Source（注意不要填写`"mysql"`等，防止与其他采集器冲突混淆） |
 
-### `DataKit.write_by_category(...)`
+### DataKit.write_by_category(...)
 
 `write_by_category(...)`方法用于向 DataKit 写入特定类型的数据，参数如下：
 
@@ -35,7 +37,7 @@ DataKit 数据源操作对象主要提供数据写入方法。
 status_code, result = dk.write_by_category(category='metric', measurement='主机监控', tags={'host': 'web-01'}, fields={'cpu': 10})
 ```
 
-### `DataKit.write_by_category_many(...)`
+### DataKit.write_by_category_many(...)
 
 `write_by_category(...)`的批量版本，参数如下：
 
@@ -60,7 +62,7 @@ data = [
 status_code, result = dk.write_by_category_many(category='metric', data=data)
 ```
 
-### `DataKit.write_metric(...)`
+### DataKit.write_metric(...)
 
 `write_metric(...)`方法用于向 DataKit 写入指标数据，参数如下：
 
@@ -77,7 +79,7 @@ status_code, result = dk.write_by_category_many(category='metric', data=data)
 status_code, result = dk.write_metric(measurement='主机监控', tags={'host': 'web-01'}, fields={'cpu': 10})
 ```
 
-### `DataKit.write_metric_many(...)`
+### DataKit.write_metric_many(...)
 
 `write_metric(...)`的批量版本，参数如下：
 
@@ -101,11 +103,11 @@ data = [
 status_code, result = dk.write_metric_many(data=data)
 ```
 
-### `DataKit.write_logging(...)` / `DataKit.write_logging_many(...)`
+### DataKit.write_logging(...) / DataKit.write_logging_many(...)
 
 用于向 DataKit 写入日志数据，参数与`DataKit.write_metric(...)` / `DataKit.write_metric_many(...)`相同
 
-### `DataKit.query(...)`
+### DataKit.query(...)
 
 `query(...)`方法用于通过 DataKit 执行 DQL 语句，参数如下：
 
@@ -237,7 +239,7 @@ def run_dql_via_datakit():
 }
 ```
 
-### `DataKit.get(...)`
+### DataKit.get(...)
 
 `get(...)`方法用于向 DataKit 发送一个 GET 请求，参数如下：
 
@@ -249,7 +251,7 @@ def run_dql_via_datakit():
 
 > 本方法为通用处理方法，具体参数格式、内容等请参考 [DataKit API 文档](/datakit/apis)
 
-### `DataKit.post_line_protocol(...)`
+### DataKit.post_line_protocol(...)
 
 `post_line_protocol(...)`方法用于向 DataKit 以行协议格式发送一个 POST 请求，参数如下：
 
@@ -268,7 +270,7 @@ def run_dql_via_datakit():
 
 *注意：从`1.6.8`开始，参数`path`调整为第一个参数*
 
-### `DataKit.post_json(...)`
+### DataKit.post_json(...)
 
 `post_json(...)`方法用于向 DataKit 以 JSON 格式发送一个 POST 请求，参数如下：
 
@@ -285,17 +287,17 @@ def run_dql_via_datakit():
 
 ## 2. DataWay
 
-DataWay 数据源操作对象主要提供数据写入方法。
+DataWay 连接器操作对象主要提供数据写入方法。
 
 `DFF.SRC(...)`参数如下：
 
 | 参数             | 类型 | 必须/默认值 | 说明       |
 | ---------------- | ---- | ----------- | ---------- |
-| `data_source_id` | str  | 必须        | 数据源 ID  |
+| `data_source_id` | str  | 必须        | 连接器 ID  |
 | `token`          | str  | `None`      | 指定 Token |
 | `rp`             | str  | `None`      | 制定 rp    |
 
-### `DataWay.write_point(...)` / `write_metric(...)`
+### DataWay.write_point(...) / write_metric(...)
 
 `write_point(...)`方法用于向 DataWay 写入数据点，参数如下：
 
@@ -312,7 +314,7 @@ DataWay 数据源操作对象主要提供数据写入方法。
 status_code, result = dw.write_point(measurement='主机监控', tags={'host': 'web-01'}, fields={'cpu': 10})
 ```
 
-### `DataWay.write_points(...)` / `write_metrics(...)`
+### DataWay.write_points(...) / write_metrics(...)
 
 `write_point(...)`的批量版本，参数如下：
 
@@ -336,7 +338,7 @@ points = [
 status_code, result = dw.write_points(points)
 ```
 
-### `DataWay.get(...)`
+### DataWay.get(...)
 
 `get(...)`方法用于向 DataWay 发送一个 GET 请求，参数如下：
 
@@ -348,7 +350,7 @@ status_code, result = dw.write_points(points)
 
 > 本方法为通用处理方法，具体参数格式、内容等请参考 DataWay 官方文档
 
-### `DataWay.post_line_protocol(...)`
+### DataWay.post_line_protocol(...)
 
 `post_line_protocol(...)`方法用于向 DataWay 以行协议格式发送一个 POST 请求，参数如下：
 
@@ -366,7 +368,7 @@ status_code, result = dw.write_points(points)
 
 > 本方法为通用处理方法，具体参数格式、内容等请参考 DataWay 官方文档
 
-### `DataWay.post_json(...)`
+### DataWay.post_json(...)
 
 `post_json(...)`方法用于向 DataWay 以 JSON 格式发送一个 POST 请求，参数如下：
 
@@ -382,13 +384,13 @@ status_code, result = dw.write_points(points)
 
 ## 3. Sidecar
 
-使用 Sidecar 数据源操作对象允许用户调用 Sidecar 执行 Shell 命令。
+使用 Sidecar 连接器操作对象允许用户调用 Sidecar 执行 Shell 命令。
 
 `DFF.SRC(...)`参数如下：
 
 | 参数             | 类型 | 必须/默认值 | 说明      |
 | ---------------- | ---- | ----------- | --------- |
-| `data_source_id` | str  | 必须        | 数据源 ID |
+| `data_source_id` | str  | 必须        | 连接器 ID |
 
 > 有关 Sidecar 的完整使用文档，请参考「Sidecar 手册」
 
@@ -427,8 +429,8 @@ Content-Type: application/json
 
 ## 4. InfluxDB
 
-InfluxDB 数据源操作对象为 Python 第三方包 influxdb（版本 5.2.3）的封装，主要提供一些用于查询 InfluxDB 的方法。
-本数据源兼容以下数据库：
+InfluxDB 连接器操作对象为 Python 第三方包 influxdb（版本 5.2.3）的封装，主要提供一些用于查询 InfluxDB 的方法。
+本连接器兼容以下数据库：
 
 - 阿里云时序数据库 InfluxDB 版
 
@@ -436,10 +438,10 @@ InfluxDB 数据源操作对象为 Python 第三方包 influxdb（版本 5.2.3）
 
 | 参数             | 类型 | 必须/默认值 | 说明       |
 | ---------------- | ---- | ----------- | ---------- |
-| `data_source_id` | str  | 必须        | 数据源 ID  |
+| `data_source_id` | str  | 必须        | 连接器 ID  |
 | `database`       | str  | `None`      | 指定数据库 |
 
-### `InfluxDBHelper.query(...)`
+### InfluxDBHelper.query(...)
 
 `query(...)`方法用于执行 InfluxQL 语句，参数如下：
 
@@ -464,7 +466,7 @@ db_res = db.query(sql, bind_params=bind_params, database='demo', dict_output=Tru
 # {'series': [[{'city': 'hangzhou', 'hostname': 'webserver', 'status': 'UNKNOW', 'time': '2018-12-31T16:00:10Z', 'value': 90}, {'city': 'hangzhou', 'hostname': 'jira', 'status': 'running', 'time': '2018-12-31T16:00:20Z', 'value': 40}, {'city': 'hangzhou', 'hostname': 'database', 'status': 'running', 'time': '2018-12-31T16:00:50Z', 'value': 50}, {'city': 'hangzhou', 'hostname': 'jira', 'status': 'stopped', 'time': '2018-12-31T16:01:00Z', 'value': 40}, {'city': 'hangzhou', 'hostname': 'rancher', 'status': 'UNKNOW', 'time': '2018-12-31T16:02:00Z', 'value': 90}]]}
 ```
 
-### `InfluxDBHelper.query2(...)`
+### InfluxDBHelper.query2(...)
 
 `query2(...)`方法同样用于执行 InfluxQL 语句，但参数占位符不同，使用问号`?`作为参数占位符。参数如下：
 
@@ -483,7 +485,7 @@ sql_params = ['demo', 'hangzhou']
 db_res = db.query2(sql, sql_params=sql_params, dict_output=True)
 ```
 
-### `InfluxDBHelper.write_point(...)`
+### InfluxDBHelper.write_point(...)
 
 > `1.1.13`版本新增
 
@@ -505,7 +507,7 @@ tags   = { 'host': 'web001' }
 db_res = db.write_point(measurement='host_monitor', fields=fields, tags=tags)
 ```
 
-### `InfluxDBHelper.write_points(...)`
+### InfluxDBHelper.write_points(...)
 
 > `1.1.13`版本新增
 
@@ -533,8 +535,8 @@ db_res = db.write_points(points)
 
 ## 5. MySQL
 
-MySQL 数据源操作对象主要提供一些操作 MySQL 的方法。
-本数据源以下数据库：
+MySQL 连接器操作对象主要提供一些操作 MySQL 的方法。
+本连接器以下数据库：
 
 - MariaDB
 - Percona Server for MySQL
@@ -546,7 +548,7 @@ MySQL 数据源操作对象主要提供一些操作 MySQL 的方法。
 
 | 参数             | 类型 | 必须/默认值 | 说明       |
 | ---------------- | ---- | ----------- | ---------- |
-| `data_source_id` | str  | 必须        | 数据源 ID  |
+| `data_source_id` | str  | 必须        | 连接器 ID  |
 | `database`       | str  | `None`      | 指定数据库 |
 
 ### MySQLHelper.query(...)
@@ -585,16 +587,16 @@ effected_rows = db.non_query(sql, sql_params=sql_params)
 
 ## 6. Redis
 
-Redis 数据源操作对象主要提供 Redis 的操作方法。
+Redis 连接器操作对象主要提供 Redis 的操作方法。
 
 `DFF.SRC(...)`参数如下：
 
 | 参数             | 类型 | 必须/默认值 | 说明       |
 | ---------------- | ---- | ----------- | ---------- |
-| `data_source_id` | str  | 必须        | 数据源 ID  |
+| `data_source_id` | str  | 必须        | 连接器 ID  |
 | `database`       | str  | `None`      | 指定数据库 |
 
-### `RedisHelper.query(...)`
+### RedisHelper.query(...)
 
 `query(...)`方法用于执行 Redis 命令，参数如下：
 
@@ -625,15 +627,15 @@ print(json.loads(db_res))
 
 ## 7. Memcached
 
-Memcached 数据源操作对象主要提供 Memcached 的操作方法。
+Memcached 连接器操作对象主要提供 Memcached 的操作方法。
 
 `DFF.SRC(...)`参数如下：
 
 | 参数             | 类型 | 必须/默认值 | 说明      |
 | ---------------- | ---- | ----------- | --------- |
-| `data_source_id` | str  | 必须        | 数据源 ID |
+| `data_source_id` | str  | 必须        | 连接器 ID |
 
-### `MemcachedHelper.query(...)`
+### MemcachedHelper.query(...)
 
 `query(...)`方法用于执行 Memcached 命令，参数如下：
 
@@ -651,16 +653,16 @@ db_res = db.query('GET', 'myKey')
 
 ## 8. ClickHouse
 
-ClickHouse 数据源操作对象主要提供一些数据方法。
+ClickHouse 连接器操作对象主要提供一些数据方法。
 
 `DFF.SRC(...)`参数如下：
 
 | 参数             | 类型 | 必须/默认值 | 说明       |
 | ---------------- | ---- | ----------- | ---------- |
-| `data_source_id` | str  | 必须        | 数据源 ID  |
+| `data_source_id` | str  | 必须        | 连接器 ID  |
 | `database`       | str  | `None`      | 指定数据库 |
 
-### `ClickHouseHelper.query(...)`
+### ClickHouseHelper.query(...)
 
 `query(...)`方法用于执行 SQL 语句，参数如下：
 
@@ -679,16 +681,16 @@ db_res = helper.query(sql, sql_params=sql_params)
 
 ## 9. Oracle Database
 
-Oracle Database 数据源操作对象主要提供 Oracle Database 的操作方法。
+Oracle Database 连接器操作对象主要提供 Oracle Database 的操作方法。
 
 `DFF.SRC(...)`参数如下：
 
 | 参数             | 类型 | 必须/默认值 | 说明       |
 | ---------------- | ---- | ----------- | ---------- |
-| `data_source_id` | str  | 必须        | 数据源 ID  |
+| `data_source_id` | str  | 必须        | 连接器 ID  |
 | `database`       | str  | `None`      | 指定数据库 |
 
-### `OracleDatabaseHelper.query(...)`
+### OracleDatabaseHelper.query(...)
 
 `query(...)`方法用于执行 SQL 语句，参数如下：
 
@@ -707,16 +709,16 @@ db_res = db.query(sql, sql_params=sql_params)
 
 ## 10. Microsoft SQL Server
 
-Microsoft SQL Server 数据源操作对象主要提供 Microsoft SQL Server 的操作方法。
+Microsoft SQL Server 连接器操作对象主要提供 Microsoft SQL Server 的操作方法。
 
 `DFF.SRC(...)`参数如下：
 
 | 参数             | 类型 | 必须/默认值 | 说明       |
 | ---------------- | ---- | ----------- | ---------- |
-| `data_source_id` | str  | 必须        | 数据源 ID  |
+| `data_source_id` | str  | 必须        | 连接器 ID  |
 | `database`       | str  | `None`      | 指定数据库 |
 
-### `SQLServerHelper.query(...)`
+### SQLServerHelper.query(...)
 
 `query(...)`方法用于执行 SQL 语句，参数如下：
 
@@ -735,8 +737,8 @@ db_res = db.query(sql, sql_params=sql_params)
 
 ## 11. PostgreSQL
 
-PostgreSQL 数据源操作对象主要提供一些操作 PostgreSQL 的方法。
-本数据源以下数据库：
+PostgreSQL 连接器操作对象主要提供一些操作 PostgreSQL 的方法。
+本连接器以下数据库：
 
 - Greenplum Database
 - 阿里云 PolarDB MySQL
@@ -746,10 +748,10 @@ PostgreSQL 数据源操作对象主要提供一些操作 PostgreSQL 的方法。
 
 | 参数             | 类型 | 必须/默认值 | 说明       |
 | ---------------- | ---- | ----------- | ---------- |
-| `data_source_id` | str  | 必须        | 数据源 ID  |
+| `data_source_id` | str  | 必须        | 连接器 ID  |
 | `database`       | str  | `None`      | 指定数据库 |
 
-### `PostgreSQLHelper.query(...)`
+### PostgreSQLHelper.query(...)
 
 `query(...)`方法用于执行 SQL 语句，参数如下：
 
@@ -768,16 +770,16 @@ db_res = db.query(sql, sql_params=sql_params)
 
 ## 12. mongoDB
 
-mongoDB 数据源操作对象主要提供一些操作 mongoDB 的方法。
+mongoDB 连接器操作对象主要提供一些操作 mongoDB 的方法。
 
 `DFF.SRC(...)`参数如下：
 
 | 参数             | 类型 | 必须/默认值 | 说明       |
 | ---------------- | ---- | ----------- | ---------- |
-| `data_source_id` | str  | 必须        | 数据源 ID  |
+| `data_source_id` | str  | 必须        | 连接器 ID  |
 | `database`       | str  | `None`      | 指定数据库 |
 
-### `MongoDBHelper.db(...)`
+### MongoDBHelper.db(...)
 
 `db(...)`方法用于获取数据库操作对象，参数如下：
 
@@ -800,7 +802,7 @@ data = collection.find_one()
 data = helper.db('some_db')['some_collection'].find_one()
 ```
 
-### `MongoDBHelper.run_method(...)`
+### MongoDBHelper.run_method(...)
 
 run_method() 方法用于获取数据库列表或集合列表，参数如下：
 
@@ -821,15 +823,15 @@ collection_list = helper.run_method('list_collection_names', db_name='some_db')
 
 ## 13. elasticsearch
 
-elasticsearch 数据源操作对象主要提供一些操作 elasticsearch 的方法。
+elasticsearch 连接器操作对象主要提供一些操作 elasticsearch 的方法。
 
 `DFF.SRC(...)`参数如下：
 
 | 参数             | 类型 | 必须/默认值 | 说明      |
 | ---------------- | ---- | ----------- | --------- |
-| `data_source_id` | str  | 必须        | 数据源 ID |
+| `data_source_id` | str  | 必须        | 连接器 ID |
 
-### `ElasticSearchHelper.query(...)`
+### ElasticSearchHelper.query(...)
 
 `query(...)`方法用于向 elasticsearch 发送 HTTP 请求，参数如下：
 

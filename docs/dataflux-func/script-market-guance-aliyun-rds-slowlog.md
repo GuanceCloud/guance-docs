@@ -55,15 +55,19 @@ collector_configs = {
     "DBInstanceDescription": "业务系统"
   },
   "fields": {
-    "SQLHASH"                     : "436f9dd030e0a87920bbcd818b34f271",
-    "SQLText"                     : "{SQL 语句}",
-    "CreateTime"                  : "2022-06-05Z",
-    "SQLServerTotalExecutionTimes": 0,
-    "MaxExecutionTime"            : 1,
-    "MaxLockTime"                 : 0,
-    "AvgExecutionTime"            : 0,
-    "SQLServerAvgExecutionTime"   : 0,
-    "message"                     : "{实例 JSON 数据}"
+    "SQLHASH"                       : "436f9dd030e0a87920bbcd818b34f271",
+    "SQLText"                       : "{SQL 语句}",
+    "CreateTime"                    : "2022-06-05Z",
+    "SQLServerTotalExecutionTimes"  : 0,
+    "MaxExecutionTime"              : 1,
+    "MaxLockTime"                   : 0,
+    "AvgExecutionTime"              : 0,
+    "MySQLTotalExecutionTimes"      : 0,
+    "SQLServerTotalExecutionTimes"  : 1,
+    "SQLServerTotalExecutionCounts" : 0,
+    "MySQLTotalExecutionCounts"     : 0,
+    "SQLServerAvgExecutionTime"     : 0,
+    "message"                       : "{实例 JSON 数据}"
   }
 }
 ~~~
@@ -75,6 +79,11 @@ collector_configs = {
 | `SQLServerTotalExecutionTimes` | int  | SQL Server 执行时长（总值，毫秒） |
 | `AvgExecutionTime`             | int  | 执行时间（平均值）单位：秒        |
 | `SQLServerAvgExecutionTime`    | int  | 执行时间（平均值）单位：秒        |
+| `MySQLTotalExecutionTimes`     | int  | MySQL 执行时间（总值）单位：秒 |
+| `SQLServerTotalExecutionTimes` | int  | SQL Server 执行时间（总值） 单位：毫秒       |
+| `SQLServerTotalExecutionCounts`| int  | SQL Server 执行次数（总值）|
+| `MySQLTotalExecutionCounts`    | int  | MySQL 执行次数（总值） |
+
 
 *注意：`AvgExecutionTime`、`SQLServerAvgExecutionTime`、`SQLServerTotalExecutionTimes`、等字段仅 SQL Server 实例支持*
 

@@ -182,7 +182,7 @@ helm ls -n {Namespace}
 kubectl get ing -n {Namespace}
 ```
 
-#### 检查 `pod` 状态
+#### 检查 Pod 状态
 
 一般为 `pvc` 创建失败引起，请根据实际情况解决问题
 
@@ -220,15 +220,15 @@ func-redis       Pening    pvc-cfceb581-c711-4e1d-9ae9-8063ca1ee1a9   10G    RWX
 func-resources   Bound     pvc-0cc6f1df-666c-4512-bea9-baa40461c81c   10G    RWX    nfs-client    15m
 ```
 
-### 5.2 产生`cannot re-use a name that is still in use`错误
+### 5.2 产生「cannot re-use a name that is still in use」错误
 
-如果部署发现`cannot re-use a name that is still in use` 的错误，说明当前 namespace 已经有了 `{Release Name}`,。
+如果部署发现「cannot re-use a name that is still in use」的错误，说明当前 namespace 已经有了 `{Release Name}`,。
 
 你可以将旧的 `{Release Name}` 删除后安装，也可以更换 `{Release Name}`。
 
-### 5.3 产生`连接到数据源超时`错误
+### 5.3 产生「连接到数据源超时」错误
 
-如果创建数据源发现`连接到数据源超时` 的错误，请*重启所有*与 func 相关的 pod。
+如果创建数据源发现「连接到数据源超时」的错误，请*重启所有*与 func 相关的 pod。
 
 以下为 func 相关的 deployment：
 
