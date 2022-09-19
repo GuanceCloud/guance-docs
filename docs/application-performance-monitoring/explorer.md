@@ -130,7 +130,7 @@
 - 双击 Span ：在火焰图中间放大展示该 Span，您可以快速定位查看其上下文关联 Span ；
 - 点击服务名称：高亮展示对应 Span，再次点击服务名称，恢复默认全选 Span ，您可以通过点击服务名称，快速筛选查看服务对应的 Span。
 
-![](img/9.apm_explorer_17.png)
+![](img/10.changelog_apm.gif)
 
 ### 扩展属性
 
