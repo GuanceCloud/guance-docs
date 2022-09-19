@@ -54,6 +54,7 @@ collector_configs = {
   },
   "fields": {
     "EndTime": "2022-12-13T16:00:00Z",
+    "Accounts": "[{账号信息 JSON 数据}]",
     "message": "{实例 JSON 数据}"
   }
 }

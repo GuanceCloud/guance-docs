@@ -7,7 +7,7 @@ DataFlux Func 在脚本运行上下文注入了一些额外功能。
 
 这些功能都封装在 DFF 对象中（如前文出现的`@DFF.API(...)`）
 
-## 1. 输出日志 `print(...)`
+## 1. 输出日志 print(...)
 
 由于脚本编辑器是 Web 应用程序，
 不同于一般意义上的 IDE，不支持进行单步调试等操作。
@@ -21,7 +21,7 @@ DataFlux Func 重新封装了`print(...)`函数，
 print('Some log message')
 ```
 
-## 2. 导出函数 `DFF.API(...)`
+## 2. 导出函数 DFF.API(...)
 
 一个装饰器，用于将被修饰的函数对外开放，允许使用 API 方式调用。
 
@@ -42,7 +42,7 @@ print('Some log message')
 
 各参数的详解见下文：
 
-### 参数`title`
+### 参数 title
 
 函数标题支持中文，方便在 DataFlux Func 各种操作界面/文档中展示函数名称。
 
@@ -54,7 +54,7 @@ def my_func():
     pass
 ```
 
-### 参数`category`/`tags`
+### 参数 category / tags
 
 函数所属分类、标签列表，本身并不参与也不控制函数的运行，主要用于方便分类管理函数。
 分别使用或者各自单独使用都可以。
@@ -77,7 +77,7 @@ GET /api/v1/func-list?category=demo
 GET /api/v1/func-list?tags=tag1,tag2
 ```
 
-### 参数`timeout`/`api_timeout`
+### 参数 timeout / api_timeout
 
 为了保护系统，所有在 DataFlux Func 中运行的函数都有运行时长限制，不允许无限制地运行下去。
 其中，`timeout`控制「函数本身的运行时长」，而`api_timeout`控制在「授权链接中，API 返回的超时时长」。
@@ -115,7 +115,7 @@ def my_func():
 
 *注意：大量长耗时授权链接请求会导致任务队列堵塞，必要时应使用缓存技术*
 
-### 参数`cache_result`
+### 参数 cache_result
 
 DataFlux Func 内置了 API 层面的缓存处理。
 在指定的缓存参数后，当调用完全相同的函数和参数时，系统会直接返回缓存的结果。
@@ -136,7 +136,7 @@ def my_func():
 X-Dataflux-Func-Cache: Cached
 ```
 
-### 参数`fixed_crontab`
+### 参数 fixed_crontab
 
 对于某些会用于自动触发配置的函数，函数编写者可能会对自动运行的频率有要求。
 此时，可以指定本参数，将属于本函数的自动触发配置固定为指定的 Crontab 表达式。
@@ -149,7 +149,7 @@ def my_func():
     pass
 ```
 
-### 参数`delayed_crontab`
+### 参数 delayed_crontab
 
 对于某些用于自动触发配置的函数，函数编写者可能希望以更精确的时间运行（如在`* * * * *`的基础上，延迟 10 秒运行）。
 此时，可以指定本参数，在指定延迟的秒数。同时，也可以传入秒数的数组，到达各个指定延迟时运行。
@@ -176,7 +176,7 @@ def my_func_2():
     pass
 ```
 
-## 3. 操作数据源 `DFF.SRC(...)`
+## 3. 操作数据源 DFF.SRC(...)
 
 一个函数，用于返回指定的数据源操作对象。
 
@@ -209,7 +209,7 @@ dataway = DFF.SRC('df_dataway', token='xxxxx', rp='rp0')
 
 具体不同类型数据源的详细 API 接口见下文
 
-## 4. 获取环境变量 `DFF.ENV(...)`
+## 4. 获取环境变量 DFF.ENV(...)
 
 在脚本编辑器左侧边栏配置的所有环境变量，
 都可以在脚本中使用配置的 ID 获取对应的环境变量值。
@@ -238,7 +238,7 @@ except Exception as e:
     pass
 ```
 
-## 5. 接口响应控制（数据） `DFF.RESP(...)`
+## 5. 接口响应控制（数据） DFF.RESP(...)
 
 函数的返回值，除了以往直接返回字符串、JSON 外，可使用`DFF.RESP(...)`进行细节控制。
 
@@ -295,7 +295,7 @@ def case_4():
     return DFF.RESP(data, content_type='html', headers=headers)
 ```
 
-## 6. 接口响应控制（文件） `DFF.RESP_FILE(...)`
+## 6. 接口响应控制（文件） DFF.RESP_FILE(...)
 
 当返回的内容为「磁盘上的文件」时，可使用`DFF.RESP_FILE(...)`进行细节控制。
 
@@ -354,7 +354,7 @@ def case_5():
     return DFF.RESP_FILE('user-guide.pdf', headers=headers)
 ```
 
-## 7. 接口响应控制（大量数据） `DFF.RESP_LARGE_DATA(...)`
+## 7. 接口响应控制（大量数据） DFF.RESP_LARGE_DATA(...)
 
 > `1.3.0`版本新增
 
@@ -438,7 +438,7 @@ DataFlux Func 内置了简易的持久化存储功能。
 
 > 提示：写入的数据会自动序列化，同时读取时也会自动反序列化。使用时无需手工做序列化处理
 
-### `DFF.STORE.set(...)`
+### DFF.STORE.set(...)
 
 `DFF.STORE.set(...)`方法用于存储数据，参数如下：
 
@@ -456,7 +456,7 @@ DataFlux Func 内置了简易的持久化存储功能。
 DFF.STORE.set('user:user-001', { 'name': '张三' }, scope='users')
 ```
 
-### `DFF.STORE.get(...)`
+### DFF.STORE.get(...)
 
 `DFF.STORE.get(...)`方法用于获取存储的数据，参数如下：
 
@@ -475,7 +475,7 @@ DFF.STORE.get('user:user-001', scope='users')
 # { 'name': '张三' }
 ```
 
-### `DFF.STORE.delete(...)`
+### DFF.STORE.delete(...)
 
 `DFF.STORE.delete(...)`方法用于删除存储的数据，参数如下：
 
@@ -492,7 +492,7 @@ DFF.STORE.get('user:user-001', scope='users')
 DFF.STORE.delete('user:user-001', scope='users')
 ```
 
-## 9. 内置简易 Scope-Key-Value 缓存 `DFF.CACHE`
+## 9. 内置简易 Scope-Key-Value 缓存 DFF.CACHE
 
 DataFlux Func 内置了基于 Redis 的简易缓存功能。
 对于一些有缓存需求，同时需求并不复杂的场景，可以直接使用本内置缓存功能。
@@ -501,7 +501,7 @@ DataFlux Func 内置了基于 Redis 的简易缓存功能。
 
 > 提示：写入/读取数据不会自动自动序列化/反序列化，使用时需要在脚本中自行处理
 
-### `DFF.CACHE.set(...)`
+### DFF.CACHE.set(...)
 
 `DFF.CACHE.set(...)`方法用于建立缓存，参数如下：
 
@@ -520,7 +520,7 @@ DFF.CACHE.set('user:count', 100, scope='stat')
 # 此时缓存值为：'100'
 ```
 
-### `DFF.CACHE.get(...)`
+### DFF.CACHE.get(...)
 
 `DFF.CACHE.get(...)`方法用于获取缓存，参数如下：
 
@@ -537,7 +537,7 @@ DFF.CACHE.get('user:count', scope='stat')
 # '100'
 ```
 
-### `DFF.CACHE.getset(...)`
+### DFF.CACHE.getset(...)
 
 `DFF.CACHE.getset(...)`方法用于设置缓存的同时，获取之前的值，参数如下：
 
@@ -556,7 +556,7 @@ DFF.CACHE.getset('user:count', 200, scope='stat')
 # 此时缓存值为：'200'
 ```
 
-### `DFF.CACHE.expire(...)`
+### DFF.CACHE.expire(...)
 
 `DFF.CACHE.expire(...)`方法用于设置缓存的过期时间，参数如下：
 
@@ -572,7 +572,7 @@ DFF.CACHE.getset('user:count', 200, scope='stat')
 DFF.CACHE.expire('user:count', 3600, scope='stat')
 ```
 
-### `DFF.CACHE.delete(...)`
+### DFF.CACHE.delete(...)
 
 `DFF.CACHE.delete(...)`方法用于删除存储的数据，参数如下：
 
@@ -587,7 +587,7 @@ DFF.CACHE.expire('user:count', 3600, scope='stat')
 DFF.CACHE.delete('user:count', scope='stat')
 ```
 
-### `DFF.CACHE.incr(...)`
+### DFF.CACHE.incr(...)
 
 `DFF.CACHE.incr(...)`方法用于对缓存值增加步进，参数如下：
 
@@ -604,7 +604,7 @@ DFF.CACHE.incr('user:count', scope='stat')
 # 此时缓存值为：'2'
 ```
 
-### `DFF.CACHE.hkeys(...)`
+### DFF.CACHE.hkeys(...)
 
 `DFF.CACHE.hkeys(...)`方法用于获取哈希结构字段列表，参数如下：
 
@@ -622,7 +622,7 @@ DFF.CACHE.hkeys('user:001', scope='userCache')
 # ['name', 'city']
 ```
 
-### `DFF.CACHE.hget(...)`
+### DFF.CACHE.hget(...)
 
 `DFF.CACHE.hget(...)`方法用于获取哈希结构中一个/多个/全部字段值，参数如下：
 
@@ -643,7 +643,7 @@ DFF.CACHE.hget('user:001', ['name', 'city'], scope='cachedInfo')
 DFF.CACHE.hget('user:001', 'name', scope='cachedInfo')
 # 'Tom'
 ```
-### `DFF.CACHE.hset(...)`
+### DFF.CACHE.hset(...)
 
 `DFF.CACHE.hset(...)`方法用于设置哈希结构中的某个字段值，参数如下：
 
@@ -662,7 +662,7 @@ DFF.CACHE.hset('user:001', 'name', 'Tom', scope='cachedInfo')
 # 此时缓存值为：{ 'name': 'Tom' }
 ```
 
-### `DFF.CACHE.hmset(...)`
+### DFF.CACHE.hmset(...)
 
 `DFF.CACHE.hmset(...)`方法用于设置哈希结构中的多个字段值，参数如下：
 
@@ -677,7 +677,7 @@ DFF.CACHE.hmset('user:001', { 'name': 'Tom', 'city': 'Beijing' }, scope='cachedI
 # 此时缓存值为：{ 'name': 'Tom', 'city': 'Beijing' }
 ```
 
-### `DFF.CACHE.hincr(...)`
+### DFF.CACHE.hincr(...)
 
 `DFF.CACHE.hincr(...)`方法用于对哈希结构中的字段增加步进，参数如下：
 
@@ -695,7 +695,7 @@ DFF.CACHE.hincr('user:001', 'signCount', scope='cachedInfo')
 # 此时缓存值为：{ 'signCount': '2' }
 ```
 
-### `DFF.CACHE.hdel(...)`
+### DFF.CACHE.hdel(...)
 
 `DFF.CACHE.hdel(...)`方法用于删除哈希结构中的某个字段，参数如下：
 
@@ -713,7 +713,7 @@ DFF.CACHE.hdel('user:001', 'city', scope='cachedInfo')
 # 此时缓存值为：{ 'name': 'Tom' }
 ```
 
-### `DFF.CACHE.lpush(...)`
+### DFF.CACHE.lpush(...)
 
 `DFF.CACHE.lpush(...)`方法用于从*左侧*向列表结构添加元素，参数如下：
 
@@ -731,7 +731,7 @@ DFF.CACHE.lpush('userQueue', '002', scope='queue')
 # 此时缓存值为：[ '002', '001' ]
 ```
 
-### `DFF.CACHE.rpush(...)`
+### DFF.CACHE.rpush(...)
 
 `DFF.CACHE.rpush(...)`方法用于从*右侧*向列表结构添加元素，参数如下：
 
@@ -749,7 +749,7 @@ DFF.CACHE.rpush('userQueue', '002', scope='queue')
 # 此时缓存值为：[ '001', '002' ]
 ```
 
-### `DFF.CACHE.lpop(...)`
+### DFF.CACHE.lpop(...)
 
 `DFF.CACHE.lpop(...)`方法用于从*左侧*从列表结构中弹出元素，参数如下：
 
@@ -767,7 +767,7 @@ DFF.CACHE.lpop('userQueue', scope='queue')
 # '002'
 ```
 
-### `DFF.CACHE.rpop(...)`
+### DFF.CACHE.rpop(...)
 
 `DFF.CACHE.rpop(...)`方法用于从*右侧*从列表结构中弹出元素，参数如下：
 
@@ -785,7 +785,7 @@ DFF.CACHE.rpop('userQueue', scope='queue')
 # '001'
 ```
 
-### `DFF.CACHE.llen(...)`
+### DFF.CACHE.llen(...)
 
 `DFF.CACHE.llen(...)`方法用于获取列表结构元素数量，参数如下：
 
@@ -803,7 +803,7 @@ DFF.CACHE.llen('userQueue', scope='queue')
 # 2
 ```
 
-### `DFF.CACHE.lrange(...)`
+### DFF.CACHE.lrange(...)
 
 `DFF.CACHE.lrange(...)`方法用于获取列表结构内元素列表（不弹出），参数如下：
 
@@ -827,7 +827,7 @@ DFF.CACHE.lrange('userQueue', 0, -1, scope='queue')
 # [ '001', '002', '003', '004' ]
 ```
 
-### `DFF.CACHE.ltrim(...)`
+### DFF.CACHE.ltrim(...)
 
 `DFF.CACHE.ltrim(...)`方法用于从*左侧*开始，保留列表结构内元素，参数如下：
 
@@ -860,7 +860,7 @@ for i in range(100):
 # 此时缓存值为：[ '99', '98', '97' ]
 ```
 
-### `DFF.CACHE.rpoplpush(...)`
+### DFF.CACHE.rpoplpush(...)
 
 `DFF.CACHE.rpoplpush(...)`方法用于在一个列表结构*右侧*弹出元素，同时向另一个列表结构*左侧*推入元素，同时返回此元素，参数如下：
 
@@ -901,7 +901,7 @@ DFF.CACHE.rpoplpush('userQueue', scope='queue')
 # 此时缓存值为：[ '002', '001', '003' ]
 ```
 
-## 10. SQL 语句格式化 `DFF.SQL(...)`
+## 10. SQL 语句格式化 DFF.SQL(...)
 
 使用`DFF.SQL(...)`可以方便地生成动态 SQL 语句，避免手工拼接 SQL 导致 SQL 注入问题。
 
@@ -926,7 +926,7 @@ print(DFF.SQL(sql, sql_params))
 # SELECT * FROM class WHERE name IN ('语文', '数学', '英语')
 ```
 
-## 11. 获取资源文件路径 `DFF.RSRC(...)`
+## 11. 获取资源文件路径 DFF.RSRC(...)
 
 资源文件可以在「管理 - 文件工具」中查看和管理，
 当需要在脚本中操作资源文件时，需要使用`DFF.RSRC(...)`获取资源文件的真实路径。
@@ -945,7 +945,7 @@ with open(DFF.RSRC('demo/data.txt')) as f:
     pass
 ```
 
-## 12. 内置变量 `_DFF_XXX`
+## 12. 内置变量 _DFF_XXX
 
 为了方便脚本在运行时获取相关运行状态的信息，DataFlux Func 在脚本上下文中直接内置了一些可以直接使用的变量。
 
@@ -962,7 +962,7 @@ with open(DFF.RSRC('demo/data.txt')) as f:
 | `_DFF_CRONTAB`         | str  | 自动触发配置     | Crontab 表达式           | `* * * * *`                 |
 | `_DFF_HTTP_REQUEST`    | dict | 授权链接、批处理 | 接口调用时请求体         | 见下文                      |
 
-### `_DFF_START_TIME`和`_DFF_TRIGGER_TIME`区别
+### _DFF_START_TIME 和_DFF_TRIGGER_TIME 区别
 
 `_DFF_START_TIME`指的是函数实际启动的时间，相当于在函数入口处执行的`time.time()`，会因为队列拥堵等因素延后。
 
@@ -977,7 +977,7 @@ with open(DFF.RSRC('demo/data.txt')) as f:
 
 > 提示：当使用自动触发配置按照固定时间间隔获取时序数据时，应当以`_DFF_TRIGGER_TIME`和`_DFF_TRIGGER_TIME_MS`为基准，*不要*自行在代码中使用`time.time()`获取当前时间
 
-### `_DFF_HTTP_REQUEST`数据结构
+### _DFF_HTTP_REQUEST 数据结构
 
 `_DFF_HTTP_REQUEST`内容为请求体详情，如：
 

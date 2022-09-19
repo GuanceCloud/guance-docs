@@ -49,9 +49,16 @@ collector_configs = {
     "RegionId"             : "cn-shanghai",
     "DBInstanceDescription": "业务系统",
     "LockMode"             : "Unlock",
+    "Category"             : "Basic",
+    "ConnectionMode"       : "Standard",
+    "DBInstanceNetType"    : "Intranet",
   },
   "fields": {
+    "CreationTime"     : "2022-12-13T16:00:00Z",
     "ExpireTime"       : "2022-12-13T16:00:00Z",
+    "DiskUsed"         : "10000",
+    "BackupSize"       : "10000",
+    "LogSize"          : "10000",
     "ConnectionString" : "{连接地址 JSON 数据}",
     "DBInstanceStorage": "100",
     "message"          : "{实例 JSON 数据}"
@@ -64,6 +71,8 @@ collector_configs = {
 > 提示：`tags.name`值为实例 ID，作为唯一识别
 
 > 提示 2：`fields.message`、`fields.ConnectionString`均为 JSON 序列化后字符串
+
+> 提示 3：`fields.DiskUsed`、`fields.BackupSize`、`fields.LogSize` 单位：Byte，`fields.DBInstanceStorage` 单位：GB。
 
 ## X. 附录
 

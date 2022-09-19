@@ -39,23 +39,31 @@ collector_configs = {
 {
   "measurement": "aliyun_ecs",
   "tags": {
-    "name"              : "i-xxxxx",
-    "HostName"          : "xxxxx",
-    "InstanceName"      : "xxxxx",
-    "InstanceId"        : "i-xxxxx",
-    "RegionId"          : "cn-hangzhou",
-    "ZoneId"            : "cn-hangzhou-a",
-    "InstanceChargeType": "PrePaid",
-    "InternetChargeType": "PayByTraffic",
-    "OSType"            : "linux"
+    "name"                     : "i-xxxxx",
+    "HostName"                 : "xxxxx",
+    "InstanceName"             : "xxxxx",
+    "InstanceId"               : "i-xxxxx",
+    "RegionId"                 : "cn-hangzhou",
+    "ZoneId"                   : "cn-hangzhou-a",
+    "InstanceChargeType"       : "PrePaid",
+    "InternetChargeType"       : "PayByTraffic",
+    "OSType"                   : "linux",
+    "PublicIpAddress_IpAddress": "['xxxx',]",
+    "InstanceType"             : "ecs.c6.xlarge",
+    "InstanceTypeFamily"       : "ecs.c6"
   },
   "fields": {
-    "CreationTime"      : "2022-01-01T00:00Z",
-    "StartTime"         : "2022-01-02T00:00Z",
-    "ExpiredTime"       : "2023-01-01T00:00Z",
-    "disks"             : "[ {关联磁盘 JSON 数据}, ... ]",
-    "network_interfaces": "[ {关联网卡 JSON 数据}, ... ]",
-    "message"           : "{实例 JSON 数据}"
+    "CreationTime"           : "2022-01-01T00:00Z",
+    "StartTime"              : "2022-01-02T00:00Z",
+    "ExpiredTime"            : "2023-01-01T00:00Z",
+    "disks"                  : "[ {关联磁盘 JSON 数据}, ... ]",
+    "network_interfaces"     : "[ {关联网卡 JSON 数据}, ... ]",
+    "Memory"                 : "8192",
+    "Cpu"                    : "4",
+    "InternetMaxBandwidthOut": "0",
+    "InternetMinBandwidthIn" : "0",
+    "AutoReleaseTime"        : "xxxx",
+    "message"                : "{实例 JSON 数据}"
   }
 }
 ~~~
