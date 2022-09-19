@@ -286,7 +286,7 @@ source in ['kube-controller-manager','http_dial_testing'] and (status != 'unknow
 
 - 在不同查看器应用筛选历史：在日志查看器保存了筛选历史，可直接在链路等其他查看器直接使用。
 
-![](../img/1.filter_history_3.png)
+![](../img/filter_history.gif)
 
 
 
