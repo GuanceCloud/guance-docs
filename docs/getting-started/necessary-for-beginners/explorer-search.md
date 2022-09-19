@@ -50,7 +50,29 @@
 
 更多 DQL 语法可参考文档 [DQL 定义](../../dql/define.md) 。
 
-**示例说明**
+***示例说明***
+
+**示例 1 ：**
+
+```json
+source = nginx and status != OK
+```
+
+在本示例中，对日志的来源和状态进行筛选，需要注意的是**筛选的字段值（value）要区分大小写**，返回的结果如下：
+
+![](../img/8.explorer_3.1.png)
+
+**示例 2 ：**
+
+```json
+message = query_string("debug OR 200" )
+```
+
+在本示例中，对日志的内容进行进行查询搜索，支持对日志字段（key）进行 `AND` / `OR` 多种条件组合查询，更多说明可参考文档 [字符串查询](../../dql/funcs.md#query_string) 。本示例返回结果如下：
+
+![](../img/8.explorer_3.2.png)
+
+**示例 3 ：**
 
 ```json
 source in ['kube-controller-manager','http_dial_testing'] and (status != 'unknown' or host != 'izbp152ke14timzud0du15z') and message = query_string('500')
