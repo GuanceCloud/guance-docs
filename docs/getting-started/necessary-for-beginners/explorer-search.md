@@ -46,7 +46,7 @@
 在日志查看器，您可以通过点击搜索栏的切换小图标 ![](../img/8.explorer_2.1.png) ，切换到 DQL 手动输入查询模式，支持自定义输入筛选条件和搜索条件。
 
 - 筛选条件：支持 `and / or`  任意组合，支持使用 `()` 括号表示执行搜索的优先级，支持 `=` 、`!=` 等操作符；
-- 搜索条件：支持通过 DQL 函数 `query_string()` 对日志进行搜索。
+- 搜索条件：支持使用 DQL 函数 `query_string()` 字符串查询，如输入 `message = query_string()` 对日志内容进行搜索。
 
 更多 DQL 语法可参考文档 [DQL 定义](../../dql/define.md) 。
 
@@ -265,7 +265,7 @@ source in ['kube-controller-manager','http_dial_testing'] and (status != 'unknow
 
 ## 筛选历史说明 {#filter-history}
 
-观测云支持在筛选历史保存查看器 `key:value` 的搜索条件历史，在当前工作空间，您可以在不同的查看器使用历史搜索条件。
+观测云支持在「筛选历史」保存查看器 `key:value` 的搜索条件历史，应用于当前工作空间不同的查看器，如在日志查看器保存了「筛选历史」，可直接在链路等其他查看器直接使用。
 
 - 打开筛选历史：支持通过点击查看器右下角的展开小图标，或者直接通过快捷键（ Mac OS: shift+cmd+k / Windows: shift+ctrl+k ）快速打开筛选历史；
 - 收起筛选历史：点击关闭按钮 `x` 或者使用 `esc` 按键可收起筛选历史。
@@ -286,7 +286,7 @@ source in ['kube-controller-manager','http_dial_testing'] and (status != 'unknow
 
 - 在不同查看器应用筛选历史：在日志查看器保存了筛选历史，可直接在链路等其他查看器直接使用。
 
-![](../img/1.filter_history_3.png)
+![](../img/filter_history.gif)
 
 
 
