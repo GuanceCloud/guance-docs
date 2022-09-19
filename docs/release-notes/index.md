@@ -11,22 +11,6 @@ icon: zy/release-notes
 
 ### 观测云更新
 
-#### 优化笔记文本组件 Markdown 格式
-
-在场景笔记，文本组件 Markdown 输入框增加工具栏及预览模式，您可以更简单、快速的调整输入的文本格式。
-
-![](img/10.changelog_4.png)
-
-
-
-#### 新增基础设施 YAML 显示
-
-在基础设施容器「Pods」、「Deployments」、「Services」查看器，您可以在详情页查看和复制对应的 YAML 文件。
-
-![](img/10.changelog_1.1.png)
-
-
-
 #### 新增日志查看器 DQL 搜索模式
 
 在日志查看器，您可以通过点击搜索栏的切换小图标 ![](img/8.explorer_2.png) ，切换到 DQL 手动输入查询模式，支持自定义输入筛选条件和搜索条件。
@@ -49,13 +33,13 @@ icon: zy/release-notes
 
 更多详情可参考文档 [链路查看器](../application-performance-monitoring/explorer.md) 。
 
-![](img/9.apm_explorer_17.png)
+![](img/10.changelog_apm.gif)
 
 ##### Profile 查看器详情页优化
 
 在 Profile 查看器详情页新增快捷操作，包括搜索、复制和点击选择查看方法。更多详情可参考文档 [快捷操作说明](../application-performance-monitoring/profile.md#operate) 。
 
-![](img/9.apm_explorer_12.png)
+![](img/10.changelog_profile.gif)
 
 #### 优化监控器事件通知内容编辑模式
 
@@ -71,8 +55,8 @@ icon: zy/release-notes
 
 #### 其他功能优化
 
-- 场景仪表板分组显示优化
-- 基础设施查看器显示优化，新增显示列 CPU 使用率、MEM 使用率等提示信息
+- 场景仪表板分组显示优化，场景笔记优化文本组件 Markdown 格式
+- 基础设施查看器显示优化，新增显示列 CPU 使用率、MEM 使用率等提示信息；「Pods」、「Deployments」、「Services」查看器详情页新增查看和复制对应的 YAML 文件
 - 指标查看器删除列表查看模式，保留平铺查看模式和混合查看模式
 
 - 日志多索引支持跳转查看
