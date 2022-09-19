@@ -16,7 +16,7 @@ icon: zy/release-notes
 在日志查看器，您可以通过点击搜索栏的切换小图标 ![](img/8.explorer_2.png) ，切换到 DQL 手动输入查询模式，支持自定义输入筛选条件和搜索条件。
 
 - 筛选条件：支持 `and / or`  任意组合，支持使用 `()` 括号表示执行搜索的优先级，支持 `=` 、`!=` 等操作符；
-- 搜索条件：支持通过 `message = query_string()` 对日志的内容进行关键字搜索。
+- 搜索条件：支持通过 DQL 函数 `query_string()` 对日志进行搜索。
 
 更多详情可参考文档 [DQL 搜索](../getting-started/necessary-for-beginners/explorer-search.md#dql) 。
 
