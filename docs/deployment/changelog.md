@@ -21,7 +21,7 @@ pubrepo.jiagouyun.com/dataflux/1.49.107:launcher-e550301-1663603951
   - 查看器快捷筛选值 TOP 5 支持查看占比数量，查看器时间字段格式优化，默认显示格式为 2022/09/15 20:53:40
   - 链路查看器时序图新增图例显示、快捷筛选新增 HTTP 相关字段
 
-最佳实践更新
+### 最佳实践更新
 
   - 监控 Monitoring- 中间件（Middleware） - 洞见 MySQL 。
 
