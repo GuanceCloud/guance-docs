@@ -352,7 +352,7 @@ kubectl apply -f datakit.yaml
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 kubernetes 指标都会带有 tag1 = "val1" 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](/best-practices/guance-skill/tag.md)>
+- 相关文档 <[DataFlux Tag 应用最佳实践](../best-practices/insight/tag.md)>
 
 ```toml
           [inputs.kubernetes.tags]

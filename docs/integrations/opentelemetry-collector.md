@@ -1,10 +1,12 @@
+
 # Opentelemetry Collector
 ---
 
 ## 视图预览
+
 Opentelemetry Collector 性能指标展示：collector 在线时长、内存使用情况、exporter 相关指标、receiver 相关指标 等。
 
-![](../imgs/opentelmetry-collector-1.png)
+![image](imgs/input-otlcollector-1.png)
 
 ## 版本支持
 
@@ -23,16 +25,17 @@ Opentelemetry Collector 性能指标展示：collector 在线时长、内存使�
 (Linux / Windows 环境相同)
 
 #### 指标采集 (必选)
+
 DataKit  有两种方案支持 otel-collector 指标采集，两种方案采集结果一致。
 
 > 方案一 ：通过 prom 采集 Opentelemetry Collector 指标
->
 > 方案二：通过 Opentelemetry  采集器采集 Opentelemetry Collector 指标
 
 
 ##### 方案一 ：通过 prom 采集 Opentelemetry Collector 指标
 
-1. 开启 Opentelemetry Collector 指标端口，默认端口为：8888
+1、 开启 Opentelemetry Collector 指标端口，默认端口为：8888
+
 ```yaml
 version: '3.3'
 
@@ -54,17 +57,18 @@ services:
 
 ```
 
-2. 访问 Opentelemetry Collector 指标 ， curl http://otel-collector-host:8888/metrics。
+2、 访问 Opentelemetry Collector 指标 ， curl http://otel-collector-host:8888/metrics。
 
-![image.png](../imgs/opentelmetry-collector-2.png)
+![image](imgs/input-otlcollector-2.png)
 
-3. 开启 Datakit prom 插件，复制 sample 文件
+3、 开启 Datakit prom 插件，复制 sample 文件
+
 ```
 cd /usr/local/datakit/conf.d/prom/
 cp prom.conf.sample prom-otelcol.conf
 ```
 
-4. 修改 prom-otelcol.conf 配置文件
+4、 修改 prom-otelcol.conf 配置文件
 
 主要参数说明
 
@@ -72,6 +76,7 @@ cp prom.conf.sample prom-otelcol.conf
 - interval：采集频率
 - source : 指标器别名
 - response_timeout：响应超时时间 (默认5秒)
+
 ```toml
 
 [[inputs.prom]]
@@ -162,18 +167,24 @@ cp prom.conf.sample prom-otelcol.conf
 
 ```
 
-5. 重启 Datakit (如果需要开启日志，请配置日志采集再重启)
+5、 重启 Datakit (如果需要开启日志，请配置日志采集再重启)
+
 ```
 systemctl restart datakit
 ```
 
-6. Opentelemetry Collector  指标采集验证，使用命令 /usr/local/datakit/datakit -M |egrep "最近采集|otel"
+6、 Opentelemetry Collector  指标采集验证，使用命令 /usr/local/datakit/datakit -M |egrep "最近采集|otel"
 
-![image.png](../imgs/opentelmetry-collector-3.png)
+![image](imgs/input-otlcollector-3.png)
+
+指标预览
+
+![image](imgs/input-otlcollector-4.png)
 
 ##### 方案二：通过 Opentelemetry  采集器采集 Opentelemetry Collector 指标
 
-1. collector 新增 otlp exporter。
+1、 collector 新增 otlp exporter。
+
 ```toml
 receivers:
   otlp:
@@ -213,15 +224,20 @@ service:
       processors: [batch]
       exporters: [otlp]
 ```
-参数说明<br />otlp.endpoint：配置datakit opentelemetry grpc地址
 
-2. 开启 prom 插件，复制 Sample 文件
+参数说明
+
+otlp.endpoint：配置datakit opentelemetry grpc地址
+
+2、 开启 prom 插件，复制 Sample 文件
+
 ```shell
 cd /usr/local/datakit/conf.d/opentelemetry
 cp opentelemetry.conf.sample opentelemetry.conf
 ```
 
-3. 修改 opentelemetry.conf
+3、 修改 opentelemetry.conf
+
 ```toml
 [[inputs.opentelemetry]]
   ## 在创建'trace',Span','resource'时，会加入很多标签，这些标签最终都会出现在'Span'中
@@ -294,34 +310,38 @@ cp opentelemetry.conf.sample opentelemetry.conf
 参数说明
 
 - trace_enable：true 		#开启grpc trace
-
 - metric_enable： true 	    #开启grpc metric
 - addr: 0.0.0.0:4319 		    #开启端口
 
-4. 重启 DataKit
+4、 重启 DataKit
+
 ```shell
 datakit --restart
 ```
 
 
 #### 插件标签 (非必选）
+
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-
 - 以下示例配置完成后，所有 Opentelemetry Collector 指标都会带有 env= dev 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](/best-practices/guance-skill/tag/)>
+- 相关文档 <[DataFlux Tag 应用最佳实践](../best-practices/insight/tag.md)>
 
 ```
 # 示例
 [inputs.prom.tags]
    env= dev 
 ```
+
 重启datakit
+
 ```
 systemctl restart datakit
 ```
+
 ## 场景视图
+
 <场景 - 新建仪表板 - 内置模板库 - Opentelemetry Collector 监控视图>
 
 ## 指标详解
@@ -338,8 +358,11 @@ systemctl restart datakit
 | receiver_accepted_spans | reveiver  接收 span 记录数 |
 
 ## 常见问题排查
-- [无数据上报排查](../datakit/why-no-data.md)
-## 进一步阅读
-- [**OpenTelemetry 链路数据接入最佳实践**](/best-practices/integrations/opentelemetry)
 
-- [Opentelemetry to 观测云](/best-practices/monitor/opentelemetry-guance)
+<[无数据上报排查](../datakit/why-no-data.md)>
+
+## 进一步阅读
+
+<[**OpenTelemetry 链路数据接入最佳实践**](../best-practices/cloud-native/opentelemetry)>
+<[Opentelemetry to 观测云](../best-practices/cloud-native/opentelemetry-guance)>
+

@@ -2,87 +2,91 @@
 # Swap
 ---
 
-- 操作系统支持：:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple:
+## 视图预览
 
-swap 采集器用于采集主机 swap 内存的使用情况
+Swap 性能指标展示，包括 Swap 使用率，Swap 大小等
 
-![](imgs/input-swap-01.png)
+![image](imgs/input-swap-1.png)
+
+## 版本支持
+
+操作系统支持：Linux / Windows / Mac
 
 ## 前置条件
 
-暂无
+- 服务器 <[安装 DataKit](../datakit/datakit-install.md)>
 
-## 配置
+## 安装配置
 
-进入 DataKit 安装目录下的 `conf.d/host` 目录，复制 `swap.conf.sample` 并命名为 `swap.conf`。示例如下：
+说明：示例 Linux 版本为：CentOS Linux release 7.8.2003 (Core)，Windows 版本请修改对应的配置文件
 
-```toml
+### 部署实施
 
+(Linux / Windows 环境相同)
+
+#### 指标采集 (默认)
+
+1、 Swap 数据采集默认开启，对应配置文件 /usr/local/datakit/conf.d/host/swap.conf
+
+参数说明
+
+- interval：数据采集频率
+```
 [[inputs.swap]]
-  ##(optional) collect interval, default is 10 seconds
   interval = '10s'
-  ##
+```
 
+2、 Swap 指标采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|swap"
+
+![image](imgs/input-swap-2.png)
+
+指标预览
+
+![image](imgs/input-swap-3.png)
+
+#### 插件标签 (非必选)
+
+参数说明
+
+- 该配置为自定义标签，可以填写任意 key-value 值
+- 以下示例配置完成后，所有 swap 指标都会带有 app = oa 的标签，可以进行快速查询
+- 相关文档 <[DataFlux Tag 应用最佳实践](../best-practices/insight/tag.md)>
+
+```
+# 示例
 [inputs.swap.tags]
-# some_tag = "some_value"
-# more_tag = "some_other_value"
-
-
+   app = "oa"
 ```
 
-配置好后，重启 DataKit 即可。
+重启 DataKit
 
-支持以环境变量的方式修改配置参数（只在 DataKit 以 K8s daemonset 方式运行时生效，主机部署的 DataKit 不支持此功能）：
-
-| 环境变量名                | 对应的配置参数项 | 参数示例                                                     |
-| :---                      | ---              | ---                                                          |
-| `ENV_INPUT_SWAP_TAGS`     | `tags`           | `tag1=value1,tag2=value2` 如果配置文件中有同名 tag，会覆盖它 |
-| `ENV_INPUT_SWAP_INTERVAL` | `interval`       | `10s`                                                        |
-
-## 指标预览
-
-![](imgs/input-swap-02.png)
-
-## 指标集
-
-以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.swap.tags]` 指定其它标签：
-
-``` toml
- [inputs.swap.tags]
-  # some_tag = "some_value"
-  # more_tag = "some_other_value"
-  # ...
 ```
-
-
-
-### `swap`
-
--  标签
-
-
-| 标签名 | 描述    |
-|  ----  | --------|
-|`host`|主机名|
-
-- 指标列表
-
-
-| 指标 | 描述| 数据类型 | 单位   |
-| ---- |---- | :---:    | :----: |
-|`free`|Host swap memory total|int|B|
-|`in`|Moving data from swap space to main memory of the machine|int|B|
-|`out`|Moving main memory contents to swap disk when main memory space fills up|int|B|
-|`total`|Host swap memory free|int|B|
-|`used`|Host swap memory used|int|B|
-|`used_percent`|Host swap memory percentage used|float|percent|
-
-
+systemctl restart datakit
+```
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - SWAP>
+<场景 - 新建仪表板 - 内置模板库 - Swap 监控视图>
 
-## 异常检测
+## 监控规则
 
-<监控 - 模板新建 - 主机检测库>
+<监控 - 监控器 - 从模板新建 - 主机检测库>
+
+## 指标详解
+
+| 指标 | 描述 | 数据类型 | 单位 |
+| --- | --- | --- | --- |
+| `cpu_usage` | cpu使用占比（%*100），进程自启动以来所占 CPU 百分比，该值相对会比较稳定（跟 top 的瞬时百分比不同） | float | percent |
+| `mem_used_percent` | mem使用占比（%*100） | float | percent |
+| `open_files` | open_files 个数(仅支持linux) | int | count |
+| `rss` | Resident Set Size （常驻内存大小） | int | B |
+| `threads` | 线程数 | int | count |
+
+## 常见问题排查
+
+<[无数据上报排查](../datakit/why-no-data.md)>
+
+## 进一步阅读
+
+<[主机可观测最佳实践](../best-practices/monitoring/host-linux)>
+

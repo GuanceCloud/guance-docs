@@ -1,3 +1,4 @@
+
 # Netstat
 ---
 
@@ -5,7 +6,7 @@
 
 Netstat 指标展示，包括 tcp 连接数，等待连接，等待处理请求，udp socket 连接等
 
-![](imgs/input-netstat-1.png)
+![image](imgs/input-netstat-1.png)
 
 ## 版本支持
 
@@ -13,19 +14,15 @@ Netstat 指标展示，包括 tcp 连接数，等待连接，等待处理请求�
 
 ## 前置条件
 
-- 服务器 <[安装 Datakit](/datakit/datakit-install/)>
+- 服务器 <[安装 DataKit](../datakit/datakit-install.md)>
 - 服务器安装 Telegraf
 
+### 安装 Telegraf
 
-## 安装配置
-说明：示例 Linux 版本为：CentOS Linux release 7.8.2003 (Core)，Windows 版本请修改对应的配置文件
-### 部署实施
-(Linux / Windows 环境相同)
-#### 指标采集 (必选)
+以 **CentOS** 为例，其他系统参考 [[Telegraf 官方文档](https://docs.influxdata.com/telegraf/v1.19/introduction/installation/)]
 
-以 CentOS 为例，其他系统参考 [[Telegraf 官方文档](https://docs.influxdata.com/telegraf/v1.19/introduction/installation/)]
+1、 添加 yum 源
 
-1. 添加 yum 源
 ```
 cat <<EOF | tee /etc/yum.repos.d/influxdb.repo
 [influxdb]
@@ -37,19 +34,38 @@ gpgkey = https://repos.influxdata.com/influxdb.key
 EOF
 ```
 
-2. 数据上传至 datakit，修改主配置文件 telegraf.conf
+2、 安装 telegraf
+
+```
+yum -y install telegraf
+```
+
+## 安装配置
+
+说明：示例 Linux 版本为：CentOS Linux release 7.8.2003 (Core)，Windows 版本请修改对应的配置文件
+
+### 部署实施
+
+(Linux / Windows 环境相同)
+
+#### 指标采集 (必选)
+
+1、 数据上传至 DataKit，修改主配置文件 telegraf.conf
+
 ```
 vi /etc/telegraf/telegraf.conf
 ```
 
-3. 关闭 influxdb，开启 outputs.http (修改对应的行)
+2、 关闭 influxdb，开启 outputs.http (修改对应的行)
+
 ```
 #[[outputs.influxdb]]
 [[outputs.http]]
 url = "http://127.0.0.1:9529/v1/write/metric?input=telegraf"
 ```
 
-4. 关闭主机检测 (否则会与 datakit 冲突)
+3、 关闭主机检测 (否则会与 DataKit 冲突)
+
 ```
 #[[inputs.cpu]]
 #  percpu = true
@@ -65,49 +81,61 @@ url = "http://127.0.0.1:9529/v1/write/metric?input=telegraf"
 #[[inputs.system]]
 ```
 
-5. 开启 Netstat 检测
+4、 开启 Netstat 检测
+
 ```
 [[inputs.netstat]]
 ```
 
-6. 启动 Telegraf
+5、 启动 Telegraf
+
 ```
 systemctl start telegraf
 ```
-7.  指标验证
+
+6、 指标验证
+
 ```
 /usr/bin/telegraf --config /etc/telegraf/telegraf.conf --input-filter netstat --test
 ```
-
 有数据返回 (行协议)，代表能够正常采集
 
-![image.png](imgs/input-netstat-2.png)
+![image](imgs/input-netstat-2.png)
 
-8. 指标预览
+7、 指标预览
 
-![image.png](imgs/input-netstat-3.png)
+![image](imgs/input-netstat-3.png)
 
 #### 插件标签 (非必选)
+
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 netstat 指标都会带有 app = oa 的标签，可以进行快速查询
+- 相关文档 <[DataFlux Tag 应用最佳实践](../best-practices/insight/tag.md)>
 
 ```
-
 # 示例
 [inputs.netstat.tags]
    app = "oa"
 ```
+
 重启 Telegraf
+
 ```
 systemctl restart telegraf
 ```
+
 ## 场景视图
-<场景 - 新建仪表板 - 内置模板库 - Netstat>
-## 异常检测
-<监控 - 模板新建 - 主机检测库>
+
+<场景 - 新建仪表板 - 内置模板库 - Netstat 监控视图>
+
+## 监控规则
+
+<监控 - 监控器 - 从模板新建 - 主机检测库>
+
 ## 指标详解
+
 | 指标 | 描述 | 数据类型 |
 | --- | --- | --- |
 | tcp_close | 没有任何连接状态 | int |
@@ -125,8 +153,9 @@ systemctl restart telegraf
 
 ## 常见问题排查
 
-- [无数据上报排查](/datakit/why-no-data/)
+<[无数据上报排查](../datakit/why-no-data.md)>
 
 ## 进一步阅读
 
-- [主机可观测最佳实践](/best-practices/integrations/host/)
+<[主机可观测最佳实践](../best-practices/monitoring/host-linux)>
+

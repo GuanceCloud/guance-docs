@@ -84,10 +84,9 @@ kubectl apply -f deploy.yaml
 
 ## 场景视图
 
-场景 - 新建仪表板 - Nginx Ingress Controller
+<场景 - 新建仪表板 - 内置模板库 - Ingress Nginx 监控视图>
 
-
-## 异常检测
+## 检测库
 
 暂无
 

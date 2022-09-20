@@ -1,27 +1,38 @@
 
-Tomcat
+# Tomcat
 ---
 
-- 操作系统支持：:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple:
+操作系统支持：windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64
 
-采集 tomcat 指标
+## 视图预览
 
-## 前置条件
+Tomcat 性能指标展示：发送字节数、接收字节数、请求处理时间、请求数、请求错误数、线程数、缓存命中次数等
 
-下载 [Jolokia](https://search.maven.org/remotecontent?filepath=org/jolokia/jolokia-war/1.6.2/jolokia-war-1.6.2.war){:target="_blank"}, 重命名为 jolokia.war, 并放置于 tomcat 的 webapps 目录下。也可从Datakit 的安装目录下的 data 目录下获取 jolokia war 包。
-编辑 tomcat 的 conf 目录下的 tomcat-users.xml，增加 role 为 jolokia 的用户。
+![image](imgs/input-tomcat-1.png)
 
-以 apache-tomcat-9.0.45 为例（示例中的 jolokia user 的 username 和 password 请务必修改！！！）:
+![image](imgs/input-tomcat-2.png)
 
-```ssh
-$ cd apache-tomcat-9.0.45/
+## 安装部署
 
-$ export tomcat_dir=`pwd`
+说明：以 apache-tomcat-9.0.45 （centOS）为例，各个不同版本指标可能存在差异
 
-$ wget https://search.maven.org/remotecontent?filepath=org/jolokia/jolokia-war/1.6.2/jolokia-war-1.6.2.war \
--O $tomcat_dir/webapps/jolokia.war
+### 前置条件
 
-$ vim $tomcat_dir/conf/tomcat-users.xml
+- Tomcat 所在服务器 <[安装 DataKit](../datakit/datakit-install.md)>
+- 用于实现 Tomcat 可观测性的数据采集文件 jolokia.war 已内置在/usr/local/datakit/data 文件夹下，需要在安装完毕 datakit 后，将 jolokia.war 复制一份到 tomcat 的 webapps 目录下。
+
+### 配置实施
+
+#### 新增权限用户（必选）
+
+**（以下为配置示例，实操时， jolokia user 的 username 和 password 请务必修改！！！）**
+
+```
+# 以 apache-tomcat-9.0.45 为例
+
+ cd apache-tomcat-9.0.45/
+
+ vim conf/tomcat-users.xml
 
  37 <!--
  38   <role rolename="tomcat"/>
@@ -30,34 +41,59 @@ $ vim $tomcat_dir/conf/tomcat-users.xml
  41   <user username="both" password="<must-be-changed>" roles="tomcat,role1"/>
  42   <user username="role1" password="<must-be-changed>" roles="role1"/>
  43 -->
+ 
  44   <role rolename="jolokia"/>
  45   <user username="jolokia_user" password="secPassWd@123" roles="jolokia"/>
- 46
- 47 </tomcat-users>
+  
+ 46 </tomcat-users>
 
 
-$ $tomcat_dir/bin/startup.sh
+ cd ../bin/
+# 重启tomcat
+ ./startup.sh 
 
  ...
  Tomcat started.
 ```
 
-前往 http://localhost:8080/jolokia 查看是否配置成功
+**本机访问**[**http://localhost:80/jolokia**](http://localhost:8080/jolokia)** （具体端口为tomcat实际开放端口）查看是否配置成功。**
 
-## 配置
+linux 环境下成功示例如下：
 
-进入 DataKit 安装目录下的 `conf.d/tomcat` 目录，复制 `tomcat.conf.sample` 并命名为 `tomcat.conf`。示例如下：
+![image](imgs/input-tomcat-3.png)
 
-```toml
+#### 开启指标及日志采集
+
+进入 DataKit 安装目录下的 `conf.d/tomcat` 目录，复制 `tomcat.conf.sample`  并命名为 `tomcat.conf`。示例如下：
+（**以下为示例，实操时， 下边内容中的 的 username 、password、urls 请务必修改！！！**）
+
+**指标（必选）**
+[[inputs.tomcat]]指标参数说明
+
+- username：上文中，在tomcat-users.xml中配置的用户名 
+- password：上文中，在tomcat-users.xml中配置的密码
+- url：上文中添加完jolokia监控war包，用来访问jolokia所采集数据的地址。
+
+**日志（非必选）**
+[inputs.tomcat.log]日志参数说明
+
+- files：日志文件路径 (通常填写访问日志和错误日志)
+- pipeline：日志切割文件(tomcat日志切割文件已默认内置，无需修改)，实际文件路径 为：/usr/local/datakit/pipeline/tomcat.p
+- 相关文档 <[DataFlux pipeline 文本数据处理](../datakit/pipeline.md)
+
+```
+ cd /usr/local/datakit/conf.d/tomcat
+ cp tomcat.conf.sample tomcat.conf
+ cim tomcat.conf
 
 [[inputs.tomcat]]
   ### Tomcat user(rolename="jolokia"). For example:
-  # username = "jolokia_user"
-  # password = "secPassWd@123"
+  username = "jolokia_user"
+  password = "secPassWd@123"
 
   # response_timeout = "5s"
 
-  urls = ["http://localhost:8080/jolokia"]
+  urls = ["http://localhost:80/jolokia"]
 
   ### Optional TLS config
   # tls_ca = "/var/private/ca.pem"
@@ -68,10 +104,10 @@ $ $tomcat_dir/bin/startup.sh
   ### Monitor Interval
   # interval = "15s"
 
-  # [inputs.tomcat.log]
-  # files = []
-  # #grok pipeline script path
-  # pipeline = "tomcat.p"
+  [inputs.tomcat.log]
+     files = ["/usr/tomcat/apache-tomcat-8.5.60/logs/catalina.2021-09-02.log"]
+    ## grok pipeline script path
+    # pipeline = "tomcat.p"
 
   [inputs.tomcat.tags]
   # some_tag = "some_value"
@@ -111,191 +147,48 @@ $ $tomcat_dir/bin/startup.sh
     tag_prefix = "tomcat_"
 ```
 
-## 指标集
-
-以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.tomcat.tags]` 指定其它标签：
-
-``` toml
- [inputs.tomcat.tags]
-  # some_tag = "some_value"
-  # more_tag = "some_other_value"
-  # ...
-```
-
-
-
-### `tomcat_global_request_processor`
-
--  标签
-
-
-| 标签名 | 描述    |
-|  ----  | --------|
-|`host`|hostname|
-|`jolokia_agent_url`|jolokia agent url|
-|`name`|protocol handler name|
-
-- 指标列表
-
-
-| 指标 | 描述| 数据类型 | 单位   |
-| ---- |---- | :---:    | :----: |
-|`bytesReceived`|Amount of data received, in bytes|int|count|
-|`bytesSent`|Amount of data sent, in bytes|int|count|
-|`errorCount`|Number of errors|int|count|
-|`processingTime`|Total time to process the requests|int|-|
-|`requestCount`|Number of requests processed|int|count|
-
-
-
-### `tomcat_jsp_monitor`
-
--  标签
-
-
-| 标签名 | 描述    |
-|  ----  | --------|
-|`J2EEApplication`|J2EE Application|
-|`J2EEServer`|J2EE Server|
-|`WebModule`|Web Module|
-|`host`|hostname|
-|`jolokia_agent_url`|jolokia agent url|
-
-- 指标列表
-
-
-| 指标 | 描述| 数据类型 | 单位   |
-| ---- |---- | :---:    | :----: |
-|`jspCount`|The number of JSPs that have been loaded into a webapp|int|count|
-|`jspReloadCount`|The number of JSPs that have been reloaded|int|count|
-|`jspUnloadCount`|The number of JSPs that have been unloaded|int|count|
-
-
-
-### `tomcat_thread_pool`
-
--  标签
-
-
-| 标签名 | 描述    |
-|  ----  | --------|
-|`host`|hostname|
-|`jolokia_agent_url`|jolokia agent url|
-|`name`|protocol handler name|
-
-- 指标列表
-
-
-| 指标 | 描述| 数据类型 | 单位   |
-| ---- |---- | :---:    | :----: |
-|`currentThreadCount`|currentThreadCount|int|count|
-|`currentThreadsBusy`|currentThreadsBusy|int|count|
-|`maxThreads`|maxThreads|int|count|
-
-
-
-### `tomcat_servlet`
-
--  标签
-
-
-| 标签名 | 描述    |
-|  ----  | --------|
-|`J2EEApplication`|J2EE Application|
-|`J2EEServer`|J2EE Server|
-|`WebModule`|Web Module|
-|`host`|hostname|
-|`jolokia_agent_url`|jolokia agent url|
-|`name`| |
-
-- 指标列表
-
-
-| 指标 | 描述| 数据类型 | 单位   |
-| ---- |---- | :---:    | :----: |
-|`errorCount`|Error count|int|count|
-|`processingTime`|Total execution time of the servlet's service method|int|-|
-|`requestCount`|Number of requests processed by this wrapper|int|count|
-
-
-
-### `tomcat_cache`
-
--  标签
-
-
-| 标签名 | 描述    |
-|  ----  | --------|
-|`host`|hostname|
-|`jolokia_agent_url`|jolokia agent url|
-|`tomcat_context`|tomcat context|
-|`tomcat_host`|tomcat host|
-
-- 指标列表
-
-
-| 指标 | 描述| 数据类型 | 单位   |
-| ---- |---- | :---:    | :----: |
-|`hitCount`|The number of requests for resources that were served from the cache|int|count|
-|`lookupCount`|The number of requests for resources|int|count|
-
-
-
-## 日志采集
-
-如需采集 Tomcat 的日志，可在 tomcat.conf 中 将 `files` 打开，并写入 Tomcat 日志文件的绝对路径。比如：
-
-``` toml
-  [inputs.tomcat.log]
-    files = ["/path_to_tomcat/logs/*"]
-```
-
-开启日志采集以后，默认会产生日志来源（`source`）为 `tomcat` 的日志。
-
-**字段说明**
-
-* Access Log
-
-日志示例：
+重启 DataKit (如果需要开启自定义标签，请配置插件标签再重启)
 
 ```
-0:0:0:0:0:0:0:1 - admin [24/Feb/2015:15:57:10 +0530] "GET /manager/images/tomcat.gif HTTP/1.1" 200 2066
+systemctl restart datakit
 ```
 
+日志预览
 
+![image](imgs/input-tomcat-4.png)
 
-切割后的字段列表如下：
+#### tomcat 插件标签 (非必选)
 
-|字段名|字段值|说明|
-|---|---|---|
-|time|1424773630000000000|日志产生的时间|
-|status|OK|日志等级|
-|client_ip|0:0:0:0:0:0:0:1|客户端 ip|
-|http_auth|admin|通过 HTTP Basic 认证的授权用户|
-|http_method|GET|HTTP 方法|
-|http_url|/manager/images/tomcat.gif|客户端请求地址|
-|http_version|1.1|HTTP 协议版本|
-|status_code|200|HTTP 状态码|
-|bytes|2066|HTTP 响应 body 的字节数|
+参数说明
 
-* Cataline / Host-manager / Localhost / Manager Log
-
-日志示例：
+- 该配置为自定义标签，可以填写任意 key-value 值
+- 以下示例配置完成后，所有 tomcat 指标都会带有 app = oa 的标签，可以进行快速查询
+- 相关文档 <[DataFlux Tag 应用最佳实践](../best-practices/insight/tag.md)>
 
 ```
-06-Sep-2021 22:33:30.513 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Xmx256m
+# 示例
+[inputs.tomcat.tags]
+   app = "oa"
 ```
 
-切割后的字段列表如下：
+重启 DataKit
 
-| 字段名        | 字段值                                                | 说明                 |
-| ---           | ---                                                   | ---                  |
-| time          | 1630938810513000000                                   | 日志产生的时间       |
-| status        | INFO                                                  | 日志等级             |
-| thread_name   | main                                                  | 线程名               |
-| report_source | org.apache.catalina.startup.VersionLoggerListener.log | ClassName.MethodName |
-| msg           | Command line argument: -Xmx256m                       | 消息                 |
+```
+systemctl restart datakit
+```
 
-**注意**
+## 场景视图
 
-- 日志采集仅支持采集已安装 DataKit 主机上的日志
+<场景 - 新建仪表板 - 内置模板库 - Tomcat 监控视图>
+
+
+## 指标详解
+
+## 最佳实践
+暂无
+
+## 故障排查
+
+<[无数据上报排查](../datakit/why-no-data.md)>
+
+

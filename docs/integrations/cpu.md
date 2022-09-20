@@ -2,121 +2,103 @@
 # CPU
 ---
 
-- 操作系统支持：:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple:
+## 视图预览
 
-CPU 采集器用于系统 CPU 使用率的采集。
+CPU 性能指标展示，包括 CPU 使用率，IO 等待，用户态，核心态，软中断，硬中断等
 
-<figure markdown>
-  ![](imgs/input-cpu-1.png){ width="800" }
-  <figcaption>CPU 视图预览</figcaption>
-</figure>
+![image](imgs/input-cpu-1.png)
+
+## 版本支持
+
+操作系统支持：Linux / Windows / Mac
 
 ## 前置条件
 
-暂无
+- 服务器 <[安装 DataKit](../datakit/datakit-install.md)>
 
-## 配置  {#input-config}
+## 安装配置
 
-=== "datakit.conf"
+说明：示例 Linux 版本为：CentOS Linux release 7.8.2003 (Core)，Windows 版本请修改对应的配置文件
 
-    进入 DataKit 安装目录下的 `conf.d/host` 目录，复制 `cpu.conf.sample` 并命名为 `cpu.conf`。示例如下：
-    
-    ```toml
-        
-    [[inputs.cpu]]
-      ## Collect interval, default is 10 seconds. (optional)
-      interval = '10s'
-      ##
-      ## Collect CPU usage per core, default is false. (optional)
-      percpu = false
-      ##
-      ## Setting disable_temperature_collect to false will collect cpu temperature stats for linux.
-      ##
-      # disable_temperature_collect = false
-      enable_temperature = true
-      ##
-      enable_load5s = true
-      ##
-      [inputs.cpu.tags]
-        # some_tag = "some_value"
-        # more_tag = "some_other_value"
-    
-    ```
+### 部署实施
 
-    配置好后，重启 DataKit 即可。
+(Linux / Windows 环境相同)
 
-=== "Kubernetes"
+#### 指标采集 (默认)
 
-    Kubernetes 中支持以环境变量的方式修改配置参数：
+1、 CPU 数据采集默认开启，对应配置文件 /usr/local/datakit/conf.d/host/cpu.conf
 
-    | 环境变量名                                  | 对应的配置参数项              | 参数示例                                                                              |
-    | :---                                        | ---                           | ---                                                                                   |
-    | `ENV_INPUT_CPU_PERCPU`                      | `percpu`                      | `true/false`                                                                          |
-    | `ENV_INPUT_CPU_ENABLE_TEMPERATURE`          | `enable_temperature`          | `true/false`                                                                          |
-    | `ENV_INPUT_CPU_TAGS`                        | `tags`                        | `tag1=value1,tag2=value2` 如果配置文件中有同名 tag，会覆盖它                          |
-    | `ENV_INPUT_CPU_INTERVAL`                    | `interval`                    | `10s`                                                                                 |
-    | `ENV_INPUT_CPU_DISABLE_TEMPERATURE_COLLECT` | `disable_temperature_collect` | `false/true`。给任意字符串就认为是 `true`，没定义就是 `false`。                       |
-    | `ENV_INPUT_CPU_ENABLE_LOAD5S`               | `enable_load5s`               | `false/true`。给任意字符串就认为是。给任意字符串就认为是 `true`，没定义就是 `false`。 |
+参数说明
 
-## 指标查看
-
-数据采集上来后，即可在页面上看到如下 CPU 指标数据：
-
-<figure markdown>
-  ![](imgs/input-cpu-2.png){ width="800" }
-  <figcaption>CPU 指标查看</figcaption>
-</figure>
-
-## 指标集 {#measurements}
-
-以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.cpu.tags]` 指定其它标签：
-
-``` toml
- [inputs.cpu.tags]
-  # some_tag = "some_value"
-  # more_tag = "some_other_value"
-  # ...
+- interval：数据采集频率
+- percpu：是否开启每核 cpu 指标 (不开启仅采集 cpu-total)
+- enable_temperature：是否开启 cpu 温度指标 (仅对有温度传感器的服务器生效)
+```
+[[inputs.cpu]]
+  interval = '10s'
+  percpu = false
+  enable_temperature = true
 ```
 
+2、 CPU 指标采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|cpu"
 
+![image](imgs/input-cpu-2.png)
 
-### `cpu`
+指标预览
 
+![image](imgs/input-cpu-3.png)
 
+#### 插件标签 (非必选)
 
--  标签
+参数说明
 
+- 该配置为自定义标签，可以填写任意 key-value 值
+- 以下示例配置完成后，所有 cpu 指标都会带有 app = oa 的标签，可以进行快速查询
+- 相关文档 <[DataFlux Tag 应用最佳实践](../best-practices/insight/tag.md)>
 
-| 标签名 | 描述    |
-|  ----  | --------|
-|`cpu`|CPU 核心|
-|`host`|主机名|
+```
+# 示例
+[inputs.cpu.tags]
+   app = "oa"
+```
 
-- 指标列表
+重启 DataKit
 
+```
+systemctl restart datakit
+```
 
-| 指标 | 描述| 数据类型 | 单位   |
-| ---- |---- | :---:    | :----: |
-|`core_temperature`|CPU core temperature. This is collected by default. Only collect the average temperature of all cores.|float|C|
-|`load5s`|CPU average load in 5 seconds.|int|-|
-|`usage_guest`|% CPU spent running a virtual CPU for guest operating systems.|float|percent|
-|`usage_guest_nice`|% CPU spent running a niced guest(virtual CPU for guest operating systems).|float|percent|
-|`usage_idle`|% CPU in the idle task.|float|percent|
-|`usage_iowait`|% CPU waiting for I/O to complete.|float|percent|
-|`usage_irq`|% CPU servicing hardware interrupts.|float|percent|
-|`usage_nice`|% CPU in user mode with low priority (nice).|float|percent|
-|`usage_softirq`|% CPU servicing soft interrupts.|float|percent|
-|`usage_steal`|% CPU spent in other operating systems when running in a virtualized environment.|float|percent|
-|`usage_system`|% CPU in system mode.|float|percent|
-|`usage_total`|% CPU in total active usage, as well as (100 - usage_idle).|float|percent|
-|`usage_user`|% CPU in user mode.|float|percent|
+## 场景视图
 
+<场景 - 新建仪表板 - 内置模板库 - CPU 监控视图>
 
+## 监控规则
 
-## 场景试图
+<监控 - 监控器 - 从模板新建 - 主机检测库>
 
-<场景 - 新建仪表板 - 内置模板库 - CPU>
+## 指标详解
 
-## 异常检测
+| 指标 | 描述 | 数据类型 | 单位 |
+| --- | --- | --- | --- |
+| `core_temperature` | CPU core temperature. This is collected by default. Only collect the average temperature of all cores. | float | C |
+| `load5s` | CPU average load in 5 seconds. | int | - |
+| `usage_guest` | % CPU spent running a virtual CPU for guest operating systems. | float | percent |
+| `usage_guest_nice` | % CPU spent running a niced guest(virtual CPU for guest operating systems). | float | percent |
+| `usage_idle` | % CPU in the idle task. | float | percent |
+| `usage_iowait` | % CPU waiting for I/O to complete. | float | percent |
+| `usage_irq` | % CPU servicing hardware interrupts. | float | percent |
+| `usage_nice` | % CPU in user mode with low priority (nice). | float | percent |
+| `usage_softirq` | % CPU servicing soft interrupts. | float | percent |
+| `usage_steal` | % CPU spent in other operating systems when running in a virtualized environment. | float | percent |
+| `usage_system` | % CPU in system mode. | float | percent |
+| `usage_total` | % CPU in total active usage, as well as (100 - usage_idle). | float | percent |
+| `usage_user` | % CPU in user mode. | float | percent |
 
-<监控 - 模板新建 - 主机检测库>
+## 常见问题排查
+
+<[无数据上报排查](../datakit/why-no-data.md)>
+
+## 进一步阅读
+
+<[主机可观测最佳实践](../best-practices/monitoring/host-linux)>
+

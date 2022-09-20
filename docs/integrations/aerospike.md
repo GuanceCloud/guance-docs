@@ -1,25 +1,37 @@
+
 # Aerospike
 ---
 
 ## 视图预览
+
 Aerospike namespace 性能指标展示集群、空间下：内存使用情况、磁盘使用、对象数、读写速率等。
-![](imgs/input-aerospike-1.png)
+
+![image](imgs/input-aerospike-1.png)
+
 Aerospike node 相关指标：node 集群、node状态、记录数、内存、磁盘指标等。
-![](imgs/input-aerospike-2.png)
+
+![image](imgs/input-aerospike-2.png)
+
 ## 版本支持
-操作系统：Linux / Windows / macOS
-Aerospike 版本：LAST (6.0.0)
+
+操作系统：Linux / Windows / macOS<br />Aerospike 版本：LAST (6.0.0)
+
 ## 前置条件
 
-- Aerospike 服务器 <[安装 Datakit](/datakit/datakit-install/)>
+- Aerospike 服务器 <[安装 Datakit](https://www.yuque.com/dataflux/datakit/datakit-install)>
 - Aerospike 已安装
 
 ## 安装配置
+
 说明：示例 Aerospike 版本为 Linux 环境 6.0.0 (CentOS)，各个不同版本指标可能存在差异。
 aerospike-prometheus-exporter 为官方研发的 exporter ，方便快速接入监控 Aerospike。
+
 ### 指标采集 (必选)
+
 #### 安装 exporter
+
 官方下载&安装 exporter 地址 [https://docs.aerospike.com/monitorstack/install/linux](https://docs.aerospike.com/monitorstack/install/linux)
+
 ```shell
 wget https://www.aerospike.com/download/monitoring/aerospike-prometheus-exporter/latest/artifact/rpm -O aerospike-prometheus-exporter.tgz
 tar -xvzf aerospike-prometheus-exporter.tgz
@@ -28,8 +40,11 @@ tar -xvzf aerospike-prometheus-exporter.tgz
 ```shell
 rpm -Uvh aerospike-prometheus-exporter--x86_64.rpm
 ```
+
 #### 配置 exporter
+
 配置文件地址 /etc/aerospike-prometheus-exporter/ape.toml，默认 metrics 端口为9145，默认采集端口为 3000，默认情况下不需要调整配置文件。
+
 ```toml
 [Agent]
 # Exporter HTTPS (TLS) configuration
@@ -188,17 +203,23 @@ latency_buckets_count = 0
 # user_metrics_users_allowlist = []
 # user_metrics_users_blocklist = []
 ```
+
 #### 启动（重启）exporter
+
 ```
 systemctl start aerospike-prometheus-exporter.service
 ```
+
 ```
 systemctl restart aerospike-prometheus-exporter.service
 ```
+
 #### 访问指标
+
 通过 curl http://localhost:9145/metrics 访问指标。
 
 #### DataKit 新增 aerospike-prom.conf 配置文件
+
 在 `/usr/local/datakit/conf.d/prom`目录下，复制prom.conf.sample为 aerospike-prom.conf
 > cp prom.conf.sample aerospike-prom.conf
 
@@ -223,14 +244,19 @@ systemctl restart aerospike-prometheus-exporter.service
   ## 自定义Tags
   [inputs.prom.tags]
 ```
+
 #### 重启 DataKit
+
 ```
 systemctl restart datakit
 ```
 
 #### 指标预览
-![](imgs/input-aerospike-3.png)
+
+![image](imgs/input-aerospike-3.png)
+
 ### 日志采集 (非必选)
+
 #### 参数说明
 
 - logfiles：日志文件路径 (通常填写访问日志和错误日志)
@@ -241,6 +267,7 @@ systemctl restart datakit
 > cp logging.conf.sample logging-aerospike.conf
 
 #### logging-aerospike.conf 全文
+
 ```toml
 [[inputs.logging]]
 ## required
@@ -292,38 +319,51 @@ ignore_dead_log = "10m"
 # some_tag = "some_value"
   # more_tag = "some_other_value"
 ```
+
 #### 重启 Datakit 
+
 如果需要开启自定义标签，请配置插件标签再重启.
+
 ```
 systemctl restart datakit
 ```
+
 Aerospike 日志采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|aerospike"
-![](imgs/input-aerospike-4.png)
+
+![image](imgs/input-aerospike-4.png)
+
 #### 日志预览
 
-![](imgs/input-aerospike-5.png)
-### 插件标签 (非必选）
-#### 
-参数说明
+![image](imgs/input-aerospike-5.png)
 
-该配置为自定义标签，可以填写任意 key-value 值
-以下示例配置完成后，所有 aerospike 指标都会带有 app = aerospike 的标签，可以进行快速查询
-相关文档 [<DataFlux Tag 应用最佳实践>](/best-practices/guance-skill/tag/)
+
+### 插件标签 (非必选）
+
+#### <br />参数说明
+
+<br />该配置为自定义标签，可以填写任意 key-value 值<br />以下示例配置完成后，所有 aerospike 指标都会带有 app = aerospike 的标签，可以进行快速查询<br />相关文档 [<DataFlux Tag 应用最佳实践>](https://www.yuque.com/dataflux/bp/tag)
+
 ```
 # 示例
 [inputs.prom.tags]
    app = "aerospike"
 ```
+
 #### 重启 Datakit
+
 ```
 systemctl restart datakit
 ```
+
 ## 场景视图
+
 <场景 - 新建仪表板 - 内置模板库 - **Aerospike namespace over view dashborad**>
+
 <场景 - 新建仪表板 - 内置模板库 - **Aerospike Monitoring Stack - Node View**>
 
-## 异常检测
-异常检测库 - 新建检测库 - Aerospike 检测库 
+## 检测库
+
+<监控 - 监控器 - 从模板新建 - Aerospike 检测库>
 
 | 序号 | 规则名称 | 触发条件 | 级别 | 检测频率 |
 | --- | --- | --- | --- | --- |
@@ -335,7 +375,9 @@ systemctl restart datakit
 | 6 | Aerospike 空间 Memory 剩余空间不足 | Aerospike 空间 Memory 使用率 >= 85% | 紧急 | 1m |
 
 ## 指标详解
-[参照Aerospike官网指标](https://docs.aerospike.com/server/operations/monitor/key_metrics)
-## 常见问题排查
-<[无数据上报排查](/datakit/why-no-data/)>
 
+[参照Aerospike官网指标](https://docs.aerospike.com/server/operations/monitor/key_metrics)
+
+## 常见问题排查
+
+<[无数据上报排查](https://www.yuque.com/dataflux/datakit/why-no-data)>

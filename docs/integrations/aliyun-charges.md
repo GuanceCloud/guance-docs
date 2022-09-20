@@ -1,41 +1,47 @@
-# 账单及费用(已过时)
+
+# 费用
 ---
 
 ## 视图预览
-![image.png](imgs/input-aliyun-charges-01.png)
+
+![image](imgs/input-aliyun-charges-01.png)
 
 ## 安装部署
 
-- 说明：<br />示例 Linux 版本为：CentOS Linux release 7.8.2003 (Core)<br />通过一台服务器采集所有阿里云账单费用数据
-
+- 说明：
+示例 Linux 版本为：CentOS Linux release 7.8.2003 (Core)
+通过一台服务器采集所有阿里云账单费用数据
 
 ## 前置条件
 
-- 服务器 <[安装 Datakit](https://www.yuque.com/dataflux/datakit/datakit-install)>
-- 服务器 <[安装 Func 携带版](https://www.yuque.com/dataflux/func/quick-start)>
+- 服务器 <[安装 Datakit](../datakit/datakit-install.md)>
+- 服务器 <[安装 Func 携带版](../dataflux-func/quick-start.md)>
 - 阿里云 RAM 访问控制账号授权
-
 
 ### RAM 访问控制
 
-1. 登录 RAM 控制台 [https://ram.console.aliyun.com/users](https://ram.console.aliyun.com/users)
-1. 新建用户：人员管理 - 用户 - 创建用户<br />![image.png](imgs/input-aliyun-charges-02.png)
-1. 保存或下载 **AccessKeyID** 和 **AccessKey Secret** 的 CSV 文件 (配置文件会用到)
-1. 用户授权（账单权限）
+1、 登录 RAM 控制台 [https://ram.console.aliyun.com/users](https://ram.console.aliyun.com/users)
+2、 新建用户：人员管理 - 用户 - 创建用户
 
-![](imgs/input-aliyun-charges-03.png)
+![image](imgs/input-aliyun-charges-02.png)
+
+3、 保存或下载 **AccessKeyID** 和 **AccessKey Secret** 的 CSV 文件 (配置文件会用到)
+4、 用户授权（账单权限）
+
+![image](imgs/input-aliyun-charges-03.png)
 
 ## 配置实施
 
-1. 登录 Func，地址 http://ip:8088（默认 admin/admin）
+1、 登录 Func，地址 http://ip:8088（默认 admin/admin）
 
-![](imgs/input-aliyun-charges-04.png)
+![image](imgs/input-aliyun-charges-04.png)
 
-2. 输入标题/描述信息
+2、 输入标题/描述信息
 
-![image.png](imgs/input-aliyun-charges-05.png)
+![image](imgs/input-aliyun-charges-05.png)
 
-3. 编辑脚本
+3、 编辑脚本
+
 ```python
 import sys, datetime
 import time
@@ -173,38 +179,44 @@ def getBill():
 
 ```
 
-4. **保存 **配置并 **发布**
+4、 **保存**配置并**发布**
 
-![image.png](imgs/input-aliyun-charges-06.png)
+![image](imgs/input-aliyun-charges-06.png)
 
-5. 添加自动触发任务，管理 - 自动触发配置 - 新建任务
+5、 添加自动触发任务，管理 - 自动触发配置 - 新建任务
 
-由于账单为每日账单，所以采集频率设置每天一次就可以了<br />![image.png](imgs/input-aliyun-charges-07.png)<br />
-![image.png](imgs/input-aliyun-charges-08.png)
+由于账单为每日账单，所以采集频率设置每天一次就可以了
 
-6. 日志预览
+![image](imgs/input-aliyun-charges-07.png)
 
-![image.png](imgs/input-aliyun-charges-09.png)
+![image](imgs/input-aliyun-charges-08.png)
+
+6、 日志预览
+
+![image](imgs/input-aliyun-charges-09.png)
 
 ### 链路分析
+
 暂无
 
 # 场景视图
+
 暂无
-
 # 查看器
-![image.png](imgs/input-aliyun-charges-10.png)
 
-# 异常检测
+![image](imgs/input-aliyun-charges-10.png)
+
+# 检测库
+
 暂无
 
 # 最佳实践
+
 暂无
 
 # 故障排查
 
-1. Func 日志路径：/usr/local/dataflux-func/data/logs/dataflux-func.log
-1. 代码调试，选择主函数，直接运行 (可以看到脚本输出)
+1、 Func 日志路径：/usr/local/dataflux-func/data/logs/dataflux-func.log
+2、 代码调试，选择主函数，直接运行 (可以看到脚本输出)
 
-![image.png](imgs/input-aliyun-charges-11.png)
-
+![image](imgs/input-aliyun-charges-11.png)

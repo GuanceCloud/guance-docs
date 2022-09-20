@@ -1,41 +1,54 @@
+
 # Nacos
 ---
 
 ## 视图预览
+
 Nacos 性能指标展示：Nacos 在线时长、Nacos config 长链接数、Nacos config 配置个数、Service Count、http请求次数等。
-![image.png](imgs/input-nacos-1.png)
+
+![image](imgs/input-nacos-1.png)
+
 ## 版本支持
+
 操作系统：Linux / Windows
 Nacos 版本：>= 0.8.0
+
 ## 前置条件
 
-- Nacos 服务器 <[安装 Datakit](/datakit/datakit-install/)>
+- Nacos 服务器 <[安装 DataKit](../datakit/datakit-install.md)>
+
 ## 安装配置
+
 说明：示例 Nacos 版本为 1.4.1。
+
 ### 部署实施
+
 ( Linux / Windows 环境相同)
+
 #### 指标采集 (必选)
 
-1. 配置 application.properties 文件，暴露 metrics 数据
+1、 配置 application.properties 文件，暴露 metrics 数据
+
 ```
 management.endpoints.web.exposure.include=*
 ```
 
-2. 重启 Nacos
+2、 重启 Nacos
 
 集群方式和单例模式启动参数有差异，具体参考 [Nacos 官方文档](https://nacos.io/zh-cn/docs/quick-start.html)。
 
-3. 校验
+3、 校验
 
 访问 {ip}:8848/nacos/actuator/prometheus，看是否能访问到 metrics 数据
 
-4. 开启 Datakit promtheus 插件
+4、 开启 DataKit promtheus 插件
+
 ```shell
 cd /usr/local/datakit/conf.d/prom/
 cp prom.conf.sample nacos-prom.conf
 ```
 
-5. 修改 nacos-prom.conf 配置文件
+5、 修改 nacos-prom.conf 配置文件
 
 主要参数说明
 
@@ -46,6 +59,7 @@ cp prom.conf.sample nacos-prom.conf
 - tls_open：TLS 配置
 - metric_types：指标类型，不填，代表采集所有指标
 - [inputs.prom.tags]：额外定义的 tag
+
 ```
 [[inputs.prom]]
   urls = ["http://192.168.0.189:8848/nacos/actuator/prometheus"]
@@ -65,22 +79,28 @@ cp prom.conf.sample nacos-prom.conf
   # more_tag = "some_other_value"
 ```
 
-6. 重启 Datakit
+6、 重启 DataKit
+
 ```shell
 systemctl restart datakit
 ```
 
-7. Nacos 指标采集验证，使用命令 /usr/local/datakit/datakit -M |egrep "最近采集|nacos" 或者通过 url 查看 ${ip}:9529/monitor
+7、 Nacos 指标采集验证，使用命令 /usr/local/datakit/datakit -M |egrep "最近采集|nacos" 或者通过 url 查看 ${ip}:9529/monitor
 
-![image.png](imgs/input-nacos-2.png)
+![image](imgs/input-nacos-2.png)
+
 指标预览
-![image.png](imgs/input-nacos-3.png)
-#### 
+
+![image](imgs/input-nacos-3.png)
+
 ## 场景视图
+
 <场景 - 新建仪表板 - 内置模板库 - Nacos 监控视图>
+
 ## 指标详解
 
 ### JVM metrics
+
 | 指标 | 含义 |
 | --- | --- |
 | system_cpu_usage | CPU使用率 |
@@ -92,6 +112,7 @@ systemctl restart datakit
 | jvm_threads_daemon | 线程数 |
 
 ### Nacos 监控指标
+
 | 指标 | 含义 |
 | --- | --- |
 | http_server_requests_seconds_count | http请求次数，包括多种(url,方法,code) |
@@ -116,6 +137,7 @@ systemctl restart datakit
 | nacos_monitor{name='tcpHealthCheck'} | Nacos naming tcp健康检查次数 |
 
 ### nacos 异常指标
+
 | 指标 | 含义 |
 | --- | --- |
 | nacos_exception_total{name='db'} | 数据库异常 |
@@ -127,6 +149,8 @@ systemctl restart datakit
 | nacos_exception_total{name='nacos'} | Nacos请求响应内部错误异常（读写失败，没权限，参数错误） |
 
 更多nacos指标，可以参考 [Nacos官方网站-监控](https://nacos.io/zh-cn/docs/monitor-guide.html)
+
 ## 常见问题排查
-<[无数据上报排查](/datakit/why-no-data/)>
+
+<[无数据上报排查](../datakit/why-no-data.md)>
 
