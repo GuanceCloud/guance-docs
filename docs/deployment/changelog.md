@@ -13,7 +13,6 @@ pubrepo.jiagouyun.com/dataflux/1.49.107:launcher-e550301-1663603951
 - 优化监控器事件通知内容编辑模式
 - 新增静默管理支持配置周期性静默
 - 其他功能优化
-
   - 场景仪表板分组显示优化
   - 基础设施查看器显示优化，新增显示列 CPU 使用率、MEM 使用率等提示信息
   - 指标查看器删除列表查看模式，保留平铺查看模式和混合查看模式
@@ -23,7 +22,7 @@ pubrepo.jiagouyun.com/dataflux/1.49.107:launcher-e550301-1663603951
 
 ### 最佳实践更新
 
-  - 监控 Monitoring- 中间件（Middleware） - 洞见 MySQL 。
+- 监控 Monitoring- 中间件（Middleware） - 洞见 MySQL
 
 更多详情可参考帮助文档：https://docs.guance.com/release-notes/
 
