@@ -68,7 +68,7 @@ source = nginx and status != OK
 message = query_string("debug OR 200" )
 ```
 
-在本示例中，对日志的内容进行进行查询搜索，支持对日志字段（key）进行 `AND` / `OR` 多种条件组合查询，更多说明可参考文档 [字符串查询](../../dql/funcs.md#query_string) 。本示例返回结果如下：
+在本示例中，对日志的内容进行进行查询搜索，支持对日志字段（key）进行 `AND` / `OR` 多种条件组合查询，更多说明可参考 DQL 函数 [query_string()](../../dql/funcs.md#query_string) 。本示例返回结果如下：
 
 ![](../img/8.explorer_3.2.png)
 

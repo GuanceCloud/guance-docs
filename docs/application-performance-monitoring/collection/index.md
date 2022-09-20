@@ -1,4 +1,4 @@
-# 数据采集
+# 链路数据采集
 ---
 
 ## 简介
@@ -7,16 +7,38 @@
 
 **部署架构如下：**
 
-![](../img/traceing-arch.png)
+![](../img/1.apm-2.png)
 
 最佳部署方案是将 DataKit 部署在每一台应用服务器中，通过服务所在主机的 DataKit 后将数据打到观测云中心，能更好的对应用服务的服务器主机指标、应用日志、syslog、应用服务链路数据等数据汇聚，进行各项数据的关联分析。
 ## 数据采集
 
-完成链路数据采集，你需要登录观测云控制台，进入「集成」页面，输入搜索“应用性能监测”，即可查看所有链路数据采集的相关采集器，打开采集器的配置说明文档，按照文档中的步骤进行配置即可。
+DataKit 目前支持采集 `DDTrace` 、`Apache Jaeger` 、`OpenTelemetry` 、`Skywalking` 、`Zipkin` 等第三方的 Tracing 数据。
+
+首先需要 [安装 DataKit](../../datakit/datakit-install.md) ，安装完成后需要开启链路采集器的配置文件，您可以登录观测云控制台，进入「集成」页面，输入搜索“应用性能监测”，即可查看所有链路数据采集的相关采集器，打开采集器的配置说明文档，按照文档中的步骤进行配置即可。或者您可以直接点击以下链接查看对应的采集器配置：
+
+- [DDTrace](../../datakit/ddtrace.md)
+- [Skywalking](../../datakit/skywalking.md)
+- [OpenTelemetry](../../datakit/opentelemetry.md)
+- [Zipkin](../../datakit/zipkin.md)
+- [Jaeger](../../datakit/jaeger.md)
+
+
 
 ## 字段说明
 
-DataKit 会根据采集器的不同将上报的数据转换为 “观测云” 链路数据的格式保留标签和指标。具体字段可参考下面的说明。
+DataKit 会根据采集器的不同将上报的数据转换为观测云链路数据的格式保留标签和指标。具体字段列表可参考文档 [DataKit Tracing 数据结构](../../datakit/datakit-tracing-struct.md#point-proto) 。
+
+
+
+## 更多参考
+
+- 快速入门：[开启分布式应用性能观测（APM）](../../getting-started/basic-introduction/apm-observable/)
+
+- 最佳实践： [分布式链路追踪 (APM) 最佳实践](../../best-practices/monitoring/apm/)
+
+
+
+<!-- 
 
 | 字段名 | 说明 |
 | --- | --- |
@@ -33,3 +55,5 @@ DataKit 会根据采集器的不同将上报的数据转换为 “观测云” �
 | duration | int，当前链路 span的持续时间，**微秒为单位** |
 | status | 链路状态，info：提示，warning：警告，error：错误，critical：严重，ok：成功 |
 | env | 链路的所属环境，比如可用dev表示开发环境，prod表示生产环境，用户可自定义 |
+
+-->
