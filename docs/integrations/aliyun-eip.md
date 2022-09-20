@@ -21,11 +21,13 @@
 ### RAM 访问控制
 
 1、登录 RAM 控制台  [https://ram.console.aliyun.com/users](https://ram.console.aliyun.com/users)
+
 2、新建用户：人员管理 - 用户 - 创建用户
 
 ![image](imgs/input-aliyun-eip-2.png)
 
 3、保存或下载 **AccessKey** **ID** 和 **AccessKey Secret** 的 CSV 文件 (配置文件会用到)
+
 4、用户授权 (云监控只读/时序指标数据权限)
 
 ![image](imgs/input-aliyun-eip-3.png)
@@ -64,6 +66,7 @@
 ![image](imgs/input-aliyun-eip-8.png)
 
 3、编辑脚本并复制代码，从 (同步阿里云监控数据) 到当前脚本
+
 4、修改阿里云账号配置 (Ram 访问控制)
 
 ```bash

@@ -1,134 +1,133 @@
 
-# PHP 示例
+# PHP
 ---
 
-- 操作系统支持：:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple:
+## 视图预览
 
-## Install Libarary & Dependence
+![image](imgs/input-ddtrace-php-1.png)
 
-首先[下载](https://github.com/DataDog/dd-trace-php/releases){:target="_blank"} 需要的 PHP ddtrace 扩展，下载完成后安装扩展
+![image](imgs/input-ddtrace-php-2.png)
 
-**Using RPM package (RHEL/Centos 6+, Fedora 20+)**
+![image](imgs/input-ddtrace-php-3.png)
 
-```shell
-rpm -ivh datadog-php-tracer.rpm
+![image](imgs/input-ddtrace-php-4.png)
+
+![image](imgs/input-ddtrace-php-5.png)
+
+## 安装部署<ddtrace>
+
+DF默认支持所有采用opentracing协议的APM监控手段，例如<**skywalking**><**jaeger**><**zipkin**>等，此处官方推荐ddtrace接入方式，ddtrace为开源的APM监控方式，相较于其他方式，支持更多的自定义字段，也就意味着可以有足够多的标签与其他的组件进行关联，ddtrace具体接入方式详细如下：
+
+#### 前置条件
+
+- 需要进行链路追踪的应用服务器<[安装 Datakit](../datakit/datakit-install.md)>
+- [下载ddtrace-php-agent](https://github.com/DataDog/dd-trace-php/releases)，可根据需求下载x86、arm64或者其他版本的agent。
+- <[ddtrace -php -agent 框架兼容列表](https://docs.datadoghq.com/tracing/setup_overview/compatibility_requirements/php)>
+
+#### 配置实施
+
+php所有的部署方式均是在应用启动的环境变量中添加ddtrace-agent相关启动参数。
+
+##### 开启datakit.conf中链路追踪inputs
+
+**（必须开启）**
+
+```
+###########--------linux环境---------##########
+
+ cd /usr/local/datakit/conf.d/
+ cd /ddtrace
+ cp ddtrace.conf.sample ddtrace.conf
+
+
+## 复制完文件后，vim进入编辑模式，放开imputs的注释
+## 举例:ddtrace    tags相关注释可根据需要进行开启操作，添加业务或其他相关的标签
+
+#默认无需修改
+ vim ddtrace.conf
+
+ wq!
+
+## 重启datakit 
+ systemctl restart datakit
 ```
 
-**Using DEB package (Debian Jessie+ , Ubuntu 14.04+ on supported PHP versions)**
+##### 安装php拓展
 
-```shell
-dpkg -i datadog-php-tracer.deb
+```
+# using RPM package (RHEL/Centos 6+, Fedora 20+)
+ rpm -ivh datadog-php-tracer.rpm
+
+# using DEB package (Debian Jessie+ , Ubuntu 14.04+ on supported PHP versions)
+ dpkg -i datadog-php-tracer.deb
+
+# using APK package (Alpine)
+ apk add datadog-php-tracer.apk --allow-untrusted
+```
+上述命令将为默认 PHP 版本安装扩展。要安装特定 PHP 版本的扩展，请在安装前使用DD_TRACE_PHP_BIN环境变量设置目标 PHP 二进制文件的位置。
+```
+ export DD_TRACE_PHP_BIN=$(which php-fpm7)
 ```
 
-**Using APK package (Alpine)**
+##### Apache环境下添加php参数
 
-```shell
-apk add datadog-php-tracer.apk --allow-untrusted
+如果您使用的是php-fpm的Apache，请在www.conf文件中添加ddtrace相关环境变量
+
+```
+ env[DD_AGENT_HOST] = localhost （必填）
+ env[DD_TRACE_AGENT_PORT] = 9529 （必填）
+ env[DD_SERVICE] = xxx    (xxx为您应用在df平台上展示的名称)
+ env[DD_ENV] = ENV  (可选)
+ env[DD_VERSION] = 1.0.0 (可选) 
+```
+**参数释义：**
+
+- DD_ENV：自定义环境类型，可选项。
+- DD_SERVICE：自定义应用名称 ，必填项。
+- DD_TRACE_AGENT_PORT：数据上传端口（默认9529 ），必填项。
+- DD_VERSION:应用版本，可选项。
+- DD_TRACE_SAMPLE_RATE：设置采样率（默认是全采），可选项，如需采样，可设置0~1之间的数，例如0.6，即采样60%。
+- DD_SERVICE_MAPPING：当前应用调用到的redis、mysql等，可通过此参数添加别名，用以和其他应用调用到的redis、mysql进行区分，可选项，应用场景：例如项目A项目B都调用了mysql，且分别调用的mysql-a，mysql-b，如没有添加mapping配置项，在df平台上会展现项目A项目B调用了同一个名为mysql的数据库，如果添加了mapping配置项，配置为mysql-a，mysql-b，则在df平台上会展现项目A调用mysql-a，项目B调用mysql-b。
+- DD_AGENT_HOST：数据传输目标IP，默认为本机localhost，可选项。
+
+##### NGINX环境下添加php参数
+
+如果您使用的是php-fpm的Nginx，请在www.conf文件中添加ddtrace相关环境变量
+```
+ env[DD_AGENT_HOST] = localhost （必填）
+ env[DD_TRACE_AGENT_PORT] = 9529 （必填）
+ env[DD_SERVICE] = xxx    (xxx为您应用在df平台上展示的名称)
+ env[DD_ENV] = ENV  (可选)
+ env[DD_VERSION] = 1.0.0 (可选) 
 ```
 
-通过以上方式将安装默认版本的 PHP 扩展。可以通过配置 DD_TRACE_PHP_BIN 到扩展包路径来安装制定的扩展包。
+##### 重启PHP服务。
 
-```shell
-export DD_TRACE_PHP_BIN=$(which version of php-fpm7)
-```
+浏览器访问phpinfo输出的相关页面，查看ddtrace模块是否已安装成功。
 
-安装完成后重启 PHP (PHP-FPM or the Apache SAPI) 然后访问启动了 tracing 的 endpoint。
+![image](imgs/input-ddtrace-php-6.png)
 
-**Note:** 如果你的 PHP 应用没有使用 Composer 或使用 spl_autoload_register()注册了 autoloader，你需要设置环境变量 DD_TRACE_NO_AUTOLOADER=true, 用来开启自动检测。
+#### 链路分析
 
-## PHP Configuration
+<[服务](../application-performance-monitoring/service#)>
+<[链路分析](../application-performance-monitoring/explorer)>
 
-PHP tracer 可以通过环境变量和 ini 配置文件进行配置。
+## 场景视图
 
-ini 可以进行全局配置，例如：使用 php.ini 配置特定的 web server 或 virtual host。
+DF 平台已内置 应用性能监测模块，无需手动创建
 
-**Note:** 如果你使用了自动检测（建议方案），需要注意的是用于自动检测的代码会在任何业务代码前运行。那么，以下环境变量和 ini 配置需要在相应服务器上进行配置，并且能被 PHP runtime 访问到。例如： putenv()函数和 .env 文件会失效。
+## 异常检测
 
-**Apache**
+暂无
 
-Apache 搭配 php-fpm, 在 www.conf 配置文件中配置环境变量。
+## 相关术语说明
 
-```ini
-; Example of passing the host environment variable SOME_ENV
-; to the PHP process as DD_AGENT_HOST
-env[DD_AGENT_HOST] = $SOME_ENV
-; Example of passing the value 'my-app' to the PHP
-; process as DD_SERVICE
-env[DD_SERVICE] = my-app
-; Or using the equivalent INI setting
-php_value datadog.service my-app
-```
+<[链路追踪-字段说明](../application-performance-monitoring/collection)>
 
-还可以在 server config, virtual host, directory, or .htaccess 文件中使用 SetEnv。
+## 最佳实践
 
-```htaccess
-# In a virtual host configuration as an environment variable
-SetEnv DD_TRACE_DEBUG true
-# In a virtual host configuration as an INI setting
-php_value datadog.service my-app
-```
+<[链路追踪（APM）最佳实践](../best-practices/monitoring/apm)>
 
-**NGINX**
+## 故障排查
 
-Nginx 搭配 php-fpm, 在 www.conf 配置文件中配置环境变量。
-
-```ini
-; Example of passing the host environment variable SOME_ENV
-; to the PHP process as DD_AGENT_HOST
-env[DD_AGENT_HOST] = $SOME_ENV
-; Example of passing the value 'my-app' to the PHP
-; process as DD_SERVICE
-env[DD_SERVICE] = my-app
-; Or using the equivalent INI setting
-php_value datadog.service my-app
-```
-
-## Run PHP Code With DDTrace
-
-打开 shell 运行下面命令
-
-```shell
-DD_AGENT_HOST=localhost \
-DD_TRACE_AGENT_PORT=9529 \
-DD_TRACE_DEBUG=true \
-php -d datadog.service=my-php-app -S localhost:8888
-```
-
-## Environment Variables For Tracing PHP Code
-
-- DD_AGENT_HOST
-  INI: datadog.agent_host
-  Datakit 监听的主机地址，默认 localhost。
-- DD_TRACE_AGENT_PORT
-  INI: datadog.trace.agent_port
-  Datakit 监听端口号，默认 9529。
-- DD_ENV
-  INI: datadog.env
-  设置程序环境变量。
-- DD_SERVICE
-  INI: datadog.service
-  设置 APP 名字， 版本小于 0.47.0 使用 DD_SERVICE_NAME。
-- DD_SERVICE_MAPPING
-  INI: datadog.service_mapping
-  重命名 APM 服务名。
-- DD_TRACE_AGENT_ATTEMPT_RETRY_TIME_MSEC
-  INI: datadog.trace.agent_attempt_retry_time_msec
-  基于 IPC 可配置的电路断点重试时间间隔 (milliseconds)， 默认 5000。
-- DD_TRACE_AGENT_CONNECT_TIMEOUT
-  INI: datadog.trace.agent_connect_timeout
-  Agent 连接超时 (milliseconds)，默认 100。
-- DD_TRACE_AGENT_MAX_CONSECUTIVE_FAILURES
-  INI: datadog.trace.agent_max_consecutive_failures
-  基于 IPC 可配置的电路最大连续断点次数，默认 3。
-- DD_TRACE_AGENT_TIMEOUT
-  INI: datadog.trace.agent_timeout
-  Agent 数据传输超时(milliseconds)，默认 500。
-- DD_TAGS
-  INI: datadog.tags
-  设置默认 tags。
-- DD_VERSION
-  INI: datadog.version
-  设置服务版本。
-- DD_TRACE_SAMPLE_RATE
-  INI: datadog.trace.smaple_rate
-  设置采样率从 0.0(0%) ~ 1.0(100%)。
+暂无

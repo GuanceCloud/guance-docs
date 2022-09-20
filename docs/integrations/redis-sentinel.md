@@ -1,37 +1,53 @@
-# Redis Sentinel
+
+# Redis-sentinel
 ---
 
 ## 视图预览
+
 Redis-sentinel 观测场景主要展示了 Redis 的集群、slaves、节点分布信息等。
-![](imgs/input-redis-sentinel-1.png)
+
+![image](imgs/input-redis-sentinel-1.png)
 
 ## 版本支持
+
 操作系统：Linux / Windows
 redis-sentinel-exporter >=0.1
+
 ## 前置条件
 
-- 在 Redis 应用服务器上安装 DataKit <[安装 DataKit](/datakit/datakit-install/)>
+- 在 Redis 应用服务器上安装 DataKit <[安装 DataKit](../datakit/datakit-install.md)>
+
 ## 安装部署
+
 ### 下载 redis-sentinel-exporter 指标采集器
+
 下载地址 [https://github.com/lrwh/redis-sentinel-exporter/releases](https://github.com/lrwh/redis-sentinel-exporter/releases)
-![](imgs/input-redis-sentinel-2.png)
+
+![image](imgs/input-redis-sentinel-2.png)
+
 ### 启动 redis-sentinel-exporter 
+
 ```bash
 java -Xmx64m -jar redis-sentinel-exporter-0.1.jar --spring.redis.sentinel.master=mymaster --spring.redis.sentinel.nodes="127.0.0.1:26379,127.0.0.1:26380,127.0.0.1:26381"
 ```
+
 参数说明
 spring.redis.sentinel.master ： 集群名称
 spring.redis.sentinel.nodes ： 哨兵节点地址
+
 ### 配置实施
+
 #### 指标采集 (必选)
 
-1. 开启 Datakit prom 插件，复制 sample 文件
+1、 开启 Datakit prom 插件，复制 sample 文件
+
 ```bash
 cd /usr/local/datakit/conf.d/prom/
 cp prom.conf.sample redis-sentinel-prom.conf
 ```
 
-2. 修改 `redis-sentinel-prom.conf` 配置文件
+2、 修改 `redis-sentinel-prom.conf` 配置文件
+
 ```toml
 # {"version": "1.2.12", "desc": "do NOT edit this line"}
 
@@ -123,21 +139,23 @@ tls_open = false
 - metric_types：指标类型，不填，代表采集所有指标
 - [inputs.prom.tags]：额外定义的 tag
 
-3. 重启 Datakit (如果需要开启日志，请配置日志采集再重启)
+3、 重启 Datakit (如果需要开启日志，请配置日志采集再重启)
+
 ```bash
 systemctl restart datakit
 ```
 
-4. redis-sentinel 指标采集验证，使用命令 /usr/local/datakit/datakit -M |egrep "最近采集|redis-sentinel" 或者通过 url 查看 ${ip}:9529/monitor
+4、 redis-sentinel 指标采集验证，使用命令 /usr/local/datakit/datakit -M |egrep "最近采集|redis-sentinel" 或者通过 url 查看 ${ip}:9529/monitor
 
-![](imgs/input-redis-sentinel-3.png)
+![image](imgs/input-redis-sentinel-3.png)
 
-5. 指标预览
+5、 指标预览
 
-![](imgs/input-redis-sentinel-4.png)
+![image](imgs/input-redis-sentinel-4.png)
+
 #### 日志采集 (非必选)
 
-1. 修改 `redis.conf` 配置文件
+1、 修改 `redis.conf` 配置文件
 
 参数说明
 
@@ -146,7 +164,8 @@ systemctl restart datakit
 - pipeline：日志切割文件
 - character_encoding：日志编码格式
 - match：开启多行日志收集
-- 相关文档 <[DataFlux pipeline 文本数据处理](/datakit/pipeline/)>
+- 相关文档 <[DataFlux pipeline 文本数据处理](../datakit/pipeline.md)>
+
 ```
 # {"version": "1.2.12", "desc": "do NOT edit this line"}
 
@@ -202,29 +221,31 @@ systemctl restart datakit
 
 ```
 
-3. 重启 Datakit (如果需要开启自定义标签，请配置插件标签再重启)
+2、 重启 Datakit (如果需要开启自定义标签，请配置插件标签再重启)
+
 ```
 systemctl restart datakit
 ```
 
-4. redis-sentinel 指标采集验证，使用命令 /usr/local/datakit/datakit -M |egrep "最近采集|logging" 或者通过 url 查看 ${ip}:9529/monitor
+3、 redis-sentinel 指标采集验证，使用命令 /usr/local/datakit/datakit -M |egrep "最近采集|logging" 或者通过 url 查看 ${ip}:9529/monitor
 
-![](imgs/input-redis-sentinel-5.png)
+![image](imgs/input-redis-sentinel-5.png)
 
-5. 日志预览
+4、 日志预览
 
-![](imgs/input-redis-sentinel-6.png)
+![image](imgs/input-redis-sentinel-6.png)
 
-6. 日志 pipeline 功能切割字段说明
-- Redis 通用日志切割
-原始日志为
+5、 日志 pipeline 功能切割字段说明
+- Redis 通用日志切割<br />原始日志为
 
 ```
 [11412] 05 May 10:17:31.329 # Creating Server TCP listening socket *:26380: bind: No such file or directory
 ```
 
-![](imgs/input-redis-sentinel-7.png)
-![](imgs/input-redis-sentinel-8.png)
+![image](imgs/input-redis-sentinel-7.png)
+
+![image](imgs/input-redis-sentinel-8.png)
+
 切割后的字段列表如下：
 
 | 字段名 | 字段值 | 说明 |
@@ -237,11 +258,13 @@ systemctl restart datakit
 | `time` | `1557861100164000000` | 纳秒时间戳（作为行协议时间） |
 
 #### 插件标签 (非必选)
+
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 `redis-sentinel` 指标都会带有`service = "redis-sentinel"`的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](/best-practices/guance-skill/tag/)>
+- 相关文档 <[DataFlux Tag 应用最佳实践](../best-practices/insight/tag.md)>
+
 ```
 # 示例
 [inputs.prom.tags]
@@ -249,15 +272,23 @@ systemctl restart datakit
     # some_tag = "some_value"
     # more_tag = "some_other_value"
 ```
-重启 Datakit
+
+重启 DataKit
+
 ```
 systemctl restart datakit
 ```
+
 ## 场景视图
+
 <场景 - 新建仪表板 - 内置模板库 - Redis-sentinel 监控视图>
-## 异常检测
+
+## 检测库
+
 无
+
 ## 指标详解
+
 | 指标 | 含义 | 类型 |
 | --- | --- | --- |
 | redis_sentinel_known_sentinels | 哨兵实例数 | Gauge |
@@ -271,6 +302,9 @@ systemctl restart datakit
 | redis_sentinel_last_ok_ping_latency | 哨兵ping成功的秒数 | Gauge |
 
 ## 最佳实践
+
 无
+
 ## 故障排查
-<[无数据上报排查](/datakit/why-no-data/)>
+
+<[无数据上报排查](../datakit/why-no-data.md)>

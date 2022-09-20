@@ -136,7 +136,7 @@ kubectl apply -f datakit.yaml
 
 指标预览
 
-![image](../imgs/kubernetes_controller_manager-1.png)
+![image](imgs/kubernetes-controller-manager-1.png)
 
 #### 插件标签 (必选）
 

@@ -1,19 +1,27 @@
+
 # Chrony
 ---
 
 ## 视图预览
 Chrony 指标展示，包括轮询速率，时间偏移，可达性寄存器等
-![image.png](imgs/input-chrony-1.png)
+
+![image](imgs/input-chrony-1.png)
+
 ## 版本支持
+
 操作系统支持：Linux 
+
 ## 前置条件
 
-- 服务器 <[安装 Datakit](/datakit/datakit-install/)>
+- 服务器 <[安装 DataKit](../datakit/datakit-install.md)>
 - 服务器安装 Telegraf
-### 安装 Telegraf
-以 CentOS 为例，其他系统参考 [[Telegraf 官方文档](https://docs.influxdata.com/telegraf/v1.19/introduction/installation/)]
 
-1. 添加 yum 源
+### 安装 Telegraf
+
+以 **CentOS** 为例，其他系统参考 [[Telegraf 官方文档](https://docs.influxdata.com/telegraf/v1.19/introduction/installation/)]
+
+1、 添加 yum 源
+
 ```
 cat <<EOF | tee /etc/yum.repos.d/influxdb.repo
 [influxdb]
@@ -25,28 +33,36 @@ gpgkey = https://repos.influxdata.com/influxdb.key
 EOF
 ```
 
-2. 安装 telegraf
+2、 安装 telegraf
+
 ```
 yum -y install telegraf
 ```
+
 ## 安装配置
+
 说明：示例 Linux 版本为：CentOS Linux release 7.8.2003 (Core)
+
 ### 部署实施
+
 #### 指标采集 (必选)
 
-1. 数据上传至 datakit，修改主配置文件 telegraf.conf
+1、 数据上传至 DataKit，修改主配置文件 telegraf.conf
+
 ```
 vi /etc/telegraf/telegraf.conf
 ```
 
-2. 关闭 influxdb，开启 outputs.http (修改对应的行)
+2、 关闭 influxdb，开启 outputs.http (修改对应的行)
+
 ```
 #[[outputs.influxdb]]
 [[outputs.http]]
 url = "http://127.0.0.1:9529/v1/write/metric?input=telegraf"
 ```
 
-3. 关闭主机检测 (否则会与 datakit 冲突)
+3、 关闭主机检测 (否则会与 DataKit 冲突)
+
 ```
 #[[inputs.cpu]]
 #  percpu = true
@@ -62,45 +78,62 @@ url = "http://127.0.0.1:9529/v1/write/metric?input=telegraf"
 #[[inputs.system]]
 ```
 
-4. 开启 Chrony 检测
+4、 开启 Chrony 检测
+
 ```
 [[inputs.chrony]]
 ```
 
-5. 启动 Telegraf
+5、 启动 Telegraf
+
 ```
 systemctl start telegraf
 ```
-6.  指标验证
+
+6、  指标验证
+
 ```
 /usr/bin/telegraf --config /etc/telegraf/telegraf.conf --input-filter chrony --test
 ```
+
 有数据返回 (行协议)，代表能够正常采集
-#### ![image.png](imgs/input-chrony-2.png)
 
-7. 指标预览
+![image](imgs/input-chrony-2.png)
 
-![image.png](imgs/input-chrony-3.png)
+7、 指标预览
+
+![image](imgs/input-chrony-3.png)
+
 #### 插件标签 (非必选)
+
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 netstat 指标都会带有 app = oa 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](/best-practices/guance-skill/tag/)>
+- 相关文档 <[DataFlux Tag 应用最佳实践](../best-practices/insight/tag.md)>
+
 ```
 # 示例
 [inputs.chrony.tags]
    app = "oa"
 ```
+
 重启 Telegraf
+
 ```
 systemctl restart telegraf
 ```
+
 ## 场景视图
+
 <场景 - 新建仪表板 - 内置模板库 - Chrony>
-## 异常检测
-<监控 - 模板新建 - Chrony 检测库>
+
+## 检测库
+
+暂无
+
 ## 指标详解
+
 | 指标 | 描述 | 数据类型 |
 | --- | --- | --- |
 | frequency | 系统时钟错误率 | int |
@@ -113,6 +146,10 @@ systemctl restart telegraf
 | update_interval | 同步时间 | int |
 
 ## 常见问题排查
-<[无数据上报排查](/datakit/why-no-data/)>
+
+<[无数据上报排查](../datakit/why-no-data.md)>
+
 ## 进一步阅读
+
 <[Chrony 时钟同步](https://blog.csdn.net/sishi22/article/details/90266806)>
+
