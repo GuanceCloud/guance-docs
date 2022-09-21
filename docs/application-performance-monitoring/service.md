@@ -21,11 +21,9 @@
 
 ### 搜索与筛选
 
-在服务搜索栏，支持关键字搜索、通配符搜索、关联搜索、等多种搜索方式，支持基于「env」、「version」、「project」、「service」和「source_type」等一个或多个标签对链路服务进行字段筛选，包括正向筛选、反向筛选、模糊匹配、反向模糊匹配等多种筛选方式。
+在服务搜索栏，支持关键字搜索、通配符搜索、关联搜索、等多种搜索方式，支持基于「env」、「version」、「project」、「service」和「source_type」等一个或多个标签对链路服务进行字段筛选，包括正向筛选、反向筛选、模糊匹配、反向模糊匹配等多种筛选方式。更多搜索与筛选可参考文档 [查看器的搜索和筛选](../getting-started/necessary-for-beginners/explorer-search.md) 。
 
 **注意：当您切换查看「服务」或「链路」查看器时，观测云默认为您保留当前的筛选条件和时间范围。**
-
-更多搜索与筛选可参考文档 [查看器的搜索和筛选](../getting-started/necessary-for-beginners/explorer-search.md) 。
 
 ![](img/1.apm_6.png)
 
