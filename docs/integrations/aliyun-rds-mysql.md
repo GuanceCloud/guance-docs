@@ -1,5 +1,5 @@
-# RDS MySQL
 
+# RDS MySQL
 ---
 
 ## 视图预览
@@ -18,19 +18,19 @@
 
 ## 前置条件
 
-- 服务器 <[安装 Datakit](../datakit/datakit-install.md)>
+- 服务器 <[安装 DataKit](../datakit/datakit-install.md)>
 - 服务器 <[安装 Func 携带版](../dataflux-func/quick-start.md)>
 - 阿里云 RAM 访问控制账号授权
 
 ### RAM 访问控制
 
-- 登录 RAM 控制台  [https://ram.console.aliyun.com/users](https://ram.console.aliyun.com/users)
-- 新建用户：人员管理 - 用户 - 创建用户
+1、登录 RAM 控制台  [https://ram.console.aliyun.com/users](https://ram.console.aliyun.com/users)
+2、新建用户：人员管理 - 用户 - 创建用户
 
 ![image](imgs/input-rds-mysql-4.png)
 
-- 保存或下载 **AccessKey** **ID** 和 **AccessKey Secret** 的 CSV 文件 (配置文件会用到)
-- 用户授权 (只读访问所有阿里云资源的权限)
+3、保存或下载 **AccessKey** **ID** 和 **AccessKey Secret** 的 CSV 文件 (配置文件会用到)
+4、用户授权 (只读访问所有阿里云资源的权限)
 
 ![image](imgs/input-rds-mysql-5.png)
 
@@ -156,7 +156,7 @@ def run():
 
 ![image](imgs/input-rds-mysql-17.png)
 
-- 连接配置：Func 无法连接 Datakit，请检查数据源配置 (Datakit 需要监听 0.0.0.0)
+- 连接配置：Func 无法连接 DataKit，请检查数据源配置 (DataKit 需要监听 0.0.0.0)
 
 ![image](imgs/input-rds-mysql-18.png)
 

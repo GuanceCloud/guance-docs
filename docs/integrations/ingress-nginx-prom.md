@@ -1,15 +1,16 @@
+
 # Ingress Nginx (Prometheus) 
 ---
 
 ## 视图预览
 
-Ingress性能指标展示：Ingress Controller的平均cpu使用率、平均内存使用、网络请求/响应合计、Ingress Config的加载次数、Ingress Config上次加载结果、Ingress的转发成功率等。
+Ingress 性能指标展示：Ingress Controller 的平均 cpu 使用率、平均内存使用、网络请求/响应合计、Ingress Config 的加载次数、Ingress Config 上次加载结果、Ingress 的转发成功率等。
 
-![](../imgs/ingress-nginx-prom-1.png)
+![image](imgs/ingress-nginx-prom-1.png)
 
 ## 安装部署
 
-说明：示例 Ingress 版本为：willdockerhub/ingress-nginx-controller:v1.0.0(CentOS环境下kubeadmin部署)，各个不同版本指标可能存在差异
+说明：示例 Ingress 版本为：willdockerhub/ingress-nginx-controller:v1.0.0(CentOS 环境下 kubeadmin 部署)，各个不同版本指标可能存在差异
 
 ### 前置条件
 
@@ -21,21 +22,23 @@ Ingress性能指标展示：Ingress Controller的平均cpu使用率、平均内�
 
 1、 获取部署Ingress的yaml文件
 
-```
+```shell
 wget https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.0.0/deploy/static/provider/baremetal/deploy.yaml
 ```
 
-2、 编辑deploy.yaml，把service的type设置成NodePort，并对外暴露10254端口，参考下图
-```
+2、 编辑 deploy.yaml，把 service 的 type 设置成 NodePort，并对外暴露 10254 端口，参考下图
+
+```shell
 vi deploy.yaml
 ```
-![](../imgs/ingress-nginx-prom-2.png)
 
-3、 开启Input
+![image](imgs/ingress-nginx-prom-2.png)
 
-观测云接入Ingress指标数据，需要datakit开启prom插件，在prom插件配置中指定exporter的url，在kubernetes集群中采集Ingress Controller指标，推荐使用annotations增加注解的方式。编辑deploy.yaml文件，找到ingress-nginx-controller镜像所对应的Deployment ，增加annotations。
+3、 开启 Input
 
-```
+观测云接入 Ingress 指标数据，需要 datakit 开启 prom 插件，在 prom 插件配置中指定 exporter 的 url，在 kubernetes 集群中采集 Ingress Controller 指标，推荐使用 annotations 增加注解的方式。编辑 deploy.yaml 文件，找到 ingress-nginx-controller 镜像所对应的 Deployment ，增加 annotations。
+
+```yaml
       annotations:
         datakit/prom.instances: |
           [[inputs.prom]]
@@ -59,7 +62,7 @@ vi deploy.yaml
 
 参数说明
 
-- url:   Exporter URLs，多个url用逗号分割，示例["[http://127.0.0.1:9100/metrics",](http://127.0.0.1:9100/metrics",) "[http://127.0.0.1:9200/metrics"]](http://127.0.0.1:9200/metrics"])
+- url:   Exporter URLs，多个 url 用逗号分割，示例["[http://127.0.0.1:9100/metrics",](http://127.0.0.1:9100/metrics",) "[http://127.0.0.1:9200/metrics"]](http://127.0.0.1:9200/metrics"])
 
 - source:  采集器别名
 - metric_types:  指标类型，可选值是counter, gauge, histogram, summary
@@ -71,31 +74,33 @@ vi deploy.yaml
 
 4、 部署Ingress
 
-```
+```shell
 kubectl apply -f deploy.yaml
 ```
 
 指标预览
 
-![](../imgs/ingress-nginx-prom-3.png)
+![image](imgs/ingress-nginx-prom-3.png)
 
 ## 场景视图
 
-场景 - 新建仪表板 - Nginx Ingress Controller
+<场景 - 新建仪表板 - 内置模板库 - Ingress Nginx 监控视图>
 
-
-## 异常检测
+## 检测库
 
 暂无
 
 ## 指标详解
-如果配置了inputs.prom.measurements，观测云采集到的指标需要加上前缀才能与表格匹配。举例，下配置了前缀nginx_ingress_controller_，指标集是prom_ingress。
-```
+
+如果配置了 inputs.prom.measurements，观测云采集到的指标需要加上前缀才能与表格匹配。举例，下配置了前缀 nginx_ingress_controller_，指标集是 prom_ingress。
+
+```toml
  [[inputs.prom.measurements]]
               prefix = "nginx_ingress_controller_"
               name = "prom_ingress"
 ```
-nginx_ingress_controller_requests指标在观测云上的指标就是prom_ingress指标集下的requests指标。
+
+nginx_ingress_controller_requests 指标在观测云上的指标就是 prom_ingress 指标集下的 requests 指标。
 
 | 指标 | 描述 | 数据类型 | 单位 |
 | --- | --- | --- | --- |
@@ -114,8 +119,8 @@ nginx_ingress_controller_requests指标在观测云上的指标就是prom_ingres
 
 ## 最佳实践
 
-[Nginx Ingress可观测最佳实践](/best-practices/integrations/ingress-nginx.md)
+[Nginx Ingress可观测最佳实践](../best-practices/cloud-native/ingress-nginx.md)
 
 ## 故障排查
 
-- [无数据上报排查](why-no-data.md)
+- <[无数据上报排查](../datakit/why-no-data.md)>

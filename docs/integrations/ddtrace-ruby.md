@@ -1,125 +1,82 @@
 
-# Ruby 示例
+# Ruby
 ---
 
-- 操作系统支持：:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple:
+## 视图预览
 
-## Config DDTrace Libarary & Dependence For Ruby
+Ruby 应用的链路追踪, 埋点后可在"应用性能监测" 应用列表里看到对应的应用,  可以查看对应链路拓扑和所有 链路信息,以及对 Ruby 应用请求的一些链路指标: 请求数, 错误率,  延迟时间分布, 响应时间等。
 
-**RAILS APPLICATIONS**
+![image](imgs/input-ddtrace-ruby-1.png)
 
-1. 添加 ddtrace gem 到你的 Gemfile：
+## 版本支持
 
-```shell
-source 'https://rubygems.org'
-gem 'ddtrace', require: 'ddtrace/auto_instrument'
-```
+操作系统：Linux / Windows<br />Ruby 版本：>=2.7.0
 
-2. 使用 bundle install 安装 gem。
+## 前置条件
 
-3. 创建配置文件 config/initializers/datadog.rb：
+- 在 Ruby 应用服务器上安装 Datakit <[安装 Datakit](../datakit/datakit-install.md)>
+- 查看 Ruby 版本是否>=2.7.0 
 
-```rb
-Datadog.configure do |c|
-  # Add additional configuration here.
-  # Activate integrations, change tracer settings, etc...
-end
-```
+### 部署实施
 
-**RUBY APPLICATIONS**
-
-1. 添加 ddtrace gem 到你的 Gemfile：
+#### 1、安装 ddtrace for ruby
 
 ```shell
-source 'https://rubygems.org'
-gem 'ddtrace'
+gem install ddtrace -v 1.0.0.beta1
 ```
 
-2. 使用 bundle install 安装 gem。
+#### 2、配置 trace.rb
 
-3. 添加 require 'ddtrace/auto_instrument' 到 Ruby 代码中。 **Note:** 需要在所有 library 和 framework 加载后再加载。
+在config/initializers 新增 trace.rb
 
-```rb
-# Example frameworks and libraries
-require 'sinatra'
-require 'faraday'
-require 'redis'
-
-require 'ddtrace/auto_instrument'
-```
-
-4. 添加配置块到 Ruby 应用中：
-
-```rb
+```ruby
+require 'ddtrace'
+### New 1.0 ###
 Datadog.configure do |c|
-  # Add additional configuration here.
-  # Activate integrations, change tracer settings, etc...
-end
+    # Global settings
+    # dk host
+    c.agent.host = 'localhost'
+    # dk port
+    c.agent.port = 9529
+    c.diagnostics.debug = true
+    # service name
+    c.service = 'blog-api'
+  
+    # Profiling settings
+    c.profiling.enabled = true
+  
+    # Tracer settings
+    c.tracing.analytics.enabled = true
+    # c.tracing.runtime_metrics.enabled = true
+  
+    # CI settings
+    c.ci.enabled = (ENV['DD_ENV'] == 'ci')
+  
+    # Instrumentation
+    c.tracing.instrument :rails
+    c.tracing.instrument :redis, service_name: 'blog-redis'
+    c.tracing.instrument :resque
+    c.ci.instrument :rspec
+
+  end
 ```
 
-**CONFIGURING OPENTRACING**
+> c.agent.host = 'localhost'  #  配置dk 所在服务器ip
+> c.agent.port = 9529 # 配置dk 的端口号
+> c.diagnostics.debug = true # 开启debug 模式，产生tracing信息可以在控制台进行查看
+> c.service = 'blog-api' # 服务名称
 
-1. 添加 ddtrace gem 到你的 Gemfile：
+了解更多信息，参考文档 [https://github.com/DataDog/dd-trace-rb/blob/v1.0.0.beta1/docs/GettingStarted.md](https://github.com/DataDog/dd-trace-rb/blob/v1.0.0.beta1/docs/GettingStarted.md)
+
+#### 3、重启应用
 
 ```shell
-source 'https://rubygems.org'
-gem 'ddtrace'
+ bin/rails server
 ```
+#### 4、进入观测云查看
 
-2. 使用 bundle install 安装 gem。
+访问一下应用, 以便生成链路数据, 进入观测云 应用性能监测即可看到自己的应用
 
-3. 在 OpenTracing 配置中添加如下代码：
+## 常见问题排查
 
-```rb
-require 'opentracing'
-require 'datadog/tracing'
-require 'datadog/opentracer'
-
-# Activate the Datadog tracer for OpenTracing
-
-OpenTracing.global_tracer = Datadog::OpenTracer::Tracer.new
-```
-
-4. 添加配置块到 Ruby 应用中：
-
-```rb
-Datadog.configure do |c|
-  # Configure the Datadog tracer here.
-  # Activate integrations, change tracer settings, etc...
-  # By default without additional configuration,
-  # no additional integrations will be traced, only
-  # what you have instrumented with OpenTracing.
-end
-```
-
-**INTEGRATION INSTRUMENTATION**
-
-很多 libraries and frameworks 支持开箱即用的自动检测功能。通过简单配置即可打开自动检测。使用 Datadog.configure API：
-
-```rb
-Datadog.configure do |c|
-
-# Activates and configures an integration
-
-c.tracing.instrument :integration_name, options
-end
-```
-
-## Run Ruby Code With DDTrace
-
-可以通过配置环境变量并启动 Ruby：
-
-```shell
-DD_AGENT_HOST=localhost \
-DD_TRACE_AGENT_PORT=9529 \
-ruby your_ruby_script.rb
-```
-
-也可以通过配置 Datadog.configure 代码块：
-
-```rb
-Datadog.configure do |c|
-  c.agent.host = '127.0.0.1'
-  c.agent.port = 9529
-end
-```
+<[无数据上报排查](../datakit/why-no-data.md)>

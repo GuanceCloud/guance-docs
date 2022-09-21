@@ -61,3 +61,4 @@ drop_origin_data()
 ```
 
 重启采集器，即可切割对应的日志。[了解更多文本数据处理](../../datakit/pipeline.md)。
+

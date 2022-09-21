@@ -3,6 +3,7 @@
 ---
 
 ## 视图预览
+
 阿里云 ECS 指标展示，包括CPU 负载，内存使用，磁盘读写，网络流量等
 
 ![image](imgs/input-aliyun-ecs-1.png)
@@ -20,25 +21,24 @@
 
 ### 云监控安装
 
-- 登录阿里云监控控制台 [https://cloudmonitor.console.aliyun.com/](https://cloudmonitor.console.aliyun.com/)
-- 主机监控 - 点击安装 (建议勾选新建 ECS 自动安装云监控)
+1、 登录阿里云监控控制台 [https://cloudmonitor.console.aliyun.com/](https://cloudmonitor.console.aliyun.com/)
+2、 主机监控 - 点击安装 (建议勾选新建 ECS 自动安装云监控)
 
 ![image](imgs/input-aliyun-ecs-1.png)
 
 ### RAM 访问控制
 
-- 登录 RAM 控制台  [https://ram.console.aliyun.com/users](https://ram.console.aliyun.com/users)
-- 新建用户：人员管理 - 用户 - 创建用户
+1、 登录 RAM 控制台  [https://ram.console.aliyun.com/users](https://ram.console.aliyun.com/users)
+2、 新建用户：人员管理 - 用户 - 创建用户
 
 ![image](imgs/input-aliyun-ecs-3.png)
 
-- 保存或下载 **AccessKey** **ID** 和 **AccessKey Secret** 的 CSV 文件 (配置文件会用到)
-- 用户授权 (只读访问所有阿里云资源的权限)
+3、 保存或下载 **AccessKey** **ID** 和 **AccessKey Secret** 的 CSV 文件 (配置文件会用到)
+4、 用户授权 (只读访问所有阿里云资源的权限)
 
 ![image](imgs/input-aliyun-ecs-4.png)
 
 ## 安装配置
-
 说明：
 
 - 示例 Linux 版本为：CentOS Linux release 7.8.2003 (Core)
@@ -122,7 +122,7 @@ def run():
     Runner(collectors).run()
 ```
 
-5、 **保存**配置并 **发布**
+5、 保存配置并发布
 
 ![image](imgs/input-aliyun-ecs-12.png)
 

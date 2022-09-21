@@ -6,7 +6,7 @@
 
 - [观测云集成 - 基本操作](/dataflux-func/script-market-guance-integration)
 
-> 提示：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包
+> 提示：使用本采集器前，必须安装「观测云集成 Core 核心包」及其配套的第三方依赖包
 
 ## 1. 配置结构
 
@@ -41,6 +41,8 @@ collector_configs = {
   "tags": {
     "name"              : "eip-xxxxx",
     "AllocationId"      : "eip-bp1lfsikwo4roa0mcqg9u",
+    "EIPName"           : "",
+    "Status"            : "InUse",
     "RegionId"          : "cn-hangzhou",
     "Bandwidth"         : "1",
     "IpAddress"         : "47.96.22.249",
@@ -71,6 +73,16 @@ collector_configs = {
 | ---------- | -------- |
 | `PrePaid`  | 包年包月 |
 | `PostPaid` | 按量计费 |
+
+`tags.Status`（计费模式）取值含义：
+
+| 取值       | 说明  |
+| ---------- |-----|
+| `Associating`  | 绑定中 |
+| `Unassociating` | 解绑中 |
+| `InUse` | 以分配 |
+| `Available` | 可用  |
+| `Releasing` | 释放中 |
 
 *注意：`tags`、`fields`中的字段可能会随后续更新有所变动*
 

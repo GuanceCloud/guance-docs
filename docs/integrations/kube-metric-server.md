@@ -1,3 +1,4 @@
+
 # Kubernetes with Metric Server
 ---
 
@@ -7,13 +8,19 @@
 
 Kubernetes 性能指标展示：包括 pod 数量、deployment 数量、job 数量、endpoint 数量、service 数量、CPU、内存、Pod 分布等。<br />
 
-![image.png](imgs/input-kube-metric-server-01.png)<br />
-![image.png](imgs/input-kube-metric-server-02.png)<br />
-![image.png](imgs/input-kube-metric-server-03.png)<br />
-![1650000133(1).png](imgs/input-kube-metric-server-04.png)<br />
-![1650000156(1).png](imgs/input-kube-metric-server-05.png)<br />
-![1650000171(1).png](imgs/input-kube-metric-server-06.png)<br />
-![1650000207(1).png](imgs/input-kube-metric-server-07.png)
+![image](imgs/input-kube-metric-server-01.png) 
+
+![image](imgs/input-kube-metric-server-02.png)
+
+![image](imgs/input-kube-metric-server-03.png)
+
+![image](imgs/input-kube-metric-server-04.png)
+
+![image](imgs/input-kube-metric-server-05.png)
+
+![image](imgs/input-kube-metric-server-06.png)
+
+![image](imgs/input-kube-metric-server-07.png)
 
 ## 安装部署
 
@@ -21,7 +28,7 @@ Kubernetes 性能指标展示：包括 pod 数量、deployment 数量、job 数�
 
 ### 前置条件
 
-- Kubernetes 集群。
+- Kubernetes 集群  <[安装 Datakit](../datakit/datakit-daemonset-deploy.md)>。
 - 采集 Kubernetes Pod 指标数据，[需要 Kubernetes 安装 Metrics-Server 组件](https://github.com/kubernetes-sigs/metrics-server#installation)。
 
 
@@ -31,13 +38,13 @@ Kubernetes 性能指标展示：包括 pod 数量、deployment 数量、job 数�
 
 新建 metric-server.yaml ，在 kubernetes 集群执行
 
-```
+```shell
 kubectl apply -f metric-server.yaml 
 ```
 
 metric-server.yaml  完整内容如下：
 
-```
+```yaml
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -243,16 +250,18 @@ spec:
 
 进入【管理】模块，找到下图中 token。
 
-![1648545757(1).png](imgs/input-kube-metric-server-08.png)<br />替换 datakit.yaml 文件中的 ENV_DATAWAY 环境变量的 value 值中的 <your-token>。
+![image](imgs/input-kube-metric-server-08.png)
 
-```
+替换 datakit.yaml 文件中的 ENV_DATAWAY 环境变量的 value 值中的 <your-token>。
+
+```yaml
         - name: ENV_DATAWAY
           value: https://openway.guance.com?token=<your-token>
 ```
 
 在 datakit.yaml 文件中的 ENV_GLOBAL_TAGS 环境变量值最后增加 cluster_name_k8s=k8s-prod，其中  k8s-prod 为指标设置的全局 tag，即指标所在的集群名称。
 
-```
+```yaml
         - name: ENV_GLOBAL_TAGS
           value: host=__datakit_hostname,host_ip=__datakit_ip,cluster_name_k8s=k8s-prod
 ```
@@ -262,16 +271,16 @@ spec:
 
 修改 `datakit.yaml`，增加 ENV_NAMESPACE 环境变量，这个环境变量是为了区分不同集群的选举，多个集群 value 值不能相同。
 
-```
+```yaml
         - name: ENV_NAMESPACE
           value: xxx
 ```
 
-3、 定义ConfigMap
+3、 定义 ConfigMap
 
 『注意』下载的 datakit.yaml 并没有 ConfigMap，定义的 ConfigMap 可一起放到 datakit.yaml 。
 
-```
+```yaml
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -327,15 +336,15 @@ data:
 
 在 datakit.yaml 文件中的 volumeMounts 下面增加：
 
-```
+```yaml
         - mountPath: /usr/local/datakit/conf.d/container/container.conf
           name: datakit-conf
           subPath: container.conf
 ```
 
-5、 部署Datakit
+5、 部署 DataKit
 
-```
+```shell
 kubectl apply -f datakit.yaml
 ```
 
@@ -349,8 +358,9 @@ kubectl apply -f datakit.yaml
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 kubernetes 指标都会带有 tag1 = "val1" 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](/best-practices/guance-skill/tag.md)>
-```
+- 相关文档 <[DataFlux Tag 应用最佳实践](../best-practices/insight/tag.md)>
+
+```toml
           [inputs.kubernetes.tags]
            #tag1 = "val1"
            #tag2 = "valn"   
@@ -361,7 +371,7 @@ kubectl apply -f datakit.yaml
 
 <场景 - 新建仪表板 - 内置模板库 - Kubernetes Kubelet 监控视图>
 
-## 异常检测
+## 检测库
 
 暂无
 
@@ -566,5 +576,6 @@ Kubernetes replicaset 指标数据
 暂无
 
 ## 故障排查
-<[无数据上报排查](why-no-data.md)>
+
+<[无数据上报排查](../datakit/why-no-data.md)>
 

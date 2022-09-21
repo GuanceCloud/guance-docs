@@ -3,7 +3,8 @@
 ---
 
 ## 视图预览
-asm性能指标展示：Incoming Request Volume、Incoming Success Rate、Incoming Request Size By Source、Response Size By Source 等。
+
+ASM 性能指标展示：Incoming Request Volume、Incoming Success Rate、Incoming Request Size By Source、Response Size By Source 等。
 
 ![image](imgs/input-aliyun-asm-1.png)
 
@@ -25,7 +26,7 @@ Istio 版本：v1.11.5.41-g10eacaaf-aliyun、v1.24.4.20-g4d72612f-aliyun
 
 - 已创建一个 ACK 集群。如果没有创建，请参见[创建 Kubernetes 专有版集群](https://help.aliyun.com/document_detail/86488.htm#task-skz-qwk-qfb)和[创建 Kubernetes 托管版集群](https://help.aliyun.com/document_detail/95108.htm#task-skz-qwk-qfb)。
 - 已部署 DataKit，请参考 [Kubernetes](../datakit/datakit-daemonset-deploy.md)。
-- 已创建一个 ASM 实例。如果没有创建，请参见[创建 ASM 实例](https://help.aliyun.com/document_detail/147793.htm#task-2370657)。**注意**，创建新网格时，请选择**自行搭建 Zipkin**。
+- 已创建一个 ASM 实例。如果没有创建，请参见[创建 ASM 实例](https://help.aliyun.com/document_detail/147793.htm#task-2370657)。**注意**，创建新网格时，请选择 **自行搭建 Zipkin**。
 
 ![image](imgs/input-aliyun-asm-6.png)
 
@@ -65,7 +66,7 @@ Istio 版本：v1.11.5.41-g10eacaaf-aliyun、v1.24.4.20-g4d72612f-aliyun
 
 观测云收集 ASM 的链路数据，需要开通 Zipkin 采集器，即在前置条件下载的 datakit.yaml 中的 ConfigMap 中增加：
 
-```bash
+```yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -80,7 +81,7 @@ data:  # 下面是新增部分
 
 然后再把 zipkin.conf 挂载到 DataKit 的 /usr/local/datakit/conf.d/zipkin 目录：
 
-```bash
+```yaml
         - mountPath: /usr/local/datakit/conf.d/zipkin/zipkin.conf
           name: datakit-conf
           subPath: zipkin.conf
@@ -88,7 +89,7 @@ data:  # 下面是新增部分
 
 开通 istiod、ingressgateway 和 egressgateway 指标采集，其中 ingressgateway 和 egressgateway 需要 Service 支持，把下面的 yaml 文件在集群中执行。
 
-```bash
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -140,7 +141,7 @@ spec:
 
 在 datakit.yaml 中的 ConfigMap 中增加：
 
-```bash
+```yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -194,7 +195,7 @@ data:  # 下面是新增部分
 
 然后再挂载 prom_istiod.conf、prom-ingressgateway.conf 和 prom-egressgateway.conf：
 
-```bash
+```yaml
         - mountPath: /usr/local/datakit/conf.d/prom/prom_istiod.conf
           name: datakit-conf
           subPath: prom_istiod.conf        
@@ -208,7 +209,7 @@ data:  # 下面是新增部分
 
 部署 DataKit
 
-```
+```shell
 kubectl apply -f  datakit.yaml
 ```
 
@@ -216,7 +217,7 @@ kubectl apply -f  datakit.yaml
 
 在业务Pod处添加如下annotations（具体路径deployment.spec.template.metadata下），这样即可采集 Envoy 的指标数据。
 
-```bash
+```yaml
 annotations:
         datakit/prom.instances: |
           [[inputs.prom]]
@@ -249,7 +250,7 @@ annotations:
 
 下面是 bookinfo 的部署，下载 [bookinfo.yaml](https://github.com/istio/istio/blob/master/samples/bookinfo/platform/kube/bookinfo.yaml) 文件修改如下：
 
-```bash
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -718,10 +719,10 @@ DataKit 默认的配置，采集容器输出到 /dev/stdout 的日志。更多�
 
 ## 常见问题排查
 
-<[无数据上报排查](why-no-data.md)>
+- <[无数据上报排查](../datakit/why-no-data.md)>
 
 ## 进一步阅读
 
-<[Pod 日志采集最佳实践](../best-practices/logs/pod-log.md)>
+- [Pod 日志采集最佳实践](../best-practices/cloud-native/pod-log.md)
 
-<[Kubernetes 集群中日志采集的几种玩法](../best-practices/logs/k8s-logs.md)>
+- [Kubernetes 集群中日志采集的几种玩法](../best-practices/cloud-native/k8s-logs.md)

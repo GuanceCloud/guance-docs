@@ -3,6 +3,7 @@ nav:
   - '图表查询': chart-query.md
   - '图表Json': chart-json.md
   - '图表链接': chart-link.md
+  - '事件关联': events-relative.md
   - '图表分享': chart-share.md
   - '图表分组': chart-group.md
   - '时序图': timeseries-chart.md

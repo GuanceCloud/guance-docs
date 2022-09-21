@@ -21,7 +21,7 @@ DataKit 开通 Logfwd 采集器，Logfwd 以 Sidecar 模式收集业务容器日
 下面修改 datakit.yaml文件，把 logfwdserver.conf 文件挂载到 DataKit 的 /usr/local/datakit/conf.d/log/ 目录。
 在 datakit.yaml 中增加如下配置：
 
-```bash
+```yaml
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -42,7 +42,7 @@ data:
 
 在 Daemonset 资源中增加：
 
-```bash
+```yaml
         - mountPath: /usr/local/datakit/conf.d/log/logfwdserver.conf
           name: datakit-conf
           subPath: logfwdserver.conf 
@@ -53,7 +53,7 @@ data:
 修改 datakit.yaml 文件，把 pod-logging-demo.p 文件挂载到 DataKit 的 /usr/local/datakit/pipeline/ 目录。
 在 ConfigMap 资源中增加：
 
-```bash
+```toml
     pod-logging-demo.p: |-
         #日志样式
         #2021-12-01 10:41:06.015 [http-nio-8090-exec-2] INFO  c.s.d.c.HealthController - [getPing,19] -  - 调用 ping接口
@@ -65,7 +65,7 @@ data:
 
 在Daemonset资源中增加：
 
-```bash
+```yaml
         - mountPath: /usr/local/datakit/pipeline/pod-logging-demo.p
           name: datakit-conf
           subPath: pod-logging-demo.p
@@ -75,7 +75,7 @@ data:
 
 #### 3 重启 Datakit
 
-```bash
+```shell
 kubectl delete -f datakit.yaml
 kubectl apply -f datakit.yaml
 ```
@@ -84,7 +84,7 @@ kubectl apply -f datakit.yaml
 
 把 Logfwd 镜像和业务镜像部署在同一个 Pod 中，下面以 log-demo-service:v1 作为业务镜像，生成 /data/app/logs/log.log 日志文件，使用logfwd以共享存储的方式读取日志文件，把日志传给 Datakit。使用 pod-logging-demo.p切割日志，使用日期做多行匹配。
 
-```bash
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -188,7 +188,7 @@ logfwd-conf 参数说明
 - LOGFWD_DATAKIT_HOST:  DataKit 地址。
 - LOGFWD_DATAKIT_PORT:  Logfwd 端口
 
-```bash
+```shell
 kubectl apply -f log-fwd-deployment.yaml
 ```
 #### 5 查看日志
@@ -205,7 +205,7 @@ DataKit 默认采集 Pod 中输出到 Stdout 中的日志。为了对日志格�
 
 #### 1 编写logback-spring.xml
 
-```bash
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
@@ -255,7 +255,7 @@ ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS} -jar ${jar} "]
 
 #### 3 编写 pod-log-service.yaml 文件
 
-```bash
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -331,7 +331,7 @@ Annotations 参数说明
 
 datakit-default.yaml 文件的 ConfigMap 资源中增加 pod-logging-demo.p 部分
 
-```bash
+```yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -347,7 +347,7 @@ data:
 ```
 把 Pod-logging-demo.p 挂载到 DataKit 中
 
-```bash
+```yaml
         - mountPath: /usr/local/datakit/pipeline/pod-logging-demo.p
           name: datakit-conf
           subPath: pod-logging-demo.p
@@ -363,7 +363,7 @@ kuectl apply -f pod-log-service.yaml
 
 访问微服务:
 
-```
+```shell
 curl localhost:30053/ping
 ```
 

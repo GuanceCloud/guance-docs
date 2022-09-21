@@ -149,7 +149,7 @@ def run():
 
 ![image](imgs/input-aliyun-cdn-16.png)
 
-- 连接配置：Func 无法连接 Datakit，请检查数据源配置
+- 连接配置：Func 无法连接 DataKit，请检查数据源配置
 
 ![image](imgs/input-aliyun-cdn-17.png)
 

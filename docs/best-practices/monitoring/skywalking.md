@@ -19,13 +19,15 @@ DataKit 只需开启 Skywalking Input，即可采集 Skywalking Agent上报来�
 ### 开启 Input
 
 1、 开启 SkyWalking 插件，复制 Sample 文件
-```
+
+```shell
 cd /usr/local/datakit/conf.d/skywalking
 cp skywalking.conf.sample skywalking.conf
 ```
 
 2、 修改 skywalking.conf 文件
-```
+
+```toml
 
 [[inputs.skywalking]]
   ## skywalking grpc server listening on address
@@ -69,10 +71,13 @@ cp skywalking.conf.sample skywalking.conf
 - address：接收 skywalking 链路数据的地址
 
 3、 重启 DataKit
-```
+
+```shell
 systemctl restart datakit
 ```
+
 ### Java 链路数据接入
+
 #### 下载 Skywalking Java Agent
 
 1、 下载
@@ -81,7 +86,8 @@ systemctl restart datakit
    **注意**： skywalking agent v8.8.3 目前存在不兼容问题无法使用。目前已支持 v8.5.0 v8.6.0 v8.7.0
 
 2、 解压
-```
+
+```shell
 tar -zxvf /usr/local/java/apache-skywalking-apm-8.6.0.tar.gz 
 ```
 
@@ -89,7 +95,7 @@ tar -zxvf /usr/local/java/apache-skywalking-apm-8.6.0.tar.gz
 
 本示例使用了 Spring Cloud Gateway，由于 Gateway 是基于 Webflux 实现的，必须把 skywalking-agent/optional-plugins/ 目录下的 apm-spring-cloud-gateway-2.1.x-plugin-8.6.0.jar 和 apm-spring-webflux-5.x-plugin-8.6.0.jar 复制到 skywalking-agent/plugins/ 目录下。
 
-```
+```shell
 cp /usr/local/java/skywalking-agent/optional-plugins/apm-spring-cloud-gateway-2.1.x-plugin-8.6.0.jar /usr/local/java/skywalking-agent/plugins/
 cp /usr/local/java/skywalking-agent/optional-plugins/apm-spring-webflux-5.x-plugin-8.6.0.jar /usr/local/java/skywalking-agent/plugins/
 ```
@@ -98,21 +104,21 @@ cp /usr/local/java/skywalking-agent/optional-plugins/apm-spring-webflux-5.x-plug
 
 本示例部署 3 个微服务，pay、orde 和 gateway。
 
-```
+```shell
 java -javaagent:/usr/local/java/skywalking-agent/skywalking-agent.jar \
 -Dskywalking.agent.service_name=skywalking-pay   \
 -Dskywalking.collector.backend_service=localhost:13800  \
 -jar cloud-service-pay-1.0-SNAPSHOT.jar 
 ```
 
-```
+```shell
 java -javaagent:/usr/local/java/skywalking-agent/skywalking-agent.jar \
 -Dskywalking.agent.service_name=skywalking-order   \
 -Dskywalking.collector.backend_service=localhost:13800  \
 -jar cloud-service-order-1.0-SNAPSHOT.jar
 ```
 
-```
+```shell
 java -javaagent:/usr/local/java/skywalking-agent/skywalking-agent.jar \
 -Dskywalking.agent.service_name=skywalking-gateway   \
 -Dskywalking.collector.backend_service=localhost:13800  \
@@ -125,6 +131,7 @@ java -javaagent:/usr/local/java/skywalking-agent/skywalking-agent.jar \
 
 - Dskywalking.collector.backend_service：链路数据上报地址
 #### 链路数据
+
 前往<[观测云](https://console.guance.com/)>，进入应用性能监测。
 
 - 服务

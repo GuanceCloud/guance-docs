@@ -19,5 +19,5 @@
 
 ## 示例图
 
-![](../img/17.view_command.png)
+![](../img/command.png)
 

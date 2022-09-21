@@ -1,11 +1,12 @@
 # Kubernetes API Server
+
 ---
 
 ## 视图预览
 
 API Server 性能指标展示：请求数、工作队列增速、工作队列深度、CPU、Memory、Goroutines等。
 
-![1651906113(1).png](../imgs/kubernetes _API_server-1.png)
+![image](imgs/kubernetes-api-server-1.png)
 
 ## 版本支持
 
@@ -15,7 +16,7 @@ Kubernetes 版本：1.18+
 
 ## 前置条件
 
-- Kubernetes 集群 <[安装 Datakit](kube-metric-server.md)>
+- Kubernetes 集群 <[安装 DataKit](../datakit/datakit-daemonset-deploy.md)>
 
 ## 安装配置
 
@@ -29,7 +30,7 @@ Kubernetes 版本：1.18+
 
 在部署 DataKit 使用的 datakit.yaml 文件中，ConfigMap 资源中增加 api-server.conf。
 
-```
+```yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -120,15 +121,15 @@ data:
 
 在 datakit.yaml 文件的 volumeMounts 下面增加下面内容。
 
-```
+```yaml
         - mountPath: /usr/local/datakit/conf.d/prom/api-server.conf
           name: datakit-conf
           subPath: api-server.conf 
 ```
 
-3、 重启 Datakit 
+3、 重启 DataKit 
 
-```
+```yaml
 kubectl delete -f datakit.yaml
 kubectl apply -f datakit.yaml
 ```
@@ -136,7 +137,7 @@ kubectl apply -f datakit.yaml
 
 指标预览
 
-![1651888745(1).png](../imgs/kubernetes _API_server-2.png)
+![image](imgs/kubernetes-api-server-2.png)
 
 #### 插件标签 (必选）
 
@@ -147,15 +148,15 @@ kubectl apply -f datakit.yaml
 - 以下示例配置完成后，api-server 指标都会带有 app = oa 的标签，可以进行快速查询
 - 采集 api-server 指标，必填的 key 是 instance，值是 api-server 的地址
 
-```
+```toml
        ## 自定义Tags
           [inputs.prom.tags]
             instance = "172.16.0.229:6443"  
 ```
 
-重启datakit
+重启 DataKit
 
-```
+```shell
 kubectl delete -f datakit.yaml
 kubectl apply -f datakit.yaml
 ```
@@ -177,8 +178,8 @@ kubectl apply -f datakit.yaml
 
 ## 常见问题排查
 
-- [无数据上报排查](why-no-data.md)
+<[无数据上报排查](../datakit/why-no-data.md)>
 
 ## 进一步阅读
 
-- [DataFlux Tag 应用最佳实践](/best-practices/guance-skill/tag.md)
+- [DataFlux Tag 应用最佳实践](../best-practices/insight/tag.md)

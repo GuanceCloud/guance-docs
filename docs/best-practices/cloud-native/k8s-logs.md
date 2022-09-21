@@ -16,7 +16,7 @@
 
 DataKit 默认日志级别是 Info，如果需要把日志级别调整为 Debug，请在 datakit.yaml 中增加环境变量。
 	
-```bash
+```yaml
         - name: ENV_LOG_LEVEL
           value: debug
 ```
@@ -25,7 +25,7 @@ DataKit 默认日志级别是 Info，如果需要把日志级别调整为 Debug�
 
 DataKit 默认会把日志输出到 /var/log/datakit/gin.log 和  /var/log/datakit/log，如果不想在容器中生成日志文件，请在 datakit.yaml 中增加环境变量。
 
-```bash
+```yaml
     - name: ENV_LOG
       value: stdout
     - name: ENV_GIN_LOG
@@ -33,7 +33,7 @@ DataKit 默认会把日志输出到 /var/log/datakit/gin.log 和  /var/log/datak
 ```
 DataKit 产生的日志可以通过 kubectl 命令加 POD 名称查看日志。
 
-```bash
+```shell
 kubectl logs datakit-2fnrz -n datakit # 
 ```
 
@@ -47,14 +47,14 @@ kubectl logs datakit-2fnrz -n datakit #
 
 DataKit 可以采集输出到 stdout 的容器日志，使用 datakit.yaml 部署 DataKit 后默认已经开启了 container 采集器。
 
-```bash
+```yaml
         - name: ENV_DEFAULT_ENABLED_INPUTS
           value: cpu,disk,diskio,mem,swap,system,hostobject,net,host_processes,container
 ```
 
 此时会在 DataKit 容器中生成 /usr/local/datakit/conf.d/container/container.conf 配置文件，默认配置是采集除了 pubrepo.jiagouyun.com/datakit/logfwd 开头的镜像外的所有 stdout 日志。
 
-```bash
+```toml
   container_include_log = []  # 相当于image:*
   container_exclude_log = ["image:pubrepo.jiagouyun.com/datakit/logfwd*"]
 ```
@@ -63,7 +63,7 @@ DataKit 可以采集输出到 stdout 的容器日志，使用 datakit.yaml 部�
 
 为了更好的区分日志来源，增加 tag及 指定日志切割 pipeline 文件，这是就需要使用自定义方式了。即在部署的 yaml 文件中增加 annotations。
 
-```bash
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -109,7 +109,7 @@ Annotations 参数说明
 
 在部署应用的 yaml 文件中增加 annotations，把 disable 设置成 true。
 
-```bash
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -134,7 +134,7 @@ spec:
 
 如果开启了 stdout 日志收集，容器的日志也输出到 stdout，两者都不想做修改的情况下，可以修改启动命令，让标准输出重定向。
 
-```bash
+```shell
 java ${JAVA_OPTS}   -jar ${jar} ${PARAMS}  2>&1 > /dev/null
 ```
 
@@ -142,7 +142,7 @@ java ${JAVA_OPTS}   -jar ${jar} ${PARAMS}  2>&1 > /dev/null
 
 如果想更方便的控制 stdout 日志的采集，建议重写 container.conf 文件，即使用 ConfigMap 定义 container.conf，修改 container_include_log 和 container_exclude_log 的值，再挂载到 datakit 中。在 datakit.yaml修改如下：
 
-```bash
+```yaml
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -184,7 +184,7 @@ data:
           # more_tag = "some_other_value"
 ```
 
-```bash
+```yaml
         volumeMounts:
         - mountPath: /usr/local/datakit/conf.d/container/container.conf
           name: datakit-conf
@@ -216,7 +216,7 @@ DataKit 开通 Socket 端口比如 9542，日志会被推送到这个端口，Ja
 
 在 logback-spring.xml 文件中增加 socket Appender。
 
-```bash
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
@@ -275,7 +275,7 @@ DataKit 开通 Socket 端口比如 9542，日志会被推送到这个端口，Ja
 
 在 SpringBoot 项目的 application.yml 文件中增加配置。
 
-```bash
+```toml
 datakit:
   socket:
     host: 120.26.218.200  # 
@@ -286,7 +286,7 @@ datakit:
 
 在 SpringBoot 项目的 pom.xml 中添加依赖。
 
-```bash
+```xml
 <dependency>
     <groupId>net.logstash.logback</groupId>
     <artifactId>logstash-logback-encoder</artifactId>
@@ -298,7 +298,7 @@ datakit:
 
 在 DataKit 的 datakit.yaml 文件中
 
-```bash
+```yaml
         volumeMounts:  # 此位置增加下面三行
         - mountPath: /usr/local/datakit/conf.d/log/logging-socket.conf
           name: datakit-conf
@@ -338,14 +338,14 @@ data:
 
 Linux 主机安装的 DataKit 采集该主机上的日志的方式是复制 logging.conf 文件，然后再修改 logging.conf 文件中的  logfiles 的值为日志的绝对路径。
 
-```bash
+```shell
 cd /usr/local/datakit/conf.d/log
 cp logging.conf.sample  logging.conf
 ```
 
 在 Kubernetes 环境下，需要先把的 Pod 生成的日志目录 /data/app/logs/demo-system 挂载到宿主机上 /var/log/k8s/demo-system，再使用 Daemonset 部署DataKit ，挂载 /var/log/k8s/demo-system  目录，这样datakit 就能采集到宿主机上的 /rootfs/var/log/k8s/demo-system/info.log 日志文件。
 
-```bash
+```yaml
         volumeMounts:
         - name: app-log
           mountPath: /data/app/logs/demo-system
@@ -358,7 +358,7 @@ cp logging.conf.sample  logging.conf
           path: /var/log/k8s/demo-system
 ```
 
-```bash
+```yaml
         volumeMounts:  # 此位置增加下面三行
         - mountPath: /usr/local/datakit/conf.d/log/logging.conf
           name: datakit-conf

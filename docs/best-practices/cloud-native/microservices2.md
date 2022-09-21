@@ -44,7 +44,7 @@
 
 在 Kubernetes 集群，开通采集器需要使用 ConfigMap 定义配置，然后挂载到 DataKit 相应目录。etcd.conf 内容如下：
 
-```
+```yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -132,14 +132,14 @@ data:
 
 使用 https 采集 etcd 指标，需要使用 Kubernetes 集群的证书。即需要把 Kubeadmin 部署集群的 /etc/kubernetes/pki/etcd 目录，挂载到 datakit 的 /etc/kubernetes/pki/etcd 目录。
 
-```
+```yaml
       volumes:
       - hostPath:
           path: /etc/kubernetes/pki/etcd
         name: dir-etcd
 ```
 
-```
+```yaml
           volumeMounts:
           - mountPath: /etc/kubernetes/pki/etcd
           name: dir-etcd   

@@ -15,5 +15,5 @@
 
 ## 示例图
 
-![](../img/18.view_video.png)
+![](../img/video.png)
 

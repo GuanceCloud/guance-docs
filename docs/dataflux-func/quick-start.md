@@ -181,7 +181,7 @@ sudo /bin/bash run-portable.sh --port 9000
 
 具体参数详情见下文
 
-##### `--mini`：安装迷你版
+##### --mini：安装迷你版
 
 针对低配置环境下，需要节约资源时的安装模式。
 
@@ -195,21 +195,21 @@ sudo /bin/bash run-portable.sh --port 9000
     - 内存容量 >= 2GB
 - 如不使用内置的 MySQL、Redis，系统要求可以进一步降低
 
-##### `--port {端口号}`：指定监听端口号
+##### --port {端口号}：指定监听端口号
 
 DataFlux Func 默认使用`8088`端口访问，如果此端口被其他程序占用，可以选择其他端口，如：`9000`。
 
-##### `--install-dir {安装目录}`：指定安装目录
+##### --install-dir {安装目录}：指定安装目录
 
 需要安装到与默认路径`/usr/local/dataflux-func`不同的路径下时，可指定此参数
 
-##### `--no-mysql`：禁用内置 MySQL
+##### --no-mysql：禁用内置 MySQL
 
 需要使用已有的 MySQL 数据库时，可指定此参数，禁止在本机启动 MySQL。
 
 *注意：启用此选项后，需要在安装完成后的配置页面指定正确的 MySQL 连接信息*
 
-##### `--no-redis`：禁用内置 Redis
+##### --no-redis：禁用内置 Redis
 
 需要使用已有的 Redis 数据库时，可指定此参数，禁止在本机启动 Redis。
 

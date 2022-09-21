@@ -6,7 +6,7 @@
 
 - [观测云集成 - 基本操作](/dataflux-func/script-market-guance-integration)
 
-> 提示：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包
+> 提示：使用本采集器前，必须安装「观测云集成 Core 核心包」及其配套的第三方依赖包
 
 ## 1. 配置结构
 
@@ -39,21 +39,27 @@ collector_configs = {
 {
   "measurement": "aliyun_slb",
   "tags": {
-    "name"              : "lb.xxxxxxxx",
-    "LoadBalancerId"    : "lb.xxxxxxxxx",
-    "RegionId"          : "cn-shanghai",
-    "SlaveZoneId"       : "cn-shanghai-i",
-    "MasterZoneId"      : "cn-shanghai",
-    "Address"           : "172.xxx.xxx.xxx",
-    "PayType"           : "PayOnDemand",
-    "InternetChargeType": "paybytraffic",
-    "LoadBalancerName"  : "业务系统"
-  },
+    "name"                : "lb.xxxxxxxx",
+    "LoadBalancerId"      : "lb.xxxxxxxxx",
+    "RegionId"            : "cn-shanghai",
+    "SlaveZoneId"         : "cn-shanghai-i",
+    "MasterZoneId"        : "cn-shanghai",
+    "Address"             : "172.xxx.xxx.xxx",
+    "PayType"             : "PayOnDemand",
+    "InternetChargeType"  : "paybytraffic",
+    "LoadBalancerName"    : "业务系统",
+    "LoadBalancerStatus"  : "active",
+    "AutoReleaseTime"     : "1513947075000",
+    "RenewalStatus"       : "AutoRenewal",
+    "AddressType"         : "Internet",
+},
   "fields": {
     "CreateTime"              : "2020-11-18T08:47:11Z",
     "ListenerPortsAndProtocol": "{监听端口 JSON 数据}",
+    "ServerHealthStatus"      : "{实例健康状态 JSON 数据}",
+    "ServerCertificates"      : "{证书信息 JSON 数据}",
     "Bandwidth"               : "5120",
-    "message"                 : "{实例 JSON 数据}"
+    "message"                 : "{实例 JSON 数据}",
   }
 }
 ~~~
@@ -63,6 +69,11 @@ collector_configs = {
 > 提示：`tags.name`值为实例 ID，作为唯一识别
 
 > 提示 2：`fields.message`、`fields.ListenerPortsAndProtocol`均为 JSON 序列化后字符串
+
+> 提示 3：`fields.ServerHealthStatus` 为SLB下对应实例的健康状态
+
+> 提示 4：`fields.AutoReleaseTime` 为时间戳 单位：秒
+
 
 ## X. 附录
 

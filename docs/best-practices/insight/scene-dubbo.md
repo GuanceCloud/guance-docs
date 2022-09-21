@@ -60,7 +60,7 @@
 
 &emsp;&emsp;安装完成后，执行如下命令开通 Proxy 采集器。
 
-```
+```shell
 cd /usr/local/datakit/conf.d/proxy
 cp proxy.conf.sample proxy.conf
 ```
@@ -71,7 +71,7 @@ cp proxy.conf.sample proxy.conf
 
 重启 DataKit。
 
-```
+```shell
 systemctl restart datakit
 ```
 
@@ -79,13 +79,13 @@ systemctl restart datakit
 
 登录 172.16.0.29 主机，执行如下命令安装 Datakit，这里 172.16.0.245 即是上步中安装的 DataKit 的主机 IP，此步骤即是通过 DataKit 代理来安装的，命令中使用到的 token 与上面提到的 token 相同。
 
-```
+```shell
 export HTTPS_PROXY=http://172.16.0.245:9530;  DK_DATAWAY=https://openway.guance.com?token=tkn_9a1111123412341234123412341113bb bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
 ```
 
 执行如下命令，测试是否能上报数据到观测云。
 
-```
+```shell
 curl -x http://172.16.0.245:9530 -v -X POST https://openway.guance.com/v1/write/metrics?token=tkn_9a1111123412341234123412341113bb -d "proxy_test,name=test c=123i"
 ```
 
@@ -101,14 +101,14 @@ curl -x http://172.16.0.245:9530 -v -X POST https://openway.guance.com/v1/write/
 
 登录 172.16.0.51 主机，复制 sample 文件，开通 skywalking 采集器。
 
-```
+```shell
 cd /usr/local/datakit/conf.d/skywalking
 cp skywalking.conf.sample skywalking.conf  
 ```
 
 重启 DataKit。
 
-```
+```shell
 systemctl restart datakit
 ```
 
@@ -124,7 +124,7 @@ systemctl restart datakit
 
 上传 provider.jar 到 172.16.0.53 主机的 /usr/local/df-demo/ 目录，确保 provider.jar 与 agent 文件夹相同目录。启动 provider 服务。
 
-```
+```shell
 cd /usr/local/df-demo/
 java -javaagent:agent/skywalking-agent.jar -Dskywalking.agent.service_name=dubbo-provider -Dskywalking.collector.backend_service=localhost:13800 -jar provider.jar
 ```
@@ -133,7 +133,7 @@ java -javaagent:agent/skywalking-agent.jar -Dskywalking.agent.service_name=dubbo
 
 上传 consumer.jar 到 172.16.0.52 主机的 /usr/local/df-demo/ 目录。启动 consumer 服务。
 
-```
+```shell
 cd /usr/local/df-demo/
 java -javaagent:agent/skywalking-agent.jar -Dskywalking.agent.service_name=dubbo-consumer -Dskywalking.collector.backend_service=localhost:13800 -jar consumer.jar
 ```
@@ -142,7 +142,7 @@ java -javaagent:agent/skywalking-agent.jar -Dskywalking.agent.service_name=dubbo
 
 上传 gateway.jar 到 172.16.0.51 主机的 /usr/local/df-demo/ 目录。启动 gateway 服务。
 
-```
+```shell
 cd /usr/local/df-demo/
 java -javaagent:agent/skywalking-agent.jar -Dskywalking.agent.service_name=dubbo-gateway -Dskywalking.collector.backend_service=localhost:13800 -jar gateway.jar
 ```
@@ -158,7 +158,7 @@ java -javaagent:agent/skywalking-agent.jar -Dskywalking.agent.service_name=dubbo
 
 修改  /etc/nginx/nginx.conf 文件，增加如下内容：
 
-```
+```toml
 server {
         listen       80;
         #add_header Access-Control-Allow-Origin '*';
@@ -181,7 +181,7 @@ server {
 
 重新加载配置。
 
-```
+```shell
  nginx -s reload
 ```
 
@@ -197,7 +197,7 @@ server {
 
 在 provider 微服务的日志中输出 traceId，需要在 provider 的 pom.xml 文件中添加依赖，版本与 javaagent 使用的版本相同，这里是 8.11.0。
 
-```
+```xml
 <dependency>
     <groupId>org.apache.skywalking</groupId>
     <artifactId>apm-toolkit-log4j-2.x</artifactId>
@@ -209,7 +209,7 @@ server {
 
 登录 Provider 服务部署的服务器 172.16.0.53，复制 sample 文件。
 
-```
+```shell
 cd /usr/local/datakit/conf.d/log
 cp logging.conf.sample logging.conf  
 ```
@@ -220,7 +220,7 @@ cp logging.conf.sample logging.conf
 
 重启 DataKit。
 
-```
+```shell
 systemctl restart datakit
 ```
 
@@ -228,7 +228,7 @@ systemctl restart datakit
 
 登录『[观测云](https://console.guance.com/)』，进入『日志』->『Pipelines』。点击『新建 Pipeline』，过滤选择开通日志采集器定义的 source 即  log-dubbo-provider 。定义解析规则输入如下内容，最后点击『保存』。
 
-```
+```toml
 # 2022-08-03 10:55:50.818 [DubboServerHandler-172.16.0.29:20880-thread-2] INFO dubbo.service.StockAPIService - [decreaseStorage,21] - [TID: 1bc41dfa-3c2c-4917-9da7-0f48b4bcf4b7] - 用户ID：-4972683369271453960 ，发起流程审批：-1133938638
 
 grok(_, "%{TIMESTAMP_ISO8601:time} %{NOTSPACE:thread_name} %{LOGLEVEL:status}%{SPACE}%{NOTSPACE:class_name} - \\[%{NOTSPACE:method_name},%{NUMBER:line}\\] - \\[TID: %{DATA:trace_id}\\] - %{GREEDYDATA:msg}")

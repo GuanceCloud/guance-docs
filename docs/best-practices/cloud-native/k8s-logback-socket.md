@@ -23,7 +23,7 @@ Kubernetes 下 Datakit 安装参照文档 [Kubernetes 应用的 RUM-APM-LOG 联�
 
 接收日志，需要开启 log socket，开启一个9541端口，并配置pipeline解析。
 
-```bash
+```toml
        [[inputs.logging]]
          ## required
          #  logfiles = [
@@ -69,6 +69,7 @@ Kubernetes 下 Datakit 安装参照文档 [Kubernetes 应用的 RUM-APM-LOG 联�
 #### pipeline解析日志
 
  logback_socket_pipeline.p 用于解析socket日志格式，便于您在观测云平台查看使用。全文如下：
+
 ```bash
         #------------------------------------   警告   -------------------------------------**
         # 不要修改本文件，如果要更新，请拷贝至其它文件，最好以某种前缀区分，避免重启后被覆盖**
@@ -88,7 +89,7 @@ Kubernetes 下 Datakit 安装参照文档 [Kubernetes 应用的 RUM-APM-LOG 联�
 #### datakit.yaml 全文
 配置如下，需要将token修改成您自己的token。
 
-```bash
+```yaml
 apiVersion: v1
 kind: Namespace
 metadata:
@@ -474,9 +475,10 @@ data:
 #### 部署
 
 ```bash
-> kubectl apply -f datakit.yaml
+ kubectl apply -f datakit.yaml
 ```
 查看部署情况
+
 ```
  [root@master ~]# kubectl get pods -n datakit
  NAME            READY   STATUS    RESTARTS   AGE
@@ -490,7 +492,7 @@ data:
 
 #### 新增pom依赖
 
-```
+```xml
 <dependency>
    <groupId>net.logstash.logback</groupId>
    <artifactId>logstash-logback-encoder</artifactId>
@@ -499,7 +501,7 @@ data:
 ```
 #### logback socket 配置
 
-```bash
+```xml
 <!-- 对日志进行了json序列化处理，dk支持文本格式的日志，可以通过socket直接推送过去-->
     <appender name="socket" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
         <!-- datakit host: logsocket_port -->
@@ -536,7 +538,7 @@ data:
 
 #### logback-spring.xml 全文
 
-```bash
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" scanPeriod="30 seconds">
     <!-- 部分参数需要来源于properties文件 -->
@@ -665,7 +667,7 @@ DATAKIT_SOCKET_PORT：datakit 日志socket 端口。
 dd-java-agent 为 datadog 的 Java-agent，用于 trace，如果不需要的话，可以移除相关配置。
 全文内容如下：
 
-```bash
+```yaml
 apiVersion: v1
 kind: Service
 metadata:

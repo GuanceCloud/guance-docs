@@ -34,7 +34,7 @@ Spring Native 为使用 GraalVM 原生镜像编译器编译 Spring 应用为本�
 
 ### 1 部署 Git
 
-```bash
+```shell
 yum install -y git
 git --version
 ```
@@ -43,7 +43,7 @@ git --version
 
 ### 2 部署 GraalVM
 
-```bash
+```shell
 cd /usr/local/df-demo
 wget https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-22.1.0/graalvm-ce-java17-linux-amd64-22.1.0.tar.gz
 tar -zxvf  graalvm-ce-java17-linux-amd64-22.1.0.tar.gz
@@ -51,7 +51,7 @@ tar -zxvf  graalvm-ce-java17-linux-amd64-22.1.0.tar.gz
 
 编辑 /etc/profile ，增加下面内容。
 
-```bash
+```shell
 export JAVA_HOME=/usr/local/df-demo/graalvm-ce-java17-22.1.0
 export CLASSPATH=$JAVA_HOME/lib:$CLASSPATH
 export PATH=$JAVA_HOME/bin:$PATH
@@ -59,14 +59,14 @@ export PATH=$JAVA_HOME/bin:$PATH
 
 native-image 安装配置。
 
-```bash
+```shell
 gu install native-image
 yum install zlib-devel -y 
 ```
 
 ### 3 部署 Maven
 
-```bash
+```shell
 cd /usr/local/df-demo
 wget https://mirrors.bfsu.edu.cn/apache/maven/maven-3/3.8.5/binaries/apache-maven-3.8.5-bin.tar.gz
 tar -zxvf  apache-maven-3.8.5-bin.tar.gz 
@@ -74,22 +74,22 @@ tar -zxvf  apache-maven-3.8.5-bin.tar.gz
 
 编辑 /etc/profile ，增加下面内容。
 
-```bash
+```shell
  export MAVEN_HOME=/usr/local/df-demo/apache-maven-3.8.5
  export PATH=$PATH:$MAVEN_HOME/bin:$JAVA_HOME/bin   # 修改
 ```
 
-```bash
+```shell
 source /etc/profile
 ```
 
-```bash
+```shell
 cd /usr/local/df-demo/apache-maven-3.8.5/conf
 ```
 
 编辑 settings.xml，增加如下内容。
 
-```bash
+```xml
    <mirrors>
        <mirror>
             <id>alimaven</id>
@@ -119,7 +119,7 @@ cd /usr/local/df-demo/apache-maven-3.8.5/conf
 
 上传项目到云服务的 /usr/local/df-demo 目录，执行打包命令。
 
-```bash
+```shell
 cd /usr/local/df-demo/springboot-native-demo
 mvn -Pnative -DskipTests clean package
 ```
@@ -156,7 +156,7 @@ mvn -Pnative -DskipTests clean package
 
 开通 ddtrace 采集器。
 
-```bash
+```shell
 cd /usr/local/datakit/conf.d/ddtrace
 cp ddtrace.conf.sample ddtrace.conf
 ```
@@ -165,13 +165,13 @@ cp ddtrace.conf.sample ddtrace.conf
 
 #### 6.3 重启 DataKit
 
-```bash
+```shell
 systemctl restart datakit
 ```
 
 #### 6.4 启动应用
 
-```bash
+```shell
 cd /usr/local/df-demo/springboot-native-demo/target
  java  -DspringAot=true -javaagent:/usr/local/datakit/data/dd-java-agent.jar  -Ddd.service=spring-native-demo    -Ddd.env=dev  -Ddd.agent.port=9529  -jar springboot-native-demo-1.0-SNAPSHOT-exec.jar
 ```

@@ -7,7 +7,7 @@
 
 在 “观测云” 工作空间，点击「日志」-「黑名单」-「新建黑名单」。
 
-![](img/1.log_11.png)
+![](img/4.log_blacklist_1.png)
 
 选择「来源」，添加一条或多条日志筛选过滤规则，点击"确定"即默认开启该日志过滤规则。您可以通过「日志黑名单」，查看全部日志过滤规则。
 
@@ -17,19 +17,19 @@
 - 字段值：支持手动输入字段值，支持输入单值、多值；支持正则匹配，如abc*，*abc*，*abc，.*等
 - 匹配选项：支持`in / not in / match / not match` 4种模式，`in / not in` 为精准匹配，`match / not match` 为模糊匹配（正则匹配）
 
-![](img/image_10.png)
+![](img/4.log_blacklist_2.png)
 
 ### 示例
 
 以下示例中，黑名单设置后，datakit 的日志，满足`status`为`ok 或 info`，且`host`不为`cc-testing-cluster-001`，且`message`中包含`kodo`字样，即同时满足这三个匹配规则的数据将被过滤，不再上报工作空间。
 
-![](img/1.log_13.png)
+![](img/4.log_blacklist_3.png)
 
 ## 编辑黑名单
 
 在日志黑名单右侧，点击「编辑」图标，即可编辑已经创建的日志过滤规则。以下示例中，黑名单设置后，datakit 的日志，满足`status`为`ok 或 info`，或者`host`不为`cc-testing-cluster-001`，或者`message`中包含`kodo`字样，即满足这三个匹配规则中任意一个规则的数据将被过滤，不再上报工作空间。
 
-![](img/1.log_12.png)
+![](img/4.log_blacklist_4.png)
 
 ## 删除黑名单
 

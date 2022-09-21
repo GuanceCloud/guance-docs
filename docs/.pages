@@ -3,6 +3,7 @@ nav:
   - 快速入门: getting-started
   - DataKit: datakit
   - 集成: integrations
+  - 自定义开发: developers
   - DQL: dql
   - 场景: scene
   - 事件: events
@@ -21,6 +22,7 @@ nav:
   - DataFlux Func: dataflux-func
   - 最佳实践: best-practices
   - 移动端: mobile
+  - 私有化部署: deployment
   - 常见问题: faq
   - 相关协议: agreements
 

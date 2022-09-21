@@ -1,40 +1,49 @@
+
 # Kube State Metrics
 ---
 
-
 ## 视图预览
+
 Kubernetes 性能指标展示：Pod desired、Pod desired、Pods ready、Pods Available、Pod Unavailable等。<br />
-![1649841130(1).png](imgs/input-kube-state-metrics-01.png)<br />
-![1649841147(1).png](imgs/input-kube-state-metrics-02.png)<br />
-![1649841167(1).png](imgs/input-kube-state-metrics-03.png)<br />
-![1649841184(1).png](imgs/input-kube-state-metrics-04.png)<br />
-![1649841202(1).png](imgs/input-kube-state-metrics-05.png)<br />
-![1649841214(1).png](imgs/input-kube-state-metrics-06.png)
+
+![image](imgs/input-kube-state-metrics-01.png)
+
+![image](imgs/input-kube-state-metrics-02.png)
+![image](imgs/input-kube-state-metrics-03.png)
+![image](imgs/input-kube-state-metrics-04.png)
+![image](imgs/input-kube-state-metrics-05.png)
+![image](imgs/input-kube-state-metrics-06.png)
 
 ## 版本支持
-kube-state-metrics/ Kubernetes<br />![1649843207(1).png](imgs/input-kube-state-metrics-07.png)
+
+kube-state-metrics/ Kubernetes
+
+![image](imgs/input-kube-state-metrics-07.png)
 
 ## 前置条件
 
-- Kubernetes 集群 <[安装 Datakit](kube-metric-server.md)>
+- Kubernetes 集群 <[安装 DataKit](../datakit/datakit-daemonset-deploy.md)>
 - 下载 [kube-state-metrics-2.3.0.zip](https://github.com/kubernetes/kube-state-metrics/releases/tag/v2.3.0)
 
 ## 安装配置
+
 说明：示例 kube-state-metrics 版本为 2.3.0，Kubernetes 集群 1.22.6。
 
 ### 部署实施
+
 (Kubernetes 集群)
 
 #### 指标采集 (必选)
 
-1. 修改镜像
+1、 修改镜像
 
-      解压 kube-state-metrics-2.3.0.zip，部署使用 kube-state-metrics-2.3.0\examples\standard\ 目录下的文件，打开 deployment.yaml 修改 k8s.gcr.io/kube-state-metrics/kube-state-metrics:v2.3.0 为 bitnami/kube-state-metrics:2.3.0。<br />注意：如果原始镜像可访问，不必修改。
+解压 kube-state-metrics-2.3.0.zip，部署使用 kube-state-metrics-2.3.0\examples\standard\ 目录下的文件，打开 deployment.yaml 修改 k8s.gcr.io/kube-state-metrics/kube-state-metrics:v2.3.0 为 bitnami/kube-state-metrics:2.3.0。<br />注意：如果原始镜像可访问，不必修改。
 
-2. 开通 prom 采集器
+2、 开通 prom 采集器
 
-       打开 deployment.yaml 增加 annotations
-```
+打开 deployment.yaml 增加 annotations
+
+```yaml
 spec:
   template:
     metadata:
@@ -57,32 +66,45 @@ spec:
             pod_name = "$PODNAME"
 ```
 
-3. 部署
-```
+3、 部署
+
+```shell
 kubectl apply -f service-account.yaml
 kubectl apply -f cluster-role.yaml  
 kubectl apply -f cluster-role-binding.yaml  
 kubectl apply -f deployment.yaml 
 ```
 
-4. 查看监控数据 
-```
+4、 查看监控数据 
+
+```shell
 kubectl get pods -n kube-system -owide
 ```
-![1649843621(1).png](imgs/input-kube-state-metrics-08.png)
-```
+
+![image](imgs/input-kube-state-metrics-08.png)
+
+```shell
 curl http://10.244.36.66:8080/metrics 
 ```
-![1649843709(1).png](imgs/input-kube-state-metrics-09.png)<br />指标预览<br />
-![1649849431(1).png](imgs/input-kube-state-metrics-10.png)
+
+![image](imgs/input-kube-state-metrics-09.png)
+
+指标预览
+
+![image](imgs/input-kube-state-metrics-10.png)
 
 #### 插件标签 (非必选）
+
 暂无
 
 ## 场景视图
-<场景 - 新建仪表板 - 内置模板库 - Kubernetes Overview with Kube State Metrics 监控视图><br /><场景 - 新建仪表板 - 内置模板库 - Kubernetes Overview by Pods 监控视图>
+
+<场景 - 新建仪表板 - 内置模板库 - Kubernetes Overview with Kube State Metrics 监控视图>
+
+<场景 - 新建仪表板 - 内置模板库 - Kubernetes Overview by Pods 监控视图>
 
 ## 指标详解
+
 prom_state_metrics：
 
 | 指标 | 描述 | 数据类型 | 单位 |
@@ -132,7 +154,8 @@ dist：
 
 
 ## 常见问题排查
-<[无数据上报排查](why-no-data.md)>
+
+<[无数据上报排查](../datakit/why-no-data.md)>
 
 ## 进一步阅读
 暂无

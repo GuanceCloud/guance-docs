@@ -2,12 +2,24 @@
 icon: zy/best-practices
 ---
 
-## (2022/08/23)
+## (2022/09/16)
 
 ### 新增最佳实践
 
 - 监控 Monitoring
-    - 应用性能监控 (APM) - [DDtrace 观测云二次开发实践](./monitoring/ddtrace-guance.md)。
+    - 应用性能监控 (APM) - 中间件（Middleware） - [洞见 MySQL](./monitoring/mysql.md)。
+
+### 更新记录
+
+- 监控 Monitoring
+    - 应用性能监控 (APM) - [DDtrace 自定义 Instrumentation](./monitoring/ddtrace-instrumentation.md)。<font color="red" > 更新代码，升级后支持dubbo3。</font>
+
+## (2022/09/02)
+
+### 新增最佳实践
+
+- 云原生 
+    - 其它 - [使用 CRD 开启您的 Ingress 可观测之路](./cloud-native/ingress-crd.md)。
 
 
 ## (2022/08/26)
@@ -16,6 +28,14 @@ icon: zy/best-practices
 
 - 监控 Monitoring
     - 应用性能监控 (APM) - [DDtrace 自定义 Instrumentation](./monitoring/ddtrace-instrumentation.md)。
+
+## (2022/08/23)
+
+### 新增最佳实践
+
+- 监控 Monitoring
+  - 应用性能监控 (APM) - [DDtrace 观测云版本](/developers/ddtrace-guance.md)。
+
 
 
 ## (2022/08/19)

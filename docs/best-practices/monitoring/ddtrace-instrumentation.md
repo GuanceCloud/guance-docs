@@ -115,7 +115,8 @@ muzzle {
   pass {
     group = "org.apache.dubbo"
     module = "dubbo"
-    versions = "[2.7.15,3)"
+    versions = "[2.7.0,)"
+//    assertInverse = true
   }
 }
 
@@ -124,7 +125,7 @@ apply from: "$rootDir/gradle/java.gradle"
 apply plugin: 'org.unbroken-dome.test-sets'
 
 dependencies {
-  compileOnly(group: 'org.apache.dubbo', name: 'dubbo', version: '2.7.15')
+  compileOnly(group: 'org.apache.dubbo', name: 'dubbo', version: '2.7.0')
 }
 
 testSets {
@@ -136,6 +137,7 @@ testSets {
 tasks.withType(Test).configureEach {
   usesService(testcontainersLimit)
 }
+
 ```
 
 同时在` settings.gradle` 文件添加`dubbo-2.7.gradle`
@@ -179,10 +181,11 @@ public class DubboInstrumentation extends Instrumenter.Tracing
     implements Instrumenter.ForTypeHierarchy {
 
   public DubboInstrumentation() {
-    super("apache-dubbo", "apache-dubbo-2.7");
+    super("apache-dubbo");
   }
 
-  public static final String CLASS_NAME = "org.apache.dubbo.rpc.Filter";
+//  public static final String CLASS_NAME = "org.apache.dubbo.rpc.Filter";
+  public static final String CLASS_NAME = "org.apache.dubbo.monitor.support.MonitorFilter";
 
   @Override
   public ElementMatcher<ClassLoader> classLoaderMatcher() {
@@ -191,7 +194,7 @@ public class DubboInstrumentation extends Instrumenter.Tracing
 
   @Override
   public ElementMatcher<TypeDescription> hierarchyMatcher() {
-    return implementsInterface(named(CLASS_NAME));
+    return extendsClass(named(CLASS_NAME));
   }
 
   @Override
@@ -218,9 +221,10 @@ public class DubboInstrumentation extends Instrumenter.Tracing
 
   @Override
   public Map<String, String> contextStore() {
-    return singletonMap("org.apache.dubbo.rpc.Invocation", AgentSpan.class.getName());
+    return singletonMap("org.apache.dubbo.rpc.RpcContext", AgentSpan.class.getName());
   }
 }
+
 
 ```
 
@@ -294,13 +298,21 @@ public class DubboDecorator extends BaseDecorator {
   public static final CharSequence DUBBO_REQUEST = UTF8BytesString.create("dubbo");
 
   public static final CharSequence DUBBO_SERVER = UTF8BytesString.create("apache-dubbo");
-  public static final CharSequence DUBBO_VERSION = UTF8BytesString.create("2.7");
 
   public static final DubboDecorator DECORATE = new DubboDecorator();
 
+  public static final String SIDE_KEY = "side";
+
+  public static final String PROVIDER_SIDE = "provider";
+
+  public static final String CONSUMER_SIDE = "consumer";
+
+  public static final String GROUP_KEY = "group";
+
+  public static final String VERSION = "release";
   @Override
   protected String[] instrumentationNames() {
-    return new String[]{"apache-dubbo.2.7"};
+    return new String[]{"apache-dubbo"};
   }
 
   @Override
@@ -322,38 +334,51 @@ public class DubboDecorator extends BaseDecorator {
     String shortUrl = generateRequestURL(url,invocation);
     System.out.println("isConsumer : "+isConsumer);
     if (log.isDebugEnabled()) {
-      log.debug("isConsumer:{},method:{},resourceName:{},shortUrl:{},longUrl:{},ProtocolServiceKey:{},serviceName:{}",
+      log.debug("isConsumer:{},method:{},resourceName:{},shortUrl:{},longUrl:{},version:{}",
           isConsumer,
           methodName,
           resourceName,
           shortUrl,
           url.toString(),
-          invocation.getProtocolServiceKey(),
-          invocation.getServiceName()
+          getVersion(url)
           );
     }
     AgentSpan span;
-
+    RpcContext rpcContext = RpcContext.getContext();
     if (isConsumer){
       // this is consumer
       span = startSpan(DUBBO_REQUEST);
     }else{
       // this is provider
-      AgentSpan.Context parentContext = propagate().extract(invocation, GETTER);
+      AgentSpan.Context parentContext = propagate().extract(rpcContext, GETTER);
       span = startSpan(DUBBO_REQUEST,parentContext);
     }
     span.setTag("url", url.toString());
     span.setTag("short_url", shortUrl);
     span.setTag("method", methodName);
+    span.setTag("dubbo-version",getVersion(url));
     afterStart(span);
 
     withMethod(span, resourceName);
     if (isConsumer){
-      propagate().inject(span, invocation, SETTER);
+      propagate().inject(span, rpcContext, SETTER);
 //      InstrumentationContext.get(Invocation.class, AgentSpan.class).put(invocation, span);
     }
     return span;
   }
+
+  public void withMethod(final AgentSpan span, final String methodName) {
+    span.setResourceName(methodName);
+  }
+
+  @Override
+  public AgentSpan afterStart(AgentSpan span) {
+    return super.afterStart(span);
+  }
+
+	...
+}
+
 
 ...
 ```
@@ -370,6 +395,7 @@ public class RequestAdvice {
   public static AgentScope beginRequest(@Advice.This Filter filter,@Advice.Argument(0) final Invoker invoker,
                                         @Advice.Argument(1) final Invocation invocation) {
 
+    System.out.println(filter.getClass().getName());
     final int callDepth = CallDepthThreadLocalMap.incrementCallDepth(RpcContext.class);
     if (callDepth > 0) {
       return null;

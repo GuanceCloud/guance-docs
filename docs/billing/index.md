@@ -16,7 +16,7 @@ icon: zy/billing
 
 注意：「升级」按钮只有当前工作空间拥有者可查看并点击。
 
-![](img/5.update_3.png)
+![](img/7.biling_account_2.png)
 
 ## 商业版
 

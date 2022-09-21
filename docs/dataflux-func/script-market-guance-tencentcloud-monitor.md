@@ -6,7 +6,7 @@
 
 - [观测云集成 - 基本操作](/dataflux-func/script-market-guance-integration)
 
-> 提示：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包
+> 提示：使用本采集器前，必须安装「观测云集成 Core 核心包」及其配套的第三方依赖包
 
 > 提示 2：采集腾讯云云监控数据前，必须先配置对应产品的自定义对象采集器。
 
@@ -37,7 +37,7 @@ tencentcloud_monitor_configs = {
             'namespace': 'QCE/CVM',
             'metrics'  : ['WanOuttraffic', 'WanOutpkg'],
         }
-    ],
+    ]
 }
 ```
 
@@ -61,9 +61,9 @@ tencentcloud_monitor_configs = {
     'targets': [
         {
             'namespace': 'QCE/CVM',
-            'metrics'  : ['WanOutpkg', 'Wan*', '*Outpkg', '*Out*'],
+            'metrics'  : ['WanOutpkg', 'Wan*', '*Outpkg', '*Out*']
         }
-    ],
+    ]
 }
 ```
 
@@ -87,9 +87,9 @@ tencentcloud_monitor_configs = {
     'targets': [
         {
             'namespace': 'QCE/CVM',
-            'metrics'  : ['NOT', 'WanOutpkg', 'Wan*', '*Outpkg', '*Out*'],
+            'metrics'  : ['NOT', 'WanOutpkg', 'Wan*', '*Outpkg', '*Out*']
         }
-    ],
+    ]
 }
 ```
 
@@ -109,13 +109,13 @@ tencentcloud_monitor_configs = {
     'targets': [
         {
             'namespace': 'QCE/CVM',
-            'metrics'  : ['*Out*'],
+            'metrics'  : ['*Out*']
         },
         {
             'namespace': 'QCE/CVM',
-            'metrics'  : ['NOT', 'WanOutpkg'],
-        },
-    ],
+            'metrics'  : ['NOT', 'WanOutpkg']
+        }
+    ]
 }
 ```
 
@@ -123,14 +123,15 @@ tencentcloud_monitor_configs = {
 
 ### 云产品配置信息
 
-| 产品名称         | 命名空间 (Namespace) | 维度 (Dimension)             | 说明                                                                           |
-| ---------------- | -------------------- | ---------------------------- | ------------------------------------------------------------------------------ |
+| 产品名称         | 命名空间 (Namespace) | 维度 (Dimension)             | 说明                                                         |
+| ---------------- | -------------------- | ---------------------------- | ------------------------------------------------------------ |
 | 云服务器         | `QCE/CVM`            | `InstanceId`                 | `vm_uuid`、`vmUuid`、 `uuid`、`InstanceId` 统一识别为对象数据中的 `InstanceId` |
-| 云数据库 Mysql   | `QCE/CDB`            | `InstanceId`、`InstanceType` |                                                                                |
-| 对象存储监控     | `QCE/COS`            | `BucketName`                 |                                                                                |
-| 公网负载均衡监控 | `QCE/LB_PUBLIC`      | `vip`                        | 对象数据中的` Address `字段被识别为`vip`                                       |
+| 云数据库 Mysql   | `QCE/CDB`            | `InstanceId`、`InstanceType` |                                                              |
+| 对象存储监控     | `QCE/COS`            | `BucketName`                 |                                                              |
+| 公网负载均衡监控 | `QCE/LB_PUBLIC`      | `vip`                        | 对象数据中的` Address `字段被识别为`vip`                     |
 | 内网负载均衡监控 | `QCE/LB_PRIVATE`     | `vip`、`vpcId`               |                                                              |
-| 云数据库 Redis   | `QCE/REDIS_MEM`      | `InstanceId`                 | 目前仅支持 Redis 实例监控，暂不支持节点监控                                                            |
+| 云数据库 Redis   | `QCE/REDIS_MEM`      | `InstanceId`                 | 目前仅支持 Redis 实例监控，暂不支持节点监控                  |
+| 云数据库 MongoDB | `QCE/CMONGO`         | `InstanceId`                 | 目前仅支持 MongoDB 实例监控，暂不支持副本集、节点监控        |
 
 ### 监控指标配置信息
 
@@ -318,7 +319,7 @@ tencentcloud_monitor_configs = {
 
 #### QCE/REDIS_MEM
 
-- [云数据库 Redis 内存版监控指标（5秒）](https://cloud.tencent.com/document/product/248/49729)
+- [云数据库 Redis 内存版监控指标（5 秒）](https://cloud.tencent.com/document/product/248/49729)
 
 | 指标英文名 (MetricName) | 指标中文名          |
 | ----------------------- | ------------------- |
@@ -352,9 +353,29 @@ tencentcloud_monitor_configs = {
 | CmdMget                 | Mget 请求数         |
 | CmdSlow                 | 慢查询              |
 | CmdHits                 | 读请求命中          |
-| CmdMiss                 | 读请求Miss          |
+| CmdMiss                 | 读请求 Miss          |
 | CmdErr                  | 执行错误            |
 | CmdHitsRatio            | 读请求命中率        |
+
+#### QCE/CMONGO
+
+- [云数据库 MongoDB 监控指标](https://cloud.tencent.com/document/product/248/45104)
+
+| 指标英文名 (MetricName) | 指标中文名                   |
+| ----------------------- | ---------------------------- |
+| Reads                   | 读取请求次数                 |
+| Updates                 | 更新请求次数                 |
+| Deletes                 | 删除请求次数                 |
+| Counts                  | count 请求次数               |
+| Success                 | 成功请求次数                 |
+| Commands                | command 请求次数             |
+| Qps                     | 每秒钟请求次数               |
+| Delay10                 | 时延在 10 - 50 毫秒间请求次数  |
+| Delay50                 | 时延在 50 - 100 毫秒间请求次数 |
+| Delay100                | 时延在 100 毫秒以上请求次数    |
+| ClusterConn             | 集群连接数                   |
+| Connper                 | 连接使用率                   |
+| ClusterDiskusage        | 磁盘使用率                   |
 
 ## 4. 数据上报格式
 
@@ -368,9 +389,9 @@ tencentcloud_monitor_configs = {
     'targets': [
         {
             'namespace': 'QCE/CVM',
-            'metrics'  : ['WanOutpkg'],
-        },
-    ],
+            'metrics'  : ['WanOutpkg']
+        }
+    ]
 }
 ```
 

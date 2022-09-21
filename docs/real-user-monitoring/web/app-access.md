@@ -29,8 +29,7 @@
 登录观测云控制台，进入「用户访问监测」页面，点击右上角「新建应用」，在新窗口输入「应用名称」并自定义「应用 ID 标识」，点击「创建」，即可选择应用类型获取接入方式。Web应用接入的有三种方式：NPM 接入、同步载入和异步载入。
 
 - 应用名称（必填项）：用于识别当前实施用户访问监测的应用名称。
-- 应用 ID 标识（选填）：当前空间内唯一的应用 ID 标识，支持自定义，可用于数据上传匹配；应用ID标识最多为 20 个字符，仅支持输入大小写字母。
-- 应用 ID：若创建应用时填写了应用 ID 标识，点击创建应用以后，会把填写的应用 ID 标识信息拼接到应用 ID 的前面，便于区分应用进行查询和筛选。
+- 应用 ID 标识（必填项）：应用在当前工作空间的唯一标识，用于 SDK 采集数据上传匹配，数据入库后对应字段：app_id 。该字段仅支持英文、数字、下划线输入，最多 48 个字符。
 
 ![](../img/sampling.png)
 
@@ -46,7 +45,7 @@
 
     ```javascript
     import { datafluxRum } from '@cloudcare/browser-rum'
-
+    
     datafluxRum.init({
         applicationId: '<DATAFLUX_APPLICATION_ID>',
         datakitOrigin: '<DATAKIT ORIGIN>',
@@ -129,7 +128,7 @@
 | `allowedTracingOrigins`        | Array    | 否       | `[]`                               | 【新增】允许注入`trace`采集器所需header头部的所有请求列表。可以是请求的origin，也可以是是正则，origin: `协议（包括：//），域名（或IP地址）[和端口号]`<br> 例如：<br>`["https://api.example.com", /https:\\/\\/.*\\.my-api-domain\\.com/]`                                                                                                                                                                                                                                                                                                                           |
 | `trackInteractions`            | Boolean  | 否       | `false`                            | 是否开启用户行为采集                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | `isServerError`                | Function | 否       | `function(request) {return false}` | 默认情况下，请求如果status code>= 500 则定义为错误请求，会相应的采集为error 指标数据。为满足部分场景可能并非是通过status code 来判断业务请求的错误情况，提供可通过用户自定义的方式来判断请求是否为`error`请求，callback参数为请求对应的相关返回参数： `{ isAborted: false, method:"get",response: "{...}",status: 200,url: "xxxx" }`, 如果方法返回为true，则该请求相关数据会被采集为`error`指标 <br>*该参数 方法返回结果必须为Boolean 类型， 否则认为是无效参数*                                                                                                    |
-
+| `isIntakeUrl`                    | Function | 否       | `function(url) {return false}`     | 自定义方法根据请求资源 url 判断是否需要采集对应资源数据，默认都采集。 返回：`false` 表示要采集，`true` 表示不需要采集 <br>*该参数 方法返回结果必须为 Boolean 类型， 否则认为是无效参数*<br/>**注意：版本要求为 v2.1.5 及以上**                                                 |
 
 ## 问题
 

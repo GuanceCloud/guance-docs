@@ -2,6 +2,8 @@
 
 ---
 
+> *作者： 刘锐*
+
 ## 背景介绍
 
 ![image.png](../images/mutil-micro-service-1.png)
@@ -98,7 +100,7 @@ Nacos 注册中心心跳上报检查主要用到了三个 URL ：` GET /nacos/v1
 
 
 ## 更多文档
-[ddtrace 配置](/datakit/ddtrace.md)
+[ddtrace 配置](/integrations/ddtrace/)
 
 [Kubernetes 应用的 RUM-APM-LOG 联动分析](../cloud-native/k8s-rum-apm-log.md)
 

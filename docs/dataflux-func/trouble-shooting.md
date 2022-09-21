@@ -422,7 +422,7 @@ sudo docker stack deploy dataflux-func -c {安装目录}/docker-stack.yaml --res
     - `sudo docker stack deploy dataflux-func -c {安装目录}/docker-stack.yaml`
     - `sudo docker stack deploy dataflux-func -c {安装目录}/docker-stack.yaml --resolve-image never`
 
-## 9. 发布脚本/执行函数时 MySQL 发生`ERROR 2026 (HY000)`错误
+## 9. 发布脚本/执行函数时 MySQL 发生「ERROR 2026 (HY000)」错误
 
 由于 Ubuntu 20.04 对 SSL 版本最低要求为 v1.2，旧版本 DataFlux Func 升级到 1.5.5 版本后，在发布/运行脚本时，可能会出现如下异常：
 
@@ -448,3 +448,21 @@ command: --tls-version=TLSv1.2 --innodb-large-prefix=on （... 后略）
 ```
 
 ![](trouble-shooting/mysql-tls-version-setting.png)
+
+## 10. 授权链接、批处理只能通过 GET 调用，POST 调用时会失败
+
+一般有如下可能：
+
+### 10.1 混淆了「简化形式」和「标准形式」
+
+检查请求的 URL 地址和请求体是否正确，避免「简化形式」和「标准形式」混用。
+
+具体请参考 [手册 / 开发手册 / 基础 / 调用函数](/doc/development-guide-basic/#4)
+
+### 10.2 HTTP 请求被 301 等跳转为 HTTPS 请求
+
+确认 DataFlux Func 是否在类似 Nginx 等反向代理服务器后方，且反向代理服务器将你的 HTTP 请求跳转到了 HTTPS 请求。
+
+如果是，那么，你发送的`POST http://xxxxx`会被跳转为`GET https://xxxxx`请求，原本请求体中的内容也会丢失。
+
+将请求改为直接发送`POST https://xxxxx`即可解决问题。

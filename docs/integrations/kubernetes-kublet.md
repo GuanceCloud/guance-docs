@@ -1,9 +1,12 @@
+
 # Kubernetes Kubelet
 ---
 
 ## 视图预览
 
-![1653442677(1).png](../imgs/kubernetes-kubelet-1.png)
+![image](imgs/kubernetes-kubelet-1.png)
+
+![image](imgs/kubernetes-kubelet-2.png)
 
 ## 版本支持
 
@@ -13,7 +16,7 @@ Kubernetes 版本：1.18+
 
 ## 前置条件
 
-- Kubernetes 集群 <[安装 Datakit](kube-metric-server.md)>
+- Kubernetes 集群  <[安装 Datakit](../datakit/datakit-daemonset-deploy.md)>
 
 ## 安装配置
 
@@ -27,7 +30,7 @@ Kubernetes 版本：1.18+
 
 在部署 DataKit 使用的 datakit.yaml 文件中，ConfigMap 资源中增加 kubelet.conf。
 
-```
+```yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -120,7 +123,7 @@ data:
 
 在 datakit.yaml 文件的 volumeMounts 下面增加下面内容。
 
-```
+```yaml
 - mountPath: /usr/local/datakit/conf.d/prom/kubelet.conf
   name: datakit-conf
   subPath: kubelet.conf  
@@ -128,14 +131,14 @@ data:
 
 3、 重启 DataKit
 
-```
+```yaml
 kubectl delete -f datakit.yaml
 kubectl apply -f datakit.yaml
 ```
 
 指标预览
 
-![1653445079(1).png](../imgs/kubernetes-kubelet-2.png)
+![image](imgs/kubernetes-kubelet-2.png)
 
 #### 插件标签 (必选）
 
@@ -146,16 +149,16 @@ kubectl apply -f datakit.yaml
 - 以下示例配置完成后，kubelet 指标都会带有 app = oa 的标签，可以进行快速查询
 - 采集 kubelet 指标，必填的 key 是 instance，值是 kubeletmetrics 的 ip + 端口
 
-```
+```toml
 
 ## 自定义Tags
 [inputs.prom.tags]
   instance = "172.16.0.229:10250" 
 ```
 
-如果增加了自定义 tag，重启 Datakit 
+如果增加了自定义 tag，重启 DataKit 
 
-```
+```shell
 kubectl delete -f datakit.yaml
 kubectl apply -f datakit.yaml
 ```
@@ -166,34 +169,25 @@ kubectl apply -f datakit.yaml
 
 ## 指标集
 
-以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.{{.InputName}}.tags]` 指定其它标签：
-
-``` toml
- [inputs.{{.InputName}}.tags]
-  # some_tag = "some_value"
-  # more_tag = "some_other_value"
-  # ...
-```
-
-{{ range $i, $m := .Measurements }}
-
-### `{{$m.Name}}`
-
--  标签
-
-{{$m.TagsMarkdownTable}}
-
-- 指标列表
-
-{{$m.FieldsMarkdownTable}}
-
-{{ end }}
+| 指标 | 描述 | 数据类型 | 单位 |
+| --- | --- | --- | --- |
+| kubelet_node_name | The node's name. The count is always 1. | int | <br /> |
+| kubelet_running_pods | Number of pods that have a running pod sandbox. | int | <br /> |
+| kubelet_running_containers | Number of containers currently running. | int | <br /> |
+| volume_manager_total_volumes | Number of volumes in Volume Manager. | int |  |
+| kubelet_runtime_operations_total | Cumulative number of runtime operations by operation type. | int |  |
+| kubelet_runtime_operations_errors_total | Cumulative number of runtime operation errors by operation type. | int |  |
+| storage_operation_errors_total | Storage operation errors (Deprecated since 1.21.0) | int |  |
+| rest_client_requests_total | Number of HTTP requests, partitioned by status code, method, and host. | int |  |
+| process_resident_memory_bytes | Resident memory size in bytes. | B | <br /> |
+| process_cpu_seconds_total | Total user and system CPU time spent in seconds. | float | <br /> |
+| go_goroutines | Number of goroutines that currently exist. | int | <br /> |
 
 ## 常见问题排查
 
-- [无数据上报排查](why-no-data.md)
+- <[无数据上报排查](../datakit/why-no-data.md)>
 
 ## 进一步阅读
 
-- [DataFlux Tag 应用最佳实践](/best-practices/guance-skill/tag.md)
+- [DataFlux Tag 应用最佳实践](../best-practices/insight/tag.md)
 

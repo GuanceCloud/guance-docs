@@ -16,7 +16,7 @@
 
 ## 前置条件
 
-- 服务器 <[安装 Datakit](../datakit/datakit-install.md)>
+- 服务器 <[安装 DataKit](../datakit/datakit-install.md)>
 - 服务器 <[安装 Func 携带版](../dataflux-func/quick-start.md)>
 - 阿里云 RAM 访问控制账号授权
 
@@ -117,7 +117,7 @@ def run():
     Runner(collectors).run()
 ```
 
-5、**保存**配置并 **发布**
+5、保存配置并发布
 
 ![image](imgs/input-aliyun-nat-12.png)
 
@@ -150,7 +150,7 @@ def run():
 
 ![image](imgs/input-aliyun-nat-16.png)
 
-- 连接配置：Func 无法连接 Datakit，请检查数据源配置
+- 连接配置：Func 无法连接 DataKit，请检查数据源配置
 
 ![image](imgs/input-aliyun-nat-17.png)
 

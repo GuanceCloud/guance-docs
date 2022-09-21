@@ -6,7 +6,7 @@
 
 - [观测云集成 - 基本操作](/dataflux-func/script-market-guance-integration)
 
-> 提示：使用本采集器前，必须安装「观测云集成（核心包）」及其配套的第三方依赖包
+> 提示：使用本采集器前，必须安装「观测云集成 Core 核心包」及其配套的第三方依赖包
 
 ## 1. 配置结构
 
@@ -47,10 +47,18 @@ collector_configs = {
     "DBInstanceId"         : "rm-xxxxx",
     "ZoneId"               : "cn-shanghai-h",
     "RegionId"             : "cn-shanghai",
-    "DBInstanceDescription": "业务系统"
+    "DBInstanceDescription": "业务系统",
+    "LockMode"             : "Unlock",
+    "Category"             : "Basic",
+    "ConnectionMode"       : "Standard",
+    "DBInstanceNetType"    : "Intranet",
   },
   "fields": {
+    "CreationTime"     : "2022-12-13T16:00:00Z",
     "ExpireTime"       : "2022-12-13T16:00:00Z",
+    "DiskUsed"         : "10000",
+    "BackupSize"       : "10000",
+    "LogSize"          : "10000",
     "ConnectionString" : "{连接地址 JSON 数据}",
     "DBInstanceStorage": "100",
     "message"          : "{实例 JSON 数据}"
@@ -63,6 +71,8 @@ collector_configs = {
 > 提示：`tags.name`值为实例 ID，作为唯一识别
 
 > 提示 2：`fields.message`、`fields.ConnectionString`均为 JSON 序列化后字符串
+
+> 提示 3：`fields.DiskUsed`、`fields.BackupSize`、`fields.LogSize` 单位：Byte，`fields.DBInstanceStorage` 单位：GB。
 
 ## X. 附录
 

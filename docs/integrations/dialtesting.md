@@ -1,20 +1,59 @@
 
-# 网络拨测
+# Dialtesting (云拨测)
 ---
 
-- 操作系统支持：:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple:
+- 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
-# dialtesting
+## 视图预览
 
-该采集器是网络拨测结果数据采集，所有拨测产生的数据，上报观测云。
+![image](imgs/input-dialtesting-1.png)
 
-## 私有拨测节点部署
+![image](imgs/input-dialtesting-2.png)
 
-私有拨测节点部署，需在 [观测云页面创建私有拨测节点](../usability-monitoring/self-node.md)。创建完成后，将页面上相关信息填入 `conf.d/network/dialtesting.conf` 即可：
+![image](imgs/input-dialtesting-3.png)
 
-```toml
+## 安装部署
+
+### 配置实施
+
+#### saas节点使用
+
+名词解释：**saas节点**
+df已利用云资源创建好的节点，目前分布于全国各地，还可根据具体需要进行节点扩增（例如具体省份、具体国家等），可直接用来执行拨测任务。
+
+**创建任务步骤：**
+云拨测 - 新建任务 - API拨测 / Brwser拨测 - 填写URL以及任务名称 - 选择拨测节点 - 选择拨测频率 - 保存
+具体可参考[[云拨测-数据采集](../usability-monitoring/dialingtest-task)]
+
+**任务配置名词解释**：
+**API拨测：** 针对接口级别的主动拨测，主要汇总并分析接口返回的状态码以及网络层的耗时信息；
+**Browser：** 针对页面级别的主动拨测，相较于 API 拨测得到的返回状态码及网络层的耗时信息外，还有页面具体资源（例如 jss、css、图片等）的性能消耗数据。
+
+![image](imgs/input-dialtesting-4.png)
+
+![image](imgs/input-dialtesting-5.png)
+
+#### 私有节点使用
+
+名词解释：**私有节点**
+用户可在自己的云服务器上或者各地机房所拥有的服务器上安装拨测-私有节点（本质上为 datakit 上的一个 inputs 功能），开启之后，即可作用于自己的拨测任务调度。
+
+**前置条件**
+
+- datakit 所在服务器（需要安装私有节点的服务器） <[安装 DataKit](../datakit/datakit-install.md)>
+
+**私有节点创建：**
+私有拨测节点部署，需在 [DataFlux 页面创建私有拨测节点](../usability-monitoring/self-node)。创建完成后，将页面上相关信息填入 `conf.d/network/dialtesting.conf` 即可：
+
+```
+$ cd /usr/local/datakit/conf.d/ssh
+$ cp ssh.conf.sample ssh.conf
+$ vim ssh.conf
+
+
+
 #  中心任务存储的服务地址
-server = "https://dflux-dial.guance.com"
+server = "https://dflux-dial.dataflux.cn"
 
 # require，节点惟一标识ID
 region_id = "reg_c2jlokxxxxxxxxxxx"
@@ -23,257 +62,66 @@ region_id = "reg_c2jlokxxxxxxxxxxx"
 ak = "ZYxxxxxxxxxxxx"
 sk = "BNFxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 
+pull_interval = "1m"
+
 [inputs.dialtesting.tags]
   # some_tag = "some_value"
   # more_tag = "some_other_value"
   # ...
+  
+$ wq!
 ```
 
-> 注意：目前只有 linux 的拨测节点才支持「路由跟踪」，跟踪数据会保存在相关指标的 [traceroute](#fields) 字段中。
+**创建任务步骤：**
+云拨测 - 新建任务 - API拨测 / Brwser拨测 - 填写URL以及任务名称 - 选择拨测节点 - 选择拨测频率 - 保存
+具体可参考[[云拨测-数据采集](../usability-monitoring/dialingtest-task)]
 
-## 拨测部署图
+**任务配置名词解释**：
+**API拨测：** 针对接口级别的主动拨测，主要汇总并分析接口返回的状态码以及网络层的耗时信息；
+**Browser：** 针对页面级别的主动拨测，相较于API拨测得到的返回状态码及网络层的耗时信息外，还有页面具体资源（例如jss、css、图片等）的性能消耗数据。
 
-![](imgs/dialtesting-net-arch.png)
+![image](imgs/input-dialtesting-6.png)
 
-## 配置
+![image](imgs/input-dialtesting-7.png)
 
-进入 DataKit 安装目录下的 `conf.d/network` 目录，复制 `dialtesting.conf.sample` 并命名为 `dialtesting.conf`。示例如下：
+注意：
+如需利用私有节点进行browser类型任务的拨测，需要在安装私有节点的服务器上安装Chrome浏览器
 
-```toml
+```
+### 举例： Ubuntu
 
-[[inputs.dialtesting]]
-  # 中心任务存储的服务地址，即df_dialtesting center service。
-  # 此处同时可配置成本地json 文件全路径 "file:///your/dir/json-file-name", 为task任务的json字符串。
-  server = "https://dflux-dial.guance.com"
-
-  # require，节点惟一标识ID
-  region_id = "default"
-
-  # 若server配为中心任务服务地址时，需要配置相应的ak或者sk
-  ak = ""
-  sk = ""
-
-  pull_interval = "1m"
-
-  time_out = "1m"
-  workers = 6
-
-  # 发送数据失败最大次数，根据任务的post_url进行累计，超过最大次数后，发送至该地址的拨测任务将退出
-  max_send_fail_count = 16
-
-  [inputs.dialtesting.tags]
-  # some_tag = "some_value"
-  # more_tag = "some_other_value"
-  # ...
+sudo apt-get install libxss1 libappindicator1 libindicator7
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo dpkg -i google-chrome-stable_current_amd64.deb
+sudo apt-get install -f
 ```
 
-配置好后，重启 DataKit 即可。
+下载完之后，无需修改  DataKit 配置，只需在 DataFlux平台 中设置浏览器拨测任务即可。
+具体可参考[[云拨测-数据采集](../usability-monitoring/dialingtest-task)]
 
-## 指标集
+#### [云拨测分析](../usability-monitoring/explorer)
 
-以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[[inputs.dialtesting.tags]]` 另择 host 来命名。
+## 场景视图
 
+DF平台已默认内置，无需手动创建
 
+## 异常检测
 
-### `http_dial_testing`
+异常检测库 - 新建检测库 - Nginx 检测库 
 
--  标签
+| 序号 | 规则名称 | 触发条件 | 级别 | 检测频率 |
+| --- | --- | --- | --- | --- |
+| 1 | 拨测错误次数异常告警 | error次数 >=3 | 警告<br /> | 1m |
+| 2 | 拨测错误次数异常告警 | error次数 >=10<br /> | 紧急 | 1m |
 
+## 指标详解
 
-| 标签名 | 描述    |
-|  ----  | --------|
-|`city`|示例 杭州|
-|`country`|示例 中国|
-|`internal`|示例 true（国内 true /海外 false）|
-|`isp`|示例 电信/移动/联通|
-|`name`|示例：拨测名称,百度测试|
-|`proto`|示例 HTTP/1.0|
-|`province`|示例 浙江|
-|`status`|示例 OK/FAIL 两种状态 |
-|`status_code_class`|示例 2xx|
-|`status_code_string`|示例 200 OK|
-|`url`|示例 http://wwww.baidu.com|
+<[云拨测指标详解](../datakit/dialtesting#measurements)>
 
-- 指标列表
+## 最佳实践
 
+暂无
 
-| 指标 | 描述| 数据类型 | 单位   |
-| ---- |---- | :---:    | :----: |
-|`fail_reason`|拨测失败原因|string|-|
-|`message`|包括请求头(request_header)/请求体(request_body)/返回头(response_header)/返回体(response_body)/fail_reason 冗余一份|string|-|
-|`proto`|示例 HTTP/1.0|string|-|
-|`response_body_size`|body 长度|int|B|
-|`response_time`|HTTP 相应时间, 单位 ms|int|μs|
-|`status_code`|web page response code|int|-|
-|`success`|只有 1/-1 两种状态, 1 表示成功, -1 表示失败|int|-|
+## 故障排查
 
-
-
-### `tcp_dial_testing`
-
--  标签
-
-
-| 标签名 | 描述    |
-|  ----  | --------|
-|`city`|示例 杭州|
-|`country`|示例 中国|
-|`dest_host`|示例 wwww.baidu.com|
-|`dest_port`|示例 80|
-|`internal`|示例 true（国内 true /海外 false）|
-|`isp`|示例 电信/移动/联通|
-|`name`|示例 拨测名称,百度测试|
-|`proto`|示例 tcp|
-|`province`|示例 浙江|
-|`status`|示例 OK/FAIL 两种状态 |
-
-- 指标列表
-
-
-| 指标 | 描述| 数据类型 | 单位   |
-| ---- |---- | :---:    | :----: |
-|`fail_reason`|拨测失败原因|string|-|
-|`message`|包括响应时间(response_time_in_micros)/错误原因(fail_reason)|string|-|
-|`response_time`|TCP 连接时间, 单位|int|μs|
-|`response_time_with_dns`|连接时间（含DNS解析）, 单位|int|μs|
-|`success`|只有 1/-1 两种状态, 1 表示成功, -1 表示失败|int|-|
-|`traceroute`|路由跟踪数据文本(JSON格式)|string|-|
-
-
-
-### `icmp_dial_testing`
-
--  标签
-
-
-| 标签名 | 描述    |
-|  ----  | --------|
-|`city`|示例 杭州|
-|`country`|示例 中国|
-|`dest_host`|示例 wwww.baidu.com|
-|`internal`|示例 true（国内 true /海外 false）|
-|`isp`|示例 电信/移动/联通|
-|`name`|示例 拨测名称,百度测试|
-|`proto`|示例 icmp|
-|`province`|示例 浙江|
-|`status`|示例 OK/FAIL 两种状态 |
-
-- 指标列表
-
-
-| 指标 | 描述| 数据类型 | 单位   |
-| ---- |---- | :---:    | :----: |
-|`average_round_trip_time_in_millis`|平均往返时间(RTT)|float|ms|
-|`fail_reason`|拨测失败原因|string|-|
-|`max_round_trip_time_in_millis`|最大往返时间(RTT)|float|ms|
-|`message`|包括平均RTT时间(average_round_trip_time_in_millis)/错误原因(fail_reason)|string|-|
-|`min_round_trip_time_in_millis`|最小往返时间(RTT)|float|ms|
-|`packet_loss_percent`|丢包率|float|ms|
-|`packets_received`|接受的数据包|int|count|
-|`packets_sent`|发送的数据包|int|count|
-|`std_round_trip_time_in_millis`|往返时间(RTT)标准差|float|ms|
-|`success`|只有 1/-1 两种状态, 1 表示成功, -1 表示失败|int|-|
-|`traceroute`|路由跟踪数据文本(JSON格式)|string|-|
-
-
-
-### `websocket_dial_testing`
-
--  标签
-
-
-| 标签名 | 描述    |
-|  ----  | --------|
-|`city`|示例 杭州|
-|`country`|示例 中国|
-|`internal`|示例 true（国内 true /海外 false）|
-|`isp`|示例 电信/移动/联通|
-|`name`|示例 拨测名称,百度测试|
-|`proto`|示例 websocket|
-|`province`|示例 浙江|
-|`status`|示例 OK/FAIL 两种状态 |
-|`url`|示例 ws://www.abc.com|
-
-- 指标列表
-
-
-| 指标 | 描述| 数据类型 | 单位   |
-| ---- |---- | :---:    | :----: |
-|`fail_reason`|拨测失败原因|string|-|
-|`message`|包括响应时间(response_time_in_micros)/错误原因(fail_reason)|string|-|
-|`response_message`|拨测返回的消息|string|-|
-|`response_time`|连接时间, 单位|int|μs|
-|`response_time_with_dns`|连接时间（含DNS解析）, 单位|int|μs|
-|`sent_message`|拨测发送的消息|string|-|
-|`success`|只有 1/-1 两种状态, 1 表示成功, -1 表示失败|int|-|
-
-
-
-
-## `traceroute` 字段描述 {#fields}
-
-traceroute 是「路由跟踪」数据的 JSON 文本，整个数据是一个数组对象，对象中的每个数组元素记录了一次路由探测的相关情况，示例如下：
-
-```json
-[
-    {
-        "total": 2,
-        "failed": 0,
-        "loss": 0,
-        "avg_cost": 12700395,
-        "min_cost": 11902041,
-        "max_cost": 13498750,
-        "std_cost": 1129043,
-        "items": [
-            {
-                "ip": "10.8.9.1",
-                "response_time": 13498750
-            },
-            {
-                "ip": "10.8.9.1",
-                "response_time": 11902041
-            }
-        ]
-    },
-    {
-        "total": 2,
-        "failed": 0,
-        "loss": 0,
-        "avg_cost": 13775021,
-        "min_cost": 13740084,
-        "max_cost": 13809959,
-        "std_cost": 49409,
-        "items": [
-            {
-                "ip": "10.12.168.218",
-                "response_time": 13740084
-            },
-            {
-                "ip": "10.12.168.218",
-                "response_time": 13809959
-            }
-        ]
-    }
-]
-```
-
-**字段描述：**
-
-| 字段       | 类型          | 说明                        |
-| :---       | ---           | ---                         |
-| `total`    | number        | 总探测次数                  |
-| `failed`   | number        | 失败次数                    |
-| `loss`     | number        | 失败百分比                  |
-| `avg_cost` | number        | 平均耗时(ns)                |
-| `min_cost` | number        | 最小耗时(ns)                |
-| `max_cost` | number        | 最大耗时(ns)                |
-| `std_cost` | number        | 耗时标准差(ns)              |
-| `items`    | Item 的 Array | 每次探测信息([详见](#item)) |
-
-### Item {#item}
-
-| 字段            | 类型   | 说明                      |
-| :---            | ---    | ---                       |
-| `ip`            | string | IP 地址，如果失败，值为 * |
-| `response_time` | number | 响应时间(ns)              |
-
+<[无数据上报排查](../datakit/why-no-data.md)>
