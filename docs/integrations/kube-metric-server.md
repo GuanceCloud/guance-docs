@@ -8,12 +8,18 @@
 
 Kubernetes 性能指标展示：包括 pod 数量、deployment 数量、job 数量、endpoint 数量、service 数量、CPU、内存、Pod 分布等。<br />
 
-![image](imgs/input-kube-metric-server-01.png)<br />
-![image](imgs/input-kube-metric-server-02.png)<br />
-![image](imgs/input-kube-metric-server-03.png)<br />
-![image](imgs/input-kube-metric-server-04.png)<br />
-![image](imgs/input-kube-metric-server-05.png)<br />
-![image](imgs/input-kube-metric-server-06.png)<br />
+![image](imgs/input-kube-metric-server-01.png) 
+
+![image](imgs/input-kube-metric-server-02.png)
+
+![image](imgs/input-kube-metric-server-03.png)
+
+![image](imgs/input-kube-metric-server-04.png)
+
+![image](imgs/input-kube-metric-server-05.png)
+
+![image](imgs/input-kube-metric-server-06.png)
+
 ![image](imgs/input-kube-metric-server-07.png)
 
 ## 安装部署
@@ -22,7 +28,7 @@ Kubernetes 性能指标展示：包括 pod 数量、deployment 数量、job 数�
 
 ### 前置条件
 
-- Kubernetes 集群。
+- Kubernetes 集群  <[安装 Datakit](../datakit/datakit-daemonset-deploy.md)>。
 - 采集 Kubernetes Pod 指标数据，[需要 Kubernetes 安装 Metrics-Server 组件](https://github.com/kubernetes-sigs/metrics-server#installation)。
 
 
@@ -244,7 +250,7 @@ spec:
 
 进入【管理】模块，找到下图中 token。
 
-![1648545757(1).png](imgs/input-kube-metric-server-08.png)
+![image](imgs/input-kube-metric-server-08.png)
 
 替换 datakit.yaml 文件中的 ENV_DATAWAY 环境变量的 value 值中的 <your-token>。
 
@@ -270,7 +276,7 @@ spec:
           value: xxx
 ```
 
-3、 定义ConfigMap
+3、 定义 ConfigMap
 
 『注意』下载的 datakit.yaml 并没有 ConfigMap，定义的 ConfigMap 可一起放到 datakit.yaml 。
 
@@ -336,7 +342,7 @@ data:
           subPath: container.conf
 ```
 
-5、 部署Datakit
+5、 部署 DataKit
 
 ```shell
 kubectl apply -f datakit.yaml
@@ -365,7 +371,7 @@ kubectl apply -f datakit.yaml
 
 <场景 - 新建仪表板 - 内置模板库 - Kubernetes Kubelet 监控视图>
 
-## 异常检测
+## 检测库
 
 暂无
 

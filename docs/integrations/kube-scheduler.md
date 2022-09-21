@@ -17,7 +17,7 @@ Kubernetes 版本：1.18+
 
 ## 前置条件
 
-- Kubernetes 集群 <[安装 Datakit](kube-metric-server.md)>
+- Kubernetes 集群 <[安装 Datakit](../datakit/datakit-daemonset-deploy.md)>
 
 ## 安装配置
 

@@ -6,11 +6,12 @@
 
 Kubernetes 性能指标展示：Pod desired、Pod desired、Pods ready、Pods Available、Pod Unavailable等。<br />
 
-![image](imgs/input-kube-state-metrics-01.png)<br />
-![image](imgs/input-kube-state-metrics-02.png)<br />
-![image](imgs/input-kube-state-metrics-03.png)<br />
-![image](imgs/input-kube-state-metrics-04.png)<br />
-![image](imgs/input-kube-state-metrics-05.png)<br />
+![image](imgs/input-kube-state-metrics-01.png)
+
+![image](imgs/input-kube-state-metrics-02.png)
+![image](imgs/input-kube-state-metrics-03.png)
+![image](imgs/input-kube-state-metrics-04.png)
+![image](imgs/input-kube-state-metrics-05.png)
 ![image](imgs/input-kube-state-metrics-06.png)
 
 ## 版本支持
@@ -21,7 +22,7 @@ kube-state-metrics/ Kubernetes
 
 ## 前置条件
 
-- Kubernetes 集群 <[安装 Datakit](kube-metric-server.md)>
+- Kubernetes 集群 <[安装 DataKit](../datakit/datakit-daemonset-deploy.md)>
 - 下载 [kube-state-metrics-2.3.0.zip](https://github.com/kubernetes/kube-state-metrics/releases/tag/v2.3.0)
 
 ## 安装配置

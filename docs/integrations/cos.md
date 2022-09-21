@@ -21,9 +21,9 @@
 ### 访问授权
 
 1、 登录访问授权控制台 [https://console.cloud.tencent.com/cam](https://console.cloud.tencent.com/cam)
-2、 新建用户：用户 - 用户列表 - 新建用户
-   1、 访问方式：控制台访问 & 编程访问
-   2、 用户权限：ReadOnlyAccess
+2、 新建用户：用户 - 用户列表 - 新建用户  
+    a、 访问方式：控制台访问 & 编程访问  
+    b、 用户权限：ReadOnlyAccess  
 
 ![image](imgs/input-tencent-cos-2.png)
 
@@ -50,10 +50,10 @@
 
 ![image](imgs/input-tencent-cos-5.png)
 
-3、 **依次添加**三个脚本集
-   1、 观测云集成 (核心包)
-   2、 观测云集成 (腾讯云-云监控)
-   3、 观测云集成 (腾讯云-COS)
+3、 **依次添加**三个脚本集  
+   a、 观测云集成 (核心包)  
+   b、 观测云集成 (腾讯云-云监控)  
+   c、 观测云集成 (腾讯云-COS)  
 
 _注：在安装「核心包」后，系统会提示安装第三方依赖包，按照正常步骤点击安装即可_
 
@@ -125,7 +125,7 @@ def run():
     Runner(collectors).run()
 ```
 
-5、 **保存**配置并 **发布**
+5、 保存配置并发布
 
 ![image](imgs/input-tencent-cos-13.png)
 
@@ -135,7 +135,11 @@ def run():
 
 ![image](imgs/input-tencent-cos-14.png)
 
-2、 自动触发配置，执行函数中添加此脚本，执行频率为 **5分钟 */5 * * * ***
+2、 自动触发配置，执行函数中添加此脚本，执行频率为 
+
+```
+**5分钟 */5 * * * ***
+```
 
 ![image](imgs/input-tencent-cos-15.png)
 

@@ -6,13 +6,13 @@
 
 ## 视图预览
 
-容器性能指标展示：CPU使用率、内存使用率、内存可用总量、容器网络流量、容器文件系统读写等。
+容器性能指标展示：CPU 使用率、内存使用率、内存可用总量、容器网络流量、容器文件系统读写等。
 
 ![image](imgs/input-docker-1.png)
 
 ## 安装部署
 
-说明：示例Docker 版本为：20.10.7(CentOS)，各个不同版本指标可能存在差异
+说明：示例 Docker 版本为：20.10.7(CentOS)，各个不同版本指标可能存在差异
 
 ### 前置条件
 
@@ -22,7 +22,7 @@
 
 #### 指标采集 (必选)
 
-1、 开启Container插件，复制sample文件
+1、 开启 Container 插件，复制 sample 文件
 
 ```
 cd /usr/local/datakit/conf.d/container
@@ -90,7 +90,7 @@ systemctl restart datakit
 
 #### 日志采集 (非必选)
 
-查看 /usr/local/datakit/conf.d/container/container.conf，如下的配置，默认采集除了 datakit 外所有容器输出到 stdout 的日志。
+查看 /usr/local/datakit/conf.d/container/container.conf，如下的配置，默认采集除了 DataKit 外所有容器输出到 stdout 的日志。
 
 ```
    container_include_log = []
@@ -131,7 +131,7 @@ systemctl restart datakit
 
 <场景 - 新建仪表板 - 内置模板库 - Docker 监控视图>
 
-## 监控规则
+## 检测库
 
 暂无
 

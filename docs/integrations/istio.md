@@ -16,7 +16,7 @@ Istio 版本： [istio](https://github.com/istio/istio)。
 
 - 已部署 [Kubernetes](https://kubernetes.io/docs/setup/production-environment/tools/)。
 
-- 已部署 DataKit，请参考  [Daemonset 部署 Datakit](kube-metric-server.md) 。
+- 已部署 DataKit，请参考 Kubernetes 集群 <[安装 Datakit](../datakit/datakit-daemonset-deploy.md)>。
 
 ## 安装配置
 
@@ -26,7 +26,7 @@ Istio 版本： [istio](https://github.com/istio/istio)。
 
 #### 1 下载 Istio 
 
-[下载](https://github.com/istio/istio/releases ) **Source Code **和 **istio-1.11.2-linux-amd64.tar.gz。**
+[下载](https://github.com/istio/istio/releases ) **Source Code** 和 **istio-1.11.2-linux-amd64.tar.gz**。
 
 #### 2 安装 Istio 
 
@@ -735,7 +735,7 @@ spec:
 kubectl delete -f datakit.yaml
 kubectl apply -f  datakit.yaml
 ```
-部署完 Istio 后，链路数据会被打到** **zipkin.istio-system的 Service上，且上报端口是 9411。在部署 DataKit 时已开通链路指标采集的 Zipkin 采集器，由于 DataKit 服务的名称空间是 datakit，端口是 9529，所以这里需要做一下转换，详情请参考[Kubernetes 集群使用 ExternalName 映射 DataKit 服务](/best-practices/guance-skill/kubernetes-external-name )。创建后的 Service 如下图：
+部署完 Istio 后，链路数据会被打到 **zipkin.istio-system** 的 Service 上，且上报端口是 9411。在部署 DataKit 时已开通链路指标采集的 Zipkin 采集器，由于 DataKit 服务的名称空间是 datakit，端口是 9529，所以这里需要做一下转换，详情请参考[Kubernetes 集群使用 ExternalName 映射 DataKit 服务](../best-practices/cloud-native/kubernetes-external-name )。创建后的 Service 如下图：
 
 ![image](imgs/istio-5.png)
 
