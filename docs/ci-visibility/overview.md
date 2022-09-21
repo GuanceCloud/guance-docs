@@ -23,6 +23,6 @@
 
     ![](img/17.CI_2.png)
 
-=== "Pipeline"
+=== "Job"
 
     ![](img/17.CI_3.png)
