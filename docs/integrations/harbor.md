@@ -4,17 +4,17 @@
 
 ## 视图预览
 
-harbor展示：包括项目数量、镜像仓库数、Components health、服务组件监控状态分布等。
+Harbor 展示：包括项目数量、镜像仓库数、Components health、服务组件监控状态分布等。
 
 ![image](imgs/harbor-1.png)
 
 ## 安装部署
 
-说明：harbor版本为 1.10.10
+说明：Harbor 版本为 1.10.10
 
 ### 前置条件
 
-- [安装 Datakit](../dataflux-func/quick-start.md)>
+- [安装 Datakit](../datakit/datakit-install.md)>
 
 ### harbor 安装
 
@@ -28,7 +28,7 @@ harbor展示：包括项目数量、镜像仓库数、Components health、服务
 
 #### 配置
 
-备份harbor.yml 
+备份 harbor.yml 
 
 > cp harbor.yml harbor.yml.bk
 
@@ -69,20 +69,20 @@ harbor展示：包括项目数量、镜像仓库数、Components health、服务
 
 ![image](imgs/harbor-3.png)
 
-状态都是healthy,代表启动成功
+状态都是 healthy,代表启动成功
 
 #### 访问
 
-http://配置的ip:7180,默认登录账号： admin ,密码Harbor12345。
+http://配置的ip:7180,默认登录账号： admin ,密码 Harbor12345。
 
 ![image](imgs/harbor-4.png)
 
-查看项目，默认只有一个项目：library。如要修改，可以在harbor.yml 文件修改
+查看项目，默认只有一个项目：library。如要修改，可以在 harbor.yml 文件修改
 
 > harbor_admin_password: Harbor12345
 
 
-### harbor-exporter安装
+### harbor-exporter 安装
 
 #### 下载地址
 
@@ -90,7 +90,7 @@ http://配置的ip:7180,默认登录账号： admin ,密码Harbor12345。
 
 > git clone https://github.com/zhangguanzhang/harbor_exporter.git
 
-源码有个bug，如果传入用户名参数，会覆盖密码。如果启动的用户名是非admin，则需要修改源码后再打镜像。
+源码有个 bug，如果传入用户名参数，会覆盖密码。如果启动的用户名是非 admin，则需要修改源码后再打镜像。
 
 ![image](imgs/harbor-5.png)
 
@@ -205,9 +205,9 @@ http://配置的ip:7180,默认登录账号： admin ,密码Harbor12345。
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - harbor 监控视图> 
+<场景 - 新建仪表板 - 内置模板库 - Harbor 监控视图> 
 
-## 异常检测
+## 检测库
 
 暂无
 

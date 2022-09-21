@@ -6,7 +6,7 @@
 
 ## 视图预览
 
-Jenkins 性能指标展示：包括项目数量、构建数量、作业数量、空闲构建数量、正在构建数量、CPU使用率、内存使用量等。
+Jenkins 性能指标展示：包括项目数量、构建数量、作业数量、空闲构建数量、正在构建数量、CPU 使用率、内存使用量等。
 
 ![image](imgs/input-jenkins-01.png)
 
@@ -16,7 +16,7 @@ Jenkins 性能指标展示：包括项目数量、构建数量、作业数量、
 
 ### 前置条件
 
-- Jenkins 所在服务器 <[安装 Datakit](../datakit/datakit-install.md)>
+- Jenkins 所在服务器 <[安装 DataKit](../datakit/datakit-install.md)>
 - Jenkins 已安装
 
 ```
@@ -29,13 +29,13 @@ ps -ef | grep jenkins
 
 #### 指标采集 (必选)
 
-1、 安装Metrics Plugin
+1、 安装 Metrics Plugin
 
-登录jenkins，点击【系统管理】->【插件管理】
+登录 Jenkins，点击【系统管理】->【插件管理】
 
 ![image](imgs/input-jenkins-03.png)
 
-点击【插件管理】->【可选插件】，输入metric，点击【Install without restart】 
+点击【插件管理】->【可选插件】，输入 metric，点击【Install without restart】 
 
 ![image](imgs/input-jenkins-04.png)
 
@@ -45,11 +45,11 @@ ps -ef | grep jenkins
 
 ![image](imgs/input-jenkins-05.png)
 
-找到Metrics，点击【Generate...】->【新增】，记录下Access keys
+找到 Metrics，点击【Generate...】->【新增】，记录下 Access keys
 
 ![image](imgs/input-jenkins-06.png)
 
-3、 开启jenkins插件，复制sample文件
+3、 开启 jenkins 插件，复制 sample 文件
 
 ```
 cd /usr/local/datakit/conf.d/jenkins
@@ -65,7 +65,7 @@ vi jenkins.conf
 参数说明
 
 - url：jenkins 的 url
-- key：步骤2中生成的key
+- key：步骤 2 中生成的 key
 
 ```
 [[inputs.jenkins]]
@@ -76,7 +76,7 @@ vi jenkins.conf
   key = "zItDYv9ClhSqM3sdfeeYcO1juiIeZEuh02bno_PyzphcGQWsUOsiafcyLs5Omyso2"
 ```
 
-5、 重启 Datakit (如果需要开启日志，请配置日志采集再重启)
+5、 重启 DataKit (如果需要开启日志，请配置日志采集再重启)
 
 ```
 systemctl restart datakit
@@ -129,7 +129,7 @@ vi /usr/local/datakit/conf.d/jenkins/jenkins.conf
   # grok pipeline script path
     pipeline = "jenkins.p"
 ```
-重启 Datakit (如果需要开启自定义标签，请配置插件标签再重启)
+重启 DataKit (如果需要开启自定义标签，请配置插件标签再重启)
 ```
 systemctl restart datakit
 ```
@@ -153,7 +153,7 @@ systemctl restart datakit
   # ...
 ```
 
-重启 Datakit
+重启 DataKit
 
 ```
 systemctl restart datakit
@@ -172,6 +172,7 @@ systemctl restart datakit
 ### `jenkins`
 
 - 标签
+
 | 标签名 | 描述 |
 | --- | --- |
 | `metric_plugin_version` | jenkins plugin version |
@@ -180,6 +181,7 @@ systemctl restart datakit
 
 
 - 指标列表
+
 | 指标 | 描述 | 数据类型 | 单位 |
 | --- | --- | --- | --- |
 | `executor_count` | The number of executors available to Jenkins | int | count |
@@ -206,6 +208,7 @@ systemctl restart datakit
 ### `jenkins_pipeline`
 
 - 标签
+
 | 标签名 | 描述 |
 | --- | --- |
 | `author_email` | 作者邮箱 |
@@ -221,6 +224,7 @@ systemctl restart datakit
 
 
 - 指标列表
+
 | 指标 | 描述 | 数据类型 | 单位 |
 | --- | --- | --- | --- |
 | `commit_message` | 触发该 pipeline 的代码的最近一次提交附带的 message | string | - |
@@ -234,6 +238,7 @@ systemctl restart datakit
 ### `jenkins_job`
 
 - 标签
+
 | 标签名 | 描述 |
 | --- | --- |
 | `build_commit_sha` | build 对应的 commit 的哈希值 |
@@ -249,6 +254,7 @@ systemctl restart datakit
 
 
 - 指标列表
+
 | 指标 | 描述 | 数据类型 | 单位 |
 | --- | --- | --- | --- |
 | `build_commit_message` | 触发该 build 的最近一次 commit 的 message | string | - |

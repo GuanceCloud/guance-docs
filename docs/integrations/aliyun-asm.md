@@ -26,7 +26,7 @@ Istio 版本：v1.11.5.41-g10eacaaf-aliyun、v1.24.4.20-g4d72612f-aliyun
 
 - 已创建一个 ACK 集群。如果没有创建，请参见[创建 Kubernetes 专有版集群](https://help.aliyun.com/document_detail/86488.htm#task-skz-qwk-qfb)和[创建 Kubernetes 托管版集群](https://help.aliyun.com/document_detail/95108.htm#task-skz-qwk-qfb)。
 - 已部署 DataKit，请参考 [Kubernetes](../datakit/datakit-daemonset-deploy.md)。
-- 已创建一个 ASM 实例。如果没有创建，请参见[创建 ASM 实例](https://help.aliyun.com/document_detail/147793.htm#task-2370657)。**注意**，创建新网格时，请选择**自行搭建 Zipkin**。
+- 已创建一个 ASM 实例。如果没有创建，请参见[创建 ASM 实例](https://help.aliyun.com/document_detail/147793.htm#task-2370657)。**注意**，创建新网格时，请选择 **自行搭建 Zipkin**。
 
 ![image](imgs/input-aliyun-asm-6.png)
 

@@ -14,21 +14,27 @@
 
 ![image](imgs/input-ddtrace-java-5.png)
 
-## 安装部署<ddtrace>
+## 安装部署 <ddtrace>
 
-DF默认支持所有采用opentracing协议的APM监控手段，例如<**skywalking**><**jaeger**><**zipkin**>等，此处官方推荐ddtrace接入方式，ddtrace为开源的APM监控方式，相较于其他方式，支持更多的自定义字段，也就意味着可以有足够多的标签与其他的组件进行关联，ddtrace具体接入方式详细如下：
+DF 默认支持所有采用 opentracing 协议的 APM 监控手段，例如 <**skywalking**> <**jaeger**> <**zipkin**> 等，此处官方推荐 ddtrace 接入方式，ddtrace 为开源的 APM 监控方式，相较于其他方式，支持更多的自定义字段，也就意味着可以有足够多的标签与其他的组件进行关联，ddtrace 具体接入方式详细如下：
 
 ### 前置条件
 
-- 需要进行链路追踪的应用服务器<[安装 Datakit](../datakit/datakit-install.md)>
+- 需要进行链路追踪的应用服务器<[安装 DataKit](../datakit/datakit-install.md)>
 - dd-java-agent.jar 已默认内置于 **/usr/local/datakit/data** 目录下
 - <[ddtrace -java -agent 框架兼容列表](https://docs.datadoghq.com/tracing/setup_overview/compatibility_requirements/java/)>
 
 ### 配置实施
 
-**java所有部署方式都是在原有应用启动脚本中添加ddtrace.jar启动参数，具体添加字段如下 java -javaagent:/xxx/ddtrace.jar -Ddd.env=xxx -Ddd.service.name=xxx -Ddd.agent.port=xxx    -jar xxx.jar  其中xxx内容都需要填写。**
+Java 所有部署方式都是在原有应用启动脚本中添加 ddtrace.jar 启动参数，具体添加字段如下 
 
-##### 开启datakit.conf中链路追踪inputs
+```
+java -javaagent:/xxx/ddtrace.jar -Ddd.env=xxx -Ddd.service.name=xxx -Ddd.agent.port=xxx    -jar xxx.jar  
+```
+
+其中 xxx 内容都需要填写。
+
+##### 开启 datakit.conf 中链路追踪 inputs
 
 **（必须开启）**
 
@@ -48,7 +54,7 @@ DF默认支持所有采用opentracing协议的APM监控手段，例如<**skywalk
 
  wq!
 
-## 重启datakit 
+## 重启 DataKit
  systemctl restart datakit
 ```
 
@@ -68,7 +74,7 @@ DF默认支持所有采用opentracing协议的APM监控手段，例如<**skywalk
 
 #### tomcat 环境接入：
 
-在catlina.sh添加ddtrace启动参数后，重启tomcat。**代码段中的 xxx需替换为绝对路径**
+在 catlina.sh 添加 ddtrace 启动参数后，重启 tomcat。**代码段中的 xxx需替换为绝对路径**
 
 ```
  cd /xxx/tomcat/bin
@@ -84,17 +90,17 @@ DF默认支持所有采用opentracing协议的APM监控手段，例如<**skywalk
  ./startup.sh
 ```
 
-是windows环境，设置setenv.bat：
+是 windows 环境，设置 setenv.bat：
 
 ```
 set CATALINA_OPTS=%CATALINA_OPTS% -javaagent:"c:\path\to\dd-java-agent.jar"
 ```
 
-如果setenv文件不存在，建议在tomcat 的安装根目录 ./bin下创建它
+如果 setenv 文件不存在，建议在 tomcat 的安装根目录 ./bin 下创建它
 
 #### 微服务环境接入：
 
-直接在启动脚本中添加ddtrace的启动参数，重启应用。**代码段中的 xxx需替换为绝对路径**
+直接在启动脚本中添加 ddtrace 的启动参数，重启应用。**代码段中的 xxx 需替换为绝对路径**
 
 ```
 ## 举例
@@ -107,8 +113,8 @@ set CATALINA_OPTS=%CATALINA_OPTS% -javaagent:"c:\path\to\dd-java-agent.jar"
 
 #### Docker环境接入：
 
-Docker环境下接入方式有多种，本示例会展示两种方式，分别是修改dockerfile，重新打包镜像，不修改dockerfile，用启动参数覆盖原有启动命令，举例如下：
-1、修改dockerfile，重新打包 **代码段中的 xxx需替换为绝对路径**
+Docker 环境下接入方式有多种，本示例会展示两种方式，分别是修改 dockerfile，重新打包镜像，不修改 dockerfile，用启动参数覆盖原有启动命令，举例如下：
+1、修改 dockerfile，重新打包 **代码段中的 xxx 需替换为绝对路径**
 
 
 ```
@@ -154,7 +160,7 @@ Docker环境下接入方式有多种，本示例会展示两种方式，分别�
 
 ## 场景视图
 
-DF平台已内置 应用性能监测模块，无需手动创建
+DF 平台已内置 应用性能监测模块，无需手动创建
 
 ## 检测库
 

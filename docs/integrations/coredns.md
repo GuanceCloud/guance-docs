@@ -6,20 +6,20 @@
 
 ## 视图预览
 
-coreDNS 性能指标展示：包括请求次数、对每个zone和RCODE的响应总数、缓存总数、缓存命中说、缓存miss数等。
+coreDNS 性能指标展示：包括请求次数、对每个 zone 和 RCODE 的响应总数、缓存总数、缓存命中说、缓存 miss 数等。
 
 ![image](imgs/input-coredns-1.png)
 
 ## 安装部署
 
-说明：示例 coreDNS 版本为：coredns:1.7.0(CentOS环境下kubeadmin部署)，各个不同版本指标可能存在差异
+说明：示例 coreDNS 版本为：coredns:1.7.0(CentOS 环境下 kubeadmin 部署)，各个不同版本指标可能存在差异
 
 ### 前置条件
 
-- coreDNS 所在kubernetes集群 <[安装 DataKit](https://www.yuque.com/dataflux/integrations/kubernetes)>
+- coreDNS 所在 kubernetes 集群 <[安装 DataKit](../datakit/datakit-daemonset-deploy.md)>
 - 检查是否能正常收集数据
 
-kubernetes集群master节点执行
+Kubernetes 集群 Master 节点执行
 
 ```
 kubectl get svc -n kube-system
@@ -49,7 +49,7 @@ curl http://kube-dns.kube-system.svc.cluster.local:9153/metrics
 
 1、 开启 coreDNS 插件
 
-Kubernetes 环境下部署的 DataKit 与宿主机直接安装的 DataKit ，开启插件的方式不一样， kubernetes环境下部署 DataKit 是按照<<[Kubernetes 部署 DataKit](../datakit/datakit-daemonset-deploy)>>来配置的，在 Kubernetes 集群的 master 节点找到 datakit.yaml。
+Kubernetes 环境下部署的 DataKit 与宿主机直接安装的 DataKit ，开启插件的方式不一样， Kubernetes 环境下部署 DataKit 是按照<<[Kubernetes 部署 DataKit](../datakit/datakit-daemonset-deploy)>>来配置的，在 Kubernetes 集群的 master 节点找到 datakit.yaml。
 
 2、 修改 datakit.yaml 配置文件  
 
@@ -66,7 +66,7 @@ vi datakit.yaml
           subPath: k8s_core_dns.conf 
 ```
 
-在 ConfigMap 资源文件中增加#### k8s core dns以下的部分：
+在 ConfigMap 资源文件中增加#### k8s core dns 以下的部分：
 
 ```yaml
 apiVersion: v1
@@ -153,17 +153,17 @@ data:
 
 参数说明
 
-- url：CoreDNS的prom监听地址
+- url：CoreDNS 的 prom 监听地址
 - source：采集器别名
 - metric_types：指标类型过滤
 - metric_name_filter：指标名称过滤
 - measurement_prefix：指标集名称前缀
 - measurement_name：指标集名称
 - interval：采集间隔
-- tags_ignore：匹配的tag将被忽略
+- tags_ignore：匹配的 tag 将被忽略
 - tls_open：是否忽略安全验证 (如果是 https，请设置为 true，并设置相应证书)
 - prefix：自定义指标前缀
-- name：自定义指标集名称，即把prefix开头的指标归为此name的指标集
+- name：自定义指标集名称，即把 prefix 开头的指标归为此 name 的指标集
 
 3、 重启 DataKit
 
@@ -180,7 +180,7 @@ systemctl restart datakit
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，所有 coreDNS 指标都会带有 app = oa 的标签，可以进行快速查询，上文已经配置了一个cluster_name的key
+- 以下示例配置完成后，所有 coreDNS 指标都会带有 app = oa 的标签，可以进行快速查询，上文已经配置了一个 cluster_name 的 key
 - 相关文档 <[DataFlux Tag 应用最佳实践](../best-practices/insight/tag.md)>
 
 ```

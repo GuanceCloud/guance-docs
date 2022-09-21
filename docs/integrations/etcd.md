@@ -13,6 +13,7 @@ Etcd 性能指标展示：包括接收 grpc 客户端的总字节数、发送 gr
 ## 安装部署
 
 说明：示例 Etcd 版本为：etcd-v3.4.13(CentOS)，各个不同版本指标可能存在差异
+
 ### 前置条件
 
 - Etcd 所在服务器 <[安装 DataKit](../datakit/datakit-install.md)>
@@ -31,14 +32,14 @@ curl http://127.0.0.1:2379/metrics
 通过二进制方式安装的 etcd，推荐在宿主机上部署 DataKit，使用 [http://127.0.0.1:2379/metrics](http://127.0.0.1:2379/metrics) 采集指标数据。
 **指标采集 (必选)**
 
-1、 开启etcd插件，复制sample文件     
+1、 开启 etcd 插件，复制 sample 文件     
 
 ```
 cd /usr/local/datakit/conf.d/etcd
 cp etcd.conf.sample etcd.conf
 ```
 
-2、 修改etcd.conf 配置文件   
+2、 修改 etcd.conf 配置文件   
 
 ```
 vi etcd.conf

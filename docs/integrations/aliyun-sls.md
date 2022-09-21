@@ -82,7 +82,7 @@
                       ]
 ```
 
-6、 **保存**配置并 **发布**
+6、 保存配置并发布
 
 ![image](imgs/input-aliyun-sls-09.png)
 
