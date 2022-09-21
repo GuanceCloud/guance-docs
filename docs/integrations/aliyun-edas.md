@@ -1,51 +1,62 @@
-# EDAS
+
+# 阿里云 EDAS
 ---
 
 ## 视图预览
-![image.png](imgs/input-aliyun-edas-01.png)<br />
-![image.png](imgs/input-aliyun-edas-02.png)<br />
-![image.png](imgs/input-aliyun-edas-03.png)<br />
-![image.png](imgs/input-aliyun-edas-04.png)
+
+![image](imgs/input-aliyun-edas-01.png)
+
+![image](imgs/input-aliyun-edas-02.png)
+
+![image](imgs/input-aliyun-edas-03.png)
+
+![image](imgs/input-aliyun-edas-04.png)
 
 ## 版本支持
-操作系统：Linux / Windows<br />EDAS 环境：ECS 集群，Java 运行环境 (Jar 包部署方式)
+
+操作系统：Linux / Windows
+EDAS 环境：ECS 集群，Java 运行环境 (Jar 包部署方式)
 
 ## 前置条件
 
 - EDAS 中每台 ECS <[安装 Datakit](../datakit/datakit-install.md)>
 
 ## 安装配置
+
 观测云默认支持所有采用 opentracing 协议的 APM 监控手段，例如 skywalking，jaeger，zipkin 等，此处官方推荐 datadog ddtrace 接入方式，ddtrace 为开源的 APM 监控方式，相较于其他方式，支持更多的自定义字段，也就意味着可以有足够多的标签与其他的组件进行关联
 
 ## 部署实施
 
-1. 登录阿里云 EDAS 控制台  [https://edasnext.console.aliyun.com](https://edasnext.console.aliyun.com/)
-1. **应用列表** - 选择应用名称 
+1、 登录阿里云 EDAS 控制台  [https://edasnext.console.aliyun.com](https://edasnext.console.aliyun.com/)
+2、 **应用列表** - 选择应用名称 
 
-![image.png](imgs/input-aliyun-edas-05.png)
+![image](imgs/input-aliyun-edas-05.png)
 
-3. **基本信息** - 编辑 **JVM 参数**
+3、 **基本信息** - 编辑 **JVM 参数**
 
-![image.png](imgs/input-aliyun-edas-06.png)
+![image](imgs/input-aliyun-edas-06.png)
 
-4. **选择自定义**，填入 javaagent 参数，修改完成点击 **配置 JVM 参数**
+4、 **选择自定义**，填入 javaagent 参数，修改完成点击 **配置 JVM 参数**
 
 参数说明：
 
 - javaagent：引入 dd-java-agent.jar 包
 - Ddd.service.name：服务名称 (自定义)
 - Ddd.agent.port：数据传输到 datakit 端口 (默认 9529)
+
 ```
 -javaagent:/usr/local/datakit/data/dd-java-agent.jar -Ddd.service.name=service.name -Ddd.agent.port=9529 
 ```
-![image.png](imgs/input-aliyun-edas-07.png)
 
-5. 选择**实例部署信息**，重启应用
+![image](imgs/input-aliyun-edas-07.png)
 
-![image.png](imgs/input-aliyun-edas-08.png)
+5、 选择**实例部署信息**，重启应用
+
+![image](imgs/input-aliyun-edas-08.png)
 
 ## 场景视图
-<观测云 - 应用性能监测>
+
+暂无
 
 ## 指标详解
 
@@ -67,14 +78,15 @@
 
 ## 常见问题排查
 
-1. 查看应用变更记录
+1、 查看应用变更记录
 
-![image.png](imgs/input-aliyun-edas-09.png)
+![image](imgs/input-aliyun-edas-09.png)
 
-2. 查看应用日志详情
+2、 查看应用日志详情
 
-![image.png](imgs/input-aliyun-edas-10.png)
+![image](imgs/input-aliyun-edas-10.png)
 
 ## 进一步阅读
+
 <[阿里云 EDAS 帮助文档](https://help.aliyun.com/product/29500.html)>
 

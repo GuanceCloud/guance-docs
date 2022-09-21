@@ -3,7 +3,8 @@
 ---
 
 ## 视图预览
-asm性能指标展示：Incoming Request Volume、Incoming Success Rate、Incoming Request Size By Source、Response Size By Source 等。
+
+ASM 性能指标展示：Incoming Request Volume、Incoming Success Rate、Incoming Request Size By Source、Response Size By Source 等。
 
 ![image](imgs/input-aliyun-asm-1.png)
 

@@ -26,7 +26,8 @@
 ![image](imgs/input-aliyun-es-2.png)
 
 3、保存或下载 **AccessKey** **ID** 和 **AccessKey Secret** 的 CSV 文件 (配置文件会用到)
-4、用户授权 (云监控只读/时序指标数据权限)
+
+(云监控只读/时序指标数据权限)
 
 ![image](imgs/input-aliyun-es-3.png)
 

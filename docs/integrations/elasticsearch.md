@@ -1,130 +1,79 @@
 
-# ElasticSearch
+# Elasticsearch
 ---
 
-- 操作系统支持：:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple:
+操作系统支持：windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64
+
+## 视图预览
+
+### 场景视图
+
+Elasticsearch 观测场景主要展示了 Elasticsearch 的集群信息、网络性能、集群性能、索引性能以及日志信息。
+
+![image](imgs/input-elasticsearch-1.png)
+
+![image](imgs/input-elasticsearch-2.png)
+
+![image](imgs/input-elasticsearch-3.png)
+
+### 内置视图
+
+Elasticsearch 内置视图主要展示了 Elasticsearch 的集群内的 JVM 和线程池的信息
+
+![image](imgs/input-elasticsearch-4.png)
+
+## 安装部署
 
 ElasticSearch 采集器主要采集节点运行情况、集群健康、JVM 性能状况、索引性能、检索性能等。
 
-![](imgs/input-elasticsearch-01.png)
+说明：示例 ElasticSearch 版本为：ElasticSearch 7.6.1 (CentOS)，各个不同版本指标可能存在差异
 
-## 前置条件
+### 前置条件
 
-- ElasticSearch 版本 >= 6.0.0
+- ElasticSearch 版本 >= 7.0.0
 - ElasticSearch 默认采集 `Node Stats` 指标，如果需要采集 `Cluster-Health` 相关指标，需要设置 `cluster_health = true`
-- 设置 `cluster_health = true` 可产生如下指标集
-  - `elasticsearch_cluster_health`
-
-- 设置 `cluster_stats = true` 可产生如下指标集
-  - `elasticsearch_cluster_stats`
-
-## 用户权限配置
-
-如果开启账号密码访问，需要配置相应的权限，否则会导致监控信息获取失败错误。目前支持 Elasticsearch , Open Distro for Elasticsearch 和 OpenSearch。
-
-### Elasticsearch
-
-- 创建角色`monitor`，设置如下权限
-
-```javascript
-  {
-    "applications": [],
-    "cluster": [
-        "monitor"
-    ],
-    "global": [],
-    "indices": [
-        {
-            "allow_restricted_indices": false,
-            "names": [
-                "all"
-            ],
-            "privileges": [
-                "manage_ilm",
-                "monitor"
-            ]
-        },
-    ],
-    "run_as": []
-  }
-
-```
-
-- 创建自定义用户，并赋予新创建的`monitor`角色。
+- 设置 `cluster_health = true` 可产生如下指标集 
+   - `elasticsearch_cluster_health`
+- 设置 `cluster_stats = true` 可产生如下指标集 
+   - `elasticsearch_cluster_stats`
+- 如果开启账号密码访问，需要配置该账号拥有访问集群和索引监控的 `monitor` 权限，否则会导致监控信息获取失败错误。用户设置参考如下： 
+   - 方法一：使用内置用户 `remote_monitoring_user` (推荐)
+   - 方法二：创建自定义用户，需要赋予角色 `remote_monitoring_collector`
 - 其他信息请参考配置文件说明
 
-### Open Distro for Elasticsearch
 
-- 创建用户
-- 创建角色 `monitor`, 设置如下权限：
+### 配置实施
 
-```
-PUT _opendistro/_security/api/roles/monitor
-{
-  "description": "monitor es cluster",
-  "cluster_permissions": [
-    "cluster:admin/opendistro/ism/managedindex/explain",
-    "cluster_monitor",
-    "cluster_composite_ops_ro"
-  ],
-  "index_permissions": [
-    {
-      "index_patterns": [
-        "*"
-      ],
-      "fls": [],
-      "masked_fields": [],
-      "allowed_actions": [
-        "read",
-        "indices_monitor"
-      ]
-    }
-  ],
-  "tenant_permissions": []
-}
+#### 指标采集 (必选)
+
+1、 开启 DataKit ElasticSearch 插件，复制 sample 文件
+
+```bash
+cd /usr/local/datakit/conf.d/db/
+cp elasticsearch.conf.sample elasticsearch.conf
 ```
 
-- 设置角色与用户之间的映射关系
+2、 修改 `elasticsearch.conf` 配置文件
 
-### OpenSearch
-
-- 创建用户
-- 创建角色 `monitor`, 设置如下权限：
-
-```
-PUT _plugins/_security/api/roles/monitor
-{
-  "description": "monitor es cluster",
-  "cluster_permissions": [
-    "cluster:admin/opendistro/ism/managedindex/explain",
-    "cluster_monitor",
-    "cluster_composite_ops_ro"
-  ],
-  "index_permissions": [
-    {
-      "index_patterns": [
-        "*"
-      ],
-      "fls": [],
-      "masked_fields": [],
-      "allowed_actions": [
-        "read",
-        "indices_monitor"
-      ]
-    }
-  ],
-  "tenant_permissions": []
-}
+```bash
+vi elasticsearch.conf
 ```
 
-- 设置角色与用户之间的映射关系
+参数说明
 
-## 配置
+- servers：要采集的elasticsearch集群地址和端口
+- interval：指标采集频率
+- http_timeout：HTTP 超时时间设置
+- local：默认local是开启的，只采集当前Node自身指标，如果需要采集集群所有Node，需要将local设置为false
+- cluster_health：设置为true可以采集cluster health
+- cluster_health_level：cluster health level 设置，indices (默认) 和 cluster
+- cluster_stats：设置为true时可以采集cluster stats.
+- cluster_stats_only_from_master：只从master Node获取cluster_stats，这个前提是需要设置 local = true
+- indices_include：需要采集的Indices, 默认为 _all
+- indices_level：indices级别，可取值："shards", "cluster", "indices"
+- node_stats：node_stats可支持配置选项有"indices", "os", "process", "jvm", "thread_pool", "fs", "transport", "http", "breaker"（默认是所有）
 
-进入 DataKit 安装目录下的 `conf.d/db` 目录，复制 `elasticsearch.conf.sample` 并命名为 `elasticsearch.conf`。示例如下：
-
-```toml
-
+```yaml
 [[inputs.elasticsearch]]
   ## Elasticsearch服务器配置
   # 支持Basic认证:
@@ -137,9 +86,6 @@ PUT _plugins/_security/api/roles/monitor
 
   ## HTTP超时设置
   http_timeout = "5s"
-
-  ## 发行版本: elasticsearch, opendistro, opensearch
-  distribution = "elasticsearch"
 
   ## 默认local是开启的，只采集当前Node自身指标，如果需要采集集群所有Node，需要将local设置为false
   local = true
@@ -177,269 +123,152 @@ PUT _plugins/_security/api/roles/monitor
   # tls_key = "/etc/telegraf/key.pem"
   ## Use TLS but skip chain & host verification
   # insecure_skip_verify = false
-
-  ## Set true to enable election
-  election = true
-
-  # [inputs.elasticsearch.log]
-  # files = []
-  # #grok pipeline script path
-  # pipeline = "elasticsearch.p"
-
-  [inputs.elasticsearch.tags]
-    # some_tag = "some_value"
-    # more_tag = "some_other_value"
-
 ```
 
-配置好后，重启 DataKit 即可。
+3、 重启 DataKit (如果需要开启日志，请配置日志采集再重启)
 
-## 指标预览
-
-![](imgs/input-elasticsearch-02.png)
-
-## 指标集
-
-以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.elasticsearch.tags]` 指定其它标签：
-
-``` toml
-[inputs.elasticsearch.tags]
-# some_tag = "some_value"
-# more_tag = "some_other_value"
-# ...
+```bash
+systemctl restart datakit
 ```
 
+4、 ElasticSearch 指标采集验证 `/usr/local/datakit/datakit -M |egrep "最近采集|elasticsearch"`
 
+![image](imgs/input-elasticsearch-5.png)
 
-### `elasticsearch_node_stats`
+5、 指标预览
 
--  标签
+![image](imgs/input-elasticsearch-6.png)
 
+#### 日志采集 (非必选)
 
-| 标签名 | 描述    |
-|  ----  | --------|
-|`cluster_name`|Name of the cluster, based on the Cluster name setting setting.|
-|`node_attribute_ml.enabled`|Set to true (default) to enable machine learning APIs on the node.|
-|`node_attribute_ml.machine_memory`|The machine’s memory that machine learning may use for running analytics processes.|
-|`node_attribute_ml.max_open_jobs`|The maximum number of jobs that can run simultaneously on a node.|
-|`node_attribute_xpack.installed`|Show whether xpack is installed.|
-|`node_host`|Network host for the node, based on the network.host setting.|
-|`node_id`|The id for the node.|
-|`node_name`|Human-readable identifier for the node.|
+1、 修改 `elasticsearch.conf` 配置文件
 
-- 指标列表
+参数说明
 
-
-| 指标 | 描述| 数据类型 | 单位   |
-| ---- |---- | :---:    | :----: |
-|`fs_data_0_available_in_gigabytes`|Total number of gigabytes available to this Java virtual machine on this file store.|float|B|
-|`fs_data_0_free_in_gigabytes`|Total number of unallocated gigabytes in the file store.|float|B|
-|`fs_data_0_total_in_gigabytes`|Total size (in gigabytes) of the file store.|float|B|
-|`fs_io_stats_devices_0_operations`|The total number of read and write operations for the device completed since starting Elasticsearch.|float|count|
-|`fs_io_stats_devices_0_read_kilobytes`|The total number of kilobytes read for the device since starting Elasticsearch.|float|count|
-|`fs_io_stats_devices_0_read_operations`|The total number of read operations for the device completed since starting Elasticsearch.|float|count|
-|`fs_io_stats_devices_0_write_kilobytes`|The total number of kilobytes written for the device since starting Elasticsearch.|float|count|
-|`fs_io_stats_devices_0_write_operations`|The total number of write operations for the device completed since starting Elasticsearch.|float|count|
-|`fs_io_stats_total_operations`|The total number of read and write operations across all devices used by Elasticsearch completed since starting Elasticsearch.|float|count|
-|`fs_io_stats_total_read_kilobytes`|The total number of kilobytes read across all devices used by Elasticsearch since starting Elasticsearch.|float|count|
-|`fs_io_stats_total_read_operations`|The total number of read operations for across all devices used by Elasticsearch completed since starting Elasticsearch.|float|count|
-|`fs_io_stats_total_write_kilobytes`|The total number of kilobytes written across all devices used by Elasticsearch since starting Elasticsearch.|float|count|
-|`fs_io_stats_total_write_operations`|The total number of write operations across all devices used by Elasticsearch completed since starting Elasticsearch.|float|count|
-|`fs_timestamp`|Last time the file stores statistics were refreshed. Recorded in milliseconds since the Unix Epoch.|float|msec|
-|`fs_total_available_in_gigabytes`|Total number of gigabytes available to this Java virtual machine on all file stores.|float|B|
-|`fs_total_free_in_gigabytes`|Total number of unallocated gigabytes in all file stores.|float|B|
-|`fs_total_total_in_gigabytes`|Total size (in gigabytes) of all file stores.|float|B|
-|`http_current_open`|Current number of open HTTP connections for the node.|float|count|
-|`indices_fielddata_evictions`|Total number of evictions from the field data cache across all shards assigned to selected nodes.|float|count|
-|`indices_fielddata_memory_size_in_bytes`|Total amount, in bytes, of memory used for the field data cache across all shards assigned to selected nodes.|float|B|
-|`indices_get_missing_time_in_millis`|Time in milliseconds spent performing failed get operations.|float|ms|
-|`indices_get_missing_total`|Total number of failed get operations.|float|count|
-|`jvm_gc_collectors_old_collection_count`|Number of JVM garbage collectors that collect old generation objects.|float|count|
-|`jvm_gc_collectors_old_collection_time_in_millis`|Total time in milliseconds spent by JVM collecting old generation objects.|float|ms|
-|`jvm_gc_collectors_young_collection_count`|Number of JVM garbage collectors that collect young generation objects.|float|count|
-|`jvm_gc_collectors_young_collection_time_in_millis`|Total time in milliseconds spent by JVM collecting young generation objects.|float|ms|
-|`jvm_mem_heap_committed_in_bytes`|Amount of memory, in bytes, available for use by the heap.|float|B|
-|`jvm_mem_heap_used_percent`|Percentage of memory currently in use by the heap.|float|count|
-|`os_cpu_load_average_15m`|Fifteen-minute load average on the system (field is not present if fifteen-minute load average is not available).|float|count|
-|`os_cpu_load_average_1m`|One-minute load average on the system (field is not present if one-minute load average is not available).|float|count|
-|`os_cpu_load_average_5m`| Five-minute load average on the system (field is not present if five-minute load average is not available).|float|count|
-|`os_cpu_percent`|Recent CPU usage for the whole system, or -1 if not supported.|float|count|
-|`os_mem_total_in_bytes`|Total amount of physical memory in bytes.|float|B|
-|`os_mem_used_in_bytes`|Amount of used physical memory in bytes.|float|B|
-|`os_mem_used_percent`|Percentage of used memory.|float|percent|
-|`process_open_file_descriptors`|Number of opened file descriptors associated with the current or -1 if not supported.|float|count|
-|`thread_pool_force_merge_queue`|Number of tasks in queue for the thread pool|float|count|
-|`thread_pool_force_merge_rejected`|Number of tasks rejected by the thread pool executor.|float|count|
-|`thread_pool_rollup_indexing_queue`|Number of tasks in queue for the thread pool|float|count|
-|`thread_pool_rollup_indexing_rejected`|Number of tasks rejected by the thread pool executor.|float|count|
-|`thread_pool_search_queue`|Number of tasks in queue for the thread pool|float|count|
-|`thread_pool_search_rejected`|Number of tasks rejected by the thread pool executor.|float|count|
-|`thread_pool_transform_indexing_queue`|Number of tasks in queue for the thread pool|float|count|
-|`thread_pool_transform_indexing_rejected`|Number of tasks rejected by the thread pool executor.|float|count|
-|`transport_rx_size_in_bytes`|Size of RX packets received by the node during internal cluster communication.|float|B|
-|`transport_tx_size_in_bytes`|Size of TX packets sent by the node during internal cluster communication.|float|B|
-
-
-
-### `elasticsearch_indices_stats`
-
--  标签
-
-
-| 标签名 | 描述    |
-|  ----  | --------|
-|`cluster_name`|Name of the cluster, based on the Cluster name setting setting.|
-|`index_name`|Name of the index. The name '_all' target all data streams and indices in a cluster.|
-
-- 指标列表
-
-
-| 指标 | 描述| 数据类型 | 单位   |
-| ---- |---- | :---:    | :----: |
-|`total_flush_total`|Number of flush operations.|float|count|
-|`total_flush_total_time_in_millis`|Total time in milliseconds spent performing flush operations.|float|ms|
-|`total_get_missing_total`|Total number of failed get operations.|float|count|
-|`total_indexing_index_current`|Number of indexing operations currently running.|float|count|
-|`total_indexing_index_time_in_millis`|Total time in milliseconds spent performing indexing operations.|float|ms|
-|`total_indexing_index_total`|Total number of indexing operations.|float|count|
-|`total_merges_current_docs`|Number of document merges currently running.|float|count|
-|`total_merges_total`|Total number of merge operations.|float|count|
-|`total_merges_total_docs`|Total number of merged documents.|float|count|
-|`total_merges_total_time_in_millis`|Total time in milliseconds spent performing merge operations.|float|ms|
-|`total_refresh_total`|Total number of refresh operations.|float|count|
-|`total_refresh_total_time_in_millis`|Total time in milliseconds spent performing refresh operations.|float|ms|
-|`total_search_fetch_current`|Number of fetch operations currently running.|float|count|
-|`total_search_fetch_time_in_millis`|Time in milliseconds spent performing fetch operations.|float|ms|
-|`total_search_fetch_total`|Total number of fetch operations.|float|count|
-|`total_search_query_current`|Number of query operations currently running.|float|count|
-|`total_search_query_time_in_millis`|Time in milliseconds spent performing query operations.|float|ms|
-|`total_search_query_total`|Total number of query operations.|float|count|
-|`total_store_size_in_bytes`|Total size, in bytes, of all shards assigned to selected nodes.|float|B|
-
-
-
-### `elasticsearch_cluster_stats`
-
--  标签
-
-
-| 标签名 | 描述    |
-|  ----  | --------|
-|`cluster_name`|Name of the cluster, based on the cluster.name setting.|
-|`node_name`|Name of the node.|
-|`status`|Health status of the cluster, based on the state of its primary and replica shards.|
-
-- 指标列表
-
-
-| 指标 | 描述| 数据类型 | 单位   |
-| ---- |---- | :---:    | :----: |
-|`nodes_process_open_file_descriptors_avg`|Average number of concurrently open file descriptors. Returns -1 if not supported.|float|count|
-
-
-
-### `elasticsearch_cluster_health`
-
--  标签
-
-
-| 标签名 | 描述    |
-|  ----  | --------|
-|`cluster_status`|The cluster status: red, yellow, green.|
-|`name`|Name of the cluster.|
-
-- 指标列表
-
-
-| 指标 | 描述| 数据类型 | 单位   |
-| ---- |---- | :---:    | :----: |
-|`active_primary_shards`|The number of active primary shards in the cluster.|int|count|
-|`active_shards`|The number of active shards in the cluster.|int|count|
-|`indices_lifecycle_error_count`|The number of indices that are managed by ILM and are in an error state.|int|count|
-|`initializing_shards`|The number of shards that are currently initializing.|int|count|
-|`number_of_data_nodes`|The number of data nodes in the cluster.|int|count|
-|`number_of_pending_tasks`|The total number of pending tasks.|int|count|
-|`relocating_shards`|The number of shards that are relocating from one node to another.|int|count|
-|`status_code`|The health as a number: red = 3, yellow = 2, green = 1.|int|count|
-|`unassigned_shards`|The number of shards that are unassigned to a node.|int|count|
-
- 
-
-
-## 日志采集
-
-如需采集 ElasticSearch 的日志，可在 elasticsearch.conf 中 将 `files` 打开，并写入 ElasticSearch 日志文件的绝对路径。比如：
-
-```toml
-[[inputs.elasticsearch]]
-  ...
+- files：日志文件路径 (通常填写访问日志和错误日志)
+- pipeline：日志切割文件(内置)，实际文件路径 /usr/local/datakit/pipeline/elasticsearch.p
+- 相关文档 <[DataFlux pipeline 文本数据处理](../datakit/pipeline.md)>
+```
 [inputs.elasticsearch.log]
-files = ["/path/to/your/file.log"]
+	#写入 ElasticSearch 日志文件的绝对路径
+  files = ["/var/log/elasticsearch/*.log"]
+  ## grok pipeline script path
+  pipeline = "elasticsearch.p"
 ```
 
-开启日志采集以后，默认会产生日志来源（`source`）为 `elasticsearch` 的日志。
+2、 重启 DataKit (如果需要开启自定义标签，请配置插件标签再重启)
 
-## 日志 pipeline 功能切割字段说明
+```
+systemctl restart datakit
+```
 
-- ElasticSearch 通用日志切割
-  
-通用日志文本示例：
+3、 ElasticSearch 日志采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|elasticsearch_log"
+
+![image](imgs/input-elasticsearch-7.png)
+
+4、 日志预览
+
+![image](imgs/input-elasticsearch-8.png)
+
+5、 日志 pipeline 功能切割字段说明
+
+- ElasticSearch 通用日志切割<br />通用日志文本示例： <br />切割后的字段列表如下： 
 
 ```
 [2021-06-01T11:45:15,927][WARN ][o.e.c.r.a.DiskThresholdMonitor] [master] high disk watermark [90%] exceeded on [A2kEFgMLQ1-vhMdZMJV3Iw][master][/tmp/elasticsearch-cluster/nodes/0] free: 17.1gb[7.3%], shards will be relocated away from this node; currently relocating away shards totalling [0] bytes; the node is expected to continue to exceed the high disk watermark when these relocations are complete
 ```
 
-切割后的字段列表如下：
+| 字段名 | 字段值 | 说明 |
+| --- | --- | --- |
+| time | 1622519115927000000 | 日志产生时间 |
+| name | o.e.c.r.a.DiskThresholdMonitor | 组件名称 |
+| status | WARN | 日志等级 |
+| nodeId | master | 节点名称 |
 
-| 字段名 | 字段值                         | 说明         |
-| ---    | ---                            | ---          |
-| time   | 1622519115927000000            | 日志产生时间 |
-| name   | o.e.c.r.a.DiskThresholdMonitor | 组件名称     |
-| status | WARN                           | 日志等级     |
-| nodeId | master                         | 节点名称     |
 
-- ElastiSearch 搜索慢日志切割
-  
-搜索慢日志文本示例：
+- ElastiSearch 搜索慢日志切割<br />搜索慢日志文本示例： <br />切割后的字段列表如下： 
 
 ```
-[2021-06-01T11:56:06,712][WARN ][i.s.s.query              ] [master] [shopping][0] took[36.3ms], took_millis[36], total_hits[5 hits], types[], stats[], search_type[QUERY_THEN_FETCH], total_shards[1], source[{"query":{"match":{"name":{"query":"Nariko","operator":"OR","prefix_length":0,"max_expansions":50,"fuzzy_transpositions":true,"lenient":false,"zero_terms_query":"NONE","auto_generate_synonyms_phrase_query":true,"boost":1.0}}},"sort":[{"price":{"order":"desc"}}]}], id[], 
+[2021-06-01T11:56:06,712][WARN ][i.s.s.query              ] [master] [shopping][0] took[36.3ms], took_millis[36], total_hits[5 hits], types[], stats[], search_type[QUERY_THEN_FETCH], total_shards[1], source[{"query":{"match":{"name":{"query":"Nariko","operator":"OR","prefix_length":0,"max_expansions":50,"fuzzy_transpositions":true,"lenient":false,"zero_terms_query":"NONE","auto_generate_synonyms_phrase_query":true,"boost":1.0}}},"sort":[{"price":{"order":"desc"}}]}], id[],
 ```
+| 字段名 | 字段值 | 说明 |
+| --- | --- | --- |
+| time | 1622519766712000000 | 日志产生时间 |
+| name | i.s.s.query | 组件名称 |
+| status | WARN | 日志等级 |
+| nodeId | master | 节点名称 |
+| index | shopping | 索引名称 |
+| duration | 36000000 | 请求耗时，单位ns |
 
-切割后的字段列表如下：
-
-| 字段名   | 字段值              | 说明             |
-| ---      | ---                 | ---              |
-| time     | 1622519766712000000 | 日志产生时间     |
-| name     | i.s.s.query         | 组件名称         |
-| status   | WARN                | 日志等级         |
-| nodeId   | master              | 节点名称         |
-| index    | shopping            | 索引名称         |
-| duration | 36000000            | 请求耗时，单位ns |
 
 - ElasticSearch 索引慢日志切割
-
-索引慢日志文本示例：
+索引慢日志文本示例： 
+切割后的字段列表如下： 
 
 ```
 [2021-06-01T11:56:19,084][WARN ][i.i.s.index              ] [master] [shopping/X17jbNZ4SoS65zKTU9ZAJg] took[34.1ms], took_millis[34], type[_doc], id[LgC3xXkBLT9WrDT1Dovp], routing[], source[{"price":222,"name":"hello"}]
 ```
 
-切割后的字段列表如下：
+| 字段名 | 字段值 | 说明 |
+| --- | --- | --- |
+| time | 1622519779084000000 | 日志产生时间 |
+| name | i.i.s.index | 组件名称 |
+| status | WARN | 日志等级 |
+| nodeId | master | 节点名称 |
+| index | shopping | 索引名称 |
+| duration | 34000000 | 请求耗时，单位ns |
 
-| 字段名   | 字段值              | 说明             |
-| ---      | ---                 | ---              |
-| time     | 1622519779084000000 | 日志产生时间     |
-| name     | i.i.s.index         | 组件名称         |
-| status   | WARN                | 日志等级         |
-| nodeId   | master              | 节点名称         |
-| index    | shopping            | 索引名称         |
-| duration | 34000000            | 请求耗时，单位ns |
 
-**注意**
+#### 插件标签 (非必选)
 
-- 日志采集仅支持采集已安装 DataKit 主机上的日志
+参数说明
 
-## 更多阅读
+- 该配置为自定义标签，可以填写任意 key-value 值
+- 以下示例配置完成后，所有 ElasticSearch 指标都会带有 service = "elasticsearch" 的标签，可以进行快速查询
+- 相关文档 <[DataFlux Tag 应用最佳实践](../best-practices/insight/tag.md)>
 
-- [ElasticSearch 最佳实践](../best-practices/monitoring/elasticsearch.md)
+```
+# 示例
+[inputs.elasticsearch.tags]
+ 	service = "elasticsearch"
+  # some_tag = "some_value"
+  # more_tag = "some_other_value"
+  # ...  
+```
+
+重启 Datakit
+
+```
+systemctl restart datakit
+```
+
+## 场景视图
+
+<场景 - 新建仪表板 - 内置模板库 - ElasticSearch 监控视图>
+
+## 监控规则
+
+<监控 - 监控器 - 从模板新建 - ElasticSearch 检测库>
+
+| 序号 | 规则名称 | 触发条件 | 级别 | 检测频率 |
+| --- | --- | --- | --- | --- |
+| 1 | Elasticsearch 查询拒绝率过高 | Elasticsearch 查询拒绝率 > 0 | 紧急 | 1m |
+| 2 | Elasticsearch 平均 CPU 使用率 过高 |  Elasticsearch 平均 CPU 使用率 > 90% | 重要 | 1m |
+| 3 | Elasticsearch 集群状态异常 | Elasticsearch 集群状态不是 green | 紧急 | 1m |
+| 4 | Elasticsearch 平均 JVM 堆内存的使用量过高 | Elasticsearch 平均 JVM 堆内存的使用量 > 85% | 重要 | 1m |
+| 5 | Elasticsearch 搜索查询负载异常 | Elasticsearch 搜索查询负载三个聚合周期发生一次波动 | 重要 | 1m |
+| 6 | Elasticsearch 合并索引线程池中被拒绝的线程数异常增加 | Elasticsearch 合并索引线程池中被拒绝的线程数三个聚合周期发生一次波动 | 重要 | 1m |
+| 7 | Elasticsearch 转换索引线程池中被拒绝的线程数异常增加 | Elasticsearch 转换索引线程池中被拒绝的线程数三个聚合周期发生一次波动 | 重要 | 1m |
+| 8 | Elasticsearch 搜索线程池中被拒绝的线程数异常增加 | Elasticsearch 搜索线程池中被拒绝的线程数三个聚合周期发生一次波动 | 重要 | 1m |
+| 9 | Elasticsearch 合并线程池中被拒绝的线程数异常增加 | Elasticsearch 合并线程池中被拒绝的线程数三个聚合周期发生一次波动 | 重要 | 1m |
+
+## [指标详解](../datakit/elasticsearch)
+
+## 最佳实践
+
+<[Elasticsearch 可观测最佳实践](../best-practices/monitoring/elasticsearch)>
+
+## 故障排查
+
+<[无数据上报排查](../datakit/why-no-data.md)>
+

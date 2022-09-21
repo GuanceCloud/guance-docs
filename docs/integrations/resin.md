@@ -1,55 +1,60 @@
+
 # Resin
-
 ---
-
-- 操作系统支持：`Linux/Windows`
 
 ## 视图预览
 
 Resin 性能指标展示：启动时间、堆内存、非堆内存、类、线程等。
 
-![](imgs/input-resin-1.png) 
+![image](imgs/input-resin-1.png)
+
+## 版本支持
+
+操作系统：Linux / Windows<br />Resin 版本：ALL
 
 ## 前置条件
 
-- 安装 Resin 服务器
+- Resin 服务器 <[安装 Datakit](https://www.yuque.com/dataflux/datakit/datakit-install)>
 
-说明：示例 Resin 版本为 Windows 环境 Resin/4.0.66 (Windows），指标采集是通过 jolokia-jvm-agent 来采集 Resin 运行时指标。
+## 安装配置
 
-### 指标采集 (必选)
+说明：示例 Resin 版本为 Windows 环境 Resin/4.0.66 (Windows ）。
+指标采集是通过 jolokia-jvm-agent 来采集resin运行时指标。
 
-- 配置 config/resin.properties
+### 部署实施
 
-新增`jvm_args`，参数说明：
+(Linux / Windows 环境相同)
+
+#### 指标采集 (必选)
+
+1、 配置 config/resin.properties
+
+新增`jvm_args`。<br />参数说明：
 
 - javaagent：jolokia-jvm-agent
 - port=9530 # jolokia-jvm-agent对外暴露的指标端口
 
-```shell
-jvm_args: -Xmx2048m -XX:MaxPermSize=256m -javaagent:C:/"Program Files"/datakit/data/jolokia-jvm-agent.jar=port=9530
+```
+jvm_args  : -Xmx2048m -XX:MaxPermSize=256m -javaagent:C:/"Program Files"/datakit/data/jolokia-jvm-agent.jar=port=9530
 ```
 
-- 重启resin。
+2、 重启resin。
 
 双击 resin.exe 
 
-- 开启 Datakit JVM 插件，复制 sample 文件
-
-```shell
+3、 开启 Datakit jvm 插件，复制 sample 文件
+```
 cd datakit/conf.d/jvm
 cp jvm.conf.sample jvm.conf
 ```
 
-- 修改 jvm.conf 配置文件
+4、 修改 jvm.conf 配置文件
 
 主要参数说明
 
-- urls              : jolokia agent 访问地址
-- interval          : 采集频率
-- inputs.jvm.metric : jvm相关指标
-
-jvm.conf 配置如下：
-
+- urls：jolokia agent 访问地址
+- interval：采集频率
+- inputs.jvm.metric：jvm相关指标
 ```toml
 # {"version": "1.2.12", "desc": "do NOT edit this line"}
 [[inputs.jvm]]
@@ -109,50 +114,44 @@ tag_keys = ["name"]
 [inputs.jvm.tags]
 # some_tag = "some_value"
 # more_tag = "some_other_value"
-# ...
+  # ...
 ```
 
-- 重启 DataKit (如果需要开启日志，请配置日志采集再重启)
+5、 重启 Datakit (如果需要开启日志，请配置日志采集再重启)
 
-```shell
-datakit service -R
+```
+datakit --restart
 ```
 
-- 查看 resin 采集器运行情况
+6、 JVM 指标采集验证，使用命令 
 
-```shell
-datakit monitor -I resin
-```
+![image](imgs/input-resin-2.png)
 
-- 指标预览
+指标预览
 
-指标采集上来后，在页面上大概能看到如下这些指标：
+![image](imgs/input-resin-3.png)
 
-![](imgs/input-resin-2.png)
-
-### 日志采集(非必选)
+#### 日志采集 (非必选)
 
 参数说明
 
-- logfiles: 日志文件路径 (通常填写访问日志和错误日志)
-- source:  日志来源
-- service:  服务名称
-- 相关[Pipeline 文档](../datakit/pipeline.md)
-
+- logfiles ：日志文件路径 (通常填写访问日志和错误日志)
+- source： 日志来源
+- service： 服务名称
+- 相关文档 <[DataFlux pipeline 文本数据处理](https://www.yuque.com/dataflux/datakit/pipeline)>
 ```toml
+# {"version": "1.2.12", "desc": "do NOT edit this line"}
+
 [[inputs.logging]]
 ## required
 logfiles = [
-  # 实际 resin 日志目录，视具体情况而定
-  "D:/software_installer/resin-4.0.66/log/*.log",
+"D:/software_installer/resin-4.0.66/log/*.log",
 ]
-
 # only two protocols are supported:TCP and UDP
 # sockets = [
 #	 "tcp://0.0.0.0:9530",
 #	 "udp://0.0.0.0:9531",
 # ]
-
 ## glob filteer
 ignore = [""]
 
@@ -192,32 +191,35 @@ remove_ansi_escape_codes = false
 [inputs.logging.tags]
 # some_tag = "some_value"
 # more_tag = "some_other_value"
+
 ```
 
-重启 DataKit：
+重启 Datakit (如果需要开启自定义标签，请配置插件标签再重启)
 
-```shell
-datakit service -R
+```
+datakit --restart
 ```
 
-日志预览：
+日志预览
 
-![](imgs/input-resin-3.png)
+![image](imgs/input-resin-4.png)
 
-
-### 插件标签 (非必选）
+#### 插件标签 (非必选）
 
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 resin 指标都会带有 app = resin-test 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](../best-practices/guance-skill/tag.md)>
+- 相关文档 <[DataFlux Tag 应用最佳实践](https://www.yuque.com/dataflux/bp/tag)>
+
 ```
 # 示例
 [inputs.jvm.tags]
    app = "resin-test"
 ```
-重启datakit
+
+重启 DataKit
+
 ```
 datakit --restart
 ```
@@ -226,58 +228,62 @@ datakit --restart
 
 <场景 - 新建仪表板 - 内置模板库 - Resin 监控视图>
 
-## 指标集
+## 指标详解
 
-### `resin_runtime`
+### 指标集 resin_runtime
 
-| 指标        | 描述                |
-| ---         | ---                 |
-| `Uptime`    | 在线时长            |
-| `StartTime` | 启动时间            |
-| `VmVersion` | 虚拟机版本          |
-| `SpecName`  | Java 虚拟机规范名称 |
+| 指标 | 描述 |
+| --- | --- |
+| `Uptime` | 在线时长 |
+| `StartTime` | 启动时间 |
+| `VmVersion` | 虚拟机版本 |
+| `SpecName` | Java 虚拟机规范名称 |
 
+### 指标集 resin_memory
 
-### `resin_memory`
-
-| 指标                 | 描述     |
-| ---                  | ---      |
-| `HeapMemoryUsage`    | 堆内存   |
+| 指标 | 描述 |
+| --- | --- |
+| `HeapMemoryUsage` | 堆内存 |
 | `NonHeapMemoryUsage` | 非堆内存 |
 
-### `resin_threading`
+### 指标集 resin_threading
 
-| 指标                      | 描述         |
-| ---                       | ---          |
+| 指标 | 描述 |
+| --- | --- |
 | `TotalStartedThreadCount` | 启动线程总数 |
-| `ThreadCount`             | 活动线程数量 |
-| `DaemonThreadCount`       | 守护线程数量 |
-| `PeakThreadCount`         | 峰值         |
+| `ThreadCount` | 活动线程数量 |
+| `DaemonThreadCount` | 守护线程数量 |
+| `PeakThreadCount` | 峰值 |
 
-### `resin_class_loading`
+### 指标集 resin_class_loading
 
-| 指标                  | 描述         |
-| ---                   | ---          |
-| LoadedClassCount      | 已加载当前类 |
-| UnloadedClassCount    | 已卸载类总数 |
+| 指标 | 描述 |
+| --- | --- |
+| LoadedClassCount | 已加载当前类 |
+| UnloadedClassCount | 已卸载类总数 |
 | TotalLoadedClassCount | 已加载类总数 |
 
-### `resin_memory_pool`
+### 指标集 resin_memory_pool
 
-| 指标            | 描述             |
-| ---             | ---              |
-| Usage           | 已使用内存池     |
-| PeakUsage       | 已使用内存池峰值 |
+| 指标 | 描述 |
+| --- | --- |
+| Usage | 已使用内存池 |
+| PeakUsage | 已使用内存池峰值 |
 | CollectionUsage | 已使用内存池回收 |
 
+### 指标集 resin_garbage_collector
 
-### `resin_garbage_collector`
-
-| 指标            | 描述   |
-| ---             | ---    |
-| CollectionTime  | GC时间 |
+| 指标 | 描述 |
+| --- | --- |
+| CollectionTime | GC时间 |
 | CollectionCount | GC次数 |
 
-## 更多文档
 
-- [无数据上报排查](../datakit/why-no-data.md)
+
+## 常见问题排查
+
+<[无数据上报排查](https://www.yuque.com/dataflux/datakit/why-no-data)>
+
+## 进一步阅读
+无
+

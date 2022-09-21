@@ -1,22 +1,31 @@
+
 # Conntrack
 ---
 
 ## 视图预览
-Conntrack 性能指标展示，包括成功搜索条目数，插入的包数，连接数量等
-![](imgs/input-conntrack-1.png) 
+
+Conntrack 性能指标展示，包括成功搜索条目数，插入的包数，连接数量等<br />
+
+![image](imgs/input-conntracks-1.png)
 
 ## 版本支持
+
 操作系统支持：Linux 
+
 ## 前置条件
 
-- 服务器 <[安装 Datakit](/datakit/datakit-install/)>
+- 服务器 <[安装 DataKit](../datakit/datakit-install.md)>
+
 ## 安装配置
+
 说明：示例 Linux 版本为：CentOS Linux release 7.8.2003 (Core)
+
 ### 部署实施
+
 #### 指标采集 (默认)
 
-1. System 采集器会同时采集 system 和 conntrack 指标
-2. Conntrack 数据采集默认开启，对应配置文件 /usr/local/datakit/conf.d/host/system.conf
+1、 System 采集器会同时采集 system 和 conntrack 指标  
+2、 Conntrack 数据采集默认开启，对应配置文件 /usr/local/datakit/conf.d/host/system.conf
 
 参数说明
 
@@ -26,31 +35,40 @@ Conntrack 性能指标展示，包括成功搜索条目数，插入的包数，�
   interval = '10s'
 ```
 
-3. Conntrack 指标采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|system"
-![](imgs/input-conntrack-2.png) 
+3、 Conntrack 指标采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|system"
 
-4. 指标预览
-![](imgs/input-conntrack-3.png) 
+![image](imgs/input-conntracks-2.png)
+指标预览
+
+![image](imgs/input-conntracks-3.png)
 
 #### 插件标签 (非必选)
+
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 system 指标都会带有 app = oa 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](/best-practices/guance-skill/tag/)>
+- 相关文档 <[DataFlux Tag 应用最佳实践](../best-practices/insight/tag.md)>
+
 ```
 # 示例
 [inputs.system.tags]
    app = "oa"
 ```
-重启 Datakit
+
+重启 DataKit
+
 ```
 systemctl restart datakit
 ```
 ## 场景视图
-<场景 - 新建仪表板 - 内置模板库 - Conntrack>
-## 异常检测
-<监控 - 模板新建 - 主机检测库>
+
+<场景 - 新建仪表板 - 内置模板库 - Conntrack 监控视图>
+
+## 检测库
+
+<监控 - 监控器 - 从模板新建 - 主机检测库>
+
 ## 指标详解
 | 指标 | 描述 | 数据类型 | 单位 |
 | --- | --- | --- | --- |
@@ -66,7 +84,10 @@ systemctl restart datakit
 | `stat_search_restart` | 由于hash表大小修改而导致跟踪表查询重启的数目 | int | count |
 
 ## 常见问题排查
-<[无数据上报排查](/datakit/why-no-data/)>
+
+<[无数据上报排查](../datakit/why-no-data.md)>
 
 ## 进一步阅读
-<[主机可观测最佳实践](/best-practices/integrations/host/)>
+
+<[主机可观测最佳实践](../best-practices/monitoring/host-linux)>
+
