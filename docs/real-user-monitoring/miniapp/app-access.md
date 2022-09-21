@@ -72,10 +72,10 @@
 | `version`                       | String  | 否       |           | 小程序 应用的版本号                                          |
 | `sampleRate`                    | Number  | 否       | `100`     | 指标数据收集百分比:`100`表示全收集，`0`表示不收集            |
 | `trackInteractions`             | Boolean | 否       | `false`   | 是否开启用户行为采集                                         |
-| `traceType`【新增】             | Enum    | 否       | `ddtrace` | 配置链路追踪工具类型，如果不配置默认为`ddtrace`。目前支持 `ddtrace`、`zipkin`、`skywalking_v3`、`jaeger`、`zipkin_single_header`、`w3c_traceparent` 6种数据类型。注： `opentelemetry` 支持 `zipkin_single_header`,`w3c_traceparent`,`zipkin`、`jaeger`三种类型。<br><br>注意：配置相应类型的traceType 需要对相应的API服务 设置不同的 `Access-Control-Allow-Headers` 具体查看 [APM 如何关联 RUM ](../../application-performance-monitoring/collection/connect-web-app.md) |
-| `traceId128Bit`【新增】         | Boolean | 否       | `false`   | 是否以128字节的方式生成 `traceID`，与`traceType` 对应，目前支持类型 `zipkin`、`jaeger` |
-| `allowedTracingOrigins`【新增】 | Array   | 否       | `[]`      | 【新增】允许注入`ddtrace`采集器所需header头部的所有请求列表。可以是请求的origin，也可以是是正则，origin: `协议（包括：//），域名（或IP地址）[和端口号]`<br>例如：<br>`["https://api.example.com", /https:\\/\\/.*\\.my-api-domain\\.com/]` |
-
+| `traceType`                    | Enum    | 否       | `ddtrace` | 配置链路追踪工具类型，如果不配置默认为`ddtrace`。目前支持 `ddtrace`、`zipkin`、`skywalking_v3`、`jaeger`、`zipkin_single_header`、`w3c_traceparent` 6种数据类型。注： `opentelemetry` 支持 `zipkin_single_header`,`w3c_traceparent`,`zipkin`、`jaeger`三种类型。<br><br>注意：配置相应类型的traceType 需要对相应的API服务 设置不同的 `Access-Control-Allow-Headers` 具体查看 [APM 如何关联 RUM ](../../application-performance-monitoring/collection/connect-web-app.md) |
+| `traceId128Bit`                | Boolean | 否       | `false`   | 是否以128字节的方式生成 `traceID`，与`traceType` 对应，目前支持类型 `zipkin`、`jaeger` |
+| `allowedTracingOrigins`        | Array   | 否       | `[]`      | 【新增】允许注入`ddtrace`采集器所需header头部的所有请求列表。可以是请求的origin，也可以是是正则，origin: `协议（包括：//），域名（或IP地址）[和端口号]`<br>例如：<br>`["https://api.example.com", /https:\\/\\/.*\\.my-api-domain\\.com/]` |
+| `isIntakeUrl`                 | Function | 否       | `function(url) {return false}`     | 自定义方法根据请求资源 url 判断是否需要采集对应资源数据，默认都采集。 返回：`false` 表示要采集，`true` 表示不需要采集 <br>*该参数 方法返回结果必须为 Boolean 类型， 否则认为是无效参数*<br/>**注意：版本要求为 2.1.10 及以上** |
 
 ## 注意事项
 
