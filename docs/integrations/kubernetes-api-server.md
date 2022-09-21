@@ -16,7 +16,7 @@ Kubernetes 版本：1.18+
 
 ## 前置条件
 
-- Kubernetes 集群 <[安装 Datakit](kube-metric-server.md)>
+- Kubernetes 集群 <[安装 DataKit](../datakit/datakit-daemonset-deploy.md)>
 
 ## 安装配置
 
@@ -127,7 +127,7 @@ data:
           subPath: api-server.conf 
 ```
 
-3、 重启 Datakit 
+3、 重启 DataKit 
 
 ```yaml
 kubectl delete -f datakit.yaml

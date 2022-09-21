@@ -1,3 +1,4 @@
+
 # Kubernetes Controller Manager 
 ---
 
@@ -13,7 +14,7 @@ Kubernetes 版本：1.18+
 
 ## 前置条件
 
-- Kubernetes 集群 <[安装 Datakit](kube-metric-server.md)>
+- Kubernetes 集群 <[安装 DataKit](../datakit/datakit-daemonset-deploy.md)>
 
 ## 安装配置
 
@@ -23,7 +24,7 @@ Kubernetes 版本：1.18+
 
 #### 指标采集 (必选)
 
-1、 ConfigMap 增加controller-manager.conf 配置
+1、 ConfigMap 增加 controller-manager.conf 配置
 
 在部署 DataKit 使用的 datakit.yaml 文件中，ConfigMap 资源中增加 controller-manager.conf。
 

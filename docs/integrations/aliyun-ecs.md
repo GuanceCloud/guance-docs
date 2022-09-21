@@ -3,6 +3,7 @@
 ---
 
 ## 视图预览
+
 阿里云 ECS 指标展示，包括CPU 负载，内存使用，磁盘读写，网络流量等
 
 ![image](imgs/input-aliyun-ecs-1.png)
@@ -121,7 +122,7 @@ def run():
     Runner(collectors).run()
 ```
 
-5、 **保存**配置并 **发布**
+5、 保存配置并发布
 
 ![image](imgs/input-aliyun-ecs-12.png)
 

@@ -116,7 +116,7 @@ def run():
     Runner(collectors).run()
 ```
 
-5、 **保存**配置并 **发布**
+5、 保存配置并发布
 
 ![image](imgs/input-aliyun-slb-12.png)
 
