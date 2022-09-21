@@ -114,7 +114,7 @@ nav:
     - 'Opentelemetry Collector': opentelemetry-collector.md
 
   - '应用性能监测 (APM)':
-    - 'C#（.net': ddtrace-csharp.md
+    - 'C#(.net)': ddtrace-csharp.md
     - 'Go': ddtrace-golang.md
     - 'JAVA': ddtrace-java.md
     - 'Node.JS': ddtrace-nodejs.md

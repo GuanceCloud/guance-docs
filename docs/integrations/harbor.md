@@ -14,7 +14,7 @@ harbor展示：包括项目数量、镜像仓库数、Components health、服务
 
 ### 前置条件
 
-- [安装 Datakit](https://www.yuque.com/dataflux/datakit/datakit-install)
+- [安装 Datakit](../dataflux-func/quick-start.md)>
 
 ### harbor 安装
 
@@ -35,6 +35,8 @@ harbor展示：包括项目数量、镜像仓库数、Components health、服务
 ![image](imgs/harbor-2.png)
 
 修改harbor.yml 配置文件
+
+```
 > hostname: 192.168.91.11
 > 
 > # http related config
@@ -49,8 +51,9 @@ harbor展示：包括项目数量、镜像仓库数、Components health、服务
 > #  certificate: /your/certificate/path
 > 
 > #  private_key: /your/private/key/path
+```
 
-#### 执行prepare
+#### 执行 prepare
 
 首次安装，需要执行prepare。后续如果修改了harbor.yml文件，需要执行prepare后再执行其他操作。
 
@@ -91,11 +94,11 @@ http://配置的ip:7180,默认登录账号： admin ,密码Harbor12345。
 
 ![image](imgs/harbor-5.png)
 
-#### 打包docker image
+#### 打包 docker image
 
 >  docker build -t 192.168.91.11:7180/demo/harbor-exporter:v0.1 -f Dockerfile .
 
-#### 启动harbor-exporter
+#### 启动 harbor-exporter
 
 > docker run -d -p 9107:9107 -e HARBOR_PASSWORD=Harbor12345 192.168.91.11:7180/demo/harbor-exporter:v0.1 --harbor-server=http://192.168.91.11:7180/api --insecure
 
@@ -202,9 +205,7 @@ http://配置的ip:7180,默认登录账号： admin ,密码Harbor12345。
 
 ## 场景视图
 
-场景 - 仪表盘 - 新建仪表板 - harbor
-
-相关文档 <[DataFlux 场景管理](https://www.yuque.com/dataflux/doc/trq02t)> 
+<场景 - 新建仪表板 - 内置模板库 - harbor 监控视图> 
 
 ## 异常检测
 
@@ -216,5 +217,5 @@ http://配置的ip:7180,默认登录账号： admin ,密码Harbor12345。
 
 ## 故障排查
 
-<[无数据上报排查](https://www.yuque.com/dataflux/datakit/why-no-data)>
+<[无数据上报排查](../datakit/why-no-data.md)>
 
