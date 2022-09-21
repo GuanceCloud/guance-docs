@@ -827,7 +827,7 @@ icon: zy/release-notes
 - 修复 Jenkins CI 数据采集的时间精度问题
 - 修复 Tracing resource-type 值不统一的问题
 - eBPF 增加 HTTPS 支持
-- 修复日志采集器可能的奔溃问题
+- 修复日志采集器可能的崩溃问题
 - 修复 prom 采集器泄露问题
 - 支持通过环境变量配置 io 磁盘缓存
 - 增加 Kubernetes CRD 支持
