@@ -9,7 +9,7 @@
 
 - 安装 DataKit（[DataKit 安装文档](../../datakit/datakit-install.md)）
 
-## Android 应用接入 
+## Android 应用接入 {#android-integration} 
 
 登录观测云控制台，进入「用户访问监测」页面，点击右上角「新建应用」，在新窗口输入「应用名称」并自定义「应用 ID 标识」，点击「创建」，即可选择应用类型获取接入方式。
 
@@ -106,8 +106,7 @@ class DemoApplication : Application() {
     override fun onCreate() {
         val config = FTSDKConfig
             .builder(DATAKIT_URL)//Datakit 安装地址
-            .setDebug(true)
-            .setXDataKitUUID("ft-dataKit-uuid-001");
+            .setDebug(true);
 
         FTSdk.install(config)
         
@@ -123,6 +122,7 @@ class DemoApplication : Application() {
 | setDebug | 是否开启调试模式 | 否 | 默认为 `false`，开启后方可打印 SDK 运行日志 |
 | setEnv | 设置采集环境 | 否 | 默认为 `EnvType.PROD` |
 | setOnlySupportMainProcess | 是否只支持在主进程运行 | 否 | 默认为 `true` ，如果需要在其他进程中执行需要将该字段设置为 `false` |
+| setEnableAccessAndroidID | 开启获取 `Android ID` | 否 | 默认，为 `true`，设置为 `false`，则 `device_uuid` 字段数据将不进行采集,市场隐私审核相关[查看这里](#adpot-to-privacy-audits)|
 | addGlobalContext | 添加 SDK 全局属性 | 否 | 添加规则请查阅[此处](#key-conflict) |
 
 ### RUM 配置
@@ -145,7 +145,7 @@ FTSdk.initRUMWithConfig(
 
 | **方法名** | **含义** | **必须** | **注意** |
 | --- | --- | --- | --- |
-| setRumAppId | 设置`Rum AppId` | 是 | 对应设置 RUM `appid`，才会开启`RUM`的采集功能，[获取 appid 方法](#setup) |
+| setRumAppId | 设置`Rum AppId` | 是 | 对应设置 RUM `appid`，才会开启`RUM`的采集功能，[获取 appid 方法](#android-integration) |
 | setEnableTrackAppCrash | 是否上报 App 崩溃日志 | 否 | 默认为 `false`，开启后会在错误分析中显示错误堆栈数据。<br> [关于崩溃日志中混淆内容转换的问题](#retrace-log) |
 | setExtraMonitorTypeWithError | 设置辅助监控信息 | 否 | 添加附加监控数据到 `Rum` 崩溃数据中，`ErrorMonitorType.BATTERY` 为电池余量，`ErrorMonitorType.MEMORY` 为内存用量，`ErrorMonitorType.CPU` 为 CPU 占有率 |
 | setDeviceMetricsMonitorType | 设置 View 监控信息 | 否 | 在 View 周期中，添加监控数据，`DeviceMetricsMonitorType.BATTERY` 监控当前页的最高输出电流输出情况，`DeviceMetricsMonitorType.MEMORY` 监控当前应用使用内存情况，`DeviceMetricsMonitorType.CPU` 监控 CPU 跳动次数 ，`DeviceMetricsMonitorType.FPS` 监控屏幕帧率|
@@ -444,6 +444,16 @@ FTSdk.unbindRumUserData()
 FTSdk.shutDown()
 ```
 
+## 动态开启和关闭获取 AndroidID
+```kotlin
+//开启获取 Android ID
+FTSdk.setEnableAccessAndroidID(true);
+
+//关闭获取 Android ID
+FTSdk.setEnableAccessAndroidID(fasle);
+```
+
+
 ## R8 / Proguard 混淆配置
 
 ```c
@@ -504,4 +514,29 @@ FTExt {
 ### 添加局变量避免冲突字段 {#key-conflict}
 
 为了避免自定义字段与 SDK 数据冲突，建议标签命名添加项目缩写的前缀，例如 `df_tag_name`，项目中使用 `key` 值可[查询源码](https://github.com/DataFlux-cn/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java)。SDK 全局变量中出现与 RUM、Log 相同变量时，RUM、Log 会覆盖 SDK 中的全局变量。
+
+### 应对市场隐私审核 {#adpot-to-privacy-audits}
+#### 隐私声明
+[前往查看](https://docs.guance.com/agreements/app-sdk-privacy-policy/)
+#### SDK AndroidID 配置
+SDK 为更好关联相同用户数据，会使用 Android ID。如果需要在应用市场上架，需要通过如下方式对应市场隐私审核。
+
+```kotlin
+class DemoApplication : Application() {
+    override fun onCreate() {
+    
+        //在初始化设置时将  setEnableAccessAndroidID 设置为 false
+        val config = FTSDKConfig
+            .builder(DATAKIT_URL)
+            . setEnableAccessAndroidID(false)
+
+        FTSdk.install(config)
+        
+        //...
+    }
+}
+
+//用户同意隐私协议后再开启
+FTSdk.setEnableAccessAndroidID(true);
+```
 
