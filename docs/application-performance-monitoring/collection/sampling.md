@@ -181,4 +181,4 @@ curl http://localhost:54322/stop
     sampling_rate = 1.0
 ```
 
-设置应用性能采样后，有可能会错过重要的链路，您可以通过配置过滤器来保证上报关键的链路，如 `keep_rare_resource = true` ，更多关于过滤器介绍可参考  [Datakit Filters](https://docs.guance.com/datakit/datakit-tracing.md#filters) 。
+设置应用性能采样后，有可能会错过重要的链路，您可以通过配置过滤器来保证上报关键的链路，如配置 `keep_rare_resource = true` ，那么被判定为稀有的链路将会被直接上报到观测云。更多关于过滤器介绍可参考  [Datakit Filters](../../datakit/datakit-tracing.md#filters) 。
