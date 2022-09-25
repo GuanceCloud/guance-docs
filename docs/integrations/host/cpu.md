@@ -6,7 +6,7 @@
 
 CPU 性能指标展示，包括 CPU 使用率，IO 等待，用户态，核心态，软中断，硬中断等
 
-![image](imgs/input-cpu-1.png)
+![image](../imgs/input-cpu-1.png)
 
 ## 版本支持
 
