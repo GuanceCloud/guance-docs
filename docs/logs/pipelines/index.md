@@ -73,7 +73,7 @@
 
 ## 注意事项
 
-若您从未通过 DataKit 配置过日志采集器，在观测云工作空间创建了 pipeline 文件以后，您需要在您的主机上 [安装 DataKit](../../datakit/datakit-install.md)  ，且开启 pipeline 文件对应采集器的日志采集和 pipeline 功能。以 Nginx 为例，在 [Nginx 采集器](../../integrations/nginx.md) 中开启日志采集并开启 `pipeline = "nginx.p"`，开启完成后重启 DataKit 即可生效。
+若您从未通过 DataKit 配置过日志采集器，在观测云工作空间创建了 pipeline 文件以后，您需要在您的主机上 [安装 DataKit](../../datakit/datakit-install.md)  ，且开启 pipeline 文件对应采集器的日志采集和 pipeline 功能。以 Nginx 为例，在 [Nginx 采集器](../../integrations/webservice/nginx.md) 中开启日志采集并开启 `pipeline = "nginx.p"`，开启完成后重启 DataKit 即可生效。
 
 注意：`pipeline = "nginx.p" `中 `nginx.p` 可以不填，DataKit 会根据您选择的日志来源自动匹配您创建的日志 pipeline 文件。若日志来源和 pipeline 文件名称不一致，则需要在 `pipeline = "..."` 填入对应的 pipeline 文件名称。
 
