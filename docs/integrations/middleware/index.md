@@ -19,7 +19,7 @@ DataKit 是观测云中至关重要的一个数据采集组件，几乎所有观
 
 
 - 协助采集数据：
-    - Telegraf：[ActiveMQ](activemq.md) 、 [Beats](beats.md)、 [DNS Query](dnsquery.md)、 [NtpQ](ntpq.md)、 [PHP-FPM](php-fpm.md)
+    - Telegraf：[ActiveMQ](activemq.md) 、 [Beats](beats.md)、 [DNS Query](dns-query.md)、 [NtpQ](ntpq.md)、 [PHP-FPM](php-fpm.md)
     - Prometheus：[Flink](flink.md) 、 [Seata](seata.md)
     - DataFlux.Func：[Fluentd](fluentd-metrics.md) 、 [Logstash](logstash-metrics.md)
 
