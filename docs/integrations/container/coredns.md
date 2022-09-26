@@ -8,7 +8,7 @@
 
 coreDNS 性能指标展示：包括请求次数、对每个 zone 和 RCODE 的响应总数、缓存总数、缓存命中说、缓存 miss 数等。
 
-![image](imgs/input-coredns-1.png)
+![image](../imgs/input-coredns-1.png)
 
 ## 安装部署
 
@@ -25,7 +25,7 @@ Kubernetes 集群 Master 节点执行
 kubectl get svc -n kube-system
 ```
 
-![image](imgs/input-coredns-2.png)
+![image](../imgs/input-coredns-2.png)
 
 得到 dns service 域名是
 
@@ -41,7 +41,7 @@ curl http://kube-dns.kube-system.svc.cluster.local:9153/metrics
 
 显示有如下信息，说明可以正常接收数据：
 
-![image](imgs/input-coredns-3.png)
+![image](../imgs/input-coredns-3.png)
 
 ### 配置实施
 
@@ -173,7 +173,7 @@ systemctl restart datakit
 
 指标预览
 
-![image](imgs/input-coredns-4.png)
+![image](../imgs/input-coredns-4.png)
 
 #### 插件标签 (非必选)
 

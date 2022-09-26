@@ -6,7 +6,7 @@
 
 API Server 性能指标展示：请求数、工作队列增速、工作队列深度、CPU、Memory、Goroutines等。
 
-![image](imgs/kubernetes-api-server-1.png)
+![image](../imgs/kubernetes-api-server-1.png)
 
 ## 版本支持
 
@@ -137,7 +137,7 @@ kubectl apply -f datakit.yaml
 
 指标预览
 
-![image](imgs/kubernetes-api-server-2.png)
+![image](../imgs/kubernetes-api-server-2.png)
 
 #### 插件标签 (必选）
 

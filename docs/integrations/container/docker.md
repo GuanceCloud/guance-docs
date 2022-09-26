@@ -8,7 +8,7 @@
 
 容器性能指标展示：CPU 使用率、内存使用率、内存可用总量、容器网络流量、容器文件系统读写等。
 
-![image](imgs/input-docker-1.png)
+![image](../imgs/input-docker-1.png)
 
 ## 安装部署
 
@@ -86,7 +86,7 @@ systemctl restart datakit
 
 指标预览
 
-![image](imgs/input-docker-2.png)
+![image](../imgs/input-docker-2.png)
 
 #### 日志采集 (非必选)
 
@@ -101,7 +101,7 @@ systemctl restart datakit
 
 日志预览
 
-![image](imgs/input-docker-3.png)
+![image](../imgs/input-docker-3.png)
 
 #### 插件标签 (非必选)
 

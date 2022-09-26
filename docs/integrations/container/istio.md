@@ -6,7 +6,7 @@
 
 Istio 性能指标展示：Incoming Request Volume、Incoming Success Rate、Incoming Requests By Source And Response Code、Outgoing Requests By Destination And Response Code 等。
 
-![image](imgs/istio-1.png)
+![image](../imgs/istio-1.png)
 
 ## 版本支持
 
@@ -50,7 +50,7 @@ istioctl install --set profile=demo
 kubectl get pods -n istio-system 
 ```
 
-![image](imgs/istio-2.png)
+![image](../imgs/istio-2.png)
 
 ### 部署实施
 
@@ -689,13 +689,13 @@ kubectl apply -f  datakit.yaml
 
 查看 ingresgateway 对外暴露的端口。
 
-![image](imgs/istio-3.png)
+![image](../imgs/istio-3.png)
 
 浏览器访问 [http://8.136.193.105:32156/productpage](http://8.136.193.105:32156/productpage)，即可访问 productpage。
 
 指标预览
 
-![image](imgs/istio-4.png)
+![image](../imgs/istio-4.png)
 
 #### APM 采集 (必选)
 
@@ -737,11 +737,11 @@ kubectl apply -f  datakit.yaml
 ```
 部署完 Istio 后，链路数据会被打到 **zipkin.istio-system** 的 Service 上，且上报端口是 9411。在部署 DataKit 时已开通链路指标采集的 Zipkin 采集器，由于 DataKit 服务的名称空间是 datakit，端口是 9529，所以这里需要做一下转换，详情请参考[Kubernetes 集群使用 ExternalName 映射 DataKit 服务](../best-practices/cloud-native/kubernetes-external-name )。创建后的 Service 如下图：
 
-![image](imgs/istio-5.png)
+![image](../imgs/istio-5.png)
 
 链路预览
 
-![image](imgs/istio-6.png)
+![image](../imgs/istio-6.png)
 
 #### 日志采集 (非必选)
 
@@ -749,7 +749,7 @@ DataKit 默认的配置，采集容器输出到 /dev/stdout 的日志。更多�
 
 日志预览
 
-![image](imgs/istio-7.png)
+![image](../imgs/istio-7.png)
 
 #### 插件标签 (非必选)
 

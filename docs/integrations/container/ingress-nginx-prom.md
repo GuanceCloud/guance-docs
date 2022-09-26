@@ -6,7 +6,7 @@
 
 Ingress 性能指标展示：Ingress Controller 的平均 cpu 使用率、平均内存使用、网络请求/响应合计、Ingress Config 的加载次数、Ingress Config 上次加载结果、Ingress 的转发成功率等。
 
-![image](imgs/ingress-nginx-prom-1.png)
+![image](../imgs/ingress-nginx-prom-1.png)
 
 ## 安装部署
 
@@ -32,7 +32,7 @@ wget https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.0.
 vi deploy.yaml
 ```
 
-![image](imgs/ingress-nginx-prom-2.png)
+![image](../imgs/ingress-nginx-prom-2.png)
 
 3、 开启 Input
 
@@ -80,7 +80,7 @@ kubectl apply -f deploy.yaml
 
 指标预览
 
-![image](imgs/ingress-nginx-prom-3.png)
+![image](../imgs/ingress-nginx-prom-3.png)
 
 ## 场景视图
 

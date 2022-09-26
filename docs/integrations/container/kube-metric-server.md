@@ -8,19 +8,19 @@
 
 Kubernetes 性能指标展示：包括 pod 数量、deployment 数量、job 数量、endpoint 数量、service 数量、CPU、内存、Pod 分布等。<br />
 
-![image](imgs/input-kube-metric-server-01.png) 
+![image](../imgs/input-kube-metric-server-01.png) 
 
-![image](imgs/input-kube-metric-server-02.png)
+![image](../imgs/input-kube-metric-server-02.png)
 
-![image](imgs/input-kube-metric-server-03.png)
+![image](../imgs/input-kube-metric-server-03.png)
 
-![image](imgs/input-kube-metric-server-04.png)
+![image](../imgs/input-kube-metric-server-04.png)
 
-![image](imgs/input-kube-metric-server-05.png)
+![image](../imgs/input-kube-metric-server-05.png)
 
-![image](imgs/input-kube-metric-server-06.png)
+![image](../imgs/input-kube-metric-server-06.png)
 
-![image](imgs/input-kube-metric-server-07.png)
+![image](../imgs/input-kube-metric-server-07.png)
 
 ## 安装部署
 
@@ -250,7 +250,7 @@ spec:
 
 进入【管理】模块，找到下图中 token。
 
-![image](imgs/input-kube-metric-server-08.png)
+![image](../imgs/input-kube-metric-server-08.png)
 
 替换 datakit.yaml 文件中的 ENV_DATAWAY 环境变量的 value 值中的 <your-token>。
 

@@ -4,9 +4,9 @@
 
 ## 视图预览
 
-![image](imgs/kubernetes-kubelet-1.png)
+![image](../imgs/kubernetes-kubelet-1.png)
 
-![image](imgs/kubernetes-kubelet-2.png)
+![image](../imgs/kubernetes-kubelet-2.png)
 
 ## 版本支持
 
@@ -138,7 +138,7 @@ kubectl apply -f datakit.yaml
 
 指标预览
 
-![image](imgs/kubernetes-kubelet-2.png)
+![image](../imgs/kubernetes-kubelet-2.png)
 
 #### 插件标签 (必选）
 

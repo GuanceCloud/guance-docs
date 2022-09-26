@@ -8,7 +8,7 @@
 
 Etcd 性能指标展示：包括接收 grpc 客户端的总字节数、发送 grpc 客户端的总字节数、领导者是否存在、领导者变更次数、当前处理提案的数量等。
 
-![image](imgs/etcd1.png)
+![image](../imgs/etcd1.png)
 
 ## 安装部署
 
@@ -23,7 +23,7 @@ Etcd 性能指标展示：包括接收 grpc 客户端的总字节数、发送 gr
 curl http://127.0.0.1:2379/metrics
 ```
 
-![image](imgs/etcd2.png)
+![image](../imgs/etcd2.png)
 
 ### 配置实施
 
@@ -132,7 +132,7 @@ systemctl restart datakit
 
 指标预览
 
-![image](imgs/etcd3.png)
+![image](../imgs/etcd3.png)
 
 **插件标签 (非必选)**
 
@@ -599,7 +599,7 @@ data:
 
 #### 指标预览
 
-![image](imgs/etcd4.png)
+![image](../imgs/etcd4.png)
 
 ## 场景视图
 

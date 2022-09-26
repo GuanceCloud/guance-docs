@@ -6,19 +6,19 @@
 
 Kubernetes 性能指标展示：Pod desired、Pod desired、Pods ready、Pods Available、Pod Unavailable等。<br />
 
-![image](imgs/input-kube-state-metrics-01.png)
+![image](../imgs/input-kube-state-metrics-01.png)
 
-![image](imgs/input-kube-state-metrics-02.png)
-![image](imgs/input-kube-state-metrics-03.png)
-![image](imgs/input-kube-state-metrics-04.png)
-![image](imgs/input-kube-state-metrics-05.png)
-![image](imgs/input-kube-state-metrics-06.png)
+![image](../imgs/input-kube-state-metrics-02.png)
+![image](../imgs/input-kube-state-metrics-03.png)
+![image](../imgs/input-kube-state-metrics-04.png)
+![image](../imgs/input-kube-state-metrics-05.png)
+![image](../imgs/input-kube-state-metrics-06.png)
 
 ## 版本支持
 
 kube-state-metrics/ Kubernetes
 
-![image](imgs/input-kube-state-metrics-07.png)
+![image](../imgs/input-kube-state-metrics-07.png)
 
 ## 前置条件
 
@@ -81,17 +81,17 @@ kubectl apply -f deployment.yaml
 kubectl get pods -n kube-system -owide
 ```
 
-![image](imgs/input-kube-state-metrics-08.png)
+![image](../imgs/input-kube-state-metrics-08.png)
 
 ```shell
 curl http://10.244.36.66:8080/metrics 
 ```
 
-![image](imgs/input-kube-state-metrics-09.png)
+![image](../imgs/input-kube-state-metrics-09.png)
 
 指标预览
 
-![image](imgs/input-kube-state-metrics-10.png)
+![image](../imgs/input-kube-state-metrics-10.png)
 
 #### 插件标签 (非必选）
 

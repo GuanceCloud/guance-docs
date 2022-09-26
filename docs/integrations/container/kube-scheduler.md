@@ -6,9 +6,9 @@
 
 Scheduler 性能指标展示：调度队列 pending pod 数、进入调度队列 pod 速率、http 请求数量、CPU、Memory、Goroutines等。
 
-![image](imgs/input-kube-scheduler-01.png)
+![image](../imgs/input-kube-scheduler-01.png)
 
-![image](imgs/input-kube-scheduler-02.png)
+![image](../imgs/input-kube-scheduler-02.png)
 
 ## 版本支持
 
@@ -140,7 +140,7 @@ kubectl apply -f datakit.yaml
 
 指标预览
 
-![image](imgs/input-kube-scheduler-03.png)
+![image](../imgs/input-kube-scheduler-03.png)
 
 #### 插件标签 (必选）
 
