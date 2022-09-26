@@ -1,12 +1,12 @@
 
-# NtpQ
+# DNS Query
 ---
 
 ## 视图预览
 
-NtpQ 指标展示，包括延迟，轮询，偏移量等
+DNS Query 指标展示，包括返回码，记录类型，查询时间等
 
-![image](imgs/input-ntpq-1.png)
+![image](../imgs/input-dns-query-1.png)
 
 ## 版本支持
 
@@ -23,7 +23,7 @@ NtpQ 指标展示，包括延迟，轮询，偏移量等
 
 1、 添加 yum 源
 
-```bash
+```
 cat <<EOF | tee /etc/yum.repos.d/influxdb.repo
 [influxdb]
 name = InfluxDB Repository - RHEL \$releasever
@@ -79,15 +79,21 @@ url = "http://127.0.0.1:9529/v1/write/metric?input=telegraf"
 #[[inputs.system]]
 ```
 
-4、 开启 NtpQ 检测
+4、 开启 DNS Query 检测
 
 主要参数说明
 
-- dns_lookup：dns 搜索，如果是 false (参考 ntpq -n，可以减少指标收集时间)
+- server：dns 服务器地址
+- record_type：记录类型 (A, AAAA, CNAME, MX, NS, PTR 等)
+- port：端口 (默认53)
+- timeout：超时时间
 
 ```
-[[inputs.ntpq]]
-  dns_lookup = true
+[[inputs.dns_query]]
+  servers = ["8.8.8.8"]
+  # record_type = "A"
+  # port = 53
+  # timeout = 2
 ```
 
 5、 启动 Telegraf
@@ -95,32 +101,30 @@ url = "http://127.0.0.1:9529/v1/write/metric?input=telegraf"
 ```
 systemctl start telegraf
 ```
-
 6、  指标验证
 
 ```
-/usr/bin/telegraf --config /etc/telegraf/telegraf.conf --input-filter ntpq --test
+/usr/bin/telegraf --config /etc/telegraf/telegraf.conf --input-filter dns_query --test
 ```
-
 有数据返回 (行协议)，代表能够正常采集
 
-![image](imgs/input-ntpq-2.png)
+![image](../imgs/input-dns-query-2.png)
 
-7. 指标预览
+7、 指标预览
 
-![image](imgs/input-ntpq-3.png)
+![image](../imgs/input-dns-query-3.png)
 
 #### 插件标签 (非必选)
 
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，所有 ntpq 指标都会带有 app = oa 的标签，可以进行快速查询
+- 以下示例配置完成后，所有 dns_query 指标都会带有 app = oa 的标签，可以进行快速查询
 - 相关文档 <[DataFlux Tag 应用最佳实践](../best-practices/insight/tag.md)>
 
 ```
 # 示例
-[inputs.ntpq.tags]
+[inputs.dns_query.tags]
    app = "oa"
 ```
 
@@ -132,24 +136,26 @@ systemctl restart telegraf
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - NtpQ>
+<场景 - 新建仪表板 - 内置模板库 - DNS Query>
 
-## 监控规则
+## 检测库
 
-<监控 - 监控器 - 从模板新建 - NtpQ 检测库>
+暂无
 
 ## 指标详解
 
 | 指标 | 描述 | 数据类型 |
 | --- | --- | --- |
-| delay | 延迟 | float |
-| jitter | 抖动 | float |
-| offset | 偏移量 | float |
-| poll | 轮询 | int |
-| reach | 到达 | int |
-| when | 同步时间 | int |
+| query_time_ms | 查询时间 | float |
+| rcode_value | 记录值 | int |
+| result_code | 返回码 | int |
 
 ## 常见问题排查
 
 <[无数据上报排查](../datakit/why-no-data.md)>
+
+## 进一步阅读
+
+<[DNS Query 解析查询](https://www.cnblogs.com/fanweisheng/p/11080821.html)>
+
 

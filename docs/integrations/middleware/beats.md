@@ -5,7 +5,7 @@
 ## 视图预览
 Beats 指标展示，包括 CPU 负载，内存，事件，配置，输出流量等
 
-![image](imgs/input-beats-1.png)
+![image](../imgs/input-beats-1.png)
 
 ## 版本支持
 
@@ -121,11 +121,11 @@ systemctl start telegraf
 
 有数据返回 (行协议)，代表能够正常采集
 
-![image](imgs/input-beats-2.png)
+![image](../imgs/input-beats-2.png)
 
 7、 指标预览
 
-![image](imgs/input-beats-3.png)
+![image](../imgs/input-beats-3.png)
 
 #### 插件标签 (非必选)
 

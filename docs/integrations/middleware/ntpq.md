@@ -1,14 +1,12 @@
 
-# ActiveMQ
+# NtpQ
 ---
 
 ## 视图预览
 
-ActiveMQ 指标展示，包括队列进/出，Topic 进/出，订阅队列进/出等
+NtpQ 指标展示，包括延迟，轮询，偏移量等
 
-![image](imgs/input-activemq-1.png)
-
-![image](imgs/input-activemq-2.png)
+![image](../imgs/input-ntpq-1.png)
 
 ## 版本支持
 
@@ -16,7 +14,7 @@ ActiveMQ 指标展示，包括队列进/出，Topic 进/出，订阅队列进/�
 
 ## 前置条件
 
-- 服务器 <[安装 Datakit](../datakit/datakit-install.md)>
+- 服务器 <[安装 DataKit](../datakit/datakit-install.md)>
 - 服务器安装 Telegraf
 
 ### 安装 Telegraf
@@ -25,7 +23,7 @@ ActiveMQ 指标展示，包括队列进/出，Topic 进/出，订阅队列进/�
 
 1、 添加 yum 源
 
-```
+```bash
 cat <<EOF | tee /etc/yum.repos.d/influxdb.repo
 [influxdb]
 name = InfluxDB Repository - RHEL \$releasever
@@ -48,11 +46,9 @@ yum -y install telegraf
 
 ### 部署实施
 
-(Linux / Windows 环境相同)
-
 #### 指标采集 (必选)
 
-1、 数据上传至 datakit，修改主配置文件 telegraf.conf
+1、 数据上传至 DataKit，修改主配置文件 telegraf.conf
 
 ```
 vi /etc/telegraf/telegraf.conf
@@ -66,7 +62,7 @@ vi /etc/telegraf/telegraf.conf
 url = "http://127.0.0.1:9529/v1/write/metric?input=telegraf"
 ```
 
-3、 关闭主机检测 (否则会与 datakit 冲突)
+3、 关闭主机检测 (否则会与 DataKit 冲突)
 
 ```
 #[[inputs.cpu]]
@@ -83,20 +79,15 @@ url = "http://127.0.0.1:9529/v1/write/metric?input=telegraf"
 #[[inputs.system]]
 ```
 
-4、 开启 AcitveMQ 检测
+4、 开启 NtpQ 检测
 
 主要参数说明
 
-- url：activemq 控制台地址
-- port：端口
-- username：用户名
-- password：密码
+- dns_lookup：dns 搜索，如果是 false (参考 ntpq -n，可以减少指标收集时间)
+
 ```
-[[inputs.activemq]]
-  url = "http://127.0.0.1:8161"
-# port = 8161 
-  username = "admin"
-  password = "admin"
+[[inputs.ntpq]]
+  dns_lookup = true
 ```
 
 5、 启动 Telegraf
@@ -105,31 +96,31 @@ url = "http://127.0.0.1:9529/v1/write/metric?input=telegraf"
 systemctl start telegraf
 ```
 
-6、 指标验证
+6、  指标验证
 
 ```
-/usr/bin/telegraf --config /etc/telegraf/telegraf.conf --input-filter activemq --test
+/usr/bin/telegraf --config /etc/telegraf/telegraf.conf --input-filter ntpq --test
 ```
 
 有数据返回 (行协议)，代表能够正常采集
 
-![image](imgs/input-activemq-3.png)
+![image](../imgs/input-ntpq-2.png)
 
-7、 指标预览
+7. 指标预览
 
-![image](imgs/input-activemq-4.png)
+![image](../imgs/input-ntpq-3.png)
 
 #### 插件标签 (非必选)
 
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，所有 activemq 指标都会带有 app = oa 的标签，可以进行快速查询
+- 以下示例配置完成后，所有 ntpq 指标都会带有 app = oa 的标签，可以进行快速查询
 - 相关文档 <[DataFlux Tag 应用最佳实践](../best-practices/insight/tag.md)>
 
 ```
 # 示例
-[inputs.activemq.tags]
+[inputs.ntpq.tags]
    app = "oa"
 ```
 
@@ -141,20 +132,22 @@ systemctl restart telegraf
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - ActiveMQ 监控视图>
+<场景 - 新建仪表板 - 内置模板库 - NtpQ>
 
-## 检测库
+## 监控规则
 
-<监控 - 监控器 - 从模板新建 - ActiveMQ 检测库>
+<监控 - 监控器 - 从模板新建 - NtpQ 检测库>
 
 ## 指标详解
 
 | 指标 | 描述 | 数据类型 |
 | --- | --- | --- |
-| consumer_count | 消费者 | int |
-| dequeue_count | 出队列 | int |
-| enqueue_count | 入队列 | int |
-| dispatched_counter | 已发送 | int |
+| delay | 延迟 | float |
+| jitter | 抖动 | float |
+| offset | 偏移量 | float |
+| poll | 轮询 | int |
+| reach | 到达 | int |
+| when | 同步时间 | int |
 
 ## 常见问题排查
 

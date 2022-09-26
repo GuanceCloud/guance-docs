@@ -11,7 +11,7 @@
 
 Kafka 观测场景主要展示了 Kafka的 基础信息，topic 信息和性能信息。
 
-![image](imgs/input-kafka-1.png)
+![image](../imgs/input-kafka-1.png)
 
 ## 安装部署
 
@@ -131,11 +131,11 @@ systemctl restart datakit
 
 4、 Kafka 指标采集验证 `/usr/local/datakit/datakit -M |egrep "最近采集|kafka"`
 
-![image](imgs/input-kafka-2.png)
+![image](../imgs/input-kafka-2.png)
 
 5、 指标预览
 
-![image](imgs/input-kafka-3.png)
+![image](../imgs/input-kafka-3.png)
 
 #### 日志采集 (非必选)
 
@@ -162,11 +162,11 @@ systemctl restart datakit
 
 3、 Kafka 日志采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|kafka_log"
 
-![image](imgs/input-kafka-4.png)
+![image](../imgs/input-kafka-4.png)
 
 4、 日志预览
 
-![image](imgs/input-kafka-5.png)
+![image](../imgs/input-kafka-5.png)
 
 #### 插件标签 (非必选)
 

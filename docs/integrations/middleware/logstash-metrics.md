@@ -6,7 +6,7 @@
 
 ## 视图预览
 
-![image](imgs/input-logstash-metrics-1.png)
+![image](../imgs/input-logstash-metrics-1.png)
 
 ## 安装部署
 
@@ -63,15 +63,15 @@ http.port: 9600
 
 1、 登录 Func，地址 http://ip:8088（默认 admin/admin）
 
-![image](imgs/input-logstash-metrics-2.png)
+![image](../imgs/input-logstash-metrics-2.png)
 
 2、 配置 DataKit 数据源进行数据上报
 
-![image](imgs/input-logstash-metrics-3.png)
+![image](../imgs/input-logstash-metrics-3.png)
 
 3、 输入标题/描述信息
 
-![image](imgs/input-logstash-metrics-4.png)
+![image](../imgs/input-logstash-metrics-4.png)
 
 4、 编辑脚本
 
@@ -202,17 +202,17 @@ def get_logstash_metrics():
 
 5、 在管理中新建自动触发执行进行函数调度  
 
-![image](imgs/input-logstash-metrics-5.png)
+![image](../imgs/input-logstash-metrics-5.png)
 
 选择刚刚编写好的执行函数设置定时任务，添加有效期有点击保存即可<br />定时任务最短1分钟触发一次，如果有特殊需求可以使用while + sleep的方式来提高数据采集频率
 
 6、 通过自动触发配置查看函数运行状态
 
-![image](imgs/input-logstash-metrics-6.png)
+![image](../imgs/input-logstash-metrics-6.png)
 
-![image](imgs/input-logstash-metrics-7.png)
+![image](../imgs/input-logstash-metrics-7.png)
 
-![image](imgs/input-logstash-metrics-8.png)
+![image](../imgs/input-logstash-metrics-8.png)
 
 如果显示已成功，那么恭喜您可以去studio中查看您上报的指标了
 
@@ -292,7 +292,7 @@ pipeline_plugins_inputs_events_queue_push_duration_in_millis 0
 
 8、 指标预览
 
-![image](imgs/input-logstash-metrics-9.png)
+![image](../imgs/input-logstash-metrics-9.png)
 
 
 ## 场景视图

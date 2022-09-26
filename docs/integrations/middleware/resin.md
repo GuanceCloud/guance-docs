@@ -6,7 +6,7 @@
 
 Resin 性能指标展示：启动时间、堆内存、非堆内存、类、线程等。
 
-![image](imgs/input-resin-1.png)
+![image](../imgs/input-resin-1.png)
 
 ## 版本支持
 
@@ -125,11 +125,11 @@ datakit --restart
 
 6、 JVM 指标采集验证，使用命令 
 
-![image](imgs/input-resin-2.png)
+![image](../imgs/input-resin-2.png)
 
 指标预览
 
-![image](imgs/input-resin-3.png)
+![image](../imgs/input-resin-3.png)
 
 #### 日志采集 (非必选)
 
@@ -202,7 +202,7 @@ datakit --restart
 
 日志预览
 
-![image](imgs/input-resin-4.png)
+![image](../imgs/input-resin-4.png)
 
 #### 插件标签 (非必选）
 

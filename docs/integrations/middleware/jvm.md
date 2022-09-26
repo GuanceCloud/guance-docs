@@ -8,7 +8,7 @@
 
 JVM性能指标展示：CPU负载、直接缓冲区、线程数量、堆内存、GC次数、类加载数等。
 
-![image](imgs/input-jvm-1.png)
+![image](../imgs/input-jvm-1.png)
 
 ## 安装部署
 
@@ -45,7 +45,7 @@ cp statsd.conf.sample statsd.conf
 vi /usr/local/datakit/conf.d/datakit.conf
 ```
 
-![image](imgs/input-jvm-2.png)
+![image](../imgs/input-jvm-2.png)
 
 4、 重启 DataKit
 
@@ -55,7 +55,7 @@ systemctl restart datakit
 
 指标预览(启动应用后才能上报数据)
 
-![image](imgs/input-jvm-3.png)
+![image](../imgs/input-jvm-3.png)
 
 ## 启动应用
 

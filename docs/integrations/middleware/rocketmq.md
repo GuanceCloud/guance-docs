@@ -6,9 +6,9 @@
 ## 视图预览
 RocketMQ 指标展示，包括生产者 tps/消息大小，消费者 tps/消息大小，消息堆积，topic 信息等
 
-![image](imgs/input-rocketmq-1.png)
+![image](../imgs/input-rocketmq-1.png)
 
-![image](imgs/input-rocketmq-2.png)
+![image](../imgs/input-rocketmq-2.png)
 
 ## 版本支持
 
@@ -71,7 +71,7 @@ docker run -d --net="host" --name rocketmq-exporter -p 5557:5557 docker.io/rocke
 curl http://127.0.0.1:5557/metrics
 ```
 
-![image](imgs/input-rocketmq-3.png)
+![image](../imgs/input-rocketmq-3.png)
 
 ## 安装配置
 
@@ -109,11 +109,11 @@ cp prom.conf.sample prom.conf
 
 3、 Prometheus 指标采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|prom"
 
-![image](imgs/input-rocketmq-4.png)
+![image](../imgs/input-rocketmq-4.png)
 
 4、 指标预览
 
-![image](imgs/input-rocketmq-5.png)
+![image](../imgs/input-rocketmq-5.png)
 
 #### 插件标签 (非必选)
 

@@ -4,7 +4,7 @@
 
 ## 视图预览
 
-![image](imgs/input-seata-1.png)
+![image](../imgs/input-seata-1.png)
 
 ## 版本支持
 
@@ -129,7 +129,7 @@ systemctl restart datakit
 
 ### 3:指标预览
 
-![image](imgs/input-seata-2.png)
+![image](../imgs/input-seata-2.png)
 
 ## 场景视图
 

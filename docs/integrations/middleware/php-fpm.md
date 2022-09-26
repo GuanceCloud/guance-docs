@@ -1,12 +1,12 @@
 
-# DNS Query
+# PHP-FPM
 ---
 
 ## 视图预览
 
-DNS Query 指标展示，包括返回码，记录类型，查询时间等
+PHP-FPM 指标展示，包括运行时间，活跃进程，慢请求，请求队列等
 
-![image](imgs/input-dns-query-1.png)
+![image](../imgs/input-fph-1.png)
 
 ## 版本支持
 
@@ -16,6 +16,7 @@ DNS Query 指标展示，包括返回码，记录类型，查询时间等
 
 - 服务器 <[安装 DataKit](../datakit/datakit-install.md)>
 - 服务器安装 Telegraf
+- PHP 开启 status 页面
 
 ### 安装 Telegraf
 
@@ -40,6 +41,18 @@ EOF
 yum -y install telegraf
 ```
 
+3、 开启 PHP status 页面，编辑 /etc/php-fpm.d/www.conf (以实际文件为准)
+
+```
+pm.status_path = /status
+```
+
+4、 重启 php-fpm
+
+```
+systemctl restart php-fpm
+```
+
 ## 安装配置
 
 说明：示例 Linux 版本为 CentOS Linux release 7.8.2003 (Core)，Windows 版本请修改对应的配置文件
@@ -62,7 +75,7 @@ vi /etc/telegraf/telegraf.conf
 url = "http://127.0.0.1:9529/v1/write/metric?input=telegraf"
 ```
 
-3、 关闭主机检测 (否则会与 DataKit 冲突)
+3、 关闭主机检测 (否则会与 datakit 冲突)
 
 ```
 #[[inputs.cpu]]
@@ -79,21 +92,16 @@ url = "http://127.0.0.1:9529/v1/write/metric?input=telegraf"
 #[[inputs.system]]
 ```
 
-4、 开启 DNS Query 检测
+4、 开启 PHP-FPM 检测
 
 主要参数说明
 
-- server：dns 服务器地址
-- record_type：记录类型 (A, AAAA, CNAME, MX, NS, PTR 等)
-- port：端口 (默认53)
+- urls：检测地址/域名 (支持 http/unixsocket/fcgi 三种方式)
 - timeout：超时时间
-
 ```
-[[inputs.dns_query]]
-  servers = ["8.8.8.8"]
-  # record_type = "A"
-  # port = 53
-  # timeout = 2
+[[inputs.phpfpm]]
+  urls = ["fcgi://127.0.0.1:9000/status"]
+  timeout = 5
 ```
 
 5、 启动 Telegraf
@@ -101,30 +109,32 @@ url = "http://127.0.0.1:9529/v1/write/metric?input=telegraf"
 ```
 systemctl start telegraf
 ```
+
 6、  指标验证
 
 ```
-/usr/bin/telegraf --config /etc/telegraf/telegraf.conf --input-filter dns_query --test
+/usr/bin/telegraf --config /etc/telegraf/telegraf.conf --input-filter phpfpm --test
 ```
+
 有数据返回 (行协议)，代表能够正常采集
 
-![image](imgs/input-dns-query-2.png)
+![image](../imgs/input-fph-2.png)
 
 7、 指标预览
 
-![image](imgs/input-dns-query-3.png)
+![image](../imgs/input-fph-3.png)
 
 #### 插件标签 (非必选)
 
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，所有 dns_query 指标都会带有 app = oa 的标签，可以进行快速查询
+- 以下示例配置完成后，所有 phpfpm 指标都会带有 app = oa 的标签，可以进行快速查询
 - 相关文档 <[DataFlux Tag 应用最佳实践](../best-practices/insight/tag.md)>
 
 ```
 # 示例
-[inputs.dns_query.tags]
+[inputs.phpfpm.tags]
    app = "oa"
 ```
 
@@ -136,26 +146,31 @@ systemctl restart telegraf
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - DNS Query>
+<场景 - 新建仪表板 - 内置模板库 - PHP-FPM 监控视图>
 
 ## 检测库
 
-暂无
+<监控 - 监控器 - 从模板新建 - PHP-FPM 检测库>
 
 ## 指标详解
 
 | 指标 | 描述 | 数据类型 |
 | --- | --- | --- |
-| query_time_ms | 查询时间 | float |
-| rcode_value | 记录值 | int |
-| result_code | 返回码 | int |
+| accepted_conn | 当前池接受的请求数 | int |
+| start_since | 运行时间 | int |
+| listen_queue | 请求等待队列 | int |
+| max_listen_queue | 请求等待队列最高的数量 | int |
+| listen_queue_len | socket 等待队列长度 | int |
+| idle_processes | 空闲进程 | int |
+| active_processes | 活跃进程 | int |
+| total_processes | 进程总数 | int |
+| max_active_processes | 最大的活跃进程数量 | int |
+| slow_requests | 慢请求 | int |
+| max_children_reached | 进程最大数量限制的次数 | int |
 
 ## 常见问题排查
 
 <[无数据上报排查](../datakit/why-no-data.md)>
 
-## 进一步阅读
-
-<[DNS Query 解析查询](https://www.cnblogs.com/fanweisheng/p/11080821.html)>
 
 

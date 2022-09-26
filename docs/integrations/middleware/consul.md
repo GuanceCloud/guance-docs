@@ -6,7 +6,7 @@
 
 consul 性能指标展示：包括监控状态、集群中服务数量、集群中成员数量、集群中成员的状态等。
 
-![image](imgs/input-consul-1.png)
+![image](../imgs/input-consul-1.png)
 
 ## 版本支持
 
@@ -107,7 +107,7 @@ systemctl restart datakit
 
 指标预览
 
-![image](imgs/input-consul-2.png)
+![image](../imgs/input-consul-2.png)
 
 #### 插件标签 (非必选)
 

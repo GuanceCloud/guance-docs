@@ -6,7 +6,7 @@
 
 Nacos 性能指标展示：Nacos 在线时长、Nacos config 长链接数、Nacos config 配置个数、Service Count、http请求次数等。
 
-![image](imgs/input-nacos-1.png)
+![image](../imgs/input-nacos-1.png)
 
 ## 版本支持
 
@@ -87,11 +87,11 @@ systemctl restart datakit
 
 7、 Nacos 指标采集验证，使用命令 /usr/local/datakit/datakit -M |egrep "最近采集|nacos" 或者通过 url 查看 ${ip}:9529/monitor
 
-![image](imgs/input-nacos-2.png)
+![image](../imgs/input-nacos-2.png)
 
 指标预览
 
-![image](imgs/input-nacos-3.png)
+![image](../imgs/input-nacos-3.png)
 
 ## 场景视图
 

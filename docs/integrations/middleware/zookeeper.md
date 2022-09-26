@@ -6,7 +6,7 @@
 
 ## 视图预览
 
-![image](imgs/input-zookeeper-1.png)
+![image](../imgs/input-zookeeper-1.png)
 
 ## 安装部署
 
@@ -157,7 +157,7 @@ systemctl restart datakit
 
 4、 Zookeeper 指标采集验证 `/usr/local/datakit/datakit -M |egrep "最近采集|Zookeeper"`
 
-![image](imgs/input-zookeeper-2.png)
+![image](../imgs/input-zookeeper-2.png)
 
 5、 DQL 验证
 
@@ -194,7 +194,7 @@ dql > M::zookeeper LIMIT 1
 
 6、 指标预览
 
-![image](imgs/input-zookeeper-3.png)
+![image](../imgs/input-zookeeper-3.png)
 
 ##### 插件标签 (非必选)
 

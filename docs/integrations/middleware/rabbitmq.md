@@ -8,9 +8,9 @@
 
 RabbitMQ 性能指标展示：包括连接数量、通道数量、队列量、消费者数、队列消息速率、队列消息数、交换机、节点、队列等。
 
-![image](imgs/input-rabbit-1.png)
+![image](../imgs/input-rabbit-1.png)
 
-![image](imgs/input-rabbit-2.png)
+![image](../imgs/input-rabbit-2.png)
 
 ## 安装部署
 
@@ -25,7 +25,7 @@ RabbitMQ 性能指标展示：包括连接数量、通道数量、队列量、�
 systemctl status rabbitmq-server
 ```
 
-![image](imgs/input-rabbit-3.png)
+![image](../imgs/input-rabbit-3.png)
 
 配置实施
 
@@ -108,7 +108,7 @@ systemctl restart datakit
 
 指标预览
 
-![image](imgs/input-rabbit-4.png)
+![image](../imgs/input-rabbit-4.png)
 
 #### 日志采集 (非必选)
 
@@ -136,7 +136,7 @@ systemctl restart datakit
 
 日志预览
 
-![image](imgs/input-rabbit-5.png)
+![image](../imgs/input-rabbit-5.png)
 
 #### 插件标签 (非必选)
 

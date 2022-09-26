@@ -63,11 +63,11 @@ systemctl restart datakit
 
 4、 Solr 指标采集验证 `/usr/local/datakit/datakit -M |egrep "最近采集|solr"`
 
-![image](imgs/input-solr-1.png)
+![image](../imgs/input-solr-1.png)
 
 5、 指标预览
 
-![image](imgs/input-solr-2.png)
+![image](../imgs/input-solr-2.png)
 
 #### 日志采集 (非必选)
 
@@ -95,11 +95,11 @@ systemctl restart datakit
 
 4、 Solr 日志采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|solr_log"
 
-![image](imgs/input-solr-3.png)
+![image](../imgs/input-solr-3.png)
 
 5、 日志预览
 
-![image](imgs/input-solr-4.png)
+![image](../imgs/input-solr-4.png)
 
 #### 插件标签 (非必选)
 

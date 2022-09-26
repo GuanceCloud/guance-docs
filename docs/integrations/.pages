@@ -4,27 +4,8 @@ nav:
 
   - '数据存储': datastorage
 
-  - '中间件':
-    - 'ActiveMQ': activemq.md
-    - 'Beats': beats.md
-    - 'Consul': consul.md
-    - 'DNS Query': dns-query.md
-    - 'Flink': flink.md
-    - 'Fluentd': fluentd-metrics.md
-    - 'JVM': jvm.md
-    - 'Kafka': kafka.md
-    - 'Logstash': logstash-metrics.md
-    - 'Nacos': nacos.md
-    - 'NtpQ': ntpq.md
-    - 'PHP-FPM': php-fpm.md
-    - 'RabbitMQ': rabbitmq.md
-    - 'Resin': resin.md
-    - 'RocketMQ': rocketmq.md
-    - 'Seata': seata.md
-    - 'Solr': solr.md
-    - 'Tomcat': tomcat.md
-    - 'Zookeeper': zookeeper.md
-
+  - '中间件': middleware
+  
   - '网络连接':
     - 'Dialtesting (云拨测)': dialtesting.md
     - 'Ping': ping.md
