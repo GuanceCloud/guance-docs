@@ -1,0 +1,14 @@
+nav:
+  - index.md
+  - 'CoreDNS': coredns.md
+  - 'Docker': docker.md
+  - 'Etcd': etcd.md
+  - 'Harbor': harbor.md
+  - 'Ingress Nginx (Prometheus)': ingress-nginx-prom.md
+  - 'Istio': istio.md
+  - 'Kubernetes API Server': kubernetes-api-server.md
+  - 'Kubernetes Controller Manager': kubernetes-controller-manager.md
+  - 'Kubernetes Kubelet': kubernetes-kubelet.md
+  - 'Kubernetes Scheduler': kube-scheduler.md
+  - 'Kubernetes With Kube State Metrics': kube-state-metrics.md
+  - 'Kubernetes With Metric Server': kube-metric-server.md
