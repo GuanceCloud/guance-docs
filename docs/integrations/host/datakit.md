@@ -6,7 +6,7 @@
 
 Datakit 性能指标展示，包括 CPU 使用率，内存信息，运行时间，日志记录等
 
-![image](imgs/input-datakit-1.png)
+![image](../imgs/input-datakit-1.png)
 
 ## 版本支持
 
@@ -28,7 +28,7 @@ Datakit 数据采集默认开启 (无法关闭)
 
 指标预览
 
-![image](imgs/input-datakit-2.png)
+![image](../imgs/input-datakit-2.png)
 
 #### 日志采集 (默认)
 
@@ -41,7 +41,7 @@ gin_log = "/var/log/datakit/gin.log"
 
 日志预览
 
-![image](imgs/input-datakit-3.png)
+![image](../imgs/input-datakit-3.png)
 
 ## 场景视图
 

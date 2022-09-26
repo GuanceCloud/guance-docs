@@ -1,16 +1,16 @@
 
-# EthTool
+# Netstat
 ---
 
 ## 视图预览
 
-EthTool 指标展示，包括网络接口入/出流量，入/出数据包，丢弃的数据包等
+Netstat 指标展示，包括 tcp 连接数，等待连接，等待处理请求，udp socket 连接等
 
-![image](imgs/input-ethtool-1.png)
+![image](../imgs/input-netstat-1.png)
 
 ## 版本支持
 
-操作系统支持：Linux 
+操作系统支持：Linux / Windows 
 
 ## 前置条件
 
@@ -42,9 +42,11 @@ yum -y install telegraf
 
 ## 安装配置
 
-说明：示例 Linux 版本为：CentOS Linux release 7.8.2003 (Core)
+说明：示例 Linux 版本为：CentOS Linux release 7.8.2003 (Core)，Windows 版本请修改对应的配置文件
 
 ### 部署实施
+
+(Linux / Windows 环境相同)
 
 #### 指标采集 (必选)
 
@@ -79,16 +81,10 @@ url = "http://127.0.0.1:9529/v1/write/metric?input=telegraf"
 #[[inputs.system]]
 ```
 
-4、 开启 EthTool 检测
+4、 开启 Netstat 检测
 
-主要参数说明
-
-- interface_include：包含的网络接口
-- interface_exclude：不包含的网络接口
 ```
-[[inputs.ethtool]]
-    # interface_include = ["eth0"]
-    # interface_exclude = ["eth1"]
+[[inputs.netstat]]
 ```
 
 5、 启动 Telegraf
@@ -100,16 +96,15 @@ systemctl start telegraf
 6、 指标验证
 
 ```
-/usr/bin/telegraf --config /etc/telegraf/telegraf.conf --input-filter ethtool --test
+/usr/bin/telegraf --config /etc/telegraf/telegraf.conf --input-filter netstat --test
 ```
-
 有数据返回 (行协议)，代表能够正常采集
 
-![image](imgs/input-ethtool-2.png)
+![image](../imgs/input-netstat-2.png)
 
 7、 指标预览
 
-![image](imgs/input-ethtool-3.png)
+![image](../imgs/input-netstat-3.png)
 
 #### 插件标签 (非必选)
 
@@ -118,19 +113,22 @@ systemctl start telegraf
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 netstat 指标都会带有 app = oa 的标签，可以进行快速查询
 - 相关文档 <[DataFlux Tag 应用最佳实践](../best-practices/insight/tag.md)>
+
 ```
 # 示例
-[inputs.ethtool.tags]
+[inputs.netstat.tags]
    app = "oa"
 ```
+
 重启 Telegraf
+
 ```
 systemctl restart telegraf
 ```
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - EthTool 监控视图>
+<场景 - 新建仪表板 - 内置模板库 - Netstat 监控视图>
 
 ## 监控规则
 
@@ -140,12 +138,18 @@ systemctl restart telegraf
 
 | 指标 | 描述 | 数据类型 |
 | --- | --- | --- |
-| rx_queue_bytes | 流入流量 (byte) | int |
-| rx_queue_drops | 流入时丢弃的数据包 | int |
-| rx_queue_packets | 流入的数据包 | int |
-| tx_queue_bytes | 流出流量 (byte) | int |
-| tx_queue_drops | 流入时丢弃的数据包 | int |
-| tx_queue_packets | 流出的数据包 | int |
+| tcp_close | 没有任何连接状态 | int |
+| tcp_close_wait | 等待从本地用户发来的连接中断请求 | int |
+| tcp_closing | 等待远程TCP对连接中断的确认 | int |
+| tcp_established | 正在打开的连接数 | int |
+| tcp_fin_wait1 | 等待远程 TCP 连接中断请求 | int |
+| tcp_fin_wait2 | 从远程 TCP 等待连接中断请求 | int |
+| tcp_last_ack | 等待原来的发向远程TCP的连接中断请求的确认 | int |
+| tcp_listen | 监听 TCP 端口的连接请求 | int |
+| tcp_syn_recv | 正在等待处理的请求数 | int |
+| tcp_syn_sent | 发送连接请求后等待匹配的连接请求 | int |
+| tcp_time_wait | 等待足够的时间以确保远程TCP接收到连接中断请求的确认 | int |
+| udp_socket | socket 连接数 | int |
 
 ## 常见问题排查
 
@@ -154,3 +158,4 @@ systemctl restart telegraf
 ## 进一步阅读
 
 <[主机可观测最佳实践](../best-practices/monitoring/host-linux)>
+

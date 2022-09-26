@@ -6,7 +6,7 @@
 
 Diskio 性能指标展示，包括磁盘读写，磁盘读写时间，IOPS 等
 
-![image](imgs/input-diskio-1.png)
+![image](../imgs/input-diskio-1.png)
 
 ## 版本支持
 
@@ -46,11 +46,11 @@ Diskio 性能指标展示，包括磁盘读写，磁盘读写时间，IOPS 等
 
 2、 Diskio 指标采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|diskio"
 
-![image](imgs/input-diskio-2.png)
+![image](../imgs/input-diskio-2.png)
 
 指标预览
 
-![image](imgs/input-diskio-3.png)
+![image](../imgs/input-diskio-3.png)
 
 #### 插件标签 (非必选)
 

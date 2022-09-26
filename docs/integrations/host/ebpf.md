@@ -6,7 +6,7 @@
 
 网络接口指标展示，包括 发送/接收字节数，TCP 延迟，TCP 连接数，TCP 重传次数等
 
-![image](imgs/input-ebpf-1.png)
+![image](../imgs/input-ebpf-1.png)
 
 ## 版本支持
 
@@ -63,7 +63,7 @@ vi ebpf.conf
 
 4、 ebpf 指标采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|netflow"
 
-![image](imgs/input-ebpf-2.png)
+![image](../imgs/input-ebpf-2.png)
 
 #### 插件标签 (非必选)
 
