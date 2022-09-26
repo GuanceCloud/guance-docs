@@ -10,7 +10,7 @@ DataKit 是观测云中至关重要的一个数据采集组件，几乎所有观
 
 [CoreDNS](coredns.md) 、 [Docker](docker.md) 、 [Etcd](etcd.md) 、 [Harbor](harbor.md) 、 [Ingress Nginx (Prometheus)](ingress-nginx-prom.md)、 [Istio](istio.md)、
 
-[Kubernetes API Server](kubernetes-api-server.md)、 [Kubernetes Controller Manager](kubernetes-controller-manager.md)、 [Kubernetes Kubelet](kubernetes-kublet.md)、
+[Kubernetes API Server](kubernetes-api-server.md)、 [Kubernetes Controller Manager](kubernetes-controller-manager.md)、 [Kubernetes Kubelet](kubernetes-kubelet.md)、
 
 [Kubernetes Scheduler](kube-scheduler.md)、 [ Kubernetes With Kube State Metrics](kube-state-metrics.md)、 [ Kubernetes With Metric Server](kube-metric-server.md)
 
