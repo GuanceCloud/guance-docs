@@ -1,13 +1,12 @@
 
-# Processes
+# Swap
 ---
-
 
 ## 视图预览
 
-Processes 性能指标展示，包括 CPU 使用率，内存使用率，线程数，打开的文件数等
+Swap 性能指标展示，包括 Swap 使用率，Swap 大小等
 
-![image](imgs/input-processes-1.png)
+![image](../imgs/input-swap-1.png)
 
 ## 版本支持
 
@@ -19,55 +18,43 @@ Processes 性能指标展示，包括 CPU 使用率，内存使用率，线程�
 
 ## 安装配置
 
-说明：示例 Linux 版本为：CentOS Linux release 7.8.2003 (Core)
+说明：示例 Linux 版本为：CentOS Linux release 7.8.2003 (Core)，Windows 版本请修改对应的配置文件
 
 ### 部署实施
 
 (Linux / Windows 环境相同)
 
-#### 指标采集 (必选)
+#### 指标采集 (默认)
 
-1、 开启 Datakit Processes 插件，复制 sample 文件
-
-```
-cd /usr/local/datakit/conf.d/host/
-cp host_processes.conf.sample host_processes.conf
-```
-
-2、 修改配置文件 host_processes.conf
+1、 Swap 数据采集默认开启，对应配置文件 /usr/local/datakit/conf.d/host/swap.conf
 
 参数说明
 
-- process_name：进程名称 (不填写代表采集所有进程)
-- min_run_time：进程最低运行时间 (默认进程运行 10m 才会被采集)
-- open_metric：是否开启指标 (默认 false)
-
+- interval：数据采集频率
 ```
-[[inputs.host_processes]]
-  # process_name = [".*datakit.*"]
-  min_run_time = "10m"
-  open_metric = true
+[[inputs.swap]]
+  interval = '10s'
 ```
 
-3、 Processes 指标采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|host_processes"
+2、 Swap 指标采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|swap"
 
-![image](imgs/input-processes-2.png)
+![image](../imgs/input-swap-2.png)
 
 指标预览
 
-![image](imgs/input-processes-3.png)
+![image](../imgs/input-swap-3.png)
 
 #### 插件标签 (非必选)
 
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，所有 processes 指标都会带有 app = oa 的标签，可以进行快速查询
+- 以下示例配置完成后，所有 swap 指标都会带有 app = oa 的标签，可以进行快速查询
 - 相关文档 <[DataFlux Tag 应用最佳实践](../best-practices/insight/tag.md)>
 
 ```
 # 示例
-[inputs.host_processes.tags]
+[inputs.swap.tags]
    app = "oa"
 ```
 
@@ -76,11 +63,12 @@ cp host_processes.conf.sample host_processes.conf
 ```
 systemctl restart datakit
 ```
+
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - Processes 监控视图>
+<场景 - 新建仪表板 - 内置模板库 - Swap 监控视图>
 
-## 检测库
+## 监控规则
 
 <监控 - 监控器 - 从模板新建 - 主机检测库>
 
@@ -89,7 +77,6 @@ systemctl restart datakit
 | 指标 | 描述 | 数据类型 | 单位 |
 | --- | --- | --- | --- |
 | `cpu_usage` | cpu使用占比（%*100），进程自启动以来所占 CPU 百分比，该值相对会比较稳定（跟 top 的瞬时百分比不同） | float | percent |
-| `cpu_usage_top` | cpu使用占比（%*100）, 一个采集周期内的进程的 CPU 使用率均值 | float | percent |
 | `mem_used_percent` | mem使用占比（%*100） | float | percent |
 | `open_files` | open_files 个数(仅支持linux) | int | count |
 | `rss` | Resident Set Size （常驻内存大小） | int | B |

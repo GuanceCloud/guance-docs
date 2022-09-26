@@ -6,9 +6,9 @@
 
 安全检测指标展示，包括系统，网络，数据库，存储等
 
-![image](imgs/input-scheck-1.png)
+![image](../imgs/input-scheck-1.png)
 
-![image](imgs/input-scheck-2.png)
+![image](../imgs/input-scheck-2.png)
 
 ## 版本支持
 
@@ -72,15 +72,15 @@ systemctl start scheck
 
 有数据返回说明存在异常
 
-![image](imgs/input-scheck-3.png)
+![image](../imgs/input-scheck-3.png)
 
 <br />进入安全巡检模块<br />
 
-![image](imgs/input-scheck-4.png)
+![image](../imgs/input-scheck-4.png)
 
 点击查看详情以及解决方案
 
-![image](imgs/input-scheck-5.png)
+![image](../imgs/input-scheck-5.png)
 
 ## 常见问题排查
 

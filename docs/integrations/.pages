@@ -1,24 +1,6 @@
 nav:
   - index.md
-  - '主机系统':
-    - 'CPU': cpu.md
-    - 'Conntrack': conntrack.md
-    - 'Chrony': chrony.md
-    - 'Datakit': datakit.md
-    - 'Directory': directory.md
-    - 'Disk': disk.md
-    - 'Diskio': diskio.md
-    - 'Ebpf': ebpf.md
-    - 'EthTool': ethtool.md
-    - 'IPMI_Sensor': ipmi-sensor.md
-    - 'Mem': mem.md
-    - 'Net': net.md
-    - 'Netstat': netstat.md
-    - 'Processes': processes.md
-    - 'Procstat': procstat.md
-    - 'Swap': swap.md
-    - 'System': system.md
-    - 'Scheck (安全巡检)': scheck.md
+  - '主机系统': host
 
   - '数据存储':
     - 'Aerospike': aerospike.md

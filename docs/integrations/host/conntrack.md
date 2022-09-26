@@ -6,7 +6,7 @@
 
 Conntrack 性能指标展示，包括成功搜索条目数，插入的包数，连接数量等<br />
 
-![image](imgs/input-conntracks-1.png)
+![image](../imgs/input-conntracks-1.png)
 
 ## 版本支持
 
@@ -37,10 +37,10 @@ Conntrack 性能指标展示，包括成功搜索条目数，插入的包数，�
 
 3、 Conntrack 指标采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|system"
 
-![image](imgs/input-conntracks-2.png)
+![image](../imgs/input-conntracks-2.png)
 指标预览
 
-![image](imgs/input-conntracks-3.png)
+![image](../imgs/input-conntracks-3.png)
 
 #### 插件标签 (非必选)
 

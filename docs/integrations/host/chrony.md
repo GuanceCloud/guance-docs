@@ -5,7 +5,7 @@
 ## 视图预览
 Chrony 指标展示，包括轮询速率，时间偏移，可达性寄存器等
 
-![image](imgs/input-chrony-1.png)
+![image](../imgs/input-chrony-1.png)
 
 ## 版本支持
 
@@ -98,11 +98,11 @@ systemctl start telegraf
 
 有数据返回 (行协议)，代表能够正常采集
 
-![image](imgs/input-chrony-2.png)
+![image](../imgs/input-chrony-2.png)
 
 7、 指标预览
 
-![image](imgs/input-chrony-3.png)
+![image](../imgs/input-chrony-3.png)
 
 #### 插件标签 (非必选)
 
