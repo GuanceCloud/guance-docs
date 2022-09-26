@@ -3,6 +3,7 @@
 
 DataKit 是观测云中至关重要的一个数据采集组件，几乎所有观测云中的数据都是来源于 DataKit。
 
+<br/>
 
 **对于数据存储的数据采集，需首先[安装 DataKit](/datakit/datakit-install/)：**
 
@@ -19,6 +20,7 @@ DataKit 是观测云中至关重要的一个数据采集组件，几乎所有观
 
 - Prometheus：[Aerospike](aerospike.md) 、 [Redis-sentinel](redis-sentinel.md)
 
+<br/>
 
 **开始[安装 DataKit](/datakit/datakit-install/)，开启你的观测云之旅！**
 

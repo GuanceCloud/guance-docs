@@ -3,6 +3,8 @@
 
 DataKit 是观测云中至关重要的一个数据采集组件，几乎所有观测云中的数据都是来源于 DataKit。
 
+<br/>
+
 **对于主机系统的数据采集，需首先[安装 DataKit](/datakit/datakit-install/)：**
 
 - 安装 DataKit 之后，会默认开启一些数据的采集；
@@ -21,7 +23,7 @@ DataKit 是观测云中至关重要的一个数据采集组件，几乎所有观
 
 - Telegraf：[Chrony](chrony.md) 、 [Directory](directory.md)	 、 [Ebpf](ebpf.md) 、 [EthTool](ethtool.md) 、 [IPMI Sensor](ipmi-sensor.md) 、 [Netstat](netstat.md)	 、 [Procstat](procstat.md)
 
-
+<br/>
 
 **开始[安装 DataKit](/datakit/datakit-install/)，开启你的观测云之旅！**
 

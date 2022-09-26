@@ -3,6 +3,7 @@
 
 DataKit 是观测云中至关重要的一个数据采集组件，几乎所有观测云中的数据都是来源于 DataKit。
 
+<br/>
 
 **对于中间件的数据采集，需首先[安装 DataKit](/datakit/datakit-install/)：**
 
@@ -21,6 +22,8 @@ DataKit 是观测云中至关重要的一个数据采集组件，几乎所有观
     - Telegraf：[ActiveMQ](activemq.md) 、 [Beats](beats.md)、 [DNS Query](dnsquery.md)、 [NtpQ](ntpq.md)、 [PHP-FPM](php-fpm.md)
     - Prometheus：[Flink](flink.md) 、 [Seata](seata.md)
     - DataFlux.Func：[Fluentd](fluentd-metrics.md) 、 [Logstash](logstash-metrics.md)
+
+<br/>
 
 **开始[安装 DataKit](/datakit/datakit-install/)，开启你的观测云之旅！**
 
