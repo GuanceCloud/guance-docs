@@ -2,18 +2,7 @@ nav:
   - index.md
   - '主机系统': host
 
-  - '数据存储':
-    - 'Aerospike': aerospike.md
-    - 'ClickHouse': clickhouse.md
-    - 'Elasticsearch': elasticsearch.md
-    - 'Memcached': memcached.md
-    - 'MongoDB': mongodb.md
-    - 'MySQL': mysql.md
-    - 'Oracle': oracle.md
-    - 'PostgreSQL': postgresql.md
-    - 'Redis': redis.md
-    - 'Redis-sentinel': redis-sentinel.md
-    - 'SQLServer': sqlserver.md
+  - '数据存储': datastorage
 
   - '中间件':
     - 'ActiveMQ': activemq.md

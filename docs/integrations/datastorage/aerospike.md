@@ -6,11 +6,11 @@
 
 Aerospike namespace 性能指标展示集群、空间下：内存使用情况、磁盘使用、对象数、读写速率等。
 
-![image](imgs/input-aerospike-1.png)
+![image](../imgs/input-aerospike-1.png)
 
 Aerospike node 相关指标：node 集群、node状态、记录数、内存、磁盘指标等。
 
-![image](imgs/input-aerospike-2.png)
+![image](../imgs/input-aerospike-2.png)
 
 ## 版本支持
 
@@ -253,7 +253,7 @@ systemctl restart datakit
 
 #### 指标预览
 
-![image](imgs/input-aerospike-3.png)
+![image](../imgs/input-aerospike-3.png)
 
 ### 日志采集 (非必选)
 
@@ -330,11 +330,11 @@ systemctl restart datakit
 
 Aerospike 日志采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|aerospike"
 
-![image](imgs/input-aerospike-4.png)
+![image](../imgs/input-aerospike-4.png)
 
 #### 日志预览
 
-![image](imgs/input-aerospike-5.png)
+![image](../imgs/input-aerospike-5.png)
 
 
 ### 插件标签 (非必选）

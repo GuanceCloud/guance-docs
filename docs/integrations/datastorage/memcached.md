@@ -5,7 +5,7 @@
 ## 视图预览
 Memcached 性能指标展示：包括连接数，命令数，网络流量，线程数，命中率信息等
 
-![image](imgs/input-memcached-1.png)
+![image](../imgs/input-memcached-1.png)
 
 ## 版本支持
 
@@ -51,11 +51,11 @@ vi memcached.conf
 
 3、 Memcached 指标采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|memcached"
 
-![image](imgs/input-memcached-2.png)
+![image](../imgs/input-memcached-2.png)
 
 指标预览
 
-![image](imgs/input-memcached-3.png)
+![image](../imgs/input-memcached-3.png)
 
 #### 插件标签 (非必选)
 

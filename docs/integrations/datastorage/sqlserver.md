@@ -6,15 +6,15 @@
 
 SQLServer 性能指标展示：CPU，内存，事务，日志，临时表，物理文件 IO，备份，任务调度等
 
-![image](imgs/input-sqlserver-1.png)
+![image](../imgs/input-sqlserver-1.png)
 
-![image](imgs/input-sqlserver-2.png)
+![image](../imgs/input-sqlserver-2.png)
 
-![image](imgs/input-sqlserver-3.png)
+![image](../imgs/input-sqlserver-3.png)
 
-![image](imgs/input-sqlserver-4.png)
+![image](../imgs/input-sqlserver-4.png)
 
-![image](imgs/input-sqlserver-5.png)
+![image](../imgs/input-sqlserver-5.png)
 
 ## 版本支持
 
@@ -75,7 +75,7 @@ services.msc 找到 datakit 重新启动
 
 指标预览
 
-![image](imgs/input-sqlserver-6.png)
+![image](../imgs/input-sqlserver-6.png)
 
 #### 日志采集 (非必选)
 

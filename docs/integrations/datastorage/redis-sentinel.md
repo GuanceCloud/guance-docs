@@ -6,7 +6,7 @@
 
 Redis-sentinel 观测场景主要展示了 Redis 的集群、slaves、节点分布信息等。
 
-![image](imgs/input-redis-sentinel-1.png)
+![image](../imgs/input-redis-sentinel-1.png)
 
 ## 版本支持
 
@@ -23,7 +23,7 @@ redis-sentinel-exporter >=0.1
 
 下载地址 [https://github.com/lrwh/redis-sentinel-exporter/releases](https://github.com/lrwh/redis-sentinel-exporter/releases)
 
-![image](imgs/input-redis-sentinel-2.png)
+![image](../imgs/input-redis-sentinel-2.png)
 
 ### 启动 redis-sentinel-exporter 
 
@@ -147,11 +147,11 @@ systemctl restart datakit
 
 4、 redis-sentinel 指标采集验证，使用命令 /usr/local/datakit/datakit -M |egrep "最近采集|redis-sentinel" 或者通过 url 查看 ${ip}:9529/monitor
 
-![image](imgs/input-redis-sentinel-3.png)
+![image](../imgs/input-redis-sentinel-3.png)
 
 5、 指标预览
 
-![image](imgs/input-redis-sentinel-4.png)
+![image](../imgs/input-redis-sentinel-4.png)
 
 #### 日志采集 (非必选)
 
@@ -229,11 +229,11 @@ systemctl restart datakit
 
 3、 redis-sentinel 指标采集验证，使用命令 /usr/local/datakit/datakit -M |egrep "最近采集|logging" 或者通过 url 查看 ${ip}:9529/monitor
 
-![image](imgs/input-redis-sentinel-5.png)
+![image](../imgs/input-redis-sentinel-5.png)
 
 4、 日志预览
 
-![image](imgs/input-redis-sentinel-6.png)
+![image](../imgs/input-redis-sentinel-6.png)
 
 5、 日志 pipeline 功能切割字段说明
 - Redis 通用日志切割<br />原始日志为
@@ -242,9 +242,9 @@ systemctl restart datakit
 [11412] 05 May 10:17:31.329 # Creating Server TCP listening socket *:26380: bind: No such file or directory
 ```
 
-![image](imgs/input-redis-sentinel-7.png)
+![image](../imgs/input-redis-sentinel-7.png)
 
-![image](imgs/input-redis-sentinel-8.png)
+![image](../imgs/input-redis-sentinel-8.png)
 
 切割后的字段列表如下：
 

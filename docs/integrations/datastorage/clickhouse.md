@@ -6,7 +6,7 @@
 
 ## 视图预览
 
-![image](imgs/input-clickhouse-1.png)
+![image](../imgs/input-clickhouse-1.png)
 
 ## 安装部署
 
@@ -145,7 +145,7 @@ systemctl restart datakit
 
 4、  ClickHouse 指标采集验证 `/usr/local/datakit/datakit -M |egrep "最近采集|clickhouse"`
 
-![image](imgs/input-clickhouse-2.png)
+![image](../imgs/input-clickhouse-2.png)
 
 5、 DQL 验证
 
@@ -421,7 +421,7 @@ jemalloc_background_thread_run_intervals 0
 
 6、 指标预览
 
-![image](imgs/input-clickhouse-3.png)
+![image](../imgs/input-clickhouse-3.png)
 
 #### 插件标签 (非必选)
 参数说明

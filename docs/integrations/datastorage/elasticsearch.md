@@ -10,17 +10,17 @@
 
 Elasticsearch 观测场景主要展示了 Elasticsearch 的集群信息、网络性能、集群性能、索引性能以及日志信息。
 
-![image](imgs/input-elasticsearch-1.png)
+![image](../imgs/input-elasticsearch-1.png)
 
-![image](imgs/input-elasticsearch-2.png)
+![image](../imgs/input-elasticsearch-2.png)
 
-![image](imgs/input-elasticsearch-3.png)
+![image](../imgs/input-elasticsearch-3.png)
 
 ### 内置视图
 
 Elasticsearch 内置视图主要展示了 Elasticsearch 的集群内的 JVM 和线程池的信息
 
-![image](imgs/input-elasticsearch-4.png)
+![image](../imgs/input-elasticsearch-4.png)
 
 ## 安装部署
 
@@ -133,11 +133,11 @@ systemctl restart datakit
 
 4、 ElasticSearch 指标采集验证 `/usr/local/datakit/datakit -M |egrep "最近采集|elasticsearch"`
 
-![image](imgs/input-elasticsearch-5.png)
+![image](../imgs/input-elasticsearch-5.png)
 
 5、 指标预览
 
-![image](imgs/input-elasticsearch-6.png)
+![image](../imgs/input-elasticsearch-6.png)
 
 #### 日志采集 (非必选)
 
@@ -164,11 +164,11 @@ systemctl restart datakit
 
 3、 ElasticSearch 日志采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|elasticsearch_log"
 
-![image](imgs/input-elasticsearch-7.png)
+![image](../imgs/input-elasticsearch-7.png)
 
 4、 日志预览
 
-![image](imgs/input-elasticsearch-8.png)
+![image](../imgs/input-elasticsearch-8.png)
 
 5、 日志 pipeline 功能切割字段说明
 

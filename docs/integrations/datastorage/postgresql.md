@@ -6,7 +6,7 @@
 
 PostgreSQL 性能指标展示：包括连接数，缓冲分配，计划检查点，脏块数等
 
-![image](imgs/input-postgresql-1.png)
+![image](../imgs/input-postgresql-1.png)
 
 ## 版本支持
 
@@ -56,7 +56,7 @@ vi postgresql.conf
 
 3、 PostgreSQL 指标采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|postgresql"
 
-![image](imgs/input-postgresql-2.png)
+![image](../imgs/input-postgresql-2.png)
 
 4、 重启 Datakit (如果需要开启日志，请配置日志采集再重启)
 
@@ -66,7 +66,7 @@ systemctl restart datakit
 
 指标预览
 
-![image](imgs/input-postgresql-3.png)
+![image](../imgs/input-postgresql-3.png)
 
 #### 日志插件 (非必选)
 
@@ -90,7 +90,7 @@ systemctl restart datakit
 
 PostgreSQL 日志采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|postgresql_log"
 
-![image](imgs/input-postgresql-4.png)
+![image](../imgs/input-postgresql-4.png)
 
 #### 插件标签 (非必选)
 

@@ -6,9 +6,9 @@
 
 MongoDB 性能指标展示：包括每秒查询操作，文档操作，TTL索引，游标，队列信息等
 
-![image](imgs/input-mongodb-1.png)
+![image](../imgs/input-mongodb-1.png)
 
-![image](imgs/input-mongodb-2.png)
+![image](../imgs/input-mongodb-2.png)
 
 ## 版本支持
 
@@ -93,7 +93,7 @@ vi mongodb.conf
 
 3、 MongoDB 指标采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|mongodb"
 
-![image](imgs/input-mongodb-3.png)
+![image](../imgs/input-mongodb-3.png)
 
 4、 重启 DataKit (如果需要开启日志，请配置日志采集再重启)
 
@@ -102,7 +102,7 @@ systemctl restart datakit
 ```
 指标预览
 
-![image](imgs/input-mongodb-4.png)
+![image](../imgs/input-mongodb-4.png)
 
 #### 安全认证 (非必选)
 
@@ -145,7 +145,7 @@ systemctl restart datakit
 
 MongoDB 日志采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|mongodb_log"
 
-![image](imgs/input-mongodb-5.png)
+![image](../imgs/input-mongodb-5.png)
 
 #### 插件标签 (非必选)
 

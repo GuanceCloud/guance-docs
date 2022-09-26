@@ -8,11 +8,11 @@
 
 MySQL 观测场景主要展示了 MySQL 的基础信息、链接信息、存储空间信息、innoDB 信息、性能信息、锁信息以及日志信息。
 
-![image](imgs/input-mysql-1.png)
+![image](../imgs/input-mysql-1.png)
 
-![image](imgs/input-mysql-2.png)
+![image](../imgs/input-mysql-2.png)
 
-![image](imgs/input-mysql-3.png)
+![image](../imgs/input-mysql-3.png)
 
 ## 安装部署
 
@@ -132,11 +132,11 @@ systemctl restart datakit
 
 4、 MySQL 指标采集验证 `/usr/local/datakit/datakit -M |egrep "最近采集|mysql"`
 
-![image](imgs/input-mysql-4.png)
+![image](../imgs/input-mysql-4.png)
 
 5、 指标预览
 
-![image](imgs/input-mysql-5.png)
+![image](../imgs/input-mysql-5.png)
 
 #### 日志采集 (非必选)
 
@@ -191,11 +191,11 @@ systemctl restart datakit
 
 4、 MySQL 日志采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|mysql_log"
 
-![image](imgs/input-mysql-6.png)
+![image](../imgs/input-mysql-6.png)
 
 5、 日志预览
 
-![image](imgs/input-mysql-7.png)
+![image](../imgs/input-mysql-7.png)
 
 #### 插件标签 (非必选)
 

@@ -10,7 +10,7 @@
 
 Redis 观测场景主要展示了 Redis 的错误信息，性能信息，持久化信息等。
 
-![image](imgs/input-redis-1.png)
+![image](../imgs/input-redis-1.png)
 
 ## 安装部署
 
@@ -109,11 +109,11 @@ systemctl restart datakit
 
 4、 Redis 指标采集验证 `/usr/local/datakit/datakit -M |egrep "最近采集|redis"`
 
-![image](imgs/input-redis-2.png)
+![image](../imgs/input-redis-2.png)
 
 5、 指标预览
 
-![image](imgs/input-redis-3.png)
+![image](../imgs/input-redis-3.png)
 
 #### 日志采集 (非必选)
 
@@ -156,11 +156,11 @@ systemctl restart datakit
 
 3、 Redis 日志采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|redis_log"
 
-![image](imgs/input-redis-4.png)
+![image](../imgs/input-redis-4.png)
 
 4、 日志预览
 
-![image](imgs/input-redis-5.png)
+![image](../imgs/input-redis-5.png)
 
 5、 日志 pipeline 功能切割字段说明
 - Redis 通用日志切割
