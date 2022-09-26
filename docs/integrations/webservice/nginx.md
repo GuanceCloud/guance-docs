@@ -6,7 +6,7 @@
 
 Nginx 性能指标展示：请求数、处理请求数、活跃请求数、等待连接数等。
 
-![image](imgs/input-nginx-01.png)
+![image](../imgs/input-nginx-01.png)
 
 ## 版本支持
 
@@ -63,7 +63,7 @@ nginx -V 2>&1| grep -o http_stub_status_module
 
 2、 使用 nginx -t 测试配置文件语法
 
-![image](imgs/input-nginx-02.png)
+![image](../imgs/input-nginx-02.png)
 
 3、 重载 nginx
 
@@ -75,7 +75,7 @@ systemctl reload nginx
 
 (如果配置了 server_name，使用 curl http://域名:端口/nginx_status )
 
-![image](imgs/input-nginx-03.png)
+![image](../imgs/input-nginx-03.png)
 
 5、 开启 DataKit nginx 插件，复制 sample 文件
 
@@ -109,11 +109,11 @@ systemctl restart datakit
 
 8、 Nginx 指标采集验证，使用命令 /usr/local/datakit/datakit -M |egrep "最近采集|nginx"
 
-![image](imgs/input-nginx-04.png)
+![image](../imgs/input-nginx-04.png)
 
 指标预览
 
-![image](imgs/input-nginx-05.png)
+![image](../imgs/input-nginx-05.png)
 
 #### 日志采集 (非必选)
 
@@ -137,11 +137,11 @@ systemctl restart datakit
 
 Nginx 日志采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|logging/nginx"
 
-![image](imgs/input-nginx-06.png)
+![image](../imgs/input-nginx-06.png)
 
 日志预览
 
-![image](imgs/input-nginx-07.png)
+![image](../imgs/input-nginx-07.png)
 
 #### 插件标签 (非必选）
 
@@ -233,22 +233,22 @@ opentracing_tag "custom-tag" "special value";#用户自定义标签，可选
 
 配置完成后保存并退出nginx.conf，首先使用nginx -t进行基本的语法检查，在注入Nginx Trace模块之前，检查结果仅显示nginx本身的内容：
 
-![image](imgs/input-nginx-08.png)
+![image](../imgs/input-nginx-08.png)
 
 如成功配置Nginx Trace模块，则再次使用nginx -t进行语法检查时，会提示ddtrace的相关配置信息：
 
-![image](imgs/input-nginx-09.png)
+![image](../imgs/input-nginx-09.png)
 
 使用nginx -s reload重新加载nginx，使tracing功能生效。登录观测云的应用性能监控界面，查看Nginx Tracing信息：
 
-![image](imgs/input-nginx-10.png)
+![image](../imgs/input-nginx-10.png)
 
 
 可能遇到的问题：
 
 1、在进行nginx语法检查时报错，提示没有找到OpenTracing的module
 
-![image](imgs/input-nginx-11.png)
+![image](../imgs/input-nginx-11.png)
 
 这个报错说明您环境中的nginx保存Modules的路径并不是/usr/lib/nginx/modules，这时可以根据报错提示的路径，将Nginx OpenTracing包拷贝到您环境中nginx的模块引用位置。或在配置nginx.conf时，使用OpenTrace so文件所在位置的绝对路径。
 
@@ -258,7 +258,7 @@ opentracing_tag "custom-tag" "special value";#用户自定义标签，可选
 找到对应版本后，停用本地nginx。将Nginx-Opentracing的代码拷贝到本地并解压。进入到nginx代码路径使用configure重建objt时，增加--add-dynamic-module=/path/to/your/module(该路径指向您本地保存ddagent代码)，可以在nginx目录下使用./configure命令直接添加。另外需要注意，tracing模块的重新编译依赖OpenTracingCPP公共包，需要一并下载这个包用于编译：<br />相关帮助信息：
 [https://github.com/opentracing-contrib/nginx-opentracing](https://github.com/opentracing-contrib/nginx-opentracing)
 
-![image](imgs/input-nginx-12.png)
+![image](../imgs/input-nginx-12.png)
 
 OpenTracingCPP下载地址：
 [https://github.com/opentracing/opentracing-cpp/releases/tag/v1.6.0](https://github.com/opentracing/opentracing-cpp/releases/tag/v1.6.0)

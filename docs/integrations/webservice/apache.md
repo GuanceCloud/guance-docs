@@ -6,9 +6,9 @@
 
 Apache 性能指标展示：包括繁忙进程，空闲进程，进程 CPU 负载，每秒请求数，每秒服务字节数等
 
-![image](imgs/input-apache-1.png)
+![image](../imgs/input-apache-1.png)
 
-![image](imgs/input-apache-2.png)
+![image](../imgs/input-apache-2.png)
 
 ## 版本支持
 
@@ -108,11 +108,11 @@ systemctl restart datakit
 
 7、 Apache 指标采集验证，使用命令 /usr/local/datakit/datakit -M |egrep "最近采集|apache"
 
-![image](imgs/input-apache-3.png)
+![image](../imgs/input-apache-3.png)
 
 指标预览
 
-![image](imgs/input-apache-4.png)
+![image](../imgs/input-apache-4.png)
 
 #### 日志采集 (非必选)
 
@@ -136,11 +136,11 @@ systemctl restart datakit
 
 Apache 日志采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|apache_log"
 
-![image](imgs/input-apache-5.png)
+![image](../imgs/input-apache-5.png)
 
 日志预览
 
-![image](imgs/input-apache-6.png)
+![image](../imgs/input-apache-6.png)
 
 #### 插件标签 (非必选)
 
