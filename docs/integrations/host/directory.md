@@ -6,7 +6,7 @@
 
 Directory 性能指标展示，包括目录数，文件数，目录文件大小等
 
-![image](imgs/input-directory-1.png)
+![image](../imgs/input-directory-1.png)
 
 ## 版本支持
 
@@ -50,11 +50,11 @@ cp hostdir.conf.sample hostdir.conf
 
 3、 Directory 指标采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|hostdir"
 
-![image](imgs/input-directory-2.png)
+![image](../imgs/input-directory-2.png)
 
 指标预览
 
-![image](imgs/input-directory-3.png)
+![image](../imgs/input-directory-3.png)
 
 #### 插件标签 (非必选)
 

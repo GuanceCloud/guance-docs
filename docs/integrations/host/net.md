@@ -6,7 +6,7 @@
 
 网络性能指标展示，包括网络出入口流量，网络出入口数据包等
 
-![image](imgs/input-net-1.png)
+![image](../imgs/input-net-1.png)
 
 ## 版本支持
 
@@ -45,11 +45,11 @@
 
 2、 Net 指标采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|net"
 
-![image](imgs/input-net-2.png)
+![image](../imgs/input-net-2.png)
 
 指标预览
 
-![image](imgs/input-net-3.png)
+![image](../imgs/input-net-3.png)
 
 #### 插件标签 (非必选)
 

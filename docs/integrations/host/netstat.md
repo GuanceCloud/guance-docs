@@ -6,7 +6,7 @@
 
 Netstat 指标展示，包括 tcp 连接数，等待连接，等待处理请求，udp socket 连接等
 
-![image](imgs/input-netstat-1.png)
+![image](../imgs/input-netstat-1.png)
 
 ## 版本支持
 
@@ -100,11 +100,11 @@ systemctl start telegraf
 ```
 有数据返回 (行协议)，代表能够正常采集
 
-![image](imgs/input-netstat-2.png)
+![image](../imgs/input-netstat-2.png)
 
 7、 指标预览
 
-![image](imgs/input-netstat-3.png)
+![image](../imgs/input-netstat-3.png)
 
 #### 插件标签 (非必选)
 

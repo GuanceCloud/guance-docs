@@ -6,7 +6,7 @@
 
 EthTool 指标展示，包括网络接口入/出流量，入/出数据包，丢弃的数据包等
 
-![image](imgs/input-ethtool-1.png)
+![image](../imgs/input-ethtool-1.png)
 
 ## 版本支持
 
@@ -105,11 +105,11 @@ systemctl start telegraf
 
 有数据返回 (行协议)，代表能够正常采集
 
-![image](imgs/input-ethtool-2.png)
+![image](../imgs/input-ethtool-2.png)
 
 7、 指标预览
 
-![image](imgs/input-ethtool-3.png)
+![image](../imgs/input-ethtool-3.png)
 
 #### 插件标签 (非必选)
 

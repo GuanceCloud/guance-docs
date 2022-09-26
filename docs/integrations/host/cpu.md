@@ -42,11 +42,11 @@ CPU 性能指标展示，包括 CPU 使用率，IO 等待，用户态，核心�
 
 2、 CPU 指标采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|cpu"
 
-![image](imgs/input-cpu-2.png)
+![image](../imgs/input-cpu-2.png)
 
 指标预览
 
-![image](imgs/input-cpu-3.png)
+![image](../imgs/input-cpu-3.png)
 
 #### 插件标签 (非必选)
 

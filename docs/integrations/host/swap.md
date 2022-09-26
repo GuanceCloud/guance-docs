@@ -6,7 +6,7 @@
 
 Swap 性能指标展示，包括 Swap 使用率，Swap 大小等
 
-![image](imgs/input-swap-1.png)
+![image](../imgs/input-swap-1.png)
 
 ## 版本支持
 
@@ -38,11 +38,11 @@ Swap 性能指标展示，包括 Swap 使用率，Swap 大小等
 
 2、 Swap 指标采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|swap"
 
-![image](imgs/input-swap-2.png)
+![image](../imgs/input-swap-2.png)
 
 指标预览
 
-![image](imgs/input-swap-3.png)
+![image](../imgs/input-swap-3.png)
 
 #### 插件标签 (非必选)
 

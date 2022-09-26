@@ -7,7 +7,7 @@
 
 Processes 性能指标展示，包括 CPU 使用率，内存使用率，线程数，打开的文件数等
 
-![image](imgs/input-processes-1.png)
+![image](../imgs/input-processes-1.png)
 
 ## 版本支持
 
@@ -51,11 +51,11 @@ cp host_processes.conf.sample host_processes.conf
 
 3、 Processes 指标采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|host_processes"
 
-![image](imgs/input-processes-2.png)
+![image](../imgs/input-processes-2.png)
 
 指标预览
 
-![image](imgs/input-processes-3.png)
+![image](../imgs/input-processes-3.png)
 
 #### 插件标签 (非必选)
 
