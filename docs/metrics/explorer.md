@@ -1,4 +1,4 @@
-# 指标查看器
+# 指标分析
 ---
 
 ## 简介
@@ -49,9 +49,9 @@
 
 ## 标签
 
-![Image title](img/6.metrics_2.png){ align=right }
-
 标签是标识一个数据点采集对象的属性的集合，分为标签名和标签值。在「指标」查看器支持基于标签进行分组筛选。如右图所示：基于主机标签“host”分组可视化。
+
+![](img/6.metrics_2.png)
 
 *DataKit 采集器会默认给采集到的所有数据追加标签 `host=<DataKit所在主机名>`，更多介绍可参考文档 [DataKit 使用入门](../datakit/datakit-service-how-to.md) 。*
 
