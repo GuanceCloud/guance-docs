@@ -6,7 +6,7 @@
 
 系统性能指标展示，包括 CPU 平均负载，在线用户数，系统运行时间等
 
-![image](imgs/input-system-1.png)
+![image](../imgs/input-system-1.png)
 
 ## 版本支持
 
@@ -38,11 +38,11 @@
 
 2、 System 指标采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|system"
 
-![image](imgs/input-system-2.png)
+![image](../imgs/input-system-2.png)
 
 指标预览
 
-![image](imgs/input-system-3.png)
+![image](../imgs/input-system-3.png)
 
 #### 插件标签 (非必选)
 

@@ -2,6 +2,14 @@
 icon: zy/best-practices
 ---
 
+## (2022/09/26)
+
+### 新增最佳实践
+
+- 云原生
+    - 其它 - [多个 Kubernetes 集群指标采集最佳实践](./cloud-native/multi-cluster.md)。
+
+
 ## (2022/09/16)
 
 ### 新增最佳实践
