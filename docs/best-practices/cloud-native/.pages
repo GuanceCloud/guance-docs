@@ -35,3 +35,4 @@ nav:
     - Spark On K8s Operator 可观测最佳实践: spark-on-kubernetes.md
     - 'Nginx Ingress 可观测最佳实践': ingress-nginx.md
     - '使用 CRD 开启您的 Ingress 可观测之路': ingress-crd.md
+    - '多个 Kubernetes 集群指标采集最佳实践': multi-cluster.md
