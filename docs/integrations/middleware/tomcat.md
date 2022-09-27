@@ -8,9 +8,9 @@
 
 Tomcat 性能指标展示：发送字节数、接收字节数、请求处理时间、请求数、请求错误数、线程数、缓存命中次数等
 
-![image](imgs/input-tomcat-1.png)
+![image](../imgs/input-tomcat-1.png)
 
-![image](imgs/input-tomcat-2.png)
+![image](../imgs/input-tomcat-2.png)
 
 ## 安装部署
 
@@ -60,7 +60,7 @@ Tomcat 性能指标展示：发送字节数、接收字节数、请求处理时�
 
 linux 环境下成功示例如下：
 
-![image](imgs/input-tomcat-3.png)
+![image](../imgs/input-tomcat-3.png)
 
 #### 开启指标及日志采集
 
@@ -155,7 +155,7 @@ systemctl restart datakit
 
 日志预览
 
-![image](imgs/input-tomcat-4.png)
+![image](../imgs/input-tomcat-4.png)
 
 #### tomcat 插件标签 (非必选)
 

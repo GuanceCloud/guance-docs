@@ -8,11 +8,11 @@
 
 Oracle 观测场景主要展示了 Oracle 的 会话信息、缓存信息、表空间信息、实例运行信息、性能信息、锁信息以及日志信息。
 
-![image](imgs/oracle-1.png)
+![image](../imgs/oracle-1.png)
 
-![image](imgs/oracle-2.png)
+![image](../imgs/oracle-2.png)
 
-![image](imgs/oracle-3.png)
+![image](../imgs/oracle-3.png)
 
 ## 安装部署
 
@@ -120,11 +120,11 @@ datakit --restart
 
 5、 Oracle 指标采集验证 `/usr/local/datakit/datakit -M |egrep "最近采集|oracle"`
 
-![image](imgs/oracle-4.png)
+![image](../imgs/oracle-4.png)
 
 6、 指标预览
 
-![image](imgs/oracle-5.png)
+![image](../imgs/oracle-5.png)
 
 #### 日志采集 (非必选)
 
@@ -186,28 +186,28 @@ datakit --restart
 
 5、 日志预览
 
-![image](imgs/oracle-6.png)
+![image](../imgs/oracle-6.png)
 
 6、 场景视图中添加 日志流图
    1、 点击Oracle场景视图中 `编辑` 按钮
 
-![image](imgs/oracle-7.png)
+![image](../imgs/oracle-7.png)
 
    2、 找到场景视图下方 `实例运行日志`，点击 `修改`，进入修改页面
 
-![image](imgs/oracle-8.png)
+![image](../imgs/oracle-8.png)
 
    3、 点击查询 框 中的 `来源` 下拉框，找到 `logging.conf` 中配置的 `source` 并点击选用
 
-![image](imgs/oracle-9.png)
+![image](../imgs/oracle-9.png)
 
    4、 点击右下角 `修改` 按钮 保存修改 即完成 场景视图中 的日志配置
 
-![image](imgs/oracle-10.png)
+![image](../imgs/oracle-10.png)
 
    5、 Oracle实例运行日志流图展示如下
 
-![image](imgs/oracle-11.png)
+![image](../imgs/oracle-11.png)
 
 #### 插件标签 (非必选)
 
