@@ -150,7 +150,7 @@ default_time(time)       # 将 time 字段作为输出数据的时间戳
         # ...
 ```
 
-配置完成后，使用命令行`datakit --restart`重启 DataKit 使配置生效。更多 Nginx 采集器配置可参考文档 [Nginx](../../integrations/nginx.md) 。
+配置完成后，使用命令行`datakit --restart`重启 DataKit 使配置生效。更多 Nginx 采集器配置可参考文档 [Nginx](../../integrations/webservice/nginx.md) 。
 ### 步骤二：根据采集的日志，确定切割字段
 
 开启 Nginx 采集器，配置日志文件路径，开启 Pipeline 以后，即可在观测云工作空间查看采集到的 Nginx 日志，在日志详情中，可查看按照 Pipeline 文件切割的字段属性。观察和分析日志，确定是否需要优化切割的字段。
