@@ -187,5 +187,5 @@ spec:
 
 更多关于容器和 K8S 的配置方法和指标说明可参考：
 ### [Kubernetes 环境下的 DataKit 配置](../../datakit/k8s-config-how-to.md) 
-### [Kubernetes 扩展指标采集](../../datakit/kubernetes-x.md)
+### [Kubernetes CRD 扩展指标采集](../../datakit/kubernetes-crd.md)
 ### [Kubernetes 集群中自定义 Exporter 指标采集](../../datakit/kubernetes-prom.md)
