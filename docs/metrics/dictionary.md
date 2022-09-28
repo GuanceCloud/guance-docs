@@ -3,55 +3,63 @@
 
 ## 简介
 
-指标数据采集后，可以在观测云工作空间的「指标管理」查看所有采集的指标集及其指标和标签、时间线数量、数据存储策略。
+完成指标数据采集后，在观测云工作空间的「指标管理」可以查看所有上报的指标集和相关的指标、标签、时间线数量、数据存储策略等。
+
+## 指标集
 
 指标集是指同一类型指标的集合，一个指标集可以包含多个指标和标签。点击指标集，您可以在详情页查看该指标集下所有可用的指标和标签，支持通过模糊搜索来查询指标集。
 
-![](img/19.metrics_5.png)
+![](img/1.metrics_.png)
 
 ## 指标
 
-指标可以帮助您了解系统的整体可用性，比如说服务器 CPU 使用情况，网站的加载耗时等，配合观测云提供的日志和链路追踪，可以帮助您快速定位和解决故障。
+指标分为指标名和指标值两部分，指标名指标识该指标的一个别名，指标值指采集时指标的具体数值。“观测云”的指标是通过DataWay 网关将数据最终上报到观测云进行存储、展示和应用，可以帮助您基于指数、规格、标准等更直观的了解系统的整体可用性。比如：服务器 CPU 使用情况，网站的加载耗时、剩余磁盘空间等。
 
-指标分为指标名和指标值两部分，指标名只标识该指标的一个别名，指标值指采集时指标的具体数值。指标通过由 DataWay 网关将数据最终上报到观测云进行存储、展示和应用。在观测云工作空间指标字典详情页，支持到搜索和导出指标列表。
+### 指标列表
 
-![](img/7.metrics_5.png)
+在观测云工作空间的「指标管理」中，点击“指标集名称”，即可查看对应的指标列表，包括指标名、指标的字段类型、单位等。
 
-### 指标采集
+您还可以
 
-采集指标有两种方式，前提是都需要先创建一个[观测云账号](https://auth.guance.com/register)，并在主机上[安装 DataKit](../datakit/datakit-install.md) 。
+- 通过:octicons-search-24:，基于关键字搜索相关的指标。
+- 通过 :material-export-variant: ，导出指标列表为csv文件至本地。
 
-- DataKit 集成超过100种技术栈，指标采集的第一种方式是安装完 DataKit 以后，开启需要采集指标的采集器，如[CPU采集器](../integrations/cpu.md)、[Nginx采集器](../integrations/nginx.md)等等；
-- 第二种方式是通过 [DataKit API](../datakit/apis.md) 方式，[通过 DataKit 自定义写入指标数据](../dataflux-func/write-data-via-datakit.md)，观测云提供了 [DataFlux Func 函数处理平台](../dataflux-func/quick-start.md)，集成大量现成的函数，帮您快速上报数据进行整体可观测。
+![](img/1.metrics_2.png)
 
-### 指标单位
+### 指标配置
 
-在指标管理，您可以对通过 DataKit API 直接上报的数据，手动设置指标的单位。
+- **默认指标配置**
 
-对于指标管理中有单位的指标，在观测云所有图表中会默认显示单位，且进行自动单位转换。但有如下要求：
+上报至观测云的全部指标（包括由官方采集器 DataKit上报的数据、通过 DataKit API 直接上报的数据），依据最新的上报信息，默认展示对应的名称、字段类型、单位和描述等。
 
-- 图表查询中需未使用任何函数或使用了如下函数，使用除此之外的函数，不显示默认单位
-```
-聚合函数: avg、bottom、top、derivative、non_negative_derivative、difference、distinct、first、last、max、min、percentile（p50 p75 p90 p99）、sum、median、mode、spread、moving_average
+???+ note
 
-外层函数: abs、avg、cumsum、derivative、non_negative_derivative、difference、non_negative_difference、first、last、max、min、moving_average、series_sum、round
-```
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod
+    nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor
+    massa, nec semper lorem quam in massa.
+    对于指标管理中有单位的指标，“观测云”的所有图表将会默认显示单位，且进行自动单位转换。但有如下要求：
+    - 图表查询中需未使用任何函数或使用了如下函数，使用除此之外的函数，不显示默认单位
+    ```
+    聚合函数: avg、bottom、top、derivative、non_negative_derivative、difference、distinct、first、last、max、min、percentile（p50 p75 p90 p99）、sum、median、mode、spread、moving_average
+    外层函数: abs、avg、cumsum、derivative、non_negative_derivative、difference、non_negative_difference、first、last、max、min、moving_average、series_sum、round
+    ```
+    - 当使用 dericative 或 non_negative_derivative 函数时，单位自动加 “/s”，例如：原始单位为KB，选择  dericative 函数，单位变为KB/s
 
-- 当使用 dericative 或 non_negative_derivative 函数时，单位自动加 “/s”，例如：原始单位为KB，选择  dericative 函数，单位变为KB/s
+???+ attention
 
-注意：指标单位仅允许管理员及以上权限可编辑
+    指标详情仅允许标准成员及以上权限可编辑
 
-#### 自定义指标单位
+- **自定义指标配置**
 
-选择通过 DataKit API 上报的指标，点击右侧的“编辑”。
+如您需更改或添加某一“指标”的单位或描述，在指标列表，通过![](img/2.metrics_1.png)下拉出指标详情，点击「编辑」，然后「保存」新的配置即可。
 
-![](img/7.metrics_6.png)
+![](img/1.metrics_3.png)
 
-添加完成后，即可在指标页面查看添加的单位。
+???+ attention
 
-![](img/7.metrics_8.png)
+    用户自定义的指标配置 优先级大于（>） 官方默认的指标配置，用户一旦「保存」了指标设置，该指标的配置信息将会应用于在观测云全局。
 
-### 指标可视化应用
+### 指标的可视化应用
 
 指标采集上报到观测云工作空间以后，可以在[指标查看器](explorer.md)、[仪表板](../scene/dashboard.md)、[笔记](../scene/note.md)、[日志自定义查看器](../scene/explorer/index.md)中通过图表可视化查看和分析。
 
@@ -59,13 +67,24 @@
 
 ## 标签
 
-标签可以帮助您关联数据，观测云支持把所有的指标、日志、链路数据统一上报到工作空间，通过对采集的数据打上相同的标签进行关联查询，可以帮您进行关联分析，发现并解决存在的潜在风险。
+标签是指标识一个数据点采集对象的属性的集合，标签分为标签名和标签值，一个数据点可以有多个标签。观测云支持把所有的指标、日志、链路数据统一上报到工作空间，并通过对一系列数据打标签的方式，辅助用户进行关联查询。
 
-标签是指标识一个数据点采集对象的属性的集合，标签分为标签名和标签值，一个数据点可以有多个标签。在观测云工作空间指标管理详情页，支持到搜索和导出标签列表，支持通过点击标签值“复制”和“在指标中打开”。
+??? note
 
-DataKit 采集器会默认给采集到的所有数据追加标签 `host=<DataKit所在主机名>`，更多介绍可参考文档 [DataKit 使用入门](../datakit/datakit-conf.md#set-global-tag) 。
+    DataKit 采集器会默认给采集到的所有数据追加标签 `host=<DataKit所在主机名>`，更多介绍可参考文档 [DataKit 使用入门](../datakit/datakit-conf.md#set-global-tag) 。
 
-![](img/7.metrics_4.png)
+### 标签列表
+
+在观测云工作空间的「指标管理」中，点击“指标集名称”，即可查看对应的「标签列表」，包括标签名、相关字段统计数量、描述等。
+
+您还可以
+
+- 通过:octicons-search-24:，基于关键字搜索相关的标签。
+- 通过 :material-export-variant: ，可以导出标签列表为csv文件至本地。
+
+![](img/1.tag_1.png)
+
+
 
 ## 时间线
 
