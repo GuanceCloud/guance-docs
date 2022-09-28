@@ -70,7 +70,7 @@
 
 - [阿里云 DTS 产品文档 - 新版 API - 查询 DTS 任务详情](https://help.aliyun.com/document_detail/209702.html?spm=a2c4g.11186623.6.1002.d97c6436S5LXrz)
 
-- [Function DataKit 数据对接](/dataflux-func/development-guide.md)
+- [Function DataKit 数据对接](/dataflux-func/development-guide/)
 
 ```python
 # -*- coding: utf-8 -*-

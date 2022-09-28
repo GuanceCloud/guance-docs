@@ -919,7 +919,7 @@ systemctl restart nginx
 
 #### stdout
 
-datakit 默认采集输出到 /dev/stdout 的日志，如果需要使用更深层的功能，请参考<[容器日志采集](/integrations/container.md)>。
+datakit 默认采集输出到 /dev/stdout 的日志，如果需要使用更深层的功能，请参考<[容器日志采集](/datakit/container)>。
 
 ![image](../images/istio/26.png)
 

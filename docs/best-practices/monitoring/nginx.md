@@ -199,7 +199,7 @@ pipeline = "nginx.p"
 
 **保存  Nginx .conf 文件后重启 datakit**
 
-**# 如需对 pipeline 进行定制化修改，可参考[ **[**文本处理（Pipeline）**](/logs/pipelines/text-processing.md)**]**
+**# 如需对 pipeline 进行定制化修改，可参考[ **[**文本处理（Pipeline）**](/logs/pipelines/text-processing/)**]**
 
 #### Windows 环境：
 
@@ -352,7 +352,7 @@ Nginx 错误度量标准告诉您服务器返回了错误而不是处理了有�
 
 #### 收集处理时间指标
 
- Nginx 和 Nginx  Plus 用户可以通过将 $request_time 变量添加到访问日志格式来捕获处理时间的数据。有关配置日志以进行监控的更多详细信息，请参见我们有关[ Nginx 日志](/datakit/nginx.md)配套文章。
+ Nginx 和 Nginx  Plus 用户可以通过将 $request_time 变量添加到访问日志格式来捕获处理时间的数据。有关配置日志以进行监控的更多详细信息，请参见我们有关[ Nginx 日志](/datakit/nginx/)配套文章。
 
 ### 反向代理指标
 
@@ -396,5 +396,5 @@ Nginx 错误度量标准告诉您服务器返回了错误而不是处理了有�
 
 ## 更多请关注：
 
-[如何利用 DataKit 采集 Nginx 指标](/datakit/nginx.md)
+[如何利用 DataKit 采集 Nginx 指标](/datakit/nginx/)
 

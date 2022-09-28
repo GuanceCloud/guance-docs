@@ -24,7 +24,7 @@ Swarm 是以太坊项目官方的一部分，主要是由基金会开发，允�
 
 ## 前置条件
 
-已安装 DataKit ( [DataKit 安装文档](/datakit/datakit-install.md))
+已安装 DataKit ( [DataKit 安装文档](/datakit/datakit-install/))
 
 已安装 Docker 并初始化 Docker Swarm（ [Docker 安装参考](https://docs.docker.com/engine/install/)）
 

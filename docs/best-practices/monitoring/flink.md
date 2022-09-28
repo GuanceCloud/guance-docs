@@ -64,6 +64,6 @@ Flink 会将数据处理任务拆分为一个或多个并行处理的子任务�
 
 通过观测云与 Apache Flink 的集成，可以全面了解流处理作业以及 Apache 生态系统的其他组件（如 HDFS、Kafka 和 YARN 以及 200 多种其他技术）
 
-[<Flink 集成>](/integrations/flinkv1.md)
+[<Flink 集成>](/integrations/flinkv1)
 
 
