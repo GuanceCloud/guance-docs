@@ -16,7 +16,7 @@ Flink 观测场景主要展示了 Flink 的集群状态，任务 Checkpoint 情�
 
 ### 前置条件
 
-- 可以访问外网的主机<[安装 DataKit](../datakit/datakit-install.md)>
+- 可以访问外网的主机<[安装 DataKit](../../datakit/datakit-install.md)>
 - 更改 Flink 配置添加如下内容，开启 Prometheus 采集
 
 ```shell
@@ -348,7 +348,7 @@ Status_JVM_GarbageCollector_G1_Young_Generation_Count <nil>
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 Flink 指标都会带有 service = "flink" 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](../best-practices/insight/tag.md)>
+- 相关文档 <[DataFlux Tag 应用最佳实践](../../best-practices/insight/tag.md)>
 
 ```
 # 示例
@@ -381,9 +381,9 @@ systemctl restart datakit
 
 ## 最佳实践
 
-[<Flink 观测最佳实践>](../best-practices/monitoring/flink)
+[<Flink 观测最佳实践>](../../best-practices/monitoring/flink)
 
 ## 故障排查
 
-<[无数据上报排查](../datakit/why-no-data.md)>
+<[无数据上报排查](../../datakit/why-no-data.md)>
 

@@ -18,7 +18,7 @@ Tomcat 性能指标展示：发送字节数、接收字节数、请求处理时�
 
 ### 前置条件
 
-- Tomcat 所在服务器 <[安装 DataKit](../datakit/datakit-install.md)>
+- Tomcat 所在服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
 - 用于实现 Tomcat 可观测性的数据采集文件 jolokia.war 已内置在/usr/local/datakit/data 文件夹下，需要在安装完毕 datakit 后，将 jolokia.war 复制一份到 tomcat 的 webapps 目录下。
 
 ### 配置实施
@@ -79,7 +79,7 @@ linux 环境下成功示例如下：
 
 - files：日志文件路径 (通常填写访问日志和错误日志)
 - pipeline：日志切割文件(tomcat日志切割文件已默认内置，无需修改)，实际文件路径 为：/usr/local/datakit/pipeline/tomcat.p
-- 相关文档 <[DataFlux pipeline 文本数据处理](../datakit/pipeline.md)
+- 相关文档 <[DataFlux pipeline 文本数据处理](../../datakit/pipeline.md)>
 
 ```
  cd /usr/local/datakit/conf.d/tomcat
@@ -163,7 +163,7 @@ systemctl restart datakit
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 tomcat 指标都会带有 app = oa 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](../best-practices/insight/tag.md)>
+- 相关文档 <[DataFlux Tag 应用最佳实践](../../best-practices/insight/tag.md)>
 
 ```
 # 示例
@@ -189,6 +189,6 @@ systemctl restart datakit
 
 ## 故障排查
 
-<[无数据上报排查](../datakit/why-no-data.md)>
+<[无数据上报排查](../../datakit/why-no-data.md)>
 
 

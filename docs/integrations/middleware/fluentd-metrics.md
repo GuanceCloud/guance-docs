@@ -14,8 +14,8 @@
 
 ### 前置条件
 
-- <[安装 DataKit](../datakit/datakit-install.md)>
-- 服务器 <[安装 Func 携带版](../dataflux-func/quick-start.md)>
+- <[安装 DataKit](../../datakit/datakit-install.md)>
+- 服务器 <[安装 Func 携带版](../../dataflux-func/quick-start.md)>
 - Fluentd有一个监控代理，可以通过HTTP检索JSON格式的内部指标。
 
 将以下行添加到您的 Fluentd 中开启的 plugin 插件配置文件中：
@@ -223,9 +223,9 @@ buffer_available_buffer_space_ratios 100
 
 ## 最佳实践
 
-[如何利用观测云观测 Fluentd](../best-practices/monitoring/fluentd)
+[如何利用观测云观测 Fluentd](../../best-practices/monitoring/fluentd.md)
 
 ## 故障排查
 
-<[无数据上报排查](../datakit/why-no-data.md)>
+<[无数据上报排查](../../datakit/why-no-data.md)>
 
