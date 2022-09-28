@@ -18,13 +18,13 @@ Nginx日志在K8环境中的输出为Stdout方式，而非文件方式。观测�
 ```
 ## 白名单需求
 
-Datakit部署完成后，按需采集指定的业务Pod日志、K8集群组件的日志，后续新增的未指定的业务Pod日志不会采集，另外对同一个Pod里的多容器日志采集只采集其中一个或多个。<br />本文通过观测云采集器Datakit不同的日志过滤方法来实现，使用给日志加Annotation标注（包括过滤Pod内部其他容器产生的日志）和container.conf中的container_include_log = []组合来实现。<br />更详细日志处理原理见[《Datakit日志处理综述》](../../integrations/datakit-logging-how.md) 一文。
+Datakit部署完成后，按需采集指定的业务Pod日志、K8集群组件的日志，后续新增的未指定的业务Pod日志不会采集，另外对同一个Pod里的多容器日志采集只采集其中一个或多个。<br />本文通过观测云采集器Datakit不同的日志过滤方法来实现，使用给日志加Annotation标注（包括过滤Pod内部其他容器产生的日志）和container.conf中的container_include_log = []组合来实现。<br />更详细日志处理原理见[《Datakit日志处理综述》](../../datakit/datakit-logging-how.md) 一文。
 
 ## 实现方式
 
 ### 方式一 使用 container_include_log = []
 
-只采集集群组件coredns和nginx日志，container_include_log用正则语法编写image的名称，具体见[《根据容器 image 配置指标和日志采集》](../../integrations/container.md)
+只采集集群组件coredns和nginx日志，container_include_log用正则语法编写image的名称，具体见[《根据容器 image 配置指标和日志采集》](../../datakit/container.md)
 
 ```toml
       [inputs.container]
@@ -67,7 +67,7 @@ Datakit部署完成后，按需采集指定的业务Pod日志、K8集群组件�
 
 ### 方式二 组合 container_include_log = []和 Annotation 标记
 
-只采集集群组件coredns和nginx日志，同时通过Annotation对nginx标记，当然未在container_include_log中开启的白名单，比如：另外的镜像busybox，也可以通过Annotation方式标记后采集上来。这是由于Annotation标记的方式优先级高。详细见日志处理原理[《Datakit日志处理综述》](../../integrations/datakit-logging-how.md) 一文。<br />Nginx的Annotation标记
+只采集集群组件coredns和nginx日志，同时通过Annotation对nginx标记，当然未在container_include_log中开启的白名单，比如：另外的镜像busybox，也可以通过Annotation方式标记后采集上来。这是由于Annotation标记的方式优先级高。详细见日志处理原理[《Datakit日志处理综述》](../../datakit/datakit-logging-how.md) 一文。<br />Nginx的Annotation标记
 
 ```bash
       labels:

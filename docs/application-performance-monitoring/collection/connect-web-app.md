@@ -9,7 +9,7 @@ APM 通过`ddtrace`、`ddtrace`、`zipkin`、`skywalking`、`jaeger`、`opentele
 
 ## 前置条件
 
-- 在对应的web应用目标服务器配置[ddtrace](../../integrations/ddtrace.md)、[skywalking](../../integrations/skywalking.md)、[opentelemetry](../../integrations/opentelemetry.md)、[jaeger](../../integrations/jaeger.md)、[zipkin](../../integrations/zipkin.md)
+- 在对应的web应用目标服务器配置[ddtrace](../../datakit/ddtrace.md)、[skywalking](../../datakit/skywalking.md)、[opentelemetry](../../integrations/opentelemetry.md)、[jaeger](../../datakit/jaeger.md)、[zipkin](../../datakit/zipkin.md)
 - 对于前后的分离的前端应用（有跨域的条件），需要对目标服务器允许跟踪的前端请求响应头设置header白名单。
 
   对应不同APM 工具，具体Access-Control-Allow-Headers的请求头对应的key 如下：
