@@ -14,7 +14,7 @@
 
 ### 前置条件
 
-- <[安装 DataKit](../datakit/datakit-install.md)>
+- <[安装 DataKit](../../datakit/datakit-install.md)>
 
 #### Linux
 
@@ -202,7 +202,7 @@ dql > M::zookeeper LIMIT 1
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 Flink 指标都会带有 service = "zookeeper" 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](../best-practices/insight/tag.md)>
+- 相关文档 <[DataFlux Tag 应用最佳实践](../../best-practices/insight/tag.md)>
 ```
 # 示例
 [inputs.prom.tags]
@@ -513,4 +513,4 @@ systemctl restart datakit
 
 ## 故障排查
 
-<[无数据上报排查](../datakit/why-no-data.md)>
+<[无数据上报排查](../../datakit/why-no-data.md)>

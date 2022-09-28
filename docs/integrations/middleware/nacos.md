@@ -15,7 +15,7 @@ Nacos 版本：>= 0.8.0
 
 ## 前置条件
 
-- Nacos 服务器 <[安装 DataKit](../datakit/datakit-install.md)>
+- Nacos 服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
 
 ## 安装配置
 
@@ -152,5 +152,5 @@ systemctl restart datakit
 
 ## 常见问题排查
 
-<[无数据上报排查](../datakit/why-no-data.md)>
+<[无数据上报排查](../../datakit/why-no-data.md)>
 
