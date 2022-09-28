@@ -499,7 +499,7 @@ FTExt {
 
 ```
 ### 手动上传
-需要开发者将符号文件自行打包成 `zip` 文件，然后自行上传至 `datakit` ，推荐使用 `zip` 命令行进行打包，避免将一些系统隐藏文件打入 `zip` 包中，符号上传请参考 [sourcemap 上传](../../integrations/rum.md#sourcemap)
+需要开发者将符号文件自行打包成 `zip` 文件，然后自行上传至 `datakit` ，推荐使用 `zip` 命令行进行打包，避免将一些系统隐藏文件打入 `zip` 包中，符号上传请参考 [sourcemap 上传](../../datakit/rum.md#sourcemap)
 
 ## 权限配置说明
 
