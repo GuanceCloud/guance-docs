@@ -33,7 +33,7 @@ datakit --restart  或者  service datakit restart  或者 systemctl restart dat
 
 注意：`endpoints` 默认开启，不要修改。
 
-观测云支持为应用性能监测自定义标签来做关联查询，可通过命令行注入环境变量或者在`ddtrace.conf`中开启`inputs.ddtrace.tags`并添加`tag`的方式，详细配置可参考文档 [ddtrace 环境变量设置](../../integrations/ddtrace.md) 。
+观测云支持为应用性能监测自定义标签来做关联查询，可通过命令行注入环境变量或者在`ddtrace.conf`中开启`inputs.ddtrace.tags`并添加`tag`的方式，详细配置可参考文档 [ddtrace 环境变量设置](../../datakit/ddtrace.md) 。
 
 ### Step2: 安装 ddtrace
 
@@ -63,7 +63,7 @@ tracer.configure(
 ddtrace-run python your_app.py
 ```
 
-详见文档 [Python 示例](../../integrations/ddtrace-python.md) 。
+详见文档 [Python 示例](../../datakit/ddtrace-python.md) 。
 
 #### 方法二：直接在启动脚本文件中配置 DataKit 服务地址
 
@@ -117,7 +117,7 @@ DD_AGENT_HOST=localhost DATADOG_TRACE_AGENT_PORT=9529 ddtrace-run python your_ap
 
 ### 配置关联日志
 
-1）进入主机 DataKit 安装目录`/usr/local/datakit`下的`conf.d/log`目录，复制`logging.conf.sample`并命名为`logging.conf`。编辑`logging.conf`文件，在`logfiles`填入您应用的服务日志存储路径，在`source`填入日志来源名，保存后重启 DataKit 。更多日志采集器详情和日志 pipeline 切割可参考文档 [日志](../../integrations/logging.md) 。
+1）进入主机 DataKit 安装目录`/usr/local/datakit`下的`conf.d/log`目录，复制`logging.conf.sample`并命名为`logging.conf`。编辑`logging.conf`文件，在`logfiles`填入您应用的服务日志存储路径，在`source`填入日志来源名，保存后重启 DataKit 。更多日志采集器详情和日志 pipeline 切割可参考文档 [日志](../../datakit/logging.md) 。
 
 ```
 ## 进入log目录
@@ -206,5 +206,5 @@ def after_request(response):
 
 ## 更多参考
 
-### [通过 skywalking 采集应用性能数据](../../integrations/skywalking.md)
-### [通过 jaeger 采集应用性能数据](../../integrations/jaeger.md)
+### [通过 skywalking 采集应用性能数据](../../datakit/skywalking.md)
+### [通过 jaeger 采集应用性能数据](../../datakit/jaeger.md)

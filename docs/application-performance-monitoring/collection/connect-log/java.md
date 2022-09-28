@@ -4,7 +4,7 @@
 `Java`应用日志关联链路数据需经过如下步骤：
 
 - 应用中开启日志
-- Datakit 开启链路数据采集（请参考[链接](../../../integrations/ddtrace.md)），并配置日志切割的 Pipeline脚本（请参考[链接](../../../datakit/pipeline.md)），启动 Datakit
+- Datakit 开启链路数据采集（请参考[链接](../../../datakit/ddtrace.md)），并配置日志切割的 Pipeline脚本（请参考[链接](../../../datakit/pipeline.md)），启动 Datakit
 - 启动 `Java`应用
 ## 日志maven导入
 

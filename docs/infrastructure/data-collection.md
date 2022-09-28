@@ -13,7 +13,7 @@
 
 ### 主机
 
-在需要被观测的主机上完成 DataKit 安装后，系统会默认开启一批与主机相关的采集器，并主动上报数据至“观测云”工作空间。详情可参考 [DataKit 采集器使用](../datakit/datakit-input-conf.md) / [主机对象](../integrations/hostobject.md)。
+在需要被观测的主机上完成 DataKit 安装后，系统会默认开启一批与主机相关的采集器，并主动上报数据至“观测云”工作空间。详情可参考 [DataKit 采集器使用](../datakit/datakit-input-conf.md) / [主机对象](../datakit/hostobject.md)。
 
 注意：主机采集开启后，变更主机名`host_name`会默认新增加一台主机，原主机名会继续在「基础设施」-「主机」列表中显示，一个小时后不会继续上报数据，直到24小时未上报数据后从列表中移除。由于 DataKit 数量是在 24 小时内取最大值，故在这个计费周期内会被统计为2台主机进行收费。
 
@@ -35,13 +35,13 @@
 
 ### 云主机
 
-假如 DataKit 所在的主机是云主机，通过 `cloud_provider` 标签即可开启云同步。配置完成后，重启datakit 即可。更多详情可参考文档 [开启云同步](../integrations/hostobject.md) 。
+假如 DataKit 所在的主机是云主机，通过 `cloud_provider` 标签即可开启云同步。配置完成后，重启datakit 即可。更多详情可参考文档 [开启云同步](../datakit/hostobject.md) 。
 
 ### 容器
 
 开启容器数据采集，有两种方式：
 
-1. 在主机安装 DataKit 以后开始容器采集器，可参考文档 [容器](../integrations/container.md) 。
+1. 在主机安装 DataKit 以后开始容器采集器，可参考文档 [容器](../datakit/container.md) 。
 1. 通过 DaemonSet方式安装 DataKit，可参考文档 [DaemonSet 安装](../datakit/datakit-daemonset-deploy.md) 。
 
 注意事项：
@@ -53,7 +53,7 @@
 
 开启进程数据采集，需要进入 DataKit 安装目录下的`conf.d/host` 目录，复制 `host_processes.conf.sample` 并命名为 `host_processes.conf`。配置完成后，重启datakit 即可。
 
-注意：进程采集器默认开启，但是默认不采集进程指标数据，如需采集指标相关数据，可在 `host_processes.conf` 中 将 `open_metric` 设置为 `true`。更多详情可参考文档 [进程](../integrations/host_processes.md)。
+注意：进程采集器默认开启，但是默认不采集进程指标数据，如需采集指标相关数据，可在 `host_processes.conf` 中 将 `open_metric` 设置为 `true`。更多详情可参考文档 [进程](../datakit/host_processes.md)。
 
 ### 自定义对象
 
