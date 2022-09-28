@@ -259,7 +259,7 @@ icon: zy/release-notes
 
 - 优化日志检测、应用性能指标检测、用户访问指标检测「检测指标」配置。
 
-更多详情可参考 [监控器管理](../monitoring/monitor/monitor-management.md) 。
+更多详情可参考 [监控器管理](../../monitoring/monitor/#management) 。
 
 ![](img/5.changelog_7.0.png)
 ![](img/5.changelog_7.png)
@@ -1027,7 +1027,7 @@ Deployment 网络数据采集成功后会上报到观测云控制台，您可以
 - 优化OpenTelemetry指标数据
 - [ElasticSearch](https://preprod-docs.cloudcare.cn/datakit/changelog/elasticsearch) 增加 AWS OpenSearch 支持
 - [行协议限制](../datakit/apis.md)中，字符串长度限制放宽到 32MB
-- [prom](../integrations/prom.md) 采集器增加额外配置，支持忽略指定的 tag=value 的匹配，以减少不必要的时序时间线
+- [prom](../datakit/prom.md) 采集器增加额外配置，支持忽略指定的 tag=value 的匹配，以减少不必要的时序时间线
 - Sink 增加 Jaeger 支持
 - Kubernetes 相关的指标采集，默认全部关闭，以避免时间线暴增问题
 - DataKit Monitor 增加动态发现（比如 prom）的采集器列表刷新

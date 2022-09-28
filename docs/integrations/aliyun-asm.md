@@ -657,7 +657,7 @@ kubectl apply -f bookinfo.yaml
 
 #### APM 采集 (必选)
 
-新增 ASM 时，如果选择了**自行搭建 Zipkin**，则链路数据会被打到 **zipkin.istio-system** 的 Service上，且上报端口是 9411。在部署 DataKit 时已开通链路指标采集的 Zipkin 采集器，由于 DataKit 服务的名称空间是 datakit，端口是 9529，所以这里需要做一下转换，详情请参考[Kubernetes 集群使用 ExternalName 映射 DataKit 服务](../best-practices/guance-skill/kubernetes-external-name.md)。创建后的 Service 如下图：
+新增 ASM 时，如果选择了**自行搭建 Zipkin**，则链路数据会被打到 **zipkin.istio-system** 的 Service上，且上报端口是 9411。在部署 DataKit 时已开通链路指标采集的 Zipkin 采集器，由于 DataKit 服务的名称空间是 datakit，端口是 9529，所以这里需要做一下转换，详情请参考[Kubernetes 集群使用 ExternalName 映射 DataKit 服务](../best-practices/cloud-native/kubernetes-external-name.md)。创建后的 Service 如下图：
 
 ![image](imgs/input-aliyun-asm-9.png)
 
