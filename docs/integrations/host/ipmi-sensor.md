@@ -4,7 +4,7 @@
 
 ### 前置条件
 
-- 服务器 <[安装 DataKit](../datakit/datakit-install.md)>
+- 服务器 <[安装 DataKit](/datakit/datakit-install)>
 - 服务器安装 Telegraf
 
 ### 安装 Telegraf

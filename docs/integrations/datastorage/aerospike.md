@@ -380,4 +380,4 @@ systemctl restart datakit
 
 ## 常见问题排查
 
-<[无数据上报排查](https://www.yuque.com/dataflux/datakit/why-no-data)>
+<[无数据上报排查](../../datakit/why-no-data.md)>

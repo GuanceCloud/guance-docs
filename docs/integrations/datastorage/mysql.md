@@ -27,7 +27,7 @@ MySQL 指标采集，收集以下数据：
 
 ### 前置条件
 
-- MySQL 版本 5.7+ <[安装 DataKit](../datakit/datakit-install.md)>
+- MySQL 版本 5.7+ <[安装 DataKit](../../datakit/datakit-install.md)>
 - 创建监控账号（一般情况，需用 MySQL `root` 账号登陆才能创建 MySQL 用户）
 
 ```sql
@@ -160,7 +160,7 @@ set global log_queries_not_using_indexes = 'ON';
 - character_encoding：日志文件的字符集(默认 utf-8)
 - match：该配置为多行日志采集规则配置，开启 MySQL 慢查询日志请打开注释
 - pipeline：日志切割文件(内置)，实际文件路径 /usr/local/datakit/pipeline/mysql.p
-- 相关文档 <[DataFlux pipeline 文本数据处理](../datakit/pipeline.md)>
+- 相关文档 <[DataFlux pipeline 文本数据处理](../../datakit/pipeline.md)>
 
 ```
 [inputs.mysql.log]
@@ -203,7 +203,7 @@ systemctl restart datakit
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 MySQL 指标都会带有 service = "MySQL" 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](../best-practices/insight/tag.md)>
+- 相关文档 <[DataFlux Tag 应用最佳实践](../../best-practices/insight/tag.md)>
 
 ```
 # 示例
@@ -230,9 +230,9 @@ systemctl restart datakit
 ## 指标详解
 
 
-<[MySQL 指标详情](../datakit/mysql#measurement)>
+<[MySQL 指标详情](/datakit/mysql#measurement)>
 
 ## 故障排查
 
-<[无数据上报排查](../datakit/why-no-data.md)>
+<[无数据上报排查](../../datakit/why-no-data.md)>
 

@@ -126,7 +126,7 @@ systemctl restart datakit
 - pipeline：日志切割文件(内置)，实际文件路径 /usr/local/datakit/pipeline/redis.p
 - character_encoding：日志编码格式
 - match：开启多行日志收集
-- 相关文档 <[DataFlux pipeline 文本数据处理](../datakit/pipeline.md)>
+- 相关文档 <[DataFlux pipeline 文本数据处理](../../datakit/pipeline.md)>
 
 ```
 [inputs.redis.log]
@@ -187,7 +187,7 @@ systemctl restart datakit
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 Redis 指标都会带有 service = "redis" 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](../best-practices/insight/tag.md)>
+- 相关文档 <[DataFlux Tag 应用最佳实践](../../best-practices/insight/tag.md)>
 
 ```
 # 示例
@@ -214,14 +214,14 @@ systemctl restart datakit
 | --- | --- | --- | --- | --- |
 | 1 | Redis 等待阻塞命令的客户端连接数异常增加 | 客户端连接数 > 0 | 紧急 | 1m |
 
-## [指标详解](../datakit/redis#metric)
+## [指标详解](/datakit/redis#metric)
 
 
 ## 最佳实践
 
-[<Redis 可观测最佳实践>](../best-practices/monitoring/redis)
+[<Redis 可观测最佳实践>](../../best-practices/monitoring/redis)
 
 ## 故障排查
 
-<[无数据上报排查](../datakit/why-no-data.md)>
+<[无数据上报排查](../../datakit/why-no-data.md)>
 
