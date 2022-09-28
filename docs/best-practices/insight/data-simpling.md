@@ -28,7 +28,7 @@
 
 #### java
 
-[[部署方式详见集成文档](/integrations/jvm.md)]
+[[部署方式详见集成文档](/integrations/middleware/jvm/)]
 
 启动脚本添加参数：Ddd.trace.sample.rate=1
 
@@ -49,7 +49,7 @@
 
 #### PHP
 
-[[部署方式详见集成文档](/integrations/php.md)]
+[[部署方式详见集成文档](/integrations/middleware/php-fpm/)]
 
 环境变量添加参数：DD_SAMPLING_RATE=1
 

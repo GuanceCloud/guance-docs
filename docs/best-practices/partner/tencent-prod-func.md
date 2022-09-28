@@ -10,13 +10,13 @@
 
 ## 前置条件
 
-1、 服务器 <[安装 DataKit](/datakit/datakit-install.md)>
+1、 服务器 <[安装 DataKit](/datakit/datakit-install/)>
 
 登录观测云，点击 **集成** - **Datakit**，复制安装命令至服务器运行即可 (其中 token 为该工作空间唯一标识)
 
 ![image.png](../images/aliyun-prod-func-1.png)
 
-2、 服务器 <[安装 Func 携带版](/dataflux-func/quick-start.md)>
+2、 服务器 <[安装 Func 携带版](/dataflux-func/quick-start)>
 
 登录观测云，点击 **集成** - **Func**，下载脚本并执行安装命令即可
 

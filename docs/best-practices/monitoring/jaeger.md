@@ -29,7 +29,7 @@ Jaeger 是由 Uber Technologies 开源发布的分布式跟踪系统，兼容 Op
 
 ### 安装 DataKit
 
-- <[安装 DataKit](/datakit/datakit-install.md)>
+- <[安装 DataKit](/datakit/datakit-install)>
 
 ## 数据接入
 
