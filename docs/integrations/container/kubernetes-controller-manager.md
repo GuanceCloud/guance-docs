@@ -14,7 +14,7 @@ Kubernetes 版本：1.18+
 
 ## 前置条件
 
-- Kubernetes 集群 <[安装 DataKit](../datakit/datakit-daemonset-deploy.md)>
+- Kubernetes 集群 <[安装 DataKit](../../datakit/datakit-daemonset-deploy.md)>
 
 ## 安装配置
 
@@ -191,8 +191,8 @@ kubectl apply -f datakit.yaml
 
 ## 常见问题排查
 
-- <[无数据上报排查](../datakit/why-no-data.md)>
+- <[无数据上报排查](../../datakit/why-no-data.md)>
 
 ## 进一步阅读
 
-- [DataFlux Tag 应用最佳实践](../best-practices/insight/tag.md)
+- [DataFlux Tag 应用最佳实践](../../best-practices/insight/tag.md)

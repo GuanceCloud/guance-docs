@@ -14,7 +14,7 @@ Nginx 性能指标展示：请求数、处理请求数、活跃请求数、等�
 
 ## 前置条件
 
-- Nginx 服务器 <[安装 DataKit](../datakit/datakit-install.md)>
+- Nginx 服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
 - Nginx 应用已安装 http_stub_status_module 模块
 
 1、 使用命令查看 stub_status 模块是否安装  (如已安装返回 http_stub_status_module)
@@ -121,7 +121,7 @@ systemctl restart datakit
 
 - files：日志文件路径 (通常填写访问日志和错误日志)
 - pipeline：日志切割文件(内置)，实际文件路径 /usr/local/datakit/pipeline/nginx.p
-- 相关文档 <[DataFlux pipeline 文本数据处理](../datakit/pipeline.md)
+- 相关文档 <[DataFlux pipeline 文本数据处理](../../datakit/pipeline.md)>
 
 ```
 [inputs.nginx.log]
@@ -149,7 +149,7 @@ Nginx 日志采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|log
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 nginx 指标都会带有 app = oa 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](../best-practices/insight/tag.md)>
+- 相关文档 <[DataFlux Tag 应用最佳实践](../../best-practices/insight/tag.md)>
 
 ```
 # 示例
@@ -303,8 +303,8 @@ proxy_set_header X-datadog-trace-id $opentracing_context_x_datadog_trace_id;<br 
 
 ## 常见问题排查
 
-<[无数据上报排查](../datakit/why-no-data.md)>
+<[无数据上报排查](../../datakit/why-no-data.md)>
 
 ## 进一步阅读
 
-<[观测云 Nginx 可观测最佳实践](../best-practices/monitoring/nginx)>
+<[观测云 Nginx 可观测最佳实践](../../best-practices/monitoring/nginx.md)>

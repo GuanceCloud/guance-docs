@@ -28,7 +28,7 @@ Kubernetes 性能指标展示：包括 pod 数量、deployment 数量、job 数�
 
 ### 前置条件
 
-- Kubernetes 集群  <[安装 Datakit](../datakit/datakit-daemonset-deploy.md)>。
+- Kubernetes 集群  <[安装 Datakit](../../datakit/datakit-daemonset-deploy.md)>。
 - 采集 Kubernetes Pod 指标数据，[需要 Kubernetes 安装 Metrics-Server 组件](https://github.com/kubernetes-sigs/metrics-server#installation)。
 
 
@@ -358,7 +358,7 @@ kubectl apply -f datakit.yaml
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 kubernetes 指标都会带有 tag1 = "val1" 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](../best-practices/insight/tag.md)>
+- 相关文档 <[DataFlux Tag 应用最佳实践](../../best-practices/insight/tag.md)>
 
 ```toml
           [inputs.kubernetes.tags]
@@ -577,5 +577,5 @@ Kubernetes replicaset 指标数据
 
 ## 故障排查
 
-<[无数据上报排查](../datakit/why-no-data.md)>
+<[无数据上报排查](../../datakit/why-no-data.md)>
 
