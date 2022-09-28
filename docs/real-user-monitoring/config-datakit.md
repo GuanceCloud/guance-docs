@@ -9,7 +9,7 @@
 
 要开启应用用户访问监测功能，首先需要部署一个公网 DataKit 作为 agent，客户端的用户访问数据通过这个 agent 后将数据打到 “观测云” 工作台，具体的 DataKit 安装方法与配置方法，见[DataKit 安装文档](../datakit/datakit-install.md)。
 
-DataKit安装完成后，默认开启[RUM采集器](../integrations/rum.md)，即可开始采集用户访问的相关数据。
+DataKit安装完成后，默认开启[RUM采集器](../datakit/rum.md)，即可开始采集用户访问的相关数据。
 ## 部署架构
 
 ![](img/rum-arch.png)

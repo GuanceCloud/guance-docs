@@ -685,7 +685,7 @@ FT_ENV=SDK_ENV
 
 #### 方法三：手动上传
 
-[Sourcemap 上传](../../integrations/rum.md#sourcemap)
+[Sourcemap 上传](../../datakit/rum.md#sourcemap)
 
 ## 常见问题 {#FAQ}
 

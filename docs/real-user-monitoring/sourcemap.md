@@ -118,6 +118,6 @@ curl -X DELETE '<dca_address>/v1/rum/sourcemap?app_id=<app_id>&env=<env>&version
 
 ## iOS & Android 的 Sourcemap 上传
 
-- [iOS sourcemap 上传](../integrations/rum.md#sourcemap)
-- [Android sourcemap 上传](../integrations/rum.md#sourcemap)
+- [iOS sourcemap 上传](../datakit/rum.md#sourcemap)
+- [Android sourcemap 上传](../datakit/rum.md#sourcemap)
 
