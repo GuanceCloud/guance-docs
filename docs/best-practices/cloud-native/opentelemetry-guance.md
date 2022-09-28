@@ -88,7 +88,7 @@ const otelExporter = new OTLPTraceExporter({
 
 ### 安装 DataKit
 
-- <[安装 DataKit](/datakit/datakit-install.md)>
+- <[安装 DataKit](/datakit/datakit-install/)>
 
 - DataKit 接入版本 >=1.2.12
 
