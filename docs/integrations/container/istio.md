@@ -16,7 +16,7 @@ Istio 版本： [istio](https://github.com/istio/istio)。
 
 - 已部署 [Kubernetes](https://kubernetes.io/docs/setup/production-environment/tools/)。
 
-- 已部署 DataKit，请参考 Kubernetes 集群 <[安装 Datakit](../datakit/datakit-daemonset-deploy.md)>。
+- 已部署 DataKit，请参考 Kubernetes 集群 <[安装 Datakit](../../datakit/datakit-daemonset-deploy.md)>。
 
 ## 安装配置
 
@@ -805,12 +805,12 @@ DataKit 默认的配置，采集容器输出到 /dev/stdout 的日志。更多�
 
 ## 常见问题排查
 
-- <[无数据上报排查](../datakit/why-no-data.md)>
+- <[无数据上报排查](../../datakit/why-no-data.md)>
 
 ## 进一步阅读
 
-- [基于 Istio 实现微服务可观测最佳实践](../best-practices/cloud-native/istio.md)
+- [基于 Istio 实现微服务可观测最佳实践](../../best-practices/cloud-native/istio.md)
 
-- [Pod 日志采集最佳实践](../best-practices/cloud-native/pod-log.md)
+- [Pod 日志采集最佳实践](../../best-practices/cloud-native/pod-log.md)
 
-- [Kubernetes 集群中日志采集的几种玩法](../best-practices/cloud-native/k8s-logs.md)
+- [Kubernetes 集群中日志采集的几种玩法](../../best-practices/cloud-native/k8s-logs.md)
