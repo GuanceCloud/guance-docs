@@ -16,7 +16,7 @@
 
 ## 前置条件
 
-- 服务器 <[安装 DataKit](../datakit/datakit-install.md)>
+- 服务器 <[安装 DataKit](/datakit/datakit-install)>
 
 ## 安装配置
 
@@ -84,11 +84,11 @@ systemctl start scheck
 
 ## 常见问题排查
 
-<[无数据上报排查](../datakit/why-no-data.md)>
+<[无数据上报排查](/datakit/why-no-data/)>
 
 ## 进一步阅读
 
-<[Security Checker 最佳实践](../scheck/best-practices)>
+<[Security Checker 最佳实践](/scheck/best-practices)>
 
-<[Security Checker 函数清单](../scheck/funcs)>
+<[Security Checker 函数清单](/scheck/funcs)>
 

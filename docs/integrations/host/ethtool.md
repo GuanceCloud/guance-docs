@@ -14,7 +14,7 @@ EthTool 指标展示，包括网络接口入/出流量，入/出数据包，丢�
 
 ## 前置条件
 
-- 服务器 <[安装 DataKit](../datakit/datakit-install.md)>
+- 服务器 <[安装 DataKit](/datakit/datakit-install)>
 - 服务器安装 Telegraf
 
 ### 安装 Telegraf
@@ -117,7 +117,7 @@ systemctl start telegraf
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 netstat 指标都会带有 app = oa 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](../best-practices/insight/tag.md)>
+- 相关文档 <[DataFlux Tag 应用最佳实践](../../best-practices/insight/tag.md)>
 ```
 # 示例
 [inputs.ethtool.tags]
@@ -149,8 +149,8 @@ systemctl restart telegraf
 
 ## 常见问题排查
 
-<[无数据上报排查](../datakit/why-no-data.md)>
+<[无数据上报排查](/datakit/why-no-data/)>
 
 ## 进一步阅读
 
-<[主机可观测最佳实践](../best-practices/monitoring/host-linux)>
+<[主机可观测最佳实践](/best-practices/monitoring/host-linux)>

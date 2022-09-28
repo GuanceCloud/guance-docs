@@ -14,7 +14,7 @@ Datakit 性能指标展示，包括 CPU 使用率，内存信息，运行时间�
 
 ## 前置条件
 
-- 服务器 <[安装 DataKit](../datakit/datakit-install.md)>
+- 服务器 <[安装 DataKit](/datakit/datakit-install)>
 
 ## 安装配置
 
@@ -51,11 +51,11 @@ gin_log = "/var/log/datakit/gin.log"
 
 暂无
 
-## [指标详解](../datakit/self#measurements)
+## [指标详解](/datakit/self#measurements)
 ## 常见问题排查
 
-<[无数据上报排查](../datakit/why-no-data.md)>
+<[无数据上报排查](/datakit/why-no-data/)>
 
 ## 进一步阅读
 
-<[主机可观测最佳实践](../best-practices/monitoring/host-linux)>
+<[主机可观测最佳实践](/best-practices/monitoring/host-linux)>
