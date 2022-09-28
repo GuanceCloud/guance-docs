@@ -952,7 +952,7 @@ Deployment 网络数据采集成功后会上报到观测云控制台，您可以
 
 - 增加TCP/UDP 端口检测采集器
 - DataKit 跟 DataWay 之间增加 DNS 检测，支持 DataWay DNS 动态切换
-- [eBPF](../integrations/ebpf.md) L4/L7 流量数据增加 k8s deployment name 字段
+- [eBPF](../integrations/host/ebpf.md) L4/L7 流量数据增加 k8s deployment name 字段
 - 优化OpenTelemetry指标数据
 - [ElasticSearch](https://preprod-docs.cloudcare.cn/datakit/changelog/elasticsearch) 增加 AWS OpenSearch 支持
 - [行协议限制](../datakit/apis.md)中，字符串长度限制放宽到 32MB

@@ -1,8 +1,8 @@
 # Scheck 最佳实践
 ---
 
-- 版本：1.0.7-5-gb83de2d
-- 发布日期：2022-09-21 10:26:20
+- 版本：1.0.7-6-gd485c74
+- 发布日期：2022-09-26 06:47:11
 - 操作系统支持：windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64
 
 # 简介

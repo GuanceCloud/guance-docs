@@ -2,64 +2,19 @@ nav:
   - index.md
   - '主机系统': host
 
-  - '数据存储':
-    - 'Aerospike': aerospike.md
-    - 'ClickHouse': clickhouse.md
-    - 'Elasticsearch': elasticsearch.md
-    - 'Memcached': memcached.md
-    - 'MongoDB': mongodb.md
-    - 'MySQL': mysql.md
-    - 'Oracle': oracle.md
-    - 'PostgreSQL': postgresql.md
-    - 'Redis': redis.md
-    - 'Redis-sentinel': redis-sentinel.md
-    - 'SQLServer': sqlserver.md
+  - '数据存储': datastorage
 
-  - '中间件':
-    - 'ActiveMQ': activemq.md
-    - 'Beats': beats.md
-    - 'Consul': consul.md
-    - 'DNS Query': dns-query.md
-    - 'Flink': flink.md
-    - 'Fluentd': fluentd-metrics.md
-    - 'JVM': jvm.md
-    - 'Kafka': kafka.md
-    - 'Logstash': logstash-metrics.md
-    - 'Nacos': nacos.md
-    - 'NtpQ': ntpq.md
-    - 'PHP-FPM': php-fpm.md
-    - 'RabbitMQ': rabbitmq.md
-    - 'Resin': resin.md
-    - 'RocketMQ': rocketmq.md
-    - 'Seata': seata.md
-    - 'Solr': solr.md
-    - 'Tomcat': tomcat.md
-    - 'Zookeeper': zookeeper.md
-
+  - '中间件': middleware
+  
   - '网络连接':
     - 'Dialtesting (云拨测)': dialtesting.md
     - 'Ping': ping.md
     - 'Port': port.md
     - 'SSH': ssh.md
 
-  - '容器编排':
-    - 'CoreDNS': coredns.md
-    - 'Docker': docker.md
-    - 'Etcd': etcd.md
-    - 'Harbor': harbor.md
-    - 'Ingress Nginx (Prometheus)': ingress-nginx-prom.md
-    - 'Istio': istio.md
-    - 'Kubernetes API Server': kubernetes-api-server.md
-    - 'Kubernetes Controller Manager': kubernetes-controller-manager.md
-    - 'Kubernetes Kubelet': kubernetes-kublet.md
-    - 'Kubernetes Scheduler': kube-scheduler.md
-    - 'Kubernetes With Kube State Metrics': kube-state-metrics.md
-    - 'Kubernetes With Metric Server': kube-metric-server.md
+  - '容器编排': container
 
-  - 'Web 服务':
-    - 'Apache': apache.md
-    - 'HAProxy': haproxy.md
-    - 'Nginx': nginx.md
+  - 'Web 服务': webservice
 
   - '阿里云':
     - 'ASM': aliyun-asm.md

@@ -14,7 +14,7 @@
 
 ## 方法步骤
 
-### Step1：开启 [eBPF](../../integrations/ebpf.md) 集成的运行，采集网络数据
+### Step1：开启 [eBPF](../../integrations/host/ebpf.md) 集成的运行，采集网络数据
 
 ebpf 采集器，采集主机网络 tcp、udp 连接信息，bash 执行日志等，包含 ebpf-net 及 ebpf-bash:
 
@@ -105,4 +105,4 @@ ebpf 采集器，操作系统支持：`linux/amd64`，除 CentOS 7.6+ 和 Ubuntu
 ![](../img/22.gif)
 
 ## 更多参考
-更多关于网络性能监测可参考：[ebpf 采集器](../../integrations/ebpf.md)
+更多关于网络性能监测可参考：[ebpf 采集器](../../integrations/host/ebpf.md)

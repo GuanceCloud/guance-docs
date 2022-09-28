@@ -1,5 +1,16 @@
 # 版本历史
 
+## v1.49.108 (2022年9月23日)
+
+pubrepo.jiagouyun.com/dataflux/1.49.108:launcher-833084a-1663915927
+
+### 观测云更新
+
+- 修复几个小 bug
+
+更多详情可参考帮助文档：https://docs.guance.com/release-notes/
+
+
 ## v1.49.107 (2022年9月15日)
 
 pubrepo.jiagouyun.com/dataflux/1.49.107:launcher-e550301-1663603951
