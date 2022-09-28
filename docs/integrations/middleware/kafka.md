@@ -145,7 +145,7 @@ systemctl restart datakit
 
 - files：日志文件路径 (通常填写访问日志和错误日志)
 - pipeline：日志切割文件(内置)，实际文件路径 /usr/local/datakit/pipeline/kafka.p
-- 相关文档 <[DataFlux pipeline 文本数据处理](../datakit/pipeline.md)
+- 相关文档 <[DataFlux pipeline 文本数据处理](../../datakit/pipeline.md)
 
 ```
 [inputs.kafka.log]
@@ -174,7 +174,7 @@ systemctl restart datakit
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 Kafka 指标都会带有 service = "kafka" 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](../best-practices/insight/tag.md)>
+- 相关文档 <[DataFlux Tag 应用最佳实践](../../best-practices/insight/tag.md)>
 - 
 ```
 # 示例
@@ -198,13 +198,13 @@ systemctl restart datakit
 
 暂无
 
-## [指标详解](../datakit/kafka#measurements)
+## [指标详解](/datakit/kafka#measurements)
 
 ## 最佳实践
 
-[<Kafka可观测最佳实践>](../best-practices/monitoring/kafka)
+[<Kafka可观测最佳实践>](../../best-practices/monitoring/kafka)
 
 ## 故障排查
 
-<[无数据上报排查](../datakit/why-no-data.md)>
+<[无数据上报排查](../../datakit/why-no-data.md)>
 

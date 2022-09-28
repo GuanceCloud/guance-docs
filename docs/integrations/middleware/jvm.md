@@ -16,7 +16,7 @@ JVM性能指标展示：CPU负载、直接缓冲区、线程数量、堆内存�
 
 ### 前置条件
 
-- 服务器 <[安装 DataKit](../datakit/datakit-install.md)>
+- 服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
 
 ### 配置实施
 
@@ -265,13 +265,13 @@ spec:
 
 暂无
 
-## [指标详解](../datakit/jvm#measurements)
+## [指标详解](/datakit/jvm#measurements)
 
 
 ## 最佳实践
 
-<[JVM可观测最佳实践](../best-practices/monitoring/jvm)>
+<[JVM可观测最佳实践](../../best-practices/monitoring/jvm.md)>
 
 ## 故障排查
 
-<[无数据上报排查](../datakit/why-no-data.md)>
+<[无数据上报排查](../../datakit/why-no-data.md)>

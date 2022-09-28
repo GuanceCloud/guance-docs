@@ -14,7 +14,7 @@ Harbor 展示：包括项目数量、镜像仓库数、Components health、服�
 
 ### 前置条件
 
-- [安装 Datakit](../datakit/datakit-install.md)>
+- [安装 Datakit](../../datakit/datakit-install.md)>
 
 ### harbor 安装
 
@@ -217,5 +217,5 @@ http://配置的ip:7180,默认登录账号： admin ,密码 Harbor12345。
 
 ## 故障排查
 
-<[无数据上报排查](../datakit/why-no-data.md)>
+<[无数据上报排查](../../datakit/why-no-data.md)>
 

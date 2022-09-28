@@ -16,7 +16,7 @@ Apache 性能指标展示：包括繁忙进程，空闲进程，进程 CPU 负�
 
 ## 前置条件
 
-- Apache 服务器 <[安装 Datakit](../datakit/datakit-install.md)>
+- Apache 服务器 <[安装 Datakit](../../.datakit/datakit-install.md)>
 - Apache 应用已安装 mod_status 模块
 
 1、 使用命令查看 mod_status 是否安装 (已安装返回 status_module shared)
@@ -120,7 +120,7 @@ systemctl restart datakit
 
 - files：日志文件路径 (通常填写访问日志和错误日志)
 - pipeline：日志切割文件(内置)，实际文件路径 /usr/local/datakit/pipeline/apache.p
-- 相关文档 <[DataFlux pipeline 文本数据处理](../datakit/pipeline.md)
+- 相关文档 <[DataFlux pipeline 文本数据处理](../../datakit/pipeline.md)
 
 ```
 [inputs.apache.log]
@@ -148,7 +148,7 @@ Apache 日志采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|ap
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 apache 指标都会带有 app = oa 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](../best-practices/insight/tag.md)>
+- 相关文档 <[DataFlux Tag 应用最佳实践](../../best-practices/insight/tag.md)>
 
 ```
 # 示例
@@ -198,7 +198,7 @@ systemctl restart datakit
 
 ## 常见问题排查
 
-<[无数据上报排查](../datakit/why-no-data.md)>
+<[无数据上报排查](../../datakit/why-no-data.md)>
 
 F：使用命令 apachectl -M |grep status 遇到提示信息 
 

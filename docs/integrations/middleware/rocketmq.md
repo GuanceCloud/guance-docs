@@ -16,7 +16,7 @@ RocketMQ 指标展示，包括生产者 tps/消息大小，消费者 tps/消息�
 
 ## 前置条件
 
-- 服务器 <[安装 Datakit](../datakit/datakit-install.md)>
+- 服务器 <[安装 Datakit](../../datakit/datakit-install.md)>
 
 - 服务器安装 rocketmq-exporter
 
@@ -121,7 +121,7 @@ cp prom.conf.sample prom.conf
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 prom 指标都会带有 app = oa 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](../best-practices/insight/tag.md)>
+- 相关文档 <[DataFlux Tag 应用最佳实践](../../best-practices/insight/tag.md)>
 ```
 # 示例
 [inputs.prom.tags]
@@ -161,7 +161,7 @@ systemctl restart datakit
 
 ## 常见问题排查
 
-<[无数据上报排查](../datakit/why-no-data.md)>
+<[无数据上报排查](../../datakit/why-no-data.md)>
 
 ## 进一步阅读
 

@@ -147,7 +147,7 @@ systemctl restart datakit
 
 - files：日志文件路径 (通常填写访问日志和错误日志)
 - pipeline：日志切割文件(内置)，实际文件路径 /usr/local/datakit/pipeline/elasticsearch.p
-- 相关文档 <[DataFlux pipeline 文本数据处理](../datakit/pipeline.md)>
+- 相关文档 <[DataFlux pipeline 文本数据处理](../../datakit/pipeline.md)>
 ```
 [inputs.elasticsearch.log]
 	#写入 ElasticSearch 日志文件的绝对路径
@@ -225,7 +225,7 @@ systemctl restart datakit
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 ElasticSearch 指标都会带有 service = "elasticsearch" 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](../best-practices/insight/tag.md)>
+- 相关文档 <[DataFlux Tag 应用最佳实践](../../best-practices/insight/tag.md)>
 
 ```
 # 示例
@@ -262,13 +262,13 @@ systemctl restart datakit
 | 8 | Elasticsearch 搜索线程池中被拒绝的线程数异常增加 | Elasticsearch 搜索线程池中被拒绝的线程数三个聚合周期发生一次波动 | 重要 | 1m |
 | 9 | Elasticsearch 合并线程池中被拒绝的线程数异常增加 | Elasticsearch 合并线程池中被拒绝的线程数三个聚合周期发生一次波动 | 重要 | 1m |
 
-## [指标详解](../datakit/elasticsearch)
+## [指标详解](/datakit/elasticsearch)
 
 ## 最佳实践
 
-<[Elasticsearch 可观测最佳实践](../best-practices/monitoring/elasticsearch)>
+<[Elasticsearch 可观测最佳实践](/best-practices/monitoring/elasticsearch)>
 
 ## 故障排查
 
-<[无数据上报排查](../datakit/why-no-data.md)>
+<[无数据上报排查](../../datakit/why-no-data.md)>
 

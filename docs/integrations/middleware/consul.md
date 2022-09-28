@@ -14,7 +14,7 @@ consul 性能指标展示：包括监控状态、集群中服务数量、集群�
 
 ## 前置条件
 
-- consul 所在服务器 <[安装 DataKit](../datakit/datakit-install.md)>
+- consul 所在服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
 - 启动consul
 
 ```
@@ -115,7 +115,7 @@ systemctl restart datakit
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 consul 指标都会带有 app = oa 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](../best-practices/insight/tag.md)>
+- 相关文档 <[DataFlux Tag 应用最佳实践](../../best-practices/insight/tag.md)>
 
 ```
 [inputs.prom.tags]
@@ -138,11 +138,11 @@ systemctl restart datakit
 
 ## 指标详解
 
-<[consul指标详情](../best-practices/insight/tag)>
+<[consul指标详情](../../best-practices/insight/tag.md)>
 
 ## 常见问题排查
 
-<[无数据上报排查](../datakit/why-no-data.md)>
+<[无数据上报排查](../../datakit/why-no-data.md)>
 
 
 

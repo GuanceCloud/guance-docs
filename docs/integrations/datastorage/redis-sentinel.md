@@ -15,7 +15,7 @@ redis-sentinel-exporter >=0.1
 
 ## 前置条件
 
-- 在 Redis 应用服务器上安装 DataKit <[安装 DataKit](../datakit/datakit-install.md)>
+- 在 Redis 应用服务器上安装 DataKit <[安装 DataKit](../../datakit/datakit-install.md)>
 
 ## 安装部署
 
@@ -164,7 +164,7 @@ systemctl restart datakit
 - pipeline：日志切割文件
 - character_encoding：日志编码格式
 - match：开启多行日志收集
-- 相关文档 <[DataFlux pipeline 文本数据处理](../datakit/pipeline.md)>
+- 相关文档 <[DataFlux pipeline 文本数据处理](../../datakit/pipeline.md)>
 
 ```
 # {"version": "1.2.12", "desc": "do NOT edit this line"}
@@ -263,7 +263,7 @@ systemctl restart datakit
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 `redis-sentinel` 指标都会带有`service = "redis-sentinel"`的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](../best-practices/insight/tag.md)>
+- 相关文档 <[DataFlux Tag 应用最佳实践](../../best-practices/insight/tag.md)>
 
 ```
 # 示例
@@ -307,4 +307,4 @@ systemctl restart datakit
 
 ## 故障排查
 
-<[无数据上报排查](../datakit/why-no-data.md)>
+<[无数据上报排查](../../datakit/why-no-data.md)>

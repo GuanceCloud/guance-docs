@@ -22,7 +22,7 @@ kube-state-metrics/ Kubernetes
 
 ## 前置条件
 
-- Kubernetes 集群 <[安装 DataKit](../datakit/datakit-daemonset-deploy.md)>
+- Kubernetes 集群 <[安装 DataKit](../../datakit/datakit-daemonset-deploy.md)>
 - 下载 [kube-state-metrics-2.3.0.zip](https://github.com/kubernetes/kube-state-metrics/releases/tag/v2.3.0)
 
 ## 安装配置
@@ -155,7 +155,7 @@ dist：
 
 ## 常见问题排查
 
-<[无数据上报排查](../datakit/why-no-data.md)>
+<[无数据上报排查](../../datakit/why-no-data.md)>
 
 ## 进一步阅读
 暂无

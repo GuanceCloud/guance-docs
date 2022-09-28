@@ -14,8 +14,8 @@
 
 ### 前置条件
 
-- <[安装 DataKit](../datakit/datakit-install.md)>
-- 服务器 <[安装 Func 携带版](../dataflux-func/quick-start.md)>
+- <[安装 DataKit](../../datakit/datakit-install.md)>
+- 服务器 <[安装 Func 携带版](../../dataflux-func/quick-start.md)>
 - 当在运行 Logstash 时，Logstash会自动捕获运行时指标，您可以使用这些指标来监控 Logstash 部署的运行状况和性能。
 
 Logstash 收集的指标包括：节点统计信息，例如 JVM 统计信息、进程统计信息、事件相关统计信息和 Pipeline 运行时统计信息等。
@@ -381,4 +381,4 @@ pipeline_plugins_inputs_events_queue_push_duration_in_millis 0
 
 ## 故障排查
 
-<[无数据上报排查](../datakit/why-no-data.md)>
+<[无数据上报排查](../../datakit/why-no-data.md)>
