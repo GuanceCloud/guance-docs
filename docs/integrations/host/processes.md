@@ -15,7 +15,7 @@ Processes 性能指标展示，包括 CPU 使用率，内存使用率，线程�
 
 ## 前置条件
 
-- 服务器 <[安装 DataKit](../datakit/datakit-install.md)>
+- 服务器 <[安装 DataKit](/datakit/datakit-install)>
 
 ## 安装配置
 
@@ -63,7 +63,7 @@ cp host_processes.conf.sample host_processes.conf
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 processes 指标都会带有 app = oa 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](../best-practices/insight/tag.md)>
+- 相关文档 <[DataFlux Tag 应用最佳实践](../../best-practices/insight/tag.md)>
 
 ```
 # 示例
@@ -97,9 +97,9 @@ systemctl restart datakit
 
 ## 常见问题排查
 
-<[无数据上报排查](../datakit/why-no-data.md)>
+<[无数据上报排查](/datakit/why-no-data/)>
 
 ## 进一步阅读
 
-<[主机可观测最佳实践](../best-practices/monitoring/host-linux)>
+<[主机可观测最佳实践](/best-practices/monitoring/host-linux)>
 

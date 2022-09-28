@@ -77,7 +77,7 @@ systemctl restart datakit
 
 - files：日志文件路径 (通常填写访问日志和错误日志)
 - pipeline：日志切割文件(内置)，实际文件路径 /usr/local/datakit/pipeline/solr.p
-- 相关文档 <[DataFlux pipeline 文本数据处理](../datakit/pipeline.md)
+- 相关文档 <[DataFlux pipeline 文本数据处理](../../datakit/pipeline.md)>
 
 ```
 [inputs.solr.log]
@@ -107,7 +107,7 @@ systemctl restart datakit
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 Solr 指标都会带有 service = "solr" 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](../best-practices/insight/tag.md)>
+- 相关文档 <[DataFlux Tag 应用最佳实践](../../best-practices/insight/tag.md)>
 ```
 # 示例
 [inputs.solr.tags]
@@ -127,11 +127,11 @@ systemctl restart datakit
 <场景 - 新建仪表板 - 内置模板库 - Solr 监控视图>
 
 
-## [指标详解](../datakit/solr#measurements)
+## [指标详解](/datakit/solr#measurements)
 
 ## 最佳实践
 
 ## 故障排查
 
-<[无数据上报排查](../datakit/why-no-data.md)>
+<[无数据上报排查](../../datakit/why-no-data.md)>
 

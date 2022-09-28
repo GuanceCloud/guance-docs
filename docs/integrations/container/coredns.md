@@ -16,7 +16,7 @@ coreDNS 性能指标展示：包括请求次数、对每个 zone 和 RCODE 的�
 
 ### 前置条件
 
-- coreDNS 所在 kubernetes 集群 <[安装 DataKit](../datakit/datakit-daemonset-deploy.md)>
+- coreDNS 所在 kubernetes 集群 <[安装 DataKit](../../datakit/datakit-daemonset-deploy.md)>
 - 检查是否能正常收集数据
 
 Kubernetes 集群 Master 节点执行
@@ -49,7 +49,7 @@ curl http://kube-dns.kube-system.svc.cluster.local:9153/metrics
 
 1、 开启 coreDNS 插件
 
-Kubernetes 环境下部署的 DataKit 与宿主机直接安装的 DataKit ，开启插件的方式不一样， Kubernetes 环境下部署 DataKit 是按照<<[Kubernetes 部署 DataKit](../datakit/datakit-daemonset-deploy)>>来配置的，在 Kubernetes 集群的 master 节点找到 datakit.yaml。
+Kubernetes 环境下部署的 DataKit 与宿主机直接安装的 DataKit ，开启插件的方式不一样， Kubernetes 环境下部署 DataKit 是按照<<[Kubernetes 部署 DataKit](../../datakit/datakit-daemonset-deploy)>>来配置的，在 Kubernetes 集群的 master 节点找到 datakit.yaml。
 
 2、 修改 datakit.yaml 配置文件  
 
@@ -181,7 +181,7 @@ systemctl restart datakit
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 coreDNS 指标都会带有 app = oa 的标签，可以进行快速查询，上文已经配置了一个 cluster_name 的 key
-- 相关文档 <[DataFlux Tag 应用最佳实践](../best-practices/insight/tag.md)>
+- 相关文档 <[DataFlux Tag 应用最佳实践](../../best-practices/insight/tag.md)>
 
 ```
 [inputs.prom.tags]
@@ -201,7 +201,7 @@ systemctl restart datakit
 
 ## 指标详解
 
-<[coreDNS 指标详情](../datakit/coredns#metrics)>
+<[coreDNS 指标详情](/datakit/coredns#metrics)>
 
 ## 最佳实践
 
@@ -209,4 +209,4 @@ systemctl restart datakit
 
 ## 故障排查
 
-<[无数据上报排查](../datakit/why-no-data.md)>
+<[无数据上报排查](../../datakit/why-no-data.md)>

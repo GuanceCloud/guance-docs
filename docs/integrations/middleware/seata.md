@@ -12,7 +12,7 @@
 
 ## 前置条件
 
-- <[安装 DataKit](../datakit/datakit-install.md)>
+- <[安装 DataKit](../../datakit/datakit-install.md)>
 
 ## 部署实施
 
@@ -150,5 +150,5 @@ systemctl restart datakit
 
 ## 常见问题排查
 
-<[无数据上报排查](../datakit/why-no-data.md)>
+<[无数据上报排查](../../datakit/why-no-data.md)>
 

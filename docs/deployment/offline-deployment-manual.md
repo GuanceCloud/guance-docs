@@ -1232,7 +1232,7 @@ k8s集群中部署es参考示例
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  namespace: elastic
+  namespace: middleware
   name: elasticsearch-master-config
   labels:
     app: elasticsearch
@@ -1253,7 +1253,7 @@ data:
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: elastic
+  namespace: middleware
   name: elasticsearch-master
   labels:
     app: elasticsearch
@@ -1272,7 +1272,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: elastic
+  namespace: middleware
   name: elasticsearch-master
   labels:
     app: elasticsearch
@@ -1387,7 +1387,7 @@ metadata:
     # volume.beta.kubernetes.io/storage-class: "df-nfs-storage"
     # volume.beta.kubernetes.io/storage-provisioner: kubernetes.io/nfs
   name: es-plugins
-  namespace: elastic
+  namespace: middleware
 spec:
   accessModes:
     - ReadWriteOnce
@@ -1404,7 +1404,7 @@ metadata:
     # volume.beta.kubernetes.io/storage-class: "df-nfs-storage"
     # volume.beta.kubernetes.io/storage-provisioner: kubernetes.io/nfs
   name: es-data
-  namespace: elastic
+  namespace: middleware
 spec:
   accessModes:
     - ReadWriteOnce
@@ -1421,7 +1421,7 @@ metadata:
     # volume.beta.kubernetes.io/storage-class: "df-nfs-storage"
     # volume.beta.kubernetes.io/storage-provisioner: kubernetes.io/nfs
   name: es-logs
-  namespace: elastic
+  namespace: middleware
 spec:
   accessModes:
     - ReadWriteOnce

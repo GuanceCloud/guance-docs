@@ -16,7 +16,7 @@ Etcd 性能指标展示：包括接收 grpc 客户端的总字节数、发送 gr
 
 ### 前置条件
 
-- Etcd 所在服务器 <[安装 DataKit](../datakit/datakit-install.md)>
+- Etcd 所在服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
 - 检查是否能正常收集数据，默认的metrics接口是http://localhost:2379/metrics
 
 ```
@@ -140,7 +140,7 @@ systemctl restart datakit
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 etcd 指标都会带有 app = oa 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](../best-practices/insight/tag.md)>
+- 相关文档 <[DataFlux Tag 应用最佳实践](../../best-practices/insight/tag.md)>
 
 ```
   ## 自定义Tags
@@ -606,7 +606,7 @@ data:
 <场景 - 新建仪表板 - 内置模板库 - Etcd 监控视图>
 
 
-## [指标详解](../datakit/etcd#measurements)
+## [指标详解](/datakit/etcd#measurements)
 
 ## 最佳实践
 
@@ -614,4 +614,4 @@ data:
 
 ## 故障排查
 
-<[无数据上报排查](../datakit/why-no-data.md)>
+<[无数据上报排查](../../datakit/why-no-data.md)>

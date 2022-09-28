@@ -27,7 +27,7 @@ Oracle 监控指标采集，具有以下数据收集功能
 
 ### 前置条件
 
-- Oracle 版本 11g+ <[安装 DataKit](../datakit/datakit-install.md)>
+- Oracle 版本 11g+ <[安装 DataKit](../../datakit/datakit-install.md)>
 - 创建监控账号（一般情况，需用 Oracle `dba` 权限 或 `sysdba`权限账号登陆才能创建 Oracle 用户）
 
 ```sql
@@ -128,7 +128,7 @@ datakit --restart
 
 #### 日志采集 (非必选)
 
-1、 如需采集 Oracle 的日志，目前可通过 [日志数据采集](../datakit/logging) ：`/usr/local/datakit/conf.d/log/logging.conf` 中添加如下logging 配置 来实现：
+1、 如需采集 Oracle 的日志，目前可通过 [日志数据采集](/datakit/logging) ：`/usr/local/datakit/conf.d/log/logging.conf` 中添加如下logging 配置 来实现：
 
 ```json
 [[inputs.logging]]
@@ -215,7 +215,7 @@ datakit --restart
 
 -  该配置为自定义标签，可以填写任意 key-value 值 
 -  以下示例配置完成后，所有 Oracle 指标都会带有 service = "Oracle" 的标签，可以进行快速查询 
--  相关文档 <[DataFlux Tag 应用最佳实践](../best-practices/insight/tag.md)>
+-  相关文档 <[DataFlux Tag 应用最佳实践](../../best-practices/insight/tag.md)>
 
 ```
 [inputs.oracle.tags]
@@ -245,8 +245,8 @@ datakit --restart
 
 ## 指标详解
 
-<[Oracle 指标详情](../datakit/oracle#oracle_process)>
+<[Oracle 指标详情](/datakit/oracle#oracle_process)>
 
 ## 故障排查
 
-<[无数据上报排查](../datakit/why-no-data.md)>
+<[无数据上报排查](../../datakit/why-no-data.md)>

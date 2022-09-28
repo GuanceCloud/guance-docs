@@ -16,7 +16,7 @@
 
 ### 前置条件
 
-- Docker所在服务器 <[安装 DataKit](../datakit/datakit-install.md)>
+- Docker所在服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
 
 ### 配置实施
 
@@ -109,7 +109,7 @@ systemctl restart datakit
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 docker_containers 指标都会带有 app = oa 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](../best-practices/insight/tag.md)>
+- 相关文档 <[DataFlux Tag 应用最佳实践](../../best-practices/insight/tag.md)>
 
 ```
 vi /usr/local/datakit/conf.d/container/container.conf
@@ -137,7 +137,7 @@ systemctl restart datakit
 
 ## 指标详解
 
-<[容器指标详情](../datakit/container#measurements)>
+<[容器指标详情](/datakit/container#measurements)>
 
 ## 最佳实践
 
@@ -145,5 +145,5 @@ systemctl restart datakit
 
 ## 故障排查
 
-<[无数据上报排查](../datakit/why-no-data.md)>
+<[无数据上报排查](../../datakit/why-no-data.md)>
 

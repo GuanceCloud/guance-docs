@@ -119,8 +119,8 @@ nginx_ingress_controller_requests 指标在观测云上的指标就是 prom_ingr
 
 ## 最佳实践
 
-[Nginx Ingress可观测最佳实践](../best-practices/cloud-native/ingress-nginx.md)
+[Nginx Ingress可观测最佳实践](../../best-practices/cloud-native/ingress-nginx.md)
 
 ## 故障排查
 
-- <[无数据上报排查](../datakit/why-no-data.md)>
+- <[无数据上报排查](../../datakit/why-no-data.md)>

@@ -18,7 +18,7 @@ RabbitMQ 性能指标展示：包括连接数量、通道数量、队列量、�
 
 ### 前置条件
 
-- RabbitMQ 所在服务器 <[安装 Datakit](../datakit/datakit-install.md)>
+- RabbitMQ 所在服务器 <[安装 Datakit](../../datakit/datakit-install.md)>
 - RabbitMQ 已安装
 
 ```
@@ -116,7 +116,7 @@ systemctl restart datakit
 
 - files：日志文件路径 (通常填写访问日志和错误日志)
 - pipeline：日志切割文件(内置)，实际文件路径 /usr/local/datakit/pipeline/rabbitmq.p
-- 相关文档 <[DataFlux pipeline 文本数据处理](../datakit/pipeline.md)>
+- 相关文档 <[DataFlux pipeline 文本数据处理](../../datakit/pipeline.md)>
 ```
 vi /usr/local/datakit/conf.d/rabbitmq/rabbitmq.conf
 ```
@@ -144,7 +144,7 @@ systemctl restart datakit
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 rabbitmq 指标都会带有 app = oa 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](../best-practices/insight/tag.md)>
+- 相关文档 <[DataFlux Tag 应用最佳实践](../../best-practices/insight/tag.md)>
 
 ```
   [inputs.rabbitmq.tags]
@@ -166,7 +166,7 @@ systemctl restart datakit
 ## 检测库
 暂无
 
-## [指标详解](../datakit/rabbitmq#measurements)
+## [指标详解](/datakit/rabbitmq#measurements)
 
 
 ## 最佳实践
@@ -174,4 +174,4 @@ systemctl restart datakit
 
 ## 故障排查
 
-<[无数据上报排查](../datakit/why-no-data.md)>
+<[无数据上报排查](../../datakit/why-no-data.md)>
