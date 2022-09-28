@@ -19,7 +19,7 @@
 
 在使用 dd-trace-java 之前，您可事先了解:
 
-- [datakit-ddtrace 采集器配置](../integrations/ddtrace.md)
+- [datakit-ddtrace 采集器配置](../datakit/ddtrace.md)
 - [ddtrace 配置](../best-practices/monitoring/apm.md#ddtrace) 
 - [ddtrace 高级用法](../best-practices/monitoring/ddtrace-skill.md)
 - [DDtrace 自定义 Instrumentation](../best-practices/monitoring/ddtrace-instrumentation.md)

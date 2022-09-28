@@ -10,7 +10,7 @@
 ## 前置条件
 
 - 安装 DataKit（[DataKit 安装文档](../datakit/datakit-install.md)）
-- 将 DataKit 部署成公网可访问（[RUM 配置文档](../integrations/rum.md)）
+- 将 DataKit 部署成公网可访问（[RUM 配置文档](../datakit/rum.md)）
 - 操作系统支持：全平台
 
 ## 方法/步骤
