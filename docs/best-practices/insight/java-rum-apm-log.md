@@ -169,7 +169,7 @@ APM（应用性能检测）是 DF 默认内置的模块，无需创建场景或�
 
 ##### 1、标准日志采集（Nginx、mysql、redis等）
 
-通过开启 Datakit 内置的各种 inputs，直接开启相关的日志采集，例如 [Ngnix](../../integrations/nginx.md)、 [Redis](/integrations/redis)、[容器](/integrations/container)、[ES](/integrations/elasticsearch) 等；<br />**示例：Nginx**
+通过开启 Datakit 内置的各种 inputs，直接开启相关的日志采集，例如 [Ngnix](../../integrations/webservice/nginx.md)、 [Redis](../../integrations/datastoraage/redis.md)、[容器](../../integrations/container)、[ES](../..//integrations/datastoraage/elasticsearch.md) 等；<br />**示例：Nginx**
 
 ```shell
 $ cd /usr/local/datakit/conf.d/nginx/

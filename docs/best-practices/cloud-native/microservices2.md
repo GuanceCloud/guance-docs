@@ -168,7 +168,7 @@ data:
 		 
 ![image](../images/microservices/38.png)
 
-需要了解更多 ETCD 接入方式，请参考 [ETCD](../../integrations/etcd.md) 集成文档 集成文档。
+需要了解更多 ETCD 接入方式，请参考 [ETCD](../../integrations/container/etcd.md) 集成文档 集成文档。
 
 ## 2 Istio 可观测
 
