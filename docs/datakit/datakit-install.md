@@ -90,14 +90,10 @@ NAME1="value1" NAME2="value2"
 
 安装脚本支持的环境变量如下（全平台支持）。
 
-???+ attention
-
-    [全离线安装](datakit-offline-install.md#offline)不支持这些环境变量设置。但可以通过[代理](datakit-offline-install.md#with-datakit)以及[设置本地安装地址](datakit-offline-install.md#with-nginx)方式来设置这些环境变量。
-
 ### 最常用环境变量 {#common-envs}
 
 - `DK_DATAWAY`：指定 DataWay 地址，目前 DataKit 安装命令已经默认带上
-- `DK_GLOBAL_TAGS`：已弃用，改用 DK_GLOBAL_HOST_TAGS
+- `DK_GLOBAL_TAGS`：已弃用，改用 DK_GLOBAL_HOST_TAG
 - `DK_GLOBAL_HOST_TAGS`：支持安装阶段填写全局主机 tag，格式范例：`host=__datakit_hostname,host_ip=__datakit_ip`（多个 tag 之间以英文逗号分隔）
 - `DK_GLOBAL_ELECTION_TAGS`：支持安装阶段填写全局选举 tag，格式范例：`project=my-porject,cluster=my-cluster`（多个 tag 之间以英文逗号分隔）
 - `DK_DEF_INPUTS`：默认开启的采集器名称列表，格式范例：`cpu,mem,disk`
@@ -177,7 +173,6 @@ NAME1="value1" NAME2="value2"
 - `HTTPS_PROXY`：通过 Datakit 代理安装
 - `DK_PROXY_TYPE`：代理类型。选项有: "datakit" 或 "nginx"，均为小写
 - `DK_NGINX_IP`：代理服务器 IP 地址（只需要填 IP 不需要填端口）。这个与上面的 "HTTP_PROXY" 和 "HTTPS_PROXY" 互斥，而且优先级最高，会覆盖以上两者
-- `DK_INSTALL_LOG`：设置安装程序日志路径，默认为当前目录下的 *install.log*，如果设置为 `stdout` 则输出到命令行终端
 
 ## FAQ {#faq}
 

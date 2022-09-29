@@ -52,7 +52,6 @@ nav:
         - swap.md
         - net.md
         - netstat.md
-        - nvidia_smi.md
         - socket.md
         - system.md
         - hostdir.md
@@ -147,8 +146,6 @@ nav:
     - '第三方数据接入':
       - 'Prometheus Exportor 数据采集': prom.md
       - prom_remote_write.md
-      - kafkamq.md
-      - promtail.md
       - statsd.md
       - beats_output.md
       - cloudprober.md

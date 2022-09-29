@@ -346,6 +346,28 @@ ACL SETUSER username on +ping
 
 
 
+#### `redis_latency`
+
+
+
+- 标签
+
+
+| 标签名 | 描述    |
+|  ----  | --------|
+|`server`|Server addr|
+
+- 字段列表
+
+
+| 指标 | 描述| 数据类型 | 单位   |
+| ---- |---- | :---:    | :----: |
+|`cost_time`|Latest event latency in millisecond.|int|ms|
+|`event_name`|Event name.|int|-|
+|`max_cost_time`|All-time maximum latency for this event.|int|ms|
+|`occur_time`|Unix timestamp of the latest latency spike for the event.|int|sec|
+
+
 
 
 
@@ -382,28 +404,6 @@ ACL SETUSER username on +ping
 
 
 
-
-
-#### `redis_latency`
-
-
-
-- 标签
-
-
-| 标签名 | 描述    |
-|  ----  | --------|
-|`server`|Server addr|
-
-- 字段列表
-
-
-| 指标 | 描述| 数据类型 | 单位   |
-| ---- |---- | :---:    | :----: |
-|`cost_time`|Latest event latency in millisecond.|int|ms|
-|`event_name`|Event name.|string|-|
-|`max_cost_time`|All-time maximum latency for this event.|int|ms|
-|`occur_time`|Unix timestamp of the latest latency spike for the event.|int|sec|
 
 
 
