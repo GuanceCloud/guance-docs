@@ -6,6 +6,7 @@ nav:
   - '成员管理': member-management.md
   - 'SSO管理': sso
   - '文本处理（Pipeline）': overall-pipeline.md
+  - '字段管理': field-management.md
   - '黑名单': overall-blacklist.md
   - '数据授权管理': data-authorization.md
   - '系统主题': system-theme.md
