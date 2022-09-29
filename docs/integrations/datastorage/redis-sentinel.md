@@ -145,7 +145,7 @@ tls_open = false
 systemctl restart datakit
 ```
 
-4、 redis-sentinel 指标采集验证，使用命令 /usr/local/datakit/datakit -M |egrep "最近采集|redis-sentinel" 或者通过 url 查看 ${ip}:9529/monitor
+4、 redis-sentinel 指标采集验证，使用命令 `/usr/local/datakit/datakit -M |egrep "最近采集|redis-sentinel"` 或者通过 url 查看 ${ip}:9529/monitor
 
 ![image](../imgs/input-redis-sentinel-3.png)
 
@@ -164,7 +164,7 @@ systemctl restart datakit
 - pipeline：日志切割文件
 - character_encoding：日志编码格式
 - match：开启多行日志收集
-- 相关文档 <[DataFlux pipeline 文本数据处理](../../datakit/pipeline.md)>
+- 相关文档 <[Pipeline 文本数据处理](../../datakit/pipeline.md)>
 
 ```
 # {"version": "1.2.12", "desc": "do NOT edit this line"}
@@ -263,7 +263,7 @@ systemctl restart datakit
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 `redis-sentinel` 指标都会带有`service = "redis-sentinel"`的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](../../best-practices/insight/tag.md)>
+- 相关文档 <[TAG在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 
 ```
 # 示例
@@ -281,7 +281,7 @@ systemctl restart datakit
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - Redis-sentinel 监控视图>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - Redis-sentinel 监控视图>
 
 ## 检测库
 

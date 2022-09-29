@@ -4,7 +4,7 @@
 
 ## 视图预览
 
-MongoDB 性能指标展示：包括每秒查询操作，文档操作，TTL索引，游标，队列信息等
+MongoDB 性能指标展示，包括每秒查询操作、文档操作、TTL索引、游标、队列信息等
 
 ![image](../imgs/input-mongodb-1.png)
 
@@ -91,7 +91,7 @@ vi mongodb.conf
   # enable_tls = false
 ```
 
-3、 MongoDB 指标采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|mongodb"
+3、 MongoDB 指标采集验证  `/usr/local/datakit/datakit -M |egrep "最近采集|mongodb"`
 
 ![image](../imgs/input-mongodb-3.png)
 
@@ -128,8 +128,8 @@ systemctl restart datakit
 参数说明
 
 - files：日志文件路径
-- pipeline：日志切割文件(内置)，实际文件路径 /usr/local/datakit/pipeline/mongod.p
-- 相关文档 <[DataFlux pipeline 文本数据处理](../../datakit/pipeline.md)>
+- pipeline：日志切割文件(内置)，实际文件路径 `/usr/local/datakit/pipeline/mongod.p`
+- 相关文档 <[Pipeline 文本数据处理](../../datakit/pipeline.md)>
 
 ```
 [inputs.mongodb.log]
@@ -143,7 +143,7 @@ pipeline = "mongod.p"
 systemctl restart datakit
 ```
 
-MongoDB 日志采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|mongodb_log"
+MongoDB 日志采集验证  `/usr/local/datakit/datakit -M |egrep "最近采集|mongodb_log"`
 
 ![image](../imgs/input-mongodb-5.png)
 
@@ -153,7 +153,7 @@ MongoDB 日志采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|m
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 mongodb 指标都会带有 app = oa 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](../../best-practices/insight/tag.md)>
+- 相关文档 <[TAG在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 
 ```
 # 示例
@@ -169,7 +169,7 @@ systemctl restart datakit
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - MongoDB 监控视图>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - MongoDB 监控视图>
 
 ## 指标详解
 
@@ -177,7 +177,7 @@ systemctl restart datakit
 
 | 指标 | 描述 | 数据类型 | 单位 |
 | --- | --- | --- | --- |
-| `active_reads` | The number of the active client connections performing read operations. | int | count |
+|  <div style="width: 180px">`active_reads`</div> | The number of the active client connections performing read operations. | int | count |
 | `active_writes` | The number of active client connections performing write operations. | int | count |
 | `aggregate_command_failed` | The number of times that 'aggregate' command failed on this mongod | int | count |
 | `aggregate_command_total` | The number of times that 'aggregate' command executed on this mongod. | int | count |
@@ -322,7 +322,7 @@ systemctl restart datakit
 
 | 指标 | 描述 | 数据类型 | 单位 |
 | --- | --- | --- | --- |
-| `avg_obj_size` | The average size of each document in bytes. | float | count |
+| <div style="width: 150px">`avg_obj_size`</div> | The average size of each document in bytes. | float | count |
 | `collections` | Contains a count of the number of collections in that database. | int | count |
 | `data_size` | The total size of the uncompressed data held in this database. The dataSize decreases when you remove documents. | int | count |
 | `index_size` | The total size of all indexes created on this database. | int | count |
@@ -336,7 +336,7 @@ systemctl restart datakit
 
 | 指标 | 描述 | 数据类型 | 单位 |
 | --- | --- | --- | --- |
-| `avg_obj_size` | The average size of an object in the collection. | int | count |
+| <div style="width: 150px">`avg_obj_size`</div> | The average size of an object in the collection. | int | count |
 | `count` | The number of objects or documents in this collection. | int | count |
 | `ok` | Command execute state. | int | count |
 | `size` | The total uncompressed size in memory of all records in a collection. | int | count |
@@ -348,7 +348,7 @@ systemctl restart datakit
 
 | 指标 | 描述 | 数据类型 | 单位 |
 | --- | --- | --- | --- |
-| `avg_obj_size` | The average size of an object in the collection. | int | count |
+| <div style="width: 150px">`avg_obj_size`</div> | The average size of an object in the collection. | int | count |
 | `count` | The number of objects or documents in this collection. | int | count |
 | `ok` | Command execute state. | int | count |
 | `size` | The total uncompressed size in memory of all records in a collection. | int | count |
