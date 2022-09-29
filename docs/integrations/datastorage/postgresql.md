@@ -4,7 +4,7 @@
 
 ## 视图预览
 
-PostgreSQL 性能指标展示：包括连接数，缓冲分配，计划检查点，脏块数等
+PostgreSQL 性能指标展示，包括连接数、缓冲分配、计划检查点、脏块数等
 
 ![image](../imgs/input-postgresql-1.png)
 
@@ -54,7 +54,7 @@ vi postgresql.conf
   interval = '10s'
 ```
 
-3、 PostgreSQL 指标采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|postgresql"
+3、 PostgreSQL 指标采集验证  `/usr/local/datakit/datakit -M |egrep "最近采集|postgresql"`
 
 ![image](../imgs/input-postgresql-2.png)
 
@@ -73,8 +73,8 @@ systemctl restart datakit
 参数说明
 
 - files：日志文件路径
-- pipeline：日志切割文件(内置)，实际文件路径 /usr/local/datakit/pipeline/postgresql.p
-- 相关文档 <[DataFlux pipeline 文本数据处理](../../datakit/pipeline.md)>
+- pipeline：日志切割文件(内置)，实际文件路径 `/usr/local/datakit/pipeline/postgresql.p`
+- 相关文档 <[Pipeline 文本数据处理](../../datakit/pipeline.md)>
 
 ```
 [inputs.postgresql.log]
@@ -88,7 +88,7 @@ pipeline = "postgresql.p"
 systemctl restart datakit
 ```
 
-PostgreSQL 日志采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|postgresql_log"
+PostgreSQL 日志采集验证  `/usr/local/datakit/datakit -M |egrep "最近采集|postgresql_log"`
 
 ![image](../imgs/input-postgresql-4.png)
 
@@ -98,7 +98,7 @@ PostgreSQL 日志采集验证  /usr/local/datakit/datakit -M |egrep "最近采�
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 postgresql 指标都会带有 app = oa 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](../../best-practices/insight/tag.md)>
+- 相关文档 <[TAG在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 - 
 ```
 # 示例
@@ -113,13 +113,13 @@ systemctl restart datakit
 ```
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - PostgreSQL 监控视图>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - PostgreSQL 监控视图>
 
 ## 指标详解
 
 | 指标 | 描述 | 数据类型 | 单位 |
 | --- | --- | --- | --- |
-| `blks_hit` | The number of times disk blocks were found in the buffer cache, preventing the need to read from the database. | int | count |
+| <div style="width: 150px">`blks_hit`</div> | The number of times disk blocks were found in the buffer cache, preventing the need to read from the database. | int | count |
 | `blks_read` | The number of disk blocks read in this database. | int | count |
 | `buffers_alloc` | The number of buffers allocated | int | count |
 | `buffers_backend` | The number of buffers written directly by a backend. | int | count |
