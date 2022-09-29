@@ -14,7 +14,7 @@ Datakit 性能指标展示，包括 CPU 使用率，内存信息，运行时间�
 
 ## 前置条件
 
-- 服务器 <[安装 DataKit](/datakit/datakit-install)>
+- 服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
 
 ## 安装配置
 
@@ -32,7 +32,7 @@ Datakit 数据采集默认开启 (无法关闭)
 
 #### 日志采集 (默认)
 
-Datakit 日志采集默认开启，主配置文件 /usr/local/datakit/conf.d/datakit.conf 默认路径
+Datakit 日志采集默认开启，主配置文件 `/usr/local/datakit/conf.d/datakit.conf` 默认路径
 
 ```
 log = "/var/log/datakit/log"
@@ -54,8 +54,8 @@ gin_log = "/var/log/datakit/gin.log"
 ## [指标详解](/datakit/self#measurements)
 ## 常见问题排查
 
-<[无数据上报排查](/datakit/why-no-data/)>
+<[无数据上报排查](../../datakit/why-no-data.md)>
 
 ## 进一步阅读
 
-<[主机可观测最佳实践](/best-practices/monitoring/host-linux)>
+<[主机可观测最佳实践](../../best-practices/monitoring/host-linux.md)>

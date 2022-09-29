@@ -10,12 +10,12 @@
 
 ## 版本支持
 
-操作系统支持：Linux 
+操作系统支持：Linux <br/ >
 内核版本要求：CentOS 7.6+ ，Ubuntu 16.04 +，其他发行版本需要 Linux 内核版本高于 4.0.0
 
 ## 前置条件
 
-- 服务器 <[安装 DataKit](/datakit/datakit-install)>
+- 服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
 
 ## 安装配置
 
@@ -25,13 +25,10 @@
 
 #### 指标采集 (必选)
 
-1、 安装 ebpf 插件
+1、 DataKit 安装之后，<[安装 ebpf 采集器](/datakit/ebpf#requirements)><br/ >
 
-```
-datakit install --datakit-ebpf
-```
 
-2、 开启 ebpf 插件，复制 sample 文件
+2、 开启 ebpf 采集器，复制 sample 文件
 
 ```
 cd /usr/local/datakit/conf.d/host
@@ -61,7 +58,7 @@ vi ebpf.conf
   enabled_plugins = ["ebpf-net"]
 ```
 
-4、 ebpf 指标采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|netflow"
+4、 ebpf 指标采集验证  `/usr/local/datakit/datakit -M |egrep "最近采集|netflow"`
 
 ![image](../imgs/input-ebpf-2.png)
 
@@ -71,7 +68,7 @@ vi ebpf.conf
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 ebpf 指标都会带有 app = oa 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](../../best-practices/insight/tag.md)>
+- 相关文档 <[TAG在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 
 ```
 # 示例
@@ -92,5 +89,5 @@ systemctl restart datakit
 <[无数据上报排查](../../datakit/why-no-data.md)>
 
 ## 进一步阅读
-<[主机可观测最佳实践](/best-practices/monitoring/host-linux)>
+<[主机可观测最佳实践](../../best-practices/monitoring/host-linux.md)>
 

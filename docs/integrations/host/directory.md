@@ -14,7 +14,7 @@ Directory 性能指标展示，包括目录数，文件数，目录文件大小�
 
 ## 前置条件
 
-- 服务器 <[安装 Datakit](/datakit/datakit-install)>
+- 服务器 <[安装 Datakit](../../datakit/datakit-install.md)>
 
 ## 安装配置
 
@@ -48,7 +48,7 @@ cp hostdir.conf.sample hostdir.conf
   # exclude_patterns = []
 ```
 
-3、 Directory 指标采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|hostdir"
+3、 Directory 指标采集验证  `/usr/local/datakit/datakit -M |egrep "最近采集|hostdir"`
 
 ![image](../imgs/input-directory-2.png)
 
@@ -62,7 +62,7 @@ cp hostdir.conf.sample hostdir.conf
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 hostdir 指标都会带有 app = oa 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](../../best-practices/insight/tag.md)>
+- 相关文档 <[TAG在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 
 ```
 # 示例
@@ -94,7 +94,7 @@ systemctl restart datakit
 
 ## 常见问题排查
 
-<[无数据上报排查](/datakit/why-no-data/)>
+<[无数据上报排查](../../datakit/why-no-data.md)>
 
 Q：如果想监控多个目录，怎么配置？
 A：需要填写多个 input 配置。
@@ -110,4 +110,4 @@ A：需要填写多个 input 配置。
 ```
 ## 进一步阅读
 
-<[主机可观测最佳实践](/best-practices/monitoring/host-linux)>
+<[主机可观测最佳实践](../../best-practices/monitoring/host-linux.md)>
