@@ -4,7 +4,7 @@
 
 ## 视图预览
 
-网络性能指标展示，包括网络出入口流量，网络出入口数据包等
+网络性能指标展示，包括网络出/入口流量、网络出/入口数据包等
 
 ![image](../imgs/input-net-1.png)
 
@@ -14,7 +14,7 @@
 
 ## 前置条件
 
-- 服务器 <[安装 DataKit](/datakit/datakit-install)>
+- 服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
 
 ## 安装配置
 
@@ -26,7 +26,7 @@
 
 #### 指标采集 (默认)
 
-1、 Net 数据采集默认开启，对应配置文件 /usr/local/datakit/conf.d/host/net.conf
+1、 Net 数据采集默认开启，对应配置文件 `/usr/local/datakit/conf.d/host/net.conf`
 
 参数说明
 
@@ -43,7 +43,7 @@
   # ignore_protocol_stats = false
 ```
 
-2、 Net 指标采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|net"
+2、 Net 指标采集验证  `/usr/local/datakit/datakit -M |egrep "最近采集|net"`
 
 ![image](../imgs/input-net-2.png)
 
@@ -57,7 +57,7 @@
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 net 指标都会带有 app = oa 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](../../best-practices/insight/tag.md)>
+- 相关文档 <[TAG在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 
 ```
 # 示例
@@ -73,7 +73,7 @@ systemctl restart datakit
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - Net>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - Net 监控视图>
 
 ## 监控规则
 
@@ -83,7 +83,7 @@ systemctl restart datakit
 
 | 指标 | 描述 | 数据类型 | 单位 |
 | --- | --- | --- | --- |
-| `bytes_recv` | The number of bytes received by the interface. | int | B |
+| <div style="width: 180px">`bytes_recv`</div> | The number of bytes received by the interface. | int | B |
 | `bytes_recv/sec` | The number of bytes received by the interface per second. | int | B/S |
 | `bytes_sent` | The number of bytes sent by the interface . | int | B |
 | `bytes_sent/sec` | The number of bytes sent by the interface per second. | int | B/S |
@@ -125,10 +125,10 @@ systemctl restart datakit
 
 ## 常见问题排查
 
-<[无数据上报排查](/datakit/why-no-data/)>
+<[无数据上报排查](../../datakit/why-no-data.md)>
 
 ## 进一步阅读
 
-<[主机可观测最佳实践](/best-practices/monitoring/host-linux)>
+<[主机可观测最佳实践](../../best-practices/monitoring/host-linux.md)>
 
 

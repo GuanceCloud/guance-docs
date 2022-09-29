@@ -4,7 +4,7 @@
 
 ### 前置条件
 
-- 服务器 <[安装 DataKit](/datakit/datakit-install)>
+- 服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
 - 服务器安装 Telegraf
 
 ### 安装 Telegraf
@@ -49,7 +49,7 @@ WantedBy=multi-user.target
 
 #### 指标采集 (必选)
 
-1、 数据上传至 datakit，修改主配置文件 telegraf.conf
+1、 数据上传至 datakit，修改主配置文件 `telegraf.conf`
 
 ```
 vi /usr/local/telegraf/etc/telegraf/telegraf.conf
