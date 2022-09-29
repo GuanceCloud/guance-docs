@@ -4,11 +4,11 @@
 
 ## 视图预览
 
-Aerospike namespace 性能指标展示集群、空间下：内存使用情况、磁盘使用、对象数、读写速率等。
+Aerospike namespace 性能指标展示，包括集群、空间下的内存使用情况、磁盘使用、对象数、读写速率等
 
 ![image](../imgs/input-aerospike-1.png)
 
-Aerospike node 相关指标：node 集群、node状态、记录数、内存、磁盘指标等。
+Aerospike node 相关指标展示，包括node 集群、node状态、记录数、内存、磁盘指标等
 
 ![image](../imgs/input-aerospike-2.png)
 
@@ -18,12 +18,12 @@ Aerospike node 相关指标：node 集群、node状态、记录数、内存、�
 
 ## 前置条件
 
-- Aerospike 服务器 <[安装 Datakit](https://www.yuque.com/dataflux/datakit/datakit-install)>
+- Aerospike 服务器 <[安装 Datakit](../../datakit/datakit-install.md)>
 - Aerospike 已安装
 
 ## 安装配置
 
-说明：示例 Aerospike 版本为 Linux 环境 6.0.0 (CentOS)，各个不同版本指标可能存在差异。
+说明：示例 Aerospike 版本为 Linux 环境 6.0.0 (CentOS)，各个不同版本指标可能存在差异。<br />
 aerospike-prometheus-exporter 为官方研发的 exporter ，方便快速接入监控 Aerospike。
 
 ### 指标采集 (必选)
@@ -43,7 +43,7 @@ rpm -Uvh aerospike-prometheus-exporter--x86_64.rpm
 
 #### 配置 exporter
 
-配置文件地址 /etc/aerospike-prometheus-exporter/ape.toml，默认 metrics 端口为9145，默认采集端口为 3000，默认情况下不需要调整配置文件。
+配置文件地址 `/etc/aerospike-prometheus-exporter/ape.toml`，默认 metrics 端口为9145，默认采集端口为 3000，默认情况下不需要调整配置文件。
 
 ```toml
 [Agent]
@@ -221,7 +221,10 @@ systemctl restart aerospike-prometheus-exporter.service
 #### DataKit 新增 aerospike-prom.conf 配置文件
 
 在 `/usr/local/datakit/conf.d/prom`目录下，复制prom.conf.sample为 aerospike-prom.conf
-> cp prom.conf.sample aerospike-prom.conf
+
+```
+cp prom.conf.sample aerospike-prom.conf
+```
 
 主要参数说明
 
@@ -264,7 +267,10 @@ systemctl restart datakit
 - service：aerospike #服务名
 
 在`/usr/local/datakit/conf.d`目录下，复制一份conf，重命名为`logging-aerospike.conf`
-> cp logging.conf.sample logging-aerospike.conf
+
+``` 
+cp logging.conf.sample logging-aerospike.conf
+```
 
 #### logging-aerospike.conf 全文
 
@@ -339,9 +345,11 @@ Aerospike 日志采集验证  /usr/local/datakit/datakit -M |egrep "最近采集
 
 ### 插件标签 (非必选）
 
-#### <br />参数说明
+#### 参数说明
 
-<br />该配置为自定义标签，可以填写任意 key-value 值<br />以下示例配置完成后，所有 aerospike 指标都会带有 app = aerospike 的标签，可以进行快速查询<br />相关文档 [<DataFlux Tag 应用最佳实践>](https://www.yuque.com/dataflux/bp/tag)
+- 该配置为自定义标签，可以填写任意 key-value 值
+- 以下示例配置完成后，所有 aerospike 指标都会带有 app = aerospike 的标签，可以进行快速查询
+- 相关文档 <[TAG在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 
 ```
 # 示例
@@ -357,9 +365,9 @@ systemctl restart datakit
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - **Aerospike namespace over view dashborad**>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - **Aerospike Namespace Overview 监控视图**>
 
-<场景 - 新建仪表板 - 内置模板库 - **Aerospike Monitoring Stack - Node View**>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - **Aerospike Monitoring Stack Node 监控视图**>
 
 ## 检测库
 

@@ -3,7 +3,7 @@
 ---
 
 ## 视图预览
-Memcached 性能指标展示：包括连接数，命令数，网络流量，线程数，命中率信息等
+Memcached 性能指标展示，包括连接数、命令数、网络流量、线程数、命中率信息等
 
 ![image](../imgs/input-memcached-1.png)
 
@@ -49,7 +49,7 @@ vi memcached.conf
   interval = '10s'
 ```
 
-3、 Memcached 指标采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|memcached"
+3、 Memcached 指标采集验证  `/usr/local/datakit/datakit -M |egrep "最近采集|memcached"`
 
 ![image](../imgs/input-memcached-2.png)
 
@@ -63,7 +63,7 @@ vi memcached.conf
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 memcached 指标都会带有 app = oa 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](../../best-practices/insight/tag.md)>
+- 相关文档 <[TAG在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 
 ```
 # 示例
@@ -79,7 +79,7 @@ systemctl restart datakit
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - Memcached 监控视图>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - Memcached 监控视图>
 
 ## 监控规则
 
@@ -89,7 +89,7 @@ systemctl restart datakit
 
 | 指标 | 描述 | 数据类型 | 单位 |
 | --- | --- | --- | --- |
-| `accepting_conns` | Whether or not server is accepting conns | int | count |
+| <div style="width: 160px">`accepting_conns`</div> | Whether or not server is accepting conns | int | count |
 | `auth_cmds` | Number of authentication commands handled, success or failure | int | count |
 | `auth_errors` | Number of failed authentications | int | count |
 | `bytes` | Current number of bytes used to store items | int | B |

@@ -2,17 +2,22 @@
 # Redis
 ---
 
-操作系统支持：windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64
-
 ## 视图预览
 
 ### 场景视图
 
-Redis 观测场景主要展示了 Redis 的错误信息，性能信息，持久化信息等。
+Redis 观测场景主要展示了 Redis 的错误信息、性能信息、持久化信息等。
 
 ![image](../imgs/input-redis-1.png)
 
+
+## 版本支持
+
+操作系统支持：windows/amd64, windows/386, linux/arm, linux/arm64, linux/386, linux/amd64, darwin/amd64
+
 ## 安装部署
+
+说明：示例 Redis 版本为：Redis 6.2.3 (CentOS)，各个不同版本指标可能存在差异<br />
 
 Redis 指标采集器，采集以下数据：
 
@@ -22,7 +27,6 @@ Redis 指标采集器，采集以下数据：
 - bigkey scan 监控
 - 主从replication
 
-说明：示例 Redis 版本为：Redis 6.2.3 (CentOS)，各个不同版本指标可能存在差异
 
 ### 前置条件
 
@@ -123,10 +127,10 @@ systemctl restart datakit
 
 - files：日志文件路径 (通常填写访问日志和错误日志)
 - ignore：要过滤的文件名
-- pipeline：日志切割文件(内置)，实际文件路径 /usr/local/datakit/pipeline/redis.p
+- pipeline：日志切割文件(内置)，实际文件路径 `/usr/local/datakit/pipeline/redis.p`
 - character_encoding：日志编码格式
 - match：开启多行日志收集
-- 相关文档 <[DataFlux pipeline 文本数据处理](../../datakit/pipeline.md)>
+- 相关文档 <[Pipeline 文本数据处理](../../datakit/pipeline.md)>
 
 ```
 [inputs.redis.log]
@@ -154,7 +158,7 @@ systemctl restart datakit
 systemctl restart datakit
 ```
 
-3、 Redis 日志采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|redis_log"
+3、 Redis 日志采集验证  `/usr/local/datakit/datakit -M |egrep "最近采集|redis_log"`
 
 ![image](../imgs/input-redis-4.png)
 
@@ -187,7 +191,7 @@ systemctl restart datakit
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 Redis 指标都会带有 service = "redis" 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](../../best-practices/insight/tag.md)>
+- 相关文档 <[TAG在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 
 ```
 # 示例
@@ -204,7 +208,7 @@ systemctl restart datakit
 ```
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - Redis 监控视图>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - Redis 监控视图>
 
 ## 检测库
 
@@ -219,7 +223,7 @@ systemctl restart datakit
 
 ## 最佳实践
 
-[<Redis 可观测最佳实践>](../../best-practices/monitoring/redis)
+<[Redis 可观测最佳实践](../../best-practices/monitoring/redis.md)>
 
 ## 故障排查
 

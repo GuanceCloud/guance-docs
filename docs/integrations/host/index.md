@@ -5,7 +5,7 @@ DataKit 是观测云中至关重要的一个数据采集组件，几乎所有观
 
 <br/>
 
-**对于主机系统的数据采集，需首先[安装 DataKit](../../datakit/datakit-install.mdSW)：**
+**对于主机系统的数据采集，需首先[安装 DataKit](../../datakit/datakit-install.md)：**
 
 - 安装 DataKit 之后，会默认开启一些数据的采集；
 
