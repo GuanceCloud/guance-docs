@@ -2,8 +2,6 @@
 # MySQL
 ---
 
-操作系统支持：windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64
-
 ## 视图预览
 
 MySQL 观测场景主要展示了 MySQL 的基础信息、链接信息、存储空间信息、innoDB 信息、性能信息、锁信息以及日志信息。
@@ -13,6 +11,10 @@ MySQL 观测场景主要展示了 MySQL 的基础信息、链接信息、存储�
 ![image](../imgs/input-mysql-2.png)
 
 ![image](../imgs/input-mysql-3.png)
+
+## 版本支持
+
+操作系统支持：windows/amd64, windows/386, linux/arm, linux/arm64, linux/386, linux/amd64, darwin/amd64
 
 ## 安装部署
 
@@ -160,7 +162,7 @@ set global log_queries_not_using_indexes = 'ON';
 - character_encoding：日志文件的字符集(默认 utf-8)
 - match：该配置为多行日志采集规则配置，开启 MySQL 慢查询日志请打开注释
 - pipeline：日志切割文件(内置)，实际文件路径 /usr/local/datakit/pipeline/mysql.p
-- 相关文档 <[DataFlux pipeline 文本数据处理](../../datakit/pipeline.md)>
+- 相关文档 <[Pipeline 文本数据处理](../../datakit/pipeline.md)>
 
 ```
 [inputs.mysql.log]
@@ -203,7 +205,7 @@ systemctl restart datakit
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 MySQL 指标都会带有 service = "MySQL" 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](../../best-practices/insight/tag.md)>
+- 相关文档 <[TAG在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 
 ```
 # 示例
@@ -221,7 +223,7 @@ systemctl restart datakit
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - MySQL 监控视图>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - MySQL 监控视图>
 
 ## 监控规则
 
