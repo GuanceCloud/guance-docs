@@ -34,15 +34,14 @@
 
 ???+ note
 
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod
-    nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor
-    massa, nec semper lorem quam in massa.
     对于指标管理中有单位的指标，“观测云”的所有图表将会默认显示单位，且进行自动单位转换。但有如下要求：
+    
     - 图表查询中需未使用任何函数或使用了如下函数，使用除此之外的函数，不显示默认单位
     ```
     聚合函数: avg、bottom、top、derivative、non_negative_derivative、difference、distinct、first、last、max、min、percentile（p50 p75 p90 p99）、sum、median、mode、spread、moving_average
     外层函数: abs、avg、cumsum、derivative、non_negative_derivative、difference、non_negative_difference、first、last、max、min、moving_average、series_sum、round
     ```
+    
     - 当使用 dericative 或 non_negative_derivative 函数时，单位自动加 “/s”，例如：原始单位为KB，选择  dericative 函数，单位变为KB/s
 
 ???+ attention
