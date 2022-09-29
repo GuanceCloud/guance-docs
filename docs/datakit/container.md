@@ -32,7 +32,6 @@
       enable_k8s_metric = true
       enable_pod_metric = true
       extract_k8s_label_as_tags = false
-      auto_discovery_of_k8s_service_prometheus = false
     
       ## Containers logs to include and exclude, default collect all containers. Globs accepted.
       container_include_log = []
@@ -85,8 +84,7 @@
     | `ENV_INPUT_CONTIANER_EXCLUDE_PAUSE_CONTAINER`                    | 是否忽略 k8s 的 pause 容器                                                 | true                                              | `"true"`/`"false"`                                                               |
     | `ENV_INPUT_CONTAINER_ENABLE_CONTAINER_METRIC`                    | 开启容器指标采集                                                           | true                                              | `"true"`/`"false"`                                                               |
     | `ENV_INPUT_CONTAINER_ENABLE_K8S_METRIC`                          | 开启 k8s 指标采集                                                          | true                                              | `"true"`/`"false"`                                                               |
-    | `ENV_INPUT_CONTAINER_EXTRACT_K8S_LABEL_AS_TAGS`                  | 是否追加 pod label 到采集的指标 tag 中                                     | false                                             | `"true"`/`"false"`                                                               |
-    | `ENV_INPUT_CONTAINER_AUTO_DISCOVERY_OF_K8S_SERVICE_PROMETHEUS`   | 是否开启自动发现 k8s Service promtheus 并采集指标                          | false                                             | `"true"`/`"false"`                                                               |
+    | `ENV_INPUT_CONTAINER_EXTRACT_K8S_LABEL_AS_TAGS`                 | 是否追加 pod label 到采集的指标 tag 中                                       | false                                              | `"true"`/`"false"`                                                               |
     | `ENV_INPUT_CONTAINER_ENABLE_POD_METRIC`                          | 开启 Pod 指标采集                                                          | true                                              | `"true"`/`"false"`                                                               |
     | `ENV_INPUT_CONTAINER_CONTAINER_INCLUDE_LOG`                      | 容器日志的 include 条件，使用 image 过滤                                   | 无                                                | `"image:pubrepo.jiagouyun.com/datakit/logfwd*"`                                  |
     | `ENV_INPUT_CONTAINER_CONTAINER_EXCLUDE_LOG`                      | 容器日志的 exclude 条件，使用 image 过滤                                   | 无                                                | `"image:pubrepo.jiagouyun.com/datakit/logfwd*"`                                  |
@@ -100,6 +98,7 @@
     | `ENV_INPUT_CONTAINER_LOGGING_AUTO_MULTILINE_DETECTION`           | 日志采集是否开启自动多行模式，开启后会在 patterns 列表中匹配适用的多行规则 | true                                              | `"true"/"false"`                                                                 |
     | `ENV_INPUT_CONTAINER_LOGGING_AUTO_MULTILINE_EXTRA_PATTERNS_JSON` | 日志采集的自动多行模式 pattens 列表，支持手动配置多个多行规则              | 默认规则详见[文档](logging.md#auto-multiline)     | `'["^\\d{4}-\\d{2}", "^[A-Za-z_]"]'` JSON 格式的字符串数组                       |
     | `ENV_INPUT_CONTAINER_TAGS`                                       | 添加额外 tags                                                              | 无                                                | `"tag1=value1,tag2=value2"`       以英文逗号分割的多个"key=value"                |
+    | `ENV_K8S_CLUSTER_NAME`                                           | k8s `cluster_name` 字段的缺省值                                            | 无                                                | `"my-cluster"`                                                                   |
 
     环境变量额外说明：
     
@@ -325,7 +324,7 @@ Value 字段说明：
 
 ### Prometheuse Exporter 指标采集 {#k8s-prom-exporter}
 
-如果 Pod/容器有暴露 Prometheuse 指标，有两种方式可以采集，参见[这里](kubernetes-prom.md)
+如果 Pod/容器有暴露 Prometheuse 指标，则可以通过 Annotation 方式将指标接口暴露给 DataKit，参见[这里](kubernetes-prom.md)。
 
 ## 指标集 {#measurements}
 
@@ -993,7 +992,7 @@ Kubernetes pod 对象数据
 |`age`|age (seconds)|int|s|
 |`available`|Number of containers|string|-|
 |`cpu_usage`|The percentage of cpu used|float|percent|
-|`create_time`|CreationTimestamp is a timestamp representing the server time when this object was created.(milliseconds)|int|msec|
+|`create_time`|CreationTimestamp is a timestamp representing the server time when this object was created.(milliseconds)|int|sec|
 |`memory_usage_bytes`|The number of memory used in bytes|float|B|
 |`message`|object details|string|-|
 |`ready`|Describes whether the pod is ready to serve requests.|string|-|

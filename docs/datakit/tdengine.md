@@ -73,9 +73,7 @@ TDEngine 采集器需要的连接 `taos_adapter` 才可以正常工作，taosAda
 |`database_name`|数据库名称|
 |`dnode_ep`|数据节点名称，一般情况下与 end_point 等价|
 |`end_point`|远端地址名称，一般命名规则是(host:port)|
-|`first_ep`|first endpoint|
 |`host`|主机名|
-|`version`|version|
 |`vgroup_id`|虚拟组 ID|
 
 - 指标列表

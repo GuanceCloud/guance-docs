@@ -50,7 +50,17 @@ copyright: '&copy; 2013-2022 上海驻云信息科技有限公司 沪公网安�
 extra:
   generator: false
   homepage: https://docs.guance.com
+
 plugins:
+  - i18n:
+      default_language: zh
+      languages:
+        en:
+          name: English
+          build: true
+        fr:
+          name: 中文
+          build: true
   - awesome-pages
   - section-index
   - git-authors

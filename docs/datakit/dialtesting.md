@@ -102,7 +102,6 @@
 |  ----  | --------|
 |`city`|示例 杭州|
 |`country`|示例 中国|
-|`dest_ip`|示例 目标 IP, 如 127.0.0.1|
 |`internal`|示例 true（国内 true /海外 false）|
 |`isp`|示例 电信/移动/联通|
 |`name`|示例：拨测名称,百度测试|
@@ -138,7 +137,6 @@
 |`city`|示例 杭州|
 |`country`|示例 中国|
 |`dest_host`|示例 wwww.baidu.com|
-|`dest_ip`|示例 目标 IP, 如 127.0.0.1|
 |`dest_port`|示例 80|
 |`internal`|示例 true（国内 true /海外 false）|
 |`isp`|示例 电信/移动/联通|
@@ -153,7 +151,7 @@
 | 指标 | 描述| 数据类型 | 单位   |
 | ---- |---- | :---:    | :----: |
 |`fail_reason`|拨测失败原因|string|-|
-|`message`|包括响应时间(response_time)/错误原因(fail_reason)|string|-|
+|`message`|包括响应时间(response_time_in_micros)/错误原因(fail_reason)|string|-|
 |`response_time`|TCP 连接时间, 单位|int|μs|
 |`response_time_with_dns`|连接时间（含DNS解析）, 单位|int|μs|
 |`success`|只有 1/-1 两种状态, 1 表示成功, -1 表示失败|int|-|
@@ -183,19 +181,15 @@
 
 | 指标 | 描述| 数据类型 | 单位   |
 | ---- |---- | :---:    | :----: |
-|`average_round_trip_time`|平均往返时间(RTT)|float|μs|
-|`average_round_trip_time_in_millis`|平均往返时间(RTT). 本字段将被弃用|float|ms|
+|`average_round_trip_time_in_millis`|平均往返时间(RTT)|float|ms|
 |`fail_reason`|拨测失败原因|string|-|
-|`max_round_trip_time`|最大往返时间(RTT)|float|μs|
-|`max_round_trip_time_in_millis`|最大往返时间(RTT). 本字段将被弃用|float|ms|
-|`message`|包括平均RTT时间(average_round_trip_time)/错误原因(fail_reason)|string|-|
-|`min_round_trip_time`|最小往返时间(RTT)|float|μs|
-|`min_round_trip_time_in_millis`|最小往返时间(RTT). 本字段将被弃用|float|ms|
-|`packet_loss_percent`|丢包率|float|-|
+|`max_round_trip_time_in_millis`|最大往返时间(RTT)|float|ms|
+|`message`|包括平均RTT时间(average_round_trip_time_in_millis)/错误原因(fail_reason)|string|-|
+|`min_round_trip_time_in_millis`|最小往返时间(RTT)|float|ms|
+|`packet_loss_percent`|丢包率|float|ms|
 |`packets_received`|接受的数据包|int|count|
 |`packets_sent`|发送的数据包|int|count|
-|`std_round_trip_time`|往返时间(RTT)标准差|float|μs|
-|`std_round_trip_time_in_millis`|往返时间(RTT)标准差. 本字段将被弃用|float|ms|
+|`std_round_trip_time_in_millis`|往返时间(RTT)标准差|float|ms|
 |`success`|只有 1/-1 两种状态, 1 表示成功, -1 表示失败|int|-|
 |`traceroute`|路由跟踪数据文本(JSON格式)|string|-|
 
@@ -224,7 +218,7 @@
 | 指标 | 描述| 数据类型 | 单位   |
 | ---- |---- | :---:    | :----: |
 |`fail_reason`|拨测失败原因|string|-|
-|`message`|包括响应时间(response_time)/错误原因(fail_reason)|string|-|
+|`message`|包括响应时间(response_time_in_micros)/错误原因(fail_reason)|string|-|
 |`response_message`|拨测返回的消息|string|-|
 |`response_time`|连接时间, 单位|int|μs|
 |`response_time_with_dns`|连接时间（含DNS解析）, 单位|int|μs|
@@ -288,10 +282,10 @@ traceroute 是「路由跟踪」数据的 JSON 文本，整个数据是一个数
 | `total`    | number        | 总探测次数                  |
 | `failed`   | number        | 失败次数                    |
 | `loss`     | number        | 失败百分比                  |
-| `avg_cost` | number        | 平均耗时(μs)                |
-| `min_cost` | number        | 最小耗时(μs)                |
-| `max_cost` | number        | 最大耗时(μs)                |
-| `std_cost` | number        | 耗时标准差(μs)              |
+| `avg_cost` | number        | 平均耗时(ns)                |
+| `min_cost` | number        | 最小耗时(ns)                |
+| `max_cost` | number        | 最大耗时(ns)                |
+| `std_cost` | number        | 耗时标准差(ns)              |
 | `items`    | Item 的 Array | 每次探测信息([详见](#item)) |
 
 ### Item {#item}
@@ -299,5 +293,5 @@ traceroute 是「路由跟踪」数据的 JSON 文本，整个数据是一个数
 | 字段            | 类型   | 说明                      |
 | :---            | ---    | ---                       |
 | `ip`            | string | IP 地址，如果失败，值为 * |
-| `response_time` | number | 响应时间(μs)              |
+| `response_time` | number | 响应时间(ns)              |
 
