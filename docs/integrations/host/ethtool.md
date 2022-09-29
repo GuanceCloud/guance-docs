@@ -4,7 +4,7 @@
 
 ## 视图预览
 
-EthTool 指标展示，包括网络接口入/出流量，入/出数据包，丢弃的数据包等
+EthTool 指标展示，包括网络接口入/出流量、入/出数据包、丢弃的数据包等
 
 ![image](../imgs/input-ethtool-1.png)
 
@@ -14,7 +14,7 @@ EthTool 指标展示，包括网络接口入/出流量，入/出数据包，丢�
 
 ## 前置条件
 
-- 服务器 <[安装 DataKit](/datakit/datakit-install)>
+- 服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
 - 服务器安装 Telegraf
 
 ### 安装 Telegraf
@@ -48,7 +48,7 @@ yum -y install telegraf
 
 #### 指标采集 (必选)
 
-1、 数据上传至 DataKit，修改主配置文件 telegraf.conf
+1、 数据上传至 DataKit，修改主配置文件 `telegraf.conf`
 
 ```
 vi /etc/telegraf/telegraf.conf
@@ -130,7 +130,7 @@ systemctl restart telegraf
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - EthTool 监控视图>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - EthTool 监控视图>
 
 ## 监控规则
 
@@ -140,17 +140,17 @@ systemctl restart telegraf
 
 | 指标 | 描述 | 数据类型 |
 | --- | --- | --- |
-| rx_queue_bytes | 流入流量 (byte) | int |
-| rx_queue_drops | 流入时丢弃的数据包 | int |
-| rx_queue_packets | 流入的数据包 | int |
-| tx_queue_bytes | 流出流量 (byte) | int |
-| tx_queue_drops | 流入时丢弃的数据包 | int |
-| tx_queue_packets | 流出的数据包 | int |
+| `rx_queue_bytes` | 流入流量 (byte) | int |
+| `rx_queue_drops` | 流入时丢弃的数据包 | int |
+| `rx_queue_packets` | 流入的数据包 | int |
+| `tx_queue_bytes` | 流出流量 (byte) | int |
+| `tx_queue_drops` | 流入时丢弃的数据包 | int |
+| `tx_queue_packets` | 流出的数据包 | int |
 
 ## 常见问题排查
 
-<[无数据上报排查](/datakit/why-no-data/)>
+<[无数据上报排查](../../datakit/why-no-data.md)>
 
 ## 进一步阅读
 
-<[主机可观测最佳实践](/best-practices/monitoring/host-linux)>
+<[主机可观测最佳实践](../../best-practices/monitoring/host-linux.md)>

@@ -3,7 +3,7 @@
 ---
 
 ## 视图预览
-Chrony 指标展示，包括轮询速率，时间偏移，可达性寄存器等
+Chrony 指标展示，包括轮询速率、时间偏移、可达性寄存器等
 
 ![image](../imgs/input-chrony-1.png)
 
@@ -136,14 +136,14 @@ systemctl restart telegraf
 
 | 指标 | 描述 | 数据类型 |
 | --- | --- | --- |
-| frequency | 系统时钟错误率 | int |
-| last_offset | 上次时钟更新的估计偏移 | int |
-| residual_freq | 剩余频率表示参考源的测量值与当前使用的频率之间的差异 | int |
-| rms_offset | 偏移值的长期平均值 | int |
-| root_delay | 到与之同步的层计算机的网络路径延迟的总和 | int |
-| skew | 估计的频率误差范围 | int |
-| system_time | 来自同步服务器的系统时钟延迟 | int |
-| update_interval | 同步时间 | int |
+| `frequency` | 系统时钟错误率 | int |
+| `last_offset` | 上次时钟更新的估计偏移 | int |
+| `residual_freq` | 剩余频率表示参考源的测量值与当前使用的频率之间的差异 | int |
+| `rms_offset` | 偏移值的长期平均值 | int |
+| `root_delay` | 到与之同步的层计算机的网络路径延迟的总和 | int |
+| `skew` | 估计的频率误差范围 | int |
+| `system_time` | 来自同步服务器的系统时钟延迟 | int |
+| `update_interval` | 同步时间 | int |
 
 ## 常见问题排查
 

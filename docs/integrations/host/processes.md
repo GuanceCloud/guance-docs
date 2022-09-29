@@ -5,7 +5,7 @@
 
 ## 视图预览
 
-Processes 性能指标展示，包括 CPU 使用率，内存使用率，线程数，打开的文件数等
+Processes 性能指标展示，包括 CPU 使用率、内存使用率、线程数、打开的文件数等
 
 ![image](../imgs/input-processes-1.png)
 
@@ -15,7 +15,7 @@ Processes 性能指标展示，包括 CPU 使用率，内存使用率，线程�
 
 ## 前置条件
 
-- 服务器 <[安装 DataKit](/datakit/datakit-install)>
+- 服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
 
 ## 安装配置
 
@@ -34,7 +34,7 @@ cd /usr/local/datakit/conf.d/host/
 cp host_processes.conf.sample host_processes.conf
 ```
 
-2、 修改配置文件 host_processes.conf
+2、 修改配置文件 `host_processes.conf`
 
 参数说明
 
@@ -49,7 +49,7 @@ cp host_processes.conf.sample host_processes.conf
   open_metric = true
 ```
 
-3、 Processes 指标采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|host_processes"
+3、 Processes 指标采集验证  `/usr/local/datakit/datakit -M |egrep "最近采集|host_processes"`
 
 ![image](../imgs/input-processes-2.png)
 
@@ -78,7 +78,7 @@ systemctl restart datakit
 ```
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - Processes 监控视图>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - Processes 监控视图>
 
 ## 检测库
 
@@ -88,7 +88,7 @@ systemctl restart datakit
 
 | 指标 | 描述 | 数据类型 | 单位 |
 | --- | --- | --- | --- |
-| `cpu_usage` | cpu使用占比（%*100），进程自启动以来所占 CPU 百分比，该值相对会比较稳定（跟 top 的瞬时百分比不同） | float | percent |
+| <div style="width: 150px">`cpu_usage`</div> | cpu使用占比（%*100），进程自启动以来所占 CPU 百分比，该值相对会比较稳定（跟 top 的瞬时百分比不同） | float | percent |
 | `cpu_usage_top` | cpu使用占比（%*100）, 一个采集周期内的进程的 CPU 使用率均值 | float | percent |
 | `mem_used_percent` | mem使用占比（%*100） | float | percent |
 | `open_files` | open_files 个数(仅支持linux) | int | count |
@@ -97,9 +97,9 @@ systemctl restart datakit
 
 ## 常见问题排查
 
-<[无数据上报排查](/datakit/why-no-data/)>
+<[无数据上报排查](../../datakit/why-no-data.md)>
 
 ## 进一步阅读
 
-<[主机可观测最佳实践](/best-practices/monitoring/host-linux)>
+<[主机可观测最佳实践](../../best-practices/monitoring/host-linux.md)>
 

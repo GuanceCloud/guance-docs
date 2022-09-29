@@ -4,7 +4,7 @@
 
 ## 视图预览
 
-系统性能指标展示，包括 CPU 平均负载，在线用户数，系统运行时间等
+系统性能指标展示，包括 CPU 平均负载、在线用户数、系统运行时间等
 
 ![image](../imgs/input-system-1.png)
 
@@ -18,7 +18,7 @@
 
 ### 前置条件
 
-- 服务器 <[安装 DataKit](/datakit/datakit-install)>
+- 服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
 
 ### 配置实施
 
@@ -26,7 +26,7 @@
 
 #### 指标采集 (默认)
 
-1、 System 数据采集默认开启，对应配置文件 /usr/local/datakit/conf.d/host/system.conf
+1、 System 数据采集默认开启，对应配置文件 `/usr/local/datakit/conf.d/host/system.conf`
 
 参数说明
 
@@ -36,7 +36,7 @@
   interval = '10s'
 ```
 
-2、 System 指标采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|system"
+2、 System 指标采集验证  `/usr/local/datakit/datakit -M |egrep "最近采集|system"`
 
 ![image](../imgs/input-system-2.png)
 
@@ -50,7 +50,7 @@
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 system 指标都会带有 app = oa 的标签，可以进行快速查询
-- 相关文档 <[TAG在观测云中的最佳实践](/best-practices/insight/tag/)>
+- 相关文档 <[TAG在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 
 ```
 # 示例
@@ -65,7 +65,7 @@ systemctl restart datakit
 ```
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - System 监控视图>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - System 监控视图>
 
 ## 监控规则
 
@@ -75,7 +75,7 @@ systemctl restart datakit
 
 | 指标 | 描述 | 数据类型 | 单位 |
 | --- | --- | --- | --- |
-| `cpu_usage` | cpu使用占比（%*100），进程自启动以来所占 CPU 百分比，该值相对会比较稳定（跟 top 的瞬时百分比不同） | float | percent |
+| <div style="width: 150px">`cpu_usage`</div> | cpu使用占比（%*100），进程自启动以来所占 CPU 百分比，该值相对会比较稳定（跟 top 的瞬时百分比不同） | float | percent |
 | `mem_used_percent` | mem使用占比（%*100） | float | percent |
 | `open_files` | open_files 个数(仅支持linux) | int | count |
 | `rss` | Resident Set Size （常驻内存大小） | int | B |
@@ -83,8 +83,8 @@ systemctl restart datakit
 
 ## 常见问题排查
 
-<[无数据上报排查](/datakit/why-no-data/)>
+<[无数据上报排查](../../datakit/why-no-data.md)>
 
 ## 进一步阅读
-<[主机可观测最佳实践](/best-practices/monitoring/host-linux)>
+<[主机可观测最佳实践](../../best-practices/monitoring/host-linux.md)>
 

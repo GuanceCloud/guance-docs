@@ -4,7 +4,7 @@
 
 ## 视图预览
 
-Directory 性能指标展示，包括目录数，文件数，目录文件大小等
+Directory 性能指标展示，包括目录数、文件数、目录文件大小等
 
 ![image](../imgs/input-directory-1.png)
 
@@ -33,7 +33,7 @@ cd /usr/local/datakit/conf.d/host/
 cp hostdir.conf.sample hostdir.conf
 ```
 
-2、 修改配置文件 hostdir.conf
+2、 修改配置文件 `hostdir.conf`
 
 参数说明
 
@@ -78,7 +78,7 @@ systemctl restart datakit
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - Directory>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - Directory 监控视图>
 
 ## 检测库
 
@@ -96,7 +96,7 @@ systemctl restart datakit
 
 <[无数据上报排查](../../datakit/why-no-data.md)>
 
-Q：如果想监控多个目录，怎么配置？
+Q：如果想监控多个目录，怎么配置？<br />
 A：需要填写多个 input 配置。
 
 ```

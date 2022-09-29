@@ -4,7 +4,7 @@
 
 ## 视图预览
 
-内存性能指标展示，包括内存使用率，内存大小，缓存，缓冲等
+内存性能指标展示，包括内存使用率、内存大小、缓存、缓冲等
 
 ![image](../imgs/input-mem-1.png)
 
@@ -14,7 +14,7 @@
 
 ## 前置条件
 
-- 服务器 <[安装 DataKit](/datakit/datakit-install)>
+- 服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
 
 ## 安装配置
 
@@ -26,7 +26,7 @@
 
 #### 指标采集 (默认)
 
-1、 Mem 数据采集默认开启，对应配置文件 /usr/local/datakit/conf.d/host/mem.conf
+1、 Mem 数据采集默认开启，对应配置文件 `/usr/local/datakit/conf.d/host/mem.conf`
 
 参数说明
 
@@ -36,7 +36,7 @@
   interval = '10s'
 ```
 
-2、 Mem 指标采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|mem"
+2、 Mem 指标采集验证  `/usr/local/datakit/datakit -M |egrep "最近采集|mem"`
 
 ![image](../imgs/input-mem-2.png)
 
@@ -66,7 +66,7 @@ systemctl restart datakit
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - Memory>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - Memory 监控视图>
 
 ## 监控规则
 
@@ -76,7 +76,7 @@ systemctl restart datakit
 
 | 指标 | 描述 | 数据类型 | 单位 |
 | --- | --- | --- | --- |
-| `active` | Memory that has been used more recently and usually not reclaimed unless absolutely necessary. (Darwin, Linux) | int | B |
+|<div style="width: 150px"> `active`</div> | Memory that has been used more recently and usually not reclaimed unless absolutely necessary. (Darwin, Linux) | int | B |
 | `available` | Amount of available memory | int | B |
 | `available_percent` | Available memory percent | float | percent |
 | `buffered` | buffered (Linux) | int | B |
@@ -114,9 +114,9 @@ systemctl restart datakit
 
 ## 常见问题排查
 
-<[无数据上报排查](/datakit/why-no-data/)>
+<[无数据上报排查](../../datakit/why-no-data.md)>
 
 ## 进一步阅读
 
-<[主机可观测最佳实践](/best-practices/monitoring/host-linux)>
+<[主机可观测最佳实践](../../best-practices/monitoring/host-linux.md)>
 

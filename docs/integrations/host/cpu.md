@@ -80,7 +80,7 @@ systemctl restart datakit
 
 | 指标 | 描述 | 数据类型 | 单位 |
 | --- | --- | --- | --- |
-| `core_temperature` | CPU core temperature. This is collected by default. Only collect the average temperature of all cores. | float | C |
+| <div style="width: 150px">`core_temperature`</div> | CPU core temperature. This is collected by default. Only collect the average temperature of all cores. | float | C |
 | `load5s` | CPU average load in 5 seconds. | int | - |
 | `usage_guest` | % CPU spent running a virtual CPU for guest operating systems. | float | percent |
 | `usage_guest_nice` | % CPU spent running a niced guest(virtual CPU for guest operating systems). | float | percent |

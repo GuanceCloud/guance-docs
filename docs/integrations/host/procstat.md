@@ -4,7 +4,7 @@
 
 ## 视图预览
 
-Procstat 指标展示，包括进程返回码，进程数，返回状态等
+Procstat 指标展示，包括进程返回码、进程数、返回状态等
 
 ![image](../imgs/input-procstat-1.png)
 
@@ -14,7 +14,7 @@ Procstat 指标展示，包括进程返回码，进程数，返回状态等
 
 ## 前置条件
 
-- 服务器  <[安装 DataKit](/datakit/datakit-install)>
+- 服务器  <[安装 DataKit](../../datakit/datakit-install.md)>
 - 服务器安装 Telegraf
 
 ### 安装 Telegraf
@@ -48,7 +48,7 @@ yum -y install telegraf
 
 #### 指标采集 (必选)
 
-1、 数据上传至 DataKit，修改主配置文件 telegraf.conf
+1、 数据上传至 DataKit，修改主配置文件  `telegraf.conf`
 
 ```
 vi /etc/telegraf/telegraf.conf
@@ -138,7 +138,7 @@ systemctl restart telegraf
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - Procstat 监控视图>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - Procstat 监控视图>
 
 ## 检测库
 
@@ -150,14 +150,15 @@ systemctl restart telegraf
 
 | 指标 | 描述 | 数据类型 |
 | --- | --- | --- |
-| pid_count | pid 文件数 | int |
-| running | 进程数 | int |
-| result_code | 返回码 (0=success,1=error) | int |
+| `pid_count` | pid 文件数 | int |
+| `running` | 进程数 | int |
+| `result_code` | 返回码 (0=success,1=error) | int |
 
 ## 常见问题排查
 
-<[无数据上报排查](/datakit/why-no-data)>
+<[无数据上报排查](../../datakit/why-no-data.md)>
 
 ## 进一步阅读
-<[主机可观测最佳实践](/best-practices/monitoring/host-linux)>
+
+<[主机可观测最佳实践](../../best-practices/monitoring/host-linux.md)>
 

@@ -4,7 +4,7 @@
 
 ## 视图预览
 
-Swap 性能指标展示，包括 Swap 使用率，Swap 大小等
+Swap 性能指标展示，包括 Swap 使用率、Swap 大小等
 
 ![image](../imgs/input-swap-1.png)
 
@@ -14,7 +14,7 @@ Swap 性能指标展示，包括 Swap 使用率，Swap 大小等
 
 ## 前置条件
 
-- 服务器 <[安装 DataKit](/datakit/datakit-install)>
+- 服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
 
 ## 安装配置
 
@@ -26,7 +26,7 @@ Swap 性能指标展示，包括 Swap 使用率，Swap 大小等
 
 #### 指标采集 (默认)
 
-1、 Swap 数据采集默认开启，对应配置文件 /usr/local/datakit/conf.d/host/swap.conf
+1、 Swap 数据采集默认开启，对应配置文件 `/usr/local/datakit/conf.d/host/swap.conf`
 
 参数说明
 
@@ -36,7 +36,7 @@ Swap 性能指标展示，包括 Swap 使用率，Swap 大小等
   interval = '10s'
 ```
 
-2、 Swap 指标采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|swap"
+2、 Swap 指标采集验证  `/usr/local/datakit/datakit -M |egrep "最近采集|swap"`
 
 ![image](../imgs/input-swap-2.png)
 
@@ -66,7 +66,7 @@ systemctl restart datakit
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - Swap 监控视图>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - Swap 监控视图>
 
 ## 监控规则
 
@@ -76,7 +76,7 @@ systemctl restart datakit
 
 | 指标 | 描述 | 数据类型 | 单位 |
 | --- | --- | --- | --- |
-| `cpu_usage` | cpu使用占比（%*100），进程自启动以来所占 CPU 百分比，该值相对会比较稳定（跟 top 的瞬时百分比不同） | float | percent |
+| <div style="width: 150px">`cpu_usage`</div> | cpu使用占比（%*100），进程自启动以来所占 CPU 百分比，该值相对会比较稳定（跟 top 的瞬时百分比不同） | float | percent |
 | `mem_used_percent` | mem使用占比（%*100） | float | percent |
 | `open_files` | open_files 个数(仅支持linux) | int | count |
 | `rss` | Resident Set Size （常驻内存大小） | int | B |
@@ -84,9 +84,9 @@ systemctl restart datakit
 
 ## 常见问题排查
 
-<[无数据上报排查](/datakit/why-no-data/)>
+<[无数据上报排查](../../datakit/why-no-data.md)>
 
 ## 进一步阅读
 
-<[主机可观测最佳实践](/best-practices/monitoring/host-linux)>
+<[主机可观测最佳实践](../../best-practices/monitoring/host-linux.md)>
 

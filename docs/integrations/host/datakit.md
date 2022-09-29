@@ -4,7 +4,7 @@
 
 ## 视图预览
 
-Datakit 性能指标展示，包括 CPU 使用率，内存信息，运行时间，日志记录等
+Datakit 性能指标展示，包括 CPU 使用率、内存信息、运行时间、日志记录等
 
 ![image](../imgs/input-datakit-1.png)
 
@@ -45,7 +45,7 @@ gin_log = "/var/log/datakit/gin.log"
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - DataKit 监控视图>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - DataKit 监控视图>
 
 ## 检测库
 
