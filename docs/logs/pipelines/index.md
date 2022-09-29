@@ -18,22 +18,12 @@
 ```
 
 - 过滤日志：根据所选日志来源自动生成同名 Pipeline，也可以直接输入自定义的 pipeline 文件名；
-- 定义解析规则：定义日志的解析规则，支持多种脚本函数，可通过观测云提供的脚本函数列表直接查看其语法格式，如`add_pattern()`等。关于如何定义解析规则，可参考文档 [文本数据处理（Pipeline）](../../developers/pipeline.md) ；
-- 日志样本测试：输入日志数据，根据配置的解析规则进行测试，支持「一键获取」已经采集的日志数据样本。
+- 定义解析规则：定义日志的解析规则，支持多种脚本函数，可通过观测云提供的脚本函数列表直接查看其语法格式，如`add_pattern()`等。关于如何定义解析规则，可参考文档 [Pipeline 介绍](../../developers/pipeline.md) ；
+- 日志样本测试：输入日志数据，根据配置的解析规则进行测试，支持「一键获取」已经采集的日志数据样本。关于如何调试样本数据可参考文档 [调整 Pipeline](../management/overall-pipeline/#test) 。
 
 注意：自定义 pipeline 文件不能同名，但可以和官方 pipeline 同名，此时 DataKit 会优先自动获取自定义 pipeline 文件配置。若在日志采集器 `.conf` 中手动配置 pipeline 文件，此时 DataKit 会优先获取手动配置的 pipeline 文件。
 
 ![](../img/6.log_pipeline_2.png)
-
-### 调试 Pipeline {#test}
-
-在新建 Pipeline 页面，选择「过滤日志」，填入「定义解析规则」，然后在「日志样本测试」直接输入或通过「一键获取」日志数据进行测试，若解析规则不符合，则返回错误提示的结果，若解析规则符合要求，则返回解析处理后日志数据结果。
-注意：
-
-- 日志样本测试为非必填项
-- 自定义 Pipeline 保存后， 日志样本测试数据同步保存。
-
-![](../img/6.log_pipeline_3.png)
 
 ## 编辑/删除/启用/禁用 Pipeline
 
@@ -75,7 +65,7 @@
 
 若您从未通过 DataKit 配置过日志采集器，在观测云工作空间创建了 pipeline 文件以后，您需要在您的主机上 [安装 DataKit](../../datakit/datakit-install.md)  ，且开启 pipeline 文件对应采集器的日志采集和 pipeline 功能。以 Nginx 为例，在 [Nginx 采集器](../../integrations/webservice/nginx.md) 中开启日志采集并开启 `pipeline = "nginx.p"`，开启完成后重启 DataKit 即可生效。
 
-注意：`pipeline = "nginx.p" `中 `nginx.p` 可以不填，DataKit 会根据您选择的日志来源自动匹配您创建的日志 pipeline 文件。若日志来源和 pipeline 文件名称不一致，则需要在 `pipeline = "..."` 填入对应的 pipeline 文件名称。
+注意：`pipeline = "nginx.p" `中 `nginx.p` 可以不填，DataKit 会根据您选择的日志来源自动匹配您创建的日志 pipeline 文件。若日志来源和 pipeline 文件名称不一致，则需要在 `pipeline = "..."` 填入对应的 pipeline 文件名称，DataKit 会优先匹配用户自定义的 pipeline 文件。
 
 ```
     [[inputs.nginx]]
