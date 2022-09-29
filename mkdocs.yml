@@ -52,15 +52,6 @@ extra:
   homepage: https://docs.guance.com
 
 plugins:
-  - i18n:
-      default_language: zh
-      languages:
-        en:
-          name: English
-          build: true
-        fr:
-          name: 中文
-          build: true
   - awesome-pages
   - section-index
   - git-authors
