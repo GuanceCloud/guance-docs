@@ -40,7 +40,7 @@ DataKit 是观测云开源的采集工具，开源地址：[https://github.com/D
 
 ## 前置条件
 
-- <[安装 DataKit](/datakit/datakit-install.md)>
+- <[安装 DataKit](/datakit/datakit-install)>
 - DataKit 接入版本 >=1.2.13
 
 ### DataKit 开启 gitlab-ci

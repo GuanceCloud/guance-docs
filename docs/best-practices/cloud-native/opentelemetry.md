@@ -13,7 +13,7 @@ DataKit 只需开启 OpenTelemetry Input，即可采集 OpenTelemetry Agent上�
 ## 前置条件
 ### 安装 DataKit
 
-- <[安装 DataKit](/datakit/datakit-install.md)>
+- <[安装 DataKit](/datakit/datakit-install)>
 
 - DataKit 接入版本 >=1.2.12
 

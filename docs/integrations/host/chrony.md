@@ -3,7 +3,7 @@
 ---
 
 ## 视图预览
-Chrony 指标展示，包括轮询速率，时间偏移，可达性寄存器等
+Chrony 指标展示，包括轮询速率、时间偏移、可达性寄存器等
 
 ![image](../imgs/input-chrony-1.png)
 
@@ -13,8 +13,8 @@ Chrony 指标展示，包括轮询速率，时间偏移，可达性寄存器等
 
 ## 前置条件
 
-- 服务器 <[安装 DataKit](/datakit/datakit-install)>
-- 服务器安装 Telegraf
+- 服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
+- 服务器 <安装 Telegraf>
 
 ### 安装 Telegraf
 
@@ -47,7 +47,7 @@ yum -y install telegraf
 
 #### 指标采集 (必选)
 
-1、 数据上传至 DataKit，修改主配置文件 telegraf.conf
+1、 数据上传至 DataKit，修改主配置文件 `telegraf.conf`
 
 ```
 vi /etc/telegraf/telegraf.conf
@@ -110,7 +110,7 @@ systemctl start telegraf
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 netstat 指标都会带有 app = oa 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](../../best-practices/insight/tag.md)>
+- 相关文档 <[TAG在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 
 ```
 # 示例
@@ -126,7 +126,7 @@ systemctl restart telegraf
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - Chrony>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - Chrony 监控视图>
 
 ## 检测库
 
@@ -136,18 +136,18 @@ systemctl restart telegraf
 
 | 指标 | 描述 | 数据类型 |
 | --- | --- | --- |
-| frequency | 系统时钟错误率 | int |
-| last_offset | 上次时钟更新的估计偏移 | int |
-| residual_freq | 剩余频率表示参考源的测量值与当前使用的频率之间的差异 | int |
-| rms_offset | 偏移值的长期平均值 | int |
-| root_delay | 到与之同步的层计算机的网络路径延迟的总和 | int |
-| skew | 估计的频率误差范围 | int |
-| system_time | 来自同步服务器的系统时钟延迟 | int |
-| update_interval | 同步时间 | int |
+| `frequency` | 系统时钟错误率 | int |
+| `last_offset` | 上次时钟更新的估计偏移 | int |
+| `residual_freq` | 剩余频率表示参考源的测量值与当前使用的频率之间的差异 | int |
+| `rms_offset` | 偏移值的长期平均值 | int |
+| `root_delay` | 到与之同步的层计算机的网络路径延迟的总和 | int |
+| `skew` | 估计的频率误差范围 | int |
+| `system_time` | 来自同步服务器的系统时钟延迟 | int |
+| `update_interval` | 同步时间 | int |
 
 ## 常见问题排查
 
-<[无数据上报排查](/datakit/why-no-data/)>
+<[无数据上报排查](../../datakit/why-no-data.md)>
 
 ## 进一步阅读
 

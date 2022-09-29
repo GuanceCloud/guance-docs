@@ -10,7 +10,7 @@
 - 自定义日志数据采集，通过sdk接入客户端应用中，针对不同场景采集不同日志数据。
 - 可以自动收集应用端的错误信息（包括网络错误，console错误，以及js错误）上报到DataFlux。
 - 自定义错误等级（`debug`,`critical`,`error`,`info`,`warn`）,自定义Logger对象，以及自定义log字段
-- 可以自动收集[RUM](../real-user-monitoring/miniapp/app-access/index.md)相关数据，关联RUM业务场景（需要rum sdk 更新到最新版本）
+- 可以自动收集[RUM](../real-user-monitoring/miniapp/app-access.md)相关数据，关联RUM业务场景（需要rum sdk 更新到最新版本）
 
 ## 开始使用
 

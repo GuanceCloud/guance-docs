@@ -42,5 +42,5 @@
 
 - iOS 采样设置可参考 [iOS 应用接入](ios/app-access.md) 。
 - Android 采样设置可参考 [Android 应用接入](android/app-access.md) 。
-- 小程序采样设置可参考 [小程序应用接入](miniapp/app-access/index.md) 。
+- 小程序采样设置可参考 [小程序应用接入](miniapp/app-access.md) 。
 

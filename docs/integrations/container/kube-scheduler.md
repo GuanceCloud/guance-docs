@@ -149,7 +149,7 @@ kubectl apply -f datakit.yaml
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，scheduler 指标都会带有 app = oa 的标签，可以进行快速查询
 - 采集 scheduler  指标，必填的 key 是 instance，值是 scheduler  metrics 的 ip + 端口
-- 相关文档 <[DataFlux Tag 应用最佳实践](/best-practices/guance-skill/tag.md)>
+- 相关文档 <[Tag 在观测云中的最佳实践](/best-practices/insight/tag/)>
 
 ```toml
            ## 自定义Tags

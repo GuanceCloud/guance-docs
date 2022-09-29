@@ -9,7 +9,7 @@
 ## 前置条件
 ### 安装 Datakit
 
-- <[安装 Datakit](/datakit/datakit-install.md)>
+- <[安装 Datakit](/datakit/datakit-install/)>
 ## 数据接入
 
 订单数据接入观测云的方式是通过 log ，微服务输出日志文件到云服务器，在这台云服务器上安装 DataKit ，并开通日志采集，指定日志文件的路径。为了解析出日志文件中的订单号、下单人、订单状态，需要编写Pipeline 把日志文件中的订单号、下单人、订单状态做切割。

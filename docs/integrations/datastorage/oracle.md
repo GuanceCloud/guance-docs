@@ -2,8 +2,6 @@
 # Oracle
 ---
 
-操作系统支持：linux/amd64
-
 ## 视图预览
 
 Oracle 观测场景主要展示了 Oracle 的 会话信息、缓存信息、表空间信息、实例运行信息、性能信息、锁信息以及日志信息。
@@ -13,6 +11,10 @@ Oracle 观测场景主要展示了 Oracle 的 会话信息、缓存信息、表�
 ![image](../imgs/oracle-2.png)
 
 ![image](../imgs/oracle-3.png)
+
+## 版本支持
+
+操作系统支持：linux/amd64
 
 ## 安装部署
 
@@ -215,7 +217,7 @@ datakit --restart
 
 -  该配置为自定义标签，可以填写任意 key-value 值 
 -  以下示例配置完成后，所有 Oracle 指标都会带有 service = "Oracle" 的标签，可以进行快速查询 
--  相关文档 <[DataFlux Tag 应用最佳实践](../../best-practices/insight/tag.md)>
+-  相关文档 <[TAG在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 
 ```
 [inputs.oracle.tags]
@@ -232,7 +234,7 @@ datakit --restart
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - Oracle 监控视图>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - Oracle 监控视图>
 
 ## 检测库
 

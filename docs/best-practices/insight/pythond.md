@@ -291,6 +291,6 @@ sudo datakit --restart
 
 ## 1.8. 参考文档
 
-- [官方手册: 用 Python 开发自定义采集器](/datakit/pythond.md)
+- [官方手册: 用 Python 开发自定义采集器](/datakit/ddtrace-python/)
 
-- [官方手册: 通过 Git 管理配置文件](/datakit/git-config-how-to.md)
+- [官方手册: 通过 Git 管理配置文件](/datakit/git-config-how-to/)

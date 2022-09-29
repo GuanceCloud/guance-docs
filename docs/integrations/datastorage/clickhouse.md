@@ -2,17 +2,15 @@
 # ClickHouse
 ---
 
-> 操作系统支持：windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64
-
 ## 视图预览
 
 ![image](../imgs/input-clickhouse-1.png)
 
-## 安装部署
+## 版本支持
 
-说明：示例 ClickHouse 版本为： ClickHouse v20.1.2.4 (CentOS)，各个不同版本指标可能存在差异
+操作系统支持：windows/amd64, windows/386, linux/arm, linux/arm64, linux/386, linux/amd64, darwin/amd64 
 
-### 前置条件
+## 前置条件
 
 - <[安装 DataKit](../../datakit/datakit-install.md)>
 - 在 clickhouse-server 的 config.xml 配置文件中找到如下的代码段，取消注释，并设置 metrics 暴露的端口号（具体哪个自己造择，唯一即可）。修改完成后重启（若为集群，则每台机器均需操作）。
@@ -37,7 +35,11 @@ vim /etc/clickhouse-server/config.xml
 - `events` 从 ClickHouse 的 `system.events` 表中抓取暴露的事件标志
 - `asynchronous_metrics` 从 ClickHouse 中 `system.asynchronous_metrics` 表中抓取暴露的异步指标标志
 
-### 配置实施
+## 安装配置
+
+说明：示例 ClickHouse 版本为： ClickHouse v20.1.2.4 (CentOS)，各个不同版本指标可能存在差异
+
+### 部署实施
 
 #### 指标采集 (必选)
 
@@ -428,7 +430,7 @@ jemalloc_background_thread_run_intervals 0
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 ClickHouse 指标都会带有 service = "ClickHouseAsyncMetrics" 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](../../best-practices/insight/tag.md)>
+- 相关文档 <[TAG在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 ```
 # 示例
 [inputs.prom.tags]

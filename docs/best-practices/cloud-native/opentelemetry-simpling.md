@@ -211,7 +211,7 @@ processors:
 
 1、下载源码：[https://github.com/lrwh/observable-demo/tree/main/opentelemetry-collector-sampling](https://github.com/lrwh/observable-demo/tree/main/opentelemetry-collector-sampling)
 
-2、确保已经安装了 [DataKit](/datakit/datakit-install.md)
+2、确保已经安装了 [DataKit](/datakit/datakit-install/)
 
 | 服务名称              | 端口        | 描述                                                                                                                                                                             |
 | ----------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |

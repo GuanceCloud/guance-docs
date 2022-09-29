@@ -4,7 +4,7 @@
 
 ## 视图预览
 
-安全检测指标展示，包括系统，网络，数据库，存储等
+安全检测指标展示，包括系统、网络、数据库、存储等
 
 ![image](../imgs/input-scheck-1.png)
 
@@ -16,7 +16,7 @@
 
 ## 前置条件
 
-- 服务器 <[安装 DataKit](/datakit/datakit-install)>
+- 服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
 
 ## 安装配置
 
@@ -32,14 +32,14 @@ bash -c "$(curl https://static.dataflux.cn/security-checker/install.sh)"
 
 软件目录
 
-- 安装目录：/usr/local/scheck
-- 日志路径：/usr/local/scheck/log
-- 主配置文件：/usr/local/scheck/scheck.conf
-- 检测规则目录：/usr/local/scheck/rules.d
+- 安装目录：`/usr/local/scheck`
+- 日志路径：`/usr/local/scheck/log`
+- 主配置文件：`/usr/local/scheck/scheck.conf`
+- 检测规则目录：`/usr/local/scheck/rules.d`
 
 #### 配置文件
 
-1、主配置文件：/usr/local/scheck/scheck.conf
+1、主配置文件：`/usr/local/scheck/scheck.conf`
 参数说明
 
 - rule_dir：检测规则目录
@@ -84,11 +84,11 @@ systemctl start scheck
 
 ## 常见问题排查
 
-<[无数据上报排查](/datakit/why-no-data/)>
+<[无数据上报排查](../../datakit/why-no-data.md)>
 
 ## 进一步阅读
 
-<[Security Checker 最佳实践](/scheck/best-practices)>
+<[Security Checker 最佳实践](../../scheck/best-practices.md)>
 
-<[Security Checker 函数清单](/scheck/funcs)>
+<[Security Checker 函数清单](../../scheck/funcs.md)>
 

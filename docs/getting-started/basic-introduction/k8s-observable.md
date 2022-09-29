@@ -129,11 +129,11 @@ datakit 运行状态正常，即可在观测云工作空间「基础设施」-�
 
 使用以上 `include / exclude` 配置，将会只采集 `容器A` 指标数据，因为它的 image 能够匹配 `hello*`。另外2个容器不会采集指标，因为它们的 image 匹配 `*`。
 
-通过文档 [容器](../../integrations/container.md) 可查看更多 K8S 数据采集配置。
+通过文档 [容器](../../datakit/container.md) 可查看更多 K8S 数据采集配置。
 
 #### 搭建 K8S 指标可视化仪表板
 
-开启 contrainer 采集器以后，配置完指标采集image范围以后，就可以采集对应容器的 [kubelet_pod](../../integrations/container.md#kube_pod)、[docker_containers](../../integrations/container.md#docker_containers)、[kubernetes](../../integrations/container.md#kubernetes) 等指标，通过在观测云场景下搭建[仪表板](../../scene/dashboard.md)，可对指标进行可视化监控；通过在观测云监控下配置[告警](../../monitoring/alert-setting.md)，可通过短信、邮件、钉钉群、微信群等进行告警通知，帮助企业快速发现和定位K8S的故障问题。
+开启 contrainer 采集器以后，配置完指标采集image范围以后，就可以采集对应容器的 [kubelet_pod](../../datakit/container.md#kube_pod)、[docker_containers](../../datakit/container.md#docker_containers)、[kubernetes](../../datakit/container.md#kubernetes) 等指标，通过在观测云场景下搭建[仪表板](../../scene/dashboard.md)，可对指标进行可视化监控；通过在观测云监控下配置[告警](../../monitoring/alert-setting.md)，可通过短信、邮件、钉钉群、微信群等进行告警通知，帮助企业快速发现和定位K8S的故障问题。
 
 1.通过使用 kubernates 指标搭建场景仪表板，支持通过观测云自带的内置视图的[系统视图](../../management/built-in-view/index.md)一键创建。
 
@@ -175,7 +175,7 @@ spec:
 
 #### 搭建 K8S 日志自定义查看器
 
-通过 datakit yaml 中添加 Annotation，就可以采集 Pod 的[日志数据](../../integrations/container.md#logging-with-annotation-or-label)，通过在观测云场景下搭建[日志自定义查看器](../../scene/explorer/index.md)，可对日志进行可视化关联查询，帮助企业快速发现和定位K8S的故障问题。
+通过 datakit yaml 中添加 Annotation，就可以采集 Pod 的[日志数据](../../datakit/container.md#logging-with-annotation-or-label)，通过在观测云场景下搭建[日志自定义查看器](../../scene/explorer/index.md)，可对日志进行可视化关联查询，帮助企业快速发现和定位K8S的故障问题。
 
 ![](../img/3.contrainer_3.png)
 
@@ -186,6 +186,6 @@ spec:
 ## 更多参考
 
 更多关于容器和 K8S 的配置方法和指标说明可参考：
-### [Kubernetes 环境下的 DataKit 配置](../../integrations/k8s-config-how-to.md) 
-### [Kubernetes 扩展指标采集](../../integrations/kubernetes-x.md)
-### [Kubernetes 集群中自定义 Exporter 指标采集](../../integrations/kubernetes-prom.md)
+### [Kubernetes 环境下的 DataKit 配置](../../datakit/k8s-config-how-to.md) 
+### [Kubernetes CRD 扩展指标采集](../../datakit/kubernetes-crd.md)
+### [Kubernetes 集群中自定义 Exporter 指标采集](../../datakit/kubernetes-prom.md)

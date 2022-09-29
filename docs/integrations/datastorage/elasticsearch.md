@@ -2,8 +2,6 @@
 # Elasticsearch
 ---
 
-操作系统支持：windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64
-
 ## 视图预览
 
 ### 场景视图
@@ -21,6 +19,10 @@ Elasticsearch 观测场景主要展示了 Elasticsearch 的集群信息、网络
 Elasticsearch 内置视图主要展示了 Elasticsearch 的集群内的 JVM 和线程池的信息
 
 ![image](../imgs/input-elasticsearch-4.png)
+
+## 版本支持
+
+操作系统支持：windows/amd64, windows/386, linux/arm, linux/arm64, linux/386, linux/amd64, darwin/amd64
 
 ## 安装部署
 
@@ -146,8 +148,8 @@ systemctl restart datakit
 参数说明
 
 - files：日志文件路径 (通常填写访问日志和错误日志)
-- pipeline：日志切割文件(内置)，实际文件路径 /usr/local/datakit/pipeline/elasticsearch.p
-- 相关文档 <[DataFlux pipeline 文本数据处理](../../datakit/pipeline.md)>
+- pipeline：日志切割文件(内置)，实际文件路径 `/usr/local/datakit/pipeline/elasticsearch.p`
+- 相关文档 <[Pipeline 文本数据处理](../../datakit/pipeline.md)>
 ```
 [inputs.elasticsearch.log]
 	#写入 ElasticSearch 日志文件的绝对路径
@@ -162,7 +164,7 @@ systemctl restart datakit
 systemctl restart datakit
 ```
 
-3、 ElasticSearch 日志采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|elasticsearch_log"
+3、 ElasticSearch 日志采集验证  `/usr/local/datakit/datakit -M |egrep "最近采集|elasticsearch_log"`
 
 ![image](../imgs/input-elasticsearch-7.png)
 
@@ -225,7 +227,7 @@ systemctl restart datakit
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 ElasticSearch 指标都会带有 service = "elasticsearch" 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](../../best-practices/insight/tag.md)>
+- 相关文档 <[TAG在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 
 ```
 # 示例
@@ -244,15 +246,15 @@ systemctl restart datakit
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - ElasticSearch 监控视图>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - ElasticSearch 监控视图>
 
 ## 监控规则
 
 <监控 - 监控器 - 从模板新建 - ElasticSearch 检测库>
 
 | 序号 | 规则名称 | 触发条件 | 级别 | 检测频率 |
-| --- | --- | --- | --- | --- |
-| 1 | Elasticsearch 查询拒绝率过高 | Elasticsearch 查询拒绝率 > 0 | 紧急 | 1m |
+| :---: | --- | --- | --- | --- |
+| 1 | <div style="width: 200px">Elasticsearch 查询拒绝率过高</div> | <div style="width: 200px">Elasticsearch 查询拒绝率 > 0</div> | 紧急 | 1m |
 | 2 | Elasticsearch 平均 CPU 使用率 过高 |  Elasticsearch 平均 CPU 使用率 > 90% | 重要 | 1m |
 | 3 | Elasticsearch 集群状态异常 | Elasticsearch 集群状态不是 green | 紧急 | 1m |
 | 4 | Elasticsearch 平均 JVM 堆内存的使用量过高 | Elasticsearch 平均 JVM 堆内存的使用量 > 85% | 重要 | 1m |
@@ -266,7 +268,7 @@ systemctl restart datakit
 
 ## 最佳实践
 
-<[Elasticsearch 可观测最佳实践](/best-practices/monitoring/elasticsearch)>
+<[Elasticsearch 可观测最佳实践](../../best-practices/monitoring/elasticsearch.md)>
 
 ## 故障排查
 

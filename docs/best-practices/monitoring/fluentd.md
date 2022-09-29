@@ -25,11 +25,11 @@ Fluentd 是一个开源数据收集器，用于统一日志记录基础设施。
 
 ### 观测云作为 Fluentd 的输出
 
-我们通过更改配置可以将 <[Fluentd 数据采集](/integrations/logstreaming-fluentd.md)> 的数据直接上报至观测云平台进行可视化分析，从而减少对后端存储分析集群的依赖，通过更科学的手段来提升我们的业务。
+我们通过更改配置可以将 <[Fluentd 数据采集](/integrations/fluentd/)> 的数据直接上报至观测云平台进行可视化分析，从而减少对后端存储分析集群的依赖，通过更科学的手段来提升我们的业务。
 
 ### 使用观测云观测 Fluentd
 
-Fluentd 的设计本身是保证高可用的，并配有自己的监控程序守护程序。目前许多用户都使用 Fluentd 作为其数据流的关键组件，也就是说我们不要让任何中间件不受监控。如果出现任何问题，都要立即通知其负责的工程师。观测云通过接入 Fluentd RESTApi 的方式将 <[Fluentd 集成](/integrations/logstreaming-fluentd.md)> 观测起来，以便可以在每次输出的基础上监控其性能。
+Fluentd 的设计本身是保证高可用的，并配有自己的监控程序守护程序。目前许多用户都使用 Fluentd 作为其数据流的关键组件，也就是说我们不要让任何中间件不受监控。如果出现任何问题，都要立即通知其负责的工程师。观测云通过接入 Fluentd RESTApi 的方式将 <[Fluentd 集成](/integrations/fluentd/)> 观测起来，以便可以在每次输出的基础上监控其性能。
 
 ## 可视化的观测 Fluentd
 
@@ -39,5 +39,5 @@ Fluentd 的设计本身是保证高可用的，并配有自己的监控程序守
 
 Fluentd 是一种多功能工具，可用于收集应用程序和服务器日志以用于各种目的，可以使用这些工具将数据发送到各种后端系统。通过观测云与 Fluentd 的集成，可以全面了解 Fluentd 工作流的工作状态，更是可以通过观测云集成中的 200+ 技术栈的集成来是我们的应用系统更加健壮。
 
-[<Fluentd 集成>](/integrations/logstreaming-fluentd.md)
+[<Fluentd 集成>](/integrations/fluentd/)
 

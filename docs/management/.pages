@@ -6,12 +6,11 @@ nav:
   - '成员管理': member-management.md
   - 'SSO管理': sso
   - '文本处理（Pipeline）': overall-pipeline.md
+  - '字段管理': field-management.md
   - '黑名单': overall-blacklist.md
   - '数据授权管理': data-authorization.md
   - '系统主题': system-theme.md
   - '高性能模式': high-performance.md
-  - '内置视图': built-in-view
-  - '通知对象管理': notify-object.md
   - '分享管理': share-management.md
   - '操作审计': operation-audit.md
   - '功能菜单管理': customized-menu.md

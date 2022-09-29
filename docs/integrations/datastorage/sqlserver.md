@@ -4,7 +4,7 @@
 
 ## 视图预览
 
-SQLServer 性能指标展示：CPU，内存，事务，日志，临时表，物理文件 IO，备份，任务调度等
+SQLServer 性能指标展示，包括CPU、内存、事务、日志、临时表、物理文件 IO、备份、任务调度等
 
 ![image](../imgs/input-sqlserver-1.png)
 
@@ -82,8 +82,8 @@ services.msc 找到 datakit 重新启动
 参数说明
 
 - files：日志文件路径 (通常填写访问日志和错误日志)
-- pipeline：日志切割文件(内置)，实际文件路径 /usr/local/datakit/pipeline/sqlserver.p
-- 相关文档 <[DataFlux pipeline 文本数据处理](../../datakit/pipeline.md)>
+- pipeline：日志切割文件(内置)，实际文件路径 `/usr/local/datakit/pipeline/sqlserver.p`
+- 相关文档 <[Pipeline 文本数据处理](../../datakit/pipeline.md)>
 
 ```
 [inputs.sqlserver.log]
@@ -102,7 +102,7 @@ systemctl restart datakit
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 sqlserver 指标都会带有 app = oa 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](../../best-practices/insight/tag.md)>
+- 相关文档 <[TAG在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 - 
 ```
 # 示例
@@ -118,7 +118,7 @@ systemctl restart datakit
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - SQLServer 监控视图> 
+<场景 - 新建仪表板 - 模板库 - 系统视图 - SQLServer 监控视图> 
 
 ## 指标详解
 
@@ -126,7 +126,7 @@ systemctl restart datakit
 
 | 指标 | 描述 | 数据类型 | 单位 |
 | --- | --- | --- | --- |
-| `cpu_count` | Specifies the number of logical CPUs on the system. Not nullable. | int | count |
+| <div style="width: 150px">`cpu_count`</div> | Specifies the number of logical CPUs on the system. Not nullable. | int | count |
 | `db_offline` | num of database state in offline | int | count |
 | `db_online` | num of database state in online | int | count |
 | `db_recovering` | num of database state in recovering | int | count |
@@ -145,7 +145,7 @@ systemctl restart datakit
 
 | 指标 | 描述 | 数据类型 | 单位 |
 | --- | --- | --- | --- |
-| `max_wait_time_ms` | Maximum wait time on this wait type. | int | ms |
+| <div style="width: 150px">`max_wait_time_ms`</div> | Maximum wait time on this wait type. | int | ms |
 | `resource_wait_ms` | wait_time_ms-signal_wait_time_ms | int | ms |
 | `signal_wait_time_ms` | Difference between the time that the waiting thread was signaled and when it started running | int | ms |
 | `wait_time_ms` | Total wait time for this wait type in milliseconds. This time is inclusive of signal_wait_time_ms | int | ms |
@@ -155,7 +155,7 @@ systemctl restart datakit
 
 | 指标 | 描述 | 数据类型 | 单位 |
 | --- | --- | --- | --- |
-| `read` | Number of reads issued on the file. | int | count |
+| <div style="width: 150px">`read`</div> | Number of reads issued on the file. | int | count |
 | `read_bytes` | Total number of bytes read on this file | int | B |
 | `read_latency_ms` | Total time, in milliseconds, that the users waited for reads issued on the file. | int | ms |
 | `rg_read_stall_ms` | Does not apply to:: SQL Server 2008 through SQL Server 2012 (11.x).Total IO latency introduced by IO resource governance for reads | int | ms |
@@ -168,7 +168,7 @@ systemctl restart datakit
 
 | 指标 | 描述 | 数据类型 | 单位 |
 | --- | --- | --- | --- |
-| `active_workers_count` | Number of workers that are active. An active worker is never preemptive, must have an associated task, and is either running, runnable, or suspended. Is not nullable. | int | count |
+| <div style="width: 200px">`active_workers_count`</div>  | Number of workers that are active. An active worker is never preemptive, must have an associated task, and is either running, runnable, or suspended. Is not nullable. | int | count |
 | `context_switches_count` | Number of context switches that have occurred on this scheduler | int | count |
 | `current_tasks_count` | Number of current tasks that are associated with this scheduler. | int | count |
 | `current_workers_count` | Number of workers that are associated with this scheduler. This count includes workers that are not assigned any task. Is not nullable. | int | count |

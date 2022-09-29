@@ -3,7 +3,7 @@
 
 ## 观测云支持哪些采集器？
 
-观测云支持官方出品的标准采集器 DataKit ，基于 DataKit 的数据采集能力，支持接入第三方数据，如[Telegraf](../integrations/telegraf.md)、[Prometheus](../integrations/prom.md)、[Statsd](../integrations/statsd.md)、[Cloudprober](../integrations/cloudprober.md)、[Scheck](../integrations/sec-checker.md) 等，同时支持[通过 Python 开发自定义采集器](../integrations/pythond.md) 。
+观测云支持官方出品的标准采集器 DataKit ，基于 DataKit 的数据采集能力，支持接入第三方数据，如[Telegraf](../datakit/telegraf.md)、[Prometheus](../datakit/prom.md)、[Statsd](../datakit/statsd.md)、[Cloudprober](../datakit/cloudprober.md)、[Scheck](../datakit/sec-checker.md) 等，同时支持[通过 Python 开发自定义采集器](../developers/pythond.md) 。
 
 ## 观测云是否支持实时采集数据？
 

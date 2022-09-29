@@ -12,7 +12,7 @@ DataKit 只需开启 Skywalking Input，即可采集 Skywalking Agent上报来�
 ## 前置条件
 ### 安装 DataKit
 
-- <[安装 DataKit](/datakit/datakit-install.md)>
+- <[安装 DataKit](/datakit/datakit-install/)>
 
 本文datakit版本1.2.11，skywalking agent版本为v8.6.0。
 ## 数据接入

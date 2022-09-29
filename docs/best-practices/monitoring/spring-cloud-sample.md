@@ -271,7 +271,7 @@ $ service datakit restart
 
 ### Redis：
 
-详细步骤参见文档 [[redis datakit 接入](/integrations/redis.md)]
+详细步骤参见文档 [[redis datakit 接入](/datakit/redis/)]
 
 ##### 1、在 Datakit 中修改 redis 的 inputs
 
@@ -306,7 +306,7 @@ $ service datakit restart
 
 ### JVM：
 
-详细步骤参见文档 [[jvm datakit 接入](/integrations/jvm.md)]
+详细步骤参见文档 [[jvm datakit 接入](/datakit/jvm/)]
 
 ##### 1、在 Datakit 中修改 jvm 的 inputs
 
@@ -563,7 +563,7 @@ $ vim scheck.conf
 
 ### 日志：
 
-详细步骤参见文档 [[日志采集](../../integrations/logging.md)]
+详细步骤参见文档 [日志采集](../../datakit/logging.md)
 
 ##### 1、标准日志采集（Nginx、Mysql、Redis 等）
 

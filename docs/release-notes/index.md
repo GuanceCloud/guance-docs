@@ -13,9 +13,9 @@ icon: zy/release-notes
 
 #### 新增字段管理
 
-观测云新增字段字典管理，支持对当前工作空间的字段数据进行统一的管理，包括系统字段和自定义字段两种类型，您可以在场景图表查询、监控器的检测指标、DQL 查询的分组选项等查看字段说明，帮助您快速理解字段含义并应用字段。更多详情可参考文档 [字段管理](../management/field-management.md) 。
+观测云支持对当前工作空间的字段数据进行统一的管理，包括系统字段和自定义字段两种类型，您可以在场景图表查询、监控器的检测指标、DQL 查询的简单查询模式等查看字段说明，帮助您快速理解字段含义并应用字段。下图是在场景图表查询中查看 `host` 的字段说明，更多详情可参考文档 [字段管理](../management/field-management.md) 。
 
-![](img/3.field_1.png)
+![](img/3.field_9.1.png)
 
 #### 优化指标功能
 
@@ -23,7 +23,7 @@ icon: zy/release-notes
 
 原「指标查看器」更改为「指标分析」，支持用户以时序图方式（折线图、面积图、柱状图）可视化查询指标数据。更多详情可参考 [指标分析](../metrics/explorer.md) 。
 
-![](img/4.changelog_1.png)
+![](img/4.changelog_1.2.png)
 
 ##### 优化指标管理
 
@@ -62,21 +62,40 @@ icon: zy/release-notes
 
 #### 优化 Pipeline 配置页面
 
-在文本处理（Pipeline），新增添加测试文本框。若需要测试多条样本数据，您可以通过添加多个测试文本框来测试返回多条测试结果。
+在文本处理（Pipeline）中，新增支持添加多个样本解析测试，修复指标数据一键获取样本错误问题。更多详情可参考 [文本处理（Pipeline）](../management/overall-pipeline/) 。
 
-注意：测试文本框最多添加 3 个，若您在同一个测试文本框中输入多条样本数据进行测试，只返回一条测试结果。
-
-![](img/4.changelog_8.png)
+![](img/10.pipeline_4.png)
 
 #### 其他功能优化
 
 - 笔记新增全局锁定时间配置，配置好全局锁定时间后，该笔记页面的所有图表都按照该锁定时间显示数据
 - 未恢复事件查询修改成最近 48 小时数据，支持手动刷新
 - 用户访问监测支持同名用户视图覆盖逻辑
-- 智能巡检支持自建巡检列表显示
+- 智能巡检新增支持自建巡检
+- 生成指标页面操作列调整，新增“在指标分析中打开”和“在指标管理中打开”操作图标
 - 管理导航菜单位置调整，SSO 管理迁移至成员管理，通知对象管理迁移至监控，内置视图迁移至场景
 
+### DataKit 更新
 
+#### Breaking Changes
+
+- Redis 采集器中，原来 latency 时序数据改为日志数据
+- 移除环境变量 `ENV_K8S_CLUSTER_NAME`，建议用全局 tag 方式来设置 Kubernetes 集群名称
+
+#### 新功能
+
+- 新增 [promtail 采集器](../datakit/promtail/)
+- 新增 [NVIDIA GPU 指标采集器](../datakit/nvidia_smi/)
+- 支持发现（需手动开启） Kubernetes 集群中带有 Prometheus Service 的服务，并对之实施 Prometheus 指标采集
+- 支持从 Kafka 中订阅基于 SkyWalking 的指标、日志、Trace 类数据，并将其分别以对应的数据类型上传到观测云
+
+更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md) 。
+
+### 最佳实践更新
+
+- 云原生：[多个 Kubernetes 集群指标采集最佳实践](../best-practices/cloud-native/multi-cluster/)。
+
+更多最佳实践更新可参考 [最佳实践版本历史](../best-practices/index.md) 。
 
 ## 2022 年 9 月 15 号
 
@@ -259,7 +278,7 @@ icon: zy/release-notes
 
 - 优化日志检测、应用性能指标检测、用户访问指标检测「检测指标」配置。
 
-更多详情可参考 [监控器管理](../monitoring/monitor/monitor-management.md) 。
+更多详情可参考 [监控器管理](../../monitoring/monitor/#management) 。
 
 ![](img/5.changelog_7.0.png)
 ![](img/5.changelog_7.png)
@@ -1027,7 +1046,7 @@ Deployment 网络数据采集成功后会上报到观测云控制台，您可以
 - 优化OpenTelemetry指标数据
 - [ElasticSearch](https://preprod-docs.cloudcare.cn/datakit/changelog/elasticsearch) 增加 AWS OpenSearch 支持
 - [行协议限制](../datakit/apis.md)中，字符串长度限制放宽到 32MB
-- [prom](../integrations/prom.md) 采集器增加额外配置，支持忽略指定的 tag=value 的匹配，以减少不必要的时序时间线
+- [prom](../datakit/prom.md) 采集器增加额外配置，支持忽略指定的 tag=value 的匹配，以减少不必要的时序时间线
 - Sink 增加 Jaeger 支持
 - Kubernetes 相关的指标采集，默认全部关闭，以避免时间线暴增问题
 - DataKit Monitor 增加动态发现（比如 prom）的采集器列表刷新

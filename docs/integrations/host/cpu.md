@@ -4,7 +4,7 @@
 
 ## 视图预览
 
-CPU 性能指标展示，包括 CPU 使用率，IO 等待，用户态，核心态，软中断，硬中断等
+CPU 性能指标展示，包括 CPU 使用率、IO 等待、用户态、核心态、软中断、硬中断等
 
 ![image](../imgs/input-cpu-1.png)
 
@@ -14,7 +14,7 @@ CPU 性能指标展示，包括 CPU 使用率，IO 等待，用户态，核心�
 
 ## 前置条件
 
-- 服务器 <[安装 DataKit](/datakit/datakit-install)>
+- 服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
 
 ## 安装配置
 
@@ -26,7 +26,7 @@ CPU 性能指标展示，包括 CPU 使用率，IO 等待，用户态，核心�
 
 #### 指标采集 (默认)
 
-1、 CPU 数据采集默认开启，对应配置文件 /usr/local/datakit/conf.d/host/cpu.conf
+1、 CPU 数据采集默认开启，对应配置文件 `/usr/local/datakit/conf.d/host/cpu.conf`
 
 参数说明
 
@@ -40,11 +40,11 @@ CPU 性能指标展示，包括 CPU 使用率，IO 等待，用户态，核心�
   enable_temperature = true
 ```
 
-2、 CPU 指标采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|cpu"
+2、 CPU 指标采集验证 `/usr/local/datakit/datakit -M |egrep "最近采集|cpu"`
 
 ![image](../imgs/input-cpu-2.png)
 
-指标预览
+  指标预览
 
 ![image](../imgs/input-cpu-3.png)
 
@@ -54,7 +54,7 @@ CPU 性能指标展示，包括 CPU 使用率，IO 等待，用户态，核心�
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 cpu 指标都会带有 app = oa 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](../../best-practices/insight/tag.md)>
+- 相关文档 <[TAG在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 
 ```
 # 示例
@@ -70,7 +70,7 @@ systemctl restart datakit
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - CPU 监控视图>
+<场景 - 新建仪表板 - 模板库 - 系统视图 -  CPU 监控视图>
 
 ## 监控规则
 
@@ -80,7 +80,7 @@ systemctl restart datakit
 
 | 指标 | 描述 | 数据类型 | 单位 |
 | --- | --- | --- | --- |
-| `core_temperature` | CPU core temperature. This is collected by default. Only collect the average temperature of all cores. | float | C |
+| <div style="width: 150px">`core_temperature`</div> | CPU core temperature. This is collected by default. Only collect the average temperature of all cores. | float | C |
 | `load5s` | CPU average load in 5 seconds. | int | - |
 | `usage_guest` | % CPU spent running a virtual CPU for guest operating systems. | float | percent |
 | `usage_guest_nice` | % CPU spent running a niced guest(virtual CPU for guest operating systems). | float | percent |
@@ -96,9 +96,9 @@ systemctl restart datakit
 
 ## 常见问题排查
 
-<[无数据上报排查](/datakit/why-no-data/)>
+<[无数据上报排查](../../datakit/why-no-data.md)>
 
 ## 进一步阅读
 
-<[主机可观测最佳实践](/best-practices/monitoring/host-linux)>
+<[主机可观测最佳实践](../../best-practices/monitoring/host-linux.md)>
 
