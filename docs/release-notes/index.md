@@ -75,22 +75,6 @@ icon: zy/release-notes
 - 生成指标页面操作列调整，新增“在指标分析中打开”和“在指标管理中打开”操作图标
 - 管理导航菜单位置调整，SSO 管理迁移至成员管理，通知对象管理迁移至监控，内置视图迁移至场景
 
-### DataKit 更新
-
-#### Breaking Changes
-
-- Redis 采集器中，原来 latency 时序数据改为日志数据
-- 移除环境变量 `ENV_K8S_CLUSTER_NAME`，建议用全局 tag 方式来设置 Kubernetes 集群名称
-
-#### 新功能
-
-- 新增 [promtail 采集器](../datakit/promtail/)
-- 新增 [NVIDIA GPU 指标采集器](../datakit/nvidia_smi/)
-- 支持发现（需手动开启） Kubernetes 集群中带有 Prometheus Service 的服务，并对之实施 Prometheus 指标采集
-- 支持从 Kafka 中订阅基于 SkyWalking 的指标、日志、Trace 类数据，并将其分别以对应的数据类型上传到观测云
-
-更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md) 。
-
 ### 最佳实践更新
 
 - 云原生：[多个 Kubernetes 集群指标采集最佳实践](../best-practices/cloud-native/multi-cluster/)。
