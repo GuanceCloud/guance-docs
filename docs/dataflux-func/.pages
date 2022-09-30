@@ -34,6 +34,7 @@ nav:
     - script-market-doc-intro.md
     - 基本操作: script-market-basic-usage.md
     - 观测云工具包: script-market-guance-toolkit.md
+    - 观测云自建巡检: script-market-guance-monitor.md
     - 观测云集成:
       - 基本操作: script-market-guance-integration.md
       - 注意事项: script-market-guance-integration-matters-needing-attention.md

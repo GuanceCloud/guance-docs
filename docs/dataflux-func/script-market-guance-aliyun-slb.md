@@ -59,6 +59,7 @@ collector_configs = {
     "ServerHealthStatus"      : "{实例健康状态 JSON 数据}",
     "ServerCertificates"      : "{证书信息 JSON 数据}",
     "Bandwidth"               : "5120",
+    "EndTimeStamp"            : "32493801600000",
     "message"                 : "{实例 JSON 数据}",
   }
 }
@@ -72,7 +73,7 @@ collector_configs = {
 
 > 提示 3：`fields.ServerHealthStatus` 为SLB下对应实例的健康状态
 
-> 提示 4：`fields.AutoReleaseTime` 为时间戳 单位：秒
+> 提示 4：`fields.AutoReleaseTime` ,`fields.EndTimeStamp`为时间戳 单位：秒
 
 
 ## X. 附录

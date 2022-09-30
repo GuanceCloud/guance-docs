@@ -50,7 +50,8 @@ collector_configs = {
     "OSType"                   : "linux",
     "PublicIpAddress_IpAddress": "['xxxx',]",
     "InstanceType"             : "ecs.c6.xlarge",
-    "InstanceTypeFamily"       : "ecs.c6"
+    "InstanceTypeFamily"       : "ecs.c6",
+    "Status"                   : "Running"
   },
   "fields": {
     "CreationTime"           : "2022-01-01T00:00Z",
@@ -58,6 +59,9 @@ collector_configs = {
     "ExpiredTime"            : "2023-01-01T00:00Z",
     "disks"                  : "[ {关联磁盘 JSON 数据}, ... ]",
     "network_interfaces"     : "[ {关联网卡 JSON 数据}, ... ]",
+    "instance_renew_attribute": "[ {自动续费 JSON 数据}, ...]",
+    "instances_full_status"  : "[ {全状态信息 JSON 数据}, ...]",
+    "OperationLocks"         : "[ {锁定原因 JSON 数据}, ...]",
     "Memory"                 : "8192",
     "Cpu"                    : "4",
     "InternetMaxBandwidthOut": "0",
@@ -72,7 +76,7 @@ collector_configs = {
 
 > 提示：`tags.name`值为实例 ID，作为唯一识别
 
-> 提示 2：`fields.message`、`fields.disks`、`fields.network_interfaces`均为 JSON 序列化后字符串
+> 提示 2：`fields.message`、`fields.disks`、`fields.network_interfaces`、`fields.instance_renew_attribute`、`fields.instances_full_status`、`fields.OperationLocks`、均为 JSON 序列化后字符串
 
 ## X. 附录
 

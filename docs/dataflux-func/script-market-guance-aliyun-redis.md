@@ -50,12 +50,16 @@ collector_configs = {
     "NetworkType"     : "VPC",
     "PrivateIp"       : "xxxxxx",
     "Port"            : "6379",
-    "InstanceName"    : "xxx 系统"
+    "InstanceName"    : "xxx 系统",
+    "InstanceType"    : "Redis",
+    "InstanceStatus"  : "Normal"
   },
   "fields": {
-    "EndTime": "2022-12-13T16:00:00Z",
-    "Accounts": "[{账号信息 JSON 数据}]",
-    "message": "{实例 JSON 数据}"
+    "Capacity"  : "1024",
+    "EndTime"   : "2022-12-13T16:00:00Z",
+    "CreateTime": "2021-01-11T09:35:51Z",
+    "Accounts"  : "[{账号信息 JSON 数据}]",
+    "message"   : "{实例 JSON 数据}"
   }
 }
 ~~~
