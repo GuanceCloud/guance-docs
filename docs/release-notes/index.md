@@ -15,13 +15,13 @@ icon: zy/release-notes
 
 观测云支持对当前工作空间的字段数据进行统一的管理，包括系统字段和自定义字段两种类型，您可以在场景图表查询、监控器的检测指标、DQL 查询的简单查询模式等查看字段说明，帮助您快速理解字段含义并应用字段。下图是在场景图表查询中查看 `host` 的字段说明，更多详情可参考文档 [字段管理](../management/field-management.md) 。
 
-![](img/3.field_9.1.png)
+![](img/3.field_9.png)
 
 #### 优化指标功能
 
 ##### 指标查看器改造
 
-原「指标查看器」更改为「指标分析」，支持用户以时序图方式（折线图、面积图、柱状图）可视化查询指标数据。更多详情可参考 [指标分析](../metrics/explorer.md) 。
+原「指标查看器」更改为「指标分析」，支持用户以时序图方式（折线图、面积图、柱状图）可视化查询数据。更多详情可参考 [指标分析](../metrics/explorer.md) 。
 
 ![](img/4.changelog_1.2.png)
 
@@ -62,7 +62,7 @@ icon: zy/release-notes
 
 #### 优化 Pipeline 配置页面
 
-在文本处理（Pipeline）中，新增支持添加多个样本解析测试，修复指标数据一键获取样本错误问题。更多详情可参考 [文本处理（Pipeline）](../management/overall-pipeline/) 。
+在文本处理（Pipeline）中，支持添加多个样本解析测试，修复指标数据一键获取样本错误问题。更多详情可参考 [文本处理（Pipeline）](../management/overall-pipeline/) 。
 
 ![](img/10.pipeline_4.png)
 
