@@ -3,7 +3,7 @@
 set -e
 
 # 拉取最新文档
-git pull
+#git pull
 
 # 进入 DataFlux Func 文档目录
 cd docs/dataflux-func
@@ -21,6 +21,6 @@ python ./sync-docs.py --base-url="${DOC_DOWNLOAD_BASE_URL}"
 cd -
 
 # 自动提交、推送
-git add .
-git commit -m '同步 DataFlux Func 文档'
-git push
+#git add .
+#git commit -m '同步 DataFlux Func 文档'
+#git push
