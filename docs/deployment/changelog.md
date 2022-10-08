@@ -2,7 +2,7 @@
 
 ## v1.50.110（2022年9月29日）
 
-pubrepo.jiagouyun.com/dataflux/1.50.110:launcher-6fe59d9-1664640281
+pubrepo.jiagouyun.com/dataflux/1.50.110:launcher-bf5e4a7-1664640281
 
 ### 观测云更新
 
