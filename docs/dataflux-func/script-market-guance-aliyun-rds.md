@@ -61,18 +61,23 @@ collector_configs = {
     "LogSize"          : "10000",
     "ConnectionString" : "{连接地址 JSON 数据}",
     "DBInstanceStorage": "100",
-    "message"          : "{实例 JSON 数据}"
+    "accounts"         : "{用户权限信息 JSON 数据}",
+    "databases"        : "{数据库信息 JSON 数据}",
+    "SSLExpireTime"    : "2022-10-11T08:16:43Z",
+    "message"          : "{实例 JSON 数据}",
   }
 }
 ~~~
 
 *注意：`tags`、`fields`中的字段可能会随后续更新有所变动*
 
-> 提示：`tags.name`值为实例 ID，作为唯一识别
+> 提示：`tags.name`值为实例 ID，作为唯一识别。
 
-> 提示 2：`fields.message`、`fields.ConnectionString`均为 JSON 序列化后字符串
+> 提示 2：`fields.message`、`fields.ConnectionString`均为 JSON 序列化后字符串。
 
 > 提示 3：`fields.DiskUsed`、`fields.BackupSize`、`fields.LogSize` 单位：Byte，`fields.DBInstanceStorage` 单位：GB。
+
+> 提示 4：`field.SSLExpireTime` 为UTC时间。
 
 ## X. 附录
 

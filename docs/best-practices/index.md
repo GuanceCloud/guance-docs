@@ -2,6 +2,14 @@
 icon: zy/best-practices
 ---
 
+## (2022/10/08)
+
+### 新增最佳实践
+
+- 监控 Monitoring
+    - 基础设施监控 (ITIM) - [Ansible 批处理实战](./monitoring/ansible-batch-processing.md)。
+
+
 ## (2022/09/26)
 
 ### 新增最佳实践
