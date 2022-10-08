@@ -30,6 +30,7 @@ nav:
   - '基础设施监控 (ITIM)':
     - '主机可观测最佳实践': host-linux.md
     - 'Prometheus 体系数据接入最佳实践': prometheus.md
+    - 'Ansible 批处理实战': ansible-batch-processing.md
 
   - '持续集成和部署 (CI/CD)':
     - 'Jenkins 可观测最佳实践': jenkins.md
