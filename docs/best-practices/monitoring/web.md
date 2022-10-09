@@ -84,18 +84,6 @@ $ cp index.html index.html.bkd
 
 $ vim index.html
 
-<script src="https://static.guance.com/browser-sdk/v2/dataflux-rum.js" type="text/javascript"></script>
-<script>
-  window.DATAFLUX_RUM &&
-    window.DATAFLUX_RUM.init({
-      applicationId: 'xxxxxxxxxxxxxxxxxxxxxxxxxx',
-      datakitOrigin: 'http://127.0.0.1:9529'
-      env: 'test',
-      version: '1.0.0',
-      trackInteractions: true,
-      allowedDDTracingOrigins:["http://127.0.0.1"]
-      })
-</script>
 <head> 
 <script src="https://static.guance.com/browser-sdk/v2/dataflux-rum.js" type="text/javascript"></script>
 <script>
