@@ -207,13 +207,15 @@ helm install my-datakit dataflux/datakit -n datakit --set dataway_url="https://o
 
 - 使用密码管理git
 
-修改datakit.yaml，添加env
+修改datakit.yaml，添加
+env
+
 ```shell
-        - name: DK_GIT_URL
+        - name: ENV_GIT_URL
           value: "http://username:password@github.com/path/to/repository.git"
-        - name: DK_GIT_BRANCH
+        - name: ENV_GIT_BRANCH
           value: "master"
-        - name: DK_GIT_INTERVAL
+        - name: ENV_GIT_INTERVAL
           value: "1m"
 ```
 
@@ -270,15 +272,17 @@ metadata:
 
 
 ```
-添加env
+
+添加 env
+
 ```shell
-        - name: DK_GIT_URL
+        - name: ENV_GIT_URL
           value: "git@github.com:path/to/repository.git"
-        - name: DK_GIT_KEY_PATH
+        - name: ENV_GIT_KEY_PATH
           value: "/usr/local/datakit/id_rsa"
-        - name: DK_GIT_BRANCH
+        - name: ENV_GIT_BRANCH
           value: "master"
-        - name: DK_GIT_INTERVAL
+        - name: ENV_GIT_INTERVAL
           value: "1m"
 ```
 添加volume
