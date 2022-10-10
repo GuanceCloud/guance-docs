@@ -144,7 +144,6 @@ cp kafkamq.conf.sample kafka.conf
 - log4j2
 
 toolkit 依赖包添加到 maven 或者 gradle 中。
-
 ```xml
 	<dependency>
       	<groupId>org.apache.skywalking</groupId>
@@ -171,7 +170,6 @@ toolkit 依赖包添加到 maven 或者 gradle 中。
 ```
 
 将日志发送到kafka
-
 ```xml
 <GRPCLogClientAppender name="grpc-log">
         <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
@@ -179,7 +177,6 @@ toolkit 依赖包添加到 maven 或者 gradle 中。
 ```
 
 整体配置：
-
 ```xml
 <Configuration status="WARN">
     <Appenders>
@@ -216,3 +213,4 @@ toolkit 依赖包添加到 maven 或者 gradle 中。
 - [logback-1.x](https://github.com/apache/skywalking-java/blob/main/docs/en/setup/service-agent/java-agent/Application-toolkit-logback-1.x.md){:target="_blank"}
 
 从 kafka 中采集的日志不需要通过 pipeline 处理。已经全部切割好。
+
