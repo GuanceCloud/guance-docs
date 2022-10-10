@@ -3,3 +3,4 @@ nav:
   - '观测云企业账号结算': enterprise-account.md
   - 'AWS账号结算': aws-account.md
   - '阿里云账号结算': aliyun-account.md
+  - '华为云储值卡结算': huaweicloud-account.md
