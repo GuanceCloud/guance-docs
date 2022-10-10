@@ -51,7 +51,7 @@
 
 #### 1.4 配置 Kubernetes API Server指标采集
 
-详见 [Kubernetes API Server 集成文档](../../integrations/container/kubernetes-api-server)。
+详见 [Kubernetes API Server 集成文档](../../integrations/container/kubernetes-api-server.md)。
 
 #### 1.5 部署 DataKit
 
