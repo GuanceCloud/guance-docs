@@ -24,7 +24,7 @@
 
 ### 前置条件
 
-- 安装 DataKit<[DataKit 安装文档](../datakit/datakit-install.md)>
+- 安装 DataKit <[DataKit 安装文档](../datakit/datakit-install.md)>
 
 ### 应用接入
 
@@ -121,7 +121,7 @@ datafluxRum.init({
 
 ## 指标详解
 
-<[指标详细说明](../real-user-monitoring/miniapp/app-data-collection)>
+<[指标详细说明](../real-user-monitoring/miniapp/app-data-collection.md)>
 
 ## 最佳实践
 

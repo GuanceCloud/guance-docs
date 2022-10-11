@@ -16,11 +16,10 @@
 
 复制 Datakit 安装命令在需要被监控的服务器上直接运行。
 
-- 安装目录 /usr/local/datakit/
-
-- 日志目录 /var/log/datakit/
-- 主配置文件 /usr/local/datakit/conf.d/datakit.conf
-- 插件配置目录 /usr/local/datakit/conf.d/
+- 安装目录 `/usr/local/datakit/`
+- 日志目录 `/var/log/datakit/`
+- 主配置文件 `/usr/local/datakit/conf.d/datakit.conf`
+- 插件配置目录 `/usr/local/datakit/conf.d/`
 
 ### DataKit 默认已安装如下插件
 
@@ -41,7 +40,7 @@ DataKit 安装完成后，已经默认开启 Linux 主机常用插件，可以�
 
 ### 内置视图
 
-点击 [**基础设施**] 模块，查看所有已安装 Datakit 的主机列表以及基础信息，如主机名，CPU，内存等。
+点击 [**基础设施**] 模块，查看所有已安装 DataKit 的主机列表以及基础信息，如主机名、CPU、内存等。
 
 ![image.png](../images/jvm-2.png)
 
@@ -88,7 +87,7 @@ java  ${JAVA_OPTS} -jar your-app.jar
 -Ddd.trace.health.metrics.statsd.port=8125  自身指标数据采集发送端口，选填   
 -Ddd.service.mapping:应用调用的redis、mysql等别名，选填 
 ```
-如需详细了解 JVM，请参考 [JVM](/datakit/jvm/) 采集器
+如需详细了解 JVM，请参考 [JVM](../../datakit/jvm.md) 采集器
 ### 1. jar 使用方式
 
 开启 statsd
@@ -129,7 +128,7 @@ nohup java -Dfile.encoding=utf-8  \
 
 开放外网访问端口
 
-编辑 /usr/local/datakit/conf.d/vim datakit.conf 文件，修改 listen = "0.0.0.0:9529"
+编辑 `/usr/local/datakit/conf.d/vim datakit.conf` 文件，修改 listen = "0.0.0.0:9529"
 
 ![image.png](../images/jvm-3.png)
 
@@ -155,13 +154,13 @@ ENTRYPOINT ["sh", "-ec", "exec java  ${JAVA_OPTS} -jar ${jar} "]
 
 制作镜像
 
-把上面的内容保存到 /usr/local/java/Dockerfile 文件中
+把上面的内容保存到 `/usr/local/java/Dockerfile` 文件中
 
 ```shell
 $ cd /usr/local/java
 $ docker build -t your-app-image:v1 .
 ```
-拷贝 /usr/local/datakit/data/dd-java-agent.jar 放到 /tmp/work 目录
+拷贝 `/usr/local/datakit/data/dd-java-agent.jar` 放到 `/tmp/work` 目录
 
 **Docker run 启动**，请修改 172.16.0.215 为您的服务器的内网 ip 地址，替换 9299 为您应用的端口，替换 your-app 为您的应用名，替换 your-app-image:v1 为您的镜像名
 
@@ -187,7 +186,7 @@ WORKDIR ${workdir}
 ENTRYPOINT ["sh", "-ec", "exec java  ${JAVA_OPTS} -jar ${jar} "]
 ```
 
-把上面的内容保存到 /usr/local/java/DockerfileTest 文件中，在同目录新建 docker-compose.yml 文件，请修改 172.16.0.215 为您的服务器的内网 ip 地址，替换 9299 为您应用的端口，替换 your-app 为您的应用名，替换your-app-image:v1 为您的镜像名。docker-compose.yml 示例如下：
+把上面的内容保存到 `/usr/local/java/DockerfileTest` 文件中，在同目录新建 `docker-compose.yml` 文件，请修改 172.16.0.215 为您的服务器的内网 ip 地址，替换 9299 为您应用的端口，替换 your-app 为您的应用名，替换your-app-image:v1 为您的镜像名。`docker-compose.yml` 示例如下：
 
 ```bash
 version: "3.9"
@@ -223,11 +222,11 @@ $ docker-compose up -d
 
 ### 3 Kubernetes 使用方式
 
-#### 3.1 部署Datakit
+#### 3.1 部署DataKit
 
-在 kubernetes 中使用 DaemonSet 方式部署 Datakit，请参考 `[Datakit DaemonSet安装](/datakit/datakit-daemonset-deploy)`，
+在 Kubernetes 中使用 DaemonSet 方式部署 DataKit，请参考 <[Datakit DaemonSet安装](../../datakit/datakit-daemonset-deploy.md)> 
 
-采集 JVM 指标需要开通 ddtrace 和 statsd 采集器，通过 DaemonSet 方式部署的 datakit，是在 yaml 文件的ENV_DEFAULT_ENABLED_INPUTS环境变量中增加 statsd, ddtrace。
+采集 JVM 指标需要开通 ddtrace 和 statsd 采集器，通过 DaemonSet 方式部署的 DataKit，是在 yaml 文件的ENV_DEFAULT_ENABLED_INPUTS环境变量中增加 statsd, ddtrace。
 
 ```yaml
 - name: ENV_DEFAULT_ENABLED_INPUTS
@@ -235,7 +234,7 @@ $ docker-compose up -d
         
 ```
 
-本示例的部署文件是 /usr/local/k8s/datakit-default.yaml，内容如下：
+本示例的部署文件是 `/usr/local/k8s/datakit-default.yaml` ，内容如下：
 
 ```yaml
 apiVersion: v1
@@ -536,7 +535,7 @@ data:
           
 ```
 
-在 [https://console.guance.com/](https://console.guance.com/) 找到 openway 地址，如下图所示，替换 datakit-default.yaml 中的  ENV_DATAWAY 的值
+在 [https://console.guance.com/](https://console.guance.com/) 找到 openway 地址，如下图所示，替换 `datakit-default.yaml` 中的  ENV_DATAWAY 的值
 
 ![1631933361(1).png](../images/jvm-5.png)
 
@@ -629,7 +628,7 @@ $ docker push 172.16.0.215:5000/dk/your-app-image:v1
 
 #### 3.4 编写 deployment
 
-新建 /usr/local/k8s/your-app-deployment-yaml 文件，内容如下：
+新建 `/usr/local/k8s/your-app-deployment-yaml` 文件，内容如下：
 
 ```yaml
 apiVersion: v1
@@ -893,4 +892,4 @@ OOM（Out of Memory）异常常见有以下几个原因：
 
 ## 更多请关注：
 
-- [如何利用 Dataflux 采集 JVM指标](/datakit/jvm/)
+- [如何利用观测云采集JVM指标](../../datakit/jvm.md)

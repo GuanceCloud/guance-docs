@@ -143,8 +143,8 @@
 
 ### Nginx：
 
-详细步骤参见文档 [[Nginx 可观测最佳实践](/integrations/nginx)]
-前提条件：需先查看 nginx 的 **http_stub_status_module** 模块是否已打开，**如已安装该模块，请直接跳过第1步。**
+详细步骤参见文档 <[ Nginx 可观测最佳实践](../../best-practices/monitoring/nginx.md)>
+<br />前提条件：需先查看 nginx 的 **http_stub_status_module** 模块是否已打开，**如已安装该模块，请直接跳过第1步。**
 
 ![image](../images/spring-cloud-sample/7.png)
 
@@ -223,7 +223,7 @@ $ service datakit restart
 
 ### Mysql：
 
-详细步骤参见文档 [[Mysql datakit 接入](/integrations/mysql)]
+详细步骤参见文档 <[Mysql DataKit 接入](../../datakit/mysql.md)>
 
 ```shell
 # 登录 mysql 
@@ -271,7 +271,7 @@ $ service datakit restart
 
 ### Redis：
 
-详细步骤参见文档 [[redis datakit 接入](/datakit/redis/)]
+详细步骤参见文档 <[Redis DataKit 接入](../../datakit/redis.md)>
 
 ##### 1、在 Datakit 中修改 redis 的 inputs
 
@@ -306,7 +306,7 @@ $ service datakit restart
 
 ### JVM：
 
-详细步骤参见文档 [[jvm datakit 接入](/datakit/jvm/)]
+详细步骤参见文档 <[jvm DataKit 接入](../../datakit/jvm.md)>
 
 ##### 1、在 Datakit 中修改 jvm 的 inputs
 
@@ -334,7 +334,7 @@ $ vim ddtrace-jvm-statsd.conf
 
 ### APM（application performance monitoring）：
 
-详细步骤参见文档 [分布式链路追踪(APM)最佳实践](/best-practices/apm/apm)  
+详细步骤参见文档 [分布式链路追踪(APM)最佳实践](../../best-practices/monitoring/apm.md)  
 **观测云支持的 APM 接入方式包含 ddtrace、skywalking、zipkin、jaejer 等多种支持 opentracing 协议的 APM工具，此处示例采用 ddtrace 实现 APM 方面的可观测性。**
 
 ##### 1、在 Datakit 中修改 APM（ddtrace）的 inputs
@@ -567,7 +567,7 @@ $ vim scheck.conf
 
 ##### 1、标准日志采集（Nginx、Mysql、Redis 等）
 
-通过开启 Datakit 内置的各种 inputs，直接开启相关的日志采集，例如 [Ngnix](/integrations/nginx)、[Redis](/integrations/redis)、[容器](/integrations/container)、[ES](/integrations/elasticsearch/) 等；
+通过开启 DataKit 内置的各种 inputs，直接开启相关的日志采集，例如 [Ngnix](../../integrations/webservice/nginx.md)、[Redis](../../integrations/datastorage/redis.md)、[容器](../../integrations/container/index.md)、[ES](../../integrations/datastorage/elasticsearch.md) 等；
 
 **示例：Nginx**
 

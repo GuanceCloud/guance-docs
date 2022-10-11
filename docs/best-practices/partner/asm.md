@@ -1276,9 +1276,9 @@ docker push 172.168.3.28/product-page:v1
 
 本次部署未涉及到日志，如您的应用需要采集日志，请参考：
 
-[Pod 日志采集最佳实践](../cloud-native/pod-log)
+[Pod 日志采集最佳实践](../cloud-native/pod-log.md)
 
-[Kubernetes 集群中日志采集的几种玩法](../cloud-native/k8s-logs)
+[Kubernetes 集群中日志采集的几种玩法](../cloud-native/k8s-logs.md)
 
 参考文献：<br />[https://help.aliyun.com/document_detail/149552.html](https://help.aliyun.com/document_detail/149552.html)
 

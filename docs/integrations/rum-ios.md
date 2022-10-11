@@ -29,7 +29,7 @@ iOS应用的JS错误分析，通过统计错误率、Crash、Crash版本、网�
 
 ### 前置条件
 
-- 安装 DataKit ([DataKit 安装文档](../datakit/datakit-install.md)>
+- 安装 DataKit <[DataKit 安装文档](../datakit/datakit-install.md)>
 
 ### 应用接入
 
@@ -108,11 +108,11 @@ end
 
 ## 指标详解
 
-<[iOS应用数据采集指标](../real-user-monitoring/ios/app-data-collection)>
+<[iOS 应用数据采集指标](../real-user-monitoring/ios/app-data-collection.md)>
 
 ## 最佳实践
 
-<[iOS 可观测最佳实践](../best-practices/monitoring/ios)>
+<[iOS 可观测最佳实践](../best-practices/monitoring/ios.md)>
 
 ## 故障排查
 暂无
