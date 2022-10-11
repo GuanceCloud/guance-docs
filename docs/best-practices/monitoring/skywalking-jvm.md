@@ -51,9 +51,9 @@ Java 中有两类线程，用户线程(User Thread)和守护线程(Daemon Thread
 
 ## 性能指标
 
-| 指标 | 描述 | 数据类型 | 单位 |
+|  指标 | 描述 | 数据类型 | 单位 |
 | --- | --- | --- | --- |
-| `class_loaded_count` | loaded class count. | int | count |
+| <div style="width: 250px">`class_loaded_count`</div> | loaded class count. | int | count |
 | `class_total_loaded_count` | total loaded class count. | int | count |
 | `class_total_unloaded_class_count` | total unloaded class count. | int | count |
 | `cpu_usage_percent` | cpu usage percentile | float | percent |
@@ -62,10 +62,10 @@ Java 中有两类线程，用户线程(User Thread)和守护线程(Daemon Thread
 | `heap/stack_init` | heap or stack initialized amount of memory. | int | count |
 | `heap/stack_max` | heap or stack max amount of memory. | int | count |
 | `heap/stack_used` | heap or stack used amount of memory. | int | count |
-| `pool_*_committed` | committed amount of memory in variety of pool(code_cache_usage,newgen_usage,oldgen_usage,survivor_usage,permgen_usage,metaspace_usage). | int | count |
-| `pool_*_init` | initialized amount of memory in variety of pool(code_cache_usage,newgen_usage,oldgen_usage,survivor_usage,permgen_usage,metaspace_usage). | int | count |
-| `pool_*_max` | max amount of memory in variety of pool(code_cache_usage,newgen_usage,oldgen_usage,survivor_usage,permgen_usage,metaspace_usage). | int | count |
-| `pool_*_used` | used amount of memory in variety of pool(code_cache_usage,newgen_usage,oldgen_usage,survivor_usage,permgen_usage,metaspace_usage). | int | count |
+| `pool_*_committed` | committed amount of memory in variety of pool<br />(code_cache_usage,newgen_usage,oldgen_usage,<br />survivor_usage,permgen_usage,metaspace_usage). | int | count |
+| `pool_*_init` | initialized amount of memory in variety of pool<br />(code_cache_usage,newgen_usage,oldgen_usage,<br />survivor_usage,permgen_usage,metaspace_usage). | int | count |
+| `pool_*_max` | max amount of memory in variety of pool<br />(code_cache_usage,newgen_usage,oldgen_usage,<br />survivor_usage,permgen_usage,metaspace_usage). | int | count |
+| `pool_*_used` | used amount of memory in variety of pool<br />(code_cache_usage,newgen_usage,oldgen_usage,<br />survivor_usage,permgen_usage,metaspace_usage). | int | count |
 | `thread_blocked_state_count` | blocked state thread count | int | count |
 | `thread_daemon_count` | thread daemon count. | int | count |
 | `thread_live_count` | thread live count. | int | count |
@@ -91,7 +91,7 @@ cp skywalking.conf.sample skywalking.conf
 
 如果部署的 DataKit 与待采集 JVM 的 Jar 不在一个主机上，需要修改 skywalking.conf 的 **address = "localhost:13800"** 中的 **localhost **为 Jar 所在主机的 IP。本次使用的 Jar 和 DataKit 在同一个主机上，通过 localhost 即可上报到 JVM 指标，所以不用修改 sample 文件。
 
-## 步骤 2： 部署应用
+### 步骤 2： 部署应用
 
 下载[ skywalking-demo ](https://github.com/stevenliu2020/skywalking-demo)项目，使用 Idea 打开，点击右边“package”，即可生成 skywalking-user-service.jar 文件。下载 [Skywalking ](https://archive.apache.org/dist/skywalking/8.7.0/apache-skywalking-apm-8.7.0.tar.gz)解压把 agent 目录复制到主机上与  skywalking-user-service.jar 存放到相同目录。执行下面命令启动应用。
 

@@ -471,7 +471,7 @@ create_time 1637733374609
 
 ## 最佳实践
 
-[观测云日志采集分析最佳实践](../best-practices/cloud-native/logs)
+<[观测云日志采集分析最佳实践](../best-practices/cloud-native/logs.md)>
 
 ## 故障排查
 
