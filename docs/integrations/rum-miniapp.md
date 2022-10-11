@@ -121,7 +121,7 @@ datafluxRum.init({
 
 ## 指标详解
 
-<[指标详细说明](../real-user-monitoring/miniapp/app-data-collection)>
+<[指标详细说明](../real-user-monitoring/miniapp/app-data-collection.md)>
 
 ## 最佳实践
 

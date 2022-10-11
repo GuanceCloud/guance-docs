@@ -82,17 +82,17 @@ DF平台已默认内置，无需手动创建
 
 ## 数据类型详情
 
-<[WEB应用-数据类型详情](../real-user-monitoring/web/app-data-collection)>
+<[WEB应用-数据类型详情](../real-user-monitoring/web/app-data-collection.md)>
 
 ## 最佳实践
 
-<[web应用监控（RUM）最佳实践](../best-practices/monitoring/web)>
+<[web应用监控（RUM）最佳实践](../best-practices/monitoring/web.md)>
 
 ## 故障排查
 
-1、[产生 Script error 消息的原因](../application-performance-monitoring/collection/connect-web-app)
+1、[产生 Script error 消息的原因](/application-performance-monitoring/collection/connect-web-app)
 
-2、[资源数据(ssl, tcp, dns, trans,ttfb)收集不完整问题](../application-performance-monitoring/collection/connect-web-app)
+2、[资源数据(ssl, tcp, dns, trans,ttfb)收集不完整问题](/application-performance-monitoring/collection/connect-web-app)
 
-3、[针对跨域资源的问题](../application-performance-monitoring/collection/connect-web-app)
+3、[针对跨域资源的问题](/application-performance-monitoring/collection/connect-web-app)
 

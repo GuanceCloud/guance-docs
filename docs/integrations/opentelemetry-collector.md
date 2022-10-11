@@ -363,6 +363,6 @@ systemctl restart datakit
 
 ## 进一步阅读
 
-<[**OpenTelemetry 链路数据接入最佳实践**](../best-practices/cloud-native/opentelemetry)>
-<[Opentelemetry to 观测云](../best-practices/cloud-native/opentelemetry-guance)>
+<[OpenTelemetry 链路数据接入最佳实践](../best-practices/cloud-native/opentelemetry.md)><br />
+<[Opentelemetry to 观测云](../best-practices/cloud-native/opentelemetry-guance.md)>
 
