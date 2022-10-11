@@ -103,13 +103,14 @@
 
 ```
 
-Nacos 注册中心心跳上报检查主要用到了三个 URL ：` GET /nacos/v1/ns/instance/list`、`PUT /nacos/v1/ns/instance/beat`、`POST /nacos/v1/cs/configs/listener`。这里采用了正则的方式进行过滤。
+> Nacos 注册中心心跳上报检查主要用到了三个 URL ，这里采用了正则的方式进行过滤：<br />
+` GET /nacos/v1/ns/instance/list`、`PUT /nacos/v1/ns/instance/beat`、`POST /nacos/v1/cs/configs/listener`。
 
-重启 DataKit 和 应用，至此，优化配置基本完成，快去看看效果吧。
+重启 DataKit 和 应用。至此，优化配置基本完成，快去看看效果吧。
 
 
 ## 更多文档
-[ddtrace 配置](../../datakit/ddtrace.md)
+<[ddtrace 配置](../../datakit/ddtrace.md)>
 
-[Kubernetes 应用的 RUM-APM-LOG 联动分析](../cloud-native/k8s-rum-apm-log.md)
+<[Kubernetes 应用的 RUM-APM-LOG 联动分析](../cloud-native/k8s-rum-apm-log.md)>
 

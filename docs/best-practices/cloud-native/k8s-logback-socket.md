@@ -17,7 +17,7 @@ Logback日志输出除了常用的file和stdout外，还可以进行socket（TCP
 
 ### K8s下Datakit 安装配置
 
-Kubernetes 下 Datakit 安装参照文档 [Kubernetes 应用的 RUM-APM-LOG 联动分析](../k8s-rum-apm-log)。
+Kubernetes 下 DataKit 安装参照文档 [Kubernetes 应用的 RUM-APM-LOG 联动分析](../k8s-rum-apm-log)。
 
 #### 配置日志采集文件logging-socket-demo.conf 
 
@@ -662,9 +662,9 @@ docker push registry.cn-shenzhen.aliyuncs.com/lr_715377484/springboot-logback-so
 
 #### 部署
 
-编写springboot-logback-socket-appender-demo-deployment.yaml文件，需要修改参数：
-DATAKIT_SOCKET_PORT：datakit 日志socket 端口。
-dd-java-agent 为 datadog 的 Java-agent，用于 trace，如果不需要的话，可以移除相关配置。
+编写 `springboot-logback-socket-appender-demo-deployment.yaml`文件，需要修改参数：
+DATAKIT_SOCKET_PORT：datakit 日志socket 端口。<br />
+dd-java-agent 为 datadog 的 Java-agent，用于 trace，如果不需要的话，可以移除相关配置。<br />
 全文内容如下：
 
 ```yaml
@@ -776,10 +776,10 @@ logback-socket-service-74bd778fcf-cqcn9   1/1     Running   0          5h41m
 
 ## 相关最佳实践
 
-[Kubernetes 应用的 RUM-APM-LOG 联动分析](../k8s-rum-apm-log)
+<[Kubernetes 应用的 RUM-APM-LOG 联动分析](../k8s-rum-apm-log)>
 
-[观测云日志采集分析最佳实践](../logs)
+<[观测云日志采集分析最佳实践](../logs)>
 
-[Pod 日志采集最佳实践](../pod-log)
+<[Pod 日志采集最佳实践](../pod-log)>
 
 
