@@ -27,7 +27,8 @@ EDAS 环境：ECS 集群，Java 运行环境 (Jar 包部署方式)
 
 ## 部署实施
 
-1、 登录阿里云 EDAS 控制台  [https://edasnext.console.aliyun.com](https://edasnext.console.aliyun.com/)
+1、 登录阿里云 EDAS 控制台  [https://edasnext.console.aliyun.com](https://edasnext.console.aliyun.com/) 
+
 2、 **应用列表** - 选择应用名称 
 
 ![image](imgs/input-aliyun-edas-05.png)
