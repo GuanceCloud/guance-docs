@@ -40,10 +40,12 @@
 #### 1.3 增加全局 Tag
 
 在 datakit.yaml 文件中的 ENV_GLOBAL_TAGS 环境变量值最后增加 cluster_name_k8s=k8s-test。
-再增加环境变量 ENV_GLOBAL_ELECTION_TAGS。这样测试环境的集群就是 k8s-test。
+再增加环境变量 ENV_GLOBAL_ELECTION_TAGS。这样测试环境的集群就是 k8s-test。设置环境变量 ENV_NAMESPACE 值是 k8s-test，这是开启了 DataKit 选举，工作空间 + 这个命名空间只有一个 DataKit 采集  kubernetes API Server 的指标。
 
 ```yaml
-        - name: ENV_GLOBAL_ELECTION_TAGS  
+        - name: ENV_NAMESPACE
+          value: k8s-test
+        - name: ENV_GLOBAL_ELECTION_TAGS
           value: cluster_name_k8s=k8s-test
 ```
 
@@ -65,7 +67,7 @@ kubectl apply -f datakit.yaml
 
 #### 2.1 修改 datakit.yaml
 
-使用 **步骤 1** 中的 datakit.yaml，把 两处  k8s-test 改成  k8s-prod，这样生产环境的集群就是 k8s-prod。这里还需要修改一下 api-server.conf 中的 url。
+使用 **步骤 1** 中的 datakit.yaml，把 k8s-test 改成  k8s-prod，这样生产环境的集群就是 k8s-prod。这里还需要修改一下 api-server.conf 中的 url。
 
 ![image](../images/multi-cluster-2.png)
 
