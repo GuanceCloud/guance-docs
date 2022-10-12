@@ -1,5 +1,5 @@
 
-# Ebpf
+# eBPF
 ---
 
 ## 视图预览
@@ -25,17 +25,17 @@
 
 #### 指标采集 (必选)
 
-1、 DataKit 安装之后，<[安装 ebpf 采集器](/datakit/ebpf#requirements)><br/ >
+1、 DataKit 安装之后，<[安装 eBPF 采集器](/datakit/ebpf#requirements)><br/ >
 
 
-2、 开启 ebpf 采集器，复制 sample 文件
+2、 开启 eBPF 采集器，复制 sample 文件
 
 ```
 cd /usr/local/datakit/conf.d/host
 cp ebpf.conf.sample ebpf.conf
 ```
 
-3、 修改 ebpf 配置文件
+3、 修改 eBPF 配置文件
 
 ```
 vi ebpf.conf
@@ -58,7 +58,7 @@ vi ebpf.conf
   enabled_plugins = ["ebpf-net"]
 ```
 
-4、 ebpf 指标采集验证  `/usr/local/datakit/datakit -M |egrep "最近采集|netflow"`
+4、 eBPF 指标采集验证  `/usr/local/datakit/datakit -M |egrep "最近采集|netflow"`
 
 ![image](../imgs/input-ebpf-2.png)
 
@@ -67,7 +67,7 @@ vi ebpf.conf
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，所有 ebpf 指标都会带有 app = oa 的标签，可以进行快速查询
+- 以下示例配置完成后，所有 eBPF 指标都会带有 app = oa 的标签，可以进行快速查询
 - 相关文档 <[TAG在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 
 ```

@@ -1,10 +1,10 @@
 
-# Diskio
+# DiskIO
 ---
 
 ## 视图预览
 
-Diskio 性能指标展示，包括磁盘读写、磁盘读写时间、IOPS 等
+DiskIO 性能指标展示，包括磁盘读写、磁盘读写时间、IOPS 等
 
 ![image](../imgs/input-diskio-1.png)
 
@@ -26,7 +26,7 @@ Diskio 性能指标展示，包括磁盘读写、磁盘读写时间、IOPS 等
 
 #### 指标采集 (默认)
 
-1、 Diskio 数据采集默认开启，对应配置文件 `/usr/local/datakit/conf.d/host/diskio.conf`
+1、 DiskIO 数据采集默认开启，对应配置文件 `/usr/local/datakit/conf.d/host/diskio.conf`
 
 参数说明
 
@@ -44,7 +44,7 @@ Diskio 性能指标展示，包括磁盘读写、磁盘读写时间、IOPS 等
   # name_templates = ["$ID_FS_LABEL","$DM_VG_NAME/$DM_LV_NAME", "$device:$ID_FS_TYPE"]
 ```
 
-2、 Diskio 指标采集验证  `/usr/local/datakit/datakit -M |egrep "最近采集|diskio"`
+2、 DiskIO 指标采集验证  `/usr/local/datakit/datakit -M |egrep "最近采集|diskio"`
 
 ![image](../imgs/input-diskio-2.png)
 
@@ -57,7 +57,7 @@ Diskio 性能指标展示，包括磁盘读写、磁盘读写时间、IOPS 等
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，所有 diskio 指标都会带有 app = oa 的标签，可以进行快速查询
+- 以下示例配置完成后，所有 DiskIO 指标都会带有 app = oa 的标签，可以进行快速查询
 - 相关文档 <[TAG在观测云中的最佳实践](https://www.yuque.com/dataflux/bp/tag)>
 
 ```
@@ -74,7 +74,7 @@ systemctl restart datakit
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 模板库 - 系统视图 - Diskio 监控视图>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - DiskIO 监控视图>
 
 ## 异常检测
 
@@ -102,7 +102,7 @@ systemctl restart datakit
 
 <[无数据上报排查](../../datakit/why-no-data.md)>
 
-Q： Windows 服务器 diskio 数据无法正常采集<br />
+Q： Windows 服务器 DiskIO 数据无法正常采集<br />
 A：需要先开启磁盘性能计数器 (Powershell 执行命令)，并重启 Datakit
 
 ```

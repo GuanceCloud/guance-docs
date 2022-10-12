@@ -2,7 +2,7 @@ nav:
   - index.md
   - 'Aerospike': aerospike.md
   - 'ClickHouse': clickhouse.md
-  - 'Elasticsearch': elasticsearch.md
+  - 'ElasticSearch': elasticsearch.md
   - 'Memcached': memcached.md
   - 'MongoDB': mongodb.md
   - 'MySQL': mysql.md

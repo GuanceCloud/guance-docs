@@ -1,12 +1,12 @@
 
-# Elasticsearch
+# ElasticSearch
 ---
 
 ## 视图预览
 
 ### 场景视图
 
-Elasticsearch 观测场景主要展示了 Elasticsearch 的集群信息、网络性能、集群性能、索引性能以及日志信息。
+ElasticSearch 观测场景主要展示了 ElasticSearch 的集群信息、网络性能、集群性能、索引性能以及日志信息。
 
 ![image](../imgs/input-elasticsearch-1.png)
 
@@ -16,7 +16,7 @@ Elasticsearch 观测场景主要展示了 Elasticsearch 的集群信息、网络
 
 ### 内置视图
 
-Elasticsearch 内置视图主要展示了 Elasticsearch 的集群内的 JVM 和线程池的信息
+ElasticSearch 内置视图主要展示了 ElasticSearch 的集群内的 JVM 和线程池的信息
 
 ![image](../imgs/input-elasticsearch-4.png)
 
@@ -63,7 +63,7 @@ vi elasticsearch.conf
 
 参数说明
 
-- servers：要采集的elasticsearch集群地址和端口
+- servers：要采集的 ElasticSearch 集群地址和端口
 - interval：指标采集频率
 - http_timeout：HTTP 超时时间设置
 - local：默认local是开启的，只采集当前Node自身指标，如果需要采集集群所有Node，需要将local设置为false
@@ -268,7 +268,7 @@ systemctl restart datakit
 
 ## 最佳实践
 
-<[Elasticsearch 可观测最佳实践](../../best-practices/monitoring/elasticsearch.md)>
+<[ElasticSearch 可观测最佳实践](../../best-practices/monitoring/elasticsearch.md)>
 
 ## 故障排查
 

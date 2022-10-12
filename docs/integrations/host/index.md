@@ -17,11 +17,11 @@ DataKit 是观测云中至关重要的一个数据采集组件，几乎所有观
 
 **安装 DataKit 之后，主机指标的采集说明如下：**
 
-- 默认采集：[CPU](cpu.md) 、 [Conntrack](conntrack.md) 、 [DataKit](datakit.md) 、 [Disk](disk.md) 、  [Diskio](diskio.md)、  [Mem](mem.md) 、 [Net](net.md) 、  [Swap](swap.md)、  [System](system.md)
+- 默认采集：[CPU](cpu.md) 、 [Conntrack](conntrack.md) 、 [DataKit](datakit.md) 、 [Disk](disk.md) 、  [DiskIO](diskio.md)、  [MEM](mem.md) 、 [Net](net.md) 、  [Swap](swap.md)、  [System](system.md)
 
-- 自定义开启：[Directory](directory.md) 、 [Ebpf](ebpf.md) 、 [Processes](processes.md) 、  [Scheck(安全巡检)](mem.md)
+- 自定义开启：[Directory](directory.md) 、 [eBPF](ebpf.md) 、 [Processes](processes.md) 、  [Scheck(安全巡检)](mem.md)
 
-- Telegraf：[Chrony](chrony.md) 、  [EthTool](ethtool.md) 、 [IPMI Sensor](ipmi-sensor.md) 、 [Netstat](netstat.md)	 、 [Procstat](procstat.md)
+- Telegraf：[Chrony](chrony.md) 、  [EthTool](ethtool.md) 、 [IPMI Sensor](ipmi-sensor.md) 、 [NetStat](netstat.md)	 、 [ProcStat](procstat.md)
 
 <br/>
 
