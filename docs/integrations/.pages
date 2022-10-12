@@ -7,7 +7,7 @@ nav:
   - '中间件': middleware
   
   - '网络连接':
-    - 'Dialtesting (云拨测)': dialtesting.md
+    - 'DialTesting (云拨测)': dialtesting.md
     - 'Ping': ping.md
     - 'Port': port.md
     - 'SSH': ssh.md
@@ -21,7 +21,7 @@ nav:
     - 'CDN': aliyun-cdn.md
     - 'ECS': aliyun-ecs.md
     - 'EIP': aliyun-eip.md
-    - 'Elasticsearch': aliyun-es.md
+    - 'ElasticSearch': aliyun-es.md
     - 'MongoDB': aliyun-mongodb.md
     - 'NAT': aliyun-nat.md
     - 'OSS': aliyun-oss.md
@@ -42,19 +42,19 @@ nav:
     - 'CVM': cvm.md
 
   - 'CICD':
-    - 'Gitlab': gitlab.md
+    - 'GitLab': gitlab.md
     - 'Jenkins': jenkins.md
 
   - '数据采集':
     - 'Fluentd': fluentd.md
     - 'Logstash': logstash.md
-    - 'Opentelemetry Collector': opentelemetry-collector.md
+    - 'OpenTelemetry Collector': opentelemetry-collector.md
 
   - '应用性能监测 (APM)':
     - 'C#(.net)': ddtrace-csharp.md
     - 'Go': ddtrace-golang.md
     - 'JAVA': ddtrace-java.md
-    - 'Node.JS': ddtrace-nodejs.md
+    - 'Node.js': ddtrace-nodejs.md
     - 'PHP': ddtrace-php.md
     - 'Python': ddtrace-python.md
     - 'Ruby': ddtrace-ruby.md
