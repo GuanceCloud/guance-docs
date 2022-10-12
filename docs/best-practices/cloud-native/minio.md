@@ -1,30 +1,30 @@
-# Minio 可观测最佳实践
+# MinIO 可观测最佳实践
 ---
 
 ## 视图预览
-Minio 性能指标展示：Minio 在线时长、存储空间分布、bucket明细、文件大小区间分布、S3 TTFB (s) 分布、S3流量、S3请求等。
+MinIO 性能指标展示：MinIO 在线时长、存储空间分布、bucket明细、文件大小区间分布、S3 TTFB (s) 分布、S3流量、S3请求等。
 
 ![image.png](../images/minio-1.png)
 
 ## 版本支持
 
 操作系统：Linux / Windows
-Minio 版本：ALL
+MinIO 版本：ALL
 
 ## 前置条件
 
-- Minio 服务器 <[安装 Datakit](/datakit/datakit-install/)>
+- MinIO 服务器 <[安装 Datakit](/datakit/datakit-install/)>
 
 ## 安装配置
 
-说明：示例 Minio 版本为 RELEASE.2022-06-25T15-50-16Z (commit-id=bd099f5e71d0ea511846372869bfcb280a5da2f6)
+说明：示例 MinIO 版本为 RELEASE.2022-06-25T15-50-16Z (commit-id=bd099f5e71d0ea511846372869bfcb280a5da2f6)
 
 ### 部署实施
 
 ( Linux / Windows 环境相同)
 #### 指标采集 (必选)
 
-Minio 默认已暴露 [metric](https://docs.min.io/minio/baremetal/monitoring/metrics-alerts/collect-minio-metrics-using-prometheus.html?ref=con#minio-metrics-collect-using-prometheus)，可以直接通过 Prometheus 来采集相关指标。
+MinIO 默认已暴露 [metric](https://docs.min.io/minio/baremetal/monitoring/metrics-alerts/collect-minio-metrics-using-prometheus.html?ref=con#minio-metrics-collect-using-prometheus)，可以直接通过 Prometheus 来采集相关指标。
 
 1.使用minio-client（简称`mc`）创建授权信息  
 ```
@@ -43,10 +43,10 @@ scrape_configs:
 cd /usr/local/datakit/conf.d/prom/
 cp prom.conf.sample prom-minio.conf
 ```
-3.修改 prom-minio.conf 配置文件  
+3.修改 `prom-minio.conf` 配置文件  
 主要参数说明  
 
-- urls：promethues 指标地址，这里填写 Minio 暴露出来的指标 url
+- urls：promethues 指标地址，这里填写 MinIO 暴露出来的指标 url
 - source：采集器别名，建议写成`minio`
 - interval：采集间隔
 - metric_name_filter: 指标过滤，只采集需要的指标项
@@ -135,7 +135,7 @@ cp prom.conf.sample prom-minio.conf
 systemctl restart datakit
 ```
 
-5.Minio 指标采集验证，使用命令 `datakit monitor` 查看指标是否采集成功  
+5.MinIO 指标采集验证，使用命令 `datakit monitor` 查看指标是否采集成功  
 
 ![image.png](../images/minio-2.png)
 

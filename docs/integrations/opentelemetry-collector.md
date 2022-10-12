@@ -1,24 +1,24 @@
 
-# Opentelemetry Collector
+# OpenTelemetry Collector
 ---
 
 ## 视图预览
 
-Opentelemetry Collector 性能指标展示：collector 在线时长、内存使用情况、exporter 相关指标、receiver 相关指标 等。
+OpenTelemetry Collector 性能指标展示：collector 在线时长、内存使用情况、exporter 相关指标、receiver 相关指标 等。
 
 ![image](imgs/input-otlcollector-1.png)
 
 ## 版本支持
 
-操作系统：Linux / Windows<br />Opentelemetry Collector 版本：>=0.46.0
+操作系统：Linux / Windows<br />OpenTelemetry Collector 版本：>=0.46.0
 
 ## 前置条件
 
-- Opentelemetry Collector 服务器 <[安装 Datakit](../datakit/datakit-install.md)>
+- OpenTelemetry Collector 服务器 <[安装 Datakit](../datakit/datakit-install.md)>
 
 ## 安装配置
 
-说明：示例 Opentelemetry Collector 版本为 Linux 环境 docker 方式安装，各个不同版本指标可能存在差异。
+说明：示例 OpenTelemetry Collector 版本为 Linux 环境 docker 方式安装，各个不同版本指标可能存在差异。
 
 ### 部署实施
 
@@ -28,13 +28,13 @@ Opentelemetry Collector 性能指标展示：collector 在线时长、内存使�
 
 DataKit  有两种方案支持 otel-collector 指标采集，两种方案采集结果一致。
 
-> 方案一 ：通过 prom 采集 Opentelemetry Collector 指标
-> 方案二：通过 Opentelemetry  采集器采集 Opentelemetry Collector 指标
+> 方案一 ：通过 prom 采集 OpentTelemetry Collector 指标
+> 方案二：通过 OpenTelemetry  采集器采集 OpenTelemetry Collector 指标
 
 
-##### 方案一 ：通过 prom 采集 Opentelemetry Collector 指标
+##### 方案一 ：通过 prom 采集 OpenTelemetry Collector 指标
 
-1、 开启 Opentelemetry Collector 指标端口，默认端口为：8888
+1、 开启 OpenTelemetry Collector 指标端口，默认端口为：8888
 
 ```yaml
 version: '3.3'
@@ -57,18 +57,18 @@ services:
 
 ```
 
-2、 访问 Opentelemetry Collector 指标 ， curl http://otel-collector-host:8888/metrics。
+2、 访问 OpenTelemetry Collector 指标 ， `curl http://otel-collector-host:8888/metrics` 。
 
 ![image](imgs/input-otlcollector-2.png)
 
-3、 开启 Datakit prom 插件，复制 sample 文件
+3、 开启 Datakit prom 插件，复制 sample 文件。·
 
 ```
 cd /usr/local/datakit/conf.d/prom/
 cp prom.conf.sample prom-otelcol.conf
 ```
 
-4、 修改 prom-otelcol.conf 配置文件
+4、 修改 `prom-otelcol.conf` 配置文件
 
 主要参数说明
 
@@ -173,7 +173,7 @@ cp prom.conf.sample prom-otelcol.conf
 systemctl restart datakit
 ```
 
-6、 Opentelemetry Collector  指标采集验证，使用命令 /usr/local/datakit/datakit -M |egrep "最近采集|otel"
+6、 OpenTelemetry Collector  指标采集验证，使用命令 `/usr/local/datakit/datakit -M |egrep "最近采集|otel"`
 
 ![image](imgs/input-otlcollector-3.png)
 
@@ -181,7 +181,7 @@ systemctl restart datakit
 
 ![image](imgs/input-otlcollector-4.png)
 
-##### 方案二：通过 Opentelemetry  采集器采集 Opentelemetry Collector 指标
+##### 方案二：通过 OpenTelemetry  采集器采集 OpenTelemetry Collector 指标
 
 1、 collector 新增 otlp exporter。
 
@@ -236,7 +236,7 @@ cd /usr/local/datakit/conf.d/opentelemetry
 cp opentelemetry.conf.sample opentelemetry.conf
 ```
 
-3、 修改 opentelemetry.conf
+3、 修改 `opentelemetry.conf`
 
 ```toml
 [[inputs.opentelemetry]]
@@ -325,7 +325,7 @@ datakit --restart
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，所有 Opentelemetry Collector 指标都会带有 env= dev 的标签，可以进行快速查询
+- 以下示例配置完成后，所有 OpenTelemetry Collector 指标都会带有 env= dev 的标签，可以进行快速查询
 - 相关文档 <[DataFlux Tag 应用最佳实践](../best-practices/insight/tag.md)>
 
 ```
@@ -364,5 +364,5 @@ systemctl restart datakit
 ## 进一步阅读
 
 <[OpenTelemetry 链路数据接入最佳实践](../best-practices/cloud-native/opentelemetry.md)><br />
-<[Opentelemetry to 观测云](../best-practices/cloud-native/opentelemetry-guance.md)>
+<[OpenTelemetry to 观测云](../best-practices/cloud-native/opentelemetry-guance.md)>
 
