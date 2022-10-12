@@ -136,7 +136,7 @@ systemctl restart telegraf
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - DNS Query>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - DNS Query 监控视图>
 
 ## 检测库
 

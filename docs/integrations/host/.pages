@@ -1,20 +1,22 @@
 nav:
    - index.md
    - 'CPU': cpu.md
-   - 'Conntrack': conntrack.md
    - 'Chrony': chrony.md
+   - 'Conntrack': conntrack.md
    - 'DataKit': datakit.md
    - 'Directory': directory.md
    - 'Disk': disk.md
    - 'DiskIO': diskio.md
+   - 'DNS Query': dns-query.md
    - 'eBPF': ebpf.md
    - 'EthTool': ethtool.md
    - 'IPMI_Sensor': ipmi-sensor.md
    - 'MEM': mem.md
    - 'Net': net.md
    - 'NetStat': netstat.md
+   - 'NtpQ': ntpq.md
    - 'Processes': processes.md
    - 'ProcStat': procstat.md
+   - 'Scheck (安全巡检)': scheck.md
    - 'Swap': swap.md
    - 'System': system.md
-   - 'Scheck (安全巡检)': scheck.md

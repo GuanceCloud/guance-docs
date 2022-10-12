@@ -34,7 +34,7 @@ gpgkey = https://repos.influxdata.com/influxdb.key
 EOF
 ```
 
-2、 安装 telegraf
+2、 安装 Telegraf
 
 ```
 yum -y install telegraf
@@ -56,7 +56,7 @@ yum -y install telegraf
 vi /etc/telegraf/telegraf.conf
 ```
 
-2、 关闭 influxdb，开启 outputs.http (修改对应的行)
+2、 关闭 InfluxDB，开启 outputs.http (修改对应的行)
 
 ```
 #[[outputs.influxdb]]

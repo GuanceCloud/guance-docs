@@ -342,7 +342,7 @@ systemctl restart datakit
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - Opentelemetry Collector 监控视图>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - Opentelemetry Collector 监控视图>
 
 ## 指标详解
 

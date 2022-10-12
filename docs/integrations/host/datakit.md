@@ -4,7 +4,7 @@
 
 ## 视图预览
 
-Datakit 性能指标展示，包括 CPU 使用率、内存信息、运行时间、日志记录等
+DataKit 性能指标展示，包括 CPU 使用率、内存信息、运行时间、日志记录等
 
 ![image](../imgs/input-datakit-1.png)
 
@@ -24,7 +24,7 @@ Datakit 性能指标展示，包括 CPU 使用率、内存信息、运行时间�
 
 #### 指标采集 (默认)
 
-Datakit 数据采集默认开启 (无法关闭)
+DataKit 数据采集默认开启 (无法关闭)
 
 指标预览
 
@@ -32,7 +32,7 @@ Datakit 数据采集默认开启 (无法关闭)
 
 #### 日志采集 (默认)
 
-Datakit 日志采集默认开启，主配置文件 `/usr/local/datakit/conf.d/datakit.conf` 默认路径
+DataKit 日志采集默认开启，主配置文件 `/usr/local/datakit/conf.d/datakit.conf` 默认路径
 
 ```
 log = "/var/log/datakit/log"
