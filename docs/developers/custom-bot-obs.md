@@ -69,7 +69,7 @@ def run(param1=1, param2=True, param3=None):
 
 在脚本发布后，对应的函数即被注册到观测云，并可以在观测云平台「监控 / 智能巡检」中看到。
 
-![](../img/self-hosted-monitor-list.png)
+![](img/self-hosted-monitor-list.png)
 
 ### 2.2 代码详解
 
@@ -223,19 +223,19 @@ def run(param1=1, param2=True, param3=None):
 
 并且函数的文档也会一并展示，方便使用者参考。
 
-![](../img/self-hosted-monitor-edit.png)
+![](img/self-hosted-monitor-edit.png)
 
 ## 4. 在自建 DataFlux Func 中配置自动触发配置
 
 完成代码，并发布后，需要前往自建 DataFlux Func「管理 / 自动触发配置」，为函数创建自动触发配置后，函数才会实际运行。
 
-![](../img/self-hosted-monitor-cron-config.png)
+![](img/self-hosted-monitor-cron-config.png)
 
 *注意：自建巡检的参数在观测云中配置，「自动触发配置」中的参数指定不起作用*
 
 执行一段时间后，即可在观测云查看生成的事件。
 
-![](../img/self-hosted-monitor-event.png)
+![](img/self-hosted-monitor-event.png)
 
 ## 5. 注意事项
 
@@ -270,10 +270,18 @@ def run(param1=1, param2=True, param3=None):
 
 因此在自建 DataFlux Func 中，自建巡检函数的自动触发配置始终都会运行。只在遇到对应观测云自建巡检被禁用时，立刻结束处理。
 
-![](../img/self-hosted-monitor-disabled.png)
+![](img/self-hosted-monitor-disabled.png)
 
 ### 5.4 在观测云删除自建巡检
 
 观测云中的自建巡检可以删除，但如果实际的自建巡检存在，那么只要发布或者运行，都会再次自动在观测云创建自建巡检。
 
 同时，由于自建巡检删除后重新创建后，UUID 会发生变化，因此实际上前后两个自建巡检并不是同一个，所产生的事件之间也不会关联。
+
+## X. 附录
+
+### X.1 各 IM 平台机器人 Markdown 支持文档
+
+- [钉钉自定义机器人 / 自定义机器人接入](https://open.dingtalk.com/document/group/custom-robot-access)
+- [飞书机器人 / 消息卡片 / 构造卡片内容 / Markdown 模块](https://open.feishu.cn/document/ukTMukTMukTM/uADOwUjLwgDM14CM4ATN)
+- [企业微信机器人 / 群机器人配置说明 / markdown 类型](https://developer.work.weixin.qq.com/document/path/91770#markdown%E7%B1%BB%E5%9E%8B)
