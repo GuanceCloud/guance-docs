@@ -8,6 +8,7 @@ nav:
     - datakit-pl-how-to.md
     - datakit-pl-global.md
     - datakit-refer-table.md
+  - '自建巡检': custom-bot-obs.md
   - 'Scheck': 
     - "检查敏感文件的变动实现": scheck-filechange.md
     - "监控系统用户的变化": scheck-userchange.md
