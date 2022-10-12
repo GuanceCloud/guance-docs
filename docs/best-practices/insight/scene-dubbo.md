@@ -126,7 +126,7 @@ systemctl restart datakit
 
 ```shell
 cd /usr/local/df-demo/
-java -javaagent:agent/skywalking-agent.jar -Dskywalking.agent.service_name=dubbo-provider -Dskywalking.collector.backend_service=localhost:13800 -jar provider.jar
+java -javaagent:agent/skywalking-agent.jar -Dskywalking.agent.service_name=dubbo-provider -Dskywalking.collector.backend_service=localhost:11800 -jar provider.jar
 ```
 
 #### 2.4 部署 consumer 微服务
@@ -135,7 +135,7 @@ java -javaagent:agent/skywalking-agent.jar -Dskywalking.agent.service_name=dubbo
 
 ```shell
 cd /usr/local/df-demo/
-java -javaagent:agent/skywalking-agent.jar -Dskywalking.agent.service_name=dubbo-consumer -Dskywalking.collector.backend_service=localhost:13800 -jar consumer.jar
+java -javaagent:agent/skywalking-agent.jar -Dskywalking.agent.service_name=dubbo-consumer -Dskywalking.collector.backend_service=localhost:11800 -jar consumer.jar
 ```
 
 #### 2.5 部署 gateway 微服务
@@ -144,7 +144,7 @@ java -javaagent:agent/skywalking-agent.jar -Dskywalking.agent.service_name=dubbo
 
 ```shell
 cd /usr/local/df-demo/
-java -javaagent:agent/skywalking-agent.jar -Dskywalking.agent.service_name=dubbo-gateway -Dskywalking.collector.backend_service=localhost:13800 -jar gateway.jar
+java -javaagent:agent/skywalking-agent.jar -Dskywalking.agent.service_name=dubbo-gateway -Dskywalking.collector.backend_service=localhost:11800 -jar gateway.jar
 ```
 
 ### 步骤 3： RUM 接入

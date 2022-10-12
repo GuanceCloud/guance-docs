@@ -14,8 +14,10 @@ DataKit 只需开启 Skywalking Input，即可采集 Skywalking Agent上报来�
 
 - <[安装 DataKit](/datakit/datakit-install/)>
 
-本文datakit版本1.2.11，skywalking agent版本为v8.6.0。
+本文datakit版本1.4.17，skywalking agent版本为v8.6.0。
+
 ## 数据接入
+
 ### 开启 Input
 
 1、 开启 SkyWalking 插件，复制 Sample 文件
@@ -30,8 +32,13 @@ cp skywalking.conf.sample skywalking.conf
 ```toml
 
 [[inputs.skywalking]]
-  ## skywalking grpc server listening on address
-  address = "localhost:13800"
+  ## Skywalking grpc server listening on address.
+  address = "localhost:11800"
+
+  ## plugins is a list contains all the widgets used in program that want to be regarded as service.
+  ## every key words list in plugins represents a plugin defined as special tag by skywalking.
+  ## the value of the key word will be used to set the service name.
+  # plugins = ["db.type"]
 
   ## customer_tags is a list of keys contains keys set by client code like span.SetTag(key, value)
   ## that want to send to data center. Those keys set by client code will take precedence over
@@ -46,25 +53,31 @@ cp skywalking.conf.sample skywalking.conf
   ## Ignore tracing resources map like service:[resources...].
   ## The service name is the full service name in current application.
   ## The resource list is regular expressions uses to block resource names.
+  ## If you want to block some resources universally under all services, you can set the
+  ## service name as "*". Note: double quotes "" cannot be omitted.
   # [inputs.skywalking.close_resource]
     # service1 = ["resource1", "resource2", ...]
     # service2 = ["resource1", "resource2", ...]
+    # "*" = ["close_resource_under_all_services"]
     # ...
 
   ## Sampler config uses to set global sampling strategy.
-  ## priority uses to set tracing data propagation level, the valid values are -1, 0, 1
-  ##   -1: always reject any tracing data send to datakit
-  ##    0: accept tracing data and calculate with sampling_rate
-  ##    1: always send to data center and do not consider sampling_rate
-  ## sampling_rate used to set global sampling rate
+  ## sampling_rate used to set global sampling rate.
   # [inputs.skywalking.sampler]
-    # priority = 0
     # sampling_rate = 1.0
 
   # [inputs.skywalking.tags]
     # key1 = "value1"
     # key2 = "value2"
     # ...
+
+  ## Storage config a local storage space in hard dirver to cache trace data.
+  ## path is the local file path used to cache data.
+  ## capacity is total space size(MB) used to store data.
+  # [inputs.skywalking.storage]
+    # path = "./skywalking_storage"
+    # capacity = 5120
+
 ```
 参数说明
 
@@ -107,21 +120,21 @@ cp /usr/local/java/skywalking-agent/optional-plugins/apm-spring-webflux-5.x-plug
 ```shell
 java -javaagent:/usr/local/java/skywalking-agent/skywalking-agent.jar \
 -Dskywalking.agent.service_name=skywalking-pay   \
--Dskywalking.collector.backend_service=localhost:13800  \
+-Dskywalking.collector.backend_service=localhost:11800  \
 -jar cloud-service-pay-1.0-SNAPSHOT.jar 
 ```
 
 ```shell
 java -javaagent:/usr/local/java/skywalking-agent/skywalking-agent.jar \
 -Dskywalking.agent.service_name=skywalking-order   \
--Dskywalking.collector.backend_service=localhost:13800  \
+-Dskywalking.collector.backend_service=localhost:11800  \
 -jar cloud-service-order-1.0-SNAPSHOT.jar
 ```
 
 ```shell
 java -javaagent:/usr/local/java/skywalking-agent/skywalking-agent.jar \
 -Dskywalking.agent.service_name=skywalking-gateway   \
--Dskywalking.collector.backend_service=localhost:13800  \
+-Dskywalking.collector.backend_service=localhost:11800  \
 -jar   gateway-1.0-SNAPSHOT.jar
 ```
 
