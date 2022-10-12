@@ -107,8 +107,8 @@ create_time 1631502841700
 
 #### 链路分析
 
-<[服务](../application-performance-monitoring/service#)>
-<[链路分析](../application-performance-monitoring/explorer)>
+<[服务](../application-performance-monitoring/service.md)><br />
+<[链路分析](../application-performance-monitoring/explorer.md)>
 
 ## 场景视图
 
@@ -120,11 +120,11 @@ create_time 1631502841700
 
 ## 相关术语说明
 
-<[链路追踪-字段说明](../application-performance-monitoring/collection)>
+<[链路追踪-字段说明](/application-performance-monitoring/collection)>
 
 ## 最佳实践
 
-<[链路追踪（APM）最佳实践](../best-practices/monitoring/apm)>
+<[链路追踪（APM）最佳实践](../best-practices/monitoring/apm.md)>
 
 ## 故障排查
 暂无

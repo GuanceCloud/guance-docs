@@ -15,7 +15,7 @@ DataKit 是观测云中至关重要的一个数据采集组件，几乎所有观
 
 **安装 DataKit 之后，数据存储的采集说明如下：**
 
-- 自定义开启：[ClickHouse](clickhouse.md) 、 [Elasticsearch](elasticsearch.md) 、 [Memcached](memcached.md) 、 [MongoDB](mongodb.md) 、 [MySQL](mysql.md)、 [Oracle](oracle.md)、 [PostgreSQL](postgresql.md)、 [Redis](redis.md)、 [SQLServer](sqlserver.md)
+- 自定义开启：[ClickHouse](clickhouse.md) 、 [ElasticSearch](elasticsearch.md) 、 [Memcached](memcached.md) 、 [MongoDB](mongodb.md) 、 [MySQL](mysql.md)、 [Oracle](oracle.md)、 [PostgreSQL](postgresql.md)、 [Redis](redis.md)、 [SQLServer](sqlserver.md)
 
 
 - Prometheus：[Aerospike](aerospike.md) 、 [Redis-sentinel](redis-sentinel.md)

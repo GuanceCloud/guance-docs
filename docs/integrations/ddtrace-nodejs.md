@@ -1,10 +1,10 @@
 
-# Node.JS
+# Node.js
 ---
 
 ## 视图预览
 
-NodeJS 应用的链路追踪, 埋点后可在"应用性能监测" 应用列表里看到对应的应用,  可以查看对应链路拓扑和所有 链路信息,以及对nodejs 应用请求的一些链路指标: 请求数, 错误率,  延迟时间分布, 响应时间等。
+Node.js 应用的链路追踪, 埋点后可在"应用性能监测" 应用列表里看到对应的应用,可以查看对应链路拓扑和所有 链路信息,以及对 Node.js 应用请求的一些链路指标: 请求数、错误率、延迟时间分布、响应时间等。
 
 ![image](imgs/input-ddtrace-nodejs-1.png)
 
@@ -23,7 +23,7 @@ NodeJS 应用的链路追踪, 埋点后可在"应用性能监测" 应用列表�
 
 #### 1. 开启 ddtrace for datakit 
 
- 1、 进入/usr/local/datakit/conf.d/ddtrace/ ，复制 sample 文件, 去掉.sample 后缀
+ 1、 进入`/usr/local/datakit/conf.d/ddtrace/` ，复制 sample 文件, 去掉.sample 后缀
 
 ```
 cd /usr/local/datakit/conf.d/ddtrace/
@@ -99,7 +99,7 @@ npm run start
 
 #### 5. 进入观测云查看
 
-访问一下应用, 以便生成链路数据, 进入观测云 应用性能监测即可看到自己的应用
+访问一下应用, 以便生成链路数据, 进入观测云 应用性能监测即可看到自己的应用。
 
 ## 常见问题排查
 

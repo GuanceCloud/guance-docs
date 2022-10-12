@@ -1,5 +1,5 @@
 
-# Mem
+# MEM
 ---
 
 ## 视图预览
@@ -26,7 +26,7 @@
 
 #### 指标采集 (默认)
 
-1、 Mem 数据采集默认开启，对应配置文件 `/usr/local/datakit/conf.d/host/mem.conf`
+1、 MEM 数据采集默认开启，对应配置文件 `/usr/local/datakit/conf.d/host/mem.conf`
 
 参数说明
 
@@ -36,7 +36,7 @@
   interval = '10s'
 ```
 
-2、 Mem 指标采集验证  `/usr/local/datakit/datakit -M |egrep "最近采集|mem"`
+2、 MEM 指标采集验证  `/usr/local/datakit/datakit -M |egrep "最近采集|mem"`
 
 ![image](../imgs/input-mem-2.png)
 
@@ -49,7 +49,7 @@
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，所有 mem 指标都会带有 app = oa 的标签，可以进行快速查询
+- 以下示例配置完成后，所有 MEM 指标都会带有 app = oa 的标签，可以进行快速查询
 - 相关文档 <[TAG在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 
 ```

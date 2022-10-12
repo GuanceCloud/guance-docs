@@ -1,10 +1,10 @@
 
-# Elasticsearch
+# ElasticSearch
 ---
 
 ## 视图预览
 
-阿里云 Elasticsearch 指标展示，包括集群状态，索引QPS，节点 CPU/内存/磁盘使用率等
+阿里云 ElasticSearch 指标展示，包括集群状态，索引QPS，节点 CPU/内存/磁盘使用率等
 
 ![image](imgs/input-aliyun-es-1.png)
 
@@ -36,7 +36,7 @@
 说明：
 
 - 示例 Linux 版本为：CentOS Linux release 7.8.2003 (Core)
-- 通过一台服务器采集所有阿里云 Elasticsearch 数据
+- 通过一台服务器采集所有阿里云 ElasticSearch 数据
 
 ### 部署实施
 
@@ -72,7 +72,7 @@
     'aliyun_ak_secret': 'AccessKey Secret',
 ```
 
-5、修改阿里云 Elasticsearch 指标
+5、修改阿里云 ElasticSearch 指标
 
 ```bash
     'metric_targets': [
@@ -111,7 +111,7 @@
 
 ## 指标详解
 
-<[阿里云 Elasticsearch 指标列表](https://help.aliyun.com/document_detail/165026.htm?spm=a2c4g.11186623.0.0.43b91c27IVXM20#concept-2495562)>
+<[阿里云 ElasticSearch 指标列表](https://help.aliyun.com/document_detail/165026.htm?spm=a2c4g.11186623.0.0.43b91c27IVXM20#concept-2495562)>
 
 ## 常见问题排查
 

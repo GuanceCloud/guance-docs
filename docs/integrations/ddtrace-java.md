@@ -72,7 +72,7 @@ java -javaagent:/xxx/ddtrace.jar -Ddd.env=xxx -Ddd.service.name=xxx -Ddd.agent.p
 
 ---
 
-#### tomcat 环境接入：
+#### Tomcat 环境接入
 
 在 catlina.sh 添加 ddtrace 启动参数后，重启 tomcat。**代码段中的 xxx需替换为绝对路径**
 
@@ -98,7 +98,7 @@ set CATALINA_OPTS=%CATALINA_OPTS% -javaagent:"c:\path\to\dd-java-agent.jar"
 
 如果 setenv 文件不存在，建议在 tomcat 的安装根目录 ./bin 下创建它
 
-#### 微服务环境接入：
+#### 微服务环境接入
 
 直接在启动脚本中添加 ddtrace 的启动参数，重启应用。**代码段中的 xxx 需替换为绝对路径**
 
@@ -111,7 +111,7 @@ set CATALINA_OPTS=%CATALINA_OPTS% -javaagent:"c:\path\to\dd-java-agent.jar"
  nohup java -javaagent:/xxx/dd-java-agent.jar -Ddd.service.name=mall-admin -Ddd.agent.port=9529 -jar mall-admin.jar &
 ```
 
-#### Docker环境接入：
+#### Docker环境接入
 
 Docker 环境下接入方式有多种，本示例会展示两种方式，分别是修改 dockerfile，重新打包镜像，不修改 dockerfile，用启动参数覆盖原有启动命令，举例如下：
 1、修改 dockerfile，重新打包 **代码段中的 xxx 需替换为绝对路径**
@@ -155,8 +155,8 @@ Docker 环境下接入方式有多种，本示例会展示两种方式，分别�
 
 #### 链路分析
 
-<[服务](../application-performance-monitoring/service#)>
-<[链路分析](../application-performance-monitoring/explorer)>
+<[服务](../application-performance-monitoring/service.md)><br />
+<[链路分析](../application-performance-monitoring/explorer.md)>
 
 ## 场景视图
 
@@ -168,14 +168,14 @@ DF 平台已内置 应用性能监测模块，无需手动创建
 
 ## 相关术语说明
 
-<[链路追踪-字段说明](../application-performance-monitoring/collection)>
+<[链路追踪-字段说明](/application-performance-monitoring/collection)>
 
 ## 最佳实践
 
-<[JVM可观测](../best-practices/monitoring/jvm)>
-<[链路追踪（APM）最佳实践](../best-practices/monitoring/apm)>
-<[JAVA应用-RUM-APM-LOG 联动分析](../best-practices/insight/java-rum-apm-log)>
-<[Kubernetes应用的RUM-APM-LOG联动分析](../best-practices/cloud-native/k8s-rum-apm-log)>
+<[JVM可观测](../best-practices/monitoring/jvm.md)><br />
+<[链路追踪（APM）最佳实践](../best-practices/monitoring/apm.md)><br />
+<[JAVA应用 RUM-APM-LOG 联动分析](../best-practices/insight/java-rum-apm-log.md)><br />
+<[Kubernetes应用的 RUM-APM-LOG 联动分析](../best-practices/cloud-native/k8s-rum-apm-log.md)>
 
 ## 故障排查
 
