@@ -17,7 +17,7 @@
 
 - JDK 1.8
 - Vue 3.2
-- DataKit 1.2.19
+- DataKit 1.4.15
 - Nginx 1.20.2
 - SkyWalking 8.7.0
 
@@ -157,7 +157,7 @@ cp /usr/local/df-demo/skywalking/agent/optional-plugins/apm-spring-webflux-5.x-p
 
 ```shell
 cd /usr/local/df-demo/skywalking
-java  -javaagent:agent/skywalking-agent.jar -Dskywalking.agent.service_name=skywalking-log  -Dskywalking.collector.backend_service=localhost:13800 -jar skywalking-user-service.jar
+java  -javaagent:agent/skywalking-agent.jar -Dskywalking.agent.service_name=skywalking-log  -Dskywalking.collector.backend_service=localhost:11800 -jar skywalking-user-service.jar
 ```
 
 登录『[观测云](https://console.guance.com/)』，进入『应用性能监测』查看服务、链路及拓扑图。

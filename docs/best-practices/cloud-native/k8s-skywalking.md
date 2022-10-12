@@ -11,7 +11,7 @@
 ### 安装 DataKit
 
 - <安装 [DataKit](../../datakit/datakit-daemonset-deploy.md)>
-- DataKit 接入版本 >=1.2.18
+- DataKit 接入版本 >=1.4.15
 
 ### 开启 Input 
 
@@ -32,7 +32,7 @@ data:
     skywalking.conf: |- 
         [[inputs.skywalking]]
           ## skywalking grpc server listening on address
-          address = "0.0.0.0:13800"
+          address = "0.0.0.0:11800"
 ```
 
 #### 挂载 skywalking.conf
@@ -119,7 +119,7 @@ spec:
               fieldPath: spec.nodeName      
         - name: JAVA_OPTS
           value: |-
-                -javaagent:/skywalking/agent/skywalking-agent.jar -Dskywalking.agent.service_name=skywalking-demo-master  -Dskywalking.collector.backend_service=$(HOST_IP):13800           
+                -javaagent:/skywalking/agent/skywalking-agent.jar -Dskywalking.agent.service_name=skywalking-demo-master  -Dskywalking.collector.backend_service=$(HOST_IP):11800           
         ports:
         - containerPort: 8090
           protocol: TCP
