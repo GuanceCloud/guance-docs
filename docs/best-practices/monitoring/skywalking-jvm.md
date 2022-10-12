@@ -76,7 +76,7 @@ Java 中有两类线程，用户线程(User Thread)和守护线程(Daemon Thread
 
 ## 前置条件
 
-- 安装 DataKit1.4.5+。
+- 安装 DataKit1.4.17+。
 
 ## 操作步骤
 
@@ -89,7 +89,7 @@ cd /usr/local/datakit/conf.d/skywalking
 cp skywalking.conf.sample skywalking.conf  
 ```
 
-如果部署的 DataKit 与待采集 JVM 的 Jar 不在一个主机上，需要修改 skywalking.conf 的 **address = "localhost:13800"** 中的 **localhost **为 Jar 所在主机的 IP。本次使用的 Jar 和 DataKit 在同一个主机上，通过 localhost 即可上报到 JVM 指标，所以不用修改 sample 文件。
+如果部署的 DataKit 与待采集 JVM 的 Jar 不在一个主机上，需要修改 skywalking.conf 的 **address = "localhost:11800"** 中的 **localhost**为 Jar 所在主机的 IP。本次使用的 Jar 和 DataKit 在同一个主机上，通过 localhost 即可上报到 JVM 指标，所以不用修改 sample 文件。
 
 ### 步骤 2： 部署应用
 
@@ -98,7 +98,7 @@ cp skywalking.conf.sample skywalking.conf
 ```bash
 java  -javaagent:agent/skywalking-agent.jar \
 -Dskywalking.agent.service_name=skywalking-user  \
--Dskywalking.collector.backend_service=localhost:13800 \
+-Dskywalking.collector.backend_service=localhost:11800 \
 -jar skywalking-user-service.jar
 ```
 
