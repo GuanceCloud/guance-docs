@@ -3,10 +3,6 @@
 ---
 
 
-## 视图预览
-
-### 场景视图
-
 ## 版本支持
 
 操作系统支持：Windows/AMD 64, Windows/386, Linux/ARM, Linux/ARM 64, Linux/386, Linux/AMD 64, Darwin/AMD 64
@@ -110,7 +106,7 @@ systemctl restart datakit
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，所有 Solr 指标都会带有 service = "solr" 的标签，可以进行快速查询
+- 以下示例配置完成后，所有 Solr 指标都会带有 `service = "solr"` 的标签，可以进行快速查询
 - 相关文档 <[TAG 在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 ```
 # 示例

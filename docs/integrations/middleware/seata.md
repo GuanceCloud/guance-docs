@@ -18,11 +18,11 @@
 
 ( Linux / Windows 环境相同)
 
-### 1:原理
+### 1 原理
 
 Seata 支持在 TC 开启 Metrics 数据采集并输出到 Prometheus 监控系统中。
 
-### 2:指标采集 
+### 2 指标采集 
 
 1、 配置在 TC 中配置开启 Metrics，打开 TC 中 Metrics 的配置项，Seata Server 已经包含了 metrics(seata-metrics-all)依赖, 但是默认是关闭状态，需要开启 metrics 的采集配置。（**这一步非常重要）**
 
@@ -72,7 +72,7 @@ config {
 }
 ```
 
-2、 访问 [http://tc-server-ip:9898/metrics](http://tc-server-ip:9898/metrics)，看是否能访问到 metrics 数据
+2、 访问 [http://tc-server-ip:9898/metrics](http://tc-server-ip:9898/metrics)，查看是否能访问到 metrics 数据
 
 ```
 # HELP seata seata
@@ -128,7 +128,7 @@ systemctl restart datakit
 ```
 
 
-### 3:指标预览
+### 3 指标预览
 
 ![image](../imgs/input-seata-2.png)
 

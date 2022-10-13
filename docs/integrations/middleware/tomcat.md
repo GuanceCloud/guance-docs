@@ -4,7 +4,7 @@
 
 ## 视图预览
 
-Tomcat 性能指标展示，包括发送字节数、接收字节数、请求处理时间、请求数、请求错误数、线程数、缓存命中次数等
+Tomcat 性能指标展示，包括发送字节数、接收字节数、请求处理时间、请求数、请求错误数、线程数、缓存命中次数等。
 
 ![image](../imgs/input-tomcat-1.png)
 
@@ -59,7 +59,7 @@ Tomcat 性能指标展示，包括发送字节数、接收字节数、请求处�
  Tomcat started.
 ```
 
-**本机访问**[**http://localhost:80/jolokia**](http://localhost:8080/jolokia)** （具体端口为tomcat实际开放端口）查看是否配置成功。**
+**本机访问[**http://localhost:80/jolokia**](http://localhost:8080/jolokia)（具体端口为tomcat实际开放端口）查看是否配置成功。**
 
 Linux 环境下成功示例如下：
 
@@ -67,11 +67,11 @@ Linux 环境下成功示例如下：
 
 #### 开启指标及日志采集
 
-进入 DataKit 安装目录下的 `conf.d/tomcat` 目录，复制 `tomcat.conf.sample`  并命名为 `tomcat.conf`。示例如下：
+进入 DataKit 安装目录下的 `conf.d/tomcat` 目录，复制 `tomcat.conf.sample`  并命名为 `tomcat.conf`。示例如下：<br />
 （**以下为示例，实操时， 下边内容中的 的 username 、password、urls 请务必修改！！！**）
 
 **指标（必选）**
-[[inputs.tomcat]]指标参数说明
+[inputs.tomcat]指标参数说明
 
 - username：上文中，在tomcat-users.xml中配置的用户名 
 - password：上文中，在tomcat-users.xml中配置的密码
@@ -81,7 +81,7 @@ Linux 环境下成功示例如下：
 [inputs.tomcat.log]日志参数说明
 
 - files：日志文件路径 (通常填写访问日志和错误日志)
-- pipeline：日志切割文件(tomcat日志切割文件已默认内置，无需修改)，实际文件路径 为：/usr/local/datakit/pipeline/tomcat.p
+- pipeline：日志切割文件(tomcat日志切割文件已默认内置，无需修改)，实际文件路径 为：`/usr/local/datakit/pipeline/tomcat.p`
 - 相关文档 <[ 文本数据处理（Pipeline）](../../datakit/pipeline.md)>
 
 ```
@@ -165,7 +165,7 @@ systemctl restart datakit
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，所有 Tomcat 指标都会带有 app = oa 的标签，可以进行快速查询
+- 以下示例配置完成后，所有 Tomcat 指标都会带有 `app = "oa"` 的标签，可以进行快速查询
 - 相关文档 <[TAG 在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 
 ```

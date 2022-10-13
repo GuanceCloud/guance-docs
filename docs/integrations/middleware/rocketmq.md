@@ -4,7 +4,7 @@
 
 
 ## 视图预览
-RocketMQ 指标展示，包括生产者 tps/消息大小、消费者 tps/消息大小、消息堆积、topic 信息等
+RocketMQ 指标展示，包括生产者 TPS/消息大小、消费者 TPS/消息大小、消息堆积、topic 信息等
 
 ![image](../imgs/input-rocketmq-1.png)
 
@@ -22,7 +22,7 @@ RocketMQ 指标展示，包括生产者 tps/消息大小、消费者 tps/消息�
 
 ### 安装 exporter
 
-1、 拉取 rocketmqexporter 
+1、 拉取 rocketmq-exporter 
 
 ```
 git clone https://github.com/apache/rocketmq-exporter.git
@@ -120,7 +120,7 @@ cp prom.conf.sample prom.conf
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，所有 prom 指标都会带有 app = oa 的标签，可以进行快速查询
+- 以下示例配置完成后，所有 prom 指标都会带有 `app = "oa"` 的标签，可以进行快速查询
 - 相关文档 <[TAG 在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 ```
 # 示例
