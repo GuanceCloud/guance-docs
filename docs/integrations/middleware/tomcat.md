@@ -2,24 +2,27 @@
 # Tomcat
 ---
 
-操作系统支持：windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64
-
 ## 视图预览
 
-Tomcat 性能指标展示：发送字节数、接收字节数、请求处理时间、请求数、请求错误数、线程数、缓存命中次数等
+Tomcat 性能指标展示，包括发送字节数、接收字节数、请求处理时间、请求数、请求错误数、线程数、缓存命中次数等
 
 ![image](../imgs/input-tomcat-1.png)
 
 ![image](../imgs/input-tomcat-2.png)
 
+## 版本支持
+
+操作系统支持：Windows/AMD 64, Windows/386, Linux/ARM, Linux/ARM 64, Linux/386, Linux/AMD 64, Darwin/AMD 64
+
+
 ## 安装部署
 
-说明：以 apache-tomcat-9.0.45 （centOS）为例，各个不同版本指标可能存在差异
+说明：以 apache-tomcat-9.0.45 （centOS）为例，各个不同版本指标可能存在差异。
 
 ### 前置条件
 
 - Tomcat 所在服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
-- 用于实现 Tomcat 可观测性的数据采集文件 jolokia.war 已内置在/usr/local/datakit/data 文件夹下，需要在安装完毕 datakit 后，将 jolokia.war 复制一份到 tomcat 的 webapps 目录下。
+- 用于实现 Tomcat 可观测性的数据采集文件 jolokia.war 已内置在 `/usr/local/datakit/data` 文件夹下，需要在安装完毕 DataKit 后，将 jolokia.war 复制一份到 Tomcat 的 webapps 目录下。
 
 ### 配置实施
 
@@ -58,7 +61,7 @@ Tomcat 性能指标展示：发送字节数、接收字节数、请求处理时�
 
 **本机访问**[**http://localhost:80/jolokia**](http://localhost:8080/jolokia)** （具体端口为tomcat实际开放端口）查看是否配置成功。**
 
-linux 环境下成功示例如下：
+Linux 环境下成功示例如下：
 
 ![image](../imgs/input-tomcat-3.png)
 
@@ -79,7 +82,7 @@ linux 环境下成功示例如下：
 
 - files：日志文件路径 (通常填写访问日志和错误日志)
 - pipeline：日志切割文件(tomcat日志切割文件已默认内置，无需修改)，实际文件路径 为：/usr/local/datakit/pipeline/tomcat.p
-- 相关文档 <[DataFlux pipeline 文本数据处理](../../datakit/pipeline.md)>
+- 相关文档 <[ 文本数据处理（Pipeline）](../../datakit/pipeline.md)>
 
 ```
  cd /usr/local/datakit/conf.d/tomcat
@@ -162,8 +165,8 @@ systemctl restart datakit
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，所有 tomcat 指标都会带有 app = oa 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](../../best-practices/insight/tag.md)>
+- 以下示例配置完成后，所有 Tomcat 指标都会带有 app = oa 的标签，可以进行快速查询
+- 相关文档 <[TAG 在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 
 ```
 # 示例
@@ -179,7 +182,7 @@ systemctl restart datakit
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - Tomcat 监控视图>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - Tomcat 监控视图>
 
 
 ## 指标详解

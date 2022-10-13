@@ -20,13 +20,13 @@
 
 ### 1:原理
 
-Seata支持在TC开启Metrics数据采集并输出到Prometheus监控系统中。
+Seata 支持在 TC 开启 Metrics 数据采集并输出到 Prometheus 监控系统中。
 
 ### 2:指标采集 
 
 1、 配置在 TC 中配置开启 Metrics，打开 TC 中 Metrics 的配置项，Seata Server 已经包含了 metrics(seata-metrics-all)依赖, 但是默认是关闭状态，需要开启 metrics 的采集配置。（**这一步非常重要）**
 
-`Seata 1.5.0+`中使用application.yaml
+`Seata 1.5.0+`中使用 `application.yaml`
 
 ```
 seata:
@@ -37,7 +37,8 @@ seata:
     exporter-prometheus-port: 9898
 
 ```
-`Seata <1.5.0 `开启 metrics <br /> github地址配置：[https://github.com/seata/seata/blob/1.4.2/server/src/main/resources/file.conf.example](https://github.com/seata/seata/blob/1.4.2/server/src/main/resources/file.conf.example)<br />服务端配置metrics <br />【file.conf:】
+`Seata <1.5.0 `开启 metrics <br /> github地址配置：[https://github.com/seata/seata/blob/1.4.2/server/src/main/resources/file.conf.example](https://github.com/seata/seata/blob/1.4.2/server/src/main/resources/file.conf.example)<br />服务端配置metrics <br />
+【file.conf】
 ```
 metrics {
   enabled = true
@@ -48,7 +49,7 @@ metrics {
 }
 ```
 
-【registry.conf :】
+【registry.conf 】
 
 ```
 registry {
@@ -90,14 +91,14 @@ seata_transaction{meter="timer",role="tc",statistic="average",status="committed"
 得到以上类似数据证明 mertric 开启成功。（如果某些Transaction状态没有发生，例如rollback，那么对应的Metrics指标也不会存在（输出））
 
 
-3、 开启 DataKit promtheus 插件，创建seata-prom.conf
+3、 开启 DataKit Promtheus 插件，创建 `seata-prom.conf`
 
 ```shell
 cd /usr/local/datakit/conf.d/prom/
 cp prom.conf.sample seata-prom.conf
 ```
 
-4、 修改 /usr/local/datakit/conf.d/prom/seata-prom.conf 配置文件
+4、 修改 `/usr/local/datakit/conf.d/prom/seata-prom.conf` 配置文件
 
 ```
 [[inputs.prom]]
@@ -133,7 +134,7 @@ systemctl restart datakit
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - Seata>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - Seata 监控视图>
 
 ## 指标详解
 

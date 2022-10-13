@@ -6,7 +6,7 @@
 
 ### 场景视图
 
-Kafka 观测场景主要展示了 Kafka 的 基础信息、topic 信息和性能信息。
+Kafka 观测场景主要展示了 Kafka 的基础信息、topic 信息和性能信息。
 
 ![image](../imgs/input-kafka-1.png)
 

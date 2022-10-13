@@ -2,15 +2,18 @@
 # Zookeeper
 ---
 
- > 操作系统支持：windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64
-
 ## 视图预览
 
 ![image](../imgs/input-zookeeper-1.png)
 
+## 版本支持
+
+操作系统支持：Windows/AMD 64, Windows/386, Linux/ARM, Linux/ARM 64, Linux/386, Linux/AMD 64, Darwin/AMD 64
+
+
 ## 安装部署
 
-说明：示例 Zookeeper 版本为： zookeeper 3.6.3 (CentOS)，zookeeper 3.6 +的版本会比之前版本多出许多指标，如果您使用的是 3.6 之前的版本可能会存在部分指标采集不到的情况。
+说明：示例 Zookeeper 版本为 zookeeper 3.6.3 (CentOS)，zookeeper 3.6 +的版本会比之前版本多出许多指标，如果您使用的是 3.6 之前的版本可能会存在部分指标采集不到的情况。
 
 ### 前置条件
 
@@ -18,7 +21,7 @@
 
 #### Linux
 
-- 开启 Zookeeper中的 Metrics Providers 配置（默认配置文件位置：Zookeeper安装目录/conf/zoo.cfg）并添加 `4lw.commands.whitelist=*`
+- 开启 Zookeeper中的 Metrics Providers 配置（默认配置文件位置：Zookeeper 安装目录 `/conf/zoo.cfg`）并添加 `4lw.commands.whitelist=*`
 
 ```
 > ## Metrics Providers
@@ -201,8 +204,8 @@ dql > M::zookeeper LIMIT 1
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，所有 Flink 指标都会带有 service = "zookeeper" 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](../../best-practices/insight/tag.md)>
+- 以下示例配置完成后，所有 Zookeeper 指标都会带有 service = "zookeeper" 的标签，可以进行快速查询
+- 相关文档 <[TAG 在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 ```
 # 示例
 [inputs.prom.tags]
@@ -217,7 +220,7 @@ systemctl restart datakit
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - Zookeeper 监控视图>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - Zookeeper 监控视图>
 
 ## 检测库
 
@@ -226,43 +229,41 @@ systemctl restart datakit
 | 序号 | 规则名称 | 触发条件 | 级别 | 检测频率 |
 | --- | --- | --- | --- | --- |
 | 1 | Zookeeper 堆积请求数过大 | Zookeeper 堆积请求数 > 10 | 紧急 | 1m |
-| 2 | Zookeeper 平均响应延迟过高 |  Zookeeper 平均响应延迟 > 20 | 紧急 | 1m<br /><br /> |
-| 3 | Zookeeper 服务器宕机 | Zookeeper  运行时间 = 0 | 紧急 | 1m<br /><br /> |
+| 2 | Zookeeper 平均响应延迟过高 |  Zookeeper 平均响应延迟 > 20 | 紧急 | 1m |
+| 3 | Zookeeper 服务器宕机 | Zookeeper  运行时间 = 0 | 紧急 | 1m  |
 
 
 ## 指标详解
 | **名称** | **描述** | **指标类型** | **Availability** |
 | --- | --- | --- | --- |
-| **zookeeper_approximate_data_size**
-
-|  | 度量 |  |
-| **zookeeper_avg_latency** | 服务器响应客户端请求所需的时间。(ms)<br /> | 度量 |  |
+| **zookeeper_approximate_data_size** |  | 度量 |  |
+| **zookeeper_avg_latency** | 服务器响应客户端请求所需的时间(ms)| 度量 |  |
 | **zookeeper_bytes_received** | 接收的字节数 | 度量 |  |
 | **zookeeper_bytes_sent** | 发送的字节数 | 度量 |  |
-| **zookeeper_connections** | 客户端连接的总数。(连接数)<br /> | 度量 |  |
+| **zookeeper_connections** | 客户端连接的总数(连接数)| 度量 |  |
 | **zookeeper_ephemerals_count** |  | 度量 |  |
 | **zookeeper_instances** |  | 度量 |  |
-| **zookeeper_latency.avg** | 服务器响应客户端请求所需的时间。（ms）<br /> | 度量 |  |
-| **zookeeper_latency.max** | 服务器响应客户端请求所需的时间。（ms）<br /> | 度量 |  |
-| **zookeeper_latency.min** | 服务器响应客户端请求所需的时间。（ms）<br /> | 度量 |  |
+| **zookeeper_latency.avg** | 服务器响应客户端请求所需的时间（ms） | 度量 |  |
+| **zookeeper_latency.max** | 服务器响应客户端请求所需的时间（ms）| 度量 |  |
+| **zookeeper_latency.min** | 服务器响应客户端请求所需的时间（ms）| 度量 |  |
 | **zookeeper_max_file_descriptor_count** |  | 度量 |  |
-| **zookeeper_max_latency** | 服务器响应客户端请求所需的时间。（ms）<br /> | 度量 |  |
-| **zookeeper_min_latency** | 服务器响应客户端请求所需的时间。（ms）<br /> | 度量 |  |
-| **zookeeper_nodes** | ZooKeeper 命名空间（数据）中的 znode 数量。（节点数）<br /> | 度量 |  |
-| **zookeeper_num_alive_connections** | 客户端连接的总数。（连接数）<br /> | 度量 |  |
+| **zookeeper_max_latency** | 服务器响应客户端请求所需的时间（ms）| 度量 |  |
+| **zookeeper_min_latency** | 服务器响应客户端请求所需的时间（ms）| 度量 |  |
+| **zookeeper_nodes** | ZooKeeper 命名空间（数据）中的 znode 数量（节点数）| 度量 |  |
+| **zookeeper_num_alive_connections** | 客户端连接的总数（连接数）| 度量 |  |
 | **zookeeper_open_file_descriptor_count** |  | 度量 |  |
-| **zookeeper_outstanding_requests** | 当服务器负载不足并且接收的持续请求数超过其处理能力时排队的请求数。（请求数） | 度量 |  |
-| **zookeeper_packets.received** | 收到的数据包数。<br /> | 度量 |  |
-| **zookeeper_packets.sent** | 发送的数据包数。<br /> | 度量 |  |
-| **zookeeper_packets_received** | 收到的数据包数。<br /> | 度量 |  |
-| **zookeeper_packets_sent** | 发送的数据包数。<br /> | 度量 |  |
+| **zookeeper_outstanding_requests** | 当服务器负载不足并且接收的持续请求数超过其处理能力时排队的请求数（请求数） | 度量 |  |
+| **zookeeper_packets.received** | 收到的数据包数| 度量 |  |
+| **zookeeper_packets.sent** | 发送的数据包数| 度量 |  |
+| **zookeeper_packets_received** | 收到的数据包数| 度量 |  |
+| **zookeeper_packets_sent** | 发送的数据包数| 度量 |  |
 | **zookeeper_server_state** |  | 度量 |  |
 | **zookeeper_watch_count** |  | 度量 |  |
-| **zookeeper_znode_count** | ZooKeeper 命名空间（数据）中的 znode 数量。<br /> | 度量 |  |
+| **zookeeper_znode_count** | ZooKeeper 命名空间（数据）中的 znode 数量 | 度量 |  |
 | **zookeeper_zxid.count** |  | 度量 |  |
 | **zookeeper_zxid.epoch** |  | 度量 |  |
-| **zookeeper_add_dead_watcher_stall_time** | <br /> | 度量 | 适用于 Zookeeper 3.6+ |
-| **zookeeper_bytes_received_count** |  接收到的字节数。（byte）<br /> | 度量 | 适用于 Zookeeper 3.6+ |
+| **zookeeper_add_dead_watcher_stall_time** |  | 度量 | 适用于 Zookeeper 3.6+ |
+| **zookeeper_bytes_received_count** |  接收到的字节数（byte）| 度量 | 适用于 Zookeeper 3.6+ |
 | **zookeeper_close_session_prep_time** |  close_session_prep_time 的直方图 | 度量 | 适用于 Zookeeper 3.6+ |
 | **zookeeper_close_session_prep_time_count** |  close_session_prep_time 的总计数 | 度量 | 适用于 Zookeeper 3.6+ |
 | **zookeeper_close_session_prep_time_sum** | close_session_prep_time 的总和 | 度量 | 适用于 Zookeeper 3.6+  |
@@ -293,16 +294,16 @@ systemctl restart datakit
 | **zookeeper_dead_watchers_cleaner_latency** | dead_watchers_cleaner_latency 的直方图 | 度量 | 适用于 Zookeeper 3.6+  |
 | **zookeeper_dead_watchers_cleaner_latency_count** | dead_watchers_cleaner_latency 的总数 | 度量 | 适用于 Zookeeper 3.6+  |
 | **zookeeper_dead_watchers_cleaner_latency_sum** | dead_watchers_cleaner_latency 的总和 | 度量 | 适用于 Zookeeper 3.6+  |
-| **zookeeper_dead_watchers_cleared** | <br /> | 度量 | 适用于 Zookeeper 3.6+  |
-| **zookeeper_dead_watchers_queued** | <br /> | 度量 | 适用于 Zookeeper 3.6+  |
+| **zookeeper_dead_watchers_cleared** |   | 度量 | 适用于 Zookeeper 3.6+  |
+| **zookeeper_dead_watchers_queued** |   | 度量 | 适用于 Zookeeper 3.6+  |
 | **zookeeper_diff_count** | 执行的差异同步数 | 度量 | 适用于 Zookeeper 3.6+  |
-| **zookeeper_digest_mismatches_count** | <br /> | 度量 | 适用于 Zookeeper 3.6+  |
+| **zookeeper_digest_mismatches_count** |   | 度量 | 适用于 Zookeeper 3.6+  |
 | **zookeeper_election_time** | 进入和离开选举之间的时间 | 度量 | 适用于 Zookeeper 3.6+  |
 | **zookeeper_election_time_count** | 进入和离开选举之间的时间 | 度量 | 适用于 Zookeeper 3.6+  |
 | **zookeeper_election_time_sum** |  进入和离开选举之间的时间 | 度量 | 适用于 Zookeeper 3.6+  |
-| **zookeeper_ensemble_auth_fail** | <br /> | 度量 | 适用于 Zookeeper 3.6+  |
-| **zookeeper_ensemble_auth_skip** | <br /> | 度量 | 适用于 Zookeeper 3.6+  |
-| **zookeeper_ensemble_auth_success** | <br /> | 度量 | 适用于 Zookeeper 3.6+  |
+| **zookeeper_ensemble_auth_fail** |  | 度量 | 适用于 Zookeeper 3.6+  |
+| **zookeeper_ensemble_auth_skip** |   | 度量 | 适用于 Zookeeper 3.6+  |
+| **zookeeper_ensemble_auth_success** |    | 度量 | 适用于 Zookeeper 3.6+  |
 | **zookeeper_follower_sync_time** | follower与leader同步的时间 | 度量 | 适用于 Zookeeper 3.6+  |
 | **zookeeper_follower_sync_time_count** |  follower与leader同步的时间count | 度量 | 适用于 Zookeeper 3.6+  |
 | **zookeeper_follower_sync_time_sum** |  follower与leader同步的时间sum | 度量 | 适用于 Zookeeper 3.6+  |
@@ -382,10 +383,10 @@ systemctl restart datakit
 | **zookeeper_prep_processor_queue_time_ms** |  prep_processor_queue_time_ms 的直方图 | 度量 | 适用于 Zookeeper 3.6+  |
 | **zookeeper_prep_processor_queue_time_ms_count** | prep_processor_queue_time_ms 的总数 | 度量 | 适用于 Zookeeper 3.6+  |
 | **zookeeper_prep_processor_queue_time_ms_sum** | prep_processor_queue_time_ms 的总和 | 度量 | 适用于 Zookeeper 3.6+  |
-| **zookeeper_prep_processor_request_queued** | <br /> | 度量 | 适用于 Zookeeper 3.6+  |
-| **zookeeper_process_cpu_seconds_total** | <br /> | 度量 | 适用于 Zookeeper 3.6+  |
-| **zookeeper_process_max_fds** | <br /> | 度量 | 适用于 Zookeeper 3.6+  |
-| **zookeeper_process_open_fds** | <br /> | 度量 | 适用于 Zookeeper 3.6+  |
+| **zookeeper_prep_processor_request_queued** |   | 度量 | 适用于 Zookeeper 3.6+  |
+| **zookeeper_process_cpu_seconds_total** |    | 度量 | 适用于 Zookeeper 3.6+  |
+| **zookeeper_process_max_fds** |  | 度量 | 适用于 Zookeeper 3.6+  |
+| **zookeeper_process_open_fds** |  | 度量 | 适用于 Zookeeper 3.6+  |
 | **zookeeper_process_resident_memory_bytes** | (byte) | 度量 | 适用于 Zookeeper 3.6+  |
 | **zookeeper_process_start_time_seconds** |  | 度量 | 适用于 Zookeeper 3.6+  |
 | **zookeeper_process_virtual_memory_bytes** | (byte) | 度量 | 适用于 Zookeeper 3.6+  |
