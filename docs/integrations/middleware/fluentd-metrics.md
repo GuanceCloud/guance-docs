@@ -2,11 +2,14 @@
 # Fluentd
 ---
 
- > 操作系统支持：windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64
-
 ## 视图预览
 
 ![image](../imgs/input-fluentd-metrics-1.png)
+
+## 版本支持
+
+操作系统支持：Windows/AMD 64, Windows/386, Linux/ARM, Linux/ARM 64, Linux/386, Linux/AMD 64, Darwin/AMD 64
+
 
 ## 安装部署
 
@@ -190,7 +193,7 @@ buffer_available_buffer_space_ratios 100
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - Fluentd Overview>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - Fluentd 监控视图>
 
 
 ## 检测库
@@ -223,7 +226,7 @@ buffer_available_buffer_space_ratios 100
 
 ## 最佳实践
 
-[如何利用观测云观测 Fluentd](../../best-practices/monitoring/fluentd.md)
+<[如何利用观测云观测 Fluentd](../../best-practices/monitoring/fluentd.md)>
 
 ## 故障排查
 

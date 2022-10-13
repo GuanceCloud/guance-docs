@@ -2,15 +2,17 @@
 # Logstash
 ---
 
-> 操作系统支持：windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64
-
 ## 视图预览
 
 ![image](../imgs/input-logstash-metrics-1.png)
 
+## 版本支持
+
+操作系统支持：Windows/AMD 64, Windows/386, Linux/ARM, Linux/ARM 64, Linux/386, Linux/AMD 64, Darwin/AMD 64
+
 ## 安装部署
 
-说明：示例 Logstash 版本为： logstash 7.11.x (CentOS)，各个不同版本指标可能存在差异
+说明：示例 Logstash 版本为： logstash 7.11.x (CentOS)，各个不同版本指标可能存在差异。
 
 ### 前置条件
 
@@ -18,7 +20,7 @@
 - 服务器 <[安装 Func 携带版](../../dataflux-func/quick-start.md)>
 - 当在运行 Logstash 时，Logstash会自动捕获运行时指标，您可以使用这些指标来监控 Logstash 部署的运行状况和性能。
 
-Logstash 收集的指标包括：节点统计信息，例如 JVM 统计信息、进程统计信息、事件相关统计信息和 Pipeline 运行时统计信息等。
+Logstash 收集的指标包括：节点统计信息，例如 JVM 统计信息、进程统计信息、事件相关统计信息和 Pipeline 运行时统计信息等。<br />
 您可以使用根资源来检索有关 Logstash 实例的一般信息，包括主机和版本来检验您的 Logstash 的运行状态。
 
 ```bash
@@ -297,7 +299,7 @@ pipeline_plugins_inputs_events_queue_push_duration_in_millis 0
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - Logstash 监控视图>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - Logstash 监控视图>
 
 ## 监控规则
 

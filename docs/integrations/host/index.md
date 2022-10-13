@@ -21,7 +21,7 @@ DataKit 是观测云中至关重要的一个数据采集组件，几乎所有观
 
 - 自定义开启：[Directory](directory.md) 、 [eBPF](ebpf.md) 、 [Processes](processes.md) 、  [Scheck(安全巡检)](mem.md)
 
-- Telegraf：[Chrony](chrony.md) 、  [EthTool](ethtool.md) 、 [IPMI Sensor](ipmi-sensor.md) 、 [NetStat](netstat.md)	 、 [ProcStat](procstat.md)
+- Telegraf：[Chrony](chrony.md) 、  [DNS Query](dns-query.md)、 [EthTool](ethtool.md) 、 [IPMI Sensor](ipmi-sensor.md) 、 [NetStat](netstat.md)、  [NtpQ](ntpq.md) 、 [ProcStat](procstat.md)
 
 <br/>
 

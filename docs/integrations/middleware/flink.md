@@ -2,22 +2,24 @@
 # Flink
 ---
 
- > 操作系统支持：windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64
-
 ## 视图预览
 
 Flink 观测场景主要展示了 Flink 的集群状态，任务 Checkpoint 情况、job Buffer、job JVM 资源利用等信息。
 
 ![image](../imgs/input-flink-1.png)
 
+## 版本支持
+
+操作系统支持：Windows/AMD 64, Windows/386, Linux/ARM, Linux/ARM 64, Linux/386, Linux/AMD 64, Darwin/AMD 64
+
 ## 安装部署
 
-说明：示例 Flink 版本为： flink 1.14.2 (CentOS)，各个不同版本指标可能存在差异
+说明：示例 Flink 版本为： Flink 1.14.2 (CentOS)，各个不同版本指标可能存在差异。
 
 ### 前置条件
 
 - 可以访问外网的主机<[安装 DataKit](../../datakit/datakit-install.md)>
-- 更改 Flink 配置添加如下内容，开启 Prometheus 采集
+- 更改 Flink 配置添加如下内容，开启 Prometheus 采集。
 
 ```shell
 metrics.reporter.prom.class: org.apache.flink.metrics.prometheus.PrometheusReporter
@@ -26,7 +28,7 @@ metrics.reporter.prom.port: 9250-9260
 > 注意：`metrics.reporter.prom.port` 设置请参考集群 jobmanager 和 taskmanager 数量而定
 
 - 重启 Flink 集群应用配置
-- curl http://{Flink iP}:9250-9260 返回结果正常即可开始采集
+- `curl http://{Flink iP}:9250-9260` 返回结果正常即可开始采集
 
 ![image](../imgs/input-flink-2.png)
 
@@ -278,7 +280,7 @@ vi prom.conf
   # some_tag = "some_value"
   # more_tag = "some_other_value"
 ```
-> 注意：具体 url（Flink IP + 配置端口） 配置请根据 flink 配置文件中开启 Prometheus 配置设置的端口而定，开启多少个 TaskManager 和 JobManager 将该配置复杂粘贴多份即可完成采集建议更改 source 按照采集端口进行区分采集器
+> 注意：具体 url（Flink IP + 配置端口） 配置请根据 Flink 配置文件中开启 Prometheus 配置设置的端口而定，开启多少个 TaskManager 和 JobManager 将该配置复杂粘贴多份即可完成采集建议更改 source 按照采集端口进行区分采集器
 
 
 3、 重启 DataKit (如果需要开启日志，请配置日志采集再重启)
@@ -348,7 +350,7 @@ Status_JVM_GarbageCollector_G1_Young_Generation_Count <nil>
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 Flink 指标都会带有 service = "flink" 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](../../best-practices/insight/tag.md)>
+- 相关文档 <[TAG 在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 
 ```
 # 示例
@@ -364,7 +366,7 @@ systemctl restart datakit
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - Flink overview>
+<场景 - 新建仪表板 - 模板库 - 系统视图 -Flink overview>
 
 ## 检测库
 
@@ -381,7 +383,7 @@ systemctl restart datakit
 
 ## 最佳实践
 
-[<Flink 观测最佳实践>](../../best-practices/monitoring/flink)
+[<Flink 观测最佳实践>](../../best-practices/monitoring/flink.md)
 
 ## 故障排查
 

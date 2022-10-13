@@ -4,13 +4,13 @@
 
 ## 视图预览
 
-Nacos 性能指标展示：Nacos 在线时长、Nacos config 长链接数、Nacos config 配置个数、Service Count、http请求次数等。
+Nacos 性能指标展示，包括 Nacos 在线时长、Nacos config 长链接数、Nacos config 配置个数、Service Count、http 请求次数等。
 
 ![image](../imgs/input-nacos-1.png)
 
 ## 版本支持
 
-操作系统：Linux / Windows
+操作系统支持：Linux / Windows<br />
 Nacos 版本：>= 0.8.0
 
 ## 前置条件
@@ -27,7 +27,7 @@ Nacos 版本：>= 0.8.0
 
 #### 指标采集 (必选)
 
-1、 配置 application.properties 文件，暴露 metrics 数据
+1、 配置 `application.properties` 文件，暴露 metrics 数据
 
 ```
 management.endpoints.web.exposure.include=*
@@ -48,7 +48,7 @@ cd /usr/local/datakit/conf.d/prom/
 cp prom.conf.sample nacos-prom.conf
 ```
 
-5、 修改 nacos-prom.conf 配置文件
+5、 修改 `nacos-prom.conf` 配置文件
 
 主要参数说明
 
@@ -85,7 +85,7 @@ cp prom.conf.sample nacos-prom.conf
 systemctl restart datakit
 ```
 
-7、 Nacos 指标采集验证，使用命令 /usr/local/datakit/datakit -M |egrep "最近采集|nacos" 或者通过 url 查看 ${ip}:9529/monitor
+7、 Nacos 指标采集验证，使用命令 `/usr/local/datakit/datakit -M |egrep "最近采集|nacos" `或者通过 url 查看 ${ip}:9529/monitor
 
 ![image](../imgs/input-nacos-2.png)
 
@@ -95,7 +95,7 @@ systemctl restart datakit
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - Nacos 监控视图>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - Nacos 监控视图>
 
 ## 指标详解
 
