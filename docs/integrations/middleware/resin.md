@@ -124,7 +124,7 @@ tag_keys = ["name"]
 datakit --restart
 ```
 
-6、 JVM 指标采集验证，使用命令 
+6、 JVM 指标采集验证 
 
 ![image](../imgs/input-resin-2.png)
 
