@@ -1,5 +1,16 @@
 # 版本历史
 
+## v1.50.111（2022年10月12日）
+
+pubrepo.jiagouyun.com/dataflux/1.50.111:launcher-a3b4793-1665543227
+
+此版本是 fix 版本，主要有如下更新:
+
+### 观测云更新
+
+- 修复 Pipeline 测试器无法正常使用的问题
+
+
 ## v1.50.110（2022年9月29日）
 
 pubrepo.jiagouyun.com/dataflux/1.50.110:launcher-bf5e4a7-1664640281
