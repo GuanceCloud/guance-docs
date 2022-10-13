@@ -2,7 +2,6 @@
 # RabbitMQ
 ---
 
-操作系统支持：Linux / Windows
 
 ## 视图预览
 
@@ -12,9 +11,13 @@ RabbitMQ 性能指标展示：包括连接数量、通道数量、队列量、�
 
 ![image](../imgs/input-rabbit-2.png)
 
+## 版本支持
+
+操作系统支持：Linux / Windows
+
 ## 安装部署
 
-说明：示例 RabbitMQ 版本为：rabbitmq-server-3.7.17(CentOS7)，各个不同版本指标可能存在差异
+说明：示例 RabbitMQ 版本为：rabbitmq-server-3.7.17(CentOS7)，各个不同版本指标可能存在差异。
 
 ### 前置条件
 
@@ -31,24 +34,24 @@ systemctl status rabbitmq-server
 
 #### 指标采集 (必选)
 
-1、 开启rabbitmq_management插件
+1、 开启 rabbitmq_management 插件
 
-RabbitMQ 采集器是通过插件 `rabbitmq_management` 采集数据监控 RabbitMQ ,它能够：
+RabbitMQ 采集器是通过插件 `rabbitmq_management` 采集数据监控 RabbitMQ ，它能够：
 
 - RabbitMQ overview 总览，比如连接数、队列数、消息总数等
 - 跟踪 RabbitMQ queue 信息，比如队列大小，消费者计数等
 - 跟踪 RabbitMQ node 信息，比如使用的 `socket` `mem` 等
 - 跟踪 RabbitMQ exchange 信息 ，比如 `message_publish_count` 等
 
-登录安装rabbitmq的服务器，执行如下命令：
+登录安装 RabbitMQ 的服务器，执行如下命令：
 
 ```
 rabbitmq-plugins enable rabbitmq_management
 ```    
 
-2、 rabbitmq新增dataflux账号，并赋予monitoring角色
+2、 RabbitMQ 新增观测云账号，并赋予 monitoring 角色
 
-登录安装rabbitmq的服务器，执行如下命令：
+登录安装 RabbitMQ 的服务器，执行如下命令：
 
 ```
 rabbitmqctl add_user dataflux Datakit1234
@@ -56,14 +59,14 @@ rabbitmqctl set_user_tags dataflux monitoring
 rabbitmqctl set_permissions -p / dataflux "^aliveness-test$" "^amq\.default$" ".*"
 ```
 
-3、 开启RabbitMQ插件，复制sample文件
+3、 开启 RabbitMQ 插件，复制 sample 文件
 
 ```
 cd /usr/local/datakit/conf.d/rabbitmq
 cp rabbitmq.conf.sample rabbitmq.conf
 ```
 
-4、 修改rabbitmq.conf 配置文件
+4、 修改 `rabbitmq.conf` 配置文件
 
 ```
 vi rabbitmq.conf
@@ -115,8 +118,8 @@ systemctl restart datakit
 参数说明
 
 - files：日志文件路径 (通常填写访问日志和错误日志)
-- pipeline：日志切割文件(内置)，实际文件路径 /usr/local/datakit/pipeline/rabbitmq.p
-- 相关文档 <[DataFlux pipeline 文本数据处理](../../datakit/pipeline.md)>
+- Pipeline：日志切割文件(内置)，实际文件路径 `/usr/local/datakit/pipeline/rabbitmq.p`
+- 相关文档 <[文本数据处理（Pipeline）](../../datakit/pipeline.md)>
 ```
 vi /usr/local/datakit/conf.d/rabbitmq/rabbitmq.conf
 ```
@@ -143,8 +146,8 @@ systemctl restart datakit
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，所有 rabbitmq 指标都会带有 app = oa 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](../../best-practices/insight/tag.md)>
+- 以下示例配置完成后，所有 RabbitMQ 指标都会带有 app = oa 的标签，可以进行快速查询
+- 相关文档 <[TAG 在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 
 ```
   [inputs.rabbitmq.tags]
@@ -161,7 +164,7 @@ systemctl restart datakit
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - Rabbitmq 监控视图>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - Rabbitmq 监控视图>
 
 ## 检测库
 暂无

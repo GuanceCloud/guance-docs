@@ -2,17 +2,19 @@
 # JVM
 ---
 
-操作系统支持：Linux / Windows
-
 ## 视图预览
 
-JVM性能指标展示：CPU负载、直接缓冲区、线程数量、堆内存、GC次数、类加载数等。
+JVM 性能指标展示：CPU 负载、直接缓冲区、线程数量、堆内存、GC 次数、类加载数等。
 
 ![image](../imgs/input-jvm-1.png)
 
+## 版本支持
+
+操作系统支持：Linux / Windows
+
 ## 安装部署
 
-说明：示例 通过 ddtrace 采集jvm指标，通过 DataKit 内置的statsd接收ddtrace发送过来的jvm指标
+说明：示例 通过 ddtrace 采集 JVM 指标，通过 DataKit 内置的 statsd 接收 ddtrace 发送过来的 JVM 指标。
 
 ### 前置条件
 
@@ -23,14 +25,14 @@ JVM性能指标展示：CPU负载、直接缓冲区、线程数量、堆内存�
 #### 指标采集 (必选)
 
 
-1、 开启ddtrace， 复制sample文件，不需要修改ddtrace.conf
+1、 开启 ddtrace， 复制 sample 文件，不需要修改 `ddtrace.conf`
 
 ```
 cd /usr/local/datakit/conf.d/ddtrace
 cp ddtrace.conf.sample ddtrace.conf
 ```
 
-2、 开启statsd， 复制sample文件，不需要修改statsd.conf   
+2、 开启 statsd， 复制 sample 文件，不需要修改 `statsd.conf` 
 
 ```
 cd /usr/local/datakit/conf.d/statsd
@@ -39,7 +41,7 @@ cp statsd.conf.sample statsd.conf
 
 3、 开通外网访问(非必选)
 
-如果远程服务器需要访问datakit或者datakit提供给本服务器内的容器中的应用调用，需要把datakit.conf文件中的listen = "localhost:9529"改成listen = "0.0.0.0:9529"
+如果远程服务器需要访问datakit或者datakit提供给本服务器内的容器中的应用调用，需要把 `datakit.conf` 文件中的 listen = "localhost:9529"改成listen = "0.0.0.0:9529"
 
 ```
 vi /usr/local/datakit/conf.d/datakit.conf
@@ -91,7 +93,7 @@ JAVA_OPTS示例
 -Ddd.service.mapping:应用调用的redis、mysql等别名，选填
 ```
 
-#### jar使用方式
+#### jar 使用方式
 
 使用java -jar的方式启动jar，默认连接本机上的datakit，如需要连接远程服务器上的datakit，请使用-Ddd.agent.host和-Ddd.jmxfetch.statsd.host指定ip
 
@@ -103,9 +105,9 @@ JAVA_OPTS示例
  -jar <your-app.jar>
 ```
 
-#### Docker使用方式
+#### Docker 使用方式
 
-1、Dockerfile中的ENTRYPOINT启动参数使用环境变量JAVA_OPTS
+1、Dockerfile 中的 ENTRYPOINT 启动参数使用环境变量 JAVA_OPTS
 
 ```
 FROM openjdk:8u292-jdk
@@ -125,19 +127,19 @@ ENTRYPOINT ["sh", "-ec", "exec java  ${JAVA_OPTS} -jar ${jar} "]
 docker build -t <your-app-image:v1> .
 ```
 
-3、 上传dd-java-agent.jar放到/tmp/work目录
+3、 上传 dd-java-agent.jar 放到 `/tmp/work` 目录
 
 4、 docker run启动容器
 
-请修改172.16.0.215为您的Datakit的ip地址，替换9299为您应用的端口，替换your-app为您的应用名，替换your-app-image:v1为您的镜像名
+请修改 172.16.0.215 为您的 Datakit 的ip地址，替换 9299 为您应用的端口，替换 your-app 为您的应用名，替换 your-app-image:v1 为您的镜像名。
 
 ```
 docker run  -v /tmp/work:/tmp/work -e JAVA_OPTS="-javaagent:/tmp/work/dd-java-agent.jar -Ddd.service=your-app  -Ddd.env=dev  -Ddd.agent.host=172.16.0.215 -Ddd.agent.port=9529  -Ddd.jmxfetch.statsd.host=172.16.0.215  " --name your-app -d -p 9299:9299 your-app-image:v1
 ```
 
-#### Kubernetes使用方式
+#### Kubernetes 使用方式
 
-1、Dockerfile中的ENTRYPOINT启动参数使用环境变量JAVA_OPTS
+1、Dockerfile 中的 ENTRYPOINT 启动参数使用环境变量 JAVA_OPTS
 
 ```
 FROM openjdk:8u292
@@ -156,15 +158,16 @@ ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS} -jar ${jar}"]
 docker build -t 172.16.0.215:5000/dk/your-app-image:v1 . 
 ```
 
-3、上传harbor仓库
+3、上传 harbor 仓库
 
 ```
  docker push 172.16.0.215:5000/dk/your-app-image:v1  
 ```
 
-4、编写应用的deployment.yml
+4、编写应用的 `deployment.yml`
 
-JAVA_OPTS示例说明：-Ddd.tags=container_host:$(PODE_NAME)是把环境变量PODE_NAME的值，传到标签container_host中。 /usr/dd-java-agent/agent/dd-java-agent.jar使用了共享存储的路径，使用了pubrepo.jiagouyun.com/datakit/dk-sidecar:1.0镜像提供dd-java-agent.jar。
+JAVA_OPTS 示例说明：-Ddd.tags=container_host:$(PODE_NAME) 是把环境变量 PODE_NAME 的值 ，传到标签 container_host 中。<br />
+`/usr/dd-java-agent/agent/dd-java-agent.jar` 使用了共享存储的路径，使用了 pubrepo.jiagouyun.com/datakit/dk-sidecar:1.0 镜像提供 dd-java-agent.jar。
 
 ```
 -javaagent:/usr/dd-java-agent/agent/dd-java-agent.jar -Ddd.service=<your-app-name> 
@@ -175,7 +178,7 @@ JAVA_OPTS示例说明：-Ddd.tags=container_host:$(PODE_NAME)是把环境变量P
 -Ddd.jmxfetch.statsd.host=172.16.0.215
 ```
 
-新建your-app-deployment-yaml文件，完整示例内容如下，使用时请替换9299为您应用的端口，替换your-app-name为您的服务名，替换30001为您的应用对外暴露的端口，替换172.16.0.215:5000/dk/your-app-image:v1为您的镜像名：
+新建 `your-app-deployment-yaml` 文件，完整示例内容如下，使用时请替换 9299 为您应用的端口，替换 your-app-name 为您的服务名，替换 30001 为您的应用对外暴露的端口，替换 172.16.0.215:5000/dk/your-app-image:v1 为您的镜像名。
 
 ```
 apiVersion: v1
@@ -259,7 +262,7 @@ spec:
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - JVM 监控视图>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - JVM 监控视图>
 
 ## 检测库
 
@@ -270,7 +273,7 @@ spec:
 
 ## 最佳实践
 
-<[JVM可观测最佳实践](../../best-practices/monitoring/jvm.md)>
+<[JVM 可观测最佳实践](../../best-practices/monitoring/jvm.md)>
 
 ## 故障排查
 

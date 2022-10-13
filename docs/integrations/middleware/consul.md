@@ -4,7 +4,7 @@
 
 ## 视图预览
 
-consul 性能指标展示：包括监控状态、集群中服务数量、集群中成员数量、集群中成员的状态等。
+Consul 性能指标展示，包括监控状态、集群中服务数量、集群中成员数量、集群中成员的状态等。
 
 ![image](../imgs/input-consul-1.png)
 
@@ -14,8 +14,8 @@ consul 性能指标展示：包括监控状态、集群中服务数量、集群�
 
 ## 前置条件
 
-- consul 所在服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
-- 启动consul
+- Consul 所在服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
+- 启动Consul
 
 ```
 ./consul agent -dev   
@@ -29,21 +29,22 @@ consul 性能指标展示：包括监控状态、集群中服务数量、集群�
 
 ## 安装配置
 
-说明：示例 consul 版本为：[consul:1.9.9](https://releases.hashicorp.com/consul/1.9.9/consul_1.9.9_linux_amd64.zip)(CentOS环境)，各个不同版本指标可能存在差异。
+说明：<br />
+示例 Consul 版本为：[consul:1.9.9](https://releases.hashicorp.com/consul/1.9.9/consul_1.9.9_linux_amd64.zip)(CentOS环境)，各个不同版本指标可能存在差异。<br />
 示例consul_exporter版本是：[consul_exporter-0.7.1](https://github.com/prometheus/consul_exporter/releases/download/v0.7.1/consul_exporter-0.7.1.linux-amd64.tar.gz)。
 
 ### 部署实施
 
 #### 指标采集 (必选)
 
-1、 开启consul插件，复制sample文件 
+1、 开启 Consul 插件，复制 sample 文件 
 
 ```
 cd /usr/local/datakit/conf.d/consul
 cp consul.conf.sample consul.conf  
 ```
 
-2、 修改consul.conf配置文件
+2、 修改`consul.conf`配置文件
 
 ```
 vi consul.conf
@@ -114,8 +115,8 @@ systemctl restart datakit
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，所有 consul 指标都会带有 app = oa 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](../../best-practices/insight/tag.md)>
+- 以下示例配置完成后，所有 Consul 指标都会带有 app = oa 的标签，可以进行快速查询
+- 相关文档 <[TAG 在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 
 ```
 [inputs.prom.tags]
@@ -130,7 +131,7 @@ systemctl restart datakit
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - Consul 监控视图>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - Consul 监控视图>
 
 ## 检测库
 
@@ -138,7 +139,7 @@ systemctl restart datakit
 
 ## 指标详解
 
-<[consul指标详情](../../best-practices/insight/tag.md)>
+<[Consul指标详情](../../best-practices/insight/tag.md)>
 
 ## 常见问题排查
 

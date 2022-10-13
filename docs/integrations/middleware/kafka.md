@@ -2,24 +2,26 @@
 # Kafka
 ---
 
-
-操作系统支持：windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64
-
 ## 视图预览
 
 ### 场景视图
 
-Kafka 观测场景主要展示了 Kafka的 基础信息，topic 信息和性能信息。
+Kafka 观测场景主要展示了 Kafka 的 基础信息、topic 信息和性能信息。
 
 ![image](../imgs/input-kafka-1.png)
 
+## 版本支持
+
+操作系统支持：Windows/AMD 64, Windows/386, Linux/ARM, Linux/ARM 64, Linux/386, Linux/AMD 64, Darwin/AMD 64
+
 ## 安装部署
 
-说明：示例 Kafka 版本为：Kafka 2.11 (CentOS)，各个不同版本指标可能存在差异
+说明：示例 Kafka 版本为：Kafka 2.11 (CentOS)，各个不同版本指标可能存在差异。
 
 ### 前置条件
 
-安装或下载 [Jolokia](https://search.maven.org/remotecontent?filepath=org/jolokia/jolokia-jvm/1.6.2/jolokia-jvm-1.6.2-agent.jar)。DataKit 安装目录下的 `data` 目录中已经有下载好的 Jolokia jar 包。
+安装或下载 [Jolokia](https://search.maven.org/remotecontent?filepath=org/jolokia/jolokia-jvm/1.6.2/jolokia-jvm-1.6.2-agent.jar)。<br />
+DataKit 安装目录下的 `data` 目录中已经有下载好的 Jolokia jar 包。
 
 ### 配置实施
 
@@ -160,7 +162,7 @@ systemctl restart datakit
 systemctl restart datakit
 ```
 
-3、 Kafka 日志采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|kafka_log"
+3、 Kafka 日志采集验证 `/usr/local/datakit/datakit -M |egrep "最近采集|kafka_log"`
 
 ![image](../imgs/input-kafka-4.png)
 
@@ -174,7 +176,7 @@ systemctl restart datakit
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 Kafka 指标都会带有 service = "kafka" 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](../../best-practices/insight/tag.md)>
+- 相关文档 <[TAG 在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 - 
 ```
 # 示例
@@ -192,7 +194,7 @@ systemctl restart datakit
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - Kafka 监控视图>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - Kafka 监控视图>
 
 ## 检测库
 
@@ -202,7 +204,7 @@ systemctl restart datakit
 
 ## 最佳实践
 
-[<Kafka可观测最佳实践>](../../best-practices/monitoring/kafka)
+<[Kafka 可观测最佳实践](../../best-practices/monitoring/kafka)>
 
 ## 故障排查
 
