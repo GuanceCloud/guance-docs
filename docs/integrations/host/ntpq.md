@@ -132,7 +132,7 @@ systemctl restart telegraf
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - NtpQ>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - NtpQ 监控视图>
 
 ## 监控规则
 

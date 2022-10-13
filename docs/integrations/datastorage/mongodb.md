@@ -60,7 +60,7 @@ cd /usr/local/datakit/conf.d/db/mongodb
 cp mongodb.conf.sample mongodb.conf
 ```
 
-2、 修改 mongodb 配置文件
+2、 修改 MongoDB 配置文件
 
 ```
 vi mongodb.conf
@@ -152,7 +152,7 @@ MongoDB 日志采集验证  `/usr/local/datakit/datakit -M |egrep "最近采集|
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，所有 mongodb 指标都会带有 app = oa 的标签，可以进行快速查询
+- 以下示例配置完成后，所有 MongoDB 指标都会带有 app = oa 的标签，可以进行快速查询
 - 相关文档 <[TAG在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 
 ```

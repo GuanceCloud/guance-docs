@@ -4,7 +4,7 @@
 
 ## 视图预览
 
-PHP-FPM 指标展示，包括运行时间，活跃进程，慢请求，请求队列等
+PHP-FPM 指标展示，包括运行时间、活跃进程、慢请求、请求队列等。
 
 ![image](../imgs/input-fph-1.png)
 
@@ -35,19 +35,19 @@ gpgkey = https://repos.influxdata.com/influxdb.key
 EOF
 ```
 
-2、 安装 telegraf
+2、 安装 Telegraf
 
 ```
 yum -y install telegraf
 ```
 
-3、 开启 PHP status 页面，编辑 /etc/php-fpm.d/www.conf (以实际文件为准)
+3、 开启 PHP Status 页面，编辑 `/etc/php-fpm.d/www.conf` (以实际文件为准)
 
 ```
 pm.status_path = /status
 ```
 
-4、 重启 php-fpm
+4、 重启 PHP-FPM
 
 ```
 systemctl restart php-fpm
@@ -61,13 +61,13 @@ systemctl restart php-fpm
 
 #### 指标采集 (必选)
 
-1、 数据上传至 DataKit，修改主配置文件 telegraf.conf
+1、 数据上传至 DataKit，修改主配置文件 `telegraf.conf`
 
 ```
 vi /etc/telegraf/telegraf.conf
 ```
 
-2、 关闭 influxdb，开启 outputs.http (修改对应的行)
+2、 关闭 InfluxDB ，开启 outputs.http (修改对应的行)
 
 ```
 #[[outputs.influxdb]]
@@ -75,7 +75,7 @@ vi /etc/telegraf/telegraf.conf
 url = "http://127.0.0.1:9529/v1/write/metric?input=telegraf"
 ```
 
-3、 关闭主机检测 (否则会与 datakit 冲突)
+3、 关闭主机检测 (否则会与 DataKit 冲突)
 
 ```
 #[[inputs.cpu]]
@@ -129,8 +129,8 @@ systemctl start telegraf
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，所有 phpfpm 指标都会带有 app = oa 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](../../best-practices/insight/tag.md)>
+- 以下示例配置完成后，所有 PHP-FPM 指标都会带有 `app = "oa"` 的标签，可以进行快速查询
+- 相关文档 <[TAG 在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 
 ```
 # 示例
@@ -146,7 +146,7 @@ systemctl restart telegraf
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - PHP-FPM 监控视图>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - PHP FPM 监控视图>
 
 ## 检测库
 
