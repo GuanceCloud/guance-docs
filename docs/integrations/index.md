@@ -4,6 +4,15 @@ icon: zy/integrations
 # 集成
 ---
 
+## (2022/10/12)
+### 新增文档
+
+- AWS
+    - EC2
+    - ELB
+    - RDS MySQL
+    - S3
+
 ## (2022/06/17)
 ### 新增文档
 
