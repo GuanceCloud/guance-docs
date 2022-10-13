@@ -4,7 +4,7 @@
 
 ## 视图预览
 
-Nacos 性能指标展示，包括 Nacos 在线时长、Nacos config 长链接数、Nacos config 配置个数、Service Count、http 请求次数等。
+Nacos 性能指标展示，包括 Nacos 在线时长、Nacos Config 长链接数、Nacos Config 配置个数、Service Count、HTTP 请求次数等。
 
 ![image](../imgs/input-nacos-1.png)
 
@@ -41,7 +41,7 @@ management.endpoints.web.exposure.include=*
 
 访问 {ip}:8848/nacos/actuator/prometheus，看是否能访问到 metrics 数据
 
-4、 开启 DataKit promtheus 插件
+4、 开启 DataKit Promtheus 插件
 
 ```shell
 cd /usr/local/datakit/conf.d/prom/
@@ -136,7 +136,7 @@ systemctl restart datakit
 | nacos_monitor{name='httpHealthCheck'} | Nacos naming http健康检查次数 |
 | nacos_monitor{name='tcpHealthCheck'} | Nacos naming tcp健康检查次数 |
 
-### nacos 异常指标
+### Nacos 异常指标
 
 | 指标 | 含义 |
 | --- | --- |
@@ -148,7 +148,7 @@ systemctl restart datakit
 | nacos_exception_total{name='illegalArgument'} | 请求参数不合法 |
 | nacos_exception_total{name='nacos'} | Nacos请求响应内部错误异常（读写失败，没权限，参数错误） |
 
-更多nacos指标，可以参考 [Nacos官方网站-监控](https://nacos.io/zh-cn/docs/monitor-guide.html)
+更多Nacos指标，可以参考 [Nacos官方网站-监控](https://nacos.io/zh-cn/docs/monitor-guide.html)
 
 ## 常见问题排查
 

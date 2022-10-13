@@ -43,7 +43,7 @@ jvm_args  : -Xmx2048m -XX:MaxPermSize=256m -javaagent:C:/"Program Files"/datakit
 
 双击 resin.exe 
 
-3、 开启 Datakit jvm 插件，复制 sample 文件
+3、 开启 DataKit JVM 插件，复制 sample 文件
 ```
 cd datakit/conf.d/jvm
 cp jvm.conf.sample jvm.conf
@@ -118,7 +118,7 @@ tag_keys = ["name"]
   # ...
 ```
 
-5、 重启 Datakit (如果需要开启日志，请配置日志采集再重启)
+5、 重启 DataKit (如果需要开启日志，请配置日志采集再重启)
 
 ```
 datakit --restart
@@ -210,7 +210,7 @@ datakit --restart
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，所有 Resin 指标都会带有 app = resin-test 的标签，可以进行快速查询
+- 以下示例配置完成后，所有 Resin 指标都会带有 `app = "resin-test"` 的标签，可以进行快速查询
 - 相关文档 [TAG 在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 
 ```

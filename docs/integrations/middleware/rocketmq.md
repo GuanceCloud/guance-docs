@@ -4,7 +4,7 @@
 
 
 ## 视图预览
-RocketMQ 指标展示，包括生产者 tps/消息大小，消费者 tps/消息大小，消息堆积，topic 信息等
+RocketMQ 指标展示，包括生产者 TPS/消息大小、消费者 TPS/消息大小、消息堆积、topic 信息等
 
 ![image](../imgs/input-rocketmq-1.png)
 
@@ -22,7 +22,7 @@ RocketMQ 指标展示，包括生产者 tps/消息大小，消费者 tps/消息�
 
 ### 安装 exporter
 
-1、 拉取 rocketmqexporter 
+1、 拉取 rocketmq-exporter 
 
 ```
 git clone https://github.com/apache/rocketmq-exporter.git
@@ -35,7 +35,7 @@ cd rocketmq-exporter/
 
 3、 构建安装包 (2选1即可)
 
-    1、 构建 jar 包方式  
+（1）构建 jar 包方式  
 
 ```
 mvn clean install
@@ -53,13 +53,13 @@ cd target
 nohup java -jar target/rocketmq-exporter-0.0.2-SNAPSHOT.jar &
 ```
 
-    2、 构建 docker 镜像方式
+（2）构建 Docker 镜像方式
 
 ```
 mvn package -Dmaven.test.skip=true docker:build
 ```
 
-使用镜像启动 docker (替换命令行中 nameserverip 地址)
+使用镜像启动 Docker (替换命令行中 nameserverip 地址)
 
 ```
 docker run -d --net="host" --name rocketmq-exporter -p 5557:5557 docker.io/rocketmq-exporter --rocketmq.config.namesrvAddr=nameserverip:9876
@@ -88,7 +88,7 @@ cd /usr/local/datakit/conf.d/prom
 cp prom.conf.sample prom.conf
 ```
 
-2、 修改配置文件 prom.conf
+2、 修改配置文件 `prom.conf`
 
 主要参数说明
 
@@ -107,7 +107,7 @@ cp prom.conf.sample prom.conf
   interval = "60s"
 ```
 
-3、 Prometheus 指标采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|prom"
+3、 Prometheus 指标采集验证 `/usr/local/datakit/datakit -M |egrep "最近采集|prom"`
 
 ![image](../imgs/input-rocketmq-4.png)
 
@@ -120,15 +120,15 @@ cp prom.conf.sample prom.conf
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，所有 prom 指标都会带有 app = oa 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](../../best-practices/insight/tag.md)>
+- 以下示例配置完成后，所有 prom 指标都会带有 `app = "oa"` 的标签，可以进行快速查询
+- 相关文档 <[TAG 在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 ```
 # 示例
 [inputs.prom.tags]
    app = "oa"
 ```
 
-重启 Datakit
+重启 DataKit
 
 ```
 systemctl restart datakit
@@ -136,7 +136,7 @@ systemctl restart datakit
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - RocketMQ 监控视图>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - RocketMQ 监控视图>
 
 ## 检测库
 
@@ -148,15 +148,15 @@ systemctl restart datakit
 
 | 指标 | 描述 | 数据类型 |
 | --- | --- | --- |
-| rocketmq_broker_tps | broker每秒生产消息<br />数量 | int |
-| rocketmq_broker_qps | broker每秒消费消息<br />数量 | int |
-| rocketmq_producer_tps | 某个topic每秒生产<br />的消息数量 | int |
-| rocketmq_producer_put_size | 某个topic每秒生产<br />的消息大小(字节) | int |
-| rocketmq_producer_offset | 某个topic的生产消<br />息的进度 | int |
-| rocketmq_consumer_tps | 某个消费组每秒消费<br />的消息数量 | int |
-| rocketmq_consumer_get_size | 某个消费组每秒消费<br />的消息大小(字节) | int |
-| rocketmq_consumer_offset | 某个消费组的消费消<br />息的进度 | int |
-| rocketmq_group_get_latency_by_storetime | 某个消费组的消费延<br />时时间 | int |
+| rocketmq_broker_tps | broker每秒生产消息数量 | int |
+| rocketmq_broker_qps | broker每秒消费消息数量 | int |
+| rocketmq_producer_tps | 某个topic每秒生产的消息数量 | int |
+| rocketmq_producer_put_size | 某个topic每秒生产的消息大小(字节) | int |
+| rocketmq_producer_offset | 某个topic的生产消息的进度 | int |
+| rocketmq_consumer_tps | 某个消费组每秒消费的消息数量 | int |
+| rocketmq_consumer_get_size | 某个消费组每秒消费的消息大小(字节) | int |
+| rocketmq_consumer_offset | 某个消费组的消费消息的进度 | int |
+| rocketmq_group_get_latency_by_storetime | 某个消费组的消费延时时间 | int |
 | rocketmq_message_accumulati | 消息堆积量 | int |
 
 ## 常见问题排查

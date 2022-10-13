@@ -41,7 +41,7 @@ EOF
 yum -y install telegraf
 ```
 
-3、 开启 PHP status 页面，编辑 `/etc/php-fpm.d/www.conf` (以实际文件为准)
+3、 开启 PHP Status 页面，编辑 `/etc/php-fpm.d/www.conf` (以实际文件为准)
 
 ```
 pm.status_path = /status
@@ -75,7 +75,7 @@ vi /etc/telegraf/telegraf.conf
 url = "http://127.0.0.1:9529/v1/write/metric?input=telegraf"
 ```
 
-3、 关闭主机检测 (否则会与 datakit 冲突)
+3、 关闭主机检测 (否则会与 DataKit 冲突)
 
 ```
 #[[inputs.cpu]]
@@ -129,7 +129,7 @@ systemctl start telegraf
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，所有 phpfpm 指标都会带有 app = oa 的标签，可以进行快速查询
+- 以下示例配置完成后，所有 PHP-FPM 指标都会带有 `app = "oa"` 的标签，可以进行快速查询
 - 相关文档 <[TAG 在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 
 ```
