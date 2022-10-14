@@ -4,7 +4,7 @@
 
 ## 视图预览
 
-Oracle 观测场景主要展示了 Oracle 的 会话信息、缓存信息、表空间信息、实例运行信息、性能信息、锁信息以及日志信息。
+Oracle 指标展示，包括 Oracle 的会话信息、缓存信息、表空间信息、实例运行信息、性能信息、锁信息以及日志信息等。
 
 ![image](../imgs/oracle-1.png)
 
@@ -14,18 +14,18 @@ Oracle 观测场景主要展示了 Oracle 的 会话信息、缓存信息、表�
 
 ## 版本支持
 
-操作系统支持：linux/amd64
+操作系统支持：Linux/AMD 64
 
 ## 安装部署
 
-Oracle 监控指标采集，具有以下数据收集功能
+Oracle 监控指标采集，具有以下数据收集功能:
 
 - process 相关
 - tablespace 相关数据
 - system 数据采集
 - 自定义查询数据采集
 
-说明：示例 Oracle 版本为：Oracle 11.2.0.4.0(CentOS)，各个不同版本指标可能存在差异
+说明：示例 Oracle 版本为 Oracle 11.2.0.4.0(CentOS)，各个不同版本指标可能存在差异。
 
 ### 前置条件
 
@@ -58,13 +58,13 @@ wget https://download.oracle.com/otn_software/linux/instantclient/211000/instant
 unzip instantclient-basiclite-linux.x64-21.1.0.0.0.zip
 ```
 
-将解压后的目录文件路径添加到以下配置信息中的`LD_LIBRARY_PATH`环境变量路径中。
+将解压后的目录文件路径，添加到以下配置信息中的 `LD_LIBRARY_PATH` 环境变量路径中。
 
 ### 配置实施
 
 #### 指标采集 (必选)
 
-1、 开启 Datakit Oracle 插件，复制 sample 文件
+1、 开启 DataKit Oracle 插件，复制 sample 文件
 
 ```bash
 cd /usr/local/datakit/conf.d/db/
@@ -144,7 +144,7 @@ datakit --restart
   match = '''^\D{3}\s\D{3}\s\d{2}\s\d{2}:\d{2}:\d{2}.*'''
 ```
 
-> 注意：在使用日志采集时，需要将 DataKit 安装在 Oracle 服务同一台主机中，或使用其它方式将日志挂载到 DataKit 所在机器
+> 注意：在使用日志采集时，需要将 DataKit 安装在 Oracle 服务同一台主机中，或使用其它方式将日志挂载到 DataKit 所在机器。
 
 
 2、 修改 `logging.conf` 配置文件
@@ -190,24 +190,24 @@ datakit --restart
 
 ![image](../imgs/oracle-6.png)
 
-6、 场景视图中添加 日志流图
-   1、 点击Oracle场景视图中 `编辑` 按钮
+6、 场景视图中添加 日志流图<br />
+  （1）点击 Oracle 场景视图中 「编辑」 按钮
 
 ![image](../imgs/oracle-7.png)
 
-   2、 找到场景视图下方 `实例运行日志`，点击 `修改`，进入修改页面
+  （2）找到场景视图下方 「实例运行日志」，点击 「修改」，进入修改页面
 
 ![image](../imgs/oracle-8.png)
 
-   3、 点击查询 框 中的 `来源` 下拉框，找到 `logging.conf` 中配置的 `source` 并点击选用
+  （3）点击查询框中的 「来源」下拉框，找到 `logging.conf` 中配置的 `source` 并点击选用
 
 ![image](../imgs/oracle-9.png)
 
-   4、 点击右下角 `修改` 按钮 保存修改 即完成 场景视图中 的日志配置
+  （4）点击右下角 「修改」按钮 保存修改，即完成场景视图中的日志配置
 
 ![image](../imgs/oracle-10.png)
 
-   5、 Oracle实例运行日志流图展示如下
+  （5）Oracle 实例运行日志流图展示如下：
 
 ![image](../imgs/oracle-11.png)
 
@@ -216,13 +216,14 @@ datakit --restart
 参数说明
 
 -  该配置为自定义标签，可以填写任意 key-value 值 
--  以下示例配置完成后，所有 Oracle 指标都会带有 service = "Oracle" 的标签，可以进行快速查询 
--  相关文档 <[TAG在观测云中的最佳实践](../../best-practices/insight/tag.md)>
+-  以下示例配置完成后，所有 Oracle 指标都会带有 `service = "Oracle"` 的标签，可以进行快速查询。
+-  相关文档 <[TAG 在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 
 ```
 [inputs.oracle.tags]
-		some_tag = "some_value"
-		more_tag = "some_other_value"
+		service = "Oracle"
+    #some_tag = "some_value"
+		#more_tag = "some_other_value"
 		...
 ```
 

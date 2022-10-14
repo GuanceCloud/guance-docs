@@ -4,13 +4,13 @@
 
 ## 视图预览
 
-Redis-sentinel 观测场景主要展示了 Redis 的集群、slaves、节点分布信息等。
+Redis-sentinel 指标展示，包括 Redis 集群、Slaves、节点分布信息等。
 
 ![image](../imgs/input-redis-sentinel-1.png)
 
 ## 版本支持
 
-操作系统：Linux / Windows
+操作系统：Linux / Windows<br />
 redis-sentinel-exporter >=0.1
 
 ## 前置条件
@@ -39,7 +39,7 @@ spring.redis.sentinel.nodes ： 哨兵节点地址
 
 #### 指标采集 (必选)
 
-1、 开启 Datakit prom 插件，复制 sample 文件
+1、 开启 DataKit prom 插件，复制 sample 文件
 
 ```bash
 cd /usr/local/datakit/conf.d/prom/
@@ -139,13 +139,13 @@ tls_open = false
 - metric_types：指标类型，不填，代表采集所有指标
 - [inputs.prom.tags]：额外定义的 tag
 
-3、 重启 Datakit (如果需要开启日志，请配置日志采集再重启)
+3、 重启 DataKit (如果需要开启日志，请配置日志采集再重启)
 
 ```bash
 systemctl restart datakit
 ```
 
-4、 redis-sentinel 指标采集验证，使用命令 `/usr/local/datakit/datakit -M |egrep "最近采集|redis-sentinel"` 或者通过 url 查看 ${ip}:9529/monitor
+4、 Redis-sentinel 指标采集验证，使用命令 `/usr/local/datakit/datakit -M |egrep "最近采集|redis-sentinel"` 或者通过 url 查看 ${ip}:9529/monitor
 
 ![image](../imgs/input-redis-sentinel-3.png)
 
@@ -164,7 +164,7 @@ systemctl restart datakit
 - pipeline：日志切割文件
 - character_encoding：日志编码格式
 - match：开启多行日志收集
-- 相关文档 <[Pipeline 文本数据处理](../../datakit/pipeline.md)>
+- 相关文档 <[ 文本数据处理（Pipeline）](../../datakit/pipeline.md)>
 
 ```
 # {"version": "1.2.12", "desc": "do NOT edit this line"}
@@ -221,13 +221,13 @@ systemctl restart datakit
 
 ```
 
-2、 重启 Datakit (如果需要开启自定义标签，请配置插件标签再重启)
+2、 重启 DataKit (如果需要开启自定义标签，请配置插件标签再重启)
 
 ```
 systemctl restart datakit
 ```
 
-3、 redis-sentinel 指标采集验证，使用命令 /usr/local/datakit/datakit -M |egrep "最近采集|logging" 或者通过 url 查看 ${ip}:9529/monitor
+3、 redis-sentinel 指标采集验证，使用命令 `/usr/local/datakit/datakit -M |egrep "最近采集|logging" 或者通过 url 查看 ${ip}:9529/monitor`
 
 ![image](../imgs/input-redis-sentinel-5.png)
 
@@ -235,8 +235,11 @@ systemctl restart datakit
 
 ![image](../imgs/input-redis-sentinel-6.png)
 
-5、 日志 pipeline 功能切割字段说明
-- Redis 通用日志切割<br />原始日志为
+5、 日志 Pipeline 功能切割字段说明
+
+Redis 通用日志切割
+
+- 原始日志为：
 
 ```
 [11412] 05 May 10:17:31.329 # Creating Server TCP listening socket *:26380: bind: No such file or directory
@@ -246,7 +249,7 @@ systemctl restart datakit
 
 ![image](../imgs/input-redis-sentinel-8.png)
 
-切割后的字段列表如下：
+- 切割后的字段列表如下：
 
 | 字段名 | 字段值 | 说明 |
 | --- | --- | --- |
@@ -262,7 +265,7 @@ systemctl restart datakit
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，所有 `redis-sentinel` 指标都会带有`service = "redis-sentinel"`的标签，可以进行快速查询
+- 以下示例配置完成后，所有 Redis-sentinel 指标都会带有 `service = "redis-sentinel"` 的标签，可以进行快速查询。
 - 相关文档 <[TAG在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 
 ```

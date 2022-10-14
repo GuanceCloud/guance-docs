@@ -4,7 +4,7 @@
 
 ## 视图预览
 
-MongoDB 性能指标展示，包括每秒查询操作、文档操作、TTL索引、游标、队列信息等
+MongoDB 性能指标展示，包括每秒查询操作、文档操作、TTL 索引、游标、队列信息等
 
 ![image](../imgs/input-mongodb-1.png)
 
@@ -47,7 +47,7 @@ MongoDB 性能指标展示，包括每秒查询操作、文档操作、TTL索引
 
 ## 安装配置
 
-说明：示例 MongoDB 版本为 Linux 环境 db version v4.0.22，Windows 版本请修改对应的配置文件
+说明：示例 MongoDB 版本为 Linux 环境 db version v4.0.22，Windows 版本请修改对应的配置文件。
 
 ### 部署实施
 
@@ -129,7 +129,7 @@ systemctl restart datakit
 
 - files：日志文件路径
 - pipeline：日志切割文件(内置)，实际文件路径 `/usr/local/datakit/pipeline/mongod.p`
-- 相关文档 <[Pipeline 文本数据处理](../../datakit/pipeline.md)>
+- 相关文档 <[ 文本数据处理（Pipeline）](../../datakit/pipeline.md)>
 
 ```
 [inputs.mongodb.log]
@@ -152,8 +152,8 @@ MongoDB 日志采集验证  `/usr/local/datakit/datakit -M |egrep "最近采集|
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，所有 MongoDB 指标都会带有 app = oa 的标签，可以进行快速查询
-- 相关文档 <[TAG在观测云中的最佳实践](../../best-practices/insight/tag.md)>
+- 以下示例配置完成后，所有 MongoDB 指标都会带有 `app = "oa"` 的标签，可以进行快速查询。
+- 相关文档 <[TAG 在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 
 ```
 # 示例

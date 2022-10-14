@@ -3,7 +3,7 @@
 ---
 
 ## 视图预览
-Memcached 性能指标展示，包括连接数、命令数、网络流量、线程数、命中率信息等
+Memcached 性能指标展示，包括连接数、命令数、网络流量、线程数、命中率信息等。
 
 ![image](../imgs/input-memcached-1.png)
 
@@ -17,7 +17,7 @@ Memcached 性能指标展示，包括连接数、命令数、网络流量、线�
 
 ## 安装配置
 
-说明：示例 Memcached 版本为 Linux 环境 memcached 1.4.15，Windows 版本请修改对应的配置文件
+说明：示例 Memcached 版本为 Linux 环境 memcached 1.4.15，Windows 版本请修改对应的配置文件。
 
 ### 部署实施
 
@@ -30,7 +30,7 @@ cd /usr/local/datakit/conf.d/db
 cp memcached.conf.sample memcached.conf
 ```
 
-2、 修改 memcached 配置文件
+2、 修改 Memcached 配置文件
 
 ```
 vi memcached.conf
@@ -62,8 +62,8 @@ vi memcached.conf
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，所有 memcached 指标都会带有 app = oa 的标签，可以进行快速查询
-- 相关文档 <[TAG在观测云中的最佳实践](../../best-practices/insight/tag.md)>
+- 以下示例配置完成后，所有 Memcached 指标都会带有 `app = "oa"` 的标签，可以进行快速查询。
+- 相关文档 <[TAG 在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 
 ```
 # 示例

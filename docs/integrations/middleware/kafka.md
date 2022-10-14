@@ -16,12 +16,12 @@ Kafka 观测场景主要展示了 Kafka 的基础信息、topic 信息和性能�
 
 ## 安装部署
 
-说明：示例 Kafka 版本为：Kafka 2.11 (CentOS)，各个不同版本指标可能存在差异。
+说明：示例 Kafka 版本为 Kafka 2.11 (CentOS)，各个不同版本指标可能存在差异。
 
 ### 前置条件
 
-安装或下载 [Jolokia](https://search.maven.org/remotecontent?filepath=org/jolokia/jolokia-jvm/1.6.2/jolokia-jvm-1.6.2-agent.jar)。<br />
-DataKit 安装目录下的 `data` 目录中已经有下载好的 Jolokia jar 包。
+- 安装或下载 [Jolokia](https://search.maven.org/remotecontent?filepath=org/jolokia/jolokia-jvm/1.6.2/jolokia-jvm-1.6.2-agent.jar)<br />
+- DataKit 安装目录下的 `data` 目录中已经有下载好的 Jolokia jar 包
 
 ### 配置实施
 
@@ -175,7 +175,7 @@ systemctl restart datakit
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，所有 Kafka 指标都会带有 service = "kafka" 的标签，可以进行快速查询
+- 以下示例配置完成后，所有 Kafka 指标都会带有 `service = "kafka"` 的标签，可以进行快速查询
 - 相关文档 <[TAG 在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 - 
 ```

@@ -111,7 +111,7 @@ systemctl start telegraf
 /usr/bin/telegraf --config /etc/telegraf/telegraf.conf --input-filter activemq --test
 ```
 
-有数据返回 (行协议)，代表能够正常采集
+有数据返回 (行协议)，代表能够正常采集。
 
 ![image](../imgs/input-activemq-3.png)
 
@@ -124,7 +124,7 @@ systemctl start telegraf
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，所有 ActiveMQ 指标都会带有 app = oa 的标签，可以进行快速查询
+- 以下示例配置完成后，所有 ActiveMQ 指标都会带有 `app = "oa"` 的标签，可以进行快速查询
 - 相关文档 <[TAG 在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 
 ```

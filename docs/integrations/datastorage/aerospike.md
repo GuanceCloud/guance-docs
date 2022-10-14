@@ -4,11 +4,11 @@
 
 ## 视图预览
 
-Aerospike namespace 性能指标展示，包括集群、空间下的内存使用情况、磁盘使用、对象数、读写速率等
+Aerospike Namespace 性能指标展示，包括集群、空间下的内存使用情况、磁盘使用、对象数、读写速率等。
 
 ![image](../imgs/input-aerospike-1.png)
 
-Aerospike node 相关指标展示，包括node 集群、node状态、记录数、内存、磁盘指标等
+Aerospike Node 相关指标展示，包括 Node 集群、node状态、记录数、内存、磁盘指标等。
 
 ![image](../imgs/input-aerospike-2.png)
 
@@ -23,7 +23,7 @@ Aerospike node 相关指标展示，包括node 集群、node状态、记录数�
 
 ## 安装配置
 
-说明：示例 Aerospike 版本为 Linux 环境 6.0.0 (CentOS)，各个不同版本指标可能存在差异。<br />
+示例 Aerospike 版本为 Linux 环境 6.0.0 (CentOS)，各个不同版本指标可能存在差异。<br />
 aerospike-prometheus-exporter 为官方研发的 exporter ，方便快速接入监控 Aerospike。
 
 ### 指标采集 (必选)
@@ -220,7 +220,7 @@ systemctl restart aerospike-prometheus-exporter.service
 
 #### DataKit 新增 aerospike-prom.conf 配置文件
 
-在 `/usr/local/datakit/conf.d/prom`目录下，复制prom.conf.sample为 aerospike-prom.conf
+在 `/usr/local/datakit/conf.d/prom`目录下，复制 `prom.conf.sample` 为 `aerospike-prom.conf`
 
 ```
 cp prom.conf.sample aerospike-prom.conf
@@ -266,7 +266,7 @@ systemctl restart datakit
 - source：aerospike # 数据源
 - service：aerospike #服务名
 
-在`/usr/local/datakit/conf.d`目录下，复制一份conf，重命名为`logging-aerospike.conf`
+在`/usr/local/datakit/conf.d`目录下，复制一份 conf，重命名为`logging-aerospike.conf`
 
 ``` 
 cp logging.conf.sample logging-aerospike.conf
@@ -326,7 +326,7 @@ ignore_dead_log = "10m"
   # more_tag = "some_other_value"
 ```
 
-#### 重启 Datakit 
+#### 重启 DataKit 
 
 如果需要开启自定义标签，请配置插件标签再重启.
 
@@ -334,7 +334,7 @@ ignore_dead_log = "10m"
 systemctl restart datakit
 ```
 
-Aerospike 日志采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|aerospike"
+Aerospike 日志采集验证 `/usr/local/datakit/datakit -M |egrep "最近采集|aerospike"`
 
 ![image](../imgs/input-aerospike-4.png)
 
@@ -348,8 +348,8 @@ Aerospike 日志采集验证  /usr/local/datakit/datakit -M |egrep "最近采集
 #### 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，所有 aerospike 指标都会带有 app = aerospike 的标签，可以进行快速查询
-- 相关文档 <[TAG在观测云中的最佳实践](../../best-practices/insight/tag.md)>
+- 以下示例配置完成后，所有 Aerospike 指标都会带有 `app = "aerospike"` 的标签，可以进行快速查询。
+- 相关文档 <[TAG 在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 
 ```
 # 示例
@@ -357,7 +357,7 @@ Aerospike 日志采集验证  /usr/local/datakit/datakit -M |egrep "最近采集
    app = "aerospike"
 ```
 
-#### 重启 Datakit
+#### 重启 DataKit
 
 ```
 systemctl restart datakit

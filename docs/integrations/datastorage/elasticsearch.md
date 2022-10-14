@@ -16,31 +16,29 @@ ElasticSearch 观测场景主要展示了 ElasticSearch 的集群信息、网络
 
 ### 内置视图
 
-ElasticSearch 内置视图主要展示了 ElasticSearch 的集群内的 JVM 和线程池的信息
+ElasticSearch 内置视图主要展示了 ElasticSearch 的集群内的 JVM 和线程池的信息。
 
 ![image](../imgs/input-elasticsearch-4.png)
 
 ## 版本支持
 
-操作系统支持：windows/amd64, windows/386, linux/arm, linux/arm64, linux/386, linux/amd64, darwin/amd64
+操作系统支持：Windows/AMD 64, Windows/386, Linux/ARM, Linux/ARM 64, Linux/386, Linux/AMD 64, Darwin/AMD 64
 
 ## 安装部署
 
-ElasticSearch 采集器主要采集节点运行情况、集群健康、JVM 性能状况、索引性能、检索性能等。
-
-说明：示例 ElasticSearch 版本为：ElasticSearch 7.6.1 (CentOS)，各个不同版本指标可能存在差异
+说明：示例 ElasticSearch 版本为 ElasticSearch 7.6.1 (CentOS)，各个不同版本指标可能存在差异。
 
 ### 前置条件
 
 - ElasticSearch 版本 >= 7.0.0
 - ElasticSearch 默认采集 `Node Stats` 指标，如果需要采集 `Cluster-Health` 相关指标，需要设置 `cluster_health = true`
 - 设置 `cluster_health = true` 可产生如下指标集 
-   - `elasticsearch_cluster_health`
+      - `elasticsearch_cluster_health`
 - 设置 `cluster_stats = true` 可产生如下指标集 
-   - `elasticsearch_cluster_stats`
+      - `elasticsearch_cluster_stats`
 - 如果开启账号密码访问，需要配置该账号拥有访问集群和索引监控的 `monitor` 权限，否则会导致监控信息获取失败错误。用户设置参考如下： 
-   - 方法一：使用内置用户 `remote_monitoring_user` (推荐)
-   - 方法二：创建自定义用户，需要赋予角色 `remote_monitoring_collector`
+      - 方法一：使用内置用户 `remote_monitoring_user` (推荐)
+      - 方法二：创建自定义用户，需要赋予角色 `remote_monitoring_collector`
 - 其他信息请参考配置文件说明
 
 
@@ -149,7 +147,7 @@ systemctl restart datakit
 
 - files：日志文件路径 (通常填写访问日志和错误日志)
 - pipeline：日志切割文件(内置)，实际文件路径 `/usr/local/datakit/pipeline/elasticsearch.p`
-- 相关文档 <[Pipeline 文本数据处理](../../datakit/pipeline.md)>
+- 相关文档 <[ 文本数据处理（Pipeline）](../../datakit/pipeline.md)>
 ```
 [inputs.elasticsearch.log]
 	#写入 ElasticSearch 日志文件的绝对路径
@@ -172,7 +170,7 @@ systemctl restart datakit
 
 ![image](../imgs/input-elasticsearch-8.png)
 
-5、 日志 pipeline 功能切割字段说明
+5、 日志 Pipeline 功能切割字段说明
 
 - ElasticSearch 通用日志切割<br />通用日志文本示例： <br />切割后的字段列表如下： 
 
@@ -226,8 +224,8 @@ systemctl restart datakit
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，所有 ElasticSearch 指标都会带有 service = "elasticsearch" 的标签，可以进行快速查询
-- 相关文档 <[TAG在观测云中的最佳实践](../../best-practices/insight/tag.md)>
+- 以下示例配置完成后，所有 ElasticSearch 指标都会带有 `service = "elasticsearch"` 的标签，可以进行快速查询。
+- 相关文档 <[TAG 在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 
 ```
 # 示例
