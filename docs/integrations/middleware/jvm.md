@@ -14,7 +14,7 @@ JVM 性能指标展示：CPU 负载、直接缓冲区、线程数量、堆内存
 
 ## 安装部署
 
-说明：示例 通过 ddtrace 采集 JVM 指标，通过 DataKit 内置的 statsd 接收 ddtrace 发送过来的 JVM 指标。
+说明：示例 通过 ddtrace 采集 JVM 指标，通过 DataKit 内置的 Statsd 接收 ddtrace 发送过来的 JVM 指标。
 
 ### 前置条件
 
@@ -32,7 +32,7 @@ cd /usr/local/datakit/conf.d/ddtrace
 cp ddtrace.conf.sample ddtrace.conf
 ```
 
-2、 开启 statsd， 复制 sample 文件，不需要修改 `statsd.conf` 
+2、 开启 Statsd， 复制 sample 文件，不需要修改 `statsd.conf` 
 
 ```
 cd /usr/local/datakit/conf.d/statsd
@@ -61,13 +61,13 @@ systemctl restart datakit
 
 ## 启动应用
 
-#### JAVA_OPTS声明
+#### JAVA_OPTS 声明
 
 ```
 java  ${JAVA_OPTS} -jar your-app.jar
 ```
 
-JAVA_OPTS示例
+JAVA_OPTS 示例
 
 ```
 -javaagent:/usr/local/datakit/data/dd-java-agent.jar \
@@ -95,7 +95,7 @@ JAVA_OPTS示例
 
 #### jar 使用方式
 
-使用java -jar的方式启动jar，默认连接本机上的datakit，如需要连接远程服务器上的datakit，请使用-Ddd.agent.host和-Ddd.jmxfetch.statsd.host指定ip
+使用 java -jar 的方式启动 jar，默认连接本机上的 DataKit，如需要连接远程服务器上的 DataKit，请使用 -Ddd.agent.host 和 -Ddd.jmxfetch.statsd.host 指定ip 。
 
 ```
  java -javaagent:/usr/local/datakit/data/dd-java-agent.jar \
@@ -129,7 +129,7 @@ docker build -t <your-app-image:v1> .
 
 3、 上传 dd-java-agent.jar 放到 `/tmp/work` 目录
 
-4、 docker run启动容器
+4、 docker run 启动容器
 
 请修改 172.16.0.215 为您的 Datakit 的ip地址，替换 9299 为您应用的端口，替换 your-app 为您的应用名，替换 your-app-image:v1 为您的镜像名。
 
@@ -158,7 +158,7 @@ ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS} -jar ${jar}"]
 docker build -t 172.16.0.215:5000/dk/your-app-image:v1 . 
 ```
 
-3、上传 harbor 仓库
+3、上传 Harbor 仓库
 
 ```
  docker push 172.16.0.215:5000/dk/your-app-image:v1  
@@ -178,7 +178,7 @@ JAVA_OPTS 示例说明：-Ddd.tags=container_host:$(PODE_NAME) 是把环境变�
 -Ddd.jmxfetch.statsd.host=172.16.0.215
 ```
 
-新建 `your-app-deployment-yaml` 文件，完整示例内容如下，使用时请替换 9299 为您应用的端口，替换 your-app-name 为您的服务名，替换 30001 为您的应用对外暴露的端口，替换 172.16.0.215:5000/dk/your-app-image:v1 为您的镜像名。
+新建 `your-app-deployment-yaml` 文件，完整示例内容如下。使用时请替换 9299 为您应用的端口，替换 your-app-name 为您的服务名，替换 30001 为您的应用对外暴露的端口，替换 172.16.0.215:5000/dk/your-app-image:v1 为您的镜像名。
 
 ```
 apiVersion: v1

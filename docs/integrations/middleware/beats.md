@@ -16,7 +16,7 @@ Beats 指标展示，包括 CPU 负载、内存、事件、配置、输出流量
 
 - 服务器 <[安装 Datakit](../../datakit/datakit-install.md)>
 - 服务器安装 Telegraf
-- Beats 应用开启 HTTP endpoint
+- Beats 应用开启 HTTP Endpoint
 
 ### 安装 Telegraf
 
@@ -41,7 +41,7 @@ EOF
 yum -y install telegraf
 ```
 
-3、 开启 endpoint，修改主配置文件 xxx.yml
+3、 开启 Endpoint，修改主配置文件 xxx.yml
 
 ```
 http.enabled: true
@@ -57,7 +57,7 @@ systemctl restart xxxbeats
 
 ## 安装配置
 
-说明：示例 Linux 版本为 CentOS Linux release 7.8.2003 (Core)，Windows 版本请修改对应的配置文件
+说明：示例 Linux 版本为 CentOS Linux release 7.8.2003 (Core)，Windows 版本请修改对应的配置文件。
 
 ### 部署实施
 
@@ -69,7 +69,7 @@ systemctl restart xxxbeats
 vi /etc/telegraf/telegraf.conf
 ```
 
-2、 关闭 InfluxDB，开启 outputs.http (修改对应的行)
+2、 关闭 InfluxDB ，开启 outputs.http (修改对应的行)
 
 ```
 #[[outputs.influxdb]]
@@ -98,7 +98,7 @@ url = "http://127.0.0.1:9529/v1/write/metric?input=telegraf"
 
 主要参数说明
 
-- urls：beats 检测地址 (默认 5066 端口)
+- urls：Beats 检测地址 (默认 5066 端口)
 - include：数据采集的状态列表
 - timeout：超时时间
 ```
@@ -120,7 +120,7 @@ systemctl start telegraf
 /usr/bin/telegraf --config /etc/telegraf/telegraf.conf --input-filter beat --test
 ```
 
-有数据返回 (行协议)，代表能够正常采集
+有数据返回 (行协议)，代表能够正常采集。
 
 ![image](../imgs/input-beats-2.png)
 

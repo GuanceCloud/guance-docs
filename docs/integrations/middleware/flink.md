@@ -4,7 +4,7 @@
 
 ## 视图预览
 
-Flink 观测场景主要展示了 Flink 的集群状态，任务 Checkpoint 情况、job Buffer、job JVM 资源利用等信息。
+Flink 观测场景主要展示了 Flink 的集群状态，任务 Checkpoint 情况、job Buffer、job JVM 资源利用等。
 
 ![image](../imgs/input-flink-1.png)
 
@@ -14,7 +14,7 @@ Flink 观测场景主要展示了 Flink 的集群状态，任务 Checkpoint 情�
 
 ## 安装部署
 
-说明：示例 Flink 版本为： Flink 1.14.2 (CentOS)，各个不同版本指标可能存在差异。
+说明：示例 Flink 版本为 Flink 1.14.2 (CentOS)，各个不同版本指标可能存在差异。
 
 ### 前置条件
 
@@ -289,7 +289,7 @@ vi prom.conf
 systemctl restart datakit
 ```
 
-4、  Flink 指标采集验证 `/usr/local/datakit/datakit -M |egrep "最近采集|9251"`
+4、 Flink 指标采集验证 `/usr/local/datakit/datakit -M |egrep "最近采集|9251"`
 
 ![image](../imgs/input-flink-3.png)
 
@@ -349,7 +349,7 @@ Status_JVM_GarbageCollector_G1_Young_Generation_Count <nil>
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，所有 Flink 指标都会带有 service = "flink" 的标签，可以进行快速查询
+- 以下示例配置完成后，所有 Flink 指标都会带有 `service = "flink"` 的标签，可以进行快速查询。
 - 相关文档 <[TAG 在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 
 ```
@@ -379,11 +379,11 @@ systemctl restart datakit
 
 ## 指标详解
 
-默认情况下，Flink 会收集多个指标，这些[指标](https://nightlies.apache.org/flink/flink-docs-release-1.14/docs/ops/metrics/#system-metrics)可提供对当前状态的深入洞察
+默认情况下，Flink 会收集多个指标，这些[指标](https://nightlies.apache.org/flink/flink-docs-release-1.14/docs/ops/metrics/#system-metrics)可提供对当前状态的深入洞察。
 
 ## 最佳实践
 
-[<Flink 观测最佳实践>](../../best-practices/monitoring/flink.md)
+<[利用观测云观测 Apache Flink>](../../best-practices/monitoring/flink.md)>
 
 ## 故障排查
 
