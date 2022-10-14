@@ -250,13 +250,25 @@ setenforce 0
 
 | 标签名 | 描述    |
 |  ----  | --------|
-|`dst_ip`|DNS server address|
-|`dst_port`|DNS server port|
+|`direction`|传输方向 (incoming/outgoing)|
+|`dst_ip`|目标 IP|
+|`dst_ip_type`|目标 IP 类型 (other/private/multicast)|
+|`dst_k8s_deployment_name`|目标 IP 所属 k8s 的 deployment name|
+|`dst_k8s_namespace`|目标 IP 所在 k8s 的 namespace|
+|`dst_k8s_pod_name`|目标 IP 所属 k8s 的 pod name|
+|`dst_k8s_service_name`|目标 IP 所属 service, 如果是 dst_ip 是 cluster(service) ip 则 dst_k8s_pod_name 值为 `N/A`|
+|`dst_port`|目标端口|
 |`family`|TCP/IP 协议族 (IPv4/IPv6)|
-|`host`|host name|
+|`host`|主机名|
 |`source`|固定值: dnsflow|
-|`src_ip`|DNS client address|
-|`src_port`|DNS client port|
+|`src_ip`|源 IP|
+|`src_ip_type`|源 IP 类型 (other/private/multicast)|
+|`src_k8s_deployment_name`|源 IP 所属 k8s 的 deployment name|
+|`src_k8s_namespace`|源 IP 所在 k8s 的 namespace|
+|`src_k8s_pod_name`|源 IP 所属 k8s 的 pod name|
+|`src_k8s_service_name`|源 IP 所属 k8s 的 service name|
+|`src_port`|源端口, 非 53 端口聚合后的值为 `*`|
+|`sub_source`|用于 dnsflow 的部分特定连接分类，如 Kubernetes 流量的值为 K8s|
 |`transport`|传输协议 (udp/tcp)|
 
 - 指标列表
@@ -264,9 +276,10 @@ setenforce 0
 
 | 指标 | 描述| 数据类型 | 单位   |
 | ---- |---- | :---:    | :----: |
-|`rcode`|DNS 响应码: 0 - NoError, 1 - FormErr, 2 - ServFail, 3 - NXDomain, 4 - NotImp, 5 - Refused, ...|int|-|
-|`resp_time`|DNS 请求的响应时间间隔|int|ns|
-|`timeout`|DNS 请求超时|bool|-|
+|`count`|一个采集周期内的 DNS 请求数聚合总数|int|-|
+|`latency`|DNS 平均请求的响应时间间隔|int|ns|
+|`latency_max`|DNS 最大请求的响应时间间隔|int|ns|
+|`rcode`|DNS 响应码: 0 - NoError, 1 - FormErr, 2 - ServFail, 3 - NXDomain, 4 - NotImp, 5 - Refused, ...；值为 -1 表示请求超时|int|-|
 
 
 
@@ -330,5 +343,6 @@ setenforce 0
 |`method`|GET/POST/...|string|-|
 |`path`|请求路径|string|-|
 |`status_code`|http 状态码，如 200, 301, 404 ...|int|-|
+|`truncated`|请求路径长度达到采集的字节上限，请求路径存在截断可能|bool|-|
 
 
