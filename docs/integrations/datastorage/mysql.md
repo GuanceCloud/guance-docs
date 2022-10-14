@@ -4,7 +4,7 @@
 
 ## 视图预览
 
-MySQL 观测场景主要展示了 MySQL 的基础信息、链接信息、存储空间信息、innoDB 信息、性能信息、锁信息以及日志信息。
+MySQL 指标展示，包括 MySQL 的基础信息、链接信息、存储空间信息、innoDB 信息、性能信息、锁信息以及日志信息等。
 
 ![image](../imgs/input-mysql-1.png)
 
@@ -14,7 +14,7 @@ MySQL 观测场景主要展示了 MySQL 的基础信息、链接信息、存储�
 
 ## 版本支持
 
-操作系统支持：windows/amd64, windows/386, linux/arm, linux/arm64, linux/386, linux/amd64, darwin/amd64
+操作系统支持：Windows/AMD 64, Windows/386, Linux/ARM, Linux/ARM 64, Linux/386, Linux/AMD 64, Darwin/AMD 64
 
 ## 安装部署
 
@@ -25,7 +25,7 @@ MySQL 指标采集，收集以下数据：
 - InnoDB 相关指标
 - 支持自定义查询数据采集
 
-说明：示例 MySQL 版本为：MySQL 5.7(CentOS)，各个不同版本指标可能存在差异
+说明：示例 MySQL 版本为 MySQL 5.7(CentOS)，各个不同版本指标可能存在差异。
 
 ### 前置条件
 
@@ -204,8 +204,8 @@ systemctl restart datakit
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，所有 MySQL 指标都会带有 service = "MySQL" 的标签，可以进行快速查询
-- 相关文档 <[TAG在观测云中的最佳实践](../../best-practices/insight/tag.md)>
+- 以下示例配置完成后，所有 MySQL 指标都会带有 `service = "MySQL"` 的标签，可以进行快速查询。
+- 相关文档 <[TAG 在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 
 ```
 # 示例

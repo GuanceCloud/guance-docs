@@ -4,7 +4,7 @@
 
 ## 视图预览
 
-SQLServer 性能指标展示，包括CPU、内存、事务、日志、临时表、物理文件 IO、备份、任务调度等
+SQLServer 性能指标展示，包括CPU、内存、事务、日志、临时表、物理文件 IO、备份、任务调度等。
 
 ![image](../imgs/input-sqlserver-1.png)
 
@@ -51,7 +51,7 @@ GO
 复制 sqlserver.conf.sample 为 sqlserver.conf
 ```
 
-2、 修改 sqlserver.conf 配置文件
+2、 修改 `sqlserver.conf` 配置文件
 
 参数说明
 
@@ -82,8 +82,8 @@ services.msc 找到 datakit 重新启动
 参数说明
 
 - files：日志文件路径 (通常填写访问日志和错误日志)
-- pipeline：日志切割文件(内置)，实际文件路径 `/usr/local/datakit/pipeline/sqlserver.p`
-- 相关文档 <[Pipeline 文本数据处理](../../datakit/pipeline.md)>
+- Pipeline：日志切割文件(内置)，实际文件路径 `/usr/local/datakit/pipeline/sqlserver.p`
+- 相关文档 <[ 文本数据处理（Pipeline）](../../datakit/pipeline.md)>
 
 ```
 [inputs.sqlserver.log]
@@ -101,7 +101,7 @@ systemctl restart datakit
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，所有 sqlserver 指标都会带有 app = oa 的标签，可以进行快速查询
+- 以下示例配置完成后，所有 SQLServer 指标都会带有 `app = "oa"` 的标签，可以进行快速查询。
 - 相关文档 <[TAG在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 - 
 ```

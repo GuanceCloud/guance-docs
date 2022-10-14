@@ -4,7 +4,7 @@
 
 ## 视图预览
 
-PostgreSQL 性能指标展示，包括连接数、缓冲分配、计划检查点、脏块数等
+PostgreSQL 性能指标展示，包括连接数、缓冲分配、计划检查点、脏块数等。
 
 ![image](../imgs/input-postgresql-1.png)
 
@@ -18,20 +18,20 @@ PostgreSQL 性能指标展示，包括连接数、缓冲分配、计划检查点
 
 ## 安装配置
 
-说明：示例 PostgreSQL 版本为 Linux 环境 PostgreSQL 9.2.24，Windows 版本请修改对应的配置文件
+说明：示例 PostgreSQL 版本为 Linux 环境 PostgreSQL 9.2.24，Windows 版本请修改对应的配置文件。
 
 ### 部署实施
 
 #### 指标采集 (必选)
 
-1、 开启 Datakit PostgreSQL 插件，复制 sample 文件
+1、 开启 DataKit PostgreSQL 插件，复制 sample 文件
 
 ```
 cd /usr/local/datakit/conf.d/db
 cp postgresql.conf.sample postgresql.conf
 ```
 
-2、 修改 postgresql 配置文件
+2、 修改 Postgresql 配置文件
 
 ```
 vi postgresql.conf
@@ -58,7 +58,7 @@ vi postgresql.conf
 
 ![image](../imgs/input-postgresql-2.png)
 
-4、 重启 Datakit (如果需要开启日志，请配置日志采集再重启)
+4、 重启 DataKit (如果需要开启日志，请配置日志采集再重启)
 
 ```
 systemctl restart datakit
@@ -74,7 +74,7 @@ systemctl restart datakit
 
 - files：日志文件路径
 - pipeline：日志切割文件(内置)，实际文件路径 `/usr/local/datakit/pipeline/postgresql.p`
-- 相关文档 <[Pipeline 文本数据处理](../../datakit/pipeline.md)>
+- 相关文档 <[ 文本数据处理（Pipeline）](../../datakit/pipeline.md)>
 
 ```
 [inputs.postgresql.log]
@@ -97,8 +97,8 @@ PostgreSQL 日志采集验证  `/usr/local/datakit/datakit -M |egrep "最近采�
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，所有 postgresql 指标都会带有 app = oa 的标签，可以进行快速查询
-- 相关文档 <[TAG在观测云中的最佳实践](../../best-practices/insight/tag.md)>
+- 以下示例配置完成后，所有 PostgreSQL 指标都会带有 `app = "oa"` 的标签，可以进行快速查询。
+- 相关文档 <[TAG 在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 - 
 ```
 # 示例
@@ -106,7 +106,7 @@ PostgreSQL 日志采集验证  `/usr/local/datakit/datakit -M |egrep "最近采�
    app = "oa"
 ```
 
-重启 Datakit
+重启 DataKit
 
 ```
 systemctl restart datakit
