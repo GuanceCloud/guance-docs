@@ -1,10 +1,9 @@
-
 # Kube State Metrics
 ---
 
 ## 视图预览
 
-Kubernetes 性能指标展示：Pod desired、Pod desired、Pods ready、Pods Available、Pod Unavailable等。<br />
+Kube State Metrics 性能指标展示，包括 Pod Desired、Pod Desired、Pods Ready、Pods Available、Pod Unavailable 等。
 
 ![image](../imgs/input-kube-state-metrics-01.png)
 
@@ -27,7 +26,7 @@ kube-state-metrics/ Kubernetes
 
 ## 安装配置
 
-说明：示例 kube-state-metrics 版本为 2.3.0，Kubernetes 集群 1.22.6。
+说明：示例 kube-state-metrics 版本为 2.3.0，Kubernetes 集群 1.22.6 。
 
 ### 部署实施
 
@@ -37,11 +36,13 @@ kube-state-metrics/ Kubernetes
 
 1、 修改镜像
 
-解压 kube-state-metrics-2.3.0.zip，部署使用 kube-state-metrics-2.3.0\examples\standard\ 目录下的文件，打开 deployment.yaml 修改 k8s.gcr.io/kube-state-metrics/kube-state-metrics:v2.3.0 为 bitnami/kube-state-metrics:2.3.0。<br />注意：如果原始镜像可访问，不必修改。
+解压 `kube-state-metrics-2.3.0.zip` ，部署使用 `kube-state-metrics-2.3.0\examples\standard\` 目录下的文件，打开 `deployment.yaml` 修改 `k8s.gcr.io/kube-state-metrics/kube-state-metrics:v2.3.0` 为 `bitnami/kube-state-metrics:2.3.0`。<br />
 
-2、 开通 prom 采集器
+**注意：**如果原始镜像可访问，不必修改。
 
-打开 deployment.yaml 增加 annotations
+2、 开通 Prom 采集器
+
+打开 `deployment.yaml` 增加 annotations
 
 ```yaml
 spec:
@@ -70,12 +71,12 @@ spec:
 
 ```shell
 kubectl apply -f service-account.yaml
-kubectl apply -f cluster-role.yaml  
-kubectl apply -f cluster-role-binding.yaml  
-kubectl apply -f deployment.yaml 
+kubectl apply -f cluster-role.yaml
+kubectl apply -f cluster-role-binding.yaml
+kubectl apply -f deployment.yaml
 ```
 
-4、 查看监控数据 
+4、 查看监控数据
 
 ```shell
 kubectl get pods -n kube-system -owide
@@ -84,7 +85,7 @@ kubectl get pods -n kube-system -owide
 ![image](../imgs/input-kube-state-metrics-08.png)
 
 ```shell
-curl http://10.244.36.66:8080/metrics 
+curl http://10.244.36.66:8080/metrics
 ```
 
 ![image](../imgs/input-kube-state-metrics-09.png)
@@ -99,63 +100,61 @@ curl http://10.244.36.66:8080/metrics
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - Kubernetes Overview with Kube State Metrics 监控视图>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - Kubernetes Overview with Kube State Metrics 监控视图>
 
-<场景 - 新建仪表板 - 内置模板库 - Kubernetes Overview by Pods 监控视图>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - Kubernetes Overview by Pods 监控视图>
 
 ## 指标详解
 
-prom_state_metrics：
-
-| 指标 | 描述 | 数据类型 | 单位 |
-| --- | --- | --- | --- |
-| kube_daemonset_status_desired_number_scheduled | The number of nodes that should be running the daemon pod. | int | count |
-| kube_deployment_spec_replicas | Number of desired pods for a deployment. | int | count |
-| kube_daemonset_status_number_ready | The number of nodes that should be running the daemon pod and have one or more of the daemon pod running and ready. | int | count |
-| kube_deployment_status_replicas_available | The number of available replicas per deployment. | int | count |
-| kube_deployment_status_replicas_unavailable | The number of unavailable replicas per deployment. | int | count |
-| kube_replicaset_status_ready_replicas | The number of ready replicas per ReplicaSet. | int | count |
-| kube_replicaset_spec_replicas | Number of desired pods for a ReplicaSet. | int | count |
-| kube_pod_container_status_running | Describes whether the container is currently in running state. | int | count |
-| kube_pod_container_status_waiting | Describes whether the container is currently in waiting state. | int | count |
-| kube_pod_container_status_terminated | Describes whether the container is currently in terminated state. | int | count |
-| kube_pod_container_status_ready | Describes whether the containers readiness check succeeded. | int | count |
+| 指标                                           | 描述                                                                                                                | 数据类型 | 单位  |
+| ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | -------- | ----- |
+| kube_daemonset_status_desired_number_scheduled | The number of nodes that should be running the daemon pod.                                                          | int      | count |
+| kube_deployment_spec_replicas                  | Number of desired pods for a deployment.                                                                            | int      | count |
+| kube_daemonset_status_number_ready             | The number of nodes that should be running the daemon pod and have one or more of the daemon pod running and ready. | int      | count |
+| kube_deployment_status_replicas_available      | The number of available replicas per deployment.                                                                    | int      | count |
+| kube_deployment_status_replicas_unavailable    | The number of unavailable replicas per deployment.                                                                  | int      | count |
+| kube_replicaset_status_ready_replicas          | The number of ready replicas per ReplicaSet.                                                                        | int      | count |
+| kube_replicaset_spec_replicas                  | Number of desired pods for a ReplicaSet.                                                                            | int      | count |
+| kube_pod_container_status_running              | Describes whether the container is currently in running state.                                                      | int      | count |
+| kube_pod_container_status_waiting              | Describes whether the container is currently in waiting state.                                                      | int      | count |
+| kube_pod_container_status_terminated           | Describes whether the container is currently in terminated state.                                                   | int      | count |
+| kube_pod_container_status_ready                | Describes whether the containers readiness check succeeded.                                                         | int      | count |
 
 system：
 
-| 指标 | 描述 | 数据类型 | 单位 |
-| --- | --- | --- | --- |
-| load15_per_core | 15分钟负载 | int | count |
+| 指标            | 描述        | 数据类型 | 单位  |
+| --------------- | ----------- | -------- | ----- |
+| load15_per_core | 15 分钟负载 | int      | count |
 
 net：
 
-| 指标 | 描述 | 数据类型 | 单位 |
-| --- | --- | --- | --- |
-| bytes_sent | 出流量 | int | B |
-| bytes_recv | 入流量 | int | B |
+| 指标       | 描述   | 数据类型 | 单位 |
+| ---------- | ------ | -------- | ---- |
+| bytes_sent | 出流量 | int      | B    |
+| bytes_recv | 入流量 | int      | B    |
 
 mem：
 
-| 指标 | 描述 | 数据类型 | 单位 |
-| --- | --- | --- | --- |
-| total | 总内存 | int | B |
-| used | 已使用内存 | int | B |
-| free | 剩余内存 | int | B |
-| cached | 缓冲 | int | B |
-| buffered | 缓存 | int | B |
+| 指标     | 描述       | 数据类型 | 单位 |
+| -------- | ---------- | -------- | ---- |
+| total    | 总内存     | int      | B    |
+| used     | 已使用内存 | int      | B    |
+| free     | 剩余内存   | int      | B    |
+| cached   | 缓冲       | int      | B    |
+| buffered | 缓存       | int      | B    |
 
 dist：
 
-| 指标 | 描述 | 数据类型 | 单位 |
-| --- | --- | --- | --- |
-| total | 总磁盘空间 | int | B |
-| used | 已使用磁盘空间 | int | B |
-| free | 剩余磁盘空间 | int | B |
-
+| 指标  | 描述           | 数据类型 | 单位 |
+| ----- | -------------- | -------- | ---- |
+| total | 总磁盘空间     | int      | B    |
+| used  | 已使用磁盘空间 | int      | B    |
+| free  | 剩余磁盘空间   | int      | B    |
 
 ## 常见问题排查
 
 <[无数据上报排查](../../datakit/why-no-data.md)>
 
 ## 进一步阅读
+
 暂无

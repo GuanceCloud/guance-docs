@@ -1,10 +1,9 @@
-
 # Harbor
 ---
 
 ## 视图预览
 
-Harbor 展示：包括项目数量、镜像仓库数、Components health、服务组件监控状态分布等。
+Harbor 性能指标展示，包括项目数量、镜像仓库数、Components health、服务组件监控状态分布等。
 
 ![image](../imgs/harbor-1.png)
 
@@ -14,73 +13,83 @@ Harbor 展示：包括项目数量、镜像仓库数、Components health、服�
 
 ### 前置条件
 
-- [安装 Datakit](../../datakit/datakit-install.md)>
+- <[安装 Datakit](../../datakit/datakit-install.md)>
 
-### harbor 安装
+### Harbor 安装
 
 #### 下载地址
 
- [https://github.com/goharbor/harbor/releases](https://github.com/goharbor/harbor/releases)
+[https://github.com/goharbor/harbor/releases](https://github.com/goharbor/harbor/releases)
 
 #### 解压
 
-> tar -zxvf harbor-online-installer-v1.10.10.tgz
+```
+tar -zxvf harbor-online-installer-v1.10.10.tgz
+```
 
 #### 配置
 
-备份 harbor.yml 
+备份 `harbor.yml`
 
-> cp harbor.yml harbor.yml.bk
+```
+cp harbor.yml harbor.yml.bk
+```
 
 ![image](../imgs/harbor-2.png)
 
-修改harbor.yml 配置文件
+修改 `harbor.yml` 配置文件
 
 ```
 > hostname: 192.168.91.11
-> 
+>
 > # http related config
 > http:
 >   # port for http, default is 80. If https enabled, this port will redirect to https port
 >   port: 7180
 > #https:
 >   # https port for harbor, default is 443
-> 
+>
 > #  port: 443
 >   # The path of cert and key files for nginx
 > #  certificate: /your/certificate/path
-> 
+>
 > #  private_key: /your/private/key/path
 ```
 
 #### 执行 prepare
 
-首次安装，需要执行prepare。后续如果修改了harbor.yml文件，需要执行prepare后再执行其他操作。
+首次安装，需要执行 prepare。后续如果修改了 `harbor.yml` 文件，需要执行 prepare 后再执行其他操作。
 
-> ./prepare
+```
+./prepare
+```
 
 #### 执行 install
 
-> ./install.sh
+```
+./install.sh
+```
 
 #### 查看状态
 
-> docker-compose ps 
+```
+docker-compose ps
+```
 
 ![image](../imgs/harbor-3.png)
 
-状态都是 healthy,代表启动成功
+状态都是 healthy，代表启动成功。
 
 #### 访问
 
-http://配置的ip:7180,默认登录账号： admin ,密码 Harbor12345。
+http://配置的ip:7180 <br />
+默认登录账号/密码：admin/Harbor12345
 
 ![image](../imgs/harbor-4.png)
 
-查看项目，默认只有一个项目：library。如要修改，可以在 harbor.yml 文件修改
+查看项目，默认只有一个项目 library。如要修改，可以在 `harbor.yml` 文件修改。
 
 > harbor_admin_password: Harbor12345
-
 
 ### harbor-exporter 安装
 
@@ -88,21 +97,24 @@ http://配置的ip:7180,默认登录账号： admin ,密码 Harbor12345。
 
 [https://github.com/zhangguanzhang/harbor_exporter](https://github.com/zhangguanzhang/harbor_exporter)
 
-> git clone https://github.com/zhangguanzhang/harbor_exporter.git
-
-源码有个 bug，如果传入用户名参数，会覆盖密码。如果启动的用户名是非 admin，则需要修改源码后再打镜像。
+```
+git clone https://github.com/zhangguanzhang/harbor_exporter.git
+```
+**注意：**源码有个 bug ，如果传入用户名参数，会覆盖密码。如果启动的用户名是非 admin ，则需要修改源码后再打镜像。
 
 ![image](../imgs/harbor-5.png)
 
 #### 打包 docker image
 
->  docker build -t 192.168.91.11:7180/demo/harbor-exporter:v0.1 -f Dockerfile .
-
+```
+docker build -t 192.168.91.11:7180/demo/harbor-exporter:v0.1 -f Dockerfile .
+```
 #### 启动 harbor-exporter
 
-> docker run -d -p 9107:9107 -e HARBOR_PASSWORD=Harbor12345 192.168.91.11:7180/demo/harbor-exporter:v0.1 --harbor-server=http://192.168.91.11:7180/api --insecure
-
-如果需要修改用户名，启动加上参数 -e HARBOR_USERNAME=admin
+```
+docker run -d -p 9107:9107 -e HARBOR_PASSWORD=Harbor12345 192.168.91.11:7180/demo/harbor-exporter:v0.1 --harbor-server=http://192.168.91.11:7180/api --insecure
+```
+如果需要修改用户名，启动加上参数 `-e HARBOR_USERNAME=admin`
 
 ![image](../imgs/harbor-6.png)
 
@@ -112,11 +124,13 @@ http://配置的ip:7180,默认登录账号： admin ,密码 Harbor12345。
 
 ### DataKit 配置
 
-#### 配置prom采集器
+#### 配置 prom 采集器
 
-> cp prom.conf.sample prom-harbor.conf
+```
+cp prom.conf.sample prom-harbor.conf
+```
 
- prom-harbor.conf 全文如下：
+`prom-harbor.conf` 全文如下：
 
 ```typescript
 # {"version": "1.1.9-rc7", "desc": "do NOT edit this line"}
@@ -193,7 +207,7 @@ http://配置的ip:7180,默认登录账号： admin ,密码 Harbor12345。
 
   ## 自定义Tags
   [inputs.prom.tags]
-    
+
   # some_tag = "some_value"
   # more_tag = "some_other_value"
 
@@ -201,11 +215,13 @@ http://配置的ip:7180,默认登录账号： admin ,密码 Harbor12345。
 
 #### 重启 DataKit
 
-> datakit --restart
+```
+datakit --restart
+```
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - Harbor 监控视图> 
+<场景 - 新建仪表板 - 模板库 - 系统视图 - Harbor 监控视图>
 
 ## 检测库
 
@@ -218,4 +234,3 @@ http://配置的ip:7180,默认登录账号： admin ,密码 Harbor12345。
 ## 故障排查
 
 <[无数据上报排查](../../datakit/why-no-data.md)>
-
