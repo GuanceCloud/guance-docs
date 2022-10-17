@@ -27,6 +27,18 @@
 ---
 ## 历史版本：
 
+### (2022-10-14) Version:0.108.1
+
+合并 DataDog v0.108.1版本，进行编译同时保留了0.108.1
+
+- [github下载地址](https://github.com/GuanceCloud/dd-trace-java/releases/tag/v0.108.1)
+
+#### 新增功能说明
+
+- 新增 thrift instrumentation（thrift version >=0.9.3 以上版本）
+
+---
+
 ### (2022-09-06) Version:0.108.1
 
 合并 DataDog v0.108.1版本，进行编译。

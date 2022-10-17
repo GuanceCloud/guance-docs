@@ -1,14 +1,13 @@
-
 # Aerospike
 ---
 
 ## 视图预览
 
-Aerospike namespace 性能指标展示，包括集群、空间下的内存使用情况、磁盘使用、对象数、读写速率等
+Aerospike Namespace 性能指标展示，包括集群、空间下的内存使用情况、磁盘使用、对象数、读写速率等。
 
 ![image](../imgs/input-aerospike-1.png)
 
-Aerospike node 相关指标展示，包括node 集群、node状态、记录数、内存、磁盘指标等
+Aerospike Node 相关指标展示，包括 Node 集群、node 状态、记录数、内存、磁盘指标等。
 
 ![image](../imgs/input-aerospike-2.png)
 
@@ -23,8 +22,8 @@ Aerospike node 相关指标展示，包括node 集群、node状态、记录数�
 
 ## 安装配置
 
-说明：示例 Aerospike 版本为 Linux 环境 6.0.0 (CentOS)，各个不同版本指标可能存在差异。<br />
-aerospike-prometheus-exporter 为官方研发的 exporter ，方便快速接入监控 Aerospike。
+示例 Aerospike 版本为 Linux 环境 6.0.0 (CentOS)，各个不同版本指标可能存在差异。<br />
+aerospike-prometheus-exporter 为官方研发的 Exporter ，方便快速接入监控 Aerospike。
 
 ### 指标采集 (必选)
 
@@ -43,7 +42,7 @@ rpm -Uvh aerospike-prometheus-exporter--x86_64.rpm
 
 #### 配置 exporter
 
-配置文件地址 `/etc/aerospike-prometheus-exporter/ape.toml`，默认 metrics 端口为9145，默认采集端口为 3000，默认情况下不需要调整配置文件。
+配置文件地址 `/etc/aerospike-prometheus-exporter/ape.toml`，默认 metrics 端口为 9145，默认采集端口为 3000，默认情况下不需要调整配置文件。
 
 ```toml
 [Agent]
@@ -220,7 +219,7 @@ systemctl restart aerospike-prometheus-exporter.service
 
 #### DataKit 新增 aerospike-prom.conf 配置文件
 
-在 `/usr/local/datakit/conf.d/prom`目录下，复制prom.conf.sample为 aerospike-prom.conf
+在 `/usr/local/datakit/conf.d/prom`目录下，复制 `prom.conf.sample` 为 `aerospike-prom.conf`
 
 ```
 cp prom.conf.sample aerospike-prom.conf
@@ -231,6 +230,7 @@ cp prom.conf.sample aerospike-prom.conf
 - url：aerospike-prometheus-exporter 指标地址
 - interval：采集频率
 - source：采集器别名
+
 ```
 [[inputs.prom]]
   urls = ["http://192.168.0.189:9145/metrics"]
@@ -266,9 +266,9 @@ systemctl restart datakit
 - source：aerospike # 数据源
 - service：aerospike #服务名
 
-在`/usr/local/datakit/conf.d`目录下，复制一份conf，重命名为`logging-aerospike.conf`
+在`/usr/local/datakit/conf.d`目录下，复制一份 conf，重命名为`logging-aerospike.conf`
 
-``` 
+```
 cp logging.conf.sample logging-aerospike.conf
 ```
 
@@ -306,8 +306,8 @@ ignore_status = []
 character_encoding = ""
 
 ## datakit read text from Files or Socket , default max_textline is 32k
-## If your log text line exceeds 32Kb, please configure the length of your text, 
-## but the maximum length cannot exceed 32Mb 
+## If your log text line exceeds 32Kb, please configure the length of your text,
+## but the maximum length cannot exceed 32Mb
 # maximum_length = 32766
 
 ## The pattern should be a regexp. Note the use of '''this regexp'''
@@ -326,7 +326,7 @@ ignore_dead_log = "10m"
   # more_tag = "some_other_value"
 ```
 
-#### 重启 Datakit 
+#### 重启 DataKit
 
 如果需要开启自定义标签，请配置插件标签再重启.
 
@@ -334,7 +334,7 @@ ignore_dead_log = "10m"
 systemctl restart datakit
 ```
 
-Aerospike 日志采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|aerospike"
+Aerospike 日志采集验证 `/usr/local/datakit/datakit -M |egrep "最近采集|aerospike"`
 
 ![image](../imgs/input-aerospike-4.png)
 
@@ -342,14 +342,13 @@ Aerospike 日志采集验证  /usr/local/datakit/datakit -M |egrep "最近采集
 
 ![image](../imgs/input-aerospike-5.png)
 
-
 ### 插件标签 (非必选）
 
 #### 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，所有 aerospike 指标都会带有 app = aerospike 的标签，可以进行快速查询
-- 相关文档 <[TAG在观测云中的最佳实践](../../best-practices/insight/tag.md)>
+- 以下示例配置完成后，所有 Aerospike 指标都会带有 `app = "aerospike"` 的标签，可以进行快速查询。
+- 相关文档 <[TAG 在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 
 ```
 # 示例
@@ -357,7 +356,7 @@ Aerospike 日志采集验证  /usr/local/datakit/datakit -M |egrep "最近采集
    app = "aerospike"
 ```
 
-#### 重启 Datakit
+#### 重启 DataKit
 
 ```
 systemctl restart datakit
@@ -374,17 +373,17 @@ systemctl restart datakit
 <监控 - 监控器 - 从模板新建 - Aerospike 检测库>
 
 | 序号 | 规则名称 | 触发条件 | 级别 | 检测频率 |
-| --- | --- | --- | --- | --- |
-| 1 | Aerospike 空间 Storage 剩余空间不足 | Aerospike 空间 Storage 使用率 >= 60% | 警告 | 1m |
-| 2 | Aerospike 空间 Storage 剩余空间不足 | Aerospike 空间 Storage 使用率 >= 80% | 重要 | 1m |
-| 3 | Aerospike 空间 Storage 剩余空间不足 | Aerospike 空间 Storage 使用率 >= 90% | 紧急 | 1m |
-| 4 | Aerospike 空间 Memory 剩余空间不足 | Aerospike 空间 Memory 使用率 >= 60% | 警告 | 1m |
-| 5 | Aerospike 空间 Memory 剩余空间不足 | Aerospike 空间 Memory 使用率 >= 80% | 重要 | 1m |
-| 6 | Aerospike 空间 Memory 剩余空间不足 | Aerospike 空间 Memory 使用率 >= 85% | 紧急 | 1m |
+| ---- | ---- | ----- | ---- | ---- |
+| 1 | Aerospike 空间 Storage 剩余空间不足 | Aerospike 空间 Storage 使用率 >= 60% | 警告 | 1m       |
+| 2 | Aerospike 空间 Storage 剩余空间不足 | Aerospike 空间 Storage 使用率 >= 80% | 重要 | 1m       |
+| 3 | Aerospike 空间 Storage 剩余空间不足 | Aerospike 空间 Storage 使用率 >= 90% | 紧急 | 1m       |
+| 4 | Aerospike 空间 Memory 剩余空间不足  | Aerospike 空间 Memory 使用率 >= 60%  | 警告 | 1m       |
+| 5 | Aerospike 空间 Memory 剩余空间不足  | Aerospike 空间 Memory 使用率 >= 80%  | 重要 | 1m       |
+| 6 | Aerospike 空间 Memory 剩余空间不足  | Aerospike 空间 Memory 使用率 >= 85%  | 紧急 | 1m       |
 
 ## 指标详解
 
-[参照Aerospike官网指标](https://docs.aerospike.com/server/operations/monitor/key_metrics)
+[参照 Aerospike 官网指标](https://docs.aerospike.com/server/operations/monitor/key_metrics)
 
 ## 常见问题排查
 

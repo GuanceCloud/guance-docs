@@ -13,13 +13,13 @@
 
 ## 安装部署
 
-说明：示例 Fluentd 版本为： td-agent 4.2.0 (CentOS)，各个不同版本指标可能存在差异
+说明：示例 Fluentd 版本为 td-agent 4.2.0 (CentOS)，各个不同版本指标可能存在差异。
 
 ### 前置条件
 
 - <[安装 DataKit](../../datakit/datakit-install.md)>
-- 服务器 <[安装 Func 携带版](../../dataflux-func/quick-start.md)>
-- Fluentd有一个监控代理，可以通过HTTP检索JSON格式的内部指标。
+- 服务器 <[安装 DataFlux Func 携带版](../../dataflux-func/quick-start.md)>
+- Fluentd 有一个监控代理，可以通过 HTTP 检索 JSON 格式的内部指标。
 
 将以下行添加到您的 Fluentd 中开启的 plugin 插件配置文件中：
 
@@ -145,13 +145,14 @@ defget_fluentd_metrics():
        print("插入失败！")
 ```
 
-可以根据开启的 Fluentd plugin 的数量动态调整任务数，每一个 plugin 就需要将该段代码复制粘贴一份更改response = requests.get("[http://172.17.0.1:24220/api/plugins.json")](http://172.17.0.1:24220/api/plugins.json%22)) 中的API 端口链接配置为 Fluentd 中配置开启 Monitor source 中的端口，并且同时配置定时调度完成指标收集
+可以根据开启的 Fluentd plugin 的数量动态调整任务数，每一个 plugin 就需要将该段代码复制粘贴一份更改 response = requests.get("[http://172.17.0.1:24220/api/plugins.json")](http://172.17.0.1:24220/api/plugins.json%22)) 中的API 端口链接配置为 Fluentd 中配置开启 Monitor source 中的端口，并且同时配置定时调度完成指标收集。
 
 5、 在管理中新建自动触发执行进行函数调度  
 
 ![image](../imgs/input-fluentd-metrics-5.png)
 
-选择刚刚编写好的执行函数设置定时任务，添加有效期有点击保存即可<br />定时任务最短1分钟触发一次，如果有特殊需求可以使用while + sleep的方式来提高数据采集频率
+选择刚刚编写好的执行函数设置定时任务，添加有效期有点击保存即可。<br />
+定时任务最短1分钟触发一次，如果有特殊需求可以使用 while + sleep 的方式来提高数据采集频率。
 
 6、 通过自动触发配置查看函数运行状态
 
@@ -159,7 +160,7 @@ defget_fluentd_metrics():
 
 ![image](../imgs/input-fluentd-metrics-7.png)
 
-如果显示已成功，那么恭喜您可以去studio中查看您上报的指标了
+如果显示已成功，那么恭喜您可以去 Studio 中查看您上报的指标了。
 
 7、 DQL 验证
 
@@ -202,17 +203,18 @@ buffer_available_buffer_space_ratios 100
 
 | 序号 | 规则名称 | 触发条件 | 级别 | 检测频率 |
 | --- | --- | --- | --- | --- |
-| 1 | Fluentd 剩余缓冲区的可用空间 | Fluentd 剩余缓冲区的可用空间使用率 <  10% | 紧急 | 1m |
+| 1 | <div style="width:180px">Fluentd 剩余缓冲区的可用空间</div> | <div style="width:250px">Fluentd 剩余缓冲区的可用空间使用率 < 10%</div> | 紧急 | 1m |
 | 2 | Fluentd 的 plugin 重试数过多 | Fluentd 的 plugin 重试数 > 10 | 紧急 | 1m |
 
 
 
 ## 指标详解
 
-| **fluentd.retry_count** | Plugin的重试次数。 |
+| **指标** | 描述 |
 | --- | --- |
-| **fluentd.buffer_queue_length** | Plugin的缓冲区队列的长度。 |
-| **fluentd.buffer_total_queued_size** | Plugin的缓冲区队列的大小。 |
+| **fluentd.retry_count** | Plugin的重试次数 |
+| **fluentd.buffer_queue_length** | Plugin的缓冲区队列的长度 |
+| **fluentd.buffer_total_queued_size** | Plugin的缓冲区队列的大小 |
 | **fluentd.emit_records** | Plugin发出的记录总数 |
 | **fluentd.emit_count** | Plugin输出插件中的发出事件总数 |
 | **fluentd.write_count** | 输出插件中的write/try_write调用总数 |

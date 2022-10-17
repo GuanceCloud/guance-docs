@@ -30,8 +30,8 @@ Consul 性能指标展示，包括监控状态、集群中服务数量、集群�
 ## 安装配置
 
 说明：<br />
-示例 Consul 版本为：[consul:1.9.9](https://releases.hashicorp.com/consul/1.9.9/consul_1.9.9_linux_amd64.zip)(CentOS环境)，各个不同版本指标可能存在差异。<br />
-示例consul_exporter版本是：[consul_exporter-0.7.1](https://github.com/prometheus/consul_exporter/releases/download/v0.7.1/consul_exporter-0.7.1.linux-amd64.tar.gz)。
+示例 Consul 版本为 [consul:1.9.9](https://releases.hashicorp.com/consul/1.9.9/consul_1.9.9_linux_amd64.zip)(CentOS环境)，各个不同版本指标可能存在差异。<br />
+示例 consul_exporter 版本是 [consul_exporter-0.7.1](https://github.com/prometheus/consul_exporter/releases/download/v0.7.1/consul_exporter-0.7.1.linux-amd64.tar.gz)。
 
 ### 部署实施
 

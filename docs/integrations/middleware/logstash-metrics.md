@@ -4,6 +4,8 @@
 
 ## 视图预览
 
+Logstash 收集的指标包括节点统计信息，例如 JVM 统计信息、进程统计信息、事件相关统计信息和 Pipeline 运行时统计信息等。<br />
+
 ![image](../imgs/input-logstash-metrics-1.png)
 
 ## 版本支持
@@ -12,15 +14,14 @@
 
 ## 安装部署
 
-说明：示例 Logstash 版本为： logstash 7.11.x (CentOS)，各个不同版本指标可能存在差异。
+说明：示例 Logstash 版本为 logstash 7.11.x (CentOS)，各个不同版本指标可能存在差异。
 
 ### 前置条件
 
 - <[安装 DataKit](../../datakit/datakit-install.md)>
-- 服务器 <[安装 Func 携带版](../../dataflux-func/quick-start.md)>
+- 服务器 <[安装 DataFlux Func 携带版](../../dataflux-func/quick-start.md)>
 - 当在运行 Logstash 时，Logstash会自动捕获运行时指标，您可以使用这些指标来监控 Logstash 部署的运行状况和性能。
 
-Logstash 收集的指标包括：节点统计信息，例如 JVM 统计信息、进程统计信息、事件相关统计信息和 Pipeline 运行时统计信息等。<br />
 您可以使用根资源来检索有关 Logstash 实例的一般信息，包括主机和版本来检验您的 Logstash 的运行状态。
 
 ```bash
@@ -206,7 +207,7 @@ def get_logstash_metrics():
 
 ![image](../imgs/input-logstash-metrics-5.png)
 
-选择刚刚编写好的执行函数设置定时任务，添加有效期有点击保存即可<br />定时任务最短1分钟触发一次，如果有特殊需求可以使用while + sleep的方式来提高数据采集频率
+选择刚刚编写好的执行函数设置定时任务，添加有效期有点击保存即可。<br />定时任务最短1分钟触发一次，如果有特殊需求可以使用 while + sleep 的方式来提高数据采集频率。
 
 6、 通过自动触发配置查看函数运行状态
 
@@ -313,69 +314,72 @@ pipeline_plugins_inputs_events_queue_push_duration_in_millis 0
 
 
 ## 指标详解
-| **logstash_health_runtime_status** | **logstash运行状态** |
+| **指标** | **描述** |
 | --- | --- |
-| ** | **此进程使用的打开文件描述符的数量。** |
-| **logstash_process_peak_open_file_descriptors** | **此进程使用的打开文件描述符的峰值数。** |
-| ** | **此进程使用的最大文件描述符数。** |
-| ** | **分配给此进程的总虚拟内存。(单位：byte)** |
-| ** | **CPU 时间（以毫秒为单位）。(单位：ms)** |
-| ** | **CPU 利用率百分比。（单位：%）** |
-| ** | **一分钟内的平均 CPU 负载。** |
-| ** | **五分钟内的平均 CPU 负载** |
-| ** | **十五分钟内的平均 CPU 负载。** |
-| ** | **JVM 使用的线程数。（单位：个）** |
-| ** | **JVM 使用的峰值线程数。** |
-| ** | **使用的总 Java 堆内存。（单位：%）** |
-| ** | **已提交的 Java 堆内存总量。(单位：byte)** |
-| ** | **最大 Java 堆内存大小。(单位：byte)** |
-| ** | **使用的总 Java 堆内存。(单位：byte)** |
-| ** | **使用的 Java 非堆内存总量。(单位：byte)** |
-| ** | **已提交的 Java 非堆内存总量。(单位：byte)** |
-| ** | **Survivor 空间中使用的 Java 内存。(单位：byte)** |
-| ** | **Survivor 空间中使用的峰值 Java 内存。(单位：byte)** |
-| ** | **Survivor 空间中使用的最大 Java 内存峰值。(单位：byte)** |
-| ** | **Survivor 空间中使用的最大 Java 内存。(单位：byte)** |
-| ** | **Survivor 空间中使用的已提交 Java 内存。(单位：byte)** |
-| ** | **老年代中使用的峰值 Java 内存。(单位：byte)** |
-| ** | **老年代中使用的 Java 内存。(单位：byte)** |
-| ** | **老年代使用的最大 Java 内存峰值。(单位：byte)** |
-| ** | **老年代使用的最大 Java 内存。(单位：byte)** |
-| ** | **老年代中使用的已提交 Java 内存。(单位：byte)** |
-| ** | **年轻代空间中使用的峰值 Java 内存。(单位：byte)** |
-| ** | **年轻代使用的 Java 内存。(单位：byte)** |
-| ** | **年轻代使用的最大 Java 内存峰值。(单位：byte)** |
-| ** | **年轻代使用的最大 Java 内存。(单位：byte)** |
-| ** | **年轻代使用的已提交 Java 内存。(单位：byte)** |
-| ** | **老年代花费的垃圾收集时间。(单位： ms)** |
-| ** | **老年代的垃圾收集计数。** |
-| ** | **年轻代花费的垃圾收集时间。(单位：ms)** |
-| ** | **年轻代花费的垃圾收集时间。** |
-| ** | **成功的配置重新加载次数。** |
-| ** | **失败的配置重新加载次数。** |
-| **pipeline_workers** | **实际output 时的线程数** |
-| **pipeline_batch_size** | **每次发送的事件数** |
-| **pipeline_batch_delay** | **每次发送的事件发送延时** |
-| ** | **死信pipeline的总大小。(单位：byte)** |
-| ** | **pipeline中的事件持续时间。(单位：ms)** |
-| ** | **进入pipeline的事件数。** |
-| ** | **pipeline中的事件数。** |
-| ** | **过滤的事件数。** |
-| ** | **成功的pipeline重新加载次数。** |
-| ** | **失败的pipeline重新加载次数。** |
-| ** | **从输入插件输出的事件数。** |
-| ** | **输入插件中pipeline推送的持续时间。(单位：ms)** |
-| ** | **输出插件中的事件数。** |
-| ** | **从输出插件输出的事件数。** |
-| ** | **输出插件中事件的持续时间。(单位：ms)** |
-| ** | **过滤器插件中的事件数。** |
-| ** | **过滤器插件中的事件数。** |
-| ** | **过滤器插件中事件的持续时间。(单位：ms)** |
-| ** | **持久队列的最大队列容量。(单位：byte)** |
-| ** | **持久队列中允许的最大未读事件。** |
-| ** | **持久队列的队列页面容量。(单位：byte)** |
-| ** | **以持久队列的字节数使用的磁盘。(单位：byte)** |
-| ** | **持久队列中的事件数。** |
+| logstash_health_runtime_status | logstash运行状态 |
+| logstash_process_open_file_descriptors | 此进程使用的打开文件描述符的数量 |
+| logstash_process_peak_open_file_descriptors | 此进程使用的打开文件描述符的峰值数 |
+| logstash_process_max_file_descriptors | 此进程使用的最大文件描述符数 |
+| logstash_process_mem_total_virtual_in_bytes | 分配给此进程的总虚拟内存(单位：byte) |
+| logstash_process_cpu_total_in_millis | CPU 时间(单位：ms)|
+| logstash_process_cpu_percent | CPU 利用率百分比（单位：%) |
+| logstash_process_cpu_load_average_1m | 一分钟内的平均 CPU 负载 |
+| logstash_process_cpu_load_average_5m | 五分钟内的平均 CPU 负载 |
+| logstash_process_cpu_load_average_15m | 十五分钟内的平均 CPU 负载 |
+| logstash_jvm_threads_count | VM 使用的线程数（单位：个） |
+| logstash_jvm_threads_peak_count | VM 使用的峰值线程数 |
+| logstash_jvm_mem_heap_used_percent | 使用的总 Java 堆内存（单位：%） |
+| logstash_jvm_mem_heap_committed_in_bytes | 已提交的 Java 堆内存总量(单位：byte) |
+| logstash_jvm_mem_heap_max_in_bytes | 最大 Java 堆内存大小(单位：byte) |
+| logstash_jvm_mem_heap_used_in_bytes | 使用的总 Java 堆内存(单位：byte) |
+| logstash_jvm_mem_non_heap_used_in_bytes | 使用的 Java 非堆内存总量(单位：byte) |
+| logstash_jvm_mem_non_heap_committed_in_bytes | 已提交的 Java 非堆内存总量(单位：byte) |
+| logstash_jvm_mem_pools_survivor_peak_used_in_bytes | Survivor 空间中使用的 Java 内存(单位：byte) |
+| logstash_jvm_mem_pools_survivor_used_in_bytes | Survivor 空间中使用的峰值 Java 内存(单位：byte) |
+| logstash_jvm_mem_pools_survivor_peak_max_in_bytes | Survivor 空间中使用的最大 Java 内存峰值(单位：byte) |
+| logstash_jvm_mem_pools_survivor_max_in_bytes | Survivor 空间中使用的最大 Java 内存(单位：byte) |
+| logstash_jvm_mem_pools_survivor_committed_in_bytes | Survivor 空间中使用的已提交 Java 内存(单位：byte) |
+| logstash_jvm_mem_pools_old_peak_used_in_bytes | 老年代中使用的峰值 Java 内存(单位：byte) |
+| logstash_jvm_mem_pools_old_used_in_bytes | 老年代中使用的 Java 内存(单位：byte) |
+| logstash_jvm_mem_pools_old_peak_max_in_bytes | 老年代使用的最大 Java 内存峰值(单位：byte) |
+| logstash_jvm_mem_pools_old_max_in_bytes | 老年代使用的最大 Java 内存(单位：byte) |
+| logstash_jvm_mem_pools_old_committed_in_bytes | 老年代中使用的已提交 Java 内存(单位：byte) |
+| logstash_jvm_mem_pools_young_peak_used_in_bytes | 年轻代空间中使用的峰值 Java 内存(单位：byte) |
+| logstash_jvm_mem_pools_young_used_in_bytes | 年轻代使用的 Java 内存(单位：byte) |
+| logstash_jvm_mem_pools_young_peak_max_in_bytes | 年轻代使用的最大 Java 内存峰值(单位：byte) |
+| logstash_jvm_mem_pools_young_max_in_bytes | 年轻代使用的最大 Java 内存(单位：byte) |
+| logstash_jvm_mem_pools_young_committed_in_bytes | 年轻代使用的已提交 Java 内存(单位：byte) |
+| logstash_jvm_gc_collectors_old_collection_time_in_millis | 老年代花费的垃圾收集时间(单位： ms) |
+| logstash_jvm_gc_collectors_old_collection_count | 老年代的垃圾收集计数 |
+| logstash_jvm_gc_collectors_young_collection_time_in_millis | 年轻代花费的垃圾收集时间(单位：ms) |
+| logstash_jvm_gc_collectors_young_collection_count | 年轻代花费的垃圾收集时间 |
+| logstash_reloads_successes | 成功的配置重新加载次数 |
+| logstash_reloads_failures | 失败的配置重新加载次数 |
+| pipeline_workers | 实际output 时的线程数 |
+| pipeline_batch_size | 每次发送的事件数 |
+| pipeline_batch_delay | 每次发送的事件发送延时 |
+| logstash_pipeline_dead_letter_queue_queue_size_in_bytes | 死信pipeline的总大小(单位：byte) |
+| logstash_pipeline_events_duration_in_millis | pipeline中的事件持续时间(单位：ms) |
+| logstash_pipeline_events_in | 进入pipeline的事件数 |
+| logstash_pipeline_events_out | pipeline中的事件数 |
+| logstash_pipeline_events_filtered | 过滤的事件数 |
+| logstash_pipeline_reloads_successes | 成功的pipeline重新加载次数 |
+| logstash_pipeline_reloads_failures | 失败的pipeline重新加载次数 |
+| logstash_pipeline_plugins_inputs_events_out | 从输入插件输出的事件数 |
+| logstash_pipeline_plugins_inputs_events_queue_push_duration_in_millis | 输入插件中pipeline推送的持续时间。(单位：ms) |
+| logstash_pipeline_plugins_outputs_events_in | 输出插件中的事件数 |
+| logstash_pipeline_plugins_outputs_events_out | 从输出插件输出的事件数 |
+| logstash_pipeline_plugins_outputs_events_duration_in_millis | 输出插件中事件的持续时间(单位：ms) |
+| logstash_pipeline_plugins_filters_events_in | 过滤器插件中的事件数 |
+| logstash_pipeline_plugins_filters_events_out | 过滤器插件中的事件数 |
+| logstash_pipeline_plugins_filters_events_duration_in_millis | 过滤器插件中事件的持续时间(单位：ms) |
+| logstash_pipeline_queue_capacity_max_queue_size_in_bytes | 持久队列的最大队列容量(单位：byte) |
+| logstash_pipeline_queue_capacity_max_unread_events | 持久队列中允许的最大未读事件 |
+| logstash_pipeline_queue_capacity_page_capacity_in_bytes | 持久队列的队列页面容量(单位：byte) |
+| logstash_pipeline_queue_capacity_queue_size_in_bytes | 以持久队列的字节数使用的磁盘(单位：byte) |
+| logstash_pipeline_queue_events | 持久队列中的事件数 |
+
+
 
 ## 最佳实践
 
