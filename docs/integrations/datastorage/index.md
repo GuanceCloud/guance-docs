@@ -1,11 +1,11 @@
 # 数据存储
 ---
 
-[DataKit](/datakit/) 是观测云中至关重要的一个数据采集组件，几乎所有观测云中的数据都是来源于 DataKit。
+[DataKit](../../datakit/) 是观测云中至关重要的一个数据采集组件，几乎所有观测云中的数据都是来源于 DataKit。
 
 <br/>
 
-**对于数据存储的数据采集，需首先[安装 DataKit](/datakit/datakit-install/)：**
+**对于数据存储的数据采集，需首先[安装 DataKit](../../datakit/datakit-install.md)：**
 
 - 安装 DataKit 之后，用户可以根据实际需求，自定义开启丰富的数据采集插件；
 
@@ -22,6 +22,6 @@
 
 <br/>
 
-**开始[安装 DataKit](/datakit/datakit-install/)，开启你的观测云之旅！**
+**开始[安装 DataKit](../../datakit/datakit-install.md)，开启你的观测云之旅！**
 
 
