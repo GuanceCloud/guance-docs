@@ -2,6 +2,14 @@
 icon: zy/best-practices
 ---
 
+## (2022/10/17)
+
+### 新增最佳实践
+
+- 云原生
+    - 日志 - [观测云采集 Amazon ECS 日志](./cloud-native/amazon-ecs.md)。
+
+
 ## (2022/10/08)
 
 ### 新增最佳实践
