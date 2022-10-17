@@ -4,13 +4,13 @@
 
 ## 视图预览
 
-![image](imgs/input-aliyun-edas-01.png)
+![image](../imgs/input-aliyun-edas-01.png)
 
-![image](imgs/input-aliyun-edas-02.png)
+![image](../imgs/input-aliyun-edas-02.png)
 
-![image](imgs/input-aliyun-edas-03.png)
+![image](../imgs/input-aliyun-edas-03.png)
 
-![image](imgs/input-aliyun-edas-04.png)
+![image](../imgs/input-aliyun-edas-04.png)
 
 ## 版本支持
 
@@ -19,7 +19,7 @@ EDAS 环境：ECS 集群，Java 运行环境 (Jar 包部署方式)
 
 ## 前置条件
 
-- EDAS 中每台 ECS <[安装 Datakit](../datakit/datakit-install.md)>
+- EDAS 中每台 ECS <[安装 Datakit](../../datakit/datakit-install.md)>
 
 ## 安装配置
 
@@ -31,11 +31,11 @@ EDAS 环境：ECS 集群，Java 运行环境 (Jar 包部署方式)
 
 2、 **应用列表** - 选择应用名称 
 
-![image](imgs/input-aliyun-edas-05.png)
+![image](../imgs/input-aliyun-edas-05.png)
 
 3、 **基本信息** - 编辑 **JVM 参数**
 
-![image](imgs/input-aliyun-edas-06.png)
+![image](../imgs/input-aliyun-edas-06.png)
 
 4、 **选择自定义**，填入 javaagent 参数，修改完成点击 **配置 JVM 参数**
 
@@ -49,11 +49,11 @@ EDAS 环境：ECS 集群，Java 运行环境 (Jar 包部署方式)
 -javaagent:/usr/local/datakit/data/dd-java-agent.jar -Ddd.service.name=service.name -Ddd.agent.port=9529 
 ```
 
-![image](imgs/input-aliyun-edas-07.png)
+![image](../imgs/input-aliyun-edas-07.png)
 
 5、 选择**实例部署信息**，重启应用
 
-![image](imgs/input-aliyun-edas-08.png)
+![image](../imgs/input-aliyun-edas-08.png)
 
 ## 场景视图
 
@@ -81,11 +81,11 @@ EDAS 环境：ECS 集群，Java 运行环境 (Jar 包部署方式)
 
 1、 查看应用变更记录
 
-![image](imgs/input-aliyun-edas-09.png)
+![image](../imgs/input-aliyun-edas-09.png)
 
 2、 查看应用日志详情
 
-![image](imgs/input-aliyun-edas-10.png)
+![image](../imgs/input-aliyun-edas-10.png)
 
 ## 进一步阅读
 

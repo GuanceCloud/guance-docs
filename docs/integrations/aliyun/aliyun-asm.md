@@ -6,15 +6,15 @@
 
 ASM 性能指标展示，包括 Incoming Request Volume、 Incoming Success Rate、 Incoming Request Size By Source、 Response Size By Source 等。
 
-![image](imgs/input-aliyun-asm-1.png)
+![image](../imgs/input-aliyun-asm-1.png)
 
-![image](imgs/input-aliyun-asm-2.png)
+![image](../imgs/input-aliyun-asm-2.png)
 
-![image](imgs/input-aliyun-asm-3.png)
+![image](../imgs/input-aliyun-asm-3.png)
 
-![image](imgs/input-aliyun-asm-4.png)
+![image](../imgs/input-aliyun-asm-4.png)
 
-![image](imgs/input-aliyun-asm-5.png)
+![image](../imgs/input-aliyun-asm-5.png)
 
 ## 版本支持
 
@@ -25,10 +25,10 @@ Istio 版本：v1.11.5.41-g10eacaaf-aliyun、v1.24.4.20-g4d72612f-aliyun
 ## 前置条件
 
 - 已创建一个 ACK 集群。如果没有创建，请参见[创建 Kubernetes 专有版集群](https://help.aliyun.com/document_detail/86488.htm#task-skz-qwk-qfb)和[创建 Kubernetes 托管版集群](https://help.aliyun.com/document_detail/95108.htm#task-skz-qwk-qfb)。
-- 已部署 DataKit，请参考 [Kubernetes](../datakit/datakit-daemonset-deploy.md)。
+- 已部署 DataKit，请参考 [Kubernetes](../../datakit/datakit-daemonset-deploy.md)。
 - 已创建一个 ASM 实例。如果没有创建，请参见[创建 ASM 实例](https://help.aliyun.com/document_detail/147793.htm#task-2370657)。**注意，创建新网格时，请选择自行搭建 Zipkin。**
 
-![image](imgs/input-aliyun-asm-6.png)
+![image](../imgs/input-aliyun-asm-6.png)
 
 ## 安装配置
 
@@ -52,7 +52,7 @@ Istio 版本：v1.11.5.41-g10eacaaf-aliyun、v1.24.4.20-g4d72612f-aliyun
 
 （2）点击「**添加**」后，再点「**确定**」。
 
-![image](imgs/input-aliyun-asm-7.png)
+![image](../imgs/input-aliyun-asm-7.png)
 
 2、 开启 Zipkin 采集器
 
@@ -655,24 +655,24 @@ kubectl apply -f bookinfo.yaml
 
 指标预览
 
-![image](imgs/input-aliyun-asm-8.png)
+![image](../imgs/input-aliyun-asm-8.png)
 
 #### APM 采集 (必选)
 
 新增 ASM 时，如果选择了**自行搭建 Zipkin**，则链路数据会被打到 **zipkin.istio-system** 的 Service 上，且上报端口是 9411。<br />
-在部署 DataKit 时已开通链路指标采集的 Zipkin 采集器，由于 DataKit 服务的名称空间是 datakit，端口是 9529，所以这里需要做一下转换。详情请参考[Kubernetes 集群使用 ExternalName 映射 DataKit 服务](../best-practices/cloud-native/kubernetes-external-name.md)。<br />
+在部署 DataKit 时已开通链路指标采集的 Zipkin 采集器，由于 DataKit 服务的名称空间是 datakit，端口是 9529，所以这里需要做一下转换。详情请参考[Kubernetes 集群使用 ExternalName 映射 DataKit 服务](../../best-practices/cloud-native/kubernetes-external-name.md)。<br />
 
 创建后的 Service 如下图：
 
-![image](imgs/input-aliyun-asm-9.png)
+![image](../imgs/input-aliyun-asm-9.png)
 
-![image](imgs/input-aliyun-asm-10.png)
+![image](../imgs/input-aliyun-asm-10.png)
 
 链路预览
 
-![image](imgs/input-aliyun-asm-11.png)
+![image](../imgs/input-aliyun-asm-11.png)
 
-![image](imgs/input-aliyun-asm-12.png)
+![image](../imgs/input-aliyun-asm-12.png)
 
 #### 日志采集 (非必选)
 
@@ -681,7 +681,7 @@ DataKit 默认的配置，采集容器输出到 `/dev/stdout` 的日志。
 
 日志预览
 
-![image](imgs/input-aliyun-asm-13.png)
+![image](../imgs/input-aliyun-asm-13.png)
 
 #### 插件标签 (非必选)
 
@@ -725,10 +725,10 @@ DataKit 默认的配置，采集容器输出到 `/dev/stdout` 的日志。
 
 ## 常见问题排查
 
-<[无数据上报排查](../datakit/why-no-data.md)>
+<[无数据上报排查](../../datakit/why-no-data.md)>
 
 ## 进一步阅读 {#further-reading}
 
-<[Pod 日志采集最佳实践](../best-practices/cloud-native/pod-log.md)>
+<[Pod 日志采集最佳实践](../../best-practices/cloud-native/pod-log.md)>
 
-<[Kubernetes 集群中日志采集的几种玩法](../best-practices/cloud-native/k8s-logs.md)>
+<[Kubernetes 集群中日志采集的几种玩法](../../best-practices/cloud-native/k8s-logs.md)>
