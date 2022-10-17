@@ -1,10 +1,9 @@
-
 # HAProxy
 ---
 
 ## 视图预览
 
-HAProxy 指标展示，包括服务状态，网络流量，队列信息，会话等
+HAProxy 指标展示，包括服务状态、网络流量、队列信息、会话等。
 
 ![image](../imgs/input-haproxy-1.png)
 
@@ -14,13 +13,13 @@ HAProxy 指标展示，包括服务状态，网络流量，队列信息，会话
 
 ## 版本支持
 
-操作系统支持：Linux / Windows 
+操作系统支持：Linux / Windows
 
 ## 前置条件
 
-- 服务器 <[安装 Datakit](../../datakit/datakit-install.md)>
+- 服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
 - 服务器安装 Telegraf
-- HAProxy 开启 stats 页面
+- HAProxy 开启 Stats 页面
 
 ### 安装 Telegraf
 
@@ -39,13 +38,13 @@ gpgkey = https://repos.influxdata.com/influxdb.key
 EOF
 ```
 
-2、 安装 telegraf
+2、 安装 Telegraf
 
 ```
 yum -y install telegraf
 ```
 
-3、 开启 haproxy stats 页面，编辑 /etc/haproxy/haproxy.cfg (以实际文件为准)
+3、 开启 HAProxy Stats 页面，编辑 `/etc/haproxy/haproxy.cfg` (以实际文件为准)
 
 主要参数说明
 
@@ -64,7 +63,7 @@ listen stats
     stats refresh 30s
 ```
 
-4、 重启 haproxy
+4、 重启 HAProxy
 
 ```
 systemctl restart haproxy
@@ -72,19 +71,19 @@ systemctl restart haproxy
 
 ## 安装配置
 
-说明：示例 Linux 版本为：CentOS Linux release 7.8.2003 (Core)，Windows 版本请修改对应的配置文件
+说明：示例 Linux 版本为：CentOS Linux release 7.8.2003 (Core)，Windows 版本请修改对应的配置文件。
 
 ### 部署实施
 
 #### 指标采集 (必选)
 
-1、 数据上传至 datakit，修改主配置文件 telegraf.conf
+1、 数据上传至 DataKit，修改主配置文件 `telegraf.conf`
 
 ```
 vi /etc/telegraf/telegraf.conf
 ```
 
-2、 关闭 influxdb，开启 outputs.http (修改对应的行)
+2、 关闭 InfluxDB ，开启 outputs.http (修改对应的行)
 
 ```
 #[[outputs.influxdb]]
@@ -92,7 +91,7 @@ vi /etc/telegraf/telegraf.conf
 url = "http://127.0.0.1:9529/v1/write/metric?input=telegraf"
 ```
 
-3、 关闭主机检测 (否则会与 datakit 冲突)
+3、 关闭主机检测 (否则会与 DataKit 冲突)
 
 ```
 #[[inputs.cpu]]
@@ -109,7 +108,7 @@ url = "http://127.0.0.1:9529/v1/write/metric?input=telegraf"
 #[[inputs.system]]
 ```
 
-4、 开启 haproxy 检测
+4、 开启 HAProxy 检测
 
 主要参数说明
 
@@ -151,7 +150,7 @@ systemctl start telegraf
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，所有 haproxy 指标都会带有 app = oa 的标签，可以进行快速查询
+- 以下示例配置完成后，所有 HAProxy 指标都会带有 `app = "oa"` 的标签，可以进行快速查询
 - 相关文档 <[DataFlux Tag 应用最佳实践](../../best-practices/insight/tag.md)>
 
 ```
@@ -168,7 +167,7 @@ systemctl restart telegraf
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - HAProxy>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - HAProxy 监控视图>
 
 ## 检测库
 
@@ -176,35 +175,33 @@ systemctl restart telegraf
 
 ## 指标详解
 
-| 指标 | 描述 | 数据类型 |
-| --- | --- | --- |
-| act | 是否活动 | int |
-| bck | 备用 | int |
-| bin | 入口流量 | int |
-| bout | 出口流量 | int |
-| chkfail | 检查失败 | int |
-| chkdown | 检查宕机 | int |
-| downtime | 宕机时间 | int |
-| qlimit | 队列限制 | int |
-| dreq | 拒绝的请求 | int |
-| dresp | 拒绝的响应 | int |
-| ereq | 错误请求 | int |
-| econ | 错误链接 | int |
-| eresp | 错误响应 | int |
-| wretr | 警告重试次数 | int |
-| status | 服务器状态 | string |
-| weight | 权重 | int |
-| pxname | 组名 | int |
-| svname | 服务器名 | int |
-| qcur | 当前队列 | int |
-| qmax | 最大队列 | int |
-| scur | 当前会话用户 | int |
-| smax | 最大会话用户 | int |
-| slim | 会话限制 | int |
-| stot | 会话总量 | int |
+| 指标     | 描述         | 数据类型 |
+| -------- | ------------ | -------- |
+| act      | 是否活动     | int      |
+| bck      | 备用         | int      |
+| bin      | 入口流量     | int      |
+| bout     | 出口流量     | int      |
+| chkfail  | 检查失败     | int      |
+| chkdown  | 检查宕机     | int      |
+| downtime | 宕机时间     | int      |
+| qlimit   | 队列限制     | int      |
+| dreq     | 拒绝的请求   | int      |
+| dresp    | 拒绝的响应   | int      |
+| ereq     | 错误请求     | int      |
+| econ     | 错误链接     | int      |
+| eresp    | 错误响应     | int      |
+| wretr    | 警告重试次数 | int      |
+| status   | 服务器状态   | string   |
+| weight   | 权重         | int      |
+| pxname   | 组名         | int      |
+| svname   | 服务器名     | int      |
+| qcur     | 当前队列     | int      |
+| qmax     | 最大队列     | int      |
+| scur     | 当前会话用户 | int      |
+| smax     | 最大会话用户 | int      |
+| slim     | 会话限制     | int      |
+| stot     | 会话总量     | int      |
 
 ## 常见问题排查
 
 <[无数据上报排查](../../datakit/why-no-data.md)>
-
-
