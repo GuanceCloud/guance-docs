@@ -1,0 +1,6 @@
+nav:
+  - index.md
+  - 'CDB': cdb.md
+  - 'CLB': clb.md
+  - 'COS': cos.md
+  - 'CVM': cvm.md

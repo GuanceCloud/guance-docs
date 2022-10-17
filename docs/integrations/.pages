@@ -35,11 +35,7 @@ nav:
     - 'SLS': aliyun-sls.md
     - '费用': aliyun-charges.md
 
-  - '腾讯云':
-    - 'CDB': cdb.md
-    - 'CLB': clb.md
-    - 'COS': cos.md
-    - 'CVM': cvm.md
+  - '腾讯云': tencent-cloud
 
   - 'CICD':
     - 'GitLab': gitlab.md
