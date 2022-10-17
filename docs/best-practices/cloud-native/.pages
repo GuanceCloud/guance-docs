@@ -25,6 +25,7 @@ nav:
     - Logback Socket 日志采集最佳实践: logback-socket.md
     - 观测云日志采集分析最佳实践: logs.md
     - Kubernetes 集群日志上报到同节点的 DataKit 最佳实践: log-report-one-node.md
+    - 观测云采集 Amazon ECS 日志: amazon-ecs.md
 
   - '存储 (Storage)':
     - 'Minio 可观测最佳实践': minio.md
