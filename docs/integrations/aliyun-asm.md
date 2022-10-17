@@ -1,10 +1,10 @@
-
 # ASM
+
 ---
 
 ## 视图预览
 
-ASM 性能指标展示：Incoming Request Volume、Incoming Success Rate、Incoming Request Size By Source、Response Size By Source 等。
+ASM 性能指标展示，包括 Incoming Request Volume、 Incoming Success Rate、 Incoming Request Size By Source、 Response Size By Source 等。
 
 ![image](imgs/input-aliyun-asm-1.png)
 
@@ -26,7 +26,7 @@ Istio 版本：v1.11.5.41-g10eacaaf-aliyun、v1.24.4.20-g4d72612f-aliyun
 
 - 已创建一个 ACK 集群。如果没有创建，请参见[创建 Kubernetes 专有版集群](https://help.aliyun.com/document_detail/86488.htm#task-skz-qwk-qfb)和[创建 Kubernetes 托管版集群](https://help.aliyun.com/document_detail/95108.htm#task-skz-qwk-qfb)。
 - 已部署 DataKit，请参考 [Kubernetes](../datakit/datakit-daemonset-deploy.md)。
-- 已创建一个 ASM 实例。如果没有创建，请参见[创建 ASM 实例](https://help.aliyun.com/document_detail/147793.htm#task-2370657)。**注意**，创建新网格时，请选择 **自行搭建 Zipkin**。
+- 已创建一个 ASM 实例。如果没有创建，请参见[创建 ASM 实例](https://help.aliyun.com/document_detail/147793.htm#task-2370657)。**注意，创建新网格时，请选择自行搭建 Zipkin。**
 
 ![image](imgs/input-aliyun-asm-6.png)
 
@@ -38,33 +38,35 @@ Istio 版本：v1.11.5.41-g10eacaaf-aliyun、v1.24.4.20-g4d72612f-aliyun
 
 #### 指标采集 (必选)
 
-1、 开通 Sidecar 注入
+1、 开通 Sidecar 注入<br />
+（1）为集群中的 Namespace 设置 Sidecar 自动注入，在该 Namespace 下，新创建的 Pod 就会注入一个 Envoy容器用来接管流量。开通方式是为 Namespace 添加标签，下面以 default 名称空间为例：
 
-     为集群中的 namespace 设置 sidecar 自动注入，在该 namespace 下，新创建的 Pod 就会注入一个 Envoy容器用来接管流量。开通方式是为 namespace 添加标签，下面以 default 名称空间为例。
+- 登录[容器服务管理控制台](https://cs.console.aliyun.com/?spm=a2c4g.11186623.0.0.1b483e068AVz8k)
+- 在控制台左侧导航栏中，单击「**集群**」
+- 在「**集群列表**」页面中，单击目标集群名称或者目标集群右侧「**操作**」列下的「**详情**」
+- 在集群管理页左侧导航栏单击「**命名空间与配额**」
+- 在「**命名空间**」页面，单击「**创建**」
+- 在「**创建命名空间**」对话框中，名称输入 `default`
+    - 在「**变量名称**」文本框中输入 `istio-injection`
+    - 在「**变量值**」文本框中输入 `enabled`
 
-    - 登录[容器服务管理控制台](https://cs.console.aliyun.com/?spm=a2c4g.11186623.0.0.1b483e068AVz8k)。
-    - 在控制台左侧导航栏中，单击**集群**。
-    - 在**集群列表**页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
-    - 在集群管理页左侧导航栏单击**命名空间与配额。**
-    - 在**命名空间**页面，单击**创建。**
-    - 在**创建命名空间**对话框中，名称输入 default。
-      a. 在**变量名称**文本框中输入 istio-injection。
-      b. 在**变量值**文本框中输入 enabled。
-
-点击**添加**后，再点**确定**。
+（2）点击「**添加**」后，再点「**确定**」。
 
 ![image](imgs/input-aliyun-asm-7.png)
 
 2、 开启 Zipkin 采集器
 
-登录 [观测云](https://console.guance.com/)，【集成】->【Datakit】-> 【Kubernetes】，请按照指引在 Kubernetes 集群中安装 DataKit ，其中部署使用的 datakit.yaml 文件，在接下来的操作中会使用到。<br />        在观测云的一个工作空间中，可能收到多个集群的采集数据，为了区分集群，使用全局 Tag 为这个集群增加 ** cluster_name 值为 k8s-ack** 的 Tag。Tag 请自定义，不同集群不能相同。
+登录 [观测云](https://console.guance.com/)，【集成】->【DataKit】->【Kubernetes】，请按照指引在 Kubernetes 集群中安装 DataKit ，其中部署使用的 `datakit.yaml` 文件，在接下来的操作中会使用到。<br /> 
+
+在观测云的一个工作空间中，可能收到多个集群的采集数据，为了区分集群，使用全局 Tag 为这个集群增加 **cluster_name 值为 k8s-ack** 的 Tag。<br /> 
+注意：Tag 请自定义，不同集群不能相同。
 
 ```bash
-        - name: ENV_GLOBAL_HOST_TAGS
-          value: host=__datakit_hostname,host_ip=__datakit_ip,cluster_name=k8s-ack
+    - name: ENV_GLOBAL_HOST_TAGS
+      value: host=__datakit_hostname,host_ip=__datakit_ip,cluster_name=k8s-ack
 ```
 
-观测云收集 ASM 的链路数据，需要开通 Zipkin 采集器，即在前置条件下载的 datakit.yaml 中的 ConfigMap 中增加：
+观测云收集 ASM 的链路数据，需要开通 Zipkin 采集器，即在前置条件下载的 `datakit.yaml` 中的 `ConfigMap` 中增加：
 
 ```yaml
 apiVersion: v1
@@ -72,22 +74,22 @@ kind: ConfigMap
 metadata:
   name: datakit-conf
   namespace: datakit
-data:  # 下面是新增部分
-    zipkin.conf: |-
-      [[inputs.zipkin]]
-        pathV1 = "/api/v1/spans"
-        pathV2 = "/api/v2/spans"
+data: # 下面是新增部分
+  zipkin.conf: |-
+    [[inputs.zipkin]]
+      pathV1 = "/api/v1/spans"
+      pathV2 = "/api/v2/spans"
 ```
 
-然后再把 zipkin.conf 挂载到 DataKit 的 /usr/local/datakit/conf.d/zipkin 目录：
+然后再把 `zipkin.conf` 挂载到 DataKit 的 `/usr/local/datakit/conf.d/zipkin` 目录：
 
 ```yaml
-        - mountPath: /usr/local/datakit/conf.d/zipkin/zipkin.conf
-          name: datakit-conf
-          subPath: zipkin.conf
+- mountPath: /usr/local/datakit/conf.d/zipkin/zipkin.conf
+  name: datakit-conf
+  subPath: zipkin.conf
 ```
 
-开通 istiod、ingressgateway 和 egressgateway 指标采集，其中 ingressgateway 和 egressgateway 需要 Service 支持，把下面的 yaml 文件在集群中执行。
+开通 Istiod、Ingressgateway 和 Egressgateway 指标采集，其中 Ingressgateway 和 Egressgateway 需要 Service 支持，把下面的 yaml 文件在集群中执行。
 
 ```yaml
 apiVersion: v1
@@ -97,10 +99,10 @@ metadata:
   namespace: istio-system
 spec:
   ports:
-  - name: http-monitoring
-    port: 15014
-    protocol: TCP
-    targetPort: 15014
+    - name: http-monitoring
+      port: 15014
+      protocol: TCP
+      targetPort: 15014
   selector:
     app: istiod
     istio: pilot
@@ -113,10 +115,10 @@ metadata:
   namespace: istio-system
 spec:
   ports:
-  - name: http-monitoring
-    port: 15020
-    protocol: TCP
-    targetPort: 15020
+    - name: http-monitoring
+      port: 15020
+      protocol: TCP
+      targetPort: 15020
   selector:
     app: istio-ingressgateway
     istio: ingressgateway
@@ -129,17 +131,17 @@ metadata:
   namespace: istio-system
 spec:
   ports:
-  - name: http-monitoring
-    port: 15020
-    protocol: TCP
-    targetPort: 15020
+    - name: http-monitoring
+      port: 15020
+      protocol: TCP
+      targetPort: 15020
   selector:
     app: istio-egressgateway
     istio: egressgateway
-  type: ClusterIP  
+  type: ClusterIP
 ```
 
-在 datakit.yaml 中的 ConfigMap 中增加：
+在 `datakit.yaml` 中的 `ConfigMap` 中增加：
 
 ```yaml
 apiVersion: v1
@@ -147,64 +149,64 @@ kind: ConfigMap
 metadata:
   name: datakit-conf
   namespace: datakit
-data:  # 下面是新增部分
-    prom_istiod.conf: |-    
-      [[inputs.prom]] 
-        url = "http://istiod.istio-system.svc.cluster.local:15014/metrics"
-        source = "prom-istiod"
-        metric_types = ["counter", "gauge"]
-        interval = "60s"
-        tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
-        metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
-        #measurement_prefix = ""
-        measurement_name = "istio_prom"
-        #[[inputs.prom.measurements]]
-        # prefix = "cpu_"
-        # name ="cpu"
-        [inputs.prom.tags]
-          app_id="istiod"
+data: # 下面是新增部分
+  prom_istiod.conf: |-
+    [[inputs.prom]] 
+      url = "http://istiod.istio-system.svc.cluster.local:15014/metrics"
+      source = "prom-istiod"
+      metric_types = ["counter", "gauge"]
+      interval = "60s"
+      tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
+      metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
+      #measurement_prefix = ""
+      measurement_name = "istio_prom"
+      #[[inputs.prom.measurements]]
+      # prefix = "cpu_"
+      # name ="cpu"
+      [inputs.prom.tags]
+        app_id="istiod"
 
-    prom-ingressgateway.conf: |- 
-        [[inputs.prom]] 
-          url = "http://istio-ingressgateway-ext.istio-system.svc.cluster.local:15020/stats/prometheus"
-          source = "prom-ingressgateway"
-          metric_types = ["counter", "gauge"]
-          interval = "60s"
-          tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
-          metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
-          #measurement_prefix = ""
-          measurement_name = "istio_prom"
-          #[[inputs.prom.measurements]]
-          # prefix = "cpu_"
-          # name ="cpu"
+  prom-ingressgateway.conf: |-
+    [[inputs.prom]] 
+      url = "http://istio-ingressgateway-ext.istio-system.svc.cluster.local:15020/stats/prometheus"
+      source = "prom-ingressgateway"
+      metric_types = ["counter", "gauge"]
+      interval = "60s"
+      tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
+      metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
+      #measurement_prefix = ""
+      measurement_name = "istio_prom"
+      #[[inputs.prom.measurements]]
+      # prefix = "cpu_"
+      # name ="cpu"
 
-    prom-egressgateway.conf: |- 
-        [[inputs.prom]] 
-          url = "http://istio-egressgateway-ext.istio-system.svc.cluster.local:15020/stats/prometheus"
-          source = "prom-egressgateway"
-          metric_types = ["counter", "gauge"]
-          interval = "60s"
-          tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
-          metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
-          #measurement_prefix = ""
-          measurement_name = "istio_prom"
-          #[[inputs.prom.measurements]]
-          # prefix = "cpu_"
-          # name ="cpu"
+  prom-egressgateway.conf: |-
+    [[inputs.prom]] 
+      url = "http://istio-egressgateway-ext.istio-system.svc.cluster.local:15020/stats/prometheus"
+      source = "prom-egressgateway"
+      metric_types = ["counter", "gauge"]
+      interval = "60s"
+      tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
+      metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
+      #measurement_prefix = ""
+      measurement_name = "istio_prom"
+      #[[inputs.prom.measurements]]
+      # prefix = "cpu_"
+      # name ="cpu"
 ```
 
-然后再挂载 prom_istiod.conf、prom-ingressgateway.conf 和 prom-egressgateway.conf：
+然后再挂载 `prom_istiod.conf`、 `prom-ingressgateway.conf` 和 `prom-egressgateway.conf` ：
 
 ```yaml
-        - mountPath: /usr/local/datakit/conf.d/prom/prom_istiod.conf
-          name: datakit-conf
-          subPath: prom_istiod.conf        
-        - mountPath: /usr/local/datakit/conf.d/prom/prom-ingressgateway.conf
-          name: datakit-conf
-          subPath: prom-ingressgateway.conf
-        - mountPath: /usr/local/datakit/conf.d/prom/prom-egressgateway.conf
-          name: datakit-conf
-          subPath: prom-egressgateway.conf
+- mountPath: /usr/local/datakit/conf.d/prom/prom_istiod.conf
+  name: datakit-conf
+  subPath: prom_istiod.conf
+- mountPath: /usr/local/datakit/conf.d/prom/prom-ingressgateway.conf
+  name: datakit-conf
+  subPath: prom-ingressgateway.conf
+- mountPath: /usr/local/datakit/conf.d/prom/prom-egressgateway.conf
+  name: datakit-conf
+  subPath: prom-egressgateway.conf
 ```
 
 部署 DataKit
@@ -215,25 +217,25 @@ kubectl apply -f  datakit.yaml
 
 3、 开启 Annotations
 
-在业务Pod处添加如下annotations（具体路径deployment.spec.template.metadata下），这样即可采集 Envoy 的指标数据。
+在业务 Pod 处添加如下 annotations（具体路径  `deployment.spec.template.metadata` 下），这样即可采集 Envoy 的指标数据。
 
 ```yaml
 annotations:
-        datakit/prom.instances: |
-          [[inputs.prom]]
-            url = "http://$IP:15020/stats/prometheus"
-            source = "ack-istio-product"
-            metric_types = ["counter", "gauge"]
-            interval = "60s"
-            tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
-            metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
-            #measurement_prefix = ""
-            measurement_name = "prom_asm_istio"
-            #[[inputs.prom.measurements]]
-            # prefix = "cpu_"
-            # name = "cpu"         
-            [inputs.prom.tags]
-            namespace = "$NAMESPACE"
+  datakit/prom.instances: |
+    [[inputs.prom]]
+      url = "http://$IP:15020/stats/prometheus"
+      source = "ack-istio-product"
+      metric_types = ["counter", "gauge"]
+      interval = "60s"
+      tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
+      metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
+      #measurement_prefix = ""
+      measurement_name = "prom_asm_istio"
+      #[[inputs.prom.measurements]]
+      # prefix = "cpu_"
+      # name = "cpu"         
+      [inputs.prom.tags]
+      namespace = "$NAMESPACE"
 ```
 
 参数说明
@@ -242,13 +244,13 @@ annotations:
 - source：采集器名称
 - metric_types：指标类型过滤
 - measurement_name：采集后的指标集名称
-- interval：采集指标频率，s秒
+- interval：采集指标频率，s 秒
 - $IP：通配 Pod 的内网 IP
-- $NAMESPACE：Pod所在命名空间
-- tags_ignore:  忽略的 tag
-- metric_name_filter:  保留的指标名
+- $NAMESPACE：Pod 所在命名空间
+- tags_ignore: 忽略的 tag
+- metric_name_filter: 保留的指标名
 
-下面是 bookinfo 的部署，下载 [bookinfo.yaml](https://github.com/istio/istio/blob/master/samples/bookinfo/platform/kube/bookinfo.yaml) 文件修改如下：
+下面是 Bookinfo 的部署，下载 [bookinfo.yaml](https://github.com/istio/istio/blob/master/samples/bookinfo/platform/kube/bookinfo.yaml) 文件修改如下：
 
 ```yaml
 apiVersion: v1
@@ -297,13 +299,13 @@ spec:
             source = "ack-istio-details"
             metric_types = ["counter", "gauge"]
             interval = "60s"
-			tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]            
+			tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
             metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
             #measurement_prefix = ""
             measurement_name = "prom_asm_istio"
             #[[inputs.prom.measurements]]
             # prefix = "cpu_"
-            # name = "cpu"         
+            # name = "cpu"
             [inputs.prom.tags]
             namespace = "$NAMESPACE"
     spec:
@@ -364,13 +366,13 @@ spec:
             source = "ack-istio-ratings"
             metric_types = ["counter", "gauge"]
             interval = "60s"
-			tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]            
+			tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
             metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
             #measurement_prefix = ""
             measurement_name = "prom_asm_istio"
             #[[inputs.prom.measurements]]
             # prefix = "cpu_"
-            # name = "cpu"         
+            # name = "cpu"
             [inputs.prom.tags]
             namespace = "$NAMESPACE"
     spec:
@@ -431,13 +433,13 @@ spec:
             source = "ack-istio-review1"
             metric_types = ["counter", "gauge"]
             interval = "60s"
-			tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]            
+			tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
             metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
             #measurement_prefix = ""
             measurement_name = "prom_asm_istio"
             #[[inputs.prom.measurements]]
             # prefix = "cpu_"
-            # name = "cpu"         
+            # name = "cpu"
             [inputs.prom.tags]
             namespace = "$NAMESPACE"
     spec:
@@ -487,13 +489,13 @@ spec:
             source = "ack-istio-review2"
             metric_types = ["counter", "gauge"]
             interval = "60s"
-			tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]            
+			tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
             metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
             #measurement_prefix = ""
             measurement_name = "prom_asm_istio"
             #[[inputs.prom.measurements]]
             # prefix = "cpu_"
-            # name = "cpu"         
+            # name = "cpu"
             [inputs.prom.tags]
             namespace = "$NAMESPACE"
     spec:
@@ -543,13 +545,13 @@ spec:
             source = "ack-istio-review3"
             metric_types = ["counter", "gauge"]
             interval = "60s"
-			tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]            
+			tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
             metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
             #measurement_prefix = ""
             measurement_name = "prom_asm_istio"
             #[[inputs.prom.measurements]]
             # prefix = "cpu_"
-            # name = "cpu"         
+            # name = "cpu"
             [inputs.prom.tags]
             namespace = "$NAMESPACE"
       serviceAccountName: bookinfo-reviews
@@ -628,7 +630,7 @@ spec:
             measurement_name = "istio_prom"
             #[[inputs.prom.measurements]]
             # prefix = "cpu_"
-            # name = "cpu"         
+            # name = "cpu"
             [inputs.prom.tags]
             namespace = "$NAMESPACE"
     spec:
@@ -657,7 +659,10 @@ kubectl apply -f bookinfo.yaml
 
 #### APM 采集 (必选)
 
-新增 ASM 时，如果选择了**自行搭建 Zipkin**，则链路数据会被打到 **zipkin.istio-system** 的 Service上，且上报端口是 9411。在部署 DataKit 时已开通链路指标采集的 Zipkin 采集器，由于 DataKit 服务的名称空间是 datakit，端口是 9529，所以这里需要做一下转换，详情请参考[Kubernetes 集群使用 ExternalName 映射 DataKit 服务](../best-practices/cloud-native/kubernetes-external-name.md)。创建后的 Service 如下图：
+新增 ASM 时，如果选择了**自行搭建 Zipkin**，则链路数据会被打到 **zipkin.istio-system** 的 Service 上，且上报端口是 9411。<br />
+在部署 DataKit 时已开通链路指标采集的 Zipkin 采集器，由于 DataKit 服务的名称空间是 datakit，端口是 9529，所以这里需要做一下转换。详情请参考[Kubernetes 集群使用 ExternalName 映射 DataKit 服务](../best-practices/cloud-native/kubernetes-external-name.md)。<br />
+
+创建后的 Service 如下图：
 
 ![image](imgs/input-aliyun-asm-9.png)
 
@@ -671,7 +676,8 @@ kubectl apply -f bookinfo.yaml
 
 #### 日志采集 (非必选)
 
-DataKit 默认的配置，采集容器输出到 /dev/stdout 的日志。更多关于日志的配置，请参考文章末尾的**进一步阅读**内容。
+DataKit 默认的配置，采集容器输出到 `/dev/stdout` 的日志。
+> 更多关于日志的配置，请参考文章末尾的[**进一步阅读**](#further-reading)内容。
 
 日志预览
 
@@ -695,34 +701,34 @@ DataKit 默认的配置，采集容器输出到 /dev/stdout 的日志。更多�
 
 ## 指标详解
 
-| 指标 | 描述 | 数据类型 | 单位 |
-| --- | --- | --- | --- |
-| istio_agent_process_virtual_memory_bytes | Virtual memory size in bytes | int | B |
-| istio_agent_go_memstats_alloc_bytes | Number of bytes allocated and still in use. | int | B |
-| istio_agent_go_memstats_heap_inuse_bytes | Number of heap bytes that are in use. | int | B |
-| istio_agent_go_memstats_stack_inuse_bytes | Number of bytes in use by the stack allocator. | int | B |
-| istio_agent_go_memstats_last_gc_time_seconds | Number of seconds since 1970 of last garbage collection | int | s |
-| istio_agent_go_memstats_next_gc_bytes | Number of heap bytes when next garbage collection will take place. | int | B |
-| istio_agent_process_cpu_seconds_total | Total user and system CPU time spent in seconds. | int | count |
-| istio_agent_outgoing_latency | The latency of outgoing requests (e.g. to a token exchange server, CA, etc.) in milliseconds. | int | count |
-| istio_requests_total | requests total. | int | <br /> |
-| istio_agent_pilot_xds | Number of endpoints connected to this pilot using XDS. | int | count |
-| istio_agent_pilot_xds_pushes | Pilot build and send errors for lds, rds, cds and eds. | int | count |
-| istio_agent_pilot_xds_expired_nonce | Total number of XDS requests with an expired nonce. | int | count |
-| istio_agent_pilot_push_triggers | Total number of times a push was triggered, labeled by reason for the push. | int | count |
-| istio_agent_pilot_endpoint_not_ready | Endpoint found in unready state. | int | count |
-| envoy_cluster_upstream_cx_total | envoy cluster upstream cx total | int | count |
-| istio_agent_pilot_conflict_inbound_listener | Number of conflicting inbound listeners | int | count |
-| istio_agent_pilot_conflict_outbound_listener_http_over_current_tcp | Number of conflicting wildcard http listeners with current wildcard tcp listener. | int | count |
-| istio_agent_pilot_conflict_outbound_listener_tcp_over_current_tcp | Number of conflicting tcp listeners with current tcp listener. | int | count |
-| istio_agent_pilot_conflict_outbound_listener_tcp_over_current_http | Number of conflicting wildcard tcp listeners with current wildcard http listener. | int | count |
+| 指标                                                               | 描述                                                                                          | 数据类型 | 单位   |
+| ------------------------------------------------------------------ | --------------------------------------------------------------------------------------------- | -------- | ------ |
+| istio_agent_process_virtual_memory_bytes                           | Virtual memory size in bytes                                                                  | int      | B      |
+| istio_agent_go_memstats_alloc_bytes                                | Number of bytes allocated and still in use.                                                   | int      | B      |
+| istio_agent_go_memstats_heap_inuse_bytes                           | Number of heap bytes that are in use.                                                         | int      | B      |
+| istio_agent_go_memstats_stack_inuse_bytes                          | Number of bytes in use by the stack allocator.                                                | int      | B      |
+| istio_agent_go_memstats_last_gc_time_seconds                       | Number of seconds since 1970 of last garbage collection                                       | int      | s      |
+| istio_agent_go_memstats_next_gc_bytes                              | Number of heap bytes when next garbage collection will take place.                            | int      | B      |
+| istio_agent_process_cpu_seconds_total                              | Total user and system CPU time spent in seconds.                                              | int      | count  |
+| istio_agent_outgoing_latency                                       | The latency of outgoing requests (e.g. to a token exchange server, CA, etc.) in milliseconds. | int      | count  |
+| istio_requests_total                                               | requests total.                                                                               | int      |   |
+| istio_agent_pilot_xds                                              | Number of endpoints connected to this pilot using XDS.                                        | int      | count  |
+| istio_agent_pilot_xds_pushes                                       | Pilot build and send errors for lds, rds, cds and eds.                                        | int      | count  |
+| istio_agent_pilot_xds_expired_nonce                                | Total number of XDS requests with an expired nonce.                                           | int      | count  |
+| istio_agent_pilot_push_triggers                                    | Total number of times a push was triggered, labeled by reason for the push.                   | int      | count  |
+| istio_agent_pilot_endpoint_not_ready                               | Endpoint found in unready state.                                                              | int      | count  |
+| envoy_cluster_upstream_cx_total                                    | envoy cluster upstream cx total                                                               | int      | count  |
+| istio_agent_pilot_conflict_inbound_listener                        | Number of conflicting inbound listeners                                                       | int      | count  |
+| istio_agent_pilot_conflict_outbound_listener_http_over_current_tcp | Number of conflicting wildcard http listeners with current wildcard tcp listener.             | int      | count  |
+| istio_agent_pilot_conflict_outbound_listener_tcp_over_current_tcp  | Number of conflicting tcp listeners with current tcp listener.                                | int      | count  |
+| istio_agent_pilot_conflict_outbound_listener_tcp_over_current_http | Number of conflicting wildcard tcp listeners with current wildcard http listener.             | int      | count  |
 
 ## 常见问题排查
 
-- <[无数据上报排查](../datakit/why-no-data.md)>
+<[无数据上报排查](../datakit/why-no-data.md)>
 
-## 进一步阅读
+## 进一步阅读 {#further-reading}
 
-- [Pod 日志采集最佳实践](../best-practices/cloud-native/pod-log.md)
+<[Pod 日志采集最佳实践](../best-practices/cloud-native/pod-log.md)>
 
-- [Kubernetes 集群中日志采集的几种玩法](../best-practices/cloud-native/k8s-logs.md)
+<[Kubernetes 集群中日志采集的几种玩法](../best-practices/cloud-native/k8s-logs.md)>

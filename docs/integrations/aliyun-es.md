@@ -1,10 +1,10 @@
-
 # ElasticSearch
+
 ---
 
 ## 视图预览
 
-阿里云 ElasticSearch 指标展示，包括集群状态，索引QPS，节点 CPU/内存/磁盘使用率等
+阿里云 ElasticSearch 指标展示，包括集群状态、索引 QPS、 节点 CPU/内存/磁盘使用率等。
 
 ![image](imgs/input-aliyun-es-1.png)
 
@@ -15,12 +15,13 @@
 ## 前置条件
 
 - 服务器 <[安装 Datakit](../datakit/datakit-install.md)>
-- 服务器 <[安装 Func 携带版](../dataflux-func/quick-start.md)>
+- 服务器 <[安装 DataFlux Func 携带版](../dataflux-func/quick-start.md)>
 - 阿里云 RAM 访问控制账号授权
 
 ### RAM 访问控制
 
-1、登录 RAM 控制台  [https://ram.console.aliyun.com/users](https://ram.console.aliyun.com/users)
+1、登录 RAM 控制台 [https://ram.console.aliyun.com/users](https://ram.console.aliyun.com/users)
+
 2、新建用户：人员管理 - 用户 - 创建用户
 
 ![image](imgs/input-aliyun-es-2.png)
@@ -79,7 +80,7 @@
         {
             'namespace': 'acs_elasticsearch',
             'metrics': 'ALL'
-         }           
+         }
                       ]
 ```
 
@@ -103,7 +104,7 @@
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - 阿里云 Elasticsearch>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - 阿里云 ElasticSearc 监控视图>
 
 ## 监控规则
 
@@ -115,16 +116,15 @@
 
 ## 常见问题排查
 
-- 查看日志：Func 日志路径 /usr/local/dataflux-func/data/logs/dataflux-func.log
+- 查看日志：DataFlux Func 日志路径 `/usr/local/dataflux-func/data/logs/dataflux-func.log`
 - 代码调试：选择主函数，直接运行 (可以看到脚本输出)
 
 ![image](imgs/input-aliyun-es-13.png)
 
-- 连接配置：Func 无法连接 Datakit，请检查数据源配置
+- 连接配置：DataFlux Func 无法连接 DataKit，请检查数据源配置
 
 ![image](imgs/input-aliyun-es-14.png)
 
 ## 进一步阅读
 
-<[DataFlux Func 开发手册](https://func.guance.com/#/read?q=%2Fdataflux%2Ffunc%2Fdevelopment-guide.md)>
-
+<[DataFlux Func 开发手册](../dataflux-func/development-guide-basic.md)>

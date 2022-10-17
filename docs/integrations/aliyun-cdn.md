@@ -1,10 +1,10 @@
-
 # CDN
+
 ---
 
 ## 视图预览
 
-阿里云 CDN 每秒访问次数，下行流量，边缘带宽，响应时间，回源带宽，状态码等
+阿里云 CDN 性能指标展示，包括每秒访问次数、下行流量、边缘带宽、响应时间、回源带宽、状态码等。
 
 ![image](imgs/input-aliyun-cdn-1.png)
 
@@ -17,17 +17,19 @@
 ## 前置条件
 
 - 服务器 <[安装 Datakit](../datakit/datakit-install.md)>
-- 服务器 <[安装 Func 携带版](../dataflux-func/quick-start.md)>
+- 服务器 <[安装 DataFlux Func 携带版](../dataflux-func/quick-start.md)>
 - 阿里云 RAM 访问控制账号授权
 
 ### RAM 访问控制
 
-1、登录 RAM 控制台  [https://ram.console.aliyun.com/users](https://ram.console.aliyun.com/users)
+1、登录 RAM 控制台 [https://ram.console.aliyun.com/users](https://ram.console.aliyun.com/users)<br />
+
 2、新建用户：人员管理 - 用户 - 创建用户
 
 ![image](imgs/input-aliyun-cdn-3.png)
 
-3、保存或下载 **AccessKey** **ID** 和 **AccessKey Secret** 的 CSV 文件 (配置文件会用到)
+3、保存或下载 **AccessKey** **ID** 和 **AccessKey Secret** 的 CSV 文件 (配置文件会用到)<br />
+
 4、用户授权 (只读访问所有阿里云资源的权限)
 
 ![image](imgs/input-aliyun-cdn-4.png)
@@ -40,9 +42,10 @@
 - 通过一台服务器采集所有阿里云 CDN 数据
 
 ### 部署实施
+
 #### 脚本市场
 
-1、登录 Func，地址 http://ip:8088
+1、登录 DataFlux Func ，地址 http://ip:8088
 
 ![image](imgs/input-aliyun-cdn-5.png)
 
@@ -50,10 +53,10 @@
 
 ![image](imgs/input-aliyun-cdn-6.png)
 
-3、**依次添加**三个脚本集
-a、 观测云集成 (核心包)
-b、 观测云集成 (阿里云-云监控)
-c、 观测云集成 (阿里云-CDN)
+3、**依次添加**三个脚本集<br />
+（1）观测云集成 (核心包)<br />
+（2）观测云集成 (阿里云-云监控)<br />
+（3）观测云集成 (阿里云-CDN)
 
 _注：在安装「核心包」后，系统会提示安装第三方依赖包，按照正常步骤点击安装即可_
 
@@ -126,7 +129,7 @@ def run():
 
 ![image](imgs/input-aliyun-cdn-13.png)
 
-2、自动触发配置，执行函数中添加此脚本，执行频率为 **5分钟  */5 * * * * **(1分钟会被阿里限流)
+2、自动触发配置，执行函数中添加此脚本，执行频率为 **5 分钟 _/5 _ \* \* \* **(1 分钟会被阿里限流)
 
 ![image](imgs/input-aliyun-cdn-14.png)
 
@@ -136,7 +139,7 @@ def run():
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - 阿里云 CDN>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - 阿里云 CDN 监控视图>
 
 ## 指标详解
 
@@ -144,16 +147,15 @@ def run():
 
 ## 常见问题排查
 
-- 查看日志：Func 日志路径 /usr/local/dataflux-func/data/logs/dataflux-func.log
+- 查看日志：DataFlux Func 日志路径 `/usr/local/dataflux-func/data/logs/dataflux-func.log`
 - 代码调试：选择主函数，直接运行 (可以看到脚本输出)
 
 ![image](imgs/input-aliyun-cdn-16.png)
 
-- 连接配置：Func 无法连接 DataKit，请检查数据源配置
+- 连接配置：DataFlux Func 无法连接 DataKit，请检查数据源配置
 
 ![image](imgs/input-aliyun-cdn-17.png)
 
 ## 进一步阅读
-<[DataFlux Func 观测云集成简介](index.md)>
 
 <[DataFlux Func 阿里云-云监控配置手册](../dataflux-func/script-market-guance-aliyun-monitor.md)>

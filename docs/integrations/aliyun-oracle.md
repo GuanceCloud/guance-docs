@@ -1,10 +1,10 @@
-
 # PolarDB Oracle
+
 ---
 
 ## 视图预览
 
-阿里云 PolarDB Oracle 指标展示，包括 CPU 使用率，内存使用率，网络流量，连接数，IOPS，TPS，数据盘大小等
+阿里云 PolarDB Oracle 指标展示，包括 CPU 使用率、内存使用率、网络流量、连接数、IOPS、 TPS、 数据盘大小等。
 
 ![image](imgs/input-aliyun-oracle-1.png)
 
@@ -15,17 +15,19 @@
 ## 前置条件
 
 - 服务器 <[安装 DataKit](../datakit/datakit-install.md)>
-- 服务器 <[安装 Func 携带版](../dataflux-func/quick-start.md)>
+- 服务器 <[安装 DataFlux Func 携带版](../dataflux-func/quick-start.md)>
 - 阿里云 RAM 访问控制账号授权
 
 ### RAM 访问控制
 
-1、登录 RAM 控制台  [https://ram.console.aliyun.com/users](https://ram.console.aliyun.com/users)
+1、登录 RAM 控制台 [https://ram.console.aliyun.com/users](https://ram.console.aliyun.com/users)
+
 2、新建用户：人员管理 - 用户 - 创建用户
 
 ![image](imgs/input-aliyun-oracle-2.png)
 
 3、保存或下载 **AccessKey** **ID** 和 **AccessKey Secret** 的 CSV 文件 (配置文件会用到)
+
 4、用户授权 (云监控只读/时序指标数据权限)
 
 ![image](imgs/input-aliyun-oracle-3.png)
@@ -41,7 +43,7 @@
 
 #### 脚本市场
 
-1、登录 Func，地址 http://ip:8088
+1、登录 DataFlux Func，地址 http://ip:8088
 
 ![image](imgs/input-aliyun-oracle-4.png)
 
@@ -64,6 +66,7 @@
 ![image](imgs/input-aliyun-oracle-8.png)
 
 3、编辑脚本并复制代码，从 (同步阿里云监控数据) 到当前脚本
+
 4、修改阿里云账号配置 (Ram 访问控制)
 
 ```bash
@@ -78,7 +81,7 @@
         {
             'namespace': 'acs_polardb',
             'metrics': 'ALL',
-         }           
+         }
                       ]
 ```
 
@@ -102,7 +105,7 @@
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - 阿里云 PolarDB Oracle>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - 阿里云 PolarDB Oracle 监控视图>
 
 ## 监控规则
 
@@ -114,15 +117,15 @@
 
 ## 故障排查
 
-- 查看日志：Func 日志路径 /usr/local/dataflux-func/data/logs/dataflux-func.log
+- 查看日志：DataFlux Func 日志路径 `/usr/local/dataflux-func/data/logs/dataflux-func.log`
 - 代码调试：选择主函数，直接运行 (可以看到脚本输出)
 
 ![image](imgs/input-aliyun-oracle-13.png)
 
-- 连接配置：Func 无法连接 DataKit，请检查数据源配置
+- 连接配置：DataFlux Func 无法连接 DataKit，请检查数据源配置
 
 ![image](imgs/input-aliyun-oracle-14.png)
 
 ## 进一步阅读
 
-<[DataFlux Func 开发手册](https://func.guance.com/#/read?q=%2Fdataflux%2Ffunc%2Fdevelopment-guide.md)>
+<[DataFlux Func 开发手册](../dataflux-func/development-guide-basic.md)>
