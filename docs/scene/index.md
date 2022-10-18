@@ -20,7 +20,7 @@ icon: zy/scene
 ## 查看器
 在场景下，可快速搭建多个自定义日志 [查看器](explorer/index.md) ，支持与空间成员共同定制化日志的查看需求，支持将制作完成的查看器导出分享给他人，共享查看器模板。
 
-![](img/6.log_explorer_3.1.png)
+![](img/2.scene_1.png)
 
 
 

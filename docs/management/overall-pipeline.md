@@ -11,7 +11,7 @@
 
 ## 新建 Pipeline
 
-在观测云工作空间「管理」-「文本处理（Pipeline）」，点击「新建Pipeline」即可创建一个新的 pipeline 文件。
+在观测云工作空间「管理」-「文本处理（Pipeline）」，点击「新建Pipeline」即可创建一个新的 pipeline 文件。或者您可以在指标、日志、用户访问、应用性能、基础设施、安全巡检功能目录快捷入口，点击「Pipelines」进行创建。
 
 ![](img/10.pipeline_1.png)
 

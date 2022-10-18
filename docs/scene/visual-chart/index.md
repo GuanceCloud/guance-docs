@@ -1,7 +1,7 @@
 # 可视化图表
 ---
 
-“观测云” 内置20余种标准的可视化图表：包括 [时序图](timeseries-chart.md)、[概览图](overview-chart.md)、[表格图](table-chart.md)、[矩形树图](treemap.md)、[漏斗图](funnel-chart.md)、[饼图](pie-chart.md)、[柱状图](bar-chart.md)、[SLO](slo-chart.md)、[排行榜](leaderboard.md)、[仪表盘](dashboard.md)、[散点图](scatter-plot.md)、[气泡图](bubble-chart.md)、[中国地图](china-map.md)、[世界地图](world-map.md)、[蜂窝图](cellular-map.md)、[文本](text.md)、[图片](picture.md)、[视频](video.md)、[命令面板](command-panel.md)、[IFrame](iframe.md)、[日志流图](log-stream.md)、[对象列表图](object-list.md)、[告警统计图](alert-statistics.md) 等，可快速根据不同业务需求快速创建不同的仪表板，满足对数据个性化、全面的展示需求。
+“观测云” 内置20余种标准的可视化图表：包括 [时序图](timeseries-chart.md)、[概览图](overview-chart.md)、[表格图](table-chart.md)、[矩形树图](treemap.md)、[漏斗图](funnel-chart.md)、[饼图](pie-chart.md)、[柱状图](bar-chart.md)、[直方图](histogram.md)、[SLO](slo-chart.md)、[排行榜](leaderboard.md)、[仪表盘](dashboard.md)、[散点图](scatter-plot.md)、[气泡图](bubble-chart.md)、[中国地图](china-map.md)、[世界地图](world-map.md)、[蜂窝图](cellular-map.md)、[文本](text.md)、[图片](picture.md)、[视频](video.md)、[命令面板](command-panel.md)、[IFrame](iframe.md)、[日志流图](log-stream.md)、[对象列表图](object-list.md)、[告警统计图](alert-statistics.md) 等，可快速根据不同业务需求快速创建不同的仪表板，满足对数据个性化、全面的展示需求。
 
 ## 添加图表
 
@@ -85,5 +85,5 @@
 
 **注意：**内置链接默认关闭，可在编辑图表时开启显示。
 
-![](../img/3.view_9.1.png)
+![](../img/2.scene_3.png)
 
