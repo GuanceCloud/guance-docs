@@ -8,7 +8,7 @@ nav:
   - 'MongoDB': aliyun-mongodb.md
   - 'NAT': aliyun-nat.md
   - 'OSS': aliyun-oss.md
-  - 'PolarDB Mysql': aliyun-mysql.md
+  - 'PolarDB MySQL': aliyun-mysql.md
   - 'PolarDB Oracle': aliyun-oracle.md
   - 'PolarDB PostgreSQL': aliyun-postgresql.md
   - 'RDS Mysql': aliyun-rds-mysql.md

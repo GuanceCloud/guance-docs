@@ -91,12 +91,6 @@ icon: zy/best-practices
 - 监控 Monitoring  
     - [使用 extract + TextMapAdapter 实现了自定义 traceId](./monitoring/ddtrace-custom-traceId.md) 。
 
-- 洞见 Insight  
-    - 场景 (Scene) - [CDB](./insight/tencent-cdb.md)。
-	- 场景 (Scene) - [CLB](./insight/tencent-clb.md)。
-	- 场景 (Scene) - [COS](./insight/tencent-cos.md)。
-	- 场景 (Scene) - [CVM](./insight/tencent-cvm.md)。
-
 ### 更新记录
 
 - 监控 Monitoring  

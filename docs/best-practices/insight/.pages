@@ -24,8 +24,4 @@ nav:
     - '快速上手 Pythond 采集器的最佳实践': pythond.md
 
   - '场景 (Scene)': 
-    - 'CDB': tencent-cdb.md
-    - tencent-clb.md
-    - tencent-cos.md
-    - tencent-cvm.md
     - '内网场景 Dubbo 微服务接入观测云': scene-dubbo.md
