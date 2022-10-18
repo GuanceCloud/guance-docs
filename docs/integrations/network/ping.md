@@ -1,20 +1,20 @@
-
 # Ping
+
 ---
 
 ## 视图预览
 
-Ping 指标展示，包括响应时间，丢包率，发送/接收数据包等
+Ping 指标展示，包括响应时间、丢包率、发送/接收数据包等。
 
-![image](imgs/input-ping-1.png)
+![image](../imgs/input-ping-1.png)
 
 ## 版本支持
 
-操作系统支持：Linux / Windows 
+操作系统支持：Linux / Windows
 
 ## 前置条件
 
-- 服务器 <[安装 Datakit](../datakit/datakit-install.md)>
+- 服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
 - 服务器安装 Telegraf
 
 ### 安装 Telegraf
@@ -34,7 +34,7 @@ gpgkey = https://repos.influxdata.com/influxdb.key
 EOF
 ```
 
-2、 安装 telegraf
+2、 安装 Telegraf
 
 ```
 yum -y install telegraf
@@ -48,13 +48,13 @@ yum -y install telegraf
 
 #### 指标采集 (必选)
 
-1、 数据上传至 DataKit，修改主配置文件 telegraf.conf
+1、 数据上传至 DataKit，修改主配置文件 `telegraf.conf`
 
 ```
 vi /etc/telegraf/telegraf.conf
 ```
 
-2、 关闭 influxdb，开启 outputs.http (修改对应的行)
+2、 关闭 InfluxDB，开启 outputs.http (修改对应的行)
 
 ```
 #[[outputs.influxdb]]
@@ -84,7 +84,7 @@ url = "http://127.0.0.1:9529/v1/write/metric?input=telegraf"
 主要参数说明
 
 - urls：检测地址/域名
-- count：发送的数据包数量，参考 ping -c 
+- count：发送的数据包数量，参考 ping -c
 - ping_interval：间隔时间，参考 ping -i
 - timeout：超时时间，参考 ping -W
 
@@ -102,27 +102,27 @@ url = "http://127.0.0.1:9529/v1/write/metric?input=telegraf"
 systemctl start telegraf
 ```
 
-6、  指标验证
+6、 指标验证
 
 ```
 /usr/bin/telegraf --config /etc/telegraf/telegraf.conf --input-filter ping --test
 ```
 
-有数据返回 (行协议)，代表能够正常采集
+有数据返回 (行协议)，代表能够正常采集。
 
-![image](imgs/input-ping-2.png)
+![image](../imgs/input-ping-2.png)
 
 7、 指标预览
 
-![image](imgs/input-ping-3.png)
+![image](../imgs/input-ping-3.png)
 
 #### 插件标签 (非必选)
 
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，所有 ping 指标都会带有 app = oa 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](../best-practices/insight/tag.md)>
+- 以下示例配置完成后，所有 Ping 指标都会带有 `app = "oa"` 的标签，可以进行快速查询
+- 相关文档 <[TAG 在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 
 ```
 # 示例
@@ -138,7 +138,7 @@ systemctl restart telegraf
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - Ping 状态监控视图>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - Ping 状态监控视图>
 
 ## 检测库
 
@@ -146,23 +146,23 @@ systemctl restart telegraf
 
 ## 指标详解
 
-| 指标 | 描述 | 数据类型 |
-| --- | --- | --- |
-| packets_transmitted | 发送数据包 | integer |
-| packets_received | 接收数据包 | integer |
-| percent_packet_loss | 丢包率 | float |
-| ttl | 生存时间 (win 不支持) | integer  |
-| average_response_ms | 平均响应时间 | float |
-| minimum_response_ms | 最小响应时间 | float |
-| maximum_response_ms | 最大响应时间 | float |
-| errors | 错误数 (linux 不支持) | float |
-| result_code | 返回码 | int |
+| 指标                | 描述                  | 数据类型 |
+| ------------------- | --------------------- | -------- |
+| packets_transmitted | 发送数据包            | integer  |
+| packets_received    | 接收数据包            | integer  |
+| percent_packet_loss | 丢包率                | float    |
+| ttl                 | 生存时间 (win 不支持) | integer  |
+| average_response_ms | 平均响应时间          | float    |
+| minimum_response_ms | 最小响应时间          | float    |
+| maximum_response_ms | 最大响应时间          | float    |
+| errors              | 错误数 (linux 不支持) | float    |
+| result_code         | 返回码                | int      |
 
 ## 常见问题排查
 
-<[无数据上报排查](../datakit/why-no-data.md)>
+<[无数据上报排查](../../datakit/why-no-data.md)>
 
-Q：如果想监控多个地址，怎么配置？
+Q：如果想监控多个地址，怎么配置？<br />
 A：可以在 urls 填写数组。
 
 ```
@@ -170,7 +170,8 @@ A：可以在 urls 填写数组。
   urls = ["www.guance.com","www.baidu.com"]
 ```
 
-Q：如果检测地址过多，会出现 too many open files 错误，如何解决？<br />A：扩大 telegraf 文件限制数 (使用命令进入 nano 编辑器)
+Q：如果检测地址过多，会出现 `too many open files` 错误，如何解决？<br />
+A：扩大 Telegraf 文件限制数 (使用命令进入 nano 编辑器)
 
 ```
 systemctl edit telegraf
@@ -183,7 +184,7 @@ systemctl edit telegraf
 LimitNOFILE=8192
 ```
 
-重启 telegraf
+重启 Telegraf
 
 ```
 systemctl restart telegraf
