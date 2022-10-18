@@ -22,5 +22,3 @@ icon: zy/scene
 
 ![](img/6.log_explorer_3.1.png)
 
-
-

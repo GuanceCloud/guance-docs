@@ -313,7 +313,7 @@ R::freeze:(count(`freeze_type`) as count) {`app_id` = '#{appid}'}
 
 | **名称** | **对应 df_status 取值** | **说明** |
 | --- | --- | --- |
-| info | info | 提示 |
+| 信息 | info | 若检测指标不满足“紧急”“错误”“警告”“正常”“无数据”任一触发条件，则表示检测结果无异常，此时触发“信息”事件 |
 | 警告 | warning | 警告 |
 | 重要 | error | 错误 |
 | 紧急 | critical | 致命 |
