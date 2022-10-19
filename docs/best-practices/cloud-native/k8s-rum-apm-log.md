@@ -4,21 +4,29 @@
 
 ## 应用场景介绍
 
-本文用于演示的 demo 为若依权限管理系统，具体内容可查看 [从 0 到 1 利用观测云构建 Spring cloud 服务的可观测性](../monitoring/spring-cloud-sample.md)
+本文用于演示的 Demo 为若依权限管理系统，具体内容可查看 [从 0 到 1 利用观测云构建 Spring cloud 服务的可观测性](../monitoring/spring-cloud-sample.md)
+企业最重要的营收来源即是业务，而现当下，绝大多数企业的业务都是由对应的 IT 系统承载的，那如何保障企业的业务稳健，归根到企业内部就是如何保障企业内部的 IT 系统。当业务系统出现异常或故障时，往往是业务、应用开发、运维等多方面同事一起协调进行问题的排查，存在跨平台，跨部门，跨专业领域等多种问题，排查既耗时又费力，为了解决这一问题，目前业界已经比较成熟的方式即是通过 RUM + APM + LOG 实现对整个业务系统的前后端、日志进行统一监控，同时将三方数据通过关键字段进行打通，实现联动分析，从而提升相关工作人员的工作效率，保障系统平稳运行。 
 
-企业最重要的营收来源即是业务，而现当下，绝大多数企业的业务都是由对应的IT系统承载的，那如何保障企业的业务稳健，归根到企业内部就是如何保障企业内部的IT系统。当业务系统出现异常或故障时，往往是业务、应用开发、运维等多方面同事一起协调进行问题的排查，存在跨平台，跨部门，跨专业领域等多种问题，排查既耗时又费力，为了解决这一问题，目前业界已经比较成熟的方式即是通过 RUM+APM+LOG 实现对整个业务系统的前后端、日志进行统一监控，同时将三方数据通过关键字段进行打通，实现联动分析，从而提升相关工作人员的工作效率，保障系统平稳运行。<br />**APM**:（application performance monitoring：应用性能监控）<br />**RUM**:（real user moitoring：真实用户体验监控）<br />**LOG**：（日志）<br />本文将从如何接入这三方监控，以及如何利用 df 进行联动分析的角度进行阐述。<br />关于日志，本文将使用 datakit 的 logfwd 采集器采集业务 pod 的日志，datakit 开通 logfwd 采集器，pod 增加logfwd 的 sidecar 来采集业务容器的日志，推送给 datakit，由于业务对 sidecar 是可见的，所以日志文件不需要落到宿主机上，详细使用请在 system 模块查看。datakit接收到日志后，使用配置的 pipeline 做日志文件切割。
+**APM**:（application performance monitoring：应用性能监控） 
+
+**RUM**:（real user moitoring：真实用户体验监控） 
+
+**LOG**：（日志） 
+
+本文将从如何接入这三方监控，以及如何利用观测云进行联动分析的角度进行阐述。
+关于日志，本文将使用 DataKit 的 logfwd 采集器采集业务 Pod 的日志，DataKit 开通 logfwd 采集器，Pod 增加 logfwd 的 Sidecar 来采集业务容器的日志，推送给 DataKit，由于业务对 Sidecar 是可见的，所以日志文件不需要落到宿主机上，详细使用请在下午的部署 System 模块查看。DataKit 接收到日志后，使用配置的 pipeline 做日志文件切割。
 
 ## 前置条件
 
 ### 账号注册
 
-前往官方网站 [https://guance.com/](https://console.guance.com/) 注册账号，使用已注册的账号/密码登录。
+前往 [观测云](https://console.guance.com/) 注册账号，使用已注册的账号/密码登录。
 
 ![image](../images/k8s-rum-apm-log/1.png)	 
 
 ---
 
-### DaemonSet 方式部署 Datakit
+### DaemonSet 方式部署 DataKit
 
 #### 获取 OpenWay 地址的 token 
 
@@ -26,13 +34,13 @@
 
 ![image](../images/k8s-rum-apm-log/2.png)
 
-点击[集成]->[Datakit]->[Kubernetes] 获取最新的 datakit.yaml 文件。
+点击[集成]->[DataKit]->[Kubernetes] 获取最新的 datakit.yaml 文件。
 
 ![image](../images/k8s-rum-apm-log/3.png)
 
 #### 执行安装
 
-按照上步中的yaml文件，新建 /usr/local/k8s/datakit.yaml 文件，并把上图获取的 token，替换文件中的 <your-token>，开启 container 采集器、logfwd 采集器、ddtrace 采集器，yaml 完整内容如下文。  
+按照上步中的 datakit.yaml 文件，并把上图获取的 token，替换文件中的 <your-token>。开启 container 采集器、logfwd 采集器、ddtrace 采集器，即在 datakit 容器中挂载 container.conf、logfwdserver.conf、ddtrace.conf 文件。yaml 完整内容如下文。  
 『注意』DataKit 版本不同，配置可能存在差异，请以最新版为准。此 yaml 是本次部署完整配置，已包含后面针对 DataKit 的操作步骤。
 
 ```yaml
@@ -351,19 +359,19 @@ data:
         # more_tag = "some_other_value"   
 ```
 
-不同的 kubernetes 集群，为区分集群内 daemonset 部署的 datakit 选举，需要增加 ENV_NAMESPACE 环境变量，同一个 token下值不能重复。同一个 token 下为区分不同的 kubernetes 集群，需要增加全局 tag，值是cluster_name_k8s=k8s-prod。
-
+不同的 Kubernetes 集群，为区分集群内 DaemonSet 部署的 DataKit 选举，需要增加 ENV_NAMESPACE 环境变量，同一个 token 下值不能重复。同一个 token 下为区分不同的 Kubernetes 集群，需要增加全局 tag，值是 cluster_name_k8s=k8s-prod。
+详情请参考[多个 Kubernetes 集群指标采集最佳实践](multi-cluster.md)。
 执行命令
 
 ```shell
 $ cd /usr/local/k8s/
-$ kubectl apply -f  datakit-default.yaml
+$ kubectl apply -f  datakit.yaml
 $ kubectl get pod -n datakit
 ```
 
 ![image](../images/k8s-rum-apm-log/4.png)
 
-Datakit 安装完成后，已经默认开启 Linux 主机常用插件，可以在 DF——基础设施——内置视图查看。
+DataKit 安装完成后，已经默认开启 Linux 主机常用插件，可以在『观测云』->『场景』->『基础设施Linux主机监控视图』查看。
 
 | 采集器名称 | 说明 |
 | --- | --- |
@@ -379,7 +387,7 @@ Datakit 安装完成后，已经默认开启 Linux 主机常用插件，可以�
 | kubernetes | 采集Kubernetes 集群指标 |
 | container | 采集主机上可能的容器对象以及容器日志 |
 
-点击 [**基础设施**] 模块，查看所有已安装 Datakit 的主机列表。
+点击 [**基础设施**] 模块，查看所有已安装 DataKit 的主机列表。
 
 ![image](../images/k8s-rum-apm-log/5.png)
 
@@ -393,13 +401,13 @@ Datakit 安装完成后，已经默认开启 Linux 主机常用插件，可以�
 
 #### 示例说明
 
-web 层通过网关访问后端的 auth 和 system 服务，web 是 vue 开发的，后端是 java 开发的，示例中开启statsd 采集 jvm，示例中使用的镜像仓库是 172.16.0.215:5000，示例中使用 ddtrace 采集 java 应用的 jvm 指标，示例中使用的 nacos、redis、mysql 的内网 ip 是 172.16.0.230。
+Web 层通过网关访问后端的 Auth 和 System 服务，Web 是 Vue 开发的，后端是 Java 开发的，示例中开启 statsd 采集 JVM，示例中使用的镜像仓库是 172.16.0.215:5000，示例中使用 ddtrace 采集 Java 应用的 JVM 指标，示例中使用的 Nacos、Redis、MySQL 的内网 IP 是 172.16.0.230。
 
 ![image](../images/k8s-rum-apm-log/8.png)
     
-#### 编写 web 部署文件
+#### 编写 Web 部署文件
 
-把 web 应用的内容复制到 /usr/local/k8s/dist 目录。
+把 Web 应用的内容复制到 /usr/local/k8s/dist 目录。
 
 ![image](../images/k8s-rum-apm-log/9.png)
 
@@ -528,23 +536,24 @@ spec:
 
 #### dd-java-agent 镜像
 
-使用 java -jar 方式启动用户的jar时，需要使用 -javaagent:/usr/local/datakit/data/dd-java-agent.jar，而在用户的镜像中并不一定存在这个 jar，为了不侵入客户的业务镜像，我们需要制作一个包含 dd-java-agent.jar 的镜像，再以 Init 容器的方式先于业务容器启动，以共享存储的方式提供 dd-java-agent.jar。
-
+使用 java -jar 方式启动用户的 jar 时，需要使用 -javaagent:/usr/local/datakit/data/dd-java-agent.jar，而在用户的镜像中并不一定存在这个 jar，为了不侵入客户的业务镜像，我们需要制作一个包含 dd-java-agent.jar 的镜像，再以 Init 容器的方式先于业务容器启动，以共享存储的方式提供 dd-java-agent.jar。
+观测云已提供这个镜像。
 ```
-pubrepo.jiagouyun.com/datakit/dk-sidecar:1.0
+pubrepo.jiagouyun.com/datakit/dk-sidecar:1.1
 ```
 
-本示例使用的是 sidecar 的方式，如果您想直接把jar打入镜像，请下载 [dd-java-agent](https://dtdg.co/latest-java-tracer)，并在您的 Dockerfile 中参考下面的脚本把 jar 打入中镜像中，在部署的 yaml 中 -javaagent 使用的 jar 改成您打入的即可。
+本示例使用的是 Sidecar 的方式，如果您想直接把 jar 打入镜像，请下载 [dd-java-agent](https://github.com/GuanceCloud/dd-trace-java)，并在您的 Dockerfile 中参考下面的脚本把 jar 打入中镜像中，在部署的 yaml 中 -javaagent 使用的 jar 改成您打入的即可。
 
 ```
 FROM openjdk:8u292
 
 ENV workdir /data/app/
 RUN mkdir -p ${workdir}
-COPY  dd-java-agent.jar ${workdir}  #此处是把dd-java-agent打入镜像
+
+COPY  dd-java-agent.jar ${workdir}  #此处是把 dd-java-agent 打入镜像
 ```
 
-#### 编写 gateway 部署文件
+#### 编写 Gateway 部署文件
 
 新建 /usr/local/k8s/DockerfileGateway。
 
@@ -633,7 +642,7 @@ spec:
         - sh
         - -c
         - set -ex;mkdir -p /ddtrace/agent;cp -r /usr/dd-java-agent/agent/* /ddtrace/agent;
-        image: pubrepo.jiagouyun.com/datakit/dk-sidecar:1.0
+        image: pubrepo.jiagouyun.com/datakit/dk-sidecar:1.1
         imagePullPolicy: Always
         name: ddtrace-agent-sidecar
         volumeMounts:
@@ -645,7 +654,7 @@ spec:
         name: ddagent
 ```
 
-#### 编写 auth 部署文件
+#### 编写 Auth 部署文件
 
 新建 /usr/local/k8s/DockerfileAuth。
 
@@ -733,7 +742,7 @@ spec:
         - sh
         - -c
         - set -ex;mkdir -p /ddtrace/agent;cp -r /usr/dd-java-agent/agent/* /ddtrace/agent;
-        image: pubrepo.jiagouyun.com/datakit/dk-sidecar:1.0
+        image: pubrepo.jiagouyun.com/datakit/dk-sidecar:1.1
         imagePullPolicy: Always
         name: ddtrace-agent-sidecar
         volumeMounts:
@@ -745,7 +754,7 @@ spec:
         name: ddagent
 ```
 
-#### 编写 system 部署文件
+#### 编写 System 部署文件
 
 新建/ usr/local/k8s/DockerfileSystem。
 
@@ -768,7 +777,7 @@ WORKDIR ${workdir}
 ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS}   -jar ${jar} ${PARAMS}  2>&1 > /dev/null"]
 ```
 
-新建 /usr/local/k8s/system-deployment.yaml ，pod 中使用了 3 个镜像 172.16.0.238/df-ruoyi/demo-system:v1、pubrepo.jiagouyun.com/datakit/logfwd:1.2.7、pubrepo.jiagouyun.com/datakit/dk-sidecar:1.0，其中 dk-sidecar 是提供 dd-java-agent.jar 文件给 system-container 业务容器使用，logfwd 采集业务容器的日志文件。logfwd 的配置文件是通过 ConfigMap 来挂载到容器中的，在配置文件中指明需要采集的日志文件位置，source 名称等。system-deployment.yaml 完整内容如下：
+新建 /usr/local/k8s/system-deployment.yaml ，Pod 中使用了 3 个镜像 172.16.0.238/df-ruoyi/demo-system:v1、pubrepo.jiagouyun.com/datakit/logfwd:1.2.7、pubrepo.jiagouyun.com/datakit/dk-sidecar:1.1，其中 dk-sidecar 是提供 dd-java-agent.jar 文件给 system-container 业务容器使用，logfwd 采集业务容器的日志文件。logfwd 的配置文件是通过 ConfigMap 来挂载到容器中的，在配置文件中指明需要采集的日志文件位置，source 名称等。system-deployment.yaml 完整内容如下：
 
 ```yaml
 apiVersion: v1
@@ -875,7 +884,7 @@ spec:
         - sh
         - -c
         - set -ex;mkdir -p /ddtrace/agent;cp -r /usr/dd-java-agent/agent/* /ddtrace/agent;
-        image: pubrepo.jiagouyun.com/datakit/dk-sidecar:1.0
+        image: pubrepo.jiagouyun.com/datakit/dk-sidecar:1.1
         imagePullPolicy: Always
         volumeMounts:
         - mountPath: /ddtrace/agent
@@ -911,9 +920,10 @@ data:
     ] 
 ```
 
-另外 system-deployment.yaml 文件中使用了环境变量来指定 datakit 和 logfwd 端口。<br />环境变量说明：
+另外 system-deployment.yaml 文件中使用了环境变量来指定 DataKit 和 logfwd 端口。
+环境变量说明：
 
-- LOGFWD_DATAKIT_HOST:  datakit地址。
+- LOGFWD_DATAKIT_HOST:  DataKit 地址。
 - LOGFWD_DATAKIT_PORT:  logfwd 端口
 
 logfwd-conf参数说明：
@@ -951,20 +961,22 @@ volumeMounts 下面增加：
 
 #### 新建应用
 
-•登录[观测云平台]<br />•选择[**用户访问监测**]-[**新建应用**]-[**选择 web 类型**]-[**同步载入**] 应用名称输入 web-k8s-demo
+•登录[观测云平台]
+•选择[**用户访问监测**]-[**新建应用**]-[**选择 web 类型**]-[**同步载入**] 应用名称输入 web-k8s-demo
 
 ![image](../images/k8s-rum-apm-log/10.png)
 
 #### 开通前端 RUM 监控
 
-Datakit 开启 RUM 采集器是通过环境变量配置的。
+DataKit 开启 RUM 采集器是通过 ENV_DEFAULT_ENABLED_INPUTS 环境变量值中最后增加 rum。
 
 ```yaml
         - name: ENV_DEFAULT_ENABLED_INPUTS
-          value: rum
+          value: cpu,disk,diskio,mem,swap,system,hostobject,net,host_processes,container,statsd,ebpf,rum
 ```
 
-用户访问监测使用的 Datakit 地址，需要客户的网络能够访问到的地址，需要修改 Datakit 的配置文件 /usr/local/datakit/conf.d/datakit.conf 的 listen="0.0.0.0:9529"。本示例使用的 Datakit 是 DaemonSet 方式部署的，已经修改了默认的配置。实际生产中 RUM 使用的 Datakit 建议部署到 kubernetes 外部。<br />修改 /usr/local/k8s/dist/index.html 文件，在 head 中增加如下内容：
+用户访问监测使用的 DataKit 地址，需要客户的网络能够访问到的地址，需要修改 DataKit 的配置文件 /usr/local/datakit/conf.d/datakit.conf 的 listen="0.0.0.0:9529"。本示例使用的 DataKit 是 DaemonSet 方式部署的，已经修改了默认的配置。实际生产中 RUM 使用的 DataKit 建议单独部署。
+修改 /usr/local/k8s/dist/index.html 文件，在 head 中增加如下内容：
 
 ```
 <script src="https://static.guance.com/browser-sdk/v2/dataflux-rum.js" type="text/javascript"></script>
@@ -984,7 +996,7 @@ Datakit 开启 RUM 采集器是通过环境变量配置的。
 
 **applicationId:** 应用 id。
 
-**datakitOrigin:** 是用户可访问到的 datakit 的地址或域名，这里的 172.16.0.23 0是 k8s 的 node1 的 ip 地址。
+**datakitOrigin:** 是用户可访问到的 DataKit 的地址或域名，这里的 172.16.0.23 0是 k8s 的 node1 的 ip 地址。
 
 **env:** 必填，应用所属环境，是 test 或 product 或其他字段。
 
@@ -994,7 +1006,7 @@ Datakit 开启 RUM 采集器是通过环境变量配置的。
 
 **trackInteractions:** 用户行为统计，例如点击按钮，提交信息等动作。
 
-**traceType:** 非必填，默认为ddtrace，目前支持 ddtrace、zipkin、skywalking_v3、jaeger、zipkin_single_header、w3c_traceparent 6种类型。
+**traceType:** 非必填，默认为 ddtrace，目前支持 ddtrace、zipkin、skywalking_v3、jaeger、zipkin_single_header、w3c_traceparent 6种类型。
 
 需要详细了解用户访问监测，请访问 [web 应用监控（RUM）最佳实践](../monitoring/web.md)。
 
@@ -1083,10 +1095,10 @@ volumeMounts 下面增加：
           subPath: logfwdserver.conf    
 ```
 
-#### 日志分割 pipeline
+#### 日志分割 Pipeline
 
-使用 pipeline 分割 system 系统生成的日志，把关键信息切成 tag，比如 traceID，这样可以与链路做关联。
-点击 [**日志****] 模块，进入 [**Pipelines**]，过滤中选择 System 模块采集日志时设置的 Source：k8s-log-system，输入如下内容，测试成功后点击保存。
+使用 Pipeline 分割 System 系统生成的日志，把关键信息切成 tag，比如 traceID，这样可以与链路做关联。
+点击 [**日志**] 模块，进入 [**Pipelines**]，新建 Pipeline，过滤中选择 System 模块采集日志时设置的 Source：k8s-log-system，输入如下内容，测试成功后点击保存。
 
 ```
 #2022-08-09 13:39:57.392 [http-nio-9201-exec-4] INFO  c.r.s.c.SysUserController - [list,70] - demo-k8s-system 1241118275256671447 9052729774571622516 - 查询用户列表开始
@@ -1133,19 +1145,19 @@ $ kubectl apply -f system-deployment.yaml
 
 #### RUM APM 联动
 
-访问 web 应用，点击【系统管理】->【用户管理】，此时触发用户列表查询请求 list，dataflux-rum.js 会生成trace-id 存入 header 中，可以看到 list 接口对应的 trace-id 是 2772508174716324531。请求调用后端的 list 接口，后端的 ddtrace 会读取到 trace-id 并记录到自己的 trace 数据里，在 logback.xml 增加了 %X{dd.trace_id}，trace_id 会随日志输出，从而实现了 RUM、APM 和 Log 的联动。
+访问 Web 应用，点击『系统管理』->『用户管理』，此时触发用户列表查询请求 list，dataflux-rum.js 会生成 trace-id 存入 header 中，可以看到 list 接口对应的 trace-id 是 2772508174716324531。请求调用后端的 list 接口，后端的 ddtrace 会读取到 trace-id 并记录到自己的 trace 数据里，在 logback.xml 增加了 %X{dd.trace_id}，trace_id 会随日志输出，从而实现了 RUM、APM 和 Log 的联动。
 
 ![image](../images/k8s-rum-apm-log/13.png)
 
-点击【用户访问监测】模块->【ruoyi-k8s-web】->【查看器】-> 选择 view，前面操作是用户管理列表的查询，所以点击列表中的 /system/user。
+点击『用户访问监测』模块->『ruoyi-k8s-web』->『查看器』-> 选择 view，前面操作是用户管理列表的查询，所以点击列表中的 /system/user。
 
 ![image](../images/k8s-rum-apm-log/14.png)
 
-点击【Fetch/XHR】
+点击『Fetch/XHR』
 
 ![image](../images/k8s-rum-apm-log/15.png)
 
-点击上图中的【prod-api/system/user/list】，prod-api 是 nginx 增加的转发请求，/system/user/list 是后端的 api 接口，进去后可以看到具体的请求及耗时情况。
+点击上图中的『prod-api/system/user/list』，prod-api 是 nginx 增加的转发请求，/system/user/list 是后端的 api 接口，进去后可以看到具体的请求及耗时情况。
 
 ![image](../images/k8s-rum-apm-log/16.png)
 
@@ -1155,15 +1167,15 @@ $ kubectl apply -f system-deployment.yaml
 
 #### 日志分析
 
-点击【日志】 模块，选择全部来源，默认查询最近 15 分钟的日志。根据 前端生成的 trace_id   2772508174716324531，填写在搜索栏，回车进行搜索。
+点击『日志』 模块，选择全部来源，默认查询最近 15 分钟的日志。根据 前端生成的 trace_id   2772508174716324531，填写在搜索栏，回车进行搜索。
 
 ![image](../images/k8s-rum-apm-log/19.png)
 
-点击【应用性能监控】模块->点击【链路】筛选框输入 trace_id:704229736283371775，回车检索出链路的调用情况。
+点击『应用性能监控』模块->点击『链路』筛选框输入 trace_id:704229736283371775，回车检索出链路的调用情况。
 
 ![image](../images/k8s-rum-apm-log/20.png)
 
-点击【SysUserController.list】查看详细信息。
+点击『SysUserController.list』查看详细信息。
 
 ![image](../images/k8s-rum-apm-log/21.png)
 
