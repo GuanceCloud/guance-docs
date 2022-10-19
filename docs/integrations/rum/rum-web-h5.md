@@ -4,15 +4,15 @@
 
 ## 视图预览
 
-![image](imgs/input-rum-web-h5-1.png)
+![image](../imgs/input-rum-web-h5-1.png)
 
-![image](imgs/input-rum-web-h5-2.png)
+![image](../imgs/input-rum-web-h5-2.png)
 
 ## 安装部署
 
 ### 前置条件
 
-- 至少拥有一台内网服务器，且已 <[安装 DataKit](../datakit/datakit-install.md)>。
+- 至少拥有一台内网服务器，且已 <[安装 DataKit](../../datakit/datakit-install.md)>。
 - **开放9529端口**：（RUM数据传输端口）**生产环境建议采用域名或slb进行数据接收，然后转发至 DataKit 所在服务器的9529端口。**
 - **测试环境**：开发或测试时可将数据发送至 DataKit 所在服务器的内网9529端口
 - **生产环境**：因涉及外网RUM数据收集，需开放 DataKit 所在服务器的外网9529端口（可利用slb对外转发数据至 DataKit 所在服务器的9529端口，或者用域名收集数据并转发至 DataKit 所在服务器的9529端口，同时建议用https加密协议进行传输）
@@ -23,7 +23,7 @@
 
 备注：单个project中理论上只有一个html文档，需要在该html文档中添加可观测js，如果存在多个项目均需要接入，则需要在多个项目的project中添加js，建议不同的项目在DF可观测平台上创建不同的应用，方便后期的管理以及问题的排查。
 
-![image](imgs/input-rum-web-h5-3.png)
+![image](../imgs/input-rum-web-h5-3.png)
 
 | 接入方式 | 简介 |
 | --- | --- |
@@ -46,17 +46,17 @@
 
 **接入示例（同步载入）：**
 
-![image](imgs/input-rum-web-h5-4.png)
+![image](../imgs/input-rum-web-h5-4.png)
 
 ### [Web应用分析](../real-user-monitoring/web/app-analysis)
 
 ### 高级功能
 
-<[自定义用户标识](../real-user-monitoring/web/custom-sdk/user-id)> 此方法需保证在rum-js初始化之后可以读到。
+<[自定义用户标识](../../real-user-monitoring/web/custom-sdk/user-id.md)> 此方法需保证在rum-js初始化之后可以读到。
 
-<[自定义设置会话](../real-user-monitoring/web/custom-sdk/set-session)>
+<[自定义设置会话](../../real-user-monitoring/web/custom-sdk/set-session.md)>
 
-<[自定义添加额外的数据TAG](../real-user-monitoring/web/custom-sdk/add-additional-tag)>
+<[自定义添加额外的数据TAG](../../real-user-monitoring/web/custom-sdk/add-additional-tag.md)>
 
 ## 场景视图
 
@@ -64,8 +64,9 @@ DF平台已默认内置，无需手动创建
 
 **如有需要，可参照以下步骤进行创建**
 
-<场景 - 新建仪表板 - 内置模板库 - Web 应用概览>
-<场景 - 新建仪表板 - 内置模板库 - Web 应用错误分析>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - Web 应用概览>
+
+<场景 - 新建仪表板 - 模板库 - 系统视图 - Web 应用错误分析>
 
 ## 检测库
 
@@ -82,17 +83,17 @@ DF平台已默认内置，无需手动创建
 
 ## 数据类型详情
 
-<[WEB应用-数据类型详情](../real-user-monitoring/web/app-data-collection.md)>
+<[WEB 应用-数据类型详情](../../real-user-monitoring/web/app-data-collection.md)>
 
 ## 最佳实践
 
-<[web应用监控（RUM）最佳实践](../best-practices/monitoring/web.md)>
+<[WEB 应用监控（RUM）最佳实践](../../best-practices/monitoring/web.md)>
 
 ## 故障排查
 
-1、[产生 Script error 消息的原因](/application-performance-monitoring/collection/connect-web-app)
+1、[产生 Script error 消息的原因](/real-user-monitoring/web/app-access/#script-error)
 
-2、[资源数据(ssl, tcp, dns, trans,ttfb)收集不完整问题](/application-performance-monitoring/collection/connect-web-app)
+2、[资源数据(ssl, tcp, dns, trans,ttfb)收集不完整问题](/real-user-monitoring/web/app-access/#ssl-tcp-dns-transttfb)
 
-3、[针对跨域资源的问题](/application-performance-monitoring/collection/connect-web-app)
+3、[针对跨域资源的问题](/real-user-monitoring/web/app-access/#_11)
 

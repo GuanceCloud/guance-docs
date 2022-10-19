@@ -38,8 +38,4 @@ nav:
     - '.NET core': ddtrace-net-core.md
     - '阿里云 EDAS': aliyun-edas.md
 
-  - '用户访问监测 (RUM)':
-    - 'Android': rum-android.md
-    - 'iOS': rum-ios.md
-    - 'MiniAPP (小程序)': rum-miniapp.md
-    - 'WEB页面 (H5)': rum-web-h5.md
+  - '用户访问监测 (RUM)': rum
