@@ -8,7 +8,7 @@
 
 Jenkins 性能指标展示：包括项目数量、构建数量、作业数量、空闲构建数量、正在构建数量、CPU 使用率、内存使用量等。
 
-![image](imgs/input-jenkins-01.png)
+![image](../imgs/input-jenkins-01.png)
 
 ## 安装部署
 
@@ -16,14 +16,14 @@ Jenkins 性能指标展示：包括项目数量、构建数量、作业数量、
 
 ### 前置条件
 
-- Jenkins 所在服务器 <[安装 DataKit](../datakit/datakit-install.md)>
+- Jenkins 所在服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
 - Jenkins 已安装
 
 ```
 ps -ef | grep jenkins
 ```
 
-![image](imgs/input-jenkins-02.png)
+![image](../imgs/input-jenkins-02.png)
 
 ### 配置实施
 
@@ -33,21 +33,21 @@ ps -ef | grep jenkins
 
 登录 Jenkins，点击【系统管理】->【插件管理】
 
-![image](imgs/input-jenkins-03.png)
+![image](../imgs/input-jenkins-03.png)
 
 点击【插件管理】->【可选插件】，输入 metric，点击【Install without restart】 
 
-![image](imgs/input-jenkins-04.png)
+![image](../imgs/input-jenkins-04.png)
 
 2、 生成 **Access keys**
 
 点击【系统管理】->【系统配置】
 
-![image](imgs/input-jenkins-05.png)
+![image](../imgs/input-jenkins-05.png)
 
 找到 Metrics，点击【Generate...】->【新增】，记录下 Access keys
 
-![image](imgs/input-jenkins-06.png)
+![image](../imgs/input-jenkins-06.png)
 
 3、 开启 jenkins 插件，复制 sample 文件
 
@@ -84,7 +84,7 @@ systemctl restart datakit
 
 指标预览
 
-![image](imgs/input-jenkins-07.png)
+![image](../imgs/input-jenkins-07.png)
 
 #### Jenkins CI Visibility (非必选)
 
@@ -92,25 +92,25 @@ Jenkins 采集器可以通过接收 Jenkins datadog plugin 发出的 CI Event �
 
 1、 jenkins.conf 文件配置监听端口，默认已配置了“:9539”，也可以使用其它未被占用的端口。
 
-![image](imgs/input-jenkins-08.png)
+![image](../imgs/input-jenkins-08.png)
 
 2、 登录 Jenkins，【系统管理】->【插件管理】->【可选插件】，输入 “Datadog”，在搜索结果中选择“Datadog”，点击下方的【Install without restart】。
 
-![image](imgs/input-jenkins-09.png)
+![image](../imgs/input-jenkins-09.png)
 
 3、 进入 Jenkins 的【系统管理】->【系统配置】，在 Datadog Plugin 输入项中，选择 “Use the Datadog Agent to report to Datadog ...”，**Agent Host** 填 DataKit 的地址，**DogStatsD Port** 和 **Traces Collection Port** 填 jenkins.conf 配置的监听端口，默认是 9539，勾选 `Enable CI Visibility`，点击【保存】。
 
-![image](imgs/input-jenkins-10.png)
+![image](../imgs/input-jenkins-10.png)
 
-![image](imgs/input-jenkins-11.png)
+![image](../imgs/input-jenkins-11.png)
 
 4、 CI 预览
 
 登录 Jenkins 执行**流水线**后，登录**观测云**，【CI】->【查看器】，选择 jenkins_pipeline 和 jenkins_job 查看 流水线执行情况。
 
-![image](imgs/input-jenkins-12.png)
+![image](../imgs/input-jenkins-12.png)
 
-![image](imgs/input-jenkins-13.png)
+![image](../imgs/input-jenkins-13.png)
 
 #### 日志采集 (非必选)
 
@@ -118,7 +118,7 @@ Jenkins 采集器可以通过接收 Jenkins datadog plugin 发出的 CI Event �
 
 - files：日志文件路径 (通常填写访问日志和错误日志)
 - pipeline：日志切割文件(内置)，实际文件路径 /usr/local/datakit/pipeline/jenkins.p
-- 相关文档 <[DataFlux pipeline 文本数据处理](../datakit/pipeline.md)>
+- 相关文档 <[ 文本数据处理（Pipeline）](../../datakit/pipeline.md)>
 
 ```
 vi /usr/local/datakit/conf.d/jenkins/jenkins.conf
@@ -136,7 +136,7 @@ systemctl restart datakit
 
 日志预览
 
-![image](imgs/input-jenkins-14.png)
+![image](../imgs/input-jenkins-14.png)
 
 #### 插件标签 (非必选)
 
@@ -144,7 +144,7 @@ systemctl restart datakit
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 jenkins 指标都会带有 app = oa 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](../best-practices/insight/tag.md)>
+- 相关文档 <[TAG 在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 
 ```
   [inputs.jenkins.tags]
@@ -161,7 +161,7 @@ systemctl restart datakit
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 内置模板库 - Jenkins 监控视图>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - Jenkins 监控视图>
 
 ## 检测库
 
@@ -269,9 +269,9 @@ systemctl restart datakit
 
 ## 最佳实践
 
-<[Jenkins可观测最佳实践](../best-practices/monitoring/jenkins)>
+<[Jenkins可观测最佳实践](../../best-practices/monitoring/jenkins.md)>
 
 ## 故障排查
 
-<[无数据上报排查](../datakit/why-no-data.md)>
+<[无数据上报排查](../../datakit/why-no-data.md)>
 
