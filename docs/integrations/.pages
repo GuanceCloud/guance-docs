@@ -14,6 +14,8 @@ nav:
 
   - '阿里云': aliyun
 
+  - 'AWS': aws
+
   - '腾讯云': tencent-cloud
 
   - 'CICD':
@@ -41,9 +43,3 @@ nav:
     - 'iOS': rum-ios.md
     - 'MiniAPP (小程序)': rum-miniapp.md
     - 'WEB页面 (H5)': rum-web-h5.md
-
-  - 'AWS':
-    - 'EC2': ec2.md
-    - 'ELB': elb.md
-    - 'RDS MySQL': rds-mysql.md
-    - 'S3': s3.md

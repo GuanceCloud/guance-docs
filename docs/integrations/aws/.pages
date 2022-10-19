@@ -1,0 +1,6 @@
+nav:
+  - index.md
+  - 'EC2': ec2.md
+  - 'ELB': elb.md
+  - 'RDS MySQL': rds-mysql.md
+  - 'S3': s3.md
