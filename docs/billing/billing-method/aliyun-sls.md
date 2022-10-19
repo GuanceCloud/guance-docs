@@ -14,9 +14,9 @@
 
 ## 一键注册商业版 SLS 存储流程
 
-1.在观测云商业版注册页面，按照注册步骤进入 “选择结算方式” 界面，选择 “阿里云账号结算“。
+1.在观测云商业版注册页面，按照注册步骤进入 “选择结算方式” ，选择 “阿里云账号结算“。
 
-![](../img/1-1 sls)
+![](../img/1-1 sls.png)
 
 ​       填写阿里云用户 ID 和商品实例 ID ，点击 下一步，进入存储方式选择界面。
 
@@ -32,7 +32,7 @@
 
 下载获取 SLS 授权文件。创建阿里云 RAM 账号，获取该账号的 AccessKey ID、AccessKey Secret 信息。
 
-![](../img/1-4 sls)
+![](../img/1-4 sls.png)
 
 关于创建 RAM 用户具体操作，详情请看文档 [获取阿里云云账号AccessKey ID和AccessKey Secret](https://help.aliyun.com/document_detail/38738.html) 及 [创建RAM用户](https://help.aliyun.com/document_detail/93720.htm?spm=a2c4g.11186623.0.0.36f55c9dpdTRzW) 。
 
@@ -40,7 +40,7 @@
 
 填写AccessKey ID、AccessKey Secret并进行验证，若验证通过，可以进行下一步；若验证未通过，提示 “该AK无效，请重新填写”。
 
-![](../img/1-5 sls.png)![](../img/1-6 sls)
+![](../img/1-5 sls.png)![](../img/1-6 sls.png)
 
 ​     3.验证通过后，点击 确认开通，提示 “成功开通观测云商业版”。
 
