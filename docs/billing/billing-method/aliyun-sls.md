@@ -20,33 +20,29 @@
 
 ​       填写阿里云用户 ID 和商品实例 ID ，点击 下一步，进入存储方式选择界面。
 
-2.默认选择 “默认存储” 方式，支持选择 “SLS 存储” 方式。
+2.默认选择 “默认存储” ，支持选择 “SLS 存储” 。
 
-![](../img/1-2 sls.png)
+- 当您选择“默认存储”时，点击下一步，直接跳转成功开通页面。
 
-3.当您选择默认存储方式时，点击下一步，直接跳转第四步开通成功。
-
-
-
-当您选择 “SLS 存储方式” 时，点击下一步后，进入阿里云账号绑定页面。
+- 当您选择 “SLS 存储” 时，点击下一步，显示用户服务协议，同意后进入阿里云账号绑定页面。
 
 ![](../img/1-3 sls.png)
 
-下载获取 SLS 授权文件。登录【阿里云】控制台，到 SLS 日志服务上传授权文件，创建RAM账号，获取该账号的AccessKey ID、AccessKey Secret信息。
+![](../img/1-7 sls.png)
+
+下载获取 SLS 授权文件。创建阿里云 RAM 账号，获取该账号的 AccessKey ID、AccessKey Secret 信息。
 
 ![](../img/1-4 sls)
 
-关于创建 RAM 用户具体操作，详情请看文档 [获取阿里云云账号AccessKey ID和AccessKey Secret](https://help.aliyun.com/document_detail/38738.html) 和 [创建RAM用户](https://help.aliyun.com/document_detail/93720.htm?spm=a2c4g.11186623.0.0.36f55c9dpdTRzW) 。
+关于创建 RAM 用户具体操作，详情请看文档 [获取阿里云云账号AccessKey ID和AccessKey Secret](https://help.aliyun.com/document_detail/38738.html) 及 [创建RAM用户](https://help.aliyun.com/document_detail/93720.htm?spm=a2c4g.11186623.0.0.36f55c9dpdTRzW) 。
 
 
 
-填写AccessKey ID、AccessKey Secret并进行验证，若验证通过，可以进行下一步；若验证未通过，提示【该AK无效，请重新填写】。
+填写AccessKey ID、AccessKey Secret并进行验证，若验证通过，可以进行下一步；若验证未通过，提示 “该AK无效，请重新填写”。
 
 ![](../img/1-5 sls.png)![](../img/1-6 sls)
 
-​     4.验证通过后显示用户服务协议，同意后点击 下一步 提示【成功开通观测云商业版】。
-
-![](../img/1-7 sls.png)
+​     3.验证通过后，点击 确认开通，提示 “成功开通观测云商业版”。
 
 ![](../img/1-8 sls.png)
 
@@ -63,49 +59,28 @@
 
 - 若您选择 SLS 存储 ，点击同意使用协议，下载 SLS 的授权文件，使用此文件在 SLS 创建 RAM 账号，并正确填写该账号的 AccessKey ID、AccessKey Secret ，验证成功后，跳转至成功开通页面
 
-![](../img/1-9 sls.png)![](../img/1-10 sls)
+
 
 ### 创建观测云工作空间
 
 在观测云工作空间创建页面，填写信息创建成功后，需选择存储方式：默认存储、 SLS 存储。
 
-- 若您选择 默认存储 ，则直接跳转至成功开通页面
+- 若您选择 默认存储 ，则直接跳转至成功开通页面。
 
-- 若您选择 SLS 存储 ，点击同意使用协议，下载 SLS 的授权文件，使用此文件在 SLS 创建 RAM 账号，并正确填写该账号的 AccessKey ID、AccessKey Secret ，验证成功后，跳转至成功开通页面
+- 若您选择 SLS 存储 ，点击同意使用协议，下载 SLS 的授权文件，使用此文件在 SLS 创建 RAM 账号，并正确填写该账号的 AccessKey ID、AccessKey Secret ，验证成功后，跳转至成功开通页面。
 
-![](../img/1-9 sls.png)![](../img/1-10 sls)
+
 
 ## SLS promql 函数
 
-以下为函数 influxdb 与 SLS promql 函数支持情况对比：
+当您选择 SLS 存储方式时，由于 SLS 存储使用的语言是 promql，存在部分函数无法使用的情况。更多关于 SLS 函数相关信息，可参考文档 [DQL 函数](../../dql/funs.md)。
 
-| func                                                         | influxdb                | SLS promql | 备注                               |
-| :----------------------------------------------------------- | ----------------------- | :--------- | ---------------------------------- |
-| avg                                                          | mean                    | avg        |                                    |
-| count                                                        | count                   | count      |                                    |
-| derivative(统计表中某列数值的单位变化率)                     | derivative              | rate       | sls不支持by,但可以加其它聚合函数by |
-| median                                                       | median                  | quantile   |                                    |
-| match                                                        | re                      | like       |                                    |
-| bottom（统计某列的值最小 k 个非 NULL 值）                    | bottom                  | bottomk    |                                    |
-| top(统计某列的值最大 k 个非 NULL 值。)                       | top                     | topk       |                                    |
-| max                                                          | max                     | max        |                                    |
-| min                                                          | min                     | min        |                                    |
-| percentile（统计表中某列的值百分比分位数）                   | percentile              | quantile   |                                    |
-| round                                                        | round                   | round      | 不支持group by                     |
-| stddev                                                       | stddev                  | stddev     |                                    |
-| sum                                                          | sum                     | sum        |                                    |
-| log                                                          | log                     | ln         |                                    |
-| p50(百分位)                                                  | percentile              | quantile   |                                    |
-| p75(百分位）                                                 | percentile              | quantile   |                                    |
-| p90(百分位）                                                 | percentile              | quantile   |                                    |
-| p99(百分位）                                                 | percentile              | quantile   |                                    |
-| count_distinct                                               | count(distinct())       | 无         |                                    |
-| difference(统计表中某列的值与前一行对应值的差)               | difference              | 无         |                                    |
-| distinct                                                     | distinct                | 无         |                                    |
-| non_negative_derivative(统计表中某列数值的单位变化率，只有正向值) | non_negative_derivative | 无         |                                    |
-| first（表中第一条数据）                                      | first                   | 无         |                                    |
-| last（表中最新的一条数据）                                   | last                    | 无         |                                    |
-| spread(统计表/超级表中某列的最大值和最小值之差)              | spread                  | 无         |                                    |
-| mode(众数）                                                  | mode                    | 无         |                                    |
-| moving_average(计算连续 k 个值的移动平均数（moving average）) | moving_average          | 无         |                                    |
 
+
+### 注意
+
+- SLS 空间默认开启多索引 
+
+- SLS 空间不支持删除指标集
+
+- 一旦选择 SLS 数据存储方式后便不能更改 

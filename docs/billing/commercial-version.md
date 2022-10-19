@@ -26,6 +26,10 @@
 
 ![](img/11.account_center_5.png)
 
+阿里云账号结算默认选择「默认存储」，支持更改为「 SLS 存储」。更多关于 SLS 存储方案，请参考文档 [SLS 存储](../billing/aliyun-sls.md)。
+
+![](img/1-3 sls.png)
+
 选择完结算方式以后，点击“确定”，即可成功开通观测云商业版。
 
 ![](img/11.account_center_7.png)
@@ -91,6 +95,12 @@
 选择“阿里云账号”，在弹出的对话框中选择结算方式，具体步骤可参考 [开通阿里云账号结算方式](../billing/billing-account/aliyun-account.md) 或 [在 AWS 订阅观测云](../billing/billing-account/aws-account.md) 。
 
 ![](img/7.biling_account_9.png)
+
+阿里云账号结算默认选择 “默认存储”，支持更改为 “ SLS 存储”。更多关于 SLS 存储方案，请参考文档 [SLS 存储](../billing/aliyun-sls.md)。
+
+![](img/1-3 sls.png)
+
+
 
 若选择使用费用中心账号结算，可直接关闭“更改结算方式”对话框。支持在观测云费用中心“工作空间管理”更改结算方式。
 
