@@ -14,11 +14,11 @@ nav:
 
   - '阿里云': aliyun
 
+  - 'AWS': aws
+
   - '腾讯云': tencent-cloud
 
-  - 'CICD':
-    - 'GitLab': gitlab.md
-    - 'Jenkins': jenkins.md
+  - 'CICD': cicd
 
   - '数据采集':
     - 'Fluentd': fluentd.md
@@ -36,14 +36,4 @@ nav:
     - '.NET core': ddtrace-net-core.md
     - '阿里云 EDAS': aliyun-edas.md
 
-  - '用户访问监测 (RUM)':
-    - 'Android': rum-android.md
-    - 'iOS': rum-ios.md
-    - 'MiniAPP (小程序)': rum-miniapp.md
-    - 'WEB页面 (H5)': rum-web-h5.md
-
-  - 'AWS':
-    - 'EC2': ec2.md
-    - 'ELB': elb.md
-    - 'RDS MySQL': rds-mysql.md
-    - 'S3': s3.md
+  - '用户访问监测 (RUM)': rum

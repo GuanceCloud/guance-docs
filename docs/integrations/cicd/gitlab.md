@@ -8,7 +8,7 @@
 
 GitLab性能指标展示：包括请求持续时间、队列数量、队列耗时、gc耗时、事务耗时等。
 
-![image](imgs/input-gitlab-01.png)
+![image](../imgs/input-gitlab-01.png)
 
 ## 安装部署
 
@@ -16,7 +16,7 @@ GitLab性能指标展示：包括请求持续时间、队列数量、队列耗�
 
 ### 前置条件
 
-- GitLab所在服务器 <[安装 DataKit](../datakit/datakit-install.md)>
+- GitLab所在服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
 - GitLab已安装
 
 ### 配置实施
@@ -28,7 +28,7 @@ GitLab性能指标展示：包括请求持续时间、队列数量、队列耗�
 登录 GitLab ，点击【Admin Area】->【Settings】-> 【Metrics and profiling】
 选中【Enable Prometheus Metrics】，点击【 Save change】。
 
-![image](imgs/input-gitlab-02.png)
+![image](../imgs/input-gitlab-02.png)
 
 2、 配置数据访问白名单
 
@@ -38,7 +38,7 @@ GitLab性能指标展示：包括请求持续时间、队列数量、队列耗�
 vi /etc/gitlab/gitlab.rb
 ```
 
-![image](imgs/input-gitlab-03.png)
+![image](../imgs/input-gitlab-03.png)
 
 重启 GitLab
 
@@ -97,7 +97,7 @@ systemctl restart datakit
 
 指标预览
 
-![image](imgs/input-gitlab-04.png)
+![image](../imgs/input-gitlab-04.png)
 
 #### 插件标签 (非必选)
 
@@ -105,7 +105,7 @@ systemctl restart datakit
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 GitLab 指标都会带有 app = oa 的标签，可以进行快速查询
-- 相关文档 <[TAG 在观测云中的最佳实践](../best-practices/insight/tag.md)>
+- 相关文档 <[TAG 在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 
 ```
     ## extra tags for gitlab metrics
@@ -125,31 +125,31 @@ systemctl restart datakit
 
 在 GitLab 中使用 Pipeline 部署项目，通过 DataKit 采集 Pipeline 指标，可以通过观测云可视化 CI 的步骤。<br />依次进入 Projects -> Ruoyi Auth （请选择您的项目）-> Settings -> Webhooks。
 
-![image](imgs/input-gitlab-04.png)
+![image](../imgs/input-gitlab-04.png)
 
 URL 中输入 DataKit 所在的主机 IP 和 DataKit 的 9529 端口，再加 /v1/gitlab。如下图。
 
-![image](imgs/input-gitlab-06.png)
+![image](../imgs/input-gitlab-06.png)
 
 选中 Job events 和 Pipeline events，点击 Add webhook。
 
-![image](imgs/input-gitlab-07.png)
+![image](../imgs/input-gitlab-07.png)
 
 点击刚才创建的 Webhooks 右边的 Test，选择 Pipeline events。
 
-![image](imgs/input-gitlab-08.png)
+![image](../imgs/input-gitlab-08.png)
 
 上方出现 HTTP 200，说明配置成功，如下图。
 
-![image](imgs/input-gitlab-09.png)
+![image](../imgs/input-gitlab-09.png)
 
 执行 Pipeline，登录观测云的 CI 模块查看。
 
-![image](imgs/input-gitlab-10.png)
+![image](../imgs/input-gitlab-10.png)
 
-![image](imgs/input-gitlab-11.png)
+![image](../imgs/input-gitlab-11.png)
 
-![image](imgs/input-gitlab-12.png)
+![image](../imgs/input-gitlab-12.png)
 
 ## 场景视图
 
@@ -159,7 +159,7 @@ URL 中输入 DataKit 所在的主机 IP 和 DataKit 的 9529 端口，再加 /v
 
 暂无
 
-## [指标详解](../datakit/gitlab#measurements)
+## [指标详解](/datakit/gitlab#measurements)
 
 
 ## 最佳实践
@@ -168,5 +168,5 @@ URL 中输入 DataKit 所在的主机 IP 和 DataKit 的 9529 端口，再加 /v
 
 ## 故障排查
 
-<[无数据上报排查](../datakit/why-no-data.md)>
+<[无数据上报排查](../../datakit/why-no-data.md)>
 
