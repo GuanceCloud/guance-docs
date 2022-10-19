@@ -48,5 +48,5 @@
 
 ## 示例图
 
-![](../img/gailan001.png)
+![](../img/4.gailantu.png)
 

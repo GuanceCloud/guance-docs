@@ -45,5 +45,5 @@
 
 ## 示例图
 
-![](../img/tree001.png)
+![](../img/4.treemap.png)
 
