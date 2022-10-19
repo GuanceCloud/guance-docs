@@ -14,43 +14,41 @@
 
 ## 一键注册商业版 SLS 存储流程
 
-1. 在观测云商业版注册页面，按照注册步骤进入“选择账号结算”界面
+1. 在观测云商业版注册页面，按照注册步骤进入 “选择结算方式” 界面，选择 “阿里云账号结算“
 
+<img src="/Users/chaixinyi/Library/Application Support/typora-user-images/image-20221019102750404.png" alt="image-20221019102750404" style="zoom:33%;" />
 
+​       填写阿里云用户 ID 和商品实例 ID ，点击 下一步，进入存储方式选择界面
 
+2. 默认选择 “默认存储” 方式，支持选择 “SLS 存储” 方式
 
-
-2. 选择”阿里云账号结算“后，默认选择 “默认存储” 方式，支持选择 “SLS 存储” 方式
-
-
-
-
+<img src="/Users/chaixinyi/Library/Application Support/typora-user-images/image-20221019103853519.png" alt="image-20221019103853519" style="zoom:33%;" />
 
 3. 当您选择默认存储方式时，点击下一步，直接跳转第四步开通成功
 
    
 
-   
+   当您选择 “SLS 存储方式” 时，点击下一步后，进入阿里云账号绑定页面。
+
+   <img src="/Users/chaixinyi/Library/Application Support/typora-user-images/image-20221019101815924.png" alt="image-20221019101815924" style="zoom:33%;" /><img 
+
+   下载获取 SLS 授权文件。登录【阿里云】控制台，到 SLS 日志服务上传授权文件，创建RAM账号，获取该账号的AccessKey ID、AccessKey Secret信息。
+
+   <img src="/Users/chaixinyi/Library/Application Support/typora-user-images/image-20221019110657759.png" alt="image-20221019110657759" style="zoom:33%;" />
+
+   关于创建 RAM 用户具体操作，详情请看文档[获取阿里云云账号AccessKey ID和AccessKey Secret](https://help.aliyun.com/document_detail/38738.html); [创建RAM用户](https://help.aliyun.com/document_detail/93720.htm?spm=a2c4g.11186623.0.0.36f55c9dpdTRzW).
 
    
-
-   当您选择 “SLS 存储方式” 时，点击下一步后，进入阿里云账号绑定页面。下载获取 SLS 授权文件。登录【阿里云】控制台，到 SLS 日志服务上传授权文件，创建RAM账号，获取该账号的AccessKey ID、AccessKey Secret信息。关于创建 RAM 用户具体操作，详情请看文档https://help.aliyun.com/document_detail/38738.html
-
    
-
-   
-
    填写AccessKey ID、AccessKey Secret并进行验证，若验证通过，可以进行下一步；若验证未通过，提示【该AK无效，请重新填写】
 
+<img src="/Users/chaixinyi/Library/Application Support/typora-user-images/image-20221019102136723.png" alt="image-20221019102136723" style="zoom:33%;" /><img src="/Users/chaixinyi/Library/Application Support/typora-user-images/image-20221019102246778.png" alt="image-20221019102246778" style="zoom:33%;" />
 
+​     4. 验证通过后显示用户服务协议，同意后点击 下一步 提示【成功开通观测云商业版】。
 
+<img src="/Users/chaixinyi/Library/Application Support/typora-user-images/image-20221019101852276.png" alt="image-20221019101852276" style="zoom:33%;" />
 
-
-​     4. 验证通过后显示用户服务协议，同意后提示【成功开通观测云商业版】。
-
-
-
-
+<img src="/Users/chaixinyi/Library/Application Support/typora-user-images/image-20221019102109863.png" alt="image-20221019102109863" style="zoom:33%;" />
 
 
 ## 阿里云一键开通商业版 SLS 存储流程
@@ -63,11 +61,9 @@
 
 - 若您选择 默认存储 ，则直接跳转至成功开通页面
 
-
-
 - 若您选择 SLS 存储 ，点击同意使用协议，下载 SLS 的授权文件，使用此文件在 SLS 创建 RAM 账号，并正确填写该账号的 AccessKey ID、AccessKey Secret ，验证成功后，跳转至成功开通页面
 
-
+<img src="/Users/chaixinyi/Library/Application Support/typora-user-images/image-20221019110329551.png" alt="image-20221019110329551" style="zoom:50%;" /><img src="/Users/chaixinyi/Library/Application Support/typora-user-images/image-20221019110502908.png" alt="image-20221019110502908" style="zoom:50%;" />
 
 ### 创建观测云工作空间
 
@@ -75,11 +71,9 @@
 
 - 若您选择 默认存储 ，则直接跳转至成功开通页面
 
-
-
 - 若您选择 SLS 存储 ，点击同意使用协议，下载 SLS 的授权文件，使用此文件在 SLS 创建 RAM 账号，并正确填写该账号的 AccessKey ID、AccessKey Secret ，验证成功后，跳转至成功开通页面
 
-
+<img src="/Users/chaixinyi/Library/Application Support/typora-user-images/image-20221019110329551.png" alt="image-20221019110329551" style="zoom:50%;" /><img src="/Users/chaixinyi/Library/Application Support/typora-user-images/image-20221019110450337.png" alt="image-20221019110450337" style="zoom:50%;" />
 
 ## SLS promql 函数
 
