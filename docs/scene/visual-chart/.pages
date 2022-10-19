@@ -13,6 +13,7 @@ nav:
   - '漏斗图': funnel-chart.md
   - '饼图': pie-chart.md
   - '柱状图': bar-chart.md
+  - '直方图': histogram.md
   - 'SLO': slo-chart.md
   - '排行榜': leaderboard.md
   - '仪表盘': dashboard.md
