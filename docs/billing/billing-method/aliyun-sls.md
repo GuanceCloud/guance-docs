@@ -28,15 +28,17 @@
 
 
 
-当您选择 “SLS 存储方式” 时，点击下一步后，进入阿里云账号绑定页面。
+当您选择 “SLS 存储方式” 时，点击下一步后，显示用户服务协议，同意后进入阿里云账号绑定页面。
 
 ![](../img/1-3 sls.png)
 
-下载获取 SLS 授权文件。登录【阿里云】控制台，到 SLS 日志服务上传授权文件，创建RAM账号，获取该账号的AccessKey ID、AccessKey Secret信息。
+![](../img/1-7 sls.png)
+
+下载获取 SLS 授权文件。创建阿里云 RAM 账号，获取该账号的 AccessKey ID、AccessKey Secret 信息。
 
 ![](../img/1-4 sls)
 
-关于创建 RAM 用户具体操作，详情请看文档 [获取阿里云云账号AccessKey ID和AccessKey Secret](https://help.aliyun.com/document_detail/38738.html) 和 [创建RAM用户](https://help.aliyun.com/document_detail/93720.htm?spm=a2c4g.11186623.0.0.36f55c9dpdTRzW) 。
+关于创建 RAM 用户具体操作，详情请看文档 [获取阿里云云账号AccessKey ID和AccessKey Secret](https://help.aliyun.com/document_detail/38738.html) 及 [创建RAM用户](https://help.aliyun.com/document_detail/93720.htm?spm=a2c4g.11186623.0.0.36f55c9dpdTRzW) 。
 
 
 
@@ -44,9 +46,7 @@
 
 ![](../img/1-5 sls.png)![](../img/1-6 sls)
 
-​     4.验证通过后显示用户服务协议，同意后点击 下一步 提示【成功开通观测云商业版】。
-
-![](../img/1-7 sls.png)
+​     4.验证通过后，点击 确认开通，提示【成功开通观测云商业版】。
 
 ![](../img/1-8 sls.png)
 
@@ -75,7 +75,11 @@
 
 ![](../img/1-9 sls.png)![](../img/1-10 sls)
 
+
+
 ## SLS promql 函数
+
+当您选择 SLS 存储方式时，由于 SLS 存储使用的语言是 promql，存在部分函数无法使用的情况。
 
 以下为函数 influxdb 与 SLS promql 函数支持情况对比：
 
@@ -109,3 +113,10 @@
 | mode(众数）                                                  | mode                    | 无         |                                    |
 | moving_average(计算连续 k 个值的移动平均数（moving average）) | moving_average          | 无         |                                    |
 
+### 注意
+
+- SLS 空间默认开启多索引 
+
+- SLS 空间不支持删除指标集
+
+- 一旦选择 SLS 数据存储方式后便不能更改 

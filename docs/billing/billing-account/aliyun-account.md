@@ -169,3 +169,6 @@
 
 ![](../img/12.aliyun_6.png)
 
+8.阿里云账号结算默认选择「默认存储」，支持更改为「 SLS 存储」。更多关于 SLS 存储方案，请参考文档 [SLS 存储](../../billing/aliyun-sls.md)。
+
+![](../img/1-3 sls.png)
