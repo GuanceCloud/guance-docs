@@ -37,26 +37,39 @@ RUM（Real User Monitor）采集器用于收集网页端或移动端上报的用
     ```toml
         
     [[inputs.rum]]
-    ## profile Agent endpoints register by version respectively.
-    ## Endpoints can be skipped listen by remove them from the list.
-    ## Default value set as below. DO NOT MODIFY THESE ENDPOINTS if not necessary.
-    endpoints = ["/v1/write/rum"]
+      ## profile Agent endpoints register by version respectively.
+      ## Endpoints can be skipped listen by remove them from the list.
+      ## Default value set as below. DO NOT MODIFY THESE ENDPOINTS if not necessary.
+      endpoints = ["/v1/write/rum"]
     
-    # Android command-line-tools HOME
-    android_cmdline_home = "/usr/local/datakit/data/rum/tools/cmdline-tools"
+      ## Android command-line-tools HOME
+      android_cmdline_home = "/usr/local/datakit/data/rum/tools/cmdline-tools"
     
-    # proguard HOME
-    proguard_home = "/usr/local/datakit/data/rum/tools/proguard"
+      ## proguard HOME
+      proguard_home = "/usr/local/datakit/data/rum/tools/proguard"
     
-    # android-ndk HOME
-    ndk_home = "/usr/local/datakit/data/rum/tools/android-ndk"
+      ## android-ndk HOME
+      ndk_home = "/usr/local/datakit/data/rum/tools/android-ndk"
     
-    # atos or atosl bin path
-    # for macOS datakit use the built-in tool atos default
-    # for Linux there are several tools that can be used to instead of macOS atos partially,
-    # such as https://github.com/everettjf/atosl-rs
-    atos_bin_path = "/usr/local/datakit/data/rum/tools/atosl"
+      ## atos or atosl bin path
+      ## for macOS datakit use the built-in tool atos default
+      ## for Linux there are several tools that can be used to instead of macOS atos partially,
+      ## such as https://github.com/everettjf/atosl-rs
+      atos_bin_path = "/usr/local/datakit/data/rum/tools/atosl"
     
+      ## Threads config controls how many goroutines an agent cloud start to handle HTTP request.
+      ## buffer is the size of jobs' buffering of worker channel.
+      ## threads is the total number fo goroutines at running time.
+      # [inputs.rum.threads]
+        # buffer = 100
+        # threads = 8
+    
+      ## Storage config a local storage space in hard dirver to cache trace data.
+      ## path is the local file path used to cache data.
+      ## capacity is total space size(MB) used to store data.
+      # [inputs.rum.storage]
+        # path = "./rum_storage"
+        # capacity = 5120
     
     ```
 
