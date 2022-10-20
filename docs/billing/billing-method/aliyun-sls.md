@@ -7,80 +7,54 @@
 
 本文将介绍观测云商业版中，阿里云账号结算模式下，选择 SLS 存储方案操作流程。关于直接注册商业版，可参考文档 [注册商业版](../../billing/commercial-version.md) 。
 
-**注意**：SLS 存储方案仅支持 ”中国区-杭州“、”中国区-张家口“站点。
+???+ attention
 
-
+    - SLS 存储方案仅支持 ”中国区-杭州“、”中国区-张家口“站点，一旦选择 SLS 数据存储方案后便不能更改；
+    - 选择 SLS 存储方案的工作空间默认开启多索引，且不支持删除指标集。
 
 
 ## 一键注册商业版 SLS 存储流程
 
-1.在观测云商业版注册页面，按照注册步骤进入 “选择结算方式” ，选择 “阿里云账号结算“。
+在观测云商业版注册页面，按照注册步骤进入 “选择结算方式” ，选择 “阿里云账号结算“，填写“阿里云用户 ID” 和“商品实例 ID” ，点击 下一步，进入存储方式选择界面。
 
-![](../img/1-1 sls.png)
+![](../img/1.sls_1.png)
 
-​       填写阿里云用户 ID 和商品实例 ID ，点击 下一步，进入存储方式选择界面。
+​       
 
-2.默认选择 “默认存储” ，支持选择 “SLS 存储” 。
+在选择存储方式页面，默认选择 “默认存储” ，支持选择 “SLS 存储” 。
 
 - 当您选择“默认存储”时，点击下一步，直接跳转成功开通页面。
 
 - 当您选择 “SLS 存储” 时，点击下一步，显示用户服务协议，同意后进入阿里云账号绑定页面。
 
-![](../img/1-3 sls.png)
+![](../img/1.sls_3.png)
 
-![](../img/1-7 sls.png)
+同意用户使用协议，并点击下一步。
 
-下载获取 SLS 授权文件。创建阿里云 RAM 账号，获取该账号的 AccessKey ID、AccessKey Secret 信息。
+![](../img/1.sls_7.png)
 
-![](../img/1-4 sls.png)
+下载获取 SLS 授权文件，在 [阿里云控制台](https://www.aliyun.com/) 创建阿里云 RAM 账号，获取该账号的 AccessKey ID、AccessKey Secret 信息。
 
-关于创建 RAM 用户具体操作，详情请看文档 [获取阿里云云账号AccessKey ID和AccessKey Secret](https://help.aliyun.com/document_detail/38738.html) 及 [创建RAM用户](https://help.aliyun.com/document_detail/93720.htm?spm=a2c4g.11186623.0.0.36f55c9dpdTRzW) 。
+关于创建 RAM 用户具体操作，详情请看文档 [创建RAM用户](https://help.aliyun.com/document_detail/93720.htm?spm=a2c4g.11186623.0.0.36f55c9dpdTRzW) 及 [获取阿里云云账号AccessKey ID和AccessKey Secret](https://help.aliyun.com/document_detail/38738.html) 。
+
+![](../img/1.sls_4.png)
+
+填写 AccessKey ID、AccessKey Secret 并进行验证，若验证通过，可以进行下一步；若验证未通过，提示 “该AK无效，请重新填写”。
+
+![](../img/1.sls_6.png)
 
 
 
-填写AccessKey ID、AccessKey Secret并进行验证，若验证通过，可以进行下一步；若验证未通过，提示 “该AK无效，请重新填写”。
+​     验证通过后，点击 确认开通，提示 “成功开通观测云商业版”。
 
-![](../img/1-5 sls.png)![](../img/1-6 sls.png)
-
-​     3.验证通过后，点击 确认开通，提示 “成功开通观测云商业版”。
-
-![](../img/1-8 sls.png)
+![](../img/1.sls_8.png)
 
 
 ## 阿里云一键开通商业版 SLS 存储流程
 
-在您注册观测云企业账号或创建观测云工作空间时，可选择 默认存储 或 SLS 存储 两种方式。下文将对选择 SLS 存储方式的流程操作进行说明。
+若您在 [阿里云云市场](https://market.aliyun.com/products/56838014/cmgj00053362) 已购买观测云，您可以在阿里云控制台“已购买的服务”中，点击右侧的“免登”按钮， [开通观测云商业版](../../billing/billing-account/aliyun-account.md#aliyun-register) 并按照以上的步骤选择 SLS 存储。
 
-### 注册观测云企业账号
+## SLS 函数
 
-在观测云企业账号注册页面，填写信息注册成功后，需选择存储方式：默认存储、 SLS 存储。
+当您选择 SLS 存储方式时，由于 SLS 存储使用的语言是 promql，存在部分函数无法使用的情况。更多关于 SLS 函数相关信息，可参考文档 [DQL 函数](../../dql/funcs.md#sls)。
 
-- 若您选择 默认存储 ，则直接跳转至成功开通页面
-
-- 若您选择 SLS 存储 ，点击同意使用协议，下载 SLS 的授权文件，使用此文件在 SLS 创建 RAM 账号，并正确填写该账号的 AccessKey ID、AccessKey Secret ，验证成功后，跳转至成功开通页面
-
-
-
-### 创建观测云工作空间
-
-在观测云工作空间创建页面，填写信息创建成功后，需选择存储方式：默认存储、 SLS 存储。
-
-- 若您选择 默认存储 ，则直接跳转至成功开通页面。
-
-- 若您选择 SLS 存储 ，点击同意使用协议，下载 SLS 的授权文件，使用此文件在 SLS 创建 RAM 账号，并正确填写该账号的 AccessKey ID、AccessKey Secret ，验证成功后，跳转至成功开通页面。
-
-
-
-## SLS promql 函数
-
-当您选择 SLS 存储方式时，由于 SLS 存储使用的语言是 promql，存在部分函数无法使用的情况。更多关于 SLS 函数相关信息，可参考文档 [DQL 函数](../../dql/funs.md)。
-
-
-
-### 注意
-
-- SLS 空间默认开启多索引 
-
-- SLS 空间不支持删除指标集
-
-- 一旦选择 SLS 数据存储方式后便不能更改 
