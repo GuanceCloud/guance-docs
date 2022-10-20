@@ -11,7 +11,10 @@ icon: zy/release-notes
 
 ### 观测云更新
 
+<!--
+
 #### 新增 SLS 存储方案
+
 观测云新增 SLS 存储方案，支持阿里云 SLS 用户能够快速使用观测云做数据查看分析。在观测云进行商业版注册时，选择”阿里云账号结算“后，您可以选择 “SLS 存储” 方式来存储数据。更多详情可参考文档 [SLS 存储](../billing/billing-method/aliyun-sls.md) 。
 
 #### 超大日志计费逻辑调整
@@ -23,6 +26,8 @@ icon: zy/release-notes
 - SLS 存储：日志大小超过 2 KB，日志计费的条数 = 取整数（日志大小 / 2 KB）
 
 更多存储方式说明可参考文档 [数据存储策略](../billing/billing-method/data-storage.md) 。
+
+-->
 
 #### 监控优化
 
