@@ -63,7 +63,7 @@ OTEL 提供与 vendor 无关的实现，根据用户的需要将观测类数据�
         # key2 = "value2"
         # ...
     
-      ## Threads config controls how many goroutines an agent cloud start.
+      ## Threads config controls how many goroutines an agent cloud start to handle HTTP request.
       ## buffer is the size of jobs' buffering of worker channel.
       ## threads is the total number fo goroutines at running time.
       # [inputs.opentelemetry.threads]
@@ -74,7 +74,7 @@ OTEL 提供与 vendor 无关的实现，根据用户的需要将观测类数据�
       ## path is the local file path used to cache data.
       ## capacity is total space size(MB) used to store data.
       # [inputs.opentelemetry.storage]
-        # path = "./opentelemetry_storage"
+        # path = "./otel_storage"
         # capacity = 5120
     
       [inputs.opentelemetry.expectedHeaders]
