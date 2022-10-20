@@ -59,9 +59,13 @@
 
 ![](../img/7.biling_account_9.png)
 
+<!-- 
+
 4.阿里云账号结算默认选择「默认存储」，支持更改为「 SLS 存储」。更多关于 SLS 存储方案，请参考文档 [SLS 存储](../../billing/aliyun-sls.md)。
 
-![](../img/1-3 sls.png)
+![](../img/1.sls_3.png)
+
+-->
 
 5.在“更改结算方式”页面，点击“前往阿里云免费开通观测云服务”。
 
@@ -99,9 +103,13 @@
 
 ![](../img/7.biling_account_9.png)
 
+<!--
+
 13.阿里云账号结算默认选择「默认存储」，支持更改为「 SLS 存储」。更多关于 SLS 存储方案，请参考文档 [SLS 存储](../../billing/aliyun-sls.md)。
 
-![](../img/1-3 sls.png)
+![](../img/1.sls_3.png)
+
+-->
 
 ### 如何获取阿里用户 ID {#uid}
 
