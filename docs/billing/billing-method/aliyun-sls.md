@@ -35,7 +35,7 @@
 
 下载获取 SLS 授权文件，在 [阿里云控制台](https://www.aliyun.com/) 创建阿里云 RAM 账号，获取该账号的 AccessKey ID、AccessKey Secret 信息。
 
-关于使用 SLS 授权文件给 RAM 账号授权的具体操作，可参考文档 [RAM账号授权](../../billing/converted.md) 。
+关于使用 SLS 授权文件给 RAM 账号授权的具体操作，可参考文档 [RAM账号授权](../../billing/billing-method/sls-grant.md) 。
 
 ![](../img/1.sls_4.png)
 
