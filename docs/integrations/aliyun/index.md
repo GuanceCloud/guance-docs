@@ -12,7 +12,7 @@
 
 目前，可以很好得观测 阿里云 如下多种类型指标数据：
 
-[ASM](aliyun-asm.md)、 [CDN](aliyun-cdn.md)、 [ECS](aliyun-ecs.md)、 [EIP](aliyun-eip.md)、 [ElasticSearch](aliyun-es.md)、[MongoDB](aliyun-mongodb.md)、 [NAT](aliyun-nat.md)、[OSS](aliyun-oss.md)、 [PolarDB Mysql](aliyun-mysql.md)、 [PolarDB Oracle](aliyun-oracle.md)、 [PolarDB PostgreSQL](aliyun-postgresql.md)、
+[CDN](aliyun-cdn.md)、 [ECS](aliyun-ecs.md)、 [EIP](aliyun-eip.md)、 [ElasticSearch](aliyun-es.md)、[MongoDB](aliyun-mongodb.md)、 [NAT](aliyun-nat.md)、[OSS](aliyun-oss.md)、 [PolarDB Mysql](aliyun-mysql.md)、 [PolarDB Oracle](aliyun-oracle.md)、 [PolarDB PostgreSQL](aliyun-postgresql.md)、
 
 [RDS Mysql](aliyun-rds-mysql.md)、 [RDS SQLServer](aliyun-rds-sqlserver.md)、 [Redis 标准版](aliyun-redis.md)、 [SLB](aliyun-slb.md)、 [SLS](aliyun-sls.md)、 [费用](aliyun-charges.md)
 
