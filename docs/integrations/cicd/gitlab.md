@@ -1,23 +1,25 @@
-
 # GitLab
----
 
-操作系统支持：Linux / Windows
+---
 
 ## 视图预览
 
-GitLab性能指标展示：包括请求持续时间、队列数量、队列耗时、gc耗时、事务耗时等。
+GitLab 性能指标展示，包括请求持续时间、队列数量、队列耗时、 GC 耗时、事务耗时等。
 
 ![image](../imgs/input-gitlab-01.png)
 
+## 版本支持
+
+操作系统支持：Linux / Windows
+
 ## 安装部署
 
-说明：示例 GitLab 版本为：v14.6.2(CentOS)，各个不同版本指标可能存在差异
+说明：示例 GitLab 版本为：v14.6.2(CentOS)，各个不同版本指标可能存在差异。
 
 ### 前置条件
 
-- GitLab所在服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
-- GitLab已安装
+- GitLab 所在服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
+- GitLab 已安装
 
 ### 配置实施
 
@@ -46,7 +48,7 @@ vi /etc/gitlab/gitlab.rb
 gitlab-ctl restart
 ```
 
-3、 开启 GitLab 插件，复制sample文件
+3、 开启 GitLab 插件，复制 sample 文件
 
 ```
 cd /usr/local/datakit/conf.d/gitlab
@@ -80,13 +82,13 @@ vi gitlab.conf
     [inputs.gitlab.tags]
     # some_tag = "some_value"
     # more_tag = "some_other_value"
-                             
+
 ```
 
 参数说明
 
-- url：GitLab 的 Promtheus 数据采集url
-- interval：采集指标频率，s秒
+- url：GitLab 的 Promtheus 数据采集 url
+- interval：采集指标频率，s 秒
 - enable_ci_visibility：true 采集 gitlab ci 数据
 
 5、 重启 DataKit (如果需要开启日志，请配置日志采集再重启)
@@ -104,7 +106,7 @@ systemctl restart datakit
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，所有 GitLab 指标都会带有 app = oa 的标签，可以进行快速查询
+- 以下示例配置完成后，所有 GitLab 指标都会带有 `app = "oa"` 的标签，可以进行快速查询
 - 相关文档 <[TAG 在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 
 ```
@@ -123,7 +125,8 @@ systemctl restart datakit
 
 #### GitLab CI (非必选)
 
-在 GitLab 中使用 Pipeline 部署项目，通过 DataKit 采集 Pipeline 指标，可以通过观测云可视化 CI 的步骤。<br />依次进入 Projects -> Ruoyi Auth （请选择您的项目）-> Settings -> Webhooks。
+在 GitLab 中使用 Pipeline 部署项目，通过 DataKit 采集 Pipeline 指标，可以通过观测云可视化 CI 的步骤。<br />
+依次进入 Projects -> Ruoyi Auth （请选择您的项目）-> Settings -> Webhooks
 
 ![image](../imgs/input-gitlab-04.png)
 
@@ -153,14 +156,13 @@ URL 中输入 DataKit 所在的主机 IP 和 DataKit 的 9529 端口，再加 /v
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 模板库 -  系统视图 - Gitlab 监控视图>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - Gitlab 监控视图>
 
 ## 监控规则
 
 暂无
 
 ## [指标详解](/datakit/gitlab#measurements)
-
 
 ## 最佳实践
 
@@ -169,4 +171,3 @@ URL 中输入 DataKit 所在的主机 IP 和 DataKit 的 9529 端口，再加 /v
 ## 故障排查
 
 <[无数据上报排查](../../datakit/why-no-data.md)>
-
