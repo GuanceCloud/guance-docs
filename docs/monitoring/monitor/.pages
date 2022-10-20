@@ -4,7 +4,7 @@ nav:
   - '日志检测': log-detection.md
   - '突变检测': mutation-detection.md
   - '区间检测': interval-detection.md
-  - '水位检测': water-level-detection.md
+  - '离群检测': outlier-detection.md
   - '安全巡检': security_checker.md
   - '进程异常检测': processes-detection.md
   - '基础设施存活检测': infrastructure-detection.md
@@ -14,3 +14,4 @@ nav:
   - '网络数据检测': network-detection.md
   - '运算符说明': operator-description.md
   - '真值表说明': table-description.md
+  - '事件等级说明': event-level-description.md

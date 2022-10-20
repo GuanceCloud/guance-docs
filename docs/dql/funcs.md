@@ -2001,5 +2001,40 @@ object::docker_containers:()  {name=with_labels(object_class='docker_containers'
 
 
 
----
+<!--
 
+## SLS promql 函数 {#sls}
+
+以下为函数 influxdb 与 SLS promql 函数支持情况对比：
+
+| func                                                         | influxdb                | SLS promql | 备注                               |
+| :----------------------------------------------------------- | ----------------------- | :--------- | ---------------------------------- |
+| avg                                                          | mean                    | avg        |                                    |
+| count                                                        | count                   | count      |                                    |
+| derivative(统计表中某列数值的单位变化率)                     | derivative              | rate       | sls不支持by,但可以加其它聚合函数by |
+| median                                                       | median                  | quantile   |                                    |
+| match                                                        | re                      | like       |                                    |
+| bottom（统计某列的值最小 k 个非 NULL 值）                    | bottom                  | bottomk    |                                    |
+| top(统计某列的值最大 k 个非 NULL 值。)                       | top                     | topk       |                                    |
+| max                                                          | max                     | max        |                                    |
+| min                                                          | min                     | min        |                                    |
+| percentile（统计表中某列的值百分比分位数）                   | percentile              | quantile   |                                    |
+| round                                                        | round                   | round      | 不支持group by                     |
+| stddev                                                       | stddev                  | stddev     |                                    |
+| sum                                                          | sum                     | sum        |                                    |
+| log                                                          | log                     | ln         |                                    |
+| p50(百分位)                                                  | percentile              | quantile   |                                    |
+| p75(百分位）                                                 | percentile              | quantile   |                                    |
+| p90(百分位）                                                 | percentile              | quantile   |                                    |
+| p99(百分位）                                                 | percentile              | quantile   |                                    |
+| count_distinct                                               | count(distinct())       | 无         |                                    |
+| difference(统计表中某列的值与前一行对应值的差)               | difference              | 无         |                                    |
+| distinct                                                     | distinct                | 无         |                                    |
+| non_negative_derivative(统计表中某列数值的单位变化率，只有正向值) | non_negative_derivative | 无         |                                    |
+| first（表中第一条数据）                                      | first                   | 无         |                                    |
+| last（表中最新的一条数据）                                   | last                    | 无         |                                    |
+| spread(统计表/超级表中某列的最大值和最小值之差)              | spread                  | 无         |                                    |
+| mode(众数）                                                  | mode                    | 无         |                                    |
+| moving_average(计算连续 k 个值的移动平均数（moving average）) | moving_average          | 无         |                                    |
+
+-->
