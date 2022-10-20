@@ -1,3 +1,6 @@
+# 更新日志
+---
+
 <!--
 [:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6) · [:octicons-beaker-24: Experimental](index.md#experimental)
 [:fontawesome-solid-flag-checkered:](index.md#legends "支持选举")
@@ -49,6 +52,19 @@
 ### 兼容调整 {#cl-1.4.19-brk}
 
 由于更换了日志采集的 position 存储（存储位置和存储格式都换了），更新本版本后，原有 position 将失效。新升级本版本后，升级间隙产生的日志将不被采集，请慎重。
+
+---
+
+## 1.4.18(2022/10/13) {#cl-1.4.18}
+
+本次发布属于 Hotfix 发布，主要有如下更新：
+
+- 修复 Docker 日志 16k 截断问题(#1185)
+- 修复自动多行情况下日志被吞噬、导致容器重启后无日志采集的问题(#1162)
+- 优化 eBPF DNS 数据采集，自动追加 Kubernetes 相关的 tag，同时预聚合部分数据，减少采集的数据量(#1186)
+- 支持从 Kafka 中订阅基于 SkyWalking 的日志数据(#1155)
+- 优化主机对象采集字段(#1171)
+- 其它一些细节优化(#1159/#1177/#1160)
 
 ---
 
