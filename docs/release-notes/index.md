@@ -109,6 +109,24 @@ icon: zy/release-notes
 - 在用户访问监测应用列表，点击进入应用，在左上角新增下拉菜单选项，帮助用户快速切换查看不同的应用数据
 - 在指标、用户访问监测、应用性能监测、基础设施、安全巡检目录新增 Pipelines 快捷入口
 
+### DataKit 更新
+
+- DataKit 采集器配置和 Pipeline 支持[通过 etcd/Consul 等配置中心](../datakit/confd.md)来同步
+- Prometheus Remote Write 优化
+    - 采集支持通过正则过滤 tag
+    - 支持通过正则过滤指标集名称
+- Pipeline 优化
+    - 优化 [grok()](../developers/pipeline.md#fn-grok) 等函数，使得其可以用在 `if/else` 语句中，以判定操作是否生效
+    - 增加 [match()](../developers/pipeline.md#fn-match) 函数
+    - 增加 [cidr()](../developers/pipeline.md#fn-cidr) 函数
+- 进程采集器增加打开的文件列表详情字段
+- 完善外部接入类数据（T/R/L）的磁盘缓存和队列处理
+- Monitor 上增加用量超支提示：在 monitor 底部，如果当前空间用量超支，会有红色文字 `Beyond Usage` 提示
+- 优化日志采集 position 功能，在容器环境下会将该文件外挂到宿主机，避免 DataKit 重启后丢失原有 position 记录
+- 优化稀疏日志场景下采集延迟问题
+
+更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md) 。
+
 ### 最佳实践更新
 
 - 监控 Monitoring
