@@ -32,7 +32,8 @@
 
 ## 用户自定义专属的规则和lua库
 本示例以一个定时查看主机名的规则为例：
-1. 编写一个lua文件
+
+1、 编写一个lua文件
 在用户目录`custom.rules.d` 下创建一个名称为 10001-hostname.lua 的文件。代码如下：
 ``` lua
 local function check()
@@ -54,7 +55,7 @@ check()
 
 > 注意：scheck希望用户自定义的规则名称也能遵守这样的[规范](#lua规则命名规范)
 
-2. 编写一个manifest文件
+2、 编写一个manifest文件
 在用户目录`custom.rules.d` 下创建一个名称为 `10001-hostname.manifest` 的文件。内容如下：
 
 ``` toml
@@ -73,13 +74,13 @@ os_arch=["Linux"]
 当前的规则清单文件配置的是：每分钟执行一次
 
 
-3. 重启服务器
+3、 重启服务器
 
 ```shell
 systemctl restart scheck.service
 ```
 
-4. 将消息发送出去
+4、 将消息发送出去
 
 重启服务器之后，每分钟就会执行一次脚本，可在一分钟之后修改hostname
 
@@ -89,7 +90,7 @@ systemctl restart scheck.service
    hostnamectl set-hostname  myclient1
 ```
 
-5. 观测
+5、 观测
 
 登录[观测云](https://www.guance.com) 控制台->导航栏->安全巡检：查看安装巡检信息，发现有一条消息是修改了主机名
 

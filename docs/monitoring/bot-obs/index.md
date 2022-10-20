@@ -8,7 +8,7 @@
 - [内存泄漏](memory-leak.md)：检测当前工作空间主机是否存在内存泄漏问题
 - [磁盘使用率](disk-usage.md)：检测当前工作空间主机的磁盘是否存在使用率过高问题
 - [应用性能检测](apm.md)：检测当前工作空间服务 QPS、平均响应时间、P90响应时间以及错误率是否存在波动变化
-- [自建巡检](../developers/custom-bot-obs.md)：支持使用脚本市场中的「观测云自建巡检 Core 核心包」脚本包在 DataFlux Func 中自定义巡检函数
+- [自建巡检](../../developers/custom-bot-obs.md)：支持使用脚本市场中的「观测云自建巡检 Core 核心包」脚本包在 DataFlux Func 中自定义巡检函数
 
 ![](../img/9.bot_obs_1.png)
 
