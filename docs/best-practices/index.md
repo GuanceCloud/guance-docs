@@ -138,7 +138,6 @@ icon: zy/best-practices
   - [使用 Rancher 部署和管理 Datakit，快速构建 Kubernetes 生态的可观测](./partner/rancher-datakit.md)，<font color="red" > 忽略部分 tag。</font>
   - [service mesh 微服务架构从研发到金丝雀发布全流程最佳实践(上)](./cloud-native/microservices1.md)，<font color="red" > 忽略部分 tag。</font>
   - [基于 Istio 实现微服务可观测最佳实践](./cloud-native/istio.md)，<font color="red" > 忽略部分 tag。</font>
-  - [基于阿里云 ASM 实现微服务可观测最佳实践](./partner/asm.md)，<font color="red" > 忽略部分 tag。</font>
 
 ## (2022/06/17)
 ### 新增最佳实践
@@ -159,7 +158,7 @@ icon: zy/best-practices
     - [使用 Rancher 部署和管理 Datakit，快速构建 Kubernetes 生态的可观测](./partner/rancher-datakit.md)，<font color="red" > 增加 ingressgateway、egressgateway 指标采集，更新 container.conf 配置。</font>
     - [service mesh 微服务架构从研发到金丝雀发布全流程最佳实践(上)](./cloud-native/microservices1.md)，<font color="red" > 增加 ingressgateway、egressgateway 指标采集，container.conf 更新。</font>
     - [基于 Istio 实现微服务可观测最佳实践](./cloud-native/istio.md)，<font color="red" > 增加 ingressgateway、egressgateway  指标采集。</font>
-    - [基于阿里云 ASM 实现微服务可观测最佳实践](./partner/asm.md)，<font color="red" > 增加 istiod、ingressgateway、egressgateway 指标采集。</font>
+
 - 日志
     - [Pod 日志采集最佳实践](./cloud-native/pod-log.md)，<font color="red" > Logfwd 端口增加备注。</font>
     - [K8s 日志采集之 logback socket 最佳实践](./cloud-native/k8s-logback-socket.md)，<font color="red" > 更新 container.conf 配置。</font>
@@ -171,12 +170,6 @@ icon: zy/best-practices
 - 观测云小妙招
    
      - [OpenTelemetry 采样最佳实践](./cloud-native/opentelemetry-simpling.md)
-   
-### 更新记录
-
-- 云原生
-   
-    - [基于阿里云 ASM 实现微服务可观测最佳实践](./partner/asm.md)，<font color="red" > DataKit 升级到 1.4.0。</font>
 
 ## (2022/05/27)
 ### 新增最佳实践
@@ -208,7 +201,6 @@ icon: zy/best-practices
     - [Kubernetes 应用的 RUM-APM-LOG 联动分析](./cloud-native/k8s-rum-apm-log.md)，<font color="red" > 修改同步载入使用的 JS。</font>
    
     - [service mesh 微服务架构从研发到金丝雀发布全流程最佳实践(上)](./cloud-native/microservices1.md)，<font color="red" > 修改 RUM 同步载入使用的 JS。</font>
-    - [基于阿里云 ASM 实现微服务可观测最佳实践 ](./partner/asm.md)，<font color="red" > 修改 RUM 同步载入使用的 JS。</font>
     - [Kubernetes 集群日志上报到同节点的 DataKit 最佳实践](./cloud-native/log-report-one-node.md)，<font color="red" > 去掉 ENV_K8S_CLUSTER_NAME 环境变量。</font>
 
 ## (2022/05/13)
@@ -250,7 +242,7 @@ icon: zy/best-practices
     - [基于 Istio 实现微服务可观测最佳实践](./cloud-native/istio.md)，<font color="red" >更新 istiod pod 的指标采集。</font>
    
     - [Elasticsearch 可观测最佳实践](./monitoring/elasticsearch.md)，<font color="red" >更新一些链接和描述。</font>
-    - [基于阿里云 ASM 实现微服务可观测最佳实践](./partner/asm.md) <font color="red" >更新场景视图名称。</font>
+
 ## (2022/04/15)
 ### 新增最佳实践
 
@@ -272,8 +264,6 @@ icon: zy/best-practices
 - 接入(集成)最佳实践
     - [OpenTelemetry 链路数据接入最佳实践](./cloud-native/opentelemetry.md)
    
-- 微服务可观测最佳实践
-    - [基于阿里云 ASM 实现微服务可观测最佳实践](./partner/asm.md)
    
 ### 更新记录
 
