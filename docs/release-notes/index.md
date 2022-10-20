@@ -24,6 +24,40 @@ icon: zy/release-notes
 
 更多存储方式说明可参考文档 [数据存储策略](../billing/billing-method/data-storage.md) 。
 
+#### 监控优化
+
+##### 新增离群检测
+
+离群检测是一个通过算法检测特定分组下检测对象的指标/统计数据是否存在离群偏差情况，若存在有超过一定程度的不一致情况，则会产生离群检测的异常事件用于后续的告警追踪。更多详情可参考文档 [离群检测](../monitoring/monitor/outlier-detection.md) 。
+
+![](img/7.changelog_1.1.png)
+
+##### 突变检测逻辑优化
+
+新版突变检测通过比较两个不同时间段内同一个指标的绝对或相对（%）变化值来判断是否产生异常情况。多应用于追踪某个指标的峰值或者数据变化，当出现异常情况时可以更精准的产生事件留做记录。更多详情可参考文档 [突变检测](../monitoring/monitor/mutation-detection.md) 。
+
+![](img/7.changelog_2.png)
+
+##### 区间检测逻辑优化
+
+新版区间检测针对选中的检测区间时间范围内的指标数据做异常检测，当突变异常的数据点占比超出设定的百分比后，产生区间检测的异常事件。多应用于监测趋势稳定的数据/指标。更多详情可参考文档 [区间检测](../monitoring/monitor/interval-detection.md) 。
+
+![](img/7.changelog_3.png)
+
+##### 其他优化
+
+- 无数据配置选择“触发无数据事件”与“触发恢复事件”配置调整为时间范围配置，并根据输入的时间范围提供建议。
+
+![](img/7.changelog_9.1.png)
+
+- 支持基于 “事件” 数据配置监控器检测。
+
+![](img/7.changelog_4.png)
+
+- 告警配置新增“信息”事件通知等级选择
+
+![](img/7.changelog_5.png)
+
 #### 场景图表优化
 
 ##### 新增直方图图表组件
@@ -55,36 +89,6 @@ icon: zy/release-notes
 
 ![](img/7.changelog_6.png)
 
-#### 监控优化
-
-##### 新增离群检测
-
-离群检测是一个通过算法检测特定分组下检测对象的指标/统计数据是否存在离群偏差情况，若存在有超过一定程度的不一致情况，则会产生离群检测的异常事件用于后续的告警追踪。更多详情可参考文档 [离群检测](../monitoring/monitor/outlier-detection.md) 。
-
-![](img/7.changelog_1.1.png)
-
-##### 突变检测逻辑优化
-
-新版突变检测通过比较两个不同时间段内同一个指标的绝对或相对（%）变化值来判断是否产生异常情况。多应用于追踪某个指标的峰值或者数据变化，当出现异常情况时可以更精准的产生事件留做记录。更多详情可参考文档 [突变检测](../monitoring/monitor/mutation-detection.md) 。
-
-![](img/7.changelog_2.png)
-
-##### 区间检测逻辑优化
-
-新版区间检测针对选中的检测区间时间范围内的指标数据做异常检测，当突变异常的数据点占比超出设定的百分比后，产生区间检测的异常事件。多应用于监测趋势稳定的数据/指标。更多详情可参考文档 [区间检测](../monitoring/monitor/interval-detection.md) 。
-
-![](img/7.changelog_3.png)
-
-##### 其他优化
-
-支持基于 “事件” 数据配置监控器检测。
-
-![](img/7.changelog_4.png)
-
-告警配置新增“信息”事件通知等级选择
-
-![](img/7.changelog_5.png)
-
 #### 日志索引优化
 
 - 调整日志索引页面 UI
@@ -103,7 +107,15 @@ icon: zy/release-notes
 - 在用户访问监测应用列表，点击进入应用，在左上角新增下拉菜单选项，帮助用户快速切换查看不同的应用数据
 - 在指标、用户访问监测、应用性能监测、基础设施、安全巡检目录新增 Pipelines 快捷入口
 
+### 最佳实践更新
 
+- 监控 Monitoring
+    - 基础设施监控 (ITIM) - [Ansible 批处理实战](../best-practices/monitoring/ansible-batch-processing.md)。
+
+- 云原生
+    - 日志 - [观测云采集 Amazon ECS 日志](../best-practices/cloud-native/amazon-ecs.md)。
+
+更多最佳实践更新可参考 [最佳实践版本历史](../best-practices/index.md) 。
 
 ## 2022 年 9 月 29 号
 
