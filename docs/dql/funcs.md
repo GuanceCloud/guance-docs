@@ -2001,6 +2001,8 @@ object::docker_containers:()  {name=with_labels(object_class='docker_containers'
 
 
 
+<!--
+
 ## SLS promql 函数 {#sls}
 
 以下为函数 influxdb 与 SLS promql 函数支持情况对比：
@@ -2034,3 +2036,5 @@ object::docker_containers:()  {name=with_labels(object_class='docker_containers'
 | spread(统计表/超级表中某列的最大值和最小值之差)              | spread                  | 无         |                                    |
 | mode(众数）                                                  | mode                    | 无         |                                    |
 | moving_average(计算连续 k 个值的移动平均数（moving average）) | moving_average          | 无         |                                    |
+
+-->
