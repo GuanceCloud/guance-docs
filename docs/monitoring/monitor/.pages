@@ -14,3 +14,4 @@ nav:
   - '网络数据检测': network-detection.md
   - '运算符说明': operator-description.md
   - '真值表说明': table-description.md
+  - '事件等级说明': event-level-description.md
