@@ -4,7 +4,7 @@
 
 ## 简介
 
-本篇将介绍金丝雀发布的整体情况，利用观测云对微服务的指标、链路、日志进行可观测。以下关于Rancher 的操作都是在 k8s-solution-cluster 集群，不再重复提示。 
+本篇将介绍金丝雀发布的整体情况，利用观测云对微服务的指标、链路、日志进行可观测。以下关于 Rancher 的操作都是在 k8s-solution-cluster 集群，不再重复提示。 
 
 ## 金丝雀发布
 
@@ -226,7 +226,7 @@ kubectl replace -f virtual-service-reviews.yaml
 
 ### stdout
 
-根据部署 datakit 时的配置，默认采集输出到 /dev/stdout 的日志。 登录『 [观测云](https://console.guance.com/)』，进入『日志』，查看日志信息。
+根据部署 DataKit 时的配置，默认采集输出到 /dev/stdout 的日志。 登录『 [观测云](https://console.guance.com/)』，进入『日志』，查看日志信息。
 		
 ![image](../images/microservices/86.png)
 

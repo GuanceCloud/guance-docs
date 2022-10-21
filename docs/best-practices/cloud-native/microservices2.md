@@ -10,7 +10,7 @@
 
 ### 1.1 Docker 监控视图
 
-在 Kubernetes 集群中， Pod 是最小的调度单元，一个 Pod 可以包含一个或多个容器，在观测云中，可以使用 **Docker 监控视图**对容器进行可观测。<br />        登录『[观测云](https://console.guance.com/)』，点击『场景』->『新建仪表板』，选择** Docker 监控视图**。
+在 Kubernetes 集群中， Pod 是最小的调度单元，一个 Pod 可以包含一个或多个容器，在观测云中，可以使用 **Docker 监控视图**对容器进行可观测。<br />        登录『[观测云](https://console.guance.com/)』，点击『场景』->『新建仪表板』，选择 **Docker 监控视图**。
 
 ![image](../images/microservices/23.png)
 
@@ -24,7 +24,7 @@
 
 ### 1.2 Kubernetes 监控视图
 
-登录『[观测云](https://console.guance.com/)』，点击『场景』->『新建仪表板』，选择** Kubernetes 监控视图**。
+登录『[观测云](https://console.guance.com/)』，点击『场景』->『新建仪表板』，选择 **Kubernetes 监控视图**。
 
 ![image](../images/microservices/26.png)
 
@@ -114,13 +114,13 @@ data:
 
 ```
 
-登录『Rancher』，在浏览集群标签下，选择『k8s-solution-cluster』集群，依次进入『更多资源』-> 『Core』-> 『ConfigMaps』，选择 datakit 空间，在 datakit.conf 行点击**编辑配置**，点击『添加』，加入 etcd.conf 配置后点击『保存』。
+登录『Rancher』，在浏览集群标签下，选择『k8s-solution-cluster』集群，依次进入『更多资源』-> 『Core』-> 『ConfigMaps』，选择 datakit 空间，在 datakit.conf 行点击『编辑配置』，点击『添加』，加入 etcd.conf 配置后点击『保存』。
 		
 ![image](../images/microservices/30.png)
 
 ![image](../images/microservices/31.png)
 
-登录『Rancher』，在浏览集群标签下，选择『k8s-solution-cluster』集群，依次进入『工作负载』-> 『DaemonSets』，选择 datakit 工作空间，在 datakit 列，点击右边**编辑配置**。 
+登录『Rancher』，在浏览集群标签下，选择『k8s-solution-cluster』集群，依次进入『工作负载』-> 『DaemonSets』，选择 datakit 工作空间，在 datakit 列，点击右边『编辑配置』。 
 	  
 ![image](../images/microservices/32.png)
 
@@ -130,7 +130,7 @@ data:
 
 #### 1.3.2 挂载证书文件
 
-使用 https 采集 etcd 指标，需要使用 Kubernetes 集群的证书。即需要把 Kubeadmin 部署集群的 /etc/kubernetes/pki/etcd 目录，挂载到 datakit 的 /etc/kubernetes/pki/etcd 目录。
+使用 https 采集 etcd 指标，需要使用 Kubernetes 集群的证书。即需要把 Kubeadmin 部署集群的 /etc/kubernetes/pki/etcd 目录，挂载到 DataKit 的 /etc/kubernetes/pki/etcd 目录。
 
 ```yaml
       volumes:
@@ -158,7 +158,7 @@ data:
 
 #### 1.3.3 实现 ETCD 可观测
 
-登录『[观测云](https://console.guance.com/)』，点击『场景』->『新建仪表板』，选择** ETCD 监控视图**。
+登录『[观测云](https://console.guance.com/)』，点击『场景』->『新建仪表板』，选择 **ETCD 监控视图**。
 
 仪表板名称填 **ETCD 监控视图**，名称可以自定义，点击『确定』。
 		 
