@@ -10,7 +10,7 @@ Windows 事件日志采集是采集应用程序、安全、系统等 Windows 事
 
 ## 前置条件 {#requrements}
 
-- Windows 版本 >= Windows 10
+- Windows 版本 >= Windows Server 2008 R2
 
 ## 配置 {#config}
 
@@ -76,7 +76,6 @@ Windows 事件日志采集是采集应用程序、安全、系统等 Windows 事
 |`level`|级别|
 |`message`|事件内容|
 |`process_id`|进程 ID|
-|`source`|日志来源|
 |`status`|日志等级|
 |`task`|任务类别|
 |`total_message`|事件全文|

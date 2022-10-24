@@ -57,7 +57,7 @@ Datakit 内嵌的 Zipkin Agent 用于接收，运算，分析 Zipkin Tracing 协
         # key2 = "value2"
         # ...
     
-      ## Threads config controls how many goroutines an agent cloud start.
+      ## Threads config controls how many goroutines an agent cloud start to handle HTTP request.
       ## buffer is the size of jobs' buffering of worker channel.
       ## threads is the total number fo goroutines at running time.
       # [inputs.zipkin.threads]

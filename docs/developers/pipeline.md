@@ -70,7 +70,7 @@ a = 3
 
 布尔类型值仅有 `true` 和 `false` 两种
 
-**字符串类型(string)**
+**字符串类型(str)**
 
 字符串值可用双引号或单引号，多行字符串可以使用三双引号或三单引号将内容括起来进行编写
   * `"hello world"`
@@ -474,14 +474,14 @@ Pipeline 的目录搜索优先级是:
 
 ### `add_key()` {#fn-add-key}
 
-函数原型：`add_key(key_name=required, key_name=optional)`
+函数原型：`fn add_key(key, value)`
 
 函数说明：往 point 中增加一个字段
 
 函数参数
 
-- `key_name`: 新增的 key 名称
-- `key_name`：key 值（只能是 string/int/float/bool/nil 这几种类型）, 未填写时尝试从堆栈中获取同名变量的值
+- `key`: 新增的 key 名称
+- `value`：作为 key 的值
 
 示例:
 
@@ -501,7 +501,7 @@ add_key(city, "shanghai")
 ```
 ### `add_pattern()` {#fn-add-pattern}
 
-函数原型：`add_pattern(name=required, pattern=required)`
+函数原型：`fn add_pattern(name: str, pattern: str)`
 
 函数说明：创建自定义 grok 模式。grok 模式有作用域限制, 如在 if else 语句内将产生新的作用域, 该 pattern 仅在此作用域内有效。该函数不可覆盖同一作用域或者上一作用域已经存在的 grok 模式
 
@@ -555,7 +555,7 @@ if false {
 ```
 ### `adjust_timezone()` {#fn-adjust-timezone}
 
-函数原型：`adjust_timezone(key=required, minute=optional)`
+函数原型：`fn adjust_timezone(key: int, minute: int)`
 
 函数参数
 
@@ -610,12 +610,11 @@ adjust_timezone(time)
 
 使用 adjust_timezone 后将得到：
   - 输入 1 结果： `2022-07-11T20:49:20.937+08:00`
-
 ### `cast()` {#fn-cast}
 
-函数原型：`cast(key=required, type=required)`
+函数原型：`fn cast(key, dst_type: str)`
 
-函数说明：将 key 值转换拆成指定类型
+函数说明：将 key 值转换成指定类型
 
 函数参数
 
@@ -628,17 +627,45 @@ adjust_timezone(time)
 # 待处理数据: {"first": 1,"second":2,"third":"aBC","forth":true}
 
 # 处理脚本
-json(_, first) cast(first, "str")
+json(_, first) 
+cast(first, "str")
 
 # 处理结果
 {
   "first": "1"
 }
 ```
+### `cidr()` {#fn-cidr}
 
+函数原型：`fn cidr(ip: str, prefix: str) bool`
+
+函数说明： 判断 IP 是否在某个 CIDR 块
+
+函数参数
+
+- `ip`: IP 地址
+- `prefix`： IP 前缀，如 `192.0.2.1/24`
+
+示例:
+
+```python
+# 待处理数据: 
+
+# 处理脚本
+
+ip = "192.0.2.233"
+if cidr(ip, "192.0.2.1/24") {
+    add_key(ip_prefix, "192.0.2.1/24")
+}
+
+# 处理结果
+{
+  "ip_prefix": "192.0.2.1/24"
+}
+```
 ### `cover()` {#fn-cover}
 
-函数原型：`cover(key=required, range=require)`
+函数原型：`fn cover(key: str, range: list)`
 
 函数说明：对指定字段上获取的字符串数据，按范围进行数据脱敏处理
 
@@ -651,21 +678,16 @@ json(_, first) cast(first, "str")
 
 ```python
 # 待处理数据 {"str": "13789123014"}
-json(_, str) cover(str, [8, 13])
+json(_, `str`)
+cover(`str`, [8, 9])
 
-# 待处理数据 {"str": "13789123014"}
-json(_, str) cover(str, [2, 4])
-
-# 待处理数据 {"str": "13789123014"}
-json(_, str) cover(str, [1, 1])
-
-# 待处理数据 {"str": "小阿卡"}
-json(_, str) cover(str, [2, 2])
+# 待处理数据 {"abc": "13789123014"}
+json(_, abc)
+cover(abc, [2, 4])
 ```
-
 ### `datetime()` {#fn-datetime}
 
-函数原型：`datetime(key=required, precision=required, fmt=required)`
+函数原型：`fn datetime(key, precision: str, fmt: str)`
 
 函数说明：将时间戳转成指定日期格式
 
@@ -704,10 +726,9 @@ Kitchen     = "3:04PM"
 # 处理脚本
 json(_, a.timestamp) datetime(a.timestamp, 'ms', 'RFC3339')
 ```
-
 ### `decode()` {#fn-decode}
 
-函数原型：`decode(text, text-encode)`
+函数原型：`fn decode(text: str, text_encode: str)`
 
 函数说明：把 text 变成 UTF8 编码，以处理原始日志为非 UTF8 编码的问题。目前支持的编码为 utf-16le/utf-16be/gbk/gb18030（这些编码名只能小写）
 
@@ -719,17 +740,16 @@ decode("wwwwww", "gbk")
 #   "message": "wwwwww",
 # }
 ```
-
 ### `default_time()` {#fn-defalt-time}
 
-函数原型：`default_time(key=required, timezone=optional)`
+函数原型：`fn default_time(key: str, timezone: str = "")`
 
 函数说明：以提取的某个字段作为最终数据的时间戳
 
 函数参数
 
 - `key`: 指定的 key， key 的数据类型需要为字符串类型
-- `timezone`: 指定待格式化的时间文本所使用的时区，默认为本机当前时区，时区示例 `+8/-8/+8:30`
+- `timezone`: 指定待格式化的时间文本所使用的时区，可选参数，默认为当前系统时区，时区示例 `+8/-8/+8:30`
 
 待处理数据支持以下格式化时间
 
@@ -798,10 +818,9 @@ rename("time", log_time)
 }
 ```
 
-
 ### `drop()` {#fn-drop}
 
-函数原型：`drop()`
+函数原型：`fn drop()`
 
 函数说明：丢弃整条日志，不进行上传
 
@@ -821,10 +840,9 @@ json(_, str_b)
 # }
 ```
 
-
 ### `drop_key()` {#fn-drop-key}
 
-函数原型：`drop_key(key=required)`
+函数原型：`fn drop_key(key)`
 
 函数说明：删除已提取字段
 
@@ -850,10 +868,9 @@ drop_key(height)
 }
 ```
 
-
 ### `drop_origin_data()` {#fn-drop-origin-data}
 
-函数原型：`drop_origin_data()`
+函数原型：`fn drop_origin_data()`
 
 函数说明：丢弃初始化文本，否则初始文本放在 message 字段中
 
@@ -866,10 +883,9 @@ drop_key(height)
 drop_origin_data()
 ```
 
-
 ### `duration_precision()` {#fn-duration-precision}
 
-函数原型：`duration_precision(key=required, old_precision=require, new_precision=require)`
+函数原型：`fn duration_precision(key, old_precision: str, new_precision: str)`
 
 函数说明：进行 duration 精度的转换，通过参数指定当前精度和目标精度。支持在 s, ms, us, ns 间转换。
 
@@ -885,11 +901,9 @@ duration_precision(ts, "ms", "ns")
 #   "ts": 12345000000
 # }
 ```
-
-
 ### `exit()` {#fn-exit}
 
-函数原型：`exit()`
+函数原型：`fn exit()`
 
 函数说明：结束当前一条日志的解析，若未调用函数 drop() 仍会输出已经解析的部分
 
@@ -908,10 +922,9 @@ json(_, str_b)
 # }
 ```
 
-
 ### `geoip()` {#fn-geoip}
 
-函数原型：`geoip(key=required)`
+函数原型：`fn geoip(ip: str)`
 
 函数说明：在 IP 上追加更多 IP 信息。 `geoip()` 会额外产生多个字段，如：
 
@@ -922,7 +935,7 @@ json(_, str_b)
 
 参数:
 
-- `key`: 已经提取出来的 IP 字段，支持 IPv4/6
+- `ip`: 已经提取出来的 IP 字段，支持 IPv4/6
 
 示例：
 
@@ -945,7 +958,7 @@ geoip(ip)
 ```
 ### `get_key()` {#fn-get-key}
 
-函数原型：`get_key(key_name=required)`
+函数原型：`fn get_key(key)`
 
 函数说明：从 point 中读取 key 的值，而不是堆栈上的变量的值
 
@@ -987,14 +1000,14 @@ add_key(add_new_key, get_key(key))
 ```
 ### `grok()` {#fn-grok}
 
-函数原型：`grok(input=required, pattern=required, trim_space=optional)`
+函数原型：`fn grok(input: str, pattern: str, trim_space: bool = true) bool`
 
-函数说明：通过 `pattern` 提取文本串 `input` 中的内容。
+函数说明：通过 `pattern` 提取文本串 `input` 中的内容，当 pattern 匹配 input 成功时返回 true 否则返回 false。
 
 参数:
 
 - `input`：待提取文本，可以是原始文本（`_`）或经过初次提取之后的某个 `key`
-- `pattern`: grok 表达式，表达式中支持指定 key 的数据类型：bool, float, int, string，默认为 string
+- `pattern`: grok 表达式，表达式中支持指定 key 的数据类型：bool, float, int, string(对应 ppl 的 str，亦可写为 str)，默认为 string
 - `trim_space`: 删除提取出的字符中的空白首尾字符，默认值为 true
 
 ```python
@@ -1011,8 +1024,11 @@ grok(key, pattern)  # 对之前已经提取出来的某个 key，做再次 grok
 add_pattern("_second", "(?:(?:[0-5]?[0-9]|60)(?:[:.,][0-9]+)?)")
 add_pattern("_minute", "(?:[0-5][0-9])")
 add_pattern("_hour", "(?:2[0123]|[01]?[0-9])")
-add_pattern("time", "([^0-9]?)%{_hour:hour:string}:%{_minute:minute:int}(?::%{_second:second:float})([^0-9]?)
-grok(_, "%{DATE_US:date} %{time}")
+add_pattern("time", "([^0-9]?)%{_hour:hour:string}:%{_minute:minute:int}(?::%{_second:second:float})([^0-9]?)")
+
+grok_match_ok = grok(_, "%{DATE_US:date} %{time}")
+
+add_key(grok_match_ok)
 
 # 处理结果
 {
@@ -1022,11 +1038,21 @@ grok(_, "%{DATE_US:date} %{time}")
   "minute": 13,
   "second": 14.123
 }
-```
 
+{
+  "date": "12/01/2021",
+  "grok_match_ok": true,
+  "hour": "21",
+  "message": "12/01/2021 21:13:14.123",
+  "minute": 13,
+  "second": 14.123,
+  "status": "unknown",
+  "time": 1665994187473917724
+}
+```
 ### `group_between()` {#fn-group-between}
 
-函数原型：`group_between(key=required, between=required, new-value=required, new-key=optional)`
+函数原型：`fn group_between(key: int, between: list, new_value: int|float|bool|str|map|list|nil, new_key)`
 
 函数说明：如果 `key` 值在指定范围 `between` 内（注意：只能是单个区间，如 `[0,100]`），则可创建一个新字段，并赋予新值。若不提供新字段，则覆盖原字段值
 
@@ -1063,11 +1089,9 @@ group_between(http_status, [200, 300], "OK", status)
     "status": "OK"
 }
 ```
-
-
 ### `group_in()` {#fn-group-in}
 
-函数原型：`group_in(key=required, in=required, new-value=required, new-key=optional)`
+函数原型：`fn group_in(key: int|float|bool|str, range: list, new_value: int|float|bool|str|map|list|nil, new-key = "")`
 
 函数说明：如果 `key` 值在列表 `in` 中，则可创建一个新字段，并赋予新值。若不提供新字段，则覆盖原字段值
 
@@ -1080,18 +1104,16 @@ group_in(log_level, ["info", "debug"], "OK")
 # 如果字段 http_status 值在指定列表中，则新建 status 字段，其值为 "not-ok"
 group_in(log_level, ["error", "panic"], "not-ok", status)
 ```
-
-
 ### `json()` {#fn-json}
 
-函数原型：`json(input=required, jsonPath=required, newkey=required, trim_space=optional)`
+函数原型：`fn json(input: str, json_path, newkey, trim_space: bool = true)`
 
 函数说明：提取 json 中的指定字段，并可将其命名成新的字段。
 
 参数:
 
 - `input`: 待提取 json，可以是原始文本（`_`）或经过初次提取之后的某个 `key`
-- `jsonPath`: json 路径信息
+- `json_path`: json 路径信息
 - `newkey`：提取后数据写入新 key
 - `trim_space`: 删除提取出的字符中的空白首尾字符，默认值为 true
 
@@ -1159,7 +1181,7 @@ json(_, [0].nets[-1])
 ```
 ### `len()` {#fn-len}
 
-函数原型：`len(val=required)`
+函数原型：`fn len(val: str|map|list) int`
 
 函数说明：计算 string 字节数，map 和 list 的元素个数。
 
@@ -1186,7 +1208,7 @@ add_key(abc, len(["abc"]))
 ```
 ### `load_json()` {#fn-load_json}
 
-函数原型：`load_json(val=required) -> Type(nil, bool, float, map, list)`
+函数原型：`fn load_json(val: str) nil|bool|float|map|list`
 
 函数说明：将 json 字符串转换成 map、list、nil、bool、float 的其中一种，可通过 index 表达式取值及修改值。
 
@@ -1211,10 +1233,9 @@ add_key(len_abc, len(abc))
 
 add_key(len_abc, len(load_json(abc["a"]["ff"])))
 ```
-
 ### `lowercase()` {#fn-lowercase}
 
-函数原型：`lowercase(key=required)`
+函数原型：`fn lowercase(key: str)`
 
 函数说明：将已提取 key 中内容转换成小写
 
@@ -1236,9 +1257,37 @@ json(_, first) lowercase(first)
 }
 ```
 
+### `match()` {#fn-match}
+
+函数原型：`fn match(pattern: str, s: str) bool`
+
+函数说明：使用指定的正则表达式匹配字符串，匹配成功返回 true，否则返回 false
+
+参数:
+
+- `pattern`: 正则表达式
+- `s`: 待匹配的字符串
+
+示例:
+
+```python
+# 脚本
+test_1 = "pattern 1,a"
+test_2 = "pattern -1,"
+
+add_key(match_1, match('''\w+\s[,\w]+''', test_1)) 
+
+add_key(match_2, match('''\w+\s[,\w]+''', test_2)) 
+
+# 处理结果
+{
+    "match_1": true,
+    "match_2": false
+}
+```
 ### `mquery_refer_table()` {#fn-mquery-refer-table}
 
-函数原型：`mquery_refer_table(table_name=requierd, keys=required, values=required)`
+函数原型：`fn mquery_refer_table(table_name: str, keys: list, values: list)`
 
 函数说明：通过指定多个 key 查询外部引用表，并将查询结果的首行的所有列追加到 field 中。
 
@@ -1276,10 +1325,9 @@ mquery_refer_table(table, values=[value, false], keys=[key, "col4"])
 }
 
 ```
-
 ### `nullif()` {#fn-nullif}
 
-函数原型：`nullif(key=required, value=required)`
+函数原型：`fn nullif(key, value)`
 
 函数说明：若已提取 `key` 指定的字段内容等于 `value` 值，则删除此字段
 
@@ -1310,10 +1358,9 @@ if first == "1" {
 }
 ```
 
-
 ### `parse_date()` {#fn-parse-date}
 
-函数原型：`parse_date(key=required, yy=require, MM=require, dd=require, hh=require, mm=require, ss=require, ms=require, zone=require)`
+函数原型：`fn parse_date(key: str, yy: str, MM: str, dd: str, hh: str, mm: str, ss: str, ms: str, zone: str)`
 
 函数说明：将传入的日期字段各部分的值转化为时间戳
 
@@ -1342,11 +1389,9 @@ parse_date(aa, "2021", "12", "12", "10", "10", "34", "100", "Asia/Shanghai") # �
 
 parse_date(aa, "20", "February", "12", "10", "10", "34", "", "+8") 结果 aa=1581473434000000000
 ```
-
-
 ### `parse_duration()` {#fn-parse-duration}
 
-函数原型：`parse_duration(key=required)`
+函数原型：`fn parse_duration(key: str)`
 
 函数说明：如果 `key` 的值是一个 golang 的 duration 字符串（如 `123ms`），则自动将 `key` 解析成纳秒为单位的整数
 
@@ -1379,7 +1424,7 @@ parse_duration(abc) # 结果 abc = -2300000000
 
 ### `query_refer_table()` {#fn-query-refer-table}
 
-函数原型：`query_refer_table(table_name=requierd, key=required, value=required)`
+函数原型：`fn query_refer_table(table_name: str, key: str, value)`
 
 函数说明：通过指定的 key 查询外部引用表，并将查询结果的首行的所有列追加到 field 中。
 
@@ -1418,17 +1463,16 @@ query_refer_table(table, key, value)
   "value": 1234
 }
 ```
-
 ### `rename()` {#fn-rename}
 
-函数原型：`rename(new-key=required, old-key=required)`
+函数原型：`fn rename(new_key, old_key)`
 
 函数说明：将已提取的字段重新命名
 
 参数:
 
-- `new-key`: 新字段名
-- `old-key`: 已提取的字段名
+- `new_key`: 新字段名
+- `old_key`: 已提取的字段名
 
 ```python
 # 把已提取的 abc 字段重新命名为 abc1
@@ -1458,10 +1502,9 @@ json(_, info.name, "姓名")
 }
 ```
 
-
 ### `replace()` {#fn-replace}
 
-函数原型：`replace(key=required, regex=required, replaceStr=required)`
+函数原型：`fn replace(key: str, regex: str, replace_str: str)`
 
 函数说明：对指定字段上获取的字符串数据按正则进行替换
 
@@ -1469,7 +1512,7 @@ json(_, info.name, "姓名")
 
 - `key`: 待提取字段
 - `regex`: 正则表达式
-- `replaceStr`: 替换的字符串
+- `replace_str`: 替换的字符串
 
 示例:
 
@@ -1491,22 +1534,19 @@ json(_, str)
 replace(str, '([\u4e00-\u9fa5])[\u4e00-\u9fa5]([\u4e00-\u9fa5])', "$1＊$2")
 ```
 
-
 ### `set_measurement()` {#fn-set-measurement}
 
-函数原型：`set_measurement(name=required, delete_key=optional)`
+函数原型：`fn set_measurement(name: str, delete_key: bool = false)`
 
-函数说明：改变行协议的 mesaurement name
+函数说明：改变行协议的 name
 
 函数参数
 
 - `name`: 值作为 mesaurement name，可传入字符串常量或变量
 - `delete_key`: 如果在 point 中存在与变量同名的 tag 或 field 则删除它
-
-
 ### `set_tag()` {#fn-set-tag}
 
-函数原型：`set_tag(key=required, value=optional)`
+函数原型：`fn set_tag(key, value: str)`
 
 函数说明：对指定字段标记为 tag 输出，设置为 tag 后，其他函数仍可对该变量操作。如果被置为 tag 的 key 是已经切割出来的 field，那么它将不会在 field 中出现，这样可以避免切割出来的 field key 跟已有数据上的 tag key 重名
 
@@ -1548,10 +1588,9 @@ set_tag(str_a, str_b) # str_a == str_b == "3"
 #   "str_b": "3"
 # }
 				"```
-
 ### `sql_cover()` {#fn-sql-cover}
 
-函数原型：`sql_cover(sql_test)`
+函数原型：`fn sql_cover(sql_test: str)`
 
 函数说明：脱敏sql语句
 
@@ -1564,18 +1603,17 @@ sql_cover(_)
 #   "message": "select abc from def where x > ? and y < ?"
 # }
 ```
-
 ### `strfmt()` {#fn-strfmt}
 
-函数原型：`strfmt(key=required, fmt=required, key1=optional, key2, ...)`
+函数原型：`fn strfmt(key, fmt: str, args ...: int|float|bool|str|list|map|nil)`
 
-函数说明：对已提取 `key1,key2...` 指定的字段内容根据 `fmt` 进行格式化，并把格式化后的内容写入 `key` 字段中
+函数说明：对已提取 `arg1, arg2, ...` 指定的字段内容根据 `fmt` 进行格式化，并把格式化后的内容写入 `key` 字段中
 
 函数参数
 
 - `key`: 指定格式化后数据写入字段名
 - `fmt`: 格式化字符串模板
-- `key1，key2`:已提取待格式化字段名
+- `args`:可变参数，可以是多个已提取的待格式化字段名
 
 示例:
 
@@ -1589,10 +1627,9 @@ cast(a.second, "int")
 json(_, a.forth)
 strfmt(bb, "%v %s %v", a.second, a.thrid, a.forth)
 ```
-
 ### `trim()` {#fn-trim}
 
-函数原型：`trim(key=required, cutset=optional)`
+函数原型：`fn trim(key, cutset: str = "")`
 
 函数说明：删除 key 中首尾中指定的字符，cutset 为空字符串时默认删除所有空白符
 
@@ -1615,10 +1652,9 @@ trim(test_data, "ABC_")
   "test_data": "test_Data"
 }
 ```
-
 ### `uppercase()` {#fn-uppercase}
 
-函数原型：`uppercase(key=required)`
+函数原型：`fn uppercase(key: str)`
 
 函数说明：将已提取 key 中内容转换成大写
 
@@ -1640,10 +1676,9 @@ json(_, first) uppercase(first)
 }
 ```
 
-
 ### `url_decode()` {#fn-url-decode}
 
-函数原型：`url_decode(key=required)`
+函数原型：`fn url_decode(key: str)`
 
 函数说明：将已提取 `key` 中的 URL 解析成明文
 
@@ -1668,7 +1703,7 @@ json(_, url) url_decode(url)
 
 ### `use()` {#fn-use}
 
-函数原型：`use(name=required)`
+函数原型：`fn use(name: str)`
 
 参数:
 
@@ -1697,10 +1732,9 @@ geoip(ip)
   "message"  : "{\"ip\": \"1.2.3.4\"}",
 }
 ```
-
 ### `user_agent()` {#fn-user-agent}
 
-函数原型：`user_agent(key=required)`
+函数原型：`fn user_agent(key: str)`
 
 函数说明：对指定字段上获取客户端信息
 
@@ -1728,7 +1762,7 @@ json(_, userAgent) user_agent(userAgent)
 ```
 ### `xml()` {#fn-xml}
 
-函数原型：`xml(input=required, xpath_expr=required, key_name=required)`
+函数原型：`fn xml(input: str, xpath_expr: str, key_name)`
 
 函数说明：通过 xpath 表达式，从 XML 中提取字段。
 
