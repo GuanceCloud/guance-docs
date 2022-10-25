@@ -77,16 +77,8 @@ systemctl restart datakit
 
 <监控 - 监控器 - 从模板新建 - 主机检测库>
 
-## 指标详解
-| 指标 | 描述 | 数据类型 | 单位 |
-| --- | --- | --- | --- |
-| `free` | Free disk size in bytes | int | B |
-| `inodes_free` | Free inodes | int | count |
-| `inodes_total` | Total inodes | int | count |
-| `inodes_used` | Used inodes | int | count |
-| `total` | Total disk size in bytes | int | B |
-| `used` | Used disk size in bytes | int | B |
-| `used_percent` | Used disk size in percent | float | percent |
+## [指标详解]（/datakit/disk/#measurements）
+
 
 ## 常见问题排查
 

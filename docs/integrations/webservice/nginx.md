@@ -293,17 +293,8 @@ proxy_set_header X-datadog-trace-id $opentracing_context_x_datadog_trace_id;<br 
 
 <场景 - 新建仪表板 - 模板库 - 系统视图 - Nginx 监控视图>
 
-## 指标详解
+## [指标详解](/datakit/nginx/#measurements)
 
-| 指标                  | 描述                                                        | 数据类型 | 单位  |
-| --------------------- | ----------------------------------------------------------- | -------- | ----- |
-| `connection_active`   | The current number of active client connections             | int      | count |
-| `connection_handled`  | The total number of handled client connections              | int      | count |
-| `connection_reading`  | The total number of reading client connections              | int      | count |
-| `connection_requests` | The total number of requests client connections             | int      | count |
-| `connection_waiting`  | The total number of waiting client connections              | int      | count |
-| `connection_writing`  | The total number of writing client connections              | int      | count |
-| `load_timestamp`      | Loaded process time in milliseconds, when exist by open vts | int      | msec  |
 
 ## 常见问题排查
 

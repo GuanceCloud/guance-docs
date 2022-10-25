@@ -217,7 +217,7 @@ systemctl restart datakit
 | --- | --- | --- | --- | --- |
 | 1 | Redis 等待阻塞命令的客户端连接数异常增加 | 客户端连接数 > 0 | 紧急 | 1m |
 
-## [指标详解](/datakit/redis#metric)
+## [指标详解](/datakit/redis/#metric)
 
 
 ## 最佳实践

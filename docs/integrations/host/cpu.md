@@ -76,23 +76,7 @@ systemctl restart datakit
 
 <监控 - 监控器 - 从模板新建 - 主机检测库>
 
-## 指标详解
-
-| 指标 | 描述 | 数据类型 | 单位 |
-| --- | --- | --- | --- |
-| <div style="width: 150px">`core_temperature`</div> | CPU core temperature. This is collected by default. Only collect the average temperature of all cores. | float | C |
-| `load5s` | CPU average load in 5 seconds. | int | - |
-| `usage_guest` | % CPU spent running a virtual CPU for guest operating systems. | float | percent |
-| `usage_guest_nice` | % CPU spent running a niced guest(virtual CPU for guest operating systems). | float | percent |
-| `usage_idle` | % CPU in the idle task. | float | percent |
-| `usage_iowait` | % CPU waiting for I/O to complete. | float | percent |
-| `usage_irq` | % CPU servicing hardware interrupts. | float | percent |
-| `usage_nice` | % CPU in user mode with low priority (nice). | float | percent |
-| `usage_softirq` | % CPU servicing soft interrupts. | float | percent |
-| `usage_steal` | % CPU spent in other operating systems when running in a virtualized environment. | float | percent |
-| `usage_system` | % CPU in system mode. | float | percent |
-| `usage_total` | % CPU in total active usage, as well as (100 - usage_idle). | float | percent |
-| `usage_user` | % CPU in user mode. | float | percent |
+## [指标详解](/datakit/cpu/#measurements)
 
 ## 常见问题排查
 

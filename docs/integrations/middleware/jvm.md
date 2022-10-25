@@ -268,7 +268,7 @@ spec:
 
 暂无
 
-## [指标详解](/datakit/jvm#measurements)
+## [指标详解](/datakit/jvm/#measurements)
 
 
 ## 最佳实践

@@ -162,7 +162,7 @@ URL 中输入 DataKit 所在的主机 IP 和 DataKit 的 9529 端口，再加 /v
 
 暂无
 
-## [指标详解](/datakit/gitlab#measurements)
+## [指标详解](/datakit/gitlab/#measurements)
 
 ## 最佳实践
 

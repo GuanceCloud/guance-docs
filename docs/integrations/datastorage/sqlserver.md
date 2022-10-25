@@ -120,68 +120,8 @@ systemctl restart datakit
 
 <场景 - 新建仪表板 - 模板库 - 系统视图 - SQLServer 监控视图> 
 
-## 指标详解
+## [指标详解](/datakit/sqlserver/#measurements)
 
-**SQLServer**
-
-| 指标 | 描述 | 数据类型 | 单位 |
-| --- | --- | --- | --- |
-| <div style="width: 150px">`cpu_count`</div> | Specifies the number of logical CPUs on the system. Not nullable. | int | count |
-| `db_offline` | num of database state in offline | int | count |
-| `db_online` | num of database state in online | int | count |
-| `db_recovering` | num of database state in recovering | int | count |
-| `db_recovery_pending` | num of database state in recovery_pending | int | count |
-| `db_restoring` | num of database state in restoring | int | count |
-| `db_suspect` | num of database state in suspect | int | count |
-| `server_memory` | memory used | int | B |
-
-**SQLServer Performance**
-
-| 指标 | 描述 | 数据类型 | 单位 |
-| --- | --- | --- | --- |
-| `cntr_value` | Current value of the counter. | int | count |
-
-**SQLServer Waitstats**
-
-| 指标 | 描述 | 数据类型 | 单位 |
-| --- | --- | --- | --- |
-| <div style="width: 150px">`max_wait_time_ms`</div> | Maximum wait time on this wait type. | int | ms |
-| `resource_wait_ms` | wait_time_ms-signal_wait_time_ms | int | ms |
-| `signal_wait_time_ms` | Difference between the time that the waiting thread was signaled and when it started running | int | ms |
-| `wait_time_ms` | Total wait time for this wait type in milliseconds. This time is inclusive of signal_wait_time_ms | int | ms |
-| `waiting_tasks_count` | Number of waits on this wait type. This counter is incremented at the start of each wait. | int | count |
-
-**SQLServer Database IO**
-
-| 指标 | 描述 | 数据类型 | 单位 |
-| --- | --- | --- | --- |
-| <div style="width: 150px">`read`</div> | Number of reads issued on the file. | int | count |
-| `read_bytes` | Total number of bytes read on this file | int | B |
-| `read_latency_ms` | Total time, in milliseconds, that the users waited for reads issued on the file. | int | ms |
-| `rg_read_stall_ms` | Does not apply to:: SQL Server 2008 through SQL Server 2012 (11.x).Total IO latency introduced by IO resource governance for reads | int | ms |
-| `rg_write_stall_ms` | Does not apply to:: SQL Server 2008 through SQL Server 2012 (11.x).Total IO latency introduced by IO resource governance for writes. Is not nullable. | int | ms |
-| `write_bytes` | Number of writes made on this file | int | B |
-| `write_latency_ms` | Total time, in milliseconds, that users waited for writes to be completed on the file | int | ms |
-| `writes` | Number of writes issued on the file. | int | count |
-
-**SQLServer Schedulers**
-
-| 指标 | 描述 | 数据类型 | 单位 |
-| --- | --- | --- | --- |
-| <div style="width: 200px">`active_workers_count`</div>  | Number of workers that are active. An active worker is never preemptive, must have an associated task, and is either running, runnable, or suspended. Is not nullable. | int | count |
-| `context_switches_count` | Number of context switches that have occurred on this scheduler | int | count |
-| `current_tasks_count` | Number of current tasks that are associated with this scheduler. | int | count |
-| `current_workers_count` | Number of workers that are associated with this scheduler. This count includes workers that are not assigned any task. Is not nullable. | int | count |
-| `is_idle` | Scheduler is idle. No workers are currently running | bool | - |
-| `is_online` | If SQL Server is configured to use only some of the available processors on the server, this configuration can mean that some schedulers are mapped to processors that are not in the affinity mask. If that is the case, this column returns 0. This value means that the scheduler is not being used to process queries or batches. | bool | - |
-| `load_factor` | Internal value that indicates the perceived load on this scheduler | int | count |
-| `pending_disk_io_count` | Number of pending I/Os that are waiting to be completed. | int | count |
-| `preemptive_switches_count` | Number of times that workers on this scheduler have switched to the preemptive mode | int | count |
-| `runnable_tasks_count` | Number of workers, with tasks assigned to them, that are waiting to be scheduled on the runnable queue. | int | count |
-| `total_cpu_usage_ms` | Applies to: SQL Server 2016 (13.x) and laterTotal CPU consumed by this scheduler as reported by non-preemptive workers. | int | ms |
-| `total_scheduler_delay_ms` | Applies to: SQL Server 2016 (13.x) and laterThe time between one worker switching out and another one switching in | int | ms |
-| `work_queue_count` | Number of tasks in the pending queue. These tasks are waiting for a worker to pick them up | int | count |
-| `yield_count` | Internal value that is used to indicate progress on this scheduler. This value is used by the Scheduler Monitor to determine whether a worker on the scheduler is not yielding to other workers on time. | int | count |
 
 ## 常见问题排查
 

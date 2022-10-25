@@ -80,23 +80,8 @@ systemctl restart datakit
 
 <监控 - 监控器 - 从模板新建 - 主机检测库>
 
-## 指标详解
+## [指标详解](/datakit/diskio/#measurements)
 
-| 指标 | 描述 | 数据类型 | 单位 |
-| --- | --- | --- | --- |
-| `io_time` | time spent doing I/Os | int | ms |
-| `iops_in_progress` | I/Os currently in progress | int | count |
-| `merged_reads` | reads merged | int | count |
-| `merged_writes` | writes merged | int | count |
-| `read_bytes` | read bytes | int | B |
-| `read_bytes/sec` | read bytes per second | int | B/S |
-| `read_time` | time spent reading | int | ms |
-| `reads` | reads completed successfully | int | count |
-| `weighted_io_time` | weighted time spent doing I/Os | int | ms |
-| `write_bytes` | write bytes | int | B |
-| `write_bytes/sec` | write bytes per second | int | B/S |
-| `write_time` | time spent writing | int | ms |
-| `writes` | writes completed | int | count |
 
 ## 常见问题排查
 

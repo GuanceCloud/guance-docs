@@ -115,36 +115,8 @@ systemctl restart datakit
 
 <场景 - 新建仪表板 - 模板库 - 系统视图 - PostgreSQL 监控视图>
 
-## 指标详解
+## [指标详解](/datakit/postgresql/#measurements)
 
-| 指标 | 描述 | 数据类型 | 单位 |
-| --- | --- | --- | --- |
-| <div style="width: 150px">`blks_hit`</div> | The number of times disk blocks were found in the buffer cache, preventing the need to read from the database. | int | count |
-| `blks_read` | The number of disk blocks read in this database. | int | count |
-| `buffers_alloc` | The number of buffers allocated | int | count |
-| `buffers_backend` | The number of buffers written directly by a backend. | int | count |
-| `buffers_backend_fsync` | The of times a backend had to execute its own fsync call instead of the background writer. | int | count |
-| `buffers_checkpoint` | The number of buffers written during checkpoints. | int | count |
-| `buffers_clean` | The number of buffers written by the background writer. | int | count |
-| `checkpoint_sync_time` | The total amount of checkpoint processing time spent synchronizing files to disk. | float | ms |
-| `checkpoint_write_time` | The total amount of checkpoint processing time spent writing files to disk. | float | ms |
-| `checkpoints_req` | The number of requested checkpoints that were performed. | int | count |
-| `checkpoints_timed` | The number of scheduled checkpoints that were performed. | int | count |
-| `database_size` | The disk space used by this database. | float | count |
-| `deadlocks` | The number of deadlocks detected in this database. | int | count |
-| `max_connections` | The maximum number of client connections allowed to this database. | float | count |
-| `maxwritten_clean` | The number of times the background writer stopped a cleaning scan due to writing too many buffers. | int | count |
-| `numbackends` | The number of active connections to this database. | int | count |
-| `percent_usage_connections` | The number of connections to this database as a fraction of the maximum number of allowed connections. | float | count |
-| `temp_bytes` | The amount of data written to temporary files by queries in this database. | int | count |
-| `temp_files` | The number of temporary files created by queries in this database. | int | count |
-| `tup_deleted` | The number of rows deleted by queries in this database. | int | count |
-| `tup_fetched` | The number of rows fetched by queries in this database. | int | count |
-| `tup_inserted` | The number of rows inserted by queries in this database. | int | count |
-| `tup_returned` | The number of rows returned by queries in this database. | int | count |
-| `tup_updated` | The number of rows updated by queries in this database. | int | count |
-| `xact_commit` | The number of transactions that have been committed in this database. | int | count |
-| `xact_rollback` | The number of transactions that have been rolled back in this database. | int | count |
 
 ## 常见问题排查
 

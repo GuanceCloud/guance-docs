@@ -169,7 +169,7 @@ systemctl restart datakit
 
 <监控 - 监控器 - 从模板新建 - Apache 检测库>
 
-## 指标详解
+## [指标详解](/datakit/apache/#measurements)
 
 | 指标 | 描述 | 数据类型 | 单位 |
 | ---- | ---- | ---- | ---- |

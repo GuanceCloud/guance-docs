@@ -90,15 +90,8 @@ systemctl restart datakit
 
 <场景 - 新建仪表板 - 模板库 - 系统视图 - SSH 监控视图>
 
-## 指标详解
+## [指标详解](/datakit/ssh/#measurements)
 
-| 指标               | 描述                               | 数据类型 | 单位 |
-| ------------------ | ---------------------------------- | -------- | ---- |
-| sftp_check         | sftp service status                | bool     | -    |
-| sftp_err           | fail reason of connet sftp service | string   | -    |
-| sftp_response_time | response time of sftp service      | float    | ms   |
-| ssh_check          | ssh service status                 | bool     | -    |
-| ssh_err            | fail reason of connet ssh service  | string   | -    |
 
 ## 常见问题排查
 

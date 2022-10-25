@@ -262,7 +262,7 @@ systemctl restart datakit
 | 8 | Elasticsearch 搜索线程池中被拒绝的线程数异常增加 | Elasticsearch 搜索线程池中被拒绝的线程数三个聚合周期发生一次波动 | 重要 | 1m |
 | 9 | Elasticsearch 合并线程池中被拒绝的线程数异常增加 | Elasticsearch 合并线程池中被拒绝的线程数三个聚合周期发生一次波动 | 重要 | 1m |
 
-## [指标详解](/datakit/elasticsearch)
+## [指标详解](/datakit/elasticsearch/#elasticsearch_node_stats)
 
 ## 最佳实践
 

@@ -185,7 +185,7 @@ systemctl restart datakit
 <场景 - 新建仪表板 - 模板库 - 系统视图 - Tomcat 监控视图>
 
 
-## 指标详解
+## [指标详解](/datakit/tomcat/#measurements)
 
 ## 最佳实践
 暂无

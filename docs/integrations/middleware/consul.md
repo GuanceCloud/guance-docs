@@ -137,9 +137,8 @@ systemctl restart datakit
 
 暂无
 
-## 指标详解
+## [指标详解](/datakit/consul/#measurements)
 
-<[Consul指标详情](../../best-practices/insight/tag.md)>
 
 ## 常见问题排查
 

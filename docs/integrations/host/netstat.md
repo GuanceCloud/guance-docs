@@ -134,22 +134,8 @@ systemctl restart telegraf
 
 <监控 - 监控器 - 从模板新建 - 主机检测库>
 
-## 指标详解
+## [指标详解](/datakit/netstat/#measurements)
 
-| 指标 | 描述 | 数据类型 |
-| --- | --- | --- |
-| `tcp_close` | 没有任何连接状态 | int |
-| `tcp_close_wait` | 等待从本地用户发来的连接中断请求 | int |
-| `tcp_closing` | 等待远程TCP对连接中断的确认 | int |
-| `tcp_established` | 正在打开的连接数 | int |
-| `tcp_fin_wait1` | 等待远程 TCP 连接中断请求 | int |
-| `tcp_fin_wait2` | 从远程 TCP 等待连接中断请求 | int |
-| `tcp_last_ack` | 等待原来的发向远程TCP的连接中断请求的确认 | int |
-| `tcp_listen` | 监听 TCP 端口的连接请求 | int |
-| `tcp_syn_recv` | 正在等待处理的请求数 | int |
-| `tcp_syn_sent` | 发送连接请求后等待匹配的连接请求 | int |
-| `tcp_time_wait` | 等待足够的时间以确保远程TCP接收到连接中断请求的确认 | int |
-| `udp_socket` | socket 连接数 | int |
 
 ## 常见问题排查
 
