@@ -377,9 +377,8 @@ systemctl restart datakit
 | 1 | 输出缓冲池中的所有缓冲区已满 | 输出缓冲池中的缓冲区利用率 > 95% | 紧急 | 1m |
 | 2 | TaskManager 堆内存不足 |  TaskManager 堆内存使用率 > 95% | 紧急 | 1m |
 
-## 指标详解
+## [指标详解](../../../datakit/flinkv1#measurements)
 
-默认情况下，Flink 会收集多个指标，这些[指标](https://nightlies.apache.org/flink/flink-docs-release-1.14/docs/ops/metrics/#system-metrics)可提供对当前状态的深入洞察。
 
 ## 最佳实践
 
