@@ -77,7 +77,7 @@ systemctl restart datakit
 
 <监控 - 监控器 - 从模板新建 - 主机检测库>
 
-## [指标详解]（/datakit/disk/#measurements）
+## [指标详解]（../../../datakit/disk#measurements）
 
 
 ## 常见问题排查

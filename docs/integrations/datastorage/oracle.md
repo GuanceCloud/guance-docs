@@ -246,9 +246,8 @@ datakit --restart
 | <br /> |  |  |  |  |
 
 
-## [指标详解](/datakit/oracle/#measurements)
+## [指标详解](../../../datakit/oracle#measurements)
 
-<[Oracle 指标详情](/datakit/oracle/#measurements)>
 
 ## 故障排查
 

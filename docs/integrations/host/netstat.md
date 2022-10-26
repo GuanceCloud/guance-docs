@@ -134,7 +134,7 @@ systemctl restart telegraf
 
 <监控 - 监控器 - 从模板新建 - 主机检测库>
 
-## [指标详解](/datakit/netstat/#measurements)
+## [指标详解](../../../datakit/netstat#measurements)
 
 
 ## 常见问题排查

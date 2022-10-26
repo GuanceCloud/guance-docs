@@ -447,7 +447,7 @@ systemctl restart datakit
 <暂无>
 
 
-##  [指标详解](/datakit/clickhousev1#metrics)
+##  [指标详解](../../../datakit/clickhousev1#metrics)
 
 ## 最佳实践
 

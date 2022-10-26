@@ -120,7 +120,7 @@ systemctl restart datakit
 
 <场景 - 新建仪表板 - 模板库 - 系统视图 - SQLServer 监控视图> 
 
-## [指标详解](/datakit/sqlserver/#measurements)
+## [指标详解](../../../datakit/sqlserver#measurements)
 
 
 ## 常见问题排查

@@ -172,7 +172,7 @@ systemctl restart datakit
 
 暂无
 
-## [指标详解](/datakit/jenkins/#measurements)
+## [指标详解](../../../datakit/jenkins/#measurements)
 
 
 ## 最佳实践

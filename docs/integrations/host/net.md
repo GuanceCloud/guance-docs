@@ -79,7 +79,7 @@ systemctl restart datakit
 
 <监控 - 监控器 - 从模板新建 - 主机检测库>
 
-## [指标详解](/datakit/net/#measurements)
+## [指标详解](../../../datakit/net#measurements)
 
 
 ## 常见问题排查

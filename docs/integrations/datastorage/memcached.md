@@ -85,7 +85,7 @@ systemctl restart datakit
 
 暂无
 
-## [指标详解](/datakit/memcached/#measurements)
+## [指标详解](../../../datakit/memcached/#measurements)
 
 
 ## 常见问题排查

@@ -90,7 +90,7 @@ systemctl restart datakit
 
 <场景 - 新建仪表板 - 模板库 - 系统视图 - SSH 监控视图>
 
-## [指标详解](/datakit/ssh/#measurements)
+## [指标详解](../../../datakit/ssh#measurements)
 
 
 ## 常见问题排查
