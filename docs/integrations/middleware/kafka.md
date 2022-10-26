@@ -1,4 +1,3 @@
-
 # Kafka
 ---
 
@@ -278,7 +277,7 @@ systemctl restart datakit
 
 暂无
 
-## [指标详解](../../../datakit/kafka#measurements)
+## [指标详解](../../datakit/kafka#measurements)
 
 
 ## 最佳实践
