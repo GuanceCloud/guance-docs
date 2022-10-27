@@ -23,7 +23,7 @@
 helm add repo dataflux  https://pubrepo.guance.com/chartrepo/datakit
 ```
 
-#### 查看datakit 版本
+#### 查看 DataKit 版本
 
 ```shell
 helm search repo datakit
@@ -35,7 +35,7 @@ dataflux/datakit	1.2.10       	1.2.10     	Chart for the DaemonSet datakit
 
 ```shell
 helm repo update 
-helm pull dataflux/datakit --untar
+helm pull datakit/datakit--untar
 ```
 
 ![image.png](../images/datakit-daemonset-1.png)
@@ -116,7 +116,7 @@ dkconfig:
 ```shell
 cd datakit
 helm repo update 
-helm install my-datakit dataflux/datakit -f values.yaml -n datakit  --create-namespace \ 
+helm install my-datakit datakit/datakit-f values.yaml -n datakit  --create-namespace \ 
     --set image.tag=1.2.11
 ```
 
@@ -183,7 +183,7 @@ Datakit[启用git](/datakit/datakit-conf/)管理
 ```shell
 helm add repo dataflux  https://pubrepo.guance.com/chartrepo/datakit
 helm repo update 
-helm install my-datakit dataflux/datakit -n datakit --set dataway_url="https://openway.guance.com?token=<your-token>" \
+helm install my-datakit datakit/datakit-n datakit --set dataway_url="https://openway.guance.com?token=<your-token>" \
 --set git_repos.git_url="http://username:password@github.com/path/to/repository.git" \
 --create-namespace 
 ```
@@ -195,7 +195,7 @@ helm install my-datakit dataflux/datakit -n datakit --set dataway_url="https://o
 ```shell
 helm add repo dataflux  https://pubrepo.guance.com/chartrepo/datakit
 helm repo update 
-helm install my-datakit dataflux/datakit -n datakit --set dataway_url="https://openway.guance.com?token=<your-token>" \
+helm install my-datakit datakit/datakit-n datakit --set dataway_url="https://openway.guance.com?token=<your-token>" \
 --set git_repos.git_url="git@github.com:path/to/repository.git" \
 --set-file git_repos.git_key_path="/Users/buleleaf/.ssh/id_rsa" \
 --create-namespace 
