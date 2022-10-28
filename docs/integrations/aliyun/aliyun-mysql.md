@@ -22,15 +22,15 @@
 
 ### RAM 访问控制
 
-1、登录 RAM 控制台  [https://ram.console.aliyun.com/users](https://ram.console.aliyun.com/users)
+1、 登录 RAM 控制台  [https://ram.console.aliyun.com/users](https://ram.console.aliyun.com/users)
 
-2、新建用户：人员管理 - 用户 - 创建用户
+2、 新建用户：「人员管理」 - 「用户」 - 「创建用户」
 
 ![image](../imgs/input-aliyun-mysql-3.png)
 
-3、保存或下载 **AccessKey** **ID** 和 **AccessKey Secret** 的 CSV 文件 (配置文件会用到)
+3、 保存或下载 **AccessKey** **ID** 和 **AccessKey Secret** 的 CSV 文件 (配置文件会用到)
 
-4、用户授权 (云监控只读/时序指标数据权限)
+4、 用户授权 「只读访问云监控」、「访问云监控时序指标数据」
 
 ![image](../imgs/input-aliyun-mysql-4.png)
 
@@ -45,38 +45,38 @@
 
 #### 脚本市场
 
-1、登录 DataFlux Func，地址 http://ip:8088
+1、 登录 DataFlux Func，地址 `http://ip:8088`
 
 ![image](../imgs/input-aliyun-mysql-5.png)
 
-2、开启脚本市场，管理 - 实验性功能 - 开启脚本市场模块
+2、 开启脚本市场：「管理」 - 「实验性功能」 - 「开启脚本市场模块」
 
 ![image](../imgs/input-aliyun-mysql-6.png)
 
-3、载入阿里云数据同步脚本，管理 - 脚本市场 - 阿里云数据同步 (云监控)
+3、 载入阿里云数据同步脚本：「管理」 - 「脚本市场」 - 「阿里云数据同步（云监控）」
 
 ![image](../imgs/input-aliyun-mysql-7.png)
 
 #### 添加脚本
 
-1、阿里云数据同步 (云监控) - 添加脚本
+1、 「阿里云数据同步（云监控）」 - 「添加脚本」
 
 ![image](../imgs/input-aliyun-mysql-8.png)
 
-2、输入标题/描述信息
+2、 输入 标题 及 描述信息
 
 ![image](../imgs/input-aliyun-mysql-9.png)
 
-3、编辑脚本并复制代码，从 (同步阿里云监控数据) 到当前脚本
+3、 编辑脚本并复制代码，从 (同步阿里云监控数据) 到当前脚本
 
-4、修改阿里云账号配置 (Ram 访问控制)
+4、 修改阿里云账号配置 (Ram 访问控制)
 
 ```bash
     'aliyun_ak_id'    : 'AccessKey ID',
     'aliyun_ak_secret': 'AccessKey Secret',
 ```
 
-5、修改阿里云 PolarDB MySQL 指标
+5、 修改阿里云 PolarDB MySQL 指标
 
 ```bash
     'metric_targets': [
@@ -87,21 +87,21 @@
                       ]
 ```
 
-6、**保存** 配置并 **发布**
+6、「保存」 配置并 「发布」
 
 ![image](../imgs/input-aliyun-mysql-10.png)
 
 #### 定时任务
 
-1、添加自动触发任务，管理 - 自动触发配置 - 新建任务
+1、 添加自动触发任务：「管理」 - 「自动触发配置」 - 「新建任务」
 
 ![image](../imgs/input-aliyun-mysql-11.png)
 
-2、自动触发配置，执行函数中添加此脚本，其他默认即可
+2、 添加自动触发配置：在「执行函数」中添加此脚本，其他默认即可
 
 ![image](../imgs/input-aliyun-mysql-12.png)
 
-3、指标预览
+3、 指标预览
 
 ![image](../imgs/input-aliyun-mysql-13.png)
 
