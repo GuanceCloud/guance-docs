@@ -3,3 +3,4 @@ nav:
   - '内存泄漏': memory-leak.md
   - '磁盘使用率': disk-usage.md
   - '应用性能检测': apm.md
+  - '云账户账单巡检': cloudfee.md

@@ -596,7 +596,7 @@ data:
 
 <场景 - 新建仪表板 - 模板库 - 系统视图 - Etcd 监控视图>
 
-## [指标详解](/datakit/etcd#measurements)
+## [指标详解](/datakit/etcd/#measurements)
 
 ## 最佳实践
 

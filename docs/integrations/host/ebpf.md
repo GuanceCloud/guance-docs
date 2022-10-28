@@ -82,7 +82,7 @@ vi ebpf.conf
 systemctl restart datakit
 ```
 
-## [指标详解](/datakit/ebpf#measurements)
+## [指标详解](../../../datakit/ebpf#measurements)
 
 ## 常见问题排查
 
