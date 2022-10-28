@@ -26,13 +26,13 @@
 
 1、登录 RAM 控制台 [https://ram.console.aliyun.com/users](https://ram.console.aliyun.com/users)
 
-2、新建用户：人员管理 - 用户 - 创建用户
+2、新建用户：「人员管理」 - 「用户」 - 「创建用户」
 
 ![image](../imgs/input-rds-mysql-4.png)
 
 3、保存或下载 **AccessKey** **ID** 和 **AccessKey Secret** 的 CSV 文件 (配置文件会用到)
 
-4、用户授权 (只读访问所有阿里云资源的权限)
+4、用户授权 「只读访问所有阿里云资源的权限」
 
 ![image](../imgs/input-rds-mysql-5.png)
 
@@ -47,11 +47,11 @@
 
 #### 脚本市场
 
-1、登录 DataFlux Func，地址 http://ip:8088
+1、登录 DataFlux Func，地址 `http://ip:8088`
 
 ![image](../imgs/input-rds-mysql-6.png)
 
-2、开启脚本市场，管理 - 实验性功能 - 开启脚本市场模块
+2、开启脚本市场：「管理」 - 「实验性功能」 - 「开启脚本市场模块」
 
 ![image](../imgs/input-rds-mysql-7.png)
 
@@ -60,21 +60,21 @@
 （2）观测云集成 (阿里云-云监控)<br />
 （3）观测云集成 (阿里云-RDS)
 
-_注：在安装「核心包」后，系统会提示安装第三方依赖包，按照正常步骤点击安装即可_
+> **注意：**在安装核心包后，系统会提示安装第三方依赖包，按照正常步骤点击安装即可。
 
 ![image](../imgs/input-rds-mysql-8.png)
 
-4、脚本安装完成后，可以在脚本库中看到所有脚本集
+4、脚本安装完成后，可以在「脚本库」中看到所有脚本集
 
 ![image](../imgs/input-rds-mysql-9.png)
 
 #### 添加脚本
 
-1、开发 - 脚本库 - 添加脚本集
+1、「开发」 - 「脚本库」 - 「添加脚本集」
 
 ![image](../imgs/input-rds-mysql-10.png)
 
-2、点击该脚本集 - 添加脚本
+2、点击上一步添加的「脚本集」 - 「添加脚本」
 
 ![image](../imgs/input-rds-mysql-11.png)
 
@@ -82,7 +82,9 @@ _注：在安装「核心包」后，系统会提示安装第三方依赖包，�
 
 ![image](../imgs/input-rds-mysql-12.png)
 
-4、添加代码 (需要修改账号配置 **AccessKey ID/AccessKey Secret/Account Name**)
+4、添加代码
+
+- 需要修改账号配置 `AccessKey ID` 、 `AccessKey Secret` 、 `Account Name`
 
 ```bash
 from guance_integration__runner import Runner        # 引入启动器
@@ -121,17 +123,17 @@ def run():
     Runner(collectors).run()
 ```
 
-5、**保存** 配置并 **发布**
+5、「保存」 配置并 「发布」
 
 ![image](../imgs/input-rds-mysql-13.png)
 
 #### 定时任务
 
-1、添加自动触发任务，管理 - 自动触发配置 - 新建任务
+1、添加自动触发任务：「管理」 - 「自动触发配置」 - 「新建任务」
 
 ![image](../imgs/input-rds-mysql-14.png)
 
-2、自动触发配置，执行函数中添加此脚本，执行频率为 **每分钟 \* \* \* \* \***
+2、自动触发配置：在「执行函数」中添加此脚本，执行频率为 **每分钟 \* \* \* \* \***
 
 ![image](../imgs/input-rds-mysql-15.png)
 

@@ -22,13 +22,13 @@
 
 1、 登录 RAM 控制台 [https://ram.console.aliyun.com/users](https://ram.console.aliyun.com/users)
 
-2、 新建用户：人员管理 - 用户 - 创建用户
+2、 新建用户：「人员管理」 - 「用户」 - 「创建用户」
 
 ![image](../imgs/input-aliyun-sls-02.png)
 
 3、 保存或下载 **AccessKey** **ID** 和 **AccessKey Secret** 的 CSV 文件 (配置文件会用到)
 
-4、 用户授权 (云监控只读/时序指标数据权限)
+4、 用户授权 「只读访问云监控」、「访问云监控时序指标数据」
 
 ![image](../imgs/input-aliyun-sls-03.png)
 
@@ -43,25 +43,25 @@
 
 #### 脚本市场
 
-1、 登录 DataFlux Func，地址 http://ip:8088
+1、 登录 DataFlux Func，地址 `http://ip:8088`
 
 ![image](../imgs/input-aliyun-sls-04.png)
 
-2、 开启脚本市场，管理 - 实验性功能 - 开启脚本市场模块
+2、 开启脚本市场：「管理」 - 「实验性功能」 - 「开启脚本市场模块」
 
 ![image](../imgs/input-aliyun-sls-05.png)
 
-3、 载入阿里云数据同步脚本，管理 - 脚本市场 - 阿里云数据同步 (云监控)
+3、 载入阿里云数据同步脚本：「管理」 - 「脚本市场」 - 「阿里云数据同步（云监控）」
 
 ![image](../imgs/input-aliyun-sls-06.png)
 
 #### 添加脚本
 
-1、 阿里云数据同步 (云监控) - 添加脚本
+1、「阿里云数据同步（云监控）」 - 「添加脚本」
 
 ![image](../imgs/input-aliyun-sls-07.png)
 
-2、 输入标题/描述信息
+2、 输入 标题 及 描述信息
 
 ![image](../imgs/input-aliyun-sls-08.png)
 
@@ -85,17 +85,17 @@
                       ]
 ```
 
-6、 保存配置并发布
+6、「保存」 配置并 「发布」
 
 ![image](../imgs/input-aliyun-sls-09.png)
 
 #### 定时任务
 
-1、 添加自动触发任务，管理 - 自动触发配置 - 新建任务
+1、 添加自动触发任务：「管理」 - 「自动触发配置」 - 「新建任务」
 
 ![image](../imgs/input-aliyun-sls-10.png)
 
-2、 自动触发配置，执行函数中添加此脚本，其他默认即可
+2、 添加自动触发配置：在「执行函数」中添加此脚本，其他默认即可
 
 ![image](../imgs/input-aliyun-sls-11.png)
 

@@ -22,15 +22,15 @@
 
 ### RAM 访问控制
 
-1、登录 RAM 控制台 [https://ram.console.aliyun.com/users](https://ram.console.aliyun.com/users)
+1、 登录 RAM 控制台 [https://ram.console.aliyun.com/users](https://ram.console.aliyun.com/users)
 
-2、新建用户：「人员管理」 - 「用户」 - 「创建用户」
+2、 新建用户：「人员管理」 - 「用户」 - 「创建用户」
 
 ![image](../imgs/input-aliyun-mongodb-3.png)
 
-3、保存或下载 **AccessKey** **ID** 和 **AccessKey Secret** 的 CSV 文件 (配置文件会用到)
+3、 保存或下载 **AccessKey** **ID** 和 **AccessKey Secret** 的 CSV 文件 (配置文件会用到)
 
-4、用户授权 「只读访问所有阿里云资源的权限」
+4、 用户授权 「只读访问所有阿里云资源的权限」
 
 ![image](../imgs/input-aliyun-mongodb-4.png)
 
@@ -45,15 +45,15 @@
 
 #### 脚本市场
 
-1、登录 DataFlux Func，地址 `http://ip:8088`
+1、 登录 DataFlux Func，地址 ``http://ip:8088``
 
 ![image](../imgs/input-aliyun-mongodb-5.png)
 
-2、开启脚本市场：「管理」 - 「实验性功能」 - 「开启脚本市场模块」
+2、 开启脚本市场：「管理」 - 「实验性功能」 - 「开启脚本市场模块」
 
 ![image](../imgs/input-aliyun-mongodb-6.png)
 
-3、**依次添加** 三个脚本集<br />
+3、 **依次添加** 三个脚本集<br />
 
 （1）观测云集成（核心包）<br />
 （2）观测云集成（阿里云 - 云监控）<br />
@@ -63,7 +63,7 @@
 
 ![image](../imgs/input-aliyun-mongodb-7.png)
 
-4、脚本安装完成后，可以在脚本库中看到所有脚本集
+4、 脚本安装完成后，可以在「脚本库」中看到所有脚本集
 
 ![image](../imgs/input-aliyun-mongodb-8.png)
 
@@ -73,15 +73,15 @@
 
 ![image](../imgs/input-aliyun-mongodb-9.png)
 
-2、点击上一步添加的「脚本集」 - 「添加脚本」
+2、 点击上一步添加的「脚本集」 - 「添加脚本」
 
 ![image](../imgs/input-aliyun-mongodb-10.png)
 
-3、创建 ID 为 main 的脚本
+3、 创建 ID 为 main 的脚本
 
 ![image](../imgs/input-aliyun-mongodb-11.png)
 
-4、添加代码 
+4、 添加代码 
 
 - 需要修改账号配置 `AccessKey ID` 、 `AccessKey Secret` 、 `Account Name`
 
@@ -128,15 +128,15 @@ def run():
 
 #### 定时任务
 
-1、添加自动触发任务：「管理」 - 「自动触发配置」 - 「新建任务」
+1、 添加自动触发任务：「管理」 - 「自动触发配置」 - 「新建任务」
 
 ![image](../imgs/input-aliyun-mongodb-13.png)
 
-2、自动触发配置：在「执行函数」中添加此脚本，执行频率为 **每分钟 \* \* \* \* \***
+2、 自动触发配置：在「执行函数」中添加此脚本，执行频率为 **每分钟 \* \* \* \* \***
 
 ![image](../imgs/input-aliyun-mongodb-14.png)
 
-3、指标预览
+3、 指标预览
 
 ![image](../imgs/input-aliyun-mongodb-15.png)
 
