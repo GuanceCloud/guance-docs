@@ -2,6 +2,15 @@
 icon: zy/best-practices
 ---
 
+## (2022/10/28)
+
+### 新增最佳实践
+
+- 监控 Monitoring
+    - 应用性能监控 (APM) - [Kafka 可观测最佳实践](./monitoring/kafka.md)。
+
+
+
 ## (2022/10/17)
 
 ### 新增最佳实践
