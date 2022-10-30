@@ -45,7 +45,7 @@
 
 #### 脚本市场
 
-1、 登录 DataFlux Func，地址 ``http://ip:8088``
+1、 登录 DataFlux Func，地址 `http://ip:8088`
 
 ![image](../imgs/input-aliyun-mongodb-5.png)
 

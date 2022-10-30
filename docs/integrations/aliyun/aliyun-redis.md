@@ -53,7 +53,7 @@
 
 ![image](../imgs/input-aliyun-redis-6.png)
 
-3、**依次添加**三个脚本集<br />
+3、 **依次添加**三个脚本集<br />
 
 （1）观测云集成（核心包）<br />
 （2）观测云集成（阿里云 - 云监控）<br />
@@ -63,7 +63,7 @@
 
 ![image](../imgs/input-aliyun-redis-7.png)
 
-4、脚本安装完成后，可以在「脚本库」中看到所有脚本集
+4、 脚本安装完成后，可以在「脚本库」中看到所有脚本集
 
 ![image](../imgs/input-aliyun-redis-8.png)
 
