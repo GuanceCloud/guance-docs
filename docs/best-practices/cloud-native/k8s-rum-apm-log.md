@@ -1014,7 +1014,7 @@ DataKit 开启 RUM 采集器是通过 ENV_DEFAULT_ENABLED_INPUTS 环境变量值
 
 #### 开通 ddtrace
 
-详见链路数据增加 node_ip 标签。
+详见[链路数据增加 node_ip 标签](#node_ip)。
 
 #### Java 应用接入 ddtrace
 
