@@ -27,8 +27,8 @@ GitLab 性能指标展示，包括请求持续时间、队列数量、队列耗�
 
 1、 GitLab 开启数据采集功能
 
-登录 GitLab ，点击【Admin Area】->【Settings】-> 【Metrics and profiling】
-选中【Enable Prometheus Metrics】，点击【 Save change】。
+登录 GitLab ，点击「Admin Area」 - 「Settings」 - 「Metrics and profiling」 <br />
+选中「Enable Prometheus Metrics」，点击「 Save change」。
 
 ![image](../imgs/input-gitlab-02.png)
 
@@ -126,23 +126,23 @@ systemctl restart datakit
 #### GitLab CI (非必选)
 
 在 GitLab 中使用 Pipeline 部署项目，通过 DataKit 采集 Pipeline 指标，可以通过观测云可视化 CI 的步骤。<br />
-依次进入 Projects -> Ruoyi Auth （请选择您的项目）-> Settings -> Webhooks
+依次进入 「Projects」 - 「Ruoyi Auth」（请选择您的项目） - 「Settings」 - 「Webhooks」
 
 ![image](../imgs/input-gitlab-04.png)
 
-URL 中输入 DataKit 所在的主机 IP 和 DataKit 的 9529 端口，再加 /v1/gitlab。如下图。
+URL 中输入 DataKit 所在的主机 `IP` 和 DataKit 的 `9529` 端口，再加 `/v1/gitlab`。如下图。
 
 ![image](../imgs/input-gitlab-06.png)
 
-选中 Job events 和 Pipeline events，点击 Add webhook。
+选中 「Job events」 和 「Pipeline events」，点击 「Add webhook」。
 
 ![image](../imgs/input-gitlab-07.png)
 
-点击刚才创建的 Webhooks 右边的 Test，选择 Pipeline events。
+点击刚才创建的 Webhooks 右边的 「Test」，选择 「Pipeline events」。
 
 ![image](../imgs/input-gitlab-08.png)
 
-上方出现 HTTP 200，说明配置成功，如下图。
+上方出现 **HTTP 200**，说明配置成功，如下图。
 
 ![image](../imgs/input-gitlab-09.png)
 
