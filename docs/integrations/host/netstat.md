@@ -4,7 +4,7 @@
 
 ## 视图预览
 
-NetStat 指标展示，包括 tcp 连接数、等待连接、等待处理请求、udp socket 连接等
+NetStat 指标展示，包括 Tcp 连接数、等待连接、等待处理请求、Udp Socket 连接等。
 
 ![image](../imgs/input-netstat-1.png)
 
@@ -15,34 +15,10 @@ NetStat 指标展示，包括 tcp 连接数、等待连接、等待处理请求�
 ## 前置条件
 
 - 服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
-- 服务器安装 Telegraf
-
-### 安装 Telegraf
-
-以 **CentOS** 为例，其他系统参考 [[Telegraf 官方文档](https://docs.influxdata.com/telegraf/v1.19/introduction/installation/)]
-
-1、 添加 yum 源
-
-```
-cat <<EOF | tee /etc/yum.repos.d/influxdb.repo
-[influxdb]
-name = InfluxDB Repository - RHEL \$releasever
-baseurl = https://repos.influxdata.com/rhel/\$releasever/\$basearch/stable
-enabled = 1
-gpgcheck = 1
-gpgkey = https://repos.influxdata.com/influxdb.key
-EOF
-```
-
-2、 安装 Telegraf
-
-```
-yum -y install telegraf
-```
 
 ## 安装配置
 
-说明：示例 Linux 版本为：CentOS Linux release 7.8.2003 (Core)，Windows 版本请修改对应的配置文件
+说明：示例 Linux 版本为：CentOS Linux release 7.8.2003 (Core)，Windows 版本请修改对应的配置文件。
 
 ### 部署实施
 
@@ -50,68 +26,38 @@ yum -y install telegraf
 
 #### 指标采集 (必选)
 
-1、 数据上传至 DataKit，修改主配置文件 `telegraf.conf`
+1、 开启 DataKit NetStat 插件，复制 sample 文件
 
 ```
-vi /etc/telegraf/telegraf.conf
+cd /usr/local/datakit/conf.d/host/
+cp netstat.conf.sample netstat.conf
 ```
 
-2、 关闭 InfluxDB，开启 outputs.http (修改对应的行)
+参数说明
+
+- interval：数据采集频率
+
+2、 重启 DataKit
 
 ```
-#[[outputs.influxdb]]
-[[outputs.http]]
-url = "http://127.0.0.1:9529/v1/write/metric?input=telegraf"
+systemctl restart datakit
 ```
 
-3、 关闭主机检测 (否则会与 DataKit 冲突)
+3、 指标验证
 
 ```
-#[[inputs.cpu]]
-#  percpu = true
-#  totalcpu = true
-#  collect_cpu_time = false
-#  report_active = false
-#[[inputs.disk]]
-#  ignore_fs = ["tmpfs", "devtmpfs", "devfs", "iso9660", "overlay", "aufs", "squashfs"]
-#[[inputs.diskio]]
-#[[inputs.mem]]
-#[[inputs.processes]]
-#[[inputs.swap]]
-#[[inputs.system]]
-```
-
-4、 开启 NetStat 检测
-
-```
-[[inputs.netstat]]
-```
-
-5、 启动 Telegraf
-
-```
-systemctl start telegraf
-```
-
-6、 指标验证
-
-```
-/usr/bin/telegraf --config /etc/telegraf/telegraf.conf --input-filter netstat --test
+NetStat 指标采集验证  `/usr/local/datakit/datakit -M |egrep "最近采集|netstat"
 ```
 有数据返回 (行协议)，代表能够正常采集
 
 ![image](../imgs/input-netstat-2.png)
-
-7、 指标预览
-
-![image](../imgs/input-netstat-3.png)
 
 #### 插件标签 (非必选)
 
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，所有 NetStat 指标都会带有 app = oa 的标签，可以进行快速查询
+- 以下示例配置完成后，所有 NetStat 指标都会带有 `app = "oa"` 的标签，可以进行快速查询
 - 相关文档 <[TAG在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 
 ```
@@ -120,15 +66,15 @@ systemctl start telegraf
    app = "oa"
 ```
 
-重启 Telegraf
+重启 DataKit
 
 ```
-systemctl restart telegraf
+systemctl restart datakit
 ```
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 模板库 - 系统视图 - Netstat 监控视图>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - NetStat 监控视图>
 
 ## 监控规则
 
