@@ -28,7 +28,7 @@ kubectl get svc -n kube-system
 
 ![image](../imgs/input-coredns-2.png)
 
-得到 DNS Service 域名是
+得到 DNS Service 域名是：
 
 ```
 http://kube-dns.kube-system.svc.cluster.local
@@ -153,7 +153,7 @@ data:
       cluster_name="k8s-dns"
 ```
 
-参数说明
+参数说明：
 
 - url：CoreDNS 的 Prom 监听地址
 - source：采集器别名
@@ -200,7 +200,7 @@ systemctl restart datakit
 
 <场景 - 新建仪表板 - 模板库 - 系统视图 - CoreDNS 监控视图>
 
-## [指标详解](/datakit/consul/#measurements)
+## [指标详解](../../../datakit/consul#measurements)
 
 
 
