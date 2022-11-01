@@ -1,9 +1,10 @@
 # Kubernetes Scheduler
+
 ---
 
 ## 视图预览
 
-Scheduler 性能指标展示，包括调度队列 pending pod 数、进入调度队列 pod 速率、HTTP 请求数量、CPU、Memory、Goroutines 等。
+Scheduler 性能指标展示，包括调度队列 pending pod 数、进入调度队列 pod 速率、HTTP 请求数量、 CPU、 Memory、 Goroutines 等。
 
 ![image](../imgs/input-kube-scheduler-01.png)
 
@@ -103,7 +104,7 @@ data:
         instance = "172.16.0.229:10259"
 ```
 
-参数说明：
+参数说明
 
 - urls：scheduler metrics 地址
 - source：采集器别名
@@ -146,7 +147,7 @@ kubectl apply -f datakit.yaml
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，scheduler 指标都会带有 `app = "oa"` 的标签，可以进行快速查询。
+- 以下示例配置完成后，Scheduler 指标都会带有 `app = "oa"` 的标签，可以进行快速查询。
 - 采集 scheduler 指标，必填的 key 是 instance，值是 scheduler metrics 的 ip + 端口
 
 ```toml

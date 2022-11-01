@@ -4,7 +4,7 @@
 
 ## 视图预览
 
-Kubernetes API Server 性能指标展示，包括请求数、工作队列增速、工作队列深度、CPU 、Memory 、Goroutines 等。
+Kubernetes API Server 性能指标展示，包括请求数、工作队列增速、工作队列深度、 CPU 、 Memory 、 Goroutines 等。
 
 ![image](../imgs/kubernetes-api-server-1.png)
 
@@ -118,7 +118,7 @@ data:
 
 2、 挂载 `api-server.conf`
 
-在 `datakit.yaml` 文件的 volumeMounts 下面增加下面内容。
+在 `datakit.yaml` 文件的 `volumeMounts` 下面增加下面内容。
 
 ```yaml
 - mountPath: /usr/local/datakit/conf.d/prom/api-server.conf
@@ -142,7 +142,7 @@ kubectl apply -f datakit.yaml
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，api-server 指标都会带有 `app = "oa"` 的标签，可以进行快速查询
+- 以下示例配置完成后，api-server 指标都会带有如下类似的标签，可以进行快速查询
 - 采集 api-server 指标，必填的 key 是 instance，值是 api-server 的地址
 
 ```toml
@@ -164,14 +164,14 @@ kubectl apply -f datakit.yaml
 
 ## 指标详解
 
-| 指标 | 描述 | 数据类型 |
-| ---- | ---- | ----- |
-| apiserver_request_total | Counter of apiserver requests broken out for each verb, dry run value, group, version, resource, scope, component, and HTTP response code. | int |
-| workqueue_adds_total | Total number of adds handled by workqueue | int |
-| workqueue_depth  | Current depth of workqueue | int |
-| process_resident_memory_bytes | Resident memory size in bytes | B |
-| process_cpu_seconds_total | Total user and system CPU time spent in seconds | float |
-| go_goroutines | Number of goroutines that currently exist | int |
+| 指标                          | 描述                                                                                                                                       | 数据类型 |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | -------- |
+| apiserver_request_total       | Counter of apiserver requests broken out for each verb, dry run value, group, version, resource, scope, component, and HTTP response code. | int      |
+| workqueue_adds_total          | Total number of adds handled by workqueue                                                                                                  | int      |
+| workqueue_depth               | Current depth of workqueue                                                                                                                 | int      |
+| process_resident_memory_bytes | Resident memory size in bytes                                                                                                              | B        |
+| process_cpu_seconds_total     | Total user and system CPU time spent in seconds                                                                                            | float    |
+| go_goroutines                 | Number of goroutines that currently exist                                                                                                  | int      |
 
 ## 常见问题排查
 

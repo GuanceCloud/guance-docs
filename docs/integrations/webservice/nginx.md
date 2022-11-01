@@ -1,4 +1,5 @@
 # Nginx
+
 ---
 
 ## 视图预览
@@ -60,7 +61,7 @@ nginx -V 2>&1| grep -o http_stub_status_module
             }
 ```
 
-2、 使用 nginx -t 测试配置文件语法
+2、 使用 `nginx -t` 测试配置文件语法
 
 ![image](../imgs/input-nginx-02.png)
 
@@ -70,9 +71,9 @@ nginx -V 2>&1| grep -o http_stub_status_module
 systemctl reload nginx
 ```
 
-4、 查看监控数据 curl http://127.0.0.1/nginx_status (Windows 浏览器访问)
+4、 查看监控数据 `curl http://127.0.0.1/nginx_status` (Windows 浏览器访问)
 
-(如果配置了 server_name，使用 curl http://域名:端口/nginx_status )
+(如果配置了 `server_name`，使用 `curl http://域名:端口/nginx_status` )
 
 ![image](../imgs/input-nginx-03.png)
 
@@ -166,11 +167,13 @@ systemctl restart datakit
 
 某些场景下，我们需要将前端负载均衡也纳入到全链路观测中，用于分析用户请求从系统入口位置到后端服务结束这一完整过程的链路调用及耗时情况。这时就需要安装 Nginx 链路追踪模块来实现该功能。
 
-安装 Nginx 链路追踪有两个前置条件：<br />
-首先，安装 Nginx 的 OpenTracing 插件 [linux-amd64-nginx-${NGINX_VERSION}-ot16-ngx_http_module.so.tgz](https://github.com/opentracing-contrib/nginx-opentracing/releases/latest)。点击链接打开 git 目录后，在 Asset 中根据自己的 Nginx 版本选择对应的模块包进行下载，将这个包解压到 nginx 模块目录下，通常为 `/usr/lib/nginx/modules`。也可解压到其他目录，区别是在下面操作 load_module 时，需要引用绝对路径。
-其次，需要安装 ddagent 运行所依赖的 C++ 插件 [linux-amd64-libdd_opentracing_plugin.so.gz](https://github.com/DataDog/dd-opentracing-cpp/releases/latest)。这个包需要解压到 nginx 可访问的某个目录下，例如 `/usr/local/lib` 。
+安装 Nginx 链路追踪有两个前置条件：
+
+- 首先，安装 Nginx 的 OpenTracing 插件 [linux-amd64-nginx-${NGINX_VERSION}-ot16-ngx_http_module.so.tgz](https://github.com/opentracing-contrib/nginx-opentracing/releases/latest)。点击链接打开 git 目录后，在 Asset 中根据自己的 Nginx 版本选择对应的模块包进行下载，将这个包解压到 nginx 模块目录下，通常为 `/usr/lib/nginx/modules`。也可解压到其他目录，区别是在下面操作 load_module 时，需要引用绝对路径。
+- 其次，需要安装 ddagent 运行所依赖的 C++ 插件 [linux-amd64-libdd_opentracing_plugin.so.gz](https://github.com/DataDog/dd-opentracing-cpp/releases/latest)。这个包需要解压到 nginx 可访问的某个目录下，例如 `/usr/local/lib` 。
 
 完成插件包下载后，可使用下面的命令解压：
+
 - Nginx OpenTracing 包：<br />
   ```
   tar zxf linux-amd64-nginx-<填写您下载的.so 的版本号>-ot16-ngx_http_module.so.tgz -C /usr/lib/nginx/modules`
@@ -199,7 +202,8 @@ opentracing_trace_locations off;
 opentracing_load_tracer /usr/local/lib/libdd_opentracing_plugin.so /etc/nginx/dd-config.json;
 ```
 
-其中 opentracing_load_tracer 的配置需要注意，第一个参数是 C++ 插件的位置，这个已经在拷贝命令中添加好了。第二个参数 dd-config.json 需要手动添加。以示例中的位置为例，我们在 `/etc/nginx/` 目录下，`vi dd-config.json` 并填写以下内容：
+其中， `opentracing_load_tracer` 的配置需要注意，第一个参数是 C++ 插件的位置，这个已经在拷贝命令中添加好了；第二个参数 `dd-config.json` 需要手动添加。<br />
+以示例中的位置为例，我们在 `/etc/nginx/` 目录下，`vi dd-config.json` 并填写以下内容：
 
 ```
 {
@@ -212,7 +216,7 @@ opentracing_load_tracer /usr/local/lib/libdd_opentracing_plugin.so /etc/nginx/dd
 
 ```
 
-其中，agent_host 需填写本地可访问的 DataKit 地址，agent_port 须填写 DataKit 端口号 9529。
+其中，`agent_host` 需填写本地可访问的 DataKit 地址，`agent_port` 须填写 DataKit 端口号 `9529`。
 
 下一步，编辑 Nginx 日志格式，将 Trace 信息注入到 Nginx 日志中。可按如下示例编辑：
 
@@ -225,9 +229,9 @@ log_format with_trace_id '$remote_addr - $http_x_forwarded_user [$time_local] "$
 access_log /var/log/nginx/access-with-trace.log with_trace_id;
 ```
 
-说明：log_format 关键字告诉 nginx 这里定义了一套日志规则，with_trace_id 是规则名，可以自己修改，注意在下方指定日志路径时要用一样的名字来关联该日志的规则。access_log 中的路径和文件名可以更换。通常情况下原 Nginx 是配有日志规则的。我们可以配置多条规则，并将不同的日志格式输出到不同的文件，即保留原 access_log 规则及路径不变，新增一个包含 trace 信息的日志规则，命名为不同的日志文件，供不同的日志工具读取。
+> **说明：**`log_format` 关键字告诉 Nginx 这里定义了一套日志规则， `with_trace_id` 是规则名，可以自己修改，注意在下方指定日志路径时要用一样的名字来关联该日志的规则。`access_log` 中的路径和文件名可以更换。通常情况下原 Nginx 是配有日志规则的，我们可以配置多条规则，并将不同的日志格式输出到不同的文件，即保留原 `access_log` 规则及路径不变，新增一个包含 trace 信息的日志规则，命名为不同的日志文件，供不同的日志工具读取。
 
-完成上述配置后，在 http.server 需要进行追踪的 location 配置中，增加如下内容：
+完成上述配置后，在 `http.server` 需要进行追踪的 `location` 配置中，增加如下内容：
 
 ```
 opentracing_operation_name "$request_method $uri";
@@ -244,28 +248,33 @@ opentracing_tag "custom-tag" "special value";#用户自定义标签，可选
 
 ![image](../imgs/input-nginx-09.png)
 
-使用 `nginx -s reload` 重新加载 nginx，使 tracing 功能生效。登录观测云的应用性能监控界面，查看 Nginx Tracing 信息：
+使用 `nginx -s reload` 重新加载 Nginx，使 tracing 功能生效。登录观测云的应用性能监控界面，查看 Nginx Tracing 信息：
 
 ![image](../imgs/input-nginx-10.png)
 
-可能遇到的问题：
+**可能遇到的问题：**
 
-1、在进行 Nginx 语法检查时报错，提示没有找到 OpenTracing 的 module
+- 问题1： 在进行 Nginx 语法检查时报错，提示没有找到 OpenTracing 的 module 。
 
 ![image](../imgs/input-nginx-11.png)
 
-这个报错说明您环境中的 nginx 保存 Modules 的路径并不是/usr/lib/nginx/modules，这时可以根据报错提示的路径，将 Nginx OpenTracing 包拷贝到您环境中 nginx 的模块引用位置。或在配置 nginx.conf 时，使用 OpenTrace so 文件所在位置的绝对路径。
+这个报错说明您环境中的 Nginx 保存 Modules 的路径并不是 `/usr/lib/nginx/modules` 。<br />
+这时可以根据报错提示的路径，将 Nginx OpenTracing 包拷贝到您环境中 Nginx 的模块引用位置；或在配置 `nginx.conf` 时，使用 `OpenTrace so` 文件所在位置的绝对路径。
 
-2、在进行 Nginx 语法检查时报错，提示“Nginx is not binary compatible...”类错误。
-产生这个错误的可能原因为您本地使用的 Nginx 为编译安装版本，与本例中提供的 OpenTracing 模块的包签名不一致，导致出现兼容性问题。建议的解决方法为：通过本例提供的 Module 下载链接，找到 Nginx_OpenTracing 的代码仓库，将代码下载到本地。注意需要根据您现在所使用的 Nginx 版本来进行选择，例如 Nginx-Opentracing Release 0.24.x 版本支持的 Nginx 最低要求为 1.13.x(可以通过 github 项目中记录的已经编译好的包的版本号来确认),如果低于这个版本的 Nginx，需要在历史 Release 版本中查找对应的源代码版本。
+- 问题2： 在进行 Nginx 语法检查时报错，提示 `“Nginx is not binary compatible...”` 类错误。
 
-找到对应版本后，停用本地 nginx。将 Nginx-Opentracing 的代码拷贝到本地并解压。进入到 nginx 代码路径使用 configure 重建 objt 时，增加 `--add-dynamic-module=/path/to/your/module` (该路径指向您本地保存 ddagent 代码)，可以在 Nginx 目录下使用 `./configure` 命令直接添加。另外需要注意，tracing 模块的重新编译依赖 OpenTracingCPP 公共包，需要一并下载这个包用于编译：<br />相关帮助信息：
-[https://github.com/opentracing-contrib/nginx-opentracing](https://github.com/opentracing-contrib/nginx-opentracing)
+产生这个错误的原因，可能是您本地使用的 Nginx 为编译安装版本，与本例中提供的 OpenTracing 模块的包签名不一致，导致出现兼容性问题。<br />
+建议的解决方法为：通过本例提供的 Module 下载链接，找到 Nginx_OpenTracing 的代码仓库，将代码下载到本地。
+> **注意：**需要根据您现在所使用的 Nginx 版本来进行选择，例如 Nginx-Opentracing Release 0.24.x 版本支持的 Nginx 最低要求为 1.13.x(可以通过 github 项目中记录的已经编译好的包的版本号来确认),如果低于这个版本的 Nginx，需要在历史 Release 版本中查找对应的源代码版本。
+
+找到对应版本后，停用本地 nginx。将 Nginx-Opentracing 的代码拷贝到本地并解压。进入到 nginx 代码路径使用 configure 重建 objt 时，增加 `--add-dynamic-module=/path/to/your/module` (该路径指向您本地保存 ddagent 代码)，可以在 Nginx 目录下使用 `./configure` 命令直接添加。
+
+**注意：** tracing 模块的重新编译依赖 OpenTracingCPP 公共包，需要一并下载这个包用于编译：<br />
+相关帮助信息：[https://github.com/opentracing-contrib/nginx-opentracing](https://github.com/opentracing-contrib/nginx-opentracing)
 
 ![image](../imgs/input-nginx-12.png)
 
-OpenTracingCPP 下载地址：
-[https://github.com/opentracing/opentracing-cpp/releases/tag/v1.6.0](https://github.com/opentracing/opentracing-cpp/releases/tag/v1.6.0)
+OpenTracingCPP 下载地址：[https://github.com/opentracing/opentracing-cpp/releases/tag/v1.6.0](https://github.com/opentracing/opentracing-cpp/releases/tag/v1.6.0)
 
 编译安装步骤简述：
 1、编译 OpenTracing CPP 库，生成 libopentracing.so，这个库后续用于 Nginx 调用 OT 接口生成 trace 信息。使用上面的 opentracing-cpp 链接将代码下载到编译环境本地。进入代码目录，按顺序执行以下命令：
@@ -285,7 +294,7 @@ wget -O - [https://github.com/DataDog/dd-opentracing-cpp/releases/download/v0.3.
 
 proxy_set_header X-datadog-trace-id $opentracing_context_x_datadog_trace_id;<br />proxy_set_header X-datadog-parent-id $opentracing_context_x_datadog_parent_id;
 
-这里的参数为固定值，X-datadog-*\*\*为 ddagent 识别 header 转发字段的参数，opentracing*context**为 OpenTracing 模块的 traceid 参数。
+这里的参数为固定值，X-datadog-*\*\*为 ddagent 识别 header 转发字段的参数，opentracing*context\*\*为 OpenTracing 模块的 traceid 参数。
 
 配置完成后保存并退出 nginx.conf,使用 nginx -s reload 重启服务。
 
@@ -294,7 +303,6 @@ proxy_set_header X-datadog-trace-id $opentracing_context_x_datadog_trace_id;<br 
 <场景 - 新建仪表板 - 模板库 - 系统视图 - Nginx 监控视图>
 
 ## [指标详解](../../../datakit/nginx#measurements)
-
 
 ## 常见问题排查
 
