@@ -1,4 +1,5 @@
 # Apache
+
 ---
 
 ## 视图预览
@@ -26,13 +27,13 @@ apachectl -M |grep status
 
 ## 安装配置
 
-说明：示例 Apache 版本为：Linux 环境 Apache/2.4.6 (CentOS)，各个不同版本指标可能存在差异。
+说明：示例 Apache 版本为 Linux 环境 Apache/2.4.6 (CentOS)，各个不同版本指标可能存在差异。
 
 ### 部署实施
 
 #### 指标采集 (必选)
 
-1、 开启 Apache mod_status 页面，修改 Apache 主配置文件 `/etc/httpd/conf/httpd.conf` (以实际路径为准)，最后追加 ExtendedStatus 配置。
+1、 开启 Apache mod_status 页面，修改 Apache 主配置文件 `/etc/httpd/conf/httpd.conf` (以实际路径为准)，最后追加 `ExtendedStatus` 配置。
 
 ```
 ExtendedStatus On
@@ -171,7 +172,6 @@ systemctl restart datakit
 
 ## [指标详解](../../../datakit/apache#measurements)
 
-
 ## 常见问题排查
 
 <[无数据上报排查](../../datakit/why-no-data.md)>
@@ -185,4 +185,5 @@ httpd: Could not reliably determine the server's fully qualified domain name, us
 Q：修改 Apache 主配置文件 `/etc/httpd/conf/httpd.conf` 里的 ServerName (以实际路径为准)
 
 ## 进一步阅读
+
 <[Apache 常用配置](https://www.cnblogs.com/jxl1996/p/10119184.html)>
