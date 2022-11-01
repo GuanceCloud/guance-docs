@@ -1,3 +1,4 @@
 nav:
   - index.md
+  - 'SLS 存储': aliyun-sls.md
   - '数据存储策略': data-storage.md
