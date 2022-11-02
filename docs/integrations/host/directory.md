@@ -84,13 +84,8 @@ systemctl restart datakit
 
 暂无
 
-## 指标详解
+## [指标详解](../../../datakit/hostdir#measurements)
 
-| 指标 | 描述 | 数据类型 | 单位 |
-| --- | --- | --- | --- |
-| `dir_count` | The number of Dir | int | count |
-| `file_count` | The number of files | int | count |
-| `file_size` | The size of files | int | count |
 
 ## 常见问题排查
 

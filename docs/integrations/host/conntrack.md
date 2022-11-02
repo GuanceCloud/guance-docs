@@ -4,7 +4,7 @@
 
 ## 视图预览
 
-Conntrack 性能指标展示，包括成功搜索条目数、插入的包数、连接数量等<br />
+Conntrack 性能指标展示，包括成功搜索条目数、插入的包数、连接数量等
 
 ![image](../imgs/input-conntracks-1.png)
 
@@ -71,19 +71,8 @@ systemctl restart datakit
 
 <监控 - 监控器 - 从模板新建 - 主机检测库>
 
-## 指标详解
-| 指标 | 描述 | 数据类型 | 单位 |
-| --- | --- | --- | --- |
-| `entries` | 当前连接数量 | int | count |
-| `entries_limit` | 连接跟踪表的大小 | int | count |
-| `stat_drop` | 跟踪失败被丢弃的包数目 | int | count |
-| `stat_early_drop` | 由于跟踪表满而导致部分已跟踪包条目被丢弃的数目 | int | count |
-| `stat_found` | 成功的搜索条目数目 | int | count |
-| `stat_ignore` | 已经被跟踪的报数目 | int | count |
-| `stat_insert` | 插入的包数目 | int | count |
-| `stat_insert_failed` | 插入失败的包数目 | int | count |
-| `stat_invalid` | 不能被跟踪的包数目 | int | count |
-| `stat_search_restart` | 由于hash表大小修改而导致跟踪表查询重启的数目 | int | count |
+## [指标详解](../../../datakit/system#conntrack)
+
 
 ## 常见问题排查
 

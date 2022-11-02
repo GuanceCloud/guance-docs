@@ -17,11 +17,11 @@
 
 **安装 DataKit 之后，主机指标的采集说明如下：**
 
-- 默认采集：[CPU](cpu.md) 、 [Conntrack](conntrack.md) 、 [DataKit](datakit.md) 、 [Disk](disk.md) 、  [DiskIO](diskio.md)、  [MEM](mem.md) 、 [Net](net.md) 、  [Swap](swap.md)、  [System](system.md)
+- 默认采集：[CPU](cpu.md) 、 [Conntrack](conntrack.md) 、 [DataKit](datakit.md) 、 [Disk](disk.md) 、  [DiskIO](diskio.md) 、 [MEM](mem.md) 、 [Net](net.md) 、 [Swap](swap.md)、  [System](system.md)
 
-- 自定义开启：[Directory](directory.md) 、 [eBPF](ebpf.md) 、 [Processes](processes.md) 、  [Scheck(安全巡检)](mem.md)
+- 自定义开启：[Directory](directory.md) 、 [eBPF](ebpf.md) 、 [Processes](processes.md) 、 [Scheck(安全巡检)](mem.md)
 
-- Telegraf：[Chrony](chrony.md) 、  [DNS Query](dns-query.md)、 [EthTool](ethtool.md) 、 [IPMI Sensor](ipmi-sensor.md) 、 [NetStat](netstat.md)、  [NtpQ](ntpq.md) 、 [ProcStat](procstat.md)
+- Telegraf：[Chrony](chrony.md) 、 [DNS Query](dns-query.md) 、 [EthTool](ethtool.md) 、 [IPMI Sensor](ipmi-sensor.md) 、 [NetStat](netstat.md) 、 [NtpQ](ntpq.md) 、 [ProcStat](procstat.md)
 
 <br/>
 
