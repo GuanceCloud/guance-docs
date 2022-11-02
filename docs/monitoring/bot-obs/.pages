@@ -4,3 +4,5 @@ nav:
   - '磁盘使用率': disk-usage.md
   - '应用性能检测': apm.md
   - '云账户账单巡检': cloudfee.md
+  - '前端应用日志错误巡检集成文档': rum_error.md
+  - '阿里云资产巡检集成文档': cloudasset.md
