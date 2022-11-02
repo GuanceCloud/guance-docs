@@ -10,8 +10,8 @@
 1. 进行自建 DataFlux Func 的离线部署
 2. 开启自建 DataFlux Func 的[脚本市场](https://func.guance.com/doc/script-market-basic-usage/)
 3. 在观测云「管理 / API Key 管理」中创建用于进行操作的 [API Key](../../management/api-key/open-api.md)
-4. 在自建的 DataFlux Func 中，通过「脚本市场」安装「观测云自建巡检 Core 核心包」、「观测云算法库」
-5. 在脚本市场中安装开启[「观测云集成（华为云-账单采集）」](https://func.guance.com/doc/script-market-guance-aliyun-billing/)、[「观测云集成（阿里云-账单采集）」](https://func.guance.com/doc/script-market-guance-huaweicloud-billing/)、[「观测云集成（腾讯云-账单采集）」](https://func.guance.com/doc/script-market-guance-tencentcloud-billing/)
+4. 在自建的 DataFlux Func 中，通过「脚本市场」安装「观测云自建巡检 Core 核心包」、「观测云算法库」、「观测云自建巡检（账单）」
+5. 在脚本市场中安装开启[「观测云集成（华为云-账单采集）」](https://func.guance.com/doc/script-market-guance-aliyun-billing/)、[「观测云集成（阿里云-账单采集）」](https://func.guance.com/doc/script-market-guance-huaweicloud-billing/)、[「观测云集成（腾讯云-账单采集）」](https://func.guance.com/doc/script-market-guance-tencentcloud-billing/) 并且收集数据天数超过 15 天
 6. 在自建的 DataFlux Func 中，编写自建巡检处理函数
 7. 在自建的 DataFlux Func 中，通过「管理 / 自动触发配置」，为所编写的函数创建自动触发配置
 
@@ -55,19 +55,10 @@ def run(configs=None):
 
 ### 在观测云中注册检测项
 
-#### 方法一
-
-在 DataFlux Func 中在配置好巡检之后可以通过直接再页面中选择 `run()` 方法进行点击运行进行函数注册，执行过后可以在观测云「监控 / 智能巡检」中查看并进行配置
+在 DataFlux Func 中在配置好巡检之后可以通过直接再页面中选择 `run()` 方法进行点击运行进行测试，在点击发布之后就可以在观测云「监控 / 智能巡检」中查看并进行配置
 
 ![image](../img/cloudfee01.png)
 
-#### 方法二
-
-在 DataFlux Func 中在配置好巡检之后对当前函数进行自动触发任务配置，当执行第一次定时任务后就可以在观测云「监控 / 智能巡检」中查看并进行配置
-
-![image](../img/cloudfee02.png)
-
-![image](../img/cloudfee03.png)
 
 ### 在观测云中配置云账户账单巡检
 
@@ -113,7 +104,6 @@ def run(configs=None):
 	}
 ]
 ```
-> 注意：使用方法一进行注册巡检项后，在观测云配置保存后需要再进行自动触发任务的配置来保障巡检任务按计划周期执行
 
 ## 查看事件
 智能巡检基于观测云智能算法，会查找云资产费用、预算指标中的异常情况，如云资产费用突然然发生异常。对于异常情况，智能巡检会生成相应的事件，在智能巡检列表右侧的操作菜单下，点击「查看相关事件」按钮，即可查看对应异常事件。
