@@ -57,3 +57,4 @@ datafluxRum.init({
   allowedTracingOrigins: ["https://api.example.com", /https:\/\/.*\.my-api-domain\.com/]
 })
 ```
+a
