@@ -119,8 +119,7 @@ def run():
 
 **2.阿里云资产巡检收集的相关指标集怎么看**
 
-可以参考阿里云集成文档中(如: 阿里云 ECS)](https://func.guance.com/doc/script-market-guance-aliyun-ecs/)的上报数据格式中的指标集进行数据查看
-
+可以参考阿里云集成文档中[(如: 阿里云 ECS)](https://func.guance.com/doc/script-market-guance-aliyun-ecs/)的上报数据格式中的指标集进行数据查看
 
 
 
