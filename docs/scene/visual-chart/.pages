@@ -6,6 +6,7 @@ nav:
   - '事件关联': events-relative.md
   - '图表分享': chart-share.md
   - '图表分组': chart-group.md
+  - '同期对比': time-comparison.md
   - '时序图': timeseries-chart.md
   - '概览图': overview-chart.md
   - '表格图': table-chart.md
