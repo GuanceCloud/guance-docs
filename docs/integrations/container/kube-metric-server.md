@@ -3,7 +3,7 @@
 
 ## 视图预览
 
-Kubernetes with Metric Server 性能指标展示，包括 Pod 数量、Deployment 数量、Job 数量、Endpoint 数量、Service 数量、CPU、内存、Pod 分布等。
+Kubernetes with Metric Server 性能指标展示，包括 Pod 数量、 Deployment 数量、 Job 数量、 Endpoint 数量、 Service 数量、 CPU、内存、 Pod 分布等。
 
 ![image](../imgs/input-kube-metric-server-01.png)
 
@@ -25,11 +25,11 @@ Kubernetes with Metric Server 性能指标展示，包括 Pod 数量、Deploymen
 
 ## 安装部署
 
-说明：示例 Kubernetes 版本为：1.22.6
+说明：示例 Kubernetes 版本为 1.22.6
 
 ### 前置条件
 
-- Kubernetes 集群 <[安装 DataKit](../../datakit/datakit-daemonset-deploy.md)>。
+- Kubernetes 集群 <[安装 Datakit](../../datakit/datakit-daemonset-deploy.md)>。
 - 采集 Kubernetes Pod 指标数据，[需要 Kubernetes 安装 Metrics-Server 组件](https://github.com/kubernetes-sigs/metrics-server#installation)。
 
 ### 配置实施
@@ -243,15 +243,15 @@ spec:
 
 #### Daemonset 部署 DataKit (必选)
 
-登录[观测云](https://console.guance.com/)，【集成】->【DataKit】-> 【Kubernetes】，下载 `datakit.yaml`（命名无要求）。
+登录[观测云](https://console.guance.com/)，「集成」 - 「DataKit」 - 「Kubernetes」，下载 `datakit.yaml`（命名无要求）。
 
 1、 修改 `datakit.yaml` 中的 dataway 配置
 
-进入【管理】模块，找到下图中 token。
+进入「管理」模块，找到下图中 token。
 
 ![image](../imgs/input-kube-metric-server-08.png)
 
-替换 `datakit.yaml` 文件中的 `ENV_DATAWAY` 环境变量的 value 值中的 <your-token>。
+替换 `datakit.yaml` 文件中的 `ENV_DATAWAY` 环境变量的 value 值中的 `your-token`。
 
 ```yaml
 - name: ENV_DATAWAY
@@ -276,7 +276,7 @@ spec:
 
 3、 定义 ConfigMap
 
-**注意：**下载的 `datakit.yaml` 并没有 ConfigMap，定义的 ConfigMap 可一起放到 `datakit.yaml` 。
+**注意：** 下载的 `datakit.yaml` 并没有 ConfigMap，定义的 ConfigMap 可一起放到 `datakit.yaml` 。
 
 ```yaml
 ---
@@ -345,7 +345,7 @@ data:
 - container_exclude_log：不须要采集的容器日志。
 
 `container_include_log` 和 `container_exclude_log` 必须以 `image` 开头，格式为 `"image:<glob规则>"`，表示 glob 规则是针对容器 image 生效。<br />
-<[Glob 规则](https://en.wikipedia.org/wiki/Glob_(programming))>是一种轻量级的正则表达式，支持 `*` `?` 等基本匹配单元。
+<[Glob 规则](<https://en.wikipedia.org/wiki/Glob_(programming)>)>是一种轻量级的正则表达式，支持 `*` `?` 等基本匹配单元。
 
 4、 使用 ConfigMap
 
@@ -372,7 +372,7 @@ kubectl apply -f datakit.yaml
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，所有 kubernetes 指标都会带有 `tag1 = "val1"` 的标签，可以进行快速查询
+- 以下示例配置完成后，所有 Kubernetes 指标都会带有 `tag1 = "val1"` 的标签，可以进行快速查询
 - 相关文档 <[TAG 在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 
 ```toml
