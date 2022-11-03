@@ -19,18 +19,6 @@ icon: zy/release-notes
 
 ![](img/2.log_index_1.png)
 
-#### 
-
-#### 超大日志计费逻辑调整
-
-观测云新增超大的日志类数据计费逻辑调整，日志类数据有两种存储方式：ES 存储和 SLS 存储。
-
-- ES 存储：日志大小超过 10 KB，日志计费的条数 = 取整数（日志大小 / 10 KB）
-
-- SLS 存储：日志大小超过 2 KB，日志计费的条数 = 取整数（日志大小 / 2 KB）
-
-更多存储方式说明可参考文档 [计费方式](../billing/billing-method/index.md) 。
-
 #### 优化新手引导页面
 
 观测云新增场景、事件、基础设施、指标、日志、应用性能监测、用户访问监测、可用性监测、安全巡检、CI 可视化、监控各大功能模块的新手引导页，同时优化了工作空间欢迎首页，让您可以通过新手引导更容易的了解观测云、使用观测云。
@@ -60,13 +48,25 @@ icon: zy/release-notes
 - 智能巡检新增仪表盘、柱状图图表组件；
 - 集成菜单下 Func 页面优化。
 
+### DataKit 更新
+
+- 完善 Prometheus 生态兼容，增加 [ServiceMonitor 和 PodMonitor 采集识别](../datakit/kubernetes-prometheus-operator-crd.md)
+- 增加基于 async-profiler 的 [Java Profiling 接入](../datakit/profile-java-async-profiler.md)
+
+- eBPF 采集增加 [interval 参数](../datakit/ebpf.md#config)，便于调节采集的数据量
+- 所有远程采集器默认以其采集地址作为 `host` 字段的取值，避免远程采集时可能误解 `host` 字段的取值
+- DDTrace 采集到的 APM 数据，能自动提取 error 相关的字段，便于中心做更好的 APM 错误追踪
+- MySQL 采集器增加额外字段 `Com_commit/Com_rollback` 采集
+
+更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md) 。
+
 ### 最佳实践更新
 
 - 监控 Monitoring
-  - 应用性能监控 (APM) - [Kafka 可观测最佳实践](../best-practices/monitoring/kafka.md)。
+    - 应用性能监控 (APM) - [Kafka 可观测最佳实践](../best-practices/monitoring/kafka.md)。
 
 - 云平台接入
-  - 阿里云 - [阿里云 ACK 接入观测云](../best-practices/partner/aliyun-ack.md)。
+    - 阿里云 - [阿里云 ACK 接入观测云](../best-practices/partner/aliyun-ack.md)。
 
 更多最佳实践更新可参考 [最佳实践版本历史](../best-practices/index.md) 。
 
