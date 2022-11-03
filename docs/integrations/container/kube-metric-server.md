@@ -1,10 +1,9 @@
 # Kubernetes with Metric Server
-
 ---
 
 ## 视图预览
 
-Kubernetes with Metric Server 性能指标展示，包括 Pod 数量、Deployment 数量、Job 数量、Endpoint 数量、Service 数量、 CPU、内存、 Pod 分布等。
+Kubernetes with Metric Server 性能指标展示，包括 Pod 数量、Deployment 数量、Job 数量、Endpoint 数量、Service 数量、CPU、内存、Pod 分布等。
 
 ![image](../imgs/input-kube-metric-server-01.png)
 
@@ -26,11 +25,11 @@ Kubernetes with Metric Server 性能指标展示，包括 Pod 数量、Deploymen
 
 ## 安装部署
 
-说明：示例 Kubernetes 版本为 1.22.6
+说明：示例 Kubernetes 版本为：1.22.6
 
 ### 前置条件
 
-- Kubernetes 集群 <[安装 Datakit](../../datakit/datakit-daemonset-deploy.md)>。
+- Kubernetes 集群 <[安装 DataKit](../../datakit/datakit-daemonset-deploy.md)>。
 - 采集 Kubernetes Pod 指标数据，[需要 Kubernetes 安装 Metrics-Server 组件](https://github.com/kubernetes-sigs/metrics-server#installation)。
 
 ### 配置实施
@@ -244,15 +243,15 @@ spec:
 
 #### Daemonset 部署 DataKit (必选)
 
-登录[观测云](https://console.guance.com/)，「集成」 - 「DataKit」 - 「Kubernetes」，下载 `datakit.yaml`（命名无要求）。
+登录[观测云](https://console.guance.com/)，【集成】->【DataKit】-> 【Kubernetes】，下载 `datakit.yaml`（命名无要求）。
 
 1、 修改 `datakit.yaml` 中的 dataway 配置
 
-进入「管理」模块，找到下图中 token。
+进入【管理】模块，找到下图中 token。
 
 ![image](../imgs/input-kube-metric-server-08.png)
 
-替换 `datakit.yaml` 文件中的 `ENV_DATAWAY` 环境变量的 value 值中的 `your-token`。
+替换 `datakit.yaml` 文件中的 `ENV_DATAWAY` 环境变量的 value 值中的 <your-token>。
 
 ```yaml
 - name: ENV_DATAWAY
@@ -277,7 +276,7 @@ spec:
 
 3、 定义 ConfigMap
 
-> **注意：**下载的 `datakit.yaml` 并没有 ConfigMap，定义的 ConfigMap 可一起放到 `datakit.yaml` 。
+**注意：**下载的 `datakit.yaml` 并没有 ConfigMap，定义的 ConfigMap 可一起放到 `datakit.yaml` 。
 
 ```yaml
 ---
@@ -290,35 +289,51 @@ data:
   #### container
   container.conf: |-
     [inputs.container]
-      docker_endpoint = "unix:///var/run/docker.sock"
-      containerd_address = "/var/run/containerd/containerd.sock"
+    docker_endpoint = "unix:///var/run/docker.sock"
+    containerd_address = "/var/run/containerd/containerd.sock"
 
-      enable_container_metric = true
-      enable_k8s_metric = true
-      enable_pod_metric = true
+    enable_container_metric = true
+    enable_k8s_metric = true
+    enable_pod_metric = true
+    extract_k8s_label_as_tags = false
+    auto_discovery_of_k8s_service_prometheus = false
 
-      ## Containers logs to include and exclude, default collect all containers. Globs accepted.
-      container_include_log = []
-      container_exclude_log = ["image:pubrepo.jiagouyun.com/datakit/logfwd*", "image:pubrepo.jiagouyun.com/datakit/datakit*"]
+    ## Containers logs to include and exclude, default collect all containers. Globs accepted.
+    container_include_log = []
+    container_exclude_log = ["image:pubrepo.jiagouyun.com/datakit/logfwd*", "image:pubrepo.jiagouyun.com/datakit/datakit*"]
+    exclude_pause_container = true
 
-      exclude_pause_container = true
+    ## Removes ANSI escape codes from text strings
+    logging_remove_ansi_escape_codes = false
 
-      ## Removes ANSI escape codes from text strings
-      logging_remove_ansi_escape_codes = false
+    ## If the data sent failure, will retry forevery
+    logging_blocking_mode = true
 
-      kubernetes_url = "https://kubernetes.default:443"
+    kubernetes_url = "https://kubernetes.default:443"
 
-      ## Authorization level:
-      ##   bearer_token -> bearer_token_string -> TLS
-      ## Use bearer token for authorization. ('bearer_token' takes priority)
-      ## linux at:   /run/secrets/kubernetes.io/serviceaccount/token
-      ## windows at: C:\var\run\secrets\kubernetes.io\serviceaccount\token
-      bearer_token = "/run/secrets/kubernetes.io/serviceaccount/token"
-      # bearer_token_string = "<your-token-string>"
+    ## Authorization level:
+    ##   bearer_token -> bearer_token_string -> TLS
+    ## Use bearer token for authorization. ('bearer_token' takes priority)
+    ## linux at:   /run/secrets/kubernetes.io/serviceaccount/token
+    ## windows at: C:\var\run\secrets\kubernetes.io\serviceaccount\token
+    bearer_token = "/run/secrets/kubernetes.io/serviceaccount/token"
+    # bearer_token_string = "<your-token-string>"
 
-      [inputs.container.tags]
-        # some_tag = "some_value"
-        # more_tag = "some_other_value"
+    logging_auto_multiline_detection = true
+    logging_auto_multiline_extra_patterns = []
+
+    ## Set true to enable election for k8s metric collection
+    election = true
+
+    [inputs.container.logging_extra_source_map]
+      # source_regexp = "new_source"
+
+    [inputs.container.logging_source_multiline_map]
+      # source = '''^\d{4}'''
+
+    [inputs.container.tags]
+       #tag1 = "val1"
+       #tag2 = "valn"
 ```
 
 [inputs.container]参数说明
@@ -330,7 +345,7 @@ data:
 - container_exclude_log：不须要采集的容器日志。
 
 `container_include_log` 和 `container_exclude_log` 必须以 `image` 开头，格式为 `"image:<glob规则>"`，表示 glob 规则是针对容器 image 生效。<br />
-<[Glob 规则](<https://en.wikipedia.org/wiki/Glob_(programming)>)>是一种轻量级的正则表达式，支持 `*` `?` 等基本匹配单元。
+<[Glob 规则](https://en.wikipedia.org/wiki/Glob_(programming))>是一种轻量级的正则表达式，支持 `*` `?` 等基本匹配单元。
 
 4、 使用 ConfigMap
 
@@ -357,18 +372,18 @@ kubectl apply -f datakit.yaml
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，所有 Kubernetes 指标都会带有 `tag1 = "val1"` 的标签，可以进行快速查询
+- 以下示例配置完成后，所有 kubernetes 指标都会带有 `tag1 = "val1"` 的标签，可以进行快速查询
 - 相关文档 <[TAG 在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 
 ```toml
     [inputs.kubernetes.tags]
-       #tag1 = "val1"
+       tag1 = "val1"
        #tag2 = "valn"
 ```
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 模板库 - 系统视图 - Kubernetes Kubelet 监控视图>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - Kubernetes 监控视图>
 
 ## 检测库
 
@@ -376,166 +391,7 @@ kubectl apply -f datakit.yaml
 
 ## 指标详解
 
-#### Kubernetes Cronjob 指标数据
-
-- 标签
-
-| 标签名      | 描述                                                         |
-| ----------- | ------------------------------------------------------------ |
-| `cronjob`   | Name must be unique within a namespace.                      |
-| `namespace` | Namespace defines the space within each name must be unique. |
-
-- 指标列表
-
-| 指标                           | 描述                                                             | 数据类型 | 单位  |
-| ------------------------------ | ---------------------------------------------------------------- | :------: | :---: |
-| `count`                        | Number of cronjobs                                               |   int    | count |
-| `duration_since_last_schedule` | The duration since the last time the cronjob was scheduled.      |   int    |   s   |
-| `spec_suspend`                 | This flag tells the controller to suspend subsequent executions. |   bool   |   -   |
-
-#### Kubernetes Daemonset 指标数据
-
-- 标签
-
-| 标签名      | 描述                                                         |
-| ----------- | ------------------------------------------------------------ |
-| `daemonset` | Name must be unique within a namespace.                      |
-| `namespace` | Namespace defines the space within each name must be unique. |
-
-- 指标列表
-
-| 指标                  | 描述                                                                                                                                                       | 数据类型 | 单位  |
-| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | :------: | :---: |
-| `count`               | Number of daemonsets                                                                                                                                       |   int    | count |
-| `daemons_unavailable` | The number of nodes that should be running the daemon pod and have none of the daemon pod running and available (ready for at least spec.minReadySeconds). |   int    | count |
-| `desired`             | The total number of nodes that should be running the daemon pod (including nodes correctly running the daemon pod).                                        |   int    | count |
-| `misscheduled`        | The number of nodes that are running the daemon pod, but are not supposed to run the daemon pod.                                                           |   int    | count |
-| `ready`               | The number of nodes that should be running the daemon pod and have one or more of the daemon pod running and ready.                                        |   int    | count |
-| `scheduled`           | The number of nodes that are running at least one daemon pod and are supposed to run the daemon pod.                                                       |   int    | count |
-| `updated`             | The total number of nodes that are running updated daemon pod.                                                                                             |   int    | count |
-
-#### Kubernetes Endpoints 指标数据
-
-- 标签
-
-| 标签名      | 描述                                                         |
-| ----------- | ------------------------------------------------------------ |
-| `endpoint`  | Name must be unique within a namespace.                      |
-| `namespace` | Namespace defines the space within each name must be unique. |
-
-- 指标列表
-
-| 指标                | 描述                                       | 数据类型 | 单位  |
-| ------------------- | ------------------------------------------ | :------: | :---: |
-| `address_available` | Number of addresses available in endpoint. |   int    | count |
-| `address_not_ready` | Number of addresses not ready in endpoint. |   int    | count |
-| `count`             | Number of endpoints                        |   int    | count |
-
-#### Kubernetes Count 指标数据
-
-- 标签
-
-| 标签名      | 描述      |
-| ----------- | --------- |
-| `namespace` | namespace |
-
-- 指标列表
-
-| 指标           | 描述                    | 数据类型 | 单位 |
-| -------------- | ----------------------- | :------: | :--: |
-| `cluster_role` | RBAC cluster role count |   int    |  -   |
-| `cronjob`      | cronjob count           |   int    |  -   |
-| `deployment`   | deployment count        |   int    |  -   |
-| `job`          | job count               |   int    |  -   |
-| `node`         | node count              |   int    |  -   |
-| `pod`          | pod count               |   int    |  -   |
-| `replica_set`  | replica_set count       |   int    |  -   |
-| `service`      | service count           |   int    |  -   |
-
-#### Kubernetes Deployment 指标数据
-
-- 标签
-
-| 标签名       | 描述                                                         |
-| ------------ | ------------------------------------------------------------ |
-| `deployment` | Name must be unique within a namespace.                      |
-| `namespace`  | Namespace defines the space within each name must be unique. |
-
-- 指标列表
-
-| 指标                            | 描述                                                                                                 | 数据类型 | 单位  |
-| ------------------------------- | ---------------------------------------------------------------------------------------------------- | :------: | :---: |
-| `condition`                     | The current status conditions of a deployment                                                        |   int    | count |
-| `count`                         | Number of deployments                                                                                |   int    | count |
-| `paused`                        | Indicates that the deployment is paused (true or false).                                             |   bool   |   -   |
-| `replicas`                      | Total number of non-terminated pods targeted by this deployment (their labels match the selector).   |   int    | count |
-| `replicas_available`            | Total number of available pods (ready for at least minReadySeconds) targeted by this deployment.     |   int    | count |
-| `replicas_unavailable`          | Total number of unavailable pods targeted by this deployment.                                        |   int    | count |
-| `replicas_updated`              | Total number of non-terminated pods targeted by this deployment that have the desired template spec. |   int    | count |
-| `rollingupdate_max_surge`       | The maximum number of pods that can be scheduled above the desired number of pods.                   |   int    | count |
-| `rollingupdate_max_unavailable` | The maximum number of pods that can be unavailable during the update.                                |   int    | count |
-
-#### Kubernetes Node 指标数据
-
-- 标签
-
-| 标签名      | 描述                                                 |
-| ----------- | ---------------------------------------------------- |
-| `node`      | Name must be unique within a namespace. (depercated) |
-| `node_name` | Name must be unique within a namespace.              |
-
-- 指标列表
-
-| 指标                            | 描述                                                                          | 数据类型 | 单位  |
-| ------------------------------- | ----------------------------------------------------------------------------- | :------: | :---: |
-| `age`                           | The time in seconds since the creation of the node                            |   int    |   s   |
-| `count`                         | Number of nodes                                                               |   int    | count |
-| `cpu_allocatable`               | The allocatable CPU of a node that is available for scheduling.               |   int    |   -   |
-| `cpu_capacity`                  | The CPU capacity of a node.                                                   |   int    |   -   |
-| `ephemeral_storage_allocatable` | The allocatable ephemeral-storage of a node that is available for scheduling. |   int    |   -   |
-| `memory_allocatable`            | The allocatable memory of a node that is available for scheduling.            |   int    |   -   |
-| `memory_capacity`               | The memory capacity of a node.                                                |   int    |   -   |
-| `pods_allocatable`              | The allocatable pods of a node that is available for scheduling.              |   int    |   -   |
-| `pods_capacity`                 | The pods capacity of a node.                                                  |   int    |   -   |
-
-#### Kubernetes pod 指标数据
-
-- 标签
-
-| 标签名      | 描述                                                         |
-| ----------- | ------------------------------------------------------------ |
-| `namespace` | Namespace defines the space within each name must be unique. |
-| `pod`       | Name must be unique within a namespace.                      |
-| `pod_name`  | Name must be unique within a namespace. (depercated)         |
-
-- 指标列表
-
-| 指标                 | 描述                                                  | 数据类型 |  单位   |
-| -------------------- | ----------------------------------------------------- | :------: | :-----: |
-| `count`              | Number of pods                                        |   int    |  count  |
-| `cpu_usage`          | The percentage of cpu used                            |  float   | percent |
-| `memory_usage_bytes` | The number of memory used in bytes                    |  float   |    B    |
-| `ready`              | Describes whether the pod is ready to serve requests. |   int    |  count  |
-
-#### Kubernetes replicaset 指标数据
-
-- 标签
-
-| 标签名        | 描述                                                         |
-| ------------- | ------------------------------------------------------------ |
-| `deployment`  | The name of the deployment which the object belongs to.      |
-| `namespace`   | Namespace defines the space within each name must be unique. |
-| `replica_set` | Name must be unique within a namespace.                      |
-
-- 指标列表
-
-| 指标                     | 描述                                                      | 数据类型 | 单位  |
-| ------------------------ | --------------------------------------------------------- | :------: | :---: |
-| `count`                  | Number of replicasets                                     |   int    | count |
-| `fully_labeled_replicas` | The number of fully labeled replicas per ReplicaSet.      |   int    | count |
-| `replicas`               | Replicas is the most recently oberved number of replicas. |   int    | count |
-| `replicas_desired`       | Replicas is the number of desired replicas.               |   int    | count |
-| `replicas_ready`         | The number of ready replicas for this replica set.        |   int    | count |
+<[详情](../../../datakit/container#measurements)>
 
 ## 最佳实践
 
