@@ -50,10 +50,10 @@ icon: zy/release-notes
 
 ### DataKit 更新
 
-- 完善 Prometheus 生态兼容，增加 [ServiceMonitor 和 PodMonitor 采集识别](../datakit/kubernetes-prometheus-operator-crd.md)
-- 增加基于 async-profiler 的 [Java Profiling 接入](../datakit/profile-java-async-profiler.md)
+- 完善 Prometheus 生态兼容，增加 ServiceMonitor 和 PodMonitor 采集识别
+- 增加基于 async-profiler 的 Java Profiling 接入
 
-- eBPF 采集增加 [interval 参数](../datakit/ebpf.md#config)，便于调节采集的数据量
+- eBPF 采集增加 interval 参数，便于调节采集的数据量
 - 所有远程采集器默认以其采集地址作为 `host` 字段的取值，避免远程采集时可能误解 `host` 字段的取值
 - DDTrace 采集到的 APM 数据，能自动提取 error 相关的字段，便于中心做更好的 APM 错误追踪
 - MySQL 采集器增加额外字段 `Com_commit/Com_rollback` 采集
