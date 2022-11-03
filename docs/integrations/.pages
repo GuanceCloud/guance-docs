@@ -12,11 +12,10 @@ nav:
 
   - 'Web 服务': webservice
 
-  - '阿里云': aliyun
-
-  - 'AWS': aws
-
-  - '腾讯云': tencent-cloud
+  - '云厂商':
+    - '阿里云': aliyun
+    - 'AWS': aws
+    - '腾讯云': tencent-cloud
 
   - 'CICD': cicd
 

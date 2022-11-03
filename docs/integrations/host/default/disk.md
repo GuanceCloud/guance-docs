@@ -1,12 +1,12 @@
-
 # Disk
+
 ---
 
 ## 视图预览
 
-磁盘性能指标展示，包括磁盘使用率、磁盘剩余空间、Inode 使用率、Inode 大小等
+磁盘性能指标展示，包括磁盘使用率、磁盘剩余空间、Inode 使用率、Inode 大小等。
 
-![image](../imgs/input-disk-1.png)
+![image](../../imgs/input-disk-1.png)
 
 ## 版本支持
 
@@ -14,7 +14,7 @@
 
 ## 前置条件
 
-- 服务器 <[安装 Datakit](/datakit/datakit-install)>
+- 服务器 <[安装 Datakit](../../../datakit/datakit-install.md)>
 
 ## 安装配置
 
@@ -41,21 +41,21 @@
   ignore_fs = ["tmpfs", "devtmpfs", "devfs", "iso9660", "overlay", "aufs", "squashfs"]
 ```
 
-2、 Disk 指标采集验证  `/usr/local/datakit/datakit -M |egrep "最近采集|disk"`
+2、 Disk 指标采集验证 `/usr/local/datakit/datakit -M |egrep "最近采集|disk"`
 
-![image](../imgs/input-disk-2.png)
+![image](../../imgs/input-disk-2.png)
 
 指标预览
 
-![image](../imgs/input-disk-3.png)
+![image](../../imgs/input-disk-3.png)
 
 #### 插件标签 (非必选)
 
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，所有 disk 指标都会带有 app = oa 的标签，可以进行快速查询
-- 相关文档 <[TAG在观测云中的最佳实践](../../best-practices/insight/tag.md)>
+- 以下示例配置完成后，所有 Disk 指标都会带有 `app = "oa"` 的标签，可以进行快速查询
+- 相关文档 <[TAG 在观测云中的最佳实践](../../../best-practices/insight/tag.md)>
 
 ```
 # 示例
@@ -77,15 +77,12 @@ systemctl restart datakit
 
 <监控 - 监控器 - 从模板新建 - 主机检测库>
 
-
-## [指标详解](../../../datakit/disk#measurements)
-
+## [指标详解](../../../../datakit/disk#measurements)
 
 ## 常见问题排查
 
-<[无数据上报排查](../../datakit/why-no-data.md)>
+<[无数据上报排查](../../../datakit/why-no-data.md)>
 
 ## 进一步阅读
 
-<[主机可观测最佳实践](../../best-practices/monitoring/host-linux.md)>
-
+<[主机可观测最佳实践](../../../best-practices/monitoring/host-linux.md)>
