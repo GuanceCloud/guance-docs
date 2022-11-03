@@ -1,6 +1,5 @@
 nav:
   - index.md
-  - 'ASM': aliyun-asm.md
   - 'CDN': aliyun-cdn.md
   - 'ECS': aliyun-ecs.md
   - 'EIP': aliyun-eip.md

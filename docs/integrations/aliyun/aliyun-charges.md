@@ -21,7 +21,7 @@
 
 1、 登录 RAM 控制台 [https://ram.console.aliyun.com/users](https://ram.console.aliyun.com/users)
 
-2、 新建用户：人员管理 - 用户 - 创建用户
+2、 新建用户：「人员管理」 - 「用户」 - 「创建用户」
 
 ![image](../imgs/input-aliyun-charges-02.png)
 
@@ -33,11 +33,11 @@
 
 ## 配置实施
 
-1、 登录 DataFlux Func，地址 http://ip:8088（默认 admin/admin）
+1、 登录 DataFlux Func，地址 `http://ip:8088`（默认 admin/admin）
 
 ![image](../imgs/input-aliyun-charges-04.png)
 
-2、 输入标题/描述信息
+2、 输入 标题 及 描述信息
 
 ![image](../imgs/input-aliyun-charges-05.png)
 
@@ -180,11 +180,11 @@ def getBill():
 
 ```
 
-4、 **保存**配置并**发布**
+4、 「保存」 配置并 「发布」
 
 ![image](../imgs/input-aliyun-charges-06.png)
 
-5、 添加自动触发任务，管理 - 自动触发配置 - 新建任务
+5、 添加自动触发任务：「管理」 - 「自动触发配置」 - 「新建任务」
 
 由于账单为每日账单，所以采集频率设置每天一次就可以了
 
@@ -218,8 +218,8 @@ def getBill():
 
 # 故障排查
 
-1、 DataFlux Func 日志路径 `/usr/local/dataflux-func/data/logs/dataflux-func.log`
+- DataFlux Func 日志路径 `/usr/local/dataflux-func/data/logs/dataflux-func.log`
 
-2、 代码调试，选择主函数，直接运行 (可以看到脚本输出)
+- 代码调试，选择主函数，直接运行 (可以看到脚本输出)
 
 ![image](../imgs/input-aliyun-charges-11.png)

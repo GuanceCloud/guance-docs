@@ -10,5 +10,5 @@ nav:
   - 'Kubernetes Controller Manager': kubernetes-controller-manager.md
   - 'Kubernetes Kubelet': kubernetes-kubelet.md
   - 'Kubernetes Scheduler': kube-scheduler.md
-  - 'Kubernetes With Kube State Metrics': kube-state-metrics.md
+  - 'Kube State Metrics': kube-state-metrics.md
   - 'Kubernetes With Metric Server': kube-metric-server.md

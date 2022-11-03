@@ -167,7 +167,7 @@ systemctl restart datakit
 ## 检测库
 暂无
 
-## [指标详解](/datakit/rabbitmq#measurements)
+## [指标详解](../../../datakit/rabbitmq#measurements)
 
 
 ## 最佳实践

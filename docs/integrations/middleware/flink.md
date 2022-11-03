@@ -1,391 +1,236 @@
-
 # Flink
+
 ---
 
 ## 视图预览
 
-Flink 观测场景主要展示了 Flink 的集群状态，任务 Checkpoint 情况、job Buffer、job JVM 资源利用等。
-
-![image](../imgs/input-flink-1.png)
+Flink 性能指标展示，包括运行的 Job 数、 TaskManager 数、 JVM 信息、 Task Slot 数等。
+![image.png](../imgs/flink-1.png)
+![image.png](../imgs/flink-2.png)
+![image.png](../imgs/flink-3.png)
+![image.png](../imgs/flink-4.png)
+![image.png](../imgs/flink-5.png)
 
 ## 版本支持
 
-操作系统支持：Windows/AMD 64, Windows/386, Linux/ARM, Linux/ARM 64, Linux/386, Linux/AMD 64, Darwin/AMD 64
+操作系统：Linux / Windows<br />
+Flink 版本：ALL
 
-## 安装部署
+## 前置条件
 
-说明：示例 Flink 版本为 Flink 1.14.2 (CentOS)，各个不同版本指标可能存在差异。
+- 服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
 
-### 前置条件
+## 安装配置
 
-- 可以访问外网的主机<[安装 DataKit](../../datakit/datakit-install.md)>
-- 更改 Flink 配置添加如下内容，开启 Prometheus 采集。
+说明：示例 Flink 版本为 Linux 环境 Flink/1.14.2 (CentOS)，各个不同版本指标可能存在差异。
 
-```shell
+### 部署实施
+
+1、 修改 Flink 主配置文件 `flink-conf.yaml` ，添加 PrometheusReporter
+
+```bash
 metrics.reporter.prom.class: org.apache.flink.metrics.prometheus.PrometheusReporter
 metrics.reporter.prom.port: 9250-9260
 ```
-> 注意：`metrics.reporter.prom.port` 设置请参考集群 jobmanager 和 taskmanager 数量而定
 
-- 重启 Flink 集群应用配置
-- `curl http://{Flink iP}:9250-9260` 返回结果正常即可开始采集
-
-![image](../imgs/input-flink-2.png)
-
-### 配置实施
-
-#### 指标采集 (必选)
-
-1、 开启 DataKit Prom 插件，复制 sample 文件
+说明：`metrics.reporter.prom.port` 端口数根据集群 jobmanager 和 taskmanager 数量而定。可以使用如下测试命令：
 
 ```bash
-/usr/local/datakit/conf.d/prom
+curl http://ip:9250/metrics (~9260)
+```
+
+示例 Flink 启动方式为 standalone，jobmanager 指标 9520 端口，taskmanager 指标 9521 端口，把所有采集数据的端口填写至步骤 3 里的 urls 中
+
+![image.png](../imgs/flink-6.png)
+
+2、 开启 DataKit Prom 插件，复制 `sample` 文件
+
+```bash
+cd /usr/local/datakit/conf.d/prom/
 cp prom.conf.sample prom.conf
 ```
 
-2、 修改 `prom.conf` 配置文件
+3、 修改 `prom.conf` 配置文件，添加 urls，其他默认即可
 
 ```bash
-vi prom.conf
+[[inputs.prom]]
+urls = ["http://127.0.0.1:9250/metrics","http://127.0.0.1:9251/metrics"]
 ```
 
-配置如下：
-
-```yaml
-# {"version": "1.1.9-rc6", "desc": "do NOT edit this line"}
-
-[[inputs.prom]]
-  ## Exporter 地址
-  url = "http://127.0.0.1:9250"
-
-  ## 采集器别名
-  source = "9250"
-
-  ## 采集数据输出源
-  # 配置此项，可以将采集到的数据写到本地文件而不将数据打到中心
-  # 之后可以直接用 datakit --prom-conf /path/to/this/conf 命令对本地保存的指标集进行调试
-  # 如果已经将url配置为本地文件路径，则--prom-conf优先调试output路径的数据
-  # output = "/abs/path/to/file"
-
-  ## 采集数据大小上限，单位为字节
-  # 将数据输出到本地文件时，可以设置采集数据大小上限
-  # 如果采集数据的大小超过了此上限，则采集的数据将被丢弃
-  # 采集数据大小上限默认设置为32MB
-  # max_file_size = 0
-
-  ## 指标类型过滤, 可选值为 counter, gauge, histogram, summary
-  # 默认只采集 counter 和 gauge 类型的指标
-  # 如果为空，则不进行过滤
-  metric_types = ["counter", "gauge"]
-
-  ## 指标名称过滤
-  # 支持正则，可以配置多个，即满足其中之一即可
-  # 如果为空，则不进行过滤
-  # metric_name_filter = ["cpu"]
-
-  ## 指标集名称前缀
-  # 配置此项，可以给指标集名称添加前缀
-  measurement_prefix = ""
-
-  ## 指标集名称
-  # 默认会将指标名称以下划线"_"进行切割，切割后的第一个字段作为指标集名称，剩下字段作为当前指标名称
-  # 如果配置measurement_name, 则不进行指标名称的切割
-  # 最终的指标集名称会添加上measurement_prefix前缀
-  # measurement_name = "prom"
-
-  ## 采集间隔 "ns", "us" (or "µs"), "ms", "s", "m", "h"
-  interval = "10s"
-
-  ## 过滤tags, 可配置多个tag
-  # 匹配的tag将被忽略
-  # tags_ignore = ["xxxx"]
-
-  ## TLS 配置
-  tls_open = false
-  # tls_ca = "/tmp/ca.crt"
-  # tls_cert = "/tmp/peer.crt"
-  # tls_key = "/tmp/peer.key"
-
-  ## 自定义认证方式，目前仅支持 Bearer Token
-  # token 和 token_file: 仅需配置其中一项即可
-  # [inputs.prom.auth]
-  # type = "bearer_token"
-  # token = "xxxxxxxx"
-  # token_file = "/tmp/token"
-
-  ## 自定义指标集名称
-  # 可以将包含前缀prefix的指标归为一类指标集
-  # 自定义指标集名称配置优先measurement_name配置项
-  [[inputs.prom.measurements]]
-    prefix = "flink_jobmanager_"
-    name = "flink_jobmanage"
-
-  #[[inputs.prom.measurements]]
-   #prefix = "flink_taskmanager_"
-   #name = "flink_taskmanager"
-
-  ## 自定义Tags
-  [inputs.prom.tags]
-  # some_tag = "some_value"
-  # more_tag = "some_other_value"
-
-
-[[inputs.prom]]
-  ## Exporter 地址
-  url = "http://127.0.0.1:9251"
-
-  ## 采集器别名
-  source = "9251"
-
-  ## 采集数据输出源
-  # 配置此项，可以将采集到的数据写到本地文件而不将数据打到中心
-  # 之后可以直接用 datakit --prom-conf /path/to/this/conf 命令对本地保存的指标集进行调试
-  # 如果已经将url配置为本地文件路径，则--prom-conf优先调试output路径的数据
-  # output = "/abs/path/to/file"
-
-  ## 采集数据大小上限，单位为字节
-  # 将数据输出到本地文件时，可以设置采集数据大小上限
-  # 如果采集数据的大小超过了此上限，则采集的数据将被丢弃
-  # 采集数据大小上限默认设置为32MB
-  # max_file_size = 0
-
-  ## 指标类型过滤, 可选值为 counter, gauge, histogram, summary
-  # 默认只采集 counter 和 gauge 类型的指标
-  # 如果为空，则不进行过滤
-  metric_types = ["counter", "gauge"]
-
-  ## 指标名称过滤
-  # 支持正则，可以配置多个，即满足其中之一即可
-  # 如果为空，则不进行过滤
-  # metric_name_filter = ["cpu"]
-
-  ## 指标集名称前缀
-  # 配置此项，可以给指标集名称添加前缀
-  measurement_prefix = ""
-
-  ## 指标集名称
-  # 默认会将指标名称以下划线"_"进行切割，切割后的第一个字段作为指标集名称，剩下字段作为当前指标名称
-  # 如果配置measurement_name, 则不进行指标名称的切割
-  # 最终的指标集名称会添加上measurement_prefix前缀
-  # measurement_name = "prom"
-
-  ## 采集间隔 "ns", "us" (or "µs"), "ms", "s", "m", "h"
-  interval = "10s"
-
-  ## 过滤tags, 可配置多个tag
-  # 匹配的tag将被忽略
-  # tags_ignore = ["xxxx"]
-
-  ## TLS 配置
-  tls_open = false
-  # tls_ca = "/tmp/ca.crt"
-  # tls_cert = "/tmp/peer.crt"
-  # tls_key = "/tmp/peer.key"
-
-  ## 自定义认证方式，目前仅支持 Bearer Token
-  # token 和 token_file: 仅需配置其中一项即可
-  # [inputs.prom.auth]
-  # type = "bearer_token"
-  # token = "xxxxxxxx"
-  # token_file = "/tmp/token"
-
-  ## 自定义指标集名称
-  # 可以将包含前缀prefix的指标归为一类指标集
-  # 自定义指标集名称配置优先measurement_name配置项
-  #[[inputs.prom.measurements]]
-    #prefix = "flink_jobmanager_"
-    #name = "flink_jobmanage"
-
-  [[inputs.prom.measurements]]
-   prefix = "flink_taskmanager_"
-   name = "flink_taskmanager"
-
-  ## 自定义Tags
-  [inputs.prom.tags]
-  # some_tag = "some_value"
-  # more_tag = "some_other_value"
-
-[[inputs.prom]]
-  ## Exporter 地址
-  url = "http://127.0.0.1:9252"
-
-  ## 采集器别名
-  source = "9252"
-
-  ## 采集数据输出源
-  # 配置此项，可以将采集到的数据写到本地文件而不将数据打到中心
-  # 之后可以直接用 datakit --prom-conf /path/to/this/conf 命令对本地保存的指标集进行调试
-  # 如果已经将url配置为本地文件路径，则--prom-conf优先调试output路径的数据
-  # output = "/abs/path/to/file"
-
-  ## 采集数据大小上限，单位为字节
-  # 将数据输出到本地文件时，可以设置采集数据大小上限
-  # 如果采集数据的大小超过了此上限，则采集的数据将被丢弃
-  # 采集数据大小上限默认设置为32MB
-  # max_file_size = 0
-
-  ## 指标类型过滤, 可选值为 counter, gauge, histogram, summary
-  # 默认只采集 counter 和 gauge 类型的指标
-  # 如果为空，则不进行过滤
-  metric_types = ["counter", "gauge"]
-
-  ## 指标名称过滤
-  # 支持正则，可以配置多个，即满足其中之一即可
-  # 如果为空，则不进行过滤
-  # metric_name_filter = ["cpu"]
-
-  ## 指标集名称前缀
-  # 配置此项，可以给指标集名称添加前缀
-  measurement_prefix = ""
-
-  ## 指标集名称
-  # 默认会将指标名称以下划线"_"进行切割，切割后的第一个字段作为指标集名称，剩下字段作为当前指标名称
-  # 如果配置measurement_name, 则不进行指标名称的切割
-  # 最终的指标集名称会添加上measurement_prefix前缀
-  # measurement_name = "prom"
-
-  ## 采集间隔 "ns", "us" (or "µs"), "ms", "s", "m", "h"
-  interval = "10s"
-
-  ## 过滤tags, 可配置多个tag
-  # 匹配的tag将被忽略
-  # tags_ignore = ["xxxx"]
-
-  ## TLS 配置
-  tls_open = false
-  # tls_ca = "/tmp/ca.crt"
-  # tls_cert = "/tmp/peer.crt"
-  # tls_key = "/tmp/peer.key"
-
-  ## 自定义认证方式，目前仅支持 Bearer Token
-  # token 和 token_file: 仅需配置其中一项即可
-  # [inputs.prom.auth]
-  # type = "bearer_token"
-  # token = "xxxxxxxx"
-  # token_file = "/tmp/token"
-
-  ## 自定义指标集名称
-  # 可以将包含前缀prefix的指标归为一类指标集
-  # 自定义指标集名称配置优先measurement_name配置项
-  #[[inputs.prom.measurements]]
-    #prefix = "flink_jobmanager_"
-    #name = "flink_jobmanage"
-
-  [[inputs.prom.measurements]]
-   prefix = "flink_taskmanager_job_"
-   name = "flink_taskmanager_job"
-
-  ## 自定义Tags
-  [inputs.prom.tags]
-  # some_tag = "some_value"
-  # more_tag = "some_other_value"
-```
-> 注意：具体 url（Flink IP + 配置端口） 配置请根据 Flink 配置文件中开启 Prometheus 配置设置的端口而定，开启多少个 TaskManager 和 JobManager 将该配置复杂粘贴多份即可完成采集建议更改 source 按照采集端口进行区分采集器
-
-
-3、 重启 DataKit (如果需要开启日志，请配置日志采集再重启)
+4、 使用 DataKit Tool 测试数据
 
 ```bash
-systemctl restart datakit
+datakit tool --prom-conf prom.conf
 ```
 
-4、 Flink 指标采集验证 `/usr/local/datakit/datakit -M |egrep "最近采集|9251"`
+![image.png](../imgs/flink-7.png)
 
-![image](../imgs/input-flink-3.png)
-
-5、 DQL 验证
+5、 重启 DataKit
 
 ```bash
-[root@df-solution-ecs-018 log]# datakit -Q
-dql > M::flink_taskmanager LIMIT 1
------------------[ r1.flink_taskmanager.s1 ]-----------------
-                    Status_Flink_Memory_Managed_Total <nil>
-                     Status_Flink_Memory_Managed_Used <nil>
-                                  Status_JVM_CPU_Load <nil>
-                                  Status_JVM_CPU_Time <nil>
-                 Status_JVM_ClassLoader_ClassesLoaded <nil>
-               Status_JVM_ClassLoader_ClassesUnloaded <nil>
-  Status_JVM_GarbageCollector_G1_Old_Generation_Count <nil>
-   Status_JVM_GarbageCollector_G1_Old_Generation_Time <nil>
-Status_JVM_GarbageCollector_G1_Young_Generation_Count <nil>
- Status_JVM_GarbageCollector_G1_Young_Generation_Time <nil>
-                       Status_JVM_Memory_Direct_Count <nil>
-                  Status_JVM_Memory_Direct_MemoryUsed <nil>
-               Status_JVM_Memory_Direct_TotalCapacity <nil>
-                     Status_JVM_Memory_Heap_Committed <nil>
-                           Status_JVM_Memory_Heap_Max <nil>
-                          Status_JVM_Memory_Heap_Used <nil>
-                       Status_JVM_Memory_Mapped_Count <nil>
-                  Status_JVM_Memory_Mapped_MemoryUsed <nil>
-               Status_JVM_Memory_Mapped_TotalCapacity <nil>
-                Status_JVM_Memory_Metaspace_Committed <nil>
-                      Status_JVM_Memory_Metaspace_Max <nil>
-                     Status_JVM_Memory_Metaspace_Used <nil>
-                  Status_JVM_Memory_NonHeap_Committed <nil>
-                        Status_JVM_Memory_NonHeap_Max <nil>
-                       Status_JVM_Memory_NonHeap_Used <nil>
-                             Status_JVM_Threads_Count <nil>
-               Status_Network_AvailableMemorySegments <nil>
-                   Status_Network_TotalMemorySegments <nil>
-                 Status_Shuffle_Netty_AvailableMemory <nil>
-         Status_Shuffle_Netty_AvailableMemorySegments <nil>
-                     Status_Shuffle_Netty_TotalMemory <nil>
-             Status_Shuffle_Netty_TotalMemorySegments <nil>
-                      Status_Shuffle_Netty_UsedMemory 0
-              Status_Shuffle_Netty_UsedMemorySegments <nil>
-                                                 host '172_16_0_23'
-                                                 time 2021-12-22 22:33:32 +0800 CST
-                                                tm_id '172_16_0_23:35191_3f998a'
----------
-1 rows, 1 series, cost 16.053161ms
-```
-
-6、 指标预览
-
-![image](../imgs/input-flink-4.png)
-
-#### 插件标签 (非必选)
-
-参数说明
-
-- 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，所有 Flink 指标都会带有 `service = "flink"` 的标签，可以进行快速查询。
-- 相关文档 <[TAG 在观测云中的最佳实践](../../best-practices/insight/tag.md)>
-
-```
-# 示例
-[inputs.prom.tags]
-  service = "flink"
-```
-
-重启 DataKit
-
-```
 systemctl restart datakit
 ```
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 模板库 - 系统视图 -Flink overview>
-
-## 检测库
-
-<监控 - 监控器 - 从模板新建 - Flink 检测库>
-
-| 序号 | 规则名称 | 触发条件 | 级别 | 检测频率 |
-| --- | --- | --- | --- | --- |
-| 1 | 输出缓冲池中的所有缓冲区已满 | 输出缓冲池中的缓冲区利用率 > 95% | 紧急 | 1m |
-| 2 | TaskManager 堆内存不足 |  TaskManager 堆内存使用率 > 95% | 紧急 | 1m |
+<场景 - 新建仪表板 - 模板库 - 系统视图 - Flink 监控视图>
 
 ## 指标详解
 
-默认情况下，Flink 会收集多个指标，这些[指标](https://nightlies.apache.org/flink/flink-docs-release-1.14/docs/ops/metrics/#system-metrics)可提供对当前状态的深入洞察。
+### CPU
 
-## 最佳实践
+| Scope            | Infix          | Metrics | Description                      | Type  |
+| ---------------- | -------------- | ------- | -------------------------------- | ----- |
+| Job-/TaskManager | Status.JVM.CPU | Load    | The recent CPU usage of the JVM. | Gauge |
+| Job-/TaskManager | Status.JVM.CPU | Time    | The CPU time used by the JVM.    | Gauge |
 
-<[利用观测云观测 Apache Flink>](../../best-practices/monitoring/flink.md)>
+### Memory
 
-## 故障排查
+| Scope            | Infix               | Metrics              | Description                                                                                                                                                                                                                                                                                                                                                              | Type  |
+| ---------------- | ------------------- | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----- |
+| Job-/TaskManager | Status.JVM.Memory   | Heap.Used            | The amount of heap memory currently used (in bytes).                                                                                                                                                                                                                                                                                                                     | Gauge |
+| Job-/TaskManager | Status.JVM.Memory   | Heap.Committed       | The amount of heap memory guaranteed to be available to the JVM (in bytes).                                                                                                                                                                                                                                                                                              | Gauge |
+| Job-/TaskManager | Status.JVM.Memory   | Heap.Max             | The maximum amount of heap memory that can be used for memory management (in bytes). This value might not be necessarily equal to the maximum value specified through -Xmx or the equivalent Flink configuration parameter. Some GC algorithms allocate heap memory that won't be available to the user code and, therefore, not being exposed through the heap metrics. | Gauge |
+| Job-/TaskManager | Status.JVM.Memory   | NonHeap.Used         | The amount of non-heap memory currently used (in bytes).                                                                                                                                                                                                                                                                                                                 | Gauge |
+| Job-/TaskManager | Status.JVM.Memory   | NonHeap.Committed    | The amount of non-heap memory guaranteed to be available to the JVM (in bytes).                                                                                                                                                                                                                                                                                          | Gauge |
+| Job-/TaskManager | Status.JVM.Memory   | NonHeap.Max          | The maximum amount of non-heap memory that can be used for memory management (in bytes).                                                                                                                                                                                                                                                                                 | Gauge |
+| Job-/TaskManager | Status.JVM.Memory   | Metaspace.Used       | The amount of memory currently used in the Metaspace memory pool (in bytes).                                                                                                                                                                                                                                                                                             | Gauge |
+| Job-/TaskManager | Status.JVM.Memory   | Metaspace.Committed  | The amount of memory guaranteed to be available to the JVM in the Metaspace memory pool (in bytes).                                                                                                                                                                                                                                                                      | Gauge |
+| Job-/TaskManager | Status.JVM.Memory   | Metaspace.Max        | The maximum amount of memory that can be used in the Metaspace memory pool (in bytes).                                                                                                                                                                                                                                                                                   | Gauge |
+| Job-/TaskManager | Status.JVM.Memory   | Direct.Count         | The number of buffers in the direct buffer pool.                                                                                                                                                                                                                                                                                                                         | Gauge |
+| Job-/TaskManager | Status.JVM.Memory   | Direct.MemoryUsed    | The amount of memory used by the JVM for the direct buffer pool (in bytes).                                                                                                                                                                                                                                                                                              | Gauge |
+| Job-/TaskManager | Status.JVM.Memory   | Direct.TotalCapacity | The total capacity of all buffers in the direct buffer pool (in bytes).                                                                                                                                                                                                                                                                                                  | Gauge |
+| Job-/TaskManager | Status.JVM.Memory   | Mapped.Count         | The number of buffers in the mapped buffer pool.                                                                                                                                                                                                                                                                                                                         | Gauge |
+| Job-/TaskManager | Status.JVM.Memory   | Mapped.MemoryUsed    | The amount of memory used by the JVM for the mapped buffer pool (in bytes).                                                                                                                                                                                                                                                                                              | Gauge |
+| Job-/TaskManager | Status.JVM.Memory   | Mapped.TotalCapacity | The number of buffers in the mapped buffer pool (in bytes).                                                                                                                                                                                                                                                                                                              | Gauge |
+| Job-/TaskManager | Status.Flink.Memory | Managed.Used         | The amount of managed memory currently used.                                                                                                                                                                                                                                                                                                                             | Gauge |
+| Job-/TaskManager | Status.Flink.Memory | Managed.Total        | The total amount of managed memory.                                                                                                                                                                                                                                                                                                                                      | Gauge |
+
+### Threads
+
+| Scope            | Infix              | Metrics | Description                       | Type  |
+| ---------------- | ------------------ | ------- | --------------------------------- | ----- |
+| Job-/TaskManager | Status.JVM.Threads | Count   | The total number of live threads. | Gauge |
+
+### GarbageCollection
+
+| Scope            | Infix                       | Metrics                  | Description                                         | Type  |
+| ---------------- | --------------------------- | ------------------------ | --------------------------------------------------- | ----- |
+| Job-/TaskManager | Status.JVM.GarbageCollector | <GarbageCollector>.Count | The total number of collections that have occurred. | Gauge |
+| Job-/TaskManager | Status.JVM.GarbageCollector | <GarbageCollector>.Time  | The total time spent performing garbage collection. | Gauge |
+
+### ClassLoader
+
+| Scope            | Infix                  | Metrics         | Description                                                      | Type  |
+| ---------------- | ---------------------- | --------------- | ---------------------------------------------------------------- | ----- |
+| Job-/TaskManager | Status.JVM.ClassLoader | ClassesLoaded   | The total number of classes loaded since the start of the JVM.   | Gauge |
+| Job-/TaskManager | Status.JVM.ClassLoader | ClassesUnloaded | The total number of classes unloaded since the start of the JVM. | Gauge |
+
+### Default shuffle service
+
+| Scope       | Infix                                                                                                                         | Metrics                     | Description                                                                    | Type    |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------------- | --------------------------- | ------------------------------------------------------------------------------ | ------- |
+| TaskManager | Status.Shuffle.Netty                                                                                                          | AvailableMemorySegments     | The number of unused memory segments.                                          | Gauge   |
+| TaskManager | Status.Shuffle.Netty                                                                                                          | UsedMemorySegments          | The number of used memory segments.                                            | Gauge   |
+| TaskManager | Status.Shuffle.Netty                                                                                                          | TotalMemorySegments         | The number of allocated memory segments.                                       | Gauge   |
+| TaskManager | Status.Shuffle.Netty                                                                                                          | AvailableMemory             | The amount of unused memory in bytes.                                          | Gauge   |
+| TaskManager | Status.Shuffle.Netty                                                                                                          | UsedMemory                  | The amount of used memory in bytes.                                            | Gauge   |
+| TaskManager | Status.Shuffle.Netty                                                                                                          | TotalMemory                 | The amount of allocated memory in bytes.                                       | Gauge   |
+| Task        | Shuffle.Netty.Input.Buffers                                                                                                   | inputQueueLength            | The number of queued input buffers.                                            | Gauge   |
+| Task        | Shuffle.Netty.Input.Buffers                                                                                                   | inPoolUsage                 | An estimate of the input buffers usage. (ignores LocalInputChannels)           | Gauge   |
+| Task        | Shuffle.Netty.Input.Buffers                                                                                                   | inputFloatingBuffersUsage   | An estimate of the floating input buffers usage. (ignores LocalInputChannels)  | Gauge   |
+| Task        | Shuffle.Netty.Input.Buffers                                                                                                   | inputExclusiveBuffersUsage  | An estimate of the exclusive input buffers usage. (ignores LocalInputChannels) | Gauge   |
+| Task        | Shuffle.Netty.Output.Buffers                                                                                                  | outputQueueLength           | The number of queued output buffers.                                           | Gauge   |
+| Task        | Shuffle.Netty.Output.Buffers                                                                                                  | outPoolUsage                | An estimate of the output buffers usage.                                       | Gauge   |
+| Task        | Shuffle.Netty.<Input\|Output>.<gate\|partition> **(only available if taskmanager.net.detailed-metrics config option is set)** | totalQueueLen               | Total number of queued buffers in all input/output channels.                   | Gauge   |
+| Task        | (only available if taskmanager.net.detailed-metrics config option is set)                                                     | minQueueLen                 | Minimum number of queued buffers in all input/output channels.                 | Gauge   |
+| Task        | (only available if taskmanager.net.detailed-metrics config option is set)                                                     | maxQueueLen                 | Maximum number of queued buffers in all input/output channels.                 | Gauge   |
+| Task        | (only available if taskmanager.net.detailed-metrics config option is set)                                                     | avgQueueLen                 | Average number of queued buffers in all input/output channels.                 | Gauge   |
+| Task        | Shuffle.Netty.Input                                                                                                           | numBytesInLocal             | The total number of bytes this task has read from a local source.              | Counter |
+| Task        | Shuffle.Netty.Input                                                                                                           | numBytesInLocalPerSecond    | The number of bytes this task reads from a local source per second.            | Meter   |
+| Task        | Shuffle.Netty.Input                                                                                                           | numBytesInRemote            | The total number of bytes this task has read from a remote source.             | Counter |
+| Task        | Shuffle.Netty.Input                                                                                                           | numBytesInRemotePerSecond   | The number of bytes this task reads from a remote source per second.           | Meter   |
+| Task        | Shuffle.Netty.Input                                                                                                           | numBuffersInLocal           | The total number of network buffers this task has read from a local source.    | Counter |
+| Task        | Shuffle.Netty.Input                                                                                                           | numBuffersInLocalPerSecond  | The number of network buffers this task reads from a local source per second.  | Meter   |
+| Task        | Shuffle.Netty.Input                                                                                                           | numBuffersInRemote          | The total number of network buffers this task has read from a remote source.   | Counter |
+| Task        | Shuffle.Netty.Input                                                                                                           | numBuffersInRemotePerSecond | The number of network buffers this task reads from a remote source per second. | Meter   |
+
+### Cluster
+
+| Scope      | Metrics                   | Description                            | Type  |
+| ---------- | ------------------------- | -------------------------------------- | ----- |
+| JobManager | numRegisteredTaskManagers | The number of registered taskmanagers. | Gauge |
+| JobManager | numRunningJobs            | The number of running jobs.            | Gauge |
+| JobManager | taskSlotsAvailable        | The number of available task slots.    | Gauge |
+| JobManager | taskSlotsTotal            | The total number of task slots.        | Gauge |
+
+### Availability
+
+| Scope                              | Metrics        | Description                                                                                                                                                       | Type  |
+| ---------------------------------- | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
+| Job (only available on JobManager) | restartingTime | The time it took to restart the job, or how long the current restart has been in progress (in milliseconds).                                                      | Gauge |
+| Job (only available on JobManager) | uptime         | The time that the job has been running without interruption.Returns -1 for completed jobs (in milliseconds).                                                      | Gauge |
+| Job (only available on JobManager) | downtime       | For jobs currently in a failing/recovering situation, the time elapsed during this outage.Returns 0 for running jobs and -1 for completed jobs (in milliseconds). | Gauge |
+| Job (only available on JobManager) | fullRestarts   | **Attention:** deprecated, use **numRestarts**.                                                                                                                   | Gauge |
+| Job (only available on JobManager) | numRestarts    | The total number of restarts since this job was submitted, including full restarts and fine-grained restarts.                                                     | Gauge |
+
+### Checkpointing
+
+| Scope                              | Metrics                        | Description                                                                                                                                                                                                                                                                                                                                                                                                                        | Type  |
+| ---------------------------------- | ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
+| Job (only available on JobManager) | lastCheckpointDuration         | The time it took to complete the last checkpoint (in milliseconds).                                                                                                                                                                                                                                                                                                                                                                | Gauge |
+| Job (only available on JobManager) | lastCheckpointSize             | The total size of the last checkpoint (in bytes).                                                                                                                                                                                                                                                                                                                                                                                  | Gauge |
+| Job (only available on JobManager) | lastCheckpointExternalPath     | The path where the last external checkpoint was stored.                                                                                                                                                                                                                                                                                                                                                                            | Gauge |
+| Job (only available on JobManager) | lastCheckpointRestoreTimestamp | Timestamp when the last checkpoint was restored at the coordinator (in milliseconds).                                                                                                                                                                                                                                                                                                                                              | Gauge |
+| Job (only available on JobManager) | numberOfInProgressCheckpoints  | The number of in progress checkpoints.                                                                                                                                                                                                                                                                                                                                                                                             | Gauge |
+| Job (only available on JobManager) | numberOfCompletedCheckpoints   | The number of successfully completed checkpoints.                                                                                                                                                                                                                                                                                                                                                                                  | Gauge |
+| Job (only available on JobManager) | numberOfFailedCheckpoints      | The number of failed checkpoints.                                                                                                                                                                                                                                                                                                                                                                                                  | Gauge |
+| Job (only available on JobManager) | totalNumberOfCheckpoints       | The number of total checkpoints (in progress, completed, failed).                                                                                                                                                                                                                                                                                                                                                                  | Gauge |
+| Task                               | checkpointAlignmentTime        | The time in nanoseconds that the last barrier alignment took to complete, or how long the current alignment has taken so far (in nanoseconds). This is the time between receiving first and the last checkpoint barrier. You can find more information in the [Monitoring State and Checkpoints section](//nightlies.apache.org/flink/flink-docs-release-1.14/docs/ops/state/large_state_tuning/#monitoring-state-and-checkpoints) | Gauge |
+| Task                               | checkpointStartDelayNanos      | The time in nanoseconds that elapsed between the creation of the last checkpoint and the time when the checkpointing process has started by this Task. This delay shows how long it takes for the first checkpoint barrier to reach the task. A high value indicates back-pressure. If only a specific task has a long start delay, the most likely reason is data skew.                                                           | Gauge |
+
+### RocksDB
+
+### IO
+
+| Scope                                                                   | Metrics                                                                               | Description                                                                                                                                                                                                                                               | Type      |
+| ----------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| **Job (only available on TaskManager)**                                 | [<source_id>.[<source_subtask_index>.]]<operator_id>.<operator_subtask_index>.latency | The latency distributions from a given source (subtask) to an operator subtask (in milliseconds), depending on the [latency granularity](https://nightlies.apache.org/flink/flink-docs-release-1.14/docs/deployment/config/#metrics-latency-granularity). | Histogram |
+| Task                                                                    | numBytesInLocal                                                                       | **Attention:** deprecated, use [Default shuffle service metrics](https://nightlies.apache.org/flink/flink-docs-release-1.14/docs/ops/metrics/#default-shuffle-service).                                                                                   | Counter   |
+| Task                                                                    | numBytesInLocalPerSecond                                                              | **Attention:** deprecated, use [Default shuffle service metrics](https://nightlies.apache.org/flink/flink-docs-release-1.14/docs/ops/metrics/#default-shuffle-service).                                                                                   | Meter     |
+| Task                                                                    | numBytesInRemote                                                                      | **Attention:** deprecated, use [Default shuffle service metrics](https://nightlies.apache.org/flink/flink-docs-release-1.14/docs/ops/metrics/#default-shuffle-service).                                                                                   | Counter   |
+| Task                                                                    | numBytesInRemotePerSecond                                                             | **Attention:** deprecated, use [Default shuffle service metrics](https://nightlies.apache.org/flink/flink-docs-release-1.14/docs/ops/metrics/#default-shuffle-service).                                                                                   | Meter     |
+| Task                                                                    | numBuffersInLocal                                                                     | **Attention:** deprecated, use [Default shuffle service metrics](https://nightlies.apache.org/flink/flink-docs-release-1.14/docs/ops/metrics/#default-shuffle-service).                                                                                   | Counter   |
+| Task                                                                    | numBuffersInLocalPerSecond                                                            | **Attention:** deprecated, use [Default shuffle service metrics](https://nightlies.apache.org/flink/flink-docs-release-1.14/docs/ops/metrics/#default-shuffle-service).                                                                                   | Meter     |
+| Task                                                                    | numBuffersInRemote                                                                    | **Attention:** deprecated, use [Default shuffle service metrics](https://nightlies.apache.org/flink/flink-docs-release-1.14/docs/ops/metrics/#default-shuffle-service).                                                                                   | Counter   |
+| Task                                                                    | numBuffersInRemotePerSecond                                                           | **Attention:** deprecated, use [Default shuffle service metrics](https://nightlies.apache.org/flink/flink-docs-release-1.14/docs/ops/metrics/#default-shuffle-service).                                                                                   | Meter     |
+| Task                                                                    | numBytesOut                                                                           | The total number of bytes this task has emitted.                                                                                                                                                                                                          | Counter   |
+| Task                                                                    | numBytesOutPerSecond                                                                  | The number of bytes this task emits per second.                                                                                                                                                                                                           | Meter     |
+| Task                                                                    | numBuffersOut                                                                         | The total number of network buffers this task has emitted.                                                                                                                                                                                                | Counter   |
+| Task                                                                    | numBuffersOutPerSecond                                                                | The number of network buffers this task emits per second.                                                                                                                                                                                                 | Meter     |
+| Task                                                                    | isBackPressured                                                                       | Whether the task is back-pressured.                                                                                                                                                                                                                       | Gauge     |
+| Task                                                                    | idleTimeMsPerSecond                                                                   | The time (in milliseconds) this task is idle (has no data to process) per second. Idle time excludes back pressured time, so if the task is back pressured it is not idle.                                                                                | Meter     |
+| Task                                                                    | backPressuredTimeMsPerSecond                                                          | The time (in milliseconds) this task is back pressured per second.                                                                                                                                                                                        | Gauge     |
+| Task                                                                    | busyTimeMsPerSecond                                                                   | The time (in milliseconds) this task is busy (neither idle nor back pressured) per second. Can be NaN, if the value could not be calculated.                                                                                                              | Gauge     |
+| **Task (only if buffer debloating is enabled and in non-source tasks)** | estimatedTimeToConsumeBuffersMs                                                       | The estimated time (in milliseconds) by the buffer debloater to consume all of the buffered data in the network exchange preceding this task. This value is calculated by approximated amount of the in-flight data and calculated throughput.            | Gauge     |
+| Task                                                                    | debloatedBufferSize                                                                   | The desired buffer size (in bytes) calculated by the buffer debloater. Buffer debloater is trying to reduce buffer size when the amount of in-flight data (after taking into account current throughput) exceeds the configured target value.             | Gauge     |
+| Task/Operator                                                           | numRecordsIn                                                                          | The total number of records this operator/task has received.                                                                                                                                                                                              | Counter   |
+| Task/Operator                                                           | numRecordsInPerSecond                                                                 | The number of records this operator/task receives per second.                                                                                                                                                                                             | Meter     |
+| Task/Operator                                                           | numRecordsOut                                                                         | The total number of records this operator/task has emitted.                                                                                                                                                                                               | Counter   |
+| Task/Operator                                                           | numRecordsOutPerSecond                                                                | The number of records this operator/task sends per second.                                                                                                                                                                                                | Meter     |
+| Task/Operator                                                           | numLateRecordsDropped                                                                 | The number of records this operator/task has dropped due to arriving late.                                                                                                                                                                                | Counter   |
+| Task/Operator                                                           | currentInputWatermark                                                                 | The last watermark this operator/tasks has received (in milliseconds).**Note:** For operators/tasks with 2 inputs this is the minimum of the last received watermarks.                                                                                    | Gauge     |
+| Operator                                                                | currentInput**N**Watermark                                                            | The last watermark this operator has received in its **N'th** input (in milliseconds), with index **N** starting from 1. For example currentInput**1**Watermark, currentInput**2**Watermark, ...**Note:** Only for operators with 2 or more inputs.       | Gauge     |
+| Operator                                                                | currentOutputWatermark                                                                | The last watermark this operator has emitted (in milliseconds).                                                                                                                                                                                           | Gauge     |
+| Operator                                                                | numSplitsProcessed                                                                    | The total number of InputSplits this data source has processed (if the operator is a data source).                                                                                                                                                        | Gauge     |
+
+
+参考文档：[Flink 官方 Metrics 文档](https://nightlies.apache.org/flink/flink-docs-release-1.14/docs/ops/metrics/#cpu)
+
+## 常见问题排查
 
 <[无数据上报排查](../../datakit/why-no-data.md)>
 
+## 进一步阅读
+
+<[利用观测云观测 Apache Flink](../../best-practices/monitoring/flink.md)>

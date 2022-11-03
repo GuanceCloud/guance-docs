@@ -10,11 +10,11 @@
 		
 ![image](../images/istio/1.png)
 
-### Istio简介 
+### Istio 简介 
 
 Istio 是一个开源服务网格，它透明地分层到现有的分布式应用程序上。 提供了对整个服务网格的行为洞察和操作控制的能力，以及一个完整的满足微服务应用各种需求的解决方案。
 
-### Istio核心组件
+### Istio 核心组件
 
 Istio 服务网格由数据平面和控制平面组成。
 
@@ -40,7 +40,7 @@ Istio 健壮的追踪、监控和日志特性让您能够深入的了解服务�
 
 - productpage：productpage (python) 微服务调用 details 和 reviews 微服务来填充页面。
 - details：details (ruby) 微服务包含图书的详细信息。
-- reviews：reviews (java) 微服务包含书评，它还调用 ratings微服务。
+- reviews：reviews (java) 微服务包含书评，它还调用 ratings 微服务。
 - ratings：ratings (node js) 微服务包含书的排名信息。
 
 reviews 微服务提供了3个版本：
@@ -51,7 +51,7 @@ reviews 微服务提供了3个版本：
 
 ![image](../images/istio/4.png)
 
-Bookinfo 的链路数据，只需要修改 istio 的 configmap 中 zipkin.address 为 datakit 地址，datakit 需要开启zipkin 采集器，即能实现链路数据 push 到 datakit。
+Bookinfo 的链路数据，只需要修改 istio 的 configmap 中 zipkin.address 为 DataKit 地址，DataKit 需要开启 zipkin 采集器，即能实现链路数据 push 到 DataKit。
 
 ![image](../images/istio/5.png)
 
@@ -61,15 +61,15 @@ Bookinfo 的链路数据，只需要修改 istio 的 configmap 中 zipkin.addres
 
 #### Kubernetes 
 
-本示例在 CentOS7.9 通过 minikube 创建的版本是 1.21.2 的 kubernetes 集群。
+本示例在 CentOS 7.9 通过 minikube 创建的版本是 1.21.2 的 Kubernetes 集群。
 
-#### 部署 datakit 
+#### 部署 DataKit 
 
-参考< [Daemonset 部署 Datakit](../insight/datakit-daemonset.md) >。
+参考< [Daemonset 部署 DataKit](../insight/datakit-daemonset.md) >。
 
 #### 开启采集器 
 
-使用 [Daemonset 部署 Datakit](../insight/datakit-daemonset.md) 的 datakit.yaml 文件，上传到 kubernetes 集群 的 master 节点 /usr/local/df-demo/datakit.yaml，修改 datakit.yaml 文件，增加 ConfigMap 并挂载文件来开通 zipkin 和 prom 采集器，最终结果是部署完成的 DataKit，增加文件 /usr/local/datakit/conf.d/zipkin/zipkin.conf  是开通 zipkin 采集器，增加 /usr/local/datakit/conf.d/prom/prom_istiod.conf 文件是开通 Istiod pod 的指标采集器，增加文件 /usr/local/datakit/conf.d/prom/prom-ingressgateway.conf  是开通 ingressgateway 采集器，增加 /usr/local/datakit/conf.d/prom/prom-egressgateway.conf 文件是开通 egressgateway 的指标采集器。
+使用 [Daemonset 部署 DataKit](../insight/datakit-daemonset.md) 的 datakit.yaml 文件，上传到 kubernetes 集群 的 master 节点 /usr/local/df-demo/datakit.yaml，修改 datakit.yaml 文件，增加 ConfigMap 并挂载文件来开通 zipkin 和 prom 采集器，最终结果是部署完成的 DataKit，增加文件 /usr/local/datakit/conf.d/zipkin/zipkin.conf  是开通 zipkin 采集器，增加 /usr/local/datakit/conf.d/prom/prom_istiod.conf 文件是开通 Istiod pod 的指标采集器，增加文件 /usr/local/datakit/conf.d/prom/prom-ingressgateway.conf  是开通 ingressgateway 采集器，增加 /usr/local/datakit/conf.d/prom/prom-egressgateway.conf 文件是开通 egressgateway 的指标采集器。
 
 ![image](../images/istio/6.png)
 
@@ -211,13 +211,13 @@ spec:
 
 #### 替换 token
 
-登录[观测云](https://console.guance.com/)，【集成】->【Datakit】复制 token，替换到 datalit.yam l中的 <your-token>。
+登录[观测云](https://console.guance.com/)，【集成】->【DataKit】复制 token，替换到 datalit.yam l中的 <your-token>。
 
 ![image](../images/istio/7.png)
 
 ![image](../images/istio/8.png)
 
-#### 重新部署 Datakit 
+#### 重新部署 DataKit 
 
 ```bash
 cd /usr/local/df-demo
@@ -309,7 +309,7 @@ docker build -t product-page:v1  .
 
 ![image](../images/istio/15.png)
 
-#### 打通 APM 和 Datakit
+#### 打通 APM 和 DataKit
 
 ```bash
 kubectl edit configmap istio -n istio-system -o yaml 
@@ -341,7 +341,7 @@ vi /usr/local/df-demo/bookinfo/virtual-service-ratings-test-delay.yaml
 vi /usr/local/df-demo/bookinfo/bookinfo.yaml
 ```
 
-在所有 Deployment 控制器，pod 模板上增加 annotations。<br />参数说明
+在所有 Deployment 控制器，Pod 模板上增加 annotations。<br />参数说明
 
 - url：Exporter 地址
 - source：采集器名称
@@ -871,7 +871,7 @@ minikube service istio-ingressgateway -n istio-system
 
 ![image](../images/istio/19.png)
 
-- root 账号登录服务器，修改 proxy_pass为http2 的服务地址
+- root 账号登录服务器，修改 proxy_pass 为 http2 的服务地址
 
 ```bash
 vim  /etc/nginx/nginx.conf
@@ -919,7 +919,7 @@ systemctl restart nginx
 
 #### stdout
 
-datakit 默认采集输出到 /dev/stdout 的日志，如果需要使用更深层的功能，请参考<[容器日志采集](/datakit/container)>。
+DataKit 默认采集输出到 /dev/stdout 的日志，如果需要使用更深层的功能，请参考<[容器日志采集](/datakit/container)>。
 
 ![image](../images/istio/26.png)
 

@@ -1,4 +1,5 @@
 # Apache
+
 ---
 
 ## 视图预览
@@ -26,13 +27,13 @@ apachectl -M |grep status
 
 ## 安装配置
 
-说明：示例 Apache 版本为：Linux 环境 Apache/2.4.6 (CentOS)，各个不同版本指标可能存在差异。
+说明：示例 Apache 版本为 Linux 环境 Apache/2.4.6 (CentOS)，各个不同版本指标可能存在差异。
 
 ### 部署实施
 
 #### 指标采集 (必选)
 
-1、 开启 Apache mod_status 页面，修改 Apache 主配置文件 `/etc/httpd/conf/httpd.conf` (以实际路径为准)，最后追加 ExtendedStatus 配置。
+1、 开启 Apache mod_status 页面，修改 Apache 主配置文件 `/etc/httpd/conf/httpd.conf` (以实际路径为准)，最后追加 `ExtendedStatus` 配置。
 
 ```
 ExtendedStatus On
@@ -169,31 +170,7 @@ systemctl restart datakit
 
 <监控 - 监控器 - 从模板新建 - Apache 检测库>
 
-## 指标详解
-
-| 指标 | 描述 | 数据类型 | 单位 |
-| ---- | ---- | ---- | ---- |
-| <div style="width: 200px">`busy_workers`</div> | The number of workers serving requests | int | count |
-| `closing_connection` | The amount of workers that are currently closing a connection | int | count |
-| `conns_async_closing` | The number of asynchronous closing connections,windows not support | int | count |
-| `conns_async_keep_alive` | The number of asynchronous keep alive connections,windows not support | int | count |
-| `conns_async_writing` | The number of asynchronous writes connections,windows not support | int | count |
-| `conns_total` | The total number of requests performed,windows not support | int  | count |
-| `cpu_load` | The percent of CPU used,windows not support | float | percent |
-| `dns_lookup` | The workers waiting on a DNS lookup | int | count |
-| `gracefully_finishing` | The number of workers finishing their request | int | count |
-| `idle_cleanup` | These workers were idle and their process is being stopped | int | count |
-| `idle_workers` | The number of idle workers | int | count |
-| `keepalive` | The workers intended for a new request from the same client, because it asked to keep the connection alive | int | count |
-| `logging`  | The workers writing something to the Apache logs | int | count |
-| `net_bytes` | The total number of bytes served | int | B |
-| `net_hits` | The total number of requests performed | int | count |
-| `open_slot` | The amount of workers that Apache can still start before hitting the maximum number of workers | int | count |
-| `reading_request` | The workers reading the incoming request | int | count |
-| `sending_reply` | The number of workers sending a reply/response or waiting on a script (like PHP) to finish so they can send a reply | int | count |
-| `starting_up` | The workers that are still starting up and not yet able to handle a request | int | count |
-| `uptime` | The amount of time the server has been running | int | s |
-| `waiting_for_connection` | The number of workers that can immediately process an incoming request | int | count |
+## [指标详解](../../../datakit/apache#measurements)
 
 ## 常见问题排查
 
@@ -208,4 +185,5 @@ httpd: Could not reliably determine the server's fully qualified domain name, us
 Q：修改 Apache 主配置文件 `/etc/httpd/conf/httpd.conf` 里的 ServerName (以实际路径为准)
 
 ## 进一步阅读
+
 <[Apache 常用配置](https://www.cnblogs.com/jxl1996/p/10119184.html)>

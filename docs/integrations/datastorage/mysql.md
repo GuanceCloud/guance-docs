@@ -229,10 +229,8 @@ systemctl restart datakit
 
 <监控 - 监控器 - 从模板新建 - MySQL 检测库>
 
-## 指标详解
+## [指标详解](../../../datakit/mysql#measurement)
 
-
-<[MySQL 指标详情](/datakit/mysql#measurement)>
 
 ## 故障排查
 

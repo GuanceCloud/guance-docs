@@ -133,7 +133,7 @@
 
 ![](img/7.biling_account_8.png)
 
-选择“阿里云账号”，在弹出的对话框中选择结算方式，具体步骤可参考 [开通阿里云账号结算方式](../billing/billing-account/aliyun-account.md) 或 [在 AWS 订阅观测云](../billing/billing-account/aws-account.md) 。
+若选择“阿里云账号”或者“AWS云账号”，在弹出的对话框中选择结算方式，具体步骤可参考 [开通阿里云账号结算方式](../billing/billing-account/aliyun-account.md) 或 [在 AWS 订阅观测云](../billing/billing-account/aws-account.md) 。
 
 ![](img/7.biling_account_9.png)
 

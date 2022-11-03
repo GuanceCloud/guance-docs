@@ -151,6 +151,7 @@
 |`mem_used_percent`|mem使用占比（%*100）|float|percent|
 |`message`|进程详细信息|string|-|
 |`open_files`|open_files 个数(仅支持linux)|int|count|
+|`open_files_list`|进程打开的文件及其描述符列表(仅支持linux)|string|-|
 |`pid`|进程id|int|-|
 |`rss`|Resident Set Size （常驻内存大小）|int|B|
 |`start_time`|进程启动时间|int|msec|

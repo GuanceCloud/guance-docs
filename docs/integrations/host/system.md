@@ -71,15 +71,7 @@ systemctl restart datakit
 
 <监控 - 监控器 - 从模板新建 - 主机检测库>
 
-## 指标详解
-
-| 指标 | 描述 | 数据类型 | 单位 |
-| --- | --- | --- | --- |
-| <div style="width: 150px">`cpu_usage`</div> | cpu使用占比（%*100），进程自启动以来所占 CPU 百分比，该值相对会比较稳定（跟 top 的瞬时百分比不同） | float | percent |
-| `mem_used_percent` | mem使用占比（%*100） | float | percent |
-| `open_files` | open_files 个数(仅支持linux) | int | count |
-| `rss` | Resident Set Size （常驻内存大小） | int | B |
-| `threads` | 线程数 | int | count |
+## [指标详解](../../../datakit/system#system_1)
 
 ## 常见问题排查
 

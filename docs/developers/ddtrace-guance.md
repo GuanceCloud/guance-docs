@@ -7,7 +7,7 @@
 ## 简介
 观测云在使用`dd-trace-java`过程中有些功能源码并没有提供，遂决定在源码的基础上进行开发。
 
-开源地址：[GuanceCloud-ddtrace](https://github.com/GuanceCloud/dd-trace-java)， 并持续更新。如您在使用过程中有任务问题或有好的建议可在 [github 上提 Issue](https://github.com/GuanceCloud/dd-trace-java/issues)或者联系对接人员。 
+开源地址：[GuanceCloud-ddtrace](https://github.com/GuanceCloud/dd-trace-java)， 并持续更新。如您在使用过程中有任务问题或有好的建议可在 [github 上提 Issue](https://github.com/GuanceCloud/dd-trace-java/issues) 或者联系对接人员。 
 
 ### 下载
 
@@ -27,13 +27,25 @@
 ---
 ## 历史版本：
 
+### (2022-10-25) Version:0.113.0
+
+- [github下载地址](https://github.com/GuanceCloud/dd-trace-java/releases/tag/v0.113.0-guance)
+
+#### 功能调整说明
+
+- 以0.113.0 tag 为基准，合并之前的代码
+
+- 修复thrift TMultipexedProtocol 模型支持
+
+---
+
 ### (2022-10-14) Version:0.108.1
 
 合并 DataDog v0.108.1版本，进行编译同时保留了0.108.1
 
 - [github下载地址](https://github.com/GuanceCloud/dd-trace-java/releases/tag/v0.108.1)
 
-#### 新增功能说明
+#### 功能调整说明
 
 - 新增 thrift instrumentation（thrift version >=0.9.3 以上版本）
 
@@ -46,7 +58,7 @@
 - [github下载地址](https://github.com/GuanceCloud/dd-trace-java/releases/tag/v0.108.1)
 
 
-#### 新增功能说明
+#### 功能调整说明
 
 - 增加 xxl_job 探针( xxl_job 版本 >= 2.3.0)
 
@@ -66,7 +78,8 @@
 
 [当前版本下载地址](https://static.guance.com/ddtrace/dd-java-agent-guance-0.106.0-SNAPSHOT.jar)
 
-#### 新增功能说明
+#### 功能调整说明
+
 - 增加 RocketMq 探针 支持的版本(不低于4.8.0)。
 - 增加 Dubbo 探针 支持的版本(不低于2.7.0)。
 - 增加 Sql 脱敏功能：开启后将原始的 sql 语句添加到链路中以方便排查问题，启动 Agent 时增加配置参数 `-Ddd.jdbc.sql.obfuscation=true`

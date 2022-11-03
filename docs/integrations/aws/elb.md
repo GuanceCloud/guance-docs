@@ -28,11 +28,11 @@
 
 ![image.png](../imgs/aws-elb-3.png)
 
-3、 用户授权 (ReadOnlyAccess)
+3、 用户授权：「ReadOnlyAccess」
 
 ![image.png](../imgs/aws-elb-4.png)
 
-4、 保存或下载 **Access key ID** 和 **Secret access key** 的 CSV 文件 (配置文件会用到))
+4、 保存或下载 **Access key ID** 和 **Secret access key** 的 CSV 文件（配置文件会用到）
 
 ![image.png](../imgs/aws-elb-5.png)
 
@@ -47,11 +47,11 @@
 
 #### 脚本市场
 
-1、 登录 DataFlux Func，地址 http://ip:8088
+1、 登录 DataFlux Func，地址 `http://ip:8088`
 
 ![image.png](../imgs/aws-elb-6.png)
 
-2、 开启脚本市场，管理 - 实验性功能 - 开启脚本市场模块
+2、 开启脚本市场：「管理」 - 「实验性功能」 - 「开启脚本市场模块」
 
 ![image.png](../imgs/aws-elb-7.png)
 
@@ -61,7 +61,7 @@
 （2）观测云集成 (AWS-CloudWatch)<br />
 （3）观测云集成 (AWS-ELB)
 
-_注：在安装「核心包」后，系统会提示安装第三方依赖包，按照正常步骤点击安装即可_
+> **注意：**在安装核心包后，系统会提示安装第三方依赖包，按照正常步骤点击安装即可。
 
 ![image.png](../imgs/aws-elb-8.png)
 
@@ -69,17 +69,17 @@ _注：在安装「核心包」后，系统会提示安装第三方依赖包，�
 
 ![image.png](../imgs/aws-elb-10.png)
 
-4、 脚本安装完成后，可以在脚本库中看到所有脚本集
+4、 脚本安装完成后，可以在「脚本库」中看到所有脚本集
 
 ![image.png](../imgs/aws-elb-11.png)
 
 #### 添加脚本
 
-1、 开发 - 脚本库 - 添加脚本集
+1、 「开发」 - 「脚本库」 - 「添加脚本集」
 
 ![image.png](../imgs/aws-elb-12.png)
 
-2、 点击该脚本集 - 添加脚本
+2、 点击上一步添加的「脚本集」 - 「添加脚本」
 
 ![image.png](../imgs/aws-elb-13.png)
 
@@ -87,7 +87,9 @@ _注：在安装「核心包」后，系统会提示安装第三方依赖包，�
 
 ![image.png](../imgs/aws-elb-14.png)
 
-4、 添加代码 (需要修改账号配置**Access key ID / Secret access key /Account Name / Regions**)
+4、 添加代码
+
+- 需要修改账号配置 `AccessKey ID` 、 `Secret access key` 、 `Account Name` 、 `Regions`
 
 - regions 取值可以参考 [**地域列表**](https://docs.aws.amazon.com/zh_cn/documentdb/latest/developerguide/regions-and-azs.html)，示例：cn-northwest-1
 - namespace (可选 AWS/ApplicationELB、AWS/GatewayELB、AWS/NetworkELB)
@@ -133,7 +135,7 @@ def run():
 
 ```
 
-5、 **保存**配置并**发布**
+5、 「保存」 配置并 「发布」
 
 ![image.png](../imgs/aws-elb-15.png)
 
@@ -143,7 +145,7 @@ def run():
 
 ![image.png](../imgs/aws-elb-16.png)
 
-2、 自动触发配置，执行函数中添加此脚本，执行频率为 **5 分钟 _/5 _ \* \* \***
+2、 自动触发配置：在「执行函数」中添加此脚本，执行频率为 **5 分钟 _/5 _ \* \* \***
 
 ![image.png](../imgs/aws-elb-17.png)
 
@@ -171,4 +173,5 @@ def run():
 ## 进一步阅读
 
 <[DataFlux Func 观测云集成简介](../../dataflux-func/script-market-guance-integration.md)>
+
 <[DataFlux Func AWS-CloudWatch 配置手册](../../dataflux-func/script-market-guance-aws-cloudwatch.md)>

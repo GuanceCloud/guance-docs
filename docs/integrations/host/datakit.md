@@ -51,7 +51,9 @@ gin_log = "/var/log/datakit/gin.log"
 
 暂无
 
-## [指标详解](/datakit/self#measurements)
+## [指标详解](../../../datakit/self#measurements)
+
+
 ## 常见问题排查
 
 <[无数据上报排查](../../datakit/why-no-data.md)>

@@ -1,4 +1,5 @@
 # CoreDNS
+
 ---
 
 ## 视图预览
@@ -13,14 +14,14 @@ CoreDNS 性能指标展示，包括请求次数、对每个 Zone 和 RCODE 的�
 
 ## 安装部署
 
-说明：示例 CoreDNS 版本为 coredns:1.7.0(CentOS 环境下 Kubeadmin 部署)，各个不同版本指标可能存在差异。
+说明：示例 CoreDNS 版本为 coredns:1.7.0（CentOS 环境下 Kubeadmin 部署），各个不同版本指标可能存在差异。
 
 ### 前置条件
 
 - CoreDNS 所在 Kubernetes 集群 <[安装 DataKit](../../datakit/datakit-daemonset-deploy.md)>
 - 检查是否能正常收集数据
 
-Kubernetes 集群 Master 节点执行
+Kubernetes 集群 Master 节点执行：
 
 ```
 kubectl get svc -n kube-system
@@ -28,7 +29,7 @@ kubectl get svc -n kube-system
 
 ![image](../imgs/input-coredns-2.png)
 
-得到 DNS Service 域名是
+得到 DNS Service 域名是：
 
 ```
 http://kube-dns.kube-system.svc.cluster.local
@@ -51,7 +52,7 @@ curl http://kube-dns.kube-system.svc.cluster.local:9153/metrics
 1、 开启 CoreDNS 插件
 
 Kubernetes 环境下部署的 DataKit ，与宿主机直接安装的 DataKit ，开启插件的方式不一样。<br />
-Kubernetes 环境下部署 DataKit 是按照<[Kubernetes 部署 DataKit](../../datakit/datakit-daemonset-deploy)>来配置的，在 Kubernetes 集群的 Master 节点找到 `datakit.yaml` 。
+Kubernetes 环境下部署 DataKit 是按照 <[Kubernetes 部署 DataKit](../../datakit/datakit-daemonset-deploy)> 来配置的，在 Kubernetes 集群的 Master 节点找到 `datakit.yaml` 。
 
 2、 修改 `datakit.yaml` 配置文件
 
@@ -153,7 +154,7 @@ data:
       cluster_name="k8s-dns"
 ```
 
-参数说明
+参数说明：
 
 - url：CoreDNS 的 Prom 监听地址
 - source：采集器别名
@@ -200,13 +201,10 @@ systemctl restart datakit
 
 <场景 - 新建仪表板 - 模板库 - 系统视图 - CoreDNS 监控视图>
 
-## 指标详解
-
-<[CoreDNS 指标详情](/datakit/coredns#metrics)>
+## [指标详解](../../../datakit/consul#measurements)
 
 ## 最佳实践
 
-暂无
 
 ## 故障排查
 
