@@ -1,71 +1,21 @@
 # 升级商业版
 ---
 
+## 登录观测云工作空间
 
-## 注册商业版
-您可以在 [观测云官网](https://www.guance.com/) ，「[立即注册](https://auth.guance.com/register)」为观测云用户，观测云注册时，提供免费版和商业版注册选项。
+若您是 [免费版](../billing/free-start.md) 用户，您可以登录观测云工作空间，选择「付费计划与账单」，点击「升级」，升级观测云为商业版。
 
-![](img/11.account_center_1.png)
-
-
-
-选择商业版，点击“立即注册”。在基本信息页面，选择站点、输入注册信息，点击“下一步”。
-
-注意：
-
-- 观测云提供多个注册登录站点，您可以根据使用资源的情况选择合适的站点进行注册登录。
-- 若在注册商业版时，输入的“用户名”同时用来注册观测云费用中心的账号，费用中心的用户名账号会检查唯一性，一旦注册不能修改。
-
-![](img/11.account_center_3.png)
-
-在企业信息页面，输入企业信息，点击“注册”。
-
-![](img/11.account_center_4.png)
-
-在选择结算方式页面，根据站点的选择会有两种结算方式组合：[阿里云账号结算](../billing/billing-account/aliyun-account.md) 和 [观测云企业账号结算](../billing/billing-account/enterprise-account.md) 、[AWS账号结算](../billing/billing-account/aws-account.md) 和 [观测云企业账号结算](../billing/billing-account/enterprise-account.md) 。您可以根据实际需求选择相应的结算方式，默认为观测云企业账号结算。
-
-![](img/11.account_center_5.png)
-
-<!--
-
-阿里云账号结算默认选择「默认存储」，支持更改为「 SLS 存储」。更多关于 SLS 存储方案，请参考文档 [SLS 存储](../billing/aliyun-sls.md)。
-
-![](img/1.sls_1.png)
-
--->
-
-选择完结算方式以后，点击“确定”，即可成功开通观测云商业版。
-
-![](img/11.account_center_7.png)
-
-注册完成后，可观看观测云介绍小视频并加入到观测云社区。
-
-![](img/2.register_4.png)
-
-看完观测云介绍以后，点击“立即开始”即可进入新手引导页面，可以根据新手引导安装配置第一个 DataKit 。
-
-![](img/7.biling_account_1.png)
-
-在观测云付费计划与账单，可以看到当前工作空间为“商业版”。
-
-![](img/11.account_center_10.png)
-
-在观测云付费计划与账单，点击右上角的“进入费用中心”，即可自动跳转到观测云费用中心。
-
-![](img/1.account_2.png)
-
-## 升级商业版
-若您是 [免费版](../billing/free-start.md) 用户，您可以在观测云工作空间「付费计划与账单」，点击「升级」，升级观测云为商业版。
-
-注意：免费版成功升级到商业版以后，采集数据会继续上报到观测云工作空间，但是免费版时期采集的数据将无法查看。
+注意：免费版成功升级到商业版以后，无法回退，采集数据会继续上报到观测云工作空间，但是免费版时期采集的数据将无法查看。
 
 ![](img/7.biling_account_2.png)
+
+## 进入升级页面
 
 在套餐升级页面，点击「升级」。观测云支持按需购买，按量付费。更多版本计费逻辑可参考文档 [计费方式](../billing/billing-method/index.md) 。
 
 ![](img/7.biling_account_3.png)
 
-
+## 输入基本信息
 
 输入已经在观测云费用中心注册账号进行绑定，此处会对“用户名”进行校验，请输入已开通观测云费用中心账号的“用户名”。
 
@@ -79,11 +29,13 @@
 
 ![](img/7.biling_account_6.png)
 
+## 选择结算方式
+
 商业版升级成功，默认使用观测云费用中心账号结算，若需要更改其他结算方式，可以点击“绑定结算云账号”按钮。目前观测云支持三种结算方式：
 
 - 观测云企业账号：直接在观测云费用中心进行充值结算；
 - 阿里云账号：直接通过阿里云账号进行充值结算；
-- 亚马逊云账号：直接通过AWS账号进行充值结算。
+- AWS账号：直接通过AWS账号进行充值结算。
 
 ![](img/7.biling_account_7.png)
 
@@ -96,23 +48,15 @@
 
 ![](img/7.biling_account_8.png)
 
-选择“阿里云账号”，在弹出的对话框中选择结算方式，具体步骤可参考 [开通阿里云账号结算方式](../billing/billing-account/aliyun-account.md) 或 [在 AWS 订阅观测云](../billing/billing-account/aws-account.md) 。
+若选择“阿里云账号”或者“AWS云账号”，在弹出的对话框中选择结算方式，具体步骤可参考 [开通阿里云账号结算方式](../billing/billing-account/aliyun-account.md) 或 [在 AWS 订阅观测云](../billing/billing-account/aws-account.md) 。
 
 ![](img/7.biling_account_9.png)
-
-<!--
-
-阿里云账号结算默认选择 “默认存储”，支持更改为 “ SLS 存储”。更多关于 SLS 存储方案，请参考文档 [SLS 存储](../billing/aliyun-sls.md)。
-
-![](img/1.sls_3.png)
-
-
-
--->
 
 若选择使用费用中心账号结算，可直接关闭“更改结算方式”对话框。支持在观测云费用中心“工作空间管理”更改结算方式。
 
 ![](img/7.biling_account_10.png)
+
+## 升级完成
 
 返回观测云付费计划与账单，可以看到当前工作空间已经升级到“商业版”。
 

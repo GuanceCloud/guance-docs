@@ -1,4 +1,5 @@
 # Istio
+
 ---
 
 ## 视图预览
@@ -25,7 +26,7 @@ Istio 版本： [istio](https://github.com/istio/istio)
 
 #### 1 下载 Istio
 
-[下载](https://github.com/istio/istio/releases)  Source Code 和 `istio-1.11.2-linux-amd64.tar.gz`
+[下载](https://github.com/istio/istio/releases) Source Code 和 `istio-1.11.2-linux-amd64.tar.gz`
 
 #### 2 安装 Istio
 
@@ -43,7 +44,7 @@ istioctl install --set profile=demo
 
 #### 3 验证安装
 
-部署成功后，ingressgateway、egressgateway、istiod 会处于 Running 状态。
+部署成功后，`ingressgateway` 、`egressgateway` 、`istiod` 会处于 Running 状态。
 
 ```shell
 kubectl get pods -n istio-system
@@ -67,7 +68,7 @@ kubectl label namespace prod istio-injection=enabled
 
 2、 开启 Envoy 指标采集器
 
-在业务 Pod 处添加如下 annotations（具体路径 spec.template.metadata 下），这样即可采集 Envoy 的指标数据。
+在业务 Pod 处添加如下 annotations（具体路径 `spec.template.metadata` 下），这样即可采集 Envoy 的指标数据。
 
 ```yaml
 apiVersion: apps/v1
@@ -99,7 +100,6 @@ spec:
 参数说明
 
 - url：Exporter 地址
-
 - source：采集器名称
 - metric_types：指标类型过滤
 - measurement_name：采集后的指标集名称
@@ -684,7 +684,7 @@ kubectl delete -f datakit.yaml
 kubectl apply -f  datakit.yaml
 ```
 
-5、 访问 bookinfo
+5、 访问 Bookinfo
 
 查看 ingresgateway 对外暴露的端口。
 
@@ -700,7 +700,7 @@ kubectl apply -f  datakit.yaml
 
 1、开启 Zipkin 采集器
 
-修改 `datakit.yaml`，通过 ConfigMap 把 `zipkin.conf` 挂载到 DataKit 的 `/usr/local/datakit/conf.d/zipkin/zipkin.conf` 目录，下面修改 `datakit.yaml` 。
+修改 `datakit.yaml`，通过 ConfigMap 把 `zipkin.conf` 挂载到 DataKit 的 `/usr/local/datakit/conf.d/zipkin/zipkin.conf` 目录，下面修改 `datakit.yaml` :
 
 ```yaml
 apiVersion: v1
@@ -735,8 +735,10 @@ kubectl delete -f datakit.yaml
 kubectl apply -f  datakit.yaml
 ```
 
-部署完 Istio 后，链路数据会被打到 **zipkin.istio-system** 的 Service 上，且上报端口是 9411。<br />
-在部署 DataKit 时已开通链路指标采集的 Zipkin 采集器，由于 DataKit 服务的名称空间是 datakit，端口是 9529，所以这里需要做一下转换，详情请参考<[Kubernetes 集群使用 ExternalName 映射 DataKit 服务](../../best-practices/cloud-native/kubernetes-external-name.md)>。<br />
+部署完 Istio 后，链路数据会被打到 **zipkin.istio-system** 的 Service 上，且上报端口是 `9411`。<br />
+在部署 DataKit 时已开通链路指标采集的 Zipkin 采集器，由于 DataKit 服务的名称空间是 datakit，端口是 `9529`，所以这里需要做一下转换。
+> 详情请参考： <[Kubernetes 集群使用 ExternalName 映射 DataKit 服务](../../best-practices/cloud-native/kubernetes-external-name.md)>
+
 创建后的 Service 如下图：
 
 ![image](../imgs/istio-5.png)
@@ -748,7 +750,7 @@ kubectl apply -f  datakit.yaml
 #### 日志采集 (非必选)
 
 DataKit 默认的配置，采集容器输出到 `/dev/stdout` 的日志。<br />
-更多关于日志的配置，请参考文章末尾的[进一步阅读](/integrations/container/istio#further-reading)内容。
+> 更多关于日志的配置，请参考文章末尾的：[进一步阅读](#further-reading)
 
 日志预览
 
@@ -781,7 +783,7 @@ DataKit 默认的配置，采集容器输出到 `/dev/stdout` 的日志。<br />
 
 ## 指标详解
 
-| 指标                                                               | 描述                                                                                          | 数据类型 | 单位   |
+| 指标   | 描述  | 数据类型 | 单位 |
 | ------------------------------------------------------------------ | --------------------------------------------------------------------------------------------- | -------- | ------ |
 | istio_agent_process_virtual_memory_bytes                           | Virtual memory size in bytes                                                                  | int      | B      |
 | istio_agent_go_memstats_alloc_bytes                                | Number of bytes allocated and still in use.                                                   | int      | B      |

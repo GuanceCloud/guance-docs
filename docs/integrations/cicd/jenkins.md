@@ -14,7 +14,7 @@ Jenkins 性能指标展示，包括项目数量、构建数量、作业数量、
 
 ## 安装部署
 
-说明：示例 Jenkins 版本为：jenkins-2.289.1(CentOS)，各个不同版本指标可能存在差异。
+说明：示例 Jenkins 版本为 jenkins-2.289.1(CentOS)，各个不同版本指标可能存在差异。
 
 ### 前置条件
 
@@ -33,21 +33,21 @@ ps -ef | grep jenkins
 
 1、 安装 Metrics Plugin
 
-登录 Jenkins，点击【系统管理】->【插件管理】
+登录 Jenkins，点击「系统管理」 -「插件管理」
 
 ![image](../imgs/input-jenkins-03.png)
 
-点击【插件管理】->【可选插件】，输入 metric，点击【Install without restart】
+点击「插件管理」 - 「可选插件」，输入 metric，点击 「Install without restart」
 
 ![image](../imgs/input-jenkins-04.png)
 
 2、 生成 **Access keys**
 
-点击【系统管理】->【系统配置】
+点击「系统管理」 - 「系统配置」
 
 ![image](../imgs/input-jenkins-05.png)
 
-找到 Metrics，点击【Generate...】->【新增】，记录下 Access keys
+找到「Metrics」，点击「Generate...」 - 「新增」，记录下 `Access keys`
 
 ![image](../imgs/input-jenkins-06.png)
 
@@ -92,15 +92,20 @@ systemctl restart datakit
 
 Jenkins 采集器可以通过接收 Jenkins datadog plugin 发出的 CI Event 实现 CI 可视化。
 
-1、 `jenkins.conf` 文件配置监听端口，默认已配置了 “:9539” ，也可以使用其它未被占用的端口。
+1、 `jenkins.conf` 文件配置监听端口，默认已配置了`“:9539”` ，也可以使用其它未被占用的端口。
 
 ![image](../imgs/input-jenkins-08.png)
 
-2、 登录 Jenkins，【系统管理】->【插件管理】->【可选插件】，输入 “Datadog”，在搜索结果中选择“Datadog”，点击下方的【Install without restart】。
+2、 登录 Jenkins，「系统管理」 - 「插件管理」 - 「可选插件」，输入 “Datadog”，在搜索结果中选择 “Datadog”，点击下方的「Install without restart」。
 
 ![image](../imgs/input-jenkins-09.png)
 
-3、 进入 Jenkins 的【系统管理】->【系统配置】，在 Datadog Plugin 输入项中，选择 “Use the Datadog Agent to report to Datadog ...”，**Agent Host** 填 DataKit 的地址，**DogStatsD Port** 和 **Traces Collection Port** 填 jenkins.conf 配置的监听端口，默认是 9539，勾选 `Enable CI Visibility`，点击【保存】。
+3、 进入 Jenkins 的「系统管理」 - 「系统配置」
+
+- 在 「Datadog Plugin」 输入项中，选中「Use the Datadog Agent to report to Datadog ...」
+- 「Agent Host」 填 DataKit 的地址
+- 「DogStatsD Port」和 「Traces Collection Port」 填 jenkins.conf 配置的监听端口，默认是 `9539`
+- 选中「Enable CI Visibility」，点击「保存」
 
 ![image](../imgs/input-jenkins-10.png)
 
@@ -108,7 +113,7 @@ Jenkins 采集器可以通过接收 Jenkins datadog plugin 发出的 CI Event �
 
 4、 CI 预览
 
-登录 Jenkins 执行**流水线**后，登录**观测云**，【CI】->【查看器】，选择 jenkins_pipeline 和 jenkins_job 查看 流水线执行情况。
+登录 Jenkins 执行**流水线**后，登录**观测云**，通过「CI」 - 「查看器」，选择 `jenkins_pipeline` 和 `jenkins_job` 查看 流水线执行情况。
 
 ![image](../imgs/input-jenkins-12.png)
 
@@ -173,7 +178,6 @@ systemctl restart datakit
 暂无
 
 ## [指标详解](../../../datakit/jenkins/#measurements)
-
 
 ## 最佳实践
 

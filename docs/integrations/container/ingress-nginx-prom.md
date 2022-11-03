@@ -1,4 +1,5 @@
 # Ingress Nginx (Prometheus)
+
 ---
 
 ## 视图预览
@@ -9,11 +10,11 @@ Ingress 性能指标展示，包括 Ingress Controller 的平均 CPU 使用率�
 
 ## 安装部署
 
-说明：示例 Ingress 版本为 willdockerhub/ingress-nginx-controller:v1.0.0(CentOS 环境下 kubeadmin 部署)，各个不同版本指标可能存在差异
+说明：示例 Ingress 版本为 willdockerhub/ingress-nginx-controller:v1.0.0(CentOS 环境下 kubeadmin 部署)，各个不同版本指标可能存在差异。
 
 ### 前置条件
 
-- 登录[观测云](https://console.guance.com/)：「集成」->「DataKit」-> 「Kubernetes」
+- 登录[观测云](https://console.guance.com/)：「集成」 - 「DataKit」 - 「Kubernetes」
 
 ### 配置实施
 
@@ -25,7 +26,7 @@ Ingress 性能指标展示，包括 Ingress Controller 的平均 CPU 使用率�
 wget https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.0.0/deploy/static/provider/baremetal/deploy.yaml
 ```
 
-2、 编辑 `deploy.yaml`，把 service 的 type 设置成 NodePort，并对外暴露 10254 端口。参考下图：
+2、 编辑 `deploy.yaml`，把 service 的 type 设置成 `NodePort`，并对外暴露 `10254` 端口。参考下图：
 
 ```shell
 vi deploy.yaml
@@ -36,7 +37,7 @@ vi deploy.yaml
 3、 开启 Input
 
 观测云接入 Ingress 指标数据，需要 DataKit 开启 prom 插件，在 prom 插件配置中指定 exporter 的 url，在 Kubernetes 集群中采集 Ingress Controller 指标，推荐使用 annotations 增加注解的方式。<br />
-编辑 `deploy.yaml` 文件，找到 ingress-nginx-controller 镜像所对应的 Deployment ，增加 annotations。
+编辑 `deploy.yaml` 文件，找到 ingress-nginx-controller 镜像所对应的 Deployment ，增加 `annotations`。
 
 ```yaml
 annotations:
@@ -57,7 +58,6 @@ annotations:
         name = "prom_ingress"
       [inputs.prom.tags]
       namespace = "$NAMESPACE"
-
 ```
 
 参数说明
@@ -122,4 +122,4 @@ kubectl apply -f deploy.yaml
 
 ## 故障排查
 
- <[无数据上报排查](../../datakit/why-no-data.md)>
+<[无数据上报排查](../../datakit/why-no-data.md)>

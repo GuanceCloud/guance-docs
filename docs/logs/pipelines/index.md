@@ -25,7 +25,9 @@
 
 ![](../img/6.log_pipeline_2.png)
 
-## 编辑/删除/启用/禁用 Pipeline
+## 操作 Pipeline
+
+### 编辑/删除/启用/禁用
 
 在观测云工作空间「日志」-「Pipelines」，点击右侧操作下的按钮即可对 pipeline 文件编辑/删除/启用/禁用。
 注意：
@@ -35,6 +37,26 @@
 - 禁用 pipeline 文件后，可通过启用重新恢复；若存在同名的官方库 pipeline 文件，DataKit 会自动匹配官方库 pipeline 文件进行文本处理；
 
 ![](../img/6.log_pipeline_1.png)
+
+### 批量操作
+
+在观测云工作空间「日志」-「Pipelines」，点击「批量操作」，即可「批量导出」或「批量删除」Pipelines。
+
+???- attention
+
+    该功能仅对工作空间拥有者、管理员、普通成员显示，只读成员不显示。
+
+![](../img/2.log_pipeline_1.png)
+
+### 导入/导出
+
+在观测云工作空间「日志」-「Pipelines」中支持「导入/导出 Pipeline」，即通过导入/导出 JSON 文件的方式创建 Pipeline。
+
+???- attention
+
+    导入的 JSON 文件需要是来自观测云的配置 JSON 文件。
+
+
 
 ## Pipeline 官方库
 

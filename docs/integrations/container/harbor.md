@@ -1,4 +1,5 @@
 # Harbor
+
 ---
 
 ## 视图预览
@@ -82,7 +83,7 @@ docker-compose ps
 
 #### 访问
 
-http://配置的ip:7180 <br />
+地址：`http://配置的 ip:7180` <br />
 默认登录账号/密码：admin/Harbor12345
 
 ![image](../imgs/harbor-4.png)
@@ -100,7 +101,8 @@ http://配置的ip:7180 <br />
 ```
 git clone https://github.com/zhangguanzhang/harbor_exporter.git
 ```
-**注意：**源码有个 bug ，如果传入用户名参数，会覆盖密码。如果启动的用户名是非 admin ，则需要修改源码后再打镜像。
+
+> **注意：**源码有个 bug ，如果传入用户名参数，会覆盖密码。如果启动的用户名是非 admin ，则需要修改源码后再打镜像。
 
 ![image](../imgs/harbor-5.png)
 
@@ -109,11 +111,13 @@ git clone https://github.com/zhangguanzhang/harbor_exporter.git
 ```
 docker build -t 192.168.91.11:7180/demo/harbor-exporter:v0.1 -f Dockerfile .
 ```
+
 #### 启动 harbor-exporter
 
 ```
 docker run -d -p 9107:9107 -e HARBOR_PASSWORD=Harbor12345 192.168.91.11:7180/demo/harbor-exporter:v0.1 --harbor-server=http://192.168.91.11:7180/api --insecure
 ```
+
 如果需要修改用户名，启动加上参数 `-e HARBOR_USERNAME=admin`
 
 ![image](../imgs/harbor-6.png)

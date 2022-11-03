@@ -1,4 +1,5 @@
 # Docker
+
 ---
 
 ## 视图预览
@@ -45,7 +46,7 @@ vi container.conf
 - container_exclude_log：不须要采集的容器日志。
 
 `container_include_log` 和 `container_exclude_log` 必须以 `image` 开头，格式为 `"image:<glob规则>"`，表示 glob 规则是针对容器 image 生效。<br />
-[Glob 规则](<https://en.wikipedia.org/wiki/Glob_(programming)>)是一种轻量级的正则表达式，支持 `*` `?` 等基本匹配单元
+[Glob 规则](<https://en.wikipedia.org/wiki/Glob_(programming)>)是一种轻量级的正则表达式，支持 `*` `?` 等基本匹配单元。
 
 ```
       [inputs.container]
@@ -92,7 +93,7 @@ systemctl restart datakit
 
 #### 日志采集 (非必选)
 
-查看 `/usr/local/datakit/conf.d/container/container.conf` ，如下的配置，默认采集除了 DataKit 外所有容器输出到 stdout 的日志。
+查看 `/usr/local/datakit/conf.d/container/container.conf` ，如下的配置默认采集除了 DataKit 外所有容器输出到 stdout 的日志。
 
 ```
    container_include_log = []
@@ -136,9 +137,8 @@ systemctl restart datakit
 
 暂无
 
-## 指标详解
+## [指标详解](../../../datakit/container#measurement)
 
-<[容器指标详情](/datakit/container#measurements)>
 
 ## 最佳实践
 

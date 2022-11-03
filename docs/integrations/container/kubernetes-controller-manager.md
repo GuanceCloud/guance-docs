@@ -4,7 +4,7 @@
 
 ## 视图预览
 
-Controller Manager 性能指标，包括 Service Controller Rate Limiter Use、Deployment Controller Rate Limiter Use、Daemon Controller Rate Limiter Use、Replicaset Controller Rate Limiter Use、CPU 、Memory、Goroutines 等。
+Controller Manager 性能指标，包括 Service Controller Rate Limiter Use、 Deployment Controller Rate Limiter Use、 Daemon Controller Rate Limiter Use、 Replicaset Controller Rate Limiter Use、 CPU 、 Memory、 Goroutines 等。
 
 视图暂无
 
@@ -101,7 +101,7 @@ data:
         instance = "172.16.0.229:10257"
 ```
 
-参数说明：
+参数说明
 
 - urls：controller-manager metrics 地址
 - source：采集器别名
@@ -144,7 +144,7 @@ kubectl apply -f datakit.yaml
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，controller-manager 指标都会带有 `app = "oa"` 的标签，可以进行快速查询
+- 以下示例配置完成后，controller-manager 指标都会带有如下类似的标签，可以进行快速查询
 - 采集 controller-manager 指标，必填的 key 是 instance，值是 controller-manager 的地址
 
 ```toml

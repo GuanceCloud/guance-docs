@@ -3,15 +3,13 @@
 
 ## 视图预览
 
-Kube State Metrics 性能指标展示，包括 Pod Desired、Pod Desired、Pods Ready、Pods Available、Pod Unavailable 等。
+Kube State Metrics 性能指标展示，包括 Pod Desired、 Pod Desired、 Pods Ready、 Pods Available、 Pod Unavailable 等。
 
 ![image](../imgs/input-kube-state-metrics-01.png)
 
 ![image](../imgs/input-kube-state-metrics-02.png)
+
 ![image](../imgs/input-kube-state-metrics-03.png)
-![image](../imgs/input-kube-state-metrics-04.png)
-![image](../imgs/input-kube-state-metrics-05.png)
-![image](../imgs/input-kube-state-metrics-06.png)
 
 ## 版本支持
 
@@ -38,7 +36,7 @@ kube-state-metrics/ Kubernetes
 
 解压 `kube-state-metrics-2.3.0.zip` ，部署使用 `kube-state-metrics-2.3.0\examples\standard\` 目录下的文件，打开 `deployment.yaml` 修改 `k8s.gcr.io/kube-state-metrics/kube-state-metrics:v2.3.0` 为 `bitnami/kube-state-metrics:2.3.0`。<br />
 
-**注意：**如果原始镜像可访问，不必修改。
+>**注意：** 如果原始镜像可访问，不必修改。
 
 2、 开通 Prom 采集器
 
@@ -101,8 +99,6 @@ curl http://10.244.36.66:8080/metrics
 ## 场景视图
 
 <场景 - 新建仪表板 - 模板库 - 系统视图 - Kubernetes Overview with Kube State Metrics 监控视图>
-
-<场景 - 新建仪表板 - 模板库 - 系统视图 - Kubernetes Overview by Pods 监控视图>
 
 ## 指标详解
 

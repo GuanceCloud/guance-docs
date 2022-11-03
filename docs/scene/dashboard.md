@@ -104,7 +104,7 @@
 
 #### 保存快照
 
-在仪表板用快捷键（Windows: Ctrl+K / Mac OS: Cmd+K）快速保存快照，即可为当前仪表板保存快照。更多介绍可参考文档 [快照](../management/snapshot.md) 。
+在仪表板用快捷键（Windows: Ctrl+K / Mac OS: Cmd+K）快速保存快照，即可为当前仪表板保存快照，或者选择在「设置」按钮点击「保存快照」进行保存。更多介绍可参考文档 [快照](../management/snapshot.md) 。
 
 ![](img/dashboard004.png)
 

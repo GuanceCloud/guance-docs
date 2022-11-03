@@ -1,4 +1,5 @@
 # Kubernetes Kubelet
+
 ---
 
 ## 视图预览
@@ -143,7 +144,7 @@ kubectl apply -f datakit.yaml
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，Kubelet 指标都会带有 'app = "oa"' 的标签，可以进行快速查询。
+- 以下示例配置完成后，Kubelet 指标都会带有如下类似的标签，可以进行快速查询
 - 采集 Kubelet 指标，必填的 key 是 instance，值是 kubeletmetrics 的 ip + 端口
 
 ```toml
