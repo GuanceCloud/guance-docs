@@ -51,7 +51,7 @@ NGINX 采集器可以从 NGINX 实例中采取很多指标，比如请求总数�
 ```toml
 
 [[inputs.nginx]]
-	url = "http://localhost/server_status"
+	url = "http://localhost:80/server_status"
 	# ##(optional) collection interval, default is 30s
 	# interval = "30s"
 	use_vts = false

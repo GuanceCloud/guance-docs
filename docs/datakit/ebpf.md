@@ -144,6 +144,12 @@ setenforce 0
       ##
       ipv6_disabled = false
     
+      ## ephemeral port strart from <ephemeral_port>
+      ##
+      # ephemeral_port = 10001
+    
+      # interval = "60s"
+    
       [inputs.ebpf.tags]
         # some_tag = "some_value"
         # more_tag = "some_other_value"
@@ -177,12 +183,14 @@ setenforce 0
 
     通过以下环境变量可以调整 Kubernetes 中 ebpf 采集配置：
     
-    | 环境变量名                                  | 对应的配置参数项              | 参数示例                                                                              |
-    | :---                                        | ---                           | ---                                                                                   |
-    | `ENV_INPUT_EBPF_ENABLED_PLUGINS`            | `enabled_plugins`             | `ebpf-net,ebpf-bash`                                                                          |
-    | `ENV_INPUT_EBPF_L7NET_ENABLED`              | `l7net_enabled`               | `httpflow,httpflow-tls`                                                                       |
-    | `ENV_INPUT_EBPF_IPV6_DISABLED`              | `ipv6_disabled`               | `false/true`                                                |
-    
+    | 环境变量名                                    | 对应的配置参数项                 | 参数示例                    |
+    | :---                                        | ---                           | ---                        |
+    | `ENV_INPUT_EBPF_ENABLED_PLUGINS`            | `enabled_plugins`             | `ebpf-net,ebpf-bash`       |
+    | `ENV_INPUT_EBPF_L7NET_ENABLED`              | `l7net_enabled`               | `httpflow,httpflow-tls`    |
+    | `ENV_INPUT_EBPF_IPV6_DISABLED`              | `ipv6_disabled`               | `false/true`               |
+    | `ENV_INPUT_EBPF_EPHEMERAL_PORT`             | `ephemeral_port`              | `32768`                    |
+    | `ENV_INPUT_EBPF_INTERVAL`                   | `interval`                    | `60s`                      |
+
 
 ## 指标集 {#measurements}
 
@@ -224,7 +232,7 @@ setenforce 0
 |`src_k8s_namespace`|源 IP 所在 k8s 的 namespace|
 |`src_k8s_pod_name`|源 IP 所属 k8s 的 pod name|
 |`src_k8s_service_name`|源 IP 所属 k8s 的 service name|
-|`src_port`|源端口, 临时端口(32768 ~ 60999)聚合后的值为 `*`|
+|`src_port`|源端口, 临时端口聚合后的值为 `*`|
 |`sub_source`|用于 netflow 的部分特定连接分类，如 Kubernetes 流量的值为 K8s|
 |`transport`|传输协议 (udp/tcp)|
 
@@ -329,7 +337,7 @@ setenforce 0
 |`src_k8s_namespace`|源 IP 所在 k8s 的 namespace|
 |`src_k8s_pod_name`|源 IP 所属 k8s 的 pod name|
 |`src_k8s_service_name`|源 IP 所属 k8s 的 service name|
-|`src_port`|源端口, 临时端口(32768 ~ 60999)聚合后的值为 `*`|
+|`src_port`|源端口, 临时端口聚合后的值为 `*`|
 |`sub_source`|用于 httpflow 的部分特定连接分类，如 Kubernetes 流量的值为 K8s|
 |`transport`|传输协议 (udp/tcp)|
 
@@ -338,6 +346,7 @@ setenforce 0
 
 | 指标 | 描述| 数据类型 | 单位   |
 | ---- |---- | :---:    | :----: |
+|`count`|一个采集周期内的 HTTP 请求数聚合总数|int|-|
 |`http_version`|1.1 / 1.0 ...|string|-|
 |`latency`|ttfb|int|ns|
 |`method`|GET/POST/...|string|-|
