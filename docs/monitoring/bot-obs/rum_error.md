@@ -12,6 +12,8 @@
 3. 开启自建 DataFlux Func 的[脚本市场](https://func.guance.com/doc/script-market-basic-usage/)
 4. 在观测云「管理 / API Key 管理」中创建用于进行操作的 [API Key](../../management/api-key/open-api.md)
 5. 在自建的 DataFlux Func 中，通过「脚本市场」安装「观测云自建巡检 Core 核心包」「观测云算法库」「观测云自建巡检（rum）」
+6. 在自建的 DataFlux Func 中，编写自建巡检处理函数
+7. 在自建的 DataFlux Func 中，通过「管理 / 自动触发配置」，为所编写的函数创建自动触发配置
 
 ## 配置巡检
 
@@ -122,7 +124,6 @@ def run(configs={}):
 **1.前端应用日志错误巡检的检测频率如何配置**
 
 在 DataFlux Func 中，通过「管理 / 自动触发配置」为检测函数设置自动触发时间建议配置每小时执行一次
-
 
 
 
