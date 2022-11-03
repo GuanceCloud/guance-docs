@@ -63,10 +63,10 @@ icon: zy/release-notes
 ### 最佳实践更新
 
 - 监控 Monitoring
-  - 应用性能监控 (APM) - [Kafka 可观测最佳实践](../best-practices/monitoring/kafka.md)。
+    - 应用性能监控 (APM) - [Kafka 可观测最佳实践](../best-practices/monitoring/kafka.md)。
 
 - 云平台接入
-  - 阿里云 - [阿里云 ACK 接入观测云](../best-practices/partner/aliyun-ack.md)。
+    - 阿里云 - [阿里云 ACK 接入观测云](../best-practices/partner/aliyun-ack.md)。
 
 更多最佳实践更新可参考 [最佳实践版本历史](../best-practices/index.md) 。
 
