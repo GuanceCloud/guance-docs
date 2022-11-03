@@ -11,20 +11,20 @@
 
 - 支持的操作符：
 
-  - `+`  - 加法
-  - `-`  - 减法
-  - `*`  - 乘法
-  - `/`  - 除法
-  - `%`  - 取模
-  - `=` - 等于
-  - `!=` - 不等于
-  - `<=` - 大于等于
-  - `<` - 小于
-  - `>=` - 大于等于
-  - `>` -  大于
-  - `^` - 指数运算
-  - `&&` - 逻辑与
-  - `||` - 逻辑或
+	- `+`  - 加法
+	- `-`  - 减法
+	- `*`  - 乘法
+	- `/`  - 除法
+	- `%`  - 取模
+	- `=` - 等于
+	- `!=` - 不等于
+	- `<=` - 大于等于
+	- `<` - 小于
+	- `>=` - 大于等于
+	- `>` -  大于
+	- `^` - 指数运算
+	- `&&` - 逻辑与
+	- `||` - 逻辑或
 
 - 支持的关键字：
 
@@ -38,42 +38,42 @@ SLIMIT SOFFSET TRUE WITH
 
 - 标识符：标识符有几种形式，便于兼容各种变量命名形式
 
-  - 正常变量名中只能出现 `[_a-zA-Z0-9]` 这些字符，且首字符不能是数字。如 `_abc, _abc123, _123ab`
-  - 其它形式的变量名处理方式：
-    - `this+is-a*xx/yy^zz?variable`，`by` 需写成 `` `this+is-a*xx/yy^zz?variable` ``，`` `by` ``，前者变量中带运算符，后者的 `by` 是 DQL 关键字
-    - 支持中文等 UTF8 标识符，如 `M::cpu:(usage AS 使用率) [5m]`
-      - 支持表情符号：`M::cpu:(usage AS 使用率👍) [5m]`
-    - 变量中就带了一个反引号，`` this`is-a-vairalbe `` 需写成 `` `identifier("this`is-a-vairalbe")` `` 来修饰
+	- 正常变量名中只能出现 `[_a-zA-Z0-9]` 这些字符，且首字符不能是数字。如 `_abc, _abc123, _123ab`
+	- 其它形式的变量名处理方式：
+		- `this+is-a*xx/yy^zz?variable`，`by` 需写成 `` `this+is-a*xx/yy^zz?variable` ``，`` `by` ``，前者变量中带运算符，后者的 `by` 是 DQL 关键字
+		- 支持中文等 UTF8 标识符，如 `M::cpu:(usage AS 使用率) [5m]`
+			- 支持表情符号：`M::cpu:(usage AS 使用率👍) [5m]`
+		- 变量中就带了一个反引号，`` this`is-a-vairalbe `` 需写成 `` `identifier("this`is-a-vairalbe")` `` 来修饰
 
 - 字符串值可用双引号和单引号： `"this is a string"` 和 `'this is a string'` 是等价的
 
 - 特殊字符串
-  - base64 字符串：DQL 支持处理 base64 字符串，对于 bas64 字符串，DQL 在查询时能自动解出原始字符串，其写法如下：
-    - `` b64`some-base64-string` ``
-    - `b64'some-base64-string'`
-    - `b64"some-base64-string"`
-
-  - 正则表达式字符串：原 `re('xxx')` 已弃用，建议使用如下形式来标识正则字符串。
-    - `` re`some-regexp` ``（推荐）
-    - `re'some-regexp'`
-    - `re"some-regexp"`
+	- base64 字符串：DQL 支持处理 base64 字符串，对于 bas64 字符串，DQL 在查询时能自动解出原始字符串，其写法如下：
+		- `` b64`some-base64-string` ``
+		- `b64'some-base64-string'`
+		- `b64"some-base64-string"`
+	
+	- 正则表达式字符串：原 `re('xxx')` 已弃用，建议使用如下形式来标识正则字符串。
+		- `` re`some-regexp` ``（推荐）
+		- `re'some-regexp'`
+		- `re"some-regexp"`
 
 - 支持数据类型：
-  - 支持浮点（`123.4`, `5.67E3`）
-  - 整形（`123`, `-1`）
-  - 字符串（`'张三'`, `"hello world"`）
-  - Boolean（`true`, `false`）
-  - Duration（`1y`, `1w`, `1d`, `1h`, `1m`, `1s`, `1ms`, `1us`, `1ns` 分别表示 1 年/周/天/时/分/秒/毫秒/微秒/纳秒）
+	- 支持浮点（`123.4`, `5.67E3`）
+	- 整形（`123`, `-1`）
+	- 字符串（`'张三'`, `"hello world"`）
+	- Boolean（`true`, `false`）
+	- Duration（`1y`, `1w`, `1d`, `1h`, `1m`, `1s`, `1ms`, `1us`, `1ns` 分别表示 1 年/周/天/时/分/秒/毫秒/微秒/纳秒）
 
 - 特殊函数
 
-  - `tz()` - 时区，有两种形式支持
-    - `tz(+-12)` 以 24 个时区的偏移来指定，如 `tz(+8),tz(8), tz('Asia/Shanghai')` 是一样的，夏令时不能通过这种形式来指定。
-    - `tz('Asia/Shanghai')` 以国际标准形式来指定时区。对于夏令时，只能通过这种形式来指定。
+	- `tz()` - 时区，有两种形式支持
+		- `tz(+-12)` 以 24 个时区的偏移来指定，如 `tz(+8),tz(8), tz('Asia/Shanghai')` 是一样的，夏令时不能通过这种形式来指定。
+		- `tz('Asia/Shanghai')` 以国际标准形式来指定时区。对于夏令时，只能通过这种形式来指定。
 
-  - `identifier()` 用于修饰变量名中带 `` ` `` 字符的变量
+	- `identifier()` 用于修饰变量名中带 `` ` `` 字符的变量
 
-  - `int()` 和 `float()` 对返回的数据做类型转换，仅适用于时序数据。
+	- `int()` 和 `float()` 对返回的数据做类型转换，仅适用于时序数据。
 
 ## 查询
 
@@ -99,7 +99,7 @@ namespace::
 
 ```python
 # 获取指标集 cpu 最近 5 分钟所有字段的数据
-M::cpu [5m]}
+M::cpu [5m]
 
 # 查找匹配正则表达式 *db 的所有指标最近 5 分钟的数据
 M::re('*db') [5m]
@@ -116,7 +116,7 @@ M:: cpu:(time_active, time_guest_nice)
 		{ host = "host-name", cpu = "cpu0" } [5m] BY host,cpu
 
 # 以身高倒排，获取前十
-O::human:(height, age) { age > 100, sex = "直男" } ORDER BY height LIMIT 10
+O::human:(height, age) { age > 100, sex = "直男" } ORDER BY height desc LIMIT 10
 
 M::cpu,mem:(time_active, time_guest_nice, host) { host = "host-name", cpu = "cpu0" } [5m] BY host,cpu
 ```
@@ -224,8 +224,8 @@ DataFlux 数据特点均有时间属性，故将时间的表达用单独的子�
 - `[10m:5m]` - 最近 10 分钟到最近 5 分钟
 - `[10m:5m:1m]` - 最近 10 分钟到最近 5 分钟，且结果按照 1 分钟的间隔聚合
 - `[2019-01-01 12:13:14:5m:1w]` -  2019/1/1 12:13:14 到最近 5 分钟，且结果按照 1 周的间隔聚合。注意，指定日期时，只能精确到秒级别。且只有两种日期格式：
-  - `2006-01-02 15:04:05`：这里的时间指 UTC 时区的时间，不支持指定时区。
-  - `2006-01-02`
+	- `2006-01-02 15:04:05`：这里的时间指 UTC 时区的时间，不支持指定时区。
+	- `2006-01-02`
 
 时间单位支持如下几种：
 
@@ -291,6 +291,7 @@ O::ecs:(host, region)
 对于时序数据，如果dql语句中同时包含了by短语和limit短语，limit约束的是每个聚合组中的返回条数
 
 ```python
+
 # 返回三条cpu记录
 M::cpu:() limit 3
 
@@ -399,6 +400,7 @@ L::nginx { @abc.def = "xyz" }
 L::nginx { `message@jons.abc.def` = "xyz" }
 ```
 
+
 ## 函数说明
 
 参见 [DQL 函数](funcs.md)
@@ -406,5 +408,4 @@ L::nginx { `message@jons.abc.def` = "xyz" }
 参见 [DQL 外层函数](out-funcs.md)
 
 
----
 
