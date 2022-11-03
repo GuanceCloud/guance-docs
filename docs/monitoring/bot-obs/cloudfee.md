@@ -11,7 +11,7 @@
 2. 开启自建 DataFlux Func 的[脚本市场](https://func.guance.com/doc/script-market-basic-usage/)
 3. 在观测云「管理 / API Key 管理」中创建用于进行操作的 [API Key](../../management/api-key/open-api.md)
 4. 在自建的 DataFlux Func 中，通过「脚本市场」安装「观测云自建巡检 Core 核心包」、「观测云算法库」、「观测云自建巡检（账单）」
-5. 在脚本市场中安装开启[「观测云集成（华为云-账单采集）」](https://func.guance.com/doc/script-market-guance-aliyun-billing/)、[「观测云集成（阿里云-账单采集）」](https://func.guance.com/doc/script-market-guance-huaweicloud-billing/)、[「观测云集成（腾讯云-账单采集）」](https://func.guance.com/doc/script-market-guance-tencentcloud-billing/) 并且收集数据天数超过 15 天并且有有效的消费记录
+5. 在脚本市场中安装开启[「观测云集成（华为云-账单采集）」](https://func.guance.com/doc/script-market-guance-aliyun-billing/)、[「观测云集成（阿里云-账单采集）」](https://func.guance.com/doc/script-market-guance-huaweicloud-billing/)、[「观测云集成（腾讯云-账单采集）」](https://func.guance.com/doc/script-market-guance-tencentcloud-billing/) 并且收集数据天数超过 15 天
 6. 在自建的 DataFlux Func 中，编写自建巡检处理函数
 7. 在自建的 DataFlux Func 中，通过「管理 / 自动触发配置」，为所编写的函数创建自动触发配置
 
@@ -129,10 +129,12 @@ def run(configs=None):
 
 - 事件概览：描述异常巡检事件的对象、内容等
 - 成本分析：可查看当前异常云账户的近 30 天的消费趋势
-   - 异常区间：智能巡检数据中的异常开始时间到结束时间
+	- 异常区间：智能巡检数据中的异常开始时间到结束时间
+
 - 消费金额排名：查看当前云账户产品费用排名
 - 费用预测：预测云账户当月剩余日期的消费金额
-   - 置信区间：预测趋势线的准确范围
+	- 置信区间：预测趋势线的准确范围
+
 - 月度预算：当前账户费用占月度预算的情况
 
 ##### 云账户费用超出预算
