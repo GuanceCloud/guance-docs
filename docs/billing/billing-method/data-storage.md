@@ -32,4 +32,4 @@
 您在注册观测云商业版时，如果使用阿里云账号结算方式，可以采用「默认存储」和「 SLS 存储」两种数据存储方案。
 
 - 默认存储：使用 ElasticSearch 存储日志类数据，InfluxDB / TDengine 存储指标类数据；
-- SLS 存储：使用 Log Store 存储日志类数据，Metric Store 存储指标类数据，更多详情可参考文档 [SLS 存储](aliyun-sls.md) 。
+- SLS 存储：使用 Log Store 存储日志类数据，Metric Store 存储指标类数据，更多详情可参考文档 [选择 SLS 存储](../../billing/commercial-version.md#sls) 。
