@@ -1,30 +1,39 @@
-# Kubernetes下 Stdout 日志白名单最佳实践
+# Kubernetes 下 StdOut 日志白名单最佳实践
 
 ---
 
 ## 环境准备
 
-已有Kubernetes环境（简称K8），本实践基于自建Kubernetesv1.23.1，观测云Datakit版本1.2.13，Nginx1.17。Datakit已经部署好，Datakit配置文件container.conf通过ConfigMap方式管理。
+已有 Kubernetes 环境（简称 K8s），本实践基于自建 Kubernetes v1.23.1，观测云 Datakit 版本 1.2.13，Nginx 1.17。
 
-注：（阿里云容器服务（Alibaba Cloud Container Service for Kubernetes）或其他云服务商的Kubernetes配置原理类似。_
+Datakit 已经部署好，Datakit 配置文件 `container.conf` 通过 ConfigMap 方式管理。
+
+> **注意：**阿里云容器服务（Alibaba Cloud Container Service for Kubernetes）或其他云服务商的 Kubernetes 配置原理类似。
 
 ## 前置条件
-Nginx日志在K8环境中的输出为Stdout方式，而非文件方式。观测云Datakit以DaemonSet部署后，默认采集K8内部所有Stdout日志输出，包括集群内部组件的Stdout输出方式，如CoreDNS（需开启日志）。本文涉及的日志均为Stdout方式输出。
 
-注：Stdout是开发工程师写代码时，选择日志控制台的输出方式，如：
+Nginx 日志在 K8s 环境中的输出为 StdOut 方式，而非文件方式。观测云 Datakit 以 DaemonSet 部署后，默认采集 K8s 内部所有 StdOut 日志输出，包括集群内部组件的 StdOut 输出方式，如 CoreDNS（需开启日志）。本文涉及的日志均为 Stdout 方式输出。
+
+注：StdOut 是开发工程师写代码时，选择日志控制台的输出方式，如：
 
 ```
 <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
 ```
+
 ## 白名单需求
 
-Datakit部署完成后，按需采集指定的业务Pod日志、K8集群组件的日志，后续新增的未指定的业务Pod日志不会采集，另外对同一个Pod里的多容器日志采集只采集其中一个或多个。<br />本文通过观测云采集器Datakit不同的日志过滤方法来实现，使用给日志加Annotation标注（包括过滤Pod内部其他容器产生的日志）和container.conf中的container_include_log = []组合来实现。<br />更详细日志处理原理见[《Datakit日志处理综述》](../../datakit/datakit-logging-how.md) 一文。
+Datakit 部署完成后，按需采集指定的业务 Pod 日志、K8s 集群组件的日志，后续新增的未指定的业务 Pod 日志不会采集，另外对同一个 Pod 里的多容器日志采集只采集其中一个或多个。
+
+本文通过观测云采集器 Datakit 不同的日志过滤方法来实现，使用给日志加 Annotation 标注（包括过滤 Pod 内部其他容器产生的日志）和 `container.conf` 中的 `container_include_log = []`组合来实现。
+
+> 更详细日志处理原理，可参考<[Datakit 日志处理综述](../../datakit/datakit-logging-how.md)>
 
 ## 实现方式
 
 ### 方式一 使用 container_include_log = []
 
-只采集集群组件coredns和nginx日志，container_include_log用正则语法编写image的名称，具体见[《根据容器 image 配置指标和日志采集》](../../datakit/container.md)
+只采集集群组件 coredns 和 nginx 日志，`container_include_log` 用正则语法编写 image 的名称。
+> 具体见<[根据容器 image 配置指标和日志采集](../../datakit/container.md)>
 
 ```toml
       [inputs.container]
@@ -61,13 +70,17 @@ Datakit部署完成后，按需采集指定的业务Pod日志、K8集群组件�
 
 #### 实现效果
 
-这样就按需采集指定image名称的Pod日志，如下图：
+这样就按需采集指定 image 名称的 Pod 日志，如下图：
 
 ![image](../images/stdout-log/1.png)
 
 ### 方式二 组合 container_include_log = []和 Annotation 标记
 
-只采集集群组件coredns和nginx日志，同时通过Annotation对nginx标记，当然未在container_include_log中开启的白名单，比如：另外的镜像busybox，也可以通过Annotation方式标记后采集上来。这是由于Annotation标记的方式优先级高。详细见日志处理原理[《Datakit日志处理综述》](../../datakit/datakit-logging-how.md) 一文。<br />Nginx的Annotation标记
+只采集集群组件 coredns 和 nginx 日志，同时通过 Annotation 对 nginx 标记，当然未在 `container_include_log` 中开启的白名单，比如另外的镜像 busybox，也可以通过 Annotation 方式标记后采集上来。这是由于 Annotation 标记的方式优先级高。
+
+> 更详细日志处理原理，可参考<[Datakit 日志处理综述](../../datakit/datakit-logging-how.md)>
+
+Nginx 的 Annotation 标记
 
 ```bash
       labels:
@@ -83,7 +96,7 @@ Datakit部署完成后，按需采集指定的业务Pod日志、K8集群组件�
               "multiline_match": ""
             }
           ]
-    spec: 
+    spec:
 ```
 
 ```toml
@@ -125,17 +138,17 @@ Datakit部署完成后，按需采集指定的业务Pod日志、K8集群组件�
 
 ![image](../images/stdout-log/2.png)
 
-### 方式三 过滤Pod中的某容器日志
+### 方式三 过滤 Pod 中的某容器日志
 
-只采集集群组件coredns和nginx日志，同时通过Annotation对nginx标记里的"only_images" 字段开启只需要容器的image，也就是在Pod内部也有个白名单策略。
+只采集集群组件 coredns 和 nginx 日志，同时通过 Annotation 对 nginx 标记里的 `"only_images"` 字段开启只需要容器的 image，也就是在 Pod 内部也有个白名单策略。
 
-#### 开启Pod内白名单前
+#### 开启 Pod 内白名单前
 
-如下图，nginx和busybox日志均采集<br />
+如下图，nginx 和 busybox 日志均采集
 
 ![image](../images/stdout-log/3.png)
 
-#### 开启Pod内白名单
+#### 开启 Pod 内白名单
 
 ```bash
       labels:
@@ -152,21 +165,21 @@ Datakit部署完成后，按需采集指定的业务Pod日志、K8集群组件�
               "multiline_match": ""
             }
           ]
-    spec: 
+    spec:
 ```
 
 #### 实现效果
 
-仅保留Pod内Nginx日志<br />
+仅保留 Pod 内 Nginx 日志<br />
 
 ![image](../images/stdout-log/4.png)
 
 ## 总结
 
-其实不建议开启白名单策略，白名单可能会造成很多问题，且不好调试，白名单可能会有无法预期的效果，比如开发打个日志没看到，实际上是没加某个 Tag。要过滤日志来源，黑名单失效最差情况是数据采集上来，黑名单过滤比如在Datakit采集器container.conf中的
+其实不建议开启白名单策略，白名单可能会造成很多问题，且不好调试，白名单可能会有无法预期的效果，比如开发打个日志没看到，实际上是没加某个 Tag。要过滤日志来源，黑名单失效最差情况是数据采集上来，黑名单过滤比如在 Datakit 采集器 `container.conf` 中的
 
 ```bash
 container_exclude_log = ["image:pubrepo.jiagouyun.com/datakit/logfwd*"]
 ```
 
-方式一是没有使用Annotation标记，而是用采集器container.conf中内置的过滤方式，更偏向底层的方式实现。但是这种方式不如方式二，因为标记的方式可以对日志的来源做更好的Tag，未来分析问题，做筛选方便些，另外也更灵活点，标记是在业务Pod上，可以做到，同一批业务Image进行精细化的日志过滤管控。<br />方式三结合具体的业务场景，过滤掉一些不必要的Sidecar等日志，可以过滤掉不必要的日志，达到日志采集降噪的效果。
+方式一，是没有使用 Annotation 标记，而是用采集器 `container.conf` 中内置的过滤方式，更偏向底层的方式实现。但是这种方式不如方式二，因为标记的方式可以对日志的来源做更好的 Tag，未来分析问题，做筛选方便些，另外也更灵活点，标记是在业务 Pod 上，可以做到，同一批业务 Image 进行精细化的日志过滤管控。<br />方式三结合具体的业务场景，过滤掉一些不必要的 Sidecar 等日志，可以过滤掉不必要的日志，达到日志采集降噪的效果。
