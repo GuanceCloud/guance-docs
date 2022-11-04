@@ -2,7 +2,7 @@
 
 ## v1.51.112（2022年10月20日）
 
-pubrepo.jiagouyun.com/dataflux/1.51.112:launcher-b4717fd-1667315533
+pubrepo.jiagouyun.com/dataflux/1.51.112:launcher-43db8d3-1667315533
 
 此版本是产品迭代版本，主要有如下更新:
 
@@ -51,7 +51,7 @@ pubrepo.jiagouyun.com/dataflux/1.51.112:launcher-b4717fd-1667315533
 -  基础设施监控 (ITIM) - Ansible 批处理实战
 -  日志 - 观测云采集 Amazon ECS 日志
 
-更多详情可参考帮助文档：[https://docs.guance.com/release-notes/]()
+更多详情可参考帮助文档：[https://docs.guance.com/release-notes/](https://docs.guance.com/release-notes/)
 
 ## v1.50.111（2022年10月12日）
 
@@ -89,7 +89,7 @@ pubrepo.jiagouyun.com/dataflux/1.50.110:launcher-bf5e4a7-1664640281
 
 - 云原生：多个 Kubernetes 集群指标采集最佳实践
 
-更多详情可参考帮助文档：[https://docs.guance.com/release-notes/]()
+更多详情可参考帮助文档：[https://docs.guance.com/release-notes/](https://docs.guance.com/release-notes/)
 
 ## v1.49.108 (2022年9月23日)
 
@@ -99,7 +99,7 @@ pubrepo.jiagouyun.com/dataflux/1.49.108:launcher-833084a-1663915927
 
 - 修复几个小 bug
 
-更多详情可参考帮助文档：https://docs.guance.com/release-notes/
+更多详情可参考帮助文档：[https://docs.guance.com/release-notes/](https://docs.guance.com/release-notes/)
 
 
 ## v1.49.107 (2022年9月15日)
@@ -126,7 +126,7 @@ pubrepo.jiagouyun.com/dataflux/1.49.107:launcher-e550301-1663603951
 
 - 监控 Monitoring- 中间件（Middleware） - 洞见 MySQL
 
-更多详情可参考帮助文档：https://docs.guance.com/release-notes/
+更多详情可参考帮助文档：[https://docs.guance.com/release-notes/](https://docs.guance.com/release-notes/)
 
 ## v1.48.106(2022年9月1日)
 
