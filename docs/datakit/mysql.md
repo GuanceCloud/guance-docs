@@ -310,6 +310,7 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name = 'events
 |`Binlog_space_usage_bytes`|-|int|B|
 |`Bytes_received`|The number of bytes received from all clients.|int|B|
 |`Bytes_sent`|The number of bytes sent to all clients.|int|B|
+|`Com_commit`|The number of times of commit statement has been executed.|int|count|
 |`Com_delete`|The number of times of delete statement has been executed.|int|count|
 |`Com_delete_multi`|The number of times of delete-multi statement has been executed.|int|count|
 |`Com_insert`|The number of times of insert statement has been executed.|int|count|
@@ -317,6 +318,7 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name = 'events
 |`Com_load`|The number of times of load statement has been executed.|int|count|
 |`Com_replace`|The number of times of replace statement has been executed.|int|count|
 |`Com_replace_select`|The number of times of replace-select statement has been executed.|int|count|
+|`Com_rollback`|The number of times of rollback statement has been executed.|int|count|
 |`Com_select`|The number of times of select statement has been executed.|int|count|
 |`Com_update`|The number of times of update statement has been executed.|int|count|
 |`Com_update_multi`|The number of times of update-mult has been executed.|int|count|
