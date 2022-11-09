@@ -6,13 +6,17 @@
 
 [ddtrace java 文档 ](https://docs.datadoghq.com/tracing/setup_overview/setup/java/)
 
-当前案例使用 ddtrace 版本`0.78.3`和 `0.97.0`（最新版本）进行测试
+当前案例使用 ddtrace 版本`0.114.0`（最新版本）进行测试
+
+## DataKit ddtrace 采集器开启
+
+开启[ddtrace采集器](/datakit/ddtrace/)
 
 
 ## 准备 Shell
 
 ```shell
-java -javaagent:D:/ddtrace/dd-java-agent-0.97.0.jar \
+java -javaagent:D:/ddtrace/dd-java-agent-0.114.0.jar \
 -Ddd.service=ddtrace-server \
 -Ddd.agent.port=9529 \
 -jar springboot-ddtrace-server.jar
@@ -92,7 +96,7 @@ ddtrace 支持给方法注入 Trace ，默认情况下，ddtrace 会对所有的
         <dependency>
             <groupId>com.datadoghq</groupId>
             <artifactId>dd-trace-api</artifactId>
-            <version>0.102.0</version>
+            <version>0.114.0</version>
         </dependency>
 ```
 在对应需要埋点的方法添加注解  `@Trace`
@@ -171,7 +175,7 @@ ddtrace 提供了`Baggage` 方式，准确的说，应该是 ddtrace 使用 open
     <dependency>
         <groupId>com.datadoghq</groupId>
         <artifactId>dd-trace-api</artifactId>
-        <version>0.102.0</version>
+        <version>0.114.0</version>
     </dependency>
     <dependency>
         <groupId>io.opentracing</groupId>
@@ -278,13 +282,8 @@ customer_tags = ["username", "job"]
 
 ```toml
   ## Sampler config uses to set global sampling strategy.
-  ## priority uses to set tracing data propagation level, the valid values are -1, 0, 1
-  ##  -1: always reject any tracing data send to datakit
-  ##   0: accept tracing data and calculate with sampling_rate
-  ##   1: always send to data center and do not consider sampling_rate
-  ## sampling_rate used to set global sampling rate
+  ## sampling_rate used to set global sampling rate.
   [inputs.ddtrace.sampler]
-    priority = 0
     sampling_rate = 0.1
 ```
 
@@ -296,97 +295,23 @@ do
 done
 ```
 
-### priority = 0
+#### 采集器端开启采样
 
 `sampling_rate`范围 (0,1)，不在范围内，trace丢弃。如果需要全采，则不需要配置`[inputs.ddtrace.sampler]`
 
-应用不配置`dd.trace.sample.rate`
 
-`sampling_rate = 0.1`
+#### 应用端开启采样
 
-| 请求序号 | 次数 | 观测云traceId数 |
-| --- | --- | --- |
-| 1 | 100 | 7 |
-| 2 | 100 | 12 |
-| 3 | 1000 | 101 |
+应用端通过`-Ddd.trace.sample.rate`开启采样，范围为(0,1)。属于标记采样，即trace全采，同时进行采样标记。
 
+### 采样优先级
 
-`-Ddd.trace.sample.rate=0.10` & `sampling_rate = 0.1`
+两种采样方式效果一样，如果同时配置，则采集器端开启采样不生效。即
 
-| 请求序号 | 次数 | 观测云traceId数 |
-| --- | --- | --- |
-| 1 | 1000 | 103 |
-| 2 | 1000 | 104 |
-| 3 | 2000 | 204 |
-| 4 | 2000 | 203 |
-
-
-`-Ddd.trace.sample.rate=0.10` 对结果不影响，可以删除。
-
-`sampling_rate = 0.5`
-
-| 请求序号 | 次数 | 观测云traceId数 |
-| --- | --- | --- |
-| 1 | 1000 | 505 |
-| 2 | 1000 | 505 |
-| 3 | 2000 | 998 |
-| 4 | 2000 | 1006 |
-
-
-datakit `sampling_rate = 1`
-
-| 请求序号 | 次数 | 观测云traceId数 |
-| --- | --- | --- |
-| 1 | 500 | 0 |
-| 2 | 500 | 0 |
+> `-Ddd.trace.sample.rate`  > `sampling_rate`
 
 
 
-### priority =1
-`sampling_rate`参数失效，应用层面如果不配置概率采样，则datakit会过滤所有的trace
-
-应用配置概率 `-Ddd.trace.sample.rate=0.10`
-
-| 请求序号 | 次数 | 观测云traceId数 |
-| --- | --- | --- |
-| 1 | 100 | 100 |
-| 2 | 500 | 500 |
-
-
-应用配置概率 `-Ddd.trace.sample.rate=1`
-
-| 请求序号 | 次数 | 观测云traceId数 |
-| --- | --- | --- |
-| 1 | 100 | 100 |
-| 2 | 500 | 500 |
-
-
-应用配置概率 `-Ddd.trace.sample.rate=10`
-
-| 请求序号 | 次数 | 观测云traceId数 |
-| --- | --- | --- |
-| 1 | 100 | 100 |
-| 2 | 500 | 500 |
-
-
-应用配置概率 `-Ddd.trace.sample.rate=0.5`
-
-| 请求序号 | 次数 | 观测云traceId数 |
-| --- | --- | --- |
-| 1 | 100 | 100 |
-| 2 | 100 | 100 |
-
-### priority =-1  
-无论其他参数怎么配置，都不会上报trace信息。
-
-### 采样结论  
-![](../images/ddtrace-skill-7.png)
-
-- 当priority=0时，基于sampling_rate 概率进行采样，取值范围为（0,1）。
-- 当priority=1时，则表示不进行概率采样，即上报所有的trace信息。
-- 当priority=-1时，则拒绝上报trace信息，即全部trace信息过滤掉。
-
-同时也证明了 ddtrace-javagent 采样参数无效。
 
 ## 过滤 Resource
 
