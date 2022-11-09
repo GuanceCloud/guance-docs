@@ -41,13 +41,11 @@
 
 ![](img/1-aliyun-register-1109.png)
 
-注册完成后，可观看观测云介绍小视频并加入到观测云社区。
+注册完成后，可观看观测云介绍小视频，或者您可以点击“从安装 DataKit 开始”即可安装配置第一个 DataKit 。
 
-![](img/2.register_4.png)
+![](img/1-free-start-1109.png)
 
-看完观测云介绍以后，点击“立即开始”即可进入新手引导页面，可以根据新手引导安装配置第一个 DataKit 。
 
-![](img/7.biling_account_1.png)
 
 
 
