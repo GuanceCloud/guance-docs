@@ -7,13 +7,14 @@ Aerospike Namespace 性能指标展示，包括集群、空间下的内存使用
 
 ![image](../imgs/input-aerospike-1.png)
 
-Aerospike Node 相关指标展示，包括 Node 集群、node 状态、记录数、内存、磁盘指标等。
+Aerospike Node 相关指标展示，包括 Node 集群、Node 状态、记录数、内存、磁盘指标等。
 
 ![image](../imgs/input-aerospike-2.png)
 
 ## 版本支持
 
-操作系统：Linux / Windows / macOS<br />Aerospike 版本：LAST (6.0.0)
+操作系统：Linux / Windows / macOS<br />
+Aerospike 版本：LAST (6.0.0)
 
 ## 前置条件
 

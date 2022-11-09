@@ -182,8 +182,8 @@ kubectl apply -f datakit.yaml
 
 ## 常见问题排查
 
-- <[无数据上报排查](../../datakit/why-no-data.md)>
+<[无数据上报排查](../../datakit/why-no-data.md)>
 
 ## 进一步阅读
 
-- [TAG 在观测云中的最佳实践](../../best-practices/insight/tag.md)
+<[TAG 在观测云中的最佳实践](../../best-practices/insight/tag.md)>

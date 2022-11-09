@@ -1,3 +1,4 @@
 nav:
+  - index.md
   - 'GitLab': gitlab.md
   - 'Jenkins': jenkins.md

@@ -5,26 +5,22 @@
 
 <br/>
 
-**对于主机系统的数据采集，需首先[安装 DataKit](../../datakit/datakit-install.md)：**
 
-- 安装 DataKit 之后，会默认开启一些数据的采集；
+[**安装 DataKit**](../../datakit/datakit-install.md)之后，对于如下指标集，可通过不同采集方式获取：
 
-- 除默认采集的数据之外，用户可以根据实际需求，自定义开启更多丰富的数据采集插件；
+| 默认采集 |      |   |   |  |
+| :----: | :----: | :----: | :----: |:----: |
+| [CPU](default/cpu.md){ .md-button .md-button--primary } | [Conntrack](default/conntrack.md){ .md-button .md-button--primary } | [DataKit](default/datakit.md){ .md-button .md-button--primary } | [MEM](default/mem.md){ .md-button .md-button--primary }|
+| [Disk](default/disk.md){ .md-button .md-button--primary } | [DiskIO](default/diskio.md){ .md-button .md-button--primary } | [Net](default/net.md){ .md-button .md-button--primary } | [Swap](default/swap.md){ .md-button .md-button--primary } |[System](default/system.md){ .md-button .md-button--primary } |
 
-- 而对于一些特别的指标，安装 DataKit 之后，目前还需要 Telegraf 协助采集数据。
 
-
-
-**安装 DataKit 之后，主机指标的采集说明如下：**
-
-- 默认采集：[CPU](default/cpu.md) 、 [Conntrack](default/conntrack.md) 、 [DataKit](default/datakit.md) 、 [Disk](default/disk.md) 、  [DiskIO](default/diskio.md) 、 [MEM](default/mem.md) 、 [Net](default/net.md) 、 [Swap](default/swap.md)、  [System](default/system.md)
-
-- 自定义开启：[Directory](directory.md) 、 [eBPF](ebpf.md) 、 [Processes](processes.md) 、 [Scheck(安全巡检)](default/mem.md)
-
-- Telegraf：[Chrony](chrony.md) 、 [DNS Query](dns-query.md) 、 [EthTool](ethtool.md) 、 [IPMI Sensor](ipmi-sensor.md) 、 [NetStat](netstat.md) 、 [NtpQ](ntpq.md) 、 [ProcStat](procstat.md)
+| {==**自定义开启**==}  |    |      |     |
+| :----: | :----: | :----: | :----: |
+| [Directory](directory.md){ .md-button .md-button--primary } | [eBPF](ebpf.md){ .md-button .md-button--primary } | [Processes](processes.md){ .md-button .md-button--primary } |[Scheck(安全巡检)](scheck.md){ .md-button .md-button--primary }  |
+| {++**Telegraf**++}  |    |      |     |
+| [Chrony](chrony.md){ .md-button .md-button--primary } |  [DNS Query](dns-query.md){ .md-button .md-button--primary } | [EthTool](ethtool.md){ .md-button .md-button--primary } |[IPMI Sensor](ipmi-sensor.md){ .md-button .md-button--primary } |
+| [NetStat](netstat.md){ .md-button .md-button--primary } |[NtpQ](ntpq.md){ .md-button .md-button--primary } |[ProcStat](procstat.md){ .md-button .md-button--primary }  | | |
 
 <br/>
 
 **开始[安装 DataKit](../../datakit/datakit-install.md)，开启你的观测云之旅！**
-
-
