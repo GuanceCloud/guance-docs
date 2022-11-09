@@ -2,7 +2,8 @@
 
 ---
 
-观测云具有全域数据采集能力，现已支持上百种数据源的采集。观测云支持官方出品的标准采集器 DataKit ，基于 DataKit 的数据采集能力，支持接入第三方数据，如[Telegraf](../datakit/telegraf.md)、[Prometheus](../datakit/prom.md)、[Statsd](../datakit/statsd.md)、[Cloudprober](../datakit/cloudprober.md)、[Scheck](../datakit/sec-checker.md) 等，同时支持[通过 Python 开发自定义采集器](../developers/pythond.md)。
+观测云具有全域数据采集能力，现已支持上百种数据源的采集。
+观测云支持官方出品的标准采集器 DataKit ，基于 DataKit 的数据采集能力，也支持接入第三方数据。
 
 集成文档重点介绍，观测云对各技术栈的数据接入操作指引。
 
@@ -13,8 +14,6 @@
 | [网络连接](./network/index.md){ .md-button .md-button--primary } |[Web服务](./webservice/index.md){ .md-button .md-button--primary }| [CI/CD](./cicd/index.md){ .md-button .md-button--primary } | |
 | [APM](../integrations/ddtrace-java.md){ .md-button .md-button--primary } |[RUM](./rum/rum-android.md){ .md-button .md-button--primary }| [日志](../integrations/logstash.md){ .md-button .md-button--primary }| |
 
-
-<br/>
 
 
 
