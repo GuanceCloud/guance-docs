@@ -1,26 +1,26 @@
-# Web服务
+# Web 服务
+
 ---
 
 [DataKit](../../datakit/) 是观测云中至关重要的一个数据采集组件，几乎所有观测云中的数据都是来源于 DataKit。
 
-<br/>
+<br />
 
-**对于Web服务的数据采集，需首先[安装 DataKit](../../datakit/datakit-install.md)：**
+对于 Web 服务的数据采集，需首先[**安装 DataKit**](../../datakit/datakit-install.md)：
 
-- 安装 DataKit 之后，用户可以根据实际需求，自定义开启丰富的数据采集插件；
+- 安装 DataKit 之后，用户可以根据实际需求，**自定义开启**丰富的数据采集插件：
 
-- 而对于一些特别的数据存储，安装 DataKit 之后，目前还需要 Telegraf 协助采集数据。
+| 指标集名称          | 指标举例                                                   |
+| ------------------- | ---------------------------------------------------------- |
+| [Apache](apache.md) | 繁忙/空闲进程、进程 CPU 负载、每秒请求数、每秒服务字节数等 |
+| [Nginx](nginx.md)   | 处理/活跃请求数、等待连接数、缓存信息等                    |
 
+- 安装 DataKit 之后，对于如下指标集，需要 **Telegraf** 协助采集数据：
 
+| 指标集名称            | 指标举例                            |
+| --------------------- | ----------------------------------- |
+| [HAProxy](haproxy.md) | 服务状态、网络流量、队列信息、会话信息等 |
 
-**安装 DataKit 之后，Web服务的采集说明如下：**
-
-- 自定义开启：[Apache](apache.md) 、 [Nginx](nginx.md)
-
-- Telegraf：[HAProxy](haproxy.md) 
-
-<br/>
+<br />
 
 **开始[安装 DataKit](../../datakit/datakit-install.md)，开启你的观测云之旅！**
-
-

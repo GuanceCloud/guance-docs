@@ -1,30 +1,40 @@
 # 中间件
+
 ---
 
 [DataKit](../../datakit/) 是观测云中至关重要的一个数据采集组件，几乎所有观测云中的数据都是来源于 DataKit。
 
-<br/>
+对于中间件的数据采集，需首先[**安装 DataKit**](../../datakit/datakit-install.md)：
 
-**对于中间件的数据采集，需首先[安装 DataKit](../../datakit/datakit-install.md)：**
+- 安装 DataKit 之后，用户可以根据实际需求，**自定义开启**丰富的数据采集插件：
 
-- 安装 DataKit 之后，用户可以根据实际需求，自定义开启丰富的数据采集插件；
+| 指标集名称              | 指标举例                                         | 指标集名称                | 指标举例                                     |
+| ----------------------- | ------------------------------------------------ | ------------------------- | -------------------------------------------- |
+| [Kafka](kafka.md)       | 基础信息、对列信息、Topic 信息和性能信息等       | [Consul](consul.md)       | 监控状态、集群中服务/成员数量、及成员状态等  |
+| [RabbitMQ](rabbitmq.md) | 队列信息、交换信息、Node 信息等                  | [Nacos](nacos.md)         | Config 信息、 Naming 信息、HTTP 、异常信息等 |
+| [RocketMQ](rocketmq.md) | 生产者及消费者的消息数据、消息堆积、Topic 信息等 | [Zookeeper](zookeeper.md) | 会话信息、Node 信息、连接信息、响应用时等    |
+| [Resin](resin.md)       | 线程信息、堆内存、GC 信息、类加载信息等等        | [JVM](jvm.md)             | 线程信息、堆内存、内存池、GC 信息、类加载等  |
+| [Tomcat](tomcat.md)     | 发送/接收字节数、请求及错误信息、线程信息等      | [Solr](solr.md)           | 请求用时、文件信息、Solr Cache 等            |
 
-- 而对于一些特别的数据存储，安装 DataKit 之后，目前还需要其他工具协助采集数据。
+- 安装 DataKit 之后，对于如下指标集，需要其他**采集器**协助采集数据：
 
+**[DataFlux.Func](../../dataflux-func/maintenance-guide-installation.md):**
 
+| 指标集名称                                                 | 指标举例                                       | 指标集名称                      | 指标举例 |
+| ---------------------------------------------------------- | ---------------------------------------------- | ------------------------------- | -------- |
+| [Fluentd](fluentd-metrics.md)                              | 缓冲区队列及字节大小信息、缓冲刷新耗时等 | [Logstash](logstash-metrics.md) | CPU 负载、JVM /进程/事件统计信息、 Pipeline 运行统计信息等 |
 
-**安装 DataKit 之后，中间件的采集说明如下：**
+**Prometheus：**
 
-- 自定义开启：[Consul](consul.md) 、 [JVM](jvm.md) 、 [Kafka](kafka.md) 、 [Nacos](nacos.md) 、 [RabbitMQ](rabbitmq.md)、 [Resin](resin.md)、 [RocketMQ](rocketmq.md)、 [Solr](solr.md)、 [Tomcat](tomcat.md)、 [Zookeeper](zookeeper.md)
+| 指标集名称        | 指标举例                               | 指标集名称        | 指标举例                                             |
+| ----------------- | -------------------------------------- | ----------------- | ---------------------------------------------------- |
+| [Flink](flink.md) | Job 信息、JVM 信息、TaskManager 信息等 | [Seata](seata.md) | 活动中/已提交/已回滚的事务状态及数量、事务耗时信息等 |
 
+**Telegraf：**
 
-- 协助采集数据：
-    - Telegraf：[ActiveMQ](activemq.md) 、 [Beats](beats.md)、 [PHP-FPM](php-fpm.md)
-    - Prometheus：[Flink](flink.md) 、 [Seata](seata.md)
-    - DataFlux.Func：[Fluentd](fluentd-metrics.md) 、 [Logstash](logstash-metrics.md)
-
-<br/>
+| 指标集名称              | 指标举例                                 | 指标集名称        | 指标举例                                   |
+| ----------------------- | ---------------------------------------- | ----------------- | ------------------------------------------ |
+| [ActiveMQ](activemq.md) | 队列进出、Topic 进出、订阅队列进出信息等 | [Beats](beats.md) | CPU 负载、读写字节数、内存信息、事件信息等 |
+| [PHP-FPM](php-fpm.md)   | 运行时间、队列等待信息、进程状态信息等等 |                   |                                            |
 
 **开始[安装 DataKit](../../datakit/datakit-install.md)，开启你的观测云之旅！**
-
-

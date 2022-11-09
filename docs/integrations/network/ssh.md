@@ -4,7 +4,7 @@
 
 ## 视图预览
 
-SSH 性能指标展示，包括 SSH 服务状态、sftp 服务状态、sftp 服务响应时间等。
+SSH 性能指标展示，包括 SSH 服务状态、SFTP 服务状态、SFTP 服务响应时间等。
 
 ![image](../imgs/input-ssh-1.png)
 
