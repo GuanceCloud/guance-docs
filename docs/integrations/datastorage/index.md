@@ -6,25 +6,15 @@
 
 <br />
 
-对于数据存储的数据采集，需首先[**安装 DataKit**](../../datakit/datakit-install.md)：
+[**安装 DataKit**](../../datakit/datakit-install.md)之后，对于如下指标集，用户可通过**自定义开启内置插件**或 **Prometheus** 采集相关数据：
 
-- 安装 DataKit 之后，用户可以根据实际需求，**自定义开启**丰富的数据采集插件：
+| **自定义开启**  |    |      |     |      | 
+| --------- | ---- | ---- | ---- | ---- |
+| [MySQL](mysql.md) | [Oracle](oracle.md) | [PostgreSQL](postgresql.md) | [SQLServer](sqlserver.md)   | [ClickHouse](clickhouse.md) |
+| [MongoDB](mongodb.md) | [Redis](redis.md)  | [Memcached](memcached.md)  | [ElasticSearch](elasticsearch.md) |   | 
+| **Prometheus** |     |    |    |
+| [Aerospike](aerospike.md)  | [Redis-sentinel](redis-sentinel.md) |        |        |
 
-| 指标集名称                  | 指标举例                                                     | 指标集名称                        | 指标举例                                                   |
-| --------------------------- | ------------------------------------------------------------ | --------------------------------- | ---------------------------------------------------------- |
-| [ClickHouse](clickhouse.md) |  语句执行数量、内存存储量、IO 交互等                        | [ElasticSearch](elasticsearch.md) | 节点运行、集群健康、JVM 、索引、检索性能等 |
-| [MySQL](mysql.md)  | 基础数据、链接、存储空间、InnoDB 信息、锁信息等              | [MongoDB](mongodb.md)             | 查询操作、文档操作、TTL 索引、游标、队列信息等         |
-| [Oracle](oracle.md)           | 缓存信息、表空间信息、实例运行、会话信息、锁信息等         | [Redis](redis.md)               | 性能、内存、错误信息、基本活动、持久化信息等     |
-| [PostgreSQL](postgresql.md) | 连接数及其使用率、缓冲分配、计划检查点、脏块数等                       | [Memcached](memcached.md)                 |   连接数、命令数、网络流量、线程数、命中率信息等   |
-| [SQLServer](sqlserver.md)   | CPU、内存、事务、日志、临时表、备份、任务调度等 |                                   |                                                            |
-
-
-
-- 安装 DataKit 之后，对于如下指标集，需要 **Prometheus** 协助采集数据：
-
-| 指标集名称                  | 指标举例                                                     | 指标集名称                        | 指标举例                                                   |
-| --------------------------- | ------------------------------------------------------------ | --------------------------------- | ---------------------------------------------------------- |
-| [Aerospike](aerospike.md) |  Aerospike Namespace 、Aerospike Node 信息等                        | [Redis-sentinel](redis-sentinel.md) | Redis 集群、Slaves 、节点分布信息等 |
 
 
 **开始[安装 DataKit](../../datakit/datakit-install.md)，开启你的观测云之旅！**
