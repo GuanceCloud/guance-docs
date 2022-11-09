@@ -10,9 +10,9 @@
 
 [**安装 DataKit**](../../datakit/datakit-install.md)和[**安装 DataFlux Func 携带版**](../../dataflux-func/maintenance-guide-installation.md)之后，可以很好得观测如下指标集：
 
-| **腾讯云**  |    |      |     |
-| --------- | ---- | ---- | ---- | 
-| [CDB](cdb.md)| [COS](cos.md) | [CLB](clb.md) | [CVM](cvm.md)|
+| [CDB](cdb.md){ .md-button .md-button--primary }| [COS](cos.md){ .md-button .md-button--primary } | [CLB](clb.md){ .md-button .md-button--primary } | [CVM](cvm.md){ .md-button .md-button--primary } |
+| :----: | :----: | :----: | :----: |
+|  |  |  | 更多正在积极对接中...... |
 
 <br/>
 

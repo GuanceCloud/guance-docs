@@ -6,18 +6,18 @@
 
 <br/>
 
-[**安装 DataKit**](../../datakit/datakit-daemonset-deploy.md) 之后，对于如下指标集，用户可通过**自定义开启内置插件**采集相关数据：
+[**安装 DataKit**](../../datakit/datakit-daemonset-deploy.md) 之后，对于如下指标集，用户可通过{==**自定义开启内置插件**==}采集相关数据：
 
 
-| **自定义开启**  |    |
+| {==**自定义开启**==}  |    |
 | --------- | ---- |
-| [Docker](docker.md) | [CoreDNS](coredns.md) |
-| [Kubernetes API Server](kubernetes-api-server.md) |  [Etcd](etcd.md)  |
-| [Kubernetes Controller Manager](kubernetes-controller-manager.md)|  [Harbor](harbor.md) |
-| [Kubernetes Kubelet](kubernetes-kubelet.md)   | [Istio](istio.md)  |
-| [Kubernetes Scheduler](kube-scheduler.md)  | [Ingress Nginx (Prometheus)](ingress-nginx-prom.md) |
-| [Kube State Metrics](kube-state-metrics.md)  |    |
-| [Kubernetes With Metric Server](kube-metric-server.md)  |   |
+| [Docker](docker.md){ .md-button .md-button--primary } | [CoreDNS](coredns.md){ .md-button .md-button--primary } |
+| [Kubernetes API Server](kubernetes-api-server.md){ .md-button .md-button--primary } |  [Etcd](etcd.md){ .md-button .md-button--primary }  |
+| [Kubernetes Controller Manager](kubernetes-controller-manager.md){ .md-button .md-button--primary }|  [Harbor](harbor.md){ .md-button .md-button--primary } |
+| [Kubernetes Kubelet](kubernetes-kubelet.md){ .md-button .md-button--primary }   | [Istio](istio.md){ .md-button .md-button--primary }  |
+| [Kubernetes Scheduler](kube-scheduler.md){ .md-button .md-button--primary }  | [Ingress Nginx (Prometheus)](ingress-nginx-prom.md){ .md-button .md-button--primary } |
+| [Kube State Metrics](kube-state-metrics.md){ .md-button .md-button--primary }  |    |
+| [Kubernetes With Metric Server](kube-metric-server.md){ .md-button .md-button--primary }  |   |
 
 <br/>
 

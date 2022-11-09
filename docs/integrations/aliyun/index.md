@@ -10,12 +10,12 @@
 
 [**安装 DataKit**](../../datakit/datakit-install.md)和[**安装 DataFlux Func 携带版**](../../dataflux-func/maintenance-guide-installation.md)之后，可以很好得观测如下指标集：
 
-| **阿里云**  |    |      |     |      | 
-| --------- | ---- | ---- | ---- | ---- |
-|[PolarDB Mysql](aliyun-mysql.md)| [PolarDB Oracle](aliyun-oracle.md) | [PolarDB PostgreSQL](aliyun-postgresql.md) | [RDS Mysql](aliyun-rds-mysql.md)| [RDS SQLServer](aliyun-rds-sqlserver.md)   | 
-| [MongoDB](aliyun-mongodb.md) | [Redis 标准版](aliyun-redis.md)  |  [OSS](aliyun-oss.md)  |  [NAT](aliyun-nat.md)   |  [SLS](aliyun-sls.md)  |
-| [ECS](aliyun-ecs.md)| [EIP](aliyun-eip.md) | [CDN](aliyun-cdn.md)| [SLB](aliyun-slb.md)   | [ElasticSearch](aliyun-es.md)|
-| [费用](aliyun-charges.md)  |   |        |        |     |
+
+|[PolarDB Mysql](aliyun-mysql.md){ .md-button .md-button--primary }| [PolarDB Oracle](aliyun-oracle.md){ .md-button .md-button--primary } | [PolarDB PostgreSQL](aliyun-postgresql.md){ .md-button .md-button--primary } | [RDS Mysql](aliyun-rds-mysql.md){ .md-button .md-button--primary }| [RDS SQLServer](aliyun-rds-sqlserver.md){ .md-button .md-button--primary }   | 
+| :----: | :----: | :----: | :----: | :----: |
+| [MongoDB](aliyun-mongodb.md){ .md-button .md-button--primary } | [Redis 标准版](aliyun-redis.md){ .md-button .md-button--primary }  |  [OSS](aliyun-oss.md){ .md-button .md-button--primary }  |  [NAT](aliyun-nat.md){ .md-button .md-button--primary }   |  [SLS](aliyun-sls.md){ .md-button .md-button--primary }  |
+| [ECS](aliyun-ecs.md){ .md-button .md-button--primary }| [EIP](aliyun-eip.md){ .md-button .md-button--primary } | [CDN](aliyun-cdn.md){ .md-button .md-button--primary }| [SLB](aliyun-slb.md){ .md-button .md-button--primary }   | [ElasticSearch](aliyun-es.md){ .md-button .md-button--primary }|
+| [费用](aliyun-charges.md){ .md-button .md-button--primary }  |   |        |        |     |
 
 
 <br/>

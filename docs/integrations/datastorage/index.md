@@ -6,14 +6,14 @@
 
 <br />
 
-[**安装 DataKit**](../../datakit/datakit-install.md)之后，对于如下指标集，用户可通过**自定义开启内置插件**或 **Prometheus** 采集相关数据：
+[**安装 DataKit**](../../datakit/datakit-install.md)之后，对于如下指标集，用户可通过{==**自定义开启内置插件**==}或 {++**Prometheus**++} 采集相关数据：
 
-| **自定义开启**  |    |      |     |      | 
+| {==**自定义开启**==}  |    |      |     |      | 
 | --------- | ---- | ---- | ---- | ---- |
-| [MySQL](mysql.md) | [Oracle](oracle.md) | [PostgreSQL](postgresql.md) | [SQLServer](sqlserver.md)   | [ClickHouse](clickhouse.md) |
-| [MongoDB](mongodb.md) | [Redis](redis.md)  | [Memcached](memcached.md)  | [ElasticSearch](elasticsearch.md) |   | 
-| **Prometheus** |     |    |    |
-| [Aerospike](aerospike.md)  | [Redis-sentinel](redis-sentinel.md) |        |        |
+| [MySQL](mysql.md){ .md-button .md-button--primary } | [Oracle](oracle.md){ .md-button .md-button--primary } | [PostgreSQL](postgresql.md){ .md-button .md-button--primary } | [SQLServer](sqlserver.md){ .md-button .md-button--primary }   | [ClickHouse](clickhouse.md){ .md-button .md-button--primary } |
+| [MongoDB](mongodb.md){ .md-button .md-button--primary } | [Redis](redis.md){ .md-button .md-button--primary }  | [Memcached](memcached.md){ .md-button .md-button--primary }  | [ElasticSearch](elasticsearch.md){ .md-button .md-button--primary } |   | 
+| {++**Prometheus**++} |     |    |    |
+| [Aerospike](aerospike.md){ .md-button .md-button--primary }  | [Redis-sentinel](redis-sentinel.md){ .md-button .md-button--primary } |        |        |
 
 
 
