@@ -17,7 +17,7 @@ nav:
 
   - 'Web 服务': webservice
 
-  - 'CICD': cicd
+  - 'CI/CD': cicd
 
   - '数据采集':
     - 'Fluentd': fluentd.md

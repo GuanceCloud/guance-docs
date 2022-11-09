@@ -10,7 +10,7 @@
 [**安装 DataKit**](../../datakit/datakit-install.md)之后，对于如下指标集，用户可通过{==**自定义开启内置插件**==}或 {++**Telegraf**++} 协助采集相关数据：
 
 
-| {==**自定义开启内**==} |[SSH](ssh.md){ .md-button .md-button--primary }|   |
+| {==**自定义开启**==} |[SSH](ssh.md){ .md-button .md-button--primary }|   |
 | :----: | :----: | :----: | 
 | {++**Telegraf**++} |[Ping](ping.md){ .md-button .md-button--primary } |[Port](port.md){ .md-button .md-button--primary } |  |
 
