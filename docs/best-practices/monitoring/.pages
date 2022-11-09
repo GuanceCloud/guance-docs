@@ -5,6 +5,10 @@ nav:
       - 'SkyWalking 链路数据接入最佳实践': skywalking.md
       - 'Jaeger 链路数据接入最佳实践': jaeger.md
       - 'ddtrace 高级用法': ddtrace-skill.md
+      - ddtrace-skill-param.md
+      - ddtrace-skill-ddtrace-api.md
+      - ddtrace-skill-log.md
+      - ddtrace-skill-sampling.md
       - ddtrace-custom-traceId.md
       - ddtrace-instrumentation.md
       - 'JVM 可观测最佳实践': jvm.md

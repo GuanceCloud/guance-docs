@@ -2,6 +2,23 @@
 icon: zy/best-practices
 ---
 
+## (2022/11/11)
+
+### 新增最佳实践
+
+- 监控 Monitoring
+    - 应用性能监控 (APM) - [ddtrace 常见参数用法](./monitoring/ddtrace-skill-param.md)
+    - 应用性能监控 (APM) - [ddtrace-api 使用指南](./monitoring/ddtrace-skill-ddtrace-api.md)
+    - 应用性能监控 (APM) - [ddtrace 采样](./monitoring/ddtrace-skill-sampling.md)
+    - 应用性能监控 (APM) - [ddtrace log 关联](./monitoring/ddtrace-skill-log.md)
+	
+### 更新记录
+
+- 监控 Monitoring
+    - 应用性能监控 (APM) - [ddtrace 高级用法](./monitoring/ddtrace-skill.md)。<font color="red" > 内容采用最新版本重新校验，优化文档格式并进行分类拆分</font>
+
+
+
 ## (2022/11/1)
 
 ### 新增最佳实践
