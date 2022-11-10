@@ -6,13 +6,13 @@
 
 ## 视图预览
 
-![image](imgs/input-ddtrace-net-core-1.png)
+![image](../imgs/input-ddtrace-net-core-1.png)
 
-![image](imgs/input-ddtrace-net-core-2.png)
+![image](../imgs/input-ddtrace-net-core-2.png)
 
-![image](imgs/input-ddtrace-net-core-3.png)
+![image](../imgs/input-ddtrace-net-core-3.png)
 
-![image](imgs/input-ddtrace-net-core-4.png)
+![image](../imgs/input-ddtrace-net-core-4.png)
 
 ## 安装部署<ddtrace>
 
@@ -20,7 +20,7 @@ DF默认支持所有采用opentracing协议的APM监控手段，例如<**skywalk
 
 ### 前置条件
 
-- 需要进行链路追踪的应用服务器<[安装 Datakit](../datakit/datakit-install.md)>
+- 需要进行链路追踪的应用服务器<[安装 Datakit](../../datakit/datakit-install.md)>
 - [下载ddtrace-.net-agent](https://github.com/DataDog/dd-trace-dotnet/releases)，可根据需求下载x86、arm64或者其他版本的agent。
 - <[ddtrace -.net core -agent 框架兼容列表](https://docs.datadoghq.com/tracing/setup_overview/compatibility_requirements/dotnet-core)>
 
@@ -97,8 +97,8 @@ export CORECLR_PROFILER={846F5F1C-F9AE-4B07-969E-05C26BC060D8}
 
 ### 链路分析
 
-<[服务](../application-performance-monitoring/service.md)><br />
-<[链路分析](../application-performance-monitoring/explorer.md)>
+<[服务](../../application-performance-monitoring/service.md)><br />
+<[链路分析](../../application-performance-monitoring/explorer.md)>
 
 ## 场景视图
 
@@ -114,7 +114,7 @@ DF平台已内置 应用性能监测模块，无需手动创建
 
 ## 最佳实践
 
-<[链路追踪（APM）最佳实践](../best-practices/monitoring/apm.md)>
+<[链路追踪（APM）最佳实践](../../best-practices/monitoring/apm.md)>
 
 ## 故障排查
 

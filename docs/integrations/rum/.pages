@@ -1,5 +1,6 @@
 nav:
+  - index.md
   - 'Android': rum-android.md
   - 'iOS': rum-ios.md
   - 'MiniAPP (小程序)': rum-miniapp.md
-  - 'WEB页面 (H5)': rum-web-h5.md
+  - 'Web页面 (H5)': rum-web-h5.md

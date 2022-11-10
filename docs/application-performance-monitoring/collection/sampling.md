@@ -36,7 +36,7 @@ pip install flask
 
 在创建时，需要引用 ddtrace 并设置服务名、服务名映射关系并且通过环境变量设置项目名、环境名、版本号相关信息，并且配置 DataKit trace API 服务地址（具体地址视 DataKit 地址而定端口号为 9529）。
 
-可参考文档 [Python Flask完整示例](../../integrations/ddtrace-python.md) 。
+可参考文档 [Python Flask完整示例](../../integrations/apm/ddtrace-python.md) 。
 
 #### 1.SERVICE_A
 

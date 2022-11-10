@@ -6,7 +6,7 @@
 
 OpenTelemetry Collector 性能指标展示：collector 在线时长、内存使用情况、exporter 相关指标、receiver 相关指标 等。
 
-![image](imgs/input-otlcollector-1.png)
+![image](../imgs/input-otlcollector-1.png)
 
 ## 版本支持
 
@@ -14,7 +14,7 @@ OpenTelemetry Collector 性能指标展示：collector 在线时长、内存使�
 
 ## 前置条件
 
-- OpenTelemetry Collector 服务器 <[安装 Datakit](../datakit/datakit-install.md)>
+- OpenTelemetry Collector 服务器 <[安装 Datakit](../../datakit/datakit-install.md)>
 
 ## 安装配置
 
@@ -59,7 +59,7 @@ services:
 
 2、 访问 OpenTelemetry Collector 指标 ， `curl http://otel-collector-host:8888/metrics` 。
 
-![image](imgs/input-otlcollector-2.png)
+![image](../imgs/input-otlcollector-2.png)
 
 3、 开启 Datakit prom 插件，复制 sample 文件。·
 
@@ -175,11 +175,11 @@ systemctl restart datakit
 
 6、 OpenTelemetry Collector  指标采集验证，使用命令 `/usr/local/datakit/datakit -M |egrep "最近采集|otel"`
 
-![image](imgs/input-otlcollector-3.png)
+![image](../imgs/input-otlcollector-3.png)
 
 指标预览
 
-![image](imgs/input-otlcollector-4.png)
+![image](../imgs/input-otlcollector-4.png)
 
 ##### 方案二：通过 OpenTelemetry  采集器采集 OpenTelemetry Collector 指标
 
@@ -326,7 +326,7 @@ datakit --restart
 
 - 该配置为自定义标签，可以填写任意 key-value 值
 - 以下示例配置完成后，所有 OpenTelemetry Collector 指标都会带有 env= dev 的标签，可以进行快速查询
-- 相关文档 <[DataFlux Tag 应用最佳实践](../best-practices/insight/tag.md)>
+- 相关文档 <[DataFlux Tag 应用最佳实践](../../best-practices/insight/tag.md)>
 
 ```
 # 示例
@@ -359,10 +359,10 @@ systemctl restart datakit
 
 ## 常见问题排查
 
-<[无数据上报排查](../datakit/why-no-data.md)>
+<[无数据上报排查](../../datakit/why-no-data.md)>
 
 ## 进一步阅读
 
-<[OpenTelemetry 链路数据接入最佳实践](../best-practices/cloud-native/opentelemetry.md)><br />
-<[OpenTelemetry to 观测云](../best-practices/cloud-native/opentelemetry-guance.md)>
+<[OpenTelemetry 链路数据接入最佳实践](../../best-practices/cloud-native/opentelemetry.md)><br />
+<[OpenTelemetry to 观测云](../../best-practices/cloud-native/opentelemetry-guance.md)>
 

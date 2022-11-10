@@ -4,21 +4,21 @@
 
 ## 视图预览
 
-![image](imgs/input-ddtrace-golang-1.png)
+![image](../imgs/input-ddtrace-golang-1.png)
 
-![image](imgs/input-ddtrace-golang-2.png)
+![image](../imgs/input-ddtrace-golang-2.png)
 
-![image](imgs/input-ddtrace-golang-3.png)
+![image](../imgs/input-ddtrace-golang-3.png)
 
-![image](imgs/input-ddtrace-golang-4.png)
+![image](../imgs/input-ddtrace-golang-4.png)
 
-![image](imgs/input-ddtrace-golang-5.png)
+![image](../imgs/input-ddtrace-golang-5.png)
 
-![image](imgs/input-ddtrace-golang-6.png)
+![image](../imgs/input-ddtrace-golang-6.png)
 
 ### 前置条件
 
-- 需要进行链路追踪的应用服务器<[安装 Datakit](../datakit/datakit-install.md)>
+- 需要进行链路追踪的应用服务器<[安装 Datakit](../../datakit/datakit-install.md)>
 
 ### Go Redis APM 完整示例
 
@@ -107,8 +107,8 @@ create_time 1631502841700
 
 #### 链路分析
 
-<[服务](../application-performance-monitoring/service.md)><br />
-<[链路分析](../application-performance-monitoring/explorer.md)>
+<[服务](../../application-performance-monitoring/service.md)><br />
+<[链路分析](../../application-performance-monitoring/explorer.md)>
 
 ## 场景视图
 
@@ -124,7 +124,7 @@ create_time 1631502841700
 
 ## 最佳实践
 
-<[链路追踪（APM）最佳实践](../best-practices/monitoring/apm.md)>
+<[链路追踪（APM）最佳实践](../../best-practices/monitoring/apm.md)>
 
 ## 故障排查
 暂无

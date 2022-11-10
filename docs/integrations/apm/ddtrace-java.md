@@ -4,15 +4,15 @@
 
 ## 视图预览
 
-![image](imgs/input-ddtrace-java-1.png)
+![image](../imgs/input-ddtrace-java-1.png)
 
-![image](imgs/input-ddtrace-java-2.png)
+![image](../imgs/input-ddtrace-java-2.png)
 
-![image](imgs/input-ddtrace-java-3.png)
+![image](../imgs/input-ddtrace-java-3.png)
 
-![image](imgs/input-ddtrace-java-4.png)
+![image](../imgs/input-ddtrace-java-4.png)
 
-![image](imgs/input-ddtrace-java-5.png)
+![image](../imgs/input-ddtrace-java-5.png)
 
 ## 安装部署 <ddtrace>
 
@@ -20,7 +20,7 @@ DF 默认支持所有采用 opentracing 协议的 APM 监控手段，例如 <**s
 
 ### 前置条件
 
-- 需要进行链路追踪的应用服务器<[安装 DataKit](../datakit/datakit-install.md)>
+- 需要进行链路追踪的应用服务器<[安装 DataKit](../../datakit/datakit-install.md)>
 - dd-java-agent.jar 已默认内置于 **/usr/local/datakit/data** 目录下
 - <[ddtrace -java -agent 框架兼容列表](https://docs.datadoghq.com/tracing/setup_overview/compatibility_requirements/java/)>
 
@@ -129,7 +129,7 @@ Docker 环境下接入方式有多种，本示例会展示两种方式，分别�
  wq! 
 ```
 
-![image](imgs/input-ddtrace-java-6.png)
+![image](../imgs/input-ddtrace-java-6.png)
 
 ```
 ## build & run
@@ -155,8 +155,8 @@ Docker 环境下接入方式有多种，本示例会展示两种方式，分别�
 
 #### 链路分析
 
-<[服务](../application-performance-monitoring/service.md)><br />
-<[链路分析](../application-performance-monitoring/explorer.md)>
+<[服务](../../application-performance-monitoring/service.md)><br />
+<[链路分析](../../application-performance-monitoring/explorer.md)>
 
 ## 场景视图
 
@@ -172,10 +172,10 @@ DF 平台已内置 应用性能监测模块，无需手动创建
 
 ## 最佳实践
 
-<[JVM可观测](../best-practices/monitoring/jvm.md)><br />
-<[链路追踪（APM）最佳实践](../best-practices/monitoring/apm.md)><br />
-<[JAVA应用 RUM-APM-LOG 联动分析](../best-practices/insight/java-rum-apm-log.md)><br />
-<[Kubernetes应用的 RUM-APM-LOG 联动分析](../best-practices/cloud-native/k8s-rum-apm-log.md)>
+<[JVM可观测](../../best-practices/monitoring/jvm.md)><br />
+<[链路追踪（APM）最佳实践](../../best-practices/monitoring/apm.md)><br />
+<[JAVA应用 RUM-APM-LOG 联动分析](../../best-practices/insight/java-rum-apm-log.md)><br />
+<[Kubernetes应用的 RUM-APM-LOG 联动分析](../../best-practices/cloud-native/k8s-rum-apm-log.md)>
 
 ## 故障排查
 

@@ -4,15 +4,15 @@
 
 ## 视图预览
 
-![image](imgs/input-ddtrace-python-1.png)
+![image](../imgs/input-ddtrace-python-1.png)
 
-![image](imgs/input-ddtrace-python-2.png)
+![image](../imgs/input-ddtrace-python-2.png)
 
-![image](imgs/input-ddtrace-python-3.png)
+![image](../imgs/input-ddtrace-python-3.png)
 
-![image](imgs/input-ddtrace-python-4.png)
+![image](../imgs/input-ddtrace-python-4.png)
 
-![image](imgs/input-ddtrace-python-5.png)
+![image](../imgs/input-ddtrace-python-5.png)
 
 ## 安装部署<ddtrace>
 
@@ -20,7 +20,7 @@ DF默认支持所有采用opentracing协议的APM监控手段，例如<**skywalk
 
 ### 前置条件
 
-- 需要进行链路追踪的应用服务器<[安装 Datakit](../datakit/datakit-install.md)>
+- 需要进行链路追踪的应用服务器<[安装 Datakit](../../datakit/datakit-install.md)>
 
 ### Python Flask 完整示例
 
@@ -175,8 +175,8 @@ operation 'flask.process_response'
 
 #### 链路分析
 
-<[服务](../application-performance-monitoring/service.md)><br />
-<[链路分析](../application-performance-monitoring/explorer.md)>
+<[服务](../../application-performance-monitoring/service.md)><br />
+<[链路分析](../../application-performance-monitoring/explorer.md)>
 
 ## 场景视图
 
@@ -192,7 +192,7 @@ DF平台已内置 应用性能监测模块，无需手动创建
 
 ## 最佳实践
 
-<[链路追踪（APM）最佳实践](../best-practices/monitoring/apm.md)>
+<[链路追踪（APM）最佳实践](../../best-practices/monitoring/apm.md)>
 
 ## 故障排查
 

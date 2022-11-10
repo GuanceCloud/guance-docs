@@ -6,7 +6,7 @@
 
 Node.js 应用的链路追踪, 埋点后可在"应用性能监测" 应用列表里看到对应的应用,可以查看对应链路拓扑和所有 链路信息,以及对 Node.js 应用请求的一些链路指标: 请求数、错误率、延迟时间分布、响应时间等。
 
-![image](imgs/input-ddtrace-nodejs-1.png)
+![image](../imgs/input-ddtrace-nodejs-1.png)
 
 ## 版本支持
 
@@ -14,7 +14,7 @@ Node.js 应用的链路追踪, 埋点后可在"应用性能监测" 应用列表�
 
 ## 前置条件
 
-- 在 Node 应用服务器上安装 Datakit <[安装 Datakit](../datakit/datakit-install.md)>
+- 在 Node 应用服务器上安装 Datakit <[安装 Datakit](../../datakit/datakit-install.md)>
 - 查看 Node 版本是否>=12 
 
 ## 安装配置
@@ -103,4 +103,4 @@ npm run start
 
 ## 常见问题排查
 
-<[无数据上报排查](../datakit/why-no-data.md)>
+<[无数据上报排查](../../datakit/why-no-data.md)>

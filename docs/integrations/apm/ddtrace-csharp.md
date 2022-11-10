@@ -4,15 +4,15 @@
 
 ## 视图预览
 
-![image](imgs/input-ddtrace-csharp-1.png)
+![image](../imgs/input-ddtrace-csharp-1.png)
 
-![image](imgs/input-ddtrace-csharp-2.png)
+![image](../imgs/input-ddtrace-csharp-2.png)
 
-![image](imgs/input-ddtrace-csharp-3.png)
+![image](../imgs/input-ddtrace-csharp-3.png)
 
-![image](imgs/input-ddtrace-csharp-4.png)
+![image](../imgs/input-ddtrace-csharp-4.png)
 
-![image](imgs/input-ddtrace-csharp-5.png)
+![image](../imgs/input-ddtrace-csharp-5.png)
 
 ## 安装部署<ddtrace>
 
@@ -20,7 +20,7 @@ DF默认支持所有采用opentracing协议的APM监控手段，例如<**skywalk
 
 #### 前置条件
 
-- 需要进行链路追踪的应用服务器<[安装 Datakit](../datakit/datakit-install.md)>
+- 需要进行链路追踪的应用服务器<[安装 Datakit](../../datakit/datakit-install.md)>
 - [下载ddtrace-.net-agent](https://github.com/DataDog/dd-trace-dotnet/releases)，可根据需求下载x86、arm64或者其他版本的agent。
 - <[ddtrace -.net -agent 框架兼容列表](https://docs.datadoghq.com/tracing/setup_overview/compatibility_requirements/dotnet-framework)>
 
@@ -79,13 +79,13 @@ DD_VERSION=   举例 1.0     （可选）
 DD_TRACE_SERVICE_MAPPING=  举例 mysql:main-mysql-db    （可选）
 ```
 
-![image](imgs/input-ddtrace-csharp-6.png)
+![image](../imgs/input-ddtrace-csharp-6.png)
 
 ##### 添加服务器环境变量
 
 以管理员权限运行dotnet-agent安装包，点击下一步，直到安装成功。
 
-![image](imgs/input-ddtrace-csharp-7.png)
+![image](../imgs/input-ddtrace-csharp-7.png)
 
 ##### 在 PowerShell 执行如下命令，重启 iis
 
@@ -99,8 +99,8 @@ net start w3svc
 
 #### 链路分析
 
-<[服务](../application-performance-monitoring/service.md)><br />
-<[链路分析](../application-performance-monitoring/explorer.md)>
+<[服务](../../application-performance-monitoring/service.md)><br />
+<[链路分析](../../application-performance-monitoring/explorer.md)>
 
 ## 场景视图
 
@@ -112,11 +112,11 @@ DF 平台已内置 应用性能监测模块，无需手动创建
 
 ## 相关术语说明
 
-<[链路追踪-字段说明](/application-performance-monitoring/collection)>
+<[链路追踪-字段说明](../../../application-performance-monitoring/collection/)>
 
 ## 最佳实践
 
-<[链路追踪（APM）最佳实践](../best-practices/monitoring/apm.md)>
+<[链路追踪（APM）最佳实践](../../best-practices/monitoring/apm.md)>
 
 ## 故障排查
 
