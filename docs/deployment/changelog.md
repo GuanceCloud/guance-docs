@@ -1,5 +1,46 @@
 # 版本历史
 
+## v1.52.114（2022年11月03日）
+
+pubrepo.jiagouyun.com/dataflux/1.52.114:launcher-86c0c1f-1668062771
+
+### 观测云更新
+
+- 新增观测云、SLS 联合解决方案
+- 优化新手引导页面
+- 新增 3 个智能巡检配置文档
+- 新增链路错误追踪查看器
+- 优化时序图、概览图同期对比功能
+- 其他功能优化
+    - 仪表板/笔记/查看器在「设置」里面新增 “保存快照” 的按钮；
+    - 时间控件新增更多选项；
+    - Pipeline 和黑名单功能，新增导入、批量导出、批量删除功能；
+    - 智能巡检新增仪表盘、柱状图图表组件；
+    - 集成菜单下 Func 页面优化。
+
+### DataKit 更新
+
+- 完善 Prometheus 生态兼容，增加 ServiceMonitor 和 PodMonitor 采集识别
+- 增加基于 async-profiler 的 Java Profiling 接入
+- eBPF 采集增加 interval 参数，便于调节采集的数据量
+- 所有远程采集器默认以其采集地址作为 host 字段的取值，避免远程采集时可能误解 host 字段的取值
+- DDTrace 采集到的 APM 数据，能自动提取 error 相关的字段，便于中心做更好的 APM 错误追踪
+- MySQL 采集器增加额外字段 Com_commit/Com_rollback 采集
+
+### 最佳实践更新
+
+- 监控 Monitoring
+- 应用性能监控 (APM) - Kafka 可观测最佳实践
+- 云平台接入
+- 阿里云 - 阿里云 ACK 接入观测云
+
+### 私有部署版更新
+
+- 私有部署版本，支持了 Profiling 功能
+
+更多详情可参考帮助文档：[https://docs.guance.com/release-notes/](https://docs.guance.com/release-notes/)
+
+
 ## v1.51.112（2022年10月20日）
 
 pubrepo.jiagouyun.com/dataflux/1.51.112:launcher-43db8d3-1667315533
