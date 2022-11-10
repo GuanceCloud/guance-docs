@@ -135,8 +135,6 @@ class DemoApplication : Application() {
 }
 ```
 
-##### 
-
 ##### 2.3 RUM 配置
 
 ```kotlin

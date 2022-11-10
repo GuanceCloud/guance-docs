@@ -1,31 +1,33 @@
-
 # Go
+
 ---
 
 ## 视图预览
 
-![image](imgs/input-ddtrace-golang-1.png)
+![image](../imgs/input-ddtrace-golang-1.png)
 
-![image](imgs/input-ddtrace-golang-2.png)
+![image](../imgs/input-ddtrace-golang-2.png)
 
-![image](imgs/input-ddtrace-golang-3.png)
+![image](../imgs/input-ddtrace-golang-3.png)
 
-![image](imgs/input-ddtrace-golang-4.png)
+![image](../imgs/input-ddtrace-golang-4.png)
 
-![image](imgs/input-ddtrace-golang-5.png)
+![image](../imgs/input-ddtrace-golang-5.png)
 
-![image](imgs/input-ddtrace-golang-6.png)
+![image](../imgs/input-ddtrace-golang-6.png)
 
 ### 前置条件
 
-- 需要进行链路追踪的应用服务器<[安装 Datakit](../datakit/datakit-install.md)>
+- 需要进行链路追踪的应用服务器<[安装 Datakit](../../datakit/datakit-install.md)>
 
 ### Go Redis APM 完整示例
 
 这里以 Go 中访问 Redis 并 Set 数据为例。示例中引用 go-redis 后引用 ddtrace redis 进行覆盖并且引用 ddtrace 进行 trace 数据收集上报。
-首先开启Tracer设置上报地址和服务名称以及版本号等信息然后创建新的根 span(StartSpanFromContext) 进行 trace 写入发送 trace(WithContext) 数据并结束 span(Finish) 完成一次trace 数据写入并上报。
-> 更多 ddtrace 使用请参考：[https://pkg.go.dev/gopkg.in/DataDog/dd-trace-go.v1/ddtrace](https://pkg.go.dev/gopkg.in/DataDog/dd-trace-go.v1/ddtrace)
-> 更多 ddtrace 类库案例请参考：[https://github.com/DataDog/dd-trace-go/tree/v1/contrib](https://github.com/DataDog/dd-trace-go/tree/v1/contrib)
+
+首先开启 Tracer 设置上报地址和服务名称以及版本号等信息然后创建新的根 span(StartSpanFromContext) 进行 trace 写入发送 trace(WithContext) 数据并结束 span(Finish) 完成一次 trace 数据写入并上报。
+
+> 更多 ddtrace 使用请参考：[https://pkg.go.dev/gopkg.in/DataDog/dd-trace-go.v1/ddtrace](https://pkg.go.dev/gopkg.in/DataDog/dd-trace-go.v1/ddtrace) <br/>
+更多 ddtrace 类库案例请参考：[https://github.com/DataDog/dd-trace-go/tree/v1/contrib](https://github.com/DataDog/dd-trace-go/tree/v1/contrib)
 
 ```go
 package main
@@ -76,7 +78,7 @@ func main() {
 // automatically picked up by the underlying implementation.
 ```
 
-#### 可以通过 [DQL](../dql/define) 验证上报的数据：
+#### 可以通过 [DQL](../../dql/define.md) 验证上报的数据：
 
 ```shell
 dql > T::go_gin LIMIT 1
@@ -107,8 +109,8 @@ create_time 1631502841700
 
 #### 链路分析
 
-<[服务](../application-performance-monitoring/service.md)><br />
-<[链路分析](../application-performance-monitoring/explorer.md)>
+<[服务](../../application-performance-monitoring/service.md)><br />
+<[链路分析](../../application-performance-monitoring/explorer.md)>
 
 ## 场景视图
 
@@ -120,12 +122,12 @@ create_time 1631502841700
 
 ## 相关术语说明
 
-<[链路追踪-字段说明](/application-performance-monitoring/collection)>
+<[链路追踪-字段说明](../../../application-performance-monitoring/collection)>
 
 ## 最佳实践
 
-<[链路追踪（APM）最佳实践](../best-practices/monitoring/apm.md)>
+<[链路追踪（APM）最佳实践](../../best-practices/monitoring/apm.md)>
 
 ## 故障排查
-暂无
 
+暂无

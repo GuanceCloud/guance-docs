@@ -16,7 +16,7 @@ HTTP URL 固定为：`/v1/write/logstreaming`，即 `http://Datakit_IP:PORT/v1/w
 
 ### 前置条件
 
-- 可以访问外网的主机<[安装 DataKit](../datakit/datakit-install.md)>
+- 可以访问外网的主机<[安装 DataKit](../../datakit/datakit-install.md)>
 - 检查 Fluentd 数据是否正常采集
 
 ### 配置实施
@@ -116,9 +116,9 @@ logstreaming 支持在 HTTP URL 中添加参数，对日志数据进行操作。
 
 修改配置之后重启 td-agent ，完成数据上报
 
-![image](imgs/input-fluentd-1.png)
+![image](../imgs/input-fluentd-1.png)
 
-##### 可以通过 [DQL](../dql/define) 验证上报的数据：
+##### 可以通过 [DQL](../../dql/define) 验证上报的数据：
 
 ```shell
 dql > L::nginx_td LIMIT 1
@@ -199,9 +199,9 @@ create_time 1637733374609
 
 修改配置之后重启`fluentd -c `更改的配置文件 ，完成数据上报
 
-![image](imgs/input-fluentd-2.png)
+![image](../imgs/input-fluentd-2.png)
 
-##### 可以通过 [DQL](../dql/define) 验证上报的数据：
+##### 可以通过 [DQL](../../dql/define) 验证上报的数据：
 
 ```shell
 dql > L::nginx_td LIMIT 1
@@ -446,9 +446,9 @@ spec:
 
 修改配置之后重新部署 yaml 文件即可完成数据上报，可以访问对应 node 的 32004 端口查看数据是否成功采集
 
-![image](imgs/input-fluentd-3.png)
+![image](../imgs/input-fluentd-3.png)
 
-##### 可以通过 [DQL](../dql/define) 验证上报的数据：
+##### 可以通过 [DQL](../../dql/define) 验证上报的数据：
 
 ```shell
 dql > L::nginx_td LIMIT 1
@@ -471,9 +471,9 @@ create_time 1637733374609
 
 ## 最佳实践
 
-<[观测云日志采集分析最佳实践](../best-practices/cloud-native/logs.md)>
+<[观测云日志采集分析最佳实践](../../best-practices/cloud-native/logs.md)>
 
 ## 故障排查
 
-<[无数据上报排查](../datakit/why-no-data.md)>
+<[无数据上报排查](../../datakit/why-no-data.md)>
 

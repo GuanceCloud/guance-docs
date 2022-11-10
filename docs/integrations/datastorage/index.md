@@ -15,6 +15,6 @@
 | {++**Prometheus**++} |     |    |    |
 | [Aerospike](aerospike.md){ .md-button .md-button--primary }  | [Redis-sentinel](redis-sentinel.md){ .md-button .md-button--primary } |        |        |
 
-
+<br/>
 
 **开始[安装 DataKit](../../datakit/datakit-install.md)，开启你的观测云之旅！**
