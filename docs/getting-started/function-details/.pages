@@ -1,22 +1,16 @@
 nav:
-  - '如何优雅的设计仪表板': dashboard-design.md
-  - '实现仪表板与查看器之间的联动性': dashboard-explorer.md
-  - '将监控告警与仪表板关联': monitor-dashboard.md
-  - '数据关联分析之查看器绑定内置视图': bind-view.md
-  - '用组合图表构建复杂的图表能力': combination-diagram.md
-  - '巧用数据精度与时间对齐功能分析实时数据': data-timeseries.md
-  - '通过生成指标功能从非指标数据中分析趋势': generate-metrics.md
+  - '仪表版设计': dashboard-design.md
+  - '仪表版与查看器的联动': dashboard-explorer.md
+  - '仪表版与监控的关联': monitor-dashboard.md
+  - '查看器绑定内置视图': bind-view.md
+  - '构建组合图表': combination-diagram.md
+  - '图表时间对齐的应用': data-timeseries.md
+  - '生成非指标数据分析': generate-metrics.md
   - '基础设施Label的妙用': infrastructure-label.md
-  - '通过网络分析快速定位问题': network-analysis.md
+  - '基础设施网络分析': network-analysis.md
   - '活用日志黑名单功能': logs-blacklist.md
-  - '巧用 “火焰图” 快速分析链路性能': trace-glame-graph.md
-  - '构建内网API的可用性观测': usability-api.md
+  - '巧用火焰图分析链路性能': trace-glame-graph.md
+  - '构建内网的可用性观测': usability-api.md
   - '通知分组的好处与妙用': inform-group.md
-  - '通过快照功能快速与内外合作伙伴协作': snapshot-cooperation.md
-  - 'DataKit 作为本地获取数据的 API 服务器': dataKit-api.md
-  - 'DCA通过客户端友好管理datakit的配置': datakit-dca.md
-  - 'Git同步配置满足大规模容器部署下的datakit管理': datakit-git.md
-  - 'DataKit的强大自维护能力，状态及文档集成': dataKit-help.md
-  - 'DataKit面对复杂传输网络抖动的配置能力': dataKit-network.md
-  - 'Datakit 代理实现局域网数据统一汇聚': datakit-proxy.md
+  - '快照协作': snapshot-cooperation.md
   - '使用Scheck实现安全巡检': scheck.md
