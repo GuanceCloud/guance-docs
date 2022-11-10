@@ -1,26 +1,27 @@
-
 # Python
+
 ---
 
 ## 视图预览
 
-![image](imgs/input-ddtrace-python-1.png)
+![image](../imgs/input-ddtrace-python-1.png)
 
-![image](imgs/input-ddtrace-python-2.png)
+![image](../imgs/input-ddtrace-python-2.png)
 
-![image](imgs/input-ddtrace-python-3.png)
+![image](../imgs/input-ddtrace-python-3.png)
 
-![image](imgs/input-ddtrace-python-4.png)
+![image](../imgs/input-ddtrace-python-4.png)
 
-![image](imgs/input-ddtrace-python-5.png)
+![image](../imgs/input-ddtrace-python-5.png)
 
 ## 安装部署<ddtrace>
 
-DF默认支持所有采用opentracing协议的APM监控手段，例如<**skywalking**><**jaeger**><**zipkin**>等，此处官方推荐ddtrace接入方式，ddtrace为开源的APM监控方式，相较于其他方式，支持更多的自定义字段，也就意味着可以有足够多的标签与其他的组件进行关联，ddtrace具体接入方式详细如下：
+观测云 默认支持所有采用 OpenTracing 协议的 APM 监控手段，例如 **SkyWalking** 、 **Jaeger** 、 **Zipkin** 等。
 
+此处官方推荐 **ddtrace** 接入方式。ddtrace 是开源的 APM 监控方式，相较于其他方式，支持更多的自定义字段，也就意味着可以有足够多的标签与其他的组件进行关联。ddtrace 具体接入方式详细如下：
 ### 前置条件
 
-- 需要进行链路追踪的应用服务器<[安装 Datakit](../datakit/datakit-install.md)>
+- 需要进行链路追踪的应用服务器<[安装 Datakit](../../datakit/datakit-install.md)>
 
 ### Python Flask 完整示例
 
@@ -33,7 +34,7 @@ pip install ddtrace
 
 #### 编写 SERVICE_A
 
-引用 ddtrace 并设置服务名、服务名映射关系并且通过环境变量设置项目名、环境名、版本号相关信息，并且配置 Datakit trace API 服务地址(具体地址视 DataKit 地址而定端口号为 9529)
+引用 ddtrace 并设置服务名、服务名映射关系并且通过环境变量设置项目名、环境名、版本号相关信息，并且配置 Datakit trace API 服务地址(具体地址视 DataKit 地址而定端口号为 `9529`)
 
 ```python
 # -*- encoding: utf8 -*-
@@ -82,9 +83,9 @@ if __name__ == '__main__':
 
 ```
 
-####  编写 SERVICE_B
+#### 编写 SERVICE_B
 
-引用 ddtrace 并设置服务名、服务名映射关系并且通过环境变量设置项目名、环境名、版本号相关信息，并且配置 Datakit trace API 服务地址(具体地址视 DataKit 地址而定端口号为 9529)
+引用 ddtrace 并设置服务名、服务名映射关系并且通过环境变量设置项目名、环境名、版本号相关信息，并且配置 Datakit trace API 服务地址(具体地址视 DataKit 地址而定端口号为 `9529`)
 
 ```python
 # -*- encoding: utf8 -*-
@@ -147,7 +148,7 @@ curl http://localhost:54321/stop
 curl http://localhost:54322/stop
 ```
 
-#### 可以通过 [DQL](../dql/define) 验证上报的数据：
+#### 可以通过 [DQL](../../dql/define.md) 验证上报的数据：
 
 ```shell
 
@@ -175,12 +176,12 @@ operation 'flask.process_response'
 
 #### 链路分析
 
-<[服务](../application-performance-monitoring/service.md)><br />
-<[链路分析](../application-performance-monitoring/explorer.md)>
+<[服务](../../application-performance-monitoring/service.md)><br />
+<[链路分析](../../application-performance-monitoring/explorer.md)>
 
 ## 场景视图
 
-DF平台已内置 应用性能监测模块，无需手动创建
+观测云平台已内置 应用性能监测模块，无需手动创建
 
 ## 检测库
 
@@ -188,13 +189,12 @@ DF平台已内置 应用性能监测模块，无需手动创建
 
 ## 相关术语说明
 
-<[链路追踪-字段说明](/application-performance-monitoring/collection)>
+<[链路追踪-字段说明](../../../application-performance-monitoring/collection/)>
 
 ## 最佳实践
 
-<[链路追踪（APM）最佳实践](../best-practices/monitoring/apm.md)>
+<[链路追踪（APM）最佳实践](../../best-practices/monitoring/apm.md)>
 
 ## 故障排查
 
 暂无
-

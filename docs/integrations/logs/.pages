@@ -1,0 +1,5 @@
+nav:
+  - index.md
+  - 'Fluentd': fluentd.md
+  - 'Logstash': logstash.md
+  - 'OpenTelemetry Collector': opentelemetry-collector.md

@@ -4,7 +4,7 @@
 
 ## 视图预览
 
-![image](imgs/input-logstash-1.png)
+![image](../imgs/input-logstash-1.png)
 
 ## 安装部署
 
@@ -16,7 +16,7 @@
 
 ### 前置条件
 
-- 可以访问外网的主机<[安装 Datakit](../datakit/datakit-install.md)>
+- 可以访问外网的主机<[安装 Datakit](../../datakit/datakit-install.md)>
 - 检查 Logstash 数据是否正常采集
 
 ### 配置实施
@@ -121,7 +121,7 @@ output {
 /opt/logstash/bin/logstash -f nginx_log.conf -t
 ```
 
-![image](imgs/input-logstash-2.png)
+![image](../imgs/input-logstash-2.png)
 
 启动 logstash 开始采集数据并上报至观测云分析
 
@@ -129,9 +129,9 @@ output {
 /opt/logstash/bin/logstash -f nginx_log.conf &
 ```
 
-![image](imgs/input-logstash-3.png)
+![image](../imgs/input-logstash-3.png)
 
-#### 可以通过 [DQL](../dql/define) 验证上报的数据：
+#### 可以通过 [DQL](../../dql/define) 验证上报的数据：
 
 ```shell
 dql > L::nginx_logstash LIMIT 1
@@ -162,9 +162,9 @@ create_time 1640087501325
 
 ## 最佳实践
 
-<[观测云日志采集分析最佳实践](../best-practices/cloud-native/logs.md)>
+<[观测云日志采集分析最佳实践](../../best-practices/cloud-native/logs.md)>
 
 ## 常见问题排查
 
-<[无数据上报排查](../datakit/why-no-data.md)>
+<[无数据上报排查](../../datakit/why-no-data.md)>
 
