@@ -1,30 +1,24 @@
 # 中间件
+
 ---
 
 [DataKit](../../datakit/) 是观测云中至关重要的一个数据采集组件，几乎所有观测云中的数据都是来源于 DataKit。
 
 <br/>
 
-**对于中间件的数据采集，需首先[安装 DataKit](../../datakit/datakit-install.md)：**
+[**安装 DataKit**](../../datakit/datakit-install.md)之后，对于如下指标集，用户可通过{==**自定义开启内置插件**==}或 {++**其他采集器**++} 协助采集相关数据：
 
-- 安装 DataKit 之后，用户可以根据实际需求，自定义开启丰富的数据采集插件；
+| {==**自定义开启**==}  |    |      |     |      | 
+| --------- | ---- | ---- | ---- | ---- |
+| [Kafka](kafka.md){ .md-button .md-button--primary } |  [RabbitMQ](rabbitmq.md){ .md-button .md-button--primary } |  [RocketMQ](rocketmq.md){ .md-button .md-button--primary } | [Resin](resin.md){ .md-button .md-button--primary } | [Tomcat](tomcat.md){ .md-button .md-button--primary } |
+| [Consul](consul.md){ .md-button .md-button--primary } | [Nacos](nacos.md){ .md-button .md-button--primary } | [Zookeeper](zookeeper.md){ .md-button .md-button--primary } | [JVM](jvm.md){ .md-button .md-button--primary }  | [Solr](solr.md){ .md-button .md-button--primary }  | 
 
-- 而对于一些特别的数据存储，安装 DataKit 之后，目前还需要其他工具协助采集数据。
-
-
-
-**安装 DataKit 之后，中间件的采集说明如下：**
-
-- 自定义开启：[Consul](consul.md) 、 [JVM](jvm.md) 、 [Kafka](kafka.md) 、 [Nacos](nacos.md) 、 [RabbitMQ](rabbitmq.md)、 [Resin](resin.md)、 [RocketMQ](rocketmq.md)、 [Solr](solr.md)、 [Tomcat](tomcat.md)、 [Zookeeper](zookeeper.md)
-
-
-- 协助采集数据：
-    - Telegraf：[ActiveMQ](activemq.md) 、 [Beats](beats.md)、 [PHP-FPM](php-fpm.md)
-    - Prometheus：[Flink](flink.md) 、 [Seata](seata.md)
-    - DataFlux.Func：[Fluentd](fluentd-metrics.md) 、 [Logstash](logstash-metrics.md)
+| 其他采集器 |    |      |     |      | 
+| --------- | ---- | ---- | ---- | ---- |
+| {++**DataFlux.Func**++} |[Fluentd](fluentd-metrics.md){ .md-button .md-button--primary }  | [Logstash](logstash-metrics.md){ .md-button .md-button--primary } |        |        |
+| {++**Prometheus**++} | [Flink](flink.md){ .md-button .md-button--primary } | [Seata](seata.md){ .md-button .md-button--primary }|   |   |
+| {++**Telegraf**++} | [Consul](consul.md){ .md-button .md-button--primary } | [Beats](beats.md){ .md-button .md-button--primary }| [PHP-FPM](php-fpm.md){ .md-button .md-button--primary }  |   |
 
 <br/>
 
 **开始[安装 DataKit](../../datakit/datakit-install.md)，开启你的观测云之旅！**
-
-

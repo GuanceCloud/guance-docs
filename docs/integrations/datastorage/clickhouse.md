@@ -43,14 +43,14 @@ vim /etc/clickhouse-server/config.xml
 
 #### 指标采集 (必选)
 
-1、 进入 DataKit 安装目录下的 `conf.d/db` 目录，复制 `clickhousev1.conf.sample` 并命名为 `clickhousev1.conf`。示例如下：
+1、 开启 DataKit ClickHouse 插件，复制 sample
 
 ```bash
-/usr/local/datakit/conf.d/db
+cd /usr/local/datakit/conf.d/db
 cp clickhousev1.conf.sample clickhousev1.conf
 ```
 
-> 当前 ClickHouse 采集器版本为 v1 版本，更早的版本被废弃了，但因为兼容性考虑，此处将改进后的采集器版本重新命名一下。
+> **注意：**当前 ClickHouse 采集器版本为 v1 版本，更早的版本被废弃了，但因为兼容性考虑，此处将改进后的采集器版本重新命名一下。
 
 2、 修改 `clickhousev1.conf` 配置文件
 
@@ -145,7 +145,7 @@ vi clickhousev1.conf
 systemctl restart datakit
 ```
 
-4、  ClickHouse 指标采集验证 `/usr/local/datakit/datakit -M |egrep "最近采集|clickhouse"`
+4、 ClickHouse 指标采集验证 `/usr/local/datakit/datakit -M |egrep "最近采集|clickhouse"`
 
 ![image](../imgs/input-clickhouse-2.png)
 

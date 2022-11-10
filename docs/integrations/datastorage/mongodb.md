@@ -4,7 +4,7 @@
 
 ## 视图预览
 
-MongoDB 性能指标展示，包括每秒查询操作、文档操作、TTL 索引、游标、队列信息等
+MongoDB 性能指标展示，包括每秒查询操作、文档操作、TTL 索引、游标、队列信息等。
 
 ![image](../imgs/input-mongodb-1.png)
 

@@ -8,9 +8,13 @@
 
 <br />
 
-对于 AWS 的数据采集，需要[**安装 DataKit**](../../datakit/datakit-install.md)和[**安装 DataFlux Func 携带版**](../../dataflux-func/maintenance-guide-installation.md)配合使用。
+[**安装 DataKit**](../../datakit/datakit-install.md)和[**安装 DataFlux Func 携带版**](../../dataflux-func/maintenance-guide-installation.md)之后，可以很好得观测如下指标集：
 
-目前，可以很好得观测 AWS [EC2](ec2.md)、 [ELB](elb.md)、 [RDS MySQL](rds-mysql.md)、 [S3](s3.md) 多种类型指标数据。
+
+|[EC2](ec2.md){ .md-button .md-button--primary }| [ELB](elb.md){ .md-button .md-button--primary } |  [RDS MySQL](rds-mysql.md){ .md-button .md-button--primary } | [S3](s3.md){ .md-button .md-button--primary }  |
+| :----: | :----: | :----: | :----: |
+|  |  |  | 更多正在积极对接中...... |
+
 
 <br/>
 

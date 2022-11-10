@@ -1,26 +1,22 @@
 # 网络连接
+
 ---
 
 [DataKit](../../datakit/) 是观测云中至关重要的一个数据采集组件，几乎所有观测云中的数据都是来源于 DataKit。
 
-<br/>
-
-**对于网络连接的数据采集，需首先[安装 DataKit](../../datakit/datakit-install.md)：**
-
-- 安装 DataKit 之后，用户可以根据实际需求，自定义开启丰富的数据采集插件；
-
-- 而对于部分网络连接数据，安装 DataKit 之后，目前还需要 Telegraf 协助采集数据。
+<br />
 
 
+[**安装 DataKit**](../../datakit/datakit-install.md)之后，对于如下指标集，用户可通过{==**自定义开启内置插件**==}或 {++**Telegraf**++} 协助采集相关数据：
 
-**安装 DataKit 之后，网络连接的采集说明如下：**
 
-- 自定义开启：[DialTesting (云拨测)](dialtesting.md)、 [SSH](ssh.md)
+| {==**自定义开启**==} |[SSH](ssh.md){ .md-button .md-button--primary }|   |
+| :----: | :----: | :----: | 
+| {++**Telegraf**++} |[Ping](ping.md){ .md-button .md-button--primary } |[Port](port.md){ .md-button .md-button--primary } |  |
 
-- Telegraf：[Ping](ping.md) 、 [Port](port.md)
 
-<br/>
+除此之外，还可以通过[DialTesting (云拨测)](dialtesting.md)，指定不同国家不同地区的客户端，来**模拟真实用户访问**目标地址的网络性能情况。
+
+<br />
 
 **开始[安装 DataKit](../../datakit/datakit-install.md)，开启你的观测云之旅！**
-
-
