@@ -4,7 +4,7 @@
 
 ## 应用场景介绍
 
-本文用于演示的 Demo 为若依权限管理系统，具体内容可查看 <[从 0 到 1 利用观测云构建 Spring cloud 服务的可观测性](../monitoring/spring-cloud-sample.md)>
+本文用于演示的 Demo 为若依权限管理系统，具体内容可查看 <[从 0 到 1 利用观测云构建 Spring cloud 服务的可观测性](../monitoring/spring-cloud-sample.md)>。
 
 企业最重要的营收来源即是业务，而当下，绝大多数企业的业务都是由对应的 IT 系统承载的。那如何保障企业的业务稳健，归根到企业内部就是如何保障企业内部的 IT 系统。当业务系统出现异常或故障时，往往是业务、应用开发、运维等多方面同事一起协调进行问题的排查，存在跨平台、跨部门、跨专业领域等多种问题，排查既耗时、又费力。为了解决这一问题，目前业界已经有比较成熟的方式，即是通过 **RUM + APM + LOG** 实现对整个业务系统的**前后端、日志**进行统一监控，同时将三方数据通过关键字段进行打通，实现联动分析，从而提升相关工作人员的工作效率，保障系统平稳运行。
 
@@ -16,7 +16,7 @@
 
 本文将从如何接入这三方监控，以及如何利用观测云进行联动分析的角度进行阐述。
 
-关于日志，本文将使用 DataKit 的 Logfwd 采集器采集业务 Pod 的日志，DataKit 开通 Logfwd 采集器，Pod 增加 lLgfwd 的 Sidecar 来采集业务容器的日志，推送给 DataKit。由于业务对 Sidecar 是可见的，所以日志文件不需要落到宿主机上，详细使用请在下方的[部署 System](#system)模块查看。DataKit 接收到日志后，使用配置的 Pipeline 做日志文件切割。
+关于日志，本文将使用 DataKit 的 Logfwd 采集器采集业务 Pod 的日志，DataKit 开通 Logfwd 采集器，Pod 增加 lLgfwd 的 Sidecar 来采集业务容器的日志，推送给 DataKit。由于业务对 Sidecar 是可见的，所以日志文件不需要落到宿主机上，详细使用请在下方的 [部署 System](#system) 模块查看。DataKit 接收到日志后，使用配置的 Pipeline 做日志文件切割。
 
 ## 前置条件
 
@@ -177,79 +177,79 @@ spec:
       hostNetwork: true
       dnsPolicy: ClusterFirstWithHostNet
       containers:
-        - env:
-            - name: HOST_IP
-              valueFrom:
-                fieldRef:
-                  apiVersion: v1
-                  fieldPath: status.hostIP
-            - name: ENV_K8S_NODE_NAME
-              valueFrom:
-                fieldRef:
-                  apiVersion: v1
-                  fieldPath: spec.nodeName
-            - name: ENV_DATAWAY
-              value: https://openway.guance.com?token=XXXXXX
-            - name: ENV_GLOBAL_HOST_TAGS # 非选举类的tag
-              value: host=__datakit_hostname,host_ip=__datakit_ip,cluster_name_k8s=k8s-prod
-            - name: ENV_DEFAULT_ENABLED_INPUTS
-              value: cpu,disk,diskio,mem,swap,system,hostobject,net,host_processes,container,statsd,ebpf,rum
-            - name: ENV_ENABLE_ELECTION
-              value: enable
-            - name: ENV_GLOBAL_ENV_TAGS # 只对选举类的tag有用
-              value: cluster_name_k8s=k8s-prod
-            - name: ENV_HTTP_LISTEN
-              value: 0.0.0.0:9529
-            - name: ENV_NAMESPACE # 选举用的
-              value: guance-k8s-demo
-          #- name: ENV_LOG_LEVEL
-          #  value: debug
-          #- name: ENV_K8S_CLUSTER_NAME
-          #  value: k8s-prod
-          image: pubrepo.jiagouyun.com/datakit/datakit:1.4.10
-          imagePullPolicy: Always
-          name: datakit
-          ports:
-            - containerPort: 9529
-              hostPort: 9529
-              name: port
-              protocol: TCP
-          securityContext:
-            privileged: true
-          volumeMounts:
-            - mountPath: /var/run
-              name: run
-            - mountPath: /var/lib
-              name: lib
-            - mountPath: /var/log
-              name: log
-            #- mountPath: /var/run/containerd/containerd.sock
-            #  name: containerd-socket
-            #  readOnly: true
-            - mountPath: /usr/local/datakit/conf.d/container/container.conf
-              name: datakit-conf
-              subPath: container.conf
-            - mountPath: /usr/local/datakit/conf.d/log/logfwdserver.conf
-              name: datakit-conf
-              subPath: logfwdserver.conf
-            - mountPath: /usr/local/datakit/conf.d/ddtrace/ddtrace.conf
-              name: datakit-conf
-              subPath: ddtrace.conf
-            - mountPath: /host/proc
-              name: proc
-              readOnly: true
-            - mountPath: /host/dev
-              name: dev
-              readOnly: true
-            - mountPath: /host/sys
-              name: sys
-              readOnly: true
-            - mountPath: /rootfs
-              name: rootfs
-            - mountPath: /sys/kernel/debug
-              name: debugfs
+      - env:
+        - name: HOST_IP
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: status.hostIP
+        - name: ENV_K8S_NODE_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+        - name: ENV_DATAWAY
+          value: https://openway.guance.com?token=XXXXXX
+        - name: ENV_GLOBAL_HOST_TAGS # 非选举类的tag
+          value: host=__datakit_hostname,host_ip=__datakit_ip,cluster_name_k8s=k8s-prod
+        - name: ENV_DEFAULT_ENABLED_INPUTS
+          value: cpu,disk,diskio,mem,swap,system,hostobject,net,host_processes,container,statsd,ebpf,rum
+        - name: ENV_ENABLE_ELECTION
+          value: enable
+        - name: ENV_GLOBAL_ENV_TAGS # 只对选举类的tag有用
+          value: cluster_name_k8s=k8s-prod
+        - name: ENV_HTTP_LISTEN
+          value: 0.0.0.0:9529
+        - name: ENV_NAMESPACE # 选举用的
+          value: guance-k8s-demo
+        #- name: ENV_LOG_LEVEL
+        #  value: debug
+        #- name: ENV_K8S_CLUSTER_NAME
+        #  value: k8s-prod
+        image: pubrepo.jiagouyun.com/datakit/datakit:1.4.10
+        imagePullPolicy: Always
+        name: datakit
+        ports:
+        - containerPort: 9529
+          hostPort: 9529
+          name: port
+          protocol: TCP
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /var/run
+          name: run
+        - mountPath: /var/lib
+          name: lib
+        - mountPath: /var/log
+          name: log
+        #- mountPath: /var/run/containerd/containerd.sock
+        #  name: containerd-socket
+        #  readOnly: true
+        - mountPath: /usr/local/datakit/conf.d/container/container.conf
+          name: datakit-conf
+          subPath: container.conf
+        - mountPath: /usr/local/datakit/conf.d/log/logfwdserver.conf
+          name: datakit-conf
+          subPath: logfwdserver.conf
+        - mountPath: /usr/local/datakit/conf.d/ddtrace/ddtrace.conf
+          name: datakit-conf
+          subPath: ddtrace.conf
+        - mountPath: /host/proc
+          name: proc
+          readOnly: true
+        - mountPath: /host/dev
+          name: dev
+          readOnly: true
+        - mountPath: /host/sys
+          name: sys
+          readOnly: true
+        - mountPath: /rootfs
+          name: rootfs
+        - mountPath: /sys/kernel/debug
+          name: debugfs
 
-          workingDir: /usr/local/datakit
+        workingDir: /usr/local/datakit
       hostIPC: true
       hostPID: true
       restartPolicy: Always
@@ -527,17 +527,18 @@ spec:
         app: web-service
     spec:
       containers:
-        - env:
-            - name: PODE_NAME
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.name
-          name: web-service
-          image: 47.96.6.150:5000/df-demo/demo-web:v1
-          #command: ["sh","-c"]
-          ports:
-            - containerPort: 80
-              protocol: TCP
+      - env:
+        - name: PODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+
+        name: web-service
+        image: 47.96.6.150:5000/df-demo/demo-web:v1
+        #command: ["sh","-c"]
+        ports:
+        - containerPort: 80
+          protocol: TCP
 ```
 
 #### dd-java-agent 镜像
@@ -619,47 +620,47 @@ spec:
         app: gateway-service
     spec:
       containers:
-        - env:
-            - name: DD_AGENT_HOST
-              valueFrom:
-                fieldRef:
-                  apiVersion: v1
-                  fieldPath: status.hostIP
-            - name: POD_NAME
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.name
-            - name: NACOS_IP
-              value: "172.16.0.230"
-            - name: JAVA_OPTS
-              value: |-
-                -javaagent:/usr/dd-java-agent/agent/dd-java-agent.jar -Ddd.service=demo-k8s-gateway  -Ddd.tags=container_host:$(POD_NAME) -Ddd.tags=node_ip:$(DD_AGENT_HOST) -Ddd.service.mapping=redis:redisk8s -Ddd.env=dev -Ddd.agent.port=9529
-            - name: PARAMS
-              value: "--spring.redis.host=$(NACOS_IP) --spring.nacos.ip=$(NACOS_IP)"
-          name: gateway-service
-          image: 47.96.6.150:5000/df-demo/demo-gateway:v1
-          #command: ["sh","-c"]
-          ports:
-            - containerPort: 9299
-              protocol: TCP
-          volumeMounts:
-            - mountPath: /usr/dd-java-agent/agent
-              name: ddagent
+      - env:
+        - name: DD_AGENT_HOST
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: status.hostIP
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: NACOS_IP
+          value: "172.16.0.230"
+        - name: JAVA_OPTS
+          value: |-
+            -javaagent:/usr/dd-java-agent/agent/dd-java-agent.jar -Ddd.service=demo-k8s-gateway  -Ddd.tags=container_host:$(POD_NAME) -Ddd.tags=node_ip:$(DD_AGENT_HOST) -Ddd.service.mapping=redis:redisk8s -Ddd.env=dev -Ddd.agent.port=9529
+        - name: PARAMS
+          value: "--spring.redis.host=$(NACOS_IP) --spring.nacos.ip=$(NACOS_IP)"
+        name: gateway-service
+        image: 47.96.6.150:5000/df-demo/demo-gateway:v1
+        #command: ["sh","-c"]
+        ports:
+        - containerPort: 9299
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /usr/dd-java-agent/agent
+          name: ddagent
       initContainers:
-        - command:
-            - sh
-            - -c
-            - set -ex;mkdir -p /ddtrace/agent;cp -r /usr/dd-java-agent/agent/* /ddtrace/agent;
-          image: pubrepo.jiagouyun.com/datakit/dk-sidecar:1.1
-          imagePullPolicy: Always
-          name: ddtrace-agent-sidecar
-          volumeMounts:
-            - mountPath: /ddtrace/agent
-              name: ddagent
+      - command:
+        - sh
+        - -c
+        - set -ex;mkdir -p /ddtrace/agent;cp -r /usr/dd-java-agent/agent/* /ddtrace/agent;
+        image: pubrepo.jiagouyun.com/datakit/dk-sidecar:1.1
+        imagePullPolicy: Always
+        name: ddtrace-agent-sidecar
+        volumeMounts:
+        - mountPath: /ddtrace/agent
+          name: ddagent
       restartPolicy: Always
       volumes:
-        - emptyDir: {}
-          name: ddagent
+      - emptyDir: {}
+        name: ddagent
 ```
 
 #### 编写 Auth 部署文件
@@ -719,47 +720,47 @@ spec:
         app: auth-service
     spec:
       containers:
-        - env:
-            - name: DD_AGENT_HOST
-              valueFrom:
-                fieldRef:
-                  apiVersion: v1
-                  fieldPath: status.hostIP
-            - name: POD_NAME
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.name
-            - name: NACOS_IP
-              value: "172.16.0.230"
-            - name: JAVA_OPTS
-              value: |-
-                -javaagent:/usr/dd-java-agent/agent/dd-java-agent.jar -Ddd.service=demo-k8s-auth  -Ddd.tags=container_host:$(POD_NAME) -Ddd.tags=node_ip:$(DD_AGENT_HOST) -Ddd.service.mapping=redis:redisk8s -Ddd.env=dev -Ddd.agent.port=9529
-            - name: PARAMS
-              value: "--spring.redis.host=$(NACOS_IP) --spring.nacos.ip=$(NACOS_IP)"
-          name: auth-service
-          image: 47.96.6.150:5000/df-demo/demo-auth:v1
-          #command: ["sh","-c"]
-          ports:
-            - containerPort: 9200
-              protocol: TCP
-          volumeMounts:
-            - mountPath: /usr/dd-java-agent/agent
-              name: ddagent
+      - env:
+        - name: DD_AGENT_HOST
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: status.hostIP
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: NACOS_IP
+          value: "172.16.0.230"
+        - name: JAVA_OPTS
+          value: |-
+            -javaagent:/usr/dd-java-agent/agent/dd-java-agent.jar -Ddd.service=demo-k8s-auth  -Ddd.tags=container_host:$(POD_NAME) -Ddd.tags=node_ip:$(DD_AGENT_HOST) -Ddd.service.mapping=redis:redisk8s -Ddd.env=dev -Ddd.agent.port=9529 
+        - name: PARAMS
+          value: "--spring.redis.host=$(NACOS_IP) --spring.nacos.ip=$(NACOS_IP)"
+        name: auth-service
+        image: 47.96.6.150:5000/df-demo/demo-auth:v1
+        #command: ["sh","-c"]
+        ports:
+        - containerPort: 9200
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /usr/dd-java-agent/agent
+          name: ddagent
       initContainers:
-        - command:
-            - sh
-            - -c
-            - set -ex;mkdir -p /ddtrace/agent;cp -r /usr/dd-java-agent/agent/* /ddtrace/agent;
-          image: pubrepo.jiagouyun.com/datakit/dk-sidecar:1.1
-          imagePullPolicy: Always
-          name: ddtrace-agent-sidecar
-          volumeMounts:
-            - mountPath: /ddtrace/agent
-              name: ddagent
+      - command:
+        - sh
+        - -c
+        - set -ex;mkdir -p /ddtrace/agent;cp -r /usr/dd-java-agent/agent/* /ddtrace/agent;
+        image: pubrepo.jiagouyun.com/datakit/dk-sidecar:1.0
+        imagePullPolicy: Always
+        name: ddtrace-agent-sidecar
+        volumeMounts:
+        - mountPath: /ddtrace/agent
+          name: ddagent
       restartPolicy: Always
       volumes:
-        - emptyDir: {}
-          name: ddagent
+      - emptyDir: {}
+        name: ddagent
 ```
 
 #### 编写 System 部署文件
@@ -820,97 +821,97 @@ spec:
     metadata:
       labels:
         app: system-pod
-    spec:
-      #nodeName: k8s-node1
+    spec:          
       containers:
-        - name: system-container
-          env:
-            - name: POD_NAME
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.name
-            - name: DD_AGENT_HOST
-              valueFrom:
-                fieldRef:
-                  apiVersion: v1
-                  fieldPath: status.hostIP
-            - name: NACOS_IP
-              value: "172.16.0.229"
-            - name: DB_IP
-              value: "172.16.0.230"
-            - name: JAVA_OPTS
-              value: |-
-                -javaagent:/usr/dd-java-agent/agent/dd-java-agent.jar -Ddd.service=demo-k8s-system  -Ddd.tags=container_host:$(PODE_NAME)  -Ddd.tags=node_ip:$(DD_AGENT_HOST) -Ddd.service.mapping=mysql:mysql-k8s,redis:redisk8s -Ddd.env=dev -Ddd.agent.port=9529
-            - name: PARAMS
-              value: "--spring.redis.host=$(DB_IP) --spring.nacos.ip=$(NACOS_IP) --spring.db.ip=$(DB_IP)"
-          image: 172.16.0.238/df-ruoyi/demo-system:v1
-          #command: ["sh","-c"]
-          ports:
-            - containerPort: 9201
-              protocol: TCP
-          volumeMounts:
-            - name: ddagent
-              mountPath: /usr/dd-java-agent/agent
-            - name: varlog
-              mountPath: /data/app/logs/ruoyi-system
-          resources:
-            limits:
-              memory: 512Mi
-            requests:
-              memory: 256Mi
-        - name: logfwd
-          image: pubrepo.jiagouyun.com/datakit/logfwd:1.2.7
-          env:
-            - name: LOGFWD_DATAKIT_HOST
-              valueFrom:
-                fieldRef:
-                  apiVersion: v1
-                  fieldPath: status.hostIP
-            - name: LOGFWD_DATAKIT_PORT
-              value: "9531"
-            - name: LOGFWD_LOGFWD_ANNOTATION_DATAKIT_LOG_CONFIGS
-              valueFrom:
-                fieldRef:
-                  apiVersion: v1
-                  fieldPath: metadata.annotations['datakit/log']
-            - name: LOGFWD_POD_NAME
-              valueFrom:
-                fieldRef:
-                  apiVersion: v1
-                  fieldPath: metadata.name
-            - name: LOGFWD_POD_NAMESPACE
-              valueFrom:
-                fieldRef:
-                  apiVersion: v1
-                  fieldPath: metadata.namespace
-          volumeMounts:
-            - mountPath: /var/log
-              name: varlog
-            - mountPath: /opt/logfwd/config
-              name: logfwd-config
-              subPath: config
+      - name: system-container      
+        env:
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: DD_AGENT_HOST
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: status.hostIP
+        - name: NACOS_IP
+          value: "172.16.0.229"
+        - name: DB_IP
+          value: "172.16.0.230"
+        - name: JAVA_OPTS
+          value: |-
+            -javaagent:/usr/dd-java-agent/agent/dd-java-agent.jar -Ddd.service=demo-k8s-system  -Ddd.tags=container_host:$(PODE_NAME)  -Ddd.tags=node_ip:$(DD_AGENT_HOST) -Ddd.service.mapping=mysql:mysql-k8s,redis:redisk8s -Ddd.env=dev -Ddd.agent.port=9529 
+        - name: PARAMS
+          value: "--spring.redis.host=$(DB_IP) --spring.nacos.ip=$(NACOS_IP) --spring.db.ip=$(DB_IP)"
+        image: 172.16.0.238/df-ruoyi/demo-system:v1
+        #command: ["sh","-c"]
+        ports:
+        - containerPort: 9201
+          protocol: TCP
+        volumeMounts:
+        - name: ddagent
+          mountPath: /usr/dd-java-agent/agent
+        - name: varlog
+          mountPath: /data/app/logs/ruoyi-system
+        resources:
+          limits: 
+            memory: 512Mi
+          requests:
+            memory: 256Mi
+      - name: logfwd
+        image: pubrepo.jiagouyun.com/datakit/logfwd:1.2.7
+        env:
+        - name: LOGFWD_DATAKIT_HOST
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: status.hostIP
+        - name: LOGFWD_DATAKIT_PORT
+          value: "9531"
+        - name: LOGFWD_LOGFWD_ANNOTATION_DATAKIT_LOG_CONFIGS
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.annotations['datakit/log']
+        - name: LOGFWD_POD_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: LOGFWD_POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace  
+        volumeMounts:
+        - mountPath: /var/log
+          name: varlog 
+        - mountPath: /opt/logfwd/config
+          name: logfwd-config
+          subPath: config               
       initContainers:
-        - name: ddtrace-agent-sidecar
-          command:
-            - sh
-            - -c
-            - set -ex;mkdir -p /ddtrace/agent;cp -r /usr/dd-java-agent/agent/* /ddtrace/agent;
-          image: pubrepo.jiagouyun.com/datakit/dk-sidecar:1.1
-          imagePullPolicy: Always
-          volumeMounts:
-            - mountPath: /ddtrace/agent
-              name: ddagent
+      - name: ddtrace-agent-sidecar
+        command:
+        - sh
+        - -c
+        - set -ex;mkdir -p /ddtrace/agent;cp -r /usr/dd-java-agent/agent/* /ddtrace/agent;
+        image: pubrepo.jiagouyun.com/datakit/dk-sidecar:1.0
+        imagePullPolicy: Always
+        volumeMounts:
+        - mountPath: /ddtrace/agent
+          name: ddagent
       restartPolicy: Always
       volumes:
-        - name: varlog
-          emptyDir: {}
-        - name: ddagent
-          emptyDir: {}
-        - configMap:
-            name: logfwd-conf
-          name: logfwd-config
-
+      - name: varlog
+        emptyDir: {} 
+      - name: ddagent
+        emptyDir: {} 
+      - configMap:
+          name: logfwd-conf
+        name: logfwd-config 
+          
 ---
+        
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -922,12 +923,12 @@ data:
             "loggings": [
                 {
                     "logfiles": ["/var/log/info.log","/var/log/error.log"],
-                    "source": "k8s-log-system",  
+                    "source": "k8s-log-system",                   
                     "multiline_match": "^\\d{4}-\\d{2}-\\d{2}"
                 }
             ]
         }
-    ]
+    ] 
 ```
 
 另外，`system-deployment.yaml` 文件中使用了环境变量来指定 DataKit 和 logfwd 端口。
@@ -1027,7 +1028,7 @@ DataKit 开启 RUM 采集器是通过 `ENV_DEFAULT_ENABLED_INPUTS` 环境变量�
 
 #### 开通 ddtrace
 
-详见[链路数据增加 node_ip 标签](#node_ip)。
+详见 <[链路数据增加 node_ip 标签](#node_ip)>。
 
 #### Java 应用接入 ddtrace
 
