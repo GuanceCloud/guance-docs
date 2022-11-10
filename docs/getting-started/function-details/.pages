@@ -9,6 +9,7 @@ nav:
   - '基础设施Label的妙用': infrastructure-label.md
   - '通过网络分析快速定位问题': network-analysis.md
   - '活用日志黑名单功能': logs-blacklist.md
+  - '巧用 “火焰图” 快速分析链路性能': trace-glame-graph.md
   - '构建内网API的可用性观测': usability-api.md
   - '通知分组的好处与妙用': inform-group.md
   - '通过快照功能快速与内外合作伙伴协作': snapshot-cooperation.md
