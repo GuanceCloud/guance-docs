@@ -28,7 +28,7 @@
 
 - 过滤：数据类型包括日志、指标、用户访问监测、应用性能监测、基础对象、自定义对象、网络、安全巡检，根据所选数据类型对应的字段值自动生成同名 Pipeline；
 
-注意：在观测云工作空间创建的 Pipeline 统一保存在 `<datakit 安装目录>/pipeline_remote 目录下` ，日志 Pipeline 文件保存在一级目录，其他数据类型保存在对应的二级目录下，如指标 `cpu.p` 保存在 `<datakit 安装目录>/pipeline_remote/metric/cpu.p 目录下` ，详情可参考文档 [Pipeline 各类别数据处理](../developers/datakit-pl-global/) 。
+注意：在观测云工作空间创建的 Pipeline 统一保存在 `<datakit 安装目录>/pipeline_remote 目录下` ，日志 Pipeline 文件保存在一级目录，其他数据类型保存在对应的二级目录下，如指标 `cpu.p` 保存在 `<datakit 安装目录>/pipeline_remote/metric/cpu.p 目录下` ，详情可参考文档 [Pipeline 各类别数据处理](../developers/datakit-pl-global.md) 。
 
 | **数据类型** | **字段**                   | **pipeline 文件名示例**          |
 | ------------ | -------------------------- | -------------------------------- |
