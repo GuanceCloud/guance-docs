@@ -77,7 +77,7 @@ annotations:
 kubectl apply -f deploy.yaml
 ```
 
-指标预览
+5、 指标预览
 
 ![image](../imgs/ingress-nginx-prom-3.png)
 

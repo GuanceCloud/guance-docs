@@ -54,17 +54,13 @@ vi postgresql.conf
   interval = '10s'
 ```
 
-3、 PostgreSQL 指标采集验证  `/usr/local/datakit/datakit -M |egrep "最近采集|postgresql"`
-
-![image](../imgs/input-postgresql-2.png)
-
-4、 重启 DataKit (如果需要开启日志，请配置日志采集再重启)
+3、 重启 DataKit (如果需要开启日志，请配置日志采集再重启)
 
 ```
 systemctl restart datakit
 ```
 
-指标预览
+4、 指标预览
 
 ![image](../imgs/input-postgresql-3.png)
 
@@ -87,10 +83,6 @@ pipeline = "postgresql.p"
 ```
 systemctl restart datakit
 ```
-
-PostgreSQL 日志采集验证  `/usr/local/datakit/datakit -M |egrep "最近采集|postgresql_log"`
-
-![image](../imgs/input-postgresql-4.png)
 
 #### 插件标签 (非必选)
 

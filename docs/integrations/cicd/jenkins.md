@@ -84,7 +84,7 @@ vi jenkins.conf
 systemctl restart datakit
 ```
 
-指标预览
+6、 指标预览
 
 ![image](../imgs/input-jenkins-07.png)
 

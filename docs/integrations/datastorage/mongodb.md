@@ -91,16 +91,13 @@ vi mongodb.conf
   # enable_tls = false
 ```
 
-3、 MongoDB 指标采集验证  `/usr/local/datakit/datakit -M |egrep "最近采集|mongodb"`
-
-![image](../imgs/input-mongodb-3.png)
-
-4、 重启 DataKit (如果需要开启日志，请配置日志采集再重启)
+3、 重启 DataKit (如果需要开启日志，请配置日志采集再重启)
 
 ```
 systemctl restart datakit
 ```
-指标预览
+
+4、 指标预览
 
 ![image](../imgs/input-mongodb-4.png)
 

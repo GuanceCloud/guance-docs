@@ -106,11 +106,7 @@ vi apache.conf
 systemctl restart datakit
 ```
 
-7、 Apache 指标采集验证，使用命令 `/usr/local/datakit/datakit -M |egrep "最近采集|apache"`
-
-![image](../imgs/input-apache-3.png)
-
-指标预览
+7、 指标预览
 
 ![image](../imgs/input-apache-4.png)
 
@@ -133,10 +129,6 @@ pipeline = "apache.p"
 ```
 systemctl restart datakit
 ```
-
-Apache 日志采集验证 `/usr/local/datakit/datakit -M |egrep "最近采集|apache_log"`
-
-![image](../imgs/input-apache-5.png)
 
 日志预览
 

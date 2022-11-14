@@ -37,11 +37,7 @@
   interval = '10s'
 ```
 
-2、 MEM 指标采集验证 `/usr/local/datakit/datakit -M |egrep "最近采集|mem"`
-
-![image](../../imgs/input-mem-2.png)
-
-指标预览
+2、 指标预览
 
 ![image](../../imgs/input-mem-3.png)
 
