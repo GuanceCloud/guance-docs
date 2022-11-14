@@ -1,3 +1,7 @@
+---
+icon: material/math-log
+---
+
 # 日志采集
 
 ---
@@ -8,10 +12,9 @@
 
 [**安装 DataKit**](../../datakit/datakit-install.md)之后，用户可通过**自定义开启内置插件**采集相关数据：
 
-
-| [Fluentd](fluentd.md){ .md-button .md-button--primary } | [Logstash](logstash.md){ .md-button .md-button--primary } |
-| :----: | :----:|
-| [OpenTelemetry Collector](opentelemetry-collector.md){ .md-button .md-button--primary } |  |
+|                 [Fluentd](fluentd.md){ .md-button .md-button--primary }                 | [Logstash](logstash.md){ .md-button .md-button--primary } |
+| :-------------------------------------------------------------------------------------: | :-------------------------------------------------------: |
+| [OpenTelemetry Collector](opentelemetry-collector.md){ .md-button .md-button--primary } |                                                           |
 
 <br/>
 
