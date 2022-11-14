@@ -6,11 +6,11 @@
 
 AWS RDS MySQL 指标展示，包括所 CPU 使用率、负载、磁盘队列、 IO、网络流量等。
 
-![image.png](../imgs/aws-rds-mysql-1.png)
+![image.png](../../imgs/aws-rds-mysql-1.png)
 
-![image.png](../imgs/aws-rds-mysql-2.png)
+![image.png](../../imgs/aws-rds-mysql-2.png)
 
-![image.png](../imgs/aws-rds-mysql-3.png)
+![image.png](../../imgs/aws-rds-mysql-3.png)
 
 ## 版本支持
 
@@ -18,8 +18,8 @@ AWS RDS MySQL 指标展示，包括所 CPU 使用率、负载、磁盘队列、 
 
 ## 前置条件
 
-- 服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
-- 服务器 <[安装 DataFlux Func 携带版](../../dataflux-func/quick-start.md)>
+- 服务器 <[安装 DataKit](../../../datakit/datakit-install.md)>
+- 服务器 <[安装 DataFlux Func 携带版](../../../dataflux-func/quick-start.md)>
 - AWS 访问管理进行授权
 
 ### 访问授权
@@ -28,15 +28,15 @@ AWS RDS MySQL 指标展示，包括所 CPU 使用率、负载、磁盘队列、 
 
 2、 添加用户
 
-![image.png](../imgs/aws-rds-mysql-4.png)
+![image.png](../../imgs/aws-rds-mysql-4.png)
 
 3、 用户授权：「ReadOnlyAccess」
 
-![image.png](../imgs/aws-rds-mysql-5.png)
+![image.png](../../imgs/aws-rds-mysql-5.png)
 
 4、 保存或下载 **Access key ID** 和 **Secret access key** 的 CSV 文件（配置文件会用到）
 
-![image.png](../imgs/aws-rds-mysql-6.png)
+![image.png](../../imgs/aws-rds-mysql-6.png)
 
 ## 安装配置
 
@@ -51,11 +51,11 @@ AWS RDS MySQL 指标展示，包括所 CPU 使用率、负载、磁盘队列、 
 
 1、 登录 DataFlux Func，地址 `http://ip:8088`
 
-![image.png](../imgs/aws-rds-mysql-7.png)
+![image.png](../../imgs/aws-rds-mysql-7.png)
 
 2、 开启脚本市场：「管理」 - 「实验性功能」 - 「开启脚本市场模块」
 
-![image.png](../imgs/aws-rds-mysql-8.png)
+![image.png](../../imgs/aws-rds-mysql-8.png)
 
 3、 **依次添加**三个脚本集
 
@@ -65,29 +65,29 @@ AWS RDS MySQL 指标展示，包括所 CPU 使用率、负载、磁盘队列、 
 
 > **注意：**在安装核心包后，系统会提示安装第三方依赖包，按照正常步骤点击安装即可。
 
-![image.png](../imgs/aws-rds-mysql-9.png)
+![image.png](../../imgs/aws-rds-mysql-9.png)
 
-![image.png](../imgs/aws-rds-mysql-10.png)
+![image.png](../../imgs/aws-rds-mysql-10.png)
 
-![image.png](../imgs/aws-rds-mysql-11.png)
+![image.png](../../imgs/aws-rds-mysql-11.png)
 
 4、 脚本安装完成后，可以在「脚本库」中看到所有脚本集
 
-![image.png](../imgs/aws-rds-mysql-12.png)
+![image.png](../../imgs/aws-rds-mysql-12.png)
 
 #### 添加脚本
 
 1、 「开发」 - 「脚本库」 - 「添加脚本集」
 
-![image.png](../imgs/aws-rds-mysql-13.png)
+![image.png](../../imgs/aws-rds-mysql-13.png)
 
 2、 点击上一步添加的「脚本集」 - 「添加脚本」
 
-![image.png](../imgs/aws-rds-mysql-14.png)
+![image.png](../../imgs/aws-rds-mysql-14.png)
 
 3、 创建 ID 为 RDS 的脚本
 
-![image.png](../imgs/aws-rds-mysql-15.png)
+![image.png](../../imgs/aws-rds-mysql-15.png)
 
 4、 添加代码
 
@@ -138,17 +138,17 @@ def run():
 
 5、 「保存」 配置并 「发布」
 
-![image.png](../imgs/aws-rds-mysql-16.png)
+![image.png](../../imgs/aws-rds-mysql-16.png)
 
 #### 定时任务
 
 1、 添加自动触发任务，管理 - 自动触发配置 - 新建任务
 
-![image.png](../imgs/aws-rds-mysql-17.png)
+![image.png](../../imgs/aws-rds-mysql-17.png)
 
 2、 自动触发配置：在「执行函数」中添加此脚本，执行频率为 **5 分钟 _/5 _ \* \* \***
 
-![image.png](../imgs/aws-rds-mysql-18.png)
+![image.png](../../imgs/aws-rds-mysql-18.png)
 
 ## 场景视图
 
@@ -163,14 +163,14 @@ def run():
 - 查看日志：DataFlux Func 日志路径 `/usr/local/dataflux-func/data/logs/dataflux-func.log`
 - 代码调试：编辑模式选择主函数，直接运行 (可以看到脚本输出)
 
-![image.png](../imgs/aws-rds-mysql-19.png)
+![image.png](../../imgs/aws-rds-mysql-19.png)
 
 - 连接配置：DataFlux Func 无法连接 DataKit，请检查数据源配置 (DataKit 需要监听 0.0.0.0)
 
-![image.png](../imgs/aws-rds-mysql-20.png)
+![image.png](../../imgs/aws-rds-mysql-20.png)
 
 ## 进一步阅读
 
-<[DataFlux Func 观测云集成简介](../../dataflux-func/script-market-guance-integration.md)>
+<[DataFlux Func 观测云集成简介](../../../dataflux-func/script-market-guance-integration.md)>
 
-<[DataFlux Func AWS-CloudWatch 配置手册](../../dataflux-func/script-market-guance-aws-cloudwatch.md)>
+<[DataFlux Func AWS-CloudWatch 配置手册](../../../dataflux-func/script-market-guance-aws-cloudwatch.md)>
