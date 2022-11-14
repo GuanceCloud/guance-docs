@@ -17,7 +17,7 @@
 | [ECS](aliyun-ecs.md){ .md-button .md-button--primary }| [EIP](aliyun-eip.md){ .md-button .md-button--primary } | [CDN](aliyun-cdn.md){ .md-button .md-button--primary }| [SLB](aliyun-slb.md){ .md-button .md-button--primary }   | [ElasticSearch](aliyun-es.md){ .md-button .md-button--primary }|
 | [费用](aliyun-charges.md){ .md-button .md-button--primary }  |   |        |        |   |
 
-
 <br/>
 
-开始[**安装 DataKit**](../../datakit/datakit-install.md)、[**安装 DataFlux Func 携带版**](../../dataflux-func/maintenance-guide-installation.md)，开启你的观测云之旅！
+其他云厂商集成文档：<[**AWS**](../aws/index.md)>  <[**腾讯云**](../tencent-cloud/index.md)>
+
