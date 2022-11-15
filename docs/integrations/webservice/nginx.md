@@ -107,11 +107,7 @@ cp nginx.conf.sample nginx.conf
 systemctl restart datakit
 ```
 
-8、 Nginx 指标采集验证，使用命令 `/usr/local/datakit/datakit -M |egrep "最近采集|nginx"`
-
-![image](../imgs/input-nginx-04.png)
-
-指标预览
+8、 指标预览
 
 ![image](../imgs/input-nginx-05.png)
 
@@ -134,10 +130,6 @@ pipeline = "nginx.p"
 ```
 systemctl restart datakit
 ```
-
-Nginx 日志采集验证 `/usr/local/datakit/datakit -M |egrep "最近采集|logging/nginx"`
-
-![image](../imgs/input-nginx-06.png)
 
 日志预览
 

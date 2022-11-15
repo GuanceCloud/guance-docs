@@ -1,4 +1,8 @@
+---
+icon: fontawesome/solid/database
+---
 # 数据存储
+
 
 ---
 
@@ -18,3 +22,7 @@
 <br/>
 
 **开始[安装 DataKit](../../datakit/datakit-install.md)，开启你的观测云之旅！**
+
+<br/>
+
+<br/>

@@ -37,11 +37,7 @@
   interval = '10s'
 ```
 
-2、 System 指标采集验证 `/usr/local/datakit/datakit -M |egrep "最近采集|system"`
-
-![image](../../imgs/input-system-2.png)
-
-指标预览
+2、 指标预览
 
 ![image](../../imgs/input-system-3.png)
 

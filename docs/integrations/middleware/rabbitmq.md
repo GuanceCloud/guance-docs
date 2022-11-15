@@ -109,7 +109,7 @@ vi rabbitmq.conf
 systemctl restart datakit
 ```
 
-指标预览
+6、 指标预览
 
 ![image](../imgs/input-rabbit-4.png)
 

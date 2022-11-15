@@ -132,11 +132,7 @@ SHOW VARIABLES LIKE 'log_bin';
 systemctl restart datakit
 ```
 
-4、 MySQL 指标采集验证 `/usr/local/datakit/datakit -M |egrep "最近采集|mysql"`
-
-![image](../imgs/input-mysql-4.png)
-
-5、 指标预览
+4、 指标预览
 
 ![image](../imgs/input-mysql-5.png)
 
@@ -191,11 +187,7 @@ set global log_queries_not_using_indexes = 'ON';
 systemctl restart datakit
 ```
 
-4、 MySQL 日志采集验证  /usr/local/datakit/datakit -M |egrep "最近采集|mysql_log"
-
-![image](../imgs/input-mysql-6.png)
-
-5、 日志预览
+4、 日志预览
 
 ![image](../imgs/input-mysql-7.png)
 

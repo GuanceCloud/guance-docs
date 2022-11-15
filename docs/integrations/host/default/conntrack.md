@@ -37,10 +37,7 @@ Conntrack 性能指标展示，包括成功搜索条目数、插入的包数、�
   interval = '10s'
 ```
 
-3、 Conntrack 指标采集验证 `/usr/local/datakit/datakit -M |egrep "最近采集|system"`
-
-![image](../../imgs/input-conntracks-2.png)
-指标预览
+3、 指标预览
 
 ![image](../../imgs/input-conntracks-3.png)
 

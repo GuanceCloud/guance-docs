@@ -107,11 +107,7 @@ cp prom.conf.sample prom.conf
   interval = "60s"
 ```
 
-3、 Prometheus 指标采集验证 `/usr/local/datakit/datakit -M |egrep "最近采集|prom"`
-
-![image](../imgs/input-rocketmq-4.png)
-
-4、 指标预览
+3、 指标预览
 
 ![image](../imgs/input-rocketmq-5.png)
 

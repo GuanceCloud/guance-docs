@@ -131,11 +131,7 @@ vi elasticsearch.conf
 systemctl restart datakit
 ```
 
-4、 ElasticSearch 指标采集验证 `/usr/local/datakit/datakit -M |egrep "最近采集|elasticsearch"`
-
-![image](../imgs/input-elasticsearch-5.png)
-
-5、 指标预览
+4、 指标预览
 
 ![image](../imgs/input-elasticsearch-6.png)
 
@@ -162,15 +158,11 @@ systemctl restart datakit
 systemctl restart datakit
 ```
 
-3、 ElasticSearch 日志采集验证  `/usr/local/datakit/datakit -M |egrep "最近采集|elasticsearch_log"`
-
-![image](../imgs/input-elasticsearch-7.png)
-
-4、 日志预览
+3、 日志预览
 
 ![image](../imgs/input-elasticsearch-8.png)
 
-5、 日志 Pipeline 功能切割字段说明
+4、 日志 Pipeline 功能切割字段说明
 
 - ElasticSearch 通用日志切割<br />通用日志文本示例： <br />切割后的字段列表如下： 
 

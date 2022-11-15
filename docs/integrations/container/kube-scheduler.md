@@ -138,7 +138,7 @@ kubectl delete -f datakit.yaml
 kubectl apply -f datakit.yaml
 ```
 
-指标预览
+4、 指标预览
 
 ![image](../imgs/input-kube-scheduler-03.png)
 

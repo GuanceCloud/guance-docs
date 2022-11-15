@@ -127,8 +127,7 @@ cp prom.conf.sample seata-prom.conf
 systemctl restart datakit
 ```
 
-
-### 3 指标预览
+6、 指标预览
 
 ![image](../imgs/input-seata-2.png)
 

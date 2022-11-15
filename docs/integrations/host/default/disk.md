@@ -41,11 +41,7 @@
   ignore_fs = ["tmpfs", "devtmpfs", "devfs", "iso9660", "overlay", "aufs", "squashfs"]
 ```
 
-2、 Disk 指标采集验证 `/usr/local/datakit/datakit -M |egrep "最近采集|disk"`
-
-![image](../../imgs/input-disk-2.png)
-
-指标预览
+2、 指标预览
 
 ![image](../../imgs/input-disk-3.png)
 

@@ -174,7 +174,7 @@ data:
 systemctl restart datakit
 ```
 
-指标预览
+4、 指标预览
 
 ![image](../imgs/input-coredns-4.png)
 

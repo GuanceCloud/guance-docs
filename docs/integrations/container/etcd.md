@@ -132,7 +132,7 @@ vi etcd.conf
 systemctl restart datakit
 ```
 
-指标预览
+4、 指标预览
 
 ![image](../imgs/etcd3.png)
 

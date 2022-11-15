@@ -128,7 +128,7 @@ datakit --restart
 
 ![image](../imgs/input-resin-2.png)
 
-指标预览
+7、 指标预览
 
 ![image](../imgs/input-resin-3.png)
 

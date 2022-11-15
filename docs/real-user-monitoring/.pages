@@ -7,8 +7,7 @@ nav:
   - 'React Native 监测': react-native
   - 'Flutter 监测': flutter
   - '如何配置用户访问监测采样': sampling.md
-  - '查看器': explorer.md
+  - '查看器': explorer
   - '生成指标': generate-metrics.md
   - '自建追踪': self-tracking.md
-  - 'Sourcemap 上传': sourcemap.md
 
