@@ -61,7 +61,7 @@
 
 （4）在集群管理页左侧导航栏单击「工作负载」 - 「自定义资源」，然后在右侧页面单击「使用 YAML 创建」。
 
-- 选择相应的命名空间。选择**所有名称空间**。
+- 选择相应的命名空间。选择**所有命名空间**，如果已创建 datakit 命名空间可选择 datakit。
 - 在示例模板中，选择**自定义**。把 yaml 的内容贴入模板中， 点击「创建」。
 
 ![image.png](../images/aliyun-ack-3.png)
@@ -69,6 +69,13 @@
 在守护进程集下面可以查看到 DataKit 运行情况。
 
 ![image.png](../images/aliyun-ack-4.png)
+
+
+登录「[观测云](https://console.guance.com/)」- 「基础设施」，查看主机、容器等信息。
+
+![image.png](../images/aliyun-ack-9.png)
+
+![image.png](../images/aliyun-ack-10.png)
 
 ### 3 卸载 DataKit
 
@@ -93,7 +100,28 @@ DataKit 部署默认使用了 datakit 命名空间，卸载只需要删除守护
 
 ![image.png](../images/aliyun-ack-7.png)
 
-#### 3.4 异常处理
+### 4 异常处理
+
+#### 4.1、权限问题
+
+如果部署的过程中出现如下提示，是无权限操作 RBAC 的问题。
+
+![image.png](../images/aliyun-ack-11.png)
+
+登录阿里云[容器服务管理控制台](https://cs.console.aliyun.com/?spm=a2c4g.11186623.0.0.1b483e068AVz8k)，进入**授权管理**。
+
+![image.png](../images/aliyun-ack-12.png)
+
+选择对应用户，点击右侧的「管理权限」。
+
+![image.png](../images/aliyun-ack-13.png)
+
+增加集群所有命名空间的操作权限，点击「下一步」保存。
+
+![image.png](../images/aliyun-ack-14.png)
+
+
+#### 4.2、部署错误
 
 如果在下次部署的时候提示如下错误，是因为阿里云控制台显示删除了，实际资源还存在的情况。
 
