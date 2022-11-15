@@ -6,6 +6,7 @@ nav:
   - 'Memcached': memcached.md
   - 'MongoDB': mongodb.md
   - 'MySQL': mysql.md
+  - 'MinIO': minio.md
   - 'Oracle': oracle.md
   - 'PostgreSQL': postgresql.md
   - 'Redis': redis.md

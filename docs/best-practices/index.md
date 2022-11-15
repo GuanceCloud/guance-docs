@@ -159,12 +159,6 @@ icon: zy/best-practices
 - 接入（集成）最佳实践
     - [Skywalking 采集 JVM 可观测最佳实践](./monitoring/skywalking-jvm.md)。
   
-## (2022/07/01)
-### 新增最佳实践
-
-- 接入（集成）最佳实践
-    - [Minio 可观测最佳实践](./cloud-native/minio.md)。
-
 ## (2022/06/24)
 ### 更新记录
 - 云原生

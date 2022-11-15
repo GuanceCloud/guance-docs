@@ -17,7 +17,7 @@ icon: fontawesome/solid/database
 | [MySQL](mysql.md){ .md-button .md-button--primary } | [Oracle](oracle.md){ .md-button .md-button--primary } | [PostgreSQL](postgresql.md){ .md-button .md-button--primary } | [SQLServer](sqlserver.md){ .md-button .md-button--primary }   | [ClickHouse](clickhouse.md){ .md-button .md-button--primary } |
 | [MongoDB](mongodb.md){ .md-button .md-button--primary } | [Redis](redis.md){ .md-button .md-button--primary }  | [Memcached](memcached.md){ .md-button .md-button--primary }  | [ElasticSearch](elasticsearch.md){ .md-button .md-button--primary } |   | 
 | {++**Prometheus**++} |     |    |    |
-| [Aerospike](aerospike.md){ .md-button .md-button--primary }  | [Redis-sentinel](redis-sentinel.md){ .md-button .md-button--primary } |        |        |
+| [Aerospike](aerospike.md){ .md-button .md-button--primary }  | [MinIO](minio.md){ .md-button .md-button--primary } | [Redis-sentinel](redis-sentinel.md){ .md-button .md-button--primary } |        |
 
 <br/>
 
