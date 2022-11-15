@@ -8,7 +8,7 @@
 
 ## 新建 Pipeline
 
-在观测云工作空间「日志」-「Pipelines」，点击「新建Pipeline」，选择「过滤日志」，填入「定义解析规则」，然后在「日志样本测试」输入日志数据进行测试，测试通过后点击「保存」即可创建一个新的 pipeline 文件。
+在观测云工作空间「日志」-「Pipelines」，点击「新建Pipeline」，选择「过滤日志」，填入「定义解析规则」，然后在「日志样本测试」输入日志数据进行测试，测试通过后点击「保存」即可创建一个新的 pipeline 文件。支持配置默认 pipeline，并且在新建 pipeline 时支持选择多个 source。
 
 注意：pipeline 文件创建以后，需要安装 DataKit 才会生效，DataKit 会定时从工作空间获取配置的 pipeline 文件，默认时间为 1分钟，可在 `conf.d/datakit.conf` 中修改。
 
@@ -17,7 +17,8 @@
   remote_pull_interval = "1m"
 ```
 
-- 过滤日志：根据所选日志来源自动生成同名 Pipeline，也可以直接输入自定义的 pipeline 文件名；
+- 过滤日志：支持多选日志来源；
+-  名称：输入自定义的 pipeline 文件名；
 - 定义解析规则：定义日志的解析规则，支持多种脚本函数，可通过观测云提供的脚本函数列表直接查看其语法格式，如`add_pattern()`等。关于如何定义解析规则，可参考文档 [Pipeline 介绍](../../developers/pipeline.md) ；
 - 日志样本测试：输入日志数据，根据配置的解析规则进行测试，支持「一键获取」已经采集的日志数据样本。关于如何调试样本数据可参考文档 [调整 Pipeline](../management/overall-pipeline/#test) 。
 
