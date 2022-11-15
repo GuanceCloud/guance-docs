@@ -48,11 +48,7 @@ cp hostdir.conf.sample hostdir.conf
   # exclude_patterns = []
 ```
 
-3、 Directory 指标采集验证  `/usr/local/datakit/datakit -M |egrep "最近采集|hostdir"`
-
-![image](../imgs/input-directory-2.png)
-
-指标预览
+3、 指标预览
 
 ![image](../imgs/input-directory-3.png)
 
@@ -61,7 +57,7 @@ cp hostdir.conf.sample hostdir.conf
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，所有 hostdir 指标都会带有 app = oa 的标签，可以进行快速查询
+- 以下示例配置完成后，所有 hostdir 指标都会带有 `app = "oa"` 的标签，可以进行快速查询
 - 相关文档 <[TAG在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 
 ```

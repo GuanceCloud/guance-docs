@@ -97,7 +97,7 @@ vi gitlab.conf
 systemctl restart datakit
 ```
 
-指标预览
+6、 指标预览
 
 ![image](../imgs/input-gitlab-04.png)
 

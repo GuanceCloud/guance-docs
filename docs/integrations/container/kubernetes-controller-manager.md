@@ -135,7 +135,7 @@ kubectl delete -f datakit.yaml
 kubectl apply -f datakit.yaml
 ```
 
-指标预览
+4、 指标预览
 
 ![image](../imgs/kubernetes-controller-manager-1.png)
 

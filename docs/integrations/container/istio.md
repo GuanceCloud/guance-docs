@@ -692,7 +692,7 @@ kubectl apply -f  datakit.yaml
 
 浏览器访问 [http://8.136.193.105:32156/productpage](http://8.136.193.105:32156/productpage)，即可访问 productpage。
 
-指标预览
+6、 指标预览
 
 ![image](../imgs/istio-4.png)
 

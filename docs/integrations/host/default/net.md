@@ -43,11 +43,7 @@
   # ignore_protocol_stats = false
 ```
 
-2、 Net 指标采集验证 `/usr/local/datakit/datakit -M |egrep "最近采集|net"`
-
-![image](../../imgs/input-net-2.png)
-
-指标预览
+2、 指标预览
 
 ![image](../../imgs/input-net-3.png)
 

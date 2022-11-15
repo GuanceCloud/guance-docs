@@ -109,11 +109,7 @@ vi redis.conf
 systemctl restart datakit
 ```
 
-4、 Redis 指标采集验证 `/usr/local/datakit/datakit -M |egrep "最近采集|redis"`
-
-![image](../imgs/input-redis-2.png)
-
-5、 指标预览
+4、 指标预览
 
 ![image](../imgs/input-redis-3.png)
 
@@ -156,15 +152,11 @@ systemctl restart datakit
 systemctl restart datakit
 ```
 
-3、 Redis 日志采集验证  `/usr/local/datakit/datakit -M |egrep "最近采集|redis_log"`
-
-![image](../imgs/input-redis-4.png)
-
-4、 日志预览
+3、 日志预览
 
 ![image](../imgs/input-redis-5.png)
 
-5、 日志 pipeline 功能切割字段说明<br />
+4、 日志 pipeline 功能切割字段说明<br />
 Redis 通用日志切割
 
 - 原始日志为：

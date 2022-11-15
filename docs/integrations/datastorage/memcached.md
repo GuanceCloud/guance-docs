@@ -49,11 +49,7 @@ vi memcached.conf
   interval = '10s'
 ```
 
-3、 Memcached 指标采集验证  `/usr/local/datakit/datakit -M |egrep "最近采集|memcached"`
-
-![image](../imgs/input-memcached-2.png)
-
-指标预览
+3、 指标预览
 
 ![image](../imgs/input-memcached-3.png)
 

@@ -49,11 +49,7 @@ cp host_processes.conf.sample host_processes.conf
   open_metric = true
 ```
 
-3、 Processes 指标采集验证  `/usr/local/datakit/datakit -M |egrep "最近采集|host_processes"`
-
-![image](../imgs/input-processes-2.png)
-
-指标预览
+3、 指标预览
 
 ![image](../imgs/input-processes-3.png)
 

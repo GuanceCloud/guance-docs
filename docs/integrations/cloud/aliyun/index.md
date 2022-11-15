@@ -19,5 +19,4 @@
 
 <br/>
 
-其他云厂商集成文档：<[**AWS**](../aws/index.md)>  <[**腾讯云**](../tencent-cloud/index.md)>
-
+其他云厂商集成文档：[AWS](../aws/index.md){ .md-button .md-button--primary }  [腾讯云](../tencent-cloud/index.md){ .md-button .md-button--primary }

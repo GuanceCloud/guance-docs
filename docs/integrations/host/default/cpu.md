@@ -41,11 +41,7 @@ CPU 性能指标展示，包括 CPU 使用率、IO 等待、用户态、核心�
   enable_temperature = true
 ```
 
-2、 CPU 指标采集验证 `/usr/local/datakit/datakit -M |egrep "最近采集|cpu"`
-
-![image](../../imgs/input-cpu-2.png)
-
-指标预览
+2、 指标预览
 
 ![image](../../imgs/input-cpu-3.png)
 
@@ -54,7 +50,7 @@ CPU 性能指标展示，包括 CPU 使用率、IO 等待、用户态、核心�
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，所有 cpu 指标都会带有 `app = "oa"` 的标签，可以进行快速查询
+- 以下示例配置完成后，所有 CPU 指标都会带有 `app = "oa"` 的标签，可以进行快速查询
 - 相关文档 <[TAG 在观测云中的最佳实践](../../../best-practices/insight/tag.md)>
 
 ```

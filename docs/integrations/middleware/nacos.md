@@ -85,11 +85,7 @@ cp prom.conf.sample nacos-prom.conf
 systemctl restart datakit
 ```
 
-7、 Nacos 指标采集验证，使用命令 `/usr/local/datakit/datakit -M |egrep "最近采集|nacos" `或者通过 url 查看 ${ip}:9529/monitor
-
-![image](../imgs/input-nacos-2.png)
-
-指标预览
+7、 指标预览
 
 ![image](../imgs/input-nacos-3.png)
 

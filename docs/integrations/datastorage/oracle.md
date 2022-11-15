@@ -120,11 +120,7 @@ vi oracle.conf
 datakit --restart 
 ```
 
-5、 Oracle 指标采集验证 `/usr/local/datakit/datakit -M |egrep "最近采集|oracle"`
-
-![image](../imgs/oracle-4.png)
-
-6、 指标预览
+5、 指标预览
 
 ![image](../imgs/oracle-5.png)
 

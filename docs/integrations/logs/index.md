@@ -10,12 +10,20 @@ icon: material/math-log
 
 <br />
 
-[**安装 DataKit**](../../datakit/datakit-install.md)之后，用户可通过**自定义开启内置插件**采集相关数据：
+[**安装 DataKit**](../../datakit/datakit-install.md)之后，用户可通过{==**自定义开启内置插件**==}采集相关数据：
 
-|                 [Fluentd](fluentd.md){ .md-button .md-button--primary }                 | [Logstash](logstash.md){ .md-button .md-button--primary } |
-| :-------------------------------------------------------------------------------------: | :-------------------------------------------------------: |
-| [OpenTelemetry Collector](opentelemetry-collector.md){ .md-button .md-button--primary } |                                                           |
+| {==**自定义开启**==}  |  | |
+| :------------------------------------: | :-------------------------------------------------------: |---------: |
+|[Fluentd](fluentd.md){ .md-button .md-button--primary } | [Logstash](logstash.md){ .md-button .md-button--primary } | [OpenTelemetry Collector](opentelemetry-collector.md){ .md-button .md-button--primary } | 
 
 <br/>
 
 开始[**安装 DataKit**](../../datakit/datakit-install.md)，开启你的观测云之旅！
+
+<br/>
+
+<br/>
+
+<br/>
+
+<br/>

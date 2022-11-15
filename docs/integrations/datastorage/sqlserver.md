@@ -73,7 +73,7 @@ GO
 services.msc 找到 datakit 重新启动
 ```
 
-指标预览
+4、 指标预览
 
 ![image](../imgs/input-sqlserver-6.png)
 

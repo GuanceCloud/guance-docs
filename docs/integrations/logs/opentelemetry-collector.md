@@ -173,11 +173,7 @@ cp prom.conf.sample prom-otelcol.conf
 systemctl restart datakit
 ```
 
-6、 OpenTelemetry Collector  指标采集验证，使用命令 `/usr/local/datakit/datakit -M |egrep "最近采集|otel"`
-
-![image](../imgs/input-otlcollector-3.png)
-
-指标预览
+6、 指标预览
 
 ![image](../imgs/input-otlcollector-4.png)
 

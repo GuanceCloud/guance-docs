@@ -58,11 +58,7 @@ cp ssh.conf.sample ssh.conf
 systemctl restart datakit
 ```
 
-4、 SSH 指标采集验证，使用命令 `/usr/local/datakit/datakit -M |egrep "最近采集|ssh"`
-
-![image](../imgs/input-ssh-2.png)
-
-指标预览
+4、 指标预览
 
 ![image](../imgs/input-ssh-3.png)
 

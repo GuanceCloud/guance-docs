@@ -45,11 +45,7 @@ DiskIO 性能指标展示，包括磁盘读写、磁盘读写时间、IOPS 等�
   # name_templates = ["$ID_FS_LABEL","$DM_VG_NAME/$DM_LV_NAME", "$device:$ID_FS_TYPE"]
 ```
 
-2、 DiskIO 指标采集验证 `/usr/local/datakit/datakit -M |egrep "最近采集|diskio"`
-
-![image](../../imgs/input-diskio-2.png)
-
-指标预览
+2、 指标预览
 
 ![image](../../imgs/input-diskio-3.png)
 

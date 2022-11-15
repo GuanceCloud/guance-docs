@@ -88,7 +88,7 @@ curl http://10.244.36.66:8080/metrics
 
 ![image](../imgs/input-kube-state-metrics-09.png)
 
-指标预览
+5、 指标预览
 
 ![image](../imgs/input-kube-state-metrics-10.png)
 

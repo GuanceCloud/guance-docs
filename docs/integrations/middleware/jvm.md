@@ -55,7 +55,7 @@ vi /usr/local/datakit/conf.d/datakit.conf
 systemctl restart datakit
 ```
 
-指标预览(启动应用后才能上报数据)
+5、 指标预览(启动应用后才能上报数据)
 
 ![image](../imgs/input-jvm-3.png)
 
