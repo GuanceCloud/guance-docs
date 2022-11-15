@@ -71,11 +71,11 @@
 - Pipeline 官方库自带多个日志样本测试数据，在「克隆」前可选择符合自身需求的日志样本测试数据。
 - 克隆的 Pipeline 修改保存后， 日志样本测试数据同步保存。
 
-![](../img/6.log_pipeline_5.png)
+![](../img/1-log-pipeline-1.png)
 
 根据所选日志来源自动生成同名 pipeline 文件名称，点击「确定」后，即可创建一个自定义 pipeline 文件。
 
-注意：DataKit 会自动获取官方库 pipeline 文件，若克隆的自定义 pipeline 文件与官方 pipeline 同名，此时 DataKit 会优先自动获取新建的自定义 pipeline 文件配置；若克隆的自定义 pipeline 文件与官方 pipeline 不同名，则需要在对应采集器的 pipeline 修改对应的 pipeline 的 `.p` 文件名称。
+注意：DataKit 会自动获取官方库 pipeline 文件，若克隆的自定义 pipeline 文件与官方 pipeline 同名，此时 DataKit 会优先自动获取新建的自定义 pipeline 文件配置；若克隆的自定义 pipeline 文件与官方 pipeline 不同名，则需要在对应采集器的 pipeline 修改对应的 pipeline 的文件名称。
 
 ![](../img/6.log_pipeline_6.png)
 
