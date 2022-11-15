@@ -86,7 +86,7 @@ source in ['kube-controller-manager','http_dial_testing'] and (status != 'unknow
 
 ![](../img/8.explorer_3.png)
 
-### 字段筛选
+### 字段筛选 {#filter}
 
 在查看器中，可针对 `标签/属性` 进行值的筛选，支持六种筛选方式，分别为：正向筛选、反向筛选、模糊匹配、反向模糊匹配、存在和不存在。
 
