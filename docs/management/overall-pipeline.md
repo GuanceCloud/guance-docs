@@ -118,10 +118,7 @@
 **注意**：
 
 - 每个类型只会有一个【默认 Pipeline】，新建/导入时出现重复会弹出确认框，询问是否进行替换。
-
-- 所有指定类型的数据都会执行【默认 Pipeline】，单独配置过的数据源不计入。
-
-  举例：当为 source=nginx 单独创建了日志 pipeline，那么【nginx日志】将不会执行【默认Pipeline】
+- 若当前数据类型在匹配 Pipeline 处理时，未匹配到其他的 Pipeline 脚本，则数据会按照默认 Pipeline 脚本的规则处理。
 
 ![](img/1-pipeline-8.png)
 
