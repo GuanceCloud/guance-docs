@@ -121,7 +121,7 @@
 
 - 所有指定类型的数据都会执行【默认 Pipeline】，单独配置过的数据源不计入。
 
-- - 举例：当为 source=nginx 单独创建了日志 pipeline，那么【nginx日志】将不会执行【默认Pipeline】
+  举例：当为 source=nginx 单独创建了日志 pipeline，那么【nginx日志】将不会执行【默认Pipeline】
 
 ![](img/1-pipeline-8.png)
 
