@@ -31,7 +31,7 @@
 
 如若您需要删除查看器详情中已绑定的内置视图，在设置下选择“绑定”，清除“绑定”中的字段内容，点击“确定”即可删除查看器详情已绑定的内置视图。
 
-![](../img/4.view_9.png)
+![](../img/4.view_4.png)
 
 
 ---
@@ -48,11 +48,12 @@
 | `project`<br />(项目) | 当前工作空间的 Object（基础设施） 数据中的 project 值 | 场景-自定义查看器<br />基础设施-所有查看器<br />日志查看器<br />链路查看器<br />用户访问-session、view查看器<br />安全巡检查看器<br />可用性查看器 | ``*``：表示匹配全部项目<br />``value``：表示仅匹配对应的项目，支持多值 |
 | `label` | 当前工作空间的 Object（基础设施） 数据中的 label 值 | 基础设施-所有查看器 | ``*``：表示匹配全部项目<br />``value``：表示仅匹配对应的 label，支持多值 |
 
-**绑定字段后在查看器详情页的显示逻辑说明：**<br />1）绑定字段的 value 值支持 `*` ，单值，多值 3种模式。
+**绑定字段后在查看器详情页的显示逻辑说明：**<br />1）绑定字段的 value 值支持 `*` ，单值，多值 模糊匹配 4种模式。
 
 - 若 value 值选择 `*`，如配置 `Service:*`：所有列表里面存在 Service 字段的查看器详情页绑定该内置视图
 - 若 value 值选择“单值”，如配置 `Service:value1`，所有列表里面存在 service=value1 的查看器详情页绑定该内置视图
 - 若 value 值选择“多值”，如配置 `Service:value1,value2`，所有列表数据中存在 service=value1 或者 service=value2 的查看器详情页绑定该内置视图；若存在多个 key:value ，如配置 `Service:value1` , `source:value2` , 所有列表数据中存在 service=value1 或者 source=value2 的查看器详情页绑定该内置视图；
+- 若  value 值选择 `wildcard` 模糊匹配，则显示 `*Service:`，如配置 `*service:*sql`：所有列表里面存在 Service=以 `sql` 结尾 的字段（例如：service=mysql; service=pymysql）的查看器详情页绑定该内置视图
 
 2）绑定字段显示顺序：service>app_id>source>project>label，相同字段的顺序不做特殊处理。
 
