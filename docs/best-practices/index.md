@@ -2,6 +2,13 @@
 icon: zy/best-practices
 ---
 
+## (2022/11/16)
+
+### 新增最佳实践
+
+- 洞见
+    - 观测云小妙招(Skills) - [DataKit 配置 HTTPS](./insight/datakit-https.md)。
+  
 ## (2022/11/11)
 
 ### 新增最佳实践
