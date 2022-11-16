@@ -5,7 +5,7 @@
 <br />**get /api/v1/monitor/group/\{monitor_uuid\}/get**
 
 ## 概述
-创建一个监控器分组
+获取一个监控器分组
 
 
 
