@@ -26,7 +26,7 @@
 
 在新建 Pipeline 页面，选择 「过滤”」数据类型，填入「定义解析规则」，然后在「样本解析测试」输入对应的数据进行测试，测试通过后点击“保存”即可创建 pipeline 文件。
 
-- 过滤：数据类型包括日志、指标、用户访问监测、应用性能监测、基础对象、自定义对象、网络、安全巡检，根据所选数据类型对应的字段值自动生成同名 Pipeline；
+- 过滤：数据类型包括日志、指标、用户访问监测、应用性能监测、基础对象、自定义对象、网络、安全巡检，根据所选数据类型对应的字段值自动生成同名 Pipeline；非必填项，支持选择单个或多个source。
 
 注意：在观测云工作空间创建的 Pipeline 统一保存在 `<datakit 安装目录>/pipeline_remote 目录下` ，日志 Pipeline 文件保存在一级目录，其他数据类型保存在对应的二级目录下，如指标 `cpu.p` 保存在 `<datakit 安装目录>/pipeline_remote/metric/cpu.p 目录下` ，详情可参考文档 [Pipeline 各类别数据处理](../developers/datakit-pl-global.md) 。
 
@@ -76,22 +76,6 @@
 
 ![](img/10.pipeline_3.png)
 
-您可在新建页面下方勾选设置为默认 Pipeline。
-
-![](img/1-pipeline-8.png)
-
-返回 Pipeline 列表页，已勾选为默认的 pipeline 文件会有 “default” 标识。
-
-![](img/1-pipeline-4.png)
-
-**注意**：
-
-- 每个类型只会有一个【默认 Pipeline】，新建/导入时出现重复要弹出确认框，询问是否进行替换。
-
-- 所有指定类型的数据都会执行【默认 Pipeline】，单独配置过的数据源不计入。
-
-- - 举例：当为 source=nginx 单独创建了日志 pipeline，那么【nginx日志】将不会执行【默认Pipeline】
-
 ## 操作 Pipeline
 
 ### 编辑/删除/启用/禁用
@@ -126,6 +110,24 @@
 选定需要删除的 pipeline 文件，点击「确认删除」即可删除当前 pipeline 文件。
 
 ![](img/1-pipeline-3.png)
+
+### 默认 Pipeline
+
+您可在新建页面下方勾选设置为默认 Pipeline。
+
+**注意**：
+
+- 每个类型只会有一个【默认 Pipeline】，新建/导入时出现重复会弹出确认框，询问是否进行替换。
+
+- 所有指定类型的数据都会执行【默认 Pipeline】，单独配置过的数据源不计入。
+
+- - 举例：当为 source=nginx 单独创建了日志 pipeline，那么【nginx日志】将不会执行【默认Pipeline】
+
+![](img/1-pipeline-8.png)
+
+返回 Pipeline 列表页，已勾选为默认的 pipeline 文件会有 “default” 标识。
+
+![](img/1-pipeline-4.png)
 
 ## 注意事项
 
