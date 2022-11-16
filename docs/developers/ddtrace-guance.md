@@ -10,8 +10,9 @@
 开源地址：[GuanceCloud-ddtrace](https://github.com/GuanceCloud/dd-trace-java)， 并持续更新。如您在使用过程中有任务问题或有好的建议可在 [github 上提 Issue](https://github.com/GuanceCloud/dd-trace-java/issues) 或者联系对接人员。 
 
 ### 下载
+请使用 github 下载
 
-[最新版本下载地址](https://static.guance.com/ddtrace/dd-java-agent.jar)
+~~ [最新版本下载地址](https://static.guance.com/ddtrace/dd-java-agent.jar) ~~
 
 [观测云 github-releases](https://github.com/GuanceCloud/dd-trace-java/releases)
 
