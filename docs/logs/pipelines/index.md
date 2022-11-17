@@ -4,7 +4,7 @@
 
 在观测云的日志管理中，可以通过 Pipelines 对日志的文本内容进行切割，将格式各异的日志切割成符合我们要求的结构化数据，如日志的时间戳、日志的状态、以及提取出特定的字段作为标签等。
 
-![](../img/6.log_pipeline_1.png)
+![](../img/pipeline001.png)
 
 ## 新建 Pipeline
 
@@ -21,12 +21,11 @@
 -  名称：输入自定义的 pipeline 文件名；
 - 定义解析规则：定义日志的解析规则，支持多种脚本函数，可通过观测云提供的脚本函数列表直接查看其语法格式，如`add_pattern()`等。关于如何定义解析规则，可参考文档 [Pipeline 介绍](../../developers/pipeline.md) ；
 - 日志样本测试：输入日志数据，根据配置的解析规则进行测试，支持「一键获取」已经采集的日志数据样本。关于如何调试样本数据可参考文档 [调整 Pipeline](../management/overall-pipeline/#test) 。
-
-**支持将某一 pipeline 脚本设置为“默认 pipeline 脚本”，当前数据类型在匹配 pipeline 处理时若未匹配到其它的 pipeline 脚本，则数据会按照默认 pipeline 脚本的规则做处理。**
+- **支持将某一 pipeline 脚本设置为“默认 pipeline 脚本”，当前数据类型在匹配 pipeline 处理时若未匹配到其它的 pipeline 脚本，则数据会按照默认 pipeline 脚本的规则做处理。**设为默认的 pipeline，名称后面会有一个「default」icon 作为标识。
  
 注意：自定义 pipeline 文件不能同名，但可以和官方 pipeline 同名，此时 DataKit 会优先自动获取自定义 pipeline 文件配置。若在日志采集器 `.conf` 中手动配置 pipeline 文件，此时 DataKit 会优先获取手动配置的 pipeline 文件。
 
-![](../img/6.log_pipeline_2.png)
+![](../img/pipeline002.png)
 
 ## 操作 Pipeline
 
@@ -39,7 +38,7 @@
 - 删除 pipeline 文件后，无法恢复，需要重新创建；若存在同名的官方库 pipeline 文件，DataKit 会自动匹配官方库 pipeline 文件进行文本处理；
 - 禁用 pipeline 文件后，可通过启用重新恢复；若存在同名的官方库 pipeline 文件，DataKit 会自动匹配官方库 pipeline 文件进行文本处理；
 
-![](../img/6.log_pipeline_1.png)
+![](../img/pipeline001.png)
 
 ### 批量操作
 
@@ -49,7 +48,7 @@
 
     该功能仅对工作空间拥有者、管理员、普通成员显示，只读成员不显示。
 
-![](../img/2.log_pipeline_1.png)
+![](../img/pipeline003.png)
 
 ### 导入/导出
 
@@ -65,7 +64,7 @@
 
 在观测云工作空间「日志」-「Pipelines」，点击「Pipeline 官方库」即可查看内置标准的 pipeline 官网文件库，包括如 nginx、apache、redis、elasticsearch、mysql 等。
 
-![](../img/6.log_pipeline_4.png)
+![](../img/pipeline004.png)
 
 选择打开任意一个 pipeline 文件，如 apache.p ，可以看到内置的解析规则，如果需要自定义修改，可以点击右上角的「克隆」。
 注意：
