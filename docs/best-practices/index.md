@@ -2,12 +2,15 @@
 icon: zy/best-practices
 ---
 
-## (2022/11/16)
+## (2022/11/18)
 
 ### 新增最佳实践
 
 - 洞见
     - 观测云小妙招(Skills) - [DataKit 配置 HTTPS](./insight/datakit-https.md)。
+
+- 监控 Monitoring
+    - 应用性能监控 (APM) - 性能优化 - [利用 async-profiler 对应用性能调优](./monitoring/async-profiler.md)。
   
 ## (2022/11/11)
 
