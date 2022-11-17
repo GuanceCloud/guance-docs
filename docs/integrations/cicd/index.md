@@ -1,7 +1,6 @@
 ---
 icon: fontawesome/solid/code-merge
 ---
-
 # CI/CD
 
 ---

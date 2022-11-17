@@ -2,6 +2,16 @@
 icon: zy/best-practices
 ---
 
+## (2022/11/18)
+
+### 新增最佳实践
+
+- 洞见
+    - 观测云小妙招(Skills) - [DataKit 配置 HTTPS](./insight/datakit-https.md)。
+
+- 监控 Monitoring
+    - 应用性能监控 (APM) - 性能优化 - [利用 async-profiler 对应用性能调优](./monitoring/async-profiler.md)。
+  
 ## (2022/11/11)
 
 ### 新增最佳实践
@@ -16,15 +26,6 @@ icon: zy/best-practices
 
 - 监控 Monitoring
     - 应用性能监控 (APM) - [ddtrace 高级用法](./monitoring/ddtrace-skill.md)。<font color="red" > 内容采用最新版本重新校验，优化文档格式并进行分类拆分</font>
-
-
-
-## (2022/11/1)
-
-### 新增最佳实践
-
-- 云平台接入
-    - 阿里云 - [阿里云 ACK 接入观测云](./partner/aliyun-ack.md)。
 
 ## (2022/10/28)
 
@@ -159,12 +160,6 @@ icon: zy/best-practices
 - 接入（集成）最佳实践
     - [Skywalking 采集 JVM 可观测最佳实践](./monitoring/skywalking-jvm.md)。
   
-## (2022/07/01)
-### 新增最佳实践
-
-- 接入（集成）最佳实践
-    - [Minio 可观测最佳实践](./cloud-native/minio.md)。
-
 ## (2022/06/24)
 ### 更新记录
 - 云原生

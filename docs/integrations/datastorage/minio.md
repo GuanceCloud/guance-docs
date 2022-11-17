@@ -1,19 +1,24 @@
-# MinIO 可观测最佳实践
+---
+icon: integrations/minio
+---
+# MinIO
+
 ---
 
 ## 视图预览
-MinIO 性能指标展示：MinIO 在线时长、存储空间分布、bucket明细、文件大小区间分布、S3 TTFB (s) 分布、S3流量、S3请求等。
 
-![image.png](../images/minio-1.png)
+MinIO 性能指标展示，包括 MinIO 在线时长、存储空间分布、bucket 明细、文件大小区间分布、S3 TTFB (s) 分布、S3 流量、S3 请求等。
+
+![image.png](../imgs/minio-1.png)
 
 ## 版本支持
 
-操作系统：Linux / Windows
-MinIO 版本：ALL
+- 操作系统支持：Linux / Windows
+- MinIO 版本：ALL
 
 ## 前置条件
 
-- MinIO 服务器 <[安装 Datakit](/datakit/datakit-install/)>
+- 服务器 <[安装 Datakit](../../datakit/datakit-install.md)>
 
 ## 安装配置
 
@@ -22,11 +27,13 @@ MinIO 版本：ALL
 ### 部署实施
 
 ( Linux / Windows 环境相同)
+
 #### 指标采集 (必选)
 
 MinIO 默认已暴露 [metric](https://docs.min.io/minio/baremetal/monitoring/metrics-alerts/collect-minio-metrics-using-prometheus.html?ref=con#minio-metrics-collect-using-prometheus)，可以直接通过 Prometheus 来采集相关指标。
 
-1.使用minio-client（简称`mc`）创建授权信息  
+1、 使用 minio-client（简称`mc`）创建授权信息
+
 ```
 $ mc alias set myminio http://192.168.0.210:9000 minioadmin minioadmin
 
@@ -38,13 +45,17 @@ scrape_configs:
   static_configs:
   - targets: ['192.168.0.210:9000']
 ```
-2.开启 Datakit promtheus 插件  
+
+2、 开启 DataKit promtheus 插件
+
 ```shell
 cd /usr/local/datakit/conf.d/prom/
 cp prom.conf.sample prom-minio.conf
 ```
-3.修改 `prom-minio.conf` 配置文件  
-主要参数说明  
+
+3、修改 `prom-minio.conf` 配置文件
+
+主要参数说明 ：
 
 - urls：promethues 指标地址，这里填写 MinIO 暴露出来的指标 url
 - source：采集器别名，建议写成`minio`
@@ -52,9 +63,9 @@ cp prom.conf.sample prom-minio.conf
 - metric_name_filter: 指标过滤，只采集需要的指标项
 - tls_open：TLS 配置
 - metric_types：指标类型，不填，代表采集所有指标
-- tags_ignore： 忽略不需要的tag
-- [inputs.prom.auth]：配置授权信息  
-    - token : bearer_token值
+- tags_ignore： 忽略不需要的 tag
+- [inputs.prom.auth]：配置授权信息
+  - token : bearer_token 值
 
 ```
 [[inputs.prom]]
@@ -129,39 +140,44 @@ cp prom.conf.sample prom-minio.conf
   # some_tag = "some_value"
   # more_tag = "some_other_value"
 ```
-  
-4.重启 Datakit  
+
+4、 重启 DataKit
+
 ```shell
 systemctl restart datakit
 ```
 
-5.MinIO 指标采集验证，使用命令 `datakit monitor` 查看指标是否采集成功  
+5、 MinIO 指标采集验证，使用命令 `datakit monitor` 查看指标是否采集成功
 
-![image.png](../images/minio-2.png)
+![image.png](../imgs/minio-2.png)
 
 ## 场景视图
-<场景 - 新建仪表板 - 内置模板库 - Minio 监控视图>
+
+<场景 - 新建仪表板 - 模板库 - 系统视图 - Minio 监控视图>
+
 ## 指标详解
-| 指标 | 含义 |
-| --- | --- |
-| node_process_uptime_seconds | 节点在线时长 |
-| node_disk_free_bytes | 节点空间空闲大小 |
-| node_disk_used_bytes | 节点空间使用大小 |
-| node_file_descriptor_open_total | 节点文件描述打开次数 |
-| node_go_routine_total | 节点 go_routine 次数 |
-| cluster_disk_online_total | 集群磁盘在线数 |
-| cluster_disk_offline_total | 集群磁盘离线数 |
-| bucket_usage_object_total | bucket已用对象数 |
-| bucket_usage_total_bytes | bucket已用字节 |
-| bucket_objects_size_distribution | bucket 对象大小区间分布 |
-| s3_traffic_received_bytes | s3 接收流量 |
-| s3_traffic_sent_bytes | s3 发送流量 |
-| s3_requests_total | s3 请求总数 |
-| s3_requests_waiting_total | s3 正在等待请求数 |
-| s3_requests_errors_total | s3 异常总数 |
-| s3_requests_4xx_errors_total | s3 4xx异常数 |
-| s3_time_ttfb_seconds_distribution | s3 TTFB |
-| usage_last_activity_nano_seconds | 自上使用活动以来的时间 |
+
+| 指标                              | 含义                    |
+| --------------------------------- | ----------------------- |
+| node_process_uptime_seconds       | 节点在线时长            |
+| node_disk_free_bytes              | 节点空间空闲大小        |
+| node_disk_used_bytes              | 节点空间使用大小        |
+| node_file_descriptor_open_total   | 节点文件描述打开次数    |
+| node_go_routine_total             | 节点 go_routine 次数    |
+| cluster_disk_online_total         | 集群磁盘在线数          |
+| cluster_disk_offline_total        | 集群磁盘离线数          |
+| bucket_usage_object_total         | bucket 已用对象数       |
+| bucket_usage_total_bytes          | bucket 已用字节         |
+| bucket_objects_size_distribution  | bucket 对象大小区间分布 |
+| s3_traffic_received_bytes         | s3 接收流量             |
+| s3_traffic_sent_bytes             | s3 发送流量             |
+| s3_requests_total                 | s3 请求总数             |
+| s3_requests_waiting_total         | s3 正在等待请求数       |
+| s3_requests_errors_total          | s3 异常总数             |
+| s3_requests_4xx_errors_total      | s3 4xx 异常数           |
+| s3_time_ttfb_seconds_distribution | s3 TTFB                 |
+| usage_last_activity_nano_seconds  | 自上使用活动以来的时间  |
 
 ## 常见问题排查
-- [无数据上报排查](/datakit/why-no-data/)
+
+<[无数据上报排查](../../datakit/why-no-data.md)>

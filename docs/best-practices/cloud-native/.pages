@@ -27,9 +27,6 @@ nav:
     - Kubernetes 集群日志上报到同节点的 DataKit 最佳实践: log-report-one-node.md
     - 观测云采集 Amazon ECS 日志: amazon-ecs.md
 
-  - '存储 (Storage)':
-    - 'Minio 可观测最佳实践': minio.md
-
   - '其他 (Others)':
     - Kubernetes 集群 应用使用 SkyWalking 采集链路数据: k8s-skywalking.md
     - Kubernetes 应用的 RUM-APM-LOG 联动分析: k8s-rum-apm-log.md

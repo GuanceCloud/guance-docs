@@ -1,5 +1,6 @@
 nav:
   - index.md
+  - 'ACK 集群': aliyun-ack.md
   - 'CDN': aliyun-cdn.md
   - 'ECS': aliyun-ecs.md
   - 'EIP': aliyun-eip.md

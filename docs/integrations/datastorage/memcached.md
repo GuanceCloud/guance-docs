@@ -1,4 +1,6 @@
-
+---
+icon: integrations/memcached
+---
 # Memcached
 ---
 
@@ -23,7 +25,7 @@ Memcached 性能指标展示，包括连接数、命令数、网络流量、线�
 
 #### 指标采集 (必选)
 
-1、 开启 DataKit Memcache 插件，复制 sample 文件
+1、 开启 DataKit Memcached 插件，复制 sample 文件
 
 ```
 cd /usr/local/datakit/conf.d/db

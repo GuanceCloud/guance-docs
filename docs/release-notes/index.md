@@ -7,6 +7,81 @@ icon: zy/release-notes
 
 本文档记录观测云每次上线发布的更新内容说明，包括 DataKit、观测云最佳实践、观测云集成文档和观测云。
 
+## 2022 年 11 月 17 号
+
+### 观测云更新
+
+#### Pipeline 使用体验优化 
+
+- Pipeline 支持过滤条件配置多选
+
+- 支持将任意一个 Pipeline 脚本设置为“默认 Pipeline 脚本“，若当前数据类型在匹配 Pipeline 处理的时候，未匹配到其他的 Pipeline 脚本，则数据会按照默认 Pipeline 脚本的规则处理。
+
+- 脚本函数归类
+
+![](img/3.changelog_6.jpg)
+
+#### 事件优化
+
+- 支持写入用户的自定义事件，更多详情可参考文档 [通过 openAPI 写入事件数据](../open-api/keyevent/create.md) 。
+
+- 未恢复事件查看器左侧新增快捷筛选
+
+![](img/3.changelog_4.png)
+
+#### 自定义查看器支持选择更多类型的数据
+
+在场景新建查看器时，支持选择日志、应用性能、用户访问、安全巡检、Profile 这 5 种数据类型，保存后不可更改。
+
+![](img/3.changelog_1.png)
+
+#### 成员管理新增成员分组功能
+
+在成员管理新增成员分组功能，您可对成员组进行编辑操作，一个成员可以支持处于多个分组；同时在配置告警策略的通知对象时支持配置成员分组的标签。
+
+![](img/3.changelog_5.png)
+
+#### 优化内置视图绑定功能
+
+在场景「内置视图」-「用户视图」，绑定字段新增支持模糊匹配，字段绑定后，可在查看器关联查看对应的内置视图。更多详情可参考文档 [绑定内置视图](../scene/built-in-view/bind-view.md) 。
+
+![](img/3.changelog_2.1.png)
+
+#### 新增一键导入导出工作空间内的仪表板、自定义查看器、监控器
+
+在「管理」-「基本设置」，新增一键导入导出工作空间内的仪表板、自定义查看器、监控器等 JSON 配置，您可以在当前工作空间导入其他工作空间的仪表板、自定义查看器、监控器等。
+
+![](img/3.changelog_7.png)
+
+#### 应用性能监测日志页面新增自定义关联字段
+
+在应用性能监测详情页，关联日志页面，若您是管理员及以上权限，支持您自定义关联字段。您可以点击关联字段右侧的设置按钮，在弹出的对话框中选择需要关联的字段，支持手动输入，支持拖拽顺序，确认即可完成配置。
+
+![](img/9.apm_explorer_10.1.png)
+
+#### 其他功能优化
+
+- 当筛选条件使用模糊匹配和模糊不匹配的时候，支持左*匹配
+- 基础设施分析维度优化，在主机详情页主机最后上报时间
+- 支持用户快速登录到上一次单点登录
+- 黑名单的应用性能监测新增支持过滤“全部服务”
+- “中国区4（广州）”站点注册的用户升级到商业版流程优化
+- 字段描述支持在快捷筛选、显示列等处查看
+
+### 最佳实践更新
+
+- 洞见
+    - 观测云小妙招(Skills) - [DataKit 配置 HTTPS](../best-practices/insight/datakit-https.md)
+
+- 监控 Monitoring
+    - 应用性能监控 (APM) - [ddtrace 常见参数用法](../best-practices/monitoring/ddtrace-skill-param.md)
+    - 应用性能监控 (APM) - [ddtrace-api 使用指南](../best-practices/monitoring/ddtrace-skill-ddtrace-api.md)
+    - 应用性能监控 (APM) - [ddtrace 采样](../best-practices/monitoring/ddtrace-skill-sampling.md)
+    - 应用性能监控 (APM) - [ddtrace log 关联](../best-practices/monitoring/ddtrace-skill-log.md)
+
+更多最佳实践更新可参考 [最佳实践版本历史](../best-practices/index.md) 。
+
+
 ## 2022 年 11 月 11 号
 
 #### 观测云新增“中国区4（广州）”站点
