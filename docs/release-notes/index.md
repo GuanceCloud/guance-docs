@@ -23,7 +23,7 @@ icon: zy/release-notes
 
 #### 事件优化
 
-- 支持写入用户的自定义事件，更多详情可参考文档 [通过 openAPI 写入事件数据]()
+- 支持写入用户的自定义事件，更多详情可参考文档 [通过 openAPI 写入事件数据](../open-api/keyevent/create.md) 。
 
 - 未恢复事件查看器左侧新增快捷筛选
 
@@ -67,6 +67,19 @@ icon: zy/release-notes
 - 黑名单的应用性能监测新增支持过滤“全部服务”
 - “中国区4（广州）”站点注册的用户升级到商业版流程优化
 - 字段描述支持在快捷筛选、显示列等处查看
+
+### 最佳实践更新
+
+- 洞见
+    - 观测云小妙招(Skills) - [DataKit 配置 HTTPS](../best-practices/insight/datakit-https.md)
+
+- 监控 Monitoring
+    - 应用性能监控 (APM) - [ddtrace 常见参数用法](../best-practices/monitoring/ddtrace-skill-param.md)
+    - 应用性能监控 (APM) - [ddtrace-api 使用指南](../best-practices/monitoring/ddtrace-skill-ddtrace-api.md)
+    - 应用性能监控 (APM) - [ddtrace 采样](../best-practices/monitoring/ddtrace-skill-sampling.md)
+    - 应用性能监控 (APM) - [ddtrace log 关联](../best-practices/monitoring/ddtrace-skill-log.md)
+
+更多最佳实践更新可参考 [最佳实践版本历史](../best-practices/index.md) 。
 
 
 ## 2022 年 11 月 11 号
