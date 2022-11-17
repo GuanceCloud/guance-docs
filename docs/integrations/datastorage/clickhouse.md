@@ -1,3 +1,6 @@
+---
+icon: integrations/clickhouse
+---
 # ClickHouse
 ---
 
