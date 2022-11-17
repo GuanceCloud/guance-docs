@@ -93,32 +93,32 @@
 === "Windows 32 位"
 
     - [Installer](https://static.guance.com/datakit/installer-windows-386.exe){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-windows-386-1.4.19.tar.gz){:target="_blank"}
+    - [DataKit](https://static.guance.com/datakit/datakit-windows-386-1.5.0.tar.gz){:target="_blank"}
 
 === "Windows 64 位"
 
     - [Installer](https://static.guance.com/datakit/installer-windows-amd64.exe){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-windows-amd64-1.4.19.tar.gz){:target="_blank"}
+    - [DataKit](https://static.guance.com/datakit/datakit-windows-amd64-1.5.0.tar.gz){:target="_blank"}
 
 === "Linux X86 32 位"
 
     - [Installer](https://static.guance.com/datakit/installer-linux-386){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-linux-386-1.4.19.tar.gz){:target="_blank"}
+    - [DataKit](https://static.guance.com/datakit/datakit-linux-386-1.5.0.tar.gz){:target="_blank"}
 
 === "Linux X86 64 位"
 
     - [Installer](https://static.guance.com/datakit/installer-linux-amd64){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-linux-amd64-1.4.19.tar.gz){:target="_blank"}
+    - [DataKit](https://static.guance.com/datakit/datakit-linux-amd64-1.5.0.tar.gz){:target="_blank"}
 
 === "Linux Arm 32 位"
 
     - [Installer](https://static.guance.com/datakit/installer-linux-arm){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-linux-arm-1.4.19.tar.gz){:target="_blank"}
+    - [DataKit](https://static.guance.com/datakit/datakit-linux-arm-1.5.0.tar.gz){:target="_blank"}
 
 === "Linux Arm 64 位"
 
     - [Installer](https://static.guance.com/datakit/installer-linux-arm64){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-linux-arm64-1.4.19.tar.gz){:target="_blank"}
+    - [DataKit](https://static.guance.com/datakit/datakit-linux-arm64-1.5.0.tar.gz){:target="_blank"}
 
 下载完后，应该有三个文件（此处 `<OS-ARCH>` 指特定平台的安装包）：
 
@@ -135,7 +135,7 @@
     需以 administrator 权限运行 Powershell 执行：
 
     ```powershell
-    .\installer-windows-amd64.exe --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs .\datakit-windows-amd64-1.4.19.tar.gz,.\data.tar.gz
+    .\installer-windows-amd64.exe --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs .\datakit-windows-amd64-1.5.0.tar.gz,.\data.tar.gz
     ```
 
 === "Linux"
@@ -144,7 +144,7 @@
 
     ```shell
     chmod +x installer-linux-amd64
-    ./installer-linux-amd64 --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs datakit-linux-amd64-1.4.19.tar.gz,data.tar.gz
+    ./installer-linux-amd64 --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs datakit-linux-amd64-1.5.0.tar.gz,data.tar.gz
     ```
 
 ### 高级模式 {#offline-advanced}
@@ -195,8 +195,8 @@ mkdir -p /datakit
 wget -P /datakit https://static.guance.com/datakit/install.sh
 wget -P /datakit https://static.guance.com/datakit/version
 wget -P /datakit https://static.guance.com/datakit/data.tar.gz
-wget -P /datakit https://static.guance.com/datakit/installer-linux-amd64-1.4.19
-wget -P /datakit https://static.guance.com/datakit/datakit-linux-amd64-1.4.19.tar.gz
+wget -P /datakit https://static.guance.com/datakit/installer-linux-amd64-1.5.0
+wget -P /datakit https://static.guance.com/datakit/datakit-linux-amd64-1.5.0.tar.gz
 
 # 下载其它工具包：sources 是开启 RUM sourcemap 功能使用的安装包，如果未开启此功能，可选择不下载
 sources=(
