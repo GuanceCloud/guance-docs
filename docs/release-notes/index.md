@@ -72,7 +72,7 @@ icon: zy/release-notes
 
 - 新增 [SNMP 采集器](../datakit/snmp.md)
 - 新增 [IPMI 采集器](../datakit/ipmi.md)
-- 新增批量注入 [DDTrace-Java 工具](../datakit/developers/ddtrace-attatch.md)
+- 新增批量注入 [DDTrace-Java 工具](../developers/ddtrace-attach.md)
 - [最新 DDTrace-Java SDK](../developers/ddtrace-guance.md) 增强了 SQL 脱敏功能
 - 远程 Pipeline 优化
     - Pipeline 支持来源映射关系配置，便于实现 Pipeline 和数据源之间的批量配置
