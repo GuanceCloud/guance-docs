@@ -68,6 +68,26 @@ icon: zy/release-notes
 - “中国区4（广州）”站点注册的用户升级到商业版流程优化
 - 字段描述支持在快捷筛选、显示列等处查看
 
+### DataKit 更新
+
+- 新增 [SNMP 采集器](../datakit/snmp.md)
+- 新增 [IPMI 采集器](../datakit/ipmi.md)
+- 新增批量注入 [DDTrace-Java 工具](../developers/ddtrace-attach.md)
+- [最新 DDTrace-Java SDK](../developers/ddtrace-guance.md) 增强了 SQL 脱敏功能
+- 远程 Pipeline 优化
+    - Pipeline 支持来源映射关系配置，便于实现 Pipeline 和数据源之间的批量配置
+    - Pipeline 提供了函数分类信息，便于远程 Pipeline 编写
+- 优化 [Kafka 消息订阅](../datakit/kafkamq.md)，不再局限于获取 SkyWalking 相关的数据，同时支持限速、多版本覆盖、采样以及负载均衡等设定
+- 通过提供额外配置参数（`ENV_INPUT_CONTAINER_LOGGING_SEARCH_INTERVAL`），缓解短生命周期 Pod 日志采集问题
+- 纯容器环境下，支持 [通过 label 方式](../datakit/container-log.md#logging-with-annotation-or-label) 配置容器内日志采集
+- 新增 Pipeline 函数
+    - [sample()](../developers/pipeline.md#fn-sample)：采样函数
+    - [b64enc()](../developers/pipeline.md#fn-b64enc)：Base64 编码函数
+    - [b64dec()](../developers/pipeline.md#fn-b64dec)：Base64 解码函数
+    - [append()](../developers/pipeline.md#fn-append)：列表追加函数
+
+更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md) 。
+
 ### 最佳实践更新
 
 - 洞见
