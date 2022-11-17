@@ -7,7 +7,7 @@
 
 - 操作系统支持：:fontawesome-brands-linux: :fontawesome-brands-windows: :material-kubernetes:
 
-SMI 指标展示：包括 GPU 卡温度、时钟、GPU占用率、内存占用率、GPU内每个运行程序的内存占用 等。
+SMI 指标展示：包括 GPU 卡温度、时钟、GPU占用率、内存占用率、GPU内每个运行程序的内存占用等。
 
 ### 使用SMI指标前置条件 {#SMI-precondition}
 
@@ -76,34 +76,41 @@ SMI 指标展示：包括 GPU 卡温度、时钟、GPU占用率、内存占用�
 
 | 标签名 | 描述    |
 |  ----  | --------|
+|`compute_mode`|计算模式|
+|`cuda_version`|CUDA 版本|
+|`driver_version`|驱动版本|
 |`host`|主机名|
+|`name`|GPU 板卡型号|
+|`pci_bus_id`|pci 插槽 id|
+|`pstate`|GPU 性能状态|
+|`uuid`|UUID|
 
 - 指标列表
 
 
 | 指标 | 描述| 数据类型 | 单位   |
 | ---- |---- | :---:    | :----: |
-|`clocks_current_graphics`|gauge, Graphics clock frequency (in MHz).|int|count|
-|`clocks_current_memory`|gauge, Memory clock frequency (in MHz).|int|count|
-|`clocks_current_sm`|gauge, Streaming Multiprocessor clock frequency (in MHz).|int|count|
-|`clocks_current_video`|gauge, Video clock frequency (in MHz).|int|count|
-|`encoder_stats_average_fps`|count, Encoder average fps.|int|count|
-|`encoder_stats_average_latency`|count, Encoder average latency.|int|count|
-|`encoder_stats_session_count`|count, Encoder session count.|int|count|
-|`fan_speed`|gauge, Fan speed (or N/A).|int|count|
-|`fbc_stats_average_fps`|count, Frame Buffer Cache average fps.|int|count|
-|`fbc_stats_average_latency`|count, Frame Buffer Cache average latency.|int|count|
-|`fbc_stats_session_count`|count, Frame Buffer Cache session count.|int|count|
-|`memory_total`|gauge, Framebuffer memory total (in MiB).|int|count|
-|`memory_used`|gauge, Framebuffer memory used (in MiB).|int|count|
-|`pcie_link_gen_current`|gauge, PCI-Express link gen.|int|count|
-|`pcie_link_width_current`|gauge, PCI link width.|int|count|
-|`power_draw`|gauge, Power draw.|float|percent|
-|`temperature_gpu`|gauge, GPU temperature (in C).|int|count|
-|`utilization_decoder`|gauge, Decoder utilization (in %).|int|count|
-|`utilization_encoder`|gauge, Encoder utilization (in %).|int|count|
-|`utilization_gpu`|gauge, GPU utilization (in %).|int|count|
-|`utilization_memory`|gauge, Memory utilization (in %).|int|count|
+|`clocks_current_graphics`|Graphics clock frequency.|int|MHz|
+|`clocks_current_memory`|Memory clock frequency.|int|MHz|
+|`clocks_current_sm`|Streaming Multiprocessor clock frequency.|int|MHz|
+|`clocks_current_video`|Video clock frequency.|int|MHz|
+|`encoder_stats_average_fps`|Encoder average fps.|int|-|
+|`encoder_stats_average_latency`|Encoder average latency.|int|-|
+|`encoder_stats_session_count`|Encoder session count.|int|count|
+|`fan_speed`|Fan speed.|int|RPM%|
+|`fbc_stats_average_fps`|Frame Buffer Cache average fps.|int|-|
+|`fbc_stats_average_latency`|Frame Buffer Cache average latency.|int|-|
+|`fbc_stats_session_count`|Frame Buffer Cache session count.|int|-|
+|`memory_total`|Framebuffer memory total.|int|MB|
+|`memory_used`|Framebuffer memory used.|int|MB|
+|`pcie_link_gen_current`|PCI-Express link gen.|int|-|
+|`pcie_link_width_current`|PCI link width.|int|-|
+|`power_draw`|Power draw.|float|watt|
+|`temperature_gpu`|GPU temperature.|int|C|
+|`utilization_decoder`|Decoder utilization.|int|percent|
+|`utilization_encoder`|Encoder utilization.|int|percent|
+|`utilization_gpu`|GPU utilization.|int|percent|
+|`utilization_memory`|Memory utilization.|int|percent|
 
 
 

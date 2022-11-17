@@ -610,6 +610,75 @@ adjust_timezone(time)
 
 使用 adjust_timezone 后将得到：
   - 输入 1 结果： `2022-07-11T20:49:20.937+08:00`
+### `append()` {#fn-append}
+
+函数原型：`fn append(arr, elem) arr`
+
+函数说明：往数组 arr 末尾添加元素 elem。
+
+参数:
+
+- `arr`: 要添加元素的数组。
+- `elem`: 添加的元素。 
+
+示例:
+
+```python
+# 例 1
+abc = ["1", "2"]
+abc = append(abc, 5.1)
+# abc = ["1", "2", 5.1]
+
+# 例 2
+a = [1, 2]
+b = [3, 4]
+c = append(a, b)
+# c = [1, 2, [3, 4]]
+```
+### `b64dec()` {#fn-b64dec}
+
+函数原型：`fn b64dec(key: str)`
+
+函数说明：对指定字段上获取的字符串数据进行 base64 解码
+
+函数参数
+
+- `key`: 待提取字段
+
+示例:
+
+```python
+# 待处理数据 {"str": "aGVsbG8sIHdvcmxk"}
+json(_, `str`)
+b64enc(`str`)
+
+# 处理结果
+# {
+#   "str": "hello, world"
+# }
+```
+### `b64enc()` {#fn-b64enc}
+
+函数原型：`fn b64enc(key: str)`
+
+函数说明：对指定字段上获取的字符串数据进行 base64 编码
+
+函数参数
+
+- `key`: 待提取字段
+
+示例:
+
+```python
+# 待处理数据 {"str": "hello, world"}
+json(_, `str`)
+b64enc(`str`)
+
+# 处理结果
+# {
+#   "str": "aGVsbG8sIHdvcmxk"
+# }
+```
 ### `cast()` {#fn-cast}
 
 函数原型：`fn cast(key, dst_type: str)`
@@ -1534,6 +1603,25 @@ json(_, str)
 replace(str, '([\u4e00-\u9fa5])[\u4e00-\u9fa5]([\u4e00-\u9fa5])', "$1＊$2")
 ```
 
+### `sample()` {#fn-sample}
+
+函数原型：`fn sample(p)`
+
+函数说明：以概率 p 选择采集/丢弃数据。
+
+函数参数:
+
+- `p`: sample 函数返回 true 的概率，取值范围为[0, 1]
+
+示例:
+
+```python
+# 处理脚本
+if !sample(0.3) { # sample(0.3) 表示采样率为 30%，即以 30% 概率返回真，此处将丢弃 70% 的数据
+  drop() # 标记该数据丢弃
+  exit() # 退出后续处理流程
+}
+```
 ### `set_measurement()` {#fn-set-measurement}
 
 函数原型：`fn set_measurement(name: str, delete_key: bool = false)`
@@ -1587,7 +1675,7 @@ set_tag(str_a, str_b) # str_a == str_b == "3"
 #   "str_a#": "3",
 #   "str_b": "3"
 # }
-				"```
+```
 ### `sql_cover()` {#fn-sql-cover}
 
 函数原型：`fn sql_cover(sql_test: str)`
@@ -1701,7 +1789,53 @@ json(_, url) url_decode(url)
 }
 ```
 
-### `use()` {#fn-use}
+### `url_parse()` {#fn-url-parse}
+
+函数原型：`fn url_parse(key)`
+
+函数说明：解析字段名称为 key 的 url。
+
+函数参数
+
+- `key`: 要解析的 url 的字段名称。
+
+示例:
+
+```python
+# 待处理数据: {"url": "https://www.baidu.com"}
+
+# 处理脚本
+json(_, url)
+m = url_parse(url)
+add_key(scheme, m["scheme"])
+
+# 处理结果
+{
+    "url": "https://www.baidu.com",
+    "scheme": "https"
+}
+```
+
+上述示例从 url 提取了其 scheme，除此以外，还能从 url 提取出 host, port, path, 以及 url 中携带的参数等信息，如下例子所示：
+
+```python
+# 待处理数据: {"url": "https://www.google.com/search?q=abc&sclient=gws-wiz"}
+
+# 处理脚本
+json(_, url)
+m = url_parse(url)
+add_key(sclient, m["params"]["sclient"])    # url 中携带的参数被保存在 params 字段下
+add_key(h, m["host"])
+add_key(path, m["path"])
+
+# 处理结果
+{
+    "url": "https://www.google.com/search?q=abc&sclient=gws-wiz",
+    "h": "www.google.com",
+    "path": "/search",
+    "sclient": "gws-wiz"
+}
+```### `use()` {#fn-use}
 
 函数原型：`fn use(name: str)`
 

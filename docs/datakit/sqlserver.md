@@ -84,7 +84,7 @@ GO
 
     目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
 
-## 指标集 {#measurements}
+## 指标 {#measurements}
 
 以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.sqlserver.tags]` 指定其它标签：
 
@@ -106,7 +106,7 @@ GO
 |  ----  | --------|
 |`sqlserver_host`|host name which installed sqlserver|
 
-- 指标列表
+- 字段列表
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -122,6 +122,7 @@ GO
 
 
 
+
 ### `sqlserver_performance`
 
 -  标签
@@ -133,12 +134,13 @@ GO
 |`object_name`|Category to which this counter belongs.|
 |`sqlserver_host`|host name which installed sqlserver|
 
-- 指标列表
+- 字段列表
 
 
 | 指标 | 描述| 数据类型 | 单位   |
 | ---- |---- | :---:    | :----: |
 |`cntr_value`|Current value of the counter.|int|count|
+
 
 
 
@@ -153,7 +155,7 @@ GO
 |`wait_category`|wait category info|
 |`wait_type`|Name of the wait type. For more information, see Types of Waits, later in this topic|
 
-- 指标列表
+- 字段列表
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -163,6 +165,7 @@ GO
 |`signal_wait_time_ms`|Difference between the time that the waiting thread was signaled and when it started running|int|ms|
 |`wait_time_ms`|Total wait time for this wait type in milliseconds. This time is inclusive of signal_wait_time_ms|int|ms|
 |`waiting_tasks_count`|Number of waits on this wait type. This counter is incremented at the start of each wait.|int|count|
+
 
 
 
@@ -179,7 +182,7 @@ GO
 |`physical_filename`|Operating-system file name.|
 |`sqlserver_host`|host name which installed sqlserver|
 
-- 指标列表
+- 字段列表
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -195,6 +198,7 @@ GO
 
 
 
+
 ### `sqlserver_schedulers`
 
 -  标签
@@ -206,7 +210,7 @@ GO
 |`scheduler_id`|ID of the scheduler. All schedulers that are used to run regular queries have ID numbers less than 1048576. Those schedulers that have IDs greater than or equal to 1048576 are used internally by SQL Server, such as the dedicated administrator connection scheduler. Is not nullable.|
 |`sqlserver_host`|host name which installed sqlserver|
 
-- 指标列表
+- 字段列表
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -228,6 +232,7 @@ GO
 
 
 
+
 ### `sqlserver_volumespace`
 
 -  标签
@@ -238,7 +243,7 @@ GO
 |`sqlserver_host`|host name which installed sqlserver|
 |`volume_mount_point`|Mount point at which the volume is rooted. Can return an empty string. Returns null on Linux operating system.|
 
-- 指标列表
+- 字段列表
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -246,6 +251,207 @@ GO
 |`volume_available_space_bytes`|Available free space on the volume|int|B|
 |`volume_total_space_bytes`|Total size in bytes of the volume|int|B|
 |`volume_used_space_bytes`|Used size in bytes of the volume|int|B|
+
+
+
+
+
+
+### `sqlserver_lock_database`
+
+-  标签
+
+
+| 标签名 | 描述    |
+|  ----  | --------|
+|`db_name`|Name of the database under which this resource is scoped|
+|`object`|ID or name of the entity in a database with which a resource is associated|
+|`request_mode`|Mode of the request|
+|`request_status`|Current status of this request|
+|`request_type`|Request type|
+|`resource_type`|Represents the resource type|
+|`spid`|Session ID that currently owns this request, maximum length is 4 |
+
+- 字段列表
+
+
+| 指标 | 描述| 数据类型 | 单位   |
+| ---- |---- | :---:    | :----: |
+|`resource_database_id`|ID of the database under which this resource is scoped|int|count|
+
+
+
+
+### `sqlserver_lock_table`
+
+-  标签
+
+
+| 标签名 | 描述    |
+|  ----  | --------|
+|`db_name`|Name of the database under which this resource is scoped|
+|`object_name`|Name of the entity in a database with which a resource is associated|
+|`request_mode`|Mode of the request|
+|`request_status`|Current status of this request|
+|`resource_type`|Represents the resource type|
+
+- 字段列表
+
+
+| 指标 | 描述| 数据类型 | 单位   |
+| ---- |---- | :---:    | :----: |
+|`resource_session_id`|Session ID that currently owns this request|int|count|
+
+
+
+
+
+
+
+
+
+
+### `sqlserver_database_size`
+
+-  标签
+
+
+| 标签名 | 描述    |
+|  ----  | --------|
+|`name`|Name of the database|
+
+- 字段列表
+
+
+| 指标 | 描述| 数据类型 | 单位   |
+| ---- |---- | :---:    | :----: |
+|`data_size`|The size of file of Rows|float|KB|
+|`log_size`|The size of file of Log|float|KB|
+
+
+
+
+## 日志 {#logging}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### `sqlserver_lock_row`
+
+-  标签
+
+
+| 标签名 | 描述    |
+|  ----  | --------|
+|`host_name`|Name of the client workstation that is specific to a session|
+|`login_name`|SQL Server login name under which the session is currently executing|
+|`session_status`|Status of the session|
+|`text`|Text of the SQL query|
+
+- 字段列表
+
+
+| 指标 | 描述| 数据类型 | 单位   |
+| ---- |---- | :---:    | :----: |
+|`blocking_session_id`|ID of the session that is blocking the request|int|count|
+|`cpu_time`|CPU time in milliseconds that is used by the request|int|ms|
+|`last_request_end_time`|Time of the last completion of a request on the session, in second|int|ms|
+|`last_request_start_time`|Time at which the last request on the session began, in second|int|ms|
+|`logical_reads`|Number of logical reads that have been performed by the request|int|count|
+|`memory_usage`|Number of 8-KB pages of memory used by this session|int|count|
+|`row_count`|Number of rows returned on the session up to this point|int|count|
+|`session_id`|ID of the session to which this request is related|int|count|
+
+
+
+
+
+
+
+
+### `sqlserver_lock_dead`
+
+-  标签
+
+
+| 标签名 | 描述    |
+|  ----  | --------|
+|`blocking_object_name`|Indicates the name of the object to which this partition belongs|
+|`blocking_text`|Text of the SQL query which is blocking|
+|`db_name`|Name of the database under which this resource is scoped|
+|`request_mode`|Mode of the request|
+|`requesting_text`|Text of the SQL query which is requesting|
+|`resource_type`|Represents the resource type|
+
+- 字段列表
+
+
+| 指标 | 描述| 数据类型 | 单位   |
+| ---- |---- | :---:    | :----: |
+|`blocking_session_id`|ID of the session that is blocking the request|int|count|
+|`request_session_id`|Session ID that currently owns this request|int|count|
+
+
+
+
+### `sqlserver_logical_io`
+
+-  标签
+
+
+| 标签名 | 描述    |
+|  ----  | --------|
+|`message`|Text of the SQL query|
+
+- 字段列表
+
+
+| 指标 | 描述| 数据类型 | 单位   |
+| ---- |---- | :---:    | :----: |
+|`avg_logical_io`|Average number of logical writes and logical reads|int|count|
+|`creation_time`|The Unix time at which the plan was compiled, in millisecond|int|count|
+|`execution_count`|Number of times that the plan has been executed since it was last compiled|int|count|
+|`last_execution_time`|Last time at which the plan started executing, unix time in millisecond|int|count|
+|`total_logical_io`|Total number of logical writes and logical reads|int|count|
+|`total_logical_reads`|Total amount of logical reads|int|count|
+|`total_logical_writes`|Total amount of logical writes|int|count|
+
+
+
+
+### `sqlserver_worker_time`
+
+-  标签
+
+
+| 标签名 | 描述    |
+|  ----  | --------|
+|`message`|Text of the SQL query|
+
+- 字段列表
+
+
+| 指标 | 描述| 数据类型 | 单位   |
+| ---- |---- | :---:    | :----: |
+|`avg_worker_time`|Average amount of CPU time, reported in milliseconds|int|count|
+|`creation_time`|The Unix time at which the plan was compiled, in millisecond|int|count|
+|`execution_count`|Number of times that the plan has been executed since it was last compiled|int|count|
+|`last_execution_time`|Last time at which the plan started executing, unix time in millisecond|int|count|
+|`total_worker_time`|Total amount of CPU time, reported in milliseconds|int|count|
+
+
+
 
 
 
