@@ -16,12 +16,13 @@ icon: zy/open-api
 
 ## 支持Endpoint
 
-| 部署类型  | 节点名   | Endpoint                    |
-|-------|-------|-----------------------------|
-| SaaS 部署 | 中国区1（杭州）   | https://openapi.guance.com  |
-| SaaS 部署 | 中国区2（宁夏）   | https://aws-openapi.guance.com |
-| SaaS 部署 | 海外区1（俄勒冈）   | https://us1-openapi.guance.com |
-| 私有部署版 | 私有部署版 | 以实际部署的 Endpoint 为准    |
+| 部署类型  | 节点名       | Endpoint                       |
+|-------|-----------|--------------------------------|
+| SaaS 部署 | 中国区1（杭州）  | https://openapi.guance.com     |
+| SaaS 部署 | 中国区2（宁夏）  | https://aws-openapi.guance.com |
+| SaaS 部署 | 中国区4（广州）  | https://cn4-openapi.guance.com |
+| SaaS 部署 | 海外区1（俄勒冈） | https://us1-openapi.guance.com |
+| 私有部署版 | 私有部署版     | 以实际部署的 Endpoint 为准             |
 
 
 ## 公共请求头(Header)
