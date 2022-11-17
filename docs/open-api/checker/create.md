@@ -25,7 +25,7 @@
 | jsonScript.every | string |  | 检查频率<br>例子: 1m <br>允许为空: False <br> |
 | jsonScript.interval | integer |  | 查询区间，即一次查询的时间范围时差<br>例子: 60 <br>允许为空: False <br> |
 | jsonScript.recoverNeedPeriodCount | integer |  | 指定异常在几个检查周期之后生成恢复事件<br>例子: 60 <br>允许为空: False <br> |
-| jsonScript.noDataPeriodCount | integer |  | 几个检查周期内无数据则产生无数据事件<br>例子: 60 <br>允许为空: False <br> |
+| jsonScript.noDataInterval | integer |  | 多长时间内无数据则产生无数据事件<br>例子: 60 <br>允许为空: False <br> |
 | jsonScript.checkFuncs | array |  | 检查函数信息列表<br>例子: [{'funcId': 'xxx', 'kwargs': {}}] <br>允许为空: False <br> |
 | jsonScript.groupBy | array |  | 触发维度<br>例子: ['性别'] <br>允许为空: False <br> |
 | jsonScript.targets | array |  | 检查目标<br>例子: [{'dql': 'M::`士兵信息`:(AVG(`潜力值`))  [::auto] by `性别`', 'alias': 'M1'}] <br>允许为空: False <br> |
@@ -86,7 +86,7 @@
 | every         |  string  |  Y | 检查频率, 单位是 (1m/1h/1d)  |
 | interval      |  integer |  Y | 数据时间范围的时差，即time_range的时差, 单位：秒  |
 | recoverNeedPeriodCount |  integer |  Y | 超过指定检查周期次数之后生成恢复事件 |
-| noDataPeriodCount|  integer | N |  几个检查周期内无数据则产生无数据事件
+| noDataInterval|  integer | N |  多长时间内无数据则产生无数据事件
 | targets       |  array   |  Y | 简单检查中的检查目标列表|
 | targets[*].dql|  string  |  Y | DQL查询语句|
 | targets[*].alias| string |  Y | 别名|
@@ -120,7 +120,7 @@
 curl 'https://openapi.guance.com/api/v1/monitor/check/create' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
---data-raw '{"extend": {"querylist": [{"datasource": "dataflux", "qtype": "dql", "uuid": "60ede817-567d-4d74-ad53-09b1165755b3", "query": {"code": "Result", "type": "simple", "namespace": "metric", "dataSource": "aliyun-bss-sync", "field": "EffectiveCashCoupons", "fieldType": "integer", "alias": "", "fieldFunc": "last", "groupByTime": "", "groupBy": ["account"], "q": "M::`aliyun-bss-sync`:(LAST(`EffectiveCashCoupons`)) BY `account`", "funcList": []}}], "funcName": "", "rules": [{"status": "critical", "conditions": [{"alias": "Result", "operator": "&gt;=", "operands": ["7"]}], "conditionLogic": "and"}, {"status": "error", "conditions": [{"alias": "Result", "operator": "&gt;=", "operands": ["6"]}], "conditionLogic": "and"}, {"status": "warning", "conditions": [{"alias": "Result", "operator": "&gt;=", "operands": ["5"]}], "conditionLogic": "and"}], "noDataPeriodCount": 4, "recoverNeedPeriodCount": 3}, "jsonScript": {"name": "ee", "title": "hhhh", "message": "adfsgdsad", "type": "simpleCheck", "every": "1m", "groupBy": ["account"], "interval": 300, "targets": [{"dql": "M::`aliyun-bss-sync`:(LAST(`EffectiveCashCoupons`)) BY `account`", "alias": "Result"}], "checkerOpt": {"rules": [{"status": "critical", "conditions": [{"alias": "Result", "operator": ">=", "operands": ["7"]}], "conditionLogic": "and"}, {"status": "error", "conditions": [{"alias": "Result", "operator": ">=", "operands": ["6"]}], "conditionLogic": "and"}, {"status": "warning", "conditions": [{"alias": "Result", "operator": ">=", "operands": ["5"]}], "conditionLogic": "and"}]}, "noDataPeriodCount": 4, "recoverNeedPeriodCount": 3}, "monitorUUID": "monitor_3f5e5d2108f74e07b8fb1e7459aae2b8"}' \
+--data-raw '{"extend": {"querylist": [{"datasource": "dataflux", "qtype": "dql", "uuid": "60ede817-567d-4d74-ad53-09b1165755b3", "query": {"code": "Result", "type": "simple", "namespace": "metric", "dataSource": "aliyun-bss-sync", "field": "EffectiveCashCoupons", "fieldType": "integer", "alias": "", "fieldFunc": "last", "groupByTime": "", "groupBy": ["account"], "q": "M::`aliyun-bss-sync`:(LAST(`EffectiveCashCoupons`)) BY `account`", "funcList": []}}], "funcName": "", "rules": [{"status": "critical", "conditions": [{"alias": "Result", "operator": "&gt;=", "operands": ["7"]}], "conditionLogic": "and"}, {"status": "error", "conditions": [{"alias": "Result", "operator": "&gt;=", "operands": ["6"]}], "conditionLogic": "and"}, {"status": "warning", "conditions": [{"alias": "Result", "operator": "&gt;=", "operands": ["5"]}], "conditionLogic": "and"}], "noDataInterval": 4, "recoverNeedPeriodCount": 3}, "jsonScript": {"name": "ee", "title": "hhhh", "message": "adfsgdsad", "type": "simpleCheck", "every": "1m", "groupBy": ["account"], "interval": 300, "targets": [{"dql": "M::`aliyun-bss-sync`:(LAST(`EffectiveCashCoupons`)) BY `account`", "alias": "Result"}], "checkerOpt": {"rules": [{"status": "critical", "conditions": [{"alias": "Result", "operator": ">=", "operands": ["7"]}], "conditionLogic": "and"}, {"status": "error", "conditions": [{"alias": "Result", "operator": ">=", "operands": ["6"]}], "conditionLogic": "and"}, {"status": "warning", "conditions": [{"alias": "Result", "operator": ">=", "operands": ["5"]}], "conditionLogic": "and"}]}, "noDataInterval": 4, "recoverNeedPeriodCount": 3}, "monitorUUID": "monitor_3f5e5d2108f74e07b8fb1e7459aae2b8"}' \
 --compressed \
 --insecure
 ```
@@ -142,7 +142,7 @@ curl 'https://openapi.guance.com/api/v1/monitor/check/create' \
         "deleteAt": -1,
         "extend": {
             "funcName": "",
-            "noDataPeriodCount": 4,
+            "noDataInterval": 4,
             "querylist": [
                 {
                     "datasource": "dataflux",
@@ -231,7 +231,7 @@ curl 'https://openapi.guance.com/api/v1/monitor/check/create' \
             "interval": 300,
             "message": "ooopen",
             "name": "opentest-han",
-            "noDataPeriodCount": 4,
+            "noDataInterval": 4,
             "recoverNeedPeriodCount": 4,
             "targets": [
                 {

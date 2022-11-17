@@ -53,7 +53,7 @@ curl 'https://openapi.guance.com/api/v1/monitor/check/list?pageIndex=1&pageSize=
             "deleteAt": -1,
             "extend": {
                 "funcName": "",
-                "noDataPeriodCount": null,
+                "noDataInterval": null,
                 "querylist": [
                     {
                         "datasource": "dataflux",
@@ -160,7 +160,7 @@ curl 'https://openapi.guance.com/api/v1/monitor/check/list?pageIndex=1&pageSize=
                 "interval": 300,
                 "message": ">等级：{{df_status}}  \n>实例：{{instanceId}}  \n>内容：RDS Mysql 磁盘使用率为 {{ Result |  to_fixed(2) }}%  \n>建议：登录阿里云控制台查看 RDS 是否有异常",
                 "name": "阿里云 RDS Mysql 磁盘使用率过高",
-                "noDataPeriodCount": 0,
+                "noDataInterval": 0,
                 "recoverNeedPeriodCount": 1,
                 "targets": [
                     {

@@ -1,0 +1,3 @@
+nav:
+  - '【Func函数】列出': list.md
+  - '【Func函数】执行外部函数': execute.md
