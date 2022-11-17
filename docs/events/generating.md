@@ -15,7 +15,7 @@
 - 基于 [监控器](../monitoring/index.md) 触发的全部告警事件
 - 基于 [智能巡检](../monitoring/bot-obs/index.md) 触发的全部告警事件
 - 系统事件，更多详情可以参考 [操作审计](../management/operation-audit.md)
-- 支持写入用户的自定义事件。即 OpenAPI 事件写入。
+- 支持写入用户的自定义事件。即 OpenAPI 事件写入，更多详情可参考 [创建一个事件](../open-api/keyevent/create.md)
 
 ## 字段说明
 | 字段名 | 说明 |
