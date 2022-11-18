@@ -1,4 +1,6 @@
-
+---
+icon: integrations/nacos
+---
 # Nacos
 ---
 
