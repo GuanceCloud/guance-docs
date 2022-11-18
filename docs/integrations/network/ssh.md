@@ -1,3 +1,6 @@
+---
+icon: material/key-link
+---
 # SSH
 
 ---

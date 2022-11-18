@@ -12,10 +12,11 @@ icon: material/middleware
 
 [**安装 DataKit**](../../datakit/datakit-install.md)之后，对于如下指标集，用户可通过{==**自定义开启内置插件**==}或 {++**其他采集器**++} 协助采集相关数据：
 
-| {==**自定义开启**==}                                  |                                                           |                                                             |                                                     |                                                       |
-| ----------------------------------------------------- | --------------------------------------------------------- | ----------------------------------------------------------- | --------------------------------------------------- | ----------------------------------------------------- |
-| [:integrations-kafka: Kafka](kafka.md){ .md-button .md-button--primary }   | [:integrations-rabbitmq: RabbitMQ](rabbitmq.md){ .md-button .md-button--primary } | [:integrations-rocketmq: RocketMQ](rocketmq.md){ .md-button .md-button--primary }   | [:integrations-resin: Resin](resin.md){ .md-button .md-button--primary } | [:integrations-tomcat: Tomcat](tomcat.md){ .md-button .md-button--primary } |
-| [:integrations-consul: Consul](consul.md){ .md-button .md-button--primary } | [:integrations-nacos: Nacos](nacos.md){ .md-button .md-button--primary }       | [:integrations-zookeeper: Zookeeper](zookeeper.md){ .md-button .md-button--primary } | [:fontawesome-brands-java: JVM](jvm.md){ .md-button .md-button--primary }     | [:integrations-solr: Solr](solr.md){ .md-button .md-button--primary }     |
+| {==**自定义开启**==}                                  |                                                           |                                                             |                                                     |
+| ----------------------------------------------------- | --------------------------------------------------------- | ----------------------------------------------------------- | --------------------------------------------------- | 
+| [:integrations-kafka: Kafka](kafka.md){ .md-button .md-button--primary }   | [:integrations-activemq: ActiveMQ](activemq.md){ .md-button .md-button--primary } | [:integrations-rabbitmq: RabbitMQ](rabbitmq.md){ .md-button .md-button--primary } | [:integrations-rocketmq: RocketMQ](rocketmq.md){ .md-button .md-button--primary }   |
+| [:integrations-consul: Consul](consul.md){ .md-button .md-button--primary } | [:integrations-nacos: Nacos](nacos.md){ .md-button .md-button--primary }       | [:integrations-zookeeper: ZooKeeper](zookeeper.md){ .md-button .md-button--primary } | [:fontawesome-brands-java: JVM](jvm.md){ .md-button .md-button--primary }     |
+| [:integrations-resin: Resin](resin.md){ .md-button .md-button--primary } | [:integrations-tomcat: Tomcat](tomcat.md){ .md-button .md-button--primary } |[:integrations-solr: Solr](solr.md){ .md-button .md-button--primary }     |  |
 
 
 | {++**其他采集器**++}             |                                                                 |                                                                   |                                                         |     |
