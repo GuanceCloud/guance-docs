@@ -1,6 +1,4 @@
----
-icon: fontawesome/solid/sliders
----
+
 # IPMI_Sensor
 ---
 

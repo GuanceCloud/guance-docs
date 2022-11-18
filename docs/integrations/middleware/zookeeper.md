@@ -1,7 +1,5 @@
----
-icon: integrations/zookeeper
----
-# ZooKeeper
+
+# Zookeeper
 ---
 
 ## 视图预览
@@ -15,7 +13,7 @@ icon: integrations/zookeeper
 
 ## 安装部署
 
-说明：示例 ZooKeeper 版本为 zookeeper 3.6.3 (CentOS)，zookeeper 3.6 +的版本会比之前版本多出许多指标，如果您使用的是 3.6 之前的版本可能会存在部分指标采集不到的情况。
+说明：示例 Zookeeper 版本为 zookeeper 3.6.3 (CentOS)，zookeeper 3.6 +的版本会比之前版本多出许多指标，如果您使用的是 3.6 之前的版本可能会存在部分指标采集不到的情况。
 
 ### 前置条件
 
@@ -35,8 +33,8 @@ icon: integrations/zookeeper
 > 4lw.commands.whitelist=*
 ```
 
-- 重启 ZooKeeper 集群应用配置
-- 在 ZooKeeper 集群中下载安装 [zookeeper_exporter](https://github.com/carlpett/zookeeper_exporter/releases/download/v1.1.0/zookeeper_exporter)， chmod +x 赋予执行权限后启动即可。默认端口为 9141 ,可用通过命令进行验证数据
+- 重启 Zookeeper 集群应用配置
+- 在 Zookeeper 集群中下载安装 [zookeeper_exporter](https://github.com/carlpett/zookeeper_exporter/releases/download/v1.1.0/zookeeper_exporter)， chmod +x 赋予执行权限后启动即可。默认端口为 9141 ,可用通过命令进行验证数据
 
 ```bash
 [root@d ~]# curl 0.0.0.0:9141/metrics

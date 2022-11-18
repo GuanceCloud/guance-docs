@@ -1,6 +1,3 @@
----
-icon: integrations/kafka
----
 # Kafka
 ---
 

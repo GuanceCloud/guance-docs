@@ -1,6 +1,4 @@
----
-icon: fontawesome/brands/java
----
+
 # JVM
 ---
 

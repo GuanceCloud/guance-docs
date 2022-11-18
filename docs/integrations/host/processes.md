@@ -1,6 +1,4 @@
----
-icon: material/vector-square-plus
----
+
 # Processes
 ---
 

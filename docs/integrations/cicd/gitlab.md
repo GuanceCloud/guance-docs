@@ -1,7 +1,3 @@
----
-icon: fontawesome/brands/gitlab
----
-
 # GitLab
 
 ---

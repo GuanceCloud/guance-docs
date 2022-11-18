@@ -1,6 +1,3 @@
----
-icon: fontawesome/brands/jenkins
----
 # Jenkins
 
 ---

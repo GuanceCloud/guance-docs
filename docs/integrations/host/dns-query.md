@@ -1,6 +1,4 @@
----
-icon: material/dns-outline
----
+
 # DNS Query
 ---
 
@@ -50,7 +48,7 @@ yum -y install telegraf
 
 #### 指标采集 (必选)
 
-1、 数据上传至 DataKit，修改主配置文件 `telegraf.conf`
+1、 数据上传至 DataKit，修改主配置文件 telegraf.conf
 
 ```
 vi /etc/telegraf/telegraf.conf

@@ -1,6 +1,3 @@
----
-icon: integrations/flink
----
 # Flink
 
 ---

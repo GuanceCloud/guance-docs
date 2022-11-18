@@ -1,6 +1,4 @@
----
-icon: octicons/arrow-switch-16
----
+
 # NetStat
 ---
 

@@ -80,11 +80,13 @@ icon: zy/release-notes
 - 优化 [Kafka 消息订阅](../datakit/kafkamq.md)，不再局限于获取 SkyWalking 相关的数据，同时支持限速、多版本覆盖、采样以及负载均衡等设定
 - 通过提供额外配置参数（`ENV_INPUT_CONTAINER_LOGGING_SEARCH_INTERVAL`），缓解短生命周期 Pod 日志采集问题
 - 纯容器环境下，支持 [通过 label 方式](../datakit/container-log.md#logging-with-annotation-or-label) 配置容器内日志采集
+- [SQLServer 采集器](../datakit/sqlserver.md) 增加更多指标集采集
 - 新增 Pipeline 函数
     - [sample()](../developers/pipeline.md#fn-sample)：采样函数
     - [b64enc()](../developers/pipeline.md#fn-b64enc)：Base64 编码函数
     - [b64dec()](../developers/pipeline.md#fn-b64dec)：Base64 解码函数
     - [append()](../developers/pipeline.md#fn-append)：列表追加函数
+    - [url_parse()](../developers/pipeline.md#fn-url-parse)：HTTP URL 解析函数
 
 更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md) 。
 

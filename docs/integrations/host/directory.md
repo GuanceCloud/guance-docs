@@ -1,6 +1,4 @@
----
-icon: octicons/file-directory-16
----
+
 # Directory
 ---
 

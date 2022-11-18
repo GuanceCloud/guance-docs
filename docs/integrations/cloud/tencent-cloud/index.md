@@ -1,6 +1,3 @@
----
-icon: integrations/tencent
----
 # 腾讯云
 
 ---
@@ -19,4 +16,4 @@ icon: integrations/tencent
 
 <br/>
 
-其他云厂商集成文档：[:integrations-aliyun: 阿里云](../aliyun/index.md){ .md-button .md-button--primary }  [:integrations-aws: AWS](../aws/index.md){ .md-button .md-button--primary }
+其他云厂商集成文档：[阿里云](../aliyun/index.md){ .md-button .md-button--primary }  [AWS](../aws/index.md){ .md-button .md-button--primary }

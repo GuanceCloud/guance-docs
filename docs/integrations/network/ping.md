@@ -1,6 +1,3 @@
----
-icon: material/access-point-network
----
 # Ping
 
 ---

@@ -1,6 +1,4 @@
----
-icon: material/timeline-clock-outline
----
+
 # NtpQ
 ---
 

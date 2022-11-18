@@ -1,6 +1,4 @@
----
-icon: integrations/logstash
----
+
 # Logstash
 ---
 

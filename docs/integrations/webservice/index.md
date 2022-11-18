@@ -14,7 +14,7 @@ icon: material/server-network
 
 | {==**自定义开启**==} |  |   |
 | :------------------: | :-----------------------------------------------------: | :-------------------------------------------------: |
-| [:integrations-apache: Apache](apache.md){ .md-button .md-button--primary }  | [:integrations-nginx: Nginx](nginx.md){ .md-button .md-button--primary } |  |
+| [Apache](apache.md){ .md-button .md-button--primary }  | [Nginx](nginx.md){ .md-button .md-button--primary } |  |
 |  {++**Telegraf**++}  |  |   |
 |[HAProxy](haproxy.md){ .md-button .md-button--primary } |    |  |
 

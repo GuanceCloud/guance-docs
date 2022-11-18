@@ -14,9 +14,9 @@ icon: material/web
 
 | {==**自定义开启**==} |   |              |
 | :------------------: | :-----------------------------------------------: | :-----------------------------------------------: |
-|  [:material-key-link: SSH](ssh.md){ .md-button .md-button--primary }  |                      |                             |
+|  [SSH](ssh.md){ .md-button .md-button--primary }  |                      |                             |
 |  {++**Telegraf**++}  |   |              |
-| [:material-access-point-network: Ping](ping.md){ .md-button .md-button--primary } | [:fontawesome-brands-connectdevelop: Port](port.md){ .md-button .md-button--primary } |     |
+| [Ping](ping.md){ .md-button .md-button--primary } | [Port](port.md){ .md-button .md-button--primary } |     |
 
 除此之外，还可以通过[DialTesting (云拨测)](dialtesting.md)，指定不同国家不同地区的客户端，来**模拟真实用户访问**目标地址的网络性能情况。
 
