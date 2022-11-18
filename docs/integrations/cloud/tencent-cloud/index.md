@@ -1,3 +1,6 @@
+---
+icon: integrations/tencent
+---
 # 腾讯云
 
 ---

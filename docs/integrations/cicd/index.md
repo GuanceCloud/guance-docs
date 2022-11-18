@@ -13,7 +13,7 @@ icon: fontawesome/solid/code-merge
 
 |                 {==**自定义开启**==}                  |                                                         |     |
 | :---------------------------------------------------: | :-----------------------------------------------------: | :-: |
-| [GitLab](gitlab.md){ .md-button .md-button--primary } | [Jenkins](jenkins.md){ .md-button .md-button--primary } |     |
+| [:fontawesome-brands-gitlab: GitLab](gitlab.md){ .md-button .md-button--primary } | [:fontawesome-brands-jenkins: Jenkins](jenkins.md){ .md-button .md-button--primary } |     |
 
 <br />
 

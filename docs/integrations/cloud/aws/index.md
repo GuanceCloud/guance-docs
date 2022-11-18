@@ -1,3 +1,6 @@
+---
+icon: integrations/aws
+---
 # AWS
 
 ---

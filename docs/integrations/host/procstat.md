@@ -1,4 +1,6 @@
-
+---
+icon: material/camera-timer
+---
 # ProcStat
 ---
 

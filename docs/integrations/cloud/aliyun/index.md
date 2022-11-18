@@ -1,3 +1,6 @@
+---
+icon: integrations/aliyun
+---
 # 阿里云
 
 ---
