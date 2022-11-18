@@ -33,7 +33,7 @@ icon: zy/release-notes
 
 在场景新建查看器时，支持选择日志、应用性能、用户访问、安全巡检、Profile 这 5 种数据类型，保存后不可更改。
 
-![](img/3.changelog_1.png)
+![](img/3.changelog_8.png)
 
 #### 成员管理新增成员分组功能
 
