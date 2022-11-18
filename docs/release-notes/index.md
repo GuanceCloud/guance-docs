@@ -85,6 +85,7 @@ icon: zy/release-notes
     - [b64enc()](../developers/pipeline.md#fn-b64enc)：Base64 编码函数
     - [b64dec()](../developers/pipeline.md#fn-b64dec)：Base64 解码函数
     - [append()](../developers/pipeline.md#fn-append)：列表追加函数
+    - [url_parse()](../developers/pipeline.md#fn-url-parse)：HTTP URL 解析函数
 
 更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md) 。
 
