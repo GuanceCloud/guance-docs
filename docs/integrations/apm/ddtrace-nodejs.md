@@ -1,3 +1,6 @@
+---
+icon: fontawesome/brands/node-js
+---
 # Node.js
 
 ---

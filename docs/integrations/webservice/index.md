@@ -16,7 +16,7 @@ icon: material/server-network
 | :------------------: | :-----------------------------------------------------: | :-------------------------------------------------: |
 | [:integrations-apache: Apache](apache.md){ .md-button .md-button--primary }  | [:integrations-nginx: Nginx](nginx.md){ .md-button .md-button--primary } |  |
 |  {++**Telegraf**++}  |  |   |
-|[HAProxy](haproxy.md){ .md-button .md-button--primary } |    |  |
+|[:integrations-haproxy: HAProxy](haproxy.md){ .md-button .md-button--primary } |    |  |
 
 <br />
 
