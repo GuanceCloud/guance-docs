@@ -14,10 +14,10 @@ icon: fontawesome/solid/circle-nodes
 
 | {==**自定义开启**==}  |    |
 | --------- | ---- |
-| [Docker](docker.md){ .md-button .md-button--primary } | [CoreDNS](coredns.md){ .md-button .md-button--primary } |
-| [Kubernetes API Server](kubernetes-api-server.md){ .md-button .md-button--primary } |  [Etcd](etcd.md){ .md-button .md-button--primary }  |
-| [Kubernetes Controller Manager](kubernetes-controller-manager.md){ .md-button .md-button--primary }|  [Harbor](harbor.md){ .md-button .md-button--primary } |
-| [Kubernetes Kubelet](kubernetes-kubelet.md){ .md-button .md-button--primary }   | [Istio](istio.md){ .md-button .md-button--primary }  |
+| [:fontawesome-brands-docker: Docker](docker.md){ .md-button .md-button--primary } | [:integrations-coredns: CoreDNS](coredns.md){ .md-button .md-button--primary } |
+| [Kubernetes API Server](kubernetes-api-server.md){ .md-button .md-button--primary } |  [:integrations-etcd: Etcd](etcd.md){ .md-button .md-button--primary }  |
+| [Kubernetes Controller Manager](kubernetes-controller-manager.md){ .md-button .md-button--primary }|  [:integrations-harbor: Harbor](harbor.md){ .md-button .md-button--primary } |
+| [Kubernetes Kubelet](kubernetes-kubelet.md){ .md-button .md-button--primary }   | [:integrations-istio: Istio](istio.md){ .md-button .md-button--primary }  |
 | [Kubernetes Scheduler](kube-scheduler.md){ .md-button .md-button--primary }  | [Ingress Nginx (Prometheus)](ingress-nginx-prom.md){ .md-button .md-button--primary } |
 | [Kube State Metrics](kube-state-metrics.md){ .md-button .md-button--primary }  |    |
 | [Kubernetes With Metric Server](kube-metric-server.md){ .md-button .md-button--primary }  |   |
