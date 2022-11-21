@@ -1,3 +1,6 @@
+---
+icon: material/kubernetes
+---
 # Kube State Metrics
 ---
 

@@ -1,3 +1,6 @@
+---
+icon: integrations/k8s-api
+---
 # Kubernetes API Server
 
 ---
