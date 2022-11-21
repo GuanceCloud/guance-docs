@@ -1,5 +1,6 @@
 nav:
   - index.md
+  - '简介':  aws-prod-func.md
   - 'EC2': ec2.md
   - 'ELB': elb.md
   - 'RDS MySQL': rds-mysql.md
