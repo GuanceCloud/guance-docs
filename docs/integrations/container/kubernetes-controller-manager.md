@@ -1,3 +1,6 @@
+---
+icon: integrations/k8s-cm
+---
 # Kubernetes Controller Manager
 
 ---
