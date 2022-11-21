@@ -20,14 +20,15 @@
 
 ### 访问授权
 
-1、 登录访问授权控制台 [https://console.cloud.tencent.com/cam](https://console.cloud.tencent.com/cam)<br />
-2、 新建用户：用户 - 用户列表 - 新建用户  <br />
-（1）访问方式：控制台访问 & 编程访问<br /> 
+1、 登录访问授权控制台 [https://console.cloud.tencent.com/cam](https://console.cloud.tencent.com/cam)
+
+2、 新建用户：「用户」 - 「用户列表」 - 「新建用户」<br />
+（1）访问方式：控制台访问 & 编程访问<br />
 （2）用户权限：ReadOnlyAccess
 
 ![image](../../imgs/input-tencent-cos-2.png)
 
-3、 新建秘钥：选择该用户 - API 秘钥 - 新建秘钥 (**SecretId** 和 **SecretKey** 配置文件会用到)
+3、 新建秘钥：「选择该用户」 - 「API 秘钥」 - 「新建秘钥」 (**SecretId** 和 **SecretKey** 配置文件会用到)
 
 ![image](../../imgs/input-tencent-cos-3.png)
 
@@ -38,24 +39,22 @@
 - 示例 Linux 版本为：CentOS Linux release 7.8.2003 (Core)
 - 通过一台服务器采集所有腾讯云 COS 数据
 
-### 部署实施
+### 1 脚本市场
 
-#### 脚本市场
-
-1、 登录 DataFlux Func，地址 http://ip:8088
+1、 登录 DataFlux Func，地址 `http://ip:8088`
 
 ![image](../../imgs/input-tencent-cos-4.png)
 
-2、 开启脚本市场，管理 - 实验性功能 - 开启脚本市场模块
+2、 开启脚本市场：「管理」- 「实验性功能」 - 「开启脚本市场模块」
 
 ![image](../../imgs/input-tencent-cos-5.png)
 
-3、 **依次添加**三个脚本集  <br />
-（1）观测云集成 (核心包)  <br />
-（2）观测云集成 (腾讯云-云监控) <br /> 
+3、 **依次添加**三个脚本集 <br />
+（1）观测云集成 (核心包) <br />
+（2）观测云集成 (腾讯云-云监控) <br />
 （3）观测云集成 (腾讯云-COS)
 
-_注：在安装「核心包」后，系统会提示安装第三方依赖包，按照正常步骤点击安装即可_
+> **注意：**在安装「核心包」后，系统会提示安装第三方依赖包，按照正常步骤点击安装即可
 
 ![image](../../imgs/input-tencent-cos-6.png)
 
@@ -63,17 +62,17 @@ _注：在安装「核心包」后，系统会提示安装第三方依赖包，�
 
 ![image](../../imgs/input-tencent-cos-8.png)
 
-4、 脚本安装完成后，可以在脚本库中看到所有脚本集
+4、 脚本安装完成后，可以在「脚本库」中看到所有脚本集
 
 ![image](../../imgs/input-tencent-cos-9.png)
 
-#### 添加脚本
+### 2 添加脚本
 
-1、 开发 - 脚本库 - 添加脚本集
+1、 「开发」 - 「脚本库」 - 「添加脚本集」
 
 ![image](../../imgs/input-tencent-cos-10.png)
 
-2、 点击该脚本集 - 添加脚本
+2、 点击上一步添加的「脚本集」 - 「添加脚本」
 
 ![image](../../imgs/input-tencent-cos-11.png)
 
@@ -81,8 +80,9 @@ _注：在安装「核心包」后，系统会提示安装第三方依赖包，�
 
 ![image](../../imgs/input-tencent-cos-11.png)
 
-4、 添加代码 (需要修改账号配置 **SecretId / SecretKey /Account Name / Regions**)
+4、 添加代码
 
+- 需要修改账号配置 **SecretId / SecretKey /Account Name / Regions**
 - regions 取值可以参考 [**地域列表**](https://cloud.tencent.com/document/api/248/30346)，示例：ap-shanghai
 
 ```
@@ -125,21 +125,17 @@ def run():
     Runner(collectors).run()
 ```
 
-5、 保存配置并发布
+5、 「保存」 配置并 「发布」
 
 ![image](../../imgs/input-tencent-cos-13.png)
 
-#### 定时任务
+### 3 定时任务
 
-1、 添加自动触发任务，管理 - 自动触发配置 - 新建任务
+1、 添加自动触发任务：「管理」 - 「自动触发配置」 - 「新建任务」
 
 ![image](../../imgs/input-tencent-cos-14.png)
 
-2、 自动触发配置，执行函数中添加此脚本，执行频率为
-
-```
-**5分钟 */5 * * * ***
-```
+2、 自动触发配置：在「执行函数」中添加此脚本，执行频率默认为 **5 分钟 _/5 _ \* \* \***
 
 ![image](../../imgs/input-tencent-cos-15.png)
 

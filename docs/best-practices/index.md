@@ -135,12 +135,6 @@ icon: zy/best-practices
 
 
 ## (2022/07/22)
-
-### 新增最佳实践
-
-- 云平台接入
-    - 腾讯云 - [腾讯云产品可观测最佳实践 (Function)](./partner/tencent-prod-func.md)。
-
 ### 更新记录
 
 - 监控 Monitoring
@@ -272,10 +266,6 @@ icon: zy/best-practices
     - [Elasticsearch 可观测最佳实践](./monitoring/elasticsearch.md)，<font color="red" >更新一些链接和描述。</font>
 
 ## (2022/04/15)
-### 新增最佳实践
-
-- 自定义接入最佳实践
-    - [阿里云产品可观测最佳实践 (Function)](./partner/aliyun-prod-func.md)
 ### 更新记录
 
 - 云原生
