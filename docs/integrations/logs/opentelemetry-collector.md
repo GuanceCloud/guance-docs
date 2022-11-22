@@ -1,4 +1,6 @@
-
+---
+icon: integrations/opentelemetry
+---
 # OpenTelemetry Collector
 ---
 

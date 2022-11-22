@@ -1,4 +1,6 @@
-
+---
+icon: integrations/ebpf
+---
 # eBPF
 ---
 
@@ -10,7 +12,7 @@
 
 ## 版本支持
 
-操作系统支持：Linux <br/ >
+操作系统支持：Linux <br/>
 内核版本要求：CentOS 7.6+ ，Ubuntu 16.04 +，其他发行版本需要 Linux 内核版本高于 4.0.0
 
 ## 前置条件
@@ -25,7 +27,7 @@
 
 #### 指标采集 (必选)
 
-1、 DataKit 安装之后，<[安装 eBPF 采集器](/datakit/ebpf#requirements)><br/ >
+1、 DataKit 安装之后，<[安装 eBPF 采集器](../../../datakit/ebpf#requirements)>
 
 
 2、 开启 eBPF 采集器，复制 sample 文件
@@ -57,11 +59,6 @@ vi ebpf.conf
   args = ["--datakit-apiserver", "0.0.0.0:9529"]
   enabled_plugins = ["ebpf-net"]
 ```
-
-4、 eBPF 指标采集验证  `/usr/local/datakit/datakit -M |egrep "最近采集|netflow"`
-
-![image](../imgs/input-ebpf-2.png)
-
 #### 插件标签 (非必选)
 
 参数说明

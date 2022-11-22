@@ -14,7 +14,7 @@ icon: material/math-log
 
 | {==**自定义开启**==}  |  | |
 | :------------------------------------: | :-------------------------------------------------------: |---------: |
-|[Fluentd](fluentd.md){ .md-button .md-button--primary } | [Logstash](logstash.md){ .md-button .md-button--primary } | [OpenTelemetry Collector](opentelemetry-collector.md){ .md-button .md-button--primary } | 
+|[:integrations-fluentd: Fluentd](fluentd.md){ .md-button .md-button--primary } | [:integrations-logstash: Logstash](logstash.md){ .md-button .md-button--primary } | [:integrations-opentelemetry: OpenTelemetry Collector](opentelemetry-collector.md){ .md-button .md-button--primary } | 
 
 <br/>
 

@@ -10,3 +10,5 @@ mkdocs-awesome-pages-plugin==2.7.0
 
 mkdocs-git-authors-plugin
 mkdocs-git-revision-date-localized-plugin
+
+mkdocs-glightbox==0.3.1
