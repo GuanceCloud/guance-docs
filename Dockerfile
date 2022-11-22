@@ -4,7 +4,7 @@ ARG GUANCE_HELPS_OSS_AK_SECRET
 ARG GUANCE_HELPS_OSS_BUCKET
 ARG GUANCE_HELPS_OSS_ENDPOINT
 
-FROM registry.jiagouyun.com/basis/mkdocs:2.2 as build
+FROM registry.jiagouyun.com/basis/mkdocs:2.3 as build
 
 ARG release_env
 ARG GUANCE_HELPS_OSS_AK_ID
