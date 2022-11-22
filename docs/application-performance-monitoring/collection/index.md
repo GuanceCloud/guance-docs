@@ -5,11 +5,8 @@
 
 观测云的链路数据采集目前支持使用  Opentracing 协议的采集器。在 DataKit 中开启链路数据接收服务后，通过完成采集器在代码中的埋点，DataKit 将自动完成数据的格式转换和采集，最终上报到观测云中心。
 
-**部署架构如下：**
 
-![](../img/1.apm-2.png)
 
-最佳部署方案是将 DataKit 部署在每一台应用服务器中，通过服务所在主机的 DataKit 后将数据打到观测云中心，能更好的对应用服务的服务器主机指标、应用日志、syslog、应用服务链路数据等数据汇聚，进行各项数据的关联分析。
 ## 数据采集
 
 DataKit 目前支持采集 `DDTrace` 、`Apache Jaeger` 、`OpenTelemetry` 、`Skywalking` 、`Zipkin` 等第三方的 Tracing 数据。
@@ -22,7 +19,15 @@ DataKit 目前支持采集 `DDTrace` 、`Apache Jaeger` 、`OpenTelemetry` 、`S
 - [Zipkin](../../datakit/zipkin.md)
 - [Jaeger](../../datakit/jaeger.md)
 
+### 数据采集步骤示意图
 
+- 第一步： [安装 DataKit](../../datakit/datakit-install.md) 
+- 第二步：在 DataKit 中开启链路数据接收服务
+- 第三步：通过在业务系统中集成 Zipkin 或 Jaeger 或 Skywalking 等开源链路数据采集的 SDK，将数据上报到 DataKit 的链路追踪服务的 Endpoint
+- 第四步：DataKit 会将数据自动清洗为观测云本身的链路数据格式，并上报到观测云中心
+- 第五步：在观测云的控制台进行链路分析和查看服务相关性能指标
+
+![](/Users/wendy/dataflux-doc/docs/application-performance-monitoring/img/1.apm-1.png)
 
 ## 字段说明
 
