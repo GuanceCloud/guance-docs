@@ -25,7 +25,3 @@ icon: fontawesome/solid/database
 <br/>
 
 **开始[安装 DataKit](../../datakit/datakit-install.md)，开启你的观测云之旅！**
-
-<br/>
-
-<br/>
