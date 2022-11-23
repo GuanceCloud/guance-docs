@@ -13,8 +13,9 @@ DataKit 目前支持采集 `DDTrace` 、`Apache Jaeger` 、`OpenTelemetry` 、`S
 
 首先需要 [安装 DataKit](../../datakit/datakit-install.md) ，安装完成后需要开启链路采集器的配置文件，您可以登录观测云控制台，进入「集成」页面，输入搜索“应用性能监测”，即可查看所有链路数据采集的相关采集器，打开采集器的配置说明文档，按照文档中的步骤进行配置即可。或者您可以直接点击以下链接查看对应的采集器配置：
 
-| [DDTrace](../../datakit/ddtrace.md){ .md-button .md-button--primary } | [Skywalking](../../datakit/skywalking.md){ .md-button .md-button--primary } | [OpenTelemetry](../../datakit/opentelemetry.md){ .md-button .md-button--primary } | [Zipkin](../../datakit/zipkin.md){ .md-button .md-button--primary } | [Jaeger](../../datakit/jaeger.md){ .md-button .md-button--primary } |
+|                          采集器配置                          |                                                              |                                                              |                                                              |                                                              |
 | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
+| [DDTrace](../../datakit/ddtrace.md){ .md-button .md-button--primary } | [Skywalking](../../datakit/skywalking.md){ .md-button .md-button--primary } | [OpenTelemetry](../../datakit/opentelemetry.md){ .md-button .md-button--primary } | [Zipkin](../../datakit/zipkin.md){ .md-button .md-button--primary } | [Jaeger](../../datakit/jaeger.md){ .md-button .md-button--primary } |
 
 ### 数据采集步骤示意图
 
@@ -39,8 +40,8 @@ DataKit 会根据采集器的不同将上报的数据转换为观测云链路数
 | operation | 当前 `span` 操作名，也可理解为 span 名称                     |
 | span_id   | 当前 `span` 的唯一 ID                                        |
 | trace_id  | 表示当前链路的唯一 ID                                        |
-| span_type | span 的类型，目前支持 ：`entry` 、 `local` 、`exit` 、 `unknow` 。<br><li>`entry span` 表示进入服务创建的 span，即该服务的对其他服务提供调用请求的端点，大部分 span 应该都是 entry span。只有 span 是 `entry` 类型的调用才是一个独立的请求。 <br><li>`local span` 表示该 span 和远程调用没有任何关系，只是本地方法调用的时候创建的 span，例如一个普通的 Java 方法，默认值 `entry` 。<br><li>`exit span` 表示离开服务创建的 span，例如发起远程调用的时候，或者消息队列产生消息的时候。<br><li>`unknow span` 表示未知的 span。 |
-| endpoint  | 请求的目标地址，客户端用于访问目标服务的网络地址(但不一定是 IP + 端口)，例如 `127.0.0.1:8080` ,默认：`null` |
+| span_type | span 的类型，目前支持 ：`entry` 、 `local` 、`exit` 、 `unknow` 。<br><li>`entry span` 表示进入服务创建的 span，即该服务的对其他服务提供调用请求的端点，大部分 span 应该都是 entry span。只有 span 是 `entry` 类型的调用才是一个独立的请求。 <br><li>`local span` 表示该 span 和远程调用没有任何关系，是本地方法调用的时候创建的 span，例如一个普通的 Java 方法。<br><li>`exit span` 表示离开服务创建的 span，例如发起远程调用的时候，或者消息队列产生消息的时候。<br><li>`unknow span` 表示未知的 span。 |
+| endpoint  | 请求的目标地址，客户端用于访问目标服务的网络地址，例如 `127.0.0.1:8080` ,默认：`null` |
 | message   | 链路转换之前的采集的原始数据                                 |
 | duration  | 当前链路 span的持续时间                                      |
 | status    | 链路状态，info：提示，warning：警告，error：错误，critical：严重，ok：成功 |
