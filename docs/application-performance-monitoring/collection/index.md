@@ -13,8 +13,9 @@ DataKit 目前支持采集 `DDTrace` 、`Apache Jaeger` 、`OpenTelemetry` 、`S
 
 首先需要 [安装 DataKit](../../datakit/datakit-install.md) ，安装完成后需要开启链路采集器的配置文件，您可以登录观测云控制台，进入「集成」页面，输入搜索“应用性能监测”，即可查看所有链路数据采集的相关采集器，打开采集器的配置说明文档，按照文档中的步骤进行配置即可。或者您可以直接点击以下链接查看对应的采集器配置：
 
-| [DDTrace](../../datakit/ddtrace.md){ .md-button .md-button--primary } | [Skywalking](../../datakit/skywalking.md){ .md-button .md-button--primary } | [OpenTelemetry](../../datakit/opentelemetry.md){ .md-button .md-button--primary } | [Zipkin](../../datakit/zipkin.md){ .md-button .md-button--primary } | [Jaeger](../../datakit/jaeger.md){ .md-button .md-button--primary } |
+|                          采集器配置                          |                                                              |                                                              |                                                              |                                                              |
 | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
+| [DDTrace](../../datakit/ddtrace.md){ .md-button .md-button--primary } | [Skywalking](../../datakit/skywalking.md){ .md-button .md-button--primary } | [OpenTelemetry](../../datakit/opentelemetry.md){ .md-button .md-button--primary } | [Zipkin](../../datakit/zipkin.md){ .md-button .md-button--primary } | [Jaeger](../../datakit/jaeger.md){ .md-button .md-button--primary } |
 
 ### 数据采集步骤示意图
 
