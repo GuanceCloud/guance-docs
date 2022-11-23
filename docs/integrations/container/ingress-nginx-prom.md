@@ -1,3 +1,6 @@
+---
+icon: integrations/ng-ingress
+---
 # Ingress Nginx (Prometheus)
 
 ---

@@ -2,4 +2,5 @@ nav:
   - index.md
   - '阿里云': aliyun
   - 'AWS': aws
-  - '腾讯云': tencent-cloud
+  - '腾讯云': tencent
+  - '华为云': huawei
