@@ -1,6 +1,7 @@
 ---
 hide:
   - toc
+glightbox: false
 ---
 # <div class="homepage-title">欢迎使用观测云</div>
 <div class="homepage">

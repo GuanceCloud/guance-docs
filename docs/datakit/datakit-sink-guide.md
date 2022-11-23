@@ -13,7 +13,7 @@ Sinker 是 DataKit 中数据存储定义模块。默认情况下，DataKit 采�
 
 - [InfluxDB](datakit-sink-influxdb.md)：目前支持将 DataKit 采集的时序数据（M）发送到本地的 InfluxDB 存储。
 - [Logstash](datakit-sink-logstash.md)：目前支持将 DataKit 采集的日志数据（L）发送到本地 Logstash 服务。
-- [M3DB](datakit-sink-m3db.md)：目前支持将 DataKit 采集的时序数据（M）发送到本地的 InfluxDB 存储（同 InfluxDB）。
+- [M3DB](datakit-sink-m3db.md)：目前支持将 DataKit 采集的时序数据（M）发送到本地的 M3DB 存储（同 InfluxDB）。
 - [OpenTelemetry and Jaeger](datakit-sink-otel-jaeger.md)：OpenTelemetry(OTEL) 提供了多种 Export 将链路数据（T）发送到多个采集终端中，例如：Jaeger、otlp、zipkin、prometheus。
 - [Dataway](datakit-sink-dataway.md)：目前支持将 DataKit 采集所有类型的数据发送到 Dataway 存储。
 
