@@ -11,20 +11,20 @@
 
 - 支持的操作符：
 
-	- `+`  - 加法
-	- `-`  - 减法
-	- `*`  - 乘法
-	- `/`  - 除法
-	- `%`  - 取模
-	- `=` - 等于
-	- `!=` - 不等于
-	- `<=` - 大于等于
-	- `<` - 小于
-	- `>=` - 大于等于
-	- `>` -  大于
-	- `^` - 指数运算
-	- `&&` - 逻辑与
-	- `||` - 逻辑或
+  - `+`  - 加法
+  - `-`  - 减法
+  - `*`  - 乘法
+  - `/`  - 除法
+  - `%`  - 取模
+  - `=` - 等于
+  - `!=` - 不等于
+  - `<=` - 小于等于
+  - `<` - 小于
+  - `>=` - 大于等于
+  - `>` -  大于
+  - `^` - 指数运算
+  - `&&` - 逻辑与
+  - `||` - 逻辑或
 
 - 支持的关键字：
 
@@ -38,42 +38,42 @@ SLIMIT SOFFSET TRUE WITH
 
 - 标识符：标识符有几种形式，便于兼容各种变量命名形式
 
-	- 正常变量名中只能出现 `[_a-zA-Z0-9]` 这些字符，且首字符不能是数字。如 `_abc, _abc123, _123ab`
-	- 其它形式的变量名处理方式：
-		- `this+is-a*xx/yy^zz?variable`，`by` 需写成 `` `this+is-a*xx/yy^zz?variable` ``，`` `by` ``，前者变量中带运算符，后者的 `by` 是 DQL 关键字
-		- 支持中文等 UTF8 标识符，如 `M::cpu:(usage AS 使用率) [5m]`
-			- 支持表情符号：`M::cpu:(usage AS 使用率👍) [5m]`
-		- 变量中就带了一个反引号，`` this`is-a-vairalbe `` 需写成 `` `identifier("this`is-a-vairalbe")` `` 来修饰
+  - 正常变量名中只能出现 `[_a-zA-Z0-9]` 这些字符，且首字符不能是数字。如 `_abc, _abc123, _123ab`
+  - 其它形式的变量名处理方式：
+    - `this+is-a*xx/yy^zz?variable`，`by` 需写成 `` `this+is-a*xx/yy^zz?variable` ``，`` `by` ``，前者变量中带运算符，后者的 `by` 是 DQL 关键字
+    - 支持中文等 UTF8 标识符，如 `M::cpu:(usage AS 使用率) [5m]`
+      - 支持表情符号：`M::cpu:(usage AS 使用率👍) [5m]`
+    - 变量中就带了一个反引号，`` this`is-a-vairalbe `` 需写成 `` `identifier("this`is-a-vairalbe")` `` 来修饰
 
 - 字符串值可用双引号和单引号： `"this is a string"` 和 `'this is a string'` 是等价的
 
 - 特殊字符串
-	- base64 字符串：DQL 支持处理 base64 字符串，对于 bas64 字符串，DQL 在查询时能自动解出原始字符串，其写法如下：
-		- `` b64`some-base64-string` ``
-		- `b64'some-base64-string'`
-		- `b64"some-base64-string"`
-	
-	- 正则表达式字符串：原 `re('xxx')` 已弃用，建议使用如下形式来标识正则字符串。
-		- `` re`some-regexp` ``（推荐）
-		- `re'some-regexp'`
-		- `re"some-regexp"`
+  - base64 字符串：DQL 支持处理 base64 字符串，对于 bas64 字符串，DQL 在查询时能自动解出原始字符串，其写法如下：
+    - `` b64`some-base64-string` ``
+    - `b64'some-base64-string'`
+    - `b64"some-base64-string"`
+
+  - 正则表达式字符串：原 `re('xxx')` 已弃用，建议使用如下形式来标识正则字符串。
+    - `` re`some-regexp` ``（推荐）
+    - `re'some-regexp'`
+    - `re"some-regexp"`
 
 - 支持数据类型：
-	- 支持浮点（`123.4`, `5.67E3`）
-	- 整形（`123`, `-1`）
-	- 字符串（`'张三'`, `"hello world"`）
-	- Boolean（`true`, `false`）
-	- Duration（`1y`, `1w`, `1d`, `1h`, `1m`, `1s`, `1ms`, `1us`, `1ns` 分别表示 1 年/周/天/时/分/秒/毫秒/微秒/纳秒）
+  - 支持浮点（`123.4`, `5.67E3`）
+  - 整形（`123`, `-1`）
+  - 字符串（`'张三'`, `"hello world"`）
+  - Boolean（`true`, `false`）
+  - Duration（`1y`, `1w`, `1d`, `1h`, `1m`, `1s`, `1ms`, `1us`, `1ns` 分别表示 1 年/周/天/时/分/秒/毫秒/微秒/纳秒）
 
 - 特殊函数
 
-	- `tz()` - 时区，有两种形式支持
-		- `tz(+-12)` 以 24 个时区的偏移来指定，如 `tz(+8),tz(8), tz('Asia/Shanghai')` 是一样的，夏令时不能通过这种形式来指定。
-		- `tz('Asia/Shanghai')` 以国际标准形式来指定时区。对于夏令时，只能通过这种形式来指定。
+  - `tz()` - 时区，有两种形式支持
+    - `tz(+-12)` 以 24 个时区的偏移来指定，如 `tz(+8),tz(8), tz('Asia/Shanghai')` 是一样的，夏令时不能通过这种形式来指定。
+    - `tz('Asia/Shanghai')` 以国际标准形式来指定时区。对于夏令时，只能通过这种形式来指定。
 
-	- `identifier()` 用于修饰变量名中带 `` ` `` 字符的变量
+  - `identifier()` 用于修饰变量名中带 `` ` `` 字符的变量
 
-	- `int()` 和 `float()` 对返回的数据做类型转换，仅适用于时序数据。
+  - `int()` 和 `float()` 对返回的数据做类型转换，仅适用于时序数据。
 
 ## 查询
 
@@ -108,7 +108,7 @@ M::re('*db') [5m]
 M::cpu [10m:5m]
 
 # 获取指标集 cpu 10 分钟前到 5 分钟前的所有字段数据，以 1分钟的间隔来聚合
-M::cpu [10m:5m:1m]
+M::cpu:(usage_idle) [10m:5m:1m]
 
 # 查询时序数据指标集 cpu 最近 5分钟的两个字段 time_active, time_guest_nice，
 # 以 host 和 cpu 两个 tag 来过滤，同时以 host 和 cpu 来分组显示结果。
@@ -188,10 +188,10 @@ O::human:(height) { (age + 1)/2 > 31, sex != re("男") }
 O::human:(height) { age > 31 || sex != re("男"), weight > 70}
 
 # 带聚合的的结果列
-M::cpu:(avg(time_active) AS time_active_avg, time_guest_nice) [1d::1h]
+M::cpu:(avg(time_active) AS time_active_avg) [1d::1h]
 
 # 带聚合填充的的结果列
-M::cpu:(fill(avg(time_active) AS time_active_avg, 0.1), time_guest_nice) [1d::1h]
+M::cpu:(fill(avg(time_active) AS time_active_avg, 0.1)) [1d::1h]
 
 # 带有 in 列表的查询,其中 in 中选项关系为逻辑 or, in 列表中只能是数值或者字符串
 O::human:(height) { age in [30, 40, 50], weight > 70}
@@ -224,8 +224,8 @@ DataFlux 数据特点均有时间属性，故将时间的表达用单独的子�
 - `[10m:5m]` - 最近 10 分钟到最近 5 分钟
 - `[10m:5m:1m]` - 最近 10 分钟到最近 5 分钟，且结果按照 1 分钟的间隔聚合
 - `[2019-01-01 12:13:14:5m:1w]` -  2019/1/1 12:13:14 到最近 5 分钟，且结果按照 1 周的间隔聚合。注意，指定日期时，只能精确到秒级别。且只有两种日期格式：
-	- `2006-01-02 15:04:05`：这里的时间指 UTC 时区的时间，不支持指定时区。
-	- `2006-01-02`
+  - `2006-01-02 15:04:05`：这里的时间指 UTC 时区的时间，不支持指定时区。
+  - `2006-01-02`
 
 时间单位支持如下几种：
 
@@ -291,7 +291,6 @@ O::ecs:(host, region)
 对于时序数据，如果dql语句中同时包含了by短语和limit短语，limit约束的是每个聚合组中的返回条数
 
 ```python
-
 # 返回三条cpu记录
 M::cpu:() limit 3
 
@@ -354,22 +353,17 @@ F::dataflux__dql:(EXPR_EVAL(
 以 `()` 来表示子查询和外层查询的分隔，如两层嵌套
 
 ```python
-metric::(
-		# 子查询
-		metric::cpu,mem:(f1, f2) {host="abcd"} [1m:2m:5s] BY f1 DESC 
-	):(f1)              # 外层查询目标列
-	{ host=re("abc*") } # 外城查询过滤条件
-	[1m:2m:1s]          # 外层查询时间限制
+M::(
+# 子查询
+M::cpu:(usage_total) {host='kind'} 
+):(last(usage_total))  # 外层查询目标列
+{}  # 外层查询过滤条件
 ```
 
 三层嵌套
 
 ```python
-metric::(     # 第二层查询
-		metric::( # 第三层查询
-				metric::a:(f1,f2,f3) {host="foo"} [10m::1m]
-			):(f1,f2)
-	):(f1)
+M::(M::(M::cpu:(usage_total) {host='kind'}):(usage_total) {usage_total > 0} ):(last(usage_total))
 ```
 
 原则上不对嵌套层次做限制。但**不允许某层嵌套中出现多个平级的子查询**，如：
@@ -377,11 +371,11 @@ metric::(     # 第二层查询
 ```python
 object::(     # 第二层查询
 		object::( # 第三层查询
-				object::a:(f1,f2,f3) {host="foo"} [10m::1m]
+				object::a:(f1,f2,f3) {host="foo"}
 			):(f1,f2),
 
 		object::( # 并列第三层查询：不支持
-				object::b:(f1,f2,f3) {host="foo"} [10m::1m]
+				object::b:(f1,f2,f3) {host="foo"}
 			):(f1,f2)
 	):(f1)
 ```
@@ -396,10 +390,11 @@ L::nginx { @abc.def = "xyz" }
 
 它等价于下面的查询，即用 `@` 表示 `message@json`，这是一种简写。
 
-``` python
+```python
 L::nginx { `message@jons.abc.def` = "xyz" }
 ```
 
+## 
 
 ## 函数说明
 
