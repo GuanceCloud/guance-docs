@@ -311,7 +311,6 @@ icon: zy/best-practices
 - 自定义接入最佳实践
     - [快速上手 pythond 采集器的最佳实践](./insight/pythond.md)
    
-    - [阿里云“云监控数据”集成最佳实践](./partner/aliyun-prod-func.md)
 - 日志最佳实践
     - [logback socket 日志采集最佳实践](./cloud-native/logback-socket.md)
 ### 更新记录
