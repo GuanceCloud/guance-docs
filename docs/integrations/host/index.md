@@ -17,12 +17,12 @@ icon: material/table-column-plus-after
 | [Disk](default/disk.md){ .md-button .md-button--primary } |    [DiskIO](default/diskio.md){ .md-button .md-button--primary }    |     [Net](default/net.md){ .md-button .md-button--primary }     | [Swap](default/swap.md){ .md-button .md-button--primary } | [System](default/system.md){ .md-button .md-button--primary } |
 
 
-|  {==**自定义开启**==}  |  |    |   |
+|  **自定义开启**  |  |    |   |
 | :---------------------------------------------------------: | :---------------------------------------------------------: | :---------------------------------------------------------: | :-------------------------------------------------------------: |
 | [:octicons-file-directory-16: Directory](directory.md){ .md-button .md-button--primary } |      [:integrations-ebpf: eBPF](ebpf.md){ .md-button .md-button--primary }      | [:material-vector-square-plus: Processes](processes.md){ .md-button .md-button--primary } | [:material-security: Scheck(安全巡检)](scheck.md){ .md-button .md-button--primary } |
 
 
-|                     {++**Telegraf**++}                      |                                                             |                                                             |                                                                 |
+| **Telegraf**   |                                                             |                                                             |                                                                 |
 | :---------------------------------------------------------: | :---------------------------------------------------------: | :---------------------------------------------------------: | :-------------------------------------------------------------: |
 |    [:material-clock-time-three-outline: Chrony](chrony.md){ .md-button .md-button--primary }    | [:material-dns-outline: DNS Query](dns-query.md){ .md-button .md-button--primary } |   [:integrations-ethtool: EthTool](ethtool.md){ .md-button .md-button--primary }   | [:fontawesome-solid-sliders: IPMI Sensor](ipmi-sensor.md){ .md-button .md-button--primary } |
 |   [:octicons-arrow-switch-16: NetStat](netstat.md){ .md-button .md-button--primary }   |      [:material-timeline-clock-outline: NtpQ](ntpq.md){ .md-button .md-button--primary }      |  [:material-camera-timer: ProcStat](procstat.md){ .md-button .md-button--primary }  |                                                                 |     |

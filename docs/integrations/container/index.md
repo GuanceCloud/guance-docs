@@ -9,10 +9,10 @@ icon: fontawesome/solid/circle-nodes
 
 <br/>
 
-[**安装 DataKit**](../../datakit/datakit-daemonset-deploy.md) 之后，对于如下指标集，用户可通过{==**自定义开启内置插件**==}采集相关数据：
+[**安装 DataKit**](../../datakit/datakit-daemonset-deploy.md) 之后，对于如下指标集，用户可通过**自定义开启内置插件**采集相关数据：
 
 
-| {==**自定义开启**==}  |    |
+| **自定义开启**  |    |
 | --------- | ---- |
 | [:fontawesome-brands-docker: Docker](docker.md){ .md-button .md-button--primary } | [:integrations-coredns: CoreDNS](coredns.md){ .md-button .md-button--primary } |
 | [:integrations-k8s-api: Kubernetes API Server](kubernetes-api-server.md){ .md-button .md-button--primary } |  [:integrations-etcd: Etcd](etcd.md){ .md-button .md-button--primary }  |
