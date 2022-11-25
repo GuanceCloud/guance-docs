@@ -4,14 +4,14 @@
 
 ## 背景
 
-「磁盘使用率巡检」基于磁盘异常分析检测器，定期对主机磁盘进行智能巡检，通过出现磁盘异常的主机来进行根因分析，确定对应异常时间点的磁盘挂载点和磁盘信息，分析当前工作空间主机是否存在磁盘使用率问题。
+「内存泄漏」基于内存异常分析检测器，定期对主机进行智能巡检，通过出现内存异常的主机来进行根因分析，确定对应异常时间点的进程和 pod 信息，分析当前工作空间主机是否存在内存泄漏问题。
 
 ## 前置条件
 
 1. 自建 DataFlux Func 的离线部署
 2. 开启自建 DataFlux Func 的[脚本市场](https://func.guance.com/doc/script-market-basic-usage/)
 3. 在观测云「管理 / API Key 管理」中创建用于进行操作的 [API Key](../../management/api-key/open-api.md)
-4. 在自建的 DataFlux Func 中，通过「脚本市场」安装「观测云自建巡检 Core 核心包」「观测云算法库」「 观测云自建巡检（磁盘使用率）」
+4. 在自建的 DataFlux Func 中，通过「脚本市场」安装「观测云自建巡检 Core 核心包」「观测云算法库」「 观测云自建巡检（内存泄漏）」
 5. 在自建的 DataFlux Func 中，编写自建巡检处理函数
 6. 在自建的 DataFlux Func 中，通过「管理 / 自动触发配置」，为所编写的函数创建自动触发配置或编写巡检函数时在装饰器中配置
 
@@ -22,35 +22,34 @@
 ```python
 from guance_monitor__register import self_hosted_monitor
 from guance_monitor__runner import Runner
-import guance_monitor_disk_usage__main as disk_usage_check
+import guance_monitor_memory_leak__main as memory_leak_check
 
 # 账号配置
-API_KEY_ID  = 'wsak_xxxxx'
-API_KEY     = 'wsak_xxxxx'
-
+API_KEY_ID  = 'wsak_xxx'
+API_KEY     = 'wsak_xxx'
 
 def filter_host(host):
     '''
     过滤 host，自定义符合要求 host 的条件，匹配的返回 True，不匹配的返回 False
     return True｜False
     '''
-    if host == "iZuf609uyxtf9dvivdpmi6Z":
+    if host in ['iZuf6aq9gu32lpgvx8ynhbZ']:
         return True
 
 '''
 任务配置参数请使用：
-@DFF.API('磁盘使用率自建巡检', fixed_crontab='0 * * * *', timeout=900)
+@DFF.API('内存泄漏自建巡检', fixed_crontab='0 * * * *', timeout=900)
 
 fixed_crontab：固定执行频率「每小时一次」
 timeout：任务执行超时时长，控制在15分钟
 '''
 
 @self_hosted_monitor(API_KEY_ID, API_KEY)
-@DFF.API('磁盘使用率自建巡检', fixed_crontab='0 * * * *', timeout=900)
+@DFF.API('内存泄漏自建巡检')
 def run(configs={}):
     '''
     参数：
-    configs : 配置需要检测的 host 列表（可选，不配置默认检测当前工作空间下所有主机磁盘）
+    configs : 配置需要检测的 host 列表（可选，不配置默认检测当前工作空间下所有主机）
 
     示例：
         configs = {
@@ -58,7 +57,7 @@ def run(configs={}):
         }
     '''
     checkers = [
-        disk_usage_check.DiskUsageCheck(configs=configs, filters=[filter_host]), # 这里只是示例
+        memory_leak_check.MemoryLeakCheck(configs=configs, filters=[filter_host]), # 这里只是示例
     ]
 
     Runner(checkers, debug=False).run()
