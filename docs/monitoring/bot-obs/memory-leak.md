@@ -38,14 +38,14 @@ def filter_host(host):
 
 '''
 任务配置参数请使用：
-@DFF.API('内存泄漏自建巡检', fixed_crontab='0 * * * *', timeout=900)
+@DFF.API('内存泄漏巡检', fixed_crontab='0 * * * *', timeout=900)
 
 fixed_crontab：固定执行频率「每小时一次」
 timeout：任务执行超时时长，控制在15分钟
 '''
 
 @self_hosted_monitor(API_KEY_ID, API_KEY)
-@DFF.API('内存泄漏自建巡检')
+@DFF.API('内存泄漏巡检')
 def run(configs={}):
     '''
     参数：
