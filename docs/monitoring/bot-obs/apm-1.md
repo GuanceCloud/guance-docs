@@ -35,6 +35,14 @@ def filter_project_servcie_sub(data):
     if service_sub in ['ruoyi-gateway:dev', 'ruoyi-modules-system:dev']:
         return True
 
+'''
+任务配置参数请使用：
+@DFF.API('磁盘使用率自建巡检', fixed_crontab='0 * * * *', timeout=900)
+
+fixed_crontab：固定执行频率「每小时一次」
+timeout：任务执行超时时长，控制在15分钟
+'''    
+   
 @self_hosted_monitor(API_KEY_ID, API_KEY)
 @DFF.API('应用性能自建巡检')
 def run(configs=[]):
@@ -61,12 +69,12 @@ def run(configs=[]):
 
 在 DataFlux Func 中在配置好巡检之后可以通过直接再页面中选择 `run()` 方法进行点击运行进行测试，在点击发布之后就可以在观测云「监控 / 智能巡检」中查看并进行配置
 
-![image](../img/rum_error01.png)
+![image](../img/apm01.png)
 
 
 ### 在观测云中配置前端错误巡检
 
-![image](../img/rum_error11.png)
+![image](../img/apm02.png)
 
 #### 启用/禁用
 智能巡检默认是「禁用」状态，可手动「启用」，开启后，将对配置好的前端应用列表进行巡检。

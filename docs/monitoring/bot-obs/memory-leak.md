@@ -69,12 +69,12 @@ def run(configs={}):
 
 在 DataFlux Func 中在配置好巡检之后可以通过直接再页面中选择 `run()` 方法进行点击运行进行测试，在点击发布之后就可以在观测云「监控 / 智能巡检」中查看并进行配置
 
-![image](E:/zhuyun/dataflux-doc/docs/monitoring/img/memory-leak01.png)
+![image](../img/memory-leak01.png)
 
 
 ### 在观测云中配置内存泄漏巡检
 
-![image](E:/zhuyun/dataflux-doc/docs/monitoring/img/memory-leak02.png)
+![image](../img/memory-leak02.png)
 
 #### 启用/禁用
 
@@ -93,7 +93,7 @@ def run(configs={}):
 
 配置入口参数点击编辑后在参数配置中填写对应的检测对象点击保存开始巡检：
 
-![image](E:/zhuyun/dataflux-doc/docs/monitoring/img/memory-leak03.png)
+![image](../img/memory-leak03.png)
 
 可以参考如下的 JSON 配置多个云账户和对应预算信息
 
@@ -110,7 +110,7 @@ def run(configs={}):
 
 本巡检会扫描最近 6 小时的内存使用率信息，一旦出现出现未来 2 小时会超过预警值时，智能巡检会生成相应的事件，在智能巡检列表右侧的操作菜单下，点击「查看相关事件」按钮，即可查看对应异常事件。
 
-![image](E:/zhuyun/dataflux-doc/docs/monitoring/img/memory-leak04.png)
+![image](../img/memory-leak04.png)
 
 ### 事件详情页
 
@@ -124,7 +124,7 @@ def run(configs={}):
 * 检测维度：基于智能巡检配置的筛选条件，支持将检测维度 `key/value` 复制、添加到筛选、以及查看相关日志、容器、进程、安全巡检、链路、用户访问监测、可用性监测以及 CI 等数据
 * 扩展属性：选择扩展属性后支持以 `key/value` 的形式复制、正向/反向筛选
 
-![image](E:/zhuyun/dataflux-doc/docs/monitoring/img/memory-leak05.png)
+![image](../img/memory-leak05.png)
 
 #### 事件详情
 
@@ -132,19 +132,19 @@ def run(configs={}):
 * 异常详情：可查看当前异常主机过去 6 小时的使用率变化情况。
 * 异常分析：可显示异常的主机内存占用的 Top 10 的进程列表（Pod列表）
 
-![image](E:/zhuyun/dataflux-doc/docs/monitoring/img/memory-leak06.png)
+![image](../img/memory-leak06.png)
 
 #### 历史记录
 
 支持查看检测对象、异常/恢复时间和持续时长。
 
-![image](E:/zhuyun/dataflux-doc/docs/monitoring/img/memory-leak07.png)
+![image](../img/memory-leak07.png)
 
 #### 关联事件
 
 支持通过筛选字段和所选取的时间组件信息，查看关联事件。
 
-![image](E:/zhuyun/dataflux-doc/docs/monitoring/img/memory-leak08.png)
+![image](../img/memory-leak08.png)
 
 ## 常见问题
 
