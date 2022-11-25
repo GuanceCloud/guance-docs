@@ -1,0 +1,3 @@
+nav:
+  - 'SkyWalking': skywalking.md
+  - 'Jaeger': jaeger.md

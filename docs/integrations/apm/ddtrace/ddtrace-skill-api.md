@@ -6,7 +6,21 @@
 
     **当前案例使用 ddtrace 版本`0.114.0`（最新版本）进行测试**
 
-## 添加 maven pom 依赖
+## 前置条件
+
+- 开启 [DataKit ddtrace 采集器](../../../datakit/ddtrace.md)
+- 准备 Shell
+
+  ```shell
+  java -javaagent:D:/ddtrace/dd-java-agent-0.114.0.jar \
+  -Ddd.service=ddtrace-server \
+  -Ddd.agent.port=9529 \
+  -jar springboot-ddtrace-server.jar
+  ```
+
+## 安装部署
+
+### 1 添加 maven pom 依赖
 
 ```xml
 	<dependency>
@@ -33,14 +47,11 @@
 
 ```
 
-
-
-## 函数级别埋点
+### 2 函数级别埋点
 
 除了`dd.trace.methods` 方式可以对方法进行主动埋点外，ddtrace 提供了 api 方式能够对业务进行更灵活的埋点。
 
-
-在对应需要埋点的方法添加注解  `@Trace`
+1、 在对应需要埋点的方法添加注解 `@Trace`
 
 ```java
     @Trace
@@ -49,43 +60,46 @@
     }
 ```
 
-然后在 `gateway`方法调用这个
+2、 然后在 `gateway`方法调用这个
+
 ```java
 ...
 testService.apiTrace();
 ...
 ```
-重启，访问 gateway
+
+3、 重启，访问 gateway
 
 ![image.png](../images/ddtrace-skill-9.png)
 
-注意：入侵式埋点不代表应用启动的时候不需要 agent ，如果没有agent， `@Trace` 也将失效。`@Trace` 注释具有默认操作名称 `trace.annotation`，而跟踪的方法默认具有资源。
+> **注意：**入侵式埋点不代表应用启动的时候不需要 agent ，如果没有 agent， `@Trace` 也将失效。`@Trace` 注释具有默认操作名称 `trace.annotation`，而跟踪的方法默认具有资源。
 
 可以修改对应的名称
+
 ```java
     @Trace(resourceName = "apiTrace",operationName = "apiTrace")
     public String apiTrace(){
         return "apiTrace";
     }
 ```
+
 修改后，效果如下：
 
 ![image.png](../images/ddtrace-skill-10.png)
 
+### 3 使用 Baggage 让业务关键 tag 在后端链路进行传递
 
-## 使用 Baggage 让业务关键 tag 在后端链路进行传递
+ddtrace 提供了`Baggage` 方式，准确的说，应该是 ddtrace 使用 OpenTracing 提供的`Baggage` 功能，让指定的 tag 在链路上进行传递。比如用户名、岗位等信息，方便分析用户行为。
 
-ddtrace 提供了`Baggage` 方式，准确的说，应该是 ddtrace 使用 opentracing 提供的`Baggage` 功能，让指定的 tag 在链路上进行传递。比如用户名、岗位等信息，方便分析用户行为。
+```
+span.setBaggageItem("username","liurui");
+```
 
-> span.setBaggageItem("username","liurui");
+#### 3.1 编写 TraceBaggageFilter
 
+通过 `TraceBaggageFilter` 方式拦截请求，并将 `request header` 相关参数通过 `Baggage` 方式进行传递。
 
-
-### 编写 TraceBaggageFilter  
-
-通过 TraceBaggageFilter 方式拦截请求，并将 request header 相关参数通过 baggage 方式进行传递。
-
-``` java
+```java
 package com.zy.observable.ddtrace;
 
 
@@ -133,46 +147,53 @@ public class TraceBaggageFilter implements Filter {
 }
 ```
 
-### datakit 配置  
+#### 3.2 DataKit 配置
 
-这里需要配合 datakit 的 ddtrace 采集器配置一起使用，需要通过`customer_tags`方式新增自定义 tag ，否则这部分数据只存在`meta`里面。
+这里需要配合 DataKit 的 ddtrace 采集器配置一起使用，需要通过`customer_tags`方式新增自定义 tag ，否则这部分数据只存在`meta`里面。
 
 ```toml
 customer_tags = ["username", "job"]
 ```
 
-### 发起一个请求
+#### 3.3 发起一个请求
 
-发起一个 gateway 请求，携带两个 header ：dd-username、dd-job，系统会识别`dd`开头的 header 参数并在当前所有的链路 span 进行传递。
+发起一个 gateway 请求，携带两个 header ：`dd-username` 和 `dd-job`，系统会识别`dd`开头的 header 参数并在当前所有的链路 span 进行传递。
 
 ![](../images/ddtrace-skill-14.png)
 
-### 在观测云上的效果
+### 4 效果展示
 
 ![](../images/ddtrace-skill-13.gif)
 
+## 自定义
 
-## 自定义traceId
+### 自定义 traceId
 
-[使用 extract + TextMapAdapter 实现了自定义 traceId](ddtrace-custom-traceId.md)
+请参考最佳实践文档：<[使用 extract + TextMapAdapter 实现了自定义 traceId](../../../best-practices/monitoring/ddtrace-custom-traceId.md)>
 
-## 自定义 span
+### 自定义 span
 
-通常，应用会对业务逻辑进行异常处理，相关的链路可能因为无法标记为 error 从而导致无法正常统计到应用的 error trace，一般为 `try-catch` 或者全局异常捕获。这时候就需要对链路进行标记处理，可以通过自定义 span 的方式来标记这些 span 为 error span，只需要在 catch 处进行标记即可.
+通常，应用会对业务逻辑进行异常处理，相关的链路可能因为无法标记为 error 从而导致无法正常统计到应用的 error trace，一般为 try-catch 或者全局异常捕获。
 
-通过以下方式获取当前 span 信息
+这时候就需要对链路进行标记处理，可以通过自定义 span 的方式来标记这些 span 为 error span，只需要在 catch 处进行标记即可.
 
-> final Span span = GlobalTracer.get().activeSpan();
+1、 通过以下方式获取当前 span 信息
 
-标记 span 为 error
+```
+final Span span = GlobalTracer.get().activeSpan();
+```
 
-> span.setTag(Tags.ERROR, true);
+2、 标记 span 为 error
 
-如果当前方法是放在catch里面，则可以将 track 信息也可以输出到 span 里面。
+```
+span.setTag(Tags.ERROR, true);
+```
+
+如果当前方法是放在 catch 里面，则可以将 track 信息也可以输出到 span 里面。
 
 可以将 error span 处理逻辑作为一个公共的函数共全局使用，代码如下所示：
 
-``` java hl_lines="4 6 7 11"
+```java hl_lines="4 6 7 11"
     private void buildErrorTrace(Exception ex) {
         final Span span = GlobalTracer.get().activeSpan();
         if (span != null) {
@@ -191,7 +212,7 @@ customer_tags = ["username", "job"]
 
 调用方代码
 
-``` java hl_lines="10"
+```java hl_lines="10"
 @GetMapping("/gateway")
     @ResponseBody
     public String gateway(String tag) {
@@ -208,11 +229,8 @@ customer_tags = ["username", "job"]
 
 ```
 
-
 ## 参考文档
-[ddtrace 高级用法](ddtrace-skill.md)
 
-[demo 源码地址](https://github.com/lrwh/observable-demo/tree/main/springboot-ddtrace-server)
+<[demo 源码地址](https://github.com/lrwh/observable-demo/tree/main/springboot-ddtrace-server)>
 
-[ddtrace启动参数](/datakit/ddtrace-java/#start-options)
-
+<[ddtrace 启动参数](../../../../datakit/ddtrace-java#start-options)>

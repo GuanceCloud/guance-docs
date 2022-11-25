@@ -12,21 +12,6 @@ icon: zy/best-practices
 - 监控 Monitoring
     - 应用性能监控 (APM) - 性能优化 - [利用 async-profiler 对应用性能调优](./monitoring/async-profiler.md)。
   
-## (2022/11/11)
-
-### 新增最佳实践
-
-- 监控 Monitoring
-    - 应用性能监控 (APM) - [ddtrace 常见参数用法](./monitoring/ddtrace-skill-param.md)
-    - 应用性能监控 (APM) - [ddtrace-api 使用指南](./monitoring/ddtrace-skill-ddtrace-api.md)
-    - 应用性能监控 (APM) - [ddtrace 采样](./monitoring/ddtrace-skill-sampling.md)
-    - 应用性能监控 (APM) - [ddtrace log 关联](./monitoring/ddtrace-skill-log.md)
-	
-### 更新记录
-
-- 监控 Monitoring
-    - 应用性能监控 (APM) - [ddtrace 高级用法](./monitoring/ddtrace-skill.md)。<font color="red" > 内容采用最新版本重新校验，优化文档格式并进行分类拆分</font>
-
 ## (2022/10/28)
 
 ### 新增最佳实践
@@ -132,14 +117,6 @@ icon: zy/best-practices
 	
 - 洞见 Insight  
     - [基于观测云，使用 SkyWalking 实现 RUM、APM 和日志联动分析](insight/skywalking-apm-rum-log.md),<font color="red" > 新增skywalking 增加apm-spring-cloud-gateway 的使用说明</font>。
-
-
-## (2022/07/22)
-### 更新记录
-
-- 监控 Monitoring
-    - [ddtrace 高级用法](./monitoring/ddtrace-skill.md),<font color="red" > 新增“使用 Baggage 让业务关键 tag 在后端链路进行传递”、“采样”、“过滤Resource”、“log”等使用方法</font>。
-
 
 ## (2022/07/15)
 ### 新增最佳实践
