@@ -15,30 +15,30 @@ theme:
     - content.tabs.link
 
 markdown_extensions:
-  - tables
-  - footnotes
-  - attr_list
-  - md_in_html
-  - toc:
+  tables: {}
+  footnotes: {}
+  attr_list: {}
+  md_in_html: {}
+  toc:
       permalink: True
-  - meta
-  - pymdownx.caret
-  - pymdownx.mark
-  - pymdownx.tilde
-  - pymdownx.betterem
-  - pymdownx.critic
-  - pymdownx.keys
-  - pymdownx.snippets
-  - pymdownx.details
-  - pymdownx.tabbed:
+  meta: {}
+  pymdownx.caret: {}
+  pymdownx.mark: {}
+  pymdownx.tilde: {}
+  pymdownx.betterem: {}
+  pymdownx.critic: {}
+  pymdownx.keys: {}
+  pymdownx.snippets: {}
+  pymdownx.details: {}
+  pymdownx.tabbed:
       alternate_style: true
-  - pymdownx.highlight:
+  pymdownx.highlight:
       anchor_linenums: true
       auto_title: false
       linenums: false
-  - pymdownx.inlinehilite
-  - pymdownx.superfences
-  - pymdownx.emoji:
+  pymdownx.inlinehilite: {}
+  pymdownx.superfences: {}
+  pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
       options:
@@ -52,29 +52,16 @@ extra:
   homepage: https://docs.guance.com
 
 plugins:
-  - glightbox:
-      touchNavigation: true
-      loop: false
-      effect: zoom
-      slide_effect: slide
-      width: 100%
-      height: auto
-      zoomable: true
-      draggable: true
-      skip_classes:
-        - custom-skip-class-name
-      auto_caption: false
-      caption_position: bottom
-  - awesome-pages
-  - section-index
-  - git-authors
-  - git-revision-date-localized:
-      type: custom
-      custom_format: '%Y-%m-%d'
-      enable_creation_date: true
-      fallback_to_build_date: true
-  - search:
-      separator: '[\s\u200b\-]'
+  awesome-pages: {}
+  section-index: {}
+  git-authors: {}
+  git-revision-date-localized:
+    type: custom
+    custom_format: '%Y-%m-%d'
+    enable_creation_date: true
+    fallback_to_build_date: true
+  search:
+    separator: '[\s\u200b\-]'
 
 extra_css:
   - stylesheets/extra.css
