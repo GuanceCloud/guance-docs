@@ -17,15 +17,15 @@ WORKDIR /dataflux-doc
 COPY ./ /dataflux-doc
 
 RUN \
-    fileArg=mkdocs.saas.yml \
+    fileArg=mkdocs.saas.yml; \
     if [ $release_env = "saas_production" ]; then \
         echo "SaaS Build ..."; \
         cp -r -f overrides-saas/* overrides/; \
     elif [ $release_env = "rtm" ]; then \
         echo "RTM Build ..."; \
         cp -r -f overrides-deploy/* overrides/; \
-        fileArg=mkdocs.yml \
-    fi \
+        fileArg=mkdocs.yml; \
+    fi; \
     mkdocs build -f ${fileArg}
 
 RUN \
