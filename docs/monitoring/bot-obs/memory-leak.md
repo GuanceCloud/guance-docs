@@ -17,7 +17,7 @@
 
 ## 配置巡检
 
-在自建 DataFlux Func 创建新的脚本集开启前端错误日志巡检配置
+在自建 DataFlux Func 创建新的脚本集开启内存泄漏巡检配置
 
 ```python
 from guance_monitor__register import self_hosted_monitor
@@ -78,7 +78,7 @@ def run(configs={}):
 
 #### 启用/禁用
 
-智能巡检默认是「禁用」状态，可手动「启用」，开启后，将对配置好的前端应用列表进行巡检。
+智能巡检默认是「禁用」状态，可手动「启用」，开启后，将对配置好的主机列表进行巡检。
 
 #### 导出
 
