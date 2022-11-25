@@ -2,4 +2,4 @@ nav:
   - index.md
   - '未恢复事件列表': unrecovered-events.md
   - '事件列表': event-list.md
-  - '事件详情页': event-details.md
+  - '事件详情': event-details.md

@@ -50,7 +50,7 @@
 
 ### 筛选历史
 
-观测云支持在「筛选历史」保存查看器 `key:value` 的搜索条件历史，应用于当前工作空间不同的查看器。更多详情可参考文档 [快捷筛选](../getting-started/necessary-for-beginners/explorer-search.md#filter-history) 。
+观测云支持在「筛选历史」保存查看器 `key:value` 的搜索条件历史，应用于当前工作空间不同的查看器。更多详情可参考文档 [筛选历史](../getting-started/necessary-for-beginners/explorer-search.md#filter-history) 。
 
 ### 图表统计
 
