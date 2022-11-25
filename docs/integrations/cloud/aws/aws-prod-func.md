@@ -157,7 +157,7 @@ def run():
         aws_rds.DataCollector(account, common_cloudwatch_configs),
         aws_s3.DataCollector(account, common_cloudwatch_configs),
         aws_elb.DataCollector(account, common_cloudwatch_configs),
-        aws_cloudwatch_monitor.DataCollector(account, monitor_collector_configs),
+        aws_cloudwatch.DataCollector(account, monitor_collector_configs),
     ]
 
     # 启动执行
