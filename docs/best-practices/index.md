@@ -253,12 +253,8 @@ icon: zy/best-practices
 - 观测云小妙招
     - [多微服务项目的性能可观测实践](./cloud-native/mutil-micro-service.md)
    
-    - [ddtrace 高级用法](./monitoring/ddtrace-skill.md)
     - [Kubernetes 集群使用 ExternalName 映射 DataKit 服务](./cloud-native/kubernetes-external-name.md)
 
-- 接入(集成)最佳实践
-    - [OpenTelemetry 链路数据接入最佳实践](./cloud-native/opentelemetry.md)
-   
    
 ### 更新记录
 
