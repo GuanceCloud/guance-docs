@@ -1,49 +1,57 @@
-# 前端应用日志错误巡检
+# 应用性能巡检
 ---
 
 ## 背景
 
-前端错误日志巡检会帮助发现前端应用过去一小时内新出现的错误消息（聚类之后的Error Message），帮助开发和运维及时修复代码，避免随着时间的积累对客户体验产生持续性伤害
+「应用性能检测」基于APM异常根因分析检测器，选择要检测的 `service` 、 `resource` 、 `project` 、 `env` 信息，定期对应用性能进行智能巡检，通过应用程序服务指标异常来自动分析该服务的上下游信息，为该应用程序确认根因异常问题。
 
 ## 前置条件
 
-1. 在观测云「用户访问监测」已经存在接入的应用
+1. 在观测云「应用性能监测」已经存在接入的应用
 2. 自建 DataFlux Func 的离线部署
 3. 开启自建 DataFlux Func 的[脚本市场](https://func.guance.com/doc/script-market-basic-usage/)
 4. 在观测云「管理 / API Key 管理」中创建用于进行操作的 [API Key](../../management/api-key/open-api.md)
-5. 在自建的 DataFlux Func 中，通过「脚本市场」安装「观测云自建巡检 Core 核心包」「观测云算法库」「观测云自建巡检（rum）」
+5. 在自建的 DataFlux Func 中，通过「脚本市场」安装「观测云自建巡检 Core 核心包」「观测云算法库」「观测云自建巡检（APM 性能）」
 6. 在自建的 DataFlux Func 中，编写自建巡检处理函数
-7. 在自建的 DataFlux Func 中，通过「管理 / 自动触发配置」，为所编写的函数创建自动触发配置
+7. 在自建的 DataFlux Func 中，通过「管理 / 自动触发配置」，为所编写的函数创建自动触发配置或编写巡检函数时在装饰器中配置
 
 ## 配置巡检
 
 在自建 DataFlux Func 创建新的脚本集开启前端错误日志巡检配置
 
 ```python
-from guance_monitor__runner import Runner
 from guance_monitor__register import self_hosted_monitor
-import guance_monitor_rum__main as main
+from guance_monitor__runner import Runner
+import guance_monitor_apm__main as apm_main
 
-# 观测云空间 API_KEY 配置(用户自行配置)
-API_KEY_ID  = 'xxxxx'
-API_KEY     = 'xxxx'
+# 账号配置
+API_KEY_ID  = 'wsak_xxx'
+API_KEY     = 'wsak_xxx'
 
-# RUM 错误类型自建巡检配置 用户无需修改
+def filter_project_servcie_sub(data):
+    # {'project': None, 'service_sub': 'mysql:dev'}, {'project': None, 'service_sub': 'redis:dev'}, {'project': None, 'service_sub': 'ruoyi-gateway:dev'}, {'project': None, 'service_sub': 'ruoyi-modules-system:dev'}
+    project = data['project']
+    service_sub = data['service_sub']
+    if service_sub in ['ruoyi-gateway:dev', 'ruoyi-modules-system:dev']:
+        return True
+
 @self_hosted_monitor(API_KEY_ID, API_KEY)
-@DFF.API('RUM-错误类型自建巡检')
-def run(configs={}):
-    """
+@DFF.API('应用性能自建巡检')
+def run(configs=[]):
+    '''
     参数：
-        configs：配置需要检测的 app_name 列表（可选，不配置默认检测所有 app_name）
+    configs :
+        project: 服务所属项目
+        service_sub: 包括服务（service）、环境（env）、版本（version）通过 ":" 拼接而成，例："service:env:version"、"service:env"、"service:version"
 
-        配置示例：
-        configs = {
-            "app_names": ["app_name_1", "app_name_2"]  # 应用名称列表
-        }
-    """
+    示例：
+        configs = [
+            {"project": "project1", "service_sub": "service1:env1:version1"},
+            {"project": "project2", "service_sub": "service2:env2:version2"}
+        ]
+    '''
     checkers = [
- 		# 配置 RUM 错误巡检
-        main.RUMErrorCheck(configs=configs),
+        apm_main.APMCheck(configs=configs, filters=[filter_project_servcie_sub]),
     ]
 
     Runner(checkers, debug=False).run()
