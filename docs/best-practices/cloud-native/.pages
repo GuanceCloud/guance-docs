@@ -14,8 +14,7 @@ nav:
     - OpenTelemetry to Jeager 、Grafana、ELK: opentelemetry-elk.md
     - OpenTelemetry to Grafana: opentelemetry-grafana.md
     - OpenTelemetry to 观测云: opentelemetry-guance.md
-    - 'OpenTelemetry 链路数据接入最佳实践': opentelemetry.md
-    - 'OpenTelemetry 采样最佳实践': opentelemetry-simpling.md
+    - OpenTelemetry 采样最佳实践: opentelemetry-simpling.md
 
   - '日志 (Logs)':
     - K8s日志采集之logback socket最佳实践: k8s-logback-socket.md
