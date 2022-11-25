@@ -73,7 +73,7 @@ def run(configs={}):
 ![image](E:/zhuyun/dataflux-doc/docs/monitoring/img/disk-usage01.png)
 
 
-### 在观测云中磁盘使用率巡检
+### 在观测云中配置磁盘使用率巡检
 
 ![image](E:/zhuyun/dataflux-doc/docs/monitoring/img/disk-usage02.png)
 

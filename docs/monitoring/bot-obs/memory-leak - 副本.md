@@ -69,12 +69,12 @@ def run(configs={}):
 
 在 DataFlux Func 中在配置好巡检之后可以通过直接再页面中选择 `run()` 方法进行点击运行进行测试，在点击发布之后就可以在观测云「监控 / 智能巡检」中查看并进行配置
 
-![image](E:/zhuyun/dataflux-doc/docs/monitoring/img/disk-usage01.png)
+![image](E:/zhuyun/dataflux-doc/docs/monitoring/img/memory-leak01.png)
 
 
-### 在观测云中磁盘使用率巡检
+### 在观测云中配置内存泄漏巡检
 
-![image](E:/zhuyun/dataflux-doc/docs/monitoring/img/disk-usage02.png)
+![image](E:/zhuyun/dataflux-doc/docs/monitoring/img/memory-leak02.png)
 
 #### 启用/禁用
 
@@ -86,14 +86,14 @@ def run(configs={}):
 
 #### 编辑
 
-智能巡检「 磁盘使用率巡检」支持用户手动添加筛选条件，在智能巡检列表右侧的操作菜单下，点击「编辑」按钮，即可对巡检模版进行编辑。
+智能巡检「 内存泄漏巡检」支持用户手动添加筛选条件，在智能巡检列表右侧的操作菜单下，点击「编辑」按钮，即可对巡检模版进行编辑。
 
 * 筛选条件：配置需要巡检的主机 hosts
 * 告警通知：支持选择和编辑告警策略，包括需要通知的事件等级、通知对象、以及告警沉默周期等
 
 配置入口参数点击编辑后在参数配置中填写对应的检测对象点击保存开始巡检：
 
-![image](E:/zhuyun/dataflux-doc/docs/monitoring/img/disk-usage03.png)
+![image](E:/zhuyun/dataflux-doc/docs/monitoring/img/memory-leak03.png)
 
 可以参考如下的 JSON 配置多个云账户和对应预算信息
 
@@ -108,9 +108,9 @@ def run(configs={}):
 
 ## 查看事件
 
-本巡检会扫描最近 14 天的磁盘使用率信息，一旦出现出现未来 48 小时会超过预警值时，智能巡检会生成相应的事件，在智能巡检列表右侧的操作菜单下，点击「查看相关事件」按钮，即可查看对应异常事件。
+本巡检会扫描最近 6 小时的内存使用率信息，一旦出现出现未来 2 小时会超过预警值时，智能巡检会生成相应的事件，在智能巡检列表右侧的操作菜单下，点击「查看相关事件」按钮，即可查看对应异常事件。
 
-![image](E:/zhuyun/dataflux-doc/docs/monitoring/img/disk-usage04.png)
+![image](E:/zhuyun/dataflux-doc/docs/monitoring/img/memory-leak04.png)
 
 ### 事件详情页
 
