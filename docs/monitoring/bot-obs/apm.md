@@ -1,83 +1,83 @@
-- # 应用性能巡检
+# 应用性能巡检
 
-  ---
+---
 
-  ## 背景
+## 背景
 
-  「应用性能检测」基于APM异常根因分析检测器，选择要检测的 `service` 、 `resource` 、 `project` 、 `env` 信息，定期对应用性能进行智能巡检，通过应用程序服务指标异常来自动分析该服务的上下游信息，为该应用程序确认根因异常问题。
+「应用性能检测」基于APM异常根因分析检测器，选择要检测的 `service` 、 `resource` 、 `project` 、 `env` 信息，定期对应用性能进行智能巡检，通过应用程序服务指标异常来自动分析该服务的上下游信息，为该应用程序确认根因异常问题。
 
-  ## 前置条件
+## 前置条件
 
-  1. 在观测云「应用性能监测」已经存在接入的应用
-  2. 自建 DataFlux Func 的离线部署
-  3. 开启自建 DataFlux Func 的[脚本市场](https://func.guance.com/doc/script-market-basic-usage/)
-  4. 在观测云「管理 / API Key 管理」中创建用于进行操作的 [API Key](../../management/api-key/open-api.md)
-  5. 在自建的 DataFlux Func 中，通过「脚本市场」安装「观测云自建巡检 Core 核心包」「观测云算法库」「观测云自建巡检（APM 性能）」
-  6. 在自建的 DataFlux Func 中，编写自建巡检处理函数
-  7. 在自建的 DataFlux Func 中，通过「管理 / 自动触发配置」，为所编写的函数创建自动触发配置或编写巡检函数时在装饰器中配置
+1. 在观测云「应用性能监测」已经存在接入的应用
+2. 自建 DataFlux Func 的离线部署
+3. 开启自建 DataFlux Func 的[脚本市场](https://func.guance.com/doc/script-market-basic-usage/)
+4. 在观测云「管理 / API Key 管理」中创建用于进行操作的 [API Key](../../management/api-key/open-api.md)
+5. 在自建的 DataFlux Func 中，通过「脚本市场」安装「观测云自建巡检 Core 核心包」「观测云算法库」「观测云自建巡检（APM 性能）」
+6. 在自建的 DataFlux Func 中，编写自建巡检处理函数
+7. 在自建的 DataFlux Func 中，通过「管理 / 自动触发配置」，为所编写的函数创建自动触发配置或编写巡检函数时在装饰器中配置
 
-  ## 配置巡检
+## 配置巡检
 
-  在自建 DataFlux Func 创建新的脚本集开启应用性能巡检配置
+在自建 DataFlux Func 创建新的脚本集开启应用性能巡检配置
 
-  ```python
-  from guance_monitor__register import self_hosted_monitor
-  from guance_monitor__runner import Runner
-  import guance_monitor_apm__main as apm_main
-  
-  # 账号配置
-  API_KEY_ID  = 'wsak_xxx'
-  API_KEY     = 'wsak_xxx'
-  
-  def filter_project_servcie_sub(data):
-      # {'project': None, 'service_sub': 'mysql:dev'}, {'project': None, 'service_sub': 'redis:dev'}, {'project': None, 'service_sub': 'ruoyi-gateway:dev'}, {'project': None, 'service_sub': 'ruoyi-modules-system:dev'}
-      project = data['project']
-      service_sub = data['service_sub']
-      if service_sub in ['ruoyi-gateway:dev', 'ruoyi-modules-system:dev']:
-          return True
-  
-  '''
-  任务配置参数请使用：
-  @DFF.API('应用性能巡检', fixed_crontab='0 * * * *', timeout=900)
-  
-  fixed_crontab：固定执行频率「每小时一次」
-  timeout：任务执行超时时长，控制在15分钟
-  '''    
-     
-  @self_hosted_monitor(API_KEY_ID, API_KEY)
-  @DFF.API('应用性能巡检')
-  def run(configs=[]):
-      '''
-      参数：
-      configs :
-          project: 服务所属项目
-          service_sub: 包括服务（service）、环境（env）、版本（version）通过 ":" 拼接而成，例："service:env:version"、"service:env"、"service:version"
-  
-      示例：
-          configs = [
-              {"project": "project1", "service_sub": "service1:env1:version1"},
-              {"project": "project2", "service_sub": "service2:env2:version2"}
-          ]
-      '''
-      checkers = [
-          apm_main.APMCheck(configs=configs, filters=[filter_project_servcie_sub]),
-      ]
-  
-      Runner(checkers, debug=False).run()
-  ```
+```python
+from guance_monitor__register import self_hosted_monitor
+from guance_monitor__runner import Runner
+import guance_monitor_apm__main as apm_main
 
-  ## 开启巡检
+# 账号配置
+API_KEY_ID  = 'wsak_xxx'
+API_KEY     = 'wsak_xxx'
 
-  ### 在观测云中注册检测项
+def filter_project_servcie_sub(data):
+    # {'project': None, 'service_sub': 'mysql:dev'}, {'project': None, 'service_sub': 'redis:dev'}, {'project': None, 'service_sub': 'ruoyi-gateway:dev'}, {'project': None, 'service_sub': 'ruoyi-modules-system:dev'}
+    project = data['project']
+    service_sub = data['service_sub']
+    if service_sub in ['ruoyi-gateway:dev', 'ruoyi-modules-system:dev']:
+        return True
 
-  在 DataFlux Func 中在配置好巡检之后可以通过直接再页面中选择 `run()` 方法进行点击运行进行测试，在点击发布之后就可以在观测云「监控 / 智能巡检」中查看并进行配置
+'''
+任务配置参数请使用：
+@DFF.API('应用性能巡检', fixed_crontab='0 * * * *', timeout=900)
 
-  ![image](E:/zhuyun/dataflux-doc/docs/monitoring/img/apm01.png)
+fixed_crontab：固定执行频率「每小时一次」
+timeout：任务执行超时时长，控制在15分钟
+'''    
+   
+@self_hosted_monitor(API_KEY_ID, API_KEY)
+@DFF.API('应用性能巡检')
+def run(configs=[]):
+    '''
+    参数：
+    configs :
+        project: 服务所属项目
+        service_sub: 包括服务（service）、环境（env）、版本（version）通过 ":" 拼接而成，例："service:env:version"、"service:env"、"service:version"
+
+    示例：
+        configs = [
+            {"project": "project1", "service_sub": "service1:env1:version1"},
+            {"project": "project2", "service_sub": "service2:env2:version2"}
+        ]
+    '''
+    checkers = [
+        apm_main.APMCheck(configs=configs, filters=[filter_project_servcie_sub]),
+    ]
+
+    Runner(checkers, debug=False).run()
+```
+
+## 开启巡检
+
+### 在观测云中注册检测项
+
+在 DataFlux Func 中在配置好巡检之后可以通过直接再页面中选择 `run()` 方法进行点击运行进行测试，在点击发布之后就可以在观测云「监控 / 智能巡检」中查看并进行配置
+
+![image](../img/apm01.png)
 
 
   ### 在观测云中配置应用性能巡检
 
-  ![image](E:/zhuyun/dataflux-doc/docs/monitoring/img/apm02.png)
+  ![image](../img/apm02.png)
 
   #### 启用/禁用
 
@@ -96,7 +96,7 @@
 
   配置入口参数点击编辑后在参数配置中填写对应的检测对象点击保存开始巡检：
 
-  ![image](E:/zhuyun/dataflux-doc/docs/monitoring/img/apm03.png)
+  ![image](../img/apm03.png)
 
   可以参考如下的 JSON 配置多个云账户和对应预算信息
 
@@ -135,7 +135,7 @@
   * 异常影响：可查看当前链路的异常服务所影响到服务及资源
   * 异常链路采样：查看详细的出错时间、服务、资源、链路 ID；点击服务、资源会进入相应的数据查看器；点击链路 ID，会进入具体链路详情页。
 
-  ![image](E:/zhuyun/dataflux-doc/docs/monitoring/img/apm06.png)
+  ![image](../img/apm06.png)
   ![image](../img/apm07.png)
 
   #### 历史记录
