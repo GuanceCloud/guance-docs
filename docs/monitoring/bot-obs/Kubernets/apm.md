@@ -1,66 +1,73 @@
-# 应用性能巡检
+# Kubernets Pod 异常重启巡检
 
 ---
 
 ## 背景
 
-「应用性能检测」基于APM异常根因分析检测器，选择要检测的 `service` 、 `resource` 、 `project` 、 `env` 信息，定期对应用性能进行智能巡检，通过应用程序服务指标异常来自动分析该服务的上下游信息，为该应用程序确认根因异常问题。
+Kubernetes 帮助用户自动调度和扩展容器化应用程序，但现代 Kubernetes 环境正变得越来越复杂，当平台和应用工程师需要调查动态、容器化环境中的事件时，寻找最有意义的信号可能涉及许多试错步骤。通过智能巡检可以根据当前的搜索上下文过滤异常，从而加快事件调查、减轻工程师的压力、减少平均修复时间并改善最终用户体验。
 
 ## 前置条件
 
-1. 在观测云「应用性能监测」已经存在接入的应用
+1. 在观测云中开启[「容器数据采集」](https://docs.guance.com/datakit/container/)
 2. 自建 DataFlux Func 的离线部署
 3. 开启自建 DataFlux Func 的[脚本市场](https://func.guance.com/doc/script-market-basic-usage/)
 4. 在观测云「管理 / API Key 管理」中创建用于进行操作的 [API Key](../../management/api-key/open-api.md)
-5. 在自建的 DataFlux Func 中，通过「脚本市场」安装「观测云自建巡检 Core 核心包」「观测云算法库」「观测云自建巡检（APM 性能）」
+5. 在自建的 DataFlux Func 中，通过「脚本市场」安装「观测云自建巡检 Core 核心包」「观测云算法库」「 观测云自建巡检（K8S-Pod重启检测）」
 6. 在自建的 DataFlux Func 中，编写自建巡检处理函数
 7. 在自建的 DataFlux Func 中，通过「管理 / 自动触发配置」，为所编写的函数创建自动触发配置或编写巡检函数时在装饰器中配置
 
 ## 配置巡检
 
-在自建 DataFlux Func 创建新的脚本集开启应用性能巡检配置
+在自建 DataFlux Func 创建新的脚本集开启Kubernets Pod 异常重启巡检配置
 
 ```python
-from guance_monitor__register import self_hosted_monitor
 from guance_monitor__runner import Runner
-import guance_monitor_apm__main as apm_main
+from guance_monitor__register import self_hosted_monitor
+import guance_monitor_k8s_pod_restart__main as k8s_pod_restart
 
-# 账号配置
+
+# obsserver
 API_KEY_ID  = 'wsak_xxx'
-API_KEY     = 'wsak_xxx'
+API_KEY     = '5Kxxx'
 
-def filter_project_servcie_sub(data):
-    # {'project': None, 'service_sub': 'mysql:dev'}, {'project': None, 'service_sub': 'redis:dev'}, {'project': None, 'service_sub': 'ruoyi-gateway:dev'}, {'project': None, 'service_sub': 'ruoyi-modules-system:dev'}
-    project = data['project']
-    service_sub = data['service_sub']
-    if service_sub in ['ruoyi-gateway:dev', 'ruoyi-modules-system:dev']:
+def filter_namespace(cluster_namespaces):
+    '''
+    过滤 namespace 自定义符合要求 namespace 的条件，匹配的返回 True，不匹配的返回 False
+    return True｜False
+    '''
+
+    cluster_name = cluster_namespaces.get('cluster_name','')
+    namespace = cluster_namespaces.get('namespace','')
+    if cluster_name in ['k8s-prod']:
         return True
 
-'''
-任务配置参数请使用：
-@DFF.API('应用性能巡检', fixed_crontab='0 * * * *', timeout=900)
 
-fixed_crontab：固定执行频率「每小时一次」
-timeout：任务执行超时时长，控制在15分钟
-'''    
-   
+# RUM 错误类型自建巡检配置 用户无需修改
 @self_hosted_monitor(API_KEY_ID, API_KEY)
-@DFF.API('应用性能巡检')
+@DFF.API('K8S-Pod异常重启巡检', fixed_crontab='*/30 * * * *')
 def run(configs=[]):
-    '''
+    """
     参数：
-    configs :
-        project: 服务所属项目
-        service_sub: 包括服务（service）、环境（env）、版本（version）通过 ":" 拼接而成，例："service:env:version"、"service:env"、"service:version"
+        configs：
+            配置需要检测的 cluster_name （集群名称，可选，不配置根据 namespace 检测）
+            配置需要检测的 namespace （命名空间，必选）
 
-    示例：
+        配置示例： namespace 可以配置多个也可以配置单个
         configs = [
-            {"project": "project1", "service_sub": "service1:env1:version1"},
-            {"project": "project2", "service_sub": "service2:env2:version2"}
+        {
+            "cluster_name": "xxx",
+            "namespace": ["xxx1", "xxx2"]
+        },
+        {
+            "cluster_name": "yyy",
+            "namespace": "yyy1"
+        }
         ]
-    '''
+
+    """
     checkers = [
-        apm_main.APMCheck(configs=configs, filters=[filter_project_servcie_sub]),
+         # 配置 RUM 错误巡检
+        k8s_pod_restart.K8SPodRestartCheck(configs=configs, filters=[filter_namespace]),
     ]
 
     Runner(checkers, debug=False).run()
