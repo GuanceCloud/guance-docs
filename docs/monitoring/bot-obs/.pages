@@ -1,9 +1,9 @@
 nav:
   - index.md
   - '更新日志': changelog.md
-  - '内存泄漏': memory-leak.md
-  - '磁盘使用率': disk-usage.md
-  - '应用性能检测': apm.md
+  - '内存泄漏巡检': memory-leak.md
+  - '磁盘使用率巡检': disk-usage.md
+  - '应用性能巡检': apm.md
   - '云账户账单巡检': cloudfee.md
   - '前端应用日志错误巡检': rum_errors.md
   - '阿里云资产巡检': cloudasset.md
