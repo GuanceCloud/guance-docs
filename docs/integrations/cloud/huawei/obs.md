@@ -4,7 +4,7 @@
 
 ## 视图预览
 
-示例为华为云 OBS 指标展示，包括 GET 类请求，PUT 类请求，TPS，状态码，带宽等。
+示例为华为云 OBS 指标展示，包括 GET 类请求、PUT 类请求、TPS、状态码、带宽等。
 
 ![image.png](../imgs/huawei-obs-1.png)
 
