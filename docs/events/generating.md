@@ -10,7 +10,7 @@
 
 ## 事件来源
 
-- 基于配置的 [监控器](../monitoring/index.md) 触发的全部告警事件
+- 基于配置的 [监控器](../monitoring/monitor/index.md) 触发的全部告警事件
 - 基于配置的 [智能巡检](../monitoring/bot-obs/index.md) 触发的全部告警事件
 - 基于系统操作触发的审计事件，更多详情可参考 [操作审计](../management/operation-audit.md)
 - 支持通过事件的 OpenAPI 写入自定义事件。更多详情可参考 [创建事件 API](../open-api/keyevent/create.md)

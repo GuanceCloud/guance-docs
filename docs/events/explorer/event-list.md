@@ -35,7 +35,7 @@
 
 ### 筛选历史
 
-点击右下角的「筛选历史」图标，可查看保存为`key:value` 的搜索条件历史，支持应用于当前工作空间不同的查看器。更多详情可参考文档 [筛选历史](../getting-started/necessary-for-beginners/explorer-search.md#filter-history) 。
+点击右下角的「筛选历史」图标，可查看保存为`key:value` 的搜索条件历史，支持应用于当前工作空间不同的查看器。更多详情可参考文档 [筛选历史](../../getting-started/necessary-for-beginners/explorer-search.md#filter-history) 。
 
 ### 事件导出
 
