@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/tracing/service_catelog/detail**
+<br />**get /api/v1/tracing/service_catelogs/get**
 
 ## 概述
 获取服务清单的配置信息, 通过originStr字段确认所需Service Catelog的是原始字符串,还是结构化数据
@@ -36,7 +36,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/tracing/service_catelog/detail?service=redis&originStr=1' \
+curl 'https://openapi.guance.com/api/v1/tracing/service_catelogs/get?service=redis&originStr=1' \
   -H 'DF-API-KEY: <DF-API-KEY>' \
   --compressed \
   --insecure
@@ -60,7 +60,7 @@ curl 'https://openapi.guance.com/api/v1/tracing/service_catelog/detail?service=r
             "action_id"
         ],
         "service": "redis",
-        "serviceCatelog": "\n[Team]    #团队\n\nservice = \"redis\"    # 必填，跟 dd-service 值一致\n\nteam = \"koko001\"   # 必填，当前服务所属团队\n\n# oncall = [\"xxx@guance.com\"]    # 服务异常或发生故障时紧急联系人名单\n\n[Repos]    # 仓库配置\n#repo1 = {\"https://www.xxx.com\",\"provider1\",\"name1\"}    # 填写仓库链接对应的提供商和期望显示文本\n# repo2 = {\"https://www.xxx.com\",\"provider2\",\"name2\"}\n\n[Related]   # 关联分析\n# 该配置适用于管理链路查看器中关联日志的字段，观测云默认提供 \"trace_id\",\"host\",\"all\" 3 个字段选项，您可在下方添加自定义的字段\n\n[Docs]   # 帮助\n# doc1 = {\"https://www.xxx.com\",\"provider1\",\"name1\"}    # 填写帮助链接对应的内容提供方和期望显示文本\n# doc2 = {\"https://www.xxx.com\",\"provider2\",\"name2\"}\n\n  ",
+        "serviceCatelog": "\n[Team]    #团队\n\nservice = \\\"redis\\\"    # 必填，跟 dd-service 值一致\n\nteam = \\\"koko001\\\"   # 必填，当前服务所属团队\n\n# oncall = [\\\"xxx@guance.com\\\"]    # 服务异常或发生故障时紧急联系人名单\n\n[Repos]    # 仓库配置\n#repo1 = {\\\"https://www.xxx.com\\\",\\\"provider1\\\",\\\"name1\\\"}    # 填写仓库链接对应的提供商和期望显示文本\n# repo2 = {\\\"https://www.xxx.com\\\",\\\"provider2\\\",\\\"name2\\\"}\n\n[Related]   # 关联分析\n# 该配置适用于管理链路查看器中关联日志的字段，观测云默认提供 \\\"trace_id\\\",\\\"host\\\",\\\"all\\\" 3 个字段选项，您可在下方添加自定义的字段\n\n[Docs]   # 帮助\n# doc1 = {\\\"https://www.xxx.com\\\",\\\"provider1\\\",\\\"name1\\\"}    # 填写帮助链接对应的内容提供方和期望显示文本\n# doc2 = {\\\"https://www.xxx.com\\\",\\\"provider2\\\",\\\"name2\\\"}\n\n  ",
         "status": 0,
         "updateAt": 1669114500,
         "updator": "acnt_e0c66e438996458b6bdcf6663a0b4",
