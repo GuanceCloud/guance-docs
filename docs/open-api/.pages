@@ -19,3 +19,4 @@ nav:
   - '快照': snapshot
   - 'Func 函数': outer-function
   - '通知对象': notify-object
+  - '链路': tracing
