@@ -36,7 +36,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/tracing/service_catelog/detail?service=redis&originStr=1' \
+curl 'https://openapi.guance.com/api/v1/tracing/service_catelogs/get?service=redis&originStr=1' \
   -H 'DF-API-KEY: <DF-API-KEY>' \
   --compressed \
   --insecure
