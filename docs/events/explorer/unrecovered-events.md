@@ -11,7 +11,7 @@
 - 基于标签、字段、文本（包含日志文本）对事件进行关键词搜索、标签筛选、字段筛选、关联搜索等
 - 查看当前告警事件信息，包括该事件的检测维度、告警开始的时间、告警持续的时间，以及最近 6 小时的事件发生趋势。
 
-**注意**：若在监控器配置触发条件时，未设置恢复正常次数，则告警事件不会恢复，且一直会出现在「事件」-「未恢复事件列表」中。更多监控器配置可参考文档 [监控器](../../monitoring/monitor.md) 。
+**注意**：若在监控器配置触发条件时，未设置恢复正常次数，则告警事件不会恢复，且一直会出现在「事件」-「未恢复事件列表」中。更多监控器配置可参考文档 [监控器](../../monitoring/monitor/index.md) 。
 
 ## 查询与分析
 
@@ -35,11 +35,11 @@
 
 ### 筛选历史
 
-点击右下角的「筛选历史」图标，可查看保存为`key:value` 的搜索条件历史，支持应用于当前工作空间不同的查看器。更多详情可参考文档 [筛选历史](../getting-started/necessary-for-beginners/explorer-search.md#filter-history) 。
+点击右下角的「筛选历史」图标，可查看保存为`key:value` 的搜索条件历史，支持应用于当前工作空间不同的查看器。更多详情可参考文档 [筛选历史](../../getting-started/necessary-for-beginners/explorer-search.md#filter-history) 。
 
 ### 数据状态
 
-在未恢复事件列表，基于监控器的触发条件配置会产生「未恢复（df_status != ok）」、「紧急（critical）」、「重要（error）」、「警告（warning）」、「无数据（nodata）」的状态统计，更多详情可参考文档 [事件等级说明](../../monitoring/monitor/event-level-description.md) ，您也可以参考 [阈值检测](../../monitoring/monitor/threshold-detection/) 来配置一个监控器，并为监控器设定触发条件。
+在未恢复事件列表，基于监控器的触发条件配置会产生「未恢复（df_status != ok）」、「紧急（critical）」、「重要（error）」、「警告（warning）」、「无数据（nodata）」的状态统计，更多详情可参考文档 [事件等级说明](../../monitoring/monitor/event-level-description.md) ，您也可以参考 [阈值检测](../../monitoring/monitor/threshold-detection.md) 来配置一个监控器，并为监控器设定触发条件。
 
 ### 事件信息
 
@@ -63,7 +63,7 @@
 
 ### 恢复事件 {#recover}
 
-恢复事件是指事件状态为正常的事件（df_status = ok）。您可以在 [监控器](../../monitoring/monitor.md) 配置触发条件时设置事件恢复规则，或者手动进行事件恢复。
+恢复事件是指事件状态为正常的事件（df_status = ok）。您可以在 [监控器](../../monitoring/monitor/index.md) 配置触发条件时设置事件恢复规则，或者手动进行事件恢复。
 
 恢复事件包括恢复、无数据恢复、无数据视为恢复、手动恢复四种场景，见下表。
 
