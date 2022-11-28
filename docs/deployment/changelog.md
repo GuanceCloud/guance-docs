@@ -1,5 +1,54 @@
 # 版本历史
 
+## v1.53.115（2022年11月17日）
+
+pubrepo.jiagouyun.com/dataflux/1.53.115:launcher-0da0220-1669271832
+
+### 观测云更新
+
+- Pipeline 使用体验优化
+    - Pipeline 支持过滤条件配置多选
+    - 支持将任意一个 Pipeline 脚本设置为“默认 Pipeline 脚本“
+    - 脚本函数归类
+- 事件优化
+    - 支持写入用户的自定义事件
+    - 未恢复事件查看器左侧新增快捷筛选
+- 自定义查看器支持选择更多类型的数据
+- 成员管理新增成员分组功能
+- 优化内置视图绑定功能
+- 新增一键导入导出工作空间内的仪表板、自定义查看器、监控器
+- 应用性能监测日志页面新增自定义关联字段
+- 其他功能优化
+    - 当筛选条件使用模糊匹配和模糊不匹配的时候，支持左 \* 匹配
+    - 基础设施分析维度优化，在主机详情页主机最后上报时间
+    - 支持用户快速登录到上一次单点登录
+    - 黑名单的应用性能监测新增支持过滤“全部服务”
+    - “中国区4（广州）”站点注册的用户升级到商业版流程优化
+    - 字段描述支持在快捷筛选、显示列等处查看
+
+### DataKit 更新
+
+- 新增 SNMP 采集器
+- 新增 IPMI 采集器
+- 新增批量注入 DDTrace-Java 工具
+- 最新 DDTrace-Java SDK 增强了 SQL 脱敏功能
+- Pipeline 支持来源映射关系配置，便于实现 Pipeline 和数据源之间的批量配置
+- Pipeline 提供了函数分类信息，便于远程 Pipeline 编写
+- 优化 Kafka 消息订阅，不再局限于获取 SkyWalking 相关的数据，同时支持限速、多版本覆盖、采样以及负载均衡等设定
+- 通过提供额外配置参数（ENV_INPUT_CONTAINER_LOGGING_SEARCH_INTERVAL），缓解短生命周期 Pod 日志采集问题
+- 纯容器环境下，支持 通过 label 方式 配置容器内日志采集
+- 新增 Pipeline 函数
+
+### 最佳实践更新
+
+- 观测云小妙招(Skills) - DataKit 配置 HTTPS
+- 应用性能监控 (APM) - ddtrace 常见参数用法
+- 应用性能监控 (APM) - ddtrace-api 使用指南
+- 应用性能监控 (APM) - ddtrace 采样
+- 应用性能监控 (APM) - ddtrace log 关联
+
+更多详情可参考帮助文档：[https://docs.guance.com/release-notes/](https://docs.guance.com/release-notes/)
+
 ## v1.52.114（2022年11月03日）
 
 pubrepo.jiagouyun.com/dataflux/1.52.114:launcher-86c0c1f-1668062771
