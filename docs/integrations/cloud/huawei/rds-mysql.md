@@ -4,7 +4,7 @@
 
 ## 视图预览
 
-示例为华为云 RDS MySQL 指标展示，包括连接数，QPS，InnoDB，锁信息，延迟等。
+示例为华为云 RDS MySQL 指标展示，包括连接数、QPS、InnoDB、锁信息、延迟等。
 
 ![image.png](../imgs/huawei-rds-mysql-1.png)
 ![image.png](../imgs/huawei-rds-mysql-2.png)

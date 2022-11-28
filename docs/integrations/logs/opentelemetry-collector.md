@@ -361,6 +361,6 @@ systemctl restart datakit
 
 ## 进一步阅读
 
-<[OpenTelemetry 链路数据接入最佳实践](../../best-practices/cloud-native/opentelemetry.md)><br />
+<[OpenTelemetry 可观测性建设](../../best-practices/cloud-native/opentelemetry-observable.md)><br />
 <[OpenTelemetry to 观测云](../../best-practices/cloud-native/opentelemetry-guance.md)>
 
