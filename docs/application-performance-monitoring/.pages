@@ -3,6 +3,7 @@ nav:
   - '数据采集': collection
   - '生成指标': generate-metrics.md
   - '服务': service.md
+  - '服务清单': service-catalog.md
   - '概览': overview.md
   - '链路查看器': explorer.md
   - '错误追踪': error.md
