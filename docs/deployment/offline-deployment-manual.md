@@ -1596,7 +1596,7 @@ $ helm install my-launcher launcher/launcher -n launcher --create-namespace  \
 ```
 ###### 4.2.1.1.2 社区版安装
 
-如果部署社区版，可以先获取[社区版部署镜像](https://www.yuque.com/dataflux/rtm/cfvi8s) ，添加 --set image.repository=<镜像地址>，--set image.tag=<镜像tag> 参数进行部署。
+如果部署社区版，可以先获取 [社区版部署镜像](changelog.md) ，添加 --set image.repository=<镜像地址>，--set image.tag=<镜像tag> 参数进行部署。
 
 ```shell
 # 此命令为演示命令，请根据自身需求修改内容
