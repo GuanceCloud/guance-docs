@@ -208,7 +208,6 @@ systemctl restart datakit
 
 ## 最佳实践
 
-
 ## 故障排查
 
 <[无数据上报排查](../../datakit/why-no-data.md)>
