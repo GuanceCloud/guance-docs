@@ -41,6 +41,13 @@ def filter_namespace(cluster_namespaces):
     if cluster_name in ['k8s-prod']:
         return True
 
+'''  
+任务配置参数请使用：
+@DFF.API('K8S-Pod异常重启巡检', fixed_crontab='*/30 * * * *', timeout=900)
+
+fixed_crontab：固定执行频率「每 30 分钟一次」
+timeout：任务执行超时时长，控制在 15 分钟
+'''    
 
 # Kubernetes Pod 异常重启巡检配置 用户无需修改
 @self_hosted_monitor(API_KEY_ID, API_KEY)
@@ -134,9 +141,7 @@ def run(configs=[]):
 
   ![image](../../img/k8s-pod-restart05.png)
 
-
-
-  #### 事件详情
+#### 事件详情
 
   * 事件概览：描述异常巡检事件的对象、内容等
   * 异常详情：错误趋势：可查看当前应用近 1 个小时的性能指标
@@ -146,17 +151,13 @@ def run(configs=[]):
 ![image](../../img/k8s-pod-restart06.png)
   ![image](../../img/k8s-pod-restart07.png)
 
-
-
-  #### 历史记录
+#### 历史记录
 
   支持查看检测对象、异常/恢复时间和持续时长。
 
  ![image](../../img/k8s-pod-restart08.png)
 
-
-
-  #### 关联事件
+#### 关联事件
 
   支持通过筛选字段和所选取的时间组件信息，查看关联事件。
 
@@ -170,9 +171,7 @@ def run(configs=[]):
 
 ![image](../../img/k8s-pod-restart10.png)
 
-
-
-  ## 常见问题
+## 常见问题
 
   **1.Kubernetes Pod 异常重启巡检的检测频率如何配置**
 
