@@ -76,7 +76,7 @@ def run(configs={}):
 
 ![image](../img/rum_error02.png)
 
-可以参考如下的 JSON 配置多个云账户和对应预算信息
+可以参考如下的 JSON 配置多个应用信息
 
 ```json
  // 配置示例：

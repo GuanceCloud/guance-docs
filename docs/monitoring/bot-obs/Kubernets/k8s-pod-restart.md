@@ -111,7 +111,7 @@ def run(configs=[]):
 
 ![image](../../img/k8s-pod-restart03.png)
 
-  可以参考如下的 JSON 配置多个云账户和对应预算信息
+  可以参考如下的 JSON 配置多个集群及命名空间信息
 
   ```json
    // 配置示例： namespace 可以配置多个也可以配置单个
