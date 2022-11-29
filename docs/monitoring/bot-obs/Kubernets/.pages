@@ -1,2 +1,2 @@
 nav:
-  - 'Pod 异常重启巡检': apm.md
+  - 'Pod 异常重启巡检': k8s-pod-restart.md

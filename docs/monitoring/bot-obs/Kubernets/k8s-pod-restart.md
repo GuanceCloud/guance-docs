@@ -1,4 +1,4 @@
-# Kubernets Pod 异常重启巡检
+# Kubernetes Pod 异常重启巡检
 
 ---
 
@@ -18,7 +18,7 @@ Kubernetes 帮助用户自动调度和扩展容器化应用程序，但现代 Ku
 
 ## 配置巡检
 
-在自建 DataFlux Func 创建新的脚本集开启Kubernets Pod 异常重启巡检配置
+在自建 DataFlux Func 创建新的脚本集开启 Kubernetes Pod 异常重启巡检配置
 
 ```python
 from guance_monitor__runner import Runner
@@ -79,16 +79,16 @@ def run(configs=[]):
 
 在 DataFlux Func 中在配置好巡检之后可以通过直接再页面中选择 `run()` 方法进行点击运行进行测试，在点击发布之后就可以在观测云「监控 / 智能巡检」中查看并进行配置
 
-![image](../img/apm01.png)
+![image](../../img/k8s-pod-restart01.png)
 
 
-  ### 在观测云中配置应用性能巡检
+  ### 在观测云中配置 Kubernetes Pod 异常重启巡检
 
-  ![image](../img/apm02.png)
+  ![image](../../img/k8s-pod-restart02.png)
 
   #### 启用/禁用
 
-  智能巡检默认是「禁用」状态，可手动「启用」，开启后，将对配置好的应用性能监测进行巡检。
+  智能巡检默认是「禁用」状态，可手动「启用」，开启后，就可以对配置好的 Kubernetes 集群中 Pod 进行巡检了。
 
   #### 导出
 
@@ -96,30 +96,30 @@ def run(configs=[]):
 
   #### 编辑
 
-  智能巡检「 应用性能巡检 」支持用户手动添加筛选条件，在智能巡检列表右侧的操作菜单下，点击「编辑」按钮，即可对巡检模版进行编辑。
+  智能巡检「Kubernetes Pod 异常重启巡检 」支持用户手动添加筛选条件，在智能巡检列表右侧的操作菜单下，点击「编辑」按钮，即可对巡检模版进行编辑。
 
-  * 筛选条件：配置应用 project 服务所属项目、service_sub 包括服务（service）、环境（env）、版本（version）通过 ":" 拼接而成。
+  * 筛选条件：配置需要巡检 Kubernetes 的 cluster_name（集群名称，可选，不配置时检测所有 namespace）和需要检测的 namespace （命名空间，必填）
   * 告警通知：支持选择和编辑告警策略，包括需要通知的事件等级、通知对象、以及告警沉默周期等
 
   配置入口参数点击编辑后在参数配置中填写对应的检测对象点击保存开始巡检：
 
-  ![image](../img/apm03.png)
+  ![image](../../img/k8s-pod-restart03.png)
 
   可以参考如下的 JSON 配置多个云账户和对应预算信息
 
   ```json
-   // 配置示例：
-      configs = [
-          {"project": "project1", "service_sub": "service1:env1:version1"},
-          {"project": "project2", "service_sub": "service2:env2:version2"}
+   // 配置示例： namespace 可以配置多个也可以配置单个
+      configs =[
+          {"cluster_name": "xxx", "namespace": ["xxx1", "xxx2"]},
+          {"cluster_name": "yyy","namespace": "yyy1"}
       ]
   ```
 
   ## 查看事件
 
-  智能巡检基于观测云巡检算法，会查找 APM 指标中的异常情况，如 `resource` 突然发生异常。对于异常情况，智能巡检会生成相应的事件，在智能巡检列表右侧的操作菜单下，点击「查看相关事件」按钮，即可查看对应异常事件。
+  智能巡检基于观测云巡检算法，会查找当前配置的集群内是否会出现 Pod 异常重启的情况。对于异常情况，智能巡检会生成相应的事件，在智能巡检列表右侧的操作菜单下，点击「查看相关事件」按钮，即可查看对应异常事件。
 
-![image](../img/apm04.png)
+![image](../../img/k8s-pod-restart04.png)
 
   ### 事件详情页
 
@@ -133,7 +133,7 @@ def run(configs=[]):
   * 检测维度：基于智能巡检配置的筛选条件，支持将检测维度 `key/value` 复制、添加到筛选、以及查看相关日志、容器、进程、安全巡检、链路、用户访问监测、可用性监测以及 CI 等数据
   * 扩展属性：选择扩展属性后支持以 `key/value` 的形式复制、正向/反向筛选
 
-  ![image](../img/apm05.png)
+  ![image](../../img/k8s-pod-restart05.png)
 
   #### 事件详情
 
@@ -142,35 +142,43 @@ def run(configs=[]):
   * 异常影响：可查看当前链路的异常服务所影响到服务及资源
   * 异常链路采样：查看详细的出错时间、服务、资源、链路 ID；点击服务、资源会进入相应的数据查看器；点击链路 ID，会进入具体链路详情页。
 
-![image](../img/apm06.png)
-  ![image](../img/apm07.png)
+![image](../../img/k8s-pod-restart06.png)
+  ![image](../../img/k8s-pod-restart07.png)
 
   #### 历史记录
 
   支持查看检测对象、异常/恢复时间和持续时长。
 
- ![image](../img/apm08.png)
+ ![image](../../img/k8s-pod-restart08.png)
 
   #### 关联事件
 
   支持通过筛选字段和所选取的时间组件信息，查看关联事件。
 
-  ![image](../img/apm09.png)
+
+
+ ![image](../../img/k8s-pod-restart09.png)
+
+#### Kubernetes 指标
+
+可以通过事件中的 Kubernetes 监控视图查看对应异常信息的更细粒度的信息, 和可能影响的因素
+
+![image](../../img/k8s-pod-restart10.png)
 
   ## 常见问题
 
-  **1.应用性能巡检的检测频率如何配置**
+  **1.Kubernetes Pod 异常重启巡检的检测频率如何配置**
 
-  * 可以通过 DataFlux Func 中，「管理 / 自动触发配置」为检测函数设置自动触发时间建议配置每小时执行一次。
-  * 也可以在自建的 DataFlux Func 中，编写自建巡检处理函数时在装饰器中添加`fixed_crontab='0 * * * *', timeout=900` ，在装饰器中添加配置优先于在「管理 / 自动触发配置」中配置，二者选一即可。
+  * 可以通过 DataFlux Func 中，「管理 / 自动触发配置」为检测函数设置自动触发时间建议配置每 30 分钟执行一次。
+  * 也可以在自建的 DataFlux Func 中，编写自建巡检处理函数时在装饰器中添加`fixed_crontab='*/30 * * * *', timeout=900` ，在装饰器中添加配置优先于在「管理 / 自动触发配置」中配置，二者选一即可。
 
-  **2.应用性能巡检触发时可能会没有异常分析**
+  **2.Kubernetes Pod 异常重启巡检触发时可能会没有异常分析**
 
   在出现巡检报告中没有异常分析时，请检查当前 `datakit` 的数据采集状态。
 
-  **3.在何种情况下会产生应用性能巡检事件**
+  **3.在何种情况下会产生 Kubernetes Pod 异常重启巡检事件**
 
-  以错误率、P90等指标作为切入口，当这指标其中有一个指标发生异常变动并产生上下游链路影响时，触发收集报警信息并进行根因分析。
+  以 cluster_name + namespace 下重启 pod 数占比数作为入口，当该指标在近 30 分钟出现升高时触发生成事件逻辑并进行根因分析
 
   
 
