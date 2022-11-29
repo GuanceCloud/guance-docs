@@ -112,7 +112,7 @@
 
 | 字段 | 类型 | 描述 |
 | --- | --- | --- |
-| `session_id` | string | 会话 id（后台停留 30s 以上，会生成一个新的 session_id ） |
+| `session_id` | string | 会话 id（用户会话 15 分钟内未产生交互行为则视为过期 ） |
 | `session_type` | string | 会话类型。参考值：user &#124; test<br>user 表示是 RUM 功能产生的数据；<br>test 表示是 headless 拨测产生的数据。 |
 | `session_referrer` | string | 会话来源。一般是记录来源的页面地址。 |
 | `session_first_view_id` | string | 当前会话的第一个页面的 view_id |
