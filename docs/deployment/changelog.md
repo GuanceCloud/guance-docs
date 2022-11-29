@@ -646,7 +646,7 @@ pubrepo.jiagouyun.com/dataflux/1.42.95:launcher-8478e83-1654839989
     - Kubernetes Nodes Overview
     - JVM Kubernetes
 
-更多详情可参考帮助文档：[https://www.yuque.com/dataflux/doc/hahbey](https://www.yuque.com/dataflux/doc/hahbey) 
+更多详情可参考帮助文档：[https://docs.guance.com/release-notes/](https://docs.guance.com/release-notes/) 
 
 ## v1.41.94(2022年5月28日)
 pubrepo.jiagouyun.com/dataflux/1.41.94:launcher-249ba21-1653737335 
@@ -699,7 +699,7 @@ pubrepo.jiagouyun.com/dataflux/1.41.94:launcher-249ba21-1653737335
     - Istio Service
     - ASM Service
 
-更多详情可参考帮助文档：[https://www.yuque.com/dataflux/doc/hahbey](https://www.yuque.com/dataflux/doc/hahbey) 
+更多详情可参考帮助文档：[https://docs.guance.com/release-notes/](https://docs.guance.com/release-notes/) 
 
 ## v1.40.93(2022年5月9日)
 pubrepo.jiagouyun.com/dataflux/1.40.93:launcher-aa97377-1652102035 
@@ -735,7 +735,7 @@ pubrepo.jiagouyun.com/dataflux/1.40.93:launcher-aa97377-1652102035
 
 - 新增数据存储 Redis Sentinel 集成文档和视图
 
-更多详情可参考帮助文档：[https://www.yuque.com/dataflux/doc/hahbey](https://www.yuque.com/dataflux/doc/hahbey) 
+更多详情可参考帮助文档：[https://docs.guance.com/release-notes/](https://docs.guance.com/release-notes/) 
 
 ## v1.39.92(2022年5月5日)
 
@@ -811,7 +811,7 @@ pubrepo.jiagouyun.com/dataflux/1.39.90:launcher-23f161d-1650898148
     - 阿里云：阿里云 ASM Mesh、阿里云 ASM Control Plane 和 阿里云 ASM Workload
     - 中间件：RocketMQ
 
-更多详情可参考帮助文档：[https://www.yuque.com/dataflux/doc/hahbey](https://www.yuque.com/dataflux/doc/hahbey) 
+更多详情可参考帮助文档：[https://docs.guance.com/release-notes/](https://docs.guance.com/release-notes/) 
 
 ## v1.38.89(2022年4月10日)
 
@@ -867,7 +867,7 @@ pubrepo.jiagouyun.com/dataflux/1.38.89:launcher-db22a51-1649942760
 - 新增阿里云 DataKit 集成文档、视图和监控器
 - 新增阿里云 Nacos 集成文档、视图
 
-更多详情可参考帮助文档：[https://www.yuque.com/dataflux/doc/hahbey](https://www.yuque.com/dataflux/doc/hahbey) 
+更多详情可参考帮助文档：[https://docs.guance.com/release-notes/](https://docs.guance.com/release-notes/) 
 
 ## v1.37.86(2022年3月28日)
 
@@ -909,7 +909,7 @@ pubrepo.jiagouyun.com/dataflux/1.37.86:launcher-bd2650e-1648456839
 
 - 新增阿里云 PolarDB Mysql 集成文档、视图和检测库
 
-更多详情可参考帮助文档：[https://www.yuque.com/dataflux/doc/hahbey](https://www.yuque.com/dataflux/doc/hahbey) 
+更多详情可参考帮助文档：[https://docs.guance.com/release-notes/](https://docs.guance.com/release-notes/) 
 
 ## v1.36.85(2022年3月14日)
 
