@@ -145,8 +145,7 @@ icon: zy/best-practices
 - 接入集成
     - [主机可观测最佳实践 (Linux)](./monitoring/host-linux.md)
 ### 更新记录
-- 观测云小妙招
-    - [ddtrace 高级用法](./monitoring/ddtrace-skill.md)，<font color="red" > 新增了 采样、过滤Resource、入侵式埋点、log 配置。</font>
+
 - 接入（集成）最佳实践
     - [Nginx Ingress可观测最佳实践](./cloud-native/ingress-nginx.md)，<font color="red" > 默认忽略  build、le、method 等 tag。</font>
 
@@ -240,8 +239,6 @@ icon: zy/best-practices
 - 微服务可观测最佳实践
     - [基于 Istio 实现微服务可观测最佳实践](./cloud-native/istio.md)，<font color="red" >更新 istiod pod 的指标采集。</font>
    
-    - [Elasticsearch 可观测最佳实践](./monitoring/elasticsearch.md)，<font color="red" >更新一些链接和描述。</font>
-
 ## (2022/04/15)
 ### 更新记录
 
@@ -312,8 +309,6 @@ icon: zy/best-practices
 ## (2022/01/21)
 ### 新增最佳实践
 
-- 接入（集成）最佳实践
-    - [如何利用观测云观测 Fluentd](./monitoring/fluentd.md)
 - 场景最佳实践
     - [电商订单全流程可观测最佳实践](./insight/order.md)
 ### 更新记录
@@ -329,8 +324,7 @@ icon: zy/best-practices
 
 - 场景最佳实践
     - [电商订单监控视图最佳实践](./insight/order.md)
-- 接入（集成）最佳实践
-    - 利用观测云观测 Apache Flink
+
 - 技术理解
     - Influxdb 时间线简析
 ### 更新记录
