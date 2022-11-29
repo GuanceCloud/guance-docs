@@ -39,14 +39,14 @@ def filter_host(host):
 
 '''
 任务配置参数请使用：
-@DFF.API('磁盘使用率巡检', fixed_crontab='0 * * * *', timeout=900)
+@DFF.API('磁盘使用率自建巡检', fixed_crontab='0 */6 * * *', timeout=900)
 
-fixed_crontab：固定执行频率「每小时一次」
+fixed_crontab：固定执行频率「每6小时一次」
 timeout：任务执行超时时长，控制在15分钟
 '''
 
 @self_hosted_monitor(API_KEY_ID, API_KEY)
-@DFF.API('磁盘使用率巡检', fixed_crontab='0 * * * *', timeout=900)
+@DFF.API('磁盘使用率巡检', fixed_crontab='0 */6 * * *', timeout=900)
 def run(configs={}):
     '''
     参数：
@@ -151,8 +151,8 @@ def run(configs={}):
 
 **1.磁盘使用率巡检的检测频率如何配置**
 
-* 可以通过 DataFlux Func 中，「管理 / 自动触发配置」为检测函数设置自动触发时间建议配置每小时执行一次。
-* 也可以在自建的 DataFlux Func 中，编写自建巡检处理函数时在装饰器中添加`fixed_crontab='0 * * * *', timeout=900` ，在装饰器中添加配置优先于在「管理 / 自动触发配置」中配置，二者选一即可。
+* 可以通过 DataFlux Func 中，「管理 / 自动触发配置」为检测函数设置自动触发时间建议配置每 6 时执行一次。
+* 也可以在自建的 DataFlux Func 中，编写自建巡检处理函数时在装饰器中添加`fixed_crontab='0 */6 * * *', timeout=900` ，在装饰器中添加配置优先于在「管理 / 自动触发配置」中配置，二者选一即可。
 
 **2.磁盘使用率巡检触发时可能会没有异常分析**
 
