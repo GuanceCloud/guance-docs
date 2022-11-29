@@ -42,7 +42,7 @@ def filter_namespace(cluster_namespaces):
         return True
 
 
-# RUM 错误类型自建巡检配置 用户无需修改
+# Kubernetes Pod 异常重启巡检配置 用户无需修改
 @self_hosted_monitor(API_KEY_ID, API_KEY)
 @DFF.API('K8S-Pod异常重启巡检', fixed_crontab='*/30 * * * *')
 def run(configs=[]):
@@ -66,7 +66,7 @@ def run(configs=[]):
 
     """
     checkers = [
-         # 配置 RUM 错误巡检
+         # 配置 Kubernetes Pod 异常重启巡检
         k8s_pod_restart.K8SPodRestartCheck(configs=configs, filters=[filter_namespace]),
     ]
 
@@ -82,17 +82,25 @@ def run(configs=[]):
 ![image](../../img/k8s-pod-restart01.png)
 
 
+
+
   ### 在观测云中配置 Kubernetes Pod 异常重启巡检
 
   ![image](../../img/k8s-pod-restart02.png)
+
+
 
   #### 启用/禁用
 
   智能巡检默认是「禁用」状态，可手动「启用」，开启后，就可以对配置好的 Kubernetes 集群中 Pod 进行巡检了。
 
+
+
   #### 导出
 
   智能巡检支持“导出 JSON 配置”。在智能巡检列表右侧的操作菜单下，点击「导出」按钮，即可导出当前巡检的 JSON 代码，导出文件名格式：智能巡检名称.json 。
+
+
 
   #### 编辑
 
@@ -115,11 +123,15 @@ def run(configs=[]):
       ]
   ```
 
+
+
   ## 查看事件
 
   智能巡检基于观测云巡检算法，会查找当前配置的集群内是否会出现 Pod 异常重启的情况。对于异常情况，智能巡检会生成相应的事件，在智能巡检列表右侧的操作菜单下，点击「查看相关事件」按钮，即可查看对应异常事件。
 
 ![image](../../img/k8s-pod-restart04.png)
+
+
 
   ### 事件详情页
 
@@ -128,12 +140,16 @@ def run(configs=[]):
   * 点击详情页右上角的「查看监控器配置」小图标，支持查看和编辑当前智能巡检的配置详情
   * 点击详情页右上角的「导出事件 JSON」小图标，支持导出事件的详情内容
 
+
+
   #### 基础属性
 
   * 检测维度：基于智能巡检配置的筛选条件，支持将检测维度 `key/value` 复制、添加到筛选、以及查看相关日志、容器、进程、安全巡检、链路、用户访问监测、可用性监测以及 CI 等数据
   * 扩展属性：选择扩展属性后支持以 `key/value` 的形式复制、正向/反向筛选
 
   ![image](../../img/k8s-pod-restart05.png)
+
+
 
   #### 事件详情
 
@@ -145,25 +161,31 @@ def run(configs=[]):
 ![image](../../img/k8s-pod-restart06.png)
   ![image](../../img/k8s-pod-restart07.png)
 
+
+
   #### 历史记录
 
   支持查看检测对象、异常/恢复时间和持续时长。
 
  ![image](../../img/k8s-pod-restart08.png)
 
+
+
   #### 关联事件
 
   支持通过筛选字段和所选取的时间组件信息，查看关联事件。
 
-
-
  ![image](../../img/k8s-pod-restart09.png)
+
+
 
 #### Kubernetes 指标
 
 可以通过事件中的 Kubernetes 监控视图查看对应异常信息的更细粒度的信息, 和可能影响的因素
 
 ![image](../../img/k8s-pod-restart10.png)
+
+
 
   ## 常见问题
 
