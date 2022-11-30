@@ -9,4 +9,4 @@ nav:
   - '阿里云资产巡检': cloudasset.md
   - 'MySQL 性能巡检': mysql-performance.md
   - '服务端应用错误巡检': apm-errors.md
-  - 'Kubernets': Kubernets
+  - 'Kubernets': Kubernetes
