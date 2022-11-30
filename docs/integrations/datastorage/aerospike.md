@@ -338,10 +338,6 @@ ignore_dead_log = "10m"
 systemctl restart datakit
 ```
 
-Aerospike 日志采集验证 `/usr/local/datakit/datakit -M |egrep "最近采集|aerospike"`
-
-![image](../imgs/input-aerospike-4.png)
-
 #### 日志预览
 
 ![image](../imgs/input-aerospike-5.png)
