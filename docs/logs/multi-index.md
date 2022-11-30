@@ -50,7 +50,7 @@
 
     - 索引名称在工作空间内需具有唯一性；
     - 商业版工作空间均支持绑定索引；
-    - SLS 工作空间除支持绑定阿里云一键注册商业版时获取的 AccessKey ID 与 AccessKey Secret 外，还支持绑定其他 AK/SK 配置的索引。
+    - SLS 工作空间除支持绑定阿里云一键注册商业版时获取的 AccessKey ID 与 AccessKey Secret 外，还支持通过日志绑定索引的功能，切换绑定同一阿里云账号下、或者其他阿里云账号下的已授权开通 SLS 权限的 AK/SK。
 
 ![](img/1-index-1129.png)
 
