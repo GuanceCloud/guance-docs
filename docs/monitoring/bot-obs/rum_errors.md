@@ -28,9 +28,17 @@ import guance_monitor_rum__main as main
 API_KEY_ID  = 'xxxxx'
 API_KEY     = 'xxxx'
 
+'''
+任务配置参数请使用：
+@DFF.API('前端应用日志错误巡检', fixed_crontab='0 * * * *', timeout=900)
+
+fixed_crontab：固定执行频率「每小时一次」
+timeout：任务执行超时时长，控制在15分钟
+'''
+
 # RUM 错误类型自建巡检配置 用户无需修改
 @self_hosted_monitor(API_KEY_ID, API_KEY)
-@DFF.API('RUM-错误类型自建巡检')
+@DFF.API('前端应用日志错误巡检', fixed_crontab='0 * * * *', timeout=900)
 def run(configs={}):
     """
     参数：
@@ -123,7 +131,12 @@ def run(configs={}):
 ## 常见问题
 **1.前端应用日志错误巡检的检测频率如何配置**
 
-在 DataFlux Func 中，通过「管理 / 自动触发配置」为检测函数设置自动触发时间建议配置每小时执行一次
+* 可以通过 DataFlux Func 中，「管理 / 自动触发配置」为检测函数设置自动触发时间建议配置每小时执行一次。
+* 也可以在自建的 DataFlux Func 中，编写自建巡检处理函数时在装饰器中添加`fixed_crontab='0 * * * *', timeout=900` ，在装饰器中添加配置优先于在「管理 / 自动触发配置」中配置，二者选一即可。
+
+**2.前端应用日志错误巡检触发时可能会没有异常分析**
+
+在出现巡检报告中没有异常分析时，请检查当前 `datakit` 的数据采集状态。
 
 
 
