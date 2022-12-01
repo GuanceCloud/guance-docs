@@ -122,7 +122,7 @@
 |`message`|包括请求头(request_header)/请求体(request_body)/返回头(response_header)/返回体(response_body)/fail_reason 冗余一份|string|-|
 |`proto`|示例 HTTP/1.0|string|-|
 |`response_body_size`|body 长度|int|B|
-|`response_time`|HTTP 相应时间, 单位 ms|int|μs|
+|`response_time`|HTTP 响应时间|int|μs|
 |`status_code`|web page response code|int|-|
 |`success`|只有 1/-1 两种状态, 1 表示成功, -1 表示失败|int|-|
 
@@ -154,8 +154,8 @@
 | ---- |---- | :---:    | :----: |
 |`fail_reason`|拨测失败原因|string|-|
 |`message`|包括响应时间(response_time)/错误原因(fail_reason)|string|-|
-|`response_time`|TCP 连接时间, 单位|int|μs|
-|`response_time_with_dns`|连接时间（含DNS解析）, 单位|int|μs|
+|`response_time`|TCP 连接时间 |int|μs|
+|`response_time_with_dns`|连接时间（含DNS解析）|int|μs|
 |`success`|只有 1/-1 两种状态, 1 表示成功, -1 表示失败|int|-|
 |`traceroute`|路由跟踪数据文本(JSON格式)|string|-|
 
@@ -226,8 +226,8 @@
 |`fail_reason`|拨测失败原因|string|-|
 |`message`|包括响应时间(response_time)/错误原因(fail_reason)|string|-|
 |`response_message`|拨测返回的消息|string|-|
-|`response_time`|连接时间, 单位|int|μs|
-|`response_time_with_dns`|连接时间（含DNS解析）, 单位|int|μs|
+|`response_time`|连接时间|int|μs|
+|`response_time_with_dns`|连接时间（含DNS解析）|int|μs|
 |`sent_message`|拨测发送的消息|string|-|
 |`success`|只有 1/-1 两种状态, 1 表示成功, -1 表示失败|int|-|
 

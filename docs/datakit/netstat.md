@@ -24,6 +24,23 @@ Netstat 指标采集，包括 TCP/UDP 连接数、等待连接、等待处理请
       ##(optional) collect interval, default is 10 seconds
       interval = '10s'
     
+      ##(optional) addr_ports which counts separately, default is []
+      ## addr_ports measurements will be "netstat_port" 
+      ## server may have multiple network cards, 
+      ## only display this addr+port, example "1.1.1.1:80"
+      ## display by server if only have port number, example "443"
+      ## should add tags for some port, example ["80","443","0"] add tags
+      #[[inputs.netstat.addr_ports]]
+      #   ports = ["1.1.1.1:80","443","0"]
+      #   [inputs.netstat.addr_ports.tags]
+      #		project = "datakit"
+      #		yyy = "xxx"
+      #		service = "http"
+    
+      ## display this port by ip, example "*:9529"
+      #[[inputs.netstat.addr_ports]]
+      #	ports = ["*:9529"]
+    
     [inputs.netstat.tags]
       # some_tag = "some_value"
       # more_tag = "some_other_value"
@@ -36,10 +53,11 @@ Netstat 指标采集，包括 TCP/UDP 连接数、等待连接、等待处理请
     Kubernetes 中支持以环境变量的方式修改配置参数：
 
 
-    | 环境变量名                   | 对应的配置参数项 | 参数示例                                                     |
-    |:-----------------------------| ---              | ---                                                          |
-    | `ENV_INPUT_NETSTAT_TAGS`     | `tags`           | `tag1=value1,tag2=value2` 如果配置文件中有同名 tag，会覆盖它 |
-    | `ENV_INPUT_NETSTAT_INTERVAL` | `interval`       | `10s`                                                        |
+    | 环境变量名                          | 对应的配置参数项 | 参数示例 |
+    |:-----------------------------     | ---            | ---   |
+    | `ENV_INPUT_NETSTAT_TAGS`          | `tags`         | `tag1=value1,tag2=value2` 如果配置文件中有同名 tag，会覆盖它 |
+    | `ENV_INPUT_NETSTAT_INTERVAL`      | `interval`     | `10s` |
+    | `ENV_INPUT_NETSTAT_ADDR_PORTS`    | `ports`        | `["1.1.1.1:80","443"]` |
 
 ---
 
@@ -54,22 +72,24 @@ Netstat 指标采集，包括 TCP/UDP 连接数、等待连接、等待处理请
   # ...
 ```
 
+不分端口号统计的指标集: `netstat` ，分端口号统计的指标集: `netstat_port` 。
 
 
-### `netstat`
 
 -  标签 
 
 
 | 标签名 | 描述    |
 |  ----  | --------|
-|`host`|主机名|
+|`addr_port`|addr and port|
+|`host`|Host name|
 
 - 指标列表
 
 
 | 指标 | 描述| 数据类型 | 单位   |
 | ---- |---- | :---:    | :----: |
+|`pid`|pid.|int|count|
 |`tcp_close`|CLOSE : The number of TCP state be waiting for a connection termination request acknowledgement from remote TCP host.|int|count|
 |`tcp_close_wait`|CLOSE_WAIT : The number of TCP state be waiting for a connection termination request from local user.|int|count|
 |`tcp_closing`|CLOSING : The number of TCP state be waiting for a connection termination request acknowledgement from remote TCP host.|int|count|
