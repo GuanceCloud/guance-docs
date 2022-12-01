@@ -1,11 +1,11 @@
-# 获取监控器分组列表
+# 获取告警策略列表
 
 ---
 
 <br />**get /api/v1/monitor/group/list**
 
 ## 概述
-分页获取监控器分组列表
+分页获取告警策略列表
 
 
 
@@ -14,7 +14,7 @@
 
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
-| search | string |  | 搜索监视器名<br>允许为空: True <br> |
+| search | string |  | 搜索告警策略名称<br>允许为空: True <br> |
 | pageIndex | integer |  | 页码<br>允许为空: False <br>例子: 1 <br>$minValue: 1 <br> |
 | pageSize | integer |  | 每页返回数量<br>允许为空: False <br>例子: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
 

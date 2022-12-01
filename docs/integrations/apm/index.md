@@ -12,10 +12,11 @@ icon: material/transit-connection-variant
 
 [**安装 DataKit**](../../datakit/datakit-install.md)之后，对于如下指标集，用户需要集成对应探针采集相关数据：
 
-|   [JAVA](ddtrace-java.md){ .md-button .md-button--primary }    |  [C#(.net)](ddtrace-csharp.md){ .md-button .md-button--primary }   |    [Go](ddtrace-golang.md){ .md-button .md-button--primary }    |
+|   [:fontawesome-brands-java: JAVA](ddtrace-java.md){ .md-button .md-button--primary }    |  [:integrations-csharp: C#(.net)](ddtrace-csharp.md){ .md-button .md-button--primary }   |    [:material-language-go: Go](ddtrace-golang.md){ .md-button .md-button--primary }    |
 | :------------------------------------------------------------: | :----------------------------------------------------------------: | :-------------------------------------------------------------: |
-| [Node.js](ddtrace-nodejs.md){ .md-button .md-button--primary } |      [PHP](ddtrace-php.md){ .md-button .md-button--primary }       |  [Python](ddtrace-python.md){ .md-button .md-button--primary }  |
-|   [Ruby](ddtrace-ruby.md){ .md-button .md-button--primary }    | [.NET core](ddtrace-net-core.md){ .md-button .md-button--primary } | [阿里云 EDAS](aliyun-edas.md){ .md-button .md-button--primary } |
+| [:fontawesome-brands-node-js: Node.js](ddtrace-nodejs.md){ .md-button .md-button--primary } |      [:integrations-php: PHP](ddtrace-php.md){ .md-button .md-button--primary }       |  [:fontawesome-brands-python: Python](ddtrace-python.md){ .md-button .md-button--primary }  |
+|   [:material-language-ruby: Ruby](ddtrace-ruby.md){ .md-button .md-button--primary }    | [:material-dot-net: .NET core](ddtrace-net-core.md){ .md-button .md-button--primary } | [:integrations-aliyun: 阿里云 EDAS](aliyun-edas.md){ .md-button .md-button--primary } |
+|  [:octicons-link-external-16: 第三方数据接入](ddtrace-java.md){ .md-button .md-button--primary }    |  [ :fontawesome-solid-arrow-trend-up: ddtrace 高级用法](ddtrace-csharp.md){ .md-button .md-button--primary }   |      |
 
 <br />
 

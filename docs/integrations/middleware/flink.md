@@ -1,3 +1,6 @@
+---
+icon: integrations/flink
+---
 # Flink
 
 ---
@@ -232,5 +235,3 @@ systemctl restart datakit
 <[无数据上报排查](../../datakit/why-no-data.md)>
 
 ## 进一步阅读
-
-<[利用观测云观测 Apache Flink](../../best-practices/monitoring/flink.md)>

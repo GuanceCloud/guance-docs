@@ -4,7 +4,7 @@ ARG GUANCE_HELPS_OSS_AK_SECRET
 ARG GUANCE_HELPS_OSS_BUCKET
 ARG GUANCE_HELPS_OSS_ENDPOINT
 
-FROM registry.jiagouyun.com/basis/mkdocs:2.2 as build
+FROM registry.jiagouyun.com/basis/mkdocs:2.3 as build
 
 ARG release_env
 ARG GUANCE_HELPS_OSS_AK_ID
@@ -17,15 +17,16 @@ WORKDIR /dataflux-doc
 COPY ./ /dataflux-doc
 
 RUN \
+    fileArg=mkdocs.saas.yml; \
     if [ $release_env = "saas_production" ]; then \
         echo "SaaS Build ..."; \
         cp -r -f overrides-saas/* overrides/; \
     elif [ $release_env = "rtm" ]; then \
         echo "RTM Build ..."; \
         cp -r -f overrides-deploy/* overrides/; \
-    fi
-
-RUN mkdocs build
+        fileArg=mkdocs.yml; \
+    fi; \
+    mkdocs build -f ${fileArg}
 
 RUN \
     if [ $release_env = "saas_production" ]; then \

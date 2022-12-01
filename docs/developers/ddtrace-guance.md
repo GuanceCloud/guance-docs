@@ -22,7 +22,7 @@
 
 - [datakit-ddtrace 采集器配置](../datakit/ddtrace.md)
 - [ddtrace 配置](../best-practices/monitoring/apm.md#ddtrace) 
-- [ddtrace 高级用法](../best-practices/monitoring/ddtrace-skill.md)
+- [ddtrace 高级用法](../integrations/apm/ddtrace/index.md)
 - [DDtrace 自定义 Instrumentation](../best-practices/monitoring/ddtrace-instrumentation.md)
 
 ---

@@ -7,6 +7,81 @@ icon: zy/release-notes
 
 本文档记录观测云每次上线发布的更新内容说明，包括 DataKit、观测云最佳实践、观测云集成文档和观测云。
 
+## 2022 年 12 月 1 号
+
+### 观测云更新
+
+#### 应用性能新增服务清单功能
+
+应用性能监测服务清单，支持实时查看不同服务的所有权、依赖关系、性能、关联的仪表版以及关联分析，快速发现和解决服务的性能问题，帮助团队高效地构建及管理大规模的端到端的分布式应用。更多详情可参考文档 [服务清单](../application-performance-monitoring/service-catalog.md) 。
+
+![](img/9.service_list_7.gif)
+
+
+
+#### 仪表板图表使用体验优化
+
+- 新增图表单位、颜色、别名的手动输入，您可以按照当前的规范自定义预设单位、颜色和别名，如单位的输入格式为：聚合函数(指标)，如 `last(usage_idle)`
+- 时序图新增 Y 轴配置，您可以手动配置 Y 轴的最大值和最小值
+- 时序图、饼图新增分组显示，开启后图例中仅显示标签值
+- 蜂窝图、中国地图、世界地图新增渐变区间，包括自动和自定义
+- 柱状图、直方图显示优化
+
+更多详情可参考文档 [可视化图表](../scene/visual-chart/index.md) 。
+
+![](img/10.view_chart_1.gif)
+
+#### 视图变量使用体验优化
+
+- 视图变量新增支持多选
+- 视图变量配置时新增是否设置多个默认值
+
+更多详情可参考文档 [视图变量](../scene/view-variable.md) 。
+
+![](img/10.view_chart_2.png)
+
+#### 用户访问监测 Session 查看器调整
+
+在用户访问监测 Session 查看器，新增“会话”和“所有记录”查看列表：
+
+- 会话：统计当前时间范围内 Session（会话）去重后的数据，默认显示最新一条的 Session（会话）数据；
+- 所有记录：显示所有 Session（会话）的上报数据，同一个 Session（会话）可能对应多条数据。
+
+注意：在 Session 会话列表，支持添加显示列，若用户添加的显示列是当前 Session 数据内不存在的字段，那么在会话列表存在空数据的情况。更多详情可参考文档 [Session（会话）](../real-user-monitoring/explorer/session.md) 。
+
+![](img/6.rum_session_1.1.png)
+
+#### 事件新增移动端跳转选项
+
+用户在收到告警事件通知后，点击「前往观测云查看」可前往观测云移动端 APP 查看异常事件的详情信息。
+
+#### 其他功能优化
+
+- 新手引导页优化，支持最小化
+- 用户访问监测应用列表优化，新增时间控件自定义区间切换查询
+- 主机添加 Label 交互优化
+
+### 智能巡检更新
+
+- Kubernetes Pod 异常重启巡检
+- MySQL 性能巡检
+- 服务端应用错误巡检
+- 内存泄漏巡检
+- 磁盘使用率巡检
+- 应用性能巡检
+- 前端应用日志错误巡检
+
+更多智能巡检更新可参考 [智能巡检更新日志](../monitoring/bot-obs/changelog.md) 。
+
+### 最佳实践更新
+
+- 监控 Monitoring
+    - 应用性能监控 (APM) - 性能优化 - [利用 async-profiler 对应用性能调优](../best-practices/monitoring/async-profiler.md)
+
+更多最佳实践更新可参考 [最佳实践版本历史](../best-practices/index.md) 。
+
+
+
 ## 2022 年 11 月 17 号
 
 ### 观测云更新
@@ -33,7 +108,7 @@ icon: zy/release-notes
 
 在场景新建查看器时，支持选择日志、应用性能、用户访问、安全巡检、Profile 这 5 种数据类型，保存后不可更改。
 
-![](img/3.changelog_1.png)
+![](img/3.changelog_8.png)
 
 #### 成员管理新增成员分组功能
 
@@ -67,6 +142,26 @@ icon: zy/release-notes
 - 黑名单的应用性能监测新增支持过滤“全部服务”
 - “中国区4（广州）”站点注册的用户升级到商业版流程优化
 - 字段描述支持在快捷筛选、显示列等处查看
+
+### DataKit 更新
+
+- 新增 [SNMP 采集器](../datakit/snmp.md)
+- 新增 [IPMI 采集器](../datakit/ipmi.md)
+- 新增批量注入 [DDTrace-Java 工具](../developers/ddtrace-attach.md)
+- [最新 DDTrace-Java SDK](../developers/ddtrace-guance.md) 增强了 SQL 脱敏功能
+- 远程 Pipeline 优化
+    - Pipeline 支持来源映射关系配置，便于实现 Pipeline 和数据源之间的批量配置
+    - Pipeline 提供了函数分类信息，便于远程 Pipeline 编写
+- 优化 [Kafka 消息订阅](../datakit/kafkamq.md)，不再局限于获取 SkyWalking 相关的数据，同时支持限速、多版本覆盖、采样以及负载均衡等设定
+- 通过提供额外配置参数（`ENV_INPUT_CONTAINER_LOGGING_SEARCH_INTERVAL`），缓解短生命周期 Pod 日志采集问题
+- 纯容器环境下，支持 [通过 label 方式](../datakit/container-log.md#logging-with-annotation-or-label) 配置容器内日志采集
+- 新增 Pipeline 函数
+    - [sample()](../developers/pipeline.md#fn-sample)：采样函数
+    - [b64enc()](../developers/pipeline.md#fn-b64enc)：Base64 编码函数
+    - [b64dec()](../developers/pipeline.md#fn-b64dec)：Base64 解码函数
+    - [append()](../developers/pipeline.md#fn-append)：列表追加函数
+
+更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md) 。
 
 ### 最佳实践更新
 

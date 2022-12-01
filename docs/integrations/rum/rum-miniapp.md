@@ -1,3 +1,6 @@
+---
+icon: integrations/miniapp
+---
 # MiniAPP (小程序)
 
 ---

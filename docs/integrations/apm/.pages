@@ -9,3 +9,5 @@ nav:
   - 'Ruby': ddtrace-ruby.md
   - '.NET core': ddtrace-net-core.md
   - '阿里云 EDAS': aliyun-edas.md
+  - '第三方数据接入': others
+  - 'ddtrace 高级用法': ddtrace

@@ -1,4 +1,6 @@
-
+---
+icon: integrations/fluentd
+---
 # Fluentd
 ---
 
@@ -227,8 +229,6 @@ buffer_available_buffer_space_ratios 100
 | **fluentd.buffer_available_buffer_space_ratios** | 显示缓冲区的可用空间利用率 |
 
 ## 最佳实践
-
-<[如何利用观测云观测 Fluentd](../../best-practices/monitoring/fluentd.md)>
 
 ## 故障排查
 

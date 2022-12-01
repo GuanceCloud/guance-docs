@@ -1,3 +1,6 @@
+---
+icon: material/dot-net
+---
 # .NET core
 
 ---

@@ -43,7 +43,7 @@ buildBasis:
     - /basis-\d+/
   script:
     - docker buildx build --platform linux/arm64,linux/amd64
-      -t registry.jiagouyun.com/basis/mkdocs:2.2
+      -t registry.jiagouyun.com/basis/mkdocs:2.3
       -f Dockerfile.basis .
       --push
   tags:
@@ -59,7 +59,10 @@ buildRTM:
     - REPO=dataflux/$VDIR
     - TAG=${PROJECT}-${V[3]}-${V[4]}
     
-    - docker buildx build --platform linux/arm64,linux/amd64 -t pubrepo.jiagouyun.com/$REPO:$TAG . --push
+    - docker buildx build 
+      --build-arg release_env="rtm"
+      --platform linux/arm64,linux/amd64 
+      -t pubrepo.jiagouyun.com/$REPO:$TAG . --push
   tags:
     - cloudcare-multiarch 
 
@@ -73,7 +76,9 @@ buildRTMPrev:
     - REPO=dataflux-prev/$VDIR
     - TAG=${PROJECT}-${V[4]}
 
-    - docker build -t pubrepo.jiagouyun.com/$REPO:$TAG .
+    - docker build 
+      --build-arg release_env="rtm"
+      -t pubrepo.jiagouyun.com/$REPO:$TAG .
     - docker push pubrepo.jiagouyun.com/$REPO:$TAG
   tags:
     - cloudcare-multiarch 

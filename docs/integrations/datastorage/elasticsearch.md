@@ -1,3 +1,6 @@
+---
+icon: integrations/elasticsearch
+---
 # ElasticSearch
 ---
 
@@ -256,8 +259,6 @@ systemctl restart datakit
 ## [指标详解](../../../datakit/elasticsearch#elasticsearch_node_stats)
 
 ## 最佳实践
-
-<[ElasticSearch 可观测最佳实践](../../best-practices/monitoring/elasticsearch.md)>
 
 ## 故障排查
 

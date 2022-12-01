@@ -1,3 +1,6 @@
+---
+icon: integrations/clickhouse
+---
 # ClickHouse
 ---
 
@@ -144,11 +147,7 @@ vi clickhousev1.conf
 systemctl restart datakit
 ```
 
-4、 ClickHouse 指标采集验证 `/usr/local/datakit/datakit -M |egrep "最近采集|clickhouse"`
-
-![image](../imgs/input-clickhouse-2.png)
-
-5、 DQL 验证
+4、 DQL 验证
 
 ```bash
 [root@df-solution-ecs-018 prom]# datakit -Q
@@ -420,7 +419,7 @@ jemalloc_background_thread_run_intervals 0
 1 rows, 1 series, cost 14.096273ms
 ```
 
-6、 指标预览
+5、 指标预览
 
 ![image](../imgs/input-clickhouse-3.png)
 

@@ -1,7 +1,6 @@
 ---
 icon: fontawesome/solid/code-merge
 ---
-
 # CI/CD
 
 ---
@@ -10,11 +9,11 @@ icon: fontawesome/solid/code-merge
 
 <br />
 
-[**安装 DataKit**](../../datakit/datakit-install.md)之后，对于如下指标集，用户可通过{==**自定义开启内置插件**==}采集相关数据：
+[**安装 DataKit**](../../datakit/datakit-install.md)之后，对于如下指标集，用户可通过**自定义开启内置插件**采集相关数据：
 
-|                 {==**自定义开启**==}                  |                                                         |     |
+|                **自定义开启**                |                                                         |     |
 | :---------------------------------------------------: | :-----------------------------------------------------: | :-: |
-| [GitLab](gitlab.md){ .md-button .md-button--primary } | [Jenkins](jenkins.md){ .md-button .md-button--primary } |     |
+| [:fontawesome-brands-gitlab: GitLab](gitlab.md){ .md-button .md-button--primary } | [:fontawesome-brands-jenkins: Jenkins](jenkins.md){ .md-button .md-button--primary } |     |
 
 <br />
 

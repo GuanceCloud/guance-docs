@@ -1,4 +1,6 @@
-
+---
+icon: material/security
+---
 # Scheck (安全巡检)
 ---
 

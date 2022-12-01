@@ -16,12 +16,16 @@ icon: material/table-column-plus-after
 |  [CPU](default/cpu.md){ .md-button .md-button--primary }  | [Conntrack](default/conntrack.md){ .md-button .md-button--primary } | [DataKit](default/datakit.md){ .md-button .md-button--primary } |  [MEM](default/mem.md){ .md-button .md-button--primary }  |
 | [Disk](default/disk.md){ .md-button .md-button--primary } |    [DiskIO](default/diskio.md){ .md-button .md-button--primary }    |     [Net](default/net.md){ .md-button .md-button--primary }     | [Swap](default/swap.md){ .md-button .md-button--primary } | [System](default/system.md){ .md-button .md-button--primary } |
 
-|  {==**自定义开启**==}  |  |    |   |
+
+|  **自定义开启**  |  |    |   |
 | :---------------------------------------------------------: | :---------------------------------------------------------: | :---------------------------------------------------------: | :-------------------------------------------------------------: |
-| [Directory](directory.md){ .md-button .md-button--primary } |      [eBPF](ebpf.md){ .md-button .md-button--primary }      | [Processes](processes.md){ .md-button .md-button--primary } | [Scheck(安全巡检)](scheck.md){ .md-button .md-button--primary } |
-|                     {++**Telegraf**++}                      |                                                             |                                                             |                                                                 |
-|    [Chrony](chrony.md){ .md-button .md-button--primary }    | [DNS Query](dns-query.md){ .md-button .md-button--primary } |   [EthTool](ethtool.md){ .md-button .md-button--primary }   | [IPMI Sensor](ipmi-sensor.md){ .md-button .md-button--primary } |
-|   [NetStat](netstat.md){ .md-button .md-button--primary }   |      [NtpQ](ntpq.md){ .md-button .md-button--primary }      |  [ProcStat](procstat.md){ .md-button .md-button--primary }  |                                                                 |     |
+| [:octicons-file-directory-16: Directory](directory.md){ .md-button .md-button--primary } |      [:integrations-ebpf: eBPF](ebpf.md){ .md-button .md-button--primary }      | [:material-vector-square-plus: Processes](processes.md){ .md-button .md-button--primary } | [:material-security: Scheck(安全巡检)](scheck.md){ .md-button .md-button--primary } |
+
+
+| **Telegraf**   |                                                             |                                                             |                                                                 |
+| :---------------------------------------------------------: | :---------------------------------------------------------: | :---------------------------------------------------------: | :-------------------------------------------------------------: |
+|    [:material-clock-time-three-outline: Chrony](chrony.md){ .md-button .md-button--primary }    | [:material-dns-outline: DNS Query](dns-query.md){ .md-button .md-button--primary } |   [:integrations-ethtool: EthTool](ethtool.md){ .md-button .md-button--primary }   | [:fontawesome-solid-sliders: IPMI Sensor](ipmi-sensor.md){ .md-button .md-button--primary } |
+|   [:octicons-arrow-switch-16: NetStat](netstat.md){ .md-button .md-button--primary }   |      [:material-timeline-clock-outline: NtpQ](ntpq.md){ .md-button .md-button--primary }      |  [:material-camera-timer: ProcStat](procstat.md){ .md-button .md-button--primary }  |                                                                 |     |
 
 <br/>
 

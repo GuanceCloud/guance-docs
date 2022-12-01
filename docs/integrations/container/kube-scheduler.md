@@ -1,3 +1,6 @@
+---
+icon: integrations/k8s-sched
+---
 # Kubernetes Scheduler
 
 ---

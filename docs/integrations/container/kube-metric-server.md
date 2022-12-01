@@ -1,3 +1,6 @@
+---
+icon: material/kubernetes
+---
 # Kubernetes with Metric Server
 ---
 

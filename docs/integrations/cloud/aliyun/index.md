@@ -1,3 +1,6 @@
+---
+icon: integrations/aliyun
+---
 # 阿里云
 
 ---
@@ -15,8 +18,10 @@
 | :----: | :----: | :----: | :----: | :----: |
 | [MongoDB](aliyun-mongodb.md){ .md-button .md-button--primary } | [Redis 标准版](aliyun-redis.md){ .md-button .md-button--primary }  |  [OSS](aliyun-oss.md){ .md-button .md-button--primary }  |  [NAT](aliyun-nat.md){ .md-button .md-button--primary }   |  [SLS](aliyun-sls.md){ .md-button .md-button--primary }  |
 | [ECS](aliyun-ecs.md){ .md-button .md-button--primary }| [EIP](aliyun-eip.md){ .md-button .md-button--primary } | [CDN](aliyun-cdn.md){ .md-button .md-button--primary }| [SLB](aliyun-slb.md){ .md-button .md-button--primary }   | [ElasticSearch](aliyun-es.md){ .md-button .md-button--primary }|
-| [费用](aliyun-charges.md){ .md-button .md-button--primary }  |   |        |        |   |
+| [费用](aliyun-charges.md){ .md-button .md-button--primary }  | [ACK 集群](aliyun-ack.md){ .md-button .md-button--primary }  |        |        |   |
 
 <br/>
 
-其他云厂商集成文档：[AWS](../aws/index.md){ .md-button .md-button--primary }  [腾讯云](../tencent-cloud/index.md){ .md-button .md-button--primary }
+<br/>
+
+> 其他云厂商集成文档：[:integrations-aws: AWS](../aws/index.md){ .md-button .md-button--primary }  [:integrations-tencent: 腾讯云](../tencent/index.md){ .md-button .md-button--primary }  [:integrations-huawei: 华为云](../huawei/index.md){ .md-button .md-button--primary }

@@ -1,3 +1,6 @@
+---
+icon: integrations/redis
+---
 # Redis-sentinel
 ---
 

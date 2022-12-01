@@ -12,30 +12,6 @@ icon: zy/best-practices
 - 监控 Monitoring
     - 应用性能监控 (APM) - 性能优化 - [利用 async-profiler 对应用性能调优](./monitoring/async-profiler.md)。
   
-## (2022/11/11)
-
-### 新增最佳实践
-
-- 监控 Monitoring
-    - 应用性能监控 (APM) - [ddtrace 常见参数用法](./monitoring/ddtrace-skill-param.md)
-    - 应用性能监控 (APM) - [ddtrace-api 使用指南](./monitoring/ddtrace-skill-ddtrace-api.md)
-    - 应用性能监控 (APM) - [ddtrace 采样](./monitoring/ddtrace-skill-sampling.md)
-    - 应用性能监控 (APM) - [ddtrace log 关联](./monitoring/ddtrace-skill-log.md)
-	
-### 更新记录
-
-- 监控 Monitoring
-    - 应用性能监控 (APM) - [ddtrace 高级用法](./monitoring/ddtrace-skill.md)。<font color="red" > 内容采用最新版本重新校验，优化文档格式并进行分类拆分</font>
-
-
-
-## (2022/11/1)
-
-### 新增最佳实践
-
-- 云平台接入
-    - 阿里云 - [阿里云 ACK 接入观测云](./partner/aliyun-ack.md)。
-
 ## (2022/10/28)
 
 ### 新增最佳实践
@@ -142,20 +118,6 @@ icon: zy/best-practices
 - 洞见 Insight  
     - [基于观测云，使用 SkyWalking 实现 RUM、APM 和日志联动分析](insight/skywalking-apm-rum-log.md),<font color="red" > 新增skywalking 增加apm-spring-cloud-gateway 的使用说明</font>。
 
-
-## (2022/07/22)
-
-### 新增最佳实践
-
-- 云平台接入
-    - 腾讯云 - [腾讯云产品可观测最佳实践 (Function)](./partner/tencent-prod-func.md)。
-
-### 更新记录
-
-- 监控 Monitoring
-    - [ddtrace 高级用法](./monitoring/ddtrace-skill.md),<font color="red" > 新增“使用 Baggage 让业务关键 tag 在后端链路进行传递”、“采样”、“过滤Resource”、“log”等使用方法</font>。
-
-
 ## (2022/07/15)
 ### 新增最佳实践
 
@@ -183,8 +145,7 @@ icon: zy/best-practices
 - 接入集成
     - [主机可观测最佳实践 (Linux)](./monitoring/host-linux.md)
 ### 更新记录
-- 观测云小妙招
-    - [ddtrace 高级用法](./monitoring/ddtrace-skill.md)，<font color="red" > 新增了 采样、过滤Resource、入侵式埋点、log 配置。</font>
+
 - 接入（集成）最佳实践
     - [Nginx Ingress可观测最佳实践](./cloud-native/ingress-nginx.md)，<font color="red" > 默认忽略  build、le、method 等 tag。</font>
 
@@ -278,13 +239,7 @@ icon: zy/best-practices
 - 微服务可观测最佳实践
     - [基于 Istio 实现微服务可观测最佳实践](./cloud-native/istio.md)，<font color="red" >更新 istiod pod 的指标采集。</font>
    
-    - [Elasticsearch 可观测最佳实践](./monitoring/elasticsearch.md)，<font color="red" >更新一些链接和描述。</font>
-
 ## (2022/04/15)
-### 新增最佳实践
-
-- 自定义接入最佳实践
-    - [阿里云产品可观测最佳实践 (Function)](./partner/aliyun-prod-func.md)
 ### 更新记录
 
 - 云原生
@@ -295,12 +250,8 @@ icon: zy/best-practices
 - 观测云小妙招
     - [多微服务项目的性能可观测实践](./cloud-native/mutil-micro-service.md)
    
-    - [ddtrace 高级用法](./monitoring/ddtrace-skill.md)
     - [Kubernetes 集群使用 ExternalName 映射 DataKit 服务](./cloud-native/kubernetes-external-name.md)
 
-- 接入(集成)最佳实践
-    - [OpenTelemetry 链路数据接入最佳实践](./cloud-native/opentelemetry.md)
-   
    
 ### 更新记录
 
@@ -330,7 +281,6 @@ icon: zy/best-practices
 - 自定义接入最佳实践
     - [快速上手 pythond 采集器的最佳实践](./insight/pythond.md)
    
-    - [阿里云“云监控数据”集成最佳实践](./partner/aliyun-prod-func.md)
 - 日志最佳实践
     - [logback socket 日志采集最佳实践](./cloud-native/logback-socket.md)
 ### 更新记录
@@ -359,8 +309,6 @@ icon: zy/best-practices
 ## (2022/01/21)
 ### 新增最佳实践
 
-- 接入（集成）最佳实践
-    - [如何利用观测云观测 Fluentd](./monitoring/fluentd.md)
 - 场景最佳实践
     - [电商订单全流程可观测最佳实践](./insight/order.md)
 ### 更新记录
@@ -376,8 +324,7 @@ icon: zy/best-practices
 
 - 场景最佳实践
     - [电商订单监控视图最佳实践](./insight/order.md)
-- 接入（集成）最佳实践
-    - 利用观测云观测 Apache Flink
+
 - 技术理解
     - Influxdb 时间线简析
 ### 更新记录

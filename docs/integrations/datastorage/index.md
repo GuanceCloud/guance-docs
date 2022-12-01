@@ -10,19 +10,18 @@ icon: fontawesome/solid/database
 
 <br />
 
-[**安装 DataKit**](../../datakit/datakit-install.md)之后，对于如下指标集，用户可通过{==**自定义开启内置插件**==}或 {++**Prometheus**++} 采集相关数据：
+[**安装 DataKit**](../../datakit/datakit-install.md)之后，对于如下指标集，用户可通过**自定义开启内置插件**或  **Prometheus** 采集相关数据：
 
-| {==**自定义开启**==}  |    |      |     |      | 
-| --------- | ---- | ---- | ---- | ---- |
-| [MySQL](mysql.md){ .md-button .md-button--primary } | [Oracle](oracle.md){ .md-button .md-button--primary } | [PostgreSQL](postgresql.md){ .md-button .md-button--primary } | [SQLServer](sqlserver.md){ .md-button .md-button--primary }   | [ClickHouse](clickhouse.md){ .md-button .md-button--primary } |
-| [MongoDB](mongodb.md){ .md-button .md-button--primary } | [Redis](redis.md){ .md-button .md-button--primary }  | [Memcached](memcached.md){ .md-button .md-button--primary }  | [ElasticSearch](elasticsearch.md){ .md-button .md-button--primary } |   | 
-| {++**Prometheus**++} |     |    |    |
-| [Aerospike](aerospike.md){ .md-button .md-button--primary }  | [MinIO](minio.md){ .md-button .md-button--primary } | [Redis-sentinel](redis-sentinel.md){ .md-button .md-button--primary } |        |
+| **自定义开启** |    |      |     |      | 
+| :---------: | :----: | :----: | :----: | :----: |
+| [:integrations-mysql: MySQL](mysql.md){ .md-button .md-button--primary } | [:integrations-oracle: Oracle](oracle.md){ .md-button .md-button--primary } | [:integrations-postgresql: PostgreSQL](postgresql.md){ .md-button .md-button--primary } | [:integrations-sqlserver: SQLServer](sqlserver.md){ .md-button .md-button--primary }   | [:integrations-clickhouse: ClickHouse](clickhouse.md){ .md-button .md-button--primary } |
+| [:integrations-mongodb: MongoDB](mongodb.md){ .md-button .md-button--primary } | [:integrations-redis: Redis](redis.md){ .md-button .md-button--primary }  | [:integrations-memcached: Memcached](memcached.md){ .md-button .md-button--primary }  | [:integrations-elasticsearch: ElasticSearch](elasticsearch.md){ .md-button .md-button--primary } |   | 
+
+
+| **Prometheus** |     |    |    |
+| :----: | :----: | :---: | :----: |
+| [:integrations-aerospike: Aerospike](aerospike.md){ .md-button .md-button--primary }  | [:integrations-minio: MinIO](minio.md){ .md-button .md-button--primary } | [:integrations-redis: Redis-sentinel](redis-sentinel.md){ .md-button .md-button--primary } |        |
 
 <br/>
 
 **开始[安装 DataKit](../../datakit/datakit-install.md)，开启你的观测云之旅！**
-
-<br/>
-
-<br/>

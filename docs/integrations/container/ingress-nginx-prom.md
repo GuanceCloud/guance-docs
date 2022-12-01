@@ -1,3 +1,6 @@
+---
+icon: integrations/ng-ingress
+---
 # Ingress Nginx (Prometheus)
 
 ---
@@ -8,13 +11,14 @@ Ingress 性能指标展示，包括 Ingress Controller 的平均 CPU 使用率�
 
 ![image](../imgs/ingress-nginx-prom-1.png)
 
+
+## 前置条件
+
+- 安装 DataKit：登录[观测云控制台](https://console.guance.com/)，点击「集成」 - 「DataKit」 - 「Kubernetes」
 ## 安装部署
 
 说明：示例 Ingress 版本为 willdockerhub/ingress-nginx-controller:v1.0.0(CentOS 环境下 kubeadmin 部署)，各个不同版本指标可能存在差异。
 
-### 前置条件
-
-- 登录[观测云](https://console.guance.com/)：「集成」 - 「DataKit」 - 「Kubernetes」
 
 ### 配置实施
 
