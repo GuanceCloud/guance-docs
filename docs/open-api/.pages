@@ -10,7 +10,7 @@ nav:
   - '笔记': notes
   - '事件': keyevent
   - '基础设施': objects
-  - '监视器分组': monitor
+  - '告警策略管理': monitor
   - '监视器': checker
   - '自建监控器': self-built-checker
   - '静默配置': mute

@@ -1,6 +1,6 @@
 nav:
-  - '获取监控器分组列表': list.md
-  - '创建一个监控器分组': create.md
-  - '获取一个监控器分组': get.md
-  - '修改一个监控器分组': modify.md
-  - '删除一个监控器分组': delete.md
+  - '获取告警策略列表': list.md
+  - '创建一个告警策略': create.md
+  - '获取一个告警策略': get.md
+  - '修改一个告警策略': modify.md
+  - '删除一个告警策略': delete.md

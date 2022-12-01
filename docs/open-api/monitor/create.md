@@ -1,11 +1,11 @@
-# 创建一个监控器分组
+# 创建一个告警策略
 
 ---
 
 <br />**post /api/v1/monitor/group/create**
 
 ## 概述
-创建一个监控器分组
+创建一个告警策略
 
 
 
@@ -15,7 +15,7 @@
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
 | type | string |  | 触发规则类型, 默认为`custom`<br>允许为空: True <br> |
-| name | string | Y | 分组名<br>允许为空: False <br> |
+| name | string | Y | 告警策略名<br>允许为空: False <br> |
 | alertOpt | json |  | 告警设置<br>允许为空: False <br> |
 | alertOpt.silentTimeout | integer |  | 告警设置<br>允许为空: False <br> |
 | alertOpt.alertTarget | array |  | 触发动作<br>允许为空: False <br> |
