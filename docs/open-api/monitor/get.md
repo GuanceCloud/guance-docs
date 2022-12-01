@@ -1,11 +1,11 @@
-# 获取一个监控器分组
+# 获取一个告警策略
 
 ---
 
 <br />**get /api/v1/monitor/group/\{monitor_uuid\}/get**
 
 ## 概述
-获取一个监控器分组
+获取一个告警策略
 
 
 
@@ -14,7 +14,7 @@
 
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
-| monitor_uuid | string | Y | 监视器分组UUID<br> |
+| monitor_uuid | string | Y | 告警策略UUID<br> |
 
 
 ## 参数补充说明

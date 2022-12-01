@@ -1,11 +1,11 @@
-# 删除一个监控器分组
+# 删除一个告警策略
 
 ---
 
 <br />**post /api/v1/monitor/group/\{monitor_uuid\}/delete**
 
 ## 概述
-根据`monitor_uuid`删除指定的监控器分组, 并将该分组下的 检查器转移至【默认分组】下
+根据`monitor_uuid`删除指定的告警策略, 并将该分组下的 检查器转移至【默认分组】下
 
 
 
@@ -14,7 +14,7 @@
 
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
-| monitor_uuid | string | Y | 监视器分组UUID<br> |
+| monitor_uuid | string | Y | 告警策略UUID<br> |
 
 
 ## 参数补充说明
