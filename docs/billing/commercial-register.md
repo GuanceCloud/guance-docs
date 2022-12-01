@@ -90,4 +90,4 @@ AWS账号结算是指直接通过AWS账户进行充值结算，一个AWS账号�
 
 在观测云付费计划与账单，可以看到当前工作空间为“商业版”。
 
-![](img/11.account_center_10.png)
+![](img/12.billing_1.png)
