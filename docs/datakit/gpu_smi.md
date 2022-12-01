@@ -26,7 +26,8 @@ SMI 指标展示：包括 GPU 卡温度、时钟、GPU占用率、内存占用�
 [[inputs.gpu_smi]]
   ##the binPath of gpu-smi 
   ##if nvidia GPU
-  #(example & default) ["/usr/bin/nvidia-smi"]
+  #(example & default) bin_paths = ["/usr/bin/nvidia-smi"]
+  #(example windows) bin_paths = ["nvidia-smi"]
   ##if lluvatar GPU
   #(example) bin_paths = ["/usr/local/corex/bin/ixsmi"]
   #(example) envs = [ "LD_LIBRARY_PATH=/usr/local/corex/lib/:$LD_LIBRARY_PATH" ]
