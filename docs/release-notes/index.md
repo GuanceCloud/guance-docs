@@ -27,7 +27,7 @@ icon: zy/release-notes
 - 蜂窝图、中国地图、世界地图新增渐变区间，包括自动和自定义
 - 柱状图、直方图显示优化
 
-更多详情可参考文档 [可视化图表](../scene/visual-chart.md) 。
+更多详情可参考文档 [可视化图表](../scene/visual-chart/index.md) 。
 
 ![](img/10.view_chart_1.gif)
 
