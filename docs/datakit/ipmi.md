@@ -68,8 +68,8 @@ Temp             | 0Fh | ok  |  3.2 | 45 degrees C
     ```toml
         
     [[inputs.ipmi]]
-      ## If you have so many servers that 10 seconds can't finish the job. 
-      ## You can start multiple collectors. 
+      ## If you have so many servers that 10 seconds can't finish the job.
+      ## You can start multiple collectors.
     
       ## (Optional) collect interval: (defaults to "10s").
       interval = "10s"
@@ -77,7 +77,7 @@ Temp             | 0Fh | ok  |  3.2 | 45 degrees C
       ## Set true to enable election
       election = true
     
-      ## The binPath of ipmitool 
+      ## The binPath of ipmitool
       ## (Example) bin_path = "/usr/bin/ipmitool"
       bin_path = "/usr/bin/ipmitool"
     
@@ -128,7 +128,7 @@ Temp             | 0Fh | ok  |  3.2 | 45 degrees C
       regexp_voltage = ["voltage"]
     
       ## key words of power.
-      ## (Example) regexp_power = ["pwr"] 
+      ## (Example) regexp_power = ["pwr"]
       regexp_power = ["pwr"]
     
       ## key words of temp.
@@ -150,7 +150,7 @@ Temp             | 0Fh | ok  |  3.2 | 45 degrees C
       ## key words of status.
       ## (Example) regexp_status = ["fan","slot","drive"]
       regexp_status = ["fan","slot","drive"]
-      
+    
     [inputs.ipmi.tags]
       # some_tag = "some_value"
       # more_tag = "some_other_value"
@@ -227,8 +227,7 @@ IPMI 采集器支持选举功能，当多台机器运行 DataKit 时，通过选
 
 | 标签名 | 描述    |
 |  ----  | --------|
-|`host`|主机名|
-|`server`|被监测设备名|
+|`host`|被监测主机名|
 |`unit`|设备内单元名|
 
 - 指标列表
@@ -252,7 +251,7 @@ IPMI 采集器支持选举功能，当多台机器运行 DataKit 时，通过选
 
 ```
  [监控] -> [监控器] -> [新建监控器] 选 [阈值检测] -> 输入[规则名称]
- [指标] 选 [指标] -> [指标集] 选 [ipmi] -> [具体指标]选 [warning] -> 下一栏选 [Max] -> by[检测维度] 选 [host]+[server]
+ [指标] 选 [指标] -> [指标集] 选 [ipmi] -> [具体指标]选 [warning] -> 下一栏选 [Max] -> by[检测维度] 选 [host]
  [紧急] 填写 [999] -> [重要] 填写 [1] -> [警告] 填写 [888] -> [正常] 填写 [N]
 ```
 
