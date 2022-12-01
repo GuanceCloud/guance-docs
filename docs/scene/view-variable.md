@@ -19,7 +19,7 @@
 
 在视图变量编辑页面，您可以选择「数据来源」，输入/选择「变量查询」、「默认值」、「变量名」、「显示名」，设置是否隐藏、排序、删除等操作。数据来源包括指标、DQL、系统对象、自定义对象、日志、应用性能、用户访问、安全巡检和自定义
 
-![](img/8.variable_1.png)
+![](img/variable.png)
 
 ### 变量查询
 
@@ -73,49 +73,49 @@ O::docker_containers:(distinct(`container_name`)) {`host`=`#{host}`}[10m]
 ```
 
 
-![](img/8.variable_3.png)
+![](img/11.variable_3.png)
 
 #### 指标查询
 
 选择【指标集】以及对应的【标签】
 
-![](img/8.variable_4.png)
+![](img/11.variable_4.png)
 
 #### 基础设施查询
 
 选择【分类】以及对应的【标签/属性】
 
-![](img/8.variable_5.png)
+![](img/11.variable_5.png)
 
 #### 日志查询
 
 选择【日志来源】以及对应的【属性】
 
-![](img/8.variable_6.png)
+![](img/11.variable_6.png)
 
 #### 应用性能查询
 
 选择【属性】
 
-![](img/8.variable_7.png)
+![](img/11.variable_7.png)
 
 #### 用户访问查询
 
 选择【数据分类】以及对应的【属性】
 
-![](img/8.variable_8.png)
+![](img/11.variable_8.png)
 
 #### 安全巡检查询
 
 选择【属性】
 
-![](img/8.variable_9.png)
+![](img/11.variable_9.png)
 
 #### 自定义查询
 
 自定义变量选项中的内容，每个选项之间用英文 “,” 隔开。
 
-![](img/8.variable_10.png)
+![](img/11.variable_10.png)
 
 ### 变量设置
 
@@ -135,8 +135,6 @@ O::docker_containers:(distinct(`container_name`)) {`host`=`#{host}`}[10m]
 | 拖动排序 | 通过鼠标悬浮（hover）至图标，可点击拖动视图变量，调节先后顺序 |
 | 排序 | 针对查询返回的视图变量进行默认、升降、排序排列。 |
 | 是否隐藏 | 开启该功能后，在非编辑模式下，该变量不可见，顶部导航栏显示「添加视图变量」按钮 |
-
-![](img/8.variable_2.png)
 
 ## 如何使用视图变量
 
