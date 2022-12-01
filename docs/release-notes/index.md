@@ -40,6 +40,17 @@ icon: zy/release-notes
 
 ![](img/10.view_chart_2.png)
 
+#### 用户访问监测 Session 查看器调整
+
+在用户访问监测 Session 查看器，新增“会话”和“所有记录”查看列表：
+
+- 会话：统计当前时间范围内 Session（会话）去重后的数据，默认显示最新一条的 Session（会话）数据；
+- 所有记录：显示所有 Session（会话）的上报数据，同一个 Session（会话）可能对应多条数据。
+
+更多详情可参考文档 [Session（会话）](../real-user-monitoring/explorer/session.md) 。
+
+![](img/6.rum_session_1.1.png)
+
 #### 事件新增移动端跳转选项
 
 用户在收到告警事件通知后，点击「前往观测云查看」可前往观测云移动端 APP 查看异常事件的详情信息。
