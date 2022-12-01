@@ -31,3 +31,11 @@ icon: zy/application-performance-monitoring
 - [错误追踪](error.md)：支持查看链路中类似错误的产生历史趋势及其分布情况，帮助快速定位错误问题；
 - [Profile](profile.md)：支持查看应用程序运行过程中 CPU、内存和 I/O 的使用情况，通过火焰图实时展示每一个方法、类和线程的调用关系和执行效率，帮助优化代码性能；
 - [应用性能指标检测](../monitoring/monitor/application-performance-detection.md)：支持通过配置应用性能监控器，及时发现异常链路。
+
+## 数据存储策略
+
+观测云为应用性能数据提供 3 天、7 天、14 天三种数据存储时长选择，您可以按照需求在「管理」-「基本设置」-「变更数据存储策略」中调整。更多数据存储策略可参考文档 [数据存储策略](https://preprod-docs.cloudcare.cn/billing/billing-method/data-storage/) 。
+
+## 数据计费规则
+
+观测云支持按需购买，按量付费的计费方式。应用性能监测计费统计当前空间下，trace_id 的数量，采用梯度计费模式，更多计费规则可参考文档 [计费方式](../billing/billing-method/index.md) 。
