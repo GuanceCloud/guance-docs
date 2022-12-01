@@ -142,10 +142,6 @@ pipeline = "mongod.p"
 systemctl restart datakit
 ```
 
-MongoDB 日志采集验证  `/usr/local/datakit/datakit -M |egrep "最近采集|mongodb_log"`
-
-![image](../imgs/input-mongodb-5.png)
-
 #### 插件标签 (非必选)
 
 参数说明

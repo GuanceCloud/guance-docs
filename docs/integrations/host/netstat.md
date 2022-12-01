@@ -45,15 +45,6 @@ cp netstat.conf.sample netstat.conf
 systemctl restart datakit
 ```
 
-3、 指标验证
-
-```
-NetStat 指标采集验证  `/usr/local/datakit/datakit -M |egrep "最近采集|netstat"
-```
-有数据返回 (行协议)，代表能够正常采集
-
-![image](../imgs/input-netstat-2.png)
-
 #### 插件标签 (非必选)
 
 参数说明
