@@ -6,7 +6,7 @@
 - 安装 DataKit（[DataKit 安装文档](../../datakit/datakit-install.md)）
 
 ## 应用接入
-当前 Flutter 版本暂只支持 Android 和 iOS 平台。登录 “观测云” 控制台，进入「应用监测」页面，点击右上角「新建应用」，在新窗口输入「应用名称」，点击「创建」，然后相应接入的平台，即可开始配置。
+当前 Flutter 版本暂只支持 Android 和 iOS 平台。登录观测云控制台，进入「应用监测」页面，点击右上角「新建应用」，在新窗口输入「应用名称」，点击「创建」，然后相应接入的平台，即可开始配置。
 
 ![](../img/image_12.png)
 
@@ -218,7 +218,7 @@ FTRUMManager().starView("Current Page Name");
          
 FTRUMManager().stopView();
 ```
- 
+
 如果需要采集应用休眠和唤醒行为需要添加如下代码：
 
 ```dart

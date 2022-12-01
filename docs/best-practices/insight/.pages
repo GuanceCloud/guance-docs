@@ -20,7 +20,6 @@ nav:
     - 'DataKit 批量部署最佳实践': datakit-ansible.md
     - 'TAG在观测云中的最佳实践': tag.md
     - 'Datakit版本更新最佳实践': datakit-update.md
-    - '观测云-数据采样最佳实践': data-simpling.md
     - '快速上手 Pythond 采集器的最佳实践': pythond.md
     - 'DataKit 配置 HTTPS': datakit-https.md
 

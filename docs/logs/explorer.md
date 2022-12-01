@@ -13,7 +13,7 @@
 
     在观测云工作空间「日志」-「查看器」中，选择「所有日志」即可基于采集的原始日志数据进行查看和分析。
     
-    ![Image title](img/5.log_1.png)
+    ![](img/5.log_1.png)
 
 === "聚类分析"
 
@@ -21,13 +21,13 @@
     
     点击 Pattern 聚类列表，即可划出当前所有的 Pattern 聚类列表，返回数据列表按照时间倒序排列，支持显示最近50条日志数据，可选择 1行、3行、10行的方式显示。点击“关联日志”列表，可查看对应的日志详情。
     
-    ![Image title](img/5.log_2.png)
+    ![](img/5.log_2.png)
 
 === "图表分析"
 
     在观测云工作空间「日志」-「查看器」中，选择右上角「分析」即可对原始日志数据基于**1-3个标签**进行分组统计，以反映出日志数据在不同的分组下，不同时间的分布特征与趋势。观测云支持多种分组数据浏览方式：时序图、排行榜、饼图和矩形树图。更多详情可参考文档 [查看器的分析模式](../getting-started/necessary-for-beginners/explorer-search.md#analysis) 。
     
-    ![Image title](img/5.log_analysis.gif)
+    ![](img/5.log_analysis.gif)
 
 
 ## 日志详情
@@ -79,13 +79,13 @@
     
     - 指标视图：可查看相关主机**在该日志结束前30分钟到日志结束后30分钟内**的性能指标状态，包括相关主机的CPU、内存等性能指标视图。
     
-    ![Image title](img/1.log_4.png)
+    ![](img/1.log_4.png)
     
     - 属性视图：帮助您回溯日志产生时主机对象的真实情况，支持查看相关主机**在对应时间内产生的最新一条对象数据**，包括主机的基本信息、集成运行情况。若开启云主机的采集，还可查看云厂商的信息。
     
     注意：观测云默认保存主机对象最近 48 小时的历史数据。未找到当前日志时间对应的主机历史数据时，你将无法查看关联主机的属性视图。
     
-    ![Image title](img/1.log_4.1.png)
+    ![](img/1.log_4.1.png)
 
 === "链路"
 
@@ -93,11 +93,11 @@
     
     - 火焰图
     
-    ![Image title](img/6.log_10.png)
+    ![](img/6.log_10.png)
     
     - Span列表
     
-    ![Image title](img/6.log_11.png)
+    ![](img/6.log_11.png)
 
 
 === "容器"
@@ -106,11 +106,11 @@
     
     - 属性视图：帮助您回溯日志产生时容器对象的真实情况，支持查看相关容器**在对应时间内产生最新的一条对象数据**，包括容器的基本信息、属性信息。
     
-    ![Image title](img/6.log_5.png)
+    ![](img/6.log_5.png)
     
     - 指标视图：支持查看相关容器**在该日志结束前30分钟到日志结束后30分钟**的性能指标状态，包括容器CPU、内存等性能指标视图。
     
-    ![Image title](img/6.log_6.png)
+    ![](img/6.log_6.png)
 
 === "Pod"
 
@@ -118,11 +118,11 @@
     
     - 属性视图：帮助您回溯日志产生时容器 pod 对象的真实情况，支持查看相关容器pod **在对应时间内最新的一条对象数据**，包括 pod 的基本信息、属性信息。
     
-    ![Image title](img/6.log_pod_1.png)
+    ![](img/6.log_pod_1.png)
     
     - 指标视图：支持查看相关容器 pod **在该日志结束前30分钟到日志结束后30分钟**的性能指标状态，包括 Pod CPU、内存等性能指标视图。
     
-    ![Image title](img/6.log_pod_2.png)
+    ![](img/6.log_pod_2.png)
 
 === "指标"
 
@@ -130,21 +130,21 @@
     
     - Service指标
     
-    ![Image title](img/6.log_7.png)
+    ![](img/6.log_7.png)
     
     - Project指标
     
-    ![Image title](img/6.log_9.png)
+    ![](img/6.log_9.png)
     
     - Source指标
     
-    ![Image title](img/6.log_8.png)
+    ![](img/6.log_8.png)
 
 === "网络"
 
     观测云支持您通过详情页下方的「网络」，查看相关视图（包括主机、Pod 和 Deployment）的数据连接情况。 
     
-    ![Image title](img/12.network_detail_1.png)
+    ![](img/12.network_detail_1.png)
     
     **匹配字段**
     
@@ -168,7 +168,7 @@
     - 拖动后，查询的是历史网络数据；
     - 拖动后，点击「播放」按钮或刷新页面，回到查看「最近 1 小时」的网络数据。
     
-    ![Image title](img/2.log_detail_4.png)
+    ![](img/2.log_detail_4.png)
 
 
 ## 日志查询与分析

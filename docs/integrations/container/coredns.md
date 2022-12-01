@@ -204,10 +204,9 @@ systemctl restart datakit
 
 <场景 - 新建仪表板 - 模板库 - 系统视图 - CoreDNS 监控视图>
 
-## [指标详解](../../../datakit/consul#measurements)
+## [指标详解](../../../datakit/coredns#metrics)
 
 ## 最佳实践
-
 
 ## 故障排查
 

@@ -7,7 +7,7 @@ Flutter  数据采集依赖于 Android iOS Native 框架，为了与 Android iOS
 
 ## 数据类型
 
-“观测云”的用户访问监测包括六种数据类型。
+观测云的用户访问监测包括六种数据类型。
 
 | **类型** | **描述** |
 | --- | --- |
@@ -19,9 +19,9 @@ Flutter  数据采集依赖于 Android iOS Native 框架，为了与 Android iOS
 | action | 记录移动应用程序中的用户活动（应用程序启动，点击，滑动，后退等）。每个动作都附加有唯一的action_id。 |
 
 
-## 默认属性
+## 全局属性
 
-默认属性为全局属性，用户访问监测的场景构建和事件告警都可以通过下面的默认属性进行查询。
+用户访问监测的场景构建和事件告警都可以通过下面的全局属性进行查询。
 
 ### SDK属性
 
@@ -72,29 +72,25 @@ wifi &#124; 2g &#124; 3g &#124; 4g &#124; 5g &#124; unknown（未知网络）&#1
 | `province` | string | 省 |
 | `city` | string | 城市 |
 
-### View 属性
+## 自定义属性
 
-| **字段** | **类型** | **描述** |
-| --- | --- | --- |
-| `view_id` | string | 每次访问页面时产生的唯一ID |
-| `is_active` | boolean | 判断用户是否还在活跃状态，参考值: true &#124; false |
-| `view_referrer` | string | 页面来源，页面的父级 |
-| `view_name` | string | 页面名称 |
-
-### Action 属性
-
-| **字段** | **类型** | **描述** |
-| --- | --- | --- |
-| `action_id` | string | 用户页面操作时产生的唯一ID |
-| `action_name` | string | 操作名称 |
-
-## 用户属性
-
-除了默认属性以外，还可以通过用户属性构建场景和配置事件告警。用户属性是非全局属性，通过用户属性，可以跟踪用户访问应用的整个过程，定位和发现用户受影响的访问情况，监控用户访问性能。
+除了全局属性以外，还可以通过自定义属性（**SDK 支持用户打自定义的 tag 数据**）构建场景和配置事件告警。自定义属性是非全局属性，通过自定义属性，可以跟踪用户访问应用的整个过程，定位和发现用户受影响的访问情况，监控用户访问性能。
 
 ## 其他数据类型属性
 
 ### Session 
+
+#### 属性
+
+| 字段                      | 类型   | 描述                                                         |
+| ------------------------- | ------ | ------------------------------------------------------------ |
+| `session_id`              | string | 会话id（后台停留30s以上，会生成一个新的session_id）          |
+| `session_type`            | string | 会话类型。参考值：user &#124; test<br>user表示是RUM功能产生的数据；<br>test表示是headless拨测产生的数据。 |
+| `session_referrer`        | string | 会话来源。一般是记录来源的页面地址。                         |
+| `session_first_view_id`   | string | 当前会话的第一个页面的view_id                                |
+| `session_first_view_name` | string | 当前会话的第一个页面的URL                                    |
+| `session_last_view_id`    | string | 当前会话的最后一个访问页面的view_id                          |
+| `session_last_view_name`  | string | 当前会话的最后一个页面的URL                                  |
 
 #### 统计指标
 
@@ -107,20 +103,16 @@ wifi &#124; 2g &#124; 3g &#124; 4g &#124; 5g &#124; unknown（未知网络）&#1
 | `session_action_count` | number | 当前会话用户操作次数 |
 | <del>`session_long_task_count`</del> | number | <del>当前会话产生长任务次数</del> |
 
+### View 
+
 #### 属性
 
-| 字段 | 类型 | 描述 |
-| --- | --- | --- |
-| `session_id` | string | 会话id（后台停留30s以上，会生成一个新的session_id） |
-| `session_type` | string | 会话类型。参考值：user &#124; test<br>user表示是RUM功能产生的数据；<br>test表示是headless拨测产生的数据。 |
-| `session_referrer` | string | 会话来源。一般是记录来源的页面地址。 |
-| `session_first_view_id` | string | 当前会话的第一个页面的view_id |
-| `session_first_view_name` | string | 当前会话的第一个页面的URL |
-| `session_last_view_id` | string | 当前会话的最后一个访问页面的view_id |
-| `session_last_view_name` | string | 当前会话的最后一个页面的URL |
-
-
-### View 
+| **字段**        | **类型** | **描述**                                            |
+| --------------- | -------- | --------------------------------------------------- |
+| `view_id`       | string   | 每次访问页面时产生的唯一ID                          |
+| `is_active`     | boolean  | 判断用户是否还在活跃状态，参考值: true &#124; false |
+| `view_referrer` | string   | 页面来源，页面的父级                                |
+| `view_name`     | string   | 页面名称                                            |
 
 #### 指标
 
@@ -138,8 +130,30 @@ wifi &#124; 2g &#124; 3g &#124; 4g &#124; 5g &#124; unknown（未知网络）&#1
 | <del>`view_long_task_count`</del>| number | <del>每次页面加载时产生的长任务个数</del> |
 | `view_action_count` | number | 页面查看过程中操作的次数 |
 
-
 ### Resource
+
+#### View 属性
+
+| **字段**        | **类型** | **描述**                                            |
+| --------------- | -------- | --------------------------------------------------- |
+| `view_id`       | string   | 每次访问页面时产生的唯一ID                          |
+| `is_active`     | boolean  | 判断用户是否还在活跃状态，参考值: true &#124; false |
+| `view_referrer` | string   | 页面来源，页面的父级                                |
+| `view_name`     | string   | 页面名称                                            |
+
+#### Resource 属性
+
+| **字段**                  | **类型** | **描述**                 |
+| ------------------------- | -------- | ------------------------ |
+| `resource_url`            | string   | 资源URL                  |
+| `resource_url_host`       | string   | 资源URL 域名部分         |
+| `resource_url_path`       | string   | 资源URL path部分         |
+| `resource_url_query`      | string   | 资源URL query部分        |
+| `resource_url_path_group` | string   | 资源URL path分组         |
+| `resource_type`           | string   | 资源的类别               |
+| `resource_method`         | string   | 资源请求方式             |
+| `resource_status`         | string   | 资源请求返回的状态值     |
+| `resource_status_group`   | string   | 资源请求返回的状态分组值 |
 
 #### 指标
 
@@ -154,24 +168,18 @@ wifi &#124; 2g &#124; 3g &#124; 4g &#124; 5g &#124; unknown（未知网络）&#1
 | <del>`resource_first_byte` </del>| number（ns） | <del>资源加载首包时间<br>计算方式：responseStart - domainLookupStart </del>|
 | <del>`duration`</del>| number（ns） | <del>资源加载时间<br>计算方式：duration(responseEnd-startTime) </del>|
 
-#### 属性
-
-| **字段** | **类型** | **描述** |
-| --- | --- | --- |
-| `resource_url` | string | 资源URL |
-| `resource_url_host` | string | 资源URL 域名部分 |
-| `resource_url_path` | string | 资源URL path部分 |
-| `resource_url_query` | string | 资源URL query部分 |
-| `resource_url_path_group` | string | 资源URL path分组 |
-| `resource_type` | string | 资源的类别 |
-| `resource_method` | string | 资源请求方式 |
-| `resource_status` | string | 资源请求返回的状态值 |
-| `resource_status_group` | string | 资源请求返回的状态分组值 |
-
-
 ### Error
 
-#### 属性
+#### View 属性
+
+| **字段**        | **类型** | **描述**                                            |
+| --------------- | -------- | --------------------------------------------------- |
+| `view_id`       | string   | 每次访问页面时产生的唯一ID                          |
+| `is_active`     | boolean  | 判断用户是否还在活跃状态，参考值: true &#124; false |
+| `view_referrer` | string   | 页面来源，页面的父级                                |
+| `view_name`     | string   | 页面名称                                            |
+
+#### Error 属性
 
 | **字段** | **类型** | **描述** |
 | --- | --- | --- |
@@ -192,8 +200,16 @@ wifi &#124; 2g &#124; 3g &#124; 4g &#124; 5g &#124; unknown（未知网络）&#1
 | `resource_url_path_group` | string | 资源URL path分组 |
 | `resource_method` | string | 资源请求方式 |
 
-
 ### Long Task
+
+#### View 属性
+
+| **字段**        | **类型** | **描述**                                            |
+| --------------- | -------- | --------------------------------------------------- |
+| `view_id`       | string   | 每次访问页面时产生的唯一ID                          |
+| `is_active`     | boolean  | 判断用户是否还在活跃状态，参考值: true &#124; false |
+| `view_referrer` | string   | 页面来源，页面的父级                                |
+| `view_name`     | string   | 页面名称                                            |
 
 #### 指标
 
@@ -203,8 +219,24 @@ wifi &#124; 2g &#124; 3g &#124; 4g &#124; 5g &#124; unknown（未知网络）&#1
 | `long_task_message` | string | 卡顿信息 |
 | `long_task_stack` | string | 卡顿堆栈 |
 
-
 ### Action
+
+#### View 属性
+
+| **字段**        | **类型** | **描述**                                            |
+| --------------- | -------- | --------------------------------------------------- |
+| `view_id`       | string   | 每次访问页面时产生的唯一ID                          |
+| `is_active`     | boolean  | 判断用户是否还在活跃状态，参考值: true &#124; false |
+| `view_referrer` | string   | 页面来源，页面的父级                                |
+| `view_name`     | string   | 页面名称                                            |
+
+#### Action 属性
+
+| **字段**      | **类型** | **描述**                            |
+| ------------- | -------- | ----------------------------------- |
+| `action_id`   | string   | 用户页面操作时产生的唯一ID          |
+| `action_name` | string   | 操作名称                            |
+| `action_type` | string   | 操作类型(冷热启动，click点击等操作) |
 
 #### 指标
 
@@ -219,15 +251,6 @@ wifi &#124; 2g &#124; 3g &#124; 4g &#124; 5g &#124; unknown（未知网络）&#1
 | `action_long_task_count` | number | 操作关联长任务次数 |
 | `action_resource_count` | number | 操作关联资源请求次数 |
 | `action_error_count` | number | 操作关联的错误次数 |
-
-#### 属性
-
-| **字段** | **类型** | **描述** |
-| --- | --- | --- |
-| `action_id` | string | 用户页面操作时产生的唯一ID |
-| `action_name` | string | 操作名称 |
-| `action_type` | string | 操作类型(冷热启动，click点击等操作) |
-
 
 
 

@@ -1,11 +1,11 @@
-# 修改一个监控器分组
+# 修改一个告警策略
 
 ---
 
 <br />**post /api/v1/monitor/group/\{monitor_uuid\}/modify**
 
 ## 概述
-根据`monitor_uuid`修改指定的监控器分组配置信息
+根据`monitor_uuid`修改指定的告警策略配置信息
 
 
 
@@ -14,7 +14,7 @@
 
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
-| monitor_uuid | string | Y | 监视器分组UUID<br> |
+| monitor_uuid | string | Y | 告警策略UUID<br> |
 
 
 ## Body 请求参数

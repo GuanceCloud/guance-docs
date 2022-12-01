@@ -160,11 +160,7 @@ vi prom.conf
 systemctl restart datakit
 ```
 
-4、 Zookeeper 指标采集验证 `/usr/local/datakit/datakit -M |egrep "最近采集|Zookeeper"`
-
-![image](../imgs/input-zookeeper-2.png)
-
-5、 DQL 验证
+4、 DQL 验证
 
 ```bash
 [root@df-solution-ecs-018 prom]# datakit -Q
@@ -197,7 +193,7 @@ dql > M::zookeeper LIMIT 1
 1 rows, 1 series, cost 40.297037ms
 ```
 
-6、 指标预览
+5、 指标预览
 
 ![image](../imgs/input-zookeeper-3.png)
 

@@ -1,7 +1,9 @@
 ---
 icon: fontawesome/solid/sliders
 ---
+
 # IPMI_Sensor
+
 ---
 
 ### 前置条件
@@ -22,7 +24,7 @@ tar xf telegraf-1.23.4_static_linux_amd64.tar.gz -C /usr/local/
 mv /usr/local/telegraf-1.23.4/ /usr/local/telegraf
 ```
 
-3、 添加启动命令 
+3、 添加启动命令
 
 ```
 vi /usr/lib/systemd/system/telegraf.service
@@ -51,7 +53,7 @@ WantedBy=multi-user.target
 
 #### 指标采集 (必选)
 
-1、 数据上传至 datakit，修改主配置文件 `telegraf.conf`
+1、 数据上传至 DataKit，修改主配置文件 `telegraf.conf`
 
 ```
 vi /usr/local/telegraf/etc/telegraf/telegraf.conf
@@ -82,7 +84,9 @@ url = "http://127.0.0.1:9529/v1/write/metric?input=telegraf"
 #[[inputs.system]]
 ```
 
-4、 开启 IPMI 检测 (需要安装 ipmitool，修改 userid、password、ip)
+4、 开启 IPMI 检测
+
+- 需要安装 ipmitool，修改 `userid`、`password`、`ip`。
 
 ```
 [[inputs.ipmi_sensor]]
@@ -105,7 +109,7 @@ systemctl start telegraf
 /usr/local/telegraf/usr/bin/telegraf --config /usr/local/telegraf/etc/telegraf/telegraf.conf --input-filter ipmi_sensor --test
 ```
 
-7、 重启 telegraf
+7、 重启 Telegraf
 
 ```
 systemctl restart telegraf
