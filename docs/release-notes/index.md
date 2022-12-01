@@ -47,7 +47,7 @@ icon: zy/release-notes
 - 会话：统计当前时间范围内 Session（会话）去重后的数据，默认显示最新一条的 Session（会话）数据；
 - 所有记录：显示所有 Session（会话）的上报数据，同一个 Session（会话）可能对应多条数据。
 
-更多详情可参考文档 [Session（会话）](../real-user-monitoring/explorer/session.md) 。
+注意：在 Session 会话列表，支持添加显示列，若用户添加的显示列是当前 Session 数据内不存在的字段，那么在会话列表存在空数据的情况。更多详情可参考文档 [Session（会话）](../real-user-monitoring/explorer/session.md) 。
 
 ![](img/6.rum_session_1.1.png)
 
