@@ -59,8 +59,8 @@ async-profiler 不使用侵入性技术，如字节码检测或昂贵的`DTrace`
 
 `-e ClassName.methodName`选项检测给定的 Java 方法，以便使用堆栈跟踪记录此方法的所有调用。
 
-- 非本机 Java 方法，示例：`-e java.util.Properties.getProperty`将分析调用方法的所有位置 getProperty。
-- 分析本机方法，请改用硬件断点事件，示例：`-e Java_java_lang_Throwable_fillInStackTrace`
+- 非本机应用，示例：`-e java.util.Properties.getProperty`将分析调用方法的所有位置 getProperty。
+- 本机应用，请改用硬件断点事件，示例：`-e Java_java_lang_Throwable_fillInStackTrace`
 
 >**注意:**如果您在运行时附加 async-profiler，非本机 Java 方法的第一次检测可能会导致 所有已编译方法的去优化。随后的检测仅刷新*相关代码*。
 
@@ -293,15 +293,15 @@ public class MapGenerator {
 
 由于上面演示代码存活生命周期很短，无法进行全方位观测（jvm 相关指标、主机相关指标等），将上面的 演示代码迁移到 Spring Boot 应用当中，使用 APM (ddtrace-agent) 结合 jvm metric 和 async-profiler，可以从三个维度进行可观测：**metric (jvm/主机)、trace（当前链路情况）、profiling（性能分析）**。通过访问对应的 url，对其进行 async-profiler 分析操作。
 
-1、 Profiling 视图
+- Profiling 视图
 
 ![image.png](../images/profiling-10.png)
 
-2、 JVM 视图
+- JVM 视图
 
 ![image.png](../images/profiling-11.png)
 
-3、 Trace 视图
+- Trace 视图
 
 ![image.png](../images/profiling-12.png)
 
