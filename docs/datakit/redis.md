@@ -330,10 +330,12 @@ ACL SETUSER username on +ping
 |`slave_repl_offset`|The replication offset of the replica instance|int|count|
 |`total_net_input_bytes`|The total number of bytes read from the network|int|count|
 |`total_net_output_bytes`|The total number of bytes written to the network|int|count|
-|`used_cpu_sys`|System CPU consumed by the Redis server, which is the sum of system CPU consumed by all threads of the server process (main thread and background threads)|float|percent|
-|`used_cpu_sys_children`|System CPU consumed by the background processes|float|percent|
-|`used_cpu_user`|User CPU consumed by the Redis server, which is the sum of user CPU consumed by all threads of the server process (main thread and background threads)|float|percent|
-|`used_cpu_user_children`|User CPU consumed by the background processes|float|percent|
+|`used_cpu_sys`|System CPU consumed by the Redis server, which is the sum of system CPU consumed by all threads of the server process (main thread and background threads)|float|s|
+|`used_cpu_sys_children`|System CPU consumed by the background processes|float|s|
+|`used_cpu_sys_percent`|System CPU percentage consumed by the Redis server, which is the sum of system CPU consumed by all threads of the server process (main thread and background threads)|float|percent|
+|`used_cpu_user`|User CPU consumed by the Redis server, which is the sum of user CPU consumed by all threads of the server process (main thread and background threads)|float|s|
+|`used_cpu_user_children`|User CPU consumed by the background processes|float|s|
+|`used_cpu_user_percent`|User CPU percentage consumed by the Redis server, which is the sum of user CPU consumed by all threads of the server process (main thread and background threads)|float|percent|
 |`used_memory`|Total number of bytes allocated by Redis using its allocator (either standard libc, jemalloc, or an alternative allocator such as tcmalloc)|float|B|
 |`used_memory_lua`|Number of bytes used by the Lua engine|float|B|
 |`used_memory_overhead`|The sum in bytes of all overheads that the server allocated for managing its internal data structures|float|B|

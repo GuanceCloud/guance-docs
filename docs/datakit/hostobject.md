@@ -108,20 +108,26 @@ Datakit 默认开启云同步，目前支持阿里云/腾讯云/AWS/华为云/�
 
 | 标签名 | 描述    |
 |  ----  | --------|
-|`os`|主机操作系统类型|
+|`os`|Host OS type|
 
 - 指标列表
 
 
 | 指标 | 描述| 数据类型 | 单位   |
 | ---- |---- | :---:    | :----: |
-|`cpu_usage`|CPU 使用率|float|percent|
-|`datakit_ver`|采集器版本|string|-|
-|`load`|系统负载|float|-|
-|`mem_used_percent`|内存使用率|float|percent|
-|`message`|主机所有信息汇总|string|-|
-|`start_time`|主机启动时间（Unix 时间戳）|int|s|
-|`state`|主机状态|string|-|
+|`cpu_usage`|CPU usage|float|percent|
+|`datakit_ver`|collector version|string|-|
+|`disk_used_percent`|disk usage|float|percent|
+|`diskio_read_bytes_per_sec`|disk read rate|int|B/S|
+|`diskio_write_bytes_per_sec`|disk write rate|int|B/S|
+|`load`|system load|float|-|
+|`logging_level`|log level|string|-|
+|`mem_used_percent`|memory usage|float|percent|
+|`message`|Summary of all host information|string|-|
+|`net_recv_bytes_per_sec`|network receive rate|int|B/S|
+|`net_send_bytes_per_sec`|network send rate|int|B/S|
+|`start_time`|Host startup time (Unix timestamp)|int|s|
+|`state`|Host Status|string|-|
 
 
 
