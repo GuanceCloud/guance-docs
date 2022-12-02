@@ -14,7 +14,7 @@ Kubernetes 帮助用户自动调度和扩展容器化应用程序，但现代 Ku
 4. 在观测云「管理 / API Key 管理」中创建用于进行操作的 [API Key](../../management/api-key/open-api.md)
 5. 在自建的 DataFlux Func 中，通过「脚本市场」安装「观测云自建巡检 Core 核心包」「观测云算法库」「 观测云自建巡检（K8S-Pod重启检测）」
 6. 在自建的 DataFlux Func 中，编写自建巡检处理函数
-7. 在自建的 DataFlux Func 中，通过「管理 / 自动触发配置」，为所编写的函数创建自动触发配置或编写巡检函数时在装饰器中配置(装饰器中配置后只需要建立任务即可)
+7. 在自建的 DataFlux Func 中，通过「管理 / 自动触发配置」，为所编写的函数创建自动触发配置。
 
 ## 配置巡检
 
@@ -26,9 +26,11 @@ from guance_monitor__register import self_hosted_monitor
 import guance_monitor_k8s_pod_restart__main as k8s_pod_restart
 
 
-# obsserver
+# 观测云空间 API_KEY 配置(用户自行配置)
 API_KEY_ID  = 'wsak_xxx'
 API_KEY     = '5Kxxx'
+
+# 函数 filters 参数过滤器和观测云 studio 监控\智能巡检配置中存在调用优先级，配置了函数 filters 参数过滤器后则不需要在观测云 studio 监控\智能巡检中更改检测配置了，如果两边都配置的话则优先生效脚本中 filters 参数
 
 def filter_namespace(cluster_namespaces):
     '''
@@ -51,7 +53,7 @@ timeout：任务执行超时时长，控制在 15 分钟
 
 # Kubernetes Pod 异常重启巡检配置 用户无需修改
 @self_hosted_monitor(API_KEY_ID, API_KEY)
-@DFF.API('K8S-Pod异常重启巡检', fixed_crontab='*/30 * * * *')
+@DFF.API('K8S-Pod异常重启巡检', fixed_crontab='*/30 * * * *', timeout=900)
 def run(configs=[]):
     """
     参数：
@@ -174,8 +176,7 @@ def run(configs=[]):
 
   **1.Kubernetes Pod 异常重启巡检的检测频率如何配置**
 
-  * 可以通过 DataFlux Func 中，「管理 / 自动触发配置」为检测函数设置自动触发时间建议配置每 30 分钟执行一次。
-  * 也可以在自建的 DataFlux Func 中，编写自建巡检处理函数时在装饰器中添加`fixed_crontab='*/30 * * * *', timeout=900` ，在装饰器中添加配置优先于在「管理 / 自动触发配置」中配置的 crontab 选项，二者选一即可。
+  * 在自建的 DataFlux Func 中，编写自建巡检处理函数时在装饰器中添加`fixed_crontab='*/30 * * * *', timeout=900` ，后在「管理 / 自动触发配置」中配置。
 
   **2.Kubernetes Pod 异常重启巡检触发时可能会没有异常分析**
 
