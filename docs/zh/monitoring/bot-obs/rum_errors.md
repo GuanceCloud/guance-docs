@@ -28,6 +28,14 @@ import guance_monitor_rum__main as main
 API_KEY_ID  = 'xxxxx'
 API_KEY     = 'xxxx'
 
+# 函数 filters 参数过滤器和观测云 studio 监控\智能巡检配置中存在调用优先级，配置了函数 filters 参数过滤器后则不需要在观测云 studio 监控\智能巡检中更改检测配置了，如果两边都配置的话则优先生效脚本中 filters 参数
+
+def filter_appid(data):
+    appid = data[0]
+    if appid in ['appid_Htow4wbwHXUptr7etBB2vQ']:
+        return True
+
+
 '''
 任务配置参数请使用：
 @DFF.API('前端应用日志错误巡检', fixed_crontab='0 * * * *', timeout=900)
@@ -131,8 +139,7 @@ def run(configs={}):
 ## 常见问题
 **1.前端应用日志错误巡检的检测频率如何配置**
 
-* 可以通过 DataFlux Func 中，「管理 / 自动触发配置」为检测函数设置自动触发时间建议配置每小时执行一次。
-* 也可以在自建的 DataFlux Func 中，编写自建巡检处理函数时在装饰器中添加`fixed_crontab='0 * * * *', timeout=900` ，在装饰器中添加配置优先于在「管理 / 自动触发配置」中配置的 crontab 选项，二者选一即可。
+* 在自建的 DataFlux Func 中，编写自建巡检处理函数时在装饰器中添加`fixed_crontab='0 * * * *', timeout=900` ，后在「管理 / 自动触发配置」中配置。
 
 **2.前端应用日志错误巡检触发时可能会没有异常分析**
 
