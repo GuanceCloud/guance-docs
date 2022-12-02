@@ -4,29 +4,24 @@
 
 > *作者： 刘锐、宋龙奇*
 
-## 简介
-观测云在使用`dd-trace-java`过程中有些功能源码并没有提供，遂决定在源码的基础上进行开发。
+## 简介 {#intro}
 
-开源地址：[GuanceCloud-ddtrace](https://github.com/GuanceCloud/dd-trace-java)， 并持续更新。如您在使用过程中有任务问题或有好的建议可在 [github 上提 Issue](https://github.com/GuanceCloud/dd-trace-java/issues) 或者联系对接人员。 
+原生 DDTrace 对部分熟知的主流框架支持不够完善，我们在这个基础上，对其做了一些改进，以支持更多的主流框架和关键的数据追踪。
 
-### 下载
-请使用 github 下载
+<div class="grid cards" markdown>
 
-~~ [最新版本下载地址](https://static.guance.com/ddtrace/dd-java-agent.jar) ~~
+-   :material-language-java: __Java__
 
-[观测云 github-releases](https://github.com/GuanceCloud/dd-trace-java/releases)
+    ---
 
-## 更多
+    [SDK :material-download:](https://static.guance.com/ddtrace/dd-java-agent.jar){:target="_blank"} ·
+    [:material-github:](https://github.com/GuanceCloud/dd-trace-java){:target="_blank"} ·
+    [Issue](https://github.com/GuanceCloud/dd-trace-java/issues/new){:target="_blank"} ·
+    [:octicons-history-16:](https://github.com/GuanceCloud/dd-trace-java/releases){:target="_blank"}
 
-在使用 dd-trace-java 之前，您可事先了解:
+</div>
 
-- [datakit-ddtrace 采集器配置](../datakit/ddtrace.md)
-- [ddtrace 配置](../best-practices/monitoring/apm.md#ddtrace) 
-- [ddtrace 高级用法](../integrations/apm/ddtrace/index.md)
-- [DDtrace 自定义 Instrumentation](../best-practices/monitoring/ddtrace-instrumentation.md)
-
----
-## 历史版本：
+## 更新历史 {#changelog}
 
 ### (2022-10-25) Version:0.113.0
 
@@ -65,13 +60,11 @@
 
 ---
 
-
 ### (2022-08-30) Version:guance-0.107.0
 
 合并 DataDog 107 版本，进行编译。
 
 - [github下载地址](https://github.com/GuanceCloud/dd-trace-java/releases/tag/guance-107)
-
 
 ---
 
@@ -88,6 +81,7 @@
 脱敏功能使用方式 
 
 1. Tomcat
+
 ```shell
 ## 在Tomcat/bin 目录下， 修改catalina.sh 增加参数 -Ddd.jdbc.sql.obfuscation=true 
 CATALINA_OPTS="$CATALINA_OPTS -javaagent:/path/to/ddtrace/dd-java-agent.jar -Ddd.jdbc.sql.obfuscation=true"; export CATALINA_OPTS
@@ -97,3 +91,7 @@ CATALINA_OPTS="$CATALINA_OPTS -javaagent:/path/to/ddtrace/dd-java-agent.jar -Ddd
 ``` shell
 java -javaagent:/path/to/ddtrace/dd-java-agent.jar -Ddd.jdbc.sql.obfuscation=true ...  -jar yourApp.jar
 ```
+
+## 更多阅读
+
+- [datakit-ddtrace 采集器配置](ddtrace.md)
