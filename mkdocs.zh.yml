@@ -52,13 +52,15 @@ copyright: '&copy; 2013-2022 上海观测未来信息技术有限公司 <a href=
 extra:
   generator: false
   homepage: https://docs.guance.com
-  alternate:
-    - name: 中文
-      link: /
-      lang: zh
-    - name: English
-      link: /en/
-      lang: en
+
+  # 暂时不开放语言切换入口
+  # alternate:
+  #   - name: 中文
+  #     link: /
+  #     lang: zh
+  #   - name: English
+  #     link: /en/
+  #     lang: en
 
 plugins:
   awesome-pages: {}
