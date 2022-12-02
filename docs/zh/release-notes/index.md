@@ -61,6 +61,18 @@ icon: zy/release-notes
 - 用户访问监测应用列表优化，新增时间控件自定义区间切换查询
 - 主机添加 Label 交互优化
 
+### DataKit 更新
+
+- 新增 Python Profiling 接入
+- Pythond 新增自定义事件上报功能
+- netstat 支持特定端口的指标采集
+
+- 优化 Redis 采集器 CPU 使用率采集，增加了新的指标字段
+- 优化 logfwd 采集器配置
+- 补全主机对象的字段采集，增加网络、磁盘等相关字段
+
+更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md) 。
+
 ### 智能巡检更新
 
 - Kubernetes Pod 异常重启巡检
