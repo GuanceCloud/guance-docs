@@ -24,7 +24,7 @@ from guance_monitor__register import self_hosted_monitor
 from guance_monitor__runner import Runner
 import guance_monitor_billing__main as main
 
-# 观测云空间 API_KEY 配置(用户自行配置)
+# 账号配置
 API_KEY_ID  = 'xxxxx'
 API_KEY     = 'xxxx'
 
@@ -179,8 +179,7 @@ def run(configs=None):
 ## 常见问题
 **1.云账户账单巡检的检测频率如何配置**
 
-* 可以通过 DataFlux Func 中，「管理 / 自动触发配置」为检测函数设置自动触发时间建议配置每天执行一次。
-* 也可以在自建的 DataFlux Func 中，编写自建巡检处理函数时在装饰器中添加`fixed_crontab='0 0 * * *', timeout=900` ，在装饰器中添加配置优先于在「管理 / 自动触发配置」中配置的 crontab 选项，二者选一即可。
+* 在自建的 DataFlux Func 中，编写自建巡检处理函数时在装饰器中添加`fixed_crontab='0 0 * * *', timeout=900` ，后在「管理 / 自动触发配置」中配置。
 
 **2.云账户账单巡检收集的相关指标集怎么看**
 
