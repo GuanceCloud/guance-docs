@@ -2,6 +2,13 @@
 icon: zy/best-practices
 ---
 
+## (2022/12/2)
+
+### 新增最佳实践
+
+- 洞见
+    - 场景 (Scene) - [SpringBoot 项目外置 Tomcat 场景链路可观测](./insight/springboot-tomcat.md)。
+
 ## (2022/11/18)
 
 ### 新增最佳实践
