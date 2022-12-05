@@ -1,4 +1,4 @@
-# DDtrace 观测云版本
+# Java
 
 ---
 
@@ -6,92 +6,98 @@
 
 ## 简介 {#intro}
 
-原生 DDTrace 对部分熟知的主流框架支持不够完善，我们在这个基础上，对其做了一些改进，以支持更多的主流框架和关键的数据追踪。
+这里主要介绍一下 DDTrace-java 的一些扩展功能。主要功能列表：
 
-<div class="grid cards" markdown>
+- JDBC SQL 脱敏功能
+- xxl-jobs 支持
+- dubbo 2/3 支持
+- Thrift 框架支持
 
--   :material-language-java: __Java__
+## SQL 脱敏 {#jdbc-sql-obfuscation}
 
-    ---
+DDTrace 默认会将 SQL 中参数转化为 `?`，这导致用户在排查问题时无法获取更准确的信息。新的探针会将占位参数单独以 Key-Value 方式提取到 Trace 数据中，便于用户查看。
 
-    [SDK :material-download:](https://static.guance.com/ddtrace/dd-java-agent.jar){:target="_blank"} ·
-    [:material-github:](https://github.com/GuanceCloud/dd-trace-java){:target="_blank"} ·
-    [Issue](https://github.com/GuanceCloud/dd-trace-java/issues/new){:target="_blank"} ·
-    [:octicons-history-16:](https://github.com/GuanceCloud/dd-trace-java/releases){:target="_blank"}
-
-</div>
-
-## 更新历史 {#changelog}
-
-### (2022-10-25) Version:0.113.0
-
-- [github下载地址](https://github.com/GuanceCloud/dd-trace-java/releases/tag/v0.113.0-guance)
-
-#### 功能调整说明
-
-- 以0.113.0 tag 为基准，合并之前的代码
-
-- 修复thrift TMultipexedProtocol 模型支持
-
----
-
-### (2022-10-14) Version:0.108.1
-
-合并 DataDog v0.108.1版本，进行编译同时保留了0.108.1
-
-- [github下载地址](https://github.com/GuanceCloud/dd-trace-java/releases/tag/v0.108.1)
-
-#### 功能调整说明
-
-- 新增 thrift instrumentation（thrift version >=0.9.3 以上版本）
-
----
-
-### (2022-09-06) Version:0.108.1
-
-合并 DataDog v0.108.1版本，进行编译。
-
-- [github下载地址](https://github.com/GuanceCloud/dd-trace-java/releases/tag/v0.108.1)
-
-
-#### 功能调整说明
-
-- 增加 xxl_job 探针( xxl_job 版本 >= 2.3.0)
-
----
-
-### (2022-08-30) Version:guance-0.107.0
-
-合并 DataDog 107 版本，进行编译。
-
-- [github下载地址](https://github.com/GuanceCloud/dd-trace-java/releases/tag/guance-107)
-
----
-
-### (2022-08-23) Version:guance-0.105.0
-
-[当前版本下载地址](https://static.guance.com/ddtrace/dd-java-agent-guance-0.106.0-SNAPSHOT.jar)
-
-#### 功能调整说明
-
-- 增加 RocketMq 探针 支持的版本(不低于4.8.0)。
-- 增加 Dubbo 探针 支持的版本(不低于2.7.0)。
-- 增加 Sql 脱敏功能：开启后将原始的 sql 语句添加到链路中以方便排查问题，启动 Agent 时增加配置参数 `-Ddd.jdbc.sql.obfuscation=true`
- 
-脱敏功能使用方式 
-
-1. Tomcat
+在 Java 启动命令中，增加如下命令行参数来开启该功能：
 
 ```shell
-## 在Tomcat/bin 目录下， 修改catalina.sh 增加参数 -Ddd.jdbc.sql.obfuscation=true 
-CATALINA_OPTS="$CATALINA_OPTS -javaagent:/path/to/ddtrace/dd-java-agent.jar -Ddd.jdbc.sql.obfuscation=true"; export CATALINA_OPTS
+# ddtrace 启动时增加参数，默认是 false
+-Ddd.jdbc.sql.obfuscation=true
 ```
 
-2. 命令行启动
-``` shell
-java -javaagent:/path/to/ddtrace/dd-java-agent.jar -Ddd.jdbc.sql.obfuscation=true ...  -jar yourApp.jar
+### 效果示例
+
+以 setString() 为例。新增探针的位置在 `java.sql.PreparedStatement/setString(key, value)`。
+
+这里有两个参数，启动第一个是占位参数下标（从 1 开始），第二个为 string 类型，在调用 `setString(index, value)` 方法之后，会将对应的字符串值存放到 span 中。
+
+在 SQL 被执行之后，这个 map 会填充到 Span 中。 最终的数据结构格式如下所示：
+
+```json hl_lines="17 26 27 28 29 30 31 32"
+"meta": {
+  "component":
+  "java-jdbc-prepared_statement",
+
+  "db.instance":"tmalldemodb",
+  "db.operation":"INSERT",
+
+  "db.sql.origin":"INSERT product
+	  (product_id,
+		 product_name,
+		 product_title,
+		 product_price,
+		 product_sale_price,
+		 product_create_date,
+		 product_isEnabled,
+		 product_category_id)
+	  VALUES(null, ?, ?, ?, ?, ?, ?, ?)",
+
+  "db.type":"mysql",
+  "db.user":"root",
+  "env":"test",
+  "peer.hostname":"49.232.153.84",
+  "span.kind":"client",
+  "thread.name": "http-nio-8080-exec-6",
+
+  "sql.params.index_1":"图书",
+  "sql.params.index_2":"十万个为什么",
+  "sql.params.index_3":"100.0",
+  "sql.params.index_4":"99.0",
+  "sql.params.index_5":"2022-11-10 14:08:21",
+  "sql.params.index_6":"0",
+  "sql.params.index_7":"16"
+}
 ```
 
-## 更多阅读
+???+ question "为什么没有填充到 `db.sql.origin` 中？"
 
-- [datakit-ddtrace 采集器配置](ddtrace.md)
+    这里的 meta 信息实际是给相关开发人员排查 SQL 语句具体内容的，在拿到具体的占位参数详情后，通过替换 `db.sql.origin` 中的 `?` 实际上是可以将占位参数的值填充进去，但通过字符串替换（而不是 SQL 精确解析）并不能准确的找到正确的替换（可能导致错误的替换），故此处**尽量保留原始 SQL**，占位参数详情则单独列出来，此处 `index_1` 即表示第一个占位参数，以此类推。
+
+## xxl-jobs 支持 {#xxl-jobs}
+
+前言： xxl-jobs 是一个基于Java开发的分布式任务调度框架, [github 地址](https://github.com/xuxueli/xxl-job) 
+
+版本支持： 目前支持 2.3 及以上版本。
+
+## Dubbo 支持 {#dubbo}
+
+dubbo 是阿里云的一个开源框架，目前已经支持 dubbo2 以及 dubbo3.
+
+版本支持： dubbo2 ：2.7.0及以上， dubbo3 无版本限制。
+
+## RocketMQ {#rocketmq}
+
+RocketMQ 是阿里云贡献 apache 基金会的开源消息队列框架，注意：是 apache 项目，代码中引用位置应当是 `org.apache.rocketmq`。
+
+版本支持： 目前支持 4.8.0 及以上版本。
+
+## Thrift 支持 {#thrift}
+
+Thrift 属于 apache 的项目。有的客户在项目中使用 thrift RPC 进行通讯，我们就做了支持。
+
+版本支持 ： 0.9.3 及以上版本。
+
+## 批量注入 DDTrace-Java Agent {#java-attach}
+
+原生的 DDTrace-java 批量注入方式有一定的缺陷，不支持动态参数注入（比如 `-Ddd.agent=xxx, -Ddd.agent.port=yyy` 等）。
+
+扩展的 DDTrace-java 增加了动态参数注入功能。具体用法，参见[这里](ddtrace-attach.md)

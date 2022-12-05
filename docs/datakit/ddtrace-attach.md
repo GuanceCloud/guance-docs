@@ -8,7 +8,14 @@
 
 本 Java 工具主要用于将 DDTrace-java agent 注入到当前已经运行的 Java 进程中，无需手动配置和重启宿主 Java 进程。
 
-目前项目已经发布在 [GuanceCloud-github](https://github.com/GuanceCloud/agent-attach-java)，欢迎[提交 Issue](https://github.com/GuanceCloud/agent-attach-java/issues/new)。
+<div class="grid cards" markdown>
+
+-   [:material-language-java: :material-download:](https://static.guance.com/ddtrace/agent-attach-java.jar){:target="_blank"} ·
+    [:material-github:](https://github.com/GuanceCloud/agent-attach-java){:target="_blank"} ·
+    [Issue](https://github.com/GuanceCloud/agent-attach-java/issues/new){:target="_blank"} ·
+    [:octicons-history-16:](https://github.com/GuanceCloud/agent-attach-java/releases){:target="_blank"}
+
+</div>
 
 ## 原理 {#principle}
 
@@ -23,7 +30,7 @@ git clone https://github.com/GuanceCloud/agent-attach-java
 mvn package
 ```
 
-运行 jar 包，可去 [release 页面](https://github.com/GuanceCloud/agent-attach-java/releases){:target="_blank"} 找到最新的 jar 包：
+运行 jar 包：
 
 ```shell
 java -jar agent-attach-java.jar

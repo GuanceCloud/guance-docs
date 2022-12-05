@@ -99,7 +99,7 @@ nav:
 
         - 'DDTrace 扩展':
           - '更新历史': ddtrace-ext-changelog.md
-          - '扩展功能说明': ddtrace-ext-java.md
+          - ddtrace-ext-java.md
 
       - 'SkyWalking':
         - 'SkyWalking 采集配置': skywalking.md

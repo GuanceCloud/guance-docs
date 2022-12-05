@@ -78,9 +78,7 @@ Datakit 内嵌的 DDTrace Agent 用于接收，运算，分析 DataDog Tracing �
 
 ???+ tip
 
-    DataKit 安装目录 `data` 目录下，有预先准备好的 `dd-java-agent.jar`（推荐使用）。也可以直接去 [Maven 下载](https://mvnrepository.com/artifact/com.datadoghq/dd-java-agent){:target="_blank"}
-
-    观测云也在 DDTrace-Java 基础上 Fork 了自己的分支，增加更多功能及探针，更多版本详细信息请查看 [Ddtrace 二次开发版本说明](../developers/ddtrace-guance.md)
+    我们对 DDTrace 做了一些[功能扩展](ddtrace-ext-changelog.md)，便于支持更多的主流框架和更细粒度的数据追踪。
 
 ## 采集器配置 {#config}
 
