@@ -18,6 +18,19 @@ buildTesting:
   tags:
     - cloudcare-multiarch
 
+buildFeature:
+  stage: deploy
+  only:
+    - /^feature.*/
+  script:
+    - docker build --build-arg release_env="peprod" -t $REPOSITORY:feature-multi-language .
+    - docker tag $REPOSITORY:feature-multi-language registry.jiagouyun.com/cloudcare-front/$REPOSITORY:feature-multi-language
+    - docker push registry.jiagouyun.com/cloudcare-front/$REPOSITORY:feature-multi-language
+
+    # - curl -sS -X POST -H "Authorization:Bearer ${PREPROD_RANCHER_TOKEN}"  ${RANCHER_API_BASE_URL}/v3/project/${PREPROD_PROJECT_ID}/workloads/deployment:${PREPROD_WORKLOAD}?action=redeploy
+  tags:
+    - cloudcare-multiarch
+
 buildMain:
   stage: deploy
   only:

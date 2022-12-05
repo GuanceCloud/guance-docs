@@ -6,7 +6,7 @@ set -e
 #git pull
 
 # 进入 DataFlux Func 文档目录
-cd docs/dataflux-func
+cd docs/zh/dataflux-func
 
 # 下载目录
 rm -f .pages

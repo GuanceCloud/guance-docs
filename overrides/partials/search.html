@@ -7,7 +7,7 @@
     <form class="md-search__form" name="search">
       <input type="text" class="md-search__input" name="query" aria-label="{{ lang.t('search.placeholder') }}" placeholder="{{ lang.t('search.placeholder') }}" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
-        <img src="/images/search.png" class="zy__search" alt="">
+        <img src="/assets/images/search.png" class="zy__search" alt="">
         {% include ".icons/material/arrow-left.svg" %}
       </label>
       <nav class="md-search__options" aria-label="{{ lang.t('search.title') }}">
@@ -17,7 +17,7 @@
           </a>
         {% endif %}
         <button type="reset" class="md-search__icon md-icon" aria-label="{{ lang.t('search.reset') }}" tabindex="-1">
-          <img src="/images/close.png" alt="">
+          <img src="/assets/images/close.png" alt="">
         </button>
       </nav>
       {% if "search.suggest" in features %}
