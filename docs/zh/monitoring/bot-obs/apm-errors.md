@@ -14,7 +14,7 @@
 4. 在观测云「管理 / API Key 管理」中创建用于进行操作的 [API Key](../../management/api-key/open-api.md)
 5. 在自建的 DataFlux Func 中，通过「脚本市场」安装「观测云自建巡检 Core 核心包」「观测云算法库」「 观测云自建巡检（APM 错误）」
 6. 在自建的 DataFlux Func 中，编写自建巡检处理函数
-7. 在自建的 DataFlux Func 中，通过「管理 / 自动触发配置」，为所编写的函数创建自动触发配置或编写巡检函数时在装饰器中配置(装饰器中配置后只需要建立任务即可)
+7. 在自建的 DataFlux Func 中，通过「管理 / 自动触发配置」，为所编写的函数创建自动触发配置
 
 ## 配置巡检
 
@@ -25,9 +25,11 @@ from guance_monitor__runner import Runner
 from guance_monitor__register import self_hosted_monitor
 import guance_monitor_apm_error__main as main
 
-# RUM   observe
+# 账号配置
 API_KEY_ID  = 'wsak_xxxxxx'
 API_KEY     = '5K3Ixxxxxx'
+
+# 函数 filters 参数过滤器和观测云 studio 监控\智能巡检配置中存在调用优先级，配置了函数 filters 参数过滤器后则不需要在观测云 studio 监控\智能巡检中更改检测配置了，如果两边都配置的话则优先生效脚本中 filters 参数
 
 def filter_project_servcie_sub(data):
     # {'project': None, 'service_sub': 'mysql:dev'}, {'project': None, 'service_sub': 'redis:dev'}, {'project': None, 'service_sub': 'ruoyi-gateway:dev'}, {'project': None, 'service_sub': 'ruoyi-modules-system:dev'}
@@ -160,8 +162,7 @@ def run(configs={}):
 
 **1.服务端应用错误巡检的检测频率如何配置**
 
-* 可以通过 DataFlux Func 中，「管理 / 自动触发配置」为检测函数设置自动触发时间建议配置每小时执行一次。
-* 也可以在自建的 DataFlux Func 中，编写自建巡检处理函数时在装饰器中添加`fixed_crontab='0 * * * *', timeout=1800` ，在装饰器中添加配置优先于在「管理 / 自动触发配置」中配置的 crontab 选项，二者选一即可。
+* 在自建的 DataFlux Func 中，编写自建巡检处理函数时在装饰器中添加`fixed_crontab='0 * * * *', timeout=1800` ，后在「管理 / 自动触发配置」中配置。
 
 **2.服务端应用错误巡检触发时可能会没有异常分析**
 

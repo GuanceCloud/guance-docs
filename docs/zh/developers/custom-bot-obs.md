@@ -12,9 +12,9 @@ DataFlux Func 是一款函数开发、管理、执行平台。简单易用、无
 
 ## 1. 前提条件
 
-- [安装 DataFlux Func](../dataflux-func/quick-start/)
+- [安装 DataFlux Func](../dataflux-func/quick-start.md) 
 
-- [安装脚本包](../dataflux-func/script-market-basic-usage/)
+- [安装脚本包](../dataflux-func/script-market-basic-usage.md) 
 
 ## 2. 快速开始
 
