@@ -8,7 +8,14 @@
 
 本 Java 工具主要用于将 DDTrace-java agent 注入到当前已经运行的 Java 进程中，无需手动配置和重启宿主 Java 进程。
 
-目前项目已经发布在 [GuanceCloud-github](https://github.com/GuanceCloud/agent-attach-java)，欢迎[提交 Issue](https://github.com/GuanceCloud/agent-attach-java/issues/new)。
+<div class="grid cards" markdown>
+
+-   [:material-language-java: :material-download:](https://static.guance.com/ddtrace/agent-attach-java.jar){:target="_blank"} ·
+    [:material-github:](https://github.com/GuanceCloud/agent-attach-java){:target="_blank"} ·
+    [Issue](https://github.com/GuanceCloud/agent-attach-java/issues/new){:target="_blank"} ·
+    [:octicons-history-16:](https://github.com/GuanceCloud/agent-attach-java/releases){:target="_blank"}
+
+</div>
 
 ## 原理 {#principle}
 
@@ -23,7 +30,7 @@ git clone https://github.com/GuanceCloud/agent-attach-java
 mvn package
 ```
 
-运行 jar 包，可去 [release 页面](https://github.com/GuanceCloud/agent-attach-java/releases){:target="_blank"} 找到最新的 jar 包：
+运行 jar 包：
 
 ```shell
 java -jar agent-attach-java.jar
@@ -31,21 +38,21 @@ java -jar agent-attach-java.jar
 
 ## 动态注入 dd-java-agent.jar
 
-1. 首先下载[最新的 dd-java-agent.jar](https://github.com/GuanceCloud/dd-trace-java/releases){:target="_blank"}，并放到 */usr/local/ddtrace/* 目录下。
+- 首先下载 dd-java-agent.jar，并放到 */usr/local/ddtrace/* 目录下。
 
 ```shell
 mkdir -p /usr/local/ddtrace
 cd /usr/local/ddtrace
-wget https://github.com/GuanceCloud/dd-trace-java/releases/download/v0.113.0-attach/dd-java-agent.jar
+wget https://static.guance.com/ddtrace/dd-java-agent.jar
 ```
 
 ???+ attention
 
-    必须使用 GuanceCloud 的 dd-trace-java，否则自动注入功能受限（各种 Trace 参数无法设置）。
+    必须使用[扩展版 DDTrace](ddtrace-ext-java.md)，否则自动注入功能受限（各种 Trace 参数无法设置）。
 
-1. 启动 Java 应用（如果 Java 应用已启动，则忽略）
+- 启动 Java 应用（如果 Java 应用已启动，则忽略）
 
-1. 启动 agent-attach-java.jar 注入 dd-trace-java.jar
+- 启动 agent-attach-java.jar 注入 *dd-trace-java.jar*
 
 ```shell
 java -jar agent-attach-java.jar -options "dd.agent.port=9529"
