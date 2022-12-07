@@ -79,15 +79,6 @@ icon: zy/best-practices
 - 监控 Monitoring
     - 应用性能监控 (APM) - [DDtrace 自定义 Instrumentation](./monitoring/ddtrace-instrumentation.md)。
 
-## (2022/08/23)
-
-### 新增最佳实践
-
-- 监控 Monitoring
-  - 应用性能监控 (APM) - [DDtrace 观测云版本](/developers/ddtrace-guance/)。
-
-
-
 ## (2022/08/19)
 
 ### 更新记录
