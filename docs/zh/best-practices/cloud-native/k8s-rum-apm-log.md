@@ -4,17 +4,15 @@
 
 ## 应用场景介绍
 
-本文用于演示的 Demo 为若依权限管理系统，具体内容可查看 <[从 0 到 1 利用观测云构建 Spring cloud 服务的可观测性](../monitoring/spring-cloud-sample.md)>。
+企业最重要的营收来源即是业务，而当下，绝大多数企业的业务都是由对应的 IT 系统承载的。那如何保障企业的业务稳健，归根到企业内部就是如何保障企业内部的 IT 系统。当业务系统出现异常或故障时，往往是业务、应用开发、运维等多方面同事一起协调进行问题的排查，存在**跨平台、跨部门、跨专业领域**等多种问题，排查**既耗时、又费力**。
 
-企业最重要的营收来源即是业务，而当下，绝大多数企业的业务都是由对应的 IT 系统承载的。那如何保障企业的业务稳健，归根到企业内部就是如何保障企业内部的 IT 系统。当业务系统出现异常或故障时，往往是业务、应用开发、运维等多方面同事一起协调进行问题的排查，存在跨平台、跨部门、跨专业领域等多种问题，排查既耗时、又费力。为了解决这一问题，目前业界已经有比较成熟的方式，即是通过 **RUM + APM + LOG** 实现对整个业务系统的**前后端、日志**进行统一监控，同时将三方数据通过关键字段进行打通，实现联动分析，从而提升相关工作人员的工作效率，保障系统平稳运行。
+为了解决这一问题，目前业界已经有比较成熟的方式，即是通过 **RUM + APM + LOG** 实现对整个业务系统的**前后端、日志**进行统一监控，同时将三方数据通过关键字段进行打通，实现**联动分析**，从而提升相关工作人员的工作效率，保障系统平稳运行。
 
-**APM**： Application Performance Monitoring , 应用性能监控
+- APM ： Application Performance Monitoring 应用性能监控
+- RUM ： Real User Moitoring 真实用户体验监控
+- LOG ： 日志
 
-**RUM**： Real User Moitoring , 真实用户体验监控
-
-**LOG**： 日志
-
-本文将从如何接入这三方监控，以及如何利用观测云进行联动分析的角度进行阐述。
+本文将从如何接入这三方监控，以及如何利用观测云进行联动分析的角度进行阐述。用于演示的 Demo 为若依权限管理系统，具体内容可查看 <[从 0 到 1 利用观测云构建 Spring cloud 服务的可观测性](../monitoring/spring-cloud-sample.md)>。
 
 关于日志，本文将使用 DataKit 的 Logfwd 采集器采集业务 Pod 的日志，DataKit 开通 Logfwd 采集器，Pod 增加 lLgfwd 的 Sidecar 来采集业务容器的日志，推送给 DataKit。由于业务对 Sidecar 是可见的，所以日志文件不需要落到宿主机上，详细使用请在下方的 [部署 System](#system) 模块查看。DataKit 接收到日志后，使用配置的 Pipeline 做日志文件切割。
 
@@ -43,322 +41,322 @@
 #### 执行安装
 
 - 按照上步中的 `datakit.yaml` 文件，并把上图获取的 token，替换文件中的 `your-token`。
-
 - 开启 container 采集器、logfwd 采集器、ddtrace 采集器，即在 DataKit 容器中挂载 `container.conf`、`logfwdserver.conf` 、`ddtrace.conf` 文件。
 
-yaml 完整内容如下文：
 > **注意:** DataKit 版本不同，配置可能存在差异，请以最新版为准。此 yaml 是本次部署完整配置，已包含后面针对 DataKit 的操作步骤。
 
-```yaml
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: datakit
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: datakit
-rules:
-  - apiGroups:
-      - rbac.authorization.k8s.io
-    resources:
-      - clusterroles
-    verbs:
-      - get
-      - list
-      - watch
-  - apiGroups:
-      - ""
-    resources:
-      - nodes
-      - nodes/proxy
-      - namespaces
-      - pods
-      - pods/log
-      - events
-      - services
-      - endpoints
-    verbs:
-      - get
-      - list
-      - watch
-  - apiGroups:
-      - apps
-    resources:
-      - deployments
-      - daemonsets
-      - statefulsets
-      - replicasets
-    verbs:
-      - get
-      - list
-      - watch
-  - apiGroups:
-      - batch
-    resources:
-      - jobs
-      - cronjobs
-    verbs:
-      - get
-      - list
-      - watch
-  - apiGroups:
-      - guance.com
-    resources:
-      - datakits
-    verbs:
-      - get
-      - list
-  - apiGroups:
-      - metrics.k8s.io
-    resources:
-      - pods
-      - nodes
-    verbs:
-      - get
-      - list
-  - nonResourceURLs: ["/metrics"]
-    verbs: ["get"]
+??? quote "yaml 完整内容"
 
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: datakit
-  namespace: datakit
+    ```yaml
+    apiVersion: v1
+    kind: Namespace
+    metadata:
+      name: datakit
+    ---
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRole
+    metadata:
+      name: datakit
+    rules:
+      - apiGroups:
+          - rbac.authorization.k8s.io
+        resources:
+          - clusterroles
+        verbs:
+          - get
+          - list
+          - watch
+      - apiGroups:
+          - ""
+        resources:
+          - nodes
+          - nodes/proxy
+          - namespaces
+          - pods
+          - pods/log
+          - events
+          - services
+          - endpoints
+        verbs:
+          - get
+          - list
+          - watch
+      - apiGroups:
+          - apps
+        resources:
+          - deployments
+          - daemonsets
+          - statefulsets
+          - replicasets
+        verbs:
+          - get
+          - list
+          - watch
+      - apiGroups:
+          - batch
+        resources:
+          - jobs
+          - cronjobs
+        verbs:
+          - get
+          - list
+          - watch
+      - apiGroups:
+          - guance.com
+        resources:
+          - datakits
+        verbs:
+          - get
+          - list
+      - apiGroups:
+          - metrics.k8s.io
+        resources:
+          - pods
+          - nodes
+        verbs:
+          - get
+          - list
+      - nonResourceURLs: ["/metrics"]
+        verbs: ["get"]
 
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: datakit-service
-  namespace: datakit
-spec:
-  selector:
-    app: daemonset-datakit
-  ports:
-    - protocol: TCP
-      port: 9529
-      targetPort: 9529
+    ---
+    apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      name: datakit
+      namespace: datakit
 
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: datakit
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: datakit
-subjects:
-  - kind: ServiceAccount
-    name: datakit
-    namespace: datakit
+    ---
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: datakit-service
+      namespace: datakit
+    spec:
+      selector:
+        app: daemonset-datakit
+      ports:
+        - protocol: TCP
+          port: 9529
+          targetPort: 9529
 
----
-apiVersion: apps/v1
-kind: DaemonSet
-metadata:
-  labels:
-    app: daemonset-datakit
-  name: datakit
-  namespace: datakit
-spec:
-  revisionHistoryLimit: 10
-  selector:
-    matchLabels:
-      app: daemonset-datakit
-  template:
+    ---
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRoleBinding
+    metadata:
+      name: datakit
+    roleRef:
+      apiGroup: rbac.authorization.k8s.io
+      kind: ClusterRole
+      name: datakit
+    subjects:
+      - kind: ServiceAccount
+        name: datakit
+        namespace: datakit
+
+    ---
+    apiVersion: apps/v1
+    kind: DaemonSet
     metadata:
       labels:
         app: daemonset-datakit
+      name: datakit
+      namespace: datakit
     spec:
-      hostNetwork: true
-      dnsPolicy: ClusterFirstWithHostNet
-      containers:
-      - env:
-        - name: HOST_IP
-          valueFrom:
-            fieldRef:
-              apiVersion: v1
-              fieldPath: status.hostIP
-        - name: ENV_K8S_NODE_NAME
-          valueFrom:
-            fieldRef:
-              apiVersion: v1
-              fieldPath: spec.nodeName
-        - name: ENV_DATAWAY
-          value: https://openway.guance.com?token=XXXXXX
-        - name: ENV_GLOBAL_HOST_TAGS # 非选举类的tag
-          value: host=__datakit_hostname,host_ip=__datakit_ip,cluster_name_k8s=k8s-prod
-        - name: ENV_DEFAULT_ENABLED_INPUTS
-          value: cpu,disk,diskio,mem,swap,system,hostobject,net,host_processes,container,statsd,ebpf,rum
-        - name: ENV_ENABLE_ELECTION
-          value: enable
-        - name: ENV_GLOBAL_ENV_TAGS # 只对选举类的tag有用
-          value: cluster_name_k8s=k8s-prod
-        - name: ENV_HTTP_LISTEN
-          value: 0.0.0.0:9529
-        - name: ENV_NAMESPACE # 选举用的
-          value: guance-k8s-demo
-        #- name: ENV_LOG_LEVEL
-        #  value: debug
-        #- name: ENV_K8S_CLUSTER_NAME
-        #  value: k8s-prod
-        image: pubrepo.jiagouyun.com/datakit/datakit:1.4.10
-        imagePullPolicy: Always
-        name: datakit
-        ports:
-        - containerPort: 9529
-          hostPort: 9529
-          name: port
-          protocol: TCP
-        securityContext:
-          privileged: true
-        volumeMounts:
-        - mountPath: /var/run
-          name: run
-        - mountPath: /var/lib
-          name: lib
-        - mountPath: /var/log
-          name: log
-        #- mountPath: /var/run/containerd/containerd.sock
-        #  name: containerd-socket
-        #  readOnly: true
-        - mountPath: /usr/local/datakit/conf.d/container/container.conf
-          name: datakit-conf
-          subPath: container.conf
-        - mountPath: /usr/local/datakit/conf.d/log/logfwdserver.conf
-          name: datakit-conf
-          subPath: logfwdserver.conf
-        - mountPath: /usr/local/datakit/conf.d/ddtrace/ddtrace.conf
-          name: datakit-conf
-          subPath: ddtrace.conf
-        - mountPath: /host/proc
-          name: proc
-          readOnly: true
-        - mountPath: /host/dev
-          name: dev
-          readOnly: true
-        - mountPath: /host/sys
-          name: sys
-          readOnly: true
-        - mountPath: /rootfs
-          name: rootfs
-        - mountPath: /sys/kernel/debug
-          name: debugfs
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          app: daemonset-datakit
+      template:
+        metadata:
+          labels:
+            app: daemonset-datakit
+        spec:
+          hostNetwork: true
+          dnsPolicy: ClusterFirstWithHostNet
+          containers:
+          - env:
+            - name: HOST_IP
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: status.hostIP
+            - name: ENV_K8S_NODE_NAME
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: spec.nodeName
+            - name: ENV_DATAWAY
+              value: https://openway.guance.com?token=XXXXXX
+            - name: ENV_GLOBAL_HOST_TAGS # 非选举类的tag
+              value: host=__datakit_hostname,host_ip=__datakit_ip,cluster_name_k8s=k8s-prod
+            - name: ENV_DEFAULT_ENABLED_INPUTS
+              value: cpu,disk,diskio,mem,swap,system,hostobject,net,host_processes,container,statsd,ebpf,rum
+            - name: ENV_ENABLE_ELECTION
+              value: enable
+            - name: ENV_GLOBAL_ENV_TAGS # 只对选举类的tag有用
+              value: cluster_name_k8s=k8s-prod
+            - name: ENV_HTTP_LISTEN
+              value: 0.0.0.0:9529
+            - name: ENV_NAMESPACE # 选举用的
+              value: guance-k8s-demo
+            #- name: ENV_LOG_LEVEL
+            #  value: debug
+            #- name: ENV_K8S_CLUSTER_NAME
+            #  value: k8s-prod
+            image: pubrepo.jiagouyun.com/datakit/datakit:1.4.10
+            imagePullPolicy: Always
+            name: datakit
+            ports:
+            - containerPort: 9529
+              hostPort: 9529
+              name: port
+              protocol: TCP
+            securityContext:
+              privileged: true
+            volumeMounts:
+            - mountPath: /var/run
+              name: run
+            - mountPath: /var/lib
+              name: lib
+            - mountPath: /var/log
+              name: log
+            #- mountPath: /var/run/containerd/containerd.sock
+            #  name: containerd-socket
+            #  readOnly: true
+            - mountPath: /usr/local/datakit/conf.d/container/container.conf
+              name: datakit-conf
+              subPath: container.conf
+            - mountPath: /usr/local/datakit/conf.d/log/logfwdserver.conf
+              name: datakit-conf
+              subPath: logfwdserver.conf
+            - mountPath: /usr/local/datakit/conf.d/ddtrace/ddtrace.conf
+              name: datakit-conf
+              subPath: ddtrace.conf
+            - mountPath: /host/proc
+              name: proc
+              readOnly: true
+            - mountPath: /host/dev
+              name: dev
+              readOnly: true
+            - mountPath: /host/sys
+              name: sys
+              readOnly: true
+            - mountPath: /rootfs
+              name: rootfs
+            - mountPath: /sys/kernel/debug
+              name: debugfs
 
-        workingDir: /usr/local/datakit
-      hostIPC: true
-      hostPID: true
-      restartPolicy: Always
-      serviceAccount: datakit
-      serviceAccountName: datakit
-      tolerations:
-        - operator: Exists
-      volumes:
-        - configMap:
-            name: datakit-conf
-          name: datakit-conf
-        - hostPath:
-            path: /var/run
-          name: run
-        - hostPath:
-            path: /var/lib
-          name: lib
-        - hostPath:
-            path: /var/log
-          name: log
+            workingDir: /usr/local/datakit
+          hostIPC: true
+          hostPID: true
+          restartPolicy: Always
+          serviceAccount: datakit
+          serviceAccountName: datakit
+          tolerations:
+            - operator: Exists
+          volumes:
+            - configMap:
+                name: datakit-conf
+              name: datakit-conf
+            - hostPath:
+                path: /var/run
+              name: run
+            - hostPath:
+                path: /var/lib
+              name: lib
+            - hostPath:
+                path: /var/log
+              name: log
 
-        - hostPath:
-            path: /proc
-            type: ""
-          name: proc
-        - hostPath:
-            path: /dev
-            type: ""
-          name: dev
-        - hostPath:
-            path: /sys
-            type: ""
-          name: sys
-        - hostPath:
-            path: /
-            type: ""
-          name: rootfs
-        - hostPath:
-            path: /sys/kernel/debug
-            type: ""
-          name: debugfs
-  updateStrategy:
-    rollingUpdate:
-      maxUnavailable: 1
-    type: RollingUpdate
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: datakit-conf
-  namespace: datakit
-data:
-  #### container
-  container.conf: |-
-    [inputs.container]
-      docker_endpoint = "unix:///var/run/docker.sock"
-      containerd_address = "/var/run/containerd/containerd.sock"
+            - hostPath:
+                path: /proc
+                type: ""
+              name: proc
+            - hostPath:
+                path: /dev
+                type: ""
+              name: dev
+            - hostPath:
+                path: /sys
+                type: ""
+              name: sys
+            - hostPath:
+                path: /
+                type: ""
+              name: rootfs
+            - hostPath:
+                path: /sys/kernel/debug
+                type: ""
+              name: debugfs
+      updateStrategy:
+        rollingUpdate:
+          maxUnavailable: 1
+        type: RollingUpdate
+    ---
+    apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      name: datakit-conf
+      namespace: datakit
+    data:
+      #### container
+      container.conf: |-
+        [inputs.container]
+          docker_endpoint = "unix:///var/run/docker.sock"
+          containerd_address = "/var/run/containerd/containerd.sock"
 
-      enable_container_metric = true
-      enable_k8s_metric = true
-      enable_pod_metric = true
+          enable_container_metric = true
+          enable_k8s_metric = true
+          enable_pod_metric = true
 
-      ## Containers logs to include and exclude, default collect all containers. Globs accepted.
-      container_include_log = []
-      container_exclude_log = ["image:*"]
-      #container_exclude_log = ["image:pubrepo.jiagouyun.com/datakit/logfwd*", "image:pubrepo.jiagouyun.com/datakit/datakit*"]
+          ## Containers logs to include and exclude, default collect all containers. Globs accepted.
+          container_include_log = []
+          container_exclude_log = ["image:*"]
+          #container_exclude_log = ["image:pubrepo.jiagouyun.com/datakit/logfwd*", "image:pubrepo.jiagouyun.com/datakit/datakit*"]
 
-      exclude_pause_container = true
+          exclude_pause_container = true
 
-      ## Removes ANSI escape codes from text strings
-      logging_remove_ansi_escape_codes = false
+          ## Removes ANSI escape codes from text strings
+          logging_remove_ansi_escape_codes = false
 
-      kubernetes_url = "https://kubernetes.default:443"
+          kubernetes_url = "https://kubernetes.default:443"
 
-      ## Authorization level:
-      ##   bearer_token -> bearer_token_string -> TLS
-      ## Use bearer token for authorization. ('bearer_token' takes priority)
-      ## linux at:   /run/secrets/kubernetes.io/serviceaccount/token
-      ## windows at: C:\var\run\secrets\kubernetes.io\serviceaccount\token
-      bearer_token = "/run/secrets/kubernetes.io/serviceaccount/token"
-      # bearer_token_string = "<your-token-string>"
+          ## Authorization level:
+          ##   bearer_token -> bearer_token_string -> TLS
+          ## Use bearer token for authorization. ('bearer_token' takes priority)
+          ## linux at:   /run/secrets/kubernetes.io/serviceaccount/token
+          ## windows at: C:\var\run\secrets\kubernetes.io\serviceaccount\token
+          bearer_token = "/run/secrets/kubernetes.io/serviceaccount/token"
+          # bearer_token_string = "<your-token-string>"
 
-      [inputs.container.tags]
-        # some_tag = "some_value"
-        # more_tag = "some_other_value"
+          [inputs.container.tags]
+            # some_tag = "some_value"
+            # more_tag = "some_other_value"
 
-  #### ddtrace
-  ddtrace.conf: |-
-    [[inputs.ddtrace]]
-      endpoints = ["/v0.3/traces", "/v0.4/traces", "/v0.5/traces"]
-      # ignore_resources = []
-      customer_tags = ["node_ip"]
-      [inputs.ddtrace.close_resource]
-        "*" = ["PUT /nacos/*","GET /nacos/*","POST /nacos/*"]
-      ## tags is ddtrace configed key value pairs
-      # [inputs.ddtrace.tags]
-        # some_tag = "some_value"
-        # more_tag = "some_other_value"
+      #### ddtrace
+      ddtrace.conf: |-
+        [[inputs.ddtrace]]
+          endpoints = ["/v0.3/traces", "/v0.4/traces", "/v0.5/traces"]
+          # ignore_resources = []
+          customer_tags = ["node_ip"]
+          [inputs.ddtrace.close_resource]
+            "*" = ["PUT /nacos/*","GET /nacos/*","POST /nacos/*"]
+          ## tags is ddtrace configed key value pairs
+          # [inputs.ddtrace.tags]
+            # some_tag = "some_value"
+            # more_tag = "some_other_value"
 
-  #### logfwdserver
-  logfwdserver.conf: |-
-    [inputs.logfwdserver]
-      ## logfwd 接收端监听地址和端口
-      address = "0.0.0.0:9531"
+      #### logfwdserver
+      logfwdserver.conf: |-
+        [inputs.logfwdserver]
+          ## logfwd 接收端监听地址和端口
+          address = "0.0.0.0:9531"
 
-      [inputs.logfwdserver.tags]
-      # some_tag = "some_value"
-      # more_tag = "some_other_value"
-```
+          [inputs.logfwdserver.tags]
+          # some_tag = "some_value"
+          # more_tag = "some_other_value"
+    ```
 
 不同的 Kubernetes 集群，为区分集群内 DaemonSet 部署的 DataKit 选举，需要增加 `ENV_NAMESPACE` 环境变量，同一个 token 下值不能重复。
 
@@ -441,105 +439,109 @@ EXPOSE 443
 
 新建 `/usr/local/k8s/nginx.conf` ，内容如下：
 
-```toml
-events {
-    worker_connections  1024;
-}
+??? quote "`/usr/local/k8s/nginx.conf`"
 
-http {
-    include       mime.types;
-    default_type  application/octet-stream;
+    ```toml
+    events {
+        worker_connections  1024;
+    }
 
-    sendfile        on;
-    #tcp_nopush     on;
+    http {
+        include       mime.types;
+        default_type  application/octet-stream;
 
-    client_max_body_size  50m;
-    #keepalive_timeout  0;
-    keepalive_timeout  65;
-    #gzip  on;
-    server {
-        listen       80;
-        server_name  localhost;
+        sendfile        on;
+        #tcp_nopush     on;
 
-        location / {
-            root  /data/nginx/web/dist;
-            index  index.html index.htm;
-            try_files $uri $uri/ /index.html;
-        }
+        client_max_body_size  50m;
+        #keepalive_timeout  0;
+        keepalive_timeout  65;
+        #gzip  on;
+        server {
+            listen       80;
+            server_name  localhost;
 
-            location /prod-api/{
-            proxy_set_header Host $http_host;
-            proxy_set_header X-Real-IP $remote_addr;
-            proxy_set_header REMOTE-HOST $remote_addr;
-            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-            proxy_pass http://172.16.0.229:30001/;
-        }
+            location / {
+                root  /data/nginx/web/dist;
+                index  index.html index.htm;
+                try_files $uri $uri/ /index.html;
+            }
 
-         location /nginx_status{
-            stub_status;
-         }
+                location /prod-api/{
+                proxy_set_header Host $http_host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header REMOTE-HOST $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_pass http://172.16.0.229:30001/;
+            }
 
-        #error_page  404              /404.html;
+            location /nginx_status{
+                stub_status;
+            }
 
-        # redirect server error pages to the static page /50x.html
-        #
-        error_page   500 502 503 504  /50x.html;
-        location = /50x.html {
-            root   html;
+            #error_page  404              /404.html;
+
+            # redirect server error pages to the static page /50x.html
+            #
+            error_page   500 502 503 504  /50x.html;
+            location = /50x.html {
+                root   html;
+            }
         }
     }
-}
-```
+    ```
 
 新建 `/usr/local/k8s/web-deployment.yaml` ，文件内容如下：
 
-```yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: web-service
-  labels:
-    app: web-service
-spec:
-  selector:
-    app: web-service
-  ports:
-    - protocol: TCP
-      port: 80
-      nodePort: 30000
-      targetPort: 80
-  type: NodePort
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: web-service
-  labels:
-    app: web-service
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: web-service
-  template:
+??? quote "`/usr/local/k8s/web-deployment.yaml`"
+
+    ```yaml
+    apiVersion: v1
+    kind: Service
     metadata:
+      name: web-service
       labels:
         app: web-service
     spec:
-      containers:
-      - env:
-        - name: PODE_NAME
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.name
+      selector:
+        app: web-service
+      ports:
+        - protocol: TCP
+          port: 80
+          nodePort: 30000
+          targetPort: 80
+      type: NodePort
+    ---
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: web-service
+      labels:
+        app: web-service
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: web-service
+      template:
+        metadata:
+          labels:
+            app: web-service
+        spec:
+          containers:
+          - env:
+            - name: PODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
 
-        name: web-service
-        image: 47.96.6.150:5000/df-demo/demo-web:v1
-        #command: ["sh","-c"]
-        ports:
-        - containerPort: 80
-          protocol: TCP
-```
+            name: web-service
+            image: 47.96.6.150:5000/df-demo/demo-web:v1
+            #command: ["sh","-c"]
+            ports:
+            - containerPort: 80
+              protocol: TCP
+    ```
 
 #### dd-java-agent 镜像
 
@@ -586,82 +588,84 @@ ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS} -jar ${jar} ${PARAMS} 2>&1 > /d
 
 新建 `/usr/local/k8s/gateway-deployment.yaml` ，文件内容如下：
 
-```yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: gateway-service
-  labels:
-    app: gateway-service
-spec:
-  selector:
-    app: gateway-service
-  ports:
-    - protocol: TCP
-      port: 9299
-      nodePort: 30001
-      targetPort: 9299
-  type: NodePort
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: gateway-service
-  labels:
-    app: gateway-service
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: gateway-service
-  template:
+??? quote "`/usr/local/k8s/gateway-deployment.yaml`"
+
+    ```yaml
+    apiVersion: v1
+    kind: Service
     metadata:
+      name: gateway-service
       labels:
         app: gateway-service
     spec:
-      containers:
-      - env:
-        - name: DD_AGENT_HOST
-          valueFrom:
-            fieldRef:
-              apiVersion: v1
-              fieldPath: status.hostIP
-        - name: POD_NAME
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.name
-        - name: NACOS_IP
-          value: "172.16.0.230"
-        - name: JAVA_OPTS
-          value: |-
-            -javaagent:/usr/dd-java-agent/agent/dd-java-agent.jar -Ddd.service=demo-k8s-gateway  -Ddd.tags=container_host:$(POD_NAME) -Ddd.tags=node_ip:$(DD_AGENT_HOST) -Ddd.service.mapping=redis:redisk8s -Ddd.env=dev -Ddd.agent.port=9529
-        - name: PARAMS
-          value: "--spring.redis.host=$(NACOS_IP) --spring.nacos.ip=$(NACOS_IP)"
-        name: gateway-service
-        image: 47.96.6.150:5000/df-demo/demo-gateway:v1
-        #command: ["sh","-c"]
-        ports:
-        - containerPort: 9299
-          protocol: TCP
-        volumeMounts:
-        - mountPath: /usr/dd-java-agent/agent
-          name: ddagent
-      initContainers:
-      - command:
-        - sh
-        - -c
-        - set -ex;mkdir -p /ddtrace/agent;cp -r /usr/dd-java-agent/agent/* /ddtrace/agent;
-        image: pubrepo.jiagouyun.com/datakit/dk-sidecar:1.1
-        imagePullPolicy: Always
-        name: ddtrace-agent-sidecar
-        volumeMounts:
-        - mountPath: /ddtrace/agent
-          name: ddagent
-      restartPolicy: Always
-      volumes:
-      - emptyDir: {}
-        name: ddagent
-```
+      selector:
+        app: gateway-service
+      ports:
+        - protocol: TCP
+          port: 9299
+          nodePort: 30001
+          targetPort: 9299
+      type: NodePort
+    ---
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: gateway-service
+      labels:
+        app: gateway-service
+    spec:
+      replicas: 2
+      selector:
+        matchLabels:
+          app: gateway-service
+      template:
+        metadata:
+          labels:
+            app: gateway-service
+        spec:
+          containers:
+          - env:
+            - name: DD_AGENT_HOST
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: status.hostIP
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NACOS_IP
+              value: "172.16.0.230"
+            - name: JAVA_OPTS
+              value: |-
+                -javaagent:/usr/dd-java-agent/agent/dd-java-agent.jar -Ddd.service=demo-k8s-gateway  -Ddd.tags=container_host:$(POD_NAME) -Ddd.tags=node_ip:$(DD_AGENT_HOST) -Ddd.service.mapping=redis:redisk8s -Ddd.env=dev -Ddd.agent.port=9529
+            - name: PARAMS
+              value: "--spring.redis.host=$(NACOS_IP) --spring.nacos.ip=$(NACOS_IP)"
+            name: gateway-service
+            image: 47.96.6.150:5000/df-demo/demo-gateway:v1
+            #command: ["sh","-c"]
+            ports:
+            - containerPort: 9299
+              protocol: TCP
+            volumeMounts:
+            - mountPath: /usr/dd-java-agent/agent
+              name: ddagent
+          initContainers:
+          - command:
+            - sh
+            - -c
+            - set -ex;mkdir -p /ddtrace/agent;cp -r /usr/dd-java-agent/agent/* /ddtrace/agent;
+            image: pubrepo.jiagouyun.com/datakit/dk-sidecar:1.1
+            imagePullPolicy: Always
+            name: ddtrace-agent-sidecar
+            volumeMounts:
+            - mountPath: /ddtrace/agent
+              name: ddagent
+          restartPolicy: Always
+          volumes:
+          - emptyDir: {}
+            name: ddagent
+    ```
 
 #### 编写 Auth 部署文件
 
@@ -687,81 +691,83 @@ ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS} -jar ${jar} ${PARAMS} 2>&1 > /d
 
 新建 `/usr/local/k8s/auth-deployment.yaml` ，文件内容如下：
 
-```yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: auth-service
-  labels:
-    app: auth-service
-spec:
-  selector:
-    app: auth-service
-  ports:
-    - protocol: TCP
-      port: 9200
-      targetPort: 9200
-  type: NodePort
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: auth-service
-  labels:
-    app: auth-service
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: auth-service
-  template:
+??? quote "`/usr/local/k8s/auth-deployment.yaml`"
+
+    ```yaml
+    apiVersion: v1
+    kind: Service
     metadata:
+      name: auth-service
       labels:
         app: auth-service
     spec:
-      containers:
-      - env:
-        - name: DD_AGENT_HOST
-          valueFrom:
-            fieldRef:
-              apiVersion: v1
-              fieldPath: status.hostIP
-        - name: POD_NAME
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.name
-        - name: NACOS_IP
-          value: "172.16.0.230"
-        - name: JAVA_OPTS
-          value: |-
-            -javaagent:/usr/dd-java-agent/agent/dd-java-agent.jar -Ddd.service=demo-k8s-auth  -Ddd.tags=container_host:$(POD_NAME) -Ddd.tags=node_ip:$(DD_AGENT_HOST) -Ddd.service.mapping=redis:redisk8s -Ddd.env=dev -Ddd.agent.port=9529 
-        - name: PARAMS
-          value: "--spring.redis.host=$(NACOS_IP) --spring.nacos.ip=$(NACOS_IP)"
-        name: auth-service
-        image: 47.96.6.150:5000/df-demo/demo-auth:v1
-        #command: ["sh","-c"]
-        ports:
-        - containerPort: 9200
-          protocol: TCP
-        volumeMounts:
-        - mountPath: /usr/dd-java-agent/agent
-          name: ddagent
-      initContainers:
-      - command:
-        - sh
-        - -c
-        - set -ex;mkdir -p /ddtrace/agent;cp -r /usr/dd-java-agent/agent/* /ddtrace/agent;
-        image: pubrepo.jiagouyun.com/datakit/dk-sidecar:1.0
-        imagePullPolicy: Always
-        name: ddtrace-agent-sidecar
-        volumeMounts:
-        - mountPath: /ddtrace/agent
-          name: ddagent
-      restartPolicy: Always
-      volumes:
-      - emptyDir: {}
-        name: ddagent
-```
+      selector:
+        app: auth-service
+      ports:
+        - protocol: TCP
+          port: 9200
+          targetPort: 9200
+      type: NodePort
+    ---
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: auth-service
+      labels:
+        app: auth-service
+    spec:
+      replicas: 2
+      selector:
+        matchLabels:
+          app: auth-service
+      template:
+        metadata:
+          labels:
+            app: auth-service
+        spec:
+          containers:
+          - env:
+            - name: DD_AGENT_HOST
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: status.hostIP
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NACOS_IP
+              value: "172.16.0.230"
+            - name: JAVA_OPTS
+              value: |-
+                -javaagent:/usr/dd-java-agent/agent/dd-java-agent.jar -Ddd.service=demo-k8s-auth  -Ddd.tags=container_host:$(POD_NAME) -Ddd.tags=node_ip:$(DD_AGENT_HOST) -Ddd.service.mapping=redis:redisk8s -Ddd.env=dev -Ddd.agent.port=9529 
+            - name: PARAMS
+              value: "--spring.redis.host=$(NACOS_IP) --spring.nacos.ip=$(NACOS_IP)"
+            name: auth-service
+            image: 47.96.6.150:5000/df-demo/demo-auth:v1
+            #command: ["sh","-c"]
+            ports:
+            - containerPort: 9200
+              protocol: TCP
+            volumeMounts:
+            - mountPath: /usr/dd-java-agent/agent
+              name: ddagent
+          initContainers:
+          - command:
+            - sh
+            - -c
+            - set -ex;mkdir -p /ddtrace/agent;cp -r /usr/dd-java-agent/agent/* /ddtrace/agent;
+            image: pubrepo.jiagouyun.com/datakit/dk-sidecar:1.0
+            imagePullPolicy: Always
+            name: ddtrace-agent-sidecar
+            volumeMounts:
+            - mountPath: /ddtrace/agent
+              name: ddagent
+          restartPolicy: Always
+          volumes:
+          - emptyDir: {}
+            name: ddagent
+    ```
 
 #### 编写 System 部署文件
 
@@ -791,145 +797,147 @@ ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS}   -jar ${jar} ${PARAMS}  2>&1 >
 
 `system-deployment.yaml` 完整内容如下：
 
-```yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: system-service
-spec:
-  selector:
-    app: system-pod
-  ports:
-    - protocol: TCP
-      port: 9201
-      #nodePort: 30001
-      targetPort: 9201
-  type: NodePort
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: system-deployment
-  #labels:
-  #  app: system-deployment
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: system-pod
-  template:
+??? quote "`system-deployment.yaml`"
+
+    ```yaml
+    apiVersion: v1
+    kind: Service
     metadata:
-      labels:
+      name: system-service
+    spec:
+      selector:
         app: system-pod
-    spec:          
-      containers:
-      - name: system-container      
-        env:
-        - name: POD_NAME
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.name
-        - name: DD_AGENT_HOST
-          valueFrom:
-            fieldRef:
-              apiVersion: v1
-              fieldPath: status.hostIP
-        - name: NACOS_IP
-          value: "172.16.0.229"
-        - name: DB_IP
-          value: "172.16.0.230"
-        - name: JAVA_OPTS
-          value: |-
-            -javaagent:/usr/dd-java-agent/agent/dd-java-agent.jar -Ddd.service=demo-k8s-system  -Ddd.tags=container_host:$(PODE_NAME)  -Ddd.tags=node_ip:$(DD_AGENT_HOST) -Ddd.service.mapping=mysql:mysql-k8s,redis:redisk8s -Ddd.env=dev -Ddd.agent.port=9529 
-        - name: PARAMS
-          value: "--spring.redis.host=$(DB_IP) --spring.nacos.ip=$(NACOS_IP) --spring.db.ip=$(DB_IP)"
-        image: 172.16.0.238/df-ruoyi/demo-system:v1
-        #command: ["sh","-c"]
-        ports:
-        - containerPort: 9201
-          protocol: TCP
-        volumeMounts:
-        - name: ddagent
-          mountPath: /usr/dd-java-agent/agent
-        - name: varlog
-          mountPath: /data/app/logs/ruoyi-system
-        resources:
-          limits: 
-            memory: 512Mi
-          requests:
-            memory: 256Mi
-      - name: logfwd
-        image: pubrepo.jiagouyun.com/datakit/logfwd:1.2.7
-        env:
-        - name: LOGFWD_DATAKIT_HOST
-          valueFrom:
-            fieldRef:
-              apiVersion: v1
-              fieldPath: status.hostIP
-        - name: LOGFWD_DATAKIT_PORT
-          value: "9531"
-        - name: LOGFWD_LOGFWD_ANNOTATION_DATAKIT_LOG_CONFIGS
-          valueFrom:
-            fieldRef:
-              apiVersion: v1
-              fieldPath: metadata.annotations['datakit/log']
-        - name: LOGFWD_POD_NAME
-          valueFrom:
-            fieldRef:
-              apiVersion: v1
-              fieldPath: metadata.name
-        - name: LOGFWD_POD_NAMESPACE
-          valueFrom:
-            fieldRef:
-              apiVersion: v1
-              fieldPath: metadata.namespace  
-        volumeMounts:
-        - mountPath: /var/log
-          name: varlog 
-        - mountPath: /opt/logfwd/config
-          name: logfwd-config
-          subPath: config               
-      initContainers:
-      - name: ddtrace-agent-sidecar
-        command:
-        - sh
-        - -c
-        - set -ex;mkdir -p /ddtrace/agent;cp -r /usr/dd-java-agent/agent/* /ddtrace/agent;
-        image: pubrepo.jiagouyun.com/datakit/dk-sidecar:1.0
-        imagePullPolicy: Always
-        volumeMounts:
-        - mountPath: /ddtrace/agent
-          name: ddagent
-      restartPolicy: Always
-      volumes:
-      - name: varlog
-        emptyDir: {} 
-      - name: ddagent
-        emptyDir: {} 
-      - configMap:
-          name: logfwd-conf
-        name: logfwd-config 
-          
----
-        
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: logfwd-conf
-data:
-  config: |
-    [
-        {            
-            "loggings": [
-                {
-                    "logfiles": ["/var/log/info.log","/var/log/error.log"],
-                    "source": "k8s-log-system",                   
-                    "multiline_match": "^\\d{4}-\\d{2}-\\d{2}"
-                }
-            ]
-        }
-    ] 
-```
+      ports:
+        - protocol: TCP
+          port: 9201
+          #nodePort: 30001
+          targetPort: 9201
+      type: NodePort
+    ---
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: system-deployment
+      #labels:
+      #  app: system-deployment
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: system-pod
+      template:
+        metadata:
+          labels:
+            app: system-pod
+        spec:          
+          containers:
+          - name: system-container      
+            env:
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: DD_AGENT_HOST
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: status.hostIP
+            - name: NACOS_IP
+              value: "172.16.0.229"
+            - name: DB_IP
+              value: "172.16.0.230"
+            - name: JAVA_OPTS
+              value: |-
+                -javaagent:/usr/dd-java-agent/agent/dd-java-agent.jar -Ddd.service=demo-k8s-system  -Ddd.tags=container_host:$(PODE_NAME)  -Ddd.tags=node_ip:$(DD_AGENT_HOST) -Ddd.service.mapping=mysql:mysql-k8s,redis:redisk8s -Ddd.env=dev -Ddd.agent.port=9529 
+            - name: PARAMS
+              value: "--spring.redis.host=$(DB_IP) --spring.nacos.ip=$(NACOS_IP) --spring.db.ip=$(DB_IP)"
+            image: 172.16.0.238/df-ruoyi/demo-system:v1
+            #command: ["sh","-c"]
+            ports:
+            - containerPort: 9201
+              protocol: TCP
+            volumeMounts:
+            - name: ddagent
+              mountPath: /usr/dd-java-agent/agent
+            - name: varlog
+              mountPath: /data/app/logs/ruoyi-system
+            resources:
+              limits: 
+                memory: 512Mi
+              requests:
+                memory: 256Mi
+          - name: logfwd
+            image: pubrepo.jiagouyun.com/datakit/logfwd:1.2.7
+            env:
+            - name: LOGFWD_DATAKIT_HOST
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: status.hostIP
+            - name: LOGFWD_DATAKIT_PORT
+              value: "9531"
+            - name: LOGFWD_LOGFWD_ANNOTATION_DATAKIT_LOG_CONFIGS
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.annotations['datakit/log']
+            - name: LOGFWD_POD_NAME
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.name
+            - name: LOGFWD_POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace  
+            volumeMounts:
+            - mountPath: /var/log
+              name: varlog 
+            - mountPath: /opt/logfwd/config
+              name: logfwd-config
+              subPath: config               
+          initContainers:
+          - name: ddtrace-agent-sidecar
+            command:
+            - sh
+            - -c
+            - set -ex;mkdir -p /ddtrace/agent;cp -r /usr/dd-java-agent/agent/* /ddtrace/agent;
+            image: pubrepo.jiagouyun.com/datakit/dk-sidecar:1.0
+            imagePullPolicy: Always
+            volumeMounts:
+            - mountPath: /ddtrace/agent
+              name: ddagent
+          restartPolicy: Always
+          volumes:
+          - name: varlog
+            emptyDir: {} 
+          - name: ddagent
+            emptyDir: {} 
+          - configMap:
+              name: logfwd-conf
+            name: logfwd-config 
+              
+    ---
+            
+    apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      name: logfwd-conf
+    data:
+      config: |
+        [
+            {            
+                "loggings": [
+                    {
+                        "logfiles": ["/var/log/info.log","/var/log/error.log"],
+                        "source": "k8s-log-system",                   
+                        "multiline_match": "^\\d{4}-\\d{2}-\\d{2}"
+                    }
+                ]
+            }
+        ] 
+    ```
 
 另外，`system-deployment.yaml` 文件中使用了环境变量来指定 DataKit 和 logfwd 端口。
 
