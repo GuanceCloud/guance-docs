@@ -1,4 +1,5 @@
 # 主机可观测最佳实践 (Linux)
+
 ---
 
 ## 基本概述
@@ -6,7 +7,8 @@
 Linux，全称 GNU/Linux，是一套免费使用和自由传播的类 Unix 操作系统，作为企业中应用最为广泛的操作系统，其稳定性必然成为最重要的一环，观测云通过多年的客户经验积累，实现了主机可观测的全覆盖，帮助客户快速洞察基础设施运行情况，大幅缩减运维成本。
 
 ## 场景概览
-[ 观测云 - 场景 - 仪表板 - 新建仪表板 - 主机概览_Linux ]
+
+< 观测云 - 场景 - 仪表板 - 新建仪表板 - 主机概览_Linux >
 
 ![image.png](../images/host-linux-1.png)
 ![image.png](../images/host-linux-2.png)
@@ -17,15 +19,15 @@ Linux，全称 GNU/Linux，是一套免费使用和自由传播的类 Unix 操�
 
 ## 前置条件
 
-前往官方网站  [观测云](https://www.guance.com/) 注册账号，使用已注册的账号/密码进行登录。
+前往官方网站 [观测云](https://www.guance.com/) 注册账号，使用已注册的账号/密码进行登录。
 
 ## 部署实施
 
 ### 一键安装
 
-_DataKit 是观测云官方发布的数据采集应用，支持上百种数据的采集_
+DataKit 是观测云官方发布的数据采集应用，支持上百种数据的采集。
 
-[ 观测云 - 集成 - DataKit - 复制命令行并直接在服务器运行 ]
+登陆观测云控制台，点击「集成」 - 「DataKit」，复制命令行并直接在服务器运行。
 
 ![image.png](../images/host-linux-7.png)
 
@@ -40,11 +42,12 @@ _DataKit 是观测云官方发布的数据采集应用，支持上百种数据�
 
 ### 默认插件
 
-安装完成后，会默认开启一些插件(数据采集)，可以在主配置文件中查看 (datakit.conf)
+安装完成后，会默认开启一些插件(数据采集)，可以在主配置文件中查看 `datakit.conf` 
 
 ```bash
 default_enabled_inputs = ["cpu", "disk", "diskio", "mem", "swap", "hostobject", "net", "host_processes", "container", "system"]
 ```
+
 插件说明：
 
 指标数据可以在 [ 观测云 - 指标 ] 中查看，对象数据可以直接在相关页面查看
@@ -63,7 +66,7 @@ default_enabled_inputs = ["cpu", "disk", "diskio", "mem", "swap", "hostobject", 
 
 ## 数据采集
 
-_使用观测云查看指标时，可以通过标签进行快速的条件筛选_
+使用观测云查看指标时，可以通过标签进行快速的条件筛选
 
 ### 默认采集
 
@@ -107,6 +110,7 @@ _集成运行情况代表该服务器上已经运行的插件列表_
 ![image.png](../images/host-linux-13.png)
 
 #### 进程对象
+
 [ 观测云 - 基础设施 - 进程，查看所有进程对象列表 ]
 
 ![image.png](../images/host-linux-14.png)
@@ -151,7 +155,7 @@ systemctl restart datakit
 
 #### 网口指标
 
-使用 ebpf 技术采集主机网络接口 tcp/udp连接信息
+使用 ebpf 技术采集主机网络接口 tcp/udp 连接信息
 
 1.安装 ebpf 插件
 
@@ -228,9 +232,9 @@ systemctl start scheck
 
 ### 扩展采集
 
-DataKit 除了自身的数据采集外，还完美兼容  telegraf 采集器
+DataKit 除了自身的数据采集外，还完美兼容 telegraf 采集器
 
-安装 Telegraf ，以  CentOS 为例，其他系统参考 [Telegraf 官方文档](https://docs.influxdata.com/telegraf/v1.19/introduction/installation/)
+安装 Telegraf ，以 CentOS 为例，其他系统参考 [Telegraf 官方文档](https://docs.influxdata.com/telegraf/v1.19/introduction/installation/)
 
 1.添加 yum 源
 
@@ -282,7 +286,7 @@ url = "http://127.0.0.1:9529/v1/write/metric?input=telegraf"
 #[[inputs.system]]
 ```
 
-6.启动  telegraf
+6.启动 telegraf
 
 ```bash
 systemctl start telegraf
@@ -354,7 +358,7 @@ systemctl restart telegraf
 
 以本机为拨测点，对于重要接口/站点进行检测
 
-多点拨测可以查看 可用性监测 
+多点拨测可以查看 可用性监测
 
 1.修改主配置文件 telegraf.conf
 
