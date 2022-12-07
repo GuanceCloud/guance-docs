@@ -1,44 +1,41 @@
-# 使用 extract + TextMapAdapter 实现了自定义 traceId  
+# 使用 extract + TextMapAdapter 实现了自定义 traceId
 
 ---
 
-> *作者： 刘锐*
+> _作者： 刘锐_
 
-某些特定的场景，需要我们通过代码的方式实现自定义traceId。
+## 前言
 
+某些特定的场景，需要我们通过代码的方式实现**自定义 traceId**。
 
-实现思路： 通过 tracer.extract 能够构造出 SpanContext ，将构造出来的 SpanContext 作为上层节点信息，通过 asChildOf(SpanContext)能够构造出当前的span。
+实现思路：通过 `tracer.extract` 能够构造出 SpanContext ，将构造出来的 SpanContext 作为上层节点信息，通过 asChildOf(SpanContext) 能够构造出当前的 span。
 
-## TraceId 如何参数定义
+### TraceId 如何参数定义
 
-对于 tracer.extract 构建 SpanContext，内部通过 ContextInterpreter 进行解析并获取对于的traceId和spanId，ContextInterpreter 部分实现代码如下
+对于 `tracer.extract` 构建 SpanContext，内部通过 ContextInterpreter 进行解析并获取对应的 traceId 和 spanId，ContextInterpreter 部分实现代码将在下文做介绍。
 
 ### 传播器
 
-ddtrace 支持几种传播协议，不同的传播协议的 traceId 的参数名不一样。
+ddtrace 支持几种传播协议，不同的传播协议的 traceId 的参数名不一样。<br/>
+就 java 而言，ddtrace 支持两种传播协议：
 
-就java而言，ddtrace支持两种传播协议  
+- Datadog ：默认传播协议
+- B3 ：B3 传播是标头“b3”和以“x-b3-”开头的标头的规范。这些标头用于跨服务边界的跟踪上下文传播。
 
-- **Datadog** ： 默认传播协议
+## 使用 Datadog 传播器实现自定义 traceId
 
-- **B3**  ：B3 传播是标头“b3”和以“x-b3-”开头的标头的规范。这些标头用于跨服务边界的跟踪上下文传播。
-
-
-## 使用 `Datadog` 传播器自定义traceId 实现
-
-### 开启 `Datadog` 传播器
+### 开启 Datadog 传播器
 
 ```
 -Ddd.propagation.style.extract=Datadog
 -Ddd.propagation.style.inject=Datadog
 ```
 
-
 ### 机制源码介绍
 
-ddtrace 默认采用 **Datadog** 作为默认的传播协议，拦截器为：DatadogContextInterpreter。其中 DatadogContextInterpreter 拦截器部分代码如下：
+ddtrace 默认采用 **Datadog** 作为默认的传播协议，拦截器为`DatadogContextInterpreter`，其部分代码如下：
 
-``` java
+```java
 	public boolean accept(String key, String value) {
 		case 'x':
 			if ("x-datadog-trace-id".equalsIgnoreCase(key)) {
@@ -52,7 +49,7 @@ ddtrace 默认采用 **Datadog** 作为默认的传播协议，拦截器为：Da
 
 
 		....
-		
+
 		switch(classification) {
 			case 0:
 				this.traceId = DDId.from(firstValue);
@@ -72,7 +69,7 @@ ddtrace 默认采用 **Datadog** 作为默认的传播协议，拦截器为：Da
 
 ### 代码实现
 
-``` java
+```java
 
     /***
      * 自定义traceId相关信息，实现自定义链路
@@ -107,27 +104,27 @@ ddtrace 默认采用 **Datadog** 作为默认的传播协议，拦截器为：Da
 
 ```
 
-## 使用 `B3` 传播器自定义traceId 实现
+## 使用B3传播器实现自定义 traceId
 
-[关于B3 传播器介绍](https://github.com/openzipkin/b3-propagation#single-header) 
+<[关于 B3 传播器介绍](https://github.com/openzipkin/b3-propagation#single-header)>
 
+B3 有两种编码：Single Header 和 Multiple Header。
 
-
-B3 有两种编码：Single Header 和 Multiple Header。多标头编码X-B3-在跟踪上下文中使用每个项目的前缀标头。单个标头将上下文分隔为一个名为b3. 提取字段时，单头变体优先于多头变体。
+- 多个标头编码 X-B3-在跟踪上下文中使用每个项目的前缀标头
+- 单个标头将上下文分隔为一个名为 b3. 提取字段时，单头变体优先于多头变体。
 
 这是一个使用多个标头编码的示例流程，假设 HTTP 请求带有传播的跟踪：
 
 ![image](../images/ddtrace-custom-traceId-1.png)
 
-
-### 开启 `B3` 传播器
+### 开启 B3 传播器
 
 ```
 -Ddd.propagation.style.extract=B3
 -Ddd.propagation.style.inject=B3
 ```
 
-### 机制源码介绍  
+### 机制源码介绍
 
 ```java
 	public boolean accept(String key, String value) {
@@ -154,10 +151,10 @@ B3 有两种编码：Single Header 和 Multiple Header。多标头编码X-B3-在
 				} else if (this.handledXForwarding(key, value)) {
 					return true;
 				}
-		} 
-		
-	    ... 
-		
+		}
+
+	    ...
+
 		String firstValue = HttpCodec.firstHeaderValue(value);
 		if (null != firstValue) {
 			switch (classification) {
@@ -188,14 +185,14 @@ B3 有两种编码：Single Header 和 Multiple Header。多标头编码X-B3-在
 					}
 			}
 		}
-			
+
 		...
-		
+
 ```
 
 以下方法是对 Single Header 方式的处理
 
-``` java 
+```java
 	private boolean extractB3(String firstValue) {
 		if (firstValue.length() == 1) {
 			this.samplingPriority = this.convertSamplingPriority(firstValue);
@@ -227,7 +224,7 @@ B3 有两种编码：Single Header 和 Multiple Header。多标头编码X-B3-在
 
 ### Multiple Header 代码实现
 
-``` java
+```java
 	private static void b3TraceByMultiple(){
         String traceId = DDId.from("6917954032704516265").toHexStringOrOriginal();
         Tracer tracer = GlobalTracer.get();
@@ -253,11 +250,9 @@ B3 有两种编码：Single Header 和 Multiple Header。多标头编码X-B3-在
 
 ```
 
+> **注意：**Multiple Header 必需传入两个 header，分别为：`X-B3-TraceId` 和 `X-B3-SpanId`，从拦截器上分析，是不区分大小写的。
 
-> Multiple Header 必需传入两个header，分别为：`X-B3-TraceId` 和 `X-B3-SpanId`，从拦截器上分析，是不区分大小写的。
-
-
-``` bash
+```bash
 6001828a33d570a9	6917954032704516265	58c4b35f113ee353
 6001828a33d570a9	6917954032704516265	330359b7aaea9d6b
 6001828a33d570a9	6917954032704516265	1ac0dcd332f9262f
@@ -265,7 +260,7 @@ B3 有两种编码：Single Header 和 Multiple Header。多标头编码X-B3-在
 
 ### Single Header 代码实现
 
-``` java
+```java
 	private static void b3TraceBySingle(){
         String traceId = DDId.from("6917954032704516265").toHexStringOrOriginal();
         Tracer tracer = GlobalTracer.get();
@@ -299,21 +294,23 @@ b3=6001828a33d570a9-308287d022272ed9-1
 b3=6001828a33d570a9-5e6fbaad91daef5c-1
 ```
 
-> Single Header 只需要 header 传入 `b3` 即可，格式为：`traceId-parentId-Sampled` 
+> **注意：**Single Header 只需要 header 传入 `b3` 即可，格式为 `traceId-parentId-Sampled`
 
 ## 开启多种传播器
 
-System Property :
+两种方式任选一种即可：
+
+- System Property :
 
 ```
 -Ddd.propagation.style.inject=Datadog,B3
 -Ddd.propagation.style.extract=Datadog,B3
 ```
 
-Environment Variable: 
+- Environment Variable:
+
 ```
 DD_PROPAGATION_STYLE_INJECT=Datadog,B3
 DD_PROPAGATION_STYLE_EXTRACT=Datadog,B3
 ```
 
-两种方式任选一种即可。
