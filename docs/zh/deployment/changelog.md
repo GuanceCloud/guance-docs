@@ -2,6 +2,8 @@
 
 ## v1.54.116（2022 年 12 月 01 日）
 
+pubrepo.jiagouyun.com/dataflux/1.54.116:launcher-56de9cd-1670394824
+
 ### 观测云更新
 
 - 应用性能新增服务清单功能
