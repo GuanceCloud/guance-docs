@@ -10,7 +10,7 @@ icon: fontawesome/solid/mobile-screen
 
 在观测云的工作空间内，您可以通过「集成」-「移动端」进行下载，也可以通过下方扫码进行下载。
 
-![](img/app_1.png)
+![](img/1.mobile_34.png)
 
 或者您也可以直接点击如下链接进行下载。             
 
@@ -60,7 +60,7 @@ icon: fontawesome/solid/mobile-screen
 
 观测云移动端支持通过时间组件来设定场景视图、日志、事件数据展示的时间范围，您可以快速选择预设的时间范围，也可以通过选择开始和结束时间自定义时间范围。
 
-<img src="img/1.mobile_8.png" style="zoom:25%;" />
+<img src="img/1.mobile_39.png" style="zoom:25%;" /><img src="img/1.mobile_40.png" style="zoom:25%;" />
 
 ### 搜索与筛选
 
@@ -76,43 +76,43 @@ icon: fontawesome/solid/mobile-screen
 
 <img src="img/1.mobile_6.png" style="zoom:25%;" />
 
-**场景一：分享给到观测云电脑端查看**
+**场景一：分享至 PC 端**
 
-在此场景下，您点击收到的分享链接即可在电脑端登录查看对应的数据。
+在此场景下，您点击收到的分享链接即可在 PC 端登录查看对应的数据。
 
-**场景二：分享给到已安装观测云移动端的另外一台设备查看**
+**场景二：分享至安装有观测云 App 的 Android 或 iOS 的移动设备**
 
 在此场景下，您点击收到的分享链接即可打开对应的数据。
 
-**场景二：分享给到未安装观测云移动端的另外一台设备查看**
+**场景三：分享至未安装观测云 App 的 Android 或 iOS 的移动设备**
 
-在此场景下，您点击收到的分享链接，即可打开观测云提供的登录引导，点击顶部的「立即打开」，下载安装观测云并查看对应的数据。
+在此场景下，您点击收到的分享链接，即可根据引导下载安装观测云 App 并查看对应的数据。
 
 <img src="img/1.mobile_24.png" style="zoom:25%;" /><img src="img/1.mobile_23.png" style="zoom:25%;" />
 
 #### 告警通知
 
-观测云支持为事件的不同等级设置告警通知，设置完成后会触发告警通知，点击通知内容里的「前往观测云查看」，您可以通过以上引导示意图下载观测云 APP，并通过观测云移动端来查看异常事件的详情信息。更多告警通知的配置信息可参考文档 [告警策略](../monitoring/alert-setting.md) 。
+观测云支持为事件的不同等级设置告警通知，设置完成后会触发告警通知，点击通知内容里的「前往观测云查看」，您可以在观测云移动端直接查看该告警的对应事件详情。更多告警通知的配置信息可参考文档 [告警策略](../monitoring/alert-setting.md) 。
 
 ![](img/1.mobile_33.png)
 
 ### 隔空接力
 
-观测云移动端支持通过 Mac OS 系统的隔空接力，在移动端和电脑端同步查看数据，帮助您在必要的时候快速切换设备来处理问题。
+观测云移动端支持通过隔空接力，在移动端和电脑端同步查看数据，帮助您在必要的时候快速切换设备来处理问题。
 
-注意：使用隔空接力时，需要登录每台设备开启隔空接力的功能，并使用同一个 Apple ID 登录 iCloud，更多设置可参考文档 [如何使用隔空接力](https://support.apple.com/zh-cn/HT209455) 。
+注意：使用隔空接力时，需要电脑端为 Mac OS 系统，移动端设备为 iOS 系统，每台设备开启隔空接力的功能，并使用同一个 Apple ID 登录 iCloud，更多设置可参考文档 [如何使用隔空接力](https://support.apple.com/zh-cn/HT209455) 。
 
 **场景一：在移动端查看观测云的事件，电脑端提示同步查看**
 
 在此场景下，当您在移动端查看事件时，在您的电脑端浏览器会有查看提示，点击浏览器即可打开对应的事件内容。见如下示意图。
 
-![](img/1.mobile_30.png)
+![](img/1.mobile_43.png)
 
 **场景二：在电脑端查看观测云的事件，移动端提示同步查看**
 
 在此场景下，当您在电脑端查看事件时，在您的移动端底部会有观测云的查看提示，点击即可打开移动端查看相关的事件内容。见如下示意图。
 
-![](img/1.mobile_26.1.png)
+![](img/1.mobile_42.png)
 
 
 
@@ -211,4 +211,4 @@ icon: fontawesome/solid/mobile-screen
 - 搜索：通过关键字或者字段进行快捷搜索
 - 分享：分享当前事件给到其他人进行查看
 
-<img src="img/1.mobile_4.png" style="zoom:20%;" /><img src="img/1.mobile_7.png" style="zoom:20%;" /><img src="img/1.mobile_6.png" style="zoom:20%;" />
+<img src="img/1.mobile_4.png" style="zoom:20%;" /><img src="img/1.mobile_7.png" style="zoom:20%;" /><img src="img/1.mobile_6.1.png" style="zoom:20%;" />
