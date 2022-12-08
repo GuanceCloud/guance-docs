@@ -70,27 +70,69 @@ icon: fontawesome/solid/mobile-screen
 
 ### 分享
 
-观测云移动端提供事件详情、日志详情、仪表板、笔记、查看器等分享查看功能。点击右上角的“分享”即可分享链接给到其他人进行查看，支持在分享的链接点击下载移动端。
+观测云移动端提供事件详情、日志详情、仪表板、笔记、查看器等分享查看功能。点击右上角的“分享”即可分享链接给到其他人进行查看。
 
-<img src="img/1.mobile_6.png" style="zoom:25%;" /><img src="img/1.mobile_23.png" style="zoom:25%;" />
+注意：查看分享的链接内容需要您也拥有被分享内容工作空间的权限。
+
+<img src="img/1.mobile_6.png" style="zoom:25%;" />
+
+**场景一：分享给到观测云电脑端查看**
+
+在此场景下，您点击收到的分享链接即可在电脑端登录查看对应的数据。
+
+**场景二：分享给到已安装观测云移动端的另外一台设备查看**
+
+在此场景下，您点击收到的分享链接即可打开对应的数据。
+
+**场景二：分享给到未安装观测云移动端的另外一台设备查看**
+
+在此场景下，您点击收到的分享链接，即可打开观测云提供的登录引导，点击顶部的「立即打开」，下载安装观测云并查看对应的数据。
+
+<img src="img/1.mobile_24.png" style="zoom:25%;" /><img src="img/1.mobile_23.png" style="zoom:25%;" />
+
+#### 告警通知
+
+观测云支持为事件的不同等级设置告警通知，设置完成后会触发告警通知，点击通知内容里的「前往观测云查看」，您可以通过以上引导示意图下载观测云 APP，并通过观测云移动端来查看异常事件的详情信息。更多告警通知的配置信息可参考文档 [告警策略](../monitoring/alert-setting.md) 。
+
+![](img/1.mobile_33.png)
 
 ### 隔空接力
 
-观测云移动端支持通过 Mac OS 系统的隔空接力，在移动端和电脑端同步查看数据。
+观测云移动端支持通过 Mac OS 系统的隔空接力，在移动端和电脑端同步查看数据，帮助您在必要的时候快速切换设备来处理问题。
 
-#### 配置步骤
+注意：使用隔空接力时，需要登录每台设备开启隔空接力的功能，并使用同一个 Apple ID 登录 iCloud，更多设置可参考文档 [如何使用隔空接力](https://support.apple.com/zh-cn/HT209455) 。
 
-1.在手机端开启隔空接力
+**场景一：在移动端查看观测云的事件，电脑端提示同步查看**
 
-<img src="img/1.mobile_1.png" style="zoom:25%;" />
+在此场景下，当您在移动端查看事件时，在您的电脑端浏览器会有查看提示，点击浏览器即可打开对应的事件内容。见如下示意图。
 
-2.在电脑端开启隔空接力
+![](img/1.mobile_30.png)
 
-<img src="img/1.mobile_2.png" style="zoom:100%;" />
+**场景二：在电脑端查看观测云的事件，移动端提示同步查看**
 
-3.在手机和电脑端同时登录同一个 iCloud 账号
+在此场景下，当您在电脑端查看事件时，在您的移动端底部会有观测云的查看提示，点击即可打开移动端查看相关的事件内容。见如下示意图。
 
-<img src="img/1.mobile_3.png" style="zoom:100%;" />
+![](img/1.mobile_26.1.png)
+
+
+
+### Widget 功能
+
+观测云支持 Widget 功能，您可以在桌面小组件自定义添加观测云移动端，并通过桌面小组件的信息展示功能快速查看观测云的相关数据。
+
+注意：使用 Widget 功能时，若您使用的是 iOS 系统，您需要升级至 iOS 14 以上系统版本 。
+
+您可以根据如下示意图来添加观测云小组件：
+
+1.下载安装观测云，并登录到需要查看的工作空间
+
+2.在搜索小组件中，输入观测云进行搜索
+
+3.打开观测云，点击“添加小组件”
+
+4.添加完成后，即可在移动端桌面实时查看观测云的相关数据信息
+
+<img src="img/1.mobile_27.png" style="zoom:20%;" /><img src="img/1.mobile_29.png" style="zoom:20%;" /><img src="img/1.mobile_28.png" style="zoom:20%;" />
 
 ## 场景
 
@@ -152,7 +194,7 @@ icon: fontawesome/solid/mobile-screen
 - 筛选：快速通过日志状态进行筛选查看
 - 分享：分享当前日志给到其他人进行查看
 
-<img src="img/1.mobile_15.png" style="zoom:25%;" /><img src="img/1.mobile_16.png" style="zoom:25%;" /><img src="img/1.mobile_16.1.png" style="zoom:25%;" />
+<img src="img/1.mobile_15.png" style="zoom:20%;" /><img src="img/1.mobile_16.png" style="zoom:20%;" /><img src="img/1.mobile_16.1.png" style="zoom:20%;" />
 
 
 
@@ -169,4 +211,4 @@ icon: fontawesome/solid/mobile-screen
 - 搜索：通过关键字或者字段进行快捷搜索
 - 分享：分享当前事件给到其他人进行查看
 
-<img src="img/1.mobile_4.png" style="zoom:25%;" /><img src="img/1.mobile_7.png" style="zoom:25%;" /><img src="img/1.mobile_6.png" style="zoom:25%;" />
+<img src="img/1.mobile_4.png" style="zoom:20%;" /><img src="img/1.mobile_7.png" style="zoom:20%;" /><img src="img/1.mobile_6.png" style="zoom:20%;" />
