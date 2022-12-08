@@ -39,6 +39,7 @@
 
 - 支持使用自定义镜像仓库
 - 支持在部署时，一键创建中件间基础设施：MySQL、Redis、OpenSearch、TDengine 等
+- 支持 MySQL 8.x
 
 更多详情可参考帮助文档：https://docs.guance.com/release-notes/
 
