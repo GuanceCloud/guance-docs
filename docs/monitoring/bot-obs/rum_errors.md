@@ -145,6 +145,10 @@ def run(configs={}):
 
 在出现巡检报告中没有异常分析时，请检查当前 `datakit` 的数据采集状态。
 
+**3.在巡检过程中发现以前正常运行的脚本出现异常错误**
+
+请在 DataFlux Func 的脚本市场中更新所引用的脚本集，可以通过[**变更日志**](https://func.guance.com/doc/script-market-guance-changelog/)来查看脚本市场的更新记录方便即时更新脚本。
+
 
 
 

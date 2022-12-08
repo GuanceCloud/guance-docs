@@ -121,6 +121,10 @@ def run():
 
 可以参考阿里云集成文档中[（如: 阿里云 ECS）](https://func.guance.com/doc/script-market-guance-aliyun-ecs/)的上报数据格式中的指标集进行数据查看
 
+**3.在巡检过程中发现以前正常运行的脚本出现异常错误**
+
+请在 DataFlux Func 的脚本市场中更新所引用的脚本集，可以通过[**变更日志**](https://func.guance.com/doc/script-market-guance-changelog/)来查看脚本市场的更新记录方便即时更新脚本。
+
 
 
 
