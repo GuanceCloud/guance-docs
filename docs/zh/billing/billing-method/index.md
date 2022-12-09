@@ -48,7 +48,7 @@
 | 时间线         | 统计工作空间内所有指标数据产生的时间线数量<br><br>**注意：**指标数据是由时间、指标集、指标、标签等四部分组成，单个指标集的时间线数量等于某段时间内当前指标集下共存在多少种标签组合决定。观测云工作空间的时间线数量 = 工作空间下所有指标集的时间线总和。详情可参考 [时间线示例](#time-example) 。 | 全量统计     | 基础计费     |
 | 日志类数据     | 统计工作空间内当天上报的日志类数据的数量<br>统计数据包含：<br><li>日志数据<br><li>自建节点拨测数据（ `source= [‘http_dial_testing',‘tcp_dial_testing’,'icmp_dial_testing','websocket_dial_testing'] `且 `owner != default` ）<br><li>安全巡检<br><li>事件数据<br>- 监控、智能巡检产生事件（`source=monitor`）<br>- 用户自定义上报事件（`source=custom`）<br><br>**注意：**超大的日志数据会拆分成多条进行计费，根据不同的存储方式计算逻辑不同，包括 ES 存储和 SLS 存储。<br><li>ES 存储：日志大小超过 10 KB，日志计费的条数 = 取整数（日志大小 / 10 KB）<br><li>SLS 存储：日志大小超过 2 KB，日志计费的条数 = 取整数（日志大小 / 2 KB）更多存储方式说明可参考文档 [数据存储策略](../../billing/billing-method/data-storage.md) 。 | 增量统计     | 梯度计费     |
 | 备份日志容量   | 统计工作空间内备份日志的存储容量                             | 全量统计     | 基础计费     |
-| 应用性能 Trace | 统计工作空间内当天上报的应用性能唯一的 trace_id 数量<br><br>**注意：**一整个完整链路算一个 trace , 一条完整链路下有多个 span ，但是 span 对应的 trace_id 都是一样的，最终是按照 trace_id 的数量进行计费。 | 增量统计     | 梯度计费     |
+| 应用性能 Trace | 统计工作空间内当天上报的应用性能唯一的 trace_id 数量<br><br>统计数据范围：应用性能链路追踪的 trace 数据 | 增量统计     | 梯度计费     |
 | 用户访问 PV    | 统计工作空间内当天上报的用户访问的页面浏览数量<br>统计数据范围：用户访问的 view 数据 | 增量统计     | 梯度计费     |
 | 可用性拨测     | 统计工作空间内当天上报的拨测数据数量（仅统计观测云提供的拨测节点返回数据）<br>统计数据范围：`source= [‘http_dial_testing',‘tcp_dial_testing’,'icmp_dial_testing','websocket_dial_testing'] `的拨测数据 | 增量统计     | 基础计费     |
 | 任务调度       | 统计工作空间内当天产生的任务调用的次数<br>统计数据范围：监控器定时检测任务、生成指标定时任务、告警通知发送均会产生任务调用 | 增量统计     | 基础计费     |
@@ -128,73 +128,67 @@ SaaS 按量计费模式下，用户可根据上报数据的特性自由选择出
 
 指标数据是由时间、指标集、指标、标签等四部分组成，单个指标集的时间线数量等于某段时间内当前指标集下共存在多少种标签组合决定。观测云工作空间的时间线数量 = 工作空间下所有指标集的时间线总和。
 
-**测算示例**
+**统计指标集的时间线**
 
-DataKit 采集主机、K8s集群指标数据产生时间线估算：
+1）若您已经安装 DataKit 并开始采集数据，您可以在 [指标管理](../../metrics/dictionary.md) 查看已经采集的指标集的时间线数量。如主机、K8S 集群的时间线数量。
 
 | 指标集   | 指标                                               | 时间线估算                                        |
 | -------- | -------------------------------------------------- | ------------------------------------------------- |
 | 主机     | 每台主机单磁盘、单网卡                             | 大约 20 ~ 30 条时间线                             |
 | K8S 集群 | 16 个 Node<br>300 个 POD<br>指标数据保存策略:14 天 | 大约 6409 条时间线<br>![](../img/2.billing_1.png) |
 
-**用户自定义指标集时间线估算：**
+2）若您还未安装 DataKit ，您可以根据以下的示例来估算您的时间线数据，或者您可以根据文档 [安装 DataKit](../../datakit/datakit-install.md) 。
 
-下面我们以一个示例来介绍下如何估算某个指标集的时间线数量。当前存在一个 "测试" 的指标集，指标集下共有两个标签："邮箱"、"状态"，假设当前存在 3 个不同的邮箱地址，每个邮箱地址都存在 "0"、"1"  2 种状态，那么可以得到当前 "测试" 指标集下的时间线数量为 6 （3 * 2 =6）。 
+假设您从两台主机（ `host: A` 和 `host: B` ）同时采集指标 `http_response` ，用来监测应用的访问情况。这里有两个标签：
 
-| **邮箱**         | **状态** |
-| ---------------- | -------- |
-| test1@guance.com | 0        |
-| test1@guance.com | 1        |
-| test2@guance.com | 0        |
-| test2@guance.com | 1        |
-| test3@guance.com | 0        |
-| test3@guance.com | 1        |
+- `host` ：包括 `host: A` 和 `host: B` 
+- `status_code` ：包括 `status_code: 200` 、`status_code: 404` 和 `status_code: 500`
 
-若在当前指标集下新增了一个 "角色权限" 字段，因为每个邮箱都可以赋予不同的角色权限，所以每个邮箱的不同状态下都对应存在 "只读成员"、"标准成员"、"管理员" 3 种角色权限。那么可以得到当前 "测试" 指标集下的时间线数量为 18 （3 * 2 * 3 =18）。
+假设 `host: A` 有两条请求返回了状态码， `host: B` 有三条请求返回了状态码，见如下示意图：
 
-| **邮箱**         | **状态** | **角色权限** |
-| ---------------- | -------- | ------------ |
-| test1@guance.com | 0        | 只读成员     |
-| test1@guance.com | 0        | 标准成员     |
-| test1@guance.com | 0        | 管理员       |
-| test1@guance.com | 1        | 只读成员     |
-| test1@guance.com | 1        | 标准成员     |
-| test1@guance.com | 1        | 管理员       |
-| test2@guance.com | 0        | 只读成员     |
-| test2@guance.com | 0        | 标准成员     |
-| test2@guance.com | 0        | 管理员       |
-| test2@guance.com | 1        | 只读成员     |
-| test2@guance.com | 1        | 标准成员     |
-| test2@guance.com | 1        | 管理员       |
-| test3@guance.com | 0        | 只读成员     |
-| test3@guance.com | 0        | 标准成员     |
-| test3@guance.com | 0        | 管理员       |
-| test3@guance.com | 1        | 只读成员     |
-| test3@guance.com | 1        | 标准成员     |
-| test3@guance.com | 1        | 管理员       |
+<img src="../img/3.billing_time_1.png" width=800px />
 
-若当前指标集下又新增了一个新的标签字段 "名字"，因为 "名字" 跟 "邮箱" 字段的值都是一一对应的，那么在这种情况下，新增字段其实不会产生更多的时间线。最终统计得到的时间线仍然为 18。
+根据以上的示意图，指标集  `http_response` 将会产生 5 条时间线。
 
-| **邮箱**         | **状态** | **角色权限** | **名字** |
-| ---------------- | -------- | ------------ | -------- |
-| test1@guance.com | 0        | 只读成员     | test1    |
-| test1@guance.com | 0        | 标准成员     | test1    |
-| test1@guance.com | 0        | 管理员       | test1    |
-| test1@guance.com | 1        | 只读成员     | test1    |
-| test1@guance.com | 1        | 标准成员     | test1    |
-| test1@guance.com | 1        | 管理员       | test1    |
-| test2@guance.com | 0        | 只读成员     | test2    |
-| test2@guance.com | 0        | 标准成员     | test2    |
-| test2@guance.com | 0        | 管理员       | test2    |
-| test2@guance.com | 1        | 只读成员     | test2    |
-| test2@guance.com | 1        | 标准成员     | test2    |
-| test2@guance.com | 1        | 管理员       | test2    |
-| test3@guance.com | 0        | 只读成员     | test3    |
-| test3@guance.com | 0        | 标准成员     | test3    |
-| test3@guance.com | 0        | 管理员       | test3    |
-| test3@guance.com | 1        | 只读成员     | test3    |
-| test3@guance.com | 1        | 标准成员     | test3    |
-| test3@guance.com | 1        | 管理员       | test3    |
+```
+ host: A ， status_code: 200 
+ host: A ， status_code: 404 
+ host: B ， status_code: 200 
+ host: B ， status_code: 404 
+ host: B ， status_code: 500 
+```
+
+**基于标签的变化统计指标集的时间线**
+
+基于以上的示意图，我们为指标集  `http_response` 增加一个标签 `url` ，包括 2 个值 `https://docs.guance.com/` 和 `https://www.guance.com/` ，那么指标集  `http_response` 将会产生 10 条时间线（即 5*2=10 ） 。
+
+```
+ host: A ， status_code: 200 ， url: https://docs.guance.com/
+ host: A ， status_code: 200 ， url: https://www.guance.com/
+ host: A ， status_code: 404 ， url: https://docs.guance.com/
+ host: A ， status_code: 404 ， url: https://www.guance.com/
+ host: B ， status_code: 200 ， url: https://docs.guance.com/
+ host: B ， status_code: 200 ， url: https://www.guance.com/
+ host: B ， status_code: 404 ， url: https://docs.guance.com/
+ host: B ， status_code: 404 ， url: https://www.guance.com/
+ host: B ， status_code: 500 ， url: https://docs.guance.com/
+ host: B ， status_code: 500 ， url: https://www.guance.com/
+```
+
+基于以上的示例，我们再为指标集  `http_response` 增加一个标签 `host_ip`  ，由于 `host_ip` 和 `host` 的值都是一一对应的，那么指标集  `http_response` 不会产生更多的时间线，即虽然增加了一个标签属性，但还是只产生 10 条时间线。
+
+```
+ host: A ， status_code: 200 ， url: https://docs.guance.com/ ， host_ip: 192.168.0.1
+ host: A ， status_code: 200 ， url: https://www.guance.com/ ， host_ip: 192.168.0.1
+ host: A ， status_code: 404 ， url: https://docs.guance.com/ ， host_ip: 192.168.0.1
+ host: A ， status_code: 404 ， url: https://www.guance.com/ ， host_ip: 192.168.0.1
+ host: B ， status_code: 200 ， url: https://docs.guance.com/ ， host_ip: 192.168.0.2
+ host: B ， status_code: 200 ， url: https://www.guance.com/ ， host_ip: 192.168.0.2
+ host: B ， status_code: 404 ， url: https://docs.guance.com/ ， host_ip: 192.168.0.2
+ host: B ， status_code: 404 ， url: https://www.guance.com/ ， host_ip: 192.168.0.2
+ host: B ， status_code: 500 ， url: https://docs.guance.com/ ， host_ip: 192.168.0.2
+ host: B ， status_code: 500 ， url: https://www.guance.com/ ， host_ip: 192.168.0.2
+```
 
 ### 其他费用相关示例
 
@@ -243,3 +237,4 @@ DataKit 采集主机、K8s集群指标数据产生时间线估算：
 | 任务调度 | 2 万次     | 1 元 / 万次     | (实际统计数量 / 计费单元) * 单价<br/>即 （2 万 / 1 万） * 1 元 | 2 元       |
 
 注意：由于时间线为全量计费项，所以时间线的变化可能会导致时间线数量增加而产生费用，更多时间线数量测算可参考文档 [时间线示例](#time-example) 。
+
