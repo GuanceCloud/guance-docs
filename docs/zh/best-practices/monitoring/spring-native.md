@@ -12,7 +12,7 @@ GraalVM 作为一个运行时环境是独一无二的，它提供了多种操作
 
 #### JVM 运行时模式
 
-在 HotSpot JVM 上运行程序时，GraalVM 默认使用[GraalVM 编译器](https://www.graalvm.org/22.1/reference-manual/java/compiler/)作为顶级 JIT 编译器。在运行时，应用程序在 JVM 上正常加载和执行。JVM 将 Java 或任何其他 JVM 原生语言的字节码传递给编译器，编译器将其编译为机器代码并将其返回给 JVM。[在Truffle 框架](https://www.graalvm.org/22.1/graalvm-as-a-platform/language-implementation-framework/)之上编写的受支持语言的解释器本身就是在 JVM 上运行的 Java 程序。
+在 HotSpot JVM 上运行程序时，GraalVM 默认使用[GraalVM 编译器](https://www.graalvm.org/22.1/reference-manual/java/compiler/)作为顶级 JIT 编译器。在运行时，应用程序在 JVM 上正常加载和执行。JVM 将 Java 或任何其他 JVM 原生语言的字节码传递给编译器，编译器将其编译为机器代码并将其返回给 JVM。[在 Truffle 框架](https://www.graalvm.org/22.1/graalvm-as-a-platform/language-implementation-framework/)之上编写的受支持语言的解释器本身就是在 JVM 上运行的 Java 程序。
 
 #### Native Image
 
@@ -20,18 +20,11 @@ GraalVM 作为一个运行时环境是独一无二的，它提供了多种操作
 
 Spring Native 为使用 GraalVM 原生镜像编译器编译 Spring 应用为本地可执行文件提供支持。本文使用 JVM 运行时模式，使用 ddtrace 实现链路接入观测云。
 
-## 环境版本
-
-- 云服务器：4 核 8 G
-- Centos： 7.9
-- git version： 1.8.3.1
-- Maven：3.8.5
-- OpenJDK：17.0.3
-- GraalVM CE：22.1.0
-- DataKit：1.4.0
-
 ## 操作步骤
 
+???+ attention
+
+    本次示例所使用的版本信息如下：DataKit `1.4.0`、CentOS `7.9`、云服务器 `4核 8G`、Git `1.8.3.1`、Maven `3.8.5`、OpenJDK `17.0.3`、GraalVM CE `22.1.0`
 ### 1 部署 Git
 
 ```shell
@@ -49,7 +42,7 @@ wget https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-22.1.0/gr
 tar -zxvf  graalvm-ce-java17-linux-amd64-22.1.0.tar.gz
 ```
 
-编辑 /etc/profile ，增加下面内容。
+编辑 `/etc/profile` ，增加下面内容。
 
 ```shell
 export JAVA_HOME=/usr/local/df-demo/graalvm-ce-java17-22.1.0
@@ -61,7 +54,7 @@ native-image 安装配置。
 
 ```shell
 gu install native-image
-yum install zlib-devel -y 
+yum install zlib-devel -y
 ```
 
 ### 3 部署 Maven
@@ -69,10 +62,10 @@ yum install zlib-devel -y
 ```shell
 cd /usr/local/df-demo
 wget https://mirrors.bfsu.edu.cn/apache/maven/maven-3/3.8.5/binaries/apache-maven-3.8.5-bin.tar.gz
-tar -zxvf  apache-maven-3.8.5-bin.tar.gz 
+tar -zxvf  apache-maven-3.8.5-bin.tar.gz
 ```
 
-编辑 /etc/profile ，增加下面内容。
+编辑 `/etc/profile` ，增加下面内容。
 
 ```shell
  export MAVEN_HOME=/usr/local/df-demo/apache-maven-3.8.5
@@ -87,7 +80,7 @@ source /etc/profile
 cd /usr/local/df-demo/apache-maven-3.8.5/conf
 ```
 
-编辑 settings.xml，增加如下内容。
+编辑 `settings.xml` ，增加如下内容。
 
 ```xml
    <mirrors>
@@ -102,22 +95,23 @@ cd /usr/local/df-demo/apache-maven-3.8.5/conf
             <mirrorOf>central</mirrorOf>
             <name>aliyun maven</name>
             <url>http://maven.aliyun.com/nexus/content/repositories/central/</url>
-        </mirror>  
+        </mirror>
     </mirrors>
 ```
+
 ### 4 创建 Spring Boot 项目
 
-进入 [spring.io](https://start.spring.io/)，选择 Spring Native 和 Spring Web，Java 选择 17，Project 选 Maven，Project Name 可以自己定义，点击『GENERATE』【】
+进入 [spring.io](https://start.spring.io/)，选择 「Spring Native」 和 「Spring Web」，Project 选 「Maven Project」，Language 选择 「Java」，Project Name 可以自己定义，点击「GENERATE」。
 
 ![image](../images/spring-native/3.png)
 
-增加Application 和 Controller，如示例项目 [springboot-native-demo](https://github.com/stevenliu2020/springboot-native-demo)。
+增加 Application 和 Controller，如示例项目 [springboot-native-demo](https://github.com/stevenliu2020/springboot-native-demo)。
 
 ![image](../images/spring-native/4.png)
 
 ### 5 项目打包
 
-上传项目到云服务的 /usr/local/df-demo 目录，执行打包命令。
+上传项目到云服务的 `/usr/local/df-demo` 目录，执行打包命令。
 
 ```shell
 cd /usr/local/df-demo/springboot-native-demo
@@ -126,7 +120,7 @@ mvn -Pnative -DskipTests clean package
 
 ![image](../images/spring-native/5.png)
 
-查看 target 目录，有二进制文件 springboot-native-demo 和 springboot-native-demo-1.0-SNAPSHOT-exec.jar 文件。
+查看 target 目录，有二进制文件 `springboot-native-demo` 和 `springboot-native-demo-1.0-SNAPSHOT-exec.jar` 文件。
 
 ![image](../images/spring-native/6.png)
 
@@ -134,7 +128,7 @@ mvn -Pnative -DskipTests clean package
 
 #### 6.1 安装 Datakit
 
-登录『[观测云](https://console.guance.com/)』，依次进入『集成』-> 『DataKit』->『Linux』，点击“复制”图标复制安装命令。
+登录「[观测云](https://console.guance.com/)」，依次进入「集成」 - 「DataKit」 - 「Linux」，点击「复制图标」复制安装命令。
 
 ![image](../images/spring-native/7.png)
 
@@ -150,7 +144,7 @@ mvn -Pnative -DskipTests clean package
 /usr/local/datakit/conf.d/datakit.conf
 ```
 
-修改 listen 的值是“0.0.0.0:9529”。    
+修改 listen 的值是 `0.0.0.0:9529` 
 
 ![image](../images/spring-native/9.png)
 
@@ -180,15 +174,15 @@ cd /usr/local/df-demo/springboot-native-demo/target
 
 #### 6.5 链路上报
 
-访问应用的接口 curl localhost:8090/ping，上报链路数据。
+访问应用的接口 `curl localhost:8090/ping`，上报链路数据。
 
 ![image](../images/spring-native/12.png)
 
-登录『[观测云](https://console.guance.com/)』->『应用性能监测』，可看到 spring-native-demo 服务。
+登录「[观测云](https://console.guance.com/)」 - 「应用性能监测」，可看到 spring-native-demo 服务。
 
 ![image](../images/spring-native/13.png)
 
-在『链路』界面中，可以查看到链路详情、火焰图等。
+在「链路」界面中，可以查看到链路详情、火焰图等。
 
 ![image](../images/spring-native/14.png)
 
