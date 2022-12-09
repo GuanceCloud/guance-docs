@@ -1,4 +1,4 @@
-# Skywalking 采集 JVM 可观测最佳实践
+# SkyWalking 采集 JVM 可观测最佳实践
 
 ---
 
@@ -6,11 +6,13 @@
 
 JVM 是一种用于计算设备的规范，它是一个虚构出来的计算机，是 Java Virtual Machine 的简称。Java 是一门抽象程度特别高的语言，提供了自动内存管理等一系列特性，所以就有了 JVM 这个抽象层，JVM 运行在操作系统之上，用来执行 java 字节码，这样 Java 就可以实现跨平台了。
 
-下面简要介绍一下 JVM 内存结构和线程，然后使用 Skywalking 采集 JVM 指标数据并通过观测云进行可观测。
+下面简要介绍一下 JVM 内存结构和线程，然后使用 SkyWalking 采集 JVM 指标数据并通过观测云进行可观测。
 
 ### JVM 内存结构
 
-Java 编译器只面向 JVM，生成 JVM 能理解的字节码文件，JVM 中的类加载器加载字节码，加载完成交给 JVM 执行引擎执行。在整个类的加载过程中，JVM 会用一段空间来存储数据和相关信息，这段空间就是我们常说的 JVM 内存。根据 JVM 规范，JVM 内存共分为：
+Java 编译器只面向 JVM，生成 JVM 能理解的字节码文件，JVM 中的类加载器加载字节码，加载完成交给 JVM 执行引擎执行。在整个类的加载过程中，JVM 会用一段空间来存储数据和相关信息，这段空间就是我们常说的 JVM 内存。
+
+根据 JVM 规范，JVM 内存共分为：
 
 - 程序计数器<br/>
   用于记录下一条 JVM 指令的执行地址。
@@ -37,7 +39,12 @@ Java 编译器只面向 JVM，生成 JVM 能理解的字节码文件，JVM 中�
 
 ### Thread
 
-Java 中有两类线程，用户线程(User Thread)和守护线程(Daemon Thread)。用户线程可以理解为系统的工作线程，它会完成应用程序需要完成的业务操作。守护线程是一种特殊的线程，会在后台默默地完成一些系统性的服务，比如垃圾回收线程。<br /> 线程在 JVM 中有以下几种状态：
+Java 中有两类线程，用户线程(User Thread)和守护线程(Daemon Thread)。
+
+- 用户线程可以理解为系统的工作线程，它会完成应用程序需要完成的业务操作。
+- 守护线程是一种特殊的线程，会在后台默默地完成一些系统性的服务，比如垃圾回收线程。
+
+线程在 JVM 中有以下几种状态：
 
 - 新建状态(NEW)，没有开始执行的线程状态。
 - 就绪状态(RUNNABLE)，执行中的线程状态。
@@ -77,7 +84,7 @@ Java 中有两类线程，用户线程(User Thread)和守护线程(Daemon Thread
 
 ## 操作步骤
 
-### 步骤 1： 开启采集器
+### 1 开启采集器
 
 进入安装 DataKit 的主机，复制 sample 文件。
 
@@ -86,12 +93,13 @@ cd /usr/local/datakit/conf.d/skywalking
 cp skywalking.conf.sample skywalking.conf
 ```
 
-如果部署的 DataKit 与待采集 JVM 的 Jar 不在一个主机上，需要修改 `skywalking.conf` 的 `address = "localhost:11800"`  中的 `localhost` 为 Jar 所在主机的 IP。<br/>
+如果部署的 DataKit 与待采集 JVM 的 Jar **不在一个主机上**，需要修改 `skywalking.conf` 的 `address = "localhost:11800"`  中的 `localhost` 为 Jar 所在主机的 IP。
+
 本次使用的 Jar 和 DataKit 在同一个主机上，通过 localhost 即可上报到 JVM 指标，所以不用修改 sample 文件。
 
-### 步骤 2： 部署应用
+### 2 部署应用
 
-下载[ skywalking-demo ](https://github.com/stevenliu2020/skywalking-demo)项目，使用 Idea 打开，点击右边“package”，即可生成 `skywalking-user-service.jar` 文件。<br/>
+下载[skywalking-demo](https://github.com/stevenliu2020/skywalking-demo)项目，用 Idea 打开，点击「package」，即可生成 `skywalking-user-service.jar` 文件。<br/>
 下载 [Skywalking ](https://archive.apache.org/dist/skywalking/8.7.0/apache-skywalking-apm-8.7.0.tar.gz)，解压把 agent 目录复制到主机上与 `skywalking-user-service.jar` 存放到相同目录。
 
 执行下面命令，启动应用。
@@ -103,7 +111,7 @@ java  -javaagent:agent/skywalking-agent.jar \
 -jar skywalking-user-service.jar
 ```
 
-### 步骤 3： JVM 可观测
+### 3 JVM 可观测
 
 登录「 [观测云](https://console.guance.com/)」 - 「场景」，输入“JVM”，选择「JVM Skywalking 监控视图」，点击「确定」。
 
