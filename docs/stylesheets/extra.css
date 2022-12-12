@@ -422,7 +422,6 @@ h4 {
   flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid;
 }
 .md-content .widget-content .widget-btn:not(:disabled):hover {
   color: #526cfe;
