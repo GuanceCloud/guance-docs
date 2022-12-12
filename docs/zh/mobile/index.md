@@ -59,13 +59,13 @@ icon: fontawesome/solid/mobile-screen
 
 观测云 App 支持通过时间组件来设定场景视图、日志、事件数据展示的时间范围，您可以快速选择预设的时间范围，也可以通过选择开始和结束时间自定义时间范围。
 
-<img src="img/1.mobile_time_1.png"  />&nbsp;<img src="img/1.mobile_time_2.png"  />
+![](img/1.mobile_time_1.png) &nbsp;![](img/1.mobile_time_2.png)
 
 ### 搜索与筛选
 
 观测云 App 支持您通过搜索和筛选，在场景视图、日志、事件查看器中，对相关文本数据进行快速定位查询，支持关键字、`key:value` 字段筛选等搜索方式，更多字段筛选详情可参考文档 [搜索说明](../getting-started/necessary-for-beginners/explorer-search.md#filter) 。
 
-<img src="img/1.mobile_filter.png" />&nbsp;<img src="img/1.mobile_search.png"  />
+![](img/1.mobile_filter.png) &nbsp;![](img/1.mobile_search.png)
 
 ### 分享
 
@@ -73,7 +73,7 @@ icon: fontawesome/solid/mobile-screen
 
 >注意：查看分享的链接内容需要您也拥有被分享内容工作空间的权限。
 
-<img src="img/1.mobile_share.png"  />
+![](img/1.mobile_share.png)
 
 **场景一：分享至 PC 端**
 
@@ -85,7 +85,7 @@ icon: fontawesome/solid/mobile-screen
 
 
 #### 链接
-如果在您的 iOS 或 Android 设备上安装有观测云 App，那么您在任意地方打开来自观测云的网页链接，都可以跳转至观测云 App 中对应内容的页面，包括钉钉、飞书、邮件等告警通知等第三方应用。
+如果在您的 iOS 或 Android 设备上安装有观测云 App，那么您在任意地方打开来自观测云的网页链接，都可以跳转至观测云 App 中对应内容的页面，包括钉钉、飞书、邮件中的[告警通知](../monitoring/alert-setting.md)。
 >目前仅支持事件、场景详情、日志页面
 
 
@@ -99,13 +99,14 @@ icon: fontawesome/solid/mobile-screen
 
 在此场景下，当您在移动端查看事件时，在您的电脑端浏览器会有查看提示，点击浏览器即可打开对应的事件内容。见如下示意图。
 
-<img src="img/1.mobile_handoff_1.png" width=640px/>
+<img src="img/1.mobile_handoff_2.jpg" width=240px border=1px/>
+<img src="img/1.mobile_handoff_1.1.png" width=370px />
 
-**场景二：在电脑端查看观测云的事件，移动端提示同步查看**
+**场景二：在电脑端查看观测云的事件，移动端提示同步查看** 
 
 在此场景下，当您在电脑端查看事件时，在您的移动端底部会有观测云的查看提示，点击即可打开移动端查看相关的事件内容。见如下示意图。
-
-<img src="img/1.mobile_handoff_2.png" width=640px/>
+ 
+<img src="img/1.mobile_handoff_3.png" width=640px/>
 
 
 ### Widget 功能
@@ -124,7 +125,7 @@ icon: fontawesome/solid/mobile-screen
 
 4.添加完成后，即可在移动端桌面实时查看观测云的相关数据信息
 
-<img src="img/1.mobile_widget_1.png" width=210px/>&nbsp;<img src="img/1.mobile_widget_2.png" width= 210px />&nbsp;<img src="img/1.mobile_widget_3.png"  width= 210px/>
+<img src="img/1.mobile_widget_1.png" width=210px border=1px/>&nbsp;<img src="img/1.mobile_widget_2.png" width= 210px border=1px />&nbsp;<img src="img/1.mobile_widget_3.png"  width= 210px border=1px/>
 
 ## 场景
 
@@ -145,7 +146,7 @@ icon: fontawesome/solid/mobile-screen
 
 ​        
 
-<img src="img/1.mobile_board_1.png"  />&nbsp;<img src="img/1.mobile_board_2.png"  />
+<img src="img/1.mobile_board_1.png"/>&nbsp;<img src="img/1.mobile_board_2.png"  />
 
 
 
@@ -153,7 +154,7 @@ icon: fontawesome/solid/mobile-screen
 
 笔记支持插入实时可视化图表、文本文档说明，以结合图表和文档进行数据分析和总结报告，协助问题的回溯、定位、解决。切换查看器至「笔记」，您可以查看当前空间下查看权限内的全部笔记。
 
-观测云 支持您通过点击下拉菜单切换“全部笔记”，“我的收藏”、“我的创建”，以快速过滤查找对应的笔记。笔记与网页端内容同步，详情可参考 [笔记](../scene/note.md) 。
+观测云 支持您通过点击下拉菜单切换「全部笔记」，「我的收藏」、「我的创建」，以快速过滤查找对应的笔记。笔记与网页端内容同步，详情可参考 [笔记](../scene/note.md) 。
 
 **笔记小图标说明**
 
@@ -164,9 +165,9 @@ icon: fontawesome/solid/mobile-screen
 
 ### 查看器
 
-**查看器**即自定义日志查看器，支持查看空间内各项定制化的日志查看需求。切换查看器至“查看器”，您可以查看当前空间下查看权限内的全部查看器。
+**查看器**即自定义日志查看器，支持查看空间内各项定制化的日志查看需求。切换至「查看器」，您可以查看当前空间下查看权限内的全部查看器。
 
-观测云 支持您通过点击下拉菜单切换“全部查看器”，“我的收藏”、“导入项目”、“我的创建”和“经常浏览”，以快速过滤查找对应的查看器。查看器与网页端内容同步，详情可参考 [查看器](../scene/explorer/custom-explorer.md) 。
+观测云 支持您通过点击下拉菜单切换「全部查看器」，「我的收藏」、「导入项目」、「我的创建」和「经常浏览」，以快速过滤查找对应的查看器。查看器与网页端内容同步，详情可参考 [查看器](../scene/explorer/custom-explorer.md) 。
 
 **查看器小图标说明**
 
@@ -193,7 +194,7 @@ icon: fontawesome/solid/mobile-screen
 ## 事件
 观测云移动端支持您随时随地与观测云工作台保持连接。您可以通过「全部」事件，查看、搜索和过滤由「监控器」触发的全部未恢复事件、紧急事件、重要事件、警告事件内容等；通过「我的」事件，您可以查看通过邮件、钉钉机器人、企业微信机器人、Webhook等通知到您的，且当前仍未恢复的事件内容。出现通知到您的告警事件后，观测云移动端会及时为您发送通知，以保证您能够快速反应和解决相关问题。更多详情可参考 [事件查看器](../events/explorer.md) 。
 
->注意：观测云移动端在「全部」事件/「我的」事件中仅为您提供1000条时间数据，如需查看更多时间，请前往网页端查看更多。 
+>注意：观测云移动端在「全部」事件/「我的」事件中仅为您提供 1000 条时间数据，如需查看更多时间，请前往网页端查看更多。 
 
 **事件小图标说明**
 
