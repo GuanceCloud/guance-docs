@@ -4,17 +4,14 @@
 
 ## 简介
 
-Kubernetes 提供了四层代理用来访问部署在 Pod 中的应用，这种具有四层代理的 Service ，Kubernetes 提供了四种访问方式：
+Kubernetes 提供了四层代理用来访问部署在 Pod 中的应用，这种具有四层代理的 Service ，Kubernetes 提供了 4 种访问方式：
 
-1、 ClusterIP：供集群内的其它应用访问，外部无法访问。
+1. ClusterIP：供集群内的其它应用访问，外部无法访问。
+2. NodePort：所有节点上开放指定端口，外部可以通过 IP+端口访问服务，如果没有指定 NodePort 的端口，默认会随机分配一个 30000–32767 的端口。
+3. LoadBalancer：在 NodePort 基础上，使用云服务商提供的负载均衡器，把流量转发到服务中。
+4. ExternalName：通过返回 CNAME 和它的值，可以将服务映射到 externalName 字段的内容。
 
-2、 NodePort：所有节点上开放指定端口，外部可以通过 IP+端口访问服务，如果没有指定 NodePort 的端口，默认会随机分配一个 30000–32767 的端口。
-
-3、 LoadBalancer：在 NodePort 基础上，使用云服务商提供的负载均衡器，把流量转发到服务中。
-
-4、 ExternalName：通过返回 CNAME 和它的值，可以将服务映射到 externalName 字段的内容。
-
-上述的四种方式都不能满足通过域名来访问集群中的应用，为了通过域名访问部署在 Kubernetes 中的应用，最简单的方式就是在集群中部署一个七层代理 Nginx ，通过域名来转发到对应的 Service 。如果有新的部署时，就需要更新一下 Nginx 的配置。为了达到更新配置时其它应用无感知， Ingress 出现了。
+上述的 4 种方式都不能满足通过域名来访问集群中的应用，为了通过域名访问部署在 Kubernetes 中的应用，最简单的方式就是在集群中部署一个七层代理 Nginx ，通过域名来转发到对应的 Service 。如果有新的部署时，就需要更新一下 Nginx 的配置。为了达到更新配置时其它应用无感知，Ingress 出现了。
 
 ![image](../images/ingress-nginx-1.png)
 
@@ -28,26 +25,18 @@ Ingress 包含两大组件 Ingress Controller 和 Ingress ，常用的 Ingress �
 
 **Ingress 工作原理：**
 
-1、 客户端发起[http://myNginx.com](http://mynginx.com)请求。
-
-2、 客户端的 DNS 服务器返回 Ingress 控制器的 IP。
-3、 客户端向 Ingress 控制器发送 http 请求，并在 Host 头中指定[myNginx.com](http://mynginx.com)。
-4、 控制器接收到请求后，从头部确定客户端尝试访问哪个服务，通过与该服务关联的 endpoint 对象查看到 pod 的 IP。
-5、 客户端的请求被转发给具体的 pod 执行。
+1. 客户端发起[http://myNginx.com](http://mynginx.com)请求。
+2. 客户端的 DNS 服务器返回 Ingress 控制器的 IP。
+3. 客户端向 Ingress 控制器发送 http 请求，并在 Host 头中指定[myNginx.com](http://mynginx.com)。
+4. 控制器接收到请求后，从头部确定客户端尝试访问哪个服务，通过与该服务关联的 endpoint 对象查看到 pod 的 IP。
+5. 客户端的请求被转发给具体的 pod 执行。
 
 ![image](../images/ingress-nginx-3.png)
 
 ## 前置条件
 
-### 安装 Kubernetes
-
-```
-https://kubernetes.io/docs/setup/production-environment/tools/
-```
-
-### 安装 Datakit
-
-登录[观测云控制台](https://console.guance.com/)，点击 「集成」 - 「DataKit」 - 「Kubernetes」
+- [安装 Kubernetes](https://kubernetes.io/docs/setup/production-environment/tools/)
+- 安装 DataKit：登录[观测云控制台](https://console.guance.com/)，点击 「集成」 - 「DataKit」 - 「Kubernetes」
 
 ### 部署 Ingress
 
@@ -110,7 +99,6 @@ annotations:
         name = "prom_ingress"
       [inputs.prom.tags]
       namespace = "$NAMESPACE"
-
 ```
 
 ![image](../images/ingress-nginx-4.png)
@@ -118,7 +106,6 @@ annotations:
 参数说明
 
 - url: Exporter URLs，多个 url 用逗号分割，示例["[http://127.0.0.1:9100/metrics",](http://127.0.0.1:9100/metrics",) "[http://127.0.0.1:9200/metrics"]](http://127.0.0.1:9200/metrics"])
-
 - source: 采集器别名。
 - metric_types: 指标类型，可选值是 counter, gauge, histogram, summary。
 - measurement_name: 指标集名称。
@@ -142,66 +129,70 @@ kubectl apply -f deploy.yaml
 
 编写 Nginx 的部署文件 `nginx-deployment.yaml`
 
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: nginx-deployment
-spec:
-  selector:
-    matchLabels:
-      app: backend
-  replicas: 1
-  template:
+??? quote "`nginx-deployment.yaml`"
+
+    ```yaml
+    apiVersion: apps/v1
+    kind: Deployment
     metadata:
-      labels:
-        app: backend
+      name: nginx-deployment
     spec:
-      # nodeName: df-k8s-node2
-      containers:
-        - name: nginx
-          image: nginx:latest
-          resources:
-            limits:
-              memory: "128Mi"
-              cpu: "128m"
-          ports:
-            - containerPort: 80
+      selector:
+        matchLabels:
+          app: backend
+      replicas: 1
+      template:
+        metadata:
+          labels:
+            app: backend
+        spec:
+          # nodeName: df-k8s-node2
+          containers:
+            - name: nginx
+              image: nginx:latest
+              resources:
+                limits:
+                  memory: "128Mi"
+                  cpu: "128m"
+              ports:
+                - containerPort: 80
 
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: nginx-service
-spec:
-  selector:
-    app: backend
-  ports:
-    - port: 80
-      targetPort: 80
-```
+    ---
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: nginx-service
+    spec:
+      selector:
+        app: backend
+      ports:
+        - port: 80
+          targetPort: 80
+    ```
 
-编写对应的 `nginx-ingress.yaml`，根据这个规则，如果域名是 mynginx.com 则转发到 Nginx - Service 这个 Service 。
+编写对应的 `nginx-ingress.yaml`，根据这个规则，如果域名是 mynginx.com 则，转发到 Nginx - Service 这个 Service 。
 
-```yaml
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: nodeport-ingress
-  namespace: default
-spec:
-  rules:
-    - host: mynginx.com
-      http:
-        paths:
-          - pathType: Prefix
-            path: /
-            backend:
-              service:
-                name: nginx-service
-                port:
-                  number: 80
-```
+??? quote "`nginx-ingress.yaml`"
+
+    ```yaml
+    apiVersion: networking.k8s.io/v1
+    kind: Ingress
+    metadata:
+      name: nodeport-ingress
+      namespace: default
+    spec:
+      rules:
+        - host: mynginx.com
+          http:
+            paths:
+              - pathType: Prefix
+                path: /
+                backend:
+                  service:
+                    name: nginx-service
+                    port:
+                      number: 80
+    ```
 
 部署示例
 
@@ -212,7 +203,7 @@ kubectl apply -f  nginx-ingress.yaml
 
 测试请求，其中
 
--  `8.136.204.98` 是 Kubernetes 集群中部署了 Ingress 的节点 ip
+- `8.136.204.98` 是 Kubernetes 集群中部署了 Ingress 的节点 ip
 - `mynginx.com` 是 `nginx-ingress.yaml` 中对应的 host
 
 ```shell
@@ -221,7 +212,7 @@ curl -v http://8.136.204.98 -H 'host: mynginx.com'
 
 ### 查看指标数据
 
-登录[观测云](https://console.guance.com/)，【指标】-> 找到 prom* Ingress 指标，其中 prom* Ingress 是 annotations 中 measurement_name 参数的值。
+登录[观测云](https://console.guance.com/)，在「指标」中找到 prom_ingress 指标。其中 prom_ingress 是 annotations 中 measurement_name 参数的值。
 
 ![image](../images/ingress-nginx-6.png)
 
@@ -229,8 +220,8 @@ curl -v http://8.136.204.98 -H 'host: mynginx.com'
 
 ### Ingress 监控视图
 
-登录[观测云](https://console.guance.com/)，【场景】->【新建仪表板】，在内置模板库中搜索 **Nginx Ingress Controller** ，点击搜索到的模板库，仪表板名称输入 **Nginx Ingress Controller** ，点击【确定】。
+登录[观测云](https://console.guance.com/)，「场景」 - 「新建仪表板」，在内置模板库中搜索「Nginx Ingress Controller」，点击搜索到的模板库，仪表板名称输入「Nginx Ingress Controller」 ，点击「确定」。
 
-Ingress 性能指标展示： Ingress Controller 的平均 cpu 使用率、平均内存使用、网络请求/响应合计、 Ingress Config 的加载次数、 Ingress Config 上次加载结果、 Ingress 的转发成功率等。
+Ingress 性能指标展示，包括 Ingress Controller 的平均 cpu 使用率、平均内存使用、网络请求/响应合计、 Ingress Config 的加载次数、 Ingress Config 上次加载结果、 Ingress 的转发成功率等。
 
 ![image](../images/ingress-nginx-7.png)

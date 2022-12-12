@@ -6,13 +6,13 @@
 
 ### Service Mesh 是什么
 
-过去几年，微服务在软件应用中迅速普及，大型应用被分解成多个微服务，虽然每个微服务能通过容器化在单独的容器中运行，但是服务间通信的网络拓扑仍然非常复杂。既然微服务之间网络通信非常重要，具备通过实现多个服务代理，确保受控的服务到服务之间通信通道安全、健壮的基础组件就非常有必要。<br /> 
+过去几年，微服务在软件应用中迅速普及，大型应用被分解成多个微服务，虽然每个微服务能通过容器化在单独的容器中运行，但是服务间通信的网络拓扑仍然非常复杂。既然微服务之间网络通信非常重要，具备通过实现多个服务代理，确保受控的服务到服务之间通信通道安全、健壮的基础组件就非常有必要。<br />
 服务网格 ( Service Mesh )是用来描述组成这些应用程序的微服务网络以及它们之间的交互。单个服务调用，表现为 Sidecar。如果有大量的服务，就会表现出来网格，下图绿色方格代表应用微服务，蓝色方格代表 Sidecar，线条表示服务之间的调用关系，Sidecar 之间的连接就会形成一个网络。
 ![image](../images/istio/1.png)
 
 ### Istio 简介
 
-Istio 是一个开源服务网格，它透明地分层到现有的分布式应用程序上。 提供了对整个服务网格的行为洞察和操作控制的能力，以及一个完整的满足微服务应用各种需求的解决方案。
+Istio 是一个开源服务网格，它透明地分层到现有的分布式应用程序上。提供了对整个服务网格的行为洞察和操作控制的能力，以及一个完整的满足微服务应用各种需求的解决方案。
 
 ### Istio 核心组件
 
@@ -25,7 +25,7 @@ Istio 服务网格由数据平面和控制平面组成。
 
 ### Istio 链路追踪
 
-Envoy 原生支持 Jaeger，追踪所需 x-b3 开头的 Header (`x-b3-traceid`, `x-b3-spanid`, `x-b3-parentspanid`, `x-b3-sampled`, `x-b3-flags`）和 x-request-id 在不同的服务之间由业务逻辑进行传递，并由 Envoy 上报给 Jaeger，最终 Jaeger 生成完整的追踪信息。<br /> 
+Envoy 原生支持 Jaeger，追踪所需 x-b3 开头的 Header (`x-b3-traceid`, `x-b3-spanid`, `x-b3-parentspanid`, `x-b3-sampled`, `x-b3-flags`）和 x-request-id 在不同的服务之间由业务逻辑进行传递，并由 Envoy 上报给 Jaeger，最终 Jaeger 生成完整的追踪信息。<br />
 在 Istio 中，Envoy 和 Jaeger 的关系如下：
 
 ![image](../images/istio/3.png)
@@ -84,45 +84,45 @@ Bookinfo 的链路数据，只需要修改 istio 的 configmap 中 zipkin.addres
 
 采集 ingressgateway 和 egressgateway 使用 Service 来访问 `15020` 端口，所以需要新建 ingressgateway 和 egressgateway 的 Service。
 
-`istio-ingressgateway-service-ext.yaml` 文件
+??? quote "`istio-ingressgateway-service-ext.yaml`"
 
-```yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: istio-ingressgateway-ext
-  namespace: istio-system
-spec:
-  ports:
-    - name: http-monitoring
-      port: 15020
-      protocol: TCP
-      targetPort: 15020
-  selector:
-    app: istio-ingressgateway
-    istio: ingressgateway
-  type: ClusterIP
-```
+    ```yaml
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: istio-ingressgateway-ext
+      namespace: istio-system
+    spec:
+      ports:
+        - name: http-monitoring
+          port: 15020
+          protocol: TCP
+          targetPort: 15020
+      selector:
+        app: istio-ingressgateway
+        istio: ingressgateway
+      type: ClusterIP
+    ```
 
-`istio-egressgateway-service-ext.yaml` 文件
+??? quote "`istio-egressgateway-service-ext.yaml`"
 
-```yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: istio-egressgateway-ext
-  namespace: istio-system
-spec:
-  ports:
-    - name: http-monitoring
-      port: 15020
-      protocol: TCP
-      targetPort: 15020
-  selector:
-    app: istio-egressgateway
-    istio: egressgateway
-  type: ClusterIP
-```
+    ```yaml
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: istio-egressgateway-ext
+      namespace: istio-system
+    spec:
+      ports:
+        - name: http-monitoring
+          port: 15020
+          protocol: TCP
+          targetPort: 15020
+      selector:
+        app: istio-egressgateway
+        istio: egressgateway
+      type: ClusterIP
+    ```
 
 创建 Service
 
@@ -131,93 +131,92 @@ kubectl apply -f istio-ingressgateway-service-ext.yaml
 kubectl apply -f istio-egressgateway-service-ext.yaml
 ```
 
-下面是 `datakit.yaml` 文件的修改部分
+下面是 `datakit.yaml` 文件的修改部分：
 
-- ConfigMap 增加
+??? quote "ConfigMap 增加"
 
-```yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: datakit-conf
-  namespace: datakit
-data:
-  zipkin.conf: |-
-    [[inputs.zipkin]]
-      pathV1 = "/api/v1/spans"
-      pathV2 = "/api/v2/spans"
+    ```yaml
+    apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      name: datakit-conf
+      namespace: datakit
+    data:
+      zipkin.conf: |-
+        [[inputs.zipkin]]
+          pathV1 = "/api/v1/spans"
+          pathV2 = "/api/v2/spans"
 
-  prom_istiod.conf: |-
-    [[inputs.prom]] 
-      url = "http://istiod.istio-system.svc.cluster.local:15014/metrics"
-      source = "prom-istiod"
-      metric_types = ["counter", "gauge"]
-      interval = "60s"
-      tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
-      metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
-      #measurement_prefix = ""
-      measurement_name = "istio_prom"
-      #[[inputs.prom.measurements]]
-      # prefix = "cpu_"
-      # name ="cpu"
-      [inputs.prom.tags]
-        app_id="istiod"
+      prom_istiod.conf: |-
+        [[inputs.prom]] 
+          url = "http://istiod.istio-system.svc.cluster.local:15014/metrics"
+          source = "prom-istiod"
+          metric_types = ["counter", "gauge"]
+          interval = "60s"
+          tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
+          metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
+          #measurement_prefix = ""
+          measurement_name = "istio_prom"
+          #[[inputs.prom.measurements]]
+          # prefix = "cpu_"
+          # name ="cpu"
+          [inputs.prom.tags]
+            app_id="istiod"
 
-  prom-ingressgateway.conf: |-
-    [[inputs.prom]] 
-      url = "http://istio-ingressgateway-ext.istio-system.svc.cluster.local:15020/stats/prometheus"
-      source = "prom-ingressgateway"
-      metric_types = ["counter", "gauge"]
-      interval = "60s"
-      tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
-      metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
-      #measurement_prefix = ""
-      measurement_name = "istio_prom"
-      #[[inputs.prom.measurements]]
-      # prefix = "cpu_"
-      # name ="cpu"
+      prom-ingressgateway.conf: |-
+        [[inputs.prom]] 
+          url = "http://istio-ingressgateway-ext.istio-system.svc.cluster.local:15020/stats/prometheus"
+          source = "prom-ingressgateway"
+          metric_types = ["counter", "gauge"]
+          interval = "60s"
+          tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
+          metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
+          #measurement_prefix = ""
+          measurement_name = "istio_prom"
+          #[[inputs.prom.measurements]]
+          # prefix = "cpu_"
+          # name ="cpu"
 
-  prom-egressgateway.conf: |-
-    [[inputs.prom]] 
-      url = "http://istio-egressgateway-ext.istio-system.svc.cluster.local:15020/stats/prometheus"
-      source = "prom-egressgateway"
-      metric_types = ["counter", "gauge"]
-      tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
-      interval = "60s"
-      metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
-      #measurement_prefix = ""
-      measurement_name = "istio_prom"
-      #[[inputs.prom.measurements]]
-      # prefix = "cpu_"
-      # name ="cpu"
-```
+      prom-egressgateway.conf: |-
+        [[inputs.prom]] 
+          url = "http://istio-egressgateway-ext.istio-system.svc.cluster.local:15020/stats/prometheus"
+          source = "prom-egressgateway"
+          metric_types = ["counter", "gauge"]
+          tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
+          interval = "60s"
+          metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
+          #measurement_prefix = ""
+          measurement_name = "istio_prom"
+          #[[inputs.prom.measurements]]
+          # prefix = "cpu_"
+          # name ="cpu"
+    ```
 
-- 挂载 `zipkin.conf` 和 `prom_istiod.conf`
+??? quote "挂载 `zipkin.conf` 和 `prom_istiod.conf`"
 
-```yaml
-apiVersion: apps/v1
-kind: DaemonSet
-...
-spec:
-  template
+    ```yaml
+    apiVersion: apps/v1
+    kind: DaemonSet
+    ...
     spec:
-      containers:
-      - env:
-        volumeMounts: # 下面是新增部分
-        - mountPath: /usr/local/datakit/conf.d/zipkin/zipkin.conf
-          name: datakit-conf
-          subPath: zipkin.conf
-        - mountPath: /usr/local/datakit/conf.d/prom/prom_istiod.conf
-          name: datakit-conf
-          subPath: prom_istiod.conf
-        - mountPath: /usr/local/datakit/conf.d/prom/prom-ingressgateway.conf
-          name: datakit-conf
-          subPath: prom-ingressgateway.conf
-        - mountPath: /usr/local/datakit/conf.d/prom/prom-egressgateway.conf
-          name: datakit-conf
-          subPath: prom-egressgateway.conf
-```
-
+      template
+        spec:
+          containers:
+          - env:
+            volumeMounts: # 下面是新增部分
+            - mountPath: /usr/local/datakit/conf.d/zipkin/zipkin.conf
+              name: datakit-conf
+              subPath: zipkin.conf
+            - mountPath: /usr/local/datakit/conf.d/prom/prom_istiod.conf
+              name: datakit-conf
+              subPath: prom_istiod.conf
+            - mountPath: /usr/local/datakit/conf.d/prom/prom-ingressgateway.conf
+              name: datakit-conf
+              subPath: prom-ingressgateway.conf
+            - mountPath: /usr/local/datakit/conf.d/prom/prom-egressgateway.conf
+              name: datakit-conf
+              subPath: prom-egressgateway.conf
+    ```
 
 #### 替换 token
 
@@ -294,7 +293,7 @@ kubectl label namespace prod istio-injection=enabled
 #### 开启 RUM
 
 - 1 登录[观测云](https://console.guance.com/)，「用户访问监测」 - 「新建应用」，输入 bookinfo，<br />
-复制 js 到 `/usr/local/df-demo/bookinfo/productpage/templates/productpage.html`，并修改 <DATAKIT ORIGIN> 为 `http://<your-外网 ip>:9529`。
+  复制 js 到 `/usr/local/df-demo/bookinfo/productpage/templates/productpage.html`，并修改 <DATAKIT ORIGIN> 为 `http://<your-外网 ip>:9529`。
 
 ![image](../images/istio/12.png)
 
@@ -327,6 +326,7 @@ kubectl edit configmap istio -n istio-system -o yaml
 ![image](../images/istio/16.png)
 
 在上图中，可以看到链路数据默认推送到 `zipkin.istio-system:9411` 这个地址。由于 DataKit 服务的名称空间是 datakit，端口是 9529，所以这里需要做一下转换。
+
 > 详情请参考 <[Kubernetes 集群使用 ExternalName 映射 DataKit 服务](./kubernetes-external-name.md)>
 
 #### 增加 namespace
@@ -384,482 +384,485 @@ annotations:
 
 ![image](../images/istio/18.png)
 
-完整 `bookinfo.yaml` 如下
+- 完整 `bookinfo.yaml` 如下
 
+??? quote "`bookinfo.yaml`"
 
-```yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: details
-  namespace: prod
-  labels:
-    app: details
-    service: details
-spec:
-  ports:
-  - port: 9080
-    name: http
-  selector:
-    app: details
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: bookinfo-details
-  namespace: prod
-  labels:
-    account: details
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: details-v1
-  namespace: prod
-  labels:
-    app: details
-    version: v1
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: details
-      version: v1
-  template:
+    ```yaml
+    apiVersion: v1
+    kind: Service
     metadata:
+      name: details
+      namespace: prod
+      labels:
+        app: details
+        service: details
+    spec:
+      ports:
+      - port: 9080
+        name: http
+      selector:
+        app: details
+    ---
+    apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      name: bookinfo-details
+      namespace: prod
+      labels:
+        account: details
+    ---
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: details-v1
+      namespace: prod
       labels:
         app: details
         version: v1
-      annotations:
-        datakit/prom.instances: |
-          [[inputs.prom]]
-            url = "http://$IP:15020/stats/prometheus"
-            source = "minik8s-istio-details"
-            metric_types = ["counter", "gauge"]
-            interval = "60s"
-			tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
-            metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
-            #measurement_prefix = ""
-            measurement_name = "istio_prom"
-            #[[inputs.prom.measurements]]
-            # prefix = "cpu_"
-            # name = "cpu"
-            [inputs.prom.tags]
-            namespace = "$NAMESPACE"
     spec:
-      serviceAccountName: bookinfo-details
-      containers:
-      - name: details
-        image: docker.io/istio/examples-bookinfo-details-v1:1.16.2
-        imagePullPolicy: IfNotPresent
-        ports:
-        - containerPort: 9080
-        securityContext:
-          runAsUser: 1000
----
-##################################################################################################
-# Ratings service
-##################################################################################################
-apiVersion: v1
-kind: Service
-metadata:
-  name: ratings
-  namespace: prod
-  labels:
-    app: ratings
-    service: ratings
-spec:
-  ports:
-  - port: 9080
-    name: http
-  selector:
-    app: ratings
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: bookinfo-ratings
-  namespace: prod
-  labels:
-    account: ratings
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: ratings-v1
-  namespace: prod
-  labels:
-    app: ratings
-    version: v1
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: ratings
-      version: v1
-  template:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: details
+          version: v1
+      template:
+        metadata:
+          labels:
+            app: details
+            version: v1
+          annotations:
+            datakit/prom.instances: |
+              [[inputs.prom]]
+                url = "http://$IP:15020/stats/prometheus"
+                source = "minik8s-istio-details"
+                metric_types = ["counter", "gauge"]
+                interval = "60s"
+          tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
+                metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
+                #measurement_prefix = ""
+                measurement_name = "istio_prom"
+                #[[inputs.prom.measurements]]
+                # prefix = "cpu_"
+                # name = "cpu"
+                [inputs.prom.tags]
+                namespace = "$NAMESPACE"
+        spec:
+          serviceAccountName: bookinfo-details
+          containers:
+          - name: details
+            image: docker.io/istio/examples-bookinfo-details-v1:1.16.2
+            imagePullPolicy: IfNotPresent
+            ports:
+            - containerPort: 9080
+            securityContext:
+              runAsUser: 1000
+    ---
+    ##################################################################################################
+    # Ratings service
+    ##################################################################################################
+    apiVersion: v1
+    kind: Service
     metadata:
+      name: ratings
+      namespace: prod
+      labels:
+        app: ratings
+        service: ratings
+    spec:
+      ports:
+      - port: 9080
+        name: http
+      selector:
+        app: ratings
+    ---
+    apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      name: bookinfo-ratings
+      namespace: prod
+      labels:
+        account: ratings
+    ---
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: ratings-v1
+      namespace: prod
       labels:
         app: ratings
         version: v1
-      annotations:
-        datakit/prom.instances: |
-          [[inputs.prom]]
-            url = "http://$IP:15020/stats/prometheus"
-            source = "minik8s-istio-ratings"
-            metric_types = ["counter", "gauge"]
-            interval = "60s"
-			tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
-            metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
-            #measurement_prefix = ""
-            measurement_name = "istio_prom"
-            #[[inputs.prom.measurements]]
-            # prefix = "cpu_"
-            # name = "cpu"
-            [inputs.prom.tags]
-            namespace = "$NAMESPACE"
     spec:
-      serviceAccountName: bookinfo-ratings
-      containers:
-      - name: ratings
-        image: docker.io/istio/examples-bookinfo-ratings-v1:1.16.2
-        imagePullPolicy: IfNotPresent
-        ports:
-        - containerPort: 9080
-        securityContext:
-          runAsUser: 1000
----
-##################################################################################################
-# Reviews service
-##################################################################################################
-apiVersion: v1
-kind: Service
-metadata:
-  name: reviews
-  namespace: prod
-  labels:
-    app: reviews
-    service: reviews
-spec:
-  ports:
-  - port: 9080
-    name: http
-  selector:
-    app: reviews
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: bookinfo-reviews
-  namespace: prod
-  labels:
-    account: reviews
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: reviews-v1
-  namespace: prod
-  labels:
-    app: reviews
-    version: v1
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: reviews
-      version: v1
-  template:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: ratings
+          version: v1
+      template:
+        metadata:
+          labels:
+            app: ratings
+            version: v1
+          annotations:
+            datakit/prom.instances: |
+              [[inputs.prom]]
+                url = "http://$IP:15020/stats/prometheus"
+                source = "minik8s-istio-ratings"
+                metric_types = ["counter", "gauge"]
+                interval = "60s"
+          tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
+                metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
+                #measurement_prefix = ""
+                measurement_name = "istio_prom"
+                #[[inputs.prom.measurements]]
+                # prefix = "cpu_"
+                # name = "cpu"
+                [inputs.prom.tags]
+                namespace = "$NAMESPACE"
+        spec:
+          serviceAccountName: bookinfo-ratings
+          containers:
+          - name: ratings
+            image: docker.io/istio/examples-bookinfo-ratings-v1:1.16.2
+            imagePullPolicy: IfNotPresent
+            ports:
+            - containerPort: 9080
+            securityContext:
+              runAsUser: 1000
+    ---
+    ##################################################################################################
+    # Reviews service
+    ##################################################################################################
+    apiVersion: v1
+    kind: Service
     metadata:
+      name: reviews
+      namespace: prod
+      labels:
+        app: reviews
+        service: reviews
+    spec:
+      ports:
+      - port: 9080
+        name: http
+      selector:
+        app: reviews
+    ---
+    apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      name: bookinfo-reviews
+      namespace: prod
+      labels:
+        account: reviews
+    ---
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: reviews-v1
+      namespace: prod
       labels:
         app: reviews
         version: v1
-      annotations:
-        datakit/prom.instances: |
-          [[inputs.prom]]
-            url = "http://$IP:15020/stats/prometheus"
-            source = "minik8s-istio-review1"
-            metric_types = ["counter", "gauge"]
-            interval = "60s"
-			tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
-            #measurement_prefix = ""
-            metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
-            measurement_name = "istio_prom"
-            #[[inputs.prom.measurements]]
-            # prefix = "cpu_"
-            # name = "cpu"
-            [inputs.prom.tags]
-            namespace = "$NAMESPACE"
     spec:
-      serviceAccountName: bookinfo-reviews
-      containers:
-      - name: reviews
-        image: docker.io/istio/examples-bookinfo-reviews-v1:1.16.2
-        imagePullPolicy: IfNotPresent
-        env:
-        - name: LOG_DIR
-          value: "/tmp/logs"
-        ports:
-        - containerPort: 9080
-        volumeMounts:
-        - name: tmp
-          mountPath: /tmp
-        - name: wlp-output
-          mountPath: /opt/ibm/wlp/output
-        securityContext:
-          runAsUser: 1000
-      volumes:
-      - name: wlp-output
-        emptyDir: {}
-      - name: tmp
-        emptyDir: {}
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: reviews-v2
-  namespace: prod
-  labels:
-    app: reviews
-    version: v2
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: reviews
-      version: v2
-  template:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: reviews
+          version: v1
+      template:
+        metadata:
+          labels:
+            app: reviews
+            version: v1
+          annotations:
+            datakit/prom.instances: |
+              [[inputs.prom]]
+                url = "http://$IP:15020/stats/prometheus"
+                source = "minik8s-istio-review1"
+                metric_types = ["counter", "gauge"]
+                interval = "60s"
+          tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
+                #measurement_prefix = ""
+                metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
+                measurement_name = "istio_prom"
+                #[[inputs.prom.measurements]]
+                # prefix = "cpu_"
+                # name = "cpu"
+                [inputs.prom.tags]
+                namespace = "$NAMESPACE"
+        spec:
+          serviceAccountName: bookinfo-reviews
+          containers:
+          - name: reviews
+            image: docker.io/istio/examples-bookinfo-reviews-v1:1.16.2
+            imagePullPolicy: IfNotPresent
+            env:
+            - name: LOG_DIR
+              value: "/tmp/logs"
+            ports:
+            - containerPort: 9080
+            volumeMounts:
+            - name: tmp
+              mountPath: /tmp
+            - name: wlp-output
+              mountPath: /opt/ibm/wlp/output
+            securityContext:
+              runAsUser: 1000
+          volumes:
+          - name: wlp-output
+            emptyDir: {}
+          - name: tmp
+            emptyDir: {}
+    ---
+    apiVersion: apps/v1
+    kind: Deployment
     metadata:
+      name: reviews-v2
+      namespace: prod
       labels:
         app: reviews
         version: v2
-      annotations:
-        datakit/prom.instances: |
-          [[inputs.prom]]
-            url = "http://$IP:15020/stats/prometheus"
-            source = "minik8s-istio-review2"
-            metric_types = ["counter", "gauge"]
-            interval = "60s"
-			tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
-            #measurement_prefix = ""
-            metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
-            measurement_name = "istio_prom"
-            #[[inputs.prom.measurements]]
-            # prefix = "cpu_"
-            # name = "cpu"
-            [inputs.prom.tags]
-            namespace = "$NAMESPACE"
     spec:
-      serviceAccountName: bookinfo-reviews
-      containers:
-      - name: reviews
-        image: docker.io/istio/examples-bookinfo-reviews-v2:1.16.2
-        imagePullPolicy: IfNotPresent
-        env:
-        - name: LOG_DIR
-          value: "/tmp/logs"
-        ports:
-        - containerPort: 9080
-        volumeMounts:
-        - name: tmp
-          mountPath: /tmp
-        - name: wlp-output
-          mountPath: /opt/ibm/wlp/output
-        securityContext:
-          runAsUser: 1000
-      volumes:
-      - name: wlp-output
-        emptyDir: {}
-      - name: tmp
-        emptyDir: {}
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: reviews-v3
-  namespace: prod
-  labels:
-    app: reviews
-    version: v3
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: reviews
-      version: v3
-  template:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: reviews
+          version: v2
+      template:
+        metadata:
+          labels:
+            app: reviews
+            version: v2
+          annotations:
+            datakit/prom.instances: |
+              [[inputs.prom]]
+                url = "http://$IP:15020/stats/prometheus"
+                source = "minik8s-istio-review2"
+                metric_types = ["counter", "gauge"]
+                interval = "60s"
+          tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
+                #measurement_prefix = ""
+                metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
+                measurement_name = "istio_prom"
+                #[[inputs.prom.measurements]]
+                # prefix = "cpu_"
+                # name = "cpu"
+                [inputs.prom.tags]
+                namespace = "$NAMESPACE"
+        spec:
+          serviceAccountName: bookinfo-reviews
+          containers:
+          - name: reviews
+            image: docker.io/istio/examples-bookinfo-reviews-v2:1.16.2
+            imagePullPolicy: IfNotPresent
+            env:
+            - name: LOG_DIR
+              value: "/tmp/logs"
+            ports:
+            - containerPort: 9080
+            volumeMounts:
+            - name: tmp
+              mountPath: /tmp
+            - name: wlp-output
+              mountPath: /opt/ibm/wlp/output
+            securityContext:
+              runAsUser: 1000
+          volumes:
+          - name: wlp-output
+            emptyDir: {}
+          - name: tmp
+            emptyDir: {}
+    ---
+    apiVersion: apps/v1
+    kind: Deployment
     metadata:
+      name: reviews-v3
+      namespace: prod
       labels:
         app: reviews
         version: v3
-      annotations:
-        datakit/prom.instances: |
-          [[inputs.prom]]
-            url = "http://$IP:15020/stats/prometheus"
-            source = "minik8s-istio-review3"
-            metric_types = ["counter", "gauge"]
-            interval = "60s"
-			tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
-            metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
-            #measurement_prefix = ""
-            measurement_name = "istio_prom"
-            #[[inputs.prom.measurements]]
-            # prefix = "cpu_"
-            # name = "cpu"
-            [inputs.prom.tags]
-            namespace = "$NAMESPACE"
     spec:
-      serviceAccountName: bookinfo-reviews
-      containers:
-      - name: reviews
-        image: docker.io/istio/examples-bookinfo-reviews-v3:1.16.2
-        imagePullPolicy: IfNotPresent
-        env:
-        - name: LOG_DIR
-          value: "/tmp/logs"
-        ports:
-        - containerPort: 9080
-        volumeMounts:
-        - name: tmp
-          mountPath: /tmp
-        - name: wlp-output
-          mountPath: /opt/ibm/wlp/output
-        securityContext:
-          runAsUser: 1000
-      volumes:
-      - name: wlp-output
-        emptyDir: {}
-      - name: tmp
-        emptyDir: {}
----
-##################################################################################################
-# Productpage services
-##################################################################################################
-apiVersion: v1
-kind: Service
-metadata:
-  name: productpage
-  namespace: prod
-  labels:
-    app: productpage
-    service: productpage
-spec:
-  ports:
-  - port: 9080
-    name: http
-  selector:
-    app: productpage
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: bookinfo-productpage
-  namespace: prod
-  labels:
-    account: productpage
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: productpage-v1
-  namespace: prod
-  labels:
-    app: productpage
-    version: v1
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: productpage
-      version: v1
-  template:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: reviews
+          version: v3
+      template:
+        metadata:
+          labels:
+            app: reviews
+            version: v3
+          annotations:
+            datakit/prom.instances: |
+              [[inputs.prom]]
+                url = "http://$IP:15020/stats/prometheus"
+                source = "minik8s-istio-review3"
+                metric_types = ["counter", "gauge"]
+                interval = "60s"
+          tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
+                metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
+                #measurement_prefix = ""
+                measurement_name = "istio_prom"
+                #[[inputs.prom.measurements]]
+                # prefix = "cpu_"
+                # name = "cpu"
+                [inputs.prom.tags]
+                namespace = "$NAMESPACE"
+        spec:
+          serviceAccountName: bookinfo-reviews
+          containers:
+          - name: reviews
+            image: docker.io/istio/examples-bookinfo-reviews-v3:1.16.2
+            imagePullPolicy: IfNotPresent
+            env:
+            - name: LOG_DIR
+              value: "/tmp/logs"
+            ports:
+            - containerPort: 9080
+            volumeMounts:
+            - name: tmp
+              mountPath: /tmp
+            - name: wlp-output
+              mountPath: /opt/ibm/wlp/output
+            securityContext:
+              runAsUser: 1000
+          volumes:
+          - name: wlp-output
+            emptyDir: {}
+          - name: tmp
+            emptyDir: {}
+    ---
+    ##################################################################################################
+    # Productpage services
+    ##################################################################################################
+    apiVersion: v1
+    kind: Service
     metadata:
+      name: productpage
+      namespace: prod
+      labels:
+        app: productpage
+        service: productpage
+    spec:
+      ports:
+      - port: 9080
+        name: http
+      selector:
+        app: productpage
+    ---
+    apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      name: bookinfo-productpage
+      namespace: prod
+      labels:
+        account: productpage
+    ---
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: productpage-v1
+      namespace: prod
       labels:
         app: productpage
         version: v1
-      annotations:
-        datakit/prom.instances: |
-          [[inputs.prom]]
-            url = "http://$IP:15020/stats/prometheus"
-            source = "minik8s-istio-product"
-            metric_types = ["counter", "gauge"]
-            interval = "60s"
-			tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
-            metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
-            #measurement_prefix = ""
-            measurement_name = "istio_prom"
-            #[[inputs.prom.measurements]]
-            # prefix = "cpu_"
-            # name = "cpu"
-            [inputs.prom.tags]
-            namespace = "$NAMESPACE"
     spec:
-      serviceAccountName: bookinfo-productpage
-      containers:
-      - name: productpage
-        #image: docker.io/istio/examples-bookinfo-productpage-v1:1.16.2
-        image: image: product-page:v1
-        imagePullPolicy: IfNotPresent
-        ports:
-        - containerPort: 9080
-        volumeMounts:
-        - name: tmp
-          mountPath: /tmp
-        securityContext:
-          runAsUser: 1000
-      volumes:
-      - name: tmp
-        emptyDir: {}
----
+      replicas: 1
+      selector:
+        matchLabels:
+          app: productpage
+          version: v1
+      template:
+        metadata:
+          labels:
+            app: productpage
+            version: v1
+          annotations:
+            datakit/prom.instances: |
+              [[inputs.prom]]
+                url = "http://$IP:15020/stats/prometheus"
+                source = "minik8s-istio-product"
+                metric_types = ["counter", "gauge"]
+                interval = "60s"
+          tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
+                metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
+                #measurement_prefix = ""
+                measurement_name = "istio_prom"
+                #[[inputs.prom.measurements]]
+                # prefix = "cpu_"
+                # name = "cpu"
+                [inputs.prom.tags]
+                namespace = "$NAMESPACE"
+        spec:
+          serviceAccountName: bookinfo-productpage
+          containers:
+          - name: productpage
+            #image: docker.io/istio/examples-bookinfo-productpage-v1:1.16.2
+            image: image: product-page:v1
+            imagePullPolicy: IfNotPresent
+            ports:
+            - containerPort: 9080
+            volumeMounts:
+            - name: tmp
+              mountPath: /tmp
+            securityContext:
+              runAsUser: 1000
+          volumes:
+          - name: tmp
+            emptyDir: {}
+    ---
 
-```
+    ```
 
-完整 `bookinfo-gateway.yaml`
+- 完整 `bookinfo-gateway.yaml`
 
-```yaml
-kind: Gateway
-metadata:
-  name: bookinfo-gateway
-  namespace: prod
-spec:
-  selector:
-    istio: ingressgateway # use istio default controller
-  servers:
-    - port:
-        number: 80
-        name: http
-        protocol: HTTP
+??? quote "`bookinfo-gateway.yaml`"
+
+    ```yaml
+    kind: Gateway
+    metadata:
+      name: bookinfo-gateway
+      namespace: prod
+    spec:
+      selector:
+        istio: ingressgateway # use istio default controller
+      servers:
+        - port:
+            number: 80
+            name: http
+            protocol: HTTP
+          hosts:
+            - "*"
+    ---
+    apiVersion: networking.istio.io/v1alpha3
+    kind: VirtualService
+    metadata:
+      name: bookinfo
+      namespace: prod
+    spec:
       hosts:
         - "*"
----
-apiVersion: networking.istio.io/v1alpha3
-kind: VirtualService
-metadata:
-  name: bookinfo
-  namespace: prod
-spec:
-  hosts:
-    - "*"
-  gateways:
-    - bookinfo-gateway
-  http:
-    - match:
-        - uri:
-            exact: /productpage
-        - uri:
-            prefix: /static
-        - uri:
-            exact: /login
-        - uri:
-            exact: /logout
-        - uri:
-            prefix: /api/v1/products
-      route:
-        - destination:
-            host: productpage
-            port:
-              number: 9080
-```
+      gateways:
+        - bookinfo-gateway
+      http:
+        - match:
+            - uri:
+                exact: /productpage
+            - uri:
+                prefix: /static
+            - uri:
+                exact: /login
+            - uri:
+                exact: /logout
+            - uri:
+                prefix: /api/v1/products
+          route:
+            - destination:
+                host: productpage
+                port:
+                  number: 9080
+    ```
 
 #### 部署服务
 
