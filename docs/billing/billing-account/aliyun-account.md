@@ -4,12 +4,12 @@
 
 观测云支持观测云企业账号、AWS账号、阿里云账号 3 种结算方式。
 
-本文将介绍注册观测云免费版，如何开通阿里云账号结算。关于直接注册商业版，可参考文档 [注册商业版](https://www.yuque.com/dataflux/doc/zaghkf#wwMNd) 。
+本文将介绍注册观测云体验版，如何开通阿里云账号结算。关于直接注册商业版，可参考文档 [注册商业版](https://www.yuque.com/dataflux/doc/zaghkf#wwMNd) 。
 
 
 ## 注册账号
 
-1.打开 [观测云官网](https://www.guance.com/) ，点击右上角「[免费注册](https://auth.guance.com/register)」，或者在登录页面点击注册。选择免费版，点击“立即注册”。<br />![](../img/11.account_center_1.png)
+1.打开 [观测云官网](https://www.guance.com/) ，点击右上角「[免费注册](https://auth.guance.com/register)」，或者在登录页面点击注册。选择体验版，点击“立即注册”。<br />![](../img/11.account_center_1.png)
 
 2.在观测云注册页面，依据使用云服务资源的地域，选择注册站点，如“中国区1（杭州）”，输入需要注册的信息。<br />注意：
 

@@ -17,7 +17,7 @@
 - 邮件组：邮件通知，一个邮件组可添加多个空间成员，通过在「管理」-「[通知对象管理](https://www.yuque.com/dataflux/doc/osstog) 」，添加通知对象。
 - 钉钉机器人、企业微信机器人、飞书机器人：群通知，通过在「管理」-「[通知对象管理](https://www.yuque.com/dataflux/doc/osstog)」，添加通知对象。
 - Webhook自定义：用户自行设定，通过在「管理」-「[通知对象管理](https://www.yuque.com/dataflux/doc/osstog)」，添加通知对象。
-- 短信：短信通知，一个短信组可以添加多个空间成员，通过在「管理」-「[通知对象管理](https://www.yuque.com/dataflux/doc/osstog)」，添加通知对象。“观测云”免费版无短信通知，其他版本短信通知0.1 元 / 条，按天计费，没有免费额度。
+- 短信：短信通知，一个短信组可以添加多个空间成员，通过在「管理」-「[通知对象管理](https://www.yuque.com/dataflux/doc/osstog)」，添加通知对象。“观测云”体验版无短信通知，其他版本短信通知0.1 元 / 条，按天计费，没有免费额度。
 
 **注意：**
 
