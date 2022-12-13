@@ -1,12 +1,10 @@
 nav:
   - index.md
   - '费用中心': cost-center
-  - '免费开始': free-start.md
-  - '版本说明': version-description.md
   - '开通商业版': 
     - '注册商业版': commercial-register.md
     - '升级商业版': commercial-version.md
     - '阿里云市场开通观测云商业版': commercial-aliyun.md
     - '阿里云市场开通观测云专属版': commercial-aliyun-sls.md
-  - '计费方式': billing-method
   - '观测云结算方式': billing-account
+  - '计费方式': billing-method
