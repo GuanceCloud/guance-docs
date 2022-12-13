@@ -31,7 +31,7 @@ pip install  -i https://mirrors.aliyun.com/pypi/simple -r requirements.txt
 使用自己的 gitlab 账号和 token 安装 mkdocs：
 
 ```shell
-pip install git+https://[user]:[token]@gitlab.jiagouyun.com:40022/lhm/mkdocs-material-insiders.git
+pip install git+https://[user]:[token]@gitlab.jiagouyun.com/lhm/mkdocs-material-insiders.git
 ```
 
 **user** 是你的 gitlab 登录账号，**token** 可以在 gitlab 的右上角菜单的 Edit profile -> Access Tokens 中创建，权限只需要 **read_repository**。
