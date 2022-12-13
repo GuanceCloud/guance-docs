@@ -117,6 +117,8 @@ source in ['kube-controller-manager','http_dial_testing'] and (status != 'unknow
 
 通过 `*key:value` 的形式进行模糊匹配搜索，value 中可书写通配符进行值匹配。例如：在日志查看器中搜索 `*host:prd-*` ，即返回所有主机名以 `prd-` 开头日志数据。
 
+> 注意：模糊匹配查询中若存在针对值 左* 匹配时容易导致查询超时，请谨慎使用
+
 ![](../img/wildcard_matching.gif)
 
 *手动输入标签内容进行模糊匹配*
