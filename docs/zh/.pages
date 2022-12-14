@@ -1,4 +1,5 @@
 nav:
+
   - 更新日志: release-notes
   - 快速入门: getting-started
   - DataKit: datakit
@@ -25,4 +26,3 @@ nav:
   - 私有化部署: deployment
   - 常见问题: faq
   - 相关协议: agreements
-
