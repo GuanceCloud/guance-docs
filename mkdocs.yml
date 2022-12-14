@@ -13,7 +13,6 @@ theme:
     - search.suggest
     - toc.follow
     - content.tabs.link
-    - navigation.top
 
 markdown_extensions:
   - tables
