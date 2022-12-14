@@ -35,8 +35,11 @@
   container.addEventListener('click', function (ev) {
     ev.preventDefault()
     if (ev.target.className === 'widget-content' || ev.target.className === 'text') {
-      if (btnContent.style.display === 'block') return
-      btnContent.style.display = 'block'
+      if (btnContent.style.display === 'block') {
+        btnContent.style.display = 'none'
+      } else {
+        btnContent.style.display = 'block'
+      }
     }
     console.log(ev.target.className)
     if (ev.target.className === 'close' || ev.target.parentNode.className === 'close') {
