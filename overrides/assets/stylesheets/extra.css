@@ -495,8 +495,14 @@ h4 {
   fill: currentColor;
 }
 
-.md-content .widget-content .helpful-btn {
+.md-content .widget-content .helpful-btn,
+.md-content .widget-content .helpful-btn-checked {
   margin-right: 40px;
+}
+.md-content .widget-content .helpful-btn-checked,
+.md-content .widget-content .improved-btn-checked {
+  display: none;
+  color: #f60 !important;
 }
 
 @media screen and (max-width: 59.9375em) {

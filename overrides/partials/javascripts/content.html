@@ -3,9 +3,15 @@
   <div class="widget-content-display">
     <div class="btn-content">
       <h4 class="title">文档内容是否对您有帮助？<span class="close">×</span></h4>
-      <div class="btn-group">
+      <div class="btn-group btn-group_active">
         <button class="widget-btn md-icon helpful-btn">{% include ".icons/zy/good.svg" %}</button>
+        <button class="widget-btn md-icon helpful-btn-checked" disabled>
+          {% include ".icons/zy/good-checked.svg" %}
+        </button>
         <button class="widget-btn md-icon improved-btn">{% include ".icons/zy/bad.svg" %}</button>
+        <button class="widget-btn md-icon improved-btn-checked" disabled>
+          {% include ".icons/zy/bad-checked.svg" %}
+        </button>
       </div>
     </div>
   </div>
@@ -41,7 +47,6 @@
         btnContent.style.display = 'block'
       }
     }
-    console.log(ev.target.className)
     if (ev.target.className === 'close' || ev.target.parentNode.className === 'close') {
       btnContent.style.display = 'none'
     }
@@ -50,16 +55,17 @@
   imporvedBtn.addEventListener('click', function (ev) {
     ev.preventDefault()
     /* Retrieve page and feedback value */
+    imporvedBtn.style.display = 'none'
+    document.querySelector('.improved-btn-checked').style.display = 'block'
     helpfulBtn.disabled = true
-    imporvedBtn.disabled = true
     const data = getParams('imporvedBtn')
     request(data)
   })
   helpfulBtn.addEventListener('click', function (ev) {
     ev.preventDefault()
-    helpfulBtn.disabled = true
+    helpfulBtn.style.display = 'none'
+    document.querySelector('.helpful-btn-checked').style.display = 'block'
     imporvedBtn.disabled = true
-    /* Send feedback value */
     const data = getParams('helpfulBtn')
     request(data)
   })
