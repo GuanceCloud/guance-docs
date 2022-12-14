@@ -39,8 +39,8 @@
 
 - 以图标形式查看指标趋势
 
-![](img/3.key_metrics_5.png)
+![](img/3.key_metrics_5.2.png)
 
 - 以列表形式查看指标趋势
 
-![](img/3.key_metrics_6.png)
+![](img/3.key_metrics_6.1.png)
