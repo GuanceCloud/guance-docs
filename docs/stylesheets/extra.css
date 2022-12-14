@@ -409,14 +409,72 @@ h4 {
 }
 
 .md-content .widget-content {
+  z-index: 9;
+  width: 60px;
+  height: 110px;
+  background: #ffffff;
+  border: 1px solid #f60;
+  border-radius: 5px;
+  position: fixed;
+  right: 20px;
+  bottom: 80px;
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  align-items: center;
+  cursor: pointer;
+}
+.md-content .widget-content:hover .text {
+  opacity: 0.7;
+}
+.md-content .widget-content .text {
+  font-size: 18px;
+  writing-mode: vertical-lr;
+  margin: 0;
+  color: #f60;
+}
+.md-content .widget-content .widget-content-display {
+  display: none;
+}
+.md-content .widget-content .btn-content {
+  background: #ffffff;
+  width: 230px;
+  height: 150px;
+  position: absolute;
+  left: -240px;
+  bottom: 0;
+  border-radius: 5px;
+  border: 1px solid #00000012;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: default;
+}
+
+.md-content .widget-content .btn-content .title {
+  width: 100%;
+  font-size: 14px;
+  margin: 5px 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.md-content .widget-content .btn-content .close {
+  font-size: 24px;
+  font-weight: 400 !important;
+  cursor: pointer;
+}
+.md-content .widget-content .btn-content .btn-group {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
 }
 
 .md-content .widget-content .widget-btn {
-  width: 80px;
-  color: #0000008a;
+  /* width: 80px; */
+  /* color: #526cfe; */
   cursor: pointer;
   display: flex;
   flex-wrap: nowrap;
@@ -424,7 +482,7 @@ h4 {
   align-items: center;
 }
 .md-content .widget-content .widget-btn:not(:disabled):hover {
-  color: #526cfe;
+  color: #f60;
 }
 .md-content .widget-content .widget-btn:disabled {
   color: #00000012;
@@ -432,13 +490,13 @@ h4 {
 }
 
 .md-content .widget-content .widget-btn svg {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   fill: currentColor;
 }
 
 .md-content .widget-content .helpful-btn {
-  margin-right: 20px;
+  margin-right: 40px;
 }
 
 @media screen and (max-width: 59.9375em) {

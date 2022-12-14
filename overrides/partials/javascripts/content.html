@@ -1,36 +1,72 @@
 <div class="widget-content">
-  <button class="widget-btn md-icon helpful-btn">{% include ".icons/material/emoticon-happy-outline.svg" %}</button>
-  <button class="widget-btn md-icon improved-btn">{% include ".icons/material/emoticon-sad-outline.svg" %}</button>
+  <p class="text">文档评价</p>
+  <div class="widget-content-display">
+    <div class="btn-content">
+      <h4 class="title">文档内容是否对您有帮助？<span class="close">×</span></h4>
+      <div class="btn-group">
+        <button class="widget-btn md-icon helpful-btn">{% include ".icons/zy/good.svg" %}</button>
+        <button class="widget-btn md-icon improved-btn">{% include ".icons/zy/bad.svg" %}</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
   var helpfulBtn = document.querySelector('.helpful-btn')
   var imporvedBtn = document.querySelector('.improved-btn')
+  var container = document.querySelector('.widget-content')
+  var btnContent = document.querySelector('.widget-content-display')
+  function request(params) {
+    const xhr = new XMLHttpRequest()
+    const method = 'POST'
+    const url = 'http://testing-ft2x-doc-score.cloudcare.cn/api/v1/score_record/create'
+    xhr.open(method, url)
+    xhr.setRequestHeader('Content-Type', 'application/json;charset=utf-8')
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        const status = xhr.status
+        if (status === 0 || (status >= 200 && status < 400)) {
+        } else {
+        }
+      }
+    }
+    xhr.send(JSON.stringify(params))
+  }
+  container.addEventListener('click', function (ev) {
+    ev.preventDefault()
+    if (ev.target.className === 'widget-content' || ev.target.className === 'text') {
+      if (btnContent.style.display === 'block') return
+      btnContent.style.display = 'block'
+    }
+    console.log(ev.target.className)
+    if (ev.target.className === 'close' || ev.target.parentNode.className === 'close') {
+      btnContent.style.display = 'none'
+    }
+  })
+
+  imporvedBtn.addEventListener('click', function (ev) {
+    ev.preventDefault()
+    /* Retrieve page and feedback value */
+    helpfulBtn.disabled = true
+    imporvedBtn.disabled = true
+    const data = getParams('imporvedBtn')
+    request(data)
+  })
   helpfulBtn.addEventListener('click', function (ev) {
     ev.preventDefault()
     helpfulBtn.disabled = true
     imporvedBtn.disabled = true
     /* Send feedback value */
-    var data = getParams('helpfulBtn')
-    console.log('helpfulBtn', data)
-  })
-  imporvedBtn.addEventListener('click', function (ev) {
-    ev.preventDefault()
-    /* Retrieve page and feedback value */
-    var data = getParams('imporvedBtn')
-    helpfulBtn.disabled = true
-    imporvedBtn.disabled = true
-    console.log('imporvedBtn', data)
+    const data = getParams('helpfulBtn')
+    request(data)
   })
 
   function getParams(type) {
-    var page = document.location.pathname
-    var text = type === 'helpfulBtn' ? '较好' : '较差'
-    var currentTime = +new Date()
+    const url = document.location.href
+    const isGood = type === 'helpfulBtn' ? true : false
     return {
-      page,
-      text,
-      currentTime,
+      url,
+      isGood,
     }
   }
 </script>
