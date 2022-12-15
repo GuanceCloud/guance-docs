@@ -8,3 +8,4 @@ nav:
     - '阿里云市场开通观测云专属版': commercial-aliyun-sls.md
   - '观测云结算方式': billing-account
   - '计费方式': billing-method
+  - '常见问题': faq.md
