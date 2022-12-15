@@ -12,7 +12,6 @@ theme:
   language: en
   features:
     - navigation.instant
-    - navigation.top
     - search.suggest
     - toc.follow
     - content.tabs.link
