@@ -68,17 +68,41 @@
 
 ![](img/7.biling_account_9.png)
 
+#### 选择存储方式 {#storage}
+
+若您选择使用“阿里云账号结算”，则会进入选择存储方式的流程，存储方式支持 “默认存储” 和 “SLS 存储”。
+
+- 默认存储：使用 ElasticSearch 存储日志类数据，InfluxDB / TDengine 存储指标类数据；
+- SLS 存储：使用 Log Store 存储日志类数据，Metric Store 存储指标类数据，数据存放在自己的阿里云账号下。
+
+![](/Users/wendy/dataflux-doc/docs/zh/billing/img/1.sls_3.png)
+
+##### 选择默认存储
+
+选择“默认存储”，点击下一步，提示成功开通商业版。
+
+##### 选择 SLS 存储 {#sls}
+
+选择 “SLS 存储” ，点击下一步，提示用户服务协议，同意后进入阿里云账号绑定页面。
+
+???+ attention
+
+    - SLS 存储方案仅支持 ”中国区-杭州“、”中国区-张家口“站点，一旦选择 SLS 数据存储方案后便不能更改；
+    - 仅支持在一键注册观测云商业版或阿里云云市场购买观测云商业版时选择 SLS 存储方案；
+    - 选择 SLS 存储方案的工作空间默认开启多索引，且不支持删除指标集；
+    - SLS 存储使用的语言是 promql，存在部分函数无法使用的情况。更多关于 SLS 函数相关信息，可参考文档 [DQL 函数](../dql/funcs.md#sls)。
+
 点击“确定”，查看并同意观测云平台用户服务协议，点击“下一步”。
 
 ![](img/1.sls_7.png)
 
 在绑定阿里云账号页面，下载获取 SLS 授权文件，在 [阿里云控制台](https://www.aliyun.com/) 创建阿里云 RAM 账号，获取该账号的 AccessKey ID、AccessKey Secret 信息。关于使用 SLS 授权文件给 RAM 账号授权的具体操作，可参考文档 [RAM账号授权](../billing/billing-method/sls-grant.md)。
 
-![](img/1.sls_4.png)
+![](img/1.sls_4.jpeg)
 
 填写 AccessKey ID、AccessKey Secret并进行验证，若验证通过，可以进行下一步；若验证未通过，提示 “该 AK 无效，请重新填写”。
 
-![](img/1.sls_6.png)
+![](img/1.sls_6.jpeg)
 
 #### 开通成功
 
