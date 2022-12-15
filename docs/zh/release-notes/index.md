@@ -23,7 +23,7 @@ icon: zy/release-notes
 
 观测云提供「作战室」看板，您可以在「作战室」看板纵观所有工作空间的关键指标趋势，帮助您快速了解每个工作空间的关键数据情况，及时发现和解决异常问题。更多详情可参考文档 [关键指标管理](../management/key-metrics.md) 。
 
-
+![](img/3.key_metrics_6.1.png)
 
 #### 新增仪表板轮播功能
 
@@ -33,7 +33,9 @@ icon: zy/release-notes
 
 #### 工作空间绑定外部 SLS 索引
 
-观测云新增支持绑定 SLS 索引，帮助您统一快速查看和查询您的日志数据。更多详情可参考文档 [日志索引](../logs/multi-index.md) 。
+观测云新增支持绑定 SLS 索引，帮助您统一快速查看和分析您的日志数据，同时观测云新增支持字段映射功能，帮助您映射 SLS 索引的字段进行聚类分析。更多详情可参考文档 [日志索引](../logs/multi-index.md) 。
+
+![](img/7.log_index_1.png)
 
 #### 链路查看器图表显示优化
 
@@ -62,7 +64,7 @@ icon: zy/release-notes
 
 #### 智能巡检组件支持配置自定义跳转链接
 
-在配置自建巡检时支持配置自定义跳转链接，更多详情可以参考文档 [自建巡检](../developers/custom-bot-obs.md)。
+在配置自建巡检时支持配置自定义跳转链接，关于如何配置自建巡检可以参考文档 [自建巡检](../developers/custom-bot-obs.md)。
 
 更多智能巡检更新可参考 [智能巡检更新日志](../monitoring/bot-obs/changelog.md) 。
 
