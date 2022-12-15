@@ -18,18 +18,7 @@ MySQL 指标展示，包括 MySQL 的基础信息、链接信息、存储空间�
 
 操作系统支持：Windows/AMD 64, Windows/386, Linux/ARM, Linux/ARM 64, Linux/386, Linux/AMD 64, Darwin/AMD 64
 
-## 安装部署
-
-MySQL 指标采集，收集以下数据：
-
-- MySQL global status 基础数据采集
-- Scheam 相关数据
-- InnoDB 相关指标
-- 支持自定义查询数据采集
-
-说明：示例 MySQL 版本为 MySQL 5.7(CentOS)，各个不同版本指标可能存在差异。
-
-### 前置条件
+## 前置条件
 
 - MySQL 版本 5.7+ <[安装 DataKit](../../datakit/datakit-install.md)>
 - 创建监控账号（一般情况，需用 MySQL `root` 账号登陆才能创建 MySQL 用户）
@@ -61,10 +50,18 @@ FLUSH PRIVILEGES;
 ```
 Error 1045: Access denied for user 'datakit'@'::1' (using password: YES)
 ```
+## 安装部署
 
-### 配置实施
+说明：示例 MySQL 版本为 MySQL 5.7(CentOS)，各个不同版本指标可能存在差异。
 
-#### 指标采集 (必选)
+MySQL 指标采集，收集以下数据：
+
+- MySQL global status 基础数据采集
+- Scheam 相关数据
+- InnoDB 相关指标
+- 支持自定义查询数据采集
+
+### 指标采集 (必选)
 
 1、 开启 DataKit MySQL 插件，复制 sample 文件
 
@@ -138,7 +135,7 @@ systemctl restart datakit
 
 ![image](../imgs/input-mysql-5.png)
 
-#### 日志采集 (非必选)
+### 日志采集 (非必选)
 
 1、 如需采集 MySQL 的日志，将配置中 log 相关的配置打开，如需要开启 MySQL 慢查询日志，需要开启慢查询日志，在 MySQL 中执行以下语句：
 
@@ -193,7 +190,7 @@ systemctl restart datakit
 
 ![image](../imgs/input-mysql-7.png)
 
-#### 插件标签 (非必选)
+### 插件标签 (非必选)
 
 参数说明
 

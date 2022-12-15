@@ -26,11 +26,7 @@ ElasticSearch 内置视图主要展示了 ElasticSearch 的集群内的 JVM 和�
 
 操作系统支持：Windows/AMD 64, Windows/386, Linux/ARM, Linux/ARM 64, Linux/386, Linux/AMD 64, Darwin/AMD 64
 
-## 安装部署
-
-说明：示例 ElasticSearch 版本为 ElasticSearch 7.6.1 (CentOS)，各个不同版本指标可能存在差异。
-
-### 前置条件
+## 前置条件
 
 - ElasticSearch 版本 >= 7.0.0
 - ElasticSearch 默认采集 `Node Stats` 指标，如果需要采集 `Cluster-Health` 相关指标，需要设置 `cluster_health = true`
@@ -43,10 +39,10 @@ ElasticSearch 内置视图主要展示了 ElasticSearch 的集群内的 JVM 和�
       - 方法二：创建自定义用户，需要赋予角色 `remote_monitoring_collector`
 - 其他信息请参考配置文件说明
 
+## 安装部署
 
-### 配置实施
-
-#### 指标采集 (必选)
+说明：示例 ElasticSearch 版本为 ElasticSearch 7.6.1 (CentOS)，各个不同版本指标可能存在差异。
+### 指标采集 (必选)
 
 1、 开启 DataKit ElasticSearch 插件，复制 sample 文件
 
@@ -75,57 +71,59 @@ vi elasticsearch.conf
 - indices_level：indices级别，可取值："shards", "cluster", "indices"
 - node_stats：node_stats可支持配置选项有"indices", "os", "process", "jvm", "thread_pool", "fs", "transport", "http", "breaker"（默认是所有）
 
-```yaml
-[[inputs.elasticsearch]]
-  ## Elasticsearch服务器配置
-  # 支持Basic认证:
-  # servers = ["http://user:pass@localhost:9200"]
-  servers = ["http://localhost:9200"]
+??? quote "`elasticsearch.conf`"
 
-  ## 采集间隔
-  # 单位 "ns", "us" (or "µs"), "ms", "s", "m", "h"
-  interval = "10s"
+   ```yaml
+      [[inputs.elasticsearch]]
+      ## Elasticsearch服务器配置
+      # 支持Basic认证:
+      # servers = ["http://user:pass@localhost:9200"]
+      servers = ["http://localhost:9200"]
 
-  ## HTTP超时设置
-  http_timeout = "5s"
+      ## 采集间隔
+      # 单位 "ns", "us" (or "µs"), "ms", "s", "m", "h"
+      interval = "10s"
 
-  ## 默认local是开启的，只采集当前Node自身指标，如果需要采集集群所有Node，需要将local设置为false
-  local = true
+      ## HTTP超时设置
+      http_timeout = "5s"
 
-  ## 设置为true可以采集cluster health
-  cluster_health = false
+      ## 默认local是开启的，只采集当前Node自身指标，如果需要采集集群所有Node，需要将local设置为false
+      local = true
 
-  ## cluster health level 设置，indices (默认) 和 cluster
-  # cluster_health_level = "indices"
+      ## 设置为true可以采集cluster health
+      cluster_health = false
 
-  ## 设置为true时可以采集cluster stats.
-  cluster_stats = false
+      ## cluster health level 设置，indices (默认) 和 cluster
+      # cluster_health_level = "indices"
 
-  ## 只从master Node获取cluster_stats，这个前提是需要设置 local = true
-  cluster_stats_only_from_master = true
+      ## 设置为true时可以采集cluster stats.
+      cluster_stats = false
 
-  ## 需要采集的Indices, 默认为 _all
-  indices_include = ["_all"]
+      ## 只从master Node获取cluster_stats，这个前提是需要设置 local = true
+      cluster_stats_only_from_master = true
 
-  ## indices级别，可取值："shards", "cluster", "indices"
-  indices_level = "shards"
+      ## 需要采集的Indices, 默认为 _all
+      indices_include = ["_all"]
 
-  ## node_stats可支持配置选项有"indices", "os", "process", "jvm", "thread_pool", "fs", "transport", "http", "breaker"
-  # 默认是所有
-  # node_stats = ["jvm", "http"]
+      ## indices级别，可取值："shards", "cluster", "indices"
+      indices_level = "shards"
 
-  ## HTTP Basic Authentication 用户名和密码
-  # username = ""
-  # password = ""
+      ## node_stats可支持配置选项有"indices", "os", "process", "jvm", "thread_pool", "fs", "transport", "http", "breaker"
+      # 默认是所有
+      # node_stats = ["jvm", "http"]
 
-  ## TLS Config
-  tls_open = false
-  # tls_ca = "/etc/telegraf/ca.pem"
-  # tls_cert = "/etc/telegraf/cert.pem"
-  # tls_key = "/etc/telegraf/key.pem"
-  ## Use TLS but skip chain & host verification
-  # insecure_skip_verify = false
-```
+      ## HTTP Basic Authentication 用户名和密码
+      # username = ""
+      # password = ""
+
+      ## TLS Config
+      tls_open = false
+      # tls_ca = "/etc/telegraf/ca.pem"
+      # tls_cert = "/etc/telegraf/cert.pem"
+      # tls_key = "/etc/telegraf/key.pem"
+      ## Use TLS but skip chain & host verification
+      # insecure_skip_verify = false
+      ```
 
 3、 重启 DataKit (如果需要开启日志，请配置日志采集再重启)
 
@@ -137,7 +135,7 @@ systemctl restart datakit
 
 ![image](../imgs/input-elasticsearch-6.png)
 
-#### 日志采集 (非必选)
+### 日志采集 (非必选)
 
 1、 修改 `elasticsearch.conf` 配置文件
 
@@ -213,7 +211,7 @@ systemctl restart datakit
 | duration | 34000000 | 请求耗时，单位ns |
 
 
-#### 插件标签 (非必选)
+### 插件标签 (非必选)
 
 参数说明
 
@@ -230,7 +228,7 @@ systemctl restart datakit
   # ...  
 ```
 
-重启 Datakit
+重启 DataKit
 
 ```
 systemctl restart datakit

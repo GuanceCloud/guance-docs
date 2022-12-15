@@ -15,9 +15,14 @@ Redis 观测场景主要展示了 Redis 的错误信息、性能信息、持久�
 
 操作系统支持：Windows/AMD 64, Windows/386, Linux/ARM, Linux/ARM 64, Linux/386, Linux/AMD 64, Darwin/AMD 64
 
+## 前置条件
+
+- Redis 版本 v5.0+
+
+在采集主从架构下数据时，请配置从节点的主机信息进行数据采集，可以得到主从相关的指标信息。
 ## 安装部署
 
-说明：示例 Redis 版本为 Redis 6.2.3 (CentOS)，各个不同版本指标可能存在差异。<br />
+说明：示例 Redis 版本为 Redis 6.2.3 (CentOS)，各个不同版本指标可能存在差异。
 
 Redis 指标采集器，采集以下数据：
 
@@ -27,16 +32,7 @@ Redis 指标采集器，采集以下数据：
 - bigkey scan 监控
 - 主从replication
 
-
-### 前置条件
-
-- Redis 版本 v5.0+
-
-在采集主从架构下数据时，请配置从节点的主机信息进行数据采集，可以得到主从相关的指标信息。
-
-### 配置实施
-
-#### 指标采集 (必选)
+### 指标采集 (必选)
 
 1、 开启 DataKit Redis 插件，复制 sample 文件
 
@@ -50,6 +46,50 @@ cp redis.conf.sample redis.conf
 ```bash
 vi redis.conf
 ```
+
+??? quote "`redis.conf`"
+
+    ```yaml
+    [[inputs.redis]]
+        host = "localhost"
+        port = 6379
+        # unix_socket_path = "/var/run/redis/redis.sock"
+        db = 0
+        # password = "<PASSWORD>"
+
+        ## @param connect_timeout - number - optional - default: 10s
+        # connect_timeout = "10s"
+
+        ## @param service - string - optional
+        # service = "<SERVICE>"
+
+        ## @param interval - number - optional - default: 15
+        interval = "15s"
+
+        ## @param keys - list of strings - optional
+        ## The length is 1 for strings.
+        ## The length is zero for keys that have a type other than list, set, hash, or sorted set.
+        #
+        # keys = ["KEY_1", "KEY_PATTERN"]
+
+        ## @param warn_on_missing_keys - boolean - optional - default: true
+        ## If you provide a list of 'keys', set this to true to have the Agent log a warning
+        ## when keys are missing.
+        #
+        # warn_on_missing_keys = true
+
+        ## @param slow_log - boolean - optional - default: false
+        slow_log = true
+
+        ## @param slowlog-max-len - integer - optional - default: 128
+        slowlog-max-len = 128
+
+        ## @param command_stats - boolean - optional - default: false
+        ## Collect INFO COMMANDSTATS output as metrics.
+        # command_stats = false
+
+    ```
+
 参数说明
 
 - host：要采集的redis 的地址
@@ -64,47 +104,6 @@ vi redis.conf
 - slowlog-max-len：配置慢日志大小
 - command_stats：获取 info 命令的结果转换成指标
 
-```yaml
-[[inputs.redis]]
-    host = "localhost"
-    port = 6379
-    # unix_socket_path = "/var/run/redis/redis.sock"
-    db = 0
-    # password = "<PASSWORD>"
-
-    ## @param connect_timeout - number - optional - default: 10s
-    # connect_timeout = "10s"
-
-    ## @param service - string - optional
-    # service = "<SERVICE>"
-
-    ## @param interval - number - optional - default: 15
-    interval = "15s"
-
-    ## @param keys - list of strings - optional
-    ## The length is 1 for strings.
-    ## The length is zero for keys that have a type other than list, set, hash, or sorted set.
-    #
-    # keys = ["KEY_1", "KEY_PATTERN"]
-
-    ## @param warn_on_missing_keys - boolean - optional - default: true
-    ## If you provide a list of 'keys', set this to true to have the Agent log a warning
-    ## when keys are missing.
-    #
-    # warn_on_missing_keys = true
-
-    ## @param slow_log - boolean - optional - default: false
-    slow_log = true
-
-    ## @param slowlog-max-len - integer - optional - default: 128
-    slowlog-max-len = 128
-
-    ## @param command_stats - boolean - optional - default: false
-    ## Collect INFO COMMANDSTATS output as metrics.
-    # command_stats = false
-
-```
-
 3、 重启 DataKit (如果需要开启日志，请配置日志采集再重启)
 
 ```bash
@@ -115,7 +114,7 @@ systemctl restart datakit
 
 ![image](../imgs/input-redis-3.png)
 
-#### 日志采集 (非必选)
+### 日志采集 (非必选)
 
 1、 修改 `redis.conf` 配置文件
 
@@ -178,7 +177,7 @@ Redis 通用日志切割
 | `msg` | `Background saving terminated with success` | 日志内容 |
 | `time` | `1557861100164000000` | 纳秒时间戳（作为行协议时间） |
 
-#### 插件标签 (非必选)
+### 插件标签 (非必选)
 
 参数说明
 
