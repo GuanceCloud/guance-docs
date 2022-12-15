@@ -77,10 +77,10 @@ nav:
 
       - 'Profiling':
         - 'DataKit 采集配置': profile.md
-        - 'DDTrace Profiling': profile-ddtrace.md
         - '工具接入':
-          - 'Java': profile-java-async-profiler.md 
-          - python-profiling.md
+          - 'Java': profile-java.md 
+          - 'Python': profile-python.md
+          - 'Go': profile-go.md
 
       - 'DDTrace':
         - 'DataKit 采集配置': ddtrace.md
@@ -143,7 +143,6 @@ nav:
       - nsq.md
       - rabbitmq.md
       - kafka.md
-      - '订阅kafka MQ': kafkamq.md
       - etcd.md
       - consul.md
       - coredns.md

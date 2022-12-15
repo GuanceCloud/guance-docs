@@ -1,5 +1,5 @@
 
-# 文本数据处理（Pipeline）
+# Pipeline 手册
 ---
 
 以下是 Pipeline 数据处理器语言定义。随着不同语法的逐步支持，该文档会做不同程度的调整和增删。
@@ -1627,11 +1627,25 @@ if !sample(0.3) { # sample(0.3) 表示采样率为 30%，即以 30% 概率返回
 函数原型：`fn set_measurement(name: str, delete_key: bool = false)`
 
 函数说明：改变行协议的 name
-
-函数参数
+函数参数：
 
 - `name`: 值作为 mesaurement name，可传入字符串常量或变量
 - `delete_key`: 如果在 point 中存在与变量同名的 tag 或 field 则删除它
+
+行协议 name 与各个类型数据存储时的字段映射关系或其他用途：
+
+| 类别           | 字段名         | 其他用途 |
+| -             | -             | -       |          
+|custom_object  | class         | -       |
+|keyevent       | -             | -       |
+|logging        | source        | -       |
+|metric         | -             | 指标集名 |
+|network        | source        | -       |
+|object         | class         | -       |
+|profiling      | source        | -       |
+|rum            | source        | -       |
+|security       | rule          | -       |
+|tracing        | source        | -       |
 ### `set_tag()` {#fn-set-tag}
 
 函数原型：`fn set_tag(key, value: str)`

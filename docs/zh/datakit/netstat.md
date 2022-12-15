@@ -24,29 +24,69 @@ Netstat 指标采集，包括 TCP/UDP 连接数、等待连接、等待处理请
       ##(optional) collect interval, default is 10 seconds
       interval = '10s'
     
-      ##(optional) addr_ports which counts separately, default is []
-      ## addr_ports measurements will be "netstat_port" 
-      ## server may have multiple network cards, 
-      ## only display this addr+port, example "1.1.1.1:80"
-      ## display by server if only have port number, example "443"
-      ## should add tags for some port, example ["80","443","0"] add tags
-      #[[inputs.netstat.addr_ports]]
-      #   ports = ["1.1.1.1:80","443","0"]
-      #   [inputs.netstat.addr_ports.tags]
-      #		project = "datakit"
-      #		yyy = "xxx"
-      #		service = "http"
+      ## the ports you want display
+      ## can and tags too
+      # [[inputs.netstat.addr_ports]]
+      #   ports = ["80","443"]
     
-      ## display this port by ip, example "*:9529"
-      #[[inputs.netstat.addr_ports]]
-      #	ports = ["*:9529"]
+      ## groups of ports and add different tags to facilitate statistics
+      # [[inputs.netstat.addr_ports]]
+      #   ports = ["80","443"]
+      #   [inputs.netstat.addr_ports.tags]
+      #     service = "http"
+      # [[inputs.netstat.addr_ports]]
+      #   ports = ["9529"]
+      #   [inputs.netstat.addr_ports.tags]
+      # 	service = "datakit"
+      #     foo = "bar"
+      
+      ## server may have multiple network cards
+      ## display only some network cards  
+      ## can and tags too
+      # [[inputs.netstat.addr_ports]]
+      #   ports = ["1.1.1.1:80","2.2.2.2:80"]
+      #   ports_match is preferred if both ports and ports_match configured
+      #   ports_match = ["*:80","*:443"]
     
     [inputs.netstat.tags]
       # some_tag = "some_value"
       # more_tag = "some_other_value"
     ```
 
+    配置技巧: 
+    ```
+    (1)配置关注的端口号
+    [[inputs.netstat.addr_ports]]
+      ports = ["80","443"]
+    ```
+    ```
+    (2)配置两组端口，加上不同的tag，方便统计
+    [[inputs.netstat.addr_ports]]
+      ports = ["80","443"]
+      [inputs.netstat.addr_ports.tags]
+  		service = "http"
+
+    [[inputs.netstat.addr_ports]]
+  	  ports = ["9529"]
+      [inputs.netstat.addr_ports.tags]
+        service = "datakit"
+    ```
+    ```
+    (3)服务器有多个网卡，只关心某几个网卡的情况
+    [[inputs.netstat.addr_ports]]
+      ports = ["1.1.1.1:80","2.2.2.2:80"]
+    ```
+    ```
+    (4)服务器有多个网卡，要求按每个网卡分别展示
+       这个配置，会屏蔽掉 ports 的配置值
+    [[inputs.netstat.addr_ports]]
+      ports = ["1.1.1.1:80","2.2.2.2:80"] // 无效，被 ports_match 屏蔽
+      ports_match = ["*:80","*:443"] // 有效
+    ```
+
     配置好后，重启 DataKit 即可。
+
+
 
 === "Kubernetes"
 
