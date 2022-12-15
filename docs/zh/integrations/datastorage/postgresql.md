@@ -22,9 +22,7 @@ PostgreSQL 性能指标展示，包括连接数、缓冲分配、计划检查点
 
 说明：示例 PostgreSQL 版本为 Linux 环境 PostgreSQL 9.2.24，Windows 版本请修改对应的配置文件。
 
-### 部署实施
-
-#### 指标采集 (必选)
+### 指标采集 (必选)
 
 1、 开启 DataKit PostgreSQL 插件，复制 sample 文件
 
@@ -66,7 +64,7 @@ systemctl restart datakit
 
 ![image](../imgs/input-postgresql-3.png)
 
-#### 日志插件 (非必选)
+### 日志插件 (非必选)
 
 参数说明
 
@@ -86,7 +84,7 @@ pipeline = "postgresql.p"
 systemctl restart datakit
 ```
 
-#### 插件标签 (非必选)
+### 插件标签 (非必选)
 
 参数说明
 

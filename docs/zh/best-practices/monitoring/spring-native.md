@@ -126,7 +126,7 @@ mvn -Pnative -DskipTests clean package
 
 ### 6 链路接入
 
-#### 6.1 安装 Datakit
+#### 6.1 安装 DataKit
 
 登录「[观测云](https://console.guance.com/)」，依次进入「集成」 - 「DataKit」 - 「Linux」，点击「复制图标」复制安装命令。
 
