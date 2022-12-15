@@ -41,10 +41,7 @@ GO
 ## 安装配置
 
 说明：示例 SQLServer 版本为 Microsoft SQL Server 2016 (RTM) - 13.0.1601.5 (X64)
-
-### 部署实施
-
-#### 指标采集 (必选)
+### 指标采集 (必选)
 
 1、 开启 DataKit SQLServer 插件，复制 sample 文件
 
@@ -79,7 +76,7 @@ services.msc 找到 datakit 重新启动
 
 ![image](../imgs/input-sqlserver-6.png)
 
-#### 日志采集 (非必选)
+### 日志采集 (非必选)
 
 参数说明
 
@@ -98,7 +95,7 @@ pipeline = "sqlserver.p"
 ```
 systemctl restart datakit
 ```
-#### 插件标签 (非必选)
+### 插件标签 (非必选)
 
 参数说明
 

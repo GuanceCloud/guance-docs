@@ -1,28 +1,35 @@
 nav:
-  - 更新日志: release-notes
+
+  - 更新日志: ""
+  - 2022年: release-notes
+  - <br/>开始使用: ""
   - 快速入门: getting-started
   - DataKit: datakit
   - 集成: integrations
-  - 自定义开发: developers
-  - DQL: dql
+  - <br/>产品功能: ""
   - 场景: scene
-  - 事件: events
   - 基础设施: infrastructure
-  - 指标: metrics
-  - 日志: logs
   - 应用性能监测: application-performance-monitoring
   - 用户访问监测: real-user-monitoring
+  - 日志: logs
   - 可用性监测: usability-monitoring
+  - 指标: metrics
+  - 监控: monitoring
+  - 事件: events
   - 安全巡检: scheck
   - CI 可视化: ci-visibility
-  - 监控: monitoring
+  - <br/>开放能力: ""
+  - DataFlux Func: dataflux-func
+  - 自定义开发: developers
+  - OpenAPI: open-api
+  - <br/>管理: ""
   - 工作空间管理: management
   - 付费计划与账单: billing
-  - OpenAPI: open-api
-  - DataFlux Func: dataflux-func
+  - <br/>私有化部署: ""
+  - 私有化部署: deployment
+  - <br/>其他: ""
+  - DQL: dql
   - 最佳实践: best-practices
   - 移动端: mobile
-  - 私有化部署: deployment
   - 常见问题: faq
   - 相关协议: agreements
-

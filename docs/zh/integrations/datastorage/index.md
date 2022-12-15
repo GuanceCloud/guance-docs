@@ -20,7 +20,7 @@ icon: fontawesome/solid/database
 
 | **Prometheus** |     |    |    |
 | :----: | :----: | :---: | :----: |
-| [:integrations-aerospike: Aerospike](aerospike.md){ .md-button .md-button--primary }  | [:integrations-minio: MinIO](minio.md){ .md-button .md-button--primary } | [:integrations-redis: Redis-sentinel](redis-sentinel.md){ .md-button .md-button--primary } |        |
+| [:integrations-aerospike: Aerospike](aerospike.md){ .md-button .md-button--primary }  | [:integrations-minio: MinIO](minio.md){ .md-button .md-button--primary } | [:integrations-redis: Redis-sentinel](redis-sentinel.md){ .md-button .md-button--primary } | [:integrations-nebulagraph: NebulaGraph](nebula.md){ .md-button .md-button--primary }       |
 
 <br/>
 

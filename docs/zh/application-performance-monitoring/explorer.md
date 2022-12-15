@@ -14,19 +14,19 @@
 
     显示当前所选时间范围内，所有采集到 Span 数据。
     
-    ![](img/3.apm_3.png)
+    ![](img/4.apm_1.png)
 
 === "所有顶层 Span"
 
     筛选显示当前所选时间范围内，首次进入的所有 Span 数据。
     
-    ![](img/3.apm_4.png)
+    ![](img/4.apm_2.png)
 
 === "所有 Trace"
 
     筛选显示当前所选时间范围内，所有包含初始顶层 Span 的 Trace 数据。
     
-    ![](img/3.apm_5.png)
+    ![](img/4.apm_3.png)
 
 ## 链路查询和分析
 

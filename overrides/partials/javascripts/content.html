@@ -1,0 +1,81 @@
+<div class="widget-content">
+  <p class="text">文档评价</p>
+  <div class="widget-content-display">
+    <div class="btn-content">
+      <h4 class="title">文档内容是否对您有帮助？<span class="close">×</span></h4>
+      <div class="btn-group btn-group_active">
+        <button class="widget-btn md-icon helpful-btn">{% include ".icons/zy/good.svg" %}</button>
+        <button class="widget-btn md-icon helpful-btn-checked" disabled>
+          {% include ".icons/zy/good-checked.svg" %}
+        </button>
+        <button class="widget-btn md-icon improved-btn">{% include ".icons/zy/bad.svg" %}</button>
+        <button class="widget-btn md-icon improved-btn-checked" disabled>
+          {% include ".icons/zy/bad-checked.svg" %}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  var helpfulBtn = document.querySelector('.helpful-btn')
+  var imporvedBtn = document.querySelector('.improved-btn')
+  var container = document.querySelector('.widget-content')
+  var btnContent = document.querySelector('.widget-content-display')
+  function request(params) {
+    const xhr = new XMLHttpRequest()
+    const method = 'POST'
+    const url = 'https://doc-score-api.guance.com/api/v1/score_record/create'
+    xhr.open(method, url)
+    xhr.setRequestHeader('Content-Type', 'application/json;charset=utf-8')
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        const status = xhr.status
+        if (status === 0 || (status >= 200 && status < 400)) {
+        } else {
+        }
+      }
+    }
+    xhr.send(JSON.stringify(params))
+  }
+  container.addEventListener('click', function (ev) {
+    ev.preventDefault()
+    if (ev.target.className === 'widget-content' || ev.target.className === 'text') {
+      if (btnContent.style.display === 'block') {
+        btnContent.style.display = 'none'
+      } else {
+        btnContent.style.display = 'block'
+      }
+    }
+    if (ev.target.className === 'close' || ev.target.parentNode.className === 'close') {
+      btnContent.style.display = 'none'
+    }
+  })
+
+  imporvedBtn.addEventListener('click', function (ev) {
+    ev.preventDefault()
+    /* Retrieve page and feedback value */
+    imporvedBtn.style.display = 'none'
+    document.querySelector('.improved-btn-checked').style.display = 'block'
+    helpfulBtn.disabled = true
+    const data = getParams('imporvedBtn')
+    request(data)
+  })
+  helpfulBtn.addEventListener('click', function (ev) {
+    ev.preventDefault()
+    helpfulBtn.style.display = 'none'
+    document.querySelector('.helpful-btn-checked').style.display = 'block'
+    imporvedBtn.disabled = true
+    const data = getParams('helpfulBtn')
+    request(data)
+  })
+
+  function getParams(type) {
+    const url = document.location.href
+    const isGood = type === 'helpfulBtn' ? true : false
+    return {
+      url,
+      isGood,
+    }
+  }
+</script>

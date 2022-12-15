@@ -6,7 +6,6 @@ nav:
    - 'DNS Query': dns-query.md
    - 'eBPF': ebpf.md
    - 'EthTool': ethtool.md
-   - 'IPMI_Sensor': ipmi-sensor.md
    - 'NetStat': netstat.md
    - 'NtpQ': ntpq.md
    - 'Processes': processes.md
