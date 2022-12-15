@@ -28,7 +28,7 @@
 | ----------------- | ------------------------------------------------------------ | ------------------ |
 | 中国区1（杭州）   | [https://auth.guance.com/](https://auth.guance.com/login/pwd) | 阿里云账号结算     |
 | 中国区2（宁夏）   | [https://aws-auth.guance.com/](https://aws-auth.guance.com/login/pwd) | AWS 账号结算       |
-| 中国区4（广州）   | https://cn4-auth.guance.com/                                 | 观测云企业账号结算 |
+| 中国区4（广州）   | [https://cn4-auth.guance.com/](https://cn4-auth.guance.com/login/pwd) | 观测云企业账号结算 |
 | 海外区1（俄勒冈） | [https://us1-auth.guance.com/](https://us1-auth.guance.com/) | AWS 账号结算       |
 
 ### 阿里云账号结算

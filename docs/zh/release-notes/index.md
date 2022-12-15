@@ -52,7 +52,20 @@ icon: zy/release-notes
 - 帮助文档新增评价系统，包括文档较好和较差
 - 监控器批量功能优化
 - SLO新增启用/禁用功能
-- 模糊匹配 Wildcard 左***** 匹配查询限制优化
+- 模糊匹配 Wildcard 左 * 匹配查询限制优化
+
+### DataKit 更新
+
+- 新增 [Golang Profiling](../datakit/profile-go.md) 接入
+- logfwd 支持通过 `LOGFWD_TARGET_CONTAINER_IMAGE` 来支持 image 字段注入
+- trace 采集器：
+    - 优化 error-stack/error-message 格式问题
+    - SkyWalking 兼容性调整，支持 8.X 全序列
+- eBPF httpflow 增加 `pid/process_name` 字段，优化内核版本支持
+- datakit.yaml 有调整，建议更新 yaml
+- GPU 显卡采集支持远程模式
+
+更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md) 。
 
 ### 智能巡检更新
 
