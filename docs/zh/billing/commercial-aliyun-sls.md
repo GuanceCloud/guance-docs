@@ -5,7 +5,7 @@
 
 ???+ attention
 
-    - 仅支持通过阿里云市场开通观测云专属版来开通 SLS 存储方式。更多存储方式可参考文档 [数据存储方式](../../billing/billing-method/data-storage.md#options) 。
+    - 仅支持通过阿里云市场开通观测云专属版来开通 SLS 存储方式。更多存储方式可参考文档 [数据存储方式](../billing/billing-method/data-storage.md#options) 。
     - 选择 SLS 存储方案的工作空间默认开启多索引，且不支持删除指标集；
     - SLS 存储使用的语言是 promql，存在部分函数无法使用的情况。更多关于 SLS 函数相关信息，可参考文档 [DQL 函数](../dql/funcs.md#sls)。
     - 开通 SLS 存储方案后，涉及日志服务的查询、分析、存储等功能，遵循观测云计费方式，具体可参考文档[计费方式](../billing/billing-method/index.md)；如果您要执行数据加工、投递、从外网接入点流式读取数据操作，由日志服务收取加工计算费用、数据投递费用和外网读取流量费用。具体可参考文档[计费项](https://help.aliyun.com/document_detail/107745.htm?spm=a2c4g.11186623.0.0.1d086860NWfUQP#concept-xzl-hjg-vgb)。
