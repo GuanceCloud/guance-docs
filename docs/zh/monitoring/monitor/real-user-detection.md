@@ -51,7 +51,7 @@
 <td> JS错误数 </td> 
 <td> 
 
-R::js_error:(count(`error_message`)) {`app_id` = '#{appid}'}
+R::error:(count(`__docid`) as `JS 错误数`) { `app_id` = '<应用 ID>' }
 
 </td>
 </tr>
@@ -60,12 +60,9 @@ R::js_error:(count(`error_message`)) {`app_id` = '#{appid}'}
 <td> JS错误率 </td> 
 <td> 
 
-F::dataflux__dql:(exec_expr
-(expr='data1.count/data2.count*100',
-pre_func='SUM',
-data1 = dql("R::page:(count(`page_url`) as count) {`app_id` = '#{appid}',`page_js_error_count` > 0}"),
-data2 = dql("R::page:(count(`page_url`) as count) {`app_id` = '#{appid}'}")
-))
+Web: eval(A/B, alias='页面 JS 错误率', A="R::view:(count(`view_url`)) {`view_error_count` > 0, `app_id` = '<应用 ID>'}",B="R::view:(count(`view_url`)) { `app_id` = '<应用 ID>'} ")
+
+Miniapp: eval(A/B, alias='JS 错误率', A="R::view:(count(`view_name`)) {`view_error_count` > 0, `app_id` = '<应用 ID>' }",B="R::view:(count(`view_name`)) { `app_id` = '<应用 ID>' }")
 
 </td>
 </tr>
@@ -74,7 +71,7 @@ data2 = dql("R::page:(count(`page_url`) as count) {`app_id` = '#{appid}'}")
 <td> 资源错误数 </td> 
 <td> 
 
-R::resource:(count(`resource_url`)) {`app_id` = '#{appid}',( `resource_status_group` = '4xx' || `resource_status_group` = '5xx')}
+R::resource:(count(`resource_url`) as `资源错误数`) {`resource_status` >=400, `app_id` = '<应用 ID>'}
 
 </td>
 </tr>
@@ -83,12 +80,7 @@ R::resource:(count(`resource_url`)) {`app_id` = '#{appid}',( `resource_status_gr
 <td> 资源错误率 </td> 
 <td> 
 
-F::dataflux__dql:(exec_expr
-(expr='data1.count/data2.count*100',
-pre_func='SUM',
-data1 = dql("R::resource:(count(`page_url`) as count) {`app_id` = '#{appid}',`resource_status` >= 400}"),
-data2 = dql("R::resource:(count(`page_url`) as count) {`app_id` = '#{appid}'}")
-))
+eval(A/B, alias='资源错误率', A="R::`resource`:(count(`resource_url`)) { `resource_status` >= '400',`app_id` = '<应用 ID>' }", B="R::`resource`:(count(`resource_url`)) { `app_id` = '<应用 ID>' }")
 
 </td>
 </tr>
@@ -171,7 +163,6 @@ R::view:(percentile(`cumulative_layout_shift`,99)){`app_id` = '#{appid}'}
 </td>
 </tr>
 
-
 <tr>
 <td> FCP
 (first_contentful_paint)  </td> 
@@ -200,9 +191,7 @@ R::view:(percentile(`first_contentful_paint`,99)){`app_id` = '#{appid}'}
 <td> 启动耗时 </td> 
 <td> 
 
-```
-M::rum_app_startup:(AVG(`app_startup_duration`)) { `app_id` = '#{appid}'}
-```
+R::action:(avg(duration)) { `app_id` = '<应用 ID>' ,action_type='app_cold_launch'}
 
 </td>
 </tr>
@@ -211,9 +200,7 @@ M::rum_app_startup:(AVG(`app_startup_duration`)) { `app_id` = '#{appid}'}
 <td> 总崩溃数 </td> 
 <td> 
 
-```
-R::crash:(count(`crash_type`)) {`app_id` = '#{appid}'}
-```
+R::error:(count(error_type)) {app_id='<应用 ID>',`error_source` = 'logger' and is_web_view !='true'} 
 
 </td>
 </tr>
@@ -222,14 +209,7 @@ R::crash:(count(`crash_type`)) {`app_id` = '#{appid}'}
 <td> 总崩溃率 </td> 
 <td> 
 
-```
-F::dataflux__dql:(exec_expr
-(expr='data1.count/data2.count*100',
-pre_func='SUM',
-data1 = dql("R::crash:(count(`crash_type`) as count) {`app_id` = '#{appid}'}"),
-data2 = dql("M::rum_app_startup:(count(`app_startup_duration`) as count) {`app_id` = '#{appid}'}")
-))
-```
+eval(A.a1/B.b1, alias='总崩溃率',A="R::error:(count(error_type) as a1) {app_id='<应用 ID>',`error_source` = 'logger',is_web_view !='true'} ",B="R::action:(count(action_name) as b1)  { `app_id` = '<应用 ID>',`action_type` in [`launch_cold`,`launch_hot`,`launch_warm`]} ")
 
 </td>
 </tr>
@@ -238,9 +218,7 @@ data2 = dql("M::rum_app_startup:(count(`app_startup_duration`) as count) {`app_i
 <td> 资源错误数 </td> 
 <td> 
 
-```
-R::resource:(count(`resource_url`) as count) {`app_id` = '#{appid}',`resource_status` >= 400}
-```
+R::resource:(count(`resource_url`) as `资源错误数`) {`resource_status` >=400, `app_id` = '<应用 ID>'}
 
 </td>
 </tr>
@@ -249,25 +227,16 @@ R::resource:(count(`resource_url`) as count) {`app_id` = '#{appid}',`resource_st
 <td> 资源错误率 </td> 
 <td> 
 
-```
-F::dataflux__dql:(exec_expr
-(expr='data1.count/data2.count*100',
-pre_func='SUM',
-data1 = dql("R::resource:(count(`resource_url`) as count) {`app_id` = '#{appid}',`resource_status` >= 400}"),
-data2 = dql("R::resource:(count(`resource_url`) as count) {`app_id` = '#{appid}'}")
-))
-```
+eval(A/B, alias='资源错误率', A="R::`resource`:(count(`resource_url`)) { `resource_status` >= '400',`app_id` = '<应用 ID>' }", B="R::`resource`:(count(`resource_url`)) { `app_id` = '<应用 ID>' }")
 
 </td>
 </tr>
 
 <tr>
-<td> FPS </td> 
+<td> 平均 FPS </td> 
 <td> 
 
-```
-R::view:(avg(`view_fps`)) {`app_id` = '#{appid}'}
-```
+R::view:(avg(`fps_avg`))  { `app_id` = '<应用 ID>' }
 
 </td>
 </tr>
@@ -277,9 +246,7 @@ R::view:(avg(`view_fps`)) {`app_id` = '#{appid}'}
 <td> 页面加载平均耗时 </td> 
 <td> 
 
-```
-R::view:(avg(`view_load`)) {`app_id` = '#{appid}'}
-```
+R::view:(avg(`loading_time`))  { `app_id` = '<应用 ID>' }
 
 </td>
 </tr>
@@ -288,9 +255,7 @@ R::view:(avg(`view_load`)) {`app_id` = '#{appid}'}
 <td> 资源加载平均耗时 </td> 
 <td>
 
-```
-R::resource:(avg(`resource_load`)) { `app_id` = '#{appid}'}
-```
+R::resource:(avg(`duration`))  { `app_id` = '<应用 ID>' }
 
 </td>
 </tr>
@@ -299,9 +264,16 @@ R::resource:(avg(`resource_load`)) { `app_id` = '#{appid}'}
 <td> 卡顿次数 </td> 
 <td> 
 
-```
-R::freeze:(count(`freeze_type`) as count) {`app_id` = '#{appid}'}
-```
+R::long_task:(count(`view_id`))  { `app_id` = '<应用 ID>' }
+
+</td>
+</tr>
+
+<tr>
+<td> 页面错误率 </td> 
+<td> 
+
+eval(A/B, alias='页面错误率',A="R::view:(count(`view_name`)) {`view_error_count` > 0, `app_id` = '<应用 ID>' }",B="R::view:(count(`view_name`)) { `app_id` = '<应用 ID>' }")
 
 </td>
 </tr>
@@ -349,7 +321,7 @@ R::freeze:(count(`freeze_type`) as count) {`app_id` = '#{appid}'}
 ???+ attention
 
     最新版本中 “监控器名称” 将由 “事件标题” 输入后同步生成。旧的监控器中可能存在 “监控器名称” 和 “事件标题” 不一致的情况，为了给您更好的使用体验，请尽快同步至最新。支持一键替换为事件标题。
-
+    
     不同告警通知对象支持的 markdown 语法不同，例如：企业微信不支持无序列表。
 
 7）**告警策略：**监控满足触发条件后，立即发送告警消息给指定的通知对象。告警策略中包含需要通知的事件等级、通知对象、以及告警沉默周期。详情参考 [告警策略](../alert-setting.md) 。
