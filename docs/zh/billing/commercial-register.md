@@ -35,7 +35,7 @@
 
 若您在注册时选择 “中国区1（杭州）”站点，观测云默认提供阿里云账号结算，工作空间内产生的所有费用会直接从您的阿里云账户中进行结算。
 
-您可以在「选择开通方式」，填写「工作空间名称」，点击「[前往阿里云免费开通观测云服务](https://market.aliyun.com/products/56838014/cmgj00053362.html)」获取并填写「[阿里用户 ID](../../billing/billing-account/aliyun-account.md#uid)」、「[商品实例ID](../../billing/billing-account/aliyun-account.md#entity-id)」，点击「确定」即可完成注册。
+您可以在「选择开通方式」，填写「工作空间名称」，点击「[前往阿里云免费开通观测云服务](https://market.aliyun.com/products/56838014/cmgj00053362.html)」获取并填写「[阿里用户 ID](../billing/billing-account/aliyun-account.md#uid)」、「[商品实例ID](../billing/billing-account/aliyun-account.md#entity-id)」，点击「确定」即可完成注册。
 
 ???+ attention
 
