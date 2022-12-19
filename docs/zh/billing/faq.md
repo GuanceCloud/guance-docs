@@ -25,6 +25,8 @@ AWS 用户可以通过选择“中国区2（宁夏）”、“海外区1（俄�
 
 不能相互切换。观测云商业版采用默认的 ES 存储方式，观测云专属版采用 SLS 存储方式，更多详情可参考文档 [数据存储方式](../billing/billing-method/data-storage.md#options) 。
 
+> 注意：仅支持通过在阿里云云市场购买观测云专属版来开通 SLS 存储，已开通默认存储的观测云工作空间不支持切换成 SLS 存储。更多详情可看参考文档  [阿里云市场购买观测云专属版商品](../billing/commercial-aliyun-sls.md) 。
+
 ## 观测云企业账号结算和云账号结算有什么区别？
 
 - [观测云企业账号结算](../billing/billing-account/enterprise-account.md)：直接在观测云费用中心进行充值结算，您可以通过现金充值、购买代金券、储值卡来为观测云企业账号充值，或者您可以购买 [华为云储值卡](../billing/billing-account/huaweicloud-account.md) 为观测云企业账号进行充值结算；
