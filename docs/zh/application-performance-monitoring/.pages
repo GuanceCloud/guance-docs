@@ -10,3 +10,4 @@ nav:
   - '链路查看器': explorer.md
   - '错误追踪': error.md
   - 'Profile': profile.md
+  - '常见问题': faq.md
