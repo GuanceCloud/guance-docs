@@ -6,9 +6,9 @@
 
 ## 注册账号
 
-1. 您可以在 [观测云官网](https://www.guance.com/) ，「[立即注册](https://auth.guance.com/register)」为观测云用户，观测云注册时，提供免费版和商业版注册选项，您可以按照实际需求注册观测云账号。
+1. 您可以在 [观测云官网](https://www.guance.com/) ，「[立即注册](https://auth.guance.com/businessRegister)」为观测云用户，观测云注册时，提供免费版和商业版注册选项，您可以按照实际需求注册观测云账号。
 
-2. 观测云为您提供了多站点注册账号的功能，即依据使用资源的类别，您可以选择注册适合的[站点](../getting-started/necessary-for-beginners/select-site.md)账号。**不同站点的账号和数据相互独立，一经确认，数据将无法迁移**。
+2. 观测云为您提供了多站点注册账号的功能，即依据使用资源的类别，您可以选择注册适合的 [站点](../getting-started/necessary-for-beginners/select-site.md) 账号。**不同站点的账号和数据相互独立，一经确认，数据将无法迁移**。
 
 3. 注册成为观测云用户需填写邮箱、姓名、手机号等个人信息，完善企业团队信息，阅读并同意《[服务协议](../agreements/service-agreement.md)》和《[隐私协议](../agreements/app-privacy-policy.md)》。
 
@@ -27,7 +27,7 @@
 
 - 单个观测云站点下，仅支持绑定一个手机号码、一个邮箱，暂不支持港澳台和国外手机号码
 - 不同站点的账号独立不互通
-- 支持选择[单点登录](../management/sso/index.md)到观测云
+- 支持选择 [单点登录](../management/sso/index.md) 到观测云
 
 ![](img/13.site_1.png)
 
