@@ -1,7 +1,9 @@
 # 阿里云市场开通观测云商业版
 ---
 
-本文将介绍在阿里云市场购买观测云服务以后，如何开通观测云商业版。有关开通观测云专属版信息，可前往 [阿里云市场开通观测云专属版](../billing/commercial-aliyun-sls.md)。关于直接注册商业版，可参考文档 [注册商业版](../billing/commercial-register.md) 。
+本文将介绍在阿里云市场购买观测云服务以后，如何开通观测云商业版。关于直接注册商业版，可参考文档 [注册商业版](../billing/commercial-register.md) 。
+
+> 注意：若您需要在观测云开通 SLS 存储，您可以前往 [阿里云市场开通观测云专属版](../billing/commercial-aliyun-sls.md)。
 
 ## 购买观测云 
 
