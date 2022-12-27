@@ -15,6 +15,8 @@
 5. 在自建的 DataFlux Func 中，编写自建巡检处理函数
 6. 在自建的 DataFlux Func 中，通过「管理 / 自动触发配置」，为所编写的函数创建自动触发配置。
 
+> **注意：**如果考虑采用云服务器来进行 DataFlux Func 离线部署的话，请考虑跟当前使用的观测云 SaaS 部署在[同一运营商同一地域](../../../getting-started/necessary-for-beginners/select-site/)。
+
 ## 配置巡检
 
 在自建 DataFlux Func 创建新的脚本集开启MySQL 性能巡检配置

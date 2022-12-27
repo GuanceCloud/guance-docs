@@ -11,10 +11,12 @@
 2. 开启自建 DataFlux Func 的[脚本市场](https://func.guance.com/doc/script-market-basic-usage/)
 3. 在观测云「管理 / API Key 管理」中创建用于进行操作的 [API Key](../../management/api-key/open-api.md)
 4. 在自建的 DataFlux Func 中，通过「脚本市场」安装「观测云自建巡检 Core 核心包」、「观测云自建巡检（阿里云）」
-5.   开启对应需要检测的「观测云自建巡检（阿里云）」中对象的[采集器(如: 阿里云 ECS)](https://func.guance.com/doc/script-market-guance-aliyun-ecs/)
-6.   在自建的 DataFlux Func 中，安装配套的第三方依赖包
+5. 开启对应需要检测的「观测云自建巡检（阿里云）」中对象的[采集器(如: 阿里云 ECS)](https://func.guance.com/doc/script-market-guance-aliyun-ecs/)
+6. 在自建的 DataFlux Func 中，安装配套的第三方依赖包
 7. 在自建的 DataFlux Func 中，编写自建巡检处理函数
 8. 在自建的 DataFlux Func 中，通过「管理 / 自动触发配置」，为所编写的函数创建自动触发配置
+
+> **注意：**如果考虑采用云服务器来进行 DataFlux Func 离线部署的话，请考虑跟当前使用的观测云 SaaS 部署在[同一运营商同一地域](../../../getting-started/necessary-for-beginners/select-site/)。
 
 ## 配置巡检
 
