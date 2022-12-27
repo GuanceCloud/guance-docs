@@ -1,5 +1,49 @@
 # 版本历史
 
+## v1.55.117（2022 年 12 月 15 日）
+
+pubrepo.jiagouyun.com/dataflux/1.55.117:launcher-f4f56ef-1672025178
+
+### 观测云更新
+
+- 新增 Profile、network 计费
+- 观测云注册流程优化
+- 新增作战室功能
+- 新增仪表板轮播功能
+- 工作空间绑定外部 SLS 索引
+- 链路查看器图表显示优化
+- 其他功能优化
+    - 视图变量交互优化
+    - 绑定内置视图配置交互优化
+    - 工作空间欠费锁定流程优化
+    - 工作空间邀请用户体验优化
+    - 帮助文档新增评价系统，包括文档较好和较差
+    - 监控器批量功能优化
+    - SLO新增启用/禁用功能
+    - 模糊匹配 Wildcard 左 * 匹配查询限制优化
+
+### DataKit 更新
+
+    - 新增 Golang Profiling 接入
+    - logfwd 支持通过 LOGFWD_TARGET_CONTAINER_IMAGE 来支持 image 字段注入
+    - trace 采集器：
+    - 优化 error-stack/error-message 格式问题
+    - SkyWalking 兼容性调整，支持 8.X 全序列
+    - eBPF httpflow 增加 pid/process_name 字段，优化内核版本支持
+    - datakit.yaml 有调整，建议更新 yaml
+    - GPU 显卡采集支持远程模式
+
+### 智能巡检更新
+
+    - 智能巡检新增引导页
+    - 智能巡检组件支持配置自定义跳转链接
+
+### 最佳实践更新
+
+    - 场景 (Scene) - SpringBoot 项目外置 Tomcat 场景链路可观测
+
+更多详情可参考帮助文档：[https://docs.guance.com/release-notes/](https://docs.guance.com/release-notes/)
+
 ## v1.54.116（2022 年 12 月 01 日）
 
 pubrepo.jiagouyun.com/dataflux/1.54.116:launcher-56de9cd-1670394824
