@@ -6,6 +6,7 @@ nav:
   - '应用性能巡检': apm.md
   - '云账户账单巡检': cloudfee.md
   - '云账户实例维度账单巡检': cloudfee_instance.md
+  - '阿里云抢占式实例存活巡检': spot_alive.md
   - '前端应用日志错误巡检': rum_errors.md
   - '阿里云资产巡检': cloudasset.md
   - 'MySQL 性能巡检': mysql-performance.md
