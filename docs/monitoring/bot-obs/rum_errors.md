@@ -11,7 +11,7 @@
 2. 自建 DataFlux Func 的离线部署
 3. 开启自建 DataFlux Func 的[脚本市场](https://func.guance.com/doc/script-market-basic-usage/)
 4. 在观测云「管理 / API Key 管理」中创建用于进行操作的 [API Key](../../management/api-key/open-api.md)
-5. 在自建的 DataFlux Func 中，通过「脚本市场」安装「观测云自建巡检 Core 核心包」「观测云算法库」「观测云自建巡检（rum）」
+5. 在自建的 DataFlux Func 中，通过「脚本市场」安装「观测云自建巡检 Core 核心包」「观测云算法库」「观测云自建巡检（RUM 新增错误类型）」
 6. 在自建的 DataFlux Func 中，编写自建巡检处理函数
 7. 在自建的 DataFlux Func 中，通过「管理 / 自动触发配置」，为所编写的函数创建自动触发配置
 
@@ -22,7 +22,7 @@
 ```python
 from guance_monitor__runner import Runner
 from guance_monitor__register import self_hosted_monitor
-import guance_monitor_rum__main as main
+import guance_monitor_rum_error__main as main
 
 # 观测云空间 API_KEY 配置(用户自行配置)
 API_KEY_ID  = 'xxxxx'
@@ -144,6 +144,10 @@ def run(configs={}):
 **2.前端应用日志错误巡检触发时可能会没有异常分析**
 
 在出现巡检报告中没有异常分析时，请检查当前 `datakit` 的数据采集状态。
+
+**3.在巡检过程中发现以前正常运行的脚本出现异常错误**
+
+请在 DataFlux Func 的脚本市场中更新所引用的脚本集，可以通过[**变更日志**](https://func.guance.com/doc/script-market-guance-changelog/)来查看脚本市场的更新记录方便即时更新脚本。
 
 
 

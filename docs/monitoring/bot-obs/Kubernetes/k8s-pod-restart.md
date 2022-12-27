@@ -174,17 +174,21 @@ def run(configs=[]):
 
 ## 常见问题
 
-  **1.Kubernetes Pod 异常重启巡检的检测频率如何配置**
+**1.Kubernetes Pod 异常重启巡检的检测频率如何配置**
 
   * 在自建的 DataFlux Func 中，编写自建巡检处理函数时在装饰器中添加`fixed_crontab='*/30 * * * *', timeout=900` ，后在「管理 / 自动触发配置」中配置。
 
-  **2.Kubernetes Pod 异常重启巡检触发时可能会没有异常分析**
+**2.Kubernetes Pod 异常重启巡检触发时可能会没有异常分析**
 
   在出现巡检报告中没有异常分析时，请检查当前 `datakit` 的数据采集状态。
 
-  **3.在何种情况下会产生 Kubernetes Pod 异常重启巡检事件**
+**3.在何种情况下会产生 Kubernetes Pod 异常重启巡检事件**
 
   以 cluster_name + namespace 下重启 pod 数占比数作为入口，当该指标在近 30 分钟出现升高时触发生成事件逻辑并进行根因分析
+
+**4.在巡检过程中发现以前正常运行的脚本出现异常错误**
+
+请在 DataFlux Func 的脚本市场中更新所引用的脚本集，可以通过[**变更日志**](https://func.guance.com/doc/script-market-guance-changelog/)来查看脚本市场的更新记录方便即时更新脚本。
 
   
 

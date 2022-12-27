@@ -192,6 +192,10 @@ def run(configs=None):
 * 跟踪阈值：如当期费用同比环比 > 100%
 * 跟踪预算：当月费用总和 > 设定预算
 
+**4.在巡检过程中发现以前正常运行的脚本出现异常错误**
+
+请在 DataFlux Func 的脚本市场中更新所引用的脚本集，可以通过[**变更日志**](https://func.guance.com/doc/script-market-guance-changelog/)来查看脚本市场的更新记录方便即时更新脚本。
+
 
 
 
