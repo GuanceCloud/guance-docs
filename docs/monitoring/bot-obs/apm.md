@@ -9,7 +9,7 @@
 ## 前置条件
 
 1. 在观测云「应用性能监测」已经存在接入的应用
-2. 自建 DataFlux Func 的离线部署
+2. 自建  [DataFlux Func](https://func.guance.com/#/) 的离线部署
 3. 开启自建 DataFlux Func 的[脚本市场](https://func.guance.com/doc/script-market-basic-usage/)
 4. 在观测云「管理 / API Key 管理」中创建用于进行操作的 [API Key](../../management/api-key/open-api.md)
 5. 在自建的 DataFlux Func 中，通过「脚本市场」安装「观测云自建巡检 Core 核心包」「观测云算法库」「观测云自建巡检（APM 性能）」

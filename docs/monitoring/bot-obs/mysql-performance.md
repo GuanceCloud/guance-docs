@@ -8,7 +8,7 @@
 
 ## 前置条件
 
-1. 自建 DataFlux Func 的离线部署
+1. 自建  [DataFlux Func](https://func.guance.com/#/) 的离线部署
 2. 开启自建 DataFlux Func 的[脚本市场](https://func.guance.com/doc/script-market-basic-usage/)
 3. 在观测云「管理 / API Key 管理」中创建用于进行操作的 [API Key](../../management/api-key/open-api.md)
 4. 在自建的 DataFlux Func 中，通过「脚本市场」安装「观测云自建巡检 Core 核心包」「观测云算法库」「观测云自建巡检（MYSQL 性能）」
