@@ -8,12 +8,14 @@
 
 ## 前置条件
 
-1. 自建 DataFlux Func 的离线部署
+1. 自建  [DataFlux Func](https://func.guance.com/#/) 的离线部署
 2. 开启自建 DataFlux Func 的[脚本市场](https://func.guance.com/doc/script-market-basic-usage/)
 3. 在观测云「管理 / API Key 管理」中创建用于进行操作的 [API Key](../../management/api-key/open-api.md)
 4. 在自建的 DataFlux Func 中，通过「脚本市场」安装「观测云自建巡检 Core 核心包」「观测云算法库」「 观测云自建巡检（磁盘使用率）」
 5. 在自建的 DataFlux Func 中，编写自建巡检处理函数
 6. 在自建的 DataFlux Func 中，通过「管理 / 自动触发配置」，为所编写的函数创建自动触发配置
+
+> **注意：**如果考虑采用云服务器来进行 DataFlux Func 离线部署的话，请考虑跟当前使用的观测云 SaaS 部署在[同一运营商同一地域](../../../getting-started/necessary-for-beginners/select-site/)。
 
 ## 配置巡检
 
@@ -157,4 +159,8 @@ def run(configs={}):
 **2.磁盘使用率巡检触发时可能会没有异常分析**
 
 在出现巡检报告中没有异常分析时，请检查当前 `datakit` 的数据采集状态。
+
+**3.在巡检过程中发现以前正常运行的脚本出现异常错误**
+
+请在 DataFlux Func 的脚本市场中更新所引用的脚本集，可以通过[**变更日志**](https://func.guance.com/doc/script-market-guance-changelog/)来查看脚本市场的更新记录方便即时更新脚本。
 
