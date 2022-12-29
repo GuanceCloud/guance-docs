@@ -25,7 +25,7 @@
 - 过滤日志：支持多选日志来源；
 -  名称：输入自定义的 pipeline 文件名；
 - 定义解析规则：定义日志的解析规则，支持多种脚本函数，可通过观测云提供的脚本函数列表直接查看其语法格式，如`add_pattern()`等。关于如何定义解析规则，可参考文档 [Pipeline 介绍](../../developers/pipeline.md) ；
-- 日志样本测试：输入日志数据，根据配置的解析规则进行测试，支持「一键获取」已经采集的日志数据样本。关于如何调试样本数据可参考文档 [调整 Pipeline](../management/overall-pipeline/#test) 。
+- 日志样本测试：输入日志数据，根据配置的解析规则进行测试，支持「一键获取」已经采集的日志数据样本。关于如何调试样本数据可参考文档 [调整 Pipeline](../../management/overall-pipeline/#test) 。
 - **支持将某一 pipeline 脚本设置为“默认 pipeline 脚本”，当前数据类型在匹配 pipeline 处理时若未匹配到其它的 pipeline 脚本，则数据会按照默认 pipeline 脚本的规则做处理。**设为默认的 pipeline，名称后面会有一个「default」icon 作为标识。
 
 注意：自定义 pipeline 文件不能同名，但可以和官方 pipeline 同名，此时 DataKit 会优先自动获取自定义 pipeline 文件配置。若在日志采集器 `.conf` 中手动配置 pipeline 文件，此时 DataKit 会优先获取手动配置的 pipeline 文件。
