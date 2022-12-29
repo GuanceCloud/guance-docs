@@ -21,7 +21,7 @@
 
 ???+ attention
 
-    所有错误的数据统计的是基于错误状态 `status=error` ，且含有错误类型 `error_type` 字段的服务顶层 Span。服务顶层 Span 是指筛选显示当前所选时间范围内，首次进入的所有 Span 数据
+    所有错误的数据统计的是基于错误状态 `status=error` ，且含有错误类型 `error_type` 字段的 Span
 
 ![](img/1.apm_error_12.png)
 
