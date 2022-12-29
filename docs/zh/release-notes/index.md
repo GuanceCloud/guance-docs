@@ -23,9 +23,9 @@ icon: zy/release-notes
 
 ![](img/6.space_ip_1.png)
 
-#### 新增服务网络拓扑
+#### 新增 Service 网络拓扑
 
-在「基础设施」-「网络」，新增选择查看「服务」的网络分布情况。在「服务网络 Map」，您能够可视化查询当前工作空间服务之间的每秒请求数、错误率、平均响应时间。更多详情可参考文档 [服务网络](../infrastructure/network.md#service) 。
+观测云新增支持基于七层网络数据，通过拓扑的方式显示各 Service 之间的流量、请求、响应时间、错误率等信息。在「基础设施」-「网络」，选择「Service」即可查看当前工作空间 Service 之间的每秒请求数、错误率、平均响应时间。更多详情可参考文档 [服务网络](../infrastructure/network.md#service) 。
 
 ![](img/5.service_map_1.1.gif)
 
