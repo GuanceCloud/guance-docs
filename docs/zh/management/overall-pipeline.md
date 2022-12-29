@@ -17,7 +17,7 @@
 
 - Pipeline 名称为固定生成不支持修改。例如：日志来源选择了nginx，则 pipeline 名称固定为 nginx.p。所以若你版本低于 1.5.0，Pipeline 名称与数据来源名称不一致，则 Pipeline 不会生效；
 
- 
+
 ## 新建 Pipeline
 
 在观测云工作空间「管理」-「文本处理（Pipeline）」，点击「新建Pipeline」即可创建一个新的 pipeline 文件。或者您可以在指标、日志、用户访问、应用性能、基础设施、安全巡检功能目录快捷入口，点击「Pipelines」进行创建。
@@ -41,6 +41,22 @@
 
 - 定义解析规则：定义解析规则，支持多种脚本函数，可通过观测云提供的脚本函数列表直接查看其语法格式，如 `add_pattern()` 等；
 - 样本解析测试：输入数据，根据配置的解析规则进行测试；支持一键获取样本数据，支持添加多条样本数据（最多 3 条），点击“开始测试”后，返回多条测试结果；若您在同一个测试文本框中输入多条样本数据进行测试，只返回一条测试结果。
+
+![](img/7.pipeline_1.png)
+
+### 默认 Pipeline
+
+您可在新建页面下方勾选设置 Pipeline 为默认 Pipeline。
+
+**注意**：
+
+- 每个类型只会有一个【默认 Pipeline】，新建/导入时出现重复会弹出确认框，询问是否进行替换。
+- 若当前数据类型在匹配 Pipeline 处理时，未匹配到其他的 Pipeline 脚本，则数据会按照默认 Pipeline 脚本的规则处理。
+
+返回 Pipeline 列表页，已勾选为默认的 pipeline 文件会有 “default” 标识。
+
+![](img/1-pipeline-4.png)
+
 
 
 ### 调试 Pipeline {#test}
@@ -81,7 +97,9 @@
 
 **调试示例：**
 
-![](img/10.pipeline_3.png)
+以下是一键获取的上报的指标数据样本，指标集为 cpu，标签为 cpu 和 host，从 usage_guest 到 usage_user 都为字段即指标数据，最后的 1667732804738974000 为时间戳。从返回结果可以很清楚的了解一键获取样本的数据结构。
+
+![](img/7.pipeline_2.png)
 
 ## 操作 Pipeline
 
@@ -117,21 +135,6 @@
 选定需要删除的 pipeline 文件，点击「确认删除」即可删除当前 pipeline 文件。
 
 ![](img/1-pipeline-3.png)
-
-### 默认 Pipeline
-
-您可在新建页面下方勾选设置为默认 Pipeline。
-
-**注意**：
-
-- 每个类型只会有一个【默认 Pipeline】，新建/导入时出现重复会弹出确认框，询问是否进行替换。
-- 若当前数据类型在匹配 Pipeline 处理时，未匹配到其他的 Pipeline 脚本，则数据会按照默认 Pipeline 脚本的规则处理。
-
-![](img/1-pipeline-8.png)
-
-返回 Pipeline 列表页，已勾选为默认的 pipeline 文件会有 “default” 标识。
-
-![](img/1-pipeline-4.png)
 
 ## 注意事项
 
