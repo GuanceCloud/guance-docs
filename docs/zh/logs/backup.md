@@ -51,5 +51,5 @@
 
 注意：备份日志仅备份日志的时间和内容。
 
-![](img/7.backup_6.png)
+![](img/8.log_backup_1.png)
 
