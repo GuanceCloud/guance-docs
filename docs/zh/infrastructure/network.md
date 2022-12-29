@@ -1,4 +1,7 @@
+
+
 # 网络
+
 ---
 
 ## 简介
@@ -9,7 +12,7 @@
 
 你需要先创建一个 [观测云账号](https://auth.guance.com/register?channel=帮助文档)，并在你的主机上 [安装 DataKit](../datakit/datakit-install.md)，开启 [eBPF 采集器](../integrations/host/ebpf.md)。
 
-## 主机网络
+## 主机网络 {#host}
 
 ### 主机拓扑图
 
@@ -31,6 +34,8 @@
 
 ![](img/5.service_map_2.png)
 
+<!-- 
+
 ### 主机网络列表
 
 在「基础设施」-「网络」，选择「主机」，支持切换至主机网络列表查看「源」和「目标」之间的 TCP 重传次数、TCP 连接数、TCP 关闭次数、TCP 延时、发送字节数、接收字节数等。
@@ -38,6 +43,8 @@
 ![](img/5.service_map_3.1.png)
 
 
+
+-->
 
 ### 主机网络详情
 
@@ -96,7 +103,7 @@
 
 
 
-## Pod 网络
+## Pod 网络 {#pod}
 
 ### Pod 拓扑图
 
@@ -115,11 +122,15 @@
 
 ![](img/5.service_map_4.png)
 
+<!-- 
+
 ### Pod 网络列表
 
 在「基础设施」-「网络」，选择「Pod」，支持切换至 Pod 网络列表查看「源」和「目标」之间的 TCP 延时、发送字节数、接收字节数、请求数、3xx 状态码、4xx状态码等。
 
 ![](img/5.service_map_5.1.png)
+
+-->
 
 ### Pod 网络详情
 
@@ -189,7 +200,7 @@ Pod 网络支持基于 HTTP 协议的七层网络性能监测。
 
 ![](img/5.network_5.png)
 
-## Deployment 网络
+## Deployment 网络 {#deployment}
 
 ### Deployment 拓扑图
 
@@ -208,11 +219,15 @@ Pod 网络支持基于 HTTP 协议的七层网络性能监测。
 
 ![](img/5.service_map_6.png)
 
+<!-- 
+
 ### Deployment 网络列表
 
 在「基础设施」-「网络」，选择「Deployment」，支持切换至 Deployment 网络列表查看「源」和「目标」之间的 TCP 延时、发送字节数、接收字节数、请求数、3xx 状态码、4xx状态码等。
 
 ![](img/5.service_map_7.1.png)
+
+-->
 
 ### Deployment 网络详情
 
@@ -282,7 +297,7 @@ Pod 网络支持基于 HTTP 协议的七层网络性能监测。
 
 ![](img/5.network_8.png)
 
-## 服务网络
+## 服务网络 {#service}
 
 ### 服务拓扑图
 
@@ -296,11 +311,15 @@ Pod 网络支持基于 HTTP 协议的七层网络性能监测。
 
 ![](img/5.service_map_8.png)
 
+<!-- 
+
 ### 服务网络列表
 
 在「基础设施」-「网络」，选择「服务」，支持切换至服务网络列表查看「源」和「目标」之间的请求数、3xx 状态码、4xx状态码、5x x 状态码、平均响应时间、P95 响应时间等。
 
 ![](img/5.service_map_9.1.png)
+
+-->
 
 ### 服务网络详情
 
