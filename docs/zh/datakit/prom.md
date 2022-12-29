@@ -24,6 +24,9 @@ Prom 采集器可以获取各种 Prometheus Exporters 暴露出来的指标数�
       # Exporter URLs
       # urls = ["http://127.0.0.1:9100/metrics", "http://127.0.0.1:9200/metrics"]
     
+      # Unix Domain Socket 地址，当不为空时，将通过该 socket 请求数据
+      uds_path = ""
+    
       # 忽略对 url 的请求错误
       ignore_req_err = false
     
