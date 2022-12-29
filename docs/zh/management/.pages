@@ -1,6 +1,7 @@
 nav:
   - index.md
   - '账号管理': account-management.md
+  - 'MFA管理': mfa-management.md
   - '空间管理': space-management.md
   - '成员管理': member-management.md
   - 'SSO管理': sso
