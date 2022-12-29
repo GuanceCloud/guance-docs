@@ -27,7 +27,7 @@ icon: zy/release-notes
 
 在「基础设施」-「网络」，新增选择查看「服务」的网络分布情况。在「服务网络 Map」，您能够可视化查询当前工作空间服务之间的每秒请求数、错误率、平均响应时间。更多详情可参考文档 [服务网络](../infrastructure/network.md#service) 。
 
-![](img/5.service_map_1.gif)
+![](img/5.service_map_1.1.gif)
 
 #### 其他功能优化
 
