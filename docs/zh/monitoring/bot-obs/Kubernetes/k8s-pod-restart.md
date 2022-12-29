@@ -9,12 +9,14 @@ Kubernetes 帮助用户自动调度和扩展容器化应用程序，但现代 Ku
 ## 前置条件
 
 1. 在观测云中开启[「容器数据采集」](https://docs.guance.com/datakit/container/)
-2. 自建 DataFlux Func 的离线部署
+2. 自建  [DataFlux Func](https://func.guance.com/#/) 的离线部署
 3. 开启自建 DataFlux Func 的[脚本市场](https://func.guance.com/doc/script-market-basic-usage/)
 4. 在观测云「管理 / API Key 管理」中创建用于进行操作的 [API Key](../../management/api-key/open-api.md)
 5. 在自建的 DataFlux Func 中，通过「脚本市场」安装「观测云自建巡检 Core 核心包」「观测云算法库」「 观测云自建巡检（K8S-Pod重启检测）」
 6. 在自建的 DataFlux Func 中，编写自建巡检处理函数
 7. 在自建的 DataFlux Func 中，通过「管理 / 自动触发配置」，为所编写的函数创建自动触发配置。
+
+> **注意：**如果考虑采用云服务器来进行 DataFlux Func 离线部署的话，请考虑跟当前使用的观测云 SaaS 部署在[同一运营商同一地域](../../../../getting-started/necessary-for-beginners/select-site/)。
 
 ## 配置巡检
 
@@ -86,7 +88,7 @@ def run(configs=[]):
 
 ### 在观测云中注册检测项
 
-在 DataFlux Func 中在配置好巡检之后可以通过直接再页面中选择 `run()` 方法进行点击运行进行测试，在点击发布之后就可以在观测云「监控 / 智能巡检」中查看并进行配置
+在 DataFlux Func 中在配置好巡检之后可以通过直接再页面中选择 `run()` 方法点击运行进行注册，在点击发布之后就可以在观测云「监控 / 智能巡检」中查看并进行配置
 
 ![image](../../img/k8s-pod-restart01.png)
 
@@ -174,17 +176,21 @@ def run(configs=[]):
 
 ## 常见问题
 
-  **1.Kubernetes Pod 异常重启巡检的检测频率如何配置**
+**1.Kubernetes Pod 异常重启巡检的检测频率如何配置**
 
   * 在自建的 DataFlux Func 中，编写自建巡检处理函数时在装饰器中添加`fixed_crontab='*/30 * * * *', timeout=900` ，后在「管理 / 自动触发配置」中配置。
 
-  **2.Kubernetes Pod 异常重启巡检触发时可能会没有异常分析**
+**2.Kubernetes Pod 异常重启巡检触发时可能会没有异常分析**
 
   在出现巡检报告中没有异常分析时，请检查当前 `datakit` 的数据采集状态。
 
-  **3.在何种情况下会产生 Kubernetes Pod 异常重启巡检事件**
+**3.在何种情况下会产生 Kubernetes Pod 异常重启巡检事件**
 
   以 cluster_name + namespace 下重启 pod 数占比数作为入口，当该指标在近 30 分钟出现升高时触发生成事件逻辑并进行根因分析
+
+**4.在巡检过程中发现以前正常运行的脚本出现异常错误**
+
+请在 DataFlux Func 的脚本市场中更新所引用的脚本集，可以通过[**变更日志**](https://func.guance.com/doc/script-market-guance-changelog/)来查看脚本市场的更新记录方便即时更新脚本。
 
   
 
