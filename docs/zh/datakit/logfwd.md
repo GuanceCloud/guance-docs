@@ -125,7 +125,7 @@ spec:
           fieldPath: metadata.namespace
     - name: LOGFWD_GLOBAL_SOURCE
       value: nginx-souce-test
-    image: pubrepo.jiagouyun.com/datakit/logfwd:1.5.2
+    image: pubrepo.jiagouyun.com/datakit/logfwd:1.5.3
     imagePullPolicy: Always
     volumeMounts:
     - name: varlog
@@ -229,7 +229,7 @@ spec:
         fieldRef:
           apiVersion: v1
           fieldPath: metadata.namespace
-    image: pubrepo.jiagouyun.com/datakit/logfwd:1.5.2
+    image: pubrepo.jiagouyun.com/datakit/logfwd:1.5.3
     imagePullPolicy: Always
     volumeMounts:
     - name: varlog
