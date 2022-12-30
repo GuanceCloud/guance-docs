@@ -9,12 +9,14 @@
 ## 前置条件
 
 1. 在观测云「应用性能监测」已经存在接入的应用
-2. 自建 DataFlux Func 的离线部署
+2. 自建  [DataFlux Func](https://func.guance.com/#/) 的离线部署
 3. 开启自建 DataFlux Func 的[脚本市场](https://func.guance.com/doc/script-market-basic-usage/)
 4. 在观测云「管理 / API Key 管理」中创建用于进行操作的 [API Key](../../management/api-key/open-api.md)
 5. 在自建的 DataFlux Func 中，通过「脚本市场」安装「观测云自建巡检 Core 核心包」「观测云算法库」「观测云自建巡检（APM 性能）」
 6. 在自建的 DataFlux Func 中，编写自建巡检处理函数
 7. 在自建的 DataFlux Func 中，通过「管理 / 自动触发配置」，为所编写的函数创建自动触发配置
+
+> **注意：**如果考虑采用云服务器来进行 DataFlux Func 离线部署的话，请考虑跟当前使用的观测云 SaaS 部署在[同一运营商同一地域](../../../getting-started/necessary-for-beginners/select-site/)。
 
 ## 配置巡检
 
@@ -175,17 +177,21 @@ def run(configs=[]):
 
 ## 常见问题
 
-  **1.应用性能巡检的检测频率如何配置**
+**1.应用性能巡检的检测频率如何配置**
 
   * 在自建的 DataFlux Func 中，编写自建巡检处理函数时在装饰器中添加`fixed_crontab='0 * * * *', timeout=900` ，后在「管理 / 自动触发配置」中配置。
 
-  **2.应用性能巡检触发时可能会没有异常分析**
+**2.应用性能巡检触发时可能会没有异常分析**
 
   在出现巡检报告中没有异常分析时，请检查当前 `datakit` 的数据采集状态。
 
-  **3.在何种情况下会产生应用性能巡检事件**
+**3.在何种情况下会产生应用性能巡检事件**
 
   以错误率、P90等指标作为切入口，当这指标其中有一个指标发生异常变动并产生上下游链路影响时，触发收集报警信息并进行根因分析。
+
+**4.在巡检过程中发现以前正常运行的脚本出现异常错误**
+
+请在 DataFlux Func 的脚本市场中更新所引用的脚本集，可以通过[**变更日志**](https://func.guance.com/doc/script-market-guance-changelog/)来查看脚本市场的更新记录方便即时更新脚本。
 
   
 

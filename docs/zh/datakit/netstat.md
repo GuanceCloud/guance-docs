@@ -37,11 +37,11 @@ Netstat 指标采集，包括 TCP/UDP 连接数、等待连接、等待处理请
       # [[inputs.netstat.addr_ports]]
       #   ports = ["9529"]
       #   [inputs.netstat.addr_ports.tags]
-      # 	service = "datakit"
+      #     service = "datakit"
       #     foo = "bar"
-      
+    
       ## server may have multiple network cards
-      ## display only some network cards  
+      ## display only some network cards
       ## can and tags too
       # [[inputs.netstat.addr_ports]]
       #   ports = ["1.1.1.1:80","2.2.2.2:80"]

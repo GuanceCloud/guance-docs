@@ -7,13 +7,15 @@
 
 ## 前置条件
 
-1. 进行自建 DataFlux Func 的离线部署
+1. 进行自建  [DataFlux Func](https://func.guance.com/#/) 的离线部署
 2. 开启自建 DataFlux Func 的[脚本市场](https://func.guance.com/doc/script-market-basic-usage/)
 3. 在观测云「管理 / API Key 管理」中创建用于进行操作的 [API Key](../../management/api-key/open-api.md)
 4. 在自建的 DataFlux Func 中，通过「脚本市场」安装「观测云自建巡检 Core 核心包」、「观测云算法库」、「观测云自建巡检（账单）」
 5. 在脚本市场中安装开启[「观测云集成（华为云-账单采集）」](https://func.guance.com/doc/script-market-guance-aliyun-billing/)、[「观测云集成（阿里云-账单采集）」](https://func.guance.com/doc/script-market-guance-huaweicloud-billing/)、[「观测云集成（腾讯云-账单采集）」](https://func.guance.com/doc/script-market-guance-tencentcloud-billing/) 并且收集数据天数超过 15 天
 6. 在自建的 DataFlux Func 中，编写自建巡检处理函数
 7. 在自建的 DataFlux Func 中，通过「管理 / 自动触发配置」，为所编写的函数创建自动触发配置
+
+> **注意：**如果考虑采用云服务器来进行 DataFlux Func 离线部署的话，请考虑跟当前使用的观测云 SaaS 部署在[同一运营商同一地域](../../../getting-started/necessary-for-beginners/select-site/)。
 
 ## 配置巡检
 
@@ -191,6 +193,10 @@ def run(configs=None):
 
 * 跟踪阈值：如当期费用同比环比 > 100%
 * 跟踪预算：当月费用总和 > 设定预算
+
+**4.在巡检过程中发现以前正常运行的脚本出现异常错误**
+
+请在 DataFlux Func 的脚本市场中更新所引用的脚本集，可以通过[**变更日志**](https://func.guance.com/doc/script-market-guance-changelog/)来查看脚本市场的更新记录方便即时更新脚本。
 
 
 
