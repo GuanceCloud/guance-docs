@@ -25,9 +25,9 @@ icon: zy/release-notes
 
 #### 新增 Service 网络拓扑
 
-观测云新增支持基于七层网络数据，通过拓扑的方式显示各 Service 之间的流量、请求、响应时间、错误率等信息。在「基础设施」-「网络」，选择「Service」即可查看当前工作空间 Service 之间的每秒请求数、错误率、平均响应时间。更多详情可参考文档 [服务网络](../infrastructure/network.md#service) 。
+当服务部署在 K8S 环境下，您可以使用 Service 网络拓扑图查看 K8S 环境中各 Service 之间的请求关系、响应时间、错误率等，当发现某个 Service 存在连接问题时，您可以点击查看该 Service 对应的日志来定位其问题。更多详情可参考文档 [Service 网络](../infrastructure/network.md#service) 。
 
-![](img/5.service_map_1.1.gif)
+![](img/5.service_map_1.2.gif)
 
 #### 其他功能优化
 
@@ -36,6 +36,19 @@ icon: zy/release-notes
 - 超大日志切割后支持查看其关联日志
 - 备份日志显示优化
 - 数据授权敏感字段支持除指标以外所有类型的数据
+
+### DataKit 更新
+
+- Prometheus 采集器支持通过 Unix Socket 采集数据
+- 允许[非 root 用户运行 DataKit](../datakit/datakit-install.md#common-envs)
+
+- 优化 eBPF 中 httpflow 协议判定
+- 优化 Windows 下 Datakit 安装升级命令
+- 优化 Pythond 使用封装
+- Pipeline 提供更详细的操作报错信息
+- Pipeline reftable 提供基于 SQLite 的本地化存储实现
+
+更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md) 。
 
 ### 智能巡检更新
 
