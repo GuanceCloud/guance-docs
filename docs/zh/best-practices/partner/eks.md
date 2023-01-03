@@ -160,10 +160,10 @@ vim values.yaml
 
 #### 4.4、安装 DataKit
 
-执行如下命令，部署 DataKit。
+执行如下命令，部署 DataKit，如果 datakit 命名空间已存在，后面的 **--create-namespace** 可以去掉。
 
 ```
-helm install datakit . -n datakit  -f values.yaml
+helm install datakit . -n datakit  -f values.yaml --create-namespace
 ```
 
 ![image.png](../images/eks-14.png)
