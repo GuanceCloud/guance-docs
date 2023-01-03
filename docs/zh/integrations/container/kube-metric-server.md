@@ -348,7 +348,8 @@ data:
 - container_exclude_log：不须要采集的容器日志。
 
 `container_include_log` 和 `container_exclude_log` 必须以 `image` 开头，格式为 `"image:<glob规则>"`，表示 glob 规则是针对容器 image 生效。<br />
-<[Glob 规则](<https://en.wikipedia.org/wiki/Glob_(programming)>)>是一种轻量级的正则表达式，支持 `*` `?` 等基本匹配单元。
+
+<[Glob 规则](https://en.wikipedia.org/wiki/Glob_(programming))>是一种轻量级的正则表达式，支持 `*` `?` 等基本匹配单元。
 
 4、 使用 ConfigMap
 

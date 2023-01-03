@@ -379,7 +379,7 @@ sudo /bin/bash run-portable.sh
 
 #### 登录 DataFlux Function
 
-登录 Func，地址 http://ip:8088（默认 admin/admin）
+登录 Func，地址 `http://ip:8088`（默认 admin/admin）
 
 ![](../images/aliyun-bill-8.png)
 
