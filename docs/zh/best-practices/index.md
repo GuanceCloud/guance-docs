@@ -2,6 +2,16 @@
 icon: zy/best-practices
 ---
 
+## (2023/1/3)
+
+### 新增最佳实践
+
+- 云平台接入
+    - AWS - [EKS 部署 DataKit](./partner/eks.md)。
+- 监控 Monitoring
+    - 应用性能监控 (APM) - 调用链 - [使用 datakit-operator 注入 dd-java-agent](./monitoring/datakit-operator.md)。
+
+
 ## (2022/12/2)
 
 ### 新增最佳实践

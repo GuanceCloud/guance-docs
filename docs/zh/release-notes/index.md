@@ -11,7 +11,7 @@ icon: zy/release-notes
 
 ### 观测云更新
 
-#### 新增工作空间 MFA 认证管理
+#### 新增 MFA 认证管理
 
 观测云提供 MFA 认证管理，帮助在账号用户名和密码之外再额外增加一层安全保护，开启 MFA 认证后，您在登录时需要进行二次校验，帮助您提高账户的安全性。更多详情可参考文档 [MFA 管理](../management/mfa-management.md) 。
 
@@ -25,7 +25,7 @@ icon: zy/release-notes
 
 #### 新增 Service 网络拓扑
 
-当服务部署在 K8S 环境下，您可以使用 Service 网络拓扑图查看 K8S 环境中各 Service 之间的请求关系、响应时间、错误率等，当发现某个 Service 存在连接问题时，您可以点击查看该 Service 对应的日志来定位其问题。更多详情可参考文档 [Service 网络](../infrastructure/network.md#service) 。
+在 K8S 环境下，您可以使用 Service 网络拓扑图查看 K8S 环境中各 Service 之间的请求关系、响应时间、错误率等，当发现某个 Service 存在连接问题时，您可以点击查看该 Service 对应的日志来定位其问题。更多详情可参考文档 [Service 网络](../infrastructure/network.md#service) 。
 
 ![](img/5.service_map_1.2.gif)
 
