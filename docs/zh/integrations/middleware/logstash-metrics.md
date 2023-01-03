@@ -66,7 +66,7 @@ http.port: 9600
 
 #### 指标采集 (必选)
 
-1、 登录 Func，地址 http://ip:8088（默认 admin/admin）
+1、 登录 Func，地址 `http://ip:8088`（默认 admin/admin）
 
 ![image](../imgs/input-logstash-metrics-2.png)
 
