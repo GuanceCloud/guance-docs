@@ -140,7 +140,7 @@ helm pull datakit/datakit --untar
 cd datakit
 ```
 
-编辑 value.yaml 文件，把获取的 token 粘贴到下图中 dataway_url 中红框的位置，global_tags 值增加 cluster_name_k8s=k8s-aws 值，这是为非选举类的指标采集增加全局 Tag **cluster_name_k8s**。
+编辑 values.yaml 文件，把获取的 token 粘贴到下图中 dataway_url 中红框的位置，global_tags 值增加 cluster_name_k8s=k8s-aws 值，这是为非选举类的指标采集增加全局 Tag **cluster_name_k8s**。
 
 ```
 vim values.yaml
