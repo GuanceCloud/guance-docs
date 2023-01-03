@@ -3,66 +3,72 @@
 
 观测云部署版支持用户在自己本地基础设施环境，或私有云环境上，安装观测云系统软件并运行服务。包括商业部署版和社区版两种，其中商业部署版分成订阅制版、许可证制版和按量付费版。
 
+“观测云”是一款旨在解决云计算，以及云原生时代系统为每一个完整的应用构建全链路的可观测性的云服务平台。“观测云”是由驻云科技自2018年以来全力打造的产品，产品的目标是为中国的广大基于云计算的开发项目组提供服务，相较于复杂多变的开源产品，如ELK，Prometheus，Grafana，Skywalking等，“观测云”不单纯的只是提供一种监控类的产品，更重要的是提供整体可观测性的服务，我们除了在底层存储和系统架构上是一体化的基础上，也把所有关于云计算及云原生相关的技术栈进行了完整的分析和解构，任何项目团队可以非常轻松的使用我们的产品，无需再投入太多的精力去研究或者改造不成熟的开源产品，同时“观测云”是以服务方式，按需按量的方式收取费用，完全根据用户产生的数据量收取费用，无需投入硬件，同时对于付费客户，我们还会建立专业的服务团队，帮助客户构建基于数据的核心保障体系，具有实时性、灵活性、易扩展、易部署等特点，支持云端 SaaS 和本地部署模式。
+
+
+## 支持的操作系统与CPU架构
+
+| 发行版 | X86_64/AMD64                 | ARM64/AARCH64                |
+| ------ | ---------------------------- | ---------------------------- |
+| CentOS | :white_check_mark:（7.0+）   | :white_check_mark:（8.0+）   |
+| RedHat | :white_check_mark:（7.3+）   | :white_check_mark:（8.0+）   |
+| Ubuntu | :white_check_mark:（18.04+） | :white_check_mark:（18.04+） |
+| 麒麟   | :white_check_mark:（10）     | :white_check_mark:（10）     |
+
+
+
 ## 产品架构
 ![](img/6.deployment_1.jpg)
+
+
+
+## 组件说明 {#module}
+
+|        服务名称         |       namespace       |                           组件功能                           | 备注                                           |
+| :---------------------: | :-------------------: | :----------------------------------------------------------: | ---------------------------------------------- |
+|     front-webclient     | forethought-webclient |                          控制台前端                          |                                                |
+|      dataflux-doc       | forethought-webclient |                           帮助文档                           |                                                |
+|  management-webclient   | forethought-webclient |                         管理后台前端                         |                                                |
+|       core-worker       |   forethought-core    |                           后端服务                           |                                                |
+|    core-worker-beat     |   forethought-core    |                           后端服务                           |                                                |
+| core-worker-correlation |   forethought-core    |                           后端服务                           |                                                |
+|      front-backend      |   forethought-core    |                           后端服务                           |                                                |
+|          inner          |   forethought-core    |                           后端服务                           |                                                |
+|   management-backend    |   forethought-core    |                       后台管理api服务                        |                                                |
+|        open-api         |   forethought-core    |                      观测云对外数据服务                      |                                                |
+|  static-resource-nginx  |   forethought-core    |                         资源ftp服务                          |                                                |
+|       jfr-parser        |   forethought-kodo    |                         Profile 服务                         |                                                |
+|          kodo           |   forethought-kodo    |                         dql 后端服务                         |                                                |
+|    kodo-asynq-client    |   forethought-kodo    |                       数据定时调度服务                       |                                                |
+|       kodo-inner        |   forethought-kodo    |                           内部服务                           |                                                |
+|       kodo-nginx        |   forethought-kodo    |                       监控数据代理服务                       |                                                |
+|         kodo-ws         |   forethought-kodo    |                           内部服务                           |                                                |
+|         kodo-x          |   forethought-kodo    |                         数据消费服务                         | 当采集数据过大时，可根据实际情况添加服务副不数 |
+|   python-pprof-parser   |   forethought-kodo    |                         profile 服务                         |                                                |
+|         server          |         func2         | Web 服务，提供如下功能：<br/>1. Web 界面<br/>2. API 接口<br/>3. 维护订阅器 |                                                |
+|      server-inner       |         func2         |                           内部服务                           |                                                |
+|        worker-0         |         func2         |            系统工作单元，不直接参与用户代码的处理            |                                                |
+|       worker-1-6        |         func2         | 负责函数同步调用处理，如：<br/>1. 授权链接处理<br/>2. 订阅消息处理 |                                                |
+|        worker-7         |         func2         |         负责调试代码处理（即在 Web 界面直接运行函数          |                                                |
+|        worker-8         |         func2         |                         自动触发处理                         |                                                |
+|        worker-9         |         func2         |                            批处理                            |                                                |
+|       worker-beat       |         func2         |                     自动触发任务的触发器                     |                                                |
+|      message-desk       |      middleware       |                        观测云推送中心                        |                                                |
+|   message-desk-worker   |      middleware       |                    观测云推送中心工作单元                    |                                                |
+|        nsqadmin         |      middleware       |       Web UI，用于实时内省群集（并执行各种管理任务）。       |                                                |
+|          nsqd           |      middleware       |           接收，排队并将消息传递到客户端的守护程序           |                                                |
+|          nsqd2          |      middleware       |           接收，排队并将消息传递到客户端的守护程序           |                                                |
+|          nsqd3          |      middleware       |           接收，排队并将消息传递到客户端的守护程序           |                                                |
+|       nsqlookupd        |      middleware       |        管理拓扑信息并提供最终一致的发现服务的守护程序        |                                                |
+|    internal-dataway     |         utils         |                         内部数据网关                         |                                                |
+|      utils-server       |         utils         |                         内部工具服务                         |                                                |
+
+
+
+
 ## 社区版
 
 观测云社区版为老师、学生、云计算爱好者等社区用户提供一个简单易得又功能完备的产品化本地部署平台。欢迎免费申请并下载试用，搭建您自己的观测云平台，体验完整的产品功能。
-
-### 使用步骤
-
-#### Step1：部署社区版
-
-您可以选择参考文档 [云上部署](cloud-deployment-manual.md) 或者 [线下环境部署](offline-deployment-manual.md)  或者 [阿里云计算巢部署](https://help.aliyun.com/document_detail/416711.html?spm=5176.26884182.J_4028621810.1.3a4b7bbbT89v0m)，进行线上或者线下部署。
-
-#### Step2：获取社区版 License 和 AK/SK
-
-##### 注册社区版账号
-方式1：打开观测云 Launcher，点击右上角“设置”中的“License 激活及 AK/SK 配置”菜单，可以扫码关注“观测云”服务号，获取到社区版注册地址：
-
-![](img/6.deployment_2.png)
-
-方式2：或者直接打开社区版注册地址（[https://boss.guance.com/index.html#/signup?type=community](https://boss.guance.com/index.html#/signup?type=community)），根据提示注册社区版账号。
-
-![](img/6.deployment_3.png)
-
-注册完成后，进入观测云社区版费用中心。
-
-![](img/6.deployment_4.png)
-
-##### 获取 AK/SK
-
-在观测云社区版费用中心的“AK 管理”，点击“创建 AK”，创建的 AK 和 SK复制后可填入“Step4：激活社区版”的 AK 和 SK 中。
-
-![](img/6.deployment_5.png)
-
-##### 获取 License
-
-在观测云社区版费用中心的“License 管理”，点击“创建 License”，创建 License 时需要同意社区版用户许可协议并通过手机验证。创建的 License 复制后可填入“Step2：激活社区版”的 License 文本中。
-
-![](img/6.deployment_6.png)
-
-#### Step3：部署数据网关 DataWay
-
-除了获取 AK、AS 和 License ，激活社区版还需要填入数据网关地址用来接收观测云的可用性监测服务中心数据，关于如何部署数据网关，可参考文档 [部署 DataWay](how-to-start.md) 。
-
-#### Step4：激活社区版
-
-通过以上步骤，获取到 License、AK/SK 后，打开观测云 Launcher，点击右上角“设置”中的“License 激活及 AK/SK 配置”菜单：
-
-![](img/6.deployment_7.png)
-
-填写前面获取到的 License、AK/SK 以及数据网关地址，完成社区版的激活：
-
-![](img/6.deployment_8.png)
-
-**注：** “数据网关地址”的配置中， 问号后面的 **`?token={}`** 这部分原样填写，不要改动。
-
-#### Step5：开始使用观测云
-
-社区版激活以后，即可创建工作空间，开始使用观测云。关于如何如何创建观测云社区版用户和工作空间，可参考文档 [开始使用](how-to-start.md) 。
-
-![](img/6.deployment_9.png)
 
 ## 商业部署版
 
