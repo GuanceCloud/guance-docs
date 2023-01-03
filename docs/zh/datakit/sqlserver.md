@@ -257,50 +257,6 @@ GO
 
 
 
-### `sqlserver_lock_database`
-
--  标签
-
-
-| 标签名 | 描述    |
-|  ----  | --------|
-|`db_name`|Name of the database under which this resource is scoped|
-|`object`|ID or name of the entity in a database with which a resource is associated|
-|`request_mode`|Mode of the request|
-|`request_status`|Current status of this request|
-|`request_type`|Request type|
-|`resource_type`|Represents the resource type|
-|`spid`|Session ID that currently owns this request, maximum length is 4 |
-
-- 字段列表
-
-
-| 指标 | 描述| 数据类型 | 单位   |
-| ---- |---- | :---:    | :----: |
-|`resource_database_id`|ID of the database under which this resource is scoped|int|count|
-
-
-
-
-### `sqlserver_lock_table`
-
--  标签
-
-
-| 标签名 | 描述    |
-|  ----  | --------|
-|`db_name`|Name of the database under which this resource is scoped|
-|`object_name`|Name of the entity in a database with which a resource is associated|
-|`request_mode`|Mode of the request|
-|`request_status`|Current status of this request|
-|`resource_type`|Represents the resource type|
-
-- 字段列表
-
-
-| 指标 | 描述| 数据类型 | 单位   |
-| ---- |---- | :---:    | :----: |
-|`resource_session_id`|Session ID that currently owns this request|int|count|
 
 
 
@@ -376,6 +332,50 @@ GO
 
 
 
+### `sqlserver_lock_database`
+
+-  标签
+
+
+| 标签名 | 描述    |
+|  ----  | --------|
+|`db_name`|Name of the database under which this resource is scoped|
+|`object`|ID or name of the entity in a database with which a resource is associated|
+|`request_mode`|Mode of the request|
+|`request_status`|Current status of this request|
+|`request_type`|Request type|
+|`resource_type`|Represents the resource type|
+|`spid`|Session ID that currently owns this request, maximum length is 4 |
+
+- 字段列表
+
+
+| 指标 | 描述| 数据类型 | 单位   |
+| ---- |---- | :---:    | :----: |
+|`resource_database_id`|ID of the database under which this resource is scoped|int|count|
+
+
+
+
+### `sqlserver_lock_table`
+
+-  标签
+
+
+| 标签名 | 描述    |
+|  ----  | --------|
+|`db_name`|Name of the database under which this resource is scoped|
+|`object_name`|Name of the entity in a database with which a resource is associated|
+|`request_mode`|Mode of the request|
+|`request_status`|Current status of this request|
+|`resource_type`|Represents the resource type|
+
+- 字段列表
+
+
+| 指标 | 描述| 数据类型 | 单位   |
+| ---- |---- | :---:    | :----: |
+|`resource_session_id`|Session ID that currently owns this request|int|count|
 
 
 

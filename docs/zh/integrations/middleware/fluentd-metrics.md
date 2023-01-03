@@ -78,7 +78,7 @@ $ curl http://host:24220/api/plugins.json
 
 #### 指标采集 (必选)
 
-1、 登录 Func，地址 http://ip:8088（默认 admin/admin）
+1、 登录 Func，地址 `http://ip:8088`（默认 admin/admin）
 
 ![image](../imgs/input-fluentd-metrics-2.png)
 
