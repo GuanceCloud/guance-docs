@@ -186,3 +186,60 @@ openssl x509 -in /etc/kubernetes/ssl/kube-apiserver.pem -noout -dates
 -       自建探测节点网络异常。
 -       地区供应商网络异常。
 -       拨测任务创建错误。
+
+
+
+## 8 部署常见问题及解决方法
+
+## 8.1 `describe pods` 报 `unbound immediate PersistentVolumeClaims` 错误
+
+- 查看 pvc 
+
+```shell
+NAMESPACE    NAME                                     STATUS    VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS       AGE
+default      opensearch-single-opensearch-single-0    Bound     pvc-0da2cb6f-1cb9-4630-b0ab-512ce57743a8   16Gi       RWO            openebs-hostpath   19d
+launcher     persistent-data                          Pending                                                                        df-nfs-storage     6m3s
+middleware   data-es-cluster-0                        Bound     pvc-36e48f5a-37b3-4c28-ad14-059265ee3009   50Gi       RWO            openebs-hostpath   18d
+```
+
+发现 persistent-data 的状态为 `Pending`。
+
+- 查看 nfs-subdir-external-provisioner 容器状态
+
+```shell
+kubectl get pods -n kube-system  | grep nfs-subdir-external-provisioner
+nfs-provisioner-nfs-subdir-external-provisioner-58b7cdf6f5dr5vr   0/1     ContainerCreating   0             7h7m
+```
+
+- 查看 `nfs-provisioner-nfs-subdir-external-provisioner-58b7cdf6f5dr5vr` 信息
+
+```shell
+kubectl describe  -n kube-system pods nfs-provisioner-nfs-subdir-external-provisioner-58b7cdf6f5dr5vr
+....
+  Type     Reason       Age                     From     Message
+  ----     ------       ----                    ----     -------
+  Warning  FailedMount  30m (x49 over 6h53m)    kubelet  Unable to attach or mount volumes: unmounted volumes=[nfs-subdir-external-provisioner-root], unattached volumes=[kube-api-access-5p4qn nfs-subdir-external-provisioner-root]: timed out waiting for the condition
+  Warning  FailedMount  5m27s (x136 over 7h4m)  kubelet  Unable to attach or mount volumes: unmounted volumes=[nfs-subdir-external-provisioner-root], unattached volumes=[nfs-subdir-external-provisioner-root kube-api-access-5p4qn]: timed out waiting for the condition
+  Warning  FailedMount  74s (x217 over 7h6m)    kubelet  MountVolume.SetUp failed for volume "nfs-subdir-external-provisioner-root" : mount failed: exit status 32
+Mounting command: mount
+Mounting arguments: -t nfs 10.200.14.112:/nfsdata /var/lib/kubelet/pods/3970ff5f-5dbf-419e-a6af-3080508d2524/volumes/kubernetes.io~nfs/nfs-subdir-external-provisioner-root
+Output: mount: wrong fs type, bad option, bad superblock on 10.200.14.112:/nfsdata,
+       missing codepage or helper program, or other error
+       (for several filesystems (e.g. nfs, cifs) you might
+       need a /sbin/mount.<type> helper program)
+
+       In some cases useful info is found in syslog - try
+       dmesg | tail or so.
+```
+
+`wrong fs type, bad option` 原因为未安装 `nfs-utils`
+
+- 安装 `nfs-utils`
+
+
+主机执行以下命令：
+
+```shell
+yum install nfs-utils 
+```
+
