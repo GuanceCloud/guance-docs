@@ -47,4 +47,4 @@ java -javaagent:D:/ddtrace/dd-java-agent-0.114.0.jar \
 
 <[ddtrace 启动参数](../../../datakit/ddtrace-java#start-options)>
 
-<[ddtrace java 参数文档 ](https://docs.datadoghq.com/tracing/setup_overview/setup/java/)>
+<[ddtrace java 参数文档 ](https://docs.datadoghq.com/tracing/trace_collection/library_config/java/)>

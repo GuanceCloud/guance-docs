@@ -18,7 +18,7 @@
   -jar springboot-ddtrace-server.jar
   ```
 
-## 安装部署
+## 参数使用
 
 ### 1 开启 query 参数
 
@@ -140,6 +140,42 @@ ddtrace 支持给方法注入 Trace ，默认情况下，ddtrace 会对所有的
 未添加`dd.trace.methods`参数，上报 11 个 span ，效果如下：
 
 ![image.png](../images/ddtrace-skill-2.png)
+
+### 6 通过 header 自定义业务 tag
+
+主要是通过 header 方式，以一种非侵入式方式将业务 tag 注入到 trace 中，能够跟踪对应业务的执行情况。以 Key:value 方式进行配置，key 为原始 header 的 paramName ，value 为 key 的 rename，其中 key 可以省略。
+
+```
+-Ddd.trace.header.tags=user-id:userid,order-id:orderid,orderno
+```
+
+请求
+
+![image.png](../images/ddtrace-skill-6-1.png)
+
+链路效果：
+
+![image.png](../images/ddtrace-skill-6-2.png)
+
+
+### 7 开启 debug 模式
+
+开启 debug 模式后，系统输出 ddtrace 相关日志，有利于排查 ddtrace 相关问题。
+
+```
+-Ddd.trace.debug=true
+```
+
+默认情况下 debug 日志会输出到 stdout，如果想要输出到文件，则需要配合以下参数
+
+```
+-Ddatadog.slf4j.simpleLogger.logFile=<NEW_LOG_FILE_PATH> 
+```
+
+???+ attention "注意"
+    `-Ddd.trace.debug=true` 是用来开启 ddtrace 的 debug 日志，而不是开启应用的 debug 日志。
+    
+
 
 ## 参考文档
 
