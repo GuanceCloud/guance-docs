@@ -1,5 +1,39 @@
 # 版本历史
 
+## v1.56.119（2022 年 12 月 29 日）
+
+pubrepo.jiagouyun.com/dataflux/1.56.119:launcher-e4d9302-1672825365
+
+### 观测云更新
+
+- 新增工作空间 MFA 认证管理
+- 新增工作空间 IP 访问登录白名单
+- 新增 Service 网络拓扑
+- 其他功能优化
+    - Pipeline 使用优化
+    - 日志聚类分析支持自定义字段
+    - 超大日志切割后支持查看其关联日志
+    - 备份日志显示优化
+    - 数据授权敏感字段支持除指标以外所有类型的数据
+
+### DataKit 更新
+
+- Prometheus 采集器支持通过 Unix Socket 采集数据
+- 允许非 root 用户运行 DataKit
+- 优化 eBPF 中 httpflow 协议判定
+- 优化 Windows 下 Datakit 安装升级命令
+- 优化 Pythond 使用封装
+- Pipeline 提供更详细的操作报错信息
+- Pipeline reftable 提供基于 SQLite 的本地化存储实现
+
+### 智能巡检更新
+
+- 官方智能巡检「内存泄露」、「应用性能检测」、「磁盘使用率」下线
+- 新增云账户实例维度账单巡检
+- 新增阿里云抢占式实例存活巡检
+
+更多详情可参考帮助文档：[https://docs.guance.com/release-notes/](https://docs.guance.com/release-notes/)
+
 ## v1.55.117（2022 年 12 月 15 日）
 
 pubrepo.jiagouyun.com/dataflux/1.55.117:launcher-f4f56ef-1672025178
@@ -24,23 +58,23 @@ pubrepo.jiagouyun.com/dataflux/1.55.117:launcher-f4f56ef-1672025178
 
 ### DataKit 更新
 
-    - 新增 Golang Profiling 接入
-    - logfwd 支持通过 LOGFWD_TARGET_CONTAINER_IMAGE 来支持 image 字段注入
-    - trace 采集器：
-    - 优化 error-stack/error-message 格式问题
-    - SkyWalking 兼容性调整，支持 8.X 全序列
-    - eBPF httpflow 增加 pid/process_name 字段，优化内核版本支持
-    - datakit.yaml 有调整，建议更新 yaml
-    - GPU 显卡采集支持远程模式
+- 新增 Golang Profiling 接入
+- logfwd 支持通过 LOGFWD_TARGET_CONTAINER_IMAGE 来支持 image 字段注入
+- trace 采集器：
+- 优化 error-stack/error-message 格式问题
+- SkyWalking 兼容性调整，支持 8.X 全序列
+- eBPF httpflow 增加 pid/process_name 字段，优化内核版本支持
+- datakit.yaml 有调整，建议更新 yaml
+- GPU 显卡采集支持远程模式
 
 ### 智能巡检更新
 
-    - 智能巡检新增引导页
-    - 智能巡检组件支持配置自定义跳转链接
+- 智能巡检新增引导页
+- 智能巡检组件支持配置自定义跳转链接
 
 ### 最佳实践更新
 
-    - 场景 (Scene) - SpringBoot 项目外置 Tomcat 场景链路可观测
+- 场景 (Scene) - SpringBoot 项目外置 Tomcat 场景链路可观测
 
 更多详情可参考帮助文档：[https://docs.guance.com/release-notes/](https://docs.guance.com/release-notes/)
 
