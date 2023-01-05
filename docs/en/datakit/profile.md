@@ -44,7 +44,7 @@ Profile 支持采集使用 Java / Python 等不同语言环境下应用程序运
       ## app version
       #version = "0.0.0"
     
-      ## types to pull 
+      ## types to pull
       ## values: cpu, goroutine, heap, mutex, block
       #enabled_types = ["cpu","goroutine","heap","mutex","block"]
     

@@ -44,7 +44,7 @@
 
 ### 1 脚本市场
 
-1、 登录 DataFlux Func，地址 http://ip:8088 (默认密码 admin/admin，请自行修改)
+1、 登录 DataFlux Func，地址 `http://ip:8088` (默认密码 admin/admin，请自行修改)
 
 ![imgs](../../imgs/aliyun-prod-func-5.png)  
 
