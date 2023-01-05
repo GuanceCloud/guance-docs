@@ -15,7 +15,7 @@
 ## 前置条件
 
 - 服务器 <[安装 DataKit](../../../datakit/datakit-install.md)>
-- 服务器 <[安装 DataFlux Func 携带版](../../../dataflux-func/maintenance-guide-installation.md)>
+- 服务器 <[安装 DataFlux Func 携带版](https://func.guance.com/doc/maintenance-guide-installation/)>
 - 腾讯云访问管理进行授权
 
 ### 访问授权
@@ -38,7 +38,7 @@
 
 - 示例 Linux 版本为：CentOS Linux release 7.8.2003 (Core)
 - 通过一台服务器采集所有腾讯云 COS 数据
-
+- DataFlux Func `1.x` 版本
 ### 1 脚本市场
 
 1、 登录 DataFlux Func，地址 `http://ip:8088`
@@ -164,4 +164,4 @@ def run():
 
 ## 进一步阅读
 
-<[DataFlux Func 腾讯云-云监控配置手册](../../../dataflux-func/script-market-guance-tencentcloud-monitor.md)>
+<[DataFlux Func 腾讯云-云监控 配置手册](https://func.guance.com/doc/script-market-guance-tencentcloud-monitor/)>
