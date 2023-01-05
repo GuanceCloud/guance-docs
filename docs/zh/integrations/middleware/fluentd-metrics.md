@@ -76,7 +76,7 @@ $ curl http://host:24220/api/plugins.json
 说明：
 
 - 示例 Fluentd 版本为 td-agent 4.2.0 (CentOS)，各个不同版本指标可能存在差异。
-- 示例 DataFlux Func 版本为 DataFlux Func `1.x`， `2.x` 版本部分功能按钮可能会有所差异。
+- 示例 DataFlux Func 版本为 DataFlux Func `1.x`，与`2.x` 版本部分功能按钮可能会有所差异。
 
 ### 指标采集 (必选)
 
