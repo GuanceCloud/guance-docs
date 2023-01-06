@@ -1,46 +1,134 @@
-# 时序引擎部署
+# TDengine 高可用部署
+
+## 简介
+
+TDengine 是一款高性能、分布式、支持 SQL 的时序数据库 (Database)，其核心代码，包括集群功能全部开源（开源协议，AGPL v3.0）。TDengine 能被广泛运用于物联网、工业互联网、车联网、IT 运维、金融等领域。除核心的时序数据库 (Database) 功能外，TDengine 还提供缓存、数据订阅、流式计算等大数据平台所需要的系列功能，最大程度减少研发和运维的复杂度。
+
+## 前提条件
+
+- 已部署 [Kubernetes](infra-kubernetes.md#kubernetes-install)
+
+- （可选）公有云存储块组件（共有云）
+- （可选）[OpenEBS 存储插件](openebs-install.md)
+
+```shell
+root@k8s-node01 ]# kubectl  get pods -n kube-system|grep openebs
+openebs-localpv-provisioner-6b56b5567c-k5r9l   1/1     Running   0          23h
+openebs-ndm-jqxtr                              1/1     Running   0          23h
+openebs-ndm-operator-5df6ffc98-cplgp           1/1     Running   0          23h
+openebs-ndm-qtjxm                              1/1     Running   0          23h
+openebs-ndm-vlcrv                              1/1     Running   0          23h
+```
 
 
-???+ warning "注意"
-     TDengine 和 InfluxDB 二选一即可。
-     
-     请务必修改时序引擎管理员账号。
+## 基础信息及兼容
 
-     TDengine 高可用部署，可参考 [TDengine 高可用部署](ha-tdengine.md)
 
-## 简介 {#intro}
+|     名称     |                   描述                   |
+| :------------------: | :---------------------------------------------: |
+|     TDengine 版本     |                   2.6.0                 |
+|    是否支离线安装    |                       是                        |
+|       支持架构       |                   amd64/arm64                   |
 
-|      |     |
-| ---------- | ------- |
-| **部署方式**    | Kubernetes 容器部署    |
-| **时序引擎(二选一)**|      |
-| **TDengine** | 版本：2.6.0.18 | 
-| **InfluxDB** | 版本：1.7.8|        
-| **部署前提条件** | 已部署 [Kubernetes](infra-kubernetes.md#kubernetes-install) <br> 已部署 [Kubernetes Storage](infra-kubernetes.md#kube-storage) |
 
-## 部署默认配置信息
+## 默认配置
 
-=== "TDengine"
-    |      |     |
-    | ---------- | ------- |
-    |   **默认地址**  | taos-tdengine.middleware |
-    |   **默认端口**  | 6041 |
-    |   **默认账号**  | zhuyun/jfdlEGFH2143 |
-=== "InfluxDB"
-    |      |     |
-    | ---------- | ------- |
-    |   **默认地址**  | influxdb.middleware |
-    |   **默认端口**  | 8086 |
-    |   **默认账号**  | admin/`admin@influxdb` |
+|  TDengine url   | taos-tdengine.middleware |
+| :---------------: | :----------------------------------: |
+| TDengine 端口号 |                 6041                 |
+|  TDengine 账号  |         zhuyun/jfdlEGFH2143          |
+|  TDengine 副本数  |                  3                 |
 
 
 
-## TDengine 部署 {#td-install}
 
-### 安装
 
-???+ warning "注意"
-     高亮部分中的 `storageClassName` 需根据实际情况而定
+## 安装步骤
+
+### 1、安装
+
+#### 1.1 集群标签设置
+
+由于 tdengine 比较吃资源需要独占集群资源，我们需要提前配置集群调度。
+
+
+执行命令标记集群
+
+```shell
+# 根据集群规划，将需要部署tdengine服务k8s节点打上标签 建议使用三台节点
+# xxx 代表实际集群中的节点 多个节点ip中用空格分开 或者在命令行终端使用 tab 键自动补全
+kubectl label nodes xxx tdengine=true
+```
+
+检测标记
+
+```shell
+kubectl get nodes --show-labels  | grep 'tdengine'
+```
+
+
+
+#### 1.2 集群污点设置
+
+执行命令设置集群污点
+
+```shell
+kubectl taint node  xxxx infrastructure=middleware:NoExecute
+```
+
+
+
+#### 1.3 配置 StorageClass
+
+配置 tdengine 专用存储类
+
+```yaml
+# 将下列yaml内容复制到k8s集群保存为sc-td.yaml 按照实际情况修改后部署
+apiVersion: storage.k8s.io/v1
+allowVolumeExpansion: true
+kind: StorageClass
+metadata:
+  annotations:
+    cas.openebs.io/config: |
+      - name: StorageType
+        value: "hostpath"
+      - name: BasePath
+        value: "/data/tdengine"  # 该路劲可以根据实际情况修改，请确保存储空间足够 确保路径存在
+  name: openebs-tdengine   # 名字集群内唯一，需要执行安装前同步修改部署文件/etc/kubeasz/guance/infrastructure/yaml/taos.yaml 
+provisioner: openebs.io/local
+reclaimPolicy: Retain
+volumeBindingMode: WaitForFirstConsumer
+```
+
+> `/data/tdengine` 目录请确保磁盘容量足够。
+
+配置存储空间大小
+
+```shell
+volumeClaimTemplates:
+  - metadata:
+      name: taos-tdengine-taosdata
+    spec:
+      accessModes:
+        - "ReadWriteOnce"
+      storageClassName: "openebs-hostpath"
+      resources:
+        requests:
+          storage: "5Gi"  ## 分配数据存空间 按照实际需要设置
+  - metadata:
+      name: taos-tdengine-taoslog
+    spec:
+      accessModes:
+        - "ReadWriteOnce"
+      storageClassName: "openebs-hostpath"
+      resources:
+        requests:
+          storage: "1Gi"  ## 分配日志存储空间 按照实际需要设置
+```
+
+
+
+#### 1.4 安装
 
 保存 tdengine.yaml ，并部署。
 
@@ -273,7 +361,7 @@
         app: taosd
     spec:
       serviceName: taos-tdengine
-      replicas: 1
+      replicas: 3
       # podManagementPolicy: Parallel
       selector:
         matchLabels:
@@ -491,9 +579,9 @@ kubectl create namespace middleware
 kubectl apply -f tdengine.yaml
 ```
 
-### 验证部署
+### 2、 验证部署
 
-- 查看 pod 状态
+#### 2.1 查看 pod 状态
 
 ```shell
 kubectl  get pods -n middleware  |grep  taos
@@ -506,7 +594,7 @@ taos-tdengine-0                           1/1     Running   0          15m
 taos-tdengine-arbitrator-b74c6c7f-w48gd   1/1     Running   0          15m
 ```
 
-- 查看 TDengine 用户
+#### 2.2 查看 TDengine 用户
 
 ```shell
 kubectl  exec -it -n middleware taos-tdengine-0  -- taos -s  "show users;"
@@ -527,7 +615,7 @@ taos> show users;
  zhuyun                   | writable  | 2022-12-08 10:44:36.157 | root                     |                          |
 ```
 
-### 配置账号
+#### 2.3 配置账号
 
 ```shell
 kubectl  exec -it -n middleware taos-tdengine-0  -- taos -s  "create user zhuyun pass 'jfdlEGFH2143';alter user zhuyun privilege write;"
@@ -546,191 +634,10 @@ Query OK, 0 of 0 row(s) in database (0.037190s)
 ```
 
 
-### 如何卸载
+## 如何卸载
 
 ```shell
 kubectl delete -f tdengine.yaml
-kubectl delete -n middleware pvc taos-tdengine-taosdata-taos-tdengine-0 taos-tdengine-taoslog-taos-tdengine-0
 ```
 
-
-## InfluxDB 部署 {#influxdb-install}
-
-### 安装
-
-
-
-???+ warning "注意"
-     高亮部分中的 `storageClassName` 需根据实际情况而定
-
-保存 influxdb.yaml ，并部署。
-
-???- note "influxdb.yaml(单击点开)" 
-    ```yaml hl_lines='16'
-    ---
-    apiVersion: v1
-    kind: PersistentVolumeClaim
-    metadata:
-      annotations:
-        volume.beta.kubernetes.io/storage-provisioner: "kubernetes.io/nfs"
-      name: influx-data
-      namespace: middleware
-    spec:
-      accessModes:
-      - ReadWriteOnce
-      resources:
-        requests:
-          storage: 10Gi
-      volumeMode: Filesystem
-      storageClassName: nfs-client
-      # 此处配置实际存在的storageclass，若配置有默认storageclass 可以不配置该字段 #
-
-
-
-    ---
-    apiVersion: v1
-    kind: ConfigMap
-    metadata:
-      name: influxdb-config
-      namespace: middleware
-      labels:
-        app: influxdb
-    data:
-      influxdb.conf: |-
-        [meta]
-          dir = "/var/lib/influxdb/meta"
-
-        [data]
-          dir = "/var/lib/influxdb/data"
-          engine = "tsm1"
-          wal-dir = "/var/lib/influxdb/wal"
-          max-values-per-tag = 0
-          max-series-per-database = 0
-
-
-    ---
-
-    apiVersion: apps/v1
-    kind: Deployment
-    metadata:
-      labels:
-        app: influxdb
-      name: influxdb
-      namespace: middleware
-    spec:
-      progressDeadlineSeconds: 600
-      replicas: 1
-      revisionHistoryLimit: 10
-      selector:
-        matchLabels:
-          app: influxdb
-      strategy:
-        rollingUpdate:
-          maxSurge: 25%
-          maxUnavailable: 25%
-        type: RollingUpdate
-      template:
-        metadata:
-          labels:
-            app: influxdb
-        spec:
-          # nodeSelector:     ## 配置该容器调度到指定节点，前提是将指定节点打好标签  ##
-          #   app01: influxdb
-          containers:
-          - env:
-            - name: INFLUXDB_ADMIN_ENABLED
-              value: "true"
-            - name: INFLUXDB_ADMIN_PASSWORD
-              value: admin@influxdb
-            - name: INFLUXDB_ADMIN_USER
-              value: admin
-            - name: INFLUXDB_GRAPHITE_ENABLED
-              value: "true"
-            - name: INFLUXDB_HTTP_AUTH_ENABLED
-              value: "true"
-            image: influxdb:1.7.8
-            imagePullPolicy: IfNotPresent
-            name: influxdb
-            ports:
-            - containerPort: 8086
-              name: api
-              protocol: TCP
-            - containerPort: 8083
-              name: adminstrator
-              protocol: TCP
-            - containerPort: 2003
-              name: graphite
-              protocol: TCP
-            terminationMessagePath: /dev/termination-log
-            terminationMessagePolicy: File
-            volumeMounts:
-            - mountPath: /var/lib/influxdb
-              name: db
-            - mountPath: /etc/influxdb/influxdb.conf
-              name: config
-              subPath: influxdb.conf
-          dnsPolicy: ClusterFirst
-          restartPolicy: Always
-          schedulerName: default-scheduler
-          securityContext: {}
-          terminationGracePeriodSeconds: 30
-          volumes:
-          - name: db
-            #hostPath: /influx-data
-            persistentVolumeClaim:
-              claimName: influx-data
-          - name: config
-            configMap:
-              name: influxdb-config
-    ---
-    apiVersion: v1
-    kind: Service
-    metadata:
-      name: influxdb
-      namespace: middleware
-    spec:
-      ports:
-      - name: api
-        nodePort: 32086
-        port: 8086
-        protocol: TCP
-        targetPort: api
-      - name: adminstrator
-        nodePort: 32083
-        port: 8083
-        protocol: TCP
-        targetPort: adminstrator
-      - name: graphite
-        nodePort: 32003
-        port: 2003
-        protocol: TCP
-        targetPort: graphite
-      selector:
-        app: influxdb
-      sessionAffinity: None
-      type: NodePort
-    ```
-
-执行命令安装：
-
-```shell
-kubectl create namespace middleware
-kubectl apply -f influxdb.yaml
-```
-
-
-### 验证部署
-
-- 查看 pod 状态
-
-```shell
-kubectl get pods -n middleware -l app=influxdb
-```
-
-### 如何卸载
-
-```shell
-kubectl delete -f influxdb.yaml
-kubectl delete -n middleware pvc influx-data
-```
 
