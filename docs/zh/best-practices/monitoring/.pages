@@ -20,7 +20,6 @@ nav:
 
   - '用户体验监控 (RUM)':
     - web 应用监控（RUM）最佳实践: web.md
-    - iOS 可观测最佳实践: ios.md
     - 'RUM 数据上报 DataKit 集群最佳实践': rum-datakit-cluster.md
     - '页面渠道引流可观测最佳实践': page.md
 
