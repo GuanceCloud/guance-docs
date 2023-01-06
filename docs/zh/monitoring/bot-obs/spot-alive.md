@@ -18,7 +18,7 @@
 
 ## 配置巡检
 
-在自建 DataFlux Func 创建新的脚本集开启前端错误日志巡检配置
+在自建 DataFlux Func 创建新的脚本集开启阿里云抢占式实例存活巡检配置
 
 ```python
 from guance_monitor__runner import Runner
