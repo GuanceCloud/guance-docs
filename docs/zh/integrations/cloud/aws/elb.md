@@ -17,7 +17,7 @@
 ## 前置条件
 
 - 服务器 <[安装 DataKit](../../../datakit/datakit-install.md)>
-- 服务器 <[安装 DataFlux Func 携带版](../../../dataflux-func/quick-start.md)>
+- 服务器 <[安装 DataFlux Func 携带版](https://func.guance.com/doc/maintenance-guide-installation/)>
 - AWS 访问管理进行授权
 
 ### 访问授权
@@ -42,6 +42,7 @@
 
 - 示例 Linux 版本为：CentOS Linux release 7.8.2003 (Core)
 - 通过一台服务器采集所有 AWS ELB 数据
+- DataFlux Func `1.x` 版本
 
 ### 部署实施
 
@@ -172,6 +173,6 @@ def run():
 
 ## 进一步阅读
 
-<[DataFlux Func 观测云集成简介](../../../dataflux-func/script-market-guance-integration.md)>
+<[DataFlux Func 观测云集成简介](https://func.guance.com/doc/script-market-guance-integration/)>
 
 <[DataFlux Func AWS-CloudWatch 配置手册](../../../dataflux-func/script-market-guance-aws-cloudwatch.md)>

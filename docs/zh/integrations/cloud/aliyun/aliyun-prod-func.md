@@ -19,7 +19,7 @@
 
 ![imgs](../../imgs/aliyun-prod-func-1.png)
 
-### 2 服务器[安装 Func 携带版](../../../datakit/datakit-install.md)
+### 2 服务器[安装 Func 携带版](https://func.guance.com/doc/maintenance-guide-installation/)
 
 登录观测云，点击「集成」 - 「Func」，下载脚本并执行安装命令即可
 
@@ -41,6 +41,10 @@
 
 ## 安装配置
 
+???+ attention
+
+    本篇示例文章使用的是 DataFlux Func `1.x` 版本。<br/>
+    若实际使用的是 DataFlux Func `2.x` 版本，部分功能按钮可能会与本文示例有所差异，请以实际使用情况为准。
 ### 1 脚本市场
 
 1、 登录 DataFlux Func，地址 `http://ip:8088`
@@ -179,6 +183,6 @@ def run():
 
 - <[阿里云-云监控指标概览](https://help.aliyun.com/document_detail/163515.html)>
 
-- <[DataFlux Func 观测云集成简介](../../../dataflux-func/script-market-guance-integration.md)>
+- <[DataFlux Func 观测云集成简介](https://func.guance.com/doc/script-market-guance-integration/)>
 
-- <[DataFlux Func 阿里云-云监控配置手册](../../../dataflux-func/script-market-guance-aliyun-monitor.md)>
+- <[DataFlux Func 阿里云-云监控 配置手册](https://func.guance.com/doc/script-market-guance-aliyun-monitor/)>

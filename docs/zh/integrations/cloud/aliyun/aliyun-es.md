@@ -38,6 +38,7 @@
 
 - 示例 Linux 版本为：CentOS Linux release 7.8.2003 (Core)
 - 通过一台服务器采集所有阿里云 ElasticSearch 数据
+- DataFlux Func `1.x` 版本
 
 ### 部署实施
 
@@ -128,4 +129,4 @@
 
 ## 进一步阅读
 
-<[DataFlux Func 开发手册](../../../dataflux-func/development-guide-basic.md)>
+<[DataFlux Func 开发手册](https://func.guance.com/doc/development-guide-basic/)>
