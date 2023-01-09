@@ -17,6 +17,7 @@ nav:
       - "资源、系统要求": cloud-required.md
       - "阿里云部署手册": cloud-deployment-manual.md
     - "自建基础设施部署": 
+      - "自建基础设施部署手册": offline-deployment-manual.md    
       - "资源、系统要求": offline-required.md
       - "基础设施部署": 
         - "代理": proxy-install.md
@@ -27,10 +28,11 @@ nav:
         - "Kubernetes": infra-kubernetes.md
         - "MySQL": infra-mysql.md
         - "日志引擎": infra-logengine.md
+        - "OpenSearch 高可用": ha-opensearch.md
+        - "TDengine 高可用": ha-tdengine.md
         - "时序引擎": infra-metric.md
         - "Redis": infra-redis.md
       - "应用镜像获取": get-guance-images.md
-      - "自建基础设施部署手册": offline-deployment-manual.md
   - '常见问题':
     - "产品使用 FAQ": faq-product-usage.md
     - "部署运维 FAQ": faq.md
