@@ -1,2 +1,3 @@
 nav:
+  - '工作空间-创建': create.md
   - '获取当前工作空间信息': current.md

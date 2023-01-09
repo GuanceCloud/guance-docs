@@ -1,7 +1,9 @@
 ---
 icon: integrations/fluentd
 ---
+
 # Fluentd
+
 ---
 
 ## 视图预览
@@ -12,30 +14,25 @@ icon: integrations/fluentd
 
 操作系统支持：Windows/AMD 64, Windows/386, Linux/ARM, Linux/ARM 64, Linux/386, Linux/AMD 64, Darwin/AMD 64
 
-
-## 安装部署
-
-说明：示例 Fluentd 版本为 td-agent 4.2.0 (CentOS)，各个不同版本指标可能存在差异。
-
-### 前置条件
+## 前置条件
 
 - <[安装 DataKit](../../datakit/datakit-install.md)>
-- 服务器 <[安装 DataFlux Func 携带版](../../dataflux-func/quick-start.md)>
+- 服务器 <[安装 DataFlux Func 携带版](https://func.guance.com/doc/maintenance-guide-installation/)>
 - Fluentd 有一个监控代理，可以通过 HTTP 检索 JSON 格式的内部指标。
 
 将以下行添加到您的 Fluentd 中开启的 plugin 插件配置文件中：
 
 ```yaml
 <source>
-  @type monitor_agent
-  bind 0.0.0.0
-  port 24220
+@type monitor_agent
+bind 0.0.0.0
+port 24220
 </source>
 ```
 
 > 可以根据需要 plugin 的多少来动态调整端口配置
 
-重新启动您的 td-agent 组件并通过HTTP获取指标：
+重新启动您的 td-agent 组件并通过 HTTP 获取指标：
 
 ```bash
 $ curl http://host:24220/api/plugins.json
@@ -74,11 +71,16 @@ $ curl http://host:24220/api/plugins.json
 }
 ```
 
-### 配置实施
+## 安装部署
 
-#### 指标采集 (必选)
+说明：
 
-1、 登录 Func，地址 http://ip:8088（默认 admin/admin）
+- 示例 Fluentd 版本为 td-agent 4.2.0 (CentOS)，各个不同版本指标可能存在差异。
+- 示例 DataFlux Func 版本为 DataFlux Func `1.x`，与`2.x` 版本部分功能按钮可能会有所差异。
+
+### 指标采集 (必选)
+
+1、 登录 Func，地址 `http://ip:8088`（默认 admin/admin）
 
 ![image](../imgs/input-fluentd-metrics-2.png)
 
@@ -92,69 +94,71 @@ $ curl http://host:24220/api/plugins.json
 
 4、 编辑脚本
 
-```python
-import requests
-import socket
+??? quote "编辑脚本"
+
+    ```python
+    import requests
+    import socket
 
 
-@DFF.API('get_fluentd_metrics')
-defget_fluentd_metrics():
-   #链接本地 DataKit
-    datakit = DFF.SRC('datakit')
-    sidecar = DFF.SRC('sidecar')
-    hostname = sidecar.shell('hostname')[1]["data"]["stdout"].rstrip()
-   print(type(hostname))
-    response = requests.get("http://172.17.0.1:24220/api/plugins.json")
-    result = response.json()["plugins"]
-    tag = result[0]
-    metrics = result[2]
-   print(tag["config"]["port"])
-    measurement ="Fluentd"
-    tags ={
-       "agent_port":tag["config"]["port"],
-       "host":hostname,
-   }
-   if'buffer_queue_length'in metrics.keys():
-        fields ={
-           "buffer_queue_length":metrics["buffer_queue_length"],
-           "buffer_total_queued_size":metrics["buffer_total_queued_size"],
-           "retry_count":metrics["retry_count"],
-           "emit_records":metrics["emit_records"],
-           "emit_count":metrics["emit_count"],
-           "write_count":metrics["write_count"],
-           "rollback_count":metrics["rollback_count"],
-           "slow_flush_count":metrics["slow_flush_count"],
-           "flush_time_count":metrics["flush_time_count"],
-           "buffer_stage_length":metrics["buffer_stage_length"],
-           "buffer_stage_byte_size":metrics["buffer_stage_byte_size"],
-           "buffer_queue_byte_size":metrics["buffer_queue_byte_size"],
-           "buffer_available_buffer_space_ratios":metrics["buffer_available_buffer_space_ratios"],
-       }
-   else:
-        fields ={
-           "retry_count":metrics["retry_count"],
-           "emit_records":metrics["emit_records"],
-           "emit_count":metrics["emit_count"],
-           "write_count":metrics["write_count"],
-           "rollback_count":metrics["rollback_count"],
-           "slow_flush_count":metrics["slow_flush_count"],
-           "flush_time_count":metrics["flush_time_count"],
-       }
-   try:
-        status_code, result = datakit.write_metric(measurement=measurement, tags=tags, fields=fields)
-       print(measurement, tags, fields, status_code, result)
-   except:
-       print("插入失败！")
-```
+    @DFF.API('get_fluentd_metrics')
+    defget_fluentd_metrics():
+      #链接本地 DataKit
+        datakit = DFF.SRC('datakit')
+        sidecar = DFF.SRC('sidecar')
+        hostname = sidecar.shell('hostname')[1]["data"]["stdout"].rstrip()
+      print(type(hostname))
+        response = requests.get("http://172.17.0.1:24220/api/plugins.json")
+        result = response.json()["plugins"]
+        tag = result[0]
+        metrics = result[2]
+      print(tag["config"]["port"])
+        measurement ="Fluentd"
+        tags ={
+          "agent_port":tag["config"]["port"],
+          "host":hostname,
+      }
+      if'buffer_queue_length'in metrics.keys():
+            fields ={
+              "buffer_queue_length":metrics["buffer_queue_length"],
+              "buffer_total_queued_size":metrics["buffer_total_queued_size"],
+              "retry_count":metrics["retry_count"],
+              "emit_records":metrics["emit_records"],
+              "emit_count":metrics["emit_count"],
+              "write_count":metrics["write_count"],
+              "rollback_count":metrics["rollback_count"],
+              "slow_flush_count":metrics["slow_flush_count"],
+              "flush_time_count":metrics["flush_time_count"],
+              "buffer_stage_length":metrics["buffer_stage_length"],
+              "buffer_stage_byte_size":metrics["buffer_stage_byte_size"],
+              "buffer_queue_byte_size":metrics["buffer_queue_byte_size"],
+              "buffer_available_buffer_space_ratios":metrics["buffer_available_buffer_space_ratios"],
+          }
+      else:
+            fields ={
+              "retry_count":metrics["retry_count"],
+              "emit_records":metrics["emit_records"],
+              "emit_count":metrics["emit_count"],
+              "write_count":metrics["write_count"],
+              "rollback_count":metrics["rollback_count"],
+              "slow_flush_count":metrics["slow_flush_count"],
+              "flush_time_count":metrics["flush_time_count"],
+          }
+      try:
+            status_code, result = datakit.write_metric(measurement=measurement, tags=tags, fields=fields)
+          print(measurement, tags, fields, status_code, result)
+      except:
+          print("插入失败！")
+    ```
 
-可以根据开启的 Fluentd plugin 的数量动态调整任务数，每一个 plugin 就需要将该段代码复制粘贴一份更改 response = requests.get("[http://172.17.0.1:24220/api/plugins.json")](http://172.17.0.1:24220/api/plugins.json%22)) 中的API 端口链接配置为 Fluentd 中配置开启 Monitor source 中的端口，并且同时配置定时调度完成指标收集。
+可以根据开启的 Fluentd plugin 的数量动态调整任务数。每一个 plugin 就需要将该段代码复制粘贴一份更改 response = requests.get("[http://172.17.0.1:24220/api/plugins.json")](http://172.17.0.1:24220/api/plugins.json%22)) 中的 API 端口链接配置为 Fluentd 中配置开启 Monitor source 中的端口，并且同时配置定时调度完成指标收集。
 
-5、 在管理中新建自动触发执行进行函数调度  
+5、 在管理中新建自动触发执行进行函数调度
 
 ![image](../imgs/input-fluentd-metrics-5.png)
 
 选择刚刚编写好的执行函数设置定时任务，添加有效期有点击保存即可。<br />
-定时任务最短1分钟触发一次，如果有特殊需求可以使用 while + sleep 的方式来提高数据采集频率。
+定时任务最短 1 分钟触发一次，如果有特殊需求可以使用 while + sleep 的方式来提高数据采集频率。
 
 6、 通过自动触发配置查看函数运行状态
 
@@ -198,39 +202,33 @@ buffer_available_buffer_space_ratios 100
 
 <场景 - 新建仪表板 - 模板库 - 系统视图 - Fluentd 监控视图>
 
-
 ## 检测库
 
 <监控 - 监控器 - 从模板新建 - Fluentd 检测库>
 
-| 序号 | 规则名称 | 触发条件 | 级别 | 检测频率 |
-| --- | --- | --- | --- | --- |
-| 1 | <div style="width:180px">Fluentd 剩余缓冲区的可用空间</div> | <div style="width:250px">Fluentd 剩余缓冲区的可用空间使用率 < 10%</div> | 紧急 | 1m |
-| 2 | Fluentd 的 plugin 重试数过多 | Fluentd 的 plugin 重试数 > 10 | 紧急 | 1m |
-
-
+| 序号 | 规则名称                                                    | 触发条件                                                                | 级别 | 检测频率 |
+| ---- | ----------------------------------------------------------- | ----------------------------------------------------------------------- | ---- | -------- |
+| 1    | <div style="width:180px">Fluentd 剩余缓冲区的可用空间</div> | <div style="width:250px">Fluentd 剩余缓冲区的可用空间使用率 < 10%</div> | 紧急 | 1m       |
+| 2    | Fluentd 的 plugin 重试数过多                                | Fluentd 的 plugin 重试数 > 10                                           | 紧急 | 1m       |
 
 ## 指标详解
 
-| **指标** | 描述 |
-| --- | --- |
-| **fluentd.retry_count** | Plugin的重试次数 |
-| **fluentd.buffer_queue_length** | Plugin的缓冲区队列的长度 |
-| **fluentd.buffer_total_queued_size** | Plugin的缓冲区队列的大小 |
-| **fluentd.emit_records** | Plugin发出的记录总数 |
-| **fluentd.emit_count** | Plugin输出插件中的发出事件总数 |
-| **fluentd.write_count** | 输出插件中的write/try_write调用总数 |
-| **fluentd.rollback_count** | 回滚的总数。回滚发生在写入/try_write失败时 |
-| **Fluentd.slow_flush_count** | 慢速刷新的总数。当缓冲区刷新时间超过 slow_flush_log_threshold 时，此计数将增加 |
-| **fluentd.flush_time_count** | 缓冲刷新的总时间（以毫秒为单位） |
-| **fluentd.buffer_stage_length** | 分段缓冲区长度 |
-| **fluentd.buffer_stage_byte_size** | 分段缓冲区的当前字节大小 |
-| **fluentd.buffer_queue_byte_size** | 队列缓冲区的当前字节大小 |
-| **fluentd.buffer_available_buffer_space_ratios** | 显示缓冲区的可用空间利用率 |
-
-## 最佳实践
+| **指标**                                           | **描述**                                                                           |
+| ---------------------------------------------- | ------------------------------------------------------------------------------ |
+| `fluentd.retry_count`                          | Plugin 的重试次数                                                              |
+| `fluentd.buffer_queue_length`                  | Plugin 的缓冲区队列的长度                                                      |
+| `fluentd.buffer_total_queued_size`             | Plugin 的缓冲区队列的大小                                                      |
+| `fluentd.emit_records`                         | Plugin 发出的记录总数                                                          |
+| `fluentd.emit_count`                           | Plugin 输出插件中的发出事件总数                                                |
+| `fluentd.write_count`                          | 输出插件中的 write/try_write 调用总数                                          |
+| `fluentd.rollback_count`                       | 回滚的总数。回滚发生在写入/try_write 失败时                                    |
+| `Fluentd.slow_flush_count`                     | 慢速刷新的总数。当缓冲区刷新时间超过 slow_flush_log_threshold 时，此计数将增加 |
+| `fluentd.flush_time_count`                     | 缓冲刷新的总时间（以毫秒为单位）                                               |
+| `fluentd.buffer_stage_length`                  | 分段缓冲区长度                                                                 |
+| `fluentd.buffer_stage_byte_size`               | 分段缓冲区的当前字节大小                                                       |
+| `fluentd.buffer_queue_byte_size`               | 队列缓冲区的当前字节大小                                                       |
+| `fluentd.buffer_available_buffer_space_ratios` | 显示缓冲区的可用空间利用率                                                     |
 
 ## 故障排查
 
 <[无数据上报排查](../../datakit/why-no-data.md)>
-
