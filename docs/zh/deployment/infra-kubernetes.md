@@ -130,7 +130,7 @@ Use "sealos [command] --help" for more information about a command.
 sealos run labring/kubernetes:v1.24.0 labring/calico:v3.22.1     \
     --masters 192.168.100.101     \
     --nodes 192.168.100.102,192.168.100.103     \
-    --ssh-passwd [your-ssh-passwd] 
+    --passwd [your-ssh-passwd] 
 ```
 >注意命令中的 ip 和密码需要修改。
 > 请务必是 root 用户，节点环境端口要互通。
@@ -141,7 +141,7 @@ sealos run labring/kubernetes:v1.24.0 labring/calico:v3.22.1     \
 | :----------: | :-----------------------------: | :----------------------------: |
 |  --masters   |         192.168.100.101         | kubernetes master 节点地址列表 |
 |   --nodes    | 192.168.100.102,192.168.100.103 |  kubernetes node 节点地址列表  |
-| --ssh-passwd |        [your-ssh-passwd]        |          ssh 登录密码          |
+|   --passwd   |        [your-ssh-passwd]        |          ssh 登录密码          |
 |  kubernetes  |   labring/kubernetes:v1.24.0    |        kubernetes 镜像         |
 
 
