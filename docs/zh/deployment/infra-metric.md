@@ -4,7 +4,9 @@
 ???+ warning "注意"
      TDengine 和 InfluxDB 二选一即可。
      
-     请务必修改时序引擎管理员账号 
+     请务必修改时序引擎管理员账号。
+
+     TDengine 高可用部署，可参考 [TDengine 高可用部署](ha-tdengine.md)
 
 ## 简介 {#intro}
 
