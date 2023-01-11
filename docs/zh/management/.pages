@@ -19,4 +19,5 @@ nav:
   - '系统通知': system-notification.md
   - '快照': snapshot.md
   - '帮助': help.md
+  - 'Status Page': status-page.md
   - 'Demo 空间': space-demo.md
