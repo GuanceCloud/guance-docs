@@ -1,5 +1,6 @@
 nav:
   - index.md
+  - 'DCS': dcs.md
   - 'ECS': ecs.md
   - 'ELB': elb.md
   - 'OBS': obs.md
