@@ -15,11 +15,11 @@ icon: zy/release-notes
 
 观测云提供 Status Page，帮助您实时查看观测云不同站点的服务状态。若您已经登录到观测云，您可以通过点击左下角的「帮助」-「Status Page」来查看观测云各个站点的服务状态。更多详情可参考文档 [Status Page](../management/status-page) 。
 
-![](img/6.status_page_2.1.png)
+![](img/6.status_page_4.png)
 
-#### 新增绑定自建 Elasticsearch / Open Search 索引
+#### 新增绑定自建 Elasticsearch / OpenSearch 索引
 
-观测云新增支持绑定自建 Elasticsearch / Open Search 索引，帮助您统一快速查看和分析您的日志数据。更多详情可参考文档 [绑定索引](../logs/multi-index.md#binding-index) 。
+观测云新增支持绑定自建 Elasticsearch / OpenSearch 索引，帮助您统一快速查看和分析您的日志数据。更多详情可参考文档 [绑定索引](../logs/multi-index.md#binding-index) 。
 
 ![](img/9.log_index_2.png)
 
@@ -39,6 +39,7 @@ icon: zy/release-notes
 
 #### 优化用户访问监测 Session 交互逻辑
 
+- Session 查看器去掉所有记录列表；
 - Session 会话详情页显示优化：类型显示优化、支持切换会话发生的绝对时间、增加服务列、详情页显示优化、错误信息优化
 - Session 会话更新逻辑优化
 - Browser Span 的 Service 字段值根据 SDK 侧配置值做填充，用于和链路进行关联分析
@@ -47,7 +48,9 @@ icon: zy/release-notes
 
 ![](img/7.rum_session.png)
 
+#### Pod 指标数据采集默认关闭
 
+在最新的 DataKit 版本中，`container` 采集器的 Pod 指标数据配置调整为默认关闭 `enable_pod_metric = false` 。更多详情可参考文档 [容器数据采集](../datakit/container.md#config) 。
 
 #### 其他功能优化
 
