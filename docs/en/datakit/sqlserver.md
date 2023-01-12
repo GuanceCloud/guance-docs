@@ -266,8 +266,6 @@ GO
 
 
 
-
-
 ### `sqlserver_database_size`
 
 -  标签
@@ -329,31 +327,6 @@ GO
 |`memory_usage`|Number of 8-KB pages of memory used by this session|int|count|
 |`row_count`|Number of rows returned on the session up to this point|int|count|
 |`session_id`|ID of the session to which this request is related|int|count|
-
-
-
-
-### `sqlserver_lock_database`
-
--  标签
-
-
-| 标签名 | 描述    |
-|  ----  | --------|
-|`db_name`|Name of the database under which this resource is scoped|
-|`object`|ID or name of the entity in a database with which a resource is associated|
-|`request_mode`|Mode of the request|
-|`request_status`|Current status of this request|
-|`request_type`|Request type|
-|`resource_type`|Represents the resource type|
-|`spid`|Session ID that currently owns this request, maximum length is 4 |
-
-- 字段列表
-
-
-| 指标 | 描述| 数据类型 | 单位   |
-| ---- |---- | :---:    | :----: |
-|`resource_database_id`|ID of the database under which this resource is scoped|int|count|
 
 
 
