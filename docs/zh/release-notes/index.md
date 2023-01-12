@@ -31,9 +31,9 @@ icon: zy/release-notes
 
 
 
-#### 新增 Browser Span 请求耗时分布
+#### 新增前端应用 Span 请求耗时分布显示
 
-在链路详情页，若当前的链路属于前端 Browser，您可以在链路详情查看请求耗时分布，包括 Queueing（队列）、First Byte（首包）、Download（下载）的请求耗时占比，帮助您直观的查看前端某个 Span 的过程消耗占比。
+在链路详情页，若当前的链路属于前端应用调用产生的 Span，您可以在链路详情查看请求耗时分布，包括 Queueing（队列）、First Byte（首包）、Download（下载）的请求耗时占比，帮助您直观的查看前端某个 Span 的过程消耗占比。
 
 ![](img/8.apm_browser_2.png)
 
