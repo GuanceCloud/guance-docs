@@ -40,7 +40,7 @@
 
 ## 绑定索引 {#binding-index}
 
-观测云支持绑定外部的索引数据，包括 Log Service 、Elasticsearch、Open Search 的索引数据，绑定成功后，您可以在观测云工作空间对外部索引数据进行查询和分析。
+观测云支持绑定外部的索引数据，包括 Log Service 、Elasticsearch、OpenSearch 的索引数据，绑定成功后，您可以在观测云工作空间对外部索引数据进行查询和分析。
 
 ???+ attention
 
@@ -73,7 +73,7 @@
 
 ### OpenSearch 索引绑定  {#opensearch}
 
-在观测云「日志」-「索引」，点击「绑定索引」。在弹出的对话框选择 Open Search 页面，填写 “域名” 、“用户名” 、 “密码” 、“index name” 以及 “索引名称”，填写完成后，可点击「测试」用户名和密码的正确性。
+在观测云「日志」-「索引」，点击「绑定索引」。在弹出的对话框选择 OpenSearch 页面，填写 “域名” 、“用户名” 、 “密码” 、“index name” 以及 “索引名称”，填写完成后，可点击「测试」用户名和密码的正确性。
 
 > 注意：索引名称是由您自定义的、在观测云中用于筛选的名称，与实际的 index 名称无关。
 
@@ -83,9 +83,9 @@
 
 ### 字段映射
 
-由于观测云和 Log Service 、Elasticsearch、Open Search 的标准字段不一致，为了能够更好的让用户在观测云查看和分析外部索引的日志数据，观测云提供字段映射的功能，您可以在绑定索引时直接为日志的字段进行映射（见上图）。
+由于观测云和 Log Service 、Elasticsearch、OpenSearch 的标准字段不一致，为了能够更好的让用户在观测云查看和分析外部索引的日志数据，观测云提供字段映射的功能，您可以在绑定索引时直接为日志的字段进行映射（见上图）。
 
-- `time` ：日志的上报时间，Log Service 默认映射 `date` 字段为 `time` ，Elasticsearch、Open Search 可按照实际日志数据自行填写；
+- `time` ：日志的上报时间，Log Service 默认映射 `date` 字段为 `time` ，Elasticsearch、OpenSearch 可按照实际日志数据自行填写；
 - `_docid` ：日志的唯一 ID ，映射后您可以查看绑定的日志详情，例如：您可以将原字段 `logid` 映射为 `_docid` ；
 - `message` ：日志的内容，映射后您可以查看绑定的日志内容，并且通过 `message` 字段帮助您聚类分析您的日志数据，例如：您可以将原字段 `content` 映射为 `message` 。更多详情可参考文档 [日志查看器聚类分析](explorer.md) 。
 

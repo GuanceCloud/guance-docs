@@ -79,7 +79,7 @@
 
 ![](img/9.apm_explorer_6.1.png)
 
-若当前的链路属于前端 Browser，您可以在链路详情查看请求耗时分布，包括 Queueing（队列）、First Byte（首包）、Download（下载）的请求耗时占比。
+若当前的链路属于前端应用（如：browser），您可以在链路详情查看请求耗时分布，包括 Queueing（队列）、First Byte（首包）、Download（下载）的请求耗时占比。
 
 ![](img/8.apm_browser_1.png)
 
