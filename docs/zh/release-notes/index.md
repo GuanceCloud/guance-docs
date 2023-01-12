@@ -41,8 +41,8 @@ icon: zy/release-notes
 
 - Session 查看器去掉所有记录列表；
 - Session 会话详情页显示优化：类型显示优化、支持切换会话发生的绝对时间、增加服务列、详情页显示优化、错误信息优化
-- Session 会话更新逻辑优化
-- Browser Span 的 Service 字段值根据 SDK 侧配置值做填充，用于和链路进行关联分析
+- Session 会话更新逻辑优化：Session 数据更新从追加的逻辑调整为基于 session_id 覆盖的逻辑
+- 链路中若存在前端应用调用产生的 Span，该 Span 对应的 service 值会根据当前用户访问数据中的 service 值做填充，若用户访问数据中不存在 service 的信息，则默认填充 "browser"
 
 更多详情可参考文档 [Session（会话）](../real-user-monitoring/explorer/session.md) 。
 
