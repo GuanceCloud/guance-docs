@@ -50,13 +50,29 @@ Kubernetes Ingress  组件部署参考 [https://github.com/kubernetes/ingress-ng
       
 
 === "Yaml"
-    
-    下载 [ingress-nginx.yaml](ingress-nginx.yaml)
 
-    执行以下命令安装：
-    ```shell
-    kubectl apply -f ingress-nginx.yaml
-    ``` 
+    - Kubernetes > 1.18
+
+      下载 [ingress-nginx.yaml](ingress-nginx.yaml)
+
+      执行以下命令安装：
+
+      ```shell
+      kubectl apply -f ingress-nginx.yaml
+      ``` 
+      
+    - Kubernetes = 1.18
+
+      下载 [ingress-nginx4.1.4.yaml](ingress-nginx4.1.4.yaml)
+
+      执行以下命令安装：
+
+      ```shell
+      kubectl apply -f ingress-nginx4.1.4.yaml
+      ``` 
+
+
+
    
 ### 2、验证部署
 
