@@ -19,7 +19,7 @@ icon: zy/release-notes
 
 #### 新增绑定自建 Elasticsearch / Open Search 索引
 
-观测云新增支持绑定自建 Elasticsearch / Open Search 索引，帮助您统一快速查看和分析您的日志数据。更多详情可参考文档 [绑定索引](https://preprod-docs.cloudcare.cn/logs/multi-index.md#binding-index) 。
+观测云新增支持绑定自建 Elasticsearch / Open Search 索引，帮助您统一快速查看和分析您的日志数据。更多详情可参考文档 [绑定索引](../logs/multi-index.md#binding-index) 。
 
 ![](img/9.log_index_2.png)
 
