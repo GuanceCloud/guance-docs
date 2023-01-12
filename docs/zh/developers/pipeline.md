@@ -462,6 +462,42 @@ Pipeline 的目录搜索优先级是:
 
 在 Datakit 的安装目录下面的 `pipeline` 目录下，目录结构如上所示。
 
+## 脚本输入数据结构 {#input-data}
+
+所有类别的数据在被 Pipeline 脚本处理前均会封装成 Point 结构，其结构大致为：
+
+```
+struct Point {
+    Name:    str
+    Tags:    map[str]str
+    Fields:  map[str]any
+    Time:    int64
+}
+```
+
+以一条 nginx 日志数据为例，其被日志采集器采集到后生成的数据作为 Pipeline 脚本的输入大致为：
+
+```
+Point {
+    Name: "nginx"
+    Tags: map[str]str {
+        "host": "your_hostname"
+    },
+    Fields: map[str]any {
+        "message": "127.0.0.1 - - [12/Jan/2023:11:51:38 +0800] \"GET / HTTP/1.1\" 200 612 \"-\" \"curl/7.81.0\""
+    },
+    Time: 1673495498000123456
+}
+```
+
+提示：
+
+- 其中 `Name` 可以通过函数 `set_measurement()` 修改。
+
+- 对于 `Tags` 和 `Fields`，任意一个 key 不能同时出现在这两个 map 中；可以在 pipeline 中通过自定义标识符或函数 `get_key()` 读取，修改 `Tags` 或 `Fields` 中 key 的值需要通过其他**内置函数**进行。其中 **`_`** 可以视为 `message` 这个 key 的别名。
+
+- 在脚本运行结束后，如果在 `Tags` 或 `Fields` 中存在名为 `time` 的 key，将被删除；当其值为 int64 类型，则将其值被赋予 Point 的 time 后删除。如果 time 为字符串，可以尝试使用函数 `default_time()` 将其转换为 int64。
+
 ## 脚本函数 {#functions}
 
 函数参数说明：
@@ -1029,43 +1065,41 @@ geoip(ip)
 
 函数原型：`fn get_key(key)`
 
-函数说明：从 point 中读取 key 的值，而不是堆栈上的变量的值
+函数说明：从输入 point 中读取 key 的值，而不是堆栈上的变量的值
 
 函数参数
 
 - `key_name`: key 的名称
 
-示例一:
+示例:
 
 ```python
-# scipt 1
-key = "shanghai"
-add_key(key)
-key = "tokyo" 
-add_key(add_new_key, key)
+add_key("city", "shanghai")
+
+# 此处可以直接通过 city 访问获取 point 中的同名 key 的值
+if city == "shanghai" {
+  add_key("city_1", city)
+}
+
+# 由于赋值的右结合性，先获取 key 为 "city" 的值，
+# 而后创建名为 city 的变量
+city = city + " --- ningbo" + " --- " +
+    "hangzhou" + " --- suzhou ---" + ""
+
+# get_key 从 point 中获取 "city" 的值
+# 存在名为 city 的变量，则无法直接从 point 中获取
+if city != get_key("city") {
+  add_key("city_2", city)
+}
 
 # 处理结果
+"""
 {
-  "add_new_key": "tokyo",
-  "key": "shanghai",
+  "city": "shanghai",
+  "city_1": "shanghai",
+  "city_2": "shanghai --- ningbo --- hangzhou --- suzhou ---"
 }
-
-```
-
-示例二:
-
-```python
-# scipt 2
-key = "shanghai"
-add_key(key)
-key = "tokyo" 
-add_key(add_new_key, get_key(key))
-
-#处理结果
-{
-  "add_new_key": "shanghai",
-  "key": "shanghai",
-}
+"""
 ```
 ### `grok()` {#fn-grok}
 

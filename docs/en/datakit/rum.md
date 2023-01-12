@@ -43,6 +43,9 @@ RUM（Real User Monitor）采集器用于收集网页端或移动端上报的用
       ## Default value set as below. DO NOT MODIFY THESE ENDPOINTS if not necessary.
       endpoints = ["/v1/write/rum"]
     
+      ## use to upload rum screenshot,html,etc...
+      session_replay_endpoints = ["/v1/write/rum/replay"]
+    
       ## Android command-line-tools HOME
       android_cmdline_home = "/usr/local/datakit/data/rum/tools/cmdline-tools"
     
