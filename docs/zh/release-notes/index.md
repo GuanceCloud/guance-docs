@@ -25,7 +25,7 @@ icon: zy/release-notes
 
 #### 新增网络查看器列表模式
 
-在「基础设施」-「网络」，选择「主机 / Pod / Deployment / Service」，支持切换至对应网络列表查看「源」和「目标」之间的 TCP 重传次数、TCP 连接数、TCP 关闭次数、TCP 延时、发送字节数、接收字节数、状态码等。更多详情可参考文档 [网络](../infrastructure/network.md) 。
+在「基础设施」-「网络」，选择「主机 / Pod / Deployment / Service」，支持切换至对应网络列表查看源 IP/端口和目标 IP/端口之间的 TCP 重传次数、TCP 连接数、TCP 关闭次数、TCP 延时、发送字节数、接收字节数、状态码等。更多详情可参考文档 [网络](../infrastructure/network.md) 。
 
 ![](img/4.network_2.png)
 
@@ -71,7 +71,7 @@ icon: zy/release-notes
 
 - [confd 增加 Nacos 后端](../datakit/confd.md)
 - 日志采集器添加 LocalCache 特性
-- 支持 [C/C++ Profiling](../datakit/changelog/profiling-cpp.md) 数据
+- 支持 C/C++ Profiling 数据
 - RUM Session Replay 文件上报
 - WEB DCA 支持远程更新 config
 
