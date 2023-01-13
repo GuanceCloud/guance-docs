@@ -44,6 +44,10 @@ icon: zy/management
 
 ![](img/3.space_management_7.png)
 
+点击工作空间名称，支持查看所有工作空间及其备注，点击备注「编辑」按钮即可添加或修改备注内容。
+
+![](img/3.space_management_7.2.png)
+
 ### 更换Token
 
 观测云支持当前空间拥有者和管理员复制/变更空间内的Token，并自定义当前Token的失效时间。进入「管理」-「基本设置」-「更换Token」，选择失效时间并确认「更换」后，观测云会自动生成新的Token，旧的Token会在指定时间内失效。
