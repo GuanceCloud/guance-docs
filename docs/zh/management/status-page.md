@@ -15,10 +15,10 @@
 
 | 站点              | 服务状态 URL                                                 | 运营商             |
 | :---------------- | :----------------------------------------------------------- | :----------------- |
-| 中国区1（杭州）   | [http://cn1-status.guance.com](http://cn1-status.guance.com) | 阿里云（中国杭州） |
+| 中国区1（杭州）   | [http://status.guance.com](http://status.guance.com/)        | 阿里云（中国杭州） |
 | 中国区2（宁夏）   | [http://aws-status.guance.com](http://aws-status.guance.com/) | AWS（中国宁夏）    |
 | 中国区3（张家口） | [http://cn3-status.guance.com](http://cn3-status.guance.com) | 阿里云（中国杭州） |
-| 中国区4（广州）   | [http://cn4-status.guance.com](https://cn4-auth.guance.com/login/pwd) | 华为云（中国广州） |
+| 中国区4（广州）   | [http://cn4-status.guance.com](http://cn4-status.guance.com/) | 华为云（中国广州） |
 | 海外区1（俄勒冈） | [http://us1-status.guance.com](http://us1-status.guance.com/) | AWS（美国俄勒冈）  |
 
 ## 服务状态
