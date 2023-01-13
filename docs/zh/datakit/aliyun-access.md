@@ -33,10 +33,10 @@
 
 | **接入站点** | **您的服务器所在 Region** | **Endpoint** |
 | -------- | ---------------------- | ----------- |
-| 中国区1（杭州） | cn-hangzhou (杭州) | https://openway.guance.com  |
-| 中国区1（杭州） | cn-beijing (北京) | https://beijing-openway.guance.com |  
-| 中国区3（张家口) | cn-beijing (北京) | https://cn3-openway.guance.com | 
-| 中国区3（张家口) | cn-hangzhou (杭州) | https://cn3-openway.guance.com | 
+| 中国区1（杭州） | cn-hangzhou (杭州) | `https://openway.guance.com`  |
+| 中国区1（杭州） | cn-beijing (北京) | `https://beijing-openway.guance.com` |  
+| 中国区3（张家口) | cn-beijing (北京) | `https://cn3-openway.guance.com` | 
+| 中国区3（张家口) | cn-hangzhou (杭州) | `https://cn3-openway.guance.com` | 
 
 **其他地域的虚拟互联网服务即将上线。**
 

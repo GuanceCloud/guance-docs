@@ -1,13 +1,17 @@
 {
-  "ignorePatterns": [
-    {
-      "pattern": "^https://github.com",
-			"why": "github.com always got 4xx response"
-    }
-  ],
-  "timeout": "20s",
-  "retryOn429": true,
-  "retryCount": 5,
-  "fallbackRetryDelay": "30s",
-  "aliveStatusCodes": [200, 206]
+	"ignorePatterns": [
+		{
+			"pattern": "github.com",
+			"why": "maybe GFWed"
+		},
+		{
+			"pattern": "en.wikipedia.org",
+			"why": "maybe GFWed"
+		}
+	],
+	"timeout": "5s",
+	"retryOn429": true,
+	"retryCount": 1,
+	"fallbackRetryDelay": "30s",
+	"aliveStatusCodes": [200, 206]
 }
