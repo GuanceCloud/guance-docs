@@ -67,6 +67,19 @@ icon: zy/release-notes
 - 优化日志类数据无数据告警配置
 - OpenAPI 新增创建接口
 
+### DataKit 更新
+
+- [confd 增加 Nacos 后端](../datakit/confd.md)
+- 日志采集器添加 LocalCache 特性
+- 支持 [C/C++ Profiling](../datakit/changelog/profiling-cpp.md) 数据
+- RUM Session Replay 文件上报
+- WEB DCA 支持远程更新 config
+
+- 优化 SQL 数据资源占用较高问题
+- 优化 Datakit Monitor
+
+更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md) 。
+
 ### 最佳实践更新
 
 - 云平台接入
