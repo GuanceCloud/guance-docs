@@ -217,7 +217,7 @@
 |`proto`|示例 websocket|
 |`province`|示例 浙江|
 |`status`|示例 OK/FAIL 两种状态 |
-|`url`|示例 ws://www.abc.com|
+|`url`|示例 `ws://www.abc.com`|
 
 - 指标列表
 

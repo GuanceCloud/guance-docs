@@ -30,7 +30,7 @@
     
       enable_container_metric = true
       enable_k8s_metric = true
-      enable_pod_metric = true
+      enable_pod_metric = false
       extract_k8s_label_as_tags = false
     
       ## Auto-Discovery of PrometheusMonitoring Annotations/CRDs
@@ -96,7 +96,7 @@
     | `ENV_INPUT_CONTAINER_ENABLE_AUTO_DISCOVERY_OF_PROMETHEUS_SERVIER_ANNOTATIONS` | 是否开启自动发现 Prometheuse Service Annotations 并采集指标                                                                                  | false                                             | `"true"`/`"false"`                                                                          |
     | `ENV_INPUT_CONTAINER_ENABLE_AUTO_DISCOVERY_OF_PROMETHEUS_POD_MONITORS`        | 是否开启自动发现 Prometheuse PodMonitor CRD 并采集指标，详见[Prometheus-Operator CRD 文档](kubernetes-prometheus-operator-crd.md#config)     | false                                             | `"true"`/`"false"`                                                                          |
     | `ENV_INPUT_CONTAINER_ENABLE_AUTO_DISCOVERY_OF_PROMETHEUS_SERVICE_MONITORS`    | 是否开启自动发现 Prometheuse ServiceMonitor CRD 并采集指标，详见[Prometheus-Operator CRD 文档](kubernetes-prometheus-operator-crd.md#config) | false                                             | `"true"`/`"false"`                                                                          |
-    | `ENV_INPUT_CONTAINER_ENABLE_POD_METRIC`                                       | 开启 Pod 指标采集                                                                                                                            | true                                              | `"true"`/`"false"`                                                                          |
+    | `ENV_INPUT_CONTAINER_ENABLE_POD_METRIC`                                       | 是否开启 Pod 指标采集（CPU 和内存使用情况），需要安装[kubernetes-metrics-server](https://github.com/kubernetes-sigs/metrics-server)          | false                                              | `"true"`/`"false"`                                                                          |
     | `ENV_INPUT_CONTAINER_CONTAINER_INCLUDE_LOG`                                   | 容器日志的 include 条件，使用 image 过滤                                                                                                     | 无                                                | `"image:pubrepo.jiagouyun.com/datakit/logfwd*"`                                             |
     | `ENV_INPUT_CONTAINER_CONTAINER_EXCLUDE_LOG`                                   | 容器日志的 exclude 条件，使用 image 过滤                                                                                                     | 无                                                | `"image:pubrepo.jiagouyun.com/datakit/logfwd*"`                                             |
     | `ENV_INPUT_CONTAINER_KUBERNETES_URL`                                          | k8s api-server 访问地址                                                                                                                      | "https://kubernetes.default:443"                  | `"https://kubernetes.default:443"`                                                          |

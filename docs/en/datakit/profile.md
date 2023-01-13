@@ -51,6 +51,23 @@ Profile 支持采集使用 Java / Python 等不同语言环境下应用程序运
     #[inputs.profile.go.tags]
       # tag1 = xxxxx
     
+    ## pyroscope config
+    #[[inputs.profile.pyroscope]]
+      ## listen url
+      #url = "0.0.0.0:4040"
+    
+      ## service name
+      #service = "pyroscope-demo"
+    
+      ## app env
+      #env = "dev"
+    
+      ## app version
+      #version = "0.0.0"
+    
+    #[inputs.profile.pyroscope.tags]
+      #tag1 = xxxxx
+    
     ```
     
     配置好后，[重启 DataKit](datakit-service-how-to.md#manage-service) 即可。
