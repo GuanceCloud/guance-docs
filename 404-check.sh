@@ -23,11 +23,15 @@ printf "checking %d markdown files under docs...\n" $TOTAL
 
 truncate -s 0 deadlink.log
 ITER=0
+HL='\033[0;32m' # high light
+NC='\033[0m'    # no color
 for f in "${files[@]}"; do
 	j=$(awk "BEGIN{print $ITER / $TOTAL * 100}")
 	printf "*************************************\n"
-	printf "            checking %04d/%d(%.2f%%)           \n" $ITER $TOTAL $j
+	printf "            checking ${HL}%04d/%d(%.2f%%)${NC}           \n" $ITER $TOTAL $j
 	printf "*************************************\n"
 	markdown-link-check -q -p -c 404-check.json $f | tee -a deadlink.log;
 	ITER=$(expr $ITER + 1)
 done
+
+# sed -n '/^FILE: \.\/docs\/zh\/datakit.*/,/FILE/p' deadlink.log |grep -B 1 '✖' | grep -vE http

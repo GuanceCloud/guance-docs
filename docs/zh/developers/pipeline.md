@@ -1100,8 +1100,7 @@ if city != get_key("city") {
   "city_2": "shanghai --- ningbo --- hangzhou --- suzhou ---"
 }
 """
-```
-### `grok()` {#fn-grok}
+```### `grok()` {#fn-grok}
 
 函数原型：`fn grok(input: str, pattern: str, trim_space: bool = true) bool`
 

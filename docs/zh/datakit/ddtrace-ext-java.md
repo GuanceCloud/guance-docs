@@ -22,9 +22,9 @@
 ddtrace 二次开发将默认的远端端口 8126 修改为 9529。
 
 ## redis 链路中查看参数 {#redis-command-args}
-redis 的链路中的 Resource 只会显示 redis.command 信息， 并不会显示参数（args）信息。
+redis 的链路中的 Resource 只会显示 redis.command 信息， 并不会显示参数（args）信息。 
 
-开启此功能：启动命令添加环境变量 `-Ddd.redis.command.args`， 在观测云链路的详情中会增加一个 tag：`redis.command.args=key val`。
+开启此功能：启动命令添加环境变量 `-Ddd.redis.command.args`， 在观测云链路的详情中会增加一个 tag：`redis.command.args=key val`。 
 
 支持版本：jedis1.4.0及以上版本。
 
