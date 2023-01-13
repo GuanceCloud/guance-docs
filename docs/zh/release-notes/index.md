@@ -71,7 +71,7 @@ icon: zy/release-notes
 
 - [confd 增加 Nacos 后端](../datakit/confd.md)
 - 日志采集器添加 LocalCache 特性
-- 支持 [C/C++ Profiling](../datakit/changelog/profiling-cpp.md) 数据
+- 支持 C/C++ Profiling 数据
 - RUM Session Replay 文件上报
 - WEB DCA 支持远程更新 config
 
