@@ -35,6 +35,8 @@ icon: zy/release-notes
 
 在链路详情页，若当前的链路属于前端应用调用产生的 Span，您可以在链路详情查看请求耗时分布，包括 Queueing（队列）、First Byte（首包）、Download（下载）的请求耗时占比，帮助您直观的查看前端某个 Span 的过程消耗占比。
 
+> 注意：用户访问监测 SDK 必须是 2.2.10 以及上才可以看到这部分数据显示，如存在跨域情况需要调整 header 配置，更多详情可参考文档 [Web 应用接入](../real-user-monitoring/web/app-access.md#header) 。
+
 ![](img/8.apm_browser_2.png)
 
 #### 优化用户访问监测 Session 交互逻辑
