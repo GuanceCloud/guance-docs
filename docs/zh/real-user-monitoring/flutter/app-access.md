@@ -162,7 +162,7 @@ String customDynamicValue = prefs.getString("customDynamicValue")?? "not set";
 > 注意：
 > 
 > 1. 特殊 key : track_id (用于追踪功能) 
-> 1. 当用户通过 globalContext 添加自定义标签与 SDK 自有标签相同时，SDK 的标签会覆盖用户设置的，建议标签命名添加项目缩写的前缀，例如 `df_tag_name`。项目中使用 `key` 值可[查询源码](https://github.com/DataFlux-cn/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java)。
+> 1. 当用户通过 globalContext 添加自定义标签与 SDK 自有标签相同时，SDK 的标签会覆盖用户设置的，建议标签命名添加项目缩写的前缀，例如 `df_tag_name`。项目中使用 `key` 值可[查询源码](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java)。
 
 ### Log 配置
 
@@ -315,7 +315,7 @@ void httpClientGetHttp(String url) async {
   }
 ```
 
-使用 http 库与 dio 库，可参考 [example](https://github.com/DataFlux-cn/datakit-flutter/tree/dev/example/lib)。
+使用 http 库与 dio 库，可参考 [example](https://github.com/GuanceCloud/datakit-flutter/tree/dev/example/lib)。
 
 ## Logger 日志打印 
 
@@ -370,7 +370,7 @@ void httpClientGetHttp() async {
   }
 ```
 
-使用 http 库与 dio 库，可参考 [example](https://github.com/DataFlux-cn/datakit-flutter/tree/dev/example/lib)。
+使用 http 库与 dio 库，可参考 [example](https://github.com/GuanceCloud/datakit-flutter/tree/dev/example/lib)。
 
 ## 用户信息绑定与解绑
 
