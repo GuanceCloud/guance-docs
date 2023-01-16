@@ -39,7 +39,7 @@
 target 'yourProjectName' do
 
 # Pods for your project
-pod 'FTMobileSDK', '1.3.7-beta.1'
+pod 'FTMobileSDK', '1.3.8-beta.4'
     
 end
 ```
@@ -128,7 +128,7 @@ typedef NS_ENUM(NSInteger, FTEnv) {
 
 | **字段** | **类型** | **说明** | **必须** |
 | --- | --- | --- | --- |
-| appid | NSString | DataFlux rum应用唯一ID标识，在DataFlux控制台上面创建监控时自动生成。 | 否（开启RUM 必选） |
+| appid | NSString | 用户访问监测应用 ID 唯一标识，在用户访问监测控制台上面创建监控时自动生成。 | 否（开启RUM 必选） |
 | samplerate | int | 采样采集率 | 否（默认100） |
 | errorMonitorType | NS_OPTIONS | error数据中的采集数据 | 否 |
 | enableTrackAppCrash | BOOL | 设置是否需要采集崩溃日志 | 否（默认NO） |

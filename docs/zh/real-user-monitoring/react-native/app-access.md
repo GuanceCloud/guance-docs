@@ -92,7 +92,7 @@ FTReactNativeRUM.setConfig(rumConfig);
 
 | **字段** | **类型** | **必须** | **说明** |
 | --- | --- | --- | --- |
-| rumAppId | string | 是 | appId，监测中申请 |
+| rumAppId | string | 是 | app_id，应用访问监测控制台申请 |
 | sampleRate | number | 否 | 采样率，（采集率的值范围为>= 0、<= 1，默认值为 1） |
 | enableAutoTrackUserAction | boolean | 否 | 是否自动采集 `React Native` 控件点击事件，开启后可配合  `accessibilityLabel`设置actionName |
 | enableAutoTrackError | boolean | 否 | 是否自动采集 `React Native` Error |
