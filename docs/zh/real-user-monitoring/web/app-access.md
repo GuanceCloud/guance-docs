@@ -137,7 +137,7 @@
 
 ### 产生 Script error 消息的原因
 
-在使用 DataFlux Web Rum Sdk 进行 Web 端错误收集的时候，经常会在`js_error`中看到 Script error. 这样的错误信息，同时并没有包含任何详细信息。
+在使用观测云 Web Rum Sdk 进行 Web 端错误收集的时候，经常会在`js_error`中看到 Script error. 这样的错误信息，同时并没有包含任何详细信息。
 
 #### 可能出现上面问题的原因
 
