@@ -64,8 +64,8 @@ icon: zy/release-notes
 - 云账号结算用户新增在观测云付费计划与账单查看账单列表
 - 表格图支持基于 「by 分组」设置别名
 - 优化监控器配置中的时序图，仅在选择维度后显示
-- 优化日志类数据无数据告警配置
-- OpenAPI 新增创建接口
+- [优化日志类数据无数据告警配置](../monitoring/monitor/log-detection.md)
+- OpenAPI 新增创建工作空间接口
 
 ### DataKit 更新
 
