@@ -574,7 +574,7 @@ rumConfig.globalContext = @{@"dynamic_tag":dynamicTag};
 
 4. `FTMobileConfig` 中配置的自定义标签将添加在所有类型的数据中。
 
-详细细节请见 [SDK Demo](https://github.com/DataFlux-cn/datakit-ios/tree/develop/demo)。
+详细细节请见 [SDK Demo](https://github.com/GuanceCloud/datakit-ios/tree/develop/demo)。
 
 ## 崩溃日志符号化
 
@@ -675,7 +675,7 @@ FT_ENV=SDK_ENV
 ![](../img/multi-environment-configuration9.png)
 
 
-详细细节请见 [SDK Demo](https://github.com/DataFlux-cn/datakit-ios/tree/develop/demo)。
+详细细节请见 [SDK Demo](https://github.com/GuanceCloud/datakit-ios/tree/develop/demo)。
 
 #### 方法二：终端运行脚本
 

@@ -14,7 +14,7 @@
 
 
 # 安装
-**源码地址**：[https://github.com/DataFlux-cn/datakit-react-native](https://github.com/DataFlux-cn/datakit-react-native)
+**源码地址**：[https://github.com/GuanceCloud/datakit-react-native](https://github.com/GuanceCloud/datakit-react-native)
 
 **Demo 地址**：[https://github.com/GuanceCloud/datakit-react-native/example](https://github.com/GuanceCloud/datakit-react-native/tree/dev/example)
 
@@ -160,7 +160,7 @@ FTReactNativeRUM.startView("RUM");
 FTReactNativeRUM.stopView();
 ```
 
-使用 `react-native-navigation` 库与 `@react-navigation` 库，可参考 [example](https://github.com/DataFlux-cn/datakit-react-native)。
+使用 `react-native-navigation` 库与 `@react-navigation` 库，可参考 [example](https://github.com/GuanceCloud/datakit-react-native/tree/dev/example)。
 
 ## Error
 
@@ -315,7 +315,7 @@ AsyncStorage.setItem("track_id",valueString,(error)=>{
 > 注意：
 > 
 > 1. 特殊 key : track_id (在 RUM 中配置，用于追踪功能) 
-> 1. 当用户通过 globalContext 添加自定义标签与 SDK 自有标签相同时，SDK 的标签会覆盖用户设置的，建议标签命名添加项目缩写的前缀，例如 `df_tag_name`。项目中使用 `key` 值可[查询源码](https://github.com/DataFlux-cn/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java)。
+> 1. 当用户通过 globalContext 添加自定义标签与 SDK 自有标签相同时，SDK 的标签会覆盖用户设置的，建议标签命名添加项目缩写的前缀，例如 `df_tag_name`。项目中使用 `key` 值可[查询源码](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java)。
 
 # 常见问题
 
