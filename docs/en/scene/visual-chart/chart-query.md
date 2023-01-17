@@ -1,4 +1,4 @@
-# Chart Search
+# Chart Query
 ---
 
 ## Introduction

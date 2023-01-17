@@ -1,4 +1,4 @@
-# Log flow diagram 
+# Log Flow Diagram 
 ---
 
 ## Introduction

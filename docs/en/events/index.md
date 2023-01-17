@@ -13,7 +13,7 @@ Guance Cloud supports one-stop viewing and auditing of all event data, and suppo
 ## Event Source
 
 - All alarm events triggered based on the configured [Monitor](../monitor/monitor/index.md)
-- All Alarm events triggered based on the configured [Intelligent Inspection](../monitoring/bot-obs/index.md)
+- All Alarm events triggered based on the configured [Auto Detection](../monitoring/bot-obs/index.md)
 - All alarm events triggered based on configured [SLO](../monitoring/slo.md)
 - Audit events based on system operations. For more details, refer to [Operational Audit](../management/operation-audit.md)
 - Support for writing custom events through the OpenAPI of events. For more details, please refer to [Creating Event API](../open-api/keyevent/create.md)

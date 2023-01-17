@@ -6,7 +6,7 @@ icon: zy/ci-visibility
 
 Guance Cloud supports visualization of the process and results of CI built into Gitlab/Jenkins. You can view the results of your CI in Gitlab/Jenkins directly through the CI visualization feature of Guance Cloud.The CI process is continuous integration. If developers encounter problems when pushing code, they can view the success rate, failure reasons, and specific failure links of all CI processes in Observation Cloud to help you provide code update assurance.
 
-## Nouns Explaination
+## Glossary
 
 - CI/CD：It stands for Continuous Integration (CI), Continuous Delivery (CD), Continuous Deployment (CD)，It is an approach to frequent delivery of applications to customers by introducing automation in the application development phase, mainly to address the issues raised when integrating new code；
 - Continuous integration: allows developers to more easily integrate code into master branches during code development and automatically build applications for automated testing to validate updated code, with the main goal of catching integration errors early and bringing teams closer together for better collaboration；

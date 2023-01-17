@@ -1,4 +1,4 @@
-# Air bubble diagram
+# Air Bubble Diagram
 ---
 
 ## Introduction

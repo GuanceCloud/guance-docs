@@ -1,4 +1,4 @@
-# Event association
+# Event Association
 ---
 
 ## Introduction

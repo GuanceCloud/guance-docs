@@ -1,0 +1,3 @@
+nav:
+  - index.md
+  - 'Binding Built-in Views': bind-view.md

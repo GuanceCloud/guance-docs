@@ -1,4 +1,4 @@
-# Blacklist
+# Log Blacklist
 ---
 
 Guance Cloud supports filtering qualified logs by setting log blacklists, after configuring log blacklists, qualified log data will no longer be reported to the "Guance Cloud" workspace, helping users save log data storage costs.
@@ -10,7 +10,7 @@ In the "Guance Cloud" workspace, click "Log"-"Blacklist"-"New Blacklist".
 ![](img/4.log_blacklist_1.png)
 
 Select "Source", add one or more log filtering rules, and click "OK" to open the log filtering rules by default. You can view all log filtering rules through Log Blacklist. 
- 
+
 -Source: All log sources or single log sources can be selected 
 -Filtering: Two conditional choices are supported, "any" and "all". "Any" is an OR (OR) condition AND "All" is an AND (AND "condition. 
 -Field name: Manual input of field name is supported, which must be an accurate value. You can view the field name to be matched in the "Display Column" of the log viewer. 

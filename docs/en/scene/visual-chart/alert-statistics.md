@@ -1,4 +1,4 @@
-# Alarm statistics chart
+# Alarm Statistics Chart
 ---
 
 ## Introduction
