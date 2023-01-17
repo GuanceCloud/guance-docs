@@ -1,4 +1,3 @@
-<!-- This file required to translate to EN. -->
 
 # Jenkins
 ---
@@ -7,20 +6,20 @@
 
 ---
 
-Jenkins 采集器是通过插件 `Metrics` 采集数据监控 Jenkins，包括但不限于任务数，系统 cpu 使用，`jvm cpu`使用等
+The Jenkins collector monitors Jenkins through plugin `Metrics` data collection, including but not limited to the number of tasks, system cpu usage, `jvm cpu` usage, and so on
 
-## 前置条件 {#requirements}
+## Preconditions {#requirements}
 
-- JenKins 版本 >= 2.277.4
-- 安装 JenKins [参见](https://www.jenkins.io/doc/book/installing/){:target="_blank"}
-- 下载 `Metric` 插件，[管理插件页面](https://www.jenkins.io/doc/book/managing/plugins/){:target="_blank"},[Metric 插件页面](https://plugins.jenkins.io/metrics/){:target="_blank"}
-- 在 JenKins 管理页面 `your_manage_host/configure` 生成 `Metric Access keys`
+- JenKins version >= 2.277.4
+- Install JenKins [see here](https://www.jenkins.io/doc/book/installing/){:target="_blank"}
+- Download the `Metric` plug-in, [management plug-in page](https://www.jenkins.io/doc/book/managing/plugins/){:target="_blank"},[Metric plug-in page](https://plugins.jenkins.io/metrics/){:target="_blank"}
+- Generate `Metric Access keys` on the JenKins administration page `your_manage_host/configure`
 
-## 配置 {#config}
+## Configuration {#config}
 
-=== "主机安装"
+=== "Host Installation"
 
-    进入 DataKit 安装目录下的 `conf.d/jenkins` 目录，复制 `jenkins.conf.sample` 并命名为 `jenkins.conf`。示例如下：
+    Go to the `conf.d/jenkins` directory under the DataKit installation directory, copy `jenkins.conf.sample` and name it `jenkins.conf`. Examples are as follows:
     
     ```toml
         
@@ -65,31 +64,31 @@ Jenkins 采集器是通过插件 `Metrics` 采集数据监控 Jenkins，包括�
       # more_tag = "some_other_value"
     
     ```
-
-    配置好后，[重启 DataKit](datakit-service-how-to.md#manage-service) 即可。
+    
+    Once configured, [restart DataKit](datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+    The collector can now be turned on by [ConfigMap Injection Collector Configuration](datakit-daemonset-deploy.md#configmap-setting).
 
 ## Jenkins CI Visibility {#ci-visibility}
 
-Jenkins 采集器可以通过接收 Jenkins datadog plugin 发出的 CI Event 实现 CI 可视化。
+The Jenkins collector can realize CI visualization by receiving the CI Event from the Jenkins datadog plugin.
 
-Jenkins CI Visibility 开启方法：
+Jenkins CI Visibility opening method:
 
-- 确保在配置文件中开启了 Jenkins CI Visibility 功能，且配置了监听端口号（如 `:9539`），重启 Datakit；
-- 在 Jenkins 中安装 [Jenkins Datadog plugin](https://plugins.jenkins.io/datadog/){:target="_blank"} ；
-- 在 Manage Jenkins > Configure System > Datadog Plugin 中选择 `Use the Datadog Agent to report to Datadog (recommended)`，配置 `Agent Host` 为 Datakit IP 地址。`DogStatsD Port` 及 `Traces Collection Port` 两项均配置为上述 Jenkins 采集器配置文件中配置的端口号，如 `9539`（此处不加 `:`）；
-- 勾选 `Enable CI Visibility`；
-- 点击 `Save` 保存设置。
+- Ensure that the Jenkins CI Visibility feature is turned on in the configuration file and the listening port number is configured (such as `:9539`), restart Datakit;
+- Install [Jenkins Datadog plugin](https://plugins.jenkins.io/datadog/){:target="_blank"}  in Jenkins;
+- Select `Use the Datadog Agent to report to Datadog (recommended)` in Manage Jenkins > Configure System > Datadog Plugin and configure `Agent Host` as the Datakit IP address. Both `DogStatsD Port` and `Traces Collection Port` are configured to the port number configured in the Jenkins collector configuration file above, such as `9539`(do not add `:`);
+- Check `Enable CI Visibility`；
+- Click `Save` to Save the settings.
 
-配置完成后 Jenkins 能够通过 Datadog Plugin 将 CI 事件发送到 Datakit。
+After configuration, Jenkins can send CI events to Datakit through Datadog Plugin.
 
-## 指标集 {#measurements}
+## Measurements {#measurements}
 
-以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名)。
-可以在配置中通过 `[inputs.jenkins.tags]` 为采集的指标指定其它标签：
+For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit).
+You can specify additional labels for collected metrics in the configuration by `[inputs.jenkins.tags]`:
 
 ``` toml
  [inputs.jenkins.tags]
@@ -98,7 +97,7 @@ Jenkins CI Visibility 开启方法：
   # ...
 ```
 
-可以在配置中通过 `[inputs.jenkins.ci_extra_tags]` 为 Jenkins CI Event 指定其它标签：
+You can specify additional tags for the Jenkins CI Event in the configuration by `[inputs.jenkins.ci_extra_tags]`:
 
 ```toml
  [inputs.jenkins.ci_extra_tags]
@@ -110,7 +109,7 @@ Jenkins CI Visibility 开启方法：
 
 ### `jenkins`
 
--  标签
+- tag
 
 
 | 标签名 | 描述    |
@@ -119,7 +118,7 @@ Jenkins CI Visibility 开启方法：
 |`url`|jenkins url|
 |`version`|jenkins  version|
 
-- 指标列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -148,7 +147,7 @@ Jenkins CI Visibility 开启方法：
 
 ### `jenkins_pipeline`
 
--  标签
+- tag
 
 
 | 标签名 | 描述    |
@@ -164,7 +163,7 @@ Jenkins CI Visibility 开启方法：
 |`repository_url`|仓库 URL|
 |`resource`|项目名|
 
-- 指标列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -180,7 +179,7 @@ Jenkins CI Visibility 开启方法：
 
 ### `jenkins_job`
 
--  标签
+- tag
 
 
 | 标签名 | 描述    |
@@ -196,7 +195,7 @@ Jenkins CI Visibility 开启方法：
 |`sha`|build 对应的 commit 的哈希值|
 |`user_email`|作者邮箱|
 
-- 指标列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -213,9 +212,9 @@ Jenkins CI Visibility 开启方法：
 
 
 
-## 日志采集 {#logging}
+## Log Collection {#logging}
 
-如需采集 JenKins 的日志，可在 jenkins.conf 中 将 `files` 打开，并写入 JenKins 日志文件的绝对路径。比如：
+To collect the JenKins log, open `files` in JenKins.conf and write to the absolute path of the JenKins log file. For example:
 
 ```toml
     [[inputs.JenKins]]
@@ -224,24 +223,24 @@ Jenkins CI Visibility 开启方法：
         files = ["/var/log/jenkins/jenkins.log"]
 ```
 
-  
-开启日志采集以后，默认会产生日志来源（`source`）为 `jenkins` 的日志。
 
->注意：必须将 DataKit 安装在 JenKins 所在主机才能采集 JenKins 日志
+When log collection is turned on, a log with a log `source` of `jenkins` is generated by default.
 
-## 日志 pipeline 功能切割字段说明 {#pipeline}
+>Note: DataKit must be installed on the host where JenKins is located to collect JenKins logs.
 
-- JenKins 通用日志切割
+## Log Pipeline Feature Cut Field Description {#pipeline}
 
-通用日志文本示例:
+- JenKins Universal Log Cutting
+
+Example of common log text:
 ```
 2021-05-18 03:08:58.053+0000 [id=32] INFO jenkins.InitReactorRunner$1#onAttained: Started all plugins
 ```
 
-切割后的字段列表如下：
+The list of cut fields is as follows:
 
-| 字段名 | 字段值              | 说明                         |
+| Field Name | Field Value              | Description                         |
 | ---    | ---                 | ---                          |
-| status | info                | 日志等级                     |
+| status | info                | log level                     |
 | id     | 32                  | id                           |
-| time   | 1621278538000000000 | 纳秒时间戳（作为行协议时间） |
+| time   | 1621278538000000000 | Nanosecond timestamp (as row protocol time) |

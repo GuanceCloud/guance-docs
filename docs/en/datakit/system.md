@@ -1,4 +1,3 @@
-<!-- This file required to translate to EN. -->
 
 # System
 ---
@@ -7,17 +6,17 @@
 
 ---
 
-system 采集器收集系统负载、正常运行时间、CPU 核心数量以及登录的用户数。
+The system collector collects system load, uptime, the number of CPU cores, and the number of users logged in.
 
-## 前置条件 {#requrements}
+## Preconditions {#requrements}
 
-无
+None
 
-## 配置 {#config}
+## Configuration {#config}
 
-=== "主机安装"
+=== "Host Installation"
 
-    进入 DataKit 安装目录下的 `conf.d/host` 目录，复制 `system.conf.sample` 并命名为 `system.conf`。示例如下：
+    Go to the `conf.d/host` directory under the DataKit installation directory, copy `system.conf.sample` and name it `system.conf`. Examples are as follows:
     
     ```toml
         
@@ -31,22 +30,22 @@ system 采集器收集系统负载、正常运行时间、CPU 核心数量以及
     
     ```
     
-    配置好后，重启 DataKit 即可。
+    After configuration, restart DataKit.
 
 === "Kubernetes"
 
-    支持以环境变量的方式修改配置参数：
+    Modifying configuration parameters as environment variables is supported:
     
-    | 环境变量名              | 对应的配置参数项 | 参数示例                                                     |
+    | Environment variable name              | Corresponding configuration parameter item | Parameter example                                                     |
     | :---                    | ---              | ---                                                          |
-    | `ENV_INPUT_SYSTEM_TAGS` | `tags`           | `tag1=value1,tag2=value2` 如果配置文件中有同名 tag，会覆盖它 |
+    | `ENV_INPUT_SYSTEM_TAGS` | `tags`           | `tag1=value1,tag2=value2`. If there is a tag with the same name in the configuration file, it will be overwritten. |
     | `ENV_INPUT_SYSTEM_INTERVAL` | `interval` | `10s` |
 
 ---
 
-## 指标集 {#measurements}
+## Measurements {#measurements}
 
-以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.system.tags]` 指定其它标签：
+For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration through `[inputs.system.tags]`:
 
 ``` toml
  [inputs.system.tags]
@@ -61,14 +60,14 @@ system 采集器收集系统负载、正常运行时间、CPU 核心数量以及
 
 系统运行基础信息
 
--  标签
+- tag
 
 
 | 标签名 | 描述    |
 |  ----  | --------|
 |`host`|主机名|
 
-- 指标列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -89,14 +88,14 @@ system 采集器收集系统负载、正常运行时间、CPU 核心数量以及
 
 系统网络连接指标（仅 Linux 支持）
 
--  标签
+- tag
 
 
 | 标签名 | 描述    |
 |  ----  | --------|
 |`host`|主机名|
 
-- 指标列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -118,14 +117,14 @@ system 采集器收集系统负载、正常运行时间、CPU 核心数量以及
 
 系统文件句柄指标（仅 Linux 支持）
 
--  标签
+- tag
 
 
 | 标签名 | 描述    |
 |  ----  | --------|
 |`host`|主机名|
 
-- 指标列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |

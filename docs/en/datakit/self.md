@@ -1,23 +1,22 @@
-<!-- This file required to translate to EN. -->
 
-# DataKit 自身指标
+# DataKit Self-metric
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
 
 ---
 
-self 采集器用于 DataKit 自身基本信息的采集，包括运行环境信息、CPU、内存占用情况等。
+Self collector is used to collect the basic information of DataKit itself, including running environment information, CPU, memory occupation and so on.
 
-## 前置条件 {#reqirement}
+## Preconditions {#reqirement}
 
-暂无
+None
 
-## 配置 {#config}
+## Configuration {#config}
 
-self 采集器会自动运行，无需配置，且无法关闭。
+The self collector runs automatically without configuration and cannot be shut down.
 
-## 指标 {#measurements}
+## Metrics {#measurements}
 
 
 
@@ -27,7 +26,7 @@ self 采集器会自动运行，无需配置，且无法关闭。
 
 
 
-- 标签
+- tag
 
 
 | 标签名 | 描述    |
@@ -40,7 +39,7 @@ self 采集器会自动运行，无需配置，且无法关闭。
 |`uuid`|**Deprecated**, currently use `hostname` as DataKit's UUID|
 |`version`|DataKit version|
 
-- 字段列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -65,8 +64,7 @@ self 采集器会自动运行，无需配置，且无法关闭。
 |`num_goroutines`|Number of goroutines that currently exitst|int|count|
 |`open_files`|open files of DataKit(Only Linux support, others are -1)|int|count|
 |`pid`|DataKit process ID|int|-|
-|`uptime`|Uptime of DataKit|int|s|
-
+|`uptime`|Uptime of DataKit|int|s| 
 
 
 
@@ -76,14 +74,14 @@ self 采集器会自动运行，无需配置，且无法关闭。
 
 
 
-- 标签
+- tag
 
 
 | 标签名 | 描述    |
 |  ----  | --------|
 |`api`|API router of the DataKit HTTP|
 
-- 字段列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -95,8 +93,7 @@ self 采集器会自动运行，无需配置，且无法关闭。
 |`avg_latency`|HTTP average latency|int|ns|
 |`limited`|HTTP limited|int|count|
 |`max_latency`|HTTP max latency|int|ns|
-|`total_request_count`|HTTP total request count|int|count|
-
+|`total_request_count`|HTTP total request count|int|count| 
 
 
 
@@ -106,14 +103,14 @@ self 采集器会自动运行，无需配置，且无法关闭。
 
 
 
-- 标签
+- tag
 
 
 | 标签名 | 描述    |
 |  ----  | --------|
 |`group`|The group name of the goroutine.|
 
-- 字段列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -123,11 +120,11 @@ self 采集器会自动运行，无需配置，且无法关闭。
 |`max_cost_time`|Maximum cost time in nanosecond|int|ns|
 |`min_cost_time`|Minimum cost time in nanosecond|int|ns|
 |`running_goroutine_num`|The number of the running goroutine|int|count|
-|`total_cost_time`|Total cost time in nanosecond|int|ns|
+|`total_cost_time`|Total cost time in nanosecond|int|ns| 
 
 
 
 
-## 延申阅读 {#more-reading}
+## More Readings {#more-reading}
 
-- [主机采集器](hostobject.md)
+- [Host collector](hostobject.md)

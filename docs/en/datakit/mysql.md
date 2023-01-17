@@ -1,4 +1,3 @@
-<!-- This file required to translate to EN. -->
 
 # MySQL
 
@@ -8,17 +7,17 @@
 
 ---
 
-MySQL 指标采集，收集以下数据：
+MySQL metrics collection, which collects the following data:
 
-- MySQL global status 基础数据采集
-- Scheam 相关数据
-- InnoDB 相关指标
-- 支持自定义查询数据采集
+- MySQL global status basic data collection
+- Scheam related data
+- InnoDB related metrics
+- Support custom query data collection
 
-## 前置条件 {#requirements}
+## Preconditions {#requirements}
 
-- MySQL 版本 5.7+
-- 创建监控账号（一般情况，需用 MySQL `root` 账号登陆才能创建 MySQL 用户）
+- MySQL version 5.7+
+- Create a monitoring account (in general, you need to log in with MySQL `root` account to create MySQL users)
 
 ```sql
 CREATE USER 'datakit'@'localhost' IDENTIFIED BY '<UNIQUEPASSWORD>';
@@ -27,7 +26,7 @@ CREATE USER 'datakit'@'localhost' IDENTIFIED BY '<UNIQUEPASSWORD>';
 CREATE USER 'datakit'@'localhost' IDENTIFIED WITH mysql_native_password by '<UNIQUEPASSWORD>';
 ```
 
-- 授权
+- Authorization
 
 ```sql
 GRANT PROCESS ON *.* TO 'datakit'@'localhost';
@@ -38,19 +37,19 @@ GRANT SELECT ON mysql.user TO 'datakit'@'localhost';
 GRANT replication client on *.*  to 'datakit'@'localhost';
 ```
 
-以上创建、授权操作，均限定了 `datakit` 这个用户的只能在 MySQL 主机上（`localhost`）访问 MySQL，如果对 MySQL 进行远程采集，建议将 `localhost` 替换成 `%`（表示 DataKit 可以在任意机器上访问 MySQL），也可用特定的 DataKit 安装机器地址。
+All the above creation and authorization operations limit that the user `datakit` can only access MySQL on MySQL host (`localhost`). If MySQL is collected remotely, it is recommended to replace `localhost` with `%` (indicating that DataKit can access MySQL on any machine), or use a specific DataKit installation machine address.
 
-> 注意，如用 `localhost` 时发现采集器有如下报错，需要将上面的 `localhost` 换成 `::1`
+> Note that if you find the collector has the following error when using `localhost` , you need to replace the above `localhost` with `::1`
 
 ```
 Error 1045: Access denied for user 'datakit'@'::1' (using password: YES)
 ```
 
-## 配置 {#config}
+## Configuration {#config}
 
-=== "主机安装"
+=== "Host Installation"
 
-    进入 DataKit 安装目录下的 `conf.d/db` 目录，复制 `mysql.conf.sample` 并命名为 `mysql.conf`。示例如下：
+    Go to the `conf.d/db` directory under the DataKit installation directory, copy `mysql.conf.sample` and name it `mysql.conf`. Examples are as follows:
     
     ```toml
         
@@ -79,7 +78,7 @@ Error 1045: Access denied for user 'datakit'@'::1' (using password: YES)
       ## user
       users = []
     
-      ## 开启数据库性能指标采集
+      ## Start database performance index collection
       # dbm = false
     
       # [inputs.mysql.log]
@@ -109,15 +108,15 @@ Error 1045: Access denied for user 'datakit'@'::1' (using password: YES)
       #   tagKeys = ["column1", "column1"]
       #   fieldKeys = ["column3", "column1"]
       
-      ## 监控指标配置
+      ## Monitoring metric configuration
       [inputs.mysql.dbm_metric]
         enabled = true
       
-      ## 监控采样配置
+      ## Monitoring sampling configuration
       [inputs.mysql.dbm_sample]
         enabled = true  
     
-      ## 等待事件采集
+      ## Waiting for event collection
       [inputs.mysql.dbm_activity]
         enabled = true  
     
@@ -126,17 +125,17 @@ Error 1045: Access denied for user 'datakit'@'::1' (using password: YES)
         # more_tag = "some_other_value"
     
     ```
-
-    配置好后，[重启 DataKit](datakit-service-how-to.md#manage-service) 即可。
+    
+    Once configured, [restart DataKit](datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+    The collector can now be turned on by [ConfigMap Injection Collector Configuration](datakit-daemonset-deploy.md#configmap-setting).
 
 
 ---
 
-以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.mysql.tags]` 指定其它标签：
+For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.mysql.tags]`:
 
 ```toml
  [inputs.mysql.tags]
@@ -145,51 +144,51 @@ Error 1045: Access denied for user 'datakit'@'::1' (using password: YES)
   # ...
 ```
 
-### Binlog 开启 {#binlog}
+### Binlog Start {#binlog}
 
-默认情况下，MySQL binlog 是不开启的。如果要统计 binlog 大小，需要开启 MySQL 对应 binlog 功能：
+MySQL binlog is not turned on. If you want to count the binlog size, you need to turn on the binlog function corresponding to MySQL:
 
 ```sql
 -- ON:开启, OFF:关闭
 SHOW VARIABLES LIKE 'log_bin';
 ```
 
-binlog 开启，参见[这个问答](https://stackoverflow.com/questions/40682381/how-do-i-enable-mysql-binary-logging){:target="_blank"}，或者[这个问答](https://serverfault.com/questions/706699/enable-binlog-in-mysql-on-ubuntu){:target="_blank"}
+binlog starts, see [this](https://stackoverflow.com/questions/40682381/how-do-i-enable-mysql-binary-logging){:target="_blank"} or [this answer](https://serverfault.com/questions/706699/enable-binlog-in-mysql-on-ubuntu){:target="_blank"}.
 
-### 数据库性能指标采集 {#performance-schema}
+### Database Performance Metrics Collection {#performance-schema}
 
-数据库性能指标主要来源于 MySQL 的内置数据库 `performance_schema`, 该数据库提供了一个能够在运行时获取服务器内部执行情况的方法。通过该数据库，DataKit 能够采集历史查询语句的各种指标统计和查询语句的执行计划，以及其他相关性能指标。采集的性能指标数据保存为日志，source 分别为 `mysql_dbm_metric`, `mysql_dbm_sample` 和 `mysql_dbm_activity`。
+The database performance metrics come from MySQL's built-in database `performance_schema`, which provides a way to get the internal performance of the server at runtime. Through this database, DataKit can collect statistics of various metrics of historical query statements, execution plans of query statements and other related performance metrics. The collected performance metric data is saved as a log, and the sources are `mysql_dbm_metric`, `mysql_dbm_sample` and `mysql_dbm_activity`.
 
-如需开启，需要执行以下步骤。
+To turn it on, you need to perform the following steps.
 
-- 修改配置文件，开启监控采集
+- Modify the configuration file and start monitoring and collection
 
 ```toml
 [[inputs.mysql]]
 
-# 开启数据库性能指标采集
+# Turn on database performance metric collection
 dbm = true
 
 ...
 
-# 监控指标配置
+# Monitor metric configuration
 [inputs.mysql.dbm_metric]
   enabled = true
 
-# 监控采样配置
+# Monitor sampling configuration
 [inputs.mysql.dbm_sample]
   enabled = true
 
-# 等待事件采集
+# Waiting for event collection
 [inputs.mysql.dbm_activity]
   enabled = true   
 ...
 
 ```
 
-- MySQL配置
+- MySQL Configuration
 
-修改配置文件(如`mysql.conf`)，开启 `MySQL Performance Schema`， 并配置相关参数：
+Modify the configuration file (such as `mysql.conf`), open the `MySQL Performance Schema`, and configure the parameters:
 
 ```toml
 [mysqld]
@@ -204,9 +203,9 @@ performance-schema-consumer-events-statements-history = on
 
 ```
 
-- 账号配置
+- Account configuration
 
-账号授权
+Account authorization
 
 ```sql
 -- 	MySQL 5.6 & 5.7
@@ -219,7 +218,7 @@ GRANT REPLICATION CLIENT ON *.* TO datakit@'%';
 GRANT PROCESS ON *.* TO datakit@'%';
 ```
 
-创建数据库
+Create a database
 
 ```sql
 CREATE SCHEMA IF NOT EXISTS datakit;
@@ -227,7 +226,7 @@ GRANT EXECUTE ON datakit.* to datakit@'%';
 GRANT CREATE TEMPORARY TABLES ON datakit.* TO datakit@'%';
 ```
 
-创建存储过程 `explain_statement`，用于获取 sql 执行计划
+Create the stored procedure `explain_statement` to get the sql execution plan
 
 ```sql
 DELIMITER $$
@@ -242,7 +241,7 @@ END $$
 DELIMITER ;
 ```
 
-为需要采集执行计划的数据库单独创建存储过程（可选）
+Create a separate stored procedure for the database that needs to collect execution plans (optional)
 
 ```sql
 DELIMITER $$
@@ -258,9 +257,9 @@ DELIMITER ;
 GRANT EXECUTE ON PROCEDURE <数据库名称>.explain_statement TO datakit@'%';
 ```
 
-- `consumers`配置
+- `consumers` configuration
 
-方法一（推荐）：通过 `DataKit` 动态配置 `performance_schema.events_*`，需要创建以下存储过程：
+Method one (recommended): Dynamic configuration of `performance_schema.events_*` with `DataKit` requires the creation of the following stored procedure:
 
 ```sql
 DELIMITER $$
@@ -275,14 +274,14 @@ DELIMITER ;
 GRANT EXECUTE ON PROCEDURE datakit.enable_events_statements_consumers TO datakit@'%';
 ```
 
-方法二：手动配置 `consumers`
+Method 2: Manually configure `consumers`
 
 ```sql
 UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name LIKE 'events_statements_%';
 UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name = 'events_waits_current';
 ```
 
-### 指标 {#measurement}
+### Measurements {#measurement}
 
 
 
@@ -292,14 +291,14 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name = 'events
 
 
 
-- 标签
+- tag
 
 
 | 标签名 | 描述    |
 |  ----  | --------|
 |`server`|Server addr|
 
-- 字段列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -380,8 +379,7 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name = 'events
 |`max_connections`|The maximum number of connections that have been in use simultaneously since the server started.|int|count|
 |`query_cache_size`|The amount of memory allocated for caching query results.|int|B|
 |`table_open_cache`|The number of open tables for all threads. Increasing this value increases the number of file descriptors that mysqld requires.|int|count|
-|`thread_cache_size`|How many threads the server should cache for reuse. When a client disconnects, the client's threads are put in the cache if there are fewer than thread_cache_size threads there.|int|B|
-
+|`thread_cache_size`|How many threads the server should cache for reuse. When a client disconnects, the client's threads are put in the cache if there are fewer than thread_cache_size threads there.|int|B| 
 
 
 
@@ -391,7 +389,7 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name = 'events
 
 具体字段，以实际采集上来的数据为准，部分字段，会因 MySQL 配置、已有数据等原因，采集不到
 
-- 标签
+- tag
 
 
 | 标签名 | 描述    |
@@ -399,14 +397,13 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name = 'events
 |`schema_name`|Schema name|
 |`server`|Server addr|
 
-- 字段列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
 | ---- |---- | :---:    | :----: |
 |`query_run_time_avg`|Avg query response time per schema.|float|ns|
-|`schema_size`|Size of schemas(MiB)|float|MB|
-
+|`schema_size`|Size of schemas(MiB)|float|MB| 
 
 
 
@@ -416,14 +413,14 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name = 'events
 
 
 
-- 标签
+- tag
 
 
 | 标签名 | 描述    |
 |  ----  | --------|
 |`server`|Server addr|
 
-- 字段列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -491,8 +488,7 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name = 'events
 |`os_log_fsyncs`|Number of fsync log writes (innodb_os_log_fsyncs)|int|count|
 |`os_log_pending_fsyncs`|Number of pending fsync write (innodb_os_log_pending_fsyncs)|int|count|
 |`os_log_pending_writes`|Number of pending log file writes (innodb_os_log_pending_writes)|int|count|
-|`trx_rseg_history_len`|Length of the TRX_RSEG_HISTORY list|int|count|
-
+|`trx_rseg_history_len`|Length of the TRX_RSEG_HISTORY list|int|count| 
 
 
 
@@ -502,7 +498,7 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name = 'events
 
 MySQL 表指标
 
-- 标签
+- tag
 
 
 | 标签名 | 描述    |
@@ -514,7 +510,7 @@ MySQL 表指标
 |`table_type`|BASE TABLE for a table, VIEW for a view, or SYSTEM VIEW for an INFORMATION_SCHEMA table.|
 |`version`|The version number of the table's .frm file.|
 
-- 字段列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -522,8 +518,7 @@ MySQL 表指标
 |`data_free`|The number of rows. Some storage engines, such as MyISAM, store the exact count. For other storage engines, such as InnoDB, this value is an approximation, and may vary from the actual value by as much as 40% to 50%. In such cases, use SELECT COUNT(*) to obtain an accurate count.|int|count|
 |`data_length`|For InnoDB, DATA_LENGTH is the approximate amount of space allocated for the clustered index, in bytes. Specifically, it is the clustered index size, in pages, multiplied by the InnoDB page size|int|count|
 |`index_length`|For InnoDB, INDEX_LENGTH is the approximate amount of space allocated for non-clustered indexes, in bytes. Specifically, it is the sum of non-clustered index sizes, in pages, multiplied by the InnoDB page size|int|count|
-|`table_rows`|The number of rows. Some storage engines, such as MyISAM, store the exact count. For other storage engines, such as InnoDB, this value is an approximation, and may vary from the actual value by as much as 40% to 50%. In such cases, use SELECT COUNT(*) to obtain an accurate count.|int|count|
-
+|`table_rows`|The number of rows. Some storage engines, such as MyISAM, store the exact count. For other storage engines, such as InnoDB, this value is an approximation, and may vary from the actual value by as much as 40% to 50%. In such cases, use SELECT COUNT(*) to obtain an accurate count.|int|count| 
 
 
 
@@ -533,14 +528,14 @@ MySQL 表指标
 
 MySQL 用户指标
 
-- 标签
+- tag
 
 
 | 标签名 | 描述    |
 |  ----  | --------|
 |`user`|user|
 
-- 字段列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -557,7 +552,7 @@ MySQL 用户指标
 |`table_open_cache_hits`|The number of hits for open tables cache lookups.|int|count|
 |`table_open_cache_misses`|The number of misses for open tables cache lookups.|int|count|
 |`table_open_cache_overflows`|The number of overflows for the open tables cache. This is the number of times, after a table is opened or closed, a cache instance has an unused entry and the size of the instance is larger than table_open_cache / table_open_cache_instances.|int|count|
-|`total_connect`|The number of total connect|int|count|
+|`total_connect`|The number of total connect|int|count| 
 
 
 
@@ -574,7 +569,9 @@ MySQL 用户指标
 
 
 
-### 日志 {#logging}
+
+
+### Log {#logging}
 
 [:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)
 
@@ -606,7 +603,7 @@ MySQL 用户指标
 
 记录查询语句的执行次数、等待耗时、锁定时间和查询的记录行数等。
 
-- 标签
+- tag
 
 
 | 标签名 | 描述    |
@@ -618,7 +615,7 @@ MySQL 用户指标
 |`server`|The server address|
 |`service`|The service name and the value is 'mysql'|
 
-- 字段列表
+- Metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -634,8 +631,7 @@ MySQL 用户指标
 |`sum_rows_sent`|The number of rows sent per normalized query and schema.|int|count|
 |`sum_select_full_join`|The total count of full table scans on a joined table per normalized query and schema.|int|count|
 |`sum_select_scan`|The total count of full table scans on the first table per normalized query and schema.|int|count|
-|`sum_timer_wait`|The total query execution time(nanosecond) per normalized query and schema.|int|count|
-
+|`sum_timer_wait`|The total query execution time(nanosecond) per normalized query and schema.|int|count| 
 
 
 
@@ -645,7 +641,7 @@ MySQL 用户指标
 
 选取部分执行耗时较高的 SQL 语句，获取其执行计划，并采集实际执行过程中的各种性能指标。
 
-- 标签
+- tag
 
 
 | 标签名 | 描述    |
@@ -663,7 +659,7 @@ MySQL 用户指标
 |`resource_hash`|The hash value computed from sql text.|
 |`service`|The service name and the value is 'mysql'|
 
-- 字段列表
+- Metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -686,8 +682,7 @@ MySQL 用户指标
 |`sort_rows`|Number of rows sorted by the statement. |int|count|
 |`sort_scan`|Number of sorts performed by the statement which used a full table scan.|int|count|
 |`timer_wait_ns`|Value in nanoseconds of the event's duration |int|ns|
-|`timestamp`|The timestamp(millisecond) when then the event ends.|int|msec|
-
+|`timestamp`|The timestamp(millisecond) when then the event ends.|int|msec| 
 
 
 
@@ -697,7 +692,7 @@ MySQL 用户指标
 
 记录当前线程的等待事件信息
 
-- 标签
+- tag
 
 
 | 标签名 | 描述    |
@@ -706,7 +701,7 @@ MySQL 用户指标
 |`server`|The server address|
 |`service`|The service name and the value is 'mysql'|
 
-- 字段列表
+- Metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -740,51 +735,51 @@ MySQL 用户指标
 |`thread_id`|The thread id|string|-|
 |`wait_event`|The name of the wait event|string|-|
 |`wait_timer_end`|The time when the waiting event timing ended|int|ns|
-|`wait_timer_start`|The time when the waiting event timing started|int|ns|
+|`wait_timer_start`|The time when the waiting event timing started|int|ns| 
 
 
 
 
-## MySQL 运行日志 {#mysql-logging}
+## MySQL Run Log {#mysql-logging}
 
-如需采集 MySQL 的日志，将配置中 log 相关的配置打开，如需要开启 MySQL 慢查询日志，需要开启慢查询日志，在 MySQL 中执行以下语句
+If you need to collect MySQL log, open the log-related configuration in the configuration. If you need to open MySQL slow query log, you need to open the slow query log. Execute the following statements in MySQL.
 
 ```sql
 SET GLOBAL slow_query_log = 'ON';
 
--- 未使用索引的查询也认为是一个可能的慢查询
+-- Queries that do not use indexes are also considered a possible slow query
 set global log_queries_not_using_indexes = 'ON';
 ```
 
 ```toml
 [inputs.mysql.log]
-    # 填入绝对路径
+    # Fill in the absolute path
     files = ["/var/log/mysql/*.log"]
 ```
 
-> 注意：在使用日志采集时，需要将 DataKit 安装在 MySQL 服务同一台主机中，或使用其它方式将日志挂载到 DataKit 所在机器
+> Note: When using log collection, you need to install the DataKit on the same host as the MySQL service, or use other methods to mount the log on the machine where the DataKit is located.
 
-MySQL 日志分为普通日志和慢日志两种。
+MySQL logs are divided into normal logs and slow logs.
 
-### MySQL 普通日志 {#mysql-app-logging}
+### MySQL Normal Logs {#mysql-app-logging}
 
-日志原文：
+Original log:
 
 ```
 2017-12-29T12:33:33.095243Z         2 Query     SELECT TABLE_SCHEMA, TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE CREATE_OPTIONS LIKE '%partitioned%';
 ```
 
-切割后的字段列表如下：
+The list of cut fields is as follows:
 
-| 字段名   | 字段值                                                   | 说明                         |
+| Field Name   | Field Value                                                   | Description                         |
 | -------- | -------------------------------------------------------- | ---------------------------- |
-| `status` | `Warning`                                                | 日志级别                     |
-| `msg`    | `System table 'plugin' is expected to be transactional.` | 日志内容                     |
-| `time`   | `1514520249954078000`                                    | 纳秒时间戳（作为行协议时间） |
+| `status` | `Warning`                                                | log level                     |
+| `msg`    | `System table 'plugin' is expected to be transactional.` | log content                     |
+| `time`   | `1514520249954078000`                                    | Nanosecond timestamp (as row protocol time) |
 
-### MySQL 慢查询日志 {#mysql-slow-logging}
+### MySQL Slow Query Log {#mysql-slow-logging}
 
-日志原文：
+Original log:
 
 ```
 # Time: 2019-11-27T10:43:13.460744Z
@@ -796,19 +791,19 @@ SET timestamp=1574851393;
 SELECT * FROM fruit f1, fruit f2, fruit f3, fruit f4, fruit f5
 ```
 
-切割后的字段列表如下：
+The list of cut fields is as follows:
 
-| 字段名              | 字段值                                                                                      | 说明                           |
+| Field Name              | Field Value                                                                                      | Description                           |
 | ---                 | ---                                                                                         | ---                            |
-| `bytes_sent`        | `123456`                                                                                    | 发送字节数                     |
+| `bytes_sent`        | `123456`                                                                                    | Number of bytes sent                     |
 | `db_host`           | `localhost`                                                                                 | hostname                       |
 | `db_ip`             | `1.2.3.4`                                                                                   | ip                             |
-| `db_slow_statement` | `SET timestamp=1574851393;\nSELECT * FROM fruit f1, fruit f2, fruit f3, fruit f4, fruit f5` | 慢查询 sql                     |
-| `db_user`           | `root[root]`                                                                                | 用户                           |
-| `lock_time`         | `0.000184`                                                                                  | 锁时间                         |
-| `query_id`          | `35`                                                                                        | 查询 id                        |
-| `query_time`        | `0.2l4922`                                                                                  | SQL 执行所消耗的时间           |
-| `rows_examined`     | `72`                                                                                        | 为了返回查询的数据所读取的行数 |
-| `rows_sent`         | `248832`                                                                                    | 查询返回的行数                 |
-| `thread_id`         | `55`                                                                                        | 线程 id                        |
-| `time`              | `1514520249954078000`                                                                       | 纳秒时间戳（作为行协议时间）   |
+| `db_slow_statement` | `SET timestamp=1574851393;\nSELECT * FROM fruit f1, fruit f2, fruit f3, fruit f4, fruit f5` | Slow query sql                     |
+| `db_user`           | `root[root]`                                                                                | User                           |
+| `lock_time`         | `0.000184`                                                                                  | Lock time                         |
+| `query_id`          | `35`                                                                                        | query id                        |
+| `query_time`        | `0.2l4922`                                                                                  | Time spent on SQL execution           |
+| `rows_examined`     | `72`                                                                                        | Number of rows read to return queried data |
+| `rows_sent`         | `248832`                                                                                    | Number of rows returned by query                 |
+| `thread_id`         | `55`                                                                                        | Thread id                        |
+| `time`              | `1514520249954078000`                                                                       | Nanosecond timestamp (as line protocol time)   |

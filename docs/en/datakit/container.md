@@ -1,27 +1,26 @@
-<!-- This file required to translate to EN. -->
 
-# 容器数据采集
+# Container Data Collection
 ---
 
 :fontawesome-brands-linux: :material-kubernetes: :material-docker:
 
 ---
 
-采集 container 和 Kubernetes 的指标、对象和日志数据，上报到观测云。
+Collect indicators, objects and log data of container and Kubernetes and report them to Guance Cloud.
 
-## 前置条件 {#requrements}
+## Preconditions {#requrements}
 
-- 目前 container 会默认连接 Docker 服务，需安装 Docker v17.04 及以上版本。
-- 采集 Kubernetes 数据需要 DataKit 以 [DaemonSet 方式部署](datakit-daemonset-deploy.md)。
-- 采集 Kubernetes Pod 指标数据，[需要 Kubernetes 安装 Metrics-Server 组件](https://github.com/kubernetes-sigs/metrics-server#installation){:target="_blank"}。
+- At present, container will connect to Docker service by default, and Docker v17.04 and above should be installed.
+- Collecting Kubernetes data requires the DataKit to [be deployed as a DaemonSet](datakit-daemonset-deploy.md).
+- Collecting Kubernetes Pod metric data [requires Kubernetes to install the Metrics-Server component](https://github.com/kubernetes-sigs/metrics-server#installation){:target="_blank"}.
 
-## 配置 {#config}
+## Configuration {#config}
 
-=== "主机安装"
+=== "host installation"
 
-    如果是纯 Docker 或 Containerd 环境，那么 DataKit 只能安装在宿主机上。
+    In the case of a pure Docker or Containerd environment, the DataKit can only be installed on the host machine.
     
-    进入 DataKit 安装目录下的 *conf.d/container* 目录，复制 *container.conf.sample* 并命名为 *container.conf*。示例如下：
+    Go to the `conf.d/container` directory under the DataKit installation directory, copy `container.conf.sample` and name it `container.conf`. Examples are as follows:
     
     ``` toml
         
@@ -81,78 +80,80 @@
         # more_tag = "some_other_value"
     
     ```
-    
+
+
+
 === "Kubernetes"
 
-    Kubernetes 中容器采集器一般默认自动开启，无需通过 *container.conf* 来配置。但可以通过如下环境变量来调整配置参数：
+    Container collectors in Kubernetes generally turn on automatically by default and do not need to be configured through *container.conf*. However, the configuration parameters can be adjusted by the following environment variables:
     
-    | 环境变量名                                                                    | 配置项含义                                                                                                                                   | 默认值                                            | 参数示例（yaml 配置时需要用英文双引号括起来）                                               |
+    | Environment Variable Name                                                                    | Configuration Item Meaning                                                                                                                                   | Default Value                                            | Parameter example (need to be enclosed in English double quotation marks when configuring yaml)                                               |
     | ----:                                                                         | ----:                                                                                                                                        | ----:                                             | ----                                                                                        |
-    | `ENV_INPUT_CONTAINER_DOCKER_ENDPOINT`                                         | 指定 Docker Engine 的 enpoint                                                                                                                | "unix:///var/run/docker.sock"                     | `"unix:///var/run/docker.sock"`                                                             |
-    | `ENV_INPUT_CONTAINER_CONTAINERD_ADDRESS`                                      | 指定 Containerd 的 endpoint                                                                                                                  | "/var/run/containerd/containerd.sock"             | `"/var/run/containerd/containerd.sock"`                                                     |
-    | `ENV_INPUT_CONTIANER_EXCLUDE_PAUSE_CONTAINER`                                 | 是否忽略 k8s 的 pause 容器                                                                                                                   | true                                              | `"true"`/`"false"`                                                                          |
-    | `ENV_INPUT_CONTAINER_ENABLE_CONTAINER_METRIC`                                 | 开启容器指标采集                                                                                                                             | true                                              | `"true"`/`"false"`                                                                          |
-    | `ENV_INPUT_CONTAINER_ENABLE_K8S_METRIC`                                       | 开启 k8s 指标采集                                                                                                                            | true                                              | `"true"`/`"false"`                                                                          |
-    | `ENV_INPUT_CONTAINER_EXTRACT_K8S_LABEL_AS_TAGS`                               | 是否追加 pod label 到采集的指标 tag 中                                                                                                       | false                                             | `"true"`/`"false"`                                                                          |
-    | `ENV_INPUT_CONTAINER_ENABLE_AUTO_DISCOVERY_OF_PROMETHEUS_SERVIER_ANNOTATIONS` | 是否开启自动发现 Prometheuse Service Annotations 并采集指标                                                                                  | false                                             | `"true"`/`"false"`                                                                          |
-    | `ENV_INPUT_CONTAINER_ENABLE_AUTO_DISCOVERY_OF_PROMETHEUS_POD_MONITORS`        | 是否开启自动发现 Prometheuse PodMonitor CRD 并采集指标，详见[Prometheus-Operator CRD 文档](kubernetes-prometheus-operator-crd.md#config)     | false                                             | `"true"`/`"false"`                                                                          |
-    | `ENV_INPUT_CONTAINER_ENABLE_AUTO_DISCOVERY_OF_PROMETHEUS_SERVICE_MONITORS`    | 是否开启自动发现 Prometheuse ServiceMonitor CRD 并采集指标，详见[Prometheus-Operator CRD 文档](kubernetes-prometheus-operator-crd.md#config) | false                                             | `"true"`/`"false"`                                                                          |
-    | `ENV_INPUT_CONTAINER_ENABLE_POD_METRIC`                                       | 开启 Pod 指标采集                                                                                                                            | true                                              | `"true"`/`"false"`                                                                          |
-    | `ENV_INPUT_CONTAINER_CONTAINER_INCLUDE_LOG`                                   | 容器日志的 include 条件，使用 image 过滤                                                                                                     | 无                                                | `"image:pubrepo.jiagouyun.com/datakit/logfwd*"`                                             |
-    | `ENV_INPUT_CONTAINER_CONTAINER_EXCLUDE_LOG`                                   | 容器日志的 exclude 条件，使用 image 过滤                                                                                                     | 无                                                | `"image:pubrepo.jiagouyun.com/datakit/logfwd*"`                                             |
-    | `ENV_INPUT_CONTAINER_KUBERNETES_URL`                                          | k8s api-server 访问地址                                                                                                                      | "https://kubernetes.default:443"                  | `"https://kubernetes.default:443"`                                                          |
-    | `ENV_INPUT_CONTAINER_BEARER_TOKEN`                                            | 访问 k8s api-server 所需的 token 文件路径                                                                                                    | "/run/secrets/kubernetes.io/serviceaccount/token" | `"/run/secrets/kubernetes.io/serviceaccount/token"`                                         |
-    | `ENV_INPUT_CONTAINER_BEARER_TOKEN_STRING`                                     | 访问 k8s api-server  所需的 token 字符串                                                                                                     | 无                                                | `"<your-token-string>"`                                                                     |
-    | `ENV_INPUT_CONTAINER_LOGGING_SEARCH_INTERVAL`                                 | 日志发现的时间间隔，即每隔多久检索一次日志，如果间隔太长，会导致忽略了一些存活较短的日志                                                     | "60s"                                             | `"30s"`                                                                            |
-    | `ENV_INPUT_CONTAINER_LOGGING_REMOVE_ANSI_ESCAPE_CODES`                        | 日志采集删除包含的颜色字符                                                                                                                   | false                                             | `"true"`/`"false"`                                                                          |
-    | `ENV_INPUT_CONTAINER_LOGGING_EXTRA_SOURCE_MAP`                                | 日志采集配置额外的 source 匹配，符合正则的 source 会被改名                                                                                   | 无                                                | `"source_regex*=new_source,regex*=new_source2"`  以英文逗号分割的多个"key=value"            |
-    | `ENV_INPUT_CONTAINER_LOGGING_SOURCE_MULTILINE_MAP_JSON`                       | 日志采集针对 source 的多行配置，可以使用 source 自动选择多行                                                                                 | 无                                                | `'{"source_nginx":"^\\d{4}", "source_redis":"^[A-Za-z_]"}'` JSON 格式的 map                 |
-    | `ENV_INPUT_CONTAINER_LOGGING_BLOCKING_MODE`                                   | 日志采集是否开启阻塞模式，数据发送失败会持续尝试，直到发送成功才再次采集                                                                     | true                                              | `"true"/"false"`                                                                            |
-    | `ENV_INPUT_CONTAINER_LOGGING_AUTO_MULTILINE_DETECTION`                        | 日志采集是否开启自动多行模式，开启后会在 patterns 列表中匹配适用的多行规则                                                                   | true                                              | `"true"/"false"`                                                                            |
-    | `ENV_INPUT_CONTAINER_LOGGING_AUTO_MULTILINE_EXTRA_PATTERNS_JSON`              | 日志采集的自动多行模式 pattens 列表，支持手动配置多个多行规则                                                                                | 默认规则详见[文档](logging.md#auto-multiline)     | `'["^\\d{4}-\\d{2}", "^[A-Za-z_]"]'` JSON 格式的字符串数组                                  |
-    | `ENV_INPUT_CONTAINER_LOGGING_MIN_FLUSH_INTERVAL`                              | 日志采集的最小上传间隔，如果在此期间没有新数据，将清空和上传缓存数据，避免堆积                                                               | "5s"                                              | `"10s"`                                                                                     |
-    | `ENV_INPUT_CONTAINER_LOGGING_MAX_MULTILINE_LIFE_DURATION`                     | 日志采集的单次多行最大生命周期，此周期结束将清空和上传现存的多行数据，避免堆积                                                               | "3s"                                              | `"5s"`                                                                                      |
-    | `ENV_INPUT_CONTAINER_TAGS`                                                    | 添加额外 tags                                                                                                                                | 无                                                | `"tag1=value1,tag2=value2"`       以英文逗号分割的多个"key=value"                           |
-    | `ENV_INPUT_CONTAINER_PROMETHEUS_MONITORING_MATCHES_CONFIG`                    | 添加 Prometheus-Operator CRD 的额外 config                                                                                                   | 无                                                | JSON 格式，详见[Prometheus-Operator CRD 文档](kubernetes-prometheus-operator-crd.md#config) |
-
-    环境变量额外说明：
+    | `ENV_INPUT_CONTAINER_DOCKER_ENDPOINT`                                         | Specify the enpoint of Docker Engine                                                                                                                | "unix:///var/run/docker.sock"                     | `"unix:///var/run/docker.sock"`                                                             |
+    | `ENV_INPUT_CONTAINER_CONTAINERD_ADDRESS`                                      | Specify the enpoint of Containerd                                                                                                                | "/var/run/containerd/containerd.sock"             | `"/var/run/containerd/containerd.sock"`                                                     |
+    | `ENV_INPUT_CONTIANER_EXCLUDE_PAUSE_CONTAINER`                                 | Wether to ignore pause container for k8s                                                                                                                   | true                                              | `"true"`/`"false"`                                                                          |
+    | `ENV_INPUT_CONTAINER_ENABLE_CONTAINER_METRIC`                                 | Start container index collection                                                                                                                             | true                                              | `"true"`/`"false"`                                                                          |
+    | `ENV_INPUT_CONTAINER_ENABLE_K8S_METRIC`                                       | Start k8s index collection                                                                                                                            | true                                              | `"true"`/`"false"`                                                                          |
+    | `ENV_INPUT_CONTAINER_EXTRACT_K8S_LABEL_AS_TAGS`                               | Whether to append pod label to the collected indicator tag                                                                                                       | false                                             | `"true"`/`"false"`                                                                          |
+    | `ENV_INPUT_CONTAINER_ENABLE_AUTO_DISCOVERY_OF_PROMETHEUS_SERVIER_ANNOTATIONS` | Whether to turn on Prometheuse Service Annotations and collect metrics automatically                                                                                  | false                                             | `"true"`/`"false"`                                                                          |
+    | `ENV_INPUT_CONTAINER_ENABLE_AUTO_DISCOVERY_OF_PROMETHEUS_POD_MONITORS`        | Whether to turn on automatic discovery of Prometheuse PodMonitor CRD and collection of metrics, see [Prometheus-Operator CRD doc](kubernetes-prometheus-operator-crd.md#config)     | false                                             | `"true"`/`"false"`                                                                          |
+    | `ENV_INPUT_CONTAINER_ENABLE_AUTO_DISCOVERY_OF_PROMETHEUS_SERVICE_MONITORS`    | Whether to turn on automatic discovery of Prometheuse ServiceMonitor CRD and collection of metrics, see [Prometheus-Operator CRD doc](kubernetes-prometheus-operator-crd.md#config) | false                                             | `"true"`/`"false"`                                                                          |
+    | `ENV_INPUT_CONTAINER_ENABLE_POD_METRIC`                                       | Turn on Pod index collection                                                                                                                            | true                                              | `"true"`/`"false"`                                                                          |
+    | `ENV_INPUT_CONTAINER_CONTAINER_INCLUDE_LOG`                                   | include condition of container log, filtering with image                                                                                                     | None                                                | `"image:pubrepo.jiagouyun.com/datakit/logfwd*"`                                             |
+    | `ENV_INPUT_CONTAINER_CONTAINER_EXCLUDE_LOG`                                   | exclude condition of container log, filtering with image                                                                                                     | None                                                | `"image:pubrepo.jiagouyun.com/datakit/logfwd*"`                                             |
+    | `ENV_INPUT_CONTAINER_KUBERNETES_URL`                                          | k8s api-server access address                                                                                                                      | "https://kubernetes.default:443"                  | `"https://kubernetes.default:443"`                                                          |
+    | `ENV_INPUT_CONTAINER_BEARER_TOKEN`                                            | The path to the token file required to access k8s api-server                                                                                                    | "/run/secrets/kubernetes.io/serviceaccount/token" | `"/run/secrets/kubernetes.io/serviceaccount/token"`                                         |
+    | `ENV_INPUT_CONTAINER_BEARER_TOKEN_STRING`                                     | Token string required to access k8s api-server                                                                                                     | None                                                | `"<your-token-string>"`                                                                     |
+    | `ENV_INPUT_CONTAINER_LOGGING_SEARCH_INTERVAL`                                 | The time interval of log discovery, that is, how often logs are retrieved. If the interval is too long, some logs with short survival will be ignored                                                     | "60s"                                             | `"30s"`                                                                            |
+    | `ENV_INPUT_CONTAINER_LOGGING_REMOVE_ANSI_ESCAPE_CODES`                        | Log collection deletes included color characters.                                                                                                                   | false                                             | `"true"`/`"false"`                                                                          |
+    | `ENV_INPUT_CONTAINER_LOGGING_EXTRA_SOURCE_MAP`                                | Log collection configures additional source matching, and the regular source will be renamed.                                                                                   | None                                                | `"source_regex*=new_source,regex*=new_source2"`  multiple "key=value" separated by English commas            |
+    | `ENV_INPUT_CONTAINER_LOGGING_SOURCE_MULTILINE_MAP_JSON`                       | For multi-row configuration of source, log collection can automatically select multiple rows using source.                                                                                 | None                                                | `'{"source_nginx":"^\\d{4}", "source_redis":"^[A-Za-z_]"}'` JSON 格式的 map                 |
+    | `ENV_INPUT_CONTAINER_LOGGING_BLOCKING_MODE`                                   | Whether log collection is in blocking mode, if data transmission fails, it will continue to try, and it will not be collected again until the transmission is successful.                                                                     | true                                              | `"true"/"false"`                                                                            |
+    | `ENV_INPUT_CONTAINER_LOGGING_AUTO_MULTILINE_DETECTION`                        | Whether the automatic multi-line mode is turned on for log collection; the applicable multi-line rules will be matched in the patterns list after it is turned on.                                                                   | true                                              | `"true"/"false"`                                                                            |
+    | `ENV_INPUT_CONTAINER_LOGGING_AUTO_MULTILINE_EXTRA_PATTERNS_JSON`              | Automatic multi-line pattern pattens list for log collection, supporting manual configuration of multiple multi-line rules.                                                                           | For more default rules, see [doc](logging.md#auto-multiline)     | `'["^\\d{4}-\\d{2}", "^[A-Za-z_]"]'`an array of strings in JSON format                                  |
+    | `ENV_INPUT_CONTAINER_LOGGING_MIN_FLUSH_INTERVAL`                              | Minimum upload interval for log collection. If there is no new data during this period, the cached data will be emptied and uploaded to avoid accumulation.                                                           | "5s"                                              | `"10s"`                                                                                     |
+    | `ENV_INPUT_CONTAINER_LOGGING_MAX_MULTILINE_LIFE_DURATION`                     | Maximum single multi-row life cycle of log collection. At the end of this cycle, existing multi-row data will be emptied and uploaded to avoid accumulation.                                     | "3s"                                              | `"5s"`                                                                                      |
+    | `ENV_INPUT_CONTAINER_TAGS`                                                    | add extra tags                                                                                                                                | None                                                | `"tag1=value1,tag2=value2"`       multiple "key=value" separated by English commas                          |
+    | `ENV_INPUT_CONTAINER_PROMETHEUS_MONITORING_MATCHES_CONFIG`                    | Add additional config for Prometheus-Operator CRD                                                                                 | None                                                | For more JSON format，see [Prometheus-Operator CRD doc](kubernetes-prometheus-operator-crd.md#config) |
     
-    - ENV_INPUT_CONTAINER_TAGS：如果配置文件（*container.conf*）中有同名 tag，将会被这里的配置覆盖掉。
+    Additional description of environment variables:
     
-    - ENV_INPUT_CONTAINER_LOGGING_EXTRA_SOURCE_MAP：指定替换 source，参数格式是 `正则表达式=new_source`，当某个 source 能够匹配正则表达式，则这个 source 会被 new_source 替换。如果能够替换成功，则不再使用 `annotations/labels` 中配置的 source（[:octicons-tag-24: Version-1.4.7](changelog.md#cl-1.4.7)）。如果要做到精确匹配，需要使用 `^` 和 `$` 将内容括起来。比如正则表达式写成 `datakit`，不仅可以匹配 `datakit` 字样，还能匹配到 `datakit123`；写成 `^datakit$` 则只能匹配到的 `datakit`。
+    - ENV_INPUT_CONTAINER_TAGS: If there is a tag with the same name in the configuration file (*container.conf*), it will be overwritten by the configuration here.
     
-    - ENV_INPUT_CONTAINER_LOGGING_SOURCE_MULTILINE_MAP_JSON：用来指定 source 到多行配置的映射，如果某个日志没有配置 `multiline_match`，就会根据它的 source 来此处查找和使用对应的 `multiline_match`。因为 `multiline_match` 值是正则表达式较为复杂，所以 value 格式是 JSON 字符串，可以使用 [json.cn](https://www.json.cn/){:target="_blank"} 辅助编写并压缩成一行。
+    - ENV_INPUT_CONTAINER_LOGGING_EXTRA_SOURCE_MAP: Specifying the replacement source with the argument format `regular expression=new_source`, which is replaced by new_source when a source matches the regular expression. If the replacement is successful, the source（[:octicons-tag-24: Version-1.4.7](changelog.md#cl-1.4.7)）configured in `annotations/labels` is no longer used. If you want to make an exact match, you need to use `^` and `$` to enclose the content. For example, if a regular expression is written as `datakit`, it can not only match the word `datakit` , but also match `datakit123`; Written as `^datakit$` , you can only match `datakit`.
+    
+    - ENV_INPUT_CONTAINER_LOGGING_SOURCE_MULTILINE_MAP_JSON: Used to specify the mapping of source to multi-row configuration. If a log is not configured with `multiline_match`, the corresponding `multiline_match` is found and used here based on its source. Because the `multiline_match` value is a regular expression, it is more complex, so the value format is a JSON string that can be coded and compressed into a single line using [json.cn](https://www.json.cn/){:target="_blank"}.
 
 
 ???+ attention
 
-    - 对象数据采集间隔是 5 分钟，指标数据采集间隔是 20 秒，暂不支持配置
-    - 采集到的日志, 单行（包括经过 `multiline_match` 处理后）最大长度为 32MB，超出部分会被截断且丢弃
+    - Object data collection interval is 5 minutes and metric data collection interval is 20 seconds. Configuration is not supported for the time being.
+    - Acquired log has a maximum length of 32MB per line (including after `multiline_match` processing), the excess will be truncated and discarded.
 
-#### Docker 和 Containerd sock 文件配置 {#docker-containerd-sock}
+#### Docker and Containerd Sock File Configuration {#docker-containerd-sock}
 
-如果 Docker 或 Containerd 的 sock 路径不是默认的，则需要指定一下 sock 文件路径，根据 DataKit 不同部署方式，其方式有所差别，以 Containerd 为例：
+If the sock path of Docker or Containerd is not the default, you need to specify the sock file path. According to different deployment methods of DataKit, the methods are different. Take Containerd as an example:
 
-=== "主机部署"
+=== "Host deployment"
 
-    修改 container.conf 的 `containerd_address` 配置项，将其设置为对应的 sock 路径。
+    Modify the `containerd_address` configuration entry of container.conf to set it to the corresponding sock path.
 
 === "Kubernetes"
 
-    更改 datakit.yaml 的 volumes `containerd-socket`，将新路径 mount 到 DataKit 中，同时配置环境变量 `ENV_INPUT_CONTAINER_CONTAINERD_ADDRESS`：
-
+    Change the volumes `containerd-socket` of DataKit.yaml, mount the new path into the DataKit, and configure the environment variables`ENV_INPUT_CONTAINER_CONTAINERD_ADDRESS`：
+    
     ``` yaml hl_lines="3 4 7 14"
-    # 添加 env
+    # add env
     - env:
       - name: ENV_INPUT_CONTAINER_CONTAINERD_ADDRESS
         value: /path/to/new/containerd/containerd.sock
     
-    # 修改 mountPath
+    # modify mountPath
       - mountPath: /path/to/new/containerd/containerd.sock
         name: containerd-socket
         readOnly: true
     
-    # 修改 volumes
+    # modify volumes
     volumes:
     - hostPath:
         path: /path/to/new/containerd/containerd.sock
@@ -160,17 +161,17 @@
     ```
 ---
 
-## 日志采集 {#logging-config}
+## Log Collection {#logging-config}
 
-日志采集的相关配置详见[此处](container-log.md)。
+See [here](container-log.md) for the relevant configuration of log collection.
 
-### Prometheuse Exporter 指标采集 {#k8s-prom-exporter}
+### Prometheuse Exporter Metrics Collection {#k8s-prom-exporter}
 
-如果 Pod/容器有暴露 Prometheuse 指标，有两种方式可以采集，参见[这里](kubernetes-prom.md)
+If the Pod/container has exposed Prometheuse metrics, there are two ways to collect them, see [here](kubernetes-prom.md).
 
-## 指标集 {#measurements}
+## Measurements {#measurements}
 
-以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.container.tags]` 指定其它标签：
+For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.container.tags]`:
 
 ```toml
  [inputs.container.tags]
@@ -179,7 +180,7 @@
   # ...
 ```
 
-### 指标 {#metrics}
+### Metrics {#metrics}
 
 
 
@@ -197,7 +198,7 @@
 
 容器指标数据，只采集正在运行的容器
 
-- 标签
+- tag
 
 
 | 标签名 | 描述    |
@@ -217,7 +218,7 @@
 |`pod_name`|pod 名称（容器由 k8s 创建时存在）|
 |`state`|运行状态，running（containerd 缺少此字段）|
 
-- 指标列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -233,8 +234,7 @@
 |`mem_usage`|内存使用量|int|B|
 |`mem_used_percent`|内存使用率，使用量除以可用总量|float|percent|
 |`network_bytes_rcvd`|从网络接收到的总字节数（containerd 缺少此字段）|int|B|
-|`network_bytes_sent`|向网络发送出的总字节数（containerd 缺少此字段）|int|B|
-
+|`network_bytes_sent`|向网络发送出的总字节数（containerd 缺少此字段）|int|B| 
 
 
 
@@ -248,14 +248,14 @@
 
 Kubernetes count 指标数据
 
-- 标签
+- tag
 
 
 | 标签名 | 描述    |
 |  ----  | --------|
 |`namespace`|namespace|
 
-- 指标列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -267,8 +267,7 @@ Kubernetes count 指标数据
 |`node`|node count|int|-|
 |`pod`|pod count|int|-|
 |`replica_set`|replica_set count|int|-|
-|`service`|service count|int|-|
-
+|`service`|service count|int|-| 
 
 
 
@@ -282,7 +281,7 @@ Kubernetes count 指标数据
 
 Kubernetes cron job 指标数据
 
-- 标签
+- tag
 
 
 | 标签名 | 描述    |
@@ -290,15 +289,14 @@ Kubernetes cron job 指标数据
 |`cronjob`|Name must be unique within a namespace.|
 |`namespace`|Namespace defines the space within each name must be unique.|
 
-- 指标列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
 | ---- |---- | :---:    | :----: |
 |`count`|Number of cronjobs|int|count|
 |`duration_since_last_schedule`|The duration since the last time the cronjob was scheduled.|int|s|
-|`spec_suspend`|This flag tells the controller to suspend subsequent executions.|bool|-|
-
+|`spec_suspend`|This flag tells the controller to suspend subsequent executions.|bool|-| 
 
 
 
@@ -312,7 +310,7 @@ Kubernetes cron job 指标数据
 
 Kubernetes Daemonset 指标数据
 
-- 标签
+- tag
 
 
 | 标签名 | 描述    |
@@ -320,7 +318,7 @@ Kubernetes Daemonset 指标数据
 |`daemonset`|Name must be unique within a namespace.|
 |`namespace`|Namespace defines the space within each name must be unique.|
 
-- 指标列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -331,8 +329,7 @@ Kubernetes Daemonset 指标数据
 |`misscheduled`|The number of nodes that are running the daemon pod, but are not supposed to run the daemon pod.|int|count|
 |`ready`|The number of nodes that should be running the daemon pod and have one or more of the daemon pod running and ready.|int|count|
 |`scheduled`|The number of nodes that are running at least one daemon pod and are supposed to run the daemon pod.|int|count|
-|`updated`|The total number of nodes that are running updated daemon pod.|int|count|
-
+|`updated`|The total number of nodes that are running updated daemon pod.|int|count| 
 
 
 
@@ -346,7 +343,7 @@ Kubernetes Daemonset 指标数据
 
 Kubernetes Deployment 指标数据
 
-- 标签
+- tag
 
 
 | 标签名 | 描述    |
@@ -354,7 +351,7 @@ Kubernetes Deployment 指标数据
 |`deployment`|Name must be unique within a namespace.|
 |`namespace`|Namespace defines the space within each name must be unique.|
 
-- 指标列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -367,8 +364,7 @@ Kubernetes Deployment 指标数据
 |`replicas_unavailable`|Total number of unavailable pods targeted by this deployment.|int|count|
 |`replicas_updated`|Total number of non-terminated pods targeted by this deployment that have the desired template spec.|int|count|
 |`rollingupdate_max_surge`|The maximum number of pods that can be scheduled above the desired number of pods. |int|count|
-|`rollingupdate_max_unavailable`|The maximum number of pods that can be unavailable during the update.|int|count|
-
+|`rollingupdate_max_unavailable`|The maximum number of pods that can be unavailable during the update.|int|count| 
 
 
 
@@ -378,7 +374,7 @@ Kubernetes Deployment 指标数据
 
 Kubernetes Endpoints 指标数据
 
-- 标签
+- tag
 
 
 | 标签名 | 描述    |
@@ -386,15 +382,14 @@ Kubernetes Endpoints 指标数据
 |`endpoint`|Name must be unique within a namespace.|
 |`namespace`|Namespace defines the space within each name must be unique.|
 
-- 指标列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
 | ---- |---- | :---:    | :----: |
 |`address_available`|Number of addresses available in endpoint.|int|count|
 |`address_not_ready`|Number of addresses not ready in endpoint.|int|count|
-|`count`|Number of endpoints|int|count|
-
+|`count`|Number of endpoints|int|count| 
 
 
 
@@ -408,7 +403,7 @@ Kubernetes Endpoints 指标数据
 
 Kubernetes Job 指标数据
 
-- 标签
+- tag
 
 
 | 标签名 | 描述    |
@@ -416,7 +411,7 @@ Kubernetes Job 指标数据
 |`job`|Name must be unique within a namespace.|
 |`namespace`|Namespace defines the space within each name must be unique.|
 
-- 指标列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -425,8 +420,7 @@ Kubernetes Job 指标数据
 |`completion_succeeded`|The job has completed its execution.|int|count|
 |`count`|Number of jobs|int|count|
 |`failed`|The number of pods which reached phase Failed.|int|count|
-|`succeeded`|The number of pods which reached phase Succeeded.|int|count|
-
+|`succeeded`|The number of pods which reached phase Succeeded.|int|count| 
 
 
 
@@ -440,7 +434,7 @@ Kubernetes Job 指标数据
 
 Kubernetes Node 指标数据
 
-- 标签
+- tag
 
 
 | 标签名 | 描述    |
@@ -448,7 +442,7 @@ Kubernetes Node 指标数据
 |`node`|Name must be unique within a namespace. (depercated)|
 |`node_name`|Name must be unique within a namespace.|
 
-- 指标列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -461,8 +455,7 @@ Kubernetes Node 指标数据
 |`memory_allocatable`|The allocatable memory of a node that is available for scheduling.|int|-|
 |`memory_capacity`|The memory capacity of a node.|int|-|
 |`pods_allocatable`|The allocatable pods of a node that is available for scheduling.|int|-|
-|`pods_capacity`|The pods capacity of a node.|int|-|
-
+|`pods_capacity`|The pods capacity of a node.|int|-| 
 
 
 
@@ -476,7 +469,7 @@ Kubernetes Node 指标数据
 
 Kubernetes pod 指标数据
 
-- 标签
+- tag
 
 
 | 标签名 | 描述    |
@@ -486,7 +479,7 @@ Kubernetes pod 指标数据
 |`pod`|Name must be unique within a namespace.|
 |`pod_name`|Name must be unique within a namespace. (depercated)|
 
-- 指标列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -494,8 +487,7 @@ Kubernetes pod 指标数据
 |`count`|Number of pods|int|count|
 |`cpu_usage`|The percentage of cpu used|float|percent|
 |`memory_usage_bytes`|The number of memory used in bytes|float|B|
-|`ready`|Describes whether the pod is ready to serve requests.|int|count|
-
+|`ready`|Describes whether the pod is ready to serve requests.|int|count| 
 
 
 
@@ -509,7 +501,7 @@ Kubernetes pod 指标数据
 
 Kubernetes replicaset 指标数据
 
-- 标签
+- tag
 
 
 | 标签名 | 描述    |
@@ -518,7 +510,7 @@ Kubernetes replicaset 指标数据
 |`namespace`|Namespace defines the space within each name must be unique.|
 |`replica_set`|Name must be unique within a namespace.|
 
-- 指标列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -527,7 +519,7 @@ Kubernetes replicaset 指标数据
 |`fully_labeled_replicas`|The number of fully labeled replicas per ReplicaSet.|int|count|
 |`replicas`|Replicas is the most recently oberved number of replicas.|int|count|
 |`replicas_desired`|Replicas is the number of desired replicas.|int|count|
-|`replicas_ready`|The number of ready replicas for this replica set.|int|count|
+|`replicas_ready`|The number of ready replicas for this replica set.|int|count| 
 
 
 
@@ -539,8 +531,7 @@ Kubernetes replicaset 指标数据
 
 
 
-
-### 对象 {#objects}
+### Objects {#objects}
 
 
 
@@ -562,7 +553,7 @@ Kubernetes replicaset 指标数据
 
 容器对象数据，如果容器处于非 running 状态，则`cpu_usage`等指标将不存在
 
-- 标签
+- Tags
 
 
 | 标签名 | 描述    |
@@ -585,7 +576,7 @@ Kubernetes replicaset 指标数据
 |`state`|运行状态，running/exited/removed（containerd 缺少此字段）|
 |`status`|容器状态，例如 `Up 5 hours`（containerd 缺少此字段）|
 
-- 指标列表
+- Metrics
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -620,7 +611,7 @@ Kubernetes replicaset 指标数据
 
 Kubernetes cluster role 对象数据
 
-- 标签
+- Tags
 
 
 | 标签名 | 描述    |
@@ -628,7 +619,7 @@ Kubernetes cluster role 对象数据
 |`cluster_role_name`|Name must be unique within a namespace.|
 |`name`|UID|
 
-- 指标列表
+- Metrics
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -650,7 +641,7 @@ Kubernetes cluster role 对象数据
 
 Kubernetes cron job 对象数据
 
-- 标签
+- Tags
 
 
 | 标签名 | 描述    |
@@ -659,7 +650,7 @@ Kubernetes cron job 对象数据
 |`name`|UID|
 |`namespace`|Namespace defines the space within each name must be unique.|
 
-- 指标列表
+- Metrics
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -683,7 +674,7 @@ Kubernetes cron job 对象数据
 
 Kubernetes Deployment 对象数据
 
-- 标签
+- Tags
 
 
 | 标签名 | 描述    |
@@ -692,7 +683,7 @@ Kubernetes Deployment 对象数据
 |`name`|UID|
 |`namespace`|Namespace defines the space within each name must be unique.|
 
-- 指标列表
+- Metrics
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -732,7 +723,7 @@ Kubernetes Deployment 对象数据
 
 Kubernetes Job 对象数据
 
-- 标签
+- Tags
 
 
 | 标签名 | 描述    |
@@ -741,7 +732,7 @@ Kubernetes Job 对象数据
 |`name`|UID|
 |`namespace`|Namespace defines the space within each name must be unique.|
 
-- 指标列表
+- Metrics
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -769,7 +760,7 @@ Kubernetes Job 对象数据
 
 Kubernetes node 对象数据
 
-- 标签
+- Tags
 
 
 | 标签名 | 描述    |
@@ -782,7 +773,7 @@ Kubernetes node 对象数据
 |`role`|Node role. (master/node)|
 |`status`|NodePhase is the recently observed lifecycle phase of the node. (Pending/Running/Terminated)|
 
-- 指标列表
+- Metrics
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -804,7 +795,7 @@ Kubernetes node 对象数据
 
 Kubernetes pod 对象数据
 
-- 标签
+- Tags
 
 
 | 标签名 | 描述    |
@@ -820,7 +811,7 @@ Kubernetes pod 对象数据
 |`state`|Reason the container is not yet running. (Depercated, use status)|
 |`status`|Reason the container is not yet running.|
 
-- 指标列表
+- Metrics
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -848,7 +839,7 @@ Kubernetes pod 对象数据
 
 Kubernetes replicaset 对象数据
 
-- 标签
+- Tags
 
 
 | 标签名 | 描述    |
@@ -858,7 +849,7 @@ Kubernetes replicaset 对象数据
 |`namespace`|Namespace defines the space within each name must be unique.|
 |`replica_set_name`|Name must be unique within a namespace.|
 
-- 指标列表
+- Metrics
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -877,7 +868,7 @@ Kubernetes replicaset 对象数据
 
 Kubernetes service 对象数据
 
-- 标签
+- Tags
 
 
 | 标签名 | 描述    |
@@ -887,7 +878,7 @@ Kubernetes service 对象数据
 |`service_name`|Name must be unique within a namespace.|
 |`type`|type determines how the Service is exposed. Defaults to ClusterIP. (ClusterIP/NodePort/LoadBalancer/ExternalName)|
 
-- 指标列表
+- Metrics
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -903,7 +894,7 @@ Kubernetes service 对象数据
 
 
 
-### 日志 {#logging}
+### Logs {#logging}
 
 
 
@@ -917,7 +908,7 @@ Kubernetes service 对象数据
 
 
 
-- 标签
+- tag
 
 
 | 标签名 | 描述    |
@@ -932,7 +923,7 @@ Kubernetes service 对象数据
 |`pod_name`|pod 名称（容器由 k8s 创建时存在）|
 |`service`|服务名称|
 
-- 字段列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -942,8 +933,7 @@ Kubernetes service 对象数据
 |`log_read_time`|数据从文件中读取到的这一刻的时间戳，单位是秒|s|-|
 |`message`|日志源数据|string|-|
 |`message_length`|message 字段的长度，单位字节|B|count|
-|`status`|日志状态，info/emerg/alert/critical/error/warning/debug/OK/unknown|string|-|
-
+|`status`|日志状态，info/emerg/alert/critical/error/warning/debug/OK/unknown|string|-| 
 
 
 
@@ -993,7 +983,7 @@ Kubernetes service 对象数据
 
 Kubernetes event 日志数据
 
-- 标签
+- tag
 
 
 | 标签名 | 描述    |
@@ -1006,12 +996,12 @@ Kubernetes event 日志数据
 |`status`|log status|
 |`type`|Type of this event (Normal, Warning), new types could be added in the future.|
 
-- 字段列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
 | ---- |---- | :---:    | :----: |
-|`message`|event log details|string|-|
+|`message`|event log details|string|-| 
 
 
 
@@ -1054,11 +1044,11 @@ Kubernetes event 日志数据
 
 ## FAQ {#faq}
 
-### Kubernetes YAML 敏感字段屏蔽 {#yaml-secret}
+### Kubernetes YAML Sensitive Field Mask {#yaml-secret}
 
-Datakit 会采集 Kubernetes Pod 或 Service 等资源的 yaml 配置，并存储到对象数据的 `yaml` 字段中。如果该 yaml 中包含敏感数据（例如密码），Datakit 暂不支持手动配置屏蔽敏感字段，推荐使用 Kubernetes 官方的做法，即使用 ConfigMap 或者 Secret 来隐藏敏感字段。
+Datakit collects yaml configurations for resources such as Kubernetes Pod or Service and stores them in the `yaml` field of the object data. If the yaml contains sensitive data (such as passwords), Datakit does not support manually configuring and shielding sensitive fields for the time being. It is recommended to use Kubernetes' official practice, that is, to use ConfigMap or Secret to hide sensitive fields.
 
-例如，现在需要在 env 中添加一份密码，正常情况下是这样：
+For example, you now need to add a password to the env, which would normally be like this:
 
 ```
     containers:
@@ -1069,9 +1059,9 @@ Datakit 会采集 Kubernetes Pod 或 Service 等资源的 yaml 配置，并存�
 	  value: password123
 ```
 
-在编排 yaml 配置会将密码明文存储，这是很不安全的。可以使用 Kubernetes Secret 实现隐藏，方法如下：
+When orchestrating yaml configuration, passwords will be stored in clear text, which is very unsafe. You can use Kubernetes Secret to implement hiding as follows:
 
-创建一个 Secret：
+Create a Secret：
 
 ```
 apiVersion: v1
@@ -1084,13 +1074,13 @@ data:
   password: password123
 ```
 
-执行：
+Execute:
 
 ```
 kubectl apply -f mysecret.yaml
 ```
 
-在 env 中使用 Secret：
+Using Secret in env:
 
 ```
     containers:
@@ -1105,10 +1095,10 @@ kubectl apply -f mysecret.yaml
             optional: false
 ```
 
-详见[官方文档](https://kubernetes.io/zh-cn/docs/concepts/configuration/secret/#using-secrets-as-environment-variables)。
+See [doc](https://kubernetes.io/zh-cn/docs/concepts/configuration/secret/#using-secrets-as-environment-variables).
 
-## 延伸阅读 {#more-reading}
+## More Readings {#more-reading}
 
-- [eBPF 采集器：支持容器环境下的流量采集](ebpf.md)
-- [正确使用正则表达式来配置](datakit-input-conf.md#debug-regex) 
-- [Kubernetes 下 DataKit 的几种配置方式](k8s-config-how-to.md)
+- [eBPF Collector: Support flow collection in container environment](ebpf.md)
+- [Proper use of regular expressions to configure](datakit-input-conf.md#debug-regex) 
+- [Several configurations of DataKit under Kubernetes](k8s-config-how-to.md)

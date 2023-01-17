@@ -1,4 +1,3 @@
-<!-- This file required to translate to EN. -->
 
 # CoreDNS
 ---
@@ -7,17 +6,17 @@
 
 ---
 
-CoreDNS 采集器用于采集 CoreDNS 相关的指标数据。
+CoreDNS collector is used to collect metric data related to CoreDNS.
 
-## 前置条件 {#requirements}
+## Preconditions {#requirements}
 
-- CoreDNS [配置](https://coredns.io/plugins/metrics/){:target="_blank"}启用 `prometheus` 插件
+- CoreDNS [configuration](https://coredns.io/plugins/metrics/){:target="_blank"}; Enable the `prometheus` plug-in
 
-## 配置 {#input-config}
+## Configuration {#input-config}
 
-=== "主机安装"
+=== "Host Installation"
 
-    进入 DataKit 安装目录下的 `conf.d/coredns` 目录，复制 `coredns.conf.sample` 并命名为 `coredns.conf`。示例如下：
+    Go to the `conf.d/coredns` directory under the DataKit installation directory, copy `coredns.conf.sample` and name it `coredns.conf`. Examples are as follows:
     
     ```toml
         
@@ -93,20 +92,20 @@ CoreDNS 采集器用于采集 CoreDNS 相关的指标数据。
     	name = "coredns"
     
     ```
-
-    配置好后，[重启 DataKit](datakit-service-how-to.md#manage-service) 即可。
+    
+    Once configured, [restart DataKit](datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+    The collector can now be turned on by [ConfigMap injection collector configuration](datakit-daemonset-deploy.md#configmap-setting).
 
-## 指标集 {#metrics}
+## Measurements {#metrics}
 
 
 
 ### `coredns_acl`
 
-- 标签
+- tag
 
 
 | 标签名 | 描述    |
@@ -114,7 +113,7 @@ CoreDNS 采集器用于采集 CoreDNS 相关的指标数据。
 |`server`|监听服务地址|
 |`zone`|请求所属区域|
 
-- 指标列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -126,7 +125,7 @@ CoreDNS 采集器用于采集 CoreDNS 相关的指标数据。
 
 ### `coredns_cache`
 
-- 标签
+- tag
 
 
 | 标签名 | 描述    |
@@ -134,7 +133,7 @@ CoreDNS 采集器用于采集 CoreDNS 相关的指标数据。
 |`server`|监听服务地址|
 |`type`|缓存类型|
 
-- 指标列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -150,7 +149,7 @@ CoreDNS 采集器用于采集 CoreDNS 相关的指标数据。
 
 ### `coredns_dnssec`
 
-- 标签
+- tag
 
 
 | 标签名 | 描述    |
@@ -158,7 +157,7 @@ CoreDNS 采集器用于采集 CoreDNS 相关的指标数据。
 |`server`|监听服务地址|
 |`type`|签名|
 
-- 指标列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -171,7 +170,7 @@ CoreDNS 采集器用于采集 CoreDNS 相关的指标数据。
 
 ### `coredns_forward`
 
-- 标签
+- tag
 
 
 | 标签名 | 描述    |
@@ -180,7 +179,7 @@ CoreDNS 采集器用于采集 CoreDNS 相关的指标数据。
 |`rcode`|上游返回的RCODE|
 |`to`|上游服务器|
 
-- 指标列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -196,7 +195,7 @@ CoreDNS 采集器用于采集 CoreDNS 相关的指标数据。
 
 ### `coredns_grpc`
 
-- 标签
+- tag
 
 
 | 标签名 | 描述    |
@@ -204,7 +203,7 @@ CoreDNS 采集器用于采集 CoreDNS 相关的指标数据。
 |`rcode`|上游返回的RCODE|
 |`to`|上游服务器|
 
-- 指标列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -217,11 +216,11 @@ CoreDNS 采集器用于采集 CoreDNS 相关的指标数据。
 
 ### `coredns_hosts`
 
-- 标签
+- tag
 
 暂无
 
-- 指标列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -233,7 +232,7 @@ CoreDNS 采集器用于采集 CoreDNS 相关的指标数据。
 
 ### `coredns_template`
 
-- 标签
+- tag
 
 
 | 标签名 | 描述    |
@@ -243,7 +242,7 @@ CoreDNS 采集器用于采集 CoreDNS 相关的指标数据。
 |`server`|监听服务地址|
 |`template`|模板|
 
-- 指标列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -256,7 +255,7 @@ CoreDNS 采集器用于采集 CoreDNS 相关的指标数据。
 
 ### `coredns`
 
-- 标签
+- tag
 
 
 | 标签名 | 描述    |
@@ -268,7 +267,7 @@ CoreDNS 采集器用于采集 CoreDNS 相关的指标数据。
 |`type`|查询类型|
 |`zone`|请求所属区域|
 
-- 指标列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |

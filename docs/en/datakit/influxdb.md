@@ -1,23 +1,22 @@
-<!-- This file required to translate to EN. -->
 
 # InfluxDB
 ---
 
-:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](index.md#legends "支持选举")
+:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](index.md#legends "支持选举")index.md#legends "支持选举")
 
 ---
 
-InfluxDB 采集器，用于采集 InfluxDB 的数据。
+The InfuxDB collector is used to collect the data of the InfuxDB.
 
-## 前置条件 {#requirements}
+## Preconditions {#requirements}
 
-InfluxDB 采集器仅适用于 InfluxDB v1.x, 对于 InfluxDB v2.x 需要使用 prom 采集器进行采集
+The infuxdb collector is only applicable to infuxdb v1.x, and the prom collector is required for infuxdb v2.x.
 
-## InfluxDB 采集器配置 {#config}
+## InfluxDB Collector Configuration {#config}
 
-=== "主机安装"
+=== "Host Installation"
 
-    进入 DataKit 安装目录下的 `conf.d/influxdb` 目录，复制 `influxdb.conf.sample` 并命名为 `influxdb.conf`。示例如下：
+    Go to the `conf.d/influxdb` directory under the DataKit installation directory, copy `influxdb.conf.sample` and name it `influxdb.conf`. Examples are as follows:
     
     ```toml
         
@@ -55,25 +54,25 @@ InfluxDB 采集器仅适用于 InfluxDB v1.x, 对于 InfluxDB v2.x 需要使用 
         # more_tag = "some_other_value"
     
     ```
-
-    配置好后，[重启 DataKit](datakit-service-how-to.md#manage-service) 即可。
+    
+    Once configured, [restart DataKit](datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+    The collector can now be turned on by [ConfigMap injection collector configuration](datakit-daemonset-deploy.md#configmap-setting).
 
-### 适用于 InfluxDB v2.x 的 prom 采集器配置示例 {#prom-config}
+### Sample Prom Collector Configuration for InfuxDB v2.x {#prom-config}
 
 ```toml
 [[inputs.prom]]
-  ## Exporter 地址
+  ## Exporter address
   url = "http://127.0.0.1:8086/metrics"
 
   metric_types = ["counter", "gauge"]
 
   interval = "10s"
 
-  ## TLS 配置
+  ## TLS settings
   tls_open = false
   # tls_ca = "/tmp/ca.crt"
   # tls_cert = "/tmp/peer.crt"
@@ -87,7 +86,7 @@ InfluxDB 采集器仅适用于 InfluxDB v1.x, 对于 InfluxDB v2.x 需要使用 
     prefix = "go_"
     name = "influxdb_v2_go"
   
-  ## histogram 类型
+  ## histogram type
   # [[inputs.prom.measurements]]
   #   prefix = "http_api_request_"
   #   name = "influxdb_v2_http_request"
@@ -111,9 +110,9 @@ InfluxDB 采集器仅适用于 InfluxDB v1.x, 对于 InfluxDB v2.x 需要使用 
 
 ```
 
-## 指标集 {#measurements}
+## Measurements {#measurements}
 
-以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.influxdb.tags]` 指定其它标签：
+For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.influxdb.tags]`:
 
 ``` toml
  [inputs.influxdb.tags]
@@ -126,14 +125,14 @@ InfluxDB 采集器仅适用于 InfluxDB v1.x, 对于 InfluxDB v2.x 需要使用 
 
 ### `influxdb_cq`
 
--  标签
+- tag
 
 
 | 标签名 | 描述    |
 |  ----  | --------|
 |`host`|host name|
 
-- 指标列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -145,7 +144,7 @@ InfluxDB 采集器仅适用于 InfluxDB v1.x, 对于 InfluxDB v2.x 需要使用 
 
 ### `influxdb_database`
 
--  标签
+- tag
 
 
 | 标签名 | 描述    |
@@ -153,7 +152,7 @@ InfluxDB 采集器仅适用于 InfluxDB v1.x, 对于 InfluxDB v2.x 需要使用 
 |`database`|database name|
 |`host`|host name|
 
-- 指标列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -165,7 +164,7 @@ InfluxDB 采集器仅适用于 InfluxDB v1.x, 对于 InfluxDB v2.x 需要使用 
 
 ### `influxdb_httpd`
 
--  标签
+- tag
 
 
 | 标签名 | 描述    |
@@ -173,7 +172,7 @@ InfluxDB 采集器仅适用于 InfluxDB v1.x, 对于 InfluxDB v2.x 需要使用 
 |`bind`|bind port|
 |`host`|host name|
 
-- 指标列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -207,14 +206,14 @@ InfluxDB 采集器仅适用于 InfluxDB v1.x, 对于 InfluxDB v2.x 需要使用 
 
 ### `influxdb_memstats`
 
--  标签
+- tag
 
 
 | 标签名 | 描述    |
 |  ----  | --------|
 |`host`|host name|
 
-- 指标列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -252,14 +251,14 @@ InfluxDB 采集器仅适用于 InfluxDB v1.x, 对于 InfluxDB v2.x 需要使用 
 
 ### `influxdb_queryExecutor`
 
--  标签
+- tag
 
 
 | 标签名 | 描述    |
 |  ----  | --------|
 |`host`|host name|
 
-- 指标列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -274,14 +273,14 @@ InfluxDB 采集器仅适用于 InfluxDB v1.x, 对于 InfluxDB v2.x 需要使用 
 
 ### `influxdb_runtime`
 
--  标签
+- tag
 
 
 | 标签名 | 描述    |
 |  ----  | --------|
 |`host`|host name|
 
-- 指标列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -306,7 +305,7 @@ InfluxDB 采集器仅适用于 InfluxDB v1.x, 对于 InfluxDB v2.x 需要使用 
 
 ### `influxdb_shard`
 
--  标签
+- tag
 
 
 | 标签名 | 描述    |
@@ -320,7 +319,7 @@ InfluxDB 采集器仅适用于 InfluxDB v1.x, 对于 InfluxDB v2.x 需要使用 
 |`retention_policy`|retention policy|
 |`wal_path`|wal path|
 
-- 指标列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -341,14 +340,14 @@ InfluxDB 采集器仅适用于 InfluxDB v1.x, 对于 InfluxDB v2.x 需要使用 
 
 ### `influxdb_subscriber`
 
--  标签
+- tag
 
 
 | 标签名 | 描述    |
 |  ----  | --------|
 |`host`|host name|
 
-- 指标列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -361,7 +360,7 @@ InfluxDB 采集器仅适用于 InfluxDB v1.x, 对于 InfluxDB v2.x 需要使用 
 
 ### `influxdb_tsm1_cache`
 
--  标签
+- tag
 
 
 | 标签名 | 描述    |
@@ -375,7 +374,7 @@ InfluxDB 采集器仅适用于 InfluxDB v1.x, 对于 InfluxDB v2.x 需要使用 
 |`retention_policy`|retention policy|
 |`wal_path`|wal path|
 
-- 指标列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -394,7 +393,7 @@ InfluxDB 采集器仅适用于 InfluxDB v1.x, 对于 InfluxDB v2.x 需要使用 
 
 ### `influxdb_tsm1_engine`
 
--  标签
+- tag
 
 
 | 标签名 | 描述    |
@@ -408,7 +407,7 @@ InfluxDB 采集器仅适用于 InfluxDB v1.x, 对于 InfluxDB v2.x 需要使用 
 |`retention_policy`|retention policy|
 |`wal_path`|wal path|
 
-- 指标列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -447,7 +446,7 @@ InfluxDB 采集器仅适用于 InfluxDB v1.x, 对于 InfluxDB v2.x 需要使用 
 
 ### `influxdb_tsm1_filestore`
 
--  标签
+- tag
 
 
 | 标签名 | 描述    |
@@ -461,7 +460,7 @@ InfluxDB 采集器仅适用于 InfluxDB v1.x, 对于 InfluxDB v2.x 需要使用 
 |`retention_policy`|retention policy|
 |`wal_path`|wal path|
 
-- 指标列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -473,7 +472,7 @@ InfluxDB 采集器仅适用于 InfluxDB v1.x, 对于 InfluxDB v2.x 需要使用 
 
 ### `influxdb_tsm1_wal`
 
--  标签
+- tag
 
 
 | 标签名 | 描述    |
@@ -486,7 +485,7 @@ InfluxDB 采集器仅适用于 InfluxDB v1.x, 对于 InfluxDB v2.x 需要使用 
 |`path`|path|
 |`retention_policy`|retention policy|
 
-- 指标列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -500,14 +499,14 @@ InfluxDB 采集器仅适用于 InfluxDB v1.x, 对于 InfluxDB v2.x 需要使用 
 
 ### `influxdb_write`
 
--  标签
+- tag
 
 
 | 标签名 | 描述    |
 |  ----  | --------|
 |`host`|host name|
 
-- 指标列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -524,13 +523,13 @@ InfluxDB 采集器仅适用于 InfluxDB v1.x, 对于 InfluxDB v2.x 需要使用 
 
 
 
-## 日志采集 {#logging}
+## Log Collection {#logging}
 
-如需采集 InfluxDB 的日志，可在 influxdb.conf 中 将 `files` 打开，并写入 InfluxDB 日志文件的绝对路径。比如：
+To collect the InfuxDB log, open `files` in infuxdb.conf and write to the absolute path of the InfuxDB log file. For example:
 
 ```toml
 [inputs.influxdb.log]
-    # 填入绝对路径
+    # Fill in the absolute path
     files = ["/path/to/demo.log"] 
     ## grok pipeline script path
     pipeline = "influxdb.p"

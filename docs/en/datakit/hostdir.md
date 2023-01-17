@@ -1,23 +1,22 @@
-<!-- This file required to translate to EN. -->
 
-# 主机目录
+# Host Directory
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
 
 ---
 
-hostdir 采集器用于目录文件的采集，例如文件个数，所有文件大小等。
+Hostdir collector is used to collect directory files, such as the number of files, all file sizes, etc.
 
-## 前置条件 {#requrements}
+## Preconditions {#requrements}
 
-暂无
+None
 
-## 配置 {#config}
+## Configuration {#config}
 
-=== "主机安装"
+=== "Host Installation"
 
-    进入 DataKit 安装目录下的 `conf.d/host` 目录，复制 `hostdir.conf.sample` 并命名为 `hostdir.conf`。示例如下：
+    Go to the `conf.d/host` directory under the DataKit installation directory, copy `hostdir.conf.sample` and name it `hostdir.conf`. Examples are as follows:
     
     ```toml
         
@@ -36,17 +35,17 @@ hostdir 采集器用于目录文件的采集，例如文件个数，所有文件
       # some_tag = "some_value"
       # more_tag = "some_other_value"
     ```
-
-    配置好后，[重启 DataKit](datakit-service-how-to.md#manage-service) 即可。
+    
+    Once configured, [restart DataKit](datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+    The collector can now be turned on by [ConfigMap injection collector configuration](datakit-daemonset-deploy.md#configmap-setting).
 
 
-## 指标集 {#measurements}
+## Measurements {#measurements}
 
-以下所有指标集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.hostdir.tags]` 指定其它标签：
+For all of the following metric sets, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.hostdir.tags]`:
 
 ``` toml
  [inputs.hostdir.tags]
@@ -59,7 +58,7 @@ hostdir 采集器用于目录文件的采集，例如文件个数，所有文件
 
 ### `hostdir`
 
--  标签
+- tag
 
 
 | 标签名 | 描述    |
@@ -68,7 +67,7 @@ hostdir 采集器用于目录文件的采集，例如文件个数，所有文件
 |`file_system`|file system type|
 |`host_directory`|the start Dir|
 
-- 指标列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |

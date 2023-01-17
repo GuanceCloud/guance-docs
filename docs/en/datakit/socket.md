@@ -1,4 +1,3 @@
-<!-- This file required to translate to EN. -->
 
 # TCP/UDP
 ---
@@ -7,17 +6,17 @@
 
 ---
 
-socket 采集器用于采集 UDP/TCP 端口信息。
+The socket collector is used to collect UDP/TCP port information.
 
-## 前置条件 {#requrements}
+## Preconditions {#requrements}
 
-UDP 指标需要操作系统有 `nc` 程序
+UDP metrics require the operating system to have `nc` programs.
 
-## 配置 {#config}
+## Configuration {#config}
 
-=== "主机安装"
+=== "Host Installation"
 
-    进入 DataKit 安装目录下的 `conf.d/socket` 目录，复制 `socket.conf.sample` 并命名为 `socket.conf`。示例如下：
+    Go to the `conf.d/socket` directory under the DataKit installation directory, copy `socket.conf.sample` and name it `socket.conf`. Examples are as follows:
     
     ```toml
         
@@ -37,15 +36,15 @@ UDP 指标需要操作系统有 `nc` 程序
       # more_tag = "some_other_value"
     ```
     
-    配置好后，重启 DataKit 即可。
+    After configuration, restart DataKit.
 
 === "Kubernetes"
 
-    目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+    The collector can now be turned on by [ConfigMap Injection Collector Configuration](datakit-daemonset-deploy.md#configmap-setting).
 
-## 指标集 {#requrements}
+## Measurements {#requrements}
 
-以下所有指标集，默认会追加 `proto/dest_host/dest_port` 全局 tag，也可以在配置中通过 `[inputs.socket.tags]` 指定其它标签：
+For all of the following measurements, the `proto/dest_host/dest_port` global tag is appended by default, or other tags can be specified in the configuration by `[inputs.socket.tags]`:
 
 ``` toml
  [inputs.socket.tags]
@@ -58,7 +57,7 @@ UDP 指标需要操作系统有 `nc` 程序
 
 ### `tcp`
 
--  标签
+- tag
 
 
 | 标签名 | 描述    |
@@ -67,7 +66,7 @@ UDP 指标需要操作系统有 `nc` 程序
 |`dest_port`|示例 80|
 |`proto`|示例 tcp|
 
-- 指标列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -80,7 +79,7 @@ UDP 指标需要操作系统有 `nc` 程序
 
 ### `udp`
 
--  标签
+- tag
 
 
 | 标签名 | 描述    |
@@ -89,7 +88,7 @@ UDP 指标需要操作系统有 `nc` 程序
 |`dest_port`|目的主机的端口号|
 |`proto`|示例 udp|
 
-- 指标列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |

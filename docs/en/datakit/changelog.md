@@ -1,5 +1,4 @@
-<!-- This file required to translate to EN. -->
-# Changelog
+# 更新日志
 ---
 
 <!--

@@ -1,4 +1,3 @@
-<!-- This file required to translate to EN. -->
 
 # etcd
 ---
@@ -7,20 +6,22 @@
 
 ---
 
-etcd 采集器可以从 etcd 实例中采取很多指标，比如etcd服务器状态和网络的状态等多种指标，并将指标采集到 DataFlux ，帮助你监控分析 etcd 各种异常情况
+The tcd collector can take many metrics from the etcd instance, such as the status of the etcd server and network, and collect the metrics to DataFlux to help you monitor and analyze various abnormal situations of etcd.
 
-## 前置条件 {#requirements}
+## Preconditions {#requirements}
 
-- etcd 版本  >=3
+- etcd version  >=3
 
-- 开启etcd，默认的metrics接口是http://localhost:2379/metrics，也可以自己去配置文件中修改。
+- Open etcd, the default metrics interface is http://localhost:2379/metrics, or you can modify it in your configuration file.
 
-## 配置 {#config}
+## Configuration {#config}
 
-=== "主机安装"
+=== "Host Installation"
 
-    进入 DataKit 安装目录下的 `conf.d/etcd` 目录，复制 `etcd.conf.sample` 并命名为 `etcd.conf`。示例如下：
-    
+    Go to the `conf.d/etcd` directory under the DataKit installation directory, copy `etcd.conf.sample` and name it `etcd.conf`. Examples are as follows:
+
+
+​    
     ```toml
         
     [[inputs.prom]]
@@ -83,27 +84,27 @@ etcd 采集器可以从 etcd 实例中采取很多指标，比如etcd服务器�
     
     
     ```
-
-    配置好后，[重启 DataKit](datakit-service-how-to.md#manage-service) 即可。
+    
+    Once configured, [restart DataKit](datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+    The collector can now be turned on by [ConfigMap injection collector configuration](datakit-daemonset-deploy.md#configmap-setting).
 
-## 指标集 {#measurements}
+## Measurements {#measurements}
 
 
 
 ### `etcd_network`
 
--  标签
+- tag
 
 
 | 标签名 | 描述    |
 |  ----  | --------|
 |`host`|主机名称|
 
-- 指标列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -115,7 +116,7 @@ etcd 采集器可以从 etcd 实例中采取很多指标，比如etcd服务器�
 
 ### `etcd_server`
 
--  标签
+- tag
 
 
 | 标签名 | 描述    |
@@ -123,7 +124,7 @@ etcd 采集器可以从 etcd 实例中采取很多指标，比如etcd服务器�
 |`host`|主机名称|
 |`server_has_leader`|领导者是否存在。1是存在。0是不存在|
 
-- 指标列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |

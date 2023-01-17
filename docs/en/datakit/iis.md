@@ -1,4 +1,3 @@
-<!-- This file required to translate to EN. -->
 
 # IIS
 ---
@@ -7,18 +6,18 @@
 
 ---
 
-Microsoft IIS 采集器
+Microsoft IIS collector
 
-## 前置条件 {#requirements}
+## Preconditions {#requirements}
 
-操作系统要求:
+Operating system requirements::
 
-* Windows Vista 以上版本 (不包含 Windows Vista)
-* Windows Server 2008 R2 及以上版本
+* Windows Vista and above (excluding Windows Vista)
+* Windows Server 2008 R2 and above
 
-## 配置 {#config}
+## Configuration {#config}
 
-进入 DataKit 安装目录下的 `conf.d/iis` 目录，复制 `iis.conf.sample` 并命名为 `iis.conf`。示例如下：
+Go to the `conf.d/iis` directory under the DataKit installation directory, copy `iis.conf.sample` and name it `iis.conf`. Examples are as follows:
 
 ```toml
 
@@ -33,9 +32,9 @@ Microsoft IIS 采集器
     pipeline = "iis.p" 
 ```
 
-配置好后，重启 DataKit 即可。
+After configuration, restart DataKit.
 
-以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.iis.tags]` 指定其它标签：
+For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.iis.tags]`:
 
 ``` toml
   [inputs.iis.tags]
@@ -44,7 +43,7 @@ Microsoft IIS 采集器
     # ...
 ```
 
-## 指标 {#measurements}
+## Measurements {#measurements}
 
 
 
@@ -53,7 +52,8 @@ Microsoft IIS 采集器
 ### `iis_app_pool_was`
 
 
--  标签
+
+- tag
 
 
 | 标签名 | 描述    |
@@ -61,15 +61,14 @@ Microsoft IIS 采集器
 |`app_pool`|IIS app pool|
 |`host`|host name|
 
-- 指标列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
 | ---- |---- | :---:    | :----: |
 |`current_app_pool_state`|The current status of the application pool (1 - Uninitialized, 2 - Initialized, 3 - Running, 4 - Disabling, 5 - Disabled, 6 - Shutdown Pending, 7 - Delete Pending).|float|-|
 |`current_app_pool_uptime`|The uptime of the application pool since it was started.|float|s|
-|`total_app_pool_recycles`|The number of times that the application pool has been recycled since Windows Process Activation Service (WAS) started.|float|-|
-
+|`total_app_pool_recycles`|The number of times that the application pool has been recycled since Windows Process Activation Service (WAS) started.|float|-| 
 
 
 
@@ -78,7 +77,8 @@ Microsoft IIS 采集器
 ### `iis_web_service`
 
 
--  标签
+
+- tag
 
 
 | 标签名 | 描述    |
@@ -86,7 +86,7 @@ Microsoft IIS 采集器
 |`host`|host name|
 |`website`|IIS web site|
 
-- 指标列表
+- metric list
 
 
 | 指标 | 描述| 数据类型 | 单位   |
@@ -112,17 +112,19 @@ Microsoft IIS 采集器
 |`requests_cgi`|Rate of CGI requests that are simultaneously processed by the web service.|float|reqps|
 |`requests_isapi_extension`|Rate of ISAPI extension requests that are simultaneously processed by the web service.|float|reqps|
 |`service_uptime`|Service uptime.|float|s|
-|`total_connection_attempts`|Number of connections that have been attempted using the web service (counted after service startup)|float|count|
+|`total_connection_attempts`|Number of connections that have been attempted using the web service (counted after service startup)|float|count| 
 
 
 
+## 
 
-## 日志 {#logging}
 
-如需采集 IIS 的日志，将配置中 log 相关的配置打开，如：
+## Log {#logging}
+
+If you need to collect IIS logs, open the log-related configuration in the configuration, such as:
 
 ```toml
 [inputs.iis.log]
-    # 填入绝对路径
+    # Fill in the absolute path
     files = ["C:/inetpub/logs/LogFiles/W3SVC1/*"] 
 ```
