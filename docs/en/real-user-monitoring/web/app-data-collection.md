@@ -28,51 +28,51 @@ Scenario construction and event alerts for Real User Monitoring can be queried t
 
 ### SDK Properties
 
-| **字段**      | **类型** | **描述**                                                     |
-| ------------- | -------- | ------------------------------------------------------------ |
-| `sdk_name`    | string   | 采集器名称，固定名称：<br>`df_web_rum_sdk`<br>`df_miniapp_rum_sdk`<br>`df_ios_rum_sdk`<br>`df_android_rum_sdk` |
-| `sdk_version` | string   | 采集器版本信息                                               |
+| Fields        | Type   | Description                                                  |
+| ------------- | ------ | ------------------------------------------------------------ |
+| `sdk_name`    | string | Collector name.<br/>`df_web_rum_sdk`<br>`df_miniapp_rum_sdk`<br>`df_ios_rum_sdk`<br>`df_android_rum_sdk` |
+| `sdk_version` | string | Integrations version                                         |
 
 ### Application Properties
 
-| 字段      | 类型   | 描述                                                         |
+| Fields    | Type   | Description                                                  |
 | --------- | ------ | ------------------------------------------------------------ |
-| `app_id`  | string | 必填，用户访问应用唯一ID标识，在观测云控制台上面创建监控时自动生成。 |
-| `env`     | string | 必填，环境字段。属性值：prod/gray/pre/common/local。其中<br>prod：线上环境<br>gray：灰度环境<br>pre：预发布环境<br>common：日常环境<br>local：本地环境 |
-| `version` | string | 必填，版本号。                                               |
+| `app_id`  | string | Required, The unique ID generated when you create a application. |
+| `env`     | string | Required, Environment field. Attribute Value: prod/gray/pre/common/local. |
+| `version` | string | Required, Version                                            |
 
 ### User & Session Properties
 
-| **字段**       | **类型** | **描述**                                                     |
-| -------------- | -------- | ------------------------------------------------------------ |
-| `userid`       | string   | 默认获取浏览器 cookie 作为 userid。如果使用 [自定义用户标识](custom-sdk/user-id.md) 设置用户 id，那么 userid 就会跟定义的保持一致。注意：cookie 过期时间 60 天。 |
-| `session_id`   | string   | 会话 id （用户会话 15 分钟内未产生交互行为则视为过期 ）。    |
-| `session_type` | string   | 会话类型。参考值：user &#124; synthetics<br>user 表示是 RUM 功能产生的数据；<br>synthetics 表示是 headless 拨测产生的数据。 |
-| `is_signin`    | boolean  | 是否是注册用户，属性值：True / False。                       |
+| Fields         | Type    | Description                                                  |
+| -------------- | ------- | ------------------------------------------------------------ |
+| `userid`       | string  | 默认获取浏览器 cookie 作为 userid。如果使用 [自定义用户标识](custom-sdk/user-id.md) 设置用户 id，那么 userid 就会跟定义的保持一致。注意：cookie 过期时间 60 天。 |
+| `session_id`   | string  | 会话 id （用户会话 15 分钟内未产生交互行为则视为过期 ）。    |
+| `session_type` | string  | 会话类型。参考值：user &#124; synthetics<br>user 表示是 RUM 功能产生的数据；<br>synthetics 表示是 headless 拨测产生的数据。 |
+| `is_signin`    | boolean | 是否是注册用户，属性值：True / False。                       |
 
 ### Device & Resolution Properties
 
-| **字段**                | **类型** | **描述**                   |
-| :---------------------- | :------- | :------------------------- |
-| `os`                    | string   | 操作系统                   |
-| `os_version`            | string   | 操作系统版本               |
-| `os_version_major`      | string   | 设备报告的主要操作系统版本 |
-| `browser`               | string   | 浏览器提供商               |
-| `browser_version`       | string   | 浏览器版本                 |
-| `browser_version_major` | string   | 浏览器主要版本信息         |
-| `screen_size`           | string   | 屏幕宽度*高度,分辨率       |
+| Fields                  | Type   | Description                |
+| :---------------------- | :----- | :------------------------- |
+| `os`                    | string | 操作系统                   |
+| `os_version`            | string | 操作系统版本               |
+| `os_version_major`      | string | 设备报告的主要操作系统版本 |
+| `browser`               | string | 浏览器提供商               |
+| `browser_version`       | string | 浏览器版本                 |
+| `browser_version_major` | string | 浏览器主要版本信息         |
+| `screen_size`           | string | 屏幕宽度*高度,分辨率       |
 
 ### Geographic & Network Properties
 
-| **字段**           | **类型** | **描述**                                                     |
-| ------------------ | -------- | ------------------------------------------------------------ |
-| `ip`               | string   | 用户访问IP地址                                               |
-| `isp`              | string   | 运营商                                                       |
-| `network_type`     | string   | 网络连接类型，属性值参考：<br>wifi &#124; 2g &#124; 3g &#124; 4g &#124; 5g &#124; unknown（未知网络）&#124; unreachable（网络不可用） |
-| `country`          | string   | 国家                                                         |
-| `country_iso_code` | string   | 国家 iso_code                                                |
-| `province`         | string   | 省                                                           |
-| `city`             | string   | 城市                                                         |
+| Fields             | Type   | Description                                                  |
+| ------------------ | ------ | ------------------------------------------------------------ |
+| `ip`               | string | 用户访问IP地址                                               |
+| `isp`              | string | 运营商                                                       |
+| `network_type`     | string | 网络连接类型，属性值参考：<br>wifi &#124; 2g &#124; 3g &#124; 4g &#124; 5g &#124; unknown（未知网络）&#124; unreachable（网络不可用） |
+| `country`          | string | 国家                                                         |
+| `country_iso_code` | string | 国家 iso_code                                                |
+| `province`         | string | 省                                                           |
+| `city`             | string | 城市                                                         |
 
 ## Custom Properties
 
@@ -84,7 +84,7 @@ In addition to global properties, you can also build scenarios and configure eve
 
 #### Properties
 
-| 字段 | 类型 | 描述 |
+| Fields                          | Type   | Description                                                  |
 | --- | --- | --- |
 | `session_id` | string | 会话 id（用户会话 15 分钟内未产生交互行为则视为过期 ） |
 | `session_type` | string | 会话类型。参考值：user \| synthetics<br><li>user 表示是RUM功能产生的数据；<br><li>synthetics 表示是 headless拨测产生的数据。 |
@@ -104,7 +104,7 @@ In addition to global properties, you can also build scenarios and configure eve
 
 #### Statistical Metrics
 
-| **字段**                  | 类型       | **描述**                  |
+| Fields                    | Type       | Description               |
 | ------------------------- | ---------- | ------------------------- |
 | `time_spent`              | number(ns) | 当前会话持续时长          |
 | `session_view_count`      | number     | 当前会话关联`view_id`个数 |
@@ -118,21 +118,21 @@ In addition to global properties, you can also build scenarios and configure eve
 
 #### Properties
 
-| **字段**            | **类型** | **描述**                                                     |
-| :------------------ | :------- | :----------------------------------------------------------- |
-| `view_id`           | string   | 每次访问页面时产生的唯一 ID                                  |
-| `is_active`         | boolean  | 判断用户是否还在活跃状态，参考值: true \| false              |
-| `view_loading_type` | string   | 页面加载类型， 参考值：`initial_load` | `route_change` `route_change`为 SPA 页面加载模式 |
-| `view_referrer`     | string   | 页面来源                                                     |
-| `view_url`          | string   | 页面 URL                                                     |
-| `view_host`         | string   | 页面 URL 域名部分                                            |
-| `view_path`         | string   | 页面 URL path 部分                                           |
-| `view_path_group`   | string   | 页面 URL path 分组                                           |
-| `view_url_query`    | string   | 页面 URL query 部分                                          |
+| Fields              | Type    | Description                                     |
+| :------------------ | :------ | :---------------------------------------------- |
+| `view_id`           | string  | 每次访问页面时产生的唯一 ID                     |
+| `is_active`         | boolean | 判断用户是否还在活跃状态，参考值: true \| false |
+| `view_loading_type` | string  | 页面加载类型， 参考值：`initial_load`           |
+| `view_referrer`     | string  | 页面来源                                        |
+| `view_url`          | string  | 页面 URL                                        |
+| `view_host`         | string  | 页面 URL 域名部分                               |
+| `view_path`         | string  | 页面 URL path 部分                              |
+| `view_path_group`   | string  | 页面 URL path 分组                              |
+| `view_url_query`    | string  | 页面 URL query 部分                             |
 
 #### Metrics
 
-| 字段 | 类型 | 描述 |
+| Fields                   | Type         | Description                                                  |
 | --- | --- | --- |
 | first_contentful_paint | number（ns） | 首次内容绘制时间 (FCP)<br>计算方式：firstPaintContentEnd - firstPaintContentStart |
 | largest_contentful_paint | number（ns） | 最大内容绘制（页面加载时间轴中的一刹那，其中呈现了视口中最大的 DOM 对象）<br>参考链接：[LCP](https://web.dev/lcp/)<br>计算方式：统计最近上报的一次 PerformanceEntry 时间 |
@@ -152,7 +152,7 @@ In addition to global properties, you can also build scenarios and configure eve
 | time_spent | number（ns） | 页面停留时间 |
 
 #### Statistical Metrics
-| **字段** | **类型** | **描述** |
+| Fields                 | Type   | Description                                                  |
 | --- | --- | --- |
 | `view_error_count` | number | 每次页面加载时发生的错误次数 |
 | `view_resource_count` | number | 每次页面加载时请求的资源个数 |
@@ -164,35 +164,35 @@ In addition to global properties, you can also build scenarios and configure eve
 
 #### View Properties
 
-| **字段**            | **类型** | **描述**                                        |
-| :------------------ | :------- | :---------------------------------------------- |
-| `view_id`           | string   | 每次访问页面时产生的唯一 ID                     |
-| `is_active`         | boolean  | 判断用户是否还在活跃状态，参考值: true \| false |
-| `view_loading_type` | string   | 页面加载类型， 参考值：`initial_load`           |
-| `view_referrer`     | string   | 页面来源                                        |
-| `view_url`          | string   | 页面 URL                                        |
-| `view_host`         | string   | 页面 URL 域名部分                               |
-| `view_path`         | string   | 页面 URL path 部分                              |
-| `view_path_group`   | string   | 页面 URL path 分组                              |
-| `view_url_query`    | string   | 页面 URL query 部分                             |
+| Fields              | Type    | Description                                     |
+| :------------------ | :------ | :---------------------------------------------- |
+| `view_id`           | string  | 每次访问页面时产生的唯一 ID                     |
+| `is_active`         | boolean | 判断用户是否还在活跃状态，参考值: true \| false |
+| `view_loading_type` | string  | 页面加载类型， 参考值：`initial_load`           |
+| `view_referrer`     | string  | 页面来源                                        |
+| `view_url`          | string  | 页面 URL                                        |
+| `view_host`         | string  | 页面 URL 域名部分                               |
+| `view_path`         | string  | 页面 URL path 部分                              |
+| `view_path_group`   | string  | 页面 URL path 分组                              |
+| `view_url_query`    | string  | 页面 URL query 部分                             |
 
 #### Resource Properties
 
-| **字段**                  | **类型** | **描述**                 |
-| ------------------------- | -------- | ------------------------ |
-| `resource_url`            | string   | 资源 URL                 |
-| `resource_url_host`       | string   | 资源 URL 域名部分        |
-| `resource_url_path`       | string   | 资源 URL path 部分       |
-| `resource_url_query`      | string   | 资源 URL query 部分      |
-| `resource_url_path_group` | string   | 资源 URL path 分组       |
-| `resource_type`           | string   | 资源的类别               |
-| `resource_method`         | string   | 资源请求方式             |
-| `resource_status`         | string   | 资源请求返回的状态值     |
-| `resource_status_group`   | string   | 资源请求返回的状态分组值 |
+| Fields                    | Type   | Description              |
+| ------------------------- | ------ | ------------------------ |
+| `resource_url`            | string | 资源 URL                 |
+| `resource_url_host`       | string | 资源 URL 域名部分        |
+| `resource_url_path`       | string | 资源 URL path 部分       |
+| `resource_url_query`      | string | 资源 URL query 部分      |
+| `resource_url_path_group` | string | 资源 URL path 分组       |
+| `resource_type`           | string | 资源的类别               |
+| `resource_method`         | string | 资源请求方式             |
+| `resource_status`         | string | 资源请求返回的状态值     |
+| `resource_status_group`   | string | 资源请求返回的状态分组值 |
 
 #### Metrics
 
-| **字段** | **类型** | **描述** |
+| Fields                | Type         | Description                                                  |
 | --- | --- | --- |
 | `resource_size` | number | 资源大小，默认单位：byte |
 | `resource_dns` | number（ns） | 资源加载 DNS 解析时间<br>计算方式：domainLookupEnd - domainLookupStart |
@@ -207,34 +207,34 @@ In addition to global properties, you can also build scenarios and configure eve
 
 #### View Properties
 
-| **字段**            | **类型** | **描述**                                        |
-| :------------------ | :------- | :---------------------------------------------- |
-| `view_id`           | string   | 每次访问页面时产生的唯一 ID                     |
-| `is_active`         | boolean  | 判断用户是否还在活跃状态，参考值: true \| false |
-| `view_loading_type` | string   | 页面加载类型， 参考值：`initial_load`           |
-| `view_referrer`     | string   | 页面来源                                        |
-| `view_url`          | string   | 页面 URL                                        |
-| `view_host`         | string   | 页面 URL 域名部分                               |
-| `view_path`         | string   | 页面 URL path 部分                              |
-| `view_path_group`   | string   | 页面 URL path 分组                              |
-| `view_url_query`    | string   | 页面 URL query 部分                             |
+| Fields              | Type    | Description                                     |
+| :------------------ | :------ | :---------------------------------------------- |
+| `view_id`           | string  | 每次访问页面时产生的唯一 ID                     |
+| `is_active`         | boolean | 判断用户是否还在活跃状态，参考值: true \| false |
+| `view_loading_type` | string  | 页面加载类型， 参考值：`initial_load`           |
+| `view_referrer`     | string  | 页面来源                                        |
+| `view_url`          | string  | 页面 URL                                        |
+| `view_host`         | string  | 页面 URL 域名部分                               |
+| `view_path`         | string  | 页面 URL path 部分                              |
+| `view_path_group`   | string  | 页面 URL path 分组                              |
+| `view_url_query`    | string  | 页面 URL query 部分                             |
 
 #### Error Properties
 
-| **字段**                  | **类型** | **描述**                                                     |
-| ------------------------- | -------- | ------------------------------------------------------------ |
-| `error_source`            | string   | 错误来源，参考值：console &#124; network &#124; source &#124; custom |
-| `error_type`              | string   | 错误类型，参考链接：[error type](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error) |
-| `resource_status`         | string   | 资源请求返回的状态值                                         |
-| `resource_url`            | string   | 资源 URL                                                     |
-| `resource_url_host`       | string   | 资源 URL 域名部分                                            |
-| `resource_url_path`       | string   | 资源 URL path 部分                                           |
-| `resource_url_path_group` | string   | 资源 URL path 分组                                           |
-| `resource_method`         | string   | 资源请求方式                                                 |
+| Fields                    | Type   | Description                                                  |
+| ------------------------- | ------ | ------------------------------------------------------------ |
+| `error_source`            | string | 错误来源，参考值：console &#124; network &#124; source &#124; custom |
+| `error_type`              | string | 错误类型，参考链接：[error type](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error) |
+| `resource_status`         | string | 资源请求返回的状态值                                         |
+| `resource_url`            | string | 资源 URL                                                     |
+| `resource_url_host`       | string | 资源 URL 域名部分                                            |
+| `resource_url_path`       | string | 资源 URL path 部分                                           |
+| `resource_url_path_group` | string | 资源 URL path 分组                                           |
+| `resource_method`         | string | 资源请求方式                                                 |
 
 #### Metrics
 
-| **字段** | **类型** | **描述** |
+| Fields          | Type   | Description |
 | --- | --- | --- |
 | `error_message` | string | 错误信息 |
 | `error_stack` | string | 错误堆栈 |
@@ -243,21 +243,21 @@ In addition to global properties, you can also build scenarios and configure eve
 
 #### View Properties
 
-| **字段**            | **类型** | **描述**                                        |
-| :------------------ | :------- | :---------------------------------------------- |
-| `view_id`           | string   | 每次访问页面时产生的唯一 ID                     |
-| `is_active`         | boolean  | 判断用户是否还在活跃状态，参考值: true \| false |
-| `view_loading_type` | string   | 页面加载类型， 参考值：`initial_load`           |
-| `view_referrer`     | string   | 页面来源                                        |
-| `view_url`          | string   | 页面 URL                                        |
-| `view_host`         | string   | 页面 URL 域名部分                               |
-| `view_path`         | string   | 页面 URL path 部分                              |
-| `view_path_group`   | string   | 页面 URL path 分组                              |
-| `view_url_query`    | string   | 页面 URL query 部分                             |
+| Fields              | Type    | Description                                     |
+| :------------------ | :------ | :---------------------------------------------- |
+| `view_id`           | string  | 每次访问页面时产生的唯一 ID                     |
+| `is_active`         | boolean | 判断用户是否还在活跃状态，参考值: true \| false |
+| `view_loading_type` | string  | 页面加载类型， 参考值：`initial_load`           |
+| `view_referrer`     | string  | 页面来源                                        |
+| `view_url`          | string  | 页面 URL                                        |
+| `view_host`         | string  | 页面 URL 域名部分                               |
+| `view_path`         | string  | 页面 URL path 部分                              |
+| `view_path_group`   | string  | 页面 URL path 分组                              |
+| `view_url_query`    | string  | 页面 URL query 部分                             |
 
 #### Metrics
 
-| **字段** | **类型** | **描述** |
+| Fields     | Type         | Description                    |
 | --- | --- | --- |
 | `duration` | number（ns） | 页面加载时产生的长任务花费时间 |
 
@@ -265,35 +265,35 @@ In addition to global properties, you can also build scenarios and configure eve
 
 #### View Properties
 
-| **字段**            | **类型** | **描述**                                        |
-| :------------------ | :------- | :---------------------------------------------- |
-| `view_id`           | string   | 每次访问页面时产生的唯一 ID                     |
-| `is_active`         | boolean  | 判断用户是否还在活跃状态，参考值: true \| false |
-| `view_loading_type` | string   | 页面加载类型， 参考值：`initial_load`           |
-| `view_referrer`     | string   | 页面来源                                        |
-| `view_url`          | string   | 页面 URL                                        |
-| `view_host`         | string   | 页面 URL 域名部分                               |
-| `view_path`         | string   | 页面 URL path 部分                              |
-| `view_path_group`   | string   | 页面 URL path 分组                              |
-| `view_url_query`    | string   | 页面 URL query 部分                             |
+| Fields              | Type    | Description                                     |
+| :------------------ | :------ | :---------------------------------------------- |
+| `view_id`           | string  | 每次访问页面时产生的唯一 ID                     |
+| `is_active`         | boolean | 判断用户是否还在活跃状态，参考值: true \| false |
+| `view_loading_type` | string  | 页面加载类型， 参考值：`initial_load`           |
+| `view_referrer`     | string  | 页面来源                                        |
+| `view_url`          | string  | 页面 URL                                        |
+| `view_host`         | string  | 页面 URL 域名部分                               |
+| `view_path`         | string  | 页面 URL path 部分                              |
+| `view_path_group`   | string  | 页面 URL path 分组                              |
+| `view_url_query`    | string  | 页面 URL query 部分                             |
 
 #### Action Properties
 
-| **字段**      | **类型** | **描述**                    |
-| ------------- | -------- | --------------------------- |
-| `action_id`   | string   | 用户页面操作时产生的唯一 ID |
-| `action_name` | string   | 操作名称                    |
-| `action_type` | string   | 操作类型                    |
+| Fields        | Type   | Description                 |
+| ------------- | ------ | --------------------------- |
+| `action_id`   | string | 用户页面操作时产生的唯一 ID |
+| `action_name` | string | 操作名称                    |
+| `action_type` | string | 操作类型                    |
 
 #### Metrics
 
-| **字段** | **类型** | **描述** |
+| Fields     | Type         | Description      |
 | --- | --- | --- |
 | `duration` | number（ns） | 页面操作花费时间 |
 
 #### Statistical Metrics
 
-| **字段** | **类型** | **描述** |
+| Fields                   | Type   | Description          |
 | --- | --- | --- |
 | `action_long_task_count` | number | 操作关联长任务次数 |
 | `action_resource_count` | number | 操作关联资源请求次数 |

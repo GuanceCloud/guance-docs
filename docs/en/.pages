@@ -1,8 +1,6 @@
 nav:
   - Release Notes: release-notes
-  - Getting Started: getting-started
   - DataKit: dataKit
-  - Integrations: integrations
   - Developers: developers
   - DQL: dql
   - Scene: scene
@@ -13,15 +11,9 @@ nav:
   - APM: application-performance-monitoring
   - RUM: real-user-monitoring
   - Testing: usability-monitoring
-  - Scheck: scheck
   - CI Visibility: ci-visibility
   - Monitoring: monitoring
-  - Workspace Management: management
-  - Billing: billing
-  - Open API: open-api
   - Mobile Application: mobile
-  - Personalized Deployment: deployment
-  - FAQ: faq
-  - Related Agreements: agreements
+
 
 

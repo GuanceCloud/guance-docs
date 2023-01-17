@@ -33,62 +33,62 @@ Guance Cloud supports one-stop viewing and auditing of all event data, and suppo
 
 
 ## Field Description
-| 字段                   | 说明                                                         |
+| Fields                 | Description                                                  |
 | :--------------------- | :----------------------------------------------------------- |
-| `date` / `timestamp`   | 产生时间。单位秒                                             |
-| `df_date_range`        | 时间范围。单位秒                                             |
-| `df_check_range_start` | 检测范围开始时间。单位秒                                     |
-| `df_check_range_end`   | 检测范围结束时间。单位秒                                     |
-| `df_issue_start_time`  | 本轮首次故障发生的时间。单位秒                               |
-| `df_issue_duration`    | 本轮故障的持续时间，单位秒 （从`df_issue_start_time`开始到本事件） |
-| `df_source`            | 事件来源。包括 monitor, user, system, custom, audit          |
-| `df_status`            | 事件状态。包括 ok, info, warning, error, critical, nodata, nodata_ok, nodata_as_ok, manual_ok |
-| `df_sub_status`        | 事件细节状态（作为`df_status`的补充）                        |
-| `df_event_id`          | 事件唯一 ID                                                  |
-| `df_event_url`         | 事件跳转 URL                                                 |
-| `df_title`             | 标题                                                         |
-| `df_message`           | 描述                                                         |
+| `date` / `timestamp`   | Generation time                                              |
+| `df_date_range`        | Event date range                                             |
+| `df_check_range_start` | Detection range start time                                   |
+| `df_check_range_end`   | Detection range end time                                     |
+| `df_issue_start_time`  | The time of the first failure of the current round           |
+| `df_issue_duration`    | The duration of this round of failures (from `df_issue_start_time` to this event) |
+| `df_source`            | Event source, including monitor, user, system, custom, audit |
+| `df_status`            | Event status, including ok, info, warning, error, critical, nodata, nodata_ok, nodata_as_ok, manual_ok |
+| `df_sub_status`        | Event status details. e.g. <br/>ok：Events recover from warning, error, critical, and other failure states<br/>nodata_ok：Event returns to normal from nodata state<br/>nodata_as_ok：Event nodata status is regarded as returning to normal<br/>manual_ok：Events of user active recovery |
+| `df_event_id`          | Event ID                                                     |
+| `df_event_url`         | Event URL                                                    |
+| `df_title`             | Event title                                                  |
+| `df_message`           | Event message                                                |
 
 
 - When df_source = monitor, the following additional fields exist:
 
-| 字段                           | 说明                                                         |
+| Fields                         | Description                                                  |
 | :----------------------------- | :----------------------------------------------------------- |
-| `df_dimension_tags`            | 检测纬度标签，如`{"host":"web01"}`                           |
-| `df_monitor_id`                | 告警策略 ID                                                  |
-| `df_monitor_name`              | 告警策略名                                                   |
-| `df_monitor_type`              | 所属类型：自定义监控事件为`custom` ，SLO 事件为`slo` ， 智能巡检事件固定为`bot_obs` |
-| `df_monitor_checker`           | 执行函数名，如：`custom_metric` 等                           |
-| `df_monitor_checker_sub`       | 检测阶段：在无数据检测阶段产生的为 `nodata` ，在正常检测阶段产生的为 `check` |
-| `df_monitor_checker_id`        | 监控器 ID                                                    |
-| `df_monitor_checker_name`      | 监控器名称                                                   |
-| `df_monitor_checker_value`     | 事件产生时的异常值                                           |
-| `df_monitor_checker_ref`       | 监控器关联，只和「检测配置的DQL语句」关联的字段              |
-| `df_monitor_checker_event_ref` | 监控器事件关联，只和 「`df_dimension_tags` 和 `df_monitor_checker_id` 」关联的字段 |
-| `df_monitor_ref_key`           | 自建巡检的关联 Key，用于和自建巡检对应                       |
-| `df_event_detail`              | 事件检测详情                                                 |
-| `df_user_id`                   | 手工恢复时，操作者用户 ID                                    |
-| `df_user_name`                 | 手工恢复时，操作者用户名                                     |
-| `df_user_email`                | 手工恢复时，操作者用户邮箱                                   |
-| `df_exec_mode`                 | 执行模式，可选值。<br><li>自动触发（即定时执行）`crontab` <br><li> 异步调用（即手工执行）`async` |
+| `df_dimension_tags`            | Event detection dimension tags, e.g.  `{"host":"web01"}`     |
+| `df_monitor_id`                | Alarm policy ID                                              |
+| `df_monitor_name`              | Alarm policy name                                            |
+| `df_monitor_type`              | Monitor Type. e.g.<br/>custom：Events generated by self-built monitoring<br/>slo：SLO event<br/>bot_obs：Auto detection event |
+| `df_monitor_checker`           | Monitor checker  type. e.g. `custom_metric/custom_logcustom_apm/…` |
+| `df_monitor_checker_sub`       | Monitor checker stage. e.g. `nodata/check`                   |
+| `df_monitor_checker_id`        | Monitor cherker ID                                           |
+| `df_monitor_checker_name`      | Monitor checker name                                         |
+| `df_monitor_checker_value`     | Detection result value when the event is generated           |
+| `df_monitor_checker_ref`       | Association monitor<br/>This tag is used to filter events that are detected by the same DQL statement |
+| `df_monitor_checker_event_ref` | Associate Monitor Events <br/>This tag is used to filter events for the same object generated by the same monitor |
+| `df_monitor_ref_key`           | The association Key of the self-built patrol, through which the events generated by the self-built patrol are associated |
+| `df_event_detail`              | Full details of the incident                                 |
+| `df_user_id`                   | For manual recovery, the operator user ID                    |
+| `df_user_name`                 | For manual recovery, the operator user name                  |
+| `df_user_email`                | For manual recovery, the operator user mailbox               |
+| `df_exec_mode`                 | Exec mode,e.g.<br/>corontab: Automatic trigger, timed execution<br/>async: Invoked asynchronously, executed manually |
 
 - When df_source = audit, the following additional fields exist:
 
-| 字段            | 说明                           |
-| :-------------- | :----------------------------- |
-| `df_user_id`    | 操作者用户 ID                  |
-| `df_user_name`  | 操作者用户名                   |
-| `df_user_email` | 操作者用户邮箱                 |
-| {其他字段}      | 根据具体审计数据需求的其他字段 |
+| Fields          | Description                                            |
+| :-------------- | :----------------------------------------------------- |
+| `df_user_id`    | the operator user ID                                   |
+| `df_user_name`  | the operator user name                                 |
+| `df_user_email` | the operator user mailbox                              |
+| {Other Fields}  | Other fields based on specific audit data requirements |
 
 - When df_source = user, the following additional fields exist:
 
-| 字段            | 说明                             |
-| :-------------- | :------------------------------- |
-| `df_user_id`    | 创建者用户 ID                    |
-| `df_user_name`  | 创建者用户名                     |
-| `df_user_email` | 创建者用户邮箱                   |
-| {其他字段}      | 根据用户操作而产生事件的其他字段 |
+| Fields          | Description                                             |
+| :-------------- | :------------------------------------------------------ |
+| `df_user_id`    | the operator user ID                                    |
+| `df_user_name`  | the operator user name                                  |
+| `df_user_email` | the operator user mailbox                               |
+| {Other Fields}  | Other fields that generate events based on user actions |
 
 ## Event Storage Policy
 
