@@ -1,0 +1,12 @@
+nav:
+  - index.md
+  - 'Update Log': changelog.md
+  - 'Memory Leak Risk': memory-leak.md
+  - 'Disk Usage Check': disk-usage.md
+  - 'Application Performance Check': apm.md
+  - 'Cloud Account Bill Check': cloudfee.md
+  - 'Front-end Application Log Error Check': rum_errors.md
+  - 'Alibaba Cloud Asset Check': cloudasset.md
+  - 'MySQL Performance Check': mysql-performance.md
+  - 'Server-side Application Error Check': apm-errors.md
+  - 'Kubernetes': Kubernetes
