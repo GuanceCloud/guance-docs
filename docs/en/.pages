@@ -1,6 +1,6 @@
 nav:
   - Release Notes: release-notes
-  - DataKit: dataKit
+  - DataKit: datakit
   - Developers: developers
   - DQL: dql
   - Scene: scene
