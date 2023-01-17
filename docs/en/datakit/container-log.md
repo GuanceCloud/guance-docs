@@ -1,5 +1,5 @@
 
-# Container Log Collection
+# Container Logging
 ---
 
 Log collection on container/Pod is quite different from log collection on host, and its configuration mode and collection mechanism are different. From the data source, it can be divided into two parts:
