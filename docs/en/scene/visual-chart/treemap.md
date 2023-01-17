@@ -1,4 +1,4 @@
-# Rectangular tree diagram
+# Rectangular Tree Diagram
 ---
 
 ## Introduction

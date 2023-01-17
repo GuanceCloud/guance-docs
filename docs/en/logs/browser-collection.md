@@ -1,4 +1,4 @@
-# Browser log collection
+# Browser Log Collection
 ---
 
 ## Overview

@@ -1,4 +1,4 @@
-# Timing Chart
+# Timeseries Chart
 
 ---
 

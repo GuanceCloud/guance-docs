@@ -1,4 +1,4 @@
-# Binding built-in views
+# Binding Built-in Views
 ---
 
 ## Introduction

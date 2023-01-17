@@ -1,4 +1,4 @@
-# CI Viewers
+# CI Explorer
 ---
 
 ## Introduction
@@ -7,25 +7,25 @@ Observation Cloud supports visualizing the process and results for Gitlab/Jenkin
 
 ## Data query and analysis
 
-Once the CI process and result data is reported to the Observation Cloud workspace, you can query and analyze Pipeline and Job success rates, failure causes, and specific failure sessions in the CI viewer by selecting a time range, searching for keywords, filtering, and more.
+Once the CI process and result data is reported to the Observation Cloud workspace, you can query and analyze Pipeline and Job success rates, failure causes, and specific failure sessions in the CI explorer by selecting a time range, searching for keywords, filtering, and more.
 
 ![](img/10.ci_5.png)
 
 ### Time Controls
 
-The CI viewer displays the last 15 minutes of data by default. The 「Time Control」 in the upper right corner allows you to select the time range for which data is displayed.More details can be found in the document [Time control description](../getting-started/necessary-for-beginners/explorer-search.md#time) 。
+The CI explorer displays the last 15 minutes of data by default. The 「Time Control」 in the upper right corner allows you to select the time range for which data is displayed.More details can be found in the document [Time control description](../getting-started/necessary-for-beginners/explorer-search.md#time) 。
 
 ### Search & Filter
 
-In the CI viewer search field, it supports various search methods such as keyword search, wildcard search, correlation search, JSON search, etc. It supports value filtering by `tags/attributes`, including forward filtering, reverse filtering, fuzzy matching, reverse fuzzy matching, existence and non-existence, etc.More search and filtering can be found in the document [Viewers search and filtering](../getting-started/necessary-for-beginners/explorer-search.md) 。
+In the CI explorer search field, it supports various search methods such as keyword search, wildcard search, correlation search, JSON search, etc. It supports value filtering by `tags/attributes`, including forward filtering, reverse filtering, fuzzy matching, reverse fuzzy matching, existence and non-existence, etc.More search and filtering can be found in the document [explorer search and filtering](../getting-started/necessary-for-beginners/explorer-search.md) 。
 
 ### Analysis Mode
 
-In the CI viewer analysis column, it supports multi-dimensional analysis statistics based on **1-3 tags** to reflect the distribution characteristics and trends of the data in different dimensions and over time.Guance Cloud supports a variety of data graphical analysis methods, including time-series charts, leaderboards, pie charts, and rectangular tree charts.More details can be found in the document [Analysis mode of the viewer](../getting-started/necessary-for-beginners/explorer-search.md#analysis) 。
+In the CI explorer analysis column, it supports multi-dimensional analysis statistics based on **1-3 tags** to reflect the distribution characteristics and trends of the data in different dimensions and over time.Guance Cloud supports a variety of data graphical analysis methods, including time-series charts, leaderboards, pie charts, and rectangular tree charts.More details can be found in the document [Analysis mode of the explorer](../getting-started/necessary-for-beginners/explorer-search.md#analysis) 。
 
 ### Shortcut filter
 
-In CI viewer shortcut filter, you can edit "Shortcut Filter" to add a new filter field. Once added, you can select its field value for shortcut filtering.
+In CI explorer shortcut filter, you can edit "Shortcut Filter" to add a new filter field. Once added, you can select its field value for shortcut filtering.
 
 **Note：**
 
@@ -40,17 +40,17 @@ For more shortcut filters, please refer to the document [Shortcut Filter](../get
 
 ### Custom Display Columns
 
-In the viewer list, you can customize adding, editing, deleting, and dragging display columns by 「Show Columns」.When the mouse is placed on the viewer display column, click the 「Settings」 button to support the display column to ascend, descend, move the column to the left, move the column to the right, add the column to the left, add the column to the right, replace the column, add to shortcut filter, add to group, remove the column and other operations.More custom display columns can be found in the document [Display Column Description](../getting-started/necessary-for-beginners/explorer-search.md#columns) 。
+In the explorer list, you can customize adding, editing, deleting, and dragging display columns by 「Show Columns」.When the mouse is placed on the explorer display column, click the 「Settings」 button to support the display column to ascend, descend, move the column to the left, move the column to the right, add the column to the left, add the column to the right, replace the column, add to shortcut filter, add to group, remove the column and other operations.More custom display columns can be found in the document [Display Column Description](../getting-started/necessary-for-beginners/explorer-search.md#columns) 。
 
 ### Data Export
 
-In the viewer list, you can first filter the data you want to export for viewing and analysis, and support exporting to CSV files, dashboards and notes by clicking the small 「Settings」 icon.
+In the explorer list, you can first filter the data you want to export for viewing and analysis, and support exporting to CSV files, dashboards and notes by clicking the small 「Settings」 icon.
 
 ## Gitlab
 
-### Pipeline Viewers
+### Pipeline Explorer
 
-In the top left corner of the viewer, you can switch to the 「Gitlab Pipeline」 viewer to query and analyze the CI Pipeline process, including Pipeline ID, name, duration, commit content, commit time, and more.
+In the top left corner of the explorer, you can switch to the 「Gitlab Pipeline」 explorer to query and analyze the CI Pipeline process, including Pipeline ID, name, duration, commit content, commit time, and more.
 
 ![](img/10.ci_5.png)
 
@@ -60,9 +60,9 @@ Click on the data you need to view in the Pipeline list, and the Pipeline and Jo
 
 When the mouse clicks on a property field, it supports "Filter Field Value", "Reverse Filter Field Value", "Add to Display Column" and "Copy" for quick filtering view.
 
-- "Filter field values", i.e. add the field to the viewer to see all the data associated with the field
-- "Reverse filter field values", i.e. add the field to the viewer to see data other than that field
-- "Add to display column", i.e. add the field to the viewer list for viewing
+- "Filter field values", i.e. add the field to the explorer to see all the data associated with the field
+- "Reverse filter field values", i.e. add the field to the explorer to see data other than that field
+- "Add to display column", i.e. add the field to the explorer list for viewing
 - "Copy", i.e. copy the field to the clipboard 
 
 ![](img/10.ci_7.1.png)
@@ -90,9 +90,9 @@ Shows all phases and their number of jobs in the entire Pipeline chain, includin
 
 ![](img/10.ci_13.png)
 
-### Job Viewers
+### Job Explorer
 
-在In the top left corner of the viewer, you can switch to 「Gitlab Jobs」 to query and analyze the CI Pipeline's Job process, including Pipeline ID, Job name, duration, commit content, commit time, and more.
+在In the top left corner of the explorer, you can switch to 「Gitlab Jobs」 to query and analyze the CI Pipeline's Job process, including Pipeline ID, Job name, duration, commit content, commit time, and more.
 
 ![](img/10.ci_6.png)
 
@@ -106,9 +106,9 @@ Click on the data you need to view in the Job list, and the Pipeline and Job det
 
 ## Jenkins
 
-### Pipeline Viewers
+### Pipeline Explorer
 
-In the top left corner of the viewer, you can switch to the 「Jenkins Pipeline」 viewer to query and analyze the CI Pipeline process, including the Pipeline ID, name, duration, commit content, commit time, and more.
+In the top left corner of the explorer, you can switch to the 「Jenkins Pipeline」 explorer to query and analyze the CI Pipeline process, including the Pipeline ID, name, duration, commit content, commit time, and more.
 
 ![](img/17.CI_4.png)
 
@@ -118,9 +118,9 @@ Click on the data you need to view in the Pipeline list, and the Pipeline and Jo
 
 ![](img/17.CI_5.png)
 
-### Job Viewers
+### Job Explorer
 
-The data type filter in the upper left corner allows you to switch to the 「jenkins_job」 viewer to query and analyze the CI Pipeline's Job process, including Pipeline ID, Job name, duration, commit content, commit time, and more.
+The data type filter in the upper left corner allows you to switch to the 「jenkins_job」 explorer to query and analyze the CI Pipeline's Job process, including Pipeline ID, Job name, duration, commit content, commit time, and more.
 
 ![](img/17.CI_8.png)
 

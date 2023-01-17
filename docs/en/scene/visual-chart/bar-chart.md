@@ -1,4 +1,5 @@
 # Histogram
+
 ---
 
 ## Introduction
@@ -7,7 +8,7 @@ Bar charts are generally suitable for achieving changes in data over time and co
 
 ## Application Scenarios
 
-The histogram of the guance cloud is used to show data changes over time and comparisons between variables. For example, you can query the CPU usage of different hosts for the last 15 minutes.
+The Histogram of the guance cloud is used to show data changes over time and comparisons between variables. For example, you can query the CPU usage of different hosts for the last 15 minutes.
 
 ## Chart Query
 

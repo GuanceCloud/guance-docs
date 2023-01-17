@@ -1,4 +1,4 @@
-# Miniapp Log collection
+# Miniapp Log Collection
 ---
 
 ## Overview
