@@ -87,7 +87,7 @@
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`host`|主机名|
 |`pid`|进程id|
@@ -97,7 +97,7 @@
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cpu_usage`|cpu使用占比（%*100），进程==自启动以来==所占 CPU 百分比，该值相对会比较稳定（==跟 top 的瞬时百分比不同==）|float|percent|
 |`cpu_usage_top`|cpu使用占比（%*100）, 一个采集周期内的进程的 CPU 使用率均值|float|percent|
@@ -130,7 +130,7 @@
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`class`|分类: host_processes|
 |`host`|主机名|
@@ -143,7 +143,7 @@
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cmdline`|进程的命令行参数|string|-|
 |`cpu_usage`|cpu使用占比（%*100），进程==自启动以来==所占 CPU 百分比，该值相对会比较稳定（==跟 top 的瞬时百分比不同==）|float|percent|

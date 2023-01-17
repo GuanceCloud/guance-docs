@@ -94,7 +94,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`host`|主机名|
 |`name`|磁盘设备名|
@@ -102,7 +102,7 @@ For all of the following data collections, a global tag named `host` is appended
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`io_time`|time spent doing I/Os|int|ms|
 |`iops_in_progress`|I/Os currently in progress|int|count|

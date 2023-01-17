@@ -63,7 +63,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`adapter`|device adapter|
 |`chip`|chip id|
@@ -73,7 +73,7 @@ For all of the following data collections, a global tag named `host` is appended
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`temp*_crit_alarm`|Alarm count, '*' is the order number in the chip list.|int|C|
 |`temp*_input`|Current input temperature of this chip, '*' is the order number in the chip list.|int|C|

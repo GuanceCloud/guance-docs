@@ -87,14 +87,14 @@ Consul collector is used to collect metric data related to Consul, and currently
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`host`|主机名称|
 
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`catalog_service`|集群中服务数量|int|count|
 |`raft_leader`|raft集群中leader数量|int|count|
@@ -108,7 +108,7 @@ Consul collector is used to collect metric data related to Consul, and currently
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`host`|主机名称|
 |`node`|结点名称|
@@ -118,7 +118,7 @@ Consul collector is used to collect metric data related to Consul, and currently
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`catalog_service_node_healthy`|该服务在该结点上是否健康|int|-|
 
@@ -129,7 +129,7 @@ Consul collector is used to collect metric data related to Consul, and currently
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`host`|主机名称|
 |`node`|结点名称|
@@ -138,7 +138,7 @@ Consul collector is used to collect metric data related to Consul, and currently
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`health_node_status`|结点的健康检查状态|int|-|
 
@@ -149,7 +149,7 @@ Consul collector is used to collect metric data related to Consul, and currently
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`host`|主机名称|
 |`member`|成员名称|
@@ -157,7 +157,7 @@ Consul collector is used to collect metric data related to Consul, and currently
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`serf_lan_member_status`|集群里成员的状态，其中1表示Alive，2表示Leaving，3表示Left，4表示Failed|int|-|
 

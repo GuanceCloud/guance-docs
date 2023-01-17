@@ -79,7 +79,7 @@ Simply configure Output Host as a logstreaming URL (`http://Datakit_IP:PORT/v1/w
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`ip_or_hostname`|request IP or hostname|
 |`service`|service 名称，对应 URL 中的 `service` 参数|
@@ -87,7 +87,7 @@ Simply configure Output Host as a logstreaming URL (`http://Datakit_IP:PORT/v1/w
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`message`|日志正文，默认存在，可以使用 pipeline 删除此字段|string|-|
 

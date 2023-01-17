@@ -66,7 +66,7 @@ TDengine collector needs to connect `taos_adapter` can work normally, taosAdapte
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`client_ip`|请求端 IP|
 |`cluster_name`|集群名称|
@@ -81,7 +81,7 @@ TDengine collector needs to connect `taos_adapter` can work normally, taosAdapte
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`client_ip_count`|客户端 IP 请求次数统计|float|count|
 |`cpu_cores`|每个数据节点的 CPU 总核数|float|count|

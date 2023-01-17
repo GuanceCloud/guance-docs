@@ -78,7 +78,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`host`|主机名|
 |`interface`|网络接口名|
@@ -86,7 +86,7 @@ For all of the following data collections, a global tag named `host` is appended
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`bytes_recv`|The number of bytes received by the interface.|int|B|
 |`bytes_recv/sec`|The number of bytes received by the interface per second.|int|B/S|

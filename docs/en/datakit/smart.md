@@ -94,7 +94,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`capacity`|disk capacity|
 |`device`|device mount name|
@@ -109,7 +109,7 @@ For all of the following data collections, a global tag named `host` is appended
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`airflow_temperature_cel_raw_value`|The raw value of air celsius temperature read from device record.|int|C|
 |`airflow_temperature_cel_threshold`|The threshold of air celsius temperature read from device record.|int|C|

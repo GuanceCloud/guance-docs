@@ -124,7 +124,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`oracle_server`|Server addr|
 |`oracle_service`|Server service|
@@ -133,7 +133,7 @@ For all of the following data collections, a global tag named `host` is appended
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`pga_alloc_mem`|PGA memory allocated by process|float|B|
 |`pga_freeable_mem`|PGA memory freeable by process|float|B|
@@ -147,7 +147,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`oracle_server`|Server addr|
 |`oracle_service`|Server service|
@@ -156,7 +156,7 @@ For all of the following data collections, a global tag named `host` is appended
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`in_use`|Tablespace in-use|float|count|
 |`off_use`|Tablespace offline|float|count|
@@ -170,7 +170,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`oracle_server`|Server addr|
 |`oracle_service`|Server service|
@@ -178,7 +178,7 @@ For all of the following data collections, a global tag named `host` is appended
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`active_sessions`|Number of active sessions|float|count|
 |`buffer_cachehit_ratio`|Ratio of buffer cache hits|float|count|

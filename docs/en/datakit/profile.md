@@ -103,7 +103,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`container_host`|container hostname|
 |`endpoint`|endpoint info|
@@ -121,7 +121,7 @@ For all of the following data collections, a global tag named `host` is appended
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`duration`|duration of span|int|μs|
 |`message`|origin content of span|string|-|

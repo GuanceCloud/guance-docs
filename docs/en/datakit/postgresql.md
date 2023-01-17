@@ -67,7 +67,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`db`|The database name|
 |`server`|The server address|
@@ -75,7 +75,7 @@ For all of the following data collections, a global tag named `host` is appended
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`blks_hit`|The number of times disk blocks were found in the buffer cache, preventing the need to read from the database.|int|count|
 |`blks_read`|The number of disk blocks read in this database.|int|count|

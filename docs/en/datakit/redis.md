@@ -146,7 +146,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`db_name`|db|
 |`key`|monitor key|
@@ -155,7 +155,7 @@ For all of the following data collections, a global tag named `host` is appended
 - feld list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`value_length`|Key length|int|-| 
 
@@ -170,7 +170,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`name`|The name set by the client with CLIENT SETNAME, default unknown|
 |`server`|Server addr|
@@ -178,7 +178,7 @@ For all of the following data collections, a global tag named `host` is appended
 - feld list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`addr`|Address/port of the client|string|-|
 |`age`|Total duration of the connection in seconds|int|count|
@@ -199,14 +199,14 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`server`|Server addr|
 
 - feld list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cluster_current_epoch`|The local Current Epoch variable. This is used in order to create unique increasing version numbers during fail overs.|int|-|
 |`cluster_known_nodes`|The total number of known nodes in the cluster, including nodes in HANDSHAKE state that may not currently be proper members of the cluster.|int|count|
@@ -231,7 +231,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`method`|Command type|
 |`server`|Server addr|
@@ -239,7 +239,7 @@ For all of the following data collections, a global tag named `host` is appended
 - feld list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`calls`|The number of calls that reached command execution|int|count|
 |`usec`|The total CPU time consumed by these commands|int|μs|
@@ -256,14 +256,14 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`db`|db name|
 
 - feld list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`avg_ttl`|avg ttl|int|-|
 |`expires`|过期时间|int|-|
@@ -280,14 +280,14 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`server`|Server addr|
 
 - feld list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`active_defrag_hits`|Number of value reallocations performed by active the defragmentation process|int|count|
 |`active_defrag_key_hits`|Number of keys that were actively defragmented|int|count|
@@ -393,14 +393,14 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`server`|Server addr|
 
 - field list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cost_time`|Latest event latency in millisecond.|int|ms|
 |`event_name`|Event name.|string|-|
@@ -418,7 +418,7 @@ Redis 慢查询命令历史，这里我们将其以日志的形式采集
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`host`|host|
 |`message`|log message|
@@ -427,7 +427,7 @@ Redis 慢查询命令历史，这里我们将其以日志的形式采集
 - field list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`command`|slow command|int|μs|
 |`slowlog_id`|slowlog unique id|int|-|

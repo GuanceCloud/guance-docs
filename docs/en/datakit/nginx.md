@@ -97,7 +97,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`host`|host mame which installed nginx,use vts exist|
 |`nginx_port`|nginx server port|
@@ -107,7 +107,7 @@ For all of the following data collections, a global tag named `host` is appended
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`connection_active`|The current number of active client connections|int|count|
 |`connection_handled`|The total number of handled client connections|int|count|
@@ -124,7 +124,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`host`|host mame which installed nginx|
 |`nginx_port`|nginx server port|
@@ -135,7 +135,7 @@ For all of the following data collections, a global tag named `host` is appended
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`received`|The total amount of data received from clients.|int|B|
 |`request_count`|The total number of client requests received from clients.|int|count|
@@ -153,7 +153,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`host`|host mame which installed nginx|
 |`nginx_port`|nginx server port|
@@ -165,7 +165,7 @@ For all of the following data collections, a global tag named `host` is appended
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`received`|The total number of bytes received from this server.|int|B|
 |`request_count`|The total number of client requests received from server.|int|count|
@@ -183,7 +183,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`cache_zone`|cache zone|
 |`host`|host mame which installed nginx|
@@ -194,7 +194,7 @@ For all of the following data collections, a global tag named `host` is appended
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`max_size`|The limit on the maximum size of the cache specified in the configuration|int|B|
 |`receive`|The total number of bytes received from the cache.|int|B|

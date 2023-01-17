@@ -61,7 +61,7 @@ For all of the following metric sets, a global tag named `host` is appended by d
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`file_ownership`|file ownership|
 |`file_system`|file system type|
@@ -70,7 +70,7 @@ For all of the following metric sets, a global tag named `host` is appended by d
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`dir_count`|The number of Dir|int|count|
 |`file_count`|The number of files|int|count|

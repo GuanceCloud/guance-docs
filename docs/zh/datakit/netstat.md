@@ -119,7 +119,7 @@ Netstat 指标采集，包括 TCP/UDP 连接数、等待连接、等待处理请
 -  标签 
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`addr_port`|addr and port|
 |`host`|Host name|
@@ -127,7 +127,7 @@ Netstat 指标采集，包括 TCP/UDP 连接数、等待连接、等待处理请
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`pid`|pid.|int|count|
 |`tcp_close`|CLOSE : The number of TCP state be waiting for a connection termination request acknowledgement from remote TCP host.|int|count|

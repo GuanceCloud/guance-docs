@@ -83,14 +83,14 @@ Flink collects multiple metrics by default, and these [metrics](https://nightlie
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`host`|host name|
 
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`Status_JVM_CPU_Load`|The recent CPU usage of the JVM.|int|count|
 |`Status_JVM_CPU_Time`|The CPU time used by the JVM.|int|count|
@@ -128,14 +128,14 @@ Flink collects multiple metrics by default, and these [metrics](https://nightlie
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`host`|host name|
 
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`Status_Flink_Memory_Managed_Total`|The total amount of managed memory.|int|count|
 |`Status_Flink_Memory_Managed_Used`|The amount of managed memory currently used.|int|count|

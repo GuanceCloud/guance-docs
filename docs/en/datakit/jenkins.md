@@ -112,7 +112,7 @@ You can specify additional tags for the Jenkins CI Event in the configuration by
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`metric_plugin_version`|jenkins plugin version|
 |`url`|jenkins url|
@@ -121,7 +121,7 @@ You can specify additional tags for the Jenkins CI Event in the configuration by
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`executor_count`|The number of executors available to Jenkins|int|count|
 |`executor_free_count`|The number of executors available to Jenkins that are not currently in use.|int|count|
@@ -150,7 +150,7 @@ You can specify additional tags for the Jenkins CI Event in the configuration by
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`author_email`|作者邮箱|
 |`ci_status`|CI 状态|
@@ -166,7 +166,7 @@ You can specify additional tags for the Jenkins CI Event in the configuration by
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`commit_message`|触发该 pipeline 的代码的最近一次提交附带的 message|string|-|
 |`created_at`|pipeline 创建的毫秒时间戳|int|msec|
@@ -182,7 +182,7 @@ You can specify additional tags for the Jenkins CI Event in the configuration by
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`build_commit_sha`|build 对应的 commit 的哈希值|
 |`build_failure_reason`|build 失败的原因|
@@ -198,7 +198,7 @@ You can specify additional tags for the Jenkins CI Event in the configuration by
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`build_commit_message`|触发该 build 的最近一次 commit 的 message|string|-|
 |`build_duration`|build 持续时长（微秒）|int|μs|

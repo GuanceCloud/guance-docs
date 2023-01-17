@@ -86,7 +86,7 @@ Measurements for statistics regardless of port number: `netstat` ; Measurements 
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`addr_port`|addr and port|
 |`host`|Host name|
@@ -94,7 +94,7 @@ Measurements for statistics regardless of port number: `netstat` ; Measurements 
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`pid`|pid.|int|count|
 |`tcp_close`|CLOSE : The number of TCP state be waiting for a connection termination request acknowledgement from remote TCP host.|int|count|

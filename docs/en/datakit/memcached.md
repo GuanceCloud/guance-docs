@@ -60,14 +60,14 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`server`|The host name from which metrics are gathered|
 
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`accepting_conns`|Whether or not server is accepting conns|int|count|
 |`auth_cmds`|Number of authentication commands handled, success or failure|int|count|

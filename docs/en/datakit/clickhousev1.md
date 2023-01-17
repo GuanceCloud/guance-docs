@@ -151,14 +151,14 @@ For all the following data collections, a global tag named `host` is appended by
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`host`|host name|
 
 - field list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`AsynchronousMetricsCalculationTimeSpent`|-|int|count|
 |`BlockActiveTimePerOp_dm_1`|-|int|count|
@@ -374,14 +374,14 @@ For all the following data collections, a global tag named `host` is appended by
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`host`|host name|
 
 - field list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`ActiveAsyncDrainedConnections`|Number of active connections drained asynchronously.|int|count|
 |`ActiveSyncDrainedConnections`|Number of active connections drained synchronously.|int|count|
@@ -470,14 +470,14 @@ For all the following data collections, a global tag named `host` is appended by
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`host`|host name|
 
 - field list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`AIORead`|Number of reads with Linux or FreeBSD AIO interface|int|count|
 |`AIOReadBytes`|Number of bytes read with Linux or FreeBSD AIO interface|int|count|
@@ -720,14 +720,14 @@ For all the following data collections, a global tag named `host` is appended by
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`host`|host name|
 
 - field list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`DictionaryStatus`|Dictionary Status.|int|count| 
 

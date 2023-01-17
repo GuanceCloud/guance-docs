@@ -66,7 +66,7 @@ For all of the following data collections, a global tag named `host` is appended
 -  tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`channel`|Channel|
 |`computer`|计算机|
@@ -85,7 +85,7 @@ For all of the following data collections, a global tag named `host` is appended
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 
  

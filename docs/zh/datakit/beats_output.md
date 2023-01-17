@@ -343,7 +343,7 @@ processors:
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`filepath`|此条记录来源的文件名，全路径|
 |`host`|主机名|
@@ -352,7 +352,7 @@ processors:
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`message`|记录正文，默认存在，可以使用 pipeline 删除此字段|string|-|
 

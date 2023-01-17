@@ -211,7 +211,7 @@ mongo --tls --host <mongod_url> --tlsCAFile </etc/ssl/mongo.cert.pem> --tlsCerti
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`hostname`|mongodb host|
 |`node_type`|node type in replica set|
@@ -220,7 +220,7 @@ mongo --tls --host <mongod_url> --tlsCAFile </etc/ssl/mongo.cert.pem> --tlsCerti
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`active_reads`|The number of the active client connections performing read operations.|int|count|
 |`active_writes`|The number of active client connections performing write operations.|int|count|
@@ -370,7 +370,7 @@ mongo --tls --host <mongod_url> --tlsCAFile </etc/ssl/mongo.cert.pem> --tlsCerti
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`db_name`|database name|
 |`hostname`|mongodb host|
@@ -378,7 +378,7 @@ mongo --tls --host <mongod_url> --tlsCAFile </etc/ssl/mongo.cert.pem> --tlsCerti
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`avg_obj_size`|The average size of each document in bytes.|float|count|
 |`collections`|Contains a count of the number of collections in that database.|int|count|
@@ -397,7 +397,7 @@ mongo --tls --host <mongod_url> --tlsCAFile </etc/ssl/mongo.cert.pem> --tlsCerti
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`collection`|collection name|
 |`db_name`|database name|
@@ -406,7 +406,7 @@ mongo --tls --host <mongod_url> --tlsCAFile </etc/ssl/mongo.cert.pem> --tlsCerti
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`avg_obj_size`|The average size of an object in the collection. |int|count|
 |`count`|The number of objects or documents in this collection.|int|count|
@@ -423,14 +423,14 @@ mongo --tls --host <mongod_url> --tlsCAFile </etc/ssl/mongo.cert.pem> --tlsCerti
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`hostname`|mongodb host|
 
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`available`|The number of connections available for this host to connect to the mongos.|int|count|
 |`created`|The number of connections the host has ever created to connect to the mongos.|int|count|
@@ -444,7 +444,7 @@ mongo --tls --host <mongod_url> --tlsCAFile </etc/ssl/mongo.cert.pem> --tlsCerti
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`collection`|collection name|
 |`hostname`|mongodb host|
@@ -452,7 +452,7 @@ mongo --tls --host <mongod_url> --tlsCAFile </etc/ssl/mongo.cert.pem> --tlsCerti
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`commands_count`|The total number of "command" event issues.|int|count|
 |`commands_time`|The amount of time in microseconds that "command" costs.|int|count|

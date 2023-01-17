@@ -100,14 +100,14 @@ The tcd collector can take many metrics from the etcd instance, such as the stat
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`host`|主机名称|
 
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`network_client_grpc_received_bytes_total`|接收到 grpc 客户端的总字节数|int|count|
 |`network_client_grpc_sent_bytes_total`|发送到 grpc 客户端的总字节数|int|count|
@@ -119,7 +119,7 @@ The tcd collector can take many metrics from the etcd instance, such as the stat
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`host`|主机名称|
 |`server_has_leader`|领导者是否存在。1是存在。0是不存在|
@@ -127,7 +127,7 @@ The tcd collector can take many metrics from the etcd instance, such as the stat
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`server_leader_changes_seen_total`|解释到的领导者变更次数|int|count|
 |`server_proposals_applied_total`|已应用的共识提案总数|int|count|

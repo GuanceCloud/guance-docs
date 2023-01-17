@@ -259,7 +259,7 @@ Note that these tag-keys cannot contain the English character '.', and the tag-k
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`container_host`|container hostname|
 |`endpoint`|endpoint info|
@@ -277,7 +277,7 @@ Note that these tag-keys cannot contain the English character '.', and the tag-k
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`duration`|duration of span|int|μs|
 |`message`|origin content of span|string|-|

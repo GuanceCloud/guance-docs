@@ -83,7 +83,7 @@ NSQ 集群所有 topic 的指标
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`channel`|channel 名称|
 |`topic`|topic 名称|
@@ -91,7 +91,7 @@ NSQ 集群所有 topic 的指标
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`backend_depth`|超出 men-queue-size 的未被消费的消息总数|int|count|
 |`deferred_count`|重新入队并且还没有准备好重新发送的消息数量|int|count|
@@ -110,14 +110,14 @@ NSQ 集群所有 node 的指标
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`server_host`|服务地址，即 `host:ip`|
 
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`backend_depth`|超出 men-queue-size 的未被消费的消息总数|int|count|
 |`depth`|在当前 node 中未被消费的消息总数|int|count|

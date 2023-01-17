@@ -109,7 +109,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`cluster_name`|rabbitmq cluster name|
 |`rabbitmq_version`|rabbitmq version|
@@ -118,7 +118,7 @@ For all of the following data collections, a global tag named `host` is appended
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`message_ack_count`|Number of messages delivered to clients and acknowledged|int|count|
 |`message_ack_rate`|Rate of messages delivered to clients and acknowledged per second|float|percent|
@@ -154,7 +154,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`node_name`|rabbitmq node name|
 |`queue_name`|rabbitmq queue name|
@@ -163,7 +163,7 @@ For all of the following data collections, a global tag named `host` is appended
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`bindings_count`|Number of bindings for a specific queue|int|count|
 |`consumer_utilization`|Number of consumers|float|percent|
@@ -194,7 +194,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`auto_delete`|If set, the exchange is deleted when all queues have finished using it|
 |`durable`|If set when creating a new exchange, the exchange will be marked as durable. Durable exchanges remain active when a server restarts. Non-durable exchanges (transient exchanges) are purged if/when a server restarts.|
@@ -207,7 +207,7 @@ For all of the following data collections, a global tag named `host` is appended
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`message_ack_count`|Number of messages in exchanges delivered to clients and acknowledged|int|count|
 |`message_ack_rate`|Rate of messages in exchanges delivered to clients and acknowledged per second|float|percent|
@@ -233,7 +233,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`node_name`|rabbitmq node name|
 |`url`|rabbitmq url|
@@ -241,7 +241,7 @@ For all of the following data collections, a global tag named `host` is appended
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`disk_free`|Current free disk space|int|B|
 |`disk_free_alarm`|Does the node have disk alarm|bool|-|

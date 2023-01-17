@@ -128,14 +128,14 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`host`|host name|
 
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`query_fail`|The total number of continuous queries that executed but failed.|float|-|
 |`query_ok`|The total number of continuous queries that executed successfully. |float|-|
@@ -147,7 +147,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`database`|database name|
 |`host`|host name|
@@ -155,7 +155,7 @@ For all of the following data collections, a global tag named `host` is appended
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`num_measurements`|The current number of measurements in the specified database.|float|-|
 |`num_series`|The current series cardinality of the specified database. |float|-|
@@ -167,7 +167,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`bind`|bind port|
 |`host`|host name|
@@ -175,7 +175,7 @@ For all of the following data collections, a global tag named `host` is appended
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`auth_fail`|The number of HTTP requests that were aborted due to authentication being required, but not supplied or incorrect.|float|-|
 |`client_error`|The number of HTTP responses due to client errors, with a 4XX HTTP status code.|float|-|
@@ -209,14 +209,14 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`host`|host name|
 
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`alloc`|The currently allocated number of bytes of heap objects.|float|B|
 |`buck_hash_sys`|The bytes of memory in profiling bucket hash tables.|float|B|
@@ -254,14 +254,14 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`host`|host name|
 
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`queries_active`|The number of active queries currently being handled.|float|-|
 |`queries_executed`|The number of queries executed (started).|float|-|
@@ -276,14 +276,14 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`host`|host name|
 
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`alloc`|The currently allocated number of bytes of heap objects.|float|B|
 |`frees`|The cumulative number of freed (live) heap objects.|float|-|
@@ -308,7 +308,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`database`|database name|
 |`engine`|engine|
@@ -322,7 +322,7 @@ For all of the following data collections, a global tag named `host` is appended
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`disk_bytes`|The size, in bytes, of the shard, including the size of the data directory and the WAL directory.|float|B|
 |`fields_create`|The number of fields created.|float|-|
@@ -343,14 +343,14 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`host`|host name|
 
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`create_failures`|The number of subscriptions that failed to be created.|float|-|
 |`points_written`|The total number of points that were successfully written to subscribers.|float|-|
@@ -363,7 +363,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`database`|database name|
 |`engine`|engine|
@@ -377,7 +377,7 @@ For all of the following data collections, a global tag named `host` is appended
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cache_age_ms`|The duration, in milliseconds, since the cache was last snapshotted at sample time.|float|ms|
 |`cached_bytes`|The total number of bytes that have been written into snapshots.|float|B|
@@ -396,7 +396,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`database`|database name|
 |`engine`|engine|
@@ -410,7 +410,7 @@ For all of the following data collections, a global tag named `host` is appended
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cache_compaction_duration`|The duration (wall time), in nanoseconds, spent in cache compactions.|float|ns|
 |`cache_compaction_err`|The number of cache compactions that have failed due to errors.|float|-|
@@ -449,7 +449,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`database`|database name|
 |`engine`|engine|
@@ -463,7 +463,7 @@ For all of the following data collections, a global tag named `host` is appended
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`disk_bytes`|The size, in bytes, of disk usage by the TSM file store.|float|B|
 |`num_files`|The total number of files in the TSM file store.|float|-|
@@ -475,7 +475,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`database`|database name|
 |`engine`|engine|
@@ -488,7 +488,7 @@ For all of the following data collections, a global tag named `host` is appended
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`current_segment_disk_bytes`|The current size, in bytes, of the segment disk.|float|B|
 |`old_segments_disk_bytes`|The size, in bytes, of the segment disk.|float|B|
@@ -502,14 +502,14 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`host`|host name|
 
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`point_req`|The total number of every point requested to be written to this data node.|float|-|
 |`point_req_local`|The total number of point requests that have been attempted to be written into a shard on the same (local) node.|float|-|

@@ -73,7 +73,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`category`|category name|
 |`core`|solr core|
@@ -85,7 +85,7 @@ For all of the following data collections, a global tag named `host` is appended
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cumulative_evictions`|Number of cache evictions across all caches since this node has been running.|int|count|
 |`cumulative_hitratio`|Ratio of cache hits to lookups across all the caches since this node has been running.|float|percent|
@@ -109,7 +109,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`category`|category name|
 |`core`|solr core|
@@ -121,7 +121,7 @@ For all of the following data collections, a global tag named `host` is appended
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`count`|Total number of requests made since the Solr process was started.|int|count|
 |`max`|Max of all the request processing time.|float|ms|
@@ -145,7 +145,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`category`|category name|
 |`core`|solr core|
@@ -156,7 +156,7 @@ For all of the following data collections, a global tag named `host` is appended
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`deleted_docs`|The number of deleted documents.|int|count|
 |`max_docs`|The largest possible document number.|int|count|

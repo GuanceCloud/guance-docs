@@ -210,7 +210,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`direction`|传输方向 (incoming/outgoing)|
 |`dst_domain`|目标域名|
@@ -239,7 +239,7 @@ For all of the following data collections, a global tag named `host` is appended
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`bytes_read`|读取字节数|int|B|
 |`bytes_written`|写入字节数|int|B|
@@ -256,7 +256,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`direction`|传输方向 (incoming/outgoing)|
 |`dst_ip`|目标 IP|
@@ -282,7 +282,7 @@ For all of the following data collections, a global tag named `host` is appended
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`count`|一个采集周期内的 DNS 请求数聚合总数|int|-|
 |`latency`|DNS 平均请求的响应时间间隔|int|ns|
@@ -296,7 +296,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`host`|host name|
 |`source`|固定值: bash|
@@ -304,7 +304,7 @@ For all of the following data collections, a global tag named `host` is appended
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cmd`|bash 命令|string|-|
 |`message`|单条 bash 执行记录|string|-|
@@ -318,7 +318,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`direction`|传输方向 (incoming/outgoing)|
 |`dst_ip`|目标 IP|
@@ -346,7 +346,7 @@ For all of the following data collections, a global tag named `host` is appended
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`count`|一个采集周期内的 HTTP 请求数聚合总数|int|-|
 |`http_version`|1.1 / 1.0 ...|string|-|

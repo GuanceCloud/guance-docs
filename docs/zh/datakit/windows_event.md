@@ -65,7 +65,7 @@ Windows 事件日志采集是采集应用程序、安全、系统等 Windows 事
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`channel`|Channel|
 |`computer`|计算机|
@@ -84,7 +84,7 @@ Windows 事件日志采集是采集应用程序、安全、系统等 Windows 事
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 
  

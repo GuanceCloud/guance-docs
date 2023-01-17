@@ -94,7 +94,7 @@ For all of the following data collections, a global tag named  `host` is appende
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`server_mpm`|apache server Multi-Processing Module,prefork、worker and event|
 |`server_version`|apache server version|
@@ -103,7 +103,7 @@ For all of the following data collections, a global tag named  `host` is appende
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`busy_workers`|The number of workers serving requests.|int|count|
 |`closing_connection`|The amount of workers that are currently closing a connection|int|count|

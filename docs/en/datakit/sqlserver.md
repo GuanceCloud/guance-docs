@@ -102,14 +102,14 @@ For all of the following data collections, a global tag name `host` is appended 
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`sqlserver_host`|host name which installed sqlserver|
 
 - field list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cpu_count`|Specifies the number of logical CPUs on the system. Not nullable.|int|count|
 |`db_offline`|num of database state in offline|int|count|
@@ -127,7 +127,7 @@ For all of the following data collections, a global tag name `host` is appended 
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`counter_name`|Name of the counter. To get more information about a counter, this is the name of the topic to select from the list of counters in Use SQL Server Objects.|
 |`object_name`|Category to which this counter belongs.|
@@ -136,7 +136,7 @@ For all of the following data collections, a global tag name `host` is appended 
 - field list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cntr_value`|Current value of the counter.|int|count|
 
@@ -147,7 +147,7 @@ For all of the following data collections, a global tag name `host` is appended 
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`sqlserver_host`|host name which installed sqlserver|
 |`wait_category`|wait category info|
@@ -156,7 +156,7 @@ For all of the following data collections, a global tag name `host` is appended 
 - field list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`max_wait_time_ms`|Maximum wait time on this wait type.|int|ms|
 |`resource_wait_ms`|wait_time_ms-signal_wait_time_ms|int|ms|
@@ -171,7 +171,7 @@ For all of the following data collections, a global tag name `host` is appended 
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`database_name`|database name|
 |`file_type`|Description of the file type,ROWS、LOG、FILESTREAM、FULLTEXT (Full-text catalogs earlier than SQL Server 2008.)|
@@ -182,7 +182,7 @@ For all of the following data collections, a global tag name `host` is appended 
 - field list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`read`|Number of reads issued on the file.|int|count|
 |`read_bytes`|Total number of bytes read on this file|int|B|
@@ -200,7 +200,7 @@ For all of the following data collections, a global tag name `host` is appended 
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`cpu_id`|CPU ID assigned to the scheduler.|
 |`scheduler_id`|ID of the scheduler. All schedulers that are used to run regular queries have ID numbers less than 1048576. Those schedulers that have IDs greater than or equal to 1048576 are used internally by SQL Server, such as the dedicated administrator connection scheduler. Is not nullable.|
@@ -209,7 +209,7 @@ For all of the following data collections, a global tag name `host` is appended 
 - field list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`active_workers_count`|Number of workers that are active. An active worker is never preemptive, must have an associated task, and is either running, runnable, or suspended. Is not nullable.|int|count|
 |`context_switches_count`|Number of context switches that have occurred on this scheduler|int|count|
@@ -233,7 +233,7 @@ For all of the following data collections, a global tag name `host` is appended 
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`sqlserver_host`|host name which installed sqlserver|
 |`volume_mount_point`|Mount point at which the volume is rooted. Can return an empty string. Returns null on Linux operating system.|
@@ -241,7 +241,7 @@ For all of the following data collections, a global tag name `host` is appended 
 - field list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`volume_available_space_bytes`|Available free space on the volume|int|B|
 |`volume_total_space_bytes`|Total size in bytes of the volume|int|B|
@@ -254,14 +254,14 @@ For all of the following data collections, a global tag name `host` is appended 
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`name`|Name of the database|
 
 - field list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`data_size`|The size of file of Rows|float|KB|
 |`log_size`|The size of file of Log|float|KB|
@@ -278,7 +278,7 @@ For all of the following data collections, a global tag name `host` is appended 
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`host_name`|Name of the client workstation that is specific to a session|
 |`login_name`|SQL Server login name under which the session is currently executing|
@@ -288,7 +288,7 @@ For all of the following data collections, a global tag name `host` is appended 
 - field list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`blocking_session_id`|ID of the session that is blocking the request|int|count|
 |`cpu_time`|CPU time in milliseconds that is used by the request|int|ms|
@@ -306,7 +306,7 @@ For all of the following data collections, a global tag name `host` is appended 
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`db_name`|Name of the database under which this resource is scoped|
 |`object_name`|Name of the entity in a database with which a resource is associated|
@@ -317,7 +317,7 @@ For all of the following data collections, a global tag name `host` is appended 
 - field list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`resource_session_id`|Session ID that currently owns this request|int|count|
 
@@ -328,7 +328,7 @@ For all of the following data collections, a global tag name `host` is appended 
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`blocking_object_name`|Indicates the name of the object to which this partition belongs|
 |`blocking_text`|Text of the SQL query which is blocking|
@@ -340,7 +340,7 @@ For all of the following data collections, a global tag name `host` is appended 
 - field list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`blocking_session_id`|ID of the session that is blocking the request|int|count|
 |`request_session_id`|Session ID that currently owns this request|int|count|
@@ -352,14 +352,14 @@ For all of the following data collections, a global tag name `host` is appended 
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`message`|Text of the SQL query|
 
 - field list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`avg_logical_io`|Average number of logical writes and logical reads|int|count|
 |`creation_time`|The Unix time at which the plan was compiled, in millisecond|int|count|
@@ -376,14 +376,14 @@ For all of the following data collections, a global tag name `host` is appended 
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`message`|Text of the SQL query|
 
 - field list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`avg_worker_time`|Average amount of CPU time, reported in milliseconds|int|count|
 |`creation_time`|The Unix time at which the plan was compiled, in millisecond|int|count|

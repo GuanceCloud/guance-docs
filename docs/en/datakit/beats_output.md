@@ -345,7 +345,7 @@ All of the following data collections are appended by default with global tags n
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`filepath`|此条记录来源的文件名，全路径|
 |`host`|主机名|
@@ -354,7 +354,7 @@ All of the following data collections are appended by default with global tags n
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`message`|记录正文，默认存在，可以使用 pipeline 删除此字段|string|-|
 

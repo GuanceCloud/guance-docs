@@ -56,7 +56,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`app_pool`|IIS app pool|
 |`host`|host name|
@@ -64,7 +64,7 @@ For all of the following data collections, a global tag named `host` is appended
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`current_app_pool_state`|The current status of the application pool (1 - Uninitialized, 2 - Initialized, 3 - Running, 4 - Disabling, 5 - Disabled, 6 - Shutdown Pending, 7 - Delete Pending).|float|-|
 |`current_app_pool_uptime`|The uptime of the application pool since it was started.|float|s|
@@ -81,7 +81,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`host`|host name|
 |`website`|IIS web site|
@@ -89,7 +89,7 @@ For all of the following data collections, a global tag named `host` is appended
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`anonymous_users`|Rate at which users are making anonymous connections using the web service.|float|-|
 |`bytes_received`|Rate at which bytes are received by the web service.|float|B/S|

@@ -86,7 +86,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`device`|磁盘设备名|
 |`fstype`|文件系统名|
@@ -97,7 +97,7 @@ For all of the following data collections, a global tag named `host` is appended
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`free`|Free disk size in bytes|int|B|
 |`inodes_free`|Free inodes(**DEPRECATED: use inodes_free_mb instead**)|int|count|

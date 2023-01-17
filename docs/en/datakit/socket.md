@@ -60,7 +60,7 @@ For all of the following measurements, the `proto/dest_host/dest_port` global ta
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`dest_host`|示例 wwww.baidu.com|
 |`dest_port`|示例 80|
@@ -69,7 +69,7 @@ For all of the following measurements, the `proto/dest_host/dest_port` global ta
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`response_time`|TCP 连接时间, 单位us|int|μs|
 |`response_time_with_dns`|连接时间（含DNS解析）, 单位us|int|μs|
@@ -82,7 +82,7 @@ For all of the following measurements, the `proto/dest_host/dest_port` global ta
 - tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`dest_host`|目的主机的host|
 |`dest_port`|目的主机的端口号|
@@ -91,7 +91,7 @@ For all of the following measurements, the `proto/dest_host/dest_port` global ta
 - metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`success`|只有 1/-1 两种状态, 1 表示成功, -1 表示失败|int|-|
 
