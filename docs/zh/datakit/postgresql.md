@@ -67,7 +67,7 @@ Postgresql 采集器可以从 Postgresql 实例中采集实例运行状态指标
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`db`|The database name|
 |`server`|The server address|
@@ -75,7 +75,7 @@ Postgresql 采集器可以从 Postgresql 实例中采集实例运行状态指标
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`blks_hit`|The number of times disk blocks were found in the buffer cache, preventing the need to read from the database.|int|count|
 |`blks_read`|The number of disk blocks read in this database.|int|count|

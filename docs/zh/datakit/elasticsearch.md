@@ -216,7 +216,7 @@ PUT _plugins/_security/api/roles/monitor
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`cluster_name`|Name of the cluster, based on the Cluster name setting setting.|
 |`node_attribute_ml.enabled`|Set to true (default) to enable machine learning APIs on the node.|
@@ -230,7 +230,7 @@ PUT _plugins/_security/api/roles/monitor
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`fs_data_0_available_in_gigabytes`|Total number of gigabytes available to this Java virtual machine on this file store.|float|B|
 |`fs_data_0_free_in_gigabytes`|Total number of unallocated gigabytes in the file store.|float|B|
@@ -286,7 +286,7 @@ PUT _plugins/_security/api/roles/monitor
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`cluster_name`|Name of the cluster, based on the Cluster name setting setting.|
 |`index_name`|Name of the index. The name '_all' target all data streams and indices in a cluster.|
@@ -294,7 +294,7 @@ PUT _plugins/_security/api/roles/monitor
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`total_flush_total`|Number of flush operations.|float|count|
 |`total_flush_total_time_in_millis`|Total time in milliseconds spent performing flush operations.|float|ms|
@@ -323,7 +323,7 @@ PUT _plugins/_security/api/roles/monitor
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`cluster_name`|Name of the cluster, based on the cluster.name setting.|
 |`node_name`|Name of the node.|
@@ -332,7 +332,7 @@ PUT _plugins/_security/api/roles/monitor
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`nodes_process_open_file_descriptors_avg`|Average number of concurrently open file descriptors. Returns -1 if not supported.|float|count|
 
@@ -343,7 +343,7 @@ PUT _plugins/_security/api/roles/monitor
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`cluster_name`|Name of the cluster.|
 |`cluster_status`|The cluster status: red, yellow, green.|
@@ -351,7 +351,7 @@ PUT _plugins/_security/api/roles/monitor
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`active_primary_shards`|The number of active primary shards in the cluster.|int|count|
 |`active_shards`|The number of active shards in the cluster.|int|count|

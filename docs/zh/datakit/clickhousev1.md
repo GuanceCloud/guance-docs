@@ -151,14 +151,14 @@ vim /etc/clickhouse-server/config.xml
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`host`|host name|
 
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`AsynchronousMetricsCalculationTimeSpent`|-|int|count|
 |`BlockActiveTimePerOp_dm_1`|-|int|count|
@@ -375,14 +375,14 @@ vim /etc/clickhouse-server/config.xml
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`host`|host name|
 
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`ActiveAsyncDrainedConnections`|Number of active connections drained asynchronously.|int|count|
 |`ActiveSyncDrainedConnections`|Number of active connections drained synchronously.|int|count|
@@ -472,14 +472,14 @@ vim /etc/clickhouse-server/config.xml
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`host`|host name|
 
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`AIORead`|Number of reads with Linux or FreeBSD AIO interface|int|count|
 |`AIOReadBytes`|Number of bytes read with Linux or FreeBSD AIO interface|int|count|
@@ -723,14 +723,14 @@ vim /etc/clickhouse-server/config.xml
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`host`|host name|
 
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`DictionaryStatus`|Dictionary Status.|int|count|
 

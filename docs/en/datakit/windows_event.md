@@ -1,21 +1,20 @@
-<!-- This file required to translate to EN. -->
 
-# Windows 事件
+# Windows Events
 ---
 
 :fontawesome-brands-windows:
 
 ---
 
-Windows 事件日志采集是采集应用程序、安全、系统等 Windows 事件日志
+Windows Event Log Collection is used to collect applications, security, systems and so on.
 
-## 前置条件 {#requrements}
+## Preconditions {#requrements}
 
-- Windows 版本 >= Windows Server 2008 R2
+- Windows version >= Windows Server 2008 R2
 
-## 配置 {#config}
+## Configuration {#config}
 
-进入 DataKit 安装目录下的 `conf.d/windows` 目录，复制 `windows_event.conf.sample` 并命名为 `windows_event.conf`。示例如下：
+Go to the `conf.d/windows` directory under the DataKit installation directory, copy `windows_event.conf.sample` and name it `windows_event.conf`. Examples are as follows:
 
 ```toml
 
@@ -46,11 +45,11 @@ Windows 事件日志采集是采集应用程序、安全、系统等 Windows 事
   # ... 
 ```
 
-配置好后，重启 DataKit 即可。
+After configuration, restart DataKit.
 
-## 指标集 {#measurements}
+## Measurement {#measurements}
 
-以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.windows_event.tags]` 指定其它标签：
+For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration through `[inputs.windows_event.tags]`:
 
 ``` toml
  [inputs.windows_event.tags]
@@ -61,12 +60,13 @@ Windows 事件日志采集是采集应用程序、安全、系统等 Windows 事
 
 
 
+
 ### `windows_event`
 
--  标签
+-  tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`channel`|Channel|
 |`computer`|计算机|
@@ -82,12 +82,13 @@ Windows 事件日志采集是采集应用程序、安全、系统等 Windows 事
 |`total_message`|事件全文|
 |`version`|版本|
 
-- 指标列表
+- metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 
  
 
+ 
 

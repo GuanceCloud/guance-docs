@@ -1,4 +1,3 @@
-<!-- This file required to translate to EN. -->
 
 # SkyWalking
 ---
@@ -7,20 +6,20 @@
 
 ---
 
-Datakit 内嵌的 SkyWalking Agent 用于接收，运算，分析 Skywalking Tracing 协议数据。
+The SkyWalking Agent embedded in Datakit is used to receive, compute and analyze Skywalking Tracing protocol data.
 
-## SkyWalking 文档 {#doc}
+## SkyWalking Doc {#doc}
 
-> APM v8.8.3 目前存在不兼容问题无法使用。目前已支持 v8.5.0 v8.6.0 v8.7.0
+> APM v8.8. 3 is currently incompatible and cannot be used. V8.5. 0 v8.6. 0 v8.7. 0 is currently supported.
 
 - [Quickstart](https://skywalking.apache.org/docs/skywalking-showcase/latest/readme/){:target="_blank"}
 - [Docs](https://skywalking.apache.org/docs/){:target="_blank"}
 - [Clients Download](https://skywalking.apache.org/downloads/){:target="_blank"}
 - [Souce Code](https://github.com/apache/skywalking){:target="_blank"}
 
-## 配置 SkyWalking Client {#client-config}
+## Configure SkyWalking Client {#client-config}
 
-打开文件 /path_to_skywalking_agent/config/agent.config 进行配置
+Open file /path_to_skywalking_agent/config/agent.config to configure.
 
 ```conf
 # The service name in UI
@@ -29,11 +28,11 @@ agent.service_name=${SW_AGENT_NAME:your-service-name}
 collector.backend_service=${SW_AGENT_COLLECTOR_BACKEND_SERVICES:<datakit-ip:skywalking-agent-port>}
 ```
 
-## 配置 SkyWalking Agent {#agent-config}
+## Configure SkyWalking Agent {#agent-config}
 
-=== "主机安装"
+=== "Host Installation"
 
-    进入 DataKit 安装目录下的 `conf.d/skywalking` 目录，复制 `skywalking.conf.sample` 并命名为 `skywalking.conf`。示例如下：
+    Go to the `conf.d/skywalking` directory under the DataKit installation directory, copy `skywalking.conf.sample` and name it `skywalking.conf`. Examples are as follows:
     
     ```toml
         
@@ -86,7 +85,7 @@ collector.backend_service=${SW_AGENT_COLLECTOR_BACKEND_SERVICES:<datakit-ip:skyw
     
     ```
     
-    以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.skywalking.tags]` 指定其它标签：
+    For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.skywalking.tags]`:
     
     ```toml
      [inputs.skywalking.tags]
@@ -97,18 +96,18 @@ collector.backend_service=${SW_AGENT_COLLECTOR_BACKEND_SERVICES:<datakit-ip:skyw
 
 === "Kubernetes"
 
-    目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+    The collector can now be turned on by [ConfigMap Injection Collector Configuration](datakit-daemonset-deploy.md#configmap-setting).
 
-## 启动 Java Client {#start-java}
+## Restart Java Client {#start-java}
 
 ```command
 java -javaagent:/path/to/skywalking/agent -jar /path/to/your/service.jar
 ```
 
-## 将日志发送到 Datakit {#logging}
+## Send Log to Datakit {#logging}
 - log4j2
 
-toolkit 依赖包添加到 maven 或者 gradle 中。
+The toolkit dependency package is added to the maven or gradle.
 ```xml
 	<dependency>
       	<groupId>org.apache.skywalking</groupId>
@@ -117,36 +116,36 @@ toolkit 依赖包添加到 maven 或者 gradle 中。
 	</dependency>
 ```
 
-通过 grpc 协议发送出去：
+Sent through grpc protocol:
 ```xml
 <GRPCLogClientAppender name="grpc-log">
         <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n"/>
     </GRPCLogClientAppender>
 ```
 
-其他：
+Others:
 
 - [log4j-1.x](https://github.com/apache/skywalking-java/blob/main/docs/en/setup/service-agent/java-agent/Application-toolkit-log4j-1.x.md){:target="_blank"}
 - [logback-1.x](https://github.com/apache/skywalking-java/blob/main/docs/en/setup/service-agent/java-agent/Application-toolkit-logback-1.x.md){:target="_blank"}
 
 
-## SkyWalking JVM 指标集 {#jvm-measurements}
+## SkyWalking JVM Measurement {#jvm-measurements}
 
 
 
 jvm metrics collected by skywalking language agent.
 
-- 标签
+- Tag
 
 
-| 标签名 | 描述    |
+| Tag Name | Description    |
 |  ----  | --------|
 |`service`|service name|
 
-- 指标列表
+- Metrics List
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metrics | Description| Data Type | Unit   |
 | ---- |---- | :---:    | :----: |
 |`class_loaded_count`|loaded class count.|int|count|
 |`class_total_loaded_count`|total loaded class count.|int|count|

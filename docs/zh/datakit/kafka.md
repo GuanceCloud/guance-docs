@@ -220,14 +220,14 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`jolokia_agent_url`|jolokia agent url path|
 
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`ActiveControllerCount.Value`||int|count|
 |`AutoLeaderBalanceRateAndTimeMs.50thPercentile`||float|-|
@@ -573,14 +573,14 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`jolokia_agent_url`|jolokia agent url path|
 
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`AtMinIsrPartitionCount.Value`||int|count|
 |`FailedIsrUpdatesPerSec.Count`||int|count|
@@ -618,14 +618,14 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`jolokia_agent_url`|jolokia agent url path|
 
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`AlterAcls.NumDelayedOperations`||int|-|
 |`AlterAcls.PurgatorySize`||int|-|
@@ -651,14 +651,14 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`jolokia_agent_url`|jolokia agent url path|
 
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`LocalTimeMs.50thPercentile`||float|ms|
 |`LocalTimeMs.75thPercentile`||float|ms|
@@ -756,14 +756,14 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`jolokia_agent_url`|jolokia agent url path|
 
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`BytesInPerSec.Count`||int|count|
 |`BytesInPerSec.EventType`||string|-|
@@ -899,7 +899,7 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`jolokia_agent_url`|jolokia agent url path|
 |`topic`|topic name|
@@ -907,7 +907,7 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`BytesInPerSec.Count`||int|count|
 |`BytesInPerSec.EventType`||string|-|
@@ -952,7 +952,7 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`jolokia_agent_url`|jolokia agent url path|
 |`partition`|partition number|
@@ -961,7 +961,7 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`LogEndOffset`||int|-|
 |`LogStartOffset`||int|-|
@@ -976,14 +976,14 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`jolokia_agent_url`|jolokia agent url path|
 
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`ZooKeeperRequestLatencyMs.50thPercentile`||float|ms|
 |`ZooKeeperRequestLatencyMs.75thPercentile`||float|ms|
@@ -1004,7 +1004,7 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`jolokia_agent_url`|jolokia agent url path|
 |`type`|metric type|
@@ -1012,7 +1012,7 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`ControlPlaneExpiredConnectionsKilledCount`||int|count|
 |`ExpiredConnectionsKilledCount`||int|count|
@@ -1027,7 +1027,7 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`jolokia_agent_url`|jolokia agent url path|
 |`type`|metric type|
@@ -1035,7 +1035,7 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`DeadThreadCount`||int|count|
 |`OfflineLogDirectoryCount`||int|count|
@@ -1051,7 +1051,7 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`client_id`|client id|
 |`jolokia_agent_url`|jolokia agent url path|
@@ -1060,7 +1060,7 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`assigned_partitions`||int|count|
 |`bytes_consumed_rate`||float|-|
@@ -1136,7 +1136,7 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`client_id`|client id|
 |`jolokia_agent_url`|jolokia agent url path|
@@ -1145,7 +1145,7 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`batch_split_rate`||float|-|
 |`batch_split_total`||int|-|
@@ -1212,7 +1212,7 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`client_id`|client id|
 |`connector`|connector|
@@ -1223,7 +1223,7 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`batch_size_avg`||int|-|
 |`batch_size_max`||int|-|

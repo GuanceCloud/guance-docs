@@ -80,7 +80,7 @@ logstreaming 支持在 HTTP URL 中添加参数，对日志数据进行操作。
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`ip_or_hostname`|request IP or hostname|
 |`service`|service 名称，对应 URL 中的 `service` 参数|
@@ -88,7 +88,7 @@ logstreaming 支持在 HTTP URL 中添加参数，对日志数据进行操作。
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`message`|日志正文，默认存在，可以使用 pipeline 删除此字段|string|-|
 
