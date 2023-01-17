@@ -1,0 +1,6 @@
+nav:
+  - index.md
+  - 'Create HTTP Dial Test Task': http.md
+  - 'Create ICMP Dial Test Task': icmp.md
+  - 'Create TCP Dial Test Task': tcp.md
+  - 'Create WEBSOCKET Dial Test Task': websocket.md
