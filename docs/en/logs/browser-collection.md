@@ -1,27 +1,27 @@
-# Browser Log Collection
+# Browser log collection
 ---
 
 ## Overview
 
-Send different levels of log data (` corresponding source: browser_log ` metric type log data) to the [Guance Cloud] (https://www.guance.com/) through a web browser or javascript client.
+Send different levels of log data (` corresponding source: browser_log ` metric type log data) to the [Guance Cloud](https://www.guance.com/) through a web browser or javascript client.
 
 ## Function List
 
-- Custom log data collection, access to client applications through sdk, and collect different log data for different scenarios. 
-- Automatically collect application-side error messages (including network errors, console errors, and js errors) and report them to DataFlux. 
-- Custom error levels (` debug `, ` critical `, ` error `, ` info `, ` warn `), custom Logger objects, and custom log fields 
-- Data related to [RUM] (../real-user-monitoring/web/app-access.md) can be automatically collected to correlate RUM business scenarios. 
+- Custom log data collection, access to client applications through sdk, and collect different log data for different scenarios.   
+- Automatically collect application-side error messages (including network errors, console errors, and js errors) and report them to DataFlux.   
+- Custom error levels (` debug `, ` critical `, ` error `, ` info `, ` warn `), custom Logger objects, and custom log fields   
+- Data related to [RUM](../real-user-monitoring/web/app-access.md) can be automatically collected to correlate RUM business scenarios. 
 
 
 ## Get started
 
 ### Setup
 
-**datakit** Send log data to Guance Cloud through datakit log acquisition API
+**datakit:** Send log data to Guance Cloud through datakit log acquisition API
 
-**Import SDK** SDK can be introduced into applications by ` NPM `, ` CDN sync ` or ` CDN async `
+**Import SDK:** SDK can be introduced into applications by ` NPM `, ` CDN sync ` or ` CDN async `
 
-**Support** Support all pc-side and mobile-side browsers
+**Support:** Support all pc-side and mobile-side browsers
 
 ### You can choose one of the following ways to access your Web application
 | Mode     | Description                                                                                                                                                             |
