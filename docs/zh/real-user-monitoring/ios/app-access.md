@@ -253,7 +253,7 @@ typedef NS_ENUM(NSInteger, FTLogCacheDiscard)  {
 @property (nonatomic, copy) NSString *prefix;
 ```
 
-## Trace 配置 
+### Trace 配置 
 
 ```objectivec
     //开启 trace
