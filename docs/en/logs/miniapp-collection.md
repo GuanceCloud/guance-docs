@@ -1,4 +1,4 @@
-# Miniapp Log Collection
+# Miniapp Log collection
 ---
 
 ## Overview
@@ -17,11 +17,11 @@ Miniapp sends different levels of log data (` corresponding source: browser_log 
 
 ### Setup
 
-**datakit** Send log data to Guance Cloud through datakit log acquisition API
+**datakit:** Send log data to Guance Cloud through datakit log acquisition API
 
-**import SDK** SDK can be introduced into application by ` NPM ` and ` CDN `. After initialization, it can be stored in global variables, which is convenient for other pages to refer to
+**import SDK:** SDK can be introduced into application by ` NPM ` and ` CDN `. After initialization, it can be stored in global variables, which is convenient for other pages to refer to
 
-**support**： Most small programs such as WeChat, Baidu, Alipay and Toutiao
+**support:** Most small programs such as WeChat, Baidu, Alipay and Toutiao
 
 ### npm  (node package manager)
 

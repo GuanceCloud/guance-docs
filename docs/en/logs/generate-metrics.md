@@ -73,8 +73,8 @@ Note: Metrics generation is based on data aggregation within the selected freque
 
 ​	
 
-#### 在指标管理中查看
+#### View in Metric Management
 
-在「生成指标」页面，点击规则右侧的「在指标管理中打开」按钮，即可跳转至「指标管理」页面查看指标和标签，支持对指标单位和描述进行编辑。
+On the Generate Metric page, click the Open in Metric Management button on the right side of the rule to jump to the Metric Management page to view metrics and tags, and support editing indicator units and descriptions.
 
 ![](img/5.log_metric_3.png)
