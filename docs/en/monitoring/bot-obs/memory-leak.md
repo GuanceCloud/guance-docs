@@ -98,7 +98,7 @@ Support to view the detection object, exception/recovery time and duration.
 
 ![image](../img/memory-leak07.png)
 
-#### Associated Events
+#### Related events
 
 Support to view related events through filtering fields and selected time component information.
 

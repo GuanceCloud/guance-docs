@@ -21,11 +21,11 @@ Cloud ( Alibaba Cloud, Tecent Cloud, Huawei Cloud ) Account Billing Inspection h
 
 In DataFlux Func create a new set of scripts to enable APM Intelligent Inspection configuration. After creating a new script set, select the corresponding script template to save when creating the Inspection script, and change it as needed in the resulting new script file.
 
+![image](../img/cloudfee15.png)
 
+## Start Intelligent Inspection
 
-## Start Check
-
-### Register a Detect Item in Guance Cloud
+### Register detection items in Guance Cloud
 
 In DataFlux Func, after the check is configured, you can click run to test by directly selecting `run()` method in the page, and after clicking Publish, you can view and configure it in the Guance Cloud "Monitoring/Intelligent Patrol"
 
@@ -33,7 +33,7 @@ In DataFlux Func, after the check is configured, you can click run to test by di
 
 
 
-### Configure Cloud Account Bill Check in Guance Cloud
+### Configure Cloud Account Billing Intelligent Inspection in Guance Cloud
 
 ![image](../img/cloudfee04.png)
 
@@ -51,7 +51,7 @@ Intelligent check supports "exporting JSON configuration". Under the operation m
 
 
 
-#### Edit
+#### Editor
 
 Intelligent check "Cloud Account Bill Check" supports users to manually add filter conditions. Under the operation menu on the right side of the intelligent check list, click the "Edit" button to edit the check template.
 
@@ -133,7 +133,7 @@ Support to view detection objects, exception/recovery time and duration.
 
 ![image](../img/cloudfee10.png)
 
-#### Associated Events
+#### Related events
 Support to view associated events by filtering fields and selected time component information.
 
 ![image](../img/cloudfee11.png)
@@ -157,7 +157,9 @@ Taking the total cost of the designated cloud supplier as the entrance, when the
 * Tracking threshold: If the current expenses are more than 100% year-on-year
 * Track Budget: Total expenses of the month is more than set budget
 
+**4. Abnormal errors are found in scripts that were previously running normally during the inspection process**
 
+Please update the referenced script set in DataFlux Func's script marketplace, you can view the update log of the script marketplace via [**Change Log**](https://func.guance.com/doc/script-market-guance-changelog/) to facilitate immediate script update.
 
 
 

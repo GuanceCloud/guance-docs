@@ -86,7 +86,7 @@ Click "Event" to view the details page of intelligent check events, including ev
 
 ![image](../img/cloudasset06.png)
 
-#### Associated Events
+#### Related events
 Support to view associated events by filtering fields and selected time component information.
 
 ![image](../img/cloudasset07.png)
