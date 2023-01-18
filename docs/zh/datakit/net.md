@@ -78,7 +78,7 @@ net 采集器用于采集主机网络信息，如各网络接口的流量信息�
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`host`|主机名|
 |`interface`|网络接口名|
@@ -86,7 +86,7 @@ net 采集器用于采集主机网络信息，如各网络接口的流量信息�
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`bytes_recv`|The number of bytes received by the interface.|int|B|
 |`bytes_recv/sec`|The number of bytes received by the interface per second.|int|B/S|

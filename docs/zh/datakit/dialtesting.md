@@ -98,7 +98,7 @@
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`city`|示例 杭州|
 |`country`|示例 中国|
@@ -116,7 +116,7 @@
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`fail_reason`|拨测失败原因|string|-|
 |`message`|包括请求头(request_header)/请求体(request_body)/返回头(response_header)/返回体(response_body)/fail_reason 冗余一份|string|-|
@@ -133,7 +133,7 @@
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`city`|示例 杭州|
 |`country`|示例 中国|
@@ -150,7 +150,7 @@
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`fail_reason`|拨测失败原因|string|-|
 |`message`|包括响应时间(response_time)/错误原因(fail_reason)|string|-|
@@ -166,7 +166,7 @@
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`city`|示例 杭州|
 |`country`|示例 中国|
@@ -181,7 +181,7 @@
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`average_round_trip_time`|平均往返时间(RTT)|float|μs|
 |`average_round_trip_time_in_millis`|平均往返时间(RTT). 本字段将被弃用|float|ms|
@@ -206,7 +206,7 @@
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`city`|示例 杭州|
 |`country`|示例 中国|
@@ -221,7 +221,7 @@
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`fail_reason`|拨测失败原因|string|-|
 |`message`|包括响应时间(response_time)/错误原因(fail_reason)|string|-|

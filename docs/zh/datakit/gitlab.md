@@ -128,7 +128,7 @@ GitLab 运行指标
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`action`|行为|
 |`controller`|管理|
@@ -138,7 +138,7 @@ GitLab 运行指标
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`banzai_cacheless_render_real_duration_seconds_count`|The count of duration of rendering Markdown into HTML when cached output exists|float|s|
 |`banzai_cacheless_render_real_duration_seconds_sum`|The sum of duration of rendering Markdown into HTML when cached output exists|float|s|
@@ -169,12 +169,12 @@ GitLab 编程语言层面指标
 
 -  标签
 
-暂无
+NA
 
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`rails_queue_duration_seconds_count`|The counter for latency between GitLab Workhorse forwarding a request to Rails|float|s|
 |`rails_queue_duration_seconds_sum`|The sum for latency between GitLab Workhorse forwarding a request to Rails|float|s|
@@ -191,7 +191,7 @@ GitLab HTTP 相关指标
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`method`|方法|
 |`status`|状态码|
@@ -199,7 +199,7 @@ GitLab HTTP 相关指标
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`http_health_requests_total`|Number of health requests|float|-|
 |`http_request_duration_seconds_count`|The counter for request duration|float|s|
@@ -214,7 +214,7 @@ Gitlab Pipeline Event 相关指标
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`author_email`|作者邮箱|
 |`ci_status`|CI 状态|
@@ -231,7 +231,7 @@ Gitlab Pipeline Event 相关指标
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`commit_message`|触发该 pipeline 的代码的最近一次提交附带的 message|string|-|
 |`created_at`|pipeline 创建的毫秒时间戳|int|msec|
@@ -249,7 +249,7 @@ Gitlab Job Event 相关指标
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`build_commit_sha`|build 对应的 commit 的哈希值|
 |`build_failure_reason`|build 失败的原因|
@@ -265,7 +265,7 @@ Gitlab Job Event 相关指标
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`build_commit_message`|触发该 build 的最近一次 commit 的 message|string|-|
 |`build_duration`|build 持续时长（微秒）|int|μs|

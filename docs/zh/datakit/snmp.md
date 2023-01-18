@@ -219,7 +219,7 @@ metadata:
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`cpu`|CPU index.|
 |`device_vendor`|设备生产商|
@@ -239,7 +239,7 @@ metadata:
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cieIfInputQueueDrops`|[Cisco only] (Shown as packet) The number of input packets dropped.|int|count|
 |`cieIfLastInTime`|[Cisco only] (Shown as millisecond) The elapsed time in milliseconds since the last protocol input packet was received.|int|msec|
@@ -313,7 +313,7 @@ metadata:
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`cpu`|CPU index.|
 |`device_vendor`|设备生产商|
@@ -333,7 +333,7 @@ metadata:
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cieIfInputQueueDrops`|[Cisco only] (Shown as packet) The number of input packets dropped.|int|count|
 |`cieIfLastInTime`|[Cisco only] (Shown as millisecond) The elapsed time in milliseconds since the last protocol input packet was received.|int|msec|

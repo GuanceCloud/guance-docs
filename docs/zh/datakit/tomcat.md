@@ -137,7 +137,7 @@ $ $tomcat_dir/bin/startup.sh
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`host`|hostname|
 |`jolokia_agent_url`|jolokia agent url|
@@ -146,7 +146,7 @@ $ $tomcat_dir/bin/startup.sh
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`bytesReceived`|Amount of data received, in bytes|int|count|
 |`bytesSent`|Amount of data sent, in bytes|int|count|
@@ -161,7 +161,7 @@ $ $tomcat_dir/bin/startup.sh
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`J2EEApplication`|J2EE Application|
 |`J2EEServer`|J2EE Server|
@@ -172,7 +172,7 @@ $ $tomcat_dir/bin/startup.sh
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`jspCount`|The number of JSPs that have been loaded into a webapp|int|count|
 |`jspReloadCount`|The number of JSPs that have been reloaded|int|count|
@@ -185,7 +185,7 @@ $ $tomcat_dir/bin/startup.sh
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`host`|hostname|
 |`jolokia_agent_url`|jolokia agent url|
@@ -194,7 +194,7 @@ $ $tomcat_dir/bin/startup.sh
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`currentThreadCount`|currentThreadCount|int|count|
 |`currentThreadsBusy`|currentThreadsBusy|int|count|
@@ -207,7 +207,7 @@ $ $tomcat_dir/bin/startup.sh
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`J2EEApplication`|J2EE Application|
 |`J2EEServer`|J2EE Server|
@@ -219,7 +219,7 @@ $ $tomcat_dir/bin/startup.sh
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`errorCount`|Error count|int|count|
 |`processingTime`|Total execution time of the servlet's service method|int|-|
@@ -232,7 +232,7 @@ $ $tomcat_dir/bin/startup.sh
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`host`|hostname|
 |`jolokia_agent_url`|jolokia agent url|
@@ -242,7 +242,7 @@ $ $tomcat_dir/bin/startup.sh
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`hitCount`|The number of requests for resources that were served from the cache|int|count|
 |`lookupCount`|The number of requests for resources|int|count|

@@ -1,0 +1,33 @@
+nav:
+  - index.md
+  - 'Chart Query': chart-query.md
+  - 'Chart Json': chart-json.md
+  - 'Chart Links': chart-link.md
+  - 'Event Association': events-relative.md
+  - 'Chart Sharing': chart-share.md
+  - 'Chart grouping': chart-group.md
+  - 'Comparison of the same period': time-comparison.md
+  - 'Timeseries Chart': timeseries-chart.md
+  - 'Overview Chart': overview-chart.md
+  - 'Table Chart': table-chart.md
+  - 'Rectangular Tree Diagram': treemap.md
+  - 'Funnel Chart': funnel-chart.md
+  - 'Pie Chart': pie-chart.md
+  - 'Bar Chart': bar-chart.md
+  - 'Histogram': histogram.md
+  - 'SLO': slo-chart.md
+  - 'Leaderboard': leaderboard.md
+  - 'Dashboard': dashboard.md
+  - 'Scatter Chart': scatter-plot.md
+  - 'Air Bubble Diagram': bubble-chart.md
+  - 'China Map': china-map.md
+  - 'World Map': world-map.md
+  - 'Honeycomb Chart': cellular-map.md
+  - 'Text': text.md
+  - 'Pictures': picture.md
+  - 'Video': video.md
+  - 'Command Panel': command-panel.md
+  - 'IFrame': iframe.md
+  - 'Log Flow Diagram': log-stream.md
+  - 'Object List Diagram': object-list.md
+  - 'Alarm Statistics Chart': alert-statistics.md

@@ -225,7 +225,7 @@ IPMI 采集器支持选举功能，当多台机器运行 DataKit 时，通过选
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`host`|被监测主机名|
 |`unit`|设备内单元名|
@@ -233,7 +233,7 @@ IPMI 采集器支持选举功能，当多台机器运行 DataKit 时，通过选
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`count`|Count.|int|count|
 |`current`|Current.|float|ampere|

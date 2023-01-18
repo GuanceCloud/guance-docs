@@ -1,0 +1,2 @@
+nav:
+  - 'Pod Abnormal Restart Check': k8s-pod-restart.md

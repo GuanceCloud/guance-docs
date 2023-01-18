@@ -111,7 +111,7 @@ Profile 支持采集使用 Java, Python 和 Go 等不同语言环境下应用程
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`container_host`|container hostname|
 |`endpoint`|endpoint info|
@@ -129,7 +129,7 @@ Profile 支持采集使用 Java, Python 和 Go 等不同语言环境下应用程
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`duration`|duration of span|int|μs|
 |`message`|origin content of span|string|-|

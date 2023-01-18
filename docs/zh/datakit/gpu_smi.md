@@ -111,7 +111,7 @@ SMI 指标展示：包括 GPU 卡温度、时钟、GPU占用率、内存占用�
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`compute_mode`|计算模式|
 |`cuda_version`|CUDA 版本|
@@ -125,7 +125,7 @@ SMI 指标展示：包括 GPU 卡温度、时钟、GPU占用率、内存占用�
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`clocks_current_graphics`|Graphics clock frequency.|int|MHz|
 |`clocks_current_memory`|Memory clock frequency.|int|MHz|

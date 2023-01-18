@@ -61,7 +61,7 @@ hostdir 采集器用于目录文件的采集，例如文件个数，所有文件
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`file_ownership`|file ownership|
 |`file_system`|file system type|
@@ -70,7 +70,7 @@ hostdir 采集器用于目录文件的采集，例如文件个数，所有文件
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`dir_count`|The number of Dir|int|count|
 |`file_count`|The number of files|int|count|

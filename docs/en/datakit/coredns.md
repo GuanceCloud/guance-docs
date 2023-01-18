@@ -1,4 +1,3 @@
-<!-- This file required to translate to EN. -->
 
 # CoreDNS
 ---
@@ -7,17 +6,17 @@
 
 ---
 
-CoreDNS 采集器用于采集 CoreDNS 相关的指标数据。
+CoreDNS collector is used to collect metric data related to CoreDNS.
 
-## 前置条件 {#requirements}
+## Preconditions {#requirements}
 
-- CoreDNS [配置](https://coredns.io/plugins/metrics/){:target="_blank"}启用 `prometheus` 插件
+- CoreDNS [configuration](https://coredns.io/plugins/metrics/){:target="_blank"}; Enable the `prometheus` plug-in
 
-## 配置 {#input-config}
+## Configuration {#input-config}
 
-=== "主机安装"
+=== "Host Installation"
 
-    进入 DataKit 安装目录下的 `conf.d/coredns` 目录，复制 `coredns.conf.sample` 并命名为 `coredns.conf`。示例如下：
+    Go to the `conf.d/coredns` directory under the DataKit installation directory, copy `coredns.conf.sample` and name it `coredns.conf`. Examples are as follows:
     
     ```toml
         
@@ -93,31 +92,31 @@ CoreDNS 采集器用于采集 CoreDNS 相关的指标数据。
     	name = "coredns"
     
     ```
-
-    配置好后，[重启 DataKit](datakit-service-how-to.md#manage-service) 即可。
+    
+    Once configured, [restart DataKit](datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+    The collector can now be turned on by [ConfigMap injection collector configuration](datakit-daemonset-deploy.md#configmap-setting).
 
-## 指标集 {#metrics}
+## Measurements {#metrics}
 
 
 
 ### `coredns_acl`
 
-- 标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`server`|监听服务地址|
 |`zone`|请求所属区域|
 
-- 指标列表
+- metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`acl_allowed_requests_total`|被放行的DNS请求个数|int|-|
 |`acl_blocked_requests_total`|被拦截的DNS请求个数|int|-|
@@ -126,18 +125,18 @@ CoreDNS 采集器用于采集 CoreDNS 相关的指标数据。
 
 ### `coredns_cache`
 
-- 标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`server`|监听服务地址|
 |`type`|缓存类型|
 
-- 指标列表
+- metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cache_drops_total`|被排除在缓存外的响应个数|int|-|
 |`cache_entries`|缓存总数|int|-|
@@ -150,18 +149,18 @@ CoreDNS 采集器用于采集 CoreDNS 相关的指标数据。
 
 ### `coredns_dnssec`
 
-- 标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`server`|监听服务地址|
 |`type`|签名|
 
-- 指标列表
+- metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`dnssec_cache_entries`|dnssec缓存总数|int|-|
 |`dnssec_cache_hits_total`|dnssec缓存命中个数|int|-|
@@ -171,19 +170,19 @@ CoreDNS 采集器用于采集 CoreDNS 相关的指标数据。
 
 ### `coredns_forward`
 
-- 标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`proto`|传输协议|
 |`rcode`|上游返回的RCODE|
 |`to`|上游服务器|
 
-- 指标列表
+- metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`forward_healthcheck_broken_total`|所有上游均不健康次数|int|-|
 |`forward_healthcheck_failures_total`|每个上游健康检查失败个数|int|-|
@@ -196,18 +195,18 @@ CoreDNS 采集器用于采集 CoreDNS 相关的指标数据。
 
 ### `coredns_grpc`
 
-- 标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`rcode`|上游返回的RCODE|
 |`to`|上游服务器|
 
-- 指标列表
+- metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`grpc_request_duration_seconds`|grpc与上游交互时长|float|s|
 |`grpc_requests_total`|grpc在每个上游查询个数|int|-|
@@ -217,14 +216,14 @@ CoreDNS 采集器用于采集 CoreDNS 相关的指标数据。
 
 ### `coredns_hosts`
 
-- 标签
+- tag
 
-暂无
+NA
 
-- 指标列表
+- metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`hosts_entries`|hosts总条数|int|-|
 |`hosts_reload_timestamp_seconds`|最后一次重载hosts文件的时间戳|float|sec|
@@ -233,20 +232,20 @@ CoreDNS 采集器用于采集 CoreDNS 相关的指标数据。
 
 ### `coredns_template`
 
-- 标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`regex`|正则表达式|
 |`section`|所属板块|
 |`server`|监听服务地址|
 |`template`|模板|
 
-- 指标列表
+- metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`template_failures_total`|Go模板失败次数|int|-|
 |`template_matches_total`|正则匹配的请求总数|int|-|
@@ -256,10 +255,10 @@ CoreDNS 采集器用于采集 CoreDNS 相关的指标数据。
 
 ### `coredns`
 
-- 标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`family`|IP地址家族|
 |`proto`|传输协议|
@@ -268,10 +267,10 @@ CoreDNS 采集器用于采集 CoreDNS 相关的指标数据。
 |`type`|查询类型|
 |`zone`|请求所属区域|
 
-- 指标列表
+- metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`dns_request_duration_seconds`|处理每个查询的时长|float|s|
 |`dns_request_size_bytes`|请求大小(以byte计)|int|B|

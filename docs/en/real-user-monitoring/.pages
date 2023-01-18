@@ -1,0 +1,12 @@
+nav:
+  - index.md
+  - 'Web Monitoring': web
+  - 'Android Monitoring': android
+  - 'iOS Monitoring': ios
+  - 'Miniapp Monitoring': miniapp
+  - 'React Native Monitoring': react-native
+  - 'Flutter Monitoring': flutter
+  - 'Explorer': explorer
+  - 'Generate Metrics': generate-metrics.md
+  - 'Self Tracking': self-tracking.md
+

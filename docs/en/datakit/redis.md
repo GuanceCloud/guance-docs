@@ -1,29 +1,28 @@
-<!-- This file required to translate to EN. -->
 
 # Redis
 ---
 
-:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](index.md#legends "支持选举")
+:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](index.md#legends "支持选举")index.md#legends "支持选举")
 
 ---
 
-Redis 指标采集器，采集以下数据：
+Redis indicator collector, which collects the following data:
 
-- 开启 AOF 数据持久化，会收集相关指标
-- RDB 数据持久化指标
-- Slowlog 监控指标
-- bigkey scan 监控
-- 主从replication
+- Turn on AOF data persistence and collect relevant metrics
+- RDB data persistence metrics
+- Slowlog monitoring metrics
+- bigkey scan monitoring
+- Master-slave replication
 
-## 前置条件 {#reqirement}
+## Precondition {#reqirement}
 
-- Redis 版本 v5.0+
+- Redis version v5.0+
 
-在采集主从架构下数据时，请配置从节点的主机信息进行数据采集，可以得到主从相关的指标信息。
+When collecting data under the master-slave architecture, please configure the host information of the slave node for data collection, and you can get the metric information related to the master-slave.
 
-创建监控用户
+Create Monitor User
 
-redis6.0+ 进入redis-cli命令行,创建用户并且授权
+redis6.0+ goes to the rediss-cli command line, create the user and authorize
 
 ```sql
 ACL SETUSER username >password
@@ -31,11 +30,11 @@ ACL SETUSER username on +@dangerous
 ACL SETUSER username on +ping
 ```
 
-## 配置 {#config}
+## Configuration {#config}
 
-=== "主机安装"
+=== "Host Installation"
 
-    进入 DataKit 安装目录下的 `conf.d/db` 目录，复制 `redis.conf.sample` 并命名为 `redis.conf`。示例如下：
+    Go to the `conf.d/db` directory under the DataKit installation directory, copy `redis.conf.sample` and name it `redis.conf`. Examples are as follows:
     
     ```toml
         
@@ -111,21 +110,21 @@ ACL SETUSER username on +ping
     
     ```
     
-    配置好后，[重启 DataKit](datakit-service-how-to.md#manage-service) 即可。
+    After configuration, [restart DataKit](datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+    The collector can now be turned on by [ConfigMap injection collector configuration](datakit-daemonset-deploy.md#configmap-setting).
 
 ---
 
 ???+ attention
 
-    如果是阿里云 Redis，且设置了对应的用户名密码，conf 中的 `<PASSWORD>` 应该设置成 `your-user:your-password`，如 `datakit:Pa55W0rd`
+    If it is Alibaba Cloud Redis and the corresponding username and PASSWORD are set, the `<PASSWORD>` should be set to `your-user:your-password`, such as `datakit:Pa55W0rd`.
 
-## 指标集 {#reqirement}
+## Measurements {#reqirement}
 
-以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.redis.tags]` 指定其它标签：
+For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.redis.tags]`:
 
 ``` toml
  [inputs.redis.tags]
@@ -134,7 +133,7 @@ ACL SETUSER username on +ping
   # ...
 ```
 
-### 指标 {#metric}
+### Metrics {#metric}
 
 
 
@@ -144,22 +143,21 @@ ACL SETUSER username on +ping
 
 
 
-- 标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`db_name`|db|
 |`key`|monitor key|
 |`server`|Server addr|
 
-- 字段列表
+- feld list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`value_length`|Key length|int|-|
-
+|`value_length`|Key length|int|-| 
 
 
 
@@ -169,18 +167,18 @@ ACL SETUSER username on +ping
 
 
 
-- 标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`name`|The name set by the client with CLIENT SETNAME, default unknown|
 |`server`|Server addr|
 
-- 字段列表
+- feld list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`addr`|Address/port of the client|string|-|
 |`age`|Total duration of the connection in seconds|int|count|
@@ -188,8 +186,7 @@ ACL SETUSER username on +ping
 |`id`|AN unique 64-bit client ID|string|-|
 |`idle`|Idle time of the connection in seconds|int|count|
 |`psub`|Number of pattern matching subscriptions|int|count|
-|`sub`|Number of channel subscriptions|int|count|
-
+|`sub`|Number of channel subscriptions|int|count| 
 
 
 
@@ -199,17 +196,17 @@ ACL SETUSER username on +ping
 
 
 
-- 标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`server`|Server addr|
 
-- 字段列表
+- feld list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cluster_current_epoch`|The local Current Epoch variable. This is used in order to create unique increasing version numbers during fail overs.|int|-|
 |`cluster_known_nodes`|The total number of known nodes in the cluster, including nodes in HANDSHAKE state that may not currently be proper members of the cluster.|int|count|
@@ -221,8 +218,7 @@ ACL SETUSER username on +ping
 |`cluster_slots_pfail`|Number of hash slots mapping to a node in PFAIL state. Note that those hash slots still work correctly, as long as the PFAIL state is not promoted to FAIL by the failure detection algorithm. PFAIL only means that we are currently not able to talk with the node, but may be just a transient error.|int|count|
 |`cluster_state`|State is ok if the node is able to receive queries. fail if there is at least one hash slot which is unbound (no node associated), in error state (node serving it is flagged with FAIL flag), or if the majority of masters can't be reached by this node.|int|-|
 |`cluster_stats_messages_received`|Number of messages received via the cluster node-to-node binary bus.|int|count|
-|`cluster_stats_messages_sent`|Number of messages sent via the cluster node-to-node binary bus.|int|count|
-
+|`cluster_stats_messages_sent`|Number of messages sent via the cluster node-to-node binary bus.|int|count| 
 
 
 
@@ -232,23 +228,22 @@ ACL SETUSER username on +ping
 
 
 
-- 标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`method`|Command type|
 |`server`|Server addr|
 
-- 字段列表
+- feld list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`calls`|The number of calls that reached command execution|int|count|
 |`usec`|The total CPU time consumed by these commands|int|μs|
-|`usec_per_call`|The average CPU consumed per command execution|float|μs|
-
+|`usec_per_call`|The average CPU consumed per command execution|float|μs| 
 
 
 
@@ -258,22 +253,21 @@ ACL SETUSER username on +ping
 
 
 
-- 标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`db`|db name|
 
-- 字段列表
+- feld list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`avg_ttl`|avg ttl|int|-|
 |`expires`|过期时间|int|-|
-|`keys`|key|int|-|
-
+|`keys`|key|int|-| 
 
 
 
@@ -283,17 +277,17 @@ ACL SETUSER username on +ping
 
 
 
-- 标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`server`|Server addr|
 
-- 字段列表
+- feld list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`active_defrag_hits`|Number of value reallocations performed by active the defragmentation process|int|count|
 |`active_defrag_key_hits`|Number of keys that were actively defragmented|int|count|
@@ -347,7 +341,7 @@ ACL SETUSER username on +ping
 |`used_memory_overhead`|The sum in bytes of all overheads that the server allocated for managing its internal data structures|float|B|
 |`used_memory_peak`|Peak memory consumed by Redis (in bytes)|float|B|
 |`used_memory_rss`|Number of bytes that Redis allocated as seen by the operating system (a.k.a resident set size)|float|B|
-|`used_memory_startup`|Initial amount of memory consumed by Redis at startup in bytes|float|B|
+|`used_memory_startup`|Initial amount of memory consumed by Redis at startup in bytes|float|B| 
 
 
 
@@ -360,7 +354,7 @@ ACL SETUSER username on +ping
 
 
 
-### 日志 {#logging}
+### Log {#logging}
 
 [:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)
 
@@ -396,23 +390,22 @@ ACL SETUSER username on +ping
 
 
 
-- 标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`server`|Server addr|
 
-- 字段列表
+- field list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cost_time`|Latest event latency in millisecond.|int|ms|
 |`event_name`|Event name.|string|-|
 |`max_cost_time`|All-time maximum latency for this event.|int|ms|
-|`occur_time`|Unix timestamp of the latest latency spike for the event.|int|sec|
-
+|`occur_time`|Unix timestamp of the latest latency spike for the event.|int|sec| 
 
 
 
@@ -422,58 +415,58 @@ ACL SETUSER username on +ping
 
 Redis 慢查询命令历史，这里我们将其以日志的形式采集
 
-- 标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`host`|host|
 |`message`|log message|
 |`server`|server|
 
-- 字段列表
+- field list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`command`|slow command|int|μs|
 |`slowlog_id`|slowlog unique id|int|-|
-|`slowlog_micros`|cost time|int|μs|
+|`slowlog_micros`|cost time|int|μs| 
 
 
 
 
-## 日志采集 {#redis-logging}
+## Log Collection {#redis-logging}
 
-需要采集 Redis 日志，需要开启 Redis `redis.config`中日志文件输出配置：
+To collect Redis logs, you need to open the log file `redis.config` output configuration in Redis:
 
 ```toml
 [inputs.redis.log]
-    # 日志路径需要填入绝对路径
+    # Log path needs to be filled with absolute path
     files = ["/var/log/redis/*.log"]
 ```
 
 ???+ attention
 
-    在配置日志采集时，需要将 DataKit 安装在 Redis 服务同一台主机中，或使用其它方式将日志挂载到 DataKit 所在机器。
+    When configuring log collection, you need to install the DataKit on the same host as the Redis service, or otherwise mount the log on the DataKit machine.
+    
+    In K8s, Redis logs can be exposed to stdout, and DataKit can automatically find its corresponding log.
 
-    在 K8s 中，可以将 Redis 日志暴露到 stdout，DataKit 能自动找到其对应的日志。
+### Pipeline Log Cut {#pipeline}
 
-### Pipeline 日志切割 {#pipeline}
-
-原始日志为
+The original log is:
 
 ```
 122:M 14 May 2019 19:11:40.164 * Background saving terminated with success
 ```
 
-切割后的字段列表如下：
+The list of cut fields is as follows:
 
-| 字段名      | 字段值                                      | 说明                         |
-| ---         | ---                                         | ---                          |
-| `pid`       | `122`                                       | 进程id                       |
-| `role`      | `M`                                         | 角色                         |
-| `serverity` | `*`                                         | 服务                         |
-| `statu`     | `notice`                                    | 日志级别                     |
-| `msg`       | `Background saving terminated with success` | 日志内容                     |
-| `time`      | `1557861100164000000`                       | 纳秒时间戳（作为行协议时间） |
+| Field Name  | Field Value                                 | Description                                  |
+| ----------- | ------------------------------------------- | -------------------------------------------- |
+| `pid`       | `122`                                       | process id                                   |
+| `role`      | `M`                                         | role                                         |
+| `serverity` | `*`                                         | service                                      |
+| `statu`     | `notice`                                    | log level                                    |
+| `msg`       | `Background saving terminated with success` | log content                                  |
+| `time`      | `1557861100164000000`                       | Nanosecond timestamp (as line protocol time) |

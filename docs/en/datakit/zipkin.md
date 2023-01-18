@@ -1,4 +1,3 @@
-<!-- This file required to translate to EN. -->
 
 # Zipkin
 ---
@@ -7,19 +6,19 @@
 
 ---
 
-Datakit 内嵌的 Zipkin Agent 用于接收，运算，分析 Zipkin Tracing 协议数据。
+The Zipkin Agent embedded in Datakit is used to receive, calculate and analyze the data of Zipkin Tracing protocol.
 
-## Zipkin 文档 {#docs}
+## Zipkin Docs {#docs}
 
 - [Quickstart](https://zipkin.io/pages/quickstart.html){:target="_blank"}
 - [Docs](https://zipkin.io/pages/instrumenting.html){:target="_blank"}
 - [Souce Code](https://github.com/openzipkin/zipkin){:target="_blank"}
 
-## 配置 Zipkin Agent {#config-agent}
+## Configure Zipkin Agent {#config-agent}
 
-=== "主机安装"
+=== "Host Installation"
 
-    进入 DataKit 安装目录下的 `conf.d/zipkin` 目录，复制 `zipkin.conf.sample` 并命名为 `zipkin.conf`。示例如下：
+    Go to the `conf.d/zipkin` directory under the DataKit installation directory, copy `zipkin.conf.sample` and name it `zipkin.conf`. Examples are as follows:
     
     ```toml
         
@@ -74,13 +73,13 @@ Datakit 内嵌的 Zipkin Agent 用于接收，运算，分析 Zipkin Tracing 协
     
     ```
 
-    配置好后，重启 DataKit 即可。
+    After configuration, restart DataKit.
 
 === "Kubernetes"
 
-    目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+    At present, the collector can be turned on by [injecting the collector configuration in ConfigMap mode](datakit-daemonset-deploy.md#configmap-setting).
 
-## 指标集 {#measurements}
+## Measurements {#measurements}
 
 
 
@@ -90,10 +89,10 @@ Datakit 内嵌的 Zipkin Agent 用于接收，运算，分析 Zipkin Tracing 协
 
 
 
-- 标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`container_host`|container hostname|
 |`endpoint`|endpoint info|
@@ -108,10 +107,10 @@ Datakit 内嵌的 Zipkin Agent 用于接收，运算，分析 Zipkin Tracing 协
 |`status`|span status|
 |`version`|application version info|
 
-- 指标列表
+- metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`duration`|duration of span|int|μs|
 |`message`|origin content of span|string|-|
@@ -122,6 +121,5 @@ Datakit 内嵌的 Zipkin Agent 用于接收，运算，分析 Zipkin Tracing 协
 |`span_id`|span id|string|-|
 |`start`|start time of span.|int|usec|
 |`trace_id`|trace id|string|-|
-
 
 

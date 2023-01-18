@@ -1,0 +1,8 @@
+nav:
+  - index.md
+  - 'Dashboard': dashboard.md
+  - 'Notes': note.md
+  - 'Explorers': explorer
+  - 'Built-in View': built-in-view
+  - 'View Variables': view-variable.md
+  - 'Visualization Chart': visual-chart

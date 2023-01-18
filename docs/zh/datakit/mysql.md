@@ -294,14 +294,14 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name = 'events
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`server`|Server addr|
 
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`Aborted_clients`|The number of connections that were aborted because the client died without closing the connection properly.|int|count|
 |`Aborted_connects`|The number of failed attempts to connect to the MySQL server.|int|count|
@@ -393,7 +393,7 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name = 'events
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`schema_name`|Schema name|
 |`server`|Server addr|
@@ -401,7 +401,7 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name = 'events
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`query_run_time_avg`|Avg query response time per schema.|float|ns|
 |`schema_size`|Size of schemas(MiB)|float|MB|
@@ -418,14 +418,14 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name = 'events
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`server`|Server addr|
 
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`adaptive_hash_searches`|Number of successful searches using Adaptive Hash Index|int|count|
 |`adaptive_hash_searches_btree`|Number of searches using B-tree on an index search|int|count|
@@ -504,7 +504,7 @@ MySQL 表指标
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`engine`|The storage engine for the table. See The InnoDB Storage Engine, and Alternative Storage Engines.|
 |`server`|Server addr|
@@ -516,7 +516,7 @@ MySQL 表指标
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`data_free`|The number of rows. Some storage engines, such as MyISAM, store the exact count. For other storage engines, such as InnoDB, this value is an approximation, and may vary from the actual value by as much as 40% to 50%. In such cases, use SELECT COUNT(*) to obtain an accurate count.|int|count|
 |`data_length`|For InnoDB, DATA_LENGTH is the approximate amount of space allocated for the clustered index, in bytes. Specifically, it is the clustered index size, in pages, multiplied by the InnoDB page size|int|count|
@@ -535,14 +535,14 @@ MySQL 用户指标
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`user`|user|
 
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`bytes_received`|The number of bytes received this user|int|count|
 |`bytes_sent`|The number of bytes sent this user|int|count|
@@ -608,7 +608,7 @@ MySQL 用户指标
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`digest`|The digest hash value computed from the original normalized statement. |
 |`host`|The server host address|
@@ -620,7 +620,7 @@ MySQL 用户指标
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`count_star`|The total count of executed queries per normalized query and schema.|int|count|
 |`message`|The text of the normalized statement digest.|string|-|
@@ -647,7 +647,7 @@ MySQL 用户指标
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`current_schema`|The name of the current schema.|
 |`digest`|The digest hash value computed from the original normalized statement. |
@@ -665,7 +665,7 @@ MySQL 用户指标
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`duration`|Value in nanoseconds of the event's duration.|int|count|
 |`lock_time_ns`|Time in nanoseconds spent waiting for locks. |int|count|
@@ -699,7 +699,7 @@ MySQL 用户指标
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`host`|The server host address|
 |`server`|The server address|
@@ -708,7 +708,7 @@ MySQL 用户指标
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`connections`|The total number of the connection|int|count|
 |`current_schema`|The default database for the statement, NULL if there is none|string|-|

@@ -138,14 +138,14 @@ jvm metrics collected by skywalking language agent.
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`service`|service name|
 
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`class_loaded_count`|loaded class count.|int|count|
 |`class_total_loaded_count`|total loaded class count.|int|count|
