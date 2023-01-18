@@ -7,6 +7,6 @@ nav:
   - 'Cloud Account Billing Intelligent Inspection': cloudfee.md
   - 'RUM Log Error Intelligent Inspection': rum_errors.md
   - 'Alibaba Cloud Asset Intelligent Inspection': cloudasset.md
-  - 'MySQL Performance  Intelligent Inspection': mysql-performance.md
+  - 'MySQL Performance Intelligent Inspection': mysql-performance.md
   - 'Server Application Error Intelligent Inspection': apm-errors.md
   - 'Kubernetes': Kubernetes
