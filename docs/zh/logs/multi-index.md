@@ -68,10 +68,10 @@
  - 域名：Elasticsearch 的用户访问地址，请确保在公共网络上可以访问。
  - 用户名：访问时的用户名字 
  - 密码：访问时需要的密码 
- - index name：Elasticsearch 中需要绑定查看的索引名称 
+ - Bind index：Elasticsearch 中需要绑定查看的索引名称 
  - 索引名称：观测云工作空间唯一标识的索引名称，由用户自定义填写，且不支持重复的名字，配置完成后，可用于筛选索引名称。 
 
-![](img/9.log_index_2.png)
+![](img/1.log_index_1.png)
 
 
 
@@ -82,10 +82,10 @@
  - 域名：OpenSearch 的用户访问地址，请确保在公共网络上可以访问。
  - 用户名：访问时的用户名字 
  - 密码：访问时需要的密码 
- - index name：OpenSearch 中需要绑定查看的索引名称 
+ - Bind index：OpenSearch 中需要绑定查看的索引名称 
  - 索引名称：观测云工作空间唯一标识的索引名称，由用户自定义填写，且不支持重复的名字，配置完成后，可用于筛选索引名称。 
 
-![](img/9.log_index_3.png)
+![](img/1.log_index_2.png)
 
 
 
