@@ -11,7 +11,7 @@ icon: integrations/aws
 
 <br />
 
-[**安装 DataKit**](../../../datakit/datakit-install.md)和[**安装 DataFlux Func 携带版**](../../../dataflux-func/maintenance-guide-installation.md)之后，可以很好得观测如下指标集：
+[**安装 DataKit**](../../../datakit/datakit-install.md)和[**安装 DataFlux Func 携带版**](https://func.guance.com/doc/maintenance-guide-installation/)之后，可以很好得观测如下指标集：
 
 
 |[EC2](ec2.md){ .md-button .md-button--primary }| [ELB](elb.md){ .md-button .md-button--primary } |

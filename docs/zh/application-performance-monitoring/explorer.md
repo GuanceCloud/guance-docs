@@ -79,6 +79,12 @@
 
 ![](img/9.apm_explorer_6.1.png)
 
+若当前的链路属于前端应用（如：browser），您可以在链路详情查看请求耗时分布，包括 Queueing（队列）、First Byte（首包）、Download（下载）的请求耗时占比。
+
+> 注意：用户访问监测 SDK 必须是 2.2.10 以及上才可以看到这部分数据显示，如存在跨域情况需要调整 header 配置，更多详情可参考文档 [Web 应用接入](../real-user-monitoring/web/app-access.md#header) 。
+
+![](img/11.apm_browse_1.png)
+
 ### 火焰图
 
 火焰图可清晰展示整条链路中每个 span 的流转和执行时间。你可以在火焰图右侧查看对应的服务列表及响应时间。点击火焰图的 span ，在「链路详情」可查看对应的Json内容，支持鼠标滚轴缩放查看具体 span 信息。更多火焰图的应用详情可参考文档 [巧用火焰图分析链路性能](../getting-started/function-details/trace-glame-graph.md) 。

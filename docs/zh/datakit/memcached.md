@@ -60,14 +60,14 @@ Memcached 采集器可以从 Memcached 实例中采集实例运行状态指标�
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`server`|The host name from which metrics are gathered|
 
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`accepting_conns`|Whether or not server is accepting conns|int|count|
 |`auth_cmds`|Number of authentication commands handled, success or failure|int|count|

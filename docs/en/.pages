@@ -1,2 +1,19 @@
 nav:
   - Release Notes: release-notes
+  - DataKit: datakit
+  - Developers: developers
+  - DQL: dql
+  - Scene: scene
+  - Events: events
+  - Infrastructure: infrastructure
+  - Metrics: metrics
+  - Logs: logs
+  - APM: application-performance-monitoring
+  - RUM: real-user-monitoring
+  - Testing: usability-monitoring
+  - CI Visibility: ci-visibility
+  - Monitoring: monitoring
+  - Mobile Application: mobile
+
+
+

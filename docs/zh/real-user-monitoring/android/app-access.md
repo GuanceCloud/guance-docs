@@ -28,28 +28,28 @@ Demo：[https://github.com/GuanceCloud/datakit-android/demo](https://github.com/
 
 ### Gradle 配置 {#gradle-setting}
 
-在项目的根目录的 `build.gradle` 文件中添加 `DataFlux SDK` 的远程仓库地址
+在项目的根目录的 `build.gradle` 文件中添加 `SDK` 的远程仓库地址
 
 ```groovy
 buildscript {
     //...省略部分代码
     repositories {
         //...省略部分代码
-        //添加 DataFlux SDK 的远程仓库地址
+        //添加 SDK 的远程仓库地址
         maven {
             url 'https://mvnrepo.jiagouyun.com/repository/maven-releases'
         }
     }
     dependencies {
         //...省略部分代码
-        //添加 DataFlux Plugin 的插件依赖
+        //添加 Plugin 的插件依赖
         classpath 'com.cloudcare.ft.mobile.sdk.tracker.plugin:ft-plugin:1.1.2-beta01'
     }
 }
 allprojects {
     repositories {
         //...省略部分代码
-        //添加 DataFlux SDK 的远程仓库地址
+        //添加 SDK 的远程仓库地址
         maven {
             url 'https://mvnrepo.jiagouyun.com/repository/maven-releases'
         }
@@ -57,11 +57,11 @@ allprojects {
 }
 ```
 
-在项目主模块 `app` 的 `build.gradle` 文件中添加 `DataFlux SDK` 的依赖及 `DataFlux Plugin` 的使用 和 Java 8 的支持
+在项目主模块 `app` 的 `build.gradle` 文件中添加 `SDK` 的依赖及 `Plugin` 的使用 和 Java 8 的支持
 
 ```groovy
 dependencies {
-    //添加 DataFlux SDK 的依赖
+    //添加 SDK 的依赖
     implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-sdk:1.3.8-beta03'
     //捕获 native 层崩溃信息的依赖，需要配合 ft-sdk 使用不能单独使用
     implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-native:1.0.0-alpha05'
@@ -513,7 +513,7 @@ FTExt {
 ## 常见问题 {#FAQ}
 ### 添加局变量避免冲突字段 {#key-conflict}
 
-为了避免自定义字段与 SDK 数据冲突，建议标签命名添加项目缩写的前缀，例如 `df_tag_name`，项目中使用 `key` 值可[查询源码](https://github.com/DataFlux-cn/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java)。SDK 全局变量中出现与 RUM、Log 相同变量时，RUM、Log 会覆盖 SDK 中的全局变量。
+为了避免自定义字段与 SDK 数据冲突，建议标签命名添加项目缩写的前缀，例如 `df_tag_name`，项目中使用 `key` 值可[查询源码](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java)。SDK 全局变量中出现与 RUM、Log 相同变量时，RUM、Log 会覆盖 SDK 中的全局变量。
 
 ### 应对市场隐私审核 {#adpot-to-privacy-audits}
 #### 隐私声明

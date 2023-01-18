@@ -3,6 +3,8 @@
 
 ???+ warning "注意"
      OpenSearch 和 Elasticsearch 二选一即可。
+     
+     高可用 OpenSearch 部署可参考：[OpenSearch 高可用部署](ha-opensearch.md)
 
 ## 简介 {#intro}
 
@@ -11,7 +13,7 @@
 | ---------- | ------- |
 | **部署方式**    | Kubernetes 容器部署    |
 | **日志引擎(二选一)**|      |
-| **OpenSearch** | 版本：2.2.1 | 
+| **OpenSearch** | 版本：2.3.0 | 
 | **Elasticsearch** | 版本：7.13.2 |        
 | **部署前提条件** | 已部署 [Kubernetes](infra-kubernetes.md#kubernetes-install) <br> 已部署 [Kubernetes Storage](infra-kubernetes.md#kube-storage) |
 

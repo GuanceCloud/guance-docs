@@ -57,6 +57,23 @@ Profile 支持采集使用 Java, Python 和 Go 等不同语言环境下应用程
     #[inputs.profile.go.tags]
       # tag1 = xxxxx
     
+    ## pyroscope config
+    #[[inputs.profile.pyroscope]]
+      ## listen url
+      #url = "0.0.0.0:4040"
+    
+      ## service name
+      #service = "pyroscope-demo"
+    
+      ## app env
+      #env = "dev"
+    
+      ## app version
+      #version = "0.0.0"
+    
+    #[inputs.profile.pyroscope.tags]
+      #tag1 = xxxxx
+    
     ```
     
     配置好后，[重启 DataKit](datakit-service-how-to.md#manage-service) ，开启 Profile 服务。
@@ -71,7 +88,8 @@ Profile 支持采集使用 Java, Python 和 Go 等不同语言环境下应用程
 
 - [Java](profile-java.md)
 - [Go](profile-go.md)
-- [Python](python-profiling.md)
+- [Python](profile-python.md)
+- [C/C++](profile-cpp.md)
 
 ## 指标集 {#measurements}
 
@@ -93,7 +111,7 @@ Profile 支持采集使用 Java, Python 和 Go 等不同语言环境下应用程
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`container_host`|container hostname|
 |`endpoint`|endpoint info|
@@ -111,7 +129,7 @@ Profile 支持采集使用 Java, Python 和 Go 等不同语言环境下应用程
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`duration`|duration of span|int|μs|
 |`message`|origin content of span|string|-|
@@ -122,6 +140,5 @@ Profile 支持采集使用 Java, Python 和 Go 等不同语言环境下应用程
 |`span_id`|span id|string|-|
 |`start`|start time of span.|int|usec|
 |`trace_id`|trace id|string|-|
-
 
 

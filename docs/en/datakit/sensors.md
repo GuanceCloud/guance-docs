@@ -1,25 +1,24 @@
-<!-- This file required to translate to EN. -->
 
-# 硬件温度 Sensors
+# Hardware Temperature Sensors
 ---
 
 :fontawesome-brands-linux:
 
 ---
 
-计算机芯片温度数据采集，使用 `lm-sensors` 命令（目前仅支持 `Linux` 操作系统）
+Computer chip temperature data acquisition using the `lm-sensors` command (currently only support `Linux` operating system).
 
-## 前置条件 {#requrements}
+## Preconditions {#requrements}
 
-- 运行安装命令 `apt install lm-sensors -y`
-- 运行扫描命令 `sudo sensors-detect` 输入 `Yes` 给每一个问题。
-- 运行扫描结束后会看到 'service kmod start' 用来加载扫描到的 sensors，这条命令可能会因为您的操作系统不同而不同。
+- Run the install command `apt install lm-sensors -y`
+- Run the scan command `sudo sensors-detect` enter `Yes` for each question
+- After running the scan, you will see 'service kmod start' to load the scanned sensors, which may vary depending on your operating system.
 
-## 配置 {#config}
+## Configuration {#config}
 
-=== "主机安装"
+=== "Host Installation"
 
-    进入 DataKit 安装目录下的 `conf.d/sensors` 目录，复制 `sensors.conf.sample` 并命名为 `sensors.conf`。示例如下：
+    Go to the `conf.d/sensors` directory under the DataKit installation directory, copy `sensors.conf.sample` and name it `sensors.conf`. Examples are as follows:
     
     ```toml
         
@@ -40,15 +39,15 @@
     
     ```
     
-    配置好后，重启 DataKit 即可。
+    After configuration, restart DataKit.
 
 === "Kubernetes"
 
-    目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+    The collector can now be turned on by [ConfigMap Injection Collector Configuration](datakit-daemonset-deploy.md#configmap-setting).
 
-## 指标集 {#measurements}
+## Measurements {#measurements}
 
-以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.sensors.tags]` 指定其它标签：
+For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.sensors.tags]`:
 
 ```toml
  [inputs.sensors.tags]
@@ -61,20 +60,20 @@
 
 ### `sensors`
 
-- 标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`adapter`|device adapter|
 |`chip`|chip id|
 |`feature`|gathering target|
 |`hostname`|host name|
 
-- 指标列表
+- metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`temp*_crit_alarm`|Alarm count, '*' is the order number in the chip list.|int|C|
 |`temp*_input`|Current input temperature of this chip, '*' is the order number in the chip list.|int|C|

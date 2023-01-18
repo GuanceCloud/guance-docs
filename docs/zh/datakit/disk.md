@@ -83,7 +83,7 @@ disk 采集器用于主机磁盘信息采集，如磁盘存储空间、inodes �
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`device`|磁盘设备名|
 |`fstype`|文件系统名|
@@ -94,7 +94,7 @@ disk 采集器用于主机磁盘信息采集，如磁盘存储空间、inodes �
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`free`|Free disk size in bytes|int|B|
 |`inodes_free`|Free inodes(**DEPRECATED: use inodes_free_mb instead**)|int|count|

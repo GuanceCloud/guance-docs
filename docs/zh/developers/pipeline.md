@@ -462,6 +462,42 @@ Pipeline 的目录搜索优先级是:
 
 在 Datakit 的安装目录下面的 `pipeline` 目录下，目录结构如上所示。
 
+## 脚本输入数据结构 {#input-data}
+
+所有类别的数据在被 Pipeline 脚本处理前均会封装成 Point 结构，其结构大致为：
+
+```
+struct Point {
+    Name:    str
+    Tags:    map[str]str
+    Fields:  map[str]any
+    Time:    int64
+}
+```
+
+以一条 nginx 日志数据为例，其被日志采集器采集到后生成的数据作为 Pipeline 脚本的输入大致为：
+
+```
+Point {
+    Name: "nginx"
+    Tags: map[str]str {
+        "host": "your_hostname"
+    },
+    Fields: map[str]any {
+        "message": "127.0.0.1 - - [12/Jan/2023:11:51:38 +0800] \"GET / HTTP/1.1\" 200 612 \"-\" \"curl/7.81.0\""
+    },
+    Time: 1673495498000123456
+}
+```
+
+提示：
+
+- 其中 `Name` 可以通过函数 `set_measurement()` 修改。
+
+- 对于 `Tags` 和 `Fields`，任意一个 key 不能同时出现在这两个 map 中；可以在 pipeline 中通过自定义标识符或函数 `get_key()` 读取，修改 `Tags` 或 `Fields` 中 key 的值需要通过其他**内置函数**进行。其中 **`_`** 可以视为 `message` 这个 key 的别名。
+
+- 在脚本运行结束后，如果在 `Tags` 或 `Fields` 中存在名为 `time` 的 key，将被删除；当其值为 int64 类型，则将其值被赋予 Point 的 time 后删除。如果 time 为字符串，可以尝试使用函数 `default_time()` 将其转换为 int64。
+
 ## 脚本函数 {#functions}
 
 函数参数说明：
@@ -499,6 +535,8 @@ add_key(city, "shanghai")
     "city": "shanghai"
 }
 ```
+
+
 ### `add_pattern()` {#fn-add-pattern}
 
 函数原型：`fn add_pattern(name: str, pattern: str)`
@@ -553,6 +591,8 @@ if false {
     "message": "33,abc,end3"
 }
 ```
+
+
 ### `adjust_timezone()` {#fn-adjust-timezone}
 
 函数原型：`fn adjust_timezone(key: int, minute: int)`
@@ -610,6 +650,8 @@ adjust_timezone(time)
 
 使用 adjust_timezone 后将得到：
   - 输入 1 结果： `2022-07-11T20:49:20.937+08:00`
+
+
 ### `append()` {#fn-append}
 
 函数原型：`fn append(arr, elem) arr`
@@ -635,6 +677,8 @@ b = [3, 4]
 c = append(a, b)
 # c = [1, 2, [3, 4]]
 ```
+
+
 ### `b64dec()` {#fn-b64dec}
 
 函数原型：`fn b64dec(key: str)`
@@ -657,6 +701,8 @@ b64enc(`str`)
 #   "str": "hello, world"
 # }
 ```
+
+
 ### `b64enc()` {#fn-b64enc}
 
 函数原型：`fn b64enc(key: str)`
@@ -679,6 +725,8 @@ b64enc(`str`)
 #   "str": "aGVsbG8sIHdvcmxk"
 # }
 ```
+
+
 ### `cast()` {#fn-cast}
 
 函数原型：`fn cast(key, dst_type: str)`
@@ -704,6 +752,8 @@ cast(first, "str")
   "first": "1"
 }
 ```
+
+
 ### `cidr()` {#fn-cidr}
 
 函数原型：`fn cidr(ip: str, prefix: str) bool`
@@ -732,6 +782,8 @@ if cidr(ip, "192.0.2.1/24") {
   "ip_prefix": "192.0.2.1/24"
 }
 ```
+
+
 ### `cover()` {#fn-cover}
 
 函数原型：`fn cover(key: str, range: list)`
@@ -754,6 +806,8 @@ cover(`str`, [8, 9])
 json(_, abc)
 cover(abc, [2, 4])
 ```
+
+
 ### `datetime()` {#fn-datetime}
 
 函数原型：`fn datetime(key, precision: str, fmt: str)`
@@ -795,6 +849,8 @@ Kitchen     = "3:04PM"
 # 处理脚本
 json(_, a.timestamp) datetime(a.timestamp, 'ms', 'RFC3339')
 ```
+
+
 ### `decode()` {#fn-decode}
 
 函数原型：`fn decode(text: str, text_encode: str)`
@@ -809,6 +865,8 @@ decode("wwwwww", "gbk")
 #   "message": "wwwwww",
 # }
 ```
+
+
 ### `default_time()` {#fn-defalt-time}
 
 函数原型：`fn default_time(key: str, timezone: str = "")`
@@ -887,6 +945,8 @@ rename("time", log_time)
 }
 ```
 
+
+
 ### `drop()` {#fn-drop}
 
 函数原型：`fn drop()`
@@ -908,6 +968,8 @@ json(_, str_b)
 #   "str_a": "2"
 # }
 ```
+
+
 
 ### `drop_key()` {#fn-drop-key}
 
@@ -937,6 +999,8 @@ drop_key(height)
 }
 ```
 
+
+
 ### `drop_origin_data()` {#fn-drop-origin-data}
 
 函数原型：`fn drop_origin_data()`
@@ -951,6 +1015,8 @@ drop_key(height)
 # 结果集中删除 message 内容
 drop_origin_data()
 ```
+
+
 
 ### `duration_precision()` {#fn-duration-precision}
 
@@ -970,6 +1036,8 @@ duration_precision(ts, "ms", "ns")
 #   "ts": 12345000000
 # }
 ```
+
+
 ### `exit()` {#fn-exit}
 
 函数原型：`fn exit()`
@@ -990,6 +1058,8 @@ json(_, str_b)
 #   "str_a": "2"
 # }
 ```
+
+
 
 ### `geoip()` {#fn-geoip}
 
@@ -1025,48 +1095,50 @@ geoip(ip)
   "message"  : "{\"ip\": \"1.2.3.4\"}",
 }
 ```
+
+
 ### `get_key()` {#fn-get-key}
 
 函数原型：`fn get_key(key)`
 
-函数说明：从 point 中读取 key 的值，而不是堆栈上的变量的值
+函数说明：从输入 point 中读取 key 的值，而不是堆栈上的变量的值
 
 函数参数
 
 - `key_name`: key 的名称
 
-示例一:
+示例:
 
 ```python
-# scipt 1
-key = "shanghai"
-add_key(key)
-key = "tokyo" 
-add_key(add_new_key, key)
+add_key("city", "shanghai")
+
+# 此处可以直接通过 city 访问获取 point 中的同名 key 的值
+if city == "shanghai" {
+  add_key("city_1", city)
+}
+
+# 由于赋值的右结合性，先获取 key 为 "city" 的值，
+# 而后创建名为 city 的变量
+city = city + " --- ningbo" + " --- " +
+    "hangzhou" + " --- suzhou ---" + ""
+
+# get_key 从 point 中获取 "city" 的值
+# 存在名为 city 的变量，则无法直接从 point 中获取
+if city != get_key("city") {
+  add_key("city_2", city)
+}
 
 # 处理结果
+"""
 {
-  "add_new_key": "tokyo",
-  "key": "shanghai",
+  "city": "shanghai",
+  "city_1": "shanghai",
+  "city_2": "shanghai --- ningbo --- hangzhou --- suzhou ---"
 }
-
+"""
 ```
 
-示例二:
 
-```python
-# scipt 2
-key = "shanghai"
-add_key(key)
-key = "tokyo" 
-add_key(add_new_key, get_key(key))
-
-#处理结果
-{
-  "add_new_key": "shanghai",
-  "key": "shanghai",
-}
-```
 ### `grok()` {#fn-grok}
 
 函数原型：`fn grok(input: str, pattern: str, trim_space: bool = true) bool`
@@ -1119,6 +1191,8 @@ add_key(grok_match_ok)
   "time": 1665994187473917724
 }
 ```
+
+
 ### `group_between()` {#fn-group-between}
 
 函数原型：`fn group_between(key: int, between: list, new_value: int|float|bool|str|map|list|nil, new_key)`
@@ -1158,6 +1232,8 @@ group_between(http_status, [200, 300], "OK", status)
     "status": "OK"
 }
 ```
+
+
 ### `group_in()` {#fn-group-in}
 
 函数原型：`fn group_in(key: int|float|bool|str, range: list, new_value: int|float|bool|str|map|list|nil, new-key = "")`
@@ -1173,6 +1249,8 @@ group_in(log_level, ["info", "debug"], "OK")
 # 如果字段 http_status 值在指定列表中，则新建 status 字段，其值为 "not-ok"
 group_in(log_level, ["error", "panic"], "not-ok", status)
 ```
+
+
 ### `json()` {#fn-json}
 
 函数原型：`fn json(input: str, json_path, newkey, trim_space: bool = true)`
@@ -1248,6 +1326,8 @@ json(_, name) json(name, first)
 # 处理脚本, json数组处理
 json(_, [0].nets[-1])
 ```
+
+
 ### `len()` {#fn-len}
 
 函数原型：`fn len(val: str|map|list) int`
@@ -1275,6 +1355,8 @@ add_key(abc, len(["abc"]))
   "abc": 1,
 }
 ```
+
+
 ### `load_json()` {#fn-load_json}
 
 函数原型：`fn load_json(val: str) nil|bool|float|map|list`
@@ -1302,6 +1384,8 @@ add_key(len_abc, len(abc))
 
 add_key(len_abc, len(load_json(abc["a"]["ff"])))
 ```
+
+
 ### `lowercase()` {#fn-lowercase}
 
 函数原型：`fn lowercase(key: str)`
@@ -1325,6 +1409,8 @@ json(_, first) lowercase(first)
 		"first": "hello"
 }
 ```
+
+
 
 ### `match()` {#fn-match}
 
@@ -1354,6 +1440,8 @@ add_key(match_2, match('''\w+\s[,\w]+''', test_2))
     "match_2": false
 }
 ```
+
+
 ### `mquery_refer_table()` {#fn-mquery-refer-table}
 
 函数原型：`fn mquery_refer_table(table_name: str, keys: list, values: list)`
@@ -1394,6 +1482,8 @@ mquery_refer_table(table, values=[value, false], keys=[key, "col4"])
 }
 
 ```
+
+
 ### `nullif()` {#fn-nullif}
 
 函数原型：`fn nullif(key, value)`
@@ -1427,6 +1517,8 @@ if first == "1" {
 }
 ```
 
+
+
 ### `parse_date()` {#fn-parse-date}
 
 函数原型：`fn parse_date(key: str, yy: str, MM: str, dd: str, hh: str, mm: str, ss: str, ms: str, zone: str)`
@@ -1458,6 +1550,8 @@ parse_date(aa, "2021", "12", "12", "10", "10", "34", "100", "Asia/Shanghai") # �
 
 parse_date(aa, "20", "February", "12", "10", "10", "34", "", "+8") 结果 aa=1581473434000000000
 ```
+
+
 ### `parse_duration()` {#fn-parse-duration}
 
 函数原型：`fn parse_duration(key: str)`
@@ -1490,6 +1584,8 @@ parse_duration(abc) # 结果 abc = -3500000000
 parse_duration(abc) # 结果 abc = -2300000000
 
 ```
+
+
 
 ### `query_refer_table()` {#fn-query-refer-table}
 
@@ -1532,6 +1628,8 @@ query_refer_table(table, key, value)
   "value": 1234
 }
 ```
+
+
 ### `rename()` {#fn-rename}
 
 函数原型：`fn rename(new_key, old_key)`
@@ -1571,6 +1669,8 @@ json(_, info.name, "姓名")
 }
 ```
 
+
+
 ### `replace()` {#fn-replace}
 
 函数原型：`fn replace(key: str, regex: str, replace_str: str)`
@@ -1603,6 +1703,8 @@ json(_, str)
 replace(str, '([\u4e00-\u9fa5])[\u4e00-\u9fa5]([\u4e00-\u9fa5])', "$1＊$2")
 ```
 
+
+
 ### `sample()` {#fn-sample}
 
 函数原型：`fn sample(p)`
@@ -1622,6 +1724,8 @@ if !sample(0.3) { # sample(0.3) 表示采样率为 30%，即以 30% 概率返回
   exit() # 退出后续处理流程
 }
 ```
+
+
 ### `set_measurement()` {#fn-set-measurement}
 
 函数原型：`fn set_measurement(name: str, delete_key: bool = false)`
@@ -1646,6 +1750,8 @@ if !sample(0.3) { # sample(0.3) 表示采样率为 30%，即以 30% 概率返回
 |rum            | source        | -       |
 |security       | rule          | -       |
 |tracing        | source        | -       |
+
+
 ### `set_tag()` {#fn-set-tag}
 
 函数原型：`fn set_tag(key, value: str)`
@@ -1690,6 +1796,8 @@ set_tag(str_a, str_b) # str_a == str_b == "3"
 #   "str_b": "3"
 # }
 ```
+
+
 ### `sql_cover()` {#fn-sql-cover}
 
 函数原型：`fn sql_cover(sql_test: str)`
@@ -1705,6 +1813,8 @@ sql_cover(_)
 #   "message": "select abc from def where x > ? and y < ?"
 # }
 ```
+
+
 ### `strfmt()` {#fn-strfmt}
 
 函数原型：`fn strfmt(key, fmt: str, args ...: int|float|bool|str|list|map|nil)`
@@ -1729,6 +1839,8 @@ cast(a.second, "int")
 json(_, a.forth)
 strfmt(bb, "%v %s %v", a.second, a.thrid, a.forth)
 ```
+
+
 ### `trim()` {#fn-trim}
 
 函数原型：`fn trim(key, cutset: str = "")`
@@ -1754,6 +1866,8 @@ trim(test_data, "ABC_")
   "test_data": "test_Data"
 }
 ```
+
+
 ### `uppercase()` {#fn-uppercase}
 
 函数原型：`fn uppercase(key: str)`
@@ -1777,6 +1891,8 @@ json(_, first) uppercase(first)
    "first": "HELLO"
 }
 ```
+
+
 
 ### `url_decode()` {#fn-url-decode}
 
@@ -1802,6 +1918,8 @@ json(_, url) url_decode(url)
   "url": "http://www.baidu.com/s?wd=测试"
 }
 ```
+
+
 
 ### `url_parse()` {#fn-url-parse}
 
@@ -1849,7 +1967,9 @@ add_key(path, m["path"])
     "path": "/search",
     "sclient": "gws-wiz"
 }
-```### `use()` {#fn-use}
+```
+
+### `use()` {#fn-use}
 
 函数原型：`fn use(name: str)`
 
@@ -1880,6 +2000,8 @@ geoip(ip)
   "message"  : "{\"ip\": \"1.2.3.4\"}",
 }
 ```
+
+
 ### `user_agent()` {#fn-user-agent}
 
 函数原型：`fn user_agent(key: str)`
@@ -1908,6 +2030,8 @@ geoip(ip)
 
 json(_, userAgent) user_agent(userAgent)
 ```
+
+
 ### `xml()` {#fn-xml}
 
 函数原型：`fn xml(input: str, xpath_expr: str, key_name)`
@@ -1968,4 +2092,6 @@ xml(_, '/OrderEvent/OrderNumber/text()', OrderNumber)
   "time": 1655523193632471000
 }
 ```
+
+
 

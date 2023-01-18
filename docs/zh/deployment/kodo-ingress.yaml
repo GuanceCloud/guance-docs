@@ -1,18 +1,39 @@
-apiVersion: extensions/v1beta1
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: df-kodo
+#   namespace: forethought-kodo
+# spec:
+#   rules:
+#   - host: df-kodo.dataflux.cn
+#     http:
+#       paths:
+#       - backend:
+#           serviceName: kodo-nginx
+#           servicePort: http
+#         path: /
+#         pathType: ImplementationSpecific
+
+---
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: df-kodo
   namespace: forethought-kodo
 spec:
+  ingressClassName: nginx
   rules:
   - host: df-kodo.dataflux.cn
     http:
       paths:
       - backend:
-          serviceName: kodo-nginx
-          servicePort: http
+          service:
+            name: kodo-nginx
+            port:
+              number: 80
         path: /
         pathType: ImplementationSpecific
+
 ---
 apiVersion: v1
 kind: Service

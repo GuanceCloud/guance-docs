@@ -1,30 +1,29 @@
-<!-- This file required to translate to EN. -->
 
-# 磁盘 S.M.A.R.T
+# Disk S.M.A.R.T
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
 
 ---
 
-计算机硬盘运行状态数据采集
+Data collection of computer hard disk running state.
 
-## 前置条件 {#requrements}
+## Preconditions {#requrements}
 
-安装 smartmontools
+Installing smartmontools
 
 - Linux: `sudo apt install smartmontools -y`
 
-	如果固态硬盘，符合  nvme 标准，建议安装 nvme-cli 以得到更多 nvme 信息：`sudo apt install nvme-cli -y`
+	If the solid state drive is nvme compliant, it is recommended to install nvme-cli for more nvme information: `sudo apt install nvme-cli -y`
 
 - MacOS: `brew install smartmontools -y`
-- WinOS: 下载 [Windows 版本](https://www.smartmontools.org/wiki/Download#InstalltheWindowspackage){:target="_blank"}
+- WinOS: download [Windows version](https://www.smartmontools.org/wiki/Download#InstalltheWindowspackage){:target="_blank"}
 
-## 配置 {#config}
+## Configuration {#config}
 
-=== "主机安装"
+=== "Host Installation"
 
-    进入 DataKit 安装目录下的 `conf.d/smart` 目录，复制 `smart.conf.sample` 并命名为 `smart.conf`。示例如下：
+    Go to the `conf.d/smart` directory under the DataKit installation directory, copy `smart.conf.sample` and name it `smart.conf`. Examples are as follows:
     
     ```toml
         
@@ -71,15 +70,15 @@
     
     ```
     
-    配置好后，重启 DataKit 即可。
+    After configuration, restart DataKit.
 
 === "Kubernetes"
 
-    目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+    The collector can now be turned on by [ConfigMap Injection Collector Configuration](datakit-daemonset-deploy.md#configmap-setting).
 
-## 指标集 {#requrements}
+## Measurements {#requrements}
 
-以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.smart.tags]` 指定其它标签：
+For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.smart.tags]`:
 
 ```toml
  [inputs.smart.tags]
@@ -92,10 +91,10 @@
 
 ### `smart`
 
-- 标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`capacity`|disk capacity|
 |`device`|device mount name|
@@ -107,10 +106,10 @@
 |`serial_no`|device serial number|
 |`wwn`|WWN Device Id|
 
-- 指标列表
+- metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`airflow_temperature_cel_raw_value`|The raw value of air celsius temperature read from device record.|int|C|
 |`airflow_temperature_cel_threshold`|The threshold of air celsius temperature read from device record.|int|C|

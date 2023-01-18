@@ -116,10 +116,6 @@ end
 
 <[iOS 应用数据采集指标](../../real-user-monitoring/ios/app-data-collection.md)>
 
-## 最佳实践
-
-<[iOS 可观测最佳实践](../../best-practices/monitoring/ios.md)>
-
 ## 故障排查
 
 暂无

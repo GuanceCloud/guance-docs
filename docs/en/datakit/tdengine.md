@@ -1,4 +1,3 @@
-<!-- This file required to translate to EN. -->
 
 # TDengine
 ---
@@ -7,16 +6,16 @@
 
 ---
 
-TDEngine 是一款高性能、分布式、支持 SQL 的时序数据库 (Database)。在开通采集器之前请先熟悉 [TDEngine 基本概念](https://docs.taosdata.com/concept/){:target="_blank"}
+TDEngine is a high-performance, distributed, SQL-enabled time series Database (Database). Familiarize yourself with the [basic concepts of TDEngine](https://docs.taosdata.com/concept/){:target="_blank"} before opening the collector.
 
-TDEngine 采集器需要的连接 `taos_adapter` 才可以正常工作，taosAdapter 从 TDengine v2.4.0.0 版本开始成为 TDengine 服务端软件 的一部分，本文主要是指标集的详细介绍。
+TDengine collector needs to connect `taos_adapter` can work normally, taosAdapter from TDengine v2.4. 0.0 version comes to becoming a part of TDengine server software, this paper is mainly a detailed introduction of measurement.
 
-## 配置  {#config}
+## Configuration  {#config}
 
-=== "主机安装"
+=== "Host Installation"
 
 
-    进入 DataKit 安装目录下的 `conf.d/db` 目录，复制 `tdengine.conf.sample` 并命名为 `tdengine.conf`。示例如下：
+    Go to the `conf.d/db` directory under the DataKit installation directory, copy `tdengine.conf.sample` and name it `tdengine.conf`. Examples are as follows:
     
     ```toml
         
@@ -42,21 +41,21 @@ TDEngine 采集器需要的连接 `taos_adapter` 才可以正常工作，taosAda
         # more_tag = "some_other_value"
     
     ```
-
-    配置好后，[重启 DataKit](datakit-service-how-to.md#manage-service) 即可。
+    
+    After configuration, [restart DataKit](datakit-service-how-to.md#manage-service).
 
 
 === "Kubernetes"
 
-    目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+    At present, the collector can be turned on by [injecting the collector configuration in ConfigMap mode](datakit-daemonset-deploy.md#configmap-setting).
 
 
-### TdEngine 仪表板 {#td-dashboard}
+### TdEngine Dashboard {#td-dashboard}
 
-    目前观测云已提供内置的 TdEngine 仪表板,可在 ***观测云*** -- ***场景***--***新建仪表板*** 选择 TDEngine 仪表板。
+    At present, Guance Cloud has provided a built-in TDEngine dashboard, and you can select the TDEngine dashboard in ***Guance Cloud*** -- ***Scene***--***New Dashboard***.
 
 
-## 指标集 {#td-metrics}
+## Measurement{#td-metrics}
 
 
 
@@ -64,10 +63,10 @@ TDEngine 采集器需要的连接 `taos_adapter` 才可以正常工作，taosAda
 
 
 
--  标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`client_ip`|请求端 IP|
 |`cluster_name`|集群名称|
@@ -79,10 +78,10 @@ TDEngine 采集器需要的连接 `taos_adapter` 才可以正常工作，taosAda
 |`version`|version|
 |`vgroup_id`|虚拟组 ID|
 
-- 指标列表
+- metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`client_ip_count`|客户端 IP 请求次数统计|float|count|
 |`cpu_cores`|每个数据节点的 CPU 总核数|float|count|
@@ -130,4 +129,4 @@ TDEngine 采集器需要的连接 `taos_adapter` 才可以正常工作，taosAda
 
 
 
-> - 数据库中有些表中没有 `ts` 字段，Datakit 会使用当前采集的时间。
+> - Some tables in the database do not have the `ts` field, and Datakit uses the current collection time.

@@ -7,7 +7,7 @@ MySQL 是最流行的关系型数据库管理系统，在 WEB 应用方面 MySQL
 
 ## 前提条件
 
-- 已部署 Kubernetes 集群，未部署可参考 [Kubernetes 部署](http://127.0.0.1:8000/deployment/infra-kubernetes/)
+- 已部署 Kubernetes 集群，未部署可参考 [Kubernetes 部署](infra-kubernetes.md)
 - 已部署 nfs-subdir-external-provisioner，未部署可参考 [Kubernetes Storage](infra-kubernetes.md#kube-storage) 
 
 ## 基础信息及兼容

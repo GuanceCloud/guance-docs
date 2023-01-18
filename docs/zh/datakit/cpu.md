@@ -77,7 +77,7 @@ CPU 采集器用于系统 CPU 使用率的采集。
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`cpu`|CPU 核心|
 |`host`|主机名|
@@ -85,7 +85,7 @@ CPU 采集器用于系统 CPU 使用率的采集。
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`core_temperature`|CPU core temperature. This is collected by default. Only collect the average temperature of all cores.|float|C|
 |`load5s`|CPU average load in 5 seconds.|int|-|

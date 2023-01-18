@@ -14,7 +14,7 @@
   
 ## 简介
 
-观测云应用监测能够通过收集各个小程序应用的指标数据，通过引入sdk文件，监控小程序性能指标，错误log，以及资源请求情况数据，上报到DataFlux 平台，以可视化的方式分析各个小程序应用端的性能。
+观测云应用监测能够通过收集各个小程序应用的指标数据，通过引入sdk文件，监控小程序性能指标，错误log，以及资源请求情况数据，上报到观测云平台，以可视化的方式分析各个小程序应用端的性能。
 
 ## 前置条件
 
@@ -70,10 +70,11 @@
 
 | 参数                            | 类型    | 是否必须 | 默认值    | 描述                                                         |
 | ------------------------------- | ------- | -------- | --------- | ------------------------------------------------------------ |
-| `applicationId`                 | String  | 是       |           | 从 dataflux 创建的应用 ID                                    |
+| `applicationId`                 | String  | 是       |           | 从观测云创建的应用 ID                                    |
 | `datakitOrigin`                 | String  | 是       |           | datakit 数据上报 Origin；`注意：需要在小程序管理后台加上request白名单` |
 | `env`                           | String  | 否       |           | 小程序 应用当前环境， 如 prod：线上环境；gray：灰度环境；pre：预发布环境 common：日常环境；local：本地环境； |
 | `version`                       | String  | 否       |           | 小程序 应用的版本号                                          |
+| `service` | String | 否 | | 当前应用的服务名称，默认为 `browser`，支持自定义配置。 |
 | `sampleRate`                    | Number  | 否       | `100`     | 指标数据收集百分比:`100`表示全收集，`0`表示不收集            |
 | `trackInteractions`             | Boolean | 否       | `false`   | 是否开启用户行为采集                                         |
 | `traceType`                    | Enum    | 否       | `ddtrace` | 配置链路追踪工具类型，如果不配置默认为`ddtrace`。目前支持 `ddtrace`、`zipkin`、`skywalking_v3`、`jaeger`、`zipkin_single_header`、`w3c_traceparent` 6种数据类型。注： `opentelemetry` 支持 `zipkin_single_header`,`w3c_traceparent`,`zipkin`、`jaeger`三种类型。<br><br>注意：配置相应类型的traceType 需要对相应的API服务 设置不同的 `Access-Control-Allow-Headers` 具体查看 [APM 如何关联 RUM ](../../application-performance-monitoring/collection/connect-web-app.md) |

@@ -11,6 +11,11 @@ AWS 产品众多，通常使用 CloudWatch 对 AWS 资源和互联网应用进�
 
 ## 前置条件
 
+???+ attention
+
+    本篇示例文章使用的是 DataFlux Func `1.x` 版本。<br/>
+    若实际使用的是 DataFlux Func `2.x` 新版本，部分功能按钮可能会与本文示例有所差异，请以实际使用情况为准。
+
 ### 1 服务器[安装 DataKit](../../../datakit/datakit-install.md)
 
 登录观测云，点击「集成」 - 「DataKit」，复制安装命令至服务器运行即可
@@ -19,7 +24,7 @@ AWS 产品众多，通常使用 CloudWatch 对 AWS 资源和互联网应用进�
 
 ![imgs](../../imgs/aws-prod-func-1.png)
 
-### 2 服务器[安装 Func 携带版](../../../dataflux-func/quick-start.md)
+### 2 服务器[安装 Func 携带版](https://func.guance.com/doc/maintenance-guide-installation/)
 
 登录观测云，点击「集成」 - 「Func」，下载脚本并执行安装命令即可
 
@@ -43,6 +48,10 @@ AWS 产品众多，通常使用 CloudWatch 对 AWS 资源和互联网应用进�
 
 ## 安装配置
 
+???+ attention
+
+    本篇示例文章使用的是 DataFlux Func `1.x` 版本。<br/>
+    若实际使用的是 DataFlux Func `2.x` 版本，部分功能按钮可能会与本文示例有所差异，请以实际使用情况为准。
 ### 1 脚本市场
 
 1、 登录 DataFlux Func，地址 `http://ip:8088`
@@ -192,6 +201,6 @@ def run():
 
 - <[CloudWatch 指标概览](https://docs.aws.amazon.com/zh_cn/AmazonCloudWatch/latest/monitoring/aws-services-cloudwatch-metrics.html)>
 
-- <[DataFlux Func 观测云集成简介](../../../dataflux-func/script-market-guance-integration.md)>
+- <[DataFlux Func 观测云集成简介](https://func.guance.com/doc/script-market-guance-integration/)>
 
-- <[DataFlux Func CloudWatch 配置手册](../../../dataflux-func/script-market-guance-aws-cloudwatch.md)>
+- <[DataFlux Func AWS-CloudWatch 配置手册](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/)>

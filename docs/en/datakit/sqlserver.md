@@ -1,4 +1,3 @@
-<!-- This file required to translate to EN. -->
 
 # SQLServer
 ---
@@ -7,13 +6,13 @@
 
 ---
 
-SQL Server 采集器采集 SQL Server `waitstats`、`database_io` 等相关指标
+SQL Server Collector collects SQL Server `waitstats`, `database_io` and other related metrics.
 
-## 前置条件 {#requrements}
+## Preconditions {#requrements}
 
-- SQL Server 版本 >= 2019
+- SQL Server version >= 2019
 
-- 创建用户：
+- Create a user:
 
 Linux、Windows:
 
@@ -38,11 +37,11 @@ GO
 
 ```
 
-## 配置 {#config}
+## Configuration {#config}
 
-=== "主机安装"
+=== "Host Installation"
 
-    进入 DataKit 安装目录下的 `conf.d/db` 目录，复制 `sqlserver.conf.sample` 并命名为 `sqlserver.conf`。示例如下：
+    Go to the `conf.d/db` directory under the DataKit installation directory, copy `sqlserver.conf.sample` and name it `sqlserver.conf`. Examples are as follows:
     
     ```toml
         
@@ -79,15 +78,15 @@ GO
     
     ```
     
-    配置好后，重启 DataKit 即可。
+    After configuration, restart DataKit.
 
 === "Kubernetes"
 
-    目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+    The collector can now be turned on by [ConfigMap Injection Collector Configuration](datakit-daemonset-deploy.md#configmap-setting).
 
-## 指标 {#measurements}
+## Metrics {#measurements}
 
-以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.sqlserver.tags]` 指定其它标签：
+For all of the following data collections, a global tag name `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.sqlserver.tags]`:
 
 ``` toml
  [inputs.sqlserver.tags]
@@ -96,21 +95,21 @@ GO
   # ...
 ```
 
-
+ 
 
 ### `sqlserver`
 
--  标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`sqlserver_host`|host name which installed sqlserver|
 
-- 字段列表
+- field list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cpu_count`|Specifies the number of logical CPUs on the system. Not nullable.|int|count|
 |`db_offline`|num of database state in offline|int|count|
@@ -121,45 +120,43 @@ GO
 |`db_suspect`|num of database state in suspect|int|count|
 |`server_memory`|memory used|int|B|
 
-
-
+  
 
 ### `sqlserver_performance`
 
--  标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`counter_name`|Name of the counter. To get more information about a counter, this is the name of the topic to select from the list of counters in Use SQL Server Objects.|
 |`object_name`|Category to which this counter belongs.|
 |`sqlserver_host`|host name which installed sqlserver|
 
-- 字段列表
+- field list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cntr_value`|Current value of the counter.|int|count|
 
-
-
+  
 
 ### `sqlserver_waitstats`
 
--  标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`sqlserver_host`|host name which installed sqlserver|
 |`wait_category`|wait category info|
 |`wait_type`|Name of the wait type. For more information, see Types of Waits, later in this topic|
 
-- 字段列表
+- field list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`max_wait_time_ms`|Maximum wait time on this wait type.|int|ms|
 |`resource_wait_ms`|wait_time_ms-signal_wait_time_ms|int|ms|
@@ -167,15 +164,14 @@ GO
 |`wait_time_ms`|Total wait time for this wait type in milliseconds. This time is inclusive of signal_wait_time_ms|int|ms|
 |`waiting_tasks_count`|Number of waits on this wait type. This counter is incremented at the start of each wait.|int|count|
 
-
-
+  
 
 ### `sqlserver_database_io`
 
--  标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`database_name`|database name|
 |`file_type`|Description of the file type,ROWS、LOG、FILESTREAM、FULLTEXT (Full-text catalogs earlier than SQL Server 2008.)|
@@ -183,10 +179,10 @@ GO
 |`physical_filename`|Operating-system file name.|
 |`sqlserver_host`|host name which installed sqlserver|
 
-- 字段列表
+- field list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`read`|Number of reads issued on the file.|int|count|
 |`read_bytes`|Total number of bytes read on this file|int|B|
@@ -197,24 +193,23 @@ GO
 |`write_latency_ms`|Total time, in milliseconds, that users waited for writes to be completed on the file|int|ms|
 |`writes`|Number of writes issued on the file.|int|count|
 
-
-
+  
 
 ### `sqlserver_schedulers`
 
--  标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`cpu_id`|CPU ID assigned to the scheduler.|
 |`scheduler_id`|ID of the scheduler. All schedulers that are used to run regular queries have ID numbers less than 1048576. Those schedulers that have IDs greater than or equal to 1048576 are used internally by SQL Server, such as the dedicated administrator connection scheduler. Is not nullable.|
 |`sqlserver_host`|host name which installed sqlserver|
 
-- 字段列表
+- field list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`active_workers_count`|Number of workers that are active. An active worker is never preemptive, must have an associated task, and is either running, runnable, or suspended. Is not nullable.|int|count|
 |`context_switches_count`|Number of context switches that have occurred on this scheduler|int|count|
@@ -231,95 +226,69 @@ GO
 |`work_queue_count`|Number of tasks in the pending queue. These tasks are waiting for a worker to pick them up|int|count|
 |`yield_count`|Internal value that is used to indicate progress on this scheduler. This value is used by the Scheduler Monitor to determine whether a worker on the scheduler is not yielding to other workers on time.|int|count|
 
-
-
+  
 
 ### `sqlserver_volumespace`
 
--  标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`sqlserver_host`|host name which installed sqlserver|
 |`volume_mount_point`|Mount point at which the volume is rooted. Can return an empty string. Returns null on Linux operating system.|
 
-- 字段列表
+- field list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`volume_available_space_bytes`|Available free space on the volume|int|B|
 |`volume_total_space_bytes`|Total size in bytes of the volume|int|B|
 |`volume_used_space_bytes`|Used size in bytes of the volume|int|B|
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            
 
 ### `sqlserver_database_size`
 
--  标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`name`|Name of the database|
 
-- 字段列表
+- field list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`data_size`|The size of file of Rows|float|KB|
 |`log_size`|The size of file of Log|float|KB|
 
+ 
 
 
+## Log {#logging}
 
-## 日志 {#logging}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+             
 
 ### `sqlserver_lock_row`
 
--  标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`host_name`|Name of the client workstation that is specific to a session|
 |`login_name`|SQL Server login name under which the session is currently executing|
 |`session_status`|Status of the session|
 |`text`|Text of the SQL query|
 
-- 字段列表
+- field list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`blocking_session_id`|ID of the session that is blocking the request|int|count|
 |`cpu_time`|CPU time in milliseconds that is used by the request|int|ms|
@@ -330,40 +299,14 @@ GO
 |`row_count`|Number of rows returned on the session up to this point|int|count|
 |`session_id`|ID of the session to which this request is related|int|count|
 
-
-
-
-### `sqlserver_lock_database`
-
--  标签
-
-
-| 标签名 | 描述    |
-|  ----  | --------|
-|`db_name`|Name of the database under which this resource is scoped|
-|`object`|ID or name of the entity in a database with which a resource is associated|
-|`request_mode`|Mode of the request|
-|`request_status`|Current status of this request|
-|`request_type`|Request type|
-|`resource_type`|Represents the resource type|
-|`spid`|Session ID that currently owns this request, maximum length is 4 |
-
-- 字段列表
-
-
-| 指标 | 描述| 数据类型 | 单位   |
-| ---- |---- | :---:    | :----: |
-|`resource_database_id`|ID of the database under which this resource is scoped|int|count|
-
-
-
+  
 
 ### `sqlserver_lock_table`
 
--  标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`db_name`|Name of the database under which this resource is scoped|
 |`object_name`|Name of the entity in a database with which a resource is associated|
@@ -371,22 +314,21 @@ GO
 |`request_status`|Current status of this request|
 |`resource_type`|Represents the resource type|
 
-- 字段列表
+- field list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`resource_session_id`|Session ID that currently owns this request|int|count|
 
-
-
+  
 
 ### `sqlserver_lock_dead`
 
--  标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`blocking_object_name`|Indicates the name of the object to which this partition belongs|
 |`blocking_text`|Text of the SQL query which is blocking|
@@ -395,30 +337,29 @@ GO
 |`requesting_text`|Text of the SQL query which is requesting|
 |`resource_type`|Represents the resource type|
 
-- 字段列表
+- field list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`blocking_session_id`|ID of the session that is blocking the request|int|count|
 |`request_session_id`|Session ID that currently owns this request|int|count|
 
-
-
+  
 
 ### `sqlserver_logical_io`
 
--  标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`message`|Text of the SQL query|
 
-- 字段列表
+- field list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`avg_logical_io`|Average number of logical writes and logical reads|int|count|
 |`creation_time`|The Unix time at which the plan was compiled, in millisecond|int|count|
@@ -428,22 +369,21 @@ GO
 |`total_logical_reads`|Total amount of logical reads|int|count|
 |`total_logical_writes`|Total amount of logical writes|int|count|
 
-
-
+  
 
 ### `sqlserver_worker_time`
 
--  标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`message`|Text of the SQL query|
 
-- 字段列表
+- field list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`avg_worker_time`|Average amount of CPU time, reported in milliseconds|int|count|
 |`creation_time`|The Unix time at which the plan was compiled, in millisecond|int|count|
@@ -451,19 +391,15 @@ GO
 |`last_execution_time`|Last time at which the plan started executing, unix time in millisecond|int|count|
 |`total_worker_time`|Total amount of CPU time, reported in milliseconds|int|count|
 
+   
 
-
-
-
-
-
-## 日志采集 {#logging}
+## Log Collection {#logging}
 
 ???+ attention
 
-    必须将 DataKit 安装在 SQLServer 所在主机才能采集日志。
+    DataKit must be installed on the host where SQLServer is located to collect logs.
 
-如需采集 SQL Server 的日志，可在 sqlserver.conf 中 将 `files` 打开，并写入 SQL Server 日志文件的绝对路径。比如：
+To collect SQL Server logs, open `files` in sqlserver.conf and write to the absolute path of the SQL Server log file. For example:
 
 ```toml
     [[inputs.sqlserver]]
@@ -473,24 +409,24 @@ GO
 ```
 
 
-开启日志采集以后，默认会产生日志来源（`source`）为 `sqlserver` 的日志。
+When log collection is turned on, a log with a log (`source`) of`sqlserver` is generated by default.
 
->注意：必须将 DataKit 安装在 SQL Server 所在主机才能采集 SQL Server 日志
+>Note: DataKit must be installed on the host of SQL Server to collect SQL Server logs.
 
-### 日志 pipeline 功能切割字段说明 {#pipeline}
+### log Pipeline Feature Cut Field Description {#pipeline}
 
-- SQL Server 通用日志切割
+- SQL Server Universal Log Cutting
 
-通用日志文本示例：
+Example of common log text:
 ```
 2021-05-28 10:46:07.78 spid10s     0 transactions rolled back in database 'msdb' (4:0). This is an informational message only. No user action is required
 ```
 
-切割后的字段列表如下：
+The list of cut fields is as follows:
 
-| 字段名 | 字段值              | 说明                                         |
+| Field Name | Field Value              | Description                                         |
 | ---    | ---                 | ---                                          |
-| msg    | spid...             | 日志内容                                     |
-| time   | 1622169967780000000 | 纳秒时间戳（作为行协议时间）                 |
-| origin | spid10s             | 源                                           |
-| status | info                | 由于日志没有明确字段说明日志等级，默认为info |
+| msg    | spid...             | log content                                     |
+| time   | 1622169967780000000 | nanosecond timestamp (as row protocol time)                 |
+| origin | spid10s             | source                                           |
+| status | info                | As the log does not have an explicit field to describe the log level, the default is info. |
