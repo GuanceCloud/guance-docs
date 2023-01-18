@@ -6,6 +6,15 @@
 
 
 
+## December 29, 2022
+
+### New inspection
+
+* **云账户实例维度账单巡检**：云账户实例维度账单巡检帮助用户管理云服务实例级别的异常费用预警、预测费用情况并为用户提供高增长、高消耗的实例提示及账单可视化能力，支持多维度可视化云服务资源的消费情况。
+* **Alibaba Cloud Preemptible Instance Survival Intelligent Inspection**：Since the market price of the preemptible instances fluctuates with the change of supply and demand, it is necessary to specify the bid mode when creating the preemptible instance, and only when the real-time market price of the specified instance specification is lower than the bid price and the inventory is sufficient can the preemptible instance be successfully created. Therefore, it is particularly important to inspect the preemptible instance of cloud assets. When the preemptible instance is found to be about to be released through inspection, the latest price of all available zones of the current specification of the preemptible instance and the historical price of the changed preemptible instance will be indicated and appropriate treatment advice will be given.
+
+
+
 ## December 1, 2022
 
 ### New inspection

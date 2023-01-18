@@ -19,7 +19,7 @@ Cloud ( Alibaba Cloud, Tecent Cloud, Huawei Cloud ) Account Billing Inspection h
 
 ## Configure Intelligent Inspection
 
-In DataFlux Func create a new set of scripts to enable APM Intelligent Inspection configuration. After creating a new script set, select the corresponding script template to save when creating the Inspection script, and change it as needed in the resulting new script file.
+In DataFlux Func create a new set of scripts to enable Cloud Account Billing Intelligent Inspection configuration. After creating a new script set, select the corresponding script template to save when creating the Inspection script, and change it as needed in the resulting new script file.
 
 ![image](../img/cloudfee15.png)
 
@@ -47,7 +47,7 @@ Intelligent check "Cloud Account Bill Check" defaults to "on" state, which can b
 
 #### Export
 
-Intelligent check supports "exporting JSON configuration". Under the operation menu on the right side of the intelligent check list, click the "Export" button to export the json code of the current check, and export the file name format: intelligent check name. json.
+Intelligent Inspection supports "Export JSON configuration". Under the operation menu on the right side of the Intelligent Inspection list, click the "Export" button to export the JSON code of the current inspection, and the export file name format: `intelligent inspection name.json`.
 
 
 

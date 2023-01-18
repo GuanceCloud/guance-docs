@@ -4,9 +4,11 @@ nav:
   - 'Memory leak Intelligent Inspection': memory-leak.md
   - 'Disk utilization Intelligent Inspection': disk-usage.md
   - 'APM Intelligent Inspection': apm.md
-  - 'Cloud Account Billing Intelligent Inspection': cloudfee.md
-  - 'RUM Log Error Intelligent Inspection': rum_errors.md
   - 'Alibaba Cloud Asset Intelligent Inspection': cloudasset.md
+  - 'Cloud Account Billing Intelligent Inspection': cloudfee.md
+  - 'Cloud Account Billing Inspection Intelligent Integration': cloudfee-instance.md
+  - 'Alibaba Cloud Preemptible Instance Survival Intelligent Inspection': spot-alive.md
+  - 'RUM Log Error Intelligent Inspection': rum_errors.md
   - 'MySQL Performance Intelligent Inspection': mysql-performance.md
   - 'Server Application Error Intelligent Inspection': apm-errors.md
   - 'Kubernetes': Kubernetes

@@ -8,89 +8,31 @@ Kubernetes helps users automatically schedule and expand containerized applicati
 
 ## Preconditions
 
-1. Open[container data collection](https://docs.guance.com/datakit/container/) in Guance Cloud
-2. Offline deployment of custom DataFlux Func
-3. Open the [script market](https://func.guance.com/doc/script-market-basic-usage/) of custom DataFlux Func 
-4. Create an [API Key](../../management/api-key/open-api.md) for action in Guance Cloud "management/API Key management"
-5. In the custom DataFlux Func, install Guance Cloud Custom Check Core Package, Guance Cloud Algorithm Library and Guance Cloud Custom Check (K8S-Pod Restart Detection)" through "Script Market"
-6. In the DataFlux Func, write the custom check processing function
-7. In the custom DataFlux Func, create auto-trigger configurations for the functions you write through "Manage/Auto-trigger Configurations."
+1. Open「[container data collection](https://docs.guance.com/datakit/container/) 」in Guance Cloud
+2. Offline deployment of [DataFlux Func](https://func.guance.com/#/)
+3. Open DataFlux Func's [Script Marketplace](https://func.guance.com/doc/script-market-basic-usage/)
+4. In Guance Cloud「Management / API Key Management」create [API Key](../../management/api-key/open-api.md)
+5. In DataFlux Func，by「Script Marketplace」to install「Guance Cloud Self-Built Core Package」「Guance Cloud Algorithm Library」「Guance Cloud Self-Built script (APM Performance)」.
+6. In DataFlux Func, write self-built patrol processing functions.
+7. In DataFlux Func , by「Manage / Auto-trigger Configurations」,create an automatic trigger configuration for the written function.
 
-## Configuration Check
+> **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance Cloud SaaS[on [the same carrier in the same region](../../../getting-started/necessary-for-beginners/select-site/)。
 
-Create a new script set in the custom DataFlux Func to open the Kubernetes Pod exception restart check configuration.
+## Configure Intelligent Inspection
 
-```python
-from guance_monitor__runner import Runner
-from guance_monitor__register import self_hosted_monitor
-import guance_monitor_k8s_pod_restart__main as k8s_pod_restart
+In DataFlux Func create a new set of scripts to enable Kubernetes Pod Abnormal Restart Intelligent Inspection configuration. After creating a new script set, select the corresponding script template to save when creating the Inspection script, and change it as needed in the resulting new script file.
 
+![image](../../img/k8s-pod-restart11.png)
 
-# Guance Cloud space API_KEY configuration (user self-configuration)
-API_KEY_ID  = 'wsak_xxx'
-API_KEY     = '5Kxxx'
+## Start Intelligent Inspection
 
-# The function filters parameter filter and Guance Cloud studio monitoring\intelligent check configuration have calling priority. After the function filters parameter filter is configured, there is no need to change the detection configuration in Guance Cloud studio monitoring\intelligent check. If both sides are configured, the filters parameter in the script will take effect first.
-
-def filter_namespace(cluster_namespaces):
-    '''
-    Filter namespace customize the conditions that meet the requirements of namespace, return True for matching, and return False for mismatching.
-    return True｜False
-    '''
-
-    cluster_name = cluster_namespaces.get('cluster_name','')
-    namespace = cluster_namespaces.get('namespace','')
-    if cluster_name in ['k8s-prod']:
-        return True
-
-'''  
-Task configuration parameters use:
-@DFF.API('K8S-Pod abnormal restart check', fixed_crontab='*/30 * * * *', timeout=900)
-
-fixed_crontab: Fixed execution frequency "every 30 minutes"
-timeout: Task execution timeout, controlled at 15 minutes.
-'''    
-
-# Kubernetes Pod abnormal restart check; users do not need to modify
-@self_hosted_monitor(API_KEY_ID, API_KEY)
-@DFF.API('K8S-Pod abnormal restart check', fixed_crontab='*/30 * * * *', timeout=900)
-def run(configs=[]):
-    """
-    Parameter:
-        configs：
-            Configure cluster_name to be detected (cluster name, optional, not configured to be detected by namespace)
-            Configure the namespace to be detected (namespace, required)
-
-        Configuration example: namespace can be configured with multiple or single
-        configs = [
-        {
-            "cluster_name": "xxx",
-            "namespace": ["xxx1", "xxx2"]
-        },
-        {
-            "cluster_name": "yyy",
-            "namespace": "yyy1"
-        }
-        ]
-
-    """
-    checkers = [
-         # Configure Kubernetes Pod abnormal restart check
-        k8s_pod_restart.K8SPodRestartCheck(configs=configs, filters=[filter_namespace]),
-    ]
-
-    Runner(checkers, debug=False).run()
-```
-
-## Open Check
-
-### Register a Test Item in Guance cloud
+### Register detection items in Guance Cloud
 
 In DataFlux Func, after the check is configured, you can click run to test by directly selecting `run()` method in the page, and after clicking Publish, you can view and configure it in Guance Cloud "Monitoring/Intelligent Check".
 
 ![image](../../img/k8s-pod-restart01.png)
 
-### Configure Kubernetes Pod to Restart the Check Anomaly in Guance cloud
+### Configure Kubernetes Pod Abnormal Restart Intelligent Inspection in Guance cloud
 
 ![image](../../img/k8s-pod-restart02.png)
 
@@ -100,9 +42,9 @@ In DataFlux Func, after the check is configured, you can click run to test by di
 
 #### Export
 
-  Intelligent check supports "exporting JSON configuration". Under the operation menu on the right side of the intelligent check list, click the "Export" button to export the json code of the current check, and export the file name format: intelligent check name. json.
+Intelligent Inspection supports "Export JSON configuration". Under the operation menu on the right side of the Intelligent Inspection list, click the "Export" button to export the JSON code of the current inspection, and the export file name format: `intelligent inspection name.json`.
 
-#### Edit
+#### Editor
 
   Intelligent check "Kubernetes Pod Abnormal Restart Check" supports users to manually add filter conditions. Under the operation menu on the right side of the intelligent check list, click the "Edit" button to edit the check template.
 
@@ -136,7 +78,7 @@ In DataFlux Func, after the check is configured, you can click run to test by di
   * Click the "View Monitor Configuration" icon in the upper right corner of the Details page to support viewing and editing the configuration details of the current intelligent check.
   * Click the "Export Event JSON" icon in the upper right corner of the details page to support exporting the details of events.
 
-#### Basic Attributes
+#### Basic Properties
 
   * Detection dimensions: Filter criteria based on smart patrol configuration, enabling replication of detection dimensions `key/value`, adding to filters and viewing related logs, containers, processes, security patrol, links, user access monitoring, availability monitoring and CI data.
   * Extended attributes: Supports replication in the form of `key/value` after selecting extended attributes, and forward/reverse filtering.
@@ -186,6 +128,8 @@ The Kubernetes monitoring view in the event allows you to view finer-grained inf
 
   Taking the proportion of restarted pod number under cluster_name + namespace as the entry, when the metric rises in recent 30 minutes, it triggers the logic of generating events and performs root cause analysis.
 
-  
+  **4. Abnormal errors are found in scripts that were previously running normally during the inspection process**
+
+Please update the referenced script set in DataFlux Func's script marketplace, you can view the update log of the script marketplace via [**Change Log**](https://func.guance.com/doc/script-market-guance-changelog/) to facilitate immediate script update.
 
   

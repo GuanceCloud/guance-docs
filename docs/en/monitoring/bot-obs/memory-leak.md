@@ -11,13 +11,15 @@
 1. Offline deployment of [DataFlux Func](https://func.guance.com/#/)
 2. Open DataFlux Func's [Script Marketplace](https://func.guance.com/doc/script-market-basic-usage/)
 3. In Guance Cloud「Management / API Key Management」create [API Key](../../management/api-key/open-api.md)
-4. In DataFlux Func，by「Script Marketplace」to install「Guance Cloud Core Package」「Guance Cloud Algorithm Library」「Guance Cloud script (Memory leak)」.
-5. In DataFlux Func, write processing functions.
+4. In DataFlux Func，by「Script Marketplace」to install「Guance Cloud Self-Built Core Package」「Guance Cloud Algorithm Library」「Guance Cloud Self-Built script (Memory leak)」.
+5. In DataFlux Func, write self-built patrol processing functions.
 6. In DataFlux Func , by「Manage / Auto-trigger Configurations」,create an automatic trigger configuration for the written function.
 
-## Configuration Check
+> **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance Cloud SaaS[on [the same carrier in the same region](../../../getting-started/necessary-for-beginners/select-site/)。
 
-In DataFlux Func create a new set of scripts to enable APM Intelligent Inspection configuration. After creating a new script set, select the corresponding script template to save when creating the Inspection script, and change it as needed in the resulting new script file.
+## Configure Intelligent Inspection
+
+In DataFlux Func create a new set of scripts to enable Memory leak Intelligent Inspection configuration. After creating a new script set, select the corresponding script template to save when creating the Inspection script, and change it as needed in the resulting new script file.
 
 ![image](../img/memory-leak11.png)
 

@@ -20,7 +20,7 @@ It provides additional data access capability for Guance Cloud, which is conveni
 
 ## Configure Intelligent Inspection
 
-In DataFlux Func create a new set of scripts to enable APM Intelligent Inspection configuration. After creating a new script set, select the corresponding script template to save when creating the Inspection script, and change it as needed in the resulting new script file.
+In DataFlux Func create a new set of scripts to enable Alibaba Cloud Asset Intelligent Inspection configuration. After creating a new script set, select the corresponding script template to save when creating the Inspection script, and change it as needed in the resulting new script file.
 
 ![image](../img/cloudasset11.png)
 
