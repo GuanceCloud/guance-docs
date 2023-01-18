@@ -18,43 +18,10 @@
 
 ## 配置巡检
 
-在自建 DataFlux Func 创建新的脚本集开启阿里云抢占式实例存活巡检配置
+在自建 DataFlux Func 创建新的脚本集开启阿里云抢占式实例存活巡检配置，新建脚本集之后，在创建巡检脚本时选择对应的脚本模板保存，在生成的新脚本文件中根据需要更改即可。
 
-```python
-from guance_monitor__runner import Runner
-from guance_monitor__register import self_hosted_monitor
-import guance_monitor_aliyun_spot_alive__main as spot_instance
+![image](../img/spot_alive11.png)
 
-API_KEY_ID  = 'xxxxx'
-API_KEY     = 'xxxxx'
-
-'''
-任务配置参数请使用：
-@DFF.API('阿里云抢占式实例存活巡检', fixed_crontab='*/2 * * * *', timeout=60)
-
-fixed_crontab：固定执行频率「每2分钟一次」
-timeout：任务执行超时时长，控制在1分钟
-'''
-
-@self_hosted_monitor(API_KEY_ID, API_KEY)
-@DFF.API('阿里云抢占式实例存活巡检', fixed_crontab='*/2 * * * *', timeout=60)
-def run(configs=[]):
-    """
-    参数：instance_type
-        configs：
-            配置需要检测的 instance_type （配置类型,可配置一个也可配置多个）ecs.s6-c1m1.small
-            配置需要检测的 spot_with_price_limit （接受的折扣）0.12
-
-        配置示例： 可以配置多组也可以配置单个
-        configs = [{"instance_type": "xxx1","spot_with_price_limit": "xxx2"}]
-
-    """
-    checkers = [
-        spot_instance.SPOTInstanceCheck(configs=configs),
-    ]
-
-    Runner(checkers, debug=False).run()
-```
 ## 开启巡检
 ### 在观测云中注册检测项
 
