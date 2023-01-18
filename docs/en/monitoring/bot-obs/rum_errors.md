@@ -1,4 +1,4 @@
-# Front-end Application Log Error Detection
+# RUM Log Error Intelligent Inspection
 ---
 
 ## Background
@@ -88,6 +88,7 @@ Intelligent Check "Front-end Error Detection" supports users to manually add fil
 * Filter criteria: Configure the front-end application app_name
 * Alarm Notification: Support the selection and editing of alarm policies, including the level of events to be notified, the notification object and the alarm silence period
   
+
 Click Edit to configure entry parameters, then fill in the corresponding detection object in parameter configuration, and click Save to start detection:
 
 ![image](../img/rum_error02.png)

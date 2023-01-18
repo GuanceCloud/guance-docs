@@ -1,12 +1,12 @@
 nav:
   - index.md
-  - 'Update Log': changelog.md
-  - 'Memory Leak Risk': memory-leak.md
-  - 'Disk Usage Check': disk-usage.md
-  - 'Application Performance Check': apm.md
-  - 'Cloud Account Bill Check': cloudfee.md
-  - 'Front-end Application Log Error Check': rum_errors.md
-  - 'Alibaba Cloud Asset Check': cloudasset.md
-  - 'MySQL Performance Check': mysql-performance.md
-  - 'Server-side Application Error Check': apm-errors.md
+  - 'Change Log': changelog.md
+  - 'Memory leak Intelligent Inspection': memory-leak.md
+  - 'Disk utilization Intelligent Inspection': disk-usage.md
+  - 'APM Intelligent Inspection': apm.md
+  - 'Cloud Account Billing Intelligent Inspection': cloudfee.md
+  - 'RUM Log Error Intelligent Inspection': rum_errors.md
+  - 'Alibaba Cloud Asset Intelligent Inspection': cloudasset.md
+  - 'MySQL Performance  Intelligent Inspection': mysql-performance.md
+  - 'Server Application Error Intelligent Inspection': apm-errors.md
   - 'Kubernetes': Kubernetes

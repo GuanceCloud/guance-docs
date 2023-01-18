@@ -1,4 +1,4 @@
-# MySQL Performance Detection
+# MySQL Performance  Intelligent Inspection
 
 ---
 
@@ -92,6 +92,7 @@ Intelligent Check "MySQL Performance Check" supports users to manually add filte
 * Filter criteria: Configure hosts that need to be checked
 * Alarm Notification: Support the selection and editing of alarm policies, including the level of events to be notified, the notification object and the alarm silence period
   
+
 Click Edit to configure entry parameters, then fill in the corresponding detection object in parameter configuration, and click Save to start check:
 
 ![image](../img/mysql-performance03.png)

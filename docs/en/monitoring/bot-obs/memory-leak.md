@@ -1,4 +1,4 @@
-# Memory Leak Check
+# Memory leak Intelligent Inspection
 
 ---
 
@@ -8,92 +8,48 @@
 
 ## Preconditions
 
-1. Offline deployment of self-built DataFlux Func
-2. Open the [script market](https://func.guance.com/doc/script-market-basic-usage/) of self-built DataFlux Func 
-3. Create [API Key](../../management/api-key/open-api.md) in the Guance Cloud "management/API Key management" 
-4. In the self-built DataFlux Func, install "Guance Cloud Self-built Check Core Package", "Guance Cloud Algorithm Library" and "Guance Cloud Self-built Check (Memory Leak)" through "Script Market"
-5. In the DataFlux Func, write the self-built check processing function
-6. In the self-built DataFlux Func, create auto-trigger configurations for the functions you write through "Manage/Auto-trigger Configurations."
+1. Offline deployment of [DataFlux Func](https://func.guance.com/#/)
+2. Open DataFlux Func's [Script Marketplace](https://func.guance.com/doc/script-market-basic-usage/)
+3. In Guance Cloud「Management / API Key Management」create [API Key](../../management/api-key/open-api.md)
+4. In DataFlux Func，by「Script Marketplace」to install「Guance Cloud Core Package」「Guance Cloud Algorithm Library」「Guance Cloud script (Memory leak)」.
+5. In DataFlux Func, write processing functions.
+6. In DataFlux Func , by「Manage / Auto-trigger Configurations」,create an automatic trigger configuration for the written function.
 
 ## Configuration Check
 
-Create a new script set in the self-built DataFlux Func to start the memory leak check configuration.
+In DataFlux Func create a new set of scripts to enable APM Intelligent Inspection configuration. After creating a new script set, select the corresponding script template to save when creating the Inspection script, and change it as needed in the resulting new script file.
 
-```python
-from guance_monitor__register import self_hosted_monitor
-from guance_monitor__runner import Runner
-import guance_monitor_memory_leak__main as memory_leak_check
+![image](../img/memory-leak11.png)
 
-# Account Configuration
-API_KEY_ID  = 'wsak_xxx'
-API_KEY     = 'wsak_xxx'
+## Start Intelligent Inspection
 
-# The function filters parameter filter and Guance Cloud studio monitoring\intelligent check configuration have calling priority. After the function filters parameter filter is configured, there is no need to change the detection configuration in Guance Cloud studio monitoring\intelligent check. If both sides are configured, the filters parameter in the script will take effect first.
+### Register detection items in Guance Cloud 
 
-def filter_host(host):
-    '''
-    Filter host, customize the conditions that meet the requirements of host, return True for matching, and return False for mismatching
-    return True｜False
-    '''
-    if host in ['iZuf6aq9gu32lpgvx8ynhbZ']:
-        return True
-
-'''
-Task configuration parameters use:
-@DFF.API('memory leak check', fixed_crontab='0 * * * *', timeout=900)
-
-fixed_crontab: Fixed execution frequency "once per hour"
-timeout: Task execution timeout, controlled at 15 minutes
-'''
-
-@self_hosted_monitor(API_KEY_ID, API_KEY)
-@DFF.API('memory leak check', fixed_crontab='0 * * * *', timeout=900)
-def run(configs={}):
-    '''
-    Parameters:
-    configs : Configure the list of hosts to be detected (optional, do not configure default detection of all hosts in the current workspace)
-
-    Example:
-        configs = {
-            "hosts": ["localhost"]
-        }
-    '''
-    checkers = [
-        memory_leak_check.MemoryLeakCheck(configs=configs, filters=[filter_host]), # example here
-    ]
-
-    Runner(checkers, debug=False).run()
-```
-
-## Start Check
-
-### Register a Detectioan Item in Guance Cloud
-
-In DataFlux Func, after the check is configured, you can click run to test by directly selecting `run()` method in the page, and after clicking Publish, you can view and configure it in the Guance Cloud "Monitoring/Intelligent Check".
+After configuring the inspection in DataFlux Func, you can run the test by selecting the `run()` method directly on the page, and then you can view and configure it in the Guance Cloud "Monitoring / Intelligent Inspection" after clicking Publish.
 
 ![image](../img/memory-leak01.png)
 
 
-### Configure Memory Leak Check in Guance Cloud
+### Configure Memory leak Intelligent Inspection in Guance Cloud
 
 ![image](../img/memory-leak02.png)
 
 #### Enable/Disable
 
-Memory leak check is "on" by default, and can be "off" manually. After being turned on, the configured host list will be inspected.
+Memory leak Intelligent Inspection is "On" by default, and can be manually "Off". When it is on, it will inspect the configured host list.
 
 #### Export
 
-Intelligent check supports "exporting JSON configuration". Under the operation menu on the right side of the intelligent check list, click the "Export" button to export the json code of the current check, and export the file name format: intelligent check name. json.
+Intelligent Inspection supports "Export JSON configuration". Under the operation menu on the right side of the Intelligent Inspection list, click the "Export" button to export the JSON code of the current inspection, and the export file name format: `intelligent inspection name.json`.
 
-#### Edit
+#### Editor
 
-Intelligent check "Memory Leak Check" supports users to manually add filter conditions. Under the operation menu on the right side of the intelligent check list, click the "Edit" button to edit the check template.
+Intelligent inspection "Memory leak inspection" supports users to manually add filtering conditions, under the operation menu on the right side of the intelligent inspection list, click the "Edit" button, you can edit the inspection template.
 
-* Filter criteria: Configure hosts that need to be checked
-* Alarm Notification: Support the selection and editing of alarm policies, including the level of events to be notified, the notification object and the alarm silence period
+* Filter conditions: Configure the host hosts that need to be inspected.
+* Alarm notification: support for selecting and editing the alarm policy, including the event level to be notified, the notification object, and the alarm silence period, etc.
 
-Click Edit to configure entry parameters, then fill in the corresponding detection object in parameter configuration, and click Save to start check:
+Configure the entry parameters and click Edit to fill in the corresponding detection object in the parameter configuration and click Save to start the inspection:
 
 ![image](../img/memory-leak03.png)
 
@@ -106,54 +62,58 @@ You can refer to the following JSON to configure multiple host information:
     }
 ```
 
->  **Note**: In the self-built DataFlux Func, filter conditions can also be added when writing the intelligent inspection processing function (refer to the sample code configuration). Note that the parameters configured in the Guance Cloud studio will override the parameters configured when writing the intelligent inspection processing function.
+>  **Note**: In the DataFlux Func, you can also add filtering conditions when writing inspection processing functions (refer to the sample code configuration), it should be noted that the parameters configured in the observation cloud studio will override the parameters configured when writing inspection processing functions.
 
 ## View Events
 
-This detection will scan the memory utilization information in the last 6 hours. Once the warning value will be exceeded in the next 2 hours, the intelligent check will generate corresponding events. Under the operation menu on the right side of the intelligent check list, click the "View Related Events" button to view the corresponding abnormal events.
+This inspection will scan the memory utilization information of the last 6 hours, and once the abnormal state appears, the intelligent inspection will generate corresponding events, and you can check the corresponding abnormal events by clicking the "View Related Events" button under the operation menu on the right side of the intelligent inspection list.
 
 ![image](../img/memory-leak04.png)
 
 ### Event Details Page
 
-Click "Event" to view the details page of intelligent check events, including event status, exception occurrence time, exception name, basic attributes, event details, alarm notification, history and related events.
+Click "Event" to view the detail page of intelligent inspection events, including event status, time of exception occurrence, exception name, basic attributes, event details, alarm notification, history and associated events.
 
-* Click the "View Monitor Configuration" icon in the upper right corner of the Details page to support viewing and editing the configuration details of the current intelligent check
-* Click the "Export Event JSON" icon in the upper right corner of the details page to support exporting the details of events
+* Click the "View monitor configuration" small icon at the top right corner of the detail page to support viewing and editing the configuration details of the current intelligent inspection.
+* Click the "Export Event JSON" icon in the upper-right corner of the detail page to support exporting the event details.
 
-#### Basic Attributes
+#### Basic Properties
 
-* Detection Dimensions: Filter criteria based on intelligent check configuration, enabling replication of detection dimensions `key/value`, adding to filters, and viewing related logs, containers, processes, security patrol, links, user access monitoring, availability monitoring and CI data
-* Extended Attributes: Support replication in the form of `key/value` after selecting extended attributes and forward/reverse filtering
+* Detection dimension: Based on the filtering conditions configured by Intelligent Inspection, it supports copying and adding the detection dimension `key/value` to the filtering and viewing the related logs, containers, processes, security patrol, links, user access monitoring, availability monitoring and CI data.
+* Extended Attributes: Supports `key/value` replication and forward/reverse filtering after selecting extended attributes.
 
 ![image](../img/memory-leak05.png)
 
 #### Event Details
 
-* Event Overview: Describe the objects, contents of abnormal check events.
-* Exception details: You can view the utilization changes of the current exception host in the past 6 hours.
-* Exception analysis: Top 10 process list (Pod list) that can display abnormal host memory usage
+* Event overview: Describe the object, content, etc. of the abnormal patrol event.
+* Abnormality details: You can view the change of utilization of the current abnormal host in the past 6 hours.
+* Abnormality analysis: You can display the list of processes (Pod list) of the Top 10 abnormal host memory usage
 
 ![image](../img/memory-leak06.png)
 
 #### History
 
-Support to view detection objects, exception/recovery time and duration.
+Support to view the detection object, exception/recovery time and duration.
 
 ![image](../img/memory-leak07.png)
 
 #### Associated Events
 
-Support to view associated events by filtering fields and selected time component information.
+Support to view related events through filtering fields and selected time component information.
 
 ![image](../img/memory-leak08.png)
 
 ## FAQ
 
-**1.How to configure the detection frequency of memory leak check**
+**1. How to configure the detection frequency of memory leak Intelligent Inspection**
 
-* In the self-built DataFlux Func, add `fixed_crontab='0 * * * *', timeout=900` in the decorator when writing the intelligent inspection processing function, and then configure it in "Administration/Auto-trigger Configuration".
+* In the DataFlux Func, add `fixed_crontab='0 * * * *', timeout=900` to the decorator when writing the inspection handler function, and then configure it in the `Management / Auto-trigger Configuration'.
 
-**2.Memory leak check may be triggered without exception analysis**
+**2. Memory leak Intelligent Inspection may not have exception analysis when triggered**
 
-Check the current data collection status of `datakit` when there is no anomaly analysis in the detection report.
+When there is no exception analysis in the inspection report, please check the current data collection status of `datakit`.
+
+**3. An abnormal error was found in a previously running script during the inspection**
+
+Please update the referenced script set in the script marketplace of DataFlux Func. You can check the update log of the script marketplace through [**Change Log**](https://func.guance.com/doc/script-market-guance-changelog/) to update the script instantly.
