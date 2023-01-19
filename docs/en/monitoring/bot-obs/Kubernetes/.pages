@@ -1,2 +1,2 @@
 nav:
-  - 'Pod Abnormal Restart Check': k8s-pod-restart.md
+  - 'Kubernetes Pod Abnormal Restart Intelligent Inspection': k8s-pod-restart.md

@@ -19,53 +19,10 @@
 
 ## 配置巡检
 
-在自建 DataFlux Func 创建新的脚本集开启前端错误日志巡检配置
+在自建 DataFlux Func 创建新的脚本集开启前端错误日志巡检配置，新建脚本集之后，在创建巡检脚本时选择对应的脚本模板保存，在生成的新脚本文件中根据需要更改即可。
 
-```python
-from guance_monitor__runner import Runner
-from guance_monitor__register import self_hosted_monitor
-import guance_monitor_rum_error__main as main
+![image](../img/rum_error12.png)
 
-# 观测云空间 API_KEY 配置(用户自行配置)
-API_KEY_ID  = 'xxxxx'
-API_KEY     = 'xxxx'
-
-# 函数 filters 参数过滤器和观测云 studio 监控\智能巡检配置中存在调用优先级，配置了函数 filters 参数过滤器后则不需要在观测云 studio 监控\智能巡检中更改检测配置了，如果两边都配置的话则优先生效脚本中 filters 参数
-
-def filter_appid(data):
-    appid = data[0]
-    if appid in ['appid_Htow4wbwHXUptr7etBB2vQ']:
-        return True
-
-
-'''
-任务配置参数请使用：
-@DFF.API('前端应用日志错误巡检', fixed_crontab='0 * * * *', timeout=900)
-
-fixed_crontab：固定执行频率「每小时一次」
-timeout：任务执行超时时长，控制在15分钟
-'''
-
-# RUM 错误类型自建巡检配置 用户无需修改
-@self_hosted_monitor(API_KEY_ID, API_KEY)
-@DFF.API('前端应用日志错误巡检', fixed_crontab='0 * * * *', timeout=900)
-def run(configs={}):
-    """
-    参数：
-        configs：配置需要检测的 app_name 列表（可选，不配置默认检测所有 app_name）
-
-        配置示例：
-        configs = {
-            "app_names": ["app_name_1", "app_name_2"]  # 应用名称列表
-        }
-    """
-    checkers = [
- 		# 配置 RUM 错误巡检
-        main.RUMErrorCheck(configs=configs),
-    ]
-
-    Runner(checkers, debug=False).run()
-```
 ## 开启巡检
 ### 在观测云中注册检测项
 

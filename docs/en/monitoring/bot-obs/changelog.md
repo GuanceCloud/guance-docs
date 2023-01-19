@@ -1,4 +1,4 @@
-# 更新日志
+# Change Log
 
 
 
@@ -6,31 +6,40 @@
 
 
 
-## 2022 年 12 月 1 日
+## December 29, 2022
 
-### 新增巡检
+### New inspection
 
-* **Kubernetes Pod 异常重启巡检**：Kubernetes 帮助用户自动调度和扩展容器化应用程序，但现代 Kubernetes 环境正变得越来越复杂，当平台和应用工程师需要调查动态、容器化环境中的事件时，寻找最有意义的信号可能涉及许多试错步骤。通过智能巡检可以根据当前的搜索上下文过滤异常，从而加快事件调查、减轻工程师的压力、减少平均修复时间并改善最终用户体验。
-* **MySQL 性能巡检**：对于日益复杂的应用架构，当前的趋势是越来越多的客户采用免运维的云数据库，所以巡检 MySQL的性能巡检是重中之重，定期会对 MySQL 进行智能巡检，通过发现 MySQL 的性能问题来进行异常告警。
-* **服务端应用错误巡检**：当服务端出现运行错误时，我们需要提早发现及时预警来让开发运维进行排错，及时确认错误是否对应用有潜在影响。服务端应用错误巡检事件上报的内容是提醒开发运维在过去一小时里应用出现了新的错误并定位到具体的出错的地方将关联的诊断线索一起提供给用户。
-* **内存泄漏巡检**：基于内存异常分析检测器，定期对主机进行智能巡检，通过出现内存异常的主机来进行根因分析，确定对应异常时间点的进程和 pod 信息，分析当前工作空间主机是否存在内存泄漏问题。
-* **磁盘使用率巡检**：基于磁盘异常分析检测器，定期对主机磁盘进行智能巡检，通过出现磁盘异常的主机来进行根因分析，确定对应异常时间点的磁盘挂载点和磁盘信息，分析当前工作空间主机是否存在磁盘使用率问题。
-* **应用性能巡检**：基于APM异常根因分析检测器，选择要检测的 `service` 、 `resource` 、 `project` 、 `env` 信息，定期对应用性能进行智能巡检，通过应用程序服务指标异常来自动分析该服务的上下游信息，为该应用程序确认根因异常问题。
-
-### 功能优化
-
-* **前端应用日志错误巡检**：前端错误日志巡检事件报告新增展示前端用户影响。
+* **云账户实例维度账单巡检**：云账户实例维度账单巡检帮助用户管理云服务实例级别的异常费用预警、预测费用情况并为用户提供高增长、高消耗的实例提示及账单可视化能力，支持多维度可视化云服务资源的消费情况。
+* **Alibaba Cloud Preemptible Instance Survival Intelligent Inspection**：Since the market price of the preemptible instances fluctuates with the change of supply and demand, it is necessary to specify the bid mode when creating the preemptible instance, and only when the real-time market price of the specified instance specification is lower than the bid price and the inventory is sufficient can the preemptible instance be successfully created. Therefore, it is particularly important to inspect the preemptible instance of cloud assets. When the preemptible instance is found to be about to be released through inspection, the latest price of all available zones of the current specification of the preemptible instance and the historical price of the changed preemptible instance will be indicated and appropriate treatment advice will be given.
 
 
 
-## 2022 年 11 月 3 日
+## December 1, 2022
 
-### 新增巡检
+### New inspection
 
-* **云账户账单巡检**：云账户账单巡检帮助用户管理云服务的预算预警、异常费用预警、预测费用情况并为用户提供可视化能力，支持多维度可视化云服务资源的消费情况。
-* **前端应用日志错误巡检**：前端错误日志巡检 会帮助发现前端应用过去一小时内新出现的错误消息（聚类之后的Error Message），帮助开发和运维及时修复代码，避免随着时间的积累对客户体验产生持续性伤害。
-* **阿里云资产巡检**：为观测云提供额外的数据接入能力，方便用户对云厂商的产品性能状态有更多的了解。
+* **Kubernetes Pod Abnormal Restart Intelligent Inspection**：Kubernetes helps users automatically schedule and expand containerized applications, but modern Kubernetes environments are becoming more and more complex. When platform and application engineers need to investigate events in dynamic and containerized environments, finding the most meaningful signals may involve many trial and error steps. Intelligent Inspection can filter exceptions according to the current search context, thus speeding up incident investigation, reducing the pressure on engineers, reducing the average repair time and improving the end-user experience.
+* **MySQL Performance Inspection**：For increasingly complex application architectures, the current trend is for more and more customers to adopt maintenance-free cloud databases, so patrolling MySQL performance patrols are a top priority, and intelligent patrols are performed on MySQL on a regular basis to alert abnormalities by finding MySQL performance problems.
+* **Server Application Error Intelligent Inspection**：When server-side operation errors occur, we need to find early and timely warning to allow development and operation maintenance to troubleshoot and confirm whether the error has a potential impact on the application in a timely manner. The content of the server-side application error patrol event report is to remind the development and operation of the maintenance in the past hour there is a new application error and locate the specific place of error will be associated with the diagnostic clues provided to the user.
+* **Memory leak Intelligent Inspection**：「Memory leak Intelligent Inspection」is based on memory abnormality analysis detector, which performs intelligent inspection of hosts on a regular basis, conducts root cause analysis by the hosts with memory abnormalities, determines the process and pod information corresponding to the abnormal time point, and analyzes whether the current workspace hosts have memory leakage problems.
+* **Disk utilization Intelligent Inspection**：「Disk utilization Intelligent Inspection」 is based on the disk exception analysis detector. It regularly performs intelligent patrols on the host disk. It analyzes the root cause of the host with disk exceptions, determines the disk mount point and disk information corresponding to the time point of the exception, and analyzes whether the current workspace host has disk usage problems.
+* **APM Intelligent Inspection**：「APM Intelligent Inspection」is based on APM root cause analysis detector, select the `service` 、 `resource` 、 `project` 、 `env` information to be tested, and perform intelligent inspection of APM on a regular basis to automatically analyze the upstream and downstream information of the service through application service index exceptions, and confirm the root cause of the abnormal problem for the application.
 
-### 问题修复
+### Functional optimization
 
-* **磁盘使用率巡检**：修复事件折线图显示异常问题。
+* **RUM Log Error Intelligent Inspection**：Web error log inspection event report newly shows front-end user impact.
+
+
+
+## November 3, 2022
+
+### New inspection
+
+* **Cloud Account Billing Intelligent Inspection**：Cloud ( Alibaba Cloud, Tecent Cloud, Huawei Cloud ) Account Billing Inspection helps subscribers manage budget alerts, abnormal cost alerts, forecast costs for cloud services and provides subscribers with the ability to visualize and support multi-dimensional visualization of consumption of cloud service resources.
+* **RUM Log Error Intelligent Inspection**：RUM error log inspection will help discover new error messages (Error Message after clustering) of the front-end application in the past hour, helping development and operation and maintenance to fix the code in time to avoid continuous harm to customer experience with the accumulation of time.
+* **Alibaba Cloud Asset Intelligent Inspection**：It provides additional data access capability for Guance Cloud, which is convenient for users to have a better understanding of the product performance status of cloud suppliers.
+
+### Issue Fix
+
+* **Disk utilization Intelligent Inspection**：The repair event line chart shows abnormal problems.

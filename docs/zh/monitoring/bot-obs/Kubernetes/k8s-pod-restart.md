@@ -20,69 +20,9 @@ Kubernetes 帮助用户自动调度和扩展容器化应用程序，但现代 Ku
 
 ## 配置巡检
 
-在自建 DataFlux Func 创建新的脚本集开启 Kubernetes Pod 异常重启巡检配置
-
-```python
-from guance_monitor__runner import Runner
-from guance_monitor__register import self_hosted_monitor
-import guance_monitor_k8s_pod_restart__main as k8s_pod_restart
+在自建 DataFlux Func 创建新的脚本集开启 Kubernetes Pod 异常重启巡检配置，新建脚本集之后，在创建巡检脚本时选择对应的脚本模板保存，在生成的新脚本文件中根据需要更改即可。
 
 
-# 观测云空间 API_KEY 配置(用户自行配置)
-API_KEY_ID  = 'wsak_xxx'
-API_KEY     = '5Kxxx'
-
-# 函数 filters 参数过滤器和观测云 studio 监控\智能巡检配置中存在调用优先级，配置了函数 filters 参数过滤器后则不需要在观测云 studio 监控\智能巡检中更改检测配置了，如果两边都配置的话则优先生效脚本中 filters 参数
-
-def filter_namespace(cluster_namespaces):
-    '''
-    过滤 namespace 自定义符合要求 namespace 的条件，匹配的返回 True，不匹配的返回 False
-    return True｜False
-    '''
-
-    cluster_name = cluster_namespaces.get('cluster_name','')
-    namespace = cluster_namespaces.get('namespace','')
-    if cluster_name in ['k8s-prod']:
-        return True
-
-'''  
-任务配置参数请使用：
-@DFF.API('K8S-Pod异常重启巡检', fixed_crontab='*/30 * * * *', timeout=900)
-
-fixed_crontab：固定执行频率「每 30 分钟一次」
-timeout：任务执行超时时长，控制在 15 分钟
-'''    
-
-# Kubernetes Pod 异常重启巡检配置 用户无需修改
-@self_hosted_monitor(API_KEY_ID, API_KEY)
-@DFF.API('K8S-Pod异常重启巡检', fixed_crontab='*/30 * * * *', timeout=900)
-def run(configs=[]):
-    """
-    参数：
-        configs：
-            配置需要检测的 cluster_name （集群名称，可选，不配置根据 namespace 检测）
-            配置需要检测的 namespace （命名空间，必选）
-
-        配置示例： namespace 可以配置多个也可以配置单个
-        configs = [
-        {
-            "cluster_name": "xxx",
-            "namespace": ["xxx1", "xxx2"]
-        },
-        {
-            "cluster_name": "yyy",
-            "namespace": "yyy1"
-        }
-        ]
-
-    """
-    checkers = [
-         # 配置 Kubernetes Pod 异常重启巡检
-        k8s_pod_restart.K8SPodRestartCheck(configs=configs, filters=[filter_namespace]),
-    ]
-
-    Runner(checkers, debug=False).run()
-```
 
 ## 开启巡检
 
@@ -90,7 +30,7 @@ def run(configs=[]):
 
 在 DataFlux Func 中在配置好巡检之后可以通过直接再页面中选择 `run()` 方法点击运行进行注册，在点击发布之后就可以在观测云「监控 / 智能巡检」中查看并进行配置
 
-![image](../../img/k8s-pod-restart01.png)
+![image](../../img/k8s-pod-restart11.png)
 
 ### 在观测云中配置 Kubernetes Pod 异常重启巡检
 

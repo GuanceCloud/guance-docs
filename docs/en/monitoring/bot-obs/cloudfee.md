@@ -1,13 +1,13 @@
-# Cloud Account Billing Check Integration Document
+# Cloud Account Billing Intelligent Inspection
 ---
 
 ## Background
 
-Cloud account bill check helps users manage cloud service budget warning, abnormal cost warning, forecast cost situation and provide users with visualization ability, supporting multi-dimensional visualization of cloud service resource consumption.
+Cloud ( Alibaba Cloud, Tecent Cloud, Huawei Cloud ) Account Billing Inspection helps subscribers manage budget alerts, abnormal cost alerts, forecast costs for cloud services and provides subscribers with the ability to visualize and support multi-dimensional visualization of consumption of cloud service resources.
 
 ## Preconditions
 
-1. Deploy your own DataFlux Func offline
+1. Offline deployment of [DataFlux Func](https://func.guance.com/#/)
 2. Open the [script market](https://func.guance.com/doc/script-market-basic-usage/) of self-built DataFlux Func 
 3. Create [API Key](../../management/api-key/open-api.md) in Guance Cloud "management/API Key management" 
 4. In the self-built DataFlux Func, install "Guance Cloud Self-built Inspection Core Core Package", "Guance Cloud Algorithm Library" and "Guance Cloud Self-built Inspection (Bill)" through "Script Market"
@@ -15,53 +15,17 @@ Cloud account bill check helps users manage cloud service budget warning, abnorm
 6. In the DataFlux Func, write the self-built check processing function
 7. In the self-built DataFlux Func, create auto-trigger configuration for the written function through "Manage/Auto-trigger Configuration"
 
-## Configuration Check
+> **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance Cloud SaaS[on [the same carrier in the same region](../../../getting-started/necessary-for-beginners/select-site/)。
 
-Create a new script set in the self-built DataFlux Func to start the cloud account bill check configuration.
+## Configure Intelligent Inspection
 
-```python
-from guance_monitor__register import self_hosted_monitor
-from guance_monitor__runner import Runner
-import guance_monitor_billing__main as main
+In DataFlux Func create a new set of scripts to enable Cloud Account Billing Intelligent Inspection configuration. After creating a new script set, select the corresponding script template to save when creating the Inspection script, and change it as needed in the resulting new script file.
 
-# Account Configuration
-API_KEY_ID  = 'xxxxx'
-API_KEY     = 'xxxx'
+![image](../img/cloudfee15.png)
 
-'''
-Task configuration parameters use:
-@DFF.API('Cloud account bill check', fixed_crontab='0 0 * * *', timeout=900)
+## Start Intelligent Inspection
 
-fixed_crontab: Fixed execution frequency "once a day"
-timeout: Task execution timeout, limited to 15 minutes
-'''
-
-# Cloud billing configuration; users do not need to modify it
-@self_hosted_monitor(API_KEY_ID, API_KEY)
-@DFF.API('Cloud account bill check', fixed_crontab='0 0 * * *', timeout=900)
-def run(configs=None):
-    '''
-    configs : list type
-    configs = [
-        {
-            "account_id": "10000000",    # account ID
-            "budget": 20000,             # billing budget; value type
-            "cloud_provider": "aliyun"   # Cloud supplier name; Optional parameters such as aliyun，huaweicloud，tencentcloud
-        },
-        ...
-    ]
-    '''
-    # Cloud Billing Detector Configuration
-    checkers = [
-        main.CloudChecker(configs=configs),
-    ]
-
-    # Execute Cloud Asset Detector
-    Runner(checkers, debug=False).run()
-```
-## Start Check
-
-### Register a Detect Item in Guance Cloud
+### Register detection items in Guance Cloud
 
 In DataFlux Func, after the check is configured, you can click run to test by directly selecting `run()` method in the page, and after clicking Publish, you can view and configure it in the Guance Cloud "Monitoring/Intelligent Patrol"
 
@@ -69,7 +33,7 @@ In DataFlux Func, after the check is configured, you can click run to test by di
 
 
 
-### Configure Cloud Account Bill Check in Guance Cloud
+### Configure Cloud Account Billing Intelligent Inspection in Guance Cloud
 
 ![image](../img/cloudfee04.png)
 
@@ -83,17 +47,18 @@ Intelligent check "Cloud Account Bill Check" defaults to "on" state, which can b
 
 #### Export
 
-Intelligent check supports "exporting JSON configuration". Under the operation menu on the right side of the intelligent check list, click the "Export" button to export the json code of the current check, and export the file name format: intelligent check name. json.
+Intelligent Inspection supports "Export JSON configuration". Under the operation menu on the right side of the Intelligent Inspection list, click the "Export" button to export the JSON code of the current inspection, and the export file name format: `intelligent inspection name.json`.
 
 
 
-#### Edit
+#### Editor
 
 Intelligent check "Cloud Account Bill Check" supports users to manually add filter conditions. Under the operation menu on the right side of the intelligent check list, click the "Edit" button to edit the check template.
 
 * Filter Criteria: Configure the corresponding cloud supplier, cloud account and current month account budget information
 * Alarm Notification: Support the selection and editing of alarm policies, including the level of events to be notified, the notification object and the alarm silence period
   
+
 Click Edit to configure entry parameters, then fill in the corresponding detection object in parameter configuration, and click Save to start check:
 
 ![image](../img/cloudfee05.png)
@@ -168,7 +133,7 @@ Support to view detection objects, exception/recovery time and duration.
 
 ![image](../img/cloudfee10.png)
 
-#### Associated Events
+#### Related events
 Support to view associated events by filtering fields and selected time component information.
 
 ![image](../img/cloudfee11.png)
@@ -192,7 +157,9 @@ Taking the total cost of the designated cloud supplier as the entrance, when the
 * Tracking threshold: If the current expenses are more than 100% year-on-year
 * Track Budget: Total expenses of the month is more than set budget
 
+**4. Abnormal errors are found in scripts that were previously running normally during the inspection process**
 
+Please update the referenced script set in DataFlux Func's script marketplace, you can view the update log of the script marketplace via [**Change Log**](https://func.guance.com/doc/script-market-guance-changelog/) to facilitate immediate script update.
 
 
 
