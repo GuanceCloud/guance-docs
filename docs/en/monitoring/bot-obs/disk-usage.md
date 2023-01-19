@@ -17,7 +17,7 @@
 
 > **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance Cloud SaaS[on [the same carrier in the same region](../../../getting-started/necessary-for-beginners/select-site/)。
 
-## Configuration Detection
+## Configure Intelligent Inspection
 
 In DataFlux Func create a new set of scripts to enable Disk utilization Intelligent Inspection configuration. After creating a new script set, select the corresponding script template to save when creating the Inspection script, and change it as needed in the resulting new script file.
 
