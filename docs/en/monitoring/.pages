@@ -2,7 +2,7 @@ nav:
   - index.md
   - 'Monitor': monitor
   - 'Monitor Template': template.md
-  - 'Intelligent Check': bot-obs
+  - 'Intelligent Inspection': bot-obs
   - 'SLO': slo.md
   - 'Silent Management': silent-management.md
   - 'Alert Setting': alert-setting.md
