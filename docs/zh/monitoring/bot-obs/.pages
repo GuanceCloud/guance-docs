@@ -1,5 +1,5 @@
 nav:
-  - '更新日志': changelog.md
+  - index.md
   - '内存泄漏巡检': memory-leak.md
   - '磁盘使用率巡检': disk-usage.md
   - '应用性能巡检': apm.md
