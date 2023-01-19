@@ -20,33 +20,10 @@
 
 ## 配置巡检
 
-在自建 DataFlux Func 以配置「阿里云 ECS 状态」为例，其余巡检配置方式相同，将 import 改为「观测云自建巡检（阿里云）」包下其他的巡检即可
+在自建 DataFlux Func 创建新的脚本集开启云账户实例维度账单巡检配置，新建脚本集之后，在创建巡检脚本时选择对应的脚本模板保存，在生成的新脚本文件中根据需要更改即可。
 
-```python
-from guance_monitor__register import self_hosted_monitor
-from guance_monitor__runner import Runner
-import guance_monitor_aliyun__ecs_status as ecs_status
+![image](../img/cloudasset11.png)
 
-# 账号配置
-API_KEY_ID  = 'wsak_313xxxxxxx'
-API_KEY     = 'b9Vr06lxxxxxxxx'
-
-@self_hosted_monitor(API_KEY_ID, API_KEY)
-@DFF.API('阿里云资产检测测试-ecs 状态')
-def run():
-    '''
-    阿里云云主机、云数据库、负载均衡等资产检测
-    '''
-    # 云资产检测器配置
-    checkers = [
-        # 配置检测项(目前已支持的检测项见下文)
-        ecs_delete.CloudChecker(),
-    ]
-
-    # 执行云资产检测器
-    Runner(checkers, debug=False).run()
-
-```
 ## 开启巡检
 
 ### 在观测云中注册检测项

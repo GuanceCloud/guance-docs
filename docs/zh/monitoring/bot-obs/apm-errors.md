@@ -20,58 +20,9 @@
 
 ## 配置巡检
 
-在自建 DataFlux Func 创建新的脚本集开启内存泄漏巡检配置
+在自建 DataFlux Func 创建新的脚本集开启内存泄漏巡检配置，新建脚本集之后，在创建巡检脚本时选择对应的脚本模板保存，在生成的新脚本文件中根据需要更改即可。
 
-```python
-from guance_monitor__runner import Runner
-from guance_monitor__register import self_hosted_monitor
-import guance_monitor_apm_error__main as main
-
-# 账号配置
-API_KEY_ID  = 'wsak_xxxxxx'
-API_KEY     = '5K3Ixxxxxx'
-
-# 函数 filters 参数过滤器和观测云 studio 监控\智能巡检配置中存在调用优先级，配置了函数 filters 参数过滤器后则不需要在观测云 studio 监控\智能巡检中更改检测配置了，如果两边都配置的话则优先生效脚本中 filters 参数
-
-def filter_project_servcie_sub(data):
-    # {'project': None, 'service_sub': 'mysql:dev'}, {'project': None, 'service_sub': 'redis:dev'}, {'project': None, 'service_sub': 'ruoyi-gateway:dev'}, {'project': None, 'service_sub': 'ruoyi-modules-system:dev'}
-    project = data['project']
-    service_sub = data['service_sub']
-    if service_sub in ['ruoyi-08-auth:dev:1.0']:
-        return True
-
-'''
-任务配置参数请使用：
-@DFF.API('服务端应用错误巡检', fixed_crontab='0 * * * *', timeout=1800)
-
-fixed_crontab：固定执行频率「每小时一次」
-timeout：任务执行超时时长，控制在 30 分钟
-'''
-
-# 服务端应用错误巡检配置 用户无需修改
-@self_hosted_monitor(API_KEY_ID, API_KEY)
-@DFF.API('服务端应用错误巡检', fixed_crontab='0 * * * *', timeout=1800)
-def run(configs={}):
-    """
-    参数：
-        configs：配置需要检测的 app_name 列表（可选，不配置默认检测所有 app_name）
-
-        配置示例：
-        configs = {
-            "project": ["project", "project2"]  项目
-            "env"    : ["env1", "env2"]         环境
-            "version": ["version1", "version2"] 版本
-            "service": ["service1", "service2"] 服务
-        }
-    """
-    checkers = [
-        # APM 错误巡检
-        main.ApmErrorCheck(configs=configs, filters=[filter_project_servcie_sub]),
-
-    ]
-
-    Runner(checkers, debug=False).run()
-```
+![image](../img/apm_errors11.png)
 
 ## 开启巡检
 

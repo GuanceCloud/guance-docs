@@ -20,55 +20,9 @@
 
 ## 配置巡检
 
-在自建 DataFlux Func 创建新的脚本集开启应用性能巡检配置
+在自建 DataFlux Func 创建新的脚本集开启应用性能巡检配置，新建脚本集之后，在创建巡检脚本时选择对应的脚本模板保存，在生成的新脚本文件中根据需要更改即可。
 
-```python
-from guance_monitor__register import self_hosted_monitor
-from guance_monitor__runner import Runner
-import guance_monitor_apm_performance__main as apm_main
-
-# 账号配置
-API_KEY_ID  = 'wsak_xxx'
-API_KEY     = 'wsak_xxx'
-
-# 函数 filters 参数过滤器和观测云 studio 监控\智能巡检配置中存在调用优先级，配置了函数 filters 参数过滤器后则不需要在观测云 studio 监控\智能巡检中更改检测配置了，如果两边都配置的话则优先生效脚本中 filters 参数
-
-def filter_project_servcie_sub(data):
-    # {'project': None, 'service_sub': 'mysql:dev'}, {'project': None, 'service_sub': 'redis:dev'}, {'project': None, 'service_sub': 'ruoyi-gateway:dev'}, {'project': None, 'service_sub': 'ruoyi-modules-system:dev'}
-    project = data['project']
-    service_sub = data['service_sub']
-    if service_sub in ['ruoyi-gateway:dev', 'ruoyi-modules-system:dev']:
-        return True
-
-'''
-任务配置参数请使用：
-@DFF.API('应用性能巡检', fixed_crontab='0 * * * *', timeout=900)
-
-fixed_crontab：固定执行频率「每小时一次」
-timeout：任务执行超时时长，控制在15分钟
-'''    
-   
-@self_hosted_monitor(API_KEY_ID, API_KEY)
-@DFF.API('应用性能巡检', fixed_crontab='0 * * * *', timeout=900)
-def run(configs=[]):
-    '''
-    参数：
-    configs :
-        project: 服务所属项目
-        service_sub: 包括服务（service）、环境（env）、版本（version）通过 ":" 拼接而成，例："service:env:version"、"service:env"、"service:version"
-
-    示例：
-        configs = [
-            {"project": "project1", "service_sub": "service1:env1:version1"},
-            {"project": "project2", "service_sub": "service2:env2:version2"}
-        ]
-    '''
-    checkers = [
-        apm_main.APMCheck(configs=configs, filters=[filter_project_servcie_sub]),
-    ]
-
-    Runner(checkers, debug=False).run()
-```
+![image](../img/apm11.png)
 
 ## 开启巡检
 

@@ -21,47 +21,10 @@
 
 ## 配置巡检
 
-在自建 DataFlux Func 创建新的脚本集开启云账户实例维度账单巡检配置
+在自建 DataFlux Func 创建新的脚本集开启云账户实例维度账单巡检配置，新建脚本集之后，在创建巡检脚本时选择对应的脚本模板保存，在生成的新脚本文件中根据需要更改即可。
 
-```python
-from guance_monitor__register import self_hosted_monitor
-from guance_monitor__runner import Runner
-import guance_monitor_billing_detail__main as main
+![image](../img/cloudfee_instacne11.png)
 
-# 账号配置
-API_KEY_ID  = 'xxxxx'
-API_KEY     = 'xxxx'
-
-'''
-任务配置参数请使用：
-@DFF.API('云账户实例维度账单巡检', fixed_crontab='0 0 * * *', timeout=900)
-
-fixed_crontab：固定执行频率「每天一次」
-timeout：任务执行超时时长，控制在15分钟
-'''
-
-# 云账户实例维度账单巡检配置 用户无需修改
-@self_hosted_monitor(API_KEY_ID, API_KEY)
-@DFF.API('云账户实例维度账单巡检', fixed_crontab='0 0 * * *', timeout=900)
-def run(configs=None):
-    '''
-    configs : 列表类型
-    configs = [
-        {
-            "account_id": "10000000",    # 账户 ID
-            "cloud_provider": "aliyun"   # 云厂商名称 可选参数 aliyun，huaweicloud，tencentcloud
-        },
-        ...
-    ]
-    '''
-    # 云账户实例维度账单巡检检测器配置
-    checkers = [
-        main.CloudChecker(configs=configs),
-    ]
-
-    # 执行云账户实例维度账单巡检检测器
-    Runner(checkers, debug=False).run()
-```
 ## 开启巡检
 ### 在观测云中注册检测项
 
