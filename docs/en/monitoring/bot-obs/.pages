@@ -1,6 +1,5 @@
 nav:
   - index.md
-  - 'Change Log': changelog.md
   - 'Memory leak Intelligent Inspection': memory-leak.md
   - 'Disk utilization Intelligent Inspection': disk-usage.md
   - 'APM Intelligent Inspection': apm.md
