@@ -8,15 +8,15 @@
 
 ## Preconditions
 
-1. In Guance Cloud「APM」that already have access applications.
+1. In Guance「APM」that already have access applications.
 2. Offline deployment of [DataFlux Func](https://func.guance.com/#/)
 3. Open DataFlux Func's [Script Marketplace](https://func.guance.com/doc/script-market-basic-usage/)
-4. In Guance Cloud「Management / API Key Management」create [API Key](../../management/api-key/open-api.md)
-5. In DataFlux Func，by「Script Marketplace」to install「Guance Cloud Self-Built Core Package」「Guance Cloud Algorithm Library」「Guance Cloud Self-Built script (APM Performance)」.
-6. In DataFlux Func, write self-built patrol processing functions.
+4. In Guance「Management / API Key Management」create [API Key](../../management/api-key/open-api.md)
+5. In DataFlux Func，by「Script Marketplace」to install「Guance  Core Package」「Guance Algorithm Library」「Guance  script (APM Performance)」.
+6. In DataFlux Func, write  patrol processing functions.
 7. In DataFlux Func , by「Manage / Auto-trigger Configurations」,create an automatic trigger configuration for the written function.
 
-> **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance Cloud SaaS[on [the same carrier in the same region](../../../getting-started/necessary-for-beginners/select-site/)。
+> **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance SaaS[on [the same carrier in the same region](../../getting-started/necessary-for-beginners/select-site/)。
 
 ## Configure Intelligent Inspection
 
@@ -26,15 +26,15 @@ In DataFlux Func create a new set of scripts to enable APM Intelligent Inspectio
 
 ## Start Intelligent Inspection
 
-### Register detection items in Guance Cloud
+### Register detection items in Guance
 
-After configuring the inspection in DataFlux Func, you can run the test by selecting the `run()` method directly on the page, and then you can view and configure it in the Guance Cloud "Monitoring / Intelligent Inspection" after clicking Publish.
+After configuring the inspection in DataFlux Func, you can run the test by selecting the `run()` method directly on the page, and then you can view and configure it in the Guance "Monitoring / Intelligent Inspection" after clicking Publish.
 
 ![image](../img/apm01.png)
 
 
 
-### Configure APM Intelligent Inspection in Guance Cloud
+### Configure APM Intelligent Inspection in Guance
 
   ![image](../img/apm02.png)
 
@@ -75,7 +75,7 @@ You can refer to the following JSON configuration for multiple projects, environ
 
 ## View Events
 
- Based on the Guance Cloud inspection algorithm, Intelligent Inspection will look for abnormalities in APM metrics, such as `resource` abnormalities occurring suddenly. For abnormal conditions, Intelligent Inspection will generate corresponding events, and you can check the corresponding abnormal events by clicking the "View Related Events" button under the operation menu on the right side of the Smart Inspection list.
+ Based on the Guance inspection algorithm, Intelligent Inspection will look for abnormalities in APM metrics, such as `resource` abnormalities occurring suddenly. For abnormal conditions, Intelligent Inspection will generate corresponding events, and you can check the corresponding abnormal events by clicking the "View Related Events" button under the operation menu on the right side of the Smart Inspection list.
 
 ![image](../img/apm04.png)
 
@@ -131,7 +131,7 @@ Click "Event" to view the detail page of intelligent inspection events, includin
 
 **1. How to configure the detection frequency of the APM Intelligent Inspection**
 
-  **In the self-built DataFlux Func, add `fixed_crontab='0 * * * *', timeout=900` to the decorator when writing the self-built patrol handler function, and then configure it in `Management / Auto-trigger Configuration'.
+  **In the  DataFlux Func, add `fixed_crontab='0 * * * *', timeout=900` to the decorator when writing the  patrol handler function, and then configure it in `Management / Auto-trigger Configuration'.
 
 **2. There may be no exception analysis when triggered by APM Intelligent Inspection**
 

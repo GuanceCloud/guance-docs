@@ -7,14 +7,14 @@ Since the market price of the preemptible instances fluctuates with the change o
 
 ## Preconditions
 
-1. Offline deployment of [DataFlux Func](.
+1. Offline deployment of [DataFlux Func](https://func.guance.com/#/).
 2. Open DataFlux Func's [Script Marketplace](https://func.guance.com/doc/script-market-basic-usage/)
-3. In Guance Cloud「Management / API Key Management」create [API Key](../../management/api-key/open-api.md)
-4. In DataFlux Func，by「Script Marketplace」to install「Guance Cloud Self-Built Core Package」「Guance Cloud Algorithm Library」「Guance Cloud Self-Built script (Alibaba Cloud Preemptible)」.
-5. In DataFlux Func, write self-built patrol processing functions.
+3. In Guance「Management / API Key Management」create [API Key](../../management/api-key/open-api.md)
+4. In DataFlux Func，by「Script Marketplace」to install「Guance  Core Package」「Guance Algorithm Library」「Guance  script (Alibaba Cloud Preemptible)」.
+5. In DataFlux Func, write  patrol processing functions.
 6. In DataFlux Func , by「Manage / Auto-trigger Configurations」,create an automatic trigger configuration for the written function.
 
-> **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance Cloud SaaS[on [the same carrier in the same region](../../../getting-started/necessary-for-beginners/select-site/)。
+> **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance SaaS[on [the same carrier in the same region](../../getting-started/necessary-for-beginners/select-site/)。
 
 ## Configure Intelligent Inspection
 
@@ -24,14 +24,14 @@ In DataFlux Func create a new set of scripts to enable RUM Log Error Intelligent
 
 ## Start Intelligent Inspection
 
-### Register detection items in Guance Cloud
+### Register detection items in Guance
 
-In DataFlux Func, after the detection is configured, you can click run to test by directly selecting `run()` method in the page, and after clicking Publish, you can view and configure it in Guance Cloud "Monitoring/Intelligent Patrol".
+In DataFlux Func, after the detection is configured, you can click run to test by directly selecting `run()` method in the page, and after clicking Publish, you can view and configure it in Guance "Monitoring/Intelligent Patrol".
 
 ![image](../img/spot_alive01.png)
 
 
-### Configure Alibaba Cloud Preemptible Instance Survival Intelligent Inspection in Guance Cloud
+### Configure Alibaba Cloud Preemptible Instance Survival Intelligent Inspection in Guance
 
 ![image](../img/spot_alive02.png)
 
@@ -99,7 +99,7 @@ Click "Event" to view the detail page of intelligent inspection events, includin
 ## FAQ
 **1.How to configure the detection frequency of the Alibaba Cloud Preemptible Instance Survival Intelligent Inspection**
 
-* In the self-built DataFlux Func, add `fixed_crontab='*/2 * * * *', timeout=60` to the decorator when writing the self-built patrol handler function, and then configure it in `Management / Auto-trigger Configuration'.
+* In the  DataFlux Func, add `fixed_crontab='*/2 * * * *', timeout=60` to the decorator when writing the  patrol handler function, and then configure it in `Management / Auto-trigger Configuration'.
 
 **2. There may be no exception analysis when triggered by Alibaba Cloud Preemptible Instance Survival Intelligent Inspection**
 

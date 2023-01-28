@@ -10,12 +10,12 @@ For increasingly complex application architectures, the current trend is that mo
 
 1. Offline deployment of [DataFlux Func](https://func.guance.com/#/)
 2. Open DataFlux Func's [Script Marketplace](https://func.guance.com/doc/script-market-basic-usage/)
-3. In Guance Cloud「Management / API Key Management」create [API Key](../../management/api-key/open-api.md)
-4. In DataFlux Func，by「Script Marketplace」to install「Guance Cloud Self-Built Core Package」「Guance Cloud Algorithm Library」「Guance Cloud Self-Built script (MySQL Performance)」.
-5. In DataFlux Func, write self-built patrol processing functions.
+3. In Guance「Management / API Key Management」create [API Key](../../management/api-key/open-api.md)
+4. In DataFlux Func，by「Script Marketplace」to install「Guance  Core Package」「Guance Algorithm Library」「Guance  script (MySQL Performance)」.
+5. In DataFlux Func, write  patrol processing functions.
 6. In DataFlux Func , by「Manage / Auto-trigger Configurations」,create an automatic trigger configuration for the written function.
 
-> **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance Cloud SaaS[on [the same carrier in the same region](../../../getting-started/necessary-for-beginners/select-site/).
+> **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance SaaS[on [the same carrier in the same region](../../getting-started/necessary-for-beginners/select-site/).
 
 ## Configure Intelligent Inspection
 
@@ -25,15 +25,15 @@ In DataFlux Func create a new set of scripts to enable MySQL Performance Intelli
 
 ## Start Intelligent Inspection
 
-### Register detection items in Guance Cloud
+### Register detection items in Guance
 
 
-In DataFlux Func, after the patrol is configured, you can click run to test by directly selecting `run()` method in the page, and after clicking Publish, you can view and configure it in the Guance Cloud "Monitoring/Intelligent Patrol"
+In DataFlux Func, after the patrol is configured, you can click run to test by directly selecting `run()` method in the page, and after clicking Publish, you can view and configure it in the Guance "Monitoring/Intelligent Patrol"
 
 ![image](../img/mysql-performance01.png)
 
 
-### Configure MySQL Performance Intelligent Inspection in Guance Cloud
+### Configure MySQL Performance Intelligent Inspection in Guance
 
 ![image](../img/mysql-performance02.png)
 
@@ -66,7 +66,7 @@ configs = {
 }
 ```
 
->  **Note**: In the self-built DataFlux Func, filter conditions can also be added when writing the intelligent inspection processing function (refer to the sample code configuration). Note that the parameters configured in the Guance Cloud studio will override the parameters configured when writing the intelligent inspection processing function.
+>  **Note**: In the  DataFlux Func, filter conditions can also be added when writing the intelligent inspection processing function (refer to the sample code configuration). Note that the parameters configured in the Guance studio will override the parameters configured when writing the intelligent inspection processing function.
 
 ## View Events
 
@@ -119,7 +119,7 @@ Support to view associated events by filtering fields and selected time componen
 
 **1.How to configure the detection frequency of MySQL performance detection**
 
-* In the self-built DataFlux Func, add `fixed_crontab='*/30 * * * *', timeout=900` in the decorator when writing the intelligent inspection processing function, and then configure it in "Administration/Automatic Trigger Configuration".
+* In the  DataFlux Func, add `fixed_crontab='*/30 * * * *', timeout=900` in the decorator when writing the intelligent inspection processing function, and then configure it in "Administration/Automatic Trigger Configuration".
 
 **2.MySQL performance review may be triggered without exception analysis**
 

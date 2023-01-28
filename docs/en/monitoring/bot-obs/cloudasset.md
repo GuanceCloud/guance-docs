@@ -3,20 +3,20 @@
 
 ## Background
 
-It provides additional data access capability for Guance Cloud, which is convenient for users to have a better understanding of the product performance status of cloud suppliers.
+It provides additional data access capability for Guance, which is convenient for users to have a better understanding of the product performance status of cloud suppliers.
 
 ## Preconditions
 
 1. Offline deployment of [DataFlux Func](https://func.guance.com/#/)
-2. Open the [script market](https://func.guance.com/doc/script-market-basic-usage/) of self-built DataFlux Func 
-3. Create [API Key](../../management/api-key/open-api.md) in Guance Cloud "management/API Key management" 
-4. In the self-built DataFlux Func, install "Guance Cloud Self-built Check Core Core Package" and "Guance Cloud Self-built Check (Alibaba Cloud)" through "Script Market"
-5. Open the [collector (such as Alibaba Cloud ECS)](https://func.guance.com/doc/script-market-guance-aliyun-ecs/) corresponding to the objects in the "Guance Cloud Self-built Check (Alibaba Cloud)" to be detected
-6. Install the accompanying third-party dependency package in your self-built DataFlux Func
-7. In the DataFlux Func, write the self-built check processing function
-8. In the self-built DataFlux Func, create auto-trigger configuration for the written function through "Manage/Auto-trigger Configuration"
+2. Open the [script market](https://func.guance.com/doc/script-market-basic-usage/) of  DataFlux Func 
+3. Create [API Key](../../management/api-key/open-api.md) in Guance "management/API Key management" 
+4. In the  DataFlux Func, install "Guance  Check Core Core Package" and "Guance  Check (Alibaba Cloud)" through "Script Market"
+5. Open the [collector (such as Alibaba Cloud ECS)](https://func.guance.com/doc/script-market-guance-aliyun-ecs/) corresponding to the objects in the "Guance  Check (Alibaba Cloud)" to be detected
+6. Install the accompanying third-party dependency package in your  DataFlux Func
+7. In the DataFlux Func, write the  check processing function
+8. In the  DataFlux Func, create auto-trigger configuration for the written function through "Manage/Auto-trigger Configuration"
 
-**Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance Cloud SaaS[on [the same carrier in the same region](../../../getting-started/necessary-for-beginners/select-site/)。
+**Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance SaaS[on [the same carrier in the same region](../../getting-started/necessary-for-beginners/select-site/)。
 
 ## Configure Intelligent Inspection
 
@@ -26,11 +26,11 @@ In DataFlux Func create a new set of scripts to enable Alibaba Cloud Asset Intel
 
 ## Start Intelligent Inspection
 
-### Register detection items in Guance Cloud
+### Register detection items in Guance
 
-After configuring the inspection in DataFlux Func, you can run the test by selecting the `run()` method directly on the page, and then you can view and configure it in the Guance Cloud "Monitoring / Intelligent Inspection" after clicking Publish.
+After configuring the inspection in DataFlux Func, you can run the test by selecting the `run()` method directly on the page, and then you can view and configure it in the Guance "Monitoring / Intelligent Inspection" after clicking Publish.
 
-### Configure Alibaba Cloud Asset Intelligent Inspection in Guance Cloud
+### Configure Alibaba Cloud Asset Intelligent Inspection in Guance
 
 ![image](../img/cloudasset01.png)
 
@@ -56,11 +56,11 @@ Click Edit to configure entry parameters, then fill in the corresponding detecti
 
 ## View Events
 
-Intelligent check is based on the intelligent algorithm of Guance Cloud, which will find abnormal situations in cloud asset metrics, such as sudden abnormality of cloud asset metrics. For abnormal situations, intelligent check will generate corresponding events. Under the operation menu on the right side of intelligent check list, click the "View Related Events" button to view the corresponding abnormal events.
+Intelligent check is based on the intelligent algorithm of Guance, which will find abnormal situations in cloud asset metrics, such as sudden abnormality of cloud asset metrics. For abnormal situations, intelligent check will generate corresponding events. Under the operation menu on the right side of intelligent check list, click the "View Related Events" button to view the corresponding abnormal events.
 
 ![image](../img/cloudasset03.png)
 
-After the corresponding self-built check is configured, the check will generate events after discovering exceptions according to the configuration to cooperate with us to troubleshoot error messages.
+After the corresponding  check is configured, the check will generate events after discovering exceptions according to the configuration to cooperate with us to troubleshoot error messages.
 
 ### Event Details Page
 Click "Event" to view the details page of intelligent check events, including event status, exception occurrence time, exception name, basic attributes, event details, alarm notification, history and related events.

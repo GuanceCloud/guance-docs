@@ -8,14 +8,14 @@ Cloud (now only suport alibaba cloud) Account Billing Inspection helps subscribe
 ## Preconditions
 
 1. Offline deployment of [DataFlux Func](https://func.guance.com/#/)
-2. Open the [script market](https://func.guance.com/doc/script-market-basic-usage/) of self-built DataFlux Func 
-3. Create [API Key](../../management/api-key/open-api.md) in Guance Cloud "management/API Key management" 
-4. In DataFlux Func，by「Script Marketplace」to install「Guance Cloud Self-Built Core Package」「Guance Cloud Algorithm Library」「Guance Cloud Self-Built script (Cloud Account Billing Inspection)」.
+2. Open the [script market](https://func.guance.com/doc/script-market-basic-usage/) of  DataFlux Func 
+3. Create [API Key](../../management/api-key/open-api.md) in Guance "management/API Key management" 
+4. In DataFlux Func，by「Script Marketplace」to install「Guance  Core Package」「Guance Algorithm Library」「Guance  script (Cloud Account Billing Inspection)」.
 5. Install and open[「Observation Cloud Integration (Huawei Cloud - Billing Collection - By Instance)」](https://func.guance.com/doc/script-market-guance-aliyun-billing-by-instance/)、[「Observation Cloud Integration (Tencent Cloud - Billing Collection - By Instance)」](https://func.guance.com/doc/script-market-guance-huaweicloud-billing-by-instance/)、[「Observation Cloud Integration (Alibaba Cloud - Billing Collection - By Instance)」](https://func.guance.com/doc/script-market-guance-tencentcloud-billing-by-instance/) in the Script Market, and the number of days to collect data exceeds 15 days
-6. In the DataFlux Func, write the self-built check processing function
-7. In the self-built DataFlux Func, create auto-trigger configuration for the written function through "Manage/Auto-trigger Configuration"
+6. In the DataFlux Func, write the  check processing function
+7. In the  DataFlux Func, create auto-trigger configuration for the written function through "Manage/Auto-trigger Configuration"
 
-> **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance Cloud SaaS[on [the same carrier in the same region](../../../getting-started/necessary-for-beginners/select-site/)。
+> **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance SaaS[on [the same carrier in the same region](../../getting-started/necessary-for-beginners/select-site/)。
 >
 > **Note 2:** Since instance level billing data is stored in logs, Observation Cloud SaaS log data is only stored for 15 days by default.
 
@@ -27,14 +27,14 @@ In DataFlux Func create a new set of scripts to enable Cloud Account Billing Int
 
 ## Start Intelligent Inspection
 
-### Register detection items in Guance Cloud
+### Register detection items in Guance
 
-In DataFlux Func, after the check is configured, you can click run to test by directly selecting `run()` method in the page, and after clicking Publish, you can view and configure it in the Guance Cloud "Monitoring/Intelligent Patrol"
+In DataFlux Func, after the check is configured, you can click run to test by directly selecting `run()` method in the page, and after clicking Publish, you can view and configure it in the Guance "Monitoring/Intelligent Patrol"
 
 ![image](../img/cloudfee_instacne01.png)
 
 
-### Configure Cloud Account Billing Inspection Intelligent Integration  in Guance Cloud
+### Configure Cloud Account Billing Inspection Intelligent Integration  in Guance
 
 ![image](../img/cloudfee_instacne02.png)
 
@@ -70,7 +70,7 @@ You can configure multiple cloud accounts and corresponding budget information w
 ```
 
 ## View Events
- Based on the Guance Cloud intelligence algorithm, the intelligent inspection will look for abnormalities in cloud asset costs and budget indicators, such as cloud asset costs suddenly occurring abnormally. For abnormal cases, Smart Inspection will generate corresponding events. Under the operation menu on the right side of the Smart Inspection list, click the "View Related Events" button to view the corresponding abnormal events.
+ Based on the Guance intelligence algorithm, the intelligent inspection will look for abnormalities in cloud asset costs and budget indicators, such as cloud asset costs suddenly occurring abnormally. For abnormal cases, Smart Inspection will generate corresponding events. Under the operation menu on the right side of the Smart Inspection list, click the "View Related Events" button to view the corresponding abnormal events.
 
 ![image](../img/cloudfee_instacne04.png)
 
@@ -121,7 +121,7 @@ You can view more granular information about the corresponding exception message
 
 **1.How to configure the detection frequency of Cloud Account Billing Inspection Intelligent Integration **
 
-* In the self-built DataFlux Func, add `fixed_crontab='0 0 * * *', timeout=900` in the decorator when writing the self-built check processing function, and then configure it in "management/auto-trigger configuration".
+* In the  DataFlux Func, add `fixed_crontab='0 0 * * *', timeout=900` in the decorator when writing the  check processing function, and then configure it in "management/auto-trigger configuration".
 
 **2. Cloud Account Billing Inspection Intelligent Integration may not have exception analysis when triggered**
 

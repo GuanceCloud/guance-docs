@@ -10,12 +10,12 @@
 
 1. Offline deployment of [DataFlux Func](https://func.guance.com/#/)
 2. Open DataFlux Func's [Script Marketplace](https://func.guance.com/doc/script-market-basic-usage/)
-3. In Guance Cloud「Management / API Key Management」create [API Key](../../management/api-key/open-api.md)
-4. In DataFlux Func，by「Script Marketplace」to install「Guance Cloud Self-Built Core Package」「Guance Cloud Algorithm Library」「Guance Cloud Self-Built script (Memory leak)」.
-5. In DataFlux Func, write self-built patrol processing functions.
+3. In Guance「Management / API Key Management」create [API Key](../../management/api-key/open-api.md)
+4. In DataFlux Func，by「Script Marketplace」to install「Guance  Core Package」「Guance Algorithm Library」「Guance  script (Memory leak)」.
+5. In DataFlux Func, write  patrol processing functions.
 6. In DataFlux Func , by「Manage / Auto-trigger Configurations」,create an automatic trigger configuration for the written function.
 
-> **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance Cloud SaaS[on [the same carrier in the same region](../../../getting-started/necessary-for-beginners/select-site/)。
+> **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance SaaS[on [the same carrier in the same region](../../getting-started/necessary-for-beginners/select-site/)。
 
 ## Configure Intelligent Inspection
 
@@ -25,14 +25,14 @@ In DataFlux Func create a new set of scripts to enable Memory leak Intelligent I
 
 ## Start Intelligent Inspection
 
-### Register detection items in Guance Cloud 
+### Register detection items in Guance 
 
-After configuring the inspection in DataFlux Func, you can run the test by selecting the `run()` method directly on the page, and then you can view and configure it in the Guance Cloud "Monitoring / Intelligent Inspection" after clicking Publish.
+After configuring the inspection in DataFlux Func, you can run the test by selecting the `run()` method directly on the page, and then you can view and configure it in the Guance "Monitoring / Intelligent Inspection" after clicking Publish.
 
 ![image](../img/memory-leak01.png)
 
 
-### Configure Memory leak Intelligent Inspection in Guance Cloud
+### Configure Memory leak Intelligent Inspection in Guance
 
 ![image](../img/memory-leak02.png)
 
