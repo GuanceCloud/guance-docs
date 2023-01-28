@@ -17,7 +17,7 @@ Currently the data sink supports all kinds of data (M/O/L/T/...).
 
 - Step 1: Build back-end storage
 
-Use Dataway from [Guance Cloud](https://console.guance.com/), or build your own Dataway server environment.
+Use Dataway from [Guance](https://console.guance.com/), or build your own Dataway server environment.
 
 - Step 2: Add configuration
 

@@ -6,7 +6,7 @@ icon: zy/events
 
 ## Overview
 
-Guance Cloud supports one-stop viewing and auditing of all event data, and supports real-time monitoring, unified query, unrecovered event statistics and data export of events triggered by all sources. You can quickly locate exceptions and efficiently analyze exception data by aggregating related events and matching related events.
+Guance supports one-stop viewing and auditing of all event data, and supports real-time monitoring, unified query, unrecovered event statistics and data export of events triggered by all sources. You can quickly locate exceptions and efficiently analyze exception data by aggregating related events and matching related events.
 
 ![](img/4.event_3.gif)
 
@@ -92,4 +92,4 @@ Guance Cloud supports one-stop viewing and auditing of all event data, and suppo
 
 ## Event Storage Policy
 
-Guance Cloud provides three data storage time choices for event data: 14 days, 30 days and 60 days. If you choose the data storage time of 30 days, events generated from different sources will be stored in 30 days. You can adjust as required in "Administration"-"Basic Settings"-"Change Data Storage Policy". See the document [Data Storage Policy](../billing/billing-method/data-storage.md) for more data storage policies.
+Guance provides three data storage time choices for event data: 14 days, 30 days and 60 days. If you choose the data storage time of 30 days, events generated from different sources will be stored in 30 days. You can adjust as required in "Administration"-"Basic Settings"-"Change Data Storage Policy". See the document [Data Storage Policy](../billing/billing-method/data-storage.md) for more data storage policies.

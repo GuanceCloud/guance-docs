@@ -29,7 +29,7 @@ Supports viewing state distribution trends of events, DQL functions and window f
 
 ![](img/image.png)
 
-**Note:** In the event details, Guance Cloud supports selecting the time range to view the event data
+**Note:** In the event details, Guance supports selecting the time range to view the event data
 
    - When the time range you select is less than ( < = ) 6 hours, "state distribution", "DQL function" and "window function" will show the data and indicator trends of the current time range.
    - When the time range you select is greater than ( > ) 6 hours, "Status Distribution" and "DQL Functions" will display the data of the current time range and an adjustable interval slider will appear (the display range supports a minimum of 15 minutes and a maximum of 6 hours). By moving the interval slider, you can view the "window function" corresponding to its time range

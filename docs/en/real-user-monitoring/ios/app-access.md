@@ -3,7 +3,7 @@
 
 ## Overview
 
-Guance Cloud Real User Monitoring can analyze the performance of each iOS application in a visual way by collecting the metrics data of each iOS application.
+Guance Real User Monitoring can analyze the performance of each iOS application in a visual way by collecting the metrics data of each iOS application.
 
 ## Precondition
 
@@ -11,7 +11,7 @@ Guance Cloud Real User Monitoring can analyze the performance of each iOS applic
 
 ## iOS Application Access
 
-Login to Guance Cloud Console, enter "Real User Monitoring" page, click "New Application" in the upper right corner, enter "Application Name" and customize "Application ID" in the new window, and click "Create" to select the application type to get access.
+Login to Guance Console, enter "Real User Monitoring" page, click "New Application" in the upper right corner, enter "Application Name" and customize "Application ID" in the new window, and click "Create" to select the application type to get access.
 
 - Application Name (required): The name of the application used to identify the current implementation of user access monitoring.
 - Application ID (required): The unique identification of the application in the current workspace, which is used for SDK data collection and upload matching, and corresponds to the field: app_id after data entry. This field only supports English, numeric, underscore input, up to 48 characters.
@@ -129,7 +129,7 @@ typedef NS_ENUM(NSInteger, FTEnv) {
 
 | **Fields**               | **Type**     | **Description**                                              | **Required**                                |
 | --- | --- | --- | --- |
-| appid | NSString | The Guance Cloud rum application unique ID identifier is automatically generated when the monitor is created on top of the Guance Cloud console. | No (Enable RUM Required) |
+| appid | NSString | The Guance rum application unique ID identifier is automatically generated when the monitor is created on top of the Guance console. | No (Enable RUM Required) |
 | samplerate | int | Sampling collection rate | No (default 100) |
 | errorMonitorType | NS_OPTIONS | collection data in error data | No |
 | enableTrackAppCrash | BOOL | Set whether crash logs need to be collected | No (default NO) |

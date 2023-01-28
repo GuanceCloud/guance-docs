@@ -13,14 +13,14 @@
 
 ## Overview
 
-Guance cloud Real User Monitoring can collect the metrics data of each miniapp application, introduce sdk files, monitor the performance metrics, error log and resource request data of each miniapp, and report them to Guance Cloud platform to visually analyze the performance of each miniapp application.
+Guance Real User Monitoring can collect the metrics data of each miniapp application, introduce sdk files, monitor the performance metrics, error log and resource request data of each miniapp, and report them to Guance platform to visually analyze the performance of each miniapp application.
 
 ## Precondition
 
 - Installing DataKit ([DataKit Installation Documentation](... /... /datakit/datakit-install.md))
 ## Miniapp Application Access
 
-Login to Guance Cloud Console, enter "Real User Monitoring" page, click "New Application" in the upper right corner, enter "Application Name" and customize "Application ID" in the new window, and click "Create" to select the application type to get access.
+Login to Guance Console, enter "Real User Monitoring" page, click "New Application" in the upper right corner, enter "Application Name" and customize "Application ID" in the new window, and click "Create" to select the application type to get access.
 
 - Application Name (required): The name of the application used to identify the current implementation of user access monitoring.
 - Application ID (required): The unique identification of the application in the current workspace, which is used for SDK data collection and upload matching, and corresponds to the field: app_id after data entry. This field only supports English, numeric, underscore input, up to 48 characters.
@@ -69,7 +69,7 @@ Introduce the code in the app.js file of the Miniapp in the following way
 
 | Parameter                  | Type | Required | Default Value | Description                                              |
 | ------------------------------- | ------- | -------- | --------- | ------------------------------------------------------------ |
-| `applicationId`                 | String  | Yes     |           | Application ID created from Guance Cloud |
+| `applicationId`                 | String  | Yes     |           | Application ID created from Guance |
 | `datakitOrigin`                 | String  | Yes     |           | datakit data reporting Origin; `Note: need to add request whitelist in the Miniapp management backend` |
 | `env`                           | String  | No     |           | The current environment of the Miniapp application, such as prod: online environment; gray: grayscale environment; pre: pre-release environment common: daily environment; local: local environment. |
 | `version`                       | String  | No     |           | Miniapp App version number                |

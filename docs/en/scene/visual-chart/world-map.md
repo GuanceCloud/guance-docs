@@ -3,11 +3,11 @@
 
 ## Introduction
 
-"Guance Cloud" supports adding a world map to the view.
+"Guance" supports adding a world map to the view.
 
 ## Application Scene
 
-The world map of the Guance Cloud is used to display the data distribution of a certain indicator data in different countries. It can be used in the following scene：
+The world map of the Guance is used to display the data distribution of a certain indicator data in different countries. It can be used in the following scene：
 
 - Showing the distribution of data in different regions
 - Show the data size ranking of different regions

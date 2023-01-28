@@ -4,10 +4,10 @@ icon: zy/monitoring
 # Monitor
 ---
 
-Guance Cloud has powerful anomaly monitoring capability, which not only provides a series of monitoring templates including Docker, Elasticsearch, Host, but also supports custom monitors. With the alarm notification function, it can find problems in time to help you quickly find, locate and solve problems. At the same time, Guance Cloud supports SLO (Service Level Objective) monitoring, and accurately controls service levels and targets.
+Guance has powerful anomaly monitoring capability, which not only provides a series of monitoring templates including Docker, Elasticsearch, Host, but also supports custom monitors. With the alarm notification function, it can find problems in time to help you quickly find, locate and solve problems. At the same time, Guance supports SLO (Service Level Objective) monitoring, and accurately controls service levels and targets.
 
 ## Monitor
-(Originally referred to as "anomaly detection rules") Guance Cloud provides a variety of monitoring methods such as "threshold detection" and "log detection", allowing users to customize the configuration of detection rules and trigger conditions, and receive alarm notifications at the first time through alarms.
+(Originally referred to as "anomaly detection rules") Guance provides a variety of monitoring methods such as "threshold detection" and "log detection", allowing users to customize the configuration of detection rules and trigger conditions, and receive alarm notifications at the first time through alarms.
 
 - [Threshold detedction](monitor/threshold-detection.md): Anomaly detection is carried out on the metric data based on the set threshold value, and when the data reaches the threshold value, an alarm is triggered and the user is notified.
 - [Log detection](monitor/log-detection.md): Anomaly detection based on log data in workspace is mostly suitable for code anomaly or task scheduling detection in IT monitoring scenarios.
@@ -23,23 +23,23 @@ Guance Cloud has powerful anomaly monitoring capability, which not only provides
 - [Network data detection](monitor/network-detection.md): It is used to monitor the metric data of "network performance monitoring" in the workspace. By setting the threshold range, an alarm is triggered when the metric reaches the threshold.
 
 ## Template
-(Originally referred to as "inner detection library"), Guance Cloud has inner a variety of out-of-the-box monitoring templates, which support one-click creation of Docker, Elasticsearch, Host, Redis monitoring. After successfully creating a new template, the corresponding official monitor will be automatically added to the current workspace. Please refer to the document [template](template.md).
+(Originally referred to as "inner detection library"), Guance has inner a variety of out-of-the-box monitoring templates, which support one-click creation of Docker, Elasticsearch, Host, Redis monitoring. After successfully creating a new template, the corresponding official monitor will be automatically added to the current workspace. Please refer to the document [template](template.md).
 
 ## Alarm Policy Management
 (Formerly referred to as "grouping"), the alarm policy function supports you to customize and create meaningful monitor combinations, which is convenient for alarm policy management of various monitors.
 
 ## SLO
-(Service Level Objective) is the abbreviation of service level goal, that is, the preset system stability goal. Guance Cloud supports testing the current system service status level, and compares and detects whether the corresponding SLI (Service Level Indicator is the measurement metric, which corresponds to the metric measured by the monitor) meets the target needs.
+(Service Level Objective) is the abbreviation of service level goal, that is, the preset system stability goal. Guance supports testing the current system service status level, and compares and detects whether the corresponding SLI (Service Level Indicator is the measurement metric, which corresponds to the metric measured by the monitor) meets the target needs.
 
 ## Intelligent Check
 
-Intelligent check is based on the intelligent check algorithm of observation cloud, which supports automatic check of infrastructure and application problems, helps users find problems occurring during the operation of IT systems, and quickly locates the causes of abnormal problems through root cause analysis; Through the intelligent prediction algorithm of Guance Cloud, users can foresee the potential problems of infrastructure and applications in advance, evaluate the impact level of problems on system operation, better determine the priority of troubleshooting work, and reduce the uncertainty of troubleshooting process. For details, please refer to [intelligent check](bot-obs/index.md).
+Intelligent check is based on the intelligent check algorithm of observation cloud, which supports automatic check of infrastructure and application problems, helps users find problems occurring during the operation of IT systems, and quickly locates the causes of abnormal problems through root cause analysis; Through the intelligent prediction algorithm of Guance, users can foresee the potential problems of infrastructure and applications in advance, evaluate the impact level of problems on system operation, better determine the priority of troubleshooting work, and reduce the uncertainty of troubleshooting process. For details, please refer to [intelligent check](bot-obs/index.md).
 
 ## Silent Management
 "Silence management" is to manage all silence rules in the current space. It supports silent management of different monitors, intelligent check, self-built check, SLO and alarm policies, so that silent objects do not send alarm notifications to any alarm notification objects during silent time. Please refer to silent management [silent management](silent-management.md).
 
 ## Notification Object Management
-Guance Cloud supports you to set notification objects of alarm events through "Management"-"Notification Object Management", including Dingding robot, enterprise WeChat robot, flying book robot, Webhook customization, mail group and SMS group. Refer to [notify object management](notify-object.md).
+Guance supports you to set notification objects of alarm events through "Management"-"Notification Object Management", including Dingding robot, enterprise WeChat robot, flying book robot, Webhook customization, mail group and SMS group. Refer to [notify object management](notify-object.md).
 
 
 

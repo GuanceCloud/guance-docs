@@ -509,7 +509,7 @@ HTTP Code: 400
 
 ## DataKit Data Structure Constraint {#lineproto-limitation}
 
-In order to standardize the data of Guance Cloud, the data collected by DataKit is constrained as follows (whether it is data in line protocol or JSON form), and the data that violates the constraints will be processed accordingly.
+In order to standardize the data of Guance, the data collected by DataKit is constrained as follows (whether it is data in line protocol or JSON form), and the data that violates the constraints will be processed accordingly.
 
 1. The key between Tag and Field does not allow duplicate names, that is, the same key cannot appear in both Tag and Field, otherwise the Field with duplicate names will be discarded.
 2. key with the same name is not allowed inside Tag or Field, that is, the same key cannot appear more than once in Tag/Field, and only one key with the same name will be kept.

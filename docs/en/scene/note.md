@@ -30,7 +30,7 @@ In the navigation bar 「Settings」, notes support 「Save Snapshot」, 「Expo
 
 - Save Snapshot: The user can save a snapshot of the current note, for more information see the document [Snapshot](../management/snapshot.md).
 
-- Export notes JSON: Users can export current notes as "json files" locally to support notes being restored or shared in different Guance Cloud spaces.
+- Export notes JSON: Users can export current notes as "json files" locally to support notes being restored or shared in different Guance spaces.
 
 - Import notes JSON: Users can import "template json files" to notes to quickly restore the contents of the "template json files".
 
@@ -61,7 +61,7 @@ Note: Only the space owner, administrator and note creator can delete notes, oth
 
 ## Time Range
 
-"The Guance Cloud supports controlling the time range of charts in the current note (excluding charts with locked time ranges) via the time component, which you can customize.
+"The Guance supports controlling the time range of charts in the current note (excluding charts with locked time ranges) via the time component, which you can customize.
 
 ![](img/z1.png)
 

@@ -3,7 +3,7 @@
 
 ## Overview
 
-Send different levels of log data (` corresponding source: browser_log ` metric type log data) to the [Guance Cloud](https://www.guance.com/) through a web browser or javascript client.
+Send different levels of log data (` corresponding source: browser_log ` metric type log data) to the [Guance](https://www.guance.com/) through a web browser or javascript client.
 
 ## Function List
 
@@ -17,7 +17,7 @@ Send different levels of log data (` corresponding source: browser_log ` metric 
 
 ### Setup
 
-**datakit:** Send log data to Guance Cloud through datakit log acquisition API
+**datakit:** Send log data to Guance through datakit log acquisition API
 
 **Import SDK:** SDK can be introduced into applications by ` NPM `, ` CDN sync ` or ` CDN async `
 
@@ -226,6 +226,6 @@ window.DATAFLUX_LOGS && DATAFLUX_LOGS.logger.log(<MESSAGE>,<JSON_ATTRIBUTES>,<ST
 ## Parameter description
 | **Parameter**            | **Description**                                                   |
 | ------------------- | ---------------------------------------------------------- |
-| `<MESSAGE>`         | message field in Guance Cloud Log                             |
+| `<MESSAGE>`         | message field in Guance Log                             |
 | `<JSON_ATTRIBUTES>` | The additional data that describes the message is a json object                      |
 | `<STATUS>`          | status，option:`debug`,`info`,`warn`,`error`,`critical` |

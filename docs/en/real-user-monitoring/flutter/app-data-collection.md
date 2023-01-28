@@ -7,7 +7,7 @@ Flutter data collection relies on the Android iOS Native framework, and for comp
 
 ## Data Type
 
-Real User Monitoring of Guance Cloud includes six data types.
+Real User Monitoring of Guance includes six data types.
 
 | **Type**             | **Description**                                              |
 | -------------------- | ------------------------------------------------------------ |

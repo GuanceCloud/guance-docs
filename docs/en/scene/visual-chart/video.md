@@ -3,11 +3,11 @@
 
 ## Introduction
 
-Guance Cloud supports adding videos to the view, which can be used for tutorials, explanations and more. Just fill in the video address and you can preview the video details in real time on top.
+Guance supports adding videos to the view, which can be used for tutorials, explanations and more. Just fill in the video address and you can preview the video details in real time on top.
 
 ## Application Scene
 
-Video charts of Guance Cloud are used to display videos. It can be used in the following scene.
+Video charts of Guance are used to display videos. It can be used in the following scene.
 
 - Showing instructional videos for different scenes
 - Video descriptions for videos that require special explanatory hints

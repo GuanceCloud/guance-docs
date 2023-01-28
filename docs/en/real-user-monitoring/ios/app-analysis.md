@@ -3,14 +3,14 @@
 
 ## Overview
 
-Application performance analysis can be viewed through the Guance Cloud console after application data has been collected to the Guance Cloud.
+Application performance analysis can be viewed through the Guance console after application data has been collected to the Guance.
 
 ## Explorer Analysis
 
-Guance Cloud provides Real User Monitoring explorer to help you view and analyze detailed information about user access to your applications. In "Real User Monitoring" , click on any application and then you can use "Explorer" to understand each user session, page performance, resources, long tasks, errors in action, the impact of latency on users, and help you fully understand and improve the operation status and usage of your application through search, filtering and correlation analysis to improve user experience. More details can be found in the documentation [Explorer](... /explorer/index.md).
+Guance provides Real User Monitoring explorer to help you view and analyze detailed information about user access to your applications. In "Real User Monitoring" , click on any application and then you can use "Explorer" to understand each user session, page performance, resources, long tasks, errors in action, the impact of latency on users, and help you fully understand and improve the operation status and usage of your application through search, filtering and correlation analysis to improve user experience. More details can be found in the documentation [Explorer](... /explorer/index.md).
 
 ## Scene Analysis
-Guance Cloud provides visual iOS application analysis with multiple built-in iOS application monitoring solutions, including overview, performance analysis, resource analysis, and error analysis.
+Guance provides visual iOS application analysis with multiple built-in iOS application monitoring solutions, including overview, performance analysis, resource analysis, and error analysis.
 
 ### Overview
 

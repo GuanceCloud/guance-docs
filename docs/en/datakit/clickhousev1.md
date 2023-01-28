@@ -6,7 +6,7 @@
 
 ---
 
-ClickHouse collector can collect various metrics actively exposed by ClickHouse server instances, such as the number of statements executed, memory storage, IO interaction and other metrics, and collect the metrics into Guance Cloud to help you monitor and analyze various abnormal situations of ClickHouse.
+ClickHouse collector can collect various metrics actively exposed by ClickHouse server instances, such as the number of statements executed, memory storage, IO interaction and other metrics, and collect the metrics into Guance to help you monitor and analyze various abnormal situations of ClickHouse.
 
 ## Preconditions {#requirements}
 

@@ -6,7 +6,7 @@
 
 ---
 
-Collect Kafka indicators and logs and report them to Guance Cloud to help you monitor and analyze various abnormal situations of Kafka.
+Collect Kafka indicators and logs and report them to Guance to help you monitor and analyze various abnormal situations of Kafka.
 
 ## Preconditions {#requirements}
 

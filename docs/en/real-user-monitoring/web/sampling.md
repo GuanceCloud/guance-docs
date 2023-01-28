@@ -3,13 +3,13 @@
 
 ## Overview
 
-Guance Cloud supports collecting Web, Android, iOS and Miniapp application data, and by default, collecting user access data according by the full volume. You can set up sampling to collect user access data to save data storage and reduce cost.
+Guance supports collecting Web, Android, iOS and Miniapp application data, and by default, collecting user access data according by the full volume. You can set up sampling to collect user access data to save data storage and reduce cost.
 
 The following will introduce how to collect 90% of user access data of Web application as an example.
 
 ## Sampling Setting
 
-There are three ways to access the web application: NPM access, synchronous loading and asynchronous loading. Login to Guance Cloud Console, enter "Real User Monitoring" page, click "New Application" in the upper right corner, enter "Application Name" and customize "Application ID" in the new window, and click "Create" to select the application type to get access.
+There are three ways to access the web application: NPM access, synchronous loading and asynchronous loading. Login to Guance Console, enter "Real User Monitoring" page, click "New Application" in the upper right corner, enter "Application Name" and customize "Application ID" in the new window, and click "Create" to select the application type to get access.
 
 - Application Name (required): The name of the application used to identify the current implementation of user access monitoring.
 - Application ID (required): The unique identification of the application in the current workspace, which is used for SDK data collection and upload matching, and corresponds to the field: app_id after data entry. This field only supports English, numeric, underscore input, up to 48 characters.

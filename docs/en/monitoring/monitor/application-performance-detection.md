@@ -3,7 +3,7 @@
 
 ## Overview
 
-"Application Performance Metrics Detection" is used to monitor the metric data of "Application Performance Monitoring" in the workspace. By setting the threshold range, an alarm is triggered when the metric reaches the threshold. Guance Cloud supports setting alarms and customizing alarm levels for individual metrics.
+"Application Performance Metrics Detection" is used to monitor the metric data of "Application Performance Monitoring" in the workspace. By setting the threshold range, an alarm is triggered when the metric reaches the threshold. Guance supports setting alarms and customizing alarm levels for individual metrics.
 
 ## Application Scene
 
@@ -38,7 +38,7 @@
 | Service | It supports monitoring the metric data of all/single services in "Application Performance Monitoring" in the current workspace, and supports all selection or single selection. |
 | Metrics | Specific detection metrics, support setting a single metric, including request number, error request number, request error rate, average request number per second, average response time, P50 response time, P75 response time, P90 response time, P99 response time, etc. |
 | Filter Condition | Based on the metric label, the data of detection metric is screened and the detection data range is limited. Support to add one or more label filters, and support fuzzy matching and fuzzy mismatching filters.|
-| Detection Dimension | The corresponding string type (keyword) fields in the configuration data can be selected as detection dimensions. At present, the detection dimensions support selecting up to three fields. Through the combination of fields of multiple detection dimensions, a certain detection object can be determined, and Guance Cloud will judge whether the statistical metric corresponding to a detection object meets the threshold of trigger conditions, and if it meets the conditions, an event will be generated. (For example, if the detect dimensions "host" and "host_ip" are selected, the detect object can be {host: host1, host_ip: 127.0.0.1}） |
+| Detection Dimension | The corresponding string type (keyword) fields in the configuration data can be selected as detection dimensions. At present, the detection dimensions support selecting up to three fields. Through the combination of fields of multiple detection dimensions, a certain detection object can be determined, and Guance will judge whether the statistical metric corresponding to a detection object meets the threshold of trigger conditions, and if it meets the conditions, an event will be generated. (For example, if the detect dimensions "host" and "host_ip" are selected, the detect object can be {host: host1, host_ip: 127.0.0.1}） |
 
 **Link Statistics**
 
@@ -51,7 +51,7 @@ Count the number of links that meet the conditions within the specified time, an
 | Source | The data source of the current detection metric is supported by selecting all (`*`) or specifying a single data source |
 | Filter Condition | Through the label filter link span, the range of detected data is limited, and one or more label filters are supported. |
 | Aggregation Algorithm | “*” is selected by default, and the corresponding function is count. If other fields are selected, the function automatically changes to Count distinct |
-| Detection Dimension | The corresponding string type (keyword) fields in the configuration data can be selected as detection dimensions. At present, the detection dimensions support selecting up to three fields. Through the combination of fields of multiple detection dimensions, a certain detection object can be determined, and Guance Cloud will judge whether the statistical index corresponding to a detection object meets the threshold of trigger conditions, and if it meets the conditions, an event will be generated. (For example, if the detect dimensions "host" and "host_ip" are selected, the detect object can be {host: host1, host_ip: 127.0.0.1}） |
+| Detection Dimension | The corresponding string type (keyword) fields in the configuration data can be selected as detection dimensions. At present, the detection dimensions support selecting up to three fields. Through the combination of fields of multiple detection dimensions, a certain detection object can be determined, and Guance will judge whether the statistical index corresponding to a detection object meets the threshold of trigger conditions, and if it meets the conditions, an event will be generated. (For example, if the detect dimensions "host" and "host_ip" are selected, the detect object can be {host: host1, host_ip: 127.0.0.1}） |
 
 4）**Trigger condition:** Set the trigger condition of alarm level.
 

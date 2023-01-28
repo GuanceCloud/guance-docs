@@ -6,7 +6,7 @@
 - Installing DataKit ([DataKit Installation Documentation](... /... /datakit/datakit-install.md))
 
 ## Application Access
-The current version of Flutter only supports Android and iOS platforms for now. Login to Guance Cloud Console, enter "Real User Monitoring" page, click "New Application" in the upper right corner, enter "Application Name" and customize "Application ID" in the new window, and click "Create" to select the application type to get access.
+The current version of Flutter only supports Android and iOS platforms for now. Login to Guance Console, enter "Real User Monitoring" page, click "New Application" in the upper right corner, enter "Application Name" and customize "Application ID" in the new window, and click "Create" to select the application type to get access.
 
 ![](../img/image_12.png)
 

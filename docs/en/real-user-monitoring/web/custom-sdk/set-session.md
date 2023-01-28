@@ -1,7 +1,7 @@
 # Custom Setting Session
 ---
 
-By setting a custom session ID you can track the entire session flow for a specific session. For example, by setting the session ID to `debug_session_xx`, the SDK will replace the session ID in the reported data with the ID you specify. After the data report is complete, you can track all the `view`, `error`, `action` and `resource` data in the session cycle on the [Guance Cloud](https://console.guance.com/) platform based on this session ID.
+By setting a custom session ID you can track the entire session flow for a specific session. For example, by setting the session ID to `debug_session_xx`, the SDK will replace the session ID in the reported data with the ID you specify. After the data report is complete, you can track all the `view`, `error`, `action` and `resource` data in the session cycle on the [Guance](https://console.guance.com/) platform based on this session ID.
 
 ### Add Session
 

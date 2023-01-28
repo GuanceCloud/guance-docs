@@ -21,7 +21,7 @@ In the CI explorer search field, it supports various search methods such as keyw
 
 ### Analysis Mode
 
-In the CI explorer analysis column, it supports multi-dimensional analysis statistics based on **1-3 tags** to reflect the distribution characteristics and trends of the data in different dimensions and over time.Guance Cloud supports a variety of data graphical analysis methods, including time-series charts, leaderboards, pie charts, and rectangular tree charts.More details can be found in the document [Analysis mode of the explorer](../getting-started/necessary-for-beginners/explorer-search.md#analysis) 。
+In the CI explorer analysis column, it supports multi-dimensional analysis statistics based on **1-3 tags** to reflect the distribution characteristics and trends of the data in different dimensions and over time.Guance supports a variety of data graphical analysis methods, including time-series charts, leaderboards, pie charts, and rectangular tree charts.More details can be found in the document [Analysis mode of the explorer](../getting-started/necessary-for-beginners/explorer-search.md#analysis) 。
 
 ### Shortcut filter
 

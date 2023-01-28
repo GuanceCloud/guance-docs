@@ -71,7 +71,7 @@ The Label property is automatically uploaded with the container information by d
 ![](img/1.container_1.png)
 
 #### Association Analysis
-Guance Cloud supports association analysis of each infrastructure object. On the details page of container objects, you can not only understand the basic information of containers, but also associate the metrics, hosts, pods, logs and processes of corresponding containers in one stop, so as to monitor the operation of containers faster and more comprehensively.
+Guance supports association analysis of each infrastructure object. On the details page of container objects, you can not only understand the basic information of containers, but also associate the metrics, hosts, pods, logs and processes of corresponding containers in one stop, so as to monitor the operation of containers faster and more comprehensively.
 
 === "Metrics"
 
@@ -104,7 +104,7 @@ Guance Cloud supports association analysis of each infrastructure object. On the
     Through "Log" at the bottom of the details page, you can view the logs and the number of logs related to the container **in the last 1 hour**, and perform keyword search, multi-label filtering and time sorting on these related logs.
     - If you need to view more detailed log information, you can click the log content to jump to the corresponding log details page, or click "Jump" to "Log" to view all logs related to the host.
     - If you need to view more log fields or more complete log contents, you can customize and adjust "Maximum Display Rows" and "Display Columns" through "Display Columns" in the associated log observer.
-    **Note: For a smoother user query experience, Guance Cloud saves the user's browsing settings in the "Log" by default (including "Maximum Display Rows" and "Display Columns") in real time, so that the "Association Log" is consistent with the "Log". However, the custom adjustments made in the Association Log are not saved after exiting the page.**
+    **Note: For a smoother user query experience, Guance saves the user's browsing settings in the "Log" by default (including "Maximum Display Rows" and "Display Columns") in real time, so that the "Association Log" is consistent with the "Log". However, the custom adjustments made in the Association Log are not saved after exiting the page.**
 
 === "Process"
 
@@ -151,7 +151,7 @@ By clicking the tab "Host" on the pod details page, you can query the log, conta
 
 #### Correlation Analysis
 
- Guance Cloud supports association analysis of each infrastructure object. On the details page of Pod objects, you can not only understand the basic information of Pod, but also associate the metrics, containers, logs, networks and hosts corresponding to Pod in one stop, so as to monitor the operation of Pod faster and more comprehensively.
+ Guance supports association analysis of each infrastructure object. On the details page of Pod objects, you can not only understand the basic information of Pod, but also associate the metrics, containers, logs, networks and hosts corresponding to Pod in one stop, so as to monitor the operation of Pod faster and more comprehensively.
 
 === "YAML"
 
@@ -173,7 +173,7 @@ By clicking the tab "Host" on the pod details page, you can query the log, conta
     Through "Log" at the bottom of the details page, you can view the logs and the number of logs related to this Pod **in the last hour**, and perform keyword search, multi-label filtering and time sorting on these related logs.
     - If you need to view more detailed log information, you can click the log content to jump to the corresponding log details page, or click "Jump" to "Log" to view all logs related to the host.
     - If you need to view more log fields or more complete log contents, you can customize and adjust "Maximum Display Rows" and "Display Columns" through "Display Columns" in the associated log observer.
-    **Note: For a smoother user query experience, Guance Cloud saves the user's browsing settings in the "Log" by default (including "Maximum Display Rows" and "Display Columns") in real time, so that the "Association Log" is consistent with the "Log". However, the custom adjustments made in the Association Log are not saved after exiting the page.**
+    **Note: For a smoother user query experience, Guance saves the user's browsing settings in the "Log" by default (including "Maximum Display Rows" and "Display Columns") in real time, so that the "Association Log" is consistent with the "Log". However, the custom adjustments made in the Association Log are not saved after exiting the page.**
 
 === "Host"
 
@@ -186,7 +186,7 @@ By clicking the tab "Host" on the pod details page, you can query the log, conta
 
     Pod Network supports viewing network traffic between Pods. It supports to view the network traffic and data connection between source IP and target IP based on IP/port and display it in real time in a visual way. This helps enterprises know the network running status of business systems immediately, quickly analyze, track and locate problems and faults, and prevent or avoid business problems caused by network performance degradation or interruption.
     
-    Pod network data will be reported to the Guance Cloud console after successfully collected. In "Network"-"Infrastructure"-"Container"-"Pod" Details page, you can view all Pod network performance monitoring data information in the workspace. For more details, please refer to [network](network.md).
+    Pod network data will be reported to the Guance console after successfully collected. In "Network"-"Infrastructure"-"Container"-"Pod" Details page, you can view all Pod network performance monitoring data information in the workspace. For more details, please refer to [network](network.md).
 
 ### Services List
 
@@ -237,7 +237,7 @@ The Label property is automatically uploaded with the Deployment information by 
     Through "Log" at the bottom of the details page, you can view the logs and the number of logs related to this Deployment **in the last 1 hour** and perform keyword search, multi-label filtering and time sorting.
     - If you need to view more detailed log information, you can click the log content to jump to the corresponding log details page, or click "Jump" to "Log" to view all logs related to the host.
     - If you need to view more log fields or more complete log contents, you can customize and adjust "Maximum Display Rows" and "Display Columns" through "Display Columns" in the associated log viewer.
-    **Note: For a smoother user query experience, Guance Cloud saves the user's browsing settings in the "Log" by default (including "Maximum Display Rows" and "Display Columns") in real time, so that the "Association Log" is consistent with the "Log". However, the custom adjustments made in the Association Log are not saved after exiting the page.**
+    **Note: For a smoother user query experience, Guance saves the user's browsing settings in the "Log" by default (including "Maximum Display Rows" and "Display Columns") in real time, so that the "Association Log" is consistent with the "Log". However, the custom adjustments made in the Association Log are not saved after exiting the page.**
 
 === "Pod"
 
@@ -251,7 +251,7 @@ The Label property is automatically uploaded with the Deployment information by 
 
     Deployment Network supports viewing network traffic between Deployments. It supports to view the network traffic and data connection between source IP and target IP based on IP/port and display it in real time in a visual way, so as to help enterprises know the network running status of business systems in real time, quickly analyze, track and locate problems and faults, and prevent or avoid business problems caused by network performance degradation or interruption.
     
-    Deployment network data will be reported to the Guance Cloud console after successfully collected. You can view the network performance monitoring data information of the current Deployment in "Network"-"Infrastructure"-"Container"-"Pod" Details page. For more details, please refer to [network](network.md).
+    Deployment network data will be reported to the Guance console after successfully collected. You can view the network performance monitoring data information of the current Deployment in "Network"-"Infrastructure"-"Container"-"Pod" Details page. For more details, please refer to [network](network.md).
 
 ### Clusters List
 

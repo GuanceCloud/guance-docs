@@ -3,7 +3,7 @@
 
 ## Introduction
 
-Guance Cloud supports sharing of visual charts such as time series charts, pie charts, overview charts, etc., which can be used to insert charts into the code of platforms other than Observation Cloud for visual data presentation and analysis. The shared charts are synchronized in real time with the chart changes in the "Observation Cloud" even if they are embedded in other platforms.
+Guance supports sharing of visual charts such as time series charts, pie charts, overview charts, etc., which can be used to insert charts into the code of platforms other than Observation Cloud for visual data presentation and analysis. The shared charts are synchronized in real time with the chart changes in the "Observation Cloud" even if they are embedded in other platforms.
 ## Share Charts
 
 You can share the visual charts made in 「Scene」-「Dashboard」, and the shared charts are uniformly stored in 「Management」-「Sharing Management」-「Chart Sharing」.
@@ -16,7 +16,7 @@ Select 「Chart Query Time」 and click 「Get」 to get the embed code.
 
 ![](../img/2.table_share_2.png)
 
-Guance Cloud will generate the embedding code according to the chart query time, such as the chart query time is the last 15 minutes, that is, after embedding other platforms, the chart displays the query results according to the last 15 minutes.
+Guance will generate the embedding code according to the chart query time, such as the chart query time is the last 15 minutes, that is, after embedding other platforms, the chart displays the query results according to the last 15 minutes.
 
 **Note:**
 
@@ -28,7 +28,7 @@ Guance Cloud will generate the embedding code according to the chart query time,
 
 ## View chart sharing list
 
-The charts shared by "Guance Cloud" in the scene view are stored in 「Management」 - 「Sharing Management」 - 「Chart Sharing」. For more details, please refer to [ Share Management](../../management/share-management.md)
+The charts shared by "Guance" in the scene view are stored in 「Management」 - 「Sharing Management」 - 「Chart Sharing」. For more details, please refer to [ Share Management](../../management/share-management.md)
 
 ![](../img/chart027.png)
 

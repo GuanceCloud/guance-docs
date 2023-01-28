@@ -3,15 +3,15 @@
 
 ## Introduction
 
-Guance Cloud supports you to view all the data details returned by the dialing task through the "Observer", which helps you find problems in advance, locate problems and improve the user experience.
+Guance supports you to view all the data details returned by the dialing task through the "Observer", which helps you find problems in advance, locate problems and improve the user experience.
 
 ## Query and Analysis
 
-Guance Cloud supports a variety of ways to query and analyze the dial-up data, including selecting data sources, searching, screening, statistics and export. Query dialing test data by selecting time range, searching keywords and screening.
+Guance supports a variety of ways to query and analyze the dial-up data, including selecting data sources, searching, screening, statistics and export. Query dialing test data by selecting time range, searching keywords and screening.
 
 ### Time Control
 
-Guance Cloud Observer displays the data of the last 15 minutes by default, and you can select the time range of data display through the "Time Control" in the upper right corner. See the documentation [time control description](../getting-started/necessary-for-beginners/explorer-search.md#time) for more details.
+Guance Observer displays the data of the last 15 minutes by default, and you can select the time range of data display through the "Time Control" in the upper right corner. See the documentation [time control description](../getting-started/necessary-for-beginners/explorer-search.md#time) for more details.
 
 ### Search and Filter
 
@@ -31,7 +31,7 @@ In the observer analysis column, multi-dimensional aggregation analysis and stat
 
 ### Dial Test Statistics
 
- Guance Cloud will count the number of dialing data in a certain period of time according to the selected time range. You can view the amount of dialing data in different states in different time periods by stacking histograms.
+ Guance will count the number of dialing data in a certain period of time according to the selected time range. You can view the amount of dialing data in different states in different time periods by stacking histograms.
 
 Different data types have different data states. The states of http (API dial test) data include,
 

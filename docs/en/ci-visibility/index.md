@@ -4,7 +4,7 @@ icon: zy/ci-visibility
 # CI Visualization
 ---
 
-Guance Cloud supports visualization of the process and results of CI built into Gitlab/Jenkins. You can view the results of your CI in Gitlab/Jenkins directly through the CI visualization feature of Guance Cloud.The CI process is continuous integration. If developers encounter problems when pushing code, they can view the success rate, failure reasons, and specific failure links of all CI processes in Observation Cloud to help you provide code update assurance.
+Guance supports visualization of the process and results of CI built into Gitlab/Jenkins. You can view the results of your CI in Gitlab/Jenkins directly through the CI visualization feature of Guance.The CI process is continuous integration. If developers encounter problems when pushing code, they can view the success rate, failure reasons, and specific failure links of all CI processes in Observation Cloud to help you provide code update assurance.
 
 ## Glossary
 

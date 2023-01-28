@@ -3,11 +3,11 @@
 
 ## Overview
 
-After collecting application data and reporting it to the observation cloud, you can customize the configuration scene and configure anomaly detection events through the Guance Cloud console.
+After collecting application data and reporting it to the observation cloud, you can customize the configuration scene and configure anomaly detection events through the Guance console.
 
 ## Data Type
 
-Real User Monitoring of Guance Cloud includes six data types.
+Real User Monitoring of Guance includes six data types.
 
 | **Type** | **Description** |
 | --- | --- |

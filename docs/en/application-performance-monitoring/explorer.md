@@ -3,12 +3,12 @@
 
 ## Introduction
 
-In the Guance Cloud Console, you can view all link data in the "Link" of "Application Performance Monitoring". You can search, filter, export link data, view link details, and analyze link performance through flame diagram and span list, and you can clearly track the data details of each link performance, whether it is synchronous or asynchronous call.
+In the Guance Console, you can view all link data in the "Link" of "Application Performance Monitoring". You can search, filter, export link data, view link details, and analyze link performance through flame diagram and span list, and you can clearly track the data details of each link performance, whether it is synchronous or asynchronous call.
 
 ## Link List
 
 
- Guance Cloud provides three link viewing lists, namely "All Span”, “All Top Spans” and “all Trace”. Spans represent logical units of work in a distributed system within a given time period, and multiple spans will form a link trace.
+ Guance provides three link viewing lists, namely "All Span”, “All Top Spans” and “all Trace”. Spans represent logical units of work in a distributed system within a given time period, and multiple spans will form a link trace.
 
 === "All Span"
 
@@ -38,11 +38,11 @@ The link observer displays the data for the last 15 minutes by default, and you 
 
 In the link observer search bar, it supports keyword search, wildcard search, association search and other search methods, and it also supports value screening through `tag/attribute`, including forward screening, reverse screening, fuzzy matching, reverse fuzzy matching, existence and nonexistence and other screening methods. For more searching and filtering, refer to the document [searching and filtering for the observer](../getting-started/necessary-for-beginners/explorer-search.md).
 
-**Note: When you switch to view the Service or Link observer, Guance Cloud reserves the current filter criteria and time range for you by default.**
+**Note: When you switch to view the Service or Link observer, Guance reserves the current filter criteria and time range for you by default.**
 
 ### Analysis Mode
 
-In the analysis bar of link viewer, multi-dimensional analysis and statistics based on **1-3 tags** are supported to reflect the distribution characteristics and trends of data in different dimensions and at different times. Guance Cloud supports a variety of data chart analysis methods, including time sequence chart, ranking list, pie chart and rectangular tree chart. For more details, please refer to the document [analysis Mode for the observer](../getting-started/necessary-for-beginners/explorer-search.md#analysis).
+In the analysis bar of link viewer, multi-dimensional analysis and statistics based on **1-3 tags** are supported to reflect the distribution characteristics and trends of data in different dimensions and at different times. Guance supports a variety of data chart analysis methods, including time sequence chart, ranking list, pie chart and rectangular tree chart. For more details, please refer to the document [analysis Mode for the observer](../getting-started/necessary-for-beginners/explorer-search.md#analysis).
 
 ### Quick Filter
 
@@ -50,7 +50,7 @@ Shortcut Filter in Link Observer, support editing "Shortcut Filter" and add new 
 
 ### Filter History
 
-Guance Cloud supports saving the search condition history of viewer `key:value` in "filter history", which is applied to different viewers in the current workspace. See the documentation [filter history](../getting-started/necessary-for-beginners/explorer-search.md#filter-history).
+Guance supports saving the search condition history of viewer `key:value` in "filter history", which is applied to different viewers in the current workspace. See the documentation [filter history](../getting-started/necessary-for-beginners/explorer-search.md#filter-history).
 
 ### Chart Statistics
 
@@ -69,7 +69,7 @@ In Link Observer, you can filter out the desired link data for export and then v
 
 ### Save Snapshot
 
- Guance Cloud supports "viewing historical snapshots" to directly save the snapshot data of the current observer. Through the snapshot function, you can quickly reproduce the instantly copied data copy information and restore the data to a certain time point and a certain data display logic. See the documentation [snapshot](../management/snapshot.md).
+ Guance supports "viewing historical snapshots" to directly save the snapshot data of the current observer. Through the snapshot function, you can quickly reproduce the instantly copied data copy information and restore the data to a certain time point and a certain data display logic. See the documentation [snapshot](../management/snapshot.md).
 
 ![](img/3.apm_6.gif)
 
@@ -183,7 +183,7 @@ On the Link Details page, if there is an error link, you can view the relevant e
 
 === "Code Hotspots"
 
-    When the application uses the ddtrace collector to enable APM link tracing and Profile performance tracing data collection at the same time, Guance Cloud provides Span-level correlation view analysis. On the link details page, you can click "Code Hotspots" at the bottom of the flame diagram to view the code hotspots associated with the current link, including execution time, method and execution time ratio.
+    When the application uses the ddtrace collector to enable APM link tracing and Profile performance tracing data collection at the same time, Guance provides Span-level correlation view analysis. On the link details page, you can click "Code Hotspots" at the bottom of the flame diagram to view the code hotspots associated with the current link, including execution time, method and execution time ratio.
     
     ![](img/9.apm_explorer_11.png)
     
@@ -201,7 +201,7 @@ On the Link Details page, if there is an error link, you can view the relevant e
     
     - Attribute view: it helps you to trace back the real situation of host objects when the link is generated, and supports viewing **the latest object data generated by relevant hosts in the corresponding time**, including the basic information of hosts and the operation of integration. If you start the collection of cloud hosts, you can also view the information of cloud suppliers.
     
-    Note: Guance Cloud holds the historical data of the last 48 hours of host objects by default. If the host history data corresponding to the current link time is not found, you will not be able to view the attribute view of the associated host.
+    Note: Guance holds the historical data of the last 48 hours of host objects by default. If the host history data corresponding to the current link time is not found, you will not be able to view the attribute view of the associated host.
     
     ![](img/3.apm_10.png)
 

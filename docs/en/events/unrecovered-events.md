@@ -3,7 +3,7 @@
 
 ## Overview
 
-In "Events", Guance Cloud displays "Unrecovered Event Explorer" for you by default, and you can view all unrecovered events continuously triggered in the space, as well as data volume statistics and alarm information details of unrecovered events under different alarm levels. The unrecovered event query is the last 48 hours data, which supports manual refresh.
+In "Events", Guance displays "Unrecovered Event Explorer" for you by default, and you can view all unrecovered events continuously triggered in the space, as well as data volume statistics and alarm information details of unrecovered events under different alarm levels. The unrecovered event query is the last 48 hours data, which supports manual refresh.
 
 In the unrecovered event explorer, you can:
 

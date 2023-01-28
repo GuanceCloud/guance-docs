@@ -3,7 +3,7 @@
 
 ## Introduction
 
-After the Guance Cloud data collection is reported to the workspace, the metrics and other data types (log, basic object, custom object, event, application performance, user access, security inspection, network, Profile, etc.) can be queried and analyzed on the "Metrics" - "Metric Analysis" page.
+After the Guance data collection is reported to the workspace, the metrics and other data types (log, basic object, custom object, event, application performance, user access, security inspection, network, Profile, etc.) can be queried and analyzed on the "Metrics" - "Metric Analysis" page.
 
 ## Metric Query
 
@@ -36,7 +36,7 @@ Legend is an auxiliary element of chart, which supports distinguishing data base
 
 ### Color
 
-In order to make better use of lines, points and surfaces with different colors to represent the data trends of different metrics, Guance Cloud supports clicking the "Color" button :art: in the upper right corner of the viewer to modify the legend color.
+In order to make better use of lines, points and surfaces with different colors to represent the data trends of different metrics, Guance supports clicking the "Color" button :art: in the upper right corner of the viewer to modify the legend color.
 
 ### Export
 

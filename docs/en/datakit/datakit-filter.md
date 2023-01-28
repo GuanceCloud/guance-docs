@@ -10,8 +10,8 @@ DataKit Filter is used to filter the collected line protocol data and filter out
 
 | Data Processing Component | Support Local Configuration | Distributed by Support Center | Support Data Discarding | Support data rewriting | Instruction                                                        |
 | ----         | ----         | ----         | ----         | ----         | ----                                                            |
-| Pipeline     | Y            | Y            | Y            | Y            | By configuring Pipeline in the collector or writing Pipeline in Guance Cloud Studio   |
-| Filter       | Y            | Y            | Y            | N            | Write Pipeline in Guance Cloud Studio or configure filter in datakit.conf |
+| Pipeline     | Y            | Y            | Y            | Y            | By configuring Pipeline in the collector or writing Pipeline in Guance Studio   |
+| Filter       | Y            | Y            | Y            | N            | Write Pipeline in Guance Studio or configure filter in datakit.conf |
 
 It can be seen from the table that Filter is a more convenient data filtering tool than Pipeline if only some data is simply filtered out.
 
@@ -90,7 +90,7 @@ In `datakt.conf`, you can manually configure blacklist filtering, as shown in th
     ]
 ```
 
-Once the filter is configured in *datakit.conf* , the filter configured by **Guance Cloud Studio will no longer take effect**.
+Once the filter is configured in *datakit.conf* , the filter configured by **Guance Studio will no longer take effect**.
 
 The configuration here should follow the following rules:
 

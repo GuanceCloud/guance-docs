@@ -3,9 +3,9 @@
 
 ## Overview
 
-The Real User Monitoring explorer helps you view and analyze the details of users accessing applications. Open "Real User Monitoring" in the Guance Cloud workspace, clicking on any application and then you can know the impact of each user's session, page performance, resources, long tasks, errors in operation and delays on users through the "Explorer", which helps you to fully understand and improve the running status and usage of the application through search, filtering and correlation analysis, and improve the user experience.
+The Real User Monitoring explorer helps you view and analyze the details of users accessing applications. Open "Real User Monitoring" in the Guance workspace, clicking on any application and then you can know the impact of each user's session, page performance, resources, long tasks, errors in operation and delays on users through the "Explorer", which helps you to fully understand and improve the running status and usage of the application through search, filtering and correlation analysis, and improve the user experience.
 
-Guance Cloud Real User Monitoring explorer include Session, View, Resource, Action, Long Task and Error.
+Guance Real User Monitoring explorer include Session, View, Resource, Action, Long Task and Error.
 
 | Explorer Type | Overview |
 | --- | --- |
@@ -18,11 +18,11 @@ Guance Cloud Real User Monitoring explorer include Session, View, Resource, Acti
 
 ## Explorer Description
 
-In the explorer, Guance Cloud supports querying and analyzing user access data by selecting time range, searching keywords, filtering and so on.
+In the explorer, Guance supports querying and analyzing user access data by selecting time range, searching keywords, filtering and so on.
 
 ### Time Control
 
-GuanCe Cloud explorer displays the data of the last 15 minutes by default, and you can select the time range of data display through the "Time Control" in the upper right corner. See the documentation [Time Control Description](../../getting-started/necessities-for-beginners/explorer-search.md # time) for more details.
+Guance explorer displays the data of the last 15 minutes by default, and you can select the time range of data display through the "Time Control" in the upper right corner. See the documentation [Time Control Description](../../getting-started/necessities-for-beginners/explorer-search.md # time) for more details.
 
 ### Search and Filter
 
@@ -30,7 +30,7 @@ In the explorer search bar, it supports keyword search, wildcard search, correla
 
 ### Analysis Mode
 
-In the explorer analysis column, multi-dimensional analysis and statistics based on **1-3 tags ** are supported to reflect the distribution characteristics and trends of data in different dimensions and at different times. Guance Cloud supports a variety of data chart analysis methods, including time sequence chart, ranking list, pie chart and rectangular tree chart. For more details, please refer to the document [analysis Mode](../../getting-started/necessary-for-beginners/explorer-search.md # analysis).
+In the explorer analysis column, multi-dimensional analysis and statistics based on **1-3 tags ** are supported to reflect the distribution characteristics and trends of data in different dimensions and at different times. Guance supports a variety of data chart analysis methods, including time sequence chart, ranking list, pie chart and rectangular tree chart. For more details, please refer to the document [analysis Mode](../../getting-started/necessary-for-beginners/explorer-search.md # analysis).
 
 ### User Access Data DistributionChart
 

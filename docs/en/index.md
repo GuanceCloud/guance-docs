@@ -3,10 +3,10 @@ hide:
   - toc
 glightbox: false
 ---
-# <div class="homepage-title">Welcome to Guance Cloud</div>
+# <div class="homepage-title">Welcome to Guance</div>
 <div class="homepage">
   <div class="title">
-    Guance Cloud, a real-time data monitoring platform for DevOps, testing and business teams, can meet the monitoring requirements of cloud, cloud native, application and business, and quickly realize the observability of infrastructure, middleware, application layer and business layer. Guance Cloud solves observable problems through infrastructure monitoring, log and metrics management, application performance monitoring, real user monitoring, usability monitoring, anomaly detection, system-level security inspection, scenes and dashboards. By means of unified data collection, comprehensive data monitoring, coherent correlation analysis, custom scene building, high programmability and prompt member cooperation, Guance Cloud provides users with the fastest, easiest, most comprehensive and flexible observability platform.
+    Guance, a real-time data monitoring platform for DevOps, testing and business teams, can meet the monitoring requirements of cloud, cloud native, application and business, and quickly realize the observability of infrastructure, middleware, application layer and business layer. Guance solves observable problems through infrastructure monitoring, log and metrics management, application performance monitoring, real user monitoring, usability monitoring, anomaly detection, system-level security inspection, scenes and dashboards. By means of unified data collection, comprehensive data monitoring, coherent correlation analysis, custom scene building, high programmability and prompt member cooperation, Guance provides users with the fastest, easiest, most comprehensive and flexible observability platform.
   </div>
   <div class="content">
     <div class="content-top">

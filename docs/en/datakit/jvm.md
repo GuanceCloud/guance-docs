@@ -171,7 +171,7 @@ Each metric has the following tags (the actual tags are affected by java startup
 
 ## Collect JVM Metrics Through Jolokia  {#jvm-jolokia}
 
-JVM collector can take many metrics through JMX, and collect metrics into Guance Cloud to help analyze Java operation.
+JVM collector can take many metrics through JMX, and collect metrics into Guance to help analyze Java operation.
 
 ### Preconditions {#jolokia-requirements}
 

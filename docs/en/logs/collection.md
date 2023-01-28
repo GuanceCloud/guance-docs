@@ -3,7 +3,7 @@
 
 ## Overview
 
-Guance Cloud has comprehensive log collection capability, which is mainly divided into host log collection and K8S container log collection. The installation methods of DataKit and log collection methods are different. The collected log data are uniformly collected into the observation cloud for unified storage, search and analysis, which helps us quickly locate and solve problems.
+Guance has comprehensive log collection capability, which is mainly divided into host log collection and K8S container log collection. The installation methods of DataKit and log collection methods are different. The collected log data are uniformly collected into the observation cloud for unified storage, search and analysis, which helps us quickly locate and solve problems.
 
 This article mainly introduces how to collect logs in **host environment**. For collecting logs in K8S environment, please refer to the best practice [Several ways to collect logs in Kubernetes cluster](../best-practices/cloud-native/k8s-logs.md) .
 
@@ -11,7 +11,7 @@ This article mainly introduces how to collect logs in **host environment**. For 
 
 -  [Install DataKit](../datakit/datakit-install.md) 
 
-You can also login to [Guance Cloud](https://auth.guance.com/login/pwd), In "Integration"-"DataKit" and select "Linux", "Windows" and "MacOS" according to the host system, and get the DataKit installation instructions and installation steps.
+You can also login to [Guance](https://auth.guance.com/login/pwd), In "Integration"-"DataKit" and select "Linux", "Windows" and "MacOS" according to the host system, and get the DataKit installation instructions and installation steps.
 
 ## Log collection 
 

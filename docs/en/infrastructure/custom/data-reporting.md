@@ -2,23 +2,23 @@
 ---
 
 
-Custom object data reporting needs to install and connect DataKit and DataFlux Func first, then report data to DataKit through DataFlux Func, and finally DataKit reports data to Guance Cloud workspace.
+Custom object data reporting needs to install and connect DataKit and DataFlux Func first, then report data to DataKit through DataFlux Func, and finally DataKit reports data to Guance workspace.
 
 ![](../img/自定义对象.png)
 
 ## Install DataKit
 
-In the Guance Cloud workspace, click "Integration"-"DataKit" in turn, select the DataKit installation method, see the following information, and then copy the "Installation Instruction" to execute on the host.
+In the Guance workspace, click "Integration"-"DataKit" in turn, select the DataKit installation method, see the following information, and then copy the "Installation Instruction" to execute on the host.
 
 ![](../img/1.datakit_install.png)
 
-In the Guance Cloud workspace, click "Integration"-"DataKit" in turn, select the DataKit installation method, see the following information, and then copy the `Install Success`.
+In the Guance workspace, click "Integration"-"DataKit" in turn, select the DataKit installation method, see the following information, and then copy the `Install Success`.
 
 [Learn more about getting started with DataKit.](../../datakit/datakit-service-how-to.md)
 
 ## Install Function
 
-In the Guance Cloud workspace, click "Integration"-"Func" in turn, and install Func in the command line terminal tool according to the following steps.
+In the Guance workspace, click "Integration"-"Func" in turn, and install Func in the command line terminal tool according to the following steps.
 
 ![](../img/1.func_install.png)
 
@@ -142,7 +142,7 @@ def main():
         pushdata(data)
 ```
 
-5.After the DataFlux Func script configuration is completed, the reported data can be viewed in "Infrastructure"-"Customization" of the "Guance Cloud" workspace.
+5.After the DataFlux Func script configuration is completed, the reported data can be viewed in "Infrastructure"-"Customization" of the "Guance" workspace.
 
 ![](../img/3.object_more_api_function_11.png)
 

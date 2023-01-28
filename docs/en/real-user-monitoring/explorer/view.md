@@ -12,7 +12,7 @@ In the View explorer, you can.
 
 ## Precondition
 
-Guance Cloud supports collecting errors, resources, requests, performance metrics, etc. by means of introducing SDK scripts. For details, you can refer to [Rum Collector Configuration](... /... /datakit/rum.md).
+Guance supports collecting errors, resources, requests, performance metrics, etc. by means of introducing SDK scripts. For details, you can refer to [Rum Collector Configuration](... /... /datakit/rum.md).
 
 ## View Explorer
 
@@ -77,7 +77,7 @@ Through "Logs" at the bottom of the detail page, you can view the logs and the n
 
 - If you need to view more detailed log information, you can click on the log content to jump to the corresponding log detail page, or click "Jump" to "Logs" to view all logs related to this host.
 - If you need to view more log fields or more complete log content, you can customize the "Maximum number of rows" and "Display columns" through the "Display Columns" of the associated log explorer.
-  **Note: For a smoother user query experience, Guance Cloud saves the user's browsing settings (including "Maximum number of rows" and "Display columns") in "Logs" by default, so that the "Associated Log" are consistent with the "Logs". However, the custom adjustments made in the associated log are not saved after exiting the page. **
+  **Note: For a smoother user query experience, Guance saves the user's browsing settings (including "Maximum number of rows" and "Display columns") in "Logs" by default, so that the "Associated Log" are consistent with the "Logs". However, the custom adjustments made in the associated log are not saved after exiting the page. **
 
 ### Binding View
 

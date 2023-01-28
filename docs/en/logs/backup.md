@@ -3,13 +3,13 @@
 
 ## Overview
 
-Guance Cloud basic log is stored for up to 60 days. If you need to store and view for a longer time, it needs to be backed up. Log backups are supported in two ways: 
+Guance basic log is stored for up to 60 days. If you need to store and view for a longer time, it needs to be backed up. Log backups are supported in two ways: 
  
-- Backup to Guance Cloud: Support backup log storage for up to 720 days,we support 180d / 360d / 720d three options to choose.     
+- Backup to Guance: Support backup log storage for up to 720 days,we support 180d / 360d / 720d three options to choose.     
 - Backup to external storage: Support for backing up logs to Alibaba Cloud OSS, refer to the documentation [Best Practices for Backing Up Log Data to OSS](../best-practices/partner/log-backup-to-oss-by-func.md).     
 
 
-## Backup to Guance Cloud
+## Backup to Guance
 
 ### New Rule
 

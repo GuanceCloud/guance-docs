@@ -3,15 +3,15 @@
 
 ## Introduction
 
-In addition to hosts, containers and processes, the Guance Cloud allows you to customize new object classifications and report related object data to the Guance Cloud console. With Customization of Infrastructure, you can view all custom object data reported to the workspace.
+In addition to hosts, containers and processes, the Guance allows you to customize new object classifications and report related object data to the Guance console. With Customization of Infrastructure, you can view all custom object data reported to the workspace.
 
 ## Custom Object Classification
 
-Guance Cloud supports you to customize object classification, and helps you track and store custom report object data of the same class. By observing the cloud workbench, you can add object classifications, modify existing object classifications and delete existing object classifications.
+Guance supports you to customize object classification, and helps you track and store custom report object data of the same class. By observing the cloud workbench, you can add object classifications, modify existing object classifications and delete existing object classifications.
 
 ### Add Object Classification
 
-In the Guance Cloud workspace, you can create new object classes and customize object class names and object fields through Infrastructure-Customize-Add Object Classes.
+In the Guance workspace, you can create new object classes and customize object class names and object fields through Infrastructure-Customize-Add Object Classes.
 
 - Object classification: Custom object classification name, that is, “object classification name”. When user-defined object data is reported. You need to make **“object classification name” consistent with the naming when reporting data** after reporting data.
 - Alias: Add an alias to the current object class, that is, the name of the current object class displayed in the custom object list.
@@ -21,13 +21,13 @@ In the Guance Cloud workspace, you can create new object classes and customize o
 
 ### Custom Object Data Reporting
 
-After adding custom object classification, you can report custom data. When reporting custom object data, it is necessary to install and connect DataKit and DataFlux Func first, then report data to DataKit through DataFlux Func, and finally report data to Guance Cloud workspace through DataKit. Please refer to the document [custom object data reporting](data-reporting.md) for the specific operation process.
+After adding custom object classification, you can report custom data. When reporting custom object data, it is necessary to install and connect DataKit and DataFlux Func first, then report data to DataKit through DataFlux Func, and finally report data to Guance workspace through DataKit. Please refer to the document [custom object data reporting](data-reporting.md) for the specific operation process.
 
 **Note:**
 
-1. The user-defined fields in "Default Attributes" are required fields when reporting data. If the required fields are missing, the reported data will not be reported to the Guance Cloud workspace.
+1. The user-defined fields in "Default Attributes" are required fields when reporting data. If the required fields are missing, the reported data will not be reported to the Guance workspace.
 1. If the reported data contains required fields and other fields, the non-required fields are displayed as data labels.
-1. If the reported data type does not match the defined field data type, the data cannot be reported to the Guance Cloud workspace. For example, in DataFlux Func, the field type is defined as character type and the data type is integer type when reporting, so the data cannot be reported to the Guance Cloud workspace.
+1. If the reported data type does not match the defined field data type, the data cannot be reported to the Guance workspace. For example, in DataFlux Func, the field type is defined as character type and the data type is integer type when reporting, so the data cannot be reported to the Guance workspace.
 
 ### Modify Object Classification
 
@@ -39,7 +39,7 @@ From "Infrastructure"-"Customize", in the object classification list on the left
 
 ### Delete Object Classification
 
-Guance Cloud supports **Owner** and **Administrator** to delete the specified custom object classification and all custom objects, enter "Management"-"Basic Settings", click "Delete Custom Objects", and select the method of deleting custom objects to delete the corresponding object data.
+Guance supports **Owner** and **Administrator** to delete the specified custom object classification and all custom objects, enter "Management"-"Basic Settings", click "Delete Custom Objects", and select the method of deleting custom objects to delete the corresponding object data.
 
 - Specify custom object classification: Only the data under the selected object classification will be deleted, and the index will not be deleted.
 - All custom objects: Delete all custom object data and indexes.
@@ -72,13 +72,13 @@ By clicking on the underlying property tab "Host" on the custom object details p
 
 ### Customize Built-in Views
 
-Guance Cloud supports "managing"-"built-in views" in the Guance Cloud workspace, setting bindings or deleting built-in views (system view, user view) to the infrastructure custom object details page. After binding the built-in view, you can view the bound built-in view in custom object Details.
+Guance supports "managing"-"built-in views" in the Guance workspace, setting bindings or deleting built-in views (system view, user view) to the infrastructure custom object details page. After binding the built-in view, you can view the bound built-in view in custom object Details.
 
 **Note:** Before binding a built-in view, you need to confirm whether the view variable in the bound built-in view has a field related to the object classification, such as `host`. For more configuration details, see [binding built-in views](../../scene/built-in-view/bind-view.md).
 
 ## Data Query and Analysis
 
-Enter the "Custom" observer, and Guance Cloud supports you to query and analyze custom object data by searching, filtering, sorting and grouping.
+Enter the "Custom" observer, and Guance supports you to query and analyze custom object data by searching, filtering, sorting and grouping.
 
 - “ :octicons-search-24: Search” at the top of the page supports keyword search, wildcard search, association search, JSON search and other search methods, and it supports value screening through `tags/attributes`, including forward screening, reverse screening, fuzzy matching, reverse fuzzy matching, existence and nonexistence and other screening methods. For more searching and filtering, refer to the doc [searching and filtering for the observer](../../getting-started/necessary-for-beginners/explorer-search.md#search).
 - “ :octicons-search-24: search object classification” on the left side of the page supports matching related object classification by keywords.
