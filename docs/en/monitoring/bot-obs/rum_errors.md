@@ -7,15 +7,15 @@ RUM error log inspection will help discover new error messages (Error Message af
 
 ## Precondition
 
-1. In Guance Cloud「user access monitoring」that already have access applications.
+1. In Guance「user access monitoring」that already have access applications.
 2. Offline deployment of [DataFlux Func](https://func.guance.com/#/)
 3. Open DataFlux Func's [Script Marketplace](https://func.guance.com/doc/script-market-basic-usage/)
-4. In Guance Cloud「Management / API Key Management」create [API Key](../../management/api-key/open-api.md)
-5. In DataFlux Func，by「Script Marketplace」to install「Guance Cloud Self-Built Core Package」「Guance Cloud Algorithm Library」「Guance Cloud Self-Built script RUM Log Error)」.
-6. In DataFlux Func, write self-built patrol processing functions.
+4. In Guance「Management / API Key Management」create [API Key](../../../management/api-key/open-api.md)
+5. In DataFlux Func，by「Script Marketplace」to install「Guance  Core Package」「Guance Algorithm Library」「Guance  script RUM Log Error)」.
+6. In DataFlux Func, write  patrol processing functions.
 7. In DataFlux Func , by「Manage / Auto-trigger Configurations」,create an automatic trigger configuration for the written function.
 
-> **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance Cloud SaaS[on [the same carrier in the same region](../../../getting-started/necessary-for-beginners/select-site/)。
+> **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance SaaS[on [the same carrier in the same region](../../../getting-started/necessary-for-beginners/select-site/)。
 
 ## Configure Intelligent Inspection
 
@@ -25,14 +25,14 @@ In DataFlux Func create a new set of scripts to enable RUM Log Error Intelligent
 
 ## Start Intelligent Inspection
 
-### Register detection items in Guance Cloud
+### Register detection items in Guance
 
-In DataFlux Func, after the detection is configured, you can click run to test by directly selecting `run()` method in the page, and after clicking Publish, you can view and configure it in Guance Cloud "Monitoring/Intelligent Patrol".
+In DataFlux Func, after the detection is configured, you can click run to test by directly selecting `run()` method in the page, and after clicking Publish, you can view and configure it in Guance "Monitoring/Intelligent Patrol".
 
 ![image](../img/rum_error01.png)
 
 
-### Configure RUM Log Error Intelligent Inspection in Guance Cloud
+### Configure RUM Log Error Intelligent Inspection in Guance
 
 ![image](../img/rum_error11.png)
 
@@ -63,7 +63,7 @@ You can refer to the following JSON configuration information for multiple appli
 ```
 
 ## View Events
- Guance Cloud automatically clusters error messages from all browser clients, This detection will compare all error messages in the past one hour with those in the past 12 hours. Once an error that has never occurred, an alarm will be given, and the intelligent check will generate corresponding events. Under the operation menu on the right side of the intelligent check list, click the "View Related Events" button to view the corresponding abnormal events.
+ Guance automatically clusters error messages from all browser clients, This detection will compare all error messages in the past one hour with those in the past 12 hours. Once an error that has never occurred, an alarm will be given, and the intelligent check will generate corresponding events. Under the operation menu on the right side of the intelligent check list, click the "View Related Events" button to view the corresponding abnormal events.
 
 ![image](../img/rum_error04.png)
 
@@ -100,7 +100,7 @@ Support to view associated events by filtering fields and selected time componen
 ## FAQ
 **1.How to configure the detection frequency of front-end application log error detection**
 
-* In the self-built DataFlux Func, add `fixed_crontab='0 * * * *', timeout=900` in the decorator when writing the intelligent inspection processing function, and then configure it in "Administration/Auto-trigger Configuration".
+* In the  DataFlux Func, add `fixed_crontab='0 * * * *', timeout=900` in the decorator when writing the intelligent inspection processing function, and then configure it in "Administration/Auto-trigger Configuration".
 
 **2.There may be no anomaly analysis when the front-end application log error detection is triggered**
 
