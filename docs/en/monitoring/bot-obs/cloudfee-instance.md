@@ -9,13 +9,13 @@ Cloud (now only suport alibaba cloud) Account Billing Inspection helps subscribe
 
 1. Offline deployment of [DataFlux Func](https://func.guance.com/#/)
 2. Open the [script market](https://func.guance.com/doc/script-market-basic-usage/) of  DataFlux Func 
-3. Create [API Key](../../management/api-key/open-api.md) in Guance "management/API Key management" 
+3. Create [API Key](../../../management/api-key/open-api.md) in Guance "management/API Key management" 
 4. In DataFlux Func，by「Script Marketplace」to install「Guance  Core Package」「Guance Algorithm Library」「Guance  script (Cloud Account Billing Inspection)」.
 5. Install and open[「Observation Cloud Integration (Huawei Cloud - Billing Collection - By Instance)」](https://func.guance.com/doc/script-market-guance-aliyun-billing-by-instance/)、[「Observation Cloud Integration (Tencent Cloud - Billing Collection - By Instance)」](https://func.guance.com/doc/script-market-guance-huaweicloud-billing-by-instance/)、[「Observation Cloud Integration (Alibaba Cloud - Billing Collection - By Instance)」](https://func.guance.com/doc/script-market-guance-tencentcloud-billing-by-instance/) in the Script Market, and the number of days to collect data exceeds 15 days
 6. In the DataFlux Func, write the  check processing function
 7. In the  DataFlux Func, create auto-trigger configuration for the written function through "Manage/Auto-trigger Configuration"
 
-> **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance SaaS[on [the same carrier in the same region](../../getting-started/necessary-for-beginners/select-site/)。
+> **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance SaaS[on [the same carrier in the same region](../../../getting-started/necessary-for-beginners/select-site/)。
 >
 > **Note 2:** Since instance level billing data is stored in logs, Observation Cloud SaaS log data is only stored for 15 days by default.
 

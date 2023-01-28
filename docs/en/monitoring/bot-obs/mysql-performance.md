@@ -10,12 +10,12 @@ For increasingly complex application architectures, the current trend is that mo
 
 1. Offline deployment of [DataFlux Func](https://func.guance.com/#/)
 2. Open DataFlux Func's [Script Marketplace](https://func.guance.com/doc/script-market-basic-usage/)
-3. In Guance「Management / API Key Management」create [API Key](../../management/api-key/open-api.md)
+3. In Guance「Management / API Key Management」create [API Key](../../../management/api-key/open-api.md)
 4. In DataFlux Func，by「Script Marketplace」to install「Guance  Core Package」「Guance Algorithm Library」「Guance  script (MySQL Performance)」.
 5. In DataFlux Func, write  patrol processing functions.
 6. In DataFlux Func , by「Manage / Auto-trigger Configurations」,create an automatic trigger configuration for the written function.
 
-> **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance SaaS[on [the same carrier in the same region](../../getting-started/necessary-for-beginners/select-site/).
+> **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance SaaS[on [the same carrier in the same region](../../../getting-started/necessary-for-beginners/select-site/).
 
 ## Configure Intelligent Inspection
 
