@@ -3,11 +3,11 @@
 
 ## Introduction
 
-"Guance Cloud" supports adding a map of China to the view.
+"Guance" supports adding a map of China to the view.
 
 ## Application Scenarios
 
-The world map of the guance cloud is used to display the data distribution of a certain indicator data in different provinces. It can be used in the following scenarios.
+The world map of the Guance is used to display the data distribution of a certain indicator data in different provinces. It can be used in the following scenarios.
 
 - Showing the data distribution in different regions
 - Showing the data size ranking of different regions

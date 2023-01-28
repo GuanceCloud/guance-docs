@@ -17,7 +17,7 @@ In "Monitor", select "+ New from Template" to add the specified official monitor
 
 ## Template List
 
-Guance Cloud has provided official monitoring templates, including host, Docker, Elasticsearch, Redis, Alibaba Cloud RDS, Alibaba Cloud SLB, Flink monitoring templates and so on.
+Guance has provided official monitoring templates, including host, Docker, Elasticsearch, Redis, Alibaba Cloud RDS, Alibaba Cloud SLB, Flink monitoring templates and so on.
 
 | **Templates (grouping)** | **Monitor** |
 | --- | --- |

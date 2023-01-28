@@ -3,7 +3,7 @@
 
 ## Introduction
 
-"Guance Cloud" supports custom binding of built-in views (user views) to viewers. By associating binding of built-in views with link services, applications, log sources, projects, or other custom fields, viewers that match the field values can view the newly bound built-in views via the side-sliding detail page.
+"Guance" supports custom binding of built-in views (user views) to viewers. By associating binding of built-in views with link services, applications, log sources, projects, or other custom fields, viewers that match the field values can view the newly bound built-in views via the side-sliding detail page.
 
 ???+ note
 
@@ -16,7 +16,7 @@ In 「Built-in View」 - 「User View」, you can create a binding relationship 
 
 ### 1.Creating Binding Relationships
 
-In the 「Built-in View」 - 「User View」 of Guance Cloud Workspace, select "Bindings" under "Settings", you can bind the built-in view to the viewer based on the key and value in the link service, app_id, source, project, label, or custom input space. project, label, or custom input space. Fuzzy matching of values is supported.
+In the 「Built-in View」 - 「User View」 of Guance Workspace, select "Bindings" under "Settings", you can bind the built-in view to the viewer based on the key and value in the link service, app_id, source, project, label, or custom input space. project, label, or custom input space. Fuzzy matching of values is supported.
 
 ![](../img/4.view_7.png)
 
@@ -85,7 +85,7 @@ The following is an example of binding the "User View - Network Monitor View" to
 
 ### 1.Creating Binding Relationships
 
-In Guance Cloud Workspace 「 Scene」 - 「Built-in View」 - 「User View」, select "Bind" under Settings, then you can create a binding relationship between the current built-in view and the host of guance.local with "host:guance.local" as the binding field. local.
+In Guance Workspace 「 Scene」 - 「Built-in View」 - 「User View」, select "Bind" under Settings, then you can create a binding relationship between the current built-in view and the host of guance.local with "host:guance.local" as the binding field. local.
 
 **Note: When selecting a binding field (Custom Key, Value), you need to make sure that the field can be matched exactly with the viewer object in the current workspace that supports the configuration of built-in views. If the value entered for Key, Value is not available in the workspace, the viewer cannot be matched**
 

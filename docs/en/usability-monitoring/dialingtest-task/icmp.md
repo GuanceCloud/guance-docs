@@ -7,7 +7,7 @@ ICMP dial test allows you to monitor network communication problems on your host
 
 ## Create ICMP Dial Test Task
 
-In the Guance Cloud workspace, click "New"-"API Dial Test" and select "ICMP Protocol" to create a new ICMP dial test task.
+In the Guance workspace, click "New"-"API Dial Test" and select "ICMP Protocol" to create a new ICMP dial test task.
 
 ![](../img/4.dailtesting_icmp_1.png)
 
@@ -31,7 +31,7 @@ Note:
 
 ### Select Dial Test Node
 
-At present, Guance Cloud has covered 16 nodes in the world, and it supports selecting one or more nodes in China and overseas regions (only commercial and above users are supported), so as to quickly start the service quality monitoring of the site.
+At present, Guance has covered 16 nodes in the world, and it supports selecting one or more nodes in China and overseas regions (only commercial and above users are supported), so as to quickly start the service quality monitoring of the site.
 
 ![](../img/4.dailtesting_http_4.png)
 

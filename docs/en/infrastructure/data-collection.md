@@ -3,7 +3,7 @@
 
 ## Introduction
 
-Guance Cloud supports collecting object data including hosts, cloud hosts, containers, processes and other cloud services, and then actively reports them to the workspace.
+Guance supports collecting object data including hosts, cloud hosts, containers, processes and other cloud services, and then actively reports them to the workspace.
 
 ## Preconditions
 
@@ -13,7 +13,7 @@ Guance Cloud supports collecting object data including hosts, cloud hosts, conta
 
 ### Host
 
-After the DataKit installation is completed on the host to be observed, the system will open a batch of collectors related to the host by default, and actively report the data to the Guance cloud workspace. Refer to [DataKit collector use](../datakit/datakit-input-conf.md) / [host object](../datakit/hostobject.md).
+After the DataKit installation is completed on the host to be observed, the system will open a batch of collectors related to the host by default, and actively report the data to the Guance workspace. Refer to [DataKit collector use](../datakit/datakit-input-conf.md) / [host object](../datakit/hostobject.md).
 
 Note: After host collection is started, changing the host name `host_name` will add a new host by default, and the original host name will continue to be displayed in the "Infrastructure"-"Host" list. Data will not continue to be reported after one hour until it is removed from the list after 24 hours of unreported data. Since the number of DataKits is the maximum within 24 hours, it will be counted as 2 hosts for charging in this charging cycle.
 
@@ -57,7 +57,7 @@ Note: The process collector is turned on by default, but it does not collect pro
 
 ### Custom Object
 
-Guance Cloud enables you to report custom object data to the workspace and synchronize the object data to the specified object classification.
+Guance enables you to report custom object data to the workspace and synchronize the object data to the specified object classification.
 
 - You can create new object classes and customize object fields through the path Infrastructure-Customization.
 - When reporting custom object data, you need to install and connect DataKit and DataFlux Function first, then report data to DataKit through DataFlux Function, and finally report object data to Guance Clou workspace by DataKit. For the specific operation process, please refer to the document [custom object data reporting](custom/data-reporting.md). 

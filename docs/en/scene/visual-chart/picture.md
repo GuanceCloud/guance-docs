@@ -7,7 +7,7 @@ Pictures are generally used to display pictures, you can add the picture address
 
 ## Application Scenarios
 
-The image chart of the guance cloud is used to display images to illustrate tips. For example, you can add a logo image with a link to jump to the corresponding URL.
+The image chart of the Guance is used to display images to illustrate tips. For example, you can add a logo image with a link to jump to the corresponding URL.
 
 ## Chart Style
 | Options | Description |

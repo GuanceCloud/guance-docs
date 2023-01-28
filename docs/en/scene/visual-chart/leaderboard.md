@@ -7,7 +7,7 @@ The ranking is an objective reflection of the strength of a relevant similar thi
 
 ## Application Scenarios
 
-The ranking of the guance cloud is used to display the ascending and descending ranking of data for a metric. For example, you can query the top 5 hosts for CPU usage statistics.
+The ranking of the Guance is used to display the ascending and descending ranking of data for a metric. For example, you can query the top 5 hosts for CPU usage statistics.
 
 ## Chart Search
 

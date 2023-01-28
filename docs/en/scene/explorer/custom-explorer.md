@@ -1,7 +1,7 @@
 # Quickly build a custom log viewer
 ---
 
-The log viewer is an important tool for log observation, supporting us to quickly locate the problem by searching and filtering. The "Guance Cloud" in the original log observation viewer based on the new custom log viewer support at the scene.
+The log viewer is an important tool for log observation, supporting us to quickly locate the problem by searching and filtering. The "Guance" in the original log observation viewer based on the new custom log viewer support at the scene.
 
 The custom viewer uses a new unified layout, responsive configuration mode and more scientific data association configuration, the following will take the Redis log custom viewer as an example, you can experience the following operations in the custom viewer.
 

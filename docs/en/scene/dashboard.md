@@ -127,9 +127,9 @@ On the left side of the dashboard, you can quickly filter the dashboard by "My F
 
 ## Rotating Dashboard {#player}
 
-Guance Cloud provides rotations for multiple associated business dashboards, and after setting them up, you can display them on a large screen.
+Guance provides rotations for multiple associated business dashboards, and after setting them up, you can display them on a large screen.
 
-In the Guance Cloud workspace 「Scene」 - 「Dashboard」, click 「Rotation List」on the right side to create a new rotation.
+In the Guance workspace 「Scene」 - 「Dashboard」, click 「Rotation List」on the right side to create a new rotation.
 
 ![](img/1.dashboard_player_4.png)
 

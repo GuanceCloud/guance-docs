@@ -3,7 +3,7 @@
 
 ## Overview
 
-Guance Cloud supports you to create a new tracking task through "Real User Monitoring" to monitor the customized link tracking traces in real time. By preset link tracking traces, you can centrally filter link data, accurately query user access experience, and find loopholes, anomalies and risks in time.
+Guance supports you to create a new tracking task through "Real User Monitoring" to monitor the customized link tracking traces in real time. By preset link tracking traces, you can centrally filter link data, accurately query user access experience, and find loopholes, anomalies and risks in time.
 
 ## Application Support
 
@@ -11,7 +11,7 @@ At present, the tracking function only supports the introduction of Web, Android
 
 ## New Tracking
 
-In the "Real User Monitoring" of the Guance Cloud workspace, click "Application Name" to enter the designated application, and then create a new tracking through "Tracking".
+In the "Real User Monitoring" of the Guance workspace, click "Application Name" to enter the designated application, and then create a new tracking through "Tracking".
 
 For "New Tracking", you need to set the name and field, and complete the import configuration after generating the tracking ID
 

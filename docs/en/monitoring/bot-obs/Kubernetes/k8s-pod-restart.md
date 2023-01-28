@@ -8,15 +8,15 @@ Kubernetes helps users automatically schedule and expand containerized applicati
 
 ## Preconditions
 
-1. Open「[container data collection](https://docs.guance.com/datakit/container/) 」in Guance Cloud
+1. Open「[container data collection](../../../../datakit/container/) 」in Guance
 2. Offline deployment of [DataFlux Func](https://func.guance.com/#/)
 3. Open DataFlux Func's [Script Marketplace](https://func.guance.com/doc/script-market-basic-usage/)
-4. In Guance Cloud「Management / API Key Management」create [API Key](../../management/api-key/open-api.md)
-5. In DataFlux Func，by「Script Marketplace」to install「Guance Cloud Self-Built Core Package」「Guance Cloud Algorithm Library」「Guance Cloud Self-Built script (APM Performance)」.
-6. In DataFlux Func, write self-built patrol processing functions.
+4. In Guance「Management / API Key Management」create [API Key](../../../../management/api-key/open-api.md)
+5. In DataFlux Func，by「Script Marketplace」to install「Guance  Core Package」「Guance Algorithm Library」「Guance  script (APM Performance)」.
+6. In DataFlux Func, write  patrol processing functions.
 7. In DataFlux Func , by「Manage / Auto-trigger Configurations」,create an automatic trigger configuration for the written function.
 
-> **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance Cloud SaaS[on [the same carrier in the same region](../../../getting-started/necessary-for-beginners/select-site/)。
+> **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance SaaS[on [the same carrier in the same region](../../../../getting-started/necessary-for-beginners/select-site/)。
 
 ## Configure Intelligent Inspection
 
@@ -26,13 +26,13 @@ In DataFlux Func create a new set of scripts to enable Kubernetes Pod Abnormal R
 
 ## Start Intelligent Inspection
 
-### Register detection items in Guance Cloud
+### Register detection items in Guance
 
-In DataFlux Func, after the check is configured, you can click run to test by directly selecting `run()` method in the page, and after clicking Publish, you can view and configure it in Guance Cloud "Monitoring/Intelligent Check".
+In DataFlux Func, after the check is configured, you can click run to test by directly selecting `run()` method in the page, and after clicking Publish, you can view and configure it in Guance "Monitoring/Intelligent Check".
 
 ![image](../../img/k8s-pod-restart01.png)
 
-### Configure Kubernetes Pod Abnormal Restart Intelligent Inspection in Guance cloud
+### Configure Kubernetes Pod Abnormal Restart Intelligent Inspection in Guance
 
 ![image](../../img/k8s-pod-restart02.png)
 
@@ -67,7 +67,7 @@ Intelligent Inspection supports "Export JSON configuration". Under the operation
 
 ### View Events
 
-  Intelligent check is based on the Guance Cloud check algorithm, which will find out whether there will be abnormal restart of Pod in the currently configured cluster. For abnormal situations, intelligent check will generate corresponding events. Under the operation menu on the right side of intelligent check list, click the "View Related Events" button to view the corresponding abnormal events.
+  Intelligent check is based on the Guance check algorithm, which will find out whether there will be abnormal restart of Pod in the currently configured cluster. For abnormal situations, intelligent check will generate corresponding events. Under the operation menu on the right side of intelligent check list, click the "View Related Events" button to view the corresponding abnormal events.
 
 ![image](../../img/k8s-pod-restart04.png)
 

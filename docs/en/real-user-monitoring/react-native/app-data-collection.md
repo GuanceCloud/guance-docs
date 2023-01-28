@@ -6,7 +6,7 @@ React Native data collection relies on the Android iOS Native framework, and for
 
 ## Data Type
 
-Real User Monitoring of Guance Cloud includes six data types.
+Real User Monitoring of Guance includes six data types.
 
 | **Type** | **Description** |
 | --- | --- |

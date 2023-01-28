@@ -1,7 +1,7 @@
 # Notification Object Management
 ---
 
-Guance Cloud supports you to set notification objects of alarm events through "Management"-"Notification Object Management", including Dingding robot, enterprise WeChat robot, flying book robot, Webhook customization, mail group and SMS group. Refer to the documentation [alarm settings](../monitoring/alert-setting.md) for how to set up alarm notifications.
+Guance supports you to set notification objects of alarm events through "Management"-"Notification Object Management", including Dingding robot, enterprise WeChat robot, flying book robot, Webhook customization, mail group and SMS group. Refer to the documentation [alarm settings](../monitoring/alert-setting.md) for how to set up alarm notifications.
 
 
 ## New Notification Object
@@ -127,7 +127,7 @@ Content-Type: application/json
 
 Note: Webhook supports only the json format for the type of content sent by custom notifications. See the document [event generation](../events/generating.md).
 
-For more detailed practice documentation on Webhook customization, please refer to《[Guance Cloud Webhook custom alert notification integration](../dataflux-func/guance-alert-webhook-integration.md)》
+For more detailed practice documentation on Webhook customization, please refer to《[Guance Webhook custom alert notification integration](../dataflux-func/guance-alert-webhook-integration.md)》
 
 ### 5. Create a New Message Group
 

@@ -3,7 +3,7 @@
 
 ## Introduction
 
-Guance Cloud provides an application performance monitoring error data analysis observer. You can quickly view the historical trend and distribution of similar errors in the link in the "error tracing" of "application performance monitoring", and help quickly locate performance problems.
+Guance provides an application performance monitoring error data analysis observer. You can quickly view the historical trend and distribution of similar errors in the link in the "error tracing" of "application performance monitoring", and help quickly locate performance problems.
 
 The error tracing observer includes two lists: "All Errors" and "Clustering Analysis":
 
@@ -13,11 +13,11 @@ The error tracing observer includes two lists: "All Errors" and "Clustering Anal
 
 ## Data Query and Analysis
 
-Guance Cloud obserever provides powerful query and analysis functions, You can use the time control, search and filter data within a certain time range, quickly filter, customize display columns, export data and other operations. Through chart analysis mode, all wrong link data are grouped and counted based on **1-3 labels** in order to reflect the distribution characteristics and trends of wrong links in different groups and at different times and help you quickly find wrong links to locate performance problems. See the documentation [observer notes](../getting-started/necessary-for-beginners/explorer-search.md).
+Guance obserever provides powerful query and analysis functions, You can use the time control, search and filter data within a certain time range, quickly filter, customize display columns, export data and other operations. Through chart analysis mode, all wrong link data are grouped and counted based on **1-3 labels** in order to reflect the distribution characteristics and trends of wrong links in different groups and at different times and help you quickly find wrong links to locate performance problems. See the documentation [observer notes](../getting-started/necessary-for-beginners/explorer-search.md).
 
 ## All errors
 
-If you need to view all link errors in the project application as a whole, you can view and analyze the error data of all links by selecting the "All Errors" list in the Guance Cloud workspace "Application Performance Monitoring"-"Error Tracking".
+If you need to view all link errors in the project application as a whole, you can view and analyze the error data of all links by selecting the "All Errors" list in the Guance workspace "Application Performance Monitoring"-"Error Tracking".
 
 ???+ attention
 
@@ -49,7 +49,7 @@ You can also switch to "Error Details" to view the error details of upstream and
 
 ## Cluster Analysis
 
-If you need to check the errors with high frequency, you can select the "Cluster Analysis" list in the Guance Cloud workspace "Application Performance Monitoring"-"Error Tracing" to quickly check the most frequent error links and help you locate error problems.
+If you need to check the errors with high frequency, you can select the "Cluster Analysis" list in the Guance workspace "Application Performance Monitoring"-"Error Tracing" to quickly check the most frequent error links and help you locate error problems.
 
 ???+ attention
 

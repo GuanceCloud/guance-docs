@@ -13,7 +13,7 @@ In the Error explorer, you can:
 
 ## Precondition
 
-Guance Cloud supports collecting errors, resources, requests, performance metrics, etc. by means of introducing SDK scripts. For details, you can refer to [Rum Collector Configuration](... /... /datakit/rum.md).
+Guance supports collecting errors, resources, requests, performance metrics, etc. by means of introducing SDK scripts. For details, you can refer to [Rum Collector Configuration](... /... /datakit/rum.md).
 
 ## Error Explorer
 
@@ -40,7 +40,7 @@ In the error details, you can view the details of the error.
 
 When the application is released in the production environment, in order to prevent code leakage and other security issues, generally the packaging process will do conversion, compression and other operations for the file. While the above measures ensure code security, they also result in the collection of error stack information after obfuscation, which makes it impossible to locate the problem directly and brings inconvenience to the subsequent bug investigation.
 
-Guance Cloud provides sourcemap function for applications, which supports restoring the obfuscated code to locate the source code and help users solve the problem faster.
+Guance provides sourcemap function for applications, which supports restoring the obfuscated code to locate the source code and help users solve the problem faster.
 
 You can see the documentation [Sourcemap conversion](... /... /datakit/rum.md#sourcemap) to configure it. After the configuration, you can view the error map in the error details, as well as the parsed code and the original code.
 

@@ -3,7 +3,7 @@
 
 ## Overview
 
-Application performance analysis can be viewed through the Guance Cloud console after application data has been collected to the Guance Cloud, improve page loading (LCP), interactivity (FID) and page stability (CLS), and improve the user experience.
+Application performance analysis can be viewed through the Guance console after application data has been collected to the Guance, improve page loading (LCP), interactivity (FID) and page stability (CLS), and improve the user experience.
 
 LCP, FID, CLS are Google's core website metrics that measure the speed of loading, interactivity and page stability of a website.
 
@@ -17,11 +17,11 @@ LCP, FID, CLS are Google's core website metrics that measure the speed of loadin
 
 ## Explorer Analysis
 
-Guance Cloud provides Real User Monitoring explorer to help you view and analyze detailed information about user access to your applications. In "Real User Monitoring" , click on any application and then you can use "Explorer" to understand each user session, page performance, resources, long tasks, errors in action, the impact of latency on users, and help you fully understand and improve the operation status and usage of your application through search, filtering and correlation analysis to improve user experience. More details can be found in the documentation [Explorer](... /explorer/index.md).
+Guance provides Real User Monitoring explorer to help you view and analyze detailed information about user access to your applications. In "Real User Monitoring" , click on any application and then you can use "Explorer" to understand each user session, page performance, resources, long tasks, errors in action, the impact of latency on users, and help you fully understand and improve the operation status and usage of your application through search, filtering and correlation analysis to improve user experience. More details can be found in the documentation [Explorer](... /explorer/index.md).
 
 ## Scene Analysis
 
-Guance Cloud provides visual Web application analysis with multiple built-in Web application monitoring data scenarios, including overview, page performance analysis, resource loading analysis, and JS error analysis.
+Guance provides visual Web application analysis with multiple built-in Web application monitoring data scenarios, including overview, page performance analysis, resource loading analysis, and JS error analysis.
 
 ### Overview
 

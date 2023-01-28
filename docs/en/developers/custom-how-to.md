@@ -92,7 +92,7 @@ The static hostname is saved in the /etc/hostname file and can be modified by na
 
 5、 Observation
 
-Log in to the [Guance Cloud](https://www.guance.com) Console->Navigation Bar->Scheck: Check the installation sheck information and find a message that the host name has been modified
+Log in to the [Guance](https://www.guance.com) Console->Navigation Bar->Scheck: Check the installation sheck information and find a message that the host name has been modified
 
    ![](img/image-hostname.png)
 

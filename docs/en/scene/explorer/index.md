@@ -3,7 +3,7 @@
 
 ## Overview
 
-Guance Cloud's Scene Custom explorer provides you with a quickly buildable log explorer. You can build a custom based log explorer with your space members to customize your viewing needs, and you can also export and share the finished explorer with others to share the explorer template.
+Guance's Scene Custom explorer provides you with a quickly buildable log explorer. You can build a custom based log explorer with your space members to customize your viewing needs, and you can also export and share the finished explorer with others to share the explorer template.
 
 ## New explorer
 
@@ -21,7 +21,7 @@ Select 「+New Blank Explorer」 and complete the custom explorer name and label
 
 - explorer name: The explorer name cannot be repeated in the workspace and supports a maximum length of 64 characters
 
-- Custom labels: Support for users to create their own labels." Guance Cloud" dashboard and explorers share a set of tag data, click 「tag」 to search for the corresponding explorer
+- Custom labels: Support for users to create their own labels." Guance" dashboard and explorers share a set of tag data, click 「tag」 to search for the corresponding explorer
 
 - Data type: Users need to choose the data type of the explorer, you can choose log, application performance, user access, security patrol, Profile, which are 5 types of data types. After saving, it cannot be changed.
 
@@ -96,13 +96,13 @@ Note: explorer formatting configuration is only available for administrators and
 
 ## Import/export/copy explorer
 
-Guance Cloud supports copying the current explorer as a new explorer for editing; it supports exporting Json files as templates to share the data monitoring scheme of the current explorer to achieve the value of using templates repeatedly, and the exported explorer Json files can be edited by importing a new one or overwriting the original template.
+Guance supports copying the current explorer as a new explorer for editing; it supports exporting Json files as templates to share the data monitoring scheme of the current explorer to achieve the value of using templates repeatedly, and the exported explorer Json files can be edited by importing a new one or overwriting the original template.
 
 ![](../img/explorer003.png)
 
 ## Save Snapshot
 
-Guance Cloud supports the shortcut key (Windows: Ctrl+K / Mac OS: Cmd+K) to quickly save the current log content as a snapshot for sharing, or choose to save it by clicking 「Save Snapshot」 in the 「Settings」 button.
+Guance supports the shortcut key (Windows: Ctrl+K / Mac OS: Cmd+K) to quickly save the current log content as a snapshot for sharing, or choose to save it by clicking 「Save Snapshot」 in the 「Settings」 button.
 
 ![](../img/explorer004.png)
 

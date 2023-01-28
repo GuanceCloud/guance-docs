@@ -3,7 +3,7 @@
 
 ## Introduction
 
-Guance Cloud supports users to access the monitoring association log, and associates the application performance monitoring by injecting `span_id`, `trace_id`, `env`, `service` and `version` into the log. After association, the specific log associated with the request can be viewed in the application performance monitoring.
+Guance supports users to access the monitoring association log, and associates the application performance monitoring by injecting `span_id`, `trace_id`, `env`, `service` and `version` into the log. After association, the specific log associated with the request can be viewed in the application performance monitoring.
 
 ![](../../img/13.apm_log.png)
 

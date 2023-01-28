@@ -4,9 +4,9 @@
 
 This article describes the basic installation of DataKit.
 
-## Register/log in to Guance Cloud {#login-guance}
+## Register/log in to Guance {#login-guance}
 
-The browser visits the [Guance Cloud registration](https://auth.guance.com/redirectpage/register){:target="_blank"} portal, fills in the corresponding information, and then [logs in to Guance Cloud](https://console.guance.com/pageloading/login){:target="_blank"}.
+The browser visits the [Guance registration](https://auth.guance.com/redirectpage/register){:target="_blank"} portal, fills in the corresponding information, and then [logs in to Guance](https://console.guance.com/pageloading/login){:target="_blank"}.
 
 ## Get the Installation Command {#get-install}
 

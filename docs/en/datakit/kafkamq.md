@@ -277,7 +277,7 @@ Suppose you get a json-formatted plain text string of metric:
 ```
 
 
-With the data format, you can write pipeline scripts by hand. Log in to Guance Cloud-> Management-> Text Processing (Pipeline) to write scripts. Such as:
+With the data format, you can write pipeline scripts by hand. Log in to Guance-> Management-> Text Processing (Pipeline) to write scripts. Such as:
 
 ```toml
 data=load_json(message)

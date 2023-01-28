@@ -8,15 +8,15 @@ When server-side operation errors occur, we need to find early and timely warnin
 
 ## Preconditions
 
-1. In Guance Cloud「application performance monitoring」that already have access applications.
+1. In Guance「application performance monitoring」that already have access applications.
 2. Offline deployment of [DataFlux Func](https://func.guance.com/#/)
 3. Open DataFlux Func's [Script Marketplace](https://func.guance.com/doc/script-market-basic-usage/)
-4. In Guance Cloud「Management / API Key Management」create [API Key](../../management/api-key/open-api.md)
-5. In DataFlux Func，by「Script Marketplace」to install「Guance Cloud Self-Built Core Package」「Guance Cloud Algorithm Library」「Guance Cloud Self-Built script (APM Performance)」.
-6. In DataFlux Func, write self-built patrol processing functions.
+4. In Guance「Management / API Key Management」create [API Key](../../../management/api-key/open-api.md)
+5. In DataFlux Func，by「Script Marketplace」to install「Guance  Core Package」「Guance Algorithm Library」「Guance  script (APM Performance)」.
+6. In DataFlux Func, write  patrol processing functions.
 7. In DataFlux Func , by「Manage / Auto-trigger Configurations」,create an automatic trigger configuration for the written function.
 
-> **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance Cloud SaaS[on [the same carrier in the same region](../../../getting-started/necessary-for-beginners/select-site/)。
+> **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance SaaS[on [the same carrier in the same region](../../../getting-started/necessary-for-beginners/select-site/)。
 
 ## Configure Intelligent Inspection
 
@@ -26,13 +26,13 @@ In DataFlux Func create a new set of scripts to enable Server Application Error 
 
 ## Start Intelligent Inspection
 
-### Register detection items in Guance Cloud
+### Register detection items in Guance
 
-After configuring the inspection in DataFlux Func, you can run the test by selecting the `run()` method directly on the page, and then you can view and configure it in the Guance Cloud "Monitoring / Intelligent Inspection" after clicking Publish.
+After configuring the inspection in DataFlux Func, you can run the test by selecting the `run()` method directly on the page, and then you can view and configure it in the Guance "Monitoring / Intelligent Inspection" after clicking Publish.
 
 ![image](../img/apm-errors01.png)
 
-### Configure Server Application Error Intelligent Inspection in Guance Cloud
+### Configure Server Application Error Intelligent Inspection in Guance
 
 ![image](../img/apm-errors02.png)
 
@@ -67,7 +67,7 @@ You can refer to the following JSON configuration information for multiple proje
     }
 ```
 
->  **Note**: In the self-built DataFlux Func, filter conditions can also be added when writing the self-built check processing function (refer to the sample code configuration). Note that the parameters configured in the Guance Cloud studio will override the parameters configured when writing the self-built check processing function.
+>  **Note**: In the  DataFlux Func, filter conditions can also be added when writing the  check processing function (refer to the sample code configuration). Note that the parameters configured in the Guance studio will override the parameters configured when writing the  check processing function.
 
 ## View Events
 
@@ -115,7 +115,7 @@ Support to view related events through filtering fields and selected time compon
 
 **1.How to configure the detection frequency of server application error check**
 
-* In the self-built DataFlux Func, add `fixed_crontab='0 * * * *', timeout=1800` in the decorator when writing the self-built check processing function, and then configure it in "admin/auto-trigger configuration".
+* In the  DataFlux Func, add `fixed_crontab='0 * * * *', timeout=1800` in the decorator when writing the  check processing function, and then configure it in "admin/auto-trigger configuration".
 
 **2.There may be no exception analysis when the server applies error check trigger**
 

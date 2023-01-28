@@ -3,7 +3,7 @@
 
 ## Overview
 
-"Network data detection" is used to monitor the metric data of "network performance monitoring" in the workspace. By setting the threshold range, an alarm is triggered when the metric reaches the threshold. Guance Cloud supports setting alarms and customizing alarm levels for individual metrics.
+"Network data detection" is used to monitor the metric data of "network performance monitoring" in the workspace. By setting the threshold range, an alarm is triggered when the metric reaches the threshold. Guance supports setting alarms and customizing alarm levels for individual metrics.
 
 ## Application Scene
 Support monitoring metric data whose data source is netflow/httpflow. For example, monitor the number of requests, errors and error rates for which the host data source is httpflow.

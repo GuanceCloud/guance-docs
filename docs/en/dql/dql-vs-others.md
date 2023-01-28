@@ -4,7 +4,7 @@
 <a name="1ad93e28"></a>
 # Preface
 
-DQL is a unified query language for Guance Cloud. In order to facilitate everyone to learn this language, we select several different query languages to compare with it, so that everyone can understand and use DQL quickly.
+DQL is a unified query language for Guance. In order to facilitate everyone to learn this language, we select several different query languages to compare with it, so that everyone can understand and use DQL quickly.
 
 Here we choose [PromQL](https://prometheus.io/docs/prometheus/latest/querying/basics/), [LogQL](https://grafana.com/docs/loki/latest/logql/) and well-known SQL statements as a comparison, and make a comparison of the basic use of each query language.
 
@@ -120,7 +120,7 @@ T::my_service { duration > 1000 } [10m] BY operation
 | PromQL | Prometheuse Indicator Query | Available | Unavailable | Available | [Available](https://prometheus.io/docs/prometheus/latest/querying/operators/#aggregation-operators) |
 | LogQL | Mainly used for querying logs | Support generating metrics from logs | Available | Available | [Available](https://grafana.com/docs/loki/latest/logql/#aggregation-operators) |
 | SQL | Universal Query Language | [Certain databases](https://www.timescale.com/)<br />support sequential storage | Unavailable | Unavailable | Unavailable |
-| DQL | Data Query of Guance Cloud Platform | Available | Available | Available | Available |
+| DQL | Data Query of Guance Platform | Available | Available | Available | Available |
 
 
 <a name="8d81dc5d"></a>
@@ -239,7 +239,7 @@ show_logging_source() # View log classification list
 
 The above content makes some fundamental introduction to several common query languages. Each language has its specific application field, and its functional differences are obvious. As far as DQL is concerned, its original intention is to provide a query scheme with mixed storage, which is the biggest difference between DQL and other query languages in this paper. Although DQL does not have a separate storage engine, its scalability is unmatched by several others, which is also in line with its positioning of hybrid storage query.
 
-At present, DQL is still actively developing and improving, and there is still much room for improvement in function and performance. At present, DQL is fully used in all data queries of Guance cloud, and its function, performance and stability have been verified for a long time. With the iteration of the whole product of Guance cloud, the integrity of DQL itself will gradually evolve to meet the needs of the product side and the majority of developers.
+At present, DQL is still actively developing and improving, and there is still much room for improvement in function and performance. At present, DQL is fully used in all data queries of Guance, and its function, performance and stability have been verified for a long time. With the iteration of the whole product of Guance, the integrity of DQL itself will gradually evolve to meet the needs of the product side and the majority of developers.
 
 
 ---

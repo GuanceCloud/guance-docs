@@ -17,7 +17,7 @@ In the Profile observer, you can:
 
 ## Data Query and Analysis
 
-After the Profile data is reported to the Guance Cloud workspace, you can learn about the performance of your program code through the Profile Real-Time Data Observer. The function supports the query and analysis of Profile data, including search and filtering, quick filtering, adding display columns, data export and so on. See the documentation [observer notes](../getting-started/necessary-for-beginners/explorer-search.md) for more details.
+After the Profile data is reported to the Guance workspace, you can learn about the performance of your program code through the Profile Real-Time Data Observer. The function supports the query and analysis of Profile data, including search and filtering, quick filtering, adding display columns, data export and so on. See the documentation [observer notes](../getting-started/necessary-for-beginners/explorer-search.md) for more details.
 
 Note: Profile data is saved for 7 days by default.
 
@@ -88,7 +88,7 @@ On the Profile Details page, click View "Running Information" to view some infor
 
 ## Link Association Profile {#correlate-trace}
 
-When the application uses the ddtrace collector to enable APM link tracing and Profile performance tracing data collection at the same time, Guance Cloud provides Span-level correlation view analysis. In the link details page of application performance monitoring, select Span of flame graph, obtain code hotspot information of corresponding time period, and directly view the code method call list and the execution time and proportion information of Wall Time in this time period. The method list supports recursive viewing of the sequence of method calls and the execution time.
+When the application uses the ddtrace collector to enable APM link tracing and Profile performance tracing data collection at the same time, Guance provides Span-level correlation view analysis. In the link details page of application performance monitoring, select Span of flame graph, obtain code hotspot information of corresponding time period, and directly view the code method call list and the execution time and proportion information of Wall Time in this time period. The method list supports recursive viewing of the sequence of method calls and the execution time.
 
 ![](img/9.apm_explorer_11.png)
 

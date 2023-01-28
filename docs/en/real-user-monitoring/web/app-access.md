@@ -21,7 +21,7 @@
 
 ## Overview
 
-Guance Cloud Real User Monitoring can analyze the performance of each Web application in a visual way by collecting the metrics data of each Web application.
+Guance Real User Monitoring can analyze the performance of each Web application in a visual way by collecting the metrics data of each Web application.
 
 ## Precondition
 
@@ -30,7 +30,7 @@ Guance Cloud Real User Monitoring can analyze the performance of each Web applic
   
 ## Web Application Access
 
-Login to Guance Cloud Console, enter "Real User Monitoring" page, click "New Application" in the upper right corner, enter "Application Name" and customize "Application ID" in the new window, and click "Create" to select the application type to get access.
+Login to Guance Console, enter "Real User Monitoring" page, click "New Application" in the upper right corner, enter "Application Name" and customize "Application ID" in the new window, and click "Create" to select the application type to get access.
 
 - Application Name (required): The name of the application used to identify the current implementation of user access monitoring.
 - Application ID (required): The unique identification of the application in the current workspace, which is used for SDK data collection and upload matching, and corresponds to the field: app_id after data entry. This field only supports English, numeric, underscore input, up to 48 characters.
@@ -119,7 +119,7 @@ Login to Guance Cloud Console, enter "Real User Monitoring" page, click "New App
 
 | Parameter                      | Type     | Required | Default Value                      | Description                                                  |
 | ------------------------------ | -------- | -------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `applicationId`                | String   | Yes    |                                    | Application IDs created from the Guance Cloud                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `applicationId`                | String   | Yes    |                                    | Application IDs created from the Guance                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | `datakitOrigin`                | String   | Yes    |                                    | Datakit data reporting Origin comments: <br>`Protocol (including: //), domain name (or IP address) [and port number]`<br> For example.<br>[https://www.datakit.com](https://www.datakit.com), <br>[http://100.20.34.3:8088](http://100.20.34.3:8088)                                                                                                                                                                                                                       |
 | `env`                          | String   | No      |                                    | The current environment of the web application, such as prod: online environment; gray: grayscale environment; pre: pre-release environment common: daily environment; local: local environment.                                                                                                                                                                                                                                                           |
 | `version`                      | String   | No     |                                    | Version number of the web application                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |

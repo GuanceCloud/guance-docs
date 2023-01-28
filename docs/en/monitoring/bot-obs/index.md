@@ -39,7 +39,7 @@
 
 * **Cloud Account Billing Intelligent Inspection**：Cloud ( Alibaba Cloud, Tecent Cloud, Huawei Cloud ) Account Billing Inspection helps subscribers manage budget alerts, abnormal cost alerts, forecast costs for cloud services and provides subscribers with the ability to visualize and support multi-dimensional visualization of consumption of cloud service resources.
 * **RUM Log Error Intelligent Inspection**：RUM error log inspection will help discover new error messages (Error Message after clustering) of the front-end application in the past hour, helping development and operation and maintenance to fix the code in time to avoid continuous harm to customer experience with the accumulation of time.
-* **Alibaba Cloud Asset Intelligent Inspection**：It provides additional data access capability for Guance Cloud, which is convenient for users to have a better understanding of the product performance status of cloud suppliers.
+* **Alibaba Cloud Asset Intelligent Inspection**：It provides additional data access capability for Guance, which is convenient for users to have a better understanding of the product performance status of cloud suppliers.
 
 ### Issue Fix
 

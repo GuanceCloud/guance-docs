@@ -7,7 +7,7 @@ The scatter plot represents the general trend of the dependent variable with the
 
 ## Application Scenarios
 
-A scatter plot of the guance cloud is used to see the distribution and aggregation of data. For example, you can see the distribution of CPU system usage and user usage across hosts.
+A scatter plot of the Guance is used to see the distribution and aggregation of data. For example, you can see the distribution of CPU system usage and user usage across hosts.
 
 ## Chart Search
 

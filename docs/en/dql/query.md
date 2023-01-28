@@ -3,7 +3,7 @@
 
 ## Introduction
 
-In the Guance Cloud workspace, click Shortcut Entry-DQL Query in the menu bar to open the DQL Query Viewer, or you can directly open the DQL Query through the shortcut key `Alt+Q`.<br />![](img/3.dql_6.png)
+In the Guance workspace, click Shortcut Entry-DQL Query in the menu bar to open the DQL Query Viewer, or you can directly open the DQL Query through the shortcut key `Alt+Q`.<br />![](img/3.dql_6.png)
 
 ### Simple Query
 Click the toggle button on the right side of DQL Query ![](img/3.dql_5.png), you can switch DQL queries to simple queries.<br />Note: When DQL Query is switched to Simple Query, if it cannot be parsed or parsed incompletely:
@@ -43,9 +43,9 @@ namespace::
 
 ### Example Description
 
-Here is a simple example of querying the field usage_idle (CPU idle rate) of the temporal metric set cpu through DQL, filtering the filter as host, and displaying the results in groups as host. Where # {host} is the view variable set in the Guance Cloud dashboard for filtering.<br />![](img/4.DQL_2.1.png)
+Here is a simple example of querying the field usage_idle (CPU idle rate) of the temporal metric set cpu through DQL, filtering the filter as host, and displaying the results in groups as host. Where # {host} is the view variable set in the Guance dashboard for filtering.<br />![](img/4.DQL_2.1.png)
 
-Apply the above statement to the chart query of Guance Cloud Scene Dashboard. The following figure combines expression query and DQL query to show the CPU utilization in the last 15 minutes. <br />![](img/4.DQL_2.png)
+Apply the above statement to the chart query of Guance Scene Dashboard. The following figure combines expression query and DQL query to show the CPU utilization in the last 15 minutes. <br />![](img/4.DQL_2.png)
 
 ## DQL Function
 

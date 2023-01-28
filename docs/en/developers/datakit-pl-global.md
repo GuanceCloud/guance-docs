@@ -20,7 +20,7 @@ Since DataKit v1.4.0, DataKit can be directly manipulated to collect data throug
 >
 > - Pipeline is applied to all data and is currently in the experimental stage, so there is no guarantee that incompatible adjustments will be made to the mechanism or behavior later.
 > - Even data reported through the [DataKit API](apis.md) supports Pipeline processing.
-> - Using Pipeline to process the existing data (especially non-log data) may destroy the existing data structure and lead to abnormal performance of the data on Guance Cloud.
+> - Using Pipeline to process the existing data (especially non-log data) may destroy the existing data structure and lead to abnormal performance of the data on Guance.
 > - Before applying Pipeline, be sure to use the [Pipeline debugging tool](datakit-pl-how-to.md) to confirm that the data processing is as expected.
 
 Pipeline can do the following on the data collected by DataKit:

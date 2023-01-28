@@ -3,7 +3,7 @@
 
 ## Introduction
 
-Guance Cloud supports custom dialing tasks. By creating dialing test tasks based on different protocols such as `HTTP、TCP、ICMP、WEBSOCKET`, the network performance, network quality and network data transmission stability of different regions and different operators to various services are comprehensively monitored.
+Guance supports custom dialing tasks. By creating dialing test tasks based on different protocols such as `HTTP、TCP、ICMP、WEBSOCKET`, the network performance, network quality and network data transmission stability of different regions and different operators to various services are comprehensively monitored.
 
 ## Explanation of Nouns
 
@@ -17,7 +17,7 @@ Guance Cloud supports custom dialing tasks. By creating dialing test tasks based
 
 ## Create A Dial Test Task
 
-In the Guance Cloud workspace "Usability Monitoring"-"New", you can create dial test tasks, including HTTP protocol, TCP protocol, ICMP protocol, WEBSOCKET protocol and other options.
+In the Guance workspace "Usability Monitoring"-"New", you can create dial test tasks, including HTTP protocol, TCP protocol, ICMP protocol, WEBSOCKET protocol and other options.
 
 **Note:**
 
@@ -36,5 +36,5 @@ After creating the dialing test task, the dialing test task is "started" by defa
 
 ## More Advanced Configurations
 
-Guance Cloud supports the rapid establishment of private deployment nodes distributed all over the world through "self-built node management". For operation details, please refer to [self-built node management](../self-node.md), and for specific deployment documents, please refer to [network dial test](../../integrations/network/dialtesting.md).
+Guance supports the rapid establishment of private deployment nodes distributed all over the world through "self-built node management". For operation details, please refer to [self-built node management](../self-node.md), and for specific deployment documents, please refer to [network dial test](../../integrations/network/dialtesting.md).
 

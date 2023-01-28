@@ -3,11 +3,11 @@
 
 ## Introduction
 
-Process data collection will be reported to the Guance Cloud console after being successfully reported. In the "Process" of "Infrastructure", you can view all process data information in the current workspace **for the last 10 minutes**.
+Process data collection will be reported to the Guance console after being successfully reported. In the "Process" of "Infrastructure", you can view all process data information in the current workspace **for the last 10 minutes**.
 
 ## Query and Analysis
 
-Enter the "Process" observer, and Guance Cloud supports you to query process data by searching keywords, adding label filters and sorting.
+Enter the "Process" observer, and Guance supports you to query process data by searching keywords, adding label filters and sorting.
 
 #### Time control
 
@@ -29,7 +29,7 @@ The observer shortcut filter supports editing "shortcut filter" and adding new f
 
 #### Custom Display Columns
 
-On the process list page, Guance Cloud displays PID, user, host and other information for you by default. You can customize to add, edit, delete and drag display columns through Display Columns. When the mouse hovers over the observer display column, click the「 :material-cog: settings」button, which supports ascending, descending, moving columns to the left, moving columns to the right, adding columns to the left, adding columns to the right, replacing columns, adding to shortcut filtering, adding to analysis (grouping aggregation analysis), removing columns and other operations. See the documentation [display column description](../getting-started/necessary-for-beginners/explorer-search.md#columns) for more custom display columns.
+On the process list page, Guance displays PID, user, host and other information for you by default. You can customize to add, edit, delete and drag display columns through Display Columns. When the mouse hovers over the observer display column, click the「 :material-cog: settings」button, which supports ascending, descending, moving columns to the left, moving columns to the right, adding columns to the left, adding columns to the right, replacing columns, adding to shortcut filtering, adding to analysis (grouping aggregation analysis), removing columns and other operations. See the documentation [display column description](../getting-started/necessary-for-beginners/explorer-search.md#columns) for more custom display columns.
 
 #### Sorting
 
@@ -60,7 +60,7 @@ Click on the process name in the process list, and you can draw out the details 
 
 ### Association Analysis
 
-Guance Cloud supports correlation analysis of each process. In the process details page, you can not only understand the basic information of the process, but also associate the **metrics, logs, hosts and networks of the corresponding process in one stop, so as to monitor the running of the process faster and more comprehensively**.
+Guance supports correlation analysis of each process. In the process details page, you can not only understand the basic information of the process, but also associate the **metrics, logs, hosts and networks of the corresponding process in one stop, so as to monitor the running of the process faster and more comprehensively**.
 
 #### Association Host Query
 
@@ -92,7 +92,7 @@ At the bottom of the Details page, switch the Content tab to allow you to:
 
 === "Metrics"
 
-    On the Process Details page, Guance Cloud enables you to monitor the performance status of the process **in the last 24 hours** in real time through the "Process" of the Details page, including CPU utilization, memory utilization and number of open files.
+    On the Process Details page, Guance enables you to monitor the performance status of the process **in the last 24 hours** in real time through the "Process" of the Details page, including CPU utilization, memory utilization and number of open files.
     Note: The collection of process metric data does not automatically start by default. It is necessary to manually configure the process collector to start the collection of process metrics. Please refer to the document [process](../datakit/host_processes.md). After the process metric data is collected, the metrics in the following figure will display the data.
 
 === "Log"
@@ -100,12 +100,12 @@ At the bottom of the Details page, switch the Content tab to allow you to:
     Through "Log" at the bottom of the details page, you can view the logs and the number of logs related to the process **in the last 1 hour** , and perform keyword search, multi-label filtering and time sorting on these related logs.
     - If you need to view more detailed log information, you can click the log content to jump to the corresponding log details page, or click "Jump" to "Log" to view all logs related to the host.
     - If you need to view more log fields or more complete log contents, you can customize and adjust "Maximum Display Rows" and "Display Columns" through "Display Columns" in the associated log observer.
-    **Note: For a smoother user query experience, Guance Cloud immediately saves the user's browsing settings in the "Log" by default (including "Maximum Display Rows" and "Display Columns"), so that the "Association Log" is consistent with the "Log". However, the custom adjustments made in the Association Log are not saved after exiting the page.**
+    **Note: For a smoother user query experience, Guance immediately saves the user's browsing settings in the "Log" by default (including "Maximum Display Rows" and "Display Columns"), so that the "Association Log" is consistent with the "Log". However, the custom adjustments made in the Association Log are not saved after exiting the page.**
 
 
 === "Host"
 
-    Guance Cloud enables you to view the basic information of related hosts (related field: host) and the status of performance indicators **within the selected time component** through the "host" at the bottom of the details page.
+    Guance enables you to view the basic information of related hosts (related field: host) and the status of performance indicators **within the selected time component** through the "host" at the bottom of the details page.
     Note: To view related hosts in process details, you need to match the field "host", otherwise you cannot view the page of related hosts in process details.
     - Attribute view: It includes the basic information of the host and the integrated operation. If the collection of cloud hosts is started, the information of cloud suppliers can also be viewed.
     - Metric view: You can view the CPU, memory and other performance metric views of related hosts within the default 24 hours. Click "Open this view" to the inner dashbpoard, and the host view can be customized by cloning and saved as a user view. The user view can be viewed on the process details page through binding. For more configuration details, please refer to [binding inner dashboard](../scene/built-in-view/bind-view.md).
@@ -114,7 +114,7 @@ At the bottom of the Details page, switch the Content tab to allow you to:
 
 #### Custom Inner Dashboards
 
-Guance Cloud supports custom binding of inner dashboards to observers. With the binding function of inner dashboards, you can customize the related contents of process objects and create binding relationships. For more configuration details, see[binding inner dashboards](https://preprod-docs.cloudcare.cn/management/built-in-view/bind-view/).
+Guance supports custom binding of inner dashboards to observers. With the binding function of inner dashboards, you can customize the related contents of process objects and create binding relationships. For more configuration details, see[binding inner dashboards](https://preprod-docs.cloudcare.cn/management/built-in-view/bind-view/).
 
 **Note:** Before binding a built-in view, you need to confirm that the view variable in the bound built-in view has fields related to the process, such as `process_id`.
 
@@ -124,7 +124,7 @@ Guance Cloud supports custom binding of inner dashboards to observers. With the 
 
 Process network supports viewing network traffic in two different dimensions: host and process service. It also supports viewing network traffic and data connections between source host/source process services and destinations based on IP/port, Through visual real-time display, it helps enterprises to know the network running status of business systems in real time, quickly analyze, track and locate problems and faults, and prevent or avoid business problems caused by network performance degradation or interruption.
 
-After successful process network data collection, you will report to the Guance Cloud console. In "Network" on the "Infrastructure"-"Process" details page, you can view network data based on host or process services.
+After successful process network data collection, you will report to the Guance console. In "Network" on the "Infrastructure"-"Process" details page, you can view network data based on host or process services.
 
 Note:
 
@@ -154,7 +154,7 @@ Note:
 
 #### Network Connection Analysis
 
-Guance Cloud supports viewing network connection data on the process details page, including source IP/port, target IP/port, number of bytes sent, number of bytes received, TCP delay and TCP retransmission times. At the same time, you can customize the display fields through the Settings button, or add filters for connection data to filter keyword fields of all string types. If you need to view more detailed network connection data, click on the data to view its corresponding network flow data.
+Guance supports viewing network connection data on the process details page, including source IP/port, target IP/port, number of bytes sent, number of bytes received, TCP delay and TCP retransmission times. At the same time, you can customize the display fields through the Settings button, or add filters for connection data to filter keyword fields of all string types. If you need to view more detailed network connection data, click on the data to view its corresponding network flow data.
 
 **Process Network Connection Analysis**
 On the Network of the Process Details page, select the view as "Pid" to see the network connectivity between the process services.
@@ -179,7 +179,7 @@ In the process network, it supports clicking the time control to select and view
 
 #### Network Flow Data
 
-Guance Cloud supports viewing network flow data on the process details page, which is automatically refreshed every 30s. The data of the last 2 days is displayed by default, including time, source IP/port, target IP/port, source host, transmission direction and protocol. At the same time, you can customize the display fields through the Settings button, or add filters for network stream data to filter keyword fields of all string types. If you need to view the associated network flow data, click the data to view other network flow data corresponding to relevant fields such as host, transmission direction and protocol.
+Guance supports viewing network flow data on the process details page, which is automatically refreshed every 30s. The data of the last 2 days is displayed by default, including time, source IP/port, target IP/port, source host, transmission direction and protocol. At the same time, you can customize the display fields through the Settings button, or add filters for network stream data to filter keyword fields of all string types. If you need to view the associated network flow data, click the data to view other network flow data corresponding to relevant fields such as host, transmission direction and protocol.
 
 ![](img/9.network_2.png)
 

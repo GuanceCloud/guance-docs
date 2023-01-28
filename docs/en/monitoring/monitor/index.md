@@ -1,21 +1,21 @@
 # Monitor
 ---
 
-Guance Cloud supports self-built monitors, including threshold detection, log detection, mutation detection, interval detection, water level detection, security detection, application performance metric detection, user access metric detection, process anomaly detection, infrastructure survival detection, usability monitoring and network data detection. The user is allowed to configure the detection rules and trigger conditions. After the monitor is turned on, the relevant abnormal event alarm triggered by the detection rules can be received.
+Guance supports self-built monitors, including threshold detection, log detection, mutation detection, interval detection, water level detection, security detection, application performance metric detection, user access metric detection, process anomaly detection, infrastructure survival detection, usability monitoring and network data detection. The user is allowed to configure the detection rules and trigger conditions. After the monitor is turned on, the relevant abnormal event alarm triggered by the detection rules can be received.
 
 ## Introduction
 
-All monitors in the workspace can be viewed and managed through the "monitoring" of the "Guance Cloud" platform. You can not only create new monitors, but also manage, delete, batch, and so on existing alert policies and monitors.
+All monitors in the workspace can be viewed and managed through the "monitoring" of the "Guance" platform. You can not only create new monitors, but also manage, delete, batch, and so on existing alert policies and monitors.
 
 ## New Monitor
 
-Guance Cloud enables you to quickly create monitors from host, Docker, Elasticsearch and other monitoring templates, or customize new monitors and trigger conditions and configure alarms.
+Guance enables you to quickly create monitors from host, Docker, Elasticsearch and other monitoring templates, or customize new monitors and trigger conditions and configure alarms.
 
 ### New from Template
 
-Guance Cloud has built-in a variety of out-of-the-box monitoring templates, which support one-click creation of host, Docker, Elasticsearch, Redis, Alibaba Cloud RDS, Alibaba Cloud SLB, Flink monitoring and so on. That is, the corresponding official monitor is automatically added to the current workspace. Refer to the documentation [Templates](../template.md) for details.
+Guance has built-in a variety of out-of-the-box monitoring templates, which support one-click creation of host, Docker, Elasticsearch, Redis, Alibaba Cloud RDS, Alibaba Cloud SLB, Flink monitoring and so on. That is, the corresponding official monitor is automatically added to the current workspace. Refer to the documentation [Templates](../template.md) for details.
 
-Note: Repeatedly creating monitors from templates will cause duplicate monitors in the monitor list. Guance Cloud supports detecting duplicate monitors. You can create all monitors in the template library normally by selecting "Yes" in the pop-up prompt, or select "No" to create only non-duplicate monitors.
+Note: Repeatedly creating monitors from templates will cause duplicate monitors in the monitor list. Guance supports detecting duplicate monitors. You can create all monitors in the template library normally by selecting "Yes" in the pop-up prompt, or select "No" to create only non-duplicate monitors.
 ![](../img/image_8.png)
 
 ### New Monitor
@@ -46,7 +46,7 @@ Note:
 
 ### New Alarm Policy
 
-In the Guance Cloud workspace "Monitoring"-"Alarm Policy Management", click "New Alarm Policy" to add a new alarm policy. You can configure alarm objects and alarm silences for alarm policies. See the documentation [alarm policy](../alert-setting.md).
+In the Guance workspace "Monitoring"-"Alarm Policy Management", click "New Alarm Policy" to add a new alarm policy. You can configure alarm objects and alarm silences for alarm policies. See the documentation [alarm policy](../alert-setting.md).
 ![](../img/monitor2.png)
 
 ### Configure Monitor Alarm Policy
@@ -76,15 +76,15 @@ The "Bulk Operation" function supports users to "Bulk Export Monitor" and "Bulk 
 
 Support "import/export monitor" in "monitor", that is, create monitor by importing/exporting monitor configuration json file. The imported json files will be imported directly as monitors and grouped by default.
 
-**Note**: The imported json file needs to be the configuration json file from Guance Cloud.
+**Note**: The imported json file needs to be the configuration json file from Guance.
 
 ## Operating Instructions
 | **Operation** | **Instructions** |
 | --- | --- |
 | Status | The status of the current monitor has been enabled/disabled, and the monitor can be enabled or disabled through the operation bar; |
-| Enable/Disable | Guance Cloud supports enabling/disabling existing monitors. The newly created monitor will start by default, and you can "disable" the monitor or restart the disabled monitor.<br>**Note**: "Disabled" monitors will no longer take effect; Disabled monitors can be reopened by "Enable". |
-| Test | Guance Cloud supports manual trigger monitor detection. If the current detection rule triggers, you can view the relevant details in the event observer.<br>**Note**: For the convenience of testing the monitor, manually triggered events are not affected by "alarm silence" (that is, as long as it is manually triggered, an alarm notification will be sent).<br>Silence rules are not affected and objects specified as silent are still skipped. |
-| Edit | Guance Cloud supports re-editing the existing monitor, and the trigger conditions of the monitor can be re-edited by clicking the monitor name or "Edit".|
-| Delete | Guance Cloud supports "deletion" of existing monitors. When a monitor is not needed, you can delete the corresponding monitor by using the Delete button.<br>**Note**: Once the monitor is deleted, the monitor data cannot be recovered and the event data remains. |
+| Enable/Disable | Guance supports enabling/disabling existing monitors. The newly created monitor will start by default, and you can "disable" the monitor or restart the disabled monitor.<br>**Note**: "Disabled" monitors will no longer take effect; Disabled monitors can be reopened by "Enable". |
+| Test | Guance supports manual trigger monitor detection. If the current detection rule triggers, you can view the relevant details in the event observer.<br>**Note**: For the convenience of testing the monitor, manually triggered events are not affected by "alarm silence" (that is, as long as it is manually triggered, an alarm notification will be sent).<br>Silence rules are not affected and objects specified as silent are still skipped. |
+| Edit | Guance supports re-editing the existing monitor, and the trigger conditions of the monitor can be re-edited by clicking the monitor name or "Edit".|
+| Delete | Guance supports "deletion" of existing monitors. When a monitor is not needed, you can delete the corresponding monitor by using the Delete button.<br>**Note**: Once the monitor is deleted, the monitor data cannot be recovered and the event data remains. |
 | View Related Events | Alarm events triggered by the same monitor are uniformly stored under the corresponding "monitor", and all unrecovered events triggered by this rule can be directly jumped through the operation of "View Related Events". For details, please refer to [event Management](../../events/explorer.md). |
 | View related views (related dashboard) | Each monitor supports associating a dashboard. Edit the monitor, and then associate the corresponding dashboard through the "Associating Dashboard" function. |

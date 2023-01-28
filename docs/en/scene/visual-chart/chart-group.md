@@ -3,7 +3,7 @@
 
 ## Brief introduction
 
-Guance Cloud supports dividing charts of scene views into different groups, helping users to categorize and manage visual charts and quickly compare monitoring results.
+Guance supports dividing charts of scene views into different groups, helping users to categorize and manage visual charts and quickly compare monitoring results.
 
 ## Creating a grouping
 

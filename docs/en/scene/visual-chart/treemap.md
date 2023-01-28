@@ -7,7 +7,7 @@ It is used to visualize the percentage distribution of indicator data under diff
 
 ## Application Scenarios
 
-The rectangular tree diagram of the guance cloud is used to show the percentage distribution of metrics data under different groupings. For example, you can view the CPU usage of different hosts.
+The rectangular tree diagram of the Guance is used to show the percentage distribution of metrics data under different groupings. For example, you can view the CPU usage of different hosts.
 
 ## Chart Search
 

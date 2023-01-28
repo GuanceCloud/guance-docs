@@ -3,13 +3,13 @@
 
 ## Introduction
 
-Guance Cloud supports built-in association links and custom association links for charts, which can help you jump from the current chart to the target page and transfer data information through the corresponding variable values in the links by modifying template variables to complete data linkage.
+Guance supports built-in association links and custom association links for charts, which can help you jump from the current chart to the target page and transfer data information through the corresponding variable values in the links by modifying template variables to complete data linkage.
 
 Note: Chart links support relative path addresses.
 
 ## Variable Description
 
-The guance cloud supports 3 types of template variables, namely, time variables, label variables and view variables.
+The Guance supports 3 types of template variables, namely, time variables, label variables and view variables.
 
 | Variable Type | Variable | Description |
 | --- | --- | --- |
@@ -40,7 +40,7 @@ Caution：
 
 ## Custom Links
 
-Guance Cloud supports adding custom links to charts, which can help you jump from the current chart to the target page and transfer the data information through the template variables by modifying the corresponding variable values in the links. After the custom link is added, the default display is on, and the link can be displayed directly in the chart preview.
+Guance supports adding custom links to charts, which can help you jump from the current chart to the target page and transfer the data information through the template variables by modifying the corresponding variable values in the links. After the custom link is added, the default display is on, and the link can be displayed directly in the chart preview.
 
 ![](../img/chart025.png)
 
@@ -76,7 +76,7 @@ In 「Dashboard」 edit mode, select 「Chart」 - 「Link」 to view the availa
 
 ## Link way
 
-Guance Cloud supports three link opening methods, which are 【New Page】 【Current Page】 and 【Cross out Details Page】.
+Guance supports three link opening methods, which are 【New Page】 【Current Page】 and 【Cross out Details Page】.
 
 - New page: open the link in a new page
 - Current page: Open the link in the current page
@@ -94,7 +94,7 @@ Observation Cloud supports 「Edit」, 「Delete」 and 「Restore」 operations
 
 ## Example
 
-Prerequisite: You have already created the chart under the "Guance Cloud" dashboard and now you need to add a link to the chart.
+Prerequisite: You have already created the chart under the "Guance" dashboard and now you need to add a link to the chart.
 
 ### Link to other views
  <br />**Step 1: Get the URL you need to link to**<br />Open the host monitoring view that needs to be linked in the chart and copy the URL in your browser.
@@ -117,7 +117,7 @@ Clicking on the configured "Host Monitoring View" link opens the linked view sid
 
 ### Link to the infrastructure
 
-**Step 1: Get the URL to be linked**<br />Copy the link URL in the "Guance Cloud" infrastructure host.
+**Step 1: Get the URL to be linked**<br />Copy the link URL in the "Guance" infrastructure host.
 
 **Step 2: Fill in the chart link**<br />In the chart link, paste the copied link address.
 
@@ -129,7 +129,7 @@ Clicking on the configured "Host Monitoring View" link opens the linked view sid
 
 ### Link to external help files
 
-**Step 1: Get the URL you need to link to**<br />Copy the link in the "Guance Clouds" help manual for timing charts.
+**Step 1: Get the URL you need to link to**<br />Copy the link in the "Guances" help manual for timing charts.
 
 **Step 2: Fill in the chart link**<br />In the chart link, paste the copied link address. Open the link by selecting the "Cross out details page" option and leave the alias blank.
 

@@ -3,9 +3,9 @@
 
 ## Introduction
 
-The host will actively report to the Guance Cloud console after collecting data successfully. In the "Host" of the "Infrastructure", you can view all the collected host data information.
+The host will actively report to the Guance console after collecting data successfully. In the "Host" of the "Infrastructure", you can view all the collected host data information.
 
-The host data of Guance Cloud has two viewing and analysis modes. By switching the observer in the upper left corner of the page, you can view the following pages:
+The host data of Guance has two viewing and analysis modes. By switching the observer in the upper left corner of the page, you can view the following pages:
 
 - **Host Object List**, you can view the data information of each host **in the last 24 hours** of the current space, including host name and label, CPU utilization rate of the host, MEM utilization rate and single core load of CPU;
 - **Host Topological Graph**, you can quickly view the size of host index values in the way of topology diagram, and analyze the running status of hosts in different systems, different states, different versions and different regions.
@@ -31,7 +31,7 @@ Note:
 - Host records will be removed from the list if no data has been reported for more than 24 hours.
 ### Host Tag
 
-Facing the management environment of multiple hosts, Guance Cloud supports customizing labels for each host to facilitate users to group management. By clicking on the host name in the host object list, you can add the Label "Label Attribute" to the host in the underlined details page.
+Facing the management environment of multiple hosts, Guance supports customizing labels for each host to facilitate users to group management. By clicking on the host name in the host object list, you can add the Label "Label Attribute" to the host in the underlined details page.
 
 The operation steps are as follows:
 
@@ -79,18 +79,18 @@ If the host is a cloud host and configured with [「cloud synchronization」](..
 
 #### Association Analysis
 
-Guance Cloud supports association analysis of each infrastructure object. On the details page of the host object, you can not only understand the basic information of the host, but also associate the metrics, logs, processes, events, containers, networks and sheck of the corresponding host in one stop, so as to monitor the operation of the host faster and more comprehensively.
+Guance supports association analysis of each infrastructure object. On the details page of the host object, you can not only understand the basic information of the host, but also associate the metrics, logs, processes, events, containers, networks and sheck of the corresponding host in one stop, so as to monitor the operation of the host faster and more comprehensively.
 
 === "Metrics"
 
-    On the Host Details page, Guance Cloud enables you to monitor the performance status of the host **in the last 24 hours** in real time through the "Metrics" at the bottom of the details page, including CPU load and memory usage.
+    On the Host Details page, Guance enables you to monitor the performance status of the host **in the last 24 hours** in real time through the "Metrics" at the bottom of the details page, including CPU load and memory usage.
 
 === "Log"
 
     Through "Log" at the bottom of the details page, you can view the logs and the number of logs related to this host **in the last 1 hour**, and perform keyword search, multi-label filtering and time sorting on these related logs.
     - If you need to view more detailed log information, you can click the log content to jump to the corresponding log details page, or click "Jump" to "Log" to view all logs related to the host.
     - If you need to view more log fields or more complete log contents, you can customize and adjust "Maximum Display Rows" and "Display Columns" through "Display Columns" in the associated log onserver.
-    **Note: For a smoother user query experience, Guance Cloud immediately saves the user's browsing settings in the "Log" by default (including "Maximum Display Rows" and "Display Columns"), so that the "Association Log" is consistent with the "Log". However, the custom adjustments made in the Association Log are not saved after exiting the page.**
+    **Note: For a smoother user query experience, Guance immediately saves the user's browsing settings in the "Log" by default (including "Maximum Display Rows" and "Display Columns"), so that the "Association Log" is consistent with the "Log". However, the custom adjustments made in the Association Log are not saved after exiting the page.**
 
 
 === "Process"
@@ -113,7 +113,7 @@ Guance Cloud supports association analysis of each infrastructure object. On the
 
     Host network supports viewing network traffic between hosts. It supports to view the network traffic and data connection between the source host and the target based on IP/port, and display it in real time in a visual way, so as to help enterprises know the network running status of the business system in real time, quickly analyze, track and locate problems and faults, and prevent or avoid business problems caused by network performance degradation or interruption.
     
-    The host will report to the Guance Cloud console after successfully collected data, and you can view the network performance monitoring data information of the host through "Network" in the "Infrastructure"-"Host" Details page. For more details, please refer to [network](network.md).
+    The host will report to the Guance console after successfully collected data, and you can view the network performance monitoring data information of the host through "Network" in the "Infrastructure"-"Host" Details page. For more details, please refer to [network](network.md).
 
 ![](img/9.host_4.png)
 
@@ -127,7 +127,7 @@ On the Host details page, you can select the alarm silence time of the host thro
 
 #### Bind Inner Dashboards
 
-Guance Cloud supports "Management"-"Inner Dashboards" in the Guance Cloud workspace, setting bindings or deleting inner dashboards (system view and user view) to the host details page.
+Guance supports "Management"-"Inner Dashboards" in the Guance workspace, setting bindings or deleting inner dashboards (system view and user view) to the host details page.
 
 After binding the inner dashboards, you can view the bound inner dashboard in Host Object Details. For example, if "CPU Monitoring View" is bound as a inner dashboard, members can view the "CPU Monitoring View" of the current host as a view variable in the details page, and click Jump to the corresponding inner dashboard page through the "Jump" button to edit, copy and export the inner dashboard.
 
@@ -137,7 +137,7 @@ After binding the inner dashboards, you can view the bound inner dashboard in Ho
 
 ### Data Query and Analysis
 
-On the "Host Object List" page, Guance Cloud supports you to query and analyze host data by searching, filtering, sorting and grouping aggregation analysis.
+On the "Host Object List" page, Guance supports you to query and analyze host data by searching, filtering, sorting and grouping aggregation analysis.
 
 #### Time Control
 
