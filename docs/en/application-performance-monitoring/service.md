@@ -3,7 +3,7 @@
 
 ## Introduction
 
-After the link data is collected into Guance Cloud, You can log in to the Guance Cloud Workspace, Click on the "Service" list of "Application Performance Monitoring" to view all link service lists within the selected time range and their corresponding key performance metrics, including average request number, average response time, P75 response time, P95 response time and error number. They are sorted in descending order according to "Error Number" by default, and it is supported to click on the name of key performance metrics to adjust the sorting display.
+After the link data is collected into Guance, You can log in to the Guance Workspace, Click on the "Service" list of "Application Performance Monitoring" to view all link service lists within the selected time range and their corresponding key performance metrics, including average request number, average response time, P75 response time, P95 response time and error number. They are sorted in descending order according to "Error Number" by default, and it is supported to click on the name of key performance metrics to adjust the sorting display.
 
 ![](img/3.apm_1.png)
 
@@ -17,7 +17,7 @@ In the "Service" list of "Application Performance Monitoring", the data of the l
 
 In the service search bar, it supports keyword search, wildcard search, association search and other search methods, and supports field screening of link services based on one or more tags such as service type, environment (env), version, project and service, including forward screening, reverse screening, fuzzy matching and reverse fuzzy matching. For more searching and filtering, refer to the doc [searching and filtering for the observer](../getting-started/necessary-for-beginners/explorer-search.md).
 
-**Note: When you switch to view the Service or Link observer, Guance Cloud reserves the current filter criteria and time range for you by default. Refer to the doc [Tracing data collection general configuration](../datakit/datakit-tracing.md#tracing-common-config).**
+**Note: When you switch to view the Service or Link observer, Guance reserves the current filter criteria and time range for you by default. Refer to the doc [Tracing data collection general configuration](../datakit/datakit-tracing.md#tracing-common-config).**
 
 ### Quick Filter
 

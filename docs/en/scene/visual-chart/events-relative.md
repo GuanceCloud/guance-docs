@@ -3,7 +3,7 @@
 
 ## Introduction
 
-Guance Cloud supports "add filter field" to match the abnormal events associated with the selected field, so as to achieve the purpose of displaying data in association with events.This feature helps users to view trends while sensing if there are relevant events generated during data fluctuations to help them locate problems from another perspective.
+Guance supports "add filter field" to match the abnormal events associated with the selected field, so as to achieve the purpose of displaying data in association with events.This feature helps users to view trends while sensing if there are relevant events generated during data fluctuations to help them locate problems from another perspective.
 
 Currently, only time series and histograms are supported.
 

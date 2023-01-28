@@ -38,7 +38,7 @@ In "Monitor", click "+ New Monitor", select "Water Level Detection", and enter t
 | Metric | Metrics for current detection |
 | Aggregation period | The data aggregation period of the current detection metric is 1 minute by default |
 | Aggregation algorithm | Contains Avg by (average), Min by (minimum), Max by (maximum), Sum by (sum), Last (Last), First by (first), Count by (data points), Count_distinct by (non-duplicate data points), p50 (median), p75 (75%), p90 (90%), p99 (99%) |
-| Detection dimension | The detection dimension determines which dimension the detection rule is triggered based on, that is, the trigger object. Guance Cloud supports adding multiple detection dimensions. If the metric of any detection dimension meets the alarm condition, an alarm will be triggered. The int field is not supported as a detection dimension, and at most three fields can be selected. |
+| Detection dimension | The detection dimension determines which dimension the detection rule is triggered based on, that is, the trigger object. Guance supports adding multiple detection dimensions. If the metric of any detection dimension meets the alarm condition, an alarm will be triggered. The int field is not supported as a detection dimension, and at most three fields can be selected. |
 | Filter condition | Metric-based labels filter the data of detecting metrics, limit the range of detected data, support adding one or more labels to filter, and support fuzzy matching and fuzzy mismatching screening conditions. |
 | Query way | Support simple query and expression query, refer to [query](../../scene/visual-chart/chart-query.md) |
 

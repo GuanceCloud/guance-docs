@@ -95,7 +95,7 @@ It can be seen that although the reported data A has drop delay, it can still be
 
 ## 4. No Data Judgment Logic
 
-Because Guance Cloud is a platform based on time series data, unlike non-asset management software, there is an asset list summary table. In fact, we can only think of "existence" with queriable data, and we can't know "which objects don't exist".
+Because Guance is a platform based on time series data, unlike non-asset management software, there is an asset list summary table. In fact, we can only think of "existence" with queriable data, and we can't know "which objects don't exist".
 
 > Suppose I have a box with pencils and erasers in it.
 >
@@ -153,7 +153,7 @@ Because the actual detection range is "detection trigger time-detection range-dr
 
 This situation is normal.
 
-### Looking at the data directly in Guance cloud found that there should be a fault, but the monitor did not detect the fault
+### Looking at the data directly in Guance found that there should be a fault, but the monitor did not detect the fault
 
 The causes of this problem are as follows:
 

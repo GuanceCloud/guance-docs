@@ -12,7 +12,7 @@ In the Action explorer, you can:
 
 ## Precondition
 
-Guance Cloud supports collecting errors, resources, requests, performance metrics, etc. by means of introducing SDK scripts. For details, you can refer to [Rum Collector Configuration](... /... /datakit/rum.md).
+Guance supports collecting errors, resources, requests, performance metrics, etc. by means of introducing SDK scripts. For details, you can refer to [Rum Collector Configuration](... /... /datakit/rum.md).
 
 ## Action Explorer
 

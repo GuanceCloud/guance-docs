@@ -3,7 +3,7 @@
 
 ## Introduction
 
-Guance Cloud platform supports building new dial-up nodes around the world, that is, you can quickly build quality of service monitoring points distributed around the world through "self-built node management".
+Guance platform supports building new dial-up nodes around the world, that is, you can quickly build quality of service monitoring points distributed around the world through "self-built node management".
 
 ## New node
 

@@ -3,21 +3,21 @@
 
 ## Overview
 
-Under the background of cloud era, all major service providers have issued relevant service level agreements (SLA) to ensure the quality of services provided and clarify their rights and responsibilities. Guance Cloud SLO monitoring is to test whether the availability of system services meets the target needs around various metrics of DevOps, which can not only help users monitor the service quality provided by service providers, but also protect service providers from SLA violations.
+Under the background of cloud era, all major service providers have issued relevant service level agreements (SLA) to ensure the quality of services provided and clarify their rights and responsibilities. Guance SLO monitoring is to test whether the availability of system services meets the target needs around various metrics of DevOps, which can not only help users monitor the service quality provided by service providers, but also protect service providers from SLA violations.
 
 ## Nouns Explanation 
 
-**SLA（Service-Level Agreement）**: That is, service level agreement, which refers to a service commitment made by the system service Provider to the Customer. Guance Cloud supports SLA scoring of service quality of service providers and monitors the service compliance rate in real time.
+**SLA（Service-Level Agreement）**: That is, service level agreement, which refers to a service commitment made by the system service Provider to the Customer. Guance supports SLA scoring of service quality of service providers and monitors the service compliance rate in real time.
 
-**SLI（Service Level Indicator）**: A measurement indicator that is chosen to measure the stability of the system. The Guance Cloud SLI supports setting one or more measurement indicators based on the monitor.
+**SLI（Service Level Indicator）**: A measurement indicator that is chosen to measure the stability of the system. The Guance SLI supports setting one or more measurement indicators based on the monitor.
 
-**SLO（Service Level Objective）:** The smallest unit of SLA scoring processing in Guance Cloud, and is the target of SLI cumulative success number in a time window. We often convert SLO into error budget, which is used to calculate the number of tolerable errors, and the time of abnormal events in each detection cycle will be deducted from the fault-tolerant time. (As shown in the following figure: Assuming that the SLO detection period is 5 minutes, according to the superposition, the coverage time of abnormal events is 3 minutes, and the deduction amount is 3 minutes)
+**SLO（Service Level Objective）:** The smallest unit of SLA scoring processing in Guance, and is the target of SLI cumulative success number in a time window. We often convert SLO into error budget, which is used to calculate the number of tolerable errors, and the time of abnormal events in each detection cycle will be deducted from the fault-tolerant time. (As shown in the following figure: Assuming that the SLO detection period is 5 minutes, according to the superposition, the coverage time of abnormal events is 3 minutes, and the deduction amount is 3 minutes)
 
 ![](img/image_4.png)
 
 ## New SLO
 
-Guance Cloud supports custom creation of new SLO tasks through the SLO module of "Monitor".
+Guance supports custom creation of new SLO tasks through the SLO module of "Monitor".
 
 ![](img/7.slo_2.png)
 
@@ -60,15 +60,15 @@ The SLO list supports searching based on the SLO name in the search box.
 
 | **Operation** | **Description** |
 | --- | --- |
-| Edit | Guance Cloud supports re-editing of existing SLO tasks, but does not support modification of SLO name, target and detection period |
-| Delete | Guance Cloud supports deletion of existing SLO tasks<br>**Note**: Deletion of an SLO task may invalidate its associated Dashboard SLO data |
+| Edit | Guance supports re-editing of existing SLO tasks, but does not support modification of SLO name, target and detection period |
+| Delete | Guance supports deletion of existing SLO tasks<br>**Note**: Deletion of an SLO task may invalidate its associated Dashboard SLO data |
 | View related events | The alarm events triggered by the SLO task will be uniformly stored under the corresponding "SLO" task, and all the unrecovered events triggered by the SLO task can be directly jumped through the "View Related Events" operation |
-| Export to dashboard | Guance Cloud supports exporting SLO as view to dashboard |
+| Export to dashboard | Guance supports exporting SLO as view to dashboard |
 
 
 ## SLO Details
 
-Guance Cloud enables you to view SLO details, including SLO compliance rates and SLI exception records, by clicking on the SLO task.
+Guance enables you to view SLO details, including SLO compliance rates and SLI exception records, by clicking on the SLO task.
 ![](img/image_6.png)
 
 | **Field** | **Description** |

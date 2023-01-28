@@ -9,7 +9,7 @@ HTTP dialing allows you to send HTTP requests to the API interface of your appli
 
 ## Create HTTP Dial Test Task
 
-In the Guance Cloud workspace, click "New"-"API Dial Test" and select "HTTP Protocol" to create a new HTTP dial test task, and periodically monitor the performance of websites, domain names and background interfaces based on the `HTTP` protocol.
+In the Guance workspace, click "New"-"API Dial Test" and select "HTTP Protocol" to create a new HTTP dial test task, and periodically monitor the performance of websites, domain names and background interfaces based on the `HTTP` protocol.
 
 ![](../img/4.dailtesting_http_1.png)
 
@@ -30,7 +30,7 @@ It supports adding judgment condition matching data. When multiple judgment cond
 
 ### Select the Dial Test Node
 
-At present, Guance Cloud has covered 16 nodes in the world, and it supports selecting one or more nodes in China and overseas regions (only commercial and above users are supported), so as to quickly start the service quality monitoring of the site.
+At present, Guance has covered 16 nodes in the world, and it supports selecting one or more nodes in China and overseas regions (only commercial and above users are supported), so as to quickly start the service quality monitoring of the site.
 
 ![](../img/4.dailtesting_http_4.png)
 

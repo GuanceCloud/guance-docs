@@ -23,4 +23,4 @@ Under the scene, you can quickly build multiple custom log [viewers](explorer/in
 ![](img/2.scene_1.png)
 
 ## Built-in view
-The [built-in-view](built-in-in-view/index.md) is a view template recorded in the "Guance Cloud" platform, including both system view and user view types, you can apply the system view directly to the scenario or customize it as a new built-in view.
+The [built-in-view](built-in-in-view/index.md) is a view template recorded in the "Guance" platform, including both system view and user view types, you can apply the system view directly to the scenario or customize it as a new built-in view.

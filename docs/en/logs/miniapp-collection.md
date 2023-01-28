@@ -3,7 +3,7 @@
 
 ## Overview
 
-Miniapp sends different levels of log data (` corresponding source: browser_log ` indicator type log data) to [Guance cloud] (https://www.guance.com/).
+Miniapp sends different levels of log data (` corresponding source: browser_log ` indicator type log data) to [Guance] (https://www.guance.com/).
 
 ## Function List
 
@@ -17,7 +17,7 @@ Miniapp sends different levels of log data (` corresponding source: browser_log 
 
 ### Setup
 
-**datakit:** Send log data to Guance Cloud through datakit log acquisition API
+**datakit:** Send log data to Guance through datakit log acquisition API
 
 **import SDK:** SDK can be introduced into application by ` NPM ` and ` CDN `. After initialization, it can be stored in global variables, which is convenient for other pages to refer to
 
@@ -155,7 +155,7 @@ datafluxLogs.logger.log(<MESSAGE>,<JSON_ATTRIBUTES>,<STATUS>);
 ## Parameter description
 | **Parameter**            | **Description**                                                   |
 | ------------------- | ---------------------------------------------------------- |
-| `<MESSAGE>`         | message field in Guance Cloud Log                             |
+| `<MESSAGE>`         | message field in Guance Log                             |
 | `<JSON_ATTRIBUTES>` | The additional data that describes the message is a json object                      |
 | `<STATUS>`          | status，option:`debug`,`info`,`warn`,`error`,`critical` |
 

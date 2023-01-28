@@ -3,7 +3,7 @@
 
 ## Introduction
 
-After completing the metric data collection, you can view all reported metric sets and related metrics, labels, timeline numbers, data storage strategies, etc. in the "Metric Management" of Guance Cloud workspace.
+After completing the metric data collection, you can view all reported metric sets and related metrics, labels, timeline numbers, data storage strategies, etc. in the "Metric Management" of Guance workspace.
 
 ## Metric Sets
 
@@ -17,7 +17,7 @@ A metric set is a set of metrics of the same type, and a metric set can contain 
 
 Metrics can help you understand the overall availability of the system, such as server CPU usage, Web site load time, remaining disk space and so on.
 
-Metrics are divided into two parts: metric name and metric value. Metric name refers to an alias that identifies the metrics, and metric value refers to the specific value of the metrics when collecting. In "Metric Management" of the Guance Cloud workspace, click "Metric Set Name" to view the corresponding metric list, including metric name, metric field type, unit, etc.
+Metrics are divided into two parts: metric name and metric value. Metric name refers to an alias that identifies the metrics, and metric value refers to the specific value of the metrics when collecting. In "Metric Management" of the Guance workspace, click "Metric Set Name" to view the corresponding metric list, including metric name, metric field type, unit, etc.
 
 - By :octicons-search-24:, search for related indicators based on keywords.
 - By :material-export-variant:, export indicator list as csv file to local.
@@ -26,7 +26,7 @@ Metrics are divided into two parts: metric name and metric value. Metric name re
 
 #### Editing Metrics
 
-In "Metric Management", you can view all metrics reported to Guance Cloud, including metric name, field type, company and description, and customize the "Unit" and "Description" of metrics. After saving, you can apply them in chart query.
+In "Metric Management", you can view all metrics reported to Guance, including metric name, field type, company and description, and customize the "Unit" and "Description" of metrics. After saving, you can apply them in chart query.
 
 ![](img/1.metrics_3.png)
 
@@ -43,9 +43,9 @@ When you query metrics, you can query and analyze data more conveniently by view
 
 ### Tags
 
-Tags can help you associate data, and Guance Cloud supports reporting all metrics, logs and link data to the workspace in a unified way. By labeling the collected data with the same tags for association analysis, it can help you quickly discover and solve potential risks.
+Tags can help you associate data, and Guance supports reporting all metrics, logs and link data to the workspace in a unified way. By labeling the collected data with the same tags for association analysis, it can help you quickly discover and solve potential risks.
 
-Tags refer to the collection of attributes that identify the collection object of a data point. Tags are divided into tag name and tag value, and a data point can have multiple tags. In the "Metric Management" of the Guance Cloud workspace, click "Metric Set Name" to view the corresponding tag list, including tag name, tag value statistics, description, etc.
+Tags refer to the collection of attributes that identify the collection object of a data point. Tags are divided into tag name and tag value, and a data point can have multiple tags. In the "Metric Management" of the Guance workspace, click "Metric Set Name" to view the corresponding tag list, including tag name, tag value statistics, description, etc.
 
 - By :octicons-search-24:, search for related indicators based on keywords.
 - By :material-export-variant:, export indicator list as csv file to local.
@@ -54,13 +54,13 @@ Tags refer to the collection of attributes that identify the collection object o
 
 #### Application Scenarios of Tags
 
-In the metric query, you can quickly understand the meaning of the tag by viewing the description of the tag. For example, in the part of the chart query in the scene and the metric detection in the monitor, you can view the description information of the tag in real time. Guance Cloud provides system field/tag descriptions by default, and you can replace system field/tag descriptions in [field management](../management/field-management.md).
+In the metric query, you can quickly understand the meaning of the tag by viewing the description of the tag. For example, in the part of the chart query in the scene and the metric detection in the monitor, you can view the description information of the tag in real time. Guance provides system field/tag descriptions by default, and you can replace system field/tag descriptions in [field management](../management/field-management.md).
 
 ![](img/11.metrics_7.png)
 
 ## Timeline
 
-The number of all combinations that can be combined based on tags in the reported metric data in the current workspace. In Guance Cloud, the timeline is composed of metrics, tags (fields) and data storage duration, and the combination of metrics and tags (fields) is the primary key of data storage. Relevant nouns are explained as follows:
+The number of all combinations that can be combined based on tags in the reported metric data in the current workspace. In Guance, the timeline is composed of metrics, tags (fields) and data storage duration, and the combination of metrics and tags (fields) is the primary key of data storage. Relevant nouns are explained as follows:
 
 - Database: database
 - Measurement: data table, which can be understood as table and metric set in mysql
@@ -91,7 +91,7 @@ Note:
 
 ### Metric Global Setting
 
-In the "Management"-"Basic Settings" of the Guance Cloud workspace, you can view the global data storage strategy of the metric workspace. The default metric data is 7 days, including 3 days, 7 days, 14 days, 30 days, 180 days and 360 days.
+In the "Management"-"Basic Settings" of the Guance workspace, you can view the global data storage strategy of the metric workspace. The default metric data is 7 days, including 3 days, 7 days, 14 days, 30 days, 180 days and 360 days.
 
 ![](img/19.metrics_4.png)
 

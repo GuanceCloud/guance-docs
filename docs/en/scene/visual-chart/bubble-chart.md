@@ -7,7 +7,7 @@ A bubble diagram can be used to show the relationship between three variables, s
 
 ## Application Scenarios
 
-The bubble chart of the guance cloud is used to show the relationship between the three variables. For example, you can view the distribution and aggregation of total CPU usage, CPU system usage, and CPU user usage across hosts.
+The bubble chart of the Guance is used to show the relationship between the three variables. For example, you can view the distribution and aggregation of total CPU usage, CPU system usage, and CPU user usage across hosts.
 
 ## Chart Query
 

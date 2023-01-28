@@ -3,7 +3,7 @@
 
 ## Introduction
 
-Guance Cloud supports reporting the process and results of Gitlab/Jenkins built-in CI to Guance Cloud for visualization.You can install DataKit, turn on the Gitlab/Jenkins collector, and report the results of the entire CI process (e.g. Build, Test, Deploy) to DataKit, process them through the DataWay data gateway, and then report them to Guance Cloud for viewing and analysis.
+Guance supports reporting the process and results of Gitlab/Jenkins built-in CI to Guance for visualization.You can install DataKit, turn on the Gitlab/Jenkins collector, and report the results of the entire CI process (e.g. Build, Test, Deploy) to DataKit, process them through the DataWay data gateway, and then report them to Guance for viewing and analysis.
 
 ![](img/17.CI_1.png)
 
@@ -11,7 +11,7 @@ Guance Cloud supports reporting the process and results of Gitlab/Jenkins built-
 
 ## Preconditions
 
-You need to create an [Guance Cloud account](https://auth.guance.com/register?channel=帮助文档) and [install DataKit](../datakit/datakit-install.md) on your host. 
+You need to create an [Guance account](https://auth.guance.com/register?channel=帮助文档) and [install DataKit](../datakit/datakit-install.md) on your host. 
 
 ## Data Collection
 

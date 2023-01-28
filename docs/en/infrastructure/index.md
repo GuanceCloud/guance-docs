@@ -6,7 +6,7 @@ icon: zy/infrastructure
 
 ## Overview
 
-Guance Cloud supports collecting data of hosts, containers, processes, networks and other custom objects and reporting them to the workspace. On the Infrastructure page, you can view the data of all objects through the list of infrastructure categories to which you belong.
+Guance supports collecting data of hosts, containers, processes, networks and other custom objects and reporting them to the workspace. On the Infrastructure page, you can view the data of all objects through the list of infrastructure categories to which you belong.
 
 For example, if you view the CPU, memory and other metric data of Host A, you can view the relevant data of Host A in the "Host" category; To view the CPU data of container B, you can view the related data in the "Container" category.
 

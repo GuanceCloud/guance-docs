@@ -1,11 +1,11 @@
 # Blacklist
 ---
 
-Guance Cloud supports filtering qualified logs by setting log blacklists, after configuring log blacklists, qualified log data will no longer be reported to the "Guance Cloud" workspace, helping users save log data storage costs.
+Guance supports filtering qualified logs by setting log blacklists, after configuring log blacklists, qualified log data will no longer be reported to the "Guance" workspace, helping users save log data storage costs.
 
 ## Create Blacklist Rule 
 
-In the "Guance Cloud" workspace, click "Log"-"Blacklist"-"New Blacklist".
+In the "Guance" workspace, click "Log"-"Blacklist"-"New Blacklist".
 
 ![](img/4.log_blacklist_1.png)
 
@@ -42,7 +42,7 @@ On the right side of the log blacklist, click the "Delete" icon to delete the ex
 
 ### Batch operation
 
-In the Guance Cloud workspace "Log"-"Blacklist", click "Batch Operation" to "Batch Export" or "Batch Delete" blacklist.
+In the Guance workspace "Log"-"Blacklist", click "Batch Operation" to "Batch Export" or "Batch Delete" blacklist.
 
 ???- attention
 
@@ -52,9 +52,9 @@ In the Guance Cloud workspace "Log"-"Blacklist", click "Batch Operation" to "Bat
 
 ### Import / Export
 
-You can create blacklist by importing/exporting JSON file. Click "import/export blacklist" in "log"-"blacklist" of Guance Cloud workspace.
+You can create blacklist by importing/exporting JSON file. Click "import/export blacklist" in "log"-"blacklist" of Guance workspace.
 
 ???- attention
 
-    The imported JSON file needs to be the configuration JSON file from Guance Cloud.
+    The imported JSON file needs to be the configuration JSON file from Guance.
 

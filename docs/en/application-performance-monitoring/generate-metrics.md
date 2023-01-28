@@ -2,7 +2,7 @@
 ---
 
 
-Guance Cloud supports the generation of new metric data based on existing data in the current space, so that you can design and implement new technical indicators according to your needs.
+Guance supports the generation of new metric data based on existing data in the current space, so that you can design and implement new technical indicators according to your needs.
 
 ### New Rule
 

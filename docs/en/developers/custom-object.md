@@ -1,7 +1,7 @@
 # Custom Object
 ---
 
-Guance Cloud supports reporting custom object data through DataFlux Func. Except for hosts, containers, processes, networks, etc., Guance Cloud infrastructure customization function supports reporting any custom data.
+Guance supports reporting custom object data through DataFlux Func. Except for hosts, containers, processes, networks, etc., Guance infrastructure customization function supports reporting any custom data.
 
 - Random object data: custom infrastructure, cloud product object data and business class object data
 - Unified management: Different types of object data are collected in the same format and managed in a unified way.

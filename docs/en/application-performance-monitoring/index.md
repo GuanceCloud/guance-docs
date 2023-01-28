@@ -10,7 +10,7 @@ Application performance monitoring supports the collector using Opentracing prot
 
 ## Deploy the Architecture
 
-The best deployment scheme is to deploy DataKit in each application server, and send the data to the Guance Cloud center through the DataKit of the host where the service is located, which can better integrate the server host index, application log, system log and application service link data of the application service, and carry out the association analysis of various data.
+The best deployment scheme is to deploy DataKit in each application server, and send the data to the Guance center through the DataKit of the host where the service is located, which can better integrate the server host index, application log, system log and application service link data of the application service, and carry out the association analysis of various data.
 
 ![](img/1.apm-2.png)
 
@@ -34,8 +34,8 @@ The best deployment scheme is to deploy DataKit in each application server, and 
 
 ## Data Storage Policy
 
-Guance Cloud provides three data storage time choices for application performance data: 3 days, 7 days and 14 days, which can be adjusted in "Management"-"Basic Settings"-"Change Data Storage Policy" as required. See the document [Data storage policy](https://preprod-docs.cloudcare.cn/billing/billing-method/data-storage/).
+Guance provides three data storage time choices for application performance data: 3 days, 7 days and 14 days, which can be adjusted in "Management"-"Basic Settings"-"Change Data Storage Policy" as required. See the document [Data storage policy](https://preprod-docs.cloudcare.cn/billing/billing-method/data-storage/).
 
 ## Data Billing Rules
 
-Guance Cloud supports the billing method of purchasing on demand and paying according to quantity. The performance monitoring billing is applied to count the number of trace_id in the current space, and the gradient billing mode is adopted. For more billing rules, please refer to the document [billing method](../billing/billing-method/index.md).
+Guance supports the billing method of purchasing on demand and paying according to quantity. The performance monitoring billing is applied to count the number of trace_id in the current space, and the gradient billing mode is adopted. For more billing rules, please refer to the document [billing method](../billing/billing-method/index.md).

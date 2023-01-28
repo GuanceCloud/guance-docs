@@ -3,7 +3,7 @@
 
 ## Introduction
 
-Link data collection of Guance Cloud currently supports collectors using Opentracing protocol. After the link data receiving service is started in DataKit, DataKit will automatically complete the format conversion and collection of data by completing the embedding point of the collector in the code, and finally report it to the Guance Cloud center.
+Link data collection of Guance currently supports collectors using Opentracing protocol. After the link data receiving service is started in DataKit, DataKit will automatically complete the format conversion and collection of data by completing the embedding point of the collector in the code, and finally report it to the Guance center.
 
 
 
@@ -11,7 +11,7 @@ Link data collection of Guance Cloud currently supports collectors using Opentra
 
 DataKit currently supports collecting Tracing data from third parties such as `DDTrace`, `Apache Jaeger`, `OpenTelemetry`, `Skywalking` and `Zipkin`.
 
-First of all, you need to [install DataKit](../../datakit/datakit-install.md). After the installation is completed, you need to open the configuration file of the link collector. You can log in to the Guance Cloud console, enter the "Integration" page and enter the search for "Application Performance Monitoring", and you can view the relevant collectors for all link data collection, open the configuration description document of the collector, and configure according to the steps in the document. Or you can directly click the following link to view the corresponding collector configuration:
+First of all, you need to [install DataKit](../../datakit/datakit-install.md). After the installation is completed, you need to open the configuration file of the link collector. You can log in to the Guance console, enter the "Integration" page and enter the search for "Application Performance Monitoring", and you can view the relevant collectors for all link data collection, open the configuration description document of the collector, and configure according to the steps in the document. Or you can directly click the following link to view the corresponding collector configuration:
 
 |                          Collector Configuration                          |                                                              |                                                              |                                                              |                                                              |
 | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
@@ -22,14 +22,14 @@ First of all, you need to [install DataKit](../../datakit/datakit-install.md). A
 - Step 1: [install host DataKit](../../datakit/datakit-install.md) or [install Kubernetes DataKit](../../datakit/datakit-daemonset-deploy.md)
 - Step 2: Open the link data receiving service in the DataKit
 - Step 3: Report data to Endpoint of DataKit's link tracing service by integrating an SDK for open source link data collection, such as Zipkin or Jaeger or Skywalking, into the business system
-- Step 4: DataKit will automatically clean the data into the link data format of Guance Cloud itself and report it to the Guance Cloud center
-- Step 5: Conduct link analysis and view service-related performance metrics at the console of Guance Cloud
+- Step 4: DataKit will automatically clean the data into the link data format of Guance itself and report it to the Guance center
+- Step 5: Conduct link analysis and view service-related performance metrics at the console of Guance
 
 ![](../img/1.apm-1.png)
 
 ## Field Description
 
-DataKit will convert the reported data into the format of Guance Cloud link data according to different collectors, and retain labels and indicators. The following is a description of the commonly used fields, and the documentation [DataKit Tracing Data Structure](../../datakit/datakit-tracing-struct.md#point-proto).
+DataKit will convert the reported data into the format of Guance link data according to different collectors, and retain labels and indicators. The following is a description of the commonly used fields, and the documentation [DataKit Tracing Data Structure](../../datakit/datakit-tracing-struct.md#point-proto).
 
 | Field Name    | Description                                                    |
 | --------- | ------------------------------------------------------------ |

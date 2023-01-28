@@ -6,7 +6,7 @@
 
 ---
 
-Monitor SSH/SFTP services and report data to Guance Cloud.
+Monitor SSH/SFTP services and report data to Guance.
 
 ## Configuration {#config}
 

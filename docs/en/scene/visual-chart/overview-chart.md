@@ -7,7 +7,7 @@ The overview chart clearly displays the result values of an indicator and suppor
 
 ## Application Scenarios
 
-The overview graph of the guance cloud is used to display the resultant values of a metric. For example, you can view the CPU usage for the last 15 minutes.
+The overview graph of the Guance is used to display the resultant values of a metric. For example, you can view the CPU usage for the last 15 minutes.
 
 ## Chart Search
 

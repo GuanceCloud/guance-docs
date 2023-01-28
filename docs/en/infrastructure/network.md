@@ -7,7 +7,7 @@ Network supports to check network traffic between the host/container Pod. It als
 
 ## Preconditions
 
-You need to create a [Guance Cloud account]](https://auth.guance.com/register?channel=帮助文档), and on your host [install DataKit](../datakit/datakit-install.md), open [eBPF collector](../integrations/host/ebpf.md).
+You need to create a [Guance account]](https://auth.guance.com/register?channel=帮助文档), and on your host [install DataKit](../datakit/datakit-install.md), open [eBPF collector](../integrations/host/ebpf.md).
 
 ## Host Network
 
@@ -145,7 +145,7 @@ Pod 网络支持基于 TCP、UDP 协议的网络性能监测。配合 incoming �
 
 ##### Network Connection Analysis
 
- Guance Cloud supports viewing Pod network connection data, including source IP/port, target IP/port, number of bytes sent, number of bytes received, TCP delay, TCP retransmission times and so on. At the same time, you can customize the display fields through the "Settings" button, or add filters for connection data to filter keywords of all string types. If you need to view more detailed network connection data, click this data or "View Network Flow Data" to view its corresponding network flow data.
+ Guance supports viewing Pod network connection data, including source IP/port, target IP/port, number of bytes sent, number of bytes received, TCP delay, TCP retransmission times and so on. At the same time, you can customize the display fields through the "Settings" button, or add filters for connection data to filter keywords of all string types. If you need to view more detailed network connection data, click this data or "View Network Flow Data" to view its corresponding network flow data.
 
 ![](img/5.network_3.png)
 
@@ -165,13 +165,13 @@ Pod network supports seven layers of network performance monitoring based on HTT
 
 ##### Network Connection Analysis
 
- Guance Cloud supports viewing the visual chart trend of Pod network request number, error number and error rate, and it also supports viewing Pod network connection analysis, including source IP/port, target IP/port, status code, request mode and response time. At the same time, you can customize the display fields through the "Settings" button, or add filters for connection data to filter keywords of all string types. If you need to view more detailed network connection data, click this data or "View Network Flow Data" to view its corresponding network flow data.
+ Guance supports viewing the visual chart trend of Pod network request number, error number and error rate, and it also supports viewing Pod network connection analysis, including source IP/port, target IP/port, status code, request mode and response time. At the same time, you can customize the display fields through the "Settings" button, or add filters for connection data to filter keywords of all string types. If you need to view more detailed network connection data, click this data or "View Network Flow Data" to view its corresponding network flow data.
 
 ![](img/5.network_4.png)
 
 ##### View Network Flow Data
 
-Guance Cloud supports viewing network flow data, which is automatically refreshed every 30s. The data of the last day is displayed by default, including time, source IP/port, target IP/port, status code, request mode and response time. At the same time, you can customize the display fields through the Settings button, or add filters for network stream data to filter keywords of all string types.
+Guance supports viewing network flow data, which is automatically refreshed every 30s. The data of the last day is displayed by default, including time, source IP/port, target IP/port, status code, request mode and response time. At the same time, you can customize the display fields through the Settings button, or add filters for network stream data to filter keywords of all string types.
 
 ![](img/5.network_5.png)
 
@@ -198,7 +198,7 @@ In "Infrastructure"-"Network", select "Deployment" to view the Deployment networ
 
 Deployment Network supports viewing network traffic between Deployments. Support to view the network traffic and data connection between source IP and target IP based on IP/port, and display it in real time in a visual way, so as to help enterprises know the network running status of business systems in real time, quickly analyze, track and locate problems and faults, and prevent or avoid business problems caused by network performance degradation or interruption.
 
-Deployment network data will report to the Guance Cloud console after being successfully collected. You can click View Network Details in "Network"-"Deployment" to view the network performance monitoring data information of the current Deployment.
+Deployment network data will report to the Guance console after being successfully collected. You can click View Network Details in "Network"-"Deployment" to view the network performance monitoring data information of the current Deployment.
 
 Note:
 
@@ -232,7 +232,7 @@ Deployment Network supports network performance monitoring based on TCP and UDP 
 
 ##### Network Connection Analysis
 
-Guance Cloud supports viewing Deployment network connection data, including source IP/port, target IP/port, number of bytes sent, number of bytes received, TCP delay, TCP retransmission times and so on. At the same time, you can customize the display fields through the "Settings" button, or add filters for connection data to filter keywords of all string types. If you need to view more detailed network connection data, click this data or "View Network Flow Data" to view its corresponding network flow data.
+Guance supports viewing Deployment network connection data, including source IP/port, target IP/port, number of bytes sent, number of bytes received, TCP delay, TCP retransmission times and so on. At the same time, you can customize the display fields through the "Settings" button, or add filters for connection data to filter keywords of all string types. If you need to view more detailed network connection data, click this data or "View Network Flow Data" to view its corresponding network flow data.
 
 ![](img/5.network_7.png)
 
@@ -252,13 +252,13 @@ Pod network supports seven layers of network performance monitoring based on HTT
 
 ##### Network Connection Analysis
 
-Guance Cloud supports viewing the visual chart trend of Pod network request number, error number and error rate. It also supports viewing Pod network connection analysis, including source IP/port, target IP/port, status code, request mode and response time. At the same time, you can customize the display fields through the "Settings" button, or add filters for connection data to filter keywords of all string types. If you need to view more detailed network connection data, click this data or "View Network Flow Data" to view its corresponding network flow data.
+Guance supports viewing the visual chart trend of Pod network request number, error number and error rate. It also supports viewing Pod network connection analysis, including source IP/port, target IP/port, status code, request mode and response time. At the same time, you can customize the display fields through the "Settings" button, or add filters for connection data to filter keywords of all string types. If you need to view more detailed network connection data, click this data or "View Network Flow Data" to view its corresponding network flow data.
 
 ![](img/5.network_7.png)
 
 ##### View Network Flow Data
 
-Guance Cloud supports viewing network flow data, which is automatically refreshed every 30s. The data of the last day is displayed by default, including time, source IP/port, target IP/port, status code, request mode and response tim. At the same time, you can customize the display fields through the Settings button, or add filters for network stream data to filter keywords of all string types.
+Guance supports viewing network flow data, which is automatically refreshed every 30s. The data of the last day is displayed by default, including time, source IP/port, target IP/port, status code, request mode and response tim. At the same time, you can customize the display fields through the Settings button, or add filters for network stream data to filter keywords of all string types.
 
 ![](img/5.network_8.png)
 

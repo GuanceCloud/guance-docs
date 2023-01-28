@@ -1,11 +1,11 @@
 # Index
 ---
 
-Guance Cloud supports setting log multiple indexes, filtering qualified logs and saving them in different log indexes, and helping users save log data storage costs by selecting different data storage strategies for log indexes.
+Guance supports setting log multiple indexes, filtering qualified logs and saving them in different log indexes, and helping users save log data storage costs by selecting different data storage strategies for log indexes.
 
 ???+ attention
 
-    Please contact Guance Cloud Account Manager to activate multiple indexes of workspace logs
+    Please contact Guance Account Manager to activate multiple indexes of workspace logs
 
 ## New Index
 
@@ -45,7 +45,7 @@ In the following picture, after the index is successfully created, log data with
 
 ## Bind index {#binding-index}
 
-Guance Cloud supports binding external index data, including SLS, Elasticsearch and OpenSearch index data. After successful binding, you can query and analyze external index data in observation cloud workspace.
+Guance supports binding external index data, including SLS, Elasticsearch and OpenSearch index data. After successful binding, you can query and analyze external index data in observation cloud workspace.
 
 ???+ attention
 
@@ -60,11 +60,11 @@ Guance Cloud supports binding external index data, including SLS, Elasticsearch 
 
 Into "Log"-"Index", click "Bind Index". Select SLS in the pop-up dialog box, fill in AccessKey ID/AccessKey Secret (AK/AKS for short), and automatically get Project and Logstore. The index name is the same as the Logstore name by default, or you can customize the edit name. After clicking "OK", the index binding can be completed, and you can view it by switching indexes in the "Explorer". 
 
-For information on how to open the SLS storage solution, please refer to the document [Alibaba Cloud Market Launches Guance Cloud Exclusive Edition](../billing/commercial-aliyun-sls.md). 
+For information on how to open the SLS storage solution, please refer to the document [Alibaba Cloud Market Launches Guance Exclusive Edition](../billing/commercial-aliyun-sls.md). 
 
--If you are a commercial user of Guance Cloud, you can refer to the document [RAM Account Authorization](../billing/billing-method/sls-grant.md) to obtain AK/AKS for index binding; 
--If you are a user of the exclusive version of Guance Cloud, you can directly use AK/AKS when opening the exclusive version for index binding. For how to open the exclusive version, you can refer to the document [Alibaba Cloud Market opens the exclusive version of observation cloud](../billing/commercial-aliyun-sls.md); 
--If you are an exclusive user of Guance Cloud and want to bind SLS log indexes under other Alibaba Cloud accounts, you can refer to the document [RAM Account Authorization](../billing/billing-method/sls-grant.md) to obtain AK/AKS for index binding. 
+-If you are a commercial user of Guance, you can refer to the document [RAM Account Authorization](../billing/billing-method/sls-grant.md) to obtain AK/AKS for index binding; 
+-If you are a user of the exclusive version of Guance, you can directly use AK/AKS when opening the exclusive version for index binding. For how to open the exclusive version, you can refer to the document [Alibaba Cloud Market opens the exclusive version of observation cloud](../billing/commercial-aliyun-sls.md); 
+-If you are an exclusive user of Guance and want to bind SLS log indexes under other Alibaba Cloud accounts, you can refer to the document [RAM Account Authorization](../billing/billing-method/sls-grant.md) to obtain AK/AKS for index binding. 
 
 
 ![](img/9.log_index_1.png)
@@ -76,7 +76,7 @@ Into "Log"-"Index", click "Bind Index". Select Elasticsearch page in the pop-up 
  - User name: Access user name 
  - Password: Password required for access 
  - Bind index: The name of the index in Elasticsearch that needs to be bound to view 
- - Index name: the unique index name identified by Guance Cloud. This configuration is user-defined and filled in. Duplicate names are not supported in the workspace 
+ - Index name: the unique index name identified by Guance. This configuration is user-defined and filled in. Duplicate names are not supported in the workspace 
 
 ![](img/1.log_index_1.png)
 
@@ -90,13 +90,13 @@ Into "Log"-"Index", click "Bind Index". Select OpenSearch page in the pop-up dia
  - User name: Access user name 
  - Password: Password required for access 
  - Bind index: The name of the index in OpenSearch that needs to be bound to view 
- - Index name: the unique index name identified by Guance Cloud. This configuration is user-defined and filled in. Duplicate names are not supported in the workspace 
+ - Index name: the unique index name identified by Guance. This configuration is user-defined and filled in. Duplicate names are not supported in the workspace 
 
 ![](img/1.log_index_2.png)
 
 ### Field mapping 
 
-Because the standard fields of Guance Cloud are inconsistent with those of SLS, Elasticsearch and OpenSearch, in order to better enable users to view and analyze the log data of external indexes in Guance Cloud, Guance Cloud provides the function of field mapping, and you can directly map the fields of logs when binding indexes (see the above picture). 
+Because the standard fields of Guance are inconsistent with those of SLS, Elasticsearch and OpenSearch, in order to better enable users to view and analyze the log data of external indexes in Guance, Guance provides the function of field mapping, and you can directly map the fields of logs when binding indexes (see the above picture). 
 
 -` time `: the reporting time of the log. The default mapping ` date ` field of Log Service is ` time `, and Elasticsearch and OpenSearch can be filled in by themselves according to the actual log data; 
 -` _ docid `: The unique ID of the log so you can view the bound log details after mapping, for example, you can map the original field ` logid ` to ` _ docid `; 

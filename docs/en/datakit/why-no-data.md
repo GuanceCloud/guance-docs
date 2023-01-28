@@ -2,7 +2,7 @@
 # How to Troubleshoot No Data Problems
 ---
 
-After deploying data collection (collected through DataKit or Function), sometimes you can't see the corresponding data update on the page of Guance Cloud, and you are tired every time you check it. In order to alleviate this situation, you can adopt the following steps to gradually encircle the problem of "why there is no data".
+After deploying data collection (collected through DataKit or Function), sometimes you can't see the corresponding data update on the page of Guance, and you are tired every time you check it. In order to alleviate this situation, you can adopt the following steps to gradually encircle the problem of "why there is no data".
 
 ## Check whether the DataWay connection is normal  {#check-connection}
 
@@ -45,7 +45,7 @@ Wed Jul 21 08:22:32 UTC 2021
 
 This is because the former is China's East Eight District Time, while the latter is Greenwich Mean Time, with a difference of 8 hours, but in fact, the timestamps of these two times are the same.
 
-If the time of the current system is far from that of your mobile phone, especially if it is ahead of time, there is no "future" data on Guance Cloud.
+If the time of the current system is far from that of your mobile phone, especially if it is ahead of time, there is no "future" data on Guance.
 
 In addition, if the time lag, you will see some old data. Don't think that paranormal happened. In fact, it is very likely that the time of DataKit's machine is still in the past.
 

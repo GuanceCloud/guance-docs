@@ -7,11 +7,11 @@ icon: zy/metrics
 
 ## Overview
 
-Guance Cloud has the ability of collecting global data, and the metric data obtained by the collector would be automatically reported to the workbench. You can analyze and manage the metric data in space uniformly through "Metrics".
+Guance has the ability of collecting global data, and the metric data obtained by the collector would be automatically reported to the workbench. You can analyze and manage the metric data in space uniformly through "Metrics".
 
 ## Application Scenarios
 
-It is critical to ensure that systems are observable, maintainable and operational for organizations to ensure business continuity and service delivery. Therefore, it is particularly important to use a large number of metrics to measure the running status and service efficiency of systems, applications and businesses. The metric function of Guance Cloud can help you:
+It is critical to ensure that systems are observable, maintainable and operational for organizations to ensure business continuity and service delivery. Therefore, it is particularly important to use a large number of metrics to measure the running status and service efficiency of systems, applications and businesses. The metric function of Guance can help you:
 
 - Realize the metric observation requirements of various technology stacks, open source software and business.
 - Visual analysis of metric change trend.

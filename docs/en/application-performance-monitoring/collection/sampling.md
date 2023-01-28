@@ -3,12 +3,12 @@
 
 ## Introduction
 
-The "application performance monitoring" function of Guance Cloud supports the analysis and management of link data collected by collectors conforming to the Opentracing protocol. Application performance data is collected in a full-scale way by default, that is, data will be generated every time it is called. If it is not limited, the collected data will be large and occupy too much data storage. You can collect application performance data by setting sampling method, thus saving data storage and reducing cost.
+The "application performance monitoring" function of Guance supports the analysis and management of link data collected by collectors conforming to the Opentracing protocol. Application performance data is collected in a full-scale way by default, that is, data will be generated every time it is called. If it is not limited, the collected data will be large and occupy too much data storage. You can collect application performance data by setting sampling method, thus saving data storage and reducing cost.
 
 Here's how to configure application performance data at a sampling rate of 5%, using the [DDtrace collector](../../datakit/ddtrace.md) as an example.
 ## Preconditions
 
-- [Register for Guance Cloud](https://auth.guance.com/login/pwd)
+- [Register for Guance](https://auth.guance.com/login/pwd)
 - [Install DataKit ](../../datakit/datakit-install.md) 
 - [Open DDtrace collector](../../datakit/ddtrace.md) 
 
@@ -158,13 +158,13 @@ curl http://localhost:54321/stop
 curl http://localhost:54322/stop
 ```
 
-### Step 5: View the effect in the Guance Cloud Workspace
+### Step 5: View the effect in the Guance Workspace
 
-Log in to the Guance Cloud workspace, and you can see the collected `SERVICE_A` and `SERVICE_B` link data.
+Log in to the Guance workspace, and you can see the collected `SERVICE_A` and `SERVICE_B` link data.
 
 ???+ attention
 
-    Application performance sampling is based on trace. If there are 100 traces and the sampling rate is set to 5%, 5% of them will be randomly collected, that is, 5 traces and all Spans under them will be randomly reported to the Guance Cloud workspace.
+    Application performance sampling is based on trace. If there are 100 traces and the sampling rate is set to 5%, 5% of them will be randomly collected, that is, 5 traces and all Spans under them will be randomly reported to the Guance workspace.
     
     In this example, `SERVICE_A` provides the HTTP service and calls `SERVICE_B` the HTTP service, that is, service A calls service B as a link, assuming there are 100 links, i.e. five of them are reported randomly.
 
@@ -181,4 +181,4 @@ The above is to configure the sampling rate of application performance monitorin
     sampling_rate = 1.0
 ```
 
-After setting the application performance sampling, it is possible to miss important links. You can configure filters to ensure that critical links are reported. For example, if you configure `keep_rare_resource = true`, the links judged to be rare will be directly reported to Guance Cloud. For more information on filters, see [Datakit filters](../../datakit/datakit-tracing.md#filters).
+After setting the application performance sampling, it is possible to miss important links. You can configure filters to ensure that critical links are reported. For example, if you configure `keep_rare_resource = true`, the links judged to be rare will be directly reported to Guance. For more information on filters, see [Datakit filters](../../datakit/datakit-tracing.md#filters).

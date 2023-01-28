@@ -9,7 +9,7 @@ Text is generally used for hints, instructions, you can add text, images, hyperl
 
 ## Application Scene
 
-Text charts of guance clouds are used to display text. It can be used in the following scene.
+Text charts of Guances are used to display text. It can be used in the following scene.
 
 - Displaying text descriptions of different scenes
 - Text cues for those requiring special cues
@@ -22,7 +22,7 @@ Text charts of guance clouds are used to display text. It can be used in the fol
 
 ## Example diagram
 
-The following figure shows an example of how to use the Guance Cloud Notes text instructions.
+The following figure shows an example of how to use the Guance Notes text instructions.
 
 ![](../img/text.png)
 
