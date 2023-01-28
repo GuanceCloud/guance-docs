@@ -16,18 +16,16 @@ Kafka 观测场景主要展示了 Kafka 的基础信息、topic 信息和性能�
 
 操作系统支持：Linux
 
-## 安装部署
-
-说明：示例 Kafka 版本为 kafka_2.12-2.2.0 (CentOS 7.9)，不同版本指标可能存在差异。
-
-### 前置条件
+## 前置条件
 
 - 服务器 <[安装 DataKit](../../datakit/datakit-install.md)>，安装完成后可使用 /usr/local/datakit/data/jolokia-jvm-agent.jar。也可以自行下载  [Jolokia](https://search.maven.org/remotecontent?filepath=org/jolokia/jolokia-jvm/1.6.2/jolokia-jvm-1.6.2-agent.jar)。
 - 服务器部署 Kafka。本示例使用单机版 Kafka 且与 DataKit 部署在一台服务器上。
 
-### 配置实施
+## 安装部署
 
-#### 指标采集 (必选)
+说明：示例 Kafka 版本为 kafka_2.12-2.2.0 (CentOS 7.9)，不同版本指标可能存在差异。
+
+### 指标采集 (必选)
 
 1、 开启 DataKit Kafka 采集器
 
@@ -222,7 +220,7 @@ java -jar /usr/local/datakit/data/jolokia-jvm-agent.jar --host 127.0.0.1 --port=
 
 ![image](../imgs/input-kafka-3.jpg)
 
-#### 日志采集 (非必选)
+### 日志采集 (非必选)
 
 1、 修改 `kafka.conf` 配置文件
 
@@ -249,7 +247,7 @@ systemctl restart datakit
 
 ![image](../imgs/input-kafka-5.png)
 
-#### 插件标签 (非必选)
+### 插件标签 (非必选)
 
 参数说明
 

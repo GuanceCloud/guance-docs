@@ -20,9 +20,7 @@ Conntrack 性能指标展示，包括成功搜索条目数、插入的包数、�
 
 说明：示例 Linux 版本为 CentOS Linux release 7.8.2003 (Core)
 
-### 部署实施
-
-#### 指标采集 (默认)
+### 指标采集 (默认)
 
 1、 System 采集器会同时采集 System 和 Conntrack 指标。
 
@@ -41,7 +39,7 @@ Conntrack 性能指标展示，包括成功搜索条目数、插入的包数、�
 
 ![image](../../imgs/input-conntracks-3.png)
 
-#### 插件标签 (非必选)
+### 插件标签 (非必选)
 
 参数说明
 

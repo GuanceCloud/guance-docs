@@ -24,7 +24,7 @@ icon: fontawesome/brands/python
 此处官方推荐 **ddtrace** 接入方式。ddtrace 是开源的 APM 监控方式，相较于其他方式，支持更多的自定义字段，也就意味着可以有足够多的标签与其他的组件进行关联。ddtrace 具体接入方式详细如下：
 ### 前置条件
 
-- 需要进行链路追踪的应用服务器<[安装 Datakit](../../datakit/datakit-install.md)>
+- 需要进行链路追踪的应用服务器<[安装 DataKit](../../datakit/datakit-install.md)>
 
 ### Python Flask 完整示例
 
