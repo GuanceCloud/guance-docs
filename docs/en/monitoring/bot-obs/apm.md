@@ -1,84 +1,40 @@
-# Application Performance Check
+# APM Intelligent Inspection
 
 ---
 
 ## Background
 
-Based on APM abnormal root cause analysis detector, "application performance detection" selects the information of `service`, `resource`, `project` and `env` to be detected, conducts intelligent check on application performance regularly, automatically analyzes the upstream and downstream information of the service through the abnormal service metric of the application program and confirms the abnormal root cause problem for the application program.
+「APM Intelligent Inspection」is based on APM root cause analysis detector, select the `service` 、 `resource` 、 `project` 、 `env` information to be tested, and perform intelligent inspection of APM on a regular basis to automatically analyze the upstream and downstream information of the service through application service index exceptions, and confirm the root cause of the abnormal problem for the application.
 
-## Precondition
+## Preconditions
 
-1. There are already access applications in Guance Cloud "application performance monitoring".
-2. Offline deployment of self-built DataFlux Func
-3. Open the [script market](https://func.guance.com/doc/script-market-basic-usage/)
-4. Create an [API Key](../../management/api-key/open-api.md) for action in Guance Cloud "management/API Key management"
-5. In the self-built DataFlux Func, install "Guance Cloud Self-built Inspection Core Core Package", "Guance Cloud Algorithm Library" and "Guance Cloud Self-built Inspection (APM Performance)" through "Script Market"
-6. In the DataFlux Func, write the self-built check processing function
-7. In the self-built DataFlux Func, create auto-trigger configuration for the written function through "Manage/Auto-trigger Configuration"
+1. In Guance「APM」that already have access applications.
+2. Offline deployment of [DataFlux Func](https://func.guance.com/#/)
+3. Open DataFlux Func's [Script Marketplace](https://func.guance.com/doc/script-market-basic-usage/)
+4. In Guance「Management / API Key Management」create [API Key](../../../management/api-key/open-api.md)
+5. In DataFlux Func，by「Script Marketplace」to install「Guance  Core Package」「Guance Algorithm Library」「Guance  script (APM Performance)」.
+6. In DataFlux Func, write  patrol processing functions.
+7. In DataFlux Func , by「Manage / Auto-trigger Configurations」,create an automatic trigger configuration for the written function.
 
-## Configuration Check
+> **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance SaaS[on [the same carrier in the same region](../../../getting-started/necessary-for-beginners/select-site/)。
 
-Create a new script set in the self-built DataFlux Func to start the application performance check configuration.
+## Configure Intelligent Inspection
 
-```python
-from guance_monitor__register import self_hosted_monitor
-from guance_monitor__runner import Runner
-import guance_monitor_apm_performance__main as apm_main
+In DataFlux Func create a new set of scripts to enable APM Intelligent Inspection configuration. After creating a new script set, select the corresponding script template to save when creating the Inspection script, and change it as needed in the resulting new script file.
 
-# Account Configuration
-API_KEY_ID  = 'wsak_xxx'
-API_KEY     = 'wsak_xxx'
+![image](../img/apm11.png)
 
-# The function filters parameter filter and Guance Cloud studio monitoring\intelligent check configuration have calling priority. After the function filters parameter filter is configured, there is no need to change the detection configuration in Guance Cloud studio monitoring\intelligent check. If both sides are configured, the filters parameter in the script will take effect first.
+## Start Intelligent Inspection
 
-def filter_project_servcie_sub(data):
-    # {'project': None, 'service_sub': 'mysql:dev'}, {'project': None, 'service_sub': 'redis:dev'}, {'project': None, 'service_sub': 'ruoyi-gateway:dev'}, {'project': None, 'service_sub': 'ruoyi-modules-system:dev'}
-    project = data['project']
-    service_sub = data['service_sub']
-    if service_sub in ['ruoyi-gateway:dev', 'ruoyi-modules-system:dev']:
-        return True
+### Register detection items in Guance
 
-'''
-Task configuration parameters use:
-@DFF.API('Application performance inspection', fixed_crontab='0 * * * *', timeout=900)
-
-fixed_crontab: Fixed execution frequency "once per hour"
-timeout: Task execution timeout, controlled at 15 minutes
-'''    
-   
-@self_hosted_monitor(API_KEY_ID, API_KEY)
-@DFF.API('application performance inspection', fixed_crontab='0 * * * *', timeout=900)
-def run(configs=[]):
-    '''
-    Parameters:
-    configs :
-        project: Items to which services belong
-        service_sub: Including service, environment, version by splicing ":", for example: "service:env:version"、"service:env"、"service:version"
-
-    Example:
-        configs = [
-            {"project": "project1", "service_sub": "service1:env1:version1"},
-            {"project": "project2", "service_sub": "service2:env2:version2"}
-        ]
-    '''
-    checkers = [
-        apm_main.APMCheck(configs=configs, filters=[filter_project_servcie_sub]),
-    ]
-
-    Runner(checkers, debug=False).run()
-```
-
-## Start Check
-
-### Register a Detect Item in Guance Cloud
-
-In DataFlux Func, after the check is configured, you can click run to test by directly selecting `run()` method in the page, and after clicking Publish, you can view and configure it in Guance Cloud "Monitoring/Intelligent Patrol".
+After configuring the inspection in DataFlux Func, you can run the test by selecting the `run()` method directly on the page, and then you can view and configure it in the Guance "Monitoring / Intelligent Inspection" after clicking Publish.
 
 ![image](../img/apm01.png)
 
 
 
-### Configure Application Performance Check in Guance Cloud
+### Configure APM Intelligent Inspection in Guance
 
   ![image](../img/apm02.png)
 
@@ -86,28 +42,26 @@ In DataFlux Func, after the check is configured, you can click run to test by di
 
 #### Enable/Disable
 
-The application performance check is "On" by default, and can be "Off" manually. The configured application performance monitoring will be checked after being turned on.
+APM Intelligent Inspection is "On" by default, and can be manually "Off". When it is on, it will inspect the configured APM.
 
 
 
 #### Export
 
-  Intelligent check supports "exporting JSON configuration". Under the operation menu on the right side of the intelligent check list, click the "Export" button to export the json code of the current check, and export the file name format: intelligent check name. json.
+Intelligent Inspection supports "Export JSON configuration". Under the operation menu on the right side of the Intelligent Inspection list, click the "Export" button to export the JSON code of the current inspection, and the export file name format: `intelligent inspection name.json`.
 
+#### Editor
 
+Intelligent Inspection "APM Intelligent Inspection" supports users to manually add filtering conditions, and click the "Edit" button under the operation menu on the right side of the Intelligent Inspection list to edit the inspection template.
 
-#### Edit
+  * Filter criteria: configuration application project service belongs to the project, service_sub including service, environment, version by ":" stitching.
+  * Alarm notification: support for selecting and editing alarm policies, including the level of events to be notified, notification objects, and alarm silence period, etc.
 
-  Intelligent Check "Application Performance Check" supports users to manually add filter conditions. Under the operation menu on the right side of the intelligent Check list, click the "Edit" button to edit the check template.
-
-  * Filter criteria: Configure the project to which the project service belongs, service_sub including service, environment and version to be spliced by ":".
-  * Alarm Notification: Support the selection and editing of alarm policies, including the level of events to be notified, the notification object and the alarm silence period.
-
-  Click Edit to configure entry parameters, then fill in the corresponding detection object in parameter configuration and click Save to start check:
+ Configure the entry parameters by clicking on Edit and then fill in the corresponding detection object in the parameter configuration and click Save to start the inspection：
 
   ![image](../img/apm03.png)
 
-You can refer to the following JSON configuration information for multiple projects, environments, versions and services.
+You can refer to the following JSON configuration for multiple projects, environments, versions and services
 
   ```json
    // Configuration example:
@@ -121,7 +75,7 @@ You can refer to the following JSON configuration information for multiple proje
 
 ## View Events
 
-  Intelligent check is based on Guance Cloud check algorithm, which will find abnormal situations in APM metrics, such as `resource` sudden anomaly. For abnormal situations, intelligent check will generate corresponding events. Under the operation menu on the right side of intelligent check list, click the "View Related Events" button to view the corresponding abnormal events.
+ Based on the Guance inspection algorithm, Intelligent Inspection will look for abnormalities in APM metrics, such as `resource` abnormalities occurring suddenly. For abnormal conditions, Intelligent Inspection will generate corresponding events, and you can check the corresponding abnormal events by clicking the "View Related Events" button under the operation menu on the right side of the Smart Inspection list.
 
 ![image](../img/apm04.png)
 
@@ -129,14 +83,14 @@ You can refer to the following JSON configuration information for multiple proje
 
 ### Event Details page
 
-  Click "Event" to view the details page of intelligent check events, including event status, exception occurrence time, exception name, basic attributes, event details, alarm notification, history and related events.
+Click "Event" to view the detail page of intelligent inspection events, including event status, time of exception occurrence, exception name, basic attributes, event details, alarm notification, history and associated events.
 
-  * Click the "View Monitor Configuration" icon in the upper right corner of the Details page to support viewing and editing the configuration details of the current intelligent check.
-  * Click the "Export Event JSON" icon in the upper right corner of the details page to support exporting the details of events.
+  * Click the "View monitor configuration" small icon at the top right corner of the detail page to support viewing and editing the configuration details of the current intelligent inspection.
+  * Click the "Export Event JSON" icon in the upper-right corner of the detail page to support exporting the event details.
 
 
 
-#### Basic Attributes
+#### Basic Properties
 
   * Detection Dimensions: Filter criteria based on smart check configuration, enabling replication of detection dimensions `key/value`, adding to filters and viewing related logs, containers, processes, security patrol, links, user access monitoring, availability monitoring and CI data
   * Extended Attributes: Support replication in the form of `key/value` after selecting extended attributes and forward/reverse filtering.
@@ -147,10 +101,10 @@ You can refer to the following JSON configuration information for multiple proje
 
 #### Event Details
 
-  * Event Overview: Describes the object, content of the anomaly check event
-  * Error Trend: You can view the performance metrics of the current application for nearly 1 hour
-  * Abnormal Impact: You can view the services and resources affected by the abnormal service of the current link
-  * Abnormal link sampling: check the detailed error time, service, resource and link ID; Click on the service, and the resource will enter the corresponding data observer; Click on the link ID will bring you to the specific link details page.
+  * Event overview: describes the object and content of the exception patrol event
+  * Error trend: you can view the performance indicators of the current application for nearly 1 hour
+  * Abnormal impact: you can view the services and resources affected by the abnormal service of the current link
+  * Abnormal link sampling: view the detailed error time, service, resource and link ID; Click Services and Resources to enter the corresponding data viewer; Click the link ID to enter the specific link details page.
 
 ![image](../img/apm06.png)
   ![image](../img/apm07.png)
@@ -159,15 +113,15 @@ You can refer to the following JSON configuration information for multiple proje
 
 #### History
 
-  Support to view detection objects, exception/recovery time and duration.
+ Support to view the detection object, exception/recovery time and duration.
 
  ![image](../img/apm08.png)
 
 
 
-#### Associated Events
+#### Related events
 
-  Support to view associated events by filtering fields and selected time component information.
+  Support to view related events through filtering fields and selected time component information.
 
   ![image](../img/apm09.png)
 
@@ -175,17 +129,21 @@ You can refer to the following JSON configuration information for multiple proje
 
 ## FAQ
 
-  **1.How to configure the detection frequency of application performance check**
+**1. How to configure the detection frequency of the APM Intelligent Inspection**
 
-  * In the self-built DataFlux Func, add `fixed_crontab='0 * * * *', timeout=900` and timeout=900 'in the decorator when writing the self-built patrol processing function, and then configure it in "Administration/Auto-trigger Configuration".
+  **In the  DataFlux Func, add `fixed_crontab='0 * * * *', timeout=900` to the decorator when writing the  patrol handler function, and then configure it in `Management / Auto-trigger Configuration'.
 
-  **2.There may be no anomaly analysis when applying the performance check trigger**
+**2. There may be no exception analysis when triggered by APM Intelligent Inspection**
 
-  Check the current data collection status of `datakit` when there is no anomaly analysis in the check report.
+  When there is no exception analysis in the inspection report, please check the current data collection status of `datakit`.
 
-  **3.Under what circumstances will an application performance check event occur**
+**3. Under what circumstances will an APM Intelligent Inspection event be generated**
 
-  Error rate, P90 and other metrics as the entry point, when one of the metrics changes abnormally and produces the impact of upstream and downstream links, trigger the collection of alarm information and carry out root cause analysis.
+  Use indicators such as error rate and P90 as entry points to trigger the collection of alarm information and root cause analysis when one of these indicators changes abnormally and has an upstream and downstream link impact.
+
+**4. Abnormal errors are found in scripts that were previously running normally during the inspection process**
+
+Please update the referenced script set in DataFlux Func's script marketplace, you can view the update log of the script marketplace via [**Change Log**](https://func.guance.com/doc/script-market-guance-changelog/) to facilitate immediate script update.
 
   
 

@@ -1,4 +1,4 @@
-# MySQL Performance Detection
+# MySQL Performance Intelligent Inspection
 
 ---
 
@@ -8,72 +8,32 @@ For increasingly complex application architectures, the current trend is that mo
 
 ## Preconditions
 
-1. Offline deployment of self-built DataFlux Func
-2. Open the [script market](https://func.guance.com/doc/script-market-basic-usage/) of self-built DataFlux Func 
-3. Create [API Key](../../management/api-key/open-api.md) in the Guance Cloud "management/API Key management" 
-4. In the self-built DataFlux Func, install "Guance Cloud Intelligent Inspection Core Package", "Guance Cloud Algorithm Library" and "Guance Cloud Self-built Inspection (MYSQL Performance)" through "Script Market"
-5. In the DataFlux Func, write the intelligent inspection processing function
-6. In the self-built DataFlux Func, create auto-trigger configurations for the functions you write through "Manage/Auto-trigger Configurations."
+1. Offline deployment of [DataFlux Func](https://func.guance.com/#/)
+2. Open DataFlux Func's [Script Marketplace](https://func.guance.com/doc/script-market-basic-usage/)
+3. In Guance「Management / API Key Management」create [API Key](../../../management/api-key/open-api.md)
+4. In DataFlux Func，by「Script Marketplace」to install「Guance  Core Package」「Guance Algorithm Library」「Guance  script (MySQL Performance)」.
+5. In DataFlux Func, write  patrol processing functions.
+6. In DataFlux Func , by「Manage / Auto-trigger Configurations」,create an automatic trigger configuration for the written function.
 
-## Configuration Detection
+> **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance SaaS[on [the same carrier in the same region](../../../getting-started/necessary-for-beginners/select-site/).
 
-Create a new script set in the self-built DataFlux Func to start the MySQL performance review configuration.
+## Configure Intelligent Inspection
 
-```python
-from guance_monitor__register import self_hosted_monitor
-from guance_monitor__runner import Runner
-import guance_monitor_mysql_performance__main as main
+In DataFlux Func create a new set of scripts to enable MySQL Performance Intelligent Inspection configuration. After creating a new script set, select the corresponding script template to save when creating the Inspection script, and change it as needed in the resulting new script file.
 
-# Guance Cloud space API_KEY configuration (user-configured)
-API_KEY_ID  = 'wsak_xxxx'
-API_KEY     = '3LTcYxxxxx'
+![image](../img/mysql-performance11.png)
 
-# The function filters parameter filter and Guance Cloud studio monitoring\intelligent check configuration have calling priority. After the function filters parameter filter is configured, there is no need to change the detection configuration in Guance Cloud studio monitoring\intelligent check. If both sides are configured, the filters parameter in the script will take effect first
+## Start Intelligent Inspection
 
-def filter_host(host):
-    '''
-    Filter host, customize the conditions that meet the requirements of host, return True for matching, and return False for mismatching
-    return True｜False
-    '''
-    if host in ['196.168.0.0']:
-        return True
-
-'''
-Task configuration parameters use:
-@DFF.API('MYSQL performance detection', fixed_crontab='*/30 * * * *', timeout=900)
-
-fixed_crontab: Fixed execution frequency "every 30 minutes"
-timeout: Task execution timeout, limited to 15 minutes
-'''
-# Custom detection configuration; users do not need to modify it
-@self_hosted_monitor(API_KEY_ID, API_KEY)
-@DFF.API('MYSQL performance detection', fixed_crontab='*/30 * * * *', timeout=900)
-def run(configs=None):
-    '''
-    configs : Configure the list of hosts to be detected (optional, do not configure default detection of all hosts in the current workspace)
-    configs = {
-        "host": ["192.168.0.1", "192.168.0.0"]    # host list
-    }
-
-    '''
-    checkers = [
-        main.MysqlChecker(configs=configs, filters=[filter_host]),
-    ]
-
-    Runner(checkers, debug=False).run()
-```
-
-## Start Detection
-
-### Register a Detectioan Item in Guance Cloud
+### Register detection items in Guance
 
 
-In DataFlux Func, after the patrol is configured, you can click run to test by directly selecting `run()` method in the page, and after clicking Publish, you can view and configure it in the Guance Cloud "Monitoring/Intelligent Patrol"
+In DataFlux Func, after the patrol is configured, you can click run to test by directly selecting `run()` method in the page, and after clicking Publish, you can view and configure it in the Guance "Monitoring/Intelligent Patrol"
 
 ![image](../img/mysql-performance01.png)
 
 
-### Configure MySQL Performance Detection in Guance Cloud
+### Configure MySQL Performance Intelligent Inspection in Guance
 
 ![image](../img/mysql-performance02.png)
 
@@ -83,15 +43,16 @@ MySQL performance detection is "on" by default, and can be "off" manually. After
 
 #### Export
 
-Intelligent check supports "exporting JSON configuration". Under the operation menu on the right side of the intelligent check list, click the "Export" button to export the json code of the current check, and export the file name format: intelligent check name. json.
+Intelligent Inspection supports "Export JSON configuration". Under the operation menu on the right side of the Intelligent Inspection list, click the "Export" button to export the JSON code of the current inspection, and the export file name format: `intelligent inspection name.json`.
 
-#### Edit
+#### Editor
 
 Intelligent Check "MySQL Performance Check" supports users to manually add filter conditions. Under the operation menu on the right side of the intelligent check list, click the "Edit" button to edit the check template.
 
 * Filter criteria: Configure hosts that need to be checked
 * Alarm Notification: Support the selection and editing of alarm policies, including the level of events to be notified, the notification object and the alarm silence period
   
+
 Click Edit to configure entry parameters, then fill in the corresponding detection object in parameter configuration, and click Save to start check:
 
 ![image](../img/mysql-performance03.png)
@@ -105,7 +66,7 @@ configs = {
 }
 ```
 
->  **Note**: In the self-built DataFlux Func, filter conditions can also be added when writing the intelligent inspection processing function (refer to the sample code configuration). Note that the parameters configured in the Guance Cloud studio will override the parameters configured when writing the intelligent inspection processing function.
+>  **Note**: In the  DataFlux Func, filter conditions can also be added when writing the intelligent inspection processing function (refer to the sample code configuration). Note that the parameters configured in the Guance studio will override the parameters configured when writing the intelligent inspection processing function.
 
 ## View Events
 
@@ -120,7 +81,7 @@ Click "Event" to view the details page of intelligent check events, including ev
 * Click the "View Monitor Configuration" icon in the upper right corner of the Details page to support viewing and editing the configuration details of the current intelligent check
 * Click the "Export Event JSON" icon in the upper right corner of the details page to support exporting the details of events
 
-#### Basic Atributes
+#### Basic Properties
 
 * Detection Dimensions: Filter criteria based on intelligent check configuration, enabling replication of detection dimensions `key/value`, adding to filters, and viewing related logs, containers, processes, security patrol, links, user access monitoring, availability monitoring and CI data
 * Extended Attributes: Support replication in the form of `key/value` after selecting extended attributes, and forward/reverse filtering
@@ -148,7 +109,7 @@ Support to view detection objects, exception/recovery time and duration.
 
 ![image](../img/mysql-performance08.png)
 
-#### Associated Events
+#### Related events
 
 Support to view associated events by filtering fields and selected time component information.
 
@@ -158,7 +119,7 @@ Support to view associated events by filtering fields and selected time componen
 
 **1.How to configure the detection frequency of MySQL performance detection**
 
-* In the self-built DataFlux Func, add `fixed_crontab='*/30 * * * *', timeout=900` in the decorator when writing the intelligent inspection processing function, and then configure it in "Administration/Automatic Trigger Configuration".
+* In the  DataFlux Func, add `fixed_crontab='*/30 * * * *', timeout=900` in the decorator when writing the intelligent inspection processing function, and then configure it in "Administration/Automatic Trigger Configuration".
 
 **2.MySQL performance review may be triggered without exception analysis**
 
@@ -167,3 +128,7 @@ Check the current data collection status of `datakit` when there is no anomaly a
 **3.Under what circumstances will MySQL performance review events occur**
 
  If the cpu utilization rate of the currently configured host continues to exceed 95% for 10 minutes, the memory utilization rate continues to exceed 95% for 10 minutes, the number of SQL executions exceeds 5 times of the month-on-month increase, and the number of slow SQL occurrences exceeds 5 times of the month-on-month increase, an alarm event will be generated.
+
+**4. Abnormal errors are found in scripts that were previously running normally during the inspection process**
+
+Please update the referenced script set in DataFlux Func's script marketplace, you can view the update log of the script marketplace via [**Change Log**](https://func.guance.com/doc/script-market-guance-changelog/) to facilitate immediate script update.
