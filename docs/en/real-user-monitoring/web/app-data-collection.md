@@ -7,18 +7,7 @@ After collecting application data and reporting it to the observation cloud, you
 
 ## Data Type
 
-Real User Monitoring of Guance Cloud includes six data types.
-
-| Type | **Description** |
-| --- | --- |
-| session | User session information records, in the current session, will be based on the session dimension of user pages, resources, actions, errors, long task related access data. |
-| view | When a user accesses a page, a page view record is generated. When the user stays on the same page, the resource, long task, error, and action records are linked to the relevant RUM view through the view_id attribute. |
-| resource | The resource information record loaded when the user accesses the page. |
-| error | Collects all front-end errors on the browser. |
-| long_task | A long task record is generated for any task in the browser that blocks the main thread for more than 50ms. |
-| action | Track all user interactions during the user's page view. |
-
-### Hierarchical structure
+### 	Hierarchical structure
 
 ![](../img/rumcollection1.png)
 

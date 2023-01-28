@@ -10,12 +10,12 @@
 
 1. Offline deployment of [DataFlux Func](https://func.guance.com/#/)
 2. Open DataFlux Func's [Script Marketplace](https://func.guance.com/doc/script-market-basic-usage/)
-3. In Guance Cloud「Management / API Key Management」create [API Key](../../management/api-key/open-api.md)
-4. In DataFlux Func，by「Script Marketplace」to install「Guance Cloud Core Package」「Guance Cloud Algorithm Library」「Guance Cloud script (Disk utilization)」.
+3. In Guance「Management / API Key Management」create [API Key](../../../management/api-key/open-api.md)
+4. In DataFlux Func，by「Script Marketplace」to install「Guance Core Package」「Guance Algorithm Library」「Guance script (Disk utilization)」.
 5. In DataFlux Func, write processing functions.
 6. In DataFlux Func , by「Manage / Auto-trigger Configurations」,create an automatic trigger configuration for the written function.
 
-> **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance Cloud SaaS[on [the same carrier in the same region](../../../getting-started/necessary-for-beginners/select-site/)。
+> **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance SaaS[on [the same carrier in the same region](../../../getting-started/necessary-for-beginners/select-site/)。
 
 ## Configure Intelligent Inspection
 
@@ -25,14 +25,14 @@ In DataFlux Func create a new set of scripts to enable Disk utilization Intellig
 
 ## Start Intelligent Inspection
 
-### Register detection items in Guance Cloud
+### Register detection items in Guance
 
-After configuring the inspection in DataFlux Func, you can run the test by selecting the `run()` method directly on the page, and then you can view and configure it in the Guance Cloud "Monitoring / Intelligent Inspection" after clicking Publish.
+After configuring the inspection in DataFlux Func, you can run the test by selecting the `run()` method directly on the page, and then you can view and configure it in the Guance "Monitoring / Intelligent Inspection" after clicking Publish.
 
 ![image](../img/disk-usage01.png)
 
 
-### Configure Disk utilization Intelligent Inspection in Guance Cloud
+### Configure Disk utilization Intelligent Inspection in Guance
 
 ![image](../img/disk-usage02.png)
 
