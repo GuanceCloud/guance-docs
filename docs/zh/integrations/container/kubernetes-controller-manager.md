@@ -13,9 +13,8 @@ Controller Manager 性能指标，包括 Service Controller Rate Limiter Use、 
 
 ## 版本支持
 
-操作系统支持：Linux
-
-Kubernetes 版本：1.18+
+- 操作系统支持：Linux
+- Kubernetes 版本：1.18+
 
 ## 前置条件
 
@@ -25,9 +24,7 @@ Kubernetes 版本：1.18+
 
 说明：示例 Kubernetes 版本为 1.22.6，DataKit 版本为 1.2.17，各个不同版本指标可能存在差异。
 
-### 部署实施
-
-#### 指标采集 (必选)
+### 指标采集 (必选)
 
 1、 ConfigMap 增加 `controller-manager.conf` 配置
 
@@ -142,7 +139,7 @@ kubectl apply -f datakit.yaml
 
 ![image](../imgs/kubernetes-controller-manager-1.png)
 
-#### 插件标签 (必选）
+### 插件标签 (必选）
 
 参数说明
 

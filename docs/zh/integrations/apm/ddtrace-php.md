@@ -25,7 +25,7 @@ icon: integrations/php
 
 #### 前置条件
 
-- 需要进行链路追踪的应用服务器<[安装 Datakit](../../datakit/datakit-install.md)>
+- 需要进行链路追踪的应用服务器<[安装 DataKit](../../datakit/datakit-install.md)>
 - [下载 ddtrace-php-agent](https://github.com/DataDog/dd-trace-php/releases)，可根据需求下载 x86、arm64 或者其他版本的 agent。
 - <[ddtrace -php -agent 框架兼容列表](https://docs.datadoghq.com/tracing/setup_overview/compatibility_requirements/php)>
 

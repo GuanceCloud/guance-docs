@@ -24,9 +24,7 @@ icon: material/security
 
 说明：示例 Linux 版本为：CentOS Linux release 7.8.2003 (Core)
 
-### 部署实施
-
-#### 安装服务
+### 安装服务
 
 ```
 bash -c "$(curl https://static.dataflux.cn/security-checker/install.sh)"
@@ -39,7 +37,7 @@ bash -c "$(curl https://static.dataflux.cn/security-checker/install.sh)"
 - 主配置文件：`/usr/local/scheck/scheck.conf`
 - 检测规则目录：`/usr/local/scheck/rules.d`
 
-#### 配置文件
+### 配置文件
 
 1、主配置文件：`/usr/local/scheck/scheck.conf`
 参数说明

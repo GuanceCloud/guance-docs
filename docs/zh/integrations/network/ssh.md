@@ -23,9 +23,7 @@ SSH 性能指标展示，包括 SSH 服务状态、SFTP 服务状态、SFTP 服�
 
 说明：示例 Linux 版本为：CentOS Linux release 7.8.2003 (Core)，Windows 版本请修改对应的配置文件
 
-### 部署实施
-
-#### 指标采集 (必选)
+### 指标采集 (必选)
 
 1、 开启 ssh 插件，复制 sample 文件
 
@@ -65,7 +63,7 @@ systemctl restart datakit
 
 ![image](../imgs/input-ssh-3.png)
 
-#### 插件标签 (非必选）
+### 插件标签 (非必选）
 
 参数说明
 

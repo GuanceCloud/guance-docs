@@ -18,7 +18,7 @@ ActiveMQ 指标展示，包括队列进/出、Topic 进/出、订阅队列进/�
 
 ## 前置条件
 
-- 服务器 <[安装 Datakit](../../datakit/datakit-install.md)>
+- 服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
 - 服务器安装 Telegraf
 
 ### 安装 Telegraf

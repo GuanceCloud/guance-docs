@@ -14,17 +14,15 @@ JVM 性能指标展示：CPU 负载、直接缓冲区、线程数量、堆内存
 
 操作系统支持：Linux / Windows
 
+## 前置条件
+
+- 服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
+
 ## 安装部署
 
 说明：示例 通过 ddtrace 采集 JVM 指标，通过 DataKit 内置的 Statsd 接收 ddtrace 发送过来的 JVM 指标。
 
-### 前置条件
-
-- 服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
-
-### 配置实施
-
-#### 指标采集 (必选)
+### 指标采集 (必选)
 
 
 1、 开启 ddtrace， 复制 sample 文件，不需要修改 `ddtrace.conf`

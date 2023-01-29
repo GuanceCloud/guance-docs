@@ -16,17 +16,15 @@ Directory 性能指标展示，包括目录数、文件数、目录文件大小�
 
 ## 前置条件
 
-- 服务器 <[安装 Datakit](../../datakit/datakit-install.md)>
+- 服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
 
 ## 安装配置
 
-说明：示例 Linux 版本为：CentOS Linux release 7.8.2003 (Core)
-
-### 部署实施
+说明：示例 Linux 版本为 CentOS Linux release 7.8.2003 (Core)
 
 (Linux / Windows 环境相同)
 
-#### 指标采集 (必选)
+### 指标采集 (必选)
 
 1、 开启 Datakit Hostdir 插件，复制 sample 文件
 
@@ -54,7 +52,7 @@ cp hostdir.conf.sample hostdir.conf
 
 ![image](../imgs/input-directory-3.png)
 
-#### 插件标签 (非必选)
+### 插件标签 (非必选)
 
 参数说明
 

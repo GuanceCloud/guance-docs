@@ -12,19 +12,18 @@
 
 操作系统支持：Linux / Windows / Mac
 
+
+## 前置条件
+
+- 服务器 <[安装 DataKit](../../../datakit/datakit-install.md)>
+
 ## 安装部署
 
 说明：示例 Linux 版本为 CentOS Linux release 7.8.2003 (Core)，Windows 版本请修改对应的配置文件。
 
-### 前置条件
-
-- 服务器 <[安装 DataKit](../../../datakit/datakit-install.md)>
-
-### 配置实施
-
 (Linux / Windows 环境相同)
 
-#### 指标采集 (默认)
+### 指标采集 (默认)
 
 1、 System 数据采集默认开启，对应配置文件 `/usr/local/datakit/conf.d/host/system.conf`
 
@@ -41,7 +40,7 @@
 
 ![image](../../imgs/input-system-3.png)
 
-#### 插件标签 (非必选)
+### 插件标签 (非必选)
 
 参数说明
 

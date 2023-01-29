@@ -18,7 +18,7 @@ MinIO 性能指标展示，包括 MinIO 在线时长、存储空间分布、buck
 
 ## 前置条件
 
-- 服务器 <[安装 Datakit](../../datakit/datakit-install.md)>
+- 服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
 
 ## 安装配置
 

@@ -21,7 +21,7 @@ icon: material/language-go
 
 ### 前置条件
 
-- 需要进行链路追踪的应用服务器<[安装 Datakit](../../datakit/datakit-install.md)>
+- 需要进行链路追踪的应用服务器<[安装 DataKit](../../datakit/datakit-install.md)>
 
 ### Go Redis APM 完整示例
 
