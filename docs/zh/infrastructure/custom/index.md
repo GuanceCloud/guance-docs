@@ -99,7 +99,7 @@
 
 ### 分析模式
 
-在基础设施自定义查看器分析栏，支持基于 **1-3 个标签**进行多维度分析统计，以反映出数据在不同维度下的分布特征，支持多种数据图表分析方式，包括排行榜、饼图和矩形树图。更多详情可参考文档 [查看器的分析模式](../getting-started/necessary-for-beginners/explorer-search.md#analysis) 。
+在基础设施自定义查看器分析栏，支持基于 **1-3 个标签**进行多维度分析统计，以反映出数据在不同维度下的分布特征，支持多种数据图表分析方式，包括排行榜、饼图和矩形树图。更多详情可参考文档 [查看器的分析模式](../../getting-started/necessary-for-beginners/explorer-search.md#analysis) 。
 
 ![](../img/4.jichusheshi_4.png)
 

@@ -49,6 +49,6 @@
 
 ## 更多参考
 
-- [什么是内置视图](../../scene/built-in-view.md)
+- [什么是内置视图](../../scene/built-in-view/index.md)
 - [绑定内置视图](../../scene/built-in-view/bind-view.md)
 
