@@ -33,7 +33,7 @@
 
 ![](../img/3.object_more_api_function_1.png)
 
-更多 Func 安装可参考文档 [快速开始](../../dataflux-func/quick-start.md) 。
+更多 Func 安装可参考文档 [快速开始](https://func.guance.com/doc/quick-start/) 。
 
 ## 连接 Function 和 DataKit
 
@@ -47,14 +47,14 @@
 
 3.重启DataKit：`sudo datakit --restart`
 
-更多详情可参考文档 [连接并操作DataKit](../../dataflux-func/connect-to-datakit.md) 。
+更多详情可参考文档 [连接并操作DataKit](https://func.guance.com/doc/practice-connect-to-datakit/) 。
 
 ## 上报自定义对象数据
 
 DataFlux Func 和 DataKit 连通以后，可以在 DataFlux Func 中撰写函数来完成上报自定义对象数据。
 
 - 关于 DataFlux Func 函数调用的接口说明可参考文档 [DataKit API](../../datakit/apis.md) 。
-- 关于 DataFlux Func 如何写入数据到 DataKit 的说明可参考文档 [通过DataKit 写入数据](../../dataflux-func/write-data-via-datakit.md) 。
+- 关于 DataFlux Func 如何写入数据到 DataKit 的说明可参考文档 [通过DataKit 写入数据](https://func.guance.com/doc/practice-write-data-via-datakit/) 。
 
 ## 示例说明
 
