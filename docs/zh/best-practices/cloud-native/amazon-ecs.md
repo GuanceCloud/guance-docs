@@ -15,7 +15,7 @@ Amazon Elastic Container Service (Amazon ECS) 是一项高度可扩展的快速�
 
 - 需要先创建一个[观测云账号](https://www.guance.com/)
 - [安装 DataKit](../../datakit/datakit-install.md)
-- [安装 Func 携带版](../../dataflux-func/quick-start.md)
+- [安装 Func 携带版](https://func.guance.com/doc/maintenance-guide-installation/)
 - 已经拥有运行在 ECS 的 Java 应用
 
 这里使用到的 ECS 集群名称是 cluster-docker，下面查看示例的日志及日志组。登录「[AWS](https://www.amazonaws.cn/)」，进入「Elastic Container Service」 - 点击「集群」 - 「cluster-docker」。

@@ -15,7 +15,7 @@
 ## 前置条件
 
 - 服务器 <[安装 Datakit](../../../datakit/datakit-install.md)>
-- 服务器 <[安装 DataFlux Func 携带版](../../../dataflux-func/quick-start.md)>
+- 服务器 <[安装 DataFlux Func 携带版](https://func.guance.com/doc/maintenance-guide-installation/)>
 - 阿里云 RAM 访问控制账号授权
 
 ### RAM 访问控制
