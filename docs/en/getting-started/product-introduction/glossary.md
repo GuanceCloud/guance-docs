@@ -1,0 +1,71 @@
+# Glossary
+---
+
+This article will introduce the interpretation of related terms in Guance components, functions, clients, mobile terminals, versions, billing and so on.
+
+## Component
+
+The components of Guance include front-end console Studio, data gateway DataWay, data collection Agent DataKit and extensible programming platform Func.
+
+| Component                                 | Description                                                         |
+| ------------------------------------ | ------------------------------------------------------------ |
+| Studio                               | The components of Guance include front-end console Studio, data gateway DataWay, data acquisition Agent DataKit and extensible programming platform Func. |
+| DataWay                              | DataWay is the data gateway of Guance, which is mainly used to receive the data sent by DataKit and then report it to DataFlux Center for storage. |
+| [DataKit](../../datakit/index.md)       | DataKit is a real-time data collection Agent for Guance, which supports hundreds of kinds of data collection. After collecting data, DataKit will first send it to DataWay data gateway, and then report it to the center for storage and analysis via DataWay. DataKit needs to be deployed into the user's own IT environment and supports multiple operating systems.<br/>Default collection frequency: 5 minutes |
+| [Func](https://func.guance.com/doc/) | Func, or DataFlux Func, is an extended programming platform for Guance, which can be used for function development, management and execution. Easy to use, just write code and publish, automatically generate HTTP API interface for functions, and officially build various out-of-the-box script libraries, which can be easily called by Guance. |
+
+
+
+## Function
+
+The functions of Guance include scenes, events, infrastructure, indicators, logs, application performance, user access, availability monitoring, security inspection and other functional modules, providing full link-level data analysis and insight capabilities for collected data.
+
+| Function                                                         | Description                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [Integration](../../integrations/index.md)                             | The integrated Guance supports more than hundreds of data collectors, including hosts, containers, logs, Nginx, APM and RUM. Just install DataKit to start real-time collection of different data and report them to Guance workspace for data analysis. You can see how to install Datakit, Func, DCA, Mobile in Integration.
+ |
+| [Scene](../../scene/index.md)                                    | In the scene, it supports visual chart display of collected data, and now it supports three display modes, namely "dashboard", "note" and "explorer".<br><li>[Dashboard](../../scene/dashboard.md): The dashboard is composed of multiple visual charts, which are used to view and analyze various data related to topics at the same time, obtain more comprehensive information, and freely adjust the layout and chart size;<br/><li>[Note](../../scene/note.md): Notes are composed of text documents and other visual diagrams, with a fixed layout from top to bottom. Data analysis and summary report can be carried out through the combination of pictures and texts;<br/><li>[Explorer](../../scene/explorer/index.md): Here you can quickly build a log viewer, support custom adding statistical charts, set default display attributes and filter conditions and customize your log viewing requirements.<br/><li>[Inner dashboard](../../scene/built-in-view/index.md): Inclue "system view" and "user view". The system view is an official view template, while the user view is a user-defined view created and saved as a template, which supports cloning from the system view and can be used for binding views of scenes and explorer details. |
+| [Events](../../events/index.md)                                   | When the trigger conditions set by the monitor are met, no matter whether the alarm notification is set or not, events will be generated and stored in the "event" module in a unified way, which supports correlation analysis with charts, and at the same time, abnormal situations occurred in a certain time stage in the past can be traced back by means of event data. |
+| [Infrastructure](../../infrastructure/index.md)                       | The entity infrastructure of data collection currently supports the collection of entity objects such as hosts, containers, processes and K8s. |
+| [Metrics](../../metrics/index.md)                                  | <li>[Mesurement](../../metrics/dictionary.md): A set of metrics of the same type. Generally, the metric labels in the same mesurement are the same. A mesurement can contain multiple metrics.<br/><li>[Metrics](../../metrics/dictionary.md): The DataWay gateway finally reports the data to the DataFlux center for storage. The metric is divided into two parts: metric name and metric value. The metric name only identifies an alias of the metric, and the metric value refers to the specific value of the metric when collecting. <br/><li>[Label](../../metrics/dictionary.md)l: A collection of attributes that identifies a data point collection object. Labels are divided into label names and label values. A data point can have multiple labels. For example, the collected metric "cpu usage" will identify attribute information such as host, os and product. These attributes are collectively referred to as tags.<br/><li>[Timeseries](../../metrics/dictionary.md): The number of all combinations that can be combined based on labels in the reported metric data in the current workspace. In Guance, the timeline is composed of metrics, labels (fields) and data storage time, and "metrics" and "combination of labels (fields)" are the primary keys of data storage. |
+| [Log](../../logs/index.md)                                     | It is used to record the real-time operation or behavior data generated during the operation of the system or software, and supports front-end visual viewing, filtering and analysis. |
+| [APM](../../application-performance-monitoring/index.md) | Track statistics of service processing time, request status and other attribute information, which can be used to monitor application performance. |
+| [RUM](../../real-user-monitoring/index.md)             | User access monitoring refers to collecting data related to real users' real experiences and behaviors when they interact with your website and application. Guance supports four types of user access monitoring: Web, mobile (Android & IOS) and applet. |
+| [Usablity Monitoring](../../usability-monitoring/index.md)               | Using dial-up nodes distributed all over the world, websites, domain names and api interfaces are monitored periodically through HTTP, TCP, ICMP and other protocols, and the trend changes of availability and delay are supported to help analyze site quality. |
+| [Security Check](../../scheck/index.md)                               | A series of inspections are carried out on systems, software and logs through new security scripts, which support real-time data output and real-time synchronization of abnormal problems, master the running status of equipment and the changes of surrounding environment, find facility defects and potential safety hazards, and take effective measures in time. |
+| [CI](../../ci-visibility/index.md)                              | Guance supports visualization of CI processes and results built into Gitlab, and can view the pipeline of all CIs, their success rate, failure reasons and specific failure links in Guance to help you provide code update guarantee. |
+| [Monitor](../../monitoring/index.md)                               | <li>[Monitor](../../monitoring/monitor/index.md): By configuring detection rules, trigger conditions and event notification, it can receive alarm notification at the first time, find and solve problems in time. It includes threshold detection, mutation detection, interval detection, outlier detection, log detection, process anomaly detection, infrastructure survival detection, application performance index detection, user access index detection, security inspection anomaly detection, availability data detection and network data detection.<br/><li>[Intelligent Inspection](../../monitoring/bot-obs/index.md): Intelligent algorithm based on observation cloud can automatically detect and foresee infrastructure and application problems, help users find problems during IT system operation, and quickly locate the causes of abnormal problems through root cause analysis.<br/><li>[SLO](../../monitoring/slo.md): SLO monitoring is to test whether the availability of system services meets the target needs around various metrics of DevOps, which can not only help users monitor the service quality provided by service providers, but also protect service providers from SLA violations. |
+| [Workspace](../../management/index.md)                           | Collaboration space of data insight, each workspace is independent of each other. Users can query and analyze data in workspaces, and support joining one or more workspaces by creating/inviting. |
+| [DQL](../../dql/query.md)                                       | DQL (Debug Query Language) is a data query syntax provided by the cloud official. Users can use DQL query syntax in Guance to query metric/log data, and then visualize the data chart. |
+| [Pipeline](../../management/overall-pipeline.md)                | Pipeline is a data processing tool provided by the cloud official. By defining analysis rules, it supports cutting metrics, logs, user access, application performance, basic objects, custom objects, networks, security inspections and other data into structured data that meet our requirements. |
+
+## Client DCA
+
+[Client DCA](../../datakit/dca.md) is a DataKit online management platform, which supports viewing the running status of DataKit and managing and configuring collectors, blacklists and Pipelines in a unified way.
+
+## Mobile APP
+
+[Guance Mobile APP](../../mobile/index.md) supports receiving alarm notifications of events on mobile devices, viewing all scene views and log data in the workspace, and easily completing data analysis and insight anytime and anywhere.
+
+## Version
+
+Guance provides three versions: Experience Version, Commercial Version and Deployment Version. For more information, please refer to the doc [payment plan and billing](../../billing/index.md).
+
+| Version                                               | Description                                                         |
+| -------------------------------------------------- | ------------------------------------------------------------ |
+| [Experience Version](https://auth.guance.com/businessRegister) | 注册即可体验观测云的功能模块。                               |
+| [Commercial Version](../../billing/commercial-register.md)        | The public version of SaaS on the cloud is paid according to volume and used out of the box. It is only necessary to install DataKit and configure relevant data collectors to complete observable access. For billing rules, please refer to the doc [billing method](../../billing/billing-method/index.md). |
+| [Deployment Version](../../deployment/index.md)                   | Independent deployment on SaaS cloud and local deployment of PaaS require users to prepare their own service resources, with the highest level of data security and more service support. |
+
+## Billing
+
+Guance provides an exclusive billing account management platform「[Expense Center](../../billing/cost-center/index.md)」, where you can recharge your account, view account balance and bill details, bind workspace, change settlement methods and other operations. For the noun explanation of billing method and billing item, please refer to the doc [billing method](../../billing/billing-method/index.md).
+
+| Function                                                         | Description                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [Billing method](../../billing/billing-account/index.md)              | Guance expense settlement methods support Guance enterprise accounts, cloud accounts and other settlement methods.<br/><li>Guance Enterprise Account: Guance Expense Center is dedicated to managing independent accounts related to billing generated by using Guance products, and one enterprise account can be associated with multiple workspace billing. |
+| [Account management](../../billing/cost-center/account-management.md)     | Guance expense center account management, including account data change, password modification, real-name authentication and cloud account management. |
+| [Workspace management](../../billing/cost-center/workspace-management.md) |Workspace management of account binding in Guance expense center, one account can bind multiple Guance workspaces. In workspace management, the settlement methods of Guance workspace can be modified, including Guance enterprise account, Amazon cloud account and Alibaba cloud account. |
+| [Bill management](../../billing/cost-center/billing-management.md)     | Guance expense center bill management, including monthly bill, consumption details, income and expenditure details, voucher details and package details management. |
+| [Invoice management](../../billing/cost-center/invoice-management.md)     | For invoice management in Guance expense center, real-name authentication is required before use. After authentication, invoice information and sending information can be managed, and invoices can be obtained for generated monthly bills. |
+| [Support center](../../billing/cost-center/support-center.md)         | In the support center of Guance, users can submit and manage work orders in the support center, and the expert team of Guance technology will contact users to solve problems in time after receiving the work orders. |
