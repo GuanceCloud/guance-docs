@@ -391,7 +391,7 @@ L::nginx { @abc.def = "xyz" }
 它等价于下面的查询，即用 `@` 表示 `message@json`，这是一种简写。
 
 ```python
-L::nginx { `message@jons.abc.def` = "xyz" }
+L::nginx { `message@json.abc.def` = "xyz" }
 ```
 
 ## 
