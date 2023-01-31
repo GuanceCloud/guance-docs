@@ -203,6 +203,18 @@ processors:
 
 有关使用处理器的详细示例，请参阅[tail_sampling_config.yaml](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/tailsamplingprocessor/testdata/tail_sampling_config.yaml)。
 
+
+## 概率采样处理器与采用概率策略的尾部采样处理器比较
+
+概率采样处理器和概率尾采样处理器策略的工作方式非常相似：基于可配置的采样百分比，它们将对接收到的 trace 进行固定比率的采样。但根据整体处理管道，您应该更喜欢使用其中一个。
+
+根据经验，如果您想添加概率采样和...
+
+...您还没有使用尾部采样处理器：使用概率采样处理器。运行概率采样处理器比尾部采样处理器更有效。概率抽样策略根据 traceId 做出决定，因此等待更多跨度到达不会影响其决定。
+
+...您已经在使用尾部采样处理器：添加概率采样策略。您已经承担了运行尾部采样处理器的成本，添加概率策略将可以忽略不计。此外，在尾部采样处理器中使用该策略将确保不会丢弃由其他策略采样的 trace 。
+
+
 ## 演示 demo
 
 本 demo 主要是将 OpenTelemetry 数据推送至 [观测云](https://www.guance.com/)
@@ -215,8 +227,8 @@ processors:
 
 | 服务名称              | 端口        | 描述                                                                                                                                                                             |
 | ----------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| otel-collector    |           | otel/opentelemetry-collector-contrib:0.51.0                                                                                                                                    |
-| springboot_server | 8080:8080 | opentelemetry-agent 版本 1.13.1， 源码地址：[https://github.com/lrwh/observable-demo/tree/main/springboot-server](https://github.com/lrwh/observable-demo/tree/main/springboot-server) |
+| otel-collector    |           | otel/opentelemetry-collector-contrib:0.69.0                                                                                                                                    |
+| springboot_server | 8080:8080 | opentelemetry-agent 版本 1.21.0， 源码地址：[https://github.com/lrwh/observable-demo/tree/main/springboot-server](https://github.com/lrwh/observable-demo/tree/main/springboot-server) |
 
 3、Datakit 开启 OpenTelemetry 采集，参照最佳实践[OpenTelemetry 链路数据接入最佳实践](../opentelemetry) 。
 
@@ -270,7 +282,22 @@ service:
       exporters: [otlp]
 ```
 
-### 场景一
+### probabilistic 使用
+
+```yaml
+  tail_sampling:
+    decision_wait: 10s
+    num_traces: 100
+    expected_new_traces_per_sec: 100
+    policies:
+      [
+		{
+          name: policy-2,
+          type: probabilistic,
+          probabilistic: {sampling_percentage: 20}
+        }
+	  ]
+```
 
 1、访问服务API `gateway` 5 次，每次均为正常返回
 
@@ -278,7 +305,24 @@ service:
 
 2、前往观测云查看trace信息，按照采样规则，最多采样一次trace数据。
 
-### 场景二
+### status_code 使用
+
+```yaml
+processors:
+  # 尾部采样器
+  tail_sampling:
+    decision_wait: 10s
+    num_traces: 100
+    expected_new_traces_per_sec: 100
+    policies:
+      [
+        {
+          name: policy-1,
+          type: status_code,
+          status_code: {status_codes: [ERROR]}
+        }
+      ]
+```
 
 1、设置启动客户端
 
@@ -290,12 +334,113 @@ service:
 
 3、前往观测云查看trace信息，按照采样规则，如果发生异常，则异常全采。
 
-## 概率采样处理器与采用概率策略的尾部采样处理器比较
+### span_count 使用
 
-概率采样处理器和概率尾采样处理器策略的工作方式非常相似：基于可配置的采样百分比，它们将对接收到的 trace 进行固定比率的采样。但根据整体处理管道，您应该更喜欢使用其中一个。
+span数量小于等于2个，不进行上报，配置如下：
 
-根据经验，如果您想添加概率采样和...
+```yaml
+  tail_sampling:
+    decision_wait: 10s
+    num_traces: 100
+    expected_new_traces_per_sec: 100
+    policies:
+      [
+		{
+		 name: p2,
+		 type: span_count,
+		 span_count: {min_spans: 3 }
+		 }
+	  ]
+```
 
-...您还没有使用尾部采样处理器：使用概率采样处理器。运行概率采样处理器比尾部采样处理器更有效。概率抽样策略根据 traceId 做出决定，因此等待更多跨度到达不会影响其决定。
+###  string_attribute 使用
 
-...您已经在使用尾部采样处理器：添加概率采样策略。您已经承担了运行尾部采样处理器的成本，添加概率策略将可以忽略不计。此外，在尾部采样处理器中使用该策略将确保不会丢弃由其他策略采样的 trace 。
+场景: 只采集 GET 请求的链路
+
+```yaml
+  tail_sampling:
+    decision_wait: 10s
+    num_traces: 100
+    expected_new_traces_per_sec: 100
+    policies:
+      [
+		{
+		 name: policy-string,
+		 type: string_attribute,
+		 string_attribute: {key: http.method, values: [ GET ] }
+		 }
+	  ]
+```
+
+
+???+ warning "string_attribute 竟然不生效？"
+
+	对，你没看错，string_attribute 并不一定100%生效。以 http.method 为例，比如我们匹配 GET 请求，而这个 GET 请求又调用了一个 POST 请求的链路，对于完整的链路来说，既有 GET ，又有 POST,存在冲突，因为能够匹配到 GET，满足匹配要求，所以不会因为链路有 POST 就进行过滤。
+
+###  and 使用
+
+and：是指在满足 and 条件进行采样上报，其他情况丢弃。
+
+场景: 上报 GET 请求，并根据采样率 20% 进行采样，其他情况丢弃
+
+```yaml
+  tail_sampling:
+    decision_wait: 10s
+    num_traces: 100
+    expected_new_traces_per_sec: 100
+    policies:
+      [
+		{
+		 name: and-policy-1,
+		 type: and,
+		 and: {
+		   and_sub_policy:
+			 [
+				 {
+					 name: test-and-policy-2,
+					 type: string_attribute,
+					 string_attribute: { key: http.method, values: [ GET ] }
+				 },
+				 {
+					 name: policy-2,
+					 type: probabilistic,
+					 probabilistic: {sampling_percentage: 20}
+				 }
+			]
+		 }
+	  }
+	]
+```
+
+
+## 采样书写格式注意
+
+采样格式不正确，也会导致采样失效，建议每个单词、符号、数值都加上空格。
+
+???+ warning "错误写法"
+
+	```yaml
+	{
+	 name: p2,
+	 type: span_count,
+	 span_count:{min_spans: 3 }
+	 }
+	```
+	或
+	```yaml
+	{
+	 name: p2,
+	 type: span_count,
+	 span_count: {min_spans:3 }
+	 }
+	```
+
+???+ success "正确写法"
+	```yaml
+	{
+	 name: p2,
+	 type: span_count,
+	 span_count: {min_spans: 3 }
+	 }
+	```
+
