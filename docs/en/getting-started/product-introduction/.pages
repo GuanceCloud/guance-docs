@@ -1,0 +1,7 @@
+nav:
+  - index.md
+  - 'Preface': preface.md
+  - 'Product Advantages': advantages.md
+  - 'Customer Value': customer-value.md
+  - 'On-demand Business Model': business-model.md
+  - 'Glossary': glossary.md

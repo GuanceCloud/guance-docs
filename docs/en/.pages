@@ -1,7 +1,9 @@
 nav:
   - Release Notes: release-notes
+  - Getting Started: getting-started
   - DataKit: datakit
   - Developers: developers
+  - Deployment: deployment
   - DQL: dql
   - Scene: scene
   - Events: events
