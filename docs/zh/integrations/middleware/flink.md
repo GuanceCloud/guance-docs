@@ -27,7 +27,6 @@ Flink 版本：ALL
 
 说明：示例 Flink 版本为 Linux 环境 Flink/1.14.2 (CentOS)，各个不同版本指标可能存在差异。
 
-### 部署实施
 
 1、 修改 Flink 主配置文件 `flink-conf.yaml` ，添加 PrometheusReporter
 

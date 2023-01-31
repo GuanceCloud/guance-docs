@@ -1,6 +1,4 @@
 nav:
   - index.md
   - 'DialTesting (云拨测)': dialtesting.md
-  - 'Ping': ping.md
-  - 'Port': port.md
   - 'SSH': ssh.md

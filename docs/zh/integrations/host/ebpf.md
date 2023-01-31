@@ -23,9 +23,7 @@ icon: integrations/ebpf
 
 说明：示例 Linux 版本为：CentOS Linux release 7.8.2003 (Core)
 
-### 部署实施
-
-#### 指标采集 (必选)
+### 指标采集 (必选)
 
 1、 DataKit 安装之后，<[安装 eBPF 采集器](../../../datakit/ebpf#requirements)>
 
@@ -59,7 +57,7 @@ vi ebpf.conf
   args = ["--datakit-apiserver", "0.0.0.0:9529"]
   enabled_plugins = ["ebpf-net"]
 ```
-#### 插件标签 (非必选)
+### 插件标签 (非必选)
 
 参数说明
 

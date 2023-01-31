@@ -18,7 +18,7 @@ RocketMQ 指标展示，包括生产者 TPS/消息大小、消费者 TPS/消息�
 
 ## 前置条件
 
-- 服务器 <[安装 Datakit](../../datakit/datakit-install.md)>
+- 服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
 
 - 服务器安装 rocketmq-exporter
 
@@ -79,9 +79,7 @@ curl http://127.0.0.1:5557/metrics
 
 说明：示例 Linux 版本为 CentOS Linux release 7.8.2003 (Core)，Windows 版本请修改对应的配置文件
 
-### 部署实施
-
-#### 指标采集 (必选)
+### 指标采集 (必选)
 
 1、 开启 DataKit Prometheus 插件，复制 sample 文件
 
@@ -113,7 +111,7 @@ cp prom.conf.sample prom.conf
 
 ![image](../imgs/input-rocketmq-5.png)
 
-#### 插件标签 (非必选)
+### 插件标签 (非必选)
 
 参数说明
 

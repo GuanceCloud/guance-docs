@@ -174,4 +174,4 @@ def run():
 
 <[DataFlux Func 观测云集成简介](https://func.guance.com/doc/script-market-guance-integration/)>
 
-<[DataFlux Func AWS-CloudWatch 配置手册](../../../dataflux-func/script-market-guance-aws-cloudwatch.md)>
+<[DataFlux Func AWS-CloudWatch 配置手册](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/)>

@@ -15,9 +15,9 @@ Scheduler 性能指标展示，包括调度队列 pending pod 数、进入调度
 
 ## 版本支持
 
-操作系统支持：Linux
+- 操作系统支持：Linux
 
-Kubernetes 版本：1.18+
+- Kubernetes 版本：1.18+
 
 ## 前置条件
 
@@ -27,9 +27,7 @@ Kubernetes 版本：1.18+
 
 说明：示例 Kubernetes 版本为 1.22.6，DataKit 版本为 1.2.17，各个不同版本指标可能存在差异。
 
-### 部署实施
-
-#### 指标采集 (必选)
+### 指标采集 (必选)
 
 1、 ConfigMap 增加 `scheduler.conf` 配置
 
@@ -145,7 +143,7 @@ kubectl apply -f datakit.yaml
 
 ![image](../imgs/input-kube-scheduler-03.png)
 
-#### 插件标签 (必选）
+### 插件标签 (必选）
 
 参数说明
 

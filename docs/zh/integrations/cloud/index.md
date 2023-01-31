@@ -12,7 +12,7 @@ icon: octicons/cloud-16
 
 <br />
 
-[**安装 DataKit**](../../datakit/datakit-install.md)和[**安装 DataFlux Func 携带版**](../../dataflux-func/maintenance-guide-installation.md)之后，可以很好得观测各大云厂商相关指标数据：
+[**安装 DataKit**](../../datakit/datakit-install.md)和[**安装 DataFlux Func 携带版**](https://func.guance.com/doc/maintenance-guide-installation/)之后，可以很好得观测各大云厂商相关指标数据：
 
 | [:integrations-aliyun: 阿里云](./aliyun/index.md){ .md-button .md-button--primary } |
 |:----:|

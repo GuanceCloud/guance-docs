@@ -127,7 +127,7 @@ Content-Type: application/json
 
 注意：Webhook自定义通知发送内容的类型仅支持使用 json 格式，各字段的详情见文档 [事件产生](../events/generating.md) 。
 
-有关Webhook自定义更详细的实践文档，请参考《[观测云Webhook自定义告警通知集成](../dataflux-func/guance-alert-webhook-integration.md)》
+有关Webhook自定义更详细的实践文档，请参考《[观测云Webhook自定义告警通知集成](https://func.guance.com/doc/practice-guance-alert-webhook-integration/)》
 
 ### 5. 新建邮件组
 

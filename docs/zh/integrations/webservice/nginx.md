@@ -30,11 +30,9 @@ nginx -V 2>&1| grep -o http_stub_status_module
 
 说明：示例 Nginx 版本为 Linux 环境 Nginx/1.16.1 (CentOS)，各个不同版本指标可能存在差异。
 
-### 部署实施
-
 (Linux / Windows 环境相同)
 
-#### 指标采集 (必选)
+### 指标采集 (必选)
 
 1、 开启 nginx_status 页面，修改主配置文件 `/etc/nginx/nginx.conf` (以实际路径为准)
 
@@ -114,7 +112,7 @@ systemctl restart datakit
 
 ![image](../imgs/input-nginx-05.png)
 
-#### 日志采集 (非必选)
+### 日志采集 (非必选)
 
 参数说明
 
@@ -138,7 +136,7 @@ systemctl restart datakit
 
 ![image](../imgs/input-nginx-07.png)
 
-#### 插件标签 (非必选）
+### 插件标签 (非必选）
 
 参数说明
 
@@ -158,7 +156,7 @@ systemctl restart datakit
 systemctl restart datakit
 ```
 
-#### 链路采集(非必选)
+### 链路采集(非必选)
 
 某些场景下，我们需要将前端负载均衡也纳入到全链路观测中，用于分析用户请求从系统入口位置到后端服务结束这一完整过程的链路调用及耗时情况。这时就需要安装 Nginx 链路追踪模块来实现该功能。
 

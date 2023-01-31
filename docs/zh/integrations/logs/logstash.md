@@ -18,7 +18,7 @@ icon: integrations/logstash
 
 ### 前置条件
 
-- 可以访问外网的主机<[安装 Datakit](../../datakit/datakit-install.md)>
+- 可以访问外网的主机<[安装 DataKit](../../datakit/datakit-install.md)>
 - 检查 Logstash 数据是否正常采集
 
 ### 配置实施

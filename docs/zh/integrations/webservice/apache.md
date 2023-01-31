@@ -19,7 +19,7 @@ Apache 性能指标展示，包括繁忙进程、空闲进程、进程 CPU 负�
 
 ## 前置条件
 
-- Apache 服务器 <[安装 Datakit](../../datakit/datakit-install.md)>
+- Apache 服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
 - Apache 应用已安装 mod_status 模块
 
 1、 使用命令查看 `mod_status` 是否安装 (已安装返回 status_module shared)
@@ -32,9 +32,7 @@ apachectl -M |grep status
 
 说明：示例 Apache 版本为 Linux 环境 Apache/2.4.6 (CentOS)，各个不同版本指标可能存在差异。
 
-### 部署实施
-
-#### 指标采集 (必选)
+### 指标采集 (必选)
 
 1、 开启 Apache mod_status 页面，修改 Apache 主配置文件 `/etc/httpd/conf/httpd.conf` (以实际路径为准)，最后追加 `ExtendedStatus` 配置。
 
@@ -113,7 +111,7 @@ systemctl restart datakit
 
 ![image](../imgs/input-apache-4.png)
 
-#### 日志采集 (非必选)
+### 日志采集 (非必选)
 
 参数说明
 
@@ -137,7 +135,7 @@ systemctl restart datakit
 
 ![image](../imgs/input-apache-6.png)
 
-#### 插件标签 (非必选)
+### 插件标签 (非必选)
 
 参数说明
 

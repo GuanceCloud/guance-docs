@@ -16,7 +16,7 @@ OpenTelemetry Collector 性能指标展示：collector 在线时长、内存使�
 
 ## 前置条件
 
-- OpenTelemetry Collector 服务器 <[安装 Datakit](../../datakit/datakit-install.md)>
+- OpenTelemetry Collector 服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
 
 ## 安装配置
 

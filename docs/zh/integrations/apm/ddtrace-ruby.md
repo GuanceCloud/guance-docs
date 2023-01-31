@@ -18,7 +18,7 @@ Ruby 版本：>=2.7.0
 
 ## 前置条件
 
-- 在 Ruby 应用服务器上安装 Datakit <[安装 Datakit](../../datakit/datakit-install.md)>
+- 在 Ruby 应用服务器上安装 Datakit <[安装 DataKit](../../datakit/datakit-install.md)>
 - 查看 Ruby 版本是否>=2.7.0
 
 ### 部署实施

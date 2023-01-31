@@ -17,13 +17,9 @@ RabbitMQ 性能指标展示，包括连接数量、通道数量、队列量、�
 
 操作系统支持：Linux / Windows
 
-## 安装部署
+## 前置条件
 
-说明：示例 RabbitMQ 版本为 rabbitmq-server-3.7.17(CentOS7)，各个不同版本指标可能存在差异。
-
-### 前置条件
-
-- RabbitMQ 所在服务器 <[安装 Datakit](../../datakit/datakit-install.md)>
+- RabbitMQ 所在服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
 - RabbitMQ 已安装
 
 ```
@@ -32,9 +28,10 @@ systemctl status rabbitmq-server
 
 ![image](../imgs/input-rabbit-3.png)
 
-配置实施
+## 安装部署
 
-#### 指标采集 (必选)
+说明：示例 RabbitMQ 版本为 rabbitmq-server-3.7.17(CentOS7)，各个不同版本指标可能存在差异。
+### 指标采集 (必选)
 
 1、 开启 rabbitmq_management 插件
 
@@ -115,7 +112,7 @@ systemctl restart datakit
 
 ![image](../imgs/input-rabbit-4.png)
 
-#### 日志采集 (非必选)
+### 日志采集 (非必选)
 
 参数说明
 
@@ -143,7 +140,7 @@ systemctl restart datakit
 
 ![image](../imgs/input-rabbit-5.png)
 
-#### 插件标签 (非必选)
+### 插件标签 (非必选)
 
 参数说明
 
@@ -170,10 +167,6 @@ systemctl restart datakit
 暂无
 
 ## [指标详解](../../../datakit/rabbitmq#measurements)
-
-
-## 最佳实践
-暂无
 
 ## 故障排查
 
