@@ -29,7 +29,7 @@ self 采集器会自动运行，无需配置，且无法关闭。
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`arch`|Architecture of the DataKit|
 |`host`|Hostname of the DataKit|
@@ -42,7 +42,7 @@ self 采集器会自动运行，无需配置，且无法关闭。
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cpu_usage`|CPU usage of the datakit|float|percent|
 |`cpu_usage_top`|CPU usage(command `top`) of the datakit|float|percent|
@@ -78,14 +78,14 @@ self 采集器会自动运行，无需配置，且无法关闭。
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`api`|API router of the DataKit HTTP|
 
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`2XX`|HTTP status code 2xx count|int|count|
 |`3XX`|HTTP status code 3xx count|int|count|
@@ -108,14 +108,14 @@ self 采集器会自动运行，无需配置，且无法关闭。
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`group`|The group name of the goroutine.|
 
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`failed_num`|The number of the goroutine which has failed|int|count|
 |`finished_goroutine_num`|The number of the finished goroutine|int|count|

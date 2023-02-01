@@ -23,11 +23,9 @@ Nacos 版本：>= 0.8.0
 
 说明：示例 Nacos 版本为 1.4.1。
 
-### 部署实施
-
 ( Linux / Windows 环境相同)
 
-#### 指标采集 (必选)
+### 指标采集 (必选)
 
 1、 配置 `application.properties` 文件，暴露 metrics 数据
 

@@ -1,0 +1,6 @@
+nav:
+  - index.md
+  - 'Product Introduction': product-introduction
+  - 'Necessary for Beginners': necessary-for-beginners
+  - 'Basic Introduction': basic-introduction
+  - 'Function Details': function-details

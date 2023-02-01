@@ -110,6 +110,7 @@ account = {
 def run():
     region_projects = {
         'Region':['Region_Projects']
+        # 示例：'cn-north-4':['c698f042454d4ecda45f253c62d82512']
     }
 
     # 采集器配置

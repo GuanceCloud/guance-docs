@@ -19,53 +19,9 @@
 
 ## 配置巡检
 
-在自建 DataFlux Func 创建新的脚本集开启磁盘使用率巡检配置
+在自建 DataFlux Func 创建新的脚本集开启磁盘使用率巡检配置，新建脚本集之后，在创建巡检脚本时选择对应的脚本模板保存，在生成的新脚本文件中根据需要更改即可。
 
-```python
-from guance_monitor__register import self_hosted_monitor
-from guance_monitor__runner import Runner
-import guance_monitor_disk_usage__main as disk_usage_check
-
-# 账号配置
-API_KEY_ID  = 'wsak_xxxxx'
-API_KEY     = 'wsak_xxxxx'
-
-# 函数 filters 参数过滤器和观测云 studio 监控\智能巡检配置中存在调用优先级，配置了函数 filters 参数过滤器后则不需要在观测云 studio 监控\智能巡检中更改检测配置了，如果两边都配置的话则优先生效脚本中 filters 参数
-
-def filter_host(host):
-    '''
-    过滤 host，自定义符合要求 host 的条件，匹配的返回 True，不匹配的返回 False
-    return True｜False
-    '''
-    if host == "iZuf609uyxtf9dvivdpmi6Z":
-        return True
-
-'''
-任务配置参数请使用：
-@DFF.API('磁盘使用率自建巡检', fixed_crontab='0 */6 * * *', timeout=900)
-
-fixed_crontab：固定执行频率「每6小时一次」
-timeout：任务执行超时时长，控制在15分钟
-'''
-
-@self_hosted_monitor(API_KEY_ID, API_KEY)
-@DFF.API('磁盘使用率巡检', fixed_crontab='0 */6 * * *', timeout=900)
-def run(configs={}):
-    '''
-    参数：
-    configs : 配置需要检测的 host 列表（可选，不配置默认检测当前工作空间下所有主机磁盘）
-
-    示例：
-        configs = {
-            "hosts": ["localhost"]
-        }
-    '''
-    checkers = [
-        disk_usage_check.DiskUsageCheck(configs=configs, filters=[filter_host]), # 这里只是示例
-    ]
-
-    Runner(checkers, debug=False).run()
-```
+![image](../img/disk-usage11.png)
 
 ## 开启巡检
 

@@ -14,7 +14,7 @@
 | 变量类型 | 变量 | 说明 |
 | --- | --- | --- |
 | 时间变量 | #{TR} | 当前图表查询的时间范围，例如 <br />`time=#{TR}` |
-| 标签变量 | #{T} | 当前图表查询的所有分组标签，是将当前图表查询的全部分组标签作为查询条件。<br />假设当前图表查询为：<br />`M::`datakit`:(LAST(`cpu_usage`)) { `vserion` = '1.0.0-rc1' } BY `host`, `vserion`, `os``<br />模板变量：`&tags=#{T} `同为 `&tags={“host","os","linux"}` |
+| 标签变量 | #{T} | 当前图表查询的所有分组标签，是将当前图表查询的全部分组标签作为查询条件。<br />假设当前图表查询为：<br />`M::'datakit':(LAST('cpu_usage')) { 'vserion' = '1.0.0-rc1' } BY 'host', 'vserion', 'os'`<br />模板变量：`&tags=#{T} `同为 `&tags={“host","os","linux"}` |
 |  | #{T.name} | name 为系统自动识别的当前图表查询对应的分组标签名称。<br />假设当前图表查询存在分组标签“host"：<br />- 模板变量 `#{T.host}`<br />-  `tags={"host":"{T.host}"}`<br /> |
 | 视图变量 | #{V} | 仪表板中的所有视图变量的当前值集合，是将当前仪表板的全部视图变量作为查询条件。<br />假设当前仪表板的视图变量为：<br />"version"="V1.7.0" 和 "region":"cn-hangzhou"<br />模板变量` &tags=#{V}  `同为 `&tags={"version":"V1.7.0","region":"cn-hangzhou"}` |
 |  | #{V.name} | name 为系统自动识别的当前仪表版存在的视图变量名称。<br />假设当前仪表板存在视图变量“version"<br />- 模板变量 `#{V.version}`<br />- `tags={"version":"{V.version}"}`<br /> |

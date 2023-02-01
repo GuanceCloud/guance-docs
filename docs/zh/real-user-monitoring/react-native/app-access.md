@@ -11,10 +11,9 @@
 
 ![](../img/image_12.png)![](../img/image_13.png)
 
+## 安装
 
-
-# 安装
-**源码地址**：[https://github.com/DataFlux-cn/datakit-react-native](https://github.com/DataFlux-cn/datakit-react-native)
+**源码地址**：[https://github.com/GuanceCloud/datakit-react-native](https://github.com/GuanceCloud/datakit-react-native)
 
 **Demo 地址**：[https://github.com/GuanceCloud/datakit-react-native/example](https://github.com/GuanceCloud/datakit-react-native/tree/dev/example)
 
@@ -53,9 +52,9 @@ import {
 } from '@cloudcare/react-native-mobile';
 ```
 
-# SDK 初始化
+## SDK 初始化
 
-##  基础配置
+###  基础配置
 
 ```typescript
 let config: FTMobileConfig = {
@@ -74,7 +73,7 @@ FTMobileReactNative.sdkConfig(config)
 | envType | enum EnvType | 否 | 环境，默认`prod` |
 | globalContext | NSDictionary | 否 | [添加自定义标签](#user-global-context ) |
 
-## RUM 配置
+### RUM 配置
 
 ```typescript
 let rumConfig: FTRUMConfig = {
@@ -92,7 +91,7 @@ FTReactNativeRUM.setConfig(rumConfig);
 
 | **字段** | **类型** | **必须** | **说明** |
 | --- | --- | --- | --- |
-| rumAppId | string | 是 | appId，监测中申请 |
+| rumAppId | string | 是 | app_id，应用访问监测控制台申请 |
 | sampleRate | number | 否 | 采样率，（采集率的值范围为>= 0、<= 1，默认值为 1） |
 | enableAutoTrackUserAction | boolean | 否 | 是否自动采集 `React Native` 控件点击事件，开启后可配合  `accessibilityLabel`设置actionName |
 | enableAutoTrackError | boolean | 否 | 是否自动采集 `React Native` Error |
@@ -103,7 +102,7 @@ FTReactNativeRUM.setConfig(rumConfig);
 | globalContext | object | 否 | [添加自定义标签](#user-global-context) |
 
 
-## Log 配置
+### Log 配置
 
 ```typescript
 let logConfig: FTLogConfig = {
@@ -123,7 +122,7 @@ FTReactNativeLog.logConfig(logConfig);
 | logLevelFilters | Array<FTLogStatus> | 否 | 日志等级过滤 |
 | globalContext | NSDictionary | 否 | [添加自定义标签](#user-global-context) |
 
-## Trace 配置
+### Trace 配置
 
 ```typescript
  let traceConfig: FTTractConfig = {
@@ -142,9 +141,9 @@ FTReactNativeLog.logConfig(logConfig);
 | enableNativeAutoTrace | boolean | 否 | 是否开启原生网络网络自动追踪 iOS NSURLSession ,Android OKhttp(由于 `React Native`的网络请求在 iOS、Android 端是使用系统 API 实现的，所以开启 `enableNativeAutoTrace` 后，所有 `React Native` 数据能够一并追踪。） |
 | globalContext | NSDictionary | 否 | [添加自定义标签](#user-global-context) |
 
-# RUM 用户数据追踪
+## RUM 用户数据追踪
 
-## Action
+### Action
 
 ```typescript
 FTReactNativeRUM.startAction('actionName','actionType');
@@ -152,7 +151,7 @@ FTReactNativeRUM.startAction('actionName','actionType');
 
 开启自动采集后可通过 `accessibilityLabel`设置 `actionName`。
 
-## View
+### View
 
 ```typescript
 FTReactNativeRUM.startView("RUM");
@@ -160,15 +159,15 @@ FTReactNativeRUM.startView("RUM");
 FTReactNativeRUM.stopView();
 ```
 
-使用 `react-native-navigation` 库与 `@react-navigation` 库，可参考 [example](https://github.com/DataFlux-cn/datakit-react-native)。
+使用 `react-native-navigation` 库与 `@react-navigation` 库，可参考 [example](https://github.com/GuanceCloud/datakit-react-native/tree/dev/example)。
 
-## Error
+### Error
 
 ```typescript
 FTReactNativeRUM.addError("error stack","error message");
 ```
 
-## Resource
+### Resource
 
 ```typescript
 //自己采集 
@@ -202,13 +201,13 @@ async getHttp(url:string){
       }
 ```
 
-# Logger 日志打印 
+##  Logger 日志打印 
 
 ```typescript
 FTReactNativeLog.logging("info log content",FTLogStatus.info);
 ```
 
-## 日志等级
+### 日志等级
 
 | **方法名** | **含义** |
 | --- | --- |
@@ -218,7 +217,7 @@ FTReactNativeLog.logging("info log content",FTLogStatus.info);
 | FTLogStatus.critical | 严重 |
 | FTLogStatus.ok | 恢复 |
 
-# Tracer 网络链路追踪
+## Tracer 网络链路追踪
 
 ```typescript
   async getHttp(url:string){
@@ -238,7 +237,7 @@ FTReactNativeLog.logging("info log content",FTLogStatus.info);
   }
 ```
 
-# 用户信息绑定与解绑
+## 用户信息绑定与解绑
 
 ```typescript
 FTMobileReactNative.bindRUMUserData('react-native-user')
@@ -246,9 +245,9 @@ FTMobileReactNative.bindRUMUserData('react-native-user')
 FTMobileReactNative.unbindRUMUserData()
 ```
 
-# 添加自定义标签 {#user-global-context}
+## 添加自定义标签 {#user-global-context}
 
-## 静态使用
+### 静态使用
 
 1. 使用 `react-native-config`配置多环境，在不同的环境中设置对应的自定义标签值。
 
@@ -270,7 +269,7 @@ let rumConfig: FTRUMConfig = {
 });
 ```
 
-## 动态使用
+### 动态使用
 
 1. 通过数据持久化方式，如 `AsyncStorage`等，在初始化 SDK 时，获取存储的自定义标签。
 
@@ -315,9 +314,9 @@ AsyncStorage.setItem("track_id",valueString,(error)=>{
 > 注意：
 > 
 > 1. 特殊 key : track_id (在 RUM 中配置，用于追踪功能) 
-> 1. 当用户通过 globalContext 添加自定义标签与 SDK 自有标签相同时，SDK 的标签会覆盖用户设置的，建议标签命名添加项目缩写的前缀，例如 `df_tag_name`。项目中使用 `key` 值可[查询源码](https://github.com/DataFlux-cn/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java)。
+> 1. 当用户通过 globalContext 添加自定义标签与 SDK 自有标签相同时，SDK 的标签会覆盖用户设置的，建议标签命名添加项目缩写的前缀，例如 `df_tag_name`。项目中使用 `key` 值可[查询源码](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java)。
 
-# 常见问题
+## 常见问题
 
 - [iOS 相关](../ios/app-access.md#FAQ)
 - [Android 相关](../android/app-access.md#FAQ)

@@ -15,11 +15,7 @@ Jenkins 性能指标展示，包括项目数量、构建数量、作业数量、
 
 操作系统支持：Linux / Windows
 
-## 安装部署
-
-说明：示例 Jenkins 版本为 jenkins-2.289.1(CentOS)，各个不同版本指标可能存在差异。
-
-### 前置条件
+## 前置条件
 
 - Jenkins 所在服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
 - Jenkins 已安装
@@ -30,9 +26,11 @@ ps -ef | grep jenkins
 
 ![image](../imgs/input-jenkins-02.png)
 
-### 配置实施
+## 安装部署
 
-#### 指标采集 (必选)
+说明：示例 Jenkins 版本为 jenkins-2.289.1(CentOS)，各个不同版本指标可能存在差异。
+
+### 指标采集 (必选)
 
 1、 安装 Metrics Plugin
 
@@ -91,7 +89,7 @@ systemctl restart datakit
 
 ![image](../imgs/input-jenkins-07.png)
 
-#### Jenkins CI Visibility (非必选)
+### Jenkins CI Visibility (非必选)
 
 Jenkins 采集器可以通过接收 Jenkins datadog plugin 发出的 CI Event 实现 CI 可视化。
 
@@ -122,7 +120,7 @@ Jenkins 采集器可以通过接收 Jenkins datadog plugin 发出的 CI Event �
 
 ![image](../imgs/input-jenkins-13.png)
 
-#### 日志采集 (非必选)
+### 日志采集 (非必选)
 
 参数说明
 
@@ -151,7 +149,7 @@ systemctl restart datakit
 
 ![image](../imgs/input-jenkins-14.png)
 
-#### 插件标签 (非必选)
+### 插件标签 (非必选)
 
 参数说明
 

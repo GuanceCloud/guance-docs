@@ -17,7 +17,7 @@ Harbor 性能指标展示，包括项目数量、镜像仓库数、Components he
 
 ### 前置条件
 
-- <[安装 Datakit](../../datakit/datakit-install.md)>
+- <[安装 DataKit](../../datakit/datakit-install.md)>
 
 ### Harbor 安装
 

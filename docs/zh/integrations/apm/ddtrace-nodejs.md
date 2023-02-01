@@ -18,7 +18,7 @@ Node 版本：>=12
 
 ## 前置条件
 
-- 在 Node 应用服务器上安装 Datakit <[安装 Datakit](../../datakit/datakit-install.md)>
+- 在 Node 应用服务器上安装 Datakit <[安装 DataKit](../../datakit/datakit-install.md)>
 - 查看 Node 版本是否>=12
 
 ## 安装配置

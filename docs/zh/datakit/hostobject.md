@@ -106,14 +106,14 @@ Datakit 默认开启云同步，目前支持阿里云/腾讯云/AWS/华为云/�
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`os`|Host OS type|
 
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cpu_usage`|CPU usage|float|percent|
 |`datakit_ver`|collector version|string|-|

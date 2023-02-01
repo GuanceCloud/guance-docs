@@ -1,0 +1,5 @@
+nav:
+  - index.md
+  - 'Associate Web Application Access': connect-web-app.md
+  - 'How to Configure Application Performance Monitoring Sampling': sampling.md
+  - 'Application Performance Monitoring Association Log': connect-log

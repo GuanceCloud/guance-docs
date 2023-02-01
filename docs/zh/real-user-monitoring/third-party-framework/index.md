@@ -17,8 +17,8 @@
 
 ## 开发进程
 
-- [Flutter](flutter/bind-view.md)（试验版）
-- [React Native](react-native/app-access)（试验版）
+- [Flutter](../flutter/app-access.md)（试验版）
+- [React Native](../react-native/app-access.md)（试验版）
 
 
 

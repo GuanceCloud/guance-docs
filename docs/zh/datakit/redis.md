@@ -68,9 +68,14 @@ ACL SETUSER username on +ping
       #
       # warn_on_missing_keys = true
       
-      ## @param slow_log - boolean - optional - default: false
+      ## @param slow_log - boolean - optional - default: true
       slow_log = true
       
+      ## @param all_slow_log - boolean - optional - default: false
+      ## Collect all slowlogs returned by Redis. When set to false, will only collect slowlog 
+      ## that are generated after this input starts, and collect the same slowlog only once.
+      all_slow_log = false
+    
       ## @param slowlog-max-len - integer - optional - default: 128
       slowlog-max-len = 128
       
@@ -141,7 +146,7 @@ ACL SETUSER username on +ping
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`db_name`|db|
 |`key`|monitor key|
@@ -150,7 +155,7 @@ ACL SETUSER username on +ping
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`value_length`|Key length|int|-|
 
@@ -166,7 +171,7 @@ ACL SETUSER username on +ping
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`name`|The name set by the client with CLIENT SETNAME, default unknown|
 |`server`|Server addr|
@@ -174,7 +179,7 @@ ACL SETUSER username on +ping
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`addr`|Address/port of the client|string|-|
 |`age`|Total duration of the connection in seconds|int|count|
@@ -196,14 +201,14 @@ ACL SETUSER username on +ping
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`server`|Server addr|
 
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cluster_current_epoch`|The local Current Epoch variable. This is used in order to create unique increasing version numbers during fail overs.|int|-|
 |`cluster_known_nodes`|The total number of known nodes in the cluster, including nodes in HANDSHAKE state that may not currently be proper members of the cluster.|int|count|
@@ -229,7 +234,7 @@ ACL SETUSER username on +ping
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`method`|Command type|
 |`server`|Server addr|
@@ -237,7 +242,7 @@ ACL SETUSER username on +ping
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`calls`|The number of calls that reached command execution|int|count|
 |`usec`|The total CPU time consumed by these commands|int|μs|
@@ -255,14 +260,14 @@ ACL SETUSER username on +ping
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`db`|db name|
 
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`avg_ttl`|avg ttl|int|-|
 |`expires`|过期时间|int|-|
@@ -280,14 +285,14 @@ ACL SETUSER username on +ping
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`server`|Server addr|
 
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`active_defrag_hits`|Number of value reallocations performed by active the defragmentation process|int|count|
 |`active_defrag_key_hits`|Number of keys that were actively defragmented|int|count|
@@ -393,14 +398,14 @@ ACL SETUSER username on +ping
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`server`|Server addr|
 
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cost_time`|Latest event latency in millisecond.|int|ms|
 |`event_name`|Event name.|string|-|
@@ -419,7 +424,7 @@ Redis 慢查询命令历史，这里我们将其以日志的形式采集
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`host`|host|
 |`message`|log message|
@@ -428,7 +433,7 @@ Redis 慢查询命令历史，这里我们将其以日志的形式采集
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`command`|slow command|int|μs|
 |`slowlog_id`|slowlog unique id|int|-|

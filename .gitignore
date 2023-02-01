@@ -4,3 +4,4 @@
 mkdocs.log
 __pycache__
 deadlink.log
+.vscode

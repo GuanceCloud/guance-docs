@@ -26,18 +26,16 @@ Kubernetes with Metric Server 性能指标展示，包括 Pod 数量、 Deployme
 
 操作系统支持：Linux
 
-## 安装部署
-
-说明：示例 Kubernetes 版本为 1.22.6
-
-### 前置条件
+## 前置条件
 
 - Kubernetes 集群 <[安装 Datakit](../../datakit/datakit-daemonset-deploy.md)>。
 - 采集 Kubernetes Pod 指标数据，[需要 Kubernetes 安装 Metrics-Server 组件](https://github.com/kubernetes-sigs/metrics-server#installation)。
 
-### 配置实施
+## 安装部署
 
-#### 部署 Metric-Server (必选)
+说明：示例 Kubernetes 版本为 1.22.6
+
+### 部署 Metric-Server (必选)
 
 新建 `metric-server.yaml` ，在 Kubernetes 集群执行
 
@@ -244,7 +242,7 @@ spec:
   versionPriority: 100
 ```
 
-#### Daemonset 部署 DataKit (必选)
+### Daemonset 部署 DataKit (必选)
 
 登录[观测云](https://console.guance.com/)，「集成」 - 「DataKit」 - 「Kubernetes」，下载 `datakit.yaml`（命名无要求）。
 

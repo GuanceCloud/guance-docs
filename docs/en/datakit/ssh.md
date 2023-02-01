@@ -1,4 +1,3 @@
-<!-- This file required to translate to EN. -->
 
 # SSH
 ---
@@ -7,13 +6,13 @@
 
 ---
 
-监控 SSH/SFTP 服务，并把数据上报到观测云。
+Monitor SSH/SFTP services and report data to Guance.
 
-## 配置 {#config}
+## Configuration {#config}
 
-=== "主机安装"
+=== "Host Installation"
 
-    进入 DataKit 安装目录下的 `conf.d/ssh` 目录，复制 `ssh.conf.sample` 并命名为 `ssh.conf`。示例如下：
+    Go to the `conf.d/ssh` directory under the DataKit installation directory, copy `ssh.conf.sample` and name it `ssh.conf`. Examples are as follows:
     
     ```toml
         ### You need to configure an [[inputs.ssh]] for each ssh/sftp to be monitored.
@@ -39,15 +38,15 @@
       # ...
     ```
     
-    配置好后，重启 DataKit 即可。
+    After configuration, restart DataKit.
 
 === "Kubernetes"
 
-    目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+    The collector can now be turned on by [configMap injection collector configuration](datakit-daemonset-deploy.md#configmap-setting).
 
-## 指标集 {#measurements}
+## Measurements {#measurements}
 
-以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.ssh.tags]` 指定其它标签：
+For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.ssh.tags]`:
 
 ``` toml
  [inputs.ssh.tags]
@@ -60,17 +59,17 @@
 
 ### `ssh`
 
--  标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`host`|the host of ssh|
 
-- 指标列表
+- metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`sftp_check`|sftp service status|bool|-|
 |`sftp_err`|fail reason of connet sftp service|string|-|

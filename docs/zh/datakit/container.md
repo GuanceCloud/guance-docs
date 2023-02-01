@@ -30,7 +30,7 @@
     
       enable_container_metric = true
       enable_k8s_metric = true
-      enable_pod_metric = true
+      enable_pod_metric = false
       extract_k8s_label_as_tags = false
     
       ## Auto-Discovery of PrometheusMonitoring Annotations/CRDs
@@ -96,7 +96,7 @@
     | `ENV_INPUT_CONTAINER_ENABLE_AUTO_DISCOVERY_OF_PROMETHEUS_SERVIER_ANNOTATIONS` | 是否开启自动发现 Prometheuse Service Annotations 并采集指标                                                                                  | false                                             | `"true"`/`"false"`                                                                          |
     | `ENV_INPUT_CONTAINER_ENABLE_AUTO_DISCOVERY_OF_PROMETHEUS_POD_MONITORS`        | 是否开启自动发现 Prometheuse PodMonitor CRD 并采集指标，详见[Prometheus-Operator CRD 文档](kubernetes-prometheus-operator-crd.md#config)     | false                                             | `"true"`/`"false"`                                                                          |
     | `ENV_INPUT_CONTAINER_ENABLE_AUTO_DISCOVERY_OF_PROMETHEUS_SERVICE_MONITORS`    | 是否开启自动发现 Prometheuse ServiceMonitor CRD 并采集指标，详见[Prometheus-Operator CRD 文档](kubernetes-prometheus-operator-crd.md#config) | false                                             | `"true"`/`"false"`                                                                          |
-    | `ENV_INPUT_CONTAINER_ENABLE_POD_METRIC`                                       | 开启 Pod 指标采集                                                                                                                            | true                                              | `"true"`/`"false"`                                                                          |
+    | `ENV_INPUT_CONTAINER_ENABLE_POD_METRIC`                                       | 是否开启 Pod 指标采集（CPU 和内存使用情况），需要安装[kubernetes-metrics-server](https://github.com/kubernetes-sigs/metrics-server)          | false                                              | `"true"`/`"false"`                                                                          |
     | `ENV_INPUT_CONTAINER_CONTAINER_INCLUDE_LOG`                                   | 容器日志的 include 条件，使用 image 过滤                                                                                                     | 无                                                | `"image:pubrepo.jiagouyun.com/datakit/logfwd*"`                                             |
     | `ENV_INPUT_CONTAINER_CONTAINER_EXCLUDE_LOG`                                   | 容器日志的 exclude 条件，使用 image 过滤                                                                                                     | 无                                                | `"image:pubrepo.jiagouyun.com/datakit/logfwd*"`                                             |
     | `ENV_INPUT_CONTAINER_KUBERNETES_URL`                                          | k8s api-server 访问地址                                                                                                                      | "https://kubernetes.default:443"                  | `"https://kubernetes.default:443"`                                                          |
@@ -199,7 +199,7 @@
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`container_id`|容器 ID|
 |`container_name`|k8s 命名的容器名（在 labels 中取 'io.kubernetes.container.name'），如果值为空则跟 container_runtime_name 相同|
@@ -219,7 +219,7 @@
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`block_read_byte`|从容器文件系统读取的总字节数（containerd 缺少此字段）|int|B|
 |`block_write_byte`|向容器文件系统写入的总字节数（containerd 缺少此字段）|int|B|
@@ -250,14 +250,14 @@ Kubernetes count 指标数据
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`namespace`|namespace|
 
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cluster_role`|RBAC cluster role count|int|-|
 |`cronjob`|cronjob count|int|-|
@@ -284,7 +284,7 @@ Kubernetes cron job 指标数据
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`cronjob`|Name must be unique within a namespace.|
 |`namespace`|Namespace defines the space within each name must be unique.|
@@ -292,7 +292,7 @@ Kubernetes cron job 指标数据
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`count`|Number of cronjobs|int|count|
 |`duration_since_last_schedule`|The duration since the last time the cronjob was scheduled.|int|s|
@@ -314,7 +314,7 @@ Kubernetes Daemonset 指标数据
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`daemonset`|Name must be unique within a namespace.|
 |`namespace`|Namespace defines the space within each name must be unique.|
@@ -322,7 +322,7 @@ Kubernetes Daemonset 指标数据
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`count`|Number of daemonsets|int|count|
 |`daemons_unavailable`|The number of nodes that should be running the daemon pod and have none of the daemon pod running and available (ready for at least spec.minReadySeconds).|int|count|
@@ -348,7 +348,7 @@ Kubernetes Deployment 指标数据
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`deployment`|Name must be unique within a namespace.|
 |`namespace`|Namespace defines the space within each name must be unique.|
@@ -356,7 +356,7 @@ Kubernetes Deployment 指标数据
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`condition`|The current status conditions of a deployment|int|count|
 |`count`|Number of deployments|int|count|
@@ -380,7 +380,7 @@ Kubernetes Endpoints 指标数据
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`endpoint`|Name must be unique within a namespace.|
 |`namespace`|Namespace defines the space within each name must be unique.|
@@ -388,7 +388,7 @@ Kubernetes Endpoints 指标数据
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`address_available`|Number of addresses available in endpoint.|int|count|
 |`address_not_ready`|Number of addresses not ready in endpoint.|int|count|
@@ -410,7 +410,7 @@ Kubernetes Job 指标数据
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`job`|Name must be unique within a namespace.|
 |`namespace`|Namespace defines the space within each name must be unique.|
@@ -418,7 +418,7 @@ Kubernetes Job 指标数据
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`completion_failed`|The job has failed its execution.|int|count|
 |`completion_succeeded`|The job has completed its execution.|int|count|
@@ -442,7 +442,7 @@ Kubernetes Node 指标数据
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`node`|Name must be unique within a namespace. (depercated)|
 |`node_name`|Name must be unique within a namespace.|
@@ -450,7 +450,7 @@ Kubernetes Node 指标数据
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`age`|The time in seconds since the creation of the node|int|s|
 |`count`|Number of nodes|int|count|
@@ -478,7 +478,7 @@ Kubernetes pod 指标数据
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`[POD_LABEL]`|The pod labels will be extracted as tags if `extract_k8s_label_as_tags` is enabled.|
 |`namespace`|Namespace defines the space within each name must be unique.|
@@ -488,7 +488,7 @@ Kubernetes pod 指标数据
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`count`|Number of pods|int|count|
 |`cpu_usage`|The percentage of cpu used|float|percent|
@@ -511,7 +511,7 @@ Kubernetes replicaset 指标数据
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`deployment`|The name of the deployment which the object belongs to.|
 |`namespace`|Namespace defines the space within each name must be unique.|
@@ -520,7 +520,7 @@ Kubernetes replicaset 指标数据
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`count`|Number of replicasets|int|count|
 |`fully_labeled_replicas`|The number of fully labeled replicas per ReplicaSet.|int|count|
@@ -564,7 +564,7 @@ Kubernetes replicaset 指标数据
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`container_host`|容器内部的主机名（containerd 缺少此字段）|
 |`container_id`|容器 ID|
@@ -587,7 +587,7 @@ Kubernetes replicaset 指标数据
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`age`|该容器创建时长，单位秒|int|s|
 |`block_read_byte`|从容器文件系统读取的总字节数（containerd 缺少此字段）|int|B|
@@ -622,7 +622,7 @@ Kubernetes cluster role 对象数据
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`cluster_role_name`|Name must be unique within a namespace.|
 |`name`|UID|
@@ -630,7 +630,7 @@ Kubernetes cluster role 对象数据
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`age`|age (seconds)|int|s|
 |`create_time`|CreationTimestamp is a timestamp representing the server time when this object was created.(milliseconds)|int|sec|
@@ -652,7 +652,7 @@ Kubernetes cron job 对象数据
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`cron_job_name`|Name must be unique within a namespace.|
 |`name`|UID|
@@ -661,7 +661,7 @@ Kubernetes cron job 对象数据
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`active_jobs`|The number of pointers to currently running jobs.|int|count|
 |`age`|age (seconds)|int|s|
@@ -685,7 +685,7 @@ Kubernetes Deployment 对象数据
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`deployment_name`|Name must be unique within a namespace.|
 |`name`|UID|
@@ -694,7 +694,7 @@ Kubernetes Deployment 对象数据
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`age`|age (seconds)|int|s|
 |`available`|Total number of available pods (ready for at least minReadySeconds) targeted by this deployment.|int|-|
@@ -734,7 +734,7 @@ Kubernetes Job 对象数据
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`job_name`|Name must be unique within a namespace.|
 |`name`|UID|
@@ -743,7 +743,7 @@ Kubernetes Job 对象数据
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`active`|The number of actively running pods.|int|count|
 |`active_deadline`|Specifies the duration in seconds relative to the startTime that the job may be active before the system tries to terminate it|int|s|
@@ -771,7 +771,7 @@ Kubernetes node 对象数据
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`internal_ip`|Node internal IP|
 |`name`|UID|
@@ -784,7 +784,7 @@ Kubernetes node 对象数据
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`age`|age (seconds)|int|s|
 |`kubelet_version`|Kubelet Version reported by the node.|string|-|
@@ -806,7 +806,7 @@ Kubernetes pod 对象数据
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`deployment`|The name of the deployment which the object belongs to. (Probably empty)|
 |`name`|UID|
@@ -822,7 +822,7 @@ Kubernetes pod 对象数据
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`age`|age (seconds)|int|s|
 |`available`|Number of containers|int|count|
@@ -850,7 +850,7 @@ Kubernetes replicaset 对象数据
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`deployment`|The name of the deployment which the object belongs to.|
 |`name`|UID|
@@ -860,7 +860,7 @@ Kubernetes replicaset 对象数据
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`age`|age (seconds)|int|s|
 |`available`|The number of available replicas (ready for at least minReadySeconds) for this replica set.|int|-|
@@ -879,7 +879,7 @@ Kubernetes service 对象数据
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`name`|UID|
 |`namespace`|Namespace defines the space within each name must be unique.|
@@ -889,7 +889,7 @@ Kubernetes service 对象数据
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`age`|age (seconds)|int|s|
 |`cluster_ip`|clusterIP is the IP address of the service and is usually assigned randomly by the master.|string|-|
@@ -919,7 +919,7 @@ Kubernetes service 对象数据
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`[POD_LABEL]`|如果该容器是由 k8s 创建，且配置参数 `extract_k8s_label_as_tags` 开启，则会将 pod 的 label 添加至标签中|
 |`container_id`|容器ID|
@@ -934,7 +934,7 @@ Kubernetes service 对象数据
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`log_read_lines`|采集到的行数计数，多行数据算成一行（[:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)）|int|count|
 |`log_read_offset`|当前数据在文件中的偏移位置（[:octicons-tag-24: Version-1.4.8](changelog.md#cl-1.4.8) · [:octicons-beaker-24: Experimental](index.md#experimental)）|int|-|
@@ -995,7 +995,7 @@ Kubernetes event 日志数据
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`kind`|Kind of the referent.|
 |`name`|Name must be unique within a namespace.|
@@ -1008,7 +1008,7 @@ Kubernetes event 日志数据
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`message`|event log details|string|-|
 
@@ -1059,7 +1059,7 @@ Datakit 会采集 Kubernetes Pod 或 Service 等资源的 yaml 配置，并存�
 
 例如，现在需要在 env 中添加一份密码，正常情况下是这样：
 
-```
+```yaml
     containers:
     - name: mycontainer
       image: redis
@@ -1072,7 +1072,7 @@ Datakit 会采集 Kubernetes Pod 或 Service 等资源的 yaml 配置，并存�
 
 创建一个 Secret：
 
-```
+```yaml
 apiVersion: v1
 kind: Secret
 metadata:
@@ -1085,13 +1085,13 @@ data:
 
 执行：
 
-```
+```shell
 kubectl apply -f mysecret.yaml
 ```
 
 在 env 中使用 Secret：
 
-```
+```yaml
     containers:
     - name: mycontainer
       image: redis

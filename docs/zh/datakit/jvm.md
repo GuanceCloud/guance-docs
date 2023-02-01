@@ -266,14 +266,14 @@ java -javaagent:/path/to/jolokia-jvm-agent.jar=port=8080,host=localhost -jar you
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`jolokia_agent_url`|jolokia agent url path|
 
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`Uptime`|The total runtime.|int|ms|
 
@@ -284,14 +284,14 @@ java -javaagent:/path/to/jolokia-jvm-agent.jar=port=8080,host=localhost -jar you
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`jolokia_agent_url`|jolokia agent url path|
 
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`HeapMemoryUsagecommitted`|The total Java heap memory committed to be used.|int|B|
 |`HeapMemoryUsageinit`|The initial Java heap memory allocated.|int|B|
@@ -310,7 +310,7 @@ java -javaagent:/path/to/jolokia-jvm-agent.jar=port=8080,host=localhost -jar you
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`jolokia_agent_url`|jolokia agent url path|
 |`name`|the name of GC generation|
@@ -318,7 +318,7 @@ java -javaagent:/path/to/jolokia-jvm-agent.jar=port=8080,host=localhost -jar you
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`CollectionCount`|The number of GC that have occurred.|int|count|
 |`CollectionTime`|The approximate GC collection time elapsed.|int|B|
@@ -330,14 +330,14 @@ java -javaagent:/path/to/jolokia-jvm-agent.jar=port=8080,host=localhost -jar you
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`jolokia_agent_url`|jolokia agent url path|
 
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`DaemonThreadCount`|The count of daemon thread.|int|count|
 |`PeakThreadCount`|The peak count of thread.|int|count|
@@ -351,14 +351,14 @@ java -javaagent:/path/to/jolokia-jvm-agent.jar=port=8080,host=localhost -jar you
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`jolokia_agent_url`|jolokia agent url path|
 
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`LoadedClassCount`|The count of loaded class.|int|count|
 |`TotalLoadedClassCount`|The total count of loaded class.|int|count|
@@ -371,7 +371,7 @@ java -javaagent:/path/to/jolokia-jvm-agent.jar=port=8080,host=localhost -jar you
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`jolokia_agent_url`|jolokia agent url path|
 |`name`|the name of space|
@@ -379,7 +379,7 @@ java -javaagent:/path/to/jolokia-jvm-agent.jar=port=8080,host=localhost -jar you
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`PeakUsagecommitted`|The total peak Java memory pool committed to be used|int|B|
 |`PeakUsageinit`|The initial peak Java memory pool allocated|int|B|

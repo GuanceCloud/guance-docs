@@ -63,14 +63,14 @@ system 采集器收集系统负载、正常运行时间、CPU 核心数量以及
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`host`|主机名|
 
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`load1`|过去 1 分钟的 CPU 平均负载|float|-|
 |`load15`|过去 15 分钟的 CPU 平均负载|float|-|
@@ -91,14 +91,14 @@ system 采集器收集系统负载、正常运行时间、CPU 核心数量以及
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`host`|主机名|
 
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`entries`|当前连接数量|int|count|
 |`entries_limit`|连接跟踪表的大小|int|count|
@@ -120,14 +120,14 @@ system 采集器收集系统负载、正常运行时间、CPU 核心数量以及
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`host`|主机名|
 
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`allocated`|已分配文件句柄的数目|int|count|
 |`maximum_mega`|文件句柄的最大数目, 单位 M(10^6)|float|count|

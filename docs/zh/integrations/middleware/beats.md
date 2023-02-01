@@ -16,7 +16,7 @@ Beats 指标展示，包括 CPU 负载、内存、事件、配置、输出流量
 
 ## 前置条件
 
-- 服务器 <[安装 Datakit](../../datakit/datakit-install.md)>
+- 服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
 - 服务器安装 Telegraf
 - Beats 应用开启 HTTP Endpoint
 

@@ -5,7 +5,7 @@ nav:
   - '空间管理': space-management.md
   - '成员管理': member-management.md
   - 'SSO管理': sso
-  - '文本处理（Pipeline）': overall-pipeline.md
+  - '文本处理（Pipelines）': overall-pipeline.md
   - '字段管理': field-management.md
   - '黑名单': overall-blacklist.md
   - '数据授权管理': data-authorization.md
@@ -19,4 +19,5 @@ nav:
   - '系统通知': system-notification.md
   - '快照': snapshot.md
   - '帮助': help.md
+  - 'Status Page': status-page.md
   - 'Demo 空间': space-demo.md

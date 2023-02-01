@@ -77,6 +77,9 @@
     
       ## 是否开启阻塞模式，阻塞模式会在数据发送失败后持续重试，而不是丢弃该数据
       blocking_mode = true
+
+      ## 是否开启磁盘缓存，可以有效避免采集延迟，有一定的性能开销，建议只在日志量超过 3000 条/秒再开启
+      enable_diskcache = false
     
       # 自定义 tags
       [inputs.logging.tags]
@@ -358,7 +361,7 @@ Pipeline 的几个注意事项：
 -  标签
 
 
-| 标签名 | 描述    |
+| Tag | Descrition |
 |  ----  | --------|
 |`filename`|此条日志来源的文件名，仅为基础文件名，并非带有全路径|
 |`host`|主机名|
@@ -367,7 +370,7 @@ Pipeline 的几个注意事项：
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`log_read_lines`|采集到的行数计数，多行数据算成一行（[:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)）|int|count|
 |`log_read_offset`|当前数据在文件中的偏移位置（[:octicons-tag-24: Version-1.4.8](changelog.md#cl-1.4.8) · [:octicons-beaker-24: Experimental](index.md#experimental)）|int|-|
