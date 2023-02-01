@@ -1,5 +1,36 @@
 # 版本历史
 
+## v1.57.120（2022 年 01 月 12 日）
+
+pubrepo.jiagouyun.com/dataflux/1.57.120:launcher-e5345d3-1675061598
+
+### 观测云更新
+
+- 新增观测云站点服务 Status Page
+- 新增绑定自建 Elasticsearch / OpenSearch 索引
+- 新增网络查看器列表模式
+- 新增前端应用 Span 请求耗时分布显示
+- 优化用户访问监测 Session 交互逻辑
+- Pod 指标数据采集默认关闭
+- 其他功能优化
+    - 绑定 MFA 认证调整为邮箱验证
+    - 注册时调整手机验证为邮箱验证
+    - 登录时安全验证调整为滑块验证
+    - 创建工作空间新增观测云专属版引导
+    - 工作空间新增备注显示功能
+    - 云账号结算用户新增在观测云付费计划与账单查看账单列表
+    - 表格图支持基于 「by 分组」设置别名
+    - 优化监控器配置中的时序图，仅在选择维度后显示
+    - 优化日志类数据无数据告警配置
+    - OpenAPI 新增创建接口
+
+### 最佳实践更新
+
+- 云平台接入：AWS - EKS 部署 DataKit。
+- 监控 Monitoring：应用性能监控 (APM) - 调用链 - 使用 datakit-operator 注入 dd-java-agent。
+
+更多详情可参考帮助文档：[https://docs.guance.com/release-notes/](https://docs.guance.com/release-notes/)
+
 ## v1.56.119（2022 年 12 月 29 日）
 
 pubrepo.jiagouyun.com/dataflux/1.56.119:launcher-e4d9302-1672825365
