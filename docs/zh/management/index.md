@@ -18,8 +18,6 @@ icon: zy/management
 
 ![](img/3.space_management_1.png)
 
-
-
 在以下对话框，输入工作空间名称和描述，点击“确定”，即可创建一个新的工作空间。若您需要创建 SLS 专属版工作空间，可在阿里云市场开通观测云专属版，更多详情可参考文档 [阿里云市场开通观测云专属版](../billing/commercial-aliyun-sls.md) 。
 
 ![](img/3.space_management_4.png)
@@ -57,13 +55,13 @@ icon: zy/management
 - 更换Token会触发「操作事件」和「通知」，详情可参考「[操作审计](../management/operation-audit.md)」「[通知](../management/system-notification.md)」
 - 更换Token后，原有Token会在指定时间内失效。失效时间包括：立即失效、10分钟、6小时、12小时、24小时。立即失效一般用于 Token 泄露，选择立即失效后，原有 Token 将立刻停止数据上报，若设置了异常检测，则无法触发事件及告警通知，直至在 DataKit 采集器的`datakit.conf`中把原有 Token 修改成新生成的 Token 。关于`datakit.conf` 文件的存储目录，可参考文档 [DataKit 使用入门](../datakit/datakit-conf.md) 。
 
-![](/Users/wendy/dataflux-doc/docs/zh/management/img/datakit.png)
+![](img/datakit.png)
 
 ### 配置迁移 {#export-import}
 
 观测云支持拥有者和管理员一键导入、导出当前工作空间内的仪表板、自定义查看器、监控器的配置文件，进入「管理」-「基本设置」，在「配置迁移」选择导出或导入操作。
 
-![](/Users/wendy/dataflux-doc/docs/zh/management/img/1-space-management-2.png)
+![](img/1-space-management-2.png)
 
 > **注意**：当前工作空间支持导入其他工作空间的仪表板、自定义查看器、监控器等 JSON 配置。
 
@@ -80,7 +78,7 @@ IP白名单书写规范如下：
 - 指定 IP 段：192.168.0.0/24 ，表示允许 192.168.0.1 到 192.168.0.255 的 IP 地址访问。
 - 所有 IP 地址：0.0.0.0/0
 
-![](/Users/wendy/dataflux-doc/docs/zh/management/img/6.space_ip_1.png)
+![](img/6.space_ip_1.png)
 
 ### 变更数据存储策略
 
@@ -98,23 +96,19 @@ IP白名单书写规范如下：
 
 1. 删除指标集时，会产生系统通知事件，如用户创建了删除指标集任务、删除指标集任务执行成功、删除指标集任务执行失败等。
 
-  
-
-![](/Users/wendy/dataflux-doc/docs/zh/management/img/11.metric_1.png)
+![](img/11.metric_1.png)
 
 ### 删除自定义对象
 
 观测云支持拥有者和管理员删除指定自定义对象分类以及所有自定义对象，进入「管理」-「基本设置」，点击「删除自定义对象」后，选择删除自定义对象的方式，即可删除对应的对象数据。
 
-● 指定自定义对象分类：仅删除所选对象分类下的数据，不会删除索引
-● 所有自定义对象：删除所有自定义对象数据及索引
+- 指定自定义对象分类：仅删除所选对象分类下的数据，不会删除索引
+- 所有自定义对象：删除所有自定义对象数据及索引
 
-![](/Users/wendy/dataflux-doc/docs/zh/management/img/7.custom_cloud_3.png)
-
-
+![](img/7.custom_cloud_3.png)
 
 ## 数据隔离和数据授权
 
 若您公司有多个部门需要隔离数据，您可以创建多个工作空间，并邀请相关部门或者关系人加入对应的工作空间。
 
-若您需要对所有部门不同工作空间的数据进行统一查看，您可以通过配置数据授权的方式，授权多个工作空间的数据给到当前的工作空间，通过场景仪表板和笔记的图表组件进行查询和展示。更多配置详情，可参考文档 [数据授权](https://preprod-docs.cloudcare.cn/management/data-authorization/) 。
+若您需要对所有部门不同工作空间的数据进行统一查看，您可以通过配置数据授权的方式，授权多个工作空间的数据给到当前的工作空间，通过场景仪表板和笔记的图表组件进行查询和展示。更多配置详情，可参考文档 [数据授权](data-authorization.md) 。

@@ -6,6 +6,7 @@ pubrepo.jiagouyun.com/dataflux/1.57.120:launcher-e5345d3-1675061598
 
 ### 观测云更新
 
+- 观测云英文语言支持
 - 新增观测云站点服务 Status Page
 - 新增绑定自建 Elasticsearch / OpenSearch 索引
 - 新增网络查看器列表模式
@@ -803,6 +804,7 @@ pubrepo.jiagouyun.com/dataflux/1.42.95:launcher-8478e83-1654839989
 更多详情可参考帮助文档：[https://docs.guance.com/release-notes/](https://docs.guance.com/release-notes/) 
 
 ## v1.41.94(2022年5月28日)
+
 pubrepo.jiagouyun.com/dataflux/1.41.94:launcher-249ba21-1653737335 
 
 ### 观测云更新
@@ -856,6 +858,7 @@ pubrepo.jiagouyun.com/dataflux/1.41.94:launcher-249ba21-1653737335
 更多详情可参考帮助文档：[https://docs.guance.com/release-notes/](https://docs.guance.com/release-notes/) 
 
 ## v1.40.93(2022年5月9日)
+
 pubrepo.jiagouyun.com/dataflux/1.40.93:launcher-aa97377-1652102035 
 
 ### 观测云更新
@@ -1107,9 +1110,9 @@ pubrepo.jiagouyun.com/dataflux/1.36.85:launcher-d8e6ee9-1647272237
 
 pubrepo.jiagouyun.com/dataflux/1.35.84:launcher-191ef71-1645780061 
 
-- 新增日志配置** pipeline **脚本
-- 新增** IFrame **图表组件
-- 新增事件详情历史记录、关联** SLO**
+- 新增日志配置 **pipeline** 脚本
+- 新增 **IFrame** 图表组件
+- 新增事件详情历史记录、关联 **SLO**
 - 新增保存快照默认开启绝对时间
 - 优化监控器无数据触发事件配置及触发条件单位提示
 - 优化图表查询表达式计算单位
@@ -1119,4 +1122,3 @@ pubrepo.jiagouyun.com/dataflux/1.35.84:launcher-191ef71-1645780061
     - 图表查询文案、按钮样式以及文字提示优化；
     - 工作空间操作按钮图标化，如编辑、删除等等。
     - 其他 UI 显示优化
-

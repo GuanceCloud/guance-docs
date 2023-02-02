@@ -1,0 +1,23 @@
+nav:
+  - index.md
+  - 'Account Management': account-management.md
+  - 'MFA Management': mfa-management.md
+  - 'Space Management': space-management.md
+  - 'Member Management': member-management.md
+  - 'SSO Management': sso
+  - 'Pipelines': overall-pipeline.md
+  - 'Field Management': field-management.md
+  - 'Blacklist': overall-blacklist.md
+  - 'Data Authorization': data-authorization.md
+  - 'API Key': api-key
+  - 'Share Management': share-management.md
+  - 'Key Metrics': key-metrics.md
+  - 'Audition': operation-audit.md
+  - 'Customized Menu': customized-menu.md
+  - 'System Theme': system-theme.md
+  - 'High Performance': high-performance.md
+  - 'System Notification': system-notification.md
+  - 'Snapshot': snapshot.md
+  - 'Help': help.md
+  - 'Status Page': status-page.md
+  - 'Demo Space': space-demo.md
