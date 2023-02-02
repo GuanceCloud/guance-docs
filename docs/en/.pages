@@ -1,20 +1,27 @@
 nav:
   - Release Notes: release-notes
+  - <br/>Getting Started: ""
   - Getting Started: getting-started
   - DataKit: datakit
-  - Developers: developers
-  - Deployment: deployment
-  - DQL: dql
+  - <br/>Product Functions: ""
   - Scene: scene
-  - Events: events
   - Infrastructure: infrastructure
-  - Metrics: metrics
-  - Logs: logs
   - APM: application-performance-monitoring
   - RUM: real-user-monitoring
-  - Testing: usability-monitoring
-  - CI Visibility: ci-visibility
+  - Logs: logs
+  - Synthetic Tests: usability-monitoring
+  - Metrics: metrics
   - Monitoring: monitoring
+  - Events: events
+  - CI Visibility: ci-visibility
+  - <br/>Openess: ""
+  - Developers: developers
+  - <br/>Management: ""
+  - Workspace Management: management
+  - <br/>Deployment: ""
+  - Deployment: deployment
+  - <br/>Others: ""
+  - DQL: dql
   - Mobile Application: mobile
 
 
