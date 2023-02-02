@@ -4,31 +4,8 @@
 
 ## 前置条件
 
-### 账号注册
-
-前往官方网站 [https://www.guance.com](https://www.dataflux.cn/) 注册账号，使用已注册的账号/密码登录。
----
-
-### 安装 Datakit
-
-#### 获取命令
-
-点击 [**集成**] 模块，右上角 [**快速获取 DataKit 安装命令**]，根据您的操作系统和系统类型选择合适的安装命令。
-
-![image](../images/web/1.png)
-
-#### 执行安装
-
-复制 Datakit 安装命令在需要被监控的服务器上直接运行。
-
-安装之后的目录结构如下:
-
-- 安装目录 /usr/local/datakit/
-- 日志目录 /var/log/datakit/
-- 主配置文件 /usr/local/datakit/conf.d/datakit.conf
-- 插件配置目录 /usr/local/datakit/conf.d/
-
----
+- 进入[观测云官网](https://www.guance.cn/) 注册账号，使用已注册的账号/密码登录。
+- 服务器<[安装 DataKit](../../datakit/datakit-install.md)>
 
 ## Web 应用监控（RUM）介绍：
 
