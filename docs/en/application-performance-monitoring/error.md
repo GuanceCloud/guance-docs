@@ -3,9 +3,9 @@
 
 ## Introduction
 
-Guance provides an application performance monitoring error data analysis observer. You can quickly view the historical trend and distribution of similar errors in the link in the "error tracing" of "application performance monitoring", and help quickly locate performance problems.
+Guance provides an application performance monitoring error data analysis explorer. You can quickly view the historical trend and distribution of similar errors in the link in the "error tracing" of "application performance monitoring", and help quickly locate performance problems.
 
-The error tracing observer includes two lists: "All Errors" and "Clustering Analysis":
+The error tracing explorer includes two lists: "All Errors" and "Clustering Analysis":
 
 - All errors: Used to view all link errors that occurred in the project application as a whole.
 
@@ -13,7 +13,7 @@ The error tracing observer includes two lists: "All Errors" and "Clustering Anal
 
 ## Data Query and Analysis
 
-Guance obserever provides powerful query and analysis functions, You can use the time control, search and filter data within a certain time range, quickly filter, customize display columns, export data and other operations. Through chart analysis mode, all wrong link data are grouped and counted based on **1-3 labels** in order to reflect the distribution characteristics and trends of wrong links in different groups and at different times and help you quickly find wrong links to locate performance problems. See the documentation [observer notes](../getting-started/necessary-for-beginners/explorer-search.md).
+Guance obserever provides powerful query and analysis functions, You can use the time control, search and filter data within a certain time range, quickly filter, customize display columns, export data and other operations. Through chart analysis mode, all wrong link data are grouped and counted based on **1-3 labels** in order to reflect the distribution characteristics and trends of wrong links in different groups and at different times and help you quickly find wrong links to locate performance problems. See the documentation [explorer notes](../getting-started/necessary-for-beginners/explorer-search.md).
 
 ## All errors
 
@@ -27,11 +27,11 @@ If you need to view all link errors in the project application as a whole, you c
 
 ### Error Link Association Analysis
 
-In the Error Tracking Observer, you can click any error to view the corresponding error link details, including service, error type, error content, error profile, error details, link details, extended attributes, associated logs, hosts and networks.
+In the Error Tracking Explorer, you can click any error to view the corresponding error link details, including service, error type, error content, error profile, error details, link details, extended attributes, associated logs, hosts and networks.
 
 #### Error Profile
 
-On the error profile of the Error Observer Details page, Based on the `error_message` and `error_type` two fields, the error links with high approximation are aggregated and counted, and according to the time range selected by the error observer, the corresponding time interval is automatically selected to show the distribution trend of errors, which helps you intuitively view the time points or time ranges where frequent errors occur and quickly locate link problems.
+On the error profile of the Error Explorer Details page, Based on the `error_message` and `error_type` two fields, the error links with high approximation are aggregated and counted, and according to the time range selected by the error explorer, the corresponding time interval is automatically selected to show the distribution trend of errors, which helps you intuitively view the time points or time ranges where frequent errors occur and quickly locate link problems.
 
 ![](img/1.apm_error_11.1.png)
 
@@ -43,7 +43,7 @@ Click "View Link" in the upper right corner, you can locate the link problem by 
 
 ![](img/1.apm_error_13.png)
 
-You can also switch to "Error Details" to view the error details of upstream and downstream error Spans to quickly locate error problems. Click "Back" to return to the error tracking observer details page.
+You can also switch to "Error Details" to view the error details of upstream and downstream error Spans to quickly locate error problems. Click "Back" to return to the error tracking explorer details page.
 
 ![](img/1.apm_error_14.png)
 

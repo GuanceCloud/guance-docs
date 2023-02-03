@@ -15,9 +15,9 @@ In the "Service" list of "Application Performance Monitoring", the data of the l
 
 ### Search and Filter
 
-In the service search bar, it supports keyword search, wildcard search, association search and other search methods, and supports field screening of link services based on one or more tags such as service type, environment (env), version, project and service, including forward screening, reverse screening, fuzzy matching and reverse fuzzy matching. For more searching and filtering, refer to the doc [searching and filtering for the observer](../getting-started/necessary-for-beginners/explorer-search.md).
+In the service search bar, it supports keyword search, wildcard search, association search and other search methods, and supports field screening of link services based on one or more tags such as service type, environment (env), version, project and service, including forward screening, reverse screening, fuzzy matching and reverse fuzzy matching. For more searching and filtering, refer to the doc [searching and filtering for the explorer](../getting-started/necessary-for-beginners/explorer-search.md).
 
-**Note: When you switch to view the Service or Link observer, Guance reserves the current filter criteria and time range for you by default. Refer to the doc [Tracing data collection general configuration](../datakit/datakit-tracing.md#tracing-common-config).**
+**Note: When you switch to view the Service or Link explorer, Guance reserves the current filter criteria and time range for you by default. Refer to the doc [Tracing data collection general configuration](../datakit/datakit-tracing.md#tracing-common-config).**
 
 ### Quick Filter
 

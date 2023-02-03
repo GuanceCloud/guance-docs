@@ -82,7 +82,7 @@ Click "Event" to view the details page of intelligent check events, including ev
 #### Event details
 * Event overview: Describes the object and content of the anomaly detection event
 * Front-end error trend: You can view the error statistics of the current front-end application in the past hour
-* New error details: View the detailed error time, error information, error type, error stack and number of errors; Click on the error message, and the error type will enter the corresponding data observer; Clicking on the error stack will bring you to the specific error stack details page.
+* New error details: View the detailed error time, error information, error type, error stack and number of errors; Click on the error message, and the error type will enter the corresponding data explorer; Clicking on the error stack will bring you to the specific error stack details page.
 
 ![image](../img/rum_error06.png)
 ![image](../img/rum_error09.png)

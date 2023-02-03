@@ -90,7 +90,7 @@ func web(w http.ResponseWriter, r *http.Request) {
 	// ... 接收客户端请求
 	log.Println("doing web")
 	// labels represent additional key-value descriptors that can be bound to a
-	// metric observer or recorder.
+	// metric explorer or recorder.
 	commonLabels := []attribute.KeyValue{attribute.String("key1", "val1")}
 	// work begins
 	ctx, span := tracer.Start(

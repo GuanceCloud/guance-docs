@@ -47,7 +47,7 @@ There are two ways to start container data collection:
 Notes:
 
 - Install DataKit through the host, and open the container collector to support collecting Containers and Pods data only;
-- DataKit is installed in DaemonSet mode, which supports collecting data of all container components such as Containers, Pods, Services, Deployments, Clusters, Nodes, Replica Sets, Jobs and Cron Jobs. The collected data can be viewed and analyzed in corresponding observers.
+- DataKit is installed in DaemonSet mode, which supports collecting data of all container components such as Containers, Pods, Services, Deployments, Clusters, Nodes, Replica Sets, Jobs and Cron Jobs. The collected data can be viewed and analyzed in corresponding explorers.
 
 ### Process
 

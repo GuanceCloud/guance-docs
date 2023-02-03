@@ -494,5 +494,5 @@ datakit --ignore demo,tailf --export-integration /path/to/integration/git/repo
 
 ## More Readings {#more-readings}
 
-- [DataKit Monitor observer](datakit-monitor.md)
+- [DataKit Monitor explorer](datakit-monitor.md)
 - [Introduction on DataKit to the overall architecture](datakit-arch.md)
