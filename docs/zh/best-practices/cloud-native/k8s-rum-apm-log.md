@@ -1024,7 +1024,7 @@ DataKit 开启 RUM 采集器是通过 `ENV_DEFAULT_ENABLED_INPUTS` 环境变量�
 
 - version: 必填，应用所属版本号。
 
-- allowedDDTracingOrigins: RUM 与 APM 打通，配置后端服务器地址或域名，由于本示例前端和后端访问地址都是 [http://8.136.193.105:30000/](http://8.136.193.105:30000/)，在配置时需要把 30000 端口加上。
+- allowedTracingOrigins: RUM 与 APM 打通，配置后端服务器地址或域名，由于本示例前端和后端访问地址都是 [http://8.136.193.105:30000/](http://8.136.193.105:30000/)，在配置时需要把 30000 端口加上。
 
 - trackInteractions: 用户行为统计，例如点击按钮，提交信息等动作。
 
