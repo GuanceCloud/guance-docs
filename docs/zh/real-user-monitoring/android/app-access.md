@@ -234,7 +234,7 @@ fun setDynamicParams(context: Context, value: String) {
 | --- | --- | --- | --- |
 | setServiceName | 设置服务名 | 否 | 默认为 `df_rum_android`  |
 | setSampleRate | 设置采集率 | 否 | 采集率的值范围为>= 0、<= 1，默认值为 1 |
-| setTraceConsoleLog | 是否上报控制台日志 | 否 | 日志等级对应关系<br>Log.v -> ok;<br>Log.i、Log.d -> info;<br>Log.e -> error;<br>Log.w -> warning，<br> `prefix` 为控制前缀过滤参数，默认不设置过滤 |
+| setEnableConsoleLog | 是否上报控制台日志 | 否 | 日志等级对应关系<br>Log.v -> ok;<br>Log.i、Log.d -> info;<br>Log.e -> error;<br>Log.w -> warning，<br> `prefix` 为控制前缀过滤参数，默认不设置过滤 |
 | setEnableLinkRUMData | 是否与 RUM 数据关联 | 否 | 默认为 `false` |
 | setLogCacheDiscardStrategy | 设置频繁日志丢弃规则 | 否 | 默认为 `LogCacheDiscard.DISCARD`，`DISCARD` 为丢弃追加数据，`DISCARD_OLDEST` 丢弃老数据 |
 | setEnableCustomLog | 是否上传自定义日志 | 否 | 默认为 `false` |
