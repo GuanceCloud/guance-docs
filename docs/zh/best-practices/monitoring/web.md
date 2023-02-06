@@ -4,31 +4,8 @@
 
 ## 前置条件
 
-### 账号注册
-
-前往官方网站 [https://www.guance.com](https://www.dataflux.cn/) 注册账号，使用已注册的账号/密码登录。
----
-
-### 安装 Datakit
-
-#### 获取命令
-
-点击 [**集成**] 模块，右上角 [**快速获取 DataKit 安装命令**]，根据您的操作系统和系统类型选择合适的安装命令。
-
-![image](../images/web/1.png)
-
-#### 执行安装
-
-复制 Datakit 安装命令在需要被监控的服务器上直接运行。
-
-安装之后的目录结构如下:
-
-- 安装目录 /usr/local/datakit/
-- 日志目录 /var/log/datakit/
-- 主配置文件 /usr/local/datakit/conf.d/datakit.conf
-- 插件配置目录 /usr/local/datakit/conf.d/
-
----
+- 进入[观测云官网](https://www.guance.cn/) 注册账号，使用已注册的账号/密码登录。
+- 服务器<[安装 DataKit](../../datakit/datakit-install.md)>
 
 ## Web 应用监控（RUM）介绍：
 
@@ -80,7 +57,7 @@ $ cp index.html index.html.bkd
 // datakitOrigin：datakit 地址，df 中 rum 数据流向为：rum.js 文件——datakit——dataway——DF平台
    如若是生产环境，需将该 IP 设置为域名，测试环境需填写内网 IP，对应有 datakit 的服务器 9529 端口
 // trackInteractions：用户行为采集配置项，可实现页面端用户操作行为统计
-// allowedDDTracingOrigins：前后端（rum 与 apm）打通的配置项，可按需进行设置，需在此处填写与前端页面有交互关系的后端服务器所对应的域名或IP，127.0.0.1 仅为示例。
+// allowedTracingOrigins：前后端（rum 与 apm）打通的配置项，可按需进行设置，需在此处填写与前端页面有交互关系的后端服务器所对应的域名或IP，127.0.0.1 仅为示例。
 
 $ vim index.html
 
@@ -111,7 +88,7 @@ $ vim index.html
 
 ![image](../images/web/5.png)
 
-- **allowedDDTracingOrigins**：实现前后端（APM 与 RUM）打通，该场景只有在前端部署 RUM，后端部署APM的情况才会生效，需在此处填写与前端页面有交互关系的后端应用服务器所对应的域名（生产环境）或IP（测试环境）。**应用场景**：前端用户访问出现慢，是由后端代码逻辑异常导致，可通过前端RUM慢请求数据直接跳转至APM数据查看当次后端代码调用情况，判定慢的根因。**实现原理**：用户访问前端应用，前端应用进行资源及请求调用，触发rum-js性能数据采集，rum-js 会生成 trace-id 写在请求的 request_header 里，请求到达后端，后端的 ddtrace 会读取到该 trace_id 并记录在自己的 trace 数据里，从而实现通过相同的 trace_id 来实现应用性能监测和用户访问监测数据联动
+- **allowedTracingOrigins**：实现前后端（APM 与 RUM）打通，该场景只有在前端部署 RUM，后端部署APM的情况才会生效，需在此处填写与前端页面有交互关系的后端应用服务器所对应的域名（生产环境）或IP（测试环境）。**应用场景**：前端用户访问出现慢，是由后端代码逻辑异常导致，可通过前端RUM慢请求数据直接跳转至APM数据查看当次后端代码调用情况，判定慢的根因。**实现原理**：用户访问前端应用，前端应用进行资源及请求调用，触发rum-js性能数据采集，rum-js 会生成 trace-id 写在请求的 request_header 里，请求到达后端，后端的 ddtrace 会读取到该 trace_id 并记录在自己的 trace 数据里，从而实现通过相同的 trace_id 来实现应用性能监测和用户访问监测数据联动
 - **env**：必填，应用所属环境，是test或product或其他字段。
 - **version**：必填，应用所属版本号。
 - **trackInteractions**：用户行为统计，例如点击按钮，提交信息等动作。
@@ -133,7 +110,7 @@ $ vim index.html
 
 ### RUM 与 APM 数据打通（前后端通过traceid关联）：
 
-**前置条件**：后端应用服务器必须安装apm监控，即 ddtrace（dd-agent），详见 [分布式链路追踪(APM)最佳实践](../apm)，前端添加 df-rum 监控。<br />**配置方式**：需要在前端 html 中已添加的 df-rum-js 中添加 **allowedDDTracingOrigins**标签，并填写前端对应的后端域名，例如 dataflux.cn 添加 rum 监控，需要在 allowedDDTracingOrigins 里配 https://www.dataflux.cn/ ，如若存在多个域名，需配置多个，用逗号隔开，第三方域名可以不配置。
+**前置条件**：后端应用服务器必须安装apm监控，即 ddtrace（dd-agent），详见 [分布式链路追踪(APM)最佳实践](../apm)，前端添加 df-rum 监控。<br />**配置方式**：需要在前端 html 中已添加的 df-rum-js 中添加 **allowedTracingOrigins**标签，并填写前端对应的后端域名，例如 dataflux.cn 添加 rum 监控，需要在 allowedTracingOrigins 里配 https://www.dataflux.cn/ ，如若存在多个域名，需配置多个，用逗号隔开，第三方域名可以不配置。
 
 ![image](../images/web/9.png)
 
@@ -162,7 +139,7 @@ $ vim index.html
 | `resourceSampleRate`           | Number  | 否       | `100`   | 资源指标数据收集百分比: <br />`100`<br />表示全收集，<br />`0`<br />表示不收集                                                                                                                                                                             |
 | `sampleRate`                   | Number  | 否       | `100`   | 指标数据收集百分比: <br />`100`<br />表示全收集，<br />`0`<br />表示不收集                                                                                                                                                                                 |
 | `trackSessionAcrossSubdomains` | Boolean | 否       | `false` | 同一个域名下面的子域名共享缓存                                                                                                                                                                                                                             |
-| `allowedDDTracingOrigins`      | Array   | 否       | `[]`    | 允许注入<br />`ddtrace`<br /> 采集器所需header头部的所有请求列表。可以是请求的origin，也可以是是正则，origin: <br />`协议（包括：//），域名（或IP地址）[和端口号]`<br /> 例如：<br />`["https://api.example.com", /https:\\/\\/.*\\.my-api-domain\\.com/]` |
+| `allowedTracingOrigins`      | Array   | 否       | `[]`    | 允许注入<br />`ddtrace`<br /> 采集器所需header头部的所有请求列表。可以是请求的origin，也可以是是正则，origin: <br />`协议（包括：//），域名（或IP地址）[和端口号]`<br /> 例如：<br />`["https://api.example.com", /https:\\/\\/.*\\.my-api-domain\\.com/]` |
 | `trackInteractions`<br />      | Boolean | 否       | `false` | 是否开启用户行为采集                                                                                                                                                                                                                                       |
 
 
