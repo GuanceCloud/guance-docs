@@ -23,15 +23,15 @@ The Container object list supports viewing Containers, Pods, Services, Deploymen
 
 #### Search and Filter
 
-In the observer search bar, it supports keyword search, wildcard search, association search, JSON search and other search methods, and it also supports value filtering through `tag/attribute`, including forward filtering, reverse filtering, fuzzy matching, reverse fuzzy matching, existence and nonexistence and other filtering methods. For more searches and filters, refer to the document [search and filter for the observer](../getting-started/necessary-for-beginners/explorer-search.md).
+In the explorer search bar, it supports keyword search, wildcard search, association search, JSON search and other search methods, and it also supports value filtering through `tag/attribute`, including forward filtering, reverse filtering, fuzzy matching, reverse fuzzy matching, existence and nonexistence and other filtering methods. For more searches and filters, refer to the document [search and filter for the explorer](../getting-started/necessary-for-beginners/explorer-search.md).
 
 #### Quick Filter
 
-Observer shortcut filter supports editing "shortcut filter" and adding new filter fields. After adding, you can select their field values for quick filtering. For more shortcut filters, please refer to the document [shortcut filters](../getting-started/necessary-for-beginners/explorer-search.md#quick-filter).
+Explorer shortcut filter supports editing "shortcut filter" and adding new filter fields. After adding, you can select their field values for quick filtering. For more shortcut filters, please refer to the document [shortcut filters](../getting-started/necessary-for-beginners/explorer-search.md#quick-filter).
 
 #### Custom Display Columns
 
-In the container observer list, you can customize to add, edit, delete and drag display columns through Display Columns. When the mouse is placed on the display column of the observer, click the「 :material-cog: Settings」button, which supports ascending, descending, moving columns to the left, moving columns to the right, adding columns to the left, adding columns to the right, replacing columns, adding to shortcut filtering, adding to analysis (grouping aggregation analysis), removing columns and other operations. See the documentation [display column description](../getting-started/necessary-for-beginners/explorer-search.md#columns) for more custom display columns.
+In the container explorer list, you can customize to add, edit, delete and drag display columns through Display Columns. When the mouse is placed on the display column of the explorer, click the「 :material-cog: Settings」button, which supports ascending, descending, moving columns to the left, moving columns to the right, adding columns to the left, adding columns to the right, replacing columns, adding to shortcut filtering, adding to analysis (grouping aggregation analysis), removing columns and other operations. See the documentation [display column description](../getting-started/necessary-for-beginners/explorer-search.md#columns) for more custom display columns.
 
 #### Sorting
 
@@ -39,13 +39,13 @@ Click on the list menu, such as: CPU Usage and MEM Usage, you can ascend and des
 
 #### Analysis Mode
 
-In the analysis bar of infrastructure container observer, multi-dimensional analysis and statistics based on **1-3 tags** are supported to reflect the distribution characteristics of data in different dimensions, and various data chart analysis methods are supported, including ranking list, pie chart and rectangular tree chart. For more details, please refer to the document [analysis Mode for the observer](../getting-started/necessary-for-beginners/explorer-search.md#analysis).
+In the analysis bar of infrastructure container explorer, multi-dimensional analysis and statistics based on **1-3 tags** are supported to reflect the distribution characteristics of data in different dimensions, and various data chart analysis methods are supported, including ranking list, pie chart and rectangular tree chart. For more details, please refer to the document [analysis Mode for the explorer](../getting-started/necessary-for-beginners/explorer-search.md#analysis).
 
 ![](img/4.jichusheshi_2.png)
 
 #### Data Export
 
-The" :material-cog: settings" icon in the upper right corner of the observer (next to "display column") supports exporting the current object list data to CSV files or scene dashboards and notes.
+The" :material-cog: settings" icon in the upper right corner of the explorer (next to "display column") supports exporting the current object list data to CSV files or scene dashboards and notes.
 
 - Export to CSV File: Save current list as CSV file locally.
 
@@ -87,9 +87,9 @@ Guance supports association analysis of each infrastructure object. On the detai
     
     In addition, by clicking the tab "Host" on the container details page, you can do the following:
     
-    - "Filter field value", that is, add the field to the observer to view all the data related to the field.
-    - "Reverse filter field value", that is, add this field to the observer to view other data besides this field.
-    - "Add to display column", that is, add the field to the observer list for viewing.
+    - "Filter field value", that is, add the field to the explorer to view all the data related to the field.
+    - "Reverse filter field value", that is, add this field to the explorer to view other data besides this field.
+    - "Add to display column", that is, add the field to the explorer list for viewing.
     - "Copy", that is, copy the field to the clipboard.
     - "View related logs", that is, view all logs related to this host.
     - "View Related Containers", that is, view all containers associated with this host.
@@ -103,7 +103,7 @@ Guance supports association analysis of each infrastructure object. On the detai
 
     Through "Log" at the bottom of the details page, you can view the logs and the number of logs related to the container **in the last 1 hour**, and perform keyword search, multi-label filtering and time sorting on these related logs.
     - If you need to view more detailed log information, you can click the log content to jump to the corresponding log details page, or click "Jump" to "Log" to view all logs related to the host.
-    - If you need to view more log fields or more complete log contents, you can customize and adjust "Maximum Display Rows" and "Display Columns" through "Display Columns" in the associated log observer.
+    - If you need to view more log fields or more complete log contents, you can customize and adjust "Maximum Display Rows" and "Display Columns" through "Display Columns" in the associated log explorer.
     **Note: For a smoother user query experience, Guance saves the user's browsing settings in the "Log" by default (including "Maximum Display Rows" and "Display Columns") in real time, so that the "Association Log" is consistent with the "Log". However, the custom adjustments made in the Association Log are not saved after exiting the page.**
 
 === "Process"
@@ -127,9 +127,9 @@ Click the Pod name in the Pod list to draw a detailed page to view the detailed 
 
 By clicking the tab "Host" on the pod details page, you can query the log, container, process, link, patrol and other data related to the host.
 
-- "Filter Field Value", that is, add the field to the observer to view all the data related to the field.
-- "Reverse Filter Field Value", that is, add this field to the observer to view other data besides this field.
-- "Add to display column", that is, add the field to the observer list for viewing.
+- "Filter Field Value", that is, add the field to the explorer to view all the data related to the field.
+- "Reverse Filter Field Value", that is, add this field to the explorer to view other data besides this field.
+- "Add to display column", that is, add the field to the explorer list for viewing.
 - "Copy", that is, copy the field to the clipboard.
 - "View Related Logs", that is, view all logs related to this host
 - "View Related Containers", that is, view all containers associated with this host.
@@ -172,7 +172,7 @@ By clicking the tab "Host" on the pod details page, you can query the log, conta
 
     Through "Log" at the bottom of the details page, you can view the logs and the number of logs related to this Pod **in the last hour**, and perform keyword search, multi-label filtering and time sorting on these related logs.
     - If you need to view more detailed log information, you can click the log content to jump to the corresponding log details page, or click "Jump" to "Log" to view all logs related to the host.
-    - If you need to view more log fields or more complete log contents, you can customize and adjust "Maximum Display Rows" and "Display Columns" through "Display Columns" in the associated log observer.
+    - If you need to view more log fields or more complete log contents, you can customize and adjust "Maximum Display Rows" and "Display Columns" through "Display Columns" in the associated log explorer.
     **Note: For a smoother user query experience, Guance saves the user's browsing settings in the "Log" by default (including "Maximum Display Rows" and "Display Columns") in real time, so that the "Association Log" is consistent with the "Log". However, the custom adjustments made in the Association Log are not saved after exiting the page.**
 
 === "Host"
@@ -362,7 +362,7 @@ In the "pod" profile, you can quickly view the restart times of pod, and analyze
 
 ![](img/6.container_1.png)
 
-- Search and filtering: In the viewer search bar, it supports keyword search, wildcard search, association search, JSON search and other search methods, and supports value filtering through `tags/attributes`, including forward filtering, reverse filtering, fuzzy matching, reverse fuzzy matching, existence and nonexistence and other filtering methods. For more searches and filters, refer to the document [search and filter for observer](../getting-started/necessary-for-beginners/explorer-search.md).
+- Search and filtering: In the viewer search bar, it supports keyword search, wildcard search, association search, JSON search and other search methods, and supports value filtering through `tags/attributes`, including forward filtering, reverse filtering, fuzzy matching, reverse fuzzy matching, existence and nonexistence and other filtering methods. For more searches and filters, refer to the document [search and filter for explorer](../getting-started/necessary-for-beginners/explorer-search.md).
 - Analysis: You can recombine the Container/pod object by adding one or more grouping tags.
 - Fill: You can customize the selection of fill metrics, and the size of the fill metric value will determine the legend color of the fill. Support the selection of CPU utilization rate and MEM utilization rate.
 - Custom range: You can open custom legend range through Legend Settings. Legend colors will be divided into five intervals according to the maximum and minimum values of the legend, and each interval will automatically correspond to five different colors.

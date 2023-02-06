@@ -101,7 +101,7 @@ Based on the selected absolute time horizon, the list of query results includes
 
 **Note**.
 
-- The currently selected time range is "absolute time" by default when querying the 「similar interval」, and will not be changed by any external action or observer. If you need to change the time range, you need to readjust the time range
+- The currently selected time range is "absolute time" by default when querying the 「similar interval」, and will not be changed by any external action or explorer. If you need to change the time range, you need to readjust the time range
 
 - Once you enter the Similar Intervals page, click and drag the rectangle to adjust the time range of your search, and if you have already selected an area, you can still move or adjust the selected time range
 

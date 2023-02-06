@@ -1,54 +1,54 @@
-# 黑名单
+# Blacklist
 ---
 
-观测云支持通过设置黑名单的方式过滤掉符合条件的不同类型的数据，即配置黑名单以后，符合条件的数据不再上报到观测云工作空间，帮助您节约数据存储费用。
+Guance supports filtering out different types of qualified data by setting blacklist, that is, after configuring blacklist, qualified data will no longer be reported to Guance workspace, which helps you save data storage costs.
 
-## 前提条件
+## Preconditions
 
-- [安装 DataKit](../datakit/datakit-install.md)
-- DataKit 版本要求 >= 1.4.7
+- [Install DataKit](../datakit/datakit-install.md)
+- DataKit version requirement >= 1.4.7
 
-## 新建黑名单
+## Create a new blacklist
 
-在观测云工作空间，点击「管理」-「黑名单」-「新建黑名单」。
+In Guance workspace, click "Manage"-"Blacklist"-"New Blacklist".
 
 ![](img/5.blacklist_1.png)
 
-在「数据来源」，选择数据类型，并在「过滤」添加一条或多条过滤规则，点击"确定"即可开启数据黑名单过滤规则。
+In "Data Source", select the data type, add one or more filtering rules in "Filter", and click "OK" to open the data blacklist filtering rules.
 
-- 数据来源：黑名单名称根据数据来源自动生成，支持选择「日志」、「基础对象」、「自定义对象」、「网络」、「应用性能监测」、「用户访问监测」、「安全巡检」、「事件」、「指标」、「Profile」，支持手动输入预设黑名单，包数据来源、字段名，后续通过 DataKit 配置数据来源和字段并上报数据后即可生效。
-
-| 数据类型     | 数据来源（支持自定义预设）                       |
+- Data source: Blacklist names are automatically generated according to data sources, Support the selection of "Log", "Basic Object", "Custom Object", "Network", "APM", "RUM", "Security Check", "Event", "Metrics" and "Profile", and support the manual input of preset blacklist, package data source and field name, which will take effect after configuring data source and field through DataKit and reporting data.
+  
+| Data Type     | Data source (support custom preset)                       |
 | :----------- | :----------------------------------------------- |
-| 日志         | 日志来源（source），如 nginx 等                  |
-| 基础对象     | 类别（class），如 HOST 等                        |
-| 自定义对象   | 类别（class），如 MySQL 等                       |
-| 网络         | 来源（source），如 netflow ，httpflow            |
-| 应用性能监测 | 服务（service），如 redis 等，支持选择“全部服务” |
-| 用户访问监测 | 应用（app_id）                                   |
-| 安全巡检     | 类别（category），如 system 等                   |
-| 事件         | 来源（source），如 monitor 等                    |
-| 指标         | 指标集，如 cpu 等                                |
-| Profile      | 服务（service）                                  |
+| Log         | log source, such as nginx, etc.                 |
+| Basic object     | class, such as HOOT, etc.                        |
+| Custom object   | class, such as MySQL, etc                       |
+| Network         | source, such as netflow and httpflow            |
+| APM | services, such as redis, support the selection of "all services" |
+| RUM | apply (app_id)                                   |
+| Scheck     | category, such as system, etc.                   |
+| Events         | source, such as monitor, etc                    |
+| Metrics         | measurement, such as cpu, etc.                             |
+| Profile      | service                                 |
 
-- 过滤：支持两种条件选择，“任意”和“所有”。“任意”为 “或（OR）”条件，“所有”为“且（AND）”条件。
+- Filtering: Support two conditional choices, "any" and "all". "Any" is an OR (OR) condition AND "All" is an AND (AND "condition.
 
-- 字段名：支持手动输入字段名，必须是精准值，可以在查看器“显示列”查看需要匹配的字段名。
+- Field name: Manual input of field name is supported, which must be an accurate value. You can view the field name to be matched in the "Display Column" of the explorer.
 
-- 字段值：支持手动输入字段值，支持输入单值、多值，支持正则语法。
+- -Field value: Support manual input of field value, input of single value, multi-value and regular syntax.
 
-- 操作符：支持`in / not in / match / not match` 4 种模式，`in / not in` 为精准匹配，`match / not match` 为正则匹配。
+- Operator: Four modes of `in / not in / match / not match` are supported, `in / not in` is precise match, and `match / not match` is regular match.
 
-| 操作符              | 支持数值类型   | 说明                                                   | 示例              |
+| Operator              | Available numeric types   | Description                                                   | Example              |
 | :------------------ | :------------- | :----------------------------------------------------- | :---------------- |
-| `in / not in`       | 数值列表       | 指定的字段是否在列表中，列表中支持多类型混杂           | `1,2,"foo",3.5`   |
-| `match / not match` | 正则表达式列表 | 指定的字段是否匹配列表中的正则，该列表只支持字符串类型 | `"foo.*","bar.*"` |
+| `in / not in`       | Numeric List       | Whether the specified field is in a list, and multi-type cluttering is supported in the list.           | `1,2,"foo",3.5`   |
+| `match / not match` | Regular expression list | Whether the specified field matches the regular in the list, which only supports string types. | `"foo.*","bar.*"` |
 
-注意：数据类型支持字符串、整数、浮点这几种类型。
+Note: Data types support string, integer and floating point types.
 
 ![](img/5.blacklist_1.2.png)
 
-若选择的「数据来源」是「日志」，则在功能菜单「日志」-「黑名单」下同步创建一条日志过滤规则，反之亦然。
+If the selected "data source" is "log", create a log filtering rule synchronously under the function menu "log"-"blacklist", and vice versa.
 
 ![](img/5.blacklist_1.1.png)
 
@@ -56,13 +56,13 @@
 
 
 
-### 示例
+### Example
 
-以下示例中，新建黑名单，选择「全部来源」的日志，满足`status`为`ok 或 info`，且`host`不为`hz-dataflux-saas-daily-01`，且`service`中不包含`kodo`字样，即同时满足这三个匹配规则的数据将被过滤，不再上报工作空间。
+In the following example, a new blacklist is created, a log that selects "all sources", satisfies `status` as `ok or info`, and `host` is not `hz-dataflux-saas-daily-01`, and the `service` does not contain the word `kodo`, meaning that data that meets all three matching rules will be filtered and no longer reported to the workspace.
 
 ![](img/5.blacklist_2.png)
 
-设置黑名单以后，可以在查看器根据过滤条件来检查黑名单是否生效。在黑名单创建生效后，即符合过滤条件的数据将不再上报到工作空间。
+After setting the blacklist, you can check whether the blacklist is effective according to the filter criteria in the explorer. After the blacklist is created and takes effect, the data that meets the filtering conditions will no longer be reported to the workspace.
 
 
 
