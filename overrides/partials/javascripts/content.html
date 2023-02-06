@@ -1,8 +1,22 @@
 <div class="widget-content">
-  <p class="text">文档评价</p>
+  {% if config.theme.language == 'en' %}
+    <p class="text">Feedback</p>
+  {% endif %}
+  {% if config.theme.language == 'zh' %}
+    <p class="text">文档评价</p>
+  {% endif %}
   <div class="widget-content-display">
     <div class="btn-content">
-      <h4 class="title">文档内容是否对您有帮助？<span class="close">×</span></h4>
+      <h4 class="title">
+        {% if config.theme.language == 'en' %}
+          <p class="text">Feedback</p>
+          Was this page helpful?
+        {% endif %}
+        {% if config.theme.language == 'zh' %}
+          文档内容是否对您有帮助？
+        {% endif %}
+        <span class="close">×</span>
+      </h4>
       <div class="btn-group btn-group_active">
         <button class="widget-btn md-icon helpful-btn">{% include ".icons/zy/good.svg" %}</button>
         <button class="widget-btn md-icon helpful-btn-checked" disabled>

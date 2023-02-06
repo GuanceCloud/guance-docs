@@ -78,7 +78,12 @@
       </div>
     {% endif %}
     <div class="loginBtn">
-      <a class="register-btn" target="_blank" href="https://console.guance.com">进入观测云</a>
+      {% if config.theme.language == 'en' %}
+        <a class="register-btn" target="_blank" href="https://console.guance.com">GET STARTED</a>
+      {% endif %}
+      {% if config.theme.language == 'zh' %}
+        <a class="register-btn" target="_blank" href="https://console.guance.com">进入观测云</a>
+      {% endif %}
     </div>
   </nav>
   {% if "navigation.tabs.sticky" in features %}
