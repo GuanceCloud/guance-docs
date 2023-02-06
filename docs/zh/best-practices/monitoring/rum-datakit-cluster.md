@@ -66,7 +66,7 @@ systemctl restart datakit
 
 - version：应用所属版本，必填。
 
-- allowedDDTracingOrigins：RUM 与 APM 打通，配置后端服务器地址或域名。
+- allowedTracingOrigins：RUM 与 APM 打通，配置后端服务器地址或域名。
 
    
 ## 4 用户访问监测

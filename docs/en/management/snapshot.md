@@ -4,7 +4,7 @@
 
 ## Introduction
 
-Guance Snapshot supports creating quickly accessible data copies for explorers such as scenarios and inner views, infrastructure, indicators, logs, events, application performance monitoring, user access monitoring, cloud dialing, security check, and CI visualization. With the Snapshot function, you can quickly reproduce the instantaneous copy of the data copy information, and restore the data to a certain point in time and a certain data display logic.
+Guance Snapshot supports creating quickly accessible data copies for explorers such as scenarios and inner views, infrastructure, metrics, logs, events, application performance monitoring, user access monitoring, cloud dialing, security check, and CI visualization. With the Snapshot function, you can quickly reproduce the instantaneous copy of the data copy information, and restore the data to a certain point in time and a certain data display logic.
 
 
 ## Save Snapshot

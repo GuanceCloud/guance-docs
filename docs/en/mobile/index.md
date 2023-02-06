@@ -66,30 +66,30 @@ Guance allows you to switch "All Dashboards", "My Favorites", "Import Projects",
 
 ### Notes
 
-Notes support inserting real-time visual charts and text document descriptions, so as to combine charts and documents for data analysis and summary report, and assist in problem tracing, location and solution. Switch the observer to Notes, so that you can view all notes within the view permission in the current space.
+Notes support inserting real-time visual charts and text document descriptions, so as to combine charts and documents for data analysis and summary report, and assist in problem tracing, location and solution. Switch the explorer to Notes, so that you can view all notes within the view permission in the current space.
 
 Guance supports you to switch "All Notes", "My Favorites" and "My Creation" by clicking the drop-down menu to quickly filter and find the corresponding notes. Notes are synchronized with the contents of the web page. For details, please refer to [notes](../scene/note.md).
 
 
 
-### Observer
+### Explorer
 
-**Observer** is a custom log observer, which supports various customized log viewing requirements in the viewing space. Switch the viewer to Viewer, so that you can view all the viewers within the view permission in the current space.
+**Explorer** is a custom log explorer, which supports various customized log viewing requirements in the viewing space. Switch the viewer to Viewer, so that you can view all the viewers within the view permission in the current space.
 
-Guance allows you to switch "All Viewers", "My Favorites", "Import Items", "My Creations" and "Browse Frequently" by clicking the drop-down menu to quickly filter and find the corresponding viewer. The viewer is synchronized with the content on the web page. For details, please refer to the [observer](../scene/explorer/custom-explorer.md).
+Guance allows you to switch "All Viewers", "My Favorites", "Import Items", "My Creations" and "Browse Frequently" by clicking the drop-down menu to quickly filter and find the corresponding viewer. The viewer is synchronized with the content on the web page. For details, please refer to the [explorer](../scene/explorer/custom-explorer.md).
 
 
 
 ## Log Data
 
-In Log, you can view the log data of the Guance workbench synchronously. By selecting different log sources, you can query and analyze different log data in your workspace. The Guance mobile terminal displays the log data in the last 15 minutes for you by default. If you need to view more log data, you can search and view relevant data by selecting the time range. See [log observer](../logs/explorer.md).
+In Log, you can view the log data of the Guance workbench synchronously. By selecting different log sources, you can query and analyze different log data in your workspace. The Guance mobile terminal displays the log data in the last 15 minutes for you by default. If you need to view more log data, you can search and view relevant data by selecting the time range. See [log explorer](../logs/explorer.md).
 
 ![](img/app_3.png)
 
 
 
 ## Events
-The Guance mobile terminal supports you to keep connected with the observation cloud workbench anytime and anywhere. You can view, search and filter all unrecovered events, emergency events, important events, warning event contents, etc. triggered by "Monitor" through "All" events; Through the "My" event, you can view the event contents notified to you by email, nailing robot, enterprise WeChat robot, Webhook, etc., which have not been recovered yet. After an alarm event notifies you, the observation cloud mobile terminal will send a notification to you in time to ensure that you can respond quickly and solve related problems. See [event observer](../events/explorer.md).
+The Guance mobile terminal supports you to keep connected with the observation cloud workbench anytime and anywhere. You can view, search and filter all unrecovered events, emergency events, important events, warning event contents, etc. triggered by "Monitor" through "All" events; Through the "My" event, you can view the event contents notified to you by email, nailing robot, enterprise WeChat robot, Webhook, etc., which have not been recovered yet. After an alarm event notifies you, the observation cloud mobile terminal will send a notification to you in time to ensure that you can respond quickly and solve related problems. See [event explorer](../events/explorer.md).
 
 Note: The Guance mobile terminal only provides you with 1000 pieces of time data in the "All" event/"My" event. If you need to view more time, please go to the web page to view more.
 

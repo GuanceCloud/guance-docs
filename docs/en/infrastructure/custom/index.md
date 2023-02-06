@@ -60,7 +60,7 @@ After the user-defined object data is reported, click the name in the user-defin
 
 By clicking on the underlying property tab "Host" on the custom object details page, you can do the following:
 
-- "Add to Filter", that is, add the tag to the Container List Observer to view all Container data associated with the host
+- "Add to Filter", that is, add the tag to the Container List Explorer to view all Container data associated with the host
 - "Copy", that is, copy the contents of the label to the local clipboard 
 - "View related logs", that is, view all logs related to this host
 - "View dependent containers", that is, view all containers associated with this host
@@ -78,9 +78,9 @@ Guance supports "managing"-"built-in views" in the Guance workspace, setting bin
 
 ## Data Query and Analysis
 
-Enter the "Custom" observer, and Guance supports you to query and analyze custom object data by searching, filtering, sorting and grouping.
+Enter the "Custom" explorer, and Guance supports you to query and analyze custom object data by searching, filtering, sorting and grouping.
 
-- “ :octicons-search-24: Search” at the top of the page supports keyword search, wildcard search, association search, JSON search and other search methods, and it supports value screening through `tags/attributes`, including forward screening, reverse screening, fuzzy matching, reverse fuzzy matching, existence and nonexistence and other screening methods. For more searching and filtering, refer to the doc [searching and filtering for the observer](../../getting-started/necessary-for-beginners/explorer-search.md#search).
+- “ :octicons-search-24: Search” at the top of the page supports keyword search, wildcard search, association search, JSON search and other search methods, and it supports value screening through `tags/attributes`, including forward screening, reverse screening, fuzzy matching, reverse fuzzy matching, existence and nonexistence and other screening methods. For more searching and filtering, refer to the doc [searching and filtering for the explorer](../../getting-started/necessary-for-beginners/explorer-search.md#search).
 - “ :octicons-search-24: search object classification” on the left side of the page supports matching related object classification by keywords.
 
 ![](../img/11.custom_10.png)
@@ -99,7 +99,7 @@ In the custom object list, the observation cloud enables you to export the data 
 
 ### Analysis Mode
 
-Custom observer analysis bar in infrastructure supports multi-dimensional analysis and statistics based on **1-3 tags** to reflect the distribution characteristics of data in different dimensions, and supports various data chart analysis methods, including ranking list, pie chart and rectangular tree chart. For more details, please refer to the document [查看器的分析模式](../getting-started/necessary-for-beginners/explorer-search.md#analysis) 。
+Custom explorer analysis bar in infrastructure supports multi-dimensional analysis and statistics based on **1-3 tags** to reflect the distribution characteristics of data in different dimensions, and supports various data chart analysis methods, including ranking list, pie chart and rectangular tree chart. For more details, please refer to the document [查看器的分析模式](../getting-started/necessary-for-beginners/explorer-search.md#analysis) 。
 
 ![](../img/4.jichusheshi_4.png)
 

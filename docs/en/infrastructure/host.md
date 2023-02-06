@@ -5,7 +5,7 @@
 
 The host will actively report to the Guance console after collecting data successfully. In the "Host" of the "Infrastructure", you can view all the collected host data information.
 
-The host data of Guance has two viewing and analysis modes. By switching the observer in the upper left corner of the page, you can view the following pages:
+The host data of Guance has two viewing and analysis modes. By switching the explorer in the upper left corner of the page, you can view the following pages:
 
 - **Host Object List**, you can view the data information of each host **in the last 24 hours** of the current space, including host name and label, CPU utilization rate of the host, MEM utilization rate and single core load of CPU;
 - **Host Topological Graph**, you can quickly view the size of host index values in the way of topology diagram, and analyze the running status of hosts in different systems, different states, different versions and different regions.
@@ -145,25 +145,25 @@ By default, the host object list displays the host data of the last 24 hours for
 
 #### Searching and Filtering
 
-In the observer search bar, it supports keyword search, wildcard search, association search, JSON search and other search methods. It also supports value filtering through `tag/attribute`, including forward filtering, reverse filtering, fuzzy matching, reverse fuzzy matching, existence and nonexistence and other filtering methods. For more searching and filtering, refer to the doc [search and filter for the observer](../getting-started/necessary-for-beginners/explorer-search.md).
+In the explorer search bar, it supports keyword search, wildcard search, association search, JSON search and other search methods. It also supports value filtering through `tag/attribute`, including forward filtering, reverse filtering, fuzzy matching, reverse fuzzy matching, existence and nonexistence and other filtering methods. For more searching and filtering, refer to the doc [search and filter for the explorer](../getting-started/necessary-for-beginners/explorer-search.md).
 
 #### Quick Filtering
 
-In the observer shortcut filter, support editing "shortcut filter" and adding new filter fields. After adding, you can select their field values for quick filtering. For more shortcut filters, please refer to the document [shortcut filters](../getting-started/necessary-for-beginners/explorer-search.md#quick-filter).
+In the explorer shortcut filter, support editing "shortcut filter" and adding new filter fields. After adding, you can select their field values for quick filtering. For more shortcut filters, please refer to the document [shortcut filters](../getting-started/necessary-for-beginners/explorer-search.md#quick-filter).
 
 #### Custom Display Columns
 
-On the Host Object List page, you can customize to add, edit, delete and drag display columns through Display Columns. When the mouse is placed on the display column of the observer, click the "Settings" button to support ascending, descending, moving columns to the left, moving columns to the right, adding columns to the left, adding columns to the right, replacing columns, adding to shortcut filtering, adding to analysis (grouping aggregation analysis) and removing columns and other operations. See the doc [Display Column Description](../getting-started/necessary-for-beginners/explorer-search.md#columns) for more custom display columns.
+On the Host Object List page, you can customize to add, edit, delete and drag display columns through Display Columns. When the mouse is placed on the display column of the explorer, click the "Settings" button to support ascending, descending, moving columns to the left, moving columns to the right, adding columns to the left, adding columns to the right, replacing columns, adding to shortcut filtering, adding to analysis (grouping aggregation analysis) and removing columns and other operations. See the doc [Display Column Description](../getting-started/necessary-for-beginners/explorer-search.md#columns) for more custom display columns.
 
 #### Analysis Mode
 
-In the analysis column of infrastructure host observer, multi-dimensional analysis and statistics based on **1-3 tags** are supported to reflect the distribution characteristics of data in different dimensions, and various data chart analysis methods are supported, including ranking list, pie chart and rectangular tree chart. For more details, please refer to the doc [analysis mode for the observer](../getting-started/necessary-for-beginners/explorer-search.md#analysis).
+In the analysis column of infrastructure host explorer, multi-dimensional analysis and statistics based on **1-3 tags** are supported to reflect the distribution characteristics of data in different dimensions, and various data chart analysis methods are supported, including ranking list, pie chart and rectangular tree chart. For more details, please refer to the doc [analysis mode for the explorer](../getting-started/necessary-for-beginners/explorer-search.md#analysis).
 
 ![](img/4.jichusheshi_1.png)
 
 #### Data Export
 
-The " :material-cog: settings" icon in the upper right corner of the observer (next to "display column") supports exporting the current object list data to CSV files or scene dashboards and notes.
+The " :material-cog: settings" icon in the upper right corner of the explorer (next to "display column") supports exporting the current object list data to CSV files or scene dashboards and notes.
 
 - Export to CSV File: Save current list as CSV file locally.
 
@@ -178,7 +178,7 @@ The " :material-cog: settings" icon in the upper right corner of the observer (n
 
 Through the "Host Topology Graph", you can visually query the metric data size of the host, and then quickly analyze the running status of the host under custom labels such as different systems, different states, different versions and different regions.
 
-- Searching and filtering: In the observer search bar, it supports keyword search, wildcard search, association search, JSON search and other search methods, and supports value filtering through `tags/attributes` , including forward filtering, reverse filtering, fuzzy matching, reverse fuzzy matching, existence and nonexistence and other filtering methods. For more searches and filters, refer to the doc [searching and filtering for the observer](../getting-started/necessary-for-beginners/explorer-search.md).
+- Searching and filtering: In the explorer search bar, it supports keyword search, wildcard search, association search, JSON search and other search methods, and supports value filtering through `tags/attributes` , including forward filtering, reverse filtering, fuzzy matching, reverse fuzzy matching, existence and nonexistence and other filtering methods. For more searches and filters, refer to the doc [searching and filtering for the explorer](../getting-started/necessary-for-beginners/explorer-search.md).
 - Analysis: You can re-aggregate host objects by adding one or more grouping tags.
 - Fill: You can customize the fill metircs through "Fill", and the size of the fill metirc value will determine the legend color of the fill. Support the selection of CPU utilization rate, MEM utilization rate and CPU single core load.
 - Custom Interval: You can open "Custom Interval" to customize the legend color range for the selected fill metrics. Legend colors will be divided into five intervals according to the maximum and minimum values of the legend, and each interval will automatically correspond to five different colors.

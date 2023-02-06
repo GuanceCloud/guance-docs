@@ -228,14 +228,14 @@ class _HomeState extends State<HomeRoute> {
 	void initState(){
 	
 		//添加应用休眠和唤醒监听
-		FTLifeRecycleHandler().initObserver();
+		FTLifeRecycleHandler().initExplorer();
 	}
 	
 	@override
 	void dispose(){
 	
 		//移除应用休眠和唤醒监听
-		FTLifeRecycleHandler().removeObserver();
+		FTLifeRecycleHandler().removeExplorer();
 	}
 }
 

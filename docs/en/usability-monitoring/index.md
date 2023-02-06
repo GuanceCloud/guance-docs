@@ -23,13 +23,13 @@ Guance also provides you with dialing test task log. With our [visual data analy
 
 - **Custom test task**: Support to create test tasks based on `HTTP、TCP、ICMP、WEBSOCKET` protocol to monitor your site running quality anytime and anywhere.
 - **Overview**: Analyze the application performance of the target site under the specified dial-up task from two dimensions of geography and trend, including response time, round-trip time, connection time and usability rate.
-- **Observer**: View all data details returned by dialing test tasks, including performance test results such as DNS, SSL, TTFB, request errors and page loading performance.
+- **Explorer**: View all data details returned by dialing test tasks, including performance test results such as DNS, SSL, TTFB, request errors and page loading performance.
 - **Self-built detection nodes**: Guance has covered 16 detection nodes all over the world, and supports you to build your own nodes based on different geographical locations and different cloud operators to give full play to the usability of the system.
 - **Usability monitoring data detection**: Monitor availability monitoring data in the workspace in conjunction with the [monitor](../monitoring/index.md).
 
 ## Description of Steps
 
 - **Step 1**: Go to "Task" of "Usability Monitoring", click "New Task" to create dialing test tasks based on HTTP, TCP, ICMP and WEBSOCKET protocols and "Save".
-- **Step 2**: View all usability data that exists in the current workspace through the Observer.
+- **Step 2**: View all usability data that exists in the current workspace through the Explorer.
 - **Step 3**: Through the "Overview", the usability and response time of sites are analyzed from multiple dimensions such as region, city and operator.
 - **Step 4**: Monitor usability monitoring data in the workspace through "Monitor"-"Monitor"-"Usability Monitoring Data Detection."
