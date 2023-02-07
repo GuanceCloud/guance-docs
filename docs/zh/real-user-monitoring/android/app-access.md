@@ -62,7 +62,7 @@ allprojects {
 ```groovy
 dependencies {
     //添加 SDK 的依赖
-    implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-sdk:1.3.8-beta03'
+    implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-sdk:1.3.9-beta01'
     //捕获 native 层崩溃信息的依赖，需要配合 ft-sdk 使用不能单独使用
     implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-native:1.0.0-alpha05'
     //推荐使用这个版本，其他版本未做过充分兼容测试
@@ -124,6 +124,7 @@ class DemoApplication : Application() {
 | setOnlySupportMainProcess | 是否只支持在主进程运行 | 否 | 默认为 `true` ，如果需要在其他进程中执行需要将该字段设置为 `false` |
 | setEnableAccessAndroidID | 开启获取 `Android ID` | 否 | 默认，为 `true`，设置为 `false`，则 `device_uuid` 字段数据将不进行采集,市场隐私审核相关[查看这里](#adpot-to-privacy-audits)|
 | addGlobalContext | 添加 SDK 全局属性 | 否 | 添加规则请查阅[此处](#key-conflict) |
+| setServiceName|设置服务名|否|影响 Log 和 RUM 中 service 字段数据 |
 
 ### RUM 配置
 
@@ -222,7 +223,6 @@ fun setDynamicParams(context: Context, value: String) {
             FTLoggerConfig()
                 .setEnableConsoleLog(true)
               //.setEnableConsoleLog(true,"log prefix")
-                .setServiceName("ft-sdk-demo")
                 .setEnableLinkRumData(true)
                 .setEnableCustomLog(true)
               //.setLogLevelFilters(arrayOf(Status.CRITICAL,Status.ERROR))
@@ -232,7 +232,6 @@ fun setDynamicParams(context: Context, value: String) {
 
 | **方法名** | **含义** | **必须** | **注意** |
 | --- | --- | --- | --- |
-| setServiceName | 设置服务名 | 否 | 默认为 `df_rum_android`  |
 | setSampleRate | 设置采集率 | 否 | 采集率的值范围为>= 0、<= 1，默认值为 1 |
 | setEnableConsoleLog | 是否上报控制台日志 | 否 | 日志等级对应关系<br>Log.v -> ok;<br>Log.i、Log.d -> info;<br>Log.e -> error;<br>Log.w -> warning，<br> `prefix` 为控制前缀过滤参数，默认不设置过滤 |
 | setEnableLinkRUMData | 是否与 RUM 数据关联 | 否 | 默认为 `false` |
