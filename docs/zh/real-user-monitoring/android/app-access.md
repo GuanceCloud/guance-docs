@@ -124,7 +124,7 @@ class DemoApplication : Application() {
 | setOnlySupportMainProcess | 是否只支持在主进程运行 | 否 | 默认为 `true` ，如果需要在其他进程中执行需要将该字段设置为 `false` |
 | setEnableAccessAndroidID | 开启获取 `Android ID` | 否 | 默认，为 `true`，设置为 `false`，则 `device_uuid` 字段数据将不进行采集,市场隐私审核相关[查看这里](#adpot-to-privacy-audits)|
 | addGlobalContext | 添加 SDK 全局属性 | 否 | 添加规则请查阅[此处](#key-conflict) |
-| setServiceName|设置服务名|否|影响 Log 和 RUM 中 service 字段数据 |
+| setServiceName|设置服务名|否|影响 Log 和 RUM 中 service 字段数据， 默认为 `df_rum_android` |
 
 ### RUM 配置
 
