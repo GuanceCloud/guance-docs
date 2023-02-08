@@ -5,7 +5,7 @@
 
 Profile supports automatic collection of CPU, memory and I/O usage during application running, and shows the calling relationship and execution efficiency of each method, class and thread in real time through flame graoh to help optimize code performance.
 
-In the Profile observer, you can:
+In the Profile explorer, you can:
 
 - Based on Profile Flame Graph, the dynamic performance data of Java/Python application program in different language environments are analyzed, and the performance problems of CPU, memory and I/O can be viewed intuitively;
 - By associating links, the associated code execution fragments of link-related Span are obtained, so as to realize method-level code performance tracking and help developers find the direction of code optimization.
@@ -17,7 +17,7 @@ In the Profile observer, you can:
 
 ## Data Query and Analysis
 
-After the Profile data is reported to the Guance workspace, you can learn about the performance of your program code through the Profile Real-Time Data Observer. The function supports the query and analysis of Profile data, including search and filtering, quick filtering, adding display columns, data export and so on. See the documentation [observer notes](../getting-started/necessary-for-beginners/explorer-search.md) for more details.
+After the Profile data is reported to the Guance workspace, you can learn about the performance of your program code through the Profile Real-Time Data Explorer. The function supports the query and analysis of Profile data, including search and filtering, quick filtering, adding display columns, data export and so on. See the documentation [explorer notes](../getting-started/necessary-for-beginners/explorer-search.md) for more details.
 
 Note: Profile data is saved for 7 days by default.
 

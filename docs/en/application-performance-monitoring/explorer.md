@@ -1,4 +1,4 @@
-# Link Observer
+# Link Explorer
 ---
 
 ## Introduction
@@ -32,21 +32,21 @@ In the Guance Console, you can view all link data in the "Link" of "Application 
 
 ### Time Control
 
-The link observer displays the data for the last 15 minutes by default, and you can select the time range of data display through the Time Control in the upper right corner. See the documentation [time control description](../getting-started/necessary-for-beginners/explorer-search.md#time).
+The link explorer displays the data for the last 15 minutes by default, and you can select the time range of data display through the Time Control in the upper right corner. See the documentation [time control description](../getting-started/necessary-for-beginners/explorer-search.md#time).
 
 ### Search and Filter
 
-In the link observer search bar, it supports keyword search, wildcard search, association search and other search methods, and it also supports value screening through `tag/attribute`, including forward screening, reverse screening, fuzzy matching, reverse fuzzy matching, existence and nonexistence and other screening methods. For more searching and filtering, refer to the document [searching and filtering for the observer](../getting-started/necessary-for-beginners/explorer-search.md).
+In the link explorer search bar, it supports keyword search, wildcard search, association search and other search methods, and it also supports value screening through `tag/attribute`, including forward screening, reverse screening, fuzzy matching, reverse fuzzy matching, existence and nonexistence and other screening methods. For more searching and filtering, refer to the document [searching and filtering for the explorer](../getting-started/necessary-for-beginners/explorer-search.md).
 
-**Note: When you switch to view the Service or Link observer, Guance reserves the current filter criteria and time range for you by default.**
+**Note: When you switch to view the Service or Link explorer, Guance reserves the current filter criteria and time range for you by default.**
 
 ### Analysis Mode
 
-In the analysis bar of link viewer, multi-dimensional analysis and statistics based on **1-3 tags** are supported to reflect the distribution characteristics and trends of data in different dimensions and at different times. Guance supports a variety of data chart analysis methods, including time sequence chart, ranking list, pie chart and rectangular tree chart. For more details, please refer to the document [analysis Mode for the observer](../getting-started/necessary-for-beginners/explorer-search.md#analysis).
+In the analysis bar of link viewer, multi-dimensional analysis and statistics based on **1-3 tags** are supported to reflect the distribution characteristics and trends of data in different dimensions and at different times. Guance supports a variety of data chart analysis methods, including time sequence chart, ranking list, pie chart and rectangular tree chart. For more details, please refer to the document [analysis Mode for the explorer](../getting-started/necessary-for-beginners/explorer-search.md#analysis).
 
 ### Quick Filter
 
-Shortcut Filter in Link Observer, support editing "Shortcut Filter" and add new filter fields. After adding, you can select their field values for quick filtering. For more shortcut filters, please refer to the document [shortcut filters](../getting-started/necessary-for-beginners/explorer-search.md#quick-filter).
+Shortcut Filter in Link Explorer, support editing "Shortcut Filter" and add new filter fields. After adding, you can select their field values for quick filtering. For more shortcut filters, please refer to the document [shortcut filters](../getting-started/necessary-for-beginners/explorer-search.md#quick-filter).
 
 ### Filter History
 
@@ -54,28 +54,28 @@ Guance supports saving the search condition history of viewer `key:value` in "fi
 
 ### Chart Statistics
 
-Chart statistics in the link observer supports viewing the "number of requests", "number of wrong requests" and "response time" of different states of the link within the selected time range, and it also supports synchronizing display of chart statistics through filtering.
+Chart statistics in the link explorer supports viewing the "number of requests", "number of wrong requests" and "response time" of different states of the link within the selected time range, and it also supports synchronizing display of chart statistics through filtering.
 
 - Number of requests/number of erroneous requests: According to the selected time range, it is divided into 60 time points, and the "number of requests" and "number of erroneous requests" of the link are statistically displayed by histogram.
 - Response time: According to the selected time range, it is divided into 60 time points, and four response metrics are statistically displayed by line chart, which are "average response time per second", "P75 response time", "P90 response time" and "P99 response time".
 
 ### Custom Display Columns
 
-In Link Observer, "Time", "Link ID", "Service", "Resource" and "Duration" are viewed by default, and display columns can be added, edited, deleted and dragged by custom through "Display Columns". When the mouse hovers over the observer display column, click the "Settings" button to support ascending, descending, moving columns to the left, moving columns to the right, adding columns to the left, adding columns to the right, replacing columns, adding to shortcut filtering, adding to grouping and removing columns and other operations. See the documentation [display column description](../getting-started/necessary-for-beginners/explorer-search.md#columns) for more custom display columns.
+In Link Explorer, "Time", "Link ID", "Service", "Resource" and "Duration" are viewed by default, and display columns can be added, edited, deleted and dragged by custom through "Display Columns". When the mouse hovers over the explorer display column, click the "Settings" button to support ascending, descending, moving columns to the left, moving columns to the right, adding columns to the left, adding columns to the right, replacing columns, adding to shortcut filtering, adding to grouping and removing columns and other operations. See the documentation [display column description](../getting-started/necessary-for-beginners/explorer-search.md#columns) for more custom display columns.
 
 ### Link Data Export
 
-In Link Observer, you can filter out the desired link data for export and then view and analyze it, supporting export to CSV files or scene dashboards and notes.
+In Link Explorer, you can filter out the desired link data for export and then view and analyze it, supporting export to CSV files or scene dashboards and notes.
 
 ### Save Snapshot
 
- Guance supports "viewing historical snapshots" to directly save the snapshot data of the current observer. Through the snapshot function, you can quickly reproduce the instantly copied data copy information and restore the data to a certain time point and a certain data display logic. See the documentation [snapshot](../management/snapshot.md).
+ Guance supports "viewing historical snapshots" to directly save the snapshot data of the current explorer. Through the snapshot function, you can quickly reproduce the instantly copied data copy information and restore the data to a certain time point and a certain data display logic. See the documentation [snapshot](../management/snapshot.md).
 
 ![](img/3.apm_6.gif)
 
 ##  Link Details {#detail}
 
-In the link observer, you can click on any link to view the corresponding link details, including the current link occurrence time, duration, http method, http url, http status code, TraceId, flame diagram, Span list, service invocation relationship and associated log, host, metric and network.
+In the link explorer, you can click on any link to view the corresponding link details, including the current link occurrence time, duration, http method, http url, http status code, TraceId, flame diagram, Span list, service invocation relationship and associated log, host, metric and network.
 
 ![](img/9.apm_explorer_6.1.png)
 
@@ -144,14 +144,14 @@ Service call relationship is used to view the call relationship between various 
 
 On the link details page, you can view the related field properties of the current link in "Extended Properties". Click on the field to quickly filter through "Filter Field Value", "Reverse Filter Field Value", "Add to Display Column" and "Copy".
 
-- "Filter field value", that is, add the field to the observer to view all the data related to the field
-- "Reverse filter field value", that is, add this field to the observer to view other data besides this field
-- "Add to display column", that is, add the field to the observer list for viewing
+- "Filter field value", that is, add the field to the explorer to view all the data related to the field
+- "Reverse filter field value", that is, add this field to the explorer to view other data besides this field
+- "Add to display column", that is, add the field to the explorer list for viewing
 - "Copy", that is, copy the field to the clipboard 
 
 ![](img/9.apm_explorer_7.png)
 
-Click "Filter Field Value" to filter and view the list of links related to this field in link observer.
+Click "Filter Field Value" to filter and view the list of links related to this field in link explorer.
 
 ![](img/9.apm_explorer_8.png)
 
@@ -171,7 +171,7 @@ On the Link Details page, if there is an error link, you can view the relevant e
 
 === "Association Log"
 
-    On the link details page, you can view the log based on the current link association (association field: trace_id) through log. Association log supports you to search for keywords and filter multiple tags on logs; log contents are displayed according to the configuration of "Maximum Display Rows" and "Display Columns" in log observer by default, and you can customize display columns. If you need to view more detailed log contents, you can click log contents to jump to log details page, or click jump button to log page to open.
+    On the link details page, you can view the log based on the current link association (association field: trace_id) through log. Association log supports you to search for keywords and filter multiple tags on logs; log contents are displayed according to the configuration of "Maximum Display Rows" and "Display Columns" in log explorer by default, and you can customize display columns. If you need to view more detailed log contents, you can click log contents to jump to log details page, or click jump button to log page to open.
     
     ![](img/3.apm_7.png)
     

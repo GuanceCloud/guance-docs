@@ -1,9 +1,9 @@
-# Usability Observer
+# Usability Explorer
 ---
 
 ## Introduction
 
-Guance supports you to view all the data details returned by the dialing task through the "Observer", which helps you find problems in advance, locate problems and improve the user experience.
+Guance supports you to view all the data details returned by the dialing task through the "Explorer", which helps you find problems in advance, locate problems and improve the user experience.
 
 ## Query and Analysis
 
@@ -11,23 +11,23 @@ Guance supports a variety of ways to query and analyze the dial-up data, includi
 
 ### Time Control
 
-Guance Observer displays the data of the last 15 minutes by default, and you can select the time range of data display through the "Time Control" in the upper right corner. See the documentation [time control description](../getting-started/necessary-for-beginners/explorer-search.md#time) for more details.
+Guance Explorer displays the data of the last 15 minutes by default, and you can select the time range of data display through the "Time Control" in the upper right corner. See the documentation [time control description](../getting-started/necessary-for-beginners/explorer-search.md#time) for more details.
 
 ### Search and Filter
 
-In the observer search bar, it supports keyword search, wildcard search, association search, JSON search and other search methods, and supports value filtering through `tag/attribute` , including forward filtering, reverse filtering, fuzzy matching, reverse fuzzy matching, existence and nonexistence and other filtering methods. For more searches and filters, refer to the document [search and filter for the observer](../getting-started/necessary-for-beginners/explorer-search.md).
+In the explorer search bar, it supports keyword search, wildcard search, association search, JSON search and other search methods, and supports value filtering through `tag/attribute` , including forward filtering, reverse filtering, fuzzy matching, reverse fuzzy matching, existence and nonexistence and other filtering methods. For more searches and filters, refer to the document [search and filter for the explorer](../getting-started/necessary-for-beginners/explorer-search.md).
 
 ### Quick Filter
 
-In the observer shortcut filter, support editing "shortcut filter" and adding new filter fields. After adding, you can select their field values for quick filtering. For more shortcut filters, please refer to the document [shortcut filter](../getting-started/necessary-for-beginners/explorer-search.md#quick-filter).
+In the explorer shortcut filter, support editing "shortcut filter" and adding new filter fields. After adding, you can select their field values for quick filtering. For more shortcut filters, please refer to the document [shortcut filter](../getting-started/necessary-for-beginners/explorer-search.md#quick-filter).
 
 ### Custom Display Columns
 
-In the Usability Monitoring Observer list, you can customize to add, edit, delete and drag display columns through Display Columns. When the mouse is placed on the display column of the viewer, click the "Settings" button to support ascending, descending, moving columns to the left, moving columns to the right, adding columns to the left, adding columns to the right, replacing columns, adding to shortcut filtering, adding to grouping, removing columns and other operations. See the documentation [display column description](../getting-started/necessary-for-beginners/explorer-search.md#columns).
+In the Usability Monitoring Explorer list, you can customize to add, edit, delete and drag display columns through Display Columns. When the mouse is placed on the display column of the viewer, click the "Settings" button to support ascending, descending, moving columns to the left, moving columns to the right, adding columns to the left, adding columns to the right, replacing columns, adding to shortcut filtering, adding to grouping, removing columns and other operations. See the documentation [display column description](../getting-started/necessary-for-beginners/explorer-search.md#columns).
 
 ### Analysis
 
-In the observer analysis column, multi-dimensional aggregation analysis and statistics based on **1-3 tags** are supported to reflect the distribution characteristics and trends of data in different dimensions and at different times. Observation cloud supports a variety of data chart analysis methods, including time sequence chart, ranking list, pie chart and rectangular tree chart. For more details, please refer to the document [analysis mode for the observer](../getting-started/necessary-for-beginners/explorer-search.md#analysis).
+In the explorer analysis column, multi-dimensional aggregation analysis and statistics based on **1-3 tags** are supported to reflect the distribution characteristics and trends of data in different dimensions and at different times. Observation cloud supports a variety of data chart analysis methods, including time sequence chart, ranking list, pie chart and rectangular tree chart. For more details, please refer to the document [analysis mode for the explorer](../getting-started/necessary-for-beginners/explorer-search.md#analysis).
 
 ### Dial Test Statistics
 
@@ -40,23 +40,23 @@ Different data types have different data states. The states of http (API dial te
 
 ### Data Export
 
-In the Usability Monitor Observer list, you can filter out the data you want to export and then view and analyze it. It supports exporting CSV files to local devices or exporting them to scene dashboards or notes.
+In the Usability Monitor Explorer list, you can filter out the data you want to export and then view and analyze it. It supports exporting CSV files to local devices or exporting them to scene dashboards or notes.
 
 ## HTTP Dial Test
 
-In the Usability Monitor Observer, select HTTP Dial Test to view the data results of all configured HTTP Dial Test tasks.
+In the Usability Monitor Explorer, select HTTP Dial Test to view the data results of all configured HTTP Dial Test tasks.
 
 ![](img/4.dailtesting_explorer_2.png)
 
-In the Availability Monitoring Observer list, click the dialing test data you want to view the corresponding dialing test data details. You can view the data details such as attributes, test performance, response details, response headers and response contents.
+In the Availability Monitoring Explorer list, click the dialing test data you want to view the corresponding dialing test data details. You can view the data details such as attributes, test performance, response details, response headers and response contents.
 
 ![](img/4.dailtesting_explorer_3.png)
 
 When the mouse clicks on the property field, it supports "Filter Field Value", "Reverse Filter Field Value", "Add to Display Column" and "Copy" for quick filter viewing.
 
-- "Filter field value", that is, add the field to the observer to view all the data related to the field
-- "Reverse filter field value", that is, add this field to the observer to view other data besides this field
-- "Add to display column", that is, add the field to the observer list for viewing
+- "Filter field value", that is, add the field to the explorer to view all the data related to the field
+- "Reverse filter field value", that is, add this field to the explorer to view other data besides this field
+- "Add to display column", that is, add the field to the explorer list for viewing
 - "Copy", that is, copy the field to the clipboard
 
 
@@ -64,31 +64,31 @@ When the mouse clicks on the property field, it supports "Filter Field Value", "
 
 ## TCP Dial Test
 
-In the Usability Monitoring Observer, select TCP Dial Test to view the data results of all configured TCP Dial Test tasks.
+In the Usability Monitoring Explorer, select TCP Dial Test to view the data results of all configured TCP Dial Test tasks.
 
 ![](img/4.dailtesting_explorer_4.png)
 
-In the Usability Monitoring Observer list, click the dialing test data you want to view the corresponding dialing test data details, and you can view the data details such as attributes, test performance, response details and route tracking results.
+In the Usability Monitoring Explorer list, click the dialing test data you want to view the corresponding dialing test data details, and you can view the data details such as attributes, test performance, response details and route tracking results.
 
 ![](img/4.dailtesting_explorer_5.png)
 
 ## ICMP Dial Test
 
-In the Usability Monitoring Observer, select ICMP Dial Test to view the data results of all configured ICMP Dial Test tasks.
+In the Usability Monitoring Explorer, select ICMP Dial Test to view the data results of all configured ICMP Dial Test tasks.
 
 ![](img/4.dailtesting_explorer_7.png)
 
-In the Usability Monitoring Observer list, click the dial test data you want to view to view the corresponding dial test data details, and you can view the data details such as attributes and response details.
+In the Usability Monitoring Explorer list, click the dial test data you want to view to view the corresponding dial test data details, and you can view the data details such as attributes and response details.
 
 ![](img/4.dailtesting_explorer_8.png)
 
 ## WEBSOCKET Dial Test
 
-In the Usability Monitor Observer, select "WEBSOCKET Dialing Test" to view the data results of all configured WEBSOCKET dialing test tasks.
+In the Usability Monitor Explorer, select "WEBSOCKET Dialing Test" to view the data results of all configured WEBSOCKET dialing test tasks.
 
 ![](img/4.dailtesting_explorer_9.png)
 
-In the Usability Monitor Observer list, click the dialing test data you want to view the corresponding dialing test data details. You can view the data details such as attributes, sending messages, response details, response headers and response contents.
+In the Usability Monitor Explorer list, click the dialing test data you want to view the corresponding dialing test data details. You can view the data details such as attributes, sending messages, response details, response headers and response contents.
 
 ![](img/4.dailtesting_explorer_10.png)
 
