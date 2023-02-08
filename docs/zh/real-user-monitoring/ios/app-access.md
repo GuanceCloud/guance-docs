@@ -100,6 +100,7 @@ github "GuanceCloud/datakit-ios" == 1.3.8-beta.4
 | env | NS_ENUM | 环境 | 否  （默认FTEnvProd） |
 | XDataKitUUID | NSString | 请求HTTP请求头X-Datakit-UUID 数据采集端  如果用户不设置会自动配置 | 否 |
 | globalContext | NSDictionary | [添加自定义标签](#user-global-context) |     否 |
+| service | NSString | 设置所属业务或服务的名称 默认：df_rum_ios | 否 |
 
 #### env 环境
 
@@ -212,7 +213,6 @@ typedef NS_OPTIONS(NSUInteger, FTMonitorFrequency) {
 | **字段** | **类型** | **说明** | **必须** |
 | --- | --- | --- | --- |
 | samplerate | int | 采样采集率 | 否（默认100） |
-| serviceName | NSString | 设置日志所属业务或服务的名称 | 否（默认df_rum_ios） |
 | enableConsoleLog | BOOL | 设置是否需要采集控制台日志 | 否（默认NO） |
 | prefix | NSString | 设置采集控制台日志过滤字符串 | 否（默认全采集） |
 | enableCustomLog | BOOL | 是否上传自定义 log | 否（默认NO） |
@@ -454,7 +454,7 @@ typedef NS_ENUM(NSInteger, FTNetworkTraceType) {
    [metricsModel setDurationStart:dstart end:dend];
 
 
-// 第四部：add resource 如果没有时间数据 metrics 传 nil
+// 第四步：add resource 如果没有时间数据 metrics 传 nil
  [[FTExternalDataManager sharedManager] addResourceWithKey:key metrics:metricsModel content:content];
 ```
 
@@ -496,7 +496,7 @@ SDK 内部会处理不采集 SDK 的数据上报地址。用户也可以自己�
 ```objective-c
 [[FTMobileAgent sharedInstance] isIntakeUrl:^BOOL(NSURL * _Nonnull url) {
         // 用户自己的判断逻辑
-        return YES;//return NO; (YES 采集，NO,)
+        return YES;//return NO; (YES 采集，NO 不采集)
  }];
 ```
 
