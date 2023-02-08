@@ -1,5 +1,5 @@
 ---
-icon: material/apple-ios
+icon: material/apple
 ---
 # iOS
 

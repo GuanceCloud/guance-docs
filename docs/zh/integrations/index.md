@@ -55,7 +55,7 @@ icon: zy/integrations
 
     ---
 
-    指导观测 [`阿里云`](./cloud/aliyun/index.md) [`AWS`](./cloud/aws/index.md) [`腾讯云`](./cloud/tencent/index.md) [`华为云`](./cloud/huawei/index.md) 等指标集数据
+    指导观测 [`阿里云`](./cloud/aliyun/aliyun-prod-func.md) [`AWS`](./cloud/aws/aws-prod-func.md) [`腾讯云`](./cloud/tencent/tencent-prod-func.md) [`华为云`](./cloud/huawei/huawei-prod-func.md) 等指标集数据
 
     <br/>
     [**:octicons-arrow-right-24: Getting more**](./cloud/index.md)
@@ -65,7 +65,7 @@ icon: zy/integrations
 
     ---
 
-    指导观测 [`Ping`](./network/ping.md) [`Port`](./network/port.md) [`SSH`](./network/ssh.md) 等指标集数据
+    指导观测 [`云拨测`](./network/ping.md) [`SSH`](./network/ssh.md) 等指标集数据
 
     <br/>
     [**:octicons-arrow-right-24: Getting more**](./network/index.md)
@@ -74,10 +74,10 @@ icon: zy/integrations
 
     ---
 
-    指导观测 [`Apache`](./webservice/apache.md) [`Nginx`](./webservice/nginx.md) [`HAProxy`](./webservice/haproxy.md) 相关指标集数据
+    指导观测 [`Apache`](./webserver/apache.md) [`Nginx`](./webserver/nginx.md) [`HAProxy`](./webserver/haproxy.md) 相关指标集数据
 
     <br/>
-    [**:octicons-arrow-right-24: Getting more**](./webservice/index.md)
+    [**:octicons-arrow-right-24: Getting more**](./webserver/index.md)
 
 -   :fontawesome-solid-code-merge:{ .lg .middle } __CI/CD__
 

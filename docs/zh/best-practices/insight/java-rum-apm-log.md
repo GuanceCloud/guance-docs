@@ -191,7 +191,7 @@ APM 是观测云默认内置的模块，无需创建场景或视图即可进行�
 
 如：Nginx、MySQL、Redis 等
 
-通过开启 Datakit 内置的各种 inputs，可以直接开启相关的日志采集，例如 [Ngnix](../../integrations/webservice/nginx.md)、 [Redis](../../integrations/datastorage/redis.md)、[容器](../../integrations/container/docker.md)、[ES](../../integrations/datastorage/elasticsearch.md) 等。
+通过开启 Datakit 内置的各种 inputs，可以直接开启相关的日志采集，例如 [Ngnix](../../integrations/webserver/nginx.md)、 [Redis](../../integrations/datastorage/redis.md)、[容器](../../integrations/container/docker.md)、[ES](../../integrations/datastorage/elasticsearch.md) 等。
 
 **示例：Nginx**
 

@@ -12,17 +12,24 @@ icon: fontawesome/solid/users
 
 [**安装 DataKit**](../../datakit/datakit-install.md)之后，对于如下指标集，用户需要集成对应 SDK 采集相关数据：
 
-| [:material-android: Android](rum-android.md){ .md-button .md-button--primary } |     [:material-apple-ios: iOS](rum-ios.md){ .md-button .md-button--primary }     |
-| :---------------------------------------------------------: | :---------------------------------------------------------: |
-| [:integrations-miniapp: 小程序](rum-miniapp.md){ .md-button .md-button--primary }  | [:material-format-header-5: Web 页面](rum-web-h5.md){ .md-button .md-button--primary } |
+<div class="grid cards" markdown>
+
+-   :fontawesome-solid-users:{ .lg .middle } __RUM__
+
+    ---
+
+    [:material-android: Android](rum-android.md){ .md-button .md-button--primary } &nbsp;  [:material-apple: iOS](rum-ios.md){ .md-button .md-button--primary } &nbsp; [:integrations-miniapp: 小程序](rum-miniapp.md){ .md-button .md-button--primary } &nbsp;  [:material-format-header-5: Web 页面](rum-web-h5.md){ .md-button .md-button--primary } 
+
+
+</div>
+
+<br />
+
+<br />
 
 <br />
 
 **开始[安装 DataKit](../../datakit/datakit-install.md)，开启你的观测云之旅！**
-
-<br/>
-
-<br/>
 
 <br/>
 
