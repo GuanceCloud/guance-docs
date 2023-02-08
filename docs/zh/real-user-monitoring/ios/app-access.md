@@ -29,7 +29,7 @@
 1.从 GitHub 根据指定 tag 获取 SDK 的源代码。
 
 ```
-git clone --branch 1.3.8-beta.4 https://github.com/GuanceCloud/datakit-ios.git
+git clone --branch 1.3.10-beta.1 https://github.com/GuanceCloud/datakit-ios.git
 ```
 
 2.将 SDK 源代码导入 App 项目。将 **FTMobileAgent** 和 **BaseUtils** 整个文件夹导入项目，并选中 `Copy items if needed` ，勾选 `Create groups` 。
@@ -43,7 +43,7 @@ git clone --branch 1.3.8-beta.4 https://github.com/GuanceCloud/datakit-ios.git
 target 'yourProjectName' do
 
 # Pods for your project
-pod 'FTMobileSDK', '1.3.8-beta.4'
+pod 'FTMobileSDK', '1.3.10-beta.1'
     
 end
 ```
@@ -55,7 +55,7 @@ end
 1.配置 `Cartfile` 文件。
 
 ```
-github "GuanceCloud/datakit-ios" == 1.3.8-beta.4
+github "GuanceCloud/datakit-ios" == 1.3.10-beta.1
 ```
 
 2.在 `Cartfile` 目录下执行  `carthage update --platform iOS` ， 并将  `FTMobileSDK.framework` 拖拽到您的项目中使用。若出现 "Building universal frameworks with common architectures is not possible. The device and simulator slices for "FTMobileSDK.framework" both build for: arm64" 错误，请执行  `carthage update --platform iOS --use-xcframeworks` 命令，生成  `FTMobileSDK.xcframework `，与普通的 Framework 使用方法相同，请将它拖拽到您的项目中使用。
