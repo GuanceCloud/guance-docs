@@ -1,0 +1,5 @@
+nav:
+  - index.md
+  - 'Purchase Package': purchase.md
+  - 'Upgrade Package': upgrade.md
+  - 'Increase Traffic Package': data-packet.md
