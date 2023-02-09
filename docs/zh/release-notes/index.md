@@ -7,6 +7,37 @@ icon: zy/release-notes
 
 本文档记录观测云每次上线发布的更新内容说明，包括 DataKit、观测云最佳实践、观测云集成文档和观测云。
 
+## 2023 年 2 月 9 号
+
+### DataKit 更新
+
+**新加功能**
+
+- Datakit 主机安装时可自定义默认采集器开启
+- 提供 OTEL 的错误追踪
+- 提供 RUM Session 回放能力
+
+**问题修复**
+
+- 修复日志堆积问题
+- 修复 conf.d 重复启动采集器问题
+- 修复 OTEL 数据关联问题
+- 修复 OTEL 采集数据字段覆盖问题
+- 修复 Nginx Host 识别错误
+- 修复拨测超时
+- 修复云厂商实例识别
+
+**功能优化**
+
+- Datakit pyroscope profiling 多程序语言识别
+- 优化 CPU, Disk, EBPF, Net 等中英文文档
+- 优化 elasticsearch, postgresql, dialtesting 等英文文档
+- 优化 DCA, Profiling 文档
+- 优化日志采集流程
+- iploc yaml 配置方法文档支持
+
+更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md) 。
+
 ## 2023 年 1 月 17 号
 
 ### 观测云英文版上线
