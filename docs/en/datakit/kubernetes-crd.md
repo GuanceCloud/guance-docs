@@ -257,7 +257,7 @@ $ datakit monitor
   <figcaption> Ingress 数据采集 </figcaption>
 </figure>
 
-You can also log in to [Guance Platform](https://www.guance.com/){:target="_blank"}, "Indicator"-"Viewer" to view metric data
+You can also log in to [Guance Cloud Platform](https://www.guance.com/){:target="_blank"}, "Indicator"-"Viewer" to view metric data
 
 ## FAQ {#faq}
 

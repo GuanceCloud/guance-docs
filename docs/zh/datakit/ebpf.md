@@ -119,7 +119,9 @@ setenforce 0
       ##
       # kubernetes_url = "https://kubernetes.default:443"
       # bearer_token = "/run/secrets/kubernetes.io/serviceaccount/token"
-      # or # bearer_token_string = "<your-token-string>"
+      ##
+      ## or 
+      # bearer_token_string = "<your-token-string>"
       
       ## all supported plugins:
       ## - "ebpf-net"  :
@@ -131,8 +133,8 @@ setenforce 0
         "ebpf-net",
       ]
     
-      ## 若开启 ebpf-net 插件，需选配: 
-      ##  - "httpflow" (* 默认开启)
+      ## If you enable the ebpf-net plugin, you can configure:
+      ##  - "httpflow" (* enabled by default)
       ##  - "httpflow-tls"
       ##
       l7net_enabled = [
@@ -140,7 +142,7 @@ setenforce 0
         # "httpflow-tls"
       ]
     
-      ## if the system does not enable ipv6, it needs to be changed to true
+      ## If the system does not enable ipv6, it needs to be changed to true
       ##
       ipv6_disabled = false
     
@@ -155,13 +157,15 @@ setenforce 0
         # more_tag = "some_other_value"
     
     #############################
-    # 参数说明(若标 * 为必选项)
+    ## Parameter description (if marked * is required)
     #############################
-    #  --hostname               : 主机名，此参数可改变该采集器上传数据时 host tag 的值, 优先级为: 指定该参数 > datakit.conf 中的 ENV_HOSTNAME 值(若非空，启动时自动添加该参数) > 采集器自行获取(默认值)
-    #  --datakit-apiserver      : DataKit API Server 地址, 默认值 0.0.0.0:9529
-    #  --log                    : 日志输出路径, 默认值 DataKitInstallDir/externals/datakit-ebpf.log
-    #  --log-level              : 日志级别，默认 info
-    #  --service                : 默认值 ebpf
+    ##  --hostname               : Host name, this parameter can change the value of the host tag when the collector uploads data, the priority is: specify this parameter >
+    ##                             ENV_HOSTNAME value in datakit.conf (if it is not empty, this parameter will be added automatically at startup) >
+    ##                             collector Get it yourself (the default)
+    ##  --datakit-apiserver      : DataKit API Server address, default value 0.0.0.0:9529
+    ##  --log                    : Log output path, default <DataKitInstallDir>/externals/datakit-ebpf.log
+    ##  --log-level              : Log level, the default value is 'info'
+    ##  --service                : The default value is 'ebpf'
     
     ```
     
@@ -212,42 +216,42 @@ setenforce 0
 
 | Tag | Descrition |
 |  ----  | --------|
-|`direction`|传输方向 (incoming/outgoing)|
-|`dst_domain`|目标域名|
-|`dst_ip`|目标 IP|
-|`dst_ip_type`|目标 IP 类型 (other/private/multicast)|
-|`dst_k8s_deployment_name`|目标 IP 所属 k8s 的 deployment name|
-|`dst_k8s_namespace`|目标 IP 所在 k8s 的 namespace|
-|`dst_k8s_pod_name`|目标 IP 所属 k8s 的 pod name|
-|`dst_k8s_service_name`|目标 IP 所属 service, 如果是 dst_ip 是 cluster(service) ip 则 dst_k8s_pod_name 值为 `N/A`|
-|`dst_port`|目标端口|
-|`family`|TCP/IP 协议族 (IPv4/IPv6)|
-|`host`|主机名|
-|`pid`|进程号|
-|`process_name`|进程名|
-|`source`|固定值: netflow|
-|`src_ip`|源 IP|
-|`src_ip_type`|源 IP 类型 (other/private/multicast)|
-|`src_k8s_deployment_name`|源 IP 所属 k8s 的 deployment name|
-|`src_k8s_namespace`|源 IP 所在 k8s 的 namespace|
-|`src_k8s_pod_name`|源 IP 所属 k8s 的 pod name|
-|`src_k8s_service_name`|源 IP 所属 k8s 的 service name|
-|`src_port`|源端口, 临时端口聚合后的值为 `*`|
-|`sub_source`|用于 netflow 的部分特定连接分类，如 Kubernetes 流量的值为 K8s|
-|`transport`|传输协议 (udp/tcp)|
+|`direction`|Use the source as a frame of reference to identify the connection initiator. (incoming/outgoing)|
+|`dst_domain`|Destination domain.|
+|`dst_ip`|Destination IP address.|
+|`dst_ip_type`|Destination IP type. (other/private/multicast)|
+|`dst_k8s_deployment_name`|Destination K8s deployment name.|
+|`dst_k8s_namespace`|Destination K8s namespace.|
+|`dst_k8s_pod_name`|Destination K8s pod name.|
+|`dst_k8s_service_name`|Destination K8s service name.|
+|`dst_port`|Destination port.|
+|`family`|Network layer protocol. (IPv4/IPv6)|
+|`host`|System hostname.|
+|`pid`|Process identification number.|
+|`process_name`|Process name.|
+|`source`|Fixed value: netflow.|
+|`src_ip`|Source IP.|
+|`src_ip_type`|Source IP type. (other/private/multicast)|
+|`src_k8s_deployment_name`|Source K8s deployment name.|
+|`src_k8s_namespace`|Source K8s namespace.|
+|`src_k8s_pod_name`|Source K8s pod name.|
+|`src_k8s_service_name`|Source K8s service name.|
+|`src_port`|Source port.|
+|`sub_source`|Some specific connection classifications, such as the sub_source value for Kubernetes network traffic is K8s.|
+|`transport`|Transport layer protocol. (udp/tcp)|
 
 - 指标列表
 
 
 | Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`bytes_read`|读取字节数|int|B|
-|`bytes_written`|写入字节数|int|B|
-|`retransmits`|重传次数|int|count|
-|`rtt`|TCP Latency|int|μs|
-|`rtt_var`|TCP Jitter|int|μs|
-|`tcp_closed`|TCP 关闭次数|int|count|
-|`tcp_established`|TCP 建立连接次数|int|count|
+|`bytes_read`|The number of bytes read.|int|B|
+|`bytes_written`|The number of bytes writte.|int|B|
+|`retransmits`|The number of retransmissions.|int|count|
+|`rtt`|TCP Latency.|int|μs|
+|`rtt_var`|TCP Jitter.|int|μs|
+|`tcp_closed`|The number of TCP connection closed.|int|count|
+|`tcp_established`|The number of TCP connection established.|int|count|
 
 
 
@@ -258,36 +262,37 @@ setenforce 0
 
 | Tag | Descrition |
 |  ----  | --------|
-|`direction`|传输方向 (incoming/outgoing)|
-|`dst_ip`|目标 IP|
-|`dst_ip_type`|目标 IP 类型 (other/private/multicast)|
-|`dst_k8s_deployment_name`|目标 IP 所属 k8s 的 deployment name|
-|`dst_k8s_namespace`|目标 IP 所在 k8s 的 namespace|
-|`dst_k8s_pod_name`|目标 IP 所属 k8s 的 pod name|
-|`dst_k8s_service_name`|目标 IP 所属 service, 如果是 dst_ip 是 cluster(service) ip 则 dst_k8s_pod_name 值为 `N/A`|
-|`dst_port`|目标端口|
-|`family`|TCP/IP 协议族 (IPv4/IPv6)|
-|`host`|主机名|
-|`source`|固定值: dnsflow|
-|`src_ip`|源 IP|
-|`src_ip_type`|源 IP 类型 (other/private/multicast)|
-|`src_k8s_deployment_name`|源 IP 所属 k8s 的 deployment name|
-|`src_k8s_namespace`|源 IP 所在 k8s 的 namespace|
-|`src_k8s_pod_name`|源 IP 所属 k8s 的 pod name|
-|`src_k8s_service_name`|源 IP 所属 k8s 的 service name|
-|`src_port`|源端口, 非 53 端口聚合后的值为 `*`|
-|`sub_source`|用于 dnsflow 的部分特定连接分类，如 Kubernetes 流量的值为 K8s|
-|`transport`|传输协议 (udp/tcp)|
+|`direction`|Use the source as a frame of reference to identify the connection initiator. (incoming/outgoing)|
+|`dst_domain`|Destination domain.|
+|`dst_ip`|Destination IP address.|
+|`dst_ip_type`|Destination IP type. (other/private/multicast)|
+|`dst_k8s_deployment_name`|Destination K8s deployment name.|
+|`dst_k8s_namespace`|Destination K8s namespace.|
+|`dst_k8s_pod_name`|Destination K8s pod name.|
+|`dst_k8s_service_name`|Destination K8s service name.|
+|`dst_port`|Destination port.|
+|`family`|Network layer protocol. (IPv4/IPv6)|
+|`host`|System hostname.|
+|`source`|Fixed value: dnsflow.|
+|`src_ip`|Source IP.|
+|`src_ip_type`|Source IP type. (other/private/multicast)|
+|`src_k8s_deployment_name`|Source K8s deployment name.|
+|`src_k8s_namespace`|Source K8s namespace.|
+|`src_k8s_pod_name`|Source K8s pod name.|
+|`src_k8s_service_name`|Source K8s service name.|
+|`src_port`|Source port.|
+|`sub_source`|Some specific connection classifications, such as the sub_source value for Kubernetes network traffic is K8s.|
+|`transport`|Transport layer protocol. (udp/tcp)|
 
 - 指标列表
 
 
 | Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`count`|一个采集周期内的 DNS 请求数聚合总数|int|-|
-|`latency`|DNS 平均请求的响应时间间隔|int|ns|
-|`latency_max`|DNS 最大请求的响应时间间隔|int|ns|
-|`rcode`|DNS 响应码: 0 - NoError, 1 - FormErr, 2 - ServFail, 3 - NXDomain, 4 - NotImp, 5 - Refused, ...；值为 -1 表示请求超时|int|-|
+|`count`|The number of DNS requests in a collection cycle.|int|-|
+|`latency`|Average response time for DNS requests.|int|ns|
+|`latency_max`|Maximum response time for DNS requests.|int|ns|
+|`rcode`|DNS response code: 0 - NoError, 1 - FormErr, 2 - ServFail, 3 - NXDomain, 4 - NotImp, 5 - Refused, ...; A value of -1 means the request timed out.|int|-|
 
 
 
@@ -299,17 +304,17 @@ setenforce 0
 | Tag | Descrition |
 |  ----  | --------|
 |`host`|host name|
-|`source`|固定值: bash|
+|`source`|Fixed value: bash|
 
 - 指标列表
 
 
 | Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`cmd`|bash 命令|string|-|
-|`message`|单条 bash 执行记录|string|-|
-|`pid`|bash 进程的 pid|string|-|
-|`user`|执行 bash 命令的用户|string|-|
+|`cmd`|Command.|string|-|
+|`message`|The bash execution record generated by the collector|string|-|
+|`pid`|Process identification number.|string|-|
+|`user`|The user who executes the bash command.|string|-|
 
 
 
@@ -320,40 +325,41 @@ setenforce 0
 
 | Tag | Descrition |
 |  ----  | --------|
-|`direction`|传输方向 (incoming/outgoing)|
-|`dst_ip`|目标 IP|
-|`dst_ip_type`|目标 IP 类型 (other/private/multicast)|
-|`dst_k8s_deployment_name`|目标 IP 所属 k8s 的 deployment name|
-|`dst_k8s_namespace`|目标 IP 所在 k8s 的 namespace|
-|`dst_k8s_pod_name`|目标 IP 所属 k8s 的 pod name|
-|`dst_k8s_service_name`|目标 IP 所属 service, 如果是 dst_ip 是 cluster(service) ip 则 dst_k8s_pod_name 值为 `N/A`|
-|`dst_port`|目标端口|
-|`family`|TCP/IP 协议族 (IPv4/IPv6)|
-|`host`|主机名|
-|`pid`|进程号|
-|`process_name`|进程名|
-|`source`|固定值: httpflow|
-|`src_ip`|源 IP|
-|`src_ip_type`|源 IP 类型 (other/private/multicast)|
-|`src_k8s_deployment_name`|源 IP 所属 k8s 的 deployment name|
-|`src_k8s_namespace`|源 IP 所在 k8s 的 namespace|
-|`src_k8s_pod_name`|源 IP 所属 k8s 的 pod name|
-|`src_k8s_service_name`|源 IP 所属 k8s 的 service name|
-|`src_port`|源端口, 临时端口聚合后的值为 `*`|
-|`sub_source`|用于 httpflow 的部分特定连接分类，如 Kubernetes 流量的值为 K8s|
-|`transport`|传输协议 (udp/tcp)|
+|`direction`|Use the source as a frame of reference to identify the connection initiator. (incoming/outgoing)|
+|`dst_domain`|Destination domain.|
+|`dst_ip`|Destination IP address.|
+|`dst_ip_type`|Destination IP type. (other/private/multicast)|
+|`dst_k8s_deployment_name`|Destination K8s deployment name.|
+|`dst_k8s_namespace`|Destination K8s namespace.|
+|`dst_k8s_pod_name`|Destination K8s pod name.|
+|`dst_k8s_service_name`|Destination K8s service name.|
+|`dst_port`|Destination port.|
+|`family`|Network layer protocol. (IPv4/IPv6)|
+|`host`|System hostname.|
+|`pid`|Process identification number.|
+|`process_name`|Process name.|
+|`source`|Fixed value: httpflow.|
+|`src_ip`|Source IP.|
+|`src_ip_type`|Source IP type. (other/private/multicast)|
+|`src_k8s_deployment_name`|Source K8s deployment name.|
+|`src_k8s_namespace`|Source K8s namespace.|
+|`src_k8s_pod_name`|Source K8s pod name.|
+|`src_k8s_service_name`|Source K8s service name.|
+|`src_port`|Source port.|
+|`sub_source`|Some specific connection classifications, such as the sub_source value for Kubernetes network traffic is K8s.|
+|`transport`|Transport layer protocol. (udp/tcp)|
 
 - 指标列表
 
 
 | Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`count`|一个采集周期内的 HTTP 请求数聚合总数|int|-|
+|`count`|The total number of HTTP requests in a collection cycle.|int|-|
 |`http_version`|1.1 / 1.0 ...|string|-|
-|`latency`|ttfb|int|ns|
+|`latency`|TTFB.|int|ns|
 |`method`|GET/POST/...|string|-|
-|`path`|请求路径|string|-|
-|`status_code`|http 状态码，如 200, 301, 404 ...|int|-|
-|`truncated`|请求路径长度达到采集的字节上限，请求路径存在截断可能|bool|-|
+|`path`|Request path.|string|-|
+|`status_code`|Http status codes.|int|-|
+|`truncated`|The length of the request path has reached the upper limit of the number of bytes collected, and the request path may be truncated.|bool|-|
 
 

@@ -6,7 +6,7 @@
 
 ---
 
-Monitor Prometheus Remote Write data and report it to Guance.
+Monitor Prometheus Remote Write data and report it to Guance Cloud.
 
 ## Preconditions {#requirements}
 

@@ -63,18 +63,18 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Tag | Descrition |
 |  ----  | --------|
-|`host`|主机名|
+|`host`|hostname|
 
 - metric list
 
 
 | Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`free`|Host swap memory total|int|B|
-|`in`|Moving data from swap space to main memory of the machine|int|B|
-|`out`|Moving main memory contents to swap disk when main memory space fills up|int|B|
-|`total`|Host swap memory free|int|B|
-|`used`|Host swap memory used|int|B|
-|`used_percent`|Host swap memory percentage used|float|percent|
+|`free`|Host swap memory total.|int|B|
+|`in`|Moving data from swap space to main memory of the machine.|int|B|
+|`out`|Moving main memory contents to swap disk when main memory space fills up.|int|B|
+|`total`|Host swap memory free.|int|B|
+|`used`|Host swap memory used.|int|B|
+|`used_percent`|Host swap memory percentage used.|float|percent|
 
 

@@ -144,9 +144,9 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Tag | Descrition |
 |  ----  | --------|
-|`host`|hostname|
-|`jolokia_agent_url`|jolokia agent url|
-|`name`|protocol handler name|
+|`host`|System hostname.|
+|`jolokia_agent_url`|Jolokia agent url.|
+|`name`|Protocol handler name.|
 
 
 
@@ -157,11 +157,11 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`bytesReceived`|Amount of data received, in bytes|int|count|
-|`bytesSent`|Amount of data sent, in bytes|int|count|
-|`errorCount`|Number of errors|int|count|
-|`processingTime`|Total time to process the requests|int|-|
-|`requestCount`|Number of requests processed|int|count|
+|`bytesReceived`|Amount of data received, in bytes.|int|count|
+|`bytesSent`|Amount of data sent, in bytes.|int|count|
+|`errorCount`|Number of errors.|int|count|
+|`processingTime`|Total time to process the requests.|int|-|
+|`requestCount`|Number of requests processed.|int|count|
 
 
 
@@ -180,11 +180,11 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Tag | Descrition |
 |  ----  | --------|
-|`J2EEApplication`|J2EE Application|
-|`J2EEServer`|J2EE Server|
-|`WebModule`|Web Module|
-|`host`|hostname|
-|`jolokia_agent_url`|jolokia agent url|
+|`J2EEApplication`|J2EE Application.|
+|`J2EEServer`|J2EE Servers.|
+|`WebModule`|Web Module.|
+|`host`|System hostname.|
+|`jolokia_agent_url`|Jolokia agent url.|
 
 
 
@@ -195,9 +195,9 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`jspCount`|The number of JSPs that have been loaded into a webapp|int|count|
-|`jspReloadCount`|The number of JSPs that have been reloaded|int|count|
-|`jspUnloadCount`|The number of JSPs that have been unloaded|int|count|
+|`jspCount`|The number of JSPs that have been loaded into a webapp.|int|count|
+|`jspReloadCount`|The number of JSPs that have been reloaded.|int|count|
+|`jspUnloadCount`|The number of JSPs that have been unloaded.|int|count|
 
 
 
@@ -216,9 +216,9 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Tag | Descrition |
 |  ----  | --------|
-|`host`|hostname|
-|`jolokia_agent_url`|jolokia agent url|
-|`name`|protocol handler name|
+|`host`|System hostname.|
+|`jolokia_agent_url`|Jolokia agent url.|
+|`name`|Protocol handler name.|
 
 
 
@@ -229,9 +229,9 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`currentThreadCount`|currentThreadCount|int|count|
-|`currentThreadsBusy`|currentThreadsBusy|int|count|
-|`maxThreads`|maxThreads|int|count|
+|`currentThreadCount`|CurrentThreadCount.|int|count|
+|`currentThreadsBusy`|CurrentThreadsBusy.|int|count|
+|`maxThreads`|MaxThreads.|int|count|
 
 
 
@@ -250,12 +250,12 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Tag | Descrition |
 |  ----  | --------|
-|`J2EEApplication`|J2EE Application|
-|`J2EEServer`|J2EE Server|
-|`WebModule`|Web Module|
-|`host`|hostname|
-|`jolokia_agent_url`|jolokia agent url|
-|`name`| |
+|`J2EEApplication`|J2EE Application.|
+|`J2EEServer`|J2EE Server.|
+|`WebModule`|Web Module.|
+|`host`|System hostname.|
+|`jolokia_agent_url`|Jolokia agent url.|
+|`name`|Name|
 
 
 
@@ -266,9 +266,9 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`errorCount`|Error count|int|count|
-|`processingTime`|Total execution time of the servlet's service method|int|-|
-|`requestCount`|Number of requests processed by this wrapper|int|count|
+|`errorCount`|Error count.|int|count|
+|`processingTime`|Total execution time of the servlet's service method.|int|-|
+|`requestCount`|Number of requests processed by this wrapper.|int|count|
 
 
 
@@ -287,10 +287,10 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Tag | Descrition |
 |  ----  | --------|
-|`host`|hostname|
-|`jolokia_agent_url`|jolokia agent url|
-|`tomcat_context`|tomcat context|
-|`tomcat_host`|tomcat host|
+|`host`|System hostname.|
+|`jolokia_agent_url`|Jolokia agent url.|
+|`tomcat_context`|Tomcat context.|
+|`tomcat_host`|Tomcat host.|
 
 
 
@@ -301,8 +301,8 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`hitCount`|The number of requests for resources that were served from the cache|int|count|
-|`lookupCount`|The number of requests for resources|int|count|
+|`hitCount`|The number of requests for resources that were served from the cache.|int|count|
+|`lookupCount`|The number of requests for resources.|int|count|
 
 
 

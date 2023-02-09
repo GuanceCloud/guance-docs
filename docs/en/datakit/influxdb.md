@@ -72,7 +72,7 @@ The infuxdb collector is only applicable to infuxdb v1.x, and the prom collector
 
   interval = "10s"
 
-  ## TLS settings
+  ## TLS configuration.
   tls_open = false
   # tls_ca = "/tmp/ca.crt"
   # tls_cert = "/tmp/peer.crt"
@@ -86,7 +86,7 @@ The infuxdb collector is only applicable to infuxdb v1.x, and the prom collector
     prefix = "go_"
     name = "influxdb_v2_go"
   
-  ## histogram type
+  ## Histogram type.
   # [[inputs.prom.measurements]]
   #   prefix = "http_api_request_"
   #   name = "influxdb_v2_http_request"
@@ -103,7 +103,7 @@ The infuxdb collector is only applicable to infuxdb v1.x, and the prom collector
     prefix = "task_"
     name = "influxdb_v2_task" 
 
-  ## 自定义Tags
+  ## Customize tags.
   [inputs.prom.tags]
   # some_tag = "some_value"
   # more_tag = "some_other_value"
@@ -130,7 +130,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Tag | Descrition |
 |  ----  | --------|
-|`host`|host name|
+|`host`|System hostname.|
 
 - metric list
 
@@ -138,7 +138,7 @@ For all of the following data collections, a global tag named `host` is appended
 | Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`query_fail`|The total number of continuous queries that executed but failed.|float|-|
-|`query_ok`|The total number of continuous queries that executed successfully. |float|-|
+|`query_ok`|The total number of continuous queries that executed successfully.|float|-|
 
 
 
@@ -149,8 +149,8 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Tag | Descrition |
 |  ----  | --------|
-|`database`|database name|
-|`host`|host name|
+|`database`|Database name.|
+|`host`|System hostname.|
 
 - metric list
 
@@ -169,8 +169,8 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Tag | Descrition |
 |  ----  | --------|
-|`bind`|bind port|
-|`host`|host name|
+|`bind`|Bind port.|
+|`host`|System hostname.|
 
 - metric list
 
@@ -211,7 +211,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Tag | Descrition |
 |  ----  | --------|
-|`host`|host name|
+|`host`|System hostname.|
 
 - metric list
 
@@ -256,7 +256,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Tag | Descrition |
 |  ----  | --------|
-|`host`|host name|
+|`host`|System hostname.|
 
 - metric list
 
@@ -278,7 +278,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Tag | Descrition |
 |  ----  | --------|
-|`host`|host name|
+|`host`|System hostname.|
 
 - metric list
 
@@ -310,14 +310,14 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Tag | Descrition |
 |  ----  | --------|
-|`database`|database name|
-|`engine`|engine|
-|`host`|host name|
-|`id`|id|
-|`index_type`|index type|
-|`path`|path|
-|`retention_policy`|retention policy|
-|`wal_path`|wal path|
+|`database`|Database name.|
+|`engine`|Engine.|
+|`host`|System hostname.|
+|`id`|ID.|
+|`index_type`|Index type.|
+|`path`|Path.|
+|`retention_policy`|Retention policy.|
+|`wal_path`|Wal path.|
 
 - metric list
 
@@ -345,7 +345,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Tag | Descrition |
 |  ----  | --------|
-|`host`|host name|
+|`host`|System hostname.|
 
 - metric list
 
@@ -365,14 +365,14 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Tag | Descrition |
 |  ----  | --------|
-|`database`|database name|
-|`engine`|engine|
-|`host`|host name|
-|`id`|id|
-|`index_type`|index type|
-|`path`|path|
-|`retention_policy`|retention policy|
-|`wal_path`|wal path|
+|`database`|Database name.|
+|`engine`|Engine.|
+|`host`|System hostname.|
+|`id`|ID.|
+|`index_type`|Index type.|
+|`path`|Path.|
+|`retention_policy`|Retention policy.|
+|`wal_path`|Wal path.|
 
 - metric list
 
@@ -398,14 +398,14 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Tag | Descrition |
 |  ----  | --------|
-|`database`|database name|
-|`engine`|engine|
-|`host`|host name|
-|`id`|id|
-|`index_type`|index type|
-|`path`|path|
-|`retention_policy`|retention policy|
-|`wal_path`|wal path|
+|`database`|Database name.|
+|`engine`|Engine.|
+|`host`|System hostname.|
+|`id`|ID.|
+|`index_type`|Index type.|
+|`path`|Path.|
+|`retention_policy`|Retention policy.|
+|`wal_path`|Wal path.|
 
 - metric list
 
@@ -451,14 +451,14 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Tag | Descrition |
 |  ----  | --------|
-|`database`|database name|
-|`engine`|engine|
-|`host`|host name|
-|`id`|id|
-|`index_type`|index type|
-|`path`|path|
-|`retention_policy`|retention policy|
-|`wal_path`|wal path|
+|`database`|Database name.|
+|`engine`|Engine.|
+|`host`|System hostname.|
+|`id`|ID.|
+|`index_type`|Index type.|
+|`path`|Path.|
+|`retention_policy`|Retention policy.|
+|`wal_path`|Wal path.|
 
 - metric list
 
@@ -477,13 +477,14 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Tag | Descrition |
 |  ----  | --------|
-|`database`|database name|
-|`engine`|engine|
-|`host`|host name|
-|`id`|id|
-|`index_type`|index type|
-|`path`|path|
-|`retention_policy`|retention policy|
+|`database`|Database name.|
+|`engine`|Engine.|
+|`host`|System hostname.|
+|`id`|ID.|
+|`index_type`|Index type.|
+|`path`|Path.|
+|`retention_policy`|Retention policy.|
+|`wal_path`|Wal path.|
 
 - metric list
 
@@ -504,7 +505,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Tag | Descrition |
 |  ----  | --------|
-|`host`|host name|
+|`host`|System hostname.|
 
 - metric list
 

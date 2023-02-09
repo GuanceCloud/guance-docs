@@ -79,8 +79,8 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Tag | Descrition |
 |  ----  | --------|
-|`cpu`|CPU 核心|
-|`host`|主机名|
+|`cpu`|CPU core.|
+|`host`|System hostname.|
 
 - Metric list
 

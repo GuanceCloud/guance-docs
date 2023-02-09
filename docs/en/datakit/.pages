@@ -83,14 +83,13 @@ nav:
 
       - 'DDTrace':
         - 'DDtrace Configuration': ddtrace.md
-        - 'Tools for Languages':
-          - ddtrace-golang.md
-          - ddtrace-java.md
-          - ddtrace-python.md
-          - ddtrace-php.md
-          - ddtrace-nodejs.md
-          - ddtrace-cpp.md
-          - ddtrace-ruby.md
+        - ddtrace-golang.md
+        - ddtrace-java.md
+        - ddtrace-python.md
+        - ddtrace-php.md
+        - ddtrace-nodejs.md
+        - ddtrace-cpp.md
+        - ddtrace-ruby.md
 
       - 'SkyWalking':
         - 'SkyWalking': skywalking.md

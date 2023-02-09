@@ -80,7 +80,7 @@ DDTrace Agent embedded in Datakit is used to receive, calculate and analyze Data
 
     The DataKit installation directory, under the `data` directory, has a pre-prepared `dd-java-agent.jar`(recommended). You can also download it directly from [Maven download](https://mvnrepository.com/artifact/com.datadoghq/dd-java-agent){:target="_blank"}
     
-    Guance also Fork its own branch on the basis of Ddtrace-Java, adding more functions and probes. For more version details, please see [Ddtrace Secondary Development Version Description](../developers/ddtrace-guance.md)
+    Guance Cloud also Fork its own branch on the basis of Ddtrace-Java, adding more functions and probes. For more version details, please see [Ddtrace Secondary Development Version Description](../developers/ddtrace-guance.md)
 
 ## Collector Configuration {#config}
 

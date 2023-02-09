@@ -121,7 +121,7 @@ In all the fields cut out by Pipeline, they are a field rather than a tag. We sh
 - [Global Tag](datakit-conf.md#set-global-tag) in DataKit
 - [Custom Tag](logging.md#measurements) in Log Collector
 
-In addition, all collected logs have the following reserved fields. ==We should not override these fields==, otherwise the data may not appear properly on the explorer page.
+In addition, all collected logs have the following reserved fields. ==We should not override these fields==, otherwise the data may not appear properly on the observer page.
 
 | Field Name    | Type          | Description                                  |
 | ---       | ----          | ----                                  |

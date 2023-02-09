@@ -52,7 +52,7 @@ TDengine collector needs to connect `taos_adapter` can work normally, taosAdapte
 
 ### TdEngine Dashboard {#td-dashboard}
 
-    At present, Guance has provided a built-in TDEngine dashboard, and you can select the TDEngine dashboard in ***Guance*** -- ***Scene***--***New Dashboard***.
+    At present, Guance Cloud has provided a built-in TDEngine dashboard, and you can select the TDEngine dashboard in ***Guance Cloud*** -- ***Scene***--***New Dashboard***.
 
 
 ## Measurement{#td-metrics}
