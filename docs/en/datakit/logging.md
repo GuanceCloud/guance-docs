@@ -351,30 +351,30 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
-### `logging 日志采集`
+### `logging collect`
 
-使用配置文件中的 `source` 字段值，如果该值为空，则默认为 `default`
+Use the `source` of the config，if empty then use `default`
 
 - tag
 
 
 | Tag | Descrition |
 |  ----  | --------|
-|`filename`|此条日志来源的文件名，仅为基础文件名，并非带有全路径|
-|`host`|主机名|
-|`service`|service 名称，对应配置文件中的 `service` 字段值|
+|`filename`|The base name of the file.|
+|`host`|Host name|
+|`service`|Use the `service` of the config.|
 
 - metric list
 
 
 | Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`log_read_lines`|采集到的行数计数，多行数据算成一行（[:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)）|int|count|
-|`log_read_offset`|当前数据在文件中的偏移位置（[:octicons-tag-24: Version-1.4.8](changelog.md#cl-1.4.8) · [:octicons-beaker-24: Experimental](index.md#experimental)）|int|-|
-|`log_read_time`|数据从文件中读取到的这一刻的时间戳，单位是秒|s|-|
-|`message`|日志正文，默认存在，可以使用 pipeline 删除此字段|string|-|
-|`message_length`|message 字段的长度，单位字节|B|count|
-|`status`|日志状态，默认为 `unknown`，采集器会该字段做支持映射，映射表见上述 pipelie 配置和使用[^1]|string|-|
+|`log_read_lines`|The lines of the read file ([:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)).|int|count|
+|`log_read_offset`|The offset of the read file ([:octicons-tag-24: Version-1.4.8](changelog.md#cl-1.4.8) · [:octicons-beaker-24: Experimental](index.md#experimental)).|int|-|
+|`log_read_time`|The timestamp of the read file.|s|-|
+|`message`|The text of the logging.|string|-|
+|`message_length`|The length of the message content.|B|count|
+|`status`|The status of the logging, default is `unknown`[^1].|string|-|
 
 
 

@@ -24,7 +24,7 @@ Applying DDTrace in C + + code requires modifying business code and manually emb
     mkdir .build && cd .build && cmake .. && make && make install
     ```
 
-    If you have problems compiling the SDK, you can temporarily test it with the prepared header file [5] and dynamic library [6] of Guance.
+    If you have problems compiling the SDK, you can temporarily test it with the prepared header file [5] and dynamic library [6] of Guance Cloud.
 
 === "Windows"
 
@@ -129,7 +129,7 @@ LD_LIBRARY_PATH=/usr/local/lib64  DD_AGENT_HOST=localhost DD_TRACE_AGENT_PORT=95
 Here you can put *libdd_opentracing.so* and the corresponding header file into any directory and adjust the `LD_LIBRARY_PATH` and `-I` parameters.
 
 
-After running the program for a period of time, you can see trace data similar to the following in Guance:
+After running the program for a period of time, you can see trace data similar to the following in Guance Cloud:
 
 <figure markdown>
   ![](https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/images/datakit/cpp-ddtrace-example.png){ width="800"}

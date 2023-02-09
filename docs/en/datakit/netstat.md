@@ -21,15 +21,15 @@ None
     ```toml
         
     [[inputs.netstat]]
-      ##(optional) collect interval, default is 10 seconds
+      ##(Optional) Collect interval, default is 10 seconds
       interval = '10s'
     
-      ## the ports you want display
-      ## can and tags too
+      ## The ports you want display
+      ## Can add tags too
       # [[inputs.netstat.addr_ports]]
       #   ports = ["80","443"]
     
-      ## groups of ports and add different tags to facilitate statistics
+      ## Groups of ports and add different tags to facilitate statistics
       # [[inputs.netstat.addr_ports]]
       #   ports = ["80","443"]
       #   [inputs.netstat.addr_ports.tags]
@@ -40,9 +40,9 @@ None
       #     service = "datakit"
       #     foo = "bar"
     
-      ## server may have multiple network cards
-      ## display only some network cards
-      ## can and tags too
+      ## Server may have multiple network cards
+      ## Display only some network cards
+      ## Can add tags too
       # [[inputs.netstat.addr_ports]]
       #   ports = ["1.1.1.1:80","2.2.2.2:80"]
       #   ports_match is preferred if both ports and ports_match configured
@@ -88,7 +88,7 @@ Measurements for statistics regardless of port number: `netstat` ; Measurements 
 
 | Tag | Descrition |
 |  ----  | --------|
-|`addr_port`|addr and port|
+|`addr_port`|Addr and port|
 |`host`|Host name|
 
 - metric list
@@ -96,7 +96,7 @@ Measurements for statistics regardless of port number: `netstat` ; Measurements 
 
 | Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`pid`|pid.|int|count|
+|`pid`|PID.|int|count|
 |`tcp_close`|CLOSE : The number of TCP state be waiting for a connection termination request acknowledgement from remote TCP host.|int|count|
 |`tcp_close_wait`|CLOSE_WAIT : The number of TCP state be waiting for a connection termination request from local user.|int|count|
 |`tcp_closing`|CLOSING : The number of TCP state be waiting for a connection termination request acknowledgement from remote TCP host.|int|count|

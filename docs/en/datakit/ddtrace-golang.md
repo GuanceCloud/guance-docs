@@ -111,7 +111,7 @@ func runAppWithError() {
     $env:DD_AGENT_HOST="localhost"; $env:DD_TRACE_AGENT_PORT="9529"; .\my-app.exe
     ```
 
-After running the program for a period of time, you can see trace data similar to the following in Guance:
+After running the program for a period of time, you can see trace data similar to the following in Guance Cloud:
 
 <figure markdown>
   ![](https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/images/datakit/golang-ddtrace-example.png){ width="800"}

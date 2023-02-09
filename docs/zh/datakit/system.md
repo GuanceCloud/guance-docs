@@ -58,78 +58,78 @@ system 采集器收集系统负载、正常运行时间、CPU 核心数量以及
 
 ### `system`
 
-系统运行基础信息
+Basic information about system operation.
 
 -  标签
 
 
 | Tag | Descrition |
 |  ----  | --------|
-|`host`|主机名|
+|`host`|hostname|
 
 - 指标列表
 
 
 | Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`load1`|过去 1 分钟的 CPU 平均负载|float|-|
-|`load15`|过去 15 分钟的 CPU 平均负载|float|-|
-|`load15_per_core`|每个核心过去 15 分钟的 CPU 平均负载|float|-|
-|`load1_per_core`|每个核心过去 1 分钟的 CPU 平均负载|float|-|
-|`load5`|过去 5 分钟的 CPU 平均负载|float|-|
-|`load5_per_core`|每个核心过去 5 分钟的 CPU 平均负载|float|-|
-|`n_cpus`|CPU 逻辑核心数|int|count|
-|`n_users`|用户数|int|count|
-|`uptime`|系统运行时间|int|s|
+|`load1`|CPU load average over the past 1 minute.|float|-|
+|`load15`|CPU load average over the past 15 minutes.|float|-|
+|`load15_per_core`|CPU single core load average over the past 15 minutes.|float|-|
+|`load1_per_core`|CPU single core load average over the past 1 minute.|float|-|
+|`load5`|CPU load average over the past 5 minutes.|float|-|
+|`load5_per_core`|CPU single core load average over the last 5 minutes.|float|-|
+|`n_cpus`|CPU logical core count.|int|count|
+|`n_users`|User number.|int|count|
+|`uptime`|System uptime.|int|s|
 
 
 
 ### `conntrack`
 
-系统网络连接指标（仅 Linux 支持）
+Conntrack metrics (Linux only).
 
 -  标签
 
 
 | Tag | Descrition |
 |  ----  | --------|
-|`host`|主机名|
+|`host`|hostname|
 
 - 指标列表
 
 
 | Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`entries`|当前连接数量|int|count|
-|`entries_limit`|连接跟踪表的大小|int|count|
-|`stat_drop`|跟踪失败被丢弃的包数目|int|count|
-|`stat_early_drop`|由于跟踪表满而导致部分已跟踪包条目被丢弃的数目|int|count|
-|`stat_found`|成功的搜索条目数目|int|count|
-|`stat_ignore`|已经被跟踪的报数目|int|count|
-|`stat_insert`|插入的包数目|int|count|
-|`stat_insert_failed`|插入失败的包数目|int|count|
-|`stat_invalid`|不能被跟踪的包数目|int|count|
-|`stat_search_restart`|由于hash表大小修改而导致跟踪表查询重启的数目|int|count|
+|`entries`|Current number of connections.|int|count|
+|`entries_limit`|The size of the connection tracking table.|int|count|
+|`stat_drop`|The number of packets dropped due to connection tracking failure.|int|count|
+|`stat_early_drop`|The number of partially tracked packet entries dropped due to connection tracking table full.|int|count|
+|`stat_found`|The number of successful search entries.|int|count|
+|`stat_ignore`|The number of reports that have been tracked.|int|count|
+|`stat_insert`|The number of packets inserted.|int|count|
+|`stat_insert_failed`|The number of packages that failed to insert.|int|count|
+|`stat_invalid`|The number of packets that cannot be tracked.|int|count|
+|`stat_search_restart`|The number of connection tracking table query restarts due to hash table size modification.|int|count|
 
 
 
 ### `filefd`
 
-系统文件句柄指标（仅 Linux 支持）
+System file handle metrics (Linux only).
 
 -  标签
 
 
 | Tag | Descrition |
 |  ----  | --------|
-|`host`|主机名|
+|`host`|hostname|
 
 - 指标列表
 
 
 | Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`allocated`|已分配文件句柄的数目|int|count|
-|`maximum_mega`|文件句柄的最大数目, 单位 M(10^6)|float|count|
+|`allocated`|The number of allocated file handles.|int|count|
+|`maximum_mega`|The maximum number of file handles, unit M(10^6).|float|count|
 
 

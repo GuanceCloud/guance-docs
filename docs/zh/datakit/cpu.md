@@ -79,8 +79,8 @@ CPU 采集器用于系统 CPU 使用率的采集。
 
 | Tag | Descrition |
 |  ----  | --------|
-|`cpu`|CPU 核心|
-|`host`|主机名|
+|`cpu`|CPU core.|
+|`host`|System hostname.|
 
 - 指标列表
 
