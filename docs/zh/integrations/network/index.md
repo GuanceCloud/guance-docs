@@ -10,14 +10,20 @@ icon: material/web
 
 <br />
 
-[**安装 DataKit**](../../datakit/datakit-install.md)之后，对于如下指标集，用户可通过**自定义开启内置插件**协助采集相关数据：
-
-| **自定义开启** |   |              |
-| :------------------: | :-----------------------------------------------: | :-----------------------------------------------: |
-|  [:material-key-link: SSH](ssh.md){ .md-button .md-button--primary }  |                      |                             |
+[**安装 DataKit**](../../datakit/datakit-install.md)之后，可以很好地观测如下指标集：
 
 
-除此之外，还可以通过[DialTesting (云拨测)](dialtesting.md)，指定不同国家不同地区的客户端，来**模拟真实用户访问**目标地址的网络性能情况。
+<div class="grid cards" markdown>
+
+-   :material-web:{ .lg .middle } __网络连接__
+
+    ---
+
+    [:material-access-point: DialTesting (云拨测)](dialtesting.md){ .md-button .md-button--primary } &nbsp; [:material-key-link: SSH](ssh.md){ .md-button .md-button--primary }  
+
+<br />
+
+</div>
 
 <br />
 

@@ -567,7 +567,7 @@ $ vim scheck.conf
 
 ##### 1、标准日志采集（Nginx、Mysql、Redis 等）
 
-通过开启 DataKit 内置的各种 inputs，直接开启相关的日志采集，例如 [Ngnix](../../integrations/webservice/nginx.md)、[Redis](../../integrations/datastorage/redis.md)、[容器](../../integrations/container/index.md)、[ES](../../integrations/datastorage/elasticsearch.md) 等；
+通过开启 DataKit 内置的各种 inputs，直接开启相关的日志采集，例如 [Ngnix](../../integrations/webserver/nginx.md)、[Redis](../../integrations/datastorage/redis.md)、[容器](../../integrations/container/index.md)、[ES](../../integrations/datastorage/elasticsearch.md) 等；
 
 **示例：Nginx**
 
