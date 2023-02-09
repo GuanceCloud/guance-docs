@@ -56,7 +56,7 @@ At present, DataKit collects profiling data in two ways:
       #enabled_types = ["cpu","goroutine","heap","mutex","block"]
     
     #[inputs.profile.go.tags]
-      # tag1 = xxxxx
+      # tag1 = "val1"
     
     ## pyroscope config
     #[[inputs.profile.pyroscope]]
@@ -73,7 +73,7 @@ At present, DataKit collects profiling data in two ways:
       #version = "0.0.0"
     
     #[inputs.profile.pyroscope.tags]
-      #tag1 = xxxxx
+      #tag1 = "val1"
     
     ```
     

@@ -6,7 +6,7 @@
 
 ---
 
-Start an HTTP endpoint to listen and receive promtail log data and report it to Guance.
+Start an HTTP endpoint to listen and receive promtail log data and report it to Guance Cloud.
 
 ## Configuration {#config}
 

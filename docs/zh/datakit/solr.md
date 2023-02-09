@@ -72,12 +72,12 @@ DataKit 使用 Solr Metrics API 采集指标数据，支持 Solr 7.0 及以上�
 
 | Tag | Descrition |
 |  ----  | --------|
-|`category`|category name|
-|`core`|solr core|
-|`group`|metric group|
-|`host`|host name|
-|`instance`|instance name, generated based on server address|
-|`name`|cache name|
+|`category`|Category name.|
+|`core`|Solr core.|
+|`group`|Metric group.|
+|`host`|System hostname.|
+|`instance`|Instance name, generated based on server address.|
+|`name`|Cache name.|
 
 - 指标列表
 
@@ -108,12 +108,12 @@ DataKit 使用 Solr Metrics API 采集指标数据，支持 Solr 7.0 及以上�
 
 | Tag | Descrition |
 |  ----  | --------|
-|`category`|category name|
-|`core`|solr core|
-|`group`|metric group|
-|`handler`|request handler|
-|`host`|host name|
-|`instance`|instance name, generated based on server address|
+|`category`|Category name.|
+|`core`|Solr core.|
+|`group`|Metric group.|
+|`handler`|Request handler.|
+|`host`|System hostname.|
+|`instance`|Instance name, generated based on server address.|
 
 - 指标列表
 
@@ -126,9 +126,9 @@ DataKit 使用 Solr Metrics API 采集指标数据，支持 Solr 7.0 及以上�
 |`median`|Median of all the request processing time.|float|ms|
 |`min`|Min of all the request processing time.|float|ms|
 |`p75`|Request processing time for the request which belongs to the 75th Percentile.|float|ms|
-|`p95`|Request processing time in milliseconds for the request which belongs to the 95th Percentile. |float|ms|
-|`p99`|Request processing time in milliseconds for the request which belongs to the 99th Percentile. |float|ms|
-|`p999`|Request processing time in milliseconds for the request which belongs to the 99.9th Percentile. |float|ms|
+|`p95`|Request processing time in milliseconds for the request which belongs to the 95th Percentile.|float|ms|
+|`p99`|Request processing time in milliseconds for the request which belongs to the 99th Percentile.|float|ms|
+|`p999`|Request processing time in milliseconds for the request which belongs to the 99.9th Percentile.|float|ms|
 |`rate_15min`|Requests per second received over the past 15 minutes.|float|reqps|
 |`rate_1min`|Requests per second received over the past 1 minutes.|float|reqps|
 |`rate_5min`|Requests per second received over the past 5 minutes.|float|reqps|
@@ -144,11 +144,11 @@ DataKit 使用 Solr Metrics API 采集指标数据，支持 Solr 7.0 及以上�
 
 | Tag | Descrition |
 |  ----  | --------|
-|`category`|category name|
-|`core`|solr core|
-|`group`|metric group|
-|`host`|host name|
-|`instance`|instance name, generated based on server address|
+|`category`|Category name.|
+|`core`|Solr core.|
+|`group`|Metric group.|
+|`host`|System hostname.|
+|`instance`|Instance name, generated based on server address.|
 
 - 指标列表
 

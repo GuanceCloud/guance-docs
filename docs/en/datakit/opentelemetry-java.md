@@ -156,7 +156,7 @@ public class otlpdemo {
 
 ## View Effect {#view}
 
-Log in to [Guance](https://console.guance.com/tracing/service/table?time=15m){:target="_blank"} and view `application performance monitoring` -> `links` -> Click on a single `link`
+Log in to [Guance Cloud](https://console.guance.com/tracing/service/table?time=15m){:target="_blank"} and view `application performance monitoring` -> `links` -> Click on a single `link`
 
 ![avatar](imgs/otel-java-example.png)
 

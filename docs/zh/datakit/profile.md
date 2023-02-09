@@ -55,7 +55,7 @@ Profile 支持采集使用 Java, Python 和 Go 等不同语言环境下应用程
       #enabled_types = ["cpu","goroutine","heap","mutex","block"]
     
     #[inputs.profile.go.tags]
-      # tag1 = xxxxx
+      # tag1 = "val1"
     
     ## pyroscope config
     #[[inputs.profile.pyroscope]]
@@ -72,7 +72,7 @@ Profile 支持采集使用 Java, Python 和 Go 等不同语言环境下应用程
       #version = "0.0.0"
     
     #[inputs.profile.pyroscope.tags]
-      #tag1 = xxxxx
+      #tag1 = "val1"
     
     ```
     
