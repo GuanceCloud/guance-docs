@@ -1,6 +1,5 @@
 nav:
-  - index.md
-  - "简介": huawei-prod-func.md
+  - huawei-prod-func.md
   - 'DCS': dcs.md
   - 'ECS': ecs.md
   - 'ELB': elb.md

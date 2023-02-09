@@ -4,7 +4,7 @@
 观测云支持自定义日志采集和标准日志采集。
 
 - 自定义日志采集：进入 DataKit 安装目录下的 conf.d/log 目录，复制 logging.conf.sample 并命名为 logging.conf进行配置。配置完成后，重启 DataKit 即可生效。
-- 标准日志采集：通过开启观测云支持的日志采集器，如[Nginx](../../integrations/webservice/nginx.md)、[Redis](../../integrations/datastorage/redis.md)、[ElasticSearch](../../integrations/datastorage/elasticsearch.md)等，可以一键开启日志采集。
+- 标准日志采集：通过开启观测云支持的日志采集器，如[Nginx](../../integrations/webserver/nginx.md)、[Redis](../../integrations/datastorage/redis.md)、[ElasticSearch](../../integrations/datastorage/elasticsearch.md)等，可以一键开启日志采集。
 
 ## 开启自定义日志采集
 
@@ -44,7 +44,7 @@
 
 ![](../img/13.nginx_3.png)
 
-Nginx的`files`的地址可通过`ls /var/log`查看，[了解更多Nginx日志数据采集配置](../../integrations/webservice/nginx.md)。
+Nginx的`files`的地址可通过`ls /var/log`查看，[了解更多Nginx日志数据采集配置](../../integrations/webserver/nginx.md)。
 
 ![](../img/13.nginx_1.png)
 

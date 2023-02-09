@@ -6,7 +6,7 @@ nav:
   - '容器编排': container
   - '云厂商': cloud
   - '网络连接': network
-  - 'Web 服务': webservice
+  - 'Web 服务': webserver
   - 'CI/CD': cicd
   - '日志采集': logs
   - '应用性能监测 (APM)': apm

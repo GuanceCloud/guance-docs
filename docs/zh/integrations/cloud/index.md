@@ -14,11 +14,47 @@ icon: octicons/cloud-16
 
 [**安装 DataKit**](../../datakit/datakit-install.md)和[**安装 DataFlux Func 携带版**](https://func.guance.com/doc/maintenance-guide-installation/)之后，可以很好得观测各大云厂商相关指标数据：
 
-| [:integrations-aliyun: 阿里云](./aliyun/index.md){ .md-button .md-button--primary } |
-|:----:|
-| [:integrations-aws: AWS](./aws/index.md){ .md-button .md-button--primary }  |
-| [:integrations-tencent: 腾讯云](./tencent/index.md){ .md-button .md-button--primary }  |
-| [:integrations-huawei: 华为云](./huawei/index.md){ .md-button .md-button--primary }  |
+
+<div class="grid cards" markdown>
+
+-   :integrations-aliyun:{ .lg .middle } __阿里云__
+
+    ---
+
+    指导观测 [`ACK`](./aliyun/aliyun-ack.md) [`CDN`](./aliyun/aliyun-cdn.md) [`ECS`](./aliyun/aliyun-ecs.md) [`ElasticSearch`](./aliyun/aliyun-es.md) [`MongoDB`](./aliyun/aliyun-mongodb.md) [`NAT`](./aliyun/aliyun-nat.md) [`OSS`](./aliyun/aliyun-oss.md) [`PolarDB Mysql`](./aliyun/aliyun-mysql.md) [`Redis`](./aliyun/aliyun-redis.md) [`SLB`](./aliyun/aliyun-slb.md) [`SLS`](./aliyun/aliyun-sls.md) [`费用`](./aliyun/aliyun-charges.md) 等指标集数据
+
+    <br/>
+    [**:octicons-arrow-right-24: Getting more**](./aliyun/aliyun-prod-func.md)
+
+-   :integrations-aws:{ .lg .middle } __AWS__
+
+    ---
+
+    指导观测 [`EC2`](./aws/ec2.md) [`ELB`](./aws/elb.md) [`RDS MySQL`](./aws/rds-mysql.md) [`S3`](./aws/s3.md)等指标集数据
+
+    <br/>
+    <br/>
+    [**:octicons-arrow-right-24: Getting more**](./aws/aws-prod-func.md)
+
+-   :integrations-tencent:{ .lg .middle } __腾讯云__
+
+    ---
+
+    指导观测 [`CDB`](./tencent/cdb.md) [`COS`](./tencent/cos.md) [`CLB`](./tencent/clb.md) [`CVM`](./tencent/cvm.md) 等指标集数据
+
+    <br/>
+    [**:octicons-arrow-right-24: Getting more**](./tencent/tencent-prod-func.md)
+
+-   :integrations-huawei:{ .lg .middle } __华为云__
+
+    ---
+
+    指导观测 [`DCS`](./huawei/dcs.md) [`ECS`](./huawei/ecs.md) [`ELB`](./huawei/elb.md) [`OBS`](./huawei/obs.md) [`RDS MySQL`](./huawei/rds-mysql.md) 等指标集数据
+
+    <br/>
+    [**:octicons-arrow-right-24: Getting more**](./huawei/huawei-prod-func.md)
+
+</div>
 
 <br/>
 
