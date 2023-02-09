@@ -5,7 +5,7 @@
 
 如下是观测云结算示意图：
 
-<img src="../img/3.billing_1.png" width=660px />
+![](../img/billing-index-1.png)
 
 ???+ attention
 
