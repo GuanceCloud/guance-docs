@@ -14,7 +14,13 @@
 - [观测云控制台](https://console.guance.com/)账号，可统计当前空间的数据量接入规模、账单明细等，同步到指定的费用中心账号。
 - [观测云费用中心](https://boss.guance.com/)账号，可通过`工作空间ID`进行绑定，实现**工作空间级别的统一费用管理**，并提供了多种费用结算方式供您选择。
 
+???+ attention
+
+    - 若您已直接[注册商业版](../billing/commercial-register.md)用户，注册时系统自动帮您注册相同用户名的观测云费用中心用户。
+    - 若您注册的是体验版用户，且尚未注册观测云费用中心用户，[升级商业版](../billing/commercial-version.md)操作中会提示您注册。
+
 ![](img/billing-index-1.png)
+
 
 <div class="grid cards" markdown>
 
@@ -24,7 +30,7 @@
 
 </div>
 
-## 费用查看
+## 付费计划与账单
 
 观测云工作空间的拥有者，查看费用情况的方法：
 

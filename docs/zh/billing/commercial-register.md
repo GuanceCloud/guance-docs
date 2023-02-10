@@ -112,7 +112,7 @@
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 公有云商业版费用查看 文档</font>](../billing/commercial.md#_4)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 商业版「付费计划与账单」模块介绍</font>](../billing/commercial.md#_4)
 
 <br/>
 
