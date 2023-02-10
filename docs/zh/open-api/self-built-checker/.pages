@@ -1,8 +1,8 @@
 nav:
-  - '列出自建监控器列表': list.md
-  - '获取一个自建监控器信息': get.md
-  - '创建一个自建监控器': create.md
-  - '修改一个自建监控器': modify.md
-  - '禁用一个自建监控器': disable.md
-  - '启用一个自建监控器': enable.md
-  - '删除一个自建监控器': delete.md
+  - '列出自建巡检列表': list.md
+  - '获取一个自建巡检信息': get.md
+  - '创建一个自建巡检': create.md
+  - '修改一个自建巡检': modify.md
+  - '禁用一个自建巡检': disable.md
+  - '启用一个自建巡检': enable.md
+  - '删除一个自建巡检': delete.md

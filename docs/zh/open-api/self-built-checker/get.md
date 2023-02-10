@@ -1,11 +1,11 @@
-# 获取一个自建监控器信息
+# 获取一个自建巡检信息
 
 ---
 
 <br />**get /api/v1/self_built_checker/get**
 
 ## 概述
-根据给定的自建监控器标识获取监控器详情
+根据给定的自建巡检标识获取监控器详情
 
 
 
@@ -14,8 +14,8 @@
 
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
-| ruleUUID | string |  | 自建监控器的UUID<br>例子: rul_xxxxx <br>允许为空: False <br> |
-| refKey | string |  | 自建监控器的关联key<br>例子: xxx <br>允许为空: False <br> |
+| ruleUUID | string |  | 自建巡检的UUID<br>例子: rul_xxxxx <br>允许为空: False <br> |
+| refKey | string |  | 自建巡检的关联key<br>例子: xxx <br>允许为空: False <br> |
 
 ## 参数补充说明
 
@@ -46,7 +46,7 @@ curl 'https://openapi.guance.com/api/v1/self_built_checker/get?refKey=zyAy2l9v' 
         "extend": {},
         "id": 88,
         "jsonScript": {
-            "name": "自建监控器-20220907T162421bymvlx",
+            "name": "自建巡检-20220907T162421bymvlx",
             "type": "selfBuiltCheck"
         },
         "monitorUUID": "monitor_c0d21959e3724dccbf50aead796cee39",
