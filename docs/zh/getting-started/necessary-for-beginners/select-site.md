@@ -9,12 +9,12 @@
 
     不同站点的账号和数据相互独立，无法互相共享和迁移数据，请谨慎选择。
 
-| 站点 | 登录地址 URL | 运营商 | 结算方式 |
-| --- | --- | --- | --- |
-| 中国区1（杭州） | [https://auth.guance.com/](https://auth.guance.com/login/pwd) | 阿里云（中国杭州） | 阿里云账号结算 |
-| 中国区2（宁夏） | [https://aws-auth.guance.com/](https://aws-auth.guance.com/login/pwd) | AWS（中国宁夏） | AWS 账号结算 |
-| 中国区4（广州） | [https://cn4-auth.guance.com/](https://cn4-auth.guance.com/login/pwd) | 华为云（中国广州） | 观测云企业账号结算 |
-| 海外区1（俄勒冈） | [https://us1-auth.guance.com/](https://us1-auth.guance.com/) | AWS（美国俄勒冈） | AWS 账号结算   |
+| 站点 | 登录地址 URL | 运营商 |
+| --- | --- | --- |
+| 中国区1（杭州） | [https://auth.guance.com/](https://auth.guance.com/login/pwd) | 阿里云（中国杭州） |
+| 中国区2（宁夏） | [https://aws-auth.guance.com/](https://aws-auth.guance.com/login/pwd) | AWS（中国宁夏） |
+| 中国区4（广州） | [https://cn4-auth.guance.com/](https://cn4-auth.guance.com/login/pwd) | 华为云（中国广州） |
+| 海外区1（俄勒冈） | [https://us1-auth.guance.com/](https://us1-auth.guance.com/) | AWS（美国俄勒冈） |
 
 ## 如何选择站点
 
