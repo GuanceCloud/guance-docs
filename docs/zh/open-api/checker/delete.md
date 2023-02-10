@@ -5,7 +5,7 @@
 <br />**post /api/v1/monitor/check/delete**
 
 ## 概述
-导入一个/多个监控器
+删除一个/多个监控器
 
 
 
