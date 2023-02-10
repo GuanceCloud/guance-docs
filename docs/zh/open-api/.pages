@@ -12,7 +12,7 @@ nav:
   - '基础设施': objects
   - '告警策略管理': monitor
   - '监控器': checker
-  - '自建监控器': self-built-checker
+  - '自建巡检': self-built-checker
   - '静默配置': mute
   - '工作空间成员': workspace-member
   - '工作空间': workspace

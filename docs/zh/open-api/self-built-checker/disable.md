@@ -1,11 +1,11 @@
-# 禁用一个自建监控器
+# 禁用一个自建巡检
 
 ---
 
 <br />**post /api/v1/self_built_checker/disable**
 
 ## 概述
-根据`checker_uuid`禁用一个自建监控器
+根据`checker_uuid`禁用一个自建巡检
 
 
 
@@ -14,8 +14,8 @@
 
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
-| ruleUUID | string |  | 自建监控器的UUID<br>例子: rul_xxxxx <br>允许为空: False <br> |
-| refKey | string |  | 自建监控器的关联key<br>例子: xxx <br>允许为空: False <br> |
+| ruleUUID | string |  | 自建巡检的UUID<br>例子: rul_xxxxx <br>允许为空: False <br> |
+| refKey | string |  | 自建巡检的关联key<br>例子: xxx <br>允许为空: False <br> |
 
 ## 参数补充说明
 
