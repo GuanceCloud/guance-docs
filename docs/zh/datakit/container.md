@@ -1,12 +1,12 @@
 
-# 容器数据采集
+# 容器基础采集
 ---
 
 :fontawesome-brands-linux: :material-kubernetes: :material-docker:
 
 ---
 
-采集 container 和 Kubernetes 的指标、对象和日志数据，上报到观测云。
+采集 Container 和 Kubernetes 的指标、对象和日志数据，上报到观测云。
 
 ## 前置条件 {#requrements}
 

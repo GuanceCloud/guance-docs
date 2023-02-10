@@ -2,6 +2,12 @@
 icon: zy/best-practices
 ---
 
+## (2023/2/10)
+
+### 新增最佳实践
+
+- 云平台接入
+    - 阿里云 - [阿里云事件总线 EventBridge 最佳实践](./partner/aliyun_eventbridge.md)
 ## (2023/1/3)
 
 ### 新增最佳实践

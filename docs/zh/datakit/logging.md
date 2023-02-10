@@ -1,5 +1,5 @@
 
-# 文件日志
+# 文件采集
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:

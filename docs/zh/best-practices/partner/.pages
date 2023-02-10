@@ -7,6 +7,7 @@ nav:
     - '阿里云 DTS 增量数据迁移最佳实践 (Function)': aliyun-dts-func.md
     - '解决阿里云 API 签名问题实现账单分析': aliyun-bill.md
     - '日志数据备份到 OSS 最佳实践 (Function)': log-backup-to-oss-by-func.md
+    - aliyun_eventbridge.md
 
   - 'AWS':
         - 'EKS 部署 DataKit': eks.md
