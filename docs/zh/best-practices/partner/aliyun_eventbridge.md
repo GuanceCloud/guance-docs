@@ -43,7 +43,7 @@ systemctl restart datakit
 
 1、登录 [阿里云事件总线控制台](https://eventbridge.console.aliyun.com/overview)
 
-2、选择默认事件总线 default，事件规则
+2、选择「事件总线」-「default」-「事件规则」
 
 ![image.png](../images/aliyun-eventbridge-1.png)
 
@@ -51,7 +51,7 @@ systemctl restart datakit
 
 ![image.png](../images/aliyun-eventbridge-2.png)
 
-4、配置事件模式，选择阿里云官方事件源，选择想要的事件源和事件类型
+4、配置事件模式，选择「阿里云官方事件源」，选择想要的「事件源」和「事件类型」
 
 ![image.png](../images/aliyun-eventbridge-3.png)
 
@@ -59,22 +59,22 @@ systemctl restart datakit
 
 ![image.png](../images/aliyun-eventbridge-4.png)
 
-6、配置事件目标，选择服务类型为 HTTP，URL 为 DataKit 日志 API 地址，Body 选择模板
+6、配置事件目标，选择「服务类型」为 `HTTP`，「URL」为 `DataKit 日志 API 地址`，「Body 」为 `模板`
 
 ![image.png](../images/aliyun-eventbridge-5.png)
 
-7、当 Body 为模板时，需要定义模板里的变量和自定义模板 [阿里云模板说明](https://help.aliyun.com/document_detail/181429.html#section-tdd-mia-lol)
+7、当「Body」为 `模板`时，需要定义模板里的变量和自定义模板 [阿里云模板说明](https://help.aliyun.com/document_detail/181429.html#section-tdd-mia-lol)
 
 - 变量：通过 JSONPath 从云事件原始数据中提取参数，使用 "$." 
 - 模板：通过 "$()" 进行变量的引用，格式必须符合 [DataKit API 规范](../../datakit/apis.md#api-logging-example)
 
 ![image.png](../images/aliyun-eventbridge-6.png)
 
-8、网络选择公网，然后单击 「确认」
+8、「网络类型」选择 `公网`，然后单击 「确认」
 
 ![image.png](../images/aliyun-eventbridge-7.png)
 
-9、登录观测云，点击日志模块查看对应生成的事件
+9、登录观测云，点击「日志」模块查看对应生成的事件
 
 - measurement：数据来源
 - message：日志内容
