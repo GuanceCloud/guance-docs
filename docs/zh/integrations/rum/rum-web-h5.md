@@ -91,18 +91,23 @@ icon: material/format-header-5
 | 1    | RUM 页面 JS 错误异常次数过多 | js 错误次数 > 50  | 警告 | 5m       |
 | 2    | RUM 页面 JS 错误异常次数过多 | js 错误次数 > 100 | 紧急 | 5m       |
 
-## 数据类型详情
+## 指标详解
 
 <[WEB 应用-数据类型详情](../../real-user-monitoring/web/app-data-collection.md)>
 
-## 最佳实践
+## 更多阅读
+
+<[更新 IP 数据库文件](../../datakit/datakit-tools-how-to.md#install-ipdb)>
 
 <[WEB 应用监控（RUM）最佳实践](../../best-practices/monitoring/web.md)>
 
+<[JAVA 应用 RUM-APM-LOG 联动分析](../../best-practices/insight/java-rum-apm-log.md)>
+
+<[Kubernetes 应用的 RUM-APM-LOG 联动分析](../../best-practices/cloud-native/k8s-rum-apm-log.md)>
 ## 故障排查
 
-- [产生 Script error 消息的原因](../../../real-user-monitoring/web/app-access#script-error)
+- [产生 Script error 消息的原因](../../real-user-monitoring/web/app-access.md#script-error)
 
-- [资源数据(ssl, tcp, dns, trans,ttfb)收集不完整问题](../../../real-user-monitoring/web/app-access#ssl-tcp-dns-transttfb)
+- [资源数据(ssl, tcp, dns, trans,ttfb)收集不完整问题](../../real-user-monitoring/web/app-access.md#ssl-tcp-dns-transttfb)
 
-- [针对跨域资源的问题](../../../real-user-monitoring/web/app-access#_11)
+- [针对跨域资源的问题](../../real-user-monitoring/web/app-access.md#header)

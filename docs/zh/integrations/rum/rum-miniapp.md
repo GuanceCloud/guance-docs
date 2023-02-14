@@ -109,7 +109,6 @@ datafluxRum.init({
 })
 
 ```
-
 ### Demo 展示
 
 CDN 本地方式引入示例：
@@ -131,14 +130,12 @@ CDN 本地方式引入示例：
 
 ![image](../imgs/input-rum-miniapp-9.png)
 
-## 检测库
-
-暂无
-
 ## 指标详解
 
 <[指标详细说明](../../real-user-monitoring/miniapp/app-data-collection.md)>
 
-## 最佳实践
+## 更多阅读
 
-暂无
+<[更新 IP 数据库文件](../../datakit/datakit-tools-how-to.md#install-ipdb)>
+
+<[Kubernetes 应用的 RUM-APM-LOG 联动分析](../../best-practices/cloud-native/k8s-rum-apm-log.md)>
