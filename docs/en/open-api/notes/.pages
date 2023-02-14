@@ -1,0 +1,4 @@
+nav:
+  - 'Get a List of Notes': list.md
+  - 'Export a Note': export.md
+  - 'Import a Note': import.md
