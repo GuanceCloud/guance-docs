@@ -1,11 +1,11 @@
-# 修改一个自建监控器
+# 修改一个自建巡检
 
 ---
 
 <br />**post /api/v1/self_built_checker/modify**
 
 ## 概述
-修改一个自建监控器
+修改一个自建巡检
 
 
 
@@ -14,9 +14,9 @@
 
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
-| monitorUUID | string |  | 通知策略(即监控器分组)UUID<br>允许空字符串: True <br> |
-| ruleUUID | string |  | 自建监控器的UUID<br>例子: rul_xxxxx <br>允许为空: False <br> |
-| refKey | string |  | 自建监控器的关联key<br>例子: xxx <br>允许为空: False <br> |
+| monitorUUID | string |  | 告警策略UUID<br>允许空字符串: True <br> |
+| ruleUUID | string |  | 自建巡检的UUID<br>例子: rul_xxxxx <br>允许为空: False <br> |
+| refKey | string |  | 自建巡检的关联key<br>例子: xxx <br>允许为空: False <br> |
 | title | string |  | 关联函数标题<br>例子: ref-xxx <br>允许为空: False <br> |
 | refFuncInfo | json |  | 关联函数配置信息<br>允许为空: False <br> |
 | refFuncInfo.description | string |  | 关联函数描述（即函数文档）<br>例子: ref-xxx <br>允许为空: False <br>允许空字符串: True <br> |

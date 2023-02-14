@@ -20,7 +20,7 @@
 | jsonScript | json |  | 规则配置<br>允许为空: False <br> |
 | jsonScript.type | string | Y | 检查方法类型<br>例子: simpleCheck <br>允许为空: False <br> |
 | jsonScript.name | string | Y | 检查项名字<br>例子: 自定义检查项AA <br>允许为空: False <br> |
-| jsonScript.title | string | Y | 生成event的标题<br>例子: 监视器: `{{monitor_name}}` 检查器:`{{monitor_checker_name}}` 触发值:`{{M1}}` <br>允许为空: False <br> |
+| jsonScript.title | string | Y | 生成event的标题<br>例子: 监控器: `{{monitor_name}}` 检查器:`{{monitor_checker_name}}` 触发值:`{{M1}}` <br>允许为空: False <br> |
 | jsonScript.message | string | Y | event内容<br>例子: status: {{status}}, title:`{{title}}` <br>允许为空: False <br> |
 | jsonScript.every | string |  | 检查频率<br>例子: 1m <br>允许为空: False <br> |
 | jsonScript.interval | integer |  | 查询区间，即一次查询的时间范围时差<br>例子: 60 <br>允许为空: False <br> |
