@@ -9,33 +9,33 @@
 
 1. 自建  [DataFlux Func](https://func.guance.com/#/) 的离线部署
 2. 开启自建 DataFlux Func 的[脚本市场](https://func.guance.com/doc/script-market-basic-usage/)
-3. 在观测云「管理 / API Key 管理」中创建用于进行操作的 [API Key](../../management/api-key/open-api.md)
+3. 在观测云「管理 / API Key 管理」中创建用于进行操作的 [API Key](../../../management/api-key/open-api.md)
 4. 在自建的 DataFlux Func 中，通过「脚本市场」安装「观测云自建巡检 Core 核心包」「观测云算法库」「 观测云自建巡检（K8S 健康巡检）」
 5. 在自建的 DataFlux Func 中，编写自建巡检处理函数
 6. 在自建的 DataFlux Func 中，通过「管理 / 自动触发配置」，为所编写的函数创建自动触发配置
 
-> **注意：**如果考虑采用云服务器来进行 DataFlux Func 离线部署的话，请考虑跟当前使用的观测云 SaaS 部署在[同一运营商同一地域](../../../getting-started/necessary-for-beginners/select-site/)。
+> **注意：**如果考虑采用云服务器来进行 DataFlux Func 离线部署的话，请考虑跟当前使用的观测云 SaaS 部署在[同一运营商同一地域](../../../../getting-started/necessary-for-beginners/select-site/)。
 
 ## 配置巡检
 
 在自建 DataFlux Func 创建新的脚本集开启 Kubernetes 健康巡检配置，新建脚本集之后，在创建巡检脚本时选择对应的脚本模板保存，在生成的新脚本文件中根据需要更改即可。
 
-![image](../img/k8s_health01.png)
+![image](../../img/k8s_health01.png)
 
 ## 开启巡检
 ### 在观测云中注册检测项
 
 在 DataFlux Func 中在配置好巡检之后可以通过直接再页面中选择 `run()` 方法进行点击运行进行测试，在点击发布之后就可以在观测云「监控 / 智能巡检」中查看并进行配置
 
-![image](../img/k8s_health02.png)
+![image](../../img/k8s_health02.png)
 
 
 ### 在观测云中配置 Kubernetes 健康巡检
 
-![image](../img/k8s_health03.png)
+![image](../../img/k8s_health03.png)
 
 #### 启用/禁用
-Kubernetes 健康巡检默认是「开启」状态，可手动「关闭」，开启后，将对配置好的 RUM 性能巡检配置列表进行巡检。
+Kubernetes 健康巡检默认是「开启」状态，可手动「关闭」，开启后，将对配置好的 Kubernetes 健康巡检配置列表进行巡检。
 
 #### 导出
 智能巡检支持“导出 JSON 配置”。在智能巡检列表右侧的操作菜单下，点击「导出」按钮，即可导出当前巡检的 JSON 代码，导出文件名格式：智能巡检名称.json 。
@@ -48,7 +48,7 @@ Kubernetes 健康巡检默认是「开启」状态，可手动「关闭」，开
 
 配置入口参数点击编辑后在参数配置中填写对应的检测对象点击保存开始巡检：
 
-![image](../img/k8s_health04.png)
+![image](../../img/k8s_health04.png)
 
 可以参考如下的 JSON 配置多个应用信息
 
@@ -68,7 +68,7 @@ Kubernetes 健康巡检默认是「开启」状态，可手动「关闭」，开
 ## 查看事件
 观测云会根据当前的 Kubernetes 集群的状态进行巡检当发现内存、磁盘、CPU、POD 异常时，智能巡检会生成相应的事件，在智能巡检列表右侧的操作菜单下，点击「查看相关事件」按钮，即可查看对应异常事件。
 
-![image](../img/k8s_health05.png)
+![image](../../img/k8s_health05.png)
 
 ### 事件详情页
 点击「事件」，可查看智能巡检事件的详情页，包括事件状态、异常发生的时间、异常名称、基础属性、事件详情、告警通知、历史记录和关联事件。
@@ -80,13 +80,13 @@ Kubernetes 健康巡检默认是「开启」状态，可手动「关闭」，开
 * 检测维度：基于智能巡检配置的筛选条件，支持将检测维度 `key/value` 复制、添加到筛选、以及查看相关日志、容器、进程、安全巡检、链路、用户访问监测、可用性监测以及 CI 等数据
 * 扩展属性：选择扩展属性后支持以 `key/value` 的形式复制、正向/反向筛选
 
-![image](../img/k8s_health06.png)
+![image](../../img/k8s_health06.png)
 
 #### 事件详情
 
 ##### 内存使用率异常
 
-![image](../img/k8s_health07.png)
+![image](../../img/k8s_health07.png)
 
 * 事件概览：描述异常巡检事件的对象、内容等
 * 异常详情：可查看内存异常指标详情
@@ -94,7 +94,7 @@ Kubernetes 健康巡检默认是「开启」状态，可手动「关闭」，开
 
 ##### 磁盘使用率异常
 
-![image](../img/k8s_health08.png)
+![image](../../img/k8s_health08.png)
 
 * 事件概览：描述异常巡检事件的对象、内容等
 * 异常详情：可查看磁盘异常指标详情
@@ -102,7 +102,7 @@ Kubernetes 健康巡检默认是「开启」状态，可手动「关闭」，开
 
 ##### CPU 使用率异常
 
-![image](../img/k8s_health09.png)
+![image](../../img/k8s_health09.png)
 
 * 事件概览：描述异常巡检事件的对象、内容等
 * 异常详情：可查看 CPU 使用率异常指标详情
@@ -110,7 +110,7 @@ Kubernetes 健康巡检默认是「开启」状态，可手动「关闭」，开
 
 ##### Pod Pending 占比过高
 
-![image](../img/k8s_health10.png)
+![image](../../img/k8s_health10.png)
 
 * 事件概览：描述异常巡检事件的对象、内容等
 * 异常 POD：可查看异常 Pod 的详细信息，也可以通过 Pod 名称跳转到对应的 Pod 详情
@@ -120,12 +120,12 @@ Kubernetes 健康巡检默认是「开启」状态，可手动「关闭」，开
 
 支持查看检测对象、异常/恢复时间和持续时长。
 
-![image](../img/k8s_health11.png)
+![image](../../img/k8s_health11.png)
 
 #### 关联事件
 支持通过筛选字段和所选取的时间组件信息，查看关联事件。
 
-![image](../img/k8s_health12.png)
+![image](../../img/k8s_health12.png)
 
 ## 常见问题
 **1.Kubernetes 健康巡检的检测频率如何配置**
