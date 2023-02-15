@@ -40,7 +40,7 @@ icon: octicons/cloud-16
 
     ---
 
-    指导观测 [`CDB`](./tencent/cdb.md) [`COS`](./tencent/cos.md) [`CLB`](./tencent/clb.md) [`CVM`](./tencent/cvm.md) 等指标集数据
+    指导观测 [`CDB`](./tencent/cdb.md) [`COS`](./tencent/cos.md) [`CLB`](./tencent/clb.md) [`CVM`](./tencent/cvm.md) [`Redis 内存版`](./tencent/redis-mem.md) 等指标集数据
 
     <br/>
     [**:octicons-arrow-right-24: Getting more**](./tencent/tencent-prod-func.md)
