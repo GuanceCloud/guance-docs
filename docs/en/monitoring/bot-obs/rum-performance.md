@@ -107,7 +107,7 @@ Support to view associated events by filtering fields and selected time componen
 
 ![image](../img/rum_performance11.png)
 
-## 常见问题
+## FAQ
 **1.How to configure the detection frequency of RUM Performance Intelligent Inspection**
 
 In the  DataFlux Func, add `fixed_crontab='0 * * * *', timeout=900` in the decorator when writing the intelligent inspection processing function, and then configure it in "Administration/Auto-trigger Configuration".

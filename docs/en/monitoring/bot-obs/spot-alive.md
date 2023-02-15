@@ -10,7 +10,7 @@ Since the market price of the preemptible instances fluctuates with the change o
 1. Offline deployment of [DataFlux Func](https://func.guance.com/#/).
 2. Open DataFlux Func's [Script Marketplace](https://func.guance.com/doc/script-market-basic-usage/)
 3. In Guance「Management / API Key Management」create [API Key](../../../management/api-key/open-api.md)
-4. In DataFlux Func，by「Script Marketplace」to install「Guance  Core Package」「Guance Algorithm Library」「Guance  script (Alibaba Cloud Preemptible)」.
+4. In DataFlux Func，by「Script Marketplace」to install「Guance  Core Package」「Guance Algorithm Library」「Guance  script (Alibaba Cloud Spot Alive)」.
 5. In DataFlux Func, write  patrol processing functions.
 6. In DataFlux Func , by「Manage / Auto-trigger Configurations」,create an automatic trigger configuration for the written function.
 
