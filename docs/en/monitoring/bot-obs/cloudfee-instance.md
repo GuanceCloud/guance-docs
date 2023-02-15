@@ -15,7 +15,7 @@ Cloud (now only suport alibaba cloud) Account Billing Inspection helps subscribe
 6. In the DataFlux Func, write the  check processing function
 7. In the  DataFlux Func, create auto-trigger configuration for the written function through "Manage/Auto-trigger Configuration"
 
-> **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance SaaS[on [the same carrier in the same region](../../../getting-started/necessary-for-beginners/select-site/)。
+> **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance SaaS on [the same carrier in the same region](../../../getting-started/necessary-for-beginners/select-site/)。
 >
 > **Note 2:** Since instance level billing data is stored in logs, Observation Cloud SaaS log data is only stored for 15 days by default.
 
