@@ -1,2 +1,3 @@
 nav:
   - 'Pod 异常重启巡检': k8s-pod-restart.md
+  - 'Kubernetes 健康巡检': k8s-health.md
