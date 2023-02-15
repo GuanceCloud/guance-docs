@@ -11,7 +11,7 @@ RUM error log inspection will help discover new error messages (Error Message af
 2. Offline deployment of [DataFlux Func](https://func.guance.com/#/)
 3. Open DataFlux Func's [Script Marketplace](https://func.guance.com/doc/script-market-basic-usage/)
 4. In Guance「Management / API Key Management」create [API Key](../../../management/api-key/open-api.md)
-5. In DataFlux Func，by「Script Marketplace」to install「Guance  Core Package」「Guance Algorithm Library」「Guance  script RUM Log Error)」.
+5. In DataFlux Func，by「Script Marketplace」to install「Guance  Core Package」「Guance Algorithm Library」「Guance  script (RUM Log Error)」.
 6. In DataFlux Func, write  patrol processing functions.
 7. In DataFlux Func , by「Manage / Auto-trigger Configurations」,create an automatic trigger configuration for the written function.
 
@@ -100,7 +100,7 @@ Support to view associated events by filtering fields and selected time componen
 ## FAQ
 **1.How to configure the detection frequency of front-end application log error detection**
 
-* In the  DataFlux Func, add `fixed_crontab='0 * * * *', timeout=900` in the decorator when writing the intelligent inspection processing function, and then configure it in "Administration/Auto-trigger Configuration".
+In the  DataFlux Func, add `fixed_crontab='0 * * * *', timeout=900` in the decorator when writing the intelligent inspection processing function, and then configure it in "Administration/Auto-trigger Configuration".
 
 **2.There may be no anomaly analysis when the front-end application log error detection is triggered**
 
