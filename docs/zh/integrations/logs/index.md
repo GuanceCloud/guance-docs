@@ -14,7 +14,7 @@ icon: material/math-log
 
 <div class="grid cards" markdown>
 
--   :fontawesome-solid-code-merge:{ .lg .middle } __CI/CD__
+-   :material-math-log:{ .lg .middle } __日志采集__
 
     ---
     

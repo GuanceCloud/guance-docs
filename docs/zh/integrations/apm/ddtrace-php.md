@@ -116,27 +116,17 @@ PHP 所有的部署方式均是在应用启动的环境变量中添加 `ddtrace-
 
 ![image](../imgs/input-ddtrace-php-6.png)
 
-#### 链路分析
-
-<[服务](../../application-performance-monitoring/service.md)><br />
-<[链路分析](../../application-performance-monitoring/explorer.md)>
+### [支持的环境变量](../../datakit/ddtrace-php.md#envs)
 
 ## 场景视图
 
 观测云台已内置 应用性能监测模块，无需手动创建
 
-## 异常检测
 
-暂无
+## 更多阅读
 
-## 相关术语说明
+<[应用性能监测功能介绍](../../application-performance-monitoring/index.md)>
 
-<[链路追踪-字段说明](../../../application-performance-monitoring/collection)>
-
-## 最佳实践
+<[链路追踪-字段说明](../../application-performance-monitoring/collection/index.md#_5)>
 
 <[链路追踪（APM）最佳实践](../../best-practices/monitoring/apm.md)>
-
-## 故障排查
-
-暂无
