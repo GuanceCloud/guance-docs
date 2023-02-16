@@ -5,7 +5,7 @@ nav:
   - '空间管理': space-management.md
   - '成员管理': member-management.md
   - '角色管理': role-management.md
-  - '角色清单': role-list.md
+  - '权限清单': role-list.md
   - 'SSO管理': sso
   - '文本处理（Pipelines）': overall-pipeline.md
   - '字段管理': field-management.md
