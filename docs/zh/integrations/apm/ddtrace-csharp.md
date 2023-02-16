@@ -103,27 +103,14 @@ net stop /y was
 net start w3svc
 ```
 
-#### 链路分析
-
-<[服务](../../application-performance-monitoring/service.md)><br />
-<[链路分析](../../application-performance-monitoring/explorer.md)>
-
 ## 场景视图
 
 观测云平台已内置 应用性能监测模块，无需手动创建
 
-## 监控规则
+## 更多阅读
 
-暂无
+<[应用性能监测功能介绍](../../application-performance-monitoring/index.md)>
 
-## 相关术语说明
-
-<[链路追踪-字段说明](../../../application-performance-monitoring/collection)>
-
-## 最佳实践
+<[链路追踪-字段说明](../../application-performance-monitoring/collection/index.md#_5)>
 
 <[链路追踪（APM）最佳实践](../../best-practices/monitoring/apm.md)>
-
-## 故障排查
-
-暂无
