@@ -11,7 +11,7 @@ Guance's funnel charts are used to compare data at each step in the process. For
 
 ## Chart Query
 
-Chart query supports 「simple query」, 「expression query」 and 「DQL query」, please click [chart-query](chart-query.md) for detailed explanation of chart query conditions. The set of indicators and indicators of the query can be different, but the by (grouping) Tag must be the same, modify one, the other queries are automatically modified synchronously.
+Chart query supports 「simple query」, 「expression query」 and 「DQL query」, please click [chart-query](chart-query.md) for detailed explanation of chart query conditions. The set of metrics and metrics of the query can be different, but the by (grouping) Tag must be the same, modify one, the other queries are automatically modified synchronously.
 
 ## Chart Linking
 
@@ -21,8 +21,8 @@ Links can help you jump from the current chart to the target page, support addin
 | Options | Description |
 | --- | --- |
 | Chart Title | Set the title for the chart, after setting, it will be displayed on the top left of the chart, and it supports hiding |
-| Color | Set the chart data display color, support custom manual input preset color, input format: aggregation function (indicator) {"label": "label value"}, such as `last(usage_idle){"host": "guance_01"}` |
-| Alias | <li>Supports adding aliases to grouped queries. After adding aliases, the name of the legend changes, making it easier to distinguish related indicators more intuitively.<br/><li>Support custom manual input of preset aliases, input format: aggregation function(indicator){"tag": "tag value"}, such as `last(usage_idle){"host": "guance_01"}` |
+| Color | Set the chart data display color, support custom manual input preset color, input format: aggregation function (metric) {"label": "label value"}, such as `last(usage_idle){"host": "guance_01"}` |
+| Alias | <li>Supports adding aliases to grouped queries. After adding aliases, the name of the legend changes, making it easier to distinguish related metrics more intuitively.<br/><li>Support custom manual input of preset aliases, input format: aggregation function(metric){"tag": "tag value"}, such as `last(usage_idle){"host": "guance_01"}` |
 
 
 ## Chart Setup
@@ -30,7 +30,7 @@ Links can help you jump from the current chart to the target page, support addin
 ### Basic Settings
 | Options | Description |
 | --- | --- |
-| Unit | 1. Support setting units for query results.<br />1）If the queried data has no unit, after setting the unit in the chart, it will be displayed on the chart according to the set unit<br />2）If the query data comes with its own units, or if you are in [Indicator Management] (../../metrics/dictionary.md), and you set the units for the metrics in the chart, the units set in the chart will be displayed on the chart.<br />3）If the query data has no units and no units are set in the chart, the chart Y-axis values are automatically calculated according to scientific notation; the original values are displayed on the chart in the format [thousandths] (chart-query.md#thousand).<br /> **Scientific counting instructions**<br />Default query result value is automatically converted to units, display follows 「scientific notation K, M, B」 (1 thousand = 1K, 1 million = 1M, 1 billion = 1B), retaining two decimal points; RMB is automatically converted to units 「yuan, million, billion」, retaining two decimal points<br />*For example, if the unit of time interval is selected as ns, then according to the size of the data, the query result will only automatically convert the unit effect as follows, and so on：*<br /><li>1000000ns：Chart query data results in 1ms<br /><li>1000000000ns：The chart query data result shows 1s<br /><li>10000000000ns：The chart query data result shows 1m<br /><br/>2.Support for query results preset units, manual input format: aggregation function (indicator), such as `last(age_idle)` |
+| Unit | 1. Support setting units for query results.<br />1）If the queried data has no unit, after setting the unit in the chart, it will be displayed on the chart according to the set unit<br />2）If the query data comes with its own units, or if you are in [Metric Management] (../../metrics/dictionary.md), and you set the units for the metrics in the chart, the units set in the chart will be displayed on the chart.<br />3）If the query data has no units and no units are set in the chart, the chart Y-axis values are automatically calculated according to scientific notation; the original values are displayed on the chart in the format [thousandths] (chart-query.md#thousand).<br /> **Scientific counting instructions**<br />Default query result value is automatically converted to units, display follows 「scientific notation K, M, B」 (1 thousand = 1K, 1 million = 1M, 1 billion = 1B), retaining two decimal points; RMB is automatically converted to units 「yuan, million, billion」, retaining two decimal points<br />*For example, if the unit of time interval is selected as ns, then according to the size of the data, the query result will only automatically convert the unit effect as follows, and so on：*<br /><li>1000000ns：Chart query data results in 1ms<br /><li>1000000000ns：The chart query data result shows 1s<br /><li>10000000000ns：The chart query data result shows 1m<br /><br/>2.Support for query results preset units, manual input format: aggregation function (metric), such as `last(age_idle)` |
 
 ### Advanced Settings
 | Options | Description |

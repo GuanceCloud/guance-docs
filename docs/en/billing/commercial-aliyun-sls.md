@@ -212,7 +212,7 @@ Data such as metrics, logs, backup logs, availability monitoring, CI, security c
 - Logs, Availability Monitor, CI, Scheck, Events: Logstore of SLS Standard type
 - Backup log: Logstore of type SLS Query
 
-> Note: Because the SLS data expiration policy only supports TTL expiration custom cleanup, Guance's practice of reducing the number of timelines by adjusting the data preservation policy of measurement does not take effect in the SLS exclusive workspace.
+> Note: Because the SLS data expiration policy only supports TTL expiration custom cleanup, Guance's practice of reducing the number of timeseries by adjusting the data preservation policy of measurement does not take effect in the SLS exclusive workspace.
 
 **2.Can I change the data storage area of the exclusive plan of Guance?**
 
@@ -223,7 +223,7 @@ No, Guance will create Project and Metricstore and Logstore data indexes in the 
 
 ### Guance Exclusive Plan Billing
 
-**1.After opening the exclusive plan of observation cloud, how to charge the log data collected by using Guance collector DataKit?**
+**1.After opening the exclusive plan of guance, how to charge the log data collected by using Guance collector DataKit?**
 
 The log data collected through DataKit is charged according to Guance log charging logic, which can be found in the doc [billing method](../billing/billing-method/index.md).
 

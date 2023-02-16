@@ -7,7 +7,7 @@ Log flow diagram supports users to search, filter, and display log data recorded
 
 ## Application Scenarios
 
-Observation Cloud's log flow graph is used to search, filter, and display log data. For example, you can query the last 15 minutes of nginx log content.
+Guance's log flow graph is used to search, filter, and display log data. For example, you can query the last 15 minutes of nginx log content.
 
 ## Chart Search
 

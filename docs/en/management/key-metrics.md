@@ -40,7 +40,7 @@ After clicking "Add Key Metrics", you will jump to「[metric analysis](../metric
 
 ### View Key Metrics
 
-Click the View icon to the right of the key indicator![](img/3.key_metrics_7.png), you can jump to Metric Analysis to view the query statement. If there are less than 3 key metrics, you can modify the query statement and add new key metrics.
+Click the View icon to the right of the key metric![](img/3.key_metrics_7.png), you can jump to Metric Analysis to view the query statement. If there are less than 3 key metrics, you can modify the query statement and add new key metrics.
 
 ![](img/3.key_metrics_3.png)
 

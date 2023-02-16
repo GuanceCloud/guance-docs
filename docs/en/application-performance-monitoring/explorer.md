@@ -42,7 +42,7 @@ In the link explorer search bar, it supports keyword search, wildcard search, as
 
 ### Analysis Mode
 
-In the analysis bar of link viewer, multi-dimensional analysis and statistics based on **1-3 tags** are supported to reflect the distribution characteristics and trends of data in different dimensions and at different times. Guance supports a variety of data chart analysis methods, including time sequence chart, ranking list, pie chart and rectangular tree chart. For more details, please refer to the document [analysis Mode for the explorer](../getting-started/necessary-for-beginners/explorer-search.md#analysis).
+In the analysis bar of link explorer, multi-dimensional analysis and statistics based on **1-3 tags** are supported to reflect the distribution characteristics and trends of data in different dimensions and at different times. Guance supports a variety of data chart analysis methods, including time sequence chart, ranking list, pie chart and rectangular tree chart. For more details, please refer to the document [analysis Mode for the explorer](../getting-started/necessary-for-beginners/explorer-search.md#analysis).
 
 ### Quick Filter
 
@@ -50,7 +50,7 @@ Shortcut Filter in Link Explorer, support editing "Shortcut Filter" and add new 
 
 ### Filter History
 
-Guance supports saving the search condition history of viewer `key:value` in "filter history", which is applied to different viewers in the current workspace. See the documentation [filter history](../getting-started/necessary-for-beginners/explorer-search.md#filter-history).
+Guance supports saving the search condition history of explorer `key:value` in "filter history", which is applied to different explorers in the current workspace. See the documentation [filter history](../getting-started/necessary-for-beginners/explorer-search.md#filter-history).
 
 ### Chart Statistics
 

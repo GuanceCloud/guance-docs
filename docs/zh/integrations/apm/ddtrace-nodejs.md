@@ -108,6 +108,12 @@ npm run start
 
 访问一下应用, 以便生成链路数据, 进入观测云「应用性能监测」即可看到自己的应用。
 
-## 常见问题排查
+### [支持的环境变量](../../datakit/ddtrace-nodejs.md#envs)
 
-<[无数据上报排查](../../datakit/why-no-data.md)>
+## 更多阅读
+
+<[应用性能监测功能介绍](../../application-performance-monitoring/index.md)>
+
+<[链路追踪-字段说明](../../application-performance-monitoring/collection/index.md#_5)>
+
+<[链路追踪（APM）最佳实践](../../best-practices/monitoring/apm.md)>

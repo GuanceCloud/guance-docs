@@ -3,11 +3,12 @@
 
 在 [观测云官网](https://www.guance.com/) ，点击「[免费开始](https://auth.guance.com/businessRegister)」，填写相关信息后即可成为观测云用户。
 
-## 第一步：基本信息
+## 第一步：基本信息 {#info}
 
 在「基本信息」页面，选择站点、输入注册信息，点击「下一步」。
 
 ![](img/commercial-register-1.png)
+
 ### 站点说明 {#site}
 
 观测云提供多个注册站点，可根据您当前云环境或者结算方式等实际情况，选择对应站点。
@@ -39,15 +40,23 @@
 
 ## 第三步：选择开通方式
 
-根据[「第一步：基本信息」](#_2)中所选择的站点，第三步会显示对应默认的开通方式页面。
+根据[「第一步：基本信息」](#info)中所选择的站点，第三步会显示对应默认的开通方式页面。
 
 > 费用结算方式详情，可参考文档 [<观测云费用结算方式>](../billing/billing-account/index.md) 。
+
+### 工作空间名称
+
+工作空间即为观测云数据洞察的协作空间，用户可以在工作空间进行数据查询与分析，支持自定义工作空间名称。
+
+### 工作空间语言
+
+工作空间语言选项会影响工作空间内事件、告警、短信等模板。若选择英文，上述对应模板将默认使用英文模板，一旦创建，此工作空间的模版语言不可修改，请谨慎选择。
 
 ### 阿里云账号结算 {#aliyun}
 
 若您在注册时选择 “**中国区1（杭州）**” 站点，观测云默认提供阿里云账号结算，工作空间内产生的所有费用会直接从您的阿里云账户中进行结算。
 
-您可以在「选择开通方式」，填写「工作空间名称」，点击「[前往阿里云免费开通观测云服务](https://market.aliyun.com/products/56838014/cmgj00053362.html)」获取并填写「[阿里用户 ID](../billing/billing-account/aliyun-account.md#uid)」、「[商品实例ID](../billing/billing-account/aliyun-account.md#entity-id)」，点击「确定」即可完成注册。
+您可以在「选择开通方式」，填写「工作空间名称」，选择「工作空间语言」，点击「[前往阿里云免费开通观测云服务](https://market.aliyun.com/products/56838014/cmgj00053362.html)」获取并填写「[阿里用户 ID](../billing/billing-account/aliyun-account.md#uid)」、「[商品实例ID](../billing/billing-account/aliyun-account.md#entity-id)」，点击「确定」即可完成注册。
 
 ???+ attention
 
@@ -58,7 +67,7 @@
     - 若您是阿里云 SLS 用户，且需要在观测云使用 SLS 存储方式，您可以直接在 [阿里云市场观测云专属版](https://market.aliyun.com/products/56838014/cmgj00060481.html) ，购买观测云专属版，并直接通过免登注册开通观测云专属版。<br/>
     > 更多详情步骤可参考文档 [<阿里云市场开通观测云专属版>](commercial-aliyun-sls.md) 、[<观测云商业版和观测云专属版的区别>](../billing/faq.md#_5)。
 
-![](img/8.register_1.png)
+![](img/4.register_language_1.png)
 
 <div class="grid cards" markdown>
 
@@ -72,9 +81,9 @@
 
 若您在注册时选择 “**中国区2（宁夏）**”、“**海外区1（俄勒冈）**”站点，观测云默认提供 AWS 账号结算，工作空间内产生的所有费用会直接从您的 AWS 账户中进行结算。
 
-您可以在「选择开通方式」，点击「 [前往亚马逊云市场订阅](../billing/billing-account/aws-account.md#subscribe) 」，在 AWS 订阅观测云。完成订阅以后，在下面的对话框输入「工作空间名称」，点击「确定」即可完成注册。
+您可以在「选择开通方式」，点击「 [前往亚马逊云市场订阅](../billing/billing-account/aws-account.md#subscribe) 」，在 AWS 订阅观测云。完成订阅以后，在下面的对话框输入「工作空间名称」，选择「工作空间语言」，点击「确定」即可完成注册。
 
-![](img/8.register_3.png)
+![](img/4.register_language_2.1.png)
 
 <div class="grid cards" markdown>
 
@@ -88,9 +97,9 @@
 
 若您在注册时选择 “**中国区4（广州）**”站点，观测云默认提供观测云企业账号结算，工作空间内产生的所有费用会直接从您的「[观测云费用中心](https://boss.guance.com/)」所购买的代金券、华为云储值卡余额等进行结算。
 
-您可以在「选择开通方式」，在下面的对话框输入「工作空间名称」，点击「确定」即可完成注册。
+您可以在「选择开通方式」，在下面的对话框输入「工作空间名称」，选择「工作空间语言」，点击「确定」即可完成注册。
 
-![](img/8.register_4.png)
+![](img/4.register_language_2.2.png)
 
 <div class="grid cards" markdown>
 
@@ -118,8 +127,15 @@
 
 </div>
 
+若您注册时，只完成了第二步，登录时会提示创建工作空间，选择需要创建的工作空间类型即可完成注册登录。
+
+![](img/4.register_language_3.png)
+
+
 ## 开始使用观测云
 
 首次注册进入工作空间，可观看观测云介绍小视频，或者您可以点击“从安装 DataKit 开始”即可安装配置第一个 DataKit 。
 
 ![](img/1-free-start-1109.png)
+
+

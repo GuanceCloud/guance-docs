@@ -4,7 +4,7 @@
 Guance supports custom log collection and standard log collection.
 
 - Custom log collection: Go to the conf.d/log directory under the DataKit installation directory, copy logging.conf.sample and name it logging.conf for configuration. After the configuration is completed, restarting DataKit will take effect.
-- Standard log collection: By opening log collectors supported by observation cloud, such as [Nginx](../../integrations/webserver/nginx.md), [Redis](../../integrations/datastorage/redis.md) and [ElasticSearch](../../integrations/datastorage/elasticsearch.md), log collection can be started with one click.
+- Standard log collection: By opening log collectors supported by guance, such as [Nginx](../../integrations/webserver/nginx.md), [Redis](../../integrations/datastorage/redis.md) and [ElasticSearch](../../integrations/datastorage/elasticsearch.md), log collection can be started with one click.
 
 ## Turn on Custom Log Collection
 

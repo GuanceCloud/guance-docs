@@ -146,7 +146,7 @@ Observation skills
 
 - Operating system support: :fontawesome-brands-linux: :material-kubernetes:
 
-DCGM indicator display: including GPU card temperature, clock, GPU occupancy rate, memory occupancy rate, etc.
+DCGM metric display: including GPU card temperature, clock, GPU occupancy rate, memory occupancy rate, etc.
 
 ### DCGM Metrics Preconditions {#DCGM-precondition}
 
@@ -175,7 +175,7 @@ Go to the `conf.d/Prom` directory under the DataKit installation directory, copy
 
   # Collection data output source
   # Configure this to write collected data to a local file instead of typing the data to the center
-  # You can debug the locally saved metric set directly with the datakit --prom-conf /path/to/this/conf command
+  # You can debug the locally saved measurement directly with the datakit --prom-conf /path/to/this/conf command
   # If url has been configured as the local file path, then --prom-conf takes precedence over debugging the data in the output path
   # output = "/abs/path/to/file"
 

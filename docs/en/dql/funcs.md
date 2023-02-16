@@ -202,7 +202,7 @@ show_custom_object_history_field()
 <a name="BlqWk"></a>
 ### show_event_field()
 
--  Description: Showing all fields lists under the `source` indicator. 
+-  Description: Showing all fields lists under the `source` metric. 
 -  Example: `show_event_field('datafluxTrigger')`, with the same return structure as `show_object_field()`.
 
 <a name="HdX22"></a>
@@ -248,7 +248,7 @@ show_custom_object_history_field()
 <a name="per0T"></a>
 ### show_rum_field()
 
--  Description: Showing all fields lists under the `source_value` indicator.
+-  Description: Showing all fields lists under the `source_value` metric.
 -  Example: `show_rum_field('js_error')`, with the same return structure as `show_object_field()`.
 
 <a name="DyXw0"></a>
@@ -352,13 +352,13 @@ show_cobject_field('servers')
 <a name="tP9jv"></a>
 ### show_measurement()
 
-- Description: Indicator set showing timing data
+- Description: Measurement showing timing data
 - Example: `show_measurement()`, with the same return structure as `show_object_source()`.
 
 <a name="sz2zQ"></a>
 ### show_tag_key()
 
-- Description: Viewing the indicator set tag list, and you can specify specific indicators.
+- Description: Viewing the measurement tag list, and you can specify specific metrics.
 - Example:
 
 ```python
@@ -432,7 +432,7 @@ show_tag_value(from=['cpu'], keyin=['host'])
 <a name="bb59s"></a>
 ### show_field_key()
 
-- Description: Viewing the field key list of indicator sets.
+- Description: Viewing the field key list of measurements.
 - Example: `show_field_key(from=['cpu'])`, with the same return structure as `show_object_field()`
 
 <a name="85e1bb5b"></a>
@@ -1712,7 +1712,7 @@ rum::js_error:(sdk_name, error_message) { error_message=match('not defined') } l
 > Note: Regular queries have very low performance and are not recommended.
 
 
-> Tips: Regular syntax for temporal indicator (`M`) data is referenced [Here](https://pkg.go.dev/regexp/syntax) and regular syntax for non-temporal indicator data is referenced [Here](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-regexp-query.html).
+> Tips: Regular syntax for temporal metric (`M`) data is referenced [Here](https://pkg.go.dev/regexp/syntax) and regular syntax for non-temporal metric data is referenced [Here](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-regexp-query.html).
 
 
 - Example:

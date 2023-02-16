@@ -22,7 +22,7 @@ Or you can directly click on the following link to download.
 
 ### Login
 
-Users of the existing free/agile version of Guance can select the site corresponding to the account and log in to the mobile terminal of observation cloud by means of account password and mobile phone verification code. If you don't have an Guance account yet, you can go to the observation cloud official website  [apply now](https://auth.guance.com/register) and choose to register a suitable site account. If you need to switch accounts, please log out of the current user first.
+Users of the existing free/agile version of Guance can select the site corresponding to the account and log in to the mobile terminal of guance by means of account password and mobile phone verification code. If you don't have an Guance account yet, you can go to the guance official website  [apply now](https://auth.guance.com/register) and choose to register a suitable site account. If you need to switch accounts, please log out of the current user first.
 
 ### Workspace
 
@@ -48,17 +48,17 @@ By observing the search, filtering and filtering components on the cloud mobile 
 The Guance mobile terminal still provides you with time components to set the time range of scene view, log and event data display. You can quickly select the preset time range, or customize the time range by selecting the start and end time.
 
 #### Keyword Search
-Keyword search saves you the trouble of locating and finding data in massive data. Through the search button, you can search related text data in scene view, log and event viewer.
+Keyword search saves you the trouble of locating and finding data in massive data. Through the search button, you can search related text data in scene view, log and event explorer.
 
 #### List Sorting
 The Guance mobile terminal supports forward sorting and reverse sorting of the original list.
 
 ## Scene
-Scenario module enables users to view all accessible dashboards, notes and viewers in their workspace.
+Scenario module enables users to view all accessible dashboards, notes and explorers in their workspace.
 
 ### Dashboard
 
-The **dashboard**, the data insight scenario, supports adding a variety of visual charts for data display, helping users intuitively track, analyze and display key performance indicators, and monitor the overall operation status. Switch the viewer to "Dashboard", you can view all the dashboards in the current space that meet different business scenarios.
+The **dashboard**, the data insight scenario, supports adding a variety of visual charts for data display, helping users intuitively track, analyze and display key performance metrics, and monitor the overall operation status. Switch the explorer to "Dashboard", you can view all the dashboards in the current space that meet different business scenarios.
 
 Guance allows you to switch "All Dashboards", "My Favorites", "Import Projects", "My Creations" and "Browse Frequently" by clicking the drop-down menu to quickly filter and find the corresponding dashboard. The dashboard is synchronized with the contents of the web page. For details, please refer to the [dashboard](../scene/dashboard.md).            ![](img/app_2.png)
 
@@ -74,9 +74,9 @@ Guance supports you to switch "All Notes", "My Favorites" and "My Creation" by c
 
 ### Explorer
 
-**Explorer** is a custom log explorer, which supports various customized log viewing requirements in the viewing space. Switch the viewer to Viewer, so that you can view all the viewers within the view permission in the current space.
+**Explorer** is a custom log explorer, which supports various customized log viewing requirements in the viewing space. Switch the explorer to Explorer, so that you can view all the explorers within the view permission in the current space.
 
-Guance allows you to switch "All Viewers", "My Favorites", "Import Items", "My Creations" and "Browse Frequently" by clicking the drop-down menu to quickly filter and find the corresponding viewer. The viewer is synchronized with the content on the web page. For details, please refer to the [explorer](../scene/explorer/custom-explorer.md).
+Guance allows you to switch "All Explorers", "My Favorites", "Import Items", "My Creations" and "Browse Frequently" by clicking the drop-down menu to quickly filter and find the corresponding explorer. The explorer is synchronized with the content on the web page. For details, please refer to the [explorer](../scene/explorer/custom-explorer.md).
 
 
 
@@ -89,7 +89,7 @@ In Log, you can view the log data of the Guance workbench synchronously. By sele
 
 
 ## Events
-The Guance mobile terminal supports you to keep connected with the observation cloud workbench anytime and anywhere. You can view, search and filter all unrecovered events, emergency events, important events, warning event contents, etc. triggered by "Monitor" through "All" events; Through the "My" event, you can view the event contents notified to you by email, nailing robot, enterprise WeChat robot, Webhook, etc., which have not been recovered yet. After an alarm event notifies you, the observation cloud mobile terminal will send a notification to you in time to ensure that you can respond quickly and solve related problems. See [event explorer](../events/explorer.md).
+The Guance mobile terminal supports you to keep connected with the guance workbench anytime and anywhere. You can view, search and filter all unrecovered events, emergency events, important events, warning event contents, etc. triggered by "Monitor" through "All" events; Through the "My" event, you can view the event contents notified to you by email, nailing robot, enterprise WeChat robot, Webhook, etc., which have not been recovered yet. After an alarm event notifies you, the guance mobile terminal will send a notification to you in time to ensure that you can respond quickly and solve related problems. See [event explorer](../events/explorer.md).
 
 Note: The Guance mobile terminal only provides you with 1000 pieces of time data in the "All" event/"My" event. If you need to view more time, please go to the web page to view more.
 

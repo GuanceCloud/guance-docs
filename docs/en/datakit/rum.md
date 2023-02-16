@@ -120,7 +120,7 @@ disable_404page = true
 
 ## Measurements {#measurements}
 
-The RUM collector collects the following metric sets by default:
+The RUM collector collects the following measurements by default:
 
 - `error`
 - `view`
@@ -132,7 +132,7 @@ The RUM collector collects the following metric sets by default:
 
 Usually, js files in production environment or App code on mobile side will be confused and compressed to reduce the size of application. The call stack when an error occurs is quite different from the source code at development time, which is inconvenient for debugging (`troubleshoot`). If you need to locate errors in the source code, you have to rely on the `sourcemap` file.
 
-DataKit supports this mapping of source code file information by zipping the corresponding symbol table file, named `<app_id>-<env>-<version>.zip` and uploading it to`<DataKit Installation Directory>/data/rum/<platform>` so that the reported `error` measurement data can be automatically converted and the `error_stack_source` field appended to the metric set.
+DataKit supports this mapping of source code file information by zipping the corresponding symbol table file, named `<app_id>-<env>-<version>.zip` and uploading it to`<DataKit Installation Directory>/data/rum/<platform>` so that the reported `error` measurement data can be automatically converted and the `error_stack_source` field appended to the measurement.
 
 ### Install the sourcemap Toolset {#install-tools}
 

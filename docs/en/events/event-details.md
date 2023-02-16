@@ -24,14 +24,14 @@ Supports viewing state distribution trends of events, DQL functions and window f
 ![](img/5.event_9.png)
 
 - Status distribution: show the status (urgent, important, warning, no data) of events within the selected time range (default shows the last 6 hours)
-- DQL query statement: Real-time indicator data returned by a custom query statement based on anomaly detection rules, showing the real-time indicator data of the last 6 hours by default
-- Window function: Based on anomaly detection rules, taking the selected time range as the window (record set) and the detection frequency as the offset, the statistical calculation is carried out again for each record, and the real-time anomaly detection index data used to trigger the alarm is returned. showing the real-time anomaly detection indicator data of the last 6 hours by default
+- DQL query statement: Real-time metric data returned by a custom query statement based on anomaly detection rules, showing the real-time metric data of the last 6 hours by default
+- Window function: Based on anomaly detection rules, taking the selected time range as the window (record set) and the detection frequency as the offset, the statistical calculation is carried out again for each record, and the real-time anomaly detection index data used to trigger the alarm is returned. showing the real-time anomaly detection metric data of the last 6 hours by default
 
 ![](img/image.png)
 
 **Note:** In the event details, Guance supports selecting the time range to view the event data
 
-   - When the time range you select is less than ( < = ) 6 hours, "state distribution", "DQL function" and "window function" will show the data and indicator trends of the current time range.
+   - When the time range you select is less than ( < = ) 6 hours, "state distribution", "DQL function" and "window function" will show the data and metric trends of the current time range.
    - When the time range you select is greater than ( > ) 6 hours, "Status Distribution" and "DQL Functions" will display the data of the current time range and an adjustable interval slider will appear (the display range supports a minimum of 15 minutes and a maximum of 6 hours). By moving the interval slider, you can view the "window function" corresponding to its time range
 
 ### Historical Record

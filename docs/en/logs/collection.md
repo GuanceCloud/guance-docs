@@ -3,7 +3,7 @@
 
 ## Overview
 
-Guance has comprehensive log collection capability, which is mainly divided into host log collection and K8S container log collection. The installation methods of DataKit and log collection methods are different. The collected log data are uniformly collected into the observation cloud for unified storage, search and analysis, which helps us quickly locate and solve problems.
+Guance has comprehensive log collection capability, which is mainly divided into host log collection and K8S container log collection. The installation methods of DataKit and log collection methods are different. The collected log data are uniformly collected into the guance for unified storage, search and analysis, which helps us quickly locate and solve problems.
 
 This article mainly introduces how to collect logs in **host environment**. For collecting logs in K8S environment, please refer to the best practice [Several ways to collect logs in Kubernetes cluster](../best-practices/cloud-native/k8s-logs.md) .
 
@@ -23,7 +23,7 @@ After the DataKit installation is completed, you can log collect various log dat
  
 === "Standard Log Collector" 
  
-    You can turn on log collection with one click by turning on standard log collectors supported by the observation cloud, such as [Nginx](../datakit/nginx.md), [Redis](../datakit/redis.md), [ES](../datakit/elasticsearch.md), and so on. 
+    You can turn on log collection with one click by turning on standard log collectors supported by the guance, such as [Nginx](../datakit/nginx.md), [Redis](../datakit/redis.md), [ES](../datakit/elasticsearch.md), and so on. 
 
 
 ???+ attention
@@ -35,7 +35,7 @@ After the DataKit installation is completed, you can log collect various log dat
  
     See the documentation [pipeline Configuration and Use](../datakit/logging.md#pipeline) for more details. 
 
-After the log collector is configured, restart the DataKit, and the log data can be uniformly reported to the observation cloud workspace. 
+After the log collector is configured, restart the DataKit, and the log data can be uniformly reported to the guance workspace. 
 
 ## Log data store 
  

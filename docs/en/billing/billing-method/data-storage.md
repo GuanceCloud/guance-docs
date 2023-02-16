@@ -18,7 +18,7 @@ Guance supports the commercial plan owner to change the data storage strategy in
 ???+ attention
 
     1. Only commercial workspace owners are allowed to do this.
-    2. The owner of the commercial plan can change the data storage time of indicators, logs, backup logs, events, application performance, user access, security check. according to the requirements.
+    2. The owner of the commercial plan can change the data storage time of metrics, logs, backup logs, events, application performance, user access, security check. according to the requirements.
     3. After the storage policy is changed, the new storage policy will take effect immediately, and the data in the old storage policy will not be deleted immediately. This part of billing still exists before the old data is deleted by the policy scrolling..
         - Shortening of data storage time: assuming that the application performance data is adjusted from 14 days to 7 days, taking the time when days are adjusted as the dividing line, the data before this is still calculated according to the 14 days storage strategy, and the data after this will generate a new index and calculate the cost according to the new 7 days storage strategy;
         - The data storage time becomes longer: assuming that the application performance data is adjusted from 7 days to 14 days, taking the time when days are adjusted as the dividing line, the data before this will still be charged according to the 7 days storage strategy, and the data after this will generate a new index and calculate the cost according to the new 14 days storage strategy.
@@ -43,7 +43,7 @@ Guance supports the charging methods of free start, on-demand purchase and pay-a
 | **Billing Item**             | **Experience Quota**  | **Data Storage Strategy** | **Notes**                                                     |
 | ---------------------- | ------------- | ---------------- | ------------------------------------------------------------ |
 | Datakit number           | Unlimited          | /                |                                                              |
-| Quantity of timeline             | 3000      | 7  days             |                                                              |
+| Quantity of timeseries             | 3000      | 7  days             |                                                              |
 | Number of log data         | 1 million articles per day | 7  days             | Log class data range: Events, security check, logs (excluding log data for availability monitoring) |
 | Number of backup log data       | /             | /                | Experience plan does not support backing up log data                                     |
 | Application performance Trace number    | 8,000 per day  | 7  days             |                                                              |
@@ -57,5 +57,5 @@ Guance supports the charging methods of free start, on-demand purchase and pay-a
     - If the data quota is fully used for different billing items in the experience plan, the data will stop being reported and updated; Infrastructure and event data still support reporting and updating, and you can still see infrastructure list data and event data;
     - The experience plan supports online upgrade to the commercial plan, and there is no charge if it is not upgraded. Once it is upgraded to the paid plan, it cannot be refunded;
     - After the experience plan is upgraded to the commercial plan, the collected data will continue to be reported to Guance workspace, but the data collected during the experience plan will not be viewed;
-    - Timeline and backup log statistics are full data, and other billing items are incremental data; Incremental data statistics reset the free quota at 0 points every day when days are valid.
+    - Timeseries and backup log statistics are full data, and other billing items are incremental data; Incremental data statistics reset the free quota at 0 points every day when days are valid.
 

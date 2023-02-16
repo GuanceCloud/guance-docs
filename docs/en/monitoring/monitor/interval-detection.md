@@ -7,7 +7,7 @@ Anomaly detection is done for the metric data within the selected detection inte
 
 ##  Application Scene
 
-Data/indicators applied to monitor trend stability. For example, when the data points with abnormal cpu utilization rate of the host exceed 10% in the last day, abnormal events will be generated.
+Data/metrics applied to monitor trend stability. For example, when the data points with abnormal cpu utilization rate of the host exceed 10% in the last day, abnormal events will be generated.
 
 ## Rule Description
 

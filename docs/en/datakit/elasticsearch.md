@@ -141,7 +141,7 @@ PUT _plugins/_security/api/roles/monitor
       ## Distribution version: elasticsearch, opendistro, opensearch
       distribution = "elasticsearch"
     
-      ## The default local is turned on, and only the current Node's own indicators are collected. If all Nodes in the cluster need to be collected, local should be set to false.
+      ## The default local is turned on, and only the current Node's own metrics are collected. If all Nodes in the cluster need to be collected, local should be set to false.
       local = true
     
       ## Set to true to collect cluster health

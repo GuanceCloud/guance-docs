@@ -11,7 +11,7 @@ Alibaba Cloud IDaaS (Cloud Shield) is a provider of identification and access ma
 
 Note: Before creating the application, you need to register your account and create your organization at [IDaaS platform (cloud shield)](https://yundun.console.aliyun.com/).
 
-#### 1) Open and enter the IDaaS console, enter "Add Applications-Standard Protocol" and select Create SSO Applications for SAML 2.0. (Take the observation cloud application as an example here)
+#### 1) Open and enter the IDaaS console, enter "Add Applications-Standard Protocol" and select Create SSO Applications for SAML 2.0. (Take the guance application as an example here)
 
 ![](../img/06_aliyun_01.png)<br />![](../img/06_aliyun_02.png)
 

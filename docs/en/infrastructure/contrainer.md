@@ -236,7 +236,7 @@ The Label property is automatically uploaded with the Deployment information by 
 
     Through "Log" at the bottom of the details page, you can view the logs and the number of logs related to this Deployment **in the last 1 hour** and perform keyword search, multi-label filtering and time sorting.
     - If you need to view more detailed log information, you can click the log content to jump to the corresponding log details page, or click "Jump" to "Log" to view all logs related to the host.
-    - If you need to view more log fields or more complete log contents, you can customize and adjust "Maximum Display Rows" and "Display Columns" through "Display Columns" in the associated log viewer.
+    - If you need to view more log fields or more complete log contents, you can customize and adjust "Maximum Display Rows" and "Display Columns" through "Display Columns" in the associated log explorer.
     **Note: For a smoother user query experience, Guance saves the user's browsing settings in the "Log" by default (including "Maximum Display Rows" and "Display Columns") in real time, so that the "Association Log" is consistent with the "Log". However, the custom adjustments made in the Association Log are not saved after exiting the page.**
 
 === "Pod"
@@ -354,7 +354,7 @@ The Label property is automatically uploaded with the Cron Job information by de
 
 ## Container Distribution Map
 
-In "Infrastructure"-"Container", click the small icon of the Container distribution map in the upper left corner to switch the viewer to the Container distribution map, and you can view the "Container" and "Pod" data of the workspace in the form of distribution map.
+In "Infrastructure"-"Container", click the small icon of the Container distribution map in the upper left corner to switch the explorer to the Container distribution map, and you can view the "Container" and "Pod" data of the workspace in the form of distribution map.
 
 In the "Container" profile, you can quickly view the size of Container metrics (CPU utilization, MEM utilization) and analyze the Container performance status under different projects, services, hosts and images.
 
@@ -362,7 +362,7 @@ In the "pod" profile, you can quickly view the restart times of pod, and analyze
 
 ![](img/6.container_1.png)
 
-- Search and filtering: In the viewer search bar, it supports keyword search, wildcard search, association search, JSON search and other search methods, and supports value filtering through `tags/attributes`, including forward filtering, reverse filtering, fuzzy matching, reverse fuzzy matching, existence and nonexistence and other filtering methods. For more searches and filters, refer to the document [search and filter for explorer](../getting-started/necessary-for-beginners/explorer-search.md).
+- Search and filtering: In the explorer search bar, it supports keyword search, wildcard search, association search, JSON search and other search methods, and supports value filtering through `tags/attributes`, including forward filtering, reverse filtering, fuzzy matching, reverse fuzzy matching, existence and nonexistence and other filtering methods. For more searches and filters, refer to the document [search and filter for explorer](../getting-started/necessary-for-beginners/explorer-search.md).
 - Analysis: You can recombine the Container/pod object by adding one or more grouping tags.
 - Fill: You can customize the selection of fill metrics, and the size of the fill metric value will determine the legend color of the fill. Support the selection of CPU utilization rate and MEM utilization rate.
 - Custom range: You can open custom legend range through Legend Settings. Legend colors will be divided into five intervals according to the maximum and minimum values of the legend, and each interval will automatically correspond to five different colors.

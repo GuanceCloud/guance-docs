@@ -14,7 +14,7 @@ Log data plays a very important role in the following aspects:
 - Service diagnosis: through the log information statistics, analysis, understand the server load and service running status;
 - Data analysis: support for further data analysis. 
 
-Guance provides comprehensive log collection capability. By configuring [log collection] (collection.md), the log data can be uniformly reported to the observation cloud workspace, and you can store, audit, monitor, alarm, analyze and export the collected log data uniformly. 
+Guance provides comprehensive log collection capability. By configuring [log collection] (collection.md), the log data can be uniformly reported to the guance workspace, and you can store, audit, monitor, alarm, analyze and export the collected log data uniformly. 
 
 ## Function List
 

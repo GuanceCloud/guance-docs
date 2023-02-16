@@ -4,3 +4,4 @@ nav:
   - 'COS': cos.md
   - 'CLB': clb.md
   - 'CVM': cvm.md
+  - redis-mem.md

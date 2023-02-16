@@ -7,7 +7,7 @@ Guance is divided into SaaS service version and private deployment version. SaaS
 ## Deployment and Implementation of Guance
 The deployment and implementation of Guance is divided into three parts: 1. DataKit deployment of monitored objects and data collection implementation; 2. Implement the scheme of scene, view and anomaly detection in Guance; 3. If you use the privately deployed version of Guance, you need to deploy a set of Guance independently. 
 
-After installing DataKit on the host object of the monitored user system and starting the corresponding data collection, it needs to be reported to the Guance center for visual insight into the data, data association analysis of indicators, logs, links, RUM, anomaly detection, etc. The Guance center can choose to use SaaS version or private deployment version. 
+After installing DataKit on the host object of the monitored user system and starting the corresponding data collection, it needs to be reported to the Guance center for visual insight into the data, data association analysis of metrics, logs, links, RUM, anomaly detection, etc. The Guance center can choose to use SaaS version or private deployment version. 
 ### SaaS Version of Guance
 SaaS version has the characteristics of low access cost and fast implementation speed (only need to install and open DataKit in the customer application environment), which is suitable for small and medium-sized application cluster monitoring. It is characterized by low cost of early input, charging according to usage, and no early resource input. 
 
@@ -46,7 +46,7 @@ That is to say, after the implementation of DataKit, the target Guance center ca
 ### DataKit Infrastructure
 ![](img/10.deployment_2.png)
 
-DataKit supports three mainstream platforms: Linux, MacOS and Windows. DataKit is installed in the monitored host. After installation, the collection of basic indicators of the host has been started by default, such as CPU, Mem, Disk, DiskIO and System. More other data collection can be started. For specific configuration methods and collection source list, please check the document [collection source configuration](../integrations/changgelog.md).
+DataKit supports three mainstream platforms: Linux, MacOS and Windows. DataKit is installed in the monitored host. After installation, the collection of basic metrics of the host has been started by default, such as CPU, Mem, Disk, DiskIO and System. More other data collection can be started. For specific configuration methods and collection source list, please check the document [collection source configuration](../integrations/changgelog.md).
 
 After the DataKit is installed, the 9529 listening port is opened by default (the default listening port can be modified in the datakit.conf file), which is used as the HTTP data access service port. The data collected by various external collection sources such as Metric, Log, Tracing, RUM and Security would be cleaned and formatted after reaching the DataKit through the HTTP interface address of the 9529 port, and then reported to the Guance center. 
 

@@ -46,7 +46,7 @@ In the unrecovered event explorer, you can view information about the current al
 > **Note**: Event exception trends are displayed via the window function.
 
    - The display of the time period affected by the abnormal event is displayed as a dashed border display effect
-   - When the detection library rule type is threshold, log, application performance indicator, user access indicator detection, security check, abnormal process, and cloud dialing test detection, you can view the relevant abnormal detection indicator data, including emergency, error, and warning, according to the color block corresponding to different alarm levels.
+   - When the detection library rule type is threshold, log, application performance metric, user access metric detection, security check, abnormal process, and cloud dialing test detection, you can view the relevant abnormal detection metric data, including emergency, error, and warning, according to the color block corresponding to different alarm levels.
    - When the detection library rule type is mutation or interval, the time point of the current event trigger can be quickly identified according to the "vertical line" of the chart.
 
 ### Detection Dimension

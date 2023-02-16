@@ -23,7 +23,7 @@ The strategy for Guance experience plan is as follows. For the billing method of
 
 - If the data quota is fully used for different billing items in the experience plan, the data will stop being reported and updated; Infrastructure and event data still support reporting and updating, and you can still see infrastructure list data and event data;
 - There is no charge if the experience plan is not upgraded. Once upgraded to the paid plan, it cannot be refunded;
-- Timeline and backup log statistics are full data, and other billing items are incremental data; Incremental data statistics reset the free quota at 0:00 every day, which is valid on the same day.
+- Timeseries and backup log statistics are full data, and other billing items are incremental data; Incremental data statistics reset the free quota at 0:00 every day, which is valid on the same day.
 
 
 ## Experience Plan Registration

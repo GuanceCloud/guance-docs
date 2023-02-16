@@ -1,7 +1,7 @@
 # Custom Add Error
 ---
 
-After initializing RUM, use the `addError('<NAME>', '<JSON_OBJECT>')` API to add custom error indicator data outside of the collection.
+After initializing RUM, use the `addError('<NAME>', '<JSON_OBJECT>')` API to add custom error metric data outside of the collection.
 
 ### Add Error
 

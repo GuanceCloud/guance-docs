@@ -7,7 +7,7 @@ Tables feature a visual display of statistical information attributes, while ref
 
 ## Application Scenarios
 
-The tabular chart of the observation cloud is used to visualize the properties of statistical information. For example, you can view information about the top 10 CPU usage rates of different hosts in your workspace.
+The tabular chart of the guance is used to visualize the properties of statistical information. For example, you can view information about the top 10 CPU usage rates of different hosts in your workspace.
 
 ## Graph query
 
@@ -16,7 +16,7 @@ The chart query supports 「simple query」 and can be switched to 「DQL query�
 Attention.
 
 - Support adding multiple queries, but the grouped labels must be the same, modify one, the other is automatically modified synchronously.
-- Support sorting by indicators, sort by indicators of the first query by default, click on the table header to switch the ascending and descending order, corresponding to the Top/Bottom of the query to adjust synchronously, click on the indicators of other queries to sort, corresponding to the Top/Bottom of the query to adjust synchronously.
+- Support sorting by metrics, sort by metrics of the first query by default, click on the table header to switch the ascending and descending order, corresponding to the Top/Bottom of the query to adjust synchronously, click on the metrics of other queries to sort, corresponding to the Top/Bottom of the query to adjust synchronously.
 
 ## Chart Linking
 
@@ -25,7 +25,7 @@ Links can help you jump from the current chart to the target page, support addin
 | Options | Description |
 | --- | --- |
 | Chart Title | Set the title name for the chart, after setting, it will be displayed on the top left of the chart, support hide |
-| Alias | <li>Supports adding aliases to grouped queries, including indicators and groups. After adding an alias, the name of the legend changes, making it easier to distinguish related indicators more intuitively.<br><li>Support custom manual input of preset aliases：<br>Indicator: input format is: aggregation function (indicator/attribute), e.g. `last(usage_idle)`<br>Grouping: input format is: label, e.g. `host` |
+| Alias | <li>Supports adding aliases to grouped queries, including metrics and groups. After adding an alias, the name of the legend changes, making it easier to distinguish related metrics more intuitively.<br><li>Support custom manual input of preset aliases：<br>Metric: input format is: aggregation function (metric/attribute), e.g. `last(usage_idle)`<br>Grouping: input format is: label, e.g. `host` |
 
 
 ## Chart Setup
@@ -33,7 +33,7 @@ Links can help you jump from the current chart to the target page, support addin
 ### Basic Settings
 | Options | Description |
 | --- | --- |
-| Units | 1. Support setting units for query results.<br />1）If the queried data has no unit, after setting the unit in the chart, it will be displayed on the chart according to the set unit<br />2）If the query data comes with its own units, or if you are in [Indicator Management] (../../metrics/dictionary.md), and you set the units for the metrics in the chart, the units set in the chart will be displayed on the chart.<br />3）If the query data has no units and no units are set in the chart, the chart Y-axis values are automatically calculated according to scientific notation; the original values are displayed on the chart in the format [thousandths] (chart-query.md#thousand).<br /> **Scientific counting instructions**<br />Default query result value is automatically converted to units, display follows 「scientific notation K, M, B」 (1 thousand = 1K, 1 million = 1M, 1 billion = 1B), retaining two decimal points; RMB is automatically converted to units 「yuan, million, billion」, retaining two decimal points <br />*For example, if the time interval of the unit is selected in ns, then according to the size of the data, the query result will only automatically convert the unit effect as follows, and so on：*<br /><li>1000000ns：Chart query data results in 1ms<br /><li>1000000000ns：The chart query data result shows 1s<br /><li>10000000000ns：The chart query data result shows 1m<br /><br/>2.Support for query results preset units, manual input format: aggregation function (indicator), such as `last(age_idle)` |
+| Units | 1. Support setting units for query results.<br />1）If the queried data has no unit, after setting the unit in the chart, it will be displayed on the chart according to the set unit<br />2）If the query data comes with its own units, or if you are in [Metric Management] (../../metrics/dictionary.md), and you set the units for the metrics in the chart, the units set in the chart will be displayed on the chart.<br />3）If the query data has no units and no units are set in the chart, the chart Y-axis values are automatically calculated according to scientific notation; the original values are displayed on the chart in the format [thousandths] (chart-query.md#thousand).<br /> **Scientific counting instructions**<br />Default query result value is automatically converted to units, display follows 「scientific notation K, M, B」 (1 thousand = 1K, 1 million = 1M, 1 billion = 1B), retaining two decimal points; RMB is automatically converted to units 「yuan, million, billion」, retaining two decimal points <br />*For example, if the time interval of the unit is selected in ns, then according to the size of the data, the query result will only automatically convert the unit effect as follows, and so on：*<br /><li>1000000ns：Chart query data results in 1ms<br /><li>1000000000ns：The chart query data result shows 1s<br /><li>10000000000ns：The chart query data result shows 1m<br /><br/>2.Support for query results preset units, manual input format: aggregation function (metric), such as `last(age_idle)` |
 
 ### Advanced Settings
 | Options | Description |
@@ -50,7 +50,7 @@ Links can help you jump from the current chart to the target page, support addin
 
 | Options | Description |
 | --- | --- |
-| Formatting Configuration | Formatting configuration allows you to hide sensitive log data content or highlight log data content that needs to be viewed，<br />- Fields: Iconic query field indicators that have been added<br />- Matching mode: support `=`, `! =`, `match`, `not match`<br />- Matching content: the data content of the query result<br />- Show as content: Replace with the content you want to show<br /> |
+| Formatting Configuration | Formatting configuration allows you to hide sensitive log data content or highlight log data content that needs to be viewed，<br />- Fields: Iconic query field metrics that have been added<br />- Matching mode: support `=`, `! =`, `match`, `not match`<br />- Matching content: the data content of the query result<br />- Show as content: Replace with the content you want to show<br /> |
 
 ## Example graph
 

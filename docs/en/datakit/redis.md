@@ -6,7 +6,7 @@
 
 ---
 
-Redis indicator collector, which collects the following data:
+Redis metric collector, which collects the following data:
 
 - Turn on AOF data persistence and collect relevant metrics
 - RDB data persistence metrics

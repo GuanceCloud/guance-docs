@@ -6,7 +6,7 @@
 
 ---
 
-Memcached collector can collect the running status metrics from Memcached instances, and collect the metrics to the observation cloud to help monitor and analyze various abnormal situations of Memcached.
+Memcached collector can collect the running status metrics from Memcached instances, and collect the metrics to the guance to help monitor and analyze various abnormal situations of Memcached.
 
 ## Preconditions {#requirements}
 

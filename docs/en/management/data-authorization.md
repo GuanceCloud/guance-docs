@@ -13,7 +13,7 @@ Note:
 - Different data types, you can customize and configure sensitive fields under this data (field names are case sensitive). Data types include: Log, Base Object, Custom Object, Event, Application Performance, User Access, Security Patrol, Network, Profile.
 - After the field configuration is desensitized, the string type field data returns to display "***" and the number type field data returns to display "-1".
 - Configuring sensitive fields supports only members of Guance Workspace administrator and above, and standard and read-only members only support viewing configured sensitive fields.
-- When sensitive fields are configured, only administrator and above members in the current workspace can view the original data, and standard and read-only members cannot view the pre-desensitization information in the corresponding viewer or chart.
+- When sensitive fields are configured, only administrator and above members in the current workspace can view the original data, and standard and read-only members cannot view the pre-desensitization information in the corresponding explorer or chart.
 
 ### Configure Sensitive Fields
 

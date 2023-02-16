@@ -3,7 +3,7 @@
 
 ## Overview
 
-A variety of out-of-the-box monitoring templates are built into the observation cloud, and dozens of templates such as host, Docker, Elasticsearch, Redis, Alibaba Cloud RDS, Alibaba Cloud SLB and Flink monitoring can be created with one click of "+ New from Template". After successfully creating a new template, the corresponding official monitor will be automatically added to the current workspace.
+A variety of out-of-the-box monitoring templates are built into the guance, and dozens of templates such as host, Docker, Elasticsearch, Redis, Alibaba Cloud RDS, Alibaba Cloud SLB and Flink monitoring can be created with one click of "+ New from Template". After successfully creating a new template, the corresponding official monitor will be automatically added to the current workspace.
 
 ???+ attention
 
