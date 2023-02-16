@@ -46,7 +46,7 @@ When previewing a chart, a time interval option will appear in the upper right c
 
 ### Combination Charts
 
-In the chart, click on the 「Settings」 button and select 「Combination Charts」 to add other charts as a new combination chart. Combination charts are generally used to combine multiple charts with different results of an indicator to help users understand the comparative results of the indicator, and to combine different types of charts at will.
+In the chart, click on the 「Settings」 button and select 「Combination Charts」 to add other charts as a new combination chart. Combination charts are generally used to combine multiple charts with different results of an metric to help users understand the comparative results of the metric, and to combine different types of charts at will.
 
 ![](../img/chart012.png)
 
@@ -79,8 +79,8 @@ In the chart, click the 「Settings」 button and select 「Delete」 to delete 
 In the dashboard, click the 「Analyze」 button on the chart or double-click on the chart margin to zoom in on the chart for viewing and analysis.
 
 - Support for viewing data information of the chart by mouse hover (hover).
-- Support for viewing indicator trends for a specific time range by selecting [timeline](timeseries-chart.md).
-- Support for viewing [DQL query statements](chart-query.md), [similar trend indicators](timeseries-chart.md) and related correlation analysis links such as logs, containers, processes, links, etc. by clicking on the chart, and support for custom correlation [chart links](chart-link.md).
+- Support for viewing metric trends for a specific time range by selecting [timeseries](timeseries-chart.md).
+- Support for viewing [DQL query statements](chart-query.md), [similar trend metrics](timeseries-chart.md) and related correlation analysis links such as logs, containers, processes, links, etc. by clicking on the chart, and support for custom correlation [chart links](chart-link.md).
 - When host information is present in the chart query and 「by host」 is selected as a grouping condition in the chart query, you can also view the associated host monitoring view.
 
 **Note: **Built-in links are turned off by default and can be turned on for display when editing charts.

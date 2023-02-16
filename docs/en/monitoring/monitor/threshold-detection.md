@@ -3,7 +3,7 @@
 
 ## Overview
 
-Threshold detection is used to monitor data anomalies such as indicators, logs, links. Users can set the threshold range, and when metrics reach the threshold, trigger an alarm and inform users. Supports simultaneous detection of multiple metric data and setting alarm levels.
+Threshold detection is used to monitor data anomalies such as metrics, logs, links. Users can set the threshold range, and when metrics reach the threshold, trigger an alarm and inform users. Supports simultaneous detection of multiple metric data and setting alarm levels.
 
 ## Application Scene
 
@@ -35,10 +35,10 @@ In "Monitor", click "+ New Monitor", select "Threshold Detection", and enter the
 | Field | Description |
 | --- | --- |
 | Data type | The current detected data type supports detecting data types such as "Metric", "Log", "Infrastructure", "Custom Object", "Event", "Application Performance Monitoring", "User Access Monitoring", "Security Check" and "Network" |
-| Measurement | The measurement where the current detection indicator is located (take the "metric" data type as an example) |
+| Measurement | The measurement where the current detection metric is located (take the "metric" data type as an example) |
 | Metrics | The metric for which the current test is aimed (take the "metric" data type as an example) |
 | Aggregation Algorithm | Contains Avg by (average), Min by (minimum), Max by (maximum), Sum by (sum), Last (Last), First by (first), Count by (data points), Count_distinct by (non-duplicate data points), p50 (median), p75 (75%), p90 (90%), p99 (99%) |
-| Detection dimension | The corresponding string type (keyword) fields in the configuration data can be selected as detection dimensions. At present, the detection dimensions support selecting up to three fields. Through the combination of fields of multiple detection dimensions, a certain detection object can be determined, and the observation cloud will judge whether the statistical index corresponding to a detection object meets the threshold of trigger conditions, and if it meets the conditions, an event will be generated. (For example, if the detection dimensions "host" and "host_ip" are selected, the detection object can be {host: host1, host_ip: 127.0.0.1}). When the detection object is "log", the default detection dimensions are "status", "host", "service", "source" and "filename"  |
+| Detection dimension | The corresponding string type (keyword) fields in the configuration data can be selected as detection dimensions. At present, the detection dimensions support selecting up to three fields. Through the combination of fields of multiple detection dimensions, a certain detection object can be determined, and the guance will judge whether the statistical index corresponding to a detection object meets the threshold of trigger conditions, and if it meets the conditions, an event will be generated. (For example, if the detection dimensions "host" and "host_ip" are selected, the detection object can be {host: host1, host_ip: 127.0.0.1}). When the detection object is "log", the default detection dimensions are "status", "host", "service", "source" and "filename"  |
 | Filter condition | Metirc-based labels filter the data of detection metrics, limit the scope of detection data, and support adding one or more labels for screening. Non-metric data support fuzzy matching and fuzzy mismatching screening conditions. |
 | Alias | Custom metrics name |
 | Query mode | Support simple query and expression query, refer to [query](../../scene/visual-chart/chart-query.md) |

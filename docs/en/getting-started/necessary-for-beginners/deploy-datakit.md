@@ -3,7 +3,7 @@
 
 ## Scene Description
 
-You bought a Linux host some time ago and deployed a portal website based on Nginx. Recently, you found that the website opened slowly, and sometimes it even couldn't be opened, such as 404 error when opening a certain page. In order to solve this problem, you decided to monitor this cloud host through the observation cloud and analyze what went wrong.
+You bought a Linux host some time ago and deployed a portal website based on Nginx. Recently, you found that the website opened slowly, and sometimes it even couldn't be opened, such as 404 error when opening a certain page. In order to solve this problem, you decided to monitor this cloud host through the guance and analyze what went wrong.
 
 ## Preconditions
 

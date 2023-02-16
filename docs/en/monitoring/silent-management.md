@@ -46,7 +46,7 @@ All silence rules in the space can be managed uniformly through "Monitoring"-"Si
 - Disable/Enable: "Disable/Enable" silent tasks are supported
     - Enable: Silence rules are executed as normal
     - Disabled: Silence rule does not take effect; If the silent notification policy is set, "xx minutes before the start" is selected and the silent notification operation has not been executed, the notification will not be executed
-    - Disable/Enable: Operation audit events will be generated, which can be viewed in Operation Audit under "Management"-"Basic Settings" of Observation Cloud Workspace
+    - Disable/Enable: Operation audit events will be generated, which can be viewed in Operation Audit under "Management"-"Basic Settings" of Guance Workspace
 
 ![](img/2.monitor_7.png)
 

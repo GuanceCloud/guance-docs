@@ -102,9 +102,9 @@ Click "Event" to view the detail page of intelligent inspection events, includin
 #### Event Details
 
   * Event overview: describes the object and content of the exception patrol event
-  * Error trend: you can view the performance indicators of the current application for nearly 1 hour
+  * Error trend: you can view the performance metrics of the current application for nearly 1 hour
   * Abnormal impact: you can view the services and resources affected by the abnormal service of the current link
-  * Abnormal link sampling: view the detailed error time, service, resource and link ID; Click Services and Resources to enter the corresponding data viewer; Click the link ID to enter the specific link details page.
+  * Abnormal link sampling: view the detailed error time, service, resource and link ID; Click Services and Resources to enter the corresponding data explorer; Click the link ID to enter the specific link details page.
 
 ![image](../img/apm06.png)
   ![image](../img/apm07.png)
@@ -139,7 +139,7 @@ Click "Event" to view the detail page of intelligent inspection events, includin
 
 **3. Under what circumstances will an APM Intelligent Inspection event be generated**
 
-  Use indicators such as error rate and P90 as entry points to trigger the collection of alarm information and root cause analysis when one of these indicators changes abnormally and has an upstream and downstream link impact.
+  Use metrics such as error rate and P90 as entry points to trigger the collection of alarm information and root cause analysis when one of these metrics changes abnormally and has an upstream and downstream link impact.
 
 **4. Abnormal errors are found in scripts that were previously running normally during the inspection process**
 

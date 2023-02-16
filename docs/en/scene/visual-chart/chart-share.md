@@ -3,7 +3,7 @@
 
 ## Introduction
 
-Guance supports sharing of visual charts such as time series charts, pie charts, overview charts, etc., which can be used to insert charts into the code of platforms other than Observation Cloud for visual data presentation and analysis. The shared charts are synchronized in real time with the chart changes in the "Observation Cloud" even if they are embedded in other platforms.
+Guance supports sharing of visual charts such as time series charts, pie charts, overview charts, etc., which can be used to insert charts into the code of platforms other than Guance for visual data presentation and analysis. The shared charts are synchronized in real time with the chart changes in the "Guance" even if they are embedded in other platforms.
 ## Share Charts
 
 You can share the visual charts made in 「Scene」-「Dashboard」, and the shared charts are uniformly stored in 「Management」-「Sharing Management」-「Chart Sharing」.

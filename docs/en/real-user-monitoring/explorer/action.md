@@ -16,7 +16,7 @@ Guance supports collecting errors, resources, requests, performance metrics, etc
 
 ## Action Explorer
 
-In the explorer of Real User Monitoring, you can switch to the "Action viewer" to query and analyze the action behavior of user access, you can quickly view the action type, action content, action time and so on when users access.
+In the explorer of Real User Monitoring, you can switch to the "Action explorer" to query and analyze the action behavior of user access, you can quickly view the action type, action content, action time and so on when users access.
 
 ![](../img/1.rum_action_1.png)
 

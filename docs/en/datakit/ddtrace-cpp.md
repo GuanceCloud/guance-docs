@@ -32,7 +32,7 @@ Applying DDTrace in C + + code requires modifying business code and manually emb
 
 ???+ attention "cmake installation"
 
-    Cmake may not be installed to a higher version through yum or apt-get. It is recommended to download the latest version directly from its [official website][3]{:target="_blank"}. You can also use the observation cloud hosted [source] [1] or [Windows binary] [2] directly.
+    Cmake may not be installed to a higher version through yum or apt-get. It is recommended to download the latest version directly from its [official website][3]{:target="_blank"}. You can also use the guance hosted [source] [1] or [Windows binary] [2] directly.
     
     ```shell
     # Install cmake from source

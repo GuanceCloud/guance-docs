@@ -229,4 +229,4 @@ To work with metric data in more detail, Datakit provides the environment variab
 
 ### Check {#check}
 
-Start Datakit, use `datakit monitor -V` or view it on the Guance Cloud page, and you can find a metric set beginning with `nacos_` to indicate that the collection was successful.
+Start Datakit, use `datakit monitor -V` or view it on the Guance Cloud page, and you can find a measurement beginning with `nacos_` to indicate that the collection was successful.

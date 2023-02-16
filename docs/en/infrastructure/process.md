@@ -52,7 +52,7 @@ The " :material-cog: settings" icon in the upper right corner of the explorer (n
 
 ## Process Details page
 
-Click on the process name in the process list, and you can draw out the details page to view the detailed information of the process object, including the object to which the process belongs, Label attribute, other extended attributes, and associated indicators, logs, hosts and networks.
+Click on the process name in the process list, and you can draw out the details page to view the detailed information of the process object, including the object to which the process belongs, Label attribute, other extended attributes, and associated metrics, logs, hosts and networks.
 
 ![](img/8.process_3.png)
 
@@ -105,7 +105,7 @@ At the bottom of the Details page, switch the Content tab to allow you to:
 
 === "Host"
 
-    Guance enables you to view the basic information of related hosts (related field: host) and the status of performance indicators **within the selected time component** through the "host" at the bottom of the details page.
+    Guance enables you to view the basic information of related hosts (related field: host) and the status of performance metrics **within the selected time component** through the "host" at the bottom of the details page.
     Note: To view related hosts in process details, you need to match the field "host", otherwise you cannot view the page of related hosts in process details.
     - Attribute view: It includes the basic information of the host and the integrated operation. If the collection of cloud hosts is started, the information of cloud suppliers can also be viewed.
     - Metric view: You can view the CPU, memory and other performance metric views of related hosts within the default 24 hours. Click "Open this view" to the inner dashbpoard, and the host view can be customized by cloning and saved as a user view. The user view can be viewed on the process details page through binding. For more configuration details, please refer to [binding inner dashboard](../scene/built-in-view/bind-view.md).

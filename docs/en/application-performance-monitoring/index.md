@@ -25,7 +25,7 @@ The best deployment scheme is to deploy DataKit in each application server, and 
 
 ## Function Introduction
 
-- [Service, service map and service list](service.md): it supports viewing key performance indicators of services, service call relationship map and team ownership of different services, view service performance metrics and their dependencies and related data in real time, and discover and solve service bottlenecks in time;
+- [Service, service map and service list](service.md): it supports viewing key performance metrics of services, service call relationship map and team ownership of different services, view service performance metrics and their dependencies and related data in real time, and discover and solve service bottlenecks in time;
 - [Overview](overview.md): it supports to view the number of online services, P90 service response time, service maximum impact time, service error number, service error rate statistics, and P90 service, resources, operation response time Top10 ranking, service error rate, resource 5xx error rate, resource 4xx error rate Top10 ranking;
 - [Link explorer](explorer.md): it supports the query and analysis of all link data collected and reported, intuitively views the context and execution efficiency of each Span in the link through flame diagram, and helps to quickly locate performance problems through correlation analysis of different data;
 - [Error tracing](error.md): it supports to view the historical trend and distribution of similar errors in links, and to help quickly locate error problems;

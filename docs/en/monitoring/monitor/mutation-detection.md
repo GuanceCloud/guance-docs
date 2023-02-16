@@ -19,7 +19,7 @@ In "Monitor", click "+ New Monitor", select "Mutation Detection", and enter the 
 
 ![](../img/monitor22.png)
 
-1）**Detection Metrics:** Monitoring Indicator Data. It supports comparing the difference or difference percentage of the metric in two time periods.
+1）**Detection Metrics:** Monitoring Metric Data. It supports comparing the difference or difference percentage of the metric in two time periods.
 
 | Field | Description |
 | --- | --- |

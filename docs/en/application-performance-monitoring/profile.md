@@ -82,7 +82,7 @@ Profile uses flame diagram to analyze the usage of CPU, memory or IO at the meth
 
 ### Run information
 
-On the Profile Details page, click View "Running Information" to view some information and tag attributes of the corresponding programming language runtime. Support to add tag information to the viewer list for filtering, and support to copy tag content for query search.
+On the Profile Details page, click View "Running Information" to view some information and tag attributes of the corresponding programming language runtime. Support to add tag information to the explorer list for filtering, and support to copy tag content for query search.
 
 ![](img/6.profile_5.png)
 

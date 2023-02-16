@@ -29,7 +29,7 @@ First of all, you need to [install DataKit](../../datakit/datakit-install.md). A
 
 ## Field Description
 
-DataKit will convert the reported data into the format of Guance link data according to different collectors, and retain labels and indicators. The following is a description of the commonly used fields, and the documentation [DataKit Tracing Data Structure](../../datakit/datakit-tracing-struct.md#point-proto).
+DataKit will convert the reported data into the format of Guance link data according to different collectors, and retain labels and metrics. The following is a description of the commonly used fields, and the documentation [DataKit Tracing Data Structure](../../datakit/datakit-tracing-struct.md#point-proto).
 
 | Field Name    | Description                                                    |
 | --------- | ------------------------------------------------------------ |

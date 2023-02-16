@@ -9,7 +9,7 @@ Under the background of cloud era, all major service providers have issued relev
 
 **SLA（Service-Level Agreement）**: That is, service level agreement, which refers to a service commitment made by the system service Provider to the Customer. Guance supports SLA scoring of service quality of service providers and monitors the service compliance rate in real time.
 
-**SLI（Service Level Indicator）**: A measurement indicator that is chosen to measure the stability of the system. The Guance SLI supports setting one or more measurement indicators based on the monitor.
+**SLI（Service Level Metric）**: A measurement metric that is chosen to measure the stability of the system. The Guance SLI supports setting one or more measurement metrics based on the monitor.
 
 **SLO（Service Level Objective）:** The smallest unit of SLA scoring processing in Guance, and is the target of SLI cumulative success number in a time window. We often convert SLO into error budget, which is used to calculate the number of tolerable errors, and the time of abnormal events in each detection cycle will be deducted from the fault-tolerant time. (As shown in the following figure: Assuming that the SLO detection period is 5 minutes, according to the superposition, the coverage time of abnormal events is 3 minutes, and the deduction amount is 3 minutes)
 
@@ -29,7 +29,7 @@ Guance supports custom creation of new SLO tasks through the SLO module of "Moni
 | --- | --- |
 | Name | SLO task name. Supports up to 64 character input. |
 | Goal | Percentage of SLO goals (0-100%), which supports the selection of two goals, including "goal" and "minimum goal",<br><li>Goal: SLO Percentage < Goal Percentage and > = Minimum Goal Percentage is identified as **unhealthy** SLA<br><li>Minimum target: When the SLO percentage is less than the minimum target percentage, it is considered as **substandard ** SLA |
-| SLI | An indicator to measure the stability of a system. Support user-defined addition of one or more monitors as measurement indicators |
+| SLI | An metric to measure the stability of a system. Support user-defined addition of one or more monitors as measurement metrics |
 | Exception Notification Object | Alarm notification object, support space members, mail groups, enterprise WeChat robots, Dingding robots, flying book robots, SMS and other notification methods. For details, please refer to [alarm settings](alert-setting.md) |
 | Notice Silence | If the same event is not very urgent, but the alarm notification frequency is high, the notification frequency can be reduced by setting the notification silence. **Note: Events will continue to be generated after notification silence is set, but notifications will not be sent again, and generated events will be stored in event management** |
 | Detection frequency | SLO detection frequency, that is, to monitor whether abnormal events occur in the monitor of SLO task with a certain time range as a period. At present, it supports two detection frequencies: 5 minutes and 10 minutes. |
@@ -49,7 +49,7 @@ The SLO list supports searching based on the SLO name in the search box.
 | **Field** | **Description** |
 | --- | --- |
 | Monitor | The number of monitors associated with the SLI, a measure of service performance |
-| Examination cycle | The measurement period of the indicator. Recent 7 days by default|
+| Examination cycle | The measurement period of the metric. Recent 7 days by default|
 | Compliance rate | The percentage of the total time to meet the system abnormality in a given assessment period (compliance rate = system abnormality time/assessment period * 100%)<li>When the percentage < target percentage, and > = minimum target percentage, it is identified as **unhealthy** SLA, which is shown as yellow compliance rate <li>Minimum target: When the percentage is less than the minimum target percentage, it is identified as **non-compliance** SLA, which is displayed as red compliance rate
  |
 | Remaining quota | The remaining fault-tolerant time of the current SLO (assuming that the target SLO is set to 95%, that is, there is a fault-tolerant rate of 5%, and the last 7 days are the cycle by default, that is, the default remaining quota = 7 days * 5% = 21 minutes) is displayed as<li> green: remaining fault-tolerant time > = 0<li>red: remaining fault-tolerant time > 0 |

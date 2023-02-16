@@ -22,14 +22,14 @@ The Guance supports 3 types of template variables, namely, time variables, label
 There are several common uses of view variables in links.<br />1）`&tags=#{V}`  ，Conditions for passing all view variables in a link<br />2）`&tags={"version":"{V.version}"}`, the condition that only the view variable version is passed in the link<br />3）`&tags={"host": "#{V.host}"}`, the condition to pass the tag host in the link, the host value is the selected value of the current view variable host
 ## Built-in links
 
-Built-in links are the default associated links provided by Observation Cloud for charts, mainly based on the time range and grouping labels of the current query, to help you view the corresponding logs, processes, containers, links, Built-in links are turned off by default, and can be turned on to display when editing charts.
+Built-in links are the default associated links provided by Guance for charts, mainly based on the time range and grouping labels of the current query, to help you view the corresponding logs, processes, containers, links, Built-in links are turned off by default, and can be turned on to display when editing charts.
 
 ![](../img/chart024.png)
 
-- View related logs: query related logs based on the grouping tags of the current query, i.e. add the current grouping tags as filtering criteria, support jumping to the log viewer to view details
-- View Related Containers: Based on the grouping tags of the current query, query related containers, i.e. add the current grouping tags as filtering criteria, support jumping to the container viewer to view details
-- View related processes: Based on the grouping label of the current query, query related processes, that is, add the current grouping label as a filter, support jump to the process viewer to view details
-- View related links: based on the current query grouping label associated query related links, that is, add the current grouping label as a filter condition, support jump to the application performance monitoring viewer view details
+- View related logs: query related logs based on the grouping tags of the current query, i.e. add the current grouping tags as filtering criteria, support jumping to the log explorer to view details
+- View Related Containers: Based on the grouping tags of the current query, query related containers, i.e. add the current grouping tags as filtering criteria, support jumping to the container explorer to view details
+- View related processes: Based on the grouping label of the current query, query related processes, that is, add the current grouping label as a filter, support jump to the process explorer to view details
+- View related links: based on the current query grouping label associated query related links, that is, add the current grouping label as a filter condition, support jump to the application performance monitoring explorer view details
 
 ![](../img/d8.png)
 
@@ -86,7 +86,7 @@ Guance supports three link opening methods, which are 【New Page】 【Current 
 
 ## Operation
 
-Observation Cloud supports 「Edit」, 「Delete」 and 「Restore」 operations on chart links
+Guance supports 「Edit」, 「Delete」 and 「Restore」 operations on chart links
 
 - Edit: Support to modify the added links
 - Delete: Delete the current link. Make sure the deleted links cannot be restored.

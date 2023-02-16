@@ -34,7 +34,7 @@ This article introduces the difference between the free plan and the commercial 
 
 - Free plan users support online upgrade to commercial plan. If the free plan is not upgraded, there will be no charge. Once upgraded to paid plan, it cannot be refunded;
 - If the data quota is fully used for different billing items in the free plan, the data will stop being reported and updated; The two types of data, object and event, still support reporting and updating, and users can still see infrastructure list data and event data;
-- Timeline and backup log statistics are full data, and other billing items are incremental data; Incremental data statistics reset the free quota at 0:00 every day, which is valid on the same day.
+- Timeseries and backup log statistics are full data, and other billing items are incremental data; Incremental data statistics reset the free quota at 0:00 every day, which is valid on the same day.
 
 For more details, please refer to the doc [free start](../billing/free-start.md), [upgrade commercial plan](../billing/commercial-plan.md), [data storage strategy](../billing/billing-method/data-storage.md) and [rights management](../management/access-management.md).
 

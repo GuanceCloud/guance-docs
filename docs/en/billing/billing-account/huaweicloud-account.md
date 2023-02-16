@@ -39,7 +39,7 @@ Log in to the [Huawei Cloud](https://www.huaweicloud.com) studio through your ac
 
 ![](../img/1.huaweicloud_6.png)
 
-Enter "My Voucher", click Copy "Account ID" on the "API Voucher" page, and fill in "Huawei Cloud Account ID" in the dialog box of purchasing stored-value cards in the observation cloud expense center.
+Enter "My Voucher", click Copy "Account ID" on the "API Voucher" page, and fill in "Huawei Cloud Account ID" in the dialog box of purchasing stored-value cards in the guance expense center.
 
 ![](../img/1.huaweicloud_8.png)
 

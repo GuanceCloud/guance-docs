@@ -2,11 +2,11 @@
 ---
 
 
-Guance supports the generation of new metric data based on existing data in the current space, so that you can design and implement new technical indicators according to your needs.
+Guance supports the generation of new metric data based on existing data in the current space, so that you can design and implement new technical metrics according to your needs.
 
 ### New Rule
 
-Enter the "Log"-"Generate Indicator" page, and click "New Rule" to start creating a new generation metric rule.
+Enter the "Log"-"Generate Metric" page, and click "New Rule" to start creating a new generation metric rule.
 
 ![](img/2.log_metric_1.png)
 
@@ -39,7 +39,7 @@ Enter the "Log"-"Generate Indicator" page, and click "New Rule" to start creatin
 - Measurement: Set the name of the measurement where the metric is stored
 - Metric: Set the name of the metric. Metric names cannot be duplicated. Multiple metrics can be added.
 
-**Step 4:** After completing the generation rule, click OK to complete the generation of indicator rules and start data collection.
+**Step 4:** After completing the generation rule, click OK to complete the generation of metric rules and start data collection.
 
 All the added rules will be displayed in the Generate Metric interface. Users can "Enable/Disable", "Open in Metric Analysis", "Open in Metric Management", "Edit" and "Delete" operations.
 
@@ -47,9 +47,9 @@ All the added rules will be displayed in the Generate Metric interface. Users ca
 
 ### Edit Rules
 
-On the Generate Metric page, you can view all generated indicator rules that have been created and edit them.
+On the Generate Metric page, you can view all generated metric rules that have been created and edit them.
 
-**Note: Because the data source and aggregate expression of generating indicator rules determine the data type, some rules do not support editing and modification.**
+**Note: Because the data source and aggregate expression of generating metric rules determine the data type, some rules do not support editing and modification.**
 
 ![](img/2.log_metric_3.png)
 
@@ -75,6 +75,6 @@ Note: Metrics generation is based on data aggregation within the selected freque
 
 #### View in Metric Management
 
-On the Generate Metric page, click the Open in Metric Management button on the right side of the rule to jump to the Metric Management page to view metrics and tags, and support editing indicator units and descriptions.
+On the Generate Metric page, click the Open in Metric Management button on the right side of the rule to jump to the Metric Management page to view metrics and tags, and support editing metric units and descriptions.
 
 ![](img/5.log_metric_3.png)

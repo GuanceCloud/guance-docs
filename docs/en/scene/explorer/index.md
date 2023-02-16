@@ -15,7 +15,7 @@ Go to 「Scene」 - 「Explorer」 and click 「+New Explorer」 to start creati
 - Custom Templates: Import custom explorer templates for use
 - Built-in explorer template: the system provides the explorer template, no need to configure, ready to use.
 
-![](../img/9.logviewer_2.png)
+![](../img/9.logexplorer_2.png)
 
 Select 「+New Blank Explorer」 and complete the custom explorer name and label to create a new explorer.
 
@@ -45,7 +45,7 @@ Select 「+New Blank Explorer」 and complete the custom explorer name and label
 - Data Range: used to select the source of the logs, you need to install DataKit first and configure the corresponding log collector.
 - Filtering: filtering log content based on fields.
 - Search: keyword search based on log sources and filtered results to filter the log display content.
-- Time-series chart: used to display the trend changes of data at equal time intervals, and can also be used to analyze the role and impact between multiple groups of indicator data. Support custom chart query, and display as line chart, area chart or bar chart, please refer to [Chart Query](../visual-chart/chart-query.md) and [Time Series Chart] (../visual-chart/timeseries-chart.md) for details
+- Time-series chart: used to display the trend changes of data at equal time intervals, and can also be used to analyze the role and impact between multiple groups of metric data. Support custom chart query, and display as line chart, area chart or bar chart, please refer to [Chart Query](../visual-chart/chart-query.md) and [Time Series Chart] (../visual-chart/timeseries-chart.md) for details
 - Chart synchronization search: used to filter whether the content of the search is synchronized to the chart, the default is on. When there is content in the search box, turn off the switch, that is, the chart query back to the default state; turn on the switch, that is, the chart query is affected by the filtered content.
 - shortcut filtering: default display host, status two fields; support user-defined shortcut filtering list.
 - data list: default configuration time, content two fields, support user-defined display list fields.
