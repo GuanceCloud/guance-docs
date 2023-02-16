@@ -23,11 +23,11 @@ In the explorer shortcut filter, support editing "shortcut filter" and adding ne
 
 ### Custom Display Columns
 
-In the Usability Monitoring Explorer list, you can customize to add, edit, delete and drag display columns through Display Columns. When the mouse is placed on the display column of the viewer, click the "Settings" button to support ascending, descending, moving columns to the left, moving columns to the right, adding columns to the left, adding columns to the right, replacing columns, adding to shortcut filtering, adding to grouping, removing columns and other operations. See the documentation [display column description](../getting-started/necessary-for-beginners/explorer-search.md#columns).
+In the Usability Monitoring Explorer list, you can customize to add, edit, delete and drag display columns through Display Columns. When the mouse is placed on the display column of the explorer, click the "Settings" button to support ascending, descending, moving columns to the left, moving columns to the right, adding columns to the left, adding columns to the right, replacing columns, adding to shortcut filtering, adding to grouping, removing columns and other operations. See the documentation [display column description](../getting-started/necessary-for-beginners/explorer-search.md#columns).
 
 ### Analysis
 
-In the explorer analysis column, multi-dimensional aggregation analysis and statistics based on **1-3 tags** are supported to reflect the distribution characteristics and trends of data in different dimensions and at different times. Observation cloud supports a variety of data chart analysis methods, including time sequence chart, ranking list, pie chart and rectangular tree chart. For more details, please refer to the document [analysis mode for the explorer](../getting-started/necessary-for-beginners/explorer-search.md#analysis).
+In the explorer analysis column, multi-dimensional aggregation analysis and statistics based on **1-3 tags** are supported to reflect the distribution characteristics and trends of data in different dimensions and at different times. Guance supports a variety of data chart analysis methods, including time sequence chart, ranking list, pie chart and rectangular tree chart. For more details, please refer to the document [analysis mode for the explorer](../getting-started/necessary-for-beginners/explorer-search.md#analysis).
 
 ### Dial Test Statistics
 

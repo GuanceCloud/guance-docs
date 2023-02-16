@@ -13,7 +13,7 @@ Select "Source", add one or more log filtering rules, and click "OK" to open the
  
 - Source: All log sources or single log sources can be selected     
 - Filtering: Two conditional choices are supported, "any" and "all". "Any" means at least match one condition,"All" means must match all of conditions.    
-- Field name: Manual input of field name is supported, which must be an accurate value. You can view the field name to be matched in the "Display Column" of the log viewer.    
+- Field name: Manual input of field name is supported, which must be an accurate value. You can view the field name to be matched in the "Display Column" of the log explorer.    
 - Field value: support manual input of field value, support input of single value, multi-value; Support regular matching, such as abc*, *abc*, *abc,. *, etc     
 - Matching options: 4 modes of ` in/not in/match/not match ` are supported, ` in/not in ` is precise match, and ` match/not match ` is fuzzy match (regular match)     
 

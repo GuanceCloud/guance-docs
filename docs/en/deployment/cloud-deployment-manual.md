@@ -45,7 +45,7 @@ This document mainly introduces the complete steps from resource planning and co
 Note:
 
 1. The “**minimum configuration**” is only suitable for POC scenario deployment and functional verification, and it is not suitable for use as a production environment. 
-2. The “**recommended configuration**” is suitable for data volume scenarios where InfuxDB is less than 150,000 timelines and Elasticsearch is less than 7 billion documents (the sum of documents such as logs, links, user access monitoring and events). 
+2. The “**recommended configuration**” is suitable for data volume scenarios where InfuxDB is less than 150,000 timeseries and Elasticsearch is less than 7 billion documents (the sum of documents such as logs, links, user access monitoring and events). 
 3. As a production deployment, the actual access data volume is used to evaluate. The more access data volume, the higher the storage and specification configuration of InfuxDB and Elasticsearch. 
 
 ### 2.2 Create Resources

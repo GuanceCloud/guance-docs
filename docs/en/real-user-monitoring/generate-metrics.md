@@ -1,11 +1,11 @@
 # Generate Metrics
 ---
 
-Guance supports the generation of new metric data based on existing data in the current space, so that you can design and implement new technical indicators according to your needs.
+Guance supports the generation of new metric data based on existing data in the current space, so that you can design and implement new technical metrics according to your needs.
 
 ### New Rule
 
-Enter the "Real User Monitoring"-"Generate Indicator" page, and click "New Rule" to start creating a new generation metric rule.
+Enter the "Real User Monitoring"-"Generate Metric" page, and click "New Rule" to start creating a new generation metric rule.
 
 ![](img/6.rum_metric_1.png)
 
@@ -38,7 +38,7 @@ Enter the "Real User Monitoring"-"Generate Indicator" page, and click "New Rule"
 - Measurement: Set the name of the measurement where the metric is stored
 - Metric: Set the name of the metric. Metric names cannot be duplicated. Multiple metrics can be added.
 
-**Step 4:** After completing the generation rule, click OK to complete the generation of indicator rules and start data collection.
+**Step 4:** After completing the generation rule, click OK to complete the generation of metric rules and start data collection.
 
 All the added rules will be displayed in the Generate Metric interface. Users can "Enable/Disable", "Open in Metric Analysis", "Open in Metric Management", "Edit" and "Delete" operations.
 
@@ -46,9 +46,9 @@ All the added rules will be displayed in the Generate Metric interface. Users ca
 
 ### Edit Rules
 
-On the Generate Metric page, you can view all generated indicator rules that have been created and edit them.
+On the Generate Metric page, you can view all generated metric rules that have been created and edit them.
 
-**Note: Because the data source and aggregate expression of generating indicator rules determine the data type, some rules do not support editing and modification.**
+**Note: Because the data source and aggregate expression of generating metric rules determine the data type, some rules do not support editing and modification.**
 
 ![](img/7.metrics_create_10.png)
 

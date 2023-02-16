@@ -5,7 +5,7 @@ The following is the DataFlux Query Language (dql) definition. With the gradual 
 
 The whole constraints are as follows:
 
-- Non-keywords (such as indicator name and tag name) are case sensitive; **keywords and function names are case-insensitive**.
+- Non-keywords (such as metric name and tag name) are case sensitive; **keywords and function names are case-insensitive**.
 
 - With `#` as line comment character; inline comment is not supported.
 
@@ -98,19 +98,19 @@ Syntactically,  `data-source` is required (similar to the `FROM` clause in SQL),
 Examples：
 
 ```python
-# Get the data of all fields of the indicator set cpu in the last 5 minutes.
+# Get the data of all fields of the measurement cpu in the last 5 minutes.
 M::cpu [5m]}
 
 # Find the data that matches all metrics of regular expression *db in the last 5 minutes.
 M::re('*db') [5m]
 
-# Get all field data of indicator set cpu from 10 minutes ago to 5 minutes ago.
+# Get all field data of measurement cpu from 10 minutes ago to 5 minutes ago.
 M::cpu [10m:5m]
 
-# Get all the field data of the metric set cpu from 10 minutes ago to 5 minutes ago, and aggregate them at 1 minute intervals.
+# Get all the field data of the measurement cpu from 10 minutes ago to 5 minutes ago, and aggregate them at 1 minute intervals.
 M::cpu [10m:5m:1m]
 
-# Query the time_active and time_guest_nice of the time series data indicator set cpu in the last 5 minutes,
+# Query the time_active and time_guest_nice of the time series data measurement cpu in the last 5 minutes,
 # Filter with two tags of host and cpu, and display the results in groups of host and cpu.
 M:: cpu:(time_active, time_guest_nice)
 		{ host = "host-name", cpu = "cpu0" } [5m] BY host,cpu
@@ -166,7 +166,7 @@ List of the query results:
 ```python
 M::cpu:(time_active, system_usage) {host="biz_prod"} [5m]
 
-# Here, the calculation between different indicators (types should be basically matched) on the same indicator set is supported.
+# Here, the calculation between different metrics (types should be basically matched) on the same measurement is supported.
 M::cpu:(time_active+1, time_active/time_guest_nice) [5m]
 ```
 
@@ -316,7 +316,7 @@ M::cpu:() by host limit 3 slimit 3
 
 `SHOW_xxx` is used to browse data (function names are not case sensitive):
 
-- `SHOW_MEASUREMENT()` - view a list of metric sets, supporting `filter-clause`、`limit` and `offset` statement
+- `SHOW_MEASUREMENT()` - view a list of measurements, supporting `filter-clause`、`limit` and `offset` statement
 - `SHOW_OBJECT_CLASS()` - view object classification list
 - `SHOW_CUSTOM_OBJECT_SOURCE()` - view a list of custom object data types
 - `SHOW_EVENT_SOURCE()` - view list of event sources

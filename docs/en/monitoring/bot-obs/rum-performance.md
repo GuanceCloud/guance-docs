@@ -81,13 +81,13 @@ Click "Event" to view the details page of intelligent check events, including ev
 
 #### Event details
 
-RUM Performance Intelligent Inspection will detect three core performance indicators: LCP, FID, and CLS. When one of these indicators is abnormal, an event report will be generated based on the abnormal indicator.
+RUM Performance Intelligent Inspection will detect three core performance metrics: LCP, FID, and CLS. When one of these metrics is abnormal, an event report will be generated based on the abnormal metric.
 
 - Event Overview: describes the object and content of the abnormal inspection event.
-- Abnormal Page List: You can view the details of LCP, FID, and CLS indicators for the corresponding page.
-- Page Details: includes the abnormal time, page address, and abnormal values of the indicators. By clicking on the page address, you can further analyze the abnormality by jumping to the corresponding front-end page.
+- Abnormal Page List: You can view the details of LCP, FID, and CLS metrics for the corresponding page.
+- Page Details: includes the abnormal time, page address, and abnormal values of the metrics. By clicking on the page address, you can further analyze the abnormality by jumping to the corresponding front-end page.
 - Sample the affected users: You can view information such as user ID, session ID, and username of the affected users on the current abnormal page, and you can jump to the corresponding session to view the impact on users by session ID.
-- Suggestions: provides optimization and improvement suggestions for the current abnormal indicator.
+- Suggestions: provides optimization and improvement suggestions for the current abnormal metric.
 
 ![image](../img/rum_performance07.png)
 

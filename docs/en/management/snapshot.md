@@ -41,7 +41,7 @@ Note: All saved snapshots can be viewed in the "Snapshot" menu of the shortcut e
 
 ### View Snapshot in Explorer
 
-After the explorer saves the snapshot, such as infrastructure, indicators, logs, events, application performance monitoring, user access monitoring, cloud dialing test, security check and CI visualization, click the icon in the upper left corner to skid and expand to view the saved snapshot.
+After the explorer saves the snapshot, such as infrastructure, metrics, logs, events, application performance monitoring, user access monitoring, cloud dialing test, security check and CI visualization, click the icon in the upper left corner to skid and expand to view the saved snapshot.
 
 - Support snapshot name keyword search, and match related snapshot names vaguely through keywords
 - Support sharing, copying links and deleting functions. Click "Snapshot Name" to open the corresponding data copy in the current explorer

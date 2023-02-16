@@ -9,7 +9,7 @@ Guance supports reporting custom object data through DataFlux Func. Except for h
 
 ## Preconditions
 
-Custom object data reporting needs to install and connect DataKit and DataFlux Func first, then report data to DataKit through DataFlux Func, and finally DataKit reports data to observation cloud workspace.
+Custom object data reporting needs to install and connect DataKit and DataFlux Func first, then report data to DataKit through DataFlux Func, and finally DataKit reports data to guance workspace.
 
 - [Install DataKit](../datakit/datakit-install.md)
 - [Install DataFlux Func](../dataflux-func/quick-start.md)

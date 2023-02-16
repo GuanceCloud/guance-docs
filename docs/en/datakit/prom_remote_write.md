@@ -129,7 +129,7 @@ You can regularly match and ignore labels on metrics by configuring `tags_ignore
   tags_ignore_regex = ["xxxx"]
 ```
 
-You can rename some of the tag names that an indicator already has by configuring `tags_rename`, as follows:
+You can rename some of the tag names that an metric already has by configuring `tags_rename`, as follows:
 
 ```toml
   ## tags to rename
@@ -224,7 +224,7 @@ Output description:
 
 - Summary: Summary results
 
-- - Total time series: Number of timelines
+- - Total time series: Number of timeseries
 
 - - Total line protocol points: Line protocol points
 

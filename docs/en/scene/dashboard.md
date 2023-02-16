@@ -57,7 +57,7 @@ After the dashboard is created, you can add new charts to the dashboard by click
 
 ### Big screen mode
 
-In the dashboard, after clicking the 「Preview」 - 「Big Screen Mode」 button, Observation Cloud will automatically help you to put away the left and top navigation bar and display the view in full screen. Click the [ESC] button to exit the big screen mode.
+In the dashboard, after clicking the 「Preview」 - 「Big Screen Mode」 button, Guance will automatically help you to put away the left and top navigation bar and display the view in full screen. Click the [ESC] button to exit the big screen mode.
 
 ![](img/2.dashboard_2.png)
 
@@ -73,7 +73,7 @@ In the Dashboard, click the "Settings" button and select "Save to built-in view"
 
 ![](img/9.dashboard_2.png)
 
-After saving to the built-in view, you can view the saved dashboard view 「CPU Monitor View」 in the 「User View」 of 「Management」 - 「Built-in View」 of Observation Cloud Workspace.<br />Note: Renaming of user views under the same workspace is not allowed.
+After saving to the built-in view, you can view the saved dashboard view 「CPU Monitor View」 in the 「User View」 of 「Management」 - 「Built-in View」 of Guance Workspace.<br />Note: Renaming of user views under the same workspace is not allowed.
 ![](img/2.dashboard_5.png)
 
 Also, since the binding relationship `label:*` is set, the built-in view of the binding "CPU Monitor View" can be viewed on the details page of the hosts and containers whose infrastructure has set the "Label property".

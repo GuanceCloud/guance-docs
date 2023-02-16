@@ -1,7 +1,7 @@
 # FAQ
 
 ## 1 How to Update Various Offline Packages Manually
-This section describes how to manually update the **view template package**, **metric dictionary**, **official Pipeline package** in an offline environment without upgrading the observation cloud version.
+This section describes how to manually update the **view template package**, **metric dictionary**, **official Pipeline package** in an offline environment without upgrading the guance version.
 ### 1.1 How to Update the View Template Package in an Offline Environment 
 
 1.Download the Latest View Template Package: 

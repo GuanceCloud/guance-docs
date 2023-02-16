@@ -29,7 +29,7 @@ You can click the following link to view the corresponding application access co
 
 ## Usage Scenarios
 
-- Deep insight into user access and improve user experience: comprehensively analyze user access behavior through Session, View, Resource, Action, Long Task and Error viewers, and know the running status of applications in real time;
+- Deep insight into user access and improve user experience: comprehensively analyze user access behavior through Session, View, Resource, Action, Long Task and Error explorers, and know the running status of applications in real time;
 
 - Data association analysis: automatically associate logs, traces, network requests, access errors, etc. through rich tag functions, and quickly locate application problems;
 - Error tracking: support the association of error traces, locate the upstream and downstream span of error traces, and quickly discover performance problems; Through Sourcemap conversion, restore the confused code, facilitate the location of the source code during error troubleshooting, and solve the problem faster.

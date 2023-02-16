@@ -91,7 +91,7 @@ Guance will perform inspections based on the current state of the Kubernetes clu
 ![image](../../img/k8s_health07.png)
 
 * Event Overview: Describes the object and content of the abnormal inspection event.
-* Abnormal Details: Displays details of memory-related abnormal performance indicators.
+* Abnormal Details: Displays details of memory-related abnormal performance metrics.
 * Top 5 Memory Usage List: Displays information of the top 5 PODs with the highest memory usage. Clicking on a POD takes you to its details page to view more information.
 
 ##### Disk usage Abnormal
@@ -99,7 +99,7 @@ Guance will perform inspections based on the current state of the Kubernetes clu
 ![image](../../img/k8s_health08.png)
 
 * Event overview: Describes the object and content of the exception inspection event
-* Abnormal details: Displays details of the disk abnormal performance indicator
+* Abnormal details: Displays details of the disk abnormal performance metric
 * Abnormal analysis: Displays the usage of the host with abnormal disk usage. You can click on the host to jump to the host details page for more information.
 
 ##### CPU usage Abnormal

@@ -3,7 +3,7 @@
 
 ## Overview
 
-Observation Cloud supports adding global variables to the view. When you want to dynamically complete the filtering of the chart in the dashboard, you can choose to use view variables to do so.
+Guance supports adding global variables to the view. When you want to dynamically complete the filtering of the chart in the dashboard, you can choose to use view variables to do so.
 
 Note: When switching view variables, only the first 50 are supported in the drop-down, so you can search to see the rest of the variables.
 
@@ -29,19 +29,19 @@ Query variables and associative variables can be implemented using DQL. ([Learn 
 
 ##### Show Function Query
 
-> 【Indicator data】 Suggested use of this query
+> 【Metric data】 Suggested use of this query
 
 | Grammar | Description |
 | --- | --- |
-| show_measurement() | Return a collection of indicators for time-series data |
-| show_tag_key(from=["Indicator set name"]) | Returns a list of indicator set tags, which can be specified for specific indicators |
-| show_tag_value(from=['Indicator set name'], keyin=['Label Name']) | Returns a list of tag values for the specified tag key in the database |
-| show_object_source()    <br /> `object `Can be replaced with logging/event/tracing/rum | Return object /log/keyevent/tracing /rum data collection of indicators, the function does not require parameters |
+| show_measurement() | Return a collection of metrics for time-series data |
+| show_tag_key(from=["Measurement name"]) | Returns a list of measurement tags, which can be specified for specific metrics |
+| show_tag_value(from=['Measurement name'], keyin=['Label Name']) | Returns a list of tag values for the specified tag key in the database |
+| show_object_source()    <br /> `object `Can be replaced with logging/event/tracing/rum | Return object /log/keyevent/tracing /rum data collection of metrics, the function does not require parameters |
 
 `SHOW_TAG_VALUE` Function Example：
 
 ```
-##Query the list of host tag values for the indicator set cpu
+##Query the list of host tag values for the measurement cpu
 SHOW_TAG_VALUE(from=["cpu"],keyin=["host"])
 ```
 
@@ -75,9 +75,9 @@ O::docker_containers:(distinct(`container_name`)) {`host`=`#{host}`}[10m]
 
 ![](img/11.variable_3.png)
 
-#### Indicator Search
+#### Metric Search
 
-Select 【Indicator Set】 and the corresponding 【Label】.
+Select 【Measurement】 and the corresponding 【Label】.
 
 ![](img/11.variable_4.png)
 

@@ -46,7 +46,7 @@ It should be noted that not all collectors support ENV injection at present. The
 
 ### Configure through Annotation {#annotation}
 
-At present, Annotation configuration is more narrowly supported than ENV. It is mainly used to **mark the collected entity**, such as _whether it is necessary to turn on/off the collection of an entity (including log collection, indicator collection, etc.)_
+At present, Annotation configuration is more narrowly supported than ENV. It is mainly used to **mark the collected entity**, such as _whether it is necessary to turn on/off the collection of an entity (including log collection, metric collection, etc.)_
 
 The scenario of interfering with collector configuration through Annotation is quite special. For example, in the container (Pod) log collector, if collecting all logs is prohibited (in the container collector, `container_exclude_log = [image:*]`), but you only want to turn on log collection for certain Pods, you can append Annotation to certain Pods to mark them:
 

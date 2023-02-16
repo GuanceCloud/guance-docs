@@ -45,7 +45,7 @@ In the following picture, after the index is successfully created, log data with
 
 ## Bind index {#binding-index}
 
-Guance supports binding external index data, including SLS, Elasticsearch and OpenSearch index data. After successful binding, you can query and analyze external index data in observation cloud workspace.
+Guance supports binding external index data, including SLS, Elasticsearch and OpenSearch index data. After successful binding, you can query and analyze external index data in guance workspace.
 
 ???+ attention
 
@@ -63,7 +63,7 @@ Into "Log"-"Index", click "Bind Index". Select SLS in the pop-up dialog box, fil
 For information on how to open the SLS storage solution, please refer to the document [Alibaba Cloud Market Launches Guance Exclusive Edition](../billing/commercial-aliyun-sls.md). 
 
 -If you are a commercial user of Guance, you can refer to the document [RAM Account Authorization](../billing/billing-method/sls-grant.md) to obtain AK/AKS for index binding; 
--If you are a user of the exclusive version of Guance, you can directly use AK/AKS when opening the exclusive version for index binding. For how to open the exclusive version, you can refer to the document [Alibaba Cloud Market opens the exclusive version of observation cloud](../billing/commercial-aliyun-sls.md); 
+-If you are a user of the exclusive version of Guance, you can directly use AK/AKS when opening the exclusive version for index binding. For how to open the exclusive version, you can refer to the document [Alibaba Cloud Market opens the exclusive version of guance](../billing/commercial-aliyun-sls.md); 
 -If you are an exclusive user of Guance and want to bind SLS log indexes under other Alibaba Cloud accounts, you can refer to the document [RAM Account Authorization](../billing/billing-method/sls-grant.md) to obtain AK/AKS for index binding. 
 
 
@@ -100,7 +100,7 @@ Because the standard fields of Guance are inconsistent with those of SLS, Elasti
 
 -` time `: the reporting time of the log. The default mapping ` date ` field of Log Service is ` time `, and Elasticsearch and OpenSearch can be filled in by themselves according to the actual log data; 
 -` _ docid `: The unique ID of the log so you can view the bound log details after mapping, for example, you can map the original field ` logid ` to ` _ docid `; 
--` message `: The contents of the log. After mapping, you can view the bound log contents and use the ` message ` field to help you cluster and analyze your log data. For example, you can map the original ` content ` field to ` message `. For more details, please refer to the document Log Viewer Clustering (explorer. md). 
+-` message `: The contents of the log. After mapping, you can view the bound log contents and use the ` message ` field to help you cluster and analyze your log data. For example, you can map the original ` content ` field to ` message `. For more details, please refer to the document Log Explorer Clustering (explorer. md). 
 
 You can also select the index that needs to modify the field mapping in "Bind Index"-"Other Indexes", and click "Edit" to modify the mapped fields of the index. 
 

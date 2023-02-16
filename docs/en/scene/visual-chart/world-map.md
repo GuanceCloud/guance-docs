@@ -7,23 +7,23 @@
 
 ## Application Scene
 
-The world map of the Guance is used to display the data distribution of a certain indicator data in different countries. It can be used in the following scene：
+The world map of the Guance is used to display the data distribution of a certain metric data in different countries. It can be used in the following scene：
 
 - Showing the distribution of data in different regions
 - Show the data size ranking of different regions
 
 ## Chart Search
 
-**Prerequisites:** The indicator query must contain the label "Country" in the dataset and the query criteria must include the group "Country", otherwise the chart cannot be added successfully
+**Prerequisites:** The metric query must contain the label "Country" in the dataset and the query criteria must include the group "Country", otherwise the chart cannot be added successfully
 
 Please click [chart-query](chart-query.md) for detailed explanation of chart query conditions, simple query is added by default. You can add multiple queries, but the Tag of by (grouping) must be the same, modify one, and the other will be modified automatically.
 
-The chart query matches regions by country and colors by indicator values, as explained below：
+The chart query matches regions by country and colors by metric values, as explained below：
 
 | Options | Description |
 | --- | --- |
 | Country tag | Select the tag that represents the country, the tag must be the tag tag that has been grouped in the query (**Note: the tag name of the country tag does not have to be "country", as long as the value is the country **) |
-| Indicators | When multiple indicator queries are added, you can set the main indicator to be displayed. "Main display indicator" is the indicator that determines the gradient color of the color block |
+| Metrics | When multiple metric queries are added, you can set the main metric to be displayed. "Main display metric" is the metric that determines the gradient color of the color block |
 
 ## Chart Links
 
@@ -33,7 +33,7 @@ Links can help you jump from the current chart to the target page, support addin
 | --- | --- |
 | Chart Title | Set the title for the chart, after setting, it will be displayed on the top left of the chart, and it supports hiding |
 | Region Ranking | Support ranking by region data size, from largest to smallest. Disable by default |
-| Color | 1. Gradient color system: Gradient color of the color block. After selecting the color, the system will use the selected color as the base to generate the number of color blocks of the selected grade<br/>2. Gradient interval：<br/><li>Automatic: default divided into 5 intervals according to the maximum and minimum values of the current data, supports customizing the maximum and minimum values；<br/><li>Customization: Supports customizing the gradient color levels, i.e. the level settings of the area range in the map. By default, the system divides the maximum and minimum values of the selected indicator into 5 gradient levels, and supports customizing the number of levels (up to 10), the range of levels, and the display color |
+| Color | 1. Gradient color system: Gradient color of the color block. After selecting the color, the system will use the selected color as the base to generate the number of color blocks of the selected grade<br/>2. Gradient interval：<br/><li>Automatic: default divided into 5 intervals according to the maximum and minimum values of the current data, supports customizing the maximum and minimum values；<br/><li>Customization: Supports customizing the gradient color levels, i.e. the level settings of the area range in the map. By default, the system divides the maximum and minimum values of the selected metric into 5 gradient levels, and supports customizing the number of levels (up to 10), the range of levels, and the display color |
 
 
 ## Chart Setup
@@ -41,7 +41,7 @@ Links can help you jump from the current chart to the target page, support addin
 ### Basic Settings
 | Options | Description |
 | --- | --- |
-| Units | 1. Support setting units for query results.<br />1）If the queried data has no unit, after setting the unit in the chart, it will be displayed on the chart according to the set unit<br />2）If the query data comes with its own units, or if you are in [Indicator Management] (../../metrics/dictionary.md), and you set the units for the metrics in the chart, the units set in the chart will be displayed on the chart.<br />3）If the query data has no units and no units are set in the chart, the chart Y-axis values are automatically calculated according to scientific notation; the original values are displayed on the chart in the format [thousandths] (chart-query.md#thousand).<br /> **Scientific counting instructions**<br />Default query result value is automatically converted to units, display follows 「scientific notation K, M, B」 (1 thousand = 1K, 1 million = 1M, 1 billion = 1B), retaining two decimal points; RMB is automatically converted to units 「yuan, million, billion」, retaining two decimal points<br />*For example, if the unit of time interval is selected as ns, then according to the size of the data, the query result will only automatically convert the unit effect as follows, and so on：*<br /><li>1000000ns：Chart query data results in 1ms<br /><li>1000000000ns：The chart query data result shows 1s<br /><li>10000000000ns：The chart query data result shows 1m<br /><br/>2.Support for query results preset units, manual input format: aggregation function (indicator), such as `last(age_idle)` |
+| Units | 1. Support setting units for query results.<br />1）If the queried data has no unit, after setting the unit in the chart, it will be displayed on the chart according to the set unit<br />2）If the query data comes with its own units, or if you are in [Metric Management] (../../metrics/dictionary.md), and you set the units for the metrics in the chart, the units set in the chart will be displayed on the chart.<br />3）If the query data has no units and no units are set in the chart, the chart Y-axis values are automatically calculated according to scientific notation; the original values are displayed on the chart in the format [thousandths] (chart-query.md#thousand).<br /> **Scientific counting instructions**<br />Default query result value is automatically converted to units, display follows 「scientific notation K, M, B」 (1 thousand = 1K, 1 million = 1M, 1 billion = 1B), retaining two decimal points; RMB is automatically converted to units 「yuan, million, billion」, retaining two decimal points<br />*For example, if the unit of time interval is selected as ns, then according to the size of the data, the query result will only automatically convert the unit effect as follows, and so on：*<br /><li>1000000ns：Chart query data results in 1ms<br /><li>1000000000ns：The chart query data result shows 1s<br /><li>10000000000ns：The chart query data result shows 1m<br /><br/>2.Support for query results preset units, manual input format: aggregation function (metric), such as `last(age_idle)` |
 
 ### Advanced Settings
 | Options | Description |

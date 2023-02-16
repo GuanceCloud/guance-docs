@@ -41,7 +41,7 @@ Among them, `conditions` can be a combination of other conditions. Here are some
 As (most) data collected by DataKit is reported in the form of line protocol, all filters work on top of line protocol. Filters support data filtering on the following data:
 
 - Measurement name: For different types of data, the business attribution of measurement is different, as follows:
-  - For time series data (M), a `measurement` tag is injected into its tag list when the filter is running, so you can write a metric set-based filter as follows:`{  measurement = re('abc.*') AND ( tag1='def' and field2 = 3.14)}`.
+  - For time series data (M), a `measurement` tag is injected into its tag list when the filter is running, so you can write a measurement-based filter as follows:`{  measurement = re('abc.*') AND ( tag1='def' and field2 = 3.14)}`.
   - For object data (O), when the filter runs, a `class` tag is injected into its tag list, so an object-based filter can be written like this: `{  class = re('abc.*') AND ( tag1='def' and field2 = 3.14)}`
   - For log data (L), when the filter runs, a `source` tag is injected into its tag list, so an object-based filter can be written like this: `{  trace = re('abc.*') AND ( tag1='def' and field2 = 3.14)}`
 

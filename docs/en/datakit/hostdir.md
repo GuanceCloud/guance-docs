@@ -45,7 +45,7 @@ None
 
 ## Measurements {#measurements}
 
-For all of the following metric sets, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.hostdir.tags]`:
+For all of the following measurements, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.hostdir.tags]`:
 
 ``` toml
  [inputs.hostdir.tags]

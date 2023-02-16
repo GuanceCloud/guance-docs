@@ -87,13 +87,13 @@ Enter the "Custom" explorer, and Guance supports you to query and analyze custom
 
 ### Custom Display Columns
 
-On the Custom Host Object List page, you can customize to add, edit, delete and drag display columns through Display Columns. When the mouse is placed on the display column of the viewer, click the "Settings" button to support ascending, descending, moving columns to the left, moving columns to the right, adding columns to the left, adding columns to the right, replacing columns, adding to shortcut filtering, adding to grouping, removing columns and other operations. For more custom display columns, refer to the documentation [display column description](../../getting-started/necessary-for-beginners/explorer-search.md#columns).
+On the Custom Host Object List page, you can customize to add, edit, delete and drag display columns through Display Columns. When the mouse is placed on the display column of the explorer, click the "Settings" button to support ascending, descending, moving columns to the left, moving columns to the right, adding columns to the left, adding columns to the right, replacing columns, adding to shortcut filtering, adding to grouping, removing columns and other operations. For more custom display columns, refer to the documentation [display column description](../../getting-started/necessary-for-beginners/explorer-search.md#columns).
 
 ![](../img/11.custom_6.png)
 
 ### Data Export
 
-In the custom object list, the observation cloud enables you to export the data of the current object list as CSV files, dashboards, or notes through「:material-cog:settings」.
+In the custom object list, the guance enables you to export the data of the current object list as CSV files, dashboards, or notes through「:material-cog:settings」.
 
 ![](../img/11.custom_7.png)
 

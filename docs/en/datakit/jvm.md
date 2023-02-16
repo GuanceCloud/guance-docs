@@ -85,7 +85,7 @@ DataKit has a built-in [statsd collector](statsd.md) for receiving statsd protoc
 For configuration instructions here:
 
 - `service_address` set here to `:8125`, which is the destination address where ddtrace sends out jvm metrics.
-- `drop_tags` here discards `runtime-id` here because it could cause the timeline to explode. If you really need this field, just remove it from `drop_tags`.
+- `drop_tags` here discards `runtime-id` here because it could cause the timeseries to explode. If you really need this field, just remove it from `drop_tags`.
 - `metric_mapping`: In the original data sent by ddtrace, there are two types of metrics, their metrics names begin with `jvm_` and `datadog_tracer_` respectively, so we unify them into two types of metrics, one is `jvm` and the other is `ddtrace` self-running metrics.
 
 ### Start Java Application {#start-app}
@@ -129,7 +129,7 @@ When turned on, you can collect jvm metrics exposed by DDTrace.
 
 ???+ attention
 
-    The actual collected indicators are based on [DataDog's doc](https://docs.datadoghq.com/tracing/metrics/runtime_metrics/java/#data-collected){:target="_blank"}.
+    The actual collected metrics are based on [DataDog's doc](https://docs.datadoghq.com/tracing/metrics/runtime_metrics/java/#data-collected){:target="_blank"}.
 
 ### `jvm` {#dd-jvm-measurement}
 

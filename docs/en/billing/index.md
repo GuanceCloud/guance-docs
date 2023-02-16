@@ -15,7 +15,7 @@ You can [register Guance Experience Plan](https://auth.guance.com/businessRegist
     - The upgraded commercial plan only supports the current workspace owner to view and operate;
     - There is no charge if the experience plan is not upgraded. Once upgraded to the commercial plan, it cannot be refunded;
     - If the experience plan is upgraded to the commercial plan, the collected data will continue to be reported to Guance workspace, but the data collected during the experience plan will not be viewed;
-    - Timeline and backup log statistics are full data, and other billing items are incremental data; Incremental data statistics reset the free quota at 0 o'clock every day, which is valid on the same day;
+    - Timeseries and backup log statistics are full data, and other billing items are incremental data; Incremental data statistics reset the free quota at 0 o'clock every day, which is valid on the same day;
     - If the data quota is fully used for different billing items in the experience plan, the data will stop being reported and updated; Infrastructure and event data still support reporting updates, and you can still see infrastructure list data and event data.
 
 ![](img/9.upgrade_1.png)
@@ -39,7 +39,7 @@ In the settlement account overview, you can view the settlement account name, ca
 
 #### Usage Statistics
 
-In "Usage Statistics", you can view the statistical data of charging items DataKit, network (host), timeline, log data, backup log data capacity, application performance Trace, application performance Profile, user access PV, dialing times, task scheduling and SMS as of now and as of yesterday.
+In "Usage Statistics", you can view the statistical data of charging items DataKit, network (host), timeseries, log data, backup log data capacity, application performance Trace, application performance Profile, user access PV, dialing times, task scheduling and SMS as of now and as of yesterday.
 
 #### Billing List
 

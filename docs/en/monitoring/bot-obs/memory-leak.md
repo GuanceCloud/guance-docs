@@ -64,7 +64,7 @@ You can refer to the following JSON to configure multiple host information:
     }
 ```
 
->  **Note**: In the DataFlux Func, you can also add filtering conditions when writing inspection processing functions (refer to the sample code configuration), it should be noted that the parameters configured in the observation cloud studio will override the parameters configured when writing inspection processing functions.
+>  **Note**: In the DataFlux Func, you can also add filtering conditions when writing inspection processing functions (refer to the sample code configuration), it should be noted that the parameters configured in the guance studio will override the parameters configured when writing inspection processing functions.
 
 ## View Events
 
