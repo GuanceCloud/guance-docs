@@ -6,7 +6,7 @@
 
 ---
 
-Collect GitLab operation data and report it to Guance in the form of metrics.
+Collect GitLab operation data and report it to Guance Cloud in the form of metrics.
 
 ## Preconditions {#requirements}
 

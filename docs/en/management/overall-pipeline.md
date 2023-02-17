@@ -36,7 +36,7 @@ On the new pipeline page, you can first "filter" out the data range you want to 
 
 **1.Basic Settings**
 
-- Filtering: data types include logs, indicators, user access monitoring, application performance monitoring, basic objects, custom objects, networks, security check and support multiple choices;
+- Filtering: data types include logs, metrics, user access monitoring, application performance monitoring, basic objects, custom objects, networks, security check and support multiple choices;
 - Pipeline name: Enter a custom Pipeline file name;
 
 ???+ attention
@@ -62,7 +62,7 @@ According to the selected data type, input the corresponding data, and test it b
 
 ???+ attention
 
-    Pipeline created in Guance workspace is stored in the `<datakit installation directory>/Pipeline_remote directory`, and each type of Pipeline file is stored in the corresponding secondary directory, where the files in the primary directory are log Pipeline by default. If the indicator `cpu.p` is stored in the `<datakit installation directory >/Pipeline_remote/metric/cpu.p directory`, refer to the doc [Pipeline category data processing](../developers/datakit-pl-global.md).
+    Pipeline created in Guance workspace is stored in the `<datakit installation directory>/Pipeline_remote directory`, and each type of Pipeline file is stored in the corresponding secondary directory, where the files in the primary directory are log Pipeline by default. If the metric `cpu.p` is stored in the `<datakit installation directory >/Pipeline_remote/metric/cpu.p directory`, refer to the doc [Pipeline category data processing](../developers/datakit-pl-global.md).
 
 ![](img/7.pipeline_1.png)
 
@@ -94,7 +94,7 @@ You can also enter sample data directly and manually for testing. Guance support
 **Example description:**
 
 - cpu and redis are index sets; tag1 and tag2 are tag sets; f1, f2, and f3 are field sets (where f1=1i is int, f2=1. 2 is float by default, and f3= "abc" is string); 162072387000000000 is the timestamp;
-- The indicator set and the tag set are separated by commas; A plurality of labels are separated by commas;
+- The measurement and the tag set are separated by commas; A plurality of labels are separated by commas;
 - A space separates the tag set from the field set; Multiple fields are separated by commas;
 - A space separates the field set from the timestamp; Timestamp required;
 - If it is object data, it must have a `name` label, otherwise the protocol will report an error; It is best to have a `message` field, which is mainly convenient for full-text search.

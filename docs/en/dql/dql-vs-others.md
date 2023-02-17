@@ -25,10 +25,10 @@ The following will explain the differences of each query language from the follo
 ## Basic Grammatical Structure
 | Query Language | Basic Structure |
 | --- | --- |
-| PromQL | `Indicator {conditional filter list} [tart time:end time]` |
+| PromQL | `Metric {conditional filter list} [tart time:end time]` |
 | LogQL | `{stream-selector} log-pipeline` |
 | SQL | `SELECT <column-clause> <FROM-clause> <WHERE-clause> <GROUP-BY-clause> ...` |
-| DQL | `namespace::indicator set:(column-clause) [time-range-clause] { WHERE-clause } GROUP-BY-clause ORDER-BY-clause` |
+| DQL | `namespace::measurement:(column-clause) [time-range-clause] { WHERE-clause } GROUP-BY-clause ORDER-BY-clause` |
 
 
 Detailed Explanation
@@ -36,7 +36,7 @@ Detailed Explanation
 <a name="PromQL"></a>
 ### PromQL
 
-In Prometheuse, related indicators are organized in discrete form. In its query, you can directly find the corresponding indicators, such as:
+In Prometheuse, related metrics are organized in discrete form. In its query, you can directly find the corresponding metrics, such as:
 
 ```python
 http_requests_total{environment="prometheus", method!="GET"}
@@ -117,7 +117,7 @@ T::my_service { duration > 1000 } [10m] BY operation
 ### Comparison of Basic Functions
 | Query Language | Main Areas | Support Timing Query | Support Log Query | Support Time Range Lookup | Support group by Aggregation |
 | --- | --- | --- | --- | --- | --- |
-| PromQL | Prometheuse Indicator Query | Available | Unavailable | Available | [Available](https://prometheus.io/docs/prometheus/latest/querying/operators/#aggregation-operators) |
+| PromQL | Prometheuse Metric Query | Available | Unavailable | Available | [Available](https://prometheus.io/docs/prometheus/latest/querying/operators/#aggregation-operators) |
 | LogQL | Mainly used for querying logs | Support generating metrics from logs | Available | Available | [Available](https://grafana.com/docs/loki/latest/logql/#aggregation-operators) |
 | SQL | Universal Query Language | [Certain databases](https://www.timescale.com/)<br />support sequential storage | Unavailable | Unavailable | Unavailable |
 | DQL | Data Query of Guance Platform | Available | Available | Available | Available |
@@ -228,7 +228,7 @@ show tables;
 show databases;
 
 # DQL
-show_measurement()    # View the list of time series indicator sets
+show_measurement()    # View the list of time series measurements
 show_object_source()  # View object classification list
 show_rum_source()     # View the RUM data classification list
 show_logging_source() # View log classification list

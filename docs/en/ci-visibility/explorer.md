@@ -3,11 +3,11 @@
 
 ## Introduction
 
-Observation Cloud supports visualizing the process and results for Gitlab/Jenkins' built-in CI，You can view your CI results in Gitlab/Jenkins directly through the CI visualization feature of Observation Cloud, and see your CI performance, execution time trends, and reasons for failure in real time；See the health of the entire Pipeline chain during the CI process in real time with the CI Flame Map to help you provide code update assurance.
+Guance supports visualizing the process and results for Gitlab/Jenkins' built-in CI，You can view your CI results in Gitlab/Jenkins directly through the CI visualization feature of Guance, and see your CI performance, execution time trends, and reasons for failure in real time；See the health of the entire Pipeline chain during the CI process in real time with the CI Flame Map to help you provide code update assurance.
 
 ## Data query and analysis
 
-Once the CI process and result data is reported to the Observation Cloud workspace, you can query and analyze Pipeline and Job success rates, failure causes, and specific failure sessions in the CI explorer by selecting a time range, searching for keywords, filtering, and more.
+Once the CI process and result data is reported to the Guance workspace, you can query and analyze Pipeline and Job success rates, failure causes, and specific failure sessions in the CI explorer by selecting a time range, searching for keywords, filtering, and more.
 
 ![](img/10.ci_5.png)
 

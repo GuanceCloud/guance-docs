@@ -10,7 +10,7 @@ Guance Real User Monitoring explorer include Session, View, Resource, Action, Lo
 | Explorer Type | Overview |
 | --- | --- |
 | Session | View a series of details of user access, including user access time, access page path, access operands, access path, error messages, and so on |
-| View | Viewing the user's access environment, tracing the user's operation path, decomposing the response time of the user's operation, and understanding the performance indicators of a series of call chains of the back-end application caused by the user's operation |
+| View | Viewing the user's access environment, tracing the user's operation path, decomposing the response time of the user's operation, and understanding the performance metrics of a series of call chains of the back-end application caused by the user's operation |
 | Resource | View the information of various resources loaded on the web page, including status code, request method, resource address, loading time, and so on |
 | Action | View the user's operation interaction during using the application, including operation type, page operation details, operation time, and so on |
 | Long Task | View long tasks that block the main thread for more than 50ms during the use of the application, including page address, task time consumption, and so on. |
@@ -42,7 +42,7 @@ In the explorer quick filter, support editing "quick filter" and adding new filt
 
 ### Custom Display Column
 
-When viewing the list, you can customize to add, edit, delete and drag display columns through Display Columns. When the mouse is placed on the display column of the viewer, click the "Settings" button to support ascending, descending, moving columns to the left, moving columns to the right, adding columns to the left, adding columns to the right, replacing columns, adding to shortcut filtering, adding to grouping, removing columns and other operations. For more custom display columns, refer to the documentation [Display Column Description](../../getting-started/necessities-for-beginners/explorer-search.md # columns).
+When viewing the list, you can customize to add, edit, delete and drag display columns through Display Columns. When the mouse is placed on the display column of the explorer, click the "Settings" button to support ascending, descending, moving columns to the left, moving columns to the right, adding columns to the left, adding columns to the right, replacing columns, adding to shortcut filtering, adding to grouping, removing columns and other operations. For more custom display columns, refer to the documentation [Display Column Description](../../getting-started/necessities-for-beginners/explorer-search.md # columns).
 
 ### Error Data Alert
 

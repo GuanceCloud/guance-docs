@@ -5,7 +5,7 @@
 <br />**get /api/v1/workspace/members/list**
 
 ## 概述
-列出当前调用者所能够访问的工作空间列表
+列出当前工作空间中的所有成员
 
 
 

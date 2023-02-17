@@ -2,7 +2,7 @@
 
 ## Preface {#head}
 
-Log collection is an important item of Guance Datakit, which processes the actively collected or passively received log data and finally uploads it to the Guance center. Log collection can be divided into "network stream data" and "local disk file" according to data sources.
+Log collection is an important item of Guance Cloud Datakit, which processes the actively collected or passively received log data and finally uploads it to the Guance Cloud center. Log collection can be divided into "network stream data" and "local disk file" according to data sources.
 
 ### Network Flow Data {#network}
 

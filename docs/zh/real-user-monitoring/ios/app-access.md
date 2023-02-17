@@ -26,9 +26,13 @@
 **源码地址**：[https://github.com/GuanceCloud/datakit-ios](https://github.com/GuanceCloud/datakit-ios)
 ### 源码方式
 
-1.从 GitHub 获取 SDK 的源代码。
+1.从 GitHub 根据指定 tag 获取 SDK 的源代码。
 
-2.将 SDK 源代码导入 App 项目，并选中 `Copy items if needed`。直接将 **FTMobileSDK** 整个文件夹导入项目。
+```
+git clone --branch 1.3.10-beta.1 https://github.com/GuanceCloud/datakit-ios.git
+```
+
+2.将 SDK 源代码导入 App 项目。将 **FTMobileAgent** 和 **BaseUtils** 整个文件夹导入项目，并选中 `Copy items if needed` ，勾选 `Create groups` 。
 
 
 ### CocoaPods 方式
@@ -39,7 +43,7 @@
 target 'yourProjectName' do
 
 # Pods for your project
-pod 'FTMobileSDK', '1.3.8-beta.4'
+pod 'FTMobileSDK', '1.3.10-beta.1'
     
 end
 ```
@@ -51,7 +55,7 @@ end
 1.配置 `Cartfile` 文件。
 
 ```
-github "GuanceCloud/datakit-ios" == 1.3.7-beta.1
+github "GuanceCloud/datakit-ios" == 1.3.10-beta.1
 ```
 
 2.在 `Cartfile` 目录下执行  `carthage update --platform iOS` ， 并将  `FTMobileSDK.framework` 拖拽到您的项目中使用。若出现 "Building universal frameworks with common architectures is not possible. The device and simulator slices for "FTMobileSDK.framework" both build for: arm64" 错误，请执行  `carthage update --platform iOS --use-xcframeworks` 命令，生成  `FTMobileSDK.xcframework `，与普通的 Framework 使用方法相同，请将它拖拽到您的项目中使用。
@@ -96,6 +100,7 @@ github "GuanceCloud/datakit-ios" == 1.3.7-beta.1
 | env | NS_ENUM | 环境 | 否  （默认FTEnvProd） |
 | XDataKitUUID | NSString | 请求HTTP请求头X-Datakit-UUID 数据采集端  如果用户不设置会自动配置 | 否 |
 | globalContext | NSDictionary | [添加自定义标签](#user-global-context) |     否 |
+| service | NSString | 设置所属业务或服务的名称，影响 Log 和 RUM 中 service 字段数据。默认：df_rum_ios | 否 |
 
 #### env 环境
 
@@ -208,7 +213,6 @@ typedef NS_OPTIONS(NSUInteger, FTMonitorFrequency) {
 | **字段** | **类型** | **说明** | **必须** |
 | --- | --- | --- | --- |
 | samplerate | int | 采样采集率 | 否（默认100） |
-| serviceName | NSString | 设置日志所属业务或服务的名称 | 否（默认df_rum_ios） |
 | enableConsoleLog | BOOL | 设置是否需要采集控制台日志 | 否（默认NO） |
 | prefix | NSString | 设置采集控制台日志过滤字符串 | 否（默认全采集） |
 | enableCustomLog | BOOL | 是否上传自定义 log | 否（默认NO） |
@@ -325,9 +329,20 @@ typedef NS_ENUM(NSInteger, FTNetworkTraceType) {
  */
 -(void)startViewWithName:(NSString *)viewName;
 /**
+ * 进入页面
+ * @param viewName  页面名称
+ * @param property   事件属性(可选)
+ */
+-(void)startViewWithName:(NSString *)viewName property:(nullable NSDictionary *)property;
+/**
  * 离开页面
  */
 -(void)stopView;
+/**
+ * 离开页面
+ * @param property  事件属性(可选)
+ */
+-(void)stopViewWithProperty:(nullable NSDictionary *)property;
 ```
 
 ### Action
@@ -338,6 +353,25 @@ typedef NS_ENUM(NSInteger, FTNetworkTraceType) {
  * @param actionName 事件名称
  */
 - (void)addClickActionWithName:(NSString *)actionName;
+/**
+ * 添加 Click Action 事件
+ * @param actionName 事件名称
+ * @param property   事件属性(可选)
+ */
+- (void)addClickActionWithName:(NSString *)actionName property:(nullable NSDictionary *)property;
+/**
+ * 添加  Action 事件
+ * @param actionName 事件名称
+ * @param actionType 事件类型
+ */
+- (void)addActionName:(NSString *)actionName actionType:(NSString *)actionType;
+/**
+ * 添加  Action 事件
+ * @param actionName 事件名称
+ * @param actionType 事件类型
+ * @param property   事件属性(可选)
+ */
+- (void)addActionName:(NSString *)actionName actionType:(NSString *)actionType property:(nullable NSDictionary *)property;
 ```
 
 ### Error
@@ -350,11 +384,18 @@ typedef NS_ENUM(NSInteger, FTNetworkTraceType) {
 /**
  * 添加 Error 事件
  * @param type       error 类型
- * @param situation  APP状态
  * @param message    错误信息
  * @param stack      堆栈信息
  */
-- (void)addErrorWithType:(NSString *)type situation:(AppState)situation message:(NSString *)message stack:(NSString *)stack;
+- (void)addErrorWithType:(NSString *)type message:(NSString *)message stack:(NSString *)stack;
+/**
+ * 添加 Error 事件
+ * @param type       error 类型
+ * @param message    错误信息
+ * @param stack      堆栈信息
+ * @param property   事件属性(可选)
+ */
+- (void)addErrorWithType:(NSString *)type message:(NSString *)message stack:(NSString *)stack property:(nullable NSDictionary *)property;
 ```
 
 ### LongTask
@@ -367,9 +408,16 @@ typedef NS_ENUM(NSInteger, FTNetworkTraceType) {
 /**
  * 添加 卡顿 事件
  * @param stack      卡顿堆栈
- * @param duration   卡顿时长 (纳秒级)
+ * @param duration   卡顿时长
  */
 - (void)addLongTaskWithStack:(NSString *)stack duration:(NSNumber *)duration;
+/**
+ * 添加 卡顿 事件
+ * @param stack      卡顿堆栈
+ * @param duration   卡顿时长
+ * @param property   事件属性(可选)
+ */
+- (void)addLongTaskWithStack:(NSString *)stack duration:(NSNumber *)duration property:(nullable NSDictionary *)property;
 ```
 
 ### Resource
@@ -406,19 +454,33 @@ typedef NS_ENUM(NSInteger, FTNetworkTraceType) {
    [metricsModel setDurationStart:dstart end:dend];
 
 
-// 第四部：add resource 如果没有时间数据 metrics 传 nil
+// 第四步：add resource 如果没有时间数据 metrics 传 nil
  [[FTExternalDataManager sharedManager] addResourceWithKey:key metrics:metricsModel content:content];
 ```
 
 ```objectivec
 /**
+ * 请求开始
  * @param key       请求标识
  */
 - (void)startResourceWithKey:(NSString *)key;
 /**
+ * 请求开始
+ * @param key       请求标识
+ * @param property  事件属性(可选)
+ */
+- (void)startResourceWithKey:(NSString *)key property:(nullable NSDictionary *)property;
+/**
+ * 请求结束
  * @param key       请求标识
  */
 - (void)stopResourceWithKey:(NSString *)key;
+/**
+ * 请求结束
+ * @param key       请求标识
+ * @param property  事件属性(可选)
+ */
+- (void)stopResourceWithKey:(NSString *)key property:(nullable NSDictionary *)property;
 /**
  * @param key       请求标识
  * @param metrics   请求相关性能属性
@@ -426,6 +488,29 @@ typedef NS_ENUM(NSInteger, FTNetworkTraceType) {
  */
 - (void)addResourceWithKey:(NSString *)key metrics:(nullable FTResourceMetricsModel *)metrics content:(FTResourceContentModel *)content;
 ```
+
+#### Resource url 过滤
+
+SDK 内部会处理不采集 SDK 的数据上报地址。用户也可以自己进行额外的过滤设置
+
+```objective-c
+[[FTMobileAgent sharedInstance] isIntakeUrl:^BOOL(NSURL * _Nonnull url) {
+        // 用户自己的判断逻辑
+        return YES;//return NO; (YES 采集，NO 不采集)
+ }];
+```
+
+```objective-c
+//  FTMobileAgent+Public.h
+//  FTMobileAgent
+/**
+ * @abstract
+ * 判断 URL 是否采集
+ */
+- (void)isIntakeUrl:(BOOL(^)(NSURL *url))handler;
+```
+
+
 
 ## Logger 日志打印 {#user-logger}
 
@@ -445,13 +530,17 @@ typedef NS_ENUM(NSInteger, FTStatus) {
     FTStatusCritical,
     FTStatusOk,
 };
-/**
- * 日志上报
- * @param content  日志内容，可为json字符串
- * @param status   事件等级和状态，info：提示，warning：警告，error：错误，critical：严重，ok：恢复，默认：info
-
- */
+/// 日志上报
+/// @param content 日志内容，可为json字符串
+/// @param status  事件等级和状态
 -(void)logging:(NSString *)content status:(FTStatus)status;
+
+/// 日志上报
+/// @param content 日志内容，可为json字符串
+/// @param status  事件等级和状态
+/// @param property 事件属性
+-(void)logging:(NSString *)content status:(FTLogStatus)status property:(nullable NSDictionary *)property;
+
 ```
 
 ## Trace 网络链接追踪

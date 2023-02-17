@@ -80,8 +80,8 @@ net 采集器用于采集主机网络信息，如各网络接口的流量信息�
 
 | Tag | Descrition |
 |  ----  | --------|
-|`host`|主机名|
-|`interface`|网络接口名|
+|`host`|System hostname.|
+|`interface`|Network interface name.|
 
 - 指标列表
 
@@ -90,7 +90,7 @@ net 采集器用于采集主机网络信息，如各网络接口的流量信息�
 | ---- |---- | :---:    | :----: |
 |`bytes_recv`|The number of bytes received by the interface.|int|B|
 |`bytes_recv/sec`|The number of bytes received by the interface per second.|int|B/S|
-|`bytes_sent`|The number of bytes sent by the interface .|int|B|
+|`bytes_sent`|The number of bytes sent by the interface.|int|B|
 |`bytes_sent/sec`|The number of bytes sent by the interface per second.|int|B/S|
 |`drop_in`|The number of received packets dropped by the interface.|int|count|
 |`drop_out`|The number of transmitted packets dropped by the interface.|int|count|
@@ -100,28 +100,28 @@ net 采集器用于采集主机网络信息，如各网络接口的流量信息�
 |`packets_recv/sec`|The number of packets received by the interface per second.|int|count|
 |`packets_sent`|The number of packets sent by the interface.|int|count|
 |`packets_sent/sec`|The number of packets sent by the interface per second.|int|count|
-|`tcp_activeopens`|It means the TCP layer sends a SYN, and come into the SYN-SENT state. |int|count|
+|`tcp_activeopens`|It means the TCP layer sends a SYN, and come into the SYN-SENT state.|int|count|
 |`tcp_attemptfails`|The number of times TCP connections have made a direct transition to the CLOSED state from either the SYN-SENT state or the SYN-RCVD state, plus the number of times TCP connections have made a direct transition to the LISTEN state from the SYN-RCVD state.|int|count|
 |`tcp_currestab`|The number of TCP connections for which the current state is either ESTABLISHED or CLOSE-WAIT.|int|count|
 |`tcp_estabresets`|The number of times TCP connections have made a direct transition to the CLOSED state from either the ESTABLISHED state or the CLOSE-WAIT state.|int|count|
-|`tcp_incsumerrors`|The number of incoming TCP segments in checksum error|int|count|
-|`tcp_inerrs`|The number of incoming TCP segments in error|int|count|
+|`tcp_incsumerrors`|The number of incoming TCP segments in checksum error.|int|count|
+|`tcp_inerrs`|The number of incoming TCP segments in error.|int|count|
 |`tcp_insegs`|The number of packets received by the TCP layer.|int|count|
 |`tcp_insegs/sec`|The number of packets received by the TCP layer per second.|int|count|
 |`tcp_maxconn`|The limit on the total number of TCP connections the entity can support.|int|count|
 |`tcp_outrsts`|The number of TCP segments sent containing the RST flag.|int|count|
-|`tcp_outsegs`|The number of packets sent by the TCP layer. |int|count|
+|`tcp_outsegs`|The number of packets sent by the TCP layer.|int|count|
 |`tcp_outsegs/sec`|The number of packets sent by the TCP layer per second.|int|count|
 |`tcp_passiveopens`|It means the TCP layer receives a SYN, replies a SYN+ACK, come into the SYN-RCVD state.|int|count|
 |`tcp_retranssegs`|The total number of segments retransmitted - that is, the number of TCP segments transmitted containing one or more previously transmittedoctets.|int|count|
 |`tcp_rtoalgorithm`|The algorithm used to determine the timeout value used for retransmitting unacknowledged octets.|int|count|
 |`tcp_rtomax`|The maximum value permitted by a TCP implementation for the retransmission timeout, measured in milliseconds.|int|ms|
 |`tcp_rtomin`|The minimum value permitted by a TCP implementation for the retransmission timeout, measured in milliseconds.|int|ms|
-|`udp_ignoredmulti`|IgnoredMulti|int|count|
-|`udp_incsumerrors`|The number of incoming UDP datagrams in checksum error|int|count|
+|`udp_ignoredmulti`|IgnoredMulti.|int|count|
+|`udp_incsumerrors`|The number of incoming UDP datagrams in checksum error.s|int|count|
 |`udp_indatagrams`|The number of UDP datagrams delivered to UDP users.|int|count|
 |`udp_indatagrams/sec`|The number of UDP datagrams delivered to UDP users per second.|int|count|
-|`udp_inerrors`|The number of packet receive errors|int|count|
+|`udp_inerrors`|The number of packet receive errors.|int|count|
 |`udp_noports`|The number of packets to unknown port received.|int|count|
 |`udp_outdatagrams`|The number of UDP datagrams sent from this entity.|int|count|
 |`udp_outdatagrams/sec`|The number of UDP datagrams sent from this entity per second.|int|count|

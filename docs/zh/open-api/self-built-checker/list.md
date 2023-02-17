@@ -1,11 +1,11 @@
-# 列出自建监控器列表
+# 列出自建巡检列表
 
 ---
 
 <br />**get /api/v1/self_built_checker/list**
 
 ## 概述
-分页列出当前工作空间的自建监控器列表
+分页列出当前工作空间的自建巡检列表
 
 
 
@@ -14,10 +14,10 @@
 
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
-| monitorUUID | commaArray |  | 通知策略UUID<br>允许为空: False <br> |
-| checkerUUID | commaArray |  | 自建监控器UUID<br>允许为空: False <br> |
+| monitorUUID | commaArray |  | 告警策略UUID<br>允许为空: False <br> |
+| checkerUUID | commaArray |  | 自建巡检UUID<br>允许为空: False <br> |
 | refKey | commaArray |  | refKey，多值以英文逗号分割<br>允许为空: False <br> |
-| search | string |  | 搜索自建监控器名<br>允许为空: False <br> |
+| search | string |  | 搜索自建巡检名<br>允许为空: False <br> |
 | pageIndex | integer |  | 页码<br>允许为空: False <br>例子: 1 <br>$minValue: 1 <br> |
 | pageSize | integer |  | 每页返回数量<br>允许为空: False <br>例子: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
 

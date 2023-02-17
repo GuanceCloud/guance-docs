@@ -191,7 +191,7 @@ APM 是观测云默认内置的模块，无需创建场景或视图即可进行�
 
 如：Nginx、MySQL、Redis 等
 
-通过开启 Datakit 内置的各种 inputs，可以直接开启相关的日志采集，例如 [Ngnix](../../integrations/webservice/nginx.md)、 [Redis](../../integrations/datastorage/redis.md)、[容器](../../integrations/container/docker.md)、[ES](../../integrations/datastorage/elasticsearch.md) 等。
+通过开启 Datakit 内置的各种 inputs，可以直接开启相关的日志采集，例如 [Ngnix](../../integrations/webserver/nginx.md)、 [Redis](../../integrations/datastorage/redis.md)、[容器](../../integrations/container/docker.md)、[ES](../../integrations/datastorage/elasticsearch.md) 等。
 
 **示例：Nginx**
 
@@ -315,21 +315,6 @@ default_time(time)
 ### 2 修改应用日志输出格式
 
 **此步骤需开发介入**，修改应用日志输出格式文件 `logback/log4j`
-
-> **注意：**Ddtrace-agent java-0.70 版本后会自动将跟踪标识注入，仅需修改 logback/log4j 的 xml 文件，在应用日志的输出内容中添加 trace_id 字段即可。<br />
-> 可参考[ [datadog 官方文档](https://docs.datadoghq.com/logs/log_collection/java/?tab=logback)]
-
-```xml
-## 首先在 pom.xml 的 dependency 中引入 datadog 依赖
-
-<dependency>
-   <groupId>com.datadoghq</groupId>
-   <artifactId>dd-java-agent</artifactId>
-   <version>0.83.0</version>
-</dependency>
-
-## 0.83.0 为对应 agent 版本号，请查看datakit/data 中的 agent 版本号
-```
 
 ![image](../images/java-rum-apm-log/22.png)
 

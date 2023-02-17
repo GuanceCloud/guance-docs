@@ -30,7 +30,7 @@ Log explorer supports three viewing modes, including all logs, pattern analysis,
 
 === "Chart Analysis" 
  
-    Into "Log"-"Explorer", select "Group" in the upper right corner to group statistics of the original log data based on **1-3 tags**, so as to reflect the distribution characteristics and trends of log data under different groups and at different times. The observation cloud supports a variety of browsing methods for grouped data: sequence diagram, ranking list, pie chart and rectangular tree diagram. For more details, please refer to the document [analysis Mode for the Explorer](../getting-started/necessary-for-beginners/explorer-search.md#analysis). 
+    Into "Log"-"Explorer", select "Group" in the upper right corner to group statistics of the original log data based on **1-3 tags**, so as to reflect the distribution characteristics and trends of log data under different groups and at different times. The guance supports a variety of browsing methods for grouped data: sequence diagram, ranking list, pie chart and rectangular tree diagram. For more details, please refer to the document [analysis Mode for the Explorer](../getting-started/necessary-for-beginners/explorer-search.md#analysis). 
     
     ![](img/5.log_analysis.gif)
 
@@ -239,7 +239,7 @@ The log explorer displays the "time" and "message" fields by default, where the 
 
 Formatting configurations allow you to hide sensitive log data content or highlight log data content that needs to be viewed, and for quick filtering by replacing existing log content. 
  
-Click "Settings" in the upper right corner of the viewer list, click "Format Configuration" to add mapping, enter the following contents, and click Save to replace the original log content with "DEGUB" in the format you want to display. 
+Click "Settings" in the upper right corner of the explorer list, click "Format Configuration" to add mapping, enter the following contents, and click Save to replace the original log content with "DEGUB" in the format you want to display. 
  
 - Fields: such as content 
 - match: such as match (currently supports ` = `, `!= `, ` match `, ` not match `) 

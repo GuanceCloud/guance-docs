@@ -1,7 +1,7 @@
 # Custom Add Action
 ---
 
-After initializing RUM, use the `addAction('<NAME>', '<JSON_OBJECT>')` API to customize and add action indicators other than those collected.
+After initializing RUM, use the `addAction('<NAME>', '<JSON_OBJECT>')` API to customize and add action metrics other than those collected.
 
 ### Add Action
 

@@ -222,17 +222,17 @@ metadata:
 | Tag | Descrition |
 |  ----  | --------|
 |`cpu`|CPU index.|
-|`device_vendor`|设备生产商|
-|`entity_name`|实体名|
-|`host`|设备名|
-|`interface`|设备接口名|
-|`interface_alias`|设备接口别名|
-|`mac_addr`|设备的 MAC 地址|
+|`device_vendor`|Device vendor.|
+|`entity_name`|Device entity name.|
+|`host`|Device name.|
+|`interface`|Device interface.|
+|`interface_alias`|Device interface alias.|
+|`mac_addr`|Device MAC address|
 |`mem`|Memory index.|
 |`mem_pool_name`|Memory pool name.|
 |`power_source`|Power source.|
 |`power_status_descr`|Power status description.|
-|`snmp_profile`|SNMP 配置文件名|
+|`snmp_profile`|Device SNMP profile file.|
 |`temp_index`|Temperature index.|
 |`temp_state`|Temperature state.|
 
@@ -316,17 +316,17 @@ metadata:
 | Tag | Descrition |
 |  ----  | --------|
 |`cpu`|CPU index.|
-|`device_vendor`|设备生产商|
-|`entity_name`|实体名|
-|`host`|设备名|
-|`interface`|设备接口名|
-|`interface_alias`|设备接口别名|
-|`mac_addr`|设备的 MAC 地址|
+|`device_vendor`|Device vendor.|
+|`entity_name`|Device entity name.|
+|`host`|Device name.|
+|`interface`|Device interface.|
+|`interface_alias`|Device interface alias.|
+|`mac_addr`|Device MAC address|
 |`mem`|Memory index.|
 |`mem_pool_name`|Memory pool name.|
 |`power_source`|Power source.|
 |`power_status_descr`|Power status description.|
-|`snmp_profile`|SNMP 配置文件名|
+|`snmp_profile`|Device SNMP profile file.|
 |`temp_index`|Temperature index.|
 |`temp_state`|Temperature state.|
 
@@ -351,7 +351,7 @@ metadata:
 |`cpuUsage`|(Shown as percent) Percentage of CPU currently being used.|float|percent|
 |`cswStackPortOperStatus`|[Cisco only] The state of the stackport.|int|count|
 |`cswSwitchState`|[Cisco only] The current state of a switch.|int|count|
-|`device_meta`|设备的元数据 (JSON 格式字符串)|string|-|
+|`device_meta`|Device meta data(JSON format).|string|-|
 |`ifAdminStatus`|The desired state of the interface.|int|-|
 |`ifBandwidthInUsageRate`|(Shown as percent) The percent rate of used received bandwidth.|float|percent|
 |`ifBandwidthOutUsageRate`|(Shown as percent) The percent rate of used sent bandwidth.|float|percent|

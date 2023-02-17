@@ -150,7 +150,7 @@ When SNMP devices are in the default, the general SNMP protocol is closed, you n
 
 ## Custom Device OID c=Configuration {#custom-oid}
 
-If you find that the data reported by the collected device does not contain the indicators you want, then you may need to define an additional Profile for the device.
+If you find that the data reported by the collected device does not contain the metrics you want, then you may need to define an additional Profile for the device.
 
 All OIDs of devices can generally be downloaded from their official website. Datakit defines some common OIDs, as well as some devices such as Cisco/Dell/HP. According to snmp protocol, each device manufacturer can customize [OID](https://www.dpstele.com/snmp/what-does-oid-network-elements.php) to identify its internal special objects. If you want to identify these, you need to customize the configuration of the device (we call this configuration Profile here, that is, "Custom Profile"), as follows.
 
@@ -183,7 +183,7 @@ metadata:
           name: chassisId
 ```
 
-As shown above, a device with `sysobjectid` of `1.3.6.1.4.1.9.1.1745` is defined, and the file will be applied the next time Datakit collects a device with the same `sysobjectid`, in which case the collected data with an OID of `1.3.6.1.4.1.9.3.6.3.0` will be reported as an indicator with the name `chassisId`.
+As shown above, a device with `sysobjectid` of `1.3.6.1.4.1.9.1.1745` is defined, and the file will be applied the next time Datakit collects a device with the same `sysobjectid`, in which case the collected data with an OID of `1.3.6.1.4.1.9.3.6.3.0` will be reported as an metric with the name `chassisId`.
 
 > Note: The folder `conf.d/snmp/profiles` requires the SNMP collector to run once before it appears.
 
@@ -222,17 +222,17 @@ All of the following data collections are appended by default with the name `hos
 | Tag | Descrition |
 |  ----  | --------|
 |`cpu`|CPU index.|
-|`device_vendor`|设备生产商|
-|`entity_name`|实体名|
-|`host`|设备名|
-|`interface`|设备接口名|
-|`interface_alias`|设备接口别名|
-|`mac_addr`|设备的 MAC 地址|
+|`device_vendor`|Device vendor.|
+|`entity_name`|Device entity name.|
+|`host`|Device name.|
+|`interface`|Device interface.|
+|`interface_alias`|Device interface alias.|
+|`mac_addr`|Device MAC address|
 |`mem`|Memory index.|
 |`mem_pool_name`|Memory pool name.|
 |`power_source`|Power source.|
 |`power_status_descr`|Power status description.|
-|`snmp_profile`|SNMP 配置文件名|
+|`snmp_profile`|Device SNMP profile file.|
 |`temp_index`|Temperature index.|
 |`temp_state`|Temperature state.|
 
@@ -316,17 +316,17 @@ All of the following data collections are appended by default with the name `hos
 | Tag | Descrition |
 |  ----  | --------|
 |`cpu`|CPU index.|
-|`device_vendor`|设备生产商|
-|`entity_name`|实体名|
-|`host`|设备名|
-|`interface`|设备接口名|
-|`interface_alias`|设备接口别名|
-|`mac_addr`|设备的 MAC 地址|
+|`device_vendor`|Device vendor.|
+|`entity_name`|Device entity name.|
+|`host`|Device name.|
+|`interface`|Device interface.|
+|`interface_alias`|Device interface alias.|
+|`mac_addr`|Device MAC address|
 |`mem`|Memory index.|
 |`mem_pool_name`|Memory pool name.|
 |`power_source`|Power source.|
 |`power_status_descr`|Power status description.|
-|`snmp_profile`|SNMP 配置文件名|
+|`snmp_profile`|Device SNMP profile file.|
 |`temp_index`|Temperature index.|
 |`temp_state`|Temperature state.|
 
@@ -351,7 +351,7 @@ All of the following data collections are appended by default with the name `hos
 |`cpuUsage`|(Shown as percent) Percentage of CPU currently being used.|float|percent|
 |`cswStackPortOperStatus`|[Cisco only] The state of the stackport.|int|count|
 |`cswSwitchState`|[Cisco only] The current state of a switch.|int|count|
-|`device_meta`|设备的元数据 (JSON 格式字符串)|string|-|
+|`device_meta`|Device meta data(JSON format).|string|-|
 |`ifAdminStatus`|The desired state of the interface.|int|-|
 |`ifBandwidthInUsageRate`|(Shown as percent) The percent rate of used received bandwidth.|float|percent|
 |`ifBandwidthOutUsageRate`|(Shown as percent) The percent rate of used sent bandwidth.|float|percent|

@@ -1033,7 +1033,7 @@ rate(dql=`R::resource:(resource_load) {resource_load > 100} limit 3`)
 > Note: The processing set is at least larger than one row, otherwise a null value is returned.
 > sumBy example: 
 >
->nsq Different node nodes may have the same topic, assuming that some metric set (f1) is on the topic,
+>nsq Different node nodes may have the same topic, assuming that some measurement (f1) is on the topic,
 >
 > M::nsq:(last(f1)) by host, topic, you need to count the sum of topic index f1 of each host according to the host level.
 >

@@ -16,8 +16,10 @@ nav:
   - CI Visibility: ci-visibility
   - <br/>Openess: ""
   - Developers: developers
+  - OpenAPI: open-api
   - <br/>Management: ""
   - Workspace Management: management
+  - Billing: billing
   - <br/>Deployment: ""
   - Deployment: deployment
   - <br/>Others: ""

@@ -35,7 +35,7 @@ Note: If the target host is not in the current workspace but the target domain n
 
 Host network supports viewing network traffic between hosts. It supports to view the network traffic and data connection between the source host and the target based on IP/port, and displays it in real time in a visual way. This helps enterprises know the network running status of the business system in real time, quickly analyze, track and locate problems and faults and prevent or avoid business problems caused by network performance degradation or interruption.
 
-The host will report to the observation cloud console after successfully collected network data. In Infrastructure-Network-Host, click View Network Details, and you can view all network performance monitoring data information in the workspace.
+The host will report to the guance console after successfully collected network data. In Infrastructure-Network-Host, click View Network Details, and you can view all network performance monitoring data information in the workspace.
 
 Note:
 

@@ -4,11 +4,11 @@ icon: zy/scene
 # Scene
 ---
 
-In the Observation Cloud, you can build 「 scene 」 to meet different business based on different perspectives. Scenarios include dashboards, notes, and viewers.
+In the Guance, you can build 「 scene 」 to meet different business based on different perspectives. Scenarios include dashboards, notes, and explorers.
 
 ## Dashboard
 
-Under Scene, you can create multiple [dashboards](dashboard.md) to build data insight scenarios. Adding multiple visual charts for data presentation is supported in the dashboard to help users visually track, analyze and display key performance indicators and monitor the overall operational status.
+Under Scene, you can create multiple [dashboards](dashboard.md) to build data insight scenarios. Adding multiple visual charts for data presentation is supported in the dashboard to help users visually track, analyze and display key performance metrics and monitor the overall operational status.
 
 ![](img/dashboard.png)
 
@@ -17,8 +17,8 @@ Under the scene, you can create multiple [notes](note.md) for summary report, su
 
 ![](img/1.notebook_2.png)
 
-## Viewers
-Under the scene, you can quickly build multiple custom log [viewers](explorer/index.md), support customizing log viewing needs with space members, support exporting the finished viewer to share with others, and share the viewer template.
+## Explorers
+Under the scene, you can quickly build multiple custom log [explorers](explorer/index.md), support customizing log viewing needs with space members, support exporting the finished explorer to share with others, and share the explorer template.
 
 ![](img/2.scene_1.png)
 

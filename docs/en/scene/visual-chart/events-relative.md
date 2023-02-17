@@ -9,11 +9,11 @@ Currently, only time series and histograms are supported.
 
 ## Example
 
-The query object of the timing diagram is "host CPU IOwait". When "host:DESKTOP-NEN89U3" is added as a filter for event association, users can check whether "host:DESKTOP-NEN89U3" has an alarm event by shading the color block while viewing the timing diagram. alarm event exists.For more filters, please refer to [Viewer Description](../../getting-started/necessary-for-beginners/explorer-search.md)
+The query object of the timing diagram is "host CPU IOwait". When "host:DESKTOP-NEN89U3" is added as a filter for event association, users can check whether "host:DESKTOP-NEN89U3" has an alarm event by shading the color block while viewing the timing diagram. alarm event exists.For more filters, please refer to [Explorer Description](../../getting-started/necessary-for-beginners/explorer-search.md)
 
 ![](../img/11.chart_1.3.png)
 
-The timeline diagram with the completed event association configuration will be shown with shaded blocks on the timeline if there are event records; in analysis mode, click on the highlighted shaded blocks to view the abnormal events associated with the selected field (e.g. "host:DESKTOP-NEN89U3").
+The timeseries diagram with the completed event association configuration will be shown with shaded blocks on the timeseries if there are event records; in analysis mode, click on the highlighted shaded blocks to view the abnormal events associated with the selected field (e.g. "host:DESKTOP-NEN89U3").
 
 ![](../img/11.chart_1.4.png)
 

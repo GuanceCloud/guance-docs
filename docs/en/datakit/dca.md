@@ -90,8 +90,8 @@ By default, DCA will adopt the default configuration of the system. If you need 
 
 | Environment Variable Name            | Type   | Default Value                         | Description                                                                                            |
 | :---------              | ----:  | :---                           | ------                                                                                          |
-| `DCA_INNER_HOST`        | string | https://auth-api.guance.com    | auth API address of Guance                                                                          |
-| `DCA_FRONT_HOST`        | string | https://console-api.guance.com | Guance console API address                                                                         |
+| `DCA_INNER_HOST`        | string | https://auth-api.guance.com    | auth API address of Guance Cloud                                                                          |
+| `DCA_FRONT_HOST`        | string | https://console-api.guance.com | Guance Cloud console API address                                                                         |
 | `DCA_LOG_LEVEL`         | string |                                | Log level, the value is NONE/DEBUG/INFO/WARN/ERROR. If logging is not required, it can be set to NONE.                  |
 | `DCA_LOG_ENABLE_STDOUT` | bool   | false                          | The log is output to a file under `/usr/src/dca/logs`. If you need to write the log to `stdout`, you can set it to `true` |
 
@@ -103,7 +103,7 @@ $ docker run -d --name dca -p 8000:80 -e DCA_LOG_ENABLE_STDOUT=true -e DCA_LOG_L
 
 ### Log in to DCA {#login}
 
-After DCA is opened and installed, you can enter the address `localhost:8000` in the browser to open DCA Web, log in to your account, and start using it. If you don't have an account, you can register [Guance Account](https://auth.guance.com/register?channel=帮助文档).
+After DCA is opened and installed, you can enter the address `localhost:8000` in the browser to open DCA Web, log in to your account, and start using it. If you don't have an account, you can register [Guance Cloud Account](https://auth.guance.com/register?channel=帮助文档).
 
 <figure markdown>
   ![](https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/images/datakit/dca_2_2.png){ width="800" }
@@ -149,9 +149,9 @@ After connecting to the DataKit remotely, click「Pipelines」to view the pipeli
 
 #### View the Blacklist {#view-filters}
 
-After connecting to DataKit remotely, click "Blacklist" to view the blacklist configured in the observation cloud. As shown in the following figure, `source = default and (status in [unknown])` is the configured blacklist condition.
+After connecting to DataKit remotely, click "Blacklist" to view the blacklist configured in the guance. As shown in the following figure, `source = default and (status in [unknown])` is the configured blacklist condition.
 
-Note: The blacklist files created through Guance are stored in the path: `/usr/local/datakit/data/.pull`.
+Note: The blacklist files created through Guance Cloud are stored in the path: `/usr/local/datakit/data/.pull`.
 
 <figure markdown>
   ![](https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/images/datakit/dca_2_8.png){ width="800" }

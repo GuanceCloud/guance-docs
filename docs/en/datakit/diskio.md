@@ -96,26 +96,26 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Tag | Descrition |
 |  ----  | --------|
-|`host`|主机名|
-|`name`|磁盘设备名|
+|`host`|System hostname.|
+|`name`|Device name.|
 
 - metric list
 
 
 | Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`io_time`|time spent doing I/Os|int|ms|
-|`iops_in_progress`|I/Os currently in progress|int|count|
-|`merged_reads`|reads merged|int|count|
-|`merged_writes`|writes merged|int|count|
-|`read_bytes`|read bytes|int|B|
-|`read_bytes/sec`|read bytes per second|int|B/S|
-|`read_time`|time spent reading|int|ms|
-|`reads`|reads completed successfully|int|count|
-|`weighted_io_time`|weighted time spent doing I/Os|int|ms|
-|`write_bytes`|write bytes|int|B|
-|`write_bytes/sec`|write bytes per second|int|B/S|
-|`write_time`|time spent writing|int|ms|
-|`writes`|writes completed|int|count|
+|`io_time`|Time spent doing I/Os.|int|ms|
+|`iops_in_progress`|I/Os currently in progres.|int|count|
+|`merged_reads`|The number of merged read requests.|int|count|
+|`merged_writes`|The number of merged write requests.|int|count|
+|`read_bytes`|The number of bytes read from the device.|int|B|
+|`read_bytes/sec`|The number of bytes read from the per second.|int|B/S|
+|`read_time`|Time spent reading.|int|ms|
+|`reads`|The number of read requests.|int|count|
+|`weighted_io_time`|Weighted time spent doing I/Os.|int|ms|
+|`write_bytes`|The number of bytes written to the device.|int|B|
+|`write_bytes/sec`|The number of bytes written to the device per second.|int|B/S|
+|`write_time`|Time spent writing.|int|ms|
+|`writes`|The number of write requests.|int|count|
 
 

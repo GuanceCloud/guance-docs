@@ -7,17 +7,17 @@ Display data under different groups, which can be used for monitoring assets and
 
 ## Application Scenarios
 
-The cellular graph of the observation cloud is used to show the data under different groupings. For example, you can see the CPU usage of different hosts.
+The cellular graph of the guance is used to show the data under different groupings. For example, you can see the CPU usage of different hosts.
 
 ## Chart Query
 
 Chart query supports 「simple query」, 「expression query」 and 「DQL query」, please click [chart-query](chart-query.md) for detailed explanation of chart query conditions. You can add multiple queries, but the Tag of by (grouping) must be the same, modify one, and the other will be modified automatically.
 
-The chart query matches colors by indicator values, as described below.
+The chart query matches colors by metric values, as described below.
 
 | Options | Description |
 | --- | --- |
-| Indicators | When adding multiple indicator queries, you can set the main indicator to be displayed. "Indicator" is the indicator that determines the gradient color of the color block |
+| Metrics | When adding multiple metric queries, you can set the main metric to be displayed. "Metric" is the metric that determines the gradient color of the color block |
 
 ## Chart Linking
 
@@ -27,7 +27,7 @@ Links can help you jump from the current chart to the target page, support addin
 | --- | --- |
 | Chart Title | Set the title name for the chart, after setting, it will be shown on the top left of the chart, support hide |
 | Show legend | The color grade range is displayed in the lower right corner of the chart |
-| Color | 1. Gradient color system: gradient color of the color block. After selecting the color, the system will use the selected color as the base to generate the selected number of levels of color blocks<br>2.Gradient interval.<br><li>Automatic: the default is divided into 5 intervals equally according to the maximum and minimum values of the current data, and supports customizing the maximum and minimum values.<br><li>Customization: Support customizing the gradient color level, i.e. the level setting of the honeycomb map area range. By default, the system divides the maximum and minimum values of the selected indicator into 5 gradient levels, and supports customizing the number of levels (up to 10), the range of levels and the display color |
+| Color | 1. Gradient color system: gradient color of the color block. After selecting the color, the system will use the selected color as the base to generate the selected number of levels of color blocks<br>2.Gradient interval.<br><li>Automatic: the default is divided into 5 intervals equally according to the maximum and minimum values of the current data, and supports customizing the maximum and minimum values.<br><li>Customization: Support customizing the gradient color level, i.e. the level setting of the honeycomb map area range. By default, the system divides the maximum and minimum values of the selected metric into 5 gradient levels, and supports customizing the number of levels (up to 10), the range of levels and the display color |
 
 
 ## Chart Setup
@@ -35,7 +35,7 @@ Links can help you jump from the current chart to the target page, support addin
 ### Basic Settings
 | Options | Description |
 | --- | --- |
-| Unit | 1. Support setting units for query results.<br />1）If the queried data has no unit, after setting the unit in the chart, it will be displayed on the chart according to the set unit<br />2）If the query data comes with its own units, or if you are in [Indicator Management] (.../.../metrics/dictionary.md), and you set the units for the metrics in the chart, the units set in the chart will be displayed on the chart.<br />3）If the query data has no units and no units are set in the chart, the chart Y-axis values are automatically calculated according to scientific notation; the original values are displayed on the chart in the format [thousandths] (chart-query.md#thousand).<br /> **Scientific counting instructions**<br />Default query result value is automatically converted to units, display follows 「scientific notation K, M, B」 (1 thousand = 1K, 1 million = 1M, 1 billion = 1B), retaining two decimal points; RMB is automatically converted to units 「yuan, million, billion」, retaining two decimal points<br />*For example, if the unit of time interval is selected as ns, then according to the size of the data, the query result will only automatically convert the unit effect as follows, and so on：*<br /><li>1000000ns: chart query data results are displayed as 1ms<br /><li>1000000000ns: chart query data results are displayed as 1s<br /><li>10000000000ns: chart query data results are displayed as 1m<br /><br/>2. Support for query results preset units, manual input format: aggregation function (indicators), such as `last(usage_idle)` |
+| Unit | 1. Support setting units for query results.<br />1）If the queried data has no unit, after setting the unit in the chart, it will be displayed on the chart according to the set unit<br />2）If the query data comes with its own units, or if you are in [Metric Management] (.../.../metrics/dictionary.md), and you set the units for the metrics in the chart, the units set in the chart will be displayed on the chart.<br />3）If the query data has no units and no units are set in the chart, the chart Y-axis values are automatically calculated according to scientific notation; the original values are displayed on the chart in the format [thousandths] (chart-query.md#thousand).<br /> **Scientific counting instructions**<br />Default query result value is automatically converted to units, display follows 「scientific notation K, M, B」 (1 thousand = 1K, 1 million = 1M, 1 billion = 1B), retaining two decimal points; RMB is automatically converted to units 「yuan, million, billion」, retaining two decimal points<br />*For example, if the unit of time interval is selected as ns, then according to the size of the data, the query result will only automatically convert the unit effect as follows, and so on：*<br /><li>1000000ns: chart query data results are displayed as 1ms<br /><li>1000000000ns: chart query data results are displayed as 1s<br /><li>10000000000ns: chart query data results are displayed as 1m<br /><br/>2. Support for query results preset units, manual input format: aggregation function (metrics), such as `last(usage_idle)` |
 
 ### Advanced Settings
 | Options | Description |

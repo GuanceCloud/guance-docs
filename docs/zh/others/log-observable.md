@@ -45,7 +45,7 @@
         # ...
 ```
 
-配置完成后，使用命令行`datakit --restart`重启 DataKit 使配置生效。更多 Nginx 采集器配置可参考文档 [Nginx](../integrations/webservice/nginx.md) 。
+配置完成后，使用命令行`datakit --restart`重启 DataKit 使配置生效。更多 Nginx 采集器配置可参考文档 [Nginx](../integrations/webserver/nginx.md) 。
 
 ### Step2: 在观测云工作空间查看和分析日志数据
 

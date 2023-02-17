@@ -378,10 +378,3 @@ $ ./bin/startup.sh
 ```
 
 登录 [guance](https://console.guance.com/) 进入具体的项目空间，点击应用性能监测即可查看服务名为 mall-admin 的应用数据。
-
-#### nginx 进行链路追踪的问题
-
-目前暂不支持，如果有需求可以给我们留言。
-
-
-

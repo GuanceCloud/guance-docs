@@ -4,7 +4,7 @@ icon: zy/management
 # Workspace Management
 ---
 
-Workspace is the basic operation unit of Guance. In the workspace of Guance, you can use the basic functions provided by Guance, such as scenes, events, indicators, infrastructure, logs, application performance monitoring, user access monitoring, availability monitoring, CI, security inspection, monitoring and workspace management.
+Workspace is the basic operation unit of Guance. In the workspace of Guance, you can use the basic functions provided by Guance, such as scenes, events, metrics, infrastructure, logs, application performance monitoring, user access monitoring, availability monitoring, CI, security inspection, monitoring and workspace management.
 
 ## Create a Workspace
 
@@ -28,7 +28,7 @@ In the following dialog box, enter a workspace name and description, and click O
 
 Workspace management is the setting, management and operation of the current workspace. After joining the workspace and being assigned permissions, you can manage the basic information, member permissions, SSO login, data permissions, API Key, notification objects, inner views, charts and snapshot sharing of the space through "administration".
 
-In Guance workspace, Enter "Management"-"Settings", In Settings, you can view the current Guance plan, security operation audit and other information. If you are the owner or administrator of the current workspace, you can modify the space name and remarks, change the space Token, modify the description, configure the migration, set the key indicators of the war room, set the IP white list, change the data storage policy, delete the indicator set and delete the custom object.
+In Guance workspace, Enter "Management"-"Settings", In Settings, you can view the current Guance plan, security operation audit and other information. If you are the owner or administrator of the current workspace, you can modify the space name and remarks, change the space Token, modify the description, configure the migration, set the key metrics of the war room, set the IP white list, change the data storage policy, delete the measurement and delete the custom object.
 ![](img/3.space_management_6.png)
 
 ### Notes

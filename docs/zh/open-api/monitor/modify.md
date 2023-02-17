@@ -21,7 +21,7 @@
 
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
-| name | string |  | 监视器名字<br>允许为空: False <br> |
+| name | string |  | 监控器名字<br>允许为空: False <br> |
 | alertOpt | json |  | 告警设置<br>允许为空: False <br> |
 | alertOpt.silentTimeout | integer |  | 告警设置<br>允许为空: False <br> |
 | alertOpt.alertTarget | array |  | 触发动作<br>允许为空: False <br> |

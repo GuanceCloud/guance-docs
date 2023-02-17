@@ -85,26 +85,26 @@ disk 采集器用于主机磁盘信息采集，如磁盘存储空间、inodes �
 
 | Tag | Descrition |
 |  ----  | --------|
-|`device`|磁盘设备名|
-|`fstype`|文件系统名|
-|`host`|主机名|
-|`mode`|读写模式|
-|`path`|磁盘挂载点|
+|`device`|Disk device name.|
+|`fstype`|File system name.|
+|`host`|System hostname.|
+|`mode`|Read-write mode.|
+|`path`|Disk mount point.|
 
 - 指标列表
 
 
 | Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`free`|Free disk size in bytes|int|B|
-|`inodes_free`|Free inodes(**DEPRECATED: use inodes_free_mb instead**)|int|count|
-|`inodes_free_mb`|Free inodes(in MB)|int|count|
-|`inodes_total`|Total inodes(**DEPRECATED: use inodes_total_mb instead**)|int|count|
-|`inodes_total_mb`|Total inodes(in MB)|int|count|
-|`inodes_used`|Used inodes(**DEPRECATED: use inodes_used_mb instead**)|int|count|
-|`inodes_used_mb`|Used inodes(in MB)|int|count|
-|`total`|Total disk size in bytes|int|B|
-|`used`|Used disk size in bytes|int|B|
-|`used_percent`|Used disk size in percent|float|percent|
+|`free`|Free disk size in bytes.|int|B|
+|`inodes_free`|Free inodes(**DEPRECATED: use inodes_free_mb instead**).|int|count|
+|`inodes_free_mb`|Free inodes(in MB).|int|count|
+|`inodes_total`|Total inodes(**DEPRECATED: use inodes_total_mb instead**).|int|count|
+|`inodes_total_mb`|Total inodes(in MB).|int|count|
+|`inodes_used`|Used inodes(**DEPRECATED: use inodes_used_mb instead**).|int|count|
+|`inodes_used_mb`|Used inodes(in MB).|int|count|
+|`total`|Total disk size in bytes.|int|B|
+|`used`|Used disk size in bytes.|int|B|
+|`used_percent`|Used disk size in percent.|float|percent|
 
 

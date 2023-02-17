@@ -3,7 +3,7 @@
 
 ## Overview
 
-In "Events", you can view the full list of events in the current workspace by switching the viewer in the upper left corner to the Event Explorer.
+In "Events", you can view the full list of events in the current workspace by switching the explorer in the upper left corner to the Event Explorer.
 
 In the event explorer, you can.
 
@@ -41,7 +41,7 @@ Click the "Filter History" icon in the lower right corner to view the history of
 
 ### Event Export
 
-In the event explorer, click "Export" to export the current Event Viewer data to CSV, Dashboard and Notes.
+In the event explorer, click "Export" to export the current Event Explorer data to CSV, Dashboard and Notes.
 
 ### Save Snapshot
 

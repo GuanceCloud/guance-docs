@@ -101,7 +101,7 @@ datafluxLogs.init({
 | `service`             | String   | Optional           | `browser`  | service name in log                                                                                                                    |
 | `env`                 | String   | Optional           |            | Current environment of web application, such as prod: online environment; Grey: Grayscale environment; pre: pre-release environment command: daily environment; local: The local environment;                          |
 | `version`             | String   | Optional           |            | web application version                                                                                                                   |
-| `sampleRate`          | Number   | Optional           | `100`      | Percentage of indicator data collection: ` 100 ` for full collection, ` 0 ` for no collection                                                                                  |
+| `sampleRate`          | Number   | Optional           | `100`      | Percentage of metric data collection: ` 100 ` for full collection, ` 0 ` for no collection                                                                                  |
 | `forwardErrorsToLogs` | Boolean  | Optional           | `true`     | Set to ` false `  to stop collecting console.error, js and report network errors to DataFlux log data                                                 |
 | `silentMultipleInit`  | Boolean  | Optional           | `false`    | Do not allowed  initialize multiple log objects                                                                                                     |
 ## Configuration

@@ -4,6 +4,22 @@
 
 ---
 
+## February 16, 2022
+
+### Functional optimization
+
+- **RUM Performance Intelligent Integration**: Supports jumping to view Session with the affected user's session ID to provide more professional optimization methods in the inspection event report.
+- **Cloud Account Billing Inspection Intelligent Integration**: Added support for AWS account instance billing inspection at the instance level.
+
+
+
+## February 9, 2022
+
+### New Inspections
+
+* **RUM Performance Intelligent Integration**: Real User Monitoring (RUM) is an application performance monitoring technology designed to evaluate website performance by simulating the behavior of real users browsing the site. The goal of RUM is to understand website performance from the user's perspective, including website load times, page rendering effects, page element loading status, and interaction response. The main use case of RUM performance inspection is for client-side websites, such as e-commerce websites, financial websites, entertainment websites, and so on, which all need to provide users with a fast and smooth browsing experience. By analyzing the results of RUM performance, developers can quickly understand the user's actual experience and improve website performance.
+* **Kubernetes Health Intelligent Integration**: Nowadays, Kubernetes has taken over the entire container ecosystem and acts as the brain for distributed container deployment, aiming to manage service-oriented applications using containers distributed across clusters of hosts. Kubernetes provides mechanisms for application deployment, scheduling, updates, service discovery, and scaling. However, how to ensure the health of Kubernetes nodes? Through smart inspections, information retrieval and problem discovery based on the current node's resource status, application performance management, service failure logs, etc. can be used to speed up event investigation, reduce engineers' pressure, decrease average repair time, and improve the end-user experience.
+
 
 
 ## December 29, 2022

@@ -1074,7 +1074,7 @@ json(_, str_b)
 
 参数:
 
-- `ip`: 已经提取出来的 IP 字段，支持 IPv4/6
+- `ip`: 已经提取出来的 IP 字段，支持 IPv4 和 IPv6
 
 示例：
 
@@ -1208,7 +1208,6 @@ json(_, http_status)
 
 # 如果字段 http_status 值在指定范围内，则将其值改为 "OK"
 group_between(http_status, [200, 300], "OK")
-`
 
 # 处理结果
 {
@@ -1641,6 +1640,8 @@ query_refer_table(table, key, value)
 - `new_key`: 新字段名
 - `old_key`: 已提取的字段名
 
+示例：
+
 ```python
 # 把已提取的 abc 字段重新命名为 abc1
 rename('abc1', abc)
@@ -1649,8 +1650,6 @@ rename('abc1', abc)
 
 rename(abc1, abc)
 ```
-
-示例：
 
 ```python
 # 待处理数据: {"info": {"age": 17, "name": "zhangsan", "height": 180}}
@@ -1920,7 +1919,6 @@ json(_, url) url_decode(url)
 ```
 
 
-
 ### `url_parse()` {#fn-url-parse}
 
 函数原型：`fn url_parse(key)`
@@ -1968,6 +1966,7 @@ add_key(path, m["path"])
     "sclient": "gws-wiz"
 }
 ```
+
 
 ### `use()` {#fn-use}
 

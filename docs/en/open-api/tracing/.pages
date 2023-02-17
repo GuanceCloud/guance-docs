@@ -1,0 +1,3 @@
+nav:
+  - 'Get Link Service List Configuration': service-catelogs-get.md
+  - 'Configure Link Service List': service-catelogs-set.md

@@ -338,25 +338,25 @@ All of the following data collections are appended by default with global tags n
 
 
 
-### `Elastic Beats 接收器`
+### `Elastic Beats Collector`
 
-使用配置文件中的 `source` 字段值，如果该值为空，则默认为 `default`
+Using `source` field in the config file, default is `default`.
 
 - tag
 
 
 | Tag | Descrition |
 |  ----  | --------|
-|`filepath`|此条记录来源的文件名，全路径|
-|`host`|主机名|
-|`service`|service 名称，对应配置文件中的 `service` 字段值|
+|`filepath`|This item source file, full path.|
+|`host`|Host name.|
+|`service`|Service name, equal to `service` field in the config file.|
 
 - metric list
 
 
 | Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`message`|记录正文，默认存在，可以使用 pipeline 删除此字段|string|-|
+|`message`|Message text, existed when default. Could use pipeline to delete this field.|string|-|
 
 
 

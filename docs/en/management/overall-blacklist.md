@@ -102,6 +102,6 @@ Support "import/export blacklist" in "management"-"blacklist" of Guance workspac
 
 ## Notes
 
-- Blacklist rules configured in the observation cloud will not take effect if the blacklist is configured in the file `datakit.conf` under the directory `/usr/local/datakit/conf.d` when installing and configuring the datakit;
+- Blacklist rules configured in the guance will not take effect if the blacklist is configured in the file `datakit.conf` under the directory `/usr/local/datakit/conf.d` when installing and configuring the datakit;
 - DataKit pulls data every 10 seconds, and the blacklist will not take effect immediately after configuration, so it needs to wait at least 10 seconds.
 - After the blacklist is configured, it is stored in the `.pull` file under the datakit directory `/usr/local/datakit/data` , and more can be found in the documentation [view blacklist](../dca/index.md).

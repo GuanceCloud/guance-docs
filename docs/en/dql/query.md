@@ -3,7 +3,7 @@
 
 ## Introduction
 
-In the Guance workspace, click Shortcut Entry-DQL Query in the menu bar to open the DQL Query Viewer, or you can directly open the DQL Query through the shortcut key `Alt+Q`.<br />![](img/3.dql_6.png)
+In the Guance workspace, click Shortcut Entry-DQL Query in the menu bar to open the DQL Query Explorer, or you can directly open the DQL Query through the shortcut key `Alt+Q`.<br />![](img/3.dql_6.png)
 
 ### Simple Query
 Click the toggle button on the right side of DQL Query ![](img/3.dql_5.png), you can switch DQL queries to simple queries.<br />Note: When DQL Query is switched to Simple Query, if it cannot be parsed or parsed incompletely:
@@ -43,7 +43,7 @@ namespace::
 
 ### Example Description
 
-Here is a simple example of querying the field usage_idle (CPU idle rate) of the temporal metric set cpu through DQL, filtering the filter as host, and displaying the results in groups as host. Where # {host} is the view variable set in the Guance dashboard for filtering.<br />![](img/4.DQL_2.1.png)
+Here is a simple example of querying the field usage_idle (CPU idle rate) of the temporal measurement cpu through DQL, filtering the filter as host, and displaying the results in groups as host. Where # {host} is the view variable set in the Guance dashboard for filtering.<br />![](img/4.DQL_2.1.png)
 
 Apply the above statement to the chart query of Guance Scene Dashboard. The following figure combines expression query and DQL query to show the CPU utilization in the last 15 minutes. <br />![](img/4.DQL_2.png)
 
@@ -53,7 +53,7 @@ DQL query can be used in scene dashboard, and we can also query various data col
 
 ### SHOW Function
 
-SThe SHOW function is used to show all kinds of data. If you don't have a clear understanding of the data sources, fields and labels collected through DataKit, you can query them through the SHOW function in DQL query viewer.
+SThe SHOW function is used to show all kinds of data. If you don't have a clear understanding of the data sources, fields and labels collected through DataKit, you can query them through the SHOW function in DQL query explorer.
 
 Next, query the source, field and other data of Object and Log through SHOW function. See the documentation [DQL Function](../dql/funcs.md) and [DQL Outer Function](../dql/out-funcs.md) 。
 

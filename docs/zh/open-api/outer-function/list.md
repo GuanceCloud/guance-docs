@@ -80,7 +80,7 @@ curl 'https://openapi.guance.com/api/v1/outer_function/list' \
             ],
             "category": "openapi",
             "definition": "report_event(workspace_uuid, workspace_token, data)",
-            "description": "报告事件，通过 DataFlux Func 实现事件写入\n支持自建监控器，以及监控器配套的所有告警处理逻辑\n\n参数：\n    data {dict,list} 上报的事件数据或其列表，结构如下：\n                        {\n                            \\\"title\\\"         : {str}      事件标题，只支持单行文本\n                            \\\"message\\\"       : {str}      事件内容，支持 Markdown\n                            \\\"status\\\"        : {str}      事件级别，可选值为： ok, info, warning, error, critical\n                            \\\"dimension_tags\\\": {str,dict} 事件维度，如：{ 'host': 'web001' } 或其序列化后的字符串\n                        }",
+            "description": "报告事件，通过 DataFlux Func 实现事件写入\n支持自建巡检，以及监控器配套的所有告警处理逻辑\n\n参数：\n    data {dict,list} 上报的事件数据或其列表，结构如下：\n                        {\n                            \\\"title\\\"         : {str}      事件标题，只支持单行文本\n                            \\\"message\\\"       : {str}      事件内容，支持 Markdown\n                            \\\"status\\\"        : {str}      事件级别，可选值为： ok, info, warning, error, critical\n                            \\\"dimension_tags\\\": {str,dict} 事件维度，如：{ 'host': 'web001' } 或其序列化后的字符串\n                        }",
             "extraConfigJSON": null,
             "id": "guance__openapi.report_event",
             "integration": null,

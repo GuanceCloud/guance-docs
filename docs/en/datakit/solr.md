@@ -10,7 +10,7 @@ Solr collector, which collects statistics of solr cache, request times, and so o
 
 ## Preconditions {#requrements}
 
-DataKit uses the Solr Metrics API to collect metrics data and supports Solr 7.0 and above. Available for Solr 6.6, but the indicator data is incomplete.
+DataKit uses the Solr Metrics API to collect metrics data and supports Solr 7.0 and above. Available for Solr 6.6, but the metric data is incomplete.
 
 ## Configuration {#config}
 
@@ -75,12 +75,12 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Tag | Descrition |
 |  ----  | --------|
-|`category`|category name|
-|`core`|solr core|
-|`group`|metric group|
-|`host`|host name|
-|`instance`|instance name, generated based on server address|
-|`name`|cache name|
+|`category`|Category name.|
+|`core`|Solr core.|
+|`group`|Metric group.|
+|`host`|System hostname.|
+|`instance`|Instance name, generated based on server address.|
+|`name`|Cache name.|
 
 - metric list
 
@@ -111,12 +111,12 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Tag | Descrition |
 |  ----  | --------|
-|`category`|category name|
-|`core`|solr core|
-|`group`|metric group|
-|`handler`|request handler|
-|`host`|host name|
-|`instance`|instance name, generated based on server address|
+|`category`|Category name.|
+|`core`|Solr core.|
+|`group`|Metric group.|
+|`handler`|Request handler.|
+|`host`|System hostname.|
+|`instance`|Instance name, generated based on server address.|
 
 - metric list
 
@@ -129,9 +129,9 @@ For all of the following data collections, a global tag named `host` is appended
 |`median`|Median of all the request processing time.|float|ms|
 |`min`|Min of all the request processing time.|float|ms|
 |`p75`|Request processing time for the request which belongs to the 75th Percentile.|float|ms|
-|`p95`|Request processing time in milliseconds for the request which belongs to the 95th Percentile. |float|ms|
-|`p99`|Request processing time in milliseconds for the request which belongs to the 99th Percentile. |float|ms|
-|`p999`|Request processing time in milliseconds for the request which belongs to the 99.9th Percentile. |float|ms|
+|`p95`|Request processing time in milliseconds for the request which belongs to the 95th Percentile.|float|ms|
+|`p99`|Request processing time in milliseconds for the request which belongs to the 99th Percentile.|float|ms|
+|`p999`|Request processing time in milliseconds for the request which belongs to the 99.9th Percentile.|float|ms|
 |`rate_15min`|Requests per second received over the past 15 minutes.|float|reqps|
 |`rate_1min`|Requests per second received over the past 1 minutes.|float|reqps|
 |`rate_5min`|Requests per second received over the past 5 minutes.|float|reqps|
@@ -147,11 +147,11 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Tag | Descrition |
 |  ----  | --------|
-|`category`|category name|
-|`core`|solr core|
-|`group`|metric group|
-|`host`|host name|
-|`instance`|instance name, generated based on server address|
+|`category`|Category name.|
+|`core`|Solr core.|
+|`group`|Metric group.|
+|`host`|System hostname.|
+|`instance`|Instance name, generated based on server address.|
 
 - metric list
 

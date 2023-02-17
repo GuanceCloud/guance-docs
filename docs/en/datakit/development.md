@@ -89,7 +89,7 @@ datakit -M --vvv            # Check the operation of all collectors
 - If the collector function is complete, add `man/manuals/zhangsan.md` document, this can refer to `demo.md`, install the template inside to write
 
 - For measurements in the document, the default is to list all the measurements that can be collected and their respective metrics in the document. Some special measurements or metrics, if there are preconditions, need to be explained in the document.
-  - If a metric set needs to meet certain conditions, it should be described in `MeasurementInfo.Desc` of measurement
+  - If a measurement needs to meet certain conditions, it should be described in `MeasurementInfo.Desc` of measurement
   - If there is a specific precondition for a metric in the measurement, it should be described on `FieldInfo.Desc`.
 
 ## Compile Environment Build {#setup-compile-env}
@@ -494,5 +494,5 @@ datakit --ignore demo,tailf --export-integration /path/to/integration/git/repo
 
 ## More Readings {#more-readings}
 
-- [DataKit Monitor explorer](datakit-monitor.md)
+- [DataKit Monitor observer](datakit-monitor.md)
 - [Introduction on DataKit to the overall architecture](datakit-arch.md)

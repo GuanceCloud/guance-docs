@@ -1,11 +1,11 @@
-# 创建一个自建监控器
+# 创建一个自建巡检
 
 ---
 
 <br />**post /api/v1/self_built_checker/create**
 
 ## 概述
-创建一个自建监控器
+创建一个自建巡检
 
 
 
@@ -14,8 +14,8 @@
 
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
-| monitorUUID | string |  | 通知策略(即监控器分组)UUID<br>允许空字符串: True <br> |
-| refKey | string | Y | 自建监控器的自定义标识（新建之后不可变更）<br>例子: ref-xxx <br>允许为空: False <br> |
+| monitorUUID | string |  | 告警策略UUID<br>允许空字符串: True <br> |
+| refKey | string | Y | 自建巡检的自定义标识（新建之后不可变更）<br>例子: ref-xxx <br>允许为空: False <br> |
 | title | string | Y | 关联函数标题<br>例子: ref-xxx <br>允许为空: False <br> |
 | refFuncInfo | json | Y | 关联函数配置信息<br>允许为空: False <br> |
 | refFuncInfo.funcId | string | Y | 关联函数 ID<br>例子: ref-xxx <br>允许为空: False <br> |

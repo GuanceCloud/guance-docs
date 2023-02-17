@@ -20,7 +20,7 @@ Or get the API Key ID and key by clicking the view icon on the right side of the
 
 ![](../img/3.apikey_3.png)
 
-The creation/deletion of API Key will generate operation audit events, which can be viewed in the operation audit under "Management"-"Basic Settings" of the observation cloud workspace.
+The creation/deletion of API Key will generate operation audit events, which can be viewed in the operation audit under "Management"-"Basic Settings" of the guance workspace.
 
 ![](../img/3.apikey_4.png)
 

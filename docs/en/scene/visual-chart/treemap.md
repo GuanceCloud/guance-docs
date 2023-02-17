@@ -3,7 +3,7 @@
 
 ## Introduction
 
-It is used to visualize the percentage distribution of indicator data under different groupings.
+It is used to visualize the percentage distribution of metric data under different groupings.
 
 ## Application Scenarios
 
@@ -13,11 +13,11 @@ The rectangular tree diagram of the Guance is used to show the percentage distri
 
 Chart query supports 「simple query」, 「expression query」 and 「DQL query」, please click [chart-query](chart-query.md) for detailed explanation of chart query conditions, simple query is added by default. You can add multiple queries, but the Tag of by (grouping) must be the same, modify one, and the other will be modified automatically.
 
-The chart query selects the color by the value of the selected query indicator, as described below.
+The chart query selects the color by the value of the selected query metric, as described below.
 
 | Options | Description |
 | --- | --- |
-| Indicators | Color indicates grouped tags (Tags), and area indicates indicator data. When multiple indicator queries are added, you can select the main indicator to display, and the area size is displayed according to the selected indicator data results, Top/Bottom and quantity. |
+| Metrics | Color indicates grouped tags (Tags), and area indicates metric data. When multiple metric queries are added, you can select the main metric to display, and the area size is displayed according to the selected metric data results, Top/Bottom and quantity. |
 
 ## Chart Linking
 
@@ -26,7 +26,7 @@ Links can help you jump from the current chart to the target page, support addin
 | Options | Description |
 | --- | --- |
 | Title | Set the title for the chart, after setting, it will be displayed on the top left of the chart, support hiding
-| color | set the display color of the chart data, support custom manual input preset color, input format is: aggregation function(indicator){"label": "label value"}, such as `last(usage_idle){"host": "guance_01"}` |
+| color | set the display color of the chart data, support custom manual input preset color, input format is: aggregation function(metric){"label": "label value"}, such as `last(usage_idle){"host": "guance_01"}` |
 
 
 ## Chart Settings
@@ -34,7 +34,7 @@ Links can help you jump from the current chart to the target page, support addin
 ### Basic Settings
 | Options | Description |
 | --- | --- |
-| Units | 1. Support setting units for query results.<br />1）If the queried data has no unit, after setting the unit in the chart, it will be displayed on the chart according to the set unit<br />2）If the query data comes with its own units, or if you are in [Indicator Management] (../../metrics/dictionary.md), and you set the units for the metrics in the chart, the units set in the chart will be displayed on the chart.<br />3）If the query data has no units and no units are set in the chart, the chart Y-axis values are automatically calculated according to scientific notation; the original values are displayed on the chart in the format [thousandths] (chart-query.md#thousand).<br /> **Scientific counting instructions**<br />Default query result value is automatically converted to units, display follows 「scientific notation K, M, B」 (1 thousand = 1K, 1 million = 1M, 1 billion = 1B), retaining two decimal points; RMB is automatically converted to units 「yuan, million, billion」, retaining two decimal points<br />*For example, if the unit of time interval is selected as ns, then according to the size of the data, the query result will only automatically convert the unit effect as follows, and so on：*<br /><li>1000000ns：Chart query data results in 1ms<br /><li>1000000000ns：The chart query data result shows 1s<br /><li>10000000000ns：The chart query data result shows 1m<br /><br/>2. support for the query results preset units, manual input format: aggregation function (indicator), such as `last(age_idle)` |
+| Units | 1. Support setting units for query results.<br />1）If the queried data has no unit, after setting the unit in the chart, it will be displayed on the chart according to the set unit<br />2）If the query data comes with its own units, or if you are in [Metric Management] (../../metrics/dictionary.md), and you set the units for the metrics in the chart, the units set in the chart will be displayed on the chart.<br />3）If the query data has no units and no units are set in the chart, the chart Y-axis values are automatically calculated according to scientific notation; the original values are displayed on the chart in the format [thousandths] (chart-query.md#thousand).<br /> **Scientific counting instructions**<br />Default query result value is automatically converted to units, display follows 「scientific notation K, M, B」 (1 thousand = 1K, 1 million = 1M, 1 billion = 1B), retaining two decimal points; RMB is automatically converted to units 「yuan, million, billion」, retaining two decimal points<br />*For example, if the unit of time interval is selected as ns, then according to the size of the data, the query result will only automatically convert the unit effect as follows, and so on：*<br /><li>1000000ns：Chart query data results in 1ms<br /><li>1000000000ns：The chart query data result shows 1s<br /><li>10000000000ns：The chart query data result shows 1m<br /><br/>2. support for the query results preset units, manual input format: aggregation function (metric), such as `last(age_idle)` |
 
 ### Advanced Settings
 | Options | Description |

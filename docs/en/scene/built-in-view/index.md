@@ -13,12 +13,12 @@ System view is the official view template provided by "Guance", including Docker
 
 System view supports creating a new system view template as a dashboard directly through the "built-in template library" in 「 Scene」. If you need to make custom changes to this template, you can make custom changes to the system view that has been added to the dashboard.
 
-In the Observation Cloud Workspace "Administration" - "Built-in Views", you can export views, clone views as user views for editing and use.<br />Note: In addition to the system view bound to the viewer, if another system view has been bound to the viewer, you can delete the binding relationship by clicking the "Delete Binding" button.<br />![](../img/4.view_1.png)
+In the Guance Workspace "Administration" - "Built-in Views", you can export views, clone views as user views for editing and use.<br />Note: In addition to the system view bound to the explorer, if another system view has been bound to the explorer, you can delete the binding relationship by clicking the "Delete Binding" button.<br />![](../img/4.view_1.png)
 
 
 ## User View
 
-User view is a user-defined view after saving as a template to use the view, support new, modify, export, clone and delete, support editing binding link services, applications, log sources, projects, tags and other associations in the viewer binding related views, the specific operation can refer to the document [binding built-in views](../../scene/built-in-view/bind-view.md) .<br />Note: At present, Guance only supports manually binding user view to viewer view, if you need to bind system view, you need to clone system view to user view first, if system view and user view have the same name, user view will be displayed in viewer first.<br />![](../img/4.view_3.png)
+User view is a user-defined view after saving as a template to use the view, support new, modify, export, clone and delete, support editing binding link services, applications, log sources, projects, tags and other associations in the explorer binding related views, the specific operation can refer to the document [binding built-in views](../../scene/built-in-view/bind-view.md) .<br />Note: At present, Guance only supports manually binding user view to explorer view, if you need to bind system view, you need to clone system view to user view first, if system view and user view have the same name, user view will be displayed in explorer first.<br />![](../img/4.view_3.png)
 
 - New User View: Click 「New User View」 to create a user-defined view template.
 - Edit: The user view supports re-editing the name or binding the link service, application, log source, project and other associations. By clicking on the![](../img/image.png)and select "Edit".

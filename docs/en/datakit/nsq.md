@@ -6,7 +6,7 @@
 
 ---
 
-Collect NSQ operation data and report it to Guance in the form of indicators.
+Collect NSQ operation data and report it to Guance Cloud in the form of metrics.
 
 ## Preconditions {#requirements}
 

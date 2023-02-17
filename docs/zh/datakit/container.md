@@ -1,12 +1,12 @@
 
-# 容器数据采集
+# 容器基础采集
 ---
 
 :fontawesome-brands-linux: :material-kubernetes: :material-docker:
 
 ---
 
-采集 container 和 Kubernetes 的指标、对象和日志数据，上报到观测云。
+采集 Container 和 Kubernetes 的指标、对象和日志数据，上报到观测云。
 
 ## 前置条件 {#requrements}
 
@@ -34,9 +34,9 @@
       extract_k8s_label_as_tags = false
     
       ## Auto-Discovery of PrometheusMonitoring Annotations/CRDs
-      enable_autdo_discovery_of_prometheus_service_annotations = false
-      enable_autdo_discovery_of_prometheus_pod_monitors = false
-      enable_autdo_discovery_of_prometheus_service_monitors = false
+      enable_auto_discovery_of_prometheus_service_annotations = false
+      enable_auto_discovery_of_prometheus_pod_monitors = false
+      enable_auto_discovery_of_prometheus_service_monitors = false
     
     
       ## Containers logs to include and exclude, default collect all containers. Globs accepted.
@@ -194,45 +194,45 @@
 
 #### `docker_containers`
 
-容器指标数据，只采集正在运行的容器
+The metric of containers, only supported Running status.
 
 - 标签
 
 
 | Tag | Descrition |
 |  ----  | --------|
-|`container_id`|容器 ID|
-|`container_name`|k8s 命名的容器名（在 labels 中取 'io.kubernetes.container.name'），如果值为空则跟 container_runtime_name 相同|
-|`container_runtime_name`|由 runtime 命名的容器名（例如 docker ps 查看），如果值为空则默认是 unknown（[:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)）|
-|`container_type`|容器类型，表明该容器由谁创建，kubernetes/docker/containerd|
-|`deployment`|deployment 名称（容器由 k8s 创建时存在，containerd 缺少此字段）|
-|`docker_image`|镜像全称，例如 `nginx.org/nginx:1.21.0` （Depercated, use image）|
-|`image`|镜像全称，例如 `nginx.org/nginx:1.21.0`|
-|`image_name`|镜像名称，例如 `nginx.org/nginx`|
-|`image_short_name`|镜像名称精简版，例如 `nginx`|
-|`image_tag`|镜像 tag，例如 `1.21.0`|
-|`linux_namespace`|该容器所在的 [linux namespace](https://man7.org/linux/man-pages/man7/namespaces.7.html)|
-|`namespace`|pod 的 k8s 命名空间（k8s 创建容器时，会打上一个形如 'io.kubernetes.pod.namespace' 的 label，DataKit 将其命名为 'namespace'）|
-|`pod_name`|pod 名称（容器由 k8s 创建时存在）|
-|`state`|运行状态，running（containerd 缺少此字段）|
+|`container_id`|Container ID|
+|`container_name`|Container name from k8s (label 'io.kubernetes.container.name'). If empty then use $container_runtime_name.|
+|`container_runtime_name`|Container name from runtime (like 'docker ps'). If empty then use 'unknown' ([:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)).|
+|`container_type`|The type of the container (this container is created by kubernetes/docker/containerd).|
+|`deployment`|The deployment name of the container's pod (unsupported containerd).|
+|`docker_image`|The full name of the container image, example `nginx.org/nginx:1.21.0` (Depercated, use image).|
+|`image`|The full name of the container image, example `nginx.org/nginx:1.21.0`.|
+|`image_name`|The name of the container image, example `nginx.org/nginx`.|
+|`image_short_name`|The short name of the container image, example `nginx`.|
+|`image_tag`|The tag of the container image, example `1.21.0`.|
+|`linux_namespace`|The [linux namespace](https://man7.org/linux/man-pages/man7/namespaces.7.html) where this container is located.|
+|`namespace`|The pod namespace of the container (label 'io.kubernetes.pod.namespace').|
+|`pod_name`|The pod name of the container (label 'io.kubernetes.pod.name').|
+|`state`|Container status (only Running, unsupported containerd).|
 
 - 指标列表
 
 
 | Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`block_read_byte`|从容器文件系统读取的总字节数（containerd 缺少此字段）|int|B|
-|`block_write_byte`|向容器文件系统写入的总字节数（containerd 缺少此字段）|int|B|
-|`cpu_delta`|容器 CPU 增量（containerd 缺少此字段）|int|ns|
-|`cpu_numbers`|CPU 核心数（containerd 缺少此字段）|int|count|
-|`cpu_system_delta`|系统 CPU 增量，仅支持 Linux（containerd 缺少此字段）|int|ns|
-|`cpu_usage`|CPU 占主机总量的使用率|float|percent|
-|`mem_failed_count`|内存分配失败的次数（containerd 缺少此字段）|int|B|
-|`mem_limit`|内存可用总量，如果未对容器做内存限制，则为主机内存容量|int|B|
-|`mem_usage`|内存使用量|int|B|
-|`mem_used_percent`|内存使用率，使用量除以可用总量|float|percent|
-|`network_bytes_rcvd`|从网络接收到的总字节数（containerd 缺少此字段）|int|B|
-|`network_bytes_sent`|向网络发送出的总字节数（containerd 缺少此字段）|int|B|
+|`block_read_byte`|Total number of bytes read from the container file system (unsupported containerd).|int|B|
+|`block_write_byte`|Total number of bytes wrote to the container file system (unsupported containerd).|int|B|
+|`cpu_delta`|The delta of the CPU (unsupported containerd).|int|ns|
+|`cpu_numbers`|The number of the CPU core (unsupported containerd).|int|count|
+|`cpu_system_delta`|The delta of the system CPU, only supported Linux (unsupported containerd).|int|ns|
+|`cpu_usage`|The percentage usage of CPU on system host.|float|percent|
+|`mem_failed_count`|The count of memory allocation failures (unsupported containerd).|int|B|
+|`mem_limit`|The available usage of the memory, if there is container limit, use host memory.|int|B|
+|`mem_usage`|The usage of the memory.|int|B|
+|`mem_used_percent`|The percentage usage of the memory.|float|percent|
+|`network_bytes_rcvd`|Total number of bytes received from the network (unsupported containerd).|int|B|
+|`network_bytes_sent`|Total number of bytes send to the network (unsupported containerd).|int|B|
 
 
 
@@ -245,7 +245,7 @@
 
 #### `kubernetes`
 
-Kubernetes count 指标数据
+The count of the Kubernetes resource.
 
 - 标签
 
@@ -279,7 +279,7 @@ Kubernetes count 指标数据
 
 #### `kube_cronjob`
 
-Kubernetes cron job 指标数据
+The metric of the Kubernetes CronJob.
 
 - 标签
 
@@ -309,7 +309,7 @@ Kubernetes cron job 指标数据
 
 #### `kube_daemonset`
 
-Kubernetes Daemonset 指标数据
+The metric of the Kubernetes Daemonset.
 
 - 标签
 
@@ -343,7 +343,7 @@ Kubernetes Daemonset 指标数据
 
 #### `kube_deployment`
 
-Kubernetes Deployment 指标数据
+The metric of the Kubernetes Deployment.
 
 - 标签
 
@@ -375,7 +375,7 @@ Kubernetes Deployment 指标数据
 
 #### `kube_endpoint`
 
-Kubernetes Endpoints 指标数据
+The metric of the Kubernetes Endpoints.
 
 - 标签
 
@@ -405,7 +405,7 @@ Kubernetes Endpoints 指标数据
 
 #### `kube_job`
 
-Kubernetes Job 指标数据
+The metric of the Kubernetes Job.
 
 - 标签
 
@@ -437,7 +437,7 @@ Kubernetes Job 指标数据
 
 #### `kube_node`
 
-Kubernetes Node 指标数据
+The metric of the Kubernetes Node.
 
 - 标签
 
@@ -473,7 +473,7 @@ Kubernetes Node 指标数据
 
 #### `kube_pod`
 
-Kubernetes pod 指标数据
+The metric of the Kubernetes Pod.
 
 - 标签
 
@@ -506,7 +506,7 @@ Kubernetes pod 指标数据
 
 #### `kube_replicaset`
 
-Kubernetes replicaset 指标数据
+The metric of the Kubernetes ReplicaSet.
 
 - 标签
 
@@ -559,52 +559,51 @@ Kubernetes replicaset 指标数据
 
 #### `docker_containers`
 
-容器对象数据，如果容器处于非 running 状态，则`cpu_usage`等指标将不存在
+The object of containers, only supported Running status.
 
 - 标签
 
 
 | Tag | Descrition |
 |  ----  | --------|
-|`container_host`|容器内部的主机名（containerd 缺少此字段）|
-|`container_id`|容器 ID|
-|`container_name`|k8s 命名的容器名（在 labels 中取 'io.kubernetes.container.name'），如果值为空则跟 container_runtime_name 相同|
-|`container_runtime_name`|由 runtime 命名的容器名（例如 docker ps 查看），如果值为空则默认是 unknown（[:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)）|
-|`container_type`|容器类型，表明该容器由谁创建，kubernetes/docker/containerd|
-|`deployment`|deployment 名称（容器由 k8s 创建时存在）（containerd 缺少此字段）|
-|`docker_image`|镜像全称，例如 `nginx.org/nginx:1.21.0` （Depercated, use image）|
-|`image`|镜像全称，例如 `nginx.org/nginx:1.21.0`|
-|`image_name`|镜像名称，例如 `nginx.org/nginx`|
-|`image_short_name`|镜像名称精简版，例如 `nginx`|
-|`image_tag`|镜像tag，例如 `1.21.0`|
-|`linux_namespace`|该容器所在的 [linux namespace](https://man7.org/linux/man-pages/man7/namespaces.7.html){:target="_blank"}|
-|`name`|对象数据的指定 ID|
-|`namespace`|pod 的 k8s 命名空间（k8s 创建容器时，会打上一个形如 'io.kubernetes.pod.namespace' 的 label，DataKit 将其命名为 'namespace'）|
-|`pod_name`|pod 名称（容器由 k8s 创建时存在）|
-|`state`|运行状态，running/exited/removed（containerd 缺少此字段）|
-|`status`|容器状态，例如 `Up 5 hours`（containerd 缺少此字段）|
+|`container_host`|The name of the container host (unsupported containerd).|
+|`container_id`|Container ID|
+|`container_name`|Container name from k8s (label 'io.kubernetes.container.name'). If empty then use $container_runtime_name.|
+|`container_runtime_name`|Container name from runtime (like 'docker ps'). If empty then use 'unknown' ([:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)).|
+|`container_type`|The type of the container (this container is created by kubernetes/docker/containerd).|
+|`deployment`|The deployment name of the container's pod (unsupported containerd).|
+|`docker_image`|The full name of the container image, example `nginx.org/nginx:1.21.0` (Depercated, use image).|
+|`image`|The full name of the container image, example `nginx.org/nginx:1.21.0`.|
+|`image_name`|The name of the container image, example `nginx.org/nginx`.|
+|`image_short_name`|The short name of the container image, example `nginx`.|
+|`image_tag`|The tag of the container image, example `1.21.0`.|
+|`linux_namespace`|The [linux namespace](https://man7.org/linux/man-pages/man7/namespaces.7.html) where this container is located.|
+|`name`|The ID of the contaienr.|
+|`namespace`|The pod namespace of the container (label 'io.kubernetes.pod.namespace').|
+|`pod_name`|The pod name of the container (label 'io.kubernetes.pod.name').|
+|`state`|The state of the Container (only Running, unsupported containerd).|
+|`status`|The status of the container，example `Up 5 hours` (unsupported containerd).|
 
 - 指标列表
 
 
 | Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`age`|该容器创建时长，单位秒|int|s|
-|`block_read_byte`|从容器文件系统读取的总字节数（containerd 缺少此字段）|int|B|
-|`block_write_byte`|向容器文件系统写入的总字节数（containerd 缺少此字段）|int|B|
-|`cpu_delta`|容器 CPU 增量（containerd 缺少此字段）|int|ns|
-|`cpu_numbers`|CPU 核心数（containerd 缺少此字段）|int|count|
-|`cpu_system_delta`|系统 CPU 增量，仅支持 Linux（containerd 缺少此字段）|int|ns|
-|`cpu_usage`|CPU 占主机总量的使用率|float|percent|
-|`from_kubernetes`|该容器是否由 Kubernetes 创建（deprecated）|bool|-|
-|`mem_failed_count`|内存分配失败的次数（containerd 缺少此字段）|int|B|
-|`mem_limit`|内存可用总量，如果未对容器做内存限制，则为主机内存容量|int|B|
-|`mem_usage`|内存使用量|int|B|
-|`mem_used_percent`|内存使用率，使用量除以可用总量|float|percent|
-|`message`|容器对象详情|string|-|
-|`network_bytes_rcvd`|从网络接收到的总字节数（containerd 缺少此字段）|int|B|
-|`network_bytes_sent`|向网络发送出的总字节数（containerd 缺少此字段）|int|B|
-|`process`|容器进程列表，即运行命令`ps -ef`所得，内容为 JSON 字符串，格式是 map 数组（containerd 缺少此字段）|string|-|
+|`age`|The age of the container.|int|s|
+|`block_read_byte`|Total number of bytes read from the container file system (unsupported containerd).|int|B|
+|`block_write_byte`|Total number of bytes wrote to the container file system (unsupported containerd).|int|B|
+|`cpu_delta`|The delta of the CPU (unsupported containerd).|int|ns|
+|`cpu_numbers`|The number of the CPU core (unsupported containerd).|int|count|
+|`cpu_system_delta`|The delta of the system CPU, only supported Linux (unsupported containerd).|int|ns|
+|`cpu_usage`|The percentage usage of CPU on system host.|float|percent|
+|`from_kubernetes`|Is the container created by k8s (deprecated).|bool|-|
+|`mem_failed_count`|The count of memory allocation failures (unsupported containerd).|int|B|
+|`mem_limit`|The available usage of the memory, if there is container limit, use host memory.|int|B|
+|`mem_usage`|The usage of the memory.|int|B|
+|`mem_used_percent`|The percentage usage of the memory.|float|percent|
+|`network_bytes_rcvd`|Total number of bytes received from the network (unsupported containerd).|int|B|
+|`network_bytes_sent`|Total number of bytes send to the network (unsupported containerd).|int|B|
+|`process`|List processes running inside a container (like `ps -ef`, unsupported containerd).|string|-|
 
 
 
@@ -617,7 +616,7 @@ Kubernetes replicaset 指标数据
 
 #### `kubernetes_cluster_roles`
 
-Kubernetes cluster role 对象数据
+The object of the Kubernetes ClusterRole.
 
 - 标签
 
@@ -647,7 +646,7 @@ Kubernetes cluster role 对象数据
 
 #### `kubernetes_cron_jobs`
 
-Kubernetes cron job 对象数据
+The obejct of the Kubernetes CronJob.
 
 - 标签
 
@@ -680,7 +679,7 @@ Kubernetes cron job 对象数据
 
 #### `kubernetes_deployments`
 
-Kubernetes Deployment 对象数据
+The object of the Kubernetes Deployment.
 
 - 标签
 
@@ -729,7 +728,7 @@ Kubernetes Deployment 对象数据
 
 #### `kubernetes_jobs`
 
-Kubernetes Job 对象数据
+The object of the Kubernetes Job.
 
 - 标签
 
@@ -766,7 +765,7 @@ Kubernetes Job 对象数据
 
 #### `kubernetes_nodes`
 
-Kubernetes node 对象数据
+The object of the Kubernetes Node.
 
 - 标签
 
@@ -801,7 +800,7 @@ Kubernetes node 对象数据
 
 #### `kubelet_pod`
 
-Kubernetes pod 对象数据
+The object of the Kubernetes Pod.
 
 - 标签
 
@@ -845,7 +844,7 @@ Kubernetes pod 对象数据
 
 #### `kubernetes_replica_sets`
 
-Kubernetes replicaset 对象数据
+The object of the Kubernetes ReplicaSet.
 
 - 标签
 
@@ -874,7 +873,7 @@ Kubernetes replicaset 对象数据
 
 #### `kubernetes_services`
 
-Kubernetes service 对象数据
+The object of the Kubernetes Service.
 
 - 标签
 
@@ -912,7 +911,7 @@ Kubernetes service 对象数据
 
 
 
-#### `容器日志`
+#### `The logging of the container.`
 
 
 
@@ -921,27 +920,27 @@ Kubernetes service 对象数据
 
 | Tag | Descrition |
 |  ----  | --------|
-|`[POD_LABEL]`|如果该容器是由 k8s 创建，且配置参数 `extract_k8s_label_as_tags` 开启，则会将 pod 的 label 添加至标签中|
-|`container_id`|容器ID|
-|`container_name`|k8s 命名的容器名（在 labels 中取 'io.kubernetes.container.name'），如果值为空则跟 container_runtime_name 相同|
-|`container_runtime_name`|由 runtime 命名的容器名（例如 docker ps 查看），如果值为空则默认是 unknown（[:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)）|
-|`container_type`|容器类型，表明该容器由谁创建，kubernetes/docker|
-|`deployment`|deployment 名称（容器由 k8s 创建时存在，containerd 日志缺少此字段）|
-|`namespace`|pod 的 k8s 命名空间（k8s 创建容器时，会打上一个形如 'io.kubernetes.pod.namespace' 的 label，DataKit 将其命名为 'namespace'）|
-|`pod_name`|pod 名称（容器由 k8s 创建时存在）|
-|`service`|服务名称|
+|`[POD_LABEL]`|The pod labels will be extracted as tags if `extract_k8s_label_as_tags` is enabled.|
+|`container_id`|Container ID|
+|`container_name`|Container name from k8s (label 'io.kubernetes.container.name'). If empty then use $container_runtime_name.|
+|`container_runtime_name`|Container name from runtime (like 'docker ps'). If empty then use 'unknown' ([:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)).|
+|`container_type`|The type of the container (this container is created by kubernetes/docker/containerd).|
+|`deployment`|The deployment name of the container's pod (unsupported containerd).|
+|`namespace`|The pod namespace of the container (label 'io.kubernetes.pod.namespace').|
+|`pod_name`|The pod name of the container (label 'io.kubernetes.pod.name').|
+|`service`|The name of the service, if `service` is empty then use `source`.|
 
 - 字段列表
 
 
 | Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`log_read_lines`|采集到的行数计数，多行数据算成一行（[:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)）|int|count|
-|`log_read_offset`|当前数据在文件中的偏移位置（[:octicons-tag-24: Version-1.4.8](changelog.md#cl-1.4.8) · [:octicons-beaker-24: Experimental](index.md#experimental)）|int|-|
-|`log_read_time`|数据从文件中读取到的这一刻的时间戳，单位是秒|s|-|
-|`message`|日志源数据|string|-|
-|`message_length`|message 字段的长度，单位字节|B|count|
-|`status`|日志状态，info/emerg/alert/critical/error/warning/debug/OK/unknown|string|-|
+|`log_read_lines`|The lines of the read file ([:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)).|int|count|
+|`log_read_offset`|The offset of the read file ([:octicons-tag-24: Version-1.4.8](changelog.md#cl-1.4.8) · [:octicons-beaker-24: Experimental](index.md#experimental)).|int|-|
+|`log_read_time`|The timestamp of the read file.|s|-|
+|`message`|The text of the logging.|string|-|
+|`message_length`|The length of the message content.|B|count|
+|`status`|The status of the logging, only supported info/emerg/alert/critical/error/warning/debug/OK/unknown.|string|-|
 
 
 
@@ -990,7 +989,7 @@ Kubernetes service 对象数据
 
 #### `kubernetes_events`
 
-Kubernetes event 日志数据
+The logging of the Kubernetes Event.
 
 - 标签
 

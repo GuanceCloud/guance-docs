@@ -35,7 +35,7 @@ On Guance Service Status page, you can:
 
 - Click Switch to view the service status of all sites;
 - Refresh the service status in real time;
-- Check the current status and the last 24-hour status of CI, availability monitoring, events, logs, indicators, basic implementation, user access monitoring, security check and application performance monitoring function modules;
+- Check the current status and the last 24-hour status of CI, availability monitoring, events, logs, metrics, basic implementation, user access monitoring, security check and application performance monitoring function modules;
 - Switch to view historical incidents.
 
 ![](img/6.status_page_4.png)

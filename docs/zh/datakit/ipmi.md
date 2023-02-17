@@ -71,7 +71,7 @@ Temp             | 0Fh | ok  |  3.2 | 45 degrees C
       ## If you have so many servers that 10 seconds can't finish the job.
       ## You can start multiple collectors.
     
-      ## (Optional) collect interval: (defaults to "10s").
+      ## (Optional) Collect interval: (defaults to "10s").
       interval = "10s"
     
       ## Set true to enable election
@@ -102,7 +102,7 @@ Temp             | 0Fh | ok  |  3.2 | 45 degrees C
       ## (Warning!) You'd better use hex_keys, it's more secure.
       ipmi_passwords = ["calvin"]
     
-      ## (Optional) provide the hex key for the IMPI connection: (defaults to []string{}).
+      ## (Optional) Provide the hex key for the IMPI connection: (defaults to []string{}).
       ## If len(hex_keys)<len(ipmi_ips), will use hex_keys[0].
       ## (Example) hex_keys = ["XXXX"]
       # hex_keys = []
@@ -112,42 +112,42 @@ Temp             | 0Fh | ok  |  3.2 | 45 degrees C
       ## (Example) metric_versions = [2]
       metric_versions = [2]
     
-      ## (Optional) exec ipmitool timeout: (defaults to "5s").
+      ## (Optional) Exec ipmitool timeout: (defaults to "5s").
       timeout = "5s"
     
-      ## (Optional) ipmi server drop warning delay: (defaults to "300s").
+      ## (Optional) Ipmi server drop warning delay: (defaults to "300s").
       ## (Example) drop_warning_delay = "300s"
       drop_warning_delay = "300s"
     
-      ## key words of current.
+      ## Key words of current.
       ## (Example) regexp_current = ["current"]
       regexp_current = ["current"]
     
-      ## key words of voltage.
+      ## Key words of voltage.
       ## (Example) regexp_voltage = ["voltage"]
       regexp_voltage = ["voltage"]
     
-      ## key words of power.
+      ## Key words of power.
       ## (Example) regexp_power = ["pwr"]
       regexp_power = ["pwr"]
     
-      ## key words of temp.
+      ## Key words of temp.
       ## (Example) regexp_temp = ["temp"]
       regexp_temp = ["temp"]
     
-      ## key words of fan speed.
+      ## Key words of fan speed.
       ## (Example) regexp_fan_speed = ["fan"]
       regexp_fan_speed = ["fan"]
     
-      ## key words of usage.
+      ## Key words of usage.
       ## (Example) regexp_usage = ["usage"]
       regexp_usage = ["usage"]
     
-      ## key words of usage.
+      ## Key words of usage.
       ## (Example) regexp_count = []
       # regexp_count = []
     
-      ## key words of status.
+      ## Key words of status.
       ## (Example) regexp_status = ["fan","slot","drive"]
       regexp_status = ["fan","slot","drive"]
     
@@ -227,8 +227,8 @@ IPMI 采集器支持选举功能，当多台机器运行 DataKit 时，通过选
 
 | Tag | Descrition |
 |  ----  | --------|
-|`host`|被监测主机名|
-|`unit`|设备内单元名|
+|`host`|Monitored host name|
+|`unit`|Unit name in the host|
 
 - 指标列表
 

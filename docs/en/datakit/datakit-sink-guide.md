@@ -7,7 +7,7 @@ This article describes what the Sinker module of DataKit is (hereinafter referre
 
 ## What is Sinker {#what}
 
-Sinker is the data store definition module in DataKit. By default, the data collected by DataKit is reported to [Guance](https://console.guance.com/){:target="_blank"}, but by configuring different Sinker configurations, we can send the data to different custom stores.
+Sinker is the data store definition module in DataKit. By default, the data collected by DataKit is reported to [Guance Cloud](https://console.guance.com/){:target="_blank"}, but by configuring different Sinker configurations, we can send the data to different custom stores.
 
 ### Currently Supported Sinker Instances {#list}
 
@@ -60,7 +60,7 @@ The reporting measurement corresponding to each string in `categories` is as fol
 | `R`                 | RUM          |
 | `S`                 | Security     |
 
-> Note: categories that do not specify Sinker are still sent to Guance by default.
+> Note: categories that do not specify Sinker are still sent to Guance Cloud by default.
 
 ## Extended Readings {#more-readings}
 

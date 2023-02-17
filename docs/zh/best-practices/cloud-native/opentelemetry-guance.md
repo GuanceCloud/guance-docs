@@ -664,15 +664,26 @@ APM 与 Log 主要是通过在日志埋点 traceId 和 spanId。不同的日志�
 ### 日志查看器
 
 ![guance-log.gif](../images/opentelemetry-guance-4.gif)
+
 ### 链路（**应用性能监测**）
+
 ![guance-trace.gif](../images/opentelemetry-guance-5.gif)
+
 ### 从链路查看对应的 Log
+
 ![guance-trace-log.gif](../images/opentelemetry-guance-6.gif)
+
 ### 应用Metrics
-![guance-metrics.gif](../images/opentelemetry-guance-7.gif)
+
+应用Metrics 都会存放在 measurement 为 `otel-service`的指标集中
+
+![guance-metrics.gif](../images/opentelemetry-guance-7.png)
+
 ### Otelcol Metrics
-![guance-otelcol-metrics.gif](../images/opentelemetry-guance-8.gif)
+
+![guance-otelcol-metrics.gif](../images/opentelemetry-guance-8.png)
 
 ### Otelcol 集成视图
+
 ![Otelcol 集成视图](../images/opentelemetry-guance-9.png)
 

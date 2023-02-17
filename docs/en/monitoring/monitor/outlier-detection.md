@@ -30,7 +30,7 @@ In "Monitor", click "+ New Monitor", select "Outlier Detection", and enter the o
 | 12h | 1h |
 | 1d | 1h |
 
-3）**Detection Indicators:** Monitoring metric Data.
+3）**Detection Metrics:** Monitoring metric Data.
 
 | Field | Description |
 | --- | --- |
@@ -38,7 +38,7 @@ In "Monitor", click "+ New Monitor", select "Outlier Detection", and enter the o
 | Measurement | Measurement where the current detection metric is located |
 | Metric | The metric where the current detection metric is located |
 | Aggregation algorithm | Contain Avg by (average), Min by (minimum), Max by (maximum), Sum by (sum), Last (Last), First by (first), Count by (data points), Count_distinct by (non-duplicate data points), p50 (median), p75 (75%), p90 (90%), p99 (99%)|
-| Filter condition | The corresponding string type (keyword) fields in the check configuration data can be selected as the check dimension. At present, the check dimension supports selecting up to three fields. Through the combination of fields of multiple detection dimensions, a certain detection object can be determined, and the observation cloud will judge whether the statistical index corresponding to a detection object meets the threshold of trigger conditions, and if it meets the conditions, an event will be generated. (For example, if the instrumentation dimensions "host" and "host_ip" are selected, the instrumentation object can be {host: host1, host_ip: 127.0.0.1}） |
+| Filter condition | The corresponding string type (keyword) fields in the check configuration data can be selected as the check dimension. At present, the check dimension supports selecting up to three fields. Through the combination of fields of multiple detection dimensions, a certain detection object can be determined, and the guance will judge whether the statistical index corresponding to a detection object meets the threshold of trigger conditions, and if it meets the conditions, an event will be generated. (For example, if the instrumentation dimensions "host" and "host_ip" are selected, the instrumentation object can be {host: host1, host_ip: 127.0.0.1}） |
 | Detection dimension | Metric-based labels filter the data of detecting metrics, limit the range of detected data, support adding one or more labels to filter, and support fuzzy matching and fuzzy mismatching screening conditions. |
 | Alias | Custom metrics name |
 | Query mode | Support simple query and expression query, refer to [query](../../scene/visual-chart/chart-query.md) |

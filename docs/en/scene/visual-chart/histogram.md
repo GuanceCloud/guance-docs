@@ -7,7 +7,7 @@ The histogram, also known as the mass distribution chart, is used to represent t
 
 ## Application Scenarios
 
-Histograms of observation clouds are used to show the direction of the data distribution of a certain indicator data over time. It can be used in the following scenarios.
+Histograms of guances are used to show the direction of the data distribution of a certain metric data over time. It can be used in the following scenarios.
 
 - View the distribution of application performance metrics data over time, such as the distribution of "requests" over the last 15 minutes.
 - View the distribution of user access metrics data over time, such as the distribution of "errors" over the last 15 minutes.
@@ -33,8 +33,8 @@ By "adding filter fields" to match the abnormal events associated with the selec
 | Options | Description |
 | --- | --- |
 | Chart Title | Set the title name for the chart, after setting, it will be shown on the top left of the chart, support hide |
-| Color | Set the chart data display color, support custom manual input preset color, input format: aggregation function (indicator) {"label": "label value"}, such as `last(usage_idle){"host": "guance_01"}` |
-| Figure legend | <li>Used to visually display the name, quantity and percentage of each indicator data. Currently supports selecting the bottom, right, and hidden legends (click on the indicator row in the legend to hide/show the corresponding indicator)<br><li>Legend values support min, max, p50, p75, p90, p99 |
+| Color | Set the chart data display color, support custom manual input preset color, input format: aggregation function (metric) {"label": "label value"}, such as `last(usage_idle){"host": "guance_01"}` |
+| Figure legend | <li>Used to visually display the name, quantity and percentage of each metric data. Currently supports selecting the bottom, right, and hidden legends (click on the metric row in the legend to hide/show the corresponding metric)<br><li>Legend values support min, max, p50, p75, p90, p99 |
 | Percentile | Default display of p50, p75, p90, p99 in the distribution of the histogram when querying data, with vertical lines to help more intuitive view of the data distribution |
 
 
@@ -43,7 +43,7 @@ By "adding filter fields" to match the abnormal events associated with the selec
 ### Basic Settings
 | Options | Description |
 | --- | --- |
-| Unit | 1. Support setting units for query results.<br />1）If the queried data has no unit, after setting the unit in the chart, it will be displayed on the chart according to the set unit<br />2）If the query data comes with its own units, or if you are in [Indicator Management] (../../metrics/dictionary.md), and you set the units for the metrics in the chart, the units set in the chart will be displayed on the chart.<br />3）If the query data has no units and no units are set in the chart, the chart Y-axis values are automatically calculated according to scientific notation; the original values are displayed on the chart in the format [thousandths] (chart-query.md#thousand).<br /> **Scientific counting instructions**<br />Default query result value is automatically converted to units, display follows 「scientific notation K, M, B」 (1 thousand = 1K, 1 million = 1M, 1 billion = 1B), retaining two decimal points; RMB is automatically converted to units 「yuan, million, billion」, retaining two decimal points<br />*例For example, if the time interval of the unit is selected in ns, then according to the size of the data, the query result will only automatically convert the unit effect as follows, and so on：*<br /><li>1000000ns：Chart query data results in 1ms<br /><li>1000000000ns：The chart query data result shows 1s<br /><li>10000000000ns：The chart query data result shows 1m<br /><br/>2.Support for query results preset units, manual input format: aggregation function (indicator), such as `last(age_idle)` |
+| Unit | 1. Support setting units for query results.<br />1）If the queried data has no unit, after setting the unit in the chart, it will be displayed on the chart according to the set unit<br />2）If the query data comes with its own units, or if you are in [Metric Management] (../../metrics/dictionary.md), and you set the units for the metrics in the chart, the units set in the chart will be displayed on the chart.<br />3）If the query data has no units and no units are set in the chart, the chart Y-axis values are automatically calculated according to scientific notation; the original values are displayed on the chart in the format [thousandths] (chart-query.md#thousand).<br /> **Scientific counting instructions**<br />Default query result value is automatically converted to units, display follows 「scientific notation K, M, B」 (1 thousand = 1K, 1 million = 1M, 1 billion = 1B), retaining two decimal points; RMB is automatically converted to units 「yuan, million, billion」, retaining two decimal points<br />*例For example, if the time interval of the unit is selected in ns, then according to the size of the data, the query result will only automatically convert the unit effect as follows, and so on：*<br /><li>1000000ns：Chart query data results in 1ms<br /><li>1000000000ns：The chart query data result shows 1s<br /><li>10000000000ns：The chart query data result shows 1m<br /><br/>2.Support for query results preset units, manual input format: aggregation function (metric), such as `last(age_idle)` |
 
 ### Advanced Settings
 | Options | Description |

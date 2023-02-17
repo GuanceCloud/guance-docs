@@ -165,31 +165,19 @@ Docker 环境下接入方式有多种，本示例会展示两种方式：
 
 ## 注意：添加完java –javaagent后需要在启动脚本后添加-jar your app name.jar
 ```
-
-#### 链路分析
-
-<[服务](../../application-performance-monitoring/service.md)><br />
-<[链路分析](../../application-performance-monitoring/explorer.md)>
-
+### [启动参数](../../datakit/ddtrace-java.md#start-options)
 ## 场景视图
 
 观测云平台已内置 应用性能监测模块，无需手动创建
 
-## 检测库
+## 更多阅读
 
-暂无
+<[应用性能监测功能介绍](../../application-performance-monitoring/index.md)>
 
-## 相关术语说明
+<[链路追踪-字段说明](../../application-performance-monitoring/collection/index.md#_5)>
 
-<[链路追踪-字段说明](../../../application-performance-monitoring/collection/)>
+<[链路追踪（APM）最佳实践](../../best-practices/monitoring/apm.md)>
 
-## 最佳实践
+<[JAVA 应用 RUM-APM-LOG 联动分析](../../best-practices/insight/java-rum-apm-log.md)>
 
-<[JVM 可观测](../../best-practices/monitoring/jvm.md)><br />
-<[链路追踪（APM）最佳实践](../../best-practices/monitoring/apm.md)><br />
-<[JAVA 应用 RUM-APM-LOG 联动分析](../../best-practices/insight/java-rum-apm-log.md)><br />
 <[Kubernetes 应用的 RUM-APM-LOG 联动分析](../../best-practices/cloud-native/k8s-rum-apm-log.md)>
-
-## 故障排查
-
-暂无

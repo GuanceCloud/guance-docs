@@ -25,7 +25,7 @@ You can create a new field by entering the field name, field type and field desc
 - Time: When the field value is a timestamp, it is displayed as a date value
 - Percentage: Multiply the field value by 100 and display it as a percentage
 
-**Note: In the explorer display column, the field value will be converted according to the field type. For example, when the field value is "0.8" and the field type is selected as "Percentage", the field value displayed in the viewer display column is "80%".**
+**Note: In the explorer display column, the field value will be converted according to the field type. For example, when the field value is "0.8" and the field type is selected as "Percentage", the field value displayed in the explorer display column is "80%".**
 
 ![](img/3.field_2.png)
 
