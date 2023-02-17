@@ -1064,7 +1064,7 @@ JAVA_OPTS 详细说明：
 -Ddd.agent.host=localhost    DataKit 地址，选填
 -Ddd.agent.port=9529         DataKit 端口，必填
 -Ddd.version:版本，选填
--Ddd.jmxfetch.check-period 表示采集频率，单位为毫秒，默认 true，选填
+-Ddd.jmxfetch.check-period 表示采集频率，单位为毫秒，默认 1500，选填
 -Ddd.jmxfetch.statsd.host=127.0.0.1 statsd 采集器的连接地址同 DataKit 地址，选填
 -Ddd.jmxfetch.statsd.port=8125 表示 DataKit 上 statsd 采集器的 UDP 连接端口，默认为 8125，选填
 -Ddd.trace.health.metrics.statsd.host=127.0.0.1  自身指标数据采集发送地址同 DataKit 地址，选填
