@@ -49,7 +49,7 @@ icon: zy/release-notes
 
 ##### 权限变更审核优化
 
-基于新增的角色权限管理，调整费用中心审核的触发条件，当用户角色被赋予 Token 的查看、操作权限，即触观测云发费用中心的审核。更多详情可参考文档 [权限变更审核](../management/role-management.md#upgrade) 。
+基于新增的角色权限管理，调整费用中心审核的触发条件，当用户角色被赋予 Token 的查看、操作权限，即触发观测云费用中心的审核。更多详情可参考文档 [权限变更审核](../management/role-management.md#upgrade) 。
 
 #### 新增登录会话保持时间设置
 

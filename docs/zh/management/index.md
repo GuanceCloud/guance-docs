@@ -119,7 +119,7 @@ IP白名单书写规范如下：
         - 个人认证：费用中心账号欠费会触发关联工作空间锁定
         - 企业认证：按账单周期进行结算，账单生成后会邮件通知客户并提供 14 天的结算周期，若 14 天后未完成结算，会触发关联工作空间锁定
     - 云账号分成阿里云账号结算和 AWS 账号结算，更多详情可参考文档 [费用结算方式](../billing/billing-account/index.md)
-        - 阿里云账号结算：在[阿里云市场订阅](../billing/commercial-aliyun.md) 的实例关闭或过期会触发关联工作空间锁定
+        - 阿里云账号结算：在 [阿里云市场订阅](../billing/commercial-aliyun.md) 的实例关闭或过期会触发关联工作空间锁定
         - AWS 账号结算：在 [AWS 云市场订阅](../billing/billing-account/aws-account.md#subscribe) 的商品取消或失效会触发关联工作空间锁定
 
 
@@ -133,7 +133,7 @@ IP白名单书写规范如下：
 
 ### 解除工作空间锁定
 
-在工作空间锁定提示页面，点击「立即解锁」，免登到观测云费用中心「工作空间管理」页面，您可以为当前工作空间「[更换结算方式](../billing/billing-account/index.md)」，或者点击左上角「观测费用中心」，进入首页为当前账号进行充值，更多充值方式，可参考文档 [账号钱包](../billing/cost-center/account-wallet/index.md) 。
+在工作空间锁定提示页面，点击「立即解锁」，免登到观测云费用中心「工作空间管理」页面，您可以为当前工作空间「[更换结算方式](../billing/billing-account/index.md)」，或者点击左上角「观测费用中心」，进入首页为当前账号进行充值，更多充值方式，可参考文档 [账户钱包](../billing/cost-center/account-wallet/index.md) 。
 
 ???+ attention
 
