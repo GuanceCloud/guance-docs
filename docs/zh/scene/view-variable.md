@@ -33,10 +33,10 @@
 
 | 语法 | 说明 |
 | --- | --- |
-| show_measurement() | 返回时序数据的指标集合 |
-| show_tag_key(from=["指标集名"]) | 返回指标集 tag 列表, 可以指定具体的指标 |
-| show_tag_value(from=['指标集名'], keyin=['标签名']) | 返回数据库中指定 tag key 的 tag value 列表 |
-| show_object_source()    <br /> `object `可替换为 logging/event/tracing/rum | 返回 object /log/keyevent/tracing /rum数据的指标集合，该函数不需要参数 |
+| show_measurement() | 返回当前工作空间所有的指标集，该函数不支持添加时间筛选 |
+| show_tag_key(from=['指标集名']) | 返回当前工作空间选定指标集下面的标签，该函数不支持添加时间筛选 |
+| show_tag_value(from=['指标集名'], keyin=['标签名']) | 返回指定指标集下某个标签的值，该函数不支持添加时间筛选 |
+| show_object_source()    <br /> `object `可替换为 logging/event/tracing/rum | 返回 object /log/keyevent/tracing/rum 数据的指标集合，该函数不需要参数 |
 
 `SHOW_TAG_VALUE` 函数示例：
 
@@ -44,7 +44,6 @@
 ##查询指标集 cpu 的 host 标签值列表
 SHOW_TAG_VALUE(from=["cpu"],keyin=["host"])
 ```
-
 ##### DQL 语句查询
 
 > 基础设施、日志等【非指标数据】建议使用该方式
@@ -56,22 +55,26 @@ SHOW_TAG_VALUE(from=["cpu"],keyin=["host"])
 | R::view:(distinct('env')) {'app_id' = '#{appid}'} | 变量联动，假使上一条查询的变量名设为 app_id，则返回上条变量中所选 app_id 对应的 env 列表 |
 | R::view:(distinct('env')) {'app_id' = '8f05003ebccad062'} | 返回`app_id=8f05003ebccad062`对应的 env 列表 |
 
+???+ attention 
+
+    - 在级联查询种，支持 `=` `!=` `match（re）` `not match（re）` `wildcard` `not wildcard` 多种逻辑运算符，如 `R::view:(distinct('env')) {'app_id' = re('#{appid}')}
+    - 支持在 DQL 查询语句中以 [xx:xx:xx] 的格式添加数据查询的时间范围，若查询中添加了时间范围，则优先使用查询中的时间范围；若查询中未添加时间范围，则默认使用仪表板时间控件所选的时间范围，如 `O::docker_containers:(distinct(`host`)) [10m]`，即表示查询最近 10 分钟的容器主机列表 
+
 ##### 变量联动查询
 
-> 使用场景：两个变量 host（主机）、container_name（容器），选择host，自动显示该 Host 对应所有 Container 列表
+> 使用场景：两个变量 host（主机）、container_name（容器），选择 host，自动显示该 Host 对应所有 Container 列表
 
-变量1（主机名）：_查询最近10分钟的容器主机列表_
+变量1（主机名）：_查询最近 10 分钟的容器主机列表_
 
 ```
 O::docker_containers:(distinct(`host`)) [10m]
 ```
 
-变量2（容器名）：_查询变量1中所选主机下的容器列表_
+变量2（容器名）：_查询最近 10 分钟的变量 1 中所选主机下的容器列表_
 
 ```
 O::docker_containers:(distinct(`container_name`)) {`host`=`#{host}`}[10m]
 ```
-
 
 ![](img/11.variable_3.png)
 
