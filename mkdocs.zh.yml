@@ -54,14 +54,13 @@ extra:
   generator: false
   homepage: https://docs.guance.com
 
-  # 暂时不开放语言切换入口
-  # alternate:
-  #   - name: 中文
-  #     link: /
-  #     lang: zh
-  #   - name: English
-  #     link: /en/
-  #     lang: en
+  alternate:
+    - name: 中文
+      link: /
+      lang: zh
+    - name: English
+      link: /en/
+      lang: en
 
 plugins:
   awesome-pages: {}
