@@ -14,11 +14,11 @@
 
 ## 安装
 
-### 本地使用
+### 本地使用 {#local-plugin}
 
 **源码地址**：[https://github.com/GuanceCloud/datakit-uniapp-native-plugin](https://github.com/GuanceCloud/datakit-uniapp-native-plugin)
 
-**Demo 地址**：[https://github.com/GuanceCloud/datakit-uniapp-native-plugin/Hbuilder_Example](https://github.com/GuanceCloud/datakit-uniapp-native-plugin/tree/dev/Hbuilder_Example)
+**Demo 地址**：[https://github.com/GuanceCloud/datakit-uniapp-native-plugin/Hbuilder_Example](https://github.com/GuanceCloud/datakit-uniapp-native-plugin/tree/develop/Hbuilder_Example)
 
 
 下载的 SDK 包结构说明
@@ -48,7 +48,7 @@
 
 ## SDK 初始化
 
-### 基础配置 
+### 基础配置 {#base-config}
 
 ```javascript
 // 在 App.vue 配置
@@ -86,6 +86,7 @@
 | envType       | string   | 否   | 环境字段： `prod`线上（默认）、`gray`灰度、`pre`预发、`common`日常、`local`本地 |
 | service       | string   | 否   | 设置所属业务或服务的名称 默认：`df_rum_ios`、`df_rum_android` |
 | globalContext | object   | 否   | 添加自定义标签                                               |
+| offlinePakcage | boolean   | 否   | 仅 Android 支持，是否使用离线打包，详细说明见[Android 云打包与离线打包区别](#package)       |
 
 ### RUM 配置
 
@@ -104,8 +105,8 @@ rum.setConfig({
 | androidAppId             | string       | 是       | appId，监测中申请                                            |
 | iOSAppId                 | string       | 是       | appId，监测中申请                                            |
 | samplerate               | number       | 否       | 采样率，（采集率的值范围为>= 0、<= 1，默认值为 1）           |
-| enableNativeUserAction   | boolean      | 否       | 是否进行 `Native Action` 追踪，`Button` 点击事件，纯 `uni-app` 应用建议关闭，默认为 `false` |
-| enableNativeUserResource | boolean      | 否       | 是否进行 `Native Resource` 自动追踪，纯 `uni-app` 应用建议关闭，默认为 `false` |
+| enableNativeUserAction   | boolean      | 否       | 是否进行 `Native Action` 追踪，`Button` 点击事件，纯 `uni-app` 应用建议关闭，默认为 `false`，Android 云打包不支持 |
+| enableNativeUserResource | boolean      | 否       | 是否进行 `Native Resource` 自动追踪，纯 `uni-app` 应用建议关闭，默认为 `false` ，Android 云打包不支持|
 | enableNativeUserView     | boolean      | 否       | 是否进行 `Native View` 自动追踪，纯 `uni-app` 应用建议关闭，，默认为 `false` |
 | errorMonitorType         | string/array | 否       | 错误监控补充类型：`all`、`battery`、 `memory`、 `cpu`        |
 | deviceMonitorType        | string/array | 否       | 页面监控补充类型： `all` 、`battery`（仅Android支持)、 `memory`、`cpu`、`fps` |
@@ -146,7 +147,7 @@ tracer.setConfig({
 | samplerate            | double   | 否       | 采样率，采集率的值范围为>= 0、<= 1，默认值为 1               |
 | traceType             | string   | 否       | 链路类型：`ddTrace`（默认）、`zipkinMultiHeader`、`zipkinSingleHeader`、`traceparent`、`skywalking`、`jaeger` |
 | enableLinkRUMData     | boolean  | 否       | 是否与 `RUM` 数据关联，默认`false`                           |
-| enableNativeAutoTrace | boolean  | 否       | 是否开启原生网络自动追踪 iOS `NSURLSession` ,Android `OKhttp`，默认`false`, 纯 `uni-app` 应用建议关闭 |
+| enableNativeAutoTrace | boolean  | 否       | 是否开启原生网络自动追踪 iOS `NSURLSession` ,Android `OKhttp`，默认`false`, 纯 `uni-app` 应用建议关闭, Android 云打包不支持 |
 
 ## RUM 用户数据追踪
 
@@ -472,6 +473,13 @@ guanceModule.unbindRUMUserData()
 
 解绑当前用户
 
+
+## 手动设置应用启动
+
+#### API - manuallySetApplicationStart
+仅支持 Android，uniapp Android 云打包版本无法自动获取到应用启动
+
+
 ## 常见问题
 
 ### 插件开发 iOS 主工程 UniPlugin-iOS 使用
@@ -525,11 +533,41 @@ SDK 包结构说明
    $(PROJECT_DIR)/../SDK/libs
    $(PROJECT_DIR)
    ```
-### 插件开发 iOS 主工程 UniPlugin-Android 使用
 
-### Android 启动时间（云打包）
+### 插件开发 Android 主工程 UniPlugin-Android 使用
+#### 工程配置
+详细依赖配置参见 [Demo](https://github.com/GuanceCloud/datakit-uniapp-native-plugin/tree/develop/Hbuilder_Example)
 
+```
+|-- UniPlugin-Android
+	|-- app
+		|--build.gradle
+		//配置 ft-plugin
+		
+	|-- uniplugin_module
+		|-- src
+			|-- main
+				|-- java
+					|-- com.ft.sdk.uniapp
+		|-- build.gradle 
+		//	配置依赖 dependencies
+		//implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-sdk:xxxx'
+		//implementation 'com.google.code.gson:gson:xxxx'
+		//implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-native:xxxx'
+		
+	|-- build.gradle
+		//	配置 repo
+		//	maven {
+		//      	url 'https://mvnrepo.jiagouyun.com/repository/maven-releases'
+		//	}
+		//
+		//	配置 buildScrpit
+		//	classpath 'com.cloudcare.ft.mobile.sdk.tracker.plugin:ft-plugin:xxxx'
 
+```
+
+### Android 云打包与离线打包区别 {#package}
+Android 云打包与离线打包，sdk 内部集成方式使用了两种不同的方式。离线打包使用的，它的采集功能与配置项可选项比云打包更多。离线打包使用的是与 Android SDK 相同集成方式，使用的 Android Studio Gradle Plugin 的 方式，云打包无法使用 Android Studio Gradle Plugin ，所以只能通过 UniApp SDK 中内部代码实现部分功能，配置中 `offlinePakcage`[参数](#base-config)就是为了区分两种情况。
 
 ### [iOS 相关](../ios/app-access.md#FAQ)
 

@@ -42,7 +42,7 @@
 
 | **字段** | **类型** | **描述** |
 | --- | --- | --- |
-| `userid` | string | 未登录用户使用cookie作为userid，登录用户使用应用后台生成的用户id。 |
+| `userid` | string | 未登录用户使用随机 uuid 作为userid，登录用户使用应用后台生成的用户id。 |
 | `user_name` | string | 可选，用户名称。 |
 | `user_email` | string | 可选，用户邮箱。 |
 | `session_id` | string | 会话id（后台停留30s以上，会生成一个新的session_id）。 |
@@ -241,6 +241,7 @@
 | **字段** | **类型** | **描述** |
 | --- | --- | --- |
 | `duration` | number（ns） | 卡顿时长 |
+| `long_task_message` | string | 卡顿信息 |
 | `long_task_stack` | string | 卡顿堆栈 |
 
 ### Action
