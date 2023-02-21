@@ -6,7 +6,7 @@
 - 安装 DataKit（[DataKit 安装文档](../../datakit/datakit-install.md)）
 
 ## 应用接入
-当前 UniApp 版本暂只支持 Android 和 iOS 平台。登录观测云控制台，进入「应用监测」页面，点击右上角「新建应用」，在新窗口输入「应用名称」，点击「创建」，然后相应接入的平台，即可开始配置。
+当前 UniApp 版本支持 Android 和 iOS 平台。登录观测云控制台，进入「应用监测」页面，点击右上角「新建应用」，在新窗口输入「应用名称」，点击「创建」，然后相应接入的平台，即可开始配置。
 
 ![](../img/image_12.png)
 
@@ -81,12 +81,12 @@
 | 参数名称      | 参数类型 | 必须 | 参数说明                                                     |
 | :------------ | :------- | :--- | ------------------------------------------------------------ |
 | serverUrl     | string   | 是   | 数据上报地址                                                 |
-| debug         | boolean  | 否   | 设置是否允许打印日志，默认`false`                            |
-| datakitUUID   | string   | 否   | 请求`HTTP`请求头`X-Datakit-UUID` 数据采集端  如果用户不设置会自动配置 |
+| debug         | boolean  | 否   | 设置是否允许打印 Debug 日志，默认`false`                            |
+| datakitUUID   | string   | 否   | 请求`HTTP`请求头`X-Datakit-UUID` 数据采集端，如果用户不设置会自动配置 |
 | envType       | string   | 否   | 环境字段： `prod`线上（默认）、`gray`灰度、`pre`预发、`common`日常、`local`本地 |
 | service       | string   | 否   | 设置所属业务或服务的名称 默认：`df_rum_ios`、`df_rum_android` |
 | globalContext | object   | 否   | 添加自定义标签                                               |
-| offlinePakcage | boolean   | 否   | 仅 Android 支持，是否使用离线打包，详细说明见[Android 云打包与离线打包区别](#package)       |
+| offlinePakcage | boolean   | 否   | 仅 Android 支持，是否使用离线打包，默认为 `false`，详细说明见[Android 云打包与离线打包区别](#package)       |
 
 ### RUM 配置
 
@@ -157,7 +157,7 @@ var rum = uni.requireNativePlugin("GCUniPlugin-RUM");
 
 ### Action
 
- **API - startAction**
+####API - startAction
 
 添加 Action 事件
 
@@ -215,7 +215,7 @@ rum.startView('Current Page Name')
 rum.stopView()         
 ```
 
- **API - onCreateView**
+#### API - onCreateView
 
 创建页面时长记录
 
@@ -224,7 +224,7 @@ rum.stopView()
 | viewName | string   | 是       | 页面名称                     |
 | loadTime | number   | 是       | 页面加载时间(纳秒级别时间戳) |
 
- **API - startView**
+#### API - startView 
 
 进入页面
 
@@ -233,7 +233,7 @@ rum.stopView()
 | viewName | string   | 是       | 页面名称         |
 | property | object   | 否       | 事件上下文(可选) |
 
- **API - stopView**
+#### API - stopView
 
 离开页面
 
@@ -474,17 +474,11 @@ guanceModule.unbindRUMUserData()
 解绑当前用户
 
 
-## 手动设置应用启动
-
-#### API - manuallySetApplicationStart
-仅支持 Android，uniapp Android 云打包版本无法自动获取到应用启动
-
-
 ## 常见问题
 
 ### 插件开发 iOS 主工程 UniPlugin-iOS 使用
 
-#### 下载 SDK
+#### 下载 UniApp 离线开发 SDK
 
  根据 uni-app 开发工具 **HBuilderX** 的版本号，下载开发插件需要的 [SDK包](https://nativesupport.dcloud.net.cn/AppDocs/download/ios) 
 
@@ -567,7 +561,7 @@ SDK 包结构说明
 ```
 
 ### Android 云打包与离线打包区别 {#package}
-Android 云打包与离线打包，sdk 内部集成方式使用了两种不同的方式。离线打包使用的，它的采集功能与配置项可选项比云打包更多。离线打包使用的是与 Android SDK 相同集成方式，使用的 Android Studio Gradle Plugin 的 方式，云打包无法使用 Android Studio Gradle Plugin ，所以只能通过 UniApp SDK 中内部代码实现部分功能，配置中 `offlinePakcage`[参数](#base-config)就是为了区分两种情况。
+Android 云打包与离线打包使用了两种不同的集成逻辑。离线打包集成方式与观测云 `Android SDK` 集成方式相同，使用是 `Android Studio Gradle Plugin` 的方式，云打包无法使用 `Android Studio Gradle Plugin` ，所以只能通过观测云 `UniApp Native Plugin` 中内部代码实现部分功能。所以离线打包版本配置可选项要比云打包版本更多，SDK 配置中 `offlinePakcage`[参数](#base-config)就是为了区分两种情况。
 
 ### [iOS 相关](../ios/app-access.md#FAQ)
 
