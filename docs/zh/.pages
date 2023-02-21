@@ -24,7 +24,6 @@ nav:
   - <br/>管理: ""
   - 工作空间管理: management
   - 付费计划与账单: billing
-  - <br/>私有化部署: ""
   - 私有化部署: deployment
   - <br/>其他: ""
   - DQL: dql
