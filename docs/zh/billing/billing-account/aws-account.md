@@ -11,7 +11,7 @@ AWS账号是指直接通过AWS账户进行充值结算，一个AWS账号支持�
 
 ## 在亚马逊云市场订阅观测云 {#subscribe}
 
-在“更改结算方式”页面，点击“前往亚马逊云市场订阅”，即可进入观测云在亚马逊云的主页，点击“继续订阅”。
+在“更改结算方式”页面，点击“[前往亚马逊云市场订阅](https://awsmarketplace.amazonaws.cn/marketplace/pp/prodview-ywkat3beera5k)”，即可进入观测云在亚马逊云的主页，点击“继续订阅”。
 
 ![](../img/8.space_4.png)
 

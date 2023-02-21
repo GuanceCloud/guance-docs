@@ -57,7 +57,7 @@ SHOW_TAG_VALUE(from=["cpu"],keyin=["host"])
 
 ???+ attention 
 
-    - 在级联查询种，支持 `=` `!=` `match（re）` `not match（re）` `wildcard` `not wildcard` 多种逻辑运算符，如 `R::view:(distinct('env')) {'app_id' = re('#{appid}')}
+    - 在级联查询种，支持 `=` 、`!=` 、`match（re）` 、`not match（re）` 、`wildcard` 、`not wildcard` 多种逻辑运算符，如 `R::view:(distinct('env')) {'app_id' = re('#{appid}')}`
     - 支持在 DQL 查询语句中以 [xx:xx:xx] 的格式添加数据查询的时间范围，若查询中添加了时间范围，则优先使用查询中的时间范围；若查询中未添加时间范围，则默认使用仪表板时间控件所选的时间范围，如 `O::docker_containers:(distinct(`host`)) [10m]`，即表示查询最近 10 分钟的容器主机列表 
 
 ##### 变量联动查询
