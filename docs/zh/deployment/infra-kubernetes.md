@@ -1,8 +1,8 @@
-# Sealos 急速安装 Kubernetes 集群
+# Kubernetes 集群部署
 
 ## 简介
 
-sealos 是一个简单的 go 二进制文件，可以安装在大多数 Linux 操作系统中。
+sealos 是一个简单的 go 二进制文件，可以安装在大多数 Linux 操作系统中。可用于灵活用于部署 Kubernetes 集群。
 
 ## 前提条件
 
@@ -69,14 +69,14 @@ ntpdate cn.pool.ntp.org
 === "amd64"
 
     ``` shell
-    wget https://df-storage-dev.oss-cn-hangzhou.aliyuncs.com/liwenjin/sealos/sealos_4.1.3_linux_amd64.tar.gz \
-       && tar zxvf sealos_4.1.3_linux_amd64.tar.gz sealos && chmod +x sealos && mv sealos /usr/bin
+    wget https://static.guance.com/dataflux/package/sealos_4.1.4_linux_amd64.tar.gz \
+       && tar zxvf sealos_4.1.4_linux_amd64.tar.gz sealos && chmod +x sealos && mv sealos /usr/bin
     ```
 === "arm64"
 
     ``` shell
-    wget https://df-storage-dev.oss-cn-hangzhou.aliyuncs.com/liwenjin/sealos/sealos_4.1.3_linux_arm64.tar.gz \
-       && tar zxvf sealos_4.1.3_linux_arm64.tar.gz sealos && chmod +x sealos && mv sealos /usr/bin
+    wget https://static.guance.com/dataflux/package/sealos_4.1.4_linux_arm64.tar.gz \
+       && tar zxvf sealos_4.1.4_linux_arm64.tar.gz sealos && chmod +x sealos && mv sealos /usr/bin
     ```
 
 验证是否部署成功：
@@ -132,7 +132,9 @@ sealos run labring/kubernetes:v1.24.0 labring/calico:v3.22.1     \
     --nodes 192.168.100.102,192.168.100.103     \
     --passwd [your-ssh-passwd] 
 ```
->注意命令中的 ip 和密码需要修改。
+
+> 注意命令中的 ip 和密码需要修改。
+
 > 请务必是 root 用户，节点环境端口要互通。
 
 参数说明：

@@ -102,30 +102,6 @@ volumeBindingMode: WaitForFirstConsumer
 
 > `/data/tdengine` 目录请确保磁盘容量足够。
 
-配置存储空间大小
-
-```shell
-volumeClaimTemplates:
-  - metadata:
-      name: taos-tdengine-taosdata
-    spec:
-      accessModes:
-        - "ReadWriteOnce"
-      storageClassName: "openebs-hostpath"
-      resources:
-        requests:
-          storage: "5Gi"  ## 分配数据存空间 按照实际需要设置
-  - metadata:
-      name: taos-tdengine-taoslog
-    spec:
-      accessModes:
-        - "ReadWriteOnce"
-      storageClassName: "openebs-hostpath"
-      resources:
-        requests:
-          storage: "1Gi"  ## 分配日志存储空间 按照实际需要设置
-```
-
 
 
 #### 1.4 安装
@@ -184,7 +160,7 @@ volumeClaimTemplates:
       TAOS_OFFLINE_THRESHOLD: "8640000"
       TAOS_QUORUM: "1"
       TAOS_RATIO_OF_QUERY_CORES: "1.0"
-      TAOS_REPLICA: "1"
+      TAOS_REPLICA: "3"
       TAOS_RESTFUL_ROW_LIMIT: "10240"
       TAOS_RETRY_STREAM_COMP_DELAY: "10"
       TAOS_RPC_MAX_TIME: "600"
@@ -375,13 +351,13 @@ volumeClaimTemplates:
             app.kubernetes.io/instance: taos
             app: taosd
         spec:
-          # nodeSelector:
-          #   tdengine: "true"
-          # tolerations:
-          # - key: appname
-          #   operator: Equal
-          #   value: tdengine
-          #   effect: NoExecute
+          tolerations:
+          - key: "infrastructure"
+            operator: Equal
+            value: "middleware"
+            effect: "NoExecute"
+          nodeSelector:
+            tdengine: "true"
           containers:
             - name: tdengine
               image: "pubrepo.guance.com/googleimages/tdengine:2.6.0.18"
@@ -557,7 +533,8 @@ volumeClaimTemplates:
         spec:
           accessModes:
             - "ReadWriteOnce"
-          storageClassName: "nfs-client"
+          storageClassName: "openebs-tdengine"
+
           resources:
             requests:
               storage: "500Gi"
@@ -566,7 +543,7 @@ volumeClaimTemplates:
         spec:
           accessModes:
             - "ReadWriteOnce"
-          storageClassName: "nfs-client"
+          storageClassName: "openebs-tdengine"
           resources:
             requests:
               storage: "100Gi"

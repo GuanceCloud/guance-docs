@@ -1,0 +1,91 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: alicloud-nas-controller
+  namespace: kube-system
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: alicloud-nas-controller
+rules:
+  - apiGroups: [""]
+    resources: ["persistentvolumes"]
+    verbs: ["get", "list", "watch", "create", "delete"]
+  - apiGroups: [""]
+    resources: ["persistentvolumeclaims"]
+    verbs: ["get", "list", "watch", "update"]
+  - apiGroups: ["storage.k8s.io"]
+    resources: ["storageclasses"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: [""]
+    resources: ["events"]
+    verbs: ["list", "watch", "create", "update", "patch"]
+  - apiGroups: [""]
+    resources: ["endpoints"]
+    verbs: ["get", "watch", "list", "delete", "update", "create"]
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: alicloud-nas-controller
+subjects:
+  - kind: ServiceAccount
+    name: alicloud-nas-controller
+    namespace: kube-system
+roleRef:
+  kind: ClusterRole
+  name: alicloud-nas-controller
+  apiGroup: rbac.authorization.k8s.io
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: alicloud-nas-controller
+  namespace: kube-system
+spec:
+  selector:
+    matchLabels:
+      app: alicloud-nas-controller
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: alicloud-nas-controller
+    spec:
+      tolerations:
+      - operator: Exists
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            preference:
+              matchExpressions:
+              - key: node-role.kubernetes.io/master
+                operator: Exists
+          requiredDuringSchedulingIgnoredDuringExecution:
+             nodeSelectorTerms:
+             - matchExpressions:
+               - key: type
+                 operator: NotIn
+                 values:
+                 - virtual-kubelet
+      priorityClassName: system-node-critical
+      serviceAccount: alicloud-nas-controller
+      hostNetwork: true
+      containers:
+        - name: nfs-provisioner
+          image: registry.cn-hangzhou.aliyuncs.com/acs/alicloud-nas-controller:v1.14.8.17-7b898e5-aliyun
+          env:
+          - name: PROVISIONER_NAME
+            value: alicloud/nas
+          securityContext:
+            privileged: true
+          volumeMounts:
+          - mountPath: /var/log
+            name: log
+      volumes:
+      - hostPath:
+          path: /var/log
+        name: log
