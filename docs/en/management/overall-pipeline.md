@@ -19,7 +19,7 @@ To ensure the proper use of Pipeline, upgrade DataKit to 1.5.0 and above. Too lo
 
 ## New Pipeline
 
-In the Guance workspace "Management"-"Pipelines", click "New pipeline" to create a new pipeline file. Or you can click "Pipelines" to create it in the shortcut entry of metrics, logs, user access, application performance, infrastructure and security inspection function directory.
+In the Guance workspace **Management > Pipelines**, click **New pipeline** to create a new pipeline file. Or you can click **Pipelines** to create it in the shortcut entry of metrics, logs, user access, application performance, infrastructure and security check function directory.
 
 ![](img/1-pipeline-2.png)
 
@@ -32,22 +32,22 @@ Note: After the pipeline file is created, DataKit needs to be installed before i
 
 ### Configuration Description
 
-On the new pipeline page, you can first "filter" out the data range you want to process text, and then "define the parsing rules". If you want to test whether the input parsing rules are correct and effective, you can enter the corresponding data in the "Sample Parsing Test" for testing. After passing the test, click "Save" to create a pipeline file.
+On the new pipeline page, you can first **Filter** out the data range you want to process text, and then **Define Parsing Rules**. If you want to test whether the input parsing rules are correct and effective, you can enter the corresponding data in the **Sample Parsing Test** for testing. After passing the test, click **Save** to create a pipeline file.
 
 **1.Basic Settings**
 
-- Filtering: data types include logs, metrics, user access monitoring, application performance monitoring, basic objects, custom objects, networks, security check and support multiple choices;
+- Filtering: data types include logs, metrics, RUM, APM, basic objects, custom objects, networks, security check and support multiple choices;
 - Pipeline name: Enter a custom Pipeline file name;
 
 ???+ attention
 
     The custom Pipeline file cannot have the same name, but it can have the same name as the official Pipeline. In this case, DataKit will automatically obtain the custom Pipeline file configuration first. If you manually configure the Pipeline file name in the `.conf` file of the collector, DataKit takes precedence over the manually configured Pipeline file name.
 
-- Set as default Pipeline: Check "Set as default Pipeline". If the current data type does not match other Pipeline scripts when matching Pipeline processing, the data will be processed according to the rules of the default Pipeline script.
+- Set as default Pipeline: Check **Set as default Pipeline**. If the current data type does not match other Pipeline scripts when matching Pipeline processing, the data will be processed according to the rules of the default Pipeline script.
 
 ???+ attention
 
-    Only one "default Pipeline" can be set for each data type. A confirmation box will pop up when there is duplication when creating/importing, asking whether to replace it. It has been checked as the default Pipeline, and there will be a "default" mark after the name.
+    Only one **Default Pipeline** can be set for each data type. A confirmation box will pop up when there is duplication when creating/importing, asking whether to replace it. It has been checked as the default Pipeline, and there will be a **Default** mark after the name.
 
 **2.Define Parsing Rules**
 Define parsing rules for data from different sources, support a variety of script functions, and directly view its syntax format by observing the list of script functions provided by the cloud, such as `add_pattern()` ; Refer to the documentation [Pipeline manual](../developers/pipeline.md);
@@ -56,9 +56,9 @@ Define parsing rules for data from different sources, support a variety of scrip
 
 According to the selected data type, input the corresponding data, and test it based on the configured parsing rules.
 
-- Click "One-click to obtain samples" to automatically obtain the collected data;
-- Click "Add" to add multiple sample data (up to 3 pieces);
-- Click "Start Test" to return multiple test results; If you enter more than one sample data in the same test text box for testing, only one test result will be returned.
+- Click **One-click Collection of Samples** to automatically obtain the collected data;
+- Click **Add** to add multiple sample data (up to 3 pieces);
+- Click **Start Test** to return multiple test results; If you enter more than one sample data in the same test text box for testing, only one test result will be returned.
 
 ???+ attention
 
@@ -68,11 +68,11 @@ According to the selected data type, input the corresponding data, and test it b
 
 ### Debug Pipeline {#test}
 
-In the Pipeline editing page, it supports testing for the filled-in parsing rules, and only needs to input data in the "sample parsing test" for testing. If the parsing rules do not conform, the error prompt result will be returned. Sample analysis test is not required. After sample analysis test, the test data is saved synchronously.
+In the Pipeline editing page, it supports testing for the filled-in parsing rules, and only needs to input data in the **Sample Parsing Test** for testing. If the parsing rules do not conform, the error prompt result will be returned. Sample analysis test is not required. After sample analysis test, the test data is saved synchronously.
 
 #### One Click to Get Sample Test
 
-Guance supports one-click collection of sample test data. When creating/editing Pipeline, click "One-click Collection of Samples" under "Sample Analysis Test", and the system will automatically select the latest data from the collected data reported to the workspace according to the screened data range, and fill it into the test sample box as a sample for testing. When obtaining sample data with one click, only the data in the last 6 hours will be queried each time. If no data is reported in the last 6 hours, it cannot be obtained automatically.
+Guance supports one-click collection of sample test data. When creating/editing Pipeline, click **One-click Collection of Samples** under **Sample Analysis Test**, and the system will automatically select the latest data from the collected data reported to the workspace according to the screened data range, and fill it into the test sample box as a sample for testing. When obtaining sample data with one click, only the data in the last 6 hours will be queried each time. If no data is reported in the last 6 hours, it cannot be obtained automatically.
 
 **Debugging sample:**
 
@@ -85,7 +85,7 @@ The following is a sample of reported metric data obtained with one click. The m
 You can also enter sample data directly and manually for testing. Guance supports two format types:
 
 - Log data can be directly input into message content for testing in sample parsing test. For more log Pipeline, please refer to the doc [log Pipeline user manual](../logs/pipelines/manual.md);
-- Other data types first convert the content into "line protocol" format, and then input it for sample analysis test.
+- Other data types first convert the content into line protocol format, and then input it for sample analysis test.
   
 ##### Line Protocol Sample
 
@@ -121,7 +121,7 @@ Examples of Pipeline configuration can be found in the doc [log Pipeline use man
 
 ### Edit/Delete/Enable/Disable
 
-In Guance workspace "Management"-"Pipelines", click the button under the operation on the right to edit/delete/enable/disable the pipeline file.
+In Guance workspace **Management > Pipelines**, click the button under the operation on the right to edit/delete/enable/disable the pipeline file.
 Note:
 
 - After editing the pipeline file, the default effective time is 1 minute;
@@ -132,9 +132,9 @@ Note:
 
 ### Batch operation
 
-The "batch operation" function supports users to "batch export" and "batch delete" in the pipeline file list. By selecting batch operations, you can select multiple pipeline files for export and deletion at the same time.
+The **Batch Operation** function supports users to **Batch Export** and **Batch Delete** in the pipeline file list. By selecting batch operations, you can select multiple pipeline files for export and deletion at the same time.
 
-In Guance workspace "Management"-"Text Processing", click "Batch Operation" to "Batch Export" or "Batch Delete" Pipelines.
+In Guance workspace **Management > Text Processing**, click **Batch Operation** to **Batch Export** or **Batch Delete** Pipelines.
 
 ???+ attention
 
@@ -143,13 +143,13 @@ In Guance workspace "Management"-"Text Processing", click "Batch Operation" to "
 
 ### Import/export
 
-Support "import/export Pipeline" in Guance workspace "management"-"text processing (Pipelines)", that is, create Pipeline by importing/exporting JSON files.
+Support **Import/export Pipeline** in Guance workspace **Management > Text Processing (Pipelines)**, that is, create Pipeline by importing/exporting JSON files.
 
 ???+ attention
 
     The imported JSON file needs to be the configuration JSON file from Guance.
 
-Select the pipeline file to be deleted, and click "Confirm Delete" to delete the current pipeline file.
+Select the pipeline file to be deleted, and click **Confirm Delete** to delete the current pipeline file.
 
 ![](img/1-pipeline-3.png)
 
@@ -157,15 +157,15 @@ Select the pipeline file to be deleted, and click "Confirm Delete" to delete the
 
 Guance provides a standard official Pipeline library for log data to help you quickly structure your log data.
 
-In Guance workspace "Log"-"pipeline", click "pipeline Official Library" to view the built-in standard pipeline official website file library, including nginx, apache, redis, elasticsearch, mysql and so on.
+In Guance workspace **Log > Pipeline**, click **Pipeline Official Library** to view the built-in standard pipeline official website file library, including nginx, apache, redis, elasticsearch, mysql and so on.
 
 ![](img/2.pipeline_1.png)
 
-Select to open any pipeline file, such as apache.p, and you can see the built-in parsing rules. If you need to customize and modify it, you can click "Clone" in the upper right corner.
+Select to open any pipeline file, such as apache.p, and you can see the built-in parsing rules. If you need to customize and modify it, you can click **Clone** in the upper right corner.
 Note:
 
 - The official pipeline library file does not support modifications.
-- Pipeline official library comes with multiple log sample test data, and you can select the log sample test data that meets your own needs before "cloning".
+- Pipeline official library comes with multiple log sample test data, and you can select the log sample test data that meets your own needs before **Clone**.
 - After the cloned Pipeline is modified and saved, the log sample test data is saved synchronously.
 
 ![](img/2.pipeline_2.png)
@@ -178,7 +178,7 @@ Automatically generate the pipeline file name with the same name according to th
 
 ![](img/2.pipeline_3.png)
 
-After the creation is completed, you can view all the custom pipeline files that have been created in "Log"-"Pipelines", and support editing/deleting/enabling/disabling the pipeline.
+After the creation is completed, you can view all the custom pipeline files that have been created in **Log > Pipeline**, and support editing/deleting/enabling/disabling the pipeline.
 
 ![](img/2.pipeline_4.png)
 

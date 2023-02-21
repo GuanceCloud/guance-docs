@@ -10,11 +10,11 @@ When using Guance MFA authentication, you need to download and install Google Au
 
 ## Bind MFA
 
-In the Guance workspace, click "Your Account"-"Account Management" in the lower left corner, "MFA Authentication" under "Security Settings", and click "Bind" on the right.
+In the Guance workspace, click **Your Account > Account Management** in the lower left corner, MFA Authentication under **Security Settings**, and click **Bind** on the right.
 
 ![](img/1.mfa_1.png)
 
-Binding MFA authentication supports verification by email. Click Get Verification Code input, and then click OK.
+Binding MFA authentication supports verification by email. Click and get verification code input, and then click OK.
 
 
 
@@ -24,19 +24,19 @@ If you have not downloaded and installed Google Authenticator on your mobile pho
 
 ![](img/1.mfa_4.1.png)
 
-Fill in the obtained 6-digit dynamic security code on the above page and click OK.
+Fill in the obtained 6-digit dynamic security code on the above page and click OK. You can modify or delete the added account with the button ... in the upper right corner.
 
 ![](img/1.mfa_11.1.png)
 
-After clicking "OK", prompt MFA binding successfully, return to "Account Management" page, and prompt "Bound" in "MFA Authentication".
+After clicking OK, prompt MFA binding successfully, return to **Account Management** page, and prompt **Bound** in MFA Authentication.
 
-![](img/1.mfa_5.png)
+![](img/6.mfa_1.1.png)
 
 
 
 ## Log in to MFA Authenticated Account
 
-After binding MFA authentication, when you log in to [Guance](https://www.guance.com/), you will be prompted with the following dialog box, enter the 6-digit dynamic security code obtained through Google Authenticator, and click "OK" to log in.
+After binding MFA authentication, when you log in to [Guance](https://www.guance.com/), you will be prompted with the following dialog box, enter the 6-digit dynamic security code obtained through Google Authenticator, and click OK to log in.
 
 ![](img/1.mfa_6.1.png)
 
@@ -46,31 +46,24 @@ After binding MFA authentication, when you log in to [Guance](https://www.guance
 
 ### Method 1
 
-If you can't provide a security code when logging in, you can contact Guance Customer Service to apply for unbinding MFA, fill in the following contents on the page of applying for unbinding, and submit the application. After receiving the application, Guance customer service will handle it for you as soon as possible, and after the processing is completed, you will receive email feedback.
-
-![](img/1.mfa_7.png)
-
-
-
-### Method 2
-
-If you no longer need to use MFA authentication, you can also unbind your account to MFA. In the Guance workspace, click "Your Account"-"Account Management" in the lower left corner, "MFA Authentication" under "Security Settings", click "Unbind" on the right, enter the dynamic code, and click "OK".
+If you no longer need to use MFA authentication, you can unbind MFA for your account. In Guance workspace, click **Account > Account Management** in the lower left corner, **MFA Authentication** under **Security Settings**, click Unbind on the right, enter the dynamic code, and click OK.
 
 ![](img/1.mfa_8.png)
 
+After unbinding, you can see that the **MFA Authentication** prompt is unbound.
 
-
-After unbinding, you can see that the "MFA Certification" prompt is unbound.
-
-![](img/1.mfa_9.png)
-
-
+![](img/6.mfa_1.png)
 
 At the same time, you will receive an unbound email reminder from Guance.
 
 ![](img/1.mfa_10.png)
 
 
+### Method 2
 
+If the device installed with MFA authentication is not around when logging in, and the security code cannot be generated for logging in, you can contact Guance customer service to apply for unbinding. On the login page, click **Unbind MFA**, select the work order type as **Unbind MFA**, fill in the work order title, description and email verification code, and submit the work order.
 
+After receiving the application, Guance customer service will handle it for you as soon as possible. See [work order management](work-order-management.md).
+
+![](img/1.work_order_2.png)
 

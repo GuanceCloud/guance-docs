@@ -2,7 +2,7 @@
 ---
 
 
-Guance supports chart high-performance loading mode, which is closed by default. You can click on the account in the lower left corner and select "High-performance Mode" to open it.
+Guance supports chart high-performance loading mode, which is closed by default. You can click on the account in the lower left corner and select **High-performance Mode** to open it.
 
 ![](img/3.customized_1.1.png)
 
