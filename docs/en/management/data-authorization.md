@@ -17,9 +17,9 @@ Note:
 
 ### Configure Sensitive Fields
 
-In Guance workspace, click "Management"-"Data Rights Management", and click "Configure" in "Sensitive Field Masking" to add sensitive fields.
+In Guance workspace, click **Management > Data Rights Management**, and click **Configure** in **Sensitive Field Masking** to add sensitive fields.
 
-After selecting the corresponding data type, enter the fields to be desensitized in the input box, click "Add", and click "Finish" to view the configured sensitive fields, such as "host_ip". If you need to delete a sensitive field that has been configured, click "Configure" and then click the "Delete" icon on the right side of the field again.
+After selecting the corresponding data type, enter the fields to be desensitized in the input box, click **Add**, and click **Finish** to view the configured sensitive fields, such as "host_ip". If you need to delete a sensitive field that has been configured, click **Configure** and then click the **Delete** icon on the right side of the field again.
 
 ![](img/2.field_1.png)
 
@@ -53,14 +53,14 @@ Note: Data authorization supports multiple workspaces in one site to authorize t
 
 Before adding data authorization, you need to confirm which workspace's data is authorized to which workspace to view. Let's assume a scenario where data from Workspace A (e.g. Development ******) needs to be delegated to Workspace B (e.g. DataFlux) for viewing.
 
-In Guance workspace B (such as DataFlux), click "Administration"-"Basic Settings"-"Workspace ID" and click "Copy" to obtain the ID of the current workspace.
+In Guance workspace B (such as DataFlux), click **Administration > Basic Settings > Workspace ID** and click **Copy** to obtain the ID of the current workspace.
 
 ![](img/9.dataauth_11.png)
 
 
 ### Add Data Authorization
 
-In Guance workspace a (such as developing ******), click "Management"-"Data Rights Management", and click "Configuration" in "Data Authorization" to add data authorization.
+In Guance workspace a (such as developing ******), click **Management > Data Rights Management**, and click **Configure** in **Data Authorization** to add data authorization.
 
 ![](img/3.data_1.png)
 
@@ -72,14 +72,14 @@ After the addition is complete, you can view Workspace B (e.g. DataFlux) that ha
 
 ![](img/3.data_1.png)
 
-If you need to delete the data authorization, you can click "Configure", select the workspace to be deleted, and click the "Delete" icon on the right side.
+If you need to delete the data authorization, you can click **Configure**, select the workspace to be deleted, and click the **Delete** icon on the right side.
 
 ![](img/3.data_2.png)
 
 
 ### Data Sharing Query and Analysis
 
-After Workspace B (e.g. DataFlux) gets data authorization, you can open Scene-「[Dashboard](../scene/dashboard.md) or「[Notes](../scene/note.md)」select the Chart component, select Workspace A (e.g. Development ******) authorized to view in Workspace of Settings, and then view and analyze the data of authorized Workspace A (e.g. Development ******) through [chart query](../scene/visual-chart/chart-query.md).
+After Workspace B (e.g. DataFlux) gets data authorization, you can open **Scene > [Dashboard](../scene/dashboard.md)** or **[Notes](../scene/note.md)** select the Chart component, select Workspace A (e.g. Development ******) authorized to view in Workspace of Settings, and then view and analyze the data of authorized Workspace A (e.g. Development ******) through **[Chart Query](../scene/visual-chart/chart-query.md)**.
 
 ![](img/9.dataauth_7.png)
 
@@ -92,7 +92,7 @@ The above three charts with data display query the data of authorized workspace 
 
 ### Mail Notification
 
-When a data authorization is added, the owner and administrator of the corresponding workspace are notified of the Add Authorization email.
+When a data authorization is added, the owner and administrator of the corresponding workspace are notified of the **Add Authorization** email.
 
 ![](img/9.dataauth_9.png)
 
@@ -106,7 +106,7 @@ Adding and deleting data authorizations will generate audit events.
 
 ![](img/9.dataauth_12.png)
 
-In Guance workspace, click "Management"-"Basic Settings"-"Security-Operation Audit" and click "View" to view all audit events in the current workspace.
+In Guance workspace, click **Management > Basic Settings > Security > Operation Audit** and click **View** to view all audit events in the current workspace.
 
 ![](img/9.dataauth_11.png)
 

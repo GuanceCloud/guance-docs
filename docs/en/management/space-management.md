@@ -1,7 +1,7 @@
 # Space Management
 ---
 
-Guance supports dissolution and exit of workspace. You can click "Account"-"Space Management" in the lower left corner.
+Guance supports dissolution and exit of workspace. You can click **Account > Space Management** in the lower left corner.
 
 ![](img/3.space_management_2.png)
 
@@ -9,7 +9,7 @@ Guance supports dissolution and exit of workspace. You can click "Account"-"Spac
 
 ## Dissolve Current Workspace
 
-Guance supports dissolving workspace. Click "Account"-"Space Management" in the lower left corner, select the space you want to dissolve, and click "Drop-down Options"-"Dissolve" in the upper right corner.
+Guance supports dissolving workspace. Click **Account > Space Management** in the lower left corner, select the space you want to dissolve, and click **Drop-down Options > Dissolve** in the upper right corner.
 
 > **Note:** Only the owner of the workspace is allowed to perform this operation. Once the space is dissolved, the data will not be recovered. Please be careful.
 
@@ -19,4 +19,4 @@ Guance supports dissolving workspace. Click "Account"-"Space Management" in the 
 
 ## Exit Current Workspace
 
-Users can voluntarily exit the workspace, click "Account"-"Space Management" on the left, select the space they want to exit, and click "Drop-down Options"-"Exit" in the upper right corner.
+Users can voluntarily exit the workspace, click **Account > Space Management** on the left, select the space they want to exit, and click **Drop-down Options > Exit** in the upper right corner.

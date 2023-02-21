@@ -7,7 +7,7 @@ Guance will pay attention to the service status of each site in real time, and i
 
 ## Service Site
 
-If you have logged into Guance, you can view the service status of each site of Guance by clicking "Help"-"Status Page" in the lower left corner.
+If you have logged into Guance, you can view the service status of each site of Guance by clicking **Help > Status Page** in the lower left corner.
 
 ![](img/6.status_page_1.png)
 
@@ -28,21 +28,21 @@ Guance supports real-time viewing of service status of different sites, includin
 | Service Status | Description                                                         |
 | :------- | :----------------------------------------------------------- |
 | Normal     | Indicate that the service of the current site is working properly.                                 |
-| Anomaly     | It indicates that the service of the current site is delayed or abnormal, such as <br><li>collecting log data, but no log data is reported, and the status of log service is abnormal at this time; <br><li>Collect application performance data, and report the data delay. At this time, the status of application performance monitoring service is abnormal. |
+| Anomaly     | Indicate that the service of the current site is delayed or abnormal, such as: <br><li>collecting log data, but no log data is reported, and the status of log service is abnormal at this time; <br><li>collecting application performance data, and report the data delay. At this time, the status of application performance monitoring service is abnormal. |
 | Maintenance     | Indicate that Guance technician is maintaining the current site.                   |
 
 On Guance Service Status page, you can:
 
 - Click Switch to view the service status of all sites;
 - Refresh the service status in real time;
-- Check the current status and the last 24-hour status of CI, availability monitoring, events, logs, metrics, basic implementation, user access monitoring, security check and application performance monitoring function modules;
+- Check the current status and the last 24-hour status of CI visibility, synthetic tests, events, logs, metrics, basic implementation, RUM, security check and APM function modules;
 - Switch to view historical incidents.
 
 ![](img/6.status_page_4.png)
 
 ## Historical Accident
 
-On the Historical Incident page, you can:
+On the **Historical Incident** page, you can:
 
 - Check all service failures that occur every month;
 - Switch to view service status.
