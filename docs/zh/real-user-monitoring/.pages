@@ -8,7 +8,7 @@ nav:
   - 'Flutter 监测': flutter
   - 'UniApp 监测': uni-app
   - '查看器': explorer
-  - '会话重放': session-replay
+  - '会话回放': session-replay
   - '生成指标': generate-metrics.md
   - '自建追踪': self-tracking.md
 

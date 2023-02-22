@@ -33,4 +33,42 @@
 
 观测云支持通过浏览器记录用户访问行为，创建无代码的端到端自动化追踪。
 
+### 步骤说明
+
+#### 前置条件
+
+- [注册观测云账号](https://www.guance.com/)
+- [安装 DataKit](../datakit/datakit-install.md)
+- [接入 Web 应用](web/app-access.md)
+- [下载浏览器插件]()
+
+#### 安装插件
+
+1. 浏览器访问：`chrome://extensions/`
+2. 确认开启「开发者模式」
+3. 解压「guance-rum-plugin.zip」
+4. 点击「加载已解压的压缩包」
+5. 选择解压后的文件夹。
+
+![](img/8.auto-tracking_1.png)
+
+#### 使用插件
+
+1.右上角点击图标「扩展程序」，找到「Guance Cloud Plugin」打开插件
+
+![](img/8.auto-tracking_2.png)
+
+2.开启即可生成追踪 ID。
+
+- 点击`重置`生成新的追踪 ID并启用插件
+- 点击`🕤`图标查看历史
+- 点击`语言`图标查看当前语言或切换语言
+- 点击`❓`图标查看帮助文档
+
+![](img/8.auto-tracking_3.png)
+
+#### 在观测云搜索追踪
+
+在用户访问监测应用列表，选择已接入 Web SDK 的应用，即可通过插件生成的追踪 ID （track_id) 筛选查看对应的数据。
+
 ![](img/.png)

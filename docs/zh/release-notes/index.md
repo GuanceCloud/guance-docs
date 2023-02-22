@@ -42,7 +42,7 @@ Session Replay（会话回放）通过现代浏览器提供的强大 API 拓展�
 
 ##### 新增 CDN 质量分析 
 
-新增采集 CDN 数据，通过分析图表对 CDN 进行质量分析，更多采集配置，可参考 [Rum 采集器配置](../../datakit/rum.md) 。
+新增采集 CDN 数据，通过分析图表对 CDN 进行质量分析，更多采集配置，可参考 [Rum 采集器配置](../datakit/rum.md) 。
 
 
 #### 场景优化
@@ -61,7 +61,7 @@ Session Replay（会话回放）通过现代浏览器提供的强大 API 拓展�
 
 #### 其他功能优化
 - 观测云 [商业版注册](../billing/commercial-register.md)  流程支持绑定已有观测云费用中心账号；
-- 配置 [监控器](../monitoring/monitor/index.md) 时，「检测维度」支持可选。
+- 配置 [监控器](../monitoring/monitor/index.md) 时，「检测维度」去掉必选逻辑。
 
 ## 2023 年 2 月 16 号
 
