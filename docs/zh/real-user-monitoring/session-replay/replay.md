@@ -1,4 +1,4 @@
-# 如何接入 Session Replay（会话回放）
+# 如何接入会话回放（Session Replay）
 ---
 
 ### 什么是 Session Replay
