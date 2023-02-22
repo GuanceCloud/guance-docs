@@ -21,10 +21,9 @@
 |  | 2C4G（单系统盘80GB） | 4C8G（单系统盘120GB） | 2 | 部署 Dataway |
 | RDS | 1C2G 50GB | 2C4G 100GB（三节点企业版） | 1 | MySQL 5.7 |
 | Redis | 2G | 4G（标准主从版双副本） | 1 | 版本：4.0 |
-| TDengine &#124; InfluxDB | 4C16G 500GB | 8C32G 1T（集群版） | 1 | TDengine(**自建**) 版本：2.6+ InfluxDB 版本：1.7.x |
+| TDengine &#124; InfluxDB | 4C16G 300GB | 8C32G 500GB（集群版） | 1 | TDengine(**自建**) 版本：2.6+ InfluxDB 版本：1.7.x |
 | Elasticsearch | 4C16G 1T（2节点） | 16C64G 2T（3节点） | 1 | 版本：7.4+（**推荐7.10**） |
 | 云通信 | - | - | 1 | 开通邮件服务、短信服务 |
 | 域名 | - | - | 1 | 主域名需备案，一个主域名下的8个子域名 |
 | SSL 证书 | 通配符域名证书 | 通配符域名证书 | 1 | - |
-
 

@@ -1,0 +1,121 @@
+
+---
+
+apiVersion: v1
+data:
+  config.yaml: |-
+    # -------- 修改区域 ------------
+
+    uuid: {{DW_UUID}}
+    token: {{DW_TOKEN}}
+
+    # -------- 修改区域 ------------
+    enable_internal_token: false
+    collect_second: 60
+
+    bind: "0.0.0.0:9528"
+
+    # 初始安装是默认工作空间的 ak、sk
+    access_key: ""
+    secret_key: ""
+
+    # 不要修改
+    remote_host: http://kodo.forethought-kodo:9527
+
+    log: log
+    log_level: warning
+    gin_log: gin.log
+
+    cache_cfg:
+      dir: cache
+
+    # routes config
+    routes_config:
+      - name: default
+        ak_open: false
+        lua:
+
+    # batch config
+    batch_config:
+      workers: 8
+      batch_size: 100
+      batch_interval: 5
+      queue_size: 128
+
+    retag_configs:
+
+kind: ConfigMap
+metadata:
+  name: dataway-config
+  namespace: utils
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: deployment-utils-dataway
+  name: dataway
+  namespace: utils
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: deployment-utils-dataway
+  template:
+    metadata:
+      labels:
+        app: deployment-utils-dataway
+      annotations:
+        datakit/logs: |
+          [{"disable": true}]
+    spec:
+      # nodeSelector:
+      #   app: dataway
+      # tolerations:
+      # - key: dataway
+      #   operator: Equal
+      #   value: tools
+      #   effect: NoExecute
+
+      containers:
+      - image: pubrepo.jiagouyun.com/dataflux/dataway:1.2.10
+        imagePullPolicy: IfNotPresent
+        name: dataway
+        ports:
+        - containerPort: 9528
+          name: 9528tcp01
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /usr/local/cloudcare/dataflux/dataway/dataway.yaml
+          name: dataway-config
+          subPath: config.yaml
+      imagePullSecrets:
+      - name: registry-key
+      restartPolicy: Always
+      volumes:
+      - configMap:
+          defaultMode: 256
+          name: dataway-config
+          optional: false
+        name: dataway-config
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: dataway
+  namespace: utils
+spec:
+  ports:
+  - name: 9528tcp02
+    port: 9528
+    protocol: TCP
+    targetPort: 9528
+    nodePort: 30928
+  selector:
+    app: deployment-utils-dataway
+  type: NodePort
+
