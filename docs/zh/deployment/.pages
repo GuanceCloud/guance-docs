@@ -10,50 +10,64 @@ nav:
     - '激活产品': activate.md
     - "DataWay 部署": dataway-install.md
     - '部署方案':
-       - "如何选择部署版本方案": how-to-select-deployment-version.md
-       - "安全部署方案": security-deployment.md
-       - "混合云部署方案": hybrid-cloud-deployment.md
-    - "云上基础设施部署":
-      - "资源、系统要求": cloud-required.md
-      - "阿里云部署手册": cloud-deployment-manual.md
-    - "自建基础设施部署": 
-      - "自建基础设施部署手册": offline-deployment-manual.md    
-      - "资源、系统要求": offline-required.md
-      - "基础设施部署": 
-        - "代理": proxy-install.md
-        - "NFS": nfs-install.md
-        - "Ingress-Nginx": ingress-nginx-install.md
-        - "Kubernetes Storage NFS": nfs-provisioner.md 
-        - "Kubernetes Storage OpenEBS": openebs-install.md
-        - "Kubernetes": infra-kubernetes.md
-        - "MySQL": infra-mysql.md
-        - "日志引擎": infra-logengine.md
-        - "OpenSearch 高可用": ha-opensearch.md
-        - "TDengine 高可用": ha-tdengine.md
-        - "时序引擎": infra-metric.md
-        - "Redis": infra-redis.md
-        - "helm": helm-install.md
-      - "应用镜像获取": get-guance-images.md
-  - '常见问题':
-    - "产品使用 FAQ": faq-product-usage.md
-    - "部署运维 FAQ": faq.md
-    - "集群故障 FAQ": faq-debug-cluster.md
-    - "all-in-one 一键部署": faq-all-in-one.md
-  - '产品使用':
+       # - "如何选择部署版本方案": how-to-select-deployment-version.md
+       # - "安全部署方案": security-deployment.md
+       # - "混合云部署方案": hybrid-cloud-deployment.md
+      - "云上基础设施部署":
+        - "资源、系统要求": cloud-required.md
+        - "阿里云部署手册": cloud-deployment-manual.md
+      - "自建基础设施部署": 
+        - "自建基础设施部署手册": offline-deployment-manual.md    
+        - "资源、系统要求": offline-required.md
+        - "基础设施部署": 
+          - "代理": proxy-install.md
+          - "NFS": nfs-install.md
+          - "Ingress-Nginx": ingress-nginx-install.md
+          - "Kubernetes Storage NFS": nfs-provisioner.md 
+          - "Kubernetes Storage OpenEBS": openebs-install.md
+          - "Kubernetes": infra-kubernetes.md
+          - "MySQL": infra-mysql.md
+          - "日志引擎": infra-logengine.md
+          - "OpenSearch 高可用": ha-opensearch.md
+          - "TDengine 高可用": ha-tdengine.md
+          - "时序引擎": infra-metric.md
+          - "Redis": infra-redis.md
+          - "helm": helm-install.md
+        - "应用镜像获取": get-guance-images.md
+      - "离线环境部署":
+        - "部署环境说明": 
+          - "离线镜像说明": Started.md
+        - "基础组件":
+          - "Kubernetes 部署": Kubernetes-HA-Guide.md
+        - "应用中间件":
+          - "MySQL": Mysql-deployment.md
+          - "Redis": Redis-deployment.md
+          - "TDengine": Tdengine-deployment.md
+          - "OpenSearch": Opensearch-deployment.md
+        - "业务组件":
+          - "Launcher": Launcher-deployment.md
+          - "Proxy": Proxy-deployment.md
+  - '开始使用':
     - "如何开始": how-to-start.md
     - "升级商业版": upgrade-version.md
+    - '管理后台手册': 
+      - "工作空间管理": space.md
+      - "用户管理": user.md
+      - "模版管理": integration.md
+      - "字段管理": field.md
+      - "数据网关": dataway.md
+      - "设置管理": setting.md
   - '运维手册':
     - '监控':
       - '开启自监控': self-monitoring.md
+    - '域名访问修改成IP访问': ip-access.md
     - '升级':
       - "版本升级安装": version-upgrade.md
-    - '离线相关':
-      - '下载中心': download.md
-    - '容量规划':  capacity-planning.md
-  - '管理后台': 
-    - "工作空间管理": space.md
-    - "用户管理": user.md
-    - "模版管理": integration.md
-    - "字段管理": field.md
-    - "数据网关": dataway.md
-    - "设置管理": setting.md
+#    - '离线相关':
+#      - '下载中心': download.md
+    - '容量规划':  
+      - "日志引擎容量规划": logengine-capacity-planning.md
+  - '常见问题':
+    - "部署运维 FAQ": faq.md
+    #- "集群故障 FAQ": faq-debug-cluster.md
+    #- "all-in-one 一键部署 FAQ": faq-all-in-one.md    

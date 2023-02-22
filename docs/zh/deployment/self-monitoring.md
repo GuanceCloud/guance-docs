@@ -1,0 +1,719 @@
+
+# 开启自监控
+
+## 概述
+
+​	观测云是具有强大可观测性的平台，以下我们将为大家介绍几种可观测性部署方案。本文采用的是客户统一观测的方案。
+
+### 自我观测（不推荐使用）
+
+​	此方案是指，自己观测自己。换句话说，就是自己把数据打到自己的空间上。这就意味着如果环境挂掉了。那么自己也同时观测不到自己的信息数据了，并且也无法进一步排查原因。此方案优点是：部署方便。缺点是：数据是持续产生的，会产生数据自迭代，导致一直循环下去并且集群崩溃时，无法观测到自身的问题。
+
+### 相互观测（推荐在资源足够时使用）
+
+​	此方案是指，两套观测云进行相互观测。把数据进行互打。这意味着能够随时监测到对方集群以及服务的状态。但优缺点也同样明显。优点的：即使集群崩溃了，能通过另一观测节点去查看相应的问题。缺点是：数据传输形成闭环，也会持续产生，对集群的压力过大，资源不够的情况下不要使用。
+
+![guance1](img/self-guance1.jpg)
+
+### 客户统一观测（推荐使用）
+
+​	此方案是指，客户的多个观测云都往同一节点去打。优点：不会造成数据传输闭环的情况，并且能够实时监测到自身集群的状态。
+
+![guance2](img/self-guance2.jpg)
+
+## 快速开始
+
+## 开启数据采集功能
+
+### 概述
+
+DataKit 是一款开源、一体式的数据采集 Agent，它提供全平台操作系统（Linux/Windows/macOS）支持，拥有全面数据采集能力，涵盖主机、容器、中间件、Tracing、日志以及安全巡检等各种场景。
+
+### 部署DataKit采集器
+
+ [下载datakit.yaml](datakit.yaml)
+
+> 注：以上DataKit默认的配置中间件及链路配置都已配置完毕，修改内容即可使用。
+
+#### 配置文件相关说明
+
+- 以下是DataKit DaemonSet 的模板文件需做以下修改
+
+```yaml
+---
+
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  labels:
+    app: daemonset-datakit
+  name: datakit
+  namespace: datakit
+spec:
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: daemonset-datakit
+  template:
+    metadata:
+      labels:
+        app: daemonset-datakit
+      annotations:
+        datakit/logs: |
+          [
+            {
+              "disable": true
+            }
+          ]
+    spec:
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+      containers:
+      - env:
+        - name: HOST_IP
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: status.hostIP
+        - name: ENV_K8S_NODE_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+        - name: ENV_DATAWAY
+          value: https://openway.guance.com?token=xxxxxxx       ## 此处填上 dataway 真实地址
+        - name: ENV_GLOBAL_TAGS
+          value: host=__datakit_hostname,host_ip=__datakit_ip
+        - name: ENV_DEFAULT_ENABLED_INPUTS
+          value: cpu,disk,diskio,mem,swap,system,hostobject,net,host_processes,container
+        - name: ENV_ENABLE_ELECTION
+          value: enable
+        - name: ENV_LOG
+          value: /var/log/datakit/log
+        - name: ENV_HTTP_LISTEN
+          value: 0.0.0.0:9529
+        - name: ENV_LOG_LEVEL
+          value: debug
+        - name: ENV_INPUT_DISK_EXCLUDE_DEVICE
+          value: /dev/sda1
+        - name: ENV_INPUT_DISK_EXTRA_DEVICE
+          value : 10.100.14.144:/nfsdata
+        - name: ENV_IPDB
+          value: iploc
+        image: pubrepo.jiagouyun.com/datakit/datakit:1.4.14             ## 需修改成最新版镜像
+        imagePullPolicy: Always
+        name: datakit
+        ports:
+        - containerPort: 9529
+          hostPort: 9529
+          name: port
+          protocol: TCP
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /var/run
+          name: run
+        - mountPath: /var/lib
+          name: lib
+        - mountPath: /var/log
+          name: log
+        - mountPath: /usr/lib
+          name: usrlib
+        - mountPath: /etc
+          name: etc
+        - mountPath: /rootfs
+          name: rootfs
+        - mountPath: /sys/kernel/debug
+          name: debugfs
+        - mountPath: /usr/local/datakit/data
+          name: datakit-ipdb
+          ## 以下注释内容请往后观看，根据实际进行相应的配置
+     #   - mountPath: /usr/local/datakit/conf.d/host/disk.conf
+      #    name: datakit-conf
+      #    subPath: disk.conf
+        #- mountPath: /usr/local/datakit/conf.d/db/mysql.conf
+        #  name: datakit-conf
+        #  subPath: mysql.conf
+        #  readOnly: true
+        #- mountPath: /usr/local/datakit/conf.d/db/redis.conf
+        #  name: datakit-conf
+        #  subPath: redis.conf
+        #  readOnly: true
+        # - mountPath: /usr/local/datakit/conf.d/db/elasticsearch.conf
+        #   name: datakit-conf
+        #   subPath: elasticsearch.conf
+        #   readOnly: false
+        # - mountPath: /usr/local/datakit/conf.d/db/tdengine.conf
+        #   name: datakit-conf
+        #   subPath: tdengine.conf
+        #   readOnly: false
+        # - mountPath: /usr/local/datakit/conf.d/ddtrace/ddtrace.conf
+        #   name: datakit-conf
+        #   subPath: ddtrace.conf
+        #   readOnly: false
+        workingDir: /usr/local/datakit
+      initContainers:
+        - name: init-volume
+          image: "pubrepo.jiagouyun.com/datakit/iploc:1.0"
+          imagePullPolicy: IfNotPresent
+          command: ["bash", "-c"]
+          args:
+            - tar -xf /opt/iploc.tar.gz -C /usr/local/datakit/data
+          volumeMounts:
+            - name: datakit-ipdb
+              mountPath: /usr/local/datakit/data
+      hostIPC: true
+      hostPID: true
+      restartPolicy: Always
+      serviceAccount: datakit
+      serviceAccountName: datakit
+      tolerations:
+      - operator: Exists
+      volumes:
+      - configMap:
+          name: datakit-conf
+        name: datakit-conf
+      - hostPath:
+          path: /var/run
+        name: run
+      - hostPath:
+          path: /var/lib
+        name: lib
+      - hostPath:
+          path: /var/log
+        name: log
+      - hostPath:
+          path: /usr/lib
+        name: usrlib
+      - hostPath:
+          path: /etc
+        name: etc
+      - hostPath:
+          path: /
+        name: rootfs
+      - hostPath:
+          path: /sys/kernel/debug
+        name: debugfs
+      - hostPath:
+          path: /usr/local/datakit/data
+        name: datakit-ipdb
+  updateStrategy:
+    rollingUpdate:
+      maxUnavailable: 1
+    type: RollingUpdate
+
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: datakit-conf
+  namespace: datakit
+data:
+    #mysql.conf: |-
+    #  [inputs.mysql]
+    #  ...
+    #redis.conf: |-
+    #  [inputs.redis]
+    #  ...
+
+```
+
+- 配置datakit采集器本身的日志收集功能
+
+```yaml
+  template:
+    metadata:
+      annotations:
+        datakit/logs: |
+          [
+            {
+              "disable": true
+            }
+          ]
+
+```
+
+- ### 最佳实践
+
+- 如果想要开启相应服务的日志采集，则需要先配置好ComfigMap，再把它挂载进去，以下是示例
+
+  > 一般可去到/usr/local/datakit/conf.d 目录下查找对应的文件。
+
+  ```yaml
+  apiVersion: v1
+  kind: ConfigMap
+  metadata:
+    name: datakit-conf
+    namespace: datakit
+  data:
+      mysql.conf: |-                     ## 请根据标注内容进行修改，无标注可不修改
+          [[inputs.mysql]]
+            host = "xxxxxxxxxx"          ## IP/域名都可 
+            user = "test"                ## 需修改
+            pass = "xxxxxxx"            ## 需修改
+            port = 3306
+            # sock = "<SOCK>"
+            # charset = "utf8"
+  
+            ## @param connect_timeout - number - optional - default: 10s
+            # connect_timeout = "10s"
+  
+            ## Deprecated
+            # service = "<SERVICE>"
+  
+            interval = "10s"
+  
+            ## @param inno_db
+            innodb = true
+  
+            ## table_schema
+            tables = []
+  
+            ## user
+            users = []
+  
+            ## 开启数据库性能指标采集
+            # dbm = false
+  
+            # [inputs.mysql.log]
+            # #required, glob logfiles
+            # files = ["/var/log/mysql/*.log"]
+  
+            ## glob filteer
+            #ignore = [""]
+  
+            ## optional encodings:
+            ##    "utf-8", "utf-16le", "utf-16le", "gbk", "gb18030" or ""
+            #character_encoding = ""
+  
+            ## The pattern should be a regexp. Note the use of '''this regexp'''
+            ## regexp link: https://golang.org/pkg/regexp/syntax/#hdr-Syntax
+            #multiline_match = '''^(# Time|\d{4}-\d{2}-\d{2}|\d{6}\s+\d{2}:\d{2}:\d{2}).*'''
+  
+            ## grok pipeline script path
+            #pipeline = "mysql.p"
+  
+            # [[inputs.mysql.custom_queries]]
+            #   sql = "SELECT foo, COUNT(*) FROM table.events GROUP BY foo"
+            #   metric = "xxxx"
+            #   tagKeys = ["column1", "column1"]
+            #   fieldKeys = ["column3", "column1"]
+            
+            ## 监控指标配置
+            [inputs.mysql.dbm_metric]
+              enabled = true
+            
+            ## 监控采样配置
+            [inputs.mysql.dbm_sample]
+              enabled = true  
+  
+            [inputs.mysql.tags]
+              # some_tag = "some_value"
+              # more_tag = "some_other_value"
+  ```
+
+- 挂载操作
+
+  ```yaml
+          - mountPath: /usr/local/datakit/conf.d/db/mysql.conf
+            name: datakit-conf
+            subPath: redis.conf
+            readOnly: false
+  ```
+
+  > 注：多个配置也是一样的。依次添加下去。
+
+  - 修改后开始部署DataKit
+
+  ```shell
+  kubectl apply -f datakit.yaml
+  ```
+
+  
+
+## 配置日志切割
+
+### 前置条件
+
+1. 您的主机上需 [安装 DataKit](https://docs.guance.com/datakit/datakit-install/) 
+2. 如果您不懂相关的Pipeline知识，请查看[日志Pipeline使用手册](https://docs.guance.com/logs/pipelines/manual/)
+
+### 通用Pipeline脚本库
+
+[Pipeline下载地址](Pipelines 模板.json) 
+
+### 使用Pipeline进行日志状态切割
+
+#### 方法一：界面上一键导入上面下载的Pipeline模板
+
+![pipeline001](img/self-pipeline001.jpg)
+
+#### 方法二：命令行通过ConfigMap+Container Annotation的方式注入
+
+- 更改日志输出模式
+
+  ```shell
+  kubectl edit -n forethought-kodo cm <configmap_name>
+  ```
+
+  把forethought-kodo下的ConfigMap，里面的日志输出改成stdout。
+
+- 开启指标数据
+
+  1）配置Datakit的ConfigMap，添加prom.conf文件开启采集器
+
+  2）在对应的服务中配置Annotations，以下内容不用修改
+
+```yaml
+template:
+    metadata:
+      annotations:
+        datakit/prom.instances: |-
+          [[inputs.prom]]
+            ## Exporter 地址
+            url = "http://$IP:9527/v1/metric?metrics_api_key=apikey_5577006791947779410"
+
+            ## 采集器别名
+           source = "kodo-prom"
+
+            ## 指标类型过滤, 可选值为 counter, gauge, histogram, summary
+            # 默认只采集 counter 和 gauge 类型的指标
+            # 如果为空，则不进行过滤
+            # metric_types = ["counter","gauge"]
+            metric_types = []
+
+            ## 指标名称过滤
+            # 支持正则，可以配置多个，即满足其中之一即可
+            # 如果为空，则不进行过滤
+            # metric_name_filter = ["cpu"]
+
+            ## 指标集名称前缀
+            # 配置此项，可以给指标集名称添加前缀
+            measurement_prefix = ""
+
+            ## 指标集名称
+            # 默认会将指标名称以下划线"_"进行切割，切割后的第一个字段作为指标集名称，剩下字段作为当前指标名称
+            # 如果配置measurement_name, 则不进行指标名称的切割
+            # 最终的指标集名称会添加上measurement_prefix前缀
+            # measurement_name = "prom"
+
+            ## 采集间隔 "ns", "us" (or "µs"), "ms", "s", "m", "h"
+            interval = "10s"
+
+            ## 过滤tags, 可配置多个tag
+            # 匹配的tag将被忽略
+            # tags_ignore = ["xxxx"]
+
+            ## TLS 配置
+            tls_open = false
+            # tls_ca = "/tmp/ca.crt"
+            # tls_cert = "/tmp/peer.crt"
+            # tls_key = "/tmp/peer.key"
+
+            ## 自定义指标集名称
+            # 可以将包含前缀prefix的指标归为一类指标集
+            # 自定义指标集名称配置优先measurement_name配置项
+            [[inputs.prom.measurements]]
+              prefix = "kodo_api_"
+              name = "kodo_api"
+
+           [[inputs.prom.measurements]]
+             prefix = "kodo_workers_"
+             name = "kodo_workers"
+
+           [[inputs.prom.measurements]]
+             prefix = "kodo_workspace_"
+             name = "kodo_workspace"
+
+           [[inputs.prom.measurements]]
+             prefix = "kodo_dql_"
+             name = "kodo_dql"
+
+            ## 自定义Tags
+            [inputs.prom.tags]
+            # some_tag = "some_value"
+            # more_tag = "some_other_value"
+```
+
+> 注意，上面只是开启了日志采集，想要对日志的状态进行**切割**的话还需要配置相应的**Pipeline**。
+>
+> 并且只有 **forethought-kodo** Namespace下的服务需要这么开启日志采集配置，其他则只按照下面的方式配置即可。
+
+- ##### 在对应的datakit.yaml 下用ConfigMap的方式挂载<pipeline_name>.p文件到指定目录 （同DataKit部署中的一样）
+
+  ```yaml
+          - mountPath: /usr/local/datakit/pipeline/kodo-x.p
+            name: datakit-conf
+            subPath: kodo-inner.p
+  ```
+
+- 开启日志切割。修改对应服务的yaml文件，加入以下的Annotations配置
+
+  ```yaml
+  spec:
+    template:
+      metadata:
+        annotations:
+          datakit/logs: |-
+            [
+                        {
+                          "source": "kodo",             ## 页面上显示对应的source
+                          "service": "kodo",            ## 页面上显示对应的service
+                          "pipeline": "kodo.p"          ## 默认会去datakit下去找对应的pipeline文件
+                        }
+                      ]
+  ```
+
+- 开启后的状态
+
+  ![image-20221129165203967](https://docs.guance.com/logs/img/12.pipeline_4.png)
+
+## 配置应用性能监测，开启链路采集
+
+### 前置条件
+
+1. 您的主机上需 [安装 DataKit](https://docs.guance.com/datakit/datakit-install/) 
+2. 并在DataKit上[开启ddtrace采集器](https://docs.guance.com/datakit/ddtrace/#__tabbed_1_2),采用K8S ComfigMap的方式注入
+
+### 最佳实践
+
+- 修改forethought-core下的服务配置
+
+  ```shell
+  kubectl edit -n <namespace> deployment <service_name>
+  ```
+
+```yaml
+spec:
+  template:
+    spec:
+      affinity: {}
+      containers:
+      - args:
+        - ddtrace-run               ## 添加这行
+        - gunicorn
+        - -c
+        - wsgi.py
+        - web:wsgi()
+        - --limit-request-line
+        - "0"
+        - -e
+        - RUN_APP_CODE=front
+        - --timeout
+        - "300"
+        env:                     ## 添加以下内容
+        - name: DD_PATCH_MODULES
+          value: redis:true,urllib3:true,httplib:true,httpx:true
+        - name: DD_AGENT_PORT
+          value: "9529"
+        - name: DD_GEVENT_PATCH_ALL
+          value: "true"
+        - name: DD_SERVICE
+          value: py-front-backend
+        - name: DD_TAGS
+          value: project:dataflux
+        - name: DD_AGENT_HOST
+```
+
+> 注: **forethought-core** namespace 下有多个服务可以开启，如果看到有yaml文件中args默认配置的全部都要开启
+
+- 页面显示
+
+![img](https://docs.guance.com/application-performance-monitoring/img/9.apm_explorer_1.png)
+
+
+
+## 配置可用性监测
+
+### 配置拨测任务
+
+- 新建一个要监测的网站
+
+  ![boce1](img/self-boce1.jpg)
+
+- 配置拨测节点（以下为例）
+
+  ![boce2](img/self-boce2.jpg)
+
+  > 根据实际设置的域名进行修改（以下为例）
+  >
+  > | 名称               | 拨测地址                                                     | 类型 | 任务状态 | 操作                                                         |
+  > | ------------------ | ------------------------------------------------------------ | ---- | -------- | ------------------------------------------------------------ |
+  > | cn4-console-api    | https://cn4-console-api.guance.com                           | HTTP | 启动     | ![img](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAUCAYAAAD/Rn+7AAAAAXNSR0IArs4c6QAAA59JREFUSEutll9sFFUUxr8zs/23ZKUUSjRAFAnQBU0Wuq1pin0gxqTEaOtCytqYPmiiYvyHJBiTtYI0vAASEhpCJSGVPrQqxLYKBJJCCG7dbRHbIoTQbo1arIBotEg7c+8xd+i2SzqbsLM7mcnM3NzzzW/OyT33IyQ5Sr/f6BdMLxJzKZgWgzAXoCyA1eUCiOxCmXl6OP6oxggMCRMEgxkGgFsAYkQUEcTHLpa3Ru30ZnzEH64tB+QeAKXJ4JONz4BTYPdOuLUclM3xwffQchRmz4HJAqPjtxD5qx+9f/8EAyKiMzb3VLSdT9S/D7CkO/gBM3YA0DMBp/hc0PHygudQt+gFeFxuW9nrd2+gcbgV3944J0hDqHdN2874xCnA4u6XQsS8PVWw+Pyp7Kl0MYMlY7buwa4V72N1vveBZNuvd6HhWhMEZH1vRavFYgE+1V37rIA8Ab73nuphB5cFFw48GYIvvygluaMjp9Ew2KR+s/JCRdtJQtsG3b/QdRWEx1NSSphsAcYzp+5C4o1Ha/DqYwFHklsGdqHrz8jQhVEsI393MADGl46UrGpOLlV1k2y955MHnWX7kafnOJIdHvsNgeh7YJ3WU3E4eISAWkdKiYAKTrIFWTV/LULe151KWnG10a24MjbcQv5w8BqAJU7V7iuvgjQlGoreRuUjTzuVtOI+vdqMz0c6B1WJ/wVjllO1KcDJDEpT4jPfxyguWOlU0opr+bkTu4eaxzIGaJVXSEhDomnVNvjnpgd4JNaBPTEFmKESTwFOCDR438G6hRVpZXD35cNoUSXOyCJRXSaewQmBqsK1qPe9mRZg8NwWXBmPtWSmzSQCGhKzTTeOP3MQea5cR5Cxf35F1dm3oOfq69Nu1HaLRN4xsGlJEK95axwBvhveia7b0aG+da5laW91dm1Gjgtod4FDa3Zg1bwVKUF+MXgCnww0spaTXflj5Vcnp83Cd8GPiLAtJbUkjVqtZPmfCY90Y2/Zh/DPf+KBZI/FTmH7D40QWVzf//zX02YhHu3EbtltdapZxyF1g1C3tAqveDfAk23fbkfG/sC+/mZ888sZoWXpob7q9pl2Kw7pxLDamQUpGDwhoMotJwTclIPyh4uxet5KFOYVQLCJ3+/cRHj0InpuDkCQjLCmbb4UaE9uWBPrUHK+pkTqWjUxlYJ4MTBp+Xmm5bezW2pPtiBNCVaQpmQ2pUkMQ4INYmX5KQaNotDp6KVAh63l/x/CLxkxSh9tAgAAAABJRU5ErkJggg==) |
+  > | cn4-auth           | https://cn4-auth.guance.com                                  | HTTP | 启动     | ![img](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAUCAYAAAD/Rn+7AAAAAXNSR0IArs4c6QAAA59JREFUSEutll9sFFUUxr8zs/23ZKUUSjRAFAnQBU0Wuq1pin0gxqTEaOtCytqYPmiiYvyHJBiTtYI0vAASEhpCJSGVPrQqxLYKBJJCCG7dbRHbIoTQbo1arIBotEg7c+8xd+i2SzqbsLM7mcnM3NzzzW/OyT33IyQ5Sr/f6BdMLxJzKZgWgzAXoCyA1eUCiOxCmXl6OP6oxggMCRMEgxkGgFsAYkQUEcTHLpa3Ru30ZnzEH64tB+QeAKXJ4JONz4BTYPdOuLUclM3xwffQchRmz4HJAqPjtxD5qx+9f/8EAyKiMzb3VLSdT9S/D7CkO/gBM3YA0DMBp/hc0PHygudQt+gFeFxuW9nrd2+gcbgV3944J0hDqHdN2874xCnA4u6XQsS8PVWw+Pyp7Kl0MYMlY7buwa4V72N1vveBZNuvd6HhWhMEZH1vRavFYgE+1V37rIA8Ab73nuphB5cFFw48GYIvvygluaMjp9Ew2KR+s/JCRdtJQtsG3b/QdRWEx1NSSphsAcYzp+5C4o1Ha/DqYwFHklsGdqHrz8jQhVEsI393MADGl46UrGpOLlV1k2y955MHnWX7kafnOJIdHvsNgeh7YJ3WU3E4eISAWkdKiYAKTrIFWTV/LULe151KWnG10a24MjbcQv5w8BqAJU7V7iuvgjQlGoreRuUjTzuVtOI+vdqMz0c6B1WJ/wVjllO1KcDJDEpT4jPfxyguWOlU0opr+bkTu4eaxzIGaJVXSEhDomnVNvjnpgd4JNaBPTEFmKESTwFOCDR438G6hRVpZXD35cNoUSXOyCJRXSaewQmBqsK1qPe9mRZg8NwWXBmPtWSmzSQCGhKzTTeOP3MQea5cR5Cxf35F1dm3oOfq69Nu1HaLRN4xsGlJEK95axwBvhveia7b0aG+da5laW91dm1Gjgtod4FDa3Zg1bwVKUF+MXgCnww0spaTXflj5Vcnp83Cd8GPiLAtJbUkjVqtZPmfCY90Y2/Zh/DPf+KBZI/FTmH7D40QWVzf//zX02YhHu3EbtltdapZxyF1g1C3tAqveDfAk23fbkfG/sC+/mZ888sZoWXpob7q9pl2Kw7pxLDamQUpGDwhoMotJwTclIPyh4uxet5KFOYVQLCJ3+/cRHj0InpuDkCQjLCmbb4UaE9uWBPrUHK+pkTqWjUxlYJ4MTBp+Xmm5bezW2pPtiBNCVaQpmQ2pUkMQ4INYmX5KQaNotDp6KVAh63l/x/CLxkxSh9tAgAAAABJRU5ErkJggg==) |
+  > | cn4-openway        | https://cn4-openway.guance.com                               | HTTP | 启动     | ![img](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAUCAYAAAD/Rn+7AAAAAXNSR0IArs4c6QAAA59JREFUSEutll9sFFUUxr8zs/23ZKUUSjRAFAnQBU0Wuq1pin0gxqTEaOtCytqYPmiiYvyHJBiTtYI0vAASEhpCJSGVPrQqxLYKBJJCCG7dbRHbIoTQbo1arIBotEg7c+8xd+i2SzqbsLM7mcnM3NzzzW/OyT33IyQ5Sr/f6BdMLxJzKZgWgzAXoCyA1eUCiOxCmXl6OP6oxggMCRMEgxkGgFsAYkQUEcTHLpa3Ru30ZnzEH64tB+QeAKXJ4JONz4BTYPdOuLUclM3xwffQchRmz4HJAqPjtxD5qx+9f/8EAyKiMzb3VLSdT9S/D7CkO/gBM3YA0DMBp/hc0PHygudQt+gFeFxuW9nrd2+gcbgV3944J0hDqHdN2874xCnA4u6XQsS8PVWw+Pyp7Kl0MYMlY7buwa4V72N1vveBZNuvd6HhWhMEZH1vRavFYgE+1V37rIA8Ab73nuphB5cFFw48GYIvvygluaMjp9Ew2KR+s/JCRdtJQtsG3b/QdRWEx1NSSphsAcYzp+5C4o1Ha/DqYwFHklsGdqHrz8jQhVEsI393MADGl46UrGpOLlV1k2y955MHnWX7kafnOJIdHvsNgeh7YJ3WU3E4eISAWkdKiYAKTrIFWTV/LULe151KWnG10a24MjbcQv5w8BqAJU7V7iuvgjQlGoreRuUjTzuVtOI+vdqMz0c6B1WJ/wVjllO1KcDJDEpT4jPfxyguWOlU0opr+bkTu4eaxzIGaJVXSEhDomnVNvjnpgd4JNaBPTEFmKESTwFOCDR438G6hRVpZXD35cNoUSXOyCJRXSaewQmBqsK1qPe9mRZg8NwWXBmPtWSmzSQCGhKzTTeOP3MQea5cR5Cxf35F1dm3oOfq69Nu1HaLRN4xsGlJEK95axwBvhveia7b0aG+da5laW91dm1Gjgtod4FDa3Zg1bwVKUF+MXgCnww0spaTXflj5Vcnp83Cd8GPiLAtJbUkjVqtZPmfCY90Y2/Zh/DPf+KBZI/FTmH7D40QWVzf//zX02YhHu3EbtltdapZxyF1g1C3tAqveDfAk23fbkfG/sC+/mZ888sZoWXpob7q9pl2Kw7pxLDamQUpGDwhoMotJwTclIPyh4uxet5KFOYVQLCJ3+/cRHj0InpuDkCQjLCmbb4UaE9uWBPrUHK+pkTqWjUxlYJ4MTBp+Xmm5bezW2pPtiBNCVaQpmQ2pUkMQ4INYmX5KQaNotDp6KVAh63l/x/CLxkxSh9tAgAAAABJRU5ErkJggg==) |
+  > | cn4-static-res     | https://cn4-static-res.guance.com/dataflux-template/README.md | HTTP | 启动     | ![img](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAUCAYAAAD/Rn+7AAAAAXNSR0IArs4c6QAAA59JREFUSEutll9sFFUUxr8zs/23ZKUUSjRAFAnQBU0Wuq1pin0gxqTEaOtCytqYPmiiYvyHJBiTtYI0vAASEhpCJSGVPrQqxLYKBJJCCG7dbRHbIoTQbo1arIBotEg7c+8xd+i2SzqbsLM7mcnM3NzzzW/OyT33IyQ5Sr/f6BdMLxJzKZgWgzAXoCyA1eUCiOxCmXl6OP6oxggMCRMEgxkGgFsAYkQUEcTHLpa3Ru30ZnzEH64tB+QeAKXJ4JONz4BTYPdOuLUclM3xwffQchRmz4HJAqPjtxD5qx+9f/8EAyKiMzb3VLSdT9S/D7CkO/gBM3YA0DMBp/hc0PHygudQt+gFeFxuW9nrd2+gcbgV3944J0hDqHdN2874xCnA4u6XQsS8PVWw+Pyp7Kl0MYMlY7buwa4V72N1vveBZNuvd6HhWhMEZH1vRavFYgE+1V37rIA8Ab73nuphB5cFFw48GYIvvygluaMjp9Ew2KR+s/JCRdtJQtsG3b/QdRWEx1NSSphsAcYzp+5C4o1Ha/DqYwFHklsGdqHrz8jQhVEsI393MADGl46UrGpOLlV1k2y955MHnWX7kafnOJIdHvsNgeh7YJ3WU3E4eISAWkdKiYAKTrIFWTV/LULe151KWnG10a24MjbcQv5w8BqAJU7V7iuvgjQlGoreRuUjTzuVtOI+vdqMz0c6B1WJ/wVjllO1KcDJDEpT4jPfxyguWOlU0opr+bkTu4eaxzIGaJVXSEhDomnVNvjnpgd4JNaBPTEFmKESTwFOCDR438G6hRVpZXD35cNoUSXOyCJRXSaewQmBqsK1qPe9mRZg8NwWXBmPtWSmzSQCGhKzTTeOP3MQea5cR5Cxf35F1dm3oOfq69Nu1HaLRN4xsGlJEK95axwBvhveia7b0aG+da5laW91dm1Gjgtod4FDa3Zg1bwVKUF+MXgCnww0spaTXflj5Vcnp83Cd8GPiLAtJbUkjVqtZPmfCY90Y2/Zh/DPf+KBZI/FTmH7D40QWVzf//zX02YhHu3EbtltdapZxyF1g1C3tAqveDfAk23fbkfG/sC+/mZ888sZoWXpob7q9pl2Kw7pxLDamQUpGDwhoMotJwTclIPyh4uxet5KFOYVQLCJ3+/cRHj0InpuDkCQjLCmbb4UaE9uWBPrUHK+pkTqWjUxlYJ4MTBp+Xmm5bezW2pPtiBNCVaQpmQ2pUkMQ4INYmX5KQaNotDp6KVAh63l/x/CLxkxSh9tAgAAAABJRU5ErkJggg==) |
+  > | cn4-console        | https://cn4-console.guance.com                               | HTTP | 启动     | ![img](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAUCAYAAAD/Rn+7AAAAAXNSR0IArs4c6QAAA59JREFUSEutll9sFFUUxr8zs/23ZKUUSjRAFAnQBU0Wuq1pin0gxqTEaOtCytqYPmiiYvyHJBiTtYI0vAASEhpCJSGVPrQqxLYKBJJCCG7dbRHbIoTQbo1arIBotEg7c+8xd+i2SzqbsLM7mcnM3NzzzW/OyT33IyQ5Sr/f6BdMLxJzKZgWgzAXoCyA1eUCiOxCmXl6OP6oxggMCRMEgxkGgFsAYkQUEcTHLpa3Ru30ZnzEH64tB+QeAKXJ4JONz4BTYPdOuLUclM3xwffQchRmz4HJAqPjtxD5qx+9f/8EAyKiMzb3VLSdT9S/D7CkO/gBM3YA0DMBp/hc0PHygudQt+gFeFxuW9nrd2+gcbgV3944J0hDqHdN2874xCnA4u6XQsS8PVWw+Pyp7Kl0MYMlY7buwa4V72N1vveBZNuvd6HhWhMEZH1vRavFYgE+1V37rIA8Ab73nuphB5cFFw48GYIvvygluaMjp9Ew2KR+s/JCRdtJQtsG3b/QdRWEx1NSSphsAcYzp+5C4o1Ha/DqYwFHklsGdqHrz8jQhVEsI393MADGl46UrGpOLlV1k2y955MHnWX7kafnOJIdHvsNgeh7YJ3WU3E4eISAWkdKiYAKTrIFWTV/LULe151KWnG10a24MjbcQv5w8BqAJU7V7iuvgjQlGoreRuUjTzuVtOI+vdqMz0c6B1WJ/wVjllO1KcDJDEpT4jPfxyguWOlU0opr+bkTu4eaxzIGaJVXSEhDomnVNvjnpgd4JNaBPTEFmKESTwFOCDR438G6hRVpZXD35cNoUSXOyCJRXSaewQmBqsK1qPe9mRZg8NwWXBmPtWSmzSQCGhKzTTeOP3MQea5cR5Cxf35F1dm3oOfq69Nu1HaLRN4xsGlJEK95axwBvhveia7b0aG+da5laW91dm1Gjgtod4FDa3Zg1bwVKUF+MXgCnww0spaTXflj5Vcnp83Cd8GPiLAtJbUkjVqtZPmfCY90Y2/Zh/DPf+KBZI/FTmH7D40QWVzf//zX02YhHu3EbtltdapZxyF1g1C3tAqveDfAk23fbkfG/sC+/mZ888sZoWXpob7q9pl2Kw7pxLDamQUpGDwhoMotJwTclIPyh4uxet5KFOYVQLCJ3+/cRHj0InpuDkCQjLCmbb4UaE9uWBPrUHK+pkTqWjUxlYJ4MTBp+Xmm5bezW2pPtiBNCVaQpmQ2pUkMQ4INYmX5KQaNotDp6KVAh63l/x/CLxkxSh9tAgAAAABJRU5ErkJggg==) |
+  > | cn4-management-api | https://cn4-management-api.guance.com                        | HTTP | 启动     | ![img](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAUCAYAAAD/Rn+7AAAAAXNSR0IArs4c6QAAA59JREFUSEutll9sFFUUxr8zs/23ZKUUSjRAFAnQBU0Wuq1pin0gxqTEaOtCytqYPmiiYvyHJBiTtYI0vAASEhpCJSGVPrQqxLYKBJJCCG7dbRHbIoTQbo1arIBotEg7c+8xd+i2SzqbsLM7mcnM3NzzzW/OyT33IyQ5Sr/f6BdMLxJzKZgWgzAXoCyA1eUCiOxCmXl6OP6oxggMCRMEgxkGgFsAYkQUEcTHLpa3Ru30ZnzEH64tB+QeAKXJ4JONz4BTYPdOuLUclM3xwffQchRmz4HJAqPjtxD5qx+9f/8EAyKiMzb3VLSdT9S/D7CkO/gBM3YA0DMBp/hc0PHygudQt+gFeFxuW9nrd2+gcbgV3944J0hDqHdN2874xCnA4u6XQsS8PVWw+Pyp7Kl0MYMlY7buwa4V72N1vveBZNuvd6HhWhMEZH1vRavFYgE+1V37rIA8Ab73nuphB5cFFw48GYIvvygluaMjp9Ew2KR+s/JCRdtJQtsG3b/QdRWEx1NSSphsAcYzp+5C4o1Ha/DqYwFHklsGdqHrz8jQhVEsI393MADGl46UrGpOLlV1k2y955MHnWX7kafnOJIdHvsNgeh7YJ3WU3E4eISAWkdKiYAKTrIFWTV/LULe151KWnG10a24MjbcQv5w8BqAJU7V7iuvgjQlGoreRuUjTzuVtOI+vdqMz0c6B1WJ/wVjllO1KcDJDEpT4jPfxyguWOlU0opr+bkTu4eaxzIGaJVXSEhDomnVNvjnpgd4JNaBPTEFmKESTwFOCDR438G6hRVpZXD35cNoUSXOyCJRXSaewQmBqsK1qPe9mRZg8NwWXBmPtWSmzSQCGhKzTTeOP3MQea5cR5Cxf35F1dm3oOfq69Nu1HaLRN4xsGlJEK95axwBvhveia7b0aG+da5laW91dm1Gjgtod4FDa3Zg1bwVKUF+MXgCnww0spaTXflj5Vcnp83Cd8GPiLAtJbUkjVqtZPmfCY90Y2/Zh/DPf+KBZI/FTmH7D40QWVzf//zX02YhHu3EbtltdapZxyF1g1C3tAqveDfAk23fbkfG/sC+/mZ888sZoWXpob7q9pl2Kw7pxLDamQUpGDwhoMotJwTclIPyh4uxet5KFOYVQLCJ3+/cRHj0InpuDkCQjLCmbb4UaE9uWBPrUHK+pkTqWjUxlYJ4MTBp+Xmm5bezW2pPtiBNCVaQpmQ2pUkMQ4INYmX5KQaNotDp6KVAh63l/x/CLxkxSh9tAgAAAABJRU5ErkJggg==) |
+  > | cn4-management     | https://cn4-management.guance.com                            | HTTP | 启动     | ![img](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAUCAYAAAD/Rn+7AAAAAXNSR0IArs4c6QAAA59JREFUSEutll9sFFUUxr8zs/23ZKUUSjRAFAnQBU0Wuq1pin0gxqTEaOtCytqYPmiiYvyHJBiTtYI0vAASEhpCJSGVPrQqxLYKBJJCCG7dbRHbIoTQbo1arIBotEg7c+8xd+i2SzqbsLM7mcnM3NzzzW/OyT33IyQ5Sr/f6BdMLxJzKZgWgzAXoCyA1eUCiOxCmXl6OP6oxggMCRMEgxkGgFsAYkQUEcTHLpa3Ru30ZnzEH64tB+QeAKXJ4JONz4BTYPdOuLUclM3xwffQchRmz4HJAqPjtxD5qx+9f/8EAyKiMzb3VLSdT9S/D7CkO/gBM3YA0DMBp/hc0PHygudQt+gFeFxuW9nrd2+gcbgV3944J0hDqHdN2874xCnA4u6XQsS8PVWw+Pyp7Kl0MYMlY7buwa4V72N1vveBZNuvd6HhWhMEZH1vRavFYgE+1V37rIA8Ab73nuphB5cFFw48GYIvvygluaMjp9Ew2KR+s/JCRdtJQtsG3b/QdRWEx1NSSphsAcYzp+5C4o1Ha/DqYwFHklsGdqHrz8jQhVEsI393MADGl46UrGpOLlV1k2y955MHnWX7kafnOJIdHvsNgeh7YJ3WU3E4eISAWkdKiYAKTrIFWTV/LULe151KWnG10a24MjbcQv5w8BqAJU7V7iuvgjQlGoreRuUjTzuVtOI+vdqMz0c6B1WJ/wVjllO1KcDJDEpT4jPfxyguWOlU0opr+bkTu4eaxzIGaJVXSEhDomnVNvjnpgd4JNaBPTEFmKESTwFOCDR438G6hRVpZXD35cNoUSXOyCJRXSaewQmBqsK1qPe9mRZg8NwWXBmPtWSmzSQCGhKzTTeOP3MQea5cR5Cxf35F1dm3oOfq69Nu1HaLRN4xsGlJEK95axwBvhveia7b0aG+da5laW91dm1Gjgtod4FDa3Zg1bwVKUF+MXgCnww0spaTXflj5Vcnp83Cd8GPiLAtJbUkjVqtZPmfCY90Y2/Zh/DPf+KBZI/FTmH7D40QWVzf//zX02YhHu3EbtltdapZxyF1g1C3tAqveDfAk23fbkfG/sC+/mZ888sZoWXpob7q9pl2Kw7pxLDamQUpGDwhoMotJwTclIPyh4uxet5KFOYVQLCJ3+/cRHj0InpuDkCQjLCmbb4UaE9uWBPrUHK+pkTqWjUxlYJ4MTBp+Xmm5bezW2pPtiBNCVaQpmQ2pUkMQ4INYmX5KQaNotDp6KVAh63l/x/CLxkxSh9tAgAAAABJRU5ErkJggg==) |
+
+## 配置用户访问监测
+
+### 部署一个Deployment 状态的DataKit
+
+```yaml
+## deployment-datakit.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    workload.user.cattle.io/workloadselector: apps.deployment-utils-test-rum-datakit
+    manager: kube-controller-manager
+  name: test-rum-datakit  
+  namespace: utils
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      workload.user.cattle.io/workloadselector: apps.deployment-utils-test-rum-datakit 
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        workload.user.cattle.io/workloadselector: apps.deployment-utils-test-rum-datakit
+    spec:
+      affinity: {}
+      containers:
+      - env:
+        - name: ENV_DATAWAY
+          value: http://internal-dataway.utils:9528?token=xxxxxx    ## 此处的token需修改
+        - name: ENV_DISABLE_404PAGE
+          value: "1"
+        - name: ENV_GLOBAL_TAGS
+          value: project=dataflux-saas-prodution,host_ip=__datakit_ip,host=__datakit_hostname
+        - name: ENV_HTTP_LISTEN
+          value: 0.0.0.0:9529
+        - name: ENV_IPDB
+          value: iploc
+        - name: ENV_RUM_ORIGIN_IP_HEADER
+          value: X-Forwarded-For
+        - name: ENV_DEFAULT_ENABLED_INPUTS
+          value: rum
+        image: pubrepo.jiagouyun.com/datakit/datakit:1.5.0
+        imagePullPolicy: Always
+        name: test-rum-datakit
+        resources: {}
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities: {}
+          privileged: false
+          readOnlyRootFilesystem: false
+          runAsNonRoot: false
+        stdin: true
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        tty: true
+        volumeMounts:
+        - mountPath: /usr/local/datakit/data/ipdb/iploc/
+          name: datakit-ipdb
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+      - name: registry-key
+      initContainers:
+      - args:
+        - tar -xf /opt/iploc.tar.gz -C /usr/local/datakit/data/ipdb/iploc/
+        command:
+        - bash
+        - -c
+        image: pubrepo.jiagouyun.com/datakit/iploc:1.0
+        imagePullPolicy: IfNotPresent
+        name: init-volume
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /usr/local/datakit/data/ipdb/iploc/
+          name: datakit-ipdb
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - emptyDir: {}
+        name: datakit-ipdb
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: test-rum-datakit
+  namespace: utils
+spec:
+  ports:
+  - name: http
+    port: 9529
+    protocol: TCP
+    targetPort: 9529
+  selector:
+    app: test-rum-datakit
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}
+```
+
+### 修改forethought-webclient 服务的名为config.js  ConfigMap配置
+
+- 以下所有的关于inner-app的域名都修改成实际对应的域名
+
+```shell
+window.DEPLOYCONFIG = {
+    cookieDomain: '.guance.com',
+    apiUrl: 'https://cn4-console-api.guance.com',
+    wsUrl: 'wss://.guance.com',
+    innerAppDisabled: 0,
+    innerAppLogin: 'https://cn4-auth.guance.com/redirectpage/login',
+    innerAppRegister: 'https://cn4-auth.guance.com/redirectpage/register',
+    innerAppProfile: 'https://cn4-auth.guance.com/redirectpage/profile',
+    innerAppCreateworkspace: 'https://cn4-auth.guance.com/redirectpage/createworkspace',
+    staticFileUrl: 'https://cn4-static-res.guance.com',
+    staticDatakit: 'https://static.guance.com',
+    cloudDatawayUrl: '',
+    isSaas: '1',
+    showHelp: 1,
+    rumEnable: 0,                                                                              ## 0是关闭，1是开启，此处开启
+    rumDatakitUrl: "",                                                                         ## 修改成deployment的datakit地址
+    rumApplicationId: "",                                                                      ## 修改成实际appid
+    rumJsUrl: "https://static.guance.com/browser-sdk/v2/dataflux-rum.js",
+    rumDataEnv: 'prod',
+    shrineApiUrl: '',
+    upgradeUrl: '',
+    rechargeUrl: '',
+    paasCustomLoginInfo: []
+};
+```
+
+- 修改utils下名为dataway-config 的ConfigMap配置
+
+```yaml
+token: xxxxxxxxxxx       ## 修改成实际的token
+```
+
+
+
+## 一键导入仪表板、监控、自定义查看器
+
+### 通用模板下载地址
+
+模板[下载地址](resource.zip)
+
+- ##### 导入模板
+
+![allin](img/self-allin.jpg)
+
+> 导入后**监控**要修改相应的跳转链接配置。要把url中的dsbd_xxxx换到对应的仪表板下，wksp_xxxx换成要监测的空间下。
+
+## 验证方式
+
+- 查看场景中的仪表板是否有数据
+- 查看基础设施中是否有对应DataKit开启主机的相关信息
+- 查看指标中是否含有MySQL、Redis等数据库的指标数据
+- 查看日志中是否有日志并开启了相应的状态
+- 查看应用性能监测是否有RUM的数据
+

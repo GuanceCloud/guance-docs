@@ -9,6 +9,9 @@
 
 ## 观测云离线包下载、导入 {#offline-image}
 
+???+ warning "注意"
+     如果 kubernetes 节点主机可以访问公网，不需要通过以上离线导入的方式导入镜像，安装程序会自动下载镜像。
+
 如果是离线网络环境下安装，需要先手工下载最新的观测云镜像包，通过  docker load  命令将所有镜像导入到各个 kubernetes 工作节点上后，再进行后续的引导安装。
 
 最新的观测云 Docker 镜像包下载地址：[https://static.guance.com/dataflux/package/guance-latest.tar.gz](https://static.guance.com/dataflux/package/guance-latest.tar.gz)
@@ -31,5 +34,67 @@ $ ctr -n=k8s.io images import guance-latest.tar
 
 ```
 
+
+
+## 修改 launcher 自建镜像仓库配置 {#registry-key-change}
+
 ???+ warning "注意"
-     如果 kubernetes 节点主机可以访问公网，不需要通过以上离线导入的方式导入镜像，安装程序会自动下载镜像。
+     此操作必须要在部署 luancher 前操作。
+
+=== "helm"
+    
+    安装 launcher 时，添加 `imageSecrets.url`，`imageSecrets.username`，`imageSecrets.password` 参数。
+
+    ```shell hl_lines='4'
+    helm install launcher launcher  --repo https://pubrepo.guance.com/chartrepo/launcher -n launcher \
+    --create-namespace  \
+    --set ingress.hostName=<Hostname>,storageClassName=<Stroageclass> \
+    --set imageSecrets.url=<warehouseaddress>,imageSecrets.username=<warehouse username>,imageSecrets.password=<warehouse passwd>
+    ```
+
+
+=== "yaml"
+
+    - 生成密钥
+
+      ```shell
+      kubectl create secret docker-registry dataflux-test --docker-server='Docker Server' --docker-username='Docker Username' --docker-password='Docker Password'
+      ```
+      > 记得替换 docker-server、docker-username、docker-password 参数的值
+
+    - 获取密钥
+    
+      ```shell
+      kubectl get secrets dataflux-test -o jsonpath='{.data.\.dockerconfigjson}'
+      ```
+
+      执行结果：
+      ```shell
+      eyJhdXRocyI6eyJwdWJyZXBvLmd1YW5jZxxxxxxxxxiJkZXBsb3kiLCJwYXNzd29yZCI6IlFXRVIiLCJhdXRoIjoiWkdWd2JHOTVPbEZYUlZJPSJ9fX0=
+      ```
+
+    - 安装
+
+      Launcher YAML 下载：[https://static.guance.com/launcher/launcher.yaml](https://static.guance.com/launcher/launcher.yaml)
+      
+      将上面的 YAML 内容保存为 **launcher.yaml** 文件，放到**运维操作机**上，然后替换文档内的变量部分：
+    
+      - {{ launcher_image }} 替换为最新版的 Launcher 应用的镜像地址，可以在 [社区版部署镜像](changelog.md) 文档中获取到最新版本的 Launcher 安装镜像地址
+      - {{ domain }} 替换为主域名，如使用 dataflux.cn
+      - {{ storageClassName }}替换为storage class name，如 alicloud-nas
+
+      将密钥替换 .dockerconfigjson 内容
+
+      ![](img/registry-key.png)
+
+      执行安装：
+
+      ```shell
+      kubectl apply -f launcher.yaml
+      ```
+
+
+
+
+
+
