@@ -25,21 +25,24 @@ OpenSearch 是一款开源的分布式搜索和分析套件，衍生自 Elastics
 - （可选）公有云存储块组件（共有云）
 - （可选）[OpenEBS 存储插件](openebs-install.md)
 
-
 ## 基础信息及兼容
 
-|   主机名   |     IP地址      |          角色          |          配置k8s          | 数据存储   |
+
+???+ warning "注意"
+     以下配置信息为观测云和高可用 OpenSearch 部署场景配置。
+
+|   主机名   |     IP地址      |          角色          |          配置k8s          | 数据盘存储   |
 | :--------: | :-------------: | :--------------------: | :-----------------------: | ---------- |
 | k8s-master | 192.168.100.101 |       k8s,master       | 4 CPU, 16G MEM, 100G DISK |            |
 | K8s-node01 | 192.168.100.102 |       k8s,node01       | 4 CPU, 16G MEM, 100G DISK |            |
 | K8s-node02 | 192.168.100.103 |       k8s,node02       | 4 CPU, 16G MEM, 100G DISK |            |
 | K8s-node03 | 192.168.100.104 |       k8s,node03       | 4 CPU, 16G MEM, 100G DISK |            |
-| K8s-node04 | 192.168.100.105 | openes，master，client | 4 CPU, 16G MEM, 100G DISK | /data:200G |
-| K8s-node05 | 192.168.100.106 | openes，master，client | 4 CPU, 16G MEM, 100G DISK | /data:200G |
-| K8s-node06 | 192.168.100.107 | openes，master，client | 4 CPU, 16G MEM, 100G DISK | /data:200G |
-| K8s-node07 | 192.168.100.108 |      openes，data      | 8CPU, 32G MEM, 100G DISK  | /data:1T   |
-| K8s-node08 | 192.168.100.109 |      openes，data      | 8CPU, 32G MEM, 100G DISK  | /data:1T   |
-| K8s-node09 | 192.168.100.110 |      openes，data      | 8CPU, 32G MEM, 100G DISK  | /data:1T   |
+| K8s-node04 | 192.168.100.105 | opensearch，master，coordinating | 4 CPU, 16G MEM, 100G DISK | /data:20G |
+| K8s-node05 | 192.168.100.106 | opensearch，master，coordinating | 4 CPU, 16G MEM, 100G DISK | /data:20G |
+| K8s-node06 | 192.168.100.107 | opensearch，master，coordinating | 4 CPU, 16G MEM, 100G DISK | /data:20G |
+| K8s-node07 | 192.168.100.108 |      opensearch，data      | 8CPU, 32G MEM, 100G DISK  | /data:1T   |
+| K8s-node08 | 192.168.100.109 |      opensearch，data      | 8CPU, 32G MEM, 100G DISK  | /data:1T   |
+| K8s-node09 | 192.168.100.110 |      opensearch，data      | 8CPU, 32G MEM, 100G DISK  | /data:1T   |
 
 |     名称     |                   描述                   |
 | :------------------: | :---------------------------------------------: |
@@ -58,9 +61,6 @@ OpenSearch 是一款开源的分布式搜索和分析套件，衍生自 Elastics
 |  client JVM 大小  |                  4G                  |
 |   data JVM 大小   |                 20G                  |
 
-## 部署架构图
-
-<img src="https://df-storage-dev.oss-cn-hangzhou.aliyuncs.com/liwenjin/img/openes.png" style="zoom:50%;" />
 
 ## 安装步骤
 

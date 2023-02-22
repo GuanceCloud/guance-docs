@@ -217,7 +217,7 @@
 - df-func.dataflux.cn
 - df-static-res.dataflux.cn
 
-=== "云上基础设施部署"
+<!-- === "云上基础设施部署"
 
     服务安装完成之后，集群会自动为 **kodo** 服务创建一个公网 SLB，可使用 kubectl get svc -n forethought-kodo  命令，查看到 kodo-nginx 服务的 EXTERNAL-IP，**df-kodo.dataflux.cn** 子域名区别单独解析到此 SLB 的公网 IP 上，如下图：
     
@@ -246,18 +246,24 @@
     kubectl apply -f kodo-ingress.yaml
     ```
     
-    配置完成后可部署haproxy或nginx等服务在集群外的机器上进行域名代理，如何代理请阅读[部署代理](infra-kubernetes.md#agency-install)
+    配置完成后可部署haproxy或nginx等服务在集群外的机器上进行域名代理，如何代理请阅读[部署代理](proxy-install.md) -->
+
+## 4. 安装DataWay（可选） {#dataway-install}
+
+您可以在部署成功后安装一个 DataWay，右上角点击设置，选择【安装数据网关】。
+![](img/launcher-dataway-0.png)
+填写DataWay名称和绑定地址，点击【一键安装】，安装成功会伴随提示。
+![](img/launcher-dataway-1.png)
+您也可以使用使用其他方式[安装DataWay](dataway-install.md)。
 
 
-
-
-## 4. 安装完成后
+## 5. 安装完成后
 
 部署成功后，可以参考手册 [如何开始使用](how-to-start.md) 
 
 如果安装过程中发生问题，需要重新安装，可参考手册 [维护手册](faq.md)
 
-## 5. 很重要的步骤！！！
+## 6. 很重要的步骤！！！
 
 经过以上步骤，观测云 都安装完毕，可以进行验证，验证无误后一个很重要的步骤，将 launcher 服务下线，防止被误访问而破坏应用配置，可在**运维操作机**上执行以下命令，将 launcher 服务的 pod 副本数设为 0：
 

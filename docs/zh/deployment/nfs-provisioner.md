@@ -67,7 +67,7 @@ Kubernetes  nfs subdir external provisioner  组件部署参考 [https://github.
         metadata:
           name: nfs-client-provisioner
           # replace with namespace where provisioner is deployed
-          namespace: default
+          namespace: kube-system
         ---
         kind: ClusterRole
         apiVersion: rbac.authorization.k8s.io/v1
@@ -98,7 +98,7 @@ Kubernetes  nfs subdir external provisioner  组件部署参考 [https://github.
           - kind: ServiceAccount
             name: nfs-client-provisioner
             # replace with namespace where provisioner is deployed
-            namespace: default
+            namespace: kube-system
         roleRef:
           kind: ClusterRole
           name: nfs-client-provisioner-runner
@@ -109,7 +109,7 @@ Kubernetes  nfs subdir external provisioner  组件部署参考 [https://github.
         metadata:
           name: leader-locking-nfs-client-provisioner
           # replace with namespace where provisioner is deployed
-          namespace: default
+          namespace: kube-system
         rules:
           - apiGroups: [""]
             resources: ["endpoints"]
@@ -120,12 +120,12 @@ Kubernetes  nfs subdir external provisioner  组件部署参考 [https://github.
         metadata:
           name: leader-locking-nfs-client-provisioner
           # replace with namespace where provisioner is deployed
-          namespace: default
+          namespace: kube-system
         subjects:
           - kind: ServiceAccount
             name: nfs-client-provisioner
             # replace with namespace where provisioner is deployed
-            namespace: default
+            namespace: kube-system
         roleRef:
           kind: Role
           name: leader-locking-nfs-client-provisioner
@@ -139,7 +139,7 @@ Kubernetes  nfs subdir external provisioner  组件部署参考 [https://github.
           labels:
             app: nfs-client-provisioner
           # replace with namespace where provisioner is deployed
-          namespace: default
+          namespace: kube-system
         spec:
           replicas: 1
           strategy:
