@@ -6,6 +6,7 @@ nav:
   - '小程序监测': miniapp
   - 'React Native 监测': react-native
   - 'Flutter 监测': flutter
+  - 'UniApp 监测': uni-app
   - '查看器': explorer
   - '生成指标': generate-metrics.md
   - '自建追踪': self-tracking.md

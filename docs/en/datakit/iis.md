@@ -116,9 +116,6 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
-## 
-
-
 ## Log {#logging}
 
 If you need to collect IIS logs, open the log-related configuration in the configuration, such as:

@@ -1,7 +1,7 @@
 # 注册商业版
 ---
 
-在 [观测云官网](https://www.guance.com/) ，点击「[免费开始](https://auth.guance.com/businessRegister)」，填写相关信息后即可成为观测云用户。
+在 [观测云官网](https://www.guance.com/) ，点击「[免费注册](https://auth.guance.com/businessRegister)」，填写相关信息后即可成为观测云用户。
 
 ## 第一步：基本信息 {#info}
 
@@ -28,9 +28,23 @@
 
 ### 用户名说明
 
-在此页面注册「[观测云控制台账号](https://auth.guance.com/businessRegister)」的同时，会为您自动注册**相同「用户名」**的 「[观测云费用中心账号](https://boss.guance.com/)」，从而进行后续的费用结算流程，费用中心的用户名账号会检查唯一性，一旦注册不能修改。
+在此页面注册「[观测云控制台账号](https://auth.guance.com/businessRegister)」的同时，会为您注册**相同「用户名」**的「[观测云费用中心账号](https://boss.guance.com/)」，费用中心的用户名账号会检查唯一性，一旦注册不能修改。
 
 > 更多详情可参考文档 [<费用中心>](../billing/cost-center/index.md)。
+
+#### 绑定费用中心用户名账号
+
+在此页面注册时，您可以直接绑定费用中心用户名账号，输入用户名以后，在提示框中选择“仍想使用此用户名注册？”。
+
+![](img/9.billing_account_1.png)
+
+输入费用中心的用户名账号和密码。
+
+![](img/9.billing_account_2.png)
+
+绑定完成后**用户名**不能再修改，请谨慎操作。
+
+![](img/9.billing_account_3.png)
 
 ## 第二步：企业信息
 

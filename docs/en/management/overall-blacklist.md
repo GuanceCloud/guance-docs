@@ -10,13 +10,13 @@ Guance supports filtering out different types of qualified data by setting black
 
 ## Create a new blacklist
 
-In Guance workspace, click "Manage"-"Blacklist"-"New Blacklist".
+In Guance workspace, click **Manage > Blacklist > New Blacklist**.
 
 ![](img/5.blacklist_1.png)
 
-In "Data Source", select the data type, add one or more filtering rules in "Filter", and click "OK" to open the data blacklist filtering rules.
+In **Data Source**, select the data type, add one or more filtering rules in **Filter**, and click "OK" to open the data blacklist filtering rules.
 
-- Data source: Blacklist names are automatically generated according to data sources, Support the selection of "Log", "Basic Object", "Custom Object", "Network", "APM", "RUM", "Security Check", "Event", "Metrics" and "Profile", and support the manual input of preset blacklist, package data source and field name, which will take effect after configuring data source and field through DataKit and reporting data.
+- Data source: Blacklist names are automatically generated according to data sources, Support the selection of Log, Basic Object, Custom Object, Network, APM, RUM, Security Check, Event, Metrics and Profile, and support the manual input of preset blacklist, package data source and field name, which will take effect after configuring data source and field through DataKit and reporting data.
   
 | Data Type     | Data source (support custom preset)                       |
 | :----------- | :----------------------------------------------- |
@@ -24,7 +24,7 @@ In "Data Source", select the data type, add one or more filtering rules in "Filt
 | Basic object     | class, such as HOOT, etc.                        |
 | Custom object   | class, such as MySQL, etc                       |
 | Network         | source, such as netflow and httpflow            |
-| APM | services, such as redis, support the selection of "all services" |
+| APM | services, such as redis, support the selection of all service |
 | RUM | apply (app_id)                                   |
 | Scheck     | category, such as system, etc.                   |
 | Events         | source, such as monitor, etc                    |
@@ -48,7 +48,7 @@ Note: Data types support string, integer and floating point types.
 
 ![](img/5.blacklist_1.2.png)
 
-If the selected "data source" is "log", create a log filtering rule synchronously under the function menu "log"-"blacklist", and vice versa.
+If the selected data source is "log", create a log filtering rule synchronously under the function menu **Log > Blacklist**, and vice versa.
 
 ![](img/5.blacklist_1.1.png)
 
@@ -58,7 +58,7 @@ If the selected "data source" is "log", create a log filtering rule synchronousl
 
 ### Example
 
-In the following example, a new blacklist is created, a log that selects "all sources", satisfies `status` as `ok or info`, and `host` is not `hz-dataflux-saas-daily-01`, and the `service` does not contain the word `kodo`, meaning that data that meets all three matching rules will be filtered and no longer reported to the workspace.
+In the following example, a new blacklist is created, a log that selects **All Sources**, satisfies `status` as `ok or info`, and `host` is not `hz-dataflux-saas-daily-01`, and the `service` does not contain the word `kodo`, meaning that data that meets all three matching rules will be filtered and no longer reported to the workspace.
 
 ![](img/5.blacklist_2.png)
 
@@ -72,19 +72,19 @@ After setting the blacklist, you can check whether the blacklist is effective ac
 
 ### Edit
 
-On the right side of the blacklist, click the "Edit" icon to edit the created data filtering rules. In the following example, when the blacklist is set, the log for "all sources" satisfies ` status ` as `ok or info`, or `host` as `hz-dataflux-saas-daily-01`, or `service` does not contain the word `kodo`, i.e. data satisfying any of these three matching rules is filtered and no longer reported to the workspace.
+On the right side of the blacklist, click the **Edit** icon to edit the created data filtering rules. In the following example, when the blacklist is set, the log for **All Sources** satisfies ` status ` as `ok or info`, or `host` as `hz-dataflux-saas-daily-01`, or `service` does not contain the word `kodo`, i.e. data satisfying any of these three matching rules is filtered and no longer reported to the workspace.
 
 ![](img/5.blacklist_3.png)
 
 ### Delete
 
-On the right side of the blacklist, click the "Delete" icon to delete the existing filtering rules. After the filtering rules are deleted, the data will be reported to the workspace normally.
+On the right side of the blacklist, click the **Delete** icon to delete the existing filtering rules. After the filtering rules are deleted, the data will be reported to the workspace normally.
 
 ![](img/5.blacklist_5.png)
 
 ### Batch operation
 
-In the Guance workspace "Manage"-"Blacklist", click "Batch Operation" to "Batch Export" or "Batch Delete" blacklist.
+In the Guance workspace **Manage > Blacklist**, click **Batch Operation** to **Batch Export** or **Batch Delete** blacklist.
 
 ???- attention
 
@@ -94,7 +94,7 @@ In the Guance workspace "Manage"-"Blacklist", click "Batch Operation" to "Batch 
 
 ### Import/Export
 
-Support "import/export blacklist" in "management"-"blacklist" of Guance workspace, that is, create blacklist by importing/exporting JSON files.
+Support **Import/Export Blacklist** in **Manage > Blacklist** of Guance workspace, that is, create blacklist by importing/exporting JSON files.
 
 ???- attention
 

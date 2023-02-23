@@ -550,7 +550,7 @@ EXPOSE 443
 观测云已提供这个镜像。
 
 ```
-pubrepo.jiagouyun.com/datakit/dk-sidecar:1.1
+pubrepo.jiagouyun.com/datakit-operator/dd-lib-java-init
 ```
 
 本示例使用的是 Sidecar 的方式，如果您想直接把 jar 打入镜像，请下载 [dd-java-agent](https://github.com/GuanceCloud/dd-trace-java)，并在您的 Dockerfile 中参考下面的脚本把 jar 打入中镜像中，在部署的 yaml 中 -javaagent 使用的 jar 改成您打入的即可。
@@ -654,8 +654,8 @@ ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS} -jar ${jar} ${PARAMS} 2>&1 > /d
           - command:
             - sh
             - -c
-            - set -ex;mkdir -p /ddtrace/agent;cp -r /usr/dd-java-agent/agent/* /ddtrace/agent;
-            image: pubrepo.jiagouyun.com/datakit/dk-sidecar:1.1
+            - set -ex;mkdir -p /ddtrace/agent;cp -r /datadog-init/* /ddtrace/agent;
+            image: pubrepo.jiagouyun.com/datakit-operator/dd-lib-java-init
             imagePullPolicy: Always
             name: ddtrace-agent-sidecar
             volumeMounts:
@@ -756,8 +756,8 @@ ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS} -jar ${jar} ${PARAMS} 2>&1 > /d
           - command:
             - sh
             - -c
-            - set -ex;mkdir -p /ddtrace/agent;cp -r /usr/dd-java-agent/agent/* /ddtrace/agent;
-            image: pubrepo.jiagouyun.com/datakit/dk-sidecar:1.0
+            - set -ex;mkdir -p /ddtrace/agent;cp -r /datadog-init/* /ddtrace/agent;
+            image: pubrepo.jiagouyun.com/datakit-operator/dd-lib-java-init
             imagePullPolicy: Always
             name: ddtrace-agent-sidecar
             volumeMounts:
@@ -792,8 +792,8 @@ WORKDIR ${workdir}
 ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS}   -jar ${jar} ${PARAMS}  2>&1 > /dev/null"]
 ```
 
-新建 `/usr/local/k8s/system-deployment.yaml` ，Pod 中使用了 3 个镜像 `172.16.0.238/df-ruoyi/demo-system:v1` 、`pubrepo.jiagouyun.com/datakit/logfwd:1.2.7` 、`pubrepo.jiagouyun.com/datakit/dk-sidecar:1.1`。 <br />
-其中 dk-sidecar 是提供 `dd-java-agent.jar` 文件给 system-container 业务容器使用，logfwd 采集业务容器的日志文件。logfwd 的配置文件是通过 ConfigMap 来挂载到容器中的，在配置文件中指明需要采集的日志文件位置、source 名称等。
+新建 `/usr/local/k8s/system-deployment.yaml` ，Pod 中使用了 3 个镜像 `172.16.0.238/df-ruoyi/demo-system:v1` 、`pubrepo.jiagouyun.com/datakit/logfwd:1.2.7` 、`pubrepo.jiagouyun.com/datakit-operator/dd-lib-java-init`。 <br />
+其中 dd-lib-java-init 是提供 `dd-java-agent.jar` 文件给 system-container 业务容器使用，logfwd 采集业务容器的日志文件。logfwd 的配置文件是通过 ConfigMap 来挂载到容器中的，在配置文件中指明需要采集的日志文件位置、source 名称等。
 
 `system-deployment.yaml` 完整内容如下：
 
@@ -902,8 +902,8 @@ ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS}   -jar ${jar} ${PARAMS}  2>&1 >
             command:
             - sh
             - -c
-            - set -ex;mkdir -p /ddtrace/agent;cp -r /usr/dd-java-agent/agent/* /ddtrace/agent;
-            image: pubrepo.jiagouyun.com/datakit/dk-sidecar:1.0
+            - set -ex;mkdir -p /ddtrace/agent;cp -r /datadog-init/* /ddtrace/agent;
+            image: pubrepo.jiagouyun.com/datakit-operator/dd-lib-java-init
             imagePullPolicy: Always
             volumeMounts:
             - mountPath: /ddtrace/agent

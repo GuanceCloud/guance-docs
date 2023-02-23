@@ -10,6 +10,7 @@ nav:
       - 从 0 到 1 利用观测云构建 Springcloud 服务的可观测性: spring-cloud-sample.md
       - Skywalking 采集 JVM 可观测最佳实践: skywalking-jvm.md
       - 使用 datakit-operator 注入 dd-java-agent: datakit-operator.md
+      - trace-glame-graph.md
     - '中间件 (Middleware)':
       - 'Nginx 可观测最佳实践': nginx.md
       - 'Redis 可观测最佳实践': redis.md

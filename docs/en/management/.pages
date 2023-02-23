@@ -4,13 +4,15 @@ nav:
   - 'MFA Management': mfa-management.md
   - 'Space Management': space-management.md
   - 'Member Management': member-management.md
+  - 'Permission Management': role-management.md
+  - 'Role Management': role-list.md
   - 'SSO Management': sso
   - 'Pipelines': overall-pipeline.md
   - 'Field Management': field-management.md
   - 'Blacklist': overall-blacklist.md
   - 'Data Authorization': data-authorization.md
   - 'API Key': api-key
-  - 'Share Management': share-management.md
+  - 'Sharing Management': share-management.md
   - 'Key Metrics': key-metrics.md
   - 'Audition': operation-audit.md
   - 'Customized Menu': customized-menu.md
@@ -19,5 +21,6 @@ nav:
   - 'System Notification': system-notification.md
   - 'Snapshot': snapshot.md
   - 'Help': help.md
+  - 'Work Order Management': work-order-management.md
   - 'Status Page': status-page.md
   - 'Demo Space': space-demo.md

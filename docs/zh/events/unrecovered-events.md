@@ -23,17 +23,17 @@
 
 ### 搜索与筛选
 
-在未恢复事件查看器搜索栏，支持关键字搜索、通配符搜索、关联搜索等多种搜索方式，支持通过 `标签/属性` 进行值的筛选，包括正向筛选、反向筛选、模糊匹配、反向模糊匹配、存在和不存在等多种筛选方式。更多搜索与筛选可参考文档 [查看器的搜索和筛选](../getting-started/necessary-for-beginners/explorer-search.md) 。
+在未恢复事件查看器搜索栏，支持关键字搜索、通配符搜索、关联搜索等多种搜索方式，支持通过 `标签/属性` 进行值的筛选，包括正向筛选、反向筛选、模糊匹配、反向模糊匹配、存在和不存在等多种筛选方式。更多搜索与筛选可参考文档 [查看器的搜索和筛选](../getting-started/function-details/explorer-search.md) 。
 
 ### 快捷筛选
 
-通过列表左侧的快捷筛选，您可以通过勾选快捷筛选的字段快速筛选数据，更多快捷筛选可参考文档 [快捷筛选](../getting-started/necessary-for-beginners/explorer-search.md#quick-filter) 。
+通过列表左侧的快捷筛选，您可以通过勾选快捷筛选的字段快速筛选数据，更多快捷筛选可参考文档 [快捷筛选](../getting-started/function-details/explorer-search.md#quick-filter) 。
 
 注意：在未恢复事件查看器不支持自定义添加筛选字段。
 
 ### 筛选历史
 
-点击右下角的「筛选历史」图标，可查看保存为`key:value` 的搜索条件历史，支持应用于当前工作空间不同的查看器。更多详情可参考文档 [筛选历史](../getting-started/necessary-for-beginners/explorer-search.md#filter-history) 。
+点击右下角的「筛选历史」图标，可查看保存为`key:value` 的搜索条件历史，支持应用于当前工作空间不同的查看器。更多详情可参考文档 [筛选历史](../getting-started/function-details/explorer-search.md#filter-history) 。
 
 ### 数据状态
 

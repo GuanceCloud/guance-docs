@@ -36,12 +36,15 @@
 | `app_id` | string | 必填，用户访问应用唯一ID标识，在观测云控制台上面创建监控时自动生成。 |
 | `env` | string | 必填，环境字段。属性值：prod/gray/pre/common/local。其中<br>prod：线上环境<br>gray：灰度环境<br>pre：预发布环境<br>common：日常环境<br>local：本地环境 |
 | `version` | string | 必填，版本号。 |
+| `service` | string | 可选，所属业务或服务的名称。固定名称：<br/>`df_rum_ios`<br/>`df_rum_android` |
 
 ### 用户 & 会话属性
 
 | **字段** | **类型** | **描述** |
 | --- | --- | --- |
-| `userid` | string | 未登录用户使用cookie作为userid，登录用户使用应用后台生成的用户id。 |
+| `userid` | string | 未登录用户使用随机 uuid 作为userid，登录用户使用应用后台生成的用户id。 |
+| `user_name` | string | 可选，用户名称。 |
+| `user_email` | string | 可选，用户邮箱。 |
 | `session_id` | string | 会话id（后台停留30s以上，会生成一个新的session_id）。 |
 | `session_type` | string | 会话类型。参考值：user &#124; synthetics<br>user表示是RUM功能产生的数据；<br>synthetics表示是headless拨测产生的数据。 |
 | `is_signin` | boolean | 是否是注册用户，属性值：True / False。 |
@@ -128,16 +131,26 @@
 | `view_long_task_count` | number | 每次页面加载时产生的长任务个数 |
 | `view_action_count` | number | 页面查看过程中操作的次数 |
 
+#### 监控指标
+
+| **字段**                    | **类型** | **描述**                 |
+| --------------------------- | -------- | ------------------------ |
+| `cpu_tick_count`            | number   | 可选，该页面 CPU 时间    |
+| `cpu_tick_count_per_second` | number   | 可选，每秒平均 CPU 时间  |
+| `fps_avg`                   | number   | 可选，页面平均每秒帧数   |
+| `fps_mini`                  | number   | 可选，页面最小每秒帧数   |
+| `memory_avg`                | number   | 可选，页面内存使用平均值 |
+| `memory_max`                | number   | 可选，页面内存峰值       |
+
 ### Resource
 
 #### View 属性
 
-| **字段**        | **类型** | **描述**                                            |
-| --------------- | -------- | --------------------------------------------------- |
-| `view_id`       | string   | 每次访问页面时产生的唯一ID                          |
-| `is_active`     | boolean  | 判断用户是否还在活跃状态，参考值: true &#124; false |
-| `view_referrer` | string   | 页面来源，页面的父级                                |
-| `view_name`     | string   | 页面名称                                            |
+| **字段**        | **类型** | **描述**                   |
+| --------------- | -------- | -------------------------- |
+| `view_referrer` | string   | 页面来源，页面的父级       |
+| `view_name`     | string   | 页面名称                   |
+| `view_id`       | string   | 每次访问页面时产生的唯一ID |
 
 #### Resource 属性
 
@@ -165,26 +178,25 @@
 | `resource_trans` | number（ns） | 资源加载内容传输时间<br>计算方式：responseEnd - responseStart |
 | `resource_first_byte` | number（ns） | 资源加载首包时间<br>计算方式：responseStart - domainLookupStart |
 | `duration` | number（ns） | 资源加载时间<br>计算方式：duration(responseEnd-startTime) |
+| `request_header` | string | 资源请求头 |
+| `response_header` | string | 资源响应头 |
 
 ### Error
 
 #### View 属性
 
-| **字段**        | **类型** | **描述**                                            |
-| --------------- | -------- | --------------------------------------------------- |
-| `view_id`       | string   | 每次访问页面时产生的唯一ID                          |
-| `is_active`     | boolean  | 判断用户是否还在活跃状态，参考值: true &#124; false |
-| `view_referrer` | string   | 页面来源，页面的父级                                |
-| `view_name`     | string   | 页面名称                                            |
+| **字段**        | **类型** | **描述**                   |
+| --------------- | -------- | -------------------------- |
+| `view_referrer` | string   | 页面来源，页面的父级       |
+| `view_name`     | string   | 页面名称                   |
+| `view_id`       | string   | 每次访问页面时产生的唯一ID |
 
 #### Error 属性
 
 | **字段** | **类型** | **描述** |
 | --- | --- | --- |
-| `error_message` | string | 错误信息 |
-| `error_stack` | string | 错误堆栈 |
+| `error_type` | string | 错误类型<br>logger error type: java_crash &#124; native_crash &#124; abort &#124; ios_crash<br>network error type：network |
 | `error_source` | string | 错误来源，参考值：logger &#124; network |
-| `error_type` | string | 错误类型<br>logger error type: java_crash &#124; native_crash &#124; abort &#124; ios_crash<br>network error type： |
 | `error_situation` | string | 错误发生的时机，参考值：startup(启动时)和run(运行时) |
 
 **type=network时，新增以下Network Error属性。**
@@ -198,16 +210,31 @@
 | `resource_url_path_group` | string | 资源URL path分组 |
 | `resource_method` | string | 资源请求方式 |
 
+#### Error 监控属性
+
+| **字段**       | **类型** | **描述**                 |
+| -------------- | -------- | ------------------------ |
+| `memory_total` | string   | 可选，内存总量           |
+| `memory_use`   | number   | 可选，内存使用率         |
+| `cpu_use`      | number   | 可选，cpu 使用率         |
+| `battery_use`  | number   | 可选，当前电手机的电池量 |
+
+#### 指标
+
+| **字段**        | **类型** | **描述** |
+| --------------- | -------- | -------- |
+| `error_message` | string   | 错误信息 |
+| `error_stack`   | string   | 错误堆栈 |
+
 ### Long Task
 
 #### View 属性
 
-| **字段**        | **类型** | **描述**                                            |
-| --------------- | -------- | --------------------------------------------------- |
-| `view_id`       | string   | 每次访问页面时产生的唯一ID                          |
-| `is_active`     | boolean  | 判断用户是否还在活跃状态，参考值: true &#124; false |
-| `view_referrer` | string   | 页面来源，页面的父级                                |
-| `view_name`     | string   | 页面名称                                            |
+| **字段**        | **类型** | **描述**                   |
+| --------------- | -------- | -------------------------- |
+| `view_referrer` | string   | 页面来源，页面的父级       |
+| `view_name`     | string   | 页面名称                   |
+| `view_id`       | string   | 每次访问页面时产生的唯一ID |
 
 #### 指标
 
@@ -221,12 +248,11 @@
 
 #### View 属性
 
-| **字段**        | **类型** | **描述**                                            |
-| --------------- | -------- | --------------------------------------------------- |
-| `view_id`       | string   | 每次访问页面时产生的唯一ID                          |
-| `is_active`     | boolean  | 判断用户是否还在活跃状态，参考值: true &#124; false |
-| `view_referrer` | string   | 页面来源，页面的父级                                |
-| `view_name`     | string   | 页面名称                                            |
+| **字段**        | **类型** | **描述**                   |
+| --------------- | -------- | -------------------------- |
+| `view_referrer` | string   | 页面来源，页面的父级       |
+| `view_name`     | string   | 页面名称                   |
+| `view_id`       | string   | 每次访问页面时产生的唯一ID |
 
 #### Action 属性
 

@@ -360,8 +360,6 @@ Using `source` field in the config file, default is `default`.
 
 
 
-## 
-
 ## Others {#others}
 
 This receiver is similar to a log collector, which you can refer to for [Pipeline syntax](logging.md).
