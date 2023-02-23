@@ -13,3 +13,4 @@ nav:
   - 'Redis': redis.md
   - 'Redis-sentinel': redis-sentinel.md
   - 'SQLServer': sqlserver.md
+  - 'TiDB': tidb.md
