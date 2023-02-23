@@ -27,7 +27,7 @@
 
 === "图表分析"
 
-    在观测云工作空间「日志」-「查看器」中，选择右上角「分析」即可对原始日志数据基于**1-3个标签**进行分组统计，以反映出日志数据在不同的分组下，不同时间的分布特征与趋势。观测云支持多种分组数据浏览方式：时序图、排行榜、饼图和矩形树图。更多详情可参考文档 [查看器的分析模式](../getting-started/necessary-for-beginners/explorer-search.md#analysis) 。
+    在观测云工作空间「日志」-「查看器」中，选择右上角「分析」即可对原始日志数据基于**1-3个标签**进行分组统计，以反映出日志数据在不同的分组下，不同时间的分布特征与趋势。观测云支持多种分组数据浏览方式：时序图、排行榜、饼图和矩形树图。更多详情可参考文档 [查看器的分析模式](../getting-started/function-details/explorer-search.md#analysis) 。
     
     ![](img/5.log_analysis.gif)
 
@@ -46,7 +46,7 @@
 
 ### 时间控件
 
-观测云查看器默认展示最近 15 分钟的日志数据，通过右上角的「时间控件」，您可以选择日志数据展示的时间范围。更多详情可参考文档 [时间控件说明](../getting-started/necessary-for-beginners/explorer-search.md#time) 。
+观测云查看器默认展示最近 15 分钟的日志数据，通过右上角的「时间控件」，您可以选择日志数据展示的时间范围。更多详情可参考文档 [时间控件说明](../getting-started/function-details/explorer-search.md#time) 。
 
 ### 日志索引
 
@@ -58,7 +58,7 @@
 
 ### 搜索与筛选
 
-在日志查看器搜索栏，支持关键字搜索、通配符搜索、关联搜索、JSON 搜索、DQL 手动搜索等多种搜索方式，支持通过 `标签/属性` 进行值的筛选，包括正向筛选、反向筛选、模糊匹配、反向模糊匹配、存在和不存在等多种筛选方式。更多搜索与筛选可参考文档 [查看器的搜索说明](../getting-started/necessary-for-beginners/explorer-search.md) 。
+在日志查看器搜索栏，支持关键字搜索、通配符搜索、关联搜索、JSON 搜索、DQL 手动搜索等多种搜索方式，支持通过 `标签/属性` 进行值的筛选，包括正向筛选、反向筛选、模糊匹配、反向模糊匹配、存在和不存在等多种筛选方式。更多搜索与筛选可参考文档 [查看器的搜索说明](../getting-started/function-details/explorer-search.md) 。
 
 ### DQL 搜索 {#dql}
 
@@ -73,11 +73,11 @@
 
 ### 快捷筛选
 
-在日志查看器快捷筛选，支持编辑“快捷筛选”，添加新的筛选字段。添加完成后，可以选择其字段值进行快捷筛选。更多快捷筛选可参考文档 [快捷筛选](../getting-started/necessary-for-beginners/explorer-search.md#quick-filter) 。
+在日志查看器快捷筛选，支持编辑“快捷筛选”，添加新的筛选字段。添加完成后，可以选择其字段值进行快捷筛选。更多快捷筛选可参考文档 [快捷筛选](../getting-started/function-details/explorer-search.md#quick-filter) 。
 
 ### 自定义显示列
 
-日志查看器默认显示“time”和“message”字段，其中“time”字段为固定字段无法删除。当鼠标放在查看器显示列上时，点击「设置」按钮，支持对显示列进行升序、降序、向左移动列、向右移动列、向左添加列、向右添加列、替换列、添加到快捷筛选、添加到分组、移除列等操作。更多自定义显示列可参考文档 [显示列说明](../getting-started/necessary-for-beginners/explorer-search.md#columns) 。
+日志查看器默认显示“time”和“message”字段，其中“time”字段为固定字段无法删除。当鼠标放在查看器显示列上时，点击「设置」按钮，支持对显示列进行升序、降序、向左移动列、向右移动列、向左添加列、向右添加列、替换列、添加到快捷筛选、添加到分组、移除列等操作。更多自定义显示列可参考文档 [显示列说明](../getting-started/function-details/explorer-search.md#columns) 。
 
 ### 格式化配置
 

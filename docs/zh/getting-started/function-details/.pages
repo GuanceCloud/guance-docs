@@ -1,17 +1,17 @@
 nav:
-  - '通过查看器实现数据分析': explorer_analysis.md
-  - '仪表版设计': dashboard-design.md
-  - '仪表版与查看器的联动': dashboard-explorer.md
-  - '仪表版与监控的关联': monitor-dashboard.md
-  - '查看器绑定内置视图': bind-view.md
-  - '构建组合图表': combination-diagram.md
-  - '时序图自动对齐功能的应用': data-timeseries.md
+  - '查看器':
+    - '查看器说明': explorer-search.md
+    - '通过查看器实现数据分析': explorer_analysis.md
+    - '查看器绑定内置视图': bind-view.md
+  - '仪表板':
+    - '仪表板设计': dashboard-design.md
+    - '仪表板与查看器的联动': dashboard-explorer.md
+    - '仪表板与监控的关联': monitor-dashboard.md
+    - '构建组合图表': combination-diagram.md
+    - '时序图自动对齐功能的应用': data-timeseries.md
   - '生成指标使用实战': generate-metrics.md
   - '基础设施Label的妙用': infrastructure-label.md
   - '基础设施网络分析': network-analysis.md
   - '活用日志黑名单功能': logs-blacklist.md
-  - '巧用火焰图分析链路性能': trace-glame-graph.md
-  - '构建内网的可用性观测': usability-api.md
   - '通知分组的好处与妙用': inform-group.md
   - '通过快照进行团队协作': snapshot-cooperation.md
-  - '使用Scheck实现安全巡检': scheck.md

@@ -9,7 +9,7 @@
 
 ## 示例
 
-时序图的查询对象为“主机 CPU IOwait”。添加“host:DESKTOP-NEN89U3”为事件关联的筛选条件时，用户可以在查看时序图的同时，通过阴影色块查看“host:DESKTOP-NEN89U3”是否存在告警事件。更多筛选请参考[查看器说明](../../getting-started/necessary-for-beginners/explorer-search.md)
+时序图的查询对象为“主机 CPU IOwait”。添加“host:DESKTOP-NEN89U3”为事件关联的筛选条件时，用户可以在查看时序图的同时，通过阴影色块查看“host:DESKTOP-NEN89U3”是否存在告警事件。更多筛选请参考[查看器说明](../../getting-started/function-details/explorer-search.md)
 
 ![](../img/11.chart_1.3.png)
 

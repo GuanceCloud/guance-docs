@@ -17,7 +17,7 @@ Profile 支持自动获取应用程序运行过程中 CPU、内存和 I/O 的使
 
 ## 数据查询与分析
 
-Profile 数据上报到观测云工作空间以后，您可以通过 Profile 实时数据查看器了解您的程序代码性能。支持对 Profile 数据进行查询和分析，包括搜索与筛选、快捷筛选、添加显示列、数据导出等。更多详情可参考文档 [查看器说明](../getting-started/necessary-for-beginners/explorer-search.md) 。
+Profile 数据上报到观测云工作空间以后，您可以通过 Profile 实时数据查看器了解您的程序代码性能。支持对 Profile 数据进行查询和分析，包括搜索与筛选、快捷筛选、添加显示列、数据导出等。更多详情可参考文档 [查看器说明](../getting-started/function-details/explorer-search.md) 。
 
 注意：Profile 数据默认保存 7 天。
 

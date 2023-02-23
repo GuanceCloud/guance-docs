@@ -21,15 +21,15 @@
 
 #### 搜索与筛选
 
-在查看器搜索栏，支持关键字搜索、通配符搜索、关联搜索、JSON 搜索等多种搜索方式，支持通过 `标签/属性` 进行值的筛选，包括正向筛选、反向筛选、模糊匹配、反向模糊匹配、存在和不存在等多种筛选方式。更多搜索与筛选可参考文档 [查看器的搜索和筛选](../getting-started/necessary-for-beginners/explorer-search.md) 。
+在查看器搜索栏，支持关键字搜索、通配符搜索、关联搜索、JSON 搜索等多种搜索方式，支持通过 `标签/属性` 进行值的筛选，包括正向筛选、反向筛选、模糊匹配、反向模糊匹配、存在和不存在等多种筛选方式。更多搜索与筛选可参考文档 [查看器的搜索和筛选](../getting-started/function-details/explorer-search.md) 。
 
 #### 快捷筛选
 
-在查看器快捷筛选，支持编辑“快捷筛选”，添加新的筛选字段。添加完成后，可以选择其字段值进行快捷筛选。更多快捷筛选可参考文档 [快捷筛选](../getting-started/necessary-for-beginners/explorer-search.md#quick-filter) 。
+在查看器快捷筛选，支持编辑“快捷筛选”，添加新的筛选字段。添加完成后，可以选择其字段值进行快捷筛选。更多快捷筛选可参考文档 [快捷筛选](../getting-started/function-details/explorer-search.md#quick-filter) 。
 
 #### 自定义显示列
 
-在进程列表页面，“观测云” 默认为您展示 PID、用户、主机等信息。可通过「显示列」自定义添加、编辑、删除、拖动显示列。当鼠标悬浮 Hover 在查看器显示列上时，点击「 :material-cog: 设置」按钮，支持对显示列进行升序、降序、向左移动列、向右移动列、向左添加列、向右添加列、替换列、添加到快捷筛选、添加到分析（分组聚合分析）、移除列等操作。更多自定义显示列可参考文档 [显示列说明](../getting-started/necessary-for-beginners/explorer-search.md#columns) 。
+在进程列表页面，“观测云” 默认为您展示 PID、用户、主机等信息。可通过「显示列」自定义添加、编辑、删除、拖动显示列。当鼠标悬浮 Hover 在查看器显示列上时，点击「 :material-cog: 设置」按钮，支持对显示列进行升序、降序、向左移动列、向右移动列、向左添加列、向右添加列、替换列、添加到快捷筛选、添加到分析（分组聚合分析）、移除列等操作。更多自定义显示列可参考文档 [显示列说明](../getting-started/function-details/explorer-search.md#columns) 。
 
 #### 排序
 
@@ -37,7 +37,7 @@
 
 #### 分析模式
 
-在基础设施进程查看器分析栏，支持基于 **1-3 个标签**进行多维度分析统计，以反映出数据在不同维度下的分布特征，支持多种数据图表分析方式，包括排行榜、饼图和矩形树图。更多详情可参考文档 [查看器的分析模式](../getting-started/necessary-for-beginners/explorer-search.md#analysis) 。
+在基础设施进程查看器分析栏，支持基于 **1-3 个标签**进行多维度分析统计，以反映出数据在不同维度下的分布特征，支持多种数据图表分析方式，包括排行榜、饼图和矩形树图。更多详情可参考文档 [查看器的分析模式](../getting-started/function-details/explorer-search.md#analysis) 。
 
 ![](img/4.jichusheshi_3.png)
 
