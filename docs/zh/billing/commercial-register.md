@@ -1,7 +1,7 @@
 # 注册商业版
 ---
 
-在 [观测云官网](https://www.guance.com/) ，点击「[免费开始](https://auth.guance.com/businessRegister)」，填写相关信息后即可成为观测云用户。
+在 [观测云官网](https://www.guance.com/) ，点击「[免费注册](https://auth.guance.com/businessRegister)」，填写相关信息后即可成为观测云用户。
 
 ## 第一步：基本信息 {#info}
 

@@ -35,24 +35,34 @@
 
 ### 步骤说明
 
-#### 前置条件
+#### 第一步：下载浏览器插件
 
-- [注册观测云账号](https://www.guance.com/)
-- [安装 DataKit](../datakit/datakit-install.md)
-- [接入 Web 应用](web/app-access.md)
-- [下载浏览器插件](https://static.guance.com/guance-plugin/guance-rum-plugin.zip)
+1.若您已经接入 Web 应用，您可以直接通过 [下载浏览器插件](https://static.guance.com/guance-plugin/guance-rum-plugin.zip) 进行安装。
 
-#### 安装插件
+2.若您还未开始使用观测云，可以先完成以下步骤：
 
-1. 浏览器访问：`chrome://extensions/`
-2. 确认开启「开发者模式」
-3. 解压「guance-rum-plugin.zip」
-4. 点击「加载已解压的压缩包」
-5. 选择解压后的文件夹。
+ - [注册观测云账号](https://www.guance.com/) 
+ - [安装 DataKit](../datakit/datakit-install.md) 
+ - [开启用户访问监测采集器](../datakit/rum.md) 
+ - [接入 Web 应用](web/app-access.md) 。
+
+#### 第二步：安装插件
+
+1.插件下载完成后，通过浏览器访问：`chrome://extensions/`
+
+> 自动化追踪目前支持 Chrome 和 Edge 浏览器。
+
+2.开启「开发者模式」
+
+3.解压下载的浏览器插件「[guance-rum-plugin.zip](https://static.guance.com/guance-plugin/guance-rum-plugin.zip)」
+
+4.点击「加载已解压的压缩包」
+
+5.选择解压后的文件夹。
 
 ![](img/8.auto-tracking_1.png)
 
-#### 使用插件
+#### 第三步：使用插件
 
 1.右上角点击图标「扩展程序」，找到「Guance Cloud Plugin」打开插件
 
@@ -67,7 +77,7 @@
 
 ![](img/8.auto-tracking_3.png)
 
-#### 在观测云筛选查看数据
+#### 第四步：在观测云筛选查看数据
 
 在用户访问监测应用列表，选择已接入的 Web 应用，即可通过插件生成的追踪 ID （track_id) 筛选查看用户访问数据。
 

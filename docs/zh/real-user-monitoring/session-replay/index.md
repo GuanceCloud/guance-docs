@@ -18,6 +18,8 @@
 
 关于 Web 应用的接入方式可参考文档 [Web 应用接入](../web/app-access.md)；关于会话回放的接入方式可参考文档 [如何接入会话回放](replay.md)。
 
+> 若您接入的用户访问 SDK 不是最新的版本，需要替换 NPM 包为 `> 3.0.0` 版本、或者替换原来的 CDN 链接为 `https://static.guance.com/browser-sdk/v3/dataflux-rum.js。` 
+
 ![](../img/6.session_reply_1.png)
 
 ## 如何查看会话回放
