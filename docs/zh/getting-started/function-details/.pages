@@ -7,8 +7,8 @@ nav:
     - '仪表板设计': dashboard-design.md
     - '仪表板与查看器的联动': dashboard-explorer.md
     - '仪表板与监控的关联': monitor-dashboard.md
-  - '构建组合图表': combination-diagram.md
-  - '时序图自动对齐功能的应用': data-timeseries.md
+    - '构建组合图表': combination-diagram.md
+    - '时序图自动对齐功能的应用': data-timeseries.md
   - '生成指标使用实战': generate-metrics.md
   - '基础设施Label的妙用': infrastructure-label.md
   - '基础设施网络分析': network-analysis.md
