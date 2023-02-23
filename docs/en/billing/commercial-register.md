@@ -133,13 +133,6 @@ After logging in to the workspace, you can view the version information of the c
 
 ![](img/12.billing_1.png)
 
-<div class="grid cards" markdown>
-
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; introduction of Billing module in commercial plan</font>](../billing/commercial.md#_4)
-
-<br/>
-
-</div>
 
 If you have only completed the second step when registering, you will be prompted to create a workspace when logging in. Select the workspace type to be created to complete the registration and login.
 
