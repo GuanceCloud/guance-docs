@@ -63,7 +63,7 @@ icon: fontawesome/solid/mobile-screen
 
 ### 搜索与筛选
 
-观测云 App 支持您通过搜索和筛选，在场景视图、日志、事件查看器中，对相关文本数据进行快速定位查询，支持关键字、`key:value` 字段筛选等搜索方式，更多字段筛选详情可参考文档 [搜索说明](../getting-started/necessary-for-beginners/explorer-search.md#filter) 。
+观测云 App 支持您通过搜索和筛选，在场景视图、日志、事件查看器中，对相关文本数据进行快速定位查询，支持关键字、`key:value` 字段筛选等搜索方式，更多字段筛选详情可参考文档 [搜索说明](../getting-started/function-details/explorer-search.md#filter) 。
 
 ![](img/1.mobile_filter.png) &nbsp;![](img/1.mobile_search.png)
 

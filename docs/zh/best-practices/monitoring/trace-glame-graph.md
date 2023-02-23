@@ -18,7 +18,7 @@
 
 注意：span 的父子关系可以通过子 span 的 parent_id 等于父 Span 的 span_id 来关联
 
-![](../img/flame_graph.001.png)
+![](../images/flame/flame_graph.001.png)
 
 ### 火焰图
 
@@ -29,7 +29,7 @@
 - 纵轴（Y轴）代表调用 Span 的层级深度，用于表示程序执行片段之间的调用关系：上面的 Span 是下面 Span 的父 Span（数据上也可以通过子 span 的 parent_id 等于父 Span 的 span_id 来关联来对应）。
 - 横轴（X轴）代表单个 Trace 下 Span 的持续时间（duration），一个格子的宽度越大，越说明该 Span 的从开始到结束的持续时间较长，可能是造成性能瓶颈的原因。
 
-![](../img/flame_graph.002.png)
+![](../images/flame/flame_graph.002.png)
 
 #### 显示说明
 
@@ -52,7 +52,7 @@
 
 #### 交互说明
 
-![](../img/flame_graph.003.png)
+![](../images/flame/flame_graph.003.png)
 
 1. 全屏查看/恢复默认大小：点击链路详情右上角全屏查看图标，横向展开查看链路火焰图，点击恢复默认大小图标，即可恢复详情页；
 2. 展开/收起小地图：点击链路详情左侧展开/收起小地图图标，通过在小地图上选择区间、拖拽、滚动来快捷查看火焰图；
@@ -67,7 +67,7 @@
 
 - 同属于一个 parent 的兄弟 span 间可能重叠
 
-![](../img/flame_graph.004.png)
+![](../images/flame/flame_graph.004.png)
 
 因为存在 Span 重叠的情况，为了能更直观的看到每个 Span 及子 Span的执行情况，我们前端在绘制火焰图的时候做了一些显示处理，即根据 时间 + 空间维度计算 Span 及子 Span 在完全不遮挡情况下显示的位置。
 
@@ -75,13 +75,13 @@
 
 正常 Trace，同层级 Span 时间上不重叠，但跟下属子 Span 时间有重叠，通过连线的形式关联父子 Span 之间的关系，下面子 Span 存在连线的时候也是按照该逻辑做绘图处理。
 
-![](../img/flame_graph.005.png)
+![](../images/flame/flame_graph.005.png)
 
 示例 2：
 
 异常 Trace，仍然存在同层级 Span 时间上重叠，但是因为实际数据里发现 Trace 的 顶层 Span（parent_id = 0）的开始时间（start）大于子 Span 的开始时间。
 
-![](../img/flame_graph.006.gif)
+![](../images/flame/flame_graph.006.gif)
 
 分析逻辑：
 
@@ -93,7 +93,7 @@
 
 **列表全收起状态**
 
-![](../img/flame_graph.007.png)
+![](../images/flame/flame_graph.007.png)
 
 - 列1：显示服务类型、服务名称、服务颜色及当前服务下是否存在 status = error 的 Span
 - 列2：显示当前服务下面的 Span 数量
@@ -103,7 +103,7 @@
 
 **服务行展开显示**
 
-![](../img/flame_graph.008.png)
+![](../images/flame/flame_graph.008.png)
 
 - 列1：显示资源名称（resource）、对应服务颜色及当前 span 是否存在 status = error
 - 列2：空
@@ -116,7 +116,7 @@
 - 搜索：支持资源名称（resource）模糊搜索
 - 支持选中 Span 后切换到火焰图查看对应 Span 的上下文关系
 
-![](../img/flame_graph.009.gif)
+![](../images/flame/flame_graph.009.gif)
 
 ### 服务调用关系图
 
@@ -127,7 +127,7 @@
 - 支持按资源名称（resource）模糊匹配，定位某个资源的上下游服务调用关系
 - 服务 hover 后显示：当前服务下的 Span 数量、服务执行时间及占比
 
-![](../img/flame_graph.010.png)
+![](../images/flame/flame_graph.010.png)
 
 ### 持续时间
 
@@ -141,7 +141,7 @@ Span 对应程序执行片段的开始时间和结束时间，一般在 Trace �
 
 1.子 span 可能在父 span 结束后才结束
 
-![](../img/flame_graph.011.png)
+![](../images/flame/flame_graph.011.png)
 
 子 Span 的执行时间 = Children 的 duration
 
@@ -151,7 +151,7 @@ Span 对应程序执行片段的开始时间和结束时间，一般在 Trace �
 
 2.子 span 可能在父 span 结束后才开始
 
-![](../img/flame_graph.012.png)
+![](../images/flame/flame_graph.012.png)
 
 子 Span 的执行时间 = Children 的 duration
 
@@ -161,7 +161,7 @@ Span 对应程序执行片段的开始时间和结束时间，一般在 Trace �
 
 3.同属于一个 parent 的兄弟 span 间可能重叠
 
-![](../img/flame_graph.013.png)
+![](../images/flame/flame_graph.013.png)
 
 父 Span 执行时间 = p(1) +p(2)
 
@@ -185,7 +185,7 @@ Children 2 Span 执行时间 = c2(1) + c2(2)
 
 因为所有的子 Span 都没有再下层级的子 Span，所以下图所有的子 Span 的执行时间等于他们的 Span 持续时间。父 Span 因为下面存在子 Span 的调用所以实际父 Span 的执行时间需要通过父 Span 的持续时间减去所有子 Span 的执行时间获得。
 
-![](../img/flame_graph.014.png)
+![](../images/flame/flame_graph.014.png)
 
 #### 服务执行时间
 
@@ -201,62 +201,64 @@ Children 2 Span 执行时间 = c2(1) + c2(2)
 
 进入 DataKit 安装目录下的 conf.d/ddtrace 目录，复制 ddtrace.conf.sample 并命名为 ddtrace.conf。示例如下：
 
-```Shell
-[[inputs.ddtrace]]
-  ## DDTrace Agent endpoints register by version respectively.
-  ## Endpoints can be skipped listen by remove them from the list.
-  ## Default value set as below. DO NOT MODIFY THESE ENDPOINTS if not necessary.
-  endpoints = ["/v0.3/traces", "/v0.4/traces", "/v0.5/traces"]
+??? quote "`ddtrace.conf` 示例"
 
-  ## customer_tags is a list of keys contains keys set by client code like span.SetTag(key, value)
-  ## that want to send to data center. Those keys set by client code will take precedence over
-  ## keys in [inputs.ddtrace.tags]. DOT(.) IN KEY WILL BE REPLACED BY DASH(_) WHEN SENDING.
-  # customer_tags = ["key1", "key2", ...]
+    ```Shell
+    [[inputs.ddtrace]]
+      ## DDTrace Agent endpoints register by version respectively.
+      ## Endpoints can be skipped listen by remove them from the list.
+      ## Default value set as below. DO NOT MODIFY THESE ENDPOINTS if not necessary.
+      endpoints = ["/v0.3/traces", "/v0.4/traces", "/v0.5/traces"]
 
-  ## Keep rare tracing resources list switch.
-  ## If some resources are rare enough(not presend in 1 hour), those resource will always send
-  ## to data center and do not consider samplers and filters.
-  # keep_rare_resource = false
+      ## customer_tags is a list of keys contains keys set by client code like span.SetTag(key, value)
+      ## that want to send to data center. Those keys set by client code will take precedence over
+      ## keys in [inputs.ddtrace.tags]. DOT(.) IN KEY WILL BE REPLACED BY DASH(_) WHEN SENDING.
+      # customer_tags = ["key1", "key2", ...]
 
-  ## By default every error presents in span will be send to data center and omit any filters or
-  ## sampler. If you want to get rid of some error status, you can set the error status list here.
-  # omit_err_status = ["404"]
+      ## Keep rare tracing resources list switch.
+      ## If some resources are rare enough(not presend in 1 hour), those resource will always send
+      ## to data center and do not consider samplers and filters.
+      # keep_rare_resource = false
 
-  ## Ignore tracing resources map like service:[resources...].
-  ## The service name is the full service name in current application.
-  ## The resource list is regular expressions uses to block resource names.
-  ## If you want to block some resources universally under all services, you can set the
-  ## service name as "*". Note: double quotes "" cannot be omitted.
-  # [inputs.ddtrace.close_resource]
-    # service1 = ["resource1", "resource2", ...]
-    # service2 = ["resource1", "resource2", ...]
-    # "*" = ["close_resource_under_all_services"]
-    # ...
+      ## By default every error presents in span will be send to data center and omit any filters or
+      ## sampler. If you want to get rid of some error status, you can set the error status list here.
+      # omit_err_status = ["404"]
 
-  ## Sampler config uses to set global sampling strategy.
-  ## sampling_rate used to set global sampling rate.
-  # [inputs.ddtrace.sampler]
-    # sampling_rate = 1.0
+      ## Ignore tracing resources map like service:[resources...].
+      ## The service name is the full service name in current application.
+      ## The resource list is regular expressions uses to block resource names.
+      ## If you want to block some resources universally under all services, you can set the
+      ## service name as "*". Note: double quotes "" cannot be omitted.
+      # [inputs.ddtrace.close_resource]
+        # service1 = ["resource1", "resource2", ...]
+        # service2 = ["resource1", "resource2", ...]
+        # "*" = ["close_resource_under_all_services"]
+        # ...
 
-  # [inputs.ddtrace.tags]
-    # key1 = "value1"
-    # key2 = "value2"
-    # ...
+      ## Sampler config uses to set global sampling strategy.
+      ## sampling_rate used to set global sampling rate.
+      # [inputs.ddtrace.sampler]
+        # sampling_rate = 1.0
 
-  ## Threads config controls how many goroutines an agent cloud start.
-  ## buffer is the size of jobs' buffering of worker channel.
-  ## threads is the total number fo goroutines at running time.
-  # [inputs.ddtrace.threads]
-    # buffer = 100
-    # threads = 8
+      # [inputs.ddtrace.tags]
+        # key1 = "value1"
+        # key2 = "value2"
+        # ...
 
-  ## Storage config a local storage space in hard dirver to cache trace data.
-  ## path is the local file path used to cache data.
-  ## capacity is total space size(MB) used to store data.
-  # [inputs.ddtrace.storage]
-    # path = "./ddtrace_storage"
-    # capacity = 5120
-```
+      ## Threads config controls how many goroutines an agent cloud start.
+      ## buffer is the size of jobs' buffering of worker channel.
+      ## threads is the total number fo goroutines at running time.
+      # [inputs.ddtrace.threads]
+        # buffer = 100
+        # threads = 8
+
+      ## Storage config a local storage space in hard dirver to cache trace data.
+      ## path is the local file path used to cache data.
+      ## capacity is total space size(MB) used to store data.
+      # [inputs.ddtrace.storage]
+        # path = "./ddtrace_storage"
+        # capacity = 5120
+    ```
 
 配置好后，[重启 DataKit](../../datakit/datakit-service-how-to.md#manage-service) 即可。
 
@@ -266,7 +268,7 @@ Children 2 Span 执行时间 = c2(1) + c2(2)
 
 如果有 ddtrace 数据发送给 DataKit，那么在 [DataKit 的 monitor](../../datakit/datakit-monitor.md) 上能看到：
 
-![](../img/flame_graph.015.png)
+![](../images/flame/flame_graph.015.png)
 
 *DDtrace 将数据发送给了 /v0.4/traces 接口*
 
@@ -290,60 +292,62 @@ go get -v github.com/DataDog/dd-trace-go
 
 在 main() 入口代码中，设置好基本的 trace 参数，并启动 trace：
 
-```Go
-package main
+??? quote "示例如下"
 
-import (
-    "io/ioutil"
-    "os"
-    "time"
+    ```Go
+    package main
 
-    "gopkg.in/DataDog/dd-trace-go.v1/ddtrace/ext"
-    "gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
-)
+    import (
+        "io/ioutil"
+        "os"
+        "time"
 
-func main() {
-    tracer.Start(
-        tracer.WithEnv("prod"),
-        tracer.WithService("test-file-read"),
-        tracer.WithServiceVersion("1.2.3"),
-        tracer.WithGlobalTag("project", "add-ddtrace-in-golang-project"),
+        "gopkg.in/DataDog/dd-trace-go.v1/ddtrace/ext"
+        "gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
     )
 
-    // end of app exit, make sure tracer stopped
-    defer tracer.Stop()
+    func main() {
+        tracer.Start(
+            tracer.WithEnv("prod"),
+            tracer.WithService("test-file-read"),
+            tracer.WithServiceVersion("1.2.3"),
+            tracer.WithGlobalTag("project", "add-ddtrace-in-golang-project"),
+        )
 
-    tick := time.NewTicker(time.Second)
-    defer tick.Stop()
+        // end of app exit, make sure tracer stopped
+        defer tracer.Stop()
 
-    // your-app-main-entry...
-    for {
-        runApp()
-        runAppWithError()
+        tick := time.NewTicker(time.Second)
+        defer tick.Stop()
 
-        select {
-        case <-tick.C:
+        // your-app-main-entry...
+        for {
+            runApp()
+            runAppWithError()
+
+            select {
+            case <-tick.C:
+            }
         }
     }
-}
 
-func runApp() {
-    var err error
-    // Start a root span.
-    span := tracer.StartSpan("get.data")
-    defer span.Finish(tracer.WithError(err))
+    func runApp() {
+        var err error
+        // Start a root span.
+        span := tracer.StartSpan("get.data")
+        defer span.Finish(tracer.WithError(err))
 
-    // Create a child of it, computing the time needed to read a file.
-    child := tracer.StartSpan("read.file", tracer.ChildOf(span.Context()))
-    child.SetTag(ext.ResourceName, os.Args[0])
+        // Create a child of it, computing the time needed to read a file.
+        child := tracer.StartSpan("read.file", tracer.ChildOf(span.Context()))
+        child.SetTag(ext.ResourceName, os.Args[0])
 
-    // Perform an operation.
-    var bts []byte
-    bts, err = ioutil.ReadFile(os.Args[0])
-    span.SetTag("file_len", len(bts))
-    child.Finish(tracer.WithError(err))
-}
-```
+        // Perform an operation.
+        var bts []byte
+        bts, err = ioutil.ReadFile(os.Args[0])
+        span.SetTag("file_len", len(bts))
+        child.Finish(tracer.WithError(err))
+    }
+    ```
 
 #### 编译运行
 
@@ -363,7 +367,7 @@ $env:DD_AGENT_HOST="localhost"; $env:DD_TRACE_AGENT_PORT="9529"; .\my-app.exe
 
 程序运行一段时间后，即可在观测云看到类似如下 trace 数据：
 
-![](../img/flame_graph.016.png)
+![](../images/flame/flame_graph.016.png)
 
 *Golang 程序 trace 数据展示*
 
@@ -398,22 +402,22 @@ DD_XXX=<env-value> DD_YYY=<env-value> ./my-app
 
 1.登录观测云工作空间，查看应用性能监测模块的服务列表，从服务页面已经可以看出 browser 服务的 P90 响应时间是比较长的。
 
-![](../img/flame_graph.017.png)
+![](../images/flame/flame_graph.017.png)
 
 2.点击 browser 服务名称，查看该服务的概览分析视图，可以看出影响当前服务响应时间的最关键的资源是 query_data 这个接口，因为这个接口是观测云的一个数据查询接口，所以接下来我们看下这个接口在查询过程当中，到底是因为什么导致耗时较长。
 
-![](../img/flame_graph.018.png)
+![](../images/flame/flame_graph.018.png)
 
 3.点击资源名称，跳转到查看器，通过点击 持续时间 倒序查看响应时间的最大值。
 
-![](../img/flame_graph.019.png)
+![](../images/flame/flame_graph.019.png)
 
 4.点击 Span 数据，查看分析当前 Span 在整个链路里面的执行性能和其他相关信息。
 
-![](../img/flame_graph.020.png)
+![](../images/flame/flame_graph.020.png)
 
 5.点击右上角 [全屏] 模式按钮，放大查看火焰图相关信息。结合整体链路查看，可以看出 browser服务在整个链路中的执行时间占比高达 96.26%，从 Span 列表也可以得出此结论。根据火焰图的占比和对应的链路详情信息，我们可以总和得出 browser 的这个 query_data Span 在整个执行过程中可以看到 resource_ttfb（资源加载请求响应时间）耗时 400 多毫秒， resource_first_byte（资源加载首包时间）耗时 1.46 秒，再结合查看 province 的地理位置定位是 Singapore（新加坡），而我们的站点部署在杭州节点，则可以得出是因为地理位置问题导致数据传输的时间变长从而影响了整个的耗时。
 
-![](../img/flame_graph.021.png)
+![](../images/flame/flame_graph.021.png)
 
-![](../img/flame_graph.022.png)
+![](../images/flame/flame_graph.022.png)
