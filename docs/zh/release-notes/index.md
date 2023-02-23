@@ -33,17 +33,17 @@ icon: zy/release-notes
 
 ##### 新增 CDN 质量分析 
 
-新增采集 CDN 数据，通过分析图表对 CDN 进行质量分析。更多采集配置可参考 [Rum 采集器配置](../datakit/rum.md) 。
+用户访问监测新增 CDN 厂商信息采集，通过分析图表对不同厂商的 CDN 进行质量分析。更多采集配置可参考 [Rum 采集器配置](../datakit/rum.md#cdn-resolve) 。
 
 #### 场景优化
 
 ##### 新增自定义查看器导航菜单
 
-在场景查看器列表，新增支持将当前查看器添加至基础设施、指标、日志、应用性能监测、用户访问监测、可用性监测、安全巡检、CI 可视化。更多详情可参考 [添加查看器导航菜单](../scene/explorer/index.md#menu) 。
+在场景查看器列表，新增支持将当前查看器添加至基础设施、指标、日志、应用性能监测、用户访问监测、可用性监测、安全巡检、CI 可视化导航菜单。更多详情可参考 [添加查看器导航菜单](../scene/explorer/index.md#menu) 。
 
 ##### 增强场景视图变量级联功能
 
-在场景视图变量配置级联查询时，支持使用 `=` 、`!=` 精确匹配变量值，支持使用 `match（re）` 、`not match（re）` 、`wildcard` 、`not wildcard` 模糊匹配变量值。更多详情可参考文档 [视图变量](../scene/view-variable.md) 。
+在场景视图变量配置级联查询时，支持使用 `=` 、`!=` 精确匹配变量值，支持使用 `match（re）` 、`not match（re）` 、`wildcard` 、`not wildcard` 模糊匹配变量值。更多详情可参考文档 [视图变量](../scene/view-variable.md#query) 。
 
 ##### 饼图新增合并配置选项
 
@@ -68,8 +68,9 @@ icon: zy/release-notes
 - 优化拨测逻辑
 - 优化 Windows 下安装提示
 - 优化 powershell 安装脚本模板
+- 优化 k8s 中 Pod, ReplicaSet, Deployment 的关联方法
 - 重构 point 数据结构及功能
-- 优化 k8s 中 pod, ReplicaSet, Deployment 的关联方法
+- Datakit 自带 eBPF 采集器二进制安装
 
 更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md) 。
 
