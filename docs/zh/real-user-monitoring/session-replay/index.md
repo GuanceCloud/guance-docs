@@ -1,15 +1,13 @@
-# 会话回放（Session Replay）
+# 会话回放
 ---
 
 ## 简介
 
-会话回放（Session Replay）通过现代浏览器提供的强大 API 拓展能力，捕获 Web 应用的用户的操作数据，并重播用户当时的使用体验。
-
-结合用户访问性能数据，帮助用户进行错误定位、重现和解决问题，并及时发现 Web 应用程序在使用模式和设计上的缺陷。
+会话回放是用户体验网站的重建演示，通过捕获单击、鼠标移动和页面滚动等内容，生成视频记录，深入了解用户的操作体验；结合用户访问性能数据，帮助用户进行错误定位、重现和解决问题。
 
 ## 采集器配置
 
-在使用会话回放之前，需要先 [安装 Datakit](../datakit/datakit-install.md) ，然后开启 RUM 采集器及会话重放对应的参数 `session_replay_endpoints`, 更多详情可参考 [Rum 采集器配置](../../datakit/rum.md) 。
+在使用会话回放之前，需要先 [安装 Datakit](../datakit/datakit-install.md) ，然后开启 RUM 采集器及会话回放对应的参数 `session_replay_endpoints`, 更多详情可参考 [Rum 采集器配置](../../datakit/rum.md) 。
 
 ## 接入配置
 
