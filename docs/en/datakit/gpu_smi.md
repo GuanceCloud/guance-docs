@@ -70,26 +70,28 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
+
+
 #### `gpu_smi`
 
--  Tag
+-  Tags
 
 
-| Tag Name | Description    |
+| Tag | Descrition |
 |  ----  | --------|
-|`compute_mode`|Computing mode|
+|`compute_mode`|Compute mode|
 |`cuda_version`|CUDA version|
 |`driver_version`|Driver version|
-|`host`|hostname|
-|`name`|GPU board type|
-|`pci_bus_id`|pci Slot id|
-|`pstate`|GPU performance status|
+|`host`|Host name|
+|`name`|GPU card model|
+|`pci_bus_id`|PCI bus id|
+|`pstate`|GPU performance level|
 |`uuid`|UUID|
 
-- Metrics List
+- Metrics
 
 
-| Metrics | Description| Data Type | Unit   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`clocks_current_graphics`|Graphics clock frequency.|int|MHz|
 |`clocks_current_memory`|Memory clock frequency.|int|MHz|

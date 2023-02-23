@@ -209,14 +209,21 @@ For all of the following data collections, a global tag named `host` is appended
 # ...
 ```
 
+``` toml
+[inputs.elasticsearch.tags]
+# some_tag = "some_value"
+# more_tag = "some_other_value"
+# ...
+```
+
 
 
 ### `elasticsearch_node_stats`
 
--  Tag
+-  Tags
 
 
-| Tag Name | Description    |
+| Tag | Descrition |
 |  ----  | --------|
 |`cluster_name`|Name of the cluster, based on the Cluster name setting setting.|
 |`node_attribute_ml.enabled`|Set to true (default) to enable machine learning APIs on the node.|
@@ -227,10 +234,10 @@ For all of the following data collections, a global tag named `host` is appended
 |`node_id`|The id for the node.|
 |`node_name`|Human-readable identifier for the node.|
 
-- Metrics List
+- Metrics
 
 
-| Metrics | Description| Data Type | Unit   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`fs_data_0_available_in_gigabytes`|Total number of gigabytes available to this Java virtual machine on this file store.|float|B|
 |`fs_data_0_free_in_gigabytes`|Total number of unallocated gigabytes in the file store.|float|B|
@@ -283,18 +290,18 @@ For all of the following data collections, a global tag named `host` is appended
 
 ### `elasticsearch_indices_stats`
 
--  Tag
+-  Tags
 
 
-| Tag Name | Description    |
+| Tag | Descrition |
 |  ----  | --------|
 |`cluster_name`|Name of the cluster, based on the Cluster name setting setting.|
 |`index_name`|Name of the index. The name '_all' target all data streams and indices in a cluster.|
 
-- Metrics List
+- Metrics
 
 
-| Metrics | Description| Data Type | Unit   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`total_flush_total`|Number of flush operations.|float|count|
 |`total_flush_total_time_in_millis`|Total time in milliseconds spent performing flush operations.|float|ms|
@@ -320,19 +327,19 @@ For all of the following data collections, a global tag named `host` is appended
 
 ### `elasticsearch_cluster_stats`
 
--  Tag
+-  Tags
 
 
-| Tag Name | Description    |
+| Tag | Descrition |
 |  ----  | --------|
 |`cluster_name`|Name of the cluster, based on the cluster.name setting.|
 |`node_name`|Name of the node.|
 |`status`|Health status of the cluster, based on the state of its primary and replica shards.|
 
-- Metrics List
+- Metrics
 
 
-| Metrics | Description| Data Type | Unit   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`nodes_process_open_file_descriptors_avg`|Average number of concurrently open file descriptors. Returns -1 if not supported.|float|count|
 
@@ -340,18 +347,18 @@ For all of the following data collections, a global tag named `host` is appended
 
 ### `elasticsearch_cluster_health`
 
--  Tag
+-  Tags
 
 
-| Tag Name | Description    |
+| Tag | Descrition |
 |  ----  | --------|
 |`cluster_name`|Name of the cluster.|
 |`cluster_status`|The cluster status: red, yellow, green.|
 
-- Metrics List
+- Metrics
 
 
-| Metrics | Description| Data Type | Unit   |
+| Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`active_primary_shards`|The number of active primary shards in the cluster.|int|count|
 |`active_shards`|The number of active shards in the cluster.|int|count|
@@ -364,7 +371,6 @@ For all of the following data collections, a global tag named `host` is appended
 |`unassigned_shards`|The number of shards that are unassigned to a node.|int|count|
 
  
-
 
 ## Log Collection {#logging}
 
