@@ -13,55 +13,65 @@ icon: zy/release-notes
 
 #### 用户访问监测优化
 
-##### 新增 Session Replay 功能
-
-Session Replay（会话回放）通过现代浏览器提供的强大 API 拓展能力，捕获 Web 应用的用户的操作数据，并重播用户当时的使用体验。结合用户访问性能数据，帮助用户进行错误定位、重现和解决问题，并及时发现 Web 应用程序在使用模式和设计上的缺陷。
-更多详情可参考文档 [会话回放](../real-user-monitoring/session-replay/index.md) 。
-
-![](img/.png)
-
 ##### 新增用户访问监测自动化追踪
 
-用户访问监测追踪新增自动化追踪，通过浏览器记录用户访问行为，创建无代码的端到端自动化追踪，更多详情可参考文档 [自动化追踪](../real-user-monitoring/self-tracking.md#auto-tracking) 。
-
-![](img/.png)
+用户访问监测新增自动化追踪，通过“浏览器插件”的实现方式，使用浏览器记录用户访问行为，创建无代码的端到端测试。更多详情可参考文档 [自动化追踪](../real-user-monitoring/self-tracking.md#auto-tracking) 。
 
 ##### 用户访问监测应用列表、查看器、分析看板布局整体调整
 
 - 用户访问监测应用列表显示布局调整，支持在应用列表跳转查看当前应用的“分析看板”和“查看器”内容详情。
 
-![](img/.png)
+![](img/11.rum_1.png)
 
 - 用户访问监测“查看器”支持查看所有应用的用户访问数据，您可以通过筛选 “应用ID” 来查看和分析不同应用的数据。
 
-![](img/.png)
+![](img/11.rum_2.png)
 
 - 用户访问监测“分析看板“支持切换查看 Web 端、移动端、小程序的场景分析视图。
 
-![](img/.png)
+![](img/11.rum_3.png)
 
 ##### 新增 CDN 质量分析 
 
-新增采集 CDN 数据，通过分析图表对 CDN 进行质量分析，更多采集配置，可参考 [Rum 采集器配置](../datakit/rum.md) 。
-
+新增采集 CDN 数据，通过分析图表对 CDN 进行质量分析。更多采集配置可参考 [Rum 采集器配置](../datakit/rum.md) 。
 
 #### 场景优化
 
 ##### 新增自定义查看器导航菜单
 
-在场景查看器列表，点击右侧「操作」菜单下的「编辑」，新增「添加至菜单」，选择即可添加当前查看器至事件、基础设施、指标、日志、应用性能监测、用户访问监测、可用性监测、安全巡检、CI 可视化。更多详情可参考 [添加查看器导航菜单](../scene/explorer/index.md#menu) 。
+在场景查看器列表，新增支持将当前查看器添加至基础设施、指标、日志、应用性能监测、用户访问监测、可用性监测、安全巡检、CI 可视化。更多详情可参考 [添加查看器导航菜单](../scene/explorer/index.md#menu) 。
 
 ##### 增强场景视图变量级联功能
 
-在场景视图变量配置级联查询时，支持使用 `=` 、`!=` 精确匹配的变量值，支持`match（re）` 、`not match（re）` 、`wildcard` 、`not wildcard` 模糊匹配变量值，如 `R::view:(distinct('env')) {'app_id' = re('#{appid}')}`。更多详情可参考文档 [视图变量](../scene/view-variable.md) 。
+在场景视图变量配置级联查询时，支持使用 `=` 、`!=` 精确匹配变量值，支持使用 `match（re）` 、`not match（re）` 、`wildcard` 、`not wildcard` 模糊匹配变量值。更多详情可参考文档 [视图变量](../scene/view-variable.md) 。
 
-##### 优化饼图，新增合并配置选项
+##### 饼图新增合并配置选项
 
-饼图新增合并的配置选项，支持用户配置占比比例大小判断是否合并到 “其他” 显示。若饼图中数据占比比例过小的切片太多，可使用合并来聚合数据到“其他”的切片上，查看占比优先级更高的切片，提高饼图的可读性。更多详情可参考文档 [饼图](../scene/visual-chart/pie-chart.md) 。
+饼图新增合并配置选项，支持用户将冗余的数据点合并到 “其他” 显示，提高饼图的可读性。更多详情可参考文档 [饼图](../scene/visual-chart/pie-chart.md) 。
 
 #### 其他功能优化
-- 观测云 [商业版注册](../billing/commercial-register.md)  流程支持绑定已有观测云费用中心账号；
-- 配置 [监控器](../monitoring/monitor/index.md) 时，「检测维度」去掉必选逻辑。
+- 观测云 [商业版注册](../billing/commercial-register.md)  流程支持绑定观测云费用中心账号；
+- 配置 [监控器](../monitoring/monitor/index.md) 时，「检测维度」支持非必选。
+
+### DataKit 更新
+
+**新加功能**
+
+- 命令行增加解析行协议功能
+- Datakit yaml 和 helm 支持资源 limit 配置
+- Datakit yaml 和 helm 支持 CRD 部署
+- 添加 SQL-Server 集成测试
+- RUM 支持 resource CDN 标注
+
+**功能优化**
+
+- 优化拨测逻辑
+- 优化 Windows 下安装提示
+- 优化 powershell 安装脚本模板
+- 重构 point 数据结构及功能
+- 优化 k8s 中 pod, ReplicaSet, Deployment 的关联方法
+
+更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md) 。
 
 ## 2023 年 2 月 16 号
 
@@ -130,8 +140,6 @@ Session Replay（会话回放）通过现代浏览器提供的强大 API 拓展�
 
 ### 智能巡检更新
 
-#### 功能优化
-
 - **RUM 性能巡检：**支持影响用户的会话 ID 跳转查看问题 Session，在巡检事件报告中提供更专业的优化手段。
 - **云账户实例维度账单巡检：**新增对 AWS 账户实例维度账单巡检支持。
 
@@ -154,16 +162,6 @@ Session Replay（会话回放）通过现代浏览器提供的强大 API 拓展�
 - Datakit 主机安装可自定义默认采集器开启
 - 提供 OTEL 的错误追踪
 - 提供 RUM Session 回放能力
-
-**问题修复**
-
-- 修复日志堆积问题
-- 修复 conf.d 重复启动采集器问题
-- 修复 OTEL 数据关联问题
-- 修复 OTEL 采集数据字段覆盖问题
-- 修复 Nginx Host 识别错误
-- 修复拨测超时
-- 修复云厂商实例识别
 
 **功能优化**
 
