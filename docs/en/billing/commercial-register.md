@@ -1,7 +1,7 @@
 # Register Commercial Plan
 ---
 
-You can go to [Guance official website](https://www.guance.com/), [register now](https://auth.guance.com/businessRegister)as a Guance user.
+You can go to [Guance official website](https://www.guance.com/), [register now](https://auth.guance.com/businessRegister) as a Guance user.
 
 ## Step 1: Basic Information {#info}
 
@@ -95,7 +95,7 @@ You can **Select Opening Method**, fill in **Workspace Name**, select **Workspac
 
 If you select "China 2 (Ningxia)" and "Overseas 1 (Oregon)" sites when registering, Guance will provide AWS account settlement by default, and all expenses incurred in the workspace will be settled directly from your AWS account.
 
-You can subscribe to Guance on AWS by clicking on [Go to Amazon Cloud Marketplace to Subscribe](../billing/billing-account/aws-account.md#subscribe) 」in "Choose how to Open it". After completing the subscription, enter **Workspace Name** in the dialog box below, select **Workspace Language** and click OK to complete the registration.
+You can subscribe to Guance on AWS by clicking on [Go to Amazon Cloud Marketplace to Subscribe](../billing/billing-account/aws-account.md#subscribe) in **Choose how to Open it**. After completing the subscription, enter **Workspace Name** in the dialog box below, select **Workspace Language** and click OK to complete the registration.
 
 ![](img/4.register_language_2.1.png)
 
