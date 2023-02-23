@@ -51,7 +51,8 @@ icon: zy/release-notes
 
 #### 其他功能优化
 - 观测云 [商业版注册](../billing/commercial-register.md)  流程支持绑定观测云费用中心账号；
-- 配置 [监控器](../monitoring/monitor/index.md) 时，「检测维度」支持非必选。
+- 配置 [监控器](../monitoring/monitor/index.md) 时，「检测维度」支持非必选；
+- 图表查询中 match / not match 运算符翻译逻辑调整，日志类数据中 match 去除默认右 * 匹配逻辑。
 
 ### DataKit 更新
 
