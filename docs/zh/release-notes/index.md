@@ -33,7 +33,7 @@ icon: zy/release-notes
 
 ##### 新增 CDN 质量分析 
 
-用户访问监测新增 CDN 厂商信息采集，通过分析图表对不同厂商的 CDN 进行质量分析。更多采集配置可参考 [Rum 采集器配置](../datakit/rum.md#cdn-resolve) 。
+用户访问监测新增 CDN 厂商信息采集，通过分析图表对不同厂商的 CDN 进行质量分析。更多配置可参考 [用户访问监测采集器配置](../datakit/rum.md#cdn-resolve) 。
 
 #### 场景优化
 
@@ -49,10 +49,16 @@ icon: zy/release-notes
 
 饼图新增合并配置选项，支持用户将冗余的数据点合并到 “其他” 显示，提高饼图的可读性。更多详情可参考文档 [饼图](../scene/visual-chart/pie-chart.md) 。
 
+#### 调整图表查询运算符翻译逻辑
+
+图表查询中 match / not match 运算符翻译逻辑调整，日志类数据中 match 去除默认添加右 * 匹配逻辑，若有需求可手动在输入框中添加。
+
+![](img/13.query_1.png)
+
 #### 其他功能优化
 - 观测云 [商业版注册](../billing/commercial-register.md)  流程支持绑定观测云费用中心账号；
 - 配置 [监控器](../monitoring/monitor/index.md) 时，「检测维度」支持非必选；
-- 图表查询中 match / not match 运算符翻译逻辑调整，日志类数据中 match 去除默认右 * 匹配逻辑。
+
 
 ### DataKit 更新
 
