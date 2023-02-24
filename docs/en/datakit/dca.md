@@ -149,7 +149,7 @@ After connecting to the DataKit remotely, click「Pipelines」to view the pipeli
 
 #### View the Blacklist {#view-filters}
 
-After connecting to DataKit remotely, click "Blacklist" to view the blacklist configured in the guance. As shown in the following figure, `source = default and (status in [unknown])` is the configured blacklist condition.
+After connecting to DataKit remotely, click "Blacklist" to view the blacklist configured in the observation cloud. As shown in the following figure, `source = default and (status in [unknown])` is the configured blacklist condition.
 
 Note: The blacklist files created through Guance Cloud are stored in the path: `/usr/local/datakit/data/.pull`.
 

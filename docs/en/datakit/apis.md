@@ -104,7 +104,7 @@ mysql,tag1=a,tag2=b,filename=b.log f1=1i,f2=1.2,f3="abc",message="other-log-data
 redis,tag1=a,tag2=b,filename=c.log f1=1i,f2=1.2,f3="abc",message="more-log-data",status="error" 1620723870000000000
 ```
 
-- The measurement name in the line protocol ( `nginx/mysql/redis`here) is stored as the `source` field of the log.
+- The metric set name in the line protocol ( `nginx/mysql/redis`here) is stored as the `source` field of the log.
 - The original log data is stored in the `message` field.
   
 ### Metric Data Example {#api-metric-example}
@@ -258,7 +258,7 @@ Parameter description:
 | `disable_slimit`         | Whether to disable the default SLimit, when true, the default SLimit value will not be added, otherwise, SLimit 20 will be forced to be added, and the default is `false`.                                                                                                                        |
 | `echo_explain`           | Whether to return the final execution statement (returns the `raw_query` field in the JSON data).                                                                                                                                                                |
 | `highlight`              | Highlight search results                                                                                                                |
-| `limit`                  | Limiting the number of points returned by a single timeseries will override the limit existing in DQL.                                                                                                                                                                        |
+| `limit`                  | Limiting the number of points returned by a single timeline will override the limit existing in DQL.                                                                                                                                                                        |
 | `max_duration`           | Limit the maximum query time and support units  `ns/us/ms/s/m/h/d/w/y`, for example,  `3d` is 3 days, `2w` is 2 weeks, and `1y` is 1 year. The default is 1 year, which also restricts the `time_range` parameter.                                                                         |
 | `max_point`              | Limit the maximum number of aggregated points. When using an aggregate function, if the aggregation density is too low, resulting in too many points, it is replaced by a new aggregation interval `(end_time-start_time)/max_point`.                                                                                        |
 | `offset`                 | Typically used with limit configuration for result paging.                                                                                                                      |
@@ -266,7 +266,7 @@ Parameter description:
 | `queries`                | Basic query module, including query statements and various additional parameters.                                                                                                                                                                                   |
 | `query`                  | DQL query statement（DQL [document](../dql/define.md)）                                                                                                                                                                               |
 | `search_after`           | Deep paging, when calling paging for the first time, an empty list is passed in: `"search_after": []`. After success, the server will return a list, and the client can directly reuse the value of this list and pass it back to the subsequent query through the  `search_after` parameter.                                                   |
-| `slimit`                 | Limiting the number of timeseries will override slime existing in DQL.                                                                                                                                                                                 |
+| `slimit`                 | Limiting the number of timelines will override slime existing in DQL.                                                                                                                                                                                 |
 | `time_range`             | Limit the time range, adopt timestamp format, unit is millisecond, array size is 2 int, if there is only one element, it is considered as the start time, which will overwrite the query time interval in the original query statement.                                                                                          |
 
 Return data example:

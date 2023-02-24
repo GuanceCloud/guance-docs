@@ -10,7 +10,7 @@ Flink collector can take many metrics from Flink instances, such as Flink server
 
 ## Install Deployment {#install-flink}
 
-Explanation: Example Flink version is: Flink 1.14. 2 (CentOS), each version of the metric may be different
+Explanation: Example Flink version is: Flink 1.14. 2 (CentOS), each version of the indicator may be different
 
 ## Preconditions {#requirements}
 

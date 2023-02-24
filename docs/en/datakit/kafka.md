@@ -6,7 +6,7 @@
 
 ---
 
-Collect Kafka metrics and logs and report them to Guance Cloud to help you monitor and analyze various abnormal situations of Kafka.
+Collect Kafka indicators and logs and report them to Guance Cloud to help you monitor and analyze various abnormal situations of Kafka.
 
 ## Preconditions {#requirements}
 
@@ -24,7 +24,7 @@ Alternatively, you can start Jolokia separately and point it to the Kafka proces
 java -jar </path/to/jolokia-jvm-agent.jar> --host 127.0.0.1 --port=8080 start <Kafka-PID>
 ```
 
-After Kafka service is started, if you need to collect Producer/Consumer/Connector metrics, you need to configure Jolokia for them respectively.
+After Kafka service is started, if you need to collect Producer/Consumer/Connector indicators, you need to configure Jolokia for them respectively.
 
 Referring to [KAFKA QUICKSTART](https://kafka.apache.org/quickstart){:target="_blank"}, configure the `KAFKA_OPTS` environment variable for the example of Producer, as follows:
 

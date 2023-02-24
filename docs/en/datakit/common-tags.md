@@ -19,7 +19,7 @@ These tags are independent of the specific data type, and can be appended to any
 
 ### Kubernates/Common Tag of Container {#k8s-tags}
 
-These tags are usually added to the collected data, but when it comes to time series collection, some changeable tags (such as `pod_name`) will be ignored by default to save the timeseries.
+These tags are usually added to the collected data, but when it comes to time series collection, some changeable tags (such as `pod_name`) will be ignored by default to save the timeline.
 
 | Tag            | Description                    |
 | ---            | ---                     |
@@ -43,7 +43,7 @@ These tags are usually added to the collected data, but when it comes to time se
 
 | Tag                | Description                                                                                                |
 | ---                | ---                                                                                                 |
-| source | The log source exists as a measurement name on the line protocol, not as a tag. The center stores it as a tag as the source field of the log. |
+| source | The log source exists as a metric set name on the line protocol, not as a tag. The center stores it as a tag as the source field of the log. |
 | service | Referring to the service name of the log. If not filled in, its value is equivalent to the source field |
 | status | Referring to log level. If it is not filled in, the collector will set its value to  `unknown` by default, and the common status list is [here](logging.md#status). |
 
@@ -51,12 +51,12 @@ These tags are usually added to the collected data, but when it comes to time se
 
 | Tag                | Description                                                                                                |
 | ---                | ---                                                                                                 |
-| class | Referring to object classification. It exists as a measurement name on the row protocol, instead of a tag. But the center stores it as a tag as the class field of the object |
+| class | Referring to object classification. It exists as a metric set name on the row protocol, instead of a tag. But the center stores it as a tag as the class field of the object |
 | name | Referring to object name. The center combines hash (class + name) to uniquely identify objects in a workspace. |
 
 ### Metrics {#M}
 
-There is no fixed tag except the global tag because of the various data sources.
+There is no fixed tag except the global tags because of the various data sources.
 
 ### APM {#T}
 

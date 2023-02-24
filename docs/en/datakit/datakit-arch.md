@@ -22,7 +22,7 @@ The DataKit network model is mainly divided into three layers, which can be simp
 For data collection services, under normal circumstances, part of the data is allowed to be lost (because the data itself is collected intermittently, and the data in the intermittent period can be regarded as a kind of data loss). At present, the whole data transmission link is protected as follows:
 
 1. When DataKit fails to send a DataWay for some network reason, DataKit caches up to a thousand points of data. When the cached data exceeds this amount, the cache will be cleaned up.
-2. DataWay may fail to send Guance Cloud for some reason, or because the traffic is too large to send it to Guance Cloud, DataWay will persist the data to disk. When the traffic is reduced or the network is restored, these data will be sent to Guance Cloud. Delayed data does not affect timeseriess, and timestamps are attached to cached data.
+2. DataWay may fail to send Guance Cloud for some reason, or because the traffic is too large to send it to Guance Cloud, DataWay will persist the data to disk. When the traffic is reduced or the network is restored, these data will be sent to Guance Cloud. Delayed data does not affect timeliness, and timestamps are attached to cached data.
 
 The maximum amount of this disk can also be configured to protect the disk on DataWay in order not to burst the storage of the node. For data that exceeds the usage, DataWay also chooses to discard the data. However, this capacity is generally set to be relatively large.
 

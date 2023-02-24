@@ -9,7 +9,7 @@ IPMI metrics show the current, voltage, power consumption, occupancy rate, fan s
 
 IPMI is the abbreviation of Intelligent Platform Management Interface, which is an industry standard for managing peripheral devices used in enterprise systems based on Intel structure. This standard is formulated by Intel, Hewlett-Packard, NEC, Dell Computer and SuperMicro. Users can use IPMI to monitor the physical health characteristics of the server, such as temperature, voltage, fan working status, power status, etc.
 
-IPMI enables the operation and maintenance system to obtain the operation health metrics of monitored servers and other devices **without intrusion**, thus ensuring information security.
+IPMI enables the operation and maintenance system to obtain the operation health indicators of monitored servers and other devices **without intrusion**, thus ensuring information security.
 
 ## Preconditions {#precondition}
 
@@ -253,7 +253,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 ```
  [Monitor]-> [Monitor]-> [New Monitor] Select [Threshold Detection]-> Enter [Rule Name]
- Select [metric]-> [measurement], select [ipmi]-> [specific metric], select [warning]-> next column, select [Max]-> by [detection dimension], select [host]
+ Select [indicator]-> [indicator set], select [ipmi]-> [specific indicator], select [warning]-> next column, select [Max]-> by [detection dimension], select [host]
  Input [999] in [Urgent] -> Input [1] in [Important] -> Input [888] in [Warning] -> Input [N] in [Normal]
 ```
 
