@@ -1,5 +1,5 @@
 
-# Prometheus Exportor Metric Collection
+# Prometheus Exporter Metric Collection
 ---
 
 :fontawesome-brands-linux: :material-kubernetes:
@@ -193,10 +193,10 @@ For example, the following prometheus raw data:
 promhttp_metric_handler_errors_total{cause="encoding"} 0
 ```
 
-Distinguished by the first underscore, `promhttp` on the left is the measurement name, and `metric_handler_errors_total` on the right is the field name.
+Distinguished by the first underscore, `promhttp` on the left is the metric set name, and `metric_handler_errors_total` on the right is the field name.
 
 In addition, Datakit adds two tags, `service` and `namespace`, whose values are the Service name and the Service's Namespace, to locate the Service in the Kubernetes cluster.
 
 ## Extended Reading {#more-readings}
 
-- [Prometheus Exportor Data Collection](prom.md)
+- [Prometheus Exporter Data Collection](prom.md)

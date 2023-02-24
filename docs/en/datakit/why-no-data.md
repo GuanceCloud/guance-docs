@@ -70,7 +70,7 @@ datakit dql
 > Here you can enter the DQL query statement...
 ```
 
-For non-data investigation, it is recommended to compare the collector document to see the name of the corresponding measurement. Take MySQL collector as an example. At present, there are the following measurements in the document:
+For non-data investigation, it is recommended to compare the collector document to see the name of the corresponding indicator set. Take MySQL collector as an example. At present, there are the following indicator sets in the document:
 
 - `mysql`
 - `mysql_schema`

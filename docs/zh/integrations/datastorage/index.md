@@ -24,7 +24,7 @@ icon: fontawesome/solid/database
     | [:integrations-mysql: MySQL](mysql.md){ .md-button .md-button--primary } | [:integrations-oracle: Oracle](oracle.md){ .md-button .md-button--primary } | [:integrations-postgresql: PostgreSQL](postgresql.md){ .md-button .md-button--primary } | [:integrations-sqlserver: SQLServer](sqlserver.md){ .md-button .md-button--primary }   | [:integrations-clickhouse: ClickHouse](clickhouse.md){ .md-button .md-button--primary } |
     | [:integrations-mongodb: MongoDB](mongodb.md){ .md-button .md-button--primary } | [:integrations-redis: Redis](redis.md){ .md-button .md-button--primary }  | [:integrations-memcached: Memcached](memcached.md){ .md-button .md-button--primary }  | [:integrations-elasticsearch: ElasticSearch](elasticsearch.md){ .md-button .md-button--primary } |   | 
     | <font color="coral">**Prometheus**</font>  |     |    |    |  |
-    | [:integrations-aerospike: Aerospike](aerospike.md){ .md-button .md-button--primary }  | [:integrations-minio: MinIO](minio.md){ .md-button .md-button--primary } | [:integrations-redis: Redis-sentinel](redis-sentinel.md){ .md-button .md-button--primary } | [:integrations-nebulagraph: NebulaGraph](nebula.md){ .md-button .md-button--primary }       | |
+    | [:integrations-aerospike: Aerospike](aerospike.md){ .md-button .md-button--primary }  | [:integrations-minio: MinIO](minio.md){ .md-button .md-button--primary } | [:integrations-redis: Redis-sentinel](redis-sentinel.md){ .md-button .md-button--primary } | [:integrations-nebulagraph: NebulaGraph](nebula.md){ .md-button .md-button--primary }       | [:integrations-tidb: TiDB](tidb.md){ .md-button .md-button--primary } |
 
 </div>
 

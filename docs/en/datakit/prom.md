@@ -1,5 +1,5 @@
 
-# Prometheus Exportor Data Collection
+# Prometheus Exporter Data Collection
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](index.md#legends "支持选举")
@@ -32,7 +32,7 @@ Only metric data in Prometheus form can be accessed.
     
       # Collection data output source
       # Configure this to write collected data to a local file instead of typing the data to the center
-      # Then you can debug the locally saved measurement directly with the  datakit --prom-conf /path/to/this/conf
+      # Then you can debug the locally saved metric set directly with the  datakit --prom-conf /path/to/this/conf
       # If url has been configured as the local file path, then --prom-conf takes precedence over debugging the data in the output path
       # output = "/abs/path/to/file"
     
@@ -237,7 +237,7 @@ To achieve this cutting purpose, you can configure `prom.conf` as follows
 Because Prometheus exposes a lot of metrics, you don't necessarily need all of them, so DataKit provides a simple tool to debug `prom.conf` . If you constantly adjust the configuration of `prom.conf`, you can achieve the following purposes:
 
 - Only Prometheus metrics that meet certain name rules are collected
-- Collect only partial measurement data (`metric_types`), such as `gauge` type metrics and `counter` type metrics
+- Collect only partial measurement data (`metric_types`), such as `gauge` type indicators and `counter` type metrics
 
 DataKit supports debugging the configuration file of prom collector directly from the command line, copying a prom.conf template from conf.d/prom, filling in the corresponding Exporter address, and debugging this `prom.conf` through DataKit:
 
@@ -281,6 +281,6 @@ Output description:
 
 - Line Protocol Points: Generated line protocol points
 - Summary: Summary results
-    - Total time series: Number of timeseries
+    - Total time series: Number of timelines
     - Total line protocol points: Line protocol points
     - Total measurements: Number of measurements and their names.

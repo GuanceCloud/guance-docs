@@ -1,5 +1,5 @@
 
-# Prometheus Exportor 数据采集
+# Prometheus Exporter 数据采集
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](index.md#legends "支持选举")

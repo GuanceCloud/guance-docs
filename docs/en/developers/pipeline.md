@@ -2785,7 +2785,7 @@ The field mapping relationship between row protocol name and various types of da
 |custom_object | class | - |
 |keyevent|-|-|
 |logging | source | - |
-|metric | - | measurement name |
+|metric | - | metric set name |
 |network | source | - |
 |object | class | - |
 |profiling | source | - |
