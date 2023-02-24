@@ -105,7 +105,7 @@ The list of collectors currently supporting elections is as follows:
 
 ### `host` Field Problem {#host}
 
-For objects collected by collectors participating in elections, such as MySQL, because the DataKit collecting their data may change (election rotation occurs), by default, the data collected by such collectors will not take the tag `host` to avoid timeseries growth. We recommend adding an additional `tags` field to the MySQL collector configuration:
+For objects collected by collectors participating in elections, such as MySQL, because the DataKit collecting their data may change (election rotation occurs), by default, the data collected by such collectors will not take the tag `host` to avoid timeline growth. We recommend adding an additional `tags` field to the MySQL collector configuration:
 
 ```toml
 [inputs..tags]
