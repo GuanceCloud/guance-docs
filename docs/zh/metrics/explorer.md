@@ -17,7 +17,7 @@
 
 ???+ info
 
-    由于 [时间控件](../getting-started/necessary-for-beginners/explorer-search.md#time)会影响「指标分析」的数据展示范围，可自定义的时间间隔将依据时间控件范围自动调整。如您选择查看最近15分钟的指标数据，您将无法选择“1小时”作为时间间隔。
+    由于 [时间控件](../getting-started/function-details/explorer-search.md#time)会影响「指标分析」的数据展示范围，可自定义的时间间隔将依据时间控件范围自动调整。如您选择查看最近15分钟的指标数据，您将无法选择“1小时”作为时间间隔。
 
 
 
