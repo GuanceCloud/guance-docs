@@ -59,7 +59,7 @@ After modifying the saving policy, a new index will be scrolled out. Before that
 
 ![](../img/image_0.png)
 
-## IV. Reference
+## IV. More Reading
 
 [ILM: Manage the index lifecycleedit](https://www.elastic.co/guide/en/elasticsearch/reference/current/index-lifecycle-management.html)
 

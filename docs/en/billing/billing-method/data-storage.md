@@ -3,7 +3,7 @@
 
 As the number of applications used increases and the range of data observation requirements expands, the requirements for data storage time will adjust accordingly. Guance provides a variety of data storage strategies, and you can customize your data storage time according to your needs to effectively control your data storage costs.
 
-Guance supports the commercial plan owner to change the data storage strategy in the space. In Guance workspace "Management"-"Basic Settings", click "Change", select the required data storage time, and click "OK" to change the data storage time in the current workspace.
+Guance supports the commercial plan owner to change the data storage strategy in the space. In Guance workspace **Management > Basic Settings**, click **Change**, select the required data storage time, and click OK to change the data storage time in the current workspace.
 
 | Data Storage Type | **Commercial Plan** |
 | --- | --- |
@@ -11,7 +11,7 @@ Guance supports the commercial plan owner to change the data storage strategy in
 | Log | 7 days / 14 days (by default)/ 30 days / 60 days |
 | Backup log | 180 days (by default)/ 360 days / 720 days |
 | Event | 14 days (by default)/ 30 days / 60 days |
-| Scheck | 90 days (by default)/ 180 days / 360 days |
+| Security check | 90 days (by default)/ 180 days / 360 days |
 | Application performance Trace | 3 da y s / 7 days (by default)/ 14 days |
 | User access PV | 3 days / 7 days (by default)/ 14 days |
 
@@ -27,18 +27,18 @@ Guance supports the commercial plan owner to change the data storage strategy in
 
 ![](../img/1.data_storage_1.png)
 
-## Data Storage {#options}
+## Data Storage Methods {#options}
 
-When you register for the Commercial Plan of Guance, if you use Alibaba Cloud account settlement method, you can adopt two data storage schemes: "Default Storage" and "SLS Storage".
+When you register for the Commercial Plan of Guance, if you use Alibaba Cloud account settlement method, you can adopt two data storage schemes: **Default Storage** and **SLS Storage**.
 
-- Default storage: ElasticSearch is used to store log class data, and InfluxDB/TDengine is used to store metric class data; For the opening method, please refer to the doc [Alibaba Cloud market opening Guance Commercial Plan](../../billing/commercial-aliyun.md)
-- SLS storage: Log Store is used to store log class data, and Metric Store is used to store metric class data; For the opening method, please refer to the doc [Alibaba Cloud market opening Guance Exclusive Plan](../../billing/commercial-aliyun-sls.md)
+- Default storage: ElasticSearch is used to store log class data, and InfluxDB/TDengine is used to store metric class data; please refer to the doc on [opening Guance Commercial Plan in the Alibaba Cloud market](../../billing/commercial-aliyun.md).
+- SLS storage: Log Store is used to store log class data, and Metric Store is used to store metric class data; please refer to the doc on [opening Guance Exclusive Plan in the Alibaba Cloud market](../../billing/commercial-aliyun-sls.md).
 
 
 
-## Experience Data Storage Policy {#free}
+## Data Storage Policy of Experience Plan {#free}
 
-Guance supports the charging methods of free start, on-demand purchase and pay-as-you-go, providing you with a cloud platform that can be used out of the box and realize comprehensive observation. Guance Experience Plan provides users with a 7 days data storage policy. If you need to change the data storage policy, you can make changes by [upgrading to Guance Commercial Plan](../../billing/commercial-plan.md).
+Guance supports the charging methods of free start, on-demand purchase and pay-per-use, providing you with a cloud platform that can be used out of the box and realize comprehensive observation. Guance Experience Plan provides users with a 7 days data storage policy. If you need to change the data storage policy, you can make changes by [upgrading to Guance Commercial Plan](../../billing/commercial-plan.md).
 
 | **Billing Item**             | **Experience Quota**  | **Data Storage Strategy** | **Notes**                                                     |
 | ---------------------- | ------------- | ---------------- | ------------------------------------------------------------ |
