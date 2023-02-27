@@ -3,9 +3,9 @@
 
 Guance supports various settlement methods such as Guance enterprise account and cloud account. Cloud account settlement includes Alibaba Cloud account and AWS account settlement. In cloud account settlement mode, cloud bills from multiple sites are supported to be merged into one cloud account for settlement.
 
-The following is the schematic chart of Guance settlement:
+The following is the chart of Guance settlement:
 
-<img src="../img/3.billing_1.png" width=660px />
+![](../img/billing-index-1.png)
 
 ???+ attention
 

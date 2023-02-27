@@ -1,5 +1,7 @@
 nav:
   - index.md
+  - 'Glossary': glossary.md
+  - 'Login Method': login.md
   - 'Account Management': account-management.md
   - 'Workspace Management': workspace-management.md
   - 'Account Wallet': account-wallet

@@ -34,7 +34,7 @@ When registering [Guance studio account](https://auth.guance.com/businessRegiste
 
 #### Bind Expense Center User Name Account
 
-When registering on this page, you can directly bind the user name account of the expense center. After entering the user name, select "Do you still want to register with this user name?" .
+When registering on this page, you can directly bind the user name account of the expense center. After entering the user name, select **Do you still want to register with this user name?**.
 
 ![](img/9.billing_account_1.png)
 
@@ -54,7 +54,7 @@ On the **Enterprise Information** page, enter relevant information and click **R
 
 ## Step 3: Select Opening Method
 
-Depending on the site selected in [Step 1: Basic Info](#info), the third step displays the corresponding default opening mode page.
+Depending on the site selected in [step 1: basic info](#info), the third step displays the corresponding default opening mode page.
 
 > Refer to the doc [<Guance expense settlement>](../billing/billing-account/index.md).
 
@@ -95,7 +95,7 @@ You can **Select Opening Method**, fill in **Workspace Name**, select **Workspac
 
 If you select "China 2 (Ningxia)" and "Overseas 1 (Oregon)" sites when registering, Guance will provide AWS account settlement by default, and all expenses incurred in the workspace will be settled directly from your AWS account.
 
-You can subscribe to Guance on AWS by clicking on [Go to Amazon Cloud Marketplace to Subscribe](../billing/billing-account/aws-account.md#subscribe) in **Choose how to Open it**. After completing the subscription, enter **Workspace Name** in the dialog box below, select **Workspace Language** and click OK to complete the registration.
+You can subscribe to Guance on AWS by clicking on [Go to Amazon Cloud marketplace to subscribe](../billing/billing-account/aws-account.md#subscribe) in **Choose how to Open it**. After completing the subscription, enter **Workspace Name** in the dialog box below, select **Workspace Language** and click OK to complete the registration.
 
 ![](img/4.register_language_2.1.png)
 
@@ -133,6 +133,13 @@ After logging in to the workspace, you can view the version information of the c
 
 ![](img/12.billing_1.png)
 
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Introduction of Billing module in commercial plan</font>](../billing/commercial.md#_4)
+
+<br/>
+
+</div>
 
 If you have only completed the second step when registering, you will be prompted to create a workspace when logging in. Select the workspace type to be created to complete the registration and login.
 

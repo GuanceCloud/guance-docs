@@ -3,7 +3,7 @@
 
 Workspace is the basic operation unit of Guance SAAS products, and users can join one or more workspaces by creating/inviting. In a workspace, users can use the basic functions provided by Guance, such as scene data insight, event management, metric management, infrastructure monitoring, log monitoring, application performance monitoring, user access monitoring, availability monitoring, security check, monitoring, workspace management, etc.
 
-In the Guance Expense Center, one account can bind multiple Guance workspaces. In "Manage Workspace", it is supported to view all workspaces bound under the account, and to modify the settlement methods of bound workspaces, including Guance expense center account, Amazon cloud account and Alibaba cloud account.
+In the Guance Expense Center, one account can bind multiple Guance workspaces. In **Manage Workspace**, it is supported to view all workspaces bound under the account, and to modify the settlement methods of bound workspaces, including Guance expense center account, Amazon cloud account and Alibaba cloud account.
 
 Note: The settlement method of workspace only supports changing once a month.
 
@@ -11,7 +11,7 @@ Note: The settlement method of workspace only supports changing once a month.
 
 ## Change Settlement Method
 
-In the "Manage Workspace" of the Guance Expense Center, click "Change Settlement Method" on the right to change the settlement method for the current workspace, and support the account settlement of the Guance Expense Center and the cloud account settlement.
+In the **Manage Workspace** of the Guance Expense Center, click **Change Settlement Method** on the right to change the settlement method for the current workspace, and support the account settlement of the Guance Expense Center and the cloud account settlement.
 
 ![](../img/10.account_11.png)
 
@@ -22,84 +22,41 @@ Guance enterprise account is an independent account dedicated by Guance expense 
 
 ### Cloud Account Settlement
 
-Cloud account settlement includes Amazon Cloud account settlement and Alibaba Cloud account settlement. For more details, please refer to the doc [AWS account settlement](../../billing/billing-account/aws-account.md) and [Alibaba Cloud account settlement](../../billing/billing-account/aliyun-account.md).
+Cloud account settlement includes [AWS account settlement](../../billing/billing-account/aws-account.md) and [Alibaba Cloud account settlement](../../billing/billing-account/aliyun-account.md).
 
 
-### Change Settlement Method and Choose it at Will
+### Change and Choose Settlement Method
 
-By default, only "Guance Enterprise Account" and "Alibaba Cloud Account" can be selected for the workspace registered and logged in through "Alibaba Cloud Site", and only "Guance Enterprise Account" and "AWS Account" can be selected for the workspace registered and logged in through "AWS Site". For more site selection, refer to the doc [choosing a registered site](../../getting-started/necessary-for-beginners/select-site.md).
+By default, only Guance Enterprise Account and Alibaba Cloud Account can be selected for the workspace registered and logged in through Alibaba Cloud Site, and only Guance Enterprise Account and AWS Account can be selected for the workspace registered and logged in through AWS Site. For more site selection, refer to the doc [choosing a registered site](../../getting-started/necessary-for-beginners/select-site.md).
 
-If you need to change the settlement method arbitrarily, you need to open "Select Settlement Method Arbitrarily". After opening, all users' workspaces in Guance can choose the settlement methods of "Guance Enterprise Account", "Alibaba Cloud Account" and "AWS Account" at will.
+If you need to change the settlement method arbitrarily, you need to open Select Settlement Method Arbitrarily. After opening, all users' workspaces in Guance can choose the settlement methods of Guance Enterprise Account, Alibaba Cloud Account and AWS Account at will.
 
-**Note: To open "Arbitrary Selection of Settlement Method", you need to contact the Guance account manager to make changes in the member management of the Guance billing platform.**
+> Note: To open **Arbitrary Selection of Settlement Method**, you need to contact the Guance account manager to make changes in the member management of Guance billing platform.
 
+## Lock Workspace {#lock}
 
-### Example of Changing Settlement Method
+The following scenarios will trigger workspace locking:
 
+- If the account number of the Guance Expense Center is used for settlement, the settlement will be carried out according to the billing cycle. After the bill is generated, the customer will be notified by email and a 14-day settlement cycle will be provided. If the settlement is not completed after 14 days, the associated workspace will be locked.
+- The closure or expiration of an instance of [Alibaba Cloud marketplace subscription](../../billing/commercial-aliyun.md) will trigger the associated workspace lock if you use an Alibaba Cloud account for settlement.
+- Cancellation or invalidation of items in [AWS cloud marketplace subscription](../../billing/billing-account/aws-account.md#subscribe) will trigger associated workspace locking if you use AWS account settlement.
 
-#### Change Amazon Cloud Settlement Method (subscribe to Guance at AWS)
+After the workspace is locked, new data will stop being reported, and Guance provides a 14-day buffer period during which you can continue to view and analyze historical data, and continue to use Guance by unlocking the state.
 
-In the "Manage Workspace" of the Guance Expense Center, click "Change Settlement Method" on the right.
+### Unlock Workspace
 
-![](../img/10.account_11.png)
+On the **Workspace Management** page of the Guance Expense Center, select the workspace to be unlocked and click **Unlock**.
 
-Select Amazon Cloud Account to pay, click "Subscribe to Amazon Cloud Market", you can enter the homepage of Guance in Amazon Cloud, and click "Continue Subscription".
+![](../img/2.billing_space_unlock_3.png)
 
-![](../img/8.space_4.png)
+On the unlock page, select the settlement method and click **OK**.
 
+![](../img/2.billing_space_unlock_2.png)
 
+If the expense settlement is completed after changing the settlement method, the workspace can be unlocked and returned to normal.
 
-Enter your account, username and password in Amazon Cloud to log in.
+- If settled by the Guance expense center, it will be settled according to the bill after the account is recharged. After settlement, the locked workspace will be unlocked.
+- If settled by the cloud account, rebind the cloud account, re-subscribe to the related cloud account or select the Guance expense center for settlement, the locked related workspace will be unlocked automatically.
 
-![](../img/8.space_5.png)
-
-After logging in, click "Subscribe" on the page of Amazon Cloud to which Guance belongs.
-
-![](../img/8.space_8.png)
-
-In the pop-up dialog box, click "Set up your account".
-
-![](../img/8.space_9.png)
-
-After the account is established, it will automatically jump to the Guance Expense Center. After selecting the workspace, click "Confirm Submission".
-
-![](../img/8.space_10.png)
-
-Select the workspace, confirm the submission, and view the subscribed cloud account and related settlement workspace in the "Account Management"-"Cloud Account" of the Guance Expense Center.
-
-![](../img/15.aws_5.png)
-
-Return to the management workspace of the Guance expense center to confirm whether the operation was successful.
-
-![](../img/15.aws_4.png)
-
-After the operation is confirmed to be successful, you can view the updated settlement method in the administrative workspace.
-
-![](../img/15.aws_3.png)
-
-#### Unsubscribe from Guance at AWS
-
-Log in to Amazon Cloud and select "Your Marketplace Software" in the upper right corner of the account.
-
-![](../img/8.space_13.png)
-
-Find the subscribed Guance service in Manage Subscription and click Manage.
-
-![](../img/8.space_14.png)
-
-Enter the Guance service management page and click "Action"-"Unsubscribe".
-
-![](../img/8.space_15.png)
-
-In the pop-up dialog box, click "Yes, unsubscribe".
-
-![](../img/8.space_16.png)
-
-After unsubscribing successfully, Guance service was cancelled in Amazon Cloud Management Subscription.
-
-![](../img/8.space_17.png)
-
-Note: After Amazon Cloud cancels its subscription to Guance service, it will bind all workspaces for account settlement in Guance expense center, delete the associated cloud account, modify the current cloud account settlement to Guance expense center account settlement, and notify the user by mail.
-
-
+![](../img/2.billing_space_unlock_1.png)
 
