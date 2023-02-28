@@ -8,7 +8,7 @@ Guance supports the generation of new metric data based on existing data in the 
 
 Enter the "Log"-"Generate Metric" page, and click "New Rule" to start creating a new generation metric rule.
 
-![](img/2.log_metric_1.png)
+![](img/log-metrics-en-1.png)
 
 **Step 1**: Data filtering. Filter out all/single log data sources existing in the current space and start generating new data based on this data source.
 
@@ -43,7 +43,7 @@ Enter the "Log"-"Generate Metric" page, and click "New Rule" to start creating a
 
 All the added rules will be displayed in the Generate Metric interface. Users can "Enable/Disable", "Open in Metric Analysis", "Open in Metric Management", "Edit" and "Delete" operations.
 
-![](img/5.log_metric_1.png)
+![](img/log-metrics-en-2.png)
 
 ### Edit Rules
 
@@ -51,7 +51,7 @@ On the Generate Metric page, you can view all generated metric rules that have b
 
 **Note: Because the data source and aggregate expression of generating metric rules determine the data type, some rules do not support editing and modification.**
 
-![](img/2.log_metric_3.png)
+![](img/log-metrics-en-3.png)
 
 ### Enable/Disable Rules
 
@@ -69,7 +69,7 @@ On the Generate Metrics page, click the Open in Metrics Analysis button on the r
 
 Note: Metrics generation is based on data aggregation within the selected frequency and query time range. If no data is submitted during the period, metrics cannot be generated, and query or search in metric cannot be performed.
 
-![](img/5.log_metric_2.png)
+![](img/log-metrics-en-4.png)
 
 ​	
 
@@ -77,4 +77,4 @@ Note: Metrics generation is based on data aggregation within the selected freque
 
 On the Generate Metric page, click the Open in Metric Management button on the right side of the rule to jump to the Metric Management page to view metrics and tags, and support editing metric units and descriptions.
 
-![](img/5.log_metric_3.png)
+![](img/log-metrics-en-5.png)
