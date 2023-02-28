@@ -17,7 +17,7 @@ icon: zy/release-notes
 
 #### 优化 AWS 开通流程
 
-观测云优化 AWS 云市场一键开通观测云的流程，在 AWS 云市场订阅观测云商品后，可直接开通使用观测云。更多详情可参考文档 [在 AWS 云市场订阅观测云](../billing/billing-account/aws-account.md#subscribe) 。
+观测云优化 AWS 云市场一键开通观测云的流程，在 AWS 云市场订阅观测云商品后，可直接开通使用观测云。更多详情可参考文档 [在 AWS 开通观测云](../billing/commercial-aws.md) 。
 
 ## 2023 年 2 月 23 号
 

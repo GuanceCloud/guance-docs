@@ -7,7 +7,7 @@
 
 ## 采集器配置
 
-在使用会话回放之前，需要先 [安装 Datakit](../datakit/datakit-install.md) ，然后开启 [RUM 采集器](../../datakit/rum.md) 会话回放对应的参数 `session_replay_endpoints`。
+在使用会话回放之前，需要先 [安装 Datakit](../../datakit/datakit-install.md) ，然后开启 [RUM 采集器](../../datakit/rum.md) 会话回放对应的参数 `session_replay_endpoints`。
 
 ## 接入配置
 
