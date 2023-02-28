@@ -11,7 +11,7 @@ Guance supports setting log multiple indexes, filtering qualified logs and savin
 
 Into workspace, click "Log"-"Index"-"New Index".
 
-![](img/5.log_6.png)
+![](img/log-index-en-1.png)
 
 On the New Index page, enter "Index Name", set "Filter Criteria", select "Data Storage Policy", and click "OK" to create a new index. 
 
@@ -20,7 +20,7 @@ On the New Index page, enter "Index Name", set "Filter Criteria", select "Data S
 - Data storage policy: Support selection of 7 days, 14 days, 30 days and 60 days 
 
 
-![](img/6.index_2.png)
+![](img/log-index-en-2.png)
 
 ???+ attention
 
@@ -39,7 +39,7 @@ On the New Index page, enter "Index Name", set "Filter Criteria", select "Data S
 
 In the following picture, after the index is successfully created, log data with ` source ` ` datakit ` will match the inflow to the first index ` index.d ` when it is reported.
 
-![](img/5.log_6.png)
+![](img/log-index-en-3.png)
 
 
 
@@ -54,7 +54,7 @@ Guance supports binding external index data, including SLS, Elasticsearch and Op
     -'Other indexes' cannot have the same name as the log index or the historical log index. 
 
 
-![](img/log01.png)
+![](img/log-index-en-4.png)
 
 ### SLS Logstore {#sls}
 
@@ -67,7 +67,7 @@ For information on how to open the SLS storage solution, please refer to the doc
 -If you are an exclusive user of Guance and want to bind SLS log indexes under other Alibaba Cloud accounts, you can refer to the document [RAM Account Authorization](../billing/billing-method/sls-grant.md) to obtain AK/AKS for index binding. 
 
 
-![](img/9.log_index_1.png)
+![](img/log-index-en-5.png)
 
 ### Elasticsearch  {#es}
 
@@ -78,7 +78,7 @@ Into "Log"-"Index", click "Bind Index". Select Elasticsearch page in the pop-up 
  - Bind index: The name of the index in Elasticsearch that needs to be bound to view 
  - Index name: the unique index name identified by Guance. This configuration is user-defined and filled in. Duplicate names are not supported in the workspace 
 
-![](img/1.log_index_1.png)
+![](img/log-index-en-6.png)
 
 
 
@@ -92,7 +92,7 @@ Into "Log"-"Index", click "Bind Index". Select OpenSearch page in the pop-up dia
  - Bind index: The name of the index in OpenSearch that needs to be bound to view 
  - Index name: the unique index name identified by Guance. This configuration is user-defined and filled in. Duplicate names are not supported in the workspace 
 
-![](img/1.log_index_2.png)
+![](img/log-index-en-7.png)
 
 ### Field mapping 
 
@@ -130,7 +130,7 @@ Under the "Operation" menu on the right side of the log index, click the "Edit" 
 
 Note: Changing the storage policy will delete the data in the index, so please be careful. 
 
-![](img/6.index_3.png)
+![](img/log-index-en-8.png)
 
 ### Delete
 
@@ -139,7 +139,7 @@ Under the "Operation" menu on the right side of the log index, click the "Delete
 Note: Deleting an index will delete the log data in the index at the same time, and no index with the same name can be created. If there is no other matching index, the log data reported later will be saved in the default index. 
 
 
-![](img/6.index_4.png)
+![](img/log-index-en-9.png)
 
 ### Drag
 
@@ -150,17 +150,3 @@ Under the "Operation" menu on the right side of the log index, click the "Drag" 
     Log may match another index rule if you change the index order. 
 
 
-
-## Example {#example}
-
-In the log index, configure the index filter condition ` source ` to ` df_diagnose `.
-
-![](img/5.log_4.png)
-
-Click on the index to jump to the log explorer and view the corresponding log data.
-
-![](img/5.log_5.png)
-
-Or you can select a different index in "Log"-"Explorer" to view the corresponding log contents.
-
-![](img/5.log_3.1.png)
