@@ -1,5 +1,5 @@
 nav:
-    - index.md
+  - index.md
   - Plan Instructions:
     - Public Cloud Commercial Plan:
       - commercial.md
