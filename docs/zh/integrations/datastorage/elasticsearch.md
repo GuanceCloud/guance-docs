@@ -73,7 +73,7 @@ vi elasticsearch.conf
 
 ??? quote "`elasticsearch.conf`"
 
-   ```yaml
+    ```toml  
       [[inputs.elasticsearch]]
       ## Elasticsearch服务器配置
       # 支持Basic认证:
@@ -123,7 +123,7 @@ vi elasticsearch.conf
       # tls_key = "/etc/telegraf/key.pem"
       ## Use TLS but skip chain & host verification
       # insecure_skip_verify = false
-      ```
+    ```
 
 3、 重启 DataKit (如果需要开启日志，请配置日志采集再重启)
 

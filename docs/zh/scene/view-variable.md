@@ -59,8 +59,8 @@ SHOW_TAG_VALUE(from=["cpu"],keyin=["host"])
 | --- | --- |
 | 数据源类型::数据来源:(distinct('属性字段名')){筛选条件} | M/metric - 时序指标数据 ；O/object - 对象数据；L/logging - 日志数据 ；E/event - 事件数据 ；T/tracing - 追踪数据  ；R/rum - RUM 数据 |
 | R::view:(distinct('app_id')) | 返回 web 应用用户访问监测的 app_id 列表 |
-| R::view:(distinct('env')) {'app_id' = '#{appid}'} | 级联查询，假使上一条查询的变量名设为 app_id，则返回上条变量中所选 app_id 对应的 env 列表 |
-| R::view:(distinct('env')) {'app_id' = '8f05003ebccad062'} | 返回`app_id=8f05003ebccad062`对应的 env 列表 | 
+| R::view:(distinct('env')){'app_id' = '#{appid}'} | 级联查询，假使上一条查询的变量名设为 app_id，则返回上条变量中所选 app_id 对应的 env 列表 |
+| R::view:(distinct('env')){'app_id' = '8f05003ebccad062'} | 返回`app_id=8f05003ebccad062`对应的 env 列表 | 
 
 ???+ attention 
 

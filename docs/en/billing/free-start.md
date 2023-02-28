@@ -1,4 +1,4 @@
-# Free Start
+# Get Started
 ---
 
 Guance supports the charging methods of free start, on-demand purchase and pay-as-you-go, providing you with a cloud platform that can be used out of the box and realize comprehensive observation.
@@ -28,7 +28,7 @@ The strategy for Guance experience plan is as follows. For the billing method of
 
 ## Experience Plan Registration
 
-You can provide experience plan and commercial plan registration options for Guance users a [Guance official website](https://www.guance.com/) and 「[register now](https://auth.guance.com/businessRegister)」.
+You can provide experience plan and commercial plan registration options for Guance users a [Guance official website](https://www.guance.com/) and [register now](https://auth.guance.com/businessRegister).
 
 In the upper right corner of "Select Opening Method", click to switch to "Open Experience Workspace", enter "Workspace Name", and click "OK" to complete the registration. If you need to upgrade to the commercial plan after the experience plan is launched, you can refer to the doc [upgrade commercial plan](commercial-plan.md).
 
@@ -39,7 +39,7 @@ Note:
 
 ![](img/8.register_5.png)
 
-After registration, you can watch the introduction video of Guance, or you can click "Start Installing DataKit" to install and configure the first DataKit.
+After registration, you can watch the introduction video of Guance, or you can click **Start from Installing DataKit** to install and configure the first DataKit.
 
 ![](img/1-free-start-1109.png)
 

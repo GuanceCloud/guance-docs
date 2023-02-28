@@ -210,18 +210,18 @@ Using [default billing logic](#default), the daily cost is 39.8 yuan, and the sp
 
 | Billing Item   | Daily Billing Quantity | Billing Unit Price        | Billing Logic                                                     | Daily Billing Fee |
 | -------- | ---------- | --------------- | ------------------------------------------------------------ | ---------- |
-| Host     | 10 sets      | 3 yuan / per host       | (Actual statistical quantity / Billing Unit) * unit price<br/>（10台 / 1 台） * 3 yuan | 30 yuan      |
-| Timeseries   | 500 articles     | 3 元 / 千条     | （时间线数量 - DataKit数量 * 300）/ 1000 * unit price<br>即 （500 条 - 10 台 * 300 条） / 1000 条 * 3 元 | 0 yuan       |
-| Log     | 2 million  | 1.2 元 / 百万条 | (Actual statistical quantity / Billing Unit) * unit price<br>即 （2 百万 / 1 百万） * 1.2 元 | 2.4 yuan     |
-| Trace    | 2 million   | 2 元 / 百万个   | (Actual statistical quantity / Billing Unit) * unit price<br/>即 （2 百万 / 1 百万） * 2 元 | 4 yuan       |
-| PV       | 20,000     | 0.7 元 / 万个   | (Actual statistical quantity / Billing Unit) * unit price<br/>即 （2 万 / 1 万） * 0.7 元 | 1.4 yuan     |
-| Task scheduling |20,000     | 1 元 / 万次     | (Actual statistical quantity / Billing Unit) * unit price<br/>即 （2 万 / 1 万） * 1 元 | 2 yuan       |
+| Host     | 10 sets      | 3 yuan / per host       | (Actual statistical quantity / Billing Unit) * unit price<br/>（10 / 1) * 3 yuan | 30 yuan      |
+| Timeseries   | 500 articles     | 3 yuan / 1,000     | （number of timeseries - DataKit numbers * 300）/ 1000 * unit price<br>namely （500 - 10 * 300） / 1000 * 3 yuan | 0 yuan       |
+| Log     | 2 million  | 1.2 yuan / million | (Actual statistical quantity / Billing Unit) * unit price<br>namely （2 million / 1 million） * 1.2 yuan | 2.4 yuan     |
+| Trace    | 2 million   | 2 yuan / million个   | (Actual statistical quantity / Billing Unit) * unit price<br/>namely （2 million / 1 million） * 2 yuan | 4 yuan       |
+| PV       | 20,000     | 0.7 yuan / 10,000   | (Actual statistical quantity / billing unit) * unit price<br/>namely （20,000 / 10,000） * 0.7 yuan | 1.4 yuan     |
+| Task scheduling |20,000     | 1 yuan / 10,000     | (Actual statistical quantity / billing unit) * unit price<br/>namely （20,000 / 10,000） * 1 yuan | 2 yuan       |
 
 Note: Because the timeseries is a full Billing Item, the change of the timeseries may lead to an increase in the number of timeseries and incur expenses. For more timeseries quantity measurements, please refer to the doc [timeseries example](#time-example).
 
 
 
-#### Example 2
+#### Example Two
 
 Suppose that Company A has a total of 10 hosts, generating 500 timeseries, 2 million log data, 2 million Trace data, 20,000 PV data and 20,000 task schedules every day. The data storage strategy used is as follows:
 
@@ -234,11 +234,11 @@ Using [timeseries only + data billing logic](#time-data), the daily cost is 11.3
 | Billing Item   | Daily Billing Quantity | Billing Unit Price        | Billing Logic                                                     | Daily Billing Fee |
 | -------- | ---------- | --------------- | ------------------------------------------------------------ | ---------- |
 | Host     | 10      | /               | /                                                            | /          |
-| Timeseries   | 500 条     | 3 元 / 千条     | 时间线数量  / 1000 * 单价<br>即 500 条 / 1000 条 * 3 元      | 1.5 元     |
-| Log     | 200 万条   | 1.2 元 / 百万条 | (实际统计数量 / Billing Unit) * 单价<br>即 （2 百万 / 1 百万） * 1.2 元 | 2.4 元     |
-| Trace    | 200 万个   | 2 元 / 百万个   | (实际统计数量 / Billing Unit) * 单价<br/>即 （2 百万 / 1 百万） * 2 元 | 4 元       |
-| PV       | 2 万个     | 0.7 元 / 万个   | (实际统计数量 / Billing Unit) * 单价<br/>即 （2 万 / 1 万） * 0.7 元 | 1.4 元     |
-| Task scheduling | 2 万次     | 1 元 / 万次     | (实际统计数量 / Billing Unit) * 单价<br/>即 （2 万 / 1 万） * 1 元 | 2 元       |
+| Timeseries   | 500     | 3 yuan / per thousand     | number of timeseries  / 1000 * Unit price<br>namely 500 / 1000 * 3 yuan      | 1.5 yuan     |
+| Log     | 2 million   | 1.2 yuan / per million | (actual statistical quantity / billing unit) * unit price<br>namely (2 million / 1 million * 1.2 yuan | 2.4 yuan     |
+| Trace    | 200,000   | 2 yuan /per  million   | (actual statistical quantity / billing unit) * unit price<br/>namely (2 million / 1 million * 2 yuan | 4 yuan       |
+| PV       | 200,000     | 0.7 yuan / 10,000   | (actual statistical quantity / billing unit) * unit price<br/>namely （20,000 / 10,000） * 0.7 yuan | 1.4 yuan     |
+| Task scheduling | 20,000     | 1 yuan / 10,000    | (actual statistical quantity / Billing Unit) * unit price<br/>namely (20,000 / 10,000） * 1 yuan | 2 yuan       |
 
 Note: Because the timeseries is a full Billing Item, the change of the timeseries may lead to an increase in the number of timeseries and incur expenses. For more timeseries quantity measurements, please refer to the doc [timeseries example](#time-example).
 

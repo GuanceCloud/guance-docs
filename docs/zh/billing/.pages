@@ -9,6 +9,8 @@ nav:
       - 在阿里云中开通:
         - '开通观测云商业版': commercial-aliyun.md
         - '开通观测云专属版': commercial-aliyun-sls.md
+      - 在 AWS 中开通:
+        - '开通观测云商业版': commercial-aws.md
     - 公有云体验版: trail.md
     - 私有云部署版: deployment.md
   - '费用中心': cost-center  

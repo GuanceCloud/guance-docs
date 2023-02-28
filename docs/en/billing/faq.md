@@ -39,8 +39,6 @@ You can select Change Settlement Method in Workspace Management of Guance Expens
 
 ![](img/9.upgrade_9.png)
 
-
-
 ## What is any account settlement?
 
 Arbitrary account settlement means that when you observe the "change of settlement method" in the cloud expense center, you can choose any cloud account for settlement without being restricted by the registered site. If you register your account at the "China 1 (Hangzhou)" site, "Alibaba Cloud Account Settlement" is opened by default, but if any account settlement is opened, you can choose "Amazon Cloud Account Settlement".
