@@ -16,9 +16,9 @@
 
 [了解更多DataKit 使用入门。](../../datakit/datakit-service-how-to.md)
 
-## 安装 Function
+## 安装 DataFlux Func
 
-在观测云工作空间，依次点击「集成」-「Func」，根据如下步骤在命令行终端工具进行安装 Func 。
+在观测云工作空间，依次点击「集成」-「扩展」，根据如下步骤在命令行终端工具进行安装 Func 。
 
 ![](../img/1.func_install.png)
 
@@ -35,7 +35,7 @@
 
 更多 Func 安装可参考文档 [快速开始](https://func.guance.com/doc/quick-start/) 。
 
-## 连接 Function 和 DataKit
+## 连接 DataFlux Func 和 DataKit
 
 在使用 DataFlux Func 向 DataKit 写入数据之前，首先要确保连通性。因此，在 DataKit 安装完成后，需要调整配置，允许 DataFlux Func 连接。
 
@@ -45,9 +45,13 @@
 
 ![](../img/21.lab_rum_3.png)
 
-3.重启DataKit：`sudo datakit --restart`
+3.重启DataKit
 
-更多详情可参考文档 [连接并操作DataKit](https://func.guance.com/doc/practice-connect-to-datakit/) 。
+```
+sudo datakit --restart
+```
+
+> 更多详情可参考文档 [连接并操作DataKit](https://func.guance.com/doc/practice-connect-to-datakit/) 。
 
 ## 上报自定义对象数据
 

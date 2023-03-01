@@ -18,13 +18,13 @@
 
 > **注意：**其中 `token` 是该工作空间的唯一标识
 
-![imgs](../../imgs/aliyun-prod-func-1.png)
+![imgs](../imgs/aliyun-prod-func-1.png)
 
 ### 2 服务器[安装 Func 携带版](https://func.guance.com/doc/maintenance-guide-installation/)
 
-登录观测云，点击「集成」 - 「Func」，下载脚本并执行安装命令即可
+登录观测云，点击「集成」 - 「扩展」，下载脚本并执行安装命令即可
 
-![imgs](../../imgs/aliyun-prod-func-2.png)
+![imgs](../imgs/aliyun-prod-func-2.png)
 
 ### 3 华为云访问管理进行授权
 
@@ -53,11 +53,11 @@
 
 1、 登录 DataFlux Func，地址 `http://ip:8088` (默认密码 admin/admin，请自行修改)
 
-![imgs](../../imgs/aliyun-prod-func-5.png)  
+![imgs](../imgs/aliyun-prod-func-5.png)  
 
 2、 开启脚本市场：「管理」- 「实验性功能」 - 「开启脚本市场模块」
 
-![imgs](../../imgs/aliyun-prod-func-6.png)
+![imgs](../imgs/aliyun-prod-func-6.png)
 
 3、 依次添加脚本集<br/>
 (1)观测云集成（核心包）<br/>
@@ -84,7 +84,7 @@
 
 3、 创建 ID 为 main 的脚本
 
-![imgs](../../imgs/huawei-prod-func-1.png)
+![imgs](../imgs/huawei-prod-func-1.png)
 
 4、 添加代码
 
@@ -167,7 +167,7 @@ def run():
 
 2、 自动触发配置：在「执行函数」中添加此脚本，执行频率默认为 **五分钟 _/5 _ \* \* \***
 
-![imgs](../../imgs/huawei-prod-func-2.png)
+![imgs](../imgs/huawei-prod-func-2.png)
 
 
 ## 场景视图

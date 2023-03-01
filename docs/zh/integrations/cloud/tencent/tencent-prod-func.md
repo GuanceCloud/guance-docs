@@ -18,13 +18,13 @@
 
 > **注意：**其中 `token` 是该工作空间的唯一标识
 
-![imgs](../../imgs/aliyun-prod-func-1.png)
+![imgs](../imgs/aliyun-prod-func-1.png)
 
 ### 2 服务器[安装 Func 携带版](https://func.guance.com/doc/maintenance-guide-installation/)
 
-登录观测云，点击「集成」 - 「Func」，下载脚本并执行安装命令即可
+登录观测云，点击「集成」 - 「扩展」，下载脚本并执行安装命令即可
 
-![imgs](../../imgs/aliyun-prod-func-2.png)
+![imgs](../imgs/aliyun-prod-func-2.png)
 
 ### 3 腾讯云访问管理进行授权
 
@@ -34,11 +34,11 @@
 （1）访问方式：控制台访问 & 编程访问<br />
 （2）用户权限：ReadOnlyAccess
 
-![imgs](../../imgs/tencent-prod-func-3.png)
+![imgs](../imgs/tencent-prod-func-3.png)
 
 3、 新建秘钥：「选择该用户」 - 「API 秘钥」 - 「新建秘钥」(**SecretId** 和 **SecretKey** 配置文件会用到)
 
-![imgs](../../imgs/tencent-prod-func-4.png)
+![imgs](../imgs/tencent-prod-func-4.png)
 
 ## 安装配置
 
@@ -50,11 +50,11 @@
 
 1、 登录 DataFlux Func，地址 `http://ip:8088` (默认密码 admin/admin，请自行修改)
 
-![imgs](../../imgs/aliyun-prod-func-5.png)  
+![imgs](../imgs/aliyun-prod-func-5.png)  
 
 2、 开启脚本市场：「管理」- 「实验性功能」 - 「开启脚本市场模块」
 
-![imgs](../../imgs/aliyun-prod-func-6.png)
+![imgs](../imgs/aliyun-prod-func-6.png)
 
 3、 **依次添加**脚本集<br/>
 (1)观测云集成（核心包）<br/>
@@ -63,25 +63,25 @@
 
 > **注意：**在安装「核心包」后，系统会提示安装第三方依赖包 pip，按照正常步骤点击安装即可
 
-![imgs](../../imgs/tencent-prod-func-7.png)
+![imgs](../imgs/tencent-prod-func-7.png)
 
 4、 脚本安装完成后，可以在「脚本库」中看到所有脚本集
 
-![imgs](../../imgs/tencent-prod-func-8.png)
+![imgs](../imgs/tencent-prod-func-8.png)
 
 ### 2 添加脚本
 
 1、 「开发」 - 「脚本库」 - 「添加脚本集」
 
-![imgs](../../imgs/tencent-prod-func-9.png)
+![imgs](../imgs/tencent-prod-func-9.png)
 
 2、 点击上一步添加的「脚本集」 - 「添加脚本」
 
-![imgs](../../imgs/tencent-prod-func-10.png)
+![imgs](../imgs/tencent-prod-func-10.png)
 
 3、 创建 ID 为 main 的脚本
 
-![imgs](../../imgs/tencent-prod-func-11.png)
+![imgs](../imgs/tencent-prod-func-11.png)
 
 4、 添加数据采集代码
 
@@ -166,21 +166,21 @@ def run():
 
 5、 「保存」 配置并 「发布」，发布后才能添加定时任务
 
-![imgs](../../imgs/tencent-prod-func-12.png)
+![imgs](../imgs/tencent-prod-func-12.png)
 
 ### 3 定时任务
 
 1、 添加自动触发任务：「管理」 - 「自动触发配置」 - 「新建任务」
 
-![imgs](../../imgs/tencent-prod-func-13.png)
+![imgs](../imgs/tencent-prod-func-13.png)
 
 2、 自动触发配置：在「执行函数」中添加此脚本，执行频率默认为 **五分钟 _/5 _ \* \* \***
 
-![imgs](../../imgs/tencent-prod-func-14.png)
+![imgs](../imgs/tencent-prod-func-14.png)
 
 3、 数据验证：登录观测云，通过「指标」查看数据是否已正常上报
 
-![imgs](../../imgs/tencent-prod-func-15.png)
+![imgs](../imgs/tencent-prod-func-15.png)
 
 ## 场景视图
 
@@ -188,7 +188,7 @@ def run():
 
 - 示例为 腾讯云 CVM
 
-![imgs](../../imgs/tencent-prod-func-16.png)
+![imgs](../imgs/tencent-prod-func-16.png)
 
 ## 监控规则
 
@@ -196,7 +196,7 @@ def run():
 
 - 示例为 腾讯云 CDB 检测库
 
-![imgs](../../imgs/tencent-prod-func-17.png)
+![imgs](../imgs/tencent-prod-func-17.png)
 
 ## 进一步阅读
 
