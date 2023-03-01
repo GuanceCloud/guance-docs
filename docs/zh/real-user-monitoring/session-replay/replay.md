@@ -1,4 +1,4 @@
-# 如何接入会话回放（Session Replay）
+# 如何接入会话重放（Session Replay）
 ---
 
 ### 什么是 Session Replay
@@ -53,7 +53,7 @@ datafluxRum.startSessionReplayRecording();
 
 ```js
 <script
-src="https://static.guance.com/browser-sdk/v2/dataflux-rum.js" 
+src="https://static.guance.com/browser-sdk/v3/dataflux-rum.js" 
 type="text/javascript"
 ></script>
 <script>
