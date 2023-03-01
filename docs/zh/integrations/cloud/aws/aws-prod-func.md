@@ -16,13 +16,13 @@ AWS 产品众多，通常使用 CloudWatch 对 AWS 资源和互联网应用进�
 
 > **注意：**其中 `token` 是该工作空间的唯一标识
 
-![imgs](../../imgs/aws-prod-func-1.png)
+![imgs](../imgs/aws-prod-func-1.png)
 
 ### 2 服务器[安装 Func 携带版](https://func.guance.com/doc/maintenance-guide-installation/)
 
-登录观测云，点击「集成」 - 「Func」，下载脚本并执行安装命令即可
+登录观测云，点击「集成」 - 「扩展」，下载脚本并执行安装命令即可
 
-![imgs](../../imgs/aws-prod-func-2.png)
+![imgs](../imgs/aws-prod-func-2.png)
 
 ### 3 AWS 访问管理进行授权
 
@@ -30,15 +30,15 @@ AWS 产品众多，通常使用 CloudWatch 对 AWS 资源和互联网应用进�
 
 2、 添加用户
 
-![imgs](../../imgs/aws-prod-func-3.png)
+![imgs](../imgs/aws-prod-func-3.png)
 
 3、 用户授权 (ReadOnlyAccess)
 
-![imgs](../../imgs/aws-prod-func-4.png)
+![imgs](../imgs/aws-prod-func-4.png)
 
 4、 保存或下载 **Access key ID** 和 **AccessKey Secret** 的 CSV 文件 (配置文件会用到)
 
-![imgs](../../imgs/aws-prod-func-5.png)
+![imgs](../imgs/aws-prod-func-5.png)
 
 ## 安装配置
 
@@ -52,11 +52,11 @@ AWS 产品众多，通常使用 CloudWatch 对 AWS 资源和互联网应用进�
 
 > 默认账号/密码：admin/admin（请自行修改）
 
-![imgs](../../imgs/aws-prod-func-6.png)
+![imgs](../imgs/aws-prod-func-6.png)
 
 2、 开启脚本市场：「管理」 - 「实验性功能」 - 「开启脚本市场模块」
 
-![imgs](../../imgs/aws-prod-func-7.png)
+![imgs](../imgs/aws-prod-func-7.png)
 
 3、 **依次添加**脚本集<br/>
 （1）观测云集成（核心包）<br/>
@@ -65,26 +65,26 @@ AWS 产品众多，通常使用 CloudWatch 对 AWS 资源和互联网应用进�
 
 > **注意：**在安装「核心包」后，系统会提示安装第三方依赖包 pip，按照正常步骤点击安装即可
 
-![imgs](../../imgs/aws-prod-func-8.png)
-![imgs](../../imgs/aws-prod-func-9.png)
+![imgs](../imgs/aws-prod-func-8.png)
+![imgs](../imgs/aws-prod-func-9.png)
 
 4、 脚本安装完成后，可以在「脚本库」中看到所有脚本集
 
-![imgs](../../imgs/aws-prod-func-10.png)
+![imgs](../imgs/aws-prod-func-10.png)
 
 ### 2 添加脚本
 
 1、 「开发」 - 「脚本库」 - 「添加脚本集」
 
-![imgs](../../imgs/aws-prod-func-11.png)
+![imgs](../imgs/aws-prod-func-11.png)
 
 2、 点击上一步添加的「脚本集」 - 「添加脚本」
 
-![imgs](../../imgs/aws-prod-func-12.png)
+![imgs](../imgs/aws-prod-func-12.png)
 
 3、 创建 ID 为 main 的脚本
 
-![imgs](../../imgs/aws-prod-func-13.png)
+![imgs](../imgs/aws-prod-func-13.png)
 
 4、 添加数据采集代码
 
@@ -169,17 +169,17 @@ def run():
 
 5、 「保存」 配置并 「发布」，发布后才能添加定时任务
 
-![imgs](../../imgs/aws-prod-func-14.png)
+![imgs](../imgs/aws-prod-func-14.png)
 
 ### 3 定时任务
 
 1、 添加自动触发任务：「管理」 - 「自动触发配置」 - 「新建任务」
 
-![imgs](../../imgs/aws-prod-func-15.png)
+![imgs](../imgs/aws-prod-func-15.png)
 
 2、 自动触发配置：在「执行函数」中添加此脚本，执行频率默认为 **五分钟 _/5 _ \* \* \***
 
-![imgs](../../imgs/aws-prod-func-16.png)
+![imgs](../imgs/aws-prod-func-16.png)
 
 ## 场景视图
 
@@ -187,9 +187,9 @@ def run():
 
 - 示例为 AWS RDS MySQL
 
-![imgs](../../imgs/aws-prod-func-17.png)
-![imgs](../../imgs/aws-prod-func-18.png)
-![imgs](../../imgs/aws-prod-func-19.png)
+![imgs](../imgs/aws-prod-func-17.png)
+![imgs](../imgs/aws-prod-func-18.png)
+![imgs](../imgs/aws-prod-func-19.png)
 
 ## 进一步阅读
 
