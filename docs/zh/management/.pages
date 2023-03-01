@@ -18,7 +18,7 @@ nav:
   - '功能菜单管理': customized-menu.md
   - '快照': snapshot.md
   - '工单管理': work-order-management.md
-  - '其他设置': 
+  - '更多': 
     - '帮助': help.md
     - '系统通知': system-notification.md
     - '高性能模式': high-performance.md
