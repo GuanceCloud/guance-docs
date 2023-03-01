@@ -16,11 +16,12 @@ nav:
   - '关键指标管理（作战室）': key-metrics.md
   - '操作审计': operation-audit.md
   - '功能菜单管理': customized-menu.md
-  - '系统主题': system-theme.md
-  - '高性能模式': high-performance.md
-  - '系统通知': system-notification.md
   - '快照': snapshot.md
-  - '帮助': help.md
   - '工单管理': work-order-management.md
-  - 'Status Page': status-page.md
-  - 'Demo 空间': space-demo.md
+  - '其他设置': 
+    - '帮助': help.md
+    - '系统通知': system-notification.md
+    - '高性能模式': high-performance.md
+    - '系统主题': system-theme.md
+    - 'Status Page': status-page.md
+    - 'Demo 空间': space-demo.md
