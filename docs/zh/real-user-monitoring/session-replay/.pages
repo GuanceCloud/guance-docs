@@ -1,5 +1,5 @@
 nav:
   - index.md
-  - '如何接入会话回放': replay.md
+  - '如何接入会话重放': replay.md
   - '常见问题': faq.md
 

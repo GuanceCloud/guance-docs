@@ -7,6 +7,18 @@ icon: zy/release-notes
 
 本文档记录观测云每次上线发布的更新内容说明，包括 DataKit、观测云最佳实践、观测云集成文档和观测云。
 
+## 2023 年 2 月 28 号
+
+### 观测云更新
+
+#### 新增会话重放功能
+
+会话重放是用户体验网站的重建演示，通过捕获单击、鼠标移动和页面滚动等内容，生成视频记录，深入了解用户的操作体验。更多详情可参考文档 [会话重放](../real-user-monitoring/session-replay/index.md) 。
+
+#### 优化 AWS 开通流程
+
+观测云优化 AWS 云市场一键开通观测云的流程，在 AWS 云市场订阅观测云商品后，可直接开通使用观测云。更多详情可参考文档 [在 AWS 开通观测云](../billing/commercial-aws.md) 。
+
 ## 2023 年 2 月 23 号
 
 ### 观测云更新
@@ -34,6 +46,10 @@ icon: zy/release-notes
 ##### 新增 CDN 质量分析 
 
 用户访问监测新增 CDN 厂商信息采集，通过分析图表对不同厂商的 CDN 进行质量分析。更多配置可参考 [用户访问监测采集器配置](../datakit/rum.md#cdn-resolve) 。
+
+##### 新增 UniAPP 应用接入
+
+用户访问监测新增 UniAPP 应用接入，当前版本支持 Android 和 iOS 平台。更多详情可参考 [UniApp 应用接入](../real-user-monitoring/uni-app/app-access.md) 。
 
 #### 场景优化
 

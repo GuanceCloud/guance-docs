@@ -8,13 +8,13 @@ The content of this article is to create a RAM account from 0 and authorize it. 
 
 ## Operating Instructions
 
-1.Download the SLS authorization file in the registration process of opening the SLS exclusive plan with one click in Guance, and copy the JSON backup after opening, which will be used later. For the launch process, please refer to the doc [Alibaba Cloud market launch Guance exclusive plan](../commercial-aliyun-sls.md).
+1.Download the SLS authorization file in the registration process of opening the SLS exclusive plan with one click in Guance, and copy the JSON backup after opening, which will be used later. For the launch process, please refer to the doc [opening Guance exclusive plan in the Alibaba Cloud market](../commercial-aliyun-sls.md).
 
 ![](../img/1.sls_6.jpeg)
 
 2.Log in to Alibaba Cloud through your main account and perform real-name authentication (if there is no prompt, it means that it has been authenticated).
 
-3.Drop down the avatar in the upper right corner-click AccessKey to manage.
+3.Drop down the avatar in the upper right corner and click AccessKey to manage.
 
 ![](../img/1.RAM.png)
 
@@ -28,7 +28,7 @@ Note: Since AccessKey Secret can only be viewed once, it is recommended to copy 
 
 ![](../img/3.RAM.png)
 
-6.In RAM Access Control-Users, create a RAM user and click Add Permissions.
+6.In **RAM Access Control > Users**, create a RAM user and click Add Permissions.
 
 ![](../img/4.RAM.png)
 
@@ -36,7 +36,7 @@ Note: Since AccessKey Secret can only be viewed once, it is recommended to copy 
 
 ![](../img/5.RAM.png)
 
-8.Click Script Edit-Paste the JSON copied in the first step here.
+8.Click Script Edit and paste the JSON copied in the first step here.
 
 ![](../img/6.RAM.png)
 

@@ -1,27 +1,27 @@
-# Access to Guance Exclusive Plan in Alibaba Cloud Market
+# Access to Exclusive Plan in Alibaba Cloud Market
 ---
 
 This article will introduce how to use the exclusiven plan of Guance after purchasing it in Alibaba Cloud Market. Refer to the doc [register commercial plan](../billing/commercial-register.md).
 
 ## Perchase Guance Exclusive Plan
 
-Open [Guance Exclusive Plan in Alibaba Cloud Market](https://market.aliyun.com/products/56838014/cmgj00060481.html) and click "getting started".
+Open [Guance exclusive plan in Alibaba Cloud market](https://market.aliyun.com/products/56838014/cmgj00060481.html) and click **Getting Started**.
 
 ![](img/7.aliyun_sls.png)
 
-### Log in to Alibaba Cloud Account
+### Log in to Alibaba Cloud
 
 If you are not logged in to Alibaba Cloud, prompt your account to log in.
 
 ![](img/6.aliyun_7.png)
 
-### Open Guance according to the Quantity Service
+### Open Guance Pay-per-use Service
 
-After logging in to Alibaba Cloud, return to Alibaba Cloud Heart Selection, click "Open Now" again, and prompt "Open Service by Quantity". After agreeing to the agreement, click "Open".
+After logging in to Alibaba Cloud, return to Alibaba Cloud Selection, click **Getting Started** again, and prompt **Open Pay-per-use Service**. After agreeing to the agreement, click **Open**.
 
 ![](img/6.aliyun_9.png)
 
-At the prompt "Open Application Submitted" dialog box, click "Confirm".
+At the prompt **Open Application Submitted** dialog box, click **Confirm**.
 
 ![](img/6.aliyun_10.png)
 
@@ -33,17 +33,17 @@ Note: Alibaba Cloud account needs real-name authentication to purchase Guance se
 
 ![](img/7.aliyun_sls_1.png)
 
-Click "No Login" on the right side of the instance. In the pop-up dialog box, click OK.
+Click No Login on the right side of the instance. In the pop-up dialog box, click OK.
 
 ![](img/7.aliyun_sls_2.png)
 
-Prompt "Register Guance Commercial Plan immediately" and "Existing enterprise account, bind it".
+Prompt **Register Guance Commercial Plan Immediately** and **Existing Enterprise Account**, bind it.
 
 ![](img/10.aliyun_market_2.png)
 
 ### Register Guance Commercial Plan
 
-If you have never had a Guance account, you can click "Register Guance Business Edition" to register.
+If you have never had a Guance account, you can click **Register Guance Commercial Plan** to register.
 
 #### Enter Basic Information
 
@@ -51,66 +51,66 @@ On the basic information page, select the site, enter the registration informati
 
 ???+ attention
 
-    - The joint solution of Guance and SLS only supports "China-Hangzhou" and "China-Zhangjiakou" sites, and cannot be changed once the SLS data storage scheme is selected;
-    - The entered "user name" is also used to register the account of the Guance expense center. The user name account of the expense center will check its uniqueness and cannot be modified once registered;
+    - The joint solution of Guance and SLS only supports China-Hangzhou and China-Zhangjiakou sites, and cannot be changed once the SLS data storage scheme is selected;
+    - The entered user name is also used to register the account of the Guance expense center. The user name account of the expense center will check its uniqueness and cannot be modified once registered;
 
 ![](img/7.aliyun_sls_3.png)
 
 #### Enter Enterprise Information
 
-On the Enterprise Information page, enter enterprise information and click Register.
+On the Enterprise Information page, enter enterprise information and click **Register**.
 
 ![](img/11.account_center_4.png)
 
-#### Select Opening Mode
+#### Select Opening Method
 
-In "Select Opening Method", fill in "Workspace Name", and Guance will automatically obtain "Ali User ID" and "Commodity Instance ID".
+In **Select Opening Method**, fill in **Workspace Name**, and Guance will automatically obtain **Alibaba User ID** and **Commodity Instance ID**.
 
 ![](img/10.aliyun_market_4.png)
 
 
 
-Click "OK", view and agree to Guance platform user service agreement, and click "Next".
+Click OK, view and agree to Guance platform user service agreement, and click Next.
 
 ![](img/1.sls_7.png)
 
-On the page of "Bind Alibaba Cloud Account", download and obtain SLS authorization file, create Alibaba Cloud RAM account in [Alibaba Cloud studio](https://www.aliyun.com/), and obtain AccessKey ID and AccessKey Secret information of this account. Refer to the doc [RAM account authorization](../billing/billing-method/sls-grant.md).
+On the page of **Bind Alibaba Cloud Account**, download and obtain SLS authorization file, create Alibaba Cloud RAM account in [Alibaba Cloud studio](https://www.aliyun.com/), and obtain AccessKey ID and AccessKey Secret information of this account. Refer to the doc [RAM account authorization](../billing/billing-method/sls-grant.md).
 
 ![](img/1.sls_4.jpeg)
 
-Fill in AccessKey ID and AccessKey Secret and verify them. If the verification passes, you can proceed to the next step; If the verification fails, "This AK is invalid, please fill it in again" will be prompted.
+Fill in AccessKey ID and AccessKey Secret and verify them. If the verification passes, you can proceed to the next step; If the verification fails, **This AK is invalid, please fill it in again** will be prompted.
 
 ![](img/1.sls_6.jpeg)
 
-#### Successful Opening
+#### Opening Successfully
 
-After the verification is passed, click "Confirm Opening" and prompt "Successfully Opening the Commercial Plan of Guance".
+After the verification is passed, click **Confirm Opening** and prompt **Successfully Open the Commercial Plan of Guance**.
 
 ![](img/1.sls_8.png)
 
 ### Bind Guance Workspace
 
-After registering the Guance account, you can return to the bound Guance workspace. Click "Existing Enterprise Account, Bind".
+After registering the Guance account, you can return to the bound Guance workspace. Click **Existing enterprise account, bind it**.
 
 ![](img/10.aliyun_market_2.png)
 
-Prompt "How to quickly bind Alibaba Cloud account for settlement".
+Prompt **How to quickly bind Alibaba Cloud account for settlement**.
 
 ![](img/12.aliyun_4.png)
 
-Click "Got" to start binding the Guance workspace. Before binding the workspace, you need to bind the enterprise account of Guance.
+Click OK to start binding the Guance workspace. Before binding the workspace, you need to bind the enterprise account of Guance.
 
 #### Bind Guance Enterprise Account
 
 ##### Existing Enterprise Account
 
-Enter the "user name" of the Guance enterprise account and bind it through email verification.
+Enter the user name of the Guance enterprise account and bind it through email verification.
 
 ![](img/7.aliyun_sls_4.png)
 
 ##### No Enterprise Account yet
 
-If you don't have a Guance enterprise account yet, you can click "Register" to register a new Guance enterprise account.
+If you don't have a Guance enterprise account yet, you can click **Register** to register a new Guance enterprise account.
 
 ![](img/12.aliyun_6.png)
 
@@ -122,19 +122,19 @@ After successful binding, enter the binding Guance workspace page. If there is a
 
 ##### Bind Existing Workspace
 
-You can select the workspace to bind, click "Bind" on the right, and enter the email address and verification code in the pop-up dialog box.
+You can select the workspace to bind, click Bind on the right, and enter the email address and verification code in the pop-up dialog box.
 
-> Note: All listed here are SLS storage spaces. If your account has not created a workspace for SLS storage, you can select "Create Workspace".
+> Note: All listed here are SLS storage spaces. If your account has not created a workspace for SLS storage, you can select **Create Workspace**.
 
 ![](img/1-aliyun-1109.png)
 
-After clicking "Confirm", it will be prompted that it is bound.
+After clicking **Confirm**, it will be prompted that it is bound.
 
 ![](img/2-aliyun-sls.png)
 
 
 
-Click "OK" to prompt that the binding is successful.
+Click OK to prompt that the binding is successful.
 
 ![](img/3-aliyun-1109.png)
 
@@ -144,19 +144,24 @@ Click OK to return to the login Guance.
 
 ##### Create a Workspace
 
-If you have not created a workspace, you can click "Create Workspace", enter the name of the workspace and the email address used when registering the Guance account, and create it.
+If you have not created a workspace, you can click **Create Workspace**, enter the name of the workspace and the email address used when registering the Guance account, and create it.
 
-![](img/5-aliyun-commercial.png)
+> Workspace language options affect templates for events, alarms and text messages in the workspace. If you select English, the above corresponding template will be used by default. Once created, the template language of this workspace cannot be modified, so please choose carefully.
+
+![](img/4.register_language_11.png)
 
 ##### Register Guance Account
 
-If the Guance account is not registered, you can click "Register Guance Account", enter relevant information, and register through mobile phone number verification.
+If the Guance account is not registered, you can click Register Guance Account, enter relevant information, and register through mobile phone number verification.
 
-![](img/3-aliyun-commercial.png)
+> - Workspace language options affect templates for events, alarms and text messages in the workspace. If you select English, the above corresponding template will be used by default. Once created, the template language of this workspace cannot be modified, so please choose carefully.
+> - User name: used to register [Guance studio account](https://auth.guance.com/businessRegister), and will automatically register [Guance expense center account](https://boss.guance.com/) with the same user name for you, thus carrying out the subsequent expense settlement process. The user name account of the expense center will check its uniqueness and cannot be modified once registered; it is supported to bind the user name and account of the expense center. After the binding is completed, the user name cannot be modified. Please operate carefully.
+
+![](img/4.register_language_10.png)
 
 ### Start Using Guance
 
-After registration, you can watch the introduction video of Guance, or you can click "Start Installing DataKit" to install and configure the first DataKit.
+After registration, you can watch the introduction video of Guance, or you can click **Start installing DataKit and configure the first DataKit**.
 
 ![](img/1-free-start-1109.png)
 
@@ -168,13 +173,13 @@ Guance enables you to view other sls data under Alibaba Cloud account synchronou
 
 ### Open Guance Exclusive Plan
 
-**1.How to open the exclusive plan of Guance (SLS storage)?**
+**1.How to open exclusive plan of Guance (SLS storage)?**
 
-You can open the Guance Exclusive Plan according to this document. The Guance Exclusive Plan only supports SLS storage mode. For more storage modes, please refer to the doc [data storage mode](../billing/billing-method/data-storage.md#options).
+You can open the Guance Exclusive Plan according to this document. The Guance Exclusive Plan only supports SLS storage mode. For more storage modes, please refer to the doc [data storage policy](../billing/billing-method/data-storage.md#options).
 
 **2.If the workspace that has used the commercial plan of Guance has been opened, can the exclusive plan of Guance be opened again?**
 
-Yes, open the exclusive product entrance of Alibaba Cloud Market-Guance, and build a new SLS workspace.
+Yes, open the exclusive product entrance of **Alibaba Cloud Market > Guance**, and build a new SLS workspace.
 
 **3.If the workspace of the commercial plan of Guance has been opened, can it be switched to the exclusive plan of Guance?**
 
@@ -184,7 +189,7 @@ No, the biggest difference between commercial plan and SLS exclusive plan lies i
 
 No, at present, it only supports opening SLS exclusive plan workspace through Alibaba Cloud Market-Guance exclusive plan product portal, and the normal upgrade process does not support opening SLS exclusive plan workspace.
 
-### Data Viewing Problem After Opening Exclusive Plan of Guance
+### Data viewing problem after opening exclusive plan of Guance
 
 **1.Why does SLS have logs, but they can't be displayed in Guance?**
 
@@ -192,7 +197,7 @@ The Default index must have logs, that is, logs collected by Guance DataKit, bef
 
 **2.Why does the SLS log input appear empty when it is reported?**
 
-Because the SLS content field is content, Guance uses message, which needs to be solved by field mapping.
+As the SLS content field is content, Guance uses message, which needs to be solved by field mapping.
 
 **3.How can the data of SLS console be judged as the user himself or the access data of Guance?**
 
@@ -216,10 +221,10 @@ Data such as metrics, logs, backup logs, availability monitoring, CI, security c
 
 **2.Can I change the data storage area of the exclusive plan of Guance?**
 
-No, Guance will create Project and Metricstore and Logstore data indexes in the same Region of SLS according to the Region where the user currently selects the open site. Unless you re-create a new SLS Exclusive Edition workspace, the data storage Region cannot be changed. At present, the exclusive plan of Guance only supports "China 1 (Hangzhou)" site and "China 3 (Zhangjiakou)" site.
+No, Guance will create Project and Metricstore and Logstore data indexes in the same Region of SLS according to the Region where the user currently selects the open site. Unless you re-create a new SLS Exclusive Edition workspace, the data storage Region cannot be changed. At present, the exclusive plan of Guance only supports China 1 (Hangzhou) site and China 3 (Zhangjiakou) site.
 
-- China 1 (Hangzhou) site opens SLS exclusive plan, and the data will be saved in SLS "cn-hangzhou" Region;
-- China 3 (Zhangjiakou) site opens SLS exclusive plan, and the data will be saved in SLS "cn-zhangjiakou" Region;
+- China 1 (Hangzhou) site opens SLS exclusive plan, and the data will be saved in SLS cn-hangzhou Region;
+- China 3 (Zhangjiakou) site opens SLS exclusive plan, and the data will be saved in SLS cn-zhangjiakou Region;
 
 ### Guance Exclusive Plan Billing
 
@@ -247,9 +252,9 @@ The language of SLS storage is promql, and some functions cannot be used. For mo
 
 The four functions, `show_tag_key`, `show_tag_value`, `show_tag_key_cardinality`, and `show_tag_value_cardinality`, only support querying data for the last 5 minutes, that is, if there is no data for the last 5 minutes, the result of these show functions is 0. The following scenarios exist in the current Guance workspace using the show tag function:
 
-- Functions such as ` show_tag_key `, ` show_tag_value ` are used in view variables
+- Functions such as `show_tag_key`, `show_tag_value` are used in view variables
 - Metric management page sideslip details page displays label data
-- Drop-down list after ` group by ` when all charts configure metric data query, or filter criteria are added
+- Drop-down list after `group by` when all charts configure metric data query, or filter criteria are added
 
 **3. Does SLS metric query support one DQL to query multiple metric data?**
 
@@ -263,7 +268,7 @@ At present, only the complete message can be returned according to the query of 
 
 **1.Why can't you filter fields after opening the exclusive plan of Guance?**
 
-Guance will automatically create a "field index" for log data containing the same fields for field filtering, but if the amount of data is small, automatic creation will not be triggered. In this case, you cannot query data through field filtering in Guance, and you can solve this problem by reporting more log data containing the same fields.
+Guance will automatically create a field index for log data containing the same fields for field filtering, but if the amount of data is small, automatic creation will not be triggered. In this case, you cannot query data through field filtering in Guance, and you can solve this problem by reporting more log data containing the same fields.
 
 > Note: If the time interval between the data reported when the field index is not created and the data reported when the field index is created is too long, It may cause the data reported when the field index is not created to be unable to pass the field filtering query. For example, two pieces of data of the same field were reported yesterday, and the field index was not created. Today, 100 pieces of data of the same field as yesterday were reported, and the field index was automatically created. During the field filtering, the two pieces of data reported yesterday may not be found.
 
@@ -279,7 +284,7 @@ Not supported, only deleting all measurements is supported at present.
 
 **3. Why can't the newly reported field data in SLS exclusive workspace support filtering and sorting?**
 
-The current SLS field index will have a delay time of 1 minute. For example, it takes 1 minute to cut out a new field through Pipeline before searching for a new field, and the data within that 1 minute delay still cannot be filtered and searched; ES cuts out new fields that can be searched immediately. This problem also affects the use of functions such as "Generate Metrics" and other chart queries.
+The current SLS field index will have a delay time of 1 minute. For example, it takes 1 minute to cut out a new field through Pipeline before searching for a new field, and the data within that 1 minute delay still cannot be filtered and searched; ES cuts out new fields that can be searched immediately. This problem also affects the use of functions such as Generate Metrics and other chart queries.
 
 **4. Does the SLS Exclusive Workspace support index merging?**
 

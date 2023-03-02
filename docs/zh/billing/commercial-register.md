@@ -95,7 +95,7 @@
 
 若您在注册时选择 “**中国区2（宁夏）**”、“**海外区1（俄勒冈）**”站点，观测云默认提供 AWS 账号结算，工作空间内产生的所有费用会直接从您的 AWS 账户中进行结算。
 
-您可以在「选择开通方式」，点击「 [前往亚马逊云市场订阅](../billing/billing-account/aws-account.md#subscribe) 」，在 AWS 订阅观测云。完成订阅以后，在下面的对话框输入「工作空间名称」，选择「工作空间语言」，点击「确定」即可完成注册。
+您可以在「选择开通方式」，点击「 [前往亚马逊云市场订阅](../billing/billing-account/aws-account.md#subscribe) 」，在 AWS 订阅观测云并开通 AWS 账号结算。
 
 ![](img/4.register_language_2.1.png)
 

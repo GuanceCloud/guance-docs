@@ -28,7 +28,7 @@ MinIO 性能指标展示，包括 MinIO 在线时长、存储空间分布、buck
 
 ### 指标采集 (必选)
 
-MinIO 默认已暴露 [metric](https://docs.min.io/minio/baremetal/monitoring/metrics-alerts/collect-minio-metrics-using-prometheus.html?ref=con#minio-metrics-collect-using-prometheus)，可以直接通过 Prometheus 来采集相关指标。
+MinIO 默认已暴露 [metric](https://docs.min.io/minio/baremetal/monitoring/metrics-alerts/collect-minio-metrics-using-prometheus.html?ref=con#minio-metrics-collect-using-prometheus) ，可以直接通过 Prometheus 来采集相关指标。
 
 1、 使用 minio-client（简称`mc`）创建授权信息
 
@@ -44,6 +44,9 @@ scrape_configs:
   - targets: ['192.168.0.210:9000']
 ```
 
+???+ info "注意"
+	Minio 只提供了通过 `mc` 来生成`token` 信息，可用于`prometheus` 指标采集。其中并不包含生成对应 prometheus server, 输出信息包含了 `bearer_token`、`metrics_path`、`scheme`以及`targets`，通过这些信息可以进行拼装最终的 url 。
+
 2、 开启 DataKit promtheus 插件
 
 ```shell
@@ -55,7 +58,7 @@ cp prom.conf.sample prom-minio.conf
 
 ??? quote "`prom-minio.conf`"
 
-    ```
+    ```toml hl_lines="3 8 9 12 24 28 29 30"
     [[inputs.prom]]
       # Exporter URLs
       urls = ["http://192.168.0.210:9000/minio/v2/metrics/cluster"]

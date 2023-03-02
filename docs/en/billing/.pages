@@ -1,11 +1,17 @@
 nav:
   - index.md
-  - 'Cost Center': cost-center
-  - 'Open Commercial Plan': 
-    - 'Register Commercial Plan': commercial-register.md
-    - 'Upgrade Commercial Plan': commercial-plan.md
-    - 'Access to Guance Commercial Plan in Alibaba Cloud Market': commercial-aliyun.md
-    - 'Access to Guance Exclusive Plan in Alibaba Cloud Market': commercial-aliyun-sls.md
-  - 'Gaunce Billing Account': billing-account
-  - 'Billing Method': billing-method
+  - Plan Instructions:
+    - Public Cloud Commercial Plan:
+      - commercial.md
+      - Open in Guance:
+        - 'Register Commercial Plan': commercial-register.md
+        - 'Upgrade to Commercial Plan': commercial-version.md       
+      - Open in Alibaba Cloud:
+        - 'Access to Commercial Plan': commercial-aliyun.md
+        - 'Access to Exclusive Plan': commercial-aliyun-sls.md
+    - Public Cloud Experience Plan: trail.md
+    - Private Cloud Deployment Plan: deployment.md
+  - 'Expense Center': cost-center  
+  - 'Usage Billing Method': billing-method
+  - 'Expense Settlement Method': billing-account
   - 'FAQ': faq.md

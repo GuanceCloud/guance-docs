@@ -7,7 +7,7 @@ Guance supports filtering qualified logs by setting log blacklists, after config
 
 In the "Guance" workspace, click "Log"-"Blacklist"-"New Blacklist".
 
-![](img/4.log_blacklist_1.png)
+![](img/log-blacklist-en-1.png)
 
 Select "Source", add one or more log filtering rules, and click "OK" to open the log filtering rules by default. You can view all log filtering rules through Log Blacklist. 
  
@@ -18,13 +18,13 @@ Select "Source", add one or more log filtering rules, and click "OK" to open the
 - Matching options: 4 modes of ` in/not in/match/not match ` are supported, ` in/not in ` is precise match, and ` match/not match ` is fuzzy match (regular match)     
 
 
-![](img/4.log_blacklist_2.png)
+![](img/log-blacklist-en-2.png)
 
 ### Example
 
 In the following example, datakit's log satisfies ` status ` as ` ok or info `, and ` host ` as ` cc-testing-cluster-001 `, and ` message ` contains the word ` kodo `, meaning that data satisfying all three matching rules is filtered and no longer reported to the workspace.
 
-![](img/4.log_blacklist_3.png)
+![](img/log-blacklist-en-3.png)
 
 ## Opeartion
 
@@ -32,13 +32,13 @@ In the following example, datakit's log satisfies ` status ` as ` ok or info `, 
 
 On the right side of the log blacklist, click the "Edit" icon to edit the log filtering rules that have been created. In the following example, datakit's log satisfies ` status ` as ` ok or info `, or ` host ` as ` cc-testing-cluster-001 `, or ` message ` contains the word ` kodo `, data satisfying any of these three matching rules is filtered and no longer reported to the workspace.
 
-![](img/4.log_blacklist_4.png)
+![](img/log-blacklist-en-3.png)
 
 ### Delete
 
 On the right side of the log blacklist, click the "Delete" icon to delete the existing log filtering rules. After the filtering rules are deleted, the log data will be reported to the workspace normally.
 
-![](img/1.log_5.png)
+![](img/log-blacklist-en-4.png)
 
 ### Batch operation
 
@@ -48,7 +48,7 @@ In the Guance workspace "Log"-"Blacklist", click "Batch Operation" to "Batch Exp
 
     This function is only displayed for workspace owners, administrators and ordinary members, and read-only members are not displayed.
 
-![](img/2.log_blacklist_1.png)
+![](img/log-blacklist-en-5.png)
 
 ### Import / Export
 

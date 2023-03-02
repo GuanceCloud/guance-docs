@@ -1,8 +1,46 @@
 # 版本历史
 
-## v1.57.120（2022 年 01 月 12 日）
+## v1.58.121（2023 年 02 月 23 日）
 
-pubrepo.jiagouyun.com/dataflux/1.57.120:launcher-e5345d3-1675061598
+pubrepo.guance.com/dataflux/1.58.121:launcher-105a217-1677566915
+
+### 观测云更新
+
+- 用户访问监测优化
+    - 新增用户访问监测自动化追踪
+    - 用户访问监测应用列表、查看器、分析看板布局整体调整
+    - 新增 CDN 质量分析
+- 场景优化
+    - 新增自定义查看器导航菜单
+    - 增强场景视图变量级联功能
+    - 饼图新增合并配置选项
+- 其他功能优化
+    - 观测云商业版注册流程支持绑定观测云费用中心账号；
+    - 配置监控器时，「检测维度」支持非必选。
+    - 图表查询中 match / not match 运算符翻译逻辑调整，日志类数据中 match 去除默认右 * 匹配逻辑。
+
+### DataKit 更新 
+
+- 新加功能
+    - 命令行增加解析行协议功能
+    - Datakit yaml 和 helm 支持资源 limit 配置
+    - Datakit yaml 和 helm 支持 CRD 部署
+    - 添加 SQL-Server 集成测试
+    - RUM 支持 resource CDN 标注
+- 功能优化
+    - 优化拨测逻辑
+    - 优化 Windows 下安装提示
+    - 优化 powershell 安装脚本模板
+    - 优化 k8s 中 Pod, ReplicaSet, Deployment 的关联方法
+    - 重构 point 数据结构及功能
+    - Datakit 自带 eBPF 采集器二进制安装
+
+更多详情可参考帮助文档：[https://docs.guance.com/release-notes/](https://docs.guance.com/release-notes/)
+
+
+## v1.57.120（2023 年 01 月 12 日）
+
+pubrepo.guance.com/dataflux/1.57.120:launcher-e5345d3-1675061598
 
 ### 观测云更新
 
@@ -34,7 +72,7 @@ pubrepo.jiagouyun.com/dataflux/1.57.120:launcher-e5345d3-1675061598
 
 ## v1.56.119（2022 年 12 月 29 日）
 
-pubrepo.jiagouyun.com/dataflux/1.56.119:launcher-e4d9302-1672825365
+pubrepo.guance.com/dataflux/1.56.119:launcher-e4d9302-1672825365
 
 ### 观测云更新
 
@@ -68,7 +106,7 @@ pubrepo.jiagouyun.com/dataflux/1.56.119:launcher-e4d9302-1672825365
 
 ## v1.55.117（2022 年 12 月 15 日）
 
-pubrepo.jiagouyun.com/dataflux/1.55.117:launcher-f4f56ef-1672025178
+pubrepo.guance.com/dataflux/1.55.117:launcher-f4f56ef-1672025178
 
 ### 观测云更新
 
@@ -112,7 +150,7 @@ pubrepo.jiagouyun.com/dataflux/1.55.117:launcher-f4f56ef-1672025178
 
 ## v1.54.116（2022 年 12 月 01 日）
 
-pubrepo.jiagouyun.com/dataflux/1.54.116:launcher-56de9cd-1670394824
+pubrepo.guance.com/dataflux/1.54.116:launcher-56de9cd-1670394824
 
 ### 观测云更新
 
@@ -157,7 +195,7 @@ pubrepo.jiagouyun.com/dataflux/1.54.116:launcher-56de9cd-1670394824
 
 ## v1.53.115（2022年11月17日）
 
-pubrepo.jiagouyun.com/dataflux/1.53.115:launcher-0da0220-1669271832
+pubrepo.guance.com/dataflux/1.53.115:launcher-0da0220-1669271832
 
 ### 观测云更新
 
@@ -206,7 +244,7 @@ pubrepo.jiagouyun.com/dataflux/1.53.115:launcher-0da0220-1669271832
 
 ## v1.52.114（2022年11月03日）
 
-pubrepo.jiagouyun.com/dataflux/1.52.114:launcher-86c0c1f-1668062771
+pubrepo.guance.com/dataflux/1.52.114:launcher-86c0c1f-1668062771
 
 ### 观测云更新
 
@@ -247,7 +285,7 @@ pubrepo.jiagouyun.com/dataflux/1.52.114:launcher-86c0c1f-1668062771
 
 ## v1.51.112（2022年10月20日）
 
-pubrepo.jiagouyun.com/dataflux/1.51.112:launcher-43db8d3-1667315533
+pubrepo.guance.com/dataflux/1.51.112:launcher-43db8d3-1667315533
 
 此版本是产品迭代版本，主要有如下更新:
 
@@ -300,7 +338,7 @@ pubrepo.jiagouyun.com/dataflux/1.51.112:launcher-43db8d3-1667315533
 
 ## v1.50.111（2022年10月12日）
 
-pubrepo.jiagouyun.com/dataflux/1.50.111:launcher-a3b4793-1665543227
+pubrepo.guance.com/dataflux/1.50.111:launcher-a3b4793-1665543227
 
 此版本是 fix 版本，主要有如下更新:
 
@@ -311,7 +349,7 @@ pubrepo.jiagouyun.com/dataflux/1.50.111:launcher-a3b4793-1665543227
 
 ## v1.50.110（2022年9月29日）
 
-pubrepo.jiagouyun.com/dataflux/1.50.110:launcher-bf5e4a7-1664640281
+pubrepo.guance.com/dataflux/1.50.110:launcher-bf5e4a7-1664640281
 
 ### 观测云更新
 
@@ -338,7 +376,7 @@ pubrepo.jiagouyun.com/dataflux/1.50.110:launcher-bf5e4a7-1664640281
 
 ## v1.49.108 (2022年9月23日)
 
-pubrepo.jiagouyun.com/dataflux/1.49.108:launcher-833084a-1663915927
+pubrepo.guance.com/dataflux/1.49.108:launcher-833084a-1663915927
 
 ### 观测云更新
 
@@ -349,7 +387,7 @@ pubrepo.jiagouyun.com/dataflux/1.49.108:launcher-833084a-1663915927
 
 ## v1.49.107 (2022年9月15日)
 
-pubrepo.jiagouyun.com/dataflux/1.49.107:launcher-e550301-1663603951
+pubrepo.guance.com/dataflux/1.49.107:launcher-e550301-1663603951
 
 ### 观测云更新
 
@@ -375,7 +413,7 @@ pubrepo.jiagouyun.com/dataflux/1.49.107:launcher-e550301-1663603951
 
 ## v1.48.106(2022年9月1日)
 
-pubrepo.jiagouyun.com/dataflux/1.48.106:launcher-e40becc-1662478572
+pubrepo.guance.com/dataflux/1.48.106:launcher-e40becc-1662478572
 
 ### 观测云更新
 
@@ -456,7 +494,7 @@ pubrepo.jiagouyun.com/dataflux/1.48.106:launcher-e40becc-1662478572
 
 ## v1.47.103(2022年8月18日)
 
-pubrepo.jiagouyun.com/dataflux/1.47.103:launcher-e472ac9-1661174654 
+pubrepo.guance.com/dataflux/1.47.103:launcher-e472ac9-1661174654 
 
 ### 观测云计费更新
 
@@ -526,7 +564,7 @@ pubrepo.jiagouyun.com/dataflux/1.47.103:launcher-e472ac9-1661174654
 
 ## v1.46.102(2022年8月10日)
 
-pubrepo.jiagouyun.com/dataflux/1.46.102:launcher-9765d09-1660104260 
+pubrepo.guance.com/dataflux/1.46.102:launcher-9765d09-1660104260 
 
 ### 观测云更新
 - Func 平台小 bug 修复
@@ -535,7 +573,7 @@ pubrepo.jiagouyun.com/dataflux/1.46.102:launcher-9765d09-1660104260
 
 ## v1.46.101(2022年8月9日)
 
-pubrepo.jiagouyun.com/dataflux/1.46.101:launcher-a785aaa-1660058667 
+pubrepo.guance.com/dataflux/1.46.101:launcher-a785aaa-1660058667 
 
 ### 观测云更新
 - DCA Web 端上线
@@ -558,7 +596,7 @@ pubrepo.jiagouyun.com/dataflux/1.46.101:launcher-a785aaa-1660058667
 
 ## v1.45.100(2022年8月4日)
 
-pubrepo.jiagouyun.com/dataflux/1.45.100:launcher-38e7844-1659597427 
+pubrepo.guance.com/dataflux/1.45.100:launcher-38e7844-1659597427 
 
 ### 观测云更新
 
@@ -570,7 +608,7 @@ pubrepo.jiagouyun.com/dataflux/1.45.100:launcher-38e7844-1659597427
 
 ## v1.45.99(2022年7月26日)
 
-pubrepo.jiagouyun.com/dataflux/1.45.99:launcher-fe8f074-1658756821 
+pubrepo.guance.com/dataflux/1.45.99:launcher-fe8f074-1658756821 
 
 ### 观测云更新
 - 新增智能巡检功能：内存泄漏、磁盘使用率、应用性能检测
@@ -625,7 +663,7 @@ pubrepo.jiagouyun.com/dataflux/1.45.99:launcher-fe8f074-1658756821
 
 ## v1.44.98(2022年7月7日)
 
-pubrepo.jiagouyun.com/dataflux/1.44.98:launcher-75d7974-1657638696 
+pubrepo.guance.com/dataflux/1.44.98:launcher-75d7974-1657638696 
 
 ### 观测云更新
 
@@ -684,7 +722,7 @@ pubrepo.jiagouyun.com/dataflux/1.44.98:launcher-75d7974-1657638696
 
 ## v1.43.97(2022年6月22日)
 
-pubrepo.jiagouyun.com/dataflux/1.43.97:launcher-508cfe1-1656344897 
+pubrepo.guance.com/dataflux/1.43.97:launcher-508cfe1-1656344897 
 
 ### 观测云更新
 - 观测云帮助文档全新上线
@@ -735,7 +773,7 @@ pubrepo.jiagouyun.com/dataflux/1.43.97:launcher-508cfe1-1656344897
 更多详情可参考帮助文档：[https://docs.guance.com/release-notes/](https://docs.guance.com/release-notes/) 
 
 ## v1.42.95(2022年6月10日)
-pubrepo.jiagouyun.com/dataflux/1.42.95:launcher-8478e83-1654839989 
+pubrepo.guance.com/dataflux/1.42.95:launcher-8478e83-1654839989 
 
 ### 观测云计费更新
 
@@ -805,7 +843,7 @@ pubrepo.jiagouyun.com/dataflux/1.42.95:launcher-8478e83-1654839989
 
 ## v1.41.94(2022年5月28日)
 
-pubrepo.jiagouyun.com/dataflux/1.41.94:launcher-249ba21-1653737335 
+pubrepo.guance.com/dataflux/1.41.94:launcher-249ba21-1653737335 
 
 ### 观测云更新
 
@@ -859,7 +897,7 @@ pubrepo.jiagouyun.com/dataflux/1.41.94:launcher-249ba21-1653737335
 
 ## v1.40.93(2022年5月9日)
 
-pubrepo.jiagouyun.com/dataflux/1.40.93:launcher-aa97377-1652102035 
+pubrepo.guance.com/dataflux/1.40.93:launcher-aa97377-1652102035 
 
 ### 观测云更新
 
@@ -896,7 +934,7 @@ pubrepo.jiagouyun.com/dataflux/1.40.93:launcher-aa97377-1652102035
 
 ## v1.39.92(2022年5月5日)
 
-pubrepo.jiagouyun.com/dataflux/1.39.92:launcher-ffcd8f2-1651715327 
+pubrepo.guance.com/dataflux/1.39.92:launcher-ffcd8f2-1651715327 
 
 ### 安装器 Launcher：
 
@@ -906,7 +944,7 @@ pubrepo.jiagouyun.com/dataflux/1.39.92:launcher-ffcd8f2-1651715327
 
 ## v1.39.91(2022年4月26日)
 
-pubrepo.jiagouyun.com/dataflux/1.39.91:launcher-8943ead-1650979666 
+pubrepo.guance.com/dataflux/1.39.91:launcher-8943ead-1650979666 
 
 ### 观测云更新
 
@@ -914,7 +952,7 @@ pubrepo.jiagouyun.com/dataflux/1.39.91:launcher-8943ead-1650979666
 
 ## v1.39.90(2022年4月25日)
 
-pubrepo.jiagouyun.com/dataflux/1.39.90:launcher-23f161d-1650898148 
+pubrepo.guance.com/dataflux/1.39.90:launcher-23f161d-1650898148 
 
 ### 观测云社区版上线
 
@@ -972,7 +1010,7 @@ pubrepo.jiagouyun.com/dataflux/1.39.90:launcher-23f161d-1650898148
 
 ## v1.38.89(2022年4月10日)
 
-pubrepo.jiagouyun.com/dataflux/1.38.89:launcher-db22a51-1649942760 
+pubrepo.guance.com/dataflux/1.38.89:launcher-db22a51-1649942760 
 
 ### 观测云计费更新
 
@@ -1028,7 +1066,7 @@ pubrepo.jiagouyun.com/dataflux/1.38.89:launcher-db22a51-1649942760
 
 ## v1.37.86(2022年3月28日)
 
-pubrepo.jiagouyun.com/dataflux/1.37.86:launcher-bd2650e-1648456839
+pubrepo.guance.com/dataflux/1.37.86:launcher-bd2650e-1648456839
 
 ### 观测云站点更新
 
@@ -1070,7 +1108,7 @@ pubrepo.jiagouyun.com/dataflux/1.37.86:launcher-bd2650e-1648456839
 
 ## v1.36.85(2022年3月14日)
 
-pubrepo.jiagouyun.com/dataflux/1.36.85:launcher-d8e6ee9-1647272237 
+pubrepo.guance.com/dataflux/1.36.85:launcher-d8e6ee9-1647272237 
 
 ### 观测云计费更新
 
@@ -1108,7 +1146,7 @@ pubrepo.jiagouyun.com/dataflux/1.36.85:launcher-d8e6ee9-1647272237
 
 ## v1.35.84(2022年2月22日)
 
-pubrepo.jiagouyun.com/dataflux/1.35.84:launcher-191ef71-1645780061 
+pubrepo.guance.com/dataflux/1.35.84:launcher-191ef71-1645780061 
 
 - 新增日志配置 **pipeline** 脚本
 - 新增 **IFrame** 图表组件

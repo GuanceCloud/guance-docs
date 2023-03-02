@@ -15,11 +15,11 @@ Guance basic log is stored for up to 60 days. If you need to store and view for 
 
 On the Log Index page, click New Rule under Backup Log. 
  
-![](img/7.backup_1.png) 
+![](img/backup-log-en-1.png) 
  
 Enter "Rule Name" to add a new rule, which supports more accurate positioning of logs to be backed up by adding filters, and saves the storage cost of backup logs. 
  
-![](img/7.backup_2.png) 
+![](img/backup-log-en-2.png) 
 
 
 **Note**
@@ -36,19 +36,19 @@ Enter "Rule Name" to add a new rule, which supports more accurate positioning of
 In the following picture, the log backup rule name is ` datakit_backup `, and log data with filter matching source ` datakit ` or content containing ` data ` is backed up. 
 
 
-![](img/7.backup_3.png)
+![](img/backup-log-en-3.png)
 
 ### View Rule
  
 After the backup rule is created, the "backup log" stored under the log index is unified. Once a rule is created, it cannot be edited, but can only be viewed and deleted. Click the "View" button to view the configured backup rule filters. 
 
-![](img/7.backup_4.png)
+![](img/backup-log-en-4.png)
 
 ### Delete Rule
 
 If you create a rule that is no longer needed or needs to be modified, you can delete the rule and then create a new backup rule. After the rule is deleted, the backed-up data will not be deleted, but no new log backup data will be generated.
 
-![](img/7.backup_5.png)
+![](img/backup-log-en-5.png)
 
 ## Backup Explorer
 
@@ -56,5 +56,5 @@ Enter the "Log"-"Backup Log" page to view the log data that meets the backup con
  
 Note: Backup logs only back up the time and contents of the logs.     
 
-![](img/8.log_backup_1.png)
+![](img/backup-log-en-6.png)
 

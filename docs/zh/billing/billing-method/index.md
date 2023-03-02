@@ -102,6 +102,9 @@
 
 SaaS 按量计费模式下，用户可根据上报数据的特性自由选择出账模式。
 
+???+ tip
+
+    大客户请 [**:material-phone-message-outline:联系客户经理**](https://www.guance.com/aboutUs/contact) 咨询详情 
 ### 默认出账逻辑 {#default}
 
 根据上述列出的计费项计算当天账单，DataKit、时间线均收费。该模式下，每台 DataKit 会默认自带 300 条免费时间线。所以实际时间线的数量会扣除免费的数量后才计费。计算逻辑如下：

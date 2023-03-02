@@ -1,4 +1,4 @@
-# 如何接入会话回放（Session Replay）
+# 如何接入会话重放（Session Replay）
 ---
 
 ### 什么是 Session Replay
@@ -53,7 +53,7 @@ datafluxRum.startSessionReplayRecording();
 
 ```js
 <script
-src="https://static.guance.com/browser-sdk/v2/dataflux-rum.js" 
+src="https://static.guance.com/browser-sdk/v3/dataflux-rum.js" 
 type="text/javascript"
 ></script>
 <script>
@@ -142,7 +142,7 @@ Session Replay 不是视频，而是基于 DOM 快照重建的 iframe。因此�
 - 由于 CORS（通常是网络字体），静态资源被浏览器阻止。
 
   1. 由于重播时，是基于 iframe 对应的 `guance.com` 沙箱环境，如果某些静态资源未获得特定域名授权，您的浏览器将阻止该请求。
-  2. 通过 Access-Control-Allow-Origin Header头允许 `guance.com`  访问您的网站所依赖的任何 font 或 image 静态资源，以确保可以访问这些资源以进行重播。有关详细信息，请参阅[跨源资源共享](https://developer.mozilla.org/en-US/docs/W)。
+  2. 通过 Access-Control-Allow-Origin Header头允许 `guance.com`  访问您的网站所依赖的任何 font 或 image 静态资源，以确保可以访问这些资源以进行重播。有关详细信息，请参阅[跨源资源共享](https://developer.mozilla.org/en-US/docs/Web)。
 
 ### CSS style 未正确应用或者鼠标悬停事件未重播
 
