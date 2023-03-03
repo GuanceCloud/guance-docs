@@ -9,9 +9,9 @@ nav:
     - '仪表板与监控的关联': monitor-dashboard.md
     - '构建组合图表': combination-diagram.md
     - '时序图自动对齐功能的应用': data-timeseries.md
+  - snapshot.md
   - '生成指标使用实战': generate-metrics.md
   - '基础设施Label的妙用': infrastructure-label.md
   - '基础设施网络分析': network-analysis.md
   - '活用日志黑名单功能': logs-blacklist.md
   - '通知分组的好处与妙用': inform-group.md
-  - '通过快照进行团队协作': snapshot-cooperation.md
