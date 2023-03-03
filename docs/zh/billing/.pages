@@ -13,6 +13,7 @@ nav:
         - '开通观测云商业版': commercial-aws.md
     - 公有云体验版: trail.md
     - 私有云部署版: deployment.md
+    - 独立存储版: independent-storage.md
   - '费用中心': cost-center  
   - '用量计费方式': billing-method
   - '费用结算方式': billing-account
