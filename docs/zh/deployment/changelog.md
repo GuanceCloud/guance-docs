@@ -1,5 +1,18 @@
 # 版本历史
 
+## v1.58.122（2023 年 03 月 04 日）
+
+pubrepo.jiagouyun.com/dataflux/1.58.122:launcher-08db157-1677907360
+
+此版本是 fix 版本，主要有如下更新:
+
+### 观测云更新
+
+- 修复 RUM Session Replay 功能播放时 bug
+- 一些其他小 bug 修复
+
+更多详情可参考帮助文档：[https://docs.guance.com/release-notes/](https://docs.guance.com/release-notes/)
+
 ## v1.58.121（2023 年 02 月 23 日）
 
 pubrepo.guance.com/dataflux/1.58.121:launcher-105a217-1677566915
