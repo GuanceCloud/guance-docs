@@ -1,0 +1,8 @@
+nav:
+  - '获取Pipeline列表': list.md
+  - '获取一个Pipeline信息': get.md
+  - '删除一个/多个Pipeline': delete.md
+  - '导出一个/多个Pipeline': export-pipeline.md
+  - '创建一个Pipeline': add.md
+  - '修改一个Pipeline': modify.md
+  - '导入一个/多个Pipeline': import-pipeline.md
