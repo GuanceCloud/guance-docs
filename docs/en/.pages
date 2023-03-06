@@ -4,7 +4,7 @@ nav:
   - Getting Started: getting-started
   - DataKit: datakit
   - <br/>Product Functions: ""
-  - Scene: scene
+  - Scenes: scene
   - Infrastructure: infrastructure
   - APM: application-performance-monitoring
   - RUM: real-user-monitoring

@@ -6,7 +6,7 @@ glightbox: false
 # <div class="homepage-title">Welcome to Guance</div>
 <div class="homepage">
   <div class="title">
-    Guance, a real-time data monitoring platform for DevOps, testing and business teams, can meet the monitoring requirements of cloud, cloud native, application and business, and quickly realize the observability of infrastructure, middleware, application layer and business layer. Guance solves observable problems through infrastructure monitoring, log and metrics management, application performance monitoring, real user monitoring, usability monitoring, anomaly detection, system-level security inspection, scenes and dashboards. By means of unified data collection, comprehensive data monitoring, coherent correlation analysis, custom scene building, high programmability and prompt member cooperation, Guance provides users with the fastest, easiest, most comprehensive and flexible observability platform.
+    Guance is a real-time data monitoring platform designed for DevOps, testing, and business teams. It can meet the monitoring requirements of cloud, cloud-native, application, and business, enabling the observability of infrastructure, middleware, application layer and business layer.<br/><br/>Guance solves observable problems through infrastructure monitoring, log and metric management, application performance monitoring(APM), real user monitoring(RUM), synthetic tests, anomaly detection, system-level security check, scenes and dashboards. With unified data collection, comprehensive data monitoring, coherent correlation analysis, custom scene building, high programmability and prompt member cooperation, Guance provides users with the fastest, easiest, most comprehensive and flexible observability platform.
   </div>
   <div class="content">
     <div class="content-top">
@@ -51,13 +51,13 @@ glightbox: false
       <a href="/scheck" class="content-item">
         <div class="item-content">
           <img src='assets/images/homepage/scheck.png' alt="" />
-          <span>Scheck</span>
+          <span>Security Check</span>
         </div>
       </a>
       <a href="/usability-monitoring" class="content-item">
         <div class="item-content">
           <img src='assets/images/homepage/usability-monitoring.png' alt="" />
-          <span>Usability Monitoring</span>
+          <span>Synthetic Tests</span>
         </div>
       </a>
       <a href="/monitoring" class="content-item">
