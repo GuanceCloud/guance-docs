@@ -17,9 +17,12 @@
 
 在宿主机/服务器上完成 DataKit 安装后，您可以依据以下步骤开启主机对象数据收集：
 
-1. 进入 DataKit 安装目录下的 `conf.d/host` 目录，复制 `hostobject.conf.sample` 并命名为 `hostobject.conf`。
-1. 配置完成后， 使用命令 `datakit --restart`，重启datakit 。
-1. 配置完成后，系统会默认开启一批与主机相关的采集器，并主动上报数据至“观测云”工作空间。默认开启的采集器列表如下：
+1.进入 DataKit 安装目录下的 `conf.d/host` 目录，复制 `hostobject.conf.sample` 并命名为 `hostobject.conf`。
+
+2.配置完成后， 使用命令 `datakit --restart`，重启datakit 。
+
+3.配置完成后，系统会默认开启一批与主机相关的采集器，并主动上报数据至“观测云”工作空间。默认开启的采集器列表如下：
+
 | 采集器名称 | 说明 |
 | --- | --- |
 | `cpu` | 采集主机的 CPU 使用情况 |

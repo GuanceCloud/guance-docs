@@ -13,6 +13,7 @@
 ## 方法/步骤
 
 ### Step1: 开启并配置 ddtrace.conf 采集器
+
 进入 DataKit 安装目录下的 `conf.d/ddtrace` 目录，复制 `ddtrace.conf.sample` 并命名为 `ddtrace.conf`，打开`ddtrace.conf`，`inputs`默认开启，无需修改。
 
 ```
