@@ -8,15 +8,23 @@ nav:
   - '公共错误定义': error-definition.md
   - '仪表板': board
   - '笔记': notes
+  - '查看器（场景下的自定义查看器）': viewer
   - '事件': keyevent
+  - '日志 - 绑定索引': log-index-cfg
   - '基础设施': objects
   - '告警策略管理': monitor
   - '监控器': checker
   - '自建巡检': self-built-checker
   - '静默配置': mute
   - '工作空间成员': workspace-member
+  - '工作空间成员组': member-group
+  - 'SSO': sso
+  - 'API KEY': workspace-ak
   - '工作空间': workspace
   - '快照': snapshot
   - 'Func 函数': outer-function
   - '通知对象': notify-object
   - '链路': tracing
+  - 'Pipeline': pipeline
+  - '黑名单': blacklist
+  - '自建节点': dialing-region

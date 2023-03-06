@@ -1,11 +1,11 @@
-# 删除一个/多个监控器
+# 删除一个/多个成员
 
 ---
 
-<br />**post /api/v1/monitor/check/delete**
+<br />**post /api/v1/workspace/member/batch_delete**
 
 ## 概述
-删除一个/多个监控器
+删除一个/多个成员
 
 
 
@@ -14,7 +14,7 @@
 
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
-| ruleUUIDs | array | Y | 检查器的UUID列表<br>允许为空: False <br> |
+| accountUUIDs | array | Y | 账号列表<br>例子: ['xxx', 'xxx'] <br>允许为空: False <br> |
 
 ## 参数补充说明
 
@@ -24,10 +24,10 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/monitor/check/delete' \
+curl 'https://openapi.guance.com/api/v1/workspace/member/batch_delete' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
---data-raw '{"ruleUUIDs": ["rul_692741d674ac4aea9980979721591b35", "rul_79f1adceb3c8418d943f38767d05f981"]}' \
+--data-raw '{"accountUUIDs": ["acnt_2387056f5aaa4043b61eb3a47e81933a"]}' \
 --compressed \
 --insecure
 ```
@@ -39,11 +39,11 @@ curl 'https://openapi.guance.com/api/v1/monitor/check/delete' \
 ```shell
 {
     "code": 200,
-    "content": true,
+    "content": null,
     "errorCode": "",
     "message": "",
     "success": true,
-    "traceId": "TRACE-F010835F-BD10-429A-974C-8CFED4A76F0D"
+    "traceId": "TRACE-598B9B3D-B612-49F2-B3A9-92013D91BB0D"
 } 
 ```
 

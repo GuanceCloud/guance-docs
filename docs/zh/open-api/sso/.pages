@@ -1,0 +1,9 @@
+nav:
+  - '获取一个SAML配置信息': saml-get.md
+  - '删除一个SAML': saml-delete.md
+  - '获取SAML映射列表': list.md
+  - '删除一个SAML映射': delete.md
+  - '启用一个SAML': saml-create.md
+  - '添加一个SAML映射': add.md
+  - '更新一个SAML配置信息': saml-modify.md
+  - '修改一个SAML映射': modify.md

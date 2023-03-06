@@ -1,0 +1,5 @@
+nav:
+  - '获取Key列表': list.md
+  - '获取一个Key': get.md
+  - '删除一个Key': delete.md
+  - '创建一个Key': add.md

@@ -1,0 +1,8 @@
+nav:
+  - '获取查看器列表': list.md
+  - '获取一个查看器': get.md
+  - '删除一个查看器': delete.md
+  - '导出一个查看器': export.md
+  - '创建一个查看器': create.md
+  - '修改一个查看器': modify.md
+  - '导入一个查看器': import.md
