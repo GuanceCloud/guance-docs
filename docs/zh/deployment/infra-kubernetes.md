@@ -8,6 +8,7 @@ sealos 是一个简单的 go 二进制文件，可以安装在大多数 Linux �
 
 - 每个集群节点应该有不同的主机名。 主机名不要带下划线。
 - 所有节点的时间同步。
+- 所有节点可以使用root用户互相ssh登陆，而且所有节点root密码相同。
 - 在 Kubernetes 集群的第一个节点上运行sealos run命令，目前集群外的节点不支持集群安装。
 - 建议使用干净的操作系统来创建集群。不要自己装 Docker。
 - 支持大多数 Linux 发行版，例如：Ubuntu CentOS Rocky linux。
