@@ -1,4 +1,4 @@
-# 自定义用户标识
+# Customized User Id
 ---
 
 By default, the SDK automatically generates a unique ID for the user, which does not have any identifying attributes and can only distinguish between different user attributes.
@@ -17,7 +17,7 @@ The following attributes are optional, but it is recommended that at least one o
 
 === "CDN" 
 
-    下载文件本地方式引入([下载地址](https://static.guance.com/miniapp-sdk/v2/dataflux-rum-miniapp.js))
+    Download files imported locally ([download address](https://static.guance.com/miniapp-sdk/v2/dataflux-rum-miniapp.js))
     
     ```javascript
     const { datafluxRum } = require('./lib/dataflux-rum-miniapp.js')
@@ -30,7 +30,7 @@ The following attributes are optional, but it is recommended that at least one o
 
 === "NPM" 
 
-    引入(可参考微信官方[npm引入方式](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html))
+    Introduction: (see WeChat official [npm introduction method](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html))
     
     ```javascript
     import { datafluxRum } from '@cloudcare/browser-rum'
@@ -44,7 +44,7 @@ The following attributes are optional, but it is recommended that at least one o
 ### Remove User Identification
 === "CDN" 
 
-    下载文件本地方式引入([下载地址](https://static.guance.com/miniapp-sdk/v2/dataflux-rum-miniapp.js))
+    Download files imported locally ([download address](https://static.guance.com/miniapp-sdk/v2/dataflux-rum-miniapp.js))
     
     ```javascript
     const { datafluxRum } = require('./lib/dataflux-rum-miniapp.js')
@@ -53,7 +53,7 @@ The following attributes are optional, but it is recommended that at least one o
 
 === "NPM" 
 
-    引入(可参考微信官方[npm引入方式](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html))
+    Introduction: (see WeChat official [npm introduction method](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html))
     
     ```javascript
     import { datafluxRum } from '@cloudcare/browser-rum'

@@ -8,7 +8,7 @@ After initializing the RUM, use the `addRumGlobalContext(key:string, value:any)`
 
 === "CDN" 
 
-    下载文件本地方式引入([下载地址](https://static.guance.com/miniapp-sdk/v2/dataflux-rum-miniapp.js))
+    Download files imported locally ([download address](https://static.guance.com/miniapp-sdk/v2/dataflux-rum-miniapp.js))
     
     ```javascript
     const { datafluxRum } = require('./lib/dataflux-rum-miniapp.js')
@@ -26,7 +26,7 @@ After initializing the RUM, use the `addRumGlobalContext(key:string, value:any)`
 
 === "NPM"
 
-    引入(可参考微信官方[npm引入方式](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html))
+    Introduction: (see WeChat official [npm introduction method](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html))
     
     ```javascript
     const { datafluxRum } = require('@cloudcare/rum-miniapp')
@@ -45,7 +45,7 @@ After initializing the RUM, use the `addRumGlobalContext(key:string, value:any)`
 
 === "CDN"
 
-    下载文件本地方式引入([下载地址](https://static.guance.com/miniapp-sdk/v2/dataflux-rum-miniapp.js))
+    Download files imported locally ([download address](https://static.guance.com/miniapp-sdk/v2/dataflux-rum-miniapp.js))
     
     ```javascript
     const { datafluxRum } = require('./lib/dataflux-rum-miniapp.js')
@@ -60,7 +60,7 @@ After initializing the RUM, use the `addRumGlobalContext(key:string, value:any)`
 
 === "NPM"
 
-    引入(可参考微信官方[npm引入方式](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html))
+    Introduction: (see WeChat official [npm introduction method](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html))
     
     ```javascript
     const { datafluxRum } = require('@cloudcare/rum-miniapp')
@@ -77,7 +77,7 @@ After initializing the RUM, use the `addRumGlobalContext(key:string, value:any)`
 
 === "CDN"
 
-    下载文件本地方式引入([下载地址](https://static.guance.com/miniapp-sdk/v2/dataflux-rum-miniapp.js))
+    Introduction: (see WeChat official [npm introduction method](https://static.guance.com/miniapp-sdk/v2/dataflux-rum-miniapp.js))
     
     ```javascript
     const { datafluxRum } = require('./lib/dataflux-rum-miniapp.js')
@@ -87,7 +87,7 @@ After initializing the RUM, use the `addRumGlobalContext(key:string, value:any)`
 
 === "NPM"
 
-    引入(可参考微信官方[npm引入方式](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html))
+    Introduction: (see WeChat official [npm introduction method](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html))
     
     ```javascript
     const { datafluxRum } = require('@cloudcare/rum-miniapp')
@@ -100,7 +100,7 @@ After initializing the RUM, use the `addRumGlobalContext(key:string, value:any)`
 
 === "CDN"
 
-    下载文件本地方式引入([下载地址](https://static.guance.com/miniapp-sdk/v2/dataflux-rum-miniapp.js))
+    Download files imported locally ([download address](https://static.guance.com/miniapp-sdk/v2/dataflux-rum-miniapp.js))
     
     ```javascript
     const { datafluxRum } = require('./lib/dataflux-rum-miniapp.js');
@@ -110,7 +110,7 @@ After initializing the RUM, use the `addRumGlobalContext(key:string, value:any)`
 
 === "NPM"
 
-    引入(可参考微信官方[npm引入方式](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html))
+    Introduction: (see WeChat official [npm introduction method](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html))
     
     ```javascript
     const { datafluxRum } = require('@cloudcare/rum-miniapp')

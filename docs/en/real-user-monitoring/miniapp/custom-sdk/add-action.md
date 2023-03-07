@@ -8,7 +8,7 @@ After initializing RUM, use the `addAction('<NAME>', '<JSON_OBJECT>')` API to cu
 
 === "CDN" 
 
-    下载文件本地方式引入([下载地址](https://static.guance.com/miniapp-sdk/v2/dataflux-rum-miniapp.js))
+    Download files imported locally ([download address](https://static.guance.com/miniapp-sdk/v2/dataflux-rum-miniapp.js))
     
     ```javascript
     const { datafluxRum } = require('./lib/dataflux-rum-miniapp.js')
@@ -23,7 +23,7 @@ After initializing RUM, use the `addAction('<NAME>', '<JSON_OBJECT>')` API to cu
     ```
 === "NPM"
 
-    引入(可参考微信官方[npm引入方式](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html))
+    Introduction: (see WeChat official [npm introduction method](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html))
     
     ```javascript
     const { datafluxRum } = require('@cloudcare/rum-miniapp')
