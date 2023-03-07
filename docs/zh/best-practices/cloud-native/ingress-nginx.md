@@ -220,7 +220,7 @@ curl -v http://8.136.204.98 -H 'host: mynginx.com'
 
 ### Ingress 监控视图
 
-登录[观测云](https://console.guance.com/)，「场景」 - 「新建仪表板」，在内置模板库中搜索「Nginx Ingress Controller」，点击搜索到的模板库，仪表板名称输入「Nginx Ingress Controller」 ，点击「确定」。
+登录[观测云](https://console.guance.com/)，「场景」 - 「新建仪表板」，在模板库中搜索「Ingress Nginx 监控视图」，点击「确定」。
 
 Ingress 性能指标展示，包括 Ingress Controller 的平均 cpu 使用率、平均内存使用、网络请求/响应合计、 Ingress Config 的加载次数、 Ingress Config 上次加载结果、 Ingress 的转发成功率等。
 

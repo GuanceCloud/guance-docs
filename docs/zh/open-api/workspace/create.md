@@ -18,6 +18,7 @@
 | desc | string |  | 描述<br>例子: 工作空间描述 <br>允许为空: True <br>允许空字符串: True <br> |
 | needCreateAk | boolean |  | 是否创建工作空间AK<br>例子: True <br>允许为空: False <br> |
 | akName | string |  | 工作空间AK名字<br>例子: True <br>允许为空: False <br> |
+| language | string |  | 工作空间语言<br>允许为空: True <br>允许空字符串: True <br> |
 
 ## 参数补充说明
 

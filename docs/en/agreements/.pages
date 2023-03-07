@@ -1,0 +1,9 @@
+nav:
+  - index.md
+  - '服务协议': service-agreement.md
+  - '观测云商业版服务协议': upgrade-agreement.md
+  - '观测云专属版服务协议': service-agreement-sls.md
+  - '法律声明': legal-notices.md
+  - '数据安全保密协议': confidentiality.md
+  - '观测云移动应用隐私政策': app-privacy-policy.md
+  - '观测云移动 SDK 隐私政策': app-sdk-privacy-policy.md
