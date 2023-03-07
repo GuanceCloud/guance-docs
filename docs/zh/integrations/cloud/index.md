@@ -30,7 +30,7 @@ icon: octicons/cloud-16
 
     ---
 
-    指导观测 [`EC2`](./aws/ec2.md) [`ELB`](./aws/elb.md) [`RDS MySQL`](./aws/rds-mysql.md) [`S3`](./aws/s3.md)等指标集数据
+    指导观测 [`EC2`](./aws/ec2.md) [`ELB`](./aws/elb.md) [`ElastiCache Redis`](./aws/elasticache-redis.md) [`RDS MySQL`](./aws/rds-mysql.md) [`S3`](./aws/s3.md)等指标集数据
 
     <br/>
     <br/>
