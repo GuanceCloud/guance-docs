@@ -148,9 +148,9 @@
 
 | **字段**        | **类型** | **描述**                   |
 | --------------- | -------- | -------------------------- |
+| `view_id`       | string   | 每次访问页面时产生的唯一ID |
 | `view_referrer` | string   | 页面来源，页面的父级       |
 | `view_name`     | string   | 页面名称                   |
-| `view_id`       | string   | 每次访问页面时产生的唯一ID |
 
 #### Resource 属性
 
@@ -187,16 +187,16 @@
 
 | **字段**        | **类型** | **描述**                   |
 | --------------- | -------- | -------------------------- |
+| `view_id`       | string   | 每次访问页面时产生的唯一ID |
 | `view_referrer` | string   | 页面来源，页面的父级       |
 | `view_name`     | string   | 页面名称                   |
-| `view_id`       | string   | 每次访问页面时产生的唯一ID |
 
 #### Error 属性
 
 | **字段** | **类型** | **描述** |
 | --- | --- | --- |
-| `error_type` | string | 错误类型<br>logger error type: java_crash &#124; native_crash &#124; abort &#124; ios_crash<br>network error type：network |
 | `error_source` | string | 错误来源，参考值：logger &#124; network |
+| `error_type` | string | 错误类型<br>logger error type: java_crash &#124; native_crash &#124; abort &#124; ios_crash<br>network error type：network |
 | `error_situation` | string | 错误发生的时机，参考值：startup(启动时)和run(运行时) |
 
 **type=network时，新增以下Network Error属性。**
@@ -212,12 +212,13 @@
 
 #### Error 监控属性
 
-| **字段**       | **类型** | **描述**                 |
-| -------------- | -------- | ------------------------ |
-| `memory_total` | string   | 可选，内存总量           |
-| `memory_use`   | number   | 可选，内存使用率         |
-| `cpu_use`      | number   | 可选，cpu 使用率         |
-| `battery_use`  | number   | 可选，当前电手机的电池量 |
+| **字段**       | **类型** | **描述**             |
+| -------------- | -------- | -------------------- |
+| `memory_total` | string   | 可选，内存总量       |
+| `memory_use`   | number   | 可选，内存使用率     |
+| `cpu_use`      | number   | 可选，cpu 使用率     |
+| `battery_use`  | number   | 可选，当前手机的电量 |
+| `locale`       | string   | 当前系统语言         |
 
 #### 指标
 
@@ -232,9 +233,9 @@
 
 | **字段**        | **类型** | **描述**                   |
 | --------------- | -------- | -------------------------- |
+| `view_id`       | string   | 每次访问页面时产生的唯一ID |
 | `view_referrer` | string   | 页面来源，页面的父级       |
 | `view_name`     | string   | 页面名称                   |
-| `view_id`       | string   | 每次访问页面时产生的唯一ID |
 
 #### 指标
 
@@ -250,9 +251,9 @@
 
 | **字段**        | **类型** | **描述**                   |
 | --------------- | -------- | -------------------------- |
+| `view_id`       | string   | 每次访问页面时产生的唯一ID |
 | `view_referrer` | string   | 页面来源，页面的父级       |
 | `view_name`     | string   | 页面名称                   |
-| `view_id`       | string   | 每次访问页面时产生的唯一ID |
 
 #### Action 属性
 
