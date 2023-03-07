@@ -62,7 +62,7 @@ $ vim ssh.conf
 
 
 #  中心任务存储的服务地址
-server = "https://dflux-dial.dataflux.cn"
+server = "https://dflux-dial.guance.com"
 
 # require，节点惟一标识ID
 region_id = "reg_c2jlokxxxxxxxxxxx"

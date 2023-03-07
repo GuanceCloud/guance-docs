@@ -3,4 +3,6 @@ nav:
   - '创建一个监控器': create.md
   - '导出一个/多个监控器': export.md
   - '导入一个/多个监控器': import.md
+  - '修改一个监控器': modify.md
   - '删除一个/多个监控器': delete.md
+  - '启用/禁用一个监控器': set-disable.md

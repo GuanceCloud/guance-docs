@@ -1,4 +1,5 @@
 nav:
   - '获取未恢复事件的列表': unrecovered-list.md
   - '获取一个事件的内容': get.md
+  - '手动恢复一个事件': recover.md
   - '创建一个事件': create.md

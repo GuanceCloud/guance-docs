@@ -37,7 +37,7 @@ Introduce the code in the app.js file of the Miniapp in the following way
 	
 	```javascript
 	const { datafluxRum } = require('@cloudcare/rum-miniapp')
-	// 初始化 Rum
+	// Initialize Rum
 	datafluxRum.init({
 		datakitOrigin: 'https://datakit.xxx.com/',// 必填，Datakit域名地址 需要在微信小程序管理后台加上域名白名单
 		applicationId: 'appid_xxxxxxx', // 必填，dataflux 平台生成的应用ID

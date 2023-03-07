@@ -23,7 +23,7 @@
 
 
 ## 请求例子
-``shell
+```shell
 curl 'https://openapi.guance.com/api/v1/monitor/check/delete' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \

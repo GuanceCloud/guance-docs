@@ -1,0 +1,6 @@
+nav:
+  - '获取成员组列表': list.md
+  - '获取一个成员组': get.md
+  - '删除一个成员组': delete.md
+  - '新建一个成员组': create.md
+  - '修改一个成员组': modify.md
