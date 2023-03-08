@@ -164,6 +164,7 @@ MySQL 是最流行的关系型数据库管理系统，在 WEB 应用方面 MySQL
 
 执行命令安装：
 ```shell
+kubectl create namespace middleware
 kubectl apply -f mysql.yaml
 ```
 

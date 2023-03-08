@@ -167,52 +167,64 @@ spec:
           value : 10.100.14.144:/nfsdata            ## 修改成实际的nfs 目录
         - name: ENV_IPDB
           value: iploc
-        image: pubrepo.jiagouyun.com/datakit/datakit:1.4.14     ## 修改成最新镜像版本
-        imagePullPolicy: Always
+        - name: HOST_PROC
+          value: /rootfs/proc
+        - name: HOST_SYS
+          value: /rootfs/sys
+        - name: HOST_ETC
+          value: /rootfs/etc
+        - name: HOST_VAR
+          value: /rootfs/var
+        - name: HOST_RUN
+          value: /rootfs/run
+        - name: HOST_DEV
+          value: /rootfs/dev
+        image: pubrepo.jiagouyun.com/datakit/datakit:1.5.6     ## 修改成最新镜像版本
+        imagePullPolicy: IfNotPresent
         name: datakit
         ports:
         - containerPort: 9529
           hostPort: 9529
           name: port
           protocol: TCP
+        resources:
+          limits:
+            cpu: "1000m"
+            memory: "2Gi"
         securityContext:
           privileged: true
         volumeMounts:
+        - mountPath: /usr/local/datakit/cache
+          name: cache
+          readOnly: false
         - mountPath: /var/run
           name: run
         - mountPath: /var/lib
           name: lib
         - mountPath: /var/log
           name: log
-        - mountPath: /usr/lib
-          name: usrlib
-        - mountPath: /etc
-          name: etc
         - mountPath: /rootfs
           name: rootfs
         - mountPath: /sys/kernel/debug
           name: debugfs
         - mountPath: /usr/local/datakit/data
           name: datakit-ipdb
-     #   - mountPath: /usr/local/datakit/conf.d/host/disk.conf
-      #    name: datakit-conf
-      #    subPath: disk.conf
-        #- mountPath: /usr/local/datakit/conf.d/db/mysql.conf
-        #  name: datakit-conf
-        #  subPath: mysql.conf
-        #  readOnly: true
-        #- mountPath: /usr/local/datakit/conf.d/db/redis.conf
-        #  name: datakit-conf
-        #  subPath: redis.conf
-        #  readOnly: true
-        # - mountPath: /usr/local/datakit/conf.d/db/elasticsearch.conf
-        #   name: datakit-conf
-        #   subPath: elasticsearch.conf
-        #   readOnly: false
-        # - mountPath: /usr/local/datakit/conf.d/db/tdengine.conf
-        #   name: datakit-conf
-        #   subPath: tdengine.conf
-        #   readOnly: false
+        - mountPath: /usr/local/datakit/conf.d/db/mysql.conf
+          name: datakit-conf
+          subPath: mysql.conf
+          readOnly: true
+        - mountPath: /usr/local/datakit/conf.d/db/redis.conf
+          name: datakit-conf
+          subPath: redis.conf
+          readOnly: true
+        - mountPath: /usr/local/datakit/conf.d/db/elasticsearch.conf
+          name: datakit-conf
+          subPath: elasticsearch.conf
+          readOnly: false
+        - mountPath: /usr/local/datakit/conf.d/db/tdengine.conf
+          name: datakit-conf
+          subPath: tdengine.conf
+          readOnly: false
         # - mountPath: /usr/local/datakit/conf.d/ddtrace/ddtrace.conf
         #   name: datakit-conf
         #   subPath: ddtrace.conf
@@ -249,12 +261,6 @@ spec:
           path: /var/log
         name: log
       - hostPath:
-          path: /usr/lib
-        name: usrlib
-      - hostPath:
-          path: /etc
-        name: etc
-      - hostPath:
           path: /
         name: rootfs
       - hostPath:
@@ -263,6 +269,9 @@ spec:
       - hostPath:
           path: /usr/local/datakit/data
         name: datakit-ipdb
+      - hostPath:
+          path: /root/datakit_cache
+        name: cache
   updateStrategy:
     rollingUpdate:
       maxUnavailable: 1
@@ -278,9 +287,9 @@ metadata:
 data:
     mysql.conf: |-
         [[inputs.mysql]]
-          host = "rm-6cq9acv52i8aa6123.mysql.rds.ops.ste3.com"
-          user = "ste3"
-          pass = "Test1234"
+          host = "xxxxxxxxxxxxxxx"      ##修改对应MySQL连接地址
+          user = "ste3"                 ##修改MySQL用户名
+          pass = "Test1234"             ##修改MySQL密码
           port = 3306
           # sock = "<SOCK>"
           # charset = "utf8"
@@ -343,13 +352,13 @@ data:
 
     redis.conf: |-
         [[inputs.redis]]
-          host = "r-6cq2279babc65984.redis.rds.ops.ste3.com"
-          port = 6379
+          host = "r-6cq2279babc65984.redis.rds.ops.ste3.com"            ## 修改Redis连接地址
+          port = 6379                                                   
           # unix_socket_path = "/var/run/redis/redis.sock"
           # 配置多个db，配置了dbs，db也会放入采集列表。dbs=[]或者不配置则会采集redis中所有非空的db
           # dbs=[]
           # username = "<USERNAME>"
-           password = "Test1234"
+           password = "Test1234"                                        ## 修改Redis密码
 
           ## @param connect_timeout - number - optional - default: 10s
           # connect_timeout = "10s"
@@ -404,25 +413,23 @@ data:
           # some_tag = "some_value"
           # more_tag = "some_other_value"
 
-    elasticsearch.conf: |-
+    openes.conf: |-
         [[inputs.elasticsearch]]
           ## Elasticsearch服务器配置
           # 支持Basic认证:
           # servers = ["http://user:pass@localhost:9200"]
-          servers = ["http://copriwolf:sayHi2Elastic@172.21.12.116:9200"]
+          servers = ["http://guance:123.com@opensearch-cluster-client.middleware:9200"]    ## 修改相关配置
+
 
           ## 采集间隔
           # 单位 "ns", "us" (or "µs"), "ms", "s", "m", "h"
-          interval = "10s"
+          interval = "60s"
 
           ## HTTP超时设置
-          http_timeout = "5s"
-
-          ## 发行版本: elasticsearch, opendistro
-          distribution = "elasticsearch"
+          #http_timeout = "5s"
 
           ## 默认local是开启的，只采集当前Node自身指标，如果需要采集集群所有Node，需要将local设置为false
-          local = true
+          local = false
 
           ## 设置为true可以采集cluster health
           cluster_health = true
@@ -440,15 +447,15 @@ data:
           indices_include = ["_all"]
 
           ## indices级别，可取值："shards", "cluster", "indices"
-          indices_level = "shards"
+          indices_level = "indices"
 
           ## node_stats可支持配置选项有"indices", "os", "process", "jvm", "thread_pool", "fs", "transport", "http", "breaker"
           # 默认是所有
           # node_stats = ["jvm", "http"]
 
           ## HTTP Basic Authentication 用户名和密码
-          # username = "test"
-          # password = "123456"
+          # username = ""
+          # password = ""
 
           ## TLS Config
           tls_open = false
@@ -464,59 +471,21 @@ data:
           # pipeline = "elasticsearch.p"
 
           [inputs.elasticsearch.tags]
+            app="openes"
             # some_tag = "some_value"
             # more_tag = "some_other_value"
+            
     tdengine.conf: |-
         # {"version": "1.4.3", "desc": "do NOT edit this line"}
 
         [[inputs.tdengine]]
           ## adapter config (Required)
-          adapter_endpoint = "http://taos-tdengine.middleware:6041"
-          user = "zhuyun"
-          password = "jfdlEGFH2143!"
+          adapter_endpoint = "http://taos-tdengine.middleware:6041"        ## 修改TDengine的地址
+          user = "zhuyun"                                                  ## 修改TDengine用户
+          password = "jfdlEGFH2143!"                                       ## 修改TDengine密码
 
           ## add tag (optional)
            [inputs.tdengine.tags]
             app="hcs"
             # some_tag = "some_value"
             # more_tag = "some_other_value"
-
-    ddtrace.conf: |-
-        [[inputs.ddtrace]]
-          ## DDTrace Agent endpoints register by version respectively.
-          ## Endpoints can be skipped listen by remove them from the list.
-          ## Default value set as below. DO NOT MODIFY THESE ENDPOINTS if not necessary.
-          endpoints = ["/v0.3/traces", "/v0.4/traces", "/v0.5/traces"]
-
-          ## customer_tags is a list of keys contains keys set by client code like span.SetTag(key, value)
-          ## that want to send to data center. Those keys set by client code will take precedence over
-          ## keys in [inputs.ddtrace.tags]. DOT(.) IN KEY WILL BE REPLACED BY DASH(_) WHEN SENDING.
-          # customer_tags = ["key1", "key2", ...]
-
-          ## Keep rare tracing resources list switch.
-          ## If some resources are rare enough(not presend in 1 hour), those resource will always send
-          ## to data center and do not consider samplers and filters.
-          # keep_rare_resource = false
-
-          ## Ignore tracing resources map like service:[resources...].
-          ## The service name is the full service name in current application.
-          ## The resource list is regular expressions uses to block resource names.
-          # [inputs.ddtrace.close_resource]
-            # service1 = ["resource1", "resource2", ...]
-            # service2 = ["resource1", "resource2", ...]
-            # ...
-
-          ## Sampler config uses to set global sampling strategy.
-          ## priority uses to set tracing data propagation level, the valid values are -1, 0, 1
-          ##   -1: always reject any tracing data send to datakit
-          ##    0: accept tracing data and calculate with sampling_rate
-          ##    1: always send to data center and do not consider sampling_rate
-          ## sampling_rate used to set global sampling rate
-          # [inputs.ddtrace.sampler]
-            # priority = 0
-            # sampling_rate = 1.0
-
-          # [inputs.ddtrace.tags]
-            # key1 = "value1"
-            # key2 = "value2"
-            # ...
