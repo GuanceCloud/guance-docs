@@ -68,6 +68,8 @@ java -javaagent:../opentelemetry-javaagent/opentelemetry-javaagent.jar \
 
 ## 创建 sdk
 
+不推荐
+
 ```java
     @Bean
     public OpenTelemetry openTelemetry() {
@@ -77,6 +79,11 @@ java -javaagent:../opentelemetry-javaagent/opentelemetry-javaagent.jar \
                 .getOpenTelemetrySdk();
     }
 ```
+
+
+以上方式会导致`AutoConfiguredOpenTelemetrySdk`重加载，SDK 提供了一个全局的对象 `GlobalOpenTelemetry` 来获取 `OpenTelemetry` 对象。
+
+下面使用主要采用 `GlobalOpenTelemetry.get()` 来获取`OpenTelemetry` 对象。
 
 ## 链路（Trace）
 
@@ -93,7 +100,7 @@ TracerProvider getTracerProvider();
 ```java
     @Bean
     public Tracer tracer() {
-        return openTelemetry().getTracer(appName);
+        return GlobalOpenTelemetry.getTracer(appName);
     }
 
 ```
@@ -296,7 +303,7 @@ API定义了一个 Meter 接口。该接口由一组 instrument 构造器，和�
 ```java
     @Bean
     public Meter meter() {
-        return openTelemetry().getMeter(appName);
+        return GlobalOpenTelemetry.getMeter(appName);
     }
 ```
 
@@ -312,7 +319,7 @@ API定义了一个 Meter 接口。该接口由一组 instrument 构造器，和�
 
 ``` java
 
-	meter().gaugeBuilder("connections")
+	meter.gaugeBuilder("connections")
 		.setDescription("当前Socket.io连接数")
 		.setUnit("1")
 		.buildWithCallback(
