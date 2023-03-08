@@ -52,7 +52,7 @@ icon: zy/release-notes
 
 #### 新增一键导入仪表板、自定义查看器、监控器重名提示
 
-在「管理」-「设置」-「配置迁移」一键导入时，若当前工作空间存在重名的仪表板、查看器、监控器，提示导入文件存在重名，用户可以根据实际的需求来选择是否“跳过”、“仍然创建”和“取消”。更多详情可参考文档 [配置迁移](../management/index.md##export-import) 。
+在「管理」-「设置」-「配置迁移」一键导入时，若当前工作空间存在重名的仪表板、查看器、监控器，提示导入文件存在重名，用户可以根据实际的需求来选择是否“跳过”、“仍然创建”和“取消”。更多详情可参考文档 [配置迁移](../management/index.md#export-import) 。
 
 ![](img/5.input_rename_1.png)
 
@@ -67,6 +67,7 @@ icon: zy/release-notes
 - [观测云注册](../billing/commercial-register.md) 优化，注册开通方式不区分站点，包括“[观测云直接开通](../billing/billing-account/enterprise-account.md)”、“[阿里云市场开通](../billing/billing-account/aliyun-account.md)“和“[亚马逊云市场开通](../billing/billing-account/aws-account.md)“三种方式；
 - 新创建的工作空间默认不支持左 * 查询；
 - SSO 新增登录用户 [账号管理](../management/sso/index.md#account)，优化配置映射规则的 “Email” 字段，支持兼容大小写；
+- 时序图、DQL 查询工具、查看器分析模式下的时序图，分组查询的限制从 10 调整为 20 。
 
 
 
