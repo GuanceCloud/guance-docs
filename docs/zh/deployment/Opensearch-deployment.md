@@ -134,6 +134,9 @@ $ tar -zxvf opensearch-cluster-0.0.1.tgz opensearch-cluster/values.yaml
 opensearch-master:
 ...
   replicas: 3
+  # 使用init容器设置内核参数
+  # sysctlInit:
+  #   enabled: true
   opensearchJavaOpts: "-Xmx2g -Xms2g" 
   nodeSelector:
     openes: master-client # client 和 master 调度在同类机器上
@@ -149,6 +152,8 @@ opensearch-master:
 opensearch-client:
 ...
   replicas: 3
+  # sysctlInit:
+  #   enabled: true
   opensearchJavaOpts: "-Xmx2g -Xms2g" 
   nodeSelector:
     openes: master-client # client 和 master 调度在同类机器上
@@ -164,6 +169,8 @@ opensearch-client:
 opensearch-data:
 ...
   replicas: 3
+  # sysctlInit:
+  #   enabled: true
   opensearchJavaOpts: "-Xmx20g -Xms20g" 
   nodeSelector:
     openes: data
@@ -176,6 +183,9 @@ opensearch-data:
     ...
     storageClass: openebs-opensearch    
 ```
+> 如果你不想在主机上手动设置内核参数vm.max_map_count，可以打开sysctlInit配置使用init容器做这件事情。  
+通过init容器设置该参数之后，除非机器重启或sysctl -p刷新配置，否则内核参数会独立于容器生命周期保持一段时间。  
+vm.max_map_count是不受namespace隔离的内核参数，为了减小影响半径，建议将opensearch隔离到独立机器部署。
 
 ### 执行安装
 

@@ -1,27 +1,37 @@
-
 # 开启自监控
 
 ## 概述
 
-​	观测云是具有强大可观测性的平台，以下我们将为大家介绍几种可观测性部署方案。本文采用的是客户统一观测的方案。
+ 观测云是具有强大可观测性的平台，以下我们将为大家介绍几种可观测性部署方案。本文采用的是客户统一观测的方案。
 
 ### 自我观测（不推荐使用）
 
-​	此方案是指，自己观测自己。换句话说，就是自己把数据打到自己的空间上。这就意味着如果环境挂掉了。那么自己也同时观测不到自己的信息数据了，并且也无法进一步排查原因。此方案优点是：部署方便。缺点是：数据是持续产生的，会产生数据自迭代，导致一直循环下去并且集群崩溃时，无法观测到自身的问题。
+ 此方案是指，自己观测自己。换句话说，就是自己把数据打到自己的空间上。这就意味着如果环境挂掉了。那么自己也同时观测不到自己的信息数据了，并且也无法进一步排查原因。此方案优点是：部署方便。缺点是：数据是持续产生的，会产生数据自迭代，导致一直循环下去并且集群崩溃时，无法观测到自身的问题。
 
 ### 相互观测（推荐在资源足够时使用）
 
-​	此方案是指，两套观测云进行相互观测。把数据进行互打。这意味着能够随时监测到对方集群以及服务的状态。但优缺点也同样明显。优点的：即使集群崩溃了，能通过另一观测节点去查看相应的问题。缺点是：数据传输形成闭环，也会持续产生，对集群的压力过大，资源不够的情况下不要使用。
+ 此方案是指，两套观测云进行相互观测。把数据进行互打。这意味着能够随时监测到对方集群以及服务的状态。但优缺点也同样明显。优点的：即使集群崩溃了，能通过另一观测节点去查看相应的问题。缺点是：数据传输形成闭环，也会持续产生，对集群的压力过大，资源不够的情况下不要使用。
 
 ![guance1](img/self-guance1.jpg)
 
 ### 客户统一观测（推荐使用）
 
-​	此方案是指，客户的多个观测云都往同一节点去打。优点：不会造成数据传输闭环的情况，并且能够实时监测到自身集群的状态。
+ 此方案是指，客户的多个观测云都往同一节点去打。优点：不会造成数据传输闭环的情况，并且能够实时监测到自身集群的状态。
 
 ![guance2](img/self-guance2.jpg)
 
-## 快速开始
+### 版本说明
+
+- 以下分为基础版以及加强版，两种部署方式。
+- 基础版：只包含中间件MySQL、OpenSearch等相关信息
+- 基础版+加强版为`完全版`
+
+|        | 视图 | 指标 | 告警 | 日志及切割 | 应用性能监测 | 可用性监测 | 用户访问监测 | 优点                       |
+| ------ | ---- | ---- | ---- | ---------- | ------------ | ---------- | ------------ | -------------------------- |
+| 基础版 | √    | √    | √    | ×          | ×            | ×          | ×            | 占用资源小，基本中间件监控 |
+| 加强版 | √    | √    | √    | √          | √            | √          | √            | 监测更加全面               |
+
+# -- 基础版快速开始 --
 
 ## 开启数据采集功能
 
@@ -33,190 +43,70 @@ DataKit 是一款开源、一体式的数据采集 Agent，它提供全平台操
 
  [下载datakit.yaml](datakit.yaml)
 
-> 注：以上DataKit默认的配置中间件及链路配置都已配置完毕，修改内容即可使用。
+> 注：以上DataKit默认的配置中间件配置都已配置完毕，修改内容即可使用。
 
 #### 配置文件相关说明
 
-- 以下是DataKit DaemonSet 的模板文件需做以下修改
+- 以下是DataKit `DaemonSet` 的模板文件需做以下修改
 
 ```yaml
----
+   - name: ENV_DATAWAY
+     value: https://openway.guance.com?token=tkn_a624f78a0e224183805848c1949d4374 ## 此处填上 dataway 真实地址
+   - name: ENV_INPUT_DISK_EXTRA_DEVICE
+     value : 10.100.14.144:/nfsdata            ## 修改成实际的nfs 目录
+   image: pubrepo.jiagouyun.com/datakit/datakit:1.5.6     ## 修改成最新镜像版本
+```
 
-apiVersion: apps/v1
-kind: DaemonSet
-metadata:
-  labels:
-    app: daemonset-datakit
-  name: datakit
-  namespace: datakit
-spec:
-  revisionHistoryLimit: 10
-  selector:
-    matchLabels:
-      app: daemonset-datakit
-  template:
-    metadata:
-      labels:
-        app: daemonset-datakit
-      annotations:
-        datakit/logs: |
-          [
-            {
-              "disable": true
-            }
-          ]
-    spec:
-      hostNetwork: true
-      dnsPolicy: ClusterFirstWithHostNet
-      containers:
-      - env:
-        - name: HOST_IP
-          valueFrom:
-            fieldRef:
-              apiVersion: v1
-              fieldPath: status.hostIP
-        - name: ENV_K8S_NODE_NAME
-          valueFrom:
-            fieldRef:
-              apiVersion: v1
-              fieldPath: spec.nodeName
-        - name: ENV_DATAWAY
-          value: https://openway.guance.com?token=xxxxxxx       ## 此处填上 dataway 真实地址
-        - name: ENV_GLOBAL_TAGS
-          value: host=__datakit_hostname,host_ip=__datakit_ip
-        - name: ENV_DEFAULT_ENABLED_INPUTS
-          value: cpu,disk,diskio,mem,swap,system,hostobject,net,host_processes,container
-        - name: ENV_ENABLE_ELECTION
-          value: enable
-        - name: ENV_LOG
-          value: /var/log/datakit/log
-        - name: ENV_HTTP_LISTEN
-          value: 0.0.0.0:9529
-        - name: ENV_LOG_LEVEL
-          value: debug
-        - name: ENV_INPUT_DISK_EXCLUDE_DEVICE
-          value: /dev/sda1
-        - name: ENV_INPUT_DISK_EXTRA_DEVICE
-          value : 10.100.14.144:/nfsdata
-        - name: ENV_IPDB
-          value: iploc
-        image: pubrepo.jiagouyun.com/datakit/datakit:1.4.14             ## 需修改成最新版镜像
-        imagePullPolicy: Always
-        name: datakit
-        ports:
-        - containerPort: 9529
-          hostPort: 9529
-          name: port
-          protocol: TCP
-        securityContext:
-          privileged: true
-        volumeMounts:
-        - mountPath: /var/run
-          name: run
-        - mountPath: /var/lib
-          name: lib
-        - mountPath: /var/log
-          name: log
-        - mountPath: /usr/lib
-          name: usrlib
-        - mountPath: /etc
-          name: etc
-        - mountPath: /rootfs
-          name: rootfs
-        - mountPath: /sys/kernel/debug
-          name: debugfs
-        - mountPath: /usr/local/datakit/data
-          name: datakit-ipdb
-          ## 以下注释内容请往后观看，根据实际进行相应的配置
-     #   - mountPath: /usr/local/datakit/conf.d/host/disk.conf
-      #    name: datakit-conf
-      #    subPath: disk.conf
-        #- mountPath: /usr/local/datakit/conf.d/db/mysql.conf
-        #  name: datakit-conf
-        #  subPath: mysql.conf
-        #  readOnly: true
-        #- mountPath: /usr/local/datakit/conf.d/db/redis.conf
-        #  name: datakit-conf
-        #  subPath: redis.conf
-        #  readOnly: true
-        # - mountPath: /usr/local/datakit/conf.d/db/elasticsearch.conf
-        #   name: datakit-conf
-        #   subPath: elasticsearch.conf
-        #   readOnly: false
-        # - mountPath: /usr/local/datakit/conf.d/db/tdengine.conf
-        #   name: datakit-conf
-        #   subPath: tdengine.conf
-        #   readOnly: false
-        # - mountPath: /usr/local/datakit/conf.d/ddtrace/ddtrace.conf
-        #   name: datakit-conf
-        #   subPath: ddtrace.conf
-        #   readOnly: false
-        workingDir: /usr/local/datakit
-      initContainers:
-        - name: init-volume
-          image: "pubrepo.jiagouyun.com/datakit/iploc:1.0"
-          imagePullPolicy: IfNotPresent
-          command: ["bash", "-c"]
-          args:
-            - tar -xf /opt/iploc.tar.gz -C /usr/local/datakit/data
-          volumeMounts:
-            - name: datakit-ipdb
-              mountPath: /usr/local/datakit/data
-      hostIPC: true
-      hostPID: true
-      restartPolicy: Always
-      serviceAccount: datakit
-      serviceAccountName: datakit
-      tolerations:
-      - operator: Exists
-      volumes:
-      - configMap:
-          name: datakit-conf
-        name: datakit-conf
-      - hostPath:
-          path: /var/run
-        name: run
-      - hostPath:
-          path: /var/lib
-        name: lib
-      - hostPath:
-          path: /var/log
-        name: log
-      - hostPath:
-          path: /usr/lib
-        name: usrlib
-      - hostPath:
-          path: /etc
-        name: etc
-      - hostPath:
-          path: /
-        name: rootfs
-      - hostPath:
-          path: /sys/kernel/debug
-        name: debugfs
-      - hostPath:
-          path: /usr/local/datakit/data
-        name: datakit-ipdb
-  updateStrategy:
-    rollingUpdate:
-      maxUnavailable: 1
-    type: RollingUpdate
+- 修改datakit.yaml中关于`ComfigMap`的相关配置
 
----
-
+```yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: datakit-conf
   namespace: datakit
 data:
-    #mysql.conf: |-
-    #  [inputs.mysql]
-    #  ...
-    #redis.conf: |-
-    #  [inputs.redis]
-    #  ...
+    mysql.conf: |-
+        [[inputs.mysql]]
+          host = "xxxxxxxxxxxxxxx"      ##修改对应MySQL连接地址
+          user = "ste3"                 ##修改MySQL用户名
+          pass = "Test1234"             ##修改MySQL密码
+          ......
+          
+    redis.conf: |-
+        [[inputs.redis]]
+          host = "r-6cq2279babc65984.redis.rds.ops.ste3.com"            ## 修改Redis连接地址
+          port = 6379                                                   
+          # unix_socket_path = "/var/run/redis/redis.sock"
+          # 配置多个db，配置了dbs，db也会放入采集列表。dbs=[]或者不配置则会采集redis中所有非空的db
+          # dbs=[]
+          # username = "<USERNAME>"
+           password = "Test1234"                                        ## 修改Redis密码
+          ......
+          
+    openes.conf: |-
+        [[inputs.elasticsearch]]
+          ## Elasticsearch服务器配置
+          # 支持Basic认证:
+          # servers = ["http://user:pass@localhost:9200"]
+          servers = ["http://guance:123.com@opensearch-cluster-client.middleware:9200"]   ## 修改用户名、密码等
+          ......
+          
+    tdengine.conf: |-
+        # {"version": "1.4.3", "desc": "do NOT edit this line"}
 
+        [[inputs.tdengine]]
+          ## adapter config (Required)
+          adapter_endpoint = "http://taos-tdengine.middleware:6041"        ## 修改TDengine的地址
+          user = "zhuyun"
+          password = "jfdlEGFH2143!"
+
+          ## add tag (optional)
+           [inputs.tdengine.tags]
+            app="hcs"
+            # some_tag = "some_value"
+            # more_tag = "some_other_value"
+            ......
 ```
 
 - 配置datakit采集器本身的日志收集功能
@@ -236,7 +126,7 @@ data:
 
 - ### 最佳实践
 
-- 如果想要开启相应服务的日志采集，则需要先配置好ComfigMap，再把它挂载进去，以下是示例
+- 如果想要开启相应服务的指标采集，则需要先配置好`ComfigMap`，再把它挂载进去，以下是示例
 
   > 一般可去到/usr/local/datakit/conf.d 目录下查找对应的文件。
 
@@ -318,7 +208,7 @@ data:
   ```yaml
           - mountPath: /usr/local/datakit/conf.d/db/mysql.conf
             name: datakit-conf
-            subPath: redis.conf
+            subPath: mysql.conf
             readOnly: false
   ```
 
@@ -330,9 +220,23 @@ data:
   kubectl apply -f datakit.yaml
   ```
 
-  
+  ## 
 
-## 配置日志切割
+## 一键导入基础版视图、监控器、自定义查看器
+
+### 基础版 模板下载地址
+
+[基础版模板下载地址](easy_resource.zip)
+
+- ##### 导入模板
+
+![allin](img/self-allin.jpg)
+
+> 导入后**监控**要修改相应的跳转链接配置。要把url中的dsbd_xxxx换到对应的仪表板下，wksp_xxxx换成要监测的空间下。
+
+# -- 高级版个性化配置 --（可选）
+
+## 日志切割
 
 ### 前置条件
 
@@ -349,7 +253,7 @@ data:
 
 ![pipeline001](img/self-pipeline001.jpg)
 
-#### 方法二：命令行通过ConfigMap+Container Annotation的方式注入
+#### 方法二：命令行通过`ConfigMap`+`Container Annotation`的方式注入
 
 - 更改日志输出模式
 
@@ -361,9 +265,9 @@ data:
 
 - 开启指标数据
 
-  1）配置Datakit的ConfigMap，添加prom.conf文件开启采集器
+  1）配置Datakit的`ConfigMap`，添加`prom.conf`文件开启采集器
 
-  2）在对应的服务中配置Annotations，以下内容不用修改
+  2）在对应的服务中配置`Annotations`，以下内容不用修改
 
 ```yaml
 template:
@@ -440,7 +344,7 @@ template:
 >
 > 并且只有 **forethought-kodo** Namespace下的服务需要这么开启日志采集配置，其他则只按照下面的方式配置即可。
 
-- ##### 在对应的datakit.yaml 下用ConfigMap的方式挂载<pipeline_name>.p文件到指定目录 （同DataKit部署中的一样）
+- ##### 在对应的datakit.yaml 下用`ConfigMap`的方式挂载<pipeline_name>.p文件到指定目录 （同DataKit部署中的一样）
 
   ```yaml
           - mountPath: /usr/local/datakit/pipeline/kodo-x.p
@@ -658,7 +562,7 @@ status:
   loadBalancer: {}
 ```
 
-### 修改forethought-webclient 服务的名为config.js  ConfigMap配置
+### 修改forethought-webclient 服务的名为config.js  `ConfigMap`配置
 
 - 以下所有的关于inner-app的域名都修改成实际对应的域名
 
@@ -697,11 +601,11 @@ token: xxxxxxxxxxx       ## 修改成实际的token
 
 
 
-## 一键导入仪表板、监控、自定义查看器
+## 一键导入高级版 仪表板、监控、自定义查看器
 
-### 通用模板下载地址
+### 高级版 追加模板下载地址
 
-模板[下载地址](resource.zip)
+追加模板[下载地址](pro_resource.zip)
 
 - ##### 导入模板
 
@@ -716,4 +620,3 @@ token: xxxxxxxxxxx       ## 修改成实际的token
 - 查看指标中是否含有MySQL、Redis等数据库的指标数据
 - 查看日志中是否有日志并开启了相应的状态
 - 查看应用性能监测是否有RUM的数据
-
