@@ -7,6 +7,69 @@ icon: zy/release-notes
 
 本文档记录观测云每次上线发布的更新内容说明，包括 DataKit、观测云最佳实践、观测云集成文档和观测云。
 
+## 2023 年 3 月 9 号
+
+### 观测云更新
+
+#### 数据存储策略变更优化
+
+若您在同一天内多次变更数据存储策略，仅第一次修改当天生效，二次及以上修改，将以最后一次修改的结果为准，在第二天生效。关于如何变更，可参考文档 [数据存储策略](../billing/billing-method/data-storage.md) 。
+
+#### 场景相关优化
+
+##### 优化图表链接
+
+图表链接新增预置链接及对应参数设置，帮助用户简单快速配置图表数据关联链接地址。更多详情可参考文档 [自定义链接](../scene/visual-chart/chart-link.md#custom-link) 。
+
+![](img/6.link_5.1.png)
+
+##### 新增支持创建重名的仪表板、笔记、自定义查看器
+
+在观测云场景功能模块，您可以通过新建、导入、复制等操作创建重名的仪表板、笔记、自定义查看器。
+
+##### 视图变量 DQL 查询时间范围优化
+
+视图变量使用 DQL 语句查询时，支持以 [xx:xx:xx] 的格式添加数据查询的时间范围：
+
+- 若在 DQL 查询中添加了时间范围，则优先使用 DQL 查询中的时间范围；
+- 若在 DQL 查询中未添加时间范围，则默认使用仪表板时间控件所选的时间范围。
+
+更多详情可参考文档 [视图变量 DQL 查询](../scene/view-variable.md#dql) 。
+
+#### 日志 Message 数据展示优化
+
+日志数据显示列新增“全部”显示行数来展开查看日志 Message 数据，涉及的功能包括日志查看器显示列和查看器详情页关联日志页面的显示列。
+
+#### 监控相关优化
+
+##### 新增配置无数据事件通知
+
+在配置监控器事件通知时，新增无数据通知配置，支持自定义无数据通知内容，若没有配置，则自动使用官方默认的通知模版。更多详情可参考文档 [监控器配置](../monitoring/monitor/threshold-detection.md#notification) 。
+
+##### 事件通知内容配置新增预置的跳转链接
+
+在配置监控器的事件通知内容时，新增预置的跳转链接，用于查看当前告警事件相关的日志、链路、错误追踪、Profile、容器、Pod、进程数据以及关联的仪表板。更多详情可参考文档 [监控器配置](../monitoring/monitor/threshold-detection.md#notification) 。
+
+#### 新增一键导入仪表板、自定义查看器、监控器重名提示
+
+在「管理」-「设置」-「配置迁移」一键导入时，若当前工作空间存在重名的仪表板、查看器、监控器，提示导入文件存在重名，用户可以根据实际的需求来选择是否“跳过”、“仍然创建”和“取消”。更多详情可参考文档 [配置迁移](../management/index.md##export-import) 。
+
+![](img/5.input_rename_1.png)
+
+##### 新手引导优化
+
+用户首次注册进入工作空间及新创建工作空间时，新增邀请成员引导功能，您可以通过邮箱直接邀请公司的其他成员加入到当前的工作空间进行协作，支持为邀请的成员设置初始的访问权限，更多详情可参考 [成员管理](../management/member-management.md) 。
+
+![](img/4.new.png)
+
+#### 其他功能优化
+
+- [观测云注册](../billing/commercial-register.md) 优化，注册开通方式不区分站点，包括“[观测云直接开通](../billing/billing-account/enterprise-account.md)”、“[阿里云市场开通](../billing/billing-account/aliyun-account.md)“和“[亚马逊云市场开通](../billing/billing-account/aws-account.md)“三种方式；
+- 新创建的工作空间默认不支持左 * 查询；
+- SSO 新增登录用户 [账号管理](../management/sso/index.md#account)，优化配置映射规则的 “Email” 字段，支持兼容大小写；
+
+
+
 ## 2023 年 2 月 28 号
 
 ### 观测云更新
@@ -72,8 +135,9 @@ icon: zy/release-notes
 ![](img/13.query_1.png)
 
 #### 其他功能优化
+
 - 观测云 [商业版注册](../billing/commercial-register.md)  流程支持绑定观测云费用中心账号；
-- 配置 [监控器](../monitoring/monitor/index.md) 时，「检测维度」支持非必选；
+- 配置 [监控器](../monitoring/monitor/index.md) 时，「检测维度」支持非必选。
 
 
 ### DataKit 更新

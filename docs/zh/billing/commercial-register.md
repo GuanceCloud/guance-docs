@@ -16,15 +16,15 @@
 ???+ attention
 
     - 不同站点的账号和数据相互独立，无法互相共享和迁移数据，请谨慎选择。
-    - 注册商业版的同时，会根据您所选择的站点，设置对应的默认结算方式，后续也可按需修改。<br/>
+    - 注册商业版的同时，您可以根据所选择的站点，设置对应的结算方式，后续也可按需修改。<br/>
     > 更多详情可参考文档 [<费用结算方式>](../billing/billing-account/index.md)。
 
-| 站点    | 登录地址 URL    |  运营商 |默认结算方式           |
-| ----------------- | ---------------- | ------------------ |--- |
-| 中国区1（杭州）   | [https://auth.guance.com/](https://auth.guance.com/login/pwd) |阿里云（中国杭州） | [阿里云账号结算](#aliyun)    |
-| 中国区2（宁夏）   | [https://aws-auth.guance.com/](https://aws-auth.guance.com/login/pwd) |AWS（中国宁夏） | [AWS 账号结算](#aws)        |
-| 中国区4（广州）   | [https://cn4-auth.guance.com/](https://cn4-auth.guance.com/login/pwd) | 华为云（中国广州） |[观测云企业账号结算](#guanceyun) |
-| 海外区1（俄勒冈） | [https://us1-auth.guance.com/](https://us1-auth.guance.com/) | AWS（美国俄勒冈） |[AWS 账号结算](#aws)      |
+| 站点    | 登录地址 URL    |  运营商 |
+| ----------------- | ---------------- | ------------------ |
+| 中国区1（杭州）   | [https://auth.guance.com/](https://auth.guance.com/login/pwd) |阿里云（中国杭州） |
+| 中国区2（宁夏）   | [https://aws-auth.guance.com/](https://aws-auth.guance.com/login/pwd) |AWS（中国宁夏） |
+| 中国区4（广州）   | [https://cn4-auth.guance.com/](https://cn4-auth.guance.com/login/pwd) | 华为云（中国广州） |
+| 海外区1（俄勒冈） | [https://us1-auth.guance.com/](https://us1-auth.guance.com/) | AWS（美国俄勒冈） |
 
 ### 用户名说明
 
@@ -66,9 +66,25 @@
 
 工作空间语言选项会影响工作空间内事件、告警、短信等模板。若选择英文，上述对应模板将默认使用英文模板，一旦创建，此工作空间的模版语言不可修改，请谨慎选择。
 
+### 观测云账号结算 {#guanceyun}
+
+观测云默认提供观测云账号结算，工作空间内产生的所有费用会直接从您的「[观测云费用中心](https://boss.guance.com/)」所购买的代金券、华为云储值卡余额等进行结算。
+
+您可以在「选择开通方式」，在下面的对话框输入「工作空间名称」，选择「工作空间语言」，点击「确定」即可完成注册。
+
+![](img/1.register_guance.png)
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 观测云企业账号结算 文档</font>](./billing-account/enterprise-account.md)
+
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 华为云储值卡结算 文档</font>](./billing-account/huaweicloud-account.md)
+
+</div>
+
 ### 阿里云账号结算 {#aliyun}
 
-若您在注册时选择 “**中国区1（杭州）**” 站点，观测云默认提供阿里云账号结算，工作空间内产生的所有费用会直接从您的阿里云账户中进行结算。
+若您在注册时选择阿里云账号结算，工作空间内产生的所有费用会直接从您的阿里云账户中进行结算。
 
 您可以在「选择开通方式」，填写「工作空间名称」，选择「工作空间语言」，点击「[前往阿里云免费开通观测云服务](https://market.aliyun.com/products/56838014/cmgj00053362.html)」获取并填写「[阿里用户 ID](../billing/billing-account/aliyun-account.md#uid)」、「[商品实例ID](../billing/billing-account/aliyun-account.md#entity-id)」，点击「确定」即可完成注册。
 
@@ -81,7 +97,7 @@
     - 若您是阿里云 SLS 用户，且需要在观测云使用 SLS 存储方式，您可以直接在 [阿里云市场观测云专属版](https://market.aliyun.com/products/56838014/cmgj00060481.html) ，购买观测云专属版，并直接通过免登注册开通观测云专属版。<br/>
     > 更多详情步骤可参考文档 [<阿里云市场开通观测云专属版>](commercial-aliyun-sls.md) 、[<观测云商业版和观测云专属版的区别>](../billing/faq.md#_5)。
 
-![](img/4.register_language_1.png)
+![](img/1.register_aliyun.png)
 
 <div class="grid cards" markdown>
 
@@ -93,33 +109,17 @@
 
 ### AWS 账号结算 {#aws}
 
-若您在注册时选择 “**中国区2（宁夏）**”、“**海外区1（俄勒冈）**”站点，观测云默认提供 AWS 账号结算，工作空间内产生的所有费用会直接从您的 AWS 账户中进行结算。
+若您在注册时选择 AWS 账号结算，工作空间内产生的所有费用会直接从您的 AWS 账户中进行结算。
 
 您可以在「选择开通方式」，点击「 [前往亚马逊云市场订阅](../billing/billing-account/aws-account.md#subscribe) 」，在 AWS 订阅观测云并开通 AWS 账号结算。
 
-![](img/4.register_language_2.1.png)
+![](img/1.register_aws.png)
 
 <div class="grid cards" markdown>
 
 - [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; AWS账号结算 文档</font>](./billing-account/aws-account.md)
 
 <br/>
-
-</div>
-
-### 观测云企业账号结算 {#guanceyun}
-
-若您在注册时选择 “**中国区4（广州）**”站点，观测云默认提供观测云企业账号结算，工作空间内产生的所有费用会直接从您的「[观测云费用中心](https://boss.guance.com/)」所购买的代金券、华为云储值卡余额等进行结算。
-
-您可以在「选择开通方式」，在下面的对话框输入「工作空间名称」，选择「工作空间语言」，点击「确定」即可完成注册。
-
-![](img/4.register_language_2.2.png)
-
-<div class="grid cards" markdown>
-
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 观测云企业账号结算 文档</font>](./billing-account/enterprise-account.md)
-
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 华为云储值卡结算 文档</font>](./billing-account/huaweicloud-account.md)
 
 </div>
 
