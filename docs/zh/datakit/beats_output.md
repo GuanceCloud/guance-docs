@@ -336,7 +336,7 @@ processors:
 
 
 
-### `Elastic Beats Collector`
+### `default`
 
 Using `source` field in the config file, default is `default`.
 
@@ -355,6 +355,7 @@ Using `source` field in the config file, default is `default`.
 | Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`message`|Message text, existed when default. Could use pipeline to delete this field.|string|-|
+|`status`|Log status.|string|-|
 
  
 

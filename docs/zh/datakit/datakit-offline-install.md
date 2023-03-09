@@ -11,7 +11,7 @@
 当前 DataKit 自己内置了一个 proxy 采集器；也能通过 Nginx 正向代理功能来实现同一目的。基本网络结构如下：
 
 <figure markdown>
-  ![](https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/images/datakit/dk-nginx-proxy.png){ width="700"}
+  ![](https://static.guance.com/images/datakit/dk-nginx-proxy.png){ width="700"}
 </figure>
 
 ### 前置条件 {#requrements}
@@ -93,32 +93,32 @@
 === "Windows 32 位"
 
     - [Installer](https://static.guance.com/datakit/installer-windows-386.exe){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-windows-386-1.5.5.tar.gz){:target="_blank"}
+    - [DataKit](https://static.guance.com/datakit/datakit-windows-386-1.5.6.tar.gz){:target="_blank"}
 
 === "Windows 64 位"
 
     - [Installer](https://static.guance.com/datakit/installer-windows-amd64.exe){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-windows-amd64-1.5.5.tar.gz){:target="_blank"}
+    - [DataKit](https://static.guance.com/datakit/datakit-windows-amd64-1.5.6.tar.gz){:target="_blank"}
 
 === "Linux X86 32 位"
 
     - [Installer](https://static.guance.com/datakit/installer-linux-386){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-linux-386-1.5.5.tar.gz){:target="_blank"}
+    - [DataKit](https://static.guance.com/datakit/datakit-linux-386-1.5.6.tar.gz){:target="_blank"}
 
 === "Linux X86 64 位"
 
     - [Installer](https://static.guance.com/datakit/installer-linux-amd64){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-linux-amd64-1.5.5.tar.gz){:target="_blank"}
+    - [DataKit](https://static.guance.com/datakit/datakit-linux-amd64-1.5.6.tar.gz){:target="_blank"}
 
 === "Linux Arm 32 位"
 
     - [Installer](https://static.guance.com/datakit/installer-linux-arm){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-linux-arm-1.5.5.tar.gz){:target="_blank"}
+    - [DataKit](https://static.guance.com/datakit/datakit-linux-arm-1.5.6.tar.gz){:target="_blank"}
 
 === "Linux Arm 64 位"
 
     - [Installer](https://static.guance.com/datakit/installer-linux-arm64){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-linux-arm64-1.5.5.tar.gz){:target="_blank"}
+    - [DataKit](https://static.guance.com/datakit/datakit-linux-arm64-1.5.6.tar.gz){:target="_blank"}
 
 下载完后，应该有三个文件（此处 `<OS-ARCH>` 指特定平台的安装包）：
 
@@ -135,7 +135,7 @@
     需以 administrator 权限运行 Powershell 执行：
 
     ```powershell
-    .\installer-windows-amd64.exe --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs .\datakit-windows-amd64-1.5.5.tar.gz,.\data.tar.gz
+    .\installer-windows-amd64.exe --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs .\datakit-windows-amd64-1.5.6.tar.gz,.\data.tar.gz
     ```
 
 === "Linux"
@@ -144,7 +144,7 @@
 
     ```shell
     chmod +x installer-linux-amd64
-    ./installer-linux-amd64 --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs datakit-linux-amd64-1.5.5.tar.gz,data.tar.gz
+    ./installer-linux-amd64 --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs datakit-linux-amd64-1.5.6.tar.gz,data.tar.gz
     ```
 
 ### 高级模式 {#offline-advanced}
@@ -154,7 +154,7 @@ DataKit 目前的安装地址是公网地址，所有二进制数据以及安装
 高级模式的网络流量拓扑如下：
 
 <figure markdown>
-  ![](https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/images/datakit/nginx-file-server.png){ width="700"}
+  ![](https://static.guance.com/images/datakit/nginx-file-server.png){ width="700"}
 </figure>
 
 
@@ -195,8 +195,8 @@ mkdir -p /datakit
 wget -P /datakit https://static.guance.com/datakit/install.sh
 wget -P /datakit https://static.guance.com/datakit/version
 wget -P /datakit https://static.guance.com/datakit/data.tar.gz
-wget -P /datakit https://static.guance.com/datakit/installer-linux-amd64-1.5.5
-wget -P /datakit https://static.guance.com/datakit/datakit-linux-amd64-1.5.5.tar.gz
+wget -P /datakit https://static.guance.com/datakit/installer-linux-amd64-1.5.6
+wget -P /datakit https://static.guance.com/datakit/datakit-linux-amd64-1.5.6.tar.gz
 
 # 下载其它工具包：sources 是开启 RUM sourcemap 功能使用的安装包，如果未开启此功能，可选择不下载
 sources=(

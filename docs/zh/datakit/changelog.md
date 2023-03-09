@@ -23,6 +23,40 @@
 
 -->
 
+## 1.5.7(2023/03/09) {#cl-1.5.7}
+
+本次发布属于迭代发布，主要有如下更新：
+
+### 新加功能 {#cl-1.5.7-new}
+
+- [Pipeline 支持 key 删除](../developers/pipeline.md#fn-json)(#1465)
+- [netstat 支持 IPV6](datakit-conf.md#http-服务的配置-config-http-server)(#1454)
+- [Pipeline 增加新的 KV 操作](../developers/pipeline.md#fn-kv_split)(#1414)
+- [Pipeline 增加时间函数](../developers/pipeline.md#fn-datetime)(#1411)
+- [diskio 支持 io wait 指标](diskio.md#扩展指标-extend)(#1472)
+- [容器采集允许 Docker 和 Containerd 共存](container.md#requrements)(#1401)
+- [整合 Datakit Operator 配置文档](datakit-operator.md)(#1482)
+
+### 问题修复 {#cl-1.5.7-fix}
+
+- 修复 Pipeline Bugs(#1476/#1469/#1471/#1466)
+- 修复 datakit.yaml 缺少 request 导致的容器 pending(#1470)
+- 修复云同步过程中反复探测问题(#1443)
+- 修复日志磁盘缓存的编码错误(#1474)
+
+### 功能优化 {#cl-1.5.7-opt}
+
+- 优化 Point Checker(#1478)
+- 优化 Pipeline replace 性能(#1477)
+- 优化 Windows 下 Datakit 安装流程(#1404)
+- 优化 confd 配置处理流程(#1402)
+- 添加 Filebeat 集成测试能力(#1459)
+- 添加 Nginx 集成测试能力(#1399)
+- 重构 OTEL Agent(#1409)
+- 重构 [Datakit Monitor 信息](datakit-monitor.md#如何展示datakit指定模块的运行情况-specify-module)(#1261)
+
+---
+
 ## 1.5.6(2023/02/23) {#cl-1.5.6}
 
 本次发布属于迭代发布，主要有如下更新：
@@ -32,27 +66,33 @@
 - 命令行增加[解析行协议功能](datakit-tools-how-to.md#parse-lp)(#1412)
 - Datakit yaml 和 helm 支持资源 limit 配置(#1416)
 - Datakit yaml 和 helm 支持 CRD 部署(#1415)
-- 添加 SQL-Server 集成测试(#1406)
-- RUM 支持 [resource CDN 标注](rum.md#cdn标注-cdn-resolve)(#1384)
+- 添加 SQLServer 集成测试(#1406)
+- RUM 支持 [resource CDN 标注](rum.md#cdn-resolve)(#1384)
 
 ### 问题修复 {#cl-1.5.6-fix}
 
 - 修复 RUM 请求返回 5xx 问题(#1412)
 - 修复日志采集路径错误问题(#1447)
-- 修复 k8s pod 字段业务逻辑问题(#1446)
-- 修复 Datakit 崩溃问题(#1422)
-- 修复 point 构建错误(#1413#1408)
+- 修复 K8s Pod(`restarts`) 字段问题(#1446)
+- 修复 DataKit filter 模块崩溃问题(#1422)
+- 修复 Point 构建中 tag key 命名问题(#1413#1408)
 - 修复 Datakit Monitor 字符集问题(#1405)
 - 修复 OTEL tag 覆盖问题(#1396)
+- 修复 public API 白名单问题(#1467)
 
 ### 功能优化 {#cl-1.5.6-opt}
 
-- 优化拨测逻辑(#1421)
+- 优化拨测中无效任务的处理(#1421)
 - 优化 Windows 下安装提示(#1404)
-- 优化 powershell 安装脚本模板(#1403)
-- 优化 k8s 中 pod, ReplicaSet, Deployment 的关联方法(#1368)
+- 优化 Windows 中 Powershell 安装脚本模板(#1403)
+- 优化 K8s 中 Pod/ReplicaSet/Deployment 的关联方法(#1368)
 - 重构 point 数据结构及功能(#1400)
-- Datakit 自带 eBPF 采集器二进制安装(#1448)
+- Datakit 自带 [eBPF](ebpf.md) 采集器二进制安装(#1448)
+- 安装程序地址改成 CDN 地址，优化下载问题(#1457)
+
+### 兼容调整 {#cl-1.5.6-brk}
+
+- 由于内置了 eBPF 采集器，移除多余命令 `datakit install --datakit-ebpf`(#1400)
 
 ---
 
@@ -406,7 +446,7 @@
 - 调整 Pipeline 有关的文档，将其移到「自定义开发」目录下：
 
 <figure markdown>
-  ![](https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/images/datakit/cl-1.4.14-dk-docs.gif){ width="300"}
+  ![](https://static.guance.com/images/datakit/cl-1.4.14-dk-docs.gif){ width="300"}
 </figure>
 
 ---
@@ -447,25 +487,25 @@
 - 采集器文档从原来「集成」移到 「DataKit」文档库(#1060)
 
 <figure markdown>
-  ![](https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/images/datakit/cl-1.4.13-dk-docs.gif){ width="300"}
+  ![](https://static.guance.com/images/datakit/cl-1.4.13-dk-docs.gif){ width="300"}
 </figure>
 
 - DataKit 文档目录结构调整，减少了目录层级
 
 <figure markdown>
-  ![](https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/images/datakit/cl-1.4.13-dk-doc-dirs.gif){ width="300"}
+  ![](https://static.guance.com/images/datakit/cl-1.4.13-dk-doc-dirs.gif){ width="300"}
 </figure>
 
 - 几乎每个采集器都增加了 k8s 配置入口
 
 <figure markdown>
-  ![](https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/images/datakit/cl-1.4.13-install-selector.gif){ width="800" }
+  ![](https://static.guance.com/images/datakit/cl-1.4.13-install-selector.gif){ width="800" }
 </figure>
 
 - 调整文档头部显示，除了操作系统标识外，对支持选举的采集器，增加选举标识
 
 <figure markdown>
-  ![](https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/images/datakit/cl-1.4.13-doc-header.gif){ width="800" }
+  ![](https://static.guance.com/images/datakit/cl-1.4.13-doc-header.gif){ width="800" }
 </figure>
 
 ---
