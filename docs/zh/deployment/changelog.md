@@ -2,7 +2,7 @@
 
 ## v1.58.123（2023 年 03 月 07 日）
 
-pubrepo.jiagouyun.com/dataflux/1.58.123:launcher-44fcfe9-1678200092
+pubrepo.guance.com/dataflux/1.58.123:launcher-bb14ca9-1678200092
 
 此版本是 fix 版本，主要有如下更新:
 
@@ -16,7 +16,7 @@ pubrepo.jiagouyun.com/dataflux/1.58.123:launcher-44fcfe9-1678200092
 
 ## v1.58.122（2023 年 03 月 04 日）
 
-pubrepo.jiagouyun.com/dataflux/1.58.122:launcher-08db157-1677907360
+pubrepo.guance.com/dataflux/1.58.122:launcher-08db157-1677907360
 
 此版本是 fix 版本，主要有如下更新:
 
