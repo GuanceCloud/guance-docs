@@ -1859,31 +1859,69 @@ cover(abc, [2, 4])
 
 ### `datetime()` {#fn-datetime}
 
-Function prototype: `fn datetime(key, precision: str, fmt: str)`
+Function prototype: `fn datetime(key, precision: str, fmt: str, tz: str = "")`
 
 Function description: Convert timestamp to specified date format
 
 Function parameters:
 
 - `key`: Extracted timestamp (required parameter)
-- `precision`: Input timestamp precision (s, ms)
-- `fmt`：Date format, time format, support the following templates
+- `precision`: Input timestamp precision (s, ms, us, ns)
+- `fmt`: date format, provides built-in date format and supports custom date format
+- `tz`: time zone (optional parameter), convert the timestamp to the time in the specified time zone, the default time zone of the host is used
 
-```python
-ANSIC       = "Mon Jan _2 15:04:05 2006"
-UnixDate    = "Mon Jan _2 15:04:05 MST 2006"
-RubyDate    = "Mon Jan 02 15:04:05 -0700 2006"
-RFC822      = "02 Jan 06 15:04 MST"
-RFC822Z     = "02 Jan 06 15:04 -0700" // RFC822 with numeric zone
-RFC850      = "Monday, 02-Jan-06 15:04:05 MST"
-RFC1123     = "Mon, 02 Jan 2006 15:04:05 MST"
-RFC1123Z    = "Mon, 02 Jan 2006 15:04:05 -0700" // RFC1123 with numeric zone
-RFC3339     = "2006-01-02T15:04:05Z07:00"
-RFC3339Nano = "2006-01-02T15:04:05.999999999Z07:00"
-Kitchen     = "3:04PM"
-```
+Built-in date formats:
 
-示例:
+|Built-in format| date | description |
+|-|-|-|
+|"ANSIC" | "Mon Jan _2 15:04:05 2006" | |
+|"UnixDate" | "Mon Jan _2 15:04:05 MST 2006" | |
+|"RubyDate" | "Mon Jan 02 15:04:05 -0700 2006" | |
+|"RFC822" | "02 Jan 06 15:04 MST" | |
+|"RFC822Z" | "02 Jan 06 15:04 -0700" | RFC822 with numeric zone |
+|"RFC850" | "Monday, 02-Jan-06 15:04:05 MST" | |
+|"RFC1123" | "Mon, 02 Jan 2006 15:04:05 MST" | |
+|"RFC1123Z" | "Mon, 02 Jan 2006 15:04:05 -0700" | RFC1123 with numeric zone |
+|"RFC3339" | "2006-01-02T15:04:05Z07:00" | |
+|"RFC3339Nano" | "2006-01-02T15:04:05.999999999Z07:00" | |
+|"Kitchen" | "3:04PM" |  |
+
+
+Custom date format:
+
+The output date format can be customized through the combination of placeholders
+
+| character | example | description |
+| - | - | - |
+| a | %a | week abbreviation, such as `Wed` |
+| A | %A | The full letter of the week, such as `Wednesday`|
+| b | %b | month abbreviation, such as `Mar` |
+| B | %B | The full letter of the month, such as `March` |
+| C | %c | century, current year divided by 100 |
+| **d** | %d | day of the month; range `[01, 31]` |
+| e | %e | day of the month; range `[1, 31]`, pad with spaces |
+| **H** | %H | hour, using 24-hour clock; range `[00, 23]` |
+| I | %I | hour, using 12-hour clock; range `[01, 12]` |
+| j | %j | day of the year, range `[001, 365]` |
+| k | %k | hour, using 24-hour clock; range `[0, 23]` |
+| l | %l | hour, using 12-hour clock; range `[1, 12]`, padding with spaces |
+| **m** | %m | month, range `[01, 12]` |
+| **M** | %M | minutes, range `[00, 59]` |
+| n | %n | represents a newline character `\n` |
+| p | %p | `AM` or `PM` |
+| P | %P | `am` or `pm` |
+| s | %s | seconds since 1970-01-01 00:00:00 UTC |
+| **S** | %S | seconds, range `[00, 60]` |
+| t | %t | represents the tab character `\t` |
+| u | %u | day of the week, Monday is 1, range `[1, 7]` |
+| w | %w | day of the week, 0 for Sunday, range `[0, 6]` |
+| y | %y | year in range `[00, 99]` |
+| **Y** | %Y | decimal representation of the year|
+| **z** | %z | RFC 822/ISO 8601:1988 style time zone (e.g. `-0600` or `+0800` etc.) |
+| Z | %Z | time zone abbreviation, such as `CST` |
+| % | %% | represents the character `%` |
+
+Example:
 
 ```python
 # input data:
@@ -1896,9 +1934,32 @@ Kitchen     = "3:04PM"
 #    }
 
 # script
-json(_, a.timestamp) datetime(a.timestamp, 'ms', 'RFC3339')
+json(_, a.timestamp)
+datetime(a.timestamp, 'ms', 'RFC3339')
 ```
 
+
+```python
+# script
+ts = timestamp()
+datetime(ts, 'ns', fmt='%Y-%m-%d %H:%M:%S', tz="UTC")
+
+# output
+{
+  "ts": "2023-03-08 06:43:39"
+}
+```
+
+```python
+# script
+ts = timestamp()
+datetime(ts, 'ns', '%m/%d/%y  %H:%M:%S %z', "Asia/Tokyo")
+
+# output
+{
+  "ts": "03/08/23  15:44:59 +0900"
+}
+```
 
 ### `decode()` {#fn-decode}
 
@@ -2322,22 +2383,21 @@ json(key, x.y)
 Example 1:
 
 ```python
-# input data: {"info": {"age": 17, "name": "zhangsan", "height": 180}}
+# input data: 
+# {"info": {"age": 17, "name": "zhangsan", "height": 180}}
 
-# script
+# script:
 json(_, info, "zhangsan")
 json(zhangsan, name)
-json(zhangsan, age, "年龄")
+json(zhangsan, age, "age")
 
-# result
-# {
-#     "message": "{\"info\": {\"age\": 17, \"name\": \"zhangsan\", \"height\": 180}}
-#     "zhangsan": {
-#         "age": 17,
-#         "height": 180,
-#         "name": "zhangsan"
-#     }
-# }
+# result:
+{
+  "age": 17,
+  "message": "{\"info\": {\"age\": 17, \"name\": \"zhangsan\", \"height\": 180}}",
+  "name": "zhangsan",
+  "zhangsan": "{\"age\":17,\"height\":180,\"name\":\"zhangsan\"}"
+}
 ```
 
 Example 2:
@@ -2356,7 +2416,7 @@ Example 2:
 #        ]
 #    }
 
-# script
+# script:
 json(_, name) 
 json(name, first)
 ```
@@ -2371,8 +2431,125 @@ Example 3:
 #            {"first": "Jane", "last": "Murphy", "age": 47, "nets": ["ig", "tw"]}
 #    ]
     
-# script
+# script:
 json(_, [0].nets[-1])
+```
+
+Example 4:
+
+```python
+# input data:
+{"item": " not_space ", "item2":{"item3": [123]}}
+
+# script:
+json(_, item2.item3, item, delete_after_extract = true)
+
+# result:
+{
+  "item": "[123]",
+  "message": "{\"item\":\" not_space \",\"item2\":{}}",
+}
+```
+
+
+Example 5:
+
+```python
+# input data:
+{"item": " not_space ", "item2":{"item3": [123]}}
+
+# If you try to remove a list element it will fail the script check.
+# Script:
+json(_, item2.item3[0], item, delete_after_extract = true)
+
+
+# test command:
+# datakit pipeline j2.p -T '{"item": " not_space ", "item2":{"item3": [123]}}'
+# report error:
+# [E] j2.p:1:54: does not support deleting elements in the list
+```
+
+### `kv_split()` {#fn-kv_split}
+
+Function prototype: `fn kv_split(key, field_split_pattern = " ", value_split_pattern = "=", trim_key = "", trim_value = "", include_keys = [], prefix = "") -> bool`
+
+Function description: extract all key-value pairs from a string
+
+Function parameters:
+
+- `key`: key name
+- `include_keys`: list of key names, only extract the keys in the list; the default value is [], extract all keys
+- `field_split_pattern`: string splitting, a regular expression used to extract all key-value pairs; the default value is " "
+- `value_split_pattern`: used to split the key and value from the key-value pair string, non-recursive; the default value is "="
+- `trim_key`: delete all the specified characters leading and trailing the extracted key; the default value is ""
+- `trim_value`: remove all leading and trailing characters from the extracted value; the default value is ""
+- `prefix`: add prefix to all keys
+
+Example:
+
+
+```python
+# input: "a=1, b=2 c=3"
+kv_split(_)
+ 
+'''output:
+{
+  "a": "1,",
+  "b": "2",
+  "c": "3",
+  "message": "a=1 b=2 c=3",
+  "status": "unknown",
+  "time": 1678087119072769560
+}
+'''
+```
+
+```python
+# input: "a=1, b=2 c=3"
+kv_split(_, trim_value=",")
+
+'''output:
+{
+  "a": "1",
+  "b": "2",
+  "c": "3",
+  "message": "a=1, b=2 c=3",
+  "status": "unknown",
+  "time": 1678087173651846101
+}
+'''
+```
+
+
+```python
+# input: "a=1, b=2 c=3"
+kv_split(_, trim_value=",", include_keys=["a", "c"])
+
+'''output:
+{
+  "a": "1",
+  "c": "3",
+  "message": "a=1, b=2 c=3",
+  "status": "unknown",
+  "time": 1678087514906492912
+}
+'''
+```
+
+```python
+# input: "a::1,+b::2+c::3" 
+kv_split(_, field_split_pattern="\\+", value_split_pattern="[:]{2}",
+    prefix="with_prefix_",trim_value=",", trim_key="a")
+
+'''output:
+{
+  "message": "a::1,+b::2+c::3",
+  "status": "unknown",
+  "time": 1678087473255241547,
+  "with_prefix_b": "2",
+  "with_prefix_c": "3"
+}
+'''
 ```
 
 
@@ -2729,21 +2906,21 @@ Function parameters:
 Example:
 
 ```python
-# Phone number: {"str": "13789123014"}
-json(_, str)
-replace(str, "(1[0-9]{2})[0-9]{4}([0-9]{4})", "$1****$2")
+# Phone number: {"str_abc": "13789123014"}
+json(_, str_abc)
+replace(str_abc, "(1[0-9]{2})[0-9]{4}([0-9]{4})", "$1****$2")
 
-# English name {"str": "zhang san"}
-json(_, str)
-replace(str, "([a-z]*) \\w*", "$1 ***")
+# English name {"str_abc": "zhang san"}
+json(_, str_abc)
+replace(str_abc, "([a-z]*) \\w*", "$1 ***")
 
-# ID number {"str": "362201200005302565"}
-json(_, str)
-replace(str, "([1-9]{4})[0-9]{10}([0-9]{4})", "$1**********$2")
+# ID number {"str_abc": "362201200005302565"}
+json(_, str_abc)
+replace(str_abc, "([1-9]{4})[0-9]{10}([0-9]{4})", "$1**********$2")
 
-# Chinese name {"str": "Little Aka"}
-json(_, str)
-replace(str, '([\u4e00-\u9fa5])[\u4e00-\u9fa5]([\u4e00-\u9fa5])', "$1＊$2")
+# Chinese name {"str_abc": "Little Aka"}
+json(_, str_abc)
+replace(str_abc, '([\u4e00-\u9fa5])[\u4e00-\u9fa5]([\u4e00-\u9fa5])', "$1＊$2")
 ```
 
 
@@ -2882,6 +3059,62 @@ json(_, a.thrid)
 cast(a. second, "int")
 json(_, a.forth)
 strfmt(bb, "%v %s %v", a.second, a.thrid, a.forth)
+```
+
+
+### `timestamp()` {#fn-timestamp}
+
+Function prototype: `fn timestamp(precision: str = "ns") -> int`
+
+Function description: 返回当前 Unix 时间戳，默认精度为 ns
+
+Function parameters:
+
+- `precision`: 时间戳精度，取值范围为 "ns", "us", "ns", "s", 默认值 "ns"。
+
+Example:
+
+
+```python
+# process script
+add_key(time_now_record, timestamp())
+
+datetime(time_now_record, "ns", 
+    "%Y-%m-%d %H:%M:%S", "UTC")
+
+
+# process result
+{
+  "time_now_record": "2023-03-07 10:41:12"
+}
+
+```
+
+
+```python
+# process script
+add_key(time_now_record, timestamp())
+
+datetime(time_now_record, "ns", 
+    "%Y-%m-%d %H:%M:%S", "Asia/Shanghai")
+
+
+# process result
+{
+  "time_now_record": "2023-03-07 18:41:49"
+}
+```
+
+
+```python
+# process script
+add_key(time_now_record, timestamp("ms"))
+
+
+# process result
+{
+  "time_now_record": 1678185980578
+}
 ```
 
 
