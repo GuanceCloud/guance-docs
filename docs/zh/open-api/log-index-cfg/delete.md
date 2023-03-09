@@ -5,7 +5,7 @@
 <br />**post /api/v1/log_index_cfg/delete**
 
 ## 概述
-删除查看器
+删除一个绑定索引
 
 
 
