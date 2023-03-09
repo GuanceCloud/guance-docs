@@ -810,30 +810,68 @@ cover(abc, [2, 4])
 
 ### `datetime()` {#fn-datetime}
 
-函数原型：`fn datetime(key, precision: str, fmt: str)`
+函数原型：`fn datetime(key, precision: str, fmt: str, tz: str = "")`
 
 函数说明：将时间戳转成指定日期格式
 
 函数参数
 
-- `key`: 已经提取的时间戳 (必选参数)
-- `precision`：输入的时间戳精度(s, ms)
-- `fmt`：日期格式，时间格式, 支持以下模版
+- `key`: 已经提取的时间戳
+- `precision`：输入的时间戳精度(s, ms, us, ns)
+- `fmt`：日期格式，提供内置日期格式且支持自定义日期格式
+- `tz`: 时区 (可选参数)，将时间戳转换为指定时区的时间，默认使用主机的时区
 
-```python
-ANSIC       = "Mon Jan _2 15:04:05 2006"
-UnixDate    = "Mon Jan _2 15:04:05 MST 2006"
-RubyDate    = "Mon Jan 02 15:04:05 -0700 2006"
-RFC822      = "02 Jan 06 15:04 MST"
-RFC822Z     = "02 Jan 06 15:04 -0700" // RFC822 with numeric zone
-RFC850      = "Monday, 02-Jan-06 15:04:05 MST"
-RFC1123     = "Mon, 02 Jan 2006 15:04:05 MST"
-RFC1123Z    = "Mon, 02 Jan 2006 15:04:05 -0700" // RFC1123 with numeric zone
-RFC3339     = "2006-01-02T15:04:05Z07:00"
-RFC3339Nano = "2006-01-02T15:04:05.999999999Z07:00"
-Kitchen     = "3:04PM"
-```
+内置日期格式：
 
+|内置格式| 日期 | 描述 |
+|-| -| - |
+|"ANSIC"       | "Mon Jan _2 15:04:05 2006" | |
+|"UnixDate"    | "Mon Jan _2 15:04:05 MST 2006" | |
+|"RubyDate"    | "Mon Jan 02 15:04:05 -0700 2006" | |
+|"RFC822"      | "02 Jan 06 15:04 MST" | |
+|"RFC822Z"     | "02 Jan 06 15:04 -0700" | RFC822 with numeric zone |
+|"RFC850"      | "Monday, 02-Jan-06 15:04:05 MST" | |
+|"RFC1123"     | "Mon, 02 Jan 2006 15:04:05 MST" | |
+|"RFC1123Z"    | "Mon, 02 Jan 2006 15:04:05 -0700" | RFC1123 with numeric zone |
+|"RFC3339"     | "2006-01-02T15:04:05Z07:00" | |
+|"RFC3339Nano" | "2006-01-02T15:04:05.999999999Z07:00" | |
+|"Kitchen"     | "3:04PM" | |
+
+自定义日期格式:
+
+可通过占位符的组合自定义输出日期格式
+
+| 字符 | 示例 |描述 |
+| - | - | - |
+| a | %a | 星期的缩写，如 `Wed` |
+| A | %A | 星期的全写，如 `Wednesday`|
+| b | %b | 月份缩写, 如 `Mar` |
+| B | %B | 月份的全写，如 `March` |
+| C | %c | 世纪数，当前年份除 100 |
+| **d** | %d | 一个月内的第几天；范围 `[01, 31]` |
+| e | %e |一个月内的第几天；范围 `[1, 31]`，使用空格填充 |
+| **H** | %H | 小时，使用 24 小时制； 范围 `[00, 23]` |
+| I | %I | 小时，使用 12 小时制； 范围 `[01, 12]` |
+| j | %j | 一年内的第几天，范围 `[001, 365]` | 
+| k | %k | 小时，使用 24 小时制； 范围 `[0, 23]` |
+| l | %l | 小时，使用 12 小时制； 范围 `[1, 12]`，使用空格填充 |
+| **m** | %m | 月份，范围 `[01, 12]` | 
+| **M** | %M | 分钟，范围 `[00, 59]` |
+| n | %n | 表示换行符 `\n` |
+| p | %p | `AM` 或 `PM` |
+| P | %P | `am` 或 `pm` |
+| s | %s | 自 1970-01-01 00:00:00 UTC 来的的秒数 |
+| **S** | %S | 秒数，范围 `[00, 60]` |
+| t | %t | 表示制表符 `\t` |
+| u | %u | 星期几，星期一为 1，范围 `[1, 7]` |
+| w | %w | 星期几，星期天为 0, 范围 `[0, 6]` |
+| y | %y | 年份，范围 `[00, 99]` |
+| **Y** | %Y | 年份的十进制表示|
+| **z** | %z | RFC 822/ISO 8601:1988 风格的时区 (如： `-0600` 或 `+0100` 等) |
+| Z | %Z | 时区缩写，如 `CST` |
+| % | %% | 表示字符 `%` |
+
+ 
 示例:
 
 ```python
@@ -847,9 +885,32 @@ Kitchen     = "3:04PM"
 #    }
 
 # 处理脚本
-json(_, a.timestamp) datetime(a.timestamp, 'ms', 'RFC3339')
+json(_, a.timestamp)
+datetime(a.timestamp, 'ms', 'RFC3339')
 ```
 
+
+```python
+# 处理脚本
+ts = timestamp()
+datetime(ts, 'ns', fmt='%Y-%m-%d %H:%M:%S', tz="UTC")
+
+# 输出
+{
+  "ts": "2023-03-08 06:43:39"
+}
+```
+
+```python
+# 处理脚本
+ts = timestamp()
+datetime(ts, 'ns', '%m/%d/%y  %H:%M:%S %z', "Asia/Tokyo")
+
+# 输出
+{
+  "ts": "03/08/23  15:44:59 +0900"
+}
+```
 
 ### `decode()` {#fn-decode}
 
@@ -1252,7 +1313,7 @@ group_in(log_level, ["error", "panic"], "not-ok", status)
 
 ### `json()` {#fn-json}
 
-函数原型：`fn json(input: str, json_path, newkey, trim_space: bool = true)`
+函数原型：`fn json(input: str, json_path, newkey, trim_space: bool = true, delete_after_extract = false)`
 
 函数说明：提取 json 中的指定字段，并可将其命名成新的字段。
 
@@ -1261,7 +1322,8 @@ group_in(log_level, ["error", "panic"], "not-ok", status)
 - `input`: 待提取 json，可以是原始文本（`_`）或经过初次提取之后的某个 `key`
 - `json_path`: json 路径信息
 - `newkey`：提取后数据写入新 key
-- `trim_space`: 删除提取出的字符中的空白首尾字符，默认值为 true
+- `trim_space`: 删除提取出的字符中的空白首尾字符，默认值为 `true`
+- `delete_after_extract`: 在提取结束后删除当前对象，在重新序列化后回写待提取对象；只能应用于 map 的 key 与 value 的删除，不能用于删除 list 的元素；默认值为 `false`，不进行任何操作
 
 ```python
 # 直接提取原始输入 json 中的x.y字段，并可将其命名成新字段abc
@@ -1274,28 +1336,27 @@ json(key, x.y)
 示例一:
 
 ```python
-# 待处理数据: {"info": {"age": 17, "name": "zhangsan", "height": 180}}
+# 待处理数据: 
+# {"info": {"age": 17, "name": "zhangsan", "height": 180}}
 
-# 处理脚本
+# 处理脚本:
 json(_, info, "zhangsan")
 json(zhangsan, name)
-json(zhangsan, age, "年龄")
+json(zhangsan, age, "age")
 
-# 处理结果
+# 处理结果:
 {
-    "message": "{\"info\": {\"age\": 17, \"name\": \"zhangsan\", \"height\": 180}}
-    "zhangsan": {
-        "age": 17,
-        "height": 180,
-        "name": "zhangsan"
-    }
+  "age": 17,
+  "message": "{\"info\": {\"age\": 17, \"name\": \"zhangsan\", \"height\": 180}}",
+  "name": "zhangsan",
+  "zhangsan": "{\"age\":17,\"height\":180,\"name\":\"zhangsan\"}"
 }
 ```
 
 示例二:
 
 ```python
-# 待处理数据
+# 待处理数据:
 #    data = {
 #        "name": {"first": "Tom", "last": "Anderson"},
 #        "age":37,
@@ -1308,22 +1369,139 @@ json(zhangsan, age, "年龄")
 #        ]
 #    }
 
-# 处理脚本
+# 处理脚本:
 json(_, name) json(name, first)
 ```
 
 示例三:
 
 ```python
-# 待处理数据
+# 待处理数据:
 #    [
 #            {"first": "Dale", "last": "Murphy", "age": 44, "nets": ["ig", "fb", "tw"]},
 #            {"first": "Roger", "last": "Craig", "age": 68, "nets": ["fb", "tw"]},
 #            {"first": "Jane", "last": "Murphy", "age": 47, "nets": ["ig", "tw"]}
 #    ]
     
-# 处理脚本, json数组处理
+# 处理脚本, json数组处理:
 json(_, [0].nets[-1])
+```
+
+示例四：
+
+```python
+# 待处理数据:
+{"item": " not_space ", "item2":{"item3": [123]}}
+
+# 处理脚本:
+json(_, item2.item3, item, delete_after_extract = true)
+
+# 输出:
+{
+  "item": "[123]",
+  "message": "{\"item\":\" not_space \",\"item2\":{}}",
+}
+```
+
+
+示例五：
+
+```python
+# 待处理数据:
+{"item": " not_space ", "item2":{"item3": [123]}}
+
+# 处理脚本:
+# 如果尝试删除列表元素将无法通过脚本检查
+json(_, item2.item3[0], item, true, true)
+
+
+# 本地测试命令:
+# datakit pipeline j2.p -T '{"item": " not_space ", "item2":{"item3": [123]}}'
+# 报错:
+# [E] j2.p:1:37: does not support deleting elements in the list
+```
+
+### `kv_split()` {#fn-kv_split}
+
+函数原型：`fn kv_split(key, field_split_pattern = " ", value_split_pattern = "=", trim_key = "", trim_value = "", include_keys = [], prefix = "") -> bool`
+
+函数说明：从字符串中提取出所有的键值对
+
+参数:
+
+- `key`: key 名称
+- `include_keys`: 包含的 key 名称列表，仅提取在该列表内的 key；默认值为 []，提取所有的 key
+- `field_split_pattern`: 字符串分割，用于提取出所有键值对的正则表达式；默认值为 `" "`
+- `value_split_pattern`: 用于从键值对字符串分割出键和值，非递归；默认值为 `"="`
+- `trim_key`: 删除提取出的 key 的前导和尾随的所有指定的字符；默认值为 `""`
+- `trim_value`: 删除提取出的 value 的前导和尾随的所有指定的字符；默认值为 `""`
+- `prefix`: 给所有的 key 添加前缀字符串
+
+示例:
+
+
+```python
+# input: "a=1, b=2 c=3"
+kv_split(_)
+ 
+'''output:
+{
+  "a": "1,",
+  "b": "2",
+  "c": "3",
+  "message": "a=1 b=2 c=3",
+  "status": "unknown",
+  "time": 1678087119072769560
+}
+'''
+```
+
+```python
+# input: "a=1, b=2 c=3"
+kv_split(_, trim_value=",")
+
+'''output:
+{
+  "a": "1",
+  "b": "2",
+  "c": "3",
+  "message": "a=1, b=2 c=3",
+  "status": "unknown",
+  "time": 1678087173651846101
+}
+'''
+```
+
+
+```python
+# input: "a=1, b=2 c=3"
+kv_split(_, trim_value=",", include_keys=["a", "c"])
+
+'''output:
+{
+  "a": "1",
+  "c": "3",
+  "message": "a=1, b=2 c=3",
+  "status": "unknown",
+  "time": 1678087514906492912
+}
+'''
+```
+
+```python
+# input: "a::1,+b::2+c::3" 
+kv_split(_, field_split_pattern="\\+", value_split_pattern="[:]{2}",
+    prefix="with_prefix_",trim_value=",", trim_key="a")
+
+'''output:
+{
+  "message": "a::1,+b::2+c::3",
+  "status": "unknown",
+  "time": 1678087473255241547,
+  "with_prefix_b": "2",
+  "with_prefix_c": "3"
+}
+'''
 ```
 
 
@@ -1685,21 +1863,21 @@ json(_, info.name, "姓名")
 示例:
 
 ```python
-# 电话号码：{"str": "13789123014"}
-json(_, str)
-replace(str, "(1[0-9]{2})[0-9]{4}([0-9]{4})", "$1****$2")
+# 电话号码：{"str_abc": "13789123014"}
+json(_, str_abc)
+replace(str_abc, "(1[0-9]{2})[0-9]{4}([0-9]{4})", "$1****$2")
 
-# 英文名 {"str": "zhang san"}
-json(_, str)
-replace(str, "([a-z]*) \\w*", "$1 ***")
+# 英文名 {"str_abc": "zhang san"}
+json(_, str_abc)
+replace(str_abc, "([a-z]*) \\w*", "$1 ***")
 
-# 身份证号 {"str": "362201200005302565"}
-json(_, str)
-replace(str, "([1-9]{4})[0-9]{10}([0-9]{4})", "$1**********$2")
+# 身份证号 {"str_abc": "362201200005302565"}
+json(_, str_abc)
+replace(str_abc, "([1-9]{4})[0-9]{10}([0-9]{4})", "$1**********$2")
 
-# 中文名 {"str": "小阿卡"}
-json(_, str)
-replace(str, '([\u4e00-\u9fa5])[\u4e00-\u9fa5]([\u4e00-\u9fa5])', "$1＊$2")
+# 中文名 {"str_abc": "小阿卡"}
+json(_, str_abc)
+replace(str_abc, '([\u4e00-\u9fa5])[\u4e00-\u9fa5]([\u4e00-\u9fa5])', "$1＊$2")
 ```
 
 
@@ -1837,6 +2015,59 @@ json(_, a.thrid)
 cast(a.second, "int")
 json(_, a.forth)
 strfmt(bb, "%v %s %v", a.second, a.thrid, a.forth)
+```
+
+
+### `timestamp()` {#fn-timestamp}
+
+函数原型：`fn timestamp(precision: str = "ns") -> int`
+
+函数说明：返回当前 Unix 时间戳，默认精度为 ns
+
+函数参数：
+
+- `precision`: 时间戳精度，取值范围为 "ns", "us", "ns", "s", 默认值 "ns"。
+
+示例:
+
+```python
+# 处理脚本
+add_key(time_now_record, timestamp())
+
+datetime(time_now_record, "ns", 
+    "%Y-%m-%d %H:%M:%S", "UTC")
+
+
+# 处理结果
+{
+  "time_now_record": "2023-03-07 10:41:12"
+}
+
+```
+
+```python
+# 处理脚本
+add_key(time_now_record, timestamp())
+
+datetime(time_now_record, "ns", 
+    "%Y-%m-%d %H:%M:%S", "Asia/Shanghai")
+
+
+# 处理结果
+{
+  "time_now_record": "2023-03-07 18:41:49"
+}
+```
+
+```python
+# 处理脚本
+add_key(time_now_record, timestamp("ms"))
+
+
+# 处理结果
+{
+  "time_now_record": 1678185980578
+}
 ```
 
 

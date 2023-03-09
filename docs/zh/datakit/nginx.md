@@ -20,8 +20,8 @@ NGINX 采集器可以从 NGINX 实例中采取很多指标，比如请求总数�
 
     - `nginx`
     - `nginx_server_zone`
-    - `nginx_upstream_zone` (NGINX 需配置 `upstream` 相关配置)
-    - `nginx_cache_zone`    (NGINX 需配置 `cache` 相关配置)
+    - `nginx_upstream_zone` (NGINX 需配置 [`upstream` 相关配置](http://nginx.org/en/docs/http/ngx_http_upstream_module.html){:target="_blank"})
+    - `nginx_cache_zone`    (NGINX 需配置 [`cache` 相关配置](https://docs.nginx.com/nginx/admin-guide/content-cache/content-caching/){:target="_blank"})
 
 - 以产生 `nginx_upstream_zone` 指标集为例，NGINX 相关配置示例如下：
 
@@ -51,7 +51,11 @@ NGINX 采集器可以从 NGINX 实例中采取很多指标，比如请求总数�
 ```toml
 
 [[inputs.nginx]]
+	# Nginx status URL.
+	# (Default) If not use with VTS, the formula is like this: "http://localhost:80/server_status".
+	# If using with VTS, the formula is like this: "http://localhost:80/status/format/json".
 	url = "http://localhost:80/server_status"
+
 	# ##(optional) collection interval, default is 30s
 	# interval = "30s"
 	use_vts = false
@@ -99,23 +103,24 @@ NGINX 采集器可以从 NGINX 实例中采取很多指标，比如请求总数�
 
 | Tag | Descrition |
 |  ----  | --------|
-|`host`|host mame which installed nginx,use vts exist|
+|`host`|host mame which installed nginx|
 |`nginx_port`|nginx server port|
 |`nginx_server`|nginx server host|
-|`nginx_version`|nginx version,use vts exist|
+|`nginx_version`|nginx version, exist when using vts|
 
 - 指标列表
 
 
 | Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
+|`connection_accepts`|The total number of accepts client connections|int|count|
 |`connection_active`|The current number of active client connections|int|count|
 |`connection_handled`|The total number of handled client connections|int|count|
 |`connection_reading`|The total number of reading client connections|int|count|
 |`connection_requests`|The total number of requests client connections|int|count|
 |`connection_waiting`|The total number of waiting client connections|int|count|
 |`connection_writing`|The total number of writing client connections|int|count|
-|`load_timestamp`|Loaded process time in milliseconds, when exist by open vts|int|msec|
+|`load_timestamp`|nginx process load time in milliseconds, exist when using vts|int|msec|
 
 
 
@@ -138,13 +143,13 @@ NGINX 采集器可以从 NGINX 实例中采取很多指标，比如请求总数�
 | Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`received`|The total amount of data received from clients.|int|B|
-|`request_count`|The total number of client requests received from clients.|int|count|
+|`requests`|The total number of client requests received from clients.|int|count|
 |`response_1xx`|The number of responses with status codes 1xx|int|count|
 |`response_2xx`|The number of responses with status codes 2xx|int|count|
 |`response_3xx`|The number of responses with status codes 3xx|int|count|
 |`response_4xx`|The number of responses with status codes 4xx|int|count|
 |`response_5xx`|The number of responses with status codes 5xx|int|count|
-|`sent`|The total amount of data sent to clients.|int|B|
+|`send`|The total amount of data sent to clients.|int|B|
 
 
 
@@ -174,7 +179,7 @@ NGINX 采集器可以从 NGINX 实例中采取很多指标，比如请求总数�
 |`response_3xx`|The number of responses with status codes 3xx|int|count|
 |`response_4xx`|The number of responses with status codes 4xx|int|count|
 |`response_5xx`|The number of responses with status codes 5xx|int|count|
-|`sent`|The total number of bytes sent to clients.|int|B|
+|`send`|The total number of bytes sent to clients.|int|B|
 
 
 
@@ -197,7 +202,7 @@ NGINX 采集器可以从 NGINX 实例中采取很多指标，比如请求总数�
 | Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`max_size`|The limit on the maximum size of the cache specified in the configuration|int|B|
-|`receive`|The total number of bytes received from the cache.|int|B|
+|`received`|The total number of bytes received from the cache.|int|B|
 |`responses_bypass`|The number of cache bypass|int|count|
 |`responses_expired`|The number of cache expired|int|count|
 |`responses_hit`|The number of cache hit|int|count|
@@ -206,7 +211,7 @@ NGINX 采集器可以从 NGINX 实例中采取很多指标，比如请求总数�
 |`responses_scarce`|The number of cache scarce|int|count|
 |`responses_stale`|The number of cache stale|int|count|
 |`responses_updating`|The number of cache updating|int|count|
-|`sent`|The total number of bytes sent from the cache.|int|B|
+|`send`|The total number of bytes sent from the cache.|int|B|
 |`used_size`|The current size of the cache.|int|B|
 
 

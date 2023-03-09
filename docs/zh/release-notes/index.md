@@ -7,6 +7,97 @@ icon: zy/release-notes
 
 本文档记录观测云每次上线发布的更新内容说明，包括 DataKit、观测云最佳实践、观测云集成文档和观测云。
 
+## 2023 年 3 月 9 号
+
+### 观测云更新
+
+#### 数据存储策略变更优化
+
+取消数据存储策略每天只能修改 1 次的逻辑，支持用户当天内多次调整数据存储策略。
+
+> 注意：数据存储策略除当天内第一次修改会立即生效，其他的修改操作将按照最后一次调整记录次日生效。关于如何变更，可参考文档 [数据存储策略](../billing/billing-method/data-storage.md) 。
+
+#### 图表链接配置优化
+
+图表链接配置交互升级，在文本框输入基础上，支持通过参数配置自由组合生成最终图表关联链接 URL。更多详情可参考文档 [自定义链接](../scene/visual-chart/chart-link.md#custom-link) 。
+
+![](img/6.link_5.1.png)
+
+#### 新增支持创建重名的仪表板、笔记、自定义查看器
+
+优化仪表板、笔记、自定义查看器导入功能，若发现文件重名时支持自定义选择「跳过」、「仍然创建」、「取消」等操作。涉及导入模块：
+
+- 场景：仪表板、笔记、查看器
+- 管理：设置 - 配置迁移
+
+> 注意：若选择「取消」导入后，当次选中的文件均不会做导入操作。更多详情可参考文档 [配置迁移](../management/index.md#export-import) 。
+
+![](img/5.input_rename_1.png)
+
+#### DQL 参数生效优先级调整
+
+若您使用手写 DQL 模式查询数据时，DQL 中的时间参数配置将会优先于时间控件的输入范围。涉及功能：
+
+- 仪表板：视图变量默认值查询、图表查询
+- 指标分析
+- DQL 查询工具
+
+#### 日志 Message 数据展示优化
+
+日志查看列表支持选择显示全部 message 内容。涉及功能：
+
+- 日志查看器
+- 各查看器详情页关联日志页面
+
+![](img/7.log_column_4.png)
+
+#### 监控配置页面优化
+
+在配置监控器事件通知时：
+
+- 支持自定义「无数据」事件通知模板
+- 事件内容支持添加跳转链接，除官方提供的默认链接，您还可以自定义跳转链接
+
+更多详情可参考文档 [监控器配置](../monitoring/monitor/threshold-detection.md#notification) 。
+
+#### SSO 相关优化
+
+- SSO 用户支持修改账户信息和会话保持时间等策略
+- SAML 账号映射规则配置优化，兼容 “Email” 多种大小写格式
+- 单点登录链接获取逻辑优化，针对已经加入过工作空间的 SSO 用户优先列出已加入的工作空间登录链接
+
+#### 其他功能优化
+
+- 商业版开通流程支持 “[观测云直接开通](../billing/billing-account/enterprise-account.md)”、“[阿里云市场开通](../billing/billing-account/aliyun-account.md)“和“[亚马逊云市场开通](../billing/billing-account/aws-account.md)“三种方式任意选择；
+- 查看器左 * 查询功能范围调整，新开通的工作空间不再默认支持左 * 查询，如有需求请联系客户经理；
+- SLIMIT 限制调整，时序图查询若存在 `group by` 分组时，默认返回最多 20 条数据；
+- 新创建的工作空间新手引导流程优化。
+
+### DataKit 更新
+
+**新加功能**
+
+- Pipeline 支持 key 删除
+- Pipeline 增加新的 KV 操作
+- Pipeline 增加时间函数
+- netstat 支持 IPV6
+- diskio 支持 io wait 指标
+- 容器采集允许 Docker 和 Containerd 共存
+- 整合 Datakit Operator 配置文档
+
+**功能优化**
+
+- 优化 Point Checker
+- 优化 Pipeline replace 性能
+- 优化 Windows 下 Datakit 安装流程
+- 优化 confd 配置处理流程
+- 添加 Filebeat 集成测试能力
+- 添加 Nginx 集成测试能力
+- 重构 OTEL Agent
+- 重构 Datakit Monitor 信息
+
+更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md) 。
+
 ## 2023 年 2 月 28 号
 
 ### 观测云更新
@@ -72,8 +163,9 @@ icon: zy/release-notes
 ![](img/13.query_1.png)
 
 #### 其他功能优化
+
 - 观测云 [商业版注册](../billing/commercial-register.md)  流程支持绑定观测云费用中心账号；
-- 配置 [监控器](../monitoring/monitor/index.md) 时，「检测维度」支持非必选；
+- 配置 [监控器](../monitoring/monitor/index.md) 时，「检测维度」支持非必选。
 
 
 ### DataKit 更新
