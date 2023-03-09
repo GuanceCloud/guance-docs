@@ -66,18 +66,37 @@ icon: zy/release-notes
 - SAML 账号映射规则配置优化，兼容 “Email” 多种大小写格式
 - 单点登录链接获取逻辑优化，针对已经加入过工作空间的 SSO 用户优先列出已加入的工作空间登录链接
 
-#### 新手引导优化
-
-用户首次注册进入工作空间及新建工作空间时，新增邀请成员引导功能，您可以通过邮箱直接邀请公司的其他成员加入到当前的工作空间进行协作，支持为邀请的成员设置初始的访问权限，更多详情可参考 [成员管理](../management/member-management.md) 。
-
-![](img/4.new.png)
-
 #### 其他功能优化
 
 - 商业版开通流程支持 “[观测云直接开通](../billing/billing-account/enterprise-account.md)”、“[阿里云市场开通](../billing/billing-account/aliyun-account.md)“和“[亚马逊云市场开通](../billing/billing-account/aws-account.md)“三种方式任意选择；
 - 查看器左 * 查询功能范围调整，新开通的工作空间不再默认支持左 * 查询，如有需求请联系客户经理；
 - SLIMIT 限制调整，时序图查询若存在 `group by` 分组时，默认返回最多 20 条数据；
 - 新创建的工作空间新手引导流程优化。
+
+### DataKit 更新
+
+**新加功能**
+
+- Pipeline 支持 key 删除
+- Pipeline 增加新的 KV 操作
+- Pipeline 增加时间函数
+- netstat 支持 IPV6
+- diskio 支持 io wait 指标
+- 容器采集允许 Docker 和 Containerd 共存
+- 整合 Datakit Operator 配置文档
+
+**功能优化**
+
+- 优化 Point Checker
+- 优化 Pipeline replace 性能
+- 优化 Windows 下 Datakit 安装流程
+- 优化 confd 配置处理流程
+- 添加 Filebeat 集成测试能力
+- 添加 Nginx 集成测试能力
+- 重构 OTEL Agent
+- 重构 Datakit Monitor 信息
+
+更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md) 。
 
 ## 2023 年 2 月 28 号
 
