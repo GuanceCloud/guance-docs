@@ -3,38 +3,47 @@
 
 As the number of applications used increases and the range of data observation requirements expands, the requirements for data storage time will adjust accordingly. Guance provides a variety of data storage strategies, and you can customize your data storage time according to your needs to effectively control your data storage costs.
 
-Guance supports the commercial plan owner to change the data storage strategy in the space. In Guance workspace **Management > Basic Settings**, click **Change**, select the required data storage time, and click OK to change the data storage time in the current workspace.
 
-| Data Storage Type | **Commercial Plan** |
+## Data Storage Duration
+
+| Data Storage Type | **Data Storage Duration** |
 | --- | --- |
 | Metrics | 3 days / 7 days (by default)/ 14 days / 30 days / 180 days / 360 days |
 | Log | 7 days / 14 days (by default)/ 30 days / 60 days |
 | Backup log | 180 days (by default)/ 360 days / 720 days |
 | Event | 14 days (by default)/ 30 days / 60 days |
-| Security check | 90 days (by default)/ 180 days / 360 days |
-| Application performance Trace | 3 da y s / 7 days (by default)/ 14 days |
 | User access PV | 3 days / 7 days (by default)/ 14 days |
+
+## Change Data Storage Duration
+
+The owner of the commercial workspace can adjust the data storage policy several times on the same day. Except for the first modification, it will take effect immediately, and other modification operations will take effect the next day according to the last adjustment record.
+
+The data storage duration change steps are as follows:
+
+-Step 1: In **Management > Settings** in the Guance workspace, and click **Change** in **Change Data Storage Policy**;
+-Step 2: Select the data type to modify the data storage strategy, click **Edit**, select the time to be modified in the pop-up dialog box, and click **Confirm**;
+-Step 3: You can modify the storage time of other data types according to the second step. After all the modifications are completed, click **Confirm** to change the data storage time in the current workspace.
+
+![](../img/2.data_storage_2.png)
 
 ???+ attention
 
     1. Only commercial workspace owners are allowed to do this.
-    2. The owner of the commercial plan can change the data storage time of metrics, logs, backup logs, events, application performance, user access, security check. according to the requirements.
-    3. After the storage policy is changed, the new storage policy will take effect immediately, and the data in the old storage policy will not be deleted immediately. This part of billing still exists before the old data is deleted by the policy scrolling..
+    2. After the metric data storage policy is changed, the data in the old storage policy will be deleted. Please choose carefully. You can [set custom](../../metrics/dictionary.md#storage) data storage policies for measurements.
+    3. After the storage policy is changed, the new storage policy will take effect immediately, and the data in the old storage policy will not be deleted immediately. This part of billing still exists before the old data is deleted by the policy scrolling.
+   
         - Shortening of data storage time: assuming that the application performance data is adjusted from 14 days to 7 days, taking the time when days are adjusted as the dividing line, the data before this is still calculated according to the 14 days storage strategy, and the data after this will generate a new index and calculate the cost according to the new 7 days storage strategy;
-        - The data storage time becomes longer: assuming that the application performance data is adjusted from 7 days to 14 days, taking the time when days are adjusted as the dividing line, the data before this will still be charged according to the 7 days storage strategy, and the data after this will generate a new index and calculate the cost according to the new 14 days storage strategy.
+        - Lengthening of data storage time: assuming that the application performance data is adjusted from 7 days to 14 days, taking the time when days are adjusted as the dividing line, the data before this will still be charged according to the 7 days storage strategy, and the data after this will generate a new index and calculate the cost according to the new 14 days storage strategy.
     
-    For more information on data storage policy changes, refer to the doc [Guance ES multi-Tenant lifecycle management practices](../../billing/billing-method/es-life-cycle.md).
+    For more information on data storage policy changes, see [Guance ES multi-Tenant lifecycle management practices](../../billing/billing-method/es-life-cycle.md).
 
-![](../img/1.data_storage_1.png)
 
 ## Data Storage Methods {#options}
 
-When you register for the Commercial Plan of Guance, if you use Alibaba Cloud account settlement method, you can adopt two data storage schemes: **Default Storage** and **SLS Storage**.
+Guance provides two data storage schemes: **Default Storage** and **SLS Storage**.
 
 - Default storage: ElasticSearch is used to store log class data, and InfluxDB/TDengine is used to store metric class data; please refer to the doc on [opening Guance Commercial Plan in the Alibaba Cloud market](../../billing/commercial-aliyun.md).
 - SLS storage: Log Store is used to store log class data, and Metric Store is used to store metric class data; please refer to the doc on [opening Guance Exclusive Plan in the Alibaba Cloud market](../../billing/commercial-aliyun-sls.md).
-
-
 
 ## Data Storage Policy of Experience Plan {#free}
 
