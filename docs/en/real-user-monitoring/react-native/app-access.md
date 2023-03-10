@@ -67,7 +67,7 @@ FTMobileReactNative.sdkConfig(config)
 
 | **Fields** | **Type** | **Required** | **Description** |
 | --- | --- | --- | --- |
-| serverUrl | string | Yes | Data Reporting Address                                       |
+| serverUrl | string | Yes | The url of the datakit installation address, example: http://10.0.0.1:9529, port 9529. Datakit url address needs to be accessible by the device where the SDK is installed                                       |
 | useOAID       | boolean      | No           | Whether to use `OAID` for unique identification, default `false`, replace `deviceUUUID` for use when enabled, only for Android devices |
 | debug         | boolean      | No           | Set whether to allow printing of logs, default `false`       |
 | datakitUUID   | String       | No           | Request `HTTP` request header `X-Datakit-UUID` Data collection side will be configured automatically if the user does not set |

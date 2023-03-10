@@ -92,7 +92,7 @@ github "GuanceCloud/datakit-ios" == 1.3.7-beta.1
 
 | **Fields** | **Type** | **Description** | **Required** |
 | --- | --- | --- | --- |
-| metricsUrl | NSString | Data Reporting Address | Yes |
+| metricsUrl | NSString | The url of the datakit installation address, example: http://10.0.0.1:9529, port 9529. Datakit url address needs to be accessible by the device where the SDK is installed  | Yes |
 | enableSDKDebugLog | BOOL | Set whether to allow printing of logs | No (default NO) |
 | env | NS_ENUM | Environment | No (default FTEnvProd) |
 | XDataKitUUID | NSString | Request HTTP request header X-Datakit-UUID Data collection side Automatically configured if not set by user | No |

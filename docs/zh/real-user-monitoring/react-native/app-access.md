@@ -66,7 +66,7 @@ FTMobileReactNative.sdkConfig(config)
 
 | **字段** | **类型** | **必须** | **说明** |
 | --- | --- | --- | --- |
-| serverUrl | string | 是 | 数据上报地址 |
+| serverUrl | string | 是 | datakit 安装地址 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529。注意：安装 SDK 设备需能访问这地址 |
 | useOAID | boolean | 否 | 是否使用 `OAID` 唯一识别，默认`false`,开启后替换 `deviceUUID` 进行使用 |
 | debug | boolean | 否 | 设置是否允许打印日志，默认`false` |
 | datakitUUID | string | 否 | 请求`HTTP`请求头`X-Datakit-UUID` 数据采集端  如果用户不设置会自动配置 |

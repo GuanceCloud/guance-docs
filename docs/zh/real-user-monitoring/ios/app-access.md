@@ -97,7 +97,7 @@ github "GuanceCloud/datakit-ios" == 1.3.10-beta.1
 
 | **字段** | **类型** | **说明** | **必须** |
 | --- | --- | --- | --- |
-| metricsUrl | NSString | 数据上报地址 | 是 |
+| metricsUrl | NSString | datakit 安装地址 URL 地址，例子：http://datakit.url:[port]。注意：安装 SDK 设备需能访问这地址| 是 |
 | enableSDKDebugLog | BOOL | 设置是否允许打印日志 | 否（默认NO） |
 | env | NS_ENUM | 环境 | 否  （默认FTEnvProd） |
 | XDataKitUUID | NSString | 请求HTTP请求头X-Datakit-UUID 数据采集端  如果用户不设置会自动配置 | 否 |
