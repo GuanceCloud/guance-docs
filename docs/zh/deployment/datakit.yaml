@@ -148,7 +148,7 @@ spec:
               apiVersion: v1
               fieldPath: spec.nodeName
         - name: ENV_DATAWAY
-          value: https://openway.guance.com?token=tkn_a624f78a0e224183805848c1949d4374 ## 此处填上 dataway 真实地址
+          value: https://openway.guance.com?token=tkn_axxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ## 此处填上 dataway 真实地址
         - name: ENV_GLOBAL_TAGS
           value: host=__datakit_hostname,host_ip=__datakit_ip
         - name: ENV_DEFAULT_ENABLED_INPUTS

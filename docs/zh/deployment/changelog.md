@@ -1,8 +1,22 @@
 # 版本历史
 
+## v1.58.123（2023 年 03 月 07 日）
+
+pubrepo.guance.com/dataflux/1.58.123:launcher-44fcfe9-1678200092
+
+此版本是 fix 版本，主要有如下更新:
+
+### 观测云更新
+
+- 修复 Profiling 的数据过期清理的 bug
+- 修复 DQL series_sum 函数计算逻辑的 bug
+
+更多详情可参考帮助文档：[https://docs.guance.com/release-notes/](https://docs.guance.com/release-notes/)
+
+
 ## v1.58.122（2023 年 03 月 04 日）
 
-pubrepo.jiagouyun.com/dataflux/1.58.122:launcher-08db157-1677907360
+pubrepo.guance.com/dataflux/1.58.122:launcher-08db157-1677907360
 
 此版本是 fix 版本，主要有如下更新:
 
@@ -1173,3 +1187,4 @@ pubrepo.guance.com/dataflux/1.35.84:launcher-191ef71-1645780061
     - 图表查询文案、按钮样式以及文字提示优化；
     - 工作空间操作按钮图标化，如编辑、删除等等。
     - 其他 UI 显示优化
+
