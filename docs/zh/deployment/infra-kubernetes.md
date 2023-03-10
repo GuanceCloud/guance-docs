@@ -70,14 +70,14 @@ ntpdate cn.pool.ntp.org
 === "amd64"
 
     ``` shell
-    wget https://static.guance.com/dataflux/package/sealos_4.1.4_linux_amd64.tar.gz \
-       && tar zxvf sealos_4.1.4_linux_amd64.tar.gz sealos && chmod +x sealos && mv sealos /usr/bin
+    wget https://static.guance.com/dataflux/package/sealos_4.1.5_linux_amd64.tar.gz \
+       && tar zxvf sealos_4.1.5_linux_amd64.tar.gz sealos && chmod +x sealos && mv sealos /usr/bin
     ```
 === "arm64"
 
     ``` shell
-    wget https://static.guance.com/dataflux/package/sealos_4.1.4_linux_arm64.tar.gz \
-       && tar zxvf sealos_4.1.4_linux_arm64.tar.gz sealos && chmod +x sealos && mv sealos /usr/bin
+    wget https://static.guance.com/dataflux/package/sealos_4.1.5_linux_arm64.tar.gz \
+       && tar zxvf sealos_4.1.5_linux_arm64.tar.gz sealos && chmod +x sealos && mv sealos /usr/bin
     ```
 
 验证是否部署成功：
@@ -128,7 +128,8 @@ Use "sealos [command] --help" for more information about a command.
 ### 4、安装集群
 
 ```shell
-sealos run labring/kubernetes:v1.24.0 labring/calico:v3.22.1     \
+sealos run pubrepo.jiagouyun.com/googleimages/kubernetes:v1.24.0 \
+    pubrepo.jiagouyun.com/googleimages/calico:v3.22.1 \
     --masters 192.168.100.101     \
     --nodes 192.168.100.102,192.168.100.103     \
     --passwd [your-ssh-passwd] 

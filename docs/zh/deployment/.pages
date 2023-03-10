@@ -59,7 +59,7 @@ nav:
       - "设置管理": setting.md
   - '运维手册':
     - '监控':
-      - '开启自监控': self-monitoring.md
+      - '开启部署版自身的可观测': self-monitoring.md
     - '域名访问修改成IP访问': ip-access.md
     - '升级':
       - "版本升级安装": version-upgrade.md
