@@ -9,8 +9,11 @@ nav:
       - Open in Alibaba Cloud:
         - 'Access to Commercial Plan': commercial-aliyun.md
         - 'Access to Exclusive Plan': commercial-aliyun-sls.md
+      - Open in Amazon Web Services:
+        - 'Access to Commercial Plan': commercial-aws.md
     - Public Cloud Experience Plan: trail.md
     - Private Cloud Deployment Plan: deployment.md
+    - Independent Storage Plan: independent-storage.md
   - 'Expense Center': cost-center  
   - 'Usage Billing Method': billing-method
   - 'Expense Settlement Method': billing-account
