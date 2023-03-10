@@ -27,8 +27,9 @@ OTEL 提供与 vendor 无关的实现，根据用户的需要将观测类数据�
     [[inputs.opentelemetry]]
       ## During creating 'trace', 'span' and 'resource', many labels will be added, and these labels will eventually appear in all 'spans'
       ## When you don't want too many labels to cause unnecessary traffic loss on the network, you can choose to ignore these labels
-      ## Support regular expression. Note!!!: '.' WILL BE REPLACED BY '_'.
-      # ignore_attribute_keys = ["os_*","process_*"]
+      ## with setting up an regular expression list.
+      ## Note: ignore_attribute_keys will be effected on both trace and metrics if setted up.
+      # ignore_attribute_keys = ["os_*", "process_*"]
     
       ## Keep rare tracing resources list switch.
       ## If some resources are rare enough(not presend in 1 hour), those resource will always send
@@ -74,32 +75,32 @@ OTEL 提供与 vendor 无关的实现，根据用户的需要将观测类数据�
         # path = "./otel_storage"
         # capacity = 5120
     
-      [inputs.opentelemetry.expectedHeaders]
-      ## 如有header配置 则请求中必须要携带 否则返回状态码500
-      ## 可作为安全检测使用,必须全部小写
-      # ex_version = xxx
-      # ex_name = xxx
-      # ...
-    
-      ## grpc
-      [inputs.opentelemetry.grpc]
-      ## enable trace
-      trace_enable = true
-      ## enable metrics
-      metric_enable = true
-      ## grpc listen addr
-      addr = "127.0.0.1:4317"
-    
-      ## http
+      ## OTEL agent HTTP config for trace and metrics
+      ## If enable set to be true, trace and metrics will be received on path respectively:
+      ## trace : /otel/v1/trace
+      ## metric: /otel/v1/metric
+      ## and the client side should be configured properly with Datakit listening port(default: 9529)
+      ## for example http://127.0.0.1:9529/otel/v1/trace
+      ## The acceptable http_status_ok values will be 200 or 202.
       [inputs.opentelemetry.http]
-      ## if enable=true
-      ## http path (do not edit):
-      ##	trace : /otel/v1/trace
-      ##	metric: /otel/v1/metric
-      ## use as : http://127.0.0.1:9529/otel/v1/trace . Method = POST
-      enable = true
-      ## return to client status_ok_code :200/202
-      http_status_ok = 200
+       enable = true
+       http_status_ok = 200
+    
+      ## OTEL agent GRPC config for trace and metrics.
+      ## GRPC services for trace and metrics can be enabled respectively as setting either to be true.
+      ## add is the listening on address for GRPC server.
+      [inputs.opentelemetry.grpc]
+       trace_enable = true
+       metric_enable = true
+       addr = "127.0.0.1:4317"
+    
+      ## If 'expectedHeaders' is well configed, then the obligation of sending certain wanted HTTP headers is on the client side,
+      ## otherwise HTTP status code 400(bad request) will be provoked.
+      ## Note: expectedHeaders will be effected on both trace and metrics if setted up.
+      # [inputs.opentelemetry.expectedHeaders]
+      # ex_version = "1.2.3"
+      # ex_name = "env_resource_name"
+      # ...
     
     ```
 

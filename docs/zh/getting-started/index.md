@@ -16,7 +16,7 @@ icon: zy/getting-started
 
     ---
 
-    包括[名词解释](./product-introduction/glossary.md)、[客户价值](./product-introduction/customer-value.md)、[按量的商业模式](./product-introduction/business-model.md) 等内容。
+    包括[产品介绍](./product-introduction/index.md)、[名词解释](./product-introduction/glossary.md)、[客户价值](./product-introduction/customer-value.md) 等内容。
 
     <br/>
     [**:octicons-arrow-right-24: Getting more**](./product-introduction/index.md)

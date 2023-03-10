@@ -38,7 +38,7 @@
 
 查看开通协议并同意，协议同意后即可收到开通提醒邮件。
 
-![](img/9.upgrade_4.png)
+![](img/1.upgrade_agreement.png)
 
 ### 升级成功
 
@@ -52,29 +52,19 @@
 
 若需要更改其他结算方式，可以上点击上图的「绑定结算云账号」按钮。目前观测云支持三种结算方式：
 
-- [观测云企业账号结算](../billing/billing-account/enterprise-account.md)：直接在观测云费用中心进行充值结算，您可以购买 [华为云储值卡](../billing/billing-account/huaweicloud-account.md) 为观测云企业账号进行充值结算；
+- [观测云账号结算](../billing/billing-account/enterprise-account.md)：直接在观测云费用中心进行充值结算，您可以购买 [华为云储值卡](../billing/billing-account/huaweicloud-account.md) 为观测云企业账号进行充值结算；
 - [阿里云账号结算](../billing/billing-account/aliyun-account.md)：直接通过阿里云账号进行充值结算；
 - [AWS账号结算](../billing/billing-account/aws-account.md)：直接通过AWS账号进行充值结算。
 
-> 注意：“中国区4（广州）”站点注册的用户仅支持观测云企业账号结算，商业版升级成功后直接返回「付费计划与账单」。
+![](img/1.upgrade_account.png)
 
-
-点击「绑定结算云账号」按钮，根据您账号的注册站点选择结算云账号。
-
-- 如您在“中国区1（杭州）”注册的账号，则默认结算云账号为「阿里云账号」
-- 如您在“ “中国区2（宁夏）”、“海外区1（俄勒冈）”注册的账号，则默认结算云账号为「AWS云账号」
-- 如您开通了任意账号结算，则见下图
-
-![](img/9.upgrade_6.png)
-
-选择“阿里云账号”或者“AWS云账号”，在弹出的对话框中选择结算方式，具体步骤可参考 [开通阿里云账号结算方式](../billing/billing-account/aliyun-account.md) 或 [在 AWS 订阅观测云](../billing/billing-account/aws-account.md) 。
+若未登记过云账号，可选择“阿里云账号”或者“AWS云账号”，在弹出的对话框中选择结算方式，具体步骤可参考 [开通阿里云账号结算方式](../billing/billing-account/aliyun-account.md) 或 [在 AWS 订阅观测云](../billing/billing-account/aws-account.md) 。
 
 ![](img/9.upgrade_7.png)
 
-若选择使用观测云企业账号结算，可直接关闭“更改结算方式”对话框。支持在观测云费用中心“工作空间管理”更改结算方式。
+若选择使用观测云账号结算，可直接关闭“更改结算方式”对话框。支持在观测云费用中心“工作空间管理”更改结算方式。
 
 ![](img/9.upgrade_9.png)
-
 
 
 ## 查看商业版

@@ -90,7 +90,7 @@
     | 安全巡检 | SHOW_SECURITY_FIELD()<br>该函数**不支持**添加时间筛选<br>取值范围：当前工作空间安全巡检数据下的所有字段 | S::RE(`.*`):(DISTINCT_BY_COLLAPSE(`rule`)) LIMIT 50<br>该函数**支持**添加时间筛选，**跟随仪表板时间控件联动**<br>取值范围：选定时间内安全巡检数据中某个标签的 50 个值 |
 
 
-#### DQL 查询
+#### DQL 查询 {#dql}
 
 在 DQL 查询过程中，支持用户直接手写 DQL 语句，查询返回对应的数据值，您可以在查询中添加时间范围筛选和配置 [级联查询](#cascade)。点击 [了解更多 DQL 定义和语法](../dql/define.md) 。
 
@@ -104,6 +104,20 @@
 | R::view:(distinct('app_id')) | 返回 web 应用用户访问监测的 app_id 列表 |
 | R::view:(distinct('env')){'app_id' = '8f05003ebccad062'} | 返回 Web 应用用户访问监测 `app_id=8f05003ebccad062`对应的 env 列表 | 
 | R::view:(distinct('env')){'app_id' = '#{appid}'} | 通过在 DQL 语句中使用 `#{变量名}` ，可用于 [级联查询](#cascade)，表示上一条查询的变量名设为 app_id，则返回上条变量中所选 app_id 对应的 env 列表 |
+
+##### 添加时间范围说明
+
+视图变量使用 DQL 语句查询时，支持以 [xx:xx:xx] 的格式添加数据查询的时间范围：
+
+- 若在 DQL 查询中添加了时间范围，则优先使用 DQL 查询中的时间范围；
+- 若在 DQL 查询中未添加时间范围，则默认使用仪表板时间控件所选的时间范围。
+
+**示例：**
+
+```
+# 查询最近 10 分钟的容器主机列表 
+O::docker_containers:(distinct(`host`)) [10m]
+```
 
 ##### Show 函数查询 {#show}
 
