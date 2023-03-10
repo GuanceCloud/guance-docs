@@ -15,7 +15,7 @@
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
 | name | string | Y | 索引名字<br>例子: xxx <br>允许为空: False <br> |
-| storeType | string | Y | 索引名字<br>例子: xxx <br>允许为空: False <br> |
+| storeType | string | Y | 存储类型<br>例子: xxx <br>允许为空: False <br> |
 | exterStoreName | string | Y | 与name互为映射的外部存储的名字<br>允许为空: False <br> |
 | exterStoreProject | string |  | 外部存储索引对应的project<br>允许为空: False <br> |
 | region | string |  | 指定外部资源的地域<br>允许为空: False <br> |
