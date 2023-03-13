@@ -24,7 +24,7 @@ icon: octicons/cloud-16
     指导观测 [`ACK`](./aliyun/aliyun-ack.md) [`CDN`](./aliyun/aliyun-cdn.md) [`ECS`](./aliyun/aliyun-ecs.md) [`ElasticSearch`](./aliyun/aliyun-es.md) [`MongoDB`](./aliyun/aliyun-mongodb.md) [`NAT`](./aliyun/aliyun-nat.md) [`OSS`](./aliyun/aliyun-oss.md) [`PolarDB Mysql`](./aliyun/aliyun-mysql.md) [`Redis`](./aliyun/aliyun-redis.md) [`SLB`](./aliyun/aliyun-slb.md) [`SLS`](./aliyun/aliyun-sls.md) [`费用`](./aliyun/aliyun-charges.md) 等指标集数据
 
     <br/>
-    [**:octicons-arrow-right-24: Getting more**](./aliyun/aliyun-prod-func.md)
+    [**:octicons-arrow-right-24: 更多**](./aliyun/aliyun-prod-func.md)
 
 -   :integrations-aws:{ .lg .middle } __AWS__
 
@@ -34,7 +34,7 @@ icon: octicons/cloud-16
 
     <br/>
     <br/>
-    [**:octicons-arrow-right-24: Getting more**](./aws/aws-prod-func.md)
+    [**:octicons-arrow-right-24: 更多**](./aws/aws-prod-func.md)
 
 -   :integrations-tencent:{ .lg .middle } __腾讯云__
 
@@ -43,7 +43,7 @@ icon: octicons/cloud-16
     指导观测 [`CDB`](./tencent/cdb.md) [`COS`](./tencent/cos.md) [`CLB`](./tencent/clb.md) [`CVM`](./tencent/cvm.md) [`MongoDB`](./tencent/mongodb.md) [`Redis 内存版`](./tencent/redis-mem.md) 等指标集数据
 
     <br/>
-    [**:octicons-arrow-right-24: Getting more**](./tencent/tencent-prod-func.md)
+    [**:octicons-arrow-right-24: 更多**](./tencent/tencent-prod-func.md)
 
 -   :integrations-huawei:{ .lg .middle } __华为云__
 
@@ -52,7 +52,7 @@ icon: octicons/cloud-16
     指导观测 [`DCS`](./huawei/dcs.md) [`ECS`](./huawei/ecs.md) [`ELB`](./huawei/elb.md) [`OBS`](./huawei/obs.md) [`RDS MySQL`](./huawei/rds-mysql.md) 等指标集数据
 
     <br/>
-    [**:octicons-arrow-right-24: Getting more**](./huawei/huawei-prod-func.md)
+    [**:octicons-arrow-right-24: 更多**](./huawei/huawei-prod-func.md)
 
 </div>
 

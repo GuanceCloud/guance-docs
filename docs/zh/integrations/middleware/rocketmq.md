@@ -49,10 +49,10 @@ mvn clean install
 cd target
 ```
 
-启动 jar 包
+启动 jar 包 (替换命令行中 nameserverip 地址)
 
 ```
-nohup java -jar target/rocketmq-exporter-0.0.2-SNAPSHOT.jar &
+nohup java -jar target/rocketmq-exporter-0.0.2-SNAPSHOT.jar --rocketmq.config.namesrvAddr=nameserverip:9876 &
 ```
 
 （2）构建 Docker 镜像方式
