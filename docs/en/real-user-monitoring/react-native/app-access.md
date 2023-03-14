@@ -67,39 +67,44 @@ FTMobileReactNative.sdkConfig(config)
 
 | **Fields** | **Type** | **Required** | **Description** |
 | --- | --- | --- | --- |
-| serverUrl | string | Yes | Data Reporting Address                                       |
-| useOAID       | boolean      | No           | Whether to use `OAID` for unique identification, default `false`, replace `deviceUUUID` for use when enabled, only for Android devices |
+| serverUrl | string | Yes | The url of the datakit installation address, example: http://10.0.0.1:9529, port 9529. Datakit url address needs to be accessible by the device where the SDK is installed                                       |
 | debug         | boolean      | No           | Set whether to allow printing of logs, default `false`       |
 | datakitUUID   | String       | No           | Request `HTTP` request header `X-Datakit-UUID` Data collection side will be configured automatically if the user does not set |
 | envType       | enum EnvType | No           | Environment, default `prod`                                  |
 | globalContext | NSDictionary | No | [Add custom tags](#user-global-context ) |
+| service | string | No          | Set the name of the business or service to which it belongs, and affect the service field data in Log and RUM. default：`df_rum_ios`、`df_rum_android` |
 
 ## RUM Configuration
 
 ```typescript
 let rumConfig: FTRUMConfig = {
-      rumAppId: rumid,
-      monitorType: MonitorType.all,
-      enableAutoTrackUserAction:true,
-      enableAutoTrackError:true,
-      enableNativeUserAction: false,
-      enableNativeUserView: false,
-      enableNativeUserResource: true, // 开启后、能同时采集 React Native 与 原生部分 
-    }; 
-
+    androidAppId: Config.ANDROID_APP_ID,
+    iOSAppId:Config.IOS_APP_ID,
+    enableAutoTrackUserAction: true,
+    enableAutoTrackError: true,
+    enableNativeUserAction: true,
+    enableNativeUserView: false,
+    enableNativeUserResource: true,
+    errorMonitorType:ErrorMonitorType.all,
+    deviceMonitorType:DeviceMetricsMonitorType.all,
+    detectFrequency:DetectFrequency.rare
+  };
 FTReactNativeRUM.setConfig(rumConfig);
 ```
 
 | **Fields**                | **Type**         | **Required** | **Description**                                              |
 | --- | --- | --- | --- |
-| rumAppId | string | Yes          | appId, apply under monitoring                                |
+| androidAppId | string | Yes          | appId, apply under monitoring                                |
+| iOSAppId | string | Yes | appId, apply under monitoring |
 | sampleRate | number | No           | Sampling rate, (values for sample rate range from >= 0, <= 1, default value is 1) |
 | enableAutoTrackUserAction | boolean | No | Whether to automatically capture `React Native` control click events, with `accessibilityLabel` to set the actionName when enabled |
 | enableAutoTrackError | boolean | No | Whether to automatically collect `React Native` Error |
 | enableNativeUserAction | boolean | No | Whether to do `Native Action` tracking, `Button` click events, pure `React Native` applications are recommended to be turned off, default is `false` |
 | enableNativeUserView | boolean | No | Whether to do `Native View` auto-tracking, recommended to be turned off for pure `React Native` applications, default is `false` |
 | enableNativeUserResource | boolean | No | Whether to start `Native Resource` auto-tracking or not. Since React-Native's network requests are implemented using the system API on iOS and Android, all resource data can be collected together after enabling enableNativeUserResource. |
-| monitorType | enum MonitorType | No | Monitoring supplement type |
+| errorMonitorType | enum ErrorMonitorType | No | Error Event Monitoring Supplementary Type                    |
+| deviceMonitorType | enum DeviceMetricsMonitorType | No | The performance monitoring type of the view                  |
+| detectFrequency | enum DetectFrequency | No | View's Performance Monitoring Sampling Period |
 | globalContext | object | No           | [Add custom tags](#user-global-context )                     |
 
 
@@ -142,7 +147,7 @@ FTReactNativeLog.logConfig(logConfig);
 | enableNativeAutoTrace | boolean | No | Whether to enable Native Network Network AutoTrace iOS NSURLSession ,Android OKhttp(Since the network request of `React Native` is implemented in iOS and Android using system API, so after enabling `enableNativeAutoTrace`, all `React Native` data can be traced together.) |
 | globalContext | NSDictionary | No           | [Add custom tags](#user-global-context)                      |
 
-# RUM User Data Tracking
+# RUM
 
 ## Action
 
@@ -202,7 +207,7 @@ async getHttp(url:string){
       }
 ```
 
-# Logger Log Printing
+# Logging
 
 ```typescript
 FTReactNativeLog.logging("info log content",FTLogStatus.info);
@@ -218,7 +223,7 @@ FTReactNativeLog.logging("info log content",FTLogStatus.info);
 | FTLogStatus.critical | critical |
 | FTLogStatus.ok | ok |
 
-# Tracer Network Trace Tracking
+# Tracing
 
 ```typescript
   async getHttp(url:string){
@@ -287,9 +292,9 @@ let rumConfig: FTRUMConfig = {
     };
  AsyncStorage.getItem("track_id",(error,result)=>{
         if (result === null){
-          console.log('获取失败' + error);
+          console.log('fail' + error);
         }else {
-          console.log('获取成功' + result);
+          console.log('success' + result);
           if( result != undefined){
             rumConfig.globalContext = {"track_id":result};
           }    
@@ -303,9 +308,9 @@ let rumConfig: FTRUMConfig = {
 ```typescript
 AsyncStorage.setItem("track_id",valueString,(error)=>{
     if (error){
-        console.log('存储失败' + error);
+        console.log('storage fail' + error);
     }else {
-        console.log('存储成功');
+        console.log('storage success');
     }
 })
 ```
