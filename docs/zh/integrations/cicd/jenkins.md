@@ -13,7 +13,8 @@ Jenkins 性能指标展示，包括项目数量、构建数量、作业数量、
 
 ## 版本支持
 
-操作系统支持：Linux / Windows
+- 操作系统支持：Linux / Windows
+- [Jenkins 版本支持情况](../../datakit/jenkins.md#requirements)
 
 ## 前置条件
 
