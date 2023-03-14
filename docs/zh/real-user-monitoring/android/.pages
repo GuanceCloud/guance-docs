@@ -2,4 +2,4 @@ nav:
   - 'Android 应用数据采集': app-data-collection.md
   - 'Android 应用接入': app-access.md
   - 'Android 应用分析': app-analysis.md
-  - 'Android 常见问题': app-troubleshooting.md
+  - 'Android 故障排查': app-troubleshooting.md

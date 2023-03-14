@@ -1,4 +1,4 @@
 nav:
   - 'UniApp 应用数据采集': app-data-collection.md
   - 'UniApp 应用接入': app-access.md
-  - 'iOS 常见问题': app-troubleshooting.md
+  - 'UniApp 故障排查': app-troubleshooting.md
