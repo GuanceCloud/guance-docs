@@ -102,7 +102,7 @@ FTReactNativeRUM.setConfig(rumConfig);
 | enableNativeUserAction | boolean | 否 | 是否进行 `Native Action` 追踪，`Button` 点击事件，纯 `React Native` 应用建议关闭，默认为 `false` |
 | enableNativeUserView | boolean | 否 | 是否进行 `Native View` 自动追踪，纯 `React Native` 应用建议关闭，，默认为 `false` |
 | enableNativeUserResource | boolean | 否 | 是否开始 `Native Resource`自动追踪，由于 React-Native 的网络请求在 iOS、Android 端是使用系统 API 实现的，所以开启 enableNativeUserResource 后，所有 resource 数据能够一并采集。 |
-| errorMonitorType | enum ErrorMonitorType | 否 | 错误事件监控补充类型 |
+| errorMonitorType |enum ErrorMonitorType | 否 | 错误事件监控补充类型 |
 | deviceMonitorType | enum DeviceMetricsMonitorType | 否 | 视图的性能监控类型                                           |
 | detectFrequency | enum DetectFrequency | 否 | 视图的性能监控采样周期 |
 | globalContext | object | 否 | [添加自定义标签](#user-global-context) |
