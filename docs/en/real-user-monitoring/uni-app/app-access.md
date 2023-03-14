@@ -81,7 +81,7 @@ None yet.
 
 | Parameter Name      | Parameter Type | Required | Parameter Description                                                     |
 | :------------ | :------- | :--- | ------------------------------------------------------------ |
-| serverUrl     | string   | Yes   | Data reporting address                                                 |
+| serverUrl     | string   | Yes   |The url of the datakit installation address, example: http://10.0.0.1:9529, port 9529. Datakit url address needs to be accessible by the device where the SDK is installed                                                  |
 | debug         | boolean  | No   | Set whether to allow printing of Debug logs, default  `false`                            |
 | datakitUUID   | string   | No   | Request `HTTP` request header `X-Datakit-UUID` data collection end, automatically configured if not set by user |
 | envType       | string   | No   | Environment fields: `prod` online (default), `gray` grayscale, `pre` advance, `common` daily, `local` local |
