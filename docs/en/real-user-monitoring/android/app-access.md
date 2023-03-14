@@ -117,8 +117,15 @@ class DemoApplication : Application() {
     }
 }
 ```
+The optimal location for initializing an SDK theoretically is in the `onCreate` method of the `Application` class. If your application hasn't created an `Application` class, you need to create one and declare it in the `Application` section of the `AndroidManifest.xml`. For an example, please refer to [this](https://github.com/GuanceCloud/datakit-android/blob/dev/demo/app/src/main/AndroidManifest.xml) example.
 
-| Method Name | **Meaning** | Required | **Attention** |
+```
+<application 
+       android:name="YourApplication"> 
+</application> 
+```
+
+| **Method Name** | **Meaning** | **Required** | **Attention** |
 | --- | --- | --- | --- |
 | metricsUrl | Datakit installation address | Yes | The url of the datakit installation address, example: http://10.0.0.1:9529, port 9529. Datakit url address needs to be accessible by the device where the SDK is installed |
 | setXDataKitUUID | Set the identification ID of the data acquisition terminal | No | Default is random `uuid` |
@@ -187,7 +194,7 @@ android{
 FTSdk.initRUMWithConfig(
             FTRUMConfig()
                 .addGlobalContext(CUSTOM_STATIC_TAG, BuildConfig.CUSTOM_VALUE)
-                //… 添加其他配置
+                //… add other properties
         )
 ```
 
@@ -202,7 +209,7 @@ val customDynamicValue = sp.getString(CUSTOM_DYNAMIC_TAG, "not set")
 //配置 RUM
 FTSdk.initRUMWithConfig(
      FTRUMConfig().addGlobalContext(CUSTOM_DYNAMIC_TAG, customDynamicValue!!)
-     //… 添加其他配置
+     //… add other properties
 )
 ```
 
@@ -255,7 +262,7 @@ fun setDynamicParams(context: Context, value: String) {
         )
 ```
 
-| **Method Name** | Meaning | Required | Attention |
+| **Method Name** | **Meaning** | **Required** | **Attention** |
 | --- | --- | --- | --- |
 | setSampleRate | Set sample rate | No | The value of the acquisition rate ranges from >= 0, <= 1, and the default value is 1 |
 | setTraceType | Set the type of tracing | No | Default is `DDTrace`, currently support `Zipkin`, `Jaeger`, `DDTrace`, `Skywalking` (8.0+), `TraceParent` (W3C), if you access OpenTelemetry to choose the corresponding trace type, please pay attention to check the supported types and agent-related configuration |
@@ -301,13 +308,13 @@ FTRUMGlobalManager.get().addLongTask("error log",1000000L)
 ### Resource
 
 ```kotlin
-//请求开始
+//http request start
 FTRUMGlobalManager.get().startResource("resourceId")
 
-//请求结束
+//request end
 FTRUMGlobalManager.get().stopResource("resourceId")
 
-//最后，在请求结束之后，发送请求相关的数据指标
+//Finally, after the request ends, send request-related data metrics
 val params = ResourceParams()
 params.url = "https://www.guance.com"
 params.responseContentType = response.header("Content-Type")
@@ -325,7 +332,7 @@ FTRUMGlobalManager.get().addResource("resourceId",params,bean)
 
 ```
 
-| **Method Name** | **Meaning** | **Required** | Description |
+| **Method Name** | **Meaning** | **Required** | **Description** |
 | --- | --- | --- | --- |
 | NetStatusBean.fetchStartTime | Request start time | No |  |
 | NetStatusBean.tcpStartTime | tcp connection time | No |  |
@@ -348,10 +355,10 @@ FTRUMGlobalManager.get().addResource("resourceId",params,bean)
 ## Logger Log Printing 
 
 ```kotlin
-//上传单个日志
+//upload single log
 FTLogger.getInstance().logBackground("test", Status.INFO)
 
-//批量上传日志
+//batch upload logs
 FTLogger.getInstance().logBackground(mutableListOf(LogData("test",Status.INFO)))
 ```
 
@@ -372,14 +379,15 @@ You can `FTTRUMConfig` configure to enable automatic mode, or add it manually, f
 ```kotlin
 val url = "https://www.guance.com"
 val uuid ="uuid"
-//获取链路头参数
+//get http header params
 val headers = FTTraceManager.get().getTraceHeader(uuid, url)
 
 val client: OkHttpClient = OkHttpClient.Builder().addInterceptor { chain ->
    
                     val original = chain.request()
                     val requestBuilder = original.newBuilder()
-                    //在请求中，添加链路头参数
+                   
+                    //add traceing headers
                     for (key in headers.keys) {
                         requestBuilder.header(key!!, headers[key]!!)
                     }
@@ -412,7 +420,8 @@ client.newCall(builder.build()).execute()
 ## User Information Binding and Unbinding
 
 ```kotlin
-//可以在用户登录成功后调用此方法用来绑定用户信息
+
+// bind user info after log in
 FTSdk.bindRumUserData("001")
 
 val userData = UserData()
@@ -425,12 +434,12 @@ userData.setExts(extMap)
             
 FTSdk.bindRumUserData(userData)
 
-//可以在用户退出登录后调用此方法来解绑用户信息
+//clear user data after log out
 FTSdk.unbindRumUserData()
 ```
 
 ### UserData
-| Method Name | Meaning | Required | Description |
+| **Method Name** | **Meaning** | **Required** | **Description** |
 | --- | --- | --- | --- |
 | setId | Set the user ID | No | |
 | setName | Set username | No | |
@@ -442,16 +451,16 @@ FTSdk.unbindRumUserData()
 ## Close SDK
 
 ```kotlin
-//如果动态改变 SDK 配置，需要先关闭，以避免错误数据的产生
+//If you dynamically change the SDK configuration, you need to close it first to avoid the generation of wrong data
 FTSdk.shutDown()
 ```
 
 ## Dynamically Turn On and Off to get AndroidID
 ```kotlin
-//开启获取 Android ID
+//enable access Android ID
 FTSdk.setEnableAccessAndroidID(true);
 
-//关闭获取 Android ID
+//disable access Android ID
 FTSdk.setEnableAccessAndroidID(fasle);
 ```
 
@@ -481,7 +490,7 @@ FTExt {
     appId = "appid_xxxxx"// appid
     env = 'common'
 
-    prodFlavors { //prodFlavors 配置会覆盖外层设置
+    prodFlavors { //prodFlavors override before
         prodTest {
             autoUploadMap = false
             autoUploadNativeDebugSymbol = false
@@ -505,7 +514,7 @@ It is recommended to use the `zip` command line for packing, to avoid some syste
 
 ## Permission Configuration Instructions
 
-| Name | Reasons for Use |
+|**Name**| **Reasons for Use** |
 | --- | --- |
 | `READ_PHONE_STATE` | Used to obtain device information of cell phones for accurate analysis of data information |
 

@@ -113,6 +113,14 @@ class DemoApplication : Application() {
         //...
     }
 }
+
+```
+理论上最佳初始化 SDK 的位置在 `Application` 的 `onCreate` 方法中，如果你的应用还没有创建 `Application`，你需要创建一个，并且在 `AndroidManifest.xml` 中 `Application` 中声明，示例请参考[这里](https://github.com/GuanceCloud/datakit-android/blob/dev/demo/app/src/main/AndroidManifest.xml)
+
+```xml
+<application 
+       android:name="YourApplication"> 
+</application> 
 ```
 
 | **方法名** | **含义** | **必须** | **注意** |
