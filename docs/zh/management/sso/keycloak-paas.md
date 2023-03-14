@@ -1,35 +1,11 @@
 # Keycloak单点登录示例
 ---
 
-## 操作场景
+## 简介
 
 Keycloak 是 RedHat 推出的基于云的标识和访问管理服务，可帮助企业管理内外部资源。观测云部署版基于 Keycloak OpenID Connect 协议，将 Keycloak 与观测云进行集成，实现 Keycloak 账户点单登录到观测云平台访问对应工作空间资源，不必为企业/团队单独创建观测云账号。
 
-> 注意：本文使用的 keycloak 版本为 11.0.2 。
-
-## 前置条件
-
-已搭建 Keycloak 服务器，并能登录到 Keycloak 服务器进行配置。若无 Keycloak 环境，可参考以下步骤搭建。
-
-```
-sudo yum update         #更新
-
-sudo yum install -y java-1.8.0-openjdk java-1.8.0-openjdk-devel      #安装JDK
-
-wget https://downloads.jboss.org/keycloak/11.0.2/keycloak-11.0.2.zip   #下载Keycloak
-
-yum install unzip       #安装解压缩包
-
-unzip keycloak-11.0.2.zip       #解压下载的Keycloak
-
-cd keycloak-11.0.2/bin         #进入 bin 目录
-
-./add-user-keycloak.sh -r master -u admin -p admin     #创建服务器管理员登录账号和密码
-
-nohup bin/standalone.sh -b 0.0.0.0 &     #返回 bin 目录，并在后台挂在 Keycloak 启动服务
-```
-
-Keycloak环境搭建完成后，在浏览器输入`https://IP地址:8443/auth`，点击“Administration Console”，打开 Keycloak 管理控制台。<br />![](../img/05_keycloak_01.png)
+> 注意：本文使用的 keycloak 版本为 18.0.2 。
 
 ## 操作步骤
 
@@ -92,7 +68,7 @@ Client 创建后，按照如下截图进行配置，点击“Save”。
 ```
 # Pass 版 keycloak 第三方认证服务配置
 KeyCloakPassSet:
-  # 认证服务地址, 注意，地址一定要带上 /auth/， 例如 https://<keycloak 认证服务的域名地址>/auth/"
+  # 认证服务地址, 例如 https://<keycloak 认证服务的域名地址>/auth/"
   serverUrl:
   # 由认证服务提供的 客户端ID
   clientId:
@@ -112,7 +88,11 @@ KeyCloakPassSet:
 
 参考示例图：
 
-![](../img/1.keycloak_3.png)
+![](../img/1.keycloak_3.1.png)
+
+以上示例图中的 “clientSecret:”，可在「Client」-「Client ID（如 Guance」-「Credentials」中获取。
+
+![](../img/1.keycloak_3.2.png)
 
 2）在观测云 Launcher 「命名空间：forethought-webclient」-「frontNginx」中配置跳转信息。
 
@@ -149,7 +129,7 @@ KeyCloakPassSet:
 
 ![](../img/1.keycloak_4.png)
 
-3）在观测云 Launcher 「命名空间：forethought-webclient」-「frontWeb」中配置 Keycloak 用户登录入口地址。
+3）在观测云 Launcher 「命名空间：forethought-webclient」-「frontWeb」中配置 Keycloak 用户登录观测云部署版的入口地址。
 
 ```
 window.DEPLOYCONFIG = {
@@ -203,5 +183,5 @@ window.DEPLOYCONFIG = {
 
 > 注意：若提示“当前账户未加入任何工作空间，请移步至管理后台将该账户添加到工作空间。”，则需要登录观测云管理后台为用户添加工作空间。更多详情可参考文档 [部署版工作空间管理](../../deployment/space.md) 。
 
-![](../img/1.sso_okta_23.png)
+![](../img/1.keycloak_14.png)
 
