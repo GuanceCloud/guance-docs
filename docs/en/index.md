@@ -10,25 +10,25 @@ glightbox: false
   </div>
   <div class="content">
     <div class="content-top">
-      <a href="/scene" class="content-item">
+      <a href="/en/scene" class="content-item">
         <div class="item-content">
           <img src='assets/images/homepage/scene.png' alt="" />
           <span>Data Overview</span>
         </div>
       </a>
-      <a href="/infrastructure" class="content-item">
+      <a href="/en/infrastructure" class="content-item">
         <div class="item-content">
           <img src='assets/images/homepage/infrastructure.png' alt="" />
           <span>Infrastructure</span>
         </div>
       </a>
-      <a href="/logs" class="content-item">
+      <a href="/en/logs" class="content-item">
         <div class="item-content">
           <img src='assets/images/homepage/logs.png' alt="" />
           <span>Logs</span>
         </div>
       </a>
-      <a href="/application-performance-monitoring" class="content-item">
+      <a href="/en/application-performance-monitoring" class="content-item">
         <div class="item-content">
           <img src='assets/images/homepage/application-performance-monitoring.png' alt="" />
           <span>APM</span>
@@ -36,31 +36,31 @@ glightbox: false
       </a>
     </div>
     <div class="content-mid">
-      <a href="/ci-visibility" class="content-item">
+      <a href="/en/ci-visibility" class="content-item">
         <div class="item-content">
           <img src='assets/images/homepage/ci-visibility.png' alt="" />
           <span>CI Visibility</span>
         </div>
       </a>
-      <a href="/real-user-monitoring" class="content-item">
+      <a href="/en/real-user-monitoring" class="content-item">
         <div class="item-content">
           <img src='assets/images/homepage/real-user-monitoring.png' alt="" />
           <span>Real User Monitoring</span>
         </div>
       </a>
-      <a href="/scheck" class="content-item">
+      <a href="/en/scheck" class="content-item">
         <div class="item-content">
           <img src='assets/images/homepage/scheck.png' alt="" />
           <span>Security Check</span>
         </div>
       </a>
-      <a href="/usability-monitoring" class="content-item">
+      <a href="/en/usability-monitoring" class="content-item">
         <div class="item-content">
           <img src='assets/images/homepage/usability-monitoring.png' alt="" />
           <span>Synthetic Tests</span>
         </div>
       </a>
-      <a href="/monitoring" class="content-item">
+      <a href="/en/monitoring" class="content-item">
         <div class="item-content">
           <img src='assets/images/homepage/monitoring.png' alt="" />
           <span>Monitoring</span>
@@ -68,25 +68,25 @@ glightbox: false
       </a>
     </div>
     <div class="content-bottom">
-      <a href="/best-practices" class="content-item">
+      <a href="/en/best-practices" class="content-item">
         <div class="item-content">
           <img src='assets/images/homepage/best-practices.png' alt="" />
           <span>Best Practices</span>
         </div>
       </a>
-      <a href="/integrations" class="content-item">
+      <a href="/en/integrations" class="content-item">
         <div class="item-content">
           <img src='assets/images/homepage/integrations.png' alt="" />
           <span>Integrations</span>
         </div>
       </a>
-      <a href="/datakit" class="content-item">
+      <a href="/en/datakit" class="content-item">
         <div class="item-content">
           <img src='assets/images/homepage/datakit.png' alt="" />
           <span>DataKit</span>
         </div>
       </a>
-      <a href="/dataflux-func/quick-start" class="content-item">
+      <a href="/en/dataflux-func/quick-start" class="content-item">
         <div class="item-content">
           <img src='assets/images/homepage/func.png' alt="" />
           <span>DataFlux Func</span>
