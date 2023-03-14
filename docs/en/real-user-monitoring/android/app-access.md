@@ -43,7 +43,7 @@ buildscript {
     dependencies {
         //...
         //add Plugin dependency
-        classpath 'com.cloudcare.ft.mobile.sdk.tracker.plugin:ft-plugin:1.1.2-beta01'
+        classpath 'com.cloudcare.ft.mobile.sdk.tracker.plugin:ft-plugin:1.1.3-beta01'
     }
 }
 allprojects {

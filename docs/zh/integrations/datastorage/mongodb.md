@@ -16,7 +16,8 @@ MongoDB 性能指标展示，包括每秒查询操作、文档操作、TTL 索�
 
 ## 版本支持
 
-操作系统支持：Linux / Windows / Mac
+- 操作系统支持：Linux / Windows / Mac
+- [MongoDB 版本支持情况](../../datakit/mongodb.md#requirements)
 
 ## 前置条件
 

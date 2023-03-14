@@ -2,7 +2,7 @@
 
 ## v1.58.123（2023 年 03 月 07 日）
 
-pubrepo.jiagouyun.com/dataflux/1.58.123:launcher-44fcfe9-1678200092
+pubrepo.guance.com/dataflux/1.58.123:launcher-a4e6282-1678200092
 
 此版本是 fix 版本，主要有如下更新:
 
@@ -16,7 +16,7 @@ pubrepo.jiagouyun.com/dataflux/1.58.123:launcher-44fcfe9-1678200092
 
 ## v1.58.122（2023 年 03 月 04 日）
 
-pubrepo.jiagouyun.com/dataflux/1.58.122:launcher-08db157-1677907360
+pubrepo.guance.com/dataflux/1.58.122:launcher-08db157-1677907360
 
 此版本是 fix 版本，主要有如下更新:
 
@@ -46,7 +46,7 @@ pubrepo.guance.com/dataflux/1.58.121:launcher-105a217-1677566915
     - 配置监控器时，「检测维度」支持非必选。
     - 图表查询中 match / not match 运算符翻译逻辑调整，日志类数据中 match 去除默认右 * 匹配逻辑。
 
-### DataKit 更新 
+### DataKit 更新
 
 - 新加功能
     - 命令行增加解析行协议功能
@@ -1187,3 +1187,4 @@ pubrepo.guance.com/dataflux/1.35.84:launcher-191ef71-1645780061
     - 图表查询文案、按钮样式以及文字提示优化；
     - 工作空间操作按钮图标化，如编辑、删除等等。
     - 其他 UI 显示优化
+

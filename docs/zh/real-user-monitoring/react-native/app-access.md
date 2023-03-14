@@ -67,38 +67,44 @@ FTMobileReactNative.sdkConfig(config)
 | **字段** | **类型** | **必须** | **说明** |
 | --- | --- | --- | --- |
 | serverUrl | string | 是 | datakit 安装地址 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529。注意：安装 SDK 设备需能访问这地址 |
-| useOAID | boolean | 否 | 是否使用 `OAID` 唯一识别，默认`false`,开启后替换 `deviceUUID` 进行使用 |
 | debug | boolean | 否 | 设置是否允许打印日志，默认`false` |
 | datakitUUID | string | 否 | 请求`HTTP`请求头`X-Datakit-UUID` 数据采集端  如果用户不设置会自动配置 |
 | envType | enum EnvType | 否 | 环境，默认`prod` |
 | globalContext | NSDictionary | 否 | [添加自定义标签](#user-global-context ) |
+| service | string | 否 | 设置所属业务或服务的名称，影响 Log 和 RUM 中 service 字段数据。默认：`df_rum_ios`、`df_rum_android` |
 
 ### RUM 配置
 
 ```typescript
 let rumConfig: FTRUMConfig = {
-      rumAppId: rumid,
-      monitorType: MonitorType.all,
-      enableAutoTrackUserAction:true,
-      enableAutoTrackError:true,
-      enableNativeUserAction: false,
-      enableNativeUserView: false,
-      enableNativeUserResource: true, // 开启后、能同时采集 React Native 与 原生部分 
-    }; 
+    androidAppId: Config.ANDROID_APP_ID,
+    iOSAppId:Config.IOS_APP_ID,
+    enableAutoTrackUserAction: true,
+    enableAutoTrackError: true,
+    enableNativeUserAction: true,
+    enableNativeUserView: false,
+    enableNativeUserResource: true,
+    errorMonitorType:ErrorMonitorType.all,
+    deviceMonitorType:DeviceMetricsMonitorType.all,
+    detectFrequency:DetectFrequency.rare
+  };
 
 FTReactNativeRUM.setConfig(rumConfig);
 ```
 
 | **字段** | **类型** | **必须** | **说明** |
 | --- | --- | --- | --- |
-| rumAppId | string | 是 | app_id，应用访问监测控制台申请 |
+| androidAppId | string | 是 | app_id，应用访问监测控制台申请 |
+| iOSAppId | string | 是 | app_id，应用访问监测控制台申请 |
 | sampleRate | number | 否 | 采样率，（采集率的值范围为>= 0、<= 1，默认值为 1） |
 | enableAutoTrackUserAction | boolean | 否 | 是否自动采集 `React Native` 控件点击事件，开启后可配合  `accessibilityLabel`设置actionName |
 | enableAutoTrackError | boolean | 否 | 是否自动采集 `React Native` Error |
 | enableNativeUserAction | boolean | 否 | 是否进行 `Native Action` 追踪，`Button` 点击事件，纯 `React Native` 应用建议关闭，默认为 `false` |
 | enableNativeUserView | boolean | 否 | 是否进行 `Native View` 自动追踪，纯 `React Native` 应用建议关闭，，默认为 `false` |
 | enableNativeUserResource | boolean | 否 | 是否开始 `Native Resource`自动追踪，由于 React-Native 的网络请求在 iOS、Android 端是使用系统 API 实现的，所以开启 enableNativeUserResource 后，所有 resource 数据能够一并采集。 |
-| monitorType | enum MonitorType | 否 | 监控补充类型 |
+| errorMonitorType |enum ErrorMonitorType | 否 | 错误事件监控补充类型 |
+| deviceMonitorType | enum DeviceMetricsMonitorType | 否 | 视图的性能监控类型                                           |
+| detectFrequency | enum DetectFrequency | 否 | 视图的性能监控采样周期 |
 | globalContext | object | 否 | [添加自定义标签](#user-global-context) |
 
 
@@ -115,7 +121,6 @@ FTReactNativeLog.logConfig(logConfig);
 | **字段** | **类型** | **必须** | **说明** |
 | --- | --- | --- | --- |
 | sampleRate | number | 否 | 采样率，采集率的值范围为>= 0、<= 1，默认值为 1 |
-| serviceName | string | 否 | 服务名 |
 | enableLinkRumData | boolean | 否 | 是否与 `RUM` 关联 |
 | enableCustomLog | boolean | 否 | 是否开启自定义日志 |
 | discardStrategy | enum FTLogCacheDiscard | 否 | 日志丢弃策略，默认`FTLogCacheDiscard.discard` |
@@ -201,6 +206,8 @@ async getHttp(url:string){
       }
 ```
 
+
+
 ##  Logger 日志打印 
 
 ```typescript
@@ -240,7 +247,7 @@ FTReactNativeLog.logging("info log content",FTLogStatus.info);
 ## 用户信息绑定与解绑
 
 ```typescript
-FTMobileReactNative.bindRUMUserData('react-native-user')
+FTMobileReactNative.bindRUMUserData('react-native-user','uesr_name')
 
 FTMobileReactNative.unbindRUMUserData()
 ```

@@ -90,6 +90,7 @@ Measurements for statistics regardless of port number: `netstat` ; Measurements 
 |  ----  | --------|
 |`addr_port`|Addr and port|
 |`host`|Host name|
+|`ip_version`|IP version, 4 for IPV4, 6 for IPV6, unknown for others|
 
 - metric list
 

@@ -40,6 +40,13 @@
 
 用于推送服务，极光 SDK 隐私协议：[https://www.jiguang.cn/license/privacy](https://www.jiguang.cn/license/privacy)
 
+**应用自启动**
+
+集成的极光推送（cn.jiguang） 会具备自启动行为，该行为服务用于提高消息推送通达度。
+
+* **目的：** 能及时收到观测云服务事件告警通知，便于用户及时处理发生告警的事件。
+* **范围：** 仅用于事件功能推送。
+
 
 ## Cookie 和同类技术 
 
