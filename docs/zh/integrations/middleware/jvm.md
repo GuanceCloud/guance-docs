@@ -12,7 +12,8 @@ JVM 性能指标展示：CPU 负载、直接缓冲区、线程数量、堆内存
 
 ## 版本支持
 
-操作系统支持：Linux / Windows
+- 操作系统支持：Linux / Windows
+- [JVM 版本支持情况](../../datakit/jvm.md#requirements)
 
 ## 前置条件
 

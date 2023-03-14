@@ -14,7 +14,8 @@ Memcached 性能指标展示，包括连接数、命令数、网络流量、线�
 
 ## 版本支持
 
-操作系统支持：Linux / Windows / Mac
+- 操作系统支持：Linux / Windows / Mac
+- [Memcached 版本支持情况](../../datakit/memcached.md#requirements)
 
 ## 前置条件
 

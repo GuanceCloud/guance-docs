@@ -12,7 +12,8 @@ PostgreSQL 性能指标展示，包括连接数、缓冲分配、计划检查点
 
 ## 版本支持
 
-操作系统支持：Linux / Windows / Mac
+- 操作系统支持：Linux / Windows / Mac
+- [PostgreSQL 版本支持情况](../../datakit/postgresql.md#requirements)
 
 ## 前置条件
 

@@ -13,7 +13,8 @@ Redis 观测场景主要展示了 Redis 的错误信息、性能信息、持久�
 
 ## 版本支持
 
-操作系统支持：Windows/AMD 64, Windows/386, Linux/ARM, Linux/ARM 64, Linux/386, Linux/AMD 64, Darwin/AMD 64
+- 操作系统支持：Windows/AMD 64, Windows/386, Linux/ARM, Linux/ARM 64, Linux/386, Linux/AMD 64, Darwin/AMD 64
+- [Redis 版本支持情况](../../datakit/redis.md#requirements)
 
 ## 前置条件
 

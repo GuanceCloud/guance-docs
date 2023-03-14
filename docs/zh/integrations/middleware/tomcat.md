@@ -14,7 +14,8 @@ Tomcat 性能指标展示，包括发送字节数、接收字节数、请求处�
 
 ## 版本支持
 
-操作系统支持：Windows/AMD 64, Windows/386, Linux/ARM, Linux/ARM 64, Linux/386, Linux/AMD 64, Darwin/AMD 64
+- 操作系统支持：Windows/AMD 64, Windows/386, Linux/ARM, Linux/ARM 64, Linux/386, Linux/AMD 64, Darwin/AMD 64
+- [Tomcat 版本支持情况](../../datakit/tomcat.md#requirements)
 
 ## 前置条件
 

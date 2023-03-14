@@ -24,7 +24,8 @@ ElasticSearch 内置视图主要展示了 ElasticSearch 的集群内的 JVM 和�
 
 ## 版本支持
 
-操作系统支持：Windows/AMD 64, Windows/386, Linux/ARM, Linux/ARM 64, Linux/386, Linux/AMD 64, Darwin/AMD 64
+- 操作系统支持：Windows/AMD 64, Windows/386, Linux/ARM, Linux/ARM 64, Linux/386, Linux/AMD 64, Darwin/AMD 64
+- [ElasticSearch 版本支持情况](../../datakit/elasticsearch.md#requirements)
 
 ## 前置条件
 
