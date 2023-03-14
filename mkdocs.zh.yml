@@ -72,6 +72,9 @@ plugins:
     fallback_to_build_date: true
   search:
     separator: '[\s\u200b\-]'
+  es_uploader:
+    es_url: "http://localhost:9200"
+    es_index: "myindex-zh"
 
 extra_css:
   - assets/stylesheets/extra.css
