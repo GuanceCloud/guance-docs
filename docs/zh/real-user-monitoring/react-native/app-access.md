@@ -159,6 +159,8 @@ FTReactNativeRUM.startAction('actionName','actionType');
 ### View{#rumview}
 
 ```typescript
+FTReactNativeRUM.onCreateView("RUM",duration);
+
 FTReactNativeRUM.startView("RUM");
 
 FTReactNativeRUM.stopView();
