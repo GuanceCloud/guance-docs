@@ -1,23 +1,37 @@
-# Keycloak单点登录示例
+# Keycloak单点登录示例（部署版）
 ---
 
 ## 简介
 
-Keycloak 是 RedHat 推出的基于云的标识和访问管理服务，可帮助企业管理内外部资源。观测云部署版基于 Keycloak OpenID Connect 协议，将 Keycloak 与观测云进行集成，实现 Keycloak 账户点单登录到观测云平台访问对应工作空间资源，不必为企业/团队单独创建观测云账号。
+Keycloak 是一个开源的、面向现代应用和分布式服务的身份认证和访问控制的解决方案，Keycloak 单点登录支持 OpenID Connect、OAuth 2.0、SAML 2.0 三种协议，观测云部署版基于 OpenID Connect 协议，实现企业 Keycloak 账户单点登录到观测云平台访问对应工作空间资源，无需另外创建企业/团队的观测云账号。
 
-> 注意：本文使用的 keycloak 版本为 18.0.2 。
+> 注意：本文的 keycloak 版本为 18.0.2 。
+
+## 名词解释
+
+下面是 KeyCloak 配置过程中的基本概念解释。
+
+- Realm：领域，类似工作空间，用于管理用户、凭证、角色和用户组，领域之间相互隔离；
+- Clients：客户端是可以请求 Keycloak 对用户进行认证的应用或者服务；
+- Users：能够登录到系统的用户账号，需要配置登录邮箱以及 Credentials；
+- Credentials：验证用户身份的凭证，可用于设置用户账号的登录密码；
+- Authentication：识别和验证用户的过程；
+- Authorization：授予用户访问权限的过程；
+- Roles：用于识别用户的身份类型，如管理员、普通用户等；
+- User role mapping：用户与角色之间的映射关系，一个用户可关联多个角色；
+- Groups：管理用户组，支持将角色映射到组。
 
 ## 操作步骤
 
 ### 1.创建 Keycloak realm
 
-> 注意：Keycloak 本身有一个主域（Master），我们需要创建一个新的域（类似工作空间）。
+> 注意：Keycloak 本身有一个主域（Master），我们需要创建一个新的领域（类似工作空间）。
 
 1）在 Keycloak 管理控制台，点击“Master”-“Add realm”。
 
 ![](../img/05_keycloak_02.png)
 
-2）在“Add realm”页面，在“Name”处输入域名称，如“gcy”，点击“Create”，即可创建一个新的域。
+2）在“Add realm”页面，在“Name”处输入领域名称，如“gcy”，点击“Create”，即可创建一个新的领域。
 
 ![](../img/05_keycloak_03.png)
 
@@ -25,7 +39,7 @@ Keycloak 是 RedHat 推出的基于云的标识和访问管理服务，可帮助
 
 > 注意：本步骤将创建 Keycloak 客户端并配置 openid-connect 协议，建立 Keycloak 和观测云之间的信任关系使之相互信任。
 
-1）在新创建的“gcy”域下，点击“Client”，在右侧点击“Create”。
+1）在新创建的“gcy”领域下，点击“Client”，在右侧点击“Create”。
 
 ![](../img/05_keycloak_04.png)
 
@@ -61,7 +75,7 @@ Client 创建后，按照如下截图进行配置，点击“Save”。
 ![](../img/05_keycloak_15.png)
 
 
-### 4. 观测云 Launcher 配置
+### 4. 观测云 Launcher 配置 {#config}
 
 1）在观测云 Launcher 「命名空间：forethought-core」-「core」中配置 Keycloak 的基本信息。
 
@@ -90,7 +104,7 @@ KeyCloakPassSet:
 
 ![](../img/1.keycloak_3.1.png)
 
-以上示例图中的 “clientSecret:”，可在「Client」-「Client ID（如 Guance」-「Credentials」中获取。
+以上示例图中的 “clientSecret:”，可在「Client」-「Client ID（如 Guance）」-「Credentials」中获取。
 
 ![](../img/1.keycloak_3.2.png)
 
