@@ -32,11 +32,12 @@ Flutter  数据采集依赖于 Android iOS Native 框架，为了与 Android iOS
 
 ### 应用属性
 
-| 字段 | 类型 | 描述 |
+| **字段** | **类型** | 描述 |
 | --- | --- | --- |
 | `app_id` | string | 必填，用户访问应用唯一ID标识，在“观测云”控制台上面创建监控时自动生成。 |
 | `env` | string | 必填，环境字段。属性值：prod/gray/pre/common/local。其中<br>prod：线上环境<br>gray：灰度环境<br>pre：预发布环境<br>common：日常环境<br>local：本地环境 |
 | `version` | string | 必填，版本号。 |
+| `service` | string | 可选，所属业务或服务的名称。固定名称：<br/>`df_rum_ios`<br/>`df_rum_android` |
 
 ### 用户 & 会话属性
 
@@ -45,7 +46,7 @@ Flutter  数据采集依赖于 Android iOS Native 框架，为了与 Android iOS
 | `userid` | string | 未登录用户使用随机 uuid 作为userid，登录用户使用应用后台生成的用户id。 |
 | `user_name` | string | 可选，用户名称。 |
 | `user_email` | string | 可选，用户邮箱。 |
-| `session_id` | string | 会话id（后台停留30s以上，会生成一个新的session_id）。 |
+| `session_id` | string | 会话id，未操作 15分钟以上，会生成一个新的session_id。 |
 | `session_type` | string | 会话类型。参考值：user &#124; synthetics<br>user表示是RUM功能产生的数据；<br>synthetics表示是headless拨测产生的数据。 |
 | `is_signin` | boolean | 是否是注册用户，属性值：True / False。 |
 
@@ -84,7 +85,7 @@ wifi &#124; 2g &#124; 3g &#124; 4g &#124; 5g &#124; unknown（未知网络）&#1
 
 #### 属性
 
-| 字段                      | 类型   | 描述                                                         |
+| **字段**                      | **类型**   | **描述**                                                        |
 | ------------------------- | ------ | ------------------------------------------------------------ |
 | `session_id`              | string | 会话id（后台停留30s以上，会生成一个新的session_id）          |
 | `session_type`            | string | 会话类型。参考值：user &#124; test<br>user表示是RUM功能产生的数据；<br>test表示是headless拨测产生的数据。 |
@@ -118,7 +119,7 @@ wifi &#124; 2g &#124; 3g &#124; 4g &#124; 5g &#124; unknown（未知网络）&#1
 
 #### 指标
 
-| 字段 | 类型 | 描述 |
+| **字段** | **类型** | **描述**   |
 | --- | --- | --- |
 | <del>`loading_time`</del> | number（ns） | <del>页面加载时间</del> |
 | `time_spent` | number（ns） | 页面停留时间 |
@@ -136,8 +137,8 @@ wifi &#124; 2g &#124; 3g &#124; 4g &#124; 5g &#124; unknown（未知网络）&#1
 
 | **字段**                    | **类型** | **描述**                 |
 | --------------------------- | -------- | ------------------------ |
-| `cpu_tick_count`            | number   | 可选，该页面 CPU 时间    |
-| `cpu_tick_count_per_second` | number   | 可选，每秒平均 CPU 时间  |
+| `cpu_tick_count`            | number   | 可选，该页面 CPU 跳动次数    |
+| `cpu_tick_count_per_second` | number   | 可选，每秒平均 CPU 跳动次数  |
 | `fps_avg`                   | number   | 可选，页面平均每秒帧数   |
 | `fps_mini`                  | number   | 可选，页面最小每秒帧数   |
 | `memory_avg`                | number   | 可选，页面内存使用平均值 |
@@ -150,6 +151,7 @@ wifi &#124; 2g &#124; 3g &#124; 4g &#124; 5g &#124; unknown（未知网络）&#1
 | **字段**        | **类型** | **描述**                                            |
 | --------------- | -------- | --------------------------------------------------- |
 | `view_id`       | string   | 每次访问页面时产生的唯一ID                          |
+| `is_active`     | boolean  | 判断用户是否还在活跃状态，参考值: true &#124; false |
 | `view_referrer` | string   | 页面来源，页面的父级                                |
 | `view_name`     | string   | 页面名称                                            |
 

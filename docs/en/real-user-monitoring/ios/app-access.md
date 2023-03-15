@@ -25,14 +25,17 @@ Login to Guance Console, enter "Real User Monitoring" page, click "New Applicati
 
 **Source Code Address**：[https://github.com/GuanceCloud/datakit-ios](https://github.com/GuanceCloud/datakit-ios)
 
-### Source Code Method
+### Installation with Source Code
 
-1. Get the source code of the SDK from GitHub.
+1. Get the source code of the SDK from GitHub according to the specified tag.
 
-2. Import the SDK source code into the App project and check `Copy items if needed`. Import the whole folder of **FTMobileSDK** directly into the project.
+   ```
+   git clone --branch 1.3.10-beta.2 https://github.com/GuanceCloud/datakit-ios.git
+   ```
 
+2. Import the SDK source code into the App project.Import the  folder of **FTMobileAgent** and **BaseUtils** into the project, and check `Copy items if needed` and  `Create groups`.
 
-### CocoaPods Way
+### Installation with CocoaPods
 
 1.Configure the `Podfile` file.
 
@@ -40,24 +43,24 @@ Login to Guance Console, enter "Real User Monitoring" page, click "New Applicati
 target 'yourProjectName' do
 
 # Pods for your project
-pod 'FTMobileSDK', '1.3.7-beta.1'
+pod 'FTMobileSDK', '1.3.10-beta.2'
     
 end
 ```
 
 2.Run `pod install` in the `Podfile` directory to install the SDK.
 
-### Carthage Method
+### Installation with Carthage
 
 1.Configure the `Cartfile` file.
 
 ```
-github "GuanceCloud/datakit-ios" == 1.3.7-beta.1
+github "GuanceCloud/datakit-ios" == 1.3.10-beta.2
 ```
 
 2.Execute `carthage update --platform iOS` in the `Cartfile` directory and drag `FTMobileSDK.framework` into your project to use it. If you get the error "Building universal frameworks with common architectures is not possible. for: arm64" error, please execute `carthage update --platform iOS --use-xcframeworks` command to generate `FTMobileSDK.xcframework ` and use it in the same way as the common Framework, please drag and drop it into your project.
 
-3.debug mode, in order to facilitate SDK debugging, it is recommended to use the debug mode static library. Add `--configuration Debug` after the command to get the debug mode static library.
+3.Debug mode, in order to facilitate SDK debugging, it is recommended to use the debug mode static library. Add `--configuration Debug` after the command to get the debug mode static library.
 
 4.Add `-ObjC ` in ` TARGETS `-> ` Build Setting `-> ` Other Linker Flags `.
 
@@ -66,10 +69,10 @@ github "GuanceCloud/datakit-ios" == 1.3.7-beta.1
 ### Add Header File
 
 ```objectivec
-//使用 Carthage 方式
+// Carthage 
 #import <FTMobileAgent/FTMobileAgent.h>
 ...
-//使用 源码 或 CocoaPods 方式
+// Source Code or CocoaPods 
 #import "FTMobileAgent.h"
 ```
 
@@ -79,10 +82,10 @@ github "GuanceCloud/datakit-ios" == 1.3.7-beta.1
 
 ```objectivec
 -(BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
-    // SDK FTMobileConfig 设置
+    // SDK FTMobileConfig 
     FTMobileConfig *config = [[FTMobileConfig alloc]initWithMetricsUrl:@"Your App metricsUrl"];
     config.enableSDKDebugLog = YES;
-    //启动 SDK
+    // Start SDK
     [FTMobileAgent startWithConfigOptions:config];
     
    //...
@@ -92,11 +95,12 @@ github "GuanceCloud/datakit-ios" == 1.3.7-beta.1
 
 | **Fields** | **Type** | **Description** | **Required** |
 | --- | --- | --- | --- |
-| metricsUrl | NSString | Data Reporting Address | Yes |
+| metricsUrl | NSString | The url of the datakit installation address, example: http://10.0.0.1:9529, port 9529. Datakit url address needs to be accessible by the device where the SDK is installed  | Yes |
 | enableSDKDebugLog | BOOL | Set whether to allow printing of logs | No (default NO) |
 | env | NS_ENUM | Environment | No (default FTEnvProd) |
 | XDataKitUUID | NSString | Request HTTP request header X-Datakit-UUID Data collection side Automatically configured if not set by user | No |
 | globalContext | NSDictionary | [Add custom tags](#user-global-context) |    No |
+| service | NSString | Set the name of the business or service to which it belongs, and affect the service field data in Log and RUM. default：`df_rum_ios` | No |
 
 #### Env Environment
 
@@ -115,7 +119,7 @@ typedef NS_ENUM(NSInteger, FTEnv) {
 ### RUM Configuration
 
 ```objectivec
-    //开启 rum
+    //start rum
     FTRumConfig *rumConfig = [[FTRumConfig alloc]init];
     rumConfig.appid = appid;
     rumConfig.enableTrackAppCrash = YES;
@@ -131,15 +135,15 @@ typedef NS_ENUM(NSInteger, FTEnv) {
 | --- | --- | --- | --- |
 | appid | NSString | The Guance rum application unique ID identifier is automatically generated when the monitor is created on top of the Guance console. | No (Enable RUM Required) |
 | samplerate | int | Sampling collection rate | No (default 100) |
-| errorMonitorType | NS_OPTIONS | collection data in error data | No |
 | enableTrackAppCrash | BOOL | Set whether crash logs need to be collected | No (default NO) |
 | enableTrackAppANR | BOOL | Collect ANR stuck unresponsive events | No (default NO) |
 | enableTrackAppFreeze | BOOL | Collect UI jamming events | No (default NO) |
 | enableTraceUserAction | BOOL | Set whether to track user Action actions | No (default NO) |
 | enableTraceUserView | BOOL | Set whether to track user View actions | No (default NO) |
+| errorMonitorType | NS_OPTIONS | Error Event Monitoring Supplementary Type                    | No |
+| deviceMetricsMonitorType | NS_OPTIONS | The performance monitoring type of the view | No (monitoring is not turned on if not set) |
+| monitorFrequency | NS_OPTIONS | View's Performance Monitoring Sampling Period | No |
 | globalContext | NSDictionary | [Add custom tags](#user-global-context) |    No |
-| deviceMetricsMonitorType | NS_OPTIONS | Monitoring Type | No (monitoring is not turned on if not set) |
-| monitorFrequency | NS_OPTIONS | Set the monitoring sampling period | No |
 
 #### Monitoring Data Configuration
 
@@ -149,9 +153,9 @@ Configuring the `errorMonitorType` property of `FTRumConfig` will add the corres
 /**
  *
  * @constant
- *  FTMonitorInfoTypeBattery  - 电池电量
- *  FTMonitorInfoTypeMemory   - 内存总量、内存使用率
- *  FTMonitorInfoTypeCpu      - CPU使用率
+ *  FTMonitorInfoTypeBattery  - battery power
+ *  FTMonitorInfoTypeMemory   - total memory, memory usage
+ *  FTMonitorInfoTypeCpu      - CPU usage
  */
 typedef NS_OPTIONS(NSUInteger, FTMonitorInfoType) {
     FTMonitorInfoTypeAll          = 0xFFFFFFFF,
@@ -165,11 +169,11 @@ Configuring the `deviceMetricsMonitorType` property of `FTRumConfig` will add th
 
 ```objective-c
 /**
- * 监控项
+ * Page performance monitoring items
  * @constant
- *  FTDeviceMetricsMonitorMemory   - 平均内存、最高内存
- *  FTDeviceMetricsMonitorCpu      - CPU跳动最大、平均数
- *  FTDeviceMetricsMonitorFps      - fps 最低帧率、平均帧率
+ *  FTDeviceMetricsMonitorMemory   - average memory, maximum memory
+ *  FTDeviceMetricsMonitorCpu      - The maximum and average number of CPU ticks
+ *  FTDeviceMetricsMonitorFps      - fps minimum frame rate, average frame rate
  */
 typedef NS_OPTIONS(NSUInteger, FTDeviceMetricsMonitorType){
     FTDeviceMetricsMonitorAll      = 0xFFFFFFFF,
@@ -179,9 +183,9 @@ typedef NS_OPTIONS(NSUInteger, FTDeviceMetricsMonitorType){
 };
 
 /**
- * 监控项采样周期
+ * Monitoring item sampling period
  * @constant
- *  FTMonitorFrequencyDefault   - 500ms (默认)
+ *  FTMonitorFrequencyDefault   - 500ms (default)
  *  FTMonitorFrequencyFrequent  - 100ms
  *  FTMonitorFrequencyRare      - 1000ms
  */
@@ -195,7 +199,7 @@ typedef NS_OPTIONS(NSUInteger, FTMonitorFrequency) {
 ### Log Configuration
 
 ```objectivec
-    //开启 logger
+    //start logger
     FTLoggerConfig *loggerConfig = [[FTLoggerConfig alloc]init];
     loggerConfig.enableCustomLog = YES;
     loggerConfig.enableLinkRumData = YES;
@@ -207,7 +211,6 @@ typedef NS_OPTIONS(NSUInteger, FTMonitorFrequency) {
 | **Fields**        | **Type**          | **Description**                                              | **Required**                                 |
 | --- | --- | --- | --- |
 | samplerate | int | Sampling collection rate | No (default 100) |
-| serviceName | NSString | Set the name of the business or service to which the log belongs | No (default df_rum_ios) |
 | enableConsoleLog | BOOL | Set whether you want to capture console logs | No (default NO) |
 | prefix | NSString | Set the collection console log filter string | No (default full collection) |
 | enableCustomLog | BOOL | Whether to upload custom logs | No (default NO) |
@@ -218,14 +221,16 @@ typedef NS_OPTIONS(NSUInteger, FTMonitorFrequency) {
 
 #### Log Discarding Strategy
 
+**Upload mechanism** : After the log data is collected, it will be stored in the local database, waiting for the opportunity to upload. The amount of log data stored in the database is limited to 5,000. If data is accumulated due to network abnormalities and other reasons, after storing 5,000 logs, the data will be discarded according to the discarding policy you set.
+
 ```objectivec
 typedef NS_ENUM(NSInteger, FTLogCacheDiscard)  {
-    FTDiscard,        //默认，当日志数据数量大于最大值（5000）时，新数据不进行写入
-    FTDiscardOldest   //当日志数据数量大于最大值时,废弃旧数据
+    FTDiscard,        //default，When the number of log data is greater than the maximum value (5000), new data will not be written
+    FTDiscardOldest   //When the number of log data is greater than the maximum value, the old data is discarded
 };
 
 /**
- * 设置日志废弃策略
+ * Set log discard policy
  */
 @property (nonatomic, assign) FTLogCacheDiscard  discardType;
 ```
@@ -238,7 +243,7 @@ In general, because the output of NSLog will consume system resources, and the o
 
 ```objectivec
 /**
- *设置是否需要采集控制台日志 默认为NO
+ * Set whether to collect console logs. Default: NO
  */
  @property (nonatomic, assign) BOOL enableConsoleLog;
 ```
@@ -247,7 +252,7 @@ In general, because the output of NSLog will consume system resources, and the o
 
 ```objectivec
 /**
- * 设置采集控制台日志过滤字符串 包含该字符串控制台日志会被采集 默认为全采集
+ * Set the filter string for collecting console logs. Console logs containing this string will be collected. The default is full collection.
  */
 @property (nonatomic, copy) NSString *prefix;
 ```
@@ -255,7 +260,7 @@ In general, because the output of NSLog will consume system resources, and the o
 ## Trace Configuration 
 
 ```objectivec
-    //开启 trace
+    //set trace configuration
     FTTraceConfig *traceConfig = [[FTTraceConfig alloc]init];
     traceConfig.enableLinkRumData = YES;
 	  traceConfig.enableAutoTrace = YES;
@@ -275,7 +280,7 @@ In general, because the output of NSLog will consume system resources, and the o
 ```objectivec
 /**
  * @enum
- * 网络链路追踪使用类型
+ * Network Link Tracking Types
  *
  * @constant
  *  FTNetworkTraceTypeDDtrace       - datadog trace
@@ -296,14 +301,13 @@ typedef NS_ENUM(NSInteger, FTNetworkTraceType) {
 };
 ```
 
-## RUM User Data Tracking
+## RUM
 
 You can configure `FTRUMConfig` to enable automatic mode or add it manually. Rum related data can be passed in through the `FTExternalDataManager` singleton with the following API.
 
 ### View
 
 ```objectivec
-//进入页面时调用  duration 以纳秒为单位 示例中为 1s
 [[FTExternalDataManager sharedManager] onCreateView:@"TestVC" loadTime:@1000000000];
 
 [[FTExternalDataManager sharedManager] startViewWithName:@"TestVC"];
@@ -313,30 +317,55 @@ You can configure `FTRUMConfig` to enable automatic mode or add it manually. Rum
 
 ```objectivec
 /**
- * 创建页面 需要在 -startView 与 -stopView 方法前使用 
- * @param viewName     页面名称
- * @param loadTime     页面加载时间
+ * Create a view and record the loading time of the view
+ * 
+ * Need to be used before -startView and -stopView methods
+ * @param viewName     The name of this View
+ * @param loadTime     The loading time of  this view （ns）
  */
 -(void)onCreateView:(NSString *)viewName loadTime:(NSNumber *)loadTime;
 /**
- * 进入页面 viewId 内部管理
- * @param viewName        页面名称
+ * enter the view
+ * @param viewName     The name of this View
  */
 -(void)startViewWithName:(NSString *)viewName;
 /**
- * 离开页面
+ * enter the view
+ * @param viewName  The name of this View
+ * @param property  event property(optional)
+ */
+-(void)startViewWithName:(NSString *)viewName property:(nullable NSDictionary *)property;
+/**
+ * leave the view
  */
 -(void)stopView;
+/**
+ * leave the view
+ * @param property  event property(optional)
+ */
+-(void)stopViewWithProperty:(nullable NSDictionary *)property;
 ```
 
 ### Action
 
+```objective-c
+[[FTExternalDataManager sharedManager] addActionName:@"" actionType:@""];
+```
+
 ```objectivec
 /**
- * 添加 Click Action 事件
- * @param actionName 事件名称
+ * Add Action Event
+ * @param actionName The name of this action event
+ * @param actionType The type of this action event
  */
-- (void)addClickActionWithName:(NSString *)actionName;
+- (void)addActionName:(NSString *)actionName actionType:(NSString *)actionType;
+/**
+ * Add Action Event
+ * @param actionName The name of this action event
+ * @param actionType The type of this action event
+ * @param property   event property(optional)
+ */
+- (void)addActionName:(NSString *)actionName actionType:(NSString *)actionType property:(nullable NSDictionary *)property;
 ```
 
 ### Error
@@ -347,94 +376,141 @@ You can configure `FTRUMConfig` to enable automatic mode or add it manually. Rum
 
 ```objectivec
 /**
- * 添加 Error 事件
- * @param type       error 类型
- * @param situation  APP状态
- * @param message    错误信息
- * @param stack      堆栈信息
+ * Add Error Event
+ * @param type       The type of this error event 
+ * @param message    error message
+ * @param stack      error stack
  */
-- (void)addErrorWithType:(NSString *)type situation:(AppState)situation message:(NSString *)message stack:(NSString *)stack;
+- (void)addErrorWithType:(NSString *)type message:(NSString *)message stack:(NSString *)stack;
+/**
+ * Add Error Event
+ * @param type       error type
+ * @param message    error message
+ * @param stack      error message
+ * @param property   event property(optional)
+ */
+- (void)addErrorWithType:(NSString *)type message:(NSString *)message stack:(NSString *)stack property:(nullable NSDictionary *)property;
 ```
 
 ### LongTask
 
 ```objectivec
-[[FTExternalDataManager sharedManager] addLongTaskWithStack:@"堆栈信息 string" duration:@1000000000];
+[[FTExternalDataManager sharedManager] addLongTaskWithStack:@"stack string" duration:@1000000000];
 ```
 
 ```objectivec
 /**
- * 添加 卡顿 事件
- * @param stack      卡顿堆栈
- * @param duration   卡顿时长 (纳秒级)
+ * Add a LongTask event
+ * @param stack      Stack information when a freeze occurs
+ * @param duration   The duration of the freeze （ns）
  */
 - (void)addLongTaskWithStack:(NSString *)stack duration:(NSNumber *)duration;
+/**
+ * Add a LongTask event
+ * @param stack      Stack information when a freeze occurs
+ * @param duration   The duration of the freeze （ns）
+ * @param property   event property(optional)
+ */
+- (void)addLongTaskWithStack:(NSString *)stack duration:(NSNumber *)duration property:(nullable NSDictionary *)property;
 ```
 
 ### Resource
 
 ```objectivec
-//第一步：请求开始前
+//step 1： Before the network request starts
 [[FTExternalDataManager sharedManager] startResourceWithKey:key];
 
-//第二部：请求完成
+//step 2：Request completed
 [[FTExternalDataManager sharedManager] stopResourceWithKey:key];
 
-//第三步：拼接 Resource 数据
-//FTResourceContentModel 数据
- FTResourceContentModel *content = [[FTResourceContentModel alloc]init];
-        content.httpMethod = request.HTTPMethod;
-        content.requestHeader = request.allHTTPHeaderFields;
-        content.responseHeader = httpResponse.allHeaderFields;
-        content.httpStatusCode = httpResponse.statusCode;
-        content.responseBody = responseBody;
-        //ios native
-        content.error = error;
-//如果能获取到各阶段的时间数据 FTResourceMetricsModel
-   //ios 原生 获取到 NSURLSessionTaskMetrics 数据 直接使用 FTResourceMetricsModel的初始化方法
-    FTResourceMetricsModel *metricsModel = [[FTResourceMetricsModel alloc]initWithTaskMetrics:metrics];
+//step 3：Add resource data
+//FTResourceContentModel 
+  FTResourceContentModel *content = [[FTResourceContentModel alloc]init];
+  content.httpMethod = request.HTTPMethod;
+  content.requestHeader = request.allHTTPHeaderFields;
+  content.responseHeader = httpResponse.allHeaderFields;
+  content.httpStatusCode = httpResponse.statusCode;
+  content.responseBody = responseBody;
+  //ios native
+  content.error = error;
+
+ //If the performance data of the network request can be obtained
+ //FTResourceMetricsModel
+ //ios native. Get NSURLSessionTaskMetrics data, directly use the initialization method of FTResourceMetricsModel
+  FTResourceMetricsModel *metricsModel = [[FTResourceMetricsModel alloc]initWithTaskMetrics:metrics];
   
-  //其他平台 所有时间数据以纳秒为单位
-   FTResourceMetricsModel *metricsModel = [[FTResourceMetricsModel alloc]init];
-   [metricsModel setDnsStart:dstart end:dend];
-   [metricsModel setTcpStart:tstart end:tend];
-   [metricsModel setSslStart:sstart end:send];
-   [metricsModel setTtfbStart:ttstart end:ttend];
-   [metricsModel setTransStart:trstart end:trend];
-   [metricsModel setFirstByteStart:fstart end:fend];
-   [metricsModel setDurationStart:dstart end:dend];
+ //other platforms. All time data in nanoseconds
+  FTResourceMetricsModel *metricsModel = [[FTResourceMetricsModel alloc]init];
+  [metricsModel setDnsStart:dstart end:dend];
+  [metricsModel setTcpStart:tstart end:tend];
+  [metricsModel setSslStart:sstart end:send];
+  [metricsModel setTtfbStart:ttstart end:ttend];
+  [metricsModel setTransStart:trstart end:trend];
+  [metricsModel setFirstByteStart:fstart end:fend];
+  [metricsModel setDurationStart:dstart end:dend];
 
-
-// 第四部：add resource 如果没有时间数据 metrics 传 nil
+ // step 4：add resource： If there is no performance data, the metrics parameter is set to nil
  [[FTExternalDataManager sharedManager] addResourceWithKey:key metrics:metricsModel content:content];
 ```
 
 ```objectivec
 /**
- * @param key       请求标识
+ * Request start
+ * @param key       request ID
  */
 - (void)startResourceWithKey:(NSString *)key;
 /**
- * @param key       请求标识
+ * Request start
+ * @param key       request ID
+ * @param property  event property(optional)
+ */
+- (void)startResourceWithKey:(NSString *)key property:(nullable NSDictionary *)property;
+/**
+ * Request End
+ * @param key       request ID
  */
 - (void)stopResourceWithKey:(NSString *)key;
 /**
- * @param key       请求标识
- * @param metrics   请求相关性能属性
- * @param content   请求相关数据
+ * Request End
+ * @param key       request ID
+ * @param property  event property(optional)
+ */
+- (void)stopResourceWithKey:(NSString *)key property:(nullable NSDictionary *)property;
+/**
+ * Add request data
+ * @param key       request ID
+ * @param metrics   request performance attributes
+ * @param content   request data
  */
 - (void)addResourceWithKey:(NSString *)key metrics:(nullable FTResourceMetricsModel *)metrics content:(FTResourceContentModel *)content;
 ```
 
-## Logger Log Printing {#user-logger}
+#### Resource url filter
 
-**Upload mechanism** : Store the data in the database and wait for the right time to upload. The database storage capacity is limited to 5000 items. If the data is stacked due to network abnormality or other reasons, the new incoming data will be discarded after 5000 items are stored.
+When the automatic collection is enabled, the internal processing will not collect the data reporting address of the SDK. You can also set filter conditions through the Open API to collect the network addresses you need.
+
+```objective-c
+[[FTMobileAgent sharedInstance] isIntakeUrl:^BOOL(NSURL * _Nonnull url) {
+        // Your collection judgment logic
+        return YES;//return NO; (YES collect，NO do not collect)
+ }];
+```
+
+```objective-c
+//  FTMobileAgent+Public.h
+//  FTMobileAgent
+/**
+ * @abstract
+ * Determine whether the URL is collected
+ */
+- (void)isIntakeUrl:(BOOL(^)(NSURL *url))handler;
+```
+
+## Logging{#user-logger}
 
 ```objectivec
 [[FTMobileAgent sharedInstance] logging:@"TestLoggingBackground" status:FTStatusInfo];
 ```
-
-### Log Level
 
 ```objectivec
 typedef NS_ENUM(NSInteger, FTStatus) {
@@ -445,22 +521,28 @@ typedef NS_ENUM(NSInteger, FTStatus) {
     FTStatusOk,
 };
 /**
- * 日志上报
- * @param content  日志内容，可为json字符串
- * @param status   事件等级和状态，info：提示，warning：警告，error：错误，critical：严重，ok：恢复，默认：info
+ * Add custom logs
+ * @param content  Log content, which can be a json string
+ * @param status   Event Level and Status (info、warning、error、critical、ok). 
 
  */
 -(void)logging:(NSString *)content status:(FTStatus)status;
+
+/// Add custom logs
+/// @param content Log content, which can be a json string
+/// @param status   Event Level and Status (info、warning、error、critical、ok). 
+/// @param property event property(optional)
+-(void)logging:(NSString *)content status:(FTLogStatus)status property:(nullable NSDictionary *)property;
 ```
 
-## Trace Web Link Tracking
+## Tracing
 
 You can `FTTraceConfig` configuration to turn on automatic mode, or manually add. Trace related data, through the `FTTraceManager` singleton, to pass in, the relevant API as follows.
 
 ```objectivec
  NSString *key = [[NSUUID UUID]UUIDString];
     NSURL *url = [NSURL URLWithString:@"http://www.baidu.com"];
-//需要的手动操作： 请求前获取 traceHeader 添加到请求头
+//manual operation required： Get trace header before the request and add it to the request header
     NSDictionary *traceHeader = [[FTTraceManager sharedInstance] getTraceHeaderWithKey:key url:url];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     if (traceHeader && traceHeader.allKeys.count>0) {
@@ -469,9 +551,9 @@ You can `FTTraceConfig` configuration to turn on automatic mode, or manually add
         }];
     }
     NSURLSession *session=[NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:self delegateQueue:[NSOperationQueue mainQueue]];
-    
+   
     NSURLSessionTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-       //您的代码
+       //your code
     }];
     
     [task resume];
@@ -479,8 +561,8 @@ You can `FTTraceConfig` configuration to turn on automatic mode, or manually add
 
 ```objectivec
 /**
- * 获取 trace 请求头
- * @param key 请求标识
+ * Get trace request headers
+ * @param key Request ID
  */
 - (NSDictionary *)getTraceHeaderWithKey:(NSString *)key url:(NSURL *)url;
 
@@ -488,12 +570,13 @@ You can `FTTraceConfig` configuration to turn on automatic mode, or manually add
 
 ## User Binding and Cancellation
 
-```objectivec
+```objective-c
 /**
- * 登录后 绑定用户信息
- * @param Id        用户Id
- * @param userName  用户名称
- * @param extra     用户的额外信息
+ * Bind user information
+ * @param Id        user id
+ * @param userName  user name
+ * @param userEmail user email
+ * @param extra     user extra info
 */
 [[FTMobileAgent sharedInstance] bindUserWithUserID:USERID];
 //or
@@ -501,7 +584,7 @@ You can `FTTraceConfig` configuration to turn on automatic mode, or manually add
 //or
 [[FTMobileAgent sharedInstance] bindUserWithUserID:USERID userName:USERNAME userEmail:USEREMAIL extra:@{EXTRA_KEY:EXTRA_VALUE}];
 
-//登出后 注销当前用户
+//Unbind user
 [[FTMobileAgent sharedInstance] logout];
 ```
 
@@ -522,7 +605,7 @@ You can create multiple Configurations to set values using pre-compiled instruct
 3. Use the pre-compile command.
 
 ```objectivec
-//Target -> Build Settings -> GCC_PREPROCESSOR_DEFINITIONS 进行配置预设定义
+//Target -> Build Settings -> GCC_PREPROCESSOR_DEFINITIONS 
 #if PRE
 #define Track_id       @"0000000001"
 #define STATIC_TAG     @"preprod"
@@ -536,7 +619,7 @@ You can create multiple Configurations to set values using pre-compiled instruct
    
 FTRumConfig *rumConfig = [[FTRumConfig alloc]init]; 
 rumConfig.globalContext = @{@"track_id":Track_id,@"static_tag":STATIC_TAG};
-... //其他设置操作
+... //other set
 [[FTMobileAgent sharedInstance] startRumWithConfigOptions:rumConfig];
 ```
 
@@ -551,7 +634,7 @@ NSString *dynamicTag = [[NSUserDefaults standardUserDefaults] valueForKey:@"DYNA
 
 FTRumConfig *rumConfig = [[FTRumConfig alloc]init];
 rumConfig.globalContext = @{@"dynamic_tag":dynamicTag};
-... //其他设置操作
+... //other set
 [[FTMobileAgent sharedInstance] startRumWithConfigOptions:rumConfig];
 ```
 
@@ -586,15 +669,15 @@ For more details, please see [SDK Demo](https://github.com/DataFlux-cn/datakit-i
 3. [Script](https://github.com/GuanceCloud/datakit-ios/blob/develop/demo/FTdSYMUploader.sh)
 
 ```sh
-#脚本中需要配置的参数
+#Parameters that need to be configured
 #＜app_id＞
 FT_APP_ID="YOUR_APP_ID"
 #＜dea_address＞
 FT_DEA_ADDRESS="YOUR_DEA_ADDRESS"
-# ＜env＞ 环境字段。属性值：prod/gray/pre/common/local。需要与 SDK 设置一致
+# ＜env＞ environment field. value：prod/gray/pre/common/local。Need to be consistent with SDK settings
 FT_ENV="common"
 #
-#＜version＞ 脚本默认配置的版本格式为CFBundleShortVersionString,如果你修改默认的版本格式, 请设置此变量。注意：需要确保在此填写的与SDK设置的一致。
+#＜version＞ The version format of the script default configuration is: CFBundleShortVersionString, if you modify the default version format, please set this variable. Note: You need to make sure that what you fill in here is consistent with what you set in the SDK.
 # FT_VERSION=""
 ```
 
@@ -617,7 +700,7 @@ Example: Using preset macros and .xcconfig configuration files
 Configure the preset macros in the .xcconfig file.
 
 ```sh
-//如果有使用 cocoapods 将 pods 的.xcconfig路径 添加到你的 .xcconfig文件中 如果路径不清楚可以终端进入项目文件夹，pod install ,终端会有提示路径，将该路径复制后引用就可以。
+//If you use cocoapods, you need to add the .xcconfig path of pods to your .xcconfig file. If you don’t know what the path is, you can use the terminal to enter the project folder, execute pod install, the terminal will prompt the path, and set the path After copying, you can use it as follows.
 
 #include "Pods/Target Support Files/Pods-testDemo/Pods-testDemo.debug.xcconfig"
 
@@ -640,12 +723,12 @@ SDK_DEA_ADDRESS = http:\$()\xxxxxxxx:9531
 **In the script**
 
 ```sh
-#脚本中需要配置的参数
+#Parameters that need to be configured
 #＜app_id＞
 FT_APP_ID=SDK_APP_ID
 #＜dea_address＞
 FT_DEA_ADDRESS=SDK_DEA_ADDRESS
-# ＜env＞ 环境字段。属性值：prod/gray/pre/common/local。需要与 SDK 设置一致
+# ＜env＞ environment field. value：prod/gray/pre/common/local。Need to be consistent with SDK settings
 FT_ENV=SDK_ENV
 ```
 

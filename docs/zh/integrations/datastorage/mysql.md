@@ -16,11 +16,12 @@ MySQL 指标展示，包括 MySQL 的基础信息、链接信息、存储空间�
 
 ## 版本支持
 
-操作系统支持：Windows/AMD 64, Windows/386, Linux/ARM, Linux/ARM 64, Linux/386, Linux/AMD 64, Darwin/AMD 64
+- 操作系统支持：Windows/AMD 64, Windows/386, Linux/ARM, Linux/ARM 64, Linux/386, Linux/AMD 64, Darwin/AMD 64
+- [MySQL 版本支持情况](../../datakit/mysql.md#requirements)
 
 ## 前置条件 {#1}
 
-- MySQL 版本 5.7+ <[安装 DataKit](../../datakit/datakit-install.md)>
+- <[安装 DataKit](../../datakit/datakit-install.md)>
 - 创建监控账号并授权
 
 （1）MySQL `root` 用户进入 MySQL，创建监控账号
