@@ -27,7 +27,7 @@ npm install @cloudcare/react-native-mobile
 
 ```json
 "dependencies": {    
-   "@cloudcare/react-native-mobile: "^0.2.1",
+   "@cloudcare/react-native-mobile: "^0.2.4",
    ···
 }
 ```
@@ -140,11 +140,9 @@ FTReactNativeLog.logConfig(logConfig);
 | **字段** | **类型** | **必须** | **说明** |
 | --- | --- | --- | --- |
 | sampleRate | number | 否 | 采样率，采集率的值范围为>= 0、<= 1，默认值为 1 |
-| serviceName | string | 否 | 服务名 |
 | traceType | enum TraceType | 否 | 链路类型，默认`TraceType.zipkin` |
 | enableLinkRUMData | boolean | 否 | 是否与 `RUM` 数据关联，默认`false` |
 | enableNativeAutoTrace | boolean | 否 | 是否开启原生网络网络自动追踪 iOS NSURLSession ,Android OKhttp(由于 `React Native`的网络请求在 iOS、Android 端是使用系统 API 实现的，所以开启 `enableNativeAutoTrace` 后，所有 `React Native` 数据能够一并追踪。） |
-| globalContext | NSDictionary | 否 | [添加自定义标签](#user-global-context) |
 
 ## RUM 用户数据追踪
 
