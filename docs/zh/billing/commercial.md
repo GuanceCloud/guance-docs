@@ -4,8 +4,8 @@
 ## 开通商业版
 
 - [在观测云直接注册商业版](commercial-register.md)
-- [由体验版工作空间升级到商业版](commercial-version.md)
 - [在阿里云市场开通观测云商业版](commercial-aliyun.md)
+- [在 AWS 云市场开通观测云商业版](commercial-aws.md)
 
 ## 计费与结算前提
 
@@ -17,7 +17,7 @@
 ???+ attention
 
     - 若您已直接[注册商业版](../billing/commercial-register.md)用户，注册时系统自动帮您注册相同用户名的观测云费用中心用户。
-    - 若您注册的是体验版用户，且尚未注册观测云费用中心用户，[升级商业版](../billing/commercial-version.md)操作中会提示您注册。
+    - 若您注册的是体验版用户，且尚未注册观测云费用中心用户，[升级商业版](../billing/trail.md#upgrade-commercial)操作中会提示您注册。
 
 ![](img/billing-index-1.png)
 
