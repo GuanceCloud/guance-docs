@@ -16,7 +16,7 @@
 ???+ attention
 
     - 单个观测云站点下，仅支持绑定一个手机号码、一个邮箱，暂不支持港澳台和国外手机号码
-    - 不同站点的账号独立不互通，更多站点说明可参考文档 [选择注册站点](../getting-started/necessary-for-beginners/select-site.md) 。
+    - 不同站点的账号独立不互通，更多站点说明可参考 [站点说明](../billing/commercial-register.md#site) 。
     - 支持选择 [单点登录](../management/sso/index.md) 到观测云
 
 ![](img/7.login_site_1.png)

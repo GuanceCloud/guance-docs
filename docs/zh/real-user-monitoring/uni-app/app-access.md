@@ -80,7 +80,7 @@
 
 | 参数名称      | 参数类型 | 必须 | 参数说明                                                     |
 | :------------ | :------- | :--- | ------------------------------------------------------------ |
-| serverUrl     | string   | 是   | 数据上报地址                                                 |
+| serverUrl     | string   | 是   | datakit 安装地址 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529。注意：安装 SDK 设备需能访问这地址                                               |
 | debug         | boolean  | 否   | 设置是否允许打印 Debug 日志，默认`false`                            |
 | datakitUUID   | string   | 否   | 请求`HTTP`请求头`X-Datakit-UUID` 数据采集端，如果用户不设置会自动配置 |
 | envType       | string   | 否   | 环境字段： `prod`线上（默认）、`gray`灰度、`pre`预发、`common`日常、`local`本地 |

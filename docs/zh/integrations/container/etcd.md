@@ -13,7 +13,8 @@ Etcd 性能指标展示，包括接收 gRPC 客户端的总字节数、发送 gR
 
 ## 版本支持
 
-操作系统支持：Linux
+- 操作系统支持：Linux
+- [Etcd 版本支持情况](../../datakit/etcd.md#requirements)
 
 ## 前置条件
 

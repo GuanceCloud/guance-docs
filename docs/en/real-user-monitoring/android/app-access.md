@@ -22,9 +22,9 @@ Login to Guance Console, enter "Real User Monitoring" page, click "New Applicati
 
 ![](https://img.shields.io/maven-metadata/v?label=ft-sdk&metadataUrl=https%3A%2F%2Fmvnrepo.jiagouyun.com%2Frepository%2Fmaven-releases%2Fcom%2Fcloudcare%2Fft%2Fmobile%2Fsdk%2Ftracker%2Fagent%2Fft-sdk%2Fmaven-metadata.xml#crop=0&crop=0&crop=1&crop=1&id=qIyeD&originHeight=20&originWidth=138&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)![](https://img.shields.io/maven-metadata/v?label=ft-native&metadataUrl=https%3A%2F%2Fmvnrepo.jiagouyun.com%2Frepository%2Fmaven-releases%2Fcom%2Fcloudcare%2Fft%2Fmobile%2Fsdk%2Ftracker%2Fagent%2Fft-native%2Fmaven-metadata.xml#crop=0&crop=0&crop=1&crop=1&id=mC9jW&originHeight=20&originWidth=152&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)![](https://img.shields.io/maven-metadata/v?label=ft-plugin&metadataUrl=https%3A%2F%2Fmvnrepo.jiagouyun.com%2Frepository%2Fmaven-releases%2Fcom%2Fcloudcare%2Fft%2Fmobile%2Fsdk%2Ftracker%2Fplugin%2Fft-plugin%2Fmaven-metadata.xml#crop=0&crop=0&crop=1&crop=1&id=RzYsx&originHeight=20&originWidth=152&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
 
-Demo：[https://github.com/GuanceCloud/datakit-android/demo](https://github.com/GuanceCloud/datakit-android/tree/dev/demo)
+**Demo**：[https://github.com/GuanceCloud/datakit-android/demo](https://github.com/GuanceCloud/datakit-android/tree/dev/demo)
 
-Source Code Address：[https://github.com/GuanceCloud/datakit-android](https://github.com/GuanceCloud/datakit-android)
+**Source Code Address**：[https://github.com/GuanceCloud/datakit-android](https://github.com/GuanceCloud/datakit-android)
 
 ### Gradle Configuration {#gradle-setting}
 
@@ -32,24 +32,24 @@ Add the remote repository address of `DataFlux SDK` to the `build.gradle` file i
 
 ```groovy
 buildscript {
-    //...省略部分代码
+    //...
     repositories {
-        //...省略部分代码
-        //添加 DataFlux SDK 的远程仓库地址
+        //...
+        //add SDK remote repo url
         maven {
             url 'https://mvnrepo.jiagouyun.com/repository/maven-releases'
         }
     }
     dependencies {
-        //...省略部分代码
-        //添加 DataFlux Plugin 的插件依赖
-        classpath 'com.cloudcare.ft.mobile.sdk.tracker.plugin:ft-plugin:1.1.2-beta01'
+        //...
+        //add Plugin dependency
+        classpath 'com.cloudcare.ft.mobile.sdk.tracker.plugin:ft-plugin:1.1.3-beta01'
     }
 }
 allprojects {
     repositories {
-        //...省略部分代码
-        //添加 DataFlux SDK 的远程仓库地址
+        //...
+        // add SDK remote repo url
         maven {
             url 'https://mvnrepo.jiagouyun.com/repository/maven-releases'
         }
@@ -57,33 +57,36 @@ allprojects {
 }
 ```
 
-Add `DataFlux SDK` dependencies and use of `DataFlux Plugin` and Java 8 support to the `build.gradle` file of the main project module `app`.
+Add `SDK` dependencies and use of `Plugin` and Java 8 support to the `build.gradle` file of the main project module `app`.
 
 ```groovy
 dependencies {
-    //添加 DataFlux SDK 的依赖
-    implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-sdk:1.3.8-beta03'
-    //捕获 native 层崩溃信息的依赖，需要配合 ft-sdk 使用不能单独使用
+
+    //add SDK dependency
+    implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-sdk:1.3.9-beta02'
+    
+    //native crash dependency, needs to be used with ft-sdk and cannot be used alone
     implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-native:1.0.0-alpha05'
-    //推荐使用这个版本，其他版本未做过充分兼容测试
+    
+    //Gson version recommend
     implementation 'com.google.code.gson:gson:2.8.5'
 
 }
-//应用插件
+//add plugin setting 
 apply plugin: 'ft-plugin'
-//配置插件使用参数
+
+//Configure Plugin Params
 FTExt {
-    //是否显示 Plugin 日志，默认为 false
+    //show plugin debug log
     showLog = true
 }
 android{
-	//...省略部分代码
+	//...
 	defaultConfig {
-        //...省略部分代码
+        //...
         ndk {
-            //当使用 ft-native 捕获 native 层的崩溃信息时，应该根据应用适配的不同的平台
-            //来选择支持的 abi 架构，目前 ft-native 中包含的 abi 架构有 'arm64-v8a',
-            // 'armeabi-v7a', 'x86', 'x86_64'
+            //When using ft-native ，need to set abi support for platforms
+            // ft-native  abi contain 'arm64-v8a', 'armeabi-v7a', 'x86', 'x86_64'
             abiFilters 'armeabi-v7a'
         }
     }
@@ -105,7 +108,7 @@ android{
 class DemoApplication : Application() {
     override fun onCreate() {
         val config = FTSDKConfig
-            .builder(DATAKIT_URL)//Datakit 安装地址
+            .builder(DATAKIT_URL)//Datakit install url
             .setDebug(true);
 
         FTSdk.install(config)
@@ -117,7 +120,7 @@ class DemoApplication : Application() {
 
 | Method Name | **Meaning** | Required | **Attention** |
 | --- | --- | --- | --- |
-| metricsUrl | Datakit installation address | Yes | The IP address of the datakit installation address, which needs to be accessible by the device where the SDK is installed |
+| metricsUrl | Datakit installation address | Yes | The url of the datakit installation address, example: http://10.0.0.1:9529, port 9529. Datakit url address needs to be accessible by the device where the SDK is installed |
 | setXDataKitUUID | Set the identification ID of the data acquisition terminal | No | Default is random `uuid` |
 | setDebug | Whether to turn on debug mode | No | Default is `false`, enable to print SDK run log |
 | setEnv | Set the acquisition environment | No | Default is `EnvType.PROD` |

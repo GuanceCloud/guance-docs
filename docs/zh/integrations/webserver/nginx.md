@@ -13,8 +13,8 @@ Nginx 性能指标展示，包括请求数、处理请求数、活跃请求数�
 
 ## 版本支持
 
-操作系统：Linux / Windows<br />Nginx 版本：ALL
-
+- 操作系统：Linux / Windows <br/>
+- [Nginx 版本支持情况](../../datakit/nginx.md#requirements)
 ## 前置条件
 
 - Nginx 服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
