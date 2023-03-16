@@ -19,13 +19,13 @@
 最新的观测云镜像包下载地址：
 === "amd64"
 
-    [https://static.guance.com/dataflux/package-test/guance-amd64-latest.tar.gz](https://static.guance.com/dataflux/package-test/guance-amd64-latest.tar.gz)
+    [https://static.guance.com/dataflux/package/guance-amd64-latest.tar.gz](https://static.guance.com/dataflux/package/guance-amd64-latest.tar.gz)
     
 
 === "arm64"
 
     
-    [https://static.guance.com/dataflux/package-test/guance-arm64-latest.tar.gz](https://static.guance.com/dataflux/package-test/guance-arm64-latest.tar.gz)
+    [https://static.guance.com/dataflux/package/guance-arm64-latest.tar.gz](https://static.guance.com/dataflux/package/guance-arm64-latest.tar.gz)
     
 Containterd 环境导入镜像命令
 ```shell
