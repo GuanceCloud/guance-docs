@@ -4,8 +4,8 @@
 ## 开通商业版
 
 - [在观测云直接注册商业版](commercial-register.md)
-- [由体验版工作空间升级到商业版](commercial-version.md)
 - [在阿里云市场开通观测云商业版](commercial-aliyun.md)
+- [在 AWS 云市场开通观测云商业版](commercial-aws.md)
 
 ## 计费与结算前提
 
