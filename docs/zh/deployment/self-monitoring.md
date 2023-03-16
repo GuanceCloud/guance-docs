@@ -33,7 +33,7 @@
 1）[下载datakit.yaml](datakit.yaml)
 
 ???+ warning "注意"
-     注意：以上DataKit默认的配置中间件配置都已配置完毕，修改内容即可使用。
+     注意：以上DataKit默认的配置中间件配置都已配置完毕，稍作修改即可使用。
 
 2）修改 datakit.yaml `DaemonSet` 的模板文件
 
@@ -45,7 +45,7 @@
    image: pubrepo.jiagouyun.com/datakit/datakit:1.5.6     ## 修改成最新镜像版本
 ```
 
-3）修改datakit.yaml中关于`ComfigMap`的相关配置
+3）修改datakit.yaml中关于`ConfigMap`的相关配置
 
 ```yaml
 apiVersion: v1
@@ -112,98 +112,23 @@ data:
 
 ```
 
-5）如果想要开启相应服务的指标采集，则需要先配置好`ComfigMap`，再把它挂载进去，以下是示例
 
-  ```yaml
-  # 一般可去到 /usr/local/datakit/conf.d 目录下查找对应的文件。
-  apiVersion: v1
-  kind: ConfigMap
-  metadata:
-    name: datakit-conf
-    namespace: datakit
-  data:
-      mysql.conf: |-                     ## 请根据标注内容进行修改，无标注可不修改
-          [[inputs.mysql]]
-            host = "xxxxxxxxxx"          ## IP/域名都可 
-            user = "test"                ## 需修改
-            pass = "xxxxxxx"            ## 需修改
-            port = 3306
-            # sock = "<SOCK>"
-            # charset = "utf8"
-  
-            ## @param connect_timeout - number - optional - default: 10s
-            # connect_timeout = "10s"
-  
-            ## Deprecated
-            # service = "<SERVICE>"
-  
-            interval = "10s"
-  
-            ## @param inno_db
-            innodb = true
-  
-            ## table_schema
-            tables = []
-  
-            ## user
-            users = []
-  
-            ## 开启数据库性能指标采集
-            # dbm = false
-  
-            # [inputs.mysql.log]
-            # #required, glob logfiles
-            # files = ["/var/log/mysql/*.log"]
-  
-            ## glob filteer
-            #ignore = [""]
-  
-            ## optional encodings:
-            ##    "utf-8", "utf-16le", "utf-16le", "gbk", "gb18030" or ""
-            #character_encoding = ""
-  
-            ## The pattern should be a regexp. Note the use of '''this regexp'''
-            ## regexp link: https://golang.org/pkg/regexp/syntax/#hdr-Syntax
-            #multiline_match = '''^(# Time|\d{4}-\d{2}-\d{2}|\d{6}\s+\d{2}:\d{2}:\d{2}).*'''
-  
-            ## grok pipeline script path
-            #pipeline = "mysql.p"
-  
-            # [[inputs.mysql.custom_queries]]
-            #   sql = "SELECT foo, COUNT(*) FROM table.events GROUP BY foo"
-            #   metric = "xxxx"
-            #   tagKeys = ["column1", "column1"]
-            #   fieldKeys = ["column3", "column1"]
-            
-            ## 监控指标配置
-            [inputs.mysql.dbm_metric]
-              enabled = true
-            
-            ## 监控采样配置
-            [inputs.mysql.dbm_sample]
-              enabled = true  
-  
-            [inputs.mysql.tags]
-              # some_tag = "some_value"
-              # more_tag = "some_other_value"
-  ```
+5）挂载操作
 
-6）挂载操作
+```yaml
+        - mountPath: /usr/local/datakit/conf.d/db/mysql.conf
+          name: datakit-conf
+          subPath: mysql.conf
+          readOnly: false
+```
 
-  ```yaml
-          - mountPath: /usr/local/datakit/conf.d/db/mysql.conf
-            name: datakit-conf
-            subPath: mysql.conf
-            readOnly: false
-  ```
+> 注意：多个配置也是一样的。依次添加下去。
 
-  > 注意：多个配置也是一样的。依次添加下去。
+6）修改后开始部署DataKit
 
- 7）修改后开始部署DataKit
-
-  ```shell
-  kubectl apply -f datakit.yaml
-  ```
+```shell
+kubectl apply -f datakit.yaml
+```
 
 ### 导入视图及监控器模板
 
@@ -369,7 +294,7 @@ template:
 
      1、您的主机上需 [安装 DataKit](https://docs.guance.com/datakit/datakit-install/) 
 
-     2、并在DataKit上[开启ddtrace采集器](https://docs.guance.com/datakit/ddtrace/#__tabbed_1_2),采用K8S `ComfigMap`的方式注入
+     2、并在DataKit上[开启ddtrace采集器](https://docs.guance.com/datakit/ddtrace/#__tabbed_1_2),采用K8S `ConfigMap`的方式注入
 
 **开始配置**
 

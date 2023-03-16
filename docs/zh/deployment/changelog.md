@@ -2,7 +2,7 @@
 
 ## v1.58.123（2023 年 03 月 07 日）
 
-pubrepo.guance.com/dataflux/1.58.123:launcher-a4e6282-1678200092
+pubrepo.guance.com/dataflux/1.58.123:launcher-bb14ca9-1678200092
 
 此版本是 fix 版本，主要有如下更新:
 
