@@ -99,7 +99,26 @@ android{
 
 ## SDK 初始化
 
-### 基础配置
+### 基础配置 {#base-setting}
+=== Java
+
+```java
+public class DemoApplication extends Application {
+
+    @Override
+    public void onCreate() {
+        FTSDKConfig config = FTSDKConfig.builder(DATAKIT_URL)//Datakit 安装地址
+                .setDebug(true)
+                .build();
+
+        FTSdk.install(config);
+
+        // ...
+    }
+}
+```
+
+=== Kotlin
 
 ```kotlin
 class DemoApplication : Application() {
@@ -134,7 +153,29 @@ class DemoApplication : Application() {
 | addGlobalContext | 添加 SDK 全局属性 | 否 | 添加规则请查阅[此处](#key-conflict) |
 | setServiceName|设置服务名|否|影响 Log 和 RUM 中 service 字段数据， 默认为 `df_rum_android` |
 
-### RUM 配置
+### RUM 配置 {#rum-config}
+
+=== Java
+
+```java
+
+FTSdk.initRUMWithConfig(
+        new FTRUMConfig()
+            .setRumAppId(RUM_APP_ID)
+            .setEnableTraceUserAction(true)
+            .setEnableTraceUserView(true)
+            .setEnableTraceUserResource(true)
+            .setSamplingRate(0.8f)
+            .setExtraMonitorTypeWithError(ErrorMonitorType.ALL.getValue())
+            .setDeviceMetricsMonitorType(DeviceMetricsMonitorType.ALL.getValue())
+            .setEnableTrackAppUIBlock(true)
+            .setEnableTrackAppCrash(true)
+            .setEnableTrackAppANR(true)
+);
+
+```
+
+=== Kotlin
 
 ```kotlin
 FTSdk.initRUMWithConfig(
@@ -189,6 +230,18 @@ android{
 
 2.在 `RUM` 配置中添加对应 `BuildConfig` 常量
 
+=== Java
+
+```java
+FTSdk.initRUMWithConfig(
+        new FTRUMConfig()
+            .addGlobalContext(CUSTOM_STATIC_TAG, BuildConfig.CUSTOM_VALUE)
+            //... 添加其他配置
+);
+
+```
+=== Kotlin
+
 ```kotlin
 FTSdk.initRUMWithConfig(
             FTRUMConfig()
@@ -200,6 +253,21 @@ FTSdk.initRUMWithConfig(
 ##### 动态使用
 
 1.通过存文件类型数据，例如 `SharedPreferences`，配置使用 `SDK`，在配置处添加获取标签数据的代码。
+
+=== Java
+
+```java
+SharedPreferences sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE);
+String customDynamicValue = sp.getString(CUSTOM_DYNAMIC_TAG, "not set");
+
+// 配置 RUM
+FTSdk.initRUMWithConfig(
+     new FTRUMConfig().addGlobalContext(CUSTOM_DYNAMIC_TAG, customDynamicValue)
+     //… 添加其他配置
+);
+```
+
+=== Kotlin
 
 ```kotlin
 val sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE)
@@ -214,6 +282,17 @@ FTSdk.initRUMWithConfig(
 
 2.在任意处添加改变文件数据的方法。
 
+=== Java
+
+```java
+public void setDynamicParams(Context context, String value) {
+    SharedPreferences sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE);
+    sp.edit().putString(CUSTOM_DYNAMIC_TAG, value).apply();
+}
+```
+
+=== Kotlin
+
 ```kotlin
 fun setDynamicParams(context: Context, value: String) {
             val sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE)
@@ -224,7 +303,22 @@ fun setDynamicParams(context: Context, value: String) {
 
 3.最后重启应用，详细细节请见 [SDK Demo](#setup)
 
-### Log 配置
+### Log 配置 {#log-config}
+
+=== Java
+
+```java
+FTSdk.initLogWithConfig(new FTLoggerConfig()
+    .setEnableConsoleLog(true)
+    //.setEnableConsoleLog(true,"log prefix")
+    .setEnableLinkRumData(true)
+    .setEnableCustomLog(true)
+    //.setLogLevelFilters(new Status[]{Status.CRITICAL, Status.ERROR})
+    .setSamplingRate(0.8f));
+
+```
+
+=== kotlin
 
 ```kotlin
    FTSdk.initLogWithConfig(
@@ -248,7 +342,18 @@ fun setDynamicParams(context: Context, value: String) {
 | setLogLevelFilters | 设置日志等级过滤 | 否 | 设置等级日志过滤，默认不设置 |
 | addGlobalContext | 添加 log 全局属性 | 否 | 添加规则请查阅[此处](#key-conflict) |
 
-### Trace 配置
+### Trace 配置 {#trace-config}
+
+=== Java
+
+```java
+FTSdk.initTraceWithConfig(new FTTraceConfig()
+    .setSamplingRate(0.8f)
+    .setEnableAutoTrace(true)
+    .setEnableLinkRUMData(true));
+```
+
+=== kotlin
 
 ```kotlin
    FTSdk.initTraceWithConfig(
@@ -268,43 +373,583 @@ fun setDynamicParams(context: Context, value: String) {
 | setEnableWebTrace | 设置 webview 是否开启链路追踪 | 否 | alpha 功能，有一部分场景可能会有部分 js 加载问题，默认为 `false` |
 
 
-## RUM 用户数据追踪
+## RUM 用户数据追踪 {#rum-trace}
 
-可以 `FTTraceConfig` 配置开启自动模式，或手动添加，示例如下：
+`FTRUMConfig` 配置 `enableTraceUserAction`, `enableTraceUserView`, `enableTraceUserResource` 来实现自动获取数据的效果或手动使用 `FTRUMGlobalManager` 来实现添加这些数据，示例如下：
 
 ### Action
 
+#### 使用方法
+
+=== Java
+
+```java
+	/**
+     *  添加 action
+     *
+     * @param actionName action 名称
+     * @param actionType action 类型
+     */
+    public void startAction(String actionName, String actionType) 
+    
+    
+    /**
+     * 添加 action
+     *
+     * @param actionName action 名称
+     * @param actionType action 类型
+     * @param property   附加属性参数
+     */
+    public void startAction(String actionName, String actionType, HashMap<String, Object> property)
+
+```
+
+=== Kotlin
+
 ```kotlin
-FTRUMGlobalManager.get().startAction("action name", "action type")
+	/**
+     *  添加 action
+     *
+     * @param actionName action 名称
+     * @param actionType action 类型
+     */
+	fun startAction(actionName: String, actionType: String)
+	
+	
+	/**
+     * 添加 action
+     *
+     * @param actionName action 名称
+     * @param actionType action 类型
+     * @param property   附加属性参数
+     */
+    fun startAction(actionName: String, actionType: String, property: HashMap<String, Any>)
+
+```
+
+#### 代码示例
+
+=== Java
+
+```java
+// 场景1
+FTRUMGlobalManager.get().startAction("login", "action_type");
+
+// 场景2: 动态参数
+HashMap<String, Object> map = new HashMap<>();
+map.put("ft_key", "ft_value");
+FTRUMGlobalManager.get().startAction("login", "action_type", map);
+```
+
+=== Kotlin
+
+```kotlin
+
+// 场景1
+FTRUMGlobalManager.get().startAction("login", "action_type")
+
+// 场景2: 动态参数
+val map = HashMap<String,Any>()
+map["ft_key"]="ft_value"
+FTRUMGlobalManager.get().startAction("login","action_type",map)
+
 ```
 
 ### View
 
+#### 使用方法
+
+=== Java
+
+```java
+
+    /**
+     * view 起始
+     *
+     * @param viewName 当前页面名称
+     */
+    public void startView(String viewName)
+    
+    
+    /**
+     * view 起始
+     *
+     * @param viewName 当前页面名称
+     * @param property 附加属性参数
+     */
+    public void startView(String viewName, HashMap<String, Object> property) 
+    
+    
+    /**
+     * view 结束
+     */
+    public void stopView()
+    
+    /**
+     * view 结束
+     *
+     * @param property 附加属性参数
+     */
+    public void stopView(HashMap<String, Object> property)
+
+
+```
+
+=== Kotlin
+
+```kotlin
+
+	/**
+     * view 起始
+     *
+     * @param viewName 当前页面名称
+     */
+	fun startView(viewName: String)
+	
+	 /**
+     * view 起始
+     *
+     * @param viewName 当前页面名称
+     * @param property 附加属性参数
+     */
+	
+	fun startView(viewName: String, property: HashMap<String, Any>)
+	
+	 /**
+     * view 结束
+     */
+	fun stopView()
+	
+	 /**
+     * view 结束
+     *
+     * @param property 附加属性参数
+     */
+	fun stopView(property: HashMap<String, Any>)
+
+```
+
+#### 代码示例
+
+=== Java
+
+```java
+@Override
+protected void onResume() {
+    super.onResume();
+
+    // 场景 1
+    FTRUMGlobalManager.get().startView("Current Page Name");
+
+    // 场景 2: 动态参数
+    HashMap<String, Object> map = new HashMap<>();
+    map.put("ft_key", "ft_value");
+    map.put("ft_key_will_change", "ft_value");
+    FTRUMGlobalManager.get().startView("Current Page Name", map);
+}
+
+@Override
+protected void onPause() {
+    super.onPause();
+
+    // 场景 1
+    FTRUMGlobalManager.get().stopView();
+
+    // 场景 2 : 动态参数
+    HashMap<String, Object> map = new HashMap<>();
+    map.put("ft_key_will_change", "ft_value_change"); //ft_key_will_change 这个数值，会在 stopView 时候被修改为 ft_value_change
+    FTRUMGlobalManager.get().startView("Current Page Name", map);
+}
+```
+
+=== Kotlin
+
 ```kotlin
 override fun onResume() {
      super.onResume()
-     FTRUMGlobalManager.get().startView("Current Page Name", "Pre Page Name")
+     
+     // 场景 1
+     FTRUMGlobalManager.get().startView("Current Page Name")
+     
+     // 场景 2: 动态参数
+     val map = HashMap<String, Any>()
+     map["ft_key"] = "ft_value"
+     map["ft_key_will_change"] = "ft_value"	
+     FTRUMGlobalManager.get().startView("Current Page Name", map)
+     
 }
 
 override fun onPause() {
      super.onPause()
+     
+     // 场景 1
      FTRUMGlobalManager.get().stopView()
+     
+     
+     // 场景 2 : 动态参数
+     val map = HashMap<String, Any>()
+     map["ft_key_will_change"] = "ft_value_change" //ft_key_will_change 这个数值，会在 stopView 时候被修改为 ft_value_change
+     FTRUMGlobalManager.get().startView("Current Page Name", map)
+     
 }
 ```
 
 ### Error
 
+#### 使用方法
+
+=== Java
+
+```java
+    /**
+     * 添加错误信息
+     *
+     * @param log       日志
+     * @param message   消息
+     * @param errorType 错误类型
+     * @param state     程序运行状态
+     */
+    public void addError(String log, String message, ErrorType errorType, AppState state)
+    
+    
+     /**
+     * 添加错误
+     *
+     * @param log       日志
+     * @param message   消息
+     * @param errorType 错误类型
+     * @param state     程序运行状态
+     * @param dateline  发生时间，纳秒
+     */
+    public void addError(String log, String message, long dateline, ErrorType errorType, AppState state) 
+    
+    /**
+     * 添加错误信息
+     *
+     * @param log
+     * @param message
+     * @param errorType
+     * @param state
+     * @param property
+     */
+    public void addError(String log, String message, ErrorType errorType, AppState state, HashMap<String, Object> property)
+    
+    
+    /**
+     * 添加错误
+     *
+     * @param log       日志
+     * @param message   消息
+     * @param errorType 错误类型
+     * @param state     程序运行状态
+     * @param dateline  发生时间，纳秒
+     */
+    public void addError(String log, String message, long dateline, ErrorType errorType,
+                         AppState state, HashMap<String, Object> property)
+
+```
+
+=== Kotlin
+
 ```kotlin
+	/**
+     * 添加错误信息
+     *
+     * @param log       日志
+     * @param message   消息
+     * @param errorType 错误类型
+     * @param state     程序运行状态
+     */
+	fun addError(log: String, message: String, errorType: ErrorType, state: AppState)
+	 
+	 /**
+     * 添加错误
+     *
+     * @param log       日志
+     * @param message   消息
+     * @param errorType 错误类型
+     * @param state     程序运行状态
+     * @param dateline  发生时间，纳秒
+     */ 
+	fun addError(log: String, message: String, dateline: Long, errorType: ErrorType, state: AppState)
+	
+	 /**
+     * 添加错误信息
+     *
+     * @param log
+     * @param message
+     * @param errorType
+     * @param state
+     * @param property
+     */
+	fun addError(log: String, message: String, errorType: ErrorType, state: AppState, property: HashMap<String, Any>) 
+	
+	 /**
+     * 添加错误
+     *
+     * @param log       日志
+     * @param message   消息
+     * @param errorType 错误类型
+     * @param state     程序运行状态
+     * @param dateline  发生时间，纳秒
+     */
+	fun addError(log: String, message: String, dateline: Long, errorType: ErrorType,state: AppState, property: HashMap<String, Any>)
+
+```
+
+#### 代码示例
+
+=== Java
+
+```java
+// 场景 1:
+FTRUMGlobalManager.get().addError("error log", "error msg", ErrorType.JAVA, AppState.RUN);
+
+// 场景 2:延迟记录发生的错误，这里的时间一般为错误发生的时间
+FTRUMGlobalManager.get().addError("error log", "error msg", 16789000000000000000L, ErrorType.JAVA, AppState.RUN);
+
+// 场景 3：动态参数
+HashMap<String, Object> map = new HashMap<>();
+map.put("ft_key", "ft_value");
+FTRUMGlobalManager.get().addError("error log", "error msg", ErrorType.JAVA, AppState.RUN, map);
+```
+
+=== Kotlin
+
+```kotlin
+
+// 场景 1:
 FTRUMGlobalManager.get().addError("error log", "error msg", ErrorType.JAVA, AppState.RUN)
+
+// 场景 2:延迟记录发生的错误，这里的时间一般为错误发生的时间
+FTRUMGlobalManager.get().addError("error log", "error msg", 16789000000000000000, ErrorType.JAVA, AppState.RUN)
+
+// 场景 3：动态参数
+val map = HashMap<String, Any>()
+map["ft_key"] = "ft_value"
+FTRUMGlobalManager.get().addError("error log", "error msg",ErrorType.JAVA,AppState.RUN,map)
+
 ```
 ### LongTask
+
+#### 使用方法
+
+=== Java
+
+```java
+    /**
+     * 添加长任务
+     *
+     * @param log      日志内容
+     * @param duration 持续时间，纳秒
+     */
+    public void addLongTask(String log, long duration) 
+
+    /**
+     * 添加长任务
+     *
+     * @param log      日志内容
+     * @param duration 持续时间，纳秒
+     */
+    public void addLongTask(String log, long duration, HashMap<String, Object> property)
+
+```
+
+=== Kotlin
+
 ```kotlin
+    /**
+     * 添加长任务
+     *
+     * @param log      日志内容
+     * @param duration 持续时间，纳秒
+     */
+	fun addLongTask(log: String, duration: Long) 
+	
+	/**
+     * 添加长任务
+     *
+     * @param log      日志内容
+     * @param duration 持续时间，纳秒
+     */
+	
+	fun addLongTask(log: String, duration: Long, property: HashMap<String, Any>)
+
+```
+
+#### 代码示例
+
+=== Java
+
+```java
+// 场景 1 
+FTRUMGlobalManager.get().addLongTask("error log", 1000000L);
+
+// 场景 2:动态参数
+HashMap<String, Object> map = new HashMap<>();
+map.put("ft_key", "ft_value");
+FTRUMGlobalManager.get().addLongTask("", 1000000L, map);
+```
+
+=== Kotlin
+
+
+```kotlin
+
+// 场景 1 
 FTRUMGlobalManager.get().addLongTask("error log",1000000L)
+
+// 场景 2:动态参数
+ val map = HashMap<String, Any>()
+ map["ft_key"] = "ft_value"
+ FTRUMGlobalManager.get().addLongTask("", 1000000L,map)
+
 ```
 
 ### Resource
 
+#### 使用方法
+
+=== Java
+
+```java
+
+    /**
+     * resource 起始
+     *
+     * @param resourceId 资源 Id
+     */
+    public void startResource(String resourceId) 
+    
+    /**
+     * resource 起始
+     *
+     * @param resourceId 资源 Id
+     */
+    public void startResource(String resourceId, HashMap<String, Object> property) 
+    
+    /**
+     * resource 终止
+     *
+     * @param resourceId 资源 Id
+     */
+    public void stopResource(String resourceId)
+    
+    /**
+     * resource 终止
+         *  
+     * @param resourceId 资源 Id
+     * @param property   附加属性参数
+     */
+    public void stopResource(final String resourceId, HashMap<String, Object> property)
+    
+    
+    /**
+     * 设置网络传输内容
+     *
+     * @param resourceId
+     * @param params
+     * @param netStatusBean
+     */
+    public void addResource(String resourceId, ResourceParams params, NetStatusBean netStatusBean)
+
+```
+
+=== Kotlin
+
 ```kotlin
+
+/**
+ * resource 起始
+ *
+ * @param resourceId 资源 Id
+ */
+fun startResource(resourceId: String) 
+
+/**
+ * resource 起始
+ *
+ * @param resourceId 资源 Id
+ */
+fun startResource(resourceId: String, property: HashMap<String, Any>)
+
+/**
+ * resource 终止
+ *
+ * @param resourceId 资源 Id
+ */
+fun stopResource(resourceId: String) 
+
+/**
+ * resource 终止
+ *
+ * @param resourceId 资源 Id
+ * @param property   附加属性参数
+ */
+fun stopResource(resourceId: String, property: HashMap<String, Any>)
+
+/**
+ * 设置网络传输内容
+ *
+ * @param resourceId
+ * @param params
+ * @param netStatusBean
+ */
+fun addResource(resourceId: String, params: ResourceParams, netStatusBean: NetStatusBean)
+
+```
+
+#### 代码示例
+
+=== Java
+
+```java
+
+// 场景 1
+// 请求开始
+FTRUMGlobalManager.get().startResource("resourceId");
+
+//...
+
+// 请求结束
+FTRUMGlobalManager.get().stopResource("resourceId");
+
+// 最后，在请求结束之后，发送请求相关的数据指标
+ResourceParams params = new ResourceParams();
+params.setUrl("https://www.guance.com");
+params.setResponseContentType(response.header("Content-Type"));
+params.setResponseConnection(response.header("Connection"));
+params.setResponseContentEncoding(response.header("Content-Encoding"));
+params.setResponseHeader(response.headers().toString());
+params.setRequestHeader(request.headers().toString());
+params.setResourceStatus(response.code());
+params.setResourceMethod(request.method());
+
+NetStatusBean bean = new NetStatusBean();
+bean.setTcpStartTime(60000000);
+//...
+
+FTRUMGlobalManager.get().addResource("resourceId", params, bean);
+
+
+// 场景 2 ：动态参数使用
+HashMap<String, Object> map = new HashMap<>();
+map.put("ft_key", "ft_value");
+map.put("ft_key_will_change", "ft_value");
+
+FTRUMGlobalManager.get().startResource("resourceId",map);
+
+//...
+HashMap<String, Object> map = new HashMap<>()；
+map.put("ft_key_will_change", "ft_value_change"); //ft_key_will_change 这个数值，会在 stopResource 时候被修改为 ft_value_change
+FTRUMGlobalManager.get().stopResource(uuid,map);
+
+```
+
+=== Kotlin
+
+```kotlin
+// 场景 1
 //请求开始
 FTRUMGlobalManager.get().startResource("resourceId")
 
@@ -327,12 +972,26 @@ bean.tcpStartTime = 60000000
 //...
 FTRUMGlobalManager.get().addResource("resourceId",params,bean)
 
+// 场景 2 ：动态参数使用
+val map = hashMapOf<String, Any>(
+        "ft_key" to "ft_value",
+        "ft_key_will_change" to "ft_value"
+)
+FTRUMGlobalManager.get().startResource("resourceId", map)
+
+//...
+val map = hashMapOf<String, Any>(
+        "ft_key_will_change" to "ft_value_change" 
+)
+// ft_key_will_change 这个数值，会在 stopResource 时候被修改为 ft_value_change
+
+FTRUMGlobalManager.get().stopResource(uuid, map)
+
 ```
 
 | **方法名** | **含义** | **必须** | **说明** |
 | --- | --- | --- | --- |
-| NetStatusBean.fetchStartTime | 请求开始时间 | 否 | 
- |
+| NetStatusBean.fetchStartTime | 请求开始时间 | 否 | |
 | NetStatusBean.tcpStartTime | tcp 连接时间 | 否 |  |
 | NetStatusBean.tcpEndTime | tcp 结束时间 | 否 |  |
 | NetStatusBean.dnsStartTime | dns 开始时间 | 否 |  |
@@ -350,17 +1009,72 @@ FTRUMGlobalManager.get().addResource("resourceId",params,bean)
 | ResourceParams.resourceMethod | 请求方法 | 否 |  GET,POST 等 |
 | ResourceParams.responseBody | 返回 body 内容 | 否 |  |
 
-## Logger 日志打印 
+## Logger 日志打印 {#log} 
+使用 `FTLogger` 进行日志输出
 
-```kotlin
-//上传单个日志
-FTLogger.getInstance().logBackground("test", Status.INFO)
+### 使用方法
 
-//批量上传日志
-FTLogger.getInstance().logBackground(mutableListOf(LogData("test",Status.INFO)))
+=== Java
+
+```java
+    /**
+     * 将单条日志数据存入本地同步
+     *
+     * @param content 日志内容
+     * @param status  日志等级
+     */
+    public void logBackground(String content, Status status)
+    
+    /**
+     * 将单条日志数据存入本地同步
+     *
+     * @param content 日志内容
+     * @param status  日志等级
+     */
+    public void logBackground(String content, Status status, HashMap<String, Object> property)
+    
+    
+    /**
+     * 将多条日志数据存入本地同步
+     *
+     * @param logDataList {@link LogData} 列表
+     */
+    public void logBackground(List<LogData> logDataList)
+    
+    
 ```
 
-### 日志等级
+=== Kotlin
+
+```kotlin
+
+    /**
+     * 将单条日志数据存入本地同步
+     *
+     * @param content 日志内容
+     * @param status  日志等级
+     */
+    fun logBackground(content: String, status: Status)
+    
+    /**
+     * 将单条日志数据存入本地同步
+     *
+     * @param content 日志内容
+     * @param status  日志等级
+     * @param property 日志属性
+     */
+    fun logBackground(content: String, status: Status, property: HashMap<String, Any>) 
+    
+    /**
+     * 将多条日志数据存入本地同步
+     *
+     * @param logDataList 日志数据列表
+     */
+    fun logBackground(logDataList: List<LogData>)
+
+```
+
+#### 日志等级
 
 | **方法名** | **含义** |
 | --- | --- |
@@ -370,9 +1084,83 @@ FTLogger.getInstance().logBackground(mutableListOf(LogData("test",Status.INFO)))
 | Status.CRITICAL | 严重 |
 | Status.OK | 恢复 |
 
+### 代码示例
+
+
+=== Java
+
+```java
+// 上传单个日志
+FTLogger.getInstance().logBackground("test", Status.INFO);
+
+// 传递参数到 HashMap
+HashMap<String, Object> map = new HashMap<>();
+map.put("ft_key", "ft_value");
+FTLogger.getInstance().logBackground("test", Status.INFO, map);
+
+// 批量上传日志
+List<LogData> logList = new ArrayList<>();
+logList.add(new LogData("test", Status.INFO));
+FTLogger.getInstance().logBackground(logList);
+```
+
+=== Kotlin
+
+```kotlin
+//上传单个日志
+FTLogger.getInstance().logBackground("test", Status.INFO)
+
+//传递参数到 HashMap
+val map = HashMap<String,Any>()
+map["ft_key"]="ft_value"
+FTLogger.getInstance().logBackground("test", Status.INFO,map)
+
+//批量上传日志
+FTLogger.getInstance().logBackground(mutableListOf(LogData("test",Status.INFO)))
+```
+
 ## Tracer 网络链路追踪
 
-可以 `FTTRUMConfig` 配置开启自动模式，或手动添加，示例如下：
+`FTTraceConfig` 配置开启`enableAutoTrace`自动添加链路数据，或手动使用 `FTTraceManager` 在 Http 请求中 `Propagation Header`，示例如下：
+
+=== Java
+
+```java
+String url = "https://www.guance.com";
+String uuid = "uuid";
+// 获取链路头参数
+Map<String, String> headers = FTTraceManager.get().getTraceHeader(uuid, url);
+
+OkHttpClient client = new OkHttpClient.Builder().addInterceptor(chain -> {
+    Request original = chain.request();
+    Request.Builder requestBuilder = original.newBuilder();
+    // 在请求中，添加链路头参数
+    for (String key : headers.keySet()) {
+        requestBuilder.header(key, headers.get(key));
+    }
+    Request request = requestBuilder.build();
+
+    Response response = chain.proceed(request);
+
+    if (response != null) {
+        Map<String, String> requestHeaderMap = new HashMap<>();
+        Map<String, String> responseHeaderMap = new HashMap<>();
+        for (Pair<String, String> header : response.request().headers()) {
+            requestHeaderMap.put(header.first, header.second);
+        }
+        for (Pair<String, String> header : response.headers()) {
+            responseHeaderMap.put(header.first, header.second);
+        }
+    }
+
+    return response;
+}).build();
+
+Request.Builder builder = new Request.Builder().url(url).method(RequestMethod.GET.name(), null);
+client.newCall(builder.build()).execute();
+```
+
+=== Kotlin
 
 ```kotlin
 val url = "https://www.guance.com"
@@ -414,27 +1202,52 @@ client.newCall(builder.build()).execute()
 
 ```
 
-## 用户信息绑定与解绑
+## 用户信息绑定与解绑 {#userdata-bind-and-unbind}
+使用  `FTSdk` 进行用户的绑定和解绑 
 
-```kotlin
-//可以在用户登录成功后调用此方法用来绑定用户信息
-FTSdk.bindRumUserData("001")
+### 使用方法
 
-val userData = UserData()
-userData.name = "test.user"
-userData.id = "test.id"
-userData("test@mail.com")
-val extMap = HashMap<String, String>()
-extMap["ft_key"] = "ft_value"
-userData.setExts(extMap)
-            
-FTSdk.bindRumUserData(userData)
+=== Java
 
-//可以在用户退出登录后调用此方法来解绑用户信息
-FTSdk.unbindRumUserData()
+```
+  
+   /**
+     * 绑定用户信息
+     *
+     * @param id
+     */
+    public static void bindRumUserData(@NonNull String id) 
+    
+    /**
+     * 绑定用户信息
+     */
+    public static void bindRumUserData(@NonNull UserData data)
 ```
 
-### UserData
+=== Kotlin
+
+``` kotlin
+/**
+     * 绑定用户信息
+     *
+     * @param id 用户 ID
+     */
+    fun bindRumUserData(id: String) {
+        // TODO: implement bindRumUserData method
+    }
+    
+    /**
+     * 绑定用户信息
+     *
+     * @param data 用户信息
+     */
+    fun bindRumUserData(data: UserData) {
+        // TODO: implement bindRumUserData method
+    }
+```
+
+
+#### UserData
 | **方法名** | **含义** | **必须** | **说明** |
 | --- | --- | --- | --- |
 | setId |  设置用户 ID | 否 | |
@@ -442,9 +1255,84 @@ FTSdk.unbindRumUserData()
 | setEmail | 设置邮箱 | 否 | |
 | setExts | 设置用户扩展 | 否 | 添加规则请查阅[此处](#key-conflict)|
 
+### 代码示例
+
+=== Java
+
+```java
+// 可以在用户登录成功后调用此方法用来绑定用户信息
+FTSdk.bindRumUserData("001");
+
+UserData userData = new UserData();
+userData.setName("test.user");
+userData.setId("test.id");
+userData.setEmail("test@mail.com");
+Map<String, String> extMap = new HashMap<>();
+extMap.put("ft_key", "ft_value");
+userData.setExts(extMap);
+FTSdk.bindRumUserData(userData);
+
+// 可以在用户退出登录后调用此方法来解绑用户信息
+FTSdk.unbindRumUserData();
+
+```
+
+=== Kotlin
+
+```kotlin
+//可以在用户登录成功后调用此方法用来绑定用户信息
+FTSdk.bindRumUserData("001")
+
+
+//绑定用户更多数据
+val userData = UserData()
+userData.name = "test.user"
+userData.id = "test.id"
+userData("test@mail.com")
+val extMap = HashMap<String, String>()
+extMap["ft_key"] = "ft_value"
+userData.setExts(extMap)          
+FTSdk.bindRumUserData(userData)
+
+//可以在用户退出登录后调用此方法来解绑用户信息
+FTSdk.unbindRumUserData()
+```
 
 
 ## 关闭 SDK
+使用  `FTSdk` 关闭  SDK 
+
+### 使用方法
+=== Java
+
+```java
+    /**
+     * 关闭 SDK 内正在运行对象
+     */
+    public static void shutDown()
+    
+```
+
+=== Kotlin
+
+
+``` kotlin
+    /**
+     * 关闭 SDK 内正在运行对象
+     */
+    fun shutDown()
+```
+
+### 代码示例
+    
+=== Java
+
+```java
+//如果动态改变 SDK 配置，需要先关闭，以避免错误数据的产生
+FTSdk.shutDown();
+```
+
+=== Kotlin
 
 ```kotlin
 //如果动态改变 SDK 配置，需要先关闭，以避免错误数据的产生
@@ -452,14 +1340,53 @@ FTSdk.shutDown()
 ```
 
 ## 动态开启和关闭获取 AndroidID
-```kotlin
-//开启获取 Android ID
-FTSdk.setEnableAccessAndroidID(true);
+使用  `FTSdk` 设置是否在 SDK中获取 android ID
 
-//关闭获取 Android ID
-FTSdk.setEnableAccessAndroidID(fasle);
+### 使用方法
+
+=== java
+
+```java
+   /**
+     * 动态控制获取 Android ID
+     *
+     * @param enableAccessAndroidID 是为应用，否为不应用
+     */
+    public static void setEnableAccessAndroidID(boolean enableAccessAndroidID)
 ```
 
+=== kotlin
+
+```kotlin
+   /**
+     * 动态控制获取 Android ID
+     *
+     * @param enableAccessAndroidID 是为应用，否为不应用
+     */
+    fun setEnableAccessAndroidID(enableAccessAndroidID:Boolean)
+```
+
+### 代码示例
+
+=== Java
+
+```
+// 开启获取 Android ID
+FTSdk.setEnableAccessAndroidID(true);
+
+// 关闭获取 Android ID
+FTSdk.setEnableAccessAndroidID(false);
+```
+
+=== Kotlin
+
+```kotlin
+//开启获取 Android ID
+FTSdk.setEnableAccessAndroidID(true)
+
+//关闭获取 Android ID
+FTSdk.setEnableAccessAndroidID(false)
+```
 
 ## R8 / Proguard 混淆配置
 
@@ -528,6 +1455,28 @@ FTExt {
 #### SDK AndroidID 配置
 SDK 为更好关联相同用户数据，会使用 Android ID。如果需要在应用市场上架，需要通过如下方式对应市场隐私审核。
 
+=== Java
+
+```java
+public class DemoApplication extends Application {
+    @Override
+    public void onCreate() {
+        // 在初始化设置时将 setEnableAccessAndroidID 设置为 false
+        FTSDKConfig config = new FTSDKConfig.Builder(DATAKIT_URL)
+                .setEnableAccessAndroidID(false)
+                .build();
+        FTSdk.install(config);
+        
+        // ...
+    }
+}
+
+// 用户同意隐私协议后再开启
+FTSdk.setEnableAccessAndroidID(true);
+```
+
+=== Kotlin
+
 ```kotlin
 class DemoApplication : Application() {
     override fun onCreate() {
@@ -546,4 +1495,88 @@ class DemoApplication : Application() {
 //用户同意隐私协议后再开启
 FTSdk.setEnableAccessAndroidID(true);
 ```
+
+### 无法使用 ft-plugin 情况下如何接入 SDK {#manual-set}
+观测云使用的 Androig Grale Plugin Transformation 实现的代码注入，从而实现数据自动收集。但是由于一些兼容性问题，可能存在无法使用 `ft-plugin` 的问题。受影响包括 **RUM** `Action`，`Resource`，和 `android.util.Log` ，Java 与 Kotlin`println` **控制台日志自动抓取**，以及符号文件的自动上传。
+
+目前针对这种情况，我们有另外一种集成方案，应对方案如下：
+
+* Application 应用启动事件， 源码示例参考[DemoForManualSet.kt](https://github.com/GuanceCloud/datakit-android/tree/dev/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/DemoForManualSet.kt)
+
+=== Java
+
+```java
+// Application
+@Override
+public void onCreate() {
+    super.onCreate();
+    //需要在 SDK 初始化前调用
+    FTAutoTrack.startApp(null);
+    //设置 SDK 配置
+    setSDK(this);
+}
+```
+
+=== Kotlin
+
+```kotlin
+  //Application
+    override fun onCreate() {
+        super.onCreate()
+	//需要在 SDK 初始化前调用
+        FTAutoTrack.startApp(null)
+        //设置 SDK 配置
+        setSDK(this)
+ 
+    }
+```
+
+* 按键等事件需要在触发处自行添加，例如，Button onClick 事件为例，源码示例参考[ManualActivity.kt](https://github.com/GuanceCloud/datakit-android/tree/dev/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt)：
+
+=== Java
+
+```java
+view.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        FTRUMGlobalManager.get().startAction("[action button]", "click");
+    }
+});
+
+```
+
+=== Kotlin
+
+```kotlin
+	view.setOnClickListener{
+		FTRUMGlobalManager.get().startAction("[action button]", "click")
+	}
+```
+
+* `OKhttp` 通过 `addInterceptor` ，`eventListener` 方式接入 `Resource`，`Trace`，示例如下，源码示例参考[ManualActivity.kt](https://github.com/GuanceCloud/datakit-android/tree/dev/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt)：
+
+=== Java	
+
+```java
+OkHttpClient.Builder builder = new OkHttpClient.Builder();
+builder.addInterceptor(new FTTraceInterceptor());
+FTResourceInterceptor interceptor = new FTResourceInterceptor();
+builder.addInterceptor(interceptor);
+builder.eventListener(interceptor);
+OkHttpClient client = builder.build();
+```
+=== Kotlin
+
+```kotlin
+val builder = OkHttpClient.Builder()
+builder.addInterceptor(FTTraceInterceptor())
+val interceptor = FTResourceInterceptor()
+builder.addInterceptor(interceptor)
+builder.eventListener(interceptor)
+val client = builder.build()
+```
+
+* 其他网络框架需要自行实现使用 `FTRUMGlobalManager` 中 `startResource` ,`stopResource`,`addResource`, `FTTraceManager.getTraceHeader` 。具体实现方式，请参考源码示例[ManualActivity.kt](https://github.com/GuanceCloud/datakit-android/tree/dev/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt)
+
+ 
 
