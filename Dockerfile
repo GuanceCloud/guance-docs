@@ -25,7 +25,7 @@ RUN \
     # 添加对应的测试环境的配置信息
     elif [ $release_env = "peprod" ]; then \
         echo "Peprod Build ...."; \
-        cp -r -f overrides-saas/* overrides/; \
+        cp -r -f overrides-saas-test/* overrides/; \
         enFileArg=mkdocs.en.saas.test.yml; \
         zhFileArg=mkdocs.zh.saas.test.yml; \
     elif [ $release_env = "rtm" ]; then \

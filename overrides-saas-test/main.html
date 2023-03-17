@@ -1,0 +1,43 @@
+{#- This file was automatically generated - do not edit -#} {% extends "base.html" %} {% block extrahead %}
+<meta
+  name="keywords"
+  content="分布式系统可观测,实时数据监测产品,国内可观测产品,系统可观测性是什么,实时数据监测,系统可观测性,可观测性,数据监测,可观测产品有哪些,观测云提供大量标准化数据源,SaaS 版配置简单,性能强大,对比开源自建降低 50% 成本,通过数据监测多云,多应用及业务,打造云时代的系统可观测平台,解放和发展数字化生产力,observability,可观察性,云计算,云原生"
+/>
+<meta
+  name="description"
+  content="观测云提供大量标准化数据源,可观测性,observability,可观察性,云计算,云原生,SaaS 版配置简单,性能强大,对比开源自建降低 50% 成本,通过数据监测多云、多应用及业务,打造云时代的系统可观测平台,解放和发展数字化生产力"
+/>
+<script src="https://static.guance.com/browser-sdk/v2/dataflux-rum.js" type="text/javascript"></script>
+<script src="/assets/javascripts/rum-config.js" type="text/javascript"></script>
+{% endblock %} {% block libs %} {{ super() }} {%- set search_config = { "base": base_url, "search": {}} -%} {% if
+"search" in config["plugins"] %} {%- set searchConfig = config.plugins.search.config -%} {%- set search =
+search_config.search -%} {%- set _ = search.update({"lang": searchConfig.clang}) -%} {%- set _ = search.update({"api":
+searchConfig.api}) -%}
+<script id="__search_config" type="application/json">
+  {{- search_config | tojson -}}
+</script>
+{% endif %}
+
+<script>
+  var __search = {
+    worker: '/assets/javascripts/worker.js',
+  }
+  var script = document.getElementById('__search_config')
+  var __search_config = JSON.parse(script.textContent)
+  document.addEventListener('keydown', function (evt) {
+    if (evt.key === 'Enter') {
+      const inputEl = document.querySelector('.md-search__input')
+      if (!inputEl) return
+      if (document.activeElement === inputEl) {
+        evt.preventDefault()
+        evt.stopPropagation()
+        const inputvalue = inputEl.value.trim()
+        if (!inputvalue) return
+        const baseUrl = `${new URL(__search_config.base, new URL(location.href))}`
+        location.href = `${new URL(`search/?s=${inputvalue}`, baseUrl)}`
+      }
+    }
+  })
+</script>
+
+{% endblock %}
