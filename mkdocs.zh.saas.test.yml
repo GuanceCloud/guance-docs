@@ -19,5 +19,5 @@ plugins:
     es_url: 'testing-elasticsearch.cloudcare.cn'
     es_index: 'test-dataflux-docs-zh'
   search:
-    api: http://testing-ft2x-doc-score.cloudcare.cn
+    api: https://preprod-ft2x-doc-score.cloudcare.cn
     clang: zh

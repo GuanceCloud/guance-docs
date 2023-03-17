@@ -18,3 +18,6 @@ plugins:
   es_uploader:
     es_url: "testing-elasticsearch.cloudcare.cn"
     es_index: "dataflux-docs-zh"
+  search:
+    api: https://preprod-ft2x-doc-score.cloudcare.cn
+    clang: zh
