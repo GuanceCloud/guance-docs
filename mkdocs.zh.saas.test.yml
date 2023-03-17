@@ -1,0 +1,20 @@
+INHERIT: mkdocs.zh.yml
+
+plugins:
+  glightbox:
+    touchNavigation: true
+    loop: false
+    effect: zoom
+    slide_effect: slide
+    width: 100%
+    height: auto
+    zoomable: true
+    draggable: true
+    skip_classes:
+      - custom-skip-class-name
+    auto_caption: false
+    caption_position: bottom
+  # 添加对应的索引插件配置
+  es_uploader:
+    es_url: "testing-elasticsearch.cloudcare.cn"
+    es_index: "test-dataflux-docs-zh"
