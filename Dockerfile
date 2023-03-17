@@ -23,8 +23,9 @@ RUN \
         echo "SaaS Build ..."; \
         cp -r -f overrides-saas/* overrides/; \
     # 添加对应的测试环境的配置信息
-    elif [ $release_env = "peprod"]; then \
+    elif [ $release_env = "peprod" ]; then \
         echo "Peprod Build ...."; \
+        cp -r -f overrides-saas/* overrides/; \
         enFileArg=mkdocs.en.saas.test.yml; \
         zhFileArg=mkdocs.zh.saas.test.yml; \
     elif [ $release_env = "rtm" ]; then \
@@ -33,9 +34,11 @@ RUN \
         enFileArg=mkdocs.en.yml; \
         zhFileArg=mkdocs.zh.yml; \
     fi; \
-    # 安装对应文档先关的插件的pypi
-    pip install -i https://pypi.douban.com/simple mkdocs==1.4.2 beautifulsoup4==4.11.2 requests==2.28.2; \
-    pip install -i https://pmgmt.jiagouyun.com/repository/guance-pypi/simple mkdocs-plugins==0.0.3; \
+    if [ $release_env != "rtm" ]; then \
+        # 安装对应文档先关的插件的pypi
+        pip install -i https://pypi.douban.com/simple mkdocs==1.4.2 beautifulsoup4==4.11.2 requests==2.28.2; \
+        pip install -i https://pmgmt.jiagouyun.com/repository/guance-pypi/simple mkdocs-plugins==0.0.3; \
+    fi; \
     # 打包编译中英文的索引信息
     mkdocs build -f ${enFileArg}; \
     mkdocs build -f ${zhFileArg}
