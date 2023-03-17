@@ -8,7 +8,7 @@ icon: zy/billing
 
 ## 体验版
 
-您可以 [注册观测云体验版](https://auth.guance.com/businessRegister) ，注册完成后，在观测云工作空间「付费计划与账单」页面，查看体验版各个计费项目每天的体验额度以及其使用情况，若需要 [升级到商业版](commercial-version.md) ，可以点击「升级」按钮。
+您可以 [注册观测云体验版](https://auth.guance.com/businessRegister) ，注册完成后，在观测云工作空间「付费计划与账单」页面，查看体验版各个计费项目每天的体验额度以及其使用情况，若需要 [升级到商业版](../billing/trail.md#upgrade-commercial) ，可以点击「升级」按钮。
 
 ???+ attention
 

@@ -6,4 +6,3 @@ nav:
   - 'Okta单点登录示例': okta.md
   - '阿里云IDaaS单点登录示例': aliyun-idaas.md
   - 'Keycloak单点登录示例': keycloak.md
-  - 'Keycloak单点登录示例（部署版）': keycloak-paas.md

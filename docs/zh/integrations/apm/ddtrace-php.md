@@ -70,7 +70,7 @@ systemctl restart datakit
     3.验证扩展包是否安装成
 
     ```shell
-    php -m | grep ddtrce
+    php -m | grep ddtrace
     ```
 
 === "二进制包安装"
@@ -111,7 +111,7 @@ systemctl restart datakit
     3.验证扩展包是否安装成功
 
     ```shell
-    php -m | grep ddtrce
+    php -m | grep ddtrace
     ```
 
 </div>
