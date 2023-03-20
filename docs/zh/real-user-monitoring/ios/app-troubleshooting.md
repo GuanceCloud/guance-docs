@@ -23,7 +23,7 @@ eg：当配置 SDK 时，未设置  datakit metrics 写入地址，程序会崩�
 
 * 确认 SDK 上传地址 `metricsUrl` [配置正确](app-access.md#base-setting) ，并正确初始化。debug 模式下，可以下列日志来判断上传问题
 
-  ```tex
+  ```objc
   [FTLog][INFO] -[FTTrackDataManger flushWithEvents:type:] [line 143] 开始上报事件(本次上报事件数:2)
   [FTLog][INFO] -[FTRequestLineBody getRequestBodyWithEventArray:] [line 149]  
   Upload Datas Type:RUM
@@ -52,7 +52,7 @@ eg：当配置 SDK 时，未设置  datakit metrics 写入地址，程序会崩�
 
 SDK 采集到日志时， Xcode 中调试器控制台可以看到 SDK 的调试日志。
 
-```tex
+```objc
 [FTLog][INFO] -[FTRecordModel initWithSource:op:tags:fields:tm:] [line 36] write data = {
     op = Logging;
     opdata =     {
@@ -77,7 +77,7 @@ View 的采集：设置 `FTRumConfig` 的配置项`enableTraceUserView = YES` �
 
  Xcode 中调试器控制台查看 SDK 的调试日志。
 
-```tex
+```objc
 [FTLog][INFO] -[FTRecordModel initWithSource:op:tags:fields:tm:] [line 36] write data = {
     op = RUM;
     opdata =     {
@@ -121,8 +121,8 @@ View 的采集：设置 `FTRumConfig` 的配置项`enableTraceUserView = YES` �
 
 ## 数据丢失
 ### 丢失部份数据
-* 如果丢失 RUM 某一个 Session 数据或 Log，Trace 中的几条数据时，首先需要排除是否设置了在 [FTRUMConfig](app-access.md#rum-config), [FTLoggerConfig](app-access.md#log-config), [FTTraceConfig](app-access.md#trace-config) 是否设置 `sampleRate <  1` ；
-* 如果丢失 RUM 中 Resource 事件或 Action 事件（launch action 除外），需要检查是否开启 View 的自动采集或者有使用 Open API 手动采集。 Resource 事件或 Action 事件是与 View 进行绑定的，需要确保在 View 被采集的情况下才能正常采集；
+* 如果丢失 RUM 某一个 Session 数据或 Log，Trace 中的几条数据时，首先需要排除是否在 [FTRUMConfig](app-access.md#rum-config), [FTLoggerConfig](app-access.md#log-config), [FTTraceConfig](app-access.md#trace-config) 设置了 `sampleRate <  1` 。
+* 如果丢失 RUM 中 Resource 事件或 Action 事件（launch action 除外），需要检查是否开启 View 的自动采集或者有使用 Open API 手动采集。 Resource 事件或 Action 事件是与 View 进行绑定的，需要确保在 View 被采集的情况下才能正常采集。
 * 排查上传数据设备网络与安装 datakit 设备网路与负载问题。
 
 ## 版本兼容问题

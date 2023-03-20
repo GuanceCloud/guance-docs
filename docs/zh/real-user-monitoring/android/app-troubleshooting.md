@@ -56,7 +56,7 @@ dependencies {
 查看 `Logcat`确认是否存在日志 `Level` 为 `Error` ，`Tag` 为 `[FT-SDK]` 前缀的日志 
 
 ```kotlin
-14:46:04.825 [FT-SDK] com.demo E  请先安装SDK(在应用启动时调用 FTSdk.install(FTSDKConfig ftSdkConfig))
+14:46:04.825 [FT-SDK] com.demo E 请先安装SDK(在应用启动时调用 FTSdk.install(FTSDKConfig ftSdkConfig))
 ``` 
 
 ## 开启 Debug 调试
@@ -79,11 +79,11 @@ dependencies {
 	
 	//以下是连接错误日志
 	10:51:48.879 [FT-SDK]OkHttpEngine  com.demo E failed to connect to /10.0.0.1.166 (port 9529) from /10.0.0.2 (port 48254) after 10000ms,检查本地网络连接是否正常
-	10:51:48.880 [FT-SDK]SyncTaskManager your.pack E 同步数据失败-[code:2,response:failed to connect to /10.0.0.1 (port 9529) from /10.100.0.2 (port 48254) after 10000ms,检查本地网络连接是否正常]
+    10:51:48.880 [FT-SDK]SyncTaskManager com.demo E 同步数据失败-[code:2,response:failed to connect to /10.0.0.1 (port 9529) from /10.100.0.2 (port 48254) after 10000ms,检查本地网络连接是否正常]
 	
 	//以下是正常同步日志
 	10:51:48.996 [FT-SDK]NetProxy com.demo D HTTP-response:[code:200,response:]
-	10:51:48.996 [FT-SDK]SyncTaskManager your.pack  D  **********************同步数据成功**********************
+    10:51:48.996 [FT-SDK]SyncTaskManager com.demo D **********************同步数据成功**********************
 	
 	```
 * datakit 是否往对应工作空间上传数据，是否处于离线状态。这个可以通过登录观测云，查看「基础设施」来确认这个问题。
@@ -92,7 +92,7 @@ dependencies {
 
 ## 数据丢失
 ### 丢失部份数据
-* 如果丢失 RUM 某一个 Session 数据或 Log，Trace 中的几条数据时，首先需要排除是否设置了在 [FTRUMConfig](app-access.md#rum-config), [FTLoggerConfig](app-access.md#log-config), [FTTraceConfig](app-access.md#trace-config) 是否设置 `sampleRate <  1` 
+* 如果丢失 RUM 某一个 Session 数据或 Log，Trace 中的几条数据时，首先需要排除是否在 [FTRUMConfig](app-access.md#rum-config), [FTLoggerConfig](app-access.md#log-config), [FTTraceConfig](app-access.md#trace-config) 设置了 `sampleRate <  1` 
 * 排查上传数据设备网络与安装 datakit 设备网路与负载问题
 * 确认正确调用 `FTSdk.shutDown `，这个方法会释放 SDK 数据处理对象，包括缓存的数据。
 
