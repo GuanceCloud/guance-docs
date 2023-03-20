@@ -903,9 +903,9 @@ The object of the Kubernetes Service.
 
 
 
-#### `The logging of the container.`
+#### `Use Logging Source`
 
-
+The logging of the container.
 
 - Tags
 

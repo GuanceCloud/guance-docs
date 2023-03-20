@@ -16,8 +16,7 @@ Flink 性能指标展示，包括运行的 Job 数、 TaskManager 数、 JVM 信
 
 ## 版本支持
 
-操作系统：Linux / Windows<br />
-Flink 版本：ALL
+操作系统：Linux / Windows
 
 ## 前置条件
 

@@ -16,10 +16,10 @@ icon: zy/getting-started
 
     ---
 
-    包括[名词解释](./product-introduction/glossary.md)、[客户价值](./product-introduction/customer-value.md)、[按量的商业模式](./product-introduction/business-model.md) 等内容。
+    包括[产品介绍](./product-introduction/index.md)、[名词解释](./product-introduction/glossary.md)、[客户价值](./product-introduction/customer-value.md) 等内容。
 
     <br/>
-    [**:octicons-arrow-right-24: Getting more**](./product-introduction/index.md)
+    [**:octicons-arrow-right-24: 更多**](./product-introduction/index.md)
 
 
 -   :fontawesome-solid-magnifying-glass-chart:{ .lg .middle } __开始观测__
@@ -29,7 +29,7 @@ icon: zy/getting-started
     指导您快速观测系统
 
     <br/>
-    [**:octicons-arrow-right-24: Getting more**](./getting-guance.md)
+    [**:octicons-arrow-right-24: 更多**](./getting-guance.md)
 
 -   :material-compass:{ .lg .middle } __功能指南__
 
@@ -38,7 +38,7 @@ icon: zy/getting-started
     介绍更多功能操作技巧，如包括[查看器](./function-details/explorer-search.md)、[仪表板](./function-details/dashboard.md)、[快照](./function-details/snapshot.md) 等内容。
 
     <br/>
-    [**:octicons-arrow-right-24: Getting more**](./function-details/explorer-search.md)
+    [**:octicons-arrow-right-24: 更多**](./function-details/explorer-search.md)
 
 
 </div>
