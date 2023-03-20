@@ -118,7 +118,7 @@ typedef NS_ENUM(NSInteger, FTEnv) {
 @property (nonatomic, assign) FTEnv env;
 ```
 
-### RUM 配置
+### RUM 配置{#rum-config}
 
 ```objectivec
     //开启 rum
@@ -197,7 +197,7 @@ typedef NS_OPTIONS(NSUInteger, FTMonitorFrequency) {
 };
 ```
 
-### Log 配置
+### Log 配置{#log-config}
 
 ```objectivec
     //开启 logger
@@ -256,7 +256,7 @@ typedef NS_ENUM(NSInteger, FTLogCacheDiscard)  {
 @property (nonatomic, copy) NSString *prefix;
 ```
 
-### Trace 配置 
+### Trace 配置 {#trace-config}
 
 ```objectivec
     //开启 trace
