@@ -1,10 +1,11 @@
 # Generate Metrics
 ---
 
+## Overview
 
 Guance supports the generation of new metric data based on existing data in the current space, so that you can design and implement new technical metrics according to your needs.
 
-### Create Rules
+## Create Rules
 
 Enter the **Log > Generate Metric** page, and click **Create** to start creating a new generation metric rule.
 
@@ -45,7 +46,7 @@ All the added rules will be displayed in the Generate Metric interface. Users ca
 
 ![](img/log-metrics-en-2.png)
 
-### Edit Rules
+## Edit Rules
 
 On the **Generate Metric** page, you can view all generated metric rules that have been created and edit them.
 
@@ -53,17 +54,17 @@ On the **Generate Metric** page, you can view all generated metric rules that ha
 
 ![](img/log-metrics-en-3.png)
 
-### Enable/Disable Rules
+## Enable/Disable Rules
 
 On the **Generate Metric** page, you can modify the rule status. After the metric generation rule is disabled, the corresponding data will not be written to the measurement, and the writing will resume after it is enabled.
 
-### Delete Rule
+## Delete Rule
 
 On the **Generate Metric** page, unnecessary rules can be deleted. After the rules are deleted, the measurement will not be deleted, but data writing will stop.
 
-### View Metrics
+## View Metrics
 
-#### View in Metric Analysis
+### View in Metric Analysis
 
 On the **Generate Metric** page, click the **Open in Metrics Analysis** button on the right side of the rule to jump to the Metrics Analysis page for query and analysis.
 

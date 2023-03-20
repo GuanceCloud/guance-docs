@@ -49,7 +49,7 @@ If you create a rule that is no longer needed or needs to be modified, you can d
 
 ![](img/backup-log-en-5.png)
 
-## Backup Explorer
+## Backup Log
 
 Enter the **Log > Backup Log** page to view the log data that meets the backup conditions, and query and analyze the log by selecting time range, searching keywords, filtering, etc. Click on the log to view the log details, including the time and content of the log.     
  

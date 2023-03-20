@@ -42,27 +42,27 @@ In the following picture, after the index is successfully created, log data with
 
 ### <u>Example</u> {#example}
 
-In the **Index**, configure the index filter condition `source` to `df_diagnose`.
+In the **Index**, configure the index filter condition `source` to `http_dial_testing`.
 
-![](img/5.log_4.png)
+![](img/1-6-logindex-en.png)
 
 Click on the index to jump to the **Log Explorer** and view the corresponding log data.
 
-![](img/5.log_5.png)
+![](img/1-7-logindex-en.png)
 
-Or you can select a different index in Log > Explorer to view the corresponding log contents.
+Or you can select it in **Log > Explorer** to view the corresponding log contents.
 
-![](img/5.log_3.1.png)
+![](img/1-8-logindex-en.png)
 
-## Bind index {#binding-index}
+## Bind Index {#binding-index}
 
 Guance supports binding external index data, including SLS, Elasticsearch and OpenSearch index data. After successful binding, you can query and analyze external index data in guance workspace.
 
 ???+ attention
 
-    -The bound index only supports deletion (deletion means unbinding), and the log under the index cannot be queried after unbinding; 
+    - The bound index only supports deletion (deletion means unbinding), and the log under the index cannot be queried after unbinding; 
     
-    -'Other indexes' cannot have the same name as the log index or the historical log index. 
+    - 'Other indexes' cannot have the same name as the log index or the historical log index. 
 
 
 ![](img/log-index-en-4.png)
@@ -73,12 +73,12 @@ In **Log > Index**, click **Bind**. Select SLS in the pop-up dialog box, fill in
 
 For information on how to open the SLS storage solution, you can refer to the document [Alibaba Cloud Market Launches Guance Exclusive Edition](../billing/commercial-aliyun-sls.md). 
 
--If you are a commercial user of Guance, you can refer to the document [RAM Account Authorization](../billing/billing-method/sls-grant.md) to obtain AK/AKS for index binding; 
--If you are a user of the exclusive version of Guance, you can directly use AK/AKS when opening the exclusive version for index binding. For how to open the exclusive version, you can refer to the document [Alibaba Cloud Market opens the exclusive version of guance](../billing/commercial-aliyun-sls.md); 
--If you are an exclusive user of Guance and want to bind SLS log indexes under other Alibaba Cloud accounts, you can refer to the document [RAM Account Authorization](../billing/billing-method/sls-grant.md) to obtain AK/AKS for index binding. 
+- If you are a commercial user of Guance, you can refer to the document [RAM Account Authorization](../billing/billing-method/sls-grant.md) to obtain AK/AKS for index binding;<br/> 
+- If you are a user of the exclusive version of Guance, you can directly use AK/AKS when opening the exclusive version for index binding. For how to open the exclusive version, you can refer to the document [Alibaba Cloud Market opens the exclusive version of guance](../billing/commercial-aliyun-sls.md); <br/>
+- If you are an exclusive user of Guance and want to bind SLS log indexes under other Alibaba Cloud accounts, you can refer to the document [RAM Account Authorization](../billing/billing-method/sls-grant.md) to obtain AK/AKS for index binding. 
 
 
-![](img/log-index-en-5.png)
+![](img/1-1-logindex-en.png)
 
 ### Elasticsearch  {#es}
 
@@ -90,7 +90,7 @@ In **Log > Index**, click **Bind**. Select Elasticsearch page in the pop-up dial
  - Bind Index: The name of the index in Elasticsearch that needs to be bound to view. 
  - Index Name: The unique index name identified by Guance. This configuration is user-defined. Duplicate names are not supported in the workspace. 
 
-![](img/log-index-en-6.png)
+![](img/1-2-logindex-en.png)
 
 
 
@@ -104,7 +104,7 @@ In **Log > Index**, click **Bind**. Select Elasticsearch page in the pop-up dial
  - Bind Index: The name of the index in OpenSearch that needs to be bound to view. 
  - Index Name: The unique index name identified by Guance. This configuration is user-defined. Duplicate names are not supported in the workspace. 
 
-![](img/log-index-en-7.png)
+![](img/1-3-logindex-en.png)
 
 ### ES / OpenSearch Binding Index Configuration Instructions
 
@@ -127,11 +127,11 @@ As shown in the above figure, take ES as an example according to the rule of scr
 
 - If you need to bind all indexes in Guance, you need to bind this index alias, refer to the following example:
 
-![](img/2.index_out_3.png)
+![](img/1-4-logindex-en.png)
 
 - If you need to bind one of these indexes in Guance, or if there is no scrolling policy in the configuration, you only need to bind the specific index name, refer to the following example:
 
-![](img/2.index_out_4.png)
+![](img/1-5-logindex-en.png)
 
 
 ### Field Mapping 
