@@ -35,20 +35,20 @@ FTMobileFlutter.sdkConfig(
 
 === "iOS"
 
-    ```objc
-    	//以下是正常同步日志
-    	  [FTLog][INFO] -[FTTrackDataManger flushWithEvents:type:] [line 143] 开始上报事件(本次上报事件数:2)
-    	  [FTLog][INFO] -[FTRequestLineBody getRequestBodyWithEventArray:] [line 149]
-    	  Upload Datas Type:RUM
-    	  Line RequestDatas:
-    	  ...... datas .....
-    	  [FTLog][INFO] -[FTTrackDataManger flushWithEvents:type:]_block_invoke [line 157] Upload Response statusCode : 200
+    ```objective-c
+    //以下是正常同步日志
+    [FTLog][INFO] -[FTTrackDataManger flushWithEvents:type:] [line 143] 开始上报事件(本次上报事件数:2)
+    [FTLog][INFO] -[FTRequestLineBody getRequestBodyWithEventArray:] [line 149]
+    Upload Datas Type:RUM
+    Line RequestDatas:
+    ...... datas ......
+    [FTLog][INFO] -[FTTrackDataManger flushWithEvents:type:]_block_invoke [line 157] Upload Response statusCode : 200
+
+    //在 1.3.10 版本之前并不会打印 Upload Response statusCode : 200  ，可以查看控制台是否有错误日志，没有错误日志即上传成功。
+    //错误日志:
+    //Network failure: .....` 或 服务器异常 稍后再试 ......
+
     ```
-
-
- 在 1.3.10 版本之前并不会打印 `Upload Response statusCode : 200 ` ，可以查看控制台是否有错误日志，没有错误日志即上传成功。
-
-	  错误日志:  `Network failure: ......` 或 `服务器异常 稍后再试 ...... `
 
 * datakit 是否往对应工作空间上传数据，是否处于离线状态。这个可以通过登录观测云，查看「基础设施」来确认这个问题。
 

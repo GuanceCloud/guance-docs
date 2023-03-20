@@ -106,37 +106,37 @@ android{
 
 === "Java"
 
-```java
-public class DemoApplication extends Application {
+    ```java
+    public class DemoApplication extends Application {
 
-    @Override
-    public void onCreate() {
-        FTSDKConfig config = FTSDKConfig.builder(DATAKIT_URL)//Datakit install url
-                .setDebug(true)
-                .build();
+        @Override
+        public void onCreate() {
+            FTSDKConfig config = FTSDKConfig.builder(DATAKIT_URL)//Datakit install url
+                    .setDebug(true)
+                    .build();
 
-        FTSdk.install(config);
+            FTSdk.install(config);
 
-        // ...
+            // ...
+        }
     }
-}
-```
+    ```
 
 === "Kotlin"
 
-```kotlin
-class DemoApplication : Application() {
-    override fun onCreate() {
-        val config = FTSDKConfig
-            .builder(DATAKIT_URL)//Datakit install url
-            .setDebug(true);
+    ```kotlin
+    class DemoApplication : Application() {
+        override fun onCreate() {
+            val config = FTSDKConfig
+                .builder(DATAKIT_URL)//Datakit install url
+                .setDebug(true);
 
-        FTSdk.install(config)
-        
-        //...
+            FTSdk.install(config)
+
+            //...
+        }
     }
-}
-```
+    ```
 The optimal location for initializing an SDK theoretically is in the `onCreate` method of the `Application` class. If your application hasn't created an `Application` class, you need to create one and declare it in the `Application` section of the `AndroidManifest.xml`. For an example, please refer to [this](https://github.com/GuanceCloud/datakit-android/blob/dev/demo/app/src/main/AndroidManifest.xml) example.
 
 ```xml
