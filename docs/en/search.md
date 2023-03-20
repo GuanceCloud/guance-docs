@@ -14,8 +14,14 @@
 <script id="page-btn-tmpl" type="text/template">
     <a class="page-num btn"></a>
 </script>
+<script id="more-btn-tmpl" type="text/template">
+    <a id="btn-more" class="btn ">...</a>
+</script>
+<script id="less-btn-tmpl" type="text/template">
+    <a id="btn-less" class="btn ">...</a>
+</script>
     <h1 class="pagetitle">Search Results</h1>
-    <div id="search-result-content">
+    <div id="search-result-content" class="hide">
         <div id="search-result-count"><span></span> results</div>
         <div id="search-list">
         </div>
