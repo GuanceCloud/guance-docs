@@ -13,11 +13,11 @@ Miniapp sends different levels of log data (`corresponding source: browser_log` 
 - You can automatically collect [RUM](../real-user-monitoring/miniapp/app-access.md) related data to correlate RUM business scenarios (rum sdk needs to be updated to the latest version). 
 
 
-## Getting Started
+## Get Started
 
 ### Preconditions
 
-**DataKit:** Send log data to Guance through datakit log acquisition API.
+**DataKit:** Send log data to Guance through datakit log collection API.
 
 **import SDK:** SDK can be introduced into application by `NPM` and `CDN`. After initialization, it can be stored in global variables, which is convenient for other pages to refer to.
 
@@ -66,7 +66,7 @@ datafluxRum.init({
 | `silentMultipleInit`  | Boolean  | Optional           | `false`    | Do not allowed  initialize multiple log objects                                                                                                     |
 
 
-## Configuration
+## Use
 
 After the SDK is initialized in the application, you can customize the configuration log data through the exposed SDK API. 
 

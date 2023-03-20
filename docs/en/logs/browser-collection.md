@@ -13,13 +13,13 @@ Send different levels of log data (`corresponding source: browser_log` metric ty
 - Data related to [RUM](../real-user-monitoring/web/app-access.md) can be automatically collected to correlate RUM business scenarios. 
 
 
-## Getting Started
+## Get Started
 
 ### Preconditions
 
 **datakit:** Send log data to Guance through datakit log collection API.
 
-**Import SDK:** SDK can be introduced into applications by `NPM`, ` DN sync` or `CDN async`.
+**Import SDK:** SDK can be introduced into applications by `NPM`, `DN sync` or `CDN async`.
 
 **Support:** Support all pc-side and mobile-side browsers.
 
