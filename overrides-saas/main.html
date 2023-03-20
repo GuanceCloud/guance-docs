@@ -11,3 +11,36 @@ This file was automatically generated - do not edit
 <script src="https://static.guance.com/browser-sdk/v2/dataflux-rum.js" type="text/javascript"></script>
 <script src="/assets/javascripts/rum-config.js" type="text/javascript"></script>
 {% endblock %}
+
+{% block libs %} {{ super() }} {%- set search_config = { "base": base_url, "search": {}} -%} {% if
+"search" in config["plugins"] %} {%- set searchConfig = config.plugins.search.config -%} {%- set search =
+search_config.search -%} {%- set _ = search.update({"lang": searchConfig.clang}) -%} {%- set _ = search.update({"api":
+searchConfig.api}) -%}
+<script id="__search_config" type="application/json">
+  {{- search_config | tojson -}}
+</script>
+{% endif %}
+
+<script>
+  var __search = {
+    worker: '/assets/javascripts/worker.js',
+  }
+  var script = document.getElementById('__search_config')
+  var __search_config = JSON.parse(script.textContent)
+  document.addEventListener('keydown', function (evt) {
+    if (evt.key === 'Enter') {
+      const inputEl = document.querySelector('.md-search__input')
+      if (!inputEl) return
+      if (document.activeElement === inputEl) {
+        evt.preventDefault()
+        evt.stopPropagation()
+        const inputvalue = inputEl.value.trim()
+        if (!inputvalue) return
+        const baseUrl = `${new URL(__search_config.base, new URL(location.href))}`
+        location.href = `${new URL(`search/?s=${inputvalue}`, baseUrl)}`
+      }
+    }
+  })
+</script>
+
+{% endblock %}
