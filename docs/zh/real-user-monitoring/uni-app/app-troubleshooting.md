@@ -52,7 +52,7 @@ console.app 使用：
 
 * [排查 Datakit](../../datakit/why-no-data.md) 是否正常运行
 
-* 确认 SDK 上传地址 `metricsUrl` [配置正确](app-access.md#base config)，并正确初始化。debug 模式下，可以下列日志来判断上传地址配置问题。
+* 确认 SDK 上传地址 `metricsUrl` [配置正确](app-access.md#base-config)，并正确初始化。debug 模式下，可以下列日志来判断上传地址配置问题。
 
 	**编译运行平台为 Android 时：**
 	
@@ -94,11 +94,11 @@ console.app 使用：
 
 ### 丢失部份数据
 
-* 如果丢失 RUM 某一个 Session 数据或 Log，Trace 中的几条数据时，首先需要排除是否设置了在 [FTRUMConfig](app-access.md#rum config), [FTLoggerConfig](app-access.md#log config), [FTTraceConfig](app-access.md#trace config) 是否设置 `samplerate <  1` ；
+* 如果丢失 RUM 某一个 Session 数据或 Log，Trace 中的几条数据时，首先需要排除是否设置了在 [FTRUMConfig](app-access.md#rum-config), [FTLoggerConfig](app-access.md#log-config), [FTTraceConfig](app-access.md#trace-config) 是否设置 `samplerate <  1` ；
 
 * 采集到 RUM 数据不全，没有 Resource 或 Action 数据？
 
-  Resource 和 Action 数据是与 View 进行绑定的，需要确保有  [- startView](app-access.md#startView) 操作，可参考 [RUM-View](app-access.md#rumview) 文档来实现 View 事件采集。 
+  Resource 和 Action 数据是与 View 进行绑定的，需要确保有  [- startView](app-access.md#startview) 操作，可参考 [RUM-View](app-access.md#rumview) 文档来实现 View 事件采集。 
 
 * 排查上传数据设备网络与安装 datakit 设备网路与负载问题。
 

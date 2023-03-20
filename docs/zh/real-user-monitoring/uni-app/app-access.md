@@ -224,7 +224,7 @@ rum.stopView()
 | viewName | string   | 是       | 页面名称                     |
 | loadTime | number   | 是       | 页面加载时间(纳秒级别时间戳) |
 
-#### API - startView {#startView}
+#### API - startView {#startview}
 
 进入页面
 
