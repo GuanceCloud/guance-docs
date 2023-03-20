@@ -1,5 +1,4 @@
-let api,
-  lang = 'zh'
+let api, lang
 const PAGE_SIZE = 50
 const SearchMessageType = {
   SETUP: 0 /* Search index setup */,
@@ -34,6 +33,7 @@ function request(q) {
         }
       }
     }
+    q = decodeURIComponent(q)
     url = `${api}/api/v1/doc_search/search?language=${lang}&keyword=${q}&size=${PAGE_SIZE}`
     oReq.open('GET', url)
     oReq.setRequestHeader('Content-Type', 'application/json')
@@ -78,14 +78,13 @@ async function requestPromise(query) {
 }
 
 async function handler(message) {
-    console.log('===message', message)
   if (SearchMessageType.QUERY === message.type) {
     return await requestPromise(message.data)
   } else if (SearchMessageType.SETUP === message.type) {
     const config = message.data?.config
     if (config) {
       api = config.api
-      lang = config.clang || 'zh'
+      lang = config.clang
     }
     return {
       type: SearchMessageType.READY,

@@ -9,15 +9,19 @@ function getSearchTermFromLocation(query = 's') {
   }
 }
 const searchEl = document.getElementById('custom-search')
+const resultEl = searchEl.querySelector('#search-result-content')
 const totalEl = searchEl.querySelector('#search-result-count')
 const searchListEl = searchEl.querySelector('#search-list')
 const notResultTmpl = searchEl.querySelector('#no-result-tmpl')
 const searchPageNavigationEl = searchEl.querySelector('#search-page_navigation')
 const prevPageTmpl = searchEl.querySelector('#prev-btn-tmpl')
 const nextPageTmpl = searchEl.querySelector('#next-btn-tmpl')
+const lessPageTmpl = searchEl.querySelector('#less-btn-tmpl')
+const morePageTmpl = searchEl.querySelector('#more-btn-tmpl')
 const pageBtnTmpl = searchEl.querySelector('#page-btn-tmpl')
 const baseUrl = `${new URL(__search_config.base, new URL(location.href))}`
 const DEFAULT_PAGE_SIZE = 20
+const MAX_PAGE_BTN = 9
 let page = 1,
   pageSize = DEFAULT_PAGE_SIZE
 q = ''
@@ -65,9 +69,12 @@ function createElement(str) {
 const renderPageNav = function (total = 0) {
   if (total === 0) return
   const totalPage = Math.ceil(total / pageSize)
+  const currenPageNum = Math.ceil(page / MAX_PAGE_BTN)
+  const maxPageNum = Math.ceil(totalPage / MAX_PAGE_BTN)
   const hasPrev = page > 1
   const hasNext = page < totalPage
-
+  const hasLess = currenPageNum > 1
+  const hasMore = currenPageNum < maxPageNum
   const prevNode = createElement(prevPageTmpl.innerHTML)[0]
   const nextNode = createElement(nextPageTmpl.innerHTML)[0]
   const pageParentEl = document.createElement('div')
@@ -77,38 +84,38 @@ const renderPageNav = function (total = 0) {
     prevNode.classList.remove('disabled')
   }
   pageParentEl.appendChild(prevNode)
+  if (hasLess) {
+    const lessPageBtn = createElement(lessPageTmpl.innerHTML)[0]
+    lessPageBtn.setAttribute('data-num', currenPageNum)
+    pageParentEl.appendChild(lessPageBtn)
+  }
   if (!hasNext) {
     nextNode.classList.add('disabled')
   } else {
     nextNode.classList.remove('disabled')
   }
-  //   prevNode.onclick = function () {
-  //     if (hasPrev) {
-  //       page--
-  //       gotoPage(page)
-  //     }
-  //   }
-  //   nextNode.onclick = function () {
-  //     if (hasNext) {
-  //       page++
-  //       gotoPage(page)
-  //     }
-  //   }
-  let index = 1
-  while (index <= totalPage) {
+  let startNum = (currenPageNum - 1) * MAX_PAGE_BTN + 1
+  let endNum = currenPageNum * MAX_PAGE_BTN
+  endNum = endNum > totalPage ? totalPage : endNum
+  while (startNum <= endNum) {
     const pageBtnNode = createElement(pageBtnTmpl.innerHTML)[0]
-    pageBtnNode.innerHTML = index
-    if (page === index) {
+    pageBtnNode.innerHTML = startNum
+    if (page === startNum) {
       pageBtnNode.classList.add('active')
     } else {
       pageBtnNode.classList.remove('active')
     }
-    pageBtnNode.setAttribute('data-page', index)
+    pageBtnNode.setAttribute('data-page', startNum)
     // pageBtnNode.onclick = function () {
     //   gotoPage(index)
     // }
     pageParentEl.appendChild(pageBtnNode)
-    index++
+    startNum++
+  }
+  if (hasMore) {
+    const morePageBtn = createElement(morePageTmpl.innerHTML)[0]
+    morePageBtn.setAttribute('data-num', currenPageNum)
+    pageParentEl.appendChild(morePageBtn)
   }
   pageParentEl.appendChild(nextNode)
   searchPageNavigationEl.innerHTML = pageParentEl.innerHTML
@@ -129,6 +136,7 @@ async function render() {
     } else {
       searchListEl.innerHTML = notResultTmpl.innerHTML
     }
+    resultEl.classList.remove('hide')
   }
 }
 const initListener = function () {
@@ -140,7 +148,15 @@ const initListener = function () {
       gotoPage(page + 1)
     } else if (target && target.getAttribute('class') && target.getAttribute('class').includes('page-num')) {
       const index = target.getAttribute('data-page')
-      gotoPage(index)
+      gotoPage(Number(index))
+    } else if (target && target.getAttribute('id') === 'btn-less') {
+      const currentPageNum = Number(target.getAttribute('data-num'))
+      // 跳到上一页的最后一条
+      gotoPage((currentPageNum - 1) * MAX_PAGE_BTN)
+    } else if (target && target.getAttribute('id') === 'btn-more') {
+      const currentPageNum = Number(target.getAttribute('data-num'))
+      // 跳到下一页的第一条
+      gotoPage(currentPageNum * MAX_PAGE_BTN + 1)
     }
   })
 }
@@ -162,10 +178,12 @@ const replaceLocation = function (isReload = false) {
 }
 const init = function () {
   q = getSearchTermFromLocation()
+
   page = Number(getSearchTermFromLocation('page') || 1)
   pageSize = Number(getSearchTermFromLocation('size') || DEFAULT_PAGE_SIZE)
   replaceLocation()
   if (q) {
+    q = decodeURIComponent(q)
     render()
     initListener()
   }
