@@ -1,5 +1,5 @@
 # 故障排查
-## 编译错误
+## 编译故障排查
 编译过程发生错误，需要首先检查编译环境
 
 ### 可运行编译环境 
@@ -13,19 +13,19 @@
 
 #### ⚠️ 可兼容运行环境 
 * AGP `com.android.tools.build:gradle` 版本 `3.0.1` 以上
-* gradle 版本 `4.8.1` 以上
-* java 版本 `8.0` 以上
+* Gradle 版本 `4.8.1` 以上
+* Java 版本 `8.0` 以上
 * Android minSdkVersion 21
 
 > 此环境 `ft-plugin` 无法使用，数据自动捕获的部分需要，手动接入完成。更多手动接入相关请参考[这里](app-access.md#manual-set)
 
-#### SDK 无法解析导入
+### SDK 无法解析导入
 ![](../img/17.trouble_shooting_android_gradle_error_1.png)
 ![](../img/17.trouble_shooting_android_gradle_error_2.png)
 发生以上错误是因为因为 maven 仓库没有正确设置，请参考这里的[配置](app-access.md##gradle-setting)
 
 
-####  编译错误
+### 编译错误
 
 * Desugaring  Error
 
@@ -66,7 +66,7 @@ dependencies {
   val config = FTSDKConfig.setDebug(true);
   FTSdk.install(config)
 ```
->**建议Relase 版本发布时，关闭这个配置**
+>**建议 Release 版本发布时，关闭这个配置**
 
 ## SDK 正常运行但是没有数据
 * [排查 Datakit](../../datakit/why-no-data.md) 是否正常运行
@@ -107,6 +107,7 @@ dependencies {
 	
 	13:41:10.749 [FT-SDK]FTRUMConfigManager com.demo D unbindUserData
 	```
+	
 ### 丢失自定义参数或数值发生错误
 * 确认在正确的场景下调用，`FTRUMConfig.addGlobalContext`，`FTLoggerConfig.addGlobalContext `适合一个应用周期内不更变的场景，例如应用渠道商、应用不同 Flavor 属性等数据，如果需要根据动态场景，实时响应，需要使用手动调用 [RUM](app-access.md#rum-trace) 和 [Log](app-access.md#log)  接口。
 * deubg 模式下，查看 `[FT-SDK]SyncTaskManager` 日志，可以通过这个日志，来验证自定义字段参数的正确性
