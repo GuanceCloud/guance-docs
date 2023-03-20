@@ -78,6 +78,7 @@ async function requestPromise(query) {
 }
 
 async function handler(message) {
+    console.log('===message', message)
   if (SearchMessageType.QUERY === message.type) {
     return await requestPromise(message.data)
   } else if (SearchMessageType.SETUP === message.type) {
