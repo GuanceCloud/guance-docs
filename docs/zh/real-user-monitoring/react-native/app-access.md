@@ -54,7 +54,7 @@ import {
 
 ## SDK 初始化
 
-###  基础配置
+###  基础配置{#base-setting}
 
 ```typescript
 let config: FTMobileConfig = {
@@ -73,7 +73,7 @@ FTMobileReactNative.sdkConfig(config)
 | globalContext | NSDictionary | 否 | [添加自定义标签](#user-global-context ) |
 | service | string | 否 | 设置所属业务或服务的名称，影响 Log 和 RUM 中 service 字段数据。默认：`df_rum_ios`、`df_rum_android` |
 
-### RUM 配置
+### RUM 配置{#rum-config}
 
 ```typescript
 let rumConfig: FTRUMConfig = {
@@ -108,7 +108,7 @@ FTReactNativeRUM.setConfig(rumConfig);
 | globalContext | object | 否 | [添加自定义标签](#user-global-context) |
 
 
-### Log 配置
+### Log 配置{#log-config}
 
 ```typescript
 let logConfig: FTLogConfig = {
@@ -127,7 +127,7 @@ FTReactNativeLog.logConfig(logConfig);
 | logLevelFilters | Array<FTLogStatus> | 否 | 日志等级过滤 |
 | globalContext | NSDictionary | 否 | [添加自定义标签](#user-global-context) |
 
-### Trace 配置
+### Trace 配置{#trace-config}
 
 ```typescript
  let traceConfig: FTTractConfig = {
@@ -156,7 +156,7 @@ FTReactNativeRUM.startAction('actionName','actionType');
 
 开启自动采集后可通过 `accessibilityLabel`设置 `actionName`。
 
-### View
+### View{#rumview}
 
 ```typescript
 FTReactNativeRUM.startView("RUM");
