@@ -51,7 +51,7 @@ function renderRow(rowData) {
   title.setAttribute('class', 'search-list-row-title')
   const titleA = document.createElement('a')
   titleA.setAttribute('href', `${new URL(rowData.location, baseUrl)}`)
-  titleA.innerHTML = rowData.title
+  titleA.innerHTML = (rowData.menu || '').replace(/>>/g, '»')
   title.append(titleA)
   const text = document.createElement('div')
   text.setAttribute('class', 'search-list-row-text')
