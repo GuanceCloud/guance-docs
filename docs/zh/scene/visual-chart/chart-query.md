@@ -48,9 +48,17 @@
 
 #### Label {#label}
 
-支持选择主机 Label 属性进行筛选显示，在图表查询中选择 Label 之前，需在「基础设施」-「主机」中为主机设置 Label 属性。如下图，点击「fx」，选择「Label 筛选」，输入 Label 属性 “guance” ，可发现有一台主机的数据。有关主机 Label 设置可参考文档 [主机](../../infrastructure/host.md) 。
+支持选择主机 Label 属性进行筛选显示。
 
-![](../img/chart018.png)
+**前提条件:**
+
+在图表查询中选择 Label 之前，需在「基础设施」-「主机」中为主机设置 Label 属性。更多详情可参考文档 [主机](../../infrastructure/host.md) 。
+
+**Label 筛选：**
+
+在图表查询，点击「fx」，选择「Label 筛选」、正选或者反选、以及在主机设置的Label 属性，如 “dev” ，即可查询对应的主机数据。如下图：
+
+![](../img/6.chart_query_label.png)
 
 #### 筛选
 
