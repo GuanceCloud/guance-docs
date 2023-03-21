@@ -3,32 +3,32 @@
 
 ## Overview
 
-Miniapp sends different levels of log data (` corresponding source: browser_log ` metric type log data) to [Guance] (https://www.guance.com/).
+Miniapp sends different levels of log data (`corresponding source: browser_log` metric type log data) to [Guance](https://www.guance.com/).
 
 ## Function List
 
-- Custom log data collection, access to client applications through sdk, and collect different log data for different scenarios. 
-- Automatically collect application-side error messages (including network errors, console errors, and js errors) and report them to DataFlux. 
-- Custom error levels (` debug `, ` critical `, ` error `, ` info `, ` warn `), custom Logger objects, and custom log fields 
-- You can automatically collect [RUM] (../real-user-monitoring/miniapp/app-access.md) related data to correlate RUM business scenarios (rum sdk needs to be updated to the latest version) 
+- Custom log data collection is applied to client through sdk and then collect different log data for different scenarios. 
+- Automatically collect application-side error messages (including network errors, console errors and js errors) and report them to DataFlux. 
+- Custom error levels (`debug`, `critical`, `error`, `info`, `warn`), custom Logger objects and custom log fields.  
+- You can automatically collect [RUM](../real-user-monitoring/miniapp/app-access.md) related data to correlate RUM business scenarios (rum sdk needs to be updated to the latest version). 
 
 
-## Get started
+## Get Started
 
-### Setup
+### Preconditions
 
-**datakit:** Send log data to Guance through datakit log acquisition API
+**DataKit:** Send log data to Guance through datakit log collection API.
 
-**import SDK:** SDK can be introduced into application by ` NPM ` and ` CDN `. After initialization, it can be stored in global variables, which is convenient for other pages to refer to
+**import SDK:** SDK can be introduced into application by `NPM` and `CDN`. After initialization, it can be stored in global variables, which is convenient for other pages to refer to.
 
-**support:** Most small programs such as WeChat, Baidu, Alipay and Toutiao
+**Support Miniapp Clients**: WeChat, Baidu, Alipay, Toutiao and other miniapp terminals.
 
-### npm  (node package manager)
+### Npm Introduction
 
 ```javascript
 //#ifndef H5 || APP-PLUS || APP-NVUE || APP-PLUS-NVUE
 const { datafluxRum } = require('@cloudcare/dataflux-rum-miniapp-logs')
-// Initialization
+// Initialization Rum
 datafluxRum.init({
 	datakitOrigin: '<DATAKIT ORIGIN>'
   service: 'minapp',
@@ -38,12 +38,12 @@ datafluxRum.init({
 //#endif
 ```
 
-### CDN Download File Locally([URL](https://static.guance.com/miniapp-sdk/v1/dataflux-rum-miniapp-logs.js))
+### CDN Download File Introduce ([URL](https://static.guance.com/miniapp-sdk/v1/dataflux-rum-miniapp-logs.js)) Locally
 
 ```javascript
 //#ifndef H5 || APP-PLUS || APP-NVUE || APP-PLUS-NVUE
 const { datafluxRum } = require('@cloudcare/dataflux-rum-miniapp-logs')
-// Initialization
+// Initialization Rum
 datafluxRum.init({
 	datakitOrigin: '<DATAKIT ORIGIN>'
   service: 'miniapp',
@@ -66,7 +66,7 @@ datafluxRum.init({
 | `silentMultipleInit`  | Boolean  | Optional           | `false`    | Do not allowed  initialize multiple log objects                                                                                                     |
 
 
-## Configuration
+## Use
 
 After the SDK is initialized in the application, you can customize the configuration log data through the exposed SDK API. 
 
@@ -82,7 +82,7 @@ import { datafluxLogs } from '@cloudcare/dataflux-rum-miniapp-logs'
 datafluxLogs.logger.info('Button clicked', { name: 'buttonName', id: 123 })
 ```
 
-## Return data structure
+## Return Data Structure
 
 ```json
 {
@@ -136,15 +136,15 @@ datafluxLogs.logger.info('Button clicked', { name: 'buttonName', id: 123 })
 }
 ```
 
-## Status configuration
+## Status Parameter
 
-After the SDk is initialized, you can define different types of states using the ` log ` API provided
+After the SDk is initialized, you can define different types of states using the `log` API provided
 
 ```javascript
 log (message: string, messageContext: Context, status? = 'debug' | 'info' | 'warning' | 'error' | 'critical')
 ```
 
-### Configuration
+### Use
 
 ```javascript
 import { datafluxLogs } from '@cloudcare/dataflux-rum-miniapp-logs'
@@ -152,7 +152,7 @@ import { datafluxLogs } from '@cloudcare/dataflux-rum-miniapp-logs'
 datafluxLogs.logger.log(<MESSAGE>,<JSON_ATTRIBUTES>,<STATUS>);
 ```
 
-## Parameter description
+## Parameter Description
 | **Parameter**            | **Description**                                                   |
 | ------------------- | ---------------------------------------------------------- |
 | `<MESSAGE>`         | message field in Guance Log                             |

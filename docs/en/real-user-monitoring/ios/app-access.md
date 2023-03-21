@@ -275,12 +275,12 @@ In general, because the output of NSLog will consume system resources, and the o
 | enableLinkRumData | BOOL | Whether to associate Trace data with rum | No (default NO) |
 | enableAutoTrace | BOOL | Set whether to enable automatic http trace, currently only NSURLSession is supported | No (default NO) |
 
-#### Trace Tracking Type
+#### Tracing Type
 
 ```objectivec
 /**
  * @enum
- * Network Link Tracking Types
+ * Network Link Tracing Types
  *
  * @constant
  *  FTNetworkTraceTypeDDtrace       - datadog trace
@@ -535,7 +535,7 @@ typedef NS_ENUM(NSInteger, FTStatus) {
 -(void)logging:(NSString *)content status:(FTLogStatus)status property:(nullable NSDictionary *)property;
 ```
 
-## Tracing
+## Network Link Tracing
 
 You can `FTTraceConfig` configuration to turn on automatic mode, or manually add. Trace related data, through the `FTTraceManager` singleton, to pass in, the relevant API as follows.
 
