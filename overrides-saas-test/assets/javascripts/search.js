@@ -141,6 +141,8 @@ async function render() {
 }
 const initListener = function () {
   searchPageNavigationEl.addEventListener('click', function (evt) {
+    evt.stopPropagation()
+    evt.preventDefault()
     const target = evt.target
     if (target && target.getAttribute('id') === 'btn-prev') {
       gotoPage(page - 1)
