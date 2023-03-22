@@ -11,7 +11,7 @@ icon: zy/release-notes
 
 ### 观测云更新
 
-#### 查看器/仪表板时间控件新增“时区选择”和“全局锁定”功能
+#### 查看器/仪表板时间控件优化
 
 - 账号管理新增时区设置，更多详情可参考文档 [时区](../management/account-management.md#zone) 。
 
