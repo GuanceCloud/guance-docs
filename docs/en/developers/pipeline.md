@@ -1859,6 +1859,8 @@ cover(abc, [2, 4])
 
 ### `datetime()` {#fn-datetime}
 
+[:octicons-tag-24: Version-1.5.7](../changelog.md#cl-1.5.7)
+
 Function prototype: `fn datetime(key, precision: str, fmt: str, tz: str = "")`
 
 Function description: Convert timestamp to specified date format
@@ -1960,6 +1962,7 @@ datetime(ts, 'ns', '%m/%d/%y  %H:%M:%S %z', "Asia/Tokyo")
   "ts": "03/08/23  15:44:59 +0900"
 }
 ```
+
 
 ### `decode()` {#fn-decode}
 
@@ -2371,6 +2374,7 @@ Function parameters:
 - `json_path`: json path information
 - `newkey`：Write the data to the new key after extraction
 - `trim_space`: Delete the leading and trailing blank characters in the extracted characters, the default value is true
+- `delete_after_extract`: After extract delete the extracted info from input. Only map key and map value are deletable, list(array) are not supported. Default is `false'.  [:octicons-tag-24: Version-1.5.7](../changelog.md#cl-1.5.7)
 
 ```python
 # Directly extract the x.y field in the original input json, and name it as a new field abc
@@ -2469,7 +2473,10 @@ json(_, item2.item3[0], item, delete_after_extract = true)
 # [E] j2.p:1:54: does not support deleting elements in the list
 ```
 
+
 ### `kv_split()` {#fn-kv_split}
+
+[:octicons-tag-24: Version-1.5.7](../changelog.md#cl-1.5.7)
 
 Function prototype: `fn kv_split(key, field_split_pattern = " ", value_split_pattern = "=", trim_key = "", trim_value = "", include_keys = [], prefix = "") -> bool`
 
