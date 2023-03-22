@@ -1,16 +1,17 @@
 # Generate Metrics
 ---
 
+## Overview
 
 Guance supports the generation of new metric data based on existing data in the current space, so that you can design and implement new technical metrics according to your needs.
 
-### New Rule
+## Create Rules
 
-Enter the "Log"-"Generate Metric" page, and click "New Rule" to start creating a new generation metric rule.
+Enter the **Log > Generate Metric** page, and click **Create** to start creating a new generation metric rule.
 
 ![](img/log-metrics-en-1.png)
 
-**Step 1**: Data filtering. Filter out all/single log data sources existing in the current space and start generating new data based on this data source.
+**Step 1**: Data filtering. Filter out all or single log data sources existing in the current space and start generating new data based on this data source.
 
 - Source: Data source, that is, the log data source that has been collected. **Note: "*" denotes all data sources**
 
@@ -39,33 +40,33 @@ Enter the "Log"-"Generate Metric" page, and click "New Rule" to start creating a
 - Measurement: Set the name of the measurement where the metric is stored
 - Metric: Set the name of the metric. Metric names cannot be duplicated. Multiple metrics can be added.
 
-**Step 4:** After completing the generation rule, click OK to complete the generation of metric rules and start data collection.
+**Step 4:** After completing the generation rule, click **Confirm** to complete the generation of metric rules and start data collection.
 
-All the added rules will be displayed in the Generate Metric interface. Users can "Enable/Disable", "Open in Metric Analysis", "Open in Metric Management", "Edit" and "Delete" operations.
+All the added rules will be displayed in the Generate Metric interface. Users can **Enable/Disable, Open in Metric Analysis, Open in Metric Management, Edit** and **Delete** operations.
 
 ![](img/log-metrics-en-2.png)
 
-### Edit Rules
+## Edit Rules
 
-On the Generate Metric page, you can view all generated metric rules that have been created and edit them.
+On the **Generate Metric** page, you can view all generated metric rules that have been created and edit them.
 
-**Note: Because the data source and aggregate expression of generating metric rules determine the data type, some rules do not support editing and modification.**
+**Note: As the data source and aggregate expression of generating metric rules determine the data type, some rules do not support editing and modification.**
 
 ![](img/log-metrics-en-3.png)
 
-### Enable/Disable Rules
+## Enable/Disable Rules
 
-On the Generate Metrics page, you can modify the rule status. After the metric generation rule is disabled, the corresponding data will not be written to the measurement, and the writing will resume after it is enabled.
+On the **Generate Metric** page, you can modify the rule status. After the metric generation rule is disabled, the corresponding data will not be written to the measurement, and the writing will resume after it is enabled.
 
-### Delete Rule
+## Delete Rule
 
-On the Generate Metrics page, unnecessary rules can be deleted. After the rules are deleted, the measurement will not be deleted, but data writing will stop.
+On the **Generate Metric** page, unnecessary rules can be deleted. After the rules are deleted, the measurement will not be deleted, but data writing will stop.
 
-### View Metrics
+## View Metrics
 
-#### View in Metric Analysis
+### View in Metric Analysis
 
-On the Generate Metrics page, click the Open in Metrics Analysis button on the right side of the rule to jump to the Metrics Analysis page for query and analysis.
+On the **Generate Metric** page, click the **Open in Metrics Analysis** button on the right side of the rule to jump to the Metrics Analysis page for query and analysis.
 
 Note: Metrics generation is based on data aggregation within the selected frequency and query time range. If no data is submitted during the period, metrics cannot be generated, and query or search in metric cannot be performed.
 
@@ -75,6 +76,6 @@ Note: Metrics generation is based on data aggregation within the selected freque
 
 #### View in Metric Management
 
-On the Generate Metric page, click the Open in Metric Management button on the right side of the rule to jump to the Metric Management page to view metrics and tags, and support editing metric units and descriptions.
+On the **Generate Metric** page, click the **Open in Metric Management** button on the right side of the rule to jump to the **Metric Management** page to view metrics and tags, and support editing metric units and descriptions.
 
 ![](img/log-metrics-en-5.png)

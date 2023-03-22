@@ -152,4 +152,5 @@ dist：
 
 ## 进一步阅读
 
-暂无
+- <[TAG 在观测云中的最佳实践](../../best-practices/insight/tag.md)>
+- <[多个 Kubernetes 集群指标采集最佳实践](../../best-practices/cloud-native/multi-cluster.md)>

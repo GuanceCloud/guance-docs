@@ -20,11 +20,11 @@ Guance provides comprehensive log collection capability. By configuring [log col
 
 - [Log Analysis](explorer.md): Support statistics of the number of logs of different levels generated at various time points; Support full-text retrieval, keyword retrieval, fuzzy matching, label filtering, quick filtering, approximate text and grouping query analysis.
 
-- [Log Pipeline](pipelines/index.md): Supports cutting the text content of the log by Pipeline, so as to extract specific fields as labels or timestamps of the log.
+- [Log Pipeline](pipelines/index.md): Support cutting the text content of the log by Pipeline, so as to extract specific fields as labels or timestamps of the log.
 
-- [Generate Metrics](generate-metrics. md): supports user-defined rules for generating monitoring metrics based on logs.
+- [Generate Metrics](generate-metrics.md): Support user-defined rules for generating monitoring metrics based on logs.
 
-- [Log Index](multi-index.md): supports setting log multiple indexes, filters the logs that meet the requirements and saves them in different log indexes, and selects different data storage strategies for each log index. 
-- [Blacklist](blacklist. md): Supports user-defined filtering rules for log collection, and filters log data in real time. 
-- [Backup Log](backup.md): Supports backup of logs to help save usage costs. 
-- [Snapshot](../management/snapshot .md): Supports saving the current data set as a copy, which can be viewed repeatedly through the "Snapshot History" function. 
+- [Log Index](multi-index.md): Support setting log multiple indexes, filters the logs that meet the requirements and saves them in different log indexes, and selects different data storage strategies for each log index. 
+- [Log Blacklist](../management/overall-blacklist.md): Support user-defined filtering rules for log collection, and filters log data in real time. 
+- [Backup Log](backup.md): Support backup of logs to help save usage costs. 
+- [Snapshot](../management/snapshot .md): Support saving the current data set as a copy, which can be viewed repeatedly through the **Snapshot History** function. 

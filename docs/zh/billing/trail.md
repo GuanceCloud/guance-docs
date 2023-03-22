@@ -1,24 +1,11 @@
 # 公有云体验版
 ---
 
-## 开通体验版
-
-在[观测云官网](https://www.guance.com/)，点击「[免费开始](https://auth.guance.com/businessRegister)」，填写相关信息后即可成为观测云用户。
-
-第一步「基本信息」的**选择注册站点**较为重要，请参考 [<站点说明>](../getting-started/necessary-for-beginners/select-site.md)后，按需谨慎选择。
-
-![](img/commercial-register-1.png)
-
-第三步「选择开通方式」，点击右上角切换到「开通体验版工作空间」，并输入「工作空间名称」，点击「确定」即可开通观测云公有云体验版。
-
-![](img/8.register_5.png)
-
-
-## 体验版与商业版区别 {#trail-vs-commercial}
+## 体验版与商业版的区别 {#trail-vs-commercial}
 
 公有云提供的体验版、商业版，均采用**按量付费**的计费方式。
 
-体验版可接入数据量规模存在限制，[升级商业版](commercial-version.md)后可接入更大规模的数据量，更灵活地自定义数据存储时效。
+体验版可接入数据量规模存在限制，[升级到商业版](#upgrade-commercial)后可接入更大规模的数据量，更灵活地自定义数据存储时效。
 
 ???+ attention
 
@@ -59,23 +46,99 @@
 |          | 增值服务         | /     | 互联网专业运维服务         |
 |          | 监控数字作战屏   | /     | 可定制   |
 
+## 开通体验版 {#register-trail}
 
-## 体验额度查询
+在[观测云官网](https://www.guance.com/)，点击「[免费开始](https://auth.guance.com/businessRegister)」，填写相关信息后即可成为观测云用户。
 
-观测云工作空间的拥有者、管理员，可以在「控制台」-「付费计划与账单」模块，查看各个计费项目每天的体验额度及其使用情况。<br/>
-若需要 [升级到商业版](commercial-version.md)，可以点击「升级」按钮。
+第一步「基本信息」的**选择注册站点**较为重要，请参考 [<站点说明>](./commercial-register.md#site)后，按需谨慎选择。
+
+![](img/commercial-register-1.png)
+
+第三步「选择开通方式」，点击右上角切换到「开通体验版工作空间」，并输入「工作空间名称」，点击「确定」即可开通观测云公有云体验版。
+
+![](img/8.register_5.png)
+
+### 体验额度查询
+
+观测云工作空间的拥有者、管理员，可以在「控制台」-「付费计划与账单」模块，查看各个计费项目每天的体验额度及其使用情况。
+
+![](img/9.upgrade_1.png)
+## 体验版升级到商业版 {#upgrade-commercial}
+
+???+ attention
+
+    - 体验版成功升级到商业版以后，**无法回退**；
+    - 采集数据会继续上报到观测云工作空间，但是**体验版时期采集的数据将无法查看**。
+
+### 前置条件
+
+- 注册[观测云控制台](https://console.guance.com/)账号，已用体验版工作空间。
+- 注册[观测云费用中心](https://boss.guance.com/)账号，对接后续费用结算功能。
+
+### 进入升级页面
+
+工作空间的体验版用户，登陆「控制台」-「付费计划与账单」，点击「升级」，进入「套餐升级」页面
 
 ![](img/9.upgrade_1.png)
 
+在「套餐升级」页面，点击「升级」。观测云支持按需购买，按量付费，更多版本计费逻辑可参考文档 [计费方式](../billing/billing-method/index.md) 。
+
+![](img/9.upgrade_2.png)
+
+### 绑定费用中心账号
+
+输入已经在[观测云费用中心](https://boss.guance.com/)注册的账号进行绑定，此处会对「用户名」进行校验，请输入已开通观测云费用中心账号的「用户名」。
+
+![](img/9.upgrade_3.png)
+
+
+若尚未注册费用中心账号，请点击上图「注册新账号」后再绑定。
+
+![](img/7.biling_account_5.png)
+
+查看开通协议并同意，协议同意后即可收到开通提醒邮件。
+
+![](img/1.upgrade_agreement.png)
+
+### 升级成功
+
+同意协议后，该工作空间成功升级到商业版。
+
+![](img/9.upgrade_5.png)
+
+### 选择结算方式
+
+由体验版成功升级到商业版后，默认使用观测云费用中心账号结算。
+
+若需要更改其他结算方式，可以上点击上图的「绑定结算云账号」按钮。目前观测云支持三种结算方式：
+
+- [观测云账号结算](../billing/billing-account/enterprise-account.md)：直接在观测云费用中心进行充值结算，您可以购买 [华为云储值卡](../billing/billing-account/huaweicloud-account.md) 为观测云企业账号进行充值结算；
+- [阿里云账号结算](../billing/billing-account/aliyun-account.md)：直接通过阿里云账号进行充值结算；
+- [AWS账号结算](../billing/billing-account/aws-account.md)：直接通过AWS账号进行充值结算。
+
+![](img/1.upgrade_account.png)
+
+若未登记过云账号，可选择“阿里云账号”或者“AWS云账号”，在弹出的对话框中选择结算方式，具体步骤可参考 [开通阿里云账号结算方式](../billing/billing-account/aliyun-account.md) 或 [在 AWS 订阅观测云](../billing/billing-account/aws-account.md) 。
+
+![](img/9.upgrade_7.png)
+
+若选择使用观测云账号结算，可直接关闭“更改结算方式”对话框。支持在观测云费用中心“工作空间管理”更改结算方式。
+
+![](img/9.upgrade_9.png)
+
+
+## 查看商业版
+
+返回观测云付费计划与账单，可以看到当前工作空间已经升级到「商业版」。
+
+![](img/9.upgrade_10.png)
+
+在观测云付费计划与账单，点击「费用中心」，即可自动跳转到观测云费用中心。
+
+![](img/9.upgrade_11.png)
+
 ## 更多阅读
 
-<[快速入门](https://docs.guance.com/getting-started/)>
-
-<[升级到商业版](commercial-version.md)>
-
-
-
-
-
+<[快速入门](../getting-started/index.md)>
 
 

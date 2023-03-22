@@ -167,6 +167,8 @@ In addition to global attributes, you can also build scenarios and configure eve
 |<del> `resource_trans` </del>| number（ns） | <del>Resource load content transfer time<br>Calculation method: responseEnd - responseStart </del>|
 | <del>`resource_first_byte` </del>| number（ns） | <del>First packet time of resource loading<br>Calculation method: responseStart - domainLookupStart </del>|
 | <del>`duration`</del>| number（ns） | <del>Resource load time<br>Calculation method: duration(responseEnd-startTime) </del>|
+| `request_header` | string | Resource http request header |
+| `response_header` | string | Resource http response header |
 
 ### Error
 
@@ -175,7 +177,6 @@ In addition to global attributes, you can also build scenarios and configure eve
 | **Field**        | **Type** | **Description**                                            |
 | --------------- | -------- | --------------------------------------------------- |
 | `view_id`       | string   | Unique ID generated every time the page is accessed                          |
-| `is_active`     | boolean  | Judge whether the user is still active, reference value: true &#124; false |
 | `view_referrer` | string   | Page source, parent of page                                |
 | `view_name`     | string   | Page name                                            |
 

@@ -31,10 +31,10 @@
 1.从 GitHub 根据指定 tag 获取 SDK 的源代码。
 
 ```
-git clone --branch 1.3.10-beta.1 https://github.com/GuanceCloud/datakit-ios.git
+git clone --branch 1.3.10-beta.2 https://github.com/GuanceCloud/datakit-ios.git
 ```
 
-2.将 SDK 源代码导入 App 项目。将 **FTMobileAgent** 和 **BaseUtils** 整个文件夹导入项目，并选中 `Copy items if needed` ，勾选 `Create groups` 。
+2.将 SDK 源代码导入 App 项目。将 **FTMobileAgent** 和 **BaseUtils** 文件夹导入项目，并选中 `Copy items if needed` ，勾选 `Create groups` 。
 
 
 ### CocoaPods 方式
@@ -45,7 +45,7 @@ git clone --branch 1.3.10-beta.1 https://github.com/GuanceCloud/datakit-ios.git
 target 'yourProjectName' do
 
 # Pods for your project
-pod 'FTMobileSDK', '1.3.10-beta.1'
+pod 'FTMobileSDK', '1.3.10-beta.2'
     
 end
 ```
@@ -57,7 +57,7 @@ end
 1.配置 `Cartfile` 文件。
 
 ```
-github "GuanceCloud/datakit-ios" == 1.3.10-beta.1
+github "GuanceCloud/datakit-ios" == 1.3.10-beta.2
 ```
 
 2.在 `Cartfile` 目录下执行  `carthage update --platform iOS` ， 并将  `FTMobileSDK.framework` 拖拽到您的项目中使用。若出现 "Building universal frameworks with common architectures is not possible. The device and simulator slices for "FTMobileSDK.framework" both build for: arm64" 错误，请执行  `carthage update --platform iOS --use-xcframeworks` 命令，生成  `FTMobileSDK.xcframework `，与普通的 Framework 使用方法相同，请将它拖拽到您的项目中使用。
@@ -97,12 +97,12 @@ github "GuanceCloud/datakit-ios" == 1.3.10-beta.1
 
 | **字段** | **类型** | **说明** | **必须** |
 | --- | --- | --- | --- |
-| metricsUrl | NSString | 数据上报地址 | 是 |
+| metricsUrl | NSString | datakit 安装地址 URL 地址，例子：http://datakit.url:[port]。注意：安装 SDK 设备需能访问这地址| 是 |
 | enableSDKDebugLog | BOOL | 设置是否允许打印日志 | 否（默认NO） |
 | env | NS_ENUM | 环境 | 否  （默认FTEnvProd） |
 | XDataKitUUID | NSString | 请求HTTP请求头X-Datakit-UUID 数据采集端  如果用户不设置会自动配置 | 否 |
 | globalContext | NSDictionary | [添加自定义标签](#user-global-context) |     否 |
-| service | NSString | 设置所属业务或服务的名称，影响 Log 和 RUM 中 service 字段数据。默认：df_rum_ios | 否 |
+| service | NSString | 设置所属业务或服务的名称，影响 Log 和 RUM 中 service 字段数据。默认：`df_rum_ios` | 否 |
 
 #### env 环境
 
@@ -118,7 +118,7 @@ typedef NS_ENUM(NSInteger, FTEnv) {
 @property (nonatomic, assign) FTEnv env;
 ```
 
-### RUM 配置
+### RUM 配置{#rum-config}
 
 ```objectivec
     //开启 rum
@@ -137,15 +137,15 @@ typedef NS_ENUM(NSInteger, FTEnv) {
 | --- | --- | --- | --- |
 | appid | NSString | 用户访问监测应用 ID 唯一标识，在用户访问监测控制台上面创建监控时自动生成。 | 否（开启RUM 必选） |
 | samplerate | int | 采样采集率 | 否（默认100） |
-| errorMonitorType | NS_OPTIONS | error数据中的采集数据 | 否 |
 | enableTrackAppCrash | BOOL | 设置是否需要采集崩溃日志 | 否（默认NO） |
 | enableTrackAppANR | BOOL | 采集ANR卡顿无响应事件 | 否（默认NO） |
 | enableTrackAppFreeze | BOOL | 采集UI卡顿事件 | 否（默认NO） |
 | enableTraceUserAction | BOOL | 设置是否追踪用户 Action 操作 | 否（默认NO） |
 | enableTraceUserView | BOOL | 设置是否追踪用户 View 操作 | 否（默认NO） |
 | globalContext | NSDictionary | [添加自定义标签](#user-global-context) |     否 |
-| deviceMetricsMonitorType | NS_OPTIONS | 监控类型 | 否（未设置则不开启监控） |
-| monitorFrequency | NS_OPTIONS | 设置监控采样周期 | 否 |
+| errorMonitorType | NS_OPTIONS | 错误事件监控补充类型 | 否 |
+| deviceMetricsMonitorType | NS_OPTIONS | 视图的性能监控类型 | 否（未设置则不开启监控） |
+| monitorFrequency | NS_OPTIONS | 视图的性能监控采样周期 | 否 |
 
 #### 监控数据配置
 
@@ -153,7 +153,6 @@ typedef NS_ENUM(NSInteger, FTEnv) {
 
 ```objectivec
 /**
- *
  * @constant
  *  FTMonitorInfoTypeBattery  - 电池电量
  *  FTMonitorInfoTypeMemory   - 内存总量、内存使用率
@@ -198,9 +197,7 @@ typedef NS_OPTIONS(NSUInteger, FTMonitorFrequency) {
 };
 ```
 
-
-
-### Log 配置
+### Log 配置{#log-config}
 
 ```objectivec
     //开启 logger
@@ -209,7 +206,6 @@ typedef NS_OPTIONS(NSUInteger, FTMonitorFrequency) {
     loggerConfig.enableLinkRumData = YES;
     loggerConfig.enableConsoleLog = YES;
     [[FTMobileAgent sharedInstance] startLoggerWithConfigOptions:loggerConfig];
-    
 ```
 
 | **字段** | **类型** | **说明** | **必须** |
@@ -225,12 +221,13 @@ typedef NS_OPTIONS(NSUInteger, FTMonitorFrequency) {
 
 #### 日志废弃策略
 
+**上传机制** : 日志数据采集后会存储到本地数据库中，等待时机进行上传。数据库存储日志数据的量限制在 5000 条，如果网络异常等原因导致数据堆积，存储 5000 条后，会根据您设置的废弃策略丢弃数据。
+
 ```objectivec
 typedef NS_ENUM(NSInteger, FTLogCacheDiscard)  {
     FTDiscard,        //默认，当日志数据数量大于最大值（5000）时，新数据不进行写入
     FTDiscardOldest   //当日志数据数量大于最大值时,废弃旧数据
 };
-
 /**
  * 设置日志废弃策略
  */
@@ -239,13 +236,13 @@ typedef NS_ENUM(NSInteger, FTLogCacheDiscard)  {
 
 #### 采集控制台日志
 
-一般情况下， 因为 NSLog 的输出会消耗系统资源，而且输出的数据也可能会暴露出App里的保密数据， 所以在发布正式版时会把这些输出全部屏蔽掉。此时开启采集控制台日志，也并不能抓取到工程里打印的日志。建议使用 [自定义上报日志](#user-logger) 来上传想查看的日志。 
+一般情况下， 因为 NSLog 的输出会消耗系统资源，而且输出的数据也可能会暴露出 App 里的保密数据， 所以在发布正式版时会把这些输出全部屏蔽掉。此时开启采集控制台日志，也并不能抓取到工程里打印的日志。建议使用 [自定义上报日志](#user-logger) 来上传想查看的日志。 
 
 - 开启采集控制台日志
 
 ```objectivec
 /**
- *设置是否需要采集控制台日志 默认为NO
+ * 设置是否需要采集控制台日志，默认为 NO
  */
  @property (nonatomic, assign) BOOL enableConsoleLog;
 ```
@@ -254,12 +251,12 @@ typedef NS_ENUM(NSInteger, FTLogCacheDiscard)  {
 
 ```objectivec
 /**
- * 设置采集控制台日志过滤字符串 包含该字符串控制台日志会被采集 默认为全采集
+ * 设置过滤字符串，包含该字符串的控制台日志会被采集，默认为全采集
  */
 @property (nonatomic, copy) NSString *prefix;
 ```
 
-### Trace 配置 
+### Trace 配置 {#trace-config}
 
 ```objectivec
     //开启 trace
@@ -349,6 +346,10 @@ typedef NS_ENUM(NSInteger, FTNetworkTraceType) {
 
 ### Action
 
+```objective-c
+[[FTExternalDataManager sharedManager]  addActionName:@"UITableViewCell click" actionType:@"click"];
+```
+
 ```objectivec
 /**
  * 添加 Click Action 事件
@@ -425,38 +426,39 @@ typedef NS_ENUM(NSInteger, FTNetworkTraceType) {
 ### Resource
 
 ```objectivec
-//第一步：请求开始前
-[[FTExternalDataManager sharedManager] startResourceWithKey:key];
+ //第一步：请求开始前
+ [[FTExternalDataManager sharedManager] startResourceWithKey:key];
 
-//第二部：请求完成
-[[FTExternalDataManager sharedManager] stopResourceWithKey:key];
+ //第二步：请求完成
+ [[FTExternalDataManager sharedManager] stopResourceWithKey:key];
 
-//第三步：拼接 Resource 数据
-//FTResourceContentModel 数据
- FTResourceContentModel *content = [[FTResourceContentModel alloc]init];
-        content.httpMethod = request.HTTPMethod;
-        content.requestHeader = request.allHTTPHeaderFields;
-        content.responseHeader = httpResponse.allHeaderFields;
-        content.httpStatusCode = httpResponse.statusCode;
-        content.responseBody = responseBody;
-        //ios native
-        content.error = error;
-//如果能获取到各阶段的时间数据 FTResourceMetricsModel
-   //ios 原生 获取到 NSURLSessionTaskMetrics 数据 直接使用 FTResourceMetricsModel的初始化方法
-    FTResourceMetricsModel *metricsModel = [[FTResourceMetricsModel alloc]initWithTaskMetrics:metrics];
+ //第三步：拼接 Resource 数据
+ //FTResourceContentModel 数据
+  FTResourceContentModel *content = [[FTResourceContentModel alloc]init];
+  content.httpMethod = request.HTTPMethod;
+  content.requestHeader = request.allHTTPHeaderFields;
+  content.responseHeader = httpResponse.allHeaderFields;
+  content.httpStatusCode = httpResponse.statusCode;
+  content.responseBody = responseBody;
+  //ios native
+  content.error = error;
+  
+  //如果能获取到各阶段的时间数据 
+  //FTResourceMetricsModel
+  //ios native 获取到 NSURLSessionTaskMetrics 数据 直接使用 FTResourceMetricsModel 的初始化方法
+  FTResourceMetricsModel *metricsModel = [[FTResourceMetricsModel alloc]initWithTaskMetrics:metrics];
   
   //其他平台 所有时间数据以纳秒为单位
-   FTResourceMetricsModel *metricsModel = [[FTResourceMetricsModel alloc]init];
-   [metricsModel setDnsStart:dstart end:dend];
-   [metricsModel setTcpStart:tstart end:tend];
-   [metricsModel setSslStart:sstart end:send];
-   [metricsModel setTtfbStart:ttstart end:ttend];
-   [metricsModel setTransStart:trstart end:trend];
-   [metricsModel setFirstByteStart:fstart end:fend];
-   [metricsModel setDurationStart:dstart end:dend];
+  FTResourceMetricsModel *metricsModel = [[FTResourceMetricsModel alloc]init];
+  [metricsModel setDnsStart:dstart end:dend];
+  [metricsModel setTcpStart:tstart end:tend];
+  [metricsModel setSslStart:sstart end:send];
+  [metricsModel setTtfbStart:ttstart end:ttend];
+  [metricsModel setTransStart:trstart end:trend];
+  [metricsModel setFirstByteStart:fstart end:fend];
+  [metricsModel setDurationStart:dstart end:dend];
 
-
-// 第四步：add resource 如果没有时间数据 metrics 传 nil
+ //第四步：add resource 如果没有时间数据 metrics 传 nil
  [[FTExternalDataManager sharedManager] addResourceWithKey:key metrics:metricsModel content:content];
 ```
 
@@ -484,6 +486,7 @@ typedef NS_ENUM(NSInteger, FTNetworkTraceType) {
  */
 - (void)stopResourceWithKey:(NSString *)key property:(nullable NSDictionary *)property;
 /**
+ * 请求数据添加
  * @param key       请求标识
  * @param metrics   请求相关性能属性
  * @param content   请求相关数据
@@ -493,11 +496,11 @@ typedef NS_ENUM(NSInteger, FTNetworkTraceType) {
 
 #### Resource url 过滤
 
-SDK 内部会处理不采集 SDK 的数据上报地址。用户也可以自己进行额外的过滤设置
+当开启自动采集后，内部会进行处理不采集 SDK 的数据上报地址。您也可以通过 Open API 设置过滤条件，采集您需要的网络地址。
 
 ```objective-c
 [[FTMobileAgent sharedInstance] isIntakeUrl:^BOOL(NSURL * _Nonnull url) {
-        // 用户自己的判断逻辑
+        // 您的采集判断逻辑
         return YES;//return NO; (YES 采集，NO 不采集)
  }];
 ```
@@ -512,17 +515,11 @@ SDK 内部会处理不采集 SDK 的数据上报地址。用户也可以自己�
 - (void)isIntakeUrl:(BOOL(^)(NSURL *url))handler;
 ```
 
-
-
 ## Logger 日志打印 {#user-logger}
-
-**上传机制** : 将数据存储到数据库中，等待时机进行上传。数据库存储量限制在 5000 条，如果网络异常等原因导致数据堆积，存储 5000 条后，会丢弃新传入的数据。
 
 ```objectivec
 [[FTMobileAgent sharedInstance] logging:@"TestLoggingBackground" status:FTStatusInfo];
 ```
-
-### 日志等级
 
 ```objectivec
 typedef NS_ENUM(NSInteger, FTStatus) {
@@ -542,7 +539,6 @@ typedef NS_ENUM(NSInteger, FTStatus) {
 /// @param status  事件等级和状态
 /// @param property 事件属性
 -(void)logging:(NSString *)content status:(FTLogStatus)status property:(nullable NSDictionary *)property;
-
 ```
 
 ## Trace 网络链接追踪
@@ -575,16 +571,16 @@ typedef NS_ENUM(NSInteger, FTStatus) {
  * @param key 请求标识
  */
 - (NSDictionary *)getTraceHeaderWithKey:(NSString *)key url:(NSURL *)url;
-
 ```
 
 ## 用户的绑定与注销
 
 ```objectivec
 /**
- * 登录后 绑定用户信息
+ * 绑定用户信息
  * @param Id        用户Id
  * @param userName  用户名称
+ * @param userEmail 用户邮箱
  * @param extra     用户的额外信息
 */
 [[FTMobileAgent sharedInstance] bindUserWithUserID:USERID];
@@ -593,7 +589,7 @@ typedef NS_ENUM(NSInteger, FTStatus) {
 //or
 [[FTMobileAgent sharedInstance] bindUserWithUserID:USERID userName:USERNAME userEmail:USEREMAIL extra:@{EXTRA_KEY:EXTRA_VALUE}];
 
-//登出后 注销当前用户
+//解绑用户
 [[FTMobileAgent sharedInstance] logout];
 ```
 
@@ -709,8 +705,7 @@ FT_ENV="common"
 .xcconfig 文件中配置预设宏：
 
 ```sh
-//如果有使用 cocoapods 将 pods 的.xcconfig路径 添加到你的 .xcconfig文件中 如果路径不清楚可以终端进入项目文件夹，pod install ,终端会有提示路径，将该路径复制后引用就可以。
-
+//如果有使用 cocoapods ，需要将 pods 的.xcconfig 路径添加到您的 .xcconfig 文件中，如果您不清楚路径是什么，可以使用终端进入项目文件夹，执行 pod install，终端会有提示路径，将该路径复制后如下使用即可。
 #include "Pods/Target Support Files/Pods-testDemo/Pods-testDemo.debug.xcconfig"
 
 SDK_APP_ID = app_id_common

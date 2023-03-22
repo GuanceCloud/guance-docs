@@ -16,7 +16,7 @@
 ???+ attention
 
     - 单个观测云站点下，仅支持绑定一个手机号码、一个邮箱，暂不支持港澳台和国外手机号码
-    - 不同站点的账号独立不互通，更多站点说明可参考文档 [选择注册站点](../getting-started/necessary-for-beginners/select-site.md) 。
+    - 不同站点的账号独立不互通，更多站点说明可参考 [站点说明](../billing/commercial-register.md#site) 。
     - 支持选择 [单点登录](../management/sso/index.md) 到观测云
 
 ![](img/7.login_site_1.png)
@@ -27,16 +27,16 @@
 
 ![](img/1-free-start-1109.png)
 
-
 ### 修改账号用户信息
 
 注册完成后，您可在工作空间，点击左侧「账号」-「账号管理」进行账号修改。
 
 - 支持修改头像、用户名、邮箱、手机和密码；
 - 支持绑定 [MFA 认证](#mfa) ；
-- 支持修改 [登录保持时间](#login-hold-time) 。
+- 支持修改 [登录保持时间](#login-hold-time) ；
+- 支持修改 [时区](#zone) 。
 
-![](img/6.mfa_1.png)
+![](img/11.management_account_1.png)
 
 ## SSO 账号 {#sso}
 
@@ -63,6 +63,16 @@
 - 登录会话最大保持时间：支持设置范围 0 ～ 7 天，其中 0 表示永不超时，默认为 7 天。
 
 ![](img/6.mfa_2.1.png)
+
+### 时区 {#zone}
+
+观测云默认提供 `（UTC+08:00）北京` 时区，您可以根据当前所在的时区进行修改，修改后，会影响平台中所有的时间显示，请谨慎操作。
+
+在工作空间，点击左下角「账号」-「账号管理」，在安全设置下的时区，即可修改当前的时区。您也可以在观测云提供的 [时间控件](../getting-started/function-details/explorer-search.md#time) 来快速修改时区。
+
+> 注意：若修改时区时，选择“跟随浏览器时间”，即表示可以根据浏览器的时区，自动调整观测云的时区显示。
+
+![](img/11.management_account_2.png)
 
 
 

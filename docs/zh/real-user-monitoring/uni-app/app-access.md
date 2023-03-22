@@ -80,7 +80,7 @@
 
 | 参数名称      | 参数类型 | 必须 | 参数说明                                                     |
 | :------------ | :------- | :--- | ------------------------------------------------------------ |
-| serverUrl     | string   | 是   | 数据上报地址                                                 |
+| serverUrl     | string   | 是   | datakit 安装地址 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529。注意：安装 SDK 设备需能访问这地址                                               |
 | debug         | boolean  | 否   | 设置是否允许打印 Debug 日志，默认`false`                            |
 | datakitUUID   | string   | 否   | 请求`HTTP`请求头`X-Datakit-UUID` 数据采集端，如果用户不设置会自动配置 |
 | envType       | string   | 否   | 环境字段： `prod`线上（默认）、`gray`灰度、`pre`预发、`common`日常、`local`本地 |
@@ -88,7 +88,7 @@
 | globalContext | object   | 否   | 添加自定义标签                                               |
 | offlinePakcage | boolean   | 否   | 仅 Android 支持，是否使用离线打包，默认为 `false`，详细说明见[Android 云打包与离线打包区别](#package)       |
 
-### RUM 配置
+### RUM 配置{#rum-config}
 
 ```javascript
 var rum = uni.requireNativePlugin("GCUniPlugin-RUM");
@@ -113,7 +113,7 @@ rum.setConfig({
 | detectFrequency          | string       | 否       | 页面监控频率：`normal`(默认)、 `frequent`、`rare`            |
 | globalContext            | object       | 否       | 自定义全局参数，特殊 key :`track_id`  (用于追踪功能)         |
 
-### Log 配置
+### Log 配置{#log-config}
 
 ```javascript
 var logger = uni.requireNativePlugin("GCUniPlugin-Logger");
@@ -133,7 +133,7 @@ logger.setConfig({
 | logLevelFilters   | array<string> | 否   | 日志等级过滤，数组中需填写 **日志等级**：`info`提示、`warning`警告、`error`错误、`critical`、`ok`恢复 |
 | globalContext     | object        | 否   | 自定义全局参数                                               |
 
-### Trace 配置
+### Trace 配置{#trace-config}
 
 ```javascript
 var tracer = uni.requireNativePlugin("GCUniPlugin-Tracer");
@@ -157,7 +157,7 @@ var rum = uni.requireNativePlugin("GCUniPlugin-RUM");
 
 ### Action
 
-####API - startAction
+#### API - startAction
 
 添加 Action 事件
 
@@ -174,7 +174,7 @@ rum.startAction({
 | actionType | string   | 是       | 事件类型         |
 | property   | object   | 否       | 事件上下文(可选) |
 
-### View
+### View{#rumview}
 
 * 自动采集
 
@@ -224,7 +224,7 @@ rum.stopView()
 | viewName | string   | 是       | 页面名称                     |
 | loadTime | number   | 是       | 页面加载时间(纳秒级别时间戳) |
 
-#### API - startView 
+#### API - startView {#startview}
 
 进入页面
 

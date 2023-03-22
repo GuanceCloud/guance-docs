@@ -6,11 +6,13 @@
 ## 前提条件
 
 - [安装 DataKit](../datakit/datakit-install.md)
-- DataKit 版本要求 >= 1.4.7
+- 除日志以外的其他数据，DataKit 版本要求 >= 1.4.7
 
 ## 新建黑名单
 
 在观测云工作空间，点击「管理」-「黑名单」-「新建黑名单」。
+
+> 若只需要为日志数据创建黑名单，可在「日志」-「黑名单」，直接新建日志黑名单。
 
 ![](img/5.blacklist_1.png)
 
@@ -53,9 +55,6 @@
 ![](img/5.blacklist_1.1.png)
 
 
-
-
-
 ### 示例
 
 以下示例中，新建黑名单，选择「全部来源」的日志，满足`status`为`ok 或 info`，且`host`不为`hz-dataflux-saas-daily-01`，且`service`中不包含`kodo`字样，即同时满足这三个匹配规则的数据将被过滤，不再上报工作空间。
@@ -63,8 +62,6 @@
 ![](img/5.blacklist_2.png)
 
 设置黑名单以后，可以在查看器根据过滤条件来检查黑名单是否生效。在黑名单创建生效后，即符合过滤条件的数据将不再上报到工作空间。
-
-
 
 ![](img/5.blacklist_4.png)
 
@@ -102,6 +99,6 @@
 
 ## 注意事项
 
-- 若在安装配置 DataKit 时，在目录 `/usr/local/datakit/conf.d` 下的  `datakit.conf` 文件中配置过黑名单，则观测云中配置的黑名单规则不会对其生效；
-- DataKit 每 10 秒会拉取一次数据，黑名单配置后不会立即生效，需要等待至少 10 秒时间。
+- 若在安装配置 DataKit 时，在 `datakit.conf` 文件中配置了[黑名单过滤](../datakit/datakit-filter.md#manual) ，则观测云中配置的黑名单规则不会对其生效；
+- DataKit 每 10 秒会拉取一次数据，黑名单配置后不会立即生效，需要等待至少 10 秒时间；
 - 黑名单配置以后，统一保存在 DataKit 的目录 `/usr/local/datakit/data` 下的 `.pull` 文件中，更多可参考文档 [查看黑名单](../dca/index.md) 。

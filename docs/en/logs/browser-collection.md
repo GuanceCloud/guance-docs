@@ -1,34 +1,34 @@
-# Browser log collection
+# Browser Log Collection
 ---
 
 ## Overview
 
-Send different levels of log data (` corresponding source: browser_log ` metric type log data) to the [Guance](https://www.guance.com/) through a web browser or javascript client.
+Send different levels of log data (`corresponding source: browser_log` metric type log data) to [Guance](https://www.guance.com/) through a web browser or javascript client.
 
 ## Function List
 
-- Custom log data collection, access to client applications through sdk, and collect different log data for different scenarios.   
-- Automatically collect application-side error messages (including network errors, console errors, and js errors) and report them to DataFlux.   
-- Custom error levels (` debug `, ` critical `, ` error `, ` info `, ` warn `), custom Logger objects, and custom log fields   
+- Custom log data collection is applied to client through sdk and then collect different log data for different scenarios.   
+- Automatically collect application-side error messages (including network errors, console errors and js errors) and report them to Guance.   
+- Custom error levels (`debug`, `critical`, `error`, `info`, `warn`), custom Logger objects and custom log fields   
 - Data related to [RUM](../real-user-monitoring/web/app-access.md) can be automatically collected to correlate RUM business scenarios. 
 
 
-## Get started
+## Get Started
 
-### Setup
+### Preconditions
 
-**datakit:** Send log data to Guance through datakit log acquisition API
+**datakit:** Send log data to Guance through datakit log collection API.
 
-**Import SDK:** SDK can be introduced into applications by ` NPM `, ` CDN sync ` or ` CDN async `
+**Import SDK:** SDK can be introduced into applications by `NPM`, `DN sync` or `CDN async`.
 
-**Support:** Support all pc-side and mobile-side browsers
+**Support:** Support all pc-side and mobile-side browsers.
 
 ### You can choose one of the following ways to access your Web application
 | Mode     | Description                                                                                                                                                             |
 | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| NPM (node package manager)          | This method is recommended for modern web applications. The RUM Browser SDK is packaged with the rest of your front-end JavaScript code. It has no impact on page load performance. However, the SDK may miss errors, resources, and user actions triggered before the SDK is initialized. Datadog recommends using a matching version with the Browser Logs SDK.                       |
-| CDN async | This method is recommended for web applications with performance targets. The RUM Browser SDK loads from our CDN asynchronously, ensuring the SDK download does not impact page load performance. However, the SDK may miss errors, resources, and user actions triggered before the SDK is initialized. |
-| CDN  sync | This method is recommended for collecting all RUM events. The RUM Browser SDK loads from our CDN synchronously, ensuring the SDK loads first and collects all errors, resources, and user actions. This method may impact page load performance.          |
+| NPM         | By packaging the SDK code into your front-end project, this ensures that the performance of the front-end page will not be affected, but you may miss the request before SDK initialization and collect errors.                     |
+| CDN async | Through CDN accelerated caching, the SDK script is introduced in the way of asynchronous script introduction, which can ensure that the download of SDK script will not affect the loading performance of pages, but it may miss the request before SDK initialization and collect errors. |
+| CDN sync | SDK scripts are introduced through CDN accelerated caching in a synchronous script introduction manner that ensures that all errors, resources, requests and performance metrics are collected. However, it may affect the loading performance of the page.        |
 
 
 ### NPM
@@ -42,7 +42,7 @@ datafluxLogs.init({
 })
 ```
 
-### CDN async
+### CDN Async
 
 ```html
 <script>
@@ -75,7 +75,7 @@ datafluxLogs.init({
 </script>
 ```
 
-### CDN sync
+### CDN Sync
 
 ```html
 <script
@@ -97,14 +97,15 @@ datafluxLogs.init({
 ### Initialization
 | **Parameter**              | **Type** | **Option** | **Default** | **Description**                                                                                                                           |
 | --------------------- | -------- | ------------ | ---------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| `datakitOrigin`       | String   | Required           |            | datakit data report origin note: ` Protocol (including://), domain name (or IP address) [and port number] ` For example: https://www.datakit.com, http://100.20.34.3:8088 |
+| `datakitOrigin`       | String   | Required           |            | datakit data report origin note: `Protocol (including://), domain name (or IP address)[and port number]` For example: https://www.datakit.com, http://100.20.34.3:8088 |
 | `service`             | String   | Optional           | `browser`  | service name in log                                                                                                                    |
 | `env`                 | String   | Optional           |            | Current environment of web application, such as prod: online environment; Grey: Grayscale environment; pre: pre-release environment command: daily environment; local: The local environment;                          |
 | `version`             | String   | Optional           |            | web application version                                                                                                                   |
-| `sampleRate`          | Number   | Optional           | `100`      | Percentage of metric data collection: ` 100 ` for full collection, ` 0 ` for no collection                                                                                  |
-| `forwardErrorsToLogs` | Boolean  | Optional           | `true`     | Set to ` false `  to stop collecting console.error, js and report network errors to DataFlux log data                                                 |
+| `sampleRate`          | Number   | Optional           | `100`      | Percentage of metric data collection: `100` for full collection, `0` for no collection                                                                                  |
+| `forwardErrorsToLogs` | Boolean  | Optional           | `true`     | Set to `false`  to stop collecting console.error, js and report network errors to DataFlux log data                                                 |
 | `silentMultipleInit`  | Boolean  | Optional           | `false`    | Do not allowed  initialize multiple log objects                                                                                                     |
-## Configuration
+
+## Use
 
 After the SDK is initialized in the application, you can customize the configuration log data through the exposed JS API. 
 
@@ -120,7 +121,7 @@ import { datafluxLogs } from '@cloudcare/browser-logs'
 datafluxLogs.logger.info('Button clicked', { name: 'buttonName', id: 123 })
 ```
 
-### CDN async
+### CDN Async
 
 ```javascript
 DATAFLUX_LOGS.onReady(function () {
@@ -128,13 +129,13 @@ DATAFLUX_LOGS.onReady(function () {
 })
 ```
 
-### CDN sync
+### CDN Sync
 
 ```javascript
 window.DATAFLUX_LOGS && DATAFLUX_LOGS.logger.info('Button clicked', { name: 'buttonName', id: 123 })
 ```
 
-## Return data structure
+## Return Data Structure
 
 ```json
 {
@@ -193,7 +194,7 @@ window.DATAFLUX_LOGS && DATAFLUX_LOGS.logger.info('Button clicked', { name: 'but
 }
 ```
 
-## Status configuration
+## Status Parameter
 
 After the SDk is initialized, you can define different types of states using the ` log ` API provided
 
@@ -209,7 +210,7 @@ import { datafluxLogs } from '@cloudcare/browser-logs'
 datafluxLogs.logger.log(<MESSAGE>,<JSON_ATTRIBUTES>,<STATUS>);
 ```
 
-### CDN async
+### CDN Async
 
 ```javascript
 DATAFLUX_LOGS.onReady(function () {
@@ -217,7 +218,7 @@ DATAFLUX_LOGS.onReady(function () {
 })
 ```
 
-### CDN sync
+### CDN Sync
 
 ```javascript
 window.DATAFLUX_LOGS && DATAFLUX_LOGS.logger.log(<MESSAGE>,<JSON_ATTRIBUTES>,<STATUS>);
@@ -226,6 +227,6 @@ window.DATAFLUX_LOGS && DATAFLUX_LOGS.logger.log(<MESSAGE>,<JSON_ATTRIBUTES>,<ST
 ## Parameter description
 | **Parameter**            | **Description**                                                   |
 | ------------------- | ---------------------------------------------------------- |
-| `<MESSAGE>`         | message field in Guance Log                             |
-| `<JSON_ATTRIBUTES>` | The additional data that describes the message is a json object                      |
+| `<MESSAGE>`         | message field in Guance **Log**                             |
+| `<JSON_ATTRIBUTES>` | The additional data that describes the message is a json object.                      |
 | `<STATUS>`          | status，option:`debug`,`info`,`warn`,`error`,`critical` |
