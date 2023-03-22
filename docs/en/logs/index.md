@@ -25,6 +25,6 @@ Guance provides comprehensive log collection capability. By configuring [log col
 - [Generate Metrics](generate-metrics.md): Support user-defined rules for generating monitoring metrics based on logs.
 
 - [Log Index](multi-index.md): Support setting log multiple indexes, filters the logs that meet the requirements and saves them in different log indexes, and selects different data storage strategies for each log index. 
-- [Blacklist](blacklist. md): Support user-defined filtering rules for log collection, and filters log data in real time. 
+- [Log Blacklist](../management/overall-blacklist.md): Support user-defined filtering rules for log collection, and filters log data in real time. 
 - [Backup Log](backup.md): Support backup of logs to help save usage costs. 
 - [Snapshot](../management/snapshot .md): Support saving the current data set as a copy, which can be viewed repeatedly through the **Snapshot History** function. 

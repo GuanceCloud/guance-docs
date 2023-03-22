@@ -27,7 +27,7 @@ npm install @cloudcare/react-native-mobile
 
 ```json
 "dependencies": {    
-   "@cloudcare/react-native-mobile: "^0.2.1",
+   "@cloudcare/react-native-mobile: "^0.2.4",
    ···
 }
 ```
@@ -54,7 +54,7 @@ import {
 
 ## SDK 初始化
 
-###  基础配置
+###  基础配置{#base-setting}
 
 ```typescript
 let config: FTMobileConfig = {
@@ -73,7 +73,7 @@ FTMobileReactNative.sdkConfig(config)
 | globalContext | NSDictionary | 否 | [添加自定义标签](#user-global-context ) |
 | service | string | 否 | 设置所属业务或服务的名称，影响 Log 和 RUM 中 service 字段数据。默认：`df_rum_ios`、`df_rum_android` |
 
-### RUM 配置
+### RUM 配置{#rum-config}
 
 ```typescript
 let rumConfig: FTRUMConfig = {
@@ -108,7 +108,7 @@ FTReactNativeRUM.setConfig(rumConfig);
 | globalContext | object | 否 | [添加自定义标签](#user-global-context) |
 
 
-### Log 配置
+### Log 配置{#log-config}
 
 ```typescript
 let logConfig: FTLogConfig = {
@@ -127,7 +127,7 @@ FTReactNativeLog.logConfig(logConfig);
 | logLevelFilters | Array<FTLogStatus> | 否 | 日志等级过滤 |
 | globalContext | NSDictionary | 否 | [添加自定义标签](#user-global-context) |
 
-### Trace 配置
+### Trace 配置{#trace-config}
 
 ```typescript
  let traceConfig: FTTractConfig = {
@@ -140,11 +140,9 @@ FTReactNativeLog.logConfig(logConfig);
 | **字段** | **类型** | **必须** | **说明** |
 | --- | --- | --- | --- |
 | sampleRate | number | 否 | 采样率，采集率的值范围为>= 0、<= 1，默认值为 1 |
-| serviceName | string | 否 | 服务名 |
 | traceType | enum TraceType | 否 | 链路类型，默认`TraceType.zipkin` |
 | enableLinkRUMData | boolean | 否 | 是否与 `RUM` 数据关联，默认`false` |
 | enableNativeAutoTrace | boolean | 否 | 是否开启原生网络网络自动追踪 iOS NSURLSession ,Android OKhttp(由于 `React Native`的网络请求在 iOS、Android 端是使用系统 API 实现的，所以开启 `enableNativeAutoTrace` 后，所有 `React Native` 数据能够一并追踪。） |
-| globalContext | NSDictionary | 否 | [添加自定义标签](#user-global-context) |
 
 ## RUM 用户数据追踪
 
@@ -156,9 +154,11 @@ FTReactNativeRUM.startAction('actionName','actionType');
 
 开启自动采集后可通过 `accessibilityLabel`设置 `actionName`。
 
-### View
+### View{#rumview}
 
 ```typescript
+FTReactNativeRUM.onCreateView("RUM",duration);
+
 FTReactNativeRUM.startView("RUM");
 
 FTReactNativeRUM.stopView();
