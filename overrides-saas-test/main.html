@@ -38,4 +38,5 @@ searchConfig.api}) -%}
   })
 </script>
 
-{% endblock %}
+{% endblock %} {% block footber %} {% if config.theme.language == 'en' %} {% include "partials/en/footer.html" %} {%
+endif %} {% if config.theme.language == 'zh' %} {% include "partials/footer.html" %} {% endif %} {% endblock %}
