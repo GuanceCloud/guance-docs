@@ -395,10 +395,11 @@ kubectl apply -f datakit.yaml
 
 <[详情](../../../datakit/container#measurements)>
 
-## 最佳实践
+## 常见问题排查
 
-暂无
+- <[无数据上报排查](../../datakit/why-no-data.md)>
 
-## 故障排查
+## 进一步阅读
 
-<[无数据上报排查](../../datakit/why-no-data.md)>
+- <[TAG 在观测云中的最佳实践](../../best-practices/insight/tag.md)>
+- <[多个 Kubernetes 集群指标采集最佳实践](../../best-practices/cloud-native/multi-cluster.md)>
