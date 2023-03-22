@@ -52,9 +52,9 @@ NGINX 采集器可以从 NGINX 实例中采取很多指标，比如请求总数�
 
 [[inputs.nginx]]
 	# Nginx status URL.
-	# (Default) If not use with VTS, the formula is like this: "http://localhost:80/server_status".
+	# (Default) If not use with VTS, the formula is like this: "http://localhost:80/nginx_status".
 	# If using with VTS, the formula is like this: "http://localhost:80/status/format/json".
-	url = "http://localhost:80/server_status"
+	url = "http://localhost:80/nginx_status"
 
 	# ##(optional) collection interval, default is 30s
 	# interval = "30s"
@@ -80,6 +80,10 @@ NGINX 采集器可以从 NGINX 实例中采取很多指标，比如请求总数�
 	# more_tag = "some_other_value"
 	# ...
 ```
+
+???+ warn
+
+    `url` 地址以 nginx 具体配置为准，一般常见的用法就是用 `/nginx_status` 这个路由。
 
 配置好后，重启 DataKit 即可。
 
