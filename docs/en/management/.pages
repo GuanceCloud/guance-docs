@@ -1,26 +1,27 @@
 nav:
   - index.md
-  - 'Account Management': account-management.md
-  - 'MFA Management': mfa-management.md
-  - 'Space Management': space-management.md
+  - 'General Settings'
+    - 'Key Metrics': key-metrics.md
+    - 'Customized Menu': customized-menu.md
+    - 'Audit': operation-audit.md  
   - 'Member Management': member-management.md
-  - 'Permission Management': role-management.md
-  - 'Role Management': role-list.md
-  - 'SSO Management': sso
+    - 'SSO Management': sso
+    - 'Role Management': role-management.md
+    - 'Permission Management': role-list.md
   - 'Pipelines': overall-pipeline.md
   - 'Field Management': field-management.md
   - 'Blacklist': overall-blacklist.md
   - 'Data Authorization': data-authorization.md
   - 'API Key': api-key
-  - 'Sharing Management': share-management.md
-  - 'Key Metrics': key-metrics.md
-  - 'Audition': operation-audit.md
-  - 'Customized Menu': customized-menu.md
-  - 'System Theme': system-theme.md
-  - 'High Performance': high-performance.md
-  - 'System Notification': system-notification.md
-  - 'Snapshot': snapshot.md
-  - 'Help': help.md
-  - 'Work Order Management': work-order-management.md
-  - 'Status Page': status-page.md
-  - 'Demo Space': space-demo.md
+  - 'Sharing': share-management.md
+  - 'Personal Settings':
+    - 'Help': help.md
+    - 'Status Page': status-page.md
+    - 'Ticket': work-order-management.md
+    - 'Account Management': account-management.md
+      - 'MFA': mfa-management.md
+    - 'Space Management': space-management.md
+    - 'System Notification': system-notification.md
+    - 'High Performance': high-performance.md
+    - 'System Theme': system-theme.md
+    - 'Demo Space': space-demo.md
