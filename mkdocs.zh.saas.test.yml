@@ -16,6 +16,5 @@ plugins:
     caption_position: bottom
   # 添加对应的索引插件配置
   es_uploader:
-    # 默认读取环境变量的ES_BASE_URL的配置，其次读取这里的配置
-    es_url: "testing-elasticsearch.cloudcare.cn"
+    es_doc_search_env: "ES_VAR_DOC_SEARCH_TEST"
     es_index: "test-dataflux-docs-zh"
