@@ -1,7 +1,12 @@
 # Role Management
 ---
 
-If you need to set different access rights for employees in the enterprise to achieve permission isolation among different employees, you can use the role management function of Guance. Role management provides users with an intuitive access to authority management, supports free adjustment of authority scope corresponding to different roles, supports the creation of new roles for users and gives authority scope to roles to meet the authority needs of different users.
+## Overview  
+
+If you need to set different access rights for different employees to achieve permission isolation, you can use the role management function of Guance. Role management provides users with an convenient access to authority management. Here you can:  
+- adjust the permissions corresponding to different roles;
+- create of new roles for users;
+- give permissions to roles to meet the permissions needs of different users.
 
 ## Role
 
@@ -26,7 +31,7 @@ Permission ranges for different default roles can be found in the doc [permissio
 
 | **Roles** | **Description**                                                     |
 | -------- | ------------------------------------------------------------ |
-| Owner | The owner of the current workspace has all the operation permissions in the workspace, and supports adjusting the role permissions of other members. If the granted role permissions include "Token View", the authorization audit process will be initiated. For details, please refer to [permission change audit](#upgrade).<br />**Notes:**<br /><li>Workspace creator defaults to Owner.<br /><li>There can only be one Owner in a workspace.<br /><li> Owner cannot exit workspace.<br /><li> Owner can transfer permissions to space members. After successful transfer, the original Owner is demoted to Administrator.|
+| Owner | The owner of the current workspace has all the operation permissions in the workspace, including adjusting the role permissions of other members. If the granted role permissions include "Token View", the authorization audit process will be initiated. For details, please refer to [Permission Change Review](#upgrade).<br />**Notes:**<br /><li>Workspace creator defaults to Owner.<br /><li>There can only be one Owner in a workspace.<br /><li> Owner cannot exit workspace.<br /><li> Owner can transfer permissions to space members. After successful transferred, the original Owner is demoted to Administrator.|
 | Administrator | Administrator of the current workspace has read and write permissions of the workspace. The role is able to adjust the permissions of other member roles except Owner. |
 | Standard | Standard member of the current workspace have read and write permissions to the workspace.                 |
 | Read-only | Read-only member of the current workspace can view the data of the workspace, and has no write permission. |
@@ -37,40 +42,39 @@ In addition to the default roles, Guance supports the creation of new roles in r
 
 A new role can be created in the observation cloud workspace **Management > Member Management > Role Management**.
 
-Refer to the doc [permission list](role-list.md) for permission scopes for custom roles.
+Refer to the doc [Permission List](role-list.md) for permission scopes for custom roles.
 
 > Custom roles are only Owner and Administrator can be created.
 
 ![](img/8.member_6.png)
 
-#### Modify/Remove Custom Roles
+#### Related Operations
 
-In **Role Management**, click the **Edit** button on the right side of the user-defined role to adjust the permissions of the role. Click the **Delete** button. If the role is not associated with the member account, it can be deleted.
+- Click **Edit** to adjust the permissions of the role;  
+- Click **Delete** to delete some role that is not associated with the member account;
 
 ![](img/8.member_4.png)
 
-#### Custom Role Details Page
-
-In **Role Management**, click any custom role to view the detailed information of the role, including role name, creation/update time, creator/update person, description and role permissions. Click the **Edit** button on the right side of the role to modify role permissions.
+- Click any custom role to view the detailed information, including its name, creation/update time, creator/update person, description and role permissions. You can **Edit** the role to modify role permissions.
 
 ![](img/8.member_13.1.png)
 
-### Permission Change Audit {#upgrade}
+### Permission Change Review {#upgrade}
 
-When setting role permissions for workspace members, if the granted role permissions include the permission of "Token View", a verification message will be sent to Guance expense center to initiate the permission change audit process:
+When setting role permissions for workspace members, if the granted role permissions include the permission of "Token View", a verification message will be sent to Guance Expense Center to initiate the permission change audit process:
 
 - If the cost center accepts the verification, the permission change is successful;
 - If the cost center rejects the verification, the permission change fails and the original role permission continues to be maintained;
 - If the expense center has not been approved, the member can be modified to another role. After the modification is successful, the original permission change approval application will become invalid.
 
-See the doc [permission list](role-list.md) for more permissions details.
+See the doc [Permission List](role-list.md) for more information.
 
 > - At present, only Owner and Administrator have "Token View" permission. If commercial workspace members need to refer to Administrator, they need to go to Guance expense center for review.
 > - Experience workspace members can directly raise the right to Administrator without going to Guance expense center for review.
 
-#### Example of Administrator of Business Plan 
+#### <u>Example of Promoting to Administrator</u>
 
-In the Guance workspace **Management > Member Management**, select the member that needs to be promoted to Administrator, click the **Edit** button on the right, select **Role** as Administrator in the pop-up dialog box, and click OK.
+In the Guance Commercial Plan workspace, enter **Management > Member Management**, select the member that needs to be promoted to Administrator, click the **Edit** button on the right, select **Role** as Administrator in the pop-up dialog box, and click OK.
 
 > Guance only allows Owner and Administrator gives Administrator permission to the current workspace member.
 
@@ -78,8 +82,8 @@ In the Guance workspace **Management > Member Management**, select the member th
 
 Prompt for permission verification:
 
-- If the current workspace Owner is the administrator of the Guance expense center, you can directly click and go to the expense center for review without logging in to the Guance expense center for operation;
-- If the current workspace Owner is not the administrator of the Guance expense center, it is necessary to notify the administrator of the Guance expense center [log in to the expense center](https://boss.guance.com/).
+- If the current workspace Owner is not the Administrator of the Guance expense center or the Administrator promotes the right for members, it is necessary to notify the Administrator of the Guance expense center to [log in to the expense center](https://boss.guance.com/) for operation; Or you can view the members that need to be authorized in **Member Management** and click **Expense Center** to operate.
+- If the current workspace Owner is the administrator of the Guance expense center, then you can directly click **Jump to the Expense Center for Review** without logging in for operation;
 
 ![](img/11.role_upgrade_2.png)
 
@@ -101,6 +105,6 @@ Returning to **Member Management**, you can see that the workspace member is alr
 
 ## Permissions
 
-Guance supports setting permissions for custom roles in the workspace to meet the permission requirements of different users. For more details, please refer to the doc [permission list](role-list.md).
+Guance supports setting permissions for custom roles in the workspace to meet the permission requirements of different users. For more details, please refer to the doc [Permission List](role-list.md).
 
-> Presently permissions are only for setting permissions for functional operations within the workspace.
+> Presently you can only set permissions for functional operations within the workspace.
