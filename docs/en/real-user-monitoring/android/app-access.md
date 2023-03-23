@@ -102,23 +102,50 @@ android{
 
 ## SDK Initialization
 
-### Basic Configuration
+### Basic Configuration {#base-setting}
 
-```kotlin
-class DemoApplication : Application() {
-    override fun onCreate() {
-        val config = FTSDKConfig
-            .builder(DATAKIT_URL)//Datakit install url
-            .setDebug(true);
+=== "Java"
 
-        FTSdk.install(config)
-        
-        //...
+    ```java
+    public class DemoApplication extends Application {
+
+        @Override
+        public void onCreate() {
+            FTSDKConfig config = FTSDKConfig.builder(DATAKIT_URL)//Datakit install url
+                    .setDebug(true)
+                    .build();
+
+            FTSdk.install(config);
+
+            // ...
+        }
     }
-}
+    ```
+
+=== "Kotlin"
+
+    ```kotlin
+    class DemoApplication : Application() {
+        override fun onCreate() {
+            val config = FTSDKConfig
+                .builder(DATAKIT_URL)//Datakit install url
+                .setDebug(true);
+
+            FTSdk.install(config)
+
+            //...
+        }
+    }
+    ```
+The optimal location for initializing an SDK theoretically is in the `onCreate` method of the `Application` class. If your application hasn't created an `Application` class, you need to create one and declare it in the `Application` section of the `AndroidManifest.xml`. For an example, please refer to [this](https://github.com/GuanceCloud/datakit-android/blob/dev/demo/app/src/main/AndroidManifest.xml) example.
+
+```xml
+<application 
+       android:name="YourApplication"> 
+</application> 
 ```
 
-| Method Name | **Meaning** | Required | **Attention** |
+| **Method Name** | **Meaning** | **Required** | **Attention** |
 | --- | --- | --- | --- |
 | metricsUrl | Datakit installation address | Yes | The url of the datakit installation address, example: http://10.0.0.1:9529, port 9529. Datakit url address needs to be accessible by the device where the SDK is installed |
 | setXDataKitUUID | Set the identification ID of the data acquisition terminal | No | Default is random `uuid` |
@@ -128,23 +155,45 @@ class DemoApplication : Application() {
 | setEnableAccessAndroidID | Enable to get `Android ID` | No | Default, is `true`, set to `false`, then `device_uuid` field data will not be collected, market privacy audit related [see here](#adpot-to-privacy-audits) |
 | addGlobalContext | Add SDK global properties | No | Adding rules can be found [here](#key-conflict) |
 
-### RUM Configuration
+### RUM Configuration {#rum-config}
 
-```kotlin
-FTSdk.initRUMWithConfig(
-            FTRUMConfig()
-                .setRumAppId(RUM_APP_ID)
-                .setEnableTraceUserAction(true)
-                .setEnableTraceUserView(true)
-                .setEnableTraceUserResource(true)
-                .setSamplingRate(0.8f)
-                .setExtraMonitorTypeWithError(ErrorMonitorType.ALL)
-                .setDeviceMetricsMonitorType(DeviceMetricsMonitorType.ALL)
-                .setEnableTrackAppUIBlock(true)
-                .setEnableTrackAppCrash(true)
-                .setEnableTrackAppANR(true)
-        )
-```
+=== "Java"
+
+	```java
+	
+	FTSdk.initRUMWithConfig(
+	        new FTRUMConfig()
+	            .setRumAppId(RUM_APP_ID)
+	            .setEnableTraceUserAction(true)
+	            .setEnableTraceUserView(true)
+	            .setEnableTraceUserResource(true)
+	            .setSamplingRate(0.8f)
+	            .setExtraMonitorTypeWithError(ErrorMonitorType.ALL.getValue())
+	            .setDeviceMetricsMonitorType(DeviceMetricsMonitorType.ALL.getValue())
+	            .setEnableTrackAppUIBlock(true)
+	            .setEnableTrackAppCrash(true)
+	            .setEnableTrackAppANR(true)
+	);
+	
+	```
+
+=== "Kotlin"
+
+	```kotlin
+	FTSdk.initRUMWithConfig(
+	            FTRUMConfig()
+	                .setRumAppId(RUM_APP_ID)
+	                .setEnableTraceUserAction(true)
+	                .setEnableTraceUserView(true)
+	                .setEnableTraceUserResource(true)
+	                .setSamplingRate(0.8f)
+	                .setExtraMonitorTypeWithError(ErrorMonitorType.ALL.getValue())
+	                .setDeviceMetricsMonitorType(DeviceMetricsMonitorType.ALL.getValue())
+	                .setEnableTrackAppUIBlock(true)
+	                .setEnableTrackAppCrash(true)
+	                .setEnableTrackAppANR(true)
+	        )
+	```
 
 | **Method Name** | **Meaning** | **Required** | **Attention** |
 | --- | --- | --- | --- |
@@ -183,55 +232,109 @@ android{
 
 2.Add the corresponding `BuildConfig` constants to the `RUM` configuration
 
-```kotlin
-FTSdk.initRUMWithConfig(
-            FTRUMConfig()
-                .addGlobalContext(CUSTOM_STATIC_TAG, BuildConfig.CUSTOM_VALUE)
-                //… 添加其他配置
-        )
-```
+=== "Java"
+
+	```java
+	FTSdk.initRUMWithConfig(
+	        new FTRUMConfig()
+	            .addGlobalContext(CUSTOM_STATIC_TAG, BuildConfig.CUSTOM_VALUE)
+	            //... add other properties
+	);
+	
+	```
+	
+=== "Kotlin"
+	
+	```kotlin
+	FTSdk.initRUMWithConfig(
+	            FTRUMConfig()
+	                .addGlobalContext(CUSTOM_STATIC_TAG, BuildConfig.CUSTOM_VALUE)
+	                //… add other properties
+	        )
+	```
 
 ##### Dynamic Use
 
 1.By storing file type data, such as `SharedPreferences`, configure the use of `SDK`, and add the code to get the tag data at the configuration.
 
-```kotlin
-val sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE)
-val customDynamicValue = sp.getString(CUSTOM_DYNAMIC_TAG, "not set")
+=== "Java"
 
-//配置 RUM
-FTSdk.initRUMWithConfig(
-     FTRUMConfig().addGlobalContext(CUSTOM_DYNAMIC_TAG, customDynamicValue!!)
-     //… 添加其他配置
-)
-```
+	```java
+	SharedPreferences sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE);
+	String customDynamicValue = sp.getString(CUSTOM_DYNAMIC_TAG, "not set");
+	
+	// RUM Configure
+	FTSdk.initRUMWithConfig(
+	     new FTRUMConfig().addGlobalContext(CUSTOM_DYNAMIC_TAG, customDynamicValue)
+	     //… add other properties
+	);
+	```
+
+=== "Kotlin"
+
+	```kotlin
+	val sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE)
+	val customDynamicValue = sp.getString(CUSTOM_DYNAMIC_TAG, "not set")
+	
+	//RUM Configure
+	FTSdk.initRUMWithConfig(
+	     FTRUMConfig().addGlobalContext(CUSTOM_DYNAMIC_TAG, customDynamicValue!!)
+	     //… add other properties
+	)
+	```
 
 2.Add a method to change the file data anywhere.
 
-```kotlin
-fun setDynamicParams(context: Context, value: String) {
-            val sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE)
-            sp.edit().putString(CUSTOM_DYNAMIC_TAG, value).apply()
 
-        }
-```
+=== "Java"
+
+	```java
+	public void setDynamicParams(Context context, String value) {
+	    SharedPreferences sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE);
+	    sp.edit().putString(CUSTOM_DYNAMIC_TAG, value).apply();
+	}
+	```
+
+=== "Kotlin"
+
+	```kotlin
+	fun setDynamicParams(context: Context, value: String) {
+	            val sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE)
+	            sp.edit().putString(CUSTOM_DYNAMIC_TAG, value).apply()
+	
+	        }
+	```
 
 3.Finally restart the application, please see [SDK Demo](#setup) for more details.
 
-### Log Configuration
+### Log Configuration  {#log-config}
 
-```kotlin
-   FTSdk.initLogWithConfig(
-            FTLoggerConfig()
-                .setEnableConsoleLog(true)
-              //.setEnableConsoleLog(true,"log prefix")
-                .setServiceName("ft-sdk-demo")
-                .setEnableLinkRumData(true)
-                .setEnableCustomLog(true)
-              //.setLogLevelFilters(arrayOf(Status.CRITICAL,Status.ERROR))
-                .setSamplingRate(0.8f)
-        )
-```
+=== "Java"
+	
+	```java
+	FTSdk.initLogWithConfig(new FTLoggerConfig()
+	    .setEnableConsoleLog(true)
+	    //.setEnableConsoleLog(true,"log prefix")
+	    .setEnableLinkRumData(true)
+	    .setEnableCustomLog(true)
+	    //.setLogLevelFilters(new Status[]{Status.CRITICAL, Status.ERROR})
+	    .setSamplingRate(0.8f));
+	
+	```
+
+=== "Kotlin"
+
+	```kotlin
+	   FTSdk.initLogWithConfig(
+	            FTLoggerConfig()
+	                .setEnableConsoleLog(true)
+	              //.setEnableConsoleLog(true,"log prefix")
+	                .setEnableLinkRumData(true)
+	                .setEnableCustomLog(true)
+	              //.setLogLevelFilters(arrayOf(Status.CRITICAL,Status.ERROR))
+	                .setSamplingRate(0.8f)
+	        )
+	```
 
 | **Method Name** | **Meaning** | **Required** | **Attention** |
 | --- | --- | --- | --- |
@@ -244,18 +347,29 @@ fun setDynamicParams(context: Context, value: String) {
 | setLogLevelFilters | Set log level filtering | No | Set level log filtering, no setting by default |
 | addGlobalContext | Add log global property | No | Adding rules can be found [here](#key-conflict) |
 
-### Trace Configuration
+### Trace Configuration {#trace-config}
 
-```kotlin
-   FTSdk.initTraceWithConfig(
-            FTTraceConfig()
-                .setSamplingRate(0.8f)
-                .setEnableAutoTrace(true)
-                .setEnableLinkRUMData(true)
-        )
-```
+=== "Java"
 
-| **Method Name** | Meaning | Required | Attention |
+	```java
+	FTSdk.initTraceWithConfig(new FTTraceConfig()
+	    .setSamplingRate(0.8f)
+	    .setEnableAutoTrace(true)
+	    .setEnableLinkRUMData(true));
+	```
+
+=== "Kotlin"
+
+	```kotlin
+	   FTSdk.initTraceWithConfig(
+	            FTTraceConfig()
+	                .setSamplingRate(0.8f)
+	                .setEnableAutoTrace(true)
+	                .setEnableLinkRUMData(true)
+	        )
+	```
+
+| **Method Name** | **Meaning** | **Required** | **Attention** |
 | --- | --- | --- | --- |
 | setSampleRate | Set sample rate | No | The value of the acquisition rate ranges from >= 0, <= 1, and the default value is 1 |
 | setTraceType | Set the type of tracing | No | Default is `DDTrace`, currently support `Zipkin`, `Jaeger`, `DDTrace`, `Skywalking` (8.0+), `TraceParent` (W3C), if you access OpenTelemetry to choose the corresponding trace type, please pay attention to check the supported types and agent-related configuration |
@@ -264,68 +378,633 @@ fun setDynamicParams(context: Context, value: String) {
 | setEnableWebTrace | Set the webview to enable tracing or not | No | alpha function, some scenarios may have partial js loading problems, default is `false` |
 
 
-## RUM User Data Tracking
+## RUM User Data Tracking {#rum-trace}
 
-You can `FTTraceConfig` configure to enable automatic mode, or add manually, the example is as follows.
+Configure enableTraceUserAction, enableTraceUserView, and enableTraceUserResource in FTRUMConfig to achieve the effect of automatically obtaining data, or manually use FTRUMGlobalManager to add this data. An example is shown below:
 
 ### Action
 
-```kotlin
-FTRUMGlobalManager.get().startAction("action name", "action type")
-```
+#### Method
+
+=== "Java"
+
+	```java
+		/**
+	     *  add action
+	     *
+	     * @param actionName action name
+	     * @param actionType action type
+	     */
+	    public void startAction(String actionName, String actionType) 
+	    
+	    
+	    /**
+	     * add action
+	     *
+	     * @param actionName action name
+	     * @param actionType action type
+	     * @param property   extra property
+	     */
+	    public void startAction(String actionName, String actionType, HashMap<String, Object> property)
+	
+	```
+
+=== "Kotlin"
+	
+	```kotlin
+		/**
+	     *  add action
+	     *
+	     * @param actionName action name
+	     * @param actionType action type
+	     */
+		fun startAction(actionName: String, actionType: String)
+		
+		
+		/**
+	     * add action
+	     *
+	     * @param actionName action name
+	     * @param actionType action type
+	     * @param property   extra property
+	     */
+	    fun startAction(actionName: String, actionType: String, property: HashMap<String, Any>)
+	
+	```
+
+#### Code Example
+
+=== "Java"
+
+	```java
+	// Scene 1
+	FTRUMGlobalManager.get().startAction("login", "action_type");
+	
+	// Secne 2:  extra property
+	HashMap<String, Object> map = new HashMap<>();
+	map.put("ft_key", "ft_value");
+	FTRUMGlobalManager.get().startAction("login", "action_type", map);
+	```
+
+=== "Kotlin"
+
+	```kotlin
+	
+	// Scene 1
+	FTRUMGlobalManager.get().startAction("login", "action_type")
+	
+	// Secne 2:  extra property
+	val map = HashMap<String,Any>()
+	map["ft_key"]="ft_value"
+	FTRUMGlobalManager.get().startAction("login","action_type",map)
+	
+	```
 
 ### View
 
-```kotlin
-override fun onResume() {
-     super.onResume()
-     FTRUMGlobalManager.get().startView("Current Page Name", "Pre Page Name")
-}
+#### Method
 
-override fun onPause() {
-     super.onPause()
-     FTRUMGlobalManager.get().stopView()
-}
-```
+=== "Java"
+
+	```java
+	
+	    /**
+	     * view start
+	     *
+	     * @param viewName Current View Name
+	     */
+	    public void startView(String viewName)
+	    
+	    
+	    /**
+	     * view start
+	     *
+	     * @param viewName Current View Name
+	     * @param property Extra Property
+	     */
+	    public void startView(String viewName, HashMap<String, Object> property) 
+	    
+	    
+	    /**
+	     * view stop
+	     */
+	    public void stopView()
+	    
+	    /**
+	     * view stop
+	     *
+	     * @param property  Extra Property
+	     */
+	    public void stopView(HashMap<String, Object> property)
+	
+	
+	```
+
+=== "Kotlin"
+
+	```kotlin
+	
+		/**
+	     * view start
+	     *
+	     * @param viewName Current View Name
+	     */
+		fun startView(viewName: String)
+		
+		 /**
+	     * view start
+	     *
+	     * @param viewName Current View Name
+	     * @param property Extra Property
+	     */
+		
+		fun startView(viewName: String, property: HashMap<String, Any>)
+		
+		 /**
+	     * view stop
+	     */
+		fun stopView()
+		
+		 /**
+	     * view stop
+	     *
+	     * @param property Extra Property
+	     */
+		fun stopView(property: HashMap<String, Any>)
+	
+	```
+
+#### Code Example
+
+=== "Java"
+
+	```java
+	@Override
+	protected void onResume() {
+	    super.onResume();
+	
+	    // Scene 1
+	    FTRUMGlobalManager.get().startView("Current Page Name");
+	
+	    // Scene 2: extra property
+	    HashMap<String, Object> map = new HashMap<>();
+	    map.put("ft_key", "ft_value");
+	    map.put("ft_key_will_change", "ft_value");
+	    FTRUMGlobalManager.get().startView("Current Page Name", map);
+	}
+	
+	@Override
+	protected void onPause() {
+	    super.onPause();
+	
+	    // Scene 1
+	    FTRUMGlobalManager.get().stopView();
+	
+	    // Scene 2 : extra property
+	    HashMap<String, Object> map = new HashMap<>();
+	    map.put("ft_key_will_change", "ft_value_change"); // ft_key_will_change will be changed to ft_value_change when stopResource is called.
+	}
+	```
+
+=== "Kotlin"
+
+	```kotlin
+	override fun onResume() {
+	     super.onResume()
+	     
+	     // Scene 1
+	     FTRUMGlobalManager.get().startView("Current Page Name")
+	     
+	     // Scene 2: extra property
+	     val map = HashMap<String, Any>()
+	     map["ft_key"] = "ft_value"
+	     map["ft_key_will_change"] = "ft_value"	
+	     FTRUMGlobalManager.get().startView("Current Page Name", map)
+	     
+	}
+	
+	override fun onPause() {
+	     super.onPause()
+	     
+	     // Scene 1
+	     FTRUMGlobalManager.get().stopView()
+	     
+	     
+	     // Scene 2 : extra property
+	     val map = HashMap<String, Any>()
+	     map["ft_key_will_change"] = "ft_value_change" // ft_key_will_change will be changed to ft_value_change when stopResource is called.
+	     FTRUMGlobalManager.get().startView("Current Page Name", map)
+	     
+	}
+	```
 
 ### Error
 
-```kotlin
-FTRUMGlobalManager.get().addError("error log", "error msg", ErrorType.JAVA, AppState.RUN)
-```
+#### Method
+
+=== "Java"
+
+	```java
+	    /**
+	     * add error data
+	     *
+	     * @param log       log content
+	     * @param message   error message detail
+	     * @param errorType
+	     * @param state     application running state
+	     */ 
+	    public void addError(String log, String message, ErrorType errorType, AppState state)
+	
+	
+	    /**
+	     * add error data
+	     *
+	     * @param log       log content
+	     * @param message   error message detail
+	     * @param errorType
+	     * @param state     application running state
+	     * @param dateline  Duration, in nanoseconds.
+	     */
+	public void addError(String log, String message, long dateline, ErrorType errorType, AppState state)
+	
+	    /**
+	     * add error data
+	     *
+	     * @param log       log content
+	     * @param message   error message detail
+	     * @param errorType
+	     * @param state     application running state
+	     * @param property
+	     */
+	    public void addError(String log, String message, ErrorType errorType, AppState state, HashMap<String, Object> property)
+	
+	
+	    /**
+	     * add error data
+	     *
+	     * @param log       log content
+	     * @param message   error message detail
+	     * @param errorType
+	     * @param state     application running state
+	     * @param dateline  Duration, in nanoseconds.
+	     */
+	    public void addError(String log, String message, long dateline, ErrorType errorType,
+	                         AppState state, HashMap<String, Object> property)
+	
+	```
+
+=== "Kotlin"
+
+	```kotlin
+		/**
+	     * add error data
+	     *
+	     * @param log       log content
+	     * @param message   error message detail
+	     * @param errorType 
+	     * @param state     application running state
+	     */
+		fun addError(log: String, message: String, errorType: ErrorType, state: AppState)
+		 
+		 /**
+	     * add error data
+	     *
+	     * @param log       log content
+	     * @param message   error message detail
+	     * @param errorType 
+	     * @param state     application running state
+	     * @param dateline  Duration, in nanoseconds.
+	     */ 
+		fun addError(log: String, message: String, dateline: Long, errorType: ErrorType, state: AppState)
+		
+		 /**
+	     * add error data
+	     *
+	     * @param log       log content
+	     * @param message   error message detail
+	     * @param errorType
+	     * @param state     application running state
+	     * @param property
+	     */
+		fun addError(log: String, message: String, errorType: ErrorType, state: AppState, property: HashMap<String, Any>) 
+		
+		 /**
+	     * add error data
+	     *
+	     * @param log       log content
+	     * @param message   error message detail
+	     * @param errorType 
+	     * @param state     application running state
+	     * @param dateline  Duration, in nanoseconds.
+	     */
+		fun addError(log: String, message: String, dateline: Long, errorType: ErrorType,state: AppState, property: HashMap<String, Any>)
+	
+	```
+
+#### Code Example
+
+=== "Java"
+
+	```java
+	// Scene 1:
+	FTRUMGlobalManager.get().addError("error log", "error msg", ErrorType.JAVA, AppState.RUN);
+	
+	// Scene 2:Delay recording the occurred error, typically until the time when the error occurred.
+	FTRUMGlobalManager.get().addError("error log", "error msg", 16789000000000000000L, ErrorType.JAVA, AppState.RUN);
+	
+	// Scene 3：extra property
+	HashMap<String, Object> map = new HashMap<>();
+	map.put("ft_key", "ft_value");
+	FTRUMGlobalManager.get().addError("error log", "error msg", ErrorType.JAVA, AppState.RUN, map);
+	```
+
+=== "Kotlin"
+
+	```kotlin
+	
+	// Scene 1:
+	FTRUMGlobalManager.get().addError("error log", "error msg", ErrorType.JAVA, AppState.RUN)
+	
+	// Scene 2:Delay recording the occurred error, typically until the time when the error occurred.
+	FTRUMGlobalManager.get().addError("error log", "error msg", 16789000000000000000, ErrorType.JAVA, AppState.RUN)
+	
+	// Scene 3：extra property
+	val map = HashMap<String, Any>()
+	map["ft_key"] = "ft_value"
+	FTRUMGlobalManager.get().addError("error log", "error msg",ErrorType.JAVA,AppState.RUN,map)
+	
+	```
+	
 ### LongTask
-```kotlin
-FTRUMGlobalManager.get().addLongTask("error log",1000000L)
-```
+
+#### Method
+
+=== "Java"
+
+	```java
+	    /**
+	     * add long task data
+	     *
+	     * @param log      log content
+	     * @param duration Duration, in nanoseconds.
+	     */
+	    public void addLongTask(String log, long duration) 
+	
+	    /**
+	     * add long task data
+	     *
+	     * @param log      log content
+	     * @param duration Duration, in nanoseconds.
+	     */
+	    public void addLongTask(String log, long duration, HashMap<String, Object> property)
+	
+	```
+
+=== "Kotlin"
+
+	```kotlin
+	    /**
+	     * add long task data
+	     *
+	     * @param log      log content
+	     * @param duration Duration, in nanoseconds.
+	     */
+		fun addLongTask(log: String, duration: Long) 
+		
+		/**
+	     * add long task data
+	     *
+	     * @param log      log content
+	     * @param duration Duration, in nanoseconds.
+	     */
+		
+		fun addLongTask(log: String, duration: Long, property: HashMap<String, Any>)
+	
+	```
+
+#### Code Example
+
+=== "Java"
+
+	```java
+	// Scene 1 
+	FTRUMGlobalManager.get().addLongTask("error log", 1000000L);
+	
+	// Scene 2:extra property
+	HashMap<String, Object> map = new HashMap<>();
+	map.put("ft_key", "ft_value");
+	FTRUMGlobalManager.get().addLongTask("", 1000000L, map);
+	```
+
+=== "Kotlin"
+
+
+	```kotlin
+	
+	// Scene 1 
+	FTRUMGlobalManager.get().addLongTask("error log",1000000L)
+	
+	// Scene 2:extra property
+	 val map = HashMap<String, Any>()
+	 map["ft_key"] = "ft_value"
+	 FTRUMGlobalManager.get().addLongTask("", 1000000L,map)
+	
+	```
 
 ### Resource
 
-```kotlin
-//请求开始
-FTRUMGlobalManager.get().startResource("resourceId")
+#### Method
 
-//请求结束
-FTRUMGlobalManager.get().stopResource("resourceId")
+=== "Java"
 
-//最后，在请求结束之后，发送请求相关的数据指标
-val params = ResourceParams()
-params.url = "https://www.guance.com"
-params.responseContentType = response.header("Content-Type")
-arams.responseConnection = response.header("Connection")
-params.responseContentEncoding = response.header("Content-Encoding")
-params.responseHeader = response.headers.toString()
-params.requestHeader = request.headers.toString()
-params.resourceStatus = response.code
-params.resourceMethod = request.method
+	```java
+	
+	    /**
+	     * resource start
+	     *
+	     * @param resourceId resource Id ，unique every request
+	     */
+	    public void startResource(String resourceId) 
+	    
+	    /**
+	     * resource start
+	     *
+	     * @param resourceId resource Id ，unique every request
+	     */
+	    public void startResource(String resourceId, HashMap<String, Object> property) 
+	    
+	    /**
+	     * resource stop
+	     *
+	     * @param resourceId resource Id ，unique every request
+	     */
+	    public void stopResource(String resourceId)
+	    
+	    /**
+	     * resource stop
+	         *  
+	     * @param resourceId resource Id ，unique every request
+	     * @param property  extra property
+	     */
+	    public void stopResource(final String resourceId, HashMap<String, Object> property)
+	    
+	    
+	    /**
+	     * append network metrics and content data
+	     *
+	     * @param resourceId
+	     * @param params
+	     * @param netStatusBean
+	     */
+	    public void addResource(String resourceId, ResourceParams params, NetStatusBean netStatusBean)
+	
+	```
 
-val bean = NetStatusBean()
-bean.tcpStartTime = 60000000
-//...
-FTRUMGlobalManager.get().addResource("resourceId",params,bean)
+=== "Kotlin"
 
-```
+	```kotlin
+	
+	/**
+	 * resource start
+	 *
+	 * @param resourceId resource Id ，unique every request
+	 */
+	fun startResource(resourceId: String) {
+	    // ...
+	}
+	
+	/**
+	 * resource start
+	 *
+	 * @param resourceId resource Id ，unique every request
+	 */
+	fun startResource(resourceId: String, property: HashMap<String, Any>) {
+	    // ...
+	}
+	
+	/**
+	 * resource stop
+	 *
+	 * @param resourceId resource Id ，unique every request
+	 */
+	fun stopResource(resourceId: String) {
+	    // ...
+	}
+	
+	/**
+	 * resource stop
+	 *
+	 * @param resourceId resource Id ，unique every request
+	 * @param property  extra property
+	 */
+	fun stopResource(resourceId: String, property: HashMap<String, Any>) {
+	    // ...
+	}
+	
+	/**
+	 * append network metrics and content data
+	 *
+	 * @param resourceId
+	 * @param params
+	 * @param netStatusBean
+	 */
+	fun addResource(resourceId: String, params: ResourceParams, netStatusBean: NetStatusBean) {
+	    // ...
+	}
+	
+	```
 
-| **Method Name** | **Meaning** | **Required** | Description |
+#### Code Example
+
+=== "Java"
+
+	```java
+	
+	// Scene 1
+	// request start
+	FTRUMGlobalManager.get().startResource("resourceId");
+	
+	//...
+	
+	// reqeust end
+	FTRUMGlobalManager.get().stopResource("resourceId");
+	
+	//Finally, after the request ends, send request-related data metrics
+	ResourceParams params = new ResourceParams();
+	params.setUrl("https://www.guance.com");
+	params.setResponseContentType(response.header("Content-Type"));
+	params.setResponseConnection(response.header("Connection"));
+	params.setResponseContentEncoding(response.header("Content-Encoding"));
+	params.setResponseHeader(response.headers().toString());
+	params.setRequestHeader(request.headers().toString());
+	params.setResourceStatus(response.code());
+	params.setResourceMethod(request.method());
+	
+	NetStatusBean bean = new NetStatusBean();
+	bean.setTcpStartTime(60000000);
+	//...
+	
+	FTRUMGlobalManager.get().addResource("resourceId", params, bean);
+	
+	
+	// Scene 2 ：Extra Property
+	HashMap<String, Object> map = new HashMap<>();
+	map.put("ft_key", "ft_value");
+	map.put("ft_key_will_change", "ft_value");
+	
+	FTRUMGlobalManager.get().startResource("resourceId",map);
+	
+	//...
+	HashMap<String, Object> map = new HashMap<>()；
+	map.put("ft_key_will_change", "ft_value_change"); // ft_key_will_change will be changed to ft_value_change when stopResource is called.
+	FTRUMGlobalManager.get().stopResource(uuid,map);
+	
+	```
+
+=== "Kotlin"
+
+	```kotlin
+	// Scene 1
+	//request start
+	FTRUMGlobalManager.get().startResource("resourceId")
+	
+	//request end
+	FTRUMGlobalManager.get().stopResource("resourceId")
+	
+	//Finally, after the request ends, send request-related data metrics
+	val params = ResourceParams()
+	params.url = "https://www.guance.com"
+	params.responseContentType = response.header("Content-Type")
+	arams.responseConnection = response.header("Connection")
+	params.responseContentEncoding = response.header("Content-Encoding")
+	params.responseHeader = response.headers.toString()
+	params.requestHeader = request.headers.toString()
+	params.resourceStatus = response.code
+	params.resourceMethod = request.method
+	
+	val bean = NetStatusBean()
+	bean.tcpStartTime = 60000000
+	//...
+	FTRUMGlobalManager.get().addResource("resourceId",params,bean)
+	
+	// Scene 2 ：Extra Property
+	val map = hashMapOf<String, Any>(
+	        "ft_key" to "ft_value",
+	        "ft_key_will_change" to "ft_value"
+	)
+	FTRUMGlobalManager.get().startResource("resourceId", map)
+	
+	//...
+	val map = hashMapOf<String, Any>(
+	        "ft_key_will_change" to "ft_value_change" 
+	)
+	// ft_key_will_change will be changed to ft_value_change when stopResource is called.
+	
+	FTRUMGlobalManager.get().stopResource(uuid, map)
+	
+	```
+
+| **Method Name** | **Meaning** | **Required** | **Description** |
 | --- | --- | --- | --- |
 | NetStatusBean.fetchStartTime | Request start time | No |  |
 | NetStatusBean.tcpStartTime | tcp connection time | No |  |
@@ -346,115 +1025,385 @@ FTRUMGlobalManager.get().addResource("resourceId",params,bean)
 | ResourceParams.responseBody | Return body content | No |  |
 
 ## Logger Log Printing 
+Using `FTLogger` print log
 
-```kotlin
-//上传单个日志
-FTLogger.getInstance().logBackground("test", Status.INFO)
+### Method
 
-//批量上传日志
-FTLogger.getInstance().logBackground(mutableListOf(LogData("test",Status.INFO)))
-```
+=== "Java"
 
-### Log Level
+	```java
+	    /**
+	     * store single log
+	     *
+	     * @param content log content
+	     * @param status  log level
+	     */
+	    public void logBackground(String content, Status status)
+	    
+	    /**
+	     *store single log
+	     *
+	     * @param content log content
+	     * @param status  log level
+	     */
+	    public void logBackground(String content, Status status, HashMap<String, Object> property)
+	    
+	    
+	    /**
+	     * batch log
+	     *
+	     * @param logDataList {@link LogData} log list
+	     */
+	    public void logBackground(List<LogData> logDataList)
+	    
+	    
+	```
 
-| Method Name | Meaning |
-| --- | --- |
-| Status.INFO | INFO |
-| Status.WARNING | WARNING |
-| Status.ERROR | ERROR |
-| Status.CRITICAL | CRITICAL |
-| Status.OK | OK |
+=== "Kotlin"
+	
+	```kotlin
+	
+	    /**
+	     *store single log
+	     *
+	     * @param content log content
+	     * @param status  log level
+	     */
+	    fun logBackground(content: String, status: Status)
+	    
+	    /**
+	     *store single log
+	     *
+	     * @param content log content
+	     * @param status  log level
+	     * @param property extra property
+	     */
+	    fun logBackground(content: String, status: Status, property: HashMap<String, Any>) 
+	    
+	    /**
+	     * batch log
+	     *
+	     * @param logDataList log list
+	     */
+	    fun logBackground(logDataList: List<LogData>)
+	
+	```
+
+#### log level
+
+| **Constant**    | **Meaning**  |
+|-----------------|--------------|
+| Status.INFO     | info log     |
+| Status.WARNING  | warning log  |
+| Status.ERROR    | error log    |
+| Status.CRITICAL | critical log |
+| Status.OK       | recovery log |
+
+### Code Example
+
+
+=== "Java"
+	
+	```java
+	// single log
+	FTLogger.getInstance().logBackground("test", Status.INFO);
+	
+	// set extra property with HashMap
+	HashMap<String, Object> map = new HashMap<>();
+	map.put("ft_key", "ft_value");
+	FTLogger.getInstance().logBackground("test", Status.INFO, map);
+	
+	// batch log
+	List<LogData> logList = new ArrayList<>();
+	logList.add(new LogData("test", Status.INFO));
+	FTLogger.getInstance().logBackground(logList);
+	```
+
+=== "Kotlin"
+	
+	```kotlin
+	//upload single log
+	FTLogger.getInstance().logBackground("test", Status.INFO)
+	
+	//set extra property with HashMap
+	val map = HashMap<String,Any>()
+	map["ft_key"]="ft_value"
+	FTLogger.getInstance().logBackground("test", Status.INFO,map
+	
+	//batch log
+	FTLogger.getInstance().logBackground(mutableListOf(LogData("test",Status.INFO)))
+	```
+
 
 ## Tracer Network Trace Tracking
 
-You can `FTTRUMConfig` configure to enable automatic mode, or add it manually, for example, as follows.
+Configure FTTraceConfig to enable automatic addition of link data using enableAutoTrace, or manually use FTTraceManager to add Propagation Header in an HTTP request. An example is shown below:
 
-```kotlin
-val url = "https://www.guance.com"
-val uuid ="uuid"
-//获取链路头参数
-val headers = FTTraceManager.get().getTraceHeader(uuid, url)
+=== "Java"
 
-val client: OkHttpClient = OkHttpClient.Builder().addInterceptor { chain ->
-   
-                    val original = chain.request()
-                    val requestBuilder = original.newBuilder()
-                    //在请求中，添加链路头参数
-                    for (key in headers.keys) {
-                        requestBuilder.header(key!!, headers[key]!!)
-                    }
-                    val request = requestBuilder.build()
+	```java
+	String url = "https://www.guance.com";
+	String uuid = "uuid";
+	//get http header params
+	Map<String, String> headers = FTTraceManager.get().getTraceHeader(uuid, url);
+	
+	OkHttpClient client = new OkHttpClient.Builder().addInterceptor(chain -> {
+	    Request original = chain.request();
+	    Request.Builder requestBuilder = original.newBuilder();
+	        //add tracing headers
+	        for (String key : headers.keySet()) {
+	        requestBuilder.header(key, headers.get(key));
+	    }
+	    Request request = requestBuilder.build();
+	
+	    Response response = chain.proceed(request);
+	
+	    if (response != null) {
+	        Map<String, String> requestHeaderMap = new HashMap<>();
+	        Map<String, String> responseHeaderMap = new HashMap<>();
+	        for (Pair<String, String> header : response.request().headers()) {
+	            requestHeaderMap.put(header.first, header.second);
+	        }
+	        for (Pair<String, String> header : response.headers()) {
+	            responseHeaderMap.put(header.first, header.second);
+	        }
+	    }
+	
+	    return response;
+	}).build();
+	
+	Request.Builder builder = new Request.Builder().url(url).method(RequestMethod.GET.name(), null);
+	client.newCall(builder.build()).execute();
+	```
 
-                    response = chain.proceed(request)
+=== "Kotlin"
 
-                    if (response != null) {
-                        val requestHeaderMap = HashMap<String, String>()
-                        val responseHeaderMap = HashMap<String, String>()
-                        request.headers.forEach {
-                            requestHeaderMap[it.first] = it.second
-                        }
-                        response!!.headers.forEach {
-                            responseHeaderMap[it.first] = it.second
+	```kotlin
+	val url = "https://www.guance.com"
+	val uuid ="uuid"
+	//get http header params
+	val headers = FTTraceManager.get().getTraceHeader(uuid, url)
+	
+	val client: OkHttpClient = OkHttpClient.Builder().addInterceptor { chain ->
+	   
+	                    val original = chain.request()
+	                    val requestBuilder = original.newBuilder()
+	                   
+	                    //add tracing headers
+	                    for (key in headers.keys) {
+	                        requestBuilder.header(key!!, headers[key]!!)
+	                    }
+	                    val request = requestBuilder.build()
+	
+	                    response = chain.proceed(request)
+	
+	                    if (response != null) {
+	                        val requestHeaderMap = HashMap<String, String>()
+	                        val responseHeaderMap = HashMap<String, String>()
+	                        request.headers.forEach {
+	                            requestHeaderMap[it.first] = it.second
+	                        }
+	                        response!!.headers.forEach {
+	                            responseHeaderMap[it.first] = it.second
+	
+	                        }
+	                    
+	                    }
+	
+	                    response!!
+	                }.build()
+	
+	 val builder: Request.Builder = Request.Builder().url(url).method(RequestMethod.GET.name, null)
+	client.newCall(builder.build()).execute()
+	
+	
+	```
 
-                        }
-                    
-                    }
+## User Information Binding and Unbinding {#userdata-bind-and-unbind}
+Using  `FTSdk` bind user data and unbind
 
-                    response!!
-                }.build()
+### Method
 
- val builder: Request.Builder = Request.Builder().url(url).method(RequestMethod.GET.name, null)
-client.newCall(builder.build()).execute()
+=== "Java"
 
+	```
+	  
+	   /**
+	     * bind user infomation
+	     *
+	     * @param id
+	     */
+	    public static void bindRumUserData(@NonNull String id) 
+	    
+	    /**
+	     * bind user infomation
+	     */
+	    public static void bindRumUserData(@NonNull UserData data)
+	```
 
-```
+=== "Kotlin"
 
-## User Information Binding and Unbinding
+	``` kotlin
+	/**
+	     * bind user infomation
+	     *
+	     * @param id user ID
+	     */
+	    fun bindRumUserData(id: String) {
+	        // TODO: implement bindRumUserData method
+	    }
+	    
+	    /**
+	     * bind user infomation
+	     *
+	     * @param data user infomation
+	     */
+	    fun bindRumUserData(data: UserData) {
+	        // TODO: implement bindRumUserData method
+	    }
+	```
+	
 
-```kotlin
-//可以在用户登录成功后调用此方法用来绑定用户信息
-FTSdk.bindRumUserData("001")
+#### UserData
+| **Method Name** | **Meaning**    | **Required** | **Description**                              |
+|------------|----------------|--------------|----------------------------------------------|
+| setId      | set user ID    | NO           |                                              |
+| setName    | set user name  | NO           |                                              |
+| setEmail   | set email      | NO           |                                              |
+| setExts    | set user extra | NO           | More rules ，please view[Here](#key-conflict) |
 
-val userData = UserData()
-userData.name = "test.user"
-userData.id = "test.id"
-userData("test@mail.com")
-val extMap = HashMap<String, String>()
-extMap["ft_key"] = "ft_value"
-userData.setExts(extMap)
-            
-FTSdk.bindRumUserData(userData)
+### Code Example
 
-//可以在用户退出登录后调用此方法来解绑用户信息
-FTSdk.unbindRumUserData()
-```
+=== "Java"
 
-### UserData
-| Method Name | Meaning | Required | Description |
-| --- | --- | --- | --- |
-| setId | Set the user ID | No | |
-| setName | Set username | No | |
-| setEmail | Set mailbox | No | |
-| setExts | Set user extensions | No | Adding rules can be found [here](#key-conflict) |
+	```java
+	// bind user info after log in
+	FTSdk.bindRumUserData("001");
+	
+	UserData userData = new UserData();
+	userData.setName("test.user");
+	userData.setId("test.id");
+	userData.setEmail("test@mail.com");
+	Map<String, String> extMap = new HashMap<>();
+	extMap.put("ft_key", "ft_value");
+	userData.setExts(extMap);
+	FTSdk.bindRumUserData(userData);
+	
+	//clear user data after log out
+	FTSdk.unbindRumUserData();
+	
+	```
 
+=== "Kotlin"
 
+	```kotlin
+	
+	// bind user info after log in
+	FTSdk.bindRumUserData("001")
+	
+	val userData = UserData()
+	userData.name = "test.user"
+	userData.id = "test.id"
+	userData("test@mail.com")
+	val extMap = HashMap<String, String>()
+	extMap["ft_key"] = "ft_value"
+	userData.setExts(extMap)
+	            
+	FTSdk.bindRumUserData(userData)
+	
+	//clear user data after log out
+	FTSdk.unbindRumUserData()
+	```
 
 ## Close SDK
+Using `FTSdk`  to close SDK
 
-```kotlin
-//如果动态改变 SDK 配置，需要先关闭，以避免错误数据的产生
-FTSdk.shutDown()
-```
+### Method
+
+=== "Java"
+
+	```java
+	     /**
+	     * Close the running object inside the SDK
+	     */
+	    public static void shutDown()
+	    
+	```
+
+=== "Kotlin"
+
+	``` kotlin
+	    /**
+	     * Close the running object inside the SDK
+	     */
+	    fun shutDown()
+	```
+
+### Code Example
+
+=== "Java"
+
+	```java
+	//If you dynamically change the SDK configuration, you need to close it first to avoid the generation of wrong data
+	FTSdk.shutDown();
+	```
+
+=== "Kotlin"
+
+	```kotlin
+	//If you dynamically change the SDK configuration, you need to close it first to avoid the generation of wrong data
+	FTSdk.shutDown()
+	```
 
 ## Dynamically Turn On and Off to get AndroidID
-```kotlin
-//开启获取 Android ID
-FTSdk.setEnableAccessAndroidID(true);
 
-//关闭获取 Android ID
-FTSdk.setEnableAccessAndroidID(fasle);
-```
+Using `FTSdk` to set whether to get the Android ID in the SDK
 
+### Method
+
+=== "Java"
+
+	```java
+	   /**
+	     * Close the running object inside the SDK
+	     *
+	     * @param enableAccessAndroidID 
+	     */
+	    public static void setEnableAccessAndroidID(boolean enableAccessAndroidID)
+	```
+
+=== "Kotlin"
+
+	```kotlin
+	   /**
+	     * Close the running object inside the SDK
+	     *
+	     * @param enableAccessAndroidID 
+	     */
+	    fun setEnableAccessAndroidID(enableAccessAndroidID:Boolean)
+	```
+
+### Code Example
+
+=== "Java"
+
+	```
+	//enable access Android ID
+	FTSdk.setEnableAccessAndroidID(true);
+	
+	//disable access Android ID
+	FTSdk.setEnableAccessAndroidID(false);
+	```
+
+=== "Kotlin"
+
+	```kotlin
+	//enable access Android ID
+	FTSdk.setEnableAccessAndroidID(true);
+	
+	//disable access Android ID
+	FTSdk.setEnableAccessAndroidID(false);
+	```
 
 ## R8 / Proguard Obfuscation Configuration
 
@@ -477,11 +1426,11 @@ FTExt {
 	//...
     autoUploadMap = true
     autoUploadNativeDebugSymbol = true
-    datakitDCAUrl = 'https://datakit.url:9531'//datakit 安装地址，默认 9531 
+    datakitDCAUrl = 'https://datakit.url:9531'//datakit isntall url，9531 defualt 
     appId = "appid_xxxxx"// appid
     env = 'common'
 
-    prodFlavors { //prodFlavors 配置会覆盖外层设置
+    prodFlavors { //prodFlavors override before
         prodTest {
             autoUploadMap = false
             autoUploadNativeDebugSymbol = false
@@ -505,7 +1454,7 @@ It is recommended to use the `zip` command line for packing, to avoid some syste
 
 ## Permission Configuration Instructions
 
-| Name | Reasons for Use |
+|**Name**| **Reasons for Use** |
 | --- | --- |
 | `READ_PHONE_STATE` | Used to obtain device information of cell phones for accurate analysis of data information |
 
@@ -524,22 +1473,127 @@ To avoid conflicts between custom fields and SDK data, it is recommended that th
 #### SDK AndroidID Configuration
 The SDK will use the Android ID for better association with the same user data, and if it needs to be on the app market, it needs to correspond to the market privacy audit in the following way.
 
-```kotlin
-class DemoApplication : Application() {
-    override fun onCreate() {
-    
-        //在初始化设置时将  setEnableAccessAndroidID 设置为 false
-        val config = FTSDKConfig
-            .builder(DATAKIT_URL)
-            . setEnableAccessAndroidID(false)
+=== "Java"
 
-        FTSdk.install(config)
-        
-        //...
-    }
-}
+	```java
+	public class DemoApplication extends Application {
+	    @Override
+	    public void onCreate() {
+	        // application init setEnableAccessAndroidID to false
+	        FTSDKConfig config = new FTSDKConfig.Builder(DATAKIT_URL)
+	                .setEnableAccessAndroidID(false)
+	                .build();
+	        FTSdk.install(config);
+	        
+	        // ...
+	    }
+	}
+	
+	// set enable after user agree with privacy
+	FTSdk.setEnableAccessAndroidID(true);
+	```
 
-//用户同意隐私协议后再开启
-FTSdk.setEnableAccessAndroidID(true);
-```
+=== "Kotlin"
 
+	```kotlin
+	class DemoApplication : Application() {
+	    override fun onCreate() {
+	    
+	        //application init  setEnableAccessAndroidID to false
+	        val config = FTSDKConfig
+	            .builder(DATAKIT_URL)
+	            . setEnableAccessAndroidID(false)
+	
+	        FTSdk.install(config)
+	        
+	        //...
+	    }
+	}
+	
+	// set enable after user agree with privacy
+	FTSdk.setEnableAccessAndroidID(true);
+	```
+
+### ft-plugin not compatibility {#manual-set}
+Guance uses code injection through `Android Gradle Plugin` Transformation to automatically collect data. However, in the event that `ft-plugin` cannot be used, this alternative integration approach can be used. The steps to implement the SDK manually are as follows:
+
+* For the application startup event, add the following code to the onCreate() method of the `Application` class. Here is an example [DemoForManualSet.kt](https://github.com/GuanceCloud/datakit-android/tree/dev/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/DemoForManualSet.kt)
+
+=== "Java"
+
+	```java
+	// Application
+	@Override
+	public void onCreate() {
+	    super.onCreate();
+	    
+	    //before sdk config init
+	    FTAutoTrack.startApp(null);
+	    
+	    //SDK configure
+	    setSDK(this);
+	}
+	```
+
+=== "Kotlin"
+
+	```kotlin
+	  	//Application
+	    override fun onCreate() {
+	        super.onCreate()
+	        
+			 //before sdk config init
+	        FTAutoTrack.startApp(null)
+	        
+	        //SDK configure
+	        setSDK(this)
+	 
+	    }
+	```
+
+* For user events, such as button clicks, you will need to manually add tracking using `FTRUMGlobalManager`. For example, for a button click event, you can add the following code. Here is an example [ManualActivity.kt](https://github.com/GuanceCloud/datakit-android/tree/dev/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt)：
+
+=== "Java"
+
+	```java
+	view.setOnClickListener(new View.OnClickListener() {
+	    @Override
+	    public void onClick(View v) {
+	        FTRUMGlobalManager.get().startAction("[action button]", "click");
+	    }
+	});
+	
+	```
+
+=== "Kotlin"
+
+	```kotlin
+		view.setOnClickListener{
+			FTRUMGlobalManager.get().startAction("[action button]", "click")
+		}
+	```
+
+* For `OkHttp`, you can add tracking by using addInterceptor and eventListener to integrate Resource and Trace. Here is an example [ManualActivity.kt](https://github.com/GuanceCloud/datakit-android/tree/dev/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt)：
+
+=== "Java"	
+
+	```java
+	OkHttpClient.Builder builder = new OkHttpClient.Builder();
+	builder.addInterceptor(new FTTraceInterceptor());
+	FTResourceInterceptor interceptor = new FTResourceInterceptor();
+	builder.addInterceptor(interceptor);
+	builder.eventListener(interceptor);
+	OkHttpClient client = builder.build();
+	```
+=== "Kotlin"
+	
+	```kotlin
+	val builder = OkHttpClient.Builder()
+	builder.addInterceptor(FTTraceInterceptor())
+	val interceptor = FTResourceInterceptor()
+	builder.addInterceptor(interceptor)
+	builder.eventListener(interceptor)
+	val client = builder.build()
+	```
+
+* For other network frameworks, you will need to manually implement the use of `FTRUMGlobalManager` and its methods, including `startResource`, `stopResource`, `addResource`, and `FTTraceManager.getTraceHeader`. For more information, please refer to the sample code in [ManualActivity.kt](https://github.com/GuanceCloud/datakit-android/tree/dev/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt).

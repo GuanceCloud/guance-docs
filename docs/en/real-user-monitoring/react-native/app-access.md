@@ -28,7 +28,7 @@ This will add a line like this to the package.json of the package.
 
 ```json
 "dependencies": {    
-   "@cloudcare/react-native-mobile: "^0.2.1",
+   "@cloudcare/react-native-mobile: "^0.2.4",
    ···
 }
 ```
@@ -141,11 +141,9 @@ FTReactNativeLog.logConfig(logConfig);
 | **Fields**            | **Type**       | **Required** | **Description**                                              |
 | --- | --- | --- | --- |
 | sampleRate | number | No | Sampling rate, the value of the sample rate ranges from >= 0, <= 1, the default value is 1 |
-| serviceName | string | No | Service Name |
 | traceType | enum TraceType | No | Trace type, default `TraceType.zipkin` |
 | enableLinkRUMData | boolean | No | Whether to associate with `RUM` data, default `false` |
 | enableNativeAutoTrace | boolean | No | Whether to enable Native Network Network AutoTrace iOS NSURLSession ,Android OKhttp(Since the network request of `React Native` is implemented in iOS and Android using system API, so after enabling `enableNativeAutoTrace`, all `React Native` data can be traced together.) |
-| globalContext | NSDictionary | No           | [Add custom tags](#user-global-context)                      |
 
 # RUM
 
@@ -160,6 +158,8 @@ The `actionName` can be set via `accessibilityLabel` when auto-capture is enable
 ## View
 
 ```typescript
+FTReactNativeRUM.onCreateView("RUM",duration);
+
 FTReactNativeRUM.startView("RUM");
 
 FTReactNativeRUM.stopView();
@@ -223,7 +223,7 @@ FTReactNativeLog.logging("info log content",FTLogStatus.info);
 | FTLogStatus.critical | critical |
 | FTLogStatus.ok | ok |
 
-# Tracing
+# Network Link Tracing
 
 ```typescript
   async getHttp(url:string){

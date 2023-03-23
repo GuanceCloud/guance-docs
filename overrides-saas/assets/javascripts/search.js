@@ -51,7 +51,7 @@ function renderRow(rowData) {
   title.setAttribute('class', 'search-list-row-title')
   const titleA = document.createElement('a')
   titleA.setAttribute('href', `${new URL(rowData.location, baseUrl)}`)
-  titleA.innerHTML = rowData.title
+  titleA.innerHTML = (rowData.menu || '').replace(/>>/g, '»')
   title.append(titleA)
   const text = document.createElement('div')
   text.setAttribute('class', 'search-list-row-text')
@@ -141,6 +141,8 @@ async function render() {
 }
 const initListener = function () {
   searchPageNavigationEl.addEventListener('click', function (evt) {
+    evt.stopPropagation()
+    evt.preventDefault()
     const target = evt.target
     if (target && target.getAttribute('id') === 'btn-prev') {
       gotoPage(page - 1)

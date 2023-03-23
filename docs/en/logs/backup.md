@@ -3,58 +3,78 @@
 
 ## Overview
 
-Guance basic log is stored for up to 60 days. If you need to store and view for a longer time, it needs to be backed up. Log backups are supported in two ways: 
- 
-- Backup to Guance: Support backup log storage for up to 720 days,we support 180d / 360d / 720d three options to choose.     
-- Backup to external storage: Support for backing up logs to Alibaba Cloud OSS, refer to the documentation [Best Practices for Backing Up Log Data to OSS](../best-practices/partner/log-backup-to-oss-by-func.md).     
+After log backup rules is created, the local log would be uploaded (copied) to the backup space in real time to form a log backup. Based on the log backup feature, you can restore data to any point in time during the backup retention time.<br/> This article describes how to back up logs to Guance for viewing and analysis.
+
+Log backups are supported in two ways:    
+- Backup to Guance: The maximum storage time of Guance basic log is 60 days, and the maximum storage time of backup log is 720 days. See the doc [Data Storage Policy](../billing/billing-method/data-storage.md) for more info.     
+- Backup to external storage: You can back up logs to Alibaba Cloud OSS, see the doc [Best Practices for Backing Up Log Data to OSS](../best-practices/partner/log-backup-to-oss-by-func.md) for more info.  
 
 
-## Backup to Guance
+## Setup
 
-### New Rule
+### Create Rules
 
-On the Log Index page, click New Rule under Backup Log. 
+On the **Log Index** page, click **Create** under **Backup Log**. 
  
 ![](img/backup-log-en-1.png) 
  
-Enter "Rule Name" to add a new rule, which supports more accurate positioning of logs to be backed up by adding filters, and saves the storage cost of backup logs. 
+Enter **Rule Name** to add a new rule.
  
 ![](img/backup-log-en-2.png) 
 
 
-**Note**
+**Note:**
 
-- Backup cycle: Rule verification and backup are performed every 5 minutes, you can see the backup log data after configuring backup rules for up to 5 minutes    
-- Data Preview: Preview the last 15 minutes log    
-- Filter: Log can be filtered by filter criteria    
-- Rule name: Limit input to 30 characters    
-- Free users: Unable to back up log data    
+- Data Preview: Preview logs in the last 15 minutes.
+- Rule Name: 30 characters are limited.   
+- Synchronous Backup Extended Field: If this option is checked, the entire log data that meets the filter criteria would be backed up. You can go to the **Backup Log** details page to filter and view the information corresponding to the extended fields.  
+- Filter: Logs can be filtered by adding filters.   
+
+???+ attention
+
+    - Only users of Guance Commercial Plan can use backup log, and users from Experience Plan  can [upgrade to commercial version](../billing/commercial-version.md) first;  
+    - Backup Cycle: Rule verification and backup are performed every 5 minutes, you can see the backup log data after configuring backup rules for up to 5 minutes.     
+
+## Backup Log
+
+Enter **Log > Backup Log** to view the log data that meets the backup conditions.
+
+- Time Widget: Selecting the generated time range of backup logs that you want to view.  
+- Search and Filter: Positioning backup logs by searching for keywords or filtering fields.  
+- Display column: If you check **Synchronous Backup Extended Field** when creating backup log rules, you can add customizing fields other than **Time** and **Message**.
 
 
-#### Example
+- Backup Log Details: Click any log to view the log details, including log generation time, content and extended fields.  
+
+![](img/backup-log-en-6.png)
+
+
+### View Rules
  
-In the following picture, the log backup rule name is ` datakit_backup `, and log data with filter matching source ` datakit ` or content containing ` data ` is backed up. 
+After being created, **Backup Rule** would be stored in **Backup Log** under **Log Index** in a unified way. Click the **View** button to view the configured backup rule filters. 
 
-
-![](img/backup-log-en-3.png)
-
-### View Rule
- 
-After the backup rule is created, the "backup log" stored under the log index is unified. Once a rule is created, it cannot be edited, but can only be viewed and deleted. Click the "View" button to view the configured backup rule filters. 
+> Once a rule is created, it cannot be edited, but can only be viewed and deleted. 
 
 ![](img/backup-log-en-4.png)
 
-### Delete Rule
 
-If you create a rule that is no longer needed or needs to be modified, you can delete the rule and then create a new backup rule. After the rule is deleted, the backed-up data will not be deleted, but no new log backup data will be generated.
+### Delete Rules
+
+If you create a rule that is no longer needed or needs to be modified, you can delete the rule and then create a new backup rule. 
+
+> After the rule is deleted, the backed-up data will not be deleted, but no new log backup data will be generated.
 
 ![](img/backup-log-en-5.png)
 
-## Backup Explorer
 
-Enter the "Log"-"Backup Log" page to view the log data that meets the backup conditions, and query and analyze the log by selecting time range, searching keywords, filtering, etc. Click on the log to view the log details, including the time and content of the log.     
+#### <u>Example</u>
  
-Note: Backup logs only back up the time and contents of the logs.     
+In the following picture, the backup log rule name is `http_dial_testing`, and the extended fields need to be backed up synchronously. The filter matches the data whose source is `http_dial_testing`.
 
-![](img/backup-log-en-6.png)
+![](img/backup-log-en-3.png)
+
+You can check the filtered backup logs that meet created rules in **Backup Log**. Click any log to enter details page and you can gain information on its sorce, message and extended fileds.
+
+
+
 

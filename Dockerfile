@@ -3,6 +3,9 @@ ARG GUANCE_HELPS_OSS_AK_ID
 ARG GUANCE_HELPS_OSS_AK_SECRET
 ARG GUANCE_HELPS_OSS_BUCKET
 ARG GUANCE_HELPS_OSS_ENDPOINT
+# 配置文档索引搜索的ES实例信息
+ARG ES_VAR_DOC_SEARCH_TEST
+ARG ES_VAR_DOC_SEARCH_PROD
 
 FROM registry.jiagouyun.com/basis/mkdocs:2.3 as build
 
@@ -11,10 +14,17 @@ ARG GUANCE_HELPS_OSS_AK_ID
 ARG GUANCE_HELPS_OSS_AK_SECRET
 ARG GUANCE_HELPS_OSS_BUCKET
 ARG GUANCE_HELPS_OSS_ENDPOINT
+# 配置文档索引搜索的ES实例信息
+ARG ES_VAR_DOC_SEARCH_TEST
+ARG ES_VAR_DOC_SEARCH_PROD
 
 RUN mkdir /dataflux-doc
 WORKDIR /dataflux-doc
 COPY ./ /dataflux-doc
+
+# set doc-search env
+ENV ES_VAR_DOC_SEARCH_TEST=$ES_VAR_DOC_SEARCH_TEST
+ENV ES_VAR_DOC_SEARCH_PROD=$ES_VAR_DOC_SEARCH_PROD
 
 RUN \
     enFileArg=mkdocs.en.saas.yml; \
@@ -37,7 +47,7 @@ RUN \
     if [ $release_env != "rtm" ]; then \
         # 安装对应文档先关的插件的pypi
         pip install -i https://pypi.douban.com/simple mkdocs==1.4.2 beautifulsoup4==4.11.2 requests==2.28.2; \
-        pip install -i https://pmgmt.jiagouyun.com/repository/guance-pypi/simple mkdocs-plugins==0.0.4; \
+        pip install -i https://pmgmt.jiagouyun.com/repository/guance-pypi/simple mkdocs-plugins==0.0.6; \
     fi; \
     # 打包编译中英文的索引信息
     mkdocs build -f ${enFileArg}; \

@@ -10,7 +10,13 @@ buildTesting:
   only:
     - dev
   script:
-    - docker build --build-arg release_env="peprod" -t $REPOSITORY:testing .
+    - echo "$ES_VAR_DOC_SEARCH_TEST"
+    - echo "$ES_VAR_DOC_SEARCH_PROD"
+    - docker build 
+      --build-arg release_env="peprod"
+      --build-arg ES_VAR_DOC_SEARCH_TEST=$ES_VAR_DOC_SEARCH_TEST
+      --build-arg ES_VAR_DOC_SEARCH_PROD=$ES_VAR_DOC_SEARCH_PROD
+      -t $REPOSITORY:testing .
     - docker tag $REPOSITORY:testing registry.jiagouyun.com/cloudcare-front/$REPOSITORY:testing
     - docker push registry.jiagouyun.com/cloudcare-front/$REPOSITORY:testing
 
@@ -23,7 +29,13 @@ buildFeature:
   only:
     - /^feature.*/
   script:
-    - docker build --build-arg release_env="peprod" -t $REPOSITORY:feature-multi-language .
+    - echo "$ES_VAR_DOC_SEARCH_TEST"
+    - echo "$ES_VAR_DOC_SEARCH_PROD"
+    - docker build 
+      --build-arg release_env="peprod" 
+      --build-arg ES_VAR_DOC_SEARCH_TEST=$ES_VAR_DOC_SEARCH_TEST 
+      --build-arg ES_VAR_DOC_SEARCH_PROD=$ES_VAR_DOC_SEARCH_PROD 
+      -t $REPOSITORY:feature-multi-language .
     - docker tag $REPOSITORY:feature-multi-language registry.jiagouyun.com/cloudcare-front/$REPOSITORY:feature-multi-language
     - docker push registry.jiagouyun.com/cloudcare-front/$REPOSITORY:feature-multi-language
 
@@ -36,12 +48,16 @@ buildMain:
   only:
     - master
   script:
+    - echo "$ES_VAR_DOC_SEARCH_TEST"
+    - echo "$ES_VAR_DOC_SEARCH_PROD"
     - docker build 
       --build-arg release_env="saas_production"
       --build-arg GUANCE_HELPS_OSS_AK_ID="${GUANCE_HELPS_OSS_AK_ID}"
       --build-arg GUANCE_HELPS_OSS_AK_SECRET="${GUANCE_HELPS_OSS_AK_SECRET}"
       --build-arg GUANCE_HELPS_OSS_BUCKET="${GUANCE_HELPS_OSS_BUCKET}"
       --build-arg GUANCE_HELPS_OSS_ENDPOINT="${GUANCE_HELPS_OSS_ENDPOINT}"
+      --build-arg ES_VAR_DOC_SEARCH_TEST=$ES_VAR_DOC_SEARCH_TEST
+      --build-arg ES_VAR_DOC_SEARCH_PROD=$ES_VAR_DOC_SEARCH_PROD
       -t $REPOSITORY:prod .
     - docker tag $REPOSITORY:prod registry.jiagouyun.com/cloudcare-front/$REPOSITORY:prod
     - docker push registry.jiagouyun.com/cloudcare-front/$REPOSITORY:prod

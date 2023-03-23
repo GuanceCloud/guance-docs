@@ -29,7 +29,6 @@
     - 标准成员和只读成员只有查看权限，管理员和拥有者可以编辑、删除、拖拽排序
 
 
-
 ### 索引数据上报说明
 
 在下图中，索引新建成功后，`source` 为 `datakit` 的日志数据上报时，会匹配流入第一个索引 `index.d` 。
@@ -64,7 +63,7 @@
 
 ### SLS Logstore 索引绑定 {#sls}
 
-在观测云「日志」-「索引」，点击「绑定索引」。在弹出的对话框选择 Log Service 页面，填写 AccessKey ID / AccessKey Secret （简称 AK / AKS ），自动获取 Project 和 Logstore。索引名称默认与 Logstore 的名称保持一致，您也可以自定义编辑名称。点击「确定」后，即可完成索引绑定，您可以在「查看器」通过切换索引进行查看。
+在观测云「日志」-「索引」，点击「绑定索引」。在弹出的对话框选择 SLS Logstore 页面，填写 AccessKey ID / AccessKey Secret （简称 AK / AKS ），自动获取 Project 和 Logstore。索引名称默认与 Logstore 的名称保持一致，您也可以自定义编辑名称。点击「确定」后，即可完成索引绑定，您可以在「查看器」通过切换索引进行查看。
 
 关于如何开通 SLS 存储方案，可参考文档 [阿里云市场开通观测云专属版](../billing/commercial-aliyun-sls.md) 。
 
@@ -72,7 +71,7 @@
 - 若您是观测云专属版用户，您可以直接使用开通专属版时的 AK / AKS 进行索引绑定，关于如何开通专属版，你可以参考文档 [阿里云市场开通观测云专属版](../billing/commercial-aliyun-sls.md) ；
 - 若您是观测云专属版用户，且希望绑定其他阿里云账号下的 SLS 日志索引，您可以参考文档 [RAM账号授权](../billing/billing-method/sls-grant.md) ，获取 AK / AKS 进行索引绑定。
 
-![](img/9.log_index_1.png)
+![](img/3.log_index_1.png)
 
 ### Elasticsearch 索引绑定  {#es}
 
@@ -84,7 +83,7 @@
  - Bind index：Elasticsearch 中需要绑定查看的索引名称 
  - 索引名称：观测云工作空间唯一标识的索引名称，由用户自定义填写，且不支持重复的名字，配置完成后，可用于筛选索引名称。 
 
-![](img/1.log_index_1.png)
+![](img/3.log_index_2.png)
 
 ### OpenSearch 索引绑定  {#opensearch}
 
@@ -96,7 +95,7 @@
  - Bind index：OpenSearch 中需要绑定查看的索引名称 
  - 索引名称：观测云工作空间唯一标识的索引名称，由用户自定义填写，且不支持重复的名字，配置完成后，可用于筛选索引名称。 
 
-![](img/1.log_index_2.png)
+![](img/3.log_index_3.png)
 
 ### ES / OpenSearch 绑定索引配置说明
 
@@ -119,11 +118,11 @@
 
 - 如果需要在观测云中绑定所有索引，则需要绑定这个索引别名，参考如下示例：
 
-![](img/2.index_out_3.png)
+![](img/3.log_index_4.png)
 
 - 如果需要在观测云中绑定其中的某个索引，或者配置中没有滚动策略，则只需要绑定具体 index name ，参考如下示例：
 
-![](img/2.index_out_4.png)
+![](img/3.log_index_5.png)
 
 
 ### 字段映射

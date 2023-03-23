@@ -21,7 +21,7 @@
 
 .cu-search-result-layout .search-list-row .search-list-row-title {
   margin-top: 20px;
-  font-size: 21px;
+  font-size: 18px;
   font-weight: 600;
 }
 .cu-search-result-layout .search-list-row .search-list-row-text {
@@ -37,7 +37,7 @@
   margin: 51px 0 21px;
 }
 .cu-search-result-layout .search-page_navigation .btn {
-  white-space: nowrap; 
+  white-space: nowrap;
   border-radius: 4px;
   padding: 4px 8px;
   border: 1px solid var(--md-typeset-color);
@@ -57,5 +57,5 @@
 }
 
 .hide {
-    display: none !important;
+  display: none !important;
 }
