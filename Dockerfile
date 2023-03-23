@@ -47,7 +47,7 @@ RUN \
     if [ $release_env != "rtm" ]; then \
         # 安装对应文档先关的插件的pypi
         pip install -i https://pypi.douban.com/simple mkdocs==1.4.2 beautifulsoup4==4.11.2 requests==2.28.2; \
-        pip install -i https://pmgmt.jiagouyun.com/repository/guance-pypi/simple mkdocs-plugins==0.0.6; \
+        pip install -i https://pmgmt.jiagouyun.com/repository/guance-pypi/simple mkdocs-plugins==0.0.7; \
     fi; \
     # 打包编译中英文的索引信息
     mkdocs build -f ${enFileArg}; \
