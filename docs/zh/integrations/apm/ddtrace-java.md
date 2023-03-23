@@ -1,7 +1,7 @@
 ---
 icon: fontawesome/brands/java
 ---
-# JAVA
+# java
 
 ---
 
@@ -39,33 +39,73 @@ java -javaagent:/xxx/ddtrace.jar -Ddd.env=xxx -Ddd.service.name=xxx -Ddd.agent.p
 
 > **注意：**其中 `xxx` 内容都需要填写。
 
-##### 开启 datakit.conf 中链路追踪 inputs
+#### 开启 ddtrace 采集器
 
-**（必须开启）**
+=== "主机环境"
+	```
+	###########--------linux环境---------##########
 
-```
-###########--------linux环境---------##########
-
- cd /usr/local/datakit/conf.d/
- cd /ddtrace
- cp ddtrace.conf.sample ddtrace.conf
+	 cd /usr/local/datakit/conf.d/
+	 cd /ddtrace
+	 cp ddtrace.conf.sample ddtrace.conf
 
 
-## 复制完文件后，vim进入编辑模式，放开imputs的注释
-## 举例:ddtrace    tags相关注释可根据需要进行开启操作，添加业务或其他相关的标签
+	## 复制完文件后，vim进入编辑模式，放开imputs的注释
+	## 举例:ddtrace    tags相关注释可根据需要进行开启操作，添加业务或其他相关的标签
 
-#默认无需修改
- vim ddtrace.conf
+	#默认无需修改
+	 vim ddtrace.conf
 
- wq!
+	 wq!
 
-## 重启 DataKit
- systemctl restart datakit
-```
+	## 重启 DataKit
+	 systemctl restart datakit
+	 
+	
+	 
+	```
+	
+	window 配置文件所在目录
+	
+	> C:\Program Files\datakit\conf.d
 
+=== "K8S 环境"
+	k8s 环境主要是通过 [ConfigMap](/datakit/datakit-daemonset-deploy/#configmap-setting) 方式注入采集器配置来开启采集器。
+	```
+	# datakit.yaml
+
+	volumeMounts: # datakit.yaml 中已有该配置，直接搜索即可定位到
+	- mountPath: /usr/local/datakit/conf.d/ddtrace/ddtrace.conf
+	  name: datakit-conf
+	  subPath: ddtrace.conf
+
+	# 直接在 datakit.yaml 底部追加
+	---
+	apiVersion: v1
+	kind: ConfigMap
+	metadata:
+	  name: datakit-conf
+	  namespace: datakit
+	data:
+		ddtrace.conf: |-
+			[[inputs.ddtrace]]
+			  endpoints = ["/v0.3/traces", "/v0.4/traces", "/v0.5/traces"]
+			  # ignore_resources = []
+			  customer_tags = ["node_ip"]
+			  [inputs.ddtrace.close_resource]
+				"*" = ["PUT /nacos/*","GET /nacos/*","POST /nacos/*"]
+			  ## tags is ddtrace configed key value pairs
+			  # [inputs.ddtrace.tags]
+				# some_tag = "some_value"
+				# more_tag = "some_other_value"
+				   ...
+
+
+	```
+	
 #### ddtrace 相关环境变量（启动参数）释义
 
-**可根据需要进行添加**
+*可根据需要进行添加*
 
 - Ddd.env：自定义环境类型，可选项。
 - Ddd.service.name：自定义应用名称 ，**必填项**。
