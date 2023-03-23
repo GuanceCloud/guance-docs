@@ -10,8 +10,8 @@ buildTesting:
   only:
     - dev
   script:
-    - echo "$ES_VAR_DOC_SEARCH_TEST"
-    - echo "$ES_VAR_DOC_SEARCH_PROD"
+    # - echo "$ES_VAR_DOC_SEARCH_TEST"
+    # - echo "$ES_VAR_DOC_SEARCH_PROD"
     - docker build 
       --build-arg release_env="peprod"
       --build-arg ES_VAR_DOC_SEARCH_TEST=$ES_VAR_DOC_SEARCH_TEST
@@ -29,8 +29,8 @@ buildFeature:
   only:
     - /^feature.*/
   script:
-    - echo "$ES_VAR_DOC_SEARCH_TEST"
-    - echo "$ES_VAR_DOC_SEARCH_PROD"
+    # - echo "$ES_VAR_DOC_SEARCH_TEST"
+    # - echo "$ES_VAR_DOC_SEARCH_PROD"
     - docker build 
       --build-arg release_env="peprod" 
       --build-arg ES_VAR_DOC_SEARCH_TEST=$ES_VAR_DOC_SEARCH_TEST 
@@ -48,8 +48,8 @@ buildMain:
   only:
     - master
   script:
-    - echo "$ES_VAR_DOC_SEARCH_TEST"
-    - echo "$ES_VAR_DOC_SEARCH_PROD"
+    # - echo "$ES_VAR_DOC_SEARCH_TEST"
+    # - echo "$ES_VAR_DOC_SEARCH_PROD"
     - docker build 
       --build-arg release_env="saas_production"
       --build-arg GUANCE_HELPS_OSS_AK_ID="${GUANCE_HELPS_OSS_AK_ID}"
