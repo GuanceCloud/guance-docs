@@ -1,6 +1,6 @@
 nav:
   - index.md
-  - 'General Settings'
+  - 'General Settings': 
     - 'Key Metrics': key-metrics.md
     - 'Customized Menu': customized-menu.md
     - 'Audit': operation-audit.md  
