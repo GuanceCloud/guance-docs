@@ -396,7 +396,7 @@ source in ['kube-controller-manager','http_dial_testing'] and (status != 'unknow
     - 自定义时间范围的开始时间不能晚于结束时间。
     - 自定义时间范围的查询记录可在「自定义时间查询历史」中查看，最多支持最近 20 条历史绝对时间记录查看，点击任意历史记录，即可快速筛选查看对应的数据内容。
 
-![](../img/.png)
+![](../img/12.time_4.png)
 
 ### URL 的时间范围 {#url}
 
