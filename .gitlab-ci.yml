@@ -23,8 +23,8 @@ buildFeature:
   only:
     - /^feature.*/
   script:
-    - echo "$ES_VAR_DOC_SEARCH_TEST"
-    - docker build --build-arg release_env="peprod" -t $REPOSITORY:feature-multi-language .
+    - echo "[test]:$ES_VAR_DOC_SEARCH_TEST;[prod]:$ES_VAR_DOC_SEARCH_PROD"
+    - docker build --build-arg release_env="peprod" --build-arg ES_VAR_DOC_SEARCH_TEST=$ES_VAR_DOC_SEARCH_TEST --build-arg ES_VAR_DOC_SEARCH_PROD=$ES_VAR_DOC_SEARCH_PROD -t $REPOSITORY:feature-multi-language .
     - docker tag $REPOSITORY:feature-multi-language registry.jiagouyun.com/cloudcare-front/$REPOSITORY:feature-multi-language
     - docker push registry.jiagouyun.com/cloudcare-front/$REPOSITORY:feature-multi-language
 
