@@ -3,7 +3,7 @@
 
 ### 什么是 Session Replay
 
-Session Replay 通过现代浏览器提供的强大 API 拓展能力，捕获 Web 应用的用户的操作数据，并重播用户当时的使用体验。
+Session Replay 通过现代浏览器提供的强大 API 拓展能力，捕获 Web 应用的用户的操作数据，并重放用户当时的使用体验。
 
 结合 RUM 性能数据，Session Replay 有利于错误定位、重现和解决，并及时发现 Web 应用程序在使用模式和设计上的缺陷。
 
@@ -108,7 +108,7 @@ datafluxRum.startSessionReplayRecording();
 
 屏蔽大多数表单字段，例如输入、文本区域和复选框值，同时按原样记录所有其他文本。输入被替换为三个星号 (***)，文本区域被保留空间的 x 字符混淆。
 
-注意：默认情况下，mask-user-input 是启用会话重播时的隐私设置。
+注意：默认情况下，mask-user-input 是启用会话重放时的隐私设置。
 
 #### Mask mode
 
@@ -129,22 +129,22 @@ datafluxRum.startSessionReplayRecording();
 
 ### 某些 HTML 元素在播放时候不可见
 
-会话重播不支持以下 HTML 元素：iframe、视频、音频或画布。 Session Replay 不支持 Web Components 和 Shadow DOM。
+会话重放不支持以下 HTML 元素：iframe、视频、音频或画布。 Session Replay 不支持 Web Components 和 Shadow DOM。
 
 ###  FONT 或 IMG 无法正确呈现
 
-Session Replay 不是视频，而是基于 DOM 快照重建的 iframe。因此，重播取决于页面的各种静态资源：font 和 image。
+Session Replay 不是视频，而是基于 DOM 快照重建的 iframe。因此，重放取决于页面的各种静态资源：font 和 image。
 
-由于以下原因，重播时静态资源可能不可用：
+由于以下原因，重放时静态资源可能不可用：
 
 - 该静态资源已经不存在。例如，它是以前部署的一部分。
 - 该静态资源不可访问。例如，可能需要身份验证，或者资源可能只能从内部网络访问。
 - 由于 CORS（通常是网络字体），静态资源被浏览器阻止。
 
-  1. 由于重播时，是基于 iframe 对应的 `guance.com` 沙箱环境，如果某些静态资源未获得特定域名授权，您的浏览器将阻止该请求。
-  2. 通过 Access-Control-Allow-Origin Header头允许 `guance.com`  访问您的网站所依赖的任何 font 或 image 静态资源，以确保可以访问这些资源以进行重播。有关详细信息，请参阅[跨源资源共享](https://developer.mozilla.org/en-US/docs/Web)。
+  1. 由于重放时，是基于 iframe 对应的 `guance.com` 沙箱环境，如果某些静态资源未获得特定域名授权，您的浏览器将阻止该请求。
+  2. 通过 Access-Control-Allow-Origin Header头允许 `guance.com`  访问您的网站所依赖的任何 font 或 image 静态资源，以确保可以访问这些资源以进行重放。有关详细信息，请参阅[跨源资源共享](https://developer.mozilla.org/en-US/docs/Web)。
 
-### CSS style 未正确应用或者鼠标悬停事件未重播
+### CSS style 未正确应用或者鼠标悬停事件未重放
 
 与 font 和 image 不同，Session Replay Record 尝试利用 [CSSStyleSheet](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleSheet) 接口，将应用的各种 CSS 规则捆绑为记录数据的一部分。如果不能被执行，它会回退到记录 CSS 文件的链接。
 
