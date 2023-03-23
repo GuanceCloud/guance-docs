@@ -14,7 +14,7 @@ icon: zy/release-notes
 
 - 帮助文档搜索功能优化
 
-- [备份日志](../logs/backup.md)新增扩展字段保存逻辑，默认仅备份 message 内容到备份日志，若勾选“同步备份扩展字段”，将备份符合筛选条件的整条日志数据
+- [备份日志](../logs/backup.md) 新增扩展字段保存逻辑，默认仅备份 message 内容到备份日志，若勾选“同步备份扩展字段”，将备份符合筛选条件的整条日志数据
 
 ![](img/5.log_backup_3.png)
 
@@ -23,7 +23,7 @@ icon: zy/release-notes
 ![](img/12.time_1.png)
 
 - 监控器优化
-    - 支持查看上次的历史配置，支持点击还原到[历史配置版本](../monitoring/monitor/index.md#recover)
+    - 支持查看上次的历史配置，支持点击还原到 [历史配置版本](../monitoring/monitor/index.md#recover)
     - 列表和页面新增创建、变更信息显示
     - [突变检测](../monitoring/monitor/mutation-detection.md) 新增对比维度，支持选择跟“昨日”“上一小时”统计指标比对逻辑
 
