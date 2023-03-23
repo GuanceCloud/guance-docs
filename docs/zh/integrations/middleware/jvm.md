@@ -13,8 +13,6 @@ JVM 性能指标展示：CPU 负载、直接缓冲区、线程数量、堆内存
 ## 版本支持
 
 - 操作系统支持：Linux / Windows
-- [JVM 版本支持情况](../../datakit/jvm.md#requirements)
-
 ## 前置条件
 
 - 服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
@@ -265,17 +263,12 @@ spec:
 
 <场景 - 新建仪表板 - 模板库 - 系统视图 - JVM 监控视图>
 
-## 检测库
-
-暂无
-
-## [指标详解](../../../datakit/jvm#measurements)
-
-
-## 最佳实践
-
-<[JVM 可观测最佳实践](../../best-practices/monitoring/jvm.md)>
+## [指标详解](../../datakit/jvm.md#measurements)
 
 ## 故障排查
 
-<[无数据上报排查](../../datakit/why-no-data.md)>
+- <[无数据上报排查](../../datakit/why-no-data.md)>
+
+## 进一步阅读
+
+- <[JVM 可观测最佳实践](../../best-practices/monitoring/jvm.md)>
