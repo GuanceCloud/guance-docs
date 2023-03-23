@@ -102,15 +102,15 @@ Click OK to delete the member group.
 
 ![](img/1-member-2.png)
 
-### Application Scenarios
+### Use Case
 
 You can apply the newly created member group in **Alarm Policy Management** and **Notification Object Management** of **Monitoring**.
 
-1.When you create a new alarm configuration, you can select the newly created member group in **Alarm Notification Object**.
+1. When you create a new alarm configuration, you can select the newly created member group in **Alarm Notification Object**.
 
 ![](img/1-member-management-1.jpeg)
 
-2.When you create a new notification object, you can select the newly created member group in SMS and Mail groups.
+2. When you create a new notification object, you can select the newly created member group in SMS and Mail groups.
 
 ![](img/1-member-management-2.png)
 

@@ -117,7 +117,7 @@ View 的采集：设置 `FTRumConfig` 的配置项`enableTraceUserView = YES` �
     };
 ```
 
-找到 **op = RUM;**  **source = resource; ** 的数据，在 **tags** 中包含`span_id` 与 `trace_id` 即表明 Trace 功能正常开启。
+找到 **op = RUM;**  **source = resource;** 的数据，在 **tags** 中包含`span_id` 与 `trace_id` 即表明 Trace 功能正常开启。
 
 ## 数据丢失
 ### 丢失部份数据
