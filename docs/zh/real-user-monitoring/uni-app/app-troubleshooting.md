@@ -56,7 +56,7 @@ SDK 内部会使用**断言**检查多项配置的正确性，在配置错误时
 
 * [排查 Datakit](../../datakit/why-no-data.md) 是否正常运行
 
-* 确认 SDK 上传地址 `serverUrl` [配置正确](app-access.md#base-config)，并正确初始化。debug 模式下，可以下列日志来判断上传地址配置问题。
+* 确认 SDK 上传地址 `serverUrl` [配置正确](app-access.md#base-setting)，并正确初始化。debug 模式下，可以下列日志来判断上传地址配置问题。
 
 === "Android"
 
