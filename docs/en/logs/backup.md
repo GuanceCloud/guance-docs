@@ -3,9 +3,9 @@
 
 ## Overview
 
-After log backup rules is created, the local log would be uploaded (copied) to the backup space in real time to form a log backup. Based on the log backup feature, you can restore data to any point in time during the backup retention time.<br/> This article describes how to back up logs to Guance for viewing and analysis.
+After log backup rules is created, the local log would be uploaded (copied) to the backup space in real time to form a log backup. Based on the log backup feature, you can restore data to any point in time during the backup retention time.<br/> This article describes how to back up logs to Guance for viewing and analysis.<br/>
 
-Log backups are supported in two ways:    
+Log backups are supported in two ways:<br/><br/>
 - Backup to Guance: The maximum storage time of Guance basic log is 60 days, and the maximum storage time of backup log is 720 days. See the doc [Data Storage Policy](../billing/billing-method/data-storage.md) for more info.     
 - Backup to external storage: You can back up logs to Alibaba Cloud OSS, see the doc [Best Practices for Backing Up Log Data to OSS](../best-practices/partner/log-backup-to-oss-by-func.md) for more info.  
 
