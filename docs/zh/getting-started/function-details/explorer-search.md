@@ -147,7 +147,7 @@ source in ['kube-controller-manager','http_dial_testing'] and (status != 'unknow
 
     通过 `key:运算符value` 的形式进行搜索，运算符包括 `等于、大于等于、小于等于、大于、小于、不等于` 。例如：在用户访问监测 View 查看器中搜索 `loading_time>=2s` ，即返回所有加载时间大于等于 2 秒的 View 数据。
 
-   ![](../img/16.search_3.png)
+    ![](../img/16.search_3.png)
 
     支持通过运算符区间筛选，如下图所示。
 
@@ -344,7 +344,7 @@ source in ['kube-controller-manager','http_dial_testing'] and (status != 'unknow
 
     点击时间控件，可直接输入和修改标准时间格式，「回车」后按照当前的时间范围展示对应的数据。
 
-   ![](../img/7.timestamp_7.png)
+    ![](../img/7.timestamp_7.png)
 
 === "时间戳静态时间"
 
@@ -413,11 +413,15 @@ source in ['kube-controller-manager','http_dial_testing'] and (status != 'unknow
 
 观测云支持在时间控件通过点击![](../img/12.time_fix_2.png)锁定图标，设置固定的查询时间范围，设置完成后，所有的查看器/仪表板均默认显示当前的时间范围。
 
+如下图所示，若锁定时间为“最近 45 分钟”，则所有的的查看器/仪表板均按照当前锁定时间查询显示 “最近 45 分钟” 的数据。
+
 ![](../img/12.time_fix_1.png)
 
 ### 设置时区 {#zone}
 
 观测云支持在时间控件设置当前显示时区，您也可以在「[账号管理](../../management/account-management.md#zone)」进行修改，默认提供 `（UTC+08:00）北京` 时区。
+
+> 注意：设置新的时区后，您当前账号所在的所有工作空间均按照设置后的时区进行显示。
 
 ![](../img/12.time_zone_1.png)
 

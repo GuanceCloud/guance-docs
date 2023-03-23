@@ -7,56 +7,35 @@ icon: zy/release-notes
 
 本文档记录观测云每次上线发布的更新内容说明，包括 DataKit、观测云最佳实践、观测云集成文档和观测云。
 
-<!-- 
-
 ## 2023 年 3 月 23 号
 
 ### 观测云更新
 
-#### 查看器/仪表板时间控件优化
 
-- 账号管理新增时区设置，更多详情可参考文档 [时区](../management/account-management.md#zone) 。
+- 帮助文档搜索功能优化
 
-- 查看器/仪表板时间控件新增“时区选择”和“全局锁定”功能，更多详情可参考文档 [时间控件说明](../getting-started/function-details/explorer-search.md#time)。
+- [备份日志](../logs/backup.md)新增扩展字段保存逻辑，默认仅备份 message 内容到备份日志，若勾选“同步备份扩展字段”，将备份符合筛选条件的整条日志数据
+
+![](img/5.log_backup_3.png)
+
+- 查看器/仪表板 [时间控件](../getting-started/function-details/explorer-search.md#time) 新增“时区选择”和“全局锁定”功能
 
 ![](img/12.time_1.png)
 
-#### 笔记创建逻辑和添加内容交互调整
+- 监控器优化
+    - 支持查看上次的历史配置，支持点击还原到[历史配置版本](../monitoring/monitor/index.md#recover)
+    - 列表和页面新增创建、变更信息显示
+    - [突变检测](../monitoring/monitor/mutation-detection.md) 新增对比维度，支持选择跟“昨日”“上一小时”统计指标比对逻辑
 
-在创建笔记时，调整图表组件添加交互，更多详情可参考文档 [笔记](../scene/note.md) 。
-
-![](img/9.note_1.png)
-
-#### 备份日志新增扩展字段保存逻辑
-
-在创建备份日志规则时，支持自定义添加除了日志产生的时间和内容以外的扩展字段。更多详情可参考文档 [日志备份](../logs/backup.md)。
-
-![](img/5.log_backup_6.png)
-
-#### 监控器优化
-
-- 监控器配置新增创建、变更信息显示，包括监控器的状态、最后更新时间、创建时间以及创建人。
-
-![](img/8.monitor_recover_1.png)
-
-- 监控器配置新增查看上次的历史配置，支持点击还原到历史配置版本
-
-![](img/8.monitor_recover_1.1.png)
-
-- [突变检测](../monitoring/monitor/mutation-detection.md) 配置监控器时新增对比维度，支持选择跟“昨日”、“一小时前”的统计指标比对逻辑。
-
-#### 其他功能优化
-
-- 帮助文档搜索功能优化
-- 通过 Func 新增自建通知对象
-- 智能巡检事件新增效果反馈入口
+- [智能巡检](../monitoring/bot-obs/index.md) 事件新增效果反馈入口
+- [快照](../getting-started/function-details/snapshot.md) 分享支持添加“创建人”水印显示
 - 注册开通流程优化，云市场开通路径新增站点选择
-- 图表查询新增 label 反选逻辑
-- 链路详情页 Span 列表显示逻辑调整，按“持续时间”倒序显示
-- 快照分享支持添加“创建人”水印显示
-- 成员管理触发审核流程后角色修改逻辑调整
+- [笔记](../scene/note.md) 创建逻辑和添加内容交互调整
+- [图表查询](../scene/visual-chart/chart-query.md) 新增 label 反选逻辑
+- [链路](../application-performance-monitoring/explorer.md) 详情页 Span 列表显示逻辑调整，按“持续时间”倒序显示
+- [成员管理](../management/role-management.md) 触发审核流程后角色修改逻辑调整
+- 查看器列宽度保存、日志显示多行等逻辑调整
 
--->
 
 ## 2023 年 3 月 9 号
 
