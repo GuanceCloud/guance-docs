@@ -283,7 +283,7 @@ If there is a new version of DataKit, you can download it as above and execute t
 
 ### Bash Script Assisted Installation {#Auxiliary-installation}
 
-Here we provide a simple script to help you complete the tasks of password free login, file distribution, and image decompression.
+Here is a simple script to help you complete the tasks of password free login, file distribution and image decompression.
 
 ???- note "datakit_tools.sh (Stand-alone open)"
     ```shell
@@ -299,9 +299,9 @@ Here we provide a simple script to help you complete the tasks of password free 
 
     menu() {
       echo -e "\e[33m------Please select the required operation------\e[0m"
-      echo -e "\e[33m1、Set SSH remote keyless login\e[0m"
-      echo -e "\e[33m2、Scp remote transfer file\e[0m"
-      echo -e "\e[33m3、Remote decompression image\e[0m"
+      echo -e "\e[33m1. Set SSH remote keyless login\e[0m"
+      echo -e "\e[33m2. Scp remote transfer file\e[0m"
+      echo -e "\e[33m3. Remote decompression image\e[0m"
       read -p "Please enter an option:" num
     }
 
@@ -336,7 +336,7 @@ Here we provide a simple script to help you complete the tasks of password free 
 
     SSH(){
     read -p "Please enter the file name to extract: " file_name
-    # 远程解压镜像包
+    # Remotely unzip image packets
     for i in ${host_ip[@]}
       do
         echo -e "\e[33m------${i}------\e[0m"
@@ -397,17 +397,17 @@ wget https://static.guance.com/datakit/datakit.yaml -P /home/guance/
 
 ```shell
 # Pull the image of the amd64 architecture and make it into an image package
-docker pull --platform amd64 pubrepo.guance.com/datakit/datakit:1.5.7
-docker save -o datakit-amd64-1.5.7.tar pubrepo.guance.com/datakit/datakit:1.5.7
-mv datakit-amd64-1.5.7.tar /home/guance
+docker pull --platform amd64 pubrepo.guance.com/datakit/datakit:1.5.8
+docker save -o datakit-amd64-1.5.8.tar pubrepo.guance.com/datakit/datakit:1.5.8
+mv datakit-amd64-1.5.8.tar /home/guance
 
 # Pull the image of the arm64 architecture and make it into an image package
-docker pull --platform arm64 pubrepo.guance.com/datakit/datakit:1.5.7
-docker save -o datakit-arm64-1.5.7.tar pubrepo.guance.com/datakit/datakit:1.5.7
-mv datakit-arm64-1.5.7.tar /home/guance
+docker pull --platform arm64 pubrepo.guance.com/datakit/datakit:1.5.8
+docker save -o datakit-arm64-1.5.8.tar pubrepo.guance.com/datakit/datakit:1.5.8
+mv datakit-arm64-1.5.8.tar /home/guance
 
 # Check whether the image architecture is correct
-docker image inspect pubrepo.jiagouyun.com/datakit/datakit:1.5.7 |grep Architecture
+docker image inspect pubrepo.jiagouyun.com/datakit/datakit:1.5.8 |grep Architecture
 
 ```
 
@@ -531,17 +531,17 @@ docker image inspect pubrepo.jiagouyun.com/datakit/datakit:1.5.7 |grep Architect
 
 ```shell
 wget http://<nginx-server-ip>:8080/datakit.yaml 
-wget http://<nginx-server-ip>:8080/datakit-amd64-1.5.7.tar 
+wget http://<nginx-server-ip>:8080/datakit-amd64-1.5.8.tar 
 ```
 
 - Unzip image command
 
 ```shell
 # docker 
-docker load -i /k8sdata/datakit/datakit-amd64-1.5.7.tar
+docker load -i /k8sdata/datakit/datakit-amd64-1.5.8.tar
 
 # containerd
-ctr -n=k8s.io image import /k8sdata/datakit/datakit-amd64-1.5.7.tar
+ctr -n=k8s.io image import /k8sdata/datakit/datakit-amd64-1.5.8.tar
 
 ```
 
@@ -553,16 +553,16 @@ kubectl apply -f datakit.yaml
 
 ### Full Offline Installation {#k8s-offilne-all}
 
-When the environment has no external network at all, the installation package can only be downloaded from the public network to the internal network through mobile hard disk (U disk) and other methods.
+When there is no external network in the environment, the installation package needs be downloaded from the public network to the internal network through mobile hard disk (U disk).
 
 - Unzip image command
 
 ```shell
 # docker 
-docker load -i datakit-amd64-1.5.7.tar
+docker load -i datakit-amd64-1.5.8.tar
 
 # containerd
-ctr -n=k8s.io image import datakit-amd64-1.5.7.tar
+ctr -n=k8s.io image import datakit-amd64-1.5.8.tar
 
 ```
 
