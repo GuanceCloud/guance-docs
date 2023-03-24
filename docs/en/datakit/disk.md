@@ -91,8 +91,6 @@ For all of the following data collections, a global tag named `host` is appended
 |`device`|Disk device name.|
 |`fstype`|File system name.|
 |`host`|System hostname.|
-|`mode`|Read-write mode.|
-|`path`|Disk mount point.|
 
 - metric list
 
