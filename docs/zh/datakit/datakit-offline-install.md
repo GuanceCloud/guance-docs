@@ -93,32 +93,32 @@
 === "Windows 32 位"
 
     - [Installer](https://static.guance.com/datakit/installer-windows-386.exe){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-windows-386-1.5.7.tar.gz){:target="_blank"}
+    - [DataKit](https://static.guance.com/datakit/datakit-windows-386-1.5.8.tar.gz){:target="_blank"}
 
 === "Windows 64 位"
 
     - [Installer](https://static.guance.com/datakit/installer-windows-amd64.exe){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-windows-amd64-1.5.7.tar.gz){:target="_blank"}
+    - [DataKit](https://static.guance.com/datakit/datakit-windows-amd64-1.5.8.tar.gz){:target="_blank"}
 
 === "Linux X86 32 位"
 
     - [Installer](https://static.guance.com/datakit/installer-linux-386){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-linux-386-1.5.7.tar.gz){:target="_blank"}
+    - [DataKit](https://static.guance.com/datakit/datakit-linux-386-1.5.8.tar.gz){:target="_blank"}
 
 === "Linux X86 64 位"
 
     - [Installer](https://static.guance.com/datakit/installer-linux-amd64){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-linux-amd64-1.5.7.tar.gz){:target="_blank"}
+    - [DataKit](https://static.guance.com/datakit/datakit-linux-amd64-1.5.8.tar.gz){:target="_blank"}
 
 === "Linux Arm 32 位"
 
     - [Installer](https://static.guance.com/datakit/installer-linux-arm){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-linux-arm-1.5.7.tar.gz){:target="_blank"}
+    - [DataKit](https://static.guance.com/datakit/datakit-linux-arm-1.5.8.tar.gz){:target="_blank"}
 
 === "Linux Arm 64 位"
 
     - [Installer](https://static.guance.com/datakit/installer-linux-arm64){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-linux-arm64-1.5.7.tar.gz){:target="_blank"}
+    - [DataKit](https://static.guance.com/datakit/datakit-linux-arm64-1.5.8.tar.gz){:target="_blank"}
 
 下载完后，应该有三个文件（此处 `<OS-ARCH>` 指特定平台的安装包）：
 
@@ -135,7 +135,7 @@
     需以 administrator 权限运行 Powershell 执行：
 
     ```powershell
-    .\installer-windows-amd64.exe --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs .\datakit-windows-amd64-1.5.7.tar.gz,.\data.tar.gz
+    .\installer-windows-amd64.exe --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs .\datakit-windows-amd64-1.5.8.tar.gz,.\data.tar.gz
     ```
 
 === "Linux"
@@ -144,7 +144,7 @@
 
     ```shell
     chmod +x installer-linux-amd64
-    ./installer-linux-amd64 --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs datakit-linux-amd64-1.5.7.tar.gz,data.tar.gz
+    ./installer-linux-amd64 --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs datakit-linux-amd64-1.5.8.tar.gz,data.tar.gz
     ```
 
 ### 高级模式 {#offline-advanced}
@@ -195,8 +195,8 @@ mkdir -p /datakit
 wget -P /datakit https://static.guance.com/datakit/install.sh
 wget -P /datakit https://static.guance.com/datakit/version
 wget -P /datakit https://static.guance.com/datakit/data.tar.gz
-wget -P /datakit https://static.guance.com/datakit/installer-linux-amd64-1.5.7
-wget -P /datakit https://static.guance.com/datakit/datakit-linux-amd64-1.5.7.tar.gz
+wget -P /datakit https://static.guance.com/datakit/installer-linux-amd64-1.5.8
+wget -P /datakit https://static.guance.com/datakit/datakit-linux-amd64-1.5.8.tar.gz
 
 # 下载其它工具包：sources 是开启 RUM sourcemap 功能使用的安装包，如果未开启此功能，可选择不下载
 sources=(
@@ -384,28 +384,32 @@ chmod +x datakit_tools.sh
 
 ### 代理安装 {#k8s-install-via-proxy}
 
-以下文件的地址，可通过 wget 等下载工具，也可以直接在浏览器中输入对应的 URL 下载。
-
-=== "Kubernetes Amd64"
-
-    - [Datakit.yaml](https://static.guance.com/datakit/datakit.yaml)
-    - [Datakit.tar](https://static.guance.com/datakit/datakit-amd64-1.5.7.tar)
-
-=== "Kubernetes Arm64"
-
-    - [Datakit.yaml](https://static.guance.com/datakit/datakit.yaml)
-    - [Datakit.tar](https://static.guance.com/datakit/datakit-arm64-1.5.7.tar)
-
 **如果内网有可以通外网的机器，可以在该节点部署一个 nginx 服务器，当作获取镜像使用。**
 
-1、下载 datakit.yaml 和 datakit 镜像文件
+1、下载 datakit.yaml 文件
 
 ```shell
-wget https://static.guance.com/datakit/datakit-amd64-1.5.7.yaml -P /home/guance/
-wget https://static.guance.com/datakit/datakit-amd64-1.5.7.tar -P /home/guance/
+wget https://static.guance.com/datakit/datakit.yaml -P /home/guance/
 ```
 
-2、修改Nginx配置代理
+2、下载 datakit 镜像并打包
+
+```shell
+# 拉取amd镜像并打包
+docker pull --platform amd64 pubrepo.guance.com/datakit/datakit:1.5.8
+docker save -o datakit-amd64-1.5.8.tar pubrepo.guance.com/datakit/datakit:1.5.8
+mv datakit-amd64-1.5.8.tar /home/guance
+
+# 拉取arm镜像并打包
+docker pull --platform arm64 pubrepo.guance.com/datakit/datakit:1.5.8
+docker save -o datakit-arm64-1.5.8.tar pubrepo.guance.com/datakit/datakit:1.5.8
+mv datakit-arm64-1.5.8.tar /home/guance
+
+# 查看镜像架构是否正确
+docker image inspect pubrepo.jiagouyun.com/datakit/datakit:1.5.8 |grep Architecture
+```
+
+3、修改Nginx配置代理
 
 ???- note "/etc/nginx/nginx.conf (单击点开)"
     ```shell
@@ -521,25 +525,25 @@ wget https://static.guance.com/datakit/datakit-amd64-1.5.7.tar -P /home/guance/
     }
     ```
 
-3、其余内网机器执行命令。
+4、其余内网机器执行命令。
 
 ```shell
 wget http://<nginx-server-ip>:8080/datakit.yaml 
-wget http://<nginx-server-ip>:8080/datakit-amd64-1.5.7.tar 
+wget http://<nginx-server-ip>:8080/datakit-amd64-1.5.8.tar 
 ```
 
-4、解压镜像命令
+5、解压镜像命令
 
 ```shell
 # docker 
-docker load -i /k8sdata/datakit/datakit-amd64-1.5.7.tar
+docker load -i /k8sdata/datakit/datakit-amd64-1.5.8.tar
 
 # containerd
-ctr -n=k8s.io image import /k8sdata/datakit/datakit-amd64-1.5.7.tar
+ctr -n=k8s.io image import /k8sdata/datakit/datakit-amd64-1.5.8.tar
 
 ```
 
-5、启动datakit容器
+6、启动datakit容器
 
 ```shell
 kubectl apply -f datakit.yaml
@@ -553,10 +557,10 @@ kubectl apply -f datakit.yaml
 
 ```shell
 # docker 
-docker load -i datakit-amd64-1.5.7.tar
+docker load -i datakit-amd64-1.5.8.tar
 
 # containerd
-ctr -n=k8s.io image import datakit-amd64-1.5.7.tar
+ctr -n=k8s.io image import datakit-amd64-1.5.8.tar
 
 ```
 

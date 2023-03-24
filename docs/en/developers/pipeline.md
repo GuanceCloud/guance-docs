@@ -2061,6 +2061,35 @@ rename("time", log_time)
 ```
 
 
+### `delete()` {#fn-delete}
+
+[:octicons-tag-24: Version-1.5.8](../changelog.md#cl-1.5.8)
+
+Function prototype: `fn delete(src: map[string]any, key: str)`
+
+Function description: Delete the key in the json map
+
+```python
+
+# input
+# {"a": "b", "b":[0, {"c": "d"}], "e": 1}
+
+# script
+j_map = load_json(_)
+
+delete(j_map["b"][-1], "c")
+
+delete(j_map, "a")
+
+add_key("j_map", j_map)
+
+# result:
+# {
+#   "j_map": "{\"b\":[0,{}],\"e\":1}",
+# }
+```
+
+
 ### `drop()` {#fn-drop}
 
 Function prototype: `fn drop()`
@@ -2099,7 +2128,7 @@ Function parameters:
 示例:
 
 ```python
-data = `{\"age\": 17, \"name\": \"zhangsan\", \"height\": 180}`
+# data = `{\"age\": 17, \"name\": \"zhangsan\", \"height\": 180}`
 
 json(_, age,)
 json(_, name)
@@ -2485,7 +2514,7 @@ Function description: extract all key-value pairs from a string
 Function parameters:
 
 - `key`: key name
-- `include_keys`: list of key names, only extract the keys in the list; the default value is [], extract all keys
+- `include_keys`: list of key names, only extract the keys in the list; **the default value is [], do not extract any key**
 - `field_split_pattern`: string splitting, a regular expression used to extract all key-value pairs; the default value is " "
 - `value_split_pattern`: used to split the key and value from the key-value pair string, non-recursive; the default value is "="
 - `trim_key`: delete all the specified characters leading and trailing the extracted key; the default value is ""
@@ -2501,6 +2530,19 @@ kv_split(_)
  
 '''output:
 {
+  "message": "a=1, b=2 c=3",
+  "status": "unknown",
+  "time": 1679558730846377132
+}
+'''
+```
+
+```python
+# input: "a=1, b=2 c=3"
+kv_split(_, include_keys=["a", "c", "b"])
+ 
+'''output:
+{
   "a": "1,",
   "b": "2",
   "c": "3",
@@ -2513,7 +2555,7 @@ kv_split(_)
 
 ```python
 # input: "a=1, b=2 c=3"
-kv_split(_, trim_value=",")
+kv_split(_, trim_value=",", include_keys=["a", "c", "b"])
 
 '''output:
 {
@@ -2546,7 +2588,7 @@ kv_split(_, trim_value=",", include_keys=["a", "c"])
 ```python
 # input: "a::1,+b::2+c::3" 
 kv_split(_, field_split_pattern="\\+", value_split_pattern="[:]{2}",
-    prefix="with_prefix_",trim_value=",", trim_key="a")
+    prefix="with_prefix_",trim_value=",", trim_key="a", include_keys=["a", "b", "c"])
 
 '''output:
 {
