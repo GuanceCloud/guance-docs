@@ -385,7 +385,7 @@ chmod +x datakit_tools.sh
 
 ### Agent Installation {#k8s-install-via-proxy}
 
-**If there is a machine in the intranet that can connect to the internet, you can deploy a nginx server on this node to use as the image acquisition.**
+**If there is a machine in the intranet that can connect to the internet, you can deploy an nginx server on this node to use as the image acquisition.**
 
 - Download datakit.yaml and datakit image files
 
