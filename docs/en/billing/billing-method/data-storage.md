@@ -20,9 +20,9 @@ The owner of the commercial workspace can adjust the data storage policy several
 
 The data storage duration change steps are as follows:
 
--Step 1: In **Management > Settings** in the Guance workspace, and click **Change** in **Change Data Storage Policy**;
--Step 2: Select the data type to modify the data storage strategy, click **Edit**, select the time to be modified in the pop-up dialog box, and click **Confirm**;
--Step 3: You can modify the storage time of other data types according to the second step. After all the modifications are completed, click **Confirm** to change the data storage time in the current workspace.
+- Step 1: In **Management > Settings** in the Guance workspace, and click **Change** in **Change Data Storage Policy**;
+- Step 2: Select the data type to modify the data storage strategy, click **Edit**, select the time to be modified in the pop-up dialog box, and click **Confirm**;
+- Step 3: You can modify the storage time of other data types according to the second step. After all the modifications are completed, click **Confirm** to change the data storage time in the current workspace.
 
 ![](../img/2.data_storage_2.png)
 

@@ -197,4 +197,4 @@ Pipeline 可以对 DataKit 采集的数据执行如下操作：
 
 - 终止 Pipeline 脚本的运行（`exit()`）
 
-  在用 Pipeline 对不同数据类型进行处理时，会对原有的数据结构产生影响，建议通过 [调试](../developers/datakit-pl-global/#examples) 确认数据处理结果符合预期后再进行使用。
+  在用 Pipeline 对不同数据类型进行处理时，会对原有的数据结构产生影响，建议通过 [调试](../developers/datakit-pl-how-to.md) 确认数据处理结果符合预期后再进行使用。

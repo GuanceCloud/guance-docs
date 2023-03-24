@@ -225,11 +225,11 @@ systemctl restart datakit
 | Operator                                                                | currentOutputWatermark                                                                | The last watermark this operator has emitted (in milliseconds).                                                                                                                                                                                           | Gauge     |
 | Operator                                                                | numSplitsProcessed                                                                    | The total number of InputSplits this data source has processed (if the operator is a data source).                                                                                                                                                        | Gauge     |
 
-
-参考文档：[Flink 官方 Metrics 文档](https://nightlies.apache.org/flink/flink-docs-release-1.14/docs/ops/metrics/#cpu)
-
 ## 常见问题排查
 
-<[无数据上报排查](../../datakit/why-no-data.md)>
+- <[无数据上报排查](../../datakit/why-no-data.md)>
 
 ## 进一步阅读
+
+- <[Flink 官方 Metrics 文档](https://nightlies.apache.org/flink/flink-docs-release-1.14/docs/ops/metrics/#cpu)>
+

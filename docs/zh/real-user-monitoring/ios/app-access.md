@@ -60,7 +60,7 @@ end
 github "GuanceCloud/datakit-ios" == 1.3.10-beta.2
 ```
 
-2.在 `Cartfile` 目录下执行  `carthage update --platform iOS` ， 并将  `FTMobileSDK.framework` 拖拽到您的项目中使用。若出现 "Building universal frameworks with common architectures is not possible. The device and simulator slices for "FTMobileSDK.framework" both build for: arm64" 错误，请执行  `carthage update --platform iOS --use-xcframeworks` 命令，生成  `FTMobileSDK.xcframework `，与普通的 Framework 使用方法相同，请将它拖拽到您的项目中使用。
+2.在 `Cartfile` 目录下执行  `carthage update --platform iOS` ， 并将  `FTMobileAgent.framework` 拖拽到您的项目中使用。若出现 "Building universal frameworks with common architectures is not possible. The device and simulator slices for "FTMobileAgent.framework" both build for: arm64" 错误，请执行  `carthage update --platform iOS --use-xcframeworks` 命令，生成  `FTMobileAgent.xcframework `，与普通的 Framework 使用方法相同，请将它拖拽到您的项目中使用。
 
 3.debug 模式下，为了方便 SDK 调试，建议使用 debug 模式的静态库。在命令后添加  `--configuration Debug` 获取 debug 模式的静态库。
 
@@ -80,7 +80,7 @@ github "GuanceCloud/datakit-ios" == 1.3.10-beta.2
 
 ## SDK 初始化
 
-### 基础配置
+### 基础配置 {#base-setting}
 
 ```objectivec
 -(BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
@@ -118,7 +118,7 @@ typedef NS_ENUM(NSInteger, FTEnv) {
 @property (nonatomic, assign) FTEnv env;
 ```
 
-### RUM 配置{#rum-config}
+### RUM 配置 {#rum-config}
 
 ```objectivec
     //开启 rum
@@ -197,7 +197,7 @@ typedef NS_OPTIONS(NSUInteger, FTMonitorFrequency) {
 };
 ```
 
-### Log 配置{#log-config}
+### Log 配置 {#log-config}
 
 ```objectivec
     //开启 logger

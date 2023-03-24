@@ -12,8 +12,8 @@ Nacos 性能指标展示，包括 Nacos 在线时长、Nacos Config 长链接数
 
 ## 版本支持
 
-操作系统支持：Linux / Windows<br />
-Nacos 版本：>= 0.8.0
+- 操作系统支持：Linux / Windows
+- Nacos 版本：>= 0.8.0
 
 ## 前置条件
 
@@ -39,7 +39,7 @@ management.endpoints.web.exposure.include=*
 
 3、 校验
 
-访问 {ip}:8848/nacos/actuator/prometheus，看是否能访问到 metrics 数据
+访问 `{ip}:8848/nacos/actuator/prometheus`，看是否能访问到 metrics 数据
 
 4、 开启 DataKit Promtheus 插件
 
@@ -144,9 +144,10 @@ systemctl restart datakit
 | nacos_exception_total{name='illegalArgument'} | 请求参数不合法 |
 | nacos_exception_total{name='nacos'} | Nacos请求响应内部错误异常（读写失败，没权限，参数错误） |
 
-更多Nacos指标，可以参考 [Nacos官方网站-监控](https://nacos.io/zh-cn/docs/monitor-guide.html)
-
 ## 常见问题排查
 
-<[无数据上报排查](../../datakit/why-no-data.md)>
+- <[无数据上报排查](../../datakit/why-no-data.md)>
 
+## 进一步阅读
+
+- 更多Nacos指标，可以参考 [Nacos官方网站-监控](https://nacos.io/zh-cn/docs/monitor-guide.html)

@@ -8,7 +8,7 @@ Guance supports registered users to enter the workspace and enjoy related servic
 
 You can go to [Guance official website](https://www.guance.com/) and **[Register](https://auth.guance.com/businessRegister)** as a Guance user. For more registration details, please refer to the document [register commercial plan](../billing/commercial-register.md).
 
-## Login in
+### Login in
 
 After registration, you can click **Login** through [Guance official website](https://www.guance.com/), select the site you registered, enter the login account and password and log in to the Guance studio.
 
@@ -18,26 +18,35 @@ After registration, you can click **Login** through [Guance official website](ht
     - The accounts of different sites are independent and do not communicate with each other. For more site descriptions, please refer to the document [select registered site](../getting-started/necessary-for-beginners/select-site.md).
     - Support for selecting [SSO](../management/sso/index.md) to Guance.
 
-## Beginner Guide
+### Beginner Guide
 
-After logging in to the Guance console, Guance provides a series of guidance services for new users. You can quickly understand Guance through the small videos of **Guance Product Introduction** and **Guance Product Architecture**; Or you can install and configure the first DataKit by clicking [Start with Installing DataKit](../datakit/datakit-install.md).
+After logging in to the Guance studio, Guance provides a series of guidance services for new users. You can quickly understand Guance through the small videos of **Guance Product Introduction** and **Guance Product Architecture**; Or you can install and configure the first DataKit by clicking [Start with Installing DataKit](../datakit/datakit-install.md).
 
 ![](img/1-free-start-1109.png)
 
 
-## Modify Account User Info
+### Modify Account User Info
 
 
-After the account registration is completed, click **Account** > **Settings** > **Basic Settings** on the left side to modify the account. Modifying account name, email address, mobile phone and password is supported here.<br />![](img/1-space-1130.png)
+After the account registration is completed, click **Account** > **Account Management** on the left side of the workspace to modify your account. Here you can:
+- modify profile, user name, email address, mobile phone and password;
+- bind [mfa authentication](#mfa);
+- modify [login-hold-time](#login-hold-time).
+
+![](img/6.mfa_1.png)
 
 
-## SSO Account
+## SSO Account {#sso}
 
-In addition to logging in by registering the Guance account, enterprise users are supported to log in to the Guance through SSO. For more details, please refer to the document [SSO management](../management/sso/index.md).
+In addition to logging in by registering the Guance account, enterprise users are supported to log in to the Guance through SSO. After entering the workspace, click **Account** > **Account Management** on the left to modify the SSO account. Here you can:  
+- modify avatar and user name;  
+- modify [login-hold-time](#login-hold-time).
+
+> Note: For accounts logged in through SSO, the login retention time configured by SSO is used by default. After account management is modified, the modified login retention time is used. For more details, please refer to the document [SSO Management](../management/sso/index.md).
 
 ## Account Security Settings
 
-### MFA Authentication
+### MFA Authentication {#mfa}
 
 Guance provides MFA authentication management, which helps to add an additional layer of security protection to the account user name and password. After MFA authentication is turned on, you need to perform secondary verification when logging in to help you improve the security of your account. See the documentation [MFA management](mfa-management.md).
 
@@ -50,11 +59,15 @@ To register an account, click **Account** > **Account Management** in the lower 
 - No operation login session retention time: the supporting setting range is from 30 to 1440 minutes, and the default is 30 minutes;
 - Maximum hold time of login session: the supporting setting range is from 0 to 7 days, where 0 means never timeout, and the default is 7 days.
 
-SSO login account uses SSO configured login retention time by default. For more details, refer to the documentation [SSO setting login session retention time](../management/sso/index.md#login-hold-time).
+SSO login account uses SSO configured login retention time by default. For more details, refer to the documentation [SSO Setting Login Session Retention Time](../management/sso/index.md#login-hold-time).
 
 ![](img/6.mfa_2.1.png)
 
+### Time Zone
 
+Time zone in Guance is `(UTC+08: 00) Beijing` by default. You can modify it according to your current time zone. After modification, all time displays in the platform will be affected. Please be careful.
 
----
+> You can also quickly modify the time zone according to time widget provided by Guance.
+
+Note: If you select **Follow Browser Time** when modifying the time zone, it means that the time zone display of Guance can be automatically adjusted.
 
