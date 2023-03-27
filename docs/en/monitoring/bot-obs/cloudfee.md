@@ -11,7 +11,7 @@ Cloud ( Alibaba Cloud, Tecent Cloud, Huawei Cloud ) Account Billing Inspection h
 2. Open the [script market](https://func.guance.com/doc/script-market-basic-usage/) of  DataFlux Func 
 3. Create [API Key](../../../management/api-key/open-api.md) in Guance "management/API Key management" 
 4. In the  DataFlux Func, install "Guance  Inspection Core Core Package", "Guance Algorithm Library" and "Guance  Inspection (Bill)" through "Script Market"
-5. Install and open ["Guance Cluster (Huawei Cloud-Billing)"](https://func.guance.com/doc/script-market-guance-aliyun-billing/)、["Guance Cluster (Alibaba Cloud-Billing)"](https://func.guance.com/doc/script-market-guance-huaweicloud-billing/)、["Guance Cluster (Tencent Cloud-Billing)"](https://func.guance.com/doc/script-market-guance-tencentcloud-billing/) and collect data for more than 15 days
+5. Install and open ["Guance Cluster (Huawei Cloud-Billing)"](https://func.guance.com/doc/script-market-guance-huaweicloud-billing/)、["Guance Cluster (Alibaba Cloud-Billing)"](https://func.guance.com/doc/script-market-guance-aliyun-billing/)、["Guance Cluster (Tencent Cloud-Billing)"](https://func.guance.com/doc/script-market-guance-tencentcloud-billing/) and collect data for more than 15 days
 6. In the DataFlux Func, write the  check processing function
 7. In the  DataFlux Func, create auto-trigger configuration for the written function through "Manage/Auto-trigger Configuration"
 
