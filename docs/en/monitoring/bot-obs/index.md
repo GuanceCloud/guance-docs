@@ -4,6 +4,28 @@
 
 ---
 
+
+
+## March 23, 2022
+
+### New Inspections
+
+* **Idle Resources Intelligent Inspection**: Cloud computing has rapidly developed as a new mode of IT service, providing convenient, fast, and elastic IT infrastructure and application services for both enterprises and individuals, and bringing high efficiency and economy. However, as cloud resources gradually become the main component of enterprise data centers, the huge waste of cloud resources has become increasingly significant. Especially within enterprises, due to fluctuations in demand and isolation between departments, some cloud resources are not fully utilized, resulting in a large number of idle resources. This situation can cause an increase in cloud service costs, a decrease in resource efficiency, and even a reduction in security and performance levels. In order to better manage and optimize idle resources in the cloud, and improve the utilization efficiency of cloud computing, it is necessary to perform inspections on idle resources in the cloud. Through inspections, unnecessary resources in cloud services can be found and processed, avoiding problems such as cost increases, data leaks, or poor performance caused by long-term unnecessary use of resources.
+
+### Functional optimization
+
+- **APM Intelligent Inspection**: Change the positioning of application access latency from P75 to P99, providing users with more accurate problem localization.
+
+
+
+## March 2, 2022
+
+### Functional optimization
+
+- **APM Intelligent Inspection**: Optimize the sensitivity of application performance error inspections, so that performance errors that occur can be detected more quickly.
+
+
+
 ## February 16, 2022
 
 ### Functional optimization
