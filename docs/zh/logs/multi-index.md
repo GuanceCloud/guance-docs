@@ -52,7 +52,7 @@
 
 ## 绑定索引 {#binding-index}
 
-观测云支持绑定外部的索引数据，包括 Log Service 、Elasticsearch、OpenSearch 的索引数据，绑定成功后，您可以在观测云工作空间对外部索引数据进行查询和分析。
+观测云支持绑定外部的索引数据，包括 SLS Logstore 、Elasticsearch、OpenSearch 的索引数据，绑定成功后，您可以在观测云工作空间对外部索引数据进行查询和分析。
 
 ???+ attention
 

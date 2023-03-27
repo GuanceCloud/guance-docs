@@ -33,7 +33,7 @@
 
 ![](../img/13.huaweicloud_6.png)
 
-## 第三步：关联组织
+## 第三步：关联组织 {#associated-organizations}
 
 购买完观测云SaaS服务以后，您会收到短信提示需要关联组织。
 
@@ -80,7 +80,7 @@
 
 ![](../img/13.huaweicloud_19.1.png)
 
-输入 [华为云账号ID](../billing-account/huaweicloud-account.md#id)，点击“确定”。
+输入 [华为云账号ID](#id)，点击“确定”。
 
 ![](../img/13.huaweicloud_19.2.png)
 
@@ -141,4 +141,18 @@
 
 ![](../img/13.huaweicloud_26.1.png)
 
+## 如何获取华为云账号 ID {#id}
 
+通过账号登录到 [华为云](https://www.huaweicloud.com) 控制台，把鼠标悬停在右上角账号头像上，在下拉列表中点击”我的凭证“。
+
+![](../img/1.huaweicloud_6.png)
+
+进入到”我的凭证“，在”API凭证“页面，点击复制”帐号ID“，填入观测云费用中心购买储值卡对话框的“华为云账号 ID”。
+
+![](../img/1.huaweicloud_8.png)
+
+## 如何获取订单编号 {#order-id}
+
+在 [华为云市场](https://marketplace.huaweicloud.com/contents/181f3d92-f40b-48d7-8ad5-420df0a682d2)  购买观测云储值卡后，您可以在「我的订单」查看购买的储值卡订单号，如下图所示。复制该订单号，填入观测云费用中购买储值卡对话框的“订单编号”。
+
+![](../img/1.huaweicloud_5.png)
