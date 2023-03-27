@@ -28,7 +28,7 @@
 
 #### 步骤一：修改 DataKit 监听端口
 
-1、修改服务器 DataKit 主配置文件 `/usr/local/datakit/conf.d/dataki.conf`
+1、修改服务器 DataKit 主配置文件 `/usr/local/datakit/conf.d/datakit.conf`
 
 ```shell
 [http_api]
