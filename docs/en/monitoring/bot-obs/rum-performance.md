@@ -42,6 +42,8 @@ RUM Performance Intelligent Integration is "enabled" by default and can be manua
 
 Intelligent Inspection supports "Export JSON configuration". Under the operation menu on the right side of the Intelligent Inspection list, click the "Export" button to export the JSON code of the current inspection, and the export file name format: `intelligent inspection name.json`.
 
+#### Editor
+
 Intelligent Check "RUM Performance Intelligent Integration" supports users to manually add filter conditions. Under the operation menu on the right side of the intelligent check list, click the "Edit" button to edit the check template.
 
 * Filter criteria: Configure the app_name to specify the name of the application.
