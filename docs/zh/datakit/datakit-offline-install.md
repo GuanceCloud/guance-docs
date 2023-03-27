@@ -407,6 +407,7 @@ mv datakit-arm64-1.5.8.tar /home/guance
 
 # 查看镜像架构是否正确
 docker image inspect pubrepo.jiagouyun.com/datakit/datakit:1.5.8 |grep Architecture
+
 ```
 
 3、修改Nginx配置代理
