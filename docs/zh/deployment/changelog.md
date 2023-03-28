@@ -2,7 +2,7 @@
 
 ## 1.60.125（2023 年 03 月 23 日）
 
-pubrepo.jiagouyun.com/dataflux/1.60.125:launcher-6723827-1679932675
+pubrepo.guance.com/dataflux/1.60.125:launcher-6723827-1679932675
 
 ### 私有部署版更新
 
