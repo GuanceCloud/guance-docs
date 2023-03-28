@@ -29,46 +29,9 @@ pubrepo.guance.com/dataflux/1.60.125:launcher-6723827-1679932675
 
 更多详情可参考帮助文档：https://docs.guance.com/release-notes/
 
-### 观测云更新
-
-- 数据存储策略变更优化
-- 图表链接配置优化
-- 新增支持创建重名的仪表板、笔记、自定义查看器
-- DQL 参数生效优先级调整
-- 日志 Message 数据展示优化
-- 监控配置页面优化
-- SSO 相关优化
-- 其他功能优化
-    - 商业版开通流程支持 “观测云直接开通”、“阿里云市场开通“和“亚马逊云市场开通“三种方式任意选择；
-    - 查看器左 * 查询功能范围调整，新开通的工作空间不再默认支持左 * 查询，如有需求请联系客户经理；
-    - SLIMIT 限制调整，时序图查询若存在 group by 分组时，默认返回最多 20 条数据；
-    - 新创建的工作空间新手引导流程优化。
-
-### DataKit 更新 
-
-- 新加功能
-    - Pipeline 支持 key 删除
-    - Pipeline 增加新的 KV 操作
-    - Pipeline 增加时间函数
-    - netstat 支持 IPV6
-    - diskio 支持 io wait 指标
-    - 容器采集允许 Docker 和 Containerd 共存
-    - 整合 Datakit Operator 配置文档
-- 功能优化
-    - 优化 Point Checker
-    - 优化 Pipeline replace 性能
-    - 优化 Windows 下 Datakit 安装流程
-    - 优化 confd 配置处理流程
-    - 添加 Filebeat 集成测试能力
-    - 添加 Nginx 集成测试能力
-    - 重构 OTEL Agent
-    - 重构 Datakit Monitor 信息
-
-更多详情可参考帮助文档：https://docs.guance.com/release-notes/
-
 ## 1.59.124（2023 年 03 月 09 日）
 
-pubrepo.jiagouyun.com/dataflux/1.59.124:launcher-cfaec26-1679407401
+pubrepo.guance.com/dataflux/1.59.124:launcher-cfaec26-1679407401
 
 ### 观测云更新
 
