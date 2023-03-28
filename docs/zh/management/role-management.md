@@ -72,14 +72,12 @@
 
 在观测云工作空间「管理」-「成员管理」，选择需要升到“Administrator”的成员，点击右侧“编辑”按钮，在弹出的对话框中，“角色”选择为“Administrator”，点击“确定”。
 
-> 观测云仅支持“Owner”、“Administrator”为当前工作空间成员赋予“Administrator”权限。
+> 注意：观测云仅支持“Owner”、“Administrator”角色为当前工作空间成员赋予“Administrator”权限，仅“Owner”角色能够在费用中心审核通过“Administrator”权限。
 
 ![](img/11.role_upgrade_1.png)
 
-提示权限验证：
-
-- 若当前工作空间“Owner”是观测云费用中心管理员，则可直接点击“前往费用中心审核”，免登录到观测云费用中心进行操作；
-- 若当前工作空间“Owner”不是观测云费用中心管理员，则需要通知观测云费用中心管理员 [登录费用中心](https://boss.guance.com/) 进行操作。
+- 若您是当前工作空间的“Administrator”角色，为成员进行提权时，则需要通知观测云费用中心管理员 [登录费用中心](https://boss.guance.com/) 进行操作；
+- 若您是当前工作空间的“Owner”角色，则可直接点击“前往费用中心审核”，免登录到观测云费用中心进行操作；
 
 ![](img/11.role_upgrade_2.png)
 
@@ -98,6 +96,12 @@
 返回观测云工作空间成员管理，即可看到工作空间成员已经为“Administrator”。
 
 ![](img/11.role_upgrade_6.png)
+
+观测云支持在成员管理列表查看所有未通过审核“Administrator”角色的成员，点击成员角色右侧的![](img/4.member_admin_2.png)图标，即可在提示对话框中点击「费用中心」进行审核操作。
+
+> 仅支持“Owner”角色为当前工作空间成员审核通过“Administrator”权限。
+
+![](img/4.member_admin_1.png)
 
 ## 权限
 

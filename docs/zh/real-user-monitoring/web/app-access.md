@@ -35,7 +35,7 @@
 - 应用名称（必填项）：用于识别当前实施用户访问监测的应用名称。
 - 应用 ID 标识（必填项）：应用在当前工作空间的唯一标识，用于 SDK 采集数据上传匹配，数据入库后对应字段：app_id 。该字段仅支持英文、数字、下划线输入，最多 48 个字符。
 
-![](../img/10.rum_sampling.png)
+![](../img/11.rum_1.png)
 
 
 
@@ -51,11 +51,15 @@
     import { datafluxRum } from '@cloudcare/browser-rum'
     
     datafluxRum.init({
-        applicationId: '<DATAFLUX_APPLICATION_ID>',
-        datakitOrigin: '<DATAKIT ORIGIN>',
-        env: 'production',
-        version: '1.0.0',
-        trackInteractions: true,
+      applicationId: 'guance',
+      datakitOrigin: '<DATAKIT ORIGIN>', // 协议（包括：//），域名（或IP地址）[和端口号]
+      env: 'production',
+      version: '1.0.0',
+      sessionSampleRate: 100,
+      sessionReplaySampleRate: 70,
+      trackInteractions: true,
+      traceType: 'ddtrace', // 非必填，默认为ddtrace，目前支持 ddtrace、zipkin、skywalking_v3、jaeger、zipkin_single_header、w3c_traceparent 6种类型
+      allowedTracingOrigins: ['https://api.example.com', /https:\/\/.*\.my-api-domain\.com/],  // 非必填，允许注入trace采集器所需header头部的所有请求列表。可以是请求的origin，也可以是是正则
     })
     ```
 
@@ -63,52 +67,57 @@
 
     ```javascript
     <script>
-    (function (h, o, u, n, d) {
+     (function (h, o, u, n, d) {
         h = h[d] = h[d] || {
-        q: [],
-        onReady: function (c) {
+          q: [],
+          onReady: function (c) {
             h.q.push(c)
-        }
+          }
         }
         d = o.createElement(u)
         d.async = 1
         d.src = n
         n = o.getElementsByTagName(u)[0]
         n.parentNode.insertBefore(d, n)
-    })(
+      })(
         window,
         document,
         'script',
-        'https://static.guance.com/browser-sdk/v2/dataflux-rum.js',
+        'https://static.guance.com/browser-sdk/v3/dataflux-rum.js',
         'DATAFLUX_RUM'
-    )
-    DATAFLUX_RUM.onReady(function () {
+      )
+      DATAFLUX_RUM.onReady(function () {
         DATAFLUX_RUM.init({
-            applicationId: '<DATAFLUX_APPLICATION_ID>',
-            datakitOrigin: '<DATAKIT ORIGIN>',
-            env: 'production',
-            version: '1.0.0',
-            trackInteractions: true,
+          applicationId: 'guance',
+          datakitOrigin: '<DATAKIT ORIGIN>', // 协议（包括：//），域名（或IP地址）[和端口号]
+          env: 'production',
+          version: '1.0.0',
+          sessionSampleRate: 100,
+          sessionReplaySampleRate: 70,
+          trackInteractions: true,
+          traceType: 'ddtrace', // 非必填，默认为ddtrace，目前支持 ddtrace、zipkin、skywalking_v3、jaeger、zipkin_single_header、w3c_traceparent 6种类型
+          allowedTracingOrigins: ['https://api.example.com', /https:\/\/.*\.my-api-domain\.com/],  // 非必填，允许注入trace采集器所需header头部的所有请求列表。可以是请求的origin，也可以是是正则
         })
-    })
+      })
     </script>
     ```
 
 === "CDN 同步加载"
 
     ```javascript
-    <script
-    src="https://static.guance.com/browser-sdk/v2/dataflux-rum.js" 
-    type="text/javascript"
-    ></script>
+    <script src="https://static.guance.com/browser-sdk/v3/dataflux-rum.js" type="text/javascript"></script>
     <script>
-    window.DATAFLUX_RUM &&
+      window.DATAFLUX_RUM &&
         window.DATAFLUX_RUM.init({
-            applicationId: '<DATAFLUX_APPLICATION_ID>',
-            datakitOrigin: '<DATAKIT ORIGIN>',
-            env: 'production',
-            version: '1.0.0',
-            trackInteractions: true,
+          applicationId: 'guance',
+          datakitOrigin: '<DATAKIT ORIGIN>', //协议（包括：//），域名（或IP地址）[和端口号]
+          env: 'production',
+          version: '1.0.0',
+          sessionSampleRate: 100,
+          sessionReplaySampleRate: 70,
+          trackInteractions: true,
+          traceType: 'ddtrace', //非必填，默认为ddtrace，目前支持 ddtrace、zipkin、skywalking_v3、jaeger、zipkin_single_header、w3c_traceparent 6种类型
+          allowedTracingOrigins: ['https://api.example.com', /https:\/\/.*\.my-api-domain\.com/],  //非必填，允许注入trace采集器所需header头部的所有请求列表。可以是请求的origin，也可以是是正则
         })
     </script>
     ```
@@ -124,7 +133,8 @@
 | `env`                          | String   | 否       |                                    | web 应用当前环境， 如 prod：线上环境；gray：灰度环境；pre：预发布环境 common：日常环境；local：本地环境；                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 | `version`                      | String   | 否       |                                    | web 应用的版本号                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | `service` | String | 否 | | 当前应用的服务名称，默认为 `browser`，支持自定义配置。 |
-| `sampleRate`                   | Number   | 否       | `100`                              | 指标数据收集百分比: <br>`100`<br>表示全收集，<br>`0`<br>表示不收集                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `sessionSampleRate`                   | Number   | 否       | `100`                              | 指标数据收集百分比: <br>`100`<br>表示全收集，<br>`0`<br>表示不收集                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `sessionReplaySampleRate`                   | Number   | 否       | `100`                              | [Session Replay](../session-replay/replay.md) 数据采集百分比: <br>`100`<br>表示全收集，<br>`0`<br>表示不收集                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | `trackSessionAcrossSubdomains` | Boolean  | 否       | `false`                            | 同一个域名下面的子域名共享缓存                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | `traceType`                    | Enum     | 否       | `ddtrace`                          | 【新增】配置链路追踪工具类型，如果不配置默认为`ddtrace`。目前支持 `ddtrace`、`zipkin`、`skywalking_v3`、`jaeger`、`zipkin_single_header`、`w3c_traceparent` 6 种数据类型。注： `opentelemetry` 支持 `zipkin_single_header`,`w3c_traceparent`,`zipkin`、`jaeger`4 种类型。<br><br>注意：1.该配置的生效，需要依赖 allowedTracingOrigins 配置项。2.配置相应类型的traceType 需要对相应的API服务 设置不同的 Access-Control-Allow-Headers 具体查看 APM 如何关联 RUM，具体查看 [APM 如何关联 RUM ](../../application-performance-monitoring/collection/connect-web-app.md) |
 | `traceId128Bit`                | Boolean  | 否       | `false`                            | 是否以128字节的方式生成 `traceID`，与`traceType` 对应，目前支持类型 `zipkin`、`jaeger`                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |

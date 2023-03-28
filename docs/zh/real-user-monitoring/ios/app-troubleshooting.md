@@ -11,11 +11,11 @@ eg：当配置 SDK 时，未设置  datakit metrics 写入地址，程序会崩�
 *** Terminating app due to uncaught exception 'NSInternalInconsistencyException', reason: '请设置 datakit metrics 写入地址'
 ```
 
-## 开启 Debug 调试{#debug-mode}
+## 开启 Debug 调试 {#debug-mode}
 
 建议在 Debug 环境开启 `FTMobileConfig ` 的配置项 `enableSDKDebugLog = YES` ，Release 环境关闭。 SDK 的调试日志以 **[FTLog]** 作为前缀标识，可以使用 [FTLog] 进行筛选。
 
-> **建议 Relase 版本发布时，关闭这个配置**
+> **建议 Release 版本发布时，关闭这个配置**
 
 ## SDK 正常运行但是没有数据
 
@@ -117,7 +117,7 @@ View 的采集：设置 `FTRumConfig` 的配置项`enableTraceUserView = YES` �
     };
 ```
 
-找到 **op = RUM;**  **source = resource; ** 的数据，在 **tags** 中包含`span_id` 与 `trace_id` 即表明 Trace 功能正常开启。
+找到 **op = RUM;**  **source = resource;** 的数据，在 **tags** 中包含`span_id` 与 `trace_id` 即表明 Trace 功能正常开启。
 
 ## 数据丢失
 ### 丢失部份数据

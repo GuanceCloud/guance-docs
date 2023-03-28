@@ -164,11 +164,8 @@ systemctl restart datakit
 
 <场景 - 新建仪表板 - 模板库 - 系统视图 - Rabbitmq 监控视图>
 
-## 检测库
-暂无
-
-## [指标详解](../../../datakit/rabbitmq#measurements)
+## [指标详解](../../datakit/rabbitmq.md#measurements)
 
 ## 故障排查
 
-<[无数据上报排查](../../datakit/why-no-data.md)>
+- <[无数据上报排查](../../datakit/why-no-data.md)>

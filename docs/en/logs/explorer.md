@@ -42,10 +42,11 @@ Guance supports a variety of ways to query and analyze log data, including searc
 
 Guance will automatically divide several time points according to the selected time range, and show the number of different log states through stacked histogram to help statistical analysis. If the log is filtered, the histogram shows the filtered results synchronously.
 
-- Log statistical chart supports floating to the chart through the mouse, and click the **Export** button to export to the dashboard, notes or sticker board;
+- Log statistical chart supports floating to the chart through the mouse, and click the **Export** button to export to the dashboard or notes;
 - Log charts support custom selection of time intervals.
 
-![](img/10.export_pic.png)
+![](img/1-log-explorer-0320-en.png)<br/>
+![](img/2-log-explorer-0320-en.png)
 
 ### Time Control
 
@@ -55,9 +56,9 @@ Guance explorer displays the log data of the last 15 minutes by default, and you
 
 Guance supports setting log multiple indexes, filtering qualified logs and saving them in different log indexes, and helping users save log data storage costs by selecting different data storage strategies for log indexes.
 
-After setting the index in** Log > Index**, it is supported to select different indexes in the explorer to view the corresponding log contents. Refer to the documentation [Log Index](multi-index.md).
+After setting the index in **Log > Index**, it is supported to select different indexes in the explorer to view the corresponding log contents. See the documentation [Log Index](multi-index.md).
 
-![](img/5.log_3.1.png)
+![](img/log-explorer-en-5.png)
 
 ### Search and Filter
 
@@ -86,7 +87,7 @@ The log explorer displays the "time" and "message" fields by default, where the 
 
 Formatting configurations allow you to hide sensitive log data content or highlight log data content that needs to be viewed, and for quick filtering by replacing existing log content.
 
-Click **Set** in the upper right corner of the viewer list, click **Formatting** to add mapping, enter the following contents, and click **Save** to replace the original log content with "DEGUB" in the format you want to display.
+Click **Set** in the upper right corner of the explorer list, click **Formatting** to add mapping, enter the following contents, and click **Save** to replace the original log content with "DEGUB" in the format you want to display.
 
 - Fields: such as content
 - match: such as match (currently supports `=`, `!=`, `match`, `not match`)
@@ -95,7 +96,7 @@ Click **Set** in the upper right corner of the viewer list, click **Formatting**
 
 Note: Only administrators and above can configure explorer formatting.
 
-![](img/11.log_format_2.png)
+![](img/log-explorer-en-16.png)
 
 ### Log Highlight
 
@@ -111,25 +112,25 @@ Note: If you search the log in the search bar, only the matching keywords are hi
 | Default (unmarked text) | Black | Grey |
 | Numbers (log status codes, etc., such as 404) | Purple | Light purple |
 
-![](img/2.log_1.png)
+![](img/log-explorer-en-7.png)
 
 ### Log Single Line Expansion Copy
 
 In the Guance log data list, you can hover to log contents, expand and view all log contents, and click **Copy** button to copy the whole log contents to the pad. When the log content is expanded, if JSON display is supported, the log will be displayed in JSON format, and if it is not supported, the log content will be displayed normally.
 
-![](img/5.log_explorer_1.png)
+![](img/log-explorer-en-8.png)
 
 ### Log Multiline Browse
 
 The log data list of Guance shows you the trigger "time" and the "content" of the log by default. You can select Log Display "1 Line", "3 Lines", or "10 Lines" in the **Display Column** of the explorer to view the complete log contents.
 
-![](img/5.log_explorer_2.png)
+![](img/log-explorer-en-9.png)
 
 ### Log Data Export
 
 - In **Log**, you can filter out the desired log data first, and then export it through **Set** for viewing and analysis. Export to CSV files or dashboards and notes is supported.
 
-![](img/5.log_explorer_3.png)
+![](img/log-explorer-en-16.png)
 
 ## Log Details
 
@@ -254,9 +255,9 @@ When the mouse selects the extended field, click the drop-down icon in front, an
     **Matching field**
     To view the related network in the details page, you need to match the corresponding related fields(logs need to configure the corresponding field labels during data collection, otherwise it cannot view the related network pages in the details page). 
  
-    - host: Match the field "host", select "host" with the mouse, and support clicking "copy" button to copy related fields and their values 
-    - Pod: Match the field "Pod_name", select "Pod" with the mouse, and support clicking "Copy" button to copy the associated field and its value 
-    - Deployment: Match the field "Deployment_name", select "Deployment" with the mouse, and support clicking the **Copy** button to copy the associated field and its value 
+    - host: Match the field "host", select "host" with the mouse, and support clicking "copy" button to copy related fields and their values. 
+    - Pod: Match the field "Pod_name", select "Pod" with the mouse, and support clicking "Copy" button to copy the associated field and its value. 
+    - Deployment: Match the field "Deployment_name", select "Deployment" with the mouse, and support clicking the **Copy** button to copy the associated field and its value. 
  
     Note: 
     - If the associated fields of host, Pod and Deployment are configured at the same time, the data of Pod network will be displayed first when entering the details page, followed by the data of Deployment network; 

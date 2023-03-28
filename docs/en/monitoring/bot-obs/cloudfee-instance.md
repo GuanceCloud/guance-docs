@@ -11,7 +11,7 @@ Cloud (now only suport alibaba cloud) Account Billing Inspection helps subscribe
 2. Open the [script market](https://func.guance.com/doc/script-market-basic-usage/) of  DataFlux Func 
 3. Create [API Key](../../../management/api-key/open-api.md) in Guance "management/API Key management" 
 4. In DataFlux Func，by「Script Marketplace」to install「Guance  Core Package」「Guance Algorithm Library」「Guance  script (Cloud Account Billing Inspection)」.
-5. Install and open[「Guance Integration (Huawei Cloud - Billing Collection - By Instance)」](https://func.guance.com/doc/script-market-guance-aliyun-billing-by-instance/)、[「Guance Integration (Tencent Cloud - Billing Collection - By Instance)」](https://func.guance.com/doc/script-market-guance-huaweicloud-billing-by-instance/)、[「Guance Integration (Alibaba Cloud - Billing Collection - By Instance)」](https://func.guance.com/doc/script-market-guance-tencentcloud-billing-by-instance/) in the Script Market, and the number of days to collect data exceeds 15 days
+5. Install and open[「Guance Integration (Huawei Cloud - Billing Collection - By Instance)」](https://func.guance.com/doc/script-market-guance-huaweicloud-billing-by-instance/)、[「Guance Integration (Tencent Cloud - Billing Collection - By Instance)」](https://func.guance.com/doc/script-market-guance-tencentcloud-billing-by-instance/)、[「Guance Integration (Alibaba Cloud - Billing Collection - By Instance)」](https://func.guance.com/doc/script-market-guance-aliyun-billing-by-instance/) in the Script Market, and the number of days to collect data exceeds 15 days
 6. In the DataFlux Func, write the  check processing function
 7. In the  DataFlux Func, create auto-trigger configuration for the written function through "Manage/Auto-trigger Configuration"
 

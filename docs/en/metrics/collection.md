@@ -14,9 +14,9 @@ There are two ways to collect metrics, and the prerequisite is that you need to 
 
 ![](img/2.datakit_1.png)
 
-## Delete Metric Data
+## Delete Measurement {#delete}
 
-Guance supports administrators to delete measurements in workspace, enter **Management** > **Basic Settings**, click **Delete Measurement**, enter the complete measurement name and click **OK** to delete.
+Guance supports administrators to delete measurements in workspace, enter **Management** > **Basic Settings**, click **Delete Measurement**, enter the complete measurement name and click **Confirm** to delete.
 
 ???+ attention
 

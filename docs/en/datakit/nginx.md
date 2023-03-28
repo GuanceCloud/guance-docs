@@ -51,7 +51,11 @@ Go to the `conf.d/nginx` directory under the DataKit installation directory, cop
 ```toml
 
 [[inputs.nginx]]
-	url = "http://localhost:80/server_status"
+	# Nginx status URL.
+	# (Default) If not use with VTS, the formula is like this: "http://localhost:80/nginx_status".
+	# If using with VTS, the formula is like this: "http://localhost:80/status/format/json".
+	url = "http://localhost:80/nginx_status"
+
 	# ##(optional) collection interval, default is 30s
 	# interval = "30s"
 	use_vts = false
@@ -76,6 +80,10 @@ Go to the `conf.d/nginx` directory under the DataKit installation directory, cop
 	# more_tag = "some_other_value"
 	# ...
 ```
+
+???+ warnning
+
+    `url` are configurable, `/nginx_status` are prefereed.
 
 After configuration, restart DataKit.
 

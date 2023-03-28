@@ -810,6 +810,8 @@ cover(abc, [2, 4])
 
 ### `datetime()` {#fn-datetime}
 
+[:octicons-tag-24: Version-1.5.7](../changelog.md#cl-1.5.7)
+
 函数原型：`fn datetime(key, precision: str, fmt: str, tz: str = "")`
 
 函数说明：将时间戳转成指定日期格式
@@ -912,6 +914,7 @@ datetime(ts, 'ns', '%m/%d/%y  %H:%M:%S %z', "Asia/Tokyo")
 }
 ```
 
+
 ### `decode()` {#fn-decode}
 
 函数原型：`fn decode(text: str, text_encode: str)`
@@ -1008,6 +1011,34 @@ rename("time", log_time)
 
 
 
+### `delete()` {#fn-delete}
+[:octicons-tag-24: Version-1.5.8](../changelog.md#cl-1.5.8)
+
+函数原型：`fn delete(src: map[string]any, key: str)`
+
+函数说明： 删除 json map 中的 key
+
+```python
+
+# input
+# {"a": "b", "b":[0, {"c": "d"}], "e": 1}
+
+# script
+j_map = load_json(_)
+
+delete(j_map["b"][-1], "c")
+
+delete(j_map, "a")
+
+add_key("j_map", j_map)
+
+# result:
+# {
+#   "j_map": "{\"b\":[0,{}],\"e\":1}",
+# }
+```
+
+
 ### `drop()` {#fn-drop}
 
 函数原型：`fn drop()`
@@ -1045,7 +1076,7 @@ json(_, str_b)
 示例:
 
 ```python
-data = `{\"age\": 17, \"name\": \"zhangsan\", \"height\": 180}`
+# data = `{\"age\": 17, \"name\": \"zhangsan\", \"height\": 180}`
 
 # 处理脚本
 json(_, age,)
@@ -1323,7 +1354,7 @@ group_in(log_level, ["error", "panic"], "not-ok", status)
 - `json_path`: json 路径信息
 - `newkey`：提取后数据写入新 key
 - `trim_space`: 删除提取出的字符中的空白首尾字符，默认值为 `true`
-- `delete_after_extract`: 在提取结束后删除当前对象，在重新序列化后回写待提取对象；只能应用于 map 的 key 与 value 的删除，不能用于删除 list 的元素；默认值为 `false`，不进行任何操作
+- `delete_after_extract`: 在提取结束后删除当前对象，在重新序列化后回写待提取对象；只能应用于 map 的 key 与 value 的删除，不能用于删除 list 的元素；默认值为 `false`，不进行任何操作[:octicons-tag-24: Version-1.5.7](../changelog.md#cl-1.5.7)
 
 ```python
 # 直接提取原始输入 json 中的x.y字段，并可将其命名成新字段abc
@@ -1421,7 +1452,10 @@ json(_, item2.item3[0], item, true, true)
 # [E] j2.p:1:37: does not support deleting elements in the list
 ```
 
+
 ### `kv_split()` {#fn-kv_split}
+
+[:octicons-tag-24: Version-1.5.7](../changelog.md#cl-1.5.7)
 
 函数原型：`fn kv_split(key, field_split_pattern = " ", value_split_pattern = "=", trim_key = "", trim_value = "", include_keys = [], prefix = "") -> bool`
 
@@ -1430,7 +1464,7 @@ json(_, item2.item3[0], item, true, true)
 参数:
 
 - `key`: key 名称
-- `include_keys`: 包含的 key 名称列表，仅提取在该列表内的 key；默认值为 []，提取所有的 key
+- `include_keys`: 包含的 key 名称列表，仅提取在该列表内的 key；**默认值为 []，不提取任何 key**
 - `field_split_pattern`: 字符串分割，用于提取出所有键值对的正则表达式；默认值为 `" "`
 - `value_split_pattern`: 用于从键值对字符串分割出键和值，非递归；默认值为 `"="`
 - `trim_key`: 删除提取出的 key 的前导和尾随的所有指定的字符；默认值为 `""`
@@ -1446,6 +1480,19 @@ kv_split(_)
  
 '''output:
 {
+  "message": "a=1, b=2 c=3",
+  "status": "unknown",
+  "time": 1679558730846377132
+}
+'''
+```
+
+```python
+# input: "a=1, b=2 c=3"
+kv_split(_, include_keys=["a", "c", "b"])
+ 
+'''output:
+{
   "a": "1,",
   "b": "2",
   "c": "3",
@@ -1458,7 +1505,7 @@ kv_split(_)
 
 ```python
 # input: "a=1, b=2 c=3"
-kv_split(_, trim_value=",")
+kv_split(_, trim_value=",", include_keys=["a", "c", "b"])
 
 '''output:
 {
@@ -1491,7 +1538,7 @@ kv_split(_, trim_value=",", include_keys=["a", "c"])
 ```python
 # input: "a::1,+b::2+c::3" 
 kv_split(_, field_split_pattern="\\+", value_split_pattern="[:]{2}",
-    prefix="with_prefix_",trim_value=",", trim_key="a")
+    prefix="with_prefix_",trim_value=",", trim_key="a", include_keys=["a", "b", "c"])
 
 '''output:
 {

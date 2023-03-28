@@ -88,8 +88,6 @@ disk 采集器用于主机磁盘信息采集，如磁盘存储空间、inodes �
 |`device`|Disk device name.|
 |`fstype`|File system name.|
 |`host`|System hostname.|
-|`mode`|Read-write mode.|
-|`path`|Disk mount point.|
 
 - 指标列表
 
