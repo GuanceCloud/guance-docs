@@ -1,11 +1,11 @@
 # SSO Management
 ---
 
-Guance supports SSO management based on SAML protocol, and supports enterprises to manage employee information in local IdP (Identity Provider). Without user synchronization between Guance and enterprise IdP, enterprise employees can log in and access Guance through designated roles. <br />![](../img/SSO.png)
+Guance supports SSO management based on SAML protocol and enables enterprises to manage employee information in local IdP (Identity Provider). Without user synchronization between Guance and enterprise IdP, enterprise employees can log in and access Guance through designated roles. <br />![](../img/SSO.png)
 
 ## New SSO
 
-Guance supports users to open SSO based on the workspace. When logging in, users can obtain the corresponding SSO login by entering the company mailbox and realize the corresponding authentication login. In Guance workspace "Admin"-"SSO Admin"-"Enable", you can set SSO for employees.
+Guance supports users to open SSO based on the workspace. When logging in, users can obtain the corresponding SSO login by entering the company mailbox and realize the corresponding authentication login. In Guance workspace **Admin > SSO Admin > Enable**, you can set SSO for employees.
 
 Note:
 

@@ -1,16 +1,16 @@
-# Role Management
+# Roles
 ---
 
 ## Overview  
 
-If you need to set different access rights for different employees to achieve permission isolation, you can use the role management function of Guance. Role management provides users with an convenient access to authority management. Here you can:  
+If you need to set different access rights for different employees to achieve permission isolation, you can use the role management function of Guance. Role management provides users with an convenient access to authority management. Here you can:<br/> 
 - adjust the permissions corresponding to different roles;
 - create of new roles for users;
 - give permissions to roles to meet the permissions needs of different users.
 
-## Role
+## Roles
 
-### Default Role
+### Default Roles
 
 If different teams in an enterprise need to view and operate different Guance function modules and need to distinguish different role permissions, they can invite members to join the current workspace and set role permissions for them to control Guance function modules that the members can access and operate.
 
@@ -18,7 +18,7 @@ Guance provides four member roles by default, as shown in the following table.
 
 > Default roles cannot be removed and permission range changes are not supported.
 
-| New Role Name     |
+| Role Name     |
 | ------------- |
 | Owner         |
 | Administrator |
@@ -40,11 +40,11 @@ Permission ranges for different default roles can be found in the doc [permissio
 
 In addition to the default roles, Guance supports the creation of new roles in role management, and gives permission scope to the roles to meet the permission needs of different users.
 
-A new role can be created in the observation cloud workspace **Management > Member Management > Role Management**.
+A new role can be created in Guance workspace **Management > Member Management > Role Management**.
 
 Refer to the doc [Permission List](role-list.md) for permission scopes for custom roles.
 
-> Custom roles are only Owner and Administrator can be created.
+> Custom roles can only be created by **Owner** and **Administrator**.
 
 ![](img/8.member_6.png)
 
@@ -70,7 +70,7 @@ When setting role permissions for workspace members, if the granted role permiss
 See the doc [Permission List](role-list.md) for more information.
 
 > - At present, only Owner and Administrator have "Token View" permission. If commercial workspace members need to refer to Administrator, they need to go to Guance expense center for review.
-> - Experience workspace members can directly raise the right to Administrator without going to Guance expense center for review.
+> - Members from Experience Plan workspace can directly raise the right to Administrator without going to Guance expense center for review.
 
 #### <u>Example of Promoting to Administrator</u>
 
@@ -91,7 +91,7 @@ In the message center of the Guance expense center, click **Accept**.
 
 ![](img/11.role_upgrade_3.png)
 
-In the **Action Confirmation** dialog box, click **OK**.
+In the **Action Confirmation** dialog box, click **Confirm**.
 
 ![](img/11.role_upgrade_4.png)
 
@@ -103,7 +103,7 @@ Returning to **Member Management**, you can see that the workspace member is alr
 
 ![](img/11.role_upgrade_6.png)
 
-## Permissions
+## Permission List
 
 Guance supports setting permissions for custom roles in the workspace to meet the permission requirements of different users. For more details, please refer to the doc [Permission List](role-list.md).
 

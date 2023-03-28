@@ -6,17 +6,17 @@ Guance supports filtering out different types of qualified data by setting black
 ## Preconditions
 
 - [Install DataKit](../datakit/datakit-install.md)
-- DataKit version requirement >= 1.4.7
+- DataKit version requires to be equal to or higher than 1.4.7.
 
-## Create a new blacklist
+## Create
 
-In Guance workspace, click **Manage > Blacklist > New Blacklist**.
+In Guance workspace, click **Manage > Blacklist > Create**.
 
 ![](img/5.blacklist_1.png)
 
-In **Data Source**, select the data type, add one or more filtering rules in **Filter**, and click "OK" to open the data blacklist filtering rules.
+In **Data Source**, select the data type, add one or more filtering rules in **Filter** and click **Confirm** to open the data blacklist filtering rules.
 
-- Data source: Blacklist names are automatically generated according to data sources, Support the selection of Log, Basic Object, Custom Object, Network, APM, RUM, Security Check, Event, Metrics and Profile, and support the manual input of preset blacklist, package data source and field name, which will take effect after configuring data source and field through DataKit and reporting data.
+- Data source: Blacklist names are automatically generated according to data sources, Support the selection of Logs, Basic Object, Custom Object, Network, APM, RUM, Security Check, Event, Metrics and Profile, and support the manual input of preset blacklist, package data source and field name, which will take effect after configuring data source and field through DataKit and reporting data.
   
 | Data Type     | Data source (support custom preset)                       |
 | :----------- | :----------------------------------------------- |
@@ -35,7 +35,7 @@ In **Data Source**, select the data type, add one or more filtering rules in **F
 
 - Field name: Manual input of field name is supported, which must be an accurate value. You can view the field name to be matched in the "Display Column" of the explorer.
 
-- -Field value: Support manual input of field value, input of single value, multi-value and regular syntax.
+- Field value: Support manual input of field value, input of single value, multi-value and regular syntax.
 
 - Operator: Four modes of `in / not in / match / not match` are supported, `in / not in` is precise match, and `match / not match` is regular match.
 
@@ -68,23 +68,23 @@ After setting the blacklist, you can check whether the blacklist is effective ac
 
 ![](img/5.blacklist_4.png)
 
-## Operate Blacklist
+## Related Operations
 
 ### Edit
 
-On the right side of the blacklist, click the **Edit** icon to edit the created data filtering rules. In the following example, when the blacklist is set, the log for **All Sources** satisfies ` status ` as `ok or info`, or `host` as `hz-dataflux-saas-daily-01`, or `service` does not contain the word `kodo`, i.e. data satisfying any of these three matching rules is filtered and no longer reported to the workspace.
+On the right side of the blacklist, click **Edit** to edit the created data filtering rules. In the following example, when the blacklist is set, the log for **All Sources** satisfies ` status ` as `ok or info`, or `host` as `hz-dataflux-saas-daily-01`, or `service` does not contain the word `kodo`, i.e. data satisfying any of these three matching rules is filtered and no longer reported to the workspace.
 
 ![](img/5.blacklist_3.png)
 
 ### Delete
 
-On the right side of the blacklist, click the **Delete** icon to delete the existing filtering rules. After the filtering rules are deleted, the data will be reported to the workspace normally.
+On the right side of the blacklist, click **Delete** to delete the existing filtering rules. After the filtering rules are deleted, the data will be reported to the workspace normally.
 
 ![](img/5.blacklist_5.png)
 
-### Batch operation
+### Batch
 
-In the Guance workspace **Manage > Blacklist**, click **Batch Operation** to **Batch Export** or **Batch Delete** blacklist.
+In the Guance workspace **Manage > Blacklist**, click **Batch** to **Batch Export** or **Batch Delete** blacklist.
 
 ???- attention
 
@@ -102,6 +102,6 @@ Support **Import/Export Blacklist** in **Manage > Blacklist** of Guance workspac
 
 ## Notes
 
-- Blacklist rules configured in the guance will not take effect if the blacklist is configured in the file `datakit.conf` under the directory `/usr/local/datakit/conf.d` when installing and configuring the datakit;
+- Blacklist rules configured in Guance will not take effect if the blacklist is configured in the file `datakit.conf` under the directory `/usr/local/datakit/conf.d` when installing and configuring the datakit;
 - DataKit pulls data every 10 seconds, and the blacklist will not take effect immediately after configuration, so it needs to wait at least 10 seconds.
-- After the blacklist is configured, it is stored in the `.pull` file under the datakit directory `/usr/local/datakit/data` , and more can be found in the documentation [view blacklist](../dca/index.md).
+- After the blacklist is configured, it is stored in the `.pull` file under the datakit directory `/usr/local/datakit/data`, and more can be found in the documentation [view blacklist](../datakit/dca.md).
