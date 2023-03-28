@@ -1,13 +1,16 @@
 nav:
   - index.md
-  - 'General Settings': 
+  - 'General Settings'
     - 'Key Metrics': key-metrics.md
     - 'Customized Menu': customized-menu.md
     - 'Audit': operation-audit.md  
+  - 'Account Management': 
+    - account-management.md
+    - 'MFA': mfa-management.md
   - 'Member Management': 
     - member-management.md
-    - 'Role Management': role-management.md
-    - 'Permission Management': role-list.md
+    - 'Roles': role-management.md
+    - 'Permission List': role-list.md
   - 'SSO Management': sso
   - 'Pipelines': overall-pipeline.md
   - 'Field Management': field-management.md
@@ -16,9 +19,6 @@ nav:
   - 'API Key': api-key
   - 'Sharing': share-management.md
   - 'Personal Settings':
-    - 'Account Management': 
-      - account-management.md
-      - 'MFA': mfa-management.md
     - 'Space Management': space-management.md
     - 'System Notification': system-notification.md
     - 'High Performance': high-performance.md
@@ -26,4 +26,4 @@ nav:
     - 'Demo Space': space-demo.md
     - 'Help': help.md
     - 'Status Page': status-page.md
-    - 'Ticket': work-order-management.md
+    - 'Tickets': work-order-management.md

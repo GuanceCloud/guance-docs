@@ -2,7 +2,7 @@
 ---
 
 
-## Introduction
+## Overview
 
 Guance Snapshot supports creating quickly accessible data copies for explorers such as scenarios and inner views, infrastructure, metrics, logs, events, APM, RUM, cloud dialing, security check, and CI visibility. With the Snapshot function, you can quickly reproduce the instantaneous copy of the data copy information, and restore the data to a certain point in time and a certain data display logic.
 
