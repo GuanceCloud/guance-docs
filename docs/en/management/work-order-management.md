@@ -1,62 +1,54 @@
-# 工单管理
+# Ticket Management
 ---
 
-针对在观测云中遇到的问题，用户可以通过提交工单的方式进行咨询与建议，官方会进行及时的处理与反馈。例如：使用过程中遇到难以解决的问题、购买以及费用相关的咨询、向观测云提出需求建议等等。
+In view of the problems encountered in Guance, users can consult and make suggestions by submitting tickets, and the official will make timely processing and feedback. Issues include but are not limited to confusion in the process of using products, product functional requirements and consultation related to purchase and cost.
 
-工单系统是基于个人账号级别的，用户可以在工单管理中查看由本人提交的所有工单，不区分工作空间。工单管理入口：左下角「账号」-「工单管理」。
+The ticket system is based on the personal account level, and you can view all the tickets in **Help > Ticket Management** submitted by yourself without distinguishing the workspace.
 
-## 提交工单
+## Submit Tickets
 
-在工单管理页面可以直接点击「提交工单」，选择工单的类型，输入工单的标题及描述即可创建，支持上传附件。
+On the **Ticket Management** page, you can directly click **Submit**, select the type of ticket and enter the title and description of the ticket to create it. Uploading attachments is supported.
 
 ![](img/1.work_order_1.png)
 
-### 工单类型
+### Ticket Type
 
-工单类型包含「解绑MFA」、「更换拥有者账号」、「购买咨询」、「帮助文档」、「需求建议」、「BUG反馈」、「使用问题」、「其他」，您可以根据工单问题选取正确的类型，以便更快的分配和处理问题。
+Ticket types include **Unbind MFA, Change Owner Account, Purchase Consultation, Documentation, Requirements, BUG Feedback, Usage Problem and Others**.
 
-当工单类型为「更换拥有着账号」时，需要先下载申请表，按要求填写信息并盖公司公章后上传附件。请注意：申请信息填写不完整将不会受理。
+> When the ticket type is **Change Owner Account**, you need to download the application form first, fill in the information as required, stamp the official seal of the company and upload the attachment. Please note: Incomplete application information will not be accepted.
 
 ![](img/1.work_order_3.png)
 
-当工单类型为「解绑MFA」时，需要通过邮箱进行验证。
+> When the job type is **Unbind MFA**, it needs to be verified by mailbox.
 
 ![](img/1.work_order_2.png)
 
-### 工单状态
+### Ticket Status
 
-工单状态包含「待受理」、「处理中」、「已完成」、「已取消」
+Job status includes **Pending, In Process, Completed** and **Cancelled**.   
 
-- 待受理：工单提交后状态默认为「待受理」，在此状态下支持用户撤销工单。
-- 处理中：表示该工单观测云已查阅，正在处理中。
-- 已完成：工单已标记为处理完成，「已完成」的工单无法重新打开，也无法再回复消息。
-- 已取消：用户手动撤销的工单，「已取消」的工单无法重新打开，也无法再回复消息。
+- Pending: Default status after a ticket is submitted. In this status, users can cancel the ticket.  
+- In Process: Indicating that the ticket has been consulted and is in process.  
+- Completed: The ticket has been marked as completed and cannot be reopened or replied to the message.  
+- Cancelled: The ticket that was manually cancelled by the user which cannot be reopened and the message can no longer be answered.
 
-### 附件
+### Attachment
 
-支持针对工单问题上传附件，附件支持 .png .gif .jpg .jpeg .bmp .doc .docx .pdf .xlsx xls .txt .zip .rar 格式，单个附件不能超过 8M，单次最多上传 5 个附件。
+Users can upload attachments for ticket problems. Attachments support the format of .png, .gif, .jpg, .jpeg, .bmp, .doc, .docx, .pdf, .xlsx, .xls, .txt, .zip and .rar. A single attachment cannot exceed 8M, and up to 5 attachments can be uploaded at a time.
 
-## 工单列表
+## Ticket List
 
-个人提交的所有工单都显示在工单列表中，可以清晰地看到每个工单的状态。支持基于 “工单类型/工单状态” 进行筛选，根据 “工单编号/工单标题”进行文本搜索。
+All tickets submitted by individuals are displayed here, and the status of each ticket can be clearly seen. Users can filter based on Ticket Type/Ticket Status and text search based on Ticket Number/Ticket Title.
 
 ![](img/1.work_order_6.png)
 
-## 工单详情
+## Ticket Details
 
-点击任意工单可查看工单的详情信息，支持双方进行沟通回复，在沟通过程中支持上传附件。
+You can click any tickets to view the details of the ticket. Both parties can communicate and reply on line and upload attachments in the communication process.
+   
+## Ticket Processing
 
-- 针对「待受理」的工单，支持用户撤销工单，撤销后工单关闭，状态为“已取消”，不能继续进行消息回复。
-
-![](img/1.work_order_7.png)
-
-- 针对「处理中」的工单，支持用户完成工单，完成后工单关闭，状态为“已完成”；「已完成」的工单，无法重新打开，也无法再回复消息。
-
-![](img/1.work_order_8.png)
-
-## 工单处理
-
-观测云为用户提供 5*8 小时的工单服务时间，客服人员收到工单问题后，会尽快为您处理。更多详情可查看 [服务支持计划](https://www.guance.com/support) 。
+Guance provides users with 5*8 hours of ticket service time, and customer service personnel will deal with ticket problems for you as soon as possible. More details can be found in the [Service Support Plan](https://www.guance.com/support).
 
 <!-- 
 

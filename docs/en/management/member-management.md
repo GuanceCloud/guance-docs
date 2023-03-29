@@ -1,24 +1,25 @@
 # Membership Management
 ---
 
+## Overview  
 Guance supports to manage all members of the current space uniformly, including adding/editing/deleting space members and modifying member permissions.
 
-> Only **Owner**, **Administrator** and custom roles of the workspace that are authorized with **Member Management** permissions manage members uniformly. See the doc [role management](role-management.md) for more details.
+> Only **Owner**, **Administrator** and custom roles of the workspace that are authorized with **Member Management** permissions manage members uniformly. See the doc [Role Management](role-management.md) for more details.
 
-## Member Search and Operation Management
+## Operations on Member
 
 ### Search Member
 
-Member management supports quick access to relevant member lists through search and quick filtering.
+Here is a quick access to relevant member lists through searching and filtering.
 
 - Search: Support searching for members' mailboxes, names and login types
-- Quick Filtering: Support filtering members' roles, member groups and login types
+- Filter: Support filtering members' roles, member groups and login types
 
 ![](img/8.member_10.png)
 
 ### Batch Modify Member Permissions
 
-In member management, click **Batch Modify Permissions**, select the member that needs to batch modify permissions, click **Modify**, select permissions for the member in the pop-up dialog box and then **Confirm**.
+In **Member Management**, click **Batch Modify Permissions** and select the member that needs to batch modify permissions, then click **Modify** and select permissions for the member in the pop-up dialog box and then **Confirm**.
 
 > Only **Owner** and **Administrator** can modify member permissions in batch.
 
@@ -26,16 +27,16 @@ In member management, click **Batch Modify Permissions**, select the member that
 
 ### Modify/Delete Members
 
-- In member management, select the member to be modified, and click the **Modify** button on the right to modify permissions and member groups for the member. Multiple roles can be configured for the member.
-- In member management, select the member to be deleted, and click the **Delete** button on the right.
+- Select the member to be modified, and click the **Modify** button on the right to modify permissions and member groups for the member. Multiple roles can be configured for the member.
+- Select the member to be deleted, and click the **Delete** button on the right.
 
-> Only Owner and Administrator can delete members. Owner itself cannot be deleted, but can be deleted by transferring Owner to Administrator.
+> Only **Owner** and **Administrator** can delete members. **Owner** itself cannot be deleted, but can be deleted by transferring **Owner** to **Administrator**.
 
-## Invite Members
+### Invite Members
 
-In the current space, Owner, Administrator and custom roles authorized with **Member Management** permissions can invite registered users of the observation cloud to become new members in the workspace.
+In the current workspace, Owner, Administrator and custom roles authorized with **Member Management** permissions can invite registered users of the observation cloud to become new members in the workspace.
 
-Through **Management > Member Management > Invite Members**, enter the email address of the invited member, enter, and click OK to send the current workspace invitation notification to the invited member. After the members complete the authentication, they can enter.
+Through **Management > Member Management > Invite Members**, enter the email address of the invited member, enter, and click **Confirm** to send the current workspace invitation notification to the invited member. After the members complete the authentication, they can enter.
 
 - Support inviting multiple members at the same time;
 - Support for selecting one or more roles to set permissions for new members, or you can create custom roles for members first through [role management](role-management.md).
@@ -54,29 +55,25 @@ Click the **Edit** button on the right side of the member to support the selecti
 
 ## SSO Management
 
-In addition to inviting members, Guance supports enterprises to manage employee information in local IdP (identity provider), and access Guance by configuring SSO. Without user synchronization between Guance and the enterprise IdP, enterprise employees can log in to access Guance through designated roles.
+<div class="grid cards" markdown>
 
-In member management, click to enter **SSO Management**, and you can:
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; SSO Management doc</font>](./sso/index.md)
 
-- Set up single sign-on for employees based on enterprise domain name: as long as employees who meet the unified identity authentication of enterprises can single sign-on to Guance, the access rights can choose read-only members or standard members;
-- Based on the enterprise domain name and SAML mapping relationship, provide a more detailed single sign-on scheme for enterprises: after SAML mapping is turned on, it supports the dynamic allocation of access rights for enterprise employees, and employees can access Guance according to the assigned role rights;
-- Set the single sign-on member session retention time
+<br/>
 
-See the doc [SSO Management](sso/index.md).
+</div>
 
-![](img/9.member_sso_1.png)
+## Operations on Member Group
 
-## Membership Group Management
-
-If an enterprise needs to set different alarm policies for different teams, so that relevant teams can obtain and solve fault problems at the first time, it can set a member group, and relevant team members to the member group, and then set the alarm notification object as the member group in the alarm strategy. Refer to the doc [alarm policy](../monitoring/alert-setting.md).
+Member groups can indirectly assume the role of alarm notification objects. When enterprises need to set different alarm policies for different teams, they can use this function so that relevant teams can obtain and solve problems at the first time. See [Alarm Policy](../monitoring/alert-setting.md) for more information.
 
 In member management, click **Member Group Management** to enter the member group editing page.
 
 ![](img/8.member_9.png)
 
-### New/Edit Member Group
+### Create/Edit Member Group
 
-Enter **Member Group Management > New Member Group**.
+Enter **Member Group Management > Create Member Group**.
 
 ![](img/1-member-3.jpeg)
 
@@ -84,7 +81,7 @@ In the list to be added on the left, all members that are not in this member gro
 
 ![](img/1-member-4.jpeg)
 
-Check the member and click OK to add the member to the **Member List** on the right.
+Check the member and click **Confirm** to add the member to the **Member List** on the right.
 
 ![](img/1-member-5.jpeg)
 

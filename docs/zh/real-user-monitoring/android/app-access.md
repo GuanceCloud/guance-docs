@@ -204,6 +204,7 @@ android{
 | setEnableTraceUserAction | 是否自动追踪用户操作 | 否 | 目前只支持用户启动和点击操作，默认为 `false` |
 | setEnableTraceUserView | 是否自动追踪用户页面操作 | 否 | 默认为 `false` |
 | setEnableTraceUserResource | 是否自动追动用户网络请求 | 否 | 仅支持 `Okhttp`，默认为 `false` |
+| setResourceUrlHandler | 设置需要过滤的 Resource 条件| 否 | 默认不过滤 |
 | addGlobalContext | 添加自定义标签 | 否 | 添加标签数据，用于用户监测数据源区分，如果需要使用追踪功能，则参数 `key` 为 `track_id` ,`value` 为任意数值，添加规则注意事项请查阅[此处](#key-conflict) |
 
 #### 添加自定义标签 {#track}

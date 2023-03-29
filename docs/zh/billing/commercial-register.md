@@ -117,7 +117,7 @@
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; AWS账号结算 文档</font>](./billing-account/aws-account.md)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; AWS账号结算 文档</font>](./billing-account/aws-account.md#register)
 
 <br/>
 
