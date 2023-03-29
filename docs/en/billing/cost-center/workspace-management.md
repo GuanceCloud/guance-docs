@@ -33,15 +33,27 @@ If you need to change the settlement method arbitrarily, you need to open Select
 
 > Note: To open **Arbitrary Selection of Settlement Method**, you need to contact the Guance account manager to make changes in the member management of Guance billing platform.
 
-## Lock Workspace {#lock}
+## Lock {#lock}
 
-The following scenarios will trigger workspace locking:
+**Guance Commercial Workspace** settles expenses by binding Guance [Expense Center](../billing/cost-center/index.md) account or cloud account. If the account of Expense Center is in arrears or the subscription of the cloud market is abnormal, the workspace will be locked. After the workspace is locked, the new data will stop being reported.
 
-- If the account number of the Guance Expense Center is used for settlement, the settlement will be carried out according to the billing cycle. After the bill is generated, the customer will be notified by email and a 14-day settlement cycle will be provided. If the settlement is not completed after 14 days, the associated workspace will be locked.
-- The closure or expiration of an instance of [Alibaba Cloud marketplace subscription](../../billing/commercial-aliyun.md) will trigger the associated workspace lock if you use an Alibaba Cloud account for settlement.
-- Cancellation or invalidation of items in [AWS cloud marketplace subscription](../../billing/billing-account/aws-account.md#subscribe) will trigger associated workspace locking if you use AWS account settlement.
+???+ attention
 
-After the workspace is locked, new data will stop being reported, and Guance provides a 14-day buffer period during which you can continue to view and analyze historical data, and continue to use Guance by unlocking the state.
+    Workspace locking instructions:
+
+    - The account number of the Guance expense center is settled according to the billing cycle. After the bill is generated, the customer will be notified by email and a 14-day settlement cycle will be provided. If the settlement is not completed after 14 days, the associated workspace will be locked.        
+
+    - Cloud accounts are divided into Alibaba Cloud account settlement and AWS account settlement. For more details, please refer to the doc [Expense Settlement Method](../billing/billing-account/index.md).
+        - Alibaba Cloud Account Settlement: The closure or expiration of an instance of [Alibaba Cloud market subscription](../billing/commercial-aliyun.md) triggers the associated workspace lock.
+        - AWS account settlement: Cancellation or invalidation of items in [AWS Cloud marketplace subscription](../billing/billing-account/aws-account.md#subscribe) triggers associated workspace lock.
+
+- After the workspace is locked, the countdown of the 14-day buffer period will be prompted. Within the countdown of 14 days, new data will stop being reported. Users can close the locking prompt box and continue to view and analyze historical data.
+
+![](img/9.workspace_lock_1.png)
+
+- After the 14-day countdown, the workspace is prompted to be locked. At this time, the data in the workspace is cleared with one click, and Guance cannot be used any more. You can unlock Guance Expense Center by clicking **Unlock Now** before the countdown ends, and you can continue to use Guance after unlocking.
+
+![](img/9.workspace_lock_2.png)
 
 ### Unlock Workspace
 
@@ -60,3 +72,8 @@ If the expense settlement is completed after changing the settlement method, the
 
 ![](../img/2.billing_space_unlock_1.png)
 
+### Dissolve
+
+On the workspace locking prompt page, it is supported to delete the workspace by clicking **Dissolve**. After the workspace is deleted, it cannot be restored. Please operate carefully.
+
+![](img/9.workspace_lock_4.png)
