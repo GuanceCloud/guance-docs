@@ -1,10 +1,6 @@
 nav:
   - index.md
-  - 'Settings'
-    - index.md
-    - 'Key Metrics': key-metrics.md
-    - 'Function Menu': customized-menu.md
-    - 'Audit': operation-audit.md  
+  - 'Settings': settings 
   - 'Member Management': 
     - member-management.md
     - 'Roles': role-management.md
