@@ -10,13 +10,13 @@ Workspace is the basic operation unit of Guance. This feature interpretation par
 
 ### Join
  
-Afetr you have [registered a Guance account](https://auth.guance.com/businessRegister), you will join a workspace the system created for you by default, in which you enojoy the **Owner** permission. Of course, you can join one or more workspaces by creating or being invited.
+Afetr you have [registered a Guance account](https://auth.guance.com/businessRegister), you will join a workspace the system created by default, in which you enojoy the **Owner** permission. Of course, you can join one or more workspaces by creating or being invited.
 
 - After entering the workspace, you can create a new workspace by clicking **Account > Create Workspace** in the lower left corner.
 
 ![](img/3.space_management_3.png)
 
-- Or you can create a new workspace by clicking **Workspace Name > New Workspace** in the upper left corner. You can also switch to another workspace by clicking on the workspace.
+- Or you can create a new workspace by clicking **Workspace Name > Create Workspace** in the upper left corner. You can also switch to another workspace by clicking on the workspace.
 
 ![](img/3.space_management_1.png)
 
@@ -28,7 +28,7 @@ In the following dialog box, enter a workspace name and description, and click *
 
 ![](img/3.space_management_4.png)
 
-## Lock {#lock}
+### Lock {#lock}
 
 Guance Commercial Workspace settles expenses by binding Guance [Expense Center](../billing/cost-center/index.md) account or cloud account. If the account of Expense Center is in arrears or the subscription of the cloud market is abnormal, the workspace will be locked. After the workspace is locked, the new data will stop being reported.
 
@@ -68,7 +68,7 @@ On the workspace locking prompt page, it is supported to delete the workspace by
 ![](img/9.workspace_lock_4.png)
 
 
-## Data Isolation and Data Authorization
+## Data Isolation and Authorization
 
 If your company has multiple departments that need to isolate data, you can create multiple workspaces and invite related departments or stakeholders to join the corresponding workspaces.
 
@@ -146,15 +146,21 @@ IP white list writing specification is as follows:
 
 ### Change Data Storage Policy
 
-Guance supports owners to change the data storage strategy in the space, enter **Management > Basic Settings**, click **Change**, select the required data storage time, and click OK to change the data storage time in the current workspace. Refer to the doc [data storage policy](../billing/billing-method/data-storage.md).
+Guance supports owners to change the data storage strategy in the space, enter **Management > Basic Settings**, click **Change**, select the required data storage time, and click OK to change the data storage time in the current workspace. See [Data Storage Policy](../billing/billing-method/data-storage.md) for more information.
 
 ### Delete Measurement
 
+<div class="grid cards" markdown>
+
 - [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Delete Measurement</font>](collection.md#delete)
+
+<br/>
+
+</div>
 
 ### Delete Custom Object
 
-Owners and administrators can delete specified custom object categories and all custom objects, click **Delete Custom Objects** and select the method of deleting custom objects to delete corresponding object data.
+Owners and administrators can delete specified custom object categories and all custom objects, click **Delete** and select the method of deleting custom objects to delete corresponding object data.
 
 - Specify custom object classification: Only the data under the selected object classification will be deleted, and the index will not be deleted.  
 - All custom objects: Delete all custom object data and indexes.

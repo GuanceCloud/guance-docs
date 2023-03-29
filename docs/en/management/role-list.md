@@ -7,8 +7,8 @@ Guance supports setting permissions for custom roles in the workspace to meet th
 
 ## Permission List
 
-- √: The default role indicates that this permission is supported, and the custom role indicates that this permission can be authorized for the custom role;
-- ×: The default role indicates that this permission is not supported, and the custom role indicates that it is not supported to authorize this permission for the custom role.
+- √: permission supported(default role) & permission can be authorized(custom role);
+- ×: permission not supported(default role) & permission can not be authorized(custom role).
 
 | Function Module                       | Operation Authority                             | Owner | Administrator | Standard | Read-only | Custom Roles |
 | ------------------------------ | ------------------------------------ | ------ | ------ | -------- | -------- | ---------- |
@@ -56,7 +56,7 @@ Guance supports setting permissions for custom roles in the workspace to meet th
 |                                | Notification object configuration management | √      | √      | ×        | ×        | √          |
 
 
-#### Permission Description Details
+### Permission Description Details
 
 You can find out the specific description of the permission list through the following table.
 

@@ -206,6 +206,7 @@ The optimal location for initializing an SDK theoretically is in the `onCreate` 
 | setEnableTraceUserAction | Whether to automatically track user actions | No | Currently only user start and click operations are supported,  default is `false` |
 | setEnableTraceUserView | Whether to automatically track user page actions | No | Default is `false` |
 | setEnableTraceUserResource | Whether to automatically chase user network requests | No | Only `Okhttp` is supported, default is `false` |
+| setResourceUrlHandler | Configure Reousrce filter| No | Not filter default |
 | addGlobalContext | Add custom tags | No | Add tag data for user monitoring data source distinction, if you need to use the tracking function, the parameter `key` is `track_id` ,`value` is any value, add rule notes please refer to [here](#key-conflict) |
 
 #### Add Custom Tags {#track}

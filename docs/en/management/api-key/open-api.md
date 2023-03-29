@@ -2,10 +2,10 @@
 ---
 
 
-Guance supports obtaining and updating the data of Guance workspace by calling the Open API interface. For a detailed list of APIs, please see [Guance OpenAPI doc library](../../open-api/index.md) 。
+Guance supports obtaining and updating the data of Guance workspace by calling the Open API interface. For a detailed list of APIs, please see [Guance OpenAPI Doc Library](../../open-api/index.md).
 
 
-## Authentication method
+## Authentication Method
 
 Before calling the API interface, you need to create an API Key as the authentication method. Refer to the documentation [API Key management](../../management/api-key/index.md).
 
@@ -14,7 +14,7 @@ The interface takes API KEY as the authentication mode, and each request uses th
 All GET (**data query GET class**) interfaces need only provide API KEY (Header: **DF-API-KEY**) as credentials.
 
 
-## Request structure
+## Request Structure
 
 **Example of URL POST request to delete dashboard interface:**
 
@@ -41,7 +41,7 @@ Note: We simplify the HTTP request mode, only using GET and POST. GET is a data 
 | Alibaba Cloud | https://openapi.guance.com |
 | AWS | https://aws-openapi.guance.com |
 
-Note: Private deployments also support openapi access, subject to the actual deployment of Endpoint.
+Note: Private Deployment Plan also supports openapi access and is subject to the actual deployment of Endpoint.
 
 ### Interface Routing Address Specification
 
@@ -64,7 +64,7 @@ Note: **v1** in the route is the interface version number. Each release version 
 
 ## Return Results
 
-The interface return follows the HTTP request response specification, the normal return HTTP status code for the request is 200, the API KEY test fails to return the HTTP status code is 403, and the rest of the server can't handle or unknown error HTTP status code is 500, such as accessing unauthorized access data is 403, and can't find a certain operation object to return 404. See the error definition for details.
+The interface return follows the HTTP request response specification, the normal return HTTP status code for the request is 200, the API KEY test fails to return the HTTP status code is 403, and the rest of the server can't handle or unknown error HTTP status code is 500, such as accessing unauthorized access data is 403, and can't find a certain operation object to return 404. See **Error Definition** below for details.
 
 ### Response Result Sample
 
@@ -99,7 +99,7 @@ The interface return follows the HTTP request response specification, the normal
 | traceId | String | traceId, which is used to track the status of each request. |
 
 
-## 公共错误定义
+## Public Error Definition
 | **Error Code** | **HTTP Status Code** | **Error Message** |
 | --- | --- | --- |
 | RouterNotFound | 400 | Request routing address does not exist |
@@ -107,7 +107,7 @@ The interface return follows the HTTP request response specification, the normal
 | InternalError | 503 | Unknown error |
 | ... |  |  |
 
-For a list of API interfaces, see [Guance OpenAPI doc library](../../open-api/index.md).
+For a list of API interfaces, see [Guance OpenAPI Doc Library](../../open-api/index.md).
 
 
 ---

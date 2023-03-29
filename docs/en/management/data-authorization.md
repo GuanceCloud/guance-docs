@@ -1,7 +1,7 @@
 # Data Authorization Management
 ---
 
-Guance supports authorization viewing and desensitization of data, and realizes the management of data viewing of workspace members with different permissions.
+Guance supports authorization viewing and desensitization of data and realizes the management of data viewing of workspace members with different permissions.
 
 
 ## Sensitive Field Masking
@@ -32,14 +32,14 @@ After the configuration of sensitive fields is completed, you can control their 
 
 #### View Desensitization Effect in Log Explorer
 
-After Data Authorization Management has configured the sensitive field "host_ip" for log data, the standard and read-only workspace members can only see "host_ip" after desensitization in the log explorer.
+After **Data Authorization Management** has configured the sensitive field "host_ip" for log data, the standard and read-only workspace members can only see "host_ip" after desensitization in the log explorer.
 
 ![](img/3.data_7.png)
 
 
 #### View Desensitization Effect in the Scene
 
-After Data Authorization Management has configured the sensitive field "host_ip" for log data, the standard and read-only workspace members can only see the desensitized "host_ip" in the log flow diagram of the Scenario Dashboard.
+After **Data Authorization Management** has configured the sensitive field "host_ip" for log data, the standard and read-only workspace members can only see the desensitized "host_ip" in the log flow diagram of the **Scene > Dashboard**.
 
 ![](img/3.data_8.png)
 
@@ -53,18 +53,18 @@ Note: Data authorization supports multiple workspaces in one site to authorize t
 
 Before adding data authorization, you need to confirm which workspace's data is authorized to which workspace to view. Let's assume a scenario where data from Workspace A (e.g. Development ******) needs to be delegated to Workspace B (e.g. DataFlux) for viewing.
 
-In Guance workspace B (such as DataFlux), click **Administration > Basic Settings > Workspace ID** and click **Copy** to obtain the ID of the current workspace.
+In Guance workspace B (such as DataFlux), click **Management > Basic Settings > Workspace ID** and click **Copy** to obtain the ID of the current workspace.
 
 ![](img/9.dataauth_11.png)
 
 
 ### Add Data Authorization
 
-In Guance workspace a (such as developing ******), click **Management > Data Rights Management**, and click **Configure** in **Data Authorization** to add data authorization.
+In Guance workspace A, go to **Management > Data Rights Management**, and click **Configure** in **Data Authorization** to add data authorization.
 
 ![](img/3.data_1.png)
 
-Paste the copied workspace ID in the input box, click Add, and click Finish.
+Paste the copied workspace ID in the input box, click **Add**, and click **Finish**.
 
 ![](img/3.data_3.png)
 
@@ -79,13 +79,13 @@ If you need to delete the data authorization, you can click **Configure**, selec
 
 ### Data Sharing Query and Analysis
 
-After Workspace B (e.g. DataFlux) gets data authorization, you can open **Scene > [Dashboard](../scene/dashboard.md)** or **[Notes](../scene/note.md)** select the Chart component, select Workspace A (e.g. Development ******) authorized to view in Workspace of Settings, and then view and analyze the data of authorized Workspace A (e.g. Development ******) through **[Chart Query](../scene/visual-chart/chart-query.md)**.
+After Workspace B (e.g. DataFlux) gets data authorization, you can open **Scene > [Dashboard](../scene/dashboard.md)** or **[Notes](../scene/note.md)**. In the chart widget, go to **Settings > Workspace** and select Workspace A and then view and analyze the data of authorized Workspace A through **[Chart Query](../scene/visual-chart/chart-query.md)**.
 
 ![](img/9.dataauth_7.png)
 
-**Scenario Dashboard Sample Description:**
+**Scene > Dashboard Sample Description:**
 
-The above three charts with data display query the data of authorized workspace a (such as development ******); The following three charts with no data presentation are querying the current workspace B (e.g. DataFlux), which shows no data because there is no data in that workspace.
+The above three charts with data display query the data of authorized workspace A (such as development ******); The following three charts with no data presentation are querying the current workspace B (e.g. DataFlux), which shows no data because there is no data in that workspace.
 
 ![](img/9.dataauth_8.png)
 
@@ -96,7 +96,7 @@ When a data authorization is added, the owner and administrator of the correspon
 
 ![](img/9.dataauth_9.png)
 
-Delete the data authorization, and the owner and administrator of the corresponding workspace will be notified of the Delete Authorization email.
+Delete the data authorization, and the owner and administrator of the corresponding workspace will be notified of the **Delete Authorization Email**.
 
 ![](img/9.dataauth_10.png)
 

@@ -15,11 +15,11 @@ After entering the war room, you can view the key metric trends of all workspace
 - Workspace: Sort by Alias > Workspace Name
 - Number of unrecovered events: sorted according to the number of unrecovered events in the workspace for 48 hours
 
-The following diagram shows the metric trend in the form of icons.
+The following chart shows the metric trend in the form of icons.
 
 ![](img/3.key_metrics_5.2.png)
 
-The following schematic diagram shows the metric trend in the form of a list.
+The following schematic chart shows the metric trend in the form of a list.
 
 ![](img/3.key_metrics_6.1.png)
 

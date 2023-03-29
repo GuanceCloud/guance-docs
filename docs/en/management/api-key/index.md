@@ -6,21 +6,21 @@ Guance supports obtaining and updating the data of Guance workspace by calling O
 
 ## Create API Key
 
-In the Guance workspace "Management"-"API Key Management", click "New Key" in the upper right corner, enter the Key name, and click OK.
+In the Guance workspace **Management > API Key Management**, click **Create** in the upper right corner, enter the Key name, and click **Confirm**.
 
-Note: API Key admin supports admin and above editable.
+Note: Only Owner and Administrato can edit API Key.
 
 ![](../img/3_apikey_1.png)
 
-Click OK to get the API Key ID and key for the call.
+Click **Confirm** to get the API Key ID and key for the call.
 
 ![](../img/3_apikey_2.png)
 
-Or get the API Key ID and key by clicking the view icon on the right side of the API Key management list. If it is no longer needed or there is a risk of leakage, it can be deleted and re-created.
+Or you can get the API Key ID and key by clicking the view icon on the right side of the API Key management list. If it is no longer needed or there is a risk of leakage, it can be deleted and re-created.
 
 ![](../img/3.apikey_3.png)
 
-The creation/deletion of API Key will generate operation audit events, which can be viewed in the operation audit under "Management"-"Basic Settings" of the guance workspace.
+The creation and deletion of API Key will generate audit events, which can be viewed under **Management > Basic Settings > Audit** of the Guance workspace.
 
 ![](../img/3.apikey_4.png)
 
