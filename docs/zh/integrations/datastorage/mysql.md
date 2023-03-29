@@ -163,7 +163,7 @@ set global log_queries_not_using_indexes = 'ON';
 - files：日志文件路径 (通常填写访问日志和错误日志)
 - ignore：过滤 *.log 中不想被采集的日志(默认全采)
 - character_encoding：日志文件的字符集(默认 utf-8)
-- match：该配置为多行日志采集规则配置，开启 MySQL 慢查询日志请打开注释
+- multiline_match：该配置为多行日志采集规则配置，开启 MySQL 慢查询日志请打开注释
 - pipeline：日志切割文件(内置)，实际文件路径 /usr/local/datakit/pipeline/mysql.p
 - 相关文档 <[Pipeline 文本数据处理](../../datakit/pipeline.md)>
 
@@ -181,7 +181,7 @@ set global log_queries_not_using_indexes = 'ON';
 
     ## The pattern should be a regexp. Note the use of '''this regexp'''
     ## regexp link: https://golang.org/pkg/regexp/syntax/#hdr-Syntax
-    match = '''^(# Time|\d{4}-\d{2}-\d{2}|\d{6}\s+\d{2}:\d{2}:\d{2}).*'''
+    multiline_match = '''^(# Time|\d{4}-\d{2}-\d{2}|\d{6}\s+\d{2}:\d{2}:\d{2}).*'''
 
     ## grok pipeline script path
     pipeline = "mysql.p"
