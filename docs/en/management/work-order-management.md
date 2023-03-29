@@ -48,7 +48,7 @@ You can click any tickets to view the details of the ticket. Both parties can co
    
 ## Ticket Processing
 
-Guance provides users with 5*8 hours of ticket service time, and customer service personnel will deal with ticket problems for you as soon as possible. More details can be found in the [Service support Plan](https://www.guance.com/support).
+Guance provides users with 5*8 hours of ticket service time, and customer service personnel will deal with ticket problems for you as soon as possible. More details can be found in the [Service Support Plan](https://www.guance.com/support).
 
 <!-- 
 
