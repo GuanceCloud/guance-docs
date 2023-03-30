@@ -12,7 +12,7 @@ icon: integrations/solr
 
 ## 前置条件
 
-DataKit 使用 Solr Metrics API 采集指标数据，支持 Solr 7.0 及以上版本。可用于 Solr 6.6，但指标数据不完整。
+- 服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
 
 ## 安装部署
 

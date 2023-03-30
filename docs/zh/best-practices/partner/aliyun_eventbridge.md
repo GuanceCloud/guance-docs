@@ -66,7 +66,7 @@ systemctl restart datakit
 7、当「Body」为 `模板`时，需要定义模板里的变量和自定义模板 [阿里云模板说明](https://help.aliyun.com/document_detail/181429.html#section-tdd-mia-lol)
 
 - 变量：通过 JSONPath 从云事件原始数据中提取参数，使用 "$." 
-- 模板：通过 "$()" 进行变量的引用，格式必须符合 [DataKit API 规范](../../datakit/apis.md#api-logging-example)
+- 模板：通过 "${}" 进行变量的引用，格式必须符合 [DataKit API 规范](../../datakit/apis.md#api-logging-example)
 
 ![image.png](../images/aliyun-eventbridge-6.png)
 
