@@ -37,7 +37,7 @@ Okta 是身份识别与访问管理解决方案提供商。观测云支持基于
 - Single sign on URL：断言地址，示例：[https://auth.guance.com/saml/assertion](https://auth.guance.com/saml/assertion/)
 - Audience URI（SP Entity ID）：Entity ID，示例：[https://auth.guance.com/saml/metadata.xml](https://auth.guance.com/saml/metadata.xml)
 
-**注意：此次配置仅为获取下一步的元数据文档使用，需要在观测云中启用SSO单点登录后，获取到正确的“实体ID”和“断言地址”后重新替换。关于如何获取观测云的断言地址和实体 ID，可参考文档 **[**新建SSO**](../../management/sso/index.md)** 。**
+**注意：此次配置仅为获取下一步的元数据文档使用，需要在观测云中启用SSO单点登录后，获取到正确的“实体ID”和“断言地址”后重新替换。**
 
 ![](../img/04_okta_05.png)
 

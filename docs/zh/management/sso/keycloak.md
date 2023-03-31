@@ -77,7 +77,7 @@ Keycloak环境搭建完成后，在浏览器输入`https://IP地址:8443/auth`�
 - Client Protocol：选择“saml”
 - Client SAML Endpoint（断言地址），临时使用：[https://auth.guance.com/saml/assertion](https://auth.guance.com/saml/assertion/)
 
-**注意：此次配置仅为获取下一步的元数据文档使用，需要在观测云中启用SSO单点登录后，获取到正确的“实体ID”和“断言地址”后重新替换。关于如何获取观测云的断言地址和实体 ID，可参考文档 **[**新建SSO**](../../management/sso/index.md)** 。**
+**注意：此次配置仅为获取下一步的元数据文档使用，需要在观测云中启用SSO单点登录后，获取到正确的“实体ID”和“断言地址”后重新替换。**
 
 ![](../img/05_keycloak_05.png)
 
