@@ -67,14 +67,14 @@ Guance has always valued users's account security, here are some related securit
 
 Guance provides MFA management, which helps to add an additional layer of security protection to the account user name and password. After MFA is turned on, you need to perform secondary verification when logging in to help you improve the security of your account. See the documentation [MFA Management](mfa-management.md).
 
-### Login Retention Time {#login-hold-time}
+### Session Retention Time {#login-hold-time}
 
 Guance supports setting session retention time for accounts logged into the workspace, including accounts registered in the workspace and SSO accounts.
 
-Click your account on the lower-right corner of the stuido and click **Account Management**. In the login retention time, click to modify the default login session retention time, including the inactive login session retention time and the maximum login session retention time. After setting, the timeout login session will be invalid.
+Click your account on the lower-right corner of the stuido and click **Account Management**. In the session retention time, click to modify the default session retention time, including the inactive session retention time and the maximum session retention time. After setting, the timeout session will be invalid.
 
-- No operation login session retention time: From 30 to 1440 minutes, and the default is 30 minutes;
-- Maximum retention time of login session: From 0 to 7 days, where 0 means never timeout, and the default is 7 days.
+- No operation session retention time: From 30 to 1440 minutes, and the default is 30 minutes;
+- Maximum retention time of session: From 0 to 7 days, where 0 means never timeout, and the default is 7 days.
    
 ![](img/6.mfa_2.1.png)
 
