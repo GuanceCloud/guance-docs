@@ -84,7 +84,7 @@ Azure Active Directory （Azure AD） 是 Microsoft 推出的基于云的标识�
 
 ### 5.在Azure AD替换SAML断言地址
 
-1）返回 Azure AD，更新 [步骤2](#step2)」 中的“实体ID”和“断言地址”。
+1）返回 Azure AD，更新「 [步骤2](#step2) 」 中的“实体ID”和“断言地址”。
 
 **注意：在观测云配置单点登录时，身份提供商SAML中配置的断言地址必须和观测云中的保持一致，才能实现单点登录。**
 
