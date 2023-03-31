@@ -13,9 +13,11 @@ nav:
   - 'Sharing': share-management.md
   - 'Demo Space': space-demo.md
   - 'SSO Management': sso
-  - 'Tickets': work-order-management.md
   - 'MFA': mfa-management.md
-  - 'Status Page': status-page.md
-  - 'Help': help.md
+  - 'Help': 
+    - help.md
+    - 'Status Page': status-page.md
+    - 'Tickets': work-order-management.md
+
     
     

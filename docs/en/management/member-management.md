@@ -6,7 +6,7 @@ Guance supports to manage all members of the current space uniformly, including 
 
 > Only **Owner**, **Administrator** and custom roles of the workspace that are authorized with **Member Management** permissions manage members uniformly. See the doc [Role Management](role-management.md) for more details.
 
-## Operations on Member
+## Operations on Members
 
 ### Search Member
 

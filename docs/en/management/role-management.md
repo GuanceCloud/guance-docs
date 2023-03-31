@@ -3,7 +3,7 @@
 
 ## Overview  
 
-If you need to set different access rights for different employees to achieve permission isolation, you can use the role management function of Guance. Role management provides users with an convenient access to authority management. Here you can:<br/> 
+If you need to set different access rights for different employees to achieve permission isolation, you can use the role management function of Guance. Role management provides users with an convenient access to authority management. <br/> Here you can:<br/>    
 - adjust the permissions corresponding to different roles;
 - create of new roles for users;
 - give permissions to roles to meet the permissions needs of different users.
