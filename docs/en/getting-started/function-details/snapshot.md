@@ -1,171 +1,170 @@
-# 提升协作效率的快照
+# Snapshots
 ---
 
-## 简介
+## Overview
 
-观测云快照，支持为场景仪表板、基础设施、指标、日志、事件、应用性能监测、用户访问监测、云拨测、安全巡检、CI 可视化等查看器，创建**自定义时间段即时拷贝的数据副本，并生成指定查看权限的快捷访问链接**。
+Snapshot in Guance supports **creating a copy of data immediately copied in custom time period and generating a quick access link with specified viewing permissions** for explorers in Dashboards, Infrastructure, Metrics, Logs, Events, APM, RUM, cloud dialing test, Security Check, CI Visualization, etc.
 
-- 若有类似**留存业务系统产生问题或异常时刻数据**的需求时，「保存快照」功能可以有效地帮助 IT 工程师**快速记录真实且准确的观测数据**，帮助快速定位问题。
-- 若企业内部不同团队之间、或与外部合作伙伴之间等，在保证数据权限隔离的前提下，有**共享部分观测数据**的需求时，「分享快照」功能可以有效地**提升不同分工成员之间的协作效率**，帮助企业快速解决问题。
+- If there is a similar need to **keep data of problems or abnormal moments in business systems**, the **Save Snapshot** function can effectively help IT engineers **quickly record true and accurate observation data** and thus quickly locate problems.
+- If there is a need to **share some observation data** among different teams within the enterprise or with external partners on the premise of ensuring data authority isolation, the function of **Share Snapshot** can **effectively improve the cooperation efficiency among members of different division of labor** and help the enterprise solve problems quickly.
 
-## 第一步：保存快照 
+## Step 1: Save Snapshot  
 
-### 快照权限 {#permission}
+### Snapshot Permission {#permission}
 
-- 对于支持保存快照的页面，成员的[4个默认角色](../../management/role-management.md#_3)中，只有当前工作空间的**拥有者（Owner）、管理员（Administrator）** 拥有「保存快照」、「快照分享」、「快照分享管理」的权限。
-- 除默认角色外，您还可以通过[自定义角色](../../management/role-management.md#_5)，授予相关快照权限，并将该角色分配给所需成员。
+- For pages that support saving snapshots, only the **Owner** and **Administrator** of the current workspace have the permissions of **Save Snapshot**, **Share Snapshot** and **Snapshot Sharing Management** in the [four default roles](../../management/role-management.md#_3) of members.
+- In addition to the default role, you can also grant relevant snapshot permissions and assign the role to the desired member through the [custom role](../../management/role-management.md#_5).
 
-### 保存方式
+### How to Save
 
-进入想要保存快照的页面，调整右上角时间控件、并过滤出需要保存的数据后，使用如下方法即可弹出「保存快照」窗口。
+Enter the page where you want to save the snapshot, adjust the time control in the upper right corner and filter out the data to be saved. Use the following method to pop up the **Save Snapshot** window.
 
 <div class="grid" markdown>
 
-=== "快捷键"
+=== "Shortcut Keys"
 
     :fontawesome-brands-windows: &nbsp; &nbsp; ++ctrl+k++
 
     :fontawesome-brands-apple: &nbsp; &nbsp; ++cmd+k++
 
-    > **注意**：当您的后台程序存在的快捷键与如上快捷键冲突时，将无法使用「保存快照」的快捷键功能。
+    > **Note**: When a shortcut exists in your daemon that conflicts with the shortcut above, **Save Snapshot** shortcut function will not be available.
 
-=== "查看器页面 快照按钮"
+=== "Explorer Page/Snapshot Button"
     
-    「查看器」页面 - 顶部「快照按钮」（搜索框左侧），点击「保存快照」。
+    **Save Snapshot** at the top (left of search box), click **Save Snapshot**.
 
     <img src="../../img/snapshot-1.png" width="60%" >
 
-=== "仪表板 设置按钮"
+=== "Dashboards/Settings Button"
 
-    「查看器」- 顶部「设置按钮」（时间控件左侧），点击「保存快照」。
+    **Explorers > Settings** at the top (left side of time control), click **Save Snapshot**.
 
     ![](../../img/snapshot-13.png)
 
 </div>
 
-### 快照设置 {#snapshot-setting}
+### Snapshot Settings {#snapshot-setting}
 
-成功弹出「保存快照」窗口后，即可对该条快照进行相关设置。
+After the **Save Snapshot** window pops up successfully, you can set up the snapshot.
 
 <img src="../../img/snapshot-2.png" width="60%" >
 
-- **可见范围**：包括「公开」和「仅自己可见」。<br/>
-&nbsp;公开表示当前工作空间的用户，都可以查看该条快照；仅自己可见表示其他用户权限查看该条快照。
-- **包括时间筛选**：即保存当前所选的时间范围，分享出去的链接不支持切换时间控件；若关闭则跟随系统默认，分享出去的快照可以切换时间控件。
-- **锁定绝对时间**：「包括时间筛选」为开启状态时才会显示，开启即选择保存当前所选的绝对时间。
+- **Visible Scopes**: Includes **Public** and **Private**.<br/>
+&nbsp;Users who publicly represent the current workspace can view this snapshot; Private only means that other users DO NOT have the right to view the snapshot.
+- **Include Time Filter**: That is, save the currently selected time range, and the shared links do not support switching time controls; If it is closed, it will follow the system default, and the shared snapshot can switch the time control.
+- **Lock Absolute Time**: **Include Time Filter** will only be displayed when it is turned on, and when it is turned on, it is selected to save the currently selected absolute time.
 
-## 第二步：查看快照
+## Step 2: View Snapshots
 
-### 常规功能
+### General Functions
 
-- 支持快照名称关键字搜索，通过关键词模糊匹配相关快照名称。
-- 支持分享、复制链接和删除功能。
-- 点击「快照名称」即可打开对应的数据副本，并复现该快照保存时的数据标签。
-- 若在保存快照时，[「可见范围」选择”仅自己可见”](#snapshot-setting)，该快照名称后面会显示「:material-lock:」，其他人无法查看。
+- Support snapshot name keyword search, and match related snapshot names vaguely through keywords.
+- Support sharing, copying links and deleting functions.
+- Click **Snapshot Name** to open the corresponding data copy and reproduce the data label when the snapshot was saved.
+- If, when saving the snapshot, [Private is selected](#snapshot-setting), the snapshot name will be followed by :material-lock:and no one else will be able to view it.  
+### Viewing Methods
 
-### 查看方式
-
-如下两种查看快照的方式，除了上述常规功能外，也各有特殊功能。
+In addition to the above general functions, the following two ways to view snapshots also have special functions.
 
 <div class="grid" markdown>
 
-=== "在快照菜单查看" 
+=== "View in Snapshot Menu" 
 
-    - 「工作空间」- 左下角「快捷入口」- 点击「快照」菜单，可查看**当前工作空间，保存的所有快照**。
+    - **Workspace > Shortcuts** in the lower left corner-Click the **Snapshot** menu to view **all saved snapshots in the current workspace**.
 
     <img src="../../img/snapshot-3.png" width="60%" >
 
-    - 每页最多可显示20个快照名称，通过跳转至下一页，可以查看更多快照。
+    - Up to 20 snapshot names can be displayed on each page and you can view more snapshots by jumping to the next page.
 
     <img src="../../img/snapshot-4.png" width="50%" >
 
-=== "在查看器页面查看" 
+=== "View on Explorer Page" 
 
-    - 「查看器」页面 - 顶部「快照按钮」，仅展示**当前查看器，保存的快照**。例如，在「日志查看器」保存的快照，无法在「应用性能监测」-「链路」查看器中查看。
-    - 鼠标放在保存的历史快照上，会悬浮窗口展示对应的时间范围、筛选条件。时间范围根据保存快照时的选择，分为“绝对时间”、“相对时间”和“默认”三种。
+    - **Explorers > Snapshots** at the top, showing only **all saved snapshots in the current explorers**. For example, snapshots saved in **Logs> Explorers** cannot be viewed in **Explorers** in **APM > Links**.
+    - When hover on the saved history snapshot, the window will be suspended to show the corresponding time range and filter conditions. The time range is divided into **Absolute Time**, **Relative Time** and **Default** according to the choice when saving snapshots.
 
     <img src="../../img/snapshot-5.png" width="60%" >
 
-    - 若已经点击进入某条历史快照，再次点击「快照按钮」，会新增「返回查看器」按钮，点击即可回到进入该历史快照之前的默认查看器。
+    - If you have clicked to enter a historical snapshot, click **Snapshot** again, and a **Return to Explorer** button will be added. Click to return to the default explorer before entering the historical snapshot.
 
     <img src="../../img/snapshot-6.png" width="60%" >
 
 </div>
 
-## 第三步：分享快照
+## Step 3: Share Snapshots
 
-### 分享方式 {#sharing-method}
+### Sharing Methods {#sharing-method}
 
-观测云支持公开分享和加密分两种快照分享方式，被分享的快照会自动生成对应链接。您可以分享快照链接给“任何人”，或者加密分享给拥有密钥的人。
+Guance supports two snapshot sharing methods: public sharing and encryption, and the shared snapshots will automatically generate corresponding links. You can share the snapshot link to "anyone" or share it encrypted to someone who owns the key.
 
-???+ tip "分享快照链接的数据时段说明"
+???+ tip "Data slot description for sharing snapshot links"
 
-    - 若在保存快照的时候选择「开启绝对时间」，分享后则显示保存快照时的绝对时间。<br/>
-    例如：若在`13:30`选择保存最近15分钟数据的快照，那么在 `14:00`打开快照链接，显示`13:15 ~ 13:30`的数据。
-    - 若在保存快照的时候选择「关闭绝对时间」，分享后则显示保存快照时的相对时间。<br/>
-    例如：若在`13:30`选择保存最近15分钟数据的快照，那么在`14:00`打开快照链接，显示`13:45 ~ 14:00`的数据。
+    - If you select **Open Absolute Time** when saving snapshots, the absolute time when saving snapshots will be displayed after sharing.<br/>
+    For example, if you choose to save a snapshot of the last 15 minutes at `13:30`, open the snapshot link at `14:00` and display the data from `13:15 to 13:30`.
+    - If **Close Absolute Time** is selected when saving the snapshot, the relative time when saving the snapshot will be displayed after sharing.<br/>
+    For example, if you choose to save a snapshot of the last 15 minutes at `13:30`, open the snapshot link at `14:00` and display the data from `13:45 to 14:00`.
 
 <div class="grid" markdown>
 
-=== "公开分享" 
+=== "Open Sharing" 
     
-    获得分享链接的用户，即可查看此条快照所展示的观测云工作空间数据。
+    Users who get the sharing link can view the Guance workspace data displayed in this snapshot.
 
     <img src="../../img/snapshot-7.png" width="50%" >
 
-=== "加密分享" 
+=== "Encrypted Sharing" 
 
-    设置符合`4-8位数字和英文组合`的密码形式，获得分享链接和对应密码的用户，才可以查看此条快照所展示的观测云工作空间数据。
+    Set the password form that conforms to `4 to 8 digits and English combination`, and only users who get the sharing link and corresponding password can view the Guance workspace data displayed in this snapshot.
 
     <img src="../../img/snapshot-8.png" width="50%" >
 
 </div>
 
-### 高级设置
+### Advanced settings
 
 <div class="grid" markdown>
 
-=== "设置有效时间" 
+=== "Set Effective Time" 
 
-    快照分享支持设置有效时间，支持选择 “48 小时”或者“永久有效”。<br/>
-    > **注意**：永久有效分享容易存在数据安全风险，请谨慎使用。
+    Snapshot sharing supports setting effective time, and supports selecting "48 hours" or "permanent effective".<br/>
+    > **Note**: Permanently and effectively sharing is prone to data security risks, so please use it carefully.
 
     <img src="../../img/7.snapshot_1.png" width="50%" >
 
-=== "显示顶部栏" 
+=== "Show Top Bar" 
     
-    - 开启显示顶部栏分享的效果，可以看到顶部会有平台的介绍说明。
+    - Turn on the effect of sharing in the top bar, and you can see that there will be an introduction to the platform at the top.
 
     <img src="../../img/snapshot-11.png" width="90%" >
 
-    - 关闭显示顶部栏分享的效果
+    - Turn off the effect of showing sharing in the top bar.
 
     <img src="../../img/snapshot-10.png" width="90%" >
 
-=== "显示水印"
+=== "Display Watermark"
 
-    快照分享时支持显示分享人姓名的水印，格式为 “ 分享人：姓名”。
+    When sharing snapshot, it supports the watermark of displaying the name of the sharer in the format of "sharer: name".
 
     <img src="../../img/7.snapshot_3.png" width="90%" >
 
 </div>
 
-## 分享快照管理
+## Shared Snapshot Management
 
-拥有[保存、分析、管理快照权限的成员](#permission)，可以通过以下两种方式进入「分享快照」管理页面，进行查看快照、查看分享链接、取消分享等操作。
+Members with [save, analyze and manage snapshots permissions](#permission) can enter the Share Snapshots management page in the following two ways to view snapshots, view sharing links, cancel sharing and other operations.
 
-> 更多详情请参考 <[分享管理](../../management/share-management.md#_3)>
+> See [Sharing Management](../../management/share-management.md#_3) for more information.
 
 <div class="grid" markdown>
 
-=== "管理 模块" 
+=== "Management" 
 
-    依次点击左侧导航栏的「管理」-「分享管理」-「分享快照」模块
+    Click **Management > Sharing > Sharing Snapshot** module in the left navigation bar in turn.
 
     <img src="../../img/snapshot-12.png" width="80%" >
 
-=== "快照分享 窗口" 
+=== "Snapshot Sharing" 
 
-    [第三步：快照分享](#sharing-method)，在选择公开分享或私密分享方式时，可点击右上角「查看分享列表」，即可跳转到「分享快照」管理模块。
+    [Step 3: Snapshot Sharing](#sharing-method). When selecting public sharing or private sharing, you can click **View Sharing List** in the upper right corner to jump to the **Sharing Snapshot** management module.
 
 </div>

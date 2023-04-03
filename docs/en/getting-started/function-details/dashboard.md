@@ -1,4 +1,4 @@
-# Flexible Dashboards and Data Linking
+# Dashboards and Data Linking
 ---
 
 ## Why are dashboards necessary?

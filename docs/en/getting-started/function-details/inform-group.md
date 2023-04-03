@@ -1,4 +1,4 @@
-# Convenient Notification Grouping
+# Notification Grouping
 ---
 
 ## Overview
