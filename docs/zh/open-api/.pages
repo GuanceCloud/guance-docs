@@ -28,3 +28,4 @@ nav:
   - 'Pipeline': pipeline
   - '黑名单': blacklist
   - '自建节点': dialing-region
+  - 'DQL数据查询': query-data
