@@ -648,7 +648,7 @@ kubectl delete -n middleware pvc taos-tdengine-taosdata-taos-tdengine-0 taos-tde
               value: "true"
             - name: INFLUXDB_HTTP_AUTH_ENABLED
               value: "true"
-            image: influxdb:1.7.8
+            image: pubrepo.guance.com/googleimages/influxdb:1.7.8
             imagePullPolicy: IfNotPresent
             name: influxdb
             ports:

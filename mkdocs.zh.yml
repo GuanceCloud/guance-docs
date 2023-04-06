@@ -23,7 +23,9 @@ markdown_extensions:
   attr_list: {}
   md_in_html: {}
   toc:
-    permalink: True
+    permalink: true
+  pymdownx.tasklist:
+    custom_checkbox: true
   meta: {}
   pymdownx.caret: {}
   pymdownx.mark: {}

@@ -7,6 +7,30 @@ icon: zy/release-notes
 
 本文档记录观测云每次上线发布的更新内容说明，包括 DataKit、观测云最佳实践、观测云集成文档和观测云。
 
+## 2023 年 4 月 6 号
+
+### 观测云更新
+
+- 日志新增 3 天数据保存策略和定价，计费相关请参考文档 [计费方式](../billing/billing-method/index.md) 。
+- 日志新增 [数据访问](../logs/logdata-access.md) 权限控制，支持将某个范围内的日志数据查看权限授予给相关角色
+- [角色权限清单](../management/role-list.md) 新增各功能模块数据查询权限，支持自定义角色配置对应模块的数据查询权限入口
+- 标准成员新增 “快照管理” 权限，支持快照增删操作
+- [快照分享](../logs/logdata-access.md#snapshot) 支持搜索功能。（日志 DQL 查询模式下不支持跳转搜索范围）
+- 支持本地 Func 通过 websocket 协议创建 [自定义的通知对象](../monitoring/notify-object.md#custom)，实现外部通知渠道接收告警通知
+查看器新增 [copy as cURL](../logs/explorer.md#copy-as-curl) 数据查询功能
+- 仪表板图表配置交互优化
+    - [概览图](../scene/visual-chart/overview-chart.md) 新增数值单位选项配置，支持选择中国科学记数法进位（default）和短级差制（short scale）
+    - 新增 [视图变量](../scene/view-variable.md) 是否应用到图表效果显示
+    - 图表存在分组条件时，支持将某个分组条件值反向应用到视图变量实现联动筛选
+    - 图表存在分组条件时，选中某个分组条件对应时间线或数据点时支持其他图表中相同分组联动高亮显示
+    - 图表拖拽效果优化
+- [账号无操作会话过期时间](../management/account-management.md#login-hold-time) 默认调整为 3 小时，此次调整仅针对未编辑过无操作会话过期时间配置的账号，不影响已编辑过的无操作会话过期时间配置的账号。
+- [筛选历史](../getting-started/function-details/explorer-search.md#filter-history) 新增搜索条件保存
+- 用户访问监测 [应用 SDK 接入](../real-user-monitoring/web/app-access.md) 引导优化
+- [生成指标](../logs/generate-metrics.md) 配置优化，支持针对新生成的指标配置单位和描述
+- [主机查看器](../infrastructure/host.md#label) 支持多行显示，多行模式下 label 将另起一行显示
+- [时序图](../scene/visual-chart/timeseries-chart.md)、[饼图](../scene/visual-chart/pie-chart.md)新增返回显示数量配置
+
 ## 2023 年 3 月 23 号
 
 ### 观测云更新

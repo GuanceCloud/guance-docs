@@ -229,11 +229,17 @@
 
 === "关联网络"
 
-    在链路详情页，您可以通过「网络」，查看相关主机（关联字段：host)、Pod(关联字段：pod_name) 和 Deployment（关联字段：deployment_name） 网络的数据连接情况。更多详情可参考文档 [网络](../infrastructure/network.md) 。
+    观测云支持您通过详情页下方的「网络」，查看 48 小时内的网络数据连接情况。包括 Host 、Pod 、Deployment 和 Service 。更多详情可参考文档 [网络](../infrastructure/network.md) 。
     
-    注意：
+    ![](img/7.host_network_2.png)
     
-    - 若同时配置了主机、Pod、Deployment 的关联字段，进入详情页时优先显示 Pod 网络的数据，其次是 Deplyment 网络的数据；
-    - 若未配置 Pod、Deployment 的关联字段，则不显示该网络数据。
+    **匹配字段**
     
-    ![](img/12.network_detail_2.png)
+    在详情页中查看相关网络，需要匹配对应的关联字段，即在数据采集的时候需要配置对应的字段标签，否则无法在详情页中查看到相关的网络页面。
+    
+    - Host：匹配相关字段，如“host”，支持点击右侧的「复制」按钮复制关联字段及其值
+    - Pod：匹配相关字段，如”pod_name“，支持点击右侧的「复制」按钮复制关联字段及其值
+    - Deployment：匹配相关字段，如”deployment_name“，支持点击右侧的「复制」按钮复制关联字段及其值
+    - Service：同时匹配相关字段，如”namespace“和”service_name“，支持点击右侧的「复制」按钮复制关联字段及其值
+    
+    > 注意：若未查询到关联字段，则显示为灰色，无法点击查看相关网络数据。

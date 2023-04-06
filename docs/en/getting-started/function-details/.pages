@@ -1,0 +1,8 @@
+nav:
+  - 'Explorers': explorer-search.md
+  - dashboard.md
+  - snapshot.md
+  - 'Network Analysis': network-analysis.md
+  - 'Log Blacklist': logs-blacklist.md
+  - 'Notification Grouping': inform-group.md
+  - 'Generate Metrics': generate-metrics.md

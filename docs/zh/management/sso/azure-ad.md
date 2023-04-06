@@ -37,7 +37,7 @@ Azure Active Directory （Azure AD） 是 Microsoft 推出的基于云的标识�
 - 标识符（实体 ID）：[https://auth.guance.com/saml/metadata.xml](https://auth.guance.com/saml/metadata.xml)
 - 回复 URL（断言地址），临时使用：[https://auth.guance.com/saml/assertion](https://auth.guance.com/saml/assertion/)
 
-**注意：此次配置仅为获取下一步的元数据文档使用，需要在观测云中启用SSO单点登录后，获取到正确的“实体ID”和“断言地址”后重新替换。
+**注意：此次配置仅为获取下一步的元数据文档使用，需要在观测云中启用SSO单点登录后，获取到正确的“实体ID”和“断言地址”后重新替换。**
 
 ![](../img/02_azure_05.png)
 
@@ -84,7 +84,7 @@ Azure Active Directory （Azure AD） 是 Microsoft 推出的基于云的标识�
 
 ### 5.在Azure AD替换SAML断言地址
 
-1）返回 Azure AD，更新 [步骤2](#step2)」 中的“实体ID”和“断言地址”。
+1）返回 Azure AD，更新「 [步骤2](#step2) 」 中的“实体ID”和“断言地址”。
 
 **注意：在观测云配置单点登录时，身份提供商SAML中配置的断言地址必须和观测云中的保持一致，才能实现单点登录。**
 

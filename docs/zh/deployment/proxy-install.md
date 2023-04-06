@@ -205,6 +205,7 @@ kubectl get svc -n ingress-nginx
                  acl management     hdr(Host)  -i df-management.dataflux.cn
                  acl management-api hdr(Host)  -i df-management-api.dataflux.cn
                  acl static         hdr(Host)  -i df-static-res.dataflux.cn
+                 acl docs            hdr(Host)  -i df-docs.dataflux.cn
     
                  acl dataway         hdr(Host)  -i df-dataway.dataflux.cn
                  use_backend vip_1_servers if dataflux
@@ -215,6 +216,7 @@ kubectl get svc -n ingress-nginx
                  use_backend vip_1_servers if management
                  use_backend vip_1_servers if management-api
                  use_backend vip_1_servers if kodo
+                 use_backend vip_1_servers if docs
                  use_backend vip_1_servers if test
          # ingress 端口 ip是k8s的集群的 请替换ip
          backend vip_1_servers
