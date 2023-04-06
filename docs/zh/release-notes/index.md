@@ -31,6 +31,37 @@ icon: zy/release-notes
 - [主机查看器](../infrastructure/host.md#label) 支持多行显示，多行模式下 label 将另起一行显示
 - [时序图](../scene/visual-chart/timeseries-chart.md)、[饼图](../scene/visual-chart/pie-chart.md)新增返回显示数量配置
 
+### DataKit 更新
+
+**新加功能**
+
+- 新增伺服服务，用来管理 Datakit 升级
+- 新增故障排查功能
+
+**功能优化**
+
+- 优化升级功能，避免 datakit.conf 文件被破坏
+- 优化 cgroup 配置，移除 CPU 最小值限制
+- 优化 self 采集器，我们能选择是否开启该采集器，同时对其采集性能做了一些优化
+- Prom 采集器允许增加 instance tag，以保持跟原生 Prometheus 体系一致
+- DCA 增加 Kubernetes 部署方式
+- 优化日志采集的磁盘缓存性能
+- 优化 Datakit 自身指标体系，暴露更多 Prometheus 指标
+- 优化 /v1/write
+- 优化安装过程中 token 出错提示
+- monitor 支持自动从 datakit.conf 中获取连接地址
+- 取消 eBPF 对内核版本的强制检查，尽量支持更多的内核版本
+- Kafka 订阅采集支持多行 json 功能
+- 优化 IO 模块的配置，新增上传 worker 数配置字段
+
+**兼容调整**
+
+- 本次移除了大部分 Sinker 功能，只保留了 Dataway 上的 Sinker 功能。同时 sinker 的主机安装配置以及 Kubernetes 安装配置都做了调整，其中的配置方式也跟之前不同，请大家升级的时候，注意调整
+- 老版本的发送失败磁盘缓存由于性能问题，我们替换了实现方式。新的实现方式，其缓存的二进制格式不再兼容，如果升级的话，老的数据将不被识别。建议先手动删除老的缓存数据（老数据可能会影响新版本磁盘缓存），然后再升级新版本的 Datakit。尽管如此，新版本的磁盘缓存，仍然是一个实验性功能，请谨慎使用
+- Datakit 自身指标体系做了更新，原有 DCA 获取到的指标将有一定的缺失，但不影响 DCA 本身功能的运行
+
+更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md) 。
+
 ## 2023 年 3 月 23 号
 
 ### 观测云更新
