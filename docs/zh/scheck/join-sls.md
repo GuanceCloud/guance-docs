@@ -74,7 +74,7 @@
 
 ## Grafana 对接 阿里云日志
 
-[官方文档](https://help.aliyun.com/document_detail/60952.html?spm=5176.21213303.J_6028563670.7.65713edaY7xSV2&scm=20140722.S_help%40%!E(MISSING)6%87%!E(MISSING)6%!A(MISSING)1%!A(MISSING)3%4060952.S_0.ID_60952-RL_grafana-OR_s%!B(MISSING)helpproduct-V_1-P0_0)
+[官方文档](https://help.aliyun.com/document_detail/60952.html?spm=5176.21213303.J_6028563670.7.65713edaY7xSV2&scm=20140722)
 
 | 软件名称                             | 版本                                                         | 描述           |
 | ------------------------------------ | ------------------------------------------------------------ | -------------- |
@@ -86,7 +86,7 @@
 
 ### 安装grafana
 
-#### 1.docker 安装grafana 
+#### 1.docker 安装grafana
 
 ```sh
 docker run \
