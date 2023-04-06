@@ -296,6 +296,7 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name = 'events
 
 | Tag | Descrition |
 |  ----  | --------|
+|`host`|The server host address|
 |`server`|Server addr|
 
 - 字段列表
@@ -395,6 +396,7 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name = 'events
 
 | Tag | Descrition |
 |  ----  | --------|
+|`host`|The server host address|
 |`schema_name`|Schema name|
 |`server`|Server addr|
 
@@ -420,6 +422,7 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name = 'events
 
 | Tag | Descrition |
 |  ----  | --------|
+|`host`|The server host address|
 |`server`|Server addr|
 
 - 字段列表
@@ -507,6 +510,7 @@ MySQL 表指标
 | Tag | Descrition |
 |  ----  | --------|
 |`engine`|The storage engine for the table. See The InnoDB Storage Engine, and Alternative Storage Engines.|
+|`host`|The server host address|
 |`server`|Server addr|
 |`table_name`|The name of the table.|
 |`table_schema`|The name of the schema (database) to which the table belongs.|
@@ -537,6 +541,8 @@ MySQL 用户指标
 
 | Tag | Descrition |
 |  ----  | --------|
+|`host`|The server host address|
+|`server`|The server address containing both host and port|
 |`user`|user|
 
 - 字段列表
@@ -614,7 +620,7 @@ MySQL 用户指标
 |`host`|The server host address|
 |`query_signature`|The hash value computed from digest_text|
 |`schema_name`|The schema name|
-|`server`|The server address|
+|`server`|The server address containing both host and port|
 |`service`|The service name and the value is 'mysql'|
 
 - 字段列表
@@ -651,6 +657,7 @@ MySQL 用户指标
 |  ----  | --------|
 |`current_schema`|The name of the current schema.|
 |`digest`|The digest hash value computed from the original normalized statement. |
+|`digest_text`|The digest_text of the statement.|
 |`host`| The server host address|
 |`network_client_ip`|The ip address of the client|
 |`plan_definition`|The plan definition of JSON format.|
@@ -660,6 +667,7 @@ MySQL 用户指标
 |`query_signature`|The hash value computed from digest_text.|
 |`query_truncated`|It indicates whether the query is truncated.|
 |`resource_hash`|The hash value computed from sql text.|
+|`server`|The server address containing both host and port|
 |`service`|The service name and the value is 'mysql'|
 
 - 字段列表
@@ -667,7 +675,7 @@ MySQL 用户指标
 
 | Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`duration`|Value in nanoseconds of the event's duration.|int|count|
+|`duration`|Value in nanoseconds of the event's duration.|float|count|
 |`lock_time_ns`|Time in nanoseconds spent waiting for locks. |int|count|
 |`message`|The text of the normalized statement digest.|string|-|
 |`no_good_index_used`|0 if a good index was found for the statement, 1 if no good index was found.|int|-|
@@ -684,8 +692,8 @@ MySQL 用户指标
 |`sort_range`|Number of sorts performed by the statement which used a range.|int|count|
 |`sort_rows`|Number of rows sorted by the statement. |int|count|
 |`sort_scan`|Number of sorts performed by the statement which used a full table scan.|int|count|
-|`timer_wait_ns`|Value in nanoseconds of the event's duration |int|ns|
-|`timestamp`|The timestamp(millisecond) when then the event ends.|int|msec|
+|`timer_wait_ns`|Value in nanoseconds of the event's duration |float|ns|
+|`timestamp`|The timestamp(millisecond) when then the event ends.|float|msec|
 
 
 
