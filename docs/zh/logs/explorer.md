@@ -85,7 +85,20 @@
 
 ![](img/logexport-1.png)
 
-注意：仅**标准成员及以上**可进行复制命令行操作。
+<u>**示例**</u>
+
+复制 curl 命令行后，如下图所示：其中 `<Endpoint>` 需替换为域名，`<DF-API-KEY>` 需前往 [API管理](../management/api-key/index.md) 更换为 **Key ID**。关于 API 更多信息可参考 [Open API](../management/api-key/open-api.md)。
+
+```shell
+curl '<Endpoint>/api/v1/df/query_data?search_after=\[1680226330509,8572,"L_1680226330509_cgj4hqbrhi85kl1m6os0"\]&queries_body=%7B%22queries%22:\[%7B%22uuid%22:%222eb41760-cf6e-11ed-a983-7d559044c3fc%22,%22qtype%22:%22dql%22,%22query%22:%7B%22q%22:%22L::re(%60.*%60):(%60*%60)%7B+%60index%60+IN+\[%27default%27\]+%7D%22,%22highlight%22:true,%22limit%22:50,%22orderby%22:\[%7B%22time%22:%22desc%22%7D\],%22_funcList%22:\[\],%22funcList%22:\[\],%22disableMultipleField%22:false,%22disable_slimit%22:false,%22is_optimized%22:true,%22offset%22:0,%22search_after%22:\[1680226330509,8572,%22L_1680226330509_cgj4hqbrhi85kl1m6os0%22\],%22timeRange%22:\[1680187562081,1680230762081\],%22tz%22:%22Asia%2FShanghai%22%7D%7D\]%7D' \
+- H 'DF-API-KEY: <DF-API-KEY>' \
+- -compressed \
+- -insecure
+```
+
+
+
+**注意**：仅**标准成员及以上**可进行复制命令行操作。
 
 除该导出路径外，您还可采用[其他日志数据导出](#logexport)方式。
 
