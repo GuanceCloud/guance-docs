@@ -151,7 +151,7 @@ Content-Type: application/json
 
 ![](img/10_inform_09.png)
 
-## 自建通知对象
+## 自建通知对象 {#custom}
 
 观测云除提供默认通知对象外，还支持用户通过第三方 Func 接入外部通知渠道形式，实现自建通知对象并对齐发送相关告警信息。更多详情请参考[对接自建通知对象](https://func.guance.com/doc/practice-guance-self-build-notify-function/)。
 
