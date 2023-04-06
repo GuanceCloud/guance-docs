@@ -16,6 +16,7 @@ nav:
       - "云上基础设施部署":
         - "资源、系统要求": cloud-required.md
         - "阿里云部署手册": cloud-deployment-manual.md
+        - "华为云部署手册": hwcloud-deployment-manual.md
       - "自建基础设施部署": 
         - "自建基础设施部署手册": offline-deployment-manual.md    
         - "资源、系统要求": offline-required.md
