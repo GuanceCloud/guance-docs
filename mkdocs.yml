@@ -25,6 +25,8 @@ theme:
 markdown_extensions:
   - toc:
       permalink: True
+  - pymdownx.tasklist:
+      custom_checkbox: true
   - pymdownx.caret
   - pymdownx.mark
   - pymdownx.tilde
