@@ -14,7 +14,7 @@ self 采集器用于 DataKit 自身基本信息的采集，包括运行环境信
 
 ## 配置 {#config}
 
-self 采集器会自动运行，无需配置，且无法关闭。
+self 采集器默认自启，且单例运行。
 
 ## 指标 {#measurements}
 
@@ -44,15 +44,15 @@ self 采集器会自动运行，无需配置，且无法关闭。
 
 | Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`cpu_usage`|CPU usage of the datakit|float|percent|
-|`cpu_usage_top`|CPU usage(command `top`) of the datakit|float|percent|
+|`cpu_usage`|CPU usage of current datakit(same as `top`)|float|percent|
+|`cpu_usage_top`|**Deprecated**. Same as `cpu_usage`.|float|percent|
 |`dropped_point_total`|Total dropped points due to cache clean|int|count|
 |`dropped_points`|Current dropped points due to cache clean|int|count|
 |`elected`|Elected duration, if not elected, the value is 0|int|s|
 |`heap_alloc`|Bytes of allocated heap objects|int|B|
 |`heap_objects`|Number of allocated heap objects|int|count|
 |`heap_sys`|Bytes of heap memory obtained from OS(Estimates the largest size of the heap has had)|int|B|
-|`incumbency`|**Deprecated**. same as `elected`|int|s|
+|`incumbency`|**Deprecated**. Same as `elected`|int|s|
 |`max_heap_alloc`|Max bytes of allocated heap objects since DataKit start|int|B|
 |`max_heap_objects`|Max number of allocated heap objects since DataKit start|int|count|
 |`max_heap_sys`|Max bytes of heap memory obtained from OS since DataKit start|int|B|

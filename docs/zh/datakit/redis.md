@@ -173,6 +173,8 @@ ACL SETUSER username on +ping
 
 | Tag | Descrition |
 |  ----  | --------|
+|`addr`|Address/port of the client|
+|`id`|AN unique 64-bit client ID|
 |`name`|The name set by the client with CLIENT SETNAME, default unknown|
 |`server`|Server addr|
 
@@ -181,10 +183,8 @@ ACL SETUSER username on +ping
 
 | Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`addr`|Address/port of the client|string|-|
 |`age`|Total duration of the connection in seconds|int|count|
 |`fd`|File descriptor corresponding to the socket|int|count|
-|`id`|AN unique 64-bit client ID|string|-|
 |`idle`|Idle time of the connection in seconds|int|count|
 |`psub`|Number of pattern matching subscriptions|int|count|
 |`sub`|Number of channel subscriptions|int|count|
@@ -287,6 +287,7 @@ ACL SETUSER username on +ping
 
 | Tag | Descrition |
 |  ----  | --------|
+|`redis_version`|Version of the Redis server|
 |`server`|Server addr|
 
 - 字段列表
@@ -329,7 +330,6 @@ ACL SETUSER username on +ping
 |`rdb_bgsave_in_progress`|Flag indicating a RDB save is on-going|bool|-|
 |`rdb_changes_since_last_save`|Refers to the number of operations that produced some kind of changes in the dataset since the last time either SAVE or BGSAVE was called.|int|count|
 |`rdb_last_bgsave_time_sec`|Duration of the last RDB save operation in seconds|int|s|
-|`redis_version`|Version of the Redis server|string|-|
 |`rejected_connections`|Number of connections rejected because of maxclients limit|int|count|
 |`repl_backlog_histlen`|Size in bytes of the data in the replication backlog buffer|float|B|
 |`slave_repl_offset`|The replication offset of the replica instance|int|count|
