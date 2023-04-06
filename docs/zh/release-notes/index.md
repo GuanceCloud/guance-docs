@@ -15,9 +15,9 @@ icon: zy/release-notes
 - 日志新增 [数据访问](../logs/logdata-access.md) 权限控制，支持将某个范围内的日志数据查看权限授予给相关角色
 - [角色权限清单](../management/role-list.md) 新增各功能模块数据查询权限，支持自定义角色配置对应模块的数据查询权限入口
 - 标准成员新增 “快照管理” 权限，支持快照增删操作
-- [快照分享](../logs/logdata-access.md#snapshot) 支持搜索功能。（日志 DQL 查询模式下不支持跳转搜索范围）
+- [快照分享](../logs/logdata-access.md#snapshot) 支持搜索功能。（日志 DQL 查询模式下不支持调整搜索范围）
 - 支持本地 Func 通过 websocket 协议创建 [自定义的通知对象](../monitoring/notify-object.md#custom)，实现外部通知渠道接收告警通知
-查看器新增 [copy as cURL](../logs/explorer.md#copy-as-curl) 数据查询功能
+- 查看器新增 [copy as cURL](../logs/explorer.md#copy-as-curl) 数据查询功能
 - 仪表板图表配置交互优化
     - [概览图](../scene/visual-chart/overview-chart.md) 新增数值单位选项配置，支持选择中国科学记数法进位（default）和短级差制（short scale）
     - 新增 [视图变量](../scene/view-variable.md) 是否应用到图表效果显示
