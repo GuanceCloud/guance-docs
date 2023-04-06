@@ -1,7 +1,7 @@
 ---
 icon: material/language-go
 ---
-# Go
+# Golang
 
 ---
 
@@ -22,6 +22,7 @@ icon: material/language-go
 ### 前置条件
 
 - 需要进行链路追踪的应用服务器<[安装 DataKit](../../datakit/datakit-install.md)>
+- [按需下载对应 agent](https://github.com/DataDog/dd-trace-go)
 
 ### Go Redis APM 完整示例
 

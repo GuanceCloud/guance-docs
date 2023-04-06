@@ -25,6 +25,7 @@ icon: fontawesome/brands/python
 ### 前置条件
 
 - 需要进行链路追踪的应用服务器<[安装 DataKit](../../datakit/datakit-install.md)>
+- [下载对应 dd-trace-py agent](../../datakit/ddtrace.md#doc-example)
 
 ### Python Flask 完整示例
 

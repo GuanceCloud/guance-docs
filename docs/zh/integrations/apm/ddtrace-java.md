@@ -1,7 +1,7 @@
 ---
 icon: fontawesome/brands/java
 ---
-# JAVA
+# Java
 
 ---
 
@@ -26,8 +26,8 @@ icon: fontawesome/brands/java
 ### 前置条件
 
 - 需要进行链路追踪的应用服务器<[安装 DataKit](../../datakit/datakit-install.md)>
-- `dd-java-agent.jar` 已默认内置于 `/usr/local/datakit/data` 目录下
-- <[ddtrace -java -agent 框架兼容列表](https://docs.datadoghq.com/tracing/setup_overview/compatibility_requirements/java/)>
+- `dd-java-agent.jar` 已默认内置于 `/usr/local/datakit/data` 目录下，或[按需下载对应 agent](https://static.guance.com/dd-image/dd-java-agent.jar)
+- <[ddtrace-java-agent 框架兼容列表](https://docs.datadoghq.com/tracing/setup_overview/compatibility_requirements/java/)>
 
 ### 配置实施
 
@@ -53,7 +53,7 @@ java -javaagent:/xxx/ddtrace.jar -Ddd.env=xxx -Ddd.service.name=xxx -Ddd.agent.p
 	 cp ddtrace.conf.sample ddtrace.conf
 
 
-	## 复制完文件后，vim进入编辑模式，放开imputs的注释
+	## 复制完文件后，vim进入编辑模式，放开inputs的注释
 	## 举例:ddtrace    tags相关注释可根据需要进行开启操作，添加业务或其他相关的标签
 
 	#默认无需修改
