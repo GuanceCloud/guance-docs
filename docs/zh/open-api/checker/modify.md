@@ -39,6 +39,7 @@
 | jsonScript.interval | integer |  | 查询区间，即一次查询的时间范围时差<br>例子: 60 <br>允许为空: False <br> |
 | jsonScript.range | integer |  | 针对高级检测,突变检测的range参数,单位s<br>例子: 3600 <br>允许为空: False <br> |
 | jsonScript.range_2 | integer |  | 针对高级检测,突变检测的range_2参数,单位s<br>例子: 600 <br>允许为空: False <br> |
+| jsonScript.periodBefore | integer |  | 针对高级检测,突变检测的昨日, 一小时前参数,单位s<br>例子: 600 <br>允许为空: False <br> |
 | jsonScript.recoverNeedPeriodCount | integer |  | 指定异常在几个检查周期之后生成恢复事件<br>例子: 60 <br>允许为空: False <br> |
 | jsonScript.noDataInterval | integer |  | 多长时间内无数据则产生无数据事件<br>例子: 60 <br>允许为空: False <br> |
 | jsonScript.noDataAction | string |  | 无数据处理操作<br>允许为空: False <br>可选值: ['none', 'noData', 'recover'] <br> |
