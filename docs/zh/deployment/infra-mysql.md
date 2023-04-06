@@ -115,7 +115,7 @@ MySQL 是最流行的关系型数据库管理系统，在 WEB 应用方面 MySQL
               value: admin
             - name: MYSQL_PASSWORD
               value: admin@123
-            image: mysql:5.7
+            image: pubrepo.guance.com/googleimages/mysql:5.7
             imagePullPolicy: IfNotPresent
             name: mysql
             ports:
