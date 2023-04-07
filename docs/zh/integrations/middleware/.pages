@@ -5,7 +5,13 @@ nav:
   - 'Consul': consul.md
   - 'Flink': flink.md
   - 'Fluentd': fluentd-metrics.md
-  - 'JVM': jvm.md
+  - 'jvm': 
+    - jvm.md
+    - 'Statsd': jvm_statsd.md
+    - 'JMX Exporter': jvm_jmx_exporter.md
+    - 'Micrometer': jvm_micrometer.md
+    - 'Jolokia': jvm_jolokia.md
+
   - 'Kafka': kafka.md
   - 'Logstash': logstash-metrics.md
   - 'Nacos': nacos.md
