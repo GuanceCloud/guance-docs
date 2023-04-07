@@ -9,7 +9,7 @@ nav:
     - jvm.md
     - 'Statsd': jvm_statsd.md
     - 'JMX Exporter': jvm_jmx_exporter.md
-    - 'Prometheus': jvm_prometheus.md
+    - 'Micrometer': jvm_micrometer.md
     - 'Jolokia': jvm_jolokia.md
 
   - 'Kafka': kafka.md

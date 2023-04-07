@@ -24,7 +24,7 @@ JMX 可以实现 VM 内部运行时数据状态的对外 export，我们通过�
 1. [Statsd 采集](#statsd)
 2. [JMX Exporter 采集](#jmx-exporter)
 3. [Jolokia 采集](#jolokia)
-4. [Prometheus 采集](#prometheus)
+4. [Micrometer 采集](#micrometer)
 5. [APM 厂商集成（skywalking、opentelemetry 等）](#apm)  
 
 ![jvm_collector_1](../imgs/jvm_collector_1.png)
@@ -76,11 +76,11 @@ Jolokia 提供了两种方式来获取 JMX 数据。
 
 [jolokia jvm 采集](/datakit/jvm/#jvm-jolokia)
 
-## Prometheus 采集
+## Micrometer 采集
 
 以上几种方案都不支持定义业务指标暴露，业务指标定义需进行编码定义后方可暴露出来，即需要通过 SDK 的方式来完成。
 
-[jvm prometheus 采集](jvm_prometheus.md)
+[jvm Micrometer 采集](jvm_micrometer.md)
 
 
 

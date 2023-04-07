@@ -49,7 +49,7 @@ urls = ["http://localhost:8089/jolokia"]
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 模板库 - 系统视图 - JVM 监控视图 by Jolokia>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - JVM by Jolokia 监控视图>
 
 ## 故障排查
 

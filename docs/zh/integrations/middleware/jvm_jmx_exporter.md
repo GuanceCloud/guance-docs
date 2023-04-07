@@ -57,7 +57,7 @@ measurement_prefix = "jvm_"
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 模板库 - 系统视图 - JVM 监控视图 by JMX Exporter>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - JVM by JMX Exporter 监控视图>
 
 ## 故障排查
 

@@ -1,12 +1,12 @@
 ---
 icon: fontawesome/brands/java
 ---
-# JVM (Prometheus)
+# JVM (Micrometer)
 ---
 
 ???+ info "提示"
 
-	本文将以 Springboot 为前提，引入 prometheus 相关依赖采集 JVM 指标。
+	本文将以 Springboot 为前提，引入 Micrometer 相关依赖采集 JVM 指标。
 
 ## 视图预览
 
@@ -94,7 +94,7 @@ measurement_prefix = "jvm_"
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 模板库 - 系统视图 - JVM 监控视图 by Prometheus>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - JVM by Micrometer 监控视图>
 
 ## 故障排查
 
