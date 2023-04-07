@@ -4,271 +4,90 @@ icon: fontawesome/brands/java
 # JVM
 ---
 
-## 视图预览
+*jvm 指标主要是通过获取 jmx 信息进行暴露*
 
-JVM 性能指标展示：CPU 负载、直接缓冲区、线程数量、堆内存、GC 次数、类加载数等。
+## JMX 定义
 
-![image](../imgs/input-jvm-1.png)
+???+ info "JMX 定义"
 
-## 版本支持
+	Java 虚拟机 (JVM) 提供操作管理和监测提供了一套完整框架，即 JMX（Java 管理扩展），JMX 是 Java Management Extensions 的缩写，是管理 Java 的一种扩展框架，JMX 技术定义了完整的架构和设计模式集合，以对 Java 应用进行监测和管理。JMX 的基础是托管豆（managed bean，业内更习惯将其称为 MBean），MBean 是通过依赖注入完成实例化的各个类别，代表着 JVM 中的资源。由于 MBean 代表 JVM 中的资源，所以我们可以用其来管理应用的特定方面，或者更为常见的一种做法，用其来收集与这些资源的使用相关的统计数据。
+	
+JMX 的核心是 MBean 服务器，此类服务器可以作为媒介将 MBean、同一 JVM 内的应用以及外部世界联系在一起。与 MBean 之间的任何交互都是通过此服务器完成的。通常而言，只有 Java 代码能够直接访问 JMX API，但是有一些适配器可将该 API 转换为标准协议，例如 Jolokia 便可将其转换为 HTTP。
 
-- 操作系统支持：Linux / Windows
-## 前置条件
+JMX 可以实现 VM 内部运行时数据状态的对外 export，我们通过将运行态数据封装成 MBean，通过 JMX Server 统一管理，并允许外部程序通过 RMI 方式获取数据。
 
-- 服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
+总之，JMX允许运行态数据通过 RMI 协议被外部程序获取。这对我们监控、操作 VM 内部数据提供窗口。
 
-## 安装部署
 
-说明：示例 通过 ddtrace 采集 JVM 指标，通过 DataKit 内置的 Statsd 接收 ddtrace 发送过来的 JVM 指标。
+## 常见的几种 JVM 指标采集方式  
 
-### 指标采集 (必选)
+1. [Statsd 采集](#statsd)
+2. [JMX Exporter 采集](#jmx-exporter)
+3. [Jolokia 采集](#jolokia)
+4. [Prometheus 采集](#prometheus)
+5. [APM 厂商集成（skywalking、opentelemetry 等）](#apm)  
 
+![jvm_collector_1](../imgs/jvm_collector_1.png)
 
-1、 开启 ddtrace， 复制 sample 文件，不需要修改 `ddtrace.conf`
+## StatsD 采集 
 
-```
-cd /usr/local/datakit/conf.d/ddtrace
-cp ddtrace.conf.sample ddtrace.conf
-```
+StatsD 其实就是一个监听 UDP（默认）或者 TCP 的守护程序，根据简单的协议收集 statsd 客户端发送来的数据，聚合之后，定时推送给后端，如 graphite 和 influxdb 等，再通过可观测性平台进行展示。
 
-2、 开启 Statsd， 复制 sample 文件，不需要修改 `statsd.conf` 
+现在通常指 StatsD 系统，包括客户端（client）、服务器（server）和后端（backend）三部分。客户端植入于应用代码中，将相应的 metrics 上报给 StatsD server。
 
-```
-cd /usr/local/datakit/conf.d/statsd
-cp statsd.conf.sample statsd.conf
-```
+datakit 可以作为 StatsD server，来接收客户端发送过来的数据。
 
-3、 开通外网访问(非必选)
+![jvm_statsd](../imgs/jvm_statsd_1.png)
 
-如果远程服务器需要访问datakit或者datakit提供给本服务器内的容器中的应用调用，需要把 `datakit.conf` 文件中的 listen = "localhost:9529"改成listen = "0.0.0.0:9529"
 
-```
-vi /usr/local/datakit/conf.d/datakit.conf
-```
+[StatsD 集成](jvm_statsd.md)
 
-![image](../imgs/input-jvm-2.png)
+## JMX Exporter 采集 
 
-4、 重启 DataKit
+JMX Exporter 利用 Java 的 JMX 机制来读取 JVM 运行时的一些监控数据，然后将其转换为 Prometheus 所认知的 Metrics 格式，以便让 Prometheus 对其进行监控采集。
+	
+???+ info "JMX Exporter"
+	
+	JMX Exporter 会作为 Java 的 Agent 运行，通过 HTTP 端口暴露本地 JVM 的指标。它也可以作为一个独立的HTTP 服务运行，并获取远程 JMX 目标，但这样做有很多缺点，比如难以配置和无法暴露进程指标(例如，内存和CPU使用情况)。因此强烈建议将 JMX Exporter 作为 Java Agent 运行。
+	
+[JMX Exporter 采集 jvm ](jvm_jmx_exporter.md)
 
-```
-systemctl restart datakit
-```
+## Jolokia 采集
 
-5、 指标预览(启动应用后才能上报数据)
+Jolokia 作为目前最主流的 JMX 监控组件，spring 社区（springboot、MVC、cloud）以及目前主流的中间件服务均采用它作为 JMX 监控，Jolokia 是无类型的数据，使用了 Json 这种轻量化的序列化方案来替代 RMI 方案。
 
-![image](../imgs/input-jvm-3.png)
+Jolokia 完全兼容并支撑 JMX 组件，它可以作为 agent 嵌入到任何 JAVA 程序中，特别是 WEB 应用，它将复杂而且难以理解的 MBean Filter 查询语句，转换成更易于实施和操作的 HTTP 请求范式，不仅屏蔽了 RMI 的开发困难问题，还实现了对外部监控组件的透明度，而且更易于测试和使用。
+	
+???+ info "Jolokia"
 
-## 启动应用
+	Jolokia 就是用于解决 JMX 数据获取时，所遇到的 RMI 协议复杂性、Mbean 查询的不便捷、数据库序列化、MBeanServer 的托管等问题。我们只需要使用 HTTP 请求，直接访问与 WEB 服务相同的 port 即可获取 JMX 数据。
 
-#### JAVA_OPTS 声明
 
-```
-java  ${JAVA_OPTS} -jar your-app.jar
-```
+Jolokia 提供了两种方式来获取 JMX 数据。
 
-JAVA_OPTS 示例
+> 通过 javaagent 方式，随应用程序启动时加载。
 
-```
--javaagent:/usr/local/datakit/data/dd-java-agent.jar \
- -Ddd.service=<your-service>   \
- -Ddd.env=dev  \
- -Ddd.agent.port=9529  
-```
+![jvm_jolokia_1](../imgs/jvm_jolokia_1.png)
 
-参数说明
+> 通过代理的方式，独立运行 agent。
 
-```
--Ddd.env：应用的环境类型，选填 
--Ddd.tags：自定义标签，选填    
--Ddd.service：JVM数据来源的应用名称，控制台显示“应用名” 必填  
--Ddd.agent.host=localhost    DataKit地址，选填  
--Ddd.agent.port=9529         DataKit端口，必填  
--Ddd.version:版本，选填 
--Ddd.jmxfetch.check-period 表示采集频率，单位为毫秒，默认 1500，选填   
--Ddd.jmxfetch.statsd.host=127.0.0.1 statsd 采集器的连接地址同DataKit地址，选填  
--Ddd.jmxfetch.statsd.port=8125 表示DataKit上statsd采集器的UDP连接端口，默认为 8125，选填   
--Ddd.trace.health.metrics.statsd.host=127.0.0.1  自身指标数据采集发送地址同DataKit地址，选填 
--Ddd.trace.health.metrics.statsd.port=8125  自身指标数据采集发送端口，选填   
--Ddd.service.mapping:应用调用的redis、mysql等别名，选填
-```
+![jvm_jolokia_2](../imgs/jvm_jolokia_2.png)
 
-#### jar 使用方式
 
-使用 java -jar 的方式启动 jar，默认连接本机上的 DataKit，如需要连接远程服务器上的 DataKit，请使用 -Ddd.agent.host 和 -Ddd.jmxfetch.statsd.host 指定ip 。
+[jolokia jvm 采集](/datakit/jvm/#jvm-jolokia)
 
-```
- java -javaagent:/usr/local/datakit/data/dd-java-agent.jar \
- -Ddd.service=<your-service>   \
- -Ddd.env=dev  \
- -Ddd.agent.port=9529  
- -jar <your-app.jar>
-```
+## Prometheus 采集
 
-#### Docker 使用方式
-
-1、Dockerfile 中的 ENTRYPOINT 启动参数使用环境变量 JAVA_OPTS
-
-```
-FROM openjdk:8u292-jdk
-
-ENV jar your-app.jar
-ENV workdir /data/app/
-RUN mkdir -p ${workdir}
-COPY ${jar} ${workdir}
-WORKDIR ${workdir}
-
-ENTRYPOINT ["sh", "-ec", "exec java  ${JAVA_OPTS} -jar ${jar} "]
-```
-
-2、 制作镜像
-
-```
-docker build -t <your-app-image:v1> .
-```
-
-3、 上传 dd-java-agent.jar 放到 `/tmp/work` 目录
-
-4、 docker run 启动容器
-
-请修改 172.16.0.215 为您的 Datakit 的ip地址，替换 9299 为您应用的端口，替换 your-app 为您的应用名，替换 your-app-image:v1 为您的镜像名。
-
-```
-docker run  -v /tmp/work:/tmp/work -e JAVA_OPTS="-javaagent:/tmp/work/dd-java-agent.jar -Ddd.service=your-app  -Ddd.env=dev  -Ddd.agent.host=172.16.0.215 -Ddd.agent.port=9529  -Ddd.jmxfetch.statsd.host=172.16.0.215  " --name your-app -d -p 9299:9299 your-app-image:v1
-```
-
-#### Kubernetes 使用方式
-
-1、Dockerfile 中的 ENTRYPOINT 启动参数使用环境变量 JAVA_OPTS
-
-```
-FROM openjdk:8u292
-
-ENV jar your-app.jar
-ENV workdir /data/app/
-RUN mkdir -p ${workdir}
-COPY ${jar} ${workdir}
-WORKDIR ${workdir}
-ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS} -jar ${jar}"]
-```
-
-2、制作镜像
-
-```
-docker build -t 172.16.0.215:5000/dk/your-app-image:v1 . 
-```
-
-3、上传 Harbor 仓库
-
-```
- docker push 172.16.0.215:5000/dk/your-app-image:v1  
-```
-
-4、编写应用的 `deployment.yml`
-
-JAVA_OPTS 示例说明：-Ddd.tags=container_host:$(PODE_NAME) 是把环境变量 PODE_NAME 的值 ，传到标签 container_host 中。<br />
-`/usr/dd-java-agent/agent/dd-java-agent.jar` 使用了共享存储的路径，使用了 pubrepo.jiagouyun.com/datakit/dk-sidecar:1.0 镜像提供 dd-java-agent.jar。
-
-```
--javaagent:/usr/dd-java-agent/agent/dd-java-agent.jar -Ddd.service=<your-app-name> 
--Ddd.tags=container_host:$(PODE_NAME)  
--Ddd.env=dev  
--Ddd.agent.host=172.16.0.215 
--Ddd.agent.port=9529  
--Ddd.jmxfetch.statsd.host=172.16.0.215
-```
-
-新建 `your-app-deployment-yaml` 文件，完整示例内容如下。使用时请替换 9299 为您应用的端口，替换 your-app-name 为您的服务名，替换 30001 为您的应用对外暴露的端口，替换 172.16.0.215:5000/dk/your-app-image:v1 为您的镜像名。
-
-```
-apiVersion: v1
-kind: Service
-metadata:
-  name: your-app-name
-  labels:
-    app: your-app-name
-spec:
-  selector:
-    app: your-app-name
-  ports:
-    - protocol: TCP
-      port: 9299
-      nodePort: 30001
-      targetPort: 9299
-  type: NodePort
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: your-app-name
-  labels:
-    app: your-app-name
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: your-app-name
-  template:
-    metadata:
-      labels:
-        app: your-app-name
-    spec:
-      containers:
-      - env:
-        - name: PODE_NAME
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.name
-        - name: JAVA_OPTS
-          value: |-
-            -javaagent:/usr/dd-java-agent/agent/dd-java-agent.jar -Ddd.service=<your-app-name> -Ddd.tags=container_host:$(PODE_NAME)  -Ddd.env=dev  -Ddd.agent.port=9529   
-        - name: DD_AGENT_HOST
-          valueFrom:
-            fieldRef:
-              apiVersion: v1
-              fieldPath: status.hostIP
-        name: your-app-name
-        image: 172.16.0.215:5000/dk/your-app-image:v1    
-        #command: ["sh","-c"]
-        ports:
-        - containerPort: 9299
-          protocol: TCP
-        volumeMounts:
-        - mountPath: /usr/dd-java-agent/agent
-          name: ddagent
-      initContainers:
-      - command:
-        - sh
-        - -c
-        - set -ex;mkdir -p /ddtrace/agent;cp -r /usr/dd-java-agent/agent/* /ddtrace/agent;
-        image: pubrepo.jiagouyun.com/datakit/dk-sidecar:1.0
-        imagePullPolicy: Always
-        name: ddtrace-agent-sidecar
-        volumeMounts:
-        - mountPath: /ddtrace/agent
-          name: ddagent
-      restartPolicy: Always
-      volumes:
-      - emptyDir: {}
-        name: ddagent
-      
-```
-
-5、部署应用
-
-```
- kubectl apply -f your-app-deployment-yaml
-```
-
-## 场景视图
-
-<场景 - 新建仪表板 - 模板库 - 系统视图 - JVM 监控视图>
-
-## [指标详解](../../datakit/jvm.md#measurements)
-
-## 故障排查
-
-- <[无数据上报排查](../../datakit/why-no-data.md)>
-
-## 进一步阅读
-
-- <[JVM 可观测最佳实践](../../best-practices/monitoring/jvm.md)>
+以上几种方案都不支持定义业务指标暴露，业务指标定义需进行编码定义后方可暴露出来，即需要通过 SDK 的方式来完成。
+
+[jvm prometheus 采集](jvm_prometheus.md)
+
+
+
+
+## APM 厂商集成
+
+**APM 厂商** 以 APM 为基石，引入 metric 作为可观测的一部分，以 skywalking 为例，通过对接 JMX 暴露 metric 信息。
+
+[Skywalking 采集 JVM 可观测最佳实践](/best-practices/monitoring/skywalking-jvm/)
+
