@@ -8,17 +8,30 @@
 
 本文主要介绍 [SNMP](https://en.wikipedia.org/wiki/Simple_Network_Management_Protocol){:target="_blank"} 数据采集。
 
+## 术语  {#terminology}
+
+- `SNMP` (Simple network management protocol): A network protocol that is used to collect information about bare metal networking gear.
+- `OID` (Object identifier): A unique ID or address on a device that when polled returns the response code of that value. For example, OIDs are CPU or device fan speed.
+- `sysOID` (System object identifier): A specific address that defines the device type. All devices have a unique ID that defines it. For example, the Meraki base sysOID is `1.3.6.1.4.1.29671`.
+- `MIB` (Managed information base): A database or list of all the possible OIDs and their definitions that are related to the MIB. For example, the `IF-MIB` (interface MIB) contains all the OIDs for descriptive information about a device’s interface.
+
 ## 关于 SNMP 协议 {#config-pre}
 
 SNMP 协议分为 3 个版本: v1/v2c/v3，其中：
 
-    - v1 和 v2c 是兼容的。很多 SNMP 设备只提供 v2c 和 v3 两种版本的选择。v2c 版本，兼容性最好，很多旧设备只支持这个版本
-    - 如果对安全性要求高，选用 v3。安全性也是 v3 版本与之前版本的主要区别
+- <b><u> v1 和 v2c 是兼容的 </u></b>。很多 SNMP 设备只提供 v2c 和 v3 两种版本的选择。v2c 版本，兼容性最好，很多旧设备只支持这个版本;
+- 如果对安全性要求高，选用 v3。安全性也是 v3 版本与之前版本的主要区别;
 
-如果选择 v2c 版本，需要提供 `community string`，中文翻译为 `团体名/团体字符串`。`未加密的口令` 即密码，与 SNMP 设备进行交互需要提供这个进行鉴权。另外，有的设备会进行区别，分为 `只读团体名` 和 `读写团体名`。顾名思义:
+Datakit 支持以上所有版本。
 
-- `只读团体名`: 设备只会向该方提供内部指标数据，不能修改内部的一些配置(DataKit 用这个就够了)
-- `读写团体名`: 提供方拥有设备内部指标数据查询与部分配置修改权限
+### 选择 v1/v2c 版本 {#config-v2}
+
+如果选择 v1/v2c 版本，需要提供 `community string`，中文翻译为 `团体名/团体字符串/未加密的口令`，即密码，与 SNMP 设备进行交互需要提供这个进行鉴权。另外，有的设备会进一步进行细分，分为 `只读团体名` 和 `读写团体名`。顾名思义:
+
+- `只读团体名`: 设备只会向该方提供内部指标数据，不能修改内部的一些配置(DataKit 用这个就够了);
+- `读写团体名`: 提供方拥有设备内部指标数据查询与部分配置修改权限;
+
+### 选择 v3 版本 {#config-v3}
 
 如果选择 v3 版本，需要提供 `用户名`、`认证算法/密码`、`加密算法/密码`、`上下文` 等，各个设备不同，根据要求进行填写。
 
@@ -31,22 +44,22 @@ SNMP 协议分为 3 个版本: v1/v2c/v3，其中：
     ```toml
         
     [[inputs.snmp]]
-      ## Filling in autodiscovery CIDR subnet, like ["10.200.10.0/24", "10.200.20.0/24"].
-      ## If you don't want to enable autodiscovery feature, you don't need provide this.
-      #
-      # auto_discovery = []
-    
       ## Filling in specific device IP address, like ["10.200.10.240", "10.200.10.241"].
       ## And you can use auto_discovery and specific_devices at the same time.
       ## If you don't want to specific device, you don't need provide this.
       #
-      # specific_devices = []
+      # specific_devices = ["***"] # SNMP Device IP.
+    
+      ## Filling in autodiscovery CIDR subnet, like ["10.200.10.0/24", "10.200.20.0/24"].
+      ## If you don't want to enable autodiscovery feature, you don't need provide this.
+      #
+      # auto_discovery = ["***"] # Used in autodiscovery mode only, ignore this in other cases.
     
       ## SNMP protocol version the devices using, fill in 2 or 3.
       ## If you using the version 1, just fill in 2. Version 2 supported version 1.
       ## This is must be provided.
       #
-      # snmp_version = 2
+      snmp_version = 2
     
       ## SNMP port in the devices. Default is 161. In most cases, you don't need change this.
       ## This is optional.
@@ -97,6 +110,15 @@ SNMP 协议分为 3 个版本: v1/v2c/v3，其中：
       #
       # device_namespace = "default"
     
+      ## Picking the metric data only contains the field's names below.
+      #
+      # enable_picking_data = true # Default is "false", which means collecting all data.
+      # status = ["sysUpTimeInstance", "tcpCurrEstab", "ifAdminStatus", "ifOperStatus", "cswSwitchState"]
+      # speed = ["ifHCInOctets", "ifHCInOctetsRate", "ifHCOutOctets", "ifHCOutOctetsRate", "ifHighSpeed", "ifSpeed", "ifBandwidthInUsageRate", "ifBandwidthOutUsageRate"]
+      # cpu = ["cpuUsage"]
+      # mem = ["memoryUsed", "memoryUsage", "memoryFree"]
+      # extra = []
+    
       [inputs.snmp.tags]
       # tag1 = "val1"
       # tag2 = "val2"
@@ -116,10 +138,22 @@ SNMP 协议分为 3 个版本: v1/v2c/v3，其中：
     目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
 
 ---
-    
+
+???+ tip
+
+    上述配置完成后，可以使用 `datakit tool --test-snmp` 命令来测试配置是否正确，示例如下:
+
+    ```sh
+    sudo datakit tool --test-snmp /usr/local/datakit/conf.d/snmp/snmp.conf
+    ```
+
+    如果正确会输出行协议信息，否则看不到行协议信息。
+
 ???+ attention
 
-    上面配置的 `inputs.snmp.tags` 中如果与原始 fields 中的 key 同名重复，则会被原始数据覆盖。
+    1. 上面配置的 `inputs.snmp.tags` 中如果与原始 fields 中的 key 同名重复，则会被原始数据覆盖;
+    2. 设备的 IP 地址(指定设备模式)/网段(自动发现模式)、SNMP 协议的版本号及相对应的鉴权字段是必填字段;
+    3. "指定设备" 模式和 "自动发现" 模式，两种模式可以共存，但设备间的 SNMP 协议的版本号及相对应的鉴权字段必须保持一致;
 
 
 ### 配置 SNMP {#config-snmp}
@@ -130,29 +164,49 @@ SNMP 设备在默认情况下, 一般 SNMP 协议处于关闭状态, 需要进�
 
 ???+ tip
 
-    有些设备为了安全需要额外配置放行 SNMP，具体因设备而异。比如华为系防火墙，需要在 "启用访问管理" 中勾选 SNMP 以放行。可以使用 `snmpwalk` 命令来测试采集侧与设备侧是否配置连通成功: 
+    有些设备为了安全需要额外配置放行 SNMP，具体因设备而异。比如华为系防火墙，需要在 "启用访问管理" 中勾选 SNMP 以放行。可以使用 `snmpwalk` 命令来测试采集侧与设备侧是否配置连通成功(在 Datakit 运行的主机上运行以下命令):
 
     ```shell
     # 适用 v2c 版本
-    snmpwalk -O bentU -v 2c -c [community string] [IP] 1.3.6` 
+    snmpwalk -O bentU -v 2c -c [community string] [SNMP_DEVICE_IP] 1.3.6
     # 适用 v3 版本
-    snmpwalk -v 3 -u user -l authPriv -a sha -A [认证密码] -x aes -X [加密密码] [IP] 1.3.6 
+    snmpwalk -v 3 -u user -l authPriv -a sha -A [认证密码] -x aes -X [加密密码] [SNMP_DEVICE_IP] 1.3.6
     ```
 
     如果配置没有问题的话，该命令会输出大量数据。`snmpwalk` 是运行在采集侧的一个测试工具，MacOS 下自带，Linux 安装方法: 
 
     ```shell
-    sudo yum install net–snmp–utils # CentOS
-    sudo apt–get install snmp       # Ubuntu
+    sudo yum install net-snmp net-snmp-utils # CentOS
+    sudo apt–get install snmp                # Ubuntu
     ```
 
 - 在 DataKit 侧, 配置采集。
 
-## 自定义设备的 OID 配置 {#custom-oid}
+## 高级功能 {#advanced-features}
+
+### 自定义设备的 OID 配置 {#advanced-custom-oid}
 
 如果你发现被采集的设备上报的数据中没有你想要的指标，那么，你可以需要为该设备额外定义一份 Profile。
 
 设备的所有 OID 一般都可以在其官网上下载。Datakit 定义了一些通用的 OID，以及 Cisco/Dell/HP 等部分设备。根据 SNMP 协议，各设备生产商可以自定义 [OID](https://www.dpstele.com/snmp/what-does-oid-network-elements.php)，用于标识其内部特殊对象。如果想要标识这些，你需要自定义设备的配置(我们这里称这种配置为 Profile，即 "自定义 Profile")，方法如下。
+
+要增加指标或者自定义配置，需要列出 MIB name, table name, table OID, symbol 和 symbol OID，例如:
+
+```yaml
+- MIB: EXAMPLE-MIB
+    table:
+      # Identification of the table which metrics come from.
+      OID: 1.3.6.1.4.1.10
+      name: exampleTable
+    symbols:
+      # List of symbols ('columns') to retrieve.
+      # Same format as for a single OID.
+      # Each row in the table emits these metrics.
+      - OID: 1.3.6.1.4.1.10.1.1
+        name: exampleColumn1
+```
+
+下面是一个操作示例。
 
 在 Datakit 的安装目录的路径 `conf.d/snmp/profiles` 下，如下所示创建 yml 文件 `cisco-3850.yaml` (这里以 Cisco 3850 为例):
 
@@ -185,7 +239,9 @@ metadata:
 
 如上所示，定义了一个 `sysobjectid` 为 `1.3.6.1.4.1.9.1.1745` 的设备，下次 Datakit 如果采集到 `sysobjectid` 相同的设备时，便会应用该文件，在此情况下，采集到 OID 为 `1.3.6.1.4.1.9.3.6.3.0` 的数据便会上报为名称是 `chassisId` 的指标。
 
-> 注意: `conf.d/snmp/profiles` 这个文件夹需要 SNMP 采集器运行一次后才会出现。
+???+ attention
+
+    `conf.d/snmp/profiles` 这个文件夹需要 SNMP 采集器运行一次后才会出现。
 
 ## 指标集 {#measurements}
 
@@ -212,90 +268,96 @@ metadata:
 
 
 
-#### `snmp`
+#### `snmp_metric`
 
-采集 SNMP 设备指标的数据
+SNMP device metric data.
 
 - 标签
 
 
 | Tag | Descrition |
 |  ----  | --------|
-|`cpu`|CPU index.|
+|`cpu`|CPU index. Optional.|
 |`device_vendor`|Device vendor.|
-|`entity_name`|Device entity name.|
-|`host`|Device name.|
-|`interface`|Device interface.|
-|`interface_alias`|Device interface alias.|
-|`mac_addr`|Device MAC address|
-|`mem`|Memory index.|
-|`mem_pool_name`|Memory pool name.|
-|`power_source`|Power source.|
-|`power_status_descr`|Power status description.|
+|`entity_name`|Device entity name. Optional.|
+|`host`|Device host, replace with IP.|
+|`interface`|Device interface. Optional.|
+|`interface_alias`|Device interface alias. Optional.|
+|`ip`|Device IP.|
+|`mac_addr`|Device MAC address. Optional.|
+|`mem`|Memory index. Optional.|
+|`mem_pool_name`|Memory pool name. Optional.|
+|`name`|Device name, replace with IP.|
+|`power_source`|Power source. Optional.|
+|`power_status_descr`|Power status description. Optional.|
+|`sensor_id`|Sensor ID. Optional.|
+|`sensor_type`|Sensor type. Optional.|
+|`snmp_host`|Device host.|
 |`snmp_profile`|Device SNMP profile file.|
-|`temp_index`|Temperature index.|
-|`temp_state`|Temperature state.|
+|`temp_index`|Temperature index. Optional.|
+|`temp_state`|Temperature state. Optional.|
 
 - 字段列表
 
 
 | Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`cieIfInputQueueDrops`|[Cisco only] (Shown as packet) The number of input packets dropped.|int|count|
-|`cieIfLastInTime`|[Cisco only] (Shown as millisecond) The elapsed time in milliseconds since the last protocol input packet was received.|int|msec|
-|`cieIfLastOutTime`|[Cisco only] (Shown as millisecond) The elapsed time in milliseconds since the last protocol output packet was transmitted.|int|msec|
-|`cieIfOutputQueueDrops`|[Cisco only] (Shown as packet) The number of output packets dropped by the interface even though no error was detected to prevent them being transmitted.|int|count|
-|`cieIfResetCount`|[Cisco only] The number of times the interface was internally reset and brought up.|int|count|
-|`ciscoEnvMonFanState`|[Cisco only] The current state of the fan being instrumented.|int|count|
-|`ciscoEnvMonSupplyState`|[Cisco only] The current state of the power supply being instrumented.|int|count|
-|`ciscoEnvMonTemperatureStatusValue`|[Cisco only] The current value of the testpoint being instrumented.|int|count|
-|`ciscoMemoryPoolFree`|[Cisco only] Indicates the number of bytes from the memory pool that are currently unused on the managed device.|int|count|
-|`ciscoMemoryPoolLargestFree`|[Cisco only] Indicates the largest number of contiguous bytes from the memory pool that are currently unused on the managed device.|int|count|
-|`ciscoMemoryPoolUsed`|[Cisco only] Indicates the number of bytes from the memory pool that are currently in use by applications on the managed device.|int|count|
+|`cieIfInputQueueDrops`|[Cisco only] (Shown as packet) The number of input packets dropped.|float|count|
+|`cieIfLastInTime`|[Cisco only] (Shown as millisecond) The elapsed time in milliseconds since the last protocol input packet was received.|float|ms|
+|`cieIfLastOutTime`|[Cisco only] (Shown as millisecond) The elapsed time in milliseconds since the last protocol output packet was transmitted.|float|ms|
+|`cieIfOutputQueueDrops`|[Cisco only] (Shown as packet) The number of output packets dropped by the interface even though no error was detected to prevent them being transmitted.|float|count|
+|`cieIfResetCount`|[Cisco only] The number of times the interface was internally reset and brought up.|float|count|
+|`ciscoEnvMonFanState`|[Cisco only] The current state of the fan being instrumented.|float|count|
+|`ciscoEnvMonSupplyState`|[Cisco only] The current state of the power supply being instrumented.|float|count|
+|`ciscoEnvMonTemperatureStatusValue`|[Cisco only] The current value of the testpoint being instrumented.|float|count|
+|`ciscoMemoryPoolFree`|[Cisco only] Indicates the number of bytes from the memory pool that are currently unused on the managed device.|float|count|
+|`ciscoMemoryPoolLargestFree`|[Cisco only] Indicates the largest number of contiguous bytes from the memory pool that are currently unused on the managed device.|float|count|
+|`ciscoMemoryPoolUsed`|[Cisco only] Indicates the number of bytes from the memory pool that are currently in use by applications on the managed device.|float|count|
 |`cpmCPUTotal1minRev`|[Cisco only] [Shown as percent] The overall CPU busy percentage in the last 1 minute period.|float|percent|
 |`cpmCPUTotalMonIntervalValue`|[Cisco only] (Shown as percent) The overall CPU busy percentage in the last cpmCPUMonInterval period.|float|percent|
 |`cpuUsage`|(Shown as percent) Percentage of CPU currently being used.|float|percent|
-|`cswStackPortOperStatus`|[Cisco only] The state of the stackport.|int|count|
-|`cswSwitchState`|[Cisco only] The current state of a switch.|int|count|
-|`ifAdminStatus`|The desired state of the interface.|int|-|
+|`cswStackPortOperStatus`|[Cisco only] The state of the stackport.|float|count|
+|`cswSwitchState`|[Cisco only] The current state of a switch.|float|count|
+|`entSensorValue`|[Cisco only] The most recent measurement seen by the sensor.|float|count|
+|`ifAdminStatus`|The desired state of the interface.|float|-|
 |`ifBandwidthInUsageRate`|(Shown as percent) The percent rate of used received bandwidth.|float|percent|
 |`ifBandwidthOutUsageRate`|(Shown as percent) The percent rate of used sent bandwidth.|float|percent|
-|`ifHCInBroadcastPkts`|(Shown as packet) The number of packets delivered by this sub-layer to a higher (sub-)layer that were addressed to a broadcast address at this sub-layer.|int|count|
-|`ifHCInMulticastPkts`|(Shown as packet) The number of packets delivered by this sub-layer to a higher (sub-)layer which were addressed to a multicast address at this sub-layer.|int|count|
-|`ifHCInOctets`|(Shown as byte) The total number of octets received on the interface including framing characters.|int|count|
-|`ifHCInOctetsRate`|(Shown as byte) The total number of octets received on the interface including framing characters.|int|-|
-|`ifHCInUcastPkts`|(Shown as packet) The number of packets delivered by this sub-layer to a higher (sub-)layer that were not addressed to a multicast or broadcast address at this sub-layer.|int|count|
-|`ifHCOutBroadcastPkts`|(Shown as packet) The total number of packets that higher-level protocols requested be transmitted that were addressed to a broadcast address at this sub-layer, including those that were discarded or not sent.|int|count|
-|`ifHCOutMulticastPkts`|(Shown as packet) The total number of packets that higher-level protocols requested be transmitted that were addressed to a multicast address at this sub-layer including those that were discarded or not sent.|int|count|
-|`ifHCOutOctets`|(Shown as byte) The total number of octets transmitted out of the interface including framing characters.|int|count|
-|`ifHCOutOctetsRate`|(Shown as byte) The total number of octets transmitted out of the interface including framing characters.|int|count|
-|`ifHCOutUcastPkts`|(Shown as packet) The total number of packets higher-level protocols requested be transmitted that were not addressed to a multicast or broadcast address at this sub-layer including those that were discarded or not sent.|int|count|
-|`ifHighSpeed`|An estimate of the interface's current bandwidth in units of 1,000,000 bits per second, or the nominal bandwidth.|int|count|
-|`ifInDiscards`|(Shown as packet) The number of inbound packets chosen to be discarded even though no errors had been detected to prevent them being deliverable to a higher-layer protocol.|int|count|
-|`ifInDiscardsRate`|(Shown as packet) The number of inbound packets chosen to be discarded even though no errors had been detected to prevent them being deliverable to a higher-layer protocol.|int|count|
-|`ifInErrors`|(Shown as packet) The number of inbound packets that contained errors preventing them from being deliverable to a higher-layer protocol.|int|count|
-|`ifInErrorsRate`|(Shown as packet) The number of inbound packets that contained errors preventing them from being deliverable to a higher-layer protocol.|int|count|
-|`ifNumber`|Number of interface.|int|-|
-|`ifOperStatus`|(Shown as packet) The current operational state of the interface.|int|count|
-|`ifOutDiscards`|(Shown as packet) The number of outbound packets chosen to be discarded even though no errors had been detected to prevent them being transmitted.|int|count|
-|`ifOutDiscardsRate`|(Shown as packet) The number of outbound packets chosen to be discarded even though no errors had been detected to prevent them being transmitted.|int|count|
-|`ifOutErrors`|(Shown as packet) The number of outbound packets that could not be transmitted because of errors.|int|count|
-|`ifOutErrorsRate`|(Shown as packet) The number of outbound packets that could not be transmitted because of errors.|int|count|
-|`ifSpeed`|An estimate of the interface's current bandwidth in bits per second, or the nominal bandwidth.|int|count|
+|`ifHCInBroadcastPkts`|(Shown as packet) The number of packets delivered by this sub-layer to a higher (sub-)layer that were addressed to a broadcast address at this sub-layer.|float|count|
+|`ifHCInMulticastPkts`|(Shown as packet) The number of packets delivered by this sub-layer to a higher (sub-)layer which were addressed to a multicast address at this sub-layer.|float|count|
+|`ifHCInOctets`|(Shown as byte) The total number of octets received on the interface including framing characters.|float|count|
+|`ifHCInOctetsRate`|(Shown as byte) The total number of octets received on the interface including framing characters.|float|-|
+|`ifHCInUcastPkts`|(Shown as packet) The number of packets delivered by this sub-layer to a higher (sub-)layer that were not addressed to a multicast or broadcast address at this sub-layer.|float|count|
+|`ifHCOutBroadcastPkts`|(Shown as packet) The total number of packets that higher-level protocols requested be transmitted that were addressed to a broadcast address at this sub-layer, including those that were discarded or not sent.|float|count|
+|`ifHCOutMulticastPkts`|(Shown as packet) The total number of packets that higher-level protocols requested be transmitted that were addressed to a multicast address at this sub-layer including those that were discarded or not sent.|float|count|
+|`ifHCOutOctets`|(Shown as byte) The total number of octets transmitted out of the interface including framing characters.|float|count|
+|`ifHCOutOctetsRate`|(Shown as byte) The total number of octets transmitted out of the interface including framing characters.|float|count|
+|`ifHCOutUcastPkts`|(Shown as packet) The total number of packets higher-level protocols requested be transmitted that were not addressed to a multicast or broadcast address at this sub-layer including those that were discarded or not sent.|float|count|
+|`ifHighSpeed`|An estimate of the interface's current bandwidth in units of 1,000,000 bits per second, or the nominal bandwidth.|float|count|
+|`ifInDiscards`|(Shown as packet) The number of inbound packets chosen to be discarded even though no errors had been detected to prevent them being deliverable to a higher-layer protocol.|float|count|
+|`ifInDiscardsRate`|(Shown as packet) The number of inbound packets chosen to be discarded even though no errors had been detected to prevent them being deliverable to a higher-layer protocol.|float|count|
+|`ifInErrors`|(Shown as packet) The number of inbound packets that contained errors preventing them from being deliverable to a higher-layer protocol.|float|count|
+|`ifInErrorsRate`|(Shown as packet) The number of inbound packets that contained errors preventing them from being deliverable to a higher-layer protocol.|float|count|
+|`ifNumber`|Number of interface.|float|-|
+|`ifOperStatus`|(Shown as packet) The current operational state of the interface.|float|count|
+|`ifOutDiscards`|(Shown as packet) The number of outbound packets chosen to be discarded even though no errors had been detected to prevent them being transmitted.|float|count|
+|`ifOutDiscardsRate`|(Shown as packet) The number of outbound packets chosen to be discarded even though no errors had been detected to prevent them being transmitted.|float|count|
+|`ifOutErrors`|(Shown as packet) The number of outbound packets that could not be transmitted because of errors.|float|count|
+|`ifOutErrorsRate`|(Shown as packet) The number of outbound packets that could not be transmitted because of errors.|float|count|
+|`ifSpeed`|An estimate of the interface's current bandwidth in bits per second, or the nominal bandwidth.|float|count|
 |`memoryFree`|(Shown as percent) The percentage of memory not being used.|float|percent|
 |`memoryUsage`|(Shown as percent) The percentage of memory currently being used.|float|percent|
-|`memoryUsed`|(Shown as byte) Number of bytes of memory currently being used.|int|count|
-|`sysUpTimeInstance`|The time (in hundredths of a second) since the network management portion of the system was last re-initialized.|int|count|
-|`tcpActiveOpens`|The number of times that TCP connections have made a direct transition to the SYN-SENT state from the CLOSED state.|int|count|
-|`tcpAttemptFails`|The number of times that TCP connections have made a direct transition to the CLOSED state from either the SYN-SENT state or the SYN-RCVD state, or to the LISTEN state from the SYN-RCVD state.|int|count|
-|`tcpCurrEstab`|The number of TCP connections for which the current state is either ESTABLISHED or CLOSE-WAIT.|int|-|
-|`tcpEstabResets`|The number of times that TCP connections have made a direct transition to the CLOSED state from either the ESTABLISHED state or the CLOSE-WAIT state.|int|count|
-|`tcpInErrs`|(Shown as segment) The total number of segments received in error (e.g., bad TCP checksums).|int|count|
-|`tcpOutRsts`|(Shown as segment) The number of TCP segments sent containing the RST flag.|int|count|
-|`tcpPassiveOpens`|(Shown as connection) The number of times TCP connections have made a direct transition to the SYN-RCVD state from the LISTEN state.|int|count|
-|`tcpRetransSegs`|(Shown as segment) The total number of segments retransmitted; that is, the number of TCP segments transmitted containing one or more previously transmitted octets.|int|count|
-|`udpInErrors`|(Shown as datagram) The number of received UDP datagrams that could not be delivered for reasons other than the lack of an application at the destination port.|int|count|
-|`udpNoPorts`|(Shown as datagram) The total number of received UDP datagrams for which there was no application at the destination port.|int|count|
+|`memoryUsed`|(Shown as byte) Number of bytes of memory currently being used.|float|count|
+|`sysUpTimeInstance`|The time (in hundredths of a second) since the network management portion of the system was last re-initialized.|float|count|
+|`tcpActiveOpens`|The number of times that TCP connections have made a direct transition to the SYN-SENT state from the CLOSED state.|float|count|
+|`tcpAttemptFails`|The number of times that TCP connections have made a direct transition to the CLOSED state from either the SYN-SENT state or the SYN-RCVD state, or to the LISTEN state from the SYN-RCVD state.|float|count|
+|`tcpCurrEstab`|The number of TCP connections for which the current state is either ESTABLISHED or CLOSE-WAIT.|float|-|
+|`tcpEstabResets`|The number of times that TCP connections have made a direct transition to the CLOSED state from either the ESTABLISHED state or the CLOSE-WAIT state.|float|count|
+|`tcpInErrs`|(Shown as segment) The total number of segments received in error (e.g., bad TCP checksums).|float|count|
+|`tcpOutRsts`|(Shown as segment) The number of TCP segments sent containing the RST flag.|float|count|
+|`tcpPassiveOpens`|(Shown as connection) The number of times TCP connections have made a direct transition to the SYN-RCVD state from the LISTEN state.|float|count|
+|`tcpRetransSegs`|(Shown as segment) The total number of segments retransmitted; that is, the number of TCP segments transmitted containing one or more previously transmitted octets.|float|count|
+|`udpInErrors`|(Shown as datagram) The number of received UDP datagrams that could not be delivered for reasons other than the lack of an application at the destination port.|float|count|
+|`udpNoPorts`|(Shown as datagram) The total number of received UDP datagrams for which there was no application at the destination port.|float|count|
 
 
 
@@ -306,91 +368,34 @@ metadata:
 
 
 
-#### `snmp`
+#### `snmp_object`
 
-采集 SNMP 设备对象的数据
+SNMP device object data.
 
 - 标签
 
 
 | Tag | Descrition |
 |  ----  | --------|
-|`cpu`|CPU index.|
 |`device_vendor`|Device vendor.|
-|`entity_name`|Device entity name.|
-|`host`|Device name.|
-|`interface`|Device interface.|
-|`interface_alias`|Device interface alias.|
-|`mac_addr`|Device MAC address|
-|`mem`|Memory index.|
-|`mem_pool_name`|Memory pool name.|
-|`power_source`|Power source.|
-|`power_status_descr`|Power status description.|
+|`host`|Device host, replace with IP.|
+|`ip`|Device IP.|
+|`name`|Device name, replace with IP.|
+|`snmp_host`|Device host.|
 |`snmp_profile`|Device SNMP profile file.|
-|`temp_index`|Temperature index.|
-|`temp_state`|Temperature state.|
 
 - 字段列表
 
 
 | Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`cieIfInputQueueDrops`|[Cisco only] (Shown as packet) The number of input packets dropped.|int|count|
-|`cieIfLastInTime`|[Cisco only] (Shown as millisecond) The elapsed time in milliseconds since the last protocol input packet was received.|int|msec|
-|`cieIfLastOutTime`|[Cisco only] (Shown as millisecond) The elapsed time in milliseconds since the last protocol output packet was transmitted.|int|msec|
-|`cieIfOutputQueueDrops`|[Cisco only] (Shown as packet) The number of output packets dropped by the interface even though no error was detected to prevent them being transmitted.|int|count|
-|`cieIfResetCount`|[Cisco only] The number of times the interface was internally reset and brought up.|int|count|
-|`ciscoEnvMonFanState`|[Cisco only] The current state of the fan being instrumented.|int|count|
-|`ciscoEnvMonSupplyState`|[Cisco only] The current state of the power supply being instrumented.|int|count|
-|`ciscoEnvMonTemperatureStatusValue`|[Cisco only] The current value of the testpoint being instrumented.|int|count|
-|`ciscoMemoryPoolFree`|[Cisco only] Indicates the number of bytes from the memory pool that are currently unused on the managed device.|int|count|
-|`ciscoMemoryPoolLargestFree`|[Cisco only] Indicates the largest number of contiguous bytes from the memory pool that are currently unused on the managed device.|int|count|
-|`ciscoMemoryPoolUsed`|[Cisco only] Indicates the number of bytes from the memory pool that are currently in use by applications on the managed device.|int|count|
-|`cpmCPUTotal1minRev`|[Cisco only] [Shown as percent] The overall CPU busy percentage in the last 1 minute period.|float|percent|
-|`cpmCPUTotalMonIntervalValue`|[Cisco only] (Shown as percent) The overall CPU busy percentage in the last cpmCPUMonInterval period.|float|percent|
-|`cpuUsage`|(Shown as percent) Percentage of CPU currently being used.|float|percent|
-|`cswStackPortOperStatus`|[Cisco only] The state of the stackport.|int|count|
-|`cswSwitchState`|[Cisco only] The current state of a switch.|int|count|
-|`device_meta`|Device meta data(JSON format).|string|-|
-|`ifAdminStatus`|The desired state of the interface.|int|-|
-|`ifBandwidthInUsageRate`|(Shown as percent) The percent rate of used received bandwidth.|float|percent|
-|`ifBandwidthOutUsageRate`|(Shown as percent) The percent rate of used sent bandwidth.|float|percent|
-|`ifHCInBroadcastPkts`|(Shown as packet) The number of packets delivered by this sub-layer to a higher (sub-)layer that were addressed to a broadcast address at this sub-layer.|int|count|
-|`ifHCInMulticastPkts`|(Shown as packet) The number of packets delivered by this sub-layer to a higher (sub-)layer which were addressed to a multicast address at this sub-layer.|int|count|
-|`ifHCInOctets`|(Shown as byte) The total number of octets received on the interface including framing characters.|int|count|
-|`ifHCInOctetsRate`|(Shown as byte) The total number of octets received on the interface including framing characters.|int|-|
-|`ifHCInUcastPkts`|(Shown as packet) The number of packets delivered by this sub-layer to a higher (sub-)layer that were not addressed to a multicast or broadcast address at this sub-layer.|int|count|
-|`ifHCOutBroadcastPkts`|(Shown as packet) The total number of packets that higher-level protocols requested be transmitted that were addressed to a broadcast address at this sub-layer, including those that were discarded or not sent.|int|count|
-|`ifHCOutMulticastPkts`|(Shown as packet) The total number of packets that higher-level protocols requested be transmitted that were addressed to a multicast address at this sub-layer including those that were discarded or not sent.|int|count|
-|`ifHCOutOctets`|(Shown as byte) The total number of octets transmitted out of the interface including framing characters.|int|count|
-|`ifHCOutOctetsRate`|(Shown as byte) The total number of octets transmitted out of the interface including framing characters.|int|count|
-|`ifHCOutUcastPkts`|(Shown as packet) The total number of packets higher-level protocols requested be transmitted that were not addressed to a multicast or broadcast address at this sub-layer including those that were discarded or not sent.|int|count|
-|`ifHighSpeed`|An estimate of the interface's current bandwidth in units of 1,000,000 bits per second, or the nominal bandwidth.|int|count|
-|`ifInDiscards`|(Shown as packet) The number of inbound packets chosen to be discarded even though no errors had been detected to prevent them being deliverable to a higher-layer protocol.|int|count|
-|`ifInDiscardsRate`|(Shown as packet) The number of inbound packets chosen to be discarded even though no errors had been detected to prevent them being deliverable to a higher-layer protocol.|int|count|
-|`ifInErrors`|(Shown as packet) The number of inbound packets that contained errors preventing them from being deliverable to a higher-layer protocol.|int|count|
-|`ifInErrorsRate`|(Shown as packet) The number of inbound packets that contained errors preventing them from being deliverable to a higher-layer protocol.|int|count|
-|`ifNumber`|Number of interface.|int|-|
-|`ifOperStatus`|(Shown as packet) The current operational state of the interface.|int|count|
-|`ifOutDiscards`|(Shown as packet) The number of outbound packets chosen to be discarded even though no errors had been detected to prevent them being transmitted.|int|count|
-|`ifOutDiscardsRate`|(Shown as packet) The number of outbound packets chosen to be discarded even though no errors had been detected to prevent them being transmitted.|int|count|
-|`ifOutErrors`|(Shown as packet) The number of outbound packets that could not be transmitted because of errors.|int|count|
-|`ifOutErrorsRate`|(Shown as packet) The number of outbound packets that could not be transmitted because of errors.|int|count|
-|`ifSpeed`|An estimate of the interface's current bandwidth in bits per second, or the nominal bandwidth.|int|count|
-|`memoryFree`|(Shown as percent) The percentage of memory not being used.|float|percent|
-|`memoryUsage`|(Shown as percent) The percentage of memory currently being used.|float|percent|
-|`memoryUsed`|(Shown as byte) Number of bytes of memory currently being used.|int|count|
-|`sysUpTimeInstance`|The time (in hundredths of a second) since the network management portion of the system was last re-initialized.|int|count|
-|`tcpActiveOpens`|The number of times that TCP connections have made a direct transition to the SYN-SENT state from the CLOSED state.|int|count|
-|`tcpAttemptFails`|The number of times that TCP connections have made a direct transition to the CLOSED state from either the SYN-SENT state or the SYN-RCVD state, or to the LISTEN state from the SYN-RCVD state.|int|count|
-|`tcpCurrEstab`|The number of TCP connections for which the current state is either ESTABLISHED or CLOSE-WAIT.|int|-|
-|`tcpEstabResets`|The number of times that TCP connections have made a direct transition to the CLOSED state from either the ESTABLISHED state or the CLOSE-WAIT state.|int|count|
-|`tcpInErrs`|(Shown as segment) The total number of segments received in error (e.g., bad TCP checksums).|int|count|
-|`tcpOutRsts`|(Shown as segment) The number of TCP segments sent containing the RST flag.|int|count|
-|`tcpPassiveOpens`|(Shown as connection) The number of times TCP connections have made a direct transition to the SYN-RCVD state from the LISTEN state.|int|count|
-|`tcpRetransSegs`|(Shown as segment) The total number of segments retransmitted; that is, the number of TCP segments transmitted containing one or more previously transmitted octets.|int|count|
-|`udpInErrors`|(Shown as datagram) The number of received UDP datagrams that could not be delivered for reasons other than the lack of an application at the destination port.|int|count|
-|`udpNoPorts`|(Shown as datagram) The total number of received UDP datagrams for which there was no application at the destination port.|int|count|
+|`all`|Device all data (JSON format).|string|-|
+|`cpus`|Device CPUs (JSON format).|string|-|
+|`device_meta`|Device meta data (JSON format).|string|-|
+|`interfaces`|Device network interfaces (JSON format).|string|-|
+|`mem_pool_names`|Device memory pool names (JSON format).|string|-|
+|`mems`|Device memorys (JSON format).|string|-|
+|`sensors`|Device sensors (JSON format).|string|-|
 
 
 
@@ -398,3 +403,25 @@ metadata:
 
 
 
+
+## FAQ {#faq}
+
+### Datakit 是如何发现设备的? {#faq-discover}
+
+Datakit 支持 "指定设备" 和 "自动发现" 两种模式。两种模式可以同时开启。
+
+指定设备模式下，Datakit 与指定 IP 的设备使用 SNMP 协议进行通信，可以获知其目前在线状态。
+
+自动发现模式下，Datakit 向指定 IP 网段内的所有地址逐一发送 SNMP 协议数据包，如果其响应可以匹配到相应的 Profile，那么 Datakit 认为该 IP 上有一个 SNMP 设备。
+
+### 在[观测云](https://console.guance.com/){:target="_blank"}上看不到我想要的指标，怎么办? {#faq-not-support}
+
+Datakit 可以从所有 SNMP 设备中收集通用的基线指标。如果你发现被采集的设备上报的数据中没有你想要的指标，那么，你可以需要为该设备[自定义一份 Profile](snmp.md#advanced-custom-oid)。
+
+为了完成上述工作，你很可能需要从设备厂商的官网下载该设备型号的 OID 手册。
+
+### 为什么我开启了 SNMP 设备采集但是在[观测云](https://console.guance.com/){:target="_blank"}上看不到指标? {#faq-no-metrics}
+
+尝试为你的设备放开 ACLs/防火墙 规则。
+
+可以在运行 Datakit 的主机上运行命令 `snmpwalk -O bentU -v 2c -c <COMMUNITY_STRING> <IP_ADDRESS>:<PORT> 1.3.6`。如果得到一个没有任何响应的超时，很可能是有什么东西阻止了 Datakit 从你的设备上收集指标。

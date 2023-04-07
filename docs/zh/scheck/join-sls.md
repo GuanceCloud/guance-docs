@@ -1,7 +1,7 @@
 # Scheck 连接阿里云日志系统方案
 
-- 版本：1.0.7-6-gd485c74
-- 发布日期：2022-10-10 08:24:38
+- 版本：1.0.7-7-g251eead
+- 发布日期：2023-04-06 11:17:57
 - 操作系统支持：windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64
 
 ## 前提条件
@@ -72,7 +72,7 @@
 
   ![sls.png](https://security-checker-prod.oss-cn-hangzhou.aliyuncs.com/img/sls.png)
 
-## Grafana 对接阿里云日志
+## Grafana 对接 阿里云日志
 
 [官方文档](https://help.aliyun.com/document_detail/60952.html?spm=5176.21213303.J_6028563670.7.65713edaY7xSV2&scm=20140722)
 
@@ -86,7 +86,7 @@
 
 ### 安装grafana
 
-#### 1.docker 安装grafana 
+#### 1.docker 安装grafana
 
 ```sh
 docker run \

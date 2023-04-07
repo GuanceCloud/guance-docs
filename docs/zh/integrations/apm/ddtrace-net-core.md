@@ -24,7 +24,7 @@ icon: material/dot-net
 ### 前置条件
 
 - 需要进行链路追踪的应用服务器<[安装 DataKit](../../datakit/datakit-install.md)>
-- [下载 ddtrace-.net-agent](https://github.com/DataDog/dd-trace-dotnet/releases)，可根据需求下载 x86、arm64 或者其他版本的 agent。
+- [按需下载对应 agent](https://github.com/DataDog/dd-trace-dotnet)
 - <[ddtrace -.net core -agent 框架兼容列表](https://docs.datadoghq.com/tracing/setup_overview/compatibility_requirements/dotnet-core)>
 
 > **注意：**.NET Tracer 目前支持 .NET Core 2.1、3.1 和 .NET 5 、6 上的应用追踪。

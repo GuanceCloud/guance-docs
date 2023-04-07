@@ -7,6 +7,61 @@ icon: zy/release-notes
 
 本文档记录观测云每次上线发布的更新内容说明，包括 DataKit、观测云最佳实践、观测云集成文档和观测云。
 
+## 2023 年 4 月 6 号
+
+### 观测云更新
+
+- 日志新增 3 天数据保存策略和定价，计费相关请参考文档 [计费方式](../billing/billing-method/index.md) 。
+- 日志新增 [数据访问](../logs/logdata-access.md) 权限控制，支持将某个范围内的日志数据查看权限授予给相关角色
+- [角色权限清单](../management/role-list.md) 新增各功能模块数据查询权限，支持自定义角色配置对应模块的数据查询权限入口
+- 标准成员新增 “快照管理” 权限，支持快照增删操作
+- [快照分享](../logs/logdata-access.md#snapshot) 支持搜索功能。（日志 DQL 查询模式下不支持调整搜索范围）
+- 支持本地 Func 通过 websocket 协议创建 [自定义的通知对象](../monitoring/notify-object.md#custom)，实现外部通知渠道接收告警通知
+- 查看器新增 [copy as cURL](../logs/explorer.md#copy-as-curl) 数据查询功能
+- 仪表板图表配置交互优化
+    - [概览图](../scene/visual-chart/overview-chart.md) 新增数值单位选项配置，支持选择中国科学记数法进位（default）和短级差制（short scale）
+    - 新增 [视图变量](../scene/view-variable.md) 是否应用到图表效果显示
+    - 图表存在分组条件时，支持将某个分组条件值反向应用到视图变量实现联动筛选
+    - 图表存在分组条件时，选中某个分组条件对应时间线或数据点时支持其他图表中相同分组联动高亮显示
+    - 图表拖拽效果优化
+- [账号无操作会话过期时间](../management/account-management.md#login-hold-time) 默认调整为 3 小时，此次调整仅针对未编辑过无操作会话过期时间配置的账号，不影响已编辑过的无操作会话过期时间配置的账号。
+- [筛选历史](../getting-started/function-details/explorer-search.md#filter-history) 新增搜索条件保存
+- 用户访问监测 [应用 SDK 接入](../real-user-monitoring/web/app-access.md) 引导优化
+- [生成指标](../logs/generate-metrics.md) 配置优化，支持针对新生成的指标配置单位和描述
+- [主机查看器](../infrastructure/host.md#label) 支持多行显示，多行模式下 label 将另起一行显示
+- [时序图](../scene/visual-chart/timeseries-chart.md)、[饼图](../scene/visual-chart/pie-chart.md)新增返回显示数量配置
+
+### DataKit 更新
+
+**新加功能**
+
+- 新增伺服服务，用来管理 Datakit 升级
+- 新增故障排查功能
+
+**功能优化**
+
+- 优化升级功能，避免 datakit.conf 文件被破坏
+- 优化 cgroup 配置，移除 CPU 最小值限制
+- 优化 self 采集器，我们能选择是否开启该采集器，同时对其采集性能做了一些优化
+- Prom 采集器允许增加 instance tag，以保持跟原生 Prometheus 体系一致
+- DCA 增加 Kubernetes 部署方式
+- 优化日志采集的磁盘缓存性能
+- 优化 Datakit 自身指标体系，暴露更多 Prometheus 指标
+- 优化 /v1/write
+- 优化安装过程中 token 出错提示
+- monitor 支持自动从 datakit.conf 中获取连接地址
+- 取消 eBPF 对内核版本的强制检查，尽量支持更多的内核版本
+- Kafka 订阅采集支持多行 json 功能
+- 优化 IO 模块的配置，新增上传 worker 数配置字段
+
+**兼容调整**
+
+- 本次移除了大部分 Sinker 功能，只保留了 Dataway 上的 Sinker 功能。同时 sinker 的主机安装配置以及 Kubernetes 安装配置都做了调整，其中的配置方式也跟之前不同，请大家升级的时候，注意调整
+- 老版本的发送失败磁盘缓存由于性能问题，我们替换了实现方式。新的实现方式，其缓存的二进制格式不再兼容，如果升级的话，老的数据将不被识别。建议先手动删除老的缓存数据（老数据可能会影响新版本磁盘缓存），然后再升级新版本的 Datakit。尽管如此，新版本的磁盘缓存，仍然是一个实验性功能，请谨慎使用
+- Datakit 自身指标体系做了更新，原有 DCA 获取到的指标将有一定的缺失，但不影响 DCA 本身功能的运行
+
+更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md) 。
+
 ## 2023 年 3 月 23 号
 
 ### 观测云更新

@@ -44,7 +44,7 @@ DataKit 安装完成后，默认会开启一批采集器，无需手动开启。
 | [host_processes](host_processes.md) | 采集主机上常驻（存活 10min 以上）进程列表                                      |
 | [hostobject](hostobject.md)         | 采集主机基础信息（如操作系统信息、硬件信息等）                                 |
 | [container](container.md)           | 采集主机上可能的容器或 Kubernetes 数据，假定主机上没有容器，则采集器会直接退出 |
-
+| [self](self.md)                     | 采集 datakit 自己的运行情况，包括 CPU、Memory 等等 |
 
 ## 修改采集器配置 {#modify-input-conf}
 
@@ -137,6 +137,7 @@ DataKit 安装完成后，默认会开启一批采集器，无需手动开启。
 | [host_processes](host_processes.md)   | 采集主机上常驻（存活 10min 以上）进程列表                                      |
 | [hostobject](hostobject.md)           | 采集主机基础信息（如操作系统信息、硬件信息等）                                 |
 | [container](container.md)             | 采集主机上可能的容器或 Kubernetes 数据，假定主机上没有容器，则采集器会直接退出 |
+| [self](self.md)                       | 采集 datakit 自己的运行情况，包括 CPU、Memory 等等 |
 
 ### 关闭具体采集器 {#disable-inputs}
 
@@ -199,7 +200,6 @@ DataKit 安装完成后，默认会开启一批采集器，无需手动开启。
 </figure>
 
 另外，由于 DataKit 中的配置均使用 Toml，故建议大家使用 `'''这里是一个具体的正则表达式'''` 的方式来填写正则（即正则俩边分别用三个英文单引号），这样可以避免一些复杂的转义。
-
 
 ## 更多阅读 {#more}
 

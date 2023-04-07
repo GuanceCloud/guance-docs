@@ -46,46 +46,55 @@ NGINX 采集器可以从 NGINX 实例中采取很多指标，比如请求总数�
 
 ## 配置 {#config}
 
-进入 DataKit 安装目录下的 `conf.d/nginx` 目录，复制 `nginx.conf.sample` 并命名为 `nginx.conf`。示例如下：
+=== "主机安装"
 
-```toml
+    进入 DataKit 安装目录下的 `conf.d/nginx` 目录，复制 `nginx.conf.sample` 并命名为 `nginx.conf`。示例如下：
+    
+    ```toml
+        
+    [[inputs.nginx]]
+    	# Nginx status URL.
+    	# (Default) If not use with VTS, the formula is like this: "http://localhost:80/nginx_status".
+    	# If using with VTS, the formula is like this: "http://localhost:80/status/format/json".
+    	url = "http://localhost:80/nginx_status"
+    
+    	# ##(optional) collection interval, default is 30s
+    	# interval = "30s"
+    	use_vts = false
+    	## Optional TLS Config
+    	# tls_ca = "/xxx/ca.pem"
+    	# tls_cert = "/xxx/cert.cer"
+    	# tls_key = "/xxx/key.key"
+    	## Use TLS but skip chain & host verification
+    	insecure_skip_verify = false
+    	# HTTP response timeout (default: 5s)
+    	response_timeout = "20s"
+    
+        ## Set true to enable election
+    	election = true
+    
+    	[inputs.nginx.log]
+    	#	files = ["/var/log/nginx/access.log","/var/log/nginx/error.log"]
+    	#	# grok pipeline script path
+    	#	pipeline = "nginx.p"
+    	[inputs.nginx.tags]
+    	# some_tag = "some_value"
+    	# more_tag = "some_other_value"
+    	# ...
+    ```
+    
+    配置好后，[重启 DataKit](datakit-service-how-to.md#manage-service) 即可。
 
-[[inputs.nginx]]
-	# Nginx status URL.
-	# (Default) If not use with VTS, the formula is like this: "http://localhost:80/nginx_status".
-	# If using with VTS, the formula is like this: "http://localhost:80/status/format/json".
-	url = "http://localhost:80/nginx_status"
+=== "Kubernetes"
 
-	# ##(optional) collection interval, default is 30s
-	# interval = "30s"
-	use_vts = false
-	## Optional TLS Config
-	# tls_ca = "/xxx/ca.pem"
-	# tls_cert = "/xxx/cert.cer"
-	# tls_key = "/xxx/key.key"
-	## Use TLS but skip chain & host verification
-	insecure_skip_verify = false
-	# HTTP response timeout (default: 5s)
-	response_timeout = "20s"
+    目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
 
-    ## Set true to enable election
-	election = true
 
-	[inputs.nginx.log]
-	#	files = ["/var/log/nginx/access.log","/var/log/nginx/error.log"]
-	#	# grok pipeline script path
-	#	pipeline = "nginx.p"
-	[inputs.nginx.tags]
-	# some_tag = "some_value"
-	# more_tag = "some_other_value"
-	# ...
-```
+配置好后，重启 DataKit 即可。
 
 ???+ warn
 
     `url` 地址以 nginx 具体配置为准，一般常见的用法就是用 `/nginx_status` 这个路由。
-
-配置好后，重启 DataKit 即可。
 
 ## 指标集 {#measurements}
 

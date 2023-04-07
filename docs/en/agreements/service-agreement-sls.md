@@ -1,359 +1,337 @@
-# 观测云专属版服务协议
+# Guance Exclusive Plan Service Agreement
 ---
 
+Welcome to the Guance SAAS service.
 
 
-欢迎您使用观测云SAAS服务。
+The Guance SAAS Service User Agreement (the Agreement) is a legal agreement between **you (the User)** and **Shanghai Guance Information Technology 
+Co., Limited (the Service Provider)** to provide you with the Guance SAAS Service (the Guance Service).
 
-观测云SAAS服务用户协议（“本协议”）是**您（“用户”）**和**上海观测未来信息技术有限公司（“服务商”）**之间，就为您提供观测云SAAS服务（“观测云服务”），所达成的合法协议。
+First, the Entry into Force of the Agreement
 
+1. Taking effect after users’ confirmation: The online version of the Agreement is provided by the Service Provider. When purchasing Guance service, the User should carefully read this Agreement and keep it checked before entering the next purchase process. Once confirmed by the User, the Agreement has the effect of contract and is legally binding on the Service Provider and the User.
+
+## Definition
+
+1. Guance SAAS Service refers to a system observable product that meets the requirements of cloud, cloud native, application and business monitoring, hereinafter referred to as "Guance service".
+
+2. Guance Exclusive SAAS Service refers to the specific version of Alibaba Cloud SLS products used for underlying storage. The data is stored in the SLS instance under the user's Alibaba Cloud account, which supports open self-service flexible analysis and is exclusive to the data. At the same time, users can quickly access the log data in their own SLS instances to Guance, and analyze and process them uniformly with the link and metric data. Hereinafter referred to as “Guance Exclusive Plan”.
+
+3. Shanghai Guance Information Technology Co., Limited is the SAAS service provider of Guance, hereinafter referred to as Guance.
+
+## Use License
+
+1. Guance services are protected by copyright law, international copyright treaties and other relevant intellectual property laws, regulations and treaties. Guance services are licensed for authorized users, not sold.
+
+2. The copyright and ownership of Guance service belongs to the name of the obligee.
+
+3. According to the Agreement, the Service Provider grants the user a non-exclusive and non-transferable license to use Guance service. User shall not resell or otherwise transfer this license right for commercial benefit.
+
+## Expenses
+
+1. The Guance Expense Center will automatically generate and send your monthly usage bill of Guance service to inform you of your monthly consumption. Its use fee will be paid through your Guance Expense Center wallet.
+
+2. You will use the wallet function opened by the Guance Expense Center for each enterprise member to settle accounts, and the wallet will include the account balance formed by your recharge.
+
+3. You can use the account balance of the Guance Expense Center to purchase Guance service. Guance will settle daily according to your usage of Guance services, and deduct your account balance according to the corresponding expenses. If you have bound Alibaba Cloud account with Guance Expense Center, Then, in the process of using Guance service, Guance will generate daily usage bills according to your usage of Guance service, and synchronize them to your Alibaba Cloud account bound under Guance Expense Center, and relevant fees will be paid through your Alibaba Cloud account.
+
+4. You recharge your account through the corresponding payment methods of the client (including but not limited to mobile phones, websites and other third-party payment channels) (please see the recharge page for specific payment methods). When recharging, you can also enjoy the recharging discount granted by Guance Expense Center (if any, please refer to Recharging Agreement for details).
+
+5. When your account balance is used up, you have entered a suspended state, and Guance has the right to temporarily cancel your qualification for using Guance services.
+
+6. When you enter the suspension state for more than "15" days (including "15" days), you have entered the arrears state, and Guance has the right to take one or more of the following measures at the same time:
+  
+    - Guance has the right to temporarily cancel your qualification for using Guance services.
+
+    - Guance has the right to send you a notice of termination and unilaterally terminate Guance service, and requires you to pay 20% of the payable fees as liquidated damages for termination.
+
+    - From the date when Guance sends you the notice of termination, you should also pay a late payment fee of 0.5% of the payable fee to Guance every day.
+
+    - You have the right to process and delete and destroy the relevant data in Guance, that is, your relevant data in Guance will be cleaned up.
+
+    - Guance allows you to unlock the pause state through the expense center, and continue to use Guance after unlocking. At this time, the relevant data of Guance before unlocking will not be accessible.
+
+7. Invoicing Application: After you receive the bill recording the consumption situation of the current month in Guance Expense Center, you can choose to apply for issuing ordinary or special VAT invoices in the form of electronic invoices or ordinary paper invoices in Guance Expense Center. The invoice tax rate is determined according to national tax laws and regulations, and you should provide sufficient invoicing information at the same time. In addition, you should fill in the detailed mailing address or email address so that the invoice can be sent by Guance. If you choose to issue a paper invoice, Guance will mail the ordinary paper invoice to your mailing address after receiving the invoicing application, and the relevant expenses for sending will be borne by you; If you choose to issue an electronic invoice, Guance will send the electronic invoice to your mailbox by mail after receiving the invoicing application. If you have bound Alibaba Cloud account with Guance Expense Center, and the expenses have been paid through your Alibaba Cloud account, the relevant invoices will be issued by Alibaba Cloud for you, and the application process and rules follow the official rules of Alibaba Cloud.
+
+## Rights and Obligations of Users
+
+1. Users guarantee that all their behaviors of using Guance services comply with national laws and regulations, are legal and true, and do not infringe on the legitimate rights and interests of any third party. You must keep the access log records of your website in accordance with the provisions of the Cyber Security Law, the Measures for the Administration of Internet Information Services and other laws and regulations, including the published information content and its release time, Internet address (IP), domain name, etc., and the relevant state authorities should cooperate to provide them when inquiring according to law. You will bear the corresponding legal responsibilities caused by failing to keep relevant records as required.
+
+2. Users should pay the fees of Guance services in full and on time, otherwise the service providers reserve the right to terminate users' use of Guance services at any time, and users should bear full responsibility for the possible damage caused by the termination of Guance services by service providers.
+
+3. The user guarantees that the user shall not reverse engineer, decompile or disassemble Guance service except and only except for activities explicitly permitted by law.
+
+4. The user understands and agrees,
+
+    - Due to the limitation of the prior art, the service provided by the Service Provider may have defects, which cannot guarantee the normal execution or achieve the desired results of the user under any circumstances.
+
+    - For any damage caused by the user's use of Guance service, the user agrees that the maximum compensation limit of Guance shall not exceed 30% of the service time purchased in the month when the service availability commitment is not met (excluding the complimentary service time). For details, please refer to Annex II "Guance SaaS Service Level Agreement"
+
+5. After successfully ordering Guance service, you have the right to require Guance to provide you with services according to Guance Service Agreement and the service descriptions and technical specifications displayed on relevant pages of Guance website.
+
+6. You shall observe the use of cloud services in accordance with the Agreement.
+
+7. You are responsible for the integrity and confidentiality of the data stored on Guance platform and the commands and passwords for entering and managing various products and services on Guance platform. The loss and consequences caused by the loss or leakage of the above data, passwords and passwords due to improper maintenance or confidentiality shall be borne by you.
+
+8. You should be responsible for the source and content of your user's business data, and Guance prompts you to carefully judge the legality of the data source and content. You will bear the corresponding results and responsibilities caused by the violation of laws, regulations, departmental rules or national policies of your users' business data content.
+
+9. You understand and agree that the state secrets of the People's Republic of China are protected by law, and you have the obligation to keep the state secrets of the People's Republic of China; You should comply with the requirements of relevant confidentiality laws and regulations when using Guance services, and must not endanger the security of state secrets of the People's Republic of China.
+
+10. You should also carefully read and abide by the corresponding service instructions, technical specifications, use procedures, operation documents and other contents displayed on the website page of Guance (hereinafter referred to as "Operation Guidelines"), and operate according to relevant operation guidelines. You will bear the consequences caused by violating relevant operational guidelines; At the same time, Guance solemnly reminds you, please grasp the risks and operate carefully.
+
+## Rights and Obligations of Service Providers
+
+1. Guance shall provide services in accordance with the Agreement.
+
+2. During the service period, Guance will provide you with the following after-sales service:
+
+    - Guance will provide "5" × "8" telephone and online work order consultation service to answer your questions in use;
+
+    - Guance will provide you with fault support services, and you should report faults through online work orders; Guance will provide timely support for failures caused by your non-human operation, except for your human reasons and/or force majeure, and other matters beyond the control of Guance.
+
+    - You can also obtain other paid after-sales services through Guance. For details, please refer to the paid after-sales service contents on relevant pages of Guance website and Annex II "Guance SaaS Service Level Agreement".
+
+    - You understand that Guance cannot guarantee that the services it provides are flawless (Guance platform products cannot guarantee the absolute security of your hardware or software), but Guance promises to continuously improve the service quality and service level. Therefore, you agree that even if there are defects in the services provided by Guance, the above defects are inevitable at the technical level of the industry at that time, and they will not be regarded as Guance breach of contract. You agree to work with Guance to solve the above defects.
+
+    - Some services of Guance may have the function of account authorization management, That is, you can authorize all or part of your operation authority on the service to one or more authorized accounts designated by you. In this case, all operations under any authorized account will be regarded as your actions through your own account, and you will bear corresponding responsibilities and service fees arising therefrom.
+
+    - You should understand and acknowledge that the functions and services related to security protection, management and monitoring of Guance services provided by Guance, although these services have been tested in detail by Guance, cannot guarantee that they are fully compatible with all software and hardware systems, nor can they guarantee the complete accuracy of their software and services. In case of incompatibility and software errors, you should immediately turn off or stop using relevant functions, and contact Guance in time for technical support.
+
+## Use and Disclosure of User Data
+
+1. Guance understands and recognizes that the data you process, store, upload, download, distribute and process by other means through Guance services are all your user business data, and you fully own your user business data.
+
+2. With regard to user business data, Guance does not make any unauthorized use and disclosure except for your service requirements; Except in the following cases:
+
+    - When the relevant state organs inquire or access the user's business data according to law, Guance has the obligation to provide cooperation according to the requirements of relevant laws, regulations or policy documents and disclose it to third parties or administrative and judicial institutions;
  
+    - You and Guance will reach another consensus.
 
-一、协议的生效
+3. You can delete and change your user business data by Guance services. If you release the service or delete the data, Guance will delete your data and no longer retain the data according to your instructions. You should be careful about deleting and changing data.
 
-1、用户确认而生效：本协议由服务商提供在线版本，用户购买观测云服务时，应认真阅读本协议后，须保持本协议为勾选状态，方可进入下一步购买流程。本协议一经用户确认，即具有合同效力，对服务商和用户具有法律约束力。
+4. If you use the exclusive plan of Guance, the business data will be stored in the SLS instance of the log service under your Alibaba Cloud account. In the process of using Guance service, you do not need to pay extra for this resource. You can read the data and do self-help analysis in the SLS studio. In order to prevent the normal use of the system, you will not be able to modify and delete the data through the Alibaba Cloud SLS studio. If you need to modify and delete these data, please operate through Guance platform.
 
+5. When the service period expires, the service is terminated in advance (including the early termination agreed by both parties, the early termination caused by other reasons, etc.) or you are in arrears, Unless clearly stipulated by laws and regulations, required by competent departments or otherwise agreed by both parties, Guance will continue to store your user business data (if any) only within a certain buffer period (subject to the time limit specified in the exclusive terms, product documents and service descriptions applicable to Guance platform service), When the buffer period expires, Guance will delete all user business data, including all cached or backed-up copies, and will no longer retain any of your user business data.
+
+6. Once the user's business data is deleted, it cannot be recovered; You should bear the consequences and responsibilities caused by the deletion of data. You understand and agree that Guance has no obligation to continue to retain, export or return user business data.
+
+7. Guance abides by its security commitment to users and protects the data stored by users on Guance platform according to applicable laws.
+
+## Intellectual Property Rights
+
+1. The intellectual property rights of any information, technology or technical support, software and services provided by one party to the other party under the Agreement belong to the providing party or its legal right holder; Except with the express consent of the provider or the legal obligee, the other party has no right to copy, disseminate, transfer, license or provide others with the above knowledge achievements, otherwise it shall bear corresponding responsibilities.
+
+2. You should ensure that the materials submitted by Guance, the use of Guance service and the results produced by using Guance service do not infringe the legitimate rights and interests of any third party. Guance should ensure that the services provided to you do not infringe the legitimate rights and interests of any third party.
+
+3. If a third-party organization or individual questions or complains about the ownership of intellectual property rights of related materials involved in your use of Guance service, Or question or complain about the ownership of intellectual property rights of Guance service you use, both you and Guance have the responsibility to issue relevant intellectual property certification materials and cooperate with each other in handling relevant complaints. The breaching party shall be responsible for the settlement of any claim, action or possible action against it arising therefrom, bear the costs and losses, and exonerate the other party from liability.
+## Confidentiality Clause
+
+1. Guance confidential information referred to in this clause means business secrets (including financial secrets), technical secrets, business know-how and/or other confidential information and materials obtained by one party (hereinafter referred to as "the receiving party") from the other party (hereinafter referred to as "the disclosing party") or arising from the performance of this agreement by both parties. Scope of the Confidential Information include product information, product planning, pricing, financial and marketing planning, business strategy, customer information, customer data, research and development, software, hardware, technical specifications, design, special formulas, special algorithms, etc. This clause shall take effect regardless of the form or carrier of the above information and materials, and whether the disclosing party indicates its confidentiality orally, graphically or in writing at the time of disclosure.
+
+2. Both parties shall take appropriate measures to properly preserve the confidential information provided by the other party, and the measures shall be no less prudent than when protecting their own confidential information. The Confidential Information shall only be used by the Parties for purposes or purposes related to the Service Agreement.
+
+3. Both parties guarantee that the Confidential Information shall only be known to the responsible persons and employees of each party engaged in the business, and strictly restrict the employees who have access to the Confidential Information from complying with the confidentiality obligations of this clause.
+
+4. The above restrictions of this Article shall not apply to the following situations:
+
+    - The Confidential Information is lawfully owned by the Recipient at or before the date of signing this Agreement;
+
+    - The Confidential Information has been made public or is available in the public domain at the time of notification to the recipient;
+
+    - The Confidential Information is obtained by the receiving party from a third party with which the receiving party has no obligation of confidentiality or non-disclosure;
+
+    - The Confidential Information has been made public or can be obtained from the public domain without violating the responsibilities agreed in this Agreement;
+
+    - The Confidential Information is independently developed by the recipient or its affiliates or subsidiaries and does not benefit from information obtained by the notifying party or its affiliates or subsidiaries;
+
+    - The Confidential Information is disclosed by the receiving party at the request of a court or other legal or administrative authority (through oral questions, inquiries, requests for information or documents, subpoenas, civil or criminal investigations or other proceedings);
+
+    - In order to apply for a certain business qualification from administrative departments, trade associations and other institutions, obtain a certain certification, or meet national and industry standards/certifications, the recipient shall submit materials or explain the disclosed information to the aforementioned institutions in combination with the other party's situation. In the case, the recipient shall adhere to the principle of minimum disclosure if necessary and require the institutions that have been informed of confidential information to keep confidential according to the standards not lower than those in this Service Agreement.
+
+5. Both you and Guance should try their best to protect the above confidential information from disclosure. Once the disclosure of the above confidential information is found, both parties shall cooperate to take all reasonable measures to avoid or mitigate the damage consequences. If losses are caused to the other party, compensation shall be made for the direct economic losses caused to the other party.
+
+## Term and Termination
+
+1. After you read and click to agree to this agreement or choose to accept this agreement in other ways, the Guance platform service will be opened. After opening, you can use the service by obtaining the key and password for logging in and using the service sent by Guance. The service period starts from the time of opening (not from the time when you obtain the key and password for logging in and using the service);
+
+2. Unless otherwise agreed or you have not settled other payables, you can use Guance platform service after opening the service; You should ensure that your account balance is sufficient to continue to use the service until the termination specified by law or agreed upon in these Terms of Service.
+
+3. In case of any of the following circumstances, the service period shall be terminated ahead of schedule:
+
+    - Both parties agree to terminate in advance through consultation;
+
+    - If you seriously violate this Service Agreement (including, you seriously violate relevant laws and regulations, or you seriously violate any commitment under this agreement, etc.), Guance has the right to terminate the service in advance until all your data is erased;
+
+    - You understand and fully recognize that, Guance has established (and will be continuously improved according to the development of technology) necessary technical measures to defend against network security hazards or behaviors (hereinafter referred to as such behaviors) including computer viruses, network intrusions and attacks and damages (including DDoS). However, in view of the limitations and relativity of network security technology and the unpredictability of these behaviors, Guance may decide to suspend or terminate the service if your website encounters such behaviors and brings harm to Guance or other networks or servers of Guance (including local, foreign and international networks and servers, etc.), or affect the smooth connection between the observation cloud and the Internet or between Guance and specific networks, servers and inside Guance. If the service is terminated, the service fee will be calculated according to the actual service month (less than one month by day).
+
+    - Guance may terminate this service agreement by notifying you on the Guance website or sending you an in-website notice or a written notice 30 days in advance.
  
+4. You understand and acknowledge that, Guance does not guarantee permanent provision of Guance platform services for the purpose of upgrading technology and service system and adjusting business strategy or cooperate with changes in laws, regulations and policies. And it has the right to change the form, specification or other aspects of the provided service (such as the price and billing mode of the service). Before terminating the service or making the above changes, Guance will try its best and give advance notice in one or more ways such as website announcement, in-station letter, mail or SMS.
 
-二、定义
+## Liability for Breach of Contract
 
-1、观测云SAAS服务是指一款满足云、云原生、应用及业务监测需求的系统可观测产品，以下简称“观测云服务”。
+1. If you violate any of the promises, warranties, service usage rules or obligations in this Service Agreement, or if Guance believes that your usage behavior is abnormal according to its judgment, Guance has the right to unilaterally take one or more of the following measures according to its independent judgment: (1) Restrict or suspend the use of the Service; (2) Terminate the provision of services and terminate this Agreement; (3) Investigate your legal responsibility; (4) Other treatment measures deemed suitable by Guance. You will bear the user losses caused by Guance taking measures such as suspending service and terminating service according to the above agreement.
 
-2、观测云专属版SAAS服务是指底层存储使用阿里云SLS产品的特定版本。数据存储于用户阿里云账号下的SLS 实例中，支持开放的自助灵活分析且数据专属。同时用户也可将自有SLS实例中日志数据快速接入观测云，并与链路、指标数据统一分析处理。以下简称“观测云专属版”。
+2. If you violate the relevant laws and regulations or the provisions of this Service Agreement and relevant rules, resulting in any loss of Guance, claims from other users, any third party or penalties from any administrative department, you shall fully compensate Guance, other users or relevant third parties for their actual losses, including reasonable lawyer fees.
 
-3、上海观测未来信息技术有限公司为观测云SAAS服务提供方，以下简称“观测云”。
+3. You understand and agree that due to the particularity of computers and the Internet, the following situations are not Guance breaches:
 
- 
+    - When Guance configures, maintains and upgrades the system and server, it needs to interrupt the service for a short time;
 
-三、使用许可
+    - Access to your Web site is slowing down due to blocked access on the Internet.
 
-1、观测云服务受版权法、国际版权条约以及其他相关的知识产权法律、法规和条约的保护。观测云服务为授权用户使用许可，而非出售。
+4. If you can't use the service normally for 72 consecutive hours due to Guance, you can terminate receiving the service, except for reasons not under the control of Guance.
 
-2、观测云服务的版权/所有权归权利人名称所有。
+5. Under no circumstances shall Guance be liable for any indirect, consequential, disciplinary, accidental or special damage, including the loss of profits suffered by you when using Guance services (even if you have been informed of the possibility of such losses).
 
-3、根据本协议的约定，服务商授予用户一项非排他的、不可转让的使用观测云服务的使用许可。用户不得转售或以其他方式转让本使用许可权利以牟取商业利益。
+## Notification
 
- 
+1. When you use Guance service, you should provide Guance with real and effective contact information (including your email address, contact telephone number, contact address, etc.). If the contact information changes, you have the obligation to update the relevant information in time and keep it in a contactable state. The member account number (including sub-account number) of your receiving station mail and system message is also your effective contact information.
 
-四、费用
+2. Guance will deliver various notices to one or more of your above contact information, and the contents of such notices may have significant beneficial or adverse effects on your rights and obligations, so please pay attention to them in time.
 
-1、观测云费用中心会自动生成并发送您的观测云服务每月使用账单，告知您的每月消费情况。其使用费用将通过您的观测云费用中心钱包进行支付。
+3. Guance will send a notice to you through the above contact information, in which written notices sent electronically, including announcements, sending mobile phone short messages to the contact telephone number provided by you, sending e-mails to the e-mail address provided by you, sending system messages to your account number and in-station letter information, will be deemed as delivery after successful sending; A written notice sent by paper carrier shall be deemed to have been delivered on the fifth (5) natural day after it is mailed according to the contact address provided.
 
-2、您将使用观测云费用中心为每位企业会员开通的钱包功能进行结算，在钱包中包含您充值而形成的账户余额。
+4. You should ensure that the contact information provided is accurate, effective and updated in real time. If the legal documents cannot be delivered or are not delivered in time due to inaccurate contact information provided or failure to inform the changed contact information in time, you will bear the possible legal consequences.
 
-3、您可以使用观测云费用中心账户余额购买观测云服务。 “观测云” 将根据您对观测云服务的使用量每日进行结算，根据相应费用扣除您的账户余额。 如您已将阿里云账号与观测云费用中心绑定，那么在您使用观测云服务的过程中， “观测云” 将根据您对观测云服务的使用量产生每日使用账单，并将其同步给您在观测云费用中心下绑定的阿里云账号，相关费用将通过您的阿里云账号进行支付。
+## Amendment of the Agreement
 
-4、您通过所用客户端（包括但不限于手机、网站及其他第三方支付渠道）相应支付方式（具体支付方式请见充值页面）为其账户充值。充值时，您也可享受观测云费用中心所赋予的充值优惠（如有，具体详见充值协议）。
+1. If any content of this Agreement changes, the Service Provider shall prompt the user to modify the content through appropriate means.
 
-5、当您的账户余额使用完毕时，您已进入暂停状态， “观测云” 有权暂时取消您的观测云服务使用资格。
+2. If the user disagrees with the modification made by the service provider to the relevant provisions of this Agreement, the user has the right to stop using Guance service. In such cases, the service provider shall refund the remaining fees (if any) to the user, and give the user a reasonable period of time to backup, download, save, migrate and other necessary work before terminating the service. If the user continues to use Guance service, it will be deemed that the user accepts the modification made by the service provider to the relevant terms of this agreement.
 
-6、当您进入暂停状态的时间超过【15】日（含【15】日）时，您已进入欠费状态， “观测云” 有权同时采取如下一种或多种措施：
+## Force Majeure
 
-1） “观测云” 有权暂时取消您的观测云服务使用资格。
+1. If the performance of these Terms of Service is impossible, unnecessary or meaningless due to force majeure or other unexpected events, the party suffering from force majeure or unexpected events shall not be liable.
 
-2） “观测云” 有权向您发出解约通知并单方面解除观测云服务，并要求您支付应付费用的20%作为解约违约金。
+2. Force majeure and unexpected events refer to objective events that cannot be foreseen, overcome or avoided and have a significant impact on one or both parties, which includes natural disasters such as floods, earthquakes, plagues and other social events such as wars, turmoil, government actions, telecommunication trunk line interruption, hackers, network congestion, technical adjustment of telecommunication administration and government control.
 
-3）自 “观测云” 向您发出解约通知之日起，您还应向 “观测云” 每日缴纳应付费用0.5%的滞纳金。
+## Application of Law and Dispute Resolution
 
-4）对于您在观测云的相关数据 “观测云” 有权处理并进行删除销毁，即您在观测云的相关数据将被清理。
+1. The formation, entry into force, interpretation, amendment, supplement, termination, execution and dispute resolution of this Service Agreement shall be governed by the laws of Hong Kong.
 
-5） “观测云” 允许您通过费用中心解锁暂停状态，解锁后可继续使用观测云，此时，解锁前的观测云的相关数据将无法访问。
+2. In case of any dispute arising from the signing, performance or interpretation of this Agreement, both parties shall try their best to settle it through friendly negotiation. If negotiation fails, either party shall bring a lawsuit to the people's court where the defendant is located.
 
-7、开票申请：您在观测云费用中心上收到记录当月消费情况的账单后，可以在观测云费用中心上选择申请以电子发票或普通纸质发票形式开具普通或增值税专用发票，发票税率根据国家税收法律法规确定，您应同时提供足够的开票信息。此外，您应填写详细的邮寄地址或邮箱地址以便 “观测云” 将发票寄出。如您选择开具纸质发票的， “观测云” 在接收到开票申请后将普通纸质发票邮寄至您的邮寄地址处，寄送相关费用由您承担；如您选择开具电子发票的， “观测云” 在接收到开票申请后将电子发票以邮件形式发送至您的邮箱。如您已将阿里云账号与观测云费用中心绑定，费用已通过您的阿里云账号进行支付，相关发票将由阿里云为您开具，申请流程及规则遵循阿里云官方规则。
+## Supplementary Provisions
 
- 
+1. The annexes of this Agreement, as well as the service description and price description of Guance on the relevant pages of Guance website and the ordering page (including special terms and conditions of products, service description, operation documents, etc.) that you confirm your agreement are an integral part of this Agreement. In case of inconsistency, the order of (1) Service Description, Price Description, Other Order Pages, (2) Special Terms and Appendices, and (3) General Terms and Conditions of this Agreement shall apply.
 
-五、用户的权利义务
+2. In case of any change in the content of this Agreement, Guance shall prompt you to modify the content by announcing it on the appropriate page of Guance website 30 days in advance; If you continue to use Guance service, you will be deemed to accept the relevant modifications made by Guance.
 
-1、用户保证其使用观测云服务的各项行为均符合国家法律法规的规定，合法真实且不侵害任何第三方的合法权益。您须依照《网络安全法》、《互联网信息服务管理办法》等法律法规的规定保留自己网站的访问日志记录，包括发布的信息内容及其发布时间、互联网地址（IP）、域名等，国家有关机关依法查询时应配合提供。您将承担未按规定保留相关记录而引起的相应法律责任。
+3. Guance has the right to transfer all or part of the rights and obligations of this Agreement to its affiliated companies with advance notice.
 
-2、用户应按时足额支付观测云服务的费用，否则服务商保留随时终止用户使用观测云服务的权利，用户应对服务商终止观测云服务而可能造成的损害自行承担全部责任。
+4. Waiver of the rights under this Agreement by Guance in the event of your negligence or breach of contract shall not be construed as a waiver of your other or subsequent negligence or breach of contract of the same kind.
 
-3、用户保证，除且仅除法律明确允许的活动以外，用户不得逆向工程、反编译或反汇编观测云服务。
+5. Any provision of this Agreement shall be deemed to be annulled, invalid or unenforceable, and this provision shall be deemed divisible and shall not affect the validity and enforceability of the remaining provisions of this Agreement.
 
-4、用户理解并同意，
+6. The warranty clauses, confidentiality clauses, intellectual property clauses, law application and dispute resolution clauses under this Agreement shall not be invalidated due to the termination of this Agreement.
 
-1）因现有技术限制，服务商提供的服务可能存在瑕疵，并不能保证在任何情况下都能正常执行或达到用户所期望的结果。
+**Annex I Guance "Commercial Plan" Service Content and Quotation**
 
-2）因用户使用观测云服务所致的任何损害，用户同意 “观测云” 的最高赔偿限额为不超过未达到服务可用性承诺当月购买的服务时长的30% (不包含赠送的服务时长) ，详见附件二“观测云 SaaS 服务等级协议”
-
-5、成功订购观测云服务后，您有权要求 “观测云” 按照观测云服务协议以及 “观测云” 网站相关页面所展示的服务说明、技术规范等内容向您提供服务。
-
-6、您就观测云服务的使用应符合本协议。
-
-7、您对自己存放在观测云平台上的数据以及进入和管理观测云平台上各类产品与服务的口令、密码的完整性和保密性负责。因您维护不当或保密不当致使上述数据、口令、密码等丢失或泄漏所引起的损失和后果均由您承担。
-
-8、您应对您的用户业务数据的来源及内容负责， “观测云” 提示您谨慎判断数据来源及内容的合法性。您将承担因您的用户业务数据内容违反法律法规、部门规章或国家政策而造成的相应结果及责任。
-
-9、您理解并同意，中华人民共和国的国家秘密受法律保护，您有保守中华人民共和国的国家秘密的义务；您使用观测云服务应遵守相关保密法律法规的要求，并不得危害中华人民共和国国家秘密的安全。
-
-10、您还应仔细阅读并遵守 “观测云” 在网站页面上展示的相应服务说明、技术规范、使用流程、操作文档等内容（以上简称“操作指引”），依照相关操作指引进行操作。您将承担违反相关操作指引所引起的后果；同时， “观测云” 郑重提示您，请把握风险谨慎操作。
-
- 
-
-六、服务商的权利义务
-
-1、 “观测云” 应按照本协议约定提供服务。
-
-2、服务期限内， “观测云” 将为您提供如下售后服务：
-
-1） “观测云” 将提供【 5 】×【 8 】电话以及在线工单咨询服务，解答您在使用中的问题；
-
-2） “观测云” 将为您提供故障支持服务，您应通过在线工单申报故障； “观测云” 将及时就您非人为操作所出现的故障提供支持，但因您的人为原因和/或不可抗力、以及其他非 “观测云” 控制范围内的事项除外。
-
-3）您还可通过 “观测云” 获得其他付费的售后服务，具体详见 “观测云” 的网站相关页面的收费售后服务内容及附件二【  观测云 SaaS 服务等级协议 】。
-
-4）您了解 “观测云” 无法保证其所提供的服务毫无瑕疵（ “观测云” 观测云平台产品并不能保证您的硬件或软件的绝对安全），但 “观测云” 承诺不断提升服务质量及服务水平。所以您同意：即使 “观测云” 提供的服务存在瑕疵，但上述瑕疵是当时行业技术水平所无法避免的，其将不被视为 “观测云” 违约。您同意和 “观测云” 一同合作解决上述瑕疵问题。
-
-5）观测云的某些服务可能具备账户授权管理功能，即您可将您对服务的全部或部分操作权限授权给您指定的一个或多个被授权账户，此种情况下，任一被授权账户下进行的所有操作行为，均将被视为您通过本人账户所进行的行为，都将由您承担相应的责任和由此产生的服务费用。
-
-6）您应理解并认可， “观测云” 提供的观测云服务的安全防护以及管理与监控的相关功能及服务，尽管 “观测云” 对该等服务经过详细的测试，但并不能保证其与所有的软硬件系统完全兼容，亦不能保证其软件及服务的完全准确性。如果出现不兼容及软件错误的情况，您应立即关闭或停止使用相关功能，并及时联系 “观测云” ，获得技术支持。
-
- 
-
-七、用户数据的使用和披露
-
-1、 “观测云” 理解并认可，您通过观测云服务加工、存储、上传、下载、分发以及通过其他方式处理的数据，均为您的用户业务数据，您完全拥有您的用户业务数据。
-
-2、就用户业务数据， “观测云” 除执行您的服务要求外，不进行任何未获授权的使用及披露；但以下情形除外：
-
-1）在国家有关机关依法查询或调阅用户业务数据时， “观测云” 具有按照相关法律法规或政策文件要求提供配合，并向第三方或者行政、司法等机构披露的义务；
-
-2）您和 “观测云” 另行协商一致。 
-
-3、您可通过观测云服务自行对您的用户业务数据进行删除、更改等操作。如您释放服务或删除数据的， “观测云” 将删除您的数据，按照您的指令不再保留该等数据。就数据的删除、更改等操作，您应谨慎操作。
-
-4、如您使用观测云专属版，业务数据将存放在您阿里云账号下的日志服务SLS实例里，在您使用观测云服务的过程中，您无需额外为该资源付费。您可以读取该数据并且在SLS控制台做自助的分析，为防止影响系统的正常使用，您将无法通过阿里云SLS控制台对数据进行修改删除。如果您需要对这些数据修改删除，请通过观测云平台操作。
-
-5、当服务期届满、服务提前终止（包括双方协商一致提前终止，其他原因导致的提前终止等）或您发生欠费时，除法律法规明确规定、主管部门要求或双方另有约定外， “观测云” 仅在一定的缓冲期（以观测云平台服务适用的专有条款、产品文档、服务说明等所载明的时限为准）内继续存储您的用户业务数据（如有），缓冲期届满 “观测云” 将删除所有用户业务数据，包括所有缓存或者备份的副本，不再保留您的任何用户业务数据。
-
-6、用户业务数据一经删除，即不可恢复；您应承担数据因此被删除所引发的后果和责任，您理解并同意， “观测云” 没有继续保留、导出或者返还用户业务数据的义务。
-
-7、 “观测云” 恪守对用户的安全承诺，根据适用的法律保护用户存储在观测云平台的数据。
-
- 
-
- 
-
-八、知识产权
-
-1、在本协议项下一方向对方提供的任何资料、技术或技术支持、软件、服务等的知识产权均属于提供一方或其合法权利人所有； 除提供方或合法权利人明示同意外，另一方无权复制、传播、转让、许可或提供他人使用上述知识成果，否则应承担相应的责任。
-
-2、您应保证提交 “观测云” 的素材、对 “观测云” 服务的使用及使用 “观测云” 服务所产生的成果未侵犯任何第三方的合法权益。 “观测云” 应保证向您提供的服务未侵犯任何第三方的合法权益。
-
-3、如果第三方机构或个人对您使用 “观测云” 服务所涉及的相关素材的知识产权归属提出质疑或投诉，或对您使用的 “观测云” 服务的知识产权的归属提出质疑或投诉，您和 “观测云” 均有责任出具相关知识产权证明材料，并配合对方的相关投诉处理工作。对于因此引起的索赔、诉讼或可能向其提起诉讼,违约方应负责解决，承担费用和损失，以及使另一方免责。
-
- 
-
-九. 保密条款
-
-1、观测云服务条款所称保密信息，是指一方（以下简称“接受方”）从对方（以下简称“披露方”）取得的、获知的、或因双方履行本协议而产生的商业秘密（包括财务秘密）、技术秘密、经营诀窍和（或）其他应予保密的信息和资料（包括产品资料，产品计划，价格，财务及营销规划，业务战略，客户信息，客户数据，研发，软件，硬件，技术说明，设计，特殊公式，特殊算法等），无论上述信息和资料以何种形式或载于何种载体，无论披露方在披露时是否以口头、图像或书面等方式表明其具有保密性。
-
-2、双方应采取适当措施妥善保存对方提供的保密信息，措施的审慎程度不少于其保护自身的保密信息时的审慎程度。双方仅能将保密信息用于与本协议项下的有关用途或目的。
-
-3、双方保证保密信息仅可在各自一方从事该业务的负责人和雇员范围内知悉，并严格限制接触上述保密信息的员工遵守本条之保密义务。
-
-4、本条上述限制条款不适用于以下情况：
-
-1）在签署本协议之时或之前，该保密信息已以合法方式属接受方所有；
-
-2）保密信息在通知给接受方时，已经公开或能从公开领域获得；
-
-3）保密信息是接受方从与其没有保密或不透露义务的第三方获得的；
-
-4）在不违反本协议约定责任的前提下，该保密信息已经公开或能从公开领域获得；
-
-5）该保密信息是接受方或其关联或附属公司独立开发，而且未从通知方或其关联或附属公司获得的信息中获益；
-
-6）接受方应法院或其它法律、行政管理部门要求（通过口头提问、询问、要求资料或文件、传唤、民事或刑事调查或其他程序）因而透露保密信息；
-
-7）接受方为向行政管理部门、行业协会等机构申请某项业务资质、获得某项认定、或符合国家、行业标准/认证，需结合对方情况向前述机构提交材料或进行说明的而披露的信息，在该等情况下，接受方应秉持必要情况下最少披露原则及要求因此获知保密信息的机构按不低于本协议的标准予以保密。
-
-5、您和 “观测云” 都应尽最大的努力保护上述保密信息不被泄露。一旦发现有上述保密信息泄露事件，双方应合作采取一切合理措施避免或者减轻损害后果的产生。如因此给对方造成损失的，应赔偿因此给对方造成的直接经济损失。
-
- 
-
-十、期限与终止
-
-1、您在阅读并点击同意本协议或以其他方式选择接受本协议后将开通观测云服务，开通后您获得 “观测云” 向您发送的登录、使用服务的密钥、口令即可使用服务，服务期限自开通之时起算（而非自您获得登录、使用服务的密钥、口令时起算）；
-
-2、除非另有其他约定或您未结清其他应付款项的，您在开通后即可使用观测云服务；您应确保您的账户余额充足，以便持续使用服务至法律规定或观测云服务条款约定的终止情形出现时为止。
-
-3、发生下列情形之一的，服务期限提前终止：
-
-1）双方协商一致提前终止的；
-
-2）您严重违反本协议（包括，您严重违反相关法律法规规定，或您严重违反本协议项下之任一承诺内容等）， “观测云” 有权提前终止服务直至清除您的全部数据；
-
-3）您理解并充分认可，虽然 “观测云” 已经建立（并将根据技术的发展不断完善）必要的技术措施来防御包括计算机病毒、网络入侵和攻击破坏（包括DDoS）等危害网络安全事项或行为（以下统称该等行为），但鉴于网络安全技术的局限性、相对性以及该等行为的不可预见性，因此如因您网站遭遇该等行为而给 “观测云” 或者 “观测云” 的其他网络或服务器（包括本地及外地和国际的网络、服务器等）带来危害，或影响 “观测云” 与国际互联网或者 “观测云” 与特定网络、服务器及 “观测云” 内部的通畅联系， “观测云” 可决定暂停或终止服务。如果终止服务的，将按照实际提供服务月份计算（不足一个月的按天计）服务费用。
-
-4） “观测云” 可提前30天在 “观测云” 网站上通告或给您发网站内通知或书面通知的方式终止观测云服务服务协议。
-
-4、您理解并认可，为技术升级、服务体系升级、或因经营策略调整或配合国家重大技术、法规政策等变化， “观测云” 不保证永久的提供观测云服务，并有权变更所提供服务的形式、规格或其他方面（如服务的价格和计费模式），在终止该服务或进行上述变更前， “观测云” 将尽最大努力且提前以网站公告、站内信、邮件或短信等一种或多种方式进行事先通知。 
-
- 
-
-十一、违约责任
-
-1、您违反本协议中的承诺、保证条款、服务使用规则或义务的任一内容，或 “观测云” 根据其判断认为您的使用行为存在异常的， “观测云” 均有权就其情节，根据独立判断并单方采取以下措施中的一种或多种：（1）限制、中止使用服务；（2）终止提供服务，终止本协议；（3）追究您的法律责任；（4）其他 “观测云” 认为适合的处理措施。 “观测云” 依据前述约定采取中止服务、终止服务等措施而造成的用户损失将由您承担。
-
-2、如因您违反有关法律法规或者本协议、相关规则之规定，使 “观测云” 遭受任何损失、受到其他用户、任何第三方的索赔或任何行政管理部门的处罚，您应对 “观测云” 、其他用户或相关第三方的实际损失进行全额赔偿，包括合理的律师费用。
-
-3、您理解且同意，鉴于计算机、互联网的特殊性，下述情况不属于 “观测云” 违约：
-
-1） “观测云” 在进行系统及服务器配置、维护、升级时，需要短时间中断服务。
-
-2）由于Internet上的通路阻塞造成您网站访问速度下降。
-
-4、如果因 “观测云” 原因造成您连续72小时不能正常使用服务的，您可终止接受服务，但非 “观测云” 控制之内的原因引起的除外。
-
-5、在任何情况下， “观测云” 均不对任何间接性、后果性、惩戒性、偶然性、特殊性的损害，包括您使用 “观测云” 服务而遭受的利润损失承担责任（即使您已被告知该等损失的可能性）。
-
- 
-
-十二、通知
-
-1、您在使用 “观测云” 服务时，您应该向 “观测云” 提供真实有效的联系方式（包括您的电子邮件地址、联系电话、联系地址等），对于联系方式发生变更的，您有义务及时更新有关信息，并保持可被联系的状态。您接收站内信、系统消息的会员账号（包括子账号），也作为您的有效联系方式。
-
-2、 “观测云” 将向您的上述联系方式的其中之一或其中若干向您送达各类通知，而此类通知的内容可能对您的权利义务产生重大的有利或不利影响，请您务必及时关注。
-
-3、 “观测云” 通过上述联系方式向您发出通知，其中以电子的方式发出的书面通知，包括公告，向您提供的联系电话发送手机短信，向您提供的电子邮件地址发送电子邮件，向您的账号发送系统消息以及站内信信息，在发送成功后即视为送达；以纸质载体发出的书面通知，按照提供联系地址交邮后的第五个自然日即视为送达。
-
-4、你应当保证所提供的联系方式是准确、有效的，并进行实时更新。如果因提供的联系方式不确切，或不及时告知变更后的联系方式，使法律文书无法送达或未及时送达，将由您承担由此可能产生的法律后果。
-
- 
-
-十三、协议修改
-
-1、如果本协议的任何内容发生变动，服务商应通过适当方式向用户提示修改内容。
-
-2、如果用户不同意服务商对本协议相关条款所做的修改，用户有权停止使用观测云服务。此等情况下，服务商应向用户退回剩余费用（如有），并在终止服务前给予用户一定的合理期限，进行数据备份、下载、保存、迁移及其他必要工作。如用户继续使用观测云服务，则视为用户接受服务商对本协议相关条款所做的修改。
-
- 
-
-十四、不可抗力
-
-1、因不可抗力或者其他意外事件，使得观测云服务条款的履行不可能、不必要或者无意义的，遭受不可抗力、意外事件的一方不承担责任。
-
-2、不可抗力、意外事件是指不能预见、不能克服并不能避免且对一方或双方当事人造成重大影响的客观事件，包括自然灾害如洪水、地震、瘟疫流行等以及社会事件如战争、动乱、政府行为、电信主干线路中断、黑客、网路堵塞、电信部门技术调整和政府管制等。
-
- 
-
-十五、法律适用及争议解决
-
-1、本协议的订立、执行和解释及争议的解决均应适用中华人民共和国法律。
-
-2、因双方就本协议的签订、履行或解释发生争议，双方应努力友好协商解决。如协商不成，任何一方均应向被告所在地人民法院起诉。 
-
- 
-
-十六、附则
-
-1、本协议的附件，以及 “观测云” 在 “观测云” 网站相关页面上的服务说明、价格说明和您确认同意的订购页面（包括产品的专用条款、服务说明、操作文档等）均为本协议不可分割的一部分。如遇不一致之处，以（1）服务说明、价格说明、其他订购页面，（2）专用条款和附件，（3）本协议通用条款的顺序予以适用。
-
-2、如本协议内容发生变动， “观测云” 应通过提前30天在 “观测云” 网站的适当版面公告向您提示修改内容；如您继续使用 “观测云” 服务，则视为您接受 “观测云” 所做的相关修改。
-
-3、 “观测云” 有权经提前通知将本协议的权利义务全部或者部分转移给 “观测云” 的关联公司。
-
-4、 “观测云” 于您过失或违约时放弃本协议规定的权利，不应视为其对您的其他或以后同类之过失或违约行为弃权。
-
-5、本协议任一条款被视为废止、无效或不可执行，该条应视为可分的且并不影响本协议其余条款的有效性及可执行性。
-
-6、本协议项下之保证条款、保密条款、知识产权条款、法律适用及争议解决条款等内容，不因本协议的终止而失效。
-
- 
-
-附件一 观测云【商业版】服务内容及报价
-
-| 项目                        | 商业版                                                       |
+| **Program**                    | **Commercial Plan**                                                   |
 | --------------------------- | ------------------------------------------------------------ |
-| 功能                        | 指标 基础设施 日志 应用性能监测 用户访问监测 服务可用性监测 智能监控 安全巡检 |
-| 告警模式                    | 站内/钉钉/企业微信/飞书/邮件组/短信/Webhook自定义            |
-| 数据保留时长                | [帮助中心](https://docs.guance.com/billing/billing-method/data-storage/) |
-| 观测云 Function             | 支持                                                         |
-| 监控数字作战屏 （额外收费） | 可定制                                                       |
-| 服务                        | 电话、工单服务 5×8小时                                       |
-| 专家级技术服务              | 支持（锁定消费10个DataKit,并加收7%的服务费）                 |
-| 增值服务（额外收费）        | 互联网专业运维服务                                           |
-
- 
-
-| 计费项目          | 商业版                                    |
+| Function                        | Metrics infrastructure log APM RUM Service synthetic tests intelligent monitoring Scheck |
+| Alarm mode                    | In-site/Ding Talk/Wecom/Feishu/Mail Group/SMS/Webhook Customization           |
+| Duration of data retention                | [Help center](../billing/billing-method/data-storage.md)        |
+| Guance Function             | support                                                         |
+| Monitoring digital combat screen (extra charge) | Customizable                                                       |
+| service                        | Telephone and work order service 5 × 8 hours                                       |
+| Expert technical service              | Support (lock in 10 DataKits and charge 7% service fee)                 |
+| Value-added services (extra charge)        | Internet professional operation and maintenance service                                           |
+| Billing items          | Commercial plan                                    |
 | ----------------- | ----------------------------------------- |
-| DataKit 数量      | 3元/天 （每台）                           |
-| 时间线数量        | 3元/天（每 1000 条）                      |
-| 日志类数据        | 1.2元/天（每百万条）[梯度计费](#gradient) |
-| 备份日志数据      | 0.007 元/天（每 GB）                      |
-| 应用性能监测trace | 2元/天（每百万条）[梯度计费](#gradient)   |
-| 用户访问监测PV    | 0.7元/天（每万个）[梯度计费](#gradient)   |
-| 拨测次数          | 1元/天（每万次）                          |
-| 任务调度          | 1元/天（每万次）                          |
-| 短信数量          | 0.1元/天（每条）                          |
+| Quantity of DataKit      | 3 yuan per day (each set)                           |
+| Quantity of timeseries        | 3 yuan per day (every 1000 articles)                      |
+| Log data        | 1.2 yuan per day (per million pieces)[Gradient billing](#gradient) |
+| Backup log      | 0.007 yuan per day (per GB)                      |
+| APM trace | 2 yuan per day (per million pieces)[gradient billing](#gradient)   |
+| RUM PV    | 0.7 yuan per day (per 10,000)[gradient billing](#gradient)   |
+| Number of dialing measurements          | 1 yuan per day (every 10,000 times)                          |
+| Task call          | 1 yuan per day (every 10,000 times)                          |
+| Number of SMS          | 0.1 yuan per day (each)                          |
 
- 
 
-附件二 观测云 SaaS 服务等级协议
+**Annex II Guance SaaS Service Level Agreement**
 
-生效时间:2020 年10 月7 号
+Effective time: --/--/2023
 
-观测云服务等级协议(Service Level Agreement，以下简称 “SLA”)规定了 “观测云” 向客户提供的观测云 SaaS 产品的服务可用性等级指标及赔偿方案。
+This Service Level Agreement (hereinafter referred to as "SLA") stipulates the service availability level indicators and compensation scheme of the Guance SaaS Service (referred to as "Guance SaaS Service") provided by Guance to users.
 
-1.定义
+1.Definition
 
-1.1 服务周期: 一个服务周期为一个自然月。
+1.1 Service cycle: A service cycle is a natural month. If the user uses the Guance SaaS Service for less than one month, the accumulated usage time of the Guance SaaS Service in the current month will be taken as a service cycle.
 
-1.2 服务周期总分钟数: 服务周期内的总天数╳24(小时)╳60(分钟)计算。
+1.2 Total minutes of service cycle: The total number of days in the service cycle → 24 (hours) → 60 (minutes) is calculated.
 
-1.3 服务不可用分钟数: 在连续 3 分钟(或者更长的时间内)，客户所有试图与指定的观测云 SaaS 部署版本实例建立连接的尝试均失败，则视为这段时间内该观测云 SaaS 服务实例不可用。在一个服务周期内单个观测云SaaS 部署实例不可用分钟数之和即服务不可用分钟数。
+1.3 Service instance: The "workspace" created by the user in the Guance SaaS site.
 
-1.4 月度服务费用: 客户在一个自然月中就单个观测云 SaaS 部署实例所支付的服务费用总额，如果客户一次性支付了多个月份的服务费用，则将按照所购买的月数分摊计算月度服务费用。
+1.4 Minutes of service unavailability: If all attempts by a user to establish a connection with a specified Guance SaaS Service instance fail for 5 consecutive minutes (or more), the Guance SaaS Service instance will be deemed unavailable during this period of time. The sum of the unavailable minutes of a single Guance SaaS Service instance in a service cycle is the service unavailable minutes.
 
-2.服务可用性
+1.5 Monthly service fee: The cash payment part of the billing fee incurred by users for a single Guance SaaS Service instance in a natural month (excluding gift vouchers, discount vouchers, etc.).
 
-2.1 服务可用性计算公式
+2.Service Availability 
 
-服务可用性以单个服务实例为维度，按照如下方式计算 :
+2.1 Service Availability Calculation Formula
 
-服务可用性= (服务周期总分钟数-服务不可用分钟数)/ 服务周期总分钟数 ×100%
+Service availability is calculated as follows with a single service instance as the dimension:
+Service Availability = (Total Service Cycle Minutes-Service Unavailable Minutes)/Total Service Cycle Minutes × 100%
 
-2.2 服务可用性承诺
+2.2 Service Availability Commitment
 
-观测云 SaaS 服务可用性不低于 99.00%，如观测云 SaaS 服务实例未达到前述可用性承诺，客户可以根据本协议第 3 条约定获得赔偿。
+The availability of Guance SaaS Service is not less than 99.90%, that is, the monthly unavailable time is ≤ 43.2 min. If the Guance SaaS Service instance fails to meet the aforesaid availability commitment, the user can be compensated according to Article 4 of this agreement.
 
-2.3 除外情形
+3.Service Unavailable
 
-因下述原因导致的服务不可用的时长不计入服务不可用时间:
+3.1 The following are service unavailable scenarios
 
-(1) “观测云” 预先通知客户后进行系统维护所引起的，包括割接、维修、升级和模拟故障演练;
+    - Log in to Guance (SaaS site) or display page continuously for more than 5 minutes due to the user's network or equipment;
 
-(2)任何 “观测云” 所属设备以外的网络、设备故障或配置调整引起的;
+    - The data query of various data viewers, views and monitors due to the user's network or equipment failed (the query returned 5xx error code) for more than 5 consecutive minutes;
 
-(3)客户的应用程序或数据信息受到黑客攻击而引起的;
+    - The monitor does not operate normally for more than 15 minutes according to the configured rules;
 
-(4)客户维护不当或保密不当致使数据、口令、密码等丢失或泄漏所引起的;
+    - The data writing failure rate caused by the failure of Guance reaches more than 15% for more than 10 consecutive minutes not due to the configuration of DataKit (for example, the failure rate of data writing caused by the failure of Guance is caused by the failure of Pipeline cutting fields before and after);
 
-(5)客户的疏忽或由客户授权的操作所引起的;
+    - The data reported by the DataKit data collector compiled and published by the Guance officer due to the user's network or equipment is received and returned with 5xx errors for more than 10 consecutive minutes;
 
-(6)客户未遵循 “观测云” 产品使用文档或使用建议引起的;
+3.2 Exceptions
 
-(7)不可抗力引起的;
+The length of service unavailability due to the following reasons is not included in the service unavailability time:
 
-3.赔偿方案
+    - Guance notifies the user 12 hours in advance during the working hours, which is caused by the system maintenance, including but not limited to the overhaul, maintenance and optimization of equipment, systems and software services, as well as the planned applicability fluctuations such as cutover, maintenance and simulation exercises;
 
-3.1 赔偿标准
+    - Any failure or configuration adjustment other than the network or equipment on which the normal operation of the Guance service depends;
 
-每个观测云 SaaS 服务实例按单实例月度服务可用性，按照下表中的标准计算赔偿服务时长，且赔偿服务时长不超过未达到服务可用性承诺当月购买的服务时长的30% (不包含赠送的服务时长)。
+    - The user's application program is caused by the attack behavior of the customer identified by both parties afterwards;
 
-3.2 赔偿申请时限
+    - The loss or leakage of data, orders and passwords caused by improper maintenance or confidentiality of users;
 
-客户可在每个自然月第五(5)个工作日后对上个月没有达到服务可用性承诺的实例提出赔偿申请。赔偿申请最迟不应晚于观测云 SaaS 服务未达到服务可用性承诺的相关月份结束后两(2)个月内提出。
+    - Caused by the negligence of the user or the operation authorized by the user;
 
-4.其他
+    - Caused by the user's failure to follow the suggestions of Guance products;
 
-服务可用性 赔偿服务时间
+    - The sudden growth of user scale data traffic (exceeding 100% of the growth in the same hour of the previous working day, with the minimum growth exceeding 50 million documents, including logs, links, RUM, events, dial testing, infrastructure, etc.) does not inform Guance in advance of the usability reduction;
 
-95% ≤ 服务可用性 < 99.0% 月度服务时长的 15%
+    - Caused by other force majeure (the resulting service costs need not be borne by users).
 
-服务可用性 < 95% 月度服务时长的 30%
+4.Compensation Programme
 
- “观测云” 有权对本 SLA 条款作出修改。如本 SLA 条款有任何修改， “观测云” 将提前 30天以网站公示或发送邮件的方式通知您。如您不同意 “观测云” 对 SLA 所做的修改，您 有权停止使用 观测云 SaaS 产品和相关服务，如您继续使用观测云 SaaS 产品和相关服务，则视为您接受修改后的 SLA。
+4.1 Compensation Standard
+
+For each the Guance SaaS Service instance, according to the monthly service availability of a single instance, the compensation service voucher is calculated according to the standard in the following table (Table 5), and the amount of the compensation voucher shall not exceed 100% of the monthly service fee paid by the user in the month when the service availability commitment is not met.
+
+4.2 Time Limit for Compensation Application
+
+Users can claim compensation after the fifth (5) working days of each natural month for instances where service availability commitments have not been met in the previous month. Claims for compensation shall be filed by ticket or email no later than two (2) months after the end of the relevant month in which the Guance SaaS Service fails to meet the service availability commitment.
+
+5.Others
+
+Service availability compensation service standard
+
+| Availability Interval | 	Compensation Standard  |
+| --------------------------- | ------------------------------------------------------------ |
+| 99.00% ≤ Service Availability < 99.90%  |	Compensate 15% of Monthly Service Fee  |
+| 95.00% ≤ service Availability < 99.00%	|  Compensate 30% of Monthly Service Fee  |
+| Service Availability < 95.00%  |	Compensate 100% of Monthly Service Fee  |
+
+Guance reserves the right to make amendments to the terms of SLA. In case of any modification of this SLA clause, Guance will notify you by website publicity or email 3 days in advance.

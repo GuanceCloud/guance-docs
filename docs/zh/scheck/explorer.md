@@ -1,7 +1,7 @@
 # 安全巡检查看器
 ---
-- 版本：1.0.7-6-gd485c74
-- 发布日期：2022-10-10 08:24:38
+- 版本：1.0.7-7-g251eead
+- 发布日期：2023-04-06 11:17:57
 - 操作系统支持：windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64
 
 ## 简介
@@ -14,7 +14,7 @@
 
 ![](img/2.scheck_1.png)
 
-同时，您可以通过「跳转」按钮，跳转至概览页面对应的内置视图页面进行查看，并对该视图进行克隆并修改。更多可参考 [内置视图](../scene/built-in-view/index.md)。
+同时，您可以通过「跳转」按钮，跳转至概览页面对应的内置视图页面进行查看，并对该视图进行克隆并修改。更多可参考 [内置视图](../management/built-in-view/index.md)。
 
 ![](img/2.scheck_2.png)
 
@@ -32,19 +32,19 @@
 
 ### 时间控件
 
-观测云查看器默认展示最近 15 分钟的数据，通过右上角的「时间控件」，您可以选择数据展示的时间范围。更多详情可参考文档 [时间控件说明](../getting-started/function-details/explorer-search.md#time) 。
+观测云查看器默认展示最近 15 分钟的数据，通过右上角的「时间控件」，您可以选择数据展示的时间范围。更多详情可参考文档 [时间控件说明](../getting-started/necessary-for-beginners/explorer-search.md#time) 。
 
 ### 搜索与筛选
 
-在查看器搜索栏，支持关键字搜索、通配符搜索、关联搜索、JSON 搜索等多种搜索方式，支持通过 `标签/属性` 进行值的筛选，包括正向筛选、反向筛选、模糊匹配、反向模糊匹配、存在和不存在等多种筛选方式。更多搜索与筛选可参考文档 [查看器的搜索和筛选](../getting-started/function-details/explorer-search.md) 。
+在查看器搜索栏，支持关键字搜索、通配符搜索、关联搜索、JSON 搜索等多种搜索方式，支持通过 `标签/属性` 进行值的筛选，包括正向筛选、反向筛选、模糊匹配、反向模糊匹配、存在和不存在等多种筛选方式。更多搜索与筛选可参考文档 [查看器的搜索和筛选](../getting-started/necessary-for-beginners/explorer-search.md) 。
 
 ### 快捷筛选
 
-在查看器快捷筛选，支持编辑“快捷筛选”，添加新的筛选字段。添加完成后，可以选择其字段值进行快捷筛选。更多快捷筛选可参考文档 [快捷筛选](../getting-started/function-details/explorer-search.md#quick-filter) 。
+在查看器快捷筛选，支持编辑“快捷筛选”，添加新的筛选字段。添加完成后，可以选择其字段值进行快捷筛选。更多快捷筛选可参考文档 [快捷筛选](../getting-started/necessary-for-beginners/explorer-search.md#quick-filter) 。
 
 ### 自定义显示列
 
-查看列表时，可通过「显示列」自定义添加、编辑、删除、拖动显示列。当鼠标放在查看器显示列上时，点击「设置」按钮，支持对显示列进行升序、降序、向左移动列、向右移动列、向左添加列、向右添加列、替换列、添加到快捷筛选、添加到分组、移除列等操作。更多自定义显示列可参考文档 [显示列说明](../getting-started/function-details/explorer-search.md#columns) 。
+查看列表时，可通过「显示列」自定义添加、编辑、删除、拖动显示列。当鼠标放在查看器显示列上时，点击「设置」按钮，支持对显示列进行升序、降序、向左移动列、向右移动列、向左添加列、向右添加列、替换列、添加到快捷筛选、添加到分组、移除列等操作。更多自定义显示列可参考文档 [显示列说明](../getting-started/necessary-for-beginners/explorer-search.md#columns) 。
 
 
 ### 数据导出

@@ -13,13 +13,13 @@ Node.js 应用的链路追踪，埋点后可在「应用性能监测」应用列
 
 ## 版本支持
 
-操作系统：Linux <br />
-Node 版本：>=12
+- 操作系统：Linux <br />
+- Node 版本：>=12
 
 ## 前置条件
 
 - 在 Node 应用服务器上安装 Datakit <[安装 DataKit](../../datakit/datakit-install.md)>
-- 查看 Node 版本是否>=12
+- [按需下载对应 agent](https://github.com/DataDog/dd-trace-js)
 
 ## 安装配置
 
