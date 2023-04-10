@@ -237,7 +237,9 @@ First, the Entry into Force of the Agreement
 | Monitoring digital combat screen (extra charge) | Customizable                                                       |
 | service                        | Telephone and work order service 5 × 8 hours                                       |
 | Expert technical service              | Support (lock in 10 DataKits and charge 7% service fee)                 |
-| Value-added services (extra charge)        | Internet professional operation and maintenance service                                           |
+| Value-added services (extra charge)        | Internet professional operation and maintenance service               |
+
+
 | Billing items          | Commercial plan                                    |
 | ----------------- | ----------------------------------------- |
 | Quantity of DataKit      | 3 yuan per day (each set)                           |
