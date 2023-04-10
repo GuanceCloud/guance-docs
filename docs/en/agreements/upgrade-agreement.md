@@ -271,9 +271,8 @@ In addition, you should fill in the detailed mailing address or email address fo
 
 
 
-### **Annex II Guance SaaS Service Level Agreement**
+## **Annex II Guance SaaS Service Level Agreement**
 
-Effective time: --/--/2023
 
 This Service Level Agreement (hereinafter referred to as "SLA") stipulates the service availability level indicators and compensation scheme of the Guance SaaS Service (referred to as "Guance SaaS Service") provided by Guance to users.
 
