@@ -1,11 +1,11 @@
 # 注册商业版
 ---
 
-在 [观测云官网](https://www.guance.com/) ，点击「[免费注册](https://auth.guance.com/businessRegister)」，填写相关信息后即可成为观测云用户。
+在 [观测云官网](https://www.guance.com/) ，点击 **[免费注册](https://auth.guance.com/businessRegister)**，填写相关信息后即可成为观测云用户。
 
 ## 第一步：基本信息 {#info}
 
-在「基本信息」页面，选择站点、输入注册信息，点击「下一步」。
+在**基本信息**页面，选择站点、输入注册信息，点击**下一步**。
 
 ![](img/commercial-register-1.png)
 
@@ -28,13 +28,13 @@
 
 ### 用户名说明
 
-在此页面注册「[观测云控制台账号](https://auth.guance.com/businessRegister)」的同时，会为您注册**相同「用户名」**的「[观测云费用中心账号](https://boss.guance.com/)」，费用中心的用户名账号会检查唯一性，一旦注册不能修改。
+在此页面注册[观测云控制台账号](https://auth.guance.com/businessRegister)的同时，会为您注册**相同用户名**的[观测云费用中心账号](https://boss.guance.com/)，费用中心的用户名账号会检查唯一性，一旦注册不能修改。
 
 > 更多详情可参考文档 [<费用中心>](../billing/cost-center/index.md)。
 
 #### 绑定费用中心用户名账号
 
-在此页面注册时，您可以直接绑定费用中心用户名账号，输入用户名以后，在提示框中选择“仍想使用此用户名注册？”。
+在此页面注册时，您可以直接绑定费用中心用户名账号，输入用户名以后，在提示框中选择**仍想使用此用户名注册？**。
 
 ![](img/9.billing_account_1.png)
 
@@ -48,13 +48,13 @@
 
 ## 第二步：企业信息
 
-在「企业信息」页面，输入相关信息，点击「注册」。
+在**企业信息**页面，输入相关信息，点击**注册**。
 
 ![](img/11.account_center_4.png)
 
-## 第三步：选择开通方式
+## 第三步：**选择开通方式**
 
-根据[「第一步：基本信息」](#info)中所选择的站点，第三步会显示对应默认的开通方式页面。
+根据[第一步：基本信息](#info)中所选择的站点，第三步会显示对应默认的开通方式页面。
 
 > 费用结算方式详情，可参考文档 [<观测云费用结算方式>](../billing/billing-account/index.md) 。
 
@@ -68,11 +68,11 @@
 
 ### 观测云账号结算 {#guanceyun}
 
-观测云默认提供观测云账号结算，工作空间内产生的所有费用会直接从您的「[观测云费用中心](https://boss.guance.com/)」所购买的代金券、华为云储值卡余额等进行结算。
+观测云默认提供观测云账号结算，工作空间内产生的所有费用会直接从您的[观测云费用中心](https://boss.guance.com/)所购买的代金券、华为云储值卡余额等进行结算。
 
-您可以在「选择开通方式」，在下面的对话框输入「工作空间名称」，选择「工作空间语言」，点击「确定」即可完成注册。
+您可以在**选择开通方式**，在下面的对话框输入工作空间名称，选择工作空间语言，点击**确定**即可完成注册。
 
-![](img/1.register_guance.png)
+![](img/1.register_guance-1.png)
 
 <div class="grid cards" markdown>
 
@@ -86,11 +86,11 @@
 
 若您在注册时选择阿里云账号结算，工作空间内产生的所有费用会直接从您的阿里云账户中进行结算。
 
-您可以在「选择开通方式」，填写「工作空间名称」，选择「工作空间语言」，点击「[前往阿里云免费开通观测云服务](https://market.aliyun.com/products/56838014/cmgj00053362.html)」获取并填写「[阿里用户 ID](../billing/billing-account/aliyun-account.md#uid)」、「[商品实例ID](../billing/billing-account/aliyun-account.md#entity-id)」，点击「确定」即可完成注册。
+您可以在**选择开通方式**，填写工作空间名称，选择工作空间语言，点击 **[前往阿里云免费开通观测云服务](https://market.aliyun.com/products/56838014/cmgj00053362.html)** 获取并填写 **[阿里用户 ID](../billing/billing-account/aliyun-account.md#uid)、[商品实例ID](../billing/billing-account/aliyun-account.md#entity-id)**，点击**确定**即可完成注册。
 
 ???+ attention
 
-    对于阿里云用户来说，您也可以通过以下方式直接开通观测云进行使用。
+    对于阿里云用户来说，您也可以通过以下方式直接开通观测云。
     
     - 您可以直接在 [阿里云市场观测云](https://market.aliyun.com/products/56838014/cmgj00053362.html) ，购买观测云，并直接通过免登注册开通观测云。<br/>
     > 更多详情步骤可参考文档 [<阿里云市场开通观测云商业版>](commercial-aliyun.md)
@@ -111,7 +111,8 @@
 
 若您在注册时选择 AWS 账号结算，工作空间内产生的所有费用会直接从您的 AWS 账户中进行结算。
 
-您可以在「选择开通方式」，点击「 [前往亚马逊云市场订阅](../billing/billing-account/aws-account.md#subscribe) 」，在 AWS 订阅观测云并开通 AWS 账号结算。
+您可以在**选择开通方式**，点击 **[前往亚马逊云市场订阅](../billing/billing-account/aws-account.md#subscribe)**，在 AWS 订阅观测云并开通 AWS 账号结算。
+
 
 ![](img/1.register_aws.png)
 
@@ -123,19 +124,43 @@
 
 </div>
 
+### 华为云账号结算 {#huawei-cloud}
+
+若您在注册时选择华为云账号结算，工作空间内产生的所有费用会直接从您的华为云账户中进行结算。
+
+您可以在**选择开通方式**，点击 [前往华为云云商店免费开通](../billing/billing-account/aws-account.md#subscribe) ，在 AWS 订阅观测云并开通 AWS 账号结算。
+
+![](img/1.register_guance-1.png)
+
+???+ attention
+
+    您也可以通过以下方式直接开通观测云。
+    
+    - 您可以直接在 [华为云云商店](https://marketplace.huaweicloud.com/contents/8990a122-f456-43a4-892c-a458be31e336#productid=OFFI845592654693900288) ，购买观测云 SaaS 版，并直接通过免登注册开通观测云。<br/>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 华为云账号结算 文档</font>](./billing-account/huawei-account.md)
+
+<br/>
+
+</div>
+
+
+
 ## 第四步：开通成功
 
-成功选择开通方式后，将会提示成功开通观测云商业版。
+成功**选择开通方式**后，将会提示成功开通观测云商业版。
 
 ![](img/1.sls_8.png)
 
-登陆工作空间后，可以在观测云「付费计划与账单」模块，查看当前工作空间的版本信息。
+登陆工作空间后，可以在观测云付费计划与账单模块，查看当前工作空间的版本信息。
 
 ![](img/12.billing_1.png)
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 商业版「付费计划与账单」模块介绍</font>](../billing/commercial.md#_4)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 商业版付费计划与账单模块介绍</font>](../billing/commercial.md#_4)
 
 <br/>
 
