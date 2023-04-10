@@ -765,6 +765,6 @@ FT_ENV=SDK_ENV
 
 ### 出现 Include of non-modular header inside framework module 报错
 
-因为 SDK 的 .h ⽂文件中引⼊入了了依赖库的 .h ⽂文件，所以需要设置
+因为 SDK 的 .h 文件中引⼊了依赖库的 .h 文件，所以需要设置
 
 `Target` -> `Build Settings` -> `CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES` 设置为 YES.
