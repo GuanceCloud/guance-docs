@@ -78,7 +78,7 @@ GO
     
     ```
     
-    配置好后，重启 DataKit 即可。
+    配置好后，[重启 DataKit](datakit-service-how-to.md#manage-service) 即可。
 
 === "Kubernetes"
 
