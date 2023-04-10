@@ -1,45 +1,29 @@
-# iOS 应用接入
+# macOS 应用接入
 ---
 
 ## 简介
 
-观测云应用监测能够通过收集各个iOS应用的指标数据，以可视化的方式分析各个iOS应用端的性能。
+观测云应用监测能够通过收集各个 macOS 应用的指标数据，以可视化的方式分析各个 macOS 应用端的性能。
 
 ## 前置条件
 
 - 安装 DataKit（[DataKit 安装文档](../../datakit/datakit-install.md)）
 
-## iOS应用接入
+## macOS应用接入
 
-登录观测云控制台，进入「用户访问监测」页面，点击左上角「新建应用」，即可开始创建一个新的应用。
+登录观测云控制台，进入「用户访问监测」页面，点击右上角「新建应用」，在新窗口输入「应用名称」并自定义「应用 ID 标识」，点击「创建」，即可选择应用类型获取接入方式。
 
-1.输入「应用名称」、「应用ID」，选择「应用类型」
+- 应用名称（必填项）：用于识别当前实施用户访问监测的应用名称。
+- 应用 ID（必填项）：应用在当前工作空间的唯一标识，用于 SDK 采集数据上传匹配，数据入库后对应字段：app_id 。该字段仅支持英文、数字、下划线输入，最多为 48 个字符。
 
-- 应用名称：用于识别当前用户访问监测的应用名称。
-- 应用 ID ：应用在当前工作空间的唯一标识，对应字段：app_id 。该字段仅支持英文、数字、下划线输入，最多 48 个字符。
-
-2.选择「应用类型」后，在右侧会显示对应的应用接入方式，选择安装配置的接入方式，点击右侧的「参数配置」，填入相关配置参数后，即可复制到项目中使用。
-
-![](../img/6.rum_ios.gif)
-
+![](../img/13.rum_access_3.png)
 ## 安装
 
-![](https://img.shields.io/cocoapods/p/FTMobileAgent#crop=0&crop=0&crop=1&crop=1&id=xs5E2&originHeight=20&originWidth=82&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)![](https://img.shields.io/cocoapods/v/FTMobileSDK#crop=0&crop=0&crop=1&crop=1&id=Uyl38&originHeight=20&originWidth=122&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)![](https://img.shields.io/cocoapods/l/FTMobileSDK#crop=0&crop=0&crop=1&crop=1&id=SxRum&originHeight=20&originWidth=98&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)![](https://img.shields.io/badge/iOS-api%20%3E=%20iOS%2010-brightgreen#crop=0&crop=0&crop=1&crop=1&id=uFhFJ&originHeight=20&originWidth=118&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=) 
+![](https://img.shields.io/cocoapods/p/FTMacOSSDK#crop=0&crop=0&crop=1&crop=1&id=xs5E2&originHeight=20&originWidth=82&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)![](https://img.shields.io/cocoapods/v/FTMacOSSDK#crop=0&crop=0&crop=1&crop=1&id=Uyl38&originHeight=20&originWidth=122&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)![](https://img.shields.io/cocoapods/l/FTMacOSSDK#crop=0&crop=0&crop=1&crop=1&id=SxRum&originHeight=20&originWidth=98&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)![](https://img.shields.io/badge/macOS-api%20%3E=%20macOS%2010.13-brightgreen#crop=0&crop=0&crop=1&crop=1&id=uFhFJ&originHeight=20&originWidth=118&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=) 
 
-**源码地址**：[https://github.com/GuanceCloud/datakit-ios](https://github.com/GuanceCloud/datakit-ios)
+**源码地址**：[https://github.com/GuanceCloud/datakit-macos](https://github.com/GuanceCloud/datakit-macos)
 
-**Demo**：[https://github.com/GuanceCloud/datakit-ios/demo](https://github.com/GuanceCloud/datakit-ios/tree/develop/demo)
-
-
-### 源码方式
-
-1.从 GitHub 根据指定 tag 获取 SDK 的源代码。
-
-```
-git clone --branch 1.3.10-beta.2 https://github.com/GuanceCloud/datakit-ios.git
-```
-
-2.将 SDK 源代码导入 App 项目。将 **FTMobileAgent** 和 **BaseUtils** 文件夹导入项目，并选中 `Copy items if needed` ，勾选 `Create groups` 。
+**Demo**：[https://github.com/GuanceCloud/datakit-macos/tree/develop/Example](https://github.com/GuanceCloud/datakit-macos/tree/develop/Example)
 
 
 ### CocoaPods 方式
@@ -50,66 +34,67 @@ git clone --branch 1.3.10-beta.2 https://github.com/GuanceCloud/datakit-ios.git
 target 'yourProjectName' do
 
 # Pods for your project
-pod 'FTMobileSDK', '1.3.10-beta.2'
+ pod 'FTMacOSSDK', '1.0.0-alpha.1'
     
 end
 ```
 
 2.在 `Podfile` 目录下执行 `pod install` 安装 SDK。
 
-### Carthage 方式
+### Swift Package Manager 方式
 
-1.配置 `Cartfile` 文件。
+1.选中 **File** 菜单，然后选择 **Swift Packages > Add Package Dependency**。
+
+2.在搜索框中输入 `https://github.com/GuanceCloud/datakit-macos`，这是代码的存储位置。
+
+3.Xcode 获取软件包成功后，选中 `Add To Project` 选择支持的工程。`Dependency Rule` 建议选择 `Up to Next Major Version` ，填上版本号，等待加载完成。
+
+4.选中 **Target** -> **Build Phases** -> **Link Binary With Libraries** -> **+** 添加 `FTMacOSSDK.framwork` ，将包添加到工程中。
+
+如果您的项目由 SPM 管理，将 FTMacOSSDK 添加为依赖项，添加 `dependencies ` 到 `Package.swift`。
 
 ```
-github "GuanceCloud/datakit-ios" == 1.3.10-beta.2
+dependencies: [
+    .package(url: "https://github.com/GuanceCloud/datakit-macos.git", .upToNextMajor(from: "1.0.0-alpha.1"))
+]
 ```
-
-2.在 `Cartfile` 目录下执行  `carthage update --platform iOS` ， 并将  `FTMobileAgent.framework` 拖拽到您的项目中使用。若出现 "Building universal frameworks with common architectures is not possible. The device and simulator slices for "FTMobileAgent.framework" both build for: arm64" 错误，请执行  `carthage update --platform iOS --use-xcframeworks` 命令，生成  `FTMobileAgent.xcframework `，与普通的 Framework 使用方法相同，请将它拖拽到您的项目中使用。
-
-3.debug 模式下，为了方便 SDK 调试，建议使用 debug 模式的静态库。在命令后添加  `--configuration Debug` 获取 debug 模式的静态库。
-
-4.在 `TARGETS`  -> `Build Setting` ->  `Other Linker Flags`  添加  `-ObjC`。
-
-5.目前只支持 1.3.4-beta.2 及以上的版本。
-
-
 
 ### 添加头文件
 
 ```objectivec
-//使用 Carthage 方式
-#import <FTMobileAgent/FTMobileAgent.h>
-...
-//使用 源码 或 CocoaPods 方式
-#import "FTMobileAgent.h"
+#import "FTMacOSSDK.h"
 ```
 
 ## SDK 初始化
 
 ### 基础配置 {#base-setting}
 
+由于第一个显示的视图 `NSViewController` 的 `viewDidLoad` 方法、 `NSWindowController` 的 `windowDidLoad` 方法调用要早于 AppDelegate `applicationDidFinishLaunching`，为避免第一个视图的生命周期采集异常，建议在 ` main.m`  文件中进行 SDK 初始化。
+
 ```objectivec
--(BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
-    // SDK FTMobileConfig 设置
-    FTMobileConfig *config = [[FTMobileConfig alloc]initWithMetricsUrl:@"Your App metricsUrl"];
-    config.enableSDKDebugLog = YES;
-    //启动 SDK
-    [FTMobileAgent startWithConfigOptions:config];
-    
-   //...
-    return YES;
+// main.m 文件
+#import "FTMacOSSDK.h"
+
+int main(int argc, const char * argv[]) {
+    @autoreleasepool {
+        // Setup code that might create autoreleased objects goes here.
+        FTSDKConfig *config = [[FTSDKConfig alloc]initWithMetricsUrl:@"YOUR_ACCESS_SERVER_URL"];
+        config.enableSDKDebugLog = YES;
+        [FTSDKAgent startWithConfigOptions:config];
+    }
+    return NSApplicationMain(argc, argv);
 }
+
 ```
 
-| **字段** | **类型** | **说明** | **必须** |
-| --- | --- | --- | --- |
-| metricsUrl | NSString | datakit 安装地址 URL 地址，例子：http://datakit.url:[port]。注意：安装 SDK 设备需能访问这地址| 是 |
-| enableSDKDebugLog | BOOL | 设置是否允许打印日志 | 否（默认NO） |
-| env | NS_ENUM | 环境 | 否  （默认FTEnvProd） |
-| XDataKitUUID | NSString | 请求HTTP请求头X-Datakit-UUID 数据采集端  如果用户不设置会自动配置 | 否 |
-| globalContext | NSDictionary | [添加自定义标签](#user-global-context) |     否 |
-| service | NSString | 设置所属业务或服务的名称，影响 Log 和 RUM 中 service 字段数据。默认：`df_rum_ios` | 否 |
+| **字段**          | **类型**     | **说明**                                                     | **必须**              |
+| ----------------- | ------------ | ------------------------------------------------------------ | --------------------- |
+| metricsUrl        | NSString     | datakit 安装地址 URL 地址，例子：http://datakit.url:[port]。注意：安装 SDK 设备需能访问这地址 | 是                    |
+| enableSDKDebugLog | BOOL         | 设置是否允许打印日志                                         | 否（默认NO）          |
+| env               | NS_ENUM      | 环境                                                         | 否  （默认FTEnvProd） |
+| XDataKitUUID      | NSString     | 请求HTTP请求头X-Datakit-UUID 数据采集端  如果用户不设置会自动配置 | 否                    |
+| globalContext     | NSDictionary | [添加自定义标签](#user-global-context)                       | 否                    |
+| service           | NSString     | 设置所属业务或服务的名称，影响 Log 和 RUM 中 service 字段数据。默认：`df_rum_macos` | 否                    |
 
 #### env 环境
 
@@ -137,39 +122,38 @@ typedef NS_ENUM(NSInteger, FTEnv) {
     rumConfig.enableTraceUserAction = YES;
 	  rumConfig.enableTraceUserVIew = YES;
     rumConfig.deviceMetricsMonitorType = FTDeviceMetricsMonitorAll;
-    [[FTMobileAgent sharedInstance] startRumWithConfigOptions:rumConfig];
+    [[FTSDKAgent sharedInstance] startRumWithConfigOptions:rumConfig];
 ```
 
-| **字段** | **类型** | **说明** | **必须** |
-| --- | --- | --- | --- |
-| appid | NSString | 用户访问监测应用 ID 唯一标识，在用户访问监测控制台上面创建监控时自动生成。 | 否（开启RUM 必选） |
-| samplerate | int | 采样采集率 | 否（默认100） |
-| enableTrackAppCrash | BOOL | 设置是否需要采集崩溃日志 | 否（默认NO） |
-| enableTrackAppANR | BOOL | 采集ANR卡顿无响应事件 | 否（默认NO） |
-| enableTrackAppFreeze | BOOL | 采集UI卡顿事件 | 否（默认NO） |
-| enableTraceUserAction | BOOL | 设置是否追踪用户 Action 操作 | 否（默认NO） |
-| enableTraceUserView | BOOL | 设置是否追踪用户 View 操作 | 否（默认NO） |
-| globalContext | NSDictionary | [添加自定义标签](#user-global-context) |     否 |
-| errorMonitorType | NS_OPTIONS | 错误事件监控补充类型 | 否 |
-| deviceMetricsMonitorType | NS_OPTIONS | 视图的性能监控类型 | 否（未设置则不开启监控） |
-| monitorFrequency | NS_OPTIONS | 视图的性能监控采样周期 | 否 |
+| **字段**                 | **类型**     | **说明**                                                     | **必须**                 |
+| ------------------------ | ------------ | ------------------------------------------------------------ | ------------------------ |
+| appid                    | NSString     | 用户访问监测应用 ID 唯一标识，在用户访问监测控制台上面创建监控时自动生成。 | 否（开启RUM 必选）       |
+| sampleRate               | int          | 采样采集率                                                   | 否（默认100）            |
+| enableTrackAppCrash      | BOOL         | 设置是否需要采集崩溃日志                                     | 否（默认NO）             |
+| enableTrackAppANR        | BOOL         | 采集ANR卡顿无响应事件                                        | 否（默认NO）             |
+| enableTrackAppFreeze     | BOOL         | 采集UI卡顿事件                                               | 否（默认NO）             |
+| enableTraceUserAction    | BOOL         | 设置是否追踪用户 Action 操作                                 | 否（默认NO）             |
+| enableTraceUserView      | BOOL         | 设置是否追踪用户 View 操作                                   | 否（默认NO）             |
+| globalContext            | NSDictionary | [添加自定义标签](#user-global-context)                       | 否                       |
+| errorMonitorType         | NS_OPTIONS   | 错误事件监控补充类型                                         | 否                       |
+| deviceMetricsMonitorType | NS_OPTIONS   | 视图的性能监控类型                                           | 否（未设置则不开启监控） |
+| monitorFrequency         | NS_OPTIONS   | 视图的性能监控采样周期                                       | 否                       |
 
 #### 监控数据配置
 
 配置 `FTRumConfig` 的 `errorMonitorType` 属性，将在采集的崩溃数据中添加对应的信息。可采集的类型如下：
 
 ```objectivec
-/**
- * @constant
- *  FTMonitorInfoTypeBattery  - 电池电量
- *  FTMonitorInfoTypeMemory   - 内存总量、内存使用率
- *  FTMonitorInfoTypeCpu      - CPU使用率
- */
-typedef NS_OPTIONS(NSUInteger, FTMonitorInfoType) {
-    FTMonitorInfoTypeAll          = 0xFFFFFFFF,
-    FTMonitorInfoTypeBattery      = 1 << 1,
-    FTMonitorInfoTypeMemory       = 1 << 2,
-    FTMonitorInfoTypeCpu          = 1 << 3,
+/// ERROR 中的设备信息
+typedef NS_OPTIONS(NSUInteger, FTErrorMonitorType) {
+    /// 开启所有监控： 电池、内存、CPU使用率
+    FTErrorMonitorAll          = 0xFFFFFFFF,
+    /// 电池电量
+    FTErrorMonitorBattery      = 1 << 1,
+    /// 内存总量、内存使用率
+    FTErrorMonitorMemory       = 1 << 2,
+    /// CPU使用率
+    FTErrorMonitorCpu          = 1 << 3,
 };
 ```
 
@@ -181,13 +165,11 @@ typedef NS_OPTIONS(NSUInteger, FTMonitorInfoType) {
  * @constant
  *  FTDeviceMetricsMonitorMemory   - 平均内存、最高内存
  *  FTDeviceMetricsMonitorCpu      - CPU跳动最大、平均数
- *  FTDeviceMetricsMonitorFps      - fps 最低帧率、平均帧率
  */
 typedef NS_OPTIONS(NSUInteger, FTDeviceMetricsMonitorType){
     FTDeviceMetricsMonitorAll      = 0xFFFFFFFF,
     FTDeviceMetricsMonitorCpu      = 1 << 1,
     FTDeviceMetricsMonitorMemory   = 1 << 2,
-    FTDeviceMetricsMonitorFps      = 1 << 3,
 };
 
 /**
@@ -212,19 +194,19 @@ typedef NS_OPTIONS(NSUInteger, FTMonitorFrequency) {
     loggerConfig.enableCustomLog = YES;
     loggerConfig.enableLinkRumData = YES;
     loggerConfig.enableConsoleLog = YES;
-    [[FTMobileAgent sharedInstance] startLoggerWithConfigOptions:loggerConfig];
+    [[FTSDKAgent sharedInstance] startLoggerWithConfigOptions:loggerConfig];
 ```
 
-| **字段** | **类型** | **说明** | **必须** |
-| --- | --- | --- | --- |
-| samplerate | int | 采样采集率 | 否（默认100） |
-| enableConsoleLog | BOOL | 设置是否需要采集控制台日志 | 否（默认NO） |
-| prefix | NSString | 设置采集控制台日志过滤字符串 | 否（默认全采集） |
-| enableCustomLog | BOOL | 是否上传自定义 log | 否（默认NO） |
-| logLevelFilter | NSArray | 设置要采集的自定义 log 的状态数组 | 否（默认全采集） |
-| enableLinkRumData | BOOL | 是否将 logger 数据与 rum 关联 | 否（默认NO） |
-| discardType | FTLogCacheDiscard | 设置日志废弃策略 | 否（默认丢弃最新数据） |
-| globalContext | NSDictionary | [添加自定义标签](#user-global-context) |     否 |
+| **字段**          | **类型**          | **说明**                               | **必须**               |
+| ----------------- | ----------------- | -------------------------------------- | ---------------------- |
+| sampleRate        | int               | 采样采集率                             | 否（默认100）          |
+| enableConsoleLog  | BOOL              | 设置是否需要采集控制台日志             | 否（默认NO）           |
+| prefix            | NSString          | 设置采集控制台日志过滤字符串           | 否（默认全采集）       |
+| enableCustomLog   | BOOL              | 是否上传自定义 log                     | 否（默认NO）           |
+| logLevelFilter    | NSArray           | 设置要采集的自定义 log 的状态数组      | 否（默认全采集）       |
+| enableLinkRumData | BOOL              | 是否将 logger 数据与 rum 关联          | 否（默认NO）           |
+| discardType       | FTLogCacheDiscard | 设置日志废弃策略                       | 否（默认丢弃最新数据） |
+| globalContext     | NSDictionary      | [添加自定义标签](#user-global-context) | 否                     |
 
 #### 日志废弃策略
 
@@ -271,15 +253,15 @@ typedef NS_ENUM(NSInteger, FTLogCacheDiscard)  {
     traceConfig.enableLinkRumData = YES;
 	  traceConfig.enableAutoTrace = YES;
     traceConfig.networkTraceType = FTNetworkTraceTypeDDtrace;
-    [[FTMobileAgent sharedInstance] startTraceWithConfigOptions:traceConfig];
+    [[FTSDKAgentsharedInstance] startTraceWithConfigOptions:traceConfig];
 ```
 
-| 字段 | 类型 | 说明 | 必须 |
-| --- | --- | --- | --- |
-| samplerate | int | 采样采集率 | 否（默认100) |
-| networkTraceType | NS_ENUM | 设置网络请求信息采集时 使用链路追踪类型，如果接入 OpenTelemetry 选择对应链路类型时，请注意查阅支持类型及 agent 相关配置 | 否（默认DDtrace） |
-| enableLinkRumData | BOOL | 是否将 Trace 数据与 rum 关联 | 否（默认NO） |
-| enableAutoTrace | BOOL | 设置是否开启自动 http trace，目前只支持 NSURLSession | 否（默认NO） |
+| 字段              | 类型    | 说明                                                         | 必须              |
+| ----------------- | ------- | ------------------------------------------------------------ | ----------------- |
+| sampleRate        | int     | 采样采集率                                                   | 否（默认100)      |
+| networkTraceType  | NS_ENUM | 设置网络请求信息采集时 使用链路追踪类型，如果接入 OpenTelemetry 选择对应链路类型时，请注意查阅支持类型及 agent 相关配置 | 否（默认DDtrace） |
+| enableLinkRumData | BOOL    | 是否将 Trace 数据与 rum 关联                                 | 否（默认NO）      |
+| enableAutoTrace   | BOOL    | 设置是否开启自动 http trace，目前只支持 NSURLSession         | 否（默认NO）      |
 
 #### 链路追踪类型
 
@@ -309,17 +291,21 @@ typedef NS_ENUM(NSInteger, FTNetworkTraceType) {
 
 ## RUM 用户数据追踪
 
-可以 `FTRUMConfig` 配置开启自动模式，或手动添加。Rum 相关数据，通过 `FTExternalDataManager` 单例，进行传入，相关 API 如下：
+可以 `FTRUMConfig` 配置开启自动模式，或手动添加。Rum 相关数据，通过 `FTGlobalRumManager` 单例，进行传入，相关 API 如下：
 
 ### View
 
+若设置 `enableTraceUserView= YES` 开启自动采集 ，SDK 将自动采集 Window 的生命周期，以 window 的 `becomeKeyWindow` 为开始，记录进入页面， 以 `resignKeyWindow` 为结束，记录离开页面。页面名称根据 contentViewController > windowController > window 的优先顺序来设置，即若 window 的 contentViewController 存在，则页面名称为 contentViewController 的类名，如 contentViewController 不存在，则查看 windowController 是否存在，存在即为 windowController 的类名，反之则为 Window 的类名。
+
+若想记录 window 内更为详细的 NSViewController 的生命周期，可以使用下面的 API 手动采集。
+
 ```objectivec
 //进入页面时调用  duration 以纳秒为单位 示例中为 1s
-[[FTExternalDataManager sharedManager] onCreateView:@"TestVC" loadTime:@1000000000];
+[[FTGlobalRumManager sharedManager] onCreateView:@"TestVC" loadTime:@1000000000];
 
-[[FTExternalDataManager sharedManager] startViewWithName:@"TestVC"];
+[[FTGlobalRumManager sharedManager] startViewWithName:@"TestVC"];
 
-[[FTExternalDataManager sharedManager] stopView];
+[[FTGlobalRumManager sharedManager] stopView];
 ```
 
 ```objectivec
@@ -354,21 +340,10 @@ typedef NS_ENUM(NSInteger, FTNetworkTraceType) {
 ### Action
 
 ```objective-c
-[[FTExternalDataManager sharedManager]  addActionName:@"UITableViewCell click" actionType:@"click"];
+[[FTGlobalRumManager sharedManager]  addActionName:@"UITableViewCell click" actionType:@"click"];
 ```
 
 ```objectivec
-/**
- * 添加 Click Action 事件
- * @param actionName 事件名称
- */
-- (void)addClickActionWithName:(NSString *)actionName;
-/**
- * 添加 Click Action 事件
- * @param actionName 事件名称
- * @param property   事件属性(可选)
- */
-- (void)addClickActionWithName:(NSString *)actionName property:(nullable NSDictionary *)property;
 /**
  * 添加  Action 事件
  * @param actionName 事件名称
@@ -387,7 +362,7 @@ typedef NS_ENUM(NSInteger, FTNetworkTraceType) {
 ### Error
 
 ```objectivec
-[[FTExternalDataManager sharedManager] addErrorWithType:@"type" situation:RUN message:@"message" stack:@"stack"];
+[[FTGlobalRumManager sharedManager] addErrorWithType:@"type" situation:RUN message:@"message" stack:@"stack"];
 ```
 
 ```objectivec
@@ -411,7 +386,7 @@ typedef NS_ENUM(NSInteger, FTNetworkTraceType) {
 ### LongTask
 
 ```objectivec
-[[FTExternalDataManager sharedManager] addLongTaskWithStack:@"堆栈信息 string" duration:@1000000000];
+[[FTGlobalRumManager sharedManager] addLongTaskWithStack:@"堆栈信息 string" duration:@1000000000];
 ```
 
 ```objectivec
@@ -433,11 +408,14 @@ typedef NS_ENUM(NSInteger, FTNetworkTraceType) {
 ### Resource
 
 ```objectivec
- //第一步：请求开始前
- [[FTExternalDataManager sharedManager] startResourceWithKey:key];
+#import "FTMacOSSDK.h"
+#import "FTResourceContentModel.h"
+#import "FTResourceMetricsModel.h"
+//第一步：请求开始前
+ [[FTGlobalRumManager sharedManager] startResourceWithKey:key];
 
  //第二步：请求完成
- [[FTExternalDataManager sharedManager] stopResourceWithKey:key];
+ [[FTGlobalRumManager sharedManager] stopResourceWithKey:key];
 
  //第三步：拼接 Resource 数据
  //FTResourceContentModel 数据
@@ -466,7 +444,7 @@ typedef NS_ENUM(NSInteger, FTNetworkTraceType) {
   [metricsModel setDurationStart:dstart end:dend];
 
  //第四步：add resource 如果没有时间数据 metrics 传 nil
- [[FTExternalDataManager sharedManager] addResourceWithKey:key metrics:metricsModel content:content];
+ [[FTGlobalRumManager sharedManager] addResourceWithKey:key metrics:metricsModel content:content];
 ```
 
 ```objectivec
@@ -506,15 +484,15 @@ typedef NS_ENUM(NSInteger, FTNetworkTraceType) {
 当开启自动采集后，内部会进行处理不采集 SDK 的数据上报地址。您也可以通过 Open API 设置过滤条件，采集您需要的网络地址。
 
 ```objective-c
-[[FTMobileAgent sharedInstance] isIntakeUrl:^BOOL(NSURL * _Nonnull url) {
+[[FTSDKAgent sharedInstance] isIntakeUrl:^BOOL(NSURL * _Nonnull url) {
         // 您的采集判断逻辑
         return YES;//return NO; (YES 采集，NO 不采集)
  }];
 ```
 
 ```objective-c
-//  FTMobileAgent+Public.h
-//  FTMobileAgent
+//  FTSDKAgent.h
+//  
 /**
  * @abstract
  * 判断 URL 是否采集
@@ -525,7 +503,7 @@ typedef NS_ENUM(NSInteger, FTNetworkTraceType) {
 ## Logger 日志打印 {#user-logger}
 
 ```objectivec
-[[FTMobileAgent sharedInstance] logging:@"TestLoggingBackground" status:FTStatusInfo];
+[[FTSDKAgent sharedInstance] logging:@"TestLoggingBackground" status:FTStatusInfo];
 ```
 
 ```objectivec
@@ -550,7 +528,7 @@ typedef NS_ENUM(NSInteger, FTStatus) {
 
 ## Trace 网络链接追踪
 
-可以 `FTTraceConfig` 配置开启自动模式，或手动添加。Trace 相关数据，通过 `FTTraceManager` 单例，进行传入，相关 API 如下：
+可以 `FTTraceConfig`  配置开启自动模式，或手动添加。Trace 相关数据，通过 `FTTraceManager` 单例，进行传入，相关 API 如下：
 
 ```objectivec
  NSString *key = [[NSUUID UUID]UUIDString];
@@ -573,6 +551,7 @@ typedef NS_ENUM(NSInteger, FTStatus) {
 ```
 
 ```objectivec
+// FTTraceManager.h
 /**
  * 获取 trace 请求头
  * @param key 请求标识
@@ -590,14 +569,14 @@ typedef NS_ENUM(NSInteger, FTStatus) {
  * @param userEmail 用户邮箱
  * @param extra     用户的额外信息
 */
-[[FTMobileAgent sharedInstance] bindUserWithUserID:USERID];
+[[FTSDKAgent sharedInstance] bindUserWithUserID:USERID];
 //or
-[[FTMobileAgent sharedInstance] bindUserWithUserID:USERID userName:USERNAME userEmail:USEREMAIL];
+[[FTSDKAgent sharedInstance] bindUserWithUserID:USERID userName:USERNAME userEmail:USEREMAIL];
 //or
-[[FTMobileAgent sharedInstance] bindUserWithUserID:USERID userName:USERNAME userEmail:USEREMAIL extra:@{EXTRA_KEY:EXTRA_VALUE}];
+[[FTSDKAgent sharedInstance] bindUserWithUserID:USERID userName:USERNAME userEmail:USEREMAIL extra:@{EXTRA_KEY:EXTRA_VALUE}];
 
 //解绑用户
-[[FTMobileAgent sharedInstance] logout];
+[[FTSDKAgent sharedInstance] unbindUser];
 ```
 
 ## 添加自定义标签 {#user-global-context}
@@ -632,7 +611,7 @@ typedef NS_ENUM(NSInteger, FTStatus) {
 FTRumConfig *rumConfig = [[FTRumConfig alloc]init]; 
 rumConfig.globalContext = @{@"track_id":Track_id,@"static_tag":STATIC_TAG};
 ... //其他设置操作
-[[FTMobileAgent sharedInstance] startRumWithConfigOptions:rumConfig];
+[[FTSDKAgent sharedInstance] startRumWithConfigOptions:rumConfig];
 ```
 
 ### 动态使用
@@ -647,7 +626,7 @@ NSString *dynamicTag = [[NSUserDefaults standardUserDefaults] valueForKey:@"DYNA
 FTRumConfig *rumConfig = [[FTRumConfig alloc]init];
 rumConfig.globalContext = @{@"dynamic_tag":dynamicTag};
 ... //其他设置操作
-[[FTMobileAgent sharedInstance] startRumWithConfigOptions:rumConfig];
+[[FTSDKAgent sharedInstance] startRumWithConfigOptions:rumConfig];
 ```
 
 2. 在任意处添加改变文件数据的方法。
@@ -666,9 +645,9 @@ rumConfig.globalContext = @{@"dynamic_tag":dynamicTag};
 
 3. 在调用 -startRumWithConfigOptions 方法启动 RUM 前设置 globalContext 才能生效。
 
-4. `FTMobileConfig` 中配置的自定义标签将添加在所有类型的数据中。
+4. `FTSDKConfig` 中配置的自定义标签将添加在所有类型的数据中。
 
-详细细节请见 [SDK Demo](https://github.com/GuanceCloud/datakit-ios/tree/develop/demo)。
+详细细节请见 [SDK Demo](https://github.com/GuanceCloud/datakit-macos/tree/develop/Example)。
 
 ## 崩溃日志符号化
 
@@ -678,7 +657,7 @@ rumConfig.globalContext = @{@"dynamic_tag":dynamicTag};
 
 1. XCode 添加自定义 Run Script Phase：` Build Phases -> + -> New Run Script Phase`
 2. 将脚本复制到 Xcode 项目的构建阶段运行脚本中，脚本中需要设置参数如：＜app_id＞、＜dea_address＞、＜env＞、＜version＞(脚本默认配置的版本格式为 `CFBundleShortVersionString`)。
-3. [脚本](https://github.com/GuanceCloud/datakit-ios/blob/develop/demo/FTdSYMUploader.sh)
+3. [脚本](https://github.com/GuanceCloud/datakit-macos/tree/develop/Example/FTdSYMUploader.sh)
 
 ```sh
 #脚本中需要配置的参数
@@ -768,7 +747,7 @@ FT_ENV=SDK_ENV
 ![](../img/multi-environment-configuration9.png)
 
 
-详细细节请见 [SDK Demo](https://github.com/GuanceCloud/datakit-ios/tree/develop/demo)。
+详细细节请见 [SDK Demo](https://github.com/GuanceCloud/datakit-macos/tree/develop/Example)。
 
 #### 方法二：终端运行脚本
 
@@ -782,87 +761,10 @@ FT_ENV=SDK_ENV
 
 ## 常见问题 {#FAQ}
 
-### 关于崩溃日志分析 {#crash-log-analysis}
+### [关于崩溃日志分析](../ios/app-access.md#crash-log-analysis)
 
-在开发时的 **Debug** 和 **Release** 模式下， **Crash** 时捕获的线程回溯是被符号化的。
-而发布包没带符号表，异常线程的关键回溯，会显示镜像的名字，不会转化为有效的代码符号，获取到的 **crash log** 中的相关信息都是 16 进制的内存地址，并不能定位崩溃的代码，所以需要将 16 进制的内存地址解析为对应的类及方法。
+### 出现 Include of non-modular header inside framework module 报错
 
-#### XCode 编译后没有生成 dSYM 文件？
+因为 SDK 的 .h ⽂文件中引⼊入了了依赖库的 .h ⽂文件，所以需要设置
 
-XCode Release 编译默认会生成 dSYM 文件，而 Debug 编译默认不会生成，对应的 Xcode 配置如下：
-
- ` Build Settings -> Code Generation -> Generate Debug Symbols -> Yes` 
-
-![](../img/dsym_config1.png)
-
-
-
-
-
-
-` Build Settings -> Build Option -> Debug Information Format -> DWARF with dSYM File`
-
-![](../img/dsym_config2.png)
-
-
-
-
-#### 开启了 bitCode 怎么上传符号表？
-
-当你上传你的 bitcode App 到 App Store，在提交对话框里勾选声明符号文件（dSYM文件）的生成：
-
-- 在配置符号表文件之前，需要从App Store中把该版本对应的dSYM文件下载回本地，然后用脚本根据输入参数处理上传符号表文件。
-- 不需要将脚本集成到 Xcode 工程的 Target 了，也不要用本地生成的 dSYM 文件来生成符号表文件，因为本地编译生成的 dSYM 文件的符号表信息都被隐藏了。如果用本地编译生成的 dSYM 文件上传，还原出来的结果将是类似于“__hiden#XXX”这样的符号。
-
-#### 如何找回已发布到 App Store 的 App 对应的 dSYM 文件？
-
-| 应用上传到App  Store Connect的Distribution options | dSym文件                                                     |
-| -------------------------------------------------- | ------------------------------------------------------------ |
-| Don’t include bitcode<br>Upload symbols            | 通过 Xcode 找回                                              |
-| Include bitcode<br>Upload symbols                  | 通过 iTunes Connect 找回<br />通过 Xcode 找回， 需要使用 `.bcsymbolmap` 去混淆处理。 |
-| Include bitcode<br>Don’t upload symbols            | 通过 Xcode 找回， 需要使用 `.bcsymbolmap` 去混淆处理。       |
-| Don’t include bitcode<br>Don’t upload symbols      | 通过 Xcode 找回                                              |
-
-##### 通过 Xcode 找回
-
-1. `Xcode -> Window -> Organizer ` 
-
-2. 选择 `Archives`  标签
-
-   ![](../img/xcode_find_dsym2.png)
-   
-3. 找到发布的归档包，右键点击对应归档包，选择Show in Finder操作
-
-   ![](../img/xcode_find_dsym3.png)
-   
-   
-   
-4. 右键选择定位到的归档文件，选择显示包内容操作 
-
-   ![](../img/xcode_find_dsym4.png)
-   
-   
-   
-5. 选择dSYMs目录，目录内即为下载到的 dSYM 文件
-
-   ![](../img/xcode_find_dsym5.png)
-
-##### 通过 iTunes Connect 找回
-
-1. 登录[App Store Connect](https://appstoreconnect.apple.com)；
-2. 进入"我的App（My Apps）"
-3. 在 "App Store" 或 "TestFlight" 中选择某一个版本"，点击 "构建版本元数据（Build Metadata）" 在此页面，点击按钮 "下载dSYM（Download dSYM）" 下载 dSYM 文件
-
-##### .bcsymbolmap 去混淆处理
-
-在通过 Xcode 找到 dSYM 文件时，可以看到 BCSymbolMaps 目录
-
-![](../img/BCSymbolMaps.png)
-
-
-打开终端并使用以下命令进行去混淆处理
-
-`xcrun dsymutil -symbol-map <BCSymbolMaps_path> <.dSYM_path>`
-
-
-
+`Target` -> `Build Settings` -> `CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES` 设置为 YES.
