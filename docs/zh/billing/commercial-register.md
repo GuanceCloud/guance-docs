@@ -128,7 +128,7 @@
 
 若您在注册时选择华为云账号结算，工作空间内产生的所有费用会直接从您的华为云账户中进行结算。
 
-您可以在**选择开通方式**，点击 [前往华为云云商店免费开通](../billing/billing-account/aws-account.md#subscribe) ，在 AWS 订阅观测云并开通 AWS 账号结算。
+您可以在**选择开通方式**，点击 [前往华为云云商店免费开通](../billing/billing-account/aws-account.md#subscribe) ，在华为云云商店订阅观测云并开通华为云账号结算。
 
 ![](img/1.register_guance-1.png)
 
