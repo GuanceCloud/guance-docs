@@ -140,6 +140,8 @@
 | `fps_mini`                  | number   | 可选，页面最小每秒帧数   |
 | `memory_avg`                | number   | 可选，页面内存使用平均值 |
 | `memory_max`                | number   | 可选，页面内存峰值       |
+| `battery_current_avg `                | number   | 可选，页面电池电流平均值 |
+| `battery_current_max `                | number   | 可选，页面电池电流最大值 |
 
 ### Resource
 

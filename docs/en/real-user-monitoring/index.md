@@ -25,7 +25,7 @@ You can click the following link to view the corresponding application access co
 
 ## Deployment Architecture
 
-![](img/rum-arch.png)
+![](img/rum-arch_1.png)
 
 ## Usage Scenarios
 
