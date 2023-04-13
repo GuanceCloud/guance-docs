@@ -25,7 +25,7 @@ DataKit 安装完成后，开启 [RUM采集器](../datakit/rum.md) ，接入应�
 
 ## 部署架构
 
-![](img/rum-arch.png)
+![](img/rum-arch_1.png)
 
 ## 应用场景
 

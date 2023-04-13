@@ -108,8 +108,7 @@ android{
 	    @Override
 	    public void onCreate() {
 	        FTSDKConfig config = FTSDKConfig.builder(DATAKIT_URL)//Datakit 安装地址
-	                .setDebug(true)
-	                .build();
+	                .setDebug(true);
 
 	        FTSdk.install(config);
 
