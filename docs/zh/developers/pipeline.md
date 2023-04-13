@@ -652,6 +652,87 @@ adjust_timezone(time)
   - 输入 1 结果： `2022-07-11T20:49:20.937+08:00`
 
 
+### `agg_create()` {#fn-agg-create}
+
+[:octicons-tag-24: Version-1.5.10](../datakit/changelog.md#cl-1.5.10)
+
+函数原型：`fn agg_create(bucket: str, on_interval: str = "60s", on_count: int = 0, keep_value: bool = false, const_tags: map[string]string = nil)`
+
+函数说明：创建一个用于聚合的指标集，通过 `on_interval` 或 `on_count` 设置时间或次数作为聚合周期，聚合结束后将上传聚合数据，可以选择是否保留上一次聚合的数据
+
+函数参数:
+
+- `bucket`: 字符串类型, 作为聚合出的指标的指标集名，如果该 bucket 已经创建，则函数不执行任何操作
+- `on_interval`：默认值 `60s`, 以时间作为聚合周期，单位 `s`，值大于 `0` 时参数生效；不能同时与 `on_count` 小于等于 0；
+- `on_count`: 默认值 `0`，以处理的点数作为聚合周期，值大于 `0` 时参数生效
+- `keep_value`: 默认值 `false`
+- `const_tags`: 自定义的 tags，默认为空
+
+示例:
+
+```python
+agg_create("cpu_agg_info", on_interval = "30s")
+```
+
+
+### `agg_metric()` {#fn-agg-metric}
+
+[:octicons-tag-24: Version-1.5.10](../datakit/changelog.md#cl-1.5.10)
+
+函数原型：`fn agg_metric(bucket: str, new_field: str, agg_fn: str, agg_by: []string, agg_field: str)`
+
+函数说明：根据输入的数据中的字段的名，自动取值后作为聚合数据的 tag，并将这些聚合数据存储在对应的 bucket 中
+
+函数参数:
+
+- `bucket`: 字符串类型, 函数 `agg_create` 创建出的对应指标集合的 bucket，如果该 bucket 未被创建，则函数不执行任何操作
+- `new_field`： 聚合出的数据中的指标名，其值的数据类型为 `float`
+- `agg_fn`: 聚合函数，可以是`"avg"`,`"sum"`,`"min"`,`"max"`,`"set"` 中的一种
+- `agg_by`: 输入的数据中的字段的名，将作为聚合出的数据的 tag，这些字段的值只能是字符串类型的数据
+- `agg_field`: 输入的数据中的字段名，自动获取字段值进行聚合
+
+示例:
+
+以日志类别数据为例：
+
+多个输入日志：
+```
+1
+```
+
+```
+2
+```
+
+```
+3
+```
+
+脚本：
+
+```python
+agg_create("cpu_agg_info", interval=10, const_tags={"tag1":"value_user_define_tag"})
+
+set_tag("tag1", "value1")
+
+field1 = _
+
+cast(field1, "int")
+
+agg_metric("cpu_agg_info", "agg_field_1", "sum", ["tag1", "host"], "field1")
+```
+
+指标输出：
+
+```
+{
+    "host": "your_hostname",
+    "tag1": "value1",
+    "agg_field_1": 6,
+}
+```
+
+
 ### `append()` {#fn-append}
 
 函数原型：`fn append(arr, elem) arr`
