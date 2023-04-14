@@ -1,20 +1,18 @@
 nav:
   - index.md
   - Plan Instructions:
-    - Public Cloud Commercial Plan:
+    - version-description.md
+    - Public Commercial Plan:
       - commercial.md
-      - Open in Guance:
-        - 'Register Commercial Plan': commercial-register.md
-        - 'Upgrade to Commercial Plan': commercial-version.md       
-      - Open in Alibaba Cloud:
-        - 'Access to Commercial Plan': commercial-aliyun.md
-        - 'Access to Exclusive Plan': commercial-aliyun-sls.md
-      - Open in Amazon Web Services:
-        - 'Access to Commercial Plan': commercial-aws.md
+      - 'Register Commercial Plan in Guance': commercial-register.md    
+      - 'Access to Commercial Plan in Alibaba Cloud': commercial-aliyun.md
+      - 'Access to Exclusive Plan in Alibaba Cloud': commercial-aliyun-sls.md
+      - 'Access to Commercial Plan in AWS Cloud': commercial-aws.md
+      - 'Access to Commercial Plan in Huawei Cloud': commercial-huaweiyun.md
     - Public Cloud Experience Plan: trail.md
     - Private Cloud Deployment Plan: deployment.md
     - Independent Storage Plan: independent-storage.md
   - 'Expense Center': cost-center  
-  - 'Usage Billing Method': billing-method
-  - 'Expense Settlement Method': billing-account
+  - 'Billing Methods': billing-method
+  - 'Settlement Accounts': billing-account
   - 'FAQ': faq.md
