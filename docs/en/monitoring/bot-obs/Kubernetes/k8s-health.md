@@ -11,28 +11,24 @@ Nowadays, Kubernetes has taken over the entire container ecosystem and acts as t
 2. Offline deployment of [DataFlux Func](https://func.guance.com/#/)
 3. Open DataFlux Func's [Script Marketplace](https://func.guance.com/doc/script-market-basic-usage/)
 4. In Guance「Management / API Key Management」create [API Key](../../../../management/api-key/open-api.md)
-5. In DataFlux Func，by「Script Marketplace」to install「Guance  Core Package」「Guance Algorithm Library」「Guance  script (K8s Health)」.
-6. In DataFlux Func, write  patrol processing functions.
-7. In DataFlux Func , by「Manage / Auto-trigger Configurations」,create an automatic trigger configuration for the written function.
 
 > **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance SaaS on [the same carrier in the same region](../../../../getting-started/necessary-for-beginners/select-site/)。
 
-## Configure Intelligent Inspection
-
-To enable Kubernetes health Intelligent Integration in DataFlux Func, create a new script collection and select the corresponding script template when creating the inspection script. After creating the new script file, you can modify it as needed.
-
-![image](../../img/k8s_health01.png)
-
 ## Start Intelligent Inspection
 
-### Register detection items in Guance
+In the  DataFlux Func, install the "Observation Cloud Self-built Inspection Core Package" and "Observation Cloud Algorithm Library" through the "Script Market", and then install the relevant dependencies through the PIP tool. Install the "Observation Cloud Self-built Inspection (Kubernetes Health)" and configure the Observation Cloud API Key as prompted to complete the opening.
 
-In DataFlux Func, after the check is configured, you can click run to test by directly selecting `run()` method in the page, and after clicking Publish, you can view and configure it in Guance "Monitoring/Intelligent Check".
+To enable the inspection scenario, select it in the DataFlux Func script market, configure the Observation Cloud API Key, and then select the deployment startup script.
 
-![image](../../img/k8s_health02.png)
+![image](../../img/create_checker.png)
 
+Once the deployment of the startup script is successful, it will automatically create the startup script and trigger configuration. You can check the corresponding configuration directly by clicking on the link.
 
-### Configure Kubernetes health Intelligent Integration in Guance
+![image](../../img/success_checker.png)
+
+## Configs Intelligent Inspection
+
+### Configure Intelligent Inspection in Guance
 
 ![image](../../img/k8s_health03.png)
 
@@ -55,17 +51,64 @@ Intelligent Inspection supports "Export JSON configuration". Under the operation
 
 ![image](../../img/k8s_health04.png)
 
-可以参考如下的 JSON 配置多个应用信息
+  You can refer to the following to configure multiple clusters and namespace information:
 
 ```json
     // Configuration example：
-    configs = {
-        "cluster_name": "xxx",
-        "host": ["yyy1","yyy2"]
-    }
+    configs ：
+         cluster_name_1
+         cluster_name_2
+         cluster_name_3
 ```
 
+> Note: When writing self-built inspection processing functions in DataFlux Func, you can also add filter conditions (refer to the sample code configuration). Note that the parameters configured in the Observation Cloud Studio will override the parameters configured when writing self-built inspection processing functions.
+
+### Configuring inspections in DataFlux Func
+
+After configuring the required filter conditions for inspections in DataFlux Func, you can click the "run()" method to test it directly on the page. After clicking "publish", the script will be executed normally. You can also view or change the configuration in the Observation Cloud "Monitoring/Intelligent Inspection".
+
+```python
+from guance_monitor__runner import Runner
+from guance_monitor__register import self_hosted_monitor
+import guance_monitor_k8s_health__main as main
+
+# Support for using filtering functions to filter the objects being inspected, for example:
+def filter_cluster(cluster_name_k8s):
+    '''
+    Filter the "cluster_name_k8s" metric, customize the conditions that meet the requirements for the "cluster_name_k8s" metric, and return True if there is a match, and False if there is no match.
+    return True｜False
+    '''
+    if cluster_name_k8s in ['ningxia']:
+        return True
+  
+  
+@self_hosted_monitor(account['api_key_id'], account['api_key'])
+@DFF.API('K8S-健康巡检', timeout=900, fixed_crontab='*/15 * * * *')
+def run(configs=None):
+    """
+    The inspection script depends on the k8s "cluster_name_k8s" metric. Before starting the inspection, it is necessary to enable the "cluster_name_k8s" metric configuration for container collection.
+
+    Parameters：
+        configs：
+            Configure the cluster_name that needs to be checked (cluster name, if not configured, all will be checked.)
+
+        configs example：
+             cluster_name_1
+             cluster_name_2
+             cluster_name_3
+
+    """
+    checkers = [
+        k8s__health__inspection.K8SHealthCheck(configs=configs, filters=[filter_cluster]), # Support for user-configured multiple filtering functions that are executed in sequence.
+    ]
+
+    Runner(checkers, debug=False).run()
+```
+
+
+
 ## View Events
+
 Guance will perform inspections based on the current state of the Kubernetes cluster. When memory, disk, CPU, or POD exceptions are detected, the smart inspection will generate corresponding events. Click the "View Related Events" button in the smart inspection list's action menu to view the corresponding exception events.
 
 ![image](../../img/k8s_health05.png)

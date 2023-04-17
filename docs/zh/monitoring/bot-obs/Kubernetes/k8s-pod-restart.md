@@ -25,7 +25,7 @@ Kubernetes 帮助用户自动调度和扩展容器化应用程序，但现代 Ku
 
 启动脚本部署成功后，会自动创建启动脚本和自动触发配置，可以通过链接直接跳转查看对应配置。
 
-![image](E:../../img/success_checker.png)
+![image](../../img/success_checker.png)
 
 ## 配置巡检
 

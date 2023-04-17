@@ -4,6 +4,22 @@
 
 ---
 
+## April 13, 2022
+
+### Functional Optimization
+
+- **Disk Usage Intelligent Inspection**: Optimized the trend judgment algorithm for disk usage inspection to provide users with more accurate problem localization.
+- **Intelligent Inspection**: Optimized the overall opening logic of intelligent inspection, making it easier for users to enable intelligent inspection.
+
+
+
+## March 30, 2022
+
+### Functional Optimization
+
+- **Memory Leak Intelligent Inspection**: Optimized the trend judgment algorithm for memory leak inspection to provide users with more accurate problem localization.
+- **Cloud Billing Intelligent Inspection**: Cloud billing inspection has been merged into the cloud account instance dimension billing inspection.
+
 
 
 ## March 23, 2022
