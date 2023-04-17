@@ -11,28 +11,24 @@
 1. Offline deployment of [DataFlux Func](https://func.guance.com/#/)
 2. Open DataFlux Func's [Script Marketplace](https://func.guance.com/doc/script-market-basic-usage/)
 3. In Guance「Management / API Key Management」create [API Key](../../../management/api-key/open-api.md)
-4. In DataFlux Func，by「Script Marketplace」to install「Guance Core Package」「Guance Algorithm Library」「Guance script (Disk utilization)」.
-5. In DataFlux Func, write processing functions.
-6. In DataFlux Func , by「Manage / Auto-trigger Configurations」,create an automatic trigger configuration for the written function.
 
 > **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance SaaS on [the same carrier in the same region](../../../getting-started/necessary-for-beginners/select-site/)。
 
-## Configure Intelligent Inspection
-
-In DataFlux Func create a new set of scripts to enable Disk utilization Intelligent Inspection configuration. After creating a new script set, select the corresponding script template to save when creating the Inspection script, and change it as needed in the resulting new script file.
-
-![image](../img/disk-usage11.png)
-
 ## Start Intelligent Inspection
 
-### Register detection items in Guance
+In the  DataFlux Func, install the "Observation Cloud Self-built Inspection Core Package" and "Observation Cloud Algorithm Library" through the "Script Market", and then install the relevant dependencies through the PIP tool. Install the "Guance script (Disk utilization)" and configure the Observation Cloud API Key as prompted to complete the opening.
 
-After configuring the inspection in DataFlux Func, you can run the test by selecting the `run()` method directly on the page, and then you can view and configure it in the Guance "Monitoring / Intelligent Inspection" after clicking Publish.
+To enable the inspection scenario, select it in the DataFlux Func script market, configure the Observation Cloud API Key, and then select the deployment startup script.
 
-![image](../img/disk-usage01.png)
+![image](../img/create_checker.png)
 
+Once the deployment of the startup script is successful, it will automatically create the startup script and trigger configuration. You can check the corresponding configuration directly by clicking on the link.
 
-### Configure Disk utilization Intelligent Inspection in Guance
+![image](../img/success_checker.png)
+
+## Configs Intelligent Inspection
+
+### Configure Intelligent Inspection in Guance
 
 ![image](../img/disk-usage02.png)
 
@@ -55,16 +51,57 @@ Configure the entry parameters and click Edit to fill in the corresponding detec
 
 ![image](../img/disk-usage03.png)
 
-You can refer to the following JSON to configure multiple host information
+You can refer to the following to configure multiple host information
 
 ```json
  // Configuration example:
-  configs = {
-        "hosts": ["localhost"]
-    }
+  configs:
+          host1
+          host2
+          host3
 ```
 
 >  **Note**: In the DataFlux Func, you can also add filtering conditions when writing inspection processing functions (refer to the sample code configuration), it should be noted that the parameters configured in the guance studio will override the parameters configured when writing inspection processing functions.
+
+### Configuring inspections in DataFlux Func
+
+After configuring the required filter conditions for inspections in DataFlux Func, you can click the "run()" method to test it directly on the page. After clicking "publish", the script will be executed normally. You can also view or change the configuration in the Observation Cloud "Monitoring/Intelligent Inspection".
+
+```python
+from guance_monitor__register import self_hosted_monitor
+from guance_monitor__runner import Runner
+import guance_monitor_disk_usage__main as disk_usage_check
+
+def filter_host(host):
+  '''
+  Filter host by defining custom conditions that meet the requirements. If a match is found, return True. If no match is found, return False.
+  return True | False
+  '''
+  if host == "iZuf609uyxtf9dvivdpmi6z":
+    return True
+  
+ 
+@self_hosted_monitor(account['api_key_id'], account['api_key'])
+@DFF.API('磁盘使用率自建巡检', fixed_crontab='0 */6 * * *', timeout=900)
+def run(configs=None):
+    '''
+  Optional parameters：
+    configs : 
+            Configure the list of hosts that needs to be checked (optional. If not configured, all host disks under the current workspace will be checked by default).
+			Multiple hosts that need to be checked can be specified (concatenated by line breaks). If not configured, all host disks under the current workspace will be checked by default.
+    configs example：
+            host1
+            host2
+            host3
+    '''
+    checkers = [
+        disk_usage_check.DiskUsageCheck(configs=configs, filters=[filter_host]), # Support for user-configured multiple filtering functions that are executed in sequence.
+    ]
+
+    Runner(checkers, debug=False).run()
+```
+
+
 
 ## View Events
 
@@ -120,4 +157,10 @@ When there is no exception analysis in the inspection report, please check the c
 
 Please update the referenced script set in the script marketplace of DataFlux Func. You can check the update log of the script marketplace through [**Change Log**](https://func.guance.com/doc/script-market-guance-changelog/) to update the script instantly.
 
-b 
+**4. During the upgrade inspection process, it was found that there was no change in the corresponding script set in the Startup**
+
+Please delete the corresponding script set first, then click the upgrade button to configure the corresponding Observability Cloud API key to complete the upgrade.
+
+**5. How to determine if the inspection is effective after it is enabled**
+
+Check the corresponding inspection status in "Management/Auto-trigger configuration". The status should be "enabled" first, and then click "Execute" to verify if there is any problem with the inspection script. If the words "executed successfully xxx minutes ago" appear, the inspection is running normally and is effective.

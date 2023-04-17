@@ -12,27 +12,24 @@ Kubernetes helps users automatically schedule and expand containerized applicati
 2. Offline deployment of [DataFlux Func](https://func.guance.com/#/)
 3. Open DataFlux Func's [Script Marketplace](https://func.guance.com/doc/script-market-basic-usage/)
 4. In Guance「Management / API Key Management」create [API Key](../../../../management/api-key/open-api.md)
-5. In DataFlux Func，by「Script Marketplace」to install「Guance  Core Package」「Guance Algorithm Library」「Guance  script (K8s Pod Restart)」.
-6. In DataFlux Func, write  patrol processing functions.
-7. In DataFlux Func , by「Manage / Auto-trigger Configurations」,create an automatic trigger configuration for the written function.
 
 > **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance SaaS on [the same carrier in the same region](../../../../getting-started/necessary-for-beginners/select-site/)。
 
-## Configure Intelligent Inspection
-
-In DataFlux Func create a new set of scripts to enable Kubernetes Pod Abnormal Restart Intelligent Inspection configuration. After creating a new script set, select the corresponding script template to save when creating the Inspection script, and change it as needed in the resulting new script file.
-
-![image](../../img/k8s-pod-restart11.png)
-
 ## Start Intelligent Inspection
 
-### Register detection items in Guance
+In the  DataFlux Func, install the "Observation Cloud Self-built Inspection Core Package" and "Observation Cloud Algorithm Library" through the "Script Market", and then install the relevant dependencies through the PIP tool. Install the "Observation Cloud Self-built Inspection (K8S-Pod Restart Detection)" and configure the Observation Cloud API Key as prompted to complete the opening.
 
-In DataFlux Func, after the check is configured, you can click run to test by directly selecting `run()` method in the page, and after clicking Publish, you can view and configure it in Guance "Monitoring/Intelligent Check".
+To enable the inspection scenario, select it in the DataFlux Func script market, configure the Observation Cloud API Key, and then select the deployment startup script.
 
-![image](../../img/k8s-pod-restart01.png)
+![image](../../img/create_checker.png)
 
-### Configure Kubernetes Pod Abnormal Restart Intelligent Inspection in Guance
+Once the deployment of the startup script is successful, it will automatically create the startup script and trigger configuration. You can check the corresponding configuration directly by clicking on the link.
+
+![image](../../img/success_checker.png)
+
+## Configs Intelligent Inspection
+
+### Configure Intelligent Inspection in Guance
 
 ![image](../../img/k8s-pod-restart02.png)
 
@@ -55,7 +52,7 @@ Intelligent Inspection supports "Export JSON configuration". Under the operation
 
 ![image](../../img/k8s-pod-restart03.png)
 
-  You can refer to the following JSON to configure multiple clusters and namespace information:
+  You can refer to the following to configure multiple clusters and namespace information:
 
   ```json
    // Configuration example: namespace can be configured with multiple or single
@@ -64,6 +61,52 @@ Intelligent Inspection supports "Export JSON configuration". Under the operation
           {"cluster_name": "yyy","namespace": "yyy1"}
       ]
   ```
+
+> Note: When writing self-built inspection processing functions in DataFlux Func, you can also add filter conditions (refer to the sample code configuration). Note that the parameters configured in the Observation Cloud Studio will override the parameters configured when writing self-built inspection processing functions.
+
+### Configuring inspections in DataFlux Func
+
+After configuring the required filter conditions for inspections in DataFlux Func, you can click the "run()" method to test it directly on the page. After clicking "publish", the script will be executed normally. You can also view or change the configuration in the Observation Cloud "Monitoring/Intelligent Inspection".
+
+```python
+from guance_monitor__runner import Runner
+from guance_monitor__register import self_hosted_monitor
+import guance_monitor_k8s_pod_restart__main as main
+
+# Support for using filtering functions to filter the objects being inspected, for example:
+def filter_namespace(cluster_namespaces):
+    '''
+    Filter the host, customize the conditions that meet the requirements for the host, and return True if there is a match, and False if there is no match.
+Return True|False.
+    '''
+     cluster_name = cluster_namespaces.get('cluster_name','')
+     namespace = cluster_namespaces.get('namespace','')
+     if cluster_name in ['xxxx']:
+         return True
+  
+  
+@self_hosted_monitor(account['api_key_id'], account['api_key'])
+@DFF.API('K8S-Pod 重启检测巡检', fixed_crontab='*/30 * * * *', timeout=900)
+def run(configs=None):
+    """
+        Optional parameters:
+        configs: (If not configured, all will be checked by default. If configured, please follow the content below)
+
+        Configure the cluster_name that needs to be checked (cluster name , optional, if not configured, it will be checked based on namespace)
+        Configure the namespace that needs to be checked (namespace, required)
+        Example: multiple or single namespaces can be configured.
+        configs =[
+            {"cluster_name": "xxx", "namespace": ["xxx1", "xxx2"]},
+            {"cluster_name": "yyy","namespace": "yyy1"}
+        ]
+
+    """
+    checkers = [
+        k8s_pod_restart.K8SPodRestartCheck(configs=configs, filters=[filter_namespace]), # Support for user-configured multiple filtering functions that are executed in sequence.
+    ]
+
+    Runner(checkers, debug=False).run()
+```
 
 ### View Events
 

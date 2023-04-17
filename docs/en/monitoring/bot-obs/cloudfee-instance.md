@@ -10,31 +10,26 @@ Cloud (now only suport alibaba cloud) Account Billing Inspection helps subscribe
 1. Offline deployment of [DataFlux Func](https://func.guance.com/#/)
 2. Open the [script market](https://func.guance.com/doc/script-market-basic-usage/) of  DataFlux Func 
 3. Create [API Key](../../../management/api-key/open-api.md) in Guance "management/API Key management" 
-4. In DataFlux Func，by「Script Marketplace」to install「Guance  Core Package」「Guance Algorithm Library」「Guance  script (Cloud Account Billing Inspection)」.
-5. Install and open[「Guance Integration (Huawei Cloud - Billing Collection - By Instance)」](https://func.guance.com/doc/script-market-guance-huaweicloud-billing-by-instance/)、[「Guance Integration (Tencent Cloud - Billing Collection - By Instance)」](https://func.guance.com/doc/script-market-guance-tencentcloud-billing-by-instance/)、[「Guance Integration (Alibaba Cloud - Billing Collection - By Instance)」](https://func.guance.com/doc/script-market-guance-aliyun-billing-by-instance/) in the Script Market, and the number of days to collect data exceeds 15 days
-6. In the DataFlux Func, write the  check processing function
-7. In the  DataFlux Func, create auto-trigger configuration for the written function through "Manage/Auto-trigger Configuration"
 
 > **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance SaaS on [the same carrier in the same region](../../../getting-started/necessary-for-beginners/select-site/)。
 >
 > **Note 2:** Since instance level billing data is stored in logs, Guance SaaS log data is only stored for 15 days by default.
 
-## Configure Intelligent Inspection
-
-In DataFlux Func create a new set of scripts to enable Cloud Account Billing Intelligent Inspection configuration. After creating a new script set, select the corresponding script template to save when creating the Inspection script, and change it as needed in the resulting new script file.
-
-![image](../img/cloudfee_instacne11.png)
-
 ## Start Intelligent Inspection
 
-### Register detection items in Guance
+In the self-built DataFlux Func, install the "Observability Cloud Self-built Inspection Core Package" and "Observability Cloud Algorithm Library" through the "Script Market", and go to the PIP tool to install the relevant dependencies. At the same time, install and enable the ["Observability Cloud Integration (Huawei Cloud-Billing Collection-Instance Dimension)"](https://func.guance.com/doc/script-market-guance-huaweicloud-billing-by-instance/), ["Observability Cloud Integration (Alibaba Cloud-Billing Collection-Instance Dimension)"](https://func.guance.com/doc/script-market-guance-aliyun-billing/), and ["Observability Cloud Integration (Tencent Cloud-Billing Collection-Instance Dimension)"](https://func.guance.com/doc/script-market-guance-tencentcloud-billing-by-instance/) in the script market, and collect data for more than 15 days. Then, install "Observability Cloud Self-built Inspection (Billing-Instance Dimension)" and follow the prompts to configure the Observability Cloud API Key to complete the activation.
 
-In DataFlux Func, after the check is configured, you can click run to test by directly selecting `run()` method in the page, and after clicking Publish, you can view and configure it in the Guance "Monitoring/Intelligent Patrol"
+Select the inspection scenario that needs to be enabled in the DataFlux Func script market, configure the Observability Cloud API Key, and then select the deployment startup script to start.
 
-![image](../img/cloudfee_instacne01.png)
+![image](../img/create_checker.png)
 
+Once the deployment of the startup script is successful, it will automatically create the startup script and trigger configuration. You can check the corresponding configuration directly by clicking on the link.
 
-### Configure Cloud Account Billing Inspection Intelligent Integration  in Guance
+![image](../img/success_checker.png)
+
+## Configs Intelligent Inspection
+
+### Configure Intelligent Inspection in Guance
 
 ![image](../img/cloudfee_instacne02.png)
 
@@ -56,17 +51,13 @@ Click Edit to configure entry parameters, then fill in the corresponding detecti
 
 ![image](../img/cloudfee_instacne03.png)
 
-You can configure multiple cloud accounts and corresponding budget information with reference to the following JSON.
+You can configure multiple cloud accounts and corresponding budget information with reference to the following configure .
 
 ```json
  //  Configuration Example：
- configs = [
-        {
-            "account_id": "10000000",    # 账户 ID
-            "cloud_provider": "aliyun"   # 云厂商名称 可选参数 aliyun，huaweicloud，tencentcloud
-        },
-        ...
-    ]
+ configs:
+        account_id:cloud_provider
+        account_id:cloud_provider
 ```
 
 ## View Events
@@ -140,6 +131,14 @@ Using the specified cloud vendor product cost sum as the entry point, when there
 **5.Cloud Account Billing Inspection Intelligent Integration no exceptions for a long time**
 
 If billing exceptions are found in the online view patrol but not in the patrol, you should first check whether the patrol is open for more than 15 days, secondly, you should check whether the use of log data storage expiration policy is greater than 15 days, and finally, you should check in DataFlux Func whether the automatic triggering task is correctly configured.
+
+**6. During the upgrade inspection process, it was found that there was no change in the corresponding script set in the Startup**
+
+Please delete the corresponding script set first, then click the upgrade button to configure the corresponding Observability Cloud API key to complete the upgrade.
+
+**7. How to determine if the inspection is effective after it is enabled**
+
+Check the corresponding inspection status in "Management/Auto-trigger configuration". The status should be "enabled" first, and then click "Execute" to verify if there is any problem with the inspection script. If the words "executed successfully xxx minutes ago" appear, the inspection is running normally and is effective.
 
 
 

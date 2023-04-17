@@ -4,7 +4,6 @@ nav:
   - 'Disk utilization Intelligent Inspection': disk-usage.md
   - 'APM Intelligent Inspection': apm.md
   - 'Alibaba Cloud Asset Intelligent Inspection': cloudasset.md
-  - 'Cloud Account Billing Intelligent Inspection': cloudfee.md
   - 'Cloud Account Billing Inspection Intelligent Integration': cloudfee-instance.md
   - 'Idle Resources Intelligent Inspection': cloudfee.md
   - 'Alibaba Cloud Preemptible Instance Survival Intelligent Inspection': spot-alive.md

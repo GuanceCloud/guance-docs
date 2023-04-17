@@ -10,28 +10,24 @@ Cloud computing has rapidly developed as a new mode of IT service, providing con
 1. Offline deployment of [DataFlux Func](https://func.guance.com/#/)
 2. Open DataFlux Func's [Script Marketplace](https://func.guance.com/doc/script-market-basic-usage/)
 3. In Guance「Management / API Key Management」create [API Key](../../../management/api-key/open-api.md)
-4. In DataFlux Func，by「Script Marketplace」to install「Guance  Core Package」「Guance Algorithm Library」「Guance  script (Idle Resources)」.
-5. In DataFlux Func, write  patrol processing functions.
-6. In DataFlux Func , by「Manage / Auto-trigger Configurations」,create an automatic trigger configuration for the written function.
 
 > **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance SaaS on [the same carrier in the same region](../../../getting-started/necessary-for-beginners/select-site/).
 
-## Configure Intelligent Inspection
-
-In DataFlux Func create a new set of scripts to enable Idle Resources Intelligent Inspection configuration. After creating a new script set, select the corresponding script template to save when creating the Inspection script, and change it as needed in the resulting new script file.
-
-![image](../img/idle-resources01.png)
-
 ## Start Intelligent Inspection
 
-### Register detection items in Guance
+In the  DataFlux Func, install the "Observation Cloud Self-built Inspection Core Package" and "Observation Cloud Algorithm Library" through the "Script Market", and then install the relevant dependencies through the PIP tool. Install the "Guance  script (Idle Resources)" and configure the Observation Cloud API Key as prompted to complete the opening.
 
-In DataFlux Func, after the detection is configured, you can click run to test by directly selecting `run()` method in the page, and after clicking Publish, you can view and configure it in Guance "Monitoring/Intelligent Patrol".
+To enable the inspection scenario, select it in the DataFlux Func script market, configure the Observation Cloud API Key, and then select the deployment startup script.
 
-![image](../img/idle-resources02.png)
+![image](../img/create_checker.png)
 
+Once the deployment of the startup script is successful, it will automatically create the startup script and trigger configuration. You can check the corresponding configuration directly by clicking on the link.
 
-### Configure Idle Resources Intelligent Inspection in Guance
+![image](../img/success_checker.png)
+
+## Configs Intelligent Inspection
+
+### Configure Intelligent Inspection in Guance
 
 ![image](../img/idle-resources03.png)
 
@@ -107,7 +103,13 @@ Check the current data collection status of `datakit` when there is no anomaly a
 
 Please update the referenced script set in DataFlux Func's script marketplace, you can view the update log of the script marketplace via [**Change Log**](https://func.guance.com/doc/script-market-guance-changelog/) to facilitate immediate script update.
 
+**4. During the upgrade inspection process, it was found that there was no change in the corresponding script set in the Startup**
 
+Please delete the corresponding script set first, then click the upgrade button to configure the corresponding Observability Cloud API key to complete the upgrade.
+
+**5. How to determine if the inspection is effective after it is enabled**
+
+Check the corresponding inspection status in "Management/Auto-trigger configuration". The status should be "enabled" first, and then click "Execute" to verify if there is any problem with the inspection script. If the words "executed successfully xxx minutes ago" appear, the inspection is running normally and is effective.
 
 
 
