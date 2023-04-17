@@ -10,27 +10,24 @@
 1. 自建  [DataFlux Func](https://func.guance.com/#/) 的离线部署
 2. 开启自建 DataFlux Func 的[脚本市场](https://func.guance.com/doc/script-market-basic-usage/)
 3. 在观测云「管理 / API Key 管理」中创建用于进行操作的 [API Key](../../management/api-key/open-api.md)
-4. 在自建的 DataFlux Func 中，通过「脚本市场」安装「观测云自建巡检 Core 核心包」「观测云算法库」「 观测云自建巡检（阿里云抢占式实例存活检测）」
-5. 在自建的 DataFlux Func 中，编写自建巡检处理函数
-6. 在自建的 DataFlux Func 中，通过「管理 / 自动触发配置」，为所编写的函数创建自动触发配置
 
 > **注意：**如果考虑采用云服务器来进行 DataFlux Func 离线部署的话，请考虑跟当前使用的观测云 SaaS 部署在[同一运营商同一地域](../../../getting-started/necessary-for-beginners/select-site/)。
 
+## 开启巡检
+
+在自建的 DataFlux Func 中，通过「脚本市场」安装「观测云自建巡检 Core 核心包」「观测云集成（阿里云-ECS采集） 」「观测云算法库」并前往 PIP 工具安装相关依赖，安装「 观测云自建巡检（阿里云抢占式实例存活检测）」并根据提示配置观测云 API Key 完成开启。
+
+在 DataFlux Func 脚本市场中选择需要开启的巡检场景点击安装，配置观测云 API Key 后选择部署启动脚本即可
+
+![image](../img/create_checker.png)
+
+启动脚本部署成功后，会自动创建启动脚本和自动触发配置，可以通过链接直接跳转查看对应配置。
+
+![image](../img/success_checker.png)
+
 ## 配置巡检
 
-在自建 DataFlux Func 创建新的脚本集开启阿里云抢占式实例存活巡检配置，新建脚本集之后，在创建巡检脚本时选择对应的脚本模板保存，在生成的新脚本文件中根据需要更改即可。
-
-![image](../img/spot_alive11.png)
-
-## 开启巡检
-### 在观测云中注册检测项
-
-在 DataFlux Func 中在配置好巡检之后可以通过直接再页面中选择 `run()` 方法进行点击运行进行测试，在点击发布之后就可以在观测云「监控 / 智能巡检」中查看并进行配置
-
-![image](../img/spot_alive01.png)
-
-
-### 在观测云中配置阿里云抢占式实例存活巡检
+### 在观测云中配置巡检
 
 ![image](../img/spot_alive02.png)
 
@@ -54,7 +51,10 @@
 
 ```json
  // 配置示例： 可以配置多组也可以配置单个
-    configs = [{"instance_type": "xxx1","spot_with_price_limit": "xxx2"}]
+    configs = [
+        {"instance_type": "xxx1", "spot_with_price_limit": "xxx2"},
+        {"instance_type": "xxx3", "spot_with_price_limit": "xxx4"}
+    ]
 ```
 
 ## 查看事件
@@ -106,7 +106,13 @@
 
 请在 DataFlux Func 的脚本市场中更新所引用的脚本集，可以通过[**变更日志**](https://func.guance.com/doc/script-market-guance-changelog/)来查看脚本市场的更新记录方便即时更新脚本。
 
+**4.在升级巡检脚本过程中发现 Startup 中对应的脚本集无变化**
 
+请先删除对应的脚本集后，再点击升级按钮配置对应观测云 API key 完成升级。
+
+**5.开启巡检后如何判断巡检是否生效**
+
+在「管理 / 自动触发配置」中查看对应巡检状态，首先状态应为已启用，其次可以通过点击执行来验证巡检脚本是否有问题，如果出现 xxx 分钟前执行成功字样则巡检正常运行生效。
 
 
 
