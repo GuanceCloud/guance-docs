@@ -8,32 +8,28 @@
 ## 前置条件
 
 1. 进行自建  [DataFlux Func](https://func.guance.com/#/) 的离线部署
-2. 开启自建 DataFlux Func 的[脚本市场](https://func.guance.com/doc/script-market-basic-usage/)
+2. 开启自建 DataFlux Func 的[脚本市场](https://func.guance.com/doc/script-market-basic-usage/)并添加官方脚本市场
 3. 在观测云「管理 / API Key 管理」中创建用于进行操作的 [API Key](../../management/api-key/open-api.md)
-4. 在自建的 DataFlux Func 中，通过「脚本市场」安装「观测云自建巡检 Core 核心包」、「观测云算法库」、「观测云自建巡检（账单-实例维度）」
-5. 在脚本市场中安装开启[「观测云集成（华为云-账单采集-实例维度）」](https://func.guance.com/doc/script-market-guance-huaweicloud-billing-by-instance/)、[「观测云集成（阿里云-账单采集-实例维度）」](https://func.guance.com/doc/script-market-guance-aliyun-billing/)、[「观测云集成（腾讯云-账单采集-实例维度）」](https://func.guance.com/doc/script-market-guance-tencentcloud-billing-by-instance/) 并且收集数据天数超过 15 天
-6. 在自建的 DataFlux Func 中，编写自建巡检处理函数
-7. 在自建的 DataFlux Func 中，通过「管理 / 自动触发配置」，为所编写的函数创建自动触发配置
 
 > **注意：**如果考虑采用云服务器来进行 DataFlux Func 离线部署的话，请考虑跟当前使用的观测云 SaaS 部署在[同一运营商同一地域](../../../getting-started/necessary-for-beginners/select-site/)。
 >
 > **注意 2：**由于实例级别账单数据采用日志存储，观测云 SaaS 日志数据默认只有 15 天的存储时长为了保障巡检的准确请将日志数据存储时间调整为最长。
 
+## 开启巡检
+
+在自建的 DataFlux Func 中，通过「脚本市场」安装「观测云自建巡检 Core 核心包」「观测云算法库」并前往 PIP 工具安装相关依赖，同时在脚本市场中安装开启[「观测云集成（华为云-账单采集-实例维度）」](https://func.guance.com/doc/script-market-guance-huaweicloud-billing-by-instance/)、[「观测云集成（阿里云-账单采集-实例维度）」](https://func.guance.com/doc/script-market-guance-aliyun-billing/)、[「观测云集成（腾讯云-账单采集-实例维度）」](https://func.guance.com/doc/script-market-guance-tencentcloud-billing-by-instance/) 并且收集数据天数超过 15 天，再安装「观测云自建巡检（账单-实例维度）」并根据提示配置观测云 API Key 完成开启
+
+在 DataFlux Func 脚本市场中选择需要开启的巡检场景点击安装，配置观测云 API Key 后选择部署启动脚本即可
+
+![image](../img/create_checker.png)
+
+启动脚本部署成功后，会自动创建启动脚本和自动触发配置，可以通过链接直接跳转查看对应配置。
+
+![image](../img/success_checker.png)
+
 ## 配置巡检
 
-在自建 DataFlux Func 创建新的脚本集开启云账户实例维度账单巡检配置，新建脚本集之后，在创建巡检脚本时选择对应的脚本模板保存，在生成的新脚本文件中根据需要更改即可。
-
-![image](../img/cloudfee_instacne11.png)
-
-## 开启巡检
-### 在观测云中注册检测项
-
-在 DataFlux Func 中在配置好巡检之后可以通过直接再页面中选择 `run()` 方法进行点击运行进行测试，在点击发布之后就可以在观测云「监控 / 智能巡检」中查看并进行配置
-
-![image](../img/cloudfee_instacne01.png)
-
-
-### 在观测云中配置云账户实例维度账单巡检
+### 在观测云中配置巡检
 
 ![image](../img/cloudfee_instacne02.png)
 
@@ -53,20 +49,17 @@
 
 ![image](../img/cloudfee_instacne03.png)
 
-可以参考如下的 JSON 配置多个应用信息
+可以参考如下的配置多个应用信息
 
 ```json
  // 配置示例：
- configs = [
-        {
-            "account_id": "10000000",    # 账户 ID
-            "cloud_provider": "aliyun"   # 云厂商名称 可选参数 aliyun，huaweicloud，tencentcloud
-        },
-        ...
-    ]
+    configs 配置示例：
+        account_id:cloud_provider
+        account_id:cloud_provider
 ```
 
 ## 查看事件
+
 智能巡检基于观测云智能算法，会查找云资产费用中的异常情况，如云资产费用突然然发生异常，智能巡检会生成相应的事件，在智能巡检列表右侧的操作菜单下，点击「查看相关事件」按钮，即可查看对应异常事件。
 
 ![image](../img/cloudfee_instacne04.png)
@@ -135,9 +128,13 @@
 
 如果在线上视图巡检中发现了账单异常但是巡检没有发现，首先应该排查巡检开启时间是否超过 15 天，其次应该排查使用日志数据存储过期策略是否大于 15 天， 最后在 DataFlux Func 中查看是否正确得配置了自动触发任务。
 
+**6.在升级巡检脚本过程中发现 Startup 中对应的脚本集无变化**
 
+请先删除对应的脚本集后，再点击升级按钮配置对应观测云 API key 完成升级。
 
+**7.开启巡检后如何判断巡检是否生效**
 
+在「管理 / 自动触发配置」中查看对应巡检状态，首先状态应为已启用，其次可以通过点击执行来验证巡检脚本是否有问题，如果出现 xxx 分钟前执行成功字样则巡检正常运行生效。
 
 
 

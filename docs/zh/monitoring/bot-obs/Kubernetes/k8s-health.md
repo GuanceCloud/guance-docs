@@ -7,30 +7,28 @@
 
 ## 前置条件
 
-1. 自建  [DataFlux Func](https://func.guance.com/#/) 的离线部署
-2. 开启自建 DataFlux Func 的[脚本市场](https://func.guance.com/doc/script-market-basic-usage/)
-3. 在观测云「管理 / API Key 管理」中创建用于进行操作的 [API Key](../../../management/api-key/open-api.md)
-4. 在自建的 DataFlux Func 中，通过「脚本市场」安装「观测云自建巡检 Core 核心包」「观测云算法库」「 观测云自建巡检（K8S 健康巡检）」
-5. 在自建的 DataFlux Func 中，编写自建巡检处理函数
-6. 在自建的 DataFlux Func 中，通过「管理 / 自动触发配置」，为所编写的函数创建自动触发配置
+1. 在观测云中开启「 [容器数据采集 ](https://docs.guance.com/datakit/container/)」
+2. 自建  [DataFlux Func](https://func.guance.com/#/) 的离线部署
+3. 开启自建 DataFlux Func 的[脚本市场](https://func.guance.com/doc/script-market-basic-usage/)
+4. 在观测云「管理 / API Key 管理」中创建用于进行操作的 [API Key](../../../management/api-key/open-api.md)
 
 > **注意：**如果考虑采用云服务器来进行 DataFlux Func 离线部署的话，请考虑跟当前使用的观测云 SaaS 部署在[同一运营商同一地域](../../../../getting-started/necessary-for-beginners/select-site/)。
 
+## 开启巡检
+
+在自建的 DataFlux Func 中，通过「脚本市场」安装「观测云自建巡检 Core 核心包」「观测云算法库」并前往 PIP 工具安装相关依赖，安装「「 观测云自建巡检（K8S 健康巡检）」并根据提示配置观测云 API Key 完成开启。
+
+在 DataFlux Func 脚本市场中选择需要开启的巡检场景点击安装，配置观测云 API Key 后选择部署启动脚本即可
+
+![image](../../img/create_checker.png)
+
+启动脚本部署成功后，会自动创建启动脚本和自动触发配置，可以通过链接直接跳转查看对应配置。
+
+![image](../../img/success_checker.png)
+
 ## 配置巡检
 
-在自建 DataFlux Func 创建新的脚本集开启 Kubernetes 健康巡检配置，新建脚本集之后，在创建巡检脚本时选择对应的脚本模板保存，在生成的新脚本文件中根据需要更改即可。
-
-![image](../../img/k8s_health01.png)
-
-## 开启巡检
-### 在观测云中注册检测项
-
-在 DataFlux Func 中在配置好巡检之后可以通过直接再页面中选择 `run()` 方法进行点击运行进行测试，在点击发布之后就可以在观测云「监控 / 智能巡检」中查看并进行配置
-
-![image](../../img/k8s_health02.png)
-
-
-### 在观测云中配置 Kubernetes 健康巡检
+### 在观测云中配置巡检
 
 ![image](../../img/k8s_health03.png)
 
@@ -53,19 +51,61 @@ Kubernetes 健康巡检默认是「开启」状态，可手动「关闭」，开
 可以参考如下的 JSON 配置多个应用信息
 
 ```json
-// 参数：
-    configs：
-        // 配置需要检测的 cluster_name （集群名称，必选）
-        // 配置需要检测的 host （节点，可选）
-
-    // 配置示例：
-    configs = {
-        "cluster_name": "xxx",
-        "host": ["yyy1","yyy2"]
-    }
+//示例：
+    configs 配置示例：
+         cluster_name_1
+         cluster_name_2
+         cluster_name_3
 ```
 
+>  **注意**：在自建的 DataFlux Func 中，编写自建巡检处理函数时也可以添加过滤条件（参考示例代码配置），要注意的是在观测云 studio 中配置的参数会覆盖掉编写自建巡检处理函数时配置的参数
+
+### 在 DataFlux Func 中配置巡检
+
+在 DataFlux Func 中在配置好巡检所需的过滤条件之后可以通过直接再页面中选择 `run()` 方法进行点击运行进行测试，在点击发布之后脚本就会正常执行了。也可以在观测云「监控 / 智能巡检」中查看或更改配置。
+
+```python
+from guance_monitor__runner import Runner
+from guance_monitor__register import self_hosted_monitor
+import guance_monitor_k8s_health__main as main
+
+# Support for using filtering functions to filter the objects being inspected, for example:
+def filter_cluster(cluster_name_k8s):
+    '''
+    过滤 cluster_name_k8s，自定义符合要求 cluster_name_k8s 的条件，匹配的返回 True，不匹配的返回 False
+    return True｜False
+    '''
+    if cluster_name_k8s in ['ningxia']:
+        return True
+  
+  
+@self_hosted_monitor(account['api_key_id'], account['api_key'])
+@DFF.API('K8S-健康巡检', timeout=900, fixed_crontab='*/15 * * * *')
+def run(configs=None):
+    """
+    巡检脚本依赖 k8s 的 cluster_name_k8s 指标，开启巡检之前要开启容器采集的 cluster_name_k8s 指标配置
+
+    参数：
+        configs：
+            配置需要检测的 cluster_name （集群名称，不配置检测所有）
+
+        configs 配置示例：
+             cluster_name_1
+             cluster_name_2
+             cluster_name_3
+
+    """
+    checkers = [
+        k8s__health__inspection.K8SHealthCheck(configs=configs, filters=[filter_cluster]), # Support for user-configured multiple filtering functions that are executed in sequence.
+    ]
+
+    Runner(checkers, debug=False).run()
+```
+
+
+
 ## 查看事件
+
 观测云会根据当前的 Kubernetes 集群的状态进行巡检当发现内存、磁盘、CPU、POD 异常时，智能巡检会生成相应的事件，在智能巡检列表右侧的操作菜单下，点击「查看相关事件」按钮，即可查看对应异常事件。
 
 ![image](../../img/k8s_health05.png)
@@ -140,7 +180,13 @@ Kubernetes 健康巡检默认是「开启」状态，可手动「关闭」，开
 
 请在 DataFlux Func 的脚本市场中更新所引用的脚本集，可以通过[**变更日志**](https://func.guance.com/doc/script-market-guance-changelog/)来查看脚本市场的更新记录方便即时更新脚本。
 
+**4.在升级巡检脚本过程中发现 Startup 中对应的脚本集无变化**
 
+请先删除对应的脚本集后，再点击升级按钮配置对应观测云 API key 完成升级。
+
+**5.开启巡检后如何判断巡检是否生效**
+
+在「管理 / 自动触发配置」中查看对应巡检状态，首先状态应为已启用，其次可以通过点击执行来验证巡检脚本是否有问题，如果出现 xxx 分钟前执行成功字样则巡检正常运行生效。
 
 
 
