@@ -21,7 +21,7 @@ icon: zy/agreements
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 在创建完 Issue 后，如何管理 Issue？</font>](../exception/channel.md)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 在创建完 Issue 后，如何运用频道来管理 Issue？</font>](../exception/channel.md)
 
 <br/>
 
