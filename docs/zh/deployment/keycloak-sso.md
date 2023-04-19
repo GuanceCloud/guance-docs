@@ -193,4 +193,6 @@ window.DEPLOYCONFIG = {
 
 ![](img/1.keycloak_14.png)
 
+#### 映射规则
 
+当您使用单点登录进入观测云部署版，若需要运用动态映射规则添加账号到工作空间并映射角色，可前往管理后台[映射规则](./setting.md#mapping)进行配置。
