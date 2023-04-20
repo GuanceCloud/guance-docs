@@ -76,7 +76,7 @@ Issue 的创建支持两种方式：手动创建、自动创建。
 
     ![](img/issue-event-2.png)
 
-## 自动创建 {others}
+### 自动创建 {others}
 
 当您在配置**监控器**时，可通过**配置频道**的方式自动创建 Issue。以[配置阀值检测](../monitoring/monitor/threshold-detection.md#steps)为例:
 
