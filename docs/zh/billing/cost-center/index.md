@@ -9,7 +9,7 @@
 
 ![](../img/billing-index-1.png)
 
-> 观测云费用中心支持的浏览器包括 Chrome、Safari、Edge、IE11、IE10、IE9、Wechat、DingTalk 。
+> 观测云费用中心支持的浏览器包括 Chrome、Safari、Edge、IE11、IE10、IE9、Wechat、DingTalk。
 
 
 ## 主要功能
