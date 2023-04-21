@@ -8,31 +8,30 @@
 
 ## 前置条件
 
-1. 在观测云「应用性能监测」已经存在接入的应用
+1. 观测云「[应用性能监测](../../application-performance-monitoring/collection/index)」已经存在接入的应用
 2. 自建 [DataFlux Func](https://func.guance.com/#/) 的离线部署
 3. 开启自建 DataFlux Func 的[脚本市场](https://func.guance.com/doc/script-market-basic-usage/)
 4. 在观测云「管理 / API Key 管理」中创建用于进行操作的 [API Key](../../management/api-key/open-api.md)
-5. 在自建的 DataFlux Func 中，通过「脚本市场」安装「观测云自建巡检 Core 核心包」「观测云算法库」「 观测云自建巡检（APM 错误）」
-6. 在自建的 DataFlux Func 中，编写自建巡检处理函数
-7. 在自建的 DataFlux Func 中，通过「管理 / 自动触发配置」，为所编写的函数创建自动触发配置
 
 > **注意：**如果考虑采用云服务器来进行 DataFlux Func 离线部署的话，请考虑跟当前使用的观测云 SaaS 部署在[同一运营商同一地域](../../../getting-started/necessary-for-beginners/select-site/)。
 
-## 配置巡检
-
-在自建 DataFlux Func 创建新的脚本集开启内存泄漏巡检配置，新建脚本集之后，在创建巡检脚本时选择对应的脚本模板保存，在生成的新脚本文件中根据需要更改即可。
-
-![image](../img/apm_errors11.png)
-
 ## 开启巡检
 
-### 在观测云中注册检测项
+在自建的 DataFlux Func 中，通过「脚本市场」安装「观测云自建巡检 Core 核心包」「观测云算法库」并前往 PIP 工具安装相关依赖，安装「 观测云自建巡检（APM 错误）」并根据提示配置观测云 API Key 完成开启。
 
-在 DataFlux Func 中在配置好巡检之后可以通过直接再页面中选择 `run()` 方法进行点击运行进行测试，在点击发布之后就可以在观测云「监控 / 智能巡检」中查看并进行配置
+在 DataFlux Func 脚本市场中选择需要开启的巡检场景点击安装，配置观测云 API Key 后选择部署启动脚本即可
 
-![image](../img/apm-errors01.png)
+![image](../img/create_checker.png)
 
-### 在观测云中配置服务端应用错误巡检
+启动脚本部署成功后，会自动创建启动脚本和自动触发配置，可以通过链接直接跳转查看对应配置。
+
+![image](../img/success_checker.png)
+
+## 配置巡检
+
+在观测云 studio 监控-智能巡检模块中或 DataFlux Func 自动创建的启动脚本中配置想要过滤的巡检条件即可，可以参考下面两种配置方式
+
+### 在观测云中配置巡检
 
 ![image](../img/apm-errors02.png)
 
@@ -55,19 +54,59 @@
 
 ![image](../img/apm-errors03.png)
 
-可以参考如下的 JSON 配置多个项目、环境、版本和服务的信息
+可以参考如下的配置多个项目、环境、版本和服务的信息
 
 ```json
  // 配置示例：
-    configs = {
-        "project": ["project", "project2"]  项目
-        "env"    : ["env1", "env2"]         环境
-        "version": ["version1", "version2"] 版本
-        "service": ["service1", "service2"] 服务
-    }
+    configs 配置实例：
+        project1:service1:env1:version1
+        project2:service2:env2:version2
 ```
 
 >  **注意**：在自建的 DataFlux Func 中，编写自建巡检处理函数时也可以添加过滤条件（参考示例代码配置），要注意的是在观测云 studio 中配置的参数会覆盖掉编写自建巡检处理函数时配置的参数
+
+### 在 DataFlux Func 中配置巡检
+
+在 DataFlux Func 中在配置好巡检所需的过滤条件之后可以通过直接再页面中选择 `run()` 方法进行点击运行进行测试，在点击发布之后脚本就会正常执行了。也可以在观测云「监控 / 智能巡检」中查看或更改配置。
+
+```python
+from guance_monitor__runner import Runner
+from guance_monitor__register import self_hosted_monitor
+import guance_monitor_apm_error__main as main
+
+# Support for using filtering functions to filter the objects being inspected, for example:
+def filter_project_servcie_sub(data):
+    project = data['project']
+    service_sub = data['service_sub']
+    '''
+    过滤 service_sub，自定义符合 service_sub 的条件，匹配的返回 True，不匹配的返回 False
+    return True｜False
+    '''
+    if service_sub in ['xxx-xxx-auth:dev:1.0']:
+        return True
+  
+  
+@self_hosted_monitor(account['api_key_id'], account['api_key'])
+@DFF.API('APM 新增错误类型', fixed_crontab='0 * * * *', timeout=900)
+def run(configs=None):
+    """
+    可选参数：
+        configs :
+            可以指定多个 service（通过换行拼接），不指定则检测所有 service。
+            每个 service 由服务所属项目 (project), 服务（service）、环境（env）、版本（version）通过 ":" 拼接而成，例："project1:service:env:version"
+    示例：
+        configs 配置实例：
+            project1:service1:env1:version1
+            project2:service2:env2:version2
+    """
+    checkers = [
+        main.ApmErrorCheck(configs=configs, filters=[filter_project_servcie_sub]), # Support for user-configured multiple filtering functions that are executed in sequence.
+    ]
+
+    Runner(checkers, debug=False).run()
+```
+
+
 
 ## 查看事件
 
@@ -129,3 +168,10 @@
 
 请在 DataFlux Func 的脚本市场中更新所引用的脚本集，可以通过[**变更日志**](https://func.guance.com/doc/script-market-guance-changelog/)来查看脚本市场的更新记录方便即时更新脚本。
 
+**5.在升级巡检脚本过程中发现 Startup 中对应的脚本集无变化**
+
+请先删除对应的脚本集后，再点击升级按钮配置对应观测云 API key 完成升级。
+
+**6.开启巡检后如何判断巡检是否生效**
+
+在「管理 / 自动触发配置」中查看对应巡检状态，首先状态应为已启用，其次可以通过点击执行来验证巡检脚本是否有问题，如果出现 xxx 分钟前执行成功字样则巡检正常运行生效。

@@ -1704,6 +1704,88 @@ After using adjust_timezone will get:
  - Output result of input 1： `2022-07-11T20:49:20.937+08:00`
 
 
+### `agg_create()` {#fn-agg-create}
+
+[:octicons-tag-24: Version-1.5.10](../datakit/changelog.md#cl-1.5.10)
+
+Function prototype: `fn agg_create(bucket: str, on_interval: str = "60s", on_count: int = 0, keep_value: bool = false, const_tags: map[string]string = nil)`
+
+Function description: Create an aggregation measurement, set the time or number of times through `on_interval` or `on_count` as the aggregation period, upload the aggregated data after the aggregation is completed, and choose whether to keep the last aggregated data
+
+Function parameters:
+
+- `bucket`: String type, as an aggregated field, if the bucket has already been created, the function will not perform any operations.
+- `on_interval`：The default value is `60s`, which takes time as the aggregation period, and the unit is `s`, and the parameter takes effect when the value is greater than `0`; it cannot be combined with `on_count` less than or equal to 0.
+- `on_count`: The default value is `0`, the number of processed points is used as the aggregation period, and the parameter takes effect when the value is greater than `0`
+- `keep_value`: The default value is `false`
+- `const_tags`: Custom tags, empty by default
+
+示例:
+
+```python
+agg_create("cpu_agg_info", interval = 60)
+```
+
+
+
+### `agg_metric()` {#fn-agg-metric}
+
+[:octicons-tag-24: Version-1.5.10](../datakit/changelog.md#cl-1.5.10)
+
+Function prototype: `fn agg_metric(bucket: str, new_field: str, agg_fn: str, agg_by: []string, agg_field: str)`
+
+Function description: According to the field name in the input data, the value is automatically taken as the label of the aggregated data, and the aggregated data is stored in the corresponding bucket.
+
+Function parameters:
+
+- `bucket`: String type, the bucket created by the agg_create function, if the bucket has not been created, the function will not perform any operations.
+- `new_field`： The name of the field in the aggregated data, the data type of its value is `float`.
+- `agg_fn`: Aggregation function, can be one of `"avg"`, `"sum"`, `"min"`, `"max"`, `"set"`.
+- `agg_by`: The name of the field in the input data will be used as the tag of the aggregated data, and the value of these fields can only be string type data.
+- `agg_field`: The field name in the input data, automatically obtain the field value for aggregation.
+
+Example:
+
+Take `logging` category data as an example:
+
+multiple logs：
+```
+1
+```
+
+```
+2
+```
+
+```
+3
+```
+
+script:
+
+```python
+agg_create("cpu_agg_info", interval=10, const_tags={"tag1":"value_user_define_tag"})
+
+set_tag("tag1", "value1")
+
+field1 = _
+
+cast(field1, "int")
+
+agg_metric("cpu_agg_info", "agg_field_1", "sum", ["tag1", "host"], "field1")
+```
+
+metric output:
+
+```
+{
+    "host": "your_hostname",
+    "tag1": "value1",
+    "agg_field_1": 6,
+}
+```
+
+
 ### `append()` {#fn-append}
 
 Function prototype: `fn append(arr, elem) arr`
@@ -1859,7 +1941,7 @@ cover(abc, [2, 4])
 
 ### `datetime()` {#fn-datetime}
 
-[:octicons-tag-24: Version-1.5.7](../changelog.md#cl-1.5.7)
+[:octicons-tag-24: Version-1.5.7](../datakit/changelog.md#cl-1.5.7)
 
 Function prototype: `fn datetime(key, precision: str, fmt: str, tz: str = "")`
 
@@ -2063,7 +2145,7 @@ rename("time", log_time)
 
 ### `delete()` {#fn-delete}
 
-[:octicons-tag-24: Version-1.5.8](../changelog.md#cl-1.5.8)
+[:octicons-tag-24: Version-1.5.8](../datakit/changelog.md#cl-1.5.8)
 
 Function prototype: `fn delete(src: map[string]any, key: str)`
 
@@ -2403,7 +2485,7 @@ Function parameters:
 - `json_path`: json path information
 - `newkey`：Write the data to the new key after extraction
 - `trim_space`: Delete the leading and trailing blank characters in the extracted characters, the default value is true
-- `delete_after_extract`: After extract delete the extracted info from input. Only map key and map value are deletable, list(array) are not supported. Default is `false'.  [:octicons-tag-24: Version-1.5.7](../changelog.md#cl-1.5.7)
+- `delete_after_extract`: After extract delete the extracted info from input. Only map key and map value are deletable, list(array) are not supported. Default is `false'.  [:octicons-tag-24: Version-1.5.7](../datakit/changelog.md#cl-1.5.7)
 
 ```python
 # Directly extract the x.y field in the original input json, and name it as a new field abc
@@ -2505,7 +2587,7 @@ json(_, item2.item3[0], item, delete_after_extract = true)
 
 ### `kv_split()` {#fn-kv_split}
 
-[:octicons-tag-24: Version-1.5.7](../changelog.md#cl-1.5.7)
+[:octicons-tag-24: Version-1.5.7](../datakit/changelog.md#cl-1.5.7)
 
 Function prototype: `fn kv_split(key, field_split_pattern = " ", value_split_pattern = "=", trim_key = "", trim_value = "", include_keys = [], prefix = "") -> bool`
 

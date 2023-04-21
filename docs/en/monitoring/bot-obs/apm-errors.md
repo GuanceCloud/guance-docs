@@ -8,31 +8,27 @@ When server-side operation errors occur, we need to find early and timely warnin
 
 ## Preconditions
 
-1. In Guance「application performance monitoring」that already have access applications.
+1. In Guance「 [application performance monitoring](../../application-performance-monitoring/collection/index) 」that already have access applications.
 2. Offline deployment of [DataFlux Func](https://func.guance.com/#/)
 3. Open DataFlux Func's [Script Marketplace](https://func.guance.com/doc/script-market-basic-usage/)
-4. In Guance「Management / API Key Management」create [API Key](../../../management/api-key/open-api.md)
-5. In DataFlux Func，by「Script Marketplace」to install「Guance  Core Package」「Guance Algorithm Library」「Guance  script (APM Performance)」.
-6. In DataFlux Func, write  patrol processing functions.
-7. In DataFlux Func , by「Manage / Auto-trigger Configurations」,create an automatic trigger configuration for the written function.
 
 > **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance SaaS on [the same carrier in the same region](../../../getting-started/necessary-for-beginners/select-site/)。
 
-## Configure Intelligent Inspection
-
-In DataFlux Func create a new set of scripts to enable Server Application Error Intelligent Inspection configuration. After creating a new script set, select the corresponding script template to save when creating the Inspection script, and change it as needed in the resulting new script file.
-
-![image](../img/apm-errors11.png)
-
 ## Start Intelligent Inspection
 
-### Register detection items in Guance
+In the  DataFlux Func, install the "Observation Cloud Self-built Inspection Core Package" and "Observation Cloud Algorithm Library" through the "Script Market", and then install the relevant dependencies through the PIP tool. Install the "Server Application Error Intelligent Inspection" and configure the Observation Cloud API Key as prompted to complete the opening.
 
-After configuring the inspection in DataFlux Func, you can run the test by selecting the `run()` method directly on the page, and then you can view and configure it in the Guance "Monitoring / Intelligent Inspection" after clicking Publish.
+To enable the inspection scenario, select it in the DataFlux Func script market, configure the Observation Cloud API Key, and then select the deployment startup script.
 
-![image](../img/apm-errors01.png)
+![image](../img/create_checker.png)
 
-### Configure Server Application Error Intelligent Inspection in Guance
+Once the deployment of the startup script is successful, it will automatically create the startup script and trigger configuration. You can check the corresponding configuration directly by clicking on the link.
+
+![image](../img/success_checker.png)
+
+## Configs Intelligent Inspection
+
+### Configure Intelligent Inspection in Guance
 
 ![image](../img/apm-errors02.png)
 
@@ -55,19 +51,59 @@ Intelligent Inspection "Server Application Error Intelligent Inspection" support
 
 ![image](../img/apm-errors03.png)
 
-You can refer to the following JSON configuration information for multiple projects, environments, versions and services.
+You can refer to the following configuration information for multiple projects, environments, versions and services.
 
 ```json
  // Configuration example:
-    configs = {
-        "project": ["project", "project2"]  project
-        "env"    : ["env1", "env2"]         environment
-        "version": ["version1", "version2"] version
-        "service": ["service1", "service2"] service
-    }
+    configs :
+        project1:service1:env1:version1
+        project2:service2:env2:version2
 ```
 
 >  **Note**: In the  DataFlux Func, filter conditions can also be added when writing the  check processing function (refer to the sample code configuration). Note that the parameters configured in the Guance studio will override the parameters configured when writing the  check processing function.
+
+### Configuring inspections in DataFlux Func
+
+After configuring the required filter conditions for inspections in DataFlux Func, you can click the "run()" method to test it directly on the page. After clicking "publish", the script will be executed normally. You can also view or change the configuration in the Observation Cloud "Monitoring/Intelligent Inspection".
+
+```python
+from guance_monitor__runner import Runner
+from guance_monitor__register import self_hosted_monitor
+import guance_monitor_apm_error__main as main
+
+# Support for using filtering functions to filter the objects being inspected, for example:
+def filter_project_servcie_sub(data):
+    project = data['project']
+    service_sub = data['service_sub']
+    '''
+    Filter the "service_sub" attribute, customize the conditions that meet the requirements for the "service_sub" attribute, and return True if there is a match, and False if there is no match.
+    return True｜False
+    '''
+    if service_sub in ['xxx-xxx-auth:dev:1.0']:
+        return True
+  
+  
+@self_hosted_monitor(account['api_key_id'], account['api_key'])
+@DFF.API('APM 新增错误类型', fixed_crontab='0 * * * *', timeout=900)
+def run(configs=None):
+    """
+    Optional parameters：
+        configs:
+	Multiple services can be specified (concatenated by line breaks), and if not specified, all services will be checked.
+		Each service is composed of the project to which the service belongs, the service itself, the environment, and the version concatenated by ":".Example:"project1:service:env:version"
+    示例：
+        configs example：
+            project1:service1:env1:version1
+            project2:service2:env2:version2
+    """
+    checkers = [
+        main.ApmErrorCheck(configs=configs, filters=[filter_project_servcie_sub]), # Support for user-configured multiple filtering functions that are executed in sequence.
+    ]
+
+    Runner(checkers, debug=False).run()
+```
+
+
 
 ## View Events
 
@@ -128,3 +164,11 @@ The server-side application error inspection will scan the newly added applicati
 **4. Abnormal errors are found in scripts that were previously running normally during the inspection process**
 
 Please update the referenced script set in DataFlux Func's script marketplace, you can view the update log of the script marketplace via [**Change Log**](https://func.guance.com/doc/script-market-guance-changelog/) to facilitate immediate script update.
+
+**5. During the upgrade inspection process, it was found that there was no change in the corresponding script set in the Startup**
+
+Please delete the corresponding script set first, then click the upgrade button to configure the corresponding Observability Cloud API key to complete the upgrade.
+
+**6. How to determine if the inspection is effective after it is enabled**
+
+Check the corresponding inspection status in "Management/Auto-trigger configuration". The status should be "enabled" first, and then click "Execute" to verify if there is any problem with the inspection script. If the words "executed successfully xxx minutes ago" appear, the inspection is running normally and is effective.

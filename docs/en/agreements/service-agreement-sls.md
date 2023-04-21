@@ -253,9 +253,8 @@ First, the Entry into Force of the Agreement
 | Number of SMS          | 0.1 yuan per day (each)                          |
 
 
-**Annex II Guance SaaS Service Level Agreement**
+## **Annex II Guance SaaS Service Level Agreement**
 
-Effective time: --/--/2023
 
 This Service Level Agreement (hereinafter referred to as "SLA") stipulates the service availability level indicators and compensation scheme of the Guance SaaS Service (referred to as "Guance SaaS Service") provided by Guance to users.
 
@@ -328,7 +327,7 @@ Users can claim compensation after the fifth (5) working days of each natural mo
 
 5.Others
 
-Service availability compensation service standard
+Service availability compensation service standard:
 
 | Availability Interval | 	Compensation Standard  |
 | --------------------------- | ------------------------------------------------------------ |

@@ -15,6 +15,7 @@ nav:
   - 指标: metrics
   - 监控: monitoring
   - 事件: events
+  - 异常追踪: exception
   - 安全巡检: scheck
   - CI 可视化: ci-visibility
   - <br/>开放能力: ""

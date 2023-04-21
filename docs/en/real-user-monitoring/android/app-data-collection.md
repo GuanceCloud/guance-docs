@@ -141,6 +141,8 @@ In addition to global properties, you can also build scenarios and configure eve
 | `fps_mini`                  | number   | Option，minimum FPS for the view    |
 | `memory_avg`                | number   | Option，average Memory Usage for the view |
 | `memory_max`                | number   | Option，maximun Member Usage for the view       |
+| `battery_current_avg`                | number   | Option，average Battery Current for the view |
+| `battery_current_max`                | number   | Option，maximun Battery Current for the view   |
 
 ### Resource
 
