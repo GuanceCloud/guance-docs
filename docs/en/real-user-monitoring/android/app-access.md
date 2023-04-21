@@ -42,8 +42,10 @@ buildscript {
     }
     dependencies {
         //...
-        //add Plugin dependency
-        classpath 'com.cloudcare.ft.mobile.sdk.tracker.plugin:ft-plugin:1.1.3-beta01'
+        //add Plugin dependency AGP 7.4.2 above，Gradle 7.2.0 above
+        classpath 'com.cloudcare.ft.mobile.sdk.tracker.plugin:ft-plugin:1.2.0-beta01'
+        // AGP 7.4.2 below，using ft-plugin-legacy 
+        //classpath 'com.cloudcare.ft.mobile.sdk.tracker.plugin:ft-plugin-legacy:1.1.4-beta01'
     }
 }
 allprojects {
@@ -63,7 +65,7 @@ Add `SDK` dependencies and use of `Plugin` and Java 8 support to the `build.grad
 dependencies {
 
     //add SDK dependency
-    implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-sdk:1.3.9-beta02'
+    implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-sdk:1.3.11-beta01'
     
     //native crash dependency, needs to be used with ft-sdk and cannot be used alone
     implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-native:1.0.0-alpha05'
@@ -1461,6 +1463,31 @@ It is recommended to use the `zip` command line for packing, to avoid some syste
 > For details on how to apply dynamic permissions, please refer to [Android Developer](https://developer.android.google.cn/training/permissions/requesting?hl=en)
 
 
+## Plugin AOP Ingore {#ingore_aop}
+
+Ignore ASM insertion by adding `@IngoreAOP` to Plugin AOP override method
+
+=== "Java"
+
+	```java
+	View.setOnClickListener(new View.OnClickListener() {
+            @Override
+            @IgnoreAOP
+            public void onClick(View v) {
+
+            }
+        }
+	```
+	
+=== "Kotlin"
+
+	```kotlin
+	View.setOnClickListener @IngoreAOP{
+
+        }
+	```
+
+
 ## Frequently Asked Questions {#FAQ}
 ### Adding Bureau Variables to Avoid Conflicting Fields {#key-conflict}
 
@@ -1578,21 +1605,20 @@ Guance uses code injection through `Android Gradle Plugin` Transformation to aut
 === "Java"	
 
 	```java
-	OkHttpClient.Builder builder = new OkHttpClient.Builder();
-	builder.addInterceptor(new FTTraceInterceptor());
-	FTResourceInterceptor interceptor = new FTResourceInterceptor();
-	builder.addInterceptor(interceptor);
-	builder.eventListener(interceptor);
+	OkHttpClient.Builder builder = new OkHttpClient.Builder()
+	.addInterceptor(new FTTraceInterceptor())
+	.addInterceptor(new FTResourceInterceptor())
+	.eventListenerFactory(new FTResourceEventListener.FTFactory());
 	OkHttpClient client = builder.build();
 	```
+	
 === "Kotlin"
 	
 	```kotlin
 	val builder = OkHttpClient.Builder()
-	builder.addInterceptor(FTTraceInterceptor())
-	val interceptor = FTResourceInterceptor()
-	builder.addInterceptor(interceptor)
-	builder.eventListener(interceptor)
+	.addInterceptor(FTTraceInterceptor())
+	.addInterceptor(FTResourceInterceptor())
+	.eventListenerFactory(FTResourceEventListener.FTFactory())
 	val client = builder.build()
 	```
 
