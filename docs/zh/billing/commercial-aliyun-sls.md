@@ -85,7 +85,7 @@
 
     ![](img/1.sls_4.jpeg)
 
-    填写 AccessKey ID、AccessKey Secret 并进行验证，若验证通过，可以进行下一步；若验证未通过，提示 **该 AK 无效，请重新填写**。
+    填写 AccessKey ID、AccessKey Secret 并进行验证，若验证通过，可以进行下一步。
 
     ![](img/1.sls_6.jpeg)
 
