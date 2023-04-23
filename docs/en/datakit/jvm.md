@@ -268,6 +268,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Tag | Descrition |
 |  ----  | --------|
+|`host`|The hostname of the Jolokia agent/proxy running on.|
 |`jolokia_agent_url`|jolokia agent url path|
 
 - metric list
@@ -275,6 +276,10 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
+|`CollectionUsagecommitted`|The amount of memory in bytes that is committed for the Java virtual machine to use.|float|B|
+|`CollectionUsageinit`|The amount of memory in bytes that the Java virtual machine initially requests from the operating system for memory management.|float|B|
+|`CollectionUsagemax`|The maximum amount of memory in bytes that can be used for memory management.|float|B|
+|`CollectionUsageused`|The amount of used memory in bytes.|float|B|
 |`Uptime`|The total runtime.|int|ms|
 
 
@@ -286,6 +291,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Tag | Descrition |
 |  ----  | --------|
+|`host`|The hostname of the Jolokia agent/proxy running on.|
 |`jolokia_agent_url`|jolokia agent url path|
 
 - metric list
@@ -293,6 +299,10 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
+|`CollectionUsagecommitted`|The amount of memory in bytes that is committed for the Java virtual machine to use.|float|B|
+|`CollectionUsageinit`|The amount of memory in bytes that the Java virtual machine initially requests from the operating system for memory management.|float|B|
+|`CollectionUsagemax`|The maximum amount of memory in bytes that can be used for memory management.|float|B|
+|`CollectionUsageused`|The amount of used memory in bytes.|float|B|
 |`HeapMemoryUsagecommitted`|The total Java heap memory committed to be used.|int|B|
 |`HeapMemoryUsageinit`|The initial Java heap memory allocated.|int|B|
 |`HeapMemoryUsagemax`|The maximum Java heap memory available.|int|B|
@@ -312,6 +322,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Tag | Descrition |
 |  ----  | --------|
+|`host`|The hostname of the Jolokia agent/proxy running on.|
 |`jolokia_agent_url`|jolokia agent url path|
 |`name`|the name of GC generation|
 
@@ -322,6 +333,10 @@ For all of the following data collections, a global tag named `host` is appended
 | ---- |---- | :---:    | :----: |
 |`CollectionCount`|The number of GC that have occurred.|int|count|
 |`CollectionTime`|The approximate GC collection time elapsed.|int|B|
+|`CollectionUsagecommitted`|The amount of memory in bytes that is committed for the Java virtual machine to use.|float|B|
+|`CollectionUsageinit`|The amount of memory in bytes that the Java virtual machine initially requests from the operating system for memory management.|float|B|
+|`CollectionUsagemax`|The maximum amount of memory in bytes that can be used for memory management.|float|B|
+|`CollectionUsageused`|The amount of used memory in bytes.|float|B|
 
 
 
@@ -332,6 +347,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Tag | Descrition |
 |  ----  | --------|
+|`host`|The hostname of the Jolokia agent/proxy running on.|
 |`jolokia_agent_url`|jolokia agent url path|
 
 - metric list
@@ -339,6 +355,10 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
+|`CollectionUsagecommitted`|The amount of memory in bytes that is committed for the Java virtual machine to use.|float|B|
+|`CollectionUsageinit`|The amount of memory in bytes that the Java virtual machine initially requests from the operating system for memory management.|float|B|
+|`CollectionUsagemax`|The maximum amount of memory in bytes that can be used for memory management.|float|B|
+|`CollectionUsageused`|The amount of used memory in bytes.|float|B|
 |`DaemonThreadCount`|The count of daemon thread.|int|count|
 |`PeakThreadCount`|The peak count of thread.|int|count|
 |`ThreadCount`|The count of thread.|int|count|
@@ -353,6 +373,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Tag | Descrition |
 |  ----  | --------|
+|`host`|The hostname of the Jolokia agent/proxy running on.|
 |`jolokia_agent_url`|jolokia agent url path|
 
 - metric list
@@ -360,6 +381,10 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
+|`CollectionUsagecommitted`|The amount of memory in bytes that is committed for the Java virtual machine to use.|float|B|
+|`CollectionUsageinit`|The amount of memory in bytes that the Java virtual machine initially requests from the operating system for memory management.|float|B|
+|`CollectionUsagemax`|The maximum amount of memory in bytes that can be used for memory management.|float|B|
+|`CollectionUsageused`|The amount of used memory in bytes.|float|B|
 |`LoadedClassCount`|The count of loaded class.|int|count|
 |`TotalLoadedClassCount`|The total count of loaded class.|int|count|
 |`UnloadedClassCount`|The count of unloaded class.|int|count|
@@ -373,6 +398,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Tag | Descrition |
 |  ----  | --------|
+|`host`|The hostname of the Jolokia agent/proxy running on.|
 |`jolokia_agent_url`|jolokia agent url path|
 |`name`|the name of space|
 
@@ -381,6 +407,10 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
+|`CollectionUsagecommitted`|The amount of memory in bytes that is committed for the Java virtual machine to use.|float|B|
+|`CollectionUsageinit`|The amount of memory in bytes that the Java virtual machine initially requests from the operating system for memory management.|float|B|
+|`CollectionUsagemax`|The maximum amount of memory in bytes that can be used for memory management.|float|B|
+|`CollectionUsageused`|The amount of used memory in bytes.|float|B|
 |`PeakUsagecommitted`|The total peak Java memory pool committed to be used|int|B|
 |`PeakUsageinit`|The initial peak Java memory pool allocated|int|B|
 |`PeakUsagemax`|The maximum peak Java  memory pool available.|int|B|

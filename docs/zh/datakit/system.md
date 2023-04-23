@@ -72,12 +72,14 @@ Basic information about system operation.
 
 | Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
+|`cpu_total_usage`|The percentage of used CPU.|float|percent|
 |`load1`|CPU load average over the past 1 minute.|float|-|
 |`load15`|CPU load average over the past 15 minutes.|float|-|
 |`load15_per_core`|CPU single core load average over the past 15 minutes.|float|-|
 |`load1_per_core`|CPU single core load average over the past 1 minute.|float|-|
 |`load5`|CPU load average over the past 5 minutes.|float|-|
 |`load5_per_core`|CPU single core load average over the last 5 minutes.|float|-|
+|`memory_usage`|The percentage of used memory.|float|percent|
 |`n_cpus`|CPU logical core count.|int|count|
 |`n_users`|User number.|int|count|
 |`uptime`|System uptime.|int|s|

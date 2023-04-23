@@ -1,6 +1,6 @@
-site_name: DataKit 文档
-docs_dir: './docs/zh'
-site_dir: './site/zh'
+site_name: DataKit Documents
+docs_dir: './docs/en'
+site_dir: './site/en'
 
 theme:
   palette:

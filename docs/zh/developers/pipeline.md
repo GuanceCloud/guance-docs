@@ -632,7 +632,7 @@ adjust_timezone(time)
 
 ```
 
-执行 `datakit pipeline <name>.p -F <input_file_name>  --date`:
+执行 `datakit pipeline -P <name>.p -F <input_file_name>  --date`:
 
 ```json
 # 输出 1
@@ -1526,7 +1526,7 @@ json(_, item2.item3, item, delete_after_extract = true)
 json(_, item2.item3[0], item, true, true)
 
 # 本地测试命令:
-# datakit pipeline j2.p -T '{"item": " not_space ", "item2":{"item3": [123]}}'
+# datakit pipeline -P j2.p -T '{"item": " not_space ", "item2":{"item3": [123]}}'
 # 报错:
 # [E] j2.p:1:37: does not support deleting elements in the list
 ```

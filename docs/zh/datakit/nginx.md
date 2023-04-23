@@ -51,8 +51,7 @@ NGINX 采集器可以从 NGINX 实例中采取很多指标，比如请求总数�
     进入 DataKit 安装目录下的 `conf.d/nginx` 目录，复制 `nginx.conf.sample` 并命名为 `nginx.conf`。示例如下：
     
     ```toml
-        
-    [[inputs.nginx]]
+        [[inputs.nginx]]
     	# Nginx status URL.
     	# (Default) If not use with VTS, the formula is like this: "http://localhost:80/nginx_status".
     	# If using with VTS, the formula is like this: "http://localhost:80/status/format/json".
