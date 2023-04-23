@@ -21,7 +21,7 @@ icon: zy/release-notes
 
 ### 功能更新：
 
-- GuanceDB 时序引擎全新上线         
+- [GuanceDB 时序引擎](../billing/billing-method/gauncedb.md)全新上线         
 - [异常追踪](../exception/index.md) 新功能上线
 - [跨站点工作空间授权](../management/data-authorization.md#data-authorization) 功能上线         
 - SLS 新增[第三方授权](../billing/commercial-aliyun-sls.md#method)开通或绑定        
