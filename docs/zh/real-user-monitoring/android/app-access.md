@@ -35,23 +35,26 @@
 
 ```groovy
 buildscript {
-    //...省略部分代码
+    //...
     repositories {
-        //...省略部分代码
+        //...
         //添加 SDK 的远程仓库地址
         maven {
             url 'https://mvnrepo.jiagouyun.com/repository/maven-releases'
         }
     }
     dependencies {
-        //...省略部分代码
-        //添加 Plugin 的插件依赖
-        classpath 'com.cloudcare.ft.mobile.sdk.tracker.plugin:ft-plugin:1.1.3-beta01'
+        //...
+        //添加 Plugin 的插件，依赖 AGP 7.4.2 以上，Gradle 7.2.0 以上
+        classpath 'com.cloudcare.ft.mobile.sdk.tracker.plugin:ft-plugin:1.2.0-beta01'
+        // AGP 7.4.2 以下版本，请使用 ft-plugin-legacy 
+        //classpath 'com.cloudcare.ft.mobile.sdk.tracker.plugin:ft-plugin-legacy:1.1.4-beta01'
+        
     }
 }
 allprojects {
     repositories {
-        //...省略部分代码
+        //...
         //添加 SDK 的远程仓库地址
         maven {
             url 'https://mvnrepo.jiagouyun.com/repository/maven-releases'
@@ -65,7 +68,7 @@ allprojects {
 ```groovy
 dependencies {
     //添加 SDK 的依赖
-    implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-sdk:1.3.10-beta01'
+    implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-sdk:1.3.11-beta01'
     //捕获 native 层崩溃信息的依赖，需要配合 ft-sdk 使用不能单独使用
     implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-native:1.0.0-alpha05'
     //推荐使用这个版本，其他版本未做过充分兼容测试
@@ -1445,6 +1448,28 @@ FTExt {
 
 > 关于如何申请动态权限，具体详情参考 [Android Developer](https://developer.android.google.cn/training/permissions/requesting?hl=en)
 
+## Plugin AOP 忽略 {#ingore_aop}
+通过 Plugin AOP 覆盖方法中添加 `@IngoreAOP` 来忽略 ASM 插入
+
+=== "Java"
+
+	```java
+	View.setOnClickListener(new View.OnClickListener() {
+            @Override
+            @IgnoreAOP
+            public void onClick(View v) {
+
+            }
+        }
+	```
+	
+=== "Kotlin"
+
+	```kotlin
+	View.setOnClickListener @IngoreAOP{
+
+        }
+	```
 
 ## 常见问题 {#FAQ}
 ### 添加局变量避免冲突字段 {#key-conflict}
@@ -1560,11 +1585,10 @@ SDK 为更好关联相同用户数据，会使用 Android ID。如果需要在�
 === "Java"
 
 	```java
-	OkHttpClient.Builder builder = new OkHttpClient.Builder();
-	builder.addInterceptor(new FTTraceInterceptor());
-	FTResourceInterceptor interceptor = new FTResourceInterceptor();
-	builder.addInterceptor(interceptor);
-	builder.eventListener(interceptor);
+	OkHttpClient.Builder builder = new OkHttpClient.Builder()
+	.addInterceptor(new FTTraceInterceptor())
+	.addInterceptor(new FTResourceInterceptor())
+	.eventListenerFactory(new FTResourceEventListener.FTFactory());
 	OkHttpClient client = builder.build();
 	```
 
@@ -1572,14 +1596,15 @@ SDK 为更好关联相同用户数据，会使用 Android ID。如果需要在�
 
 	```kotlin
 	val builder = OkHttpClient.Builder()
-	builder.addInterceptor(FTTraceInterceptor())
-	val interceptor = FTResourceInterceptor()
-	builder.addInterceptor(interceptor)
-	builder.eventListener(interceptor)
+	.addInterceptor(FTTraceInterceptor())
+	.addInterceptor(FTResourceInterceptor())
+	.eventListenerFactory(FTResourceEventListener.FTFactory())
 	val client = builder.build()
 	```
 
 * 其他网络框架需要自行实现使用 `FTRUMGlobalManager` 中 `startResource` ,`stopResource`,`addResource`, `FTTraceManager.getTraceHeader` 。具体实现方式，请参考源码示例[ManualActivity.kt](https://github.com/GuanceCloud/datakit-android/tree/dev/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt)
+
+
 
  
 
