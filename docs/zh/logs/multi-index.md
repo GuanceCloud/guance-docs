@@ -69,9 +69,12 @@
 
 #### RAM 子账号授权
 
-1、填写 AccessKey ID / AccessKey Secret （简称 AK / AKS ），自动获取 Project 和 Logstore；     
+1、填写 AccessKey ID / AccessKey Secret （简称 AK / AKS ），自动获取 Project 和 Logstore；   
+
 2、索引名称默认与 Logstore 的名称保持一致，您也可以自定义编辑名称；    
-3、[字段映射](#mapping)；     
+
+3、[字段映射](./multi-index.md#mapping)；     
+
 4、点击**确定**后，即可完成索引绑定，您可以在**查看器**通过切换索引进行查看。
 
 > 关于如何开通 SLS 存储方案，可参考文档 [阿里云市场开通观测云专属版](../billing/commercial-aliyun-sls.md) 。
@@ -88,6 +91,8 @@
 
 1、点击 **[立即前往](https://market.console.aliyun.com/auth?role=VendorCrossAccountGUANCEREADONLYRole&token=fe4be994690698821d5f581475e3b441)**，即可跳转至阿里云，登录后进行授权操作；   
 
+**注意**：操作跨账号角色授权需<u>使用阿里云主账号</u>或<u>授权了 RAM 访问控制 GetRole、GetPolicy、CreatePolicy、CreatePolicyVersion、CreateRole、UpdateRole、AttachPolicyToRole 权限</u>的子账号；
+
 ![](img/index-1.png)
 
 点击**同意授权**，弹出**服务商 UID 校验**窗口，UID 获取可点击**服务商权限说明页面**查看。
@@ -102,7 +107,7 @@
 
 3、索引名称默认与 Logstore 的名称保持一致，您也可以自定义编辑名称；    
 
-4、[字段映射](#mapping)；     
+4、[字段映射](./multi-index.md#mapping)；     
 
 5、点击**确定**后，即可完成索引绑定，您可以在**查看器**通过切换索引进行查看。
 
