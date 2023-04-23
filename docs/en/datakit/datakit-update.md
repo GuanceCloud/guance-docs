@@ -34,7 +34,7 @@ Directly execute the following command to view the current DataKit version. If t
     Online version available: 1.2.9, commit 9f5ac898be (release at 2022-03-10 12:03:12)
     
     Upgrade:
-        DK_UPGRADE=1 bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
+    DK_UPGRADE=1 bash -c "$(curl -L https://static.guance.com/install.sh)"
     ```
 
 === "Windows"
@@ -54,7 +54,12 @@ Directly execute the following command to view the current DataKit version. If t
     Online version available: 1.2.9, commit 9f5ac898be (release at 2022-03-10 12:03:12)
     
     Upgrade:
-        $env:DK_UPGRADE="1"; Set-ExecutionPolicy Bypass -scope Process -Force; Import-Module bitstransfer; start-bitstransfer -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1; powershell .install.ps1;
+    Remove-Item -ErrorAction SilentlyContinue Env:DK_*;
+    $env:DK_UPGRADE="1";
+    Set-ExecutionPolicy Bypass -scope Process -Force;
+    Import-Module bitstransfer;
+    start-bitstransfer  -source https://static.guance.com/install.ps1 -destination .install.ps1;
+    powershell .install.ps1;
     ```
 ---
 
@@ -88,9 +93,6 @@ Copy the following script contents to the installation directory of the machine 
 
 otalog=/usr/local/datakit/ota-update.log
 installer=https://static.guance.com/datakit/installer-linux-amd64
-
-# Note: If you do not want to update the RC version of DataKit, remove `--accept-rc-version`
-/usr/local/datakit/datakit --check-update --accept-rc-version --update-log $otalog
 
 if [[ $? == 42 ]]; then
 	echo "update now..."
@@ -225,12 +227,17 @@ If the new version is unsatisfactory and eager to roll back the recovery functio
 === "Linux/macOS"
 
     ```shell
-    DK_UPGRADE=1 bash -c "$(curl -L https://static.guance.com/datakit/install-<版本号>.sh)"
+    DK_UPGRADE=1 bash -c "$(curl -L https://static.guance.com/install版本号.sh)"
     ```
 === "Windows"
 
     ```powershell
-    $env:DK_UPGRADE="1"; Set-ExecutionPolicy Bypass -scope Process -Force; Import-Module bitstransfer; start-bitstransfer -source https://static.guance.com/datakit/install-<版本号>.ps1 -destination .install.ps1; powershell .install.ps1;
+    Remove-Item -ErrorAction SilentlyContinue Env:DK_*;
+    $env:DK_UPGRADE="1";
+    Set-ExecutionPolicy Bypass -scope Process -Force;
+    Import-Module bitstransfer;
+    start-bitstransfer  -source https://static.guance.com/install版本号.ps1 -destination .install.ps1;
+    powershell .install.ps1;
     ```
 
 The version number here can be found on the [DataKit release history](changelog.md) page. Currently, only rollback to [1.2.0](changelog.md#cl-1.2.0) is supported, and previous rc versions do not recommend rollback. After rolling back the version, you may encounter some configurations that are only available in the new version, which cannot be resolved in the rolled back version. For the time being, you can only manually adjust the configuration to adapt to the old version of DataKit.

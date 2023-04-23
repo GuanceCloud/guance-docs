@@ -10,7 +10,7 @@ Memcached collector can collect the running status metrics from Memcached instan
 
 ## Preconditions {#requirements}
 
-- Memcached version >= 1.5.0
+- Memcached version >= `1.5.0`. Already tested version: `1.5.x`, `1.6.x`;
 
 ## Configuration {#config}
 
@@ -21,11 +21,14 @@ Memcached collector can collect the running status metrics from Memcached instan
     ```toml
         
     [[inputs.memcached]]
-      ## 服务器地址，可支持多个
+      ## Servers' addresses.
       servers = ["localhost:11211"]
       # unix_sockets = ["/var/run/memcached.sock"]
     
-      ## 采集间隔
+      ## Set true to enable election
+      election = true
+    
+      ## Collect interval.
       # 单位 "ns", "us" (or "µs"), "ms", "s", "m", "h"
       interval = "10s"
     
