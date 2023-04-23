@@ -49,7 +49,6 @@ NGINX collector can take many metrics from NGINX instances, such as the total nu
 Go to the `conf.d/nginx` directory under the DataKit installation directory, copy `nginx.conf.sample` and name it `nginx.conf`. Examples are as follows:
 
 ```toml
-
 [[inputs.nginx]]
 	# Nginx status URL.
 	# (Default) If not use with VTS, the formula is like this: "http://localhost:80/nginx_status".

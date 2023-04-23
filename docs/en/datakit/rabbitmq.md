@@ -112,6 +112,7 @@ For all of the following data collections, a global tag named `host` is appended
 | Tag | Descrition |
 |  ----  | --------|
 |`cluster_name`|rabbitmq cluster name|
+|`host`|Hostname of rabbitmq running on.|
 |`rabbitmq_version`|rabbitmq version|
 |`url`|rabbitmq url|
 
@@ -156,6 +157,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Tag | Descrition |
 |  ----  | --------|
+|`host`|Hostname of rabbitmq running on.|
 |`node_name`|rabbitmq node name|
 |`queue_name`|rabbitmq queue name|
 |`url`|rabbitmq url|
@@ -170,7 +172,6 @@ For all of the following data collections, a global tag named `host` is appended
 |`consumers`|The ratio of time that a queue's consumers can take new messages|int|count|
 |`head_message_timestamp`|Timestamp of the head message of the queue. Shown as millisecond|int|msec|
 |`memory`|Bytes of memory consumed by the Erlang process associated with the queue, including stack, heap and internal structures|int|B|
-|`message`|Count of the total messages in the queue|int|count|
 |`message_ack_count`|Number of messages in queues delivered to clients and acknowledged|int|count|
 |`message_ack_rate`|Number per second of messages delivered to clients and acknowledged|float|percent|
 |`message_deliver_count`|Count of messages delivered in acknowledgement mode to consumers|int|count|
@@ -181,6 +182,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`message_publish_rate`|Rate per second of messages published|float|percent|
 |`message_redeliver_count`|Count of subset of messages in queues in deliver_get which had the redelivered flag set|int|count|
 |`message_redeliver_rate`|Rate per second of subset of messages in deliver_get which had the redelivered flag set|float|percent|
+|`messages`|Count of the total messages in the queue|int|count|
 |`messages_rate`|Count per second of the total messages in the queue|float|percent|
 |`messages_ready`|Number of messages ready to be delivered to clients|int|count|
 |`messages_ready_rate`|Number per second of messages ready to be delivered to clients|float|percent|
@@ -199,6 +201,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`auto_delete`|If set, the exchange is deleted when all queues have finished using it|
 |`durable`|If set when creating a new exchange, the exchange will be marked as durable. Durable exchanges remain active when a server restarts. Non-durable exchanges (transient exchanges) are purged if/when a server restarts.|
 |`exchange_name`|rabbitmq exchange name|
+|`host`|Hostname of rabbitmq running on.|
 |`internal`|If set, the exchange may not be used directly by publishers, but only when bound to other exchanges. Internal exchanges are used to construct wiring that is not visible to applications|
 |`type`|rabbitmq exchange type|
 |`url`|rabbitmq url|
@@ -235,6 +238,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Tag | Descrition |
 |  ----  | --------|
+|`host`|Hostname of rabbitmq running on.|
 |`node_name`|rabbitmq node name|
 |`url`|rabbitmq url|
 

@@ -1,5 +1,5 @@
 
-# 文本数据处理（Pipeline）
+# Pipeline 手册
 ---
 
 以下是 Pipeline 数据处理器语言定义。随着不同语法的逐步支持，该文档会做不同程度的调整和增删。
@@ -189,7 +189,7 @@ drop_origin_data()
 DataKit 中 grok 模式可以分为两类：
 
 - 全局模式：*pattern* 目录下的模式文件都是全局模式，所有 pipeline 脚本都可使用
-- 局部模式：在 pipeline 脚本中通过 [add_pattern()](#fn-add-pattern) 函数新增的模式为局部模式，只针对当前 pipeline 脚本有效
+- 局部模式：在 pipeline 脚本中通过 [add_pattern()](pipeline.md#fn-add-pattern) 函数新增的模式为局部模式，只针对当前 pipeline 脚本有效
 
 以下以 Nginx access-log 为例，说明一下如何编写对应的 grok，原始 nginx access log 如下：
 
@@ -230,7 +230,7 @@ group_between(status_code, [500,599], "error", status)
 default_time(time)
 ```
 
-优化之后的切割，相较于初步的单行 pattern 来说可读性更好。由于 grok 解析出的字段默认数据类型是 string，在此处指定字段的数据类型后，可以避免后续再使用 [cast()](#fn-cast) 函数来进行类型转换。
+优化之后的切割，相较于初步的单行 pattern 来说可读性更好。由于 grok 解析出的字段默认数据类型是 string，在此处指定字段的数据类型后，可以避免后续再使用 [cast()](pipeline.md#fn-cast) 函数来进行类型转换。
 
 ### grok 组合 {#grok-compose}
 
@@ -258,7 +258,7 @@ grok(_, %{time})
 ???+ attention
 
     - 如果出现同名模式，则以局部模式优先（即局部模式覆盖全局模式）
-    - pipeline 脚本中，[add_pattern()](#fn-add-pattern) 需在 [grok()](#fn-grok) 函数前面调用，否则会导致第一条数据提取失败
+    - pipeline 脚本中，[add_pattern()](pipeline.md#fn-add-pattern) 需在 [grok()](pipeline.md#fn-grok) 函数前面调用，否则会导致第一条数据提取失败
 
 ### 内置的 Pattern 列表 {#builtin-patterns}
 
@@ -462,6 +462,42 @@ Pipeline 的目录搜索优先级是:
 
 在 Datakit 的安装目录下面的 `pipeline` 目录下，目录结构如上所示。
 
+## 脚本输入数据结构 {#input-data}
+
+所有类别的数据在被 Pipeline 脚本处理前均会封装成 Point 结构，其结构大致为：
+
+```
+struct Point {
+    Name:    str
+    Tags:    map[str]str
+    Fields:  map[str]any
+    Time:    int64
+}
+```
+
+以一条 nginx 日志数据为例，其被日志采集器采集到后生成的数据作为 Pipeline 脚本的输入大致为：
+
+```
+Point {
+    Name: "nginx"
+    Tags: map[str]str {
+        "host": "your_hostname"
+    },
+    Fields: map[str]any {
+        "message": "127.0.0.1 - - [12/Jan/2023:11:51:38 +0800] \"GET / HTTP/1.1\" 200 612 \"-\" \"curl/7.81.0\""
+    },
+    Time: 1673495498000123456
+}
+```
+
+提示：
+
+- 其中 `Name` 可以通过函数 `set_measurement()` 修改。
+
+- 对于 `Tags` 和 `Fields`，任意一个 key 不能同时出现在这两个 map 中；可以在 pipeline 中通过自定义标识符或函数 `get_key()` 读取，修改 `Tags` 或 `Fields` 中 key 的值需要通过其他**内置函数**进行。其中 **`_`** 可以视为 `message` 这个 key 的别名。
+
+- 在脚本运行结束后，如果在 `Tags` 或 `Fields` 中存在名为 `time` 的 key，将被删除；当其值为 int64 类型，则将其值被赋予 Point 的 time 后删除。如果 time 为字符串，可以尝试使用函数 `default_time()` 将其转换为 int64。
+
 ## 脚本函数 {#functions}
 
 函数参数说明：
@@ -499,6 +535,8 @@ add_key(city, "shanghai")
     "city": "shanghai"
 }
 ```
+
+
 ### `add_pattern()` {#fn-add-pattern}
 
 函数原型：`fn add_pattern(name: str, pattern: str)`
@@ -553,6 +591,8 @@ if false {
     "message": "33,abc,end3"
 }
 ```
+
+
 ### `adjust_timezone()` {#fn-adjust-timezone}
 
 函数原型：`fn adjust_timezone(key: int, minute: int)`
@@ -592,7 +632,7 @@ adjust_timezone(time)
 
 ```
 
-执行 `datakit pipeline <name>.p -F <input_file_name>  --date`:
+执行 `datakit pipeline -P <name>.p -F <input_file_name>  --date`:
 
 ```json
 # 输出 1
@@ -610,6 +650,89 @@ adjust_timezone(time)
 
 使用 adjust_timezone 后将得到：
   - 输入 1 结果： `2022-07-11T20:49:20.937+08:00`
+
+
+### `agg_create()` {#fn-agg-create}
+
+[:octicons-tag-24: Version-1.5.10](../datakit/changelog.md#cl-1.5.10)
+
+函数原型：`fn agg_create(bucket: str, on_interval: str = "60s", on_count: int = 0, keep_value: bool = false, const_tags: map[string]string = nil)`
+
+函数说明：创建一个用于聚合的指标集，通过 `on_interval` 或 `on_count` 设置时间或次数作为聚合周期，聚合结束后将上传聚合数据，可以选择是否保留上一次聚合的数据
+
+函数参数:
+
+- `bucket`: 字符串类型, 作为聚合出的指标的指标集名，如果该 bucket 已经创建，则函数不执行任何操作
+- `on_interval`：默认值 `60s`, 以时间作为聚合周期，单位 `s`，值大于 `0` 时参数生效；不能同时与 `on_count` 小于等于 0；
+- `on_count`: 默认值 `0`，以处理的点数作为聚合周期，值大于 `0` 时参数生效
+- `keep_value`: 默认值 `false`
+- `const_tags`: 自定义的 tags，默认为空
+
+示例:
+
+```python
+agg_create("cpu_agg_info", on_interval = "30s")
+```
+
+
+### `agg_metric()` {#fn-agg-metric}
+
+[:octicons-tag-24: Version-1.5.10](../datakit/changelog.md#cl-1.5.10)
+
+函数原型：`fn agg_metric(bucket: str, new_field: str, agg_fn: str, agg_by: []string, agg_field: str)`
+
+函数说明：根据输入的数据中的字段的名，自动取值后作为聚合数据的 tag，并将这些聚合数据存储在对应的 bucket 中
+
+函数参数:
+
+- `bucket`: 字符串类型, 函数 `agg_create` 创建出的对应指标集合的 bucket，如果该 bucket 未被创建，则函数不执行任何操作
+- `new_field`： 聚合出的数据中的指标名，其值的数据类型为 `float`
+- `agg_fn`: 聚合函数，可以是`"avg"`,`"sum"`,`"min"`,`"max"`,`"set"` 中的一种
+- `agg_by`: 输入的数据中的字段的名，将作为聚合出的数据的 tag，这些字段的值只能是字符串类型的数据
+- `agg_field`: 输入的数据中的字段名，自动获取字段值进行聚合
+
+示例:
+
+以日志类别数据为例：
+
+多个输入日志：
+```
+1
+```
+
+```
+2
+```
+
+```
+3
+```
+
+脚本：
+
+```python
+agg_create("cpu_agg_info", interval=10, const_tags={"tag1":"value_user_define_tag"})
+
+set_tag("tag1", "value1")
+
+field1 = _
+
+cast(field1, "int")
+
+agg_metric("cpu_agg_info", "agg_field_1", "sum", ["tag1", "host"], "field1")
+```
+
+指标输出：
+
+```
+{
+    "host": "your_hostname",
+    "tag1": "value1",
+    "agg_field_1": 6,
+}
+```
+
+
 ### `append()` {#fn-append}
 
 函数原型：`fn append(arr, elem) arr`
@@ -635,6 +758,8 @@ b = [3, 4]
 c = append(a, b)
 # c = [1, 2, [3, 4]]
 ```
+
+
 ### `b64dec()` {#fn-b64dec}
 
 函数原型：`fn b64dec(key: str)`
@@ -657,6 +782,8 @@ b64enc(`str`)
 #   "str": "hello, world"
 # }
 ```
+
+
 ### `b64enc()` {#fn-b64enc}
 
 函数原型：`fn b64enc(key: str)`
@@ -679,6 +806,8 @@ b64enc(`str`)
 #   "str": "aGVsbG8sIHdvcmxk"
 # }
 ```
+
+
 ### `cast()` {#fn-cast}
 
 函数原型：`fn cast(key, dst_type: str)`
@@ -704,6 +833,8 @@ cast(first, "str")
   "first": "1"
 }
 ```
+
+
 ### `cidr()` {#fn-cidr}
 
 函数原型：`fn cidr(ip: str, prefix: str) bool`
@@ -732,6 +863,8 @@ if cidr(ip, "192.0.2.1/24") {
   "ip_prefix": "192.0.2.1/24"
 }
 ```
+
+
 ### `cover()` {#fn-cover}
 
 函数原型：`fn cover(key: str, range: list)`
@@ -754,32 +887,74 @@ cover(`str`, [8, 9])
 json(_, abc)
 cover(abc, [2, 4])
 ```
+
+
 ### `datetime()` {#fn-datetime}
 
-函数原型：`fn datetime(key, precision: str, fmt: str)`
+[:octicons-tag-24: Version-1.5.7](../datakit/changelog.md#cl-1.5.7)
+
+函数原型：`fn datetime(key, precision: str, fmt: str, tz: str = "")`
 
 函数说明：将时间戳转成指定日期格式
 
 函数参数
 
-- `key`: 已经提取的时间戳 (必选参数)
-- `precision`：输入的时间戳精度(s, ms)
-- `fmt`：日期格式，时间格式, 支持以下模版
+- `key`: 已经提取的时间戳
+- `precision`：输入的时间戳精度(s, ms, us, ns)
+- `fmt`：日期格式，提供内置日期格式且支持自定义日期格式
+- `tz`: 时区 (可选参数)，将时间戳转换为指定时区的时间，默认使用主机的时区
 
-```python
-ANSIC       = "Mon Jan _2 15:04:05 2006"
-UnixDate    = "Mon Jan _2 15:04:05 MST 2006"
-RubyDate    = "Mon Jan 02 15:04:05 -0700 2006"
-RFC822      = "02 Jan 06 15:04 MST"
-RFC822Z     = "02 Jan 06 15:04 -0700" // RFC822 with numeric zone
-RFC850      = "Monday, 02-Jan-06 15:04:05 MST"
-RFC1123     = "Mon, 02 Jan 2006 15:04:05 MST"
-RFC1123Z    = "Mon, 02 Jan 2006 15:04:05 -0700" // RFC1123 with numeric zone
-RFC3339     = "2006-01-02T15:04:05Z07:00"
-RFC3339Nano = "2006-01-02T15:04:05.999999999Z07:00"
-Kitchen     = "3:04PM"
-```
+内置日期格式：
 
+|内置格式| 日期 | 描述 |
+|-| -| - |
+|"ANSIC"       | "Mon Jan _2 15:04:05 2006" | |
+|"UnixDate"    | "Mon Jan _2 15:04:05 MST 2006" | |
+|"RubyDate"    | "Mon Jan 02 15:04:05 -0700 2006" | |
+|"RFC822"      | "02 Jan 06 15:04 MST" | |
+|"RFC822Z"     | "02 Jan 06 15:04 -0700" | RFC822 with numeric zone |
+|"RFC850"      | "Monday, 02-Jan-06 15:04:05 MST" | |
+|"RFC1123"     | "Mon, 02 Jan 2006 15:04:05 MST" | |
+|"RFC1123Z"    | "Mon, 02 Jan 2006 15:04:05 -0700" | RFC1123 with numeric zone |
+|"RFC3339"     | "2006-01-02T15:04:05Z07:00" | |
+|"RFC3339Nano" | "2006-01-02T15:04:05.999999999Z07:00" | |
+|"Kitchen"     | "3:04PM" | |
+
+自定义日期格式:
+
+可通过占位符的组合自定义输出日期格式
+
+| 字符 | 示例 |描述 |
+| - | - | - |
+| a | %a | 星期的缩写，如 `Wed` |
+| A | %A | 星期的全写，如 `Wednesday`|
+| b | %b | 月份缩写, 如 `Mar` |
+| B | %B | 月份的全写，如 `March` |
+| C | %c | 世纪数，当前年份除 100 |
+| **d** | %d | 一个月内的第几天；范围 `[01, 31]` |
+| e | %e |一个月内的第几天；范围 `[1, 31]`，使用空格填充 |
+| **H** | %H | 小时，使用 24 小时制； 范围 `[00, 23]` |
+| I | %I | 小时，使用 12 小时制； 范围 `[01, 12]` |
+| j | %j | 一年内的第几天，范围 `[001, 365]` | 
+| k | %k | 小时，使用 24 小时制； 范围 `[0, 23]` |
+| l | %l | 小时，使用 12 小时制； 范围 `[1, 12]`，使用空格填充 |
+| **m** | %m | 月份，范围 `[01, 12]` | 
+| **M** | %M | 分钟，范围 `[00, 59]` |
+| n | %n | 表示换行符 `\n` |
+| p | %p | `AM` 或 `PM` |
+| P | %P | `am` 或 `pm` |
+| s | %s | 自 1970-01-01 00:00:00 UTC 来的的秒数 |
+| **S** | %S | 秒数，范围 `[00, 60]` |
+| t | %t | 表示制表符 `\t` |
+| u | %u | 星期几，星期一为 1，范围 `[1, 7]` |
+| w | %w | 星期几，星期天为 0, 范围 `[0, 6]` |
+| y | %y | 年份，范围 `[00, 99]` |
+| **Y** | %Y | 年份的十进制表示|
+| **z** | %z | RFC 822/ISO 8601:1988 风格的时区 (如： `-0600` 或 `+0100` 等) |
+| Z | %Z | 时区缩写，如 `CST` |
+| % | %% | 表示字符 `%` |
+
+ 
 示例:
 
 ```python
@@ -793,8 +968,33 @@ Kitchen     = "3:04PM"
 #    }
 
 # 处理脚本
-json(_, a.timestamp) datetime(a.timestamp, 'ms', 'RFC3339')
+json(_, a.timestamp)
+datetime(a.timestamp, 'ms', 'RFC3339')
 ```
+
+```python
+# 处理脚本
+ts = timestamp()
+datetime(ts, 'ns', fmt='%Y-%m-%d %H:%M:%S', tz="UTC")
+
+# 输出
+{
+  "ts": "2023-03-08 06:43:39"
+}
+```
+
+```python
+# 处理脚本
+ts = timestamp()
+datetime(ts, 'ns', '%m/%d/%y  %H:%M:%S %z', "Asia/Tokyo")
+
+# 输出
+{
+  "ts": "03/08/23  15:44:59 +0900"
+}
+```
+
+
 ### `decode()` {#fn-decode}
 
 函数原型：`fn decode(text: str, text_encode: str)`
@@ -809,6 +1009,8 @@ decode("wwwwww", "gbk")
 #   "message": "wwwwww",
 # }
 ```
+
+
 ### `default_time()` {#fn-defalt-time}
 
 函数原型：`fn default_time(key: str, timezone: str = "")`
@@ -887,6 +1089,36 @@ rename("time", log_time)
 }
 ```
 
+
+
+### `delete()` {#fn-delete}
+[:octicons-tag-24: Version-1.5.8](../datakit/changelog.md#cl-1.5.8)
+
+函数原型：`fn delete(src: map[string]any, key: str)`
+
+函数说明： 删除 json map 中的 key
+
+```python
+
+# input
+# {"a": "b", "b":[0, {"c": "d"}], "e": 1}
+
+# script
+j_map = load_json(_)
+
+delete(j_map["b"][-1], "c")
+
+delete(j_map, "a")
+
+add_key("j_map", j_map)
+
+# result:
+# {
+#   "j_map": "{\"b\":[0,{}],\"e\":1}",
+# }
+```
+
+
 ### `drop()` {#fn-drop}
 
 函数原型：`fn drop()`
@@ -909,6 +1141,8 @@ json(_, str_b)
 # }
 ```
 
+
+
 ### `drop_key()` {#fn-drop-key}
 
 函数原型：`fn drop_key(key)`
@@ -922,7 +1156,7 @@ json(_, str_b)
 示例:
 
 ```python
-data = `{\"age\": 17, \"name\": \"zhangsan\", \"height\": 180}`
+# data = `{\"age\": 17, \"name\": \"zhangsan\", \"height\": 180}`
 
 # 处理脚本
 json(_, age,)
@@ -936,6 +1170,8 @@ drop_key(height)
     "name": "zhangsan"
 }
 ```
+
+
 
 ### `drop_origin_data()` {#fn-drop-origin-data}
 
@@ -951,6 +1187,8 @@ drop_key(height)
 # 结果集中删除 message 内容
 drop_origin_data()
 ```
+
+
 
 ### `duration_precision()` {#fn-duration-precision}
 
@@ -970,6 +1208,8 @@ duration_precision(ts, "ms", "ns")
 #   "ts": 12345000000
 # }
 ```
+
+
 ### `exit()` {#fn-exit}
 
 函数原型：`fn exit()`
@@ -991,6 +1231,8 @@ json(_, str_b)
 # }
 ```
 
+
+
 ### `geoip()` {#fn-geoip}
 
 函数原型：`fn geoip(ip: str)`
@@ -1004,7 +1246,7 @@ json(_, str_b)
 
 参数:
 
-- `ip`: 已经提取出来的 IP 字段，支持 IPv4/6
+- `ip`: 已经提取出来的 IP 字段，支持 IPv4 和 IPv6
 
 示例：
 
@@ -1025,48 +1267,50 @@ geoip(ip)
   "message"  : "{\"ip\": \"1.2.3.4\"}",
 }
 ```
+
+
 ### `get_key()` {#fn-get-key}
 
 函数原型：`fn get_key(key)`
 
-函数说明：从 point 中读取 key 的值，而不是堆栈上的变量的值
+函数说明：从输入 point 中读取 key 的值，而不是堆栈上的变量的值
 
 函数参数
 
 - `key_name`: key 的名称
 
-示例一:
+示例:
 
 ```python
-# scipt 1
-key = "shanghai"
-add_key(key)
-key = "tokyo" 
-add_key(add_new_key, key)
+add_key("city", "shanghai")
+
+# 此处可以直接通过 city 访问获取 point 中的同名 key 的值
+if city == "shanghai" {
+  add_key("city_1", city)
+}
+
+# 由于赋值的右结合性，先获取 key 为 "city" 的值，
+# 而后创建名为 city 的变量
+city = city + " --- ningbo" + " --- " +
+    "hangzhou" + " --- suzhou ---" + ""
+
+# get_key 从 point 中获取 "city" 的值
+# 存在名为 city 的变量，则无法直接从 point 中获取
+if city != get_key("city") {
+  add_key("city_2", city)
+}
 
 # 处理结果
+"""
 {
-  "add_new_key": "tokyo",
-  "key": "shanghai",
+  "city": "shanghai",
+  "city_1": "shanghai",
+  "city_2": "shanghai --- ningbo --- hangzhou --- suzhou ---"
 }
-
+"""
 ```
 
-示例二:
 
-```python
-# scipt 2
-key = "shanghai"
-add_key(key)
-key = "tokyo" 
-add_key(add_new_key, get_key(key))
-
-#处理结果
-{
-  "add_new_key": "shanghai",
-  "key": "shanghai",
-}
-```
 ### `grok()` {#fn-grok}
 
 函数原型：`fn grok(input: str, pattern: str, trim_space: bool = true) bool`
@@ -1119,6 +1363,8 @@ add_key(grok_match_ok)
   "time": 1665994187473917724
 }
 ```
+
+
 ### `group_between()` {#fn-group-between}
 
 函数原型：`fn group_between(key: int, between: list, new_value: int|float|bool|str|map|list|nil, new_key)`
@@ -1134,7 +1380,6 @@ json(_, http_status)
 
 # 如果字段 http_status 值在指定范围内，则将其值改为 "OK"
 group_between(http_status, [200, 300], "OK")
-`
 
 # 处理结果
 {
@@ -1158,6 +1403,8 @@ group_between(http_status, [200, 300], "OK", status)
     "status": "OK"
 }
 ```
+
+
 ### `group_in()` {#fn-group-in}
 
 函数原型：`fn group_in(key: int|float|bool|str, range: list, new_value: int|float|bool|str|map|list|nil, new-key = "")`
@@ -1173,9 +1420,11 @@ group_in(log_level, ["info", "debug"], "OK")
 # 如果字段 http_status 值在指定列表中，则新建 status 字段，其值为 "not-ok"
 group_in(log_level, ["error", "panic"], "not-ok", status)
 ```
+
+
 ### `json()` {#fn-json}
 
-函数原型：`fn json(input: str, json_path, newkey, trim_space: bool = true)`
+函数原型：`fn json(input: str, json_path, newkey, trim_space: bool = true, delete_after_extract = false)`
 
 函数说明：提取 json 中的指定字段，并可将其命名成新的字段。
 
@@ -1184,7 +1433,8 @@ group_in(log_level, ["error", "panic"], "not-ok", status)
 - `input`: 待提取 json，可以是原始文本（`_`）或经过初次提取之后的某个 `key`
 - `json_path`: json 路径信息
 - `newkey`：提取后数据写入新 key
-- `trim_space`: 删除提取出的字符中的空白首尾字符，默认值为 true
+- `trim_space`: 删除提取出的字符中的空白首尾字符，默认值为 `true`
+- `delete_after_extract`: 在提取结束后删除当前对象，在重新序列化后回写待提取对象；只能应用于 map 的 key 与 value 的删除，不能用于删除 list 的元素；默认值为 `false`，不进行任何操作[:octicons-tag-24: Version-1.5.7](../datakit/changelog.md#cl-1.5.7)
 
 ```python
 # 直接提取原始输入 json 中的x.y字段，并可将其命名成新字段abc
@@ -1197,28 +1447,27 @@ json(key, x.y)
 示例一:
 
 ```python
-# 待处理数据: {"info": {"age": 17, "name": "zhangsan", "height": 180}}
+# 待处理数据: 
+# {"info": {"age": 17, "name": "zhangsan", "height": 180}}
 
-# 处理脚本
+# 处理脚本:
 json(_, info, "zhangsan")
 json(zhangsan, name)
-json(zhangsan, age, "年龄")
+json(zhangsan, age, "age")
 
-# 处理结果
+# 处理结果:
 {
-    "message": "{\"info\": {\"age\": 17, \"name\": \"zhangsan\", \"height\": 180}}
-    "zhangsan": {
-        "age": 17,
-        "height": 180,
-        "name": "zhangsan"
-    }
+  "age": 17,
+  "message": "{\"info\": {\"age\": 17, \"name\": \"zhangsan\", \"height\": 180}}",
+  "name": "zhangsan",
+  "zhangsan": "{\"age\":17,\"height\":180,\"name\":\"zhangsan\"}"
 }
 ```
 
 示例二:
 
 ```python
-# 待处理数据
+# 待处理数据:
 #    data = {
 #        "name": {"first": "Tom", "last": "Anderson"},
 #        "age":37,
@@ -1231,23 +1480,157 @@ json(zhangsan, age, "年龄")
 #        ]
 #    }
 
-# 处理脚本
+# 处理脚本:
 json(_, name) json(name, first)
 ```
 
 示例三:
 
 ```python
-# 待处理数据
+# 待处理数据:
 #    [
 #            {"first": "Dale", "last": "Murphy", "age": 44, "nets": ["ig", "fb", "tw"]},
 #            {"first": "Roger", "last": "Craig", "age": 68, "nets": ["fb", "tw"]},
 #            {"first": "Jane", "last": "Murphy", "age": 47, "nets": ["ig", "tw"]}
 #    ]
     
-# 处理脚本, json数组处理
+# 处理脚本, json数组处理:
 json(_, [0].nets[-1])
 ```
+
+示例四：
+
+```python
+# 待处理数据:
+{"item": " not_space ", "item2":{"item3": [123]}}
+
+# 处理脚本:
+json(_, item2.item3, item, delete_after_extract = true)
+
+# 输出:
+{
+  "item": "[123]",
+  "message": "{\"item\":\" not_space \",\"item2\":{}}",
+}
+```
+
+
+示例五：
+
+```python
+# 待处理数据:
+{"item": " not_space ", "item2":{"item3": [123]}}
+
+# 处理脚本:
+# 如果尝试删除列表元素将无法通过脚本检查
+json(_, item2.item3[0], item, true, true)
+
+# 本地测试命令:
+# datakit pipeline -P j2.p -T '{"item": " not_space ", "item2":{"item3": [123]}}'
+# 报错:
+# [E] j2.p:1:37: does not support deleting elements in the list
+```
+
+
+### `kv_split()` {#fn-kv_split}
+
+[:octicons-tag-24: Version-1.5.7](../datakit/changelog.md#cl-1.5.7)
+
+函数原型：`fn kv_split(key, field_split_pattern = " ", value_split_pattern = "=", trim_key = "", trim_value = "", include_keys = [], prefix = "") -> bool`
+
+函数说明：从字符串中提取出所有的键值对
+
+参数:
+
+- `key`: key 名称
+- `include_keys`: 包含的 key 名称列表，仅提取在该列表内的 key；**默认值为 []，不提取任何 key**
+- `field_split_pattern`: 字符串分割，用于提取出所有键值对的正则表达式；默认值为 `" "`
+- `value_split_pattern`: 用于从键值对字符串分割出键和值，非递归；默认值为 `"="`
+- `trim_key`: 删除提取出的 key 的前导和尾随的所有指定的字符；默认值为 `""`
+- `trim_value`: 删除提取出的 value 的前导和尾随的所有指定的字符；默认值为 `""`
+- `prefix`: 给所有的 key 添加前缀字符串
+
+示例:
+
+
+```python
+# input: "a=1, b=2 c=3"
+kv_split(_)
+ 
+'''output:
+{
+  "message": "a=1, b=2 c=3",
+  "status": "unknown",
+  "time": 1679558730846377132
+}
+'''
+```
+
+```python
+# input: "a=1, b=2 c=3"
+kv_split(_, include_keys=["a", "c", "b"])
+ 
+'''output:
+{
+  "a": "1,",
+  "b": "2",
+  "c": "3",
+  "message": "a=1 b=2 c=3",
+  "status": "unknown",
+  "time": 1678087119072769560
+}
+'''
+```
+
+```python
+# input: "a=1, b=2 c=3"
+kv_split(_, trim_value=",", include_keys=["a", "c", "b"])
+
+'''output:
+{
+  "a": "1",
+  "b": "2",
+  "c": "3",
+  "message": "a=1, b=2 c=3",
+  "status": "unknown",
+  "time": 1678087173651846101
+}
+'''
+```
+
+
+```python
+# input: "a=1, b=2 c=3"
+kv_split(_, trim_value=",", include_keys=["a", "c"])
+
+'''output:
+{
+  "a": "1",
+  "c": "3",
+  "message": "a=1, b=2 c=3",
+  "status": "unknown",
+  "time": 1678087514906492912
+}
+'''
+```
+
+```python
+# input: "a::1,+b::2+c::3" 
+kv_split(_, field_split_pattern="\\+", value_split_pattern="[:]{2}",
+    prefix="with_prefix_",trim_value=",", trim_key="a", include_keys=["a", "b", "c"])
+
+'''output:
+{
+  "message": "a::1,+b::2+c::3",
+  "status": "unknown",
+  "time": 1678087473255241547,
+  "with_prefix_b": "2",
+  "with_prefix_c": "3"
+}
+'''
+```
+
+
 ### `len()` {#fn-len}
 
 函数原型：`fn len(val: str|map|list) int`
@@ -1275,6 +1658,8 @@ add_key(abc, len(["abc"]))
   "abc": 1,
 }
 ```
+
+
 ### `load_json()` {#fn-load_json}
 
 函数原型：`fn load_json(val: str) nil|bool|float|map|list`
@@ -1302,6 +1687,8 @@ add_key(len_abc, len(abc))
 
 add_key(len_abc, len(load_json(abc["a"]["ff"])))
 ```
+
+
 ### `lowercase()` {#fn-lowercase}
 
 函数原型：`fn lowercase(key: str)`
@@ -1325,6 +1712,8 @@ json(_, first) lowercase(first)
 		"first": "hello"
 }
 ```
+
+
 
 ### `match()` {#fn-match}
 
@@ -1354,6 +1743,8 @@ add_key(match_2, match('''\w+\s[,\w]+''', test_2))
     "match_2": false
 }
 ```
+
+
 ### `mquery_refer_table()` {#fn-mquery-refer-table}
 
 函数原型：`fn mquery_refer_table(table_name: str, keys: list, values: list)`
@@ -1394,6 +1785,8 @@ mquery_refer_table(table, values=[value, false], keys=[key, "col4"])
 }
 
 ```
+
+
 ### `nullif()` {#fn-nullif}
 
 函数原型：`fn nullif(key, value)`
@@ -1427,6 +1820,8 @@ if first == "1" {
 }
 ```
 
+
+
 ### `parse_date()` {#fn-parse-date}
 
 函数原型：`fn parse_date(key: str, yy: str, MM: str, dd: str, hh: str, mm: str, ss: str, ms: str, zone: str)`
@@ -1458,6 +1853,8 @@ parse_date(aa, "2021", "12", "12", "10", "10", "34", "100", "Asia/Shanghai") # �
 
 parse_date(aa, "20", "February", "12", "10", "10", "34", "", "+8") 结果 aa=1581473434000000000
 ```
+
+
 ### `parse_duration()` {#fn-parse-duration}
 
 函数原型：`fn parse_duration(key: str)`
@@ -1490,6 +1887,8 @@ parse_duration(abc) # 结果 abc = -3500000000
 parse_duration(abc) # 结果 abc = -2300000000
 
 ```
+
+
 
 ### `query_refer_table()` {#fn-query-refer-table}
 
@@ -1532,6 +1931,8 @@ query_refer_table(table, key, value)
   "value": 1234
 }
 ```
+
+
 ### `rename()` {#fn-rename}
 
 函数原型：`fn rename(new_key, old_key)`
@@ -1543,6 +1944,8 @@ query_refer_table(table, key, value)
 - `new_key`: 新字段名
 - `old_key`: 已提取的字段名
 
+示例：
+
 ```python
 # 把已提取的 abc 字段重新命名为 abc1
 rename('abc1', abc)
@@ -1551,8 +1954,6 @@ rename('abc1', abc)
 
 rename(abc1, abc)
 ```
-
-示例：
 
 ```python
 # 待处理数据: {"info": {"age": 17, "name": "zhangsan", "height": 180}}
@@ -1571,6 +1972,8 @@ json(_, info.name, "姓名")
 }
 ```
 
+
+
 ### `replace()` {#fn-replace}
 
 函数原型：`fn replace(key: str, regex: str, replace_str: str)`
@@ -1586,22 +1989,24 @@ json(_, info.name, "姓名")
 示例:
 
 ```python
-# 电话号码：{"str": "13789123014"}
-json(_, str)
-replace(str, "(1[0-9]{2})[0-9]{4}([0-9]{4})", "$1****$2")
+# 电话号码：{"str_abc": "13789123014"}
+json(_, str_abc)
+replace(str_abc, "(1[0-9]{2})[0-9]{4}([0-9]{4})", "$1****$2")
 
-# 英文名 {"str": "zhang san"}
-json(_, str)
-replace(str, "([a-z]*) \\w*", "$1 ***")
+# 英文名 {"str_abc": "zhang san"}
+json(_, str_abc)
+replace(str_abc, "([a-z]*) \\w*", "$1 ***")
 
-# 身份证号 {"str": "362201200005302565"}
-json(_, str)
-replace(str, "([1-9]{4})[0-9]{10}([0-9]{4})", "$1**********$2")
+# 身份证号 {"str_abc": "362201200005302565"}
+json(_, str_abc)
+replace(str_abc, "([1-9]{4})[0-9]{10}([0-9]{4})", "$1**********$2")
 
-# 中文名 {"str": "小阿卡"}
-json(_, str)
-replace(str, '([\u4e00-\u9fa5])[\u4e00-\u9fa5]([\u4e00-\u9fa5])', "$1＊$2")
+# 中文名 {"str_abc": "小阿卡"}
+json(_, str_abc)
+replace(str_abc, '([\u4e00-\u9fa5])[\u4e00-\u9fa5]([\u4e00-\u9fa5])', "$1＊$2")
 ```
+
+
 
 ### `sample()` {#fn-sample}
 
@@ -1622,16 +2027,34 @@ if !sample(0.3) { # sample(0.3) 表示采样率为 30%，即以 30% 概率返回
   exit() # 退出后续处理流程
 }
 ```
+
+
 ### `set_measurement()` {#fn-set-measurement}
 
 函数原型：`fn set_measurement(name: str, delete_key: bool = false)`
 
 函数说明：改变行协议的 name
-
-函数参数
+函数参数：
 
 - `name`: 值作为 mesaurement name，可传入字符串常量或变量
 - `delete_key`: 如果在 point 中存在与变量同名的 tag 或 field 则删除它
+
+行协议 name 与各个类型数据存储时的字段映射关系或其他用途：
+
+| 类别           | 字段名         | 其他用途 |
+| -             | -             | -       |          
+|custom_object  | class         | -       |
+|keyevent       | -             | -       |
+|logging        | source        | -       |
+|metric         | -             | 指标集名 |
+|network        | source        | -       |
+|object         | class         | -       |
+|profiling      | source        | -       |
+|rum            | source        | -       |
+|security       | rule          | -       |
+|tracing        | source        | -       |
+
+
 ### `set_tag()` {#fn-set-tag}
 
 函数原型：`fn set_tag(key, value: str)`
@@ -1676,6 +2099,8 @@ set_tag(str_a, str_b) # str_a == str_b == "3"
 #   "str_b": "3"
 # }
 ```
+
+
 ### `sql_cover()` {#fn-sql-cover}
 
 函数原型：`fn sql_cover(sql_test: str)`
@@ -1691,6 +2116,8 @@ sql_cover(_)
 #   "message": "select abc from def where x > ? and y < ?"
 # }
 ```
+
+
 ### `strfmt()` {#fn-strfmt}
 
 函数原型：`fn strfmt(key, fmt: str, args ...: int|float|bool|str|list|map|nil)`
@@ -1715,6 +2142,61 @@ cast(a.second, "int")
 json(_, a.forth)
 strfmt(bb, "%v %s %v", a.second, a.thrid, a.forth)
 ```
+
+
+### `timestamp()` {#fn-timestamp}
+
+函数原型：`fn timestamp(precision: str = "ns") -> int`
+
+函数说明：返回当前 Unix 时间戳，默认精度为 ns
+
+函数参数：
+
+- `precision`: 时间戳精度，取值范围为 "ns", "us", "ns", "s", 默认值 "ns"。
+
+示例:
+
+```python
+# 处理脚本
+add_key(time_now_record, timestamp())
+
+datetime(time_now_record, "ns", 
+    "%Y-%m-%d %H:%M:%S", "UTC")
+
+
+# 处理结果
+{
+  "time_now_record": "2023-03-07 10:41:12"
+}
+
+```
+
+```python
+# 处理脚本
+add_key(time_now_record, timestamp())
+
+datetime(time_now_record, "ns", 
+    "%Y-%m-%d %H:%M:%S", "Asia/Shanghai")
+
+
+# 处理结果
+{
+  "time_now_record": "2023-03-07 18:41:49"
+}
+```
+
+```python
+# 处理脚本
+add_key(time_now_record, timestamp("ms"))
+
+
+# 处理结果
+{
+  "time_now_record": 1678185980578
+}
+```
+
+
 ### `trim()` {#fn-trim}
 
 函数原型：`fn trim(key, cutset: str = "")`
@@ -1740,6 +2222,8 @@ trim(test_data, "ABC_")
   "test_data": "test_Data"
 }
 ```
+
+
 ### `uppercase()` {#fn-uppercase}
 
 函数原型：`fn uppercase(key: str)`
@@ -1763,6 +2247,8 @@ json(_, first) uppercase(first)
    "first": "HELLO"
 }
 ```
+
+
 
 ### `url_decode()` {#fn-url-decode}
 
@@ -1788,6 +2274,7 @@ json(_, url) url_decode(url)
   "url": "http://www.baidu.com/s?wd=测试"
 }
 ```
+
 
 ### `url_parse()` {#fn-url-parse}
 
@@ -1835,7 +2322,10 @@ add_key(path, m["path"])
     "path": "/search",
     "sclient": "gws-wiz"
 }
-```### `use()` {#fn-use}
+```
+
+
+### `use()` {#fn-use}
 
 函数原型：`fn use(name: str)`
 
@@ -1866,6 +2356,8 @@ geoip(ip)
   "message"  : "{\"ip\": \"1.2.3.4\"}",
 }
 ```
+
+
 ### `user_agent()` {#fn-user-agent}
 
 函数原型：`fn user_agent(key: str)`
@@ -1894,6 +2386,8 @@ geoip(ip)
 
 json(_, userAgent) user_agent(userAgent)
 ```
+
+
 ### `xml()` {#fn-xml}
 
 函数原型：`fn xml(input: str, xpath_expr: str, key_name)`
@@ -1954,4 +2448,6 @@ xml(_, '/OrderEvent/OrderNumber/text()', OrderNumber)
   "time": 1655523193632471000
 }
 ```
+
+
 

@@ -419,11 +419,25 @@ source in ['kube-controller-manager','http_dial_testing'] and (status != 'unknow
 
 ### 设置时区 {#zone}
 
-观测云支持在时间控件设置当前显示时区，您也可以在「[账号管理](../../management/account-management.md#zone)」进行修改，默认提供 `（UTC+08:00）北京` 时区。
-
-> 注意：设置新的时区后，您当前账号所在的所有工作空间均按照设置后的时区进行显示。
+观测云支持在**时间控件**设置当前显示时区，从而切换到对应的工作空间时区查看数据。
 
 ![](../img/12.time_zone_1.png)
+
+进入**时间控件 > 时区设置**，在**修改时区**窗口：
+
+- 默认显示“浏览器时间”，即本地浏览器检测到的时间。    
+- 在拥有者或管理员设置“[工作空间时区](../../management/account-management.md#workspace)”后，成员可选择配置好的工作空间时区。
+
+![](../img/zone.png)
+
+???+ attention
+
+    - 仅当前工作空间的 Owner 及 Administrator 拥有**工作空间时区**配置权限。
+
+    - 设置新的时区后，您当前账号所在的所有工作空间均按照设置后的时区进行显示，请谨慎操作。
+
+您也可以在 **[账号管理](../../management/account-management.md#zone)** 进行修改。
+
 
 ### 查看器自动刷新
 
@@ -436,7 +450,7 @@ source in ['kube-controller-manager','http_dial_testing'] and (status != 'unknow
 
 ![](../img/7.timestamp_1.png)
 
-点击「暂停」按钮，退出实时数据刷新模式，锁定当前时间范围为绝对时间。
+点击**暂停**按钮，退出实时数据刷新模式，锁定当前时间范围为绝对时间。
 
 > 例如：时间范围选择了“最近 15 分钟”，那么当点击「暂停」按钮后，查看器的时间范围整体向前调节为 15 分钟
 

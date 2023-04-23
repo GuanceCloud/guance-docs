@@ -310,7 +310,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`tcmalloc_pageheap_total_decommit_bytes`|Bytes decommitted in lifetime of process.|int|count|
 |`tcmalloc_pageheap_total_reserve_bytes`|Number of virtual memory reserves.|int|count|
 |`tcmalloc_pageheap_unmapped_bytes`|Total bytes on returned freelists.|int|count|
-|`tcmalloc_spinlock_total_delay_ns`|-|int|count|
+|`tcmalloc_spinlock_total_delay_ns`|TODO|int|count|
 |`tcmalloc_thread_cache_free_bytes`|Bytes in thread caches.|int|count|
 |`tcmalloc_total_free_bytes`|Total bytes on normal freelists.|int|count|
 |`tcmalloc_transfer_cache_free_bytes`|Bytes in central transfer cache.|int|count|
@@ -332,24 +332,24 @@ For all of the following data collections, a global tag named `host` is appended
 |`updates_per_sec`||int|count|
 |`uptime_ns`|The total upon time of mongod in nano seconds.|int|count|
 |`vsize_megabytes`|mem.virtual displays the quantity, in mebibyte (MiB), of virtual memory used by the mongod process.|int|count|
-|`wtcache_app_threads_page_read_count`|-|int|count|
-|`wtcache_app_threads_page_read_time`|-|int|count|
-|`wtcache_app_threads_page_write_count`|-|int|count|
-|`wtcache_bytes_read_into`|-|int|count|
-|`wtcache_bytes_written_from`|-|int|count|
-|`wtcache_current_bytes`|-|int|count|
-|`wtcache_internal_pages_evicted`|-|int|count|
+|`wtcache_app_threads_page_read_count`|TODO|int|count|
+|`wtcache_app_threads_page_read_time`|TODO|int|count|
+|`wtcache_app_threads_page_write_count`|TODO|int|count|
+|`wtcache_bytes_read_into`|TODO|int|count|
+|`wtcache_bytes_written_from`|TODO|int|count|
+|`wtcache_current_bytes`|TODO|int|count|
+|`wtcache_internal_pages_evicted`|TODO|int|count|
 |`wtcache_max_bytes_configured`|Maximum cache size.|int|count|
-|`wtcache_modified_pages_evicted`|-|int|count|
-|`wtcache_pages_evicted_by_app_thread`|-|int|count|
-|`wtcache_pages_queued_for_eviction`|-|int|count|
+|`wtcache_modified_pages_evicted`|TODO|int|count|
+|`wtcache_pages_evicted_by_app_thread`|TODO|int|count|
+|`wtcache_pages_queued_for_eviction`|TODO|int|count|
 |`wtcache_pages_read_into`|Number of pages read into the cache.|int|count|
 |`wtcache_pages_requested_from`|Number of pages request from the cache.|int|count|
 |`wtcache_pages_written_from`|Pages written from cache|int|count|
-|`wtcache_server_evicting_pages`|-|int|count|
-|`wtcache_tracked_dirty_bytes`|-|int|count|
+|`wtcache_server_evicting_pages`|TODO|int|count|
+|`wtcache_tracked_dirty_bytes`|TODO|int|count|
 |`wtcache_unmodified_pages_evicted`|Main statistics for page eviction.|int|count|
-|`wtcache_worker_thread_evictingpages`|-|int|count|
+|`wtcache_worker_thread_evictingpages`|TODO|int|count|
 
 
 

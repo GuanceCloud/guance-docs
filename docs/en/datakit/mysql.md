@@ -308,7 +308,7 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name = 'events
 |`Aborted_connects`|The number of failed attempts to connect to the MySQL server.|int|count|
 |`Binlog_cache_disk_use`|The number of transactions that used the temporary binary log cache but that exceeded the value of binlog_cache_size and used a temporary file to store statements from the transaction.|int|B|
 |`Binlog_cache_use`|The number of transactions that used the binary log cache.|int|B|
-|`Binlog_space_usage_bytes`|-|int|B|
+|`Binlog_space_usage_bytes`|TODO|int|B|
 |`Bytes_received`|The number of bytes received from all clients.|int|B|
 |`Bytes_sent`|The number of bytes sent to all clients.|int|B|
 |`Com_commit`|The number of times of commit statement has been executed.|int|count|

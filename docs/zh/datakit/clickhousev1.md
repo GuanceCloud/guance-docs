@@ -161,208 +161,208 @@ vim /etc/clickhouse-server/config.xml
 
 | Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`AsynchronousMetricsCalculationTimeSpent`|-|int|count|
-|`BlockActiveTimePerOp_dm_1`|-|int|count|
-|`BlockActiveTime_dm_0`|-|int|count|
-|`BlockActiveTime_dm_1`|-|int|count|
-|`BlockActiveTime_sda`|-|int|count|
-|`BlockActiveTime_sr0`|-|int|count|
-|`BlockDiscardBytes_dm_0`|-|int|count|
-|`BlockDiscardBytes_dm_1`|-|int|count|
-|`BlockDiscardBytes_sda`|-|int|count|
-|`BlockDiscardBytes_sr0`|-|int|count|
-|`BlockDiscardMerges_dm_0`|-|int|count|
-|`BlockDiscardMerges_dm_1`|-|int|count|
-|`BlockDiscardMerges_sda`|-|int|count|
-|`BlockDiscardMerges_sr0`|-|int|count|
-|`BlockDiscardOps_dm_0`|-|int|count|
-|`BlockDiscardOps_dm_1`|-|int|count|
-|`BlockDiscardOps_sda`|-|int|count|
-|`BlockDiscardOps_sr0`|-|int|count|
-|`BlockDiscardTime_dm_0`|-|int|count|
-|`BlockDiscardTime_dm_1`|-|int|count|
-|`BlockDiscardTime_sda`|-|int|count|
-|`BlockDiscardTime_sr0`|-|int|count|
-|`BlockInFlightOps_dm_0`|-|int|count|
-|`BlockInFlightOps_dm_1`|-|int|count|
-|`BlockInFlightOps_sda`|-|int|count|
-|`BlockInFlightOps_sr0`|-|int|count|
-|`BlockQueueTimePerOp_dm_1`|-|int|count|
-|`BlockQueueTime_dm_0`|-|int|count|
-|`BlockQueueTime_dm_1`|-|int|count|
-|`BlockQueueTime_sda`|-|int|count|
-|`BlockQueueTime_sr0`|-|int|count|
-|`BlockReadBytes_dm_0`|-|int|count|
-|`BlockReadBytes_dm_1`|-|int|count|
-|`BlockReadBytes_sda`|-|int|count|
-|`BlockReadBytes_sr0`|-|int|count|
-|`BlockReadMerges_dm_0`|-|int|count|
-|`BlockReadMerges_dm_1`|-|int|count|
-|`BlockReadMerges_sda`|-|int|count|
-|`BlockReadMerges_sr0`|-|int|count|
-|`BlockReadOps_dm_0`|-|int|count|
-|`BlockReadOps_dm_1`|-|int|count|
-|`BlockReadOps_sda`|-|int|count|
-|`BlockReadOps_sr0`|-|int|count|
-|`BlockReadTime_dm_0`|-|int|count|
-|`BlockReadTime_dm_1`|-|int|count|
-|`BlockReadTime_sda`|-|int|count|
-|`BlockReadTime_sr0`|-|int|count|
-|`BlockWriteBytes_dm_0`|-|int|count|
-|`BlockWriteBytes_dm_1`|-|int|count|
-|`BlockWriteBytes_sda`|-|int|count|
-|`BlockWriteBytes_sr0`|-|int|count|
-|`BlockWriteMerges_dm_0`|-|int|count|
-|`BlockWriteMerges_dm_1`|-|int|count|
-|`BlockWriteMerges_sda`|-|int|count|
-|`BlockWriteMerges_sr0`|-|int|count|
-|`BlockWriteOps_dm_0`|-|int|count|
-|`BlockWriteOps_dm_1`|-|int|count|
-|`BlockWriteOps_sda`|-|int|count|
-|`BlockWriteOps_sr0`|-|int|count|
-|`BlockWriteTime_dm_0`|-|int|count|
-|`BlockWriteTime_dm_1`|-|int|count|
-|`BlockWriteTime_sda`|-|int|count|
-|`BlockWriteTime_sr0`|-|int|count|
-|`CPUFrequencyMHz_0`|-|int|count|
-|`CompiledExpressionCacheBytes`|-|int|count|
-|`CompiledExpressionCacheCount`|-|int|count|
-|`DiskAvailable_default`|-|int|count|
-|`DiskTotal_default`|-|int|count|
-|`DiskUnreserved_default`|-|int|count|
-|`DiskUsed_default`|-|int|count|
-|`FilesystemLogsPathAvailableByte`|-|int|count|
-|`FilesystemLogsPathAvailableINodes`|-|int|count|
-|`FilesystemLogsPathTotalBytes`|-|int|count|
-|`FilesystemLogsPathTotalINodes`|-|int|count|
-|`FilesystemLogsPathUsedBytes`|-|int|count|
-|`FilesystemLogsPathUsedINodes`|-|int|count|
-|`FilesystemMainPathAvailableBytes`|-|int|count|
-|`FilesystemMainPathAvailableINodes`|-|int|count|
-|`FilesystemMainPathTotalBytes`|-|int|count|
-|`FilesystemMainPathTotalINodes`|-|int|count|
-|`FilesystemMainPathUsedBytes`|-|int|count|
-|`FilesystemMainPathUsedINodes`|-|int|count|
-|`HTTPThreads`|-|int|count|
-|`InterserverThreads`|-|int|count|
-|`Jitter`|-|int|count|
-|`LoadAverage1`|-|int|count|
-|`LoadAverage15`|-|int|count|
-|`LoadAverage5`|-|int|count|
-|`MMapCacheCells`|-|int|count|
-|`MarkCacheBytes`|-|int|count|
-|`MarkCacheFiles`|-|int|count|
-|`MaxPartCountForPartition`|-|int|count|
-|`MemoryCode`|-|int|count|
-|`MemoryDataAndStack`|-|int|count|
-|`MemoryResident`|-|int|count|
-|`MemoryShared`|-|int|count|
-|`MemoryVirtual`|-|int|count|
-|`MySQLThreads`|-|int|count|
-|`NetworkReceiveBytes_ens33`|-|int|count|
-|`NetworkReceiveBytes_virbr0`|-|int|count|
-|`NetworkReceiveBytes_virbr0_nic`|-|int|count|
-|`NetworkReceiveDrop_ens33`|-|int|count|
-|`NetworkReceiveDrop_virbr0`|-|int|count|
-|`NetworkReceiveDrop_virbr0_nic`|-|int|count|
-|`NetworkReceiveErrors_ens33`|-|int|count|
-|`NetworkReceiveErrors_virbr0`|-|int|count|
-|`NetworkReceiveErrors_virbr0_nic`|-|int|count|
-|`NetworkReceivePackets_ens33`|-|int|count|
-|`NetworkReceivePackets_virbr0`|-|int|count|
-|`NetworkReceivePackets_virbr0_nic`|-|int|count|
-|`NetworkSendBytes_ens33`|-|int|count|
-|`NetworkSendBytes_virbr0`|-|int|count|
-|`NetworkSendBytes_virbr0_nic`|-|int|count|
-|`NetworkSendDrop_ens33`|-|int|count|
-|`NetworkSendDrop_virbr0`|-|int|count|
-|`NetworkSendDrop_virbr0_nic`|-|int|count|
-|`NetworkSendErrors_ens33`|-|int|count|
-|`NetworkSendErrors_virbr0`|-|int|count|
-|`NetworkSendErrors_virbr0_nic`|-|int|count|
-|`NetworkSendPackets_ens33`|-|int|count|
-|`NetworkSendPackets_virbr0`|-|int|count|
-|`NetworkSendPackets_virbr0_nic`|-|int|count|
-|`NumberOfDatabases`|-|int|count|
-|`NumberOfTables`|-|int|count|
-|`OSContextSwitches`|-|int|count|
-|`OSGuestNiceTime`|-|int|count|
-|`OSGuestNiceTimeCPU0`|-|int|count|
-|`OSGuestNiceTimeNormalized`|-|int|count|
-|`OSGuestTime`|-|int|count|
-|`OSGuestTimeCPU0`|-|int|count|
-|`OSGuestTimeNormalized`|-|int|count|
-|`OSIOWaitTime`|-|int|count|
-|`OSIOWaitTimeCPU0`|-|int|count|
-|`OSIOWaitTimeNormalized`|-|int|count|
-|`OSIdleTime`|-|int|count|
-|`OSIdleTimeCPU0`|-|int|count|
-|`OSIdleTimeNormalized`|-|int|count|
-|`OSInterrupts`|-|int|count|
-|`OSIrqTime`|-|int|count|
-|`OSIrqTimeCPU0`|-|int|count|
-|`OSIrqTimeNormalized`|-|int|count|
-|`OSMemoryAvailable`|-|int|count|
-|`OSMemoryCached`|-|int|count|
-|`OSMemoryFreePlusCached`|-|int|count|
-|`OSMemoryFreeWithoutCached`|-|int|count|
-|`OSMemorySwapCached`|-|int|count|
-|`OSMemoryTotal`|-|int|count|
-|`OSNiceTime`|-|int|count|
-|`OSNiceTimeCPU0`|-|int|count|
-|`OSNiceTimeNormalized`|-|int|count|
-|`OSOpenFiles`|-|int|count|
-|`OSProcessesBlocked`|-|int|count|
-|`OSProcessesCreated`|-|int|count|
-|`OSProcessesRunning`|-|int|count|
-|`OSSoftIrqTime`|-|int|count|
-|`OSSoftIrqTimeCPU0`|-|int|count|
-|`OSSoftIrqTimeNormalized`|-|int|count|
-|`OSStealTime`|-|int|count|
-|`OSStealTimeCPU0`|-|int|count|
-|`OSStealTimeNormalized`|-|int|count|
-|`OSSystemTime`|-|int|count|
-|`OSSystemTimeCPU0`|-|int|count|
-|`OSSystemTimeNormalized`|-|int|count|
-|`OSThreadsRunnable`|-|int|count|
-|`OSThreadsTotal`|-|int|count|
-|`OSUptime`|-|int|count|
-|`OSUserTime`|-|int|count|
-|`OSUserTimeCPU0`|-|int|count|
-|`OSUserTimeNormalized`|-|int|count|
-|`PostgreSQLThreads`|-|int|count|
-|`PrometheusThreads`|-|int|count|
-|`ReplicasMaxAbsoluteDelay`|-|int|count|
-|`ReplicasMaxInsertsInQueue`|-|int|count|
-|`ReplicasMaxMergesInQueue`|-|int|count|
-|`ReplicasMaxQueueSize`|-|int|count|
-|`ReplicasMaxRelativeDelay`|-|int|count|
-|`ReplicasSumInsertsInQueue`|-|int|count|
-|`ReplicasSumMergesInQueue`|-|int|count|
-|`ReplicasSumQueueSize`|-|int|count|
-|`TCPThreads`|-|int|count|
-|`TotalBytesOfMergeTreeTables`|-|int|count|
-|`TotalPartsOfMergeTreeTables`|-|int|count|
-|`TotalRowsOfMergeTreeTables`|-|int|count|
-|`UncompressedCacheBytes`|-|int|count|
-|`UncompressedCacheCells`|-|int|count|
-|`Uptime`|-|int|count|
-|`jemalloc_active`|-|int|count|
-|`jemalloc_allocated`|-|int|count|
-|`jemalloc_arenas_all_dirty_purged`|-|int|count|
-|`jemalloc_arenas_all_muzzy_purged`|-|int|count|
-|`jemalloc_arenas_all_pactive`|-|int|count|
-|`jemalloc_arenas_all_pdirty`|-|int|count|
-|`jemalloc_arenas_all_pmuzzy`|-|int|count|
-|`jemalloc_background_thread_num_runs`|-|int|count|
-|`jemalloc_background_thread_num_threads`|-|int|count|
-|`jemalloc_background_thread_run_intervals`|-|int|count|
-|`jemalloc_epoch`|-|int|count|
-|`jemalloc_mapped`|-|int|count|
-|`jemalloc_metadata`|-|int|count|
-|`jemalloc_metadata_thp`|-|int|count|
-|`jemalloc_resident`|-|int|count|
-|`jemalloc_retained`|-|int|count|
+|`AsynchronousMetricsCalculationTimeSpent`|TODO|int|count|
+|`BlockActiveTimePerOp_dm_1`|TODO|int|count|
+|`BlockActiveTime_dm_0`|TODO|int|count|
+|`BlockActiveTime_dm_1`|TODO|int|count|
+|`BlockActiveTime_sda`|TODO|int|count|
+|`BlockActiveTime_sr0`|TODO|int|count|
+|`BlockDiscardBytes_dm_0`|TODO|int|count|
+|`BlockDiscardBytes_dm_1`|TODO|int|count|
+|`BlockDiscardBytes_sda`|TODO|int|count|
+|`BlockDiscardBytes_sr0`|TODO|int|count|
+|`BlockDiscardMerges_dm_0`|TODO|int|count|
+|`BlockDiscardMerges_dm_1`|TODO|int|count|
+|`BlockDiscardMerges_sda`|TODO|int|count|
+|`BlockDiscardMerges_sr0`|TODO|int|count|
+|`BlockDiscardOps_dm_0`|TODO|int|count|
+|`BlockDiscardOps_dm_1`|TODO|int|count|
+|`BlockDiscardOps_sda`|TODO|int|count|
+|`BlockDiscardOps_sr0`|TODO|int|count|
+|`BlockDiscardTime_dm_0`|TODO|int|count|
+|`BlockDiscardTime_dm_1`|TODO|int|count|
+|`BlockDiscardTime_sda`|TODO|int|count|
+|`BlockDiscardTime_sr0`|TODO|int|count|
+|`BlockInFlightOps_dm_0`|TODO|int|count|
+|`BlockInFlightOps_dm_1`|TODO|int|count|
+|`BlockInFlightOps_sda`|TODO|int|count|
+|`BlockInFlightOps_sr0`|TODO|int|count|
+|`BlockQueueTimePerOp_dm_1`|TODO|int|count|
+|`BlockQueueTime_dm_0`|TODO|int|count|
+|`BlockQueueTime_dm_1`|TODO|int|count|
+|`BlockQueueTime_sda`|TODO|int|count|
+|`BlockQueueTime_sr0`|TODO|int|count|
+|`BlockReadBytes_dm_0`|TODO|int|count|
+|`BlockReadBytes_dm_1`|TODO|int|count|
+|`BlockReadBytes_sda`|TODO|int|count|
+|`BlockReadBytes_sr0`|TODO|int|count|
+|`BlockReadMerges_dm_0`|TODO|int|count|
+|`BlockReadMerges_dm_1`|TODO|int|count|
+|`BlockReadMerges_sda`|TODO|int|count|
+|`BlockReadMerges_sr0`|TODO|int|count|
+|`BlockReadOps_dm_0`|TODO|int|count|
+|`BlockReadOps_dm_1`|TODO|int|count|
+|`BlockReadOps_sda`|TODO|int|count|
+|`BlockReadOps_sr0`|TODO|int|count|
+|`BlockReadTime_dm_0`|TODO|int|count|
+|`BlockReadTime_dm_1`|TODO|int|count|
+|`BlockReadTime_sda`|TODO|int|count|
+|`BlockReadTime_sr0`|TODO|int|count|
+|`BlockWriteBytes_dm_0`|TODO|int|count|
+|`BlockWriteBytes_dm_1`|TODO|int|count|
+|`BlockWriteBytes_sda`|TODO|int|count|
+|`BlockWriteBytes_sr0`|TODO|int|count|
+|`BlockWriteMerges_dm_0`|TODO|int|count|
+|`BlockWriteMerges_dm_1`|TODO|int|count|
+|`BlockWriteMerges_sda`|TODO|int|count|
+|`BlockWriteMerges_sr0`|TODO|int|count|
+|`BlockWriteOps_dm_0`|TODO|int|count|
+|`BlockWriteOps_dm_1`|TODO|int|count|
+|`BlockWriteOps_sda`|TODO|int|count|
+|`BlockWriteOps_sr0`|TODO|int|count|
+|`BlockWriteTime_dm_0`|TODO|int|count|
+|`BlockWriteTime_dm_1`|TODO|int|count|
+|`BlockWriteTime_sda`|TODO|int|count|
+|`BlockWriteTime_sr0`|TODO|int|count|
+|`CPUFrequencyMHz_0`|TODO|int|count|
+|`CompiledExpressionCacheBytes`|TODO|int|count|
+|`CompiledExpressionCacheCount`|TODO|int|count|
+|`DiskAvailable_default`|TODO|int|count|
+|`DiskTotal_default`|TODO|int|count|
+|`DiskUnreserved_default`|TODO|int|count|
+|`DiskUsed_default`|TODO|int|count|
+|`FilesystemLogsPathAvailableByte`|TODO|int|count|
+|`FilesystemLogsPathAvailableINodes`|TODO|int|count|
+|`FilesystemLogsPathTotalBytes`|TODO|int|count|
+|`FilesystemLogsPathTotalINodes`|TODO|int|count|
+|`FilesystemLogsPathUsedBytes`|TODO|int|count|
+|`FilesystemLogsPathUsedINodes`|TODO|int|count|
+|`FilesystemMainPathAvailableBytes`|TODO|int|count|
+|`FilesystemMainPathAvailableINodes`|TODO|int|count|
+|`FilesystemMainPathTotalBytes`|TODO|int|count|
+|`FilesystemMainPathTotalINodes`|TODO|int|count|
+|`FilesystemMainPathUsedBytes`|TODO|int|count|
+|`FilesystemMainPathUsedINodes`|TODO|int|count|
+|`HTTPThreads`|TODO|int|count|
+|`InterserverThreads`|TODO|int|count|
+|`Jitter`|TODO|int|count|
+|`LoadAverage1`|TODO|int|count|
+|`LoadAverage15`|TODO|int|count|
+|`LoadAverage5`|TODO|int|count|
+|`MMapCacheCells`|TODO|int|count|
+|`MarkCacheBytes`|TODO|int|count|
+|`MarkCacheFiles`|TODO|int|count|
+|`MaxPartCountForPartition`|TODO|int|count|
+|`MemoryCode`|TODO|int|count|
+|`MemoryDataAndStack`|TODO|int|count|
+|`MemoryResident`|TODO|int|count|
+|`MemoryShared`|TODO|int|count|
+|`MemoryVirtual`|TODO|int|count|
+|`MySQLThreads`|TODO|int|count|
+|`NetworkReceiveBytes_ens33`|TODO|int|count|
+|`NetworkReceiveBytes_virbr0`|TODO|int|count|
+|`NetworkReceiveBytes_virbr0_nic`|TODO|int|count|
+|`NetworkReceiveDrop_ens33`|TODO|int|count|
+|`NetworkReceiveDrop_virbr0`|TODO|int|count|
+|`NetworkReceiveDrop_virbr0_nic`|TODO|int|count|
+|`NetworkReceiveErrors_ens33`|TODO|int|count|
+|`NetworkReceiveErrors_virbr0`|TODO|int|count|
+|`NetworkReceiveErrors_virbr0_nic`|TODO|int|count|
+|`NetworkReceivePackets_ens33`|TODO|int|count|
+|`NetworkReceivePackets_virbr0`|TODO|int|count|
+|`NetworkReceivePackets_virbr0_nic`|TODO|int|count|
+|`NetworkSendBytes_ens33`|TODO|int|count|
+|`NetworkSendBytes_virbr0`|TODO|int|count|
+|`NetworkSendBytes_virbr0_nic`|TODO|int|count|
+|`NetworkSendDrop_ens33`|TODO|int|count|
+|`NetworkSendDrop_virbr0`|TODO|int|count|
+|`NetworkSendDrop_virbr0_nic`|TODO|int|count|
+|`NetworkSendErrors_ens33`|TODO|int|count|
+|`NetworkSendErrors_virbr0`|TODO|int|count|
+|`NetworkSendErrors_virbr0_nic`|TODO|int|count|
+|`NetworkSendPackets_ens33`|TODO|int|count|
+|`NetworkSendPackets_virbr0`|TODO|int|count|
+|`NetworkSendPackets_virbr0_nic`|TODO|int|count|
+|`NumberOfDatabases`|TODO|int|count|
+|`NumberOfTables`|TODO|int|count|
+|`OSContextSwitches`|TODO|int|count|
+|`OSGuestNiceTime`|TODO|int|count|
+|`OSGuestNiceTimeCPU0`|TODO|int|count|
+|`OSGuestNiceTimeNormalized`|TODO|int|count|
+|`OSGuestTime`|TODO|int|count|
+|`OSGuestTimeCPU0`|TODO|int|count|
+|`OSGuestTimeNormalized`|TODO|int|count|
+|`OSIOWaitTime`|TODO|int|count|
+|`OSIOWaitTimeCPU0`|TODO|int|count|
+|`OSIOWaitTimeNormalized`|TODO|int|count|
+|`OSIdleTime`|TODO|int|count|
+|`OSIdleTimeCPU0`|TODO|int|count|
+|`OSIdleTimeNormalized`|TODO|int|count|
+|`OSInterrupts`|TODO|int|count|
+|`OSIrqTime`|TODO|int|count|
+|`OSIrqTimeCPU0`|TODO|int|count|
+|`OSIrqTimeNormalized`|TODO|int|count|
+|`OSMemoryAvailable`|TODO|int|count|
+|`OSMemoryCached`|TODO|int|count|
+|`OSMemoryFreePlusCached`|TODO|int|count|
+|`OSMemoryFreeWithoutCached`|TODO|int|count|
+|`OSMemorySwapCached`|TODO|int|count|
+|`OSMemoryTotal`|TODO|int|count|
+|`OSNiceTime`|TODO|int|count|
+|`OSNiceTimeCPU0`|TODO|int|count|
+|`OSNiceTimeNormalized`|TODO|int|count|
+|`OSOpenFiles`|TODO|int|count|
+|`OSProcessesBlocked`|TODO|int|count|
+|`OSProcessesCreated`|TODO|int|count|
+|`OSProcessesRunning`|TODO|int|count|
+|`OSSoftIrqTime`|TODO|int|count|
+|`OSSoftIrqTimeCPU0`|TODO|int|count|
+|`OSSoftIrqTimeNormalized`|TODO|int|count|
+|`OSStealTime`|TODO|int|count|
+|`OSStealTimeCPU0`|TODO|int|count|
+|`OSStealTimeNormalized`|TODO|int|count|
+|`OSSystemTime`|TODO|int|count|
+|`OSSystemTimeCPU0`|TODO|int|count|
+|`OSSystemTimeNormalized`|TODO|int|count|
+|`OSThreadsRunnable`|TODO|int|count|
+|`OSThreadsTotal`|TODO|int|count|
+|`OSUptime`|TODO|int|count|
+|`OSUserTime`|TODO|int|count|
+|`OSUserTimeCPU0`|TODO|int|count|
+|`OSUserTimeNormalized`|TODO|int|count|
+|`PostgreSQLThreads`|TODO|int|count|
+|`PrometheusThreads`|TODO|int|count|
+|`ReplicasMaxAbsoluteDelay`|TODO|int|count|
+|`ReplicasMaxInsertsInQueue`|TODO|int|count|
+|`ReplicasMaxMergesInQueue`|TODO|int|count|
+|`ReplicasMaxQueueSize`|TODO|int|count|
+|`ReplicasMaxRelativeDelay`|TODO|int|count|
+|`ReplicasSumInsertsInQueue`|TODO|int|count|
+|`ReplicasSumMergesInQueue`|TODO|int|count|
+|`ReplicasSumQueueSize`|TODO|int|count|
+|`TCPThreads`|TODO|int|count|
+|`TotalBytesOfMergeTreeTables`|TODO|int|count|
+|`TotalPartsOfMergeTreeTables`|TODO|int|count|
+|`TotalRowsOfMergeTreeTables`|TODO|int|count|
+|`UncompressedCacheBytes`|TODO|int|count|
+|`UncompressedCacheCells`|TODO|int|count|
+|`Uptime`|TODO|int|count|
+|`jemalloc_active`|TODO|int|count|
+|`jemalloc_allocated`|TODO|int|count|
+|`jemalloc_arenas_all_dirty_purged`|TODO|int|count|
+|`jemalloc_arenas_all_muzzy_purged`|TODO|int|count|
+|`jemalloc_arenas_all_pactive`|TODO|int|count|
+|`jemalloc_arenas_all_pdirty`|TODO|int|count|
+|`jemalloc_arenas_all_pmuzzy`|TODO|int|count|
+|`jemalloc_background_thread_num_runs`|TODO|int|count|
+|`jemalloc_background_thread_num_threads`|TODO|int|count|
+|`jemalloc_background_thread_run_intervals`|TODO|int|count|
+|`jemalloc_epoch`|TODO|int|count|
+|`jemalloc_mapped`|TODO|int|count|
+|`jemalloc_metadata`|TODO|int|count|
+|`jemalloc_metadata_thp`|TODO|int|count|
+|`jemalloc_resident`|TODO|int|count|
+|`jemalloc_retained`|TODO|int|count|
 
 
 
@@ -486,8 +486,8 @@ vim /etc/clickhouse-server/config.xml
 |`AIOReadBytes`|Number of bytes read with Linux or FreeBSD AIO interface|int|count|
 |`AIOWrite`|Number of writes with Linux or FreeBSD AIO interface|int|count|
 |`AIOWriteBytes`|Number of bytes written with Linux or FreeBSD AIO interface|int|count|
-|`ArenaAllocBytes`|-|int|count|
-|`ArenaAllocChunks`|-|int|count|
+|`ArenaAllocBytes`|TODO|int|count|
+|`ArenaAllocChunks`|TODO|int|count|
 |`AsynchronousReadWaitMicroseconds`|Time spent in waiting for asynchronous reads.|int|count|
 |`CannotRemoveEphemeralNode`|Number of times an error happened while trying to remove ephemeral node. |int|count|
 |`CannotWriteToWriteBufferDiscard`|Number of stack traces dropped by query profiler or signal handler because pipe is full or cannot write to pipe.|int|count|
@@ -501,59 +501,59 @@ vim /etc/clickhouse-server/config.xml
 |`CreatedHTTPConnections`|Total amount of created HTTP connections (counter increase every time connection is created).|int|count|
 |`CreatedLogEntryForMerge`|Successfully created log entry to merge parts in ReplicatedMergeTree.|int|count|
 |`CreatedLogEntryForMutation`|Successfully created log entry to mutate parts in ReplicatedMergeTree.|int|count|
-|`CreatedReadBufferDirectIO`|-|int|count|
-|`CreatedReadBufferDirectIOFailed`|-|int|count|
-|`CreatedReadBufferMMap`|-|int|count|
-|`CreatedReadBufferMMapFailed`|-|int|count|
-|`CreatedReadBufferOrdinary`|-|int|count|
+|`CreatedReadBufferDirectIO`|TODO|int|count|
+|`CreatedReadBufferDirectIOFailed`|TODO|int|count|
+|`CreatedReadBufferMMap`|TODO|int|count|
+|`CreatedReadBufferMMapFailed`|TODO|int|count|
+|`CreatedReadBufferOrdinary`|TODO|int|count|
 |`DNSError`|Total count of errors in DNS resolution|int|count|
-|`DataAfterMergeDiffersFromReplica`|-|int|count|
-|`DataAfterMutationDiffersFromReplica`|-|int|count|
+|`DataAfterMergeDiffersFromReplica`|TODO|int|count|
+|`DataAfterMutationDiffersFromReplica`|TODO|int|count|
 |`DelayedInserts`|Number of times the INSERT of a block to a MergeTree table was throttled due to high number of active data parts for partition.|int|count|
 |`DelayedInsertsMilliseconds`|Total number of milliseconds spent while the INSERT of a block to a MergeTree table was throttled due to high number of active data parts for partition.|int|count|
-|`DictCacheKeysExpired`|-|int|count|
-|`DictCacheKeysHit`|-|int|count|
-|`DictCacheKeysNotFound`|-|int|count|
-|`DictCacheKeysRequested`|-|int|count|
-|`DictCacheKeysRequestedFound`|-|int|count|
-|`DictCacheKeysRequestedMiss`|-|int|count|
-|`DictCacheLockReadNs`|-|int|count|
-|`DictCacheLockWriteNs`|-|int|count|
-|`DictCacheRequestTimeNs`|-|int|count|
-|`DictCacheRequests`|-|int|count|
+|`DictCacheKeysExpired`|TODO|int|count|
+|`DictCacheKeysHit`|TODO|int|count|
+|`DictCacheKeysNotFound`|TODO|int|count|
+|`DictCacheKeysRequested`|TODO|int|count|
+|`DictCacheKeysRequestedFound`|TODO|int|count|
+|`DictCacheKeysRequestedMiss`|TODO|int|count|
+|`DictCacheLockReadNs`|TODO|int|count|
+|`DictCacheLockWriteNs`|TODO|int|count|
+|`DictCacheRequestTimeNs`|TODO|int|count|
+|`DictCacheRequests`|TODO|int|count|
 |`DiskReadElapsedMicroseconds`|Total time spent waiting for read syscall. This include reads from page cache.|int|count|
 |`DiskWriteElapsedMicroseconds`|Total time spent waiting for write syscall. This include writes to page cache.|int|count|
 |`DistributedConnectionFailAtAll`|Total count when distributed connection fails after all retries finished|int|count|
 |`DistributedConnectionFailTry`|Total count when distributed connection fails with retry|int|count|
-|`DistributedConnectionMissingTable`|-|int|count|
-|`DistributedConnectionStaleReplica`|-|int|count|
+|`DistributedConnectionMissingTable`|TODO|int|count|
+|`DistributedConnectionStaleReplica`|TODO|int|count|
 |`DistributedDelayedInserts`|Number of times the INSERT of a block to a Distributed table was throttled due to high number of pending bytes.|int|count|
 |`DistributedDelayedInsertsMilliseconds`|Total number of milliseconds spent while the INSERT of a block to a Distributed table was throttled due to high number of pending bytes.|int|count|
 |`DistributedRejectedInserts`|Number of times the INSERT of a block to a Distributed table was rejected with 'Too many bytes' exception due to high number of pending bytes.|int|count|
-|`DistributedSyncInsertionTimeoutExceeded`|-|int|count|
+|`DistributedSyncInsertionTimeoutExceeded`|TODO|int|count|
 |`DuplicatedInsertedBlocks`|Number of times the INSERTed block to a ReplicatedMergeTree table was deduplicated.|int|count|
-|`ExternalAggregationCompressedBytes`|-|int|count|
-|`ExternalAggregationMerge`|-|int|count|
-|`ExternalAggregationUncompressedBytes`|-|int|count|
-|`ExternalAggregationWritePart`|-|int|count|
-|`ExternalSortMerge`|-|int|count|
-|`ExternalSortWritePart`|-|int|count|
+|`ExternalAggregationCompressedBytes`|TODO|int|count|
+|`ExternalAggregationMerge`|TODO|int|count|
+|`ExternalAggregationUncompressedBytes`|TODO|int|count|
+|`ExternalAggregationWritePart`|TODO|int|count|
+|`ExternalSortMerge`|TODO|int|count|
+|`ExternalSortWritePart`|TODO|int|count|
 |`FailedInsertQuery`|Same as FailedQuery, but only for INSERT queries|int|count|
 |`FailedQuery`|Number of failed queries.|int|count|
 |`FailedSelectQuery`|Same as FailedQuery, but only for SELECT queries|int|count|
 |`FileOpen `|Number of files opened|int|count|
-|`FunctionExecute`|-|int|count|
-|`HardPageFaults`|-|int|count|
+|`FunctionExecute`|TODO|int|count|
+|`HardPageFaults`|TODO|int|count|
 |`HedgedRequestsChangeReplica`|Total count when timeout for changing replica expired in hedged requests.|int|count|
-|`IOBufferAllocBytes`|-|int|count|
-|`IOBufferAllocs`|-|int|count|
+|`IOBufferAllocBytes`|TODO|int|count|
+|`IOBufferAllocs`|TODO|int|count|
 |`InsertQuery`|Same as Query, but only for INSERT queries|int|count|
 |`InsertQueryTimeMicroseconds`|Total time of INSERT queries.|int|count|
 |`InsertedBytes`|Number of bytes (uncompressed; for columns as they stored in memory) inserted to all tables.|int|count|
 |`InsertedRows`|Number of rows inserted to all tables.|int|count|
-|`InvoluntaryContextSwitches`|-|int|count|
-|`MarkCacheHits`|-|int|count|
-|`MarkCacheMisses`|-|int|count|
+|`InvoluntaryContextSwitches`|TODO|int|count|
+|`MarkCacheHits`|TODO|int|count|
+|`MarkCacheMisses`|TODO|int|count|
 |`Merge`|Number of launched background merges.|int|count|
 |`MergeTreeDataProjectionWriterBlocks`|Number of blocks INSERTed to MergeTree tables projection. Each block forms a data part of level zero.|int|count|
 |`MergeTreeDataProjectionWriterBlocksAlreadySorted`|Number of blocks INSERTed to MergeTree tables projection that appeared to be already sorted.|int|count|
@@ -581,7 +581,7 @@ vim /etc/clickhouse-server/config.xml
 |`OSReadChars`|Number of bytes read from filesystem, including page cache.|int|count|
 |`OSWriteBytes`|Number of bytes written to disks or block devices. Doesn't include bytes that are in page cache dirty pages. |int|count|
 |`OSWriteChars`|Number of bytes written to filesystem, including page cache.|int|count|
-|`ObsoleteReplicatedParts`|-|int|count|
+|`ObsoleteReplicatedParts`|TODO|int|count|
 |`PerfAlignmentFaults`|Number of alignment faults. These happen when unaligned memory accesses happen; the kernel can handle these but it reduces performance.|int|count|
 |`PerfBranchInstructions`|Retired branch instructions. Prior to Linux 2.6.35, this used the wrong event on AMD processors.|int|count|
 |`PerfBranchMisses`|Mispredicted branch instructions.|int|count|
@@ -606,18 +606,18 @@ vim /etc/clickhouse-server/config.xml
 |`PerfStalledCyclesBackend`|Stalled cycles during retirement.|int|count|
 |`PerfStalledCyclesFrontend`|Stalled cycles during issue.|int|count|
 |`PerfTaskClock`|A clock count specific to the task that is running|int|count|
-|`PolygonsAddedToPool`|-|int|count|
-|`PolygonsInPoolAllocatedBytes`|-|int|count|
+|`PolygonsAddedToPool`|TODO|int|count|
+|`PolygonsInPoolAllocatedBytes`|TODO|int|count|
 |`Query`|Number of queries to be interpreted and potentially executed.|int|count|
 |`QueryMaskingRulesMatch`|Number of times query masking rules was successfully matched.|int|count|
 |`QueryMemoryLimitExceeded`|Number of times when memory limit exceeded for query.|int|count|
 |`QueryProfilerRuns`|Number of times QueryProfiler had been run.|int|count|
 |`QueryProfilerSignalOverruns`|Number of times we drop processing of a query profiler signal due to overrun plus the number of signals that OS has not delivered due to overrun.|int|count|
 |`QueryTimeMicroseconds`|Total time of all queries.|int|count|
-|`RWLockAcquiredReadLocks`|-|int|count|
-|`RWLockAcquiredWriteLocks`|-|int|count|
-|`RWLockReadersWaitMilliseconds`|-|int|count|
-|`RWLockWritersWaitMilliseconds`|-|int|count|
+|`RWLockAcquiredReadLocks`|TODO|int|count|
+|`RWLockAcquiredWriteLocks`|TODO|int|count|
+|`RWLockReadersWaitMilliseconds`|TODO|int|count|
+|`RWLockWritersWaitMilliseconds`|TODO|int|count|
 |`ReadBackoff`|Number of times the number of query processing threads was lowered due to slow reads.|int|count|
 |`ReadBufferFromFileDescriptorRead`|Number of reads (read/pread) from a file descriptor. Does not include sockets.|int|count|
 |`ReadBufferFromFileDescriptorReadBytes `|Number of bytes read from file descriptors. If the file is compressed, this will show the compressed data size.|int|count|
@@ -637,13 +637,13 @@ vim /etc/clickhouse-server/config.xml
 |`RemoteFSUnusedPrefetches`|Number of prefetches pending at buffer destruction|int|count|
 |`ReplicaPartialShutdown`|How many times Replicated table has to deinitialize its state due to session expiration in ZooKeeper. |int|count|
 |`ReplicatedDataLoss`|Number of times a data part that we wanted doesn't exist on any replica (even on replicas that are offline right now). |int|count|
-|`ReplicatedPartChecks`|-|int|count|
-|`ReplicatedPartChecksFailed`|-|int|count|
+|`ReplicatedPartChecks`|TODO|int|count|
+|`ReplicatedPartChecksFailed`|TODO|int|count|
 |`ReplicatedPartFailedFetches`|Number of times a data part was failed to download from replica of a ReplicatedMergeTree table.|int|count|
 |`ReplicatedPartFetches`|Number of times a data part was downloaded from replica of a ReplicatedMergeTree table.|int|count|
 |`ReplicatedPartFetchesOfMerged`|Number of times we prefer to download already merged part from replica of ReplicatedMergeTree table instead of performing a merge ourself.|int|count|
 |`ReplicatedPartMerges`|Number of times data parts of ReplicatedMergeTree tables were successfully merged.|int|count|
-|`ReplicatedPartMutations`|-|int|count|
+|`ReplicatedPartMutations`|TODO|int|count|
 |`S3ReadBytes`|Read bytes (incoming) in GET and HEAD requests to S3 storage.|int|count|
 |`S3ReadMicroseconds`|Time of GET and HEAD requests to S3 storage.|int|count|
 |`S3ReadRequestsCount`|Number of GET and HEAD requests to S3 storage.|int|count|
@@ -667,20 +667,20 @@ vim /etc/clickhouse-server/config.xml
 |`SleepFunctionCalls`|Number of times a sleep function (sleep, sleepEachRow) has been called.|int|count|
 |`SleepFunctionMicroseconds`|Time spent sleeping due to a sleep function call.|int|count|
 |`SlowRead`|Number of reads from a file that were slow. This indicate system overload. Thresholds are controlled by read_backoff_* settings.|int|count|
-|`SoftPageFaults`|-|int|count|
-|`StorageBufferErrorOnFlush`|-|int|count|
-|`StorageBufferFlush`|-|int|count|
+|`SoftPageFaults`|TODO|int|count|
+|`StorageBufferErrorOnFlush`|TODO|int|count|
+|`StorageBufferFlush`|TODO|int|count|
 |`StorageBufferLayerLockReadersWaitMilliseconds`|Time for waiting for Buffer layer during reading|int|count|
 |`StorageBufferLayerLockWritersWaitMilliseconds`|Time for waiting free Buffer layer to write to (can be used to tune Buffer layers)|int|count|
-|`StorageBufferPassedAllMinThresholds`|-|int|count|
-|`StorageBufferPassedBytesFlushThreshold`|-|int|count|
-|`StorageBufferPassedBytesMaxThreshold`|-|int|count|
-|`StorageBufferPassedRowsFlushThreshold`|-|int|count|
-|`StorageBufferPassedRowsMaxThreshold`|-|int|count|
-|`StorageBufferPassedTimeFlushThreshold`|-|int|count|
-|`StorageBufferPassedTimeMaxThreshold`|-|int|count|
+|`StorageBufferPassedAllMinThresholds`|TODO|int|count|
+|`StorageBufferPassedBytesFlushThreshold`|TODO|int|count|
+|`StorageBufferPassedBytesMaxThreshold`|TODO|int|count|
+|`StorageBufferPassedRowsFlushThreshold`|TODO|int|count|
+|`StorageBufferPassedRowsMaxThreshold`|TODO|int|count|
+|`StorageBufferPassedTimeFlushThreshold`|TODO|int|count|
+|`StorageBufferPassedTimeMaxThreshold`|TODO|int|count|
 |`SystemTimeMicroseconds`|Total time spent in processing (queries and other tasks) threads executing CPU instructions in OS kernel space. |int|count|
-|`TableFunctionExecute`|-|int|count|
+|`TableFunctionExecute`|TODO|int|count|
 |`ThreadPoolReaderPageCacheHit`|Number of times the read inside ThreadPoolReader was done from page cache.|int|count|
 |`ThreadPoolReaderPageCacheHitBytes`|Number of bytes read inside ThreadPoolReader when it was done from page cache.|int|count|
 |`ThreadPoolReaderPageCacheHitElapsedMicroseconds`|Time spent reading data from page cache in ThreadPoolReader.|int|count|
@@ -689,28 +689,28 @@ vim /etc/clickhouse-server/config.xml
 |`ThreadPoolReaderPageCacheMissElapsedMicroseconds`|Time spent reading data inside the asynchronous job in ThreadPoolReader - when read was not done from page cache.|int|count|
 |`ThrottlerSleepMicroseconds`|Total time a query was sleeping to conform the 'max_network_bandwidth' setting.|int|count|
 |`UserTimeMicroseconds`|Total time spent in processing (queries and other tasks) threads executing CPU instructions in user space. |int|count|
-|`VoluntaryContextSwitches`|-|int|count|
+|`VoluntaryContextSwitches`|TODO|int|count|
 |`WriteBufferFromFileDescriptorWrite `|Number of writes (write/pwrite) to a file descriptor. Does not include sockets|int|count|
 |`WriteBufferFromFileDescriptorWriteBytes`|Number of bytes written to file descriptors. If the file is compressed, this will show compressed data size.|int|count|
 |`WriteBufferFromFileDescriptorWriteFailed `|Number of times the write (write/pwrite) to a file descriptor have failed.|int|count|
-|`ZooKeeperBytesReceived`|-|int|count|
-|`ZooKeeperBytesSent`|-|int|count|
-|`ZooKeeperCheck`|-|int|count|
-|`ZooKeeperClose`|-|int|count|
-|`ZooKeeperCreate`|-|int|count|
-|`ZooKeeperExists`|-|int|count|
-|`ZooKeeperGet`|-|int|count|
-|`ZooKeeperHardwareExceptions`|-|int|count|
-|`ZooKeeperInit`|-|int|count|
-|`ZooKeeperList`|-|int|count|
-|`ZooKeeperMulti`|-|int|count|
-|`ZooKeeperOtherExceptions`|-|int|count|
-|`ZooKeeperRemove`|-|int|count|
-|`ZooKeeperSet`|-|int|count|
-|`ZooKeeperTransactions`|-|int|count|
-|`ZooKeeperUserExceptions`|-|int|count|
-|`ZooKeeperWaitMicroseconds`|-|int|count|
-|`ZooKeeperWatchResponse`|-|int|count|
+|`ZooKeeperBytesReceived`|TODO|int|count|
+|`ZooKeeperBytesSent`|TODO|int|count|
+|`ZooKeeperCheck`|TODO|int|count|
+|`ZooKeeperClose`|TODO|int|count|
+|`ZooKeeperCreate`|TODO|int|count|
+|`ZooKeeperExists`|TODO|int|count|
+|`ZooKeeperGet`|TODO|int|count|
+|`ZooKeeperHardwareExceptions`|TODO|int|count|
+|`ZooKeeperInit`|TODO|int|count|
+|`ZooKeeperList`|TODO|int|count|
+|`ZooKeeperMulti`|TODO|int|count|
+|`ZooKeeperOtherExceptions`|TODO|int|count|
+|`ZooKeeperRemove`|TODO|int|count|
+|`ZooKeeperSet`|TODO|int|count|
+|`ZooKeeperTransactions`|TODO|int|count|
+|`ZooKeeperUserExceptions`|TODO|int|count|
+|`ZooKeeperWaitMicroseconds`|TODO|int|count|
+|`ZooKeeperWatchResponse`|TODO|int|count|
 
 
 
