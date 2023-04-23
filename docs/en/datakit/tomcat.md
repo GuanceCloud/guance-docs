@@ -71,6 +71,9 @@ Go to http://localhost:8080/jolokia to see if the configuration was successful.
       ### Monitor Interval
       # interval = "15s"
     
+      ## Set true to enable election
+      # election = true
+    
       # [inputs.tomcat.log]
       # files = []
       # #grok pipeline script path
@@ -231,7 +234,7 @@ For all of the following data collections, a global tag named `host` is appended
 | ---- |---- | :---:    | :----: |
 |`currentThreadCount`|CurrentThreadCount.|int|count|
 |`currentThreadsBusy`|CurrentThreadsBusy.|int|count|
-|`maxThreads`|MaxThreads.|int|count|
+|`maxThreads`|MaxThreads.|float|count|
 
 
 

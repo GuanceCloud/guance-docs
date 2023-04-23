@@ -78,10 +78,17 @@ When the configuration center data changes, datakit can automatically change the
 	
 	```shell
 	# Linux/Mac
-	DK_CONFD_BACKEND="etcdv3" DK_CONFD_BACKEND_NODES="[127.0.0.1:2379]" DK_DATAWAY="https://openway.guance.com?token=<TOKEN>" bash -c "$	(curl -L https://static.guance.com/datakit/install.sh)"
+    DK_CONFD_BACKEND=etcdv3 DK_CONFD_BACKEND_NODES=[127.0.0.1:2379] DK_DATAWAY=https://openway.guance.com?token=<TOKEN> bash -c "$(curl -L https://static.guance.com/install.sh)"
 	
 	# Windows
-	$env:DK_CONFD_BACKEND="etcdv3";$env:DK_CONFD_BACKEND_NODES="[127.0.0.1:2379]"; $env:DK_DATAWAY="https://openway.guance.com?	token=<TOKEN>"; Set-ExecutionPolicy Bypass -scope Process -Force; Import-Module bitstransfer; start-bitstransfer -source https://	static.guance.com/datakit/install.ps1 -destination .install.ps1; powershell .install.ps1;
+    Remove-Item -ErrorAction SilentlyContinue Env:DK_*;
+    $env:DK_CONFD_BACKEND="etcdv3";
+    $env:DK_CONFD_BACKEND_NODES="[127.0.0.1:2379]";
+    $env:DK_DATAWAY="https://openway.guance.com?token=<TOKEN>";
+    Set-ExecutionPolicy Bypass -scope Process -Force;
+    Import-Module bitstransfer;
+    start-bitstransfer  -source https://static.guance.com/install.ps1 -destination .install.ps1;
+    powershell .install.ps1;
 	```
 	
 	The two environment variables are formatted as:

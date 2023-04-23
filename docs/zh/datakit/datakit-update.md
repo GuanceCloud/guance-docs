@@ -34,7 +34,7 @@ DataKit 支持手动更新和自动更新两种方式。
     Online version available: 1.2.9, commit 9f5ac898be (release at 2022-03-10 12:03:12)
     
     Upgrade:
-        DK_UPGRADE=1 bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
+    DK_UPGRADE=1 bash -c "$(curl -L https://static.guance.com/install.sh)"
     ```
 
 === "Windows"
@@ -54,7 +54,12 @@ DataKit 支持手动更新和自动更新两种方式。
     Online version available: 1.2.9, commit 9f5ac898be (release at 2022-03-10 12:03:12)
     
     Upgrade:
-        $env:DK_UPGRADE="1"; Set-ExecutionPolicy Bypass -scope Process -Force; Import-Module bitstransfer; Remove-item .install.ps1 -erroraction silentlycontinue; start-bitstransfer -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1; powershell .install.ps1;
+    Remove-Item -ErrorAction SilentlyContinue Env:DK_*;
+    $env:DK_UPGRADE="1";
+    Set-ExecutionPolicy Bypass -scope Process -Force;
+    Import-Module bitstransfer;
+    start-bitstransfer  -source https://static.guance.com/install.ps1 -destination .install.ps1;
+    powershell .install.ps1;
     ```
 ---
 
@@ -88,9 +93,6 @@ DataKit 支持手动更新和自动更新两种方式。
 
 otalog=/usr/local/datakit/ota-update.log
 installer=https://static.guance.com/datakit/installer-linux-amd64
-
-# 注意：如果不希望更新 RC 版本的 DataKit，可移除 `--accept-rc-version`
-/usr/local/datakit/datakit --check-update --accept-rc-version --update-log $otalog
 
 if [[ $? == 42 ]]; then
 	echo "update now..."
@@ -218,17 +220,22 @@ $ curl -X POST 'http://127.0.0.1:9539/v1/datakit/upgrade'
 
 ## 更新到指定版本 {#downgrade}
 
-如果需要**升级**或**回退**到指定版本，可以通过如下命令进行操作：
+如果需要升级或回退到指定版本，可以通过如下命令进行操作：
 
 === "Linux/macOS"
 
     ```shell
-    DK_UPGRADE=1 bash -c "$(curl -L https://static.guance.com/datakit/install-<版本号>.sh)"
+    DK_UPGRADE=1 bash -c "$(curl -L https://static.guance.com/install-1.2.3.sh)"
     ```
 === "Windows"
 
     ```powershell
-    $env:DK_UPGRADE="1"; Set-ExecutionPolicy Bypass -scope Process -Force; Import-Module bitstransfer; Remove-item .install.ps1 -erroraction silentlycontinue; start-bitstransfer -source https://static.guance.com/datakit/install-<版本号>.ps1 -destination .install.ps1; powershell .install.ps1;
+    Remove-Item -ErrorAction SilentlyContinue Env:DK_*;
+    $env:DK_UPGRADE="1";
+    Set-ExecutionPolicy Bypass -scope Process -Force;
+    Import-Module bitstransfer;
+    start-bitstransfer  -source https://static.guance.com/install-1.2.3.ps1 -destination .install.ps1;
+    powershell .install.ps1;
     ```
 
 上述命令中的`<版本号>`，可以从 [DataKit 的发布历史](changelog.md)页面找到。

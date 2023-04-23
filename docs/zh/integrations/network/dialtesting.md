@@ -51,18 +51,18 @@ icon: material/access-point
 - DataKit 所在服务器（需要安装私有节点的服务器） <[安装 DataKit](../../datakit/datakit-install.md)>
 
 **私有节点创建**<br />
-私有拨测节点部署，需在 [观测云页面创建私有拨测节点](../../../usability-monitoring/self-node/)。<br />
+私有拨测节点部署，需在 [观测云页面创建私有拨测节点](../../usability-monitoring/self-node.md)。<br />
 创建完成后，将页面上相关信息填入 `conf.d/network/dialtesting.conf` 即可：
 
 ```
-$ cd /usr/local/datakit/conf.d/ssh
-$ cp ssh.conf.sample ssh.conf
-$ vim ssh.conf
+$ cd /usr/local/datakit/conf.d/network
+$ cp dialtesting.conf.sample dialtesting.conf
+$ vim dialtesting.conf
 
 
 
 #  中心任务存储的服务地址
-server = "https://dflux-dial.guance.com"
+server = "https://openway.guance.com"
 
 # require，节点惟一标识ID
 region_id = "reg_c2jlokxxxxxxxxxxx"

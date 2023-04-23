@@ -74,6 +74,9 @@
       ### Monitor Interval
       # interval = "15s"
     
+      ## Set true to enable election
+      # election = true
+    
       # [inputs.tomcat.log]
       # files = []
       # #grok pipeline script path
@@ -200,7 +203,7 @@
 | ---- |---- | :---:    | :----: |
 |`currentThreadCount`|CurrentThreadCount.|int|count|
 |`currentThreadsBusy`|CurrentThreadsBusy.|int|count|
-|`maxThreads`|MaxThreads.|int|count|
+|`maxThreads`|MaxThreads.|float|count|
 
 
 

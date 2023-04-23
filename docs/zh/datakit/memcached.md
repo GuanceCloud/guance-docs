@@ -10,7 +10,7 @@ Memcached 采集器可以从 Memcached 实例中采集实例运行状态指标�
 
 ## 前置条件 {#requirements}
 
-- Memcached 版本 >= 1.5.0
+- Memcached 版本 >= `1.5.0`。已测试的版本: `1.5.x`, `1.6.x`;
 
 ## 配置 {#config}
 
@@ -21,11 +21,14 @@ Memcached 采集器可以从 Memcached 实例中采集实例运行状态指标�
     ```toml
         
     [[inputs.memcached]]
-      ## 服务器地址，可支持多个
+      ## Servers' addresses.
       servers = ["localhost:11211"]
       # unix_sockets = ["/var/run/memcached.sock"]
     
-      ## 采集间隔
+      ## Set true to enable election
+      election = true
+    
+      ## Collect interval.
       # 单位 "ns", "us" (or "µs"), "ms", "s", "m", "h"
       interval = "10s"
     
