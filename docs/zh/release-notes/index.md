@@ -7,6 +7,39 @@ icon: zy/release-notes
 
 本文档记录观测云每次上线发布的更新内容说明，包括 DataKit、观测云最佳实践、观测云集成文档和观测云。
 
+## 2023 年 4 月 23 日
+
+### 计费更新：
+
+- 观测云自研时序引擎 GuanceDB 全新上线，时序数据存储及计费将会做如下调整：      
+    - 基础设施（DataKit）计费项下线，原 “DataKit + 时间线”、“仅时间线” 两种计费模式按照仅 GuanceDB 时间线作为出账逻辑使用；         
+    - GuanceDB 时间线：统计当天活跃的时间线数量计费，单价低至 ￥0.6 / 每千条时间线。        
+
+- 用户访问监测 “会话重放” 正式启动付费，按照实际采集会话重放数据的 session 数量计费，￥10 / 每千个 Session。
+
+更多详情可参考文档[计费方式](../billing/billing-method/index.md)。
+
+### 功能更新：
+
+- GuanceDB 时序引擎全新上线         
+- [异常追踪](../exception/index.md) 新功能上线
+- [跨站点工作空间授权](../management/data-authorization.md#data-authorization) 功能上线         
+- SLS 新增[第三方授权](../billing/commercial-aliyun-sls.md#method)开通或绑定        
+- 绑定索引配置页面优化，支持自定义添加映射字段配置      
+- 图表优化       
+    - [命令面板](../scene/visual-chart/command-panel.md) 新增本地 Func 的自定义函数选择        
+    - 时序图新增 [高级函数](../dql/advanced-funcs/index.md)，支持本地 Func 根据 DQL 查询结果二次处理后返回显示      
+- 工作空间新增[时区配置](../management/account-management.md#workspace)，用户可自定义配置当前工作空间查询时间的时区    
+- [智能巡检](../monitoring/bot-obs/index.md)优化脚本集开启步骤，新增新增 AWS 同步多种认证方式、AWS Cloudwatch Logs 同步  
+- 集成 - DataKit 页面引导优化    
+- 查看器柱状分布图新增统计时间区间显示      
+- 导航菜单支持右键选择新页打开       
+- 黑名单重名导入问题修复      
+
+### 部署版更新
+
+- 新增[账号登录映射规则配置](../deployment/setting.md#mapping)，根据不同的映射规则动态分配成员加入的工作空间及对应的角色。
+
 ## 2023 年 4 月 11 日
 
 ### 观测云更新
