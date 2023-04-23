@@ -46,9 +46,7 @@ AWS RDS MySQL 指标展示，包括所 CPU 使用率、负载、磁盘队列、 
 - 通过一台服务器采集所有 AWS RDS MySQL 数据
 - DataFlux Func `1.x` 版本
 
-### 部署实施
-
-#### 脚本市场
+### 脚本市场
 
 1、 登录 DataFlux Func，地址 `http://ip:8088`
 
@@ -76,7 +74,7 @@ AWS RDS MySQL 指标展示，包括所 CPU 使用率、负载、磁盘队列、 
 
 ![image.png](../../imgs/aws-rds-mysql-12.png)
 
-#### 添加脚本
+### 添加脚本
 
 1、 「开发」 - 「脚本库」 - 「添加脚本集」
 
@@ -141,7 +139,7 @@ def run():
 
 ![image.png](../../imgs/aws-rds-mysql-16.png)
 
-#### 定时任务
+### 定时任务
 
 1、 添加自动触发任务，管理 - 自动触发配置 - 新建任务
 
