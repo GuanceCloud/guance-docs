@@ -1,12 +1,16 @@
-# OpenSearch
+# MSK
 
 ---
 
 ## 视图预览
 
-AWS OpenSearch 指标展示，包括集群状态、JVM、实例信息、SQL 等。
+AWS MKS (Kafka) 指标展示，包括 CPU 使用率、剩余内存、网络流量、Topic 信息等。
 
-![image.png](../imgs/aws-opensearch-1.png)
+![image.png](../imgs/aws-kafka-1.png)
+
+![image.png](../imgs/aws-kafka-2.png)
+
+![image.png](../imgs/aws-kafka-3.png)
 
 ## 版本支持
 
@@ -39,7 +43,7 @@ AWS OpenSearch 指标展示，包括集群状态、JVM、实例信息、SQL 等�
 说明：
 
 - 示例 Linux 版本为：CentOS Linux release 7.8.2003 (Core)
-- 通过一台服务器采集所有 AWS OpenSearch 数据
+- 通过一台服务器采集所有 AWS MSK (Kafka) 数据
 - DataFlux Func `1.x` 版本
 
 ### 脚本市场
@@ -52,11 +56,10 @@ AWS OpenSearch 指标展示，包括集群状态、JVM、实例信息、SQL 等�
 
 ![image.png](../imgs/aws-elasticache-redis-10.png)
 
-3、 **依次添加**三个脚本集
+3、 **依次添加**两个脚本集
 
 （1）观测云集成 (核心包)<br />
 （2）观测云集成 (AWS-CloudWatch)<br />
-（3）观测云集成 (AWS-OpenSearch)
 
 > **注意：**在安装核心包后，系统会提示安装第三方依赖包，按照正常步骤点击安装即可。
 
@@ -64,7 +67,6 @@ AWS OpenSearch 指标展示，包括集群状态、JVM、实例信息、SQL 等�
 
 ![image.png](../imgs/aws-elasticache-redis-12.png)
 
-![image.png](../imgs/aws-opensearch-2.png)
 
 4、 脚本安装完成后，可以在「脚本库」中看到所有脚本集
 
@@ -82,7 +84,7 @@ AWS OpenSearch 指标展示，包括集群状态、JVM、实例信息、SQL 等�
 
 3、 创建 ID 为 main 的脚本
 
-![image.png](../imgs/aws-opensearch-3.png)
+![image.png](../imgs/aws-kafka-4.png)
 
 4、 添加代码
 
@@ -92,7 +94,6 @@ AWS OpenSearch 指标展示，包括集群状态、JVM、实例信息、SQL 等�
 
 ```python
 from guance_integration__runner import Runner
-import guance_aws_open_search__main as aws_opensearch
 import guance_aws_cloudwatch__main as aws_cloudwatch
 
 # 账号配置
@@ -109,20 +110,16 @@ def run():
     regions = ['Regions']
 
     # 采集器配置
-    opensearch_configs = {
-        'regions': regions,
-    }
     cloudwatch_configs = {
         'regions': regions,
         'targets': [
             {
-                'namespace': 'AWS/ES',
+                'namespace': 'AWS/Kafka',
                 'metrics'  : 'ALL',
             },
         ],
     }
     collectors = [
-        aws_opensearch.DataCollector(account, opensearch_configs),
         aws_cloudwatch.DataCollector(account, cloudwatch_configs),
     ]
 
@@ -141,17 +138,17 @@ def run():
 
 ![image.png](../imgs/aws-elasticache-redis-19.png)
 
-2、 自动触发配置：在「执行函数」中添加此脚本，执行频率为 5 分钟
+2、 自动触发配置：在「执行函数」中添加此脚本，执行频率为 **5 分钟 _/5 _ \* \* \***
 
-![image.png](../imgs/aws-opensearch-4.png)
+![image.png](../imgs/aws-kafka-5.png)
 
 ## 场景视图
 
-<场景 - 新建仪表板 - 模板库 - 系统视图 - AWS OpenSearch 监控视图>
+<场景 - 新建仪表板 - 模板库 - 系统视图 - AWS MSK 监控视图>
 
 ## 指标详解
 
-<[AWS OpenSearch 指标列表](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-cloudwatchmetrics.html#managedomains-cloudwatchmetrics-instance-metrics)>
+<[AWS MSK 指标列表](https://docs.aws.amazon.com/msk/latest/developerguide/metrics-details.html)>
 
 ## 常见问题排查
 
