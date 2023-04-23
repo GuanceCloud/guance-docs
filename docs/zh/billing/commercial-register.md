@@ -86,7 +86,7 @@
 
 若您在注册时选择阿里云账号结算，工作空间内产生的所有费用会直接从您的阿里云账户中进行结算。
 
-您可以在**选择开通方式**，填写工作空间名称，选择工作空间语言，点击 **[前往阿里云免费开通观测云服务](https://market.aliyun.com/products/56838014/cmgj00053362.html)** 获取并填写 **[阿里用户 ID](../billing/billing-account/aliyun-account.md#uid)、[商品实例ID](../billing/billing-account/aliyun-account.md#entity-id)**，点击**确定**即可完成注册。
+您可以在**选择开通方式**，填写工作空间名称，选择工作空间语言，点击 **[前往阿里云免费开通观测云服务](https://market.aliyun.com/products/56838014/cmgj00053362.html)** 获取并填写 **[账号 ID](../billing/billing-account/aliyun-account.md#uid)、[商品实例ID](../billing/billing-account/aliyun-account.md#entity-id)**，点击**确定**即可完成注册。
 
 ???+ attention
 
@@ -128,7 +128,7 @@
 
 若您在注册时选择华为云账号结算，工作空间内产生的所有费用会直接从您的华为云账户中进行结算。
 
-您可以在**选择开通方式**，点击 [前往华为云云商店免费开通](../billing/billing-account/huawei-account.md#market) ，在华为云云商店订阅观测云并开通华为云账号结算。
+您可以在**选择开通方式**，点击 **[前往华为云云商店免费开通](../billing/billing-account/huawei-account.md#market)**，在华为云云商店订阅观测云并开通华为云账号结算。
 
 ![](img/1.register_guance-1.png)
 
@@ -173,7 +173,7 @@
 
 ## 开始使用观测云 {start}
 
-首次注册进入工作空间，可观看观测云介绍小视频，或者您可以点击“从安装 DataKit 开始”即可安装配置第一个 DataKit 。
+首次注册进入工作空间，可观看观测云介绍小视频，或者您可以点击**从安装 DataKit 开始**即可安装配置第一个 DataKit。
 
 ![](img/1-free-start-1109.png)
 

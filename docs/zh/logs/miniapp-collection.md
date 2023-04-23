@@ -3,24 +3,24 @@
 
 ## 简介
 
-小程序主动发送不同等级的日志数据(`对应的source:browser_log`指标类型日志数据)到[观测云](https://www.guance.com/)。
+小程序主动发送不同等级的日志数据(`对应的 source:browser_log` 指标类型日志数据)到[观测云](https://www.guance.com/)。
 
 ## 功能简介
 
-- 自定义日志数据采集，通过sdk接入客户端应用中，针对不同场景采集不同日志数据。
-- 可以自动收集应用端的错误信息（包括网络错误，console错误，以及js错误）上报到DataFlux。
-- 自定义错误等级（`debug`,`critical`,`error`,`info`,`warn`）,自定义Logger对象，以及自定义log字段
-- 可以自动收集[RUM](../real-user-monitoring/miniapp/app-access.md)相关数据，关联RUM业务场景（需要rum sdk 更新到最新版本）
+- 自定义日志数据采集，通过 sdk 接入客户端应用中，针对不同场景采集不同日志数据。
+- 可以自动收集应用端的错误信息（包括网络错误，console 错误，以及 js 错误）上报到 DataFlux。
+- 自定义错误等级（`debug`,`critical`,`error`,`info`,`warn`）、自定义 Logger 对象及自定义 log 字段
+- 可以自动收集 [RUM](../real-user-monitoring/miniapp/app-access.md) 相关数据，关联 RUM 业务场景（需要 rum,sdk 更新到最新版本）
 
 ## 开始使用
 
 ### 前置条件
 
-**datakit** 通过datakit日志采集API发送日志数据到DataFlux平台
+**DataKit** 通过 DataKit 日志采集 API 发送日志数据到 DataFlux 平台；
 
-**引入SDK** 可通过`NPM`,`CDN`的方式引入SDK到应用中，初始化后，可以存放到全局变量中，方便其他页面引用
+**引入SDK** 可通过 `NPM`,`CDN` 的方式引入 SDK 到应用中，初始化后，可以存放到全局变量中，方便其他页面引用；
 
-**支持小程序客户端 **： 微信，百度，支付宝，头条等大部分小程序端
+**支持小程序客户端**：微信，百度，支付宝，头条等大部分小程序端。
 
 ### npm 引入
 
@@ -61,13 +61,13 @@ datafluxRum.init({
 | `service`             | String  | 否       | `browser` | 日志service名称                                                                                                                                                                              |
 | `env`                 | String  | 否       |           | web 应用当前环境， 如 prod：线上环境；gray：灰度环境；pre：预发布环境 common：日常环境；local：本地环境；                                                                                    |
 | `version`             | String  | 否       |           | web 应用的版本号                                                                                                                                                                             |
-| `sampleRate`          | Number  | 否       | `100`     | 指标数据收集百分比: `100`表示全收集，`0`表示不收集                                                                                                                                           |
-| `forwardErrorsToLogs` | Boolean | 否       | `true`    | 设置为`false`表示停止采集console.error、 js、以及网络错误上报到DataFlux日志数据中                                                                                                            |
+| `sampleRate`          | Number  | 否       | `100`     | 指标数据收集百分比: `100` 表示全收集，`0` 表示不收集                                                                                                                                           |
+| `forwardErrorsToLogs` | Boolean | 否       | `true`    | 设置为 `false` 表示停止采集console.error、 js、以及网络错误上报到 DataFlux 日志数据中                                                                                                            |
 
 
 ## 使用
 
-SDK在应用中初始化后，通过暴露的SDK API 可以自定义配置日志数据
+SDK在应用中初始化后，通过暴露的 SDK API 可以自定义配置日志数据
 
 ```javascript
 logger.debug | info | warn | error | critical (message: string, messageContext = Context)
@@ -137,7 +137,7 @@ datafluxLogs.logger.info('Button clicked', { name: 'buttonName', id: 123 })
 
 ## Status 参数
 
-初始化SDk后，可以使用提供`log` API,定义不同类型的状态
+初始化 SDk 后，可以使用提供 `log` API，定义不同类型的状态
 
 ```javascript
 log (message: string, messageContext: Context, status? = 'debug' | 'info' | 'warning' | 'error' | 'critical')
@@ -155,5 +155,5 @@ datafluxLogs.logger.log(<MESSAGE>,<JSON_ATTRIBUTES>,<STATUS>);
 | 参数                | 描述                                                                |
 | ------------------- | ------------------------------------------------------------------- |
 | `<MESSAGE>`         | Dataflux 日志中的 message 字段                                      |
-| `<JSON_ATTRIBUTES>` | 描述message的额外数据，是一个json对象                               |
+| `<JSON_ATTRIBUTES>` | 描述 message 的额外数据，是一个 json 对象                               |
 | `<STATUS>`          | 日志的等级，可选值：`debug`, `info`, `warning`, `error`, `critical` |

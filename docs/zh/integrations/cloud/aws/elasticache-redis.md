@@ -49,10 +49,7 @@ AWS ElastiCache Redis 指标展示，包括 CPU 使用率、连接数、缓存�
 - 示例 Linux 版本为：CentOS Linux release 7.8.2003 (Core)
 - 通过一台服务器采集所有 AWS ElastiCache 数据
 - DataFlux Func `1.x` 版本
-
-### 部署实施
-
-#### 脚本市场
+### 脚本市场
 
 1、 登录 DataFlux Func，地址 `http://ip:8088`
 
@@ -80,7 +77,7 @@ AWS ElastiCache Redis 指标展示，包括 CPU 使用率、连接数、缓存�
 
 ![image.png](../imgs/aws-elasticache-redis-14.png)
 
-#### 添加脚本
+### 添加脚本
 
 1、 「开发」 - 「脚本库」 - 「添加脚本集」
 
@@ -145,7 +142,7 @@ def run():
 
 ![image.png](../imgs/aws-elasticache-redis-18.png)
 
-#### 定时任务
+### 定时任务
 
 1、 添加自动触发任务，管理 - 自动触发配置 - 新建任务
 

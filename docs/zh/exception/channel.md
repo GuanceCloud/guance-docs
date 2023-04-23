@@ -1,6 +1,3 @@
----
-icon: zy/agreements
----
 # 管理 Issue
 ---
 
@@ -54,7 +51,7 @@ icon: zy/agreements
 
 ### 查看通知对象 / 设置
 
-在 Issue 列表左上方，点击图标 ![](img/channel-inform.png)，展开显示页。您可以：
+在 Issue 列表左上方，点击图标 ![](img/channel-inform.png)，或点击**设置**，展开显示页。您可以：
 
 - 查看、修改频道名称；
 

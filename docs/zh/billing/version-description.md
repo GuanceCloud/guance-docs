@@ -35,7 +35,7 @@
 
     ---
 
-    介绍[`SaaS 专属存储版`](./independent-storage.md)相关内容。
+    介绍 [`SaaS 专属存储版`](./independent-storage.md)相关内容。
 
     <br/>
     [**:octicons-arrow-right-24: 更多**](./independent-storage.md)

@@ -88,7 +88,7 @@ helm uninstall <RELEASE_NAME> -n launcher
 
    
 
-| url         | mysql.middlware       |
+| url         | mysql.middleware       |
 | ----------- | --------------------- |
 | port        | 3306                  |
 | 用户名/密码 | root/mQ2LZenlYs1UoVzi |
@@ -98,7 +98,7 @@ helm uninstall <RELEASE_NAME> -n launcher
 ### 4.2 Redis 配置
 - Redis 连接地址必须使用内网地址
 
-  | url  | redis.middlware  |
+  | url  | redis.middleware  |
   | ---- | ---------------- |
   | Port | 6379             |
   | 密码 | pNpX15GZkgICqX5D |
