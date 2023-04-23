@@ -4,5 +4,5 @@ nav:
   - 'DQL定义': define.md
   - 'DQL函数': funcs.md
   - 'DQL外层函数': out-funcs.md
-  - '高级函数': advanced-funcs.md
+  - '高级函数': advanced-funcs
   - 'DQL与其它几种查询语言的对比': dql-vs-others.md

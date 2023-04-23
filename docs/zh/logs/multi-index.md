@@ -122,9 +122,10 @@
 
 ![](img/index-auth.png)
 
-2、为何输入阿里云账号 ID 后，没办法自动获取 Project 和 Logstore？
+2、为何输入阿里云账号 ID 后，无法自动获取 Project 和 Logstore？
 
-<u>只有您的阿里云账号绑定了 SLS 日志服务</u>，才会自动获取 Project 和 Logstore。
+<u>只有您的阿里云账号开通了 SLS 日志服务并完成授权</u>，才会自动获取 Project 和 Logstore。<br/> 
+**同时注意**：以 `/guance-wksp-` 为前缀的 Project 会被自动过滤，不会列出；如果您的 Project 下没有所属 Logstore，将不会自动获取。
 
 ### Elasticsearch 索引绑定  {#es}
 
