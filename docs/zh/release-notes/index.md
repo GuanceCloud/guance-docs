@@ -9,9 +9,9 @@ icon: zy/release-notes
 
 ## 2023 年 4 月 23 日
 
-### 计费更新：
+### 观测云计费更新：
 
-- 观测云自研时序引擎 GuanceDB 全新上线，时序数据存储及计费将会做如下调整：      
+- 观测云自研时序数据库 GuanceDB 全新上线，时序数据存储及计费将会做如下调整：      
     - 基础设施（DataKit）计费项下线，原 “DataKit + 时间线”、“仅时间线” 两种计费模式按照仅 GuanceDB 时间线作为出账逻辑使用；         
     - GuanceDB 时间线：统计当天活跃的时间线数量计费，单价低至 ￥0.6 / 每千条时间线。        
 
@@ -19,26 +19,73 @@ icon: zy/release-notes
 
 更多详情可参考文档[计费方式](../billing/billing-method/index.md)。
 
-### 功能更新：
+### 观测云功能更新：
 
-- GuanceDB 时序引擎全新上线         
+- [GuanceDB 时序数据库](../billing/billing-method/gauncedb.md)全新上线         
 - [异常追踪](../exception/index.md) 新功能上线
 - [跨站点工作空间授权](../management/data-authorization.md#data-authorization) 功能上线         
-- SLS 新增[第三方授权](../billing/commercial-aliyun-sls.md#method)开通或绑定        
+- SLS 新增[第三方授权](../billing/commercial-aliyun-sls.md#method)开通        
 - 绑定索引配置页面优化，支持自定义添加映射字段配置      
 - 图表优化       
     - [命令面板](../scene/visual-chart/command-panel.md) 新增本地 Func 的自定义函数选择        
     - 时序图新增 [高级函数](../dql/advanced-funcs/index.md)，支持本地 Func 根据 DQL 查询结果二次处理后返回显示      
 - 工作空间新增[时区配置](../management/account-management.md#workspace)，用户可自定义配置当前工作空间查询时间的时区    
-- [智能巡检](../monitoring/bot-obs/index.md)优化脚本集开启步骤，新增新增 AWS 同步多种认证方式、AWS Cloudwatch Logs 同步  
 - 集成 - DataKit 页面引导优化    
 - 查看器柱状分布图新增统计时间区间显示      
 - 导航菜单支持右键选择新页打开       
 - 黑名单重名导入问题修复      
 
-### 部署版更新
+### 观测云部署版更新
 
 - 新增[账号登录映射规则配置](../deployment/setting.md#mapping)，根据不同的映射规则动态分配成员加入的工作空间及对应的角色。
+
+
+### DataKit 更新
+
+**新加功能：**
+
+- 新增 [Pinpoint](../datakit/pinpoint.md) API 接入
+
+**功能优化：**
+
+- 优化 Windows 安装脚本和升级脚本输出方式，便于在终端直接黏贴复制
+- 优化 Datakit 自身文档构建流程
+- 优化 OpenTelemetry 字段处理
+- [Prom](../datakit/prom.md) 采集器支持采集 `info` 类型的 label 并将其追加到所有关联指标上（默认开启）
+- 在 [system 采集器](../datakit/system.md)中，新增 CPU 和内存占用百分比指标
+- Datakit 在发送的数据中，增加数据点数标记（`X-Points`），便于中心相关指标构建
+    - 另外优化了 Datakit HTTP 的 `User-Agent` 标记，改为 `datakit-<os>-<arch>/<version>` 这种形态
+- [KafkaMQ](../datakit/kafkamq.md)：
+    - 支持处理 Jaeger 数据
+    - 优化 SkyWalking 数据的处理流程
+    - 新增第三方 RUM 接入功能
+- [SkyWalking](../datakit/skywalking.md) 新增 HTTP 接入功能
+- 增加如下集成测试：
+    - [Apache](../datakit/apache.md)
+    - [JVM](../datakit/jvm.md)
+    - [Memcached](../datakit/memcached.md)
+    - [MongoDB](../datakit/mongodb.md)
+    - [RabbitMQ](../datakit/rabbitmq.md)
+    - [Statsd](../datakit/statsd.md)
+    - [Tomcat](../datakit/tomcat.md)
+    - [etcd](../datakit/etcd.md)
+
+更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md)。
+
+## 2023 年 4 月 13 日
+
+### 智能巡检更新
+ 
+- 脚本市场智能巡检脚本集:     
+    - 优化开启步骤，无须新创建脚本，无须新建调度，从官方脚本市场点击安装后，自动完成创建与调度，配置参数后即可开启；      
+    - 更新磁盘使用率巡检：对磁盘使用率巡检趋势判断算法优化，为用户提供更精准的问题定位。
+      
+- 脚本市场云同步脚本集:      
+    - 优化开启步骤，无须新创建脚本，无须新建调度，从官方脚本市场点击安装后，自动完成创建与调度，配置参数后即可开启；    
+    - 新增 AWS 同步多种认证方式；      
+    - 新增 AWS Cloudwatch Logs 同步。    
+
+更多智能巡检更新可参考 [智能巡检版本历史](../monitoring/bot-obs/index.md)。
 
 ## 2023 年 4 月 11 日
 
