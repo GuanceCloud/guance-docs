@@ -11,7 +11,7 @@ icon: zy/release-notes
 
 ### 观测云计费更新：
 
-- 观测云自研时序引擎 GuanceDB 全新上线，时序数据存储及计费将会做如下调整：      
+- 观测云自研时序数据库 GuanceDB 全新上线，时序数据存储及计费将会做如下调整：      
     - 基础设施（DataKit）计费项下线，原 “DataKit + 时间线”、“仅时间线” 两种计费模式按照仅 GuanceDB 时间线作为出账逻辑使用；         
     - GuanceDB 时间线：统计当天活跃的时间线数量计费，单价低至 ￥0.6 / 每千条时间线。        
 
@@ -21,7 +21,7 @@ icon: zy/release-notes
 
 ### 观测云功能更新：
 
-- [GuanceDB 时序引擎](../billing/billing-method/gauncedb.md)全新上线         
+- [GuanceDB 时序数据库](../billing/billing-method/gauncedb.md)全新上线         
 - [异常追踪](../exception/index.md) 新功能上线
 - [跨站点工作空间授权](../management/data-authorization.md#data-authorization) 功能上线         
 - SLS 新增[第三方授权](../billing/commercial-aliyun-sls.md#method)开通        
@@ -39,18 +39,6 @@ icon: zy/release-notes
 
 - 新增[账号登录映射规则配置](../deployment/setting.md#mapping)，根据不同的映射规则动态分配成员加入的工作空间及对应的角色。
 
-### 智能巡检更新
- 
-- 脚本市场智能巡检脚本集:     
-    - 优化开启步骤,无须新创建脚本,无须新建调度, 从官方脚本市场点击安装后,自动完成创建与调度, 配置参数后即可开启；      
-    - 更新磁盘使用率巡检：对磁盘使用率巡检趋势判断算法优化，为用户提供更精准的问题定位。
-      
-- 脚本市场云同步脚本集:      
-    - 优化开启步骤,无须新创建脚本,无须新建调度, 从官方脚本市场点击安装后,自动完成创建与调度, 配置参数后即可开启；    
-    - 新增AWS 同步多种认证方式；      
-    - 新增 AWS Cloudwatch Logs 同步。    
-
-更多智能巡检更新可参考 [智能巡检版本历史](../monitoring/bot-obs/index.md)。
 
 ### DataKit 更新
 
@@ -83,6 +71,21 @@ icon: zy/release-notes
     - [etcd](../datakit/etcd.md)
 
 更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md)。
+
+## 2023 年 4 月 13 日
+
+### 智能巡检更新
+ 
+- 脚本市场智能巡检脚本集:     
+    - 优化开启步骤，无须新创建脚本，无须新建调度，从官方脚本市场点击安装后，自动完成创建与调度，配置参数后即可开启；      
+    - 更新磁盘使用率巡检：对磁盘使用率巡检趋势判断算法优化，为用户提供更精准的问题定位。
+      
+- 脚本市场云同步脚本集:      
+    - 优化开启步骤，无须新创建脚本，无须新建调度，从官方脚本市场点击安装后，自动完成创建与调度，配置参数后即可开启；    
+    - 新增 AWS 同步多种认证方式；      
+    - 新增 AWS Cloudwatch Logs 同步。    
+
+更多智能巡检更新可参考 [智能巡检版本历史](../monitoring/bot-obs/index.md)。
 
 ## 2023 年 4 月 11 日
 
