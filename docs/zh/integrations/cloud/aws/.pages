@@ -3,6 +3,7 @@ nav:
   - 'EC2': ec2.md
   - 'ELB': elb.md
   - elasticache-redis.md
+  - aws-msk.md
   - aws-opensearch.md
   - 'RDS MySQL': rds-mysql.md
   - 'S3': s3.md

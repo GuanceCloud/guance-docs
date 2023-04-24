@@ -1,20 +1,19 @@
-<!-- This file required to translate to EN. -->
 # DDTrace profiling
 
-## 安装运行 Profiling Agent {#install}
+## Install and Run Profiling Agent {#install}
 
-目前支持 java 和 python 语言使用相应语言的profiling 库。
+Currently, java and python languages are supported using profiling libraries for the corresponding languages.
 
 ### Java {#java}
 
-下载最新的 ddtrace agent dd-java-agent.jar
+Download the latest ddtrace agent dd-java-agent.jar
 
 ```shell
-# java版本要求：java8版本需要高于8u262+，或者使用java11及以上版本
+# java Version Requirements: java 8 version needs to be higher than 8u262 +, or use java 11 and above
 wget -O dd-java-agent.jar 'https://github.com/DataDog/dd-trace-java/releases/download/v0.107.0/dd-java-agent-0.107.0.jar'
 ```
 
-运行 Java Code
+Run Java Code
 
 ```shell
 java -javaagent:/<your-path>/dd-java-agent.jar \
@@ -29,13 +28,13 @@ java -javaagent:/<your-path>/dd-java-agent.jar \
 
 ### Python {#python}
 
-安装 DDTrace Python 函数库
+Install DDTrace Python Function Library
 
 ```shell
 pip install ddtrace
 ```
 
-- 自动profiling
+- Automatic profiling
 
 ```shell
 DD_PROFILING_ENABLED=true \
@@ -46,7 +45,7 @@ DD_TRACE_AGENT_URL=http://127.0.0.1:9529 \
 ddtrace-run python app.py
 ```
 
-- 通过代码的方式开启profiling
+- Open profiling in code
 
 ```python
 import time
@@ -69,12 +68,12 @@ prof.start(True, True)
 
 ```
 
-此时运行则不需要再用 ddtrace-run 命令
+You don't need to use the ddtrace-run command to run at this time.
 
 ```shell
 DD_ENV=testing DD_SERVICE=python-profiling-manual DD_VERSION=7.8.9 python3 app.py
 ```
 
-## 查看 Profile {#view}
+## View Profile {#view}
 
-上述程序启动后，会定期（默认 1 分钟上报一次）收集 profiling 数据并上报给 DataKit，稍等片刻后就可以在观测云工作空间看到 profiling 数据。
+After the above program is started, profile data will be collected regularly (once every minute by default) and reported to DataKit. After a while, profile data can be seen in Guance Cloud workspace.
