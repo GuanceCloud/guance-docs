@@ -9,7 +9,7 @@ icon: zy/release-notes
 
 ## 2023 年 4 月 23 日
 
-### 计费更新：
+### 观测云计费更新：
 
 - 观测云自研时序引擎 GuanceDB 全新上线，时序数据存储及计费将会做如下调整：      
     - 基础设施（DataKit）计费项下线，原 “DataKit + 时间线”、“仅时间线” 两种计费模式按照仅 GuanceDB 时间线作为出账逻辑使用；         
@@ -19,7 +19,7 @@ icon: zy/release-notes
 
 更多详情可参考文档[计费方式](../billing/billing-method/index.md)。
 
-### 功能更新：
+### 观测云功能更新：
 
 - [GuanceDB 时序引擎](../billing/billing-method/gauncedb.md)全新上线         
 - [异常追踪](../exception/index.md) 新功能上线
@@ -35,7 +35,7 @@ icon: zy/release-notes
 - 导航菜单支持右键选择新页打开       
 - 黑名单重名导入问题修复      
 
-### 部署版更新
+### 观测云部署版更新
 
 - 新增[账号登录映射规则配置](../deployment/setting.md#mapping)，根据不同的映射规则动态分配成员加入的工作空间及对应的角色。
 
@@ -56,31 +56,31 @@ icon: zy/release-notes
 
 **新加功能：**
 
-- 新增 [Pinpoint](pinpoint.md) API 接入(#973)
+- 新增 [Pinpoint](../datakit/pinpoint.md) API 接入
 
 **功能优化：**
 
-- 优化 Windows 安装脚本和升级脚本输出方式，便于在终端直接黏贴复制(#1557)
-- 优化 Datakit 自身文档构建流程(#1578)
-- 优化 OpenTelemetry 字段处理(#1514)
-- [Prom](../datakit/prom.md) 采集器支持采集 `info` 类型的 label 并将其追加到所有关联指标上（默认开启）(#1544)
-- 在 [system 采集器](../datakit/system.md)中，新增 CPU 和内存占用百分比指标(#1565)
-- Datakit 在发送的数据中，增加数据点数标记（`X-Points`），便于中心相关指标构建(#1410)
+- 优化 Windows 安装脚本和升级脚本输出方式，便于在终端直接黏贴复制
+- 优化 Datakit 自身文档构建流程
+- 优化 OpenTelemetry 字段处理
+- [Prom](../datakit/prom.md) 采集器支持采集 `info` 类型的 label 并将其追加到所有关联指标上（默认开启）
+- 在 [system 采集器](../datakit/system.md)中，新增 CPU 和内存占用百分比指标
+- Datakit 在发送的数据中，增加数据点数标记（`X-Points`），便于中心相关指标构建
     - 另外优化了 Datakit HTTP 的 `User-Agent` 标记，改为 `datakit-<os>-<arch>/<version>` 这种形态
-- [KafkaMQ](kafkamq.md)：
-    - 支持处理 Jaeger 数据(#1526)
-    - 优化 SkyWalking 数据的处理流程(#1530)
-    - 新增第三方 RUM 接入功能(#1581)
-- [SkyWalking](skywalking.md) 新增 HTTP 接入功能(#1533)
+- [KafkaMQ](../datakit/kafkamq.md)：
+    - 支持处理 Jaeger 数据
+    - 优化 SkyWalking 数据的处理流程
+    - 新增第三方 RUM 接入功能
+- [SkyWalking](../datakit/skywalking.md) 新增 HTTP 接入功能
 - 增加如下集成测试：
-    - [Apache](../datakit/apache.md)(#1553)
-    - [JVM](../datakit/jvm.md)(#1559)
-    - [Memcached](../datakit/memcached.md)(#1552)
-    - [MongoDB](../datakit/mongodb.md)(#1525)
-    - [RabbitMQ](../datakit/rabbitmq.md)(#1560)
-    - [Statsd](../datakit/statsd.md)(#1562)
-    - [Tomcat](../datakit/tomcat.md)(#1566)
-    - [etcd](../datakit/etcd.md)(#1434)
+    - [Apache](../datakit/apache.md)
+    - [JVM](../datakit/jvm.md)
+    - [Memcached](../datakit/memcached.md)
+    - [MongoDB](../datakit/mongodb.md)
+    - [RabbitMQ](../datakit/rabbitmq.md)
+    - [Statsd](../datakit/statsd.md)
+    - [Tomcat](../datakit/tomcat.md)
+    - [etcd](../datakit/etcd.md)
 
 更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md)。
 
