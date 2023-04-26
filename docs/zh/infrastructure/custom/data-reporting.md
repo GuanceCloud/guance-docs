@@ -146,7 +146,7 @@ def main():
         pushdata(data)
 ```
 
-5.DataFlux Func 脚本配置完成执行后，即可在 “观测云” 工作空间「基础设施」-「自定义」中查看上报的数据。
+5.DataFlux Func 脚本配置完成执行后，即可在观测云工作空间**基础设施 > 自定义**中查看上报的数据。
 
 ![](../img/3.object_more_api_function_11.png)
 
