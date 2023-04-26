@@ -482,7 +482,7 @@ icon: zy/release-notes
 
 #### 新增观测云站点服务 Status Page
 
-观测云提供 Status Page，帮助您实时查看观测云不同站点的服务状态。若您已经登录到观测云，您可以通过点击左下角的「帮助」-「Status Page」来查看观测云各个站点的服务状态。更多详情可参考文档 [Status Page](../management/status-page) 。
+观测云提供 Status Page，帮助您实时查看观测云不同站点的服务状态。若您已经登录到观测云，您可以通过点击左下角的**帮助 > Status Page**来查看观测云各个站点的服务状态。更多详情可参考文档 [Status Page](../management/status-page) 。
 
 ![](img/6.status_page_4.png)
 
