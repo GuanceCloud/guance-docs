@@ -259,8 +259,7 @@ In addition, you should fill in the detailed mailing address or email address fo
 
 | Billing items          | Commercial plan                                    |
 | ----------------- | ----------------------------------------- |
-| Quantity of DataKit      | 3 yuan per day (each set)                           |
-| Quantity of timeseries        | 3 yuan per day (every 1000 articles)                      |
+| Quantity of timeseries        | 0.6 yuan per day (every 1000 articles)                      |
 | Log data        | 1.2 yuan per day (per million pieces)[Gradient billing](#gradient) |
 | Backup log      | 0.007 yuan per day (per GB)                       |
 | APM trace | 2 yuan per day (per million pieces)[Gradient billing](#gradient)   |
@@ -268,6 +267,7 @@ In addition, you should fill in the detailed mailing address or email address fo
 | Number of dialing measurements          | 1 yuan per day (every 10,000 times)                          |
 | Task call          | 1 yuan per day (every 10,000 times)                          |
 | Number of SMS          | 0.1 yuan per day (each)                          |
+| Number of Session Replay          | 10 yuan per day (every 1,000 articles)                          |
 
 
 
