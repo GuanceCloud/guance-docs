@@ -7,7 +7,7 @@
 
 ## 前置条件
 
-[安装 DataKit](../datakit/datakit-install.md)
+[安装 DataKit](../datakit/datakit-install.md)。
 
 ## 数据采集
 
@@ -45,17 +45,19 @@
 
 2、通过 DaemonSet方式安装 DataKit，可参考文档 [DaemonSet 安装](../datakit/datakit-daemonset-deploy.md)。
 
-**注意**：
+???+ attention
 
-- 通过主机安装 DataKit，开启容器采集器仅支持采集 Containers、Pods数据；
+    - 通过主机安装 DataKit，开启容器采集器仅支持采集 Containers、Pods数据；
 
-- 通过 DaemonSet方式安装 DataKit ，支持采集 Containers、Pods、Services、Deployments、Clusters、Nodes、Replica Sets、Jobs、Cron Jobs 等所有容器组件的数据，采集的数据可在对应的查看器中查看和分析。
+    - 通过 DaemonSet方式安装 DataKit ，支持采集 Containers、Pods、Services、Deployments、Clusters、Nodes、Replica Sets、Jobs、Cron Jobs 等所有容器组件的数据，采集的数据可在对应的查看器中查看和分析。
 
 ### 进程
 
-开启进程数据采集，需要进入 DataKit 安装目录下的`conf.d/host` 目录，复制 `host_processes.conf.sample` 并命名为 `host_processes.conf`。配置完成后，重启datakit 即可。
+开启进程数据采集，需要进入 DataKit 安装目录下的`conf.d/host` 目录，复制 `host_processes.conf.sample` 并命名为 `host_processes.conf`。配置完成后，重启 DataKit 即可。
 
-注意：进程采集器默认开启，但是默认不采集进程指标数据，如需采集指标相关数据，可在 `host_processes.conf` 中 将 `open_metric` 设置为 `true`。更多详情可参考文档 [进程](../datakit/host_processes.md)。
+???+ attention
+
+    进程采集器默认开启，但是默认不采集进程指标数据，如需采集指标相关数据，可在 `host_processes.conf` 中 将 `open_metric` 设置为 `true`。更多详情可参考文档 [进程](../datakit/host_processes.md)。
 
 ### 自定义对象
 
@@ -63,4 +65,4 @@
 
 - 通过**基础设施 > 自定义**，您可以创建新的对象分类并自定义对象字段；
 
-- 上报自定义对象数据时，您需要先安装并连通 DataKIt 和 DataFlux Function，再通过 DataFlux Function 上报数据到 DataKit，最终由 DataKit 上报对象数据到观测云工作空间。具体操作过程可参考文档 [自定义对象数据上报](custom/data-reporting.md) 
+- 上报自定义对象数据时，您需要先安装并连通 DataKIt 和 DataFlux Function，再通过 DataFlux Function 上报数据到 DataKit，最终由 DataKit 上报对象数据到观测云工作空间。具体操作过程可参考文档 [自定义对象数据上报](custom/data-reporting.md)。 

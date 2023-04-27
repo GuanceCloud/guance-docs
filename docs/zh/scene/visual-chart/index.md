@@ -1,7 +1,7 @@
 # 可视化图表
 ---
 
-观测云 内置20余种标准的可视化图表：包括 [时序图](timeseries-chart.md)、[概览图](overview-chart.md)、[表格图](table-chart.md)、[矩形树图](treemap.md)、[漏斗图](funnel-chart.md)、[饼图](pie-chart.md)、[柱状图](bar-chart.md)、[直方图](histogram.md)、[SLO](slo-chart.md)、[排行榜](leaderboard.md)、[仪表盘](dashboard.md)、[散点图](scatter-plot.md)、[气泡图](bubble-chart.md)、[中国地图](china-map.md)、[世界地图](world-map.md)、[蜂窝图](cellular-map.md)、[文本](text.md)、[图片](picture.md)、[视频](video.md)、[命令面板](command-panel.md)、[IFrame](iframe.md)、[日志流图](log-stream.md)、[对象列表图](object-list.md)、[告警统计图](alert-statistics.md) 等，可快速根据不同业务需求快速创建不同的仪表板，同时结合视图变量等功能，能实现特定图表数据全局联动效果，满足对数据个性化、全面的展示需求。
+观测云内置20余种标准的可视化图表：包括 [时序图](timeseries-chart.md)、[概览图](overview-chart.md)、[表格图](table-chart.md)、[矩形树图](treemap.md)、[漏斗图](funnel-chart.md)、[饼图](pie-chart.md)、[柱状图](bar-chart.md)、[直方图](histogram.md)、[SLO](slo-chart.md)、[排行榜](leaderboard.md)、[仪表盘](dashboard.md)、[散点图](scatter-plot.md)、[气泡图](bubble-chart.md)、[中国地图](china-map.md)、[世界地图](world-map.md)、[蜂窝图](cellular-map.md)、[文本](text.md)、[图片](picture.md)、[视频](video.md)、[命令面板](command-panel.md)、[IFrame](iframe.md)、[日志流图](log-stream.md)、[对象列表图](object-list.md)、[告警统计图](alert-statistics.md) 等，可快速根据不同业务需求快速创建不同的仪表板，同时结合视图变量等功能，能实现特定图表数据全局联动效果，满足对数据个性化、全面的展示需求。
 
 ## 添加图表
 
@@ -18,6 +18,8 @@
 ![](../img/variables_1.png)
 
 > 该图表联动显示功能适用于[时序图](timeseries-chart.md)、[概览图](overview-chart.md)、[表格图](table-chart.md)、[矩形树图](treemap.md)、[漏斗图](funnel-chart.md)、[饼图](pie-chart.md)、[柱状图](bar-chart.md)、[直方图](histogram.md)、[SLO](slo-chart.md)、[排行榜](leaderboard.md)、[仪表盘](dashboard.md)、[散点图](scatter-plot.md)、[气泡图](bubble-chart.md)、[中国地图](china-map.md)、[世界地图](world-map.md)、[蜂窝图](cellular-map.md)、[命令面板](command-panel.md)、[IFrame](iframe.md)、[日志流图](log-stream.md)、[对象列表图](object-list.md)、[告警统计图](alert-statistics.md)。
+
+
 ## 设置图表
 
 ### 修改
@@ -83,13 +85,15 @@
 
 在仪表板中，点击图表上的**分析**按钮或双击图表空白处，可以放大图表进行查看和分析。
 
-- 支持通过鼠标悬浮（hover）查看图表的数据信息；
+- 支持通过鼠标 hover 查看图表的数据信息；
 - 支持通过选择 [时间轴](timeseries-chart.md) 查看特定时间范围的指标趋势；
 - 支持通过单击图表查看图表的 [DQL查询语句](chart-query.md)、[相似趋势指标](timeseries-chart.md) 以及相关关联分析链接如日志、容器、进程、链路等，支持自定义关联 [图表链接](chart-link.md)；
-- 当图表查询存在主机（host) 信息，且图表查询中分组条件选择了「by host」，您还可以查看相关的主机监控视图；
+- 当图表查询存在主机（host) 信息，且图表查询中分组条件选择了 `by host`，您还可以查看相关的主机监控视图；
 - 在 hover 到图表里面的某一条时间线时，若其他图表存在 by 分组条件且有相同 tags，则会在其他图表中对应显示高亮区块。
 
-**注意**：内置链接默认关闭，可在编辑图表时开启显示。
+???+ attention
+
+    内置链接默认关闭，可在编辑图表时开启显示。
 
 ![](../img/2.scene_3.png)
 
