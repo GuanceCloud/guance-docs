@@ -1,5 +1,6 @@
 
 # Swap
+
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
@@ -14,6 +15,7 @@ swap 采集器用于采集主机 swap 内存的使用情况
 
 ## 配置 {#config}
 
+<!-- markdownlint-disable MD046 -->
 === "主机安装"
 
     进入 DataKit 安装目录下的 `conf.d/host` 目录，复制 `swap.conf.sample` 并命名为 `swap.conf`。示例如下：
@@ -42,23 +44,24 @@ swap 采集器用于采集主机 swap 内存的使用情况
     | :---                      | ---              | ---                                                          |
     | `ENV_INPUT_SWAP_TAGS`     | `tags`           | `tag1=value1,tag2=value2` 如果配置文件中有同名 tag，会覆盖它 |
     | `ENV_INPUT_SWAP_INTERVAL` | `interval`       | `10s`                                                        |
+<!-- markdownlint-enable -->
 
 ## 指标集 {#measurements}
 
 以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.swap.tags]` 指定其它标签：
 
 ``` toml
- [inputs.swap.tags]
-  # some_tag = "some_value"
-  # more_tag = "some_other_value"
-  # ...
+[inputs.swap.tags]
+ # some_tag = "some_value"
+ # more_tag = "some_other_value"
+ # ...
 ```
 
 
 
 ### `swap`
 
--  标签
+- 标签
 
 
 | Tag | Descrition |

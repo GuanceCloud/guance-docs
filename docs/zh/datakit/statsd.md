@@ -1,5 +1,6 @@
 
 # Statsd 数据接入
+
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
@@ -10,10 +11,11 @@ statsd 采集器用于接收网络上发送过来的 statsd 数据。
 
 ## 前置条件 {#requrements}
 
-可以参考 [jmxfetch指标暴露](ddtrace-jmxfetch/#requrements){:target="_blank"}
+可以参考 [JMXFetch 指标暴露](ddtrace-jmxfetch/#requrements){:target="_blank"}
 
 ## 配置 {#config}
 
+<!-- markdownlint-disable MD046 -->
 === "主机安装"
 
     进入 DataKit 安装目录下的 `conf.d/statsd` 目录，复制 `statsd.conf.sample` 并命名为 `statsd.conf`。示例如下：
@@ -81,6 +83,7 @@ statsd 采集器用于接收网络上发送过来的 statsd 数据。
 === "Kubernetes"
 
     目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+<!-- markdownlint-enable -->
 
 ## 指标集 {#measurement}
 

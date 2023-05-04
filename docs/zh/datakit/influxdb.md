@@ -15,6 +15,7 @@ InfluxDB 采集器，用于采集 InfluxDB 的数据。
 
 ## InfluxDB 采集器配置 {#config}
 
+<!-- markdownlint-disable MD046 -->
 === "主机安装"
 
     进入 DataKit 安装目录下的 `conf.d/influxdb` 目录，复制 `influxdb.conf.sample` 并命名为 `influxdb.conf`。示例如下：
@@ -61,6 +62,7 @@ InfluxDB 采集器，用于采集 InfluxDB 的数据。
 === "Kubernetes"
 
     目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+<!-- markdownlint-enable -->
 
 ### 适用于 InfluxDB v2.x 的 prom 采集器配置示例 {#prom-config}
 
@@ -126,7 +128,7 @@ InfluxDB 采集器，用于采集 InfluxDB 的数据。
 
 ### `influxdb_cq`
 
--  标签
+- 标签
 
 
 | Tag | Descrition |
@@ -145,7 +147,7 @@ InfluxDB 采集器，用于采集 InfluxDB 的数据。
 
 ### `influxdb_database`
 
--  标签
+- 标签
 
 
 | Tag | Descrition |
@@ -165,7 +167,7 @@ InfluxDB 采集器，用于采集 InfluxDB 的数据。
 
 ### `influxdb_httpd`
 
--  标签
+- 标签
 
 
 | Tag | Descrition |
@@ -207,7 +209,7 @@ InfluxDB 采集器，用于采集 InfluxDB 的数据。
 
 ### `influxdb_memstats`
 
--  标签
+- 标签
 
 
 | Tag | Descrition |
@@ -252,7 +254,7 @@ InfluxDB 采集器，用于采集 InfluxDB 的数据。
 
 ### `influxdb_queryExecutor`
 
--  标签
+- 标签
 
 
 | Tag | Descrition |
@@ -274,7 +276,7 @@ InfluxDB 采集器，用于采集 InfluxDB 的数据。
 
 ### `influxdb_runtime`
 
--  标签
+- 标签
 
 
 | Tag | Descrition |
@@ -306,7 +308,7 @@ InfluxDB 采集器，用于采集 InfluxDB 的数据。
 
 ### `influxdb_shard`
 
--  标签
+- 标签
 
 
 | Tag | Descrition |
@@ -341,7 +343,7 @@ InfluxDB 采集器，用于采集 InfluxDB 的数据。
 
 ### `influxdb_subscriber`
 
--  标签
+- 标签
 
 
 | Tag | Descrition |
@@ -361,7 +363,7 @@ InfluxDB 采集器，用于采集 InfluxDB 的数据。
 
 ### `influxdb_tsm1_cache`
 
--  标签
+- 标签
 
 
 | Tag | Descrition |
@@ -394,7 +396,7 @@ InfluxDB 采集器，用于采集 InfluxDB 的数据。
 
 ### `influxdb_tsm1_engine`
 
--  标签
+- 标签
 
 
 | Tag | Descrition |
@@ -447,7 +449,7 @@ InfluxDB 采集器，用于采集 InfluxDB 的数据。
 
 ### `influxdb_tsm1_filestore`
 
--  标签
+- 标签
 
 
 | Tag | Descrition |
@@ -473,7 +475,7 @@ InfluxDB 采集器，用于采集 InfluxDB 的数据。
 
 ### `influxdb_tsm1_wal`
 
--  标签
+- 标签
 
 
 | Tag | Descrition |
@@ -501,7 +503,7 @@ InfluxDB 采集器，用于采集 InfluxDB 的数据。
 
 ### `influxdb_write`
 
--  标签
+- 标签
 
 
 | Tag | Descrition |

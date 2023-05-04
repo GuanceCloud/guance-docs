@@ -1,5 +1,6 @@
 
 # PostgreSQL
+
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](index.md#legends "支持选举")
@@ -14,48 +15,55 @@ PostgreSQL 采集器可以从 PostgreSQL 实例中采集实例运行状态指标
 
 ## 配置 {#config}
 
-进入 DataKit 安装目录下的 `conf.d/db` 目录，复制 `postgresql.conf.sample` 并命名为 `postgresql.conf`。示例如下：
+<!-- markdownlint-disable MD046 -->
+=== "主机部署"
 
-```toml
+    进入 DataKit 安装目录下的 `conf.d/db` 目录，复制 `postgresql.conf.sample` 并命名为 `postgresql.conf`。示例如下：
 
-[[inputs.postgresql]]
-  ## 服务器地址
-  # URI格式
-  # postgres://[pqgotest[:password]]@localhost[/dbname]?sslmode=[disable|verify-ca|verify-full]
-  # 简单字符串格式
-  # host=localhost user=pqgotest password=... sslmode=... dbname=app_production
+    ```toml
+        
+    [[inputs.postgresql]]
+      ## 服务器地址
+      # URI格式
+      # postgres://[pqgotest[:password]]@localhost[/dbname]?sslmode=[disable|verify-ca|verify-full]
+      # 简单字符串格式
+      # host=localhost user=pqgotest password=... sslmode=... dbname=app_production
+    
+      address = "postgres://postgres@localhost/test?sslmode=disable"
+    
+      ## 配置采集的数据库，默认会采集所有的数据库，当同时设置ignored_databases和databases会忽略databases
+      # ignored_databases = ["db1"]
+      # databases = ["db1"]
+    
+      ## 设置服务器Tag，默认是基于服务器地址生成
+      # outputaddress = "db01"
+    
+      ## 采集间隔
+      # 单位 "ns", "us" (or "µs"), "ms", "s", "m", "h"
+      interval = "10s"
+    
+      ## Set true to enable election
+      election = true
+    
+      ## 日志采集
+      # [inputs.postgresql.log]
+      # files = []
+      # pipeline = "postgresql.p"
+    
+      ## 自定义Tag
+      [inputs.postgresql.tags]
+      # some_tag = "some_value"
+      # more_tag = "some_other_value"
+      # ...
+    
+    ```
 
-  address = "postgres://postgres@localhost/test?sslmode=disable"
+    配配置好后，[重启 DataKit](datakit-service-how-to.md#manage-service) 即可。
 
-  ## 配置采集的数据库，默认会采集所有的数据库，当同时设置ignored_databases和databases会忽略databases
-  # ignored_databases = ["db1"]
-  # databases = ["db1"]
+=== "Kubernetes"
 
-  ## 设置服务器Tag，默认是基于服务器地址生成
-  # outputaddress = "db01"
-
-  ## 采集间隔
-  # 单位 "ns", "us" (or "µs"), "ms", "s", "m", "h"
-  interval = "10s"
-
-  ## Set true to enable election
-  election = true
-
-  ## 日志采集
-  # [inputs.postgresql.log]
-  # files = []
-  # pipeline = "postgresql.p"
-
-  ## 自定义Tag
-  [inputs.postgresql.tags]
-  # some_tag = "some_value"
-  # more_tag = "some_other_value"
-  # ...
-
-```
-
-配配置好后，[重启 DataKit](datakit-service-how-to.md#manage-service) 即可。
-
+    目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+<!-- markdownlint-enable -->
 
 ## 指标集 {#measurements}
 
@@ -65,7 +73,7 @@ PostgreSQL 采集器可以从 PostgreSQL 实例中采集实例运行状态指标
 
 ### `postgresql`
 
--  标签
+- 标签
 
 
 | Tag | Descrition |
@@ -111,7 +119,7 @@ PostgreSQL 采集器可以从 PostgreSQL 实例中采集实例运行状态指标
 
 - PostgreSQL 日志默认是输出至`stderr`，如需开启文件日志，可在 PostgreSQL 的配置文件 `/etc/postgresql/<VERSION>/main/postgresql.conf` ， 进行如下配置:
 
-```
+```toml
 logging_collector = on    # 开启日志写入文件功能
 
 log_directory = 'pg_log'  # 设置文件存放目录，绝对路径或相对路径(相对PGDATA)
@@ -131,7 +139,7 @@ log_file_mode = 0644
 
 - PostgreSQL 采集器默认是未开启日志采集功能，可在 `conf.d/db/postgresql.conf` 中 将 `files` 打开，并写入 PostgreSQL 日志文件的绝对路径。比如:
 
-```
+```toml
 [[inputs.postgresql]]
 
   ...
@@ -142,32 +150,30 @@ log_file_mode = 0644
 
 开启日志采集后，默认会产生日志来源(`source`)为`postgresql`的日志。
 
-**注意**
+> 注意：日志采集仅支持已安装 DataKit 主机上的日志。
 
-- 日志采集仅支持已安装 DataKit 主机上的日志。
-
-## 日志 pipeline 切割 {#pipeline}
+## 日志 Pipeline 切割 {#pipeline}
 
 原始日志为
 
-```
+``` log
 2021-05-31 15:23:45.110 CST [74305] test [pgAdmin 4 - DB:postgres] postgres [127.0.0.1] 60b48f01.12241 LOG:  statement:
-		SELECT psd.*, 2^31 - age(datfrozenxid) as wraparound, pg_database_size(psd.datname) as pg_database_size
-		FROM pg_stat_database psd
-		JOIN pg_database pd ON psd.datname = pd.datname
-		WHERE psd.datname not ilike 'template%'   AND psd.datname not ilike 'rdsadmin'
-		AND psd.datname not ilike 'azure_maintenance'   AND psd.datname not ilike 'postgres'
+        SELECT psd.*, 2^31 - age(datfrozenxid) as wraparound, pg_database_size(psd.datname) as pg_database_size
+        FROM pg_stat_database psd
+        JOIN pg_database pd ON psd.datname = pd.datname
+        WHERE psd.datname not ilike 'template%'   AND psd.datname not ilike 'rdsadmin'
+        AND psd.datname not ilike 'azure_maintenance'   AND psd.datname not ilike 'postgres'
 ```
 
 切割后的字段说明：
 
-| 字段名           | 字段值                  | 说明                                                      |
-| ---              | ---                     | ---                                                       |
-| application_name | pgAdmin 4 - DB:postgres | 连接当前数据库的应用的名称                                |
-| db_name          | test                    | 访问的数据库                                              |
-| process_id       | 74305                   | 当前连接的客户端进程ID                                    |
-| remote_host      | 127.0.0.1               | 客户端的地址                                              |
-| session_id       | 60b48f01.12241          | 当前会话的ID                                              |
-| user             | postgres                | 当前访问用户名                                            |
-| status           | LOG                     | 当前日志的级别(LOG,ERROR,FATAL,PANIC,WARNING,NOTICE,INFO) |
-| time             | 1622445825110000000     | 日志产生时间                                              |
+| 字段名             | 字段值                    | 说明                                                      |
+| ---                | ---                       | ---                                                       |
+| `application_name` | `pgAdmin 4 - DB:postgres` | 连接当前数据库的应用的名称                                |
+| `db_name`          | `test`                    | 访问的数据库                                              |
+| `process_id`       | `74305`                   | 当前连接的客户端进程ID                                    |
+| `remote_host`      | `127.0.0.1`               | 客户端的地址                                              |
+| `session_id`       | `60b48f01.12241`          | 当前会话的ID                                              |
+| `user`             | `postgres`                | 当前访问用户名                                            |
+| `status`           | `LOG`                     | 当前日志的级别(LOG,ERROR,FATAL,PANIC,WARNING,NOTICE,INFO) |
+| `time`             | `1622445825110000000`     | 日志产生时间                                              |

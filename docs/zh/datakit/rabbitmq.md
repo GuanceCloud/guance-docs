@@ -1,5 +1,6 @@
 
 # RabbitMQ
+
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](index.md#legends "支持选举")
@@ -41,6 +42,7 @@ RabbitMQ 采集器是通过插件 `rabbitmq-management` 采集数据监控 Rabbi
 
 ## 配置 {#config}
 
+<!-- markdownlint-disable MD046 -->
 === "主机安装"
 
     进入 DataKit 安装目录下的 `conf.d/rabbitmq` 目录，复制 `rabbitmq.conf.sample` 并命名为 `rabbitmq.conf`。示例如下：
@@ -88,6 +90,7 @@ RabbitMQ 采集器是通过插件 `rabbitmq-management` 采集数据监控 Rabbi
 === "Kubernetes"
 
     目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+<!-- markdownlint-enable -->
 
 ## 指标集 {#measurements}
 
@@ -104,7 +107,7 @@ RabbitMQ 采集器是通过插件 `rabbitmq-management` 采集数据监控 Rabbi
 
 ### `rabbitmq_overview`
 
--  标签
+- 标签
 
 
 | Tag | Descrition |
@@ -150,7 +153,7 @@ RabbitMQ 采集器是通过插件 `rabbitmq-management` 采集数据监控 Rabbi
 
 ### `rabbitmq_queue`
 
--  标签
+- 标签
 
 
 | Tag | Descrition |
@@ -191,7 +194,7 @@ RabbitMQ 采集器是通过插件 `rabbitmq-management` 采集数据监控 Rabbi
 
 ### `rabbitmq_exchange`
 
--  标签
+- 标签
 
 
 | Tag | Descrition |
@@ -231,7 +234,7 @@ RabbitMQ 采集器是通过插件 `rabbitmq-management` 采集数据监控 Rabbi
 
 ### `rabbitmq_node`
 
--  标签
+- 标签
 
 
 | Tag | Descrition |
@@ -261,32 +264,32 @@ RabbitMQ 采集器是通过插件 `rabbitmq-management` 采集数据监控 Rabbi
 
 
 
-
 ## 日志采集 {#logging}
 
+<!-- markdownlint-disable MD046 -->
 ???+ attention
 
     必须将 DataKit 安装在 RabbitMQ 所在主机才能采集 RabbitMQ 日志
+<!-- markdownlint-enable -->
 
 如需采集 RabbitMQ 的日志，可在 rabbitmq.conf 中 将 `files` 打开，并写入 RabbitMQ 日志文件的绝对路径。比如：
 
 ```toml
-    [[inputs.rabbitmq]]
-      ...
-      [inputs.rabbitmq.log]
-        files = ["/var/log/rabbitmq/rabbit@your-hostname.log"]
+[[inputs.rabbitmq]]
+  ...
+  [inputs.rabbitmq.log]
+    files = ["/var/log/rabbitmq/rabbit@your-hostname.log"]
 ```
-
 
 开启日志采集以后，默认会产生日志来源（`source`）为 `rabbitmq` 的日志。
 
-## 日志 pipeline 功能切割字段说明 {#pipeline}
+## 日志 Pipeline 功能切割字段说明 {#pipeline}
 
 - RabbitMQ 通用日志切割
 
 通用日志文本示例:
 
-```
+``` log
 2021-05-26 14:20:06.105 [warning] <0.12897.46> rabbitmqctl node_health_check and its HTTP API counterpart are DEPRECATED. See https://www.rabbitmq.com/monitoring.html#health-checks for replacement options.
 ```
 
