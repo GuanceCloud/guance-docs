@@ -1364,7 +1364,7 @@ volumes:
 - Linux/Mac:
 
 ```shell
-DK_DATAWAY=https://openway.guance.com?token=<TOKEN> bash -c "$(curl -L https://static.guance.com/install.sh)"
+DK_DATAWAY=https://openway.guance.com?token=<TOKEN> bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
 ```
 
 - Windows
@@ -1374,7 +1374,7 @@ Remove-Item -ErrorAction SilentlyContinue Env:DK_*;
 $env:DK_DATAWAY="https://openway.guance.com?token=<TOKEN>";
 Set-ExecutionPolicy Bypass -scope Process -Force;
 Import-Module bitstransfer;
-start-bitstransfer  -source https://static.guance.com/install.ps1 -destination .install.ps1;
+start-bitstransfer  -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1;
 powershell .install.ps1;
 ```
 
