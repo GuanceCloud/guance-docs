@@ -57,13 +57,11 @@
 
 **全量统计**
 
-
 ![](../img/all.png)
 
 > 观测云不同类型数据的数据保存策略支持自定义选择，详细信息请参考 [数据存储策略](../../billing/billing-method/data-storage.md)。
 
 **增量统计**
-
 
 ![](../img/add.png)
 

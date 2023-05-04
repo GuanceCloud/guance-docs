@@ -14,6 +14,7 @@ CoreDNS 采集器用于采集 CoreDNS 相关的指标数据。
 
 ## 配置 {#input-config}
 
+<!-- markdownlint-disable MD046 -->
 === "主机安装"
 
     进入 DataKit 安装目录下的 `conf.d/coredns` 目录，复制 `coredns.conf.sample` 并命名为 `coredns.conf`。示例如下：
@@ -98,6 +99,7 @@ CoreDNS 采集器用于采集 CoreDNS 相关的指标数据。
 === "Kubernetes"
 
     目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+<!-- markdownlint-enable -->
 
 ## 指标集 {#metrics}
 

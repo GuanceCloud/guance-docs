@@ -17,6 +17,7 @@ Jenkins 采集器是通过插件 `Metrics` 采集数据监控 Jenkins，包括�
 
 ## 配置 {#config}
 
+<!-- markdownlint-disable MD046 -->
 === "主机安装"
 
     进入 DataKit 安装目录下的 `conf.d/jenkins` 目录，复制 `jenkins.conf.sample` 并命名为 `jenkins.conf`。示例如下：
@@ -70,10 +71,11 @@ Jenkins 采集器是通过插件 `Metrics` 采集数据监控 Jenkins，包括�
 === "Kubernetes"
 
     目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+<!-- markdownlint-enable -->
 
 ## Jenkins CI Visibility {#ci-visibility}
 
-Jenkins 采集器可以通过接收 Jenkins datadog plugin 发出的 CI Event 实现 CI 可视化。
+Jenkins 采集器可以通过接收 Jenkins DataDog plugin 发出的 CI Event 实现 CI 可视化。
 
 Jenkins CI Visibility 开启方法：
 
@@ -109,7 +111,7 @@ Jenkins CI Visibility 开启方法：
 
 ### `jenkins`
 
--  标签
+- 标签
 
 
 | Tag | Descrition |
@@ -148,7 +150,7 @@ Jenkins CI Visibility 开启方法：
 
 ### `jenkins_pipeline`
 
--  标签
+- 标签
 
 
 | Tag | Descrition |
@@ -180,7 +182,7 @@ Jenkins CI Visibility 开启方法：
 
 ### `jenkins_job`
 
--  标签
+- 标签
 
 
 | Tag | Descrition |
@@ -212,29 +214,28 @@ Jenkins CI Visibility 开启方法：
 
 
 
-
 ## 日志采集 {#logging}
 
 如需采集 JenKins 的日志，可在 jenkins.conf 中 将 `files` 打开，并写入 JenKins 日志文件的绝对路径。比如：
 
 ```toml
-    [[inputs.JenKins]]
-      ...
-      [inputs.JenKins.log]
-        files = ["/var/log/jenkins/jenkins.log"]
+[[inputs.JenKins]]
+  ...
+  [inputs.JenKins.log]
+    files = ["/var/log/jenkins/jenkins.log"]
 ```
 
-  
 开启日志采集以后，默认会产生日志来源（`source`）为 `jenkins` 的日志。
 
->注意：必须将 DataKit 安装在 JenKins 所在主机才能采集 JenKins 日志
+> 注意：必须将 DataKit 安装在 JenKins 所在主机才能采集 JenKins 日志
 
-## 日志 pipeline 功能切割字段说明 {#pipeline}
+## 日志 Pipeline 功能切割字段说明 {#pipeline}
 
 - JenKins 通用日志切割
 
 通用日志文本示例:
-```
+
+```log
 2021-05-18 03:08:58.053+0000 [id=32] INFO jenkins.InitReactorRunner$1#onAttained: Started all plugins
 ```
 
