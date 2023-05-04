@@ -34,7 +34,7 @@ Directly execute the following command to view the current DataKit version. If t
     Online version available: 1.2.9, commit 9f5ac898be (release at 2022-03-10 12:03:12)
     
     Upgrade:
-    DK_UPGRADE=1 bash -c "$(curl -L https://static.guance.com/install.sh)"
+    DK_UPGRADE=1 bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
     ```
 
 === "Windows"
@@ -58,7 +58,7 @@ Directly execute the following command to view the current DataKit version. If t
     $env:DK_UPGRADE="1";
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
-    start-bitstransfer  -source https://static.guance.com/install.ps1 -destination .install.ps1;
+    start-bitstransfer  -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1;
     powershell .install.ps1;
     ```
 ---
@@ -227,7 +227,7 @@ If the new version is unsatisfactory and eager to roll back the recovery functio
 === "Linux/macOS"
 
     ```shell
-    DK_UPGRADE=1 bash -c "$(curl -L https://static.guance.com/install版本号.sh)"
+    DK_UPGRADE=1 bash -c "$(curl -L https://static.guance.com/datakit/install版本号.sh)"
     ```
 === "Windows"
 
@@ -236,7 +236,7 @@ If the new version is unsatisfactory and eager to roll back the recovery functio
     $env:DK_UPGRADE="1";
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
-    start-bitstransfer  -source https://static.guance.com/install版本号.ps1 -destination .install.ps1;
+    start-bitstransfer  -source https://static.guance.com/datakit/install版本号.ps1 -destination .install.ps1;
     powershell .install.ps1;
     ```
 

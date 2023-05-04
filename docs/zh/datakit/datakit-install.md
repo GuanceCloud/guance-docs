@@ -20,7 +20,7 @@
     命令如下：
     
     ```shell
-    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> bash -c "$(curl -L https://static.guance.com/install.sh)"
+    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
     ```
 
     安装完成后，在终端会看到安装成功的提示。
@@ -34,7 +34,7 @@
     $env:DK_DATAWAY="https://openway.guance.com?token=<TOKEN>";
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
-    start-bitstransfer  -source https://static.guance.com/install.ps1 -destination .install.ps1;
+    start-bitstransfer  -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1;
     powershell .install.ps1;
     ```
 <!-- markdownlint-enable -->
@@ -44,7 +44,7 @@
 可通过在安装命令中指定版本号来安装指定版本的 DataKit，如安装 1.2.3 版本的 DataKit：
 
 ```shell
-DK_DATAWAY=https://openway.guance.com?token=<TOKEN> bash -c "$(curl -L https://static.guance.com/install-1.2.3.sh)"
+DK_DATAWAY=https://openway.guance.com?token=<TOKEN> bash -c "$(curl -L https://static.guance.com/datakit/install-1.2.3.sh)"
 ```
 
 Windows 下同理：
@@ -54,7 +54,7 @@ Remove-Item -ErrorAction SilentlyContinue Env:DK_*;
 $env:DK_DATAWAY="https://openway.guance.com?token=<TOKEN>";
 Set-ExecutionPolicy Bypass -scope Process -Force;
 Import-Module bitstransfer;
-start-bitstransfer  -source https://static.guance.com/install-1.2.3.ps1 -destination .install.ps1;
+start-bitstransfer  -source https://static.guance.com/datakit/install-1.2.3.ps1 -destination .install.ps1;
 powershell .install.ps1;
 ```
 
@@ -66,7 +66,7 @@ powershell .install.ps1;
 === "Linux/macOS"
 
     ```shell
-    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> DK_NAMESPACE=[NAMESPACE] bash -c "$(curl -L https://static.guance.com/install.sh)"
+    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> DK_NAMESPACE=[NAMESPACE] bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
     ```
 
 === "Windows"
@@ -77,7 +77,7 @@ powershell .install.ps1;
     $env:DK_NAMESPACE="[NAMESPACE]";
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
-    start-bitstransfer  -source https://static.guance.com/install.ps1 -destination .install.ps1;
+    start-bitstransfer  -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1;
     powershell .install.ps1;
     ```
 <!-- markdownlint-enable -->

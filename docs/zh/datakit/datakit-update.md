@@ -35,7 +35,7 @@ DataKit 支持手动更新和自动更新两种方式。
     Online version available: 1.2.9, commit 9f5ac898be (release at 2022-03-10 12:03:12)
     
     Upgrade:
-    DK_UPGRADE=1 bash -c "$(curl -L https://static.guance.com/install.sh)"
+    DK_UPGRADE=1 bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
     ```
 
 === "Windows"
@@ -59,7 +59,7 @@ DataKit 支持手动更新和自动更新两种方式。
     $env:DK_UPGRADE="1";
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
-    start-bitstransfer  -source https://static.guance.com/install.ps1 -destination .install.ps1;
+    start-bitstransfer  -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1;
     powershell .install.ps1;
     ```
 <!-- markdownlint-enable -->
@@ -233,7 +233,7 @@ $ curl -X POST 'http://127.0.0.1:9539/v1/datakit/upgrade'
 === "Linux/macOS"
 
     ```shell
-    DK_UPGRADE=1 bash -c "$(curl -L https://static.guance.com/install-1.2.3.sh)"
+    DK_UPGRADE=1 bash -c "$(curl -L https://static.guance.com/datakit/install-1.2.3.sh)"
     ```
 === "Windows"
 
@@ -242,7 +242,7 @@ $ curl -X POST 'http://127.0.0.1:9539/v1/datakit/upgrade'
     $env:DK_UPGRADE="1";
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
-    start-bitstransfer  -source https://static.guance.com/install-1.2.3.ps1 -destination .install.ps1;
+    start-bitstransfer  -source https://static.guance.com/datakit/install-1.2.3.ps1 -destination .install.ps1;
     powershell .install.ps1;
     ```
 <!-- markdownlint-enable -->
