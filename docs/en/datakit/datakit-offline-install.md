@@ -35,7 +35,7 @@ At present, DataKit has a inner proxy collector; The same goal can also be achie
     Add the environment variable `HTTPS_PROXY="1.2.3.4:9530"`, and the installation command is as follows:
     
     ```shell
-    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> HTTPS_PROXY=http://1.2.3.4:9530 bash -c "$(curl -L https://static.guance.com/install.sh)"
+    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> HTTPS_PROXY=http://1.2.3.4:9530 bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
     ```
     
     - Using the Nginx proxy
@@ -43,7 +43,7 @@ At present, DataKit has a inner proxy collector; The same goal can also be achie
     Add the environment variable `DK_PROXY_TYPE="nginx"; DK_NGINX_IP="1.2.3.4";`, and the installation command is as follows:
     
     ```shell
-    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> DK_NGINX_IP=1.2.3.4 DK_PROXY_TYPE=nginx bash -c "$(curl -L https://static.guance.com/install.sh)"
+    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> DK_NGINX_IP=1.2.3.4 DK_PROXY_TYPE=nginx bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
     ```
 
 === "Windows"
@@ -58,7 +58,7 @@ At present, DataKit has a inner proxy collector; The same goal can also be achie
     $env:HTTPS_PROXY="1.2.3.4:9530";
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
-    start-bitstransfer -ProxyUsage Override -ProxyList $env:HTTPS_PROXY -source https://static.guance.com/install.ps1 -destination .install.ps1;
+    start-bitstransfer -ProxyUsage Override -ProxyList $env:HTTPS_PROXY -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1;
     powershell .install.ps1;
     ```
     
@@ -73,7 +73,7 @@ At present, DataKit has a inner proxy collector; The same goal can also be achie
     $env:DK_PROXY_TYPE="nginx";
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
-    start-bitstransfer -ProxyUsage Override -ProxyList $env:DK_NGINX_IP -source https://static.guance.com/install.ps1 -destination .install.ps1;
+    start-bitstransfer -ProxyUsage Override -ProxyList $env:DK_NGINX_IP -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1;
     powershell .install.ps1;
     ```
     
