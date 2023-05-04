@@ -12,8 +12,8 @@ Microsoft IIS 采集器
 
 操作系统要求:
 
-* Windows Vista 以上版本 (不包含 Windows Vista)
-* Windows Server 2008 R2 及以上版本
+- Windows Vista 以上版本 (不包含 Windows Vista)
+- Windows Server 2008 R2 及以上版本
 
 ## 配置 {#config}
 
@@ -37,10 +37,10 @@ Microsoft IIS 采集器
 以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.iis.tags]` 指定其它标签：
 
 ``` toml
-  [inputs.iis.tags]
-    # some_tag = "some_value"
-    # more_tag = "some_other_value"
-    # ...
+[inputs.iis.tags]
+  # some_tag = "some_value"
+  # more_tag = "some_other_value"
+  # ...
 ```
 
 ## 指标 {#measurements}
@@ -52,7 +52,7 @@ Microsoft IIS 采集器
 ### `iis_app_pool_was`
 
 
--  标签
+- 标签
 
 
 | Tag | Descrition |
@@ -77,7 +77,7 @@ Microsoft IIS 采集器
 ### `iis_web_service`
 
 
--  标签
+- 标签
 
 
 | Tag | Descrition |

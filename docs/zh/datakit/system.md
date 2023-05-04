@@ -1,5 +1,6 @@
 
 # System
+
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
@@ -14,6 +15,7 @@ system 采集器收集系统负载、正常运行时间、CPU 核心数量以及
 
 ## 配置 {#config}
 
+<!-- markdownlint-disable MD046 -->
 === "主机安装"
 
     进入 DataKit 安装目录下的 `conf.d/host` 目录，复制 `system.conf.sample` 并命名为 `system.conf`。示例如下：
@@ -41,6 +43,8 @@ system 采集器收集系统负载、正常运行时间、CPU 核心数量以及
     | `ENV_INPUT_SYSTEM_TAGS` | `tags`           | `tag1=value1,tag2=value2` 如果配置文件中有同名 tag，会覆盖它 |
     | `ENV_INPUT_SYSTEM_INTERVAL` | `interval` | `10s` |
 
+<!-- markdownlint-enable -->
+
 ---
 
 ## 指标集 {#measurements}
@@ -60,7 +64,7 @@ system 采集器收集系统负载、正常运行时间、CPU 核心数量以及
 
 Basic information about system operation.
 
--  标签
+- 标签
 
 
 | Tag | Descrition |
@@ -90,7 +94,7 @@ Basic information about system operation.
 
 Conntrack metrics (Linux only).
 
--  标签
+- 标签
 
 
 | Tag | Descrition |
@@ -119,7 +123,7 @@ Conntrack metrics (Linux only).
 
 System file handle metrics (Linux only).
 
--  标签
+- 标签
 
 
 | Tag | Descrition |
