@@ -36,7 +36,7 @@
     增加环境变量 `HTTPS_PROXY="1.2.3.4:9530"`，安装命令如下：
     
     ```shell
-    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> HTTPS_PROXY=http://1.2.3.4:9530 bash -c "$(curl -L https://static.guance.com/install.sh)"
+    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> HTTPS_PROXY=http://1.2.3.4:9530 bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
     ```
 
     - 使用 Nginx 代理
@@ -44,7 +44,7 @@
     增加环境变量 `DK_PROXY_TYPE="nginx"; DK_NGINX_IP="1.2.3.4";`，安装命令如下：
     
     ```shell
-    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> DK_NGINX_IP=1.2.3.4 HTTPS_PROXY=http://1.2.3.4:9530 bash -c "$(curl -L https://static.guance.com/install.sh)"
+    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> DK_NGINX_IP=1.2.3.4 HTTPS_PROXY=http://1.2.3.4:9530 bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
     ```
 
 === "Windows"
@@ -59,7 +59,7 @@
     $env:HTTPS_PROXY="1.2.3.4:9530";
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
-    start-bitstransfer -ProxyUsage Override -ProxyList $env:HTTPS_PROXY -source https://static.guance.com/install.ps1 -destination .install.ps1;
+    start-bitstransfer -ProxyUsage Override -ProxyList $env:HTTPS_PROXY -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1;
     powershell .install.ps1;
     ```
 
@@ -74,7 +74,7 @@
     $env:DK_PROXY_TYPE="nginx";
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
-    start-bitstransfer -ProxyUsage Override -ProxyList $env:DK_NGINX_IP -source https://static.guance.com/install.ps1 -destination .install.ps1;
+    start-bitstransfer -ProxyUsage Override -ProxyList $env:DK_NGINX_IP -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1;
     powershell .install.ps1;
     ```
 
