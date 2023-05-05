@@ -48,7 +48,7 @@
 
 ### 时间控件
 
-观测云支持通过时间控件控制当前仪表板的数据展示范围，用户可以手动输入时间范围，或快速选择当前仪表板的内置时间范围，或通过自定义设置时间范围。详情可参考 [时间控件说明](../getting-started/function-details/explorer-search.md#time) 
+观测云支持通过[时间控件](../getting-started/function-details/explorer-search.md#time)控制当前仪表板的数据展示范围，用户可以手动输入时间范围，或快速选择当前仪表板的内置时间范围，或通过自定义设置时间范围。
 
 ![](img/dashboard002.png)
 
