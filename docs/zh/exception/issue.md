@@ -76,7 +76,7 @@ Issue 的创建支持两种方式：手动创建、自动创建。
 
 ### 自动创建 {others}
 
-当您在配置**监控器**时，可选择关联**频道**。当监控器产生异常事件告警，则会自动创建 Issue。以[配置阀值检测](../monitoring/monitor/threshold-detection.md#steps)为例:
+当您在配置**监控器**时，可选择关联**频道**。当监控器产生异常事件告警，则会自动创建 Issue。以[配置阈值检测](../monitoring/monitor/threshold-detection.md#steps)为例:
 
 1、由事件触发创建的 Issue，**状态**默认 Open、**等级**默认 P2；
 

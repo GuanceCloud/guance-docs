@@ -105,11 +105,13 @@
 
     回到观测云**绑定阿里云账号**页面，点击**验证**。验证通过后即可点击**确认开通**。
 
-    **注意：**
+    **注意**：
     
     - 观测云专属版采用 SLS 存储方式，如果您的云账号<u>未开通阿里云日志服务 SLS</u>，将无法正常使用日志存储服务；
   
-    - 操作跨账号角色授权需<u>使用阿里云主账号</u>或<u>授权了 RAM 访问控制 GetRole、GetPolicy、CreatePolicy、CreatePolicyVersion、CreateRole、UpdateRole、AttachPolicyToRole 权限</u>的子账号；
+    - 操作跨账号角色授权需使用<u>阿里云主账号</u>或<u>授权了 RAM 访问控制 GetRole、GetPolicy、CreatePolicy、CreatePolicyVersion、CreateRole、UpdateRole、AttachPolicyToRole 权限</u>的子账号；
+
+    - 在验证过程中，如果验证的是被授权的子账号，会自动定位到该子账号所属的主账号，拉取主账号下的 project 和 Logstore；  
     
     - 如果验证失败，请检查是否已完成云资源访问授权。可前往**阿里云 RAM 控制台 > RAM 访问控制 > 角色/授权**查看；
 

@@ -113,6 +113,12 @@
 
 ![](img/sls-index-1.png)
 
+???+ attention
+
+    - 操作跨账号角色授权需使用<u>阿里云主账号</u>或<u>授权了 RAM 访问控制 GetRole、GetPolicy、CreatePolicy、CreatePolicyVersion、CreateRole、UpdateRole、AttachPolicyToRole 权限</u>的子账号；
+
+    - 在验证过程中，如果验证的是被授权的子账号，会自动定位到该子账号所属的主账号，拉取主账号下的 project 和 Logstore。
+
 #### FAQ {FAQ}
 
 1、如何确认在阿里云市场授权成功？

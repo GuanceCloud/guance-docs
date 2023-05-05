@@ -1,5 +1,6 @@
 
 # DataKit 代理
+
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
@@ -39,7 +40,7 @@ curl -x <PROXY-IP:PROXY-PORT> -v -X POST https://openway.guance.com/v1/write/met
 
 如果代理服务器工作正常，工作空间将收到指标数据 `proxy_test,name=test c=123i`。
 
-- 设置 _被代理 Datakit_ 的代理模式
+- 设置 *被代理 Datakit* 的代理模式
 
 进入被代理 DataKit 安装目录下的 `conf.d/` 目录，配置 `datakit.conf` 中的代理服务。如下：
 
@@ -56,11 +57,11 @@ curl -x <PROXY-IP:PROXY-PORT> -v -X POST https://openway.guance.com/v1/write/met
 代理 HTTPS 流量这里 nginx 采用 4 层的透明代理方式，即需要:
 
 - 一台可以访问外网的 nginx 的透明代理服务器
-- datakit 所在的客户机使用 hosts 文件进行域名配置
+- Datakit 所在的客户机使用 *hosts* 文件进行域名配置
 
 ### 配置 `Nginx` 代理服务 {#config-nginx-proxy}
 
-```
+``` nginx
 # 代理 HTTPS
 stream {
     # resolver 114.114.114.114;
@@ -80,7 +81,7 @@ http {
 
 代理 HTTP 流量这里 nginx 采用 7 层的透明代理方式(如果不需要代理 HTTP 这段可以跳过):
 
-```
+```nginx
 # 代理 HTTP
 http {
     # resolver 114.114.114.114;
@@ -132,6 +133,7 @@ $ sudo vi /etc/hosts
 
 在被代理机器上，测试代理是否正常：
 
+<!-- markdownlint-disable MD046 -->
 === "Linux/Unix Shell"
 
     ```shell
@@ -161,3 +163,4 @@ $ sudo vi /etc/hosts
     ```PowerShell
     [Net.ServicePointManager]::SecurityProtocol
     ```
+<!-- markdownlint-enable -->
