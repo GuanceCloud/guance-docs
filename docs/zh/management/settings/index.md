@@ -1,106 +1,110 @@
 # 设置
 
-加入到工作空间并被分配权限后，您可以看到一系列关于**当前工作空间**的设置。
+加入到工作空间并被分配权限后，您可以看到一系列关于<u>当前工作空间</u>的设置。
  
 ![](img/3.space_management_6.png)
 
-## Remark
+### 备注
 
-In **Management > Settings > Basic Information**, set the remark information to be viewed.
+观测云支持为当前工作空间设置备注，帮助用户能更清晰的获取工作空间名称等信息。
+
+在**管理 > 设置 > 基本信息**，设置需要查看的备注信息。
 
 ![](img/3.space_management_7.1.png)
 
-After setting up, you can view the remark in the upper left workspace.
+设置完成后，您可以在左上角工作空间查看备注信息。
 
 ![](img/3.space_management_7.png)
 
-Click on the workspace name to view all workspaces and their remarks, and click **Edit** to add or modify the notes.
+点击工作空间名称，支持查看所有工作空间及其备注，点击备注**编辑**按钮即可添加或修改备注内容。
 
 ![](img/3.space_management_7.2.png)
 
-## Replace Token
+### 更换Token
 
-Guance supports the current workspace owner and administrator to copy/change the Token in the space, and customize the expiration time of the current Token. 
+观测云支持当前空间拥有者和管理员复制/变更空间内的 Token，并自定义当前 Token 的失效时间。进入**管理 > 基本设置 > 更换 Token**，选择失效时间并确认**更换**后，观测云会自动生成新的 Token，旧的 Token 会在指定时间内失效。
 
-Enter **Replace Token**, select the expiration time and confirm **Replace**. Then Guance will automatically generate a new Token and the old Token will expire within the specified time.
+???+ attention
 
-Note:
+    - 更换 Token 会触发 **[操作审计](../management/operation-audit.md)** 和 **[通知](../management/system-notification.md)**；
+    - 更换 Token 后，原有 Token 会在指定时间内失效。失效时间包括：立即失效、10分钟、6小时、12小时、24小时。立即失效一般用于 Token 泄露，选择立即失效后，原有 Token 将立刻停止数据上报，若设置了异常检测，则无法触发事件及告警通知，直至在 DataKit 采集器的 `datakit.conf` 中把原有 Token 修改成新生成的 Token 。关于 `datakit.conf` 文件的存储目录，可参考文档 [DataKit 使用入门](../datakit/datakit-conf.md)。
 
-- Changing Token triggers **Action Events** and **Notifications**. See [Audit](../../management/operation-audit.md) and [System Notification](../../management/system-notification.md) for more information.  
-- After replaced, the original Token will expire within the specified time. The failure time includes: immediate failure, 10 minutes, 6 hours, 12 hours and 24 hours.<br/>
-> Immediate invalidation is generally used for Token leakage. After it is selected, the original Token will stop data reporting immediately. If anomaly detection is set, events and alarm notifications cannot be triggered until the original Token is modified into a newly generated Token in `datakit.conf` of DataKit collector. See [Getting Started with DataKit](../../datakit/datakit-conf.md) for more information.
+### 配置迁移 {#export-import}
 
-![](img/datakit.png)
+观测云支持拥有者和管理员一键导入、导出工作空间内的仪表板、自定义查看器、监控器的 JSON 配置文件，进入**管理 > 设置**，在**配置迁移**选择导出或导入操作。
 
-## Configure Migration {#export-import}
+在导入时，若当前工作空间存在重名的仪表板、查看器、监控器，提示导入文件存在重名，用户可以根据实际的需求来选择是否**跳过**、**仍然创建**和**取消**。
 
-Owners and administrators can import and export configuration files of dashboards, custom explorers and monitors in the current workspace.   
-Enter **Configuration Migration** and select **Export** or **Import**.
+- 跳过：表示**仅创建非重名**的文件；  
+- 仍然创建：根据导入的文件名创建对应仪表板、查看器、监控器；            
+- 取消：取消此次文件导入操作，即无文件导入。       
 
-When importing, if there are dashboards, explorers and monitors with duplicate names in the current workspace, the user can choose whether to **Skip**, **Still Create** and **Cancel** according to your actual needs.
+???+ attention
 
-- Skip: **only create files with non-duplicate name**.  
-- Still Create: Create the corresponding dashboard, explorers and monitor according to the imported file name.  
-- Cancel: Cancel this file import operation, that is, no file import.
-
-> **Note**: The current workspace supports importing JSON configurations for dashboards, custom explorers and monitors from other workspaces.
+    支持以压缩包的格式导入其他工作空间仪表板、查看器、监控器的 JSON 配置文件。
 
 ![](img/5.input_rename_1.png)
 
-### Advanced Settings
+## 高级设置
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Key Metrics</font>](key-metrics.md#)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 关键指标</font>](../settings/key-metrics.md)
+
+<br/>
+
+</div>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 功能菜单</font>](../settings/customized-menu.md)
 
 <br/>
 
 </div>
 
 
-<div class="grid cards" markdown>
+### IP 白名单
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Feature Menu</font>](customized-menu.md#)
+观测云支持为工作空间配置 IP 白名单来限制来访用户。开启 IP 白名单后，仅白名单中的 IP 来源可以正常登录，其他来源请求均会被拒绝访问。
 
-<br/>
+IP 白名单仅支持管理员及拥有者可以设置，同时 **Owner** 不受 IP 白名单访问限制。
 
-</div>
+IP白名单书写规范如下：
 
-### IP White List
-
-IP whitelist is used to restrict visiting users. After opening the IP whitelist, only the IP sources in the whitelist can log in normally, and requests from other sources will be denied access.
-
-> IP whitelist can only be set by administrators and owners, and owners are not restricted by IP whitelist access.
-
-IP white list writing specification is as follows:
-
-- Multiple IP lines need to be broken. Only one IP or network segment can be filled in each line, and up to 1000 IP lines can be added
-- Specified IP address: **192.168.0.1**, indicating that access to the IP address of 192.168.0.1 is allowed.
-- Specified IP segment: **192.168.0.0/24**, indicating that IP address access from 192.168.0.1 to 192.168.0.255 is allowed.
-- All IP addresses: **0.0.0.0/0**.
+- 多个 IP 需换行，每行只允许填写一个 IP 或网段，最多可添加 1000 个； 
+- 指定 IP 地址：192.168.0.1  ，表示允许 192.168.0.1 的 IP 地址访问；             
+- 指定 IP 段：192.168.0.0/24 ，表示允许 192.168.0.1 到 192.168.0.255 的 IP 地址访问；        
+- 所有 IP 地址：0.0.0.0/0。
 
 ![](img/6.space_ip_1.png)
 
-### Change Data Storage Policy
+## 变更数据存储策略
 
-Guance supports **Owners only** to change the data storage policy in the space, enter **Management > Basic Settings**, click **Change**, select the required data storage time, and click **Confirm** to change the data storage time in the current workspace. See [Data Storage Policy](../../billing/billing-method/data-storage.md) for more information.
+观测云支持拥有者变更空间内的数据存储策略，进入**管理 > 基本设置**，点击**变更**后，选择所需的数据存储时长，点击**确定**即可变更当前工作空间内的数据存储时长。
 
-### Delete Measurement
+> 更多说明可参考文档 [数据存储策略](../billing/billing-method/data-storage.md) 。
 
-<div class="grid cards" markdown>
+## 删除指标集
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Delete Metric Data</font>](../../metrics/collection.md#delete)
+观测云支持拥有者和管理员删除空间内的指标集，进入**管理 > 基本设置**，点击**删除指标集**后，输入查询并选择指标集名称（支持模糊匹配），点击**确定**后进入删除队列等待删除。
 
-<br/>
+???+ attention
 
-</div>
+    - 只允许空间拥有者和管理员进行此操作；     
 
-### Delete Custom Object
+    - 指标集一经删除，无法恢复，请谨慎操作；    
 
-Owners and administrators can delete specified custom object categories and all custom objects, click **Delete** and select the method of deleting custom objects to delete corresponding object data.
+    - 删除指标集时，会产生系统通知事件，如用户创建了删除指标集任务、删除指标集任务执行成功、删除指标集任务执行失败等。
 
-- Specify custom object classification: Only the data under the selected object classification will be deleted, and the index will not be deleted.  
-- All custom objects: Delete all custom object data and indexes.
+![](img/11.metric_1.png)
+
+## 删除自定义对象
+
+观测云支持拥有者和管理员删除指定自定义对象分类以及所有自定义对象，进入**管理 > 基本设置**，点击**删除自定义对象**后，选择删除自定义对象的方式，即可删除对应的对象数据。
+
+- 指定自定义对象分类：仅删除所选对象分类下的数据，不会删除索引；           
+- 所有自定义对象：删除所有自定义对象数据及索引。   
 
 ![](img/7.custom_cloud_3.png)
 
