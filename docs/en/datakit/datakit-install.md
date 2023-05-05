@@ -19,7 +19,7 @@ Log in to the workspace, click "Integration" on the left and select "Datakit" at
     The order is roughly as follows:
     
     ```shell
-    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> bash -c "$(curl -L https://static.guance.com/install.sh)" 
+    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> bash -c "$(curl -L https://static.guance.com/datakit/install.sh)" 
     ```
     
     After the installation is completed, you will see a prompt that the installation is successful at the terminal.
@@ -33,7 +33,7 @@ Log in to the workspace, click "Integration" on the left and select "Datakit" at
     $env:DK_DATAWAY="https://openway.guance.com?token=<TOKEN>";
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
-    start-bitstransfer  -source https://static.guance.com/install.ps1 -destination .install.ps1;
+    start-bitstransfer  -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1;
     powershell .install.ps1; 
     ```
 
@@ -42,7 +42,7 @@ Log in to the workspace, click "Integration" on the left and select "Datakit" at
 We can install specific datakit version, for example 1.2.3:
 
 ```shell
-DK_DATAWAY=https://openway.guance.com?token=<TOKEN> bash -c "$(curl -L https://static.guance.com/install-1.2.3.sh)"
+DK_DATAWAY=https://openway.guance.com?token=<TOKEN> bash -c "$(curl -L https://static.guance.com/datakit/install-1.2.3.sh)"
 ```
 
 And the same as Windows:
@@ -52,7 +52,7 @@ Remove-Item -ErrorAction SilentlyContinue Env:DK_*;
 $env:DK_DATAWAY="https://openway.guance.com?token=<TOKEN>";
 Set-ExecutionPolicy Bypass -scope Process -Force;
 Import-Module bitstransfer;
-start-bitstransfer  -source https://static.guance.com/install-1.2.3.ps1 -destination .install.ps1;
+start-bitstransfer  -source https://static.guance.com/datakit/install-1.2.3.ps1 -destination .install.ps1;
 powershell .install.ps1;
 ```
 
@@ -63,7 +63,7 @@ If you need to define some DataKit configuration during the installation phase, 
 === "Linux/macOS"
 
     ```shell
-    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> DK_NAMESPACE=<namespace> bash -c "$(curl -L https://static.guance.com/install.sh)"
+    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> DK_NAMESPACE=<namespace> bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
     ```
     
 === "Windows"
@@ -74,7 +74,7 @@ If you need to define some DataKit configuration during the installation phase, 
     $env:DK_NAMESPACE="<namespace>";
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
-    start-bitstransfer  -source https://static.guance.com/install.ps1 -destination .install.ps1;
+    start-bitstransfer  -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1;
     powershell .install.ps1;
     ```
 ---

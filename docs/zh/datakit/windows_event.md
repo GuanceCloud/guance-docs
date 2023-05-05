@@ -1,5 +1,6 @@
 
 # Windows 事件
+
 ---
 
 :fontawesome-brands-windows:
@@ -62,7 +63,7 @@ Windows 事件日志采集是采集应用程序、安全、系统等 Windows 事
 
 ### `windows_event`
 
--  标签
+- 标签
 
 
 | Tag | Descrition |
@@ -86,7 +87,5 @@ Windows 事件日志采集是采集应用程序、安全、系统等 Windows 事
 
 | Metric | Descrition | Type | Unit |
 | ---- |---- | :---:    | :----: |
-
- 
 
 

@@ -14,6 +14,7 @@ Memcached 采集器可以从 Memcached 实例中采集实例运行状态指标�
 
 ## 配置 {#config}
 
+<!-- markdownlint-disable MD046 -->
 === "主机安装"
 
     进入 DataKit 安装目录下的 `conf.d/db` 目录，复制 `memcached.conf.sample` 并命名为 `memcached.conf`。示例如下：
@@ -44,6 +45,7 @@ Memcached 采集器可以从 Memcached 实例中采集实例运行状态指标�
 === "Kubernetes"
 
     目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+<!-- markdownlint-enable -->
 
 ## 指标集 {#measurements}
 
@@ -60,7 +62,7 @@ Memcached 采集器可以从 Memcached 实例中采集实例运行状态指标�
 
 ### `memcached`
 
--  标签
+- 标签
 
 
 | Tag | Descrition |
