@@ -202,7 +202,7 @@ server {
 
 ```shell
 nginx -t        # 测试配置
-nginx -s reload # reload配置
+nginx -s reload # reload 配置
 ```
 
 - 将文件下载到 Nginx 服务器所在的 */datakit* 目录下，这里以 wget 下载 Linux AMD64 平台的安装包为例：
@@ -310,7 +310,7 @@ done
 
     ```shell
     #!/bin/bash
-    # 请修改要免密的主机ip
+    # 请修改要免密的主机 IP
     host_ip=(
       10.200.14.112
       10.200.14.113
@@ -321,7 +321,7 @@ done
 
     menu() {
       echo -e "\e[33m------请选择需要的操作------\e[0m"
-      echo -e "\e[33m1、设置ssh远程免密登录\e[0m"
+      echo -e "\e[33m1、设置 SSH 远程免密登录\e[0m"
       echo -e "\e[33m2、远程传输文件\e[0m"
       echo -e "\e[33m3、远程解压镜像\e[0m"
       read -p "请输入选项：" num
@@ -383,7 +383,8 @@ done
       ;;
     *)
             
-      echo -e "\e[31m请输入选项中的数字{1|2|3}:\e[0m"
+      echo -e "\e[31m 请输入选项中的数字{1|2|3}:\e[0m"
+      echo -e "\e[31m 请输入选项中的数字{1|2|3}:\e[0m"
     esac
     }
 
@@ -419,12 +420,12 @@ wget https://static.guance.com/datakit/datakit.yaml -P /home/guance/
 2、下载 Datakit 镜像并打包
 
 ```shell
-# 拉取amd镜像并打包
+# 拉取 amd 镜像并打包
 docker pull --platform amd64 pubrepo.guance.com/datakit/datakit:1.6.1
 docker save -o datakit-amd64-1.6.1.tar pubrepo.guance.com/datakit/datakit:1.6.1
 mv datakit-amd64-1.6.1.tar /home/guance
 
-# 拉取arm镜像并打包
+# 拉取 arm 镜像并打包
 docker pull --platform arm64 pubrepo.guance.com/datakit/datakit:1.6.1
 docker save -o datakit-arm64-1.6.1.tar pubrepo.guance.com/datakit/datakit:1.6.1
 mv datakit-arm64-1.6.1.tar /home/guance
@@ -434,7 +435,7 @@ docker image inspect pubrepo.jiagouyun.com/datakit/datakit:1.6.1 |grep Architect
 
 ```
 
-3、修改Nginx配置代理
+3、修改 NGINX 配置代理
 
 <!-- markdownlint-disable MD046 -->
 ???- note "/etc/nginx/nginx.conf (单击点开)"
