@@ -37,6 +37,8 @@
 
 ### 在小程序的app.js文件以如下方式引入代码
 
+**注意**：引入位置需要在 App() 初始化之前。
+
 === "NPM" 
 
 	NPM 包引入方式可参考微信官方 [npm引入方式](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html)

@@ -49,11 +49,16 @@ The following dialog box will pop out once you click **Create**. If you need to 
 
 #### SSO Account {#sso}
 
-In addition to logging in by registering a Guance account, enterprise users are supported to log in to the Guance through SSO. After entering the workspace, click **Account** > **Account Management** on the left to modify the SSO account. Here you can:    
+In addition to logging in by registering a Guance account, enterprise users are supported to log in to the Guance through SSO. After entering the workspace, click **Account** > **Account Management** on the left to modify the SSO account. 
+
+Here you can:    
+
 - modify avatar and user name;  
 - modify [login retention time](#login-hold-time).
 
-> Note: For accounts logged in through SSO, the login retention time configured by SSO is used by default. After account management is modified, the modified login retention time is used. For more details, please refer to the document [SSO Management](../management/sso/index.md).
+???+ note
+
+    For accounts logged in through SSO, the login retention time configured by SSO is used by default. After account management is modified, the modified login retention time is used. For more details, please refer to the document [SSO Management](../management/sso/index.md).
 
 ### Switch Workspace   
 If you belong to multiple Guance workspaces, you can jump to the page by clicking the upper-left workspace name of the studio to toggle between them.  
