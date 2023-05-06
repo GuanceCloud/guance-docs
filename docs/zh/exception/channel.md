@@ -41,7 +41,6 @@
 
 - 无：取消订阅。
 
-![](img/exception-3.png)
 
 ### 查看订阅成员
 
@@ -92,7 +91,7 @@
 
 ![](img/exception-6.png)
 
-### 回复 Issue {reply-issue}
+### 回复 Issue {#reply-issue}
 
 Issue 存在回复记录一般源于两种情况：
 
