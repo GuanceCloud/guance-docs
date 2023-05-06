@@ -2,7 +2,7 @@
 
 加入到工作空间并被分配权限后，您可以看到一系列关于<u>当前工作空间</u>的设置。
  
-![](img/3.space_management_6.png)
+![](../img/3.space_management_6.png)
 
 ### 备注
 
@@ -10,24 +10,24 @@
 
 在**管理 > 设置 > 基本信息**，设置需要查看的备注信息。
 
-![](img/3.space_management_7.1.png)
+![](../img/3.space_management_7.1.png)
 
 设置完成后，您可以在左上角工作空间查看备注信息。
 
-![](img/3.space_management_7.png)
+![](../img/3.space_management_7.png)
 
 点击工作空间名称，支持查看所有工作空间及其备注，点击备注**编辑**按钮即可添加或修改备注内容。
 
-![](img/3.space_management_7.2.png)
+![](../img/3.space_management_7.2.png)
 
-### 更换Token
+### 更换 Token
 
 观测云支持当前空间拥有者和管理员复制/变更空间内的 Token，并自定义当前 Token 的失效时间。进入**管理 > 基本设置 > 更换 Token**，选择失效时间并确认**更换**后，观测云会自动生成新的 Token，旧的 Token 会在指定时间内失效。
 
 ???+ attention
 
     - 更换 Token 会触发 **[操作审计](../management/operation-audit.md)** 和 **[通知](../management/system-notification.md)**；
-    - 更换 Token 后，原有 Token 会在指定时间内失效。失效时间包括：立即失效、10分钟、6小时、12小时、24小时。立即失效一般用于 Token 泄露，选择立即失效后，原有 Token 将立刻停止数据上报，若设置了异常检测，则无法触发事件及告警通知，直至在 DataKit 采集器的 `datakit.conf` 中把原有 Token 修改成新生成的 Token 。关于 `datakit.conf` 文件的存储目录，可参考文档 [DataKit 使用入门](../datakit/datakit-conf.md)。
+    - 更换 Token 后，原有 Token 会在指定时间内失效。失效时间包括：立即失效、10分钟、6小时、12小时、24小时。立即失效一般用于 Token 泄露，选择立即失效后，原有 Token 将立刻停止数据上报，若设置了异常检测，则无法触发事件及告警通知，直至在 DataKit 采集器的 `datakit.conf` 中把原有 Token 修改成新生成的 Token。关于 `datakit.conf` 文件的存储目录，可参考文档 [DataKit 使用入门](../datakit/datakit-conf.md)。
 
 ### 配置迁移 {#export-import}
 
@@ -43,7 +43,7 @@
 
     支持以压缩包的格式导入其他工作空间仪表板、查看器、监控器的 JSON 配置文件。
 
-![](img/5.input_rename_1.png)
+![](../img/5.input_rename_1.png)
 
 ## 高级设置
 
@@ -77,7 +77,7 @@ IP白名单书写规范如下：
 - 指定 IP 段：192.168.0.0/24 ，表示允许 192.168.0.1 到 192.168.0.255 的 IP 地址访问；        
 - 所有 IP 地址：0.0.0.0/0。
 
-![](img/6.space_ip_1.png)
+![](../img/6.space_ip_1.png)
 
 ## 变更数据存储策略
 
@@ -97,7 +97,7 @@ IP白名单书写规范如下：
 
     - 删除指标集时，会产生系统通知事件，如用户创建了删除指标集任务、删除指标集任务执行成功、删除指标集任务执行失败等。
 
-![](img/11.metric_1.png)
+![](../img/11.metric_1.png)
 
 ## 删除自定义对象
 
@@ -106,7 +106,7 @@ IP白名单书写规范如下：
 - 指定自定义对象分类：仅删除所选对象分类下的数据，不会删除索引；           
 - 所有自定义对象：删除所有自定义对象数据及索引。   
 
-![](img/7.custom_cloud_3.png)
+![](../img/7.custom_cloud_3.png)
 
 
 
