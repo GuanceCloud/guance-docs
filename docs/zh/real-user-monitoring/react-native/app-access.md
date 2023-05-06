@@ -12,6 +12,7 @@
 ![](../img/image_12.png)![](../img/image_13.png)
 
 ## 安装
+![](https://img.shields.io/badge/dynamic/json?label=npm&color=orange&query=$.version&uri=https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/ft-sdk-package/badge/react-native/version.json&link=https://github.com/GuanceCloud/datakit-react-native) ![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/ft-sdk-package/badge/react-native/info.json&link=https://github.com/GuanceCloud/datakit-flutter)
 
 **源码地址**：[https://github.com/GuanceCloud/datakit-react-native](https://github.com/GuanceCloud/datakit-react-native)
 
@@ -27,7 +28,7 @@ npm install @cloudcare/react-native-mobile
 
 ```json
 "dependencies": {    
-   "@cloudcare/react-native-mobile: "^0.2.4",
+   "@cloudcare/react-native-mobile: [lastest_version],
    ···
 }
 ```
