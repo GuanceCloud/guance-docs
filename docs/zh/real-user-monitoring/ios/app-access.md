@@ -31,27 +31,14 @@
 **Demo**：[https://github.com/GuanceCloud/datakit-ios/demo](https://github.com/GuanceCloud/datakit-ios/tree/develop/demo)
 
 
-### 源码方式
-
-1.从 GitHub 根据指定 tag 获取 SDK 的源代码。
-
-```
-git clone --branch [latest_version] https://github.com/GuanceCloud/datakit-ios.git
-```
-
-2.将 SDK 源代码导入 App 项目。将 **FTMobileAgent** 和 **BaseUtils** 文件夹导入项目，并选中 `Copy items if needed` ，勾选 `Create groups` 。
-
-
 ### CocoaPods 方式
 
 1.配置 `Podfile` 文件。
 
 ```objectivec
 target 'yourProjectName' do
-
 # Pods for your project
 pod 'FTMobileSDK', '[latest_version]'
-    
 end
 ```
 
@@ -72,6 +59,31 @@ github "GuanceCloud/datakit-ios" == [latest_version]
 4.在 `TARGETS`  -> `Build Setting` ->  `Other Linker Flags`  添加  `-ObjC`。
 
 5.目前只支持 1.3.4-beta.2 及以上的版本。
+
+### Swift Package Manager 方式
+
+1.选中 `PROJECT` -> `Package Dependency` ，点击 `Packages` 栏目下的 **+**。
+
+2.在弹出的页面的搜索框中输入 `https://github.com/GuanceCloud/datakit-ios.git`，这是代码的存储位置。
+
+3.Xcode 获取软件包成功后，会展示 SDK 的配置页。
+
+`Dependency Rule` ：建议选择 `Up to Next Major Version` 。
+
+`Add To Project` ：选择支持的工程。
+
+填好配置后点击  `Add Package`  按钮，等待加载完成。
+
+4.在弹窗 `Choose Package Products for datakit-ios` 中选择需要添加 SDK 的 Target，点击 `Add Package` 按钮，此时 SDK 已经添加成功。
+
+如果您的项目由 SPM 管理，将 SDK 添加为依赖项，添加 `dependencies `到 `Package.swift`。
+
+```plaintext
+// 主项目
+dependencies: [
+    .package(name: "FTMobileSDK", url: "https://github.com/GuanceCloud/datakit-ios.git",.upToNextMajor(from: "[latest_version]"))
+]
+```
 
 ### 添加头文件
 
@@ -777,6 +789,80 @@ FT_ENV=SDK_ENV
 #### 方法三：手动上传
 
 [Sourcemap 上传](../../datakit/rum.md#sourcemap)
+
+## Widget Extension 数据采集
+
+### Widget Extension 数据采集支持
+
+* Logger 自定义日志
+
+* Trace 链路追踪
+* RUM 数据采集
+  * 手动采集  ([RUM 用户数据追踪](#rum) )
+  * 自动采集崩溃日志，HTTP Resource 数据
+
+由于  HTTP Resource 数据是与 View 进行绑定的，所以需要用户手动采集 View 的数据。
+
+### Widget Extension 采集配置
+
+使用 `FTExtensionConfig` 配置 Widget Extension 采集数据的自动开关和文件共享 Group Identifier，其他的配置使用主项目 SDK 中已设配置。
+
+| **字段**                   | **类型**  | **说明**                                       | **必须**           |
+| -------------------------- | --------- | ---------------------------------------------- | ------------------ |
+| groupIdentifier            | NSString  | 文件共享 Group Identifier                      | 是                 |
+| enableSDKDebugLog          | BOOL      | 设置是否允许 SDK 打印 Debug 日志               | 否（默认NO）       |
+| enableConsoleLog           | BOOL      | 是否允许采集自定义 log                         | 否（默认NO）       |
+| enableTrackAppCrash        | BOOL      | 设置是否需要采集崩溃日志                       | 否（默认NO）       |
+| enableRUMAutoTraceResource | BOOL      | 设置是否追踪用户网络请求 (仅作用于native http) | 否（默认NO）       |
+| enableTracerAutoTrace      | BOOL      | 设置是否开启自动 http 链路追踪                 | 否（默认NO）       |
+| memoryMaxCount             | NSInteger | 数据保存在 Widget Extension 数量最大值         | 否（默认 1000 条） |
+
+extension SDK 使用示例：
+
+```swift
+let extensionConfig = FTExtensionConfig.init(groupIdentifier: "group.identifier")
+extensionConfig.enableTrackAppCrash = true
+extensionConfig.enableRUMAutoTraceResource = true
+extensionConfig.enableTracerAutoTrace = true
+extensionConfig.enableSDKDebugLog = true
+FTExtensionManager.start(with: extensionConfig)
+  
+FTExternalDataManager.shared().startView(withName: "WidgetDemoEntryView")
+```
+
+同时在主项目中设置 `FTMobileConfig` 时，必须设置 `groupIdentifiers` 。
+
+```objective-c
+// 主项目
+ FTMobileConfig *config = [[FTMobileConfig alloc]initWithMetricsUrl:url];
+ config.enableSDKDebugLog = YES;
+ config.groupIdentifiers = @[@"group.com.ft.widget.demo"]; 
+```
+
+### Widget Extension 采集的数据上传
+
+Widget Extension 中仅实现数据的采集，数据上传逻辑交给主项目的 SDK 来实现。采集的数据同步到主项目的时机由用户自定义。
+
+```objective-c
+// 在主项目中调用
+/**
+ @abstract
+ * Track App Extension groupIdentifier 中缓存的数据，会保存在数据库中等待时机上传
+ *
+ * @param groupIdentifier 需要进行上传的 Widget Extension groupIdentifier
+ * @param completion  完成 track 后的 callback
+ */
+- (void)trackEventFromExtensionWithGroupIdentifier:(NSString *)groupIdentifier completion:(nullable void (^)(NSString *groupIdentifier, NSArray *events)) completion;
+```
+
+示例：
+
+```objective-c
+// 在主项目中
+-(void)applicationDidBecomeActive:(UIApplication *)application{
+    [[FTMobileAgent sharedInstance] trackEventFromExtensionWithGroupIdentifier:@"group.identifier" completion:nil];
+}
+```
 
 ## 常见问题 {#FAQ}
 
