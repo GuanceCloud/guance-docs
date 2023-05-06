@@ -13,6 +13,8 @@
 ![](../img/image_13.png)
 
 ## 安装
+![](https://img.shields.io/badge/dynamic/json?label=pub.dev&color=blue&query=$.version&uri=https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/ft-sdk-package/badge/flutter/version.json) 
+![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/ft-sdk-package/badge/flutter/info.json)
 
 **Pub.Dev**: [ft_mobile_agent_flutter](https://pub.dev/packages/ft_mobile_agent_flutter)
 
@@ -30,7 +32,7 @@
 
 ```yaml
 dependencies:
-  ft_mobile_agent_flutter: ^0.2.8-dev.9
+  ft_mobile_agent_flutter: [lastest_version]
 ```
 
 现在在您的 Dart 代码中，您可以使用：
@@ -81,6 +83,7 @@ void main() async {
 | debug | bool | 否 | 设置是否允许打印日志，默认`false` |
 | datakitUUID | String | 否 | 请求`HTTP`请求头`X-Datakit-UUID` 数据采集端  如果用户不设置会自动配置 |
 | envType | enum EnvType | 否 | 环境，默认`prod` |
+| serviceName | String | 否 | 服务名 |
 
 ### RUM 配置 {#rum-config}
 
@@ -168,7 +171,6 @@ String customDynamicValue = prefs.getString("customDynamicValue")?? "not set";
 
 ```dart
  await FTLogger().logConfig(
-   serviceName: "flutter_agent", 
    enableCustomLog: true
  );
 ```
@@ -176,7 +178,6 @@ String customDynamicValue = prefs.getString("customDynamicValue")?? "not set";
 | **字段** | **类型** | **必须** | **说明** |
 | --- | --- | --- | --- |
 | sampleRate | double | 否 | 采样率，采集率的值范围为>= 0、<= 1，默认值为 1 |
-| serviceName | String | 否 | 服务名 |
 | enableLinkRumData | bool | 否 | 是否与 `RUM` 关联 |
 | enableCustomLog | bool | 否 | 是否开启自定义日志 |
 | discardStrategy | enum FTLogCacheDiscard | 否 | 日志丢弃策略，默认`FTLogCacheDiscard.discard` |
@@ -195,7 +196,6 @@ await FTTracer().setConfig(
 | **字段** | **类型** | **必须** | **说明** |
 | --- | --- | --- | --- |
 | sampleRate | double | 否 | 采样率，采集率的值范围为>= 0、<= 1，默认值为 1 |
-| serviceName | String | 否 | 服务名 |
 | traceType | enum TraceType | 否 | 链路类型，默认`TraceType.ddTrace` |
 | enableLinkRUMData | bool | 否 | 是否与 `RUM` 数据关联，默认`false` |
 | enableAutoTrace | bool | 否 | 是否开启 flutter 网络追踪，默认`false` |
