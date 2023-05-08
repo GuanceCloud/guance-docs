@@ -24,7 +24,7 @@
 
 ## 安装
 
-![](https://img.shields.io/cocoapods/p/FTMobileAgent#crop=0&crop=0&crop=1&crop=1&id=xs5E2&originHeight=20&originWidth=82&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)![](https://img.shields.io/cocoapods/v/FTMobileSDK#crop=0&crop=0&crop=1&crop=1&id=Uyl38&originHeight=20&originWidth=122&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)![](https://img.shields.io/cocoapods/l/FTMobileSDK#crop=0&crop=0&crop=1&crop=1&id=SxRum&originHeight=20&originWidth=98&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)![](https://img.shields.io/badge/iOS-api%20%3E=%20iOS%2010-brightgreen#crop=0&crop=0&crop=1&crop=1&id=uFhFJ&originHeight=20&originWidth=118&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=) 
+![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/ft-sdk-package/badge/ios/info.json&link=https://github.com/GuanceCloud/datakit-ios)![](https://img.shields.io/badge/dynamic/json?label=pod&color=orange&query=$.version&uri=https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/ft-sdk-package/badge/ios/version.json&link=https://github.com/GuanceCloud/datakit-ios)![](https://img.shields.io/badge/dynamic/json?label=license&color=lightgrey&query=$.license&uri=https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/ft-sdk-package/badge/ios/info.json&link=https://github.com/GuanceCloud/datakit-ios)![](https://img.shields.io/badge/dynamic/json?label=iOS&color=brightgreen&query=$.ios_api_support&uri=https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/ft-sdk-package/badge/ios/info.json&link=https://github.com/GuanceCloud/datakit-ios) 
 
 **源码地址**：[https://github.com/GuanceCloud/datakit-ios](https://github.com/GuanceCloud/datakit-ios)
 
@@ -36,7 +36,7 @@
 1.从 GitHub 根据指定 tag 获取 SDK 的源代码。
 
 ```
-git clone --branch 1.3.10-beta.2 https://github.com/GuanceCloud/datakit-ios.git
+git clone --branch [latest_version] https://github.com/GuanceCloud/datakit-ios.git
 ```
 
 2.将 SDK 源代码导入 App 项目。将 **FTMobileAgent** 和 **BaseUtils** 文件夹导入项目，并选中 `Copy items if needed` ，勾选 `Create groups` 。
@@ -50,7 +50,7 @@ git clone --branch 1.3.10-beta.2 https://github.com/GuanceCloud/datakit-ios.git
 target 'yourProjectName' do
 
 # Pods for your project
-pod 'FTMobileSDK', '1.3.10-beta.2'
+pod 'FTMobileSDK', '[latest_version]'
     
 end
 ```
@@ -62,7 +62,7 @@ end
 1.配置 `Cartfile` 文件。
 
 ```
-github "GuanceCloud/datakit-ios" == 1.3.10-beta.2
+github "GuanceCloud/datakit-ios" == [latest_version]
 ```
 
 2.在 `Cartfile` 目录下执行  `carthage update --platform iOS` ， 并将  `FTMobileAgent.framework` 拖拽到您的项目中使用。若出现 "Building universal frameworks with common architectures is not possible. The device and simulator slices for "FTMobileAgent.framework" both build for: arm64" 错误，请执行  `carthage update --platform iOS --use-xcframeworks` 命令，生成  `FTMobileAgent.xcframework `，与普通的 Framework 使用方法相同，请将它拖拽到您的项目中使用。
