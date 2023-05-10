@@ -24,3 +24,6 @@ The metric function of Guance can help you:
 - Step 1: Before using the **Metrics** function, you need to start the relevant integrated [metrics collection](https://docs.guance.com/metrics/collection/) through DataKit, and the successfully collected metric data would be automatically reported to the studio.
 - Step 2: All metric data reported to the workspace by DataKit collector can be viewed through **Metric Management**, including measurement, metrics (metric name, field type, unit and description), tag, etc.
 - Step 3: All metric data in the workspace can be queried and analyzed visually in **Metrics** and **Dashboard** of the studio.
+
+
+
