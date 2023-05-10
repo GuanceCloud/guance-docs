@@ -1,6 +1,10 @@
 # 时序引擎部署
 
 
+???+ warning "注意"
+     请务必修改时序引擎管理员账号。
+
+
 ## 简介 {#intro}
 
 |      |     |
@@ -11,12 +15,12 @@
 
 ## 部署默认配置信息
 
-    |      |     |
-    | ---------- | ------- |
-    |   **默认地址**  | influxdb.middleware |
-    |   **默认端口**  | 8086 |
-    |   **默认账号**  | admin/`admin@influxdb` |
 
+|      |     |
+| ---------- | ------- |
+|   **默认地址**  | influxdb.middleware |
+|   **默认端口**  | 8086 |
+|   **默认账号**  | admin/`admin@influxdb` |
 
 
 ## InfluxDB 部署 {#influxdb-install}
