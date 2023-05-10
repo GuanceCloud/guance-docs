@@ -1,9 +1,9 @@
-# 模板
+# 监控器模板
 ---
 
 ## 概述
 
-观测云内置多种开箱即用的监控模板，支持通过「+ 从模板新建」一键创建主机、Docker、Elasticsearch、Redis、阿里云 RDS、阿里云 SLB、Flink 监控等数十种模版。成功新建模板后，即自动添加对应的官方监控器至当前工作空间。
+观测云内置多种开箱即用的监控模板，支持通过 **+ 从模板新建**一键创建主机、Docker、Elasticsearch、Redis、阿里云 RDS、阿里云 SLB、Flink 监控等数十种模版。成功新建模板后，即自动添加对应的官方监控器至当前工作空间。
 
 ???+ attention
 
@@ -11,13 +11,13 @@
 
 ## 新建模板
 
-在「监控器」中，选择「+ 从模板新建」，即可添加指定官方监控模板至当前空间。目前支持主机、Docker、Elasticsearch、Redis、阿里云 RDS、阿里云 SLB、Flink 监控模板，无需手动配置，开箱即用。
+在**监控器**中，选择 **+ 从模板新建**，即可添加指定官方监控模板至当前空间。目前支持主机、Docker、Elasticsearch、Redis、阿里云 RDS、阿里云 SLB、Flink 监控模板，无需手动配置，开箱即用。
 
 ![](img/monitor_sample1.png)
 
 ## 模板列表
 
-观测云已提供官方监控模板，包括主机、Docker、Elasticsearch、Redis、阿里云 RDS、阿里云 SLB、Flink 监控模板等。
+观测云提供官方监控模板包括：主机、Docker、Elasticsearch、Redis、阿里云 RDS、阿里云 SLB、Flink 监控模板等。
 
 | **模板（分组）** | **监控器** |
 | --- | --- |
