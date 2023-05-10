@@ -4,23 +4,23 @@
 ???+ warning "注意"
      请务必修改时序引擎管理员账号。
 
+
 ## 简介 {#intro}
 
 |      |     |
 | ---------- | ------- |
 | **部署方式**    | Kubernetes 容器部署    |
-| **时序引擎**|      |
 | **InfluxDB** | 版本：1.7.8|        
 | **部署前提条件** | 已部署 [Kubernetes](infra-kubernetes.md#kubernetes-install) <br> 已部署 [Kubernetes Storage](infra-kubernetes.md#kube-storage) |
 
 ## 部署默认配置信息
 
-=== "InfluxDB"
-    |      |     |
-    | ---------- | ------- |
-    |   **默认地址**  | influxdb.middleware |
-    |   **默认端口**  | 8086 |
-    |   **默认账号**  | admin/`admin@influxdb` |
+
+|      |     |
+| ---------- | ------- |
+|   **默认地址**  | influxdb.middleware |
+|   **默认端口**  | 8086 |
+|   **默认账号**  | admin/`admin@influxdb` |
 
 
 ## InfluxDB 部署 {#influxdb-install}
