@@ -30,7 +30,6 @@ nav:
           - "MySQL": infra-mysql.md
           - "日志引擎": infra-logengine.md
           - "OpenSearch 高可用": ha-opensearch.md
-          - "TDengine 高可用": ha-tdengine.md
           - "时序引擎": infra-metric.md
           - "Redis": infra-redis.md
           - "helm": helm-install.md
