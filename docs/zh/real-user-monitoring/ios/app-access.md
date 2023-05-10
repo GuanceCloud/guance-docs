@@ -36,9 +36,15 @@
 1.配置 `Podfile` 文件。
 
 ```objectivec
+//主工程
 target 'yourProjectName' do
 # Pods for your project
 pod 'FTMobileSDK', '[latest_version]'
+end
+  
+//Widget Extension
+target 'yourWidgetExtensionName' do
+pod 'FTMobileSDK/Extension', '[latest_version]'
 end
 ```
 
@@ -52,19 +58,35 @@ end
 github "GuanceCloud/datakit-ios" == [latest_version]
 ```
 
-2.在 `Cartfile` 目录下执行  `carthage update --platform iOS` ， 并将  `FTMobileAgent.framework` 拖拽到您的项目中使用。若出现 "Building universal frameworks with common architectures is not possible. The device and simulator slices for "FTMobileAgent.framework" both build for: arm64" 错误，请执行  `carthage update --platform iOS --use-xcframeworks` 命令，生成  `FTMobileAgent.xcframework `，与普通的 Framework 使用方法相同，请将它拖拽到您的项目中使用。
+2.在 `Cartfile` 目录下执行
 
-3.debug 模式下，为了方便 SDK 调试，建议使用 debug 模式的静态库。在命令后添加  `--configuration Debug` 获取 debug 模式的静态库。
+ ```bash
+ carthage update --platform iOS
+ ```
 
-4.在 `TARGETS`  -> `Build Setting` ->  `Other Linker Flags`  添加  `-ObjC`。
+如果报错 "Building universal frameworks with common architectures is not possible. The device and simulator slices for "FTMobileAgent.framework" both build for: arm64" 
 
-5.目前只支持 1.3.4-beta.2 及以上的版本。
+根据提示添加 --use-xcframeworks 参数
+
+```bash
+carthage update --platform iOS --use-xcframeworks
+```
+
+生成的  xcframework ，与普通的 Framework 使用方法相同。将编译生成的库添加到项目工程中。
+
+`FTMobileAgent`：添加到主项目 Target
+
+`FTMobileExtension`：添加到 Widget Extension Target
+
+3.在 `TARGETS`  -> `Build Setting` ->  `Other Linker Flags`  添加  `-ObjC`。
+
+4.目前只支持 1.3.4-beta.2 及以上的版本，1.4.0-beta.1 及以上支持 Widget Extension。
 
 ### Swift Package Manager 方式
 
 1.选中 `PROJECT` -> `Package Dependency` ，点击 `Packages` 栏目下的 **+**。
 
-2.在弹出的页面的搜索框中输入 `https://github.com/GuanceCloud/datakit-ios.git`，这是代码的存储位置。
+2.在弹出的页面的搜索框中输入 `https://github.com/GuanceCloud/datakit-ios.git`。
 
 3.Xcode 获取软件包成功后，会展示 SDK 的配置页。
 
@@ -76,6 +98,10 @@ github "GuanceCloud/datakit-ios" == [latest_version]
 
 4.在弹窗 `Choose Package Products for datakit-ios` 中选择需要添加 SDK 的 Target，点击 `Add Package` 按钮，此时 SDK 已经添加成功。
 
+`FTMobileSDK`：添加到主项目 Target
+
+`FTMobileExtension`：添加到 Widget Extension Target
+
 如果您的项目由 SPM 管理，将 SDK 添加为依赖项，添加 `dependencies `到 `Package.swift`。
 
 ```plaintext
@@ -85,13 +111,15 @@ dependencies: [
 ]
 ```
 
+5.1.4.0-beta.1 及以上支持 Swift Package Manager 。
+
 ### 添加头文件
 
 ```objectivec
-//使用 Carthage 方式
+//Carthage 
 #import <FTMobileAgent/FTMobileAgent.h>
 ...
-//使用 源码 或 CocoaPods 方式
+//CocoaPods、SPM 
 #import "FTMobileAgent.h"
 ```
 
@@ -319,7 +347,9 @@ typedef NS_ENUM(NSInteger, FTNetworkTraceType) {
 
 ## RUM 用户数据追踪
 
-可以 `FTRUMConfig` 配置开启自动模式，或手动添加。Rum 相关数据，通过 `FTExternalDataManager` 单例，进行传入，相关 API 如下：
+可以 `FTRUMConfig` 配置开启自动采集也支持用户自定义采集。
+
+用户自定义采集 Rum 相关数据，需要使用  `FTExternalDataManager` 单例，相关 API 如下：
 
 ### View
 
@@ -534,6 +564,8 @@ typedef NS_ENUM(NSInteger, FTNetworkTraceType) {
 
 ## Logger 日志打印 {#user-logger}
 
+可以 `FTLoggerConfig` 配置开启自动采集控制台日志，也支持用户自定义添加日志。自定义添加相关 API 如下：
+
 ```objectivec
 [[FTMobileAgent sharedInstance] logging:@"TestLoggingBackground" status:FTStatusInfo];
 ```
@@ -560,7 +592,7 @@ typedef NS_ENUM(NSInteger, FTStatus) {
 
 ## Trace 网络链接追踪
 
-可以 `FTTraceConfig` 配置开启自动模式，或手动添加。Trace 相关数据，通过 `FTTraceManager` 单例，进行传入，相关 API 如下：
+可以 `FTTraceConfig` 配置开启自动模式，也支持用户自定义添加 Trace 相关数据。自定义添加相关 API 如下：
 
 ```objectivec
  NSString *key = [[NSUUID UUID]UUIDString];
