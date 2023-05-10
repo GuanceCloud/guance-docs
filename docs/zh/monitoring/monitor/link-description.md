@@ -7,8 +7,8 @@
 
 链接配置分成两个部分：
 
-- 默认的内置链接：如 `/logIndi/log/all?ime={{ date * 1000 - 900000}},{{date *  1000}}`
-- 基于监控器查询语句的分组变量值以及筛选条件：如 `&tags={host:{{host}},service:mysql}`
+- 默认的内置链接：如 `/logIndi/log/all?ime={{ date * 1000 - 900000}},{{date *  1000}}`；  
+- 基于监控器查询语句的分组变量值以及筛选条件：如 `&tags={host:{{host}},service:mysql}`。  
 
 假设监控器的 DQL 查询语句为：
 
