@@ -94,7 +94,7 @@ diskperf -Y
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|System hostname.|
 |`name`|Device name.|
@@ -102,10 +102,10 @@ diskperf -Y
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`io_time`|Time spent doing I/Os.|int|ms|
-|`iops_in_progress`|I/Os currently in progres.|int|count|
+|`iops_in_progress`|I/Os currently in progress.|int|count|
 |`merged_reads`|The number of merged read requests.|int|count|
 |`merged_writes`|The number of merged write requests.|int|count|
 |`read_bytes`|The number of bytes read from the device.|int|B|

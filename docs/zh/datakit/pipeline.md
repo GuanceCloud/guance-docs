@@ -566,7 +566,7 @@ add_key(city, "shanghai")
 ```python
 # 待处理数据: "11,abc,end1", "22,abc,end1", "33,abc,end3"
 
-# pipline脚本
+# pipline 脚本
 add_pattern("aa", "\\d{2}")
 grok(_, "%{aa:aa}")
 if false {
@@ -580,7 +580,7 @@ if false {
         # 此处使用 pattern cc 将导致编译失败: no pattern found for %{cc}
         grok(_, "%{aa:aa},%{bb:bb},%{INT:cc}")
     } elif aa == "33" {
-        add_pattern("bb", "[\\d]{5}")	# 此处覆盖 bb 失败
+        add_pattern("bb", "[\\d]{5}") # 此处覆盖 bb 失败
         add_pattern("cc", "end3")
         grok(_, "%{aa:aa},%{bb:bb},%{cc:cc}")
     }
@@ -595,7 +595,7 @@ if false {
 }
 {
     "aa":      "22"
-	 "message": "22,abc,end1"
+    "message": "22,abc,end1"
 }
 {
     "aa":      "33"
@@ -615,7 +615,7 @@ if false {
 - `key`: 纳秒时间戳，如 `default_time(time)` 函数处理后得到的时间戳
 - `minute`: 返回值允许超出当前时间的分钟数（整数），取值范围 [0, 15], 默认值为 2 分钟
 
-函数说明： 使得传入的时间戳减去函数执行时刻的时间戳的差值在（-60+minute, minute] 分钟内；不适用于时间差超出此范围的数据，否则将导致获取到错误的数据。计算流程：
+函数说明：使得传入的时间戳减去函数执行时刻的时间戳的差值在（-60+minute, minute] 分钟内；不适用于时间差超出此范围的数据，否则将导致获取到错误的数据。计算流程：
 
 1. 为 key 的值加上数小时使其处于当前小时内
 2. 此时计算两者分钟差，两者分钟数值范围为 [0, 60)，差值范围在 (-60,0] 和 [0, 60)
@@ -642,7 +642,6 @@ default_time(time) # 将提取到的 time 字段转换成时间戳
                    # (对无时区数据使用本地时区 UTC+0800/UTC+0900...解析)
 adjust_timezone(time)
                    # 自动(重新)选择时区，校准时间偏差
-
 ```
 
 执行 `datakit pipeline -P <name>.p -F <input_file_name>  --date`:
@@ -658,11 +657,13 @@ adjust_timezone(time)
 
 本机时间: `2022-07-11T20:55:10.521+08:00`
 
-仅使用 default_time 按照默认本机时区（UTC+8）解析得到的时间分别为：
-  - 输入 1 结果： `2022-07-11T12:49:20.937+08:00`
+仅使用 `default_time` 按照默认本机时区（UTC+8）解析得到的时间分别为：
 
-使用 adjust_timezone 后将得到：
-  - 输入 1 结果： `2022-07-11T20:49:20.937+08:00`
+- 输入 1 结果： `2022-07-11T12:49:20.937+08:00`
+
+使用 `adjust_timezone` 后将得到：
+
+- 输入 1 结果： `2022-07-11T20:49:20.937+08:00`
 
 
 ### `agg_create()` {#fn-agg-create}
@@ -700,7 +701,7 @@ agg_create("cpu_agg_info", on_interval = "30s")
 
 - `bucket`: 字符串类型, 函数 `agg_create` 创建出的对应指标集合的 bucket，如果该 bucket 未被创建，则函数不执行任何操作
 - `new_field`： 聚合出的数据中的指标名，其值的数据类型为 `float`
-- `agg_fn`: 聚合函数，可以是`"avg"`,`"sum"`,`"min"`,`"max"`,`"set"` 中的一种
+- `agg_fn`: 聚合函数，可以是 `"avg"`,`"sum"`,`"min"`,`"max"`,`"set"` 中的一种
 - `agg_by`: 输入的数据中的字段的名，将作为聚合出的数据的 tag，这些字段的值只能是字符串类型的数据
 - `agg_field`: 输入的数据中的字段名，自动获取字段值进行聚合
 
@@ -709,15 +710,16 @@ agg_create("cpu_agg_info", on_interval = "30s")
 以日志类别数据为例：
 
 多个输入日志：
-```
+
+``` not-set
 1
 ```
 
-```
+``` not-set
 2
 ```
 
-```
+``` not-set
 3
 ```
 
@@ -737,7 +739,7 @@ agg_metric("cpu_agg_info", "agg_field_1", "sum", ["tag1", "host"], "field1")
 
 指标输出：
 
-```
+``` not-set
 {
     "host": "your_hostname",
     "tag1": "value1",
@@ -755,7 +757,7 @@ agg_metric("cpu_agg_info", "agg_field_1", "sum", ["tag1", "host"], "field1")
 参数:
 
 - `arr`: 要添加元素的数组。
-- `elem`: 添加的元素。 
+- `elem`: 添加的元素。
 
 示例:
 
@@ -887,7 +889,7 @@ if cidr(ip, "192.0.2.1/24") {
 函数参数
 
 - `key`: 待提取字段
-- `range`: 脱敏字符串的索引范围（`[start,end]`） start和end均支持负数下标，用来表达从尾部往前追溯的语义。区间合理即可，end如果大于字符串最大长度会默认成最大长度
+- `range`: 脱敏字符串的索引范围（`[start,end]`） start 和 end 均支持负数下标，用来表达从尾部往前追溯的语义。区间合理即可，end 如果大于字符串最大长度会默认成最大长度
 
 示例:
 
@@ -919,55 +921,54 @@ cover(abc, [2, 4])
 
 内置日期格式：
 
-|内置格式| 日期 | 描述 |
-|-| -| - |
-|"ANSIC"       | "Mon Jan _2 15:04:05 2006" | |
-|"UnixDate"    | "Mon Jan _2 15:04:05 MST 2006" | |
-|"RubyDate"    | "Mon Jan 02 15:04:05 -0700 2006" | |
-|"RFC822"      | "02 Jan 06 15:04 MST" | |
-|"RFC822Z"     | "02 Jan 06 15:04 -0700" | RFC822 with numeric zone |
-|"RFC850"      | "Monday, 02-Jan-06 15:04:05 MST" | |
-|"RFC1123"     | "Mon, 02 Jan 2006 15:04:05 MST" | |
-|"RFC1123Z"    | "Mon, 02 Jan 2006 15:04:05 -0700" | RFC1123 with numeric zone |
-|"RFC3339"     | "2006-01-02T15:04:05Z07:00" | |
-|"RFC3339Nano" | "2006-01-02T15:04:05.999999999Z07:00" | |
-|"Kitchen"     | "3:04PM" | |
+| 内置格式      | 日期                                  | 描述                      |
+| ---           | ---                                   | ---                       |
+| "ANSI-C"      | "Mon Jan _2 15:04:05 2006"            |                           |
+| "UnixDate"    | "Mon Jan _2 15:04:05 MST 2006"        |                           |
+| "RubyDate"    | "Mon Jan 02 15:04:05 -0700 2006"      |                           |
+| "RFC822"      | "02 Jan 06 15:04 MST"                 |                           |
+| "RFC822Z"     | "02 Jan 06 15:04 -0700"               | RFC822 with numeric zone  |
+| "RFC850"      | "Monday, 02-Jan-06 15:04:05 MST"      |                           |
+| "RFC1123"     | "Mon, 02 Jan 2006 15:04:05 MST"       |                           |
+| "RFC1123Z"    | "Mon, 02 Jan 2006 15:04:05 -0700"     | RFC1123 with numeric zone |
+| "RFC3339"     | "2006-01-02T15:04:05Z07:00"           |                           |
+| "RFC3339Nano" | "2006-01-02T15:04:05.999999999Z07:00" |                           |
+| "Kitchen"     | "3:04PM"                              |                           |
 
 自定义日期格式:
 
 可通过占位符的组合自定义输出日期格式
 
-| 字符 | 示例 |描述 |
-| - | - | - |
-| a | %a | 星期的缩写，如 `Wed` |
-| A | %A | 星期的全写，如 `Wednesday`|
-| b | %b | 月份缩写, 如 `Mar` |
-| B | %B | 月份的全写，如 `March` |
-| C | %c | 世纪数，当前年份除 100 |
-| **d** | %d | 一个月内的第几天；范围 `[01, 31]` |
-| e | %e |一个月内的第几天；范围 `[1, 31]`，使用空格填充 |
-| **H** | %H | 小时，使用 24 小时制； 范围 `[00, 23]` |
-| I | %I | 小时，使用 12 小时制； 范围 `[01, 12]` |
-| j | %j | 一年内的第几天，范围 `[001, 365]` | 
-| k | %k | 小时，使用 24 小时制； 范围 `[0, 23]` |
-| l | %l | 小时，使用 12 小时制； 范围 `[1, 12]`，使用空格填充 |
-| **m** | %m | 月份，范围 `[01, 12]` | 
-| **M** | %M | 分钟，范围 `[00, 59]` |
-| n | %n | 表示换行符 `\n` |
-| p | %p | `AM` 或 `PM` |
-| P | %P | `am` 或 `pm` |
-| s | %s | 自 1970-01-01 00:00:00 UTC 来的的秒数 |
-| **S** | %S | 秒数，范围 `[00, 60]` |
-| t | %t | 表示制表符 `\t` |
-| u | %u | 星期几，星期一为 1，范围 `[1, 7]` |
-| w | %w | 星期几，星期天为 0, 范围 `[0, 6]` |
-| y | %y | 年份，范围 `[00, 99]` |
-| **Y** | %Y | 年份的十进制表示|
-| **z** | %z | RFC 822/ISO 8601:1988 风格的时区 (如： `-0600` 或 `+0100` 等) |
-| Z | %Z | 时区缩写，如 `CST` |
-| % | %% | 表示字符 `%` |
+| 字符  | 示例 | 描述                                                          |
+| ---   | ---  | ---                                                           |
+| a     | %a   | 星期的缩写，如 `Wed`                                          |
+| A     | %A   | 星期的全写，如 `Wednesday`                                    |
+| b     | %b   | 月份缩写, 如 `Mar`                                            |
+| B     | %B   | 月份的全写，如 `March`                                        |
+| C     | %c   | 世纪数，当前年份除 100                                        |
+| **d** | %d   | 一个月内的第几天；范围 `[01, 31]`                             |
+| e     | %e   | 一个月内的第几天；范围 `[1, 31]`，使用空格填充                |
+| **H** | %H   | 小时，使用 24 小时制； 范围 `[00, 23]`                        |
+| I     | %I   | 小时，使用 12 小时制； 范围 `[01, 12]`                        |
+| j     | %j   | 一年内的第几天，范围 `[001, 365]`                             |
+| k     | %k   | 小时，使用 24 小时制； 范围 `[0, 23]`                         |
+| l     | %l   | 小时，使用 12 小时制； 范围 `[1, 12]`，使用空格填充           |
+| **m** | %m   | 月份，范围 `[01, 12]`                                         |
+| **M** | %M   | 分钟，范围 `[00, 59]`                                         |
+| n     | %n   | 表示换行符 `\n`                                               |
+| p     | %p   | `AM` 或 `PM`                                                  |
+| P     | %P   | `am` 或 `pm`                                                  |
+| s     | %s   | 自 1970-01-01 00:00:00 UTC 来的的秒数                         |
+| **S** | %S   | 秒数，范围 `[00, 60]`                                         |
+| t     | %t   | 表示制表符 `\t`                                               |
+| u     | %u   | 星期几，星期一为 1，范围 `[1, 7]`                             |
+| w     | %w   | 星期几，星期天为 0, 范围 `[0, 6]`                             |
+| y     | %y   | 年份，范围 `[00, 99]`                                         |
+| **Y** | %Y   | 年份的十进制表示                                              |
+| **z** | %z   | RFC 822/ISO 8601:1988 风格的时区 (如： `-0600` 或 `+0100` 等) |
+| Z     | %Z   | 时区缩写，如 `CST`                                            |
+| %     | %%   | 表示字符 `%`                                                  |
 
- 
 示例:
 
 ```python
@@ -1037,6 +1038,7 @@ decode("wwwwww", "gbk")
 
 待处理数据支持以下格式化时间
 
+<!-- markdownlint-disable MD038 -->
 | 日期格式                                           | 日期格式                                                | 日期格式                                       | 日期格式                          |
 | -----                                              | ----                                                    | ----                                           | ----                              |
 | `2014-04-26 17:24:37.3186369`                      | `May 8, 2009 5:57:51 PM`                                | `2012-08-03 18:31:59.257000000`                | `oct 7, 1970`                     |
@@ -1053,9 +1055,10 @@ decode("wwwwww", "gbk")
 | `3.31.2014`                                        | `2014:4:8 22:05`                                        | `03.31.2014`                                   | `2014:04:08 22:05`                |
 | `08.21.71`                                         | `2014:04:2 03:00:51`                                    | `2014.03`                                      | `2014:4:02 03:00:51`              |
 | `2014.03.30`                                       | `2012:03:19 10:11:59`                                   | `20140601`                                     | `2012:03:19 10:11:59.3186369`     |
-| `20140722105203`                                   | `2014年04月08日`                                        | `1332151919`                                   | `2006-01-02T15:04:05+0000`        |
+| `20140722105203`                                   | `2014 年 04 月 08 日 `                                  | `1332151919`                                   | `2006-01-02T15:04:05+0000`        |
 | `1384216367189`                                    | `2009-08-12T22:15:09-07:00`                             | `1384216367111222`                             | `2009-08-12T22:15:09`             |
 | `1384216367111222333`                              | `2009-08-12T22:15:09Z`                                  |
+<!-- markdownlint-enable -->
 
 JSON 提取示例:
 
@@ -1109,7 +1112,7 @@ rename("time", log_time)
 
 函数原型：`fn delete(src: map[string]any, key: str)`
 
-函数说明： 删除 json map 中的 key
+函数说明： 删除 JSON map 中的 key
 
 ```python
 
@@ -1346,7 +1349,7 @@ grok(key, pattern)  # 对之前已经提取出来的某个 key，做再次 grok
 ```python
 # 待处理数据: "12/01/2021 21:13:14.123"
 
-# pipline脚本
+# pipline 脚本
 add_pattern("_second", "(?:(?:[0-5]?[0-9]|60)(?:[:.,][0-9]+)?)")
 add_pattern("_minute", "(?:[0-5][0-9])")
 add_pattern("_hour", "(?:2[0123]|[01]?[0-9])")
@@ -1439,18 +1442,18 @@ group_in(log_level, ["error", "panic"], "not-ok", status)
 
 函数原型：`fn json(input: str, json_path, newkey, trim_space: bool = true, delete_after_extract = false)`
 
-函数说明：提取 json 中的指定字段，并可将其命名成新的字段。
+函数说明：提取 JSON 中的指定字段，并可将其命名成新的字段。
 
 参数:
 
-- `input`: 待提取 json，可以是原始文本（`_`）或经过初次提取之后的某个 `key`
-- `json_path`: json 路径信息
+- `input`: 待提取 JSON，可以是原始文本（`_`）或经过初次提取之后的某个 `key`
+- `json_path`: JSON 路径信息
 - `newkey`：提取后数据写入新 key
 - `trim_space`: 删除提取出的字符中的空白首尾字符，默认值为 `true`
 - `delete_after_extract`: 在提取结束后删除当前对象，在重新序列化后回写待提取对象；只能应用于 map 的 key 与 value 的删除，不能用于删除 list 的元素；默认值为 `false`，不进行任何操作[:octicons-tag-24: Version-1.5.7](../datakit/changelog.md#cl-1.5.7)
 
 ```python
-# 直接提取原始输入 json 中的x.y字段，并可将其命名成新字段abc
+# 直接提取原始输入 JSON 中的 x.y 字段，并可将其命名成新字段 abc
 json(_, x.y, abc)
 
 # 已提取出的某个 `key`，对其再提取一次 `x.y`，提取后字段名为 `x.y`
@@ -1507,7 +1510,7 @@ json(_, name) json(name, first)
 #            {"first": "Jane", "last": "Murphy", "age": 47, "nets": ["ig", "tw"]}
 #    ]
     
-# 处理脚本, json数组处理:
+# 处理脚本, json 数组处理:
 json(_, [0].nets[-1])
 ```
 
@@ -1673,11 +1676,11 @@ add_key(abc, len(["abc"]))
 ```
 
 
-### `load_json()` {#fn-load_json}
+### `load_json()` {#fn-load_JSON}
 
 函数原型：`fn load_json(val: str) nil|bool|float|map|list`
 
-函数说明：将 json 字符串转换成 map、list、nil、bool、float 的其中一种，可通过 index 表达式取值及修改值。
+函数说明：将 JSON 字符串转换成 map、list、nil、bool、float 的其中一种，可通过 index 表达式取值及修改值。
 
 参数:
 
@@ -1722,7 +1725,7 @@ json(_, first) lowercase(first)
 
 # 处理结果
 {
-		"first": "hello"
+    "first": "hello"
 }
 ```
 
@@ -1829,7 +1832,7 @@ json(_, first) json(_, second) nullif(first, "1")
 
 ```python
 if first == "1" {
-	drop_key(first)
+    drop_key(first)
 }
 ```
 
@@ -2049,23 +2052,23 @@ if !sample(0.3) { # sample(0.3) 表示采样率为 30%，即以 30% 概率返回
 函数说明：改变行协议的 name
 函数参数：
 
-- `name`: 值作为 mesaurement name，可传入字符串常量或变量
+- `name`: 值作为 measurement name，可传入字符串常量或变量
 - `delete_key`: 如果在 point 中存在与变量同名的 tag 或 field 则删除它
 
 行协议 name 与各个类型数据存储时的字段映射关系或其他用途：
 
-| 类别           | 字段名         | 其他用途 |
-| -             | -             | -       |          
-|custom_object  | class         | -       |
-|keyevent       | -             | -       |
-|logging        | source        | -       |
-|metric         | -             | 指标集名 |
-|network        | source        | -       |
-|object         | class         | -       |
-|profiling      | source        | -       |
-|rum            | source        | -       |
-|security       | rule          | -       |
-|tracing        | source        | -       |
+| 类别          | 字段名 | 其他用途 |
+| -             | -      | -        |
+| custom_object | class  | -        |
+| keyevent      | -      | -        |
+| logging       | source | -        |
+| metric        | -      | 指标集名 |
+| network       | source | -        |
+| object        | class  | -        |
+| profiling     | source | -        |
+| rum           | source | -        |
+| security      | rule   | -        |
+| tracing       | source | -        |
 
 
 ### `set_tag()` {#fn-set-tag}
@@ -2118,7 +2121,7 @@ set_tag(str_a, str_b) # str_a == str_b == "3"
 
 函数原型：`fn sql_cover(sql_test: str)`
 
-函数说明：脱敏sql语句
+函数说明：脱敏 SQL 语句
 
 ```python
 # in << {"select abc from def where x > 3 and y < 5"}
@@ -2214,12 +2217,12 @@ add_key(time_now_record, timestamp("ms"))
 
 函数原型：`fn trim(key, cutset: str = "")`
 
-函数说明：删除 key 中首尾中指定的字符，cutset 为空字符串时默认删除所有空白符
+函数说明：删除 `key` 中首尾中指定的字符，`cutset` 为空字符串时默认删除所有空白符
 
 函数参数：
 
 - `key`: 已提取的某字段，字符串类型
-- `cutset`: 删除 key 中出现在 cutset 字符串的中首尾字符
+- `cutset`: 删除 `key` 中出现在 `cutset` 字符串的中首尾字符
 
 示例:
 

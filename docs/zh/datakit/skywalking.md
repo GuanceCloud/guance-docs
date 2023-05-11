@@ -168,19 +168,19 @@ toolkit 依赖包添加到 maven 或者 gradle 中：
 
 
 
-jvm metrics collected by skywalking language agent.
+jvm metrics collected by SkyWalking language agent.
 
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`service`|service name|
 
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`class_loaded_count`|loaded class count.|int|count|
 |`class_total_loaded_count`|total loaded class count.|int|count|

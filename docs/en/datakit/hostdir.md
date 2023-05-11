@@ -28,7 +28,7 @@ None
       # UNIX-like example: /usr/local/
       dir = "" # required
     
-    	# optional, i.e., "*.exe", "*.so"
+      # optional, i.e., "*.exe", "*.so"
       exclude_patterns = []
     
     [inputs.hostdir.tags]
@@ -61,7 +61,7 @@ For all of the following metric sets, a global tag named `host` is appended by d
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`file_ownership`|file ownership|
 |`file_system`|file system type|
@@ -70,7 +70,7 @@ For all of the following metric sets, a global tag named `host` is appended by d
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`dir_count`|The number of Dir|int|count|
 |`file_count`|The number of files|int|count|

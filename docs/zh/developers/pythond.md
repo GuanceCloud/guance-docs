@@ -7,13 +7,15 @@
 
 ---
 
-pythond 是定时触发用户自定义 python 采集脚本的一整套方案。
+PythonD 是定时触发用户自定义 Python 采集脚本的一整套方案。
 
 ## 前置条件 {#reqirement}
 
 ### Python 环境 {#req-python}
 
-目前处于 alpha 阶段，**只兼容 Python 3+**。已测试的版本: `3.10.1`。
+目前处于 alpha 阶段，**只兼容 Python 3+**。已测试的版本:
+
+- [x] 3.10.1
 
 需要安装以下依赖库:
 
@@ -275,24 +277,22 @@ class Demo(DataKitFramework):
 
 ## 配置 {#config}
 
-进入 DataKit 安装目录下的 `conf.d/pythond` 目录，复制 `pythond.conf.sample` 并命名为 `pythond.conf`。示例如下：
+进入 DataKit 安装目录下的 *conf.d/pythond* 目录，复制 *pythond.conf.sample* 并命名为 *pythond.conf*。示例如下：
 
 ```toml
 
 [[inputs.pythond]]
+  # Python input name
+  name = 'some-python-inputs'  # required
 
-	# Python 采集器名称
-	name = 'some-python-inputs'  # required
+  # System environments to run Python
+  #envs = ['LD_LIBRARY_PATH=/path/to/lib:$LD_LIBRARY_PATH',]
 
-	# 运行 Python 采集器所需的环境变量
-	#envs = ['LD_LIBRARY_PATH=/path/to/lib:$LD_LIBRARY_PATH',]
+  # Python path(recomment abstract Python path)
+  cmd = "python3" # required. python3 is recommended.
 
-	# Python 采集器可执行程序路径(尽可能写绝对路径)
-	cmd = "python3" # required. python3 is recommended.
-
-	# 用户脚本的相对路径(填写文件夹，填好后该文件夹下一级目录的模块和 py 文件都将得到应用)
-	dirs = []
-
+  # Python scripts relative path
+  dirs = []
 ```
 
 ## Git 支持 {#git}
@@ -374,7 +374,7 @@ class MyTest(DataKitFramework):
     │   ├── test.py
 ```
 
-第三步：配置 pythond.conf:
+第三步：配置 *pythond.conf*:
 
 ```toml
 [[inputs.pythond]]

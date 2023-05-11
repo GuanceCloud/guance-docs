@@ -130,8 +130,8 @@ PUT _plugins/_security/api/roles/monitor
     ```toml
         
     [[inputs.elasticsearch]]
-      ## Elasticsearch服务器配置
-      # 支持Basic认证:
+      ## Elasticsearch 服务器配置
+      # 支持 Basic 认证:
       # servers = ["http://user:pass@localhost:9200"]
       servers = ["http://localhost:9200"]
     
@@ -139,34 +139,34 @@ PUT _plugins/_security/api/roles/monitor
       # 单位 "ns", "us" (or "µs"), "ms", "s", "m", "h"
       interval = "10s"
     
-      ## HTTP超时设置
+      ## HTTP 超时设置
       http_timeout = "5s"
     
-      ## 发行版本: elasticsearch, opendistro, opensearch
+      ## 发行版本: elasticsearch/opendistro/opensearch
       distribution = "elasticsearch"
     
-      ## 默认local是开启的，只采集当前Node自身指标，如果需要采集集群所有Node，需要将local设置为false
+      ## 默认 local 是开启的，只采集当前 Node 自身指标，如果需要采集集群所有 Node，需要将 local 设置为 false
       local = true
     
-      ## 设置为true可以采集cluster health
+      ## 设置为 true 可以采集 cluster health
       cluster_health = false
     
       ## cluster health level 设置，indices (默认) 和 cluster
       # cluster_health_level = "indices"
     
-      ## 设置为true时可以采集cluster stats.
+      ## 设置为 true 时可以采集 cluster stats.
       cluster_stats = false
     
-      ## 只从master Node获取cluster_stats，这个前提是需要设置 local = true
+      ## 只从 master Node 获取 cluster_stats，这个前提是需要设置 local = true
       cluster_stats_only_from_master = true
     
-      ## 需要采集的Indices, 默认为 _all
+      ## 需要采集的 Indices, 默认为 _all
       indices_include = ["_all"]
     
-      ## indices级别，可取值："shards", "cluster", "indices"
+      ## indices 级别，可取值：shards/cluster/indices
       indices_level = "shards"
     
-      ## node_stats可支持配置选项有"indices", "os", "process", "jvm", "thread_pool", "fs", "transport", "http", "breaker"
+      ## node_stats 可支持配置选项有 indices/os/process/jvm/thread_pool/fs/transport/http/breaker
       # 默认是所有
       # node_stats = ["jvm", "http"]
     
@@ -221,7 +221,7 @@ PUT _plugins/_security/api/roles/monitor
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`cluster_name`|Name of the cluster, based on the Cluster name setting setting.|
 |`node_attribute_ml.enabled`|Set to true (default) to enable machine learning APIs on the node.|
@@ -235,7 +235,7 @@ PUT _plugins/_security/api/roles/monitor
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`fs_data_0_available_in_gigabytes`|Total number of gigabytes available to this Java virtual machine on this file store.|float|B|
 |`fs_data_0_free_in_gigabytes`|Total number of unallocated gigabytes in the file store.|float|B|
@@ -291,7 +291,7 @@ PUT _plugins/_security/api/roles/monitor
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`cluster_name`|Name of the cluster, based on the Cluster name setting setting.|
 |`index_name`|Name of the index. The name '_all' target all data streams and indices in a cluster.|
@@ -299,7 +299,7 @@ PUT _plugins/_security/api/roles/monitor
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`total_flush_total`|Number of flush operations.|float|count|
 |`total_flush_total_time_in_millis`|Total time in milliseconds spent performing flush operations.|float|ms|
@@ -328,7 +328,7 @@ PUT _plugins/_security/api/roles/monitor
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`cluster_name`|Name of the cluster, based on the cluster.name setting.|
 |`node_name`|Name of the node.|
@@ -337,7 +337,7 @@ PUT _plugins/_security/api/roles/monitor
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`nodes_process_open_file_descriptors_avg`|Average number of concurrently open file descriptors. Returns -1 if not supported.|float|count|
 
@@ -348,7 +348,7 @@ PUT _plugins/_security/api/roles/monitor
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`cluster_name`|Name of the cluster.|
 |`cluster_status`|The cluster status: red, yellow, green.|
@@ -356,7 +356,7 @@ PUT _plugins/_security/api/roles/monitor
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`active_primary_shards`|The number of active primary shards in the cluster.|int|count|
 |`active_shards`|The number of active shards in the cluster.|int|count|

@@ -8,7 +8,7 @@
 
 这里我们提供俩类 JVM 指标采集方式，一种方案是 Jolokia，一种是 DDTrace。选择方式的建议如下：
 
-- 如果采集诸如 Kafka 等 Java 开发的中间件 JVM 指标，推荐 Jolokia 方案。DDTrace 偏重于链路追踪（APM），且有一定的运行开销，对于中间件而言，链路追踪意义不大。
+- 推荐使用 DDTrace 进行采集 JVM 指标，Jolokia 也是可以的，用起来比较麻烦所以不推荐使用。
 - 如果采集自己开发的 Java 应用 JVM 指标，推荐 DDTrace 方案，除了能采集 JVM 指标外，还能实现链路追踪（APM）数据采集。
 
 ## 通过 DDTrace 采集 JVM 指标 {#jvm-ddtrace}
@@ -184,6 +184,13 @@ JVM 采集器可以通过 JMX 来采取很多指标，并将指标采集到观�
 java -javaagent:/path/to/jolokia-jvm-agent.jar=port=8080,host=localhost -jar your_app.jar
 ```
 
+已测试的版本:
+
+- [x] JDK 20
+- [x] JDK 17
+- [x] JDK 11
+- [x] JDK 8
+
 ### 配置 {#jolokia-config}
 
 进入 DataKit 安装目录下的 `conf.d/jvm` 目录，复制 `jvm.conf.sample` 并命名为 `jvm.conf`。示例如下：
@@ -269,15 +276,15 @@ java -javaagent:/path/to/jolokia-jvm-agent.jar=port=8080,host=localhost -jar you
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|The hostname of the Jolokia agent/proxy running on.|
-|`jolokia_agent_url`|jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent url path|
 
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`CollectionUsagecommitted`|The amount of memory in bytes that is committed for the Java virtual machine to use.|float|B|
 |`CollectionUsageinit`|The amount of memory in bytes that the Java virtual machine initially requests from the operating system for memory management.|float|B|
@@ -292,15 +299,15 @@ java -javaagent:/path/to/jolokia-jvm-agent.jar=port=8080,host=localhost -jar you
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|The hostname of the Jolokia agent/proxy running on.|
-|`jolokia_agent_url`|jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent url path|
 
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`CollectionUsagecommitted`|The amount of memory in bytes that is committed for the Java virtual machine to use.|float|B|
 |`CollectionUsageinit`|The amount of memory in bytes that the Java virtual machine initially requests from the operating system for memory management.|float|B|
@@ -323,16 +330,16 @@ java -javaagent:/path/to/jolokia-jvm-agent.jar=port=8080,host=localhost -jar you
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|The hostname of the Jolokia agent/proxy running on.|
-|`jolokia_agent_url`|jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent url path|
 |`name`|the name of GC generation|
 
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`CollectionCount`|The number of GC that have occurred.|int|count|
 |`CollectionTime`|The approximate GC collection time elapsed.|int|B|
@@ -348,15 +355,15 @@ java -javaagent:/path/to/jolokia-jvm-agent.jar=port=8080,host=localhost -jar you
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|The hostname of the Jolokia agent/proxy running on.|
-|`jolokia_agent_url`|jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent url path|
 
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`CollectionUsagecommitted`|The amount of memory in bytes that is committed for the Java virtual machine to use.|float|B|
 |`CollectionUsageinit`|The amount of memory in bytes that the Java virtual machine initially requests from the operating system for memory management.|float|B|
@@ -374,15 +381,15 @@ java -javaagent:/path/to/jolokia-jvm-agent.jar=port=8080,host=localhost -jar you
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|The hostname of the Jolokia agent/proxy running on.|
-|`jolokia_agent_url`|jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent url path|
 
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`CollectionUsagecommitted`|The amount of memory in bytes that is committed for the Java virtual machine to use.|float|B|
 |`CollectionUsageinit`|The amount of memory in bytes that the Java virtual machine initially requests from the operating system for memory management.|float|B|
@@ -399,16 +406,16 @@ java -javaagent:/path/to/jolokia-jvm-agent.jar=port=8080,host=localhost -jar you
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|The hostname of the Jolokia agent/proxy running on.|
-|`jolokia_agent_url`|jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent url path|
 |`name`|the name of space|
 
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`CollectionUsagecommitted`|The amount of memory in bytes that is committed for the Java virtual machine to use.|float|B|
 |`CollectionUsageinit`|The amount of memory in bytes that the Java virtual machine initially requests from the operating system for memory management.|float|B|

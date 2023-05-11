@@ -25,7 +25,7 @@ SMI 指标展示：包括 GPU 卡温度、时钟、GPU 占用率、内存占用�
   ##(Optional) Collect interval, default is 10 seconds
   interval = "10s"
 
-  ##The binPath of gpu-smi 
+  ##The binPath of gpu-smi
 
   ##If nvidia GPU
   #(Example & default) bin_paths = ["/usr/bin/nvidia-smi"]
@@ -108,7 +108,7 @@ SMI 指标展示：包括 GPU 卡温度、时钟、GPU 占用率、内存占用�
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`compute_mode`|Compute mode|
 |`cuda_version`|CUDA version|
@@ -122,7 +122,7 @@ SMI 指标展示：包括 GPU 卡温度、时钟、GPU 占用率、内存占用�
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`clocks_current_graphics`|Graphics clock frequency.|int|MHz|
 |`clocks_current_memory`|Memory clock frequency.|int|MHz|
@@ -135,8 +135,8 @@ SMI 指标展示：包括 GPU 卡温度、时钟、GPU 占用率、内存占用�
 |`fbc_stats_average_fps`|Frame Buffer Cache average fps.|int|-|
 |`fbc_stats_average_latency`|Frame Buffer Cache average latency.|int|-|
 |`fbc_stats_session_count`|Frame Buffer Cache session count.|int|-|
-|`memory_total`|Framebuffer memory total.|int|MB|
-|`memory_used`|Framebuffer memory used.|int|MB|
+|`memory_total`|Frame buffer memory total.|int|MB|
+|`memory_used`|Frame buffer memory used.|int|MB|
 |`pcie_link_gen_current`|PCI-Express link gen.|int|-|
 |`pcie_link_width_current`|PCI link width.|int|-|
 |`power_draw`|Power draw.|float|watt|

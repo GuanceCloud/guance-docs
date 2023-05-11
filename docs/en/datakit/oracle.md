@@ -13,7 +13,11 @@ Oracle monitoring metrics collection has the following data collection functions
 - system data collection
 - Custom query data collection
 
-Already tested version: `11g`, `12c`, `19c`.
+Already tested version:
+
+- [x] Oracle 19c
+- [x] Oracle 12c
+- [x] Oracle 11g
 
 ## Precondition {#reqirement}
 
@@ -92,13 +96,13 @@ apt-get install -y libaio-dev libaio1
       #############################
       # 参数说明(标 * 为必选项)
       #############################
-      # *--interval       : 采集的频度，最小粒度5m
-      # *--host           : oracle实例地址(ip)
-      #  --port           : oracle监听端口
-      # *--username       : oracle 用户名
-      # *--password       : oracle 密码
-      # *--service-name   : oracle的服务名
-      # *--query          : 自定义查询语句，格式为<sql:metricName:tags>, sql为自定义采集的语句, tags填入使用tag字段
+      # *--interval       : 采集的频度，最小粒度 5m
+      # *--host           : Oracle 实例地址(ip)
+      #  --port           : Oracle 监听端口
+      # *--username       : Oracle 用户名
+      # *--password       : Oracle 密码
+      # *--service-name   : Oracle 的服务名
+      # *--query          : 自定义查询语句，格式为 <sql:metricName:tags>, sql 为自定义采集的语句, tags 填入使用 tag 字段
     
     ```
     
@@ -126,7 +130,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|host|
 |`oracle_server`|Server addr|
@@ -136,7 +140,7 @@ For all of the following data collections, a global tag named `host` is appended
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`pga_alloc_mem`|PGA memory allocated by process|float|B|
 |`pga_freeable_mem`|PGA memory freeable by process|float|B|
@@ -150,7 +154,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|host|
 |`oracle_server`|Server addr|
@@ -160,11 +164,11 @@ For all of the following data collections, a global tag named `host` is appended
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`in_use`|Tablespace in-use|float|count|
-|`off_use`|Tablespace offline|float|count|
-|`ts_size`|Tablespace size|float|B|
+|`in_use`|Table space in-use|float|count|
+|`off_use`|Table space offline|float|count|
+|`ts_size`|Table space size|float|B|
 |`used_space`|Used space|float|count|
 
 
@@ -174,15 +178,16 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
+|`host`|host|
 |`oracle_server`|Server addr|
 |`oracle_service`|Server service|
 
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`active_sessions`|Number of active sessions|float|count|
 |`buffer_cachehit_ratio`|Ratio of buffer cache hits|float|count|

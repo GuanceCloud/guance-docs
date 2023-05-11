@@ -105,14 +105,14 @@ GO
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
-|`sqlserver_host`|host name which installed sqlserver|
+|`sqlserver_host`|host name which installed SQLServer|
 
 - 字段列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cpu_count`|Specifies the number of logical CPUs on the system. Not nullable.|int|count|
 |`db_offline`|num of database state in offline|int|count|
@@ -131,16 +131,16 @@ GO
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`counter_name`|Name of the counter. To get more information about a counter, this is the name of the topic to select from the list of counters in Use SQL Server Objects.|
 |`object_name`|Category to which this counter belongs.|
-|`sqlserver_host`|host name which installed sqlserver|
+|`sqlserver_host`|host name which installed SQLServer|
 
 - 字段列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cntr_value`|Current value of the counter.|int|count|
 
@@ -152,16 +152,16 @@ GO
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
-|`sqlserver_host`|host name which installed sqlserver|
+|`sqlserver_host`|host name which installed SQLServer|
 |`wait_category`|wait category info|
 |`wait_type`|Name of the wait type. For more information, see Types of Waits, later in this topic|
 
 - 字段列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`max_wait_time_ms`|Maximum wait time on this wait type.|int|ms|
 |`resource_wait_ms`|wait_time_ms-signal_wait_time_ms|int|ms|
@@ -177,18 +177,18 @@ GO
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`database_name`|database name|
-|`file_type`|Description of the file type,ROWS、LOG、FILESTREAM、FULLTEXT (Full-text catalogs earlier than SQL Server 2008.)|
+|`file_type`|Description of the file type, `ROWS/LOG/FILESTREAM/FULLTEXT` (Full-text catalogs earlier than SQL Server 2008.)|
 |`logical_filename`|Logical name of the file in the database|
 |`physical_filename`|Operating-system file name.|
-|`sqlserver_host`|host name which installed sqlserver|
+|`sqlserver_host`|host name which installed SQLServer|
 
 - 字段列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`read`|Number of reads issued on the file.|int|count|
 |`read_bytes`|Total number of bytes read on this file|int|B|
@@ -207,16 +207,16 @@ GO
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`cpu_id`|CPU ID assigned to the scheduler.|
 |`scheduler_id`|ID of the scheduler. All schedulers that are used to run regular queries have ID numbers less than 1048576. Those schedulers that have IDs greater than or equal to 1048576 are used internally by SQL Server, such as the dedicated administrator connection scheduler. Is not nullable.|
-|`sqlserver_host`|host name which installed sqlserver|
+|`sqlserver_host`|host name which installed SQLServer|
 
 - 字段列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`active_workers_count`|Number of workers that are active. An active worker is never preemptive, must have an associated task, and is either running, runnable, or suspended. Is not nullable.|int|count|
 |`context_switches_count`|Number of context switches that have occurred on this scheduler|int|count|
@@ -241,15 +241,15 @@ GO
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
-|`sqlserver_host`|host name which installed sqlserver|
+|`sqlserver_host`|host name which installed SQLServer|
 |`volume_mount_point`|Mount point at which the volume is rooted. Can return an empty string. Returns null on Linux operating system.|
 
 - 字段列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`volume_available_space_bytes`|Available free space on the volume|int|B|
 |`volume_total_space_bytes`|Total size in bytes of the volume|int|B|
@@ -273,14 +273,14 @@ GO
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`name`|Name of the database|
 
 - 字段列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`data_size`|The size of file of Rows|float|KB|
 |`log_size`|The size of file of Log|float|KB|
@@ -311,7 +311,7 @@ GO
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host_name`|Name of the client workstation that is specific to a session|
 |`login_name`|SQL Server login name under which the session is currently executing|
@@ -321,7 +321,7 @@ GO
 - 字段列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`blocking_session_id`|ID of the session that is blocking the request|int|count|
 |`cpu_time`|CPU time in milliseconds that is used by the request|int|ms|
@@ -340,7 +340,7 @@ GO
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`db_name`|Name of the database under which this resource is scoped|
 |`object_name`|Name of the entity in a database with which a resource is associated|
@@ -351,7 +351,7 @@ GO
 - 字段列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`resource_session_id`|Session ID that currently owns this request|int|count|
 
@@ -363,7 +363,7 @@ GO
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`blocking_object_name`|Indicates the name of the object to which this partition belongs|
 |`blocking_text`|Text of the SQL query which is blocking|
@@ -375,7 +375,7 @@ GO
 - 字段列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`blocking_session_id`|ID of the session that is blocking the request|int|count|
 |`request_session_id`|Session ID that currently owns this request|int|count|
@@ -388,14 +388,14 @@ GO
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`message`|Text of the SQL query|
 
 - 字段列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`avg_logical_io`|Average number of logical writes and logical reads|int|count|
 |`creation_time`|The Unix time at which the plan was compiled, in millisecond|int|count|
@@ -413,14 +413,14 @@ GO
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`message`|Text of the SQL query|
 
 - 字段列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`avg_worker_time`|Average amount of CPU time, reported in milliseconds|int|count|
 |`creation_time`|The Unix time at which the plan was compiled, in millisecond|int|count|

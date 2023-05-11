@@ -79,7 +79,7 @@ CPU 采集器用于系统 CPU 使用率的采集。
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`cpu`|CPU core ID. For `cpu-total`, it means *all-CPUs-in-one-tag*. If you want every CPU's metric, please enable `percpu` option in *cpu.conf* or set `ENV_INPUT_CPU_PERCPU` under K8s|
 |`host`|System hostname.|
@@ -87,12 +87,12 @@ CPU 采集器用于系统 CPU 使用率的采集。
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`core_temperature`|CPU core temperature. This is collected by default. Only collect the average temperature of all cores.|float|C|
 |`load5s`|CPU average load in 5 seconds.|int|-|
 |`usage_guest`|% CPU spent running a virtual CPU for guest operating systems.|float|percent|
-|`usage_guest_nice`|% CPU spent running a niced guest(virtual CPU for guest operating systems).|float|percent|
+|`usage_guest_nice`|% CPU spent running a nice guest(virtual CPU for guest operating systems).|float|percent|
 |`usage_idle`|% CPU in the idle task.|float|percent|
 |`usage_iowait`|% CPU waiting for I/O to complete.|float|percent|
 |`usage_irq`|% CPU servicing hardware interrupts.|float|percent|
