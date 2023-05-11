@@ -240,7 +240,7 @@ IPMI 采集器支持选举功能，当多台机器运行 DataKit 时，通过选
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|Monitored host name|
 |`unit`|Unit name in the host|
@@ -248,7 +248,7 @@ IPMI 采集器支持选举功能，当多台机器运行 DataKit 时，通过选
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`count`|Count.|int|count|
 |`current`|Current.|float|ampere|

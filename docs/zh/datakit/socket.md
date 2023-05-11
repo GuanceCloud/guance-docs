@@ -23,7 +23,8 @@ UDP 指标需要操作系统有 `nc` 程序
     ```toml
         
     [[inputs.socket]]
-      ## support tcp, udp.If the quantity to be detected is too large, it is recommended to open more collectors
+      ## Support TCP/UDP.
+      ## If the quantity to be detected is too large, it is recommended to open more collectors
       dest_url = ["tcp://host:port", "udp://host:port"]
     
       ## @param interval - number - optional - default: 30
@@ -63,19 +64,19 @@ UDP 指标需要操作系统有 `nc` 程序
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
-|`dest_host`|示例 wwww.baidu.com|
+|`dest_host`|示例 `wwww.baidu.com`|
 |`dest_port`|示例 80|
-|`proto`|示例 tcp|
+|`proto`|示例 `tcp`|
 
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`response_time`|TCP 连接时间, 单位us|int|μs|
-|`response_time_with_dns`|连接时间（含DNS解析）, 单位us|int|μs|
+|`response_time`|TCP 连接时间, 单位 us|int|μs|
+|`response_time_with_dns`|连接时间（含 DNS 解析）, 单位 us|int|μs|
 |`success`|只有 1/-1 两种状态, 1 表示成功, -1 表示失败|int|-|
 
 
@@ -85,16 +86,16 @@ UDP 指标需要操作系统有 `nc` 程序
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
-|`dest_host`|目的主机的host|
+|`dest_host`|目的主机的 host|
 |`dest_port`|目的主机的端口号|
-|`proto`|示例 udp|
+|`proto`|示例 `udp`|
 
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`success`|只有 1/-1 两种状态, 1 表示成功, -1 表示失败|int|-|
 

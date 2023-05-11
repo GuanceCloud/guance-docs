@@ -6,7 +6,7 @@ icon: zy/management
 
 工作空间是观测云的基本操作单元。在观测云工作空间内，您可以使用观测云提供的多样化功能。而**工作空间管理**是针对当前工作空间进行的设置、管理和操作。在加入工作空间并被分配到权限后，您可以对该空间的基本信息、成员权限、SSO 登录、数据权限、API Key、通知对象、内置视图、图表和快照分享等进行管理。
 
-下文将从个人账户层级向您介绍<u>如何注册登录帐户并进入您的工作空间 > 关注您的帐户安全 > 设置您的工作区外观</u>。
+下文将从个人账户层级向您介绍<u>如何注册登录帐户并进入您的工作空间 > 关注您的帐户安全 > 设置您的工作空间外观</u>。
 
 ## 工作空间相关
 
@@ -161,13 +161,10 @@ icon: zy/management
 ![](img/08_color_03.png)
 
 
-
 ## 更多阅读
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 工作空间锁定/解锁/解散</font>](../billing/cost-center/workspace-management.md#lock)
-
-<br/>
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **工作空间锁定/解锁/解散**</font>](../billing/cost-center/workspace-management.md#lock)
 
 </div>

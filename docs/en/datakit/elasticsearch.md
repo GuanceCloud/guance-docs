@@ -223,7 +223,7 @@ For all of the following data collections, a global tag named `host` is appended
 -  Tags
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`cluster_name`|Name of the cluster, based on the Cluster name setting setting.|
 |`node_attribute_ml.enabled`|Set to true (default) to enable machine learning APIs on the node.|
@@ -237,7 +237,7 @@ For all of the following data collections, a global tag named `host` is appended
 - Metrics
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`fs_data_0_available_in_gigabytes`|Total number of gigabytes available to this Java virtual machine on this file store.|float|B|
 |`fs_data_0_free_in_gigabytes`|Total number of unallocated gigabytes in the file store.|float|B|
@@ -293,7 +293,7 @@ For all of the following data collections, a global tag named `host` is appended
 -  Tags
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`cluster_name`|Name of the cluster, based on the Cluster name setting setting.|
 |`index_name`|Name of the index. The name '_all' target all data streams and indices in a cluster.|
@@ -301,7 +301,7 @@ For all of the following data collections, a global tag named `host` is appended
 - Metrics
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`total_flush_total`|Number of flush operations.|float|count|
 |`total_flush_total_time_in_millis`|Total time in milliseconds spent performing flush operations.|float|ms|
@@ -330,7 +330,7 @@ For all of the following data collections, a global tag named `host` is appended
 -  Tags
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`cluster_name`|Name of the cluster, based on the cluster.name setting.|
 |`node_name`|Name of the node.|
@@ -339,7 +339,7 @@ For all of the following data collections, a global tag named `host` is appended
 - Metrics
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`nodes_process_open_file_descriptors_avg`|Average number of concurrently open file descriptors. Returns -1 if not supported.|float|count|
 
@@ -350,7 +350,7 @@ For all of the following data collections, a global tag named `host` is appended
 -  Tags
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`cluster_name`|Name of the cluster.|
 |`cluster_status`|The cluster status: red, yellow, green.|
@@ -358,7 +358,7 @@ For all of the following data collections, a global tag named `host` is appended
 - Metrics
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`active_primary_shards`|The number of active primary shards in the cluster.|int|count|
 |`active_shards`|The number of active shards in the cluster.|int|count|

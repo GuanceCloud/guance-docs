@@ -143,10 +143,10 @@ Datakit 支持以上所有版本。
 
 ???+ tip
 
-    上述配置完成后，可以使用 `datakit tool --test-snmp` 命令来测试配置是否正确，示例如下:
+    上述配置完成后，可以使用 `datakit debug --test-input` 命令来测试配置是否正确，示例如下:
 
     ```sh
-    sudo datakit tool --test-snmp /usr/local/datakit/conf.d/snmp/snmp.conf
+    sudo datakit debug --test-input /usr/local/datakit/conf.d/snmp/snmp.conf
     ```
 
     如果正确会输出行协议信息，否则看不到行协议信息。
@@ -284,7 +284,7 @@ SNMP device metric data.
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`cpu`|CPU index. Optional.|
 |`device_vendor`|Device vendor.|
@@ -309,7 +309,7 @@ SNMP device metric data.
 - 字段列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cieIfInputQueueDrops`|[Cisco only] (Shown as packet) The number of input packets dropped.|float|count|
 |`cieIfLastInTime`|[Cisco only] (Shown as millisecond) The elapsed time in milliseconds since the last protocol input packet was received.|float|ms|
@@ -318,14 +318,14 @@ SNMP device metric data.
 |`cieIfResetCount`|[Cisco only] The number of times the interface was internally reset and brought up.|float|count|
 |`ciscoEnvMonFanState`|[Cisco only] The current state of the fan being instrumented.|float|count|
 |`ciscoEnvMonSupplyState`|[Cisco only] The current state of the power supply being instrumented.|float|count|
-|`ciscoEnvMonTemperatureStatusValue`|[Cisco only] The current value of the testpoint being instrumented.|float|count|
+|`ciscoEnvMonTemperatureStatusValue`|[Cisco only] The current value of the test point being instrumented.|float|count|
 |`ciscoMemoryPoolFree`|[Cisco only] Indicates the number of bytes from the memory pool that are currently unused on the managed device.|float|count|
 |`ciscoMemoryPoolLargestFree`|[Cisco only] Indicates the largest number of contiguous bytes from the memory pool that are currently unused on the managed device.|float|count|
 |`ciscoMemoryPoolUsed`|[Cisco only] Indicates the number of bytes from the memory pool that are currently in use by applications on the managed device.|float|count|
 |`cpmCPUTotal1minRev`|[Cisco only] [Shown as percent] The overall CPU busy percentage in the last 1 minute period.|float|percent|
 |`cpmCPUTotalMonIntervalValue`|[Cisco only] (Shown as percent) The overall CPU busy percentage in the last cpmCPUMonInterval period.|float|percent|
 |`cpuUsage`|(Shown as percent) Percentage of CPU currently being used.|float|percent|
-|`cswStackPortOperStatus`|[Cisco only] The state of the stackport.|float|count|
+|`cswStackPortOperStatus`|[Cisco only] The state of the stack port.|float|count|
 |`cswSwitchState`|[Cisco only] The current state of a switch.|float|count|
 |`entSensorValue`|[Cisco only] The most recent measurement seen by the sensor.|float|count|
 |`ifAdminStatus`|The desired state of the interface.|float|-|
@@ -365,8 +365,8 @@ SNMP device metric data.
 |`tcpOutRsts`|(Shown as segment) The number of TCP segments sent containing the RST flag.|float|count|
 |`tcpPassiveOpens`|(Shown as connection) The number of times TCP connections have made a direct transition to the SYN-RCVD state from the LISTEN state.|float|count|
 |`tcpRetransSegs`|(Shown as segment) The total number of segments retransmitted; that is, the number of TCP segments transmitted containing one or more previously transmitted octets.|float|count|
-|`udpInErrors`|(Shown as datagram) The number of received UDP datagrams that could not be delivered for reasons other than the lack of an application at the destination port.|float|count|
-|`udpNoPorts`|(Shown as datagram) The total number of received UDP datagrams for which there was no application at the destination port.|float|count|
+|`udpInErrors`|(Shown as datagram) The number of received UDP datagram that could not be delivered for reasons other than the lack of an application at the destination port.|float|count|
+|`udpNoPorts`|(Shown as datagram) The total number of received UDP datagram for which there was no application at the destination port.|float|count|
 
 
 
@@ -384,7 +384,7 @@ SNMP device object data.
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`device_vendor`|Device vendor.|
 |`host`|Device host, replace with IP.|
@@ -396,14 +396,14 @@ SNMP device object data.
 - 字段列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`all`|Device all data (JSON format).|string|-|
 |`cpus`|Device CPUs (JSON format).|string|-|
 |`device_meta`|Device meta data (JSON format).|string|-|
 |`interfaces`|Device network interfaces (JSON format).|string|-|
 |`mem_pool_names`|Device memory pool names (JSON format).|string|-|
-|`mems`|Device memorys (JSON format).|string|-|
+|`mems`|Device memories (JSON format).|string|-|
 |`sensors`|Device sensors (JSON format).|string|-|
 
 

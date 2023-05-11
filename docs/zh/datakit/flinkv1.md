@@ -82,14 +82,14 @@ metrics.reporter.prom.port: 9250-9260
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|host name|
 
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`Status_JVM_CPU_Load`|The recent CPU usage of the JVM.|int|count|
 |`Status_JVM_CPU_Time`|The CPU time used by the JVM.|int|count|
@@ -108,14 +108,14 @@ metrics.reporter.prom.port: 9250-9260
 |`Status_JVM_Memory_Mapped_Count`|The number of buffers in the mapped buffer pool.|int|count|
 |`Status_JVM_Memory_Mapped_MemoryUsed`|The amount of memory used by the JVM for the mapped buffer pool.|int|count|
 |`Status_JVM_Memory_Mapped_TotalCapacity`|The number of buffers in the mapped buffer pool.|int|count|
-|`Status_JVM_Memory_Metaspace_Committed`|The amount of memory guaranteed to be available to the JVM in the Metaspace memory pool (in bytes).|int|count|
-|`Status_JVM_Memory_Metaspace_Max`|The maximum amount of memory that can be used in the Metaspace memory pool (in bytes).|int|count|
+|`Status_JVM_Memory_Metaspace_Committed`|The amount of memory guaranteed to be available to the JVM in the meta-space memory pool (in bytes).|int|count|
+|`Status_JVM_Memory_Metaspace_Max`|The maximum amount of memory that can be used in the meta-space memory pool (in bytes).|int|count|
 |`Status_JVM_Memory_Metaspace_Used`|Used bytes of a given JVM memory area|int|count|
 |`Status_JVM_Memory_NonHeap_Committed`|The amount of non-heap memory guaranteed to be available to the JVM.|int|count|
 |`Status_JVM_Memory_NonHeap_Max`|The maximum amount of non-heap memory that can be used for memory management|int|count|
 |`Status_JVM_Memory_NonHeap_Used`|The amount of non-heap memory currently used.|int|count|
 |`Status_JVM_Threads_Count`|The total number of live threads.|int|count|
-|`numRegisteredTaskManagers`|The number of registered taskmanagers.|int|count|
+|`numRegisteredTaskManagers`|The number of registered task managers.|int|count|
 |`numRunningJobs`|The number of running jobs.|int|count|
 |`taskSlotsAvailable`|The number of available task slots.|int|count|
 |`taskSlotsTotal`|The total number of task slots.|int|count|
@@ -127,14 +127,14 @@ metrics.reporter.prom.port: 9250-9260
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|host name|
 
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`Status_Flink_Memory_Managed_Total`|The total amount of managed memory.|int|count|
 |`Status_Flink_Memory_Managed_Used`|The amount of managed memory currently used.|int|count|
@@ -155,8 +155,8 @@ metrics.reporter.prom.port: 9250-9260
 |`Status_JVM_Memory_Mapped_Count`|The number of buffers in the mapped buffer pool.|int|count|
 |`Status_JVM_Memory_Mapped_MemoryUsed`|The amount of memory used by the JVM for the mapped buffer pool.|int|count|
 |`Status_JVM_Memory_Mapped_TotalCapacity`|The number of buffers in the mapped buffer pool.|int|count|
-|`Status_JVM_Memory_Metaspace_Committed`|The amount of memory guaranteed to be available to the JVM in the Metaspace memory pool (in bytes).|int|count|
-|`Status_JVM_Memory_Metaspace_Max`|The maximum amount of memory that can be used in the Metaspace memory pool (in bytes).|int|count|
+|`Status_JVM_Memory_Metaspace_Committed`|The amount of memory guaranteed to be available to the JVM in the meta-space memory pool (in bytes).|int|count|
+|`Status_JVM_Memory_Metaspace_Max`|The maximum amount of memory that can be used in the meta-space memory pool (in bytes).|int|count|
 |`Status_JVM_Memory_Metaspace_Used`|Used bytes of a given JVM memory area|int|count|
 |`Status_JVM_Memory_NonHeap_Committed`|The amount of non-heap memory guaranteed to be available to the JVM.|int|count|
 |`Status_JVM_Memory_NonHeap_Max`|The maximum amount of non-heap memory that can be used for memory management|int|count|
