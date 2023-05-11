@@ -1,7 +1,6 @@
 nav:
   - index.md
   - '监控器': monitor
-    - '监控器模板': template.md
   - '智能巡检': bot-obs
   - 'SLO': slo.md
   - '静默管理': silent-management.md
