@@ -65,19 +65,19 @@
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|the host of ssh|
 
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`sftp_check`|sftp service status|bool|-|
-|`sftp_err`|fail reason of connet sftp service|string|-|
+|`sftp_err`|fail reason of connect sftp service|string|-|
 |`sftp_response_time`|response time of sftp service|float|ms|
 |`ssh_check`|ssh service status|bool|-|
-|`ssh_err`|fail reason of connet ssh service|string|-|
+|`ssh_err`|fail reason of connect ssh service|string|-|
 
 

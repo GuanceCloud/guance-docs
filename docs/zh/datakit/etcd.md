@@ -30,7 +30,7 @@ etcd 采集器可以从 etcd 实例中采取很多指标，比如 etcd 服务器
       url = "http://127.0.0.1:2379/metrics"
     
       ## Collector alias.
-    	source = "etcd"
+      source = "etcd"
     
       ## Metrics type whitelist. Optional: counter, gauge, histogram, summary
       # Default only collect 'counter' and 'gauge'.
@@ -100,14 +100,14 @@ etcd 采集器可以从 etcd 实例中采取很多指标，比如 etcd 服务器
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|主机名称|
 
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`network_client_grpc_received_bytes_total`|接收到 grpc 客户端的总字节数|int|count|
 |`network_client_grpc_sent_bytes_total`|发送到 grpc 客户端的总字节数|int|count|
@@ -119,15 +119,15 @@ etcd 采集器可以从 etcd 实例中采取很多指标，比如 etcd 服务器
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|主机名称|
-|`server_has_leader`|领导者是否存在。1是存在。0是不存在|
+|`server_has_leader`|领导者是否存在。1 是存在。0 是不存在|
 
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`server_leader_changes_seen_total`|解释到的领导者变更次数|int|count|
 |`server_proposals_applied_total`|已应用的共识提案总数|int|count|

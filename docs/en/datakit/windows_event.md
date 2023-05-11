@@ -20,7 +20,7 @@ Go to the `conf.d/windows` directory under the DataKit installation directory, c
 
 [[inputs.windows_event]]
   xpath_query = '''
-	<QueryList>
+  <QueryList>
     <Query Id="0" Path="Security">
       <Select Path="Security">*</Select>
       <Suppress Path="Security">*[System[( (EventID &gt;= 5152 and EventID &lt;= 5158) or EventID=5379 or EventID=4672)]]</Suppress>
@@ -38,11 +38,11 @@ Go to the `conf.d/windows` directory under the DataKit installation directory, c
       <Select Path="Setup">*</Select>
     </Query>
   </QueryList>
-	'''
+  '''
   [inputs.windows_event.tags]
   # some_tag = "some_value"
   # more_tag = "some_other_value"
-  # ... 
+  # ...
 ```
 
 After configuration, restart DataKit.
@@ -66,7 +66,7 @@ For all of the following data collections, a global tag named `host` is appended
 -  tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`channel`|Channel|
 |`computer`|计算机|
@@ -85,7 +85,7 @@ For all of the following data collections, a global tag named `host` is appended
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 
  

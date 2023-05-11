@@ -11,6 +11,10 @@
 
 ## 前置条件 {#requrements}
 
+- 已测试的版本:
+    - [x] 9
+    - [x] 8
+
 - 下载 [Jolokia](https://search.maven.org/remotecontent?filepath=org/jolokia/jolokia-war/1.6.2/jolokia-war-1.6.2.war){:target="_blank"}，重命名为 `jolokia.war`，并放置于 Tomcat 的 *webapps* 目录下。也可从 Datakit 的安装目录下的 *data* 目录下获取 *jolokia.war* 包
 - 编辑 Tomcat 的 *conf* 目录下的 *tomcat-users.xml*，增加 `role` 为 `jolokia` 的用户。
 
@@ -144,7 +148,7 @@ Tomcat started.
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|System hostname.|
 |`jolokia_agent_url`|Jolokia agent url.|
@@ -153,7 +157,7 @@ Tomcat started.
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`bytesReceived`|Amount of data received, in bytes.|int|count|
 |`bytesSent`|Amount of data sent, in bytes.|int|count|
@@ -168,7 +172,7 @@ Tomcat started.
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`J2EEApplication`|J2EE Application.|
 |`J2EEServer`|J2EE Servers.|
@@ -179,7 +183,7 @@ Tomcat started.
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`jspCount`|The number of JSPs that have been loaded into a webapp.|int|count|
 |`jspReloadCount`|The number of JSPs that have been reloaded.|int|count|
@@ -192,7 +196,7 @@ Tomcat started.
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|System hostname.|
 |`jolokia_agent_url`|Jolokia agent url.|
@@ -201,7 +205,7 @@ Tomcat started.
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`currentThreadCount`|CurrentThreadCount.|int|count|
 |`currentThreadsBusy`|CurrentThreadsBusy.|int|count|
@@ -214,7 +218,7 @@ Tomcat started.
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`J2EEApplication`|J2EE Application.|
 |`J2EEServer`|J2EE Server.|
@@ -226,10 +230,10 @@ Tomcat started.
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`errorCount`|Error count.|int|count|
-|`processingTime`|Total execution time of the servlet's service method.|int|-|
+|`processingTime`|Total execution time of the Servlet's service method.|int|-|
 |`requestCount`|Number of requests processed by this wrapper.|int|count|
 
 
@@ -239,7 +243,7 @@ Tomcat started.
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|System hostname.|
 |`jolokia_agent_url`|Jolokia agent url.|
@@ -249,7 +253,7 @@ Tomcat started.
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`hitCount`|The number of requests for resources that were served from the cache.|int|count|
 |`lookupCount`|The number of requests for resources.|int|count|

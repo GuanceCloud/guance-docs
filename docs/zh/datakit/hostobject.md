@@ -108,14 +108,16 @@ Datakit 默认开启云同步，目前支持阿里云/腾讯云/AWS/华为云/�
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
+|`host`|Hostname. Required.|
+|`name`|Hostname|
 |`os`|Host OS type|
 
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cpu_usage`|CPU usage|float|percent|
 |`datakit_ver`|collector version|string|-|
@@ -128,7 +130,7 @@ Datakit 默认开启云同步，目前支持阿里云/腾讯云/AWS/华为云/�
 |`message`|Summary of all host information|string|-|
 |`net_recv_bytes_per_sec`|network receive rate|int|B/S|
 |`net_send_bytes_per_sec`|network send rate|int|B/S|
-|`start_time`|Host startup time (Unix timestamp)|int|s|
+|`start_time`|Host startup time (Unix timestamp)|int|ms|
 |`state`|Host Status|string|-|
 
 

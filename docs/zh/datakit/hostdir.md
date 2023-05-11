@@ -29,7 +29,7 @@
       # UNIX-like example: /usr/local/
       dir = "" # required
     
-    	# optional, i.e., "*.exe", "*.so"
+      # optional, i.e., "*.exe", "*.so"
       exclude_patterns = []
     
     [inputs.hostdir.tags]
@@ -62,7 +62,7 @@
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`file_ownership`|file ownership|
 |`file_system`|file system type|
@@ -71,7 +71,7 @@
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`dir_count`|The number of Dir|int|count|
 |`file_count`|The number of files|int|count|

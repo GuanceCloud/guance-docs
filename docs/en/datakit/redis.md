@@ -42,68 +42,68 @@ ACL SETUSER username on +ping
       host = "localhost"
       port = 6379
       # unix_socket_path = "/var/run/redis/redis.sock"
-      # 配置多个db，配置了dbs，db也会放入采集列表。dbs=[]或者不配置则会采集redis中所有非空的db
+      # 配置多个 db，配置了 dbs，db 也会放入采集列表。dbs=[] 或者不配置则会采集 Redis 中所有非空的 db
       # dbs=[]
       # username = "<USERNAME>"
       # password = "<PASSWORD>"
-      
+    
       ## @param connect_timeout - number - optional - default: 10s
       # connect_timeout = "10s"
-      
+    
       ## @param service - string - optional
       # service = "<SERVICE>"
-      
+    
       ## @param interval - number - optional - default: 15
       interval = "15s"
-      
+    
       ## @param keys - list of strings - optional
       ## The length is 1 for strings.
       ## The length is zero for keys that have a type other than list, set, hash, or sorted set.
       #
       # keys = ["KEY_1", "KEY_PATTERN"]
-      
+    
       ## @param warn_on_missing_keys - boolean - optional - default: true
       ## If you provide a list of 'keys', set this to true to have the Agent log a warning
       ## when keys are missing.
       #
       # warn_on_missing_keys = true
-      
+    
       ## @param slow_log - boolean - optional - default: true
       slow_log = true
-      
+    
       ## @param all_slow_log - boolean - optional - default: false
-      ## Collect all slowlogs returned by Redis. When set to false, will only collect slowlog 
+      ## Collect all slowlogs returned by Redis. When set to false, will only collect slowlog
       ## that are generated after this input starts, and collect the same slowlog only once.
       all_slow_log = false
     
       ## @param slowlog-max-len - integer - optional - default: 128
       slowlog-max-len = 128
-      
+    
       ## @param command_stats - boolean - optional - default: false
       ## Collect INFO COMMANDSTATS output as metrics.
       # command_stats = false
     
       ## Set true to enable election
       election = true
-      
+    
       # [inputs.redis.log]
       # #required, glob logfiles
       # files = ["/var/log/redis/*.log"]
-      
+    
       ## glob filteer
       #ignore = [""]
-      
+    
       ## grok pipeline script path
       #pipeline = "redis.p"
-      
+    
       ## optional encodings:
       ##    "utf-8", "utf-16le", "utf-16le", "gbk", "gb18030" or ""
       #character_encoding = ""
-      
+    
       ## The pattern should be a regexp. Note the use of '''this regexp'''
       ## regexp link: https://golang.org/pkg/regexp/syntax/#hdr-Syntax
       #match = '''^\S.*'''
-      
+    
       [inputs.redis.tags]
       # some_tag = "some_value"
       # more_tag = "some_other_value"
@@ -146,7 +146,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`db_name`|db|
 |`key`|monitor key|
@@ -155,7 +155,7 @@ For all of the following data collections, a global tag named `host` is appended
 - feld list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`value_length`|Key length|int|-| 
 
@@ -170,17 +170,17 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`addr`|Address/port of the client|
 |`id`|AN unique 64-bit client ID|
-|`name`|The name set by the client with CLIENT SETNAME, default unknown|
+|`name`|The name set by the client with `CLIENT SETNAME`, default unknown|
 |`server`|Server addr|
 
 - feld list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`age`|Total duration of the connection in seconds|int|count|
 |`fd`|File descriptor corresponding to the socket|int|count|
@@ -199,14 +199,14 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`server`|Server addr|
 
 - feld list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cluster_current_epoch`|The local Current Epoch variable. This is used in order to create unique increasing version numbers during fail overs.|int|-|
 |`cluster_known_nodes`|The total number of known nodes in the cluster, including nodes in HANDSHAKE state that may not currently be proper members of the cluster.|int|count|
@@ -214,8 +214,8 @@ For all of the following data collections, a global tag named `host` is appended
 |`cluster_size`|The number of master nodes serving at least one hash slot in the cluster.|int|count|
 |`cluster_slots_assigned`| Number of slots which are associated to some node (not unbound). This number should be 16384 for the node to work properly, which means that each hash slot should be mapped to a node.|int|count|
 |`cluster_slots_fail`|Number of hash slots mapping to a node in FAIL state. If this number is not zero the node is not able to serve queries unless cluster-require-full-coverage is set to no in the configuration.|int|count|
-|`cluster_slots_ok`|Number of hash slots mapping to a node not in FAIL or PFAIL state.|int|count|
-|`cluster_slots_pfail`|Number of hash slots mapping to a node in PFAIL state. Note that those hash slots still work correctly, as long as the PFAIL state is not promoted to FAIL by the failure detection algorithm. PFAIL only means that we are currently not able to talk with the node, but may be just a transient error.|int|count|
+|`cluster_slots_ok`|Number of hash slots mapping to a node not in `FAIL` or `PFAIL` state.|int|count|
+|`cluster_slots_pfail`|Number of hash slots mapping to a node in `PFAIL` state. Note that those hash slots still work correctly, as long as the `PFAIL` state is not promoted to FAIL by the failure detection algorithm. `PFAIL` only means that we are currently not able to talk with the node, but may be just a transient error.|int|count|
 |`cluster_state`|State is ok if the node is able to receive queries. fail if there is at least one hash slot which is unbound (no node associated), in error state (node serving it is flagged with FAIL flag), or if the majority of masters can't be reached by this node.|int|-|
 |`cluster_stats_messages_received`|Number of messages received via the cluster node-to-node binary bus.|int|count|
 |`cluster_stats_messages_sent`|Number of messages sent via the cluster node-to-node binary bus.|int|count| 
@@ -231,7 +231,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`method`|Command type|
 |`server`|Server addr|
@@ -239,7 +239,7 @@ For all of the following data collections, a global tag named `host` is appended
 - feld list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`calls`|The number of calls that reached command execution|int|count|
 |`usec`|The total CPU time consumed by these commands|int|μs|
@@ -256,14 +256,14 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`db`|db name|
 
 - feld list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`avg_ttl`|avg ttl|int|-|
 |`expires`|过期时间|int|-|
@@ -280,7 +280,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`redis_version`|Version of the Redis server|
 |`server`|Server addr|
@@ -288,7 +288,7 @@ For all of the following data collections, a global tag named `host` is appended
 - feld list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`active_defrag_hits`|Number of value reallocations performed by active the defragmentation process|int|count|
 |`active_defrag_key_hits`|Number of keys that were actively defragmented|int|count|
@@ -299,12 +299,12 @@ For all of the following data collections, a global tag named `host` is appended
 |`aof_current_size`|AOF current file size|float|B|
 |`aof_last_rewrite_time_sec`|Duration of the last AOF rewrite operation in seconds|int|count|
 |`aof_rewrite_in_progress`|Flag indicating a AOF rewrite operation is on-going|bool|count|
-|`blocked_clients`|Number of clients pending on a blocking call (BLPOP, BRPOP, BRPOPLPUSH, BLMOVE, BZPOPMIN, BZPOPMAX)|int|count|
+|`blocked_clients`|Number of clients pending on a blocking call (`BLPOP/BRPOP/BRPOPLPUSH/BLMOVE/BZPOPMIN/BZPOPMAX`)|int|count|
 |`client_biggest_input_buf`|Biggest input buffer among current client connections|int|B|
 |`client_longest_output_list`|Longest output list among current client connections|int|count|
 |`connected_clients`| Number of client connections (excluding connections from replicas)|int|count|
 |`connected_slaves`|Number of connected replicas|int|count|
-|`evicted_keys`|Number of evicted keys due to maxmemory limit|int|count|
+|`evicted_keys`|Number of evicted keys due to Max-Memory limit|int|count|
 |`expired_keys`|Total number of key expiration events|int|count|
 |`info_latency_ms`|The latency of the redis INFO command.|float|ms|
 |`keyspace_hits`|Number of successful lookup of keys in the main dictionary|int|count|
@@ -318,14 +318,14 @@ For all of the following data collections, a global tag named `host` is appended
 |`master_repl_offset`|The server's current replication offset|int|count|
 |`master_sync_in_progress`|Indicate the master is syncing to the replica|bool|-|
 |`master_sync_left_bytes`|Number of bytes left before syncing is complete (may be negative when master_sync_total_bytes is 0)|float|B|
-|`maxmemory`|The value of the maxmemory configuration directive|float|B|
+|`maxmemory`|The value of the Max Memory configuration directive|float|B|
 |`mem_fragmentation_ratio`|Ratio between used_memory_rss and used_memory|float|percent|
 |`pubsub_channels`|Global number of pub/sub channels with client subscriptions|int|count|
 |`pubsub_patterns`|Global number of pub/sub pattern with client subscriptions|int|count|
 |`rdb_bgsave_in_progress`|Flag indicating a RDB save is on-going|bool|-|
-|`rdb_changes_since_last_save`|Refers to the number of operations that produced some kind of changes in the dataset since the last time either SAVE or BGSAVE was called.|int|count|
+|`rdb_changes_since_last_save`|Refers to the number of operations that produced some kind of changes in the dataset since the last time either `SAVE` or `BGSAVE` was called.|int|count|
 |`rdb_last_bgsave_time_sec`|Duration of the last RDB save operation in seconds|int|s|
-|`rejected_connections`|Number of connections rejected because of maxclients limit|int|count|
+|`rejected_connections`|Number of connections rejected because of Max-Clients limit|int|count|
 |`repl_backlog_histlen`|Size in bytes of the data in the replication backlog buffer|float|B|
 |`slave_repl_offset`|The replication offset of the replica instance|int|count|
 |`total_net_input_bytes`|The total number of bytes read from the network|int|count|
@@ -393,14 +393,14 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`server`|Server addr|
 
 - field list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cost_time`|Latest event latency in millisecond.|int|ms|
 |`event_name`|Event name.|string|-|
@@ -418,7 +418,7 @@ Redis 慢查询命令历史，这里我们将其以日志的形式采集
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|host|
 |`message`|log message|
@@ -427,11 +427,11 @@ Redis 慢查询命令历史，这里我们将其以日志的形式采集
 - field list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`command`|slow command|int|μs|
-|`slowlog_id`|slowlog unique id|int|-|
-|`slowlog_micros`|cost time|int|μs| 
+|`command`|Slow command|int|μs|
+|`slowlog_id`|Slow log unique id|int|-|
+|`slowlog_micros`|Cost time|int|μs| 
 
 
 

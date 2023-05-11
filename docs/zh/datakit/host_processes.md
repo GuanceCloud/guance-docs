@@ -45,6 +45,12 @@
       ## Enable process metric collecting
       open_metric = false
     
+      ## Enable listen ports tag
+      ## enable_listen_ports = true
+    
+      ## Enable open files field
+      ## enable_open_files = true
+    
       # Extra tags
       [inputs.host_processes.tags]
       # some_tag = "some_value"
@@ -65,6 +71,8 @@
     | `ENV_INPUT_HOST_PROCESSES_TAGS`         | `tags`           | `tag1=value1,tag2=value2` 如果配置文件中有同名 tag，会覆盖它 |
     | `ENV_INPUT_HOST_PROCESSES_PROCESS_NAME` | `process_name`   | `".*datakit.*", "guance"` 以英文逗号隔开                     |
     | `ENV_INPUT_HOST_PROCESSES_MIN_RUN_TIME` | `min_run_time`   | `"10m"`                                                      |
+    | `ENV_INPUT_HOST_PROCESSES_ENABLE_LISTEN_PORTS` | `enable_listen_ports`   | `true`/`false`                                                     |
+    | `ENV_INPUT_HOST_PROCESSES_ENABLE_OPEN_FILES` | `enable_open_files`   |`true`/`false`                                                      |
 <!-- markdownlint-enable -->
 
 ## 指标集 {#measurement}
@@ -87,27 +95,27 @@
 
 #### `host_processes`
 
-采集进程指标数据,包括cpu内存使用率等
+采集进程指标数据,包括 CPU/内存使用率等
 
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|主机名|
-|`pid`|进程id|
+|`pid`|进程 ID|
 |`process_name`|进程名|
 |`username`|用户名|
 
 - 字段列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`cpu_usage`|cpu使用占比（%*100），进程==自启动以来==所占 CPU 百分比，该值相对会比较稳定（==跟 top 的瞬时百分比不同==）|float|percent|
-|`cpu_usage_top`|cpu使用占比（%*100）, 一个采集周期内的进程的 CPU 使用率均值|float|percent|
-|`mem_used_percent`|mem使用占比（%*100）|float|percent|
-|`open_files`|open_files 个数(仅支持linux)|int|count|
+|`cpu_usage`|CPU 使用占比（%*100），进程自启动以来所占 CPU 百分比，该值相对会比较稳定（跟 `top` 的瞬时百分比不同）|float|percent|
+|`cpu_usage_top`|CPU 使用占比（%*100）, 一个采集周期内的进程的 CPU 使用率均值|float|percent|
+|`mem_used_percent`|内存使用占比（%*100）|float|percent|
+|`open_files`|打开文件个数(仅支持 Linux)|int|count|
 |`rss`|Resident Set Size （常驻内存大小）|int|B|
 |`threads`|线程数|int|count|
 
@@ -130,39 +138,39 @@
 
 #### `host_processes`
 
-采集进程对象的数据，包括进程名，cmd等
+采集进程对象的数据，包括进程名，进程命令等
 
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`class`|分类: host_processes|
 |`host`|主机名|
-|`listen_ports`|进程正在监听的端口|
+|`listen_ports`|进程正在监听的端口。对应配置文件的 `enable_listen_ports`，默认为 false，不携带此字段|
 |`name`|name 字段，由 host_pid 组成|
 |`process_name`|进程名|
-|`state`|进程状态，暂不支持 windows|
+|`state`|进程状态，暂不支持 Windows|
 |`username`|用户名|
 
 - 字段列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cmdline`|进程的命令行参数|string|-|
-|`cpu_usage`|cpu使用占比（%*100），进程==自启动以来==所占 CPU 百分比，该值相对会比较稳定（==跟 top 的瞬时百分比不同==）|float|percent|
-|`cpu_usage_top`|cpu使用占比（%*100）, 一个采集周期内的进程的 CPU 使用率均值|float|percent|
-|`mem_used_percent`|mem使用占比（%*100）|float|percent|
+|`cpu_usage`|CPU 使用占比（%*100）,进程自启动以来所占 CPU 百分比，该值相对会比较稳定（跟 `top` 的瞬时百分比不同）|float|percent|
+|`cpu_usage_top`|CPU 使用占比（%*100）, 一个采集周期内的进程的 CPU 使用率均值|float|percent|
+|`mem_used_percent`|内存使用占比（%*100）|float|percent|
 |`message`|进程详细信息|string|-|
-|`open_files`|open_files 个数(仅支持linux)|int|count|
-|`open_files_list`|进程打开的文件及其描述符列表(仅支持linux)|string|-|
-|`pid`|进程id|int|-|
+|`open_files`|打开的文件个数(仅支持 Linux)|int|count|
+|`open_files_list`|进程打开的文件及其描述符列表(仅支持 Linux)|string|-|
+|`pid`|进程 ID|int|-|
 |`rss`|Resident Set Size （常驻内存大小）|int|B|
 |`start_time`|进程启动时间|int|msec|
 |`state_zombie`|是否是僵尸进程|bool|-|
 |`threads`|线程数|int|count|
-|`work_directory`|工作目录(仅支持linux)|string|-|
+|`work_directory`|工作目录(仅支持 Linux)|string|-|
 
 
 
