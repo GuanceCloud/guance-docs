@@ -222,14 +222,14 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
-|`jolokia_agent_url`|jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent url path|
 
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`ActiveControllerCount.Value`||int|count|
 |`AutoLeaderBalanceRateAndTimeMs.50thPercentile`||float|-|
@@ -575,14 +575,14 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
-|`jolokia_agent_url`|jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent url path|
 
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`AtMinIsrPartitionCount.Value`||int|count|
 |`FailedIsrUpdatesPerSec.Count`||int|count|
@@ -620,14 +620,14 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
-|`jolokia_agent_url`|jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent url path|
 
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`AlterAcls.NumDelayedOperations`||int|-|
 |`AlterAcls.PurgatorySize`||int|-|
@@ -653,14 +653,14 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
-|`jolokia_agent_url`|jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent url path|
 
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`LocalTimeMs.50thPercentile`||float|ms|
 |`LocalTimeMs.75thPercentile`||float|ms|
@@ -758,14 +758,14 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
-|`jolokia_agent_url`|jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent url path|
 
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`BytesInPerSec.Count`||int|count|
 |`BytesInPerSec.EventType`||string|-|
@@ -901,15 +901,15 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
-|`jolokia_agent_url`|jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent url path|
 |`topic`|topic name|
 
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`BytesInPerSec.Count`||int|count|
 |`BytesInPerSec.EventType`||string|-|
@@ -954,16 +954,16 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
-|`jolokia_agent_url`|jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent url path|
 |`partition`|partition number|
 |`topic`|topic name|
 
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`LogEndOffset`||int|-|
 |`LogStartOffset`||int|-|
@@ -978,14 +978,14 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
-|`jolokia_agent_url`|jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent url path|
 
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`ZooKeeperRequestLatencyMs.50thPercentile`||float|ms|
 |`ZooKeeperRequestLatencyMs.75thPercentile`||float|ms|
@@ -1006,15 +1006,15 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
-|`jolokia_agent_url`|jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent url path|
 |`type`|metric type|
 
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`ControlPlaneExpiredConnectionsKilledCount`||int|count|
 |`ExpiredConnectionsKilledCount`||int|count|
@@ -1029,15 +1029,15 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
-|`jolokia_agent_url`|jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent url path|
 |`type`|metric type|
 
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`DeadThreadCount`||int|count|
 |`OfflineLogDirectoryCount`||int|count|
@@ -1053,16 +1053,16 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`client_id`|client id|
-|`jolokia_agent_url`|jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent url path|
 |`type`|metric type|
 
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`assigned_partitions`||int|count|
 |`bytes_consumed_rate`||float|-|
@@ -1138,16 +1138,16 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`client_id`|client id|
-|`jolokia_agent_url`|jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent url path|
 |`type`|metric type|
 
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`batch_split_rate`||float|-|
 |`batch_split_total`||int|-|
@@ -1214,18 +1214,18 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`client_id`|client id|
 |`connector`|connector|
-|`jolokia_agent_url`|jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent url path|
 |`task`|task|
 |`type`|metric type|
 
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`batch_size_avg`||int|-|
 |`batch_size_max`||int|-|

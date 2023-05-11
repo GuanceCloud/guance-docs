@@ -41,7 +41,7 @@ disk 采集器用于主机磁盘信息采集，如磁盘存储空间、Inode 使
     
       ## Deprecated
       # fs = ["ext2", "ext3", "ext4", "NTFS"]
-      
+    
       ## We collect all devices prefixed with dev by default,If you want to collect additional devices, it's in extra_device add
       # extra_device = ["/nfsdata"]
     
@@ -85,7 +85,7 @@ disk 采集器用于主机磁盘信息采集，如磁盘存储空间、Inode 使
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`device`|Disk device name.|
 |`fstype`|File system name.|
@@ -94,15 +94,16 @@ disk 采集器用于主机磁盘信息采集，如磁盘存储空间、Inode 使
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`free`|Free disk size in bytes.|int|B|
-|`inodes_free`|Free inodes(**DEPRECATED: use inodes_free_mb instead**).|int|count|
-|`inodes_free_mb`|Free inodes(in MB).|int|count|
-|`inodes_total`|Total inodes(**DEPRECATED: use inodes_total_mb instead**).|int|count|
-|`inodes_total_mb`|Total inodes(in MB).|int|count|
-|`inodes_used`|Used inodes(**DEPRECATED: use inodes_used_mb instead**).|int|count|
-|`inodes_used_mb`|Used inodes(in MB).|int|count|
+|`inodes_free`|Free Inode(**DEPRECATED: use inodes_free_mb instead**).|int|count|
+|`inodes_free_mb`|Free Inode(need to multiply by 10^6).|int|count|
+|`inodes_total`|Total Inode(**DEPRECATED: use inodes_total_mb instead**).|int|count|
+|`inodes_total_mb`|Total Inode(need to multiply by 10^6).|int|count|
+|`inodes_used`|Used Inode(**DEPRECATED: use inodes_used_mb instead**).|int|count|
+|`inodes_used_mb`|Used Inode(need to multiply by 10^6).|int|count|
+|`inodes_used_percent`|Inode used percent|float|percent|
 |`total`|Total disk size in bytes.|int|B|
 |`used`|Used disk size in bytes.|int|B|
 |`used_percent`|Used disk size in percent.|float|percent|

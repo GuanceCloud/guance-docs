@@ -61,14 +61,14 @@ mem 采集器用于收集系统内存信息，一些通用的指标如主机总�
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|System hostname.|
 
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`active`|Memory that has been used more recently and usually not reclaimed unless absolutely necessary. (Darwin, Linux)|int|B|
 |`available`|Amount of available memory.|int|B|
@@ -79,14 +79,14 @@ mem 采集器用于收集系统内存信息，一些通用的指标如主机总�
 |`committed_as`|The amount of memory presently allocated on the system. (Linux)|int|B|
 |`dirty`|Memory which is waiting to get written back to the disk. (Linux)|int|B|
 |`free`|Amount of free memory. (Darwin, Linux)|int|B|
-|`high_free`|Amount of free highmem. (Linux)|int|B|
-|`high_total`|Total amount of highmem. (Linux)|int|B|
+|`high_free`|Amount of free high memory. (Linux)|int|B|
+|`high_total`|Total amount of high memory. (Linux)|int|B|
 |`huge_page_total`|The size of the pool of huge pages. (Linux)|int|count|
 |`huge_pages_free`|The number of huge pages in the pool that are not yet allocated. (Linux)|int|count|
 |`huge_pages_size`|The size of huge pages. (Linux)|int|B|
 |`inactive`|Memory which has been less recently used.  It is more eligible to be reclaimed for other purposes. (Darwin, Linux)|int|B|
-|`low_free`|Amount of free lowmem. (Linux)|int|B|
-|`low_total`|Total amount of lowmem. (Linux)|int|B|
+|`low_free`|Amount of free low memory. (Linux)|int|B|
+|`low_total`|Total amount of low memory. (Linux)|int|B|
 |`mapped`|Files which have been mapped into memory, such as libraries. (Linux)|int|B|
 |`page_tables`|Amount of memory dedicated to the lowest level of page tables. (Linux)|int|B|
 |`shared`|Amount of shared memory. (Linux)|int|B|
@@ -104,6 +104,6 @@ mem 采集器用于收集系统内存信息，一些通用的指标如主机总�
 |`vmalloc_used`|Amount of vmalloc area which is used. (Linux)|int|B|
 |`wired`|Wired. (Darwin)|int|B|
 |`write_back`|Memory which is actively being written back to the disk. (Linux)|int|B|
-|`write_back_tmp`|Memory used by FUSE for temporary writeback buffers. (Linux)|int|B|
+|`write_back_tmp`|Memory used by FUSE for temporary write back buffers. (Linux)|int|B|
 
 

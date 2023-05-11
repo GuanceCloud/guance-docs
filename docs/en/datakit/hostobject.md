@@ -106,14 +106,16 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
+|`host`|Hostname. Required.|
+|`name`|Hostname|
 |`os`|Host OS type|
 
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cpu_usage`|CPU usage|float|percent|
 |`datakit_ver`|collector version|string|-|
@@ -126,7 +128,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`message`|Summary of all host information|string|-|
 |`net_recv_bytes_per_sec`|network receive rate|int|B/S|
 |`net_send_bytes_per_sec`|network send rate|int|B/S|
-|`start_time`|Host startup time (Unix timestamp)|int|s|
+|`start_time`|Host startup time (Unix timestamp)|int|ms|
 |`state`|Host Status|string|-|
 
 

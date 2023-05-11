@@ -11,11 +11,13 @@ NGINX 采集器可以从 NGINX 实例中采取很多指标，比如请求总数�
 
 ## 前置条件 {#requirements}
 
-- NGINX 版本 >= `1.19.6`; 已测试的版本
-    - [x] 1.20.2
-    - [x] 1.21.6
+- NGINX 版本 >= `1.8.0`; 已测试的版本:
+    - [x] 1.23.2
     - [x] 1.22.1
-    - [x] 1.23.3
+    - [x] 1.21.6
+    - [x] 1.18.0
+    - [x] 1.14.2
+    - [x] 1.8.0
 
 - NGINX 默认采集 `http_stub_status_module` 模块的数据，开启 `http_stub_status_module` 模块参见[这里](http://nginx.org/en/docs/http/ngx_http_stub_status_module.html){:target="_blank"}，开启了以后会上报 NGINX 指标集的数据;
 
@@ -57,34 +59,34 @@ http {
     
     ```toml
         [[inputs.nginx]]
-    	# Nginx status URL.
-    	# (Default) If not use with VTS, the formula is like this: "http://localhost:80/nginx_status".
-    	# If using with VTS, the formula is like this: "http://localhost:80/status/format/json".
-    	url = "http://localhost:80/nginx_status"
+    # Nginx status URL.
+    # (Default) If not use with VTS, the formula is like this: "http://localhost:80/nginx_status".
+    # If using with VTS, the formula is like this: "http://localhost:80/status/format/json".
+    url = "http://localhost:80/nginx_status"
     
-    	# ##(optional) collection interval, default is 30s
-    	# interval = "30s"
-    	use_vts = false
-    	## Optional TLS Config
-    	# tls_ca = "/xxx/ca.pem"
-    	# tls_cert = "/xxx/cert.cer"
-    	# tls_key = "/xxx/key.key"
-    	## Use TLS but skip chain & host verification
-    	insecure_skip_verify = false
-    	# HTTP response timeout (default: 5s)
-    	response_timeout = "20s"
+    # ##(optional) collection interval, default is 30s
+    # interval = "30s"
+    use_vts = false
+    ## Optional TLS Config
+    # tls_ca = "/xxx/ca.pem"
+    # tls_cert = "/xxx/cert.cer"
+    # tls_key = "/xxx/key.key"
+    ## Use TLS but skip chain & host verification
+    insecure_skip_verify = false
+    # HTTP response timeout (default: 5s)
+    response_timeout = "20s"
     
-        ## Set true to enable election
-    	election = true
+    ## Set true to enable election
+    election = true
     
-    	[inputs.nginx.log]
-    	#	files = ["/var/log/nginx/access.log","/var/log/nginx/error.log"]
-    	#	# grok pipeline script path
-    	#	pipeline = "nginx.p"
-    	[inputs.nginx.tags]
-    	# some_tag = "some_value"
-    	# more_tag = "some_other_value"
-    	# ...
+    [inputs.nginx.log]
+    #files = ["/var/log/nginx/access.log","/var/log/nginx/error.log"]
+    ## grok pipeline script path
+    #pipeline = "nginx.p"
+    [inputs.nginx.tags]
+    # some_tag = "some_value"
+    # more_tag = "some_other_value"
+    # ...
     ```
     
     配置好后，[重启 DataKit](datakit-service-how-to.md#manage-service) 即可。
@@ -116,9 +118,9 @@ http {
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
-|`host`|host mame which installed nginx|
+|`host`|host name which installed nginx|
 |`nginx_port`|nginx server port|
 |`nginx_server`|nginx server host|
 |`nginx_version`|nginx version, exist when using vts|
@@ -126,7 +128,7 @@ http {
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`connection_accepts`|The total number of accepts client connections|int|count|
 |`connection_active`|The current number of active client connections|int|count|
@@ -144,9 +146,9 @@ http {
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
-|`host`|host mame which installed nginx|
+|`host`|host name which installed nginx|
 |`nginx_port`|nginx server port|
 |`nginx_server`|nginx server host|
 |`nginx_version`|nginx version|
@@ -155,7 +157,7 @@ http {
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`received`|The total amount of data received from clients.|int|B|
 |`requests`|The total number of client requests received from clients.|int|count|
@@ -173,9 +175,9 @@ http {
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
-|`host`|host mame which installed nginx|
+|`host`|host name which installed nginx|
 |`nginx_port`|nginx server port|
 |`nginx_server`|nginx server host|
 |`nginx_version`|nginx version|
@@ -185,7 +187,7 @@ http {
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`received`|The total number of bytes received from this server.|int|B|
 |`request_count`|The total number of client requests received from server.|int|count|
@@ -203,10 +205,10 @@ http {
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`cache_zone`|cache zone|
-|`host`|host mame which installed nginx|
+|`host`|host name which installed nginx|
 |`nginx_port`|nginx server port|
 |`nginx_server`|nginx server host|
 |`nginx_version`|nginx version|
@@ -214,7 +216,7 @@ http {
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`max_size`|The limit on the maximum size of the cache specified in the configuration|int|B|
 |`received`|The total number of bytes received from the cache.|int|B|

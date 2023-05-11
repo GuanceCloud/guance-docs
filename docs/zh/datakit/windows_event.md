@@ -21,7 +21,7 @@ Windows 事件日志采集是采集应用程序、安全、系统等 Windows 事
 
 [[inputs.windows_event]]
   xpath_query = '''
-	<QueryList>
+  <QueryList>
     <Query Id="0" Path="Security">
       <Select Path="Security">*</Select>
       <Suppress Path="Security">*[System[( (EventID &gt;= 5152 and EventID &lt;= 5158) or EventID=5379 or EventID=4672)]]</Suppress>
@@ -39,11 +39,11 @@ Windows 事件日志采集是采集应用程序、安全、系统等 Windows 事
       <Select Path="Setup">*</Select>
     </Query>
   </QueryList>
-	'''
+  '''
   [inputs.windows_event.tags]
   # some_tag = "some_value"
   # more_tag = "some_other_value"
-  # ... 
+  # ...
 ```
 
 配置好后，重启 DataKit 即可。
@@ -66,7 +66,7 @@ Windows 事件日志采集是采集应用程序、安全、系统等 Windows 事
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`channel`|Channel|
 |`computer`|计算机|
@@ -85,7 +85,7 @@ Windows 事件日志采集是采集应用程序、安全、系统等 Windows 事
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 
 
