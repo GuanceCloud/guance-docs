@@ -147,15 +147,89 @@ FTReactNativeLog.logConfig(logConfig);
 
 ## RUM 用户数据追踪
 
-### Action
+SDK 提供**自动采集**和**用户自定义采集**两种采集方式追踪 **View**、**Action**、**Error**、**Resource** 四种类型的用户数据。
 
-```typescript
-FTReactNativeRUM.startAction('actionName','actionType');
-```
+### 自动采集
 
-开启自动采集后可通过 `accessibilityLabel`设置 `actionName`。
+在 SDK 初始化 [RUM 配置](#rum-config) 时可开启自动采集 **Error**、**Resource**、**Action**（`React Native` 控件、`Native`控件）、**View**（`Native View`）。
 
-### View {#rumview}
+如果您在 React Native 中使用 `react-native-navigation ` 或 `react-navigation ` 导航组件，可以参考下面方式进行 `React Native View`  的自动采集：
+
+* **react-native-navigation**
+
+  将 example 中 [FTRumReactNavigationTracking.tsx](https://github.com/GuanceCloud/datakit-react-native/blob/dev/example/src/FTRumReactNativeNavigationTracking.tsx) 文件拖入您的工程；
+
+  调用 `FTRumReactNativeNavigationTracking.startTracking()` 方法，开启采集。
+
+  ```typescript
+  import { FTRumReactNativeNavigationTracking } from './FTRumReactNativeNavigationTracking';
+  
+  function startReactNativeNavigation() {
+    FTRumReactNativeNavigationTracking.startTracking();
+    registerScreens();//Navigation registerComponent
+    Navigation.events().registerAppLaunchedListener( async () => {
+      await Navigation.setRoot({
+        root: {
+          stack: {
+            children: [
+              { component: { name: 'Home' } },
+            ],
+          },
+        },
+      });
+    });
+  }
+  ```
+
+* **react-navigation**
+
+  将 example 中 [FTRumReactNavigationTracking.tsx](https://github.com/GuanceCloud/datakit-react-native/blob/dev/example/src/FTRumReactNavigationTracking.tsx) 文件拖入您的工程；
+
+  * 方法一：
+
+    如果有使用 `createNativeStackNavigator();` 创建原生导航堆栈，
+
+    建议采用添加 screenListeners 方式开启采集， 这样可以统计到页面的加载时长，具体使用如下：
+
+    ```typescript
+    import {FTRumReactNavigationTracking} from './FTRumReactNavigationTracking';
+    import { createNativeStackNavigator } from '@react-navigation/native-stack';
+    const Stack = createNativeStackNavigator();
+    
+    <Stack.Navigator   screenListeners={FTRumReactNavigationTracking.StackListener} initialRouteName='Home'>
+            <Stack.Screen name='Home' component={Home}  options={{ headerShown: false }} />
+            ......
+            <Stack.Screen name="Mine" component={Mine} options={{ title: 'Mine' }}/>
+     </Stack.Navigator>
+    ```
+
+  * 方法二：
+
+    如果没有使用 `createNativeStackNavigator();` 需要在 NavigationContainer 组件中进行开启采集，如下
+
+    ```typescript
+    import {FTRumReactNavigationTracking} from './FTRumReactNavigationTracking';
+    import type { NavigationContainerRef } from '@react-navigation/native';
+    
+    const navigationRef: React.RefObject<NavigationContainerRef<ReactNavigation.RootParamList>> = React.createRef();
+    <NavigationContainer ref={navigationRef} onReady={() => {
+          FTRumReactNavigationTracking.startTrackingViews(navigationRef.current);
+        }}>
+          <Stack.Navigator initialRouteName='Home'>
+            <Stack.Screen name='Home' component={Home}  options={{ headerShown: false }} />
+            .....
+            <Stack.Screen name="Mine" component={Mine} options={{ title: 'Mine' }}/>
+          </Stack.Navigator>
+     </NavigationContainer>
+    ```
+
+具体使用示例可以参考 [example](https://github.com/GuanceCloud/datakit-react-native/tree/dev/example)。
+
+### 用户自定义采集
+
+通过 `FTReactNativeRUM` 类，进行传入，相关 API 如下。
+
+#### View {#rumview}
 
 ```typescript
 FTReactNativeRUM.onCreateView("RUM",duration);
@@ -165,15 +239,19 @@ FTReactNativeRUM.startView("RUM");
 FTReactNativeRUM.stopView();
 ```
 
-使用 `react-native-navigation` 库与 `@react-navigation` 库，可参考 [example](https://github.com/GuanceCloud/datakit-react-native/tree/dev/example)。
+#### Action
 
-### Error
+```typescript
+FTReactNativeRUM.startAction('actionName','actionType');
+```
+
+#### Error
 
 ```typescript
 FTReactNativeRUM.addError("error stack","error message");
 ```
 
-### Resource
+#### Resource
 
 ```typescript
 //自己采集 
@@ -207,8 +285,6 @@ async getHttp(url:string){
       }
 ```
 
-
-
 ##  Logger 日志打印 
 
 ```typescript
@@ -226,6 +302,8 @@ FTReactNativeLog.logging("info log content",FTLogStatus.info);
 | FTLogStatus.ok | 恢复 |
 
 ## Tracer 网络链路追踪
+
+SDK 初始化 [Trace 配置](#trace-config) 时可以开启自动网络链路追踪，也支持用户自定义采集，自定义采集使用示例如下：
 
 ```typescript
   async getHttp(url:string){

@@ -91,8 +91,6 @@ void main() async {
  await FTRUMManager().setConfig(
         androidAppId: appAndroidId, 
         iOSAppId: appIOSId,
-        enableNativeUserAction:false,
-        enableNativeUserView: false
     );
 
 ```
@@ -102,6 +100,7 @@ void main() async {
 | androidAppId | String | 是 | appId，监测中申请 |
 | iOSAppId | String | 是 | appId，监测中申请 |
 | sampleRate | double | 否 | 采样率，（采集率的值范围为>= 0、<= 1，默认值为 1） |
+| enableUserResource | bool | 否 | 是否开启  http `Resource` 数据自动抓取，默认为 `false`，这个是通过修改 `HttpOverrides.global` 来实现，如果项目有这方面需求需要继承 `FTHttpOverrides`，并设置 enableAutoTrace  为 `false` |
 | enableNativeUserAction | bool | 否 | 是否进行 `Native Action` 追踪，`Button` 点击事件，纯 `Flutter` 应用建议关闭，默认为 `false` |
 | enableNativeUserView | bool | 否 | 是否进行 `Native View` 自动追踪，纯 `Flutter` 应用建议关闭，，默认为 `false` |
 | enableNativeUserResource | bool | 否 | 是否进行 `Native Resource` 自动追踪，纯 `Flutter` 应用建议关闭，默认为 `false` |
@@ -198,26 +197,73 @@ await FTTracer().setConfig(
 | sampleRate | double | 否 | 采样率，采集率的值范围为>= 0、<= 1，默认值为 1 |
 | traceType | enum TraceType | 否 | 链路类型，默认`TraceType.ddTrace` |
 | enableLinkRUMData | bool | 否 | 是否与 `RUM` 数据关联，默认`false` |
-| enableAutoTrace | bool | 否 | 是否开启 flutter 网络追踪，默认`false` |
+| enableAutoTrace | bool | 否 | 是否 `http` 请求中添加 `Trace Header`，默认`false`，这个是通过修改 `HttpOverrides.global` 来实现，如果项目有这方面需求需要继承 `FTHttpOverrides`，并设置 enableAutoTrace  为 `false`|
 | enableNativeAutoTrace |  bool | 否 | 是否开启原生网络自动追踪 iOS `NSURLSession` ,Android `OKhttp`，默认`false` |
 
 ## RUM 用户数据追踪
 
-### Action
+### Action {#action}
 
 ```dart
 FTRUMManager().startAction("action name", "action type");
 ```
 
 ### View {#rum-view}
+#### 自动采集
+
+* **方法 1**:  `MaterialApp.navigatorObservers` 添加 `FTRouteObserver `，设置 `MaterialApp.routes` 需要跳转的页面，`routes` 中 `key` 即为页面名称(`view_name`)。
 
 ```dart
-FTRUMManager().createView("Current Page Name",100000000)
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: HomeRoute(),
+      navigatorObservers: [
+        //RUM View： 使用路由跳转时，监控页面生命周期
+        FTRouteObserver(),
+      ],
+      routes: <String, WidgetBuilder>{
+        //set Route 路由跳转
+        'logging': (BuildContext context) => Logging(),
+        'rum': (BuildContext context) => RUM(),
+        'tracing_custom': (BuildContext context) => CustomTracing(),
+        'tracing_auto': (BuildContext context) => AutoTracing(),
+      },
+    );
+  }
+}
 
-FTRUMManager().starView("Current Page Name");
-         
-FTRUMManager().stopView();
+//通过这种方式进行页面跳转，此处页面名称为 logging
+Navigator.pushNamed(context, "logging");
+
 ```
+
+* **方法 2**: `MaterialApp.navigatorObservers` 添加 `FTRouteObserver `，通过`FTMaterialPageRoute`配合使用生成，其中 `widget` 类名称即为页面名称(`view_name`)。
+
+```dart
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: HomeRoute(),
+      navigatorObservers: [
+        //RUM View： 使用路由跳转时，监控页面生命周期
+        FTRouteObserver(),
+      ],
+    );
+  }
+}
+
+//此处页面名称为 NoRouteNamePage
+Navigator.of(context).push(
+          FTMaterialPageRoute(builder: (context) => new NoRouteNamePage()
+```
+
+* 以上两种方法同时在一个项目中混合使用
+
+* 休眠和唤醒事件采集
 
 如果需要采集应用休眠和唤醒行为需要添加如下代码：
 
@@ -240,9 +286,19 @@ class _HomeState extends State<HomeRoute> {
 }
 
 ```
+#### 自定义 View
 
-### Error
+```dart
+FTRUMManager().createView("Current Page Name",100000000)
 
+FTRUMManager().starView("Current Page Name");
+         
+FTRUMManager().stopView();
+```
+
+
+### Error {#error}
+#### 自动采集
 ```dart
 /// flutter 自动采集 error
 void main() async {
@@ -255,8 +311,6 @@ void main() async {
     await FTRUMManager().setConfig(
         androidAppId: appAndroidId,
         iOSAppId: appIOSId,
-        enableNativeUserAction:false,
-        enableNativeUserView: false
     );
     
     // Flutter 框架异常捕获
@@ -266,13 +320,20 @@ void main() async {
     //其它异常捕获与日志收集
     FTRUMManager().addError(error, stack);
   });
-  
-  
+ 
+```
+#### 自定义 Error
+``` 
  ///自定义 error
  FTRUMManager().addCustomError("error stack", "error message");
 ```
 
 ### Resource
+
+#### 自动采集
+通过[配置](#rum-config) `FTRUMManager().setConfig` 开启 `enableUserResource`来实现。
+
+#### 自定义 Resource
 
 ```dart
 /// 使用 httpClient  
