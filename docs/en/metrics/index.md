@@ -26,4 +26,4 @@ The metric function of Guance can help you:
 - Step 3: All metric data in the workspace can be queried and analyzed visually in **Metrics** and **Dashboard** of the studio.
 
 
-
+<font color=coral>1.观测云专属版如何存储数据？</font>
