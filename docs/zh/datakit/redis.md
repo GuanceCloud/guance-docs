@@ -445,7 +445,7 @@ Redis 慢查询命令历史，这里我们将其以日志的形式采集
 
 ## 日志采集 {#redis-logging}
 
-需要采集 Redis 日志，需要开启 Redis `redis.config`中日志文件输出配置：
+需要采集 Redis 日志，需要开启 Redis `redis.config` 中日志文件输出配置：
 
 ```toml
 [inputs.redis.log]
@@ -473,7 +473,7 @@ Redis 慢查询命令历史，这里我们将其以日志的形式采集
 
 | 字段名      | 字段值                                      | 说明                         |
 | ---         | ---                                         | ---                          |
-| `pid`       | `122`                                       | 进程id                       |
+| `pid`       | `122`                                       | 进程 id                      |
 | `role`      | `M`                                         | 角色                         |
 | `serverity` | `*`                                         | 服务                         |
 | `statu`     | `notice`                                    | 日志级别                     |

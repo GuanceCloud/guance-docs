@@ -136,7 +136,7 @@ M   :: cpu :   (time_active, time_guest_nice)
 
 ## 语句
 
-### namespace
+### namespace {#namespace}
 
 语义层面，目前支持以下几种种数据源：
 
@@ -356,6 +356,7 @@ M::cpu:() by host limit 3 slimit 3
 
 更多 show 函数，参见[函数文档](funcs.md)
 
+<!--
 ### 结果集函数结算
 
 DQL 支持对查询结果进行二次计算：
@@ -374,6 +375,7 @@ F::dataflux__dql:(EXPR_EVAL(
 	data1=dql('M::cpu:(f1, f2)'),
 	data2=dql('O::ecs:(f1, f2)'),))
 ```
+-->
 
 ### 嵌套查询以及语句块
 
