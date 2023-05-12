@@ -276,16 +276,13 @@ O::HOST:(host, host_ip, os, datakit_ver) { host = 'my_server' }
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 有关 DQL 语句</font>](../dql/index.md)
-
-<br/>
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **有关 DQL 语句**</font>](../dql/index.md)
 
 </div>
 
+
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 有关所有可用 `namespace`</font>](/dql/define/#namespace)
-
-<br/>
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **有关所有可用 `namespace`**</font>](../dql/define.md#namespace)
 
 </div>
