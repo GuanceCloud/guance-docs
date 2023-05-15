@@ -15,7 +15,7 @@ icon: zy/monitoring
     ---
 
     *<font size=2>（原指“内置检测库”）</font>*    
-    用于配置数据指标检测，从而即时触发告警事件。您可以使用观测云内置开箱即用的[监控模板](./template.md)，也可以自定义[新建监控器](./monitor/index.md#rules)，并设置对应[检测规则](./monitor/index.md#detect)。
+    用于配置数据指标检测，从而即时触发告警事件。您可以使用观测云内置开箱即用的[监控模板](./monitor/template.md)，也可以自定义[新建监控器](./monitor/index.md#rules)，并设置对应[检测规则](./monitor/index.md#detect)。
 
     <br/>
 
