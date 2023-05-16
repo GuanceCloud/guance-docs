@@ -17,7 +17,7 @@
 
 在自建的 DataFlux Func 中，通过「脚本市场」安装「观测云自建巡检（RUM 新增错误类型）」并根据提示配置观测云 API Key 完成开启。
 
-在 DataFlux Func 脚本市场中选择需要开启的巡检场景点击安装，配置观测云 API Key 后选择部署启动脚本即可
+在 DataFlux Func 脚本市场中选择需要开启的巡检场景点击安装，配置观测云 API Key 和 [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/) 后选择部署启动脚本即可
 
 ![image](../img/create_checker.png)
 
