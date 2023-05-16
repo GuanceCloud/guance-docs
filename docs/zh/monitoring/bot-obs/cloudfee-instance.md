@@ -7,8 +7,7 @@
 
 ## 前置条件
 
-1. 进行自建  [DataFlux Func](https://func.guance.com/#/) 的离线部署
-2. 开启自建 DataFlux Func 的[脚本市场](https://func.guance.com/doc/script-market-basic-usage/)并添加官方脚本市场
+1. 自建 [DataFlux Func 观测云特别版](https://func.guance.com/#/) 的离线部署
 3. 在观测云「管理 / API Key 管理」中创建用于进行操作的 [API Key](../../management/api-key/open-api.md)
 
 > **注意**：如果考虑采用云服务器来进行 DataFlux Func 离线部署的话，请考虑跟当前使用的观测云 SaaS 部署在[同一运营商同一地域](../../../getting-started/necessary-for-beginners/select-site/)。
@@ -17,9 +16,9 @@
 
 ## 开启巡检
 
-在自建的 DataFlux Func 中，通过「脚本市场」安装「观测云自建巡检 Core 核心包」「观测云算法库」并前往 PIP 工具安装相关依赖，同时在脚本市场中安装开启[「观测云集成（华为云-账单采集-实例维度）」](https://func.guance.com/doc/script-market-guance-huaweicloud-billing-by-instance/)、[「观测云集成（阿里云-账单采集-实例维度）」](https://func.guance.com/doc/script-market-guance-aliyun-billing/)、[「观测云集成（腾讯云-账单采集-实例维度）」](https://func.guance.com/doc/script-market-guance-tencentcloud-billing-by-instance/) 并且收集数据天数超过 15 天，再安装「观测云自建巡检（账单-实例维度）」并根据提示配置观测云 API Key 完成开启
+在自建的 DataFlux Func 中，通过「脚本市场」安装开启[「观测云集成（华为云-账单采集-实例维度）」](https://func.guance.com/doc/script-market-guance-huaweicloud-billing-by-instance/)、[「观测云集成（阿里云-账单采集-实例维度）」](https://func.guance.com/doc/script-market-guance-aliyun-billing/)、[「观测云集成（腾讯云-账单采集-实例维度）」](https://func.guance.com/doc/script-market-guance-tencentcloud-billing-by-instance/) 并且收集数据天数超过 15 天，再安装「观测云自建巡检（账单-实例维度）」并根据提示配置观测云 API Key 完成开启
 
-在 DataFlux Func 脚本市场中选择需要开启的巡检场景点击安装，配置观测云 API Key 后选择部署启动脚本即可
+在 DataFlux Func 脚本市场中选择需要开启的巡检场景点击安装，配置观测云 API Key 和 [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/) 后选择部署启动脚本即可
 
 ![image](../img/create_checker.png)
 
