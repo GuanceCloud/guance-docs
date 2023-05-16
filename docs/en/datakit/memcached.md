@@ -10,7 +10,9 @@ Memcached collector can collect the running status metrics from Memcached instan
 
 ## Preconditions {#requirements}
 
-- Memcached version >= `1.5.0`. Already tested version: `1.5.x`, `1.6.x`;
+- Memcached version >= `1.5.0`. Already tested version:
+    - [x] 1.5.x
+    - [x] 1.6.x
 
 ## Configuration {#config}
 
@@ -63,14 +65,14 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`server`|The host name from which metrics are gathered|
 
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`accepting_conns`|Whether or not server is accepting conns|int|count|
 |`auth_cmds`|Number of authentication commands handled, success or failure|int|count|
@@ -78,21 +80,21 @@ For all of the following data collections, a global tag named `host` is appended
 |`bytes`|Current number of bytes used to store items|int|B|
 |`bytes_read`|Total number of bytes read by this server from network|int|B|
 |`bytes_written`|Total number of bytes sent by this server to network|int|B|
-|`cas_badval`|Number of CAS reqs for which a key was found, but the CAS value did not match|int|count|
-|`cas_hits`|Number of successful CAS reqs|int|count|
-|`cas_misses`|Number of CAS reqs against missing keys|int|count|
-|`cmd_flush`|Cumulative number of flush reqs|int|count|
-|`cmd_get`|Cumulative number of retrieval reqs|int|count|
-|`cmd_set`|Cumulative number of storage reqs|int|count|
-|`cmd_touch`|Cumulative number of touch reqs|int|count|
+|`cas_badval`|Number of CAS  for which a key was found, but the CAS value did not match|int|count|
+|`cas_hits`|Number of successful CAS requests|int|count|
+|`cas_misses`|Number of CAS requests against missing keys|int|count|
+|`cmd_flush`|Cumulative number of flush requests|int|count|
+|`cmd_get`|Cumulative number of retrieval requests|int|count|
+|`cmd_set`|Cumulative number of storage requests|int|count|
+|`cmd_touch`|Cumulative number of touch requests|int|count|
 |`conn_yields`|Number of times any connection yielded to another due to hitting the -R limit|int|count|
 |`connection_structures`|Number of connection structures allocated by the server|int|count|
 |`curr_connections`|Number of open connections|int|count|
 |`curr_items`|Current number of items stored|int|count|
-|`decr_hits`|Number of successful decr reqs|int|count|
-|`decr_misses`|Number of decr reqs against missing keys|int|count|
-|`delete_hits`|Number of deletion reqs resulting in an item being removed|int|count|
-|`delete_misses`|umber of deletions reqs for missing keys|int|count|
+|`decr_hits`|Number of successful `decr` requests|int|count|
+|`decr_misses`|Number of `decr` requests against missing keys|int|count|
+|`delete_hits`|Number of deletion requests resulting in an item being removed|int|count|
+|`delete_misses`|umber of deletions requests for missing keys|int|count|
 |`evicted_unfetched`|Items evicted from LRU that were never touched by get/incr/append/etc|int|count|
 |`evictions`|Number of valid items removed from cache to free memory for new items|int|count|
 |`expired_unfetched`|Items pulled from LRU that were never touched by get/incr/append/etc before expiring|int|count|
@@ -101,10 +103,10 @@ For all of the following data collections, a global tag named `host` is appended
 |`hash_bytes`|Bytes currently used by hash tables|int|B|
 |`hash_is_expanding`|Indicates if the hash table is being grown to a new size|int|count|
 |`hash_power_level`|Current size multiplier for hash table|int|count|
-|`incr_hits`|Number of successful incr reqs|int|count|
-|`incr_misses`|Number of incr reqs against missing keys|int|count|
+|`incr_hits`|Number of successful incr requests|int|count|
+|`incr_misses`|Number of incr requests against missing keys|int|count|
 |`limit_maxbytes`|Number of bytes this server is allowed to use for storage|int|B|
-|`listen_disabled_num`|Number of times server has stopped accepting new connections (maxconns)|int|count|
+|`listen_disabled_num`|Number of times server has stopped accepting new connections (`maxconns`)|int|count|
 |`reclaimed`|Number of times an entry was stored using memory from an expired entry|int|count|
 |`threads`|Number of worker threads requested|int|count|
 |`total_connections`|Total number of connections opened since the server started running|int|count|

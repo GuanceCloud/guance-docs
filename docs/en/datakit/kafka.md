@@ -220,14 +220,14 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
-|`jolokia_agent_url`|jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent url path|
 
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`ActiveControllerCount.Value`||int|count|
 |`AutoLeaderBalanceRateAndTimeMs.50thPercentile`||float|-|
@@ -573,14 +573,14 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
-|`jolokia_agent_url`|jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent url path|
 
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`AtMinIsrPartitionCount.Value`||int|count|
 |`FailedIsrUpdatesPerSec.Count`||int|count|
@@ -618,14 +618,14 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
-|`jolokia_agent_url`|jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent url path|
 
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`AlterAcls.NumDelayedOperations`||int|-|
 |`AlterAcls.PurgatorySize`||int|-|
@@ -651,14 +651,14 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
-|`jolokia_agent_url`|jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent url path|
 
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`LocalTimeMs.50thPercentile`||float|ms|
 |`LocalTimeMs.75thPercentile`||float|ms|
@@ -756,14 +756,14 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
-|`jolokia_agent_url`|jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent url path|
 
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`BytesInPerSec.Count`||int|count|
 |`BytesInPerSec.EventType`||string|-|
@@ -899,15 +899,15 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
-|`jolokia_agent_url`|jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent url path|
 |`topic`|topic name|
 
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`BytesInPerSec.Count`||int|count|
 |`BytesInPerSec.EventType`||string|-|
@@ -952,16 +952,16 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
-|`jolokia_agent_url`|jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent url path|
 |`partition`|partition number|
 |`topic`|topic name|
 
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`LogEndOffset`||int|-|
 |`LogStartOffset`||int|-|
@@ -976,14 +976,14 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
-|`jolokia_agent_url`|jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent url path|
 
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`ZooKeeperRequestLatencyMs.50thPercentile`||float|ms|
 |`ZooKeeperRequestLatencyMs.75thPercentile`||float|ms|
@@ -1004,15 +1004,15 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
-|`jolokia_agent_url`|jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent url path|
 |`type`|metric type|
 
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`ControlPlaneExpiredConnectionsKilledCount`||int|count|
 |`ExpiredConnectionsKilledCount`||int|count|
@@ -1027,15 +1027,15 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
-|`jolokia_agent_url`|jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent url path|
 |`type`|metric type|
 
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`DeadThreadCount`||int|count|
 |`OfflineLogDirectoryCount`||int|count|
@@ -1051,16 +1051,16 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`client_id`|client id|
-|`jolokia_agent_url`|jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent url path|
 |`type`|metric type|
 
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`assigned_partitions`||int|count|
 |`bytes_consumed_rate`||float|-|
@@ -1136,16 +1136,16 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`client_id`|client id|
-|`jolokia_agent_url`|jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent url path|
 |`type`|metric type|
 
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`batch_split_rate`||float|-|
 |`batch_split_total`||int|-|
@@ -1212,18 +1212,18 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`client_id`|client id|
 |`connector`|connector|
-|`jolokia_agent_url`|jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent url path|
 |`task`|task|
 |`type`|metric type|
 
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`batch_size_avg`||int|-|
 |`batch_size_max`||int|-|

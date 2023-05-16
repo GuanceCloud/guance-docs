@@ -64,14 +64,14 @@ swap 采集器用于采集主机 swap 内存的使用情况
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|hostname|
 
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`free`|Host swap memory total.|int|B|
 |`in`|Moving data from swap space to main memory of the machine.|int|B|

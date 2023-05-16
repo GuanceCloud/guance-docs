@@ -131,14 +131,14 @@ InfluxDB 采集器，用于采集 InfluxDB 的数据。
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|System hostname.|
 
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`query_fail`|The total number of continuous queries that executed but failed.|float|-|
 |`query_ok`|The total number of continuous queries that executed successfully.|float|-|
@@ -150,7 +150,7 @@ InfluxDB 采集器，用于采集 InfluxDB 的数据。
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`database`|Database name.|
 |`host`|System hostname.|
@@ -158,7 +158,7 @@ InfluxDB 采集器，用于采集 InfluxDB 的数据。
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`num_measurements`|The current number of measurements in the specified database.|float|-|
 |`num_series`|The current series cardinality of the specified database. |float|-|
@@ -170,7 +170,7 @@ InfluxDB 采集器，用于采集 InfluxDB 的数据。
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`bind`|Bind port.|
 |`host`|System hostname.|
@@ -178,7 +178,7 @@ InfluxDB 采集器，用于采集 InfluxDB 的数据。
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`auth_fail`|The number of HTTP requests that were aborted due to authentication being required, but not supplied or incorrect.|float|-|
 |`client_error`|The number of HTTP responses due to client errors, with a 4XX HTTP status code.|float|-|
@@ -212,14 +212,14 @@ InfluxDB 采集器，用于采集 InfluxDB 的数据。
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|System hostname.|
 
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`alloc`|The currently allocated number of bytes of heap objects.|float|B|
 |`buck_hash_sys`|The bytes of memory in profiling bucket hash tables.|float|B|
@@ -238,11 +238,11 @@ InfluxDB 采集器，用于采集 InfluxDB 的数据。
 |`mcache_inuse`|The bytes of allocated mcache structures.|float|B|
 |`mcache_sys`|The bytes of memory obtained from the OS for mcache structures.|float|B|
 |`mspan_inuse`|The bytes of allocated mcache structures.|float|B|
-|`mspan_sys`|The bytes of memory obtained from the OS for mspan.|float|B|
+|`mspan_sys`|The bytes of memory obtained from the OS for `mspan`.|float|B|
 |`next_gc`|The target heap size of the next garbage collection cycle.|float|-|
 |`num_forced_gc`|The number of GC cycles that were forced by the application calling the GC function.|float|-|
 |`num_gc`|The number of completed garbage collection cycles.|float|-|
-|`other_sys`|The number of bytes of memory used other than heap_sys, stacks_sys, mspan_sys, mcache_sys, buckhash_sys, and gc_sys.|float|B|
+|`other_sys`|The number of bytes of memory used other than `heap_sys/stacks_sys/mspan_sys/mcache_sys/buckhash_sys/gc_sys`.|float|B|
 |`pause_ns`|The time garbage collection cycles are paused in nanoseconds.|float|ns|
 |`pause_total_ns`|The total time garbage collection cycles are paused in nanoseconds.|float|ns|
 |`stack_inuse`|The number of bytes in in-use stacks.|float|B|
@@ -257,14 +257,14 @@ InfluxDB 采集器，用于采集 InfluxDB 的数据。
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|System hostname.|
 
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`queries_active`|The number of active queries currently being handled.|float|-|
 |`queries_executed`|The number of queries executed (started).|float|-|
@@ -279,14 +279,14 @@ InfluxDB 采集器，用于采集 InfluxDB 的数据。
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|System hostname.|
 
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`alloc`|The currently allocated number of bytes of heap objects.|float|B|
 |`frees`|The cumulative number of freed (live) heap objects.|float|-|
@@ -311,7 +311,7 @@ InfluxDB 采集器，用于采集 InfluxDB 的数据。
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`database`|Database name.|
 |`engine`|Engine.|
@@ -325,7 +325,7 @@ InfluxDB 采集器，用于采集 InfluxDB 的数据。
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`disk_bytes`|The size, in bytes, of the shard, including the size of the data directory and the WAL directory.|float|B|
 |`fields_create`|The number of fields created.|float|-|
@@ -346,14 +346,14 @@ InfluxDB 采集器，用于采集 InfluxDB 的数据。
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|System hostname.|
 
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`create_failures`|The number of subscriptions that failed to be created.|float|-|
 |`points_written`|The total number of points that were successfully written to subscribers.|float|-|
@@ -366,7 +366,7 @@ InfluxDB 采集器，用于采集 InfluxDB 的数据。
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`database`|Database name.|
 |`engine`|Engine.|
@@ -380,7 +380,7 @@ InfluxDB 采集器，用于采集 InfluxDB 的数据。
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cache_age_ms`|The duration, in milliseconds, since the cache was last snapshotted at sample time.|float|ms|
 |`cached_bytes`|The total number of bytes that have been written into snapshots.|float|B|
@@ -399,7 +399,7 @@ InfluxDB 采集器，用于采集 InfluxDB 的数据。
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`database`|Database name.|
 |`engine`|Engine.|
@@ -413,7 +413,7 @@ InfluxDB 采集器，用于采集 InfluxDB 的数据。
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cache_compaction_duration`|The duration (wall time), in nanoseconds, spent in cache compactions.|float|ns|
 |`cache_compaction_err`|The number of cache compactions that have failed due to errors.|float|-|
@@ -452,7 +452,7 @@ InfluxDB 采集器，用于采集 InfluxDB 的数据。
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`database`|Database name.|
 |`engine`|Engine.|
@@ -466,7 +466,7 @@ InfluxDB 采集器，用于采集 InfluxDB 的数据。
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`disk_bytes`|The size, in bytes, of disk usage by the TSM file store.|float|B|
 |`num_files`|The total number of files in the TSM file store.|float|-|
@@ -478,7 +478,7 @@ InfluxDB 采集器，用于采集 InfluxDB 的数据。
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`database`|Database name.|
 |`engine`|Engine.|
@@ -492,7 +492,7 @@ InfluxDB 采集器，用于采集 InfluxDB 的数据。
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`current_segment_disk_bytes`|The current size, in bytes, of the segment disk.|float|B|
 |`old_segments_disk_bytes`|The size, in bytes, of the segment disk.|float|B|
@@ -506,14 +506,14 @@ InfluxDB 采集器，用于采集 InfluxDB 的数据。
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|System hostname.|
 
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`point_req`|The total number of every point requested to be written to this data node.|float|-|
 |`point_req_local`|The total number of point requests that have been attempted to be written into a shard on the same (local) node.|float|-|

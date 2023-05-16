@@ -18,17 +18,17 @@ Datakit 内置的 Pinpoint Agent 用于接收，运算，分析 Pinpoint Tracing
 - [Pinpoint 官方仓库](https://github.com/pinpoint-apm){:target="_blank"}
 - [Pinpoint 线上实例](http://125.209.240.10:10123/main){:target="_blank"}
 
-## 配置 Pinpoint Datakit Agent {#agent-config}
+## 配置 Datakit 中的 Pinpoint Agent {#agent-config}
 
 <!-- markdownlint-disable MD046 -->
 === "主机安装"
 
     进入 DataKit 安装目录下的 `conf.d/pinpoint` 目录，复制 `pinpoint.conf.sample` 并命名为 `pinpoint.conf`。示例如下：
-    
+
     ```toml
         
     [[inputs.pinpoint]]
-      ## Pinpoint GRPC service endpoint for
+      ## Pinpoint service endpoint for
       ## - Span Server
       ## - Agent Server(unimplemented, for service intactness and compatibility)
       ## - Metadata Server(unimplemented, for service intactness and compatibility)
@@ -71,7 +71,7 @@ Datakit 内置的 Pinpoint Agent 用于接收，运算，分析 Pinpoint Tracing
     ```
 
     Datakit Pinpoint Agent 监听地址配置项为:
-    
+
     ```toml
     # Pinpoint GRPC service endpoint for
     # - Span Server

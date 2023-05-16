@@ -10,7 +10,14 @@ Apache 采集器可以从 Apache 服务中采集请求数、连接数等，并�
 
 ## 前置条件 {#requirements}
 
-- Apache 版本 >= `2.4.46 (Unix)`。已测试版本: `2.4.46 (Unix)` ~ `2.4.52 (Unix)`;
+- Apache 版本 >= `2.4.6 (Unix)`。已测试版本:
+    - [x] 2.4.56
+    - [x] 2.4.54
+    - [x] 2.4.41
+    - [x] 2.4.38
+    - [x] 2.4.29
+    - [x] 2.4.6
+
 - 一般发行版 Linux 会自带 Apache,如需下载[参见](https://httpd.apache.org/download.cgi){:target="_blank"};
 - 默认配置路径: `/etc/apache2/apache2.conf`, `/etc/apache2/httpd.conf`, `/usr/local/apache2/conf/httpd.conf`;
 - 开启 Apache `mod_status`，在 Apache 配置文件中添加:
@@ -96,17 +103,17 @@ sudo apachectl restart
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|Hostname of the DataKit.|
-|`server_mpm`|Apache server Multi-Processing Module,prefork、worker and event.|
-|`server_version`|Apache server version.|
+|`server_mpm`|Apache server Multi-Processing Module, `prefork`, `worker` and `event`. Optional.|
+|`server_version`|Apache server version. Optional.|
 |`url`|Apache server status url.|
 
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`busy_workers`|The number of workers serving requests.|int|count|
 |`closing_connection`|The amount of workers that are currently closing a connection|int|count|
@@ -114,7 +121,7 @@ sudo apachectl restart
 |`conns_async_keep_alive`|The number of asynchronous keep alive connections,windows not support|int|count|
 |`conns_async_writing`|The number of asynchronous writes connections,windows not support|int|count|
 |`conns_total`|The total number of requests performed,windows not support|int|count|
-|`cpu_load`|The percent of CPU used,windows not support|float|percent|
+|`cpu_load`|The percent of CPU used,windows not support. Optional.|float|percent|
 |`dns_lookup`|The workers waiting on a DNS lookup|int|count|
 |`gracefully_finishing`|The number of workers finishing their request|int|count|
 |`idle_cleanup`|These workers were idle and their process is being stopped|int|count|

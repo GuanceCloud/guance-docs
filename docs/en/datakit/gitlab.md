@@ -130,7 +130,7 @@ GitLab 运行指标
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`action`|行为|
 |`controller`|管理|
@@ -140,7 +140,7 @@ GitLab 运行指标
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`banzai_cacheless_render_real_duration_seconds_count`|The count of duration of rendering Markdown into HTML when cached output exists|float|s|
 |`banzai_cacheless_render_real_duration_seconds_sum`|The sum of duration of rendering Markdown into HTML when cached output exists|float|s|
@@ -176,7 +176,7 @@ NA
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`rails_queue_duration_seconds_count`|The counter for latency between GitLab Workhorse forwarding a request to Rails|float|s|
 |`rails_queue_duration_seconds_sum`|The sum for latency between GitLab Workhorse forwarding a request to Rails|float|s|
@@ -193,7 +193,7 @@ GitLab HTTP 相关指标
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`method`|方法|
 |`status`|状态码|
@@ -201,7 +201,7 @@ GitLab HTTP 相关指标
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`http_health_requests_total`|Number of health requests|float|-|
 |`http_request_duration_seconds_count`|The counter for request duration|float|s|
@@ -211,21 +211,21 @@ GitLab HTTP 相关指标
 
 ### `gitlab_pipeline`
 
-Gitlab Pipeline Event 相关指标
+GitLab Pipeline Event 相关指标
 
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`author_email`|作者邮箱|
 |`ci_status`|CI 状态|
-|`commit_sha`|触发 pipeline 的最近一次 commit 的哈希值|
+|`commit_sha`|触发 Pipeline 的最近一次 commit 的哈希值|
 |`object_kind`|Event 类型，此处为 Pipeline|
 |`operation_name`|操作名称|
-|`pipeline_name`|pipeline 名称|
-|`pipeline_source`|pipeline 触发的来源|
-|`pipeline_url`|pipeline 的 URL|
+|`pipeline_name`|Pipeline 名称|
+|`pipeline_source`|Pipeline 触发的来源|
+|`pipeline_url`|Pipeline 的 URL|
 |`ref`|涉及的分支|
 |`repository_url`|仓库 URL|
 |`resource`|项目名|
@@ -233,25 +233,25 @@ Gitlab Pipeline Event 相关指标
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`commit_message`|触发该 pipeline 的代码的最近一次提交附带的 message|string|-|
-|`created_at`|pipeline 创建的毫秒时间戳|int|msec|
-|`duration`|pipeline 持续时长（微秒）|int|μs|
-|`finished_at`|pipeline 结束的毫秒时间戳|int|msec|
-|`message`|触发该 pipeline 的代码的最近一次提交附带的 message，与 commit_message 相同|string|-|
-|`pipeline_id`|pipeline id|string|-|
+|`commit_message`|触发该 Pipeline 的代码的最近一次提交附带的 message|string|-|
+|`created_at`|Pipeline 创建的毫秒时间戳|int|msec|
+|`duration`|Pipeline 持续时长（微秒）|int|μs|
+|`finished_at`|Pipeline 结束的毫秒时间戳|int|msec|
+|`message`|触发该 Pipeline 的代码的最近一次提交附带的 message，与 commit_message 相同|string|-|
+|`pipeline_id`|Pipeline id|string|-|
 
 
 
 ### `gitlab_job`
 
-Gitlab Job Event 相关指标
+GitLab Job Event 相关指标
 
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`build_commit_sha`|build 对应的 commit 的哈希值|
 |`build_failure_reason`|build 失败的原因|
@@ -267,7 +267,7 @@ Gitlab Job Event 相关指标
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`build_commit_message`|触发该 build 的最近一次 commit 的 message|string|-|
 |`build_duration`|build 持续时长（微秒）|int|μs|
@@ -275,7 +275,7 @@ Gitlab Job Event 相关指标
 |`build_id`|build id|string|-|
 |`build_started_at`|build 开始的毫秒时间戳|int|msec|
 |`message`|触发该 build 的最近一次 commit 的 message，与 build_commit_message 相同|string|-|
-|`pipeline_id`|build 对应的 pipeline id|string|-|
+|`pipeline_id`|build 对应的 Pipeline id|string|-|
 |`project_id`|build 对应的项目 id|string|-|
 |`runner_id`|build 对应的 runner id|string|-|
 

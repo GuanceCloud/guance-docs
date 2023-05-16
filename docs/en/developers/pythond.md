@@ -12,7 +12,9 @@ pythond is a complete set of scenes for firing user-defined python collection sc
 
 ### Python Environment {#req-python}
 
-Currently in the alpha phase, **it is compatible with Python 3++ only**. Already tested version: `3.10.1`.
+Currently in the alpha phase, **it is compatible with Python 3++ only**. Already tested version:
+
+- [x] 3.10.1
 
 The following dependency libraries need to be installed:
 
@@ -276,19 +278,17 @@ Go to the `conf.d/pythond` directory under the DataKit installation directory, c
 ```toml
 
 [[inputs.pythond]]
+  # Python input name
+  name = 'some-python-inputs'  # required
 
-	# Python 采集器名称
-	name = 'some-python-inputs'  # required
+  # System environments to run Python
+  #envs = ['LD_LIBRARY_PATH=/path/to/lib:$LD_LIBRARY_PATH',]
 
-	# 运行 Python 采集器所需的环境变量
-	#envs = ['LD_LIBRARY_PATH=/path/to/lib:$LD_LIBRARY_PATH',]
+  # Python path(recomment abstract Python path)
+  cmd = "python3" # required. python3 is recommended.
 
-	# Python 采集器可执行程序路径(尽可能写绝对路径)
-	cmd = "python3" # required. python3 is recommended.
-
-	# 用户脚本的相对路径(填写文件夹，填好后该文件夹下一级目录的模块和 py 文件都将得到应用)
-	dirs = []
-
+  # Python scripts relative path
+  dirs = []
 ```
 
 ## Git Support {#git}

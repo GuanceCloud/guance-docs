@@ -12,7 +12,12 @@ MongoDb database, Collection, MongoDb database cluster running status data Colle
 
 ## Preconditions {#requirements}
 
-- Already tested version: `3.x`, `4.x`, `5.x`, `6.x`;
+- Already tested version:
+    - [x] 6.0
+    - [x] 5.0
+    - [x] 4.0
+    - [x] 3.0
+
 - Developed and used MongoDB version `4.4.5`;
 - Write the configuration file in the corresponding directory and then start DataKit to complete the configuration;
 - For secure connections using TLS, please configure the response certificate file path and configuration under `## TLS connection config` in the configuration file;
@@ -212,7 +217,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|mongodb host|
 |`mongod_host`|mongodb host with port|
@@ -220,7 +225,7 @@ For all of the following data collections, a global tag named `host` is appended
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`active_reads`|The number of the active client connections performing read operations.|int|count|
 |`active_writes`|The number of active client connections performing write operations.|int|count|
@@ -233,7 +238,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`assert_warning`|Changed in version 4.0. Starting in MongoDB 4.0, the field returns zero 0. In earlier versions, the field returns the number of warnings raised since the MongoDB process started.|int|count|
 |`available_reads`|The number of concurrent of read transactions allowed into the WiredTiger storage engine|int|count|
 |`available_writes`|The number of concurrent of write transactions allowed into the WiredTiger storage engine|int|count|
-|`commands`|The total number of commands issued to the database since the mongod instance last started. opcounters.command counts all commands except the write commands: insert, update, and delete.|int|count|
+|`commands`|The total number of commands issued to the database since the mongod instance last started. `opcounters.command` counts all commands except the write commands: insert, update, and delete.|int|count|
 |`commands_per_sec`||int|count|
 |`connections_available`|The number of unused incoming connections available.|int|count|
 |`connections_current`|The number of incoming connections from clients to the database server .|int|count|
@@ -247,7 +252,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`cursor_timed_out`||int|count|
 |`cursor_timed_out_count`|The total number of cursors that have timed out since the server process started. If this number is large or growing at a regular rate, this may indicate an application error.|int|count|
 |`cursor_total`||int|count|
-|`cursor_total_count`|The number of cursors that MongoDB is maintaining for clients. Because MongoDB exhausts unused cursors, typically this value small or zero. However, if there is a queue, stale tailable cursors, or a large number of operations this value may rise.|int|count|
+|`cursor_total_count`|The number of cursors that MongoDB is maintaining for clients. Because MongoDB exhausts unused cursors, typically this value small or zero. However, if there is a queue, stale *tailable* cursors, or a large number of operations this value may rise.|int|count|
 |`delete_command_failed`|The number of times that 'delete' command failed on this mongod|int|count|
 |`delete_command_total`|The number of times that 'delete' command executed on this mongod|int|count|
 |`deletes`|The total number of delete operations since the mongod instance last started.|int|count|
@@ -264,10 +269,10 @@ For all of the following data collections, a global tag named `host` is appended
 |`find_command_total`|The number of times that 'find' command executed on this mongod|int|count|
 |`flushes`|The number of transaction checkpoints|int|count|
 |`flushes_per_sec`||int|count|
-|`flushes_total_time_ns`|The transaction checkpoint total time (msecs)"|int|count|
+|`flushes_total_time_ns`|The transaction checkpoint total time (ms)"|int|count|
 |`get_more_command_failed`|The number of times that 'get more' command failed on this mongod|int|count|
 |`get_more_command_total`|The number of times that 'get more' command executed on this mongod|int|count|
-|`getmores`|The total number of getMore operations since the mongod instance last started. This counter can be high even if the query count is low. Secondary nodes send getMore operations as part of the replication process.|int|count|
+|`getmores`|The total number of `getMore` operations since the mongod instance last started. This counter can be high even if the query count is low. Secondary nodes send `getMore` operations as part of the replication process.|int|count|
 |`getmores_per_sec`||int|count|
 |`insert_command_failed`|The number of times that 'insert' command failed on this mongod|int|count|
 |`insert_command_total`|The number of times that 'insert' command executed on this mongod|int|count|
@@ -291,7 +296,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`queries_per_sec`||int|count|
 |`queued_reads`|The number of operations that are currently queued and waiting for the read lock. A consistently small read-queue, particularly of shorter operations, should cause no concern.|int|count|
 |`queued_writes`|The number of operations that are currently queued and waiting for the write lock. A consistently small write-queue, particularly of shorter operations, is no cause for concern.|int|count|
-|`resident_megabytes`|The value of mem.resident is roughly equivalent to the amount of RAM, in mebibyte (MiB), currently used by the database process.|int|count|
+|`resident_megabytes`|The value of mem.resident is roughly equivalent to the amount of RAM, in MiB, currently used by the database process.|int|count|
 |`storage_freelist_search_bucket_exhausted`|The number of times that mongod has checked the free list without finding a suitably large record allocation.|int|count|
 |`storage_freelist_search_requests`|The number of times mongod has searched for available record allocations.|int|count|
 |`storage_freelist_search_scanned`|The number of available record allocations mongod has searched.|int|count|
@@ -302,17 +307,17 @@ For all of the following data collections, a global tag named `host` is appended
 |`tcmalloc_max_total_thread_cache_bytes`|Upper limit on total number of bytes stored across all per-thread caches. Default: 16MB.|int|count|
 |`tcmalloc_pageheap_commit_count`|Number of virtual memory commits.|int|count|
 |`tcmalloc_pageheap_committed_bytes`|Bytes committed, always <= system_bytes_.|int|count|
-|`tcmalloc_pageheap_decommit_count`|Number of virtual memory decommits.|int|count|
+|`tcmalloc_pageheap_decommit_count`|Number of virtual memory de-commits.|int|count|
 |`tcmalloc_pageheap_free_bytes`|Number of bytes in free, mapped pages in page heap.|int|count|
 |`tcmalloc_pageheap_reserve_count`|Number of virtual memory reserves.|int|count|
-|`tcmalloc_pageheap_scavenge_count`|Number of times scavagened flush pages.|int|count|
+|`tcmalloc_pageheap_scavenge_count`|Number of times scavaged flush pages.|int|count|
 |`tcmalloc_pageheap_total_commit_bytes`|Bytes committed in lifetime of process.|int|count|
-|`tcmalloc_pageheap_total_decommit_bytes`|Bytes decommitted in lifetime of process.|int|count|
+|`tcmalloc_pageheap_total_decommit_bytes`|Bytes de-committed in lifetime of process.|int|count|
 |`tcmalloc_pageheap_total_reserve_bytes`|Number of virtual memory reserves.|int|count|
-|`tcmalloc_pageheap_unmapped_bytes`|Total bytes on returned freelists.|int|count|
+|`tcmalloc_pageheap_unmapped_bytes`|Total bytes on returned free lists.|int|count|
 |`tcmalloc_spinlock_total_delay_ns`|TODO|int|count|
 |`tcmalloc_thread_cache_free_bytes`|Bytes in thread caches.|int|count|
-|`tcmalloc_total_free_bytes`|Total bytes on normal freelists.|int|count|
+|`tcmalloc_total_free_bytes`|Total bytes on normal free lists.|int|count|
 |`tcmalloc_transfer_cache_free_bytes`|Bytes in central transfer cache.|int|count|
 |`total_available`|The number of connections available from the mongos to the config servers, replica sets, and standalone mongod instances in the cluster.|int|count|
 |`total_created`|The number of connections the mongos has ever created to other members of the cluster.|int|count|
@@ -331,7 +336,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`updates`|The total number of update operations received since the mongod instance last started.|int|count|
 |`updates_per_sec`||int|count|
 |`uptime_ns`|The total upon time of mongod in nano seconds.|int|count|
-|`vsize_megabytes`|mem.virtual displays the quantity, in mebibyte (MiB), of virtual memory used by the mongod process.|int|count|
+|`vsize_megabytes`|mem.virtual displays the quantity, in MiB, of virtual memory used by the mongod process.|int|count|
 |`wtcache_app_threads_page_read_count`|TODO|int|count|
 |`wtcache_app_threads_page_read_time`|TODO|int|count|
 |`wtcache_app_threads_page_write_count`|TODO|int|count|
@@ -358,7 +363,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`db_name`|database name|
 |`host`|mongodb host|
@@ -367,7 +372,7 @@ For all of the following data collections, a global tag named `host` is appended
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`avg_obj_size`|The average size of each document in bytes.|float|count|
 |`collections`|Contains a count of the number of collections in that database.|int|count|
@@ -408,7 +413,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`collection`|collection name|
 |`db_name`|database name|
@@ -418,7 +423,7 @@ For all of the following data collections, a global tag named `host` is appended
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`avg_obj_size`|The average size of an object in the collection. |float|count|
 |`count`|The number of objects or documents in this collection.|int|count|
@@ -457,7 +462,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|mongodb host|
 |`mongod_host`|mongodb host with port|
@@ -465,7 +470,7 @@ For all of the following data collections, a global tag named `host` is appended
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`available`|The number of connections available for this host to connect to the mongos.|int|count|
 |`created`|The number of connections the host has ever created to connect to the mongos.|int|count|
@@ -479,7 +484,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`collection`|collection name|
 |`host`|mongodb host|
@@ -488,12 +493,12 @@ For all of the following data collections, a global tag named `host` is appended
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`commands_count`|The total number of "command" event issues.|int|count|
 |`commands_time`|The amount of time in microseconds that "command" costs.|int|count|
-|`get_more_count`|The total number of "getmore" event issues.|int|count|
-|`get_more_time`|The amount of time in microseconds that "getmore" costs.|int|count|
+|`get_more_count`|The total number of `getmore` event issues.|int|count|
+|`get_more_time`|The amount of time in microseconds that `getmore` costs.|int|count|
 |`insert_count`|The total number of "insert" event issues.|int|count|
 |`insert_time`|The amount of time in microseconds that "insert" costs.|int|count|
 |`mapped_megabytes`|Mapped megabytes. (Existed in 3.0 and earlier version)|int|count|

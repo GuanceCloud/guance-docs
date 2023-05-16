@@ -5,12 +5,35 @@
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
 
 ---
+The indicator data collected by the DDTrace agent will be sent to port 8125 of the DK through the StatsD data type.
 
-The statsd collector is used to receive statsd data sent over the network.
+This includes the JVM CPU, memory, threads, and class loading information of the JVM runtime, as well as various collected JMX indicators such as Kafka, Tomcat, RabbitMQ, etc.
+
 
 ## Preconditions {#requrements}
 
-None
+When DDTrace runs as an agent, there is no need for the user to specifically open the jmx port. If no port is opened, the agent will randomly open a local port.
+
+DDTrace will collect JVM information by default. By default, it will be sent to 'localhost: 8125'
+
+if k8s:
+```shell
+DD_JMXFETCH_STATSD_HOST=datakit_url
+DD_JMXFETCH_STATSD_PORT=8125
+```
+
+You can use ` dd.jmxfetch.<INTEGRATION_NAME>.enabled=true ` Enable the specified collector.
+
+for `INTEGRATION_NAME`, You can check the [default supported third-party software](https://docs.datadoghq.com/integrations/){:target="_blank"} before.
+
+For example, Tomcat or Kafka:
+
+```shell
+-Ddd.jmxfetch.tomcat.enabled=true
+# or
+-Ddd.jmxfetch.kafka.enabled=true 
+```
+
 
 ## Configuration {#config}
 
@@ -48,16 +71,16 @@ None
       ## https://docs.datadoghq.com/developers/metrics/types/?tab=distribution#definition
       datadog_distributions = true
     
-    	## We do not need following tags(they may create tremendous of time-series under influxdb's logic)
-    	# Examples:
-    	# "runtime-id", "metric-type"
+      ## We do not need following tags(they may create tremendous of time-series under influxdb's logic)
+      # Examples:
+      # "runtime-id", "metric-type"
       drop_tags = [ ]
     
       # All metric-name prefixed with 'jvm_' are set to influxdb's measurement 'jvm'
       # All metric-name prefixed with 'stats_' are set to influxdb's measurement 'stats'
       # Examples:
       # "stats_:stats", "jvm_:jvm"
-    	metric_mapping = [ ]
+      metric_mapping = [ ]
     
       ## Number of UDP messages allowed to queue up, once filled,
       ## the statsd server will start dropping packets
@@ -85,3 +108,5 @@ None
 ## Measurement {#measurement}
 
 Statsd has no measurement definition at present, and all metrics are subject to the metrics sent by the network.
+
+For example, if Tomcat or Kafka uses the default indicator set, [GitHub can view all indicator sets](https://docs.datadoghq.com/integrations/){:target="_blank"}
