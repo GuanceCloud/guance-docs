@@ -288,7 +288,7 @@ eval(A/B, alias='页面错误率',A="R::view:(count(`view_name`)) {`view_error_c
 
 **1、告警级别紧急（红色）、重要（橙色）、警告（黄色）基于配置条件判断运算符。**
 
-- 运算符详情参考 [运算符说明](operator-description.md)
+> 运算符详情参考 [运算符说明](operator-description.md)。
 
 **2、告警级别正常（绿色）、信息（蓝色）基于配置检测次数，说明如下：**
 
