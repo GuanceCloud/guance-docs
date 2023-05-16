@@ -151,7 +151,6 @@ android{
 | **方法名** | **含义** | **必须** | **注意** |
 | --- | --- | --- | --- |
 | metricsUrl | Datakit 安装地址 | 是 | datakit 安装地址 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529，。注意：安装 SDK 设备需能访问这地址 |
-| setXDataKitUUID | 设置数据采集端的识别 ID | 否 | 默认为随机`uuid` |
 | setDebug | 是否开启调试模式 | 否 | 默认为 `false`，开启后方可打印 SDK 运行日志 |
 | setEnv | 设置采集环境 | 否 | 默认为 `EnvType.PROD` |
 | setOnlySupportMainProcess | 是否只支持在主进程运行 | 否 | 默认为 `true` ，如果需要在其他进程中执行需要将该字段设置为 `false` |
