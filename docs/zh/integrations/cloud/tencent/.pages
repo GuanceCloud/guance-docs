@@ -1,5 +1,4 @@
 nav:
-  - tencent-prod-func.md
   - 'CDB': cdb.md
   - 'COS': cos.md
   - 'CLB': clb.md

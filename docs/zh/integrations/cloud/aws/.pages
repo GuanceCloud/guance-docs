@@ -1,9 +1,8 @@
 nav:
-  - aws-prod-func.md
-  - 'EC2': ec2.md
-  - 'ELB': elb.md
-  - elasticache-redis.md
+  - 'EC2': aws-ec2.md
+  - aws-elb.md
+  - aws-elasticache-redis.md
   - aws-msk.md
   - aws-opensearch.md
-  - 'RDS MySQL': rds-mysql.md
-  - 'S3': s3.md
+  - aws-rds-mysql.md
+  - aws-s3.md
