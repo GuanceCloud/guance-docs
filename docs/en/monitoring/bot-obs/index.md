@@ -4,7 +4,19 @@
 
 ---
 
-## April 13, 2022
+## May 18, 2023
+
+### New Inspection
+
+* **Cloud Idle Resources Intelligent Inspection**: Cloud computing, as a rapidly developing new IT service method, provides enterprises and individuals with convenient, fast, and flexible IT infrastructure and application services, bringing extremely high efficiency and cost-effectiveness. However, as cloud resources gradually become a major part of enterprise data centers, the problem of massive waste of resources in the cloud becomes more significant. Especially within the enterprise scope, due to factors such as demand fluctuations and isolation between departments, some cloud resources cannot be fully utilized, resulting in a large amount of idle resources. This situation leads to a linear increase in the cost of enterprise cloud services, a decrease in resource efficiency, and a potential reduction in security and performance levels. In order to better manage and optimize idle resources in the cloud, and to improve the usage benefits and resource utilization of cloud computing, it is essential to inspect idle resources in the cloud. Through inspection, unnecessary resources in the current cloud services can be discovered and processed promptly, avoiding problems such as cost overhead, data leakage, and poor performance due to long-term unnecessary resource usage.
+
+### Function Optimization
+
+* **Idle Resources Intelligent Inspection**: Added cost-related information to the association of cloud server types.
+
+
+
+## April 13, 2023
 
 ### Functional Optimization
 
@@ -13,7 +25,7 @@
 
 
 
-## March 30, 2022
+## March 30, 2023
 
 ### Functional Optimization
 
@@ -22,11 +34,11 @@
 
 
 
-## March 23, 2022
+## March 23, 2023
 
 ### New Inspections
 
-* **Idle Resources Intelligent Inspection**: Cloud computing has rapidly developed as a new mode of IT service, providing convenient, fast, and elastic IT infrastructure and application services for both enterprises and individuals, and bringing high efficiency and economy. However, as cloud resources gradually become the main component of enterprise data centers, the huge waste of cloud resources has become increasingly significant. Especially within enterprises, due to fluctuations in demand and isolation between departments, some cloud resources are not fully utilized, resulting in a large number of idle resources. This situation can cause an increase in cloud service costs, a decrease in resource efficiency, and even a reduction in security and performance levels. In order to better manage and optimize idle resources in the cloud, and improve the utilization efficiency of cloud computing, it is necessary to perform inspections on idle resources in the cloud. Through inspections, unnecessary resources in cloud services can be found and processed, avoiding problems such as cost increases, data leaks, or poor performance caused by long-term unnecessary use of resources.
+* **Idle Resources Intelligent Inspection**: As the business grows, the amount of resource usage also increases, making enterprise data centers larger and larger, and the problem of waste from idle servers becomes more significant. Especially within the enterprise scope, due to factors such as demand fluctuations and isolation between departments, some servers cannot be fully utilized, resulting in a large amount of idle resources. This situation leads to a linear increase in the cost of enterprise cloud services, a decrease in resource efficiency, and a potential reduction in security and performance levels.
 
 ### Functional optimization
 
@@ -34,7 +46,7 @@
 
 
 
-## March 2, 2022
+## March 2, 2023
 
 ### Functional optimization
 
@@ -42,7 +54,7 @@
 
 
 
-## February 16, 2022
+## February 16, 2023
 
 ### Functional optimization
 
@@ -51,7 +63,7 @@
 
 
 
-## February 9, 2022
+## February 9, 2023
 
 ### New Inspections
 
