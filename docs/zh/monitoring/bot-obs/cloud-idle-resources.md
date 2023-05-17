@@ -68,7 +68,7 @@
 
   配置入口参数点击编辑后在参数配置中填写对应的检测对象点击保存开始巡检：
 
-  ![image](/Users/pacher/Downloads/cloud_idle_resources03.png)
+  ![image](../img/cloud_idle_resources03.png)
 
 可以参考如下配置多
 
@@ -87,7 +87,7 @@
 
   智能巡检基于观测云巡检算法，会查找对应云厂商的闲置云资源。对于异常的资源闲置情况，智能巡检会生成相应的事件，在智能巡检列表右侧的操作菜单下，点击**查看相关事件**按钮，即可查看对应异常事件。
 
-![image](/Users/pacher/Downloads/cloud_idle_resources04.png)
+![image](../img//cloud_idle_resources04.png)
 
 
 
