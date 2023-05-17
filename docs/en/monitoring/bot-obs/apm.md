@@ -16,7 +16,7 @@
 
 ## Start Intelligent Inspection
 
-In the  DataFlux Func, install the "Observation Cloud Self-built Inspection Core Package" and "Observation Cloud Algorithm Library" through the "Script Market", and then install the relevant dependencies through the PIP tool. Install the "Guance  script (APM Performance)" and configure the Observation Cloud API Key as prompted to complete the opening.
+In the self-built DataFlux Func, install the "Observation Cloud Custom Inspection (APM Performance)" through the "Script Market" and follow the prompts to configure the Observation Cloud API Key to complete activation.
 
 Select the inspection scene you want to enable in the DataFlux Func script market and click install. Configure the Guance Cloud API Key and [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/), then select deploy and start the script.
 
