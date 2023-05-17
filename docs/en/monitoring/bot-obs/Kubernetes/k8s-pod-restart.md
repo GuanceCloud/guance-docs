@@ -16,7 +16,7 @@ Kubernetes helps users automatically schedule and expand containerized applicati
 
 ## Start Intelligent Inspection
 
-In the  DataFlux Func, install the "Observation Cloud Self-built Inspection Core Package" and "Observation Cloud Algorithm Library" through the "Script Market", and then install the relevant dependencies through the PIP tool. Install the "Observation Cloud Self-built Inspection (K8S-Pod Restart Detection)" and configure the Observation Cloud API Key as prompted to complete the opening.
+In the DataFlux Func, install the "Observation Cloud Custom Inspection (K8S-Pod Restart Detection)" through the "Script Market" and follow the prompts to configure the Observation Cloud API Key to complete activation.
 
 Select the inspection scene you want to enable in the DataFlux Func script market and click install. Configure the Guance Cloud API Key and [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/), then select deploy and start the script.
 
