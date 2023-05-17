@@ -5,7 +5,7 @@
 
 SLO charts can directly select the set monitoring SLO for SLO data display.For more details, please refer to the document [What is SLO](../../monitoring/slo.md) 。
 
-## Application Scenarios
+## Use Case
 
 Guance's SLO charts are used for SLO data presentation. For example, you can view the remaining fault tolerable hours for SLOs with a period of the last month.
 
