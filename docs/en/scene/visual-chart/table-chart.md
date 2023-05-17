@@ -5,7 +5,7 @@
 
 Tables feature a visual display of statistical information attributes, while reflecting the relationships between data. Default grouping display.
 
-## Application Scenarios
+## Use Case
 
 The tabular chart of the guance is used to visualize the properties of statistical information. For example, you can view information about the top 10 CPU usage rates of different hosts in your workspace.
 

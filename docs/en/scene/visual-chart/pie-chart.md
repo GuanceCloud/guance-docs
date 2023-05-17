@@ -6,7 +6,7 @@
 Pie charts are generally suitable for showing comparisons of data groupings.
 
 
-## Application Scenarios
+## Use Case
 
 The pie chart of the Guance is used to show the comparison of data groupings. For example you can see how the used space on the disk compares to the remaining space.
 

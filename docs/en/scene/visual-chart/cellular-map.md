@@ -5,7 +5,7 @@
 
 Display data under different groups, which can be used for monitoring assets and infrastructure.
 
-## Application Scenarios
+## Use Case
 
 The cellular graph of the guance is used to show the data under different groupings. For example, you can see the CPU usage of different hosts.
 
