@@ -19,7 +19,7 @@
 ![](../img/13.rum_access_3.png)
 ## 安装
 
-![](https://img.shields.io/cocoapods/p/FTMacOSSDK#crop=0&crop=0&crop=1&crop=1&id=xs5E2&originHeight=20&originWidth=82&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)![](https://img.shields.io/cocoapods/v/FTMacOSSDK#crop=0&crop=0&crop=1&crop=1&id=Uyl38&originHeight=20&originWidth=122&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)![](https://img.shields.io/cocoapods/l/FTMacOSSDK#crop=0&crop=0&crop=1&crop=1&id=SxRum&originHeight=20&originWidth=98&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)![](https://img.shields.io/badge/macOS-api%20%3E=%20macOS%2010.13-brightgreen#crop=0&crop=0&crop=1&crop=1&id=uFhFJ&originHeight=20&originWidth=118&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=) 
+![](https://img.shields.io/badge/dynamic/json?label=pod&color=orange&query=$.version&uri=https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/ft-sdk-package/badge/macos/version.json&link=https://github.com/GuanceCloud/datakit-macos)![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/ft-sdk-package/badge/macos/info.json&link=https://github.com/GuanceCloud/datakit-macos)![](https://img.shields.io/badge/dynamic/json?label=license&color=lightgrey&query=$.license&uri=https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/ft-sdk-package/badge/macos/info.json&link=https://github.com/GuanceCloud/datakit-macos)![](https://img.shields.io/badge/dynamic/json?label=macOS&color=brightgreen&query=$.macos_api_support&uri=https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/ft-sdk-package/badge/macos/info.json&link=https://github.com/GuanceCloud/datakit-macos) 
 
 **源码地址**：[https://github.com/GuanceCloud/datakit-macos](https://github.com/GuanceCloud/datakit-macos)
 
@@ -34,7 +34,7 @@
 target 'yourProjectName' do
 
 # Pods for your project
- pod 'FTMacOSSDK', '1.0.0-alpha.1'
+ pod 'FTMacOSSDK', '[latest_version]'
     
 end
 ```
@@ -43,19 +43,25 @@ end
 
 ### Swift Package Manager 方式
 
-1.选中 **File** 菜单，然后选择 **Swift Packages > Add Package Dependency**。
+1.选中 `PROJECT` -> `Package Dependency` ，点击 `Packages` 栏目下的 **+**。
 
-2.在搜索框中输入 `https://github.com/GuanceCloud/datakit-macos`，这是代码的存储位置。
+2.在弹出的页面的搜索框中输入 `https://github.com/GuanceCloud/datakit-macos`，这是代码的存储位置。
 
-3.Xcode 获取软件包成功后，选中 `Add To Project` 选择支持的工程。`Dependency Rule` 建议选择 `Up to Next Major Version` ，填上版本号，等待加载完成。
+3.Xcode 获取软件包成功后，会展示 SDK 的配置页。
 
-4.选中 **Target** -> **Build Phases** -> **Link Binary With Libraries** -> **+** 添加 `FTMacOSSDK.framwork` ，将包添加到工程中。
+`Dependency Rule` ：建议选择 `Up to Next Major Version` 。
+
+`Add To Project` ：选择支持的工程。
+
+填好配置后点击 `Add Package` 按钮，等待加载完成。
+
+4.在弹窗 `Choose Package Products for datakit-ios` 中选择需要添加 SDK 的 Target，点击 `Add Package` 按钮，此时 SDK 已经添加成功。
 
 如果您的项目由 SPM 管理，将 FTMacOSSDK 添加为依赖项，添加 `dependencies ` 到 `Package.swift`。
 
-```
+```swift
 dependencies: [
-    .package(url: "https://github.com/GuanceCloud/datakit-macos.git", .upToNextMajor(from: "1.0.0-alpha.1"))
+    .package(url: "https://github.com/GuanceCloud/datakit-macos.git", .revision("[latest_version]"))
 ]
 ```
 
@@ -92,7 +98,6 @@ int main(int argc, const char * argv[]) {
 | metricsUrl        | NSString     | datakit 安装地址 URL 地址，例子：http://datakit.url:[port]。注意：安装 SDK 设备需能访问这地址 | 是                    |
 | enableSDKDebugLog | BOOL         | 设置是否允许打印日志                                         | 否（默认NO）          |
 | env               | NS_ENUM      | 环境                                                         | 否  （默认FTEnvProd） |
-| XDataKitUUID      | NSString     | 请求HTTP请求头X-Datakit-UUID 数据采集端  如果用户不设置会自动配置 | 否                    |
 | globalContext     | NSDictionary | [添加自定义标签](#user-global-context)                       | 否                    |
 | service           | NSString     | 设置所属业务或服务的名称，影响 Log 和 RUM 中 service 字段数据。默认：`df_rum_macos` | 否                    |
 
