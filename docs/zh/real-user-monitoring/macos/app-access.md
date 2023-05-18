@@ -34,7 +34,7 @@
 target 'yourProjectName' do
 
 # Pods for your project
- pod 'FTMacOSSDK', '[latest_version]'
+ pod 'FTMacOSSDK', '~>[latest_version]'
     
 end
 ```
@@ -61,7 +61,7 @@ end
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/GuanceCloud/datakit-macos.git", .revision("[latest_version]"))
+    .package(url: "https://github.com/GuanceCloud/datakit-macos.git", .upToNextMajor(from: "[latest_version]"))
 ]
 ```
 
