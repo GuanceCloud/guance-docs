@@ -35,14 +35,6 @@ Once the deployment of the startup script is successful, it will automatically c
 >
 > Alibaba: Guance Cloud Integration (Alibaba Cloud - Cloud Monitoring Collection)
 
-![image](../img/create_checker.png)
-
-Once the deployment of the startup script is successful, it will automatically create the startup script and trigger configuration. You can check the corresponding configuration directly by clicking on the link.
-
-![image](../img/success_checker.png)
-
-
-
 ## Configs Intelligent Inspection
 
 ### Configure Intelligent Inspection in Guance
