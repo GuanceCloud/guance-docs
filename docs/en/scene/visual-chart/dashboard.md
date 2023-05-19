@@ -5,7 +5,7 @@
 
 Clearly shows the range of metric data values. Suitable for cutting through cluttered data to segment the main points.
 
-## Application Scenarios
+## Use Case
 
 The dashboard of the guance is used to display the range of metric data values. For example, you can query the memory usage of a host for the last 15 minutes.
 

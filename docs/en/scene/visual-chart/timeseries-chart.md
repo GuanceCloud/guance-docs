@@ -6,7 +6,7 @@
 
 Time-series diagrams are generally used to show the trend changes of data at equal time intervals, and can be used to analyze the effect and impact of multiple sets of metric data.
 
-## Application Scenarios
+## Use Case
 
 - View trends in application performance metrics data over time, such as the number of application "requests" over the last 15 minutes.
 - View trends in user access metrics data over time, such as the occurrence of user access "errors" over different time frames.
