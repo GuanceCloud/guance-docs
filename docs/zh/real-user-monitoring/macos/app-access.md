@@ -25,45 +25,44 @@
 
 **Demo**：[https://github.com/GuanceCloud/datakit-macos/tree/develop/Example](https://github.com/GuanceCloud/datakit-macos/tree/develop/Example)
 
+=== "CocoaPods"
 
-### CocoaPods 方式
-
-1.配置 `Podfile` 文件。
-
-```objectivec
-target 'yourProjectName' do
-
-# Pods for your project
- pod 'FTMacOSSDK', '~>[latest_version]'
+    1.配置 `Podfile` 文件。
     
-end
-```
+    ```objectivec
+       target 'yourProjectName' do
+    
+       # Pods for your project
+       pod 'FTMacOSSDK', '~>[latest_version]'
+    
+       end
+    ```
+    
+    2.在 `Podfile` 目录下执行 `pod install` 安装 SDK。
 
-2.在 `Podfile` 目录下执行 `pod install` 安装 SDK。
+=== "Swift Package Manager"
 
-### Swift Package Manager 方式
-
-1.选中 `PROJECT` -> `Package Dependency` ，点击 `Packages` 栏目下的 **+**。
-
-2.在弹出的页面的搜索框中输入 `https://github.com/GuanceCloud/datakit-macos`，这是代码的存储位置。
-
-3.Xcode 获取软件包成功后，会展示 SDK 的配置页。
-
-`Dependency Rule` ：建议选择 `Up to Next Major Version` 。
-
-`Add To Project` ：选择支持的工程。
-
-填好配置后点击 `Add Package` 按钮，等待加载完成。
-
-4.在弹窗 `Choose Package Products for datakit-ios` 中选择需要添加 SDK 的 Target，点击 `Add Package` 按钮，此时 SDK 已经添加成功。
-
-如果您的项目由 SPM 管理，将 FTMacOSSDK 添加为依赖项，添加 `dependencies ` 到 `Package.swift`。
-
-```swift
-dependencies: [
-    .package(url: "https://github.com/GuanceCloud/datakit-macos.git", .upToNextMajor(from: "[latest_version]"))
-]
-```
+    1.选中 `PROJECT` -> `Package Dependency` ，点击 `Packages` 栏目下的 **+**。
+    
+    2.在弹出的页面的搜索框中输入 `https://github.com/GuanceCloud/datakit-macos`，这是代码的存储位置。
+    
+    3.Xcode 获取软件包成功后，会展示 SDK 的配置页。
+    
+    `Dependency Rule` ：建议选择 `Up to Next Major Version` 。
+    
+    `Add To Project` ：选择支持的工程。
+    
+    填好配置后点击 `Add Package` 按钮，等待加载完成。
+    
+    4.在弹窗 `Choose Package Products for datakit-ios` 中选择需要添加 SDK 的 Target，点击 `Add Package` 按钮，此时 SDK 已经添加成功。
+    
+    如果您的项目由 SPM 管理，将 FTMacOSSDK 添加为依赖项，添加 `dependencies ` 到 `Package.swift`。
+    
+    ```swift
+      dependencies: [
+        .package(url: "https://github.com/GuanceCloud/datakit-macos.git",       .upToNextMajor(from: "[latest_version]"))
+    ]
+    ```
 
 ### 添加头文件
 
@@ -654,115 +653,7 @@ rumConfig.globalContext = @{@"dynamic_tag":dynamicTag};
 
 详细细节请见 [SDK Demo](https://github.com/GuanceCloud/datakit-macos/tree/develop/Example)。
 
-## 崩溃日志符号化
 
-### 上传符号表
-
-#### 方法一：脚本集成到 Xcode 工程的 Target
-
-1. XCode 添加自定义 Run Script Phase：` Build Phases -> + -> New Run Script Phase`
-2. 将脚本复制到 Xcode 项目的构建阶段运行脚本中，脚本中需要设置参数如：＜app_id＞、＜dea_address＞、＜env＞、＜version＞(脚本默认配置的版本格式为 `CFBundleShortVersionString`)。
-3. [脚本](https://github.com/GuanceCloud/datakit-macos/tree/develop/Example/FTdSYMUploader.sh)
-
-```sh
-#脚本中需要配置的参数
-#＜app_id＞
-FT_APP_ID="YOUR_APP_ID"
-#＜dea_address＞
-FT_DEA_ADDRESS="YOUR_DEA_ADDRESS"
-# ＜env＞ 环境字段。属性值：prod/gray/pre/common/local。需要与 SDK 设置一致
-FT_ENV="common"
-#
-#＜version＞ 脚本默认配置的版本格式为CFBundleShortVersionString,如果你修改默认的版本格式, 请设置此变量。注意：需要确保在此填写的与SDK设置的一致。
-# FT_VERSION=""
-```
-
-##### 多环境便捷的配置参数
-
-示例：使用预设宏和 .xcconfig 配置文件
-
-1. 添加预设宏：`Target —> Build Settings -> + -> Add User-Defined Setting` 
-
-![](../img/multi-environment-configuration1.png)
-
-![](../img/multi-environment-configuration2.png)
-
-
-2. 使用多 Xcconfig 来实现多环境，新建 Xcconfig
-
-![](../img/multi-environment-configuration3.png)
-
-
-.xcconfig 文件中配置预设宏：
-
-```sh
-//如果有使用 cocoapods ，需要将 pods 的.xcconfig 路径添加到您的 .xcconfig 文件中，如果您不清楚路径是什么，可以使用终端进入项目文件夹，执行 pod install，终端会有提示路径，将该路径复制后如下使用即可。
-#include "Pods/Target Support Files/Pods-testDemo/Pods-testDemo.debug.xcconfig"
-
-SDK_APP_ID = app_id_common
-SDK_ENV = common
-SDK_DEA_ADDRESS = http:\$()\xxxxxxxx:9531 
-```
-
-3. 配置自定义编译环境
-
-![](../img/multi-environment-configuration4.png)
-
-
-
-![](../img/multi-environment-configuration5.png)
-
-
-4. 使用
-
-**脚本中**
-
-```sh
-#脚本中需要配置的参数
-#＜app_id＞
-FT_APP_ID=SDK_APP_ID
-#＜dea_address＞
-FT_DEA_ADDRESS=SDK_DEA_ADDRESS
-# ＜env＞ 环境字段。属性值：prod/gray/pre/common/local。需要与 SDK 设置一致
-FT_ENV=SDK_ENV
-```
-
-**项目某一文件中** 
-
-方法一：对指定文件进行配置：-D'SDK_APP_ID=@"$(SDK_APP_ID)"'
-
-![](../img/multi-environment-configuration6.png)
-
-
-
- 在指定文件中可以使用
-
-![](../img/multi-environment-configuration7.png)
-
-
-
-方法二：映射到  `Info.plist` 文件中
-
-![](../img/multi-environment-configuration8.png)
-
-
-
-在文件中可以使用
-
-![](../img/multi-environment-configuration9.png)
-
-
-详细细节请见 [SDK Demo](https://github.com/GuanceCloud/datakit-macos/tree/develop/Example)。
-
-#### 方法二：终端运行脚本
-
-找到 .dSYM 文件放在一个文件夹内，命令行下输入应用基本信息, .dSYM 文件的父目录路径, 输出文件目录即可
-
-`sh FTdSYMUpload.sh <dea_address> <app_id> <version> <env> <dSYMBOL_src_dir> <dSYMBOL_dest_dir>`
-
-#### 方法三：手动上传
-
-[Sourcemap 上传](../../datakit/rum.md#sourcemap)
 
 ## 常见问题 {#FAQ}
 
