@@ -30,88 +30,87 @@
 
 **Demo**：[https://github.com/GuanceCloud/datakit-ios/demo](https://github.com/GuanceCloud/datakit-ios/tree/develop/demo)
 
+=== "CocoaPods"
 
-### CocoaPods 方式
+    1.配置 `Podfile` 文件。
+    
+    ```objectivec
+    //主工程
+    target 'yourProjectName' do
+    # Pods for your project
+    pod 'FTMobileSDK', '[latest_version]'
+    end
+      
+    //Widget Extension
+    target 'yourWidgetExtensionName' do
+    pod 'FTMobileSDK/Extension', '[latest_version]'
+    end
+    ```
+    
+    2.在 `Podfile` 目录下执行 `pod install` 安装 SDK。
 
-1.配置 `Podfile` 文件。
+=== "Carthage" 
 
-```objectivec
-//主工程
-target 'yourProjectName' do
-# Pods for your project
-pod 'FTMobileSDK', '[latest_version]'
-end
-  
-//Widget Extension
-target 'yourWidgetExtensionName' do
-pod 'FTMobileSDK/Extension', '[latest_version]'
-end
-```
+    1.配置 `Cartfile` 文件。
+    
+    ```
+    github "GuanceCloud/datakit-ios" == [latest_version]
+    ```
+    
+    2.在 `Cartfile` 目录下执行
+    
+    ```bash
+    carthage update --platform iOS
+    ```
+    
+    如果报错 "Building universal frameworks with common architectures is not possible. The device and simulator slices for "FTMobileAgent.framework" both build for: arm64" 
+    
+    根据提示添加 --use-xcframeworks 参数
+    
+    ```bash
+    carthage update --platform iOS --use-xcframeworks
+    ```
+    
+    生成的  xcframework ，与普通的 Framework 使用方法相同。将编译生成的库添加到项目工程中。
+    
+    `FTMobileAgent`：添加到主项目 Target
+    
+    `FTMobileExtension`：添加到 Widget Extension Target
+    
+    3.在 `TARGETS`  -> `Build Setting` ->  `Other Linker Flags`  添加  `-ObjC`。
+    
+    4.目前只支持 1.3.4-beta.2 及以上的版本，1.4.0-beta.1 及以上支持 Widget Extension。
 
-2.在 `Podfile` 目录下执行 `pod install` 安装 SDK。
+=== "Swift Package Manager"
 
-### Carthage 方式
-
-1.配置 `Cartfile` 文件。
-
-```
-github "GuanceCloud/datakit-ios" == [latest_version]
-```
-
-2.在 `Cartfile` 目录下执行
-
- ```bash
- carthage update --platform iOS
- ```
-
-如果报错 "Building universal frameworks with common architectures is not possible. The device and simulator slices for "FTMobileAgent.framework" both build for: arm64" 
-
-根据提示添加 --use-xcframeworks 参数
-
-```bash
-carthage update --platform iOS --use-xcframeworks
-```
-
-生成的  xcframework ，与普通的 Framework 使用方法相同。将编译生成的库添加到项目工程中。
-
-`FTMobileAgent`：添加到主项目 Target
-
-`FTMobileExtension`：添加到 Widget Extension Target
-
-3.在 `TARGETS`  -> `Build Setting` ->  `Other Linker Flags`  添加  `-ObjC`。
-
-4.目前只支持 1.3.4-beta.2 及以上的版本，1.4.0-beta.1 及以上支持 Widget Extension。
-
-### Swift Package Manager 方式
-
-1.选中 `PROJECT` -> `Package Dependency` ，点击 `Packages` 栏目下的 **+**。
-
-2.在弹出的页面的搜索框中输入 `https://github.com/GuanceCloud/datakit-ios.git`。
-
-3.Xcode 获取软件包成功后，会展示 SDK 的配置页。
-
-`Dependency Rule` ：建议选择 `Up to Next Major Version` 。
-
-`Add To Project` ：选择支持的工程。
-
-填好配置后点击  `Add Package`  按钮，等待加载完成。
-
-4.在弹窗 `Choose Package Products for datakit-ios` 中选择需要添加 SDK 的 Target，点击 `Add Package` 按钮，此时 SDK 已经添加成功。
-
-`FTMobileSDK`：添加到主项目 Target
-
-`FTMobileExtension`：添加到 Widget Extension Target
-
-如果您的项目由 SPM 管理，将 SDK 添加为依赖项，添加 `dependencies `到 `Package.swift`。
-
-```plaintext
-// 主项目
-dependencies: [
+    1.选中 `PROJECT` -> `Package Dependency` ，点击 `Packages` 栏目下的 **+**。
+    
+    2.在弹出的页面的搜索框中输入 `https://github.com/GuanceCloud/datakit-ios.git`。
+    
+    3.Xcode 获取软件包成功后，会展示 SDK 的配置页。
+    
+    `Dependency Rule` ：建议选择 `Up to Next Major Version` 。
+    
+    `Add To Project` ：选择支持的工程。
+    
+    填好配置后点击  `Add Package`  按钮，等待加载完成。
+    
+    4.在弹窗 `Choose Package Products for datakit-ios` 中选择需要添加 SDK 的 Target，点击 `Add Package` 按钮，此时 SDK 已经添加成功。
+    
+    `FTMobileSDK`：添加到主项目 Target
+    
+    `FTMobileExtension`：添加到 Widget Extension Target
+    
+    如果您的项目由 SPM 管理，将 SDK 添加为依赖项，添加 `dependencies `到 `Package.swift`。
+    
+    ```plaintext
+    // 主项目
+    dependencies: [
     .package(name: "FTMobileSDK", url: "https://github.com/GuanceCloud/datakit-ios.git",.upToNextMajor(from: "[latest_version]"))
-]
-```
-
-5.1.4.0-beta.1 及以上支持 Swift Package Manager 。
+    ]
+    ```
+    
+    5.1.4.0-beta.1 及以上支持 Swift Package Manager 。
 
 ### 添加头文件
 
@@ -912,10 +911,6 @@ XCode Release 编译默认会生成 dSYM 文件，而 Debug 编译默认不会�
 ![](../img/dsym_config1.png)
 
 
-
-
-
-
 ` Build Settings -> Build Option -> Debug Information Format -> DWARF with dSYM File`
 
 ![](../img/dsym_config2.png)
@@ -945,23 +940,23 @@ XCode Release 编译默认会生成 dSYM 文件，而 Debug 编译默认不会�
 
 2. 选择 `Archives`  标签
 
-   ![](../img/xcode_find_dsym2.png)
+    ![](../img/xcode_find_dsym2.png)
    
 3. 找到发布的归档包，右键点击对应归档包，选择Show in Finder操作
 
-   ![](../img/xcode_find_dsym3.png)
+    ![](../img/xcode_find_dsym3.png)
    
    
    
 4. 右键选择定位到的归档文件，选择显示包内容操作 
 
-   ![](../img/xcode_find_dsym4.png)
+    ![](../img/xcode_find_dsym4.png)
    
    
    
 5. 选择dSYMs目录，目录内即为下载到的 dSYM 文件
 
-   ![](../img/xcode_find_dsym5.png)
+    ![](../img/xcode_find_dsym5.png)
 
 ##### 通过 iTunes Connect 找回
 
