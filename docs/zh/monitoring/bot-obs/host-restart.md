@@ -31,11 +31,11 @@
 
 ### 在观测云中配置巡检
 
-![image](../img/host-restart02.png)
+![image](../img/disk-usage02.png)
 
 #### 启用/禁用
 
-主机重启巡检默认是「开启」状态，可手动「关闭」，开启后，将对配置好主机列表进行巡检。
+磁盘使用率巡检默认是「开启」状态，可手动「关闭」，开启后，将对配置好主机列表进行巡检。
 
 #### 导出
 
@@ -43,14 +43,14 @@
 
 #### 编辑
 
-智能巡检「 主机重启巡检」支持用户手动添加筛选条件，在智能巡检列表右侧的操作菜单下，点击**编辑**按钮，即可对巡检模版进行编辑。
+智能巡检「 磁盘使用率巡检」支持用户手动添加筛选条件，在智能巡检列表右侧的操作菜单下，点击**编辑**按钮，即可对巡检模版进行编辑。
 
 * 筛选条件：配置需要巡检的主机 hosts
 * 告警通知：支持选择和编辑告警策略，包括需要通知的事件等级、通知对象、以及告警沉默周期等
 
 配置入口参数点击编辑后在参数配置中填写对应的检测对象点击保存开始巡检：
 
-![image](../img/host-restart03.png)
+![image](../img/disk-usage03.png)
 
 可以参考如下的配置多个主机信息
 
@@ -70,7 +70,7 @@ configs 配置示例：
 ```python
 from guance_monitor__register import self_hosted_monitor
 from guance_monitor__runner import Runner
-import guance_monitor_host_restart__main as host_restart
+import guance_monitor_disk_usage__main as disk_usage_check
 
 def filter_host(host):
   '''
@@ -82,20 +82,20 @@ def filter_host(host):
   
  
 @self_hosted_monitor(account['api_key_id'], account['api_key'])
-@DFF.API('主机重启巡检', fixed_crontab='*/15 * * * *', timeout=900)
+@DFF.API('磁盘使用率自建巡检', fixed_crontab='0 */6 * * *', timeout=900)
 def run(configs=None):
     '''
   可选参数：
     configs : 
-            配置需要检测的 host 列表（可选，不配置默认检测当前工作空间下所有主机）
-            可以指定多个需要检测的 host（通过换行拼接），不配置默认检测当前工作空间下所有主机
+            配置需要检测的 host 列表（可选，不配置默认检测当前工作空间下所有主机磁盘）
+            可以指定多个需要检测的 host（通过换行拼接），不配置默认检测当前工作空间下所有主机磁盘
     configs 配置示例：
             host1
             host2
             host3
     '''
     checkers = [
-        host_restart.HostRestartChecker(configs=configs, filters=[filter_host]), # Support for user-configured multiple filtering functions that are executed in sequence.
+        disk_usage_check.DiskUsageCheck(configs=configs, filters=[filter_host]), # Support for user-configured multiple filtering functions that are executed in sequence.
     ]
 
     Runner(checkers, debug=False).run()
@@ -103,9 +103,9 @@ def run(configs=None):
 
 ## 查看事件
 
-本巡检会扫描最近 15 分钟的主机重启事件，一旦出现重启，智能巡检会生成相应的事件，在智能巡检列表右侧的操作菜单下，点击**查看相关事件**按钮，即可查看对应异常事件。
+本巡检会扫描最近 14 天的磁盘使用率信息，一旦出现出现未来 48 小时会超过预警值时，智能巡检会生成相应的事件，在智能巡检列表右侧的操作菜单下，点击**查看相关事件**按钮，即可查看对应异常事件。
 
-![image](../img/host-restart04.png)
+![image](../img/disk-usage04.png)
 
 ### 事件详情页
 
@@ -119,39 +119,35 @@ def run(configs=None):
 * 检测维度：基于智能巡检配置的筛选条件，支持将检测维度 `key/value` 复制、添加到筛选、以及查看相关日志、容器、进程、安全巡检、链路、用户访问监测、可用性监测以及 CI 等数据
 * 扩展属性：选择扩展属性后支持以 `key/value` 的形式复制、正向/反向筛选
 
-![image](../img/host-restart05.png)
+![image](../img/disk-usage05.png)
 
 #### 事件详情
 
 * 事件概览：描述异常巡检事件的对象、内容等。
-* 主机详情：查看当前重启时间段主机主要指标。
-* 异常日志：可查看当前异常日志详情。
+* 异常详情：可查看当前异常磁盘的过去 14 天的使用率。
+* 异常分析：可显示异常的主机、磁盘、挂载点信息帮助分析具体问题。
 
-![image](../img/host-restart06.png)
+![image](../img/disk-usage06.png)
 
 #### 历史记录
 
 支持查看检测对象、异常/恢复时间和持续时长。
 
-![image](../img/host-restart07.png)
+![image](../img/disk-usage07.png)
 
 #### 关联事件
 
 支持通过筛选字段和所选取的时间组件信息，查看关联事件。
 
-![image](../img/host-restart08.png)
-
-#### 关联视图
-
-![image](../img/host-restart09.png)
+![image](../img/disk-usage08.png)
 
 ## 常见问题
 
-**1.主机重启巡检的检测频率如何配置**
+**1.磁盘使用率巡检的检测频率如何配置**
 
-在自建的 DataFlux Func 中，编写自建巡检处理函数时在装饰器中添加`fixed_crontab='*/15 * * * *', timeout=900` ，后在「管理 / 自动触发配置」中配置。
+* 在自建的 DataFlux Func 中，编写自建巡检处理函数时在装饰器中添加`fixed_crontab='0 */6 * * *', timeout=900` ，后在「管理 / 自动触发配置」中配置。
 
-**2.主机重启巡检触发时可能会没有异常分析**
+**2.磁盘使用率巡检触发时可能会没有异常分析**
 
 在出现巡检报告中没有异常分析时，请检查当前 `datakit` 的数据采集状态。
 
