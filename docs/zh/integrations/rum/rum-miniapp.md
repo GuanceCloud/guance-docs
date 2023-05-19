@@ -34,13 +34,13 @@ icon: integrations/miniapp
 
 ### 第 1 步：创建应用 {#step-1}
 
-登录观测云控制台，进入「用户访问监测」页面，点击「新建应用」，自定义输入「应用名称」和「应用ID」，应用类型选择「小程序」。填写完全后，点击「创建」。
+登录观测云控制台，进入「用户访问监测」页面，点击「新建应用」。<br/>
+自定义输入「应用名称」和「应用ID」，应用类型选择「小程序」。填写完全后，点击「创建」。
 
 ![image](../imgs/input-rum-miniapp-4.png)
 
 ![image](../imgs/input-rum-miniapp-5.png)
 
-![image](../imgs/input-rum-miniapp-6.png)
 
 ### 第 2 步：接入应用
 
@@ -68,6 +68,7 @@ datafluxRum.init({
 })
 
 ```
+
 ???+ attention 
 
     - 第一行 require 内的 `./lib/dataflux-rum-miniapp.js`，需填写 js 在项目中的实际路径，此处仅示例。
@@ -78,6 +79,11 @@ datafluxRum.init({
     （1）若显示端口 refused，可 `telnet IP:9529` 验证端口是否通畅。<br/>
     若不通，需要进入 `vi /usr/local/datakit/conf.d/datakit.conf` ，搜索`[http_api]`部分，修改为`listen = "0.0.0.0:9529"`；<br/>
     （2）如若还不通，请检查安全组是否已打开 `9529` 端口。
+
+示例：
+
+![image](../imgs/input-rum-miniapp-6.png)
+
 
 **参数说明:**
 
@@ -91,7 +97,7 @@ datafluxRum.init({
 
 #### 方式 2: NPM 引入方式
 
-> **提示：** npm 可参考微信 <[点击进入](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html)>
+> **提示：** 可参考<微信官方文档：npm 支持>(https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html)
 
 将如下内容添加在微信小程序项目的`app.js`文件中：
 
@@ -109,33 +115,19 @@ datafluxRum.init({
 })
 
 ```
-### Demo 展示
 
-CDN 本地方式引入示例：
+### 开启会话分布
 
-1、 下载
-
-![image](../imgs/input-rum-miniapp-7.png)
-
-2、 集成
-
-![image](../imgs/input-rum-miniapp-8.png)
-
-3、 集成结束
-
+相关操作请参考文档 [<更新 IP 数据库文件>](../../datakit/datakit-tools-how-to.md#install-ipdb)
 ## 场景视图
 
 <场景 - 新建仪表板 - 模板库 - 系统视图 - 小程序应用概览><br/>
 <场景 - 新建仪表板 - 模板库 - 系统视图 - 小程序错误分析>
-
-![image](../imgs/input-rum-miniapp-9.png)
 
 ## 指标详解
 
 <[指标详细说明](../../real-user-monitoring/miniapp/app-data-collection.md)>
 
 ## 更多阅读
-
-<[更新 IP 数据库文件](../../datakit/datakit-tools-how-to.md#install-ipdb)>
 
 <[Kubernetes 应用的 RUM-APM-LOG 联动分析](../../best-practices/cloud-native/k8s-rum-apm-log.md)>
