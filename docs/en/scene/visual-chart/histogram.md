@@ -5,7 +5,7 @@
 
 The histogram, also known as the mass distribution chart, is used to represent the distribution of data and is a common statistical chart that generally uses the horizontal axis to represent the data interval and the vertical axis to represent the distribution. The shape of the chart is similar to a bar chart, and the higher the bar, the greater the number falling in the interval.
 
-## Application Scenarios
+## Use Case
 
 Histograms of guances are used to show the direction of the data distribution of a certain metric data over time. It can be used in the following scenarios.
 

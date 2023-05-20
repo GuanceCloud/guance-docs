@@ -30,7 +30,7 @@
 ### 在详情页查看重放
 
 - 在 Session、View、Error 查看器详情页，通过点击右上角的「查看重放」，即可查看当前用户会话的操作重放。
-- 在 View、Error、Resource、Action、Long Task 查看器详情页的「来源」部分，即可查看当前用户会话的操作重放。
+- 在 View、Error、Resource、Action、Long Task 查看器详情页的**来源**部分，即可查看当前用户会话的操作重放。
     - 更多：点击「更多」按钮，支持「查看 Session 详情」、「筛选当前 Session ID」、「复制 Session ID」
     - 播放：点击「播放」按钮，即可查看会话重放
 

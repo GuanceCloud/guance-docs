@@ -5,7 +5,7 @@
 
 Funnel diagrams are generally suitable for process analysis with normality, long cycle time and many links. By comparing the data of each link through funnel diagrams, we can visually compare the problems.
 
-## Application Scenarios
+## Use Case
 
 Guance's funnel charts are used to compare data at each step in the process. For example, the funnel chart is suitable for website business process analysis, showing the final conversion rate of users from entering the website to achieving a purchase, and the conversion rate of each step.
 

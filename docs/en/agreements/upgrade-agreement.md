@@ -260,15 +260,16 @@ In addition, you should fill in the detailed mailing address or email address fo
 | Billing items          | Commercial plan                                    |
 | ----------------- | ----------------------------------------- |
 | Quantity of timeseries        | 0.6 yuan per day (every 1000 articles)                      |
-| Log data        | 1.2 yuan per day (per million pieces)[Gradient billing](#gradient) |
+| Log data        | 1.2 yuan per day (per million pieces)[Gradient Billing](#gradient) |
 | Backup log      | 0.007 yuan per day (per GB)                       |
-| APM trace | 2 yuan per day (per million pieces)[Gradient billing](#gradient)   |
-| RUM PV    | 0.7 yuan per day [Gradient billing](#gradient)   |
+| APM trace | 2 yuan per day (per million pieces)[Gradient Billing](#gradient)   |
+| RUM PV    | 0.7 yuan per day [Gradient Billing](#gradient)   |
 | Number of dialing measurements          | 1 yuan per day (every 10,000 times)                          |
 | Task call          | 1 yuan per day (every 10,000 times)                          |
 | Number of SMS          | 0.1 yuan per day (each)                          |
 | Number of Session Replay          | 10 yuan per day (every 1,000 articles)                          |
-
+| Network          |2 yuan per day (every one host)                          |
+| Profile          | 0.2 yuan per day (every 10,000 articles)                          |
 
 
 ## **Annex II Guance SaaS Service Level Agreement**

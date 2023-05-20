@@ -1,5 +1,4 @@
 
-
 # MongoDB
 
 ---
@@ -12,7 +11,12 @@ MongoDb 数据库，Collection， MongoDb 数据库集群运行状态数据采�
 
 ## 前置条件 {#requirements}
 
-- 已测试的版本: `3.x`, `4.x`, `5.x`, `6.x`;
+- 已测试的版本:
+    - [x] 6.0
+    - [x] 5.0
+    - [x] 4.0
+    - [x] 3.0
+
 - 开发使用 MongoDB 版本 `4.4.5`;
 - 编写配置文件在对应目录下然后启动 DataKit 即可完成配置;
 - 使用 TLS 进行安全连接请在配置文件中配置 `## TLS connection config` 下响应证书文件路径与配置;
@@ -24,6 +28,7 @@ MongoDb 数据库，Collection， MongoDb 数据库集群运行状态数据采�
 
 ## 配置 {#config}
 
+<!-- markdownlint-disable MD046 -->
 === "主机安装"
 
     进入 DataKit 安装目录下的 `conf.d/db` 目录，复制 `mongodb.conf.sample` 并命名为 `mongodb.conf`。示例如下:
@@ -90,14 +95,15 @@ MongoDb 数据库，Collection， MongoDb 数据库集群运行状态数据采�
 === "Kubernetes"
 
     目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+<!-- markdownlint-enable -->
 
 ## TLS config (self-signed) {#tls}
 
-使用 openssl 生成证书文件用于 MongoDB TLS 配置，用于开启服务端加密和客户端认证。
+使用 `openssl` 生成证书文件用于 MongoDB TLS 配置，用于开启服务端加密和客户端认证。
 
 - 配置 TLS 证书
 
-安装 openssl 运行以下命令：
+安装 `openssl` 运行以下命令：
 
 ```shell
 sudo apt install openssl -y
@@ -105,7 +111,7 @@ sudo apt install openssl -y
 
 - 配置 MongoDB 服务端加密
 
-使用 openssl 生成证书级密钥文件，运行以下命令并按照命令提示符输入相应验证块信息：
+使用 `openssl` 生成证书级密钥文件，运行以下命令并按照命令提示符输入相应验证块信息：
 
 ```shell
 sudo openssl req -x509 -newkey rsa:<bits> -days <days> -keyout <mongod.key.pem> -out <mongod.cert.pem> -nodes
@@ -152,7 +158,7 @@ mongo --tls --host <mongod_url> --tlsCAFile </etc/ssl/mongo.cert.pem>
 
 - 配置 MongoDB 客户端认证
 
-使用 openssl 生成证书级密钥文件，运行以下命令：
+使用 `openssl` 生成证书级密钥文件，运行以下命令：
 
 ```shell
 sudo openssl req -x509 -newkey rsa:<bits> -days <days> -keyout <mongod.key.pem> -out <mongod.cert.pem> -nodes
@@ -192,7 +198,7 @@ mongod --config /etc/mongod.conf
 mongo --tls --host <mongod_url> --tlsCAFile </etc/ssl/mongo.cert.pem> --tlsCertificateKeyFile </etc/ssl/mongo.pem>
 ```
 
-> **注意:**使用自签名证书时， `mongodb.conf` 配置中 `insecure_skip_verify` 必须是 `true`
+> 注意：使用自签名证书时，`mongodb.conf` 配置中 `insecure_skip_verify` 必须是 `true`
 
 ## 指标集 {#measurements}
 
@@ -212,7 +218,7 @@ mongo --tls --host <mongod_url> --tlsCAFile </etc/ssl/mongo.cert.pem> --tlsCerti
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|mongodb host|
 |`mongod_host`|mongodb host with port|
@@ -220,7 +226,7 @@ mongo --tls --host <mongod_url> --tlsCAFile </etc/ssl/mongo.cert.pem> --tlsCerti
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`active_reads`|The number of the active client connections performing read operations.|int|count|
 |`active_writes`|The number of active client connections performing write operations.|int|count|
@@ -233,7 +239,7 @@ mongo --tls --host <mongod_url> --tlsCAFile </etc/ssl/mongo.cert.pem> --tlsCerti
 |`assert_warning`|Changed in version 4.0. Starting in MongoDB 4.0, the field returns zero 0. In earlier versions, the field returns the number of warnings raised since the MongoDB process started.|int|count|
 |`available_reads`|The number of concurrent of read transactions allowed into the WiredTiger storage engine|int|count|
 |`available_writes`|The number of concurrent of write transactions allowed into the WiredTiger storage engine|int|count|
-|`commands`|The total number of commands issued to the database since the mongod instance last started. opcounters.command counts all commands except the write commands: insert, update, and delete.|int|count|
+|`commands`|The total number of commands issued to the database since the mongod instance last started. `opcounters.command` counts all commands except the write commands: insert, update, and delete.|int|count|
 |`commands_per_sec`||int|count|
 |`connections_available`|The number of unused incoming connections available.|int|count|
 |`connections_current`|The number of incoming connections from clients to the database server .|int|count|
@@ -247,7 +253,7 @@ mongo --tls --host <mongod_url> --tlsCAFile </etc/ssl/mongo.cert.pem> --tlsCerti
 |`cursor_timed_out`||int|count|
 |`cursor_timed_out_count`|The total number of cursors that have timed out since the server process started. If this number is large or growing at a regular rate, this may indicate an application error.|int|count|
 |`cursor_total`||int|count|
-|`cursor_total_count`|The number of cursors that MongoDB is maintaining for clients. Because MongoDB exhausts unused cursors, typically this value small or zero. However, if there is a queue, stale tailable cursors, or a large number of operations this value may rise.|int|count|
+|`cursor_total_count`|The number of cursors that MongoDB is maintaining for clients. Because MongoDB exhausts unused cursors, typically this value small or zero. However, if there is a queue, stale *tailable* cursors, or a large number of operations this value may rise.|int|count|
 |`delete_command_failed`|The number of times that 'delete' command failed on this mongod|int|count|
 |`delete_command_total`|The number of times that 'delete' command executed on this mongod|int|count|
 |`deletes`|The total number of delete operations since the mongod instance last started.|int|count|
@@ -264,10 +270,10 @@ mongo --tls --host <mongod_url> --tlsCAFile </etc/ssl/mongo.cert.pem> --tlsCerti
 |`find_command_total`|The number of times that 'find' command executed on this mongod|int|count|
 |`flushes`|The number of transaction checkpoints|int|count|
 |`flushes_per_sec`||int|count|
-|`flushes_total_time_ns`|The transaction checkpoint total time (msecs)"|int|count|
+|`flushes_total_time_ns`|The transaction checkpoint total time (ms)"|int|count|
 |`get_more_command_failed`|The number of times that 'get more' command failed on this mongod|int|count|
 |`get_more_command_total`|The number of times that 'get more' command executed on this mongod|int|count|
-|`getmores`|The total number of getMore operations since the mongod instance last started. This counter can be high even if the query count is low. Secondary nodes send getMore operations as part of the replication process.|int|count|
+|`getmores`|The total number of `getMore` operations since the mongod instance last started. This counter can be high even if the query count is low. Secondary nodes send `getMore` operations as part of the replication process.|int|count|
 |`getmores_per_sec`||int|count|
 |`insert_command_failed`|The number of times that 'insert' command failed on this mongod|int|count|
 |`insert_command_total`|The number of times that 'insert' command executed on this mongod|int|count|
@@ -291,7 +297,7 @@ mongo --tls --host <mongod_url> --tlsCAFile </etc/ssl/mongo.cert.pem> --tlsCerti
 |`queries_per_sec`||int|count|
 |`queued_reads`|The number of operations that are currently queued and waiting for the read lock. A consistently small read-queue, particularly of shorter operations, should cause no concern.|int|count|
 |`queued_writes`|The number of operations that are currently queued and waiting for the write lock. A consistently small write-queue, particularly of shorter operations, is no cause for concern.|int|count|
-|`resident_megabytes`|The value of mem.resident is roughly equivalent to the amount of RAM, in mebibyte (MiB), currently used by the database process.|int|count|
+|`resident_megabytes`|The value of mem.resident is roughly equivalent to the amount of RAM, in MiB, currently used by the database process.|int|count|
 |`storage_freelist_search_bucket_exhausted`|The number of times that mongod has checked the free list without finding a suitably large record allocation.|int|count|
 |`storage_freelist_search_requests`|The number of times mongod has searched for available record allocations.|int|count|
 |`storage_freelist_search_scanned`|The number of available record allocations mongod has searched.|int|count|
@@ -302,17 +308,17 @@ mongo --tls --host <mongod_url> --tlsCAFile </etc/ssl/mongo.cert.pem> --tlsCerti
 |`tcmalloc_max_total_thread_cache_bytes`|Upper limit on total number of bytes stored across all per-thread caches. Default: 16MB.|int|count|
 |`tcmalloc_pageheap_commit_count`|Number of virtual memory commits.|int|count|
 |`tcmalloc_pageheap_committed_bytes`|Bytes committed, always <= system_bytes_.|int|count|
-|`tcmalloc_pageheap_decommit_count`|Number of virtual memory decommits.|int|count|
+|`tcmalloc_pageheap_decommit_count`|Number of virtual memory de-commits.|int|count|
 |`tcmalloc_pageheap_free_bytes`|Number of bytes in free, mapped pages in page heap.|int|count|
 |`tcmalloc_pageheap_reserve_count`|Number of virtual memory reserves.|int|count|
-|`tcmalloc_pageheap_scavenge_count`|Number of times scavagened flush pages.|int|count|
+|`tcmalloc_pageheap_scavenge_count`|Number of times scavaged flush pages.|int|count|
 |`tcmalloc_pageheap_total_commit_bytes`|Bytes committed in lifetime of process.|int|count|
-|`tcmalloc_pageheap_total_decommit_bytes`|Bytes decommitted in lifetime of process.|int|count|
+|`tcmalloc_pageheap_total_decommit_bytes`|Bytes de-committed in lifetime of process.|int|count|
 |`tcmalloc_pageheap_total_reserve_bytes`|Number of virtual memory reserves.|int|count|
-|`tcmalloc_pageheap_unmapped_bytes`|Total bytes on returned freelists.|int|count|
+|`tcmalloc_pageheap_unmapped_bytes`|Total bytes on returned free lists.|int|count|
 |`tcmalloc_spinlock_total_delay_ns`|TODO|int|count|
 |`tcmalloc_thread_cache_free_bytes`|Bytes in thread caches.|int|count|
-|`tcmalloc_total_free_bytes`|Total bytes on normal freelists.|int|count|
+|`tcmalloc_total_free_bytes`|Total bytes on normal free lists.|int|count|
 |`tcmalloc_transfer_cache_free_bytes`|Bytes in central transfer cache.|int|count|
 |`total_available`|The number of connections available from the mongos to the config servers, replica sets, and standalone mongod instances in the cluster.|int|count|
 |`total_created`|The number of connections the mongos has ever created to other members of the cluster.|int|count|
@@ -331,7 +337,7 @@ mongo --tls --host <mongod_url> --tlsCAFile </etc/ssl/mongo.cert.pem> --tlsCerti
 |`updates`|The total number of update operations received since the mongod instance last started.|int|count|
 |`updates_per_sec`||int|count|
 |`uptime_ns`|The total upon time of mongod in nano seconds.|int|count|
-|`vsize_megabytes`|mem.virtual displays the quantity, in mebibyte (MiB), of virtual memory used by the mongod process.|int|count|
+|`vsize_megabytes`|mem.virtual displays the quantity, in MiB, of virtual memory used by the mongod process.|int|count|
 |`wtcache_app_threads_page_read_count`|TODO|int|count|
 |`wtcache_app_threads_page_read_time`|TODO|int|count|
 |`wtcache_app_threads_page_write_count`|TODO|int|count|
@@ -358,7 +364,7 @@ mongo --tls --host <mongod_url> --tlsCAFile </etc/ssl/mongo.cert.pem> --tlsCerti
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`db_name`|database name|
 |`host`|mongodb host|
@@ -367,7 +373,7 @@ mongo --tls --host <mongod_url> --tlsCAFile </etc/ssl/mongo.cert.pem> --tlsCerti
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`avg_obj_size`|The average size of each document in bytes.|float|count|
 |`collections`|Contains a count of the number of collections in that database.|int|count|
@@ -408,7 +414,7 @@ mongo --tls --host <mongod_url> --tlsCAFile </etc/ssl/mongo.cert.pem> --tlsCerti
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`collection`|collection name|
 |`db_name`|database name|
@@ -418,7 +424,7 @@ mongo --tls --host <mongod_url> --tlsCAFile </etc/ssl/mongo.cert.pem> --tlsCerti
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`avg_obj_size`|The average size of an object in the collection. |float|count|
 |`count`|The number of objects or documents in this collection.|int|count|
@@ -457,7 +463,7 @@ mongo --tls --host <mongod_url> --tlsCAFile </etc/ssl/mongo.cert.pem> --tlsCerti
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|mongodb host|
 |`mongod_host`|mongodb host with port|
@@ -465,7 +471,7 @@ mongo --tls --host <mongod_url> --tlsCAFile </etc/ssl/mongo.cert.pem> --tlsCerti
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`available`|The number of connections available for this host to connect to the mongos.|int|count|
 |`created`|The number of connections the host has ever created to connect to the mongos.|int|count|
@@ -479,7 +485,7 @@ mongo --tls --host <mongod_url> --tlsCAFile </etc/ssl/mongo.cert.pem> --tlsCerti
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`collection`|collection name|
 |`host`|mongodb host|
@@ -488,12 +494,12 @@ mongo --tls --host <mongod_url> --tlsCAFile </etc/ssl/mongo.cert.pem> --tlsCerti
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`commands_count`|The total number of "command" event issues.|int|count|
 |`commands_time`|The amount of time in microseconds that "command" costs.|int|count|
-|`get_more_count`|The total number of "getmore" event issues.|int|count|
-|`get_more_time`|The amount of time in microseconds that "getmore" costs.|int|count|
+|`get_more_count`|The total number of `getmore` event issues.|int|count|
+|`get_more_time`|The amount of time in microseconds that `getmore` costs.|int|count|
 |`insert_count`|The total number of "insert" event issues.|int|count|
 |`insert_time`|The amount of time in microseconds that "insert" costs.|int|count|
 |`mapped_megabytes`|Mapped megabytes. (Existed in 3.0 and earlier version)|int|count|
@@ -540,7 +546,7 @@ mongo --tls --host <mongod_url> --tlsCAFile </etc/ssl/mongo.cert.pem> --tlsCerti
 
 日志原始数据 sample
 
-```
+```log
 {"t":{"$date":"2021-06-03T09:12:19.977+00:00"},"s":"I",  "c":"STORAGE",  "id":22430,   "ctx":"WTCheckpointThread","msg":"WiredTiger message","attr":{"message":"[1622711539:977142][1:0x7f1b9f159700], WT_SESSION.checkpoint: [WT_VERB_CHECKPOINT_PROGRESS] saving checkpoint snapshot min: 653, snapshot max: 653 snapshot count: 0, oldest timestamp: (0, 0) , meta checkpoint timestamp: (0, 0)"}}
 ```
 

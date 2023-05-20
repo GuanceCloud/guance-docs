@@ -3,29 +3,22 @@
 
 ## 简介
 
-在观测云工作空间，点击菜单栏的**快捷入口 > DQL 查询**即可打开 DQL 查询查看器，或者您可以通过快捷键 `Alt+Q` 或 `option+Q` 直接打开 DQL 查询。
+在观测云工作空间，点击菜单栏的**快捷入口 > 查询工具**即可打开查询查看器，或者您可以通过快捷键 `Alt+Q` 或 `option+Q` 直接打开查询工具。
 
 ![](img/3.dql_6.png)
 
-> 您也可以在 DQL 查询查看器使用 PromQL 查询方式，详情前往 [PromQL 查询](../scene/visual-chart/chart-query.md#promql)。
+> 点击 **DQL 查询**右侧的 **[简单查询](../scene/visual-chart/chart-query.md#simple)**、**[PromQL 查询](../scene/visual-chart/chart-query.md#promql)** 按钮即可切换查询方式。
 
-> 点击 **DQL 查询**右侧的切换按钮 ![](img/3.dql_5.png)，可切换 DQL 查询为**简单查询**。
-> 
-> 注意：**DQL 查询**切换成**简单查询**时，若无法解析或者解析不完整：
->
-> - 在简单查询下未操作，直接切换回 DQL 查询则显示之前的 DQL 查询语句；
-> - 在简单查询下调整了查询语句，再次切换回 DQL 查询将按照最新的简单查询进行解析。
-> 
-> ![](img/3.dql_2.png)        
-> 您还可以在[图标查询](../scene/visual-chart/chart-query.md)中应用该查询，点击[简单查询](../scene/visual-chart/chart-query.md#simple)查看相关操作和注意事项。
 
 ## 相关操作
 
 ### 返回结果
 
-在 DQL 查询窗口输入 DQL 查询语句，点击**执行**，即可在**返回结果**查看查询结果。**返回结果**以表格形式返回查询结果，默认返回 1000 条数据，支持导出 CSV 文件，支持点击查看帮助文档。
+在 DQL 查询窗口输入 DQL 查询语句，点击**执行**，即可在**返回结果**查看查询结果。**返回结果**以表格形式返回查询结果，默认返回 1000 条数据，您可以将返回数据导出为 CSV 文件。
 
-注意：在使用 DQL 查询语句时，支持使用 [limit](define.md#limit) 或 [slimit](define.md#slimit) 来控制返回查询结果数量。
+???+ attention
+
+    在使用 DQL 查询语句时，支持使用 [limit](define.md#limit) 或 [slimit](define.md#slimit) 来控制返回查询结果数量。
 
 ![](img/3.dql_1.png)
 
@@ -35,13 +28,13 @@
 
 ### JSON
 
-若 DQL 查询语句正确，返回查询结果后，可在 **JSON** 查看 JSON 结构的查询结果，支持复制 JSON ，支持点击查看帮助文档。若 DQL 查询返回错误结果，则在 **JSON** 同时提示错误信息。
+若 DQL 查询语句正确，返回查询结果后，可在 **JSON** 查看 JSON 结构的查询结果，支持复制 JSON。若 DQL 查询返回错误结果，则在 **JSON** 同时提示错误信息。
 
 ![](img/3.dql_3.png)
 
 ### 查询历史
 
-查询历史支持按日查看7天内的100条查询历史数据，支持对查询语句进行模糊搜索。
+查询历史支持按日查看 7 天内的 100 条查询历史数据，支持对查询语句进行模糊搜索。
 
 ![](img/3.dql_4.png)
 
@@ -68,9 +61,9 @@ namespace::
 	soffset-clause
 ```
 
-### 示例说明
+### <u>示例说明</u>
 
-下面是一个简单的示例，通过 DQL 查询时序指标集 cpu 的字段 usage_idle (CPU空闲率)，以 host 来过滤筛选，同时以 host 来分组显示结果。其中 #{host} 是在观测云仪表板设置的视图变量，用于过滤筛选。
+下面是一个简单的示例，通过 DQL 查询时序指标集 cpu 的字段 `usage_idle` (CPU空闲率)，以 host 来过滤筛选，同时以 host 来分组显示结果。其中 `#{host}` 是在观测云仪表板设置的视图变量，用于过滤筛选。
 
 ![](img/4.DQL_2.1.png)
 
@@ -86,7 +79,9 @@ DQL 查询除了可以在场景仪表板中使用以外，我们还可以通过 
 
 SHOW 函数用于展示各类数据。若对通过 DataKit 采集的数据来源、字段、标签等没有清晰的了解，可以在 DQL 查询查看器通过 SHOW 函数来查询。
 
-下面通过 SHOW 函数查询“对象”和“日志”的来源、字段等数据。更多函数介绍可参考文档 [DQL 函数](../dql/funcs.md) 以及 [DQL 外层函数](../dql/out-funcs.md)OKok。
+下面通过 SHOW 函数查询“对象”和“日志”的来源、字段等数据。
+
+> 更多函数介绍可参考文档 [DQL 函数](../dql/funcs.md) 以及 [DQL 外层函数](../dql/out-funcs.md)。
 
 #### show_object_source()
 

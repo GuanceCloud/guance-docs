@@ -6,20 +6,23 @@
 
 ---
 
-Jenkins 采集器是通过插件 `Metrics` 采集数据监控 Jenkins，包括但不限于任务数，系统 cpu 使用，`jvm cpu`使用等
+Jenkins 采集器是通过插件 Metrics 采集数据监控 Jenkins，包括但不限于任务数、系统 CPU 使用、JVM CPU 使用等。
 
 ## 前置条件 {#requirements}
 
-- JenKins 版本 >= 2.277.4
+- JenKins 版本 >= `2.332.1`; 已测试的版本:
+    - [x] 2.332.1
+
 - 安装 JenKins [参见](https://www.jenkins.io/doc/book/installing/){:target="_blank"}
 - 下载 `Metric` 插件，[管理插件页面](https://www.jenkins.io/doc/book/managing/plugins/){:target="_blank"},[Metric 插件页面](https://plugins.jenkins.io/metrics/){:target="_blank"}
 - 在 JenKins 管理页面 `your_manage_host/configure` 生成 `Metric Access keys`
 
 ## 配置 {#config}
 
+<!-- markdownlint-disable MD046 -->
 === "主机安装"
 
-    进入 DataKit 安装目录下的 `conf.d/jenkins` 目录，复制 `jenkins.conf.sample` 并命名为 `jenkins.conf`。示例如下：
+    进入 DataKit 安装目录下的 *conf.d/jenkins* 目录，复制 *jenkins.conf.sample* 并命名为 *jenkins.conf*。示例如下：
     
     ```toml
         
@@ -33,8 +36,14 @@ Jenkins 采集器是通过插件 `Metrics` 采集数据监控 Jenkins，包括�
       ## Metric Access Key ,generate in your-jenkins-host:/configure,required
       key = ""
     
+      # ##(optional) collection interval, default is 30s
+      # interval = "30s"
+    
       ## Set response_timeout
       # response_timeout = "5s"
+    
+      ## Set true to enable election
+      # election = true
     
       ## Optional TLS Config
       # tls_ca = "/xx/ca.pem"
@@ -70,10 +79,11 @@ Jenkins 采集器是通过插件 `Metrics` 采集数据监控 Jenkins，包括�
 === "Kubernetes"
 
     目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+<!-- markdownlint-enable -->
 
 ## Jenkins CI Visibility {#ci-visibility}
 
-Jenkins 采集器可以通过接收 Jenkins datadog plugin 发出的 CI Event 实现 CI 可视化。
+Jenkins 采集器可以通过接收 Jenkins DataDog plugin 发出的 CI Event 实现 CI 可视化。
 
 Jenkins CI Visibility 开启方法：
 
@@ -109,57 +119,57 @@ Jenkins CI Visibility 开启方法：
 
 ### `jenkins`
 
--  标签
+- 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
-|`metric_plugin_version`|jenkins plugin version|
-|`url`|jenkins url|
-|`version`|jenkins  version|
+|`metric_plugin_version`|Jenkins plugin version|
+|`url`|Jenkins URL|
+|`version`|Jenkins  version|
 
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`executor_count`|The number of executors available to Jenkins|int|count|
-|`executor_free_count`|The number of executors available to Jenkins that are not currently in use.|int|count|
-|`executor_in_use_count`|The number of executors available to Jenkins that are currently in use.|int|count|
-|`job_count`|The number of jobs in Jenkins|int|count|
-|`node_offline_count`|The number of build nodes available to Jenkins but currently off-line.|int|count|
-|`node_online_count`|The number of build nodes available to Jenkins and currently on-line.|int|count|
-|`plugins_active`|The number of plugins in the Jenkins instance that started successfully.|int|count|
-|`plugins_failed`|The number of plugins in the Jenkins instance that failed to start.|int|count|
-|`project_count`|The number of project to Jenkins|int|count|
-|`queue_blocked`|The number of jobs that are in the Jenkins build queue and currently in the blocked state.|int|count|
-|`queue_buildable`|The number of jobs that are in the Jenkins build queue and currently in the blocked state.|int|count|
-|`queue_pending`|Number of times a Job has been Pending in a Queue|int|count|
-|`queue_size`|The number of jobs that are in the Jenkins build queue.|int|count|
-|`queue_stuck`|he number of jobs that are in the Jenkins build queue and currently in the blocked state|int|count|
+|`executor_count`|The number of executors available to Jenkins|float|count|
+|`executor_free_count`|The number of executors available to Jenkins that are not currently in use.|float|count|
+|`executor_in_use_count`|The number of executors available to Jenkins that are currently in use.|float|count|
+|`job_count`|The number of jobs in Jenkins|float|count|
+|`node_offline_count`|The number of build nodes available to Jenkins but currently off-line.|float|count|
+|`node_online_count`|The number of build nodes available to Jenkins and currently on-line.|float|count|
+|`plugins_active`|The number of plugins in the Jenkins instance that started successfully.|float|count|
+|`plugins_failed`|The number of plugins in the Jenkins instance that failed to start.|float|count|
+|`project_count`|The number of project to Jenkins|float|count|
+|`queue_blocked`|The number of jobs that are in the Jenkins build queue and currently in the blocked state.|float|count|
+|`queue_buildable`|The number of jobs that are in the Jenkins build queue and currently in the blocked state.|float|count|
+|`queue_pending`|Number of times a Job has been Pending in a Queue|float|count|
+|`queue_size`|The number of jobs that are in the Jenkins build queue.|float|count|
+|`queue_stuck`|he number of jobs that are in the Jenkins build queue and currently in the blocked state|float|count|
 |`system_cpu_load`|The system load on the Jenkins controller as reported by the JVM’s Operating System JMX bean|float|percent|
-|`vm_blocked_count`|The number of threads in the Jenkins JVM that are currently blocked waiting for a monitor lock.|int|count|
-|`vm_count`|The total number of threads in the Jenkins JVM. This is the sum of: vm.blocked.count, vm.new.count, vm.runnable.count, vm.terminated.count, vm.timed_waiting.count and vm.waiting.count|int|count|
+|`vm_blocked_count`|The number of threads in the Jenkins JVM that are currently blocked waiting for a monitor lock.|float|count|
+|`vm_count`|The total number of threads in the Jenkins JVM. This is the sum of: vm.blocked.count, vm.new.count, vm.runnable.count, vm.terminated.count, vm.timed_waiting.count and vm.waiting.count|float|count|
 |`vm_cpu_load`|The rate of CPU time usage by the JVM per unit time on the Jenkins controller. This is equivalent to the number of CPU cores being used by the Jenkins JVM.|float|percent|
-|`vm_memory_total_committed`|The total amount of memory that is guaranteed by the operating system as available for use by the Jenkins JVM. (Units of measurement: bytes)|int|B|
-|`vm_memory_total_used`|The total amount of memory that the Jenkins JVM is currently using.(Units of measurement: bytes)|int|B|
+|`vm_memory_total_committed`|The total amount of memory that is guaranteed by the operating system as available for use by the Jenkins JVM. (Units of measurement: bytes)|float|count|
+|`vm_memory_total_used`|The total amount of memory that the Jenkins JVM is currently using.(Units of measurement: bytes)|float|count|
 
 
 
 ### `jenkins_pipeline`
 
--  标签
+- 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`author_email`|作者邮箱|
 |`ci_status`|CI 状态|
-|`commit_sha`|触发 pipeline 的最近一次 commit 的哈希值|
+|`commit_sha`|触发 Pipeline 的最近一次 commit 的哈希值|
 |`object_kind`|Event 类型，此处为 Pipeline|
 |`operation_name`|操作名称|
-|`pipeline_name`|pipeline 名称|
-|`pipeline_url`|pipeline 的 URL|
+|`pipeline_name`|Pipeline 名称|
+|`pipeline_url`|Pipeline 的 URL|
 |`ref`|涉及的分支|
 |`repository_url`|仓库 URL|
 |`resource`|项目名|
@@ -167,23 +177,23 @@ Jenkins CI Visibility 开启方法：
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`commit_message`|触发该 pipeline 的代码的最近一次提交附带的 message|string|-|
-|`created_at`|pipeline 创建的毫秒时间戳|int|msec|
-|`duration`|pipeline 持续时长（微秒）|int|μs|
-|`finished_at`|pipeline 结束的毫秒时间戳|int|msec|
-|`message`|该 pipeline 的 id，与 pipeline_id 相同|string|-|
-|`pipeline_id`|pipeline id|string|-|
+|`commit_message`|触发该 Pipeline 的代码的最近一次提交附带的 message|string|-|
+|`created_at`|Pipeline 创建的毫秒时间戳|int|msec|
+|`duration`|Pipeline 持续时长（微秒）|int|μs|
+|`finished_at`|Pipeline 结束的毫秒时间戳|int|msec|
+|`message`|该 Pipeline 的 ID，与 `pipeline_id` 相同|string|-|
+|`pipeline_id`|Pipeline id|string|-|
 
 
 
 ### `jenkins_job`
 
--  标签
+- 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`build_commit_sha`|build 对应的 commit 的哈希值|
 |`build_failure_reason`|build 失败的原因|
@@ -199,7 +209,7 @@ Jenkins CI Visibility 开启方法：
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`build_commit_message`|触发该 build 的最近一次 commit 的 message|string|-|
 |`build_duration`|build 持续时长（微秒）|int|μs|
@@ -207,34 +217,33 @@ Jenkins CI Visibility 开启方法：
 |`build_id`|build id|string|-|
 |`build_started_at`|build 开始的毫秒时间戳|int|msec|
 |`message`|build 对应的 job name|string|-|
-|`pipeline_id`|build 对应的 pipeline id|string|-|
+|`pipeline_id`|build 对应的 Pipeline id|string|-|
 |`runner_id`|build 对应的 runner id|string|-|
-
 
 
 
 ## 日志采集 {#logging}
 
-如需采集 JenKins 的日志，可在 jenkins.conf 中 将 `files` 打开，并写入 JenKins 日志文件的绝对路径。比如：
+如需采集 JenKins 的日志，可在 *jenkins.conf* 中 将 `files` 打开，并写入 JenKins 日志文件的绝对路径。比如：
 
 ```toml
-    [[inputs.JenKins]]
-      ...
-      [inputs.JenKins.log]
-        files = ["/var/log/jenkins/jenkins.log"]
+[[inputs.JenKins]]
+  ...
+  [inputs.JenKins.log]
+    files = ["/var/log/jenkins/jenkins.log"]
 ```
 
-  
 开启日志采集以后，默认会产生日志来源（`source`）为 `jenkins` 的日志。
 
->注意：必须将 DataKit 安装在 JenKins 所在主机才能采集 JenKins 日志
+> 注意：必须将 DataKit 安装在 JenKins 所在主机才能采集 JenKins 日志
 
-## 日志 pipeline 功能切割字段说明 {#pipeline}
+## 日志 Pipeline 功能切割字段说明 {#pipeline}
 
 - JenKins 通用日志切割
 
 通用日志文本示例:
-```
+
+```log
 2021-05-18 03:08:58.053+0000 [id=32] INFO jenkins.InitReactorRunner$1#onAttained: Started all plugins
 ```
 

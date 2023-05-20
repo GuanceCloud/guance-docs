@@ -10,26 +10,29 @@ Consul 采集器用于采集 Consul 相关的指标数据，目前只支持 Prom
 
 ## 前置条件 {#requirements}
 
-- 安装 consul-exporter
-    
-    - 下载 consul_exporter 压缩包
+安装 consul-exporter
 
-    ```shell
-    sudo wget https://github.com/prometheus/consul_exporter/releases/download/v0.7.1/consul_exporter-0.7.1.linux-amd64.tar.gz
-    ```
-    - 解压 consul_exporter 压缩包
+- 下载 consul_exporter 压缩包
 
-    ```shell
-    sudo tar -zxvf consul_exporter-0.7.1.linux-amd64.tar.gz  
-    ```
-    - 进入 consul_exporter-0.7.1.linux-amd64 目录，运行 consul_exporter 脚本
+```shell
+sudo wget https://github.com/prometheus/consul_exporter/releases/download/v0.7.1/consul_exporter-0.7.1.linux-amd64.tar.gz
+```
 
-    ```shell
-    ./consul_exporter     
-    ```
+- 解压 `consul_exporter` 压缩包
+
+```shell
+sudo tar -zxvf consul_exporter-0.7.1.linux-amd64.tar.gz  
+```
+
+- 进入 *consul_exporter-0.7.1.linux-amd64* 目录，运行 `consul_exporter` 脚本
+
+```shell
+./consul_exporter     
+```
 
 ## 配置 {#input-config}
 
+<!-- markdownlint-disable MD046 -->
 === "主机安装"
 
     进入 DataKit 安装目录下的 `conf.d/consul` 目录，复制 `consul.conf.sample` 并命名为 `consul.conf`。示例如下：
@@ -37,39 +40,17 @@ Consul 采集器用于采集 Consul 相关的指标数据，目前只支持 Prom
     ```toml
         
     [[inputs.prom]]
-      ## Exporter 地址
       url = "http://127.0.0.1:9107/metrics"
-    
-      ## 采集器别名
       source = "consul"
-    
-      ## 指标类型过滤, 可选值为 counter, gauge, histogram, summary
-      # 默认只采集 counter 和 gauge 类型的指标
-      # 如果为空，则不进行过滤
       metric_types = ["counter", "gauge"]
-    
-      ## 指标名称过滤
-      # 支持正则，可以配置多个，即满足其中之一即可
-      # 如果为空，则不进行过滤
       metric_name_filter = ["consul_raft_leader", "consul_raft_peers", "consul_serf_lan_members", "consul_catalog_service", "consul_catalog_service_node_healthy", "consul_health_node_status", "consul_serf_lan_member_status"]
-    
-      ## 指标集名称前缀
-      # 配置此项，可以给指标集名称添加前缀
       measurement_prefix = ""
-    
-      ## 过滤tags, 可配置多个tag
-      # 匹配的tag将被忽略
       tags_ignore = ["check"]
-    
-      ## 采集间隔 "ns", "us" (or "µs"), "ms", "s", "m", "h"
       interval = "10s"
     
-      ## 自定义指标集名称
-      # 可以将包含前缀prefix的指标归为一类指标集
-      # 自定义指标集名称配置优先measurement_name配置项
       [[inputs.prom.measurements]]
-      	prefix = "consul_"
-    	name = "consul"
+      prefix = "consul_"
+      name = "consul"
     
     ```
 
@@ -79,88 +60,38 @@ Consul 采集器用于采集 Consul 相关的指标数据，目前只支持 Prom
 
     目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
 
+<!-- markdownlint-enable -->
+
 ## 指标集 {#measurements}
 
 
 
-### `consul_host`
+### `consul`
 
 - 标签
 
 
-| Tag | Descrition |
-|  ----  | --------|
-|`host`|主机名称|
-
-- 指标列表
-
-
-| Metric | Descrition | Type | Unit |
-| ---- |---- | :---:    | :----: |
-|`catalog_service`|集群中服务数量|int|count|
-|`raft_leader`|raft集群中leader数量|int|count|
-|`raft_peers`|raft集群中peer数量|int|count|
-|`serf_lan_members`|集群中成员数量|int|count|
-
-
-
-### `consul_service`
-
-- 标签
-
-
-| Tag | Descrition |
-|  ----  | --------|
-|`host`|主机名称|
-|`node`|结点名称|
-|`service_id`|服务id|
-|`service_name`|服务名称|
-
-- 指标列表
-
-
-| Metric | Descrition | Type | Unit |
-| ---- |---- | :---:    | :----: |
-|`catalog_service_node_healthy`|该服务在该结点上是否健康|int|-|
-
-
-
-### `consul_health`
-
-- 标签
-
-
-| Tag | Descrition |
-|  ----  | --------|
-|`host`|主机名称|
-|`node`|结点名称|
-|`status`|状态，status有critical, maintenance, passing,warning四种|
-
-- 指标列表
-
-
-| Metric | Descrition | Type | Unit |
-| ---- |---- | :---:    | :----: |
-|`health_node_status`|结点的健康检查状态|int|-|
-
-
-
-### `consul_member`
-
-- 标签
-
-
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|主机名称|
 |`member`|成员名称|
+|`node`|结点名称|
+|`service_id`|服务 id|
+|`service_name`|服务名称|
+|`status`|状态, status 有 critical, maintenance, passing, warning 四种|
 
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`serf_lan_member_status`|集群里成员的状态，其中1表示Alive，2表示Leaving，3表示Left，4表示Failed|int|-|
+|`catalog_service_node_healthy`|该服务在该结点上是否健康|int|-|
+|`catalog_services`|集群中服务数量|int|count|
+|`health_node_status`|结点的健康检查状态|int|-|
+|`raft_leader`|raft 集群中 leader 数量|int|count|
+|`raft_peers`|raft 集群中 peer 数量|int|count|
+|`serf_lan_member_status`|集群里成员的状态, 其中 1 表示 Alive, 2 表示 Leaving, 3 表示 Left, 4 表示 Failed|int|-|
+|`serf_lan_members`|集群中成员数量|int|count|
 
 
 
@@ -214,7 +145,7 @@ consul agent -dev -syslog
 
 日志原文：
 
-```
+```log
 Sep 18 19:30:23 derrick-ThinkPad-X230 consul[11803]: 2021-09-18T19:30:23.522+0800 [INFO]  agent.server.connect: initialized primary datacenter CA with provider: provider=consul
 ```
 

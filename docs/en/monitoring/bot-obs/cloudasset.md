@@ -7,14 +7,10 @@ It provides additional data access capability for Guance, which is convenient fo
 
 ## Preconditions
 
-1. Offline deployment of [DataFlux Func](https://func.guance.com/#/)
-2. Open the [script market](https://func.guance.com/doc/script-market-basic-usage/) of  DataFlux Func 
+1. Offline deployment of [**DataFlux Func GSE**](https://func.guance.com/#/)
 3. Create [API Key](../../../management/api-key/open-api.md) in Guance "management/API Key management" 
-4. In the  DataFlux Func, install "Guance  Check Core Core Package" and "Guance  Check (Alibaba Cloud)" through "Script Market"
 5. Open the [collector (such as Alibaba Cloud ECS)](https://func.guance.com/doc/script-market-guance-aliyun-ecs/) corresponding to the objects in the "Guance  Check (Alibaba Cloud)" to be detected
-6. Install the accompanying third-party dependency package in your  DataFlux Func
 7. In the DataFlux Func, write the  check processing function
-8. In the  DataFlux Func, create auto-trigger configuration for the written function through "Manage/Auto-trigger Configuration"
 
 **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance SaaS on [the same carrier in the same region](../../../getting-started/necessary-for-beginners/select-site/)。
 

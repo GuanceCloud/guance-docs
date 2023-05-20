@@ -1,5 +1,4 @@
 nav:
-  - huawei-prod-func.md
   - 'DCS': dcs.md
   - 'ECS': ecs.md
   - 'ELB': elb.md

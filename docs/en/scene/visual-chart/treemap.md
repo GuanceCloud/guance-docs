@@ -5,7 +5,7 @@
 
 It is used to visualize the percentage distribution of metric data under different groupings.
 
-## Application Scenarios
+## Use Case
 
 The rectangular tree diagram of the Guance is used to show the percentage distribution of metrics data under different groupings. For example, you can view the CPU usage of different hosts.
 

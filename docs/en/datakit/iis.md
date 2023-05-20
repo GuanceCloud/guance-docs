@@ -56,7 +56,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`app_pool`|IIS app pool|
 |`host`|host name|
@@ -64,7 +64,7 @@ For all of the following data collections, a global tag named `host` is appended
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`current_app_pool_state`|The current status of the application pool (1 - Uninitialized, 2 - Initialized, 3 - Running, 4 - Disabling, 5 - Disabled, 6 - Shutdown Pending, 7 - Delete Pending).|float|-|
 |`current_app_pool_uptime`|The uptime of the application pool since it was started.|float|s|
@@ -81,7 +81,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|host name|
 |`website`|IIS web site|
@@ -89,7 +89,7 @@ For all of the following data collections, a global tag named `host` is appended
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`anonymous_users`|Rate at which users are making anonymous connections using the web service.|float|-|
 |`bytes_received`|Rate at which bytes are received by the web service.|float|B/S|
@@ -101,16 +101,16 @@ For all of the following data collections, a global tag named `host` is appended
 |`error_not_found`|Rate of errors due to requests that cannot be satisfied by the server because the requested document could not be found. These errors are generally reported as an HTTP 404 error code to the client.|float|count|
 |`files_received`|Rate at which files are received by the web service.|float|-|
 |`files_sent`|Rate at which files are sent by the web service.|float|-|
-|`http_requests_delete`|Rate at which HTTP requests using the DELETE method are made.|float|reqps|
-|`http_requests_get`|Rate at which HTTP requests using the GET method are made.|float|reqps|
-|`http_requests_head`|Rate at which HTTP requests using the HEAD method are made.|float|reqps|
-|`http_requests_options`|Rate at which HTTP requests using the OPTIONS method are made.|float|reqps|
-|`http_requests_post`|Rate at which HTTP requests using the POST method are made.|float|reqps|
-|`http_requests_put`|Rate at which HTTP requests using the PUT method are made.|float|reqps|
-|`http_requests_trace`|Rate at which HTTP requests using the TRACE method are made.|float|reqps|
+|`http_requests_delete`|Rate at which HTTP requests using the DELETE method are made.|float|req/s|
+|`http_requests_get`|Rate at which HTTP requests using the GET method are made.|float|req/s|
+|`http_requests_head`|Rate at which HTTP requests using the HEAD method are made.|float|req/s|
+|`http_requests_options`|Rate at which HTTP requests using the OPTIONS method are made.|float|req/s|
+|`http_requests_post`|Rate at which HTTP requests using the POST method are made.|float|req/s|
+|`http_requests_put`|Rate at which HTTP requests using the PUT method are made.|float|req/s|
+|`http_requests_trace`|Rate at which HTTP requests using the TRACE method are made.|float|req/s|
 |`non_anonymous_users`|Rate at which users are making non-anonymous connections using the web service.|float|-|
-|`requests_cgi`|Rate of CGI requests that are simultaneously processed by the web service.|float|reqps|
-|`requests_isapi_extension`|Rate of ISAPI extension requests that are simultaneously processed by the web service.|float|reqps|
+|`requests_cgi`|Rate of CGI requests that are simultaneously processed by the web service.|float|req/s|
+|`requests_isapi_extension`|Rate of ISAPI extension requests that are simultaneously processed by the web service.|float|req/s|
 |`service_uptime`|Service uptime.|float|s|
 |`total_connection_attempts`|Number of connections that have been attempted using the web service (counted after service startup)|float|count| 
 

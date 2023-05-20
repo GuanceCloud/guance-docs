@@ -18,6 +18,7 @@
 
 GitLab 设置完成后，对 DataKit 进行配置。注意，根据 GitLab 版本和配置不同，采集到的数据可能存在差异。
 
+<!-- markdownlint-disable MD046 -->
 === "主机安装"
 
     进入 DataKit 安装目录下的 `conf.d/gitlab` 目录，复制 `gitlab.conf.sample` 并命名为 `gitlab.conf`。示例如下：
@@ -58,10 +59,11 @@ GitLab 设置完成后，对 DataKit 进行配置。注意，根据 GitLab 版�
 === "Kubernetes"
 
     目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+<!-- markdownlint-enable -->
 
 ### GitLab 开启数据采集功能 {#enable-prom}
 
-GitLab 需要开启 promtheus 数据采集功能，开启方式如下（以英文页面为例）：
+GitLab 需要开启 Prometheus 数据采集功能，开启方式如下（以英文页面为例）：
 
 - 以管理员账号登陆己方 GitLab 页面
 - 转到 `Admin Area` > `Settings` > `Metrics and profiling`
@@ -79,27 +81,26 @@ GitLab 需要开启 promtheus 数据采集功能，开启方式如下（以英�
 
 详情见[官方配置文档](https://docs.gitlab.com/ee/administration/monitoring/ip_whitelist.html){:target="_blank"}。
 
-### 开启 Gitlab CI 可视化 {#ci-visible}
+### 开启 GitLab CI 可视化 {#ci-visible}
 
-确保当前 Datakit 版本（1.2.13 及以后）支持 Gitlab CI 可视化功能。
+确保当前 Datakit 版本（1.2.13 及以后）支持 GitLab CI 可视化功能。
 
-通过配置 Gitlab Webhook，可以实现 Gitlab CI 可视化。开启步骤如下：
+通过配置 GitLab Webhook，可以实现 GitLab CI 可视化。开启步骤如下：
 
-- 在 Gitlab 转到 `Settings` > `Webhooks` 中，将 URL 配置为 http://Datakit_IP:PORT/v1/gitlab，Trigger 配置 Job events 和 Pipeline events 两项，点击 Add webhook 确认添加；
-
-- 可点击 Test 按钮测试 Webhook 配置是否正确，Datakit 接收到 Webhook 后应返回状态码 200。正确配置后，Datakit 可以顺利采集到 Gitlab 的 CI 信息。
+- 在 GitLab 转到 `Settings` -> `Webhooks` 中，将 URL 配置为 `http://Datakit_IP:PORT/v1/gitlab`，Trigger 配置 Job events 和 Pipeline events 两项，点击 Add webhook 确认添加；
+- 可点击 Test 按钮测试 Webhook 配置是否正确，Datakit 接收到 Webhook 后应返回状态码 200。正确配置后，Datakit 可以顺利采集到 GitLab 的 CI 信息。
 
 Datakit 接收到 Webhook Event 后，是将数据作为 logging 打到数据中心的。
 
-注意：如果将 Gitlab 数据打到本地网络的 Datakit，需要对 Gitlab 进行额外的配置，见 [allow requests to the local network](https://docs.gitlab.com/ee/security/webhooks.html){:target="_blank"} 。
+注意：如果将 GitLab 数据打到本地网络的 Datakit，需要对 GitLab 进行额外的配置，见 [allow requests to the local network](https://docs.gitlab.com/ee/security/webhooks.html){:target="_blank"} 。
 
-另外：Gitlab CI 功能不参与采集器选举，用户只需将 Gitlab Webhook 的 URL 配置为其中一个 Datakit 的 URL 即可；若只需要 Gitlab CI 可视化功能而不需要 Gitlab 指标采集，可通过配置 `enable_collect = false` 关闭指标采集功能。
+另外：GitLab CI 功能不参与采集器选举，用户只需将 GitLab Webhook 的 URL 配置为其中一个 Datakit 的 URL 即可；若只需要 GitLab CI 可视化功能而不需要 GitLab 指标采集，可通过配置 `enable_collect = false` 关闭指标采集功能。
 
 ## 指标集 {#measurements}
 
 以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名）。
 
-可以在配置中通过 `[inputs.gitlab.tags]` 为 **Gitlab 指标数据**指定其它标签：
+可以在配置中通过 `[inputs.gitlab.tags]` 为 **GitLab 指标数据**指定其它标签：
 
 ``` toml
  [inputs.gitlab.tags]
@@ -108,7 +109,7 @@ Datakit 接收到 Webhook Event 后，是将数据作为 logging 打到数据中
   # ...
 ```
 
-可以在配置中通过 `[inputs.gitlab.ci_extra_tags]` 为 **Gitlab CI 数据**指定其它标签：
+可以在配置中通过 `[inputs.gitlab.ci_extra_tags]` 为 **GitLab CI 数据**指定其它标签：
 
 ``` toml
  [inputs.gitlab.ci_extra_tags]
@@ -117,7 +118,7 @@ Datakit 接收到 Webhook Event 后，是将数据作为 logging 打到数据中
   # ...
 ```
 
-注意：为了确保 Gitlab CI 功能正常，为 Gitlab CI 数据指定的 extra tags 不会覆盖其数据中已有的标签（Gitlab CI 标签列表见下）。
+注意：为了确保 GitLab CI 功能正常，为 GitLab CI 数据指定的 extra tags 不会覆盖其数据中已有的标签（GitLab CI 标签列表见下）。
 
 
 
@@ -125,10 +126,10 @@ Datakit 接收到 Webhook Event 后，是将数据作为 logging 打到数据中
 
 GitLab 运行指标
 
--  标签
+- 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`action`|行为|
 |`controller`|管理|
@@ -138,7 +139,7 @@ GitLab 运行指标
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`banzai_cacheless_render_real_duration_seconds_count`|The count of duration of rendering Markdown into HTML when cached output exists|float|s|
 |`banzai_cacheless_render_real_duration_seconds_sum`|The sum of duration of rendering Markdown into HTML when cached output exists|float|s|
@@ -167,14 +168,14 @@ GitLab 运行指标
 
 GitLab 编程语言层面指标
 
--  标签
+- 标签
 
 NA
 
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`rails_queue_duration_seconds_count`|The counter for latency between GitLab Workhorse forwarding a request to Rails|float|s|
 |`rails_queue_duration_seconds_sum`|The sum for latency between GitLab Workhorse forwarding a request to Rails|float|s|
@@ -188,10 +189,10 @@ NA
 
 GitLab HTTP 相关指标
 
--  标签
+- 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`method`|方法|
 |`status`|状态码|
@@ -199,7 +200,7 @@ GitLab HTTP 相关指标
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`http_health_requests_total`|Number of health requests|float|-|
 |`http_request_duration_seconds_count`|The counter for request duration|float|s|
@@ -209,21 +210,21 @@ GitLab HTTP 相关指标
 
 ### `gitlab_pipeline`
 
-Gitlab Pipeline Event 相关指标
+GitLab Pipeline Event 相关指标
 
--  标签
+- 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`author_email`|作者邮箱|
 |`ci_status`|CI 状态|
-|`commit_sha`|触发 pipeline 的最近一次 commit 的哈希值|
+|`commit_sha`|触发 Pipeline 的最近一次 commit 的哈希值|
 |`object_kind`|Event 类型，此处为 Pipeline|
 |`operation_name`|操作名称|
-|`pipeline_name`|pipeline 名称|
-|`pipeline_source`|pipeline 触发的来源|
-|`pipeline_url`|pipeline 的 URL|
+|`pipeline_name`|Pipeline 名称|
+|`pipeline_source`|Pipeline 触发的来源|
+|`pipeline_url`|Pipeline 的 URL|
 |`ref`|涉及的分支|
 |`repository_url`|仓库 URL|
 |`resource`|项目名|
@@ -231,25 +232,25 @@ Gitlab Pipeline Event 相关指标
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`commit_message`|触发该 pipeline 的代码的最近一次提交附带的 message|string|-|
-|`created_at`|pipeline 创建的毫秒时间戳|int|msec|
-|`duration`|pipeline 持续时长（微秒）|int|μs|
-|`finished_at`|pipeline 结束的毫秒时间戳|int|msec|
-|`message`|触发该 pipeline 的代码的最近一次提交附带的 message，与 commit_message 相同|string|-|
-|`pipeline_id`|pipeline id|string|-|
+|`commit_message`|触发该 Pipeline 的代码的最近一次提交附带的 message|string|-|
+|`created_at`|Pipeline 创建的毫秒时间戳|int|msec|
+|`duration`|Pipeline 持续时长（微秒）|int|μs|
+|`finished_at`|Pipeline 结束的毫秒时间戳|int|msec|
+|`message`|触发该 Pipeline 的代码的最近一次提交附带的 message，与 commit_message 相同|string|-|
+|`pipeline_id`|Pipeline id|string|-|
 
 
 
 ### `gitlab_job`
 
-Gitlab Job Event 相关指标
+GitLab Job Event 相关指标
 
--  标签
+- 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`build_commit_sha`|build 对应的 commit 的哈希值|
 |`build_failure_reason`|build 失败的原因|
@@ -265,7 +266,7 @@ Gitlab Job Event 相关指标
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`build_commit_message`|触发该 build 的最近一次 commit 的 message|string|-|
 |`build_duration`|build 持续时长（微秒）|int|μs|
@@ -273,7 +274,7 @@ Gitlab Job Event 相关指标
 |`build_id`|build id|string|-|
 |`build_started_at`|build 开始的毫秒时间戳|int|msec|
 |`message`|触发该 build 的最近一次 commit 的 message，与 build_commit_message 相同|string|-|
-|`pipeline_id`|build 对应的 pipeline id|string|-|
+|`pipeline_id`|build 对应的 Pipeline id|string|-|
 |`project_id`|build 对应的项目 id|string|-|
 |`runner_id`|build 对应的 runner id|string|-|
 

@@ -294,7 +294,7 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name = 'events
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|The server host address|
 |`server`|Server addr|
@@ -302,7 +302,7 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name = 'events
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`Aborted_clients`|The number of connections that were aborted because the client died without closing the connection properly.|int|count|
 |`Aborted_connects`|The number of failed attempts to connect to the MySQL server.|int|count|
@@ -393,7 +393,7 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name = 'events
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|The server host address|
 |`schema_name`|Schema name|
@@ -402,7 +402,7 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name = 'events
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`query_run_time_avg`|Avg query response time per schema.|float|ns|
 |`schema_size`|Size of schemas(MiB)|float|MB| 
@@ -418,7 +418,7 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name = 'events
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|The server host address|
 |`server`|Server addr|
@@ -426,7 +426,7 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name = 'events
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`adaptive_hash_searches`|Number of successful searches using Adaptive Hash Index|int|count|
 |`adaptive_hash_searches_btree`|Number of searches using B-tree on an index search|int|count|
@@ -504,7 +504,7 @@ MySQL 表指标
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`engine`|The storage engine for the table. See The InnoDB Storage Engine, and Alternative Storage Engines.|
 |`host`|The server host address|
@@ -517,7 +517,7 @@ MySQL 表指标
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`data_free`|The number of rows. Some storage engines, such as MyISAM, store the exact count. For other storage engines, such as InnoDB, this value is an approximation, and may vary from the actual value by as much as 40% to 50%. In such cases, use SELECT COUNT(*) to obtain an accurate count.|int|count|
 |`data_length`|For InnoDB, DATA_LENGTH is the approximate amount of space allocated for the clustered index, in bytes. Specifically, it is the clustered index size, in pages, multiplied by the InnoDB page size|int|count|
@@ -535,7 +535,7 @@ MySQL 用户指标
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|The server host address|
 |`server`|The server address containing both host and port|
@@ -544,7 +544,7 @@ MySQL 用户指标
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`bytes_received`|The number of bytes received this user|int|count|
 |`bytes_sent`|The number of bytes sent this user|int|count|
@@ -612,7 +612,7 @@ MySQL 用户指标
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`digest`|The digest hash value computed from the original normalized statement. |
 |`host`|The server host address|
@@ -624,7 +624,7 @@ MySQL 用户指标
 - Metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`count_star`|The total count of executed queries per normalized query and schema.|int|count|
 |`message`|The text of the normalized statement digest.|string|-|
@@ -650,7 +650,7 @@ MySQL 用户指标
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`current_schema`|The name of the current schema.|
 |`digest`|The digest hash value computed from the original normalized statement. |
@@ -663,14 +663,14 @@ MySQL 用户指标
 |`processlist_user`|The user name of the client.|
 |`query_signature`|The hash value computed from digest_text.|
 |`query_truncated`|It indicates whether the query is truncated.|
-|`resource_hash`|The hash value computed from sql text.|
+|`resource_hash`|The hash value computed from SQL text.|
 |`server`|The server address containing both host and port|
 |`service`|The service name and the value is 'mysql'|
 
 - Metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`duration`|Value in nanoseconds of the event's duration.|float|count|
 |`lock_time_ns`|Time in nanoseconds spent waiting for locks. |int|count|
@@ -703,7 +703,7 @@ MySQL 用户指标
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|The server host address|
 |`server`|The server address|
@@ -712,7 +712,7 @@ MySQL 用户指标
 - Metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`connections`|The total number of the connection|int|count|
 |`current_schema`|The default database for the statement, NULL if there is none|string|-|
@@ -726,7 +726,7 @@ MySQL 用户指标
 |`index_name`|The name of the index used|string|-|
 |`ip`|The client IP address|string|-|
 |`lock_time`|The time spent waiting for table locks|int|ns|
-|`message`|The text of the normalized sql text|string|-|
+|`message`|The text of the normalized SQL text|string|-|
 |`object_name`|The name of the object being acted on|string|-|
 |`object_schema`|The schema of th object being acted on|string|-|
 |`object_type`|The type of the object being acted on|string|-|
@@ -734,13 +734,13 @@ MySQL 用户指标
 |`processlist_command`|The command of the thread|string|-|
 |`processlist_db`|The default database for the thread, or NULL if none has been selected|string|-|
 |`processlist_host`|The host name of the client with a thread|string|-|
-|`processlist_id`|The processlist id|string|-|
+|`processlist_id`|The process list ID|string|-|
 |`processlist_state`|The state of the thread|string|-|
 |`processlist_user`|The user associated with a thread|string|-|
-|`query_signature`|The hash value computed from sql text|string|-|
+|`query_signature`|The hash value computed from SQL text|string|-|
 |`socket_event_name`|The name of the wait/io/socket/* instrument that produced the event|string|-|
 |`sql_text`|The statement the thread is executing|string|-|
-|`thread_id`|The thread id|string|-|
+|`thread_id`|The thread ID|string|-|
 |`wait_event`|The name of the wait event|string|-|
 |`wait_timer_end`|The time when the waiting event timing ended|int|ns|
 |`wait_timer_start`|The time when the waiting event timing started|int|ns| 

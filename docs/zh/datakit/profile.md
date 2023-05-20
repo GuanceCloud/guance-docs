@@ -1,5 +1,6 @@
 
 # Profile 采集配置
+
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
@@ -17,6 +18,7 @@ Profile 支持采集使用 Java, Python 和 Go 等不同语言环境下应用程
 
 ### DataKit 配置 {#datakit-config}
 
+<!-- markdownlint-disable MD046 -->
 === "主机安装"
 
     进入 DataKit 安装目录下的 `conf.d/profile` 目录，复制 `profile.conf.sample` 并命名为  `profile.conf` 。配置文件说明如下：
@@ -81,6 +83,7 @@ Profile 支持采集使用 Java, Python 和 Go 等不同语言环境下应用程
 === "Kubernetes"
 
     目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+<!-- markdownlint-enable -->
 
 ### 客户端应用配置 {#app-config}
 
@@ -108,10 +111,10 @@ Profile 支持采集使用 Java, Python 和 Go 等不同语言环境下应用程
 
 
 
--  标签
+- 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`container_host`|container hostname|
 |`endpoint`|endpoint info|
@@ -129,7 +132,7 @@ Profile 支持采集使用 Java, Python 和 Go 等不同语言环境下应用程
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`duration`|duration of span|int|μs|
 |`message`|origin content of span|string|-|

@@ -10,7 +10,14 @@ Apache collector can collect the number of requests, connections and others from
 
 ## Preconditions {#requirements}
 
-- Apache version >= 2.4.46 (Unix). Already tested versions: `2.4.46 (Unix)` ~ `2.4.52 (Unix)`;
+- Apache version >= `2.4.6 (Unix)`. Already tested version:
+    - [x] 2.4.56
+    - [x] 2.4.54
+    - [x] 2.4.41
+    - [x] 2.4.38
+    - [x] 2.4.29
+    - [x] 2.4.6
+
 - Typical Linux distributions come with Apache. [See](https://httpd.apache.org/download.cgi){:target="_blank"} for download;
 - Default configuration path: `/etc/apache2/apache2.conf`, `/etc/apache2/httpd.conf`, `/usr/local/apache2/conf/httpd.conf`;
 - Open Apache `mod_status` and add the followings in Apache profile:
@@ -94,17 +101,17 @@ For all of the following data collections, a global tag named  `host` is appende
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|Hostname of the DataKit.|
-|`server_mpm`|Apache server Multi-Processing Module,prefork、worker and event.|
-|`server_version`|Apache server version.|
+|`server_mpm`|Apache server Multi-Processing Module, `prefork`, `worker` and `event`. Optional.|
+|`server_version`|Apache server version. Optional.|
 |`url`|Apache server status url.|
 
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`busy_workers`|The number of workers serving requests.|int|count|
 |`closing_connection`|The amount of workers that are currently closing a connection|int|count|
@@ -112,7 +119,7 @@ For all of the following data collections, a global tag named  `host` is appende
 |`conns_async_keep_alive`|The number of asynchronous keep alive connections,windows not support|int|count|
 |`conns_async_writing`|The number of asynchronous writes connections,windows not support|int|count|
 |`conns_total`|The total number of requests performed,windows not support|int|count|
-|`cpu_load`|The percent of CPU used,windows not support|float|percent|
+|`cpu_load`|The percent of CPU used,windows not support. Optional.|float|percent|
 |`dns_lookup`|The workers waiting on a DNS lookup|int|count|
 |`gracefully_finishing`|The number of workers finishing their request|int|count|
 |`idle_cleanup`|These workers were idle and their process is being stopped|int|count|

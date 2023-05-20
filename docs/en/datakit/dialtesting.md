@@ -60,25 +60,28 @@ Go to the `conf.d/network` directory under the DataKit installation directory, c
 ```toml
 
 [[inputs.dialtesting]]
-  # 中心任务存储的服务地址，即df_dialtesting center service。
-  # 此处同时可配置成本地json 文件全路径 "file:///your/dir/json-file-name", 为task任务的json字符串。
+  # We can also configure a JSON path like "file:///your/dir/json-file-name"
   server = "https://dflux-dial.guance.com"
 
-  # require，节点惟一标识ID
+  # [require] node ID
   region_id = "default"
 
-  # 若server配为中心任务服务地址时，需要配置相应的ak或者sk
+  # if server are dflux-dial.guance.com, ak/sk required
   ak = ""
   sk = ""
 
+  # The interval to pull the tasks.
   pull_interval = "1m"
 
+  # The timeout for the HTTP request.
   time_out = "1m"
+
+  # The number of the workers.
   workers = 6
 
-  # 发送数据失败最大次数，根据任务的post_url进行累计，超过最大次数后，发送至该地址的拨测任务将退出
   max_send_fail_count = 16
 
+  # Custom tags.
   [inputs.dialtesting.tags]
   # some_tag = "some_value"
   # more_tag = "some_other_value"
@@ -98,25 +101,25 @@ All of the following data collections are appended with a global tag named `host
 -  tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`city`|示例 杭州|
 |`country`|示例 中国|
 |`dest_ip`|示例 目标 IP, 如 127.0.0.1|
 |`internal`|示例 true（国内 true /海外 false）|
 |`isp`|示例 电信/移动/联通|
-|`name`|示例：拨测名称,百度测试|
+|`name`|示例：拨测名称，百度测试|
 |`proto`|示例 HTTP/1.0|
 |`province`|示例 浙江|
 |`status`|示例 OK/FAIL 两种状态 |
 |`status_code_class`|示例 2xx|
 |`status_code_string`|示例 200 OK|
-|`url`|示例 http://wwww.baidu.com|
+|`url`|示例 `http://wwww.baidu.com`|
 
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`fail_reason`|拨测失败原因|string|-|
 |`message`|包括请求头(request_header)/请求体(request_body)/返回头(response_header)/返回体(response_body)/fail_reason 冗余一份|string|-|
@@ -133,7 +136,7 @@ All of the following data collections are appended with a global tag named `host
 -  tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`city`|示例 杭州|
 |`country`|示例 中国|
@@ -143,21 +146,21 @@ All of the following data collections are appended with a global tag named `host
 |`internal`|示例 true（国内 true /海外 false）|
 |`isp`|示例 电信/移动/联通|
 |`name`|示例 拨测名称,百度测试|
-|`proto`|示例 tcp|
+|`proto`|示例 `tcp`|
 |`province`|示例 浙江|
 |`status`|示例 OK/FAIL 两种状态 |
 
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`fail_reason`|拨测失败原因|string|-|
 |`message`|包括响应时间(response_time)/错误原因(fail_reason)|string|-|
 |`response_time`|TCP 连接时间 |int|μs|
-|`response_time_with_dns`|连接时间（含DNS解析）|int|μs|
+|`response_time_with_dns`|连接时间（含 DNS 解析）|int|μs|
 |`success`|只有 1/-1 两种状态, 1 表示成功, -1 表示失败|int|-|
-|`traceroute`|路由跟踪数据文本(JSON格式)|string|-|
+|`traceroute`|路由跟踪数据文本(JSON 格式)|string|-|
 
 
 
@@ -166,29 +169,29 @@ All of the following data collections are appended with a global tag named `host
 -  tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`city`|示例 杭州|
 |`country`|示例 中国|
-|`dest_host`|示例 wwww.baidu.com|
+|`dest_host`|示例 `wwww.baidu.com`|
 |`internal`|示例 true（国内 true /海外 false）|
 |`isp`|示例 电信/移动/联通|
-|`name`|示例 拨测名称,百度测试|
-|`proto`|示例 icmp|
+|`name`|示例 百度测试|
+|`proto`|示例 `icmp`|
 |`province`|示例 浙江|
 |`status`|示例 OK/FAIL 两种状态 |
 
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`average_round_trip_time`|平均往返时间(RTT)|float|μs|
 |`average_round_trip_time_in_millis`|平均往返时间(RTT). 本字段将被弃用|float|ms|
 |`fail_reason`|拨测失败原因|string|-|
 |`max_round_trip_time`|最大往返时间(RTT)|float|μs|
 |`max_round_trip_time_in_millis`|最大往返时间(RTT). 本字段将被弃用|float|ms|
-|`message`|包括平均RTT时间(average_round_trip_time)/错误原因(fail_reason)|string|-|
+|`message`|包括平均 RTT 时间(average_round_trip_time)/错误原因(fail_reason)|string|-|
 |`min_round_trip_time`|最小往返时间(RTT)|float|μs|
 |`min_round_trip_time_in_millis`|最小往返时间(RTT). 本字段将被弃用|float|ms|
 |`packet_loss_percent`|丢包率|float|-|
@@ -197,7 +200,7 @@ All of the following data collections are appended with a global tag named `host
 |`std_round_trip_time`|往返时间(RTT)标准差|float|μs|
 |`std_round_trip_time_in_millis`|往返时间(RTT)标准差. 本字段将被弃用|float|ms|
 |`success`|只有 1/-1 两种状态, 1 表示成功, -1 表示失败|int|-|
-|`traceroute`|路由跟踪数据文本(JSON格式)|string|-|
+|`traceroute`|路由跟踪数据文本(JSON 格式)|string|-|
 
 
 
@@ -206,7 +209,7 @@ All of the following data collections are appended with a global tag named `host
 -  tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`city`|示例 杭州|
 |`country`|示例 中国|
@@ -221,13 +224,13 @@ All of the following data collections are appended with a global tag named `host
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`fail_reason`|拨测失败原因|string|-|
 |`message`|包括响应时间(response_time)/错误原因(fail_reason)|string|-|
 |`response_message`|拨测返回的消息|string|-|
 |`response_time`|连接时间|int|μs|
-|`response_time_with_dns`|连接时间（含DNS解析）|int|μs|
+|`response_time_with_dns`|连接时间（含 DNS 解析）|int|μs|
 |`sent_message`|拨测发送的消息|string|-|
 |`success`|只有 1/-1 两种状态, 1 表示成功, -1 表示失败|int|-|
 

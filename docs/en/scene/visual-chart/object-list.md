@@ -5,7 +5,7 @@
 
 Support adding a list of objects to the view and filtering the data to see the data under the corresponding object category.
 
-## Application Scenarios
+## Use Case
 
 The object list graph of the Guance is used to view the data under the corresponding object category. For example, you can view the names of different hosts in the workspace, CPU usage, disk occupancy, and other attributes.
 

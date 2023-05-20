@@ -28,27 +28,28 @@
 
 - 或者准备配置好正向代理的 Nginx
 
+<!-- markdownlint-disable MD046 MD034 -->
 === "Linux/Mac"
 
-    - 使用 datakit 代理
+    - 使用 Datakit 代理
     
     增加环境变量 `HTTPS_PROXY="1.2.3.4:9530"`，安装命令如下：
     
     ```shell
-    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> HTTPS_PROXY=http://1.2.3.4:9530 bash -c "$(curl -L https://static.guance.com/install.sh)"
+    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> HTTPS_PROXY=http://1.2.3.4:9530 bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
     ```
-    
+
     - 使用 Nginx 代理
     
     增加环境变量 `DK_PROXY_TYPE="nginx"; DK_NGINX_IP="1.2.3.4";`，安装命令如下：
     
     ```shell
-    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> DK_NGINX_IP=1.2.3.4 HTTPS_PROXY=http://1.2.3.4:9530 bash -c "$(curl -L https://static.guance.com/install.sh)"
+    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> DK_NGINX_IP=1.2.3.4 HTTPS_PROXY=http://1.2.3.4:9530 bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
     ```
 
 === "Windows"
 
-    - 使用 datakit 代理
+    - 使用 Datakit 代理
     
     增加环境变量 `$env:HTTPS_PROXY="1.2.3.4:9530"`，安装命令如下：
     
@@ -58,7 +59,7 @@
     $env:HTTPS_PROXY="1.2.3.4:9530";
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
-    start-bitstransfer -ProxyUsage Override -ProxyList $env:HTTPS_PROXY -source https://static.guance.com/install.ps1 -destination .install.ps1;
+    start-bitstransfer -ProxyUsage Override -ProxyList $env:HTTPS_PROXY -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1;
     powershell .install.ps1;
     ```
 
@@ -73,14 +74,14 @@
     $env:DK_PROXY_TYPE="nginx";
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
-    start-bitstransfer -ProxyUsage Override -ProxyList $env:DK_NGINX_IP -source https://static.guance.com/install.ps1 -destination .install.ps1;
+    start-bitstransfer -ProxyUsage Override -ProxyList $env:DK_NGINX_IP -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1;
     powershell .install.ps1;
     ```
-    
+
     > 注意：其它安装参数设置，跟[正常安装](datakit-install.md) 无异。
+<!-- markdownlint-enable -->
 
 ---
-
 
 ## 全离线安装 {#offline}
 
@@ -95,43 +96,47 @@
 
 以下文件的地址，可通过 wget 等下载工具，也可以直接在浏览器中输入对应的 URL 下载。
 
+<!-- markdownlint-disable MD046 -->
 ???+ Attention
 
     Safari 浏览器下载时，后缀名可能不同（如将 `.tar.gz` 文件下载成 `.tar`），会导致安装失败。建议用 Chrome 浏览器下载。
+<!-- markdownlint-enable -->
 
 - 先下载数据包 [data.tar.gz](https://static.guance.com/datakit/data.tar.gz)，每个平台都一样。
 
 - 然后再下载俩个安装程序：
 
+<!-- markdownlint-disable MD046 -->
 === "Windows 32 位"
 
     - [Installer](https://static.guance.com/datakit/installer-windows-386.exe){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-windows-386-1.6.0.tar.gz){:target="_blank"}
+    - [DataKit](https://static.guance.com/datakit/datakit-windows-386-1.7.0.tar.gz){:target="_blank"}
 
 === "Windows 64 位"
 
     - [Installer](https://static.guance.com/datakit/installer-windows-amd64.exe){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-windows-amd64-1.6.0.tar.gz){:target="_blank"}
+    - [DataKit](https://static.guance.com/datakit/datakit-windows-amd64-1.7.0.tar.gz){:target="_blank"}
 
 === "Linux X86 32 位"
 
     - [Installer](https://static.guance.com/datakit/installer-linux-386){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-linux-386-1.6.0.tar.gz){:target="_blank"}
+    - [DataKit](https://static.guance.com/datakit/datakit-linux-386-1.7.0.tar.gz){:target="_blank"}
 
 === "Linux X86 64 位"
 
     - [Installer](https://static.guance.com/datakit/installer-linux-amd64){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-linux-amd64-1.6.0.tar.gz){:target="_blank"}
+    - [DataKit](https://static.guance.com/datakit/datakit-linux-amd64-1.7.0.tar.gz){:target="_blank"}
 
 === "Linux Arm 32 位"
 
     - [Installer](https://static.guance.com/datakit/installer-linux-arm){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-linux-arm-1.6.0.tar.gz){:target="_blank"}
+    - [DataKit](https://static.guance.com/datakit/datakit-linux-arm-1.7.0.tar.gz){:target="_blank"}
 
 === "Linux Arm 64 位"
 
     - [Installer](https://static.guance.com/datakit/installer-linux-arm64){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-linux-arm64-1.6.0.tar.gz){:target="_blank"}
+    - [DataKit](https://static.guance.com/datakit/datakit-linux-arm64-1.7.0.tar.gz){:target="_blank"}
+<!-- markdownlint-enable -->
 
 下载完后，应该有三个文件（此处 `<OS-ARCH>` 指特定平台的安装包）：
 
@@ -143,12 +148,13 @@
 
 ### 安装 {#install}
 
+<!-- markdownlint-disable MD046 -->
 === "Windows"
 
     需以 administrator 权限运行 Powershell 执行：
 
     ```powershell
-    .\installer-windows-amd64.exe --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs .\datakit-windows-amd64-1.6.0.tar.gz,.\data.tar.gz
+    .\installer-windows-amd64.exe --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs .\datakit-windows-amd64-1.7.0.tar.gz,.\data.tar.gz
     ```
 
 === "Linux"
@@ -157,8 +163,9 @@
 
     ```shell
     chmod +x installer-linux-amd64
-    ./installer-linux-amd64 --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs datakit-linux-amd64-1.6.0.tar.gz,data.tar.gz
+    ./installer-linux-amd64 --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs datakit-linux-amd64-1.7.0.tar.gz,data.tar.gz
     ```
+<!-- markdownlint-enable -->
 
 ### 高级模式 {#offline-advanced}
 
@@ -170,14 +177,13 @@ DataKit 目前的安装地址是公网地址，所有二进制数据以及安装
   ![](https://static.guance.com/images/datakit/nginx-file-server.png){ width="700"}
 </figure>
 
-
 先准备一台内网均可访问的机器，在该机器上安装 Nginx， 将 DataKit 安装所需的文件下载（或通过 U 盘拷贝）到 Nginx 服务器上，这样其它机器可以从 Nginx 文件服务器上下载安装文件来完成安装。
 
 - 设置 Nginx 文件服务器 {#nginx-config}
 
-在 nginx.conf 中添加配置：
+在 *nginx.conf* 中添加配置：
 
-```
+``` nginx
 server {
     listen 8080;
     server_name _;
@@ -196,7 +202,7 @@ server {
 
 ```shell
 nginx -t        # 测试配置
-nginx -s reload # reload配置
+nginx -s reload # reload 配置
 ```
 
 - 将文件下载到 Nginx 服务器所在的 */datakit* 目录下，这里以 wget 下载 Linux AMD64 平台的安装包为例：
@@ -208,8 +214,8 @@ mkdir -p /datakit
 wget -P /datakit https://static.guance.com/datakit/install.sh
 wget -P /datakit https://static.guance.com/datakit/version
 wget -P /datakit https://static.guance.com/datakit/data.tar.gz
-wget -P /datakit https://static.guance.com/datakit/installer-linux-amd64-1.6.0
-wget -P /datakit https://static.guance.com/datakit/datakit-linux-amd64-1.6.0.tar.gz
+wget -P /datakit https://static.guance.com/datakit/installer-linux-amd64-1.7.0
+wget -P /datakit https://static.guance.com/datakit/datakit-linux-amd64-1.7.0.tar.gz
 
 # 下载其它工具包：sources 是开启 RUM sourcemap 功能使用的安装包，如果未开启此功能，可选择不下载
 sources=(
@@ -243,11 +249,11 @@ done
 
 在内网机器上，通过设置 `DK_INSTALLER_BASE_URL`，将其指向 Nginx 文件服务器：
 
+<!-- markdownlint-disable MD046 MD034 -->
 === "Linux/Mac"
-    
+
     ```shell
-     \
-    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> DK_INSTALLER_BASE_URL=http://<nginxServer>:8080/datakit HTTPS_PROXY=http://1.2.3.4:9530 bash -c "$(curl -L ${DK_INSTALLER_BASE_URL}/install.sh)"
+    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> DK_INSTALLER_BASE_URL=http://[Nginx-Server]:8080/datakit HTTPS_PROXY=http://1.2.3.4:9530 bash -c "$(curl -L ${DK_INSTALLER_BASE_URL}/install.sh)"
     ```
 
 === "Windows"
@@ -255,13 +261,14 @@ done
     ```powershell
     Remove-Item -ErrorAction SilentlyContinue Env:DK_*;
     $env:DK_DATAWAY="https://openway.guance.com?token=<TOKEN>";
-    $env:DK_INSTALLER_BASE_URL="http://<nginxServer>:8080/datakit";
+    $env:DK_INSTALLER_BASE_URL="http://[Nginx-Server]:8080/datakit";
     $env:HTTPS_PROXY="1.2.3.4:9530";
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
     start-bitstransfer  -source ${DK_INSTALLER_BASE_URL}/install.ps1 -destination .install.ps1;
     powershell .install.ps1;
     ```
+<!-- markdownlint-enable -->
 
 到此为止，离线安装完成。注意，此处还额外设置了 HTTPS_PROXY。
 
@@ -271,24 +278,26 @@ done
 
 如果有新的 DataKit 版本，可以将其安装上面的方式下载下来，执行如下命令来升级：
 
+<!-- markdownlint-disable MD046 MD034 -->
 === "Linux/Mac"
 
     ```shell
-    DK_INSTALLER_BASE_URL=http://<nginxServer>:8080/datakit DK_UPGRADE=1 bash -c "$(curl -L ${DK_INSTALLER_BASE_URL}/install.sh)"
+    DK_INSTALLER_BASE_URL=http://[Nginx-Server]:8080/datakit DK_UPGRADE=1 bash -c "$(curl -L ${DK_INSTALLER_BASE_URL}/install.sh)"
     ```
 
 === "Windows"
 
     ```powershell
-    
+
     Remove-Item -ErrorAction SilentlyContinue Env:DK_*;
-    $env:DK_INSTALLER_BASE_URL="http://<nginxServer>:8080/datakit";
+    $env:DK_INSTALLER_BASE_URL="http://[Nginx-Server]:8080/datakit";
     $env:DK_UPGRADE="1";
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
     start-bitstransfer  -source ${DK_INSTALLER_BASE_URL}/install.ps1 -destination .install.ps1;
     powershell .install.ps1;
     ```
+<!-- markdownlint-enable -->
 
 ## Kubernetes 离线部署 {#k8s-offline}
 
@@ -296,10 +305,12 @@ done
 
 这里我们提供一个简单脚本来帮助大家完成免密登录、分发文件、解压镜像的任务。
 
-???- note "datakit_tools.sh (单击点开)"
+<!-- markdownlint-disable MD046 -->
+???- note "*datakit_tools.sh* (单击点开)"
+
     ```shell
     #!/bin/bash
-    # 请修改要免密的主机ip
+    # 请修改要免密的主机 IP
     host_ip=(
       10.200.14.112
       10.200.14.113
@@ -310,7 +321,7 @@ done
 
     menu() {
       echo -e "\e[33m------请选择需要的操作------\e[0m"
-      echo -e "\e[33m1、设置ssh远程免密登录\e[0m"
+      echo -e "\e[33m1、设置 SSH 远程免密登录\e[0m"
       echo -e "\e[33m2、远程传输文件\e[0m"
       echo -e "\e[33m3、远程解压镜像\e[0m"
       read -p "请输入选项：" num
@@ -372,7 +383,8 @@ done
       ;;
     *)
             
-      echo -e "\e[31m请输入选项中的数字{1|2|3}:\e[0m"
+      echo -e "\e[31m 请输入选项中的数字{1|2|3}:\e[0m"
+      echo -e "\e[31m 请输入选项中的数字{1|2|3}:\e[0m"
     esac
     }
 
@@ -387,44 +399,47 @@ done
         continue
     done
     ```
+<!-- markdownlint-enable -->
 
 ```shell
-# 需对脚本中的主机ip和登陆密码进行修改，之后便根据引导完成操作。
+# 需对脚本中的主机 ip 和登陆密码进行修改，之后便根据引导完成操作。
 chmod +x datakit_tools.sh
 ./datakit_tools.sh
 ```
 
 ### 代理安装 {#k8s-install-via-proxy}
 
-**如果内网有可以通外网的机器，可以在该节点部署一个 nginx 服务器，当作获取镜像使用。**
+**如果内网有可以通外网的机器，可以在该节点部署一个 NGINX 服务器，当作获取镜像使用。**
 
-1、下载 datakit.yaml 文件
+1、下载 *datakit.yaml* 文件
 
 ```shell
 wget https://static.guance.com/datakit/datakit.yaml -P /home/guance/
 ```
 
-2、下载 datakit 镜像并打包
+2、下载 Datakit 镜像并打包
 
 ```shell
-# 拉取amd镜像并打包
-docker pull --platform amd64 pubrepo.guance.com/datakit/datakit:1.6.0
-docker save -o datakit-amd64-1.6.0.tar pubrepo.guance.com/datakit/datakit:1.6.0
-mv datakit-amd64-1.6.0.tar /home/guance
+# 拉取 amd 镜像并打包
+docker pull --platform amd64 pubrepo.guance.com/datakit/datakit:1.7.0
+docker save -o datakit-amd64-1.7.0.tar pubrepo.guance.com/datakit/datakit:1.7.0
+mv datakit-amd64-1.7.0.tar /home/guance
 
-# 拉取arm镜像并打包
-docker pull --platform arm64 pubrepo.guance.com/datakit/datakit:1.6.0
-docker save -o datakit-arm64-1.6.0.tar pubrepo.guance.com/datakit/datakit:1.6.0
-mv datakit-arm64-1.6.0.tar /home/guance
+# 拉取 arm 镜像并打包
+docker pull --platform arm64 pubrepo.guance.com/datakit/datakit:1.7.0
+docker save -o datakit-arm64-1.7.0.tar pubrepo.guance.com/datakit/datakit:1.7.0
+mv datakit-arm64-1.7.0.tar /home/guance
 
 # 查看镜像架构是否正确
-docker image inspect pubrepo.jiagouyun.com/datakit/datakit:1.6.0 |grep Architecture
+docker image inspect pubrepo.jiagouyun.com/datakit/datakit:1.7.0 |grep Architecture
 
 ```
 
-3、修改Nginx配置代理
+3、修改 NGINX 配置代理
 
+<!-- markdownlint-disable MD046 -->
 ???- note "/etc/nginx/nginx.conf (单击点开)"
+
     ```shell
     #user  nobody;
     worker_processes  1;
@@ -537,26 +552,27 @@ docker image inspect pubrepo.jiagouyun.com/datakit/datakit:1.6.0 |grep Architect
 
     }
     ```
+<!-- markdownlint-enable -->
 
 4、其余内网机器执行命令。
 
 ```shell
 wget http://<nginx-server-ip>:8080/datakit.yaml 
-wget http://<nginx-server-ip>:8080/datakit-amd64-1.6.0.tar 
+wget http://<nginx-server-ip>:8080/datakit-amd64-1.7.0.tar 
 ```
 
 5、解压镜像命令
 
 ```shell
 # docker 
-docker load -i /k8sdata/datakit/datakit-amd64-1.6.0.tar
+docker load -i /k8sdata/datakit/datakit-amd64-1.7.0.tar
 
 # containerd
-ctr -n=k8s.io image import /k8sdata/datakit/datakit-amd64-1.6.0.tar
+ctr -n=k8s.io image import /k8sdata/datakit/datakit-amd64-1.7.0.tar
 
 ```
 
-6、启动datakit容器
+6、启动 Datakit 容器
 
 ```shell
 kubectl apply -f datakit.yaml
@@ -570,16 +586,16 @@ kubectl apply -f datakit.yaml
 
 ```shell
 # docker 
-docker load -i datakit-amd64-1.6.0.tar
+docker load -i datakit-amd64-1.7.0.tar
 
 # containerd
-ctr -n=k8s.io image import datakit-amd64-1.6.0.tar
+ctr -n=k8s.io image import datakit-amd64-1.7.0.tar
 
 ```
 
 - 集群控制机执行启动命令
 
-```
+``` shell
 kubectl apply -f datakit.yaml
 ```
 
@@ -587,6 +603,5 @@ kubectl apply -f datakit.yaml
 
 ```shell
 # 需先解压镜像
-kubectl patch -n datakit daemonsets.apps datakit -p '{"spec": {"template": {"spec": {"containers": [{"image": "	pubrepo.guance.com/datakit/datakit:<version>","name": "datakit"}]}}}}'
+kubectl patch -n datakit daemonsets.apps datakit -p '{"spec": {"template": {"spec": {"containers": [{"image": "pubrepo.guance.com/datakit/datakit:<version>","name": "datakit"}]}}}}'
 ```
-

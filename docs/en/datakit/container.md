@@ -207,27 +207,27 @@ The metric of containers, only supported Running status.
 - Tags
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`container_id`|Container ID|
-|`container_name`|Container name from k8s (label 'io.kubernetes.container.name'). If empty then use $container_runtime_name.|
+|`container_name`|Container name from k8s (label `io.kubernetes.container.name`). If empty then use $container_runtime_name.|
 |`container_runtime_name`|Container name from runtime (like 'docker ps'). If empty then use 'unknown' ([:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)).|
-|`container_type`|The type of the container (this container is created by kubernetes/docker/containerd).|
+|`container_type`|The type of the container (this container is created by Kubernetes/Docker/containerd).|
 |`deployment`|The deployment name of the container's pod (unsupported containerd).|
-|`docker_image`|The full name of the container image, example `nginx.org/nginx:1.21.0` (Depercated, use image).|
+|`docker_image`|The full name of the container image, example `nginx.org/nginx:1.21.0` (Deprecated: use image).|
 |`image`|The full name of the container image, example `nginx.org/nginx:1.21.0`.|
 |`image_name`|The name of the container image, example `nginx.org/nginx`.|
 |`image_short_name`|The short name of the container image, example `nginx`.|
 |`image_tag`|The tag of the container image, example `1.21.0`.|
-|`linux_namespace`|The [linux namespace](https://man7.org/linux/man-pages/man7/namespaces.7.html) where this container is located.|
-|`namespace`|The pod namespace of the container (label 'io.kubernetes.pod.namespace').|
-|`pod_name`|The pod name of the container (label 'io.kubernetes.pod.name').|
+|`linux_namespace`|The [Linux namespace](https://man7.org/linux/man-pages/man7/namespaces.7.html){:target="_blank"} where this container is located.|
+|`namespace`|The pod namespace of the container (label `io.kubernetes.pod.namespace`).|
+|`pod_name`|The pod name of the container (label `io.kubernetes.pod.name`).|
 |`state`|Container status (only Running, unsupported containerd).|
 
 - Metrics
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`block_read_byte`|Total number of bytes read from the container file system (unsupported containerd).|int|B|
 |`block_write_byte`|Total number of bytes wrote to the container file system (unsupported containerd).|int|B|
@@ -257,14 +257,14 @@ The count of the Kubernetes resource.
 - Tags
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`namespace`|namespace|
 
 - Metrics
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cluster_role`|RBAC cluster role count|int|-|
 |`cronjob`|cronjob count|int|-|
@@ -290,7 +290,7 @@ The metric of the Kubernetes CronJob.
 - Tags
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`cronjob`|Name must be unique within a namespace.|
 |`namespace`|Namespace defines the space within each name must be unique.|
@@ -298,7 +298,7 @@ The metric of the Kubernetes CronJob.
 - Metrics
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`count`|Number of cronjobs|int|count|
 |`duration_since_last_schedule`|The duration since the last time the cronjob was scheduled.|int|s|
@@ -314,12 +314,12 @@ The metric of the Kubernetes CronJob.
 
 #### `kube_daemonset`
 
-The metric of the Kubernetes Daemonset.
+The metric of the Kubernetes DaemonSet.
 
 - Tags
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`daemonset`|Name must be unique within a namespace.|
 |`namespace`|Namespace defines the space within each name must be unique.|
@@ -327,7 +327,7 @@ The metric of the Kubernetes Daemonset.
 - Metrics
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`count`|Number of daemonsets|int|count|
 |`daemons_unavailable`|The number of nodes that should be running the daemon pod and have none of the daemon pod running and available (ready for at least spec.minReadySeconds).|int|count|
@@ -352,7 +352,7 @@ The metric of the Kubernetes Deployment.
 - Tags
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`deployment`|Name must be unique within a namespace.|
 |`namespace`|Namespace defines the space within each name must be unique.|
@@ -360,7 +360,7 @@ The metric of the Kubernetes Deployment.
 - Metrics
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`condition`|The current status conditions of a deployment|int|count|
 |`count`|Number of deployments|int|count|
@@ -383,7 +383,7 @@ The metric of the Kubernetes Endpoints.
 - Tags
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`endpoint`|Name must be unique within a namespace.|
 |`namespace`|Namespace defines the space within each name must be unique.|
@@ -391,7 +391,7 @@ The metric of the Kubernetes Endpoints.
 - Metrics
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`address_available`|Number of addresses available in endpoint.|int|count|
 |`address_not_ready`|Number of addresses not ready in endpoint.|int|count|
@@ -412,7 +412,7 @@ The metric of the Kubernetes Job.
 - Tags
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`job`|Name must be unique within a namespace.|
 |`namespace`|Namespace defines the space within each name must be unique.|
@@ -420,7 +420,7 @@ The metric of the Kubernetes Job.
 - Metrics
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`completion_failed`|The job has failed its execution.|int|count|
 |`completion_succeeded`|The job has completed its execution.|int|count|
@@ -443,15 +443,15 @@ The metric of the Kubernetes Node.
 - Tags
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
-|`node`|Name must be unique within a namespace. (depercated)|
+|`node`|Name must be unique within a namespace. (Deprecated)|
 |`node_name`|Name must be unique within a namespace.|
 
 - Metrics
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`age`|The time in seconds since the creation of the node|int|s|
 |`count`|Number of nodes|int|count|
@@ -478,17 +478,17 @@ The metric of the Kubernetes Pod.
 - Tags
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`[POD_LABEL]`|The pod labels will be extracted as tags if `extract_k8s_label_as_tags` is enabled.|
 |`namespace`|Namespace defines the space within each name must be unique.|
 |`pod`|Name must be unique within a namespace.|
-|`pod_name`|Name must be unique within a namespace. (depercated)|
+|`pod_name`|Name must be unique within a namespace. (Deprecated)|
 
 - Metrics
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`count`|Number of pods|int|count|
 |`cpu_usage`|The percentage of cpu used|float|percent|
@@ -510,7 +510,7 @@ The metric of the Kubernetes ReplicaSet.
 - Tags
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`deployment`|The name of the deployment which the object belongs to.|
 |`namespace`|Namespace defines the space within each name must be unique.|
@@ -519,11 +519,11 @@ The metric of the Kubernetes ReplicaSet.
 - Metrics
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`count`|Number of replicasets|int|count|
 |`fully_labeled_replicas`|The number of fully labeled replicas per ReplicaSet.|int|count|
-|`replicas`|Replicas is the most recently oberved number of replicas.|int|count|
+|`replicas`|Replicas is the most recently observed number of replicas.|int|count|
 |`replicas_desired`|Replicas is the number of desired replicas.|int|count|
 |`replicas_ready`|The number of ready replicas for this replica set.|int|count| 
 
@@ -562,30 +562,30 @@ The object of containers, only supported Running status.
 - Tags
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`container_host`|The name of the container host (unsupported containerd).|
 |`container_id`|Container ID|
-|`container_name`|Container name from k8s (label 'io.kubernetes.container.name'). If empty then use $container_runtime_name.|
+|`container_name`|Container name from k8s (label `io.kubernetes.container.name`). If empty then use $container_runtime_name.|
 |`container_runtime_name`|Container name from runtime (like 'docker ps'). If empty then use 'unknown' ([:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)).|
-|`container_type`|The type of the container (this container is created by kubernetes/docker/containerd).|
+|`container_type`|The type of the container (this container is created by Kubernetes/Docker/containerd).|
 |`deployment`|The deployment name of the container's pod (unsupported containerd).|
-|`docker_image`|The full name of the container image, example `nginx.org/nginx:1.21.0` (Depercated, use image).|
+|`docker_image`|The full name of the container image, example `nginx.org/nginx:1.21.0` (Deprecated: use image).|
 |`image`|The full name of the container image, example `nginx.org/nginx:1.21.0`.|
 |`image_name`|The name of the container image, example `nginx.org/nginx`.|
 |`image_short_name`|The short name of the container image, example `nginx`.|
 |`image_tag`|The tag of the container image, example `1.21.0`.|
-|`linux_namespace`|The [linux namespace](https://man7.org/linux/man-pages/man7/namespaces.7.html) where this container is located.|
-|`name`|The ID of the contaienr.|
-|`namespace`|The pod namespace of the container (label 'io.kubernetes.pod.namespace').|
-|`pod_name`|The pod name of the container (label 'io.kubernetes.pod.name').|
+|`linux_namespace`|The [Linux namespace](https://man7.org/linux/man-pages/man7/namespaces.7.html){:target="_blank"} where this container is located.|
+|`name`|The ID of the container.|
+|`namespace`|The pod namespace of the container (label `io.kubernetes.pod.namespace`).|
+|`pod_name`|The pod name of the container (label `io.kubernetes.pod.name`).|
 |`state`|The state of the Container (only Running, unsupported containerd).|
 |`status`|The status of the container，example `Up 5 hours` (unsupported containerd).|
 
 - Metrics
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`age`|The age of the container.|int|s|
 |`block_read_byte`|Total number of bytes read from the container file system (unsupported containerd).|int|B|
@@ -619,7 +619,7 @@ The object of the Kubernetes ClusterRole.
 - Tags
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`cluster_role_name`|Name must be unique within a namespace.|
 |`name`|UID|
@@ -627,7 +627,7 @@ The object of the Kubernetes ClusterRole.
 - Metrics
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`age`|age (seconds)|int|s|
 |`create_time`|CreationTimestamp is a timestamp representing the server time when this object was created.(milliseconds)|int|sec|
@@ -644,12 +644,12 @@ The object of the Kubernetes ClusterRole.
 
 #### `kubernetes_cron_jobs`
 
-The obejct of the Kubernetes CronJob.
+The object of the Kubernetes CronJob.
 
 - Tags
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`cron_job_name`|Name must be unique within a namespace.|
 |`name`|UID|
@@ -658,12 +658,12 @@ The obejct of the Kubernetes CronJob.
 - Metrics
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`active_jobs`|The number of pointers to currently running jobs.|int|count|
 |`age`|age (seconds)|int|s|
 |`message`|object details|string|-|
-|`schedule`|The schedule in Cron format, see https://en.wikipedia.org/wiki/Cron|string|-|
+|`schedule`|The schedule in Cron format, see [docs](https://en.wikipedia.org/wiki/Cron){:target="_blank"}|string|-|
 |`suspend`|This flag tells the controller to suspend subsequent executions, it does not apply to already started executions.|bool|-|
 
 
@@ -682,7 +682,7 @@ The object of the Kubernetes Deployment.
 - Tags
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`deployment_name`|Name must be unique within a namespace.|
 |`name`|UID|
@@ -691,7 +691,7 @@ The object of the Kubernetes Deployment.
 - Metrics
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`age`|age (seconds)|int|s|
 |`available`|Total number of available pods (ready for at least minReadySeconds) targeted by this deployment.|int|-|
@@ -731,7 +731,7 @@ The object of the Kubernetes Job.
 - Tags
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`job_name`|Name must be unique within a namespace.|
 |`name`|UID|
@@ -740,7 +740,7 @@ The object of the Kubernetes Job.
 - Metrics
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`active`|The number of actively running pods.|int|count|
 |`active_deadline`|Specifies the duration in seconds relative to the startTime that the job may be active before the system tries to terminate it|int|s|
@@ -768,12 +768,12 @@ The object of the Kubernetes Node.
 - Tags
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`internal_ip`|Node internal IP|
 |`name`|UID|
 |`namespace`|Namespace defines the space within each name must be unique.|
-|`node_ip`|Node IP (depercated)|
+|`node_ip`|Node IP (Deprecated)|
 |`node_name`|Name must be unique within a namespace.|
 |`role`|Node role. (master/node)|
 |`status`|NodePhase is the recently observed lifecycle phase of the node. (Pending/Running/Terminated)|
@@ -781,7 +781,7 @@ The object of the Kubernetes Node.
 - Metrics
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`age`|age (seconds)|int|s|
 |`kubelet_version`|Kubelet Version reported by the node.|string|-|
@@ -803,7 +803,7 @@ The object of the Kubernetes Pod.
 - Tags
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`deployment`|The name of the deployment which the object belongs to. (Probably empty)|
 |`name`|UID|
@@ -813,13 +813,13 @@ The object of the Kubernetes Pod.
 |`pod_name`|Name must be unique within a namespace.|
 |`qos_class`|The Quality of Service (QOS) classification assigned to the pod based on resource requirements|
 |`replica_set`|The name of the replicaSet which the object belongs to. (Probably empty)|
-|`state`|Reason the container is not yet running. (Depercated, use status)|
+|`state`|Reason the container is not yet running. (Deprecated: use status)|
 |`status`|Reason the container is not yet running.|
 
 - Metrics
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`age`|age (seconds)|int|s|
 |`available`|Number of containers|int|count|
@@ -828,7 +828,7 @@ The object of the Kubernetes Pod.
 |`memory_usage_bytes`|The number of memory used in bytes|float|B|
 |`message`|object details|string|-|
 |`ready`|Describes whether the pod is ready to serve requests.|int|count|
-|`restart`|The number of times the container has been restarted. (Depercated, use restarts)|int|count|
+|`restart`|The number of times the container has been restarted. (Deprecated: use restarts)|int|count|
 |`restarts`|The number of times the container has been restarted.|int|count|
 
 
@@ -847,7 +847,7 @@ The object of the Kubernetes ReplicaSet.
 - Tags
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`deployment`|The name of the deployment which the object belongs to.|
 |`name`|UID|
@@ -857,7 +857,7 @@ The object of the Kubernetes ReplicaSet.
 - Metrics
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`age`|age (seconds)|int|s|
 |`available`|The number of available replicas (ready for at least minReadySeconds) for this replica set.|int|-|
@@ -876,7 +876,7 @@ The object of the Kubernetes Service.
 - Tags
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`name`|UID|
 |`namespace`|Namespace defines the space within each name must be unique.|
@@ -886,12 +886,12 @@ The object of the Kubernetes Service.
 - Metrics
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`age`|age (seconds)|int|s|
 |`cluster_ip`|clusterIP is the IP address of the service and is usually assigned randomly by the master.|string|-|
 |`external_ips`|externalIPs is a list of IP addresses for which nodes in the cluster will also accept traffic for this service.|string|-|
-|`external_name`|externalName is the external reference that kubedns or equivalent will return as a CNAME record for this service.|string|-|
+|`external_name`|externalName is the external reference that Kube-DNS or equivalent will return as a CNAME record for this service.|string|-|
 |`external_traffic_policy`|externalTrafficPolicy denotes if this Service desires to route external traffic to node-local or cluster-wide endpoints.|string|-|
 |`message`|object details|string|-|
 |`session_affinity`|Supports "ClientIP" and "None".|string|-|
@@ -916,29 +916,29 @@ The logging of the container.
 - Tags
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`[POD_LABEL]`|The pod labels will be extracted as tags if `extract_k8s_label_as_tags` is enabled.|
 |`container_id`|Container ID|
-|`container_name`|Container name from k8s (label 'io.kubernetes.container.name'). If empty then use $container_runtime_name.|
+|`container_name`|Container name from k8s (label `io.kubernetes.container.name`). If empty then use $container_runtime_name.|
 |`container_runtime_name`|Container name from runtime (like 'docker ps'). If empty then use 'unknown' ([:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)).|
-|`container_type`|The type of the container (this container is created by kubernetes/docker/containerd).|
+|`container_type`|The type of the container (this container is created by Kubernetes/Docker/containerd).|
 |`deployment`|The deployment name of the container's pod (unsupported containerd).|
-|`namespace`|The pod namespace of the container (label 'io.kubernetes.pod.namespace').|
-|`pod_name`|The pod name of the container (label 'io.kubernetes.pod.name').|
+|`namespace`|The pod namespace of the container (label `io.kubernetes.pod.namespace`).|
+|`pod_name`|The pod name of the container (label `io.kubernetes.pod.name`).|
 |`service`|The name of the service, if `service` is empty then use `source`.|
 
 - Metrics
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`log_read_lines`|The lines of the read file ([:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)).|int|count|
 |`log_read_offset`|The offset of the read file ([:octicons-tag-24: Version-1.4.8](changelog.md#cl-1.4.8) · [:octicons-beaker-24: Experimental](index.md#experimental)).|int|-|
 |`log_read_time`|The timestamp of the read file.|s|-|
 |`message`|The text of the logging.|string|-|
 |`message_length`|The length of the message content.|B|count|
-|`status`|The status of the logging, only supported info/emerg/alert/critical/error/warning/debug/OK/unknown.|string|-| 
+|`status`|The status of the logging, only supported `info/emerg/alert/critical/error/warning/debug/OK/unknown`.|string|-| 
 
 
 
@@ -991,7 +991,7 @@ The logging of the Kubernetes Event.
 - Tags
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`kind`|Kind of the referent.|
 |`name`|Name must be unique within a namespace.|
@@ -1004,7 +1004,7 @@ The logging of the Kubernetes Event.
 - Metrics
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`message`|event log details|string|-| 
 
@@ -1099,7 +1099,7 @@ Using Secret in env:
             optional: false
 ```
 
-See [doc](https://kubernetes.io/zh-cn/docs/concepts/configuration/secret/#using-secrets-as-environment-variables).
+See [doc](https://kubernetes.io/zh-cn/docs/concepts/configuration/secret/#using-secrets-as-environment-variables){:target="_blank"}.
 
 ## More Readings {#more-reading}
 
