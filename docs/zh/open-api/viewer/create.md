@@ -37,8 +37,7 @@ curl 'https://openapi.guance.com/api/v1/viewer/add' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"name":"add_viewer","templateInfos":{},"isImport":false,"tagNames":[],"extend":{"index":"tracing"}}' \
---compressed \
---insecure
+--compressed 
 ```
 
 

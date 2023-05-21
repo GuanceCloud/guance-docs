@@ -28,8 +28,7 @@ curl 'https://openapi.guance.com/api/v1/pipeline/export' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"pipelineUUIDs":["pl_820594c9ba5a48fa930952946ca778f1"]}' \
---compressed \
---insecure
+--compressed 
 ```
 
 

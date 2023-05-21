@@ -28,8 +28,7 @@
 ```shell
 curl 'https://openapi.guance.com/api/v1/saml/mapping/field/list' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
---compressed \
---insecure
+--compressed 
 ```
 
 

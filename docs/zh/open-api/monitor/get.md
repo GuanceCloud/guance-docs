@@ -27,8 +27,7 @@
 ```shell
 curl 'https://openapi.guance.com/api/v1/monitor/group/monitor_70a7e8549ea54bbeaeb9e4eaec52bad2/get' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
---compressed \
---insecure
+--compressed 
 ```
 
 

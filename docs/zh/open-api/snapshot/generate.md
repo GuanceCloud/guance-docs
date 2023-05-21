@@ -30,8 +30,7 @@ curl 'https://openapi.guance.com/api/v1/snapshots/create' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"name": "xxx15", "type": "logging", "content": {"routeParams": {"source": "all"}, "routeName": "Log", "routeQuery": {"time": "1642585478000,1642586378999"}}}' \
---compressed \
---insecure
+--compressed 
 ```
 
 

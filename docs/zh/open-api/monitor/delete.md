@@ -29,8 +29,7 @@ curl 'https://openapi.guance.com/api/v1/monitor/group/monitor_70a7e8549ea54bbeae
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw 'null' \
---compressed \
---insecure
+--compressed 
 ```
 
 

@@ -65,8 +65,7 @@ curl 'https://openapi.guance.com/api/v1/checker/rul_0cc7449fdfc5496ba4e687d57d1a
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"extend":{"querylist":[{"datasource":"dataflux","qtype":"dql","query":{"code":"Result","type":"simple","namespace":"metric","dataSource":"conntrack","field":"entries","fieldType":"integer","alias":"","fieldFunc":"avg","groupByTime":"","groupBy":["host"],"q":"M::`conntrack`:(AVG(`entries`)) BY `host`","funcList":[]},"uuid":"253d080f-5d07-48c5-8b8a-13b0b6b3f538"}],"funcName":"","rules":[{"conditionLogic":"and","conditions":[{"alias":"Result","operands":["1200"],"operator":">="}],"status":"critical"}]},"jsonScript":{"title":"触发紧急事件33","message":"","noDataTitle":"","noDataMessage":"","type":"simpleCheck","every":"5m","groupBy":["host"],"interval":300,"targets":[{"dql":"M::`conntrack`:(AVG(`entries`)) BY `host`","alias":"Result"}],"checkerOpt":{"rules":[{"conditionLogic":"and","conditions":[{"alias":"Result","operands":["1200"],"operator":">="}],"status":"critical"}],"infoEvent":false},"recoverNeedPeriodCount":2},"monitorUUID":"monitor_042705ea48124c3aa9ad6e4410b91a07"}' \
---compressed \
---insecure
+--compressed 
 ```
 
 
