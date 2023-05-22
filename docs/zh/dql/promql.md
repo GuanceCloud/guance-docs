@@ -136,7 +136,7 @@ rate(node:network_receive_bytes_total[5m])
 
 如果这看起来太复杂了，那么只需记住更高的 `d` 会平滑图形，而较低的 `d` 会给图形带来更多噪音。
 
-观测云使用了一种 [PromQL 扩展语法 MetricsQL](https://docs.victoriametrics.com/MetricsQL.html) (感谢 [VictoriaMetrics](https://docs.victoriametrics.com/) 开源！)，在此情况下，`[d]` 可以省略在这种情况下，它等于图形上两个连续点之间的持续时间（也称为“步长”）：
+观测云使用了一种 [PromQL 扩展语法 MetricsQL](metricsql.md) (感谢 [VictoriaMetrics](https://docs.victoriametrics.com/) 开源！)，在此情况下，`[d]` 可以省略在这种情况下，它等于图形上两个连续点之间的持续时间（也称为“步长”）：
 
 ```
 rate(node:network_receive_bytes_total)
@@ -292,3 +292,11 @@ PromQL 是一种易于使用但功能强大的时间序列数据库查询语言�
 你可以使用这个 [PromQL 速查表](https://promlabs.com/promql-cheat-sheet/)继续学习 PromQL。   
 
 *本文主体内容翻译自 [PromQL tutorial for beginners and humans](https://valyala.medium.com/promql-tutorial-for-beginners-9ab455142085) ，观测云也正在使用 [VictoriaMetrics](https://github.com/VictoriaMetrics/VictoriaMetrics) 开源的 [MetricsQL](https://docs.victoriametrics.com/MetricsQL.html) 引擎的实现，再次感谢 VictoriaMetrics ！*
+
+## 更多阅读
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **MetricsQL 语法参考**</font>](./metricsql.md)
+
+</div>
