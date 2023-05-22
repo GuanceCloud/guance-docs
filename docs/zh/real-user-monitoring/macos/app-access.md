@@ -105,12 +105,18 @@ int main(int argc, const char * argv[]) {
 #### env 环境
 
 ```objectivec
+/// 环境字段。属性值：prod/gray/pre/common/local。
 typedef NS_ENUM(NSInteger, FTEnv) {
-    FTEnvProd         = 0, //线上环境
-    FTEnvGray,             //灰度环境
-    FTEnvPre,              //预发布环境
-    FTEnvCommon,           //日常环境
-    FTEnvLocal,            //本地环境
+    /// 线上环境
+    FTEnvProd         = 0,
+    /// 灰度环境
+    FTEnvGray,
+    /// 预发布环境
+    FTEnvPre,
+    /// 日常环境
+    FTEnvCommon,
+    /// 本地环境
+    FTEnvLocal,
 };
 
 @property (nonatomic, assign) FTEnv env;
@@ -167,28 +173,23 @@ typedef NS_OPTIONS(NSUInteger, FTErrorMonitorType) {
 配置 `FTRumConfig` 的 `deviceMetricsMonitorType` 属性，将在采集的  **View** 数据中添加对应监控项信息，同时可配置 `monitorFrequency` 来设置监控采样周期。可采集的类型与采样周期如下：
 
 ```objective-c
-/**
- * 监控项
- * @constant
- *  FTDeviceMetricsMonitorMemory   - 平均内存、最高内存
- *  FTDeviceMetricsMonitorCpu      - CPU跳动最大、平均数
- */
+/// 设备信息监控项
 typedef NS_OPTIONS(NSUInteger, FTDeviceMetricsMonitorType){
+    /// 开启所有监控项:内存、CPU
     FTDeviceMetricsMonitorAll      = 0xFFFFFFFF,
-    FTDeviceMetricsMonitorCpu      = 1 << 1,
+    /// 平均内存、最高内存
     FTDeviceMetricsMonitorMemory   = 1 << 2,
+    /// CPU 跳动最大、平均数
+    FTDeviceMetricsMonitorCpu      = 1 << 3,
 };
 
-/**
- * 监控项采样周期
- * @constant
- *  FTMonitorFrequencyDefault   - 500ms (默认)
- *  FTMonitorFrequencyFrequent  - 100ms
- *  FTMonitorFrequencyRare      - 1000ms
- */
-typedef NS_OPTIONS(NSUInteger, FTMonitorFrequency) {
+/// 监控项采样周期
+typedef NS_ENUM(NSUInteger, FTMonitorFrequency) {
+    /// 500ms (默认)
     FTMonitorFrequencyDefault,
+    /// 100ms
     FTMonitorFrequencyFrequent,
+    /// 1000ms
     FTMonitorFrequencyRare,
 };
 ```
@@ -220,13 +221,14 @@ typedef NS_OPTIONS(NSUInteger, FTMonitorFrequency) {
 **上传机制** : 日志数据采集后会存储到本地数据库中，等待时机进行上传。数据库存储日志数据的量限制在 5000 条，如果网络异常等原因导致数据堆积，存储 5000 条后，会根据您设置的废弃策略丢弃数据。
 
 ```objectivec
+/// 日志废弃策略
 typedef NS_ENUM(NSInteger, FTLogCacheDiscard)  {
-    FTDiscard,        //默认，当日志数据数量大于最大值（5000）时，新数据不进行写入
-    FTDiscardOldest   //当日志数据数量大于最大值时,废弃旧数据
+    /// 默认，当日志数据数量大于最大值（5000）时，新数据不进行写入
+    FTDiscard,
+    /// 当日志数据大于最大值时,废弃旧数据
+    FTDiscardOldest
 };
-/**
- * 设置日志废弃策略
- */
+/// 日志废弃策略
 @property (nonatomic, assign) FTLogCacheDiscard  discardType;
 ```
 
@@ -237,18 +239,14 @@ typedef NS_ENUM(NSInteger, FTLogCacheDiscard)  {
 - 开启采集控制台日志
 
 ```objectivec
-/**
- * 设置是否需要采集控制台日志，默认为 NO
- */
- @property (nonatomic, assign) BOOL enableConsoleLog;
+/// 是否需要采集控制台日志 默认为 NO
+@property (nonatomic, assign) BOOL enableConsoleLog;
 ```
 
 - 设置采集控制台日志的过滤条件
 
 ```objectivec
-/**
- * 设置过滤字符串，包含该字符串的控制台日志会被采集，默认为全采集
- */
+/// 采集控制台日志过滤字符串 包含该字符串控制台日志会被采集 默认为全采集
 @property (nonatomic, copy) NSString *prefix;
 ```
 
@@ -273,25 +271,19 @@ typedef NS_ENUM(NSInteger, FTLogCacheDiscard)  {
 #### 链路追踪类型
 
 ```objectivec
-/**
- * @enum
- * 网络链路追踪使用类型
- *
- * @constant
- *  FTNetworkTraceTypeDDtrace       - datadog trace
- *  FTNetworkTraceTypeZipkinMultiHeader   - zipkin multi header
- *  FTNetworkTraceTypeZipkinSingleHeader  - zipkin single header
- *  FTNetworkTraceTypeTraceparent         - w3c traceparent
- *  FTNetworkTraceTypeSkywalking    - skywalking 8.0+
- *  FTNetworkTraceTypeJaeger        - jaeger
- */
-
+/// 网络链路追踪使用类型
 typedef NS_ENUM(NSInteger, FTNetworkTraceType) {
+    /// datadog trace
     FTNetworkTraceTypeDDtrace,
+    /// zipkin multi header
     FTNetworkTraceTypeZipkinMultiHeader,
+    /// zipkin single header
     FTNetworkTraceTypeZipkinSingleHeader,
+    /// w3c traceparent
     FTNetworkTraceTypeTraceparent,
+    /// skywalking 8.0+
     FTNetworkTraceTypeSkywalking,
+    /// jaeger
     FTNetworkTraceTypeJaeger,
 };
 ```
@@ -316,31 +308,27 @@ typedef NS_ENUM(NSInteger, FTNetworkTraceType) {
 ```
 
 ```objectivec
-/**
- * 创建页面 需要在 -startView 与 -stopView 方法前使用 
- * @param viewName     页面名称
- * @param loadTime     页面加载时间
- */
+/// 创建页面
+///
+/// 在 `-startViewWithName` 方法前调用，该方法用于记录页面的加载时间，如果无法获得加载时间该方法可以不调用。
+/// - Parameters:
+///   - viewName: 页面名称
+///   - loadTime: 页面加载时间
 -(void)onCreateView:(NSString *)viewName loadTime:(NSNumber *)loadTime;
-/**
- * 进入页面 viewId 内部管理
- * @param viewName        页面名称
- */
+/// 进入页面
+///
+/// - Parameters:
+///   - viewName: 页面名称
 -(void)startViewWithName:(NSString *)viewName;
-/**
- * 进入页面
- * @param viewName  页面名称
- * @param property   事件属性(可选)
- */
+/// 进入页面
+/// - Parameters:
+///   - viewName: 页面名称
+///   - property: 事件自定义属性(可选)
 -(void)startViewWithName:(NSString *)viewName property:(nullable NSDictionary *)property;
-/**
- * 离开页面
- */
+/// 离开页面
 -(void)stopView;
-/**
- * 离开页面
- * @param property  事件属性(可选)
- */
+/// 离开页面
+/// - Parameter property: 事件自定义属性(可选)
 -(void)stopViewWithProperty:(nullable NSDictionary *)property;
 ```
 
@@ -351,18 +339,17 @@ typedef NS_ENUM(NSInteger, FTNetworkTraceType) {
 ```
 
 ```objectivec
-/**
- * 添加  Action 事件
- * @param actionName 事件名称
- * @param actionType 事件类型
- */
+/// 添加 Action 事件
+///
+/// - Parameters:
+///   - actionName: 事件名称
+///   - actionType: 事件类型
 - (void)addActionName:(NSString *)actionName actionType:(NSString *)actionType;
-/**
- * 添加  Action 事件
- * @param actionName 事件名称
- * @param actionType 事件类型
- * @param property   事件属性(可选)
- */
+/// 添加 Action 事件
+/// - Parameters:
+///   - actionName: 事件名称
+///   - actionType: 事件类型
+///   - property: 事件自定义属性(可选)
 - (void)addActionName:(NSString *)actionName actionType:(NSString *)actionType property:(nullable NSDictionary *)property;
 ```
 
@@ -373,20 +360,19 @@ typedef NS_ENUM(NSInteger, FTNetworkTraceType) {
 ```
 
 ```objectivec
-/**
- * 添加 Error 事件
- * @param type       error 类型
- * @param message    错误信息
- * @param stack      堆栈信息
- */
+/// 添加 Error 事件
+///
+/// - Parameters:
+///   - type: error 类型
+///   - message: 错误信息
+///   - stack: 堆栈信息
 - (void)addErrorWithType:(NSString *)type message:(NSString *)message stack:(NSString *)stack;
-/**
- * 添加 Error 事件
- * @param type       error 类型
- * @param message    错误信息
- * @param stack      堆栈信息
- * @param property   事件属性(可选)
- */
+/// 添加 Error 事件
+/// - Parameters:
+///   - type: error 类型
+///   - message: 错误信息
+///   - stack: 堆栈信息
+///   - property: 事件自定义属性(可选)
 - (void)addErrorWithType:(NSString *)type message:(NSString *)message stack:(NSString *)stack property:(nullable NSDictionary *)property;
 ```
 
@@ -397,18 +383,17 @@ typedef NS_ENUM(NSInteger, FTNetworkTraceType) {
 ```
 
 ```objectivec
-/**
- * 添加 卡顿 事件
- * @param stack      卡顿堆栈
- * @param duration   卡顿时长
- */
+/// 添加 卡顿 事件
+///
+/// - Parameters:
+///   - stack: 卡顿堆栈
+///   - duration: 卡顿时长（纳秒）
 - (void)addLongTaskWithStack:(NSString *)stack duration:(NSNumber *)duration;
-/**
- * 添加 卡顿 事件
- * @param stack      卡顿堆栈
- * @param duration   卡顿时长
- * @param property   事件属性(可选)
- */
+/// 添加 卡顿 事件
+/// - Parameters:
+///   - stack: 卡顿堆栈
+///   - duration: 卡顿时长（纳秒）
+///   - property: 事件自定义属性(可选)
 - (void)addLongTaskWithStack:(NSString *)stack duration:(NSNumber *)duration property:(nullable NSDictionary *)property;
 ```
 
@@ -455,34 +440,32 @@ typedef NS_ENUM(NSInteger, FTNetworkTraceType) {
 ```
 
 ```objectivec
-/**
- * 请求开始
- * @param key       请求标识
- */
+/// HTTP 请求开始
+///
+/// - Parameters:
+///   - key: 请求标识
 - (void)startResourceWithKey:(NSString *)key;
-/**
- * 请求开始
- * @param key       请求标识
- * @param property  事件属性(可选)
- */
+/// HTTP 请求开始
+/// - Parameters:
+///   - key: 请求标识
+///   - property: 事件自定义属性(可选)
 - (void)startResourceWithKey:(NSString *)key property:(nullable NSDictionary *)property;
-/**
- * 请求结束
- * @param key       请求标识
- */
+/// HTTP 请求结束
+///
+/// - Parameters:
+///   - key: 请求标识
 - (void)stopResourceWithKey:(NSString *)key;
-/**
- * 请求结束
- * @param key       请求标识
- * @param property  事件属性(可选)
- */
+/// HTTP 请求结束
+/// - Parameters:
+///   - key: 请求标识
+///   - property: 事件自定义属性(可选)
 - (void)stopResourceWithKey:(NSString *)key property:(nullable NSDictionary *)property;
-/**
- * 请求数据添加
- * @param key       请求标识
- * @param metrics   请求相关性能属性
- * @param content   请求相关数据
- */
+/// HTTP 请求数据
+///
+/// - Parameters:
+///   - key: 请求标识
+///   - metrics: 请求相关性能属性
+///   - content: 请求相关数据
 - (void)addResourceWithKey:(NSString *)key metrics:(nullable FTResourceMetricsModel *)metrics content:(FTResourceContentModel *)content;
 ```
 
@@ -500,10 +483,8 @@ typedef NS_ENUM(NSInteger, FTNetworkTraceType) {
 ```objective-c
 //  FTSDKAgent.h
 //  
-/**
- * @abstract
- * 判断 URL 是否采集
- */
+/// 自动埋点功能中，过滤不需要进行采集的地址，一般用于排除非业务相关的一些请求
+/// - Parameter handler: 判断是否采集回调，返回 YES 采集， NO 过滤掉
 - (void)isIntakeUrl:(BOOL(^)(NSURL *url))handler;
 ```
 
@@ -514,11 +495,17 @@ typedef NS_ENUM(NSInteger, FTNetworkTraceType) {
 ```
 
 ```objectivec
+///事件等级和状态，默认：FTStatusInfo
 typedef NS_ENUM(NSInteger, FTLogStatus) {
+    /// 提示
     FTStatusInfo         = 0,
+    /// 警告
     FTStatusWarning,
+    /// 错误
     FTStatusError,
+    /// 严重
     FTStatusCritical,
+    /// 恢复
     FTStatusOk,
 };
 /// 日志上报
@@ -559,30 +546,32 @@ typedef NS_ENUM(NSInteger, FTLogStatus) {
 
 ```objectivec
 // FTTraceManager.h
-/**
- * 获取 trace 请求头
- * @param key 请求标识
- */
+
+/// 获取 trace 的请求头参数
+/// - Parameters:
+///   - key: 能够确定某一请求的唯一标识
+///   - url: 请求 URL
+/// - Returns: trace 的请求头参数字典
 - (NSDictionary *)getTraceHeaderWithKey:(NSString *)key url:(NSURL *)url;
 ```
 
 ## 用户的绑定与注销
 
 ```objectivec
-/**
- * 绑定用户信息
- * @param Id        用户Id
- * @param userName  用户名称
- * @param userEmail 用户邮箱
- * @param extra     用户的额外信息
-*/
+/// 绑定用户信息
+///
+/// - Parameters:
+///   - Id:  用户Id
+///   - userName: 用户名称
+///   - userEmail: 用户邮箱
+///   - extra: 用户的额外信息
 [[FTSDKAgent sharedInstance] bindUserWithUserID:USERID];
 //or
 [[FTSDKAgent sharedInstance] bindUserWithUserID:USERID userName:USERNAME userEmail:USEREMAIL];
 //or
 [[FTSDKAgent sharedInstance] bindUserWithUserID:USERID userName:USERNAME userEmail:USEREMAIL extra:@{EXTRA_KEY:EXTRA_VALUE}];
 
-//解绑用户
+///解绑用户
 [[FTSDKAgent sharedInstance] unbindUser];
 ```
 
