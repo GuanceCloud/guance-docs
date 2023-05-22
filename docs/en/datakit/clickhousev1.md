@@ -151,14 +151,14 @@ For all the following data collections, a global tag named `host` is appended by
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|host name|
 
 - field list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`AsynchronousMetricsCalculationTimeSpent`|TODO|int|count|
 |`BlockActiveTimePerOp_dm_1`|TODO|int|count|
@@ -374,14 +374,14 @@ For all the following data collections, a global tag named `host` is appended by
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|host name|
 
 - field list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`ActiveAsyncDrainedConnections`|Number of active connections drained asynchronously.|int|count|
 |`ActiveSyncDrainedConnections`|Number of active connections drained synchronously.|int|count|
@@ -389,12 +389,12 @@ For all the following data collections, a global tag named `host` is appended by
 |`AsynchronousReadWait`|Number of threads waiting for asynchronous read.|int|count|
 |`BackgroundBufferFlushSchedulePoolTask`|Number of active tasks in BackgroundBufferFlushSchedulePool. This pool is used for periodic Buffer flushes|int|count|
 |`BackgroundCommonPoolTask`|Number of active tasks in an associated background pool|int|count|
-|`BackgroundDistributedSchedulePoolTask`|Number of active tasks in BackgroundDistributedSchedulePool. |int|count|
+|`BackgroundDistributedSchedulePoolTask`|Number of active tasks in BackgroundDistributedSchedulePool.|int|count|
 |`BackgroundFetchesPoolTask`|Number of active fetches in an associated background pool|int|count|
 |`BackgroundMergesAndMutationsPoolTask`|Number of active merges and mutations in an associated background pool|int|count|
 |`BackgroundMessageBrokerSchedulePoolTask`|Number of active tasks in BackgroundProcessingPool for message streaming|int|count|
 |`BackgroundMovePoolTask`|Number of active tasks in BackgroundProcessingPool for moves|int|count|
-|`BackgroundSchedulePoolTask`|Number of active tasks in BackgroundSchedulePool. |int|count|
+|`BackgroundSchedulePoolTask`|Number of active tasks in BackgroundSchedulePool.|int|count|
 |`BrokenDistributedFilesToInsert`|Number of files for asynchronous insertion into Distributed tables that has been marked as broken.|int|count|
 |`CacheDictionaryUpdateQueueBatches`|Number of 'batches' (a set of keys) in update queue in CacheDictionaries.|int|count|
 |`CacheDictionaryUpdateQueueKeys`|Exact number of keys in update queue in CacheDictionaries.|int|count|
@@ -426,7 +426,7 @@ For all the following data collections, a global tag named `host` is appended by
 |`PartsCommitted`|Active data part, used by current and upcoming SELECTs.|int|count|
 |`PartsCompact`|Compact parts.|int|count|
 |`PartsDeleteOnDestroy`|Part was moved to another disk and should be deleted in own destructor.|int|count|
-|`PartsDeleting`|Not active data part with identity refcounter, it is deleting right now by a cleaner.|int|count|
+|`PartsDeleting`|Not active data part with identity *refcounter*, it is deleting right now by a cleaner.|int|count|
 |`PartsInMemory`|In-memory parts.|int|count|
 |`PartsOutdated`|Not active data part, but could be used by only current SELECTs, could be deleted after SELECTs finishes.|int|count|
 |`PartsPreCommitted`|The part is in data_parts, but not used for SELECTs.|int|count|
@@ -440,13 +440,13 @@ For all the following data collections, a global tag named `host` is appended by
 |`RWLockActiveWriters`|Number of threads holding write lock in a table RWLock.|int|count|
 |`RWLockWaitingReaders`|Number of threads waiting for read on a table RWLock.|int|count|
 |`RWLockWaitingWriters`|Number of threads waiting for write on a table RWLock.|int|count|
-|`Read`|Number of read (read, pread, io_getevents, etc.) syscalls in fly|int|count|
+|`Read`|Number of read (`read/pread/io_getevents` etc.) syscall in fly|int|count|
 |`ReadonlyReplica`|Number of Replicated tables that are currently in readonly state due to re-initialization after ZooKeeper session loss or due to startup without ZooKeeper configured.|int|count|
 |`ReplicatedChecks`|Number of data parts checking for consistency|int|count|
 |`ReplicatedFetch`|Number of data parts being fetched from replica|int|count|
 |`ReplicatedSend`|Number of data parts being sent to replicas|int|count|
 |`Revision Revision`|of the server. It is a number incremented for every release or release candidate except patch releases.|int|count|
-|`SendExternalTables`|Number of connections that are sending data for external tables to remote servers. |int|count|
+|`SendExternalTables`|Number of connections that are sending data for external tables to remote servers.|int|count|
 |`SendScalars`|Number of connections that are sending data for scalars to remote servers.|int|count|
 |`StorageBufferBytes`|Number of bytes in buffers of Buffer tables|int|count|
 |`StorageBufferRows`|Number of rows in buffers of Buffer tables|int|count|
@@ -454,7 +454,7 @@ For all the following data collections, a global tag named `host` is appended by
 |`TCPConnection`|Number of connections to TCP server (clients with native interface), also included server-server distributed query connections|int|count|
 |`TablesToDropQueueSize`|Number of dropped tables, that are waiting for background data removal.|int|count|
 |`VersionInteger`|Version of the server in a single integer number in base-1000. For example, version 11.22.33 is translated to 11022033.|int|count|
-|`Write`|Number of write (write, pwrite, io_getevents, etc.) syscalls in fly|int|count|
+|`Write`|Number of write (`write/pwrite/io_getevents`, etc.) syscall in fly|int|count|
 |`ZooKeeperRequest`|Number of requests to ZooKeeper in fly.|int|count|
 |`ZooKeeperSession`|Number of sessions (connections) to ZooKeeper.|int|count|
 |`ZooKeeperWatch`|Number of watches (event subscriptions) in ZooKeeper.|int|count| 
@@ -470,14 +470,14 @@ For all the following data collections, a global tag named `host` is appended by
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|host name|
 
 - field list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`AIORead`|Number of reads with Linux or FreeBSD AIO interface|int|count|
 |`AIOReadBytes`|Number of bytes read with Linux or FreeBSD AIO interface|int|count|
@@ -486,7 +486,7 @@ For all the following data collections, a global tag named `host` is appended by
 |`ArenaAllocBytes`|TODO|int|count|
 |`ArenaAllocChunks`|TODO|int|count|
 |`AsynchronousReadWaitMicroseconds`|Time spent in waiting for asynchronous reads.|int|count|
-|`CannotRemoveEphemeralNode`|Number of times an error happened while trying to remove ephemeral node. |int|count|
+|`CannotRemoveEphemeralNode`|Number of times an error happened while trying to remove ephemeral node.|int|count|
 |`CannotWriteToWriteBufferDiscard`|Number of stack traces dropped by query profiler or signal handler because pipe is full or cannot write to pipe.|int|count|
 |`CompileExpressionsBytes`|Number of bytes used for expressions compilation.|int|count|
 |`CompileExpressionsMicroseconds`|Total time spent for compilation of expressions to LLVM code.|int|count|
@@ -538,7 +538,7 @@ For all the following data collections, a global tag named `host` is appended by
 |`FailedInsertQuery`|Same as FailedQuery, but only for INSERT queries|int|count|
 |`FailedQuery`|Number of failed queries.|int|count|
 |`FailedSelectQuery`|Same as FailedQuery, but only for SELECT queries|int|count|
-|`FileOpen `|Number of files opened|int|count|
+|`FileOpen`|Number of files opened|int|count|
 |`FunctionExecute`|TODO|int|count|
 |`HardPageFaults`|TODO|int|count|
 |`HedgedRequestsChangeReplica`|Total count when timeout for changing replica expired in hedged requests.|int|count|
@@ -574,17 +574,17 @@ For all the following data collections, a global tag named `host` is appended by
 |`OSCPUVirtualTimeMicroseconds`|CPU time spent seen by OS. Does not include involuntary waits due to virtualization.|int|count|
 |`OSCPUWaitMicroseconds`|Total time a thread was ready for execution but waiting to be scheduled by OS, from the OS point of view.|int|count|
 |`OSIOWaitMicroseconds`|Total time a thread spent waiting for a result of IO operation, from the OS point of view. This is real IO that doesn't include page cache.|int|count|
-|`OSReadBytes`|Number of bytes read from disks or block devices. Doesn't include bytes read from page cache. |int|count|
+|`OSReadBytes`|Number of bytes read from disks or block devices. Doesn't include bytes read from page cache.|int|count|
 |`OSReadChars`|Number of bytes read from filesystem, including page cache.|int|count|
-|`OSWriteBytes`|Number of bytes written to disks or block devices. Doesn't include bytes that are in page cache dirty pages. |int|count|
+|`OSWriteBytes`|Number of bytes written to disks or block devices. Doesn't include bytes that are in page cache dirty pages.|int|count|
 |`OSWriteChars`|Number of bytes written to filesystem, including page cache.|int|count|
 |`ObsoleteReplicatedParts`|TODO|int|count|
 |`PerfAlignmentFaults`|Number of alignment faults. These happen when unaligned memory accesses happen; the kernel can handle these but it reduces performance.|int|count|
 |`PerfBranchInstructions`|Retired branch instructions. Prior to Linux 2.6.35, this used the wrong event on AMD processors.|int|count|
-|`PerfBranchMisses`|Mispredicted branch instructions.|int|count|
+|`PerfBranchMisses`|Mis-predicted branch instructions.|int|count|
 |`PerfBusCycles`|Bus cycles, which can be different from total cycles.|int|count|
 |`PerfCacheMisses`|Cache misses. Usually this indicates Last Level Cache misses.|int|count|
-|`PerfCacheReferences`|Cache accesses. Usually this indicates Last Level Cache accesses but this may vary depending on your CPU. |int|count|
+|`PerfCacheReferences`|Cache accesses. Usually this indicates Last Level Cache accesses but this may vary depending on your CPU.|int|count|
 |`PerfContextSwitches`|Number of context switches|int|count|
 |`PerfCpuClock`|The CPU clock, a high-resolution per-CPU timer|int|count|
 |`PerfCpuCycles`|Total cycles. Be wary of what happens during CPU frequency scaling.|int|count|
@@ -616,24 +616,24 @@ For all the following data collections, a global tag named `host` is appended by
 |`RWLockReadersWaitMilliseconds`|TODO|int|count|
 |`RWLockWritersWaitMilliseconds`|TODO|int|count|
 |`ReadBackoff`|Number of times the number of query processing threads was lowered due to slow reads.|int|count|
-|`ReadBufferFromFileDescriptorRead`|Number of reads (read/pread) from a file descriptor. Does not include sockets.|int|count|
-|`ReadBufferFromFileDescriptorReadBytes `|Number of bytes read from file descriptors. If the file is compressed, this will show the compressed data size.|int|count|
-|`ReadBufferFromFileDescriptorReadFailed `|Number of times the read (read/pread) from a file descriptor have failed.|int|count|
+|`ReadBufferFromFileDescriptorRead`|Number of reads (`read/pread`) from a file descriptor. Does not include sockets.|int|count|
+|`ReadBufferFromFileDescriptorReadBytes`|Number of bytes read from file descriptors. If the file is compressed, this will show the compressed data size.|int|count|
+|`ReadBufferFromFileDescriptorReadFailed`|Number of times the read (`read/pread`) from a file descriptor have failed.|int|count|
 |`ReadCompressedBytes`|Number of bytes (the number of bytes before decompression) read from compressed sources (files, network).|int|count|
 |`RealTimeMicroseconds`|Total (wall clock) time spent in processing (queries and other tasks) threads (not that this is a sum).|int|count|
 |`RegexpCreated`|Compiled regular expressions. Identical regular expressions compiled just once and cached forever.|int|count|
 |`RejectedInserts`|Number of times the INSERT of a block to a MergeTree table was rejected with 'Too many parts' exception due to high number of active data parts for partition.|int|count|
 |`RemoteFSBuffers`|Number of buffers created for asynchronous reading from remote filesystem|int|count|
-|`RemoteFSCancelledPrefetches`|Number of canceled prefecthes (because of seek)|int|count|
-|`RemoteFSPrefetchedReads`|Number of reads from prefecthed buffer|int|count|
+|`RemoteFSCancelledPrefetches`|Number of canceled prefetch (because of seek)|int|count|
+|`RemoteFSPrefetchedReads`|Number of reads from prefetched buffer|int|count|
 |`RemoteFSPrefetches`|Number of prefetches made with asynchronous reading from remote filesystem|int|count|
 |`RemoteFSReadBytes`|Read bytes from remote filesystem.|int|count|
 |`RemoteFSReadMicroseconds`|Time of reading from remote filesystem.|int|count|
 |`RemoteFSSeeks`|Total number of seeks for async buffer|int|count|
-|`RemoteFSUnprefetchedReads`|Number of reads from unprefetched buffer|int|count|
+|`RemoteFSUnprefetchedReads`|Number of reads from un-prefetched buffer|int|count|
 |`RemoteFSUnusedPrefetches`|Number of prefetches pending at buffer destruction|int|count|
-|`ReplicaPartialShutdown`|How many times Replicated table has to deinitialize its state due to session expiration in ZooKeeper. |int|count|
-|`ReplicatedDataLoss`|Number of times a data part that we wanted doesn't exist on any replica (even on replicas that are offline right now). |int|count|
+|`ReplicaPartialShutdown`|How many times Replicated table has to de-initialize its state due to session expiration in ZooKeeper.|int|count|
+|`ReplicatedDataLoss`|Number of times a data part that we wanted doesn't exist on any replica (even on replicas that are offline right now).|int|count|
 |`ReplicatedPartChecks`|TODO|int|count|
 |`ReplicatedPartChecksFailed`|TODO|int|count|
 |`ReplicatedPartFailedFetches`|Number of times a data part was failed to download from replica of a ReplicatedMergeTree table.|int|count|
@@ -653,7 +653,7 @@ For all the following data collections, a global tag named `host` is appended by
 |`S3WriteRequestsErrors`|Number of non-throttling errors in POST, DELETE, PUT and PATCH requests to S3 storage.|int|count|
 |`S3WriteRequestsRedirects`|Number of redirects in POST, DELETE, PUT and PATCH requests to S3 storage.|int|count|
 |`S3WriteRequestsThrottling`|Number of 429 and 503 errors in POST, DELETE, PUT and PATCH requests to S3 storage.|int|count|
-|`Seek `|Number of times the 'lseek' function was called.|int|count|
+|`Seek`|Number of times the `lseek` function was called.|int|count|
 |`SelectQuery`|Same as Query, but only for SELECT queries.|int|count|
 |`SelectQueryTimeMicroseconds`|Total time of SELECT queries.|int|count|
 |`SelectedBytes`|Number of bytes (uncompressed; for columns as they stored in memory) SELECTed from all tables.|int|count|
@@ -676,7 +676,7 @@ For all the following data collections, a global tag named `host` is appended by
 |`StorageBufferPassedRowsMaxThreshold`|TODO|int|count|
 |`StorageBufferPassedTimeFlushThreshold`|TODO|int|count|
 |`StorageBufferPassedTimeMaxThreshold`|TODO|int|count|
-|`SystemTimeMicroseconds`|Total time spent in processing (queries and other tasks) threads executing CPU instructions in OS kernel space. |int|count|
+|`SystemTimeMicroseconds`|Total time spent in processing (queries and other tasks) threads executing CPU instructions in OS kernel space.|int|count|
 |`TableFunctionExecute`|TODO|int|count|
 |`ThreadPoolReaderPageCacheHit`|Number of times the read inside ThreadPoolReader was done from page cache.|int|count|
 |`ThreadPoolReaderPageCacheHitBytes`|Number of bytes read inside ThreadPoolReader when it was done from page cache.|int|count|
@@ -685,11 +685,11 @@ For all the following data collections, a global tag named `host` is appended by
 |`ThreadPoolReaderPageCacheMissBytes`|Number of bytes read inside ThreadPoolReader when read was not done from page cache and was hand off to thread pool.|int|count|
 |`ThreadPoolReaderPageCacheMissElapsedMicroseconds`|Time spent reading data inside the asynchronous job in ThreadPoolReader - when read was not done from page cache.|int|count|
 |`ThrottlerSleepMicroseconds`|Total time a query was sleeping to conform the 'max_network_bandwidth' setting.|int|count|
-|`UserTimeMicroseconds`|Total time spent in processing (queries and other tasks) threads executing CPU instructions in user space. |int|count|
+|`UserTimeMicroseconds`|Total time spent in processing (queries and other tasks) threads executing CPU instructions in user space.|int|count|
 |`VoluntaryContextSwitches`|TODO|int|count|
-|`WriteBufferFromFileDescriptorWrite `|Number of writes (write/pwrite) to a file descriptor. Does not include sockets|int|count|
+|`WriteBufferFromFileDescriptorWrite`|Number of writes (`write/pwrite`) to a file descriptor. Does not include sockets|int|count|
 |`WriteBufferFromFileDescriptorWriteBytes`|Number of bytes written to file descriptors. If the file is compressed, this will show compressed data size.|int|count|
-|`WriteBufferFromFileDescriptorWriteFailed `|Number of times the write (write/pwrite) to a file descriptor have failed.|int|count|
+|`WriteBufferFromFileDescriptorWriteFailed`|Number of times the write (`write/pwrite`) to a file descriptor have failed.|int|count|
 |`ZooKeeperBytesReceived`|TODO|int|count|
 |`ZooKeeperBytesSent`|TODO|int|count|
 |`ZooKeeperCheck`|TODO|int|count|
@@ -720,14 +720,14 @@ For all the following data collections, a global tag named `host` is appended by
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|host name|
 
 - field list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`DictionaryStatus`|Dictionary Status.|int|count| 
 

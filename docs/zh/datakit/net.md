@@ -1,5 +1,6 @@
 
 # Net
+
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
@@ -14,6 +15,7 @@ net 采集器用于采集主机网络信息，如各网络接口的流量信息�
 
 ## 配置 {#config}
 
+<!-- markdownlint-disable MD046 -->
 === "主机安装"
 
     进入 DataKit 安装目录下的 `conf.d/host` 目录，复制 `net.conf.sample` 并命名为 `net.conf`。示例如下：
@@ -59,26 +61,27 @@ net 采集器用于采集主机网络信息，如各网络接口的流量信息�
     | `ENV_INPUT_NET_TAGS`                      | `tags`                      | `tag1=value1,tag2=value2` 如果配置文件中有同名 tag，会覆盖它 |
     | `ENV_INPUT_NET_INTERVAL`                  | `interval`                  | `10s`                                                        |
     | `ENV_INPUT_NET_INTERFACES`                | `interfaces`                | `'''eth[\w-]+''', '''lo'''` 以英文逗号隔开                   |
+<!-- markdownlint-enable -->
 
 ## 指标集 {#measurements}
 
 以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.net.tags]` 指定其它标签：
 
 ``` toml
- [inputs.net.tags]
-  # some_tag = "some_value"
-  # more_tag = "some_other_value"
-  # ...
+[inputs.net.tags]
+ # some_tag = "some_value"
+ # more_tag = "some_other_value"
+ # ...
 ```
 
 
 
 ### `net`
 
--  标签
+- 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|System hostname.|
 |`interface`|Network interface name.|
@@ -86,7 +89,7 @@ net 采集器用于采集主机网络信息，如各网络接口的流量信息�
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`bytes_recv`|The number of bytes received by the interface.|int|B|
 |`bytes_recv/sec`|The number of bytes received by the interface per second.|int|B/S|
@@ -113,18 +116,18 @@ net 采集器用于采集主机网络信息，如各网络接口的流量信息�
 |`tcp_outsegs`|The number of packets sent by the TCP layer.|int|count|
 |`tcp_outsegs/sec`|The number of packets sent by the TCP layer per second.|int|count|
 |`tcp_passiveopens`|It means the TCP layer receives a SYN, replies a SYN+ACK, come into the SYN-RCVD state.|int|count|
-|`tcp_retranssegs`|The total number of segments retransmitted - that is, the number of TCP segments transmitted containing one or more previously transmittedoctets.|int|count|
+|`tcp_retranssegs`|The total number of segments re-transmitted - that is, the number of TCP segments transmitted containing one or more previously transmitted octets.|int|count|
 |`tcp_rtoalgorithm`|The algorithm used to determine the timeout value used for retransmitting unacknowledged octets.|int|count|
 |`tcp_rtomax`|The maximum value permitted by a TCP implementation for the retransmission timeout, measured in milliseconds.|int|ms|
 |`tcp_rtomin`|The minimum value permitted by a TCP implementation for the retransmission timeout, measured in milliseconds.|int|ms|
-|`udp_ignoredmulti`|IgnoredMulti.|int|count|
-|`udp_incsumerrors`|The number of incoming UDP datagrams in checksum error.s|int|count|
-|`udp_indatagrams`|The number of UDP datagrams delivered to UDP users.|int|count|
-|`udp_indatagrams/sec`|The number of UDP datagrams delivered to UDP users per second.|int|count|
+|`udp_ignoredmulti`|TODO|int|count|
+|`udp_incsumerrors`|The number of incoming UDP datagram in checksum error.s|int|count|
+|`udp_indatagrams`|The number of UDP datagram delivered to UDP users.|int|count|
+|`udp_indatagrams/sec`|The number of UDP datagram delivered to UDP users per second.|int|count|
 |`udp_inerrors`|The number of packet receive errors.|int|count|
 |`udp_noports`|The number of packets to unknown port received.|int|count|
-|`udp_outdatagrams`|The number of UDP datagrams sent from this entity.|int|count|
-|`udp_outdatagrams/sec`|The number of UDP datagrams sent from this entity per second.|int|count|
+|`udp_outdatagrams`|The number of UDP datagram sent from this entity.|int|count|
+|`udp_outdatagrams/sec`|The number of UDP datagram sent from this entity per second.|int|count|
 |`udp_rcvbuferrors`|The number of receive buffer errors.|int|count|
 |`udp_sndbuferrors`|The number of send buffer errors.|int|count|
 

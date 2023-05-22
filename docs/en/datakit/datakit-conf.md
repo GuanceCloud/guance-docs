@@ -17,7 +17,7 @@ The DataKit master configuration is used to configure the running behavior of th
 
 ## Datakit Main Configure Sample {#maincfg-example}
 
-Datakit main configure is *datakit.conf*, here is the exmaple sample(1.6.0):
+Datakit main configure is *datakit.conf*, here is the exmaple sample(1.7.0):
 
 ??? info "datakit.conf"
 
@@ -129,7 +129,7 @@ Datakit main configure is *datakit.conf*, here is the exmaple sample(1.6.0):
       # Datakit will upload data points if cached(in memory) points
       #  reached(>=) the max_cache_count or the flush_interval triggered.
       max_cache_count = 1000
-    	flush_workers   = 0 # default to (cpu_core * 2 + 1)
+      flush_workers   = 0 # default to (cpu_core * 2 + 1)
       flush_interval  = "10s"
     
       # We can write these data points into file in line-proto format(truncated at 32MB).
@@ -176,10 +176,14 @@ Datakit main configure is *datakit.conf*, here is the exmaple sample(1.6.0):
       urls = ["https://openway.guance.com?token=tkn_xxxxxxxxxxx"]
     
       # Dataway HTTP timeout
-      timeout = "5s"
+      timeout_v2 = "30s"
     
       # HTTP Proxy(IP:Port)
       http_proxy = ""
+    
+      max_idle_conns   = 0       # limit idle TCP connections for HTTP request to Dataway
+      enable_httptrace = false   # enable trace HTTP metrics(connection/NDS/TLS and so on)
+      idle_timeout     = "90s"   # not-set, default 90s
     
       # Sinkers: DataKit are able to upload data point to multiple workspace
       #[[dataway.sinkers]]
@@ -320,7 +324,7 @@ DataKit opens an HTTP service to receive external data or provide basic data ser
     [http_api]
        listen = "/tmp/datakit.sock"
     ```
-    After the configuration is complete, you can use the `curl` command to test whether the configuration is successful: `sudo curl --no-buffer -XGET --unix-socket /tmp/datakit.sock http:/localhost/v1/ping`. For more information on the test commands for `curl`, see [here](https://superuser.com/a/925610).
+    After the configuration is complete, you can use the `curl` command to test whether the configuration is successful: `sudo curl --no-buffer -XGET --unix-socket /tmp/datakit.sock http:/localhost/v1/ping`. For more information on the test commands for `curl`, see [here](https://superuser.com/a/925610){:target="_blank"}.
     
     ### HTTP Request Frequency Control {#set-http-api-limit}
     

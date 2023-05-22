@@ -141,10 +141,10 @@ If you choose v3 version, you need to provide `username`, `authentication algori
 
 ???+ tip
 
-    Once the above configuration is complete, you can use the `datakit tool --test-snmp` command to test if the configuration is correct, as shown in the following example:
+    Once the above configuration is complete, you can use the `datakit debug --test-input` command to test if the configuration is correct, as shown in the following example:
 
     ```sh
-    sudo datakit tool --test-snmp /usr/local/datakit/conf.d/snmp/snmp.conf
+    sudo datakit debug --test-input /usr/local/datakit/conf.d/snmp/snmp.conf
     ```
 
     If correct the line protocol information would print out in output, otherwise no line protocol information is seen.
@@ -188,7 +188,7 @@ When SNMP devices are in the default, the general SNMP protocol is closed, you n
 
 If you find that the data reported by the collected device does not contain the indicators you want, then you may need to define an additional Profile for the device.
 
-All OIDs of devices can generally be downloaded from their official website. Datakit defines some common OIDs, as well as some devices such as Cisco/Dell/HP. According to snmp protocol, each device manufacturer can customize [OID](https://www.dpstele.com/snmp/what-does-oid-network-elements.php) to identify its internal special objects. If you want to identify these, you need to customize the configuration of the device (we call this configuration Profile here, that is, "Custom Profile"), as follows.
+All OIDs of devices can generally be downloaded from their official website. Datakit defines some common OIDs, as well as some devices such as Cisco/Dell/HP. According to snmp protocol, each device manufacturer can customize [OID](https://www.dpstele.com/snmp/what-does-oid-network-elements.php){:target="_blank"} to identify its internal special objects. If you want to identify these, you need to customize the configuration of the device (we call this configuration Profile here, that is, "Custom Profile"), as follows.
 
 To add metrics or a custom configuration, list the MIB name, table name, table OID, symbol, and symbol OID, for example:
 
@@ -275,7 +275,7 @@ SNMP device metric data.
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`cpu`|CPU index. Optional.|
 |`device_vendor`|Device vendor.|
@@ -300,7 +300,7 @@ SNMP device metric data.
 - field list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cieIfInputQueueDrops`|[Cisco only] (Shown as packet) The number of input packets dropped.|float|count|
 |`cieIfLastInTime`|[Cisco only] (Shown as millisecond) The elapsed time in milliseconds since the last protocol input packet was received.|float|ms|
@@ -309,14 +309,14 @@ SNMP device metric data.
 |`cieIfResetCount`|[Cisco only] The number of times the interface was internally reset and brought up.|float|count|
 |`ciscoEnvMonFanState`|[Cisco only] The current state of the fan being instrumented.|float|count|
 |`ciscoEnvMonSupplyState`|[Cisco only] The current state of the power supply being instrumented.|float|count|
-|`ciscoEnvMonTemperatureStatusValue`|[Cisco only] The current value of the testpoint being instrumented.|float|count|
+|`ciscoEnvMonTemperatureStatusValue`|[Cisco only] The current value of the test point being instrumented.|float|count|
 |`ciscoMemoryPoolFree`|[Cisco only] Indicates the number of bytes from the memory pool that are currently unused on the managed device.|float|count|
 |`ciscoMemoryPoolLargestFree`|[Cisco only] Indicates the largest number of contiguous bytes from the memory pool that are currently unused on the managed device.|float|count|
 |`ciscoMemoryPoolUsed`|[Cisco only] Indicates the number of bytes from the memory pool that are currently in use by applications on the managed device.|float|count|
 |`cpmCPUTotal1minRev`|[Cisco only] [Shown as percent] The overall CPU busy percentage in the last 1 minute period.|float|percent|
 |`cpmCPUTotalMonIntervalValue`|[Cisco only] (Shown as percent) The overall CPU busy percentage in the last cpmCPUMonInterval period.|float|percent|
 |`cpuUsage`|(Shown as percent) Percentage of CPU currently being used.|float|percent|
-|`cswStackPortOperStatus`|[Cisco only] The state of the stackport.|float|count|
+|`cswStackPortOperStatus`|[Cisco only] The state of the stack port.|float|count|
 |`cswSwitchState`|[Cisco only] The current state of a switch.|float|count|
 |`entSensorValue`|[Cisco only] The most recent measurement seen by the sensor.|float|count|
 |`ifAdminStatus`|The desired state of the interface.|float|-|
@@ -356,8 +356,8 @@ SNMP device metric data.
 |`tcpOutRsts`|(Shown as segment) The number of TCP segments sent containing the RST flag.|float|count|
 |`tcpPassiveOpens`|(Shown as connection) The number of times TCP connections have made a direct transition to the SYN-RCVD state from the LISTEN state.|float|count|
 |`tcpRetransSegs`|(Shown as segment) The total number of segments retransmitted; that is, the number of TCP segments transmitted containing one or more previously transmitted octets.|float|count|
-|`udpInErrors`|(Shown as datagram) The number of received UDP datagrams that could not be delivered for reasons other than the lack of an application at the destination port.|float|count|
-|`udpNoPorts`|(Shown as datagram) The total number of received UDP datagrams for which there was no application at the destination port.|float|count| 
+|`udpInErrors`|(Shown as datagram) The number of received UDP datagram that could not be delivered for reasons other than the lack of an application at the destination port.|float|count|
+|`udpNoPorts`|(Shown as datagram) The total number of received UDP datagram for which there was no application at the destination port.|float|count| 
 
 
 
@@ -375,7 +375,7 @@ SNMP device object data.
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`device_vendor`|Device vendor.|
 |`host`|Device host, replace with IP.|
@@ -387,14 +387,14 @@ SNMP device object data.
 - field list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`all`|Device all data (JSON format).|string|-|
 |`cpus`|Device CPUs (JSON format).|string|-|
 |`device_meta`|Device meta data (JSON format).|string|-|
 |`interfaces`|Device network interfaces (JSON format).|string|-|
 |`mem_pool_names`|Device memory pool names (JSON format).|string|-|
-|`mems`|Device memorys (JSON format).|string|-|
+|`mems`|Device memories (JSON format).|string|-|
 |`sensors`|Device sensors (JSON format).|string|-| 
 
 

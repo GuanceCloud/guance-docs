@@ -1,5 +1,6 @@
 
 # Pipeline 手册
+
 ---
 
 以下是 Pipeline 数据处理器语言定义。随着不同语法的逐步支持，该文档会做不同程度的调整和增删。
@@ -25,7 +26,7 @@
 
 - `` `1abc` ``
 - `` `@some-variable` ``
-- `` `这是一个表情包变量👍` ``
+- `` `this-is-a-emoji-👍` ``
 
 #### 特殊标识符 {#special-identifier}
 
@@ -58,49 +59,51 @@ a = 3
 
 #### 基本类型 {#basic-type}
 
-**整型(int)**
+##### 整型 {#int}
 
 整型的类型长度为 64bit，有符号，当前仅支持以十进制的方式编写整数字面量,如 `-1`, `0`, `1`, `+19`
 
-**浮点类型(float)**
+##### 浮点类型 {#float}
 
 浮点型的类型长度为 64bit，有符号，当前仅支持以十进制的方式编写浮点数字面量,如 `-1.00001`, `0.0`, `1.0`, `+19.0`
 
-**布尔类型(bool)**
+##### 布尔类型 {#bool}
 
 布尔类型值仅有 `true` 和 `false` 两种
 
-**字符串类型(str)**
+##### 字符串类型 {#str}
 
 字符串值可用双引号或单引号，多行字符串可以使用三双引号或三单引号将内容括起来进行编写
-  * `"hello world"`
 
-  * `'hello world'`
+- 双引号字符串 `"hello world"`
+- 单引号字符串 `'hello world'`
+- 多行字符串
 
-  * ```
-    """hello
-    world"""
-    ```
+```python
+"""hello
+world"""
+```
 
-  * ```
-    '''
-    hello
-    world
-    '''
-    ```
+- 单引号形式的多行字符串
 
-**nil 类型(nil)**
-  nil 为一种特殊的数据类型，表示空，当一个变量未赋值就使用时，其值为 nil
+```python
+'''
+hello
+world
+'''
+```
+
+##### nil 类型 {#nil}
+
+nil 为一种特殊的数据类型，表示空，当一个变量未赋值就使用时，其值为 nil
 
 #### 复合类型 {#composite-type}
 
-字典类型与列表类型与基本类型不同，多个变量可以指向同一个 map 或 list对象，在赋值时并不会进行列表或字典的内存拷贝，而是进行引用
+字典类型与列表类型与基本类型不同，多个变量可以指向同一个 map 或 list 对象，在赋值时并不会进行列表或字典的内存拷贝，而是进行引用
 
-**字典类型(map)**
+- 字典类型(map)
 
-字典类型为 key-value 结构，只有字符串类型才能作为 key，不限制 value 的数据类型
-
-其可通过索引表达式读写 map 中的元素
+字典类型为 key-value 结构，只有字符串类型才能作为 key，不限制 value 的数据类型，其可通过索引表达式读写 map 中的元素：
 
 ```python
 a = {
@@ -113,13 +116,12 @@ a = {
 # 由于 a["1"] 是列表，此时 b 只是引用了 a["1"] 的值
 b = a["1"]
 
-"""
-此时 a 的这一值也变为 1.1
-"""
+
+# 此时 a 的这一值也变为 1.1
 b[0] = 1.1
 ```
 
-**列表类型(list)**
+- 列表类型(list)
 
 列表类型可以在列表中存储任意数量、任意类型的值
 其可通过索引表达式读写 list 中的元素
@@ -132,7 +134,7 @@ a = a[0] # a == 1
 
 ## 快速开始 {#quick-start}
 
-- 在 DataKit 中配置 pipeline，编写如下 pipeline 文件，假定名为 *nginx.p*。将其存放在 `<datakit安装目录>/pipeline` 目录下。
+- 在 DataKit 中配置 Pipeline，编写如下 Pipeline 文件，假定名为 *nginx.p*。将其存放在 *[Datakit 安装目录]/pipeline* 目录下。
 
 ```python
 # 假定输入是一个 Nginx 日志（以下字段都是 yy 的...）
@@ -140,7 +142,7 @@ a = a[0] # a == 1
 
 grok(_, "some-grok-patterns")  # 对输入的文本，进行 grok 提取
 rename('client_ip', ip)        # 将 ip 字段改名成 client_ip
-rename("网络协议", protocol)   # 将 protocol 字段改名成 `网络协议`
+rename("网络协议", protocol)   # 将 protocol 字段改名成 '网络协议'
 
 # 将时间戳(如 1610967131)换成 RFC3339 日期格式：2006-01-02T15:04:05Z07:00
 datetime(access_time, "s", "RFC3339")
@@ -154,11 +156,13 @@ group_between(status_code, [200, 300], "HTTP_OK", "http_status")
 drop_origin_data()
 ```
 
+<!-- markdownlint-disable MD046 -->
 ???+ attention
 
     切割过程中，需避免[可能出现的跟 tag key 重名的问题](datakit-pl-how-to.md#naming)
+<!-- markdownlint-enable -->
 
-- 配置对应的采集器来使用上面的 pipeline
+- 配置对应的采集器来使用上面的 Pipeline
 
 以 logging 采集器为例，配置字段 `pipeline_path` 即可，注意，这里配置的是 pipeline 的脚本名称，而不是路径。所有这里引用的 pipeline 脚本，必须存放在 `<DataKit 安装目录/pipeline>` 目录下：
 
@@ -180,16 +184,18 @@ drop_origin_data()
 
 重启采集器，即可切割对应的日志。
 
+<!-- markdownlint-disable MD046 -->
 ???+ info
 
     关于 Pipeline 编写、调试以及注意事项，参见[这里](datakit-pl-how-to.md)。
+<!-- markdownlint-enable -->
 
 ## Grok 模式分类 {#grok}
 
 DataKit 中 grok 模式可以分为两类：
 
-- 全局模式：*pattern* 目录下的模式文件都是全局模式，所有 pipeline 脚本都可使用
-- 局部模式：在 pipeline 脚本中通过 [add_pattern()](pipeline.md#fn-add-pattern) 函数新增的模式为局部模式，只针对当前 pipeline 脚本有效
+- 全局模式：*pattern* 目录下的模式文件都是全局模式，所有 Pipeline 脚本都可使用
+- 局部模式：在 Pipeline 脚本中通过 [add_pattern()](pipeline.md#fn-add-pattern) 函数新增的模式为局部模式，只针对当前 Pipeline 脚本有效
 
 以下以 Nginx access-log 为例，说明一下如何编写对应的 grok，原始 nginx access log 如下：
 
@@ -237,9 +243,9 @@ default_time(time)
 grok 本质是预定义一些正则表达式来进行文本匹配提取，并且给预定义的正则表达式进行命名，方便使用与嵌套引用扩展出无数个新模式。比如 DataKit 有 3 个如下内置模式：
 
 ```python
-_second (?:(?:[0-5]?[0-9]|60)(?:[:.,][0-9]+)?)    #匹配秒数，_second为模式名
-_minute (?:[0-5][0-9])                            #匹配分钟数，_minute为模式名
-_hour (?:2[0123]|[01]?[0-9])                      #匹配年份，_hour为模式名
+_second (?:(?:[0-5]?[0-9]|60)(?:[:.,][0-9]+)?)    # 匹配秒数，_second 为模式名
+_minute (?:[0-5][0-9])                            # 匹配分钟数，_minute 为模式名
+_hour (?:2[0123]|[01]?[0-9])                      # 匹配年份，_hour 为模式名
 ```
 
 基于上面三个内置模式，可以扩展出自己内置模式且命名为 `time`:
@@ -255,99 +261,106 @@ add_pattern(time, "([^0-9]?)%{HOUR:hour}:%{MINUTE:minute}(?::%{SECOND:second})([
 grok(_, %{time})
 ```
 
+<!-- markdownlint-disable MD046 -->
 ???+ attention
 
     - 如果出现同名模式，则以局部模式优先（即局部模式覆盖全局模式）
-    - pipeline 脚本中，[add_pattern()](pipeline.md#fn-add-pattern) 需在 [grok()](pipeline.md#fn-grok) 函数前面调用，否则会导致第一条数据提取失败
+    - Pipeline 脚本中，[add_pattern()](pipeline.md#fn-add-pattern) 需在 [grok()](pipeline.md#fn-grok) 函数前面调用，否则会导致第一条数据提取失败
+<!-- markdownlint-enable -->
 
 ### 内置的 Pattern 列表 {#builtin-patterns}
 
 DataKit 内置了一些常用的 Pattern，我们在使用 Grok 切割的时候，可以直接使用：
 
-```
-USERNAME             : [a-zA-Z0-9._-]+
-USER                 : %{USERNAME}
-EMAILLOCALPART       : [a-zA-Z][a-zA-Z0-9_.+-=:]+
-EMAILADDRESS         : %{EMAILLOCALPART}@%{HOSTNAME}
-HTTPDUSER            : %{EMAILADDRESS}|%{USER}
-INT                  : (?:[+-]?(?:[0-9]+))
-BASE10NUM            : (?:[+-]?(?:[0-9]+(?:\.[0-9]+)?)|\.[0-9]+)
-NUMBER               : (?:%{BASE10NUM})
-BASE16NUM            : (?:0[xX]?[0-9a-fA-F]+)
-POSINT               : \b(?:[1-9][0-9]*)\b
-NONNEGINT            : \b(?:[0-9]+)\b
-WORD                 : \b\w+\b
-NOTSPACE             : \S+
-SPACE                : \s*
-DATA                 : .*?
-GREEDYDATA           : .*
-GREEDYLINES          : (?s).*
-QUOTEDSTRING         : "(?:[^"\\]*(?:\\.[^"\\]*)*)"|\'(?:[^\'\\]*(?:\\.[^\'\\]*)*)\'
-UUID                 : [A-Fa-f0-9]{8}-(?:[A-Fa-f0-9]{4}-){3}[A-Fa-f0-9]{12}
-MAC                  : (?:%{CISCOMAC}|%{WINDOWSMAC}|%{COMMONMAC})
-CISCOMAC             : (?:(?:[A-Fa-f0-9]{4}\.){2}[A-Fa-f0-9]{4})
-WINDOWSMAC           : (?:(?:[A-Fa-f0-9]{2}-){5}[A-Fa-f0-9]{2})
-COMMONMAC            : (?:(?:[A-Fa-f0-9]{2}:){5}[A-Fa-f0-9]{2})
-IPV6                 : (?:(?:(?:[0-9A-Fa-f]{1,4}:){7}(?:[0-9A-Fa-f]{1,4}|:))|(?:(?:[0-9A-Fa-f]{1,4}:){6}(?::[0-9A-Fa-f]{1,4}|(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(?:(?:[0-9A-Fa-f]{1,4}:){5}(?:(?:(?::[0-9A-Fa-f]{1,4}){1,2})|:(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(?:(?:[0-9A-Fa-f]{1,4}:){4}(?:(?:(?::[0-9A-Fa-f]{1,4}){1,3})|(?:(?::[0-9A-Fa-f]{1,4})?:(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(?:(?:[0-9A-Fa-f]{1,4}:){3}(?:(?:(?::[0-9A-Fa-f]{1,4}){1,4})|(?:(?::[0-9A-Fa-f]{1,4}){0,2}:(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(?:(?:[0-9A-Fa-f]{1,4}:){2}(?:(?:(?::[0-9A-Fa-f]{1,4}){1,5})|(?:(?::[0-9A-Fa-f]{1,4}){0,3}:(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(?:(?:[0-9A-Fa-f]{1,4}:){1}(?:(?:(?::[0-9A-Fa-f]{1,4}){1,6})|(?:(?::[0-9A-Fa-f]{1,4}){0,4}:(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(?::(?:(?:(?::[0-9A-Fa-f]{1,4}){1,7})|(?:(?::[0-9A-Fa-f]{1,4}){0,5}:(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:)))(?:%.+)?
-IPV4                 : (?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)
-IP                   : (?:%{IPV6}|%{IPV4})
-HOSTNAME             : \b(?:[0-9A-Za-z][0-9A-Za-z-]{0,62})(?:\.(?:[0-9A-Za-z][0-9A-Za-z-]{0,62}))*(?:\.?|\b)
-HOST                 : %{HOSTNAME}
-IPORHOST             : (?:%{IP}|%{HOSTNAME})
-HOSTPORT             : %{IPORHOST}:%{POSINT}
-PATH                 : (?:%{UNIXPATH}|%{WINPATH})
-UNIXPATH             : (?:/[\w_%!$@:.,-]?/?)(?:\S+)?
-TTY                  : (?:/dev/(?:pts|tty(?:[pq])?)(?:\w+)?/?(?:[0-9]+))
-WINPATH              : (?:[A-Za-z]:|\\)(?:\\[^\\?*]*)+
-URIPROTO             : [A-Za-z]+(?:\+[A-Za-z+]+)?
-URIHOST              : %{IPORHOST}(?::%{POSINT:port})?
-URIPATH              : (?:/[A-Za-z0-9$.+!*'(){},~:;=@#%_\-]*)+
-URIPARAM             : \?[A-Za-z0-9$.+!*'|(){},~@#%&/=:;_?\-\[\]<>]*
-URIPATHPARAM         : %{URIPATH}(?:%{URIPARAM})?
-URI                  : %{URIPROTO}://(?:%{USER}(?::[^@]*)?@)?(?:%{URIHOST})?(?:%{URIPATHPARAM})?
-MONTH                : \b(?:Jan(?:uary|uar)?|Feb(?:ruary|ruar)?|M(?:a|ä)?r(?:ch|z)?|Apr(?:il)?|Ma(?:y|i)?|Jun(?:e|i)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|O(?:c|k)?t(?:ober)?|Nov(?:ember)?|De(?:c|z)(?:ember)?)\b
-MONTHNUM             : (?:0?[1-9]|1[0-2])
-MONTHNUM2            : (?:0[1-9]|1[0-2])
-MONTHDAY             : (?:(?:0[1-9])|(?:[12][0-9])|(?:3[01])|[1-9])
-DAY                  : (?:Mon(?:day)?|Tue(?:sday)?|Wed(?:nesday)?|Thu(?:rsday)?|Fri(?:day)?|Sat(?:urday)?|Sun(?:day)?)
-YEAR                 : (\d\d){1,2}
-HOUR                 : (?:2[0123]|[01]?[0-9])
-MINUTE               : (?:[0-5][0-9])
-SECOND               : (?:(?:[0-5]?[0-9]|60)(?:[:.,][0-9]+)?)
-TIME                 : (?:[^0-9]?)%{HOUR}:%{MINUTE}(?::%{SECOND})(?:[^0-9]?)
-DATE_US              : %{MONTHNUM}[/-]%{MONTHDAY}[/-]%{YEAR}
-DATE_EU              : %{MONTHDAY}[./-]%{MONTHNUM}[./-]%{YEAR}
-ISO8601_TIMEZONE     : (?:Z|[+-]%{HOUR}(?::?%{MINUTE}))
-ISO8601_SECOND       : (?:%{SECOND}|60)
-TIMESTAMP_ISO8601    : %{YEAR}-%{MONTHNUM}-%{MONTHDAY}[T ]%{HOUR}:?%{MINUTE}(?::?%{SECOND})?%{ISO8601_TIMEZONE}?
-DATE                 : %{DATE_US}|%{DATE_EU}
-DATESTAMP            : %{DATE}[- ]%{TIME}
-TZ                   : (?:[PMCE][SD]T|UTC)
-DATESTAMP_RFC822     : %{DAY} %{MONTH} %{MONTHDAY} %{YEAR} %{TIME} %{TZ}
-DATESTAMP_RFC2822    : %{DAY}, %{MONTHDAY} %{MONTH} %{YEAR} %{TIME} %{ISO8601_TIMEZONE}
-DATESTAMP_OTHER      : %{DAY} %{MONTH} %{MONTHDAY} %{TIME} %{TZ} %{YEAR}
-DATESTAMP_EVENTLOG   : %{YEAR}%{MONTHNUM2}%{MONTHDAY}%{HOUR}%{MINUTE}%{SECOND}
-HTTPDERROR_DATE      : %{DAY} %{MONTH} %{MONTHDAY} %{TIME} %{YEAR}
-SYSLOGTIMESTAMP      : %{MONTH} +%{MONTHDAY} %{TIME}
-PROG                 : [\x21-\x5a\x5c\x5e-\x7e]+
-SYSLOGPROG           : %{PROG:program}(?:\[%{POSINT:pid}\])?
-SYSLOGHOST           : %{IPORHOST}
-SYSLOGFACILITY       : <%{NONNEGINT:facility}.%{NONNEGINT:priority}>
-HTTPDATE             : %{MONTHDAY}/%{MONTH}/%{YEAR}:%{TIME} %{INT}
-QS                   : %{QUOTEDSTRING}
-SYSLOGBASE           : %{SYSLOGTIMESTAMP:timestamp} (?:%{SYSLOGFACILITY} )?%{SYSLOGHOST:logsource} %{SYSLOGPROG}:
-COMMONAPACHELOG      : %{IPORHOST:clientip} %{HTTPDUSER:ident} %{USER:auth} \[%{HTTPDATE:timestamp}\] "(?:%{WORD:verb} %{NOTSPACE:request}(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})" %{NUMBER:response} (?:%{NUMBER:bytes}|-)
-COMBINEDAPACHELOG    : %{COMMONAPACHELOG} %{QS:referrer} %{QS:agent}
-HTTPD20_ERRORLOG     : \[%{HTTPDERROR_DATE:timestamp}\] \[%{LOGLEVEL:loglevel}\] (?:\[client %{IPORHOST:clientip}\] ){0,1}%{GREEDYDATA:errormsg}
-HTTPD24_ERRORLOG     : \[%{HTTPDERROR_DATE:timestamp}\] \[%{WORD:module}:%{LOGLEVEL:loglevel}\] \[pid %{POSINT:pid}:tid %{NUMBER:tid}\]( \(%{POSINT:proxy_errorcode}\)%{DATA:proxy_errormessage}:)?( \[client %{IPORHOST:client}:%{POSINT:clientport}\])? %{DATA:errorcode}: %{GREEDYDATA:message}
-HTTPD_ERRORLOG       : %{HTTPD20_ERRORLOG}|%{HTTPD24_ERRORLOG}
-LOGLEVEL             : (?:[Aa]lert|ALERT|[Tt]race|TRACE|[Dd]ebug|DEBUG|[Nn]otice|NOTICE|[Ii]nfo|INFO|[Ww]arn?(?:ing)?|WARN?(?:ING)?|[Ee]rr?(?:or)?|ERR?(?:OR)?|[Cc]rit?(?:ical)?|CRIT?(?:ICAL)?|[Ff]atal|FATAL|[Ss]evere|SEVERE|EMERG(?:ENCY)?|[Ee]merg(?:ency)?)
-COMMONENVOYACCESSLOG : \[%{TIMESTAMP_ISO8601:timestamp}\] \"%{DATA:method} (?:%{URIPATH:uri_path}(?:%{URIPARAM:uri_param})?|%{DATA:}) %{DATA:protocol}\" %{NUMBER:status_code} %{DATA:response_flags} %{NUMBER:bytes_received} %{NUMBER:bytes_sent} %{NUMBER:duration} (?:%{NUMBER:upstream_service_time}|%{DATA:tcp_service_time}) \"%{DATA:forwarded_for}\" \"%{DATA:user_agent}\" \"%{DATA:request_id}\" \"%{DATA:authority}\" \"%{DATA:upstream_service}\"
-```
+<!-- markdownlint-disable MD046 -->
+???- "内置 Patterns"
+
+    ``` not-set
+    USERNAME             : [a-zA-Z0-9._-]+
+    USER                 : %{USERNAME}
+    EMAILLOCALPART       : [a-zA-Z][a-zA-Z0-9_.+-=:]+
+    EMAILADDRESS         : %{EMAILLOCALPART}@%{HOSTNAME}
+    HTTPDUSER            : %{EMAILADDRESS}|%{USER}
+    INT                  : (?:[+-]?(?:[0-9]+))
+    BASE10NUM            : (?:[+-]?(?:[0-9]+(?:\.[0-9]+)?)|\.[0-9]+)
+    NUMBER               : (?:%{BASE10NUM})
+    BASE16NUM            : (?:0[xX]?[0-9a-fA-F]+)
+    POSINT               : \b(?:[1-9][0-9]*)\b
+    NONNEGINT            : \b(?:[0-9]+)\b
+    WORD                 : \b\w+\b
+    NOTSPACE             : \S+
+    SPACE                : \s*
+    DATA                 : .*?
+    GREEDYDATA           : .*
+    GREEDYLINES          : (?s).*
+    QUOTEDSTRING         : "(?:[^"\\]*(?:\\.[^"\\]*)*)"|\'(?:[^\'\\]*(?:\\.[^\'\\]*)*)\'
+    UUID                 : [A-Fa-f0-9]{8}-(?:[A-Fa-f0-9]{4}-){3}[A-Fa-f0-9]{12}
+    MAC                  : (?:%{CISCOMAC}|%{WINDOWSMAC}|%{COMMONMAC})
+    CISCOMAC             : (?:(?:[A-Fa-f0-9]{4}\.){2}[A-Fa-f0-9]{4})
+    WINDOWSMAC           : (?:(?:[A-Fa-f0-9]{2}-){5}[A-Fa-f0-9]{2})
+    COMMONMAC            : (?:(?:[A-Fa-f0-9]{2}:){5}[A-Fa-f0-9]{2})
+    IPV6                 : (?:(?:(?:[0-9A-Fa-f]{1,4}:){7}(?:[0-9A-Fa-f]{1,4}|:))|(?:(?:[0-9A-Fa-f]{1,4}:){6}(?::[0-9A-Fa-f]{1,4}|(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(?:(?:[0-9A-Fa-f]{1,4}:){5}(?:(?:(?::[0-9A-Fa-f]{1,4}){1,2})|:(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(?:(?:[0-9A-Fa-f]{1,4}:){4}(?:(?:(?::[0-9A-Fa-f]{1,4}){1,3})|(?:(?::[0-9A-Fa-f]{1,4})?:(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(?:(?:[0-9A-Fa-f]{1,4}:){3}(?:(?:(?::[0-9A-Fa-f]{1,4}){1,4})|(?:(?::[0-9A-Fa-f]{1,4}){0,2}:(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(?:(?:[0-9A-Fa-f]{1,4}:){2}(?:(?:(?::[0-9A-Fa-f]{1,4}){1,5})|(?:(?::[0-9A-Fa-f]{1,4}){0,3}:(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(?:(?:[0-9A-Fa-f]{1,4}:){1}(?:(?:(?::[0-9A-Fa-f]{1,4}){1,6})|(?:(?::[0-9A-Fa-f]{1,4}){0,4}:(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(?::(?:(?:(?::[0-9A-Fa-f]{1,4}){1,7})|(?:(?::[0-9A-Fa-f]{1,4}){0,5}:(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:)))(?:%.+)?
+    IPV4                 : (?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)
+    IP                   : (?:%{IPV6}|%{IPV4})
+    HOSTNAME             : \b(?:[0-9A-Za-z][0-9A-Za-z-]{0,62})(?:\.(?:[0-9A-Za-z][0-9A-Za-z-]{0,62}))*(?:\.?|\b)
+    HOST                 : %{HOSTNAME}
+    IPORHOST             : (?:%{IP}|%{HOSTNAME})
+    HOSTPORT             : %{IPORHOST}:%{POSINT}
+    PATH                 : (?:%{UNIXPATH}|%{WINPATH})
+    UNIXPATH             : (?:/[\w_%!$@:.,-]?/?)(?:\S+)?
+    TTY                  : (?:/dev/(?:pts|tty(?:[pq])?)(?:\w+)?/?(?:[0-9]+))
+    WINPATH              : (?:[A-Za-z]:|\\)(?:\\[^\\?*]*)+
+    URIPROTO             : [A-Za-z]+(?:\+[A-Za-z+]+)?
+    URIHOST              : %{IPORHOST}(?::%{POSINT:port})?
+    URIPATH              : (?:/[A-Za-z0-9$.+!*'(){},~:;=@#%_\-]*)+
+    URIPARAM             : \?[A-Za-z0-9$.+!*'|(){},~@#%&/=:;_?\-\[\]<>]*
+    URIPATHPARAM         : %{URIPATH}(?:%{URIPARAM})?
+    URI                  : %{URIPROTO}://(?:%{USER}(?::[^@]*)?@)?(?:%{URIHOST})?(?:%{URIPATHPARAM})?
+    MONTH                : \b(?:Jan(?:uary|uar)?|Feb(?:ruary|ruar)?|M(?:a|ä)?r(?:ch|z)?|Apr(?:il)?|Ma(?:y|i)?|Jun(?:e|i)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|O(?:c|k)?t(?:ober)?|Nov(?:ember)?|De(?:c|z)(?:ember)?)\b
+    MONTHNUM             : (?:0?[1-9]|1[0-2])
+    MONTHNUM2            : (?:0[1-9]|1[0-2])
+    MONTHDAY             : (?:(?:0[1-9])|(?:[12][0-9])|(?:3[01])|[1-9])
+    DAY                  : (?:Mon(?:day)?|Tue(?:sday)?|Wed(?:nesday)?|Thu(?:rsday)?|Fri(?:day)?|Sat(?:urday)?|Sun(?:day)?)
+    YEAR                 : (\d\d){1,2}
+    HOUR                 : (?:2[0123]|[01]?[0-9])
+    MINUTE               : (?:[0-5][0-9])
+    SECOND               : (?:(?:[0-5]?[0-9]|60)(?:[:.,][0-9]+)?)
+    TIME                 : (?:[^0-9]?)%{HOUR}:%{MINUTE}(?::%{SECOND})(?:[^0-9]?)
+    DATE_US              : %{MONTHNUM}[/-]%{MONTHDAY}[/-]%{YEAR}
+    DATE_EU              : %{MONTHDAY}[./-]%{MONTHNUM}[./-]%{YEAR}
+    ISO8601_TIMEZONE     : (?:Z|[+-]%{HOUR}(?::?%{MINUTE}))
+    ISO8601_SECOND       : (?:%{SECOND}|60)
+    TIMESTAMP_ISO8601    : %{YEAR}-%{MONTHNUM}-%{MONTHDAY}[T ]%{HOUR}:?%{MINUTE}(?::?%{SECOND})?%{ISO8601_TIMEZONE}?
+    DATE                 : %{DATE_US}|%{DATE_EU}
+    DATESTAMP            : %{DATE}[- ]%{TIME}
+    TZ                   : (?:[PMCE][SD]T|UTC)
+    DATESTAMP_RFC822     : %{DAY} %{MONTH} %{MONTHDAY} %{YEAR} %{TIME} %{TZ}
+    DATESTAMP_RFC2822    : %{DAY}, %{MONTHDAY} %{MONTH} %{YEAR} %{TIME} %{ISO8601_TIMEZONE}
+    DATESTAMP_OTHER      : %{DAY} %{MONTH} %{MONTHDAY} %{TIME} %{TZ} %{YEAR}
+    DATESTAMP_EVENTLOG   : %{YEAR}%{MONTHNUM2}%{MONTHDAY}%{HOUR}%{MINUTE}%{SECOND}
+    HTTPDERROR_DATE      : %{DAY} %{MONTH} %{MONTHDAY} %{TIME} %{YEAR}
+    SYSLOGTIMESTAMP      : %{MONTH} +%{MONTHDAY} %{TIME}
+    PROG                 : [\x21-\x5a\x5c\x5e-\x7e]+
+    SYSLOGPROG           : %{PROG:program}(?:\[%{POSINT:pid}\])?
+    SYSLOGHOST           : %{IPORHOST}
+    SYSLOGFACILITY       : <%{NONNEGINT:facility}.%{NONNEGINT:priority}>
+    HTTPDATE             : %{MONTHDAY}/%{MONTH}/%{YEAR}:%{TIME} %{INT}
+    QS                   : %{QUOTEDSTRING}
+    SYSLOGBASE           : %{SYSLOGTIMESTAMP:timestamp} (?:%{SYSLOGFACILITY} )?%{SYSLOGHOST:logsource} %{SYSLOGPROG}:
+    COMMONAPACHELOG      : %{IPORHOST:clientip} %{HTTPDUSER:ident} %{USER:auth} \[%{HTTPDATE:timestamp}\] "(?:%{WORD:verb} %{NOTSPACE:request}(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})" %{NUMBER:response} (?:%{NUMBER:bytes}|-)
+    COMBINEDAPACHELOG    : %{COMMONAPACHELOG} %{QS:referrer} %{QS:agent}
+    HTTPD20_ERRORLOG     : \[%{HTTPDERROR_DATE:timestamp}\] \[%{LOGLEVEL:loglevel}\] (?:\[client %{IPORHOST:clientip}\] ){0,1}%{GREEDYDATA:errormsg}
+    HTTPD24_ERRORLOG     : \[%{HTTPDERROR_DATE:timestamp}\] \[%{WORD:module}:%{LOGLEVEL:loglevel}\] \[pid %{POSINT:pid}:tid %{NUMBER:tid}\]( \(%{POSINT:proxy_errorcode}\)%{DATA:proxy_errormessage}:)?( \[client %{IPORHOST:client}:%{POSINT:clientport}\])? %{DATA:errorcode}: %{GREEDYDATA:message}
+    HTTPD_ERRORLOG       : %{HTTPD20_ERRORLOG}|%{HTTPD24_ERRORLOG}
+    LOGLEVEL             : (?:[Aa]lert|ALERT|[Tt]race|TRACE|[Dd]ebug|DEBUG|[Nn]otice|NOTICE|[Ii]nfo|INFO|[Ww]arn?(?:ing)?|WARN?(?:ING)?|[Ee]rr?(?:or)?|ERR?(?:OR)?|[Cc]rit?(?:ical)?|CRIT?(?:ICAL)?|[Ff]atal|FATAL|[Ss]evere|SEVERE|EMERG(?:ENCY)?|[Ee]merg(?:ency)?)
+    COMMONENVOYACCESSLOG : \[%{TIMESTAMP_ISO8601:timestamp}\] \"%{DATA:method} (?:%{URIPATH:uri_path}(?:%{URIPARAM:uri_param})?|%{DATA:}) %{DATA:protocol}\" %{NUMBER:status_code} %{DATA:response_flags} %{NUMBER:bytes_received} %{NUMBER:bytes_sent} %{NUMBER:duration} (?:%{NUMBER:upstream_service_time}|%{DATA:tcp_service_time}) \"%{DATA:forwarded_for}\" \"%{DATA:user_agent}\" \"%{DATA:request_id}\" \"%{DATA:authority}\" \"%{DATA:upstream_service}\"
+    ```
+<!-- markdownlint-enable -->
 
 ## if/else 分支 {#if-else}
 
-pipeline 支持 `if/elif/else` 语法，`if` 后面的语句仅支持条件表达式，即 `<`、`<=`、`==`、`>`、`>=` 和 `!=`， 且支持小括号优先级和多个条件表达式的 `AND` 和 `OR` 连接。
+Pipeline 支持 `if/elif/else` 语法，`if` 后面的语句仅支持条件表达式，即 `<`、`<=`、`==`、`>`、`>=` 和 `!=`， 且支持小括号优先级和多个条件表达式的 `AND` 和 `OR` 连接。
+
 表达式两边可以是已存在的 key 或固定值（数值、布尔值、字符串和 nil ），例如：
 
 ```python
@@ -376,7 +389,7 @@ if name == "法外狂徒" {
 
 注意：如果是进行数值比较，需要先用 `cast()` 进行类型转换，比如：
 
-```
+``` python
 # status_code 是 grok 切出来的 string 类型
 cast(status_code, "int")
 
@@ -423,8 +436,8 @@ add_key(d)
 Pipeline 的目录搜索优先级是:
 
 1. Remote Pipeline 目录
-2. Git 管理的 pipeline 目录
-3. 内置的 pipeline 目录
+2. Git 管理的 *pipeline* 目录
+3. 内置的 *pipeline* 目录
 
 由 1 往 3 方向查找，匹配到了直接返回。
 
@@ -434,7 +447,7 @@ Pipeline 的目录搜索优先级是:
 
 在 Datakit 的安装目录下面的 `pipeline_remote` 目录下，目录结构如下所示:
 
-```
+```shell
 .
 ├── conf.d
 ├── datakit
@@ -454,19 +467,19 @@ Pipeline 的目录搜索优先级是:
 └── ...
 ```
 
-### Git 管理的 pipeline 目录 {#git-pl}
+### Git 管理的 Pipeline 目录 {#git-pl}
 
-在 `gitrepos` 目录下的 `项目名/pipeline` 目录下，目录结构如上所示。
+在 *gitrepos* 目录下的 *project-name/pipeline* 目录下，目录结构如上所示。
 
-### 内置的 pipeline 目录 {#internal-pl}
+### 内置的 Pipeline 目录 {#internal-pl}
 
-在 Datakit 的安装目录下面的 `pipeline` 目录下，目录结构如上所示。
+在 Datakit 的安装目录下面的 *pipeline* 目录下，目录结构如上所示。
 
 ## 脚本输入数据结构 {#input-data}
 
 所有类别的数据在被 Pipeline 脚本处理前均会封装成 Point 结构，其结构大致为：
 
-```
+``` not-set
 struct Point {
     Name:    str
     Tags:    map[str]str
@@ -477,7 +490,7 @@ struct Point {
 
 以一条 nginx 日志数据为例，其被日志采集器采集到后生成的数据作为 Pipeline 脚本的输入大致为：
 
-```
+``` not-set
 Point {
     Name: "nginx"
     Tags: map[str]str {
@@ -503,10 +516,10 @@ Point {
 函数参数说明：
 
 - 函数参数中，匿名参数（`_`）指原始的输入文本数据
-- json 路径，直接表示成 `x.y.z` 这种形式，无需其它修饰。例如 `{"a":{"first":2.3, "second":2, "third":"abc", "forth":true}, "age":47}`，json 路径为 `a.thrid` 表示待操作数据为 `abc`
+- JSON 路径，直接表示成 `x.y.z` 这种形式，无需其它修饰。例如 `{"a":{"first":2.3, "second":2, "third":"abc", "forth":true}, "age":47}`，json 路径为 `a.thrid` 表示待操作数据为 `abc`
 - 所有函数参数的相对顺序，都是固定的，引擎会对其做具体检查
 - 以下提到的所有 `key` 参数，都指已经过初次提取（通过 `grok()` 或 `json()`）之后，生成的 `key`
-- 待处理json的路径，支持标识符的写法，不能使用字符串，如果是生成新key，需要使用字符串
+- 待处理 JSON 的路径，支持标识符的写法，不能使用字符串，如果是生成新 key，需要使用字符串
 
 ### `add_key()` {#fn-add-key}
 
@@ -553,7 +566,7 @@ add_key(city, "shanghai")
 ```python
 # 待处理数据: "11,abc,end1", "22,abc,end1", "33,abc,end3"
 
-# pipline脚本
+# pipline 脚本
 add_pattern("aa", "\\d{2}")
 grok(_, "%{aa:aa}")
 if false {
@@ -567,7 +580,7 @@ if false {
         # 此处使用 pattern cc 将导致编译失败: no pattern found for %{cc}
         grok(_, "%{aa:aa},%{bb:bb},%{INT:cc}")
     } elif aa == "33" {
-        add_pattern("bb", "[\\d]{5}")	# 此处覆盖 bb 失败
+        add_pattern("bb", "[\\d]{5}") # 此处覆盖 bb 失败
         add_pattern("cc", "end3")
         grok(_, "%{aa:aa},%{bb:bb},%{cc:cc}")
     }
@@ -582,7 +595,7 @@ if false {
 }
 {
     "aa":      "22"
-	 "message": "22,abc,end1"
+    "message": "22,abc,end1"
 }
 {
     "aa":      "33"
@@ -602,7 +615,7 @@ if false {
 - `key`: 纳秒时间戳，如 `default_time(time)` 函数处理后得到的时间戳
 - `minute`: 返回值允许超出当前时间的分钟数（整数），取值范围 [0, 15], 默认值为 2 分钟
 
-函数说明： 使得传入的时间戳减去函数执行时刻的时间戳的差值在（-60+minute, minute] 分钟内；不适用于时间差超出此范围的数据，否则将导致获取到错误的数据。计算流程：
+函数说明：使得传入的时间戳减去函数执行时刻的时间戳的差值在（-60+minute, minute] 分钟内；不适用于时间差超出此范围的数据，否则将导致获取到错误的数据。计算流程：
 
 1. 为 key 的值加上数小时使其处于当前小时内
 2. 此时计算两者分钟差，两者分钟数值范围为 [0, 60)，差值范围在 (-60,0] 和 [0, 60)
@@ -629,7 +642,6 @@ default_time(time) # 将提取到的 time 字段转换成时间戳
                    # (对无时区数据使用本地时区 UTC+0800/UTC+0900...解析)
 adjust_timezone(time)
                    # 自动(重新)选择时区，校准时间偏差
-
 ```
 
 执行 `datakit pipeline -P <name>.p -F <input_file_name>  --date`:
@@ -645,11 +657,13 @@ adjust_timezone(time)
 
 本机时间: `2022-07-11T20:55:10.521+08:00`
 
-仅使用 default_time 按照默认本机时区（UTC+8）解析得到的时间分别为：
-  - 输入 1 结果： `2022-07-11T12:49:20.937+08:00`
+仅使用 `default_time` 按照默认本机时区（UTC+8）解析得到的时间分别为：
 
-使用 adjust_timezone 后将得到：
-  - 输入 1 结果： `2022-07-11T20:49:20.937+08:00`
+- 输入 1 结果： `2022-07-11T12:49:20.937+08:00`
+
+使用 `adjust_timezone` 后将得到：
+
+- 输入 1 结果： `2022-07-11T20:49:20.937+08:00`
 
 
 ### `agg_create()` {#fn-agg-create}
@@ -687,7 +701,7 @@ agg_create("cpu_agg_info", on_interval = "30s")
 
 - `bucket`: 字符串类型, 函数 `agg_create` 创建出的对应指标集合的 bucket，如果该 bucket 未被创建，则函数不执行任何操作
 - `new_field`： 聚合出的数据中的指标名，其值的数据类型为 `float`
-- `agg_fn`: 聚合函数，可以是`"avg"`,`"sum"`,`"min"`,`"max"`,`"set"` 中的一种
+- `agg_fn`: 聚合函数，可以是 `"avg"`,`"sum"`,`"min"`,`"max"`,`"set"` 中的一种
 - `agg_by`: 输入的数据中的字段的名，将作为聚合出的数据的 tag，这些字段的值只能是字符串类型的数据
 - `agg_field`: 输入的数据中的字段名，自动获取字段值进行聚合
 
@@ -696,15 +710,16 @@ agg_create("cpu_agg_info", on_interval = "30s")
 以日志类别数据为例：
 
 多个输入日志：
-```
+
+``` not-set
 1
 ```
 
-```
+``` not-set
 2
 ```
 
-```
+``` not-set
 3
 ```
 
@@ -724,7 +739,7 @@ agg_metric("cpu_agg_info", "agg_field_1", "sum", ["tag1", "host"], "field1")
 
 指标输出：
 
-```
+``` not-set
 {
     "host": "your_hostname",
     "tag1": "value1",
@@ -742,7 +757,7 @@ agg_metric("cpu_agg_info", "agg_field_1", "sum", ["tag1", "host"], "field1")
 参数:
 
 - `arr`: 要添加元素的数组。
-- `elem`: 添加的元素。 
+- `elem`: 添加的元素。
 
 示例:
 
@@ -874,7 +889,7 @@ if cidr(ip, "192.0.2.1/24") {
 函数参数
 
 - `key`: 待提取字段
-- `range`: 脱敏字符串的索引范围（`[start,end]`） start和end均支持负数下标，用来表达从尾部往前追溯的语义。区间合理即可，end如果大于字符串最大长度会默认成最大长度
+- `range`: 脱敏字符串的索引范围（`[start,end]`） start 和 end 均支持负数下标，用来表达从尾部往前追溯的语义。区间合理即可，end 如果大于字符串最大长度会默认成最大长度
 
 示例:
 
@@ -906,55 +921,54 @@ cover(abc, [2, 4])
 
 内置日期格式：
 
-|内置格式| 日期 | 描述 |
-|-| -| - |
-|"ANSIC"       | "Mon Jan _2 15:04:05 2006" | |
-|"UnixDate"    | "Mon Jan _2 15:04:05 MST 2006" | |
-|"RubyDate"    | "Mon Jan 02 15:04:05 -0700 2006" | |
-|"RFC822"      | "02 Jan 06 15:04 MST" | |
-|"RFC822Z"     | "02 Jan 06 15:04 -0700" | RFC822 with numeric zone |
-|"RFC850"      | "Monday, 02-Jan-06 15:04:05 MST" | |
-|"RFC1123"     | "Mon, 02 Jan 2006 15:04:05 MST" | |
-|"RFC1123Z"    | "Mon, 02 Jan 2006 15:04:05 -0700" | RFC1123 with numeric zone |
-|"RFC3339"     | "2006-01-02T15:04:05Z07:00" | |
-|"RFC3339Nano" | "2006-01-02T15:04:05.999999999Z07:00" | |
-|"Kitchen"     | "3:04PM" | |
+| 内置格式      | 日期                                  | 描述                      |
+| ---           | ---                                   | ---                       |
+| "ANSI-C"      | "Mon Jan _2 15:04:05 2006"            |                           |
+| "UnixDate"    | "Mon Jan _2 15:04:05 MST 2006"        |                           |
+| "RubyDate"    | "Mon Jan 02 15:04:05 -0700 2006"      |                           |
+| "RFC822"      | "02 Jan 06 15:04 MST"                 |                           |
+| "RFC822Z"     | "02 Jan 06 15:04 -0700"               | RFC822 with numeric zone  |
+| "RFC850"      | "Monday, 02-Jan-06 15:04:05 MST"      |                           |
+| "RFC1123"     | "Mon, 02 Jan 2006 15:04:05 MST"       |                           |
+| "RFC1123Z"    | "Mon, 02 Jan 2006 15:04:05 -0700"     | RFC1123 with numeric zone |
+| "RFC3339"     | "2006-01-02T15:04:05Z07:00"           |                           |
+| "RFC3339Nano" | "2006-01-02T15:04:05.999999999Z07:00" |                           |
+| "Kitchen"     | "3:04PM"                              |                           |
 
 自定义日期格式:
 
 可通过占位符的组合自定义输出日期格式
 
-| 字符 | 示例 |描述 |
-| - | - | - |
-| a | %a | 星期的缩写，如 `Wed` |
-| A | %A | 星期的全写，如 `Wednesday`|
-| b | %b | 月份缩写, 如 `Mar` |
-| B | %B | 月份的全写，如 `March` |
-| C | %c | 世纪数，当前年份除 100 |
-| **d** | %d | 一个月内的第几天；范围 `[01, 31]` |
-| e | %e |一个月内的第几天；范围 `[1, 31]`，使用空格填充 |
-| **H** | %H | 小时，使用 24 小时制； 范围 `[00, 23]` |
-| I | %I | 小时，使用 12 小时制； 范围 `[01, 12]` |
-| j | %j | 一年内的第几天，范围 `[001, 365]` | 
-| k | %k | 小时，使用 24 小时制； 范围 `[0, 23]` |
-| l | %l | 小时，使用 12 小时制； 范围 `[1, 12]`，使用空格填充 |
-| **m** | %m | 月份，范围 `[01, 12]` | 
-| **M** | %M | 分钟，范围 `[00, 59]` |
-| n | %n | 表示换行符 `\n` |
-| p | %p | `AM` 或 `PM` |
-| P | %P | `am` 或 `pm` |
-| s | %s | 自 1970-01-01 00:00:00 UTC 来的的秒数 |
-| **S** | %S | 秒数，范围 `[00, 60]` |
-| t | %t | 表示制表符 `\t` |
-| u | %u | 星期几，星期一为 1，范围 `[1, 7]` |
-| w | %w | 星期几，星期天为 0, 范围 `[0, 6]` |
-| y | %y | 年份，范围 `[00, 99]` |
-| **Y** | %Y | 年份的十进制表示|
-| **z** | %z | RFC 822/ISO 8601:1988 风格的时区 (如： `-0600` 或 `+0100` 等) |
-| Z | %Z | 时区缩写，如 `CST` |
-| % | %% | 表示字符 `%` |
+| 字符  | 示例 | 描述                                                          |
+| ---   | ---  | ---                                                           |
+| a     | %a   | 星期的缩写，如 `Wed`                                          |
+| A     | %A   | 星期的全写，如 `Wednesday`                                    |
+| b     | %b   | 月份缩写, 如 `Mar`                                            |
+| B     | %B   | 月份的全写，如 `March`                                        |
+| C     | %c   | 世纪数，当前年份除 100                                        |
+| **d** | %d   | 一个月内的第几天；范围 `[01, 31]`                             |
+| e     | %e   | 一个月内的第几天；范围 `[1, 31]`，使用空格填充                |
+| **H** | %H   | 小时，使用 24 小时制； 范围 `[00, 23]`                        |
+| I     | %I   | 小时，使用 12 小时制； 范围 `[01, 12]`                        |
+| j     | %j   | 一年内的第几天，范围 `[001, 365]`                             |
+| k     | %k   | 小时，使用 24 小时制； 范围 `[0, 23]`                         |
+| l     | %l   | 小时，使用 12 小时制； 范围 `[1, 12]`，使用空格填充           |
+| **m** | %m   | 月份，范围 `[01, 12]`                                         |
+| **M** | %M   | 分钟，范围 `[00, 59]`                                         |
+| n     | %n   | 表示换行符 `\n`                                               |
+| p     | %p   | `AM` 或 `PM`                                                  |
+| P     | %P   | `am` 或 `pm`                                                  |
+| s     | %s   | 自 1970-01-01 00:00:00 UTC 来的的秒数                         |
+| **S** | %S   | 秒数，范围 `[00, 60]`                                         |
+| t     | %t   | 表示制表符 `\t`                                               |
+| u     | %u   | 星期几，星期一为 1，范围 `[1, 7]`                             |
+| w     | %w   | 星期几，星期天为 0, 范围 `[0, 6]`                             |
+| y     | %y   | 年份，范围 `[00, 99]`                                         |
+| **Y** | %Y   | 年份的十进制表示                                              |
+| **z** | %z   | RFC 822/ISO 8601:1988 风格的时区 (如： `-0600` 或 `+0100` 等) |
+| Z     | %Z   | 时区缩写，如 `CST`                                            |
+| %     | %%   | 表示字符 `%`                                                  |
 
- 
 示例:
 
 ```python
@@ -1024,6 +1038,7 @@ decode("wwwwww", "gbk")
 
 待处理数据支持以下格式化时间
 
+<!-- markdownlint-disable MD038 -->
 | 日期格式                                           | 日期格式                                                | 日期格式                                       | 日期格式                          |
 | -----                                              | ----                                                    | ----                                           | ----                              |
 | `2014-04-26 17:24:37.3186369`                      | `May 8, 2009 5:57:51 PM`                                | `2012-08-03 18:31:59.257000000`                | `oct 7, 1970`                     |
@@ -1040,9 +1055,10 @@ decode("wwwwww", "gbk")
 | `3.31.2014`                                        | `2014:4:8 22:05`                                        | `03.31.2014`                                   | `2014:04:08 22:05`                |
 | `08.21.71`                                         | `2014:04:2 03:00:51`                                    | `2014.03`                                      | `2014:4:02 03:00:51`              |
 | `2014.03.30`                                       | `2012:03:19 10:11:59`                                   | `20140601`                                     | `2012:03:19 10:11:59.3186369`     |
-| `20140722105203`                                   | `2014年04月08日`                                        | `1332151919`                                   | `2006-01-02T15:04:05+0000`        |
+| `20140722105203`                                   | `2014 年 04 月 08 日 `                                  | `1332151919`                                   | `2006-01-02T15:04:05+0000`        |
 | `1384216367189`                                    | `2009-08-12T22:15:09-07:00`                             | `1384216367111222`                             | `2009-08-12T22:15:09`             |
 | `1384216367111222333`                              | `2009-08-12T22:15:09Z`                                  |
+<!-- markdownlint-enable -->
 
 JSON 提取示例:
 
@@ -1096,7 +1112,7 @@ rename("time", log_time)
 
 函数原型：`fn delete(src: map[string]any, key: str)`
 
-函数说明： 删除 json map 中的 key
+函数说明： 删除 JSON map 中的 key
 
 ```python
 
@@ -1333,7 +1349,7 @@ grok(key, pattern)  # 对之前已经提取出来的某个 key，做再次 grok
 ```python
 # 待处理数据: "12/01/2021 21:13:14.123"
 
-# pipline脚本
+# pipline 脚本
 add_pattern("_second", "(?:(?:[0-5]?[0-9]|60)(?:[:.,][0-9]+)?)")
 add_pattern("_minute", "(?:[0-5][0-9])")
 add_pattern("_hour", "(?:2[0123]|[01]?[0-9])")
@@ -1426,18 +1442,18 @@ group_in(log_level, ["error", "panic"], "not-ok", status)
 
 函数原型：`fn json(input: str, json_path, newkey, trim_space: bool = true, delete_after_extract = false)`
 
-函数说明：提取 json 中的指定字段，并可将其命名成新的字段。
+函数说明：提取 JSON 中的指定字段，并可将其命名成新的字段。
 
 参数:
 
-- `input`: 待提取 json，可以是原始文本（`_`）或经过初次提取之后的某个 `key`
-- `json_path`: json 路径信息
+- `input`: 待提取 JSON，可以是原始文本（`_`）或经过初次提取之后的某个 `key`
+- `json_path`: JSON 路径信息
 - `newkey`：提取后数据写入新 key
 - `trim_space`: 删除提取出的字符中的空白首尾字符，默认值为 `true`
 - `delete_after_extract`: 在提取结束后删除当前对象，在重新序列化后回写待提取对象；只能应用于 map 的 key 与 value 的删除，不能用于删除 list 的元素；默认值为 `false`，不进行任何操作[:octicons-tag-24: Version-1.5.7](../datakit/changelog.md#cl-1.5.7)
 
 ```python
-# 直接提取原始输入 json 中的x.y字段，并可将其命名成新字段abc
+# 直接提取原始输入 JSON 中的 x.y 字段，并可将其命名成新字段 abc
 json(_, x.y, abc)
 
 # 已提取出的某个 `key`，对其再提取一次 `x.y`，提取后字段名为 `x.y`
@@ -1494,7 +1510,7 @@ json(_, name) json(name, first)
 #            {"first": "Jane", "last": "Murphy", "age": 47, "nets": ["ig", "tw"]}
 #    ]
     
-# 处理脚本, json数组处理:
+# 处理脚本, json 数组处理:
 json(_, [0].nets[-1])
 ```
 
@@ -1660,11 +1676,11 @@ add_key(abc, len(["abc"]))
 ```
 
 
-### `load_json()` {#fn-load_json}
+### `load_json()` {#fn-load_JSON}
 
 函数原型：`fn load_json(val: str) nil|bool|float|map|list`
 
-函数说明：将 json 字符串转换成 map、list、nil、bool、float 的其中一种，可通过 index 表达式取值及修改值。
+函数说明：将 JSON 字符串转换成 map、list、nil、bool、float 的其中一种，可通过 index 表达式取值及修改值。
 
 参数:
 
@@ -1709,7 +1725,7 @@ json(_, first) lowercase(first)
 
 # 处理结果
 {
-		"first": "hello"
+    "first": "hello"
 }
 ```
 
@@ -1816,7 +1832,7 @@ json(_, first) json(_, second) nullif(first, "1")
 
 ```python
 if first == "1" {
-	drop_key(first)
+    drop_key(first)
 }
 ```
 
@@ -2036,23 +2052,23 @@ if !sample(0.3) { # sample(0.3) 表示采样率为 30%，即以 30% 概率返回
 函数说明：改变行协议的 name
 函数参数：
 
-- `name`: 值作为 mesaurement name，可传入字符串常量或变量
+- `name`: 值作为 measurement name，可传入字符串常量或变量
 - `delete_key`: 如果在 point 中存在与变量同名的 tag 或 field 则删除它
 
 行协议 name 与各个类型数据存储时的字段映射关系或其他用途：
 
-| 类别           | 字段名         | 其他用途 |
-| -             | -             | -       |          
-|custom_object  | class         | -       |
-|keyevent       | -             | -       |
-|logging        | source        | -       |
-|metric         | -             | 指标集名 |
-|network        | source        | -       |
-|object         | class         | -       |
-|profiling      | source        | -       |
-|rum            | source        | -       |
-|security       | rule          | -       |
-|tracing        | source        | -       |
+| 类别          | 字段名 | 其他用途 |
+| -             | -      | -        |
+| custom_object | class  | -        |
+| keyevent      | -      | -        |
+| logging       | source | -        |
+| metric        | -      | 指标集名 |
+| network       | source | -        |
+| object        | class  | -        |
+| profiling     | source | -        |
+| rum           | source | -        |
+| security      | rule   | -        |
+| tracing       | source | -        |
 
 
 ### `set_tag()` {#fn-set-tag}
@@ -2105,7 +2121,7 @@ set_tag(str_a, str_b) # str_a == str_b == "3"
 
 函数原型：`fn sql_cover(sql_test: str)`
 
-函数说明：脱敏sql语句
+函数说明：脱敏 SQL 语句
 
 ```python
 # in << {"select abc from def where x > 3 and y < 5"}
@@ -2201,12 +2217,12 @@ add_key(time_now_record, timestamp("ms"))
 
 函数原型：`fn trim(key, cutset: str = "")`
 
-函数说明：删除 key 中首尾中指定的字符，cutset 为空字符串时默认删除所有空白符
+函数说明：删除 `key` 中首尾中指定的字符，`cutset` 为空字符串时默认删除所有空白符
 
 函数参数：
 
 - `key`: 已提取的某字段，字符串类型
-- `cutset`: 删除 key 中出现在 cutset 字符串的中首尾字符
+- `cutset`: 删除 `key` 中出现在 `cutset` 字符串的中首尾字符
 
 示例:
 

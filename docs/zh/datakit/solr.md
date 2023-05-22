@@ -1,12 +1,13 @@
 
 # Solr
+
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](index.md#legends "支持选举")
 
 ---
 
-solr 采集器，用于采集 solr cache 和 request times 等的统计信息。
+Solr 采集器，用于采集 Solr Cache 和 Request Times 等的统计信息。
 
 ## 前置条件 {#requrements}
 
@@ -15,6 +16,7 @@ solr 采集器，用于采集 solr cache 和 request times 等的统计信息。
 
 ## 配置 {#config}
 
+<!-- markdownlint-disable MD046 -->
 === "主机安装"
 
     进入 DataKit 安装目录下的 `conf.d/db` 目录，复制 `solr.conf.sample` 并命名为 `solr.conf`。示例如下：
@@ -49,10 +51,10 @@ solr 采集器，用于采集 solr cache 和 request times 等的统计信息。
     
     配置好后，[重启 DataKit](datakit-service-how-to.md#manage-service) 即可。
 
-
 === "Kubernetes"
 
     目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+<!-- markdownlint-enable -->
 
 ## 指标集 {#measurements}
 
@@ -69,10 +71,10 @@ solr 采集器，用于采集 solr cache 和 request times 等的统计信息。
 
 ### `solr_cache`
 
--  标签
+- 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`category`|Category name.|
 |`core`|Solr core.|
@@ -84,7 +86,7 @@ solr 采集器，用于采集 solr cache 和 request times 等的统计信息。
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cumulative_evictions`|Number of cache evictions across all caches since this node has been running.|int|count|
 |`cumulative_hitratio`|Ratio of cache hits to lookups across all the caches since this node has been running.|float|percent|
@@ -105,10 +107,10 @@ solr 采集器，用于采集 solr cache 和 request times 等的统计信息。
 
 ### `solr_request_times`
 
--  标签
+- 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`category`|Category name.|
 |`core`|Solr core.|
@@ -120,7 +122,7 @@ solr 采集器，用于采集 solr cache 和 request times 等的统计信息。
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`count`|Total number of requests made since the Solr process was started.|int|count|
 |`max`|Max of all the request processing time.|float|ms|
@@ -131,20 +133,20 @@ solr 采集器，用于采集 solr cache 和 request times 等的统计信息。
 |`p95`|Request processing time in milliseconds for the request which belongs to the 95th Percentile.|float|ms|
 |`p99`|Request processing time in milliseconds for the request which belongs to the 99th Percentile.|float|ms|
 |`p999`|Request processing time in milliseconds for the request which belongs to the 99.9th Percentile.|float|ms|
-|`rate_15min`|Requests per second received over the past 15 minutes.|float|reqps|
-|`rate_1min`|Requests per second received over the past 1 minutes.|float|reqps|
-|`rate_5min`|Requests per second received over the past 5 minutes.|float|reqps|
-|`rate_mean`|Average number of requests per second received|float|reqps|
+|`rate_15min`|Requests per second received over the past 15 minutes.|float|req/s|
+|`rate_1min`|Requests per second received over the past 1 minutes.|float|req/s|
+|`rate_5min`|Requests per second received over the past 5 minutes.|float|req/s|
+|`rate_mean`|Average number of requests per second received|float|req/s|
 |`stddev`|Stddev of all the request processing time.|float|ms|
 
 
 
 ### `solr_searcher`
 
--  标签
+- 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`category`|Category name.|
 |`core`|Solr core.|
@@ -155,7 +157,7 @@ solr 采集器，用于采集 solr cache 和 request times 等的统计信息。
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`deleted_docs`|The number of deleted documents.|int|count|
 |`max_docs`|The largest possible document number.|int|count|
@@ -166,7 +168,7 @@ solr 采集器，用于采集 solr cache 和 request times 等的统计信息。
 
 ## 日志采集 {#logging}
 
-如需采集 Solr 的日志，可在 solr.conf 中 将 `files` 打开，并写入 Solr 日志文件的绝对路径。比如：
+如需采集 Solr 的日志，可在 *solr.conf* 中 将 `files` 打开，并写入 Solr 日志文件的绝对路径。比如：
 
 ```toml
 [inputs.solr.log]
@@ -176,15 +178,15 @@ solr 采集器，用于采集 solr cache 和 request times 等的统计信息。
 
 切割日志示例：
 
-```
+```log
 2013-10-01 12:33:08.319 INFO (org.apache.solr.core.SolrCore) [collection1] webapp.reporter
 ```
 
 切割后字段：
 
-| 字段名   | 字段值                        |
-| -------- | ----------------------------- |
-| Reporter | webapp.reporter               |
-| status   | INFO                          |
-| thread   | org.apache.solr.core.SolrCore |
-| time     | 1380630788319000000           |
+| 字段名     | 字段值                          |
+| --------   | -----------------------------   |
+| `Reporter` | `webapp.reporter`               |
+| `status`   | `INFO`                          |
+| `thread`   | `org.apache.solr.core.SolrCore` |
+| `time`     | `1380630788319000000`           |

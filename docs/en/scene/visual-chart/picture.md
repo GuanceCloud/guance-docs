@@ -5,7 +5,7 @@
 
 Pictures are generally used to display pictures, you can add the picture address in the picture to display the corresponding picture, you can adjust the shape of the picture by choosing fill, fit, stretch, center. In the link page, you can add the URL you need to jump to.
 
-## Application Scenarios
+## Use Case
 
 The image chart of the Guance is used to display images to illustrate tips. For example, you can add a logo image with a link to jump to the corresponding URL.
 

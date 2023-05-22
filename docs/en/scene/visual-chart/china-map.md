@@ -5,7 +5,7 @@
 
 "Guance" supports adding a map of China to the view.
 
-## Application Scenarios
+## Use Case
 
 The world map of the Guance is used to display the data distribution of a certain metric data in different provinces. It can be used in the following scenarios.
 

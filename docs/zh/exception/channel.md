@@ -31,7 +31,7 @@
 
 ### 订阅频道
 
-在 Issue 列表左上方，点击图标 ![](img/channel-icon.png)，您可以按需选择订阅功能。
+在 Issue 列表左上方，点击图标 :material-bookmark-plus-outline: ，您可以按需选择订阅功能。
 
 - 负责：订阅后将会收到投递的新 Issue、已有 Issue 的回复、日 Issue 汇总通知；
 
@@ -41,17 +41,16 @@
 
 - 无：取消订阅。
 
-![](img/exception-3.png)
 
 ### 查看订阅成员
 
-在 Issue 列表左上方，点击图标 ![](img/channel-member.png)，展开显示页。您可以在搜索栏通过输入当前工作空间内成员的名称或邮箱进行搜索，即可查看该成员的订阅程度。
+在 Issue 列表左上方，点击图标 :octicons-people-24: ，展开显示页。您可以在搜索栏通过输入当前工作空间内成员的名称或邮箱进行搜索，即可查看该成员的订阅程度。
 
 ![](img/exception-4.png)
 
 ### 查看通知对象 / 设置
 
-在 Issue 列表左上方，点击图标 ![](img/channel-inform.png)，或点击**设置**，展开显示页。您可以：
+在 Issue 列表左上方，点击图标 :material-bell: ，或点击**设置**，展开显示页。您可以：
 
 - 查看、修改频道名称；
 
@@ -92,7 +91,7 @@
 
 ![](img/exception-6.png)
 
-### 回复 Issue {reply-issue}
+### 回复 Issue {#reply-issue}
 
 Issue 存在回复记录一般源于两种情况：
 

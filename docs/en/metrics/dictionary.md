@@ -35,7 +35,7 @@ In **Metric Management**, you can view all metrics reported to Guance, including
     - Metric details can only be edited by standard members and above.
     - The priority of **Unit** and **Description** added in **Metric Management** is higher than the data collected by default. For example, **Unit** is changed from `B` to `GB`, and the unit on the chart would be converted to `GB` for data display when the scene is queried for charts.
 
-#### Application Scenarios
+#### Use Case
 
 When you query metrics, you can query and analyze data more conveniently by viewing the metric name, field type, unit and description. For example, when you query charts in scenes, you can view the detailed information of metrics in real time when you detect metrics in monitors.
 
@@ -52,7 +52,7 @@ Tags refer to the collection of attributes that identify the collection object o
 
 ![](img/1.tag_1.png)
 
-#### Application Scenarios
+#### Use Case
 
 In the metric query, you can quickly understand the meaning of the tag by viewing the description of the tag. For example, in the part of the chart query in the scene and the metric detection in the monitor, you can view the description information of the tag in real time. Guance provides system field/tag descriptions by default, and you can replace system field or tag descriptions in [field management](../management/field-management.md).
 

@@ -4,6 +4,13 @@
 
 ## 简介
 
+一个工作空间接入多个 Kubernetes 集群时，需要设置 ENV_NAMESPACE 环境变量，值为非空字符，不同集群值不能相同。
+
+```yaml
+- name: ENV_NAMESPACE
+  value: xxx
+```  
+  
 针对一个工作空间接入多个 Kubernetes 集群指标，观测云提供了使用全局 Tag 的方式来进行区分。当集群中只有一个采集对象，比如采集 **Kubernetes API Server** 指标，集群中 DataKit 的数量会大于一个，为了避免指标采集重复，DataKit 开启了**选举**功能，这个时候区分集群的方式是增加 `ENV_GLOBAL_ELECTION_TAGS`。
 
 ```yaml

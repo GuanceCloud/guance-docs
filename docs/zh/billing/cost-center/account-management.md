@@ -60,8 +60,8 @@
 
 云账号是云厂家订阅后保存的云账号信息，可用于新工作空间的结算，即多个工作空间都可以用同一个云账号进行结算。观测云费用中心支持亚马逊云账号、阿里云账号两种云账号。在**账户管理 > 云账号**即可查看已经订阅的云账号，支持为已订阅的云账号绑定工作空间。
 
-- 关于如何订阅云账号可参考文档 [阿里云账号结算](../../billing/billing-account/aliyun-account.md) 或者 [AWS账号结算](../../billing/billing-account/aws-account.md)；
-- 关于如何绑定工作空间可参考文档 [绑定工作空间](../../billing/cost-center/workspace-management.md)。
+> 关于如何订阅云账号可参考文档 [阿里云账号结算](../../billing/billing-account/aliyun-account.md)、[AWS 账号结算](../../billing/billing-account/aws-account.md)和[华为云账号结算](../../billing/billing-account/huaweicloud-account.md)；  
+> 关于如何绑定工作空间可参考文档 [绑定工作空间](../../billing/cost-center/workspace-management.md)。
 
 ![](../img/15.aws_5.png)
 

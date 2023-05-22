@@ -27,7 +27,7 @@
 
 ### 用户访问指标检测（RUM）
 
-在「用户访问指标检测（RUM）」检测器中，除了上述通用的模板变量外，额外支持下列模板变量：
+在**用户访问指标检测**检测器中，除了上述通用的模板变量外，额外支持下列模板变量：
 
 | 模板变量   | 类型   | 说明     |
 | ---------- | ------ | -------- |
@@ -37,7 +37,7 @@
 
 ### 模板变量示例
 
-假设所配置的监控器`by`配置了`region`和`host`，且告警配置的模板如下：
+假设所配置的监控器 `by` 配置了 `region` 和 `host` ，且告警配置的模板如下：
 
 事件名称：
 
@@ -114,7 +114,7 @@ CPU 使用率：{{ (Result * 100) | to_round(2) }}%
 
 ### 模板函数示例
 
-假设所配置的监控器`by`配置了`region`和`host`，且告警配置的模板如下：
+假设所配置的监控器 `by` 配置了 `region` 和 `host`，且告警配置的模板如下：
 
 事件名称：
 
@@ -132,7 +132,7 @@ CPU 使用率：{{ (Result * 100) | to_round(2) }}%
 - 监控器：{{ df_monitor_checker_name }}（分组：{{ df_monitor_name }}）
 ```
 
-那么，产生`error`事件后，经过渲染的事件输出如下：
+那么，产生 `error` 事件后，经过渲染的事件输出如下：
 
 输出事件名称：
 
@@ -156,7 +156,7 @@ CPU 使用率：{{ (Result * 100) | to_round(2) }}%
 
 ### 模板分支示例
 
-假设，我们需要根据`df_status`不同，输出不同的内容。
+假设，我们需要根据 `df_status` 不同，输出不同的内容。
 
 ```
 {% if df_status == 'critical' %}
@@ -213,9 +213,11 @@ xxx 字段：{{ dql_data.xxx }}
 
 此后的模板中即可使用`{{ dql_data.xxx }}`输出查询结果中的具体字段。
 
-*注意：变量名遵循一般编程语言的命名要求，可以为任意英文开头，且仅包含英文、数字、下划线的字符串。不建议使用 emoji*
+???+ attention
 
-*注意：如果在 DQL 中对字段使用了函数（如：`O::HOST:( last(host) )`，建议使用`AS`为字段取别名来方便后续使用（如：`O::HOST:( last(host) AS last_host )`）*
+    变量名遵循一般编程语言的命名要求，可以为任意英文开头，且仅包含英文、数字、下划线的字符串。不建议使用 emoji；  
+
+    如果在 DQL 中对字段使用了函数（如：`O::HOST:( last(host) )`，建议使用`AS`为字段取别名来方便后续使用（如：`O::HOST:( last(host) AS last_host )`）。  
 
 ### 使用模板变量传递 DQL 参数
 
@@ -223,7 +225,7 @@ xxx 字段：{{ dql_data.xxx }}
 
 假设监控器配置如下：
 
-> 针对`cpu`指标，按`host`、`project`分组，对`load5s`大于`10`的主机进行告警
+> 针对`cpu`指标，按`host`、`project`分组，对`load5s`大于`10`的主机进行告警。
 
 所产生事件的模板变量中会存在`host`和`project`字段用于标记不同的主机，但模板变量中并不包含主机 IP 地址、操作系统等信息。
 
@@ -266,11 +268,21 @@ O::HOST:(host, host_ip, os, datakit_ver) { host = 'my_server' }
 
 ### 注意事项
 
-1. 内嵌 DQL 查询函数所赋值的变量名，*不要*与现有的任何模板变量、模板函数重名，否则会产生不可预料的问题
-2. 由于内嵌 DQL 查询函数位于事件内容模板中，建议写在整个内容模板的最开头，系统会自动去除内容前后的空行
-3. 如果在 DQL 中对字段使用了函数（如：`O::HOST:( last(host) )`，建议使用`AS`为字段取别名来方便后续使用（如：`O::HOST:( last(host) AS last_host )`）
+- 内嵌 DQL 查询函数所赋值的变量名，<u>不要</u>与现有的任何模板变量、模板函数重名，否则会产生不可预料的问题；   
+- 由于内嵌 DQL 查询函数位于事件内容模板中，建议写在整个内容模板的最开头，系统会自动去除内容前后的空行；  
+- 如果在 DQL 中对字段使用了函数（如：`O::HOST:( last(host) )`，建议使用`AS`为字段取别名来方便后续使用（如：`O::HOST:( last(host) AS last_host )`）。  
 
-### 附录
+### 更多阅读
 
-- 有关 DQL 语句帮助文档，请参考 [帮助 - DQL](/dql/)
-- 所有可用`namespace`，请参考 [帮助 - DQL - DQL 定义 - namespace](/dql/define/#namespace)
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **有关 DQL 语句**</font>](../dql/index.md)
+
+</div>
+
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **有关所有可用 `namespace`**</font>](../dql/define.md#namespace)
+
+</div>

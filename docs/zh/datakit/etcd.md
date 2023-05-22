@@ -6,16 +6,17 @@
 
 ---
 
-etcd 采集器可以从 etcd 实例中采取很多指标，比如etcd服务器状态和网络的状态等多种指标，并将指标采集到 DataFlux ，帮助你监控分析 etcd 各种异常情况
+etcd 采集器可以从 etcd 实例中采取很多指标，比如 etcd 服务器状态和网络的状态等多种指标，并将指标采集到 DataFlux ，帮助你监控分析 etcd 各种异常情况
 
 ## 前置条件 {#requirements}
 
-- etcd 版本  >=3
+- etcd 版本 >= 3
 
 - 开启 etcd，默认的 metrics 接口是 `http://localhost:2379/metrics`，也可以自行在配置文件中修改。
 
 ## 配置 {#config}
 
+<!-- markdownlint-disable MD046 -->
 === "主机安装"
 
     进入 DataKit 安装目录下的 `conf.d/etcd` 目录，复制 `etcd.conf.sample` 并命名为 `etcd.conf`。示例如下：
@@ -29,7 +30,7 @@ etcd 采集器可以从 etcd 实例中采取很多指标，比如etcd服务器�
       url = "http://127.0.0.1:2379/metrics"
     
       ## Collector alias.
-    	source = "etcd"
+      source = "etcd"
     
       ## Metrics type whitelist. Optional: counter, gauge, histogram, summary
       # Default only collect 'counter' and 'gauge'.
@@ -88,6 +89,7 @@ etcd 采集器可以从 etcd 实例中采取很多指标，比如etcd服务器�
 === "Kubernetes"
 
     目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+<!-- markdownlint-enable -->
 
 ## 指标集 {#measurements}
 
@@ -95,17 +97,17 @@ etcd 采集器可以从 etcd 实例中采取很多指标，比如etcd服务器�
 
 ### `etcd_network`
 
--  标签
+- 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|主机名称|
 
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`network_client_grpc_received_bytes_total`|接收到 grpc 客户端的总字节数|int|count|
 |`network_client_grpc_sent_bytes_total`|发送到 grpc 客户端的总字节数|int|count|
@@ -114,18 +116,18 @@ etcd 采集器可以从 etcd 实例中采取很多指标，比如etcd服务器�
 
 ### `etcd_server`
 
--  标签
+- 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|主机名称|
-|`server_has_leader`|领导者是否存在。1是存在。0是不存在|
+|`server_has_leader`|领导者是否存在。1 是存在。0 是不存在|
 
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`server_leader_changes_seen_total`|解释到的领导者变更次数|int|count|
 |`server_proposals_applied_total`|已应用的共识提案总数|int|count|

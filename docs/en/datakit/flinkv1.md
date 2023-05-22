@@ -59,7 +59,7 @@ metrics.reporter.prom.port: 9250-9260 # The port range of each node is different
 
 - Start Flink: `./bin/start-cluster.sh` (This command is for reference only, and the specific command may vary depending on the actual environment)
 
-- Hosts with access to external networks <[Install Datakit](https://www.yuque.com/dataflux/datakit/datakit-install)>
+- Hosts with access to external networks [Install Datakit](https://www.yuque.com/dataflux/datakit/datakit-install){:target="_blank"}
 - Change the Flink configuration and add the following to turn on Prometheus collection.
 
 ```bash
@@ -74,7 +74,7 @@ metrics.reporter.prom.port: 9250-9260
 
 ## Measurements {#measurements}
 
-Flink collects multiple metrics by default, and these [metrics](https://nightlies.apache.org/flink/flink-docs-release-1.14/docs/ops/metrics/#system-metrics) provide insight into the current state.
+Flink collects multiple metrics by default, and these [metrics](https://nightlies.apache.org/flink/flink-docs-release-1.14/docs/ops/metrics/#system-metrics){:target="_blank"} provide insight into the current state.
 
 
 
@@ -83,14 +83,14 @@ Flink collects multiple metrics by default, and these [metrics](https://nightlie
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|host name|
 
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`Status_JVM_CPU_Load`|The recent CPU usage of the JVM.|int|count|
 |`Status_JVM_CPU_Time`|The CPU time used by the JVM.|int|count|
@@ -109,14 +109,14 @@ Flink collects multiple metrics by default, and these [metrics](https://nightlie
 |`Status_JVM_Memory_Mapped_Count`|The number of buffers in the mapped buffer pool.|int|count|
 |`Status_JVM_Memory_Mapped_MemoryUsed`|The amount of memory used by the JVM for the mapped buffer pool.|int|count|
 |`Status_JVM_Memory_Mapped_TotalCapacity`|The number of buffers in the mapped buffer pool.|int|count|
-|`Status_JVM_Memory_Metaspace_Committed`|The amount of memory guaranteed to be available to the JVM in the Metaspace memory pool (in bytes).|int|count|
-|`Status_JVM_Memory_Metaspace_Max`|The maximum amount of memory that can be used in the Metaspace memory pool (in bytes).|int|count|
+|`Status_JVM_Memory_Metaspace_Committed`|The amount of memory guaranteed to be available to the JVM in the meta-space memory pool (in bytes).|int|count|
+|`Status_JVM_Memory_Metaspace_Max`|The maximum amount of memory that can be used in the meta-space memory pool (in bytes).|int|count|
 |`Status_JVM_Memory_Metaspace_Used`|Used bytes of a given JVM memory area|int|count|
 |`Status_JVM_Memory_NonHeap_Committed`|The amount of non-heap memory guaranteed to be available to the JVM.|int|count|
 |`Status_JVM_Memory_NonHeap_Max`|The maximum amount of non-heap memory that can be used for memory management|int|count|
 |`Status_JVM_Memory_NonHeap_Used`|The amount of non-heap memory currently used.|int|count|
 |`Status_JVM_Threads_Count`|The total number of live threads.|int|count|
-|`numRegisteredTaskManagers`|The number of registered taskmanagers.|int|count|
+|`numRegisteredTaskManagers`|The number of registered task managers.|int|count|
 |`numRunningJobs`|The number of running jobs.|int|count|
 |`taskSlotsAvailable`|The number of available task slots.|int|count|
 |`taskSlotsTotal`|The total number of task slots.|int|count|
@@ -128,14 +128,14 @@ Flink collects multiple metrics by default, and these [metrics](https://nightlie
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|host name|
 
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`Status_Flink_Memory_Managed_Total`|The total amount of managed memory.|int|count|
 |`Status_Flink_Memory_Managed_Used`|The amount of managed memory currently used.|int|count|
@@ -156,8 +156,8 @@ Flink collects multiple metrics by default, and these [metrics](https://nightlie
 |`Status_JVM_Memory_Mapped_Count`|The number of buffers in the mapped buffer pool.|int|count|
 |`Status_JVM_Memory_Mapped_MemoryUsed`|The amount of memory used by the JVM for the mapped buffer pool.|int|count|
 |`Status_JVM_Memory_Mapped_TotalCapacity`|The number of buffers in the mapped buffer pool.|int|count|
-|`Status_JVM_Memory_Metaspace_Committed`|The amount of memory guaranteed to be available to the JVM in the Metaspace memory pool (in bytes).|int|count|
-|`Status_JVM_Memory_Metaspace_Max`|The maximum amount of memory that can be used in the Metaspace memory pool (in bytes).|int|count|
+|`Status_JVM_Memory_Metaspace_Committed`|The amount of memory guaranteed to be available to the JVM in the meta-space memory pool (in bytes).|int|count|
+|`Status_JVM_Memory_Metaspace_Max`|The maximum amount of memory that can be used in the meta-space memory pool (in bytes).|int|count|
 |`Status_JVM_Memory_Metaspace_Used`|Used bytes of a given JVM memory area|int|count|
 |`Status_JVM_Memory_NonHeap_Committed`|The amount of non-heap memory guaranteed to be available to the JVM.|int|count|
 |`Status_JVM_Memory_NonHeap_Max`|The maximum amount of non-heap memory that can be used for memory management|int|count|

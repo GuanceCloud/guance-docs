@@ -10,13 +10,14 @@ Datakit 内嵌的 Jaeger Agent 用于接收，运算，分析 Jaeger Tracing 协
 
 ## Jaeger 文档 {#doc}
 
-- [Quickstart](https://www.jaegertracing.io/docs/1.27/getting-started/){:target="_blank"}
+- [Quick Start](https://www.jaegertracing.io/docs/1.27/getting-started/){:target="_blank"}
 - [Docs](https://www.jaegertracing.io/docs/){:target="_blank"}
 - [Clients Download](https://www.jaegertracing.io/download/){:target="_blank"}
 - [Source Code](https://github.com/jaegertracing/jaeger){:target="_blank"}
 
 ## 配置 Jaeger Agent {#config-agent}
 
+<!-- markdownlint-disable MD046 -->
 ???+ info
 
     当前 Jaeger 版本支持 HTTP 和 UDP 通信协议和 Apache Thrift 编码规范
@@ -88,6 +89,7 @@ Datakit 内嵌的 Jaeger Agent 用于接收，运算，分析 Jaeger Tracing 协
 === "Kubernetes"
 
     目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+<!-- markdownlint-enable -->
 
 ### 配置 Jaeger HTTP Agent {#config-http-agent}
 
@@ -288,7 +290,7 @@ func foo() {
 - 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`container_host`|container hostname|
 |`endpoint`|endpoint info|
@@ -306,7 +308,7 @@ func foo() {
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`duration`|duration of span|int|μs|
 |`message`|origin content of span|string|-|

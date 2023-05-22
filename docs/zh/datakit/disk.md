@@ -6,18 +6,19 @@
 
 ---
 
-disk 采集器用于主机磁盘信息采集，如磁盘存储空间、inodes 使用情况等。
+disk 采集器用于主机磁盘信息采集，如磁盘存储空间、Inode 使用情况等。
 
 ## 前置条件 {#requirements}
 
 暂无
 
-
 ## 配置 {#config}
 
+<!-- markdownlint-disable MD046 -->
 === "主机安装"
 
     进入 DataKit 安装目录下的 `conf.d/host` 目录，复制 `disk.conf.sample` 并命名为 `disk.conf`。示例如下：
+
     ```toml
         
     [[inputs.disk]]
@@ -40,7 +41,7 @@ disk 采集器用于主机磁盘信息采集，如磁盘存储空间、inodes �
     
       ## Deprecated
       # fs = ["ext2", "ext3", "ext4", "NTFS"]
-      
+    
       ## We collect all devices prefixed with dev by default,If you want to collect additional devices, it's in extra_device add
       # extra_device = ["/nfsdata"]
     
@@ -64,6 +65,7 @@ disk 采集器用于主机磁盘信息采集，如磁盘存储空间、inodes �
     | `ENV_INPUT_DISK_TAGS`                 | `tags`                 | `tag1=value1,tag2=value2` 如果配置文件中有同名 tag，会覆盖它                             |
     | `ENV_INPUT_DISK_ONLY_PHYSICAL_DEVICE` | `only_physical_device` | 忽略非物理磁盘（如网盘、NFS 等，只采集本机硬盘/CD ROM/USB 磁盘等）任意给一个字符串值即可 |
     | `ENV_INPUT_DISK_INTERVAL`             | `interval`             | `10s`                                                                                    |
+<!-- markdownlint-enable -->
 
 ## 指标集 {#measurements}
 
@@ -80,10 +82,10 @@ disk 采集器用于主机磁盘信息采集，如磁盘存储空间、inodes �
 
 ### `disk`
 
--  标签
+- 标签
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`device`|Disk device name.|
 |`fstype`|File system name.|
@@ -92,15 +94,16 @@ disk 采集器用于主机磁盘信息采集，如磁盘存储空间、inodes �
 - 指标列表
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`free`|Free disk size in bytes.|int|B|
-|`inodes_free`|Free inodes(**DEPRECATED: use inodes_free_mb instead**).|int|count|
-|`inodes_free_mb`|Free inodes(in MB).|int|count|
-|`inodes_total`|Total inodes(**DEPRECATED: use inodes_total_mb instead**).|int|count|
-|`inodes_total_mb`|Total inodes(in MB).|int|count|
-|`inodes_used`|Used inodes(**DEPRECATED: use inodes_used_mb instead**).|int|count|
-|`inodes_used_mb`|Used inodes(in MB).|int|count|
+|`inodes_free`|Free Inode(**DEPRECATED: use inodes_free_mb instead**).|int|count|
+|`inodes_free_mb`|Free Inode(need to multiply by 10^6).|int|count|
+|`inodes_total`|Total Inode(**DEPRECATED: use inodes_total_mb instead**).|int|count|
+|`inodes_total_mb`|Total Inode(need to multiply by 10^6).|int|count|
+|`inodes_used`|Used Inode(**DEPRECATED: use inodes_used_mb instead**).|int|count|
+|`inodes_used_mb`|Used Inode(need to multiply by 10^6).|int|count|
+|`inodes_used_percent`|Inode used percent|float|percent|
 |`total`|Total disk size in bytes.|int|B|
 |`used`|Used disk size in bytes.|int|B|
 |`used_percent`|Used disk size in percent.|float|percent|

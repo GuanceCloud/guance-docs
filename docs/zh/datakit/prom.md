@@ -1,5 +1,6 @@
 
 # Prometheus Exporter 数据采集
+
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](index.md#legends "支持选举")
@@ -14,6 +15,7 @@ Prom 采集器可以获取各种 Prometheus Exporters 暴露出来的指标数�
 
 ## 配置 {#config}
 
+<!-- markdownlint-disable MD046 -->
 === "主机安装"
 
     进入 DataKit 安装目录下的 `conf.d/prom` 目录，复制 `prom.conf.sample` 并命名为 `prom.conf`。示例如下：
@@ -149,6 +151,7 @@ Prom 采集器可以获取各种 Prometheus Exporters 暴露出来的指标数�
     [[inputs.prom]]
         interval = "10s"
     ```
+<!-- markdownlint-enable -->
 
 ### 配置额外的 header {#extra-header}
 
@@ -166,7 +169,7 @@ Prom 采集器支持在数据拉取的 HTTP 请求中配置额外的请求头，
 
 `tags_rename` 可以实现对采集到的 Prometheus Exporter 数据做 tag 名称的替换，里面的 `overwrite_exist_tags` 用于开启覆盖已有 tag 的选项。举个例子，对于已有 Prometheus Exporter 数据：
 
-```
+```not-set
 http_request_duration_seconds_bucket{le="0.003",status_code="404",tag_exists="yes", method="GET"} 1
 ```
 
@@ -200,7 +203,7 @@ http,StatusCode=404,le=0.003,method=GET,tag_exists=yes request_duration_seconds_
 
 由于 Prometheus 的数据格式跟 Influxdb 的行协议格式存在一定的差别。 对 Prometheus 而言，以下为一个 K8s 集群中一段分暴露出来的数据：
 
-```
+```not-set
 node_filesystem_avail_bytes{device="/dev/disk1s1",fstype="apfs",mountpoint="/"} 1.21585664e+08
 node_filesystem_avail_bytes{device="/dev/disk1s4",fstype="apfs",mountpoint="/private/var/vm"} 1.2623872e+08
 node_filesystem_avail_bytes{device="/dev/disk3s1",fstype="apfs",mountpoint="/Volumes/PostgreSQL 13.2-2"} 3.7269504e+07
@@ -227,7 +230,7 @@ node_filesystem_files{device="map auto_home",fstype="autof
 
 对 Influxdb 而言，上面数据的一种组织方式为
 
-```
+```not-set
 node_filesystem,tag-list available_bytes=1.21585664e+08,device_error=0,files=9.223372036854776e+18 time
 ```
 
@@ -239,7 +242,7 @@ node_filesystem,tag-list available_bytes=1.21585664e+08,device_error=0,files=9.2
 
 要达到这样的切割目的，可以这样配置 `prom.conf`
 
-```
+```toml
   [[inputs.prom.measurements]]
     prefix = "node_filesystem_"
     name = "node_filesystem"
@@ -257,7 +260,7 @@ Datakit 支持命令行直接调试 prom 采集器的配置文件，从 conf.d/p
 执行如下命令，即可调试 `prom.conf`
 
 ```shell
-datakit tool --prom-conf prom.conf
+datakit debug --prom-conf prom.conf
 ```
 
 参数说明：
@@ -266,7 +269,7 @@ datakit tool --prom-conf prom.conf
 
 输出示例：
 
-```
+```not-set
 ================= Line Protocol Points ==================
 
  prom_node,device=disk0 disk_written_sectors_total=146531.087890625 1623379432917573000

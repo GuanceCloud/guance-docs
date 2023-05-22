@@ -9,17 +9,16 @@
 ## 前置条件
 
 1. 观测云「[应用性能监测](../../application-performance-monitoring/collection/index)」已经存在接入的应用
-2. 自建  [DataFlux Func](https://func.guance.com/#/) 的离线部署
-3. 开启自建 DataFlux Func 的[脚本市场](https://func.guance.com/doc/script-market-basic-usage/)
+2. 自建 [DataFlux Func 观测云特别版](https://func.guance.com/#/) 的离线部署
 4. 在观测云「管理 / API Key 管理」中创建用于进行操作的 [API Key](../../management/api-key/open-api.md)
 
-> **注意：**如果考虑采用云服务器来进行 DataFlux Func 离线部署的话，请考虑跟当前使用的观测云 SaaS 部署在[同一运营商同一地域](../../../getting-started/necessary-for-beginners/select-site/)。
+> **注意**：如果考虑采用云服务器来进行 DataFlux Func 离线部署的话，请考虑跟当前使用的观测云 SaaS 部署在[同一运营商同一地域](../../../getting-started/necessary-for-beginners/select-site/)。
 
 ## 开启巡检
 
-在自建的 DataFlux Func 中，通过「脚本市场」安装「观测云自建巡检 Core 核心包」「观测云算法库」并前往 PIP 工具安装相关依赖，安装「观测云自建巡检（APM 性能）」并根据提示配置观测云 API Key 完成开启。
+在自建的 DataFlux Func 中，通过「脚本市场」安装「观测云自建巡检（APM 性能）」并根据提示配置观测云 API Key 完成开启。
 
-在 DataFlux Func 脚本市场中选择需要开启的巡检场景点击安装，配置观测云 API Key 后选择部署启动脚本即可
+在 DataFlux Func 脚本市场中选择需要开启的巡检场景点击安装，配置观测云 API Key 和 [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/) 后选择部署启动脚本即可
 
 ![image](../img/create_checker.png)
 
@@ -53,7 +52,7 @@
 
 #### 编辑
 
-  智能巡检「 应用性能巡检 」支持用户手动添加筛选条件，在智能巡检列表右侧的操作菜单下，点击「编辑」按钮，即可对巡检模版进行编辑。
+  智能巡检「 应用性能巡检 」支持用户手动添加筛选条件，在智能巡检列表右侧的操作菜单下，点击**编辑**按钮，即可对巡检模版进行编辑。
 
   * 筛选条件：配置应用 project 服务所属项目、service_sub 包括服务（service）、环境（env）、版本（version）通过 ":" 拼接而成。
   * 告警通知：支持选择和编辑告警策略，包括需要通知的事件等级、通知对象、以及告警沉默周期等
@@ -117,7 +116,7 @@ def run(configs=None):
 
 ## 查看事件
 
-  智能巡检基于观测云巡检算法，会查找 APM 指标中的异常情况，如 `resource` 突然发生异常。对于异常情况，智能巡检会生成相应的事件，在智能巡检列表右侧的操作菜单下，点击「查看相关事件」按钮，即可查看对应异常事件。
+  智能巡检基于观测云巡检算法，会查找 APM 指标中的异常情况，如 `resource` 突然发生异常。对于异常情况，智能巡检会生成相应的事件，在智能巡检列表右侧的操作菜单下，点击**查看相关事件**按钮，即可查看对应异常事件。
 
 ![image](../img/apm04.png)
 
@@ -125,7 +124,7 @@ def run(configs=None):
 
 ### 事件详情页
 
-  点击「事件」，可查看智能巡检事件的详情页，包括事件状态、异常发生的时间、异常名称、基础属性、事件详情、告警通知、历史记录和关联事件。
+  点击**事件**，可查看智能巡检事件的详情页，包括事件状态、异常发生的时间、异常名称、基础属性、事件详情、告警通知、历史记录和关联事件。
 
   * 点击详情页右上角的「查看监控器配置」小图标，支持查看和编辑当前智能巡检的配置详情
   * 点击详情页右上角的「导出事件 JSON」小图标，支持导出事件的详情内容

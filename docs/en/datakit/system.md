@@ -63,14 +63,14 @@ Basic information about system operation.
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|hostname|
 
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cpu_total_usage`|The percentage of used CPU.|float|percent|
 |`load1`|CPU load average over the past 1 minute.|float|-|
@@ -88,19 +88,19 @@ Basic information about system operation.
 
 ### `conntrack`
 
-Conntrack metrics (Linux only).
+Connection track metrics (Linux only).
 
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|hostname|
 
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`entries`|Current number of connections.|int|count|
 |`entries_limit`|The size of the connection tracking table.|int|count|
@@ -122,14 +122,14 @@ System file handle metrics (Linux only).
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|hostname|
 
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`allocated`|The number of allocated file handles.|int|count|
 |`maximum_mega`|The maximum number of file handles, unit M(10^6).|float|count|

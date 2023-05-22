@@ -3,14 +3,32 @@
 
 **2023.4.20 更新日志：**
 
-1、观测云自研时序引擎 GuanceDB 全新上线，时序数据存储及计费将会做如下调整：
+1、观测云自研时序数据库 GuanceDB 全新上线，时序数据存储及计费将会做如下调整：
 
 - 基础设施（DataKit）计费项下线，原 “DataKit + 时间线”、“仅时间线” 两种计费模式按照仅 GuanceDB 时间线作为出账逻辑使用；
 
 - GuanceDB 时间线：统计当天活跃的时间线数量计费，单价低至 ￥0.6 / 每千条时间线。详细计费相关参考[时间线说明](#timeline)；
   
-2、用户访问监测 “会话重放” 正式启动付费，按照实际采集会话重放数据的 session 数量计费，￥10 /每千个 Session。详细计费相关参考 [session 说明](#session)。
+2、用户访问监测 **会话重放** 正式启动付费，按照实际采集会话重放数据的 Session 数量计费，￥10 /每千个 Session。详细计费相关参考 [Session 说明](#session)。
 
+**您也许想了解：**
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 观测云自研时序数据库 GuanceDB</font>](../billing-method/gauncedb.md)
+
+<br/>
+
+</div>
+
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 时间线计费项说明</font>](../billing-method/timeline.md)
+
+<br/>
+
+</div>
 
 ## 概览
 
@@ -39,13 +57,11 @@
 
 **全量统计**
 
-
 ![](../img/all.png)
 
 > 观测云不同类型数据的数据保存策略支持自定义选择，详细信息请参考 [数据存储策略](../../billing/billing-method/data-storage.md)。
 
 **增量统计**
-
 
 ![](../img/add.png)
 
@@ -156,7 +172,7 @@
 
 天费用 = 实际计费数量 / 1000000 * 单价（根据上面数据存储策略应用对应单价）
 
-### 备份日志数据
+### 备份日志数据 {#backup}
 
 #### 计费产生
 

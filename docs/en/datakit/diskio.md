@@ -94,7 +94,7 @@ For all of the following data collections, a global tag named `host` is appended
 - tag
 
 
-| Tag | Descrition |
+| Tag | Description |
 |  ----  | --------|
 |`host`|System hostname.|
 |`name`|Device name.|
@@ -102,10 +102,10 @@ For all of the following data collections, a global tag named `host` is appended
 - metric list
 
 
-| Metric | Descrition | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`io_time`|Time spent doing I/Os.|int|ms|
-|`iops_in_progress`|I/Os currently in progres.|int|count|
+|`iops_in_progress`|I/Os currently in progress.|int|count|
 |`merged_reads`|The number of merged read requests.|int|count|
 |`merged_writes`|The number of merged write requests.|int|count|
 |`read_bytes`|The number of bytes read from the device.|int|B|
@@ -152,7 +152,7 @@ Enter the DataKit installation directory, copy the `pythond.conf.sample` file an
 
 ```
 
-- Install `sar` command. You can refer to [https://github.com/sysstat/sysstat#installation](https://github.com/sysstat/sysstat#installation)
+- Install `sar` command. You can refer to [https://github.com/sysstat/sysstat#installation](https://github.com/sysstat/sysstat#installation){:target="_blank"}
 
 Install from Ubuntu 
 
@@ -291,7 +291,7 @@ After saving the file, restart DataKit and you will be able to see the correspon
 
 **Metric list**
 
-The `sar` command can obtain many useful [disk metrics](https://man7.org/linux/man-pages/man1/sar.1.html). The above script only collect `await` and `svctm`. If you need to collect additional metrics, you can modify the script accordingly.
+The `sar` command can obtain many useful [disk metrics](https://man7.org/linux/man-pages/man1/sar.1.html){:target="_blank"}. The above script only collect `await` and `svctm`. If you need to collect additional metrics, you can modify the script accordingly.
 
 | Metric | Description | Type | Unit |
 | ---- | ---- | ---- | ---- |

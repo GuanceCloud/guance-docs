@@ -1,8 +1,11 @@
 nav:
   - index.md
-  - 'DQL查询': query.md
-  - 'DQL定义': define.md
-  - 'DQL函数': funcs.md
-  - 'DQL外层函数': out-funcs.md
+  - 'DQL 查询': query.md
+  - 'DQL 定义': define.md
+  - 'DQL 函数': funcs.md
+  - 'DQL 外层函数': out-funcs.md
+  - 'DQL 正则式函数': regular.md
   - '高级函数': advanced-funcs
-  - 'DQL与其它几种查询语言的对比': dql-vs-others.md
+  - 'DQL VS 其它查询语言':
+    - dql-vs-others.md
+    - 'PromQL 快速上手': promql.md
