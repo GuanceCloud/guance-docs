@@ -14,15 +14,16 @@ icon: zy/release-notes
 - RUM 应用配置新增[自定义类型](../real-user-monitoring/index.md#create)和关联视图查看分析
 - DQL 函数支持[正则聚合](../dql/funcs.md#regular-1)数据统计显示返回
 - 新增 PromQL 语法查询入口，支持通过 [PromQL 查询](../dql/promql.md)时序数据
-- GuanceDB 新时序引擎支持 show tag value 的时候针对固定的指标查询过滤，精准返回关联筛选值
-- [小程序 SDK](../real-user-monitoring/miniapp/app-access.md) 支持采集[启动参数相关的信息](../real-user-monitoring/miniapp/custom-sdk/add-error.md)
+- [show_tag_value() 函数](../dql/funcs.md#show)支持查询对应指标字段的关联标签
+- [小程序 SDK](../real-user-monitoring/miniapp/app-access.md) 支持采集启动参数相关的信息；[新增自定义添加 Error](../real-user-monitoring/miniapp/custom-sdk/add-error.md)。
 - Status Page 支持[订阅故障通知](../management/status-page.md)
-- 新增字段管理功能，在[图表查询、查看器](../management/field-management.md#case)等位置若选择了相关字段则显示对应的描述和单位信息
-- [备份日志](../logs/backup.md)页中新增备份管理
+- 新增字段管理功能，在[监控器、图表查询、查看器](../management/field-management.md#case)等位置若选择了相关字段则显示对应的描述和单位信息
 - [指标分析](../metrics/explorer.md)新增表格功能，支持下载
 - [工单状态](../management/work-order-management.md#state)调整
 - 新增异常追踪引导页，频道新增[时间范围筛选](../exception/channel.md#time)
-
+- 备份日志优化：
+    - **新增备份**规则入口移至[备份日志](../logs/backup.md)> 备份管理；
+    - 新增全部备份逻辑：不添加筛选即表示保存全部日志数据
 ### 观测云部署版更新
 
 - 管理后台新增[审计事件](../deployment/setting.md#audit)记录
