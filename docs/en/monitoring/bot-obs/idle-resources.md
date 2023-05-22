@@ -14,9 +14,9 @@ Cloud computing has rapidly developed as a new mode of IT service, providing con
 
 ## Start Intelligent Inspection
 
-In the DataFlux Func, install the "Observation Cloud Custom Inspection (Idle Host Inspection)" through the "Script Market" and follow the prompts to configure the Observation Cloud API Key to complete activation.
+In the DataFlux Func, install the "Guance Custom Inspection (Idle Host Inspection)" through the "Script Market" and follow the prompts to configure the Guance API Key to complete activation.
 
-Select the inspection scene you want to enable in the DataFlux Func script market and click install. Configure the Guance Cloud API Key and [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/), then select deploy and start the script.
+Select the inspection scene you want to enable in the DataFlux Func script market and click install. Configure the Guance API Key and [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/), then select deploy and start the script.
 
 ![image](../img/create_checker.png)
 

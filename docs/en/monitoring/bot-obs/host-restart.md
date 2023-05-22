@@ -15,9 +15,9 @@ Host abnormal restart monitoring is an important aspect of modern internet syste
 
 ## Start Intelligent Inspection
 
-In the DataFlux Func, install the "Observation Cloud Custom Inspection (Host Restart)" through the "Script Market" and follow the prompts to configure the Observation Cloud API Key to complete activation.
+In the DataFlux Func, install the "Guance Custom Inspection (Host Restart)" through the "Script Market" and follow the prompts to configure the Guance API Key to complete activation.
 
-Select the inspection scene you want to enable in the DataFlux Func script market and click install. Configure the Guance Cloud API Key and [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/), then select deploy and start the script.
+Select the inspection scene you want to enable in the DataFlux Func script market and click install. Configure the Guance API Key and [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/), then select deploy and start the script.
 
 ![image](../img/create_checker.png)
 
@@ -63,7 +63,7 @@ configs example：
 
 ### Configuring inspections in DataFlux Func
 
-After configuring the required filter conditions for inspections in DataFlux Func, you can click the "run()" method to test it directly on the page. After clicking "publish", the script will be executed normally. You can also view or change the configuration in the Observation Cloud "Monitoring/Intelligent Inspection".
+After configuring the required filter conditions for inspections in DataFlux Func, you can click the "run()" method to test it directly on the page. After clicking "publish", the script will be executed normally. You can also view or change the configuration in the Guance "Monitoring/Intelligent Inspection".
 
 ```python
 from guance_monitor__register import self_hosted_monitor
@@ -159,7 +159,7 @@ Please update the referenced script set in DataFlux Func's script market. You ca
 
 **4. No changes found in the corresponding script set in Startup during the upgrade of the inspection script**
 
-Please delete the corresponding script set first, then click the upgrade button to configure the corresponding observation cloud API key to complete the upgrade.
+Please delete the corresponding script set first, then click the upgrade button to configure the corresponding Guance API key to complete the upgrade.
 
 **5. How to determine if the inspection is effective after enabling it**
 

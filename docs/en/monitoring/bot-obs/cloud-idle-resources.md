@@ -15,9 +15,9 @@ Cloud computing, as a rapidly developing new IT service method, provides enterpr
 
 ## Start Intelligent Inspection
 
-In the DataFlux Func, install the "Observation Cloud Custom Inspection (Idle Cloud Resource Inspection)" through the "Script Market" and follow the prompts to configure the Observation Cloud API Key to complete activation.
+In the DataFlux Func, install the "Guance Custom Inspection (Idle Cloud Resource Inspection)" through the "Script Market" and follow the prompts to configure the Guance API Key to complete activation.
 
-Select the inspection scene you want to enable in the DataFlux Func script market and click install. Configure the Guance Cloud API Key and [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/), then select deploy and start the script.
+Select the inspection scene you want to enable in the DataFlux Func script market and click install. Configure the Guance API Key and [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/), then select deploy and start the script.
 
 ![image](../img/create_checker.png)
 
@@ -27,13 +27,13 @@ Once the deployment of the startup script is successful, it will automatically c
 
 > Note: If you need to inspect idle resources from different cloud providers, you need to enable different collectors.
 >
-> AWS: Guance Cloud Integration (AWS-EC2 collection), Guance Cloud Integration (AWS-CloudWatch collection) - mem
+> AWS: Guance Integration (AWS-EC2 collection), Guance Integration (AWS-CloudWatch collection) - mem
 >
-> Huawei: Guance Cloud Integration (Huawei Cloud - Cloud Monitoring Collection)
+> Huawei: Guance Integration (Huawei Cloud - Cloud Monitoring Collection)
 >
-> Tencent: Guance Cloud Integration (Tencent Cloud - Cloud Monitoring Collection)
+> Tencent: Guance Integration (Tencent Cloud - Cloud Monitoring Collection)
 >
-> Alibaba: Guance Cloud Integration (Alibaba Cloud - Cloud Monitoring Collection)
+> Alibaba: Guance Integration (Alibaba Cloud - Cloud Monitoring Collection)
 
 ## Configs Intelligent Inspection
 
@@ -149,7 +149,7 @@ Please update the referenced script set in the DataFlux Func script market. You 
 
 **5. During the inspection script upgrade process, there is no change in the corresponding script set in Startup**
 
-Please delete the corresponding script set first, then click the upgrade button to configure the corresponding observation cloud API key to complete the upgrade.
+Please delete the corresponding script set first, then click the upgrade button to configure the corresponding Guance API key to complete the upgrade.
 
 **6. How to judge whether the inspection is effective after starting the inspection**
 

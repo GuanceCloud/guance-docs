@@ -15,9 +15,9 @@ Nowadays, Kubernetes has taken over the entire container ecosystem and acts as t
 
 ## Start Intelligent Inspection
 
-In the DataFlux Func, install the "Observation Cloud Custom Inspection (K8S Health Inspection)" through the "Script Market" and follow the prompts to configure the Observation Cloud API Key to complete activation.
+In the DataFlux Func, install the "Guance Custom Inspection (K8S Health Inspection)" through the "Script Market" and follow the prompts to configure the Guance API Key to complete activation.
 
-Select the inspection scene you want to enable in the DataFlux Func script market and click install. Configure the Guance Cloud API Key and [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/), then select deploy and start the script.
+Select the inspection scene you want to enable in the DataFlux Func script market and click install. Configure the Guance API Key and [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/), then select deploy and start the script.
 
 ![image](../../img/create_checker.png)
 
@@ -60,11 +60,11 @@ Intelligent Inspection supports "Export JSON configuration". Under the operation
          cluster_name_3
 ```
 
-> Note: When writing self-built inspection processing functions in DataFlux Func, you can also add filter conditions (refer to the sample code configuration). Note that the parameters configured in the Observation Cloud Studio will override the parameters configured when writing self-built inspection processing functions.
+> Note: When writing self-built inspection processing functions in DataFlux Func, you can also add filter conditions (refer to the sample code configuration). Note that the parameters configured in the Guance Studio will override the parameters configured when writing self-built inspection processing functions.
 
 ### Configuring inspections in DataFlux Func
 
-After configuring the required filter conditions for inspections in DataFlux Func, you can click the "run()" method to test it directly on the page. After clicking "publish", the script will be executed normally. You can also view or change the configuration in the Observation Cloud "Monitoring/Intelligent Inspection".
+After configuring the required filter conditions for inspections in DataFlux Func, you can click the "run()" method to test it directly on the page. After clicking "publish", the script will be executed normally. You can also view or change the configuration in the Guance "Monitoring/Intelligent Inspection".
 
 ```python
 from guance_monitor__runner import Runner

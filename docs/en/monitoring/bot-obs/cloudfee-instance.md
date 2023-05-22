@@ -16,9 +16,9 @@ Cloud (now only suport alibaba cloud) Account Billing Inspection helps subscribe
 
 ## Start Intelligent Inspection
 
-In the DataFlux Func, install and activate the following through the "Script Market": [Observation Cloud Integration (Huawei Cloud - Billing Collection - Instance Dimension)](https://func.guance.com/doc/script-market-guance-huaweicloud-billing-by-instance/), [Observation Cloud Integration (Aliyun - Billing Collection - Instance Dimension)](https://func.guance.com/doc/script-market-guance-aliyun-billing/), and [Observation Cloud Integration (Tencent Cloud - Billing Collection - Instance Dimension)](https://func.guance.com/doc/script-market-guance-tencentcloud-billing-by-instance/). Ensure that the data collection period is over 15 days. Then, install the "Observation Cloud Custom Inspection (Billing - Instance Dimension)" and follow the prompts to configure the Observation Cloud API Key to complete activation.
+In the DataFlux Func, install and activate the following through the "Script Market": [Guance Integration (Huawei Cloud - Billing Collection - Instance Dimension)](https://func.guance.com/doc/script-market-guance-huaweicloud-billing-by-instance/), [Guance Integration (Aliyun - Billing Collection - Instance Dimension)](https://func.guance.com/doc/script-market-guance-aliyun-billing/), and [Guance Integration (Tencent Cloud - Billing Collection - Instance Dimension)](https://func.guance.com/doc/script-market-guance-tencentcloud-billing-by-instance/). Ensure that the data collection period is over 15 days. Then, install the "Guance Custom Inspection (Billing - Instance Dimension)" and follow the prompts to configure the Guance API Key to complete activation.
 
-Select the inspection scene you want to enable in the DataFlux Func script market and click install. Configure the Guance Cloud API Key and [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/), then select deploy and start the script.
+Select the inspection scene you want to enable in the DataFlux Func script market and click install. Configure the Guance API Key and [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/), then select deploy and start the script.
 
 ![image](../img/create_checker.png)
 
