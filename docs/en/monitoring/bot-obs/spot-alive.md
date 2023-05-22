@@ -7,17 +7,16 @@ Since the market price of the preemptible instances fluctuates with the change o
 
 ## Preconditions
 
-1. Offline deployment of [DataFlux Func](https://func.guance.com/#/).
-2. Open DataFlux Func's [Script Marketplace](https://func.guance.com/doc/script-market-basic-usage/)
+1. Offline deployment of [**DataFlux Func GSE**](https://func.guance.com/#/)
 3. In Guance「Management / API Key Management」create [API Key](../../../management/api-key/open-api.md)
 
 > **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance SaaS on [the same carrier in the same region](../../../getting-started/necessary-for-beginners/select-site/)。
 
 ## Start Intelligent Inspection
 
-In the  DataFlux Func, install the "Observation Cloud Self-built Inspection Core Package" and "Observation Cloud Algorithm Library" through the "Script Market", and then install the relevant dependencies through the PIP tool. Install the "Guance  script (Alibaba Cloud Spot Alive)" and configure the Observation Cloud API Key as prompted to complete the opening.
+In the DataFlux Func, install the "Guance Integration (Aliyun-ECS Collection)" and "Guance Custom Inspection (Aliyun Spot Instance Survival Detection)" through the "Script Market" and follow the prompts to configure the Guance API Key to complete activation.
 
-To enable the inspection scenario, select it in the DataFlux Func script market, configure the Observation Cloud API Key, and then select the deployment startup script.
+Select the inspection scene you want to enable in the DataFlux Func script market and click install. Configure the Guance API Key and [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/), then select deploy and start the script.
 
 ![image](../img/create_checker.png)
 

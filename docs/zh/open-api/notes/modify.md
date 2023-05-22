@@ -37,8 +37,7 @@ curl 'https://openapi.guance.com/api/v1/notes/notes_7f074ca6505543e39020826d84ad
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"name":"modify_openapi","chartUUIDs":["chrt_2f5ed3d1f82f47aca57e2bd6a1dc7179","chrt_4e078c1343b0448889909335faab9b99"],"extend":{"fixedTime":"15m"}}' \
---compressed \
---insecure
+--compressed 
 ```
 
 

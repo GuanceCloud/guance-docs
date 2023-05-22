@@ -7,8 +7,7 @@ Cloud (now only suport alibaba cloud) Account Billing Inspection helps subscribe
 
 ## Preconditions
 
-1. Offline deployment of [DataFlux Func](https://func.guance.com/#/)
-2. Open the [script market](https://func.guance.com/doc/script-market-basic-usage/) of  DataFlux Func 
+1. Offline deployment of [**DataFlux Func GSE**](https://func.guance.com/#/)
 3. Create [API Key](../../../management/api-key/open-api.md) in Guance "management/API Key management" 
 
 > **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance SaaS on [the same carrier in the same region](../../../getting-started/necessary-for-beginners/select-site/)。
@@ -17,9 +16,9 @@ Cloud (now only suport alibaba cloud) Account Billing Inspection helps subscribe
 
 ## Start Intelligent Inspection
 
-In the self-built DataFlux Func, install the "Observability Cloud Self-built Inspection Core Package" and "Observability Cloud Algorithm Library" through the "Script Market", and go to the PIP tool to install the relevant dependencies. At the same time, install and enable the ["Observability Cloud Integration (Huawei Cloud-Billing Collection-Instance Dimension)"](https://func.guance.com/doc/script-market-guance-huaweicloud-billing-by-instance/), ["Observability Cloud Integration (Alibaba Cloud-Billing Collection-Instance Dimension)"](https://func.guance.com/doc/script-market-guance-aliyun-billing/), and ["Observability Cloud Integration (Tencent Cloud-Billing Collection-Instance Dimension)"](https://func.guance.com/doc/script-market-guance-tencentcloud-billing-by-instance/) in the script market, and collect data for more than 15 days. Then, install "Observability Cloud Self-built Inspection (Billing-Instance Dimension)" and follow the prompts to configure the Observability Cloud API Key to complete the activation.
+In the DataFlux Func, install and activate the following through the "Script Market": [Guance Integration (Huawei Cloud - Billing Collection - Instance Dimension)](https://func.guance.com/doc/script-market-guance-huaweicloud-billing-by-instance/), [Guance Integration (Aliyun - Billing Collection - Instance Dimension)](https://func.guance.com/doc/script-market-guance-aliyun-billing/), and [Guance Integration (Tencent Cloud - Billing Collection - Instance Dimension)](https://func.guance.com/doc/script-market-guance-tencentcloud-billing-by-instance/). Ensure that the data collection period is over 15 days. Then, install the "Guance Custom Inspection (Billing - Instance Dimension)" and follow the prompts to configure the Guance API Key to complete activation.
 
-Select the inspection scenario that needs to be enabled in the DataFlux Func script market, configure the Observability Cloud API Key, and then select the deployment startup script to start.
+Select the inspection scene you want to enable in the DataFlux Func script market and click install. Configure the Guance API Key and [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/), then select deploy and start the script.
 
 ![image](../img/create_checker.png)
 

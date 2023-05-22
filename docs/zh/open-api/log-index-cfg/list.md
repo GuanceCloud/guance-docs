@@ -28,8 +28,7 @@
 ```shell
 curl 'https://openapi.guance.com/api/v1/log_index_cfg/list' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
---compressed \
---insecure
+--compressed 
 ```
 
 

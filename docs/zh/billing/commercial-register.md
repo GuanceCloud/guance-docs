@@ -28,9 +28,9 @@
 
 ### 用户名说明
 
-在此页面注册[观测云控制台账号](https://auth.guance.com/businessRegister)的同时，会为您注册**相同用户名**的[观测云费用中心账号](https://boss.guance.com/)，费用中心的用户名账号会检查唯一性，一旦注册不能修改。
+在此页面注册[观测云控制台账号](https://auth.guance.com/businessRegister)的同时，会为您注册<u>相同用户名</u>的[观测云费用中心账号](https://boss.guance.com/)，费用中心的用户名账号会检查唯一性，一旦注册不能修改。
 
-> 更多详情可参考文档 [<费用中心>](../billing/cost-center/index.md)。
+> 更多详情可参考文档 [费用中心](../billing/cost-center/index.md)。
 
 #### 绑定费用中心用户名账号
 
@@ -56,7 +56,7 @@
 
 根据[第一步：基本信息](#info)中所选择的站点，第三步会显示对应默认的开通方式页面。
 
-> 费用结算方式详情，可参考文档 [<观测云费用结算方式>](../billing/billing-account/index.md) 。
+> 费用结算方式详情，可参考文档 [观测云费用结算方式](../billing/billing-account/index.md) 。
 
 ### 工作空间名称
 
@@ -66,7 +66,7 @@
 
 工作空间语言选项会影响工作空间内事件、告警、短信等模板。若选择英文，上述对应模板将默认使用英文模板，一旦创建，此工作空间的模版语言不可修改，请谨慎选择。
 
-### 观测云账号结算 {#guanceyun}
+### [观测云账号结算](./billing-account/enterprise-account.md) {#guanceyun}
 
 观测云默认提供观测云账号结算，工作空间内产生的所有费用会直接从您的[观测云费用中心](https://boss.guance.com/)所购买的代金券、华为云储值卡余额等进行结算。
 
@@ -74,15 +74,8 @@
 
 ![](img/1.register_guance-1.png)
 
-<div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 观测云企业账号结算 文档</font>](./billing-account/enterprise-account.md)
-
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 华为云储值卡结算 文档</font>](./billing-account/huaweicloud-account.md)
-
-</div>
-
-### 阿里云账号结算 {#aliyun}
+### [阿里云账号结算](./billing-account/aliyun-account.md) {#aliyun}
 
 若您在注册时选择阿里云账号结算，工作空间内产生的所有费用会直接从您的阿里云账户中进行结算。
 
@@ -93,21 +86,14 @@
     对于阿里云用户来说，您也可以通过以下方式直接开通观测云。
     
     - 您可以直接在 [阿里云市场观测云](https://market.aliyun.com/products/56838014/cmgj00053362.html) ，购买观测云，并直接通过免登注册开通观测云。<br/>
-    > 更多详情步骤可参考文档 [<阿里云市场开通观测云商业版>](commercial-aliyun.md)
+    > 更多详情步骤可参考文档 [阿里云市场开通观测云商业版](commercial-aliyun.md)。
     - 若您是阿里云 SLS 用户，且需要在观测云使用 SLS 存储方式，您可以直接在 [阿里云市场观测云专属版](https://market.aliyun.com/products/56838014/cmgj00060481.html) ，购买观测云专属版，并直接通过免登注册开通观测云专属版。<br/>
-    > 更多详情步骤可参考文档 [<阿里云市场开通观测云专属版>](commercial-aliyun-sls.md) 、[<观测云商业版和观测云专属版的区别>](../billing/faq.md#_5)。
+    > 更多详情步骤可参考文档 [阿里云市场开通观测云专属版](commercial-aliyun-sls.md) 、[观测云商业版和观测云专属版的区别](../billing/faq.md#_5)。
 
 ![](img/1.register_aliyun.png)
 
-<div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 阿里云账号结算 文档</font>](./billing-account/aliyun-account.md)
-
-<br/>
-
-</div>
-
-### AWS 账号结算 {#aws}
+### [AWS 账号结算](./billing-account/aws-account.md#register) {#aws}
 
 若您在注册时选择 AWS 账号结算，工作空间内产生的所有费用会直接从您的 AWS 账户中进行结算。
 
@@ -116,15 +102,8 @@
 
 ![](img/1.register_aws.png)
 
-<div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; AWS账号结算 文档</font>](./billing-account/aws-account.md#register)
-
-<br/>
-
-</div>
-
-### 华为云账号结算 {#huawei-cloud}
+### [华为云账号结算](./billing-account/huawei-account.md) {#huawei-cloud}
 
 若您在注册时选择华为云账号结算，工作空间内产生的所有费用会直接从您的华为云账户中进行结算。
 
@@ -137,14 +116,6 @@
     您也可以通过以下方式直接开通观测云。
     
     - 您可以直接在 [华为云云商店](https://marketplace.huaweicloud.com/contents/8990a122-f456-43a4-892c-a458be31e336#productid=OFFI845592654693900288) ，购买观测云 SaaS 版，并直接通过免登注册开通观测云。<br/>
-
-<div class="grid cards" markdown>
-
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 华为云账号结算 文档</font>](./billing-account/huawei-account.md)
-
-<br/>
-
-</div>
 
 
 

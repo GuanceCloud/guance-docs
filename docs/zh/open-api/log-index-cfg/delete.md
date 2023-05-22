@@ -27,8 +27,7 @@
 curl 'https://openapi.guance.com/api/v1/log_index_cfg/delete' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --data-raw '{"cfgUUID":"lgim_1145381480dd4a4f95bccdb1f0889141"}' \
---compressed \
---insecure
+--compressed 
 ```
 
 

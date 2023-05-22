@@ -6,7 +6,14 @@
 - 安装 DataKit（[DataKit 安装文档](../../datakit/datakit-install.md)）
 
 ## 应用接入
-当前 UniApp 版本支持 Android 和 iOS 平台。登录观测云控制台，进入「应用监测」页面，点击右上角「新建应用」，在新窗口输入「应用名称」，点击「创建」，然后相应接入的平台，即可开始配置。
+
+当前 UniApp 版本支持 Android 和 iOS 平台。登录观测云控制台，进入「用户访问监测」页面，点击左上角「新建应用」，即可开始创建一个新的应用。
+
+1.输入「应用名称」、「应用ID」，选择平台对应「应用类型」
+
+- 应用名称：用于识别当前用户访问监测的应用名称。
+- 应用 ID ：应用在当前工作空间的唯一标识，对应字段：app_id 。该字段仅支持英文、数字、下划线输入，最多 48 个字符。
+
 
 ![](../img/image_12.png)
 
@@ -84,7 +91,6 @@
 | :------------ | :------- | :--- | ------------------------------------------------------------ |
 | serverUrl     | string   | 是   | datakit 安装地址 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529。注意：安装 SDK 设备需能访问这地址                                               |
 | debug         | boolean  | 否   | 设置是否允许打印 Debug 日志，默认`false`                            |
-| datakitUUID   | string   | 否   | 请求`HTTP`请求头`X-Datakit-UUID` 数据采集端，如果用户不设置会自动配置 |
 | envType       | string   | 否   | 环境字段： `prod`线上（默认）、`gray`灰度、`pre`预发、`common`日常、`local`本地 |
 | service       | string   | 否   | 设置所属业务或服务的名称 默认：`df_rum_ios`、`df_rum_android` |
 | globalContext | object   | 否   | 添加自定义标签                                               |

@@ -46,8 +46,7 @@
 ```shell
 curl 'https://openapi.guance.com/api/v1/snapshots/list?pageIndex=1&pageSize=2' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
---compressed \
---insecure
+--compressed 
 ```
 
 

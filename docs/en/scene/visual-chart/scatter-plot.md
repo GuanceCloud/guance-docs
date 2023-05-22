@@ -5,7 +5,7 @@
 
 The scatter plot represents the general trend of the dependent variable with the independent variable, from which a suitable function can be selected to fit the empirical distribution and thus find the functional relationship between the variables. It can be used to observe the distribution and aggregation of data.
 
-## Application Scenarios
+## Use Case
 
 A scatter plot of the Guance is used to see the distribution and aggregation of data. For example, you can see the distribution of CPU system usage and user usage across hosts.
 

@@ -6,7 +6,8 @@ icon: zy/scene
 
 **场景**以图表为主体，支持一系列自定义编辑和筛选等功能操作来直观复现数据洞察详情。主要包含三大功能：**[仪表板](dashboard.md)**、**[笔记](note.md)** 和 **[查看器](explorer/index.md)**。
 
-同时，观测云内置 100+ 数据监控视图模版，用户可导入模板创建仪表板和查看器，并进行自定义编辑配置；或选择自定义创建方式，通过一系列设置构建数据洞察场景。同时为留存异常数据分析，笔记支持用户导入图表和文本文档来回溯、定位、解决数据问题。
+同时，观测云[内置多种数据监控视图模版](./built-in-view/index.md)，用户可导入模板创建仪表板和查看器，并进行自定义编辑配置；或选择自定义创建方式，通过一系列设置构建数据洞察场景。
+
 ## 仪表板
 
 在场景下，您可以创建多个仪表板来构建数据洞察场景。在仪表板中支持添加多种可视化图表进行数据展示，帮助用户直观地跟踪，分析和显示关键性能指标，监控整体的运行状况。
@@ -14,11 +15,13 @@ icon: zy/scene
 ![](img/dashboard.png)
 
 ## 笔记
+
 在场景下，可以创建多个笔记来进行总结报告，支持插入实时可视化图表进行数据分析，支持插入文本文档进行说明，结合图表和文档进行数据分析和总结报告；支持与工作空间所有成员共享笔记，留存异常数据分析，帮助回溯、定位、解决问题。
 
 ![](img/9.note_2.png)
 
 ## 查看器
+
 在场景下，可快速搭建多个自定义日志查看器，支持与空间成员共同定制化日志的查看需求，支持将制作完成的查看器导出分享给他人，共享查看器模板。
 
 ![](img/2.scene_1.png)
@@ -27,16 +30,6 @@ icon: zy/scene
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 内置视图</font>](../scene/built-in-view/index.md)
-
-<br/>
-
-</div>
-
-<div class="grid cards" markdown>
-
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 视图变量</font>](../scene/view-variable.md)
-
-<br/>
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **视图变量**</font>](./view-variable.md)
 
 </div>

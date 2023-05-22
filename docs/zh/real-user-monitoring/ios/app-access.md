@@ -9,22 +9,15 @@
 
 - 安装 DataKit（[DataKit 安装文档](../../datakit/datakit-install.md)）
 
-## iOS应用接入
+## iOS 应用接入
 
-登录观测云控制台，进入「用户访问监测」页面，点击左上角「新建应用」，即可开始创建一个新的应用。
-
-1.输入「应用名称」、「应用ID」，选择「应用类型」
-
-- 应用名称：用于识别当前用户访问监测的应用名称。
-- 应用 ID ：应用在当前工作空间的唯一标识，对应字段：app_id 。该字段仅支持英文、数字、下划线输入，最多 48 个字符。
-
-2.选择「应用类型」后，在右侧会显示对应的应用接入方式，选择安装配置的接入方式，点击右侧的「参数配置」，填入相关配置参数后，即可复制到项目中使用。
+登录观测云控制台，进入**用户访问监测**页面，点击左上角 **[新建应用](../index.md#create)**，即可开始创建一个新的应用。
 
 ![](../img/6.rum_ios.gif)
 
 ## 安装
 
-![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/ft-sdk-package/badge/ios/info.json&link=https://github.com/GuanceCloud/datakit-ios)![](https://img.shields.io/badge/dynamic/json?label=pod&color=orange&query=$.version&uri=https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/ft-sdk-package/badge/ios/version.json&link=https://github.com/GuanceCloud/datakit-ios)![](https://img.shields.io/badge/dynamic/json?label=license&color=lightgrey&query=$.license&uri=https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/ft-sdk-package/badge/ios/info.json&link=https://github.com/GuanceCloud/datakit-ios)![](https://img.shields.io/badge/dynamic/json?label=iOS&color=brightgreen&query=$.ios_api_support&uri=https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/ft-sdk-package/badge/ios/info.json&link=https://github.com/GuanceCloud/datakit-ios) 
+![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/ft-sdk-package/badge/ios/info.json&link=https://github.com/GuanceCloud/datakit-ios) ![](https://img.shields.io/badge/dynamic/json?label=pod&color=orange&query=$.version&uri=https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/ft-sdk-package/badge/ios/version.json&link=https://github.com/GuanceCloud/datakit-ios) ![](https://img.shields.io/badge/dynamic/json?label=license&color=lightgrey&query=$.license&uri=https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/ft-sdk-package/badge/ios/info.json&link=https://github.com/GuanceCloud/datakit-ios) ![](https://img.shields.io/badge/dynamic/json?label=iOS&color=brightgreen&query=$.ios_api_support&uri=https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/ft-sdk-package/badge/ios/info.json&link=https://github.com/GuanceCloud/datakit-ios) 
 
 **源码地址**：[https://github.com/GuanceCloud/datakit-ios](https://github.com/GuanceCloud/datakit-ios)
 
@@ -72,6 +65,8 @@ github "GuanceCloud/datakit-ios" == [latest_version]
 4.在 `TARGETS`  -> `Build Setting` ->  `Other Linker Flags`  添加  `-ObjC`。
 
 5.目前只支持 1.3.4-beta.2 及以上的版本。
+
+
 
 ### 添加头文件
 
@@ -780,7 +775,7 @@ FT_ENV=SDK_ENV
 
 ## 常见问题 {#FAQ}
 
-### 关于崩溃日志分析
+### 关于崩溃日志分析 {#crash-log-analysis}
 
 在开发时的 **Debug** 和 **Release** 模式下， **Crash** 时捕获的线程回溯是被符号化的。
 而发布包没带符号表，异常线程的关键回溯，会显示镜像的名字，不会转化为有效的代码符号，获取到的 **crash log** 中的相关信息都是 16 进制的内存地址，并不能定位崩溃的代码，所以需要将 16 进制的内存地址解析为对应的类及方法。
