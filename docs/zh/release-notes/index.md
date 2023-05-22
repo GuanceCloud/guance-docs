@@ -19,8 +19,9 @@ icon: zy/release-notes
 - Status Page 支持[订阅故障通知](../management/status-page.md)
 - 新增字段管理功能，在[图表查询、查看器](../management/field-management.md#case)等位置若选择了相关字段则显示对应的描述和单位信息
 - [备份日志](../logs/backup.md)页中新增备份管理
-- [指标分析](../metrics/dictionary.md)新增表格功能，支持下载
+- [指标分析](../metrics/explorer.md)新增表格功能，支持下载
 - [工单状态](../management/work-order-management.md#state)调整
+- 新增异常追踪引导页，频道新增[时间范围筛选](../exception/channel.md#time)
 
 ### 观测云部署版更新
 

@@ -4,7 +4,6 @@ nav:
   - '小程序监测': miniapp
   - 'Android 监测': android
   - 'iOS 监测': ios
-  - '自定义应用监测': custom-app.md
   - 'React Native 监测': react-native
   - 'Flutter 监测': flutter
   - 'UniApp 监测': uni-app
