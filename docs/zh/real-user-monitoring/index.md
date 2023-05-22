@@ -65,10 +65,7 @@ DataKit 安装完成后，开启 [RUM 采集器](../datakit/rum.md)，接入应�
     - 旧的应用 ID 数据可以通过用户访问内置视图、自定义仪表板或者 DQL 工具等方式查看分析；  
     - 若在进行配置自定义应用时未添加关联分析看板，则无法跳转至分析看板。
 
-<font color=coral>关于选择自定义应用类型的相关配置说明：</font>
-
-<<<<<<< HEAD
-- 您可以通过点击 **[分析看板](app-analysis.md)** 或 **[查看器](./explorer/index.md)** 进一步查看当前用户访问应用程序的详细信息。
+- 您可以通过点击 **[分析看板](./app-analysis.md)** 或 **[查看器](./explorer/index.md)** 进一步查看当前用户访问应用程序的详细信息。
 
 
 ## 功能清单
@@ -77,40 +74,6 @@ DataKit 安装完成后，开启 [RUM 采集器](../datakit/rum.md)，接入应�
 
 <div class="grid cards" markdown>
 
-=======
-- 选择**自定义**应用类型，可在右侧查看对应的应用接入说明。
-
-- 在**分析看板**一栏，您可自定义选择工作空间内内置视图作为此应用的关联分析看板。
-
-- 默认自定义应用类型<u>无分析看板</u>，需要您手动配置关联。您可以同时绑定多个内置视图。
-
-| 操作      | 说明                          |
-| ----------- | ------------------------------------ |
-| 筛选下拉框       | 单选，支持模糊匹配搜索，范围：内置视图。  |
-| 跳转       | 点击即可跳转打开展示分析看板，并将当前应用 ID 带入到视图变量中。 |
-| 删除    | 点击即可删除已添加的关联分析看板。 |
-
-- 配置完成后，回到**应用列表**。您可以点击 :material-dots-horizontal: ，对该条应用进行编辑或删除。
-
-???+ attention
-
-    - 应用 ID 一经更改，需要同步更新 SDK 中的配置信息；   
-    - SDK 更新成功后，新的分析视图和查看器列表仅展示最新 `app_id` 关联数据，旧的应用 ID 对应数据将不会做显示；   
-    - 用户访问指标检测监控器请及时变更到最新应用 ID 配置或重新创建基于新的应用 ID 对应数据的指标检测；    
-    - 旧的应用 ID 数据可以通过用户访问内置视图、自定义仪表板或者 DQL 工具等方式查看分析；  
-    - 若在进行配置自定义应用时未添加关联分析看板，则无法跳转至分析看板。
-
-
-- 您可以通过点击 **[分析看板](app-analysis.md)** 或 **[查看器](./explorer/index.md)** 进一步查看当前用户访问应用程序的详细信息。
-
-
-## 功能清单
-
-在**用户访问监测**，除上述的应用类型，您还将了解：
-
-<div class="grid cards" markdown>
-
->>>>>>> a8b6a4cec3cd4116ce885db0b176405cc699dd2f
 - [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 查看器</font>](./explorer/index.md)
 - [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 分析看板</font>](./app-analysis.md)
 - [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 自建追踪</font>](./self-tracking.md)
