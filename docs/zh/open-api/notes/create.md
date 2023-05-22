@@ -30,8 +30,7 @@ curl 'https://openapi.guance.com/api/v1/notes/create' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"name":"openapi_note","chartUUIDs":["chrt_2f5ed3d1f82f47aca57e2bd6a1dc7179","chrt_4e078c1343b0448889909335faab9b99"],"extend":{"fixedTime":"15m"}}' \
---compressed \
---insecure
+--compressed 
 ```
 
 

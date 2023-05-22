@@ -29,8 +29,7 @@ curl 'https://openapi.guance.com/self_built_checker/rul_71e719ee94f84d65a3fa68fb
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw 'null' \
---compressed \
---insecure
+--compressed 
 ```
 
 

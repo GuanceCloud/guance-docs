@@ -35,8 +35,7 @@ curl 'https://openapi.guance.com/api/v1/dialing_region/regist' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"internal":false,"isp":"telecom","country":"Afghanistan","city":"Shahrak","keycode":"Afghanistan-Shahrak-telecom","name":"test"}' \
---compressed \
---insecure
+--compressed 
 ```
 
 

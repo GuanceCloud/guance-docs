@@ -30,8 +30,7 @@ curl 'https://openapi.guance.com/api/v1/pipeline/import' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"pipelines":[{"asDefault":0,"category":"logging","content":"ZW51bWVyYXRl\n","extend":{},"isDisable":false,"name":"eee","source":["calico-node"],"testData":"W10=\n"}],"pipelineType":"all"}' \
---compressed \
---insecure
+--compressed 
 ```
 
 

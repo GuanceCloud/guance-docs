@@ -1,4 +1,4 @@
-# 【DataFlux】DQL数据查询
+# DQL数据查询
 
 ---
 
@@ -15,7 +15,7 @@ DQL数据查询
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
 | queries_body | string | Y | dql查询query结构体<br>允许为空: False <br> |
-| search_after | string |  | dql查询query结构体<br>允许为空: False <br> |
+| search_after | string |  | 分页查询请求参数<br>允许为空: False <br> |
 
 ## 参数补充说明
 

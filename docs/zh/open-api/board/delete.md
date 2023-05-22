@@ -29,8 +29,7 @@ curl 'https://openapi.guance.com/api/v1/dashboards/dsbd_501b8277ba88479b82020dbf
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw 'null' \
---compressed \
---insecure
+--compressed 
 ```
 
 

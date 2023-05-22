@@ -27,8 +27,7 @@
 ```shell
 curl 'https://openapi.guance.com/api/v1/saml/mapping/field/fdmp_2f8f0085af2641928e8388da7d1318f5/delete' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
---compressed \
---insecure
+--compressed 
 ```
 
 

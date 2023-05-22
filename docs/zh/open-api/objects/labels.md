@@ -29,8 +29,7 @@ curl 'https://openapi.guance.com/api/v1/object/hosts/label/list' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"source": "HOST"}' \
---compressed \
---insecure
+--compressed 
 ```
 
 

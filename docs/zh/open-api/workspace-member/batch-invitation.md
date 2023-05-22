@@ -30,8 +30,7 @@ curl 'https://openapi.guance.com/api/v1/workspace/member/batch_invitation' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"to": ["241927@qq.com"], "method": "email", "roleUUIDs": ["general"]}' \
---compressed \
---insecure
+--compressed 
 ```
 
 
