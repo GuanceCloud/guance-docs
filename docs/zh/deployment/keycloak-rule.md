@@ -11,7 +11,37 @@
 
 ## 操作步骤
 
-### 1.配置 Keycloak 映射字段
+### 1.配置 Keycloak 用户
+
+> 注意：为 Keycloak 用户配置映射规则有两种方式，一种是为用户直接添加映射规则属性，另外一种是为用户组添加映射规则属性。
+
+#### 1.1 为**用户**添加映射规则属性
+
+1）在创建的gcy域，点击“User”，选择需要添加映射规则的用户，在“Attributes”，点击“Add”添加，如：
+
+- Key：department
+- Value：product
+
+![](img/10.keycloak_11.png)
+
+#### 1.2 为**用户组**添加映射规则属性
+
+1）在创建的gcy域，点击“Groups”，点击“New”，创建一个新的用户组，如“department”。
+
+![](img/10.keycloak_14.png)
+
+2）在“Attributes”，点击“Add”添加，，如：
+
+- Key：department
+- Value：product
+
+![](img/10.keycloak_13.png)
+
+3）在“User” > “Groups”，点击“Join”，为用户添加用户组。
+
+![](img/10.keycloak_12.png)
+
+### 2.配置 Keycloak 映射字段
 
 > 注意：本步骤将创建 Keycloak Client Scopes 并配置映射字段， 用于建立 Keycloak 和观测云之间的映射规则。
 
@@ -45,43 +75,14 @@
 
 ![](img/10.keycloak_9.png)
 
-### 2.配置 Keycloak 用户
 
-> 注意：为 Keycloak 用户配置映射规则有两种方式，一种是为用户直接添加映射规则属性，另外一种是为用户组添加映射规则属性。
+### 3.验证用户配置的映射规则是否可用
 
-#### 2.1 为**用户**添加映射规则属性
-
-1）在创建的gcy域，点击“User”，选择需要添加映射规则的用户，在“Attributes”，点击“Add”添加，如：
-
-- Key：department
-- Value：product
-
-![](img/10.keycloak_11.png)
-
-#### 2.2 为**用户组**添加映射规则属性
-
-1）在创建的gcy域，点击“Groups”，点击“New”，创建一个新的用户组，如“department”。
-
-![](img/10.keycloak_14.png)
-
-2）在“Attributes”，点击“Add”添加，，如：
-
-- Key：department
-- Value：product
-
-![](img/10.keycloak_13.png)
-
-3）在“User” > “Groups”，点击“Join”，为用户添加用户组。
-
-![](img/10.keycloak_12.png)
-
-#### 2.3 验证用户配置的映射规则是否可用
-
-添加完用户的映射规则以后，在“Client” > “Client Scopes” > "Evaluate" > "Generated User Info"，可查看映射规则是否可用。如下图，已存在配置的映射字段，则说明可以通过该字段进行映射登录。
+配置完映射规则以后，在“Client” > “Client Scopes” > "Evaluate" > "Generated User Info"，可查看映射规则是否可用。如下图，已存在配置的映射字段，则说明可以通过该字段进行映射登录。
 
 ![](img/10.keycloak_10.png)
 
-### 3.配置观测云管理后台映射规则
+### 4.配置观测云管理后台映射规则
 
 > 注意：本步骤将创建观测云的映射规则， 用于建立 Keycloak 和观测云之间的映射规则。
 
@@ -89,6 +90,6 @@
 
 ![](img/10.keycloak_2.png)
 
-### [4.使用 Keycloak 账号单点登录观测云](keycloak-sso.md#5-keycloak)
+### [5.使用 Keycloak 账号单点登录观测云](keycloak-sso.md#5-keycloak)
 
 
