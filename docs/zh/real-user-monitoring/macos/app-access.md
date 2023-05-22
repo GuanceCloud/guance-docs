@@ -25,7 +25,7 @@
 
 **源码地址**：[https://github.com/GuanceCloud/datakit-macos](https://github.com/GuanceCloud/datakit-macos)
 
-**Demo**：[https://github.com/GuanceCloud/datakit-macos/tree/develop/Example](https://github.com/GuanceCloud/datakit-macos/tree/develop/Example)
+**Demo**：[https://github.com/GuanceCloud/datakit-macos/Example](https://github.com/GuanceCloud/datakit-macos/tree/development/Example)
 
 === "CocoaPods"
 
@@ -119,16 +119,17 @@ typedef NS_ENUM(NSInteger, FTEnv) {
 ### RUM 配置 {#rum-config}
 
 ```objectivec
-    //开启 rum
-    FTRumConfig *rumConfig = [[FTRumConfig alloc]init];
-    rumConfig.appid = appid;
-    rumConfig.enableTrackAppCrash = YES;
-    rumConfig.enableTrackAppANR = YES;
-    rumConfig.enableTrackAppFreeze = YES;
-    rumConfig.enableTraceUserAction = YES;
-	  rumConfig.enableTraceUserVIew = YES;
-    rumConfig.deviceMetricsMonitorType = FTDeviceMetricsMonitorAll;
-    [[FTSDKAgent sharedInstance] startRumWithConfigOptions:rumConfig];
+  //开启 rum
+  FTRumConfig *rumConfig = [[FTRumConfig alloc]initWithAppid:appid];
+  rumConfig.enableTrackAppCrash = YES;
+  rumConfig.enableTrackAppANR = YES;
+  rumConfig.enableTrackAppFreeze = YES;
+  rumConfig.enableTraceUserAction = YES;
+  rumConfig.enableTraceUserVIew = YES;
+  rumConfig.enableTraceUserResource = YES;
+  rumConfig.errorMonitorType = FTErrorMonitorAll;
+  rumConfig.deviceMetricsMonitorType = FTDeviceMetricsMonitorAll;
+  [[FTSDKAgent sharedInstance] startRumWithConfigOptions:rumConfig];
 ```
 
 | **字段**                 | **类型**     | **说明**                                                     | **必须**                 |
@@ -195,12 +196,12 @@ typedef NS_OPTIONS(NSUInteger, FTMonitorFrequency) {
 ### Log 配置 {#log-config}
 
 ```objectivec
-    //开启 logger
-    FTLoggerConfig *loggerConfig = [[FTLoggerConfig alloc]init];
-    loggerConfig.enableCustomLog = YES;
-    loggerConfig.enableLinkRumData = YES;
-    loggerConfig.enableConsoleLog = YES;
-    [[FTSDKAgent sharedInstance] startLoggerWithConfigOptions:loggerConfig];
+  //开启 logger
+  FTLoggerConfig *loggerConfig = [[FTLoggerConfig alloc]init];
+  loggerConfig.enableCustomLog = YES;
+  loggerConfig.enableLinkRumData = YES;
+  loggerConfig.enableConsoleLog = YES;
+  [[FTSDKAgent sharedInstance] startLoggerWithConfigOptions:loggerConfig];
 ```
 
 | **字段**          | **类型**          | **说明**                               | **必须**               |
@@ -254,12 +255,12 @@ typedef NS_ENUM(NSInteger, FTLogCacheDiscard)  {
 ### Trace 配置 {#trace-config}
 
 ```objectivec
-    //开启 trace
-    FTTraceConfig *traceConfig = [[FTTraceConfig alloc]init];
-    traceConfig.enableLinkRumData = YES;
-	  traceConfig.enableAutoTrace = YES;
-    traceConfig.networkTraceType = FTNetworkTraceTypeDDtrace;
-    [[FTSDKAgentsharedInstance] startTraceWithConfigOptions:traceConfig];
+  //开启 trace
+  FTTraceConfig *traceConfig = [[FTTraceConfig alloc]init];
+  traceConfig.enableLinkRumData = YES;
+  traceConfig.enableAutoTrace = YES;
+  traceConfig.networkTraceType = FTNetworkTraceTypeDDtrace;
+  [[FTSDKAgent sharedInstance] startTraceWithConfigOptions:traceConfig];
 ```
 
 | 字段              | 类型    | 说明                                                         | 必须              |
@@ -513,7 +514,7 @@ typedef NS_ENUM(NSInteger, FTNetworkTraceType) {
 ```
 
 ```objectivec
-typedef NS_ENUM(NSInteger, FTStatus) {
+typedef NS_ENUM(NSInteger, FTLogStatus) {
     FTStatusInfo         = 0,
     FTStatusWarning,
     FTStatusError,
@@ -523,7 +524,7 @@ typedef NS_ENUM(NSInteger, FTStatus) {
 /// 日志上报
 /// @param content 日志内容，可为json字符串
 /// @param status  事件等级和状态
--(void)logging:(NSString *)content status:(FTStatus)status;
+-(void)logging:(NSString *)content status:(FTLogStatus)status;
 
 /// 日志上报
 /// @param content 日志内容，可为json字符串
@@ -653,7 +654,7 @@ rumConfig.globalContext = @{@"dynamic_tag":dynamicTag};
 
 4. `FTSDKConfig` 中配置的自定义标签将添加在所有类型的数据中。
 
-详细细节请见 [SDK Demo](https://github.com/GuanceCloud/datakit-macos/tree/develop/Example)。
+详细细节请见 [SDK Demo](https://github.com/GuanceCloud/datakit-macos/tree/development/Example)。
 
 
 
