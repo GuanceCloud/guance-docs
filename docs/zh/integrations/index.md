@@ -55,7 +55,7 @@ icon: zy/integrations
 
     ---
 
-    指导观测 [`阿里云`](./cloud/aliyun/aliyun-prod-func.md) [`AWS`](./cloud/aws/aws-prod-func.md) [`腾讯云`](./cloud/tencent/tencent-prod-func.md) [`华为云`](./cloud/huawei/huawei-prod-func.md) 等指标集数据
+    指导观测 `阿里云` `AWS` `腾讯云` `华为云` 等指标集数据
 
     <br/>
     [**:octicons-arrow-right-24: 更多**](./cloud/index.md)
