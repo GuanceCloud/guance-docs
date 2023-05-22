@@ -21,7 +21,67 @@
 
 **Demo 地址**：[https://github.com/GuanceCloud/datakit-cpp/ft-sdk-sample](https://github.com/GuanceCloud/datakit-cpp/tree/dev/ft-sdk-sample)
 
+==="Windows"
 
+*	拷贝或解压datakit_sdk_redist到本地安装目录。目录结构如下：
+
+```
+├─datakit_sdk_redist
+│  ├─include
+│  │      datakit_exports.h
+│  │      Datakit_UUID.h
+│  │      FTSDK.h
+│  │      FTSDKConfig.h
+│  │      FTSDKDataContracts.h
+│  │      FTSDKFactory.h
+│  │
+│  └─lib
+│      └─win64
+│              fmt.dll
+│              ft-sdk.dll
+│              ft-sdk.lib
+│              libcurl.dll
+│              sqlite3.dll
+│              zlib1.dll
+
+```
+
+2.	打开引用项目的工程属性，添加头文件路径。（以下的datakit_sdk_redist目录需替换成本地实际安装路径）
+![](../img/rum_cpp_1.png)
+
+* 添加库文件路径
+![](../img/rum_cpp_2.png)
+* 添加库文件引用
+![](../img/rum_cpp_3.png)
+* 设置c++标准
+![](../img/rum_cpp_4.png)
+* 设置动态库自动拷贝
+![](../img/rum_cpp_5.png)
+
+
+==="Linux"
+
+* 拷贝或解压datakit_sdk_redist到本地目录，目录结构如下：
+
+```
+./datakit_sdk_redist/
+├── include
+│   ├── datakit_exports.h
+│   ├── Datakit_UUID.h
+│   ├── FTSDKConfig.h
+│   ├── FTSDKDataContracts.h
+│   ├── FTSDKFactory.h
+│   └── FTSDK.h
+├── install.sh
+└── lib
+    └── x86_64
+        ├── libft-sdk.a
+      	     └── libft-sdk.so
+```
+
+*	sudo chmod 777 datakit_sdk_redist/install.sh
+*	cd datakit_sdk_redist
+* ./install.sh
 
 ## 初始化
 
@@ -35,12 +95,47 @@
         .setEnv(EnvType::PROD)
         .addGlobalContext("custom_key","custom_value")
         .setEnableFileDBCache(true);
+   sdk->install(gc)
 
 ```
 
 | **字段** | **类型** | **必须** | **说明** |
 | --- | --- | --- | --- |
 | setServerUrl | string | 是 | datakit 安装地址 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529。注意：安装 SDK 设备需能访问这地址 |
-| setEnv | enum EnvType | 否 | 环境，默认`prod` |
+| setEnv | enum | 否 | 环境，默认`EnvType::PROD` |
 | setEnableFileDBCache | Bool | 否 | 是否开启本地数据库|
 | addGlobalContext | Dictionary | 否 | [添加自定义标签](#user-global-context ) |
+| setServiceName|设置服务名|否|影响 Log 和 RUM 中 service 字段数据， 默认为 windows 为`df_rum_windows`，linux 为 `df_rum_linux` |
+
+### RUM 配置
+
+```cpp
+FTRUMConfig rc;
+rc.setRumAppId("appid_xxxx");
+sdk->
+```
+
+| **字段** | **类型** | **必须** | **说明** |
+| --- | --- | --- | --- |
+| setServerUrl | string | 是 | datakit 安装地址 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529。注意：安装 SDK 设备需能访问这地址 |
+
+
+### Log 配置
+
+### Trace 配置
+
+## RUM 用户数据追踪
+
+### Action
+### View
+### Resource
+### Error
+### LongTask
+
+## Log 日志打印
+
+## Tracer 网络链路追踪
+
+## 用户信息绑定与解绑
+
+## 关闭 SDK
