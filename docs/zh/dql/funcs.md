@@ -389,7 +389,7 @@ show_tag_key(from=['cpu'])
 
 ```
 
-### show_tag_value()    
+### show_tag_value() {#show}   
 
 - 说明：返回数据库中指定 tag key 的 tag value 列表
 
@@ -399,7 +399,7 @@ show_tag_key(from=['cpu'])
 
 ```python
 # 请求
-show_tag_value(from=['cpu'], keyin=['host'])
+show_tag_value(from=['cpu'], keyin=['host'],field=['usage_total'])
 
 # 返回
 {
