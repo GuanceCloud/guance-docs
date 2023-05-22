@@ -11,7 +11,7 @@
 
 > 更多数据查询说明可参考 [图表查询](../scene/visual-chart/chart-query.md#query) 。
 
-![](img/4.changelog_1.2.png)
+![](img/4.changelog_1.2.gif)
 
 ## 相关操作
 
