@@ -89,10 +89,6 @@
 
     ![](img/quick-filter.png)
 
-    <font size=3>*分组分析*</font>
-
-    ![](img/group.png)
-
     <font size=3>*添加显示列*</font>
 
     ![](img/display.png)
