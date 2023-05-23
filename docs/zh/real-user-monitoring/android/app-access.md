@@ -34,35 +34,77 @@
 
 在项目的根目录的 `build.gradle` 文件中添加 `SDK` 的远程仓库地址
 
-```groovy
-buildscript {
-    //...
-    repositories {
-        //...
-        //添加 SDK 的远程仓库地址
-        maven {
-            url 'https://mvnrepo.jiagouyun.com/repository/maven-releases'
-        }
-    }
-    dependencies {
-        //...
-        //添加 Plugin 的插件，依赖 AGP 7.4.2 以上，Gradle 7.2.0 以上
-        classpath 'com.cloudcare.ft.mobile.sdk.tracker.plugin:ft-plugin:[latest_version]'
-        // AGP 7.4.2 以下版本，请使用 ft-plugin-legacy 
-        //classpath 'com.cloudcare.ft.mobile.sdk.tracker.plugin:ft-plugin-legacy:[latest_version]'
-        
-    }
-}
-allprojects {
-    repositories {
-        //...
-        //添加 SDK 的远程仓库地址
-        maven {
-            url 'https://mvnrepo.jiagouyun.com/repository/maven-releases'
-        }
-    }
-}
-```
+==="buildscript"
+
+	```groovy
+	buildscript {
+	    //...
+	    repositories {
+	        //...
+	        //添加 SDK 的远程仓库地址
+	        maven {
+	            url 'https://mvnrepo.jiagouyun.com/repository/maven-releases'
+	        }
+	    }
+	    dependencies {
+	        //...
+	        //添加 Plugin 的插件，依赖 AGP 7.4.2 以上，Gradle 7.2.0 以上
+	        classpath 'com.cloudcare.ft.mobile.sdk.tracker.plugin:ft-plugin:[latest_version]'
+	        // AGP 7.4.2 以下版本，请使用 ft-plugin-legacy 
+	        //classpath 'com.cloudcare.ft.mobile.sdk.tracker.plugin:ft-plugin-legacy:[latest_version]'
+	        
+	    }
+	}
+	allprojects {
+	    repositories {
+	        //...
+	        //添加 SDK 的远程仓库地址
+	        maven {
+	            url 'https://mvnrepo.jiagouyun.com/repository/maven-releases'
+	        }
+	    }
+	}
+	```
+
+==="plugins DSL"
+
+	```groovy
+	//setting.gradle
+	
+	pluginManagement {
+	    repositories {
+	        google()
+	        mavenCentral()
+	        gradlePluginPortal()
+	        //添加 SDK 的远程仓库地址
+	        maven {
+	            url('https://mvnrepo.jiagouyun.com/repository/maven-releases')
+	        }
+	    }
+	}
+	dependencyResolutionManagement {
+	    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+	    repositories {
+	        google()
+	        mavenCentral()
+	        //添加 SDK 的远程仓库地址
+	        maven {
+	            url('https://mvnrepo.jiagouyun.com/repository/maven-releases')
+	        }
+	    }
+	}
+	
+	//build.gradle
+	
+	plugins{
+		//添加 Plugin 的插件，依赖 AGP 7.4.2 以上，Gradle 7.2.0 以上
+		id 'com.cloudcare.ft.mobile.sdk.tracker.plugin' version '[lastest_version]' apply false
+		// AGP 7.4.2 以下版本，请使用 ft-plugin-legacy 
+		//id 'com.cloudcare.ft.mobile.sdk.tracker.plugin.legacy' version '[lastest_version]' apply false
+	}
+	
+	```
+
 
 在项目主模块 `app` 的 `build.gradle` 文件中添加 `SDK` 的依赖及 `Plugin` 的使用 和 Java 8 的支持
 
@@ -201,6 +243,7 @@ android{
 | **方法名** | **含义** | **必须** | **注意** |
 | --- | --- | --- | --- |
 | setRumAppId | 设置`Rum AppId` | 是 | 对应设置 RUM `appid`，才会开启`RUM`的采集功能，[获取 appid 方法](#android-integration) |
+| setSampleRate | 设置采集率 | 否 | 采集率的值范围为>= 0、<= 1，默认值为 1 |
 | setEnableTrackAppCrash | 是否上报 App 崩溃日志 | 否 | 默认为 `false`，开启后会在错误分析中显示错误堆栈数据。<br> [关于崩溃日志中混淆内容转换的问题](#retrace-log) |
 | setExtraMonitorTypeWithError | 设置辅助监控信息 | 否 | 添加附加监控数据到 `Rum` 崩溃数据中，`ErrorMonitorType.BATTERY` 为电池余量，`ErrorMonitorType.MEMORY` 为内存用量，`ErrorMonitorType.CPU` 为 CPU 占有率 |
 | setDeviceMetricsMonitorType | 设置 View 监控信息 | 否 | 在 View 周期中，添加监控数据，`DeviceMetricsMonitorType.BATTERY` 监控当前页的最高输出电流输出情况，`DeviceMetricsMonitorType.MEMORY` 监控当前应用使用内存情况，`DeviceMetricsMonitorType.CPU` 监控 CPU 跳动次数 ，`DeviceMetricsMonitorType.FPS` 监控屏幕帧率|
