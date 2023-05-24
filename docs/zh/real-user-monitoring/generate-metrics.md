@@ -6,7 +6,7 @@
 
 ???+ attention 
 
-    - 生成指标需有“生成指标配置管理”[权限清单](../management/role-list.md)的角色可创建编辑；  
+    - 生成指标需有**生成指标配置管理**[权限清单](../management/role-list.md)的角色可创建编辑；  
     - 指标生成以后会按照当前默认的 [数据存储策略](../billing/billing-method/data-storage.md) 进行指标数据存储，并根据产生的 [时间线数量](../billing/billing-method/index.md#time-example) 进行收费；  
     - 指标生成以后，若期间没数据上报，则无法在工作空间中查询和分析，如在**指标分析**、**图表**、**DQL 查询工具**中查询指标数据。	
 
@@ -94,7 +94,7 @@
 
 ### 在图表查询中应用
 
-指标生成以后，可以在**场景 > 仪表板 > 建仪表板**，在[可视化图表](../scene/visual-chart/chart-query.md)中进行指标数据查询和分析。
+指标生成以后，可以在**场景 > 仪表板 > 新建仪表板**，在[可视化图表](../scene/visual-chart/chart-query.md)中进行指标数据查询和分析。
 
 ![](img/4.rum_metrics_7.png)
 
