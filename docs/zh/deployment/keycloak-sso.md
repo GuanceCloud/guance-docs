@@ -3,13 +3,13 @@
 
 ## 简介
 
-观测云支持基于 OpenID Connect、OAuth 2.0、SAML 2.0 三种协议的单点登录方式。本文将以 Keycloak 登录为例进行讲解，
+观测云支持基于 OpenID Connect、OAuth 2.0、SAML 2.0 三种协议的单点登录方式。本文将以 Keycloak 登录为例进行讲解。
 
 Keycloak 是一个开源的、面向现代应用和分布式服务的身份认证和访问控制的解决方案，观测云部署版基于 OpenID Connect 协议，实现企业 Keycloak 账户单点登录到观测云平台访问对应工作空间资源，无需另外创建企业/团队的观测云账号。
 
 ???+ attention
 
-    本文适用于使用 OpenID Connect 协议，且 keycloak 为 18.0.2 及以下的版本。
+    本文适用于使用 OpenID Connect 协议，且 Keycloak 为 18.0.2 及以下的版本。
 
 ## 概念先解
 
