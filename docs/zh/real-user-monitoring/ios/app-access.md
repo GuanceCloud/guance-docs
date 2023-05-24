@@ -641,6 +641,20 @@ typedef NS_ENUM(NSInteger, FTStatus) {
 [[FTMobileAgent sharedInstance] logout];
 ```
 
+## 关闭 SDK
+
+使用 `FTMobileAgent` 关闭 SDK。
+
+```objective-c
+/// 关闭 SDK 内正在运行对象
+- (void)shutDown;
+```
+
+```objective-c
+//如果动态改变 SDK 配置，需要先关闭，以避免错误数据的产生
+[[FTMobileAgent sharedInstance] shutDown];
+```
+
 ## 添加自定义标签 {#user-global-context}
 
 ### 静态使用
