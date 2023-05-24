@@ -4,7 +4,7 @@
 
 ???+ attention
 
-    **当前案例使用 ddtrace 版本 `0.114.0`（最新版本）进行测试**
+    **当前案例使用 ddtrace 版本 `1.14.0-guance`（最新版本）进行测试**
 
 ## 前置条件
 
@@ -20,7 +20,7 @@
 
 ## 参数使用
 
-### 1 开启 query 参数
+### 开启 query 参数
 
 开启 query 参数，可以更直观方便地让用户看到当前请求携带了哪些参数，更直观地还原客户真实的操作流程。默认为 false，表示为默认不开启。
 
@@ -32,7 +32,7 @@
 
 ![image](../images/ddtrace-skill-1.png)
 
-### 2 配置远程采集链接
+### 配置远程采集链接
 
 `dd.agent.host` 默认值是`localhost`，所以默认推送的是本地的 DataKit。
 
@@ -42,11 +42,11 @@
 -Ddd.agent.host=192.168.91.11
 ```
 
-### 3 两种添加 Tag 方式
+### 两种添加 Tag 方式
 
 ddtrace 提供两种添加 tag 方式，效果一样。但还是推荐使用 dd.tags 方式
 
-#### 3.1 dd.trace.span.tags
+#### 1 dd.trace.span.tags
 
 将 `projectName:observable-demo` 添加到每个 span 的示例：
 
@@ -56,7 +56,7 @@ ddtrace 提供两种添加 tag 方式，效果一样。但还是推荐使用 dd.
 
 ![image.png](../images/ddtrace-skill-3.png)
 
-#### 3.2 dd.tags
+#### 2. dd.tags
 
 ```
 -Ddd.tags=user_name:joy
@@ -80,7 +80,7 @@ ddtrace 提供两种添加 tag 方式，效果一样。但还是推荐使用 dd.
 
 > **注意：**如果自定义 tag 包含了 [tag 关键字](../../../datakit/ddtrace#tags)，则会当成标签显示。
 
-### 4 显示数据库实例名称
+### 显示数据库实例名称
 
 显示数据库的名称，默认显示数据库的类型，如需要显示数据库名称，将值设置成`TRUE`
 
@@ -97,7 +97,7 @@ dd.trace.db.client.split-by-instance=TRUE
 
 ![image](../images/ddtrace-skill-6.png)
 
-### 5 类或方法注入 Trace
+### 类或方法注入 Trace
 
 ddtrace 支持给方法注入 Trace ，默认情况下，ddtrace 会对所有的 API 接口动态注入 Trace。
 
@@ -141,7 +141,7 @@ ddtrace 支持给方法注入 Trace ，默认情况下，ddtrace 会对所有的
 
 ![image.png](../images/ddtrace-skill-2.png)
 
-### 6 通过 header 自定义业务 tag
+### 通过 header 自定义业务 tag
 
 主要是通过 header 方式，以一种非侵入式方式将业务 tag 注入到 trace 中，能够跟踪对应业务的执行情况。以 Key:value 方式进行配置，key 为原始 header 的 paramName ，value 为 key 的 rename，其中 key 可以省略。
 
@@ -158,7 +158,7 @@ ddtrace 支持给方法注入 Trace ，默认情况下，ddtrace 会对所有的
 ![image.png](../images/ddtrace-skill-6-2.png)
 
 
-### 7 开启 debug 模式
+### 开启 debug 模式
 
 开启 debug 模式后，系统输出 ddtrace 相关日志，有利于排查 ddtrace 相关问题。
 
@@ -175,6 +175,52 @@ ddtrace 支持给方法注入 Trace ，默认情况下，ddtrace 会对所有的
 ???+ attention "注意"
     `-Ddd.trace.debug=true` 是用来开启 ddtrace 的 debug 日志，而不是开启应用的 debug 日志。
     
+
+### traceId 开启 128 bit
+traceId 默认是 64 bit（long型），为了能够更好的与 opentelemetry （traceId 为 128bit ）兼容，可以手动开启 128 bit。
+```
+-Ddd.trace.128.bit.traceid.generation.enabled=true
+```
+
+### 输出 trace 信息
+如果需要做一些研发相关的工作，了解 trace 上报数据结构是有必要的，默认情况下，trace 信息会通过`DDAgentWriter`上报到远端可观测平台，如果想在控制台输出对应的信息，可以通过配置如下参数：
+
+```
+-Ddd.writer.type=LoggingWriter
+```
+
+也可以配置多个
+```
+-Ddd.writer.type=LoggingWriter,DDAgentWriter
+```
+
+### 开启服务名替换中间件名称
+
+默认情况下，链路信息会按照中间件名称进行分组展示，导致如果应用只有中间件产生链路信息，则无法向上追溯到当前中间件所处的应用，可以通过调整参数将全局 tag service name 作为中间件的 service。通过以下参数进行配置：
+
+启动参数方式注入
+
+```
+-Ddd.trace.span.attribute.schema=v1
+```
+可通过环境变量方式注入
+
+```
+export DD_TRACE_SPAN_ATTRIBUTE_SCHEMA=v1
+```
+
+以上两种方式二选一
+
+最终效果，不再展示中间件服务名称【即应用服务名称替换了中间件的名称】，span 其他 tag 和数据不受影响。
+
+替换前效果
+
+![image.png](../images/ddtrace-param-7.png)
+
+替换后效果
+
+![image.png](../images/ddtrace-param-8.jpg)
+
 
 
 ## 参考文档

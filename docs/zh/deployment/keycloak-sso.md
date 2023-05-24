@@ -3,11 +3,13 @@
 
 ## 简介
 
-Keycloak 是一个开源的、面向现代应用和分布式服务的身份认证和访问控制的解决方案，Keycloak 单点登录支持 OpenID Connect、OAuth 2.0、SAML 2.0 三种协议，观测云部署版基于 OpenID Connect 协议，实现企业 Keycloak 账户单点登录到观测云平台访问对应工作空间资源，无需另外创建企业/团队的观测云账号。
+观测云支持基于 OpenID Connect、OAuth 2.0、SAML 2.0 三种协议的单点登录方式。本文将以 Keycloak 登录为例进行讲解。
+
+Keycloak 是一个开源的、面向现代应用和分布式服务的身份认证和访问控制的解决方案，观测云部署版基于 OpenID Connect 协议，实现企业 Keycloak 账户单点登录到观测云平台访问对应工作空间资源，无需另外创建企业/团队的观测云账号。
 
 ???+ attention
 
-    本文适用于使用 OpenID Connect 协议，且 keycloak 为 18.0.2 及以下的版本。
+    本文适用于使用 OpenID Connect 协议，且 Keycloak 为 18.0.2 及以下的版本。
 
 ## 概念先解
 
@@ -24,9 +26,9 @@ Keycloak 是一个开源的、面向现代应用和分布式服务的身份认�
 | Groups      | 管理用户组，支持将角色映射到组。                          |
 
 
-## 操作步骤
+## 操作步骤 {#steps}
 
-### 1.创建 Keycloak realm
+### 1、创建 Keycloak realm
 
 > 注意：Keycloak 本身有一个主域（Master），我们需要创建一个新的领域（类似工作空间）。
 
@@ -38,7 +40,7 @@ Keycloak 是一个开源的、面向现代应用和分布式服务的身份认�
 
 ![](img/05_keycloak_03.png)
 
-### 2.创建 Client 并配置 openid-connect 协议
+### 2、创建 Client 并配置 openid-connect 协议
 
 > 注意：本步骤将创建 Keycloak 客户端并配置 openid-connect 协议，建立 Keycloak 和观测云之间的信任关系使之相互信任。
 
@@ -61,21 +63,7 @@ Client 创建后，按照如下截图进行配置，点击 **Save**。
 
 ![](img/1.keycloak_2.png)
 
-### 3、配置 Keycloak 用户
-
-注意：本步骤配置在观测云后台管理的用户邮箱账号，通过配置的 Keycloak 用户邮箱账号可单点登录到观测云平台。
-
-1）在创建的 gcy 域，点击 **User**，点击 **Add user**。
-
-![](img/05_keycloak_13.png)
-
-2）输入 **Username** 和 **Email**，Email 为必填项，且需要和观测云后台管理配置的用户邮箱保持一致，用于匹配邮箱映射登录到观测云。
-
-![](img/05_keycloak_14.png)
-
-3）创建用户后，在 **Credentials** 中为用户设置密码。
-
-![](img/05_keycloak_15.png)
+### 3、[配置 Keycloak 用户](./keycloak-rule.md#new)
 
 
 ### 4、观测云 Launcher 配置 {#config}
@@ -195,8 +183,6 @@ window.DEPLOYCONFIG = {
     > 更多详情可参考文档 [部署版工作空间管理](space.md)。
  
     ![](img/1.keycloak_15.png)
-
-    您还可以运用动态映射规则添加账号到工作空间并映射角色，可前往**管理后台 > [映射规则](./setting.md#mapping)** 进行配置。匹配到的账号会根据规则加入到工作空间并授予相应角色。
 
 
 在观测云管理后台为用户添加完工作空间后，用户即可开始使用观测云。
