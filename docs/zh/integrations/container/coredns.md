@@ -50,15 +50,21 @@ curl http://kube-dns.kube-system.svc.cluster.local:9153/metrics
 
 ### 指标采集 (必选)
 
-1、 开启 CoreDNS 插件
+1、 下载 `datakit.yaml`
 
-Kubernetes 环境下部署的 DataKit ，与宿主机直接安装的 DataKit ，开启插件的方式不一样。<br />
-Kubernetes 环境下部署 DataKit 是按照 <[Kubernetes 部署 DataKit](../../datakit/datakit-daemonset-deploy)> 来配置的，在 Kubernetes 集群的 Master 节点找到 `datakit.yaml` 。
+登录观测云控制台，点击「集成」 -「DataKit」 - 「Kubernetes」，下载 `datakit.yaml`。
 
 2、 修改 `datakit.yaml` 配置文件
 
 ```
 vi datakit.yaml
+```
+
+在 `env` 下面增加环境变量 
+
+```
+        - name: ENV_GLOBAL_ELECTION_TAGS
+          value: cluster_name_k8s=k8s-dsp
 ```
 
 在 `datakit.yaml` 的 `volumeMounts` 下面增加如下 3 行：
@@ -152,7 +158,7 @@ data:
         prefix = "coredns_dns_"
         name = "coredns"
     [inputs.prom.tags]
-      cluster_name="k8s-dns"
+      #cluster_name="k8s-dns"
 ```
 
 参数说明：
@@ -169,10 +175,10 @@ data:
 - prefix：自定义指标前缀
 - name：自定义指标集名称，即把 prefix 开头的指标归为此 name 的指标集
 
-3、 重启 DataKit
+3、 部署 DataKit
 
 ```
-systemctl restart datakit
+kubectl apply -f datakit.yaml
 ```
 
 4、 指标预览
@@ -184,19 +190,14 @@ systemctl restart datakit
 参数说明
 
 - 该配置为自定义标签，可以填写任意 key-value 值
-- 以下示例配置完成后，所有 CoreDNS 指标都会带有 `cluster_name="k8s-dns"` 的标签，可以进行快速查询，上文已经配置了一个 cluster_name 的 key
+- 以下示例配置完成后，所有 CoreDNS 指标都会带有 `cluster_name_k8s="k8s-dns"` 的标签，可以进行快速查询，如果通过环境变量配置 `cluster_name_k8s` 后，这里不需要配置
 - 相关文档 <[TAG 在观测云中的最佳实践](../../best-practices/insight/tag.md)>
 
 ```
 [inputs.prom.tags]
-  cluster_name="k8s-dns"
+  cluster_name_k8s="k8s-dns"
 ```
 
-重启 DataKit
-
-```
-systemctl restart datakit
-```
 
 ## 场景视图
 
