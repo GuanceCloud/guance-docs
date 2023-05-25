@@ -23,58 +23,97 @@
 
 **Demo**：[https://github.com/GuanceCloud/datakit-ios/demo](https://github.com/GuanceCloud/datakit-ios/tree/develop/demo)
 
+=== "CocoaPods"
 
-### 源码方式
-
-1.从 GitHub 根据指定 tag 获取 SDK 的源代码。
-
-```
-git clone --branch [latest_version] https://github.com/GuanceCloud/datakit-ios.git
-```
-
-2.将 SDK 源代码导入 App 项目。将 **FTMobileAgent** 和 **BaseUtils** 文件夹导入项目，并选中 `Copy items if needed` ，勾选 `Create groups` 。
-
-
-### CocoaPods 方式
-
-1.配置 `Podfile` 文件。
-
-```objectivec
-target 'yourProjectName' do
-
-# Pods for your project
-pod 'FTMobileSDK', '[latest_version]'
+    1.配置 `Podfile` 文件。
     
-end
-```
+    ```objectivec
+    //主工程
+    target 'yourProjectName' do
+    # Pods for your project
+    pod 'FTMobileSDK', '[latest_version]'
+    end
+      
+    //Widget Extension
+    target 'yourWidgetExtensionName' do
+    pod 'FTMobileSDK/Extension', '[latest_version]'
+    end
+    ```
+    
+    2.在 `Podfile` 目录下执行 `pod install` 安装 SDK。
 
-2.在 `Podfile` 目录下执行 `pod install` 安装 SDK。
+=== "Carthage" 
 
-### Carthage 方式
+    1.配置 `Cartfile` 文件。
+    
+    ```
+    github "GuanceCloud/datakit-ios" == [latest_version]
+    ```
+    
+    2.在 `Cartfile` 目录下执行
+    
+    ```bash
+    carthage update --platform iOS
+    ```
+    
+    如果报错 "Building universal frameworks with common architectures is not possible. The device and simulator slices for "FTMobileAgent.framework" both build for: arm64" 
+    
+    根据提示添加 --use-xcframeworks 参数
+    
+    ```bash
+    carthage update --platform iOS --use-xcframeworks
+    ```
+    
+    生成的  xcframework ，与普通的 Framework 使用方法相同。将编译生成的库添加到项目工程中。
+    
+    `FTMobileAgent`：添加到主项目 Target
+    
+    `FTMobileExtension`：添加到 Widget Extension Target
+    
+    3.在 `TARGETS`  -> `Build Setting` ->  `Other Linker Flags`  添加  `-ObjC`。
+    
+    4.目前只支持 1.3.4-beta.2 及以上的版本，1.4.0-beta.1 及以上支持 Widget Extension。
 
-1.配置 `Cartfile` 文件。
+=== "Swift Package Manager"
 
-```
-github "GuanceCloud/datakit-ios" == [latest_version]
-```
-
-2.在 `Cartfile` 目录下执行  `carthage update --platform iOS` ， 并将  `FTMobileAgent.framework` 拖拽到您的项目中使用。若出现 "Building universal frameworks with common architectures is not possible. The device and simulator slices for "FTMobileAgent.framework" both build for: arm64" 错误，请执行  `carthage update --platform iOS --use-xcframeworks` 命令，生成  `FTMobileAgent.xcframework `，与普通的 Framework 使用方法相同，请将它拖拽到您的项目中使用。
-
-3.debug 模式下，为了方便 SDK 调试，建议使用 debug 模式的静态库。在命令后添加  `--configuration Debug` 获取 debug 模式的静态库。
-
-4.在 `TARGETS`  -> `Build Setting` ->  `Other Linker Flags`  添加  `-ObjC`。
-
-5.目前只支持 1.3.4-beta.2 及以上的版本。
+    1.选中 `PROJECT` -> `Package Dependency` ，点击 `Packages` 栏目下的 **+**。
+    
+    2.在弹出的页面的搜索框中输入 `https://github.com/GuanceCloud/datakit-ios.git`。
+    
+    3.Xcode 获取软件包成功后，会展示 SDK 的配置页。
+    
+    `Dependency Rule` ：建议选择 `Up to Next Major Version` 。
+    
+    `Add To Project` ：选择支持的工程。
+    
+    填好配置后点击  `Add Package`  按钮，等待加载完成。
+    
+    4.在弹窗 `Choose Package Products for datakit-ios` 中选择需要添加 SDK 的 Target，点击 `Add Package` 按钮，此时 SDK 已经添加成功。
+    
+    `FTMobileSDK`：添加到主项目 Target
+    
+    `FTMobileExtension`：添加到 Widget Extension Target
+    
+    如果您的项目由 SPM 管理，将 SDK 添加为依赖项，添加 `dependencies `到 `Package.swift`。
+    
+    ```plaintext
+    // 主项目
+    dependencies: [
+    .package(name: "FTMobileSDK", url: "https://github.com/GuanceCloud/datakit-ios.git",.upToNextMajor(from: "[latest_version]"))
+    ]
+    ```
+    
+    5.1.4.0-beta.1 及以上支持 Swift Package Manager 。
 
 
 
 ### 添加头文件
 
 ```objectivec
-//使用 Carthage 方式
+//Carthage 
 #import <FTMobileAgent/FTMobileAgent.h>
 ...
-//使用 源码 或 CocoaPods 方式
+//CocoaPods、SPM 
 #import "FTMobileAgent.h"
 ```
 
@@ -100,9 +139,9 @@ github "GuanceCloud/datakit-ios" == [latest_version]
 | metricsUrl | NSString | datakit 安装地址 URL 地址，例子：http://datakit.url:[port]。注意：安装 SDK 设备需能访问这地址| 是 |
 | enableSDKDebugLog | BOOL | 设置是否允许打印日志 | 否（默认NO） |
 | env | NS_ENUM | 环境 | 否  （默认FTEnvProd） |
-| XDataKitUUID | NSString | 请求HTTP请求头X-Datakit-UUID 数据采集端  如果用户不设置会自动配置 | 否 |
 | globalContext | NSDictionary | [添加自定义标签](#user-global-context) |     否 |
 | service | NSString | 设置所属业务或服务的名称，影响 Log 和 RUM 中 service 字段数据。默认：`df_rum_ios` | 否 |
+| XDataKitUUID | NSString | 请求HTTP请求头X-Datakit-UUID 数据采集端  如果用户不设置会自动配置 | 否 |
 
 #### env 环境
 
@@ -302,7 +341,9 @@ typedef NS_ENUM(NSInteger, FTNetworkTraceType) {
 
 ## RUM 用户数据追踪
 
-可以 `FTRUMConfig` 配置开启自动模式，或手动添加。Rum 相关数据，通过 `FTExternalDataManager` 单例，进行传入，相关 API 如下：
+可以 `FTRUMConfig` 配置开启自动采集也支持用户自定义采集。
+
+用户自定义采集 Rum 相关数据，需要使用  `FTExternalDataManager` 单例，相关 API 如下：
 
 ### View
 
@@ -517,6 +558,8 @@ typedef NS_ENUM(NSInteger, FTNetworkTraceType) {
 
 ## Logger 日志打印 {#user-logger}
 
+可以 `FTLoggerConfig` 配置开启自动采集控制台日志，也支持用户自定义添加日志。自定义添加相关 API 如下：
+
 ```objectivec
 [[FTMobileAgent sharedInstance] logging:@"TestLoggingBackground" status:FTStatusInfo];
 ```
@@ -543,7 +586,7 @@ typedef NS_ENUM(NSInteger, FTStatus) {
 
 ## Trace 网络链接追踪
 
-可以 `FTTraceConfig` 配置开启自动模式，或手动添加。Trace 相关数据，通过 `FTTraceManager` 单例，进行传入，相关 API 如下：
+可以 `FTTraceConfig` 配置开启自动模式，也支持用户自定义添加 Trace 相关数据。自定义添加相关 API 如下：
 
 ```objectivec
  NSString *key = [[NSUUID UUID]UUIDString];
@@ -591,6 +634,20 @@ typedef NS_ENUM(NSInteger, FTStatus) {
 
 //解绑用户
 [[FTMobileAgent sharedInstance] logout];
+```
+
+## 关闭 SDK
+
+使用 `FTMobileAgent` 关闭 SDK。
+
+```objective-c
+/// 关闭 SDK 内正在运行对象
+- (void)shutDown;
+```
+
+```objective-c
+//如果动态改变 SDK 配置，需要先关闭，以避免错误数据的产生
+[[FTMobileAgent sharedInstance] shutDown];
 ```
 
 ## 添加自定义标签 {#user-global-context}
@@ -773,6 +830,80 @@ FT_ENV=SDK_ENV
 
 [Sourcemap 上传](../../datakit/rum.md#sourcemap)
 
+## Widget Extension 数据采集
+
+### Widget Extension 数据采集支持
+
+* Logger 自定义日志
+
+* Trace 链路追踪
+* RUM 数据采集
+  * 手动采集  ([RUM 用户数据追踪](#rum) )
+  * 自动采集崩溃日志，HTTP Resource 数据
+
+由于  HTTP Resource 数据是与 View 进行绑定的，所以需要用户手动采集 View 的数据。
+
+### Widget Extension 采集配置
+
+使用 `FTExtensionConfig` 配置 Widget Extension 采集数据的自动开关和文件共享 Group Identifier，其他的配置使用主项目 SDK 中已设配置。
+
+| **字段**                   | **类型**  | **说明**                                       | **必须**           |
+| -------------------------- | --------- | ---------------------------------------------- | ------------------ |
+| groupIdentifier            | NSString  | 文件共享 Group Identifier                      | 是                 |
+| enableSDKDebugLog          | BOOL      | 设置是否允许 SDK 打印 Debug 日志               | 否（默认NO）       |
+| enableConsoleLog           | BOOL      | 是否允许采集自定义 log                         | 否（默认NO）       |
+| enableTrackAppCrash        | BOOL      | 设置是否需要采集崩溃日志                       | 否（默认NO）       |
+| enableRUMAutoTraceResource | BOOL      | 设置是否追踪用户网络请求 (仅作用于native http) | 否（默认NO）       |
+| enableTracerAutoTrace      | BOOL      | 设置是否开启自动 http 链路追踪                 | 否（默认NO）       |
+| memoryMaxCount             | NSInteger | 数据保存在 Widget Extension 数量最大值         | 否（默认 1000 条） |
+
+extension SDK 使用示例：
+
+```swift
+let extensionConfig = FTExtensionConfig.init(groupIdentifier: "group.identifier")
+extensionConfig.enableTrackAppCrash = true
+extensionConfig.enableRUMAutoTraceResource = true
+extensionConfig.enableTracerAutoTrace = true
+extensionConfig.enableSDKDebugLog = true
+FTExtensionManager.start(with: extensionConfig)
+  
+FTExternalDataManager.shared().startView(withName: "WidgetDemoEntryView")
+```
+
+同时在主项目中设置 `FTMobileConfig` 时，必须设置 `groupIdentifiers` 。
+
+```objective-c
+// 主项目
+ FTMobileConfig *config = [[FTMobileConfig alloc]initWithMetricsUrl:url];
+ config.enableSDKDebugLog = YES;
+ config.groupIdentifiers = @[@"group.com.ft.widget.demo"]; 
+```
+
+### Widget Extension 采集的数据上传
+
+Widget Extension 中仅实现数据的采集，数据上传逻辑交给主项目的 SDK 来实现。采集的数据同步到主项目的时机由用户自定义。
+
+```objective-c
+// 在主项目中调用
+/**
+ @abstract
+ * Track App Extension groupIdentifier 中缓存的数据，会保存在数据库中等待时机上传
+ *
+ * @param groupIdentifier 需要进行上传的 Widget Extension groupIdentifier
+ * @param completion  完成 track 后的 callback
+ */
+- (void)trackEventFromExtensionWithGroupIdentifier:(NSString *)groupIdentifier completion:(nullable void (^)(NSString *groupIdentifier, NSArray *events)) completion;
+```
+
+示例：
+
+```objective-c
+// 在主项目中
+-(void)applicationDidBecomeActive:(UIApplication *)application{
+    [[FTMobileAgent sharedInstance] trackEventFromExtensionWithGroupIdentifier:@"group.identifier" completion:nil];
+}
+```
+
 ## 常见问题 {#FAQ}
 
 ### 关于崩溃日志分析 {#crash-log-analysis}
@@ -787,10 +918,6 @@ XCode Release 编译默认会生成 dSYM 文件，而 Debug 编译默认不会�
  ` Build Settings -> Code Generation -> Generate Debug Symbols -> Yes` 
 
 ![](../img/dsym_config1.png)
-
-
-
-
 
 
 ` Build Settings -> Build Option -> Debug Information Format -> DWARF with dSYM File`
@@ -822,23 +949,23 @@ XCode Release 编译默认会生成 dSYM 文件，而 Debug 编译默认不会�
 
 2. 选择 `Archives`  标签
 
-   ![](../img/xcode_find_dsym2.png)
+    ![](../img/xcode_find_dsym2.png)
    
 3. 找到发布的归档包，右键点击对应归档包，选择Show in Finder操作
 
-   ![](../img/xcode_find_dsym3.png)
+    ![](../img/xcode_find_dsym3.png)
    
    
    
 4. 右键选择定位到的归档文件，选择显示包内容操作 
 
-   ![](../img/xcode_find_dsym4.png)
+    ![](../img/xcode_find_dsym4.png)
    
    
    
 5. 选择dSYMs目录，目录内即为下载到的 dSYM 文件
 
-   ![](../img/xcode_find_dsym5.png)
+    ![](../img/xcode_find_dsym5.png)
 
 ##### 通过 iTunes Connect 找回
 
