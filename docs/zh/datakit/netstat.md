@@ -55,7 +55,7 @@ Netstat 指标采集，包括 TCP/UDP 连接数、等待连接、等待处理请
       # more_tag = "some_other_value"
     ```
 
-    配置技巧: 
+    配置技巧：
 
     ``` toml
     ## (1) 配置关注的端口号
@@ -115,7 +115,7 @@ Netstat 指标采集，包括 TCP/UDP 连接数、等待连接、等待处理请
   # ...
 ```
 
-不分端口号统计的指标集: `netstat` ，分端口号统计的指标集: `netstat_port` 。
+不分端口号统计的指标集：`netstat`，分端口号统计的指标集：`netstat_port`。
 
 
 
@@ -124,7 +124,7 @@ Netstat 指标采集，包括 TCP/UDP 连接数、等待连接、等待处理请
 
 | Tag | Description |
 |  ----  | --------|
-|`addr_port`|Addr and port|
+|`addr_port`|Addr and port. Optional.|
 |`host`|Host name|
 |`ip_version`|IP version, 4 for IPV4, 6 for IPV6, unknown for others|
 
@@ -133,7 +133,7 @@ Netstat 指标采集，包括 TCP/UDP 连接数、等待连接、等待处理请
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`pid`|PID.|int|count|
+|`pid`|PID. Optional.|int|count|
 |`tcp_close`|CLOSE : The number of TCP state be waiting for a connection termination request acknowledgement from remote TCP host.|int|count|
 |`tcp_close_wait`|CLOSE_WAIT : The number of TCP state be waiting for a connection termination request from local user.|int|count|
 |`tcp_closing`|CLOSING : The number of TCP state be waiting for a connection termination request acknowledgement from remote TCP host.|int|count|

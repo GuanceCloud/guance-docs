@@ -102,7 +102,7 @@ apt-get install -y libaio-dev libaio1
       # *--username       : Oracle 用户名
       # *--password       : Oracle 密码
       # *--service-name   : Oracle 的服务名
-      # *--query          : 自定义查询语句，格式为 <sql:metricName:tags>, sql 为自定义采集的语句, tags 填入使用 tag 字段
+      # *--query          : 自定义查询语句，格式为 <sql:metricName:tags>，sql 为自定义采集的语句，tags 填入使用 tag 字段
     
     ```
     

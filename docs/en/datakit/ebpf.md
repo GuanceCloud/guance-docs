@@ -6,7 +6,7 @@
 
 ---
 
-eBPF collector, collecting host network TCP, UDP connection information, Bash execution log, etc. This collector mainly includes `ebpf-net` and `ebpf-bash` classes:
+eBPF collector, collecting host network TCP, UDP connection information, Bash execution log, etc. This collector mainly includes `ebpf-net`, `ebpf-conntrack` and `ebpf-bash` three plugins:
 
 * `ebpf-net`:
     * Data category: Network
@@ -16,6 +16,9 @@ eBPF collector, collecting host network TCP, UDP connection information, Bash ex
 
     * Data category: Logging
     * Collect Bash execution log, including Bash process number, user name, executed command and time, etc.;
+
+* `ebpf-conntrack`: [:octicons-tag-24: Version-1.8.0](changelog.md#cl-1.8.0) · [:octicons-beaker-24: Experimental](index.md#experimental)
+    * Add two tags `dst_nat_ip` and `dst_nat_port` to the network flow data.
 
 ## Preconditions {#requirements}
 
@@ -123,6 +126,8 @@ setenforce 0
       ##     contains L4-network(netflow), L7-network(httpflow, dnsflow) collection
       ## - "ebpf-bash" :
       ##     log bash
+      ## - "ebpf-conntrack":
+      ##     add two tags "dst_nat_ip" and "dst_nat_port" to the network flow data
       ##
       enabled_plugins = [
         "ebpf-net",
@@ -184,7 +189,7 @@ setenforce 0
     
     | Environment Variable Name                                    | Corresponding Configuration Parameter Item                 | Parameter Example                    |
     | :---                                        | ---                           | ---                        |
-    | `ENV_INPUT_EBPF_ENABLED_PLUGINS`            | `enabled_plugins`             | `ebpf-net,ebpf-bash`       |
+    | `ENV_INPUT_EBPF_ENABLED_PLUGINS`            | `enabled_plugins`             | `ebpf-net,ebpf-bash,ebpf-conntrack`       |
     | `ENV_INPUT_EBPF_L7NET_ENABLED`              | `l7net_enabled`               | `httpflow,httpflow-tls`    |
     | `ENV_INPUT_EBPF_IPV6_DISABLED`              | `ipv6_disabled`               | `false/true`               |
     | `ENV_INPUT_EBPF_EPHEMERAL_PORT`             | `ephemeral_port`              | `32768`                    |
@@ -219,6 +224,8 @@ For all of the following data collections, a global tag named `host` is appended
 |`dst_k8s_namespace`|Destination K8s namespace.|
 |`dst_k8s_pod_name`|Destination K8s pod name.|
 |`dst_k8s_service_name`|Destination K8s service name.|
+|`dst_nat_ip`|For data containing the `outging` tag, this value is the ip after the DNAT operation.|
+|`dst_nat_port`|For data containing the `outging` tag, this value is the port after the DNAT operation.|
 |`dst_port`|Destination port.|
 |`family`|Network layer protocol. (IPv4/IPv6)|
 |`host`|System hostname.|
@@ -328,6 +335,8 @@ For all of the following data collections, a global tag named `host` is appended
 |`dst_k8s_namespace`|Destination K8s namespace.|
 |`dst_k8s_pod_name`|Destination K8s pod name.|
 |`dst_k8s_service_name`|Destination K8s service name.|
+|`dst_nat_ip`|For data containing the `outging` tag, this value is the ip after the DNAT operation.|
+|`dst_nat_port`|For data containing the `outging` tag, this value is the port after the DNAT operation.|
 |`dst_port`|Destination port.|
 |`family`|Network layer protocol. (IPv4/IPv6)|
 |`host`|System hostname.|
