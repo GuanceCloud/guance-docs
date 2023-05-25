@@ -135,12 +135,12 @@
 
 | **字段**                    | **类型** | **描述**                 |
 | --------------------------- | -------- | ------------------------ |
-| `cpu_tick_count`            | number   | 可选，该页面 CPU 跳动次数    |
-| `cpu_tick_count_per_second` | number   | 可选，每秒平均 CPU 跳动次数  |
+| ~~`cpu_tick_count`~~            | number   | 可选，该页面 CPU 跳动次数    |
+| ~~`cpu_tick_count_per_second`~~ | number   | 可选，每秒平均 CPU 跳动次数  |
 | ~~`fps_avg`~~               | number   | 可选，页面平均每秒帧数   |
 | ~~`fps_mini`~~              | number   | 可选，页面最小每秒帧数   |
-| `memory_avg`                | number   | 可选，页面内存使用平均值 |
-| `memory_max`                | number   | 可选，页面内存峰值       |
+| ~~`memory_avg`~~                | number   | 可选，页面内存使用平均值 |
+| ~~`memory_max`~~                | number   | 可选，页面内存峰值       |
 
 ### Resource
 
@@ -214,11 +214,11 @@
 
 | **字段**       | **类型** | **描述**             |
 | -------------- | -------- | -------------------- |
-| `memory_total` | string   | 可选，内存总量       |
-| `memory_use`   | number   | 可选，内存使用率     |
-| `cpu_use`      | number   | 可选，cpu 使用率     |
-| `battery_use`  | number   | 可选，当前设备的电量 |
-| `locale`       | string   | 当前系统语言         |
+| ~~`memory_total`~~ | string   | 可选，内存总量       |
+| ~~`memory_use`~~  | number   | 可选，内存使用率     |
+| ~~`cpu_use`~~      | number   | 可选，cpu 使用率     |
+| ~~`battery_use`~~  | number   | 可选，当前设备的电量 |
+| ~~`locale`~~       | string   | 当前系统语言         |
 
 #### 指标
 
