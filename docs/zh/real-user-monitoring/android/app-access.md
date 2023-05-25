@@ -29,7 +29,7 @@
 
 在项目的根目录的 `build.gradle` 文件中添加 `SDK` 的远程仓库地址
 
-==="buildscript"
+=== "buildscript"
 
 	```groovy
 	buildscript {
@@ -61,7 +61,7 @@
 	}
 	```
 
-==="plugins DSL"
+=== "plugins DSL"
 
 	```groovy
 	//setting.gradle
