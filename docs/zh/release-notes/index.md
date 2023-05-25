@@ -12,7 +12,7 @@ icon: zy/release-notes
 ### 观测云更新
 
 - RUM 应用配置新增[自定义类型](../real-user-monitoring/index.md#create)和关联视图查看分析
-- DQL 函数支持[正则聚合](../dql/funcs.md#regular-1)数据统计显示返回
+- DQL 函数支持[正则聚合](../dql/funcs.md#regular-1)数据统计显示返回，新增字符串正则表达式解析函数，根据正则表达式提取字段、判断字段中是否有符合正则的子串
 - 新增 PromQL 语法查询入口，支持通过 [PromQL 查询](../dql/promql.md)时序数据
 - [show_tag_value() 函数](../dql/funcs.md#show)支持查询对应指标字段的关联标签
 - [小程序 SDK](../real-user-monitoring/miniapp/app-access.md) 支持采集启动参数相关的信息；[新增自定义添加 Error](../real-user-monitoring/miniapp/custom-sdk/add-error.md)。

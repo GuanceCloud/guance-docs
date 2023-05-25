@@ -132,7 +132,7 @@
 ???+ attention
 
     - 对象数据采集间隔是 5 分钟，指标数据采集间隔是 20 秒，暂不支持配置
-    - 采集到的日志, 单行（包括经过 `multiline_match` 处理后）最大长度为 32MB，超出部分会被截断且丢弃
+    - 采集到的日志，单行（包括经过 `multiline_match` 处理后）最大长度为 32MB，超出部分会被截断且丢弃
 
 ### Docker 和 Containerd sock 文件配置 {#docker-containerd-sock}
 
@@ -282,10 +282,6 @@ The count of the Kubernetes resource.
 
 
 
-
-
-
-
 #### `kube_cronjob`
 
 The metric of the Kubernetes CronJob.
@@ -340,6 +336,10 @@ The metric of the Kubernetes DaemonSet.
 |`ready`|The number of nodes that should be running the daemon pod and have one or more of the daemon pod running and ready.|int|count|
 |`scheduled`|The number of nodes that are running at least one daemon pod and are supposed to run the daemon pod.|int|count|
 |`updated`|The total number of nodes that are running updated daemon pod.|int|count|
+
+
+
+
 
 
 
@@ -623,32 +623,6 @@ The object of containers, only supported Running status.
 
 
 
-#### `kubernetes_cluster_roles`
-
-The object of the Kubernetes ClusterRole.
-
-- 标签
-
-
-| Tag | Description |
-|  ----  | --------|
-|`cluster_role_name`|Name must be unique within a namespace.|
-|`name`|UID|
-
-- 指标列表
-
-
-| Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
-|`age`|age (seconds)|int|s|
-|`create_time`|CreationTimestamp is a timestamp representing the server time when this object was created.(milliseconds)|int|sec|
-|`message`|object details|string|-|
-
-
-
-
-
-
 
 
 
@@ -680,6 +654,37 @@ The object of the Kubernetes CronJob.
 
 
 
+
+
+
+
+
+
+#### `kube_daemonset`
+
+The object of the Kubernetes DaemonSet.
+
+- 标签
+
+
+| Tag | Description |
+|  ----  | --------|
+|`daemonset_name`|Name must be unique within a namespace.|
+|`name`|UID|
+|`namespace`|Namespace defines the space within each name must be unique.|
+
+- 指标列表
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`count`|Number of daemonsets|int|count|
+|`daemons_unavailable`|The number of nodes that should be running the daemon pod and have none of the daemon pod running and available (ready for at least spec.minReadySeconds).|int|count|
+|`desired`|The total number of nodes that should be running the daemon pod (including nodes correctly running the daemon pod).|int|count|
+|`misscheduled`|The number of nodes that are running the daemon pod, but are not supposed to run the daemon pod.|int|count|
+|`ready`|The number of nodes that should be running the daemon pod and have one or more of the daemon pod running and ready.|int|count|
+|`scheduled`|The number of nodes that are running at least one daemon pod and are supposed to run the daemon pod.|int|count|
+|`updated`|The total number of nodes that are running updated daemon pod.|int|count|
 
 
 

@@ -74,6 +74,14 @@ Go to the `conf.d/db` directory under the DataKit installation directory, copy `
   ## Set true to enable election
   election = true
 
+  ## Run a custom SQL query and collect corresponding metrics. 
+  #
+  # [[inputs.postgresql.custom_queries]]
+  #   sql = "select datname,numbackends,blks_read from pg_stat_database"
+  #   metric = "postgresql_custom_stat"
+  #   tags = ["datname" ]
+  #   fields = ["numbackends", "blks_read"]
+
   ## Log collection 
   #
   # [inputs.postgresql.log]
