@@ -20,9 +20,9 @@
 
 **源码地址**：[https://github.com/GuanceCloud/datakit-cpp](https://github.com/GuanceCloud/datakit-cpp)
 
-**Demo 地址**：[https://github.com/GuanceCloud/datakit-cpp/ft-sdk-sample](https://github.com/GuanceCloud/datakit-cpp/tree/dev/ft-sdk-sample)
+**Demo 地址**：[https://github.com/GuanceCloud/datakit-cpp/ft-sdk-sample](https://github.com/GuanceCloud/datakit-cpp/tree/develop/ft-sdk-sample)
 
-==="Windows"
+=== "Windows"
 	
 	* vcpkg 安装
 	
@@ -63,8 +63,9 @@
 	│  └─lib
 	│      └─win64
 	│              fmt.dll
-	│              ft-sdk.dll
-	│              ft-sdk.lib
+	│              ft-sdkd.dll          //动态库
+	│              ft-sdkd.lib
+	│              ft-sdkd_static.lib	  // 静态库
 	│              libcurl.dll
 	│              sqlite3.dll
 	│              zlib1.dll
@@ -81,12 +82,16 @@
 	* 设置动态库自动拷贝
 	![](../img/rum_cpp_5.png)
 
-==="Linux"
+=== "Linux"
 	
 	* vcpkg 安装
 	
 	```bash
 	git clone https://github.com/microsoft/vcpkg
+	
+	#apt install ninja-build
+	#apt install pkg-config
+	
 	./vcpkg/bootstrap-vcpkg.sh
 	cd vcpkg
 	# 如果是 arm 64 需要添加 VCPKG_FORCE_SYSTEM_BINARIES
@@ -97,12 +102,12 @@
 	./vcpkg install stduuid[gsl-span]
 	./vcpkg install sqlitecpp
 	./vcpkg install gtest
-	export VCPKG_ROOT= [your_vcpkg_dir]
+	export VCPKG_ROOT= [ your_vcpkg_dir ]
 	
 	```
 	* 创建生成目录：mkdir build;cd build
-	*  生成Makefile：cmake ..
-	*  编译打包：make install
+	* 生成 Makefile：cmake ..
+	* 编译打包：make install
 	* 打包输出目录
 	
 	```
@@ -135,7 +140,6 @@
 
 
 ## 初始化
-
 ```cpp
 auto sdk = FTSDKFactory::get("ft_sdk_config.json");
 sdk->init();
@@ -159,7 +163,6 @@ sdk->install(gc)
 | setServiceName|设置服务名|否|影响 Log 和 RUM 中 service 字段数据， 默认为 windows 为`df_rum_windows`，linux 为 `df_rum_linux` |
 
 ### RUM 配置
-
 ```cpp
 FTRUMConfig rc;
 rc.setRumAppId("appid_xxxx");
@@ -170,7 +173,7 @@ sdk->initRUMWithConfig(rc);
 | --- | --- | --- | --- |
 | setRumAppId | string | 是 | 对应设置 RUM `appid`，才会开启`RUM`的采集功能，[获取 appid 方法](#integration) |
 | setSamplingRate | float | 否 | 采集率的值范围为>= 0、<= 1，默认值为 1 |
-| addGlobalContext | dictionary | 否 | 添加标签数据，用于用户监测数据源区分，如果需要使用追踪功能，则参数 `key` 为 `track_id` ,`value` 为任意数值。[添加自定义标签](#user-global-context ) |
+| addGlobalContext | dictionary | 否 | 添加标签数据，用于用户监测数据源区分，如果需要使用追踪功能，则参数 `key` 为 `track_id` ,`value` 为任意数值。添加规则请查阅 [此处](#key-conflict) |
 
 
 ### Log 配置
@@ -182,6 +185,7 @@ lpc.setLogLevelFilters(llf);
 lpc.setEnableCustomLog(true)
     .setEnableLinkRumData(true);
 ```
+
 | **字段** | **类型** | **必须** | **说明** |
 | --- | --- | --- | --- |
 | setSamplingRate | float | 否 | 采集率的值范围为>= 0、<= 1，默认值为 1 |
@@ -195,6 +199,7 @@ FTTraceConfig tc;
 tc.setTraceType(TraceType::DDTRACE)
    .setEnableLinkRUMData(true);
 ```
+
 | **字段** | **类型** | **必须** | **说明** |
 | --- | --- | --- | --- |
 | setSamplingRate | float | 否 | 采集率的值范围为>= 0、<= 1，默认值为 1 |
@@ -414,7 +419,6 @@ PropagationHeader generateTraceHeader(const std::string url);
 
 ### 代码示例
 ```cpp
-
 RestClient::init();
 RestClient::Connection* conn = new RestClient::Connection(url);
 
@@ -437,7 +441,6 @@ RestClient::disable();
 ### 使用方法
 
 ```cpp 
-
 /**
  * 绑定用户数据
  * 
@@ -457,7 +460,7 @@ void unbindUserData();
 ```cpp 
 //绑定用户数据
 UserData uc;
-uc.init("usernaem", "1001", "someone@email.com");
+uc.init("username", "1001", "someone@email.com");
 uc.addCustomizeItem("ft_key", "ft_value");
 sdk->bindUserData(uc);
     
