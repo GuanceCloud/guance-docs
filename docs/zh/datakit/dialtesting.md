@@ -18,17 +18,31 @@
     进入 DataKit 安装目录下的 `conf.d/network` 目录，复制 `dialtesting.conf.sample` 并命名为 `dialtesting.conf`。示例如下：
     
     ```toml
-    #  dataway 地址
-    server = "https://openway.guance.com"
+        
+    [[inputs.dialtesting]]
+      # We can also configure a JSON path like "file:///your/dir/json-file-name"
+      server = "https://dflux-dial.guance.com"
     
-    # !!!Require：节点惟一标识 ID
-    region_id = "reg_c2jlokxxxxxxxxxxx"
+      # [require] node ID
+      region_id = "default"
     
-    # 若 server 配为中心任务服务地址时，需要配置相应的 ak 或者 sk
-    ak = "ZYxxxxxxxxxxxx"
-    sk = "BNFxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      # if server are dflux-dial.guance.com, ak/sk required
+      ak = ""
+      sk = ""
     
-    [inputs.dialtesting.tags]
+      # The interval to pull the tasks.
+      pull_interval = "1m"
+    
+      # The timeout for the HTTP request.
+      time_out = "1m"
+    
+      # The number of the workers.
+      workers = 6
+    
+      max_send_fail_count = 16
+    
+      # Custom tags.
+      [inputs.dialtesting.tags]
       # some_tag = "some_value"
       # more_tag = "some_other_value"
       # ...
@@ -103,18 +117,18 @@
 
 | Tag | Description |
 |  ----  | --------|
-|`city`|示例 杭州|
-|`country`|示例 中国|
-|`dest_ip`|示例 目标 IP, 如 127.0.0.1|
-|`internal`|示例 true（国内 true /海外 false）|
-|`isp`|示例 电信/移动/联通|
-|`name`|示例：拨测名称，百度测试|
-|`proto`|示例 HTTP/1.0|
-|`province`|示例 浙江|
-|`status`|示例 OK/FAIL 两种状态 |
-|`status_code_class`|示例 2xx|
-|`status_code_string`|示例 200 OK|
-|`url`|示例 `http://wwww.baidu.com`|
+|`city`|拨测发起所在城市|
+|`country`|拨测发起所在国家|
+|`dest_ip`|目标 IP, 如 127.0.0.1|
+|`internal`|国内/海外，`true` 表示国内/`false` 表示国外|
+|`isp`|运营商，电信/移动/联通|
+|`name`|拨测名称|
+|`proto`|HTTP 版本，如 `HTTP/1.0`|
+|`province`|拨测发起所在省份|
+|`status`|拨测状态，OK/FAIL|
+|`status_code_class`|HTTP 状态码，如 `200`|
+|`status_code_string`|HTTP 状态字符串，如 `200 OK`|
+|`url`|拨测地址，如 `http://wwww.baidu.com`|
 
 - 指标列表
 
@@ -122,12 +136,12 @@
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`fail_reason`|拨测失败原因|string|-|
-|`message`|包括请求头(request_header)/请求体(request_body)/返回头(response_header)/返回体(response_body)/fail_reason 冗余一份|string|-|
+|`message`|包括请求头（`request_header`）/请求体（`request_body`）/返回头（`response_header`）/返回体（`response_body`）/`fail_reason` 会冗余一份|string|-|
 |`proto`|示例 HTTP/1.0|string|-|
 |`response_body_size`|body 长度|int|B|
 |`response_time`|HTTP 响应时间|int|μs|
 |`status_code`|web page response code|int|-|
-|`success`|只有 1/-1 两种状态, 1 表示成功, -1 表示失败|int|-|
+|`success`|只有 1/-1 两种状态。1 表示成功/-1 表示失败|int|-|
 
 
 
@@ -138,17 +152,17 @@
 
 | Tag | Description |
 |  ----  | --------|
-|`city`|示例 杭州|
-|`country`|示例 中国|
-|`dest_host`|示例 wwww.baidu.com|
-|`dest_ip`|示例 目标 IP, 如 127.0.0.1|
-|`dest_port`|示例 80|
-|`internal`|示例 true（国内 true /海外 false）|
-|`isp`|示例 电信/移动/联通|
-|`name`|示例 拨测名称,百度测试|
-|`proto`|示例 `tcp`|
-|`province`|示例 浙江|
-|`status`|示例 OK/FAIL 两种状态 |
+|`city`|城市|
+|`country`|国家|
+|`dest_host`|示例 `wwww.baidu.com`|
+|`dest_ip`|目标 IP, 如 127.0.0.1|
+|`dest_port`|端口号，如 `80`|
+|`internal`|国内/海外，`true` 表示国内/`false` 表示国外|
+|`isp`|运营商，电信/移动/联通|
+|`name`|拨测名称，如「百度测试」|
+|`proto`|协议类型，此处统一为 `tcp`|
+|`province`|省份|
+|`status`|拨测状态，OK/FAIL|
 
 - 指标列表
 
@@ -156,11 +170,11 @@
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`fail_reason`|拨测失败原因|string|-|
-|`message`|包括响应时间(response_time)/错误原因(fail_reason)|string|-|
+|`message`|包括响应时间（`response_time`）/错误原因（`fail_reason`）|string|-|
 |`response_time`|TCP 连接时间 |int|μs|
 |`response_time_with_dns`|连接时间（含 DNS 解析）|int|μs|
-|`success`|只有 1/-1 两种状态, 1 表示成功, -1 表示失败|int|-|
-|`traceroute`|路由跟踪数据文本(JSON 格式)|string|-|
+|`success`|只有 1/-1 两种状态。1 表示成功/-1 表示失败|int|-|
+|`traceroute`|路由跟踪数据文本（JSON 格式）|string|-|
 
 
 
@@ -171,15 +185,15 @@
 
 | Tag | Description |
 |  ----  | --------|
-|`city`|示例 杭州|
-|`country`|示例 中国|
-|`dest_host`|示例 `wwww.baidu.com`|
-|`internal`|示例 true（国内 true /海外 false）|
-|`isp`|示例 电信/移动/联通|
-|`name`|示例 百度测试|
-|`proto`|示例 `icmp`|
-|`province`|示例 浙江|
-|`status`|示例 OK/FAIL 两种状态 |
+|`city`|拨测发起所在城市，如杭州|
+|`country`|拨测发起所在国家，如德国|
+|`dest_host`|拨测地址，如 `wwww.baidu.com`|
+|`internal`|国内/海外，`true` 表示国内/`false` 表示国外|
+|`isp`|运营商，电信/移动/联通|
+|`name`|拨测名称，如百度测试|
+|`proto`|协议类型，此处统一为 `icmp`|
+|`province`|拨测发起所在省份，如浙江|
+|`status`|拨测状态，OK/FAIL|
 
 - 指标列表
 
@@ -198,8 +212,8 @@
 |`packets_received`|接受的数据包|int|count|
 |`packets_sent`|发送的数据包|int|count|
 |`std_round_trip_time`|往返时间(RTT)标准差|float|μs|
-|`std_round_trip_time_in_millis`|往返时间(RTT)标准差. 本字段将被弃用|float|ms|
-|`success`|只有 1/-1 两种状态, 1 表示成功, -1 表示失败|int|-|
+|`std_round_trip_time_in_millis`|往返时间（RTT）标准差。本字段将被弃用|float|ms|
+|`success`|只有 1/-1 两种状态。1 表示成功/-1 表示失败|int|-|
 |`traceroute`|路由跟踪数据文本(JSON 格式)|string|-|
 
 
@@ -211,15 +225,15 @@
 
 | Tag | Description |
 |  ----  | --------|
-|`city`|示例 杭州|
-|`country`|示例 中国|
-|`internal`|示例 true（国内 true /海外 false）|
-|`isp`|示例 电信/移动/联通|
-|`name`|示例 拨测名称,百度测试|
-|`proto`|示例 websocket|
-|`province`|示例 浙江|
-|`status`|示例 OK/FAIL 两种状态 |
-|`url`|示例 `ws://www.abc.com`|
+|`city`|拨测发起所在城市|
+|`country`|拨测发起所在国家|
+|`internal`|国内/海外，`true` 表示国内/`false` 表示国外|
+|`isp`|运营商，电信/移动/联通|
+|`name`|拨测名称|
+|`proto`|协议类型，此处统一为 `websocket`|
+|`province`|拨测发起所在省份|
+|`status`|拨测状态，OK/FAIL|
+|`url`|拨测地址，如 `ws://www.abc.com`|
 
 - 指标列表
 
@@ -232,7 +246,7 @@
 |`response_time`|连接时间|int|μs|
 |`response_time_with_dns`|连接时间（含 DNS 解析）|int|μs|
 |`sent_message`|拨测发送的消息|string|-|
-|`success`|只有 1/-1 两种状态, 1 表示成功, -1 表示失败|int|-|
+|`success`|只有 1/-1 两种状态。1 表示成功/-1 表示失败|int|-|
 
 
 

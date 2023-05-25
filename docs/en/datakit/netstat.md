@@ -88,7 +88,7 @@ Measurements for statistics regardless of port number: `netstat` ; Measurements 
 
 | Tag | Description |
 |  ----  | --------|
-|`addr_port`|Addr and port|
+|`addr_port`|Addr and port. Optional.|
 |`host`|Host name|
 |`ip_version`|IP version, 4 for IPV4, 6 for IPV6, unknown for others|
 
@@ -97,7 +97,7 @@ Measurements for statistics regardless of port number: `netstat` ; Measurements 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`pid`|PID.|int|count|
+|`pid`|PID. Optional.|int|count|
 |`tcp_close`|CLOSE : The number of TCP state be waiting for a connection termination request acknowledgement from remote TCP host.|int|count|
 |`tcp_close_wait`|CLOSE_WAIT : The number of TCP state be waiting for a connection termination request from local user.|int|count|
 |`tcp_closing`|CLOSING : The number of TCP state be waiting for a connection termination request acknowledgement from remote TCP host.|int|count|
