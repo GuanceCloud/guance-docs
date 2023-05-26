@@ -95,7 +95,7 @@
 
 #### `host_processes`
 
-采集进程指标数据,包括 CPU/内存使用率等
+采集进程指标数据，包括 CPU/内存使用率等
 
 - 标签
 
@@ -112,9 +112,9 @@
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`cpu_usage`|CPU 使用占比（%*100），进程自启动以来所占 CPU 百分比，该值相对会比较稳定（跟 `top` 的瞬时百分比不同）|float|percent|
-|`cpu_usage_top`|CPU 使用占比（%*100）, 一个采集周期内的进程的 CPU 使用率均值|float|percent|
-|`mem_used_percent`|内存使用占比（%*100）|float|percent|
+|`cpu_usage`|CPU 使用占比，进程自启动以来所占 CPU 百分比，该值相对会比较稳定（跟 `top` 的瞬时百分比不同）|float|percent|
+|`cpu_usage_top`|CPU 使用占比，一个采集周期内的进程的 CPU 使用率均值|float|percent|
+|`mem_used_percent`|内存使用占比|float|percent|
 |`open_files`|打开文件个数(仅支持 Linux)|int|count|
 |`rss`|Resident Set Size （常驻内存大小）|int|B|
 |`threads`|线程数|int|count|
@@ -145,10 +145,10 @@
 
 | Tag | Description |
 |  ----  | --------|
-|`class`|分类: host_processes|
+|`class`|固定为 `host_processes`|
 |`host`|主机名|
 |`listen_ports`|进程正在监听的端口。对应配置文件的 `enable_listen_ports`，默认为 false，不携带此字段|
-|`name`|name 字段，由 host_pid 组成|
+|`name`|name 字段，由 `[host-name]_[pid]` 组成|
 |`process_name`|进程名|
 |`state`|进程状态，暂不支持 Windows|
 |`username`|用户名|
@@ -159,7 +159,7 @@
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cmdline`|进程的命令行参数|string|-|
-|`cpu_usage`|CPU 使用占比（%*100）,进程自启动以来所占 CPU 百分比，该值相对会比较稳定（跟 `top` 的瞬时百分比不同）|float|percent|
+|`cpu_usage`|CPU 使用占比（%*100），进程自启动以来所占 CPU 百分比，该值相对会比较稳定（跟 `top` 的瞬时百分比不同）|float|percent|
 |`cpu_usage_top`|CPU 使用占比（%*100）, 一个采集周期内的进程的 CPU 使用率均值|float|percent|
 |`mem_used_percent`|内存使用占比（%*100）|float|percent|
 |`message`|进程详细信息|string|-|

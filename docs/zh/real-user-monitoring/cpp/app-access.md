@@ -20,7 +20,7 @@
 
 **源码地址**：[https://github.com/GuanceCloud/datakit-cpp](https://github.com/GuanceCloud/datakit-cpp)
 
-**Demo 地址**：[https://github.com/GuanceCloud/datakit-cpp/ft-sdk-sample](https://github.com/GuanceCloud/datakit-cpp/tree/develop/ft-sdk-sample)
+**Demo 地址**：[https://github.com/GuanceCloud/datakit-cpp/ft-sdk-sample](https://github.com/GuanceCloud/datakit-cpp/blob/develop/src/datakit-sdk-cpp/ft-sdk-sample/ft-sdk-sample.cpp)
 
 === "Windows"
 	
@@ -38,7 +38,8 @@
 	vcpkg install gtest:x64-windows
 	vcpkg integrate install
 	```
-	* Visual Studio 进行生成`ft-sdk`项目进行生成，选择 `Debug`，生成 **动态库**，选择 `Debug_static` 生成 **静态库**，生成后检查 `datakit_sdk_redist `
+	
+	* Visual Studio 选择`ft-sdk`项目进行生成，先生成 **动态库**，再生成 **静态库**（直接生成静态库会因为动态库确实报错），生成后检查 `datakit_sdk_redist`
 	* 打包输出目录
 	
 	```
@@ -71,14 +72,19 @@
 	│              zlib1.dll
 	
 	```
+	
 	* 打开引用项目的工程属性，添加头文件路径。（以下的 datakit_sdk_redist 目录需替换成本地实际安装路径）
 	![](../img/rum_cpp_1.png)
+	
 	* 添加库文件路径
 	![](../img/rum_cpp_2.png)
+	
 	* 添加库文件引用
 	![](../img/rum_cpp_3.png)
+	
 	* 设置c++标准
 	![](../img/rum_cpp_4.png)
+	
 	* 设置动态库自动拷贝
 	![](../img/rum_cpp_5.png)
 
@@ -105,6 +111,7 @@
 	export VCPKG_ROOT= [ your_vcpkg_dir ]
 	
 	```
+	
 	* 创建生成目录：mkdir build;cd build
 	* 生成 Makefile：cmake ..
 	* 编译打包：make install
@@ -134,10 +141,10 @@
 	        ├── libft-sdk.a
 	      	     └── libft-sdk.so
 	```
+	
 	* sudo chmod 777 datakit_sdk_redist/install.sh
 	* cd datakit_sdk_redist
 	* ./install.sh
-
 
 ## 初始化
 ```cpp
@@ -174,7 +181,6 @@ sdk->initRUMWithConfig(rc);
 | setRumAppId | string | 是 | 对应设置 RUM `appid`，才会开启`RUM`的采集功能，[获取 appid 方法](#integration) |
 | setSamplingRate | float | 否 | 采集率的值范围为>= 0、<= 1，默认值为 1 |
 | addGlobalContext | dictionary | 否 | 添加标签数据，用于用户监测数据源区分，如果需要使用追踪功能，则参数 `key` 为 `track_id` ,`value` 为任意数值。添加规则请查阅 [此处](#key-conflict) |
-
 
 ### Log 配置
 ```cpp
@@ -346,7 +352,6 @@ RestClient::disable();
 
 ```
 
-
 ### Error
 #### 使用方法
 ```cpp
@@ -404,7 +409,7 @@ sdk->addLog("this\\is a \"test\" log", LogLevel::info);
 ```
 
 ## Tracer 网络链路追踪
-链路通过生成 Trace Header，然后再将 Header 添加到 http 请求头上实现
+链路通过生成 Trace Header，然后通过将 Header 添加到 http 请求头上来实现链路功能
 
 ### 使用方法
 ```cpp

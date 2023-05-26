@@ -76,9 +76,9 @@ sudo tar -zxvf consul_exporter-0.7.1.linux-amd64.tar.gz
 |`host`|主机名称|
 |`member`|成员名称|
 |`node`|结点名称|
-|`service_id`|服务 id|
+|`service_id`|服务 ID|
 |`service_name`|服务名称|
-|`status`|状态, status 有 critical, maintenance, passing, warning 四种|
+|`status`|状态。status 有 critical/maintenance/passing/warning 四种|
 
 - 指标列表
 
@@ -90,7 +90,7 @@ sudo tar -zxvf consul_exporter-0.7.1.linux-amd64.tar.gz
 |`health_node_status`|结点的健康检查状态|int|-|
 |`raft_leader`|raft 集群中 leader 数量|int|count|
 |`raft_peers`|raft 集群中 peer 数量|int|count|
-|`serf_lan_member_status`|集群里成员的状态, 其中 1 表示 Alive, 2 表示 Leaving, 3 表示 Left, 4 表示 Failed|int|-|
+|`serf_lan_member_status`|集群里成员的状态。其中 1 表示 Alive/2 表示 Leaving/3 表示 Left/4 表示 Failed|int|-|
 |`serf_lan_members`|集群中成员数量|int|count|
 
 
