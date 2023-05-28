@@ -1,5 +1,40 @@
 # 版本历史
 
+## 1.63.128（2023 年 05 月 22 日）
+
+pubrepo.guance.com/dataflux/1.63.128:launcher-d07d641-1685285792
+
+### 私有部署版更新
+
+- 支持选择使用私有拨测服务或 SaaS 拨测服务中心
+
+### 观测云更新
+
+- RUM 应用配置新增自定义类型和关联视图查看分析
+- DQL 函数支持正则聚合数据统计显示返回
+- 新增 PromQL 语法查询入口，支持通过 PromQL 查询时序数据
+- show_tag_value() 函数支持查询对应指标字段的关联标签
+- 小程序 SDK 支持采集启动参数相关的信息；新增自定义添加 Error
+- Status Page 支持订阅故障通知
+- 新增字段管理功能，在监控器、图表查询、查看器等位置若选择了相关字段则显示对应的描述和单位信息
+- 指标分析新增表格功能，支持下载
+- 工单状态调整
+- 新增异常追踪引导页，频道新增时间范围筛选
+- 备份日志优化：
+    - 新增备份规则入口移至备份日志 > 备份管理
+    - 新增全部备份逻辑：不添加筛选即表示保存全部日志数据
+
+### 智能巡检更新
+
+- 新增巡检
+    - 云上闲置资源巡检
+    - 主机重启巡检
+- 功能优化
+    - 闲置主机巡检：新增对云主机类型关联添加费用相关信息。
+
+更多详情可参考帮助文档：https://docs.guance.com/release-notes/
+
+
 ## 1.62.127（2023 年 04 月 20 日）
 
 pubrepo.guance.com/dataflux/1.62.127:launcher-c737a19-1683555353
@@ -29,19 +64,20 @@ pubrepo.guance.com/dataflux/1.62.127:launcher-c737a19-1683555353
     - 新增账号登录映射规则配置，根据不同的映射规则动态分配成员加入的工作空间及对应的角色。
 
 ### DataKit 更新
-    - 新增 Pinpoint API 接入
-    - 优化 Windows 安装脚本和升级脚本输出方式，便于在终端直接黏贴复制
-    - 优化 Datakit 自身文档构建流程
-    - 优化 OpenTelemetry 字段处理
-    - Prom 采集器支持采集 info 类型的 label 并将其追加到所有关联指标上（默认开启）
-    - 在 system 采集器 中，新增 CPU 和内存占用百分比指标
-    - Datakit 在发送的数据中，增加数据点数标记（X-Points），便于中心相关指标构建
-    - 优化 Datakit HTTP 的 User-Agent 标记，改为 datakit-<os>-<arch>/<version> 形态
-    - KafkaMQ：
-    - 支持处理 Jaeger 数据
-    - 优化 SkyWalking 数据的处理流程
-    - 新增第三方 RUM 接入功能
-    - SkyWalking 新增 HTTP 接入功能
+
+- 新增 Pinpoint API 接入
+- 优化 Windows 安装脚本和升级脚本输出方式，便于在终端直接黏贴复制
+- 优化 Datakit 自身文档构建流程
+- 优化 OpenTelemetry 字段处理
+- Prom 采集器支持采集 info 类型的 label 并将其追加到所有关联指标上（默认开启）
+- 在 system 采集器 中，新增 CPU 和内存占用百分比指标
+- Datakit 在发送的数据中，增加数据点数标记（X-Points），便于中心相关指标构建
+- 优化 Datakit HTTP 的 User-Agent 标记，改为 datakit-<os>-<arch>/<version> 形态
+- KafkaMQ：
+- 支持处理 Jaeger 数据
+- 优化 SkyWalking 数据的处理流程
+- 新增第三方 RUM 接入功能
+- SkyWalking 新增 HTTP 接入功能
 
 更多详情可参考帮助文档：https://docs.guance.com/release-notes/
 
