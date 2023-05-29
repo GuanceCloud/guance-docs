@@ -12,7 +12,6 @@
 - 服务器 [安装 DataKit](../../../datakit/datakit-install.md)
 - 服务器 [安装 DataFlux Func ](https://func.guance.com/doc/quick-start/)
 - [开启观测云集成](https://func.guance.com/doc/script-market-guance-integration/)
-- [阿里云 SLS 对象采集](https://func.guance.com/doc/script-market-guance-aliyun-polardb/)
 - [阿里云 SLS 指标采集](https://func.guance.com/doc/script-market-guance-aliyun-monitor/)
 
 ## 场景视图
