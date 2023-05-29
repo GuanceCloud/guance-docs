@@ -9,13 +9,15 @@
 
 在使用会话重放之前，需要先 [安装 Datakit](../../datakit/datakit-install.md) ，然后开启 [RUM 采集器](../../datakit/rum.md) 会话重放对应的参数 `session_replay_endpoints`。
 
-> 注意：会话重放功能需要升级 DataKit 版本至 1.5.5 及以上。
+???+ attention
+
+    会话重放功能需要升级 DataKit 版本至 1.5.5 及以上。
 
 ## 接入配置
 
 开启 RUM 采集器以后，您可以在 [配置 Web 应用接入](../web/app-access.md) 时，开启 [会话重放](replay.md) 功能。
 
-> 注意：会话重放功能需要升级 SDK 版本至 `3.0` 及以上，配置方式可参考文档 [如何接入会话重放](replay.md)。
+> 会话重放功能需要升级 SDK 版本至 `3.0` 及以上，配置方式可参考文档 [如何接入会话重放](replay.md)。
 
 ## 如何查看会话重放
 
@@ -23,16 +25,16 @@
 
 ### 在 Session 查看器列表查看重放
 
-在 Session 查看器列表，若当前 Session 已配置会话重放，在查看器列表提示「播放」按钮，点击即可查看该 Session 的会话重放。
+在 Session 查看器列表，若当前 Session 已配置会话重放，在查看器列表提示**播放**按钮，点击即可查看该 Session 的会话重放。
 
 ![](../img/16.session_replay_1.png)
 
 ### 在详情页查看重放
 
-- 在 Session、View、Error 查看器详情页，通过点击右上角的「查看重放」，即可查看当前用户会话的操作重放。
+- 在 Session、View、Error 查看器详情页，通过点击右上角的**查看重放**，即可查看当前用户会话的操作重放。
 - 在 View、Error、Resource、Action、Long Task 查看器详情页的**来源**部分，即可查看当前用户会话的操作重放。
-    - 更多：点击「更多」按钮，支持「查看 Session 详情」、「筛选当前 Session ID」、「复制 Session ID」
-    - 播放：点击「播放」按钮，即可查看会话重放
+    - 更多：点击**更多**按钮，支持**查看 Session 详情**、**筛选当前 Session ID**、**复制 Session ID**
+    - 播放：点击**播放**按钮，即可查看会话重放
 
 ![](../img/16.session_replay_8.png)
 
