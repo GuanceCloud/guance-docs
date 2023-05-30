@@ -56,21 +56,29 @@
     
     填好配置后点击 `Add Package` 按钮，等待加载完成。
     
-    4.在弹窗 `Choose Package Products for datakit-ios` 中选择需要添加 SDK 的 Target，点击 `Add Package` 按钮，此时 SDK 已经添加成功。
+    4.在弹窗 `Choose Package Products for datakit-macos` 中选择需要添加 SDK 的 Target，点击 `Add Package` 按钮，此时 SDK 已经添加成功。
     
     如果您的项目由 SPM 管理，将 FTMacOSSDK 添加为依赖项，添加 `dependencies ` 到 `Package.swift`。
     
     ```swift
       dependencies: [
-        .package(url: "https://github.com/GuanceCloud/datakit-macos.git",       .upToNextMajor(from: "[latest_version]"))
+        .package(url: "https://github.com/GuanceCloud/datakit-macos.git", .upToNextMajor(from: "[latest_version]"))
     ]
     ```
 
 ### 添加头文件
 
-```objectivec
-#import "FTMacOSSDK.h"
-```
+=== "Objective-C"
+
+    ```
+    #import "FTMacOSSDK.h"
+    ```
+
+=== "Swift"
+
+    ```swift
+    import FTMacOSSDK
+    ```
 
 ## SDK 初始化
 
@@ -91,7 +99,6 @@ int main(int argc, const char * argv[]) {
     }
     return NSApplicationMain(argc, argv);
 }
-
 ```
 
 | **字段**          | **类型**     | **说明**                                                     | **必须**              |
@@ -99,8 +106,8 @@ int main(int argc, const char * argv[]) {
 | metricsUrl        | NSString     | datakit 安装地址 URL 地址，例子：http://datakit.url:[port]。注意：安装 SDK 设备需能访问这地址 | 是                    |
 | enableSDKDebugLog | BOOL         | 设置是否允许打印日志                                         | 否（默认NO）          |
 | env               | NS_ENUM      | 环境                                                         | 否  （默认FTEnvProd） |
-| globalContext     | NSDictionary | [添加自定义标签](#user-global-context)                       | 否                    |
 | service           | NSString     | 设置所属业务或服务的名称，影响 Log 和 RUM 中 service 字段数据。默认：`df_rum_macos` | 否                    |
+| globalContext     | NSDictionary | [添加自定义标签](#user-global-context)                       | 否                    |
 
 #### env 环境
 
@@ -138,19 +145,20 @@ typedef NS_ENUM(NSInteger, FTEnv) {
   [[FTSDKAgent sharedInstance] startRumWithConfigOptions:rumConfig];
 ```
 
-| **字段**                 | **类型**     | **说明**                                                     | **必须**                 |
-| ------------------------ | ------------ | ------------------------------------------------------------ | ------------------------ |
-| appid                    | NSString     | 用户访问监测应用 ID 唯一标识，在用户访问监测控制台上面创建监控时自动生成。 | 否（开启RUM 必选）       |
-| sampleRate               | int          | 采样采集率                                                   | 否（默认100）            |
-| enableTrackAppCrash      | BOOL         | 设置是否需要采集崩溃日志                                     | 否（默认NO）             |
-| enableTrackAppANR        | BOOL         | 采集ANR卡顿无响应事件                                        | 否（默认NO）             |
-| enableTrackAppFreeze     | BOOL         | 采集UI卡顿事件                                               | 否（默认NO）             |
-| enableTraceUserAction    | BOOL         | 设置是否追踪用户 Action 操作                                 | 否（默认NO）             |
-| enableTraceUserView      | BOOL         | 设置是否追踪用户 View 操作                                   | 否（默认NO）             |
-| globalContext            | NSDictionary | [添加自定义标签](#user-global-context)                       | 否                       |
-| errorMonitorType         | NS_OPTIONS   | 错误事件监控补充类型                                         | 否                       |
-| deviceMetricsMonitorType | NS_OPTIONS   | 视图的性能监控类型                                           | 否（未设置则不开启监控） |
-| monitorFrequency         | NS_OPTIONS   | 视图的性能监控采样周期                                       | 否                       |
+| **字段**                 | **类型**     | **说明**                                                     | **必须**      |
+| ------------------------ | ------------ | ------------------------------------------------------------ | ------------- |
+| appid                    | NSString     | 用户访问监测应用 ID 唯一标识，在用户访问监测控制台上面创建监控时自动生成。 | 是            |
+| sampleRate               | int          | 采样采集率                                                   | 否（默认100） |
+| enableTrackAppCrash      | BOOL         | 设置是否需要采集崩溃日志                                     | 否（默认NO）  |
+| enableTrackAppANR        | BOOL         | 采集ANR卡顿无响应事件                                        | 否（默认NO）  |
+| enableTrackAppFreeze     | BOOL         | 采集UI卡顿事件                                               | 否（默认NO）  |
+| enableTraceUserView      | BOOL         | 设置是否追踪用户 View 操作                                   | 否（默认NO）  |
+| enableTraceUserAction    | BOOL         | 设置是否追踪用户 Action 操作                                 | 否（默认NO）  |
+| enableTraceUserResource  | BOOL         | 设置是否追踪用户网络请求 （仅作用于 native http ）           | 否（默认NO）  |
+| errorMonitorType         | NS_OPTIONS   | 错误事件监控补充类型                                         | 否            |
+| monitorFrequency         | NS_OPTIONS   | 视图的性能监控采样周期                                       | 否            |
+| deviceMetricsMonitorType | NS_OPTIONS   | 视图的性能监控类型                                           | 否            |
+| globalContext            | NSDictionary | [添加自定义标签](#user-global-context)                       | 否            |
 
 #### 监控数据配置
 
@@ -212,7 +220,7 @@ typedef NS_ENUM(NSUInteger, FTMonitorFrequency) {
 | prefix            | NSString          | 设置采集控制台日志过滤字符串           | 否（默认全采集）       |
 | enableCustomLog   | BOOL              | 是否上传自定义 log                     | 否（默认NO）           |
 | logLevelFilter    | NSArray           | 设置要采集的自定义 log 的状态数组      | 否（默认全采集）       |
-| enableLinkRumData | BOOL              | 是否将 logger 数据与 rum 关联          | 否（默认NO）           |
+| enableLinkRumData | BOOL              | 是否与 RUM 数据关联                    | 否（默认NO）           |
 | discardType       | FTLogCacheDiscard | 设置日志废弃策略                       | 否（默认丢弃最新数据） |
 | globalContext     | NSDictionary      | [添加自定义标签](#user-global-context) | 否                     |
 
@@ -265,7 +273,7 @@ typedef NS_ENUM(NSInteger, FTLogCacheDiscard)  {
 | ----------------- | ------- | ------------------------------------------------------------ | ----------------- |
 | sampleRate        | int     | 采样采集率                                                   | 否（默认100)      |
 | networkTraceType  | NS_ENUM | 设置网络请求信息采集时 使用链路追踪类型，如果接入 OpenTelemetry 选择对应链路类型时，请注意查阅支持类型及 agent 相关配置 | 否（默认DDtrace） |
-| enableLinkRumData | BOOL    | 是否将 Trace 数据与 rum 关联                                 | 否（默认NO）      |
+| enableLinkRumData | BOOL    | 是否与 RUM 数据关联                                          | 否（默认NO）      |
 | enableAutoTrace   | BOOL    | 设置是否开启自动 http trace，目前只支持 NSURLSession         | 否（默认NO）      |
 
 #### 链路追踪类型
