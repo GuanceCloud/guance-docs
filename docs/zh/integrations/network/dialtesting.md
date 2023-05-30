@@ -62,7 +62,7 @@ $ vim dialtesting.conf
 
 
 #  中心任务存储的服务地址
-server = "https://openway.guance.com"
+server = "https://dflux-dial.guance.com"
 
 # require，节点惟一标识ID
 region_id = "reg_c2jlokxxxxxxxxxxx"

@@ -575,7 +575,7 @@ npm start
 
 ## APM 与 RUM 关联
 
-APM 与 RUM 主要通过 header 参数进行关联，为了保持一直，需要配置统一的传播器（`Propagator`），这里RUM 采用的是 `B3`，所以 APM 也需要配置`B3`，只需要在 APM 启动参数加上`-Dotel.propagators=b3`即可。
+APM 与 RUM 主要通过 header 参数进行关联，为了保持一致，需要配置统一的传播器（`Propagator`），这里RUM 采用的是 `B3`，所以 APM 也需要配置`B3`，只需要在 APM 启动参数加上`-Dotel.propagators=b3`即可。
 
 ## APM 与 Log 关联
 
