@@ -6,11 +6,11 @@
 
 阿里云 Redis 集群版指标展示，包括 CPU 使用率、内存使用率、磁盘读写、网络流量、每秒访问次数等。
 
-![image](../imgs/input-aliyun-redis-shard-1.png)
+![image](../../imgs/input-aliyun-redis-shard-1.png)
 
-![image](../imgs/input-aliyun-redis-shard-2.png)
+![image](../../imgs/input-aliyun-redis-shard-2.png)
 
-![image](../imgs/input-aliyun-redis-shard-3.png)
+![image](../../imgs/input-aliyun-redis-shard-3.png)
 
 ## 前置条件
 - 服务器 [安装 DataKit](../../../datakit/datakit-install.md)
