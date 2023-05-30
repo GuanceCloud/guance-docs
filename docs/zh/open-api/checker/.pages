@@ -5,4 +5,4 @@ nav:
   - '导入一个/多个监控器': import.md
   - '修改一个监控器': modify.md
   - '删除一个/多个监控器': delete.md
-  - '启用/禁用一个监控器': set-disable.md
+  - '启用/禁用监控器': set-disable.md

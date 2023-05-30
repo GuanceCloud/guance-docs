@@ -5,4 +5,4 @@ nav:
   - '修改一个自建巡检': modify.md
   - '禁用一个自建巡检': disable.md
   - '启用一个自建巡检': enable.md
-  - '删除一个自建巡检': delete.md
+  - '删除自建巡检': delete.md
