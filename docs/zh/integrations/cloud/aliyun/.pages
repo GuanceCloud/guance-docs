@@ -11,6 +11,7 @@ nav:
   - 'RDS Mysql': aliyun-rds-mysql.md
   - 'RDS SQLServer': aliyun-rds-sqlserver.md
   - 'Redis 标准版': aliyun-redis.md
+  - 'Redis 集群版': aliyun-redis-shard.md
   - 'SLB': aliyun-slb.md
   - 'SLS': aliyun-sls.md
   - '费用': aliyun-charges.md
