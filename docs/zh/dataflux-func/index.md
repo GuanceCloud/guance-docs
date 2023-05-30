@@ -14,7 +14,6 @@ DataFlux Func 是一个基于 Python 的脚本开发、管理、执行平台。
 - Server：使用 Node.js + Express 构建，主要提供 Web UI 服务、对外 API 接口。
 - Worker：使用 Python3 + Celery 构建，主要提供 Python 脚本的执行环境（内含 Beat 模块）。
 
-<br/>
 
 ## DataFlux Func 托管版 {#steps}
 
@@ -94,11 +93,12 @@ DataFlux Func 托管版采用按月收费的模式，在费用到期前，您仍
 
 #### 应用到期
 
-若您之前开通过 DataFlux Func 托管版，应用到期后，所有数据我们会为您保留 7 天，到期释放。在这 7 天内，您可以选择**恢复所有数据**或者**不恢复数据**：
+若您之前开通过 DataFlux Func 托管版，应用到期后，所有数据我们会为您保留 7 天，到期释放。在这 7 天内，若需要再次开通应用，您可以选择**恢复所有数据**或者**不恢复数据**：
 
 - 恢复数据：将之前保留的数据备份到新开通的 Func 中；  
 - 不恢复数据：放弃之前的所有数据，[重新开通应用](#steps)。
 
+![](img/automata-7.png)
 
 ## DataFlux Func 部署版
 
@@ -112,7 +112,7 @@ DataFlux Func 托管版采用按月收费的模式，在费用到期前，您仍
 
 </div>
 
-<br/>
+
 
 > 关于 DataFlux Func 的部署和维护手册、脚本开发手册、脚本市场等详细内容，可参考：
 
