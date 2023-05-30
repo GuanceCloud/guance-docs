@@ -34,7 +34,7 @@ icon: zy/application-performance-monitoring
 
 ## 数据存储策略
 
-观测云为应用性能数据提供 3 天、7 天、14 天三种数据存储时长选择，您可以按照需求在「管理」-「基本设置」-「变更数据存储策略」中调整。更多数据存储策略可参考文档 [数据存储策略](https://preprod-docs.cloudcare.cn/billing/billing-method/data-storage/) 。
+观测云为应用性能数据提供 3 天、7 天、14 天三种数据存储时长选择，您可以按照需求在**管理 > 基本设置 > 变更数据存储策略**中调整。更多数据存储策略可参考文档 [数据存储策略](https://preprod-docs.cloudcare.cn/billing/billing-method/data-storage/) 。
 
 ## 数据计费规则
 
