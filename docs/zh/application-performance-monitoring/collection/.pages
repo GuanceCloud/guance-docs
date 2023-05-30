@@ -1,5 +1,5 @@
 nav:
   - index.md
-  - '关联Web应用访问': connect-web-app.md
+  - '关联 Web 应用访问': connect-web-app.md
   - '如何配置应用性能监测采样': sampling.md
   - '应用性能监测关联日志': connect-log
