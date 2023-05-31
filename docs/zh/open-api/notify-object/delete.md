@@ -1,4 +1,4 @@
-# 删除一个通知对象
+# 删除通知对象
 
 ---
 
@@ -14,7 +14,7 @@
 
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
-| notifyObjectUUID | string | Y | 通知对象UUID<br>允许为空: False <br> |
+| notifyObjectUUIDs | array | Y | 通知对象UUID<br>允许为空: False <br> |
 
 ## 参数补充说明
 
