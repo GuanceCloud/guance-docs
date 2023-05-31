@@ -3,4 +3,4 @@ nav:
   - '创建一个通知对象': create.md
   - '获取一个通知对象信息': get.md
   - '修改一个通知对象': modify.md
-  - '删除一个通知对象': delete.md
+  - '删除通知对象': delete.md
