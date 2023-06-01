@@ -67,6 +67,7 @@ Datakit 支持从 kafka 中订阅消息采集链路、指标和日志信息。�
     
       ## user custom message with PL script.
       #[inputs.kafkamq.custom]
+        #spilt_json_body = true
         #[inputs.kafkamq.custom.log_topic_map]
         #  "log_topic"="log.p"
         #  "log01"="log_01.p"
@@ -77,7 +78,6 @@ Datakit 支持从 kafka 中订阅消息采集链路、指标和日志信息。�
         #  "rum_topic"="rum_01.p"
         #  "rum_02"="rum_02.p"
     
-        #spilt_json_body = true
     
       ## todo: add other input-mq
     
@@ -157,7 +157,7 @@ kafka 插件默认会将 `traces/JVM metrics/logging/Instance Properties/profile
 ```toml
 # user custom message with PL script.
 [inputs.kafkamq.custom]
-
+# spilt_json_body = true
 [inputs.kafkamq.custom.log_topic_map]
   "log_topic"="log.p"
   "log"="rum_apm.p"
@@ -168,7 +168,6 @@ kafka 插件默认会将 `traces/JVM metrics/logging/Instance Properties/profile
 [inputs.kafkamq.custom.rum_topic_map]
   "rum"="rum.p"
 
-#spilt_json_body = true
 ```
 
 > 注意：metric 的 Pipeline 脚本应该放在 *pipeline/metric/* 目录下，RUM 的 Pipeline 脚本应该放到 *pipeline/rum/* 目录下。
