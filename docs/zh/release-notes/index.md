@@ -11,7 +11,7 @@ icon: zy/release-notes
 
 ### 观测云更新
 
-DataFlux Func 是观测云的扩展编程平台，可用于同步云平台数据、函数开发、管理和执行。现支持 DataFlux Func 托管版在国内所有站点[一键开通](../dataflux-func/index.md)服务，开通完成后即可在云主机中自动化部署 Func，同时在工作空间的**集成**可以快速登录对应 Func 平台。
+DataFlux Func 是观测云的扩展编程平台，可用于同步云平台数据、函数开发、管理和执行。现支持 DataFlux Func 托管版在国内所有站点[一键开通](../dataflux-func/index.md)服务，开通完成后即可在云主机中自动化部署 Func，在工作空间的**集成**可以快速登录对应 Func 平台。
 
 ## 2023 年 5 月 22 日
 
