@@ -89,5 +89,5 @@ Jolokia 提供了两种方式来获取 JMX 数据。
 
 **APM 厂商** 以 APM 为基石，引入 metric 作为可观测的一部分，以 skywalking 为例，通过对接 JMX 暴露 metric 信息。
 
-[Skywalking 采集 JVM 可观测最佳实践](/best-practices/monitoring/skywalking-jvm/)
+[Skywalking 采集 JVM 可观测最佳实践](../../best-practices/monitoring/skywalking-jvm.md)
 
