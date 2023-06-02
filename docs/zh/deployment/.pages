@@ -64,7 +64,11 @@ nav:
     - '部署配置手册':
       - '开启自身的可观测': self-monitoring.md
       - '域名访问修改成IP访问': ip-access.md
-    # - '故障排查':
+    - '故障排查':
+      - '访问日志、链路等页面报“视图模板不存在”': noscenes.md
+      - 'OpenSearch 或者 Elasticsearch 磁盘打满，如何处理': es-disk-full.md
+      - '创建了 DataWay 为什么在 stdio 看不到': not-see-dataway.md
+      - '为什么不能使用拨测服务': no-boce.md 
     - '升级观测云': version-upgrade.md
     - '容量规划':  
       - "日志引擎容量规划": logengine-capacity-planning.md
