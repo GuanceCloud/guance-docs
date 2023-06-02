@@ -61,13 +61,11 @@ nav:
       - "数据网关": dataway.md
       - "设置管理": setting.md
   - '运维手册':
-    - '监控':
-      - '开启部署版自身的可观测': self-monitoring.md
-    - '域名访问修改成IP访问': ip-access.md
-    - '升级':
-      - "版本升级安装": version-upgrade.md
-#    - '离线相关':
-#      - '下载中心': download.md
+    - '部署配置手册':
+      - '开启自身的可观测': self-monitoring.md
+      - '域名访问修改成IP访问': ip-access.md
+    # - '故障排查':
+    - '升级观测云': version-upgrade.md
     - '容量规划':  
       - "日志引擎容量规划": logengine-capacity-planning.md
   - '常见问题':
