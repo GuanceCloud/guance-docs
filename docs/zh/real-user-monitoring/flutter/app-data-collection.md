@@ -23,7 +23,7 @@ Flutter  数据采集依赖于 Android iOS Native 框架，为了与 Android iOS
 
 用户访问监测的场景构建和事件告警都可以通过下面的全局属性进行查询。
 
-### SDK属性
+### SDK 属性
 
 | **字段** | **类型** | **描述** |
 | --- | --- | --- |
@@ -116,14 +116,6 @@ wifi &#124; 2g &#124; 3g &#124; 4g &#124; 5g &#124; unknown（未知网络）&#1
 | `is_active`     | boolean  | 判断用户是否还在活跃状态，参考值: true &#124; false |
 | `view_referrer` | string   | 页面来源，页面的父级                                |
 | `view_name`     | string   | 页面名称                                            |
-
-#### Action 属性
-
-| **字段**      | **类型** | **描述**                            |
-| ------------- | -------- | ----------------------------------- |
-| `action_id`   | string   | 用户页面操作时产生的唯一 ID          |
-| `action_name` | string   | 操作名称                            |
-| `action_type` | string   | 操作类型(冷热启动，click 点击等操作) |
 
 #### 指标
 
