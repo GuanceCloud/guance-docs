@@ -27,9 +27,12 @@
 
 在链路查看器快捷筛选，支持编辑[快捷筛选](../getting-started/function-details/explorer-search.md#quick-filter)，添加新的筛选字段。
 
-### 查看错误列表
+### 列表相关操作
 
-鼠标悬停至服务性能指标**错误数**，点击右侧显示的 :octicons-search-16: ，即可跳转至**链路**页，查看该服务在当前选定的时间范围内，数据状态 "status" 为 “error” 的链路数据。
+- 在列表的**服务**列，hover 在色块上时，可以**点击修改颜色**；  
+- 对于可以排序的列，hover 时显示 :fontawesome-regular-hand-pointer: 以及排序 icon :octicons-triangle-up-16: & :octicons-triangle-down-16:，您可按需操作；  
+- 点击行，可以展开当前服务详情页。
+- 鼠标悬停至服务性能指标**错误数**，点击右侧显示的 :octicons-search-16: ，即可跳转至**链路**页，查看该服务在当前选定的时间范围内，数据状态 `status` 为 `error` 的链路数据。
 
 ![](img/3.apm_2.gif)
 

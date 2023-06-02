@@ -28,7 +28,7 @@ DataFlux Func 是观测云的扩展编程平台，可用于同步云平台数据
 - [工单状态](../management/work-order-management.md#state)调整
 - 新增异常追踪引导页，频道新增[时间范围筛选](../exception/channel.md#time)
 - 备份日志优化：
-    - **新增备份**规则入口移至[备份日志](../logs/backup.md)> 备份管理；
+    - **新增备份**规则入口移至[备份日志](../logs/backup.md) > 备份管理；
     - 新增全部备份逻辑：不添加筛选即表示保存全部日志数据
 ### 观测云部署版更新
 
