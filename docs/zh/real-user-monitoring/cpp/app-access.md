@@ -185,8 +185,8 @@ sdk->initRUMWithConfig(rc);
 ### Log 配置
 ```cpp
 FTLogConfig lpc;
-//std::vector<LogLevel> llf;
-//llf.push_back(LogLevel::ERR);
+std::vector<LogLevel> llf;
+llf.push_back(LogLevel::ERR);
 lpc.setLogLevelFilters(llf);
 lpc.setEnableCustomLog(true)
     .setEnableLinkRumData(true);
