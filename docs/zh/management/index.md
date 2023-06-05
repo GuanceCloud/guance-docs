@@ -48,6 +48,30 @@ icon: zy/management
 
 </div>
 
+在**创建工作空间**窗口，输入工作空间名称，选择该工作空间语言，按需描述该工作空间。您还可以根据角色定制化您的工作空间。
+
+???+ attention
+
+    - 工作空间语言该配置影响工作空间内事件、告警、短信等模板。切换到英文后，上述对应模板将默认使用英文模板，请知悉；  
+    - 不同角色下的工作空间默认展示如下：
+
+    <font size=2>*研发：*</font>
+
+    ![](img/yanfa.png)
+
+    <font size=2>*运维：*</font>
+
+    ![](img/yunwei.png)
+
+    <font size=2>*测试：*</font>
+
+    ![](img/ceshi.png)
+
+    <font size=2>*默认：*</font>
+
+    ![](img/moren.png)
+
+
 ### SSO 账号登录 {#sso}
 
 除了通过注册观测云账号登录以外，还支持企业用户通过 SSO 单点登录的方式登录到观测云，进入工作空间后，点击左侧**账号 > 账号管理**，可对 SSO 账号进行修改。
@@ -168,3 +192,5 @@ icon: zy/management
 - [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **工作空间锁定/解锁/解散**</font>](../billing/cost-center/workspace-management.md#lock)
 
 </div>
+
+
