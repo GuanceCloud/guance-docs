@@ -3,26 +3,26 @@
 
 ## 简介
 
-通过web浏览器或者javascript客户端主动发送不同等级的日志数据(`对应的source:browser_log`指标类型日志数据)到[观测云](https://www.guance.com/)。
+通过 Web 浏览器或者 Javascript 客户端主动发送不同等级的日志数据(`对应的 source:browser_log` 指标类型日志数据)到[观测云](https://www.guance.com/)。
 
 ## 功能简介
 
-- 自定义日志数据采集，通过sdk接入客户端应用中，针对不同场景采集不同日志数据；
-- 可以自动收集应用端的错误信息（包括网络错误，console错误，以及js错误）上报到观测云；
-- 自定义错误等级（`debug`,`critical`,`error`,`info`,`warn`）,自定义Logger对象，以及自定义log字段；
-- 可以自动收集[RUM](../real-user-monitoring/web/app-access.md)相关数据，关联RUM业务场景。
+- 自定义日志数据采集，通过 SDK 接入客户端应用中，针对不同场景采集不同日志数据；
+- 可以自动收集应用端的错误信息（包括网络错误，console 错误，以及 js 错误）上报到观测云；
+- 自定义错误等级（`debug`,`critical`,`error`,`info`,`warn`），自定义 Logger 对象，以及自定义 Log 字段；
+- 可以自动收集 [RUM](../real-user-monitoring/web/app-access.md) 相关数据，关联 RUM 业务场景。
 
 ## 开始使用
 
 ### 前置条件
 
-**datakit** 通过datakit日志采集API发送日志数据到观测云平台；
+- **DataKit**：通过 DataKit 日志采集 API 发送日志数据到观测云平台；
 
-**引入SDK** 可通过`NPM`,`CDN同步`或`CDN异步`的方式引入SDK到应用中；
+- **引入 SDK**：可通过 `NPM`,`CDN 同步`或 `CDN 异步`的方式引入 SDK 到应用中；
 
-**支持的浏览器** 支持所有pc端，移动端的浏览器；
+- **支持的浏览器**：支持所有 PC 端、移动端的浏览器。
 
-### 你可以从下面几种方式中选择一种接入到你的 Web 应用中
+### 您可以从下面几种方式中选择一种接入到 Web 应用中
 | 接入方式     | 简介                                                                                                                                                             |
 | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | NPM          | 通过把 SDK 代码一起打包到你的前端项目中，此方式可以确保对前端页面的性能不会有任何影响，不过可能会错过 SDK 初始化之前的的请求、错误的收集。                       |
@@ -96,10 +96,10 @@ datafluxLogs.init({
 ### 初始化参数
 | **参数**              | **类型** | **是否必须** | **默认值** | **描述**                                                     |
 | --------------------- | -------- | ------------ | ---------- | ------------------------------------------------------------ |
-| `datakitOrigin`       | String   | 是           |            | datakit 数据上报 Origin 注释：`协议（包括：//），域名（或 IP 地址）[和端口号] `例如：https://www.datakit.com, http://100.20.34.3:8088。 |
-| `service`             | String   | 否           | `browser`  | 日志 service 名称                                              |
-| `env`                 | String   | 否           |            | web 应用当前环境， 如 prod：线上环境；gray：灰度环境；pre：预发布环境 common：日常环境；local：本地环境； |
-| `version`             | String   | 否           |            | web 应用的版本号                                             |
+| `datakitOrigin`       | String   | 是           |            | DataKit 数据上报 Origin 注释：`协议（包括：//），域名（或 IP 地址）[和端口号] `例如：https://www.datakit.com, http://100.20.34.3:8088。 |
+| `service`             | String   | 否           | `browser`  | 日志 Service 名称                                              |
+| `env`                 | String   | 否           |            | Web 应用当前环境， 如 Prod：线上环境；Gray：灰度环境；Pre：预发布环境 Common：日常环境；Local：本地环境； |
+| `version`             | String   | 否           |            | Web 应用的版本号                                             |
 | `sampleRate`          | Number   | 否           | `100`      | 指标数据收集百分比：`100` 表示全收集，`0` 表示不收集            |
 | `forwardErrorsToLogs` | Boolean  | 否           | `true`     | 设置为 `false` 表示停止采集 console.error、 js、以及网络错误上报到观测云日志数据中 |
 | `silentMultipleInit`  | Boolean  | 否           | `false`    | 不允许有多个日志对象被初始化                                 |
@@ -107,7 +107,7 @@ datafluxLogs.init({
 
 ## 使用
 
-SDK在应用中初始化后，通过暴露的JS API 可以自定义配置日志数据。
+SDK在应用中初始化后，通过暴露的 JS API 可以自定义配置日志数据。
 
 ```javascript
 logger.debug | info | warn | error | critical (message: string, messageContext = Context)
@@ -196,7 +196,7 @@ window.DATAFLUX_LOGS && DATAFLUX_LOGS.logger.info('Button clicked', { name: 'but
 
 ## Status 参数
 
-初始化SDk后，可以使用提供`log` API，定义不同类型的状态。
+初始化 SDk 后，可以使用提供 `log` API，定义不同类型的状态。
 
 ```javascript
 log (message: string, messageContext: Context, status? = 'debug' | 'info' | 'warn' | 'error' | 'critical')
@@ -227,6 +227,6 @@ window.DATAFLUX_LOGS && DATAFLUX_LOGS.logger.log(<MESSAGE>,<JSON_ATTRIBUTES>,<ST
 ## 参数说明
 | **参数**            | **描述**                                                   |
 | ------------------- | ---------------------------------------------------------- |
-| `<MESSAGE>`         | 观测云日志中的 message 字段                                |
-| `<JSON_ATTRIBUTES>` | 描述message的额外数据，是一个 json 对象                      |
-| `<STATUS>`          | 日志的等级，可选值`debug`,`info`,`warn`,`error`,`critical` |
+| `<MESSAGE>`         | 观测云日志中的 Message 字段                                |
+| `<JSON_ATTRIBUTES>` | 描述 Message 的额外数据，是一个 Json 对象                      |
+| `<STATUS>`          | 日志的等级，可选值 `debug`,`info`,`warn`,`error`,`critical` |
