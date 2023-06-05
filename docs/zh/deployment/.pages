@@ -67,8 +67,8 @@ nav:
     - '故障排查':
       - '访问日志、链路等页面报“视图模板不存在”': noscenes.md
       - 'OpenSearch 或者 Elasticsearch 磁盘打满，如何处理': es-disk-full.md
-      - '创建了 DataWay 为什么在 studio 看不到': not-see-dataway.md
-      - '为什么不能使用拨测服务': no-boce.md 
+      - '集成中的 DataWay 列表为空': not-see-dataway.md
+      #- '为什么不能使用拨测服务': no-boce.md 
     - '升级观测云': version-upgrade.md
     - '容量规划':  
       - "日志引擎容量规划": logengine-capacity-planning.md

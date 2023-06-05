@@ -1,11 +1,10 @@
-## OpenSearch 或者 Elasticsearch 磁盘打满，如何处理
 
 1、首先使用 `df -h` 命令来查看对应es的磁盘空间，确定是否打满
 
 2、使用以下命令来查看索引存储
 
 ```shell
-$ kubectl exec -ti -n middleware -- curl -XGET -u <user>:<password> 127.0.0.1:9200/_cat/indices?v
+$ kubectl exec -ti -n middleware <es_pod_name> -- curl -XGET -u <user>:<password> 127.0.0.1:9200/_cat/indices?v
 
 health status index                                                                                 uuid                   pri rep docs.count docs.deleted store.size pri.store.size
 green  open   wksp_4bcd96fc753e4a87a7f035717e3492f4_keyevent-000002                                 v8EAVH4FR32gSGIeMGKtSw   1   0          0            0       208b           208b
@@ -22,11 +21,13 @@ green  open   .infini_activities-00001                                          
 
 3、如上所示，每个索引都有它的大小和编号，我们优先删除编号小的索引，这样就能清理数据了。
 
-> 注意：要至少留下一个完整存储的索引。假设000001，000002，000003有60G，000004却只有30G，这时候最多可删除000001和000002。
+> **index 索引解释**：index 索引是由 名称空间 ID + 数据类型 + 编号所组成的。
+
+> 注意：要按照**相同的名称空间和数据类型**来删除索引，且**至少留下一个完整存储**的索引。假设000001，000002，000003有60G，000004却只有30G，这时候最多可删除000001和000002。
 
 执行以下命令删除：
 
 ```shell
-$ kubectl exec -ti -n middleware -- curl -XDELETE -u <user>:<password> 127.0.0.1:9200/<indexname>
+$ kubectl exec -ti -n middleware <es_pod_name> -- curl -XDELETE -u <user>:<password> 127.0.0.1:9200/<indexname>
 ```
 
