@@ -39,6 +39,10 @@ Azure Active Directory (Azure AD) 是 Microsoft 推出的基于云的标识和�
 
 3）开始**身份验证**，添加您的**客户端密码**。
 
+???+ attention
+
+    除了刚刚创建时，之后无法查看客户端密码值。请务必在创建时保存密码，然后再离开该页面。
+
 ![](img/aad-8.png)
 
 4）在**公开 API**，添加**应用程序 ID URI**、**此 API 定义的作用域**范围及**客户端应用程序**：
@@ -68,7 +72,145 @@ Azure Active Directory (Azure AD) 是 Microsoft 推出的基于云的标识和�
 
 4）点击**创建**。
 
+![](img/aad-13.png)
 
-### 
+### 4、观测云 Launcher 配置 {#config}
+
+1）在观测云 Launcher **命名空间：forethought-core > core** 中配置 Azure AD 的基本信息。
+
+```
+# Pass 版 keycloak 第三方认证服务配置
+KeyCloakPassSet:
+  # 认证服务地址, 例如 https://cce.guance.com/auth/" （请优先使用 wellKnowURL 配置项）
+  serverUrl:
+  # 认证服务所在的 realm （请优先使用 wellKnowURL 配置项）
+  realmName:
+  # OIDC 可访问端点信息地址，例如 https://www.xxx.com/xxxx/.well-known/openid-configuration
+  # 注意，当存在 wellKnowURL时，serverUrl和realmName 自动失效
+  wellKnowURL: https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration
+  # 由认证服务提供的 客户端ID
+  clientId:
+  # 客户端的 Secret key
+  clientSecret:
+  # 认证方式，目前只支持 authorization_code
+  grantType: authorization_code
+  verify: false
+  # 数据访问范围
+  scope: "openid profile email address"
+  # 认证服务器认证成功之后的回调地址
+  innerUrl: "{}://{}/keycloak/login_callback"
+  # 认证服务认证成功并回调 DF 系统之后，DF系统拿到用户信息后跳转到前端中专页面的地址
+  frontUrl: "{}://{}/tomiddlepage?uuid={}"
+  # 从认证服务中获取到的账号信息 与 DF 系统账号的映射配置, 其中必填项为: username, email, exterId
+  mapping:
+    # 认证服务中，登录账号的用户名，必填，如果值不存在，则取 email
+    username: preferred_username
+    # 认证服务中，登录账号的邮箱，必填
+    email: email
+    # 认证服务中，登录账号的唯一标识， 必填
+    exterId: sub
+```
+
+参考示例图：
+
+![](img/aad-14.png)
+
+???+ info
+
+    **客户端 ID** 和**客户端密钥值**可在下图位置中获取：
+
+    ![](img/aad-15.png)
+
+    ![](img/aad-16.png)
 
 
+2）在观测云 Launcher **命名空间：forethought-webclient > frontNginx** 中配置跳转信息。
+
+```
+        # =========KeyCloak 跳转相关配置开始=========
+        # 请求直接跳转至 Inner API 的接口 =========开始=========
+        location /keycloak/login {
+            proxy_connect_timeout 5;
+            proxy_send_timeout 5;
+            proxy_read_timeout 300;
+            proxy_http_version 1.1;
+            proxy_set_header Connection "keep-alive";
+            add_header Access-Control-Allow-Origin *;
+            add_header Access-Control-Allow-Headers X-Requested-With;
+            add_header Access-Control-Allow-Methods GET,POST,OPTIONS;
+            proxy_pass http://inner.forethought-core:5000/api/v1/inner/keycloak/login;
+        }
+         
+        location /keycloak/login_callback {
+            proxy_connect_timeout 5;
+            proxy_send_timeout 5;
+            proxy_read_timeout 300;
+            proxy_http_version 1.1;
+            proxy_set_header Connection "keep-alive";
+            add_header Access-Control-Allow-Origin *;
+            add_header Access-Control-Allow-Headers X-Requested-With;
+            add_header Access-Control-Allow-Methods GET,POST,OPTIONS;
+            proxy_pass http://inner.forethought-core:5000/api/v1/inner/keycloak/login_callback;
+       }
+       # =========KeyCloak 跳转相关配置结束=========
+```
+
+参考示例图：
+
+![](img/1.keycloak_4.png)
+
+3）在观测云 Launcher **命名空间：forethought-webclient > frontWeb** 中配置 Azure AD 用户登录观测云部署版的入口地址。
+
+```
+window.DEPLOYCONFIG = {
+ 
+    ......
+    paasCustomLoginInfo:[
+        {url:"http://<观测云的部署域名>/keycloak/login",label:"Keycloak 登录"}
+    ]
+     
+    ......
+ 
+};
+```
+
+参考示例图：
+
+![](img/1.keycloak_5.png)
+
+4) 配置完成后，勾选更新的**修改配置**，并确认重启。
+
+![](img/1.keycloak_6.png)
+
+### 5、使用 Azure AD 账号单点登录观测云
+
+所有配置完成后，即可使用单点登录到观测云。
+
+1）打开观测云部署版登录地址，在登录页面选择 **Azure AD 单点登录**。
+
+2）输入在 Keycloak 配置的邮箱地址。
+
+3）更新登录密码。
+
+4）登录到观测云对应的工作空间。
+
+???+ attention
+
+    - 若提示“当前账户未加入任何工作空间，请移步至管理后台将该账户添加到工作空间。”，则需要登录观测云管理后台为用户添加工作空间。
+
+    > 更多详情可参考文档 [部署版工作空间管理](space.md)。
+ 
+    ![](img/1.keycloak_15.png)
+
+    在观测云管理后台为用户添加完工作空间后，用户即可开始使用观测云。
+
+![](img/1.keycloak_14.png)
+
+
+## 更多阅读
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **基于 OpenID Connect 协议实现 Keycloak 账户单点登录观测云**</font>](./keycloak-sso.md)
+
+</div>
