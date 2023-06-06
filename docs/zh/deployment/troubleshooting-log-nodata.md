@@ -53,7 +53,7 @@ date
 
 ### 步骤二：采集器排查
 
-可以参考[DataKit无数据排查](../../datakit/why-no-data.md)
+可以参考[DataKit无数据排查](../datakit/why-no-data.md)
 
 ### 步骤三：查看 DataWay 服务日志
 

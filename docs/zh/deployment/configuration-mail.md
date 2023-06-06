@@ -7,12 +7,7 @@
 ## 前提条件
 
 - 已完全初始化观测云
-- 拥有邮件服务的信息
-  - host
-  - port
-  - useTLS
-  - user
-  - password
+- 拥有邮件服务的信息：`host`，`port`，`useTLS`，`user`，`password`
 
 ## 配置步骤
 
@@ -62,11 +57,13 @@ python test-maile.py
 - 登录 Launcher，单击右上角的配置
 - 选择 「修改服务配置」
 
-​	![](img/faq-mail.png)
+  ![](img/faq-mail.png)
 
-- 选择，命名空间：middleware-messageDeskWorker（ 消息中心 Worker ）- 修改配置
+- 命名空间：middleware
+- messageDeskWorker（ 消息中心 Worker )
+- 修改配置
+  ![](img/faq-mail-2.png)
 
-​		![](img/faq-mail-2.png)
 
 - 保存配置并重启
 
