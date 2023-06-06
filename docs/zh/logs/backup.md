@@ -77,6 +77,8 @@
 
 ![](img/back-6.png)
 
+<!-- 
+
 #### AWS S3 {#aws}
 
 <font color=coral>**注意：**</font>备份到 AWS S3 的备份日志<u>暂时还不支持在观测云的查看器中查看，您需前往对应的 AWS S3 中查看备份的历史日志数据</u>。
@@ -130,6 +132,7 @@
 
 ![](img/back-7.png)
     
+-->
 
 ### [存储策略](../billing/billing-method/data-storage.md)
 
