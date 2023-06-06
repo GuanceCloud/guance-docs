@@ -63,6 +63,8 @@ nav:
     - '监控':
       - '开启部署版自身的可观测': self-monitoring.md
     - '域名访问修改成IP访问': ip-access.md
+    - '切换日志引擎': switch-logengine.md
+    - '切换域名': switch-domain.md
     - '升级':
       - "版本升级安装": version-upgrade.md
 #    - '离线相关':
@@ -71,5 +73,6 @@ nav:
       - "日志引擎容量规划": logengine-capacity-planning.md
   - '常见问题':
     - "部署运维 FAQ": faq.md
+    - "监控器问题排查": troubleshooting-monitor.md
     #- "集群故障 FAQ": faq-debug-cluster.md
     #- "all-in-one 一键部署 FAQ": faq-all-in-one.md    
