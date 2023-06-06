@@ -35,7 +35,7 @@
 
 #### 启用/禁用
 
-磁盘使用率巡检默认是「开启」状态，可手动「关闭」，开启后，将对配置好主机列表进行巡检。
+工作空间资产巡检使用率巡检默认是「开启」状态，可手动「关闭」，开启后，将对配置好主机列表进行巡检。
 
 #### 导出
 
@@ -112,7 +112,7 @@ def run(configs=None):
     '''
 
     checkers = [
-        main.WeeklyreportEventStruct(configs=configs, no_check_host),
+        main.WeeklyreportEventStruct(configs=configs, no_check_host=no_check_host),
     ]
 
     Runner(checkers).run()
