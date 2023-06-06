@@ -8,7 +8,7 @@ Host abnormal restart monitoring is an important aspect of modern internet syste
 
 ## Preconditions
 
-1. Offline deployment of [**DataFlux Func GSE**](https://func.guance.com/#/)
+1. Offline deployment of [**DataFlux Func GSE**](https://func.guance.com/#/), Or activate the [**DataFlux Func Hosted Edition**](../../dataflux-func/index.md)
 2. In Guance「Management / API Key Management」create [API Key](../../../management/api-key/open-api.md)
 
 > **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance SaaS on [the same carrier in the same region](../../../getting-started/necessary-for-beginners/select-site/).

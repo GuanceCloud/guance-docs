@@ -4,6 +4,14 @@
 
 ---
 
+## June 6, 2023
+
+### New Inspection
+
+* **Workspace Asset Intelligent Inspection**: For service inspections, it is essential to ensure the normal operation of the service, detect faults or abnormalities in a timely manner, and reduce business losses. Secondly, inspections help improve service availability and stability, identify and resolve potential problems. Inspections can also enhance operational efficiency, accelerate problem diagnosis and resolution, and optimize resource allocation. Ensuring business security is of utmost importance. By regularly inspecting services such as hosts, K8s, and containers, operations personnel can ensure that these services can efficiently and stably support the business, providing a continuously reliable operating environment for the enterprise.
+
+
+
 ## May 18, 2023
 
 ### New Inspection
