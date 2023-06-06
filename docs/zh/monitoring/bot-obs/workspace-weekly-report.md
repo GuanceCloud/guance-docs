@@ -52,7 +52,7 @@
 
 ![image](../img/workspace-weekly-report03.png)
 
-可以参考如下的配置多个主机信息
+可以参考如下的配置：
 
 ```
 configs 配置示例：
