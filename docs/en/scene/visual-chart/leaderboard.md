@@ -5,7 +5,7 @@
 
 The ranking is an objective reflection of the strength of a relevant similar thing, showing succinctly the ascending and descending ranking of Top N or Bottom N.
 
-## Application Scenarios
+## Use Case
 
 The ranking of the Guance is used to display the ascending and descending ranking of data for a metric. For example, you can query the top 5 hosts for CPU usage statistics.
 

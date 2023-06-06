@@ -1,20 +1,18 @@
-# Azure AD单点登录示例
+# Azure AD 单点登录示例
 ---
 
 ## 操作场景
 
-Azure Active Directory （Azure AD） 是 Microsoft 推出的基于云的标识和访问管理服务，可帮助企业管理内外部资源。观测云支持基于 SAML 2.0（安全断言标记语言 2.0）的联合身份验证，SAML 2.0 是许多身份验证提供商（Identity Provider， IdP）使用的一种开放标准。您可以通过基于 SAML 2.0 联合身份验证将 Azure AD 与观测云进行集成，从而实现 Azure AD 帐户自动登录（单一登录）观测云平台访问对应工作空间资源，不必为企业/团队单独创建观测云账号。
+Azure Active Directory （Azure AD） 是 Microsoft 推出的基于云的标识和访问管理服务，可帮助企业管理内外部资源。
+
+观测云支持基于 SAML 2.0（安全断言标记语言 2.0）的联合身份验证，SAML 2.0 是许多身份验证提供商（Identity Provider， IdP）使用的一种开放标准。您可以通过基于 SAML 2.0 联合身份验证将 Azure AD 与观测云进行集成，从而实现 Azure AD 帐户自动登录（单一登录）观测云平台访问对应工作空间资源，不必为企业/团队单独创建观测云账号。
 
 
 ## 操作步骤
 
 ### 1、创建 Azure AD 应用程序
 
-???+ attention
-
-    创建 Azure AD 需要先登录账号，若没有账号，可先创建一个。
-
-1）打开 [Azure Active Directory 管理中心](https://aad.portal.azure.com/)，点击**企业应用程序 > 所有应用程序 > 新建应用程序**。
+1）登录进入 [Azure Active Directory 管理中心](https://aad.portal.azure.com/)，点击**企业应用程序 > 所有应用程序 > 新建应用程序**。
 
 ![](../img/02_azure_01.png)
 
@@ -26,7 +24,7 @@ Azure Active Directory （Azure AD） 是 Microsoft 推出的基于云的标识�
 
 ???+ attention
 
-    本步骤将 Azure AD 应用程序属性映射到观测云的属性，建立 Azure AD 和观测云之间的信任关系使之相互信任。
+    本步骤将 Azure AD 应用程序属性映射到观测云的属性，建立 Azure AD 和观测云之间的信任关系。
 
 1）在新创建的应用程序，点击**单一登录**，选择 **SAML**。
 
@@ -43,7 +41,7 @@ Azure Active Directory （Azure AD） 是 Microsoft 推出的基于云的标识�
 
 ???+ attention
 
-    此次配置仅为获取下一步的元数据文档使用，需要在观测云中启用SSO单点登录后，获取到正确的**实体ID**和**断言地址**后重新替换。
+    此次配置仅为获取下一步的元数据文档使用，需要在观测云中启用 SSO 单点登录后，获取到正确的**实体 ID** 和**断言地址**后重新替换。
 
 ![](../img/02_azure_05.png)
 
@@ -60,7 +58,9 @@ Azure Active Directory （Azure AD） 是 Microsoft 推出的基于云的标识�
 - 名称：必需填入 **Email**，此部分内容为必填项，如果不填，SSO单点登录时将提示无法登录；  
 - 源属性：根据身份提供商实际邮箱选择“user.mail”。
 
-注意：观测云定义了一个字段，必须填入 **Email** 用于关联身份提供商的用户邮箱（即身份提供商将登录用户的邮箱映射到Email）。
+???+ attention
+
+    观测云定义了一个字段，必须填入 **Email** 用于关联身份提供商的用户邮箱（即身份提供商将登录用户的邮箱映射到 Email）。
 
 ![](../img/02_azure_08.png)
 
@@ -75,9 +75,11 @@ Azure Active Directory （Azure AD） 是 Microsoft 推出的基于云的标识�
 ![](../img/02_azure_09.png)
 
 
-### 4、在观测云启用SSO单点登录
+### 4、在观测云启用 SSO 单点登录
 
-1）启用 SSO 单点登录，在观测云工作空间**管理 > 成员管理 > SSO 管理**，点击**启用**即可。可参考文档 [新建SSO](../../management/sso/index.md) 。
+1）启用 SSO 单点登录，在观测云工作空间**管理 > 成员管理 > SSO 管理**，点击**启用**即可。
+
+> 可参考文档 [新建 SSO](../../management/sso/index.md) 。
 
 ???+ attention
 
@@ -85,22 +87,22 @@ Azure Active Directory （Azure AD） 是 Microsoft 推出的基于云的标识�
 
 ![](../img/1.sso_enable.png)
 
-2）上传在[步骤3](#step3)中下载的**元数据文档**，配置**域名（邮箱的后缀域名）**，选择**角色**，即可获取该身份提供商的**实体ID**和**断言地址**，支持直接复制**登录地址**进行登录。
+2）上传在[步骤 3](#step3)中下载的**元数据文档**，配置**域名（邮箱的后缀域名）**，选择**角色**，即可获取该身份提供商的**实体ID**和**断言地址**，支持直接复制**登录地址**进行登录。
 
 ???+ attention
 
-    域名用于观测云和身份提供商进行邮箱域名映射来实现单点登录，即用户邮箱的后缀域名需和观测云中添加的域名保持一致。**
+    域名用于观测云和身份提供商进行邮箱域名映射来实现单点登录，即用户邮箱的后缀域名需和观测云中添加的域名保持一致。
 
 ![](../img/1.sso_enable_2.png)
 
 
-### 5、在Azure AD替换SAML断言地址
+### 5、在 Azure AD 替换 SAML 断言地址
 
-1）返回 Azure AD，更新[步骤2](#step2)中的**实体 ID**和**断言地址**。
+1）返回 Azure AD，更新[步骤 2](#step2)中的**实体 ID** 和**断言地址**。
 
 ???+ attention
 
-    在观测云配置单点登录时，身份提供商SAML中配置的断言地址必须和观测云中的保持一致，才能实现单点登录。
+    在观测云配置单点登录时，身份提供商 SAML 中配置的断言地址必须和观测云中的保持一致，才能实现单点登录。
 
 ![](../img/02_azure_17.png)
 
@@ -136,11 +138,11 @@ Azure Active Directory （Azure AD） 是 Microsoft 推出的基于云的标识�
 
 ### 7、使用 Azure AD 账号单点登录观测云
 
-1）SSO配置完成后，通过 [观测云官网](https://www.dataflux.cn/) 或者 [观测云控制台](https://auth.dataflux.cn/loginpsw) 登录，在登录页面选择**单点登录**。
+1）SSO 配置完成后，通过 [观测云官网](https://www.dataflux.cn/) 或者 [观测云控制台](https://auth.dataflux.cn/loginpsw) 登录，在登录页面选择**单点登录**。
 
 ![](../img/02_azure_18.png)
 
-2）输入在创建SSO的邮箱地址，点击**获取登录地址**。
+2）输入在创建 SSO 的邮箱地址，点击**获取登录地址**。
 
 ![](../img/02_azure_19.png)
 
@@ -148,7 +150,7 @@ Azure Active Directory （Azure AD） 是 Microsoft 推出的基于云的标识�
 
 ![](../img/02_azure_20.png)
 
-4）输入企业通用邮箱（在Azure AD 和观测云 SSO 管理中配置的企业邮箱地址）和密码。
+4）输入企业通用邮箱（在 Azure AD 和观测云 SSO 管理中配置的企业邮箱地址）和密码。
 
 ![](../img/02_azure_21.png)
 

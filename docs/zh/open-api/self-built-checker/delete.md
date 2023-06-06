@@ -5,7 +5,7 @@
 <br />**post /api/v1/self_built_checker/delete**
 
 ## 概述
-根据`checker_uuid`删除一个自建巡检
+根据`checker_uuid`删除自建巡检
 
 
 
@@ -25,12 +25,11 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/self_built_checker/rul_d0736e059fd74d859cdcdce102687378/delete' \
+curl 'https://openapi.guance.com/api/v1/self_built_checker/delete' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
---data-raw 'null' \
---compressed \
---insecure
+--data-raw '{"ruleUUID":"rule_xxx"}' \
+--compressed
 ```
 
 

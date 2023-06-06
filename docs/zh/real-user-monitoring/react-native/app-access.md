@@ -7,7 +7,12 @@
 
 ## 应用接入
 
-当前 React Native 版本暂只支持 Android 和 iOS 平台。登录观测云控制台，进入「应用监测」页面，点击右上角「新建应用」，在新窗口输入「应用名称」，点击「创建」，然后相应接入的平台，即可开始配置。
+当前 React Native 版本暂只支持 Android 和 iOS 平台。登录观测云控制台，进入「用户访问监测」页面，点击左上角「新建应用」，即可开始创建一个新的应用。
+
+1.输入「应用名称」、「应用ID」，选择平台对应「应用类型」
+
+- 应用名称：用于识别当前用户访问监测的应用名称。
+- 应用 ID ：应用在当前工作空间的唯一标识，对应字段：app_id 。该字段仅支持英文、数字、下划线输入，最多 48 个字符。
 
 ![](../img/image_12.png)![](../img/image_13.png)
 
@@ -69,7 +74,6 @@ FTMobileReactNative.sdkConfig(config)
 | --- | --- | --- | --- |
 | serverUrl | string | 是 | datakit 安装地址 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529。注意：安装 SDK 设备需能访问这地址 |
 | debug | boolean | 否 | 设置是否允许打印日志，默认`false` |
-| datakitUUID | string | 否 | 请求`HTTP`请求头`X-Datakit-UUID` 数据采集端  如果用户不设置会自动配置 |
 | envType | enum EnvType | 否 | 环境，默认`prod` |
 | globalContext | NSDictionary | 否 | [添加自定义标签](#user-global-context ) |
 | service | string | 否 | 设置所属业务或服务的名称，影响 Log 和 RUM 中 service 字段数据。默认：`df_rum_ios`、`df_rum_android` |
@@ -147,11 +151,11 @@ FTReactNativeLog.logConfig(logConfig);
 
 ## RUM 用户数据追踪
 
-SDK 提供**自动采集**和**用户自定义采集**两种采集方式追踪 **View**、**Action**、**Error**、**Resource** 四种类型的用户数据。
+SDK 提供 **自动采集** 和 **用户自定义采集** 两种采集方式追踪 **View** 、 **Action** 、 **Error** 、 **Resource** 四种类型的用户数据。
 
 ### 自动采集
 
-在 SDK 初始化 [RUM 配置](#rum-config) 时可开启自动采集 **Error**、**Resource**、**Action**（`React Native` 控件、`Native`控件）、**View**（`Native View`）。
+在 SDK 初始化 [RUM 配置](#rum-config) 时可开启自动采集 **Error** 、 **Resource** 、 **Action** （`React Native` 控件、`Native`控件）、 **View** （`Native View`）。
 
 如果您在 React Native 中使用 `react-native-navigation ` 或 `react-navigation ` 导航组件，可以参考下面方式进行 `React Native View`  的自动采集：
 
@@ -163,7 +167,7 @@ SDK 提供**自动采集**和**用户自定义采集**两种采集方式追踪 *
 
   ```typescript
   import { FTRumReactNativeNavigationTracking } from './FTRumReactNativeNavigationTracking';
-  
+
   function startReactNativeNavigation() {
     FTRumReactNativeNavigationTracking.startTracking();
     registerScreens();//Navigation registerComponent
@@ -195,7 +199,7 @@ SDK 提供**自动采集**和**用户自定义采集**两种采集方式追踪 *
     import {FTRumReactNavigationTracking} from './FTRumReactNavigationTracking';
     import { createNativeStackNavigator } from '@react-navigation/native-stack';
     const Stack = createNativeStackNavigator();
-    
+
     <Stack.Navigator   screenListeners={FTRumReactNavigationTracking.StackListener} initialRouteName='Home'>
             <Stack.Screen name='Home' component={Home}  options={{ headerShown: false }} />
             ......
@@ -210,7 +214,7 @@ SDK 提供**自动采集**和**用户自定义采集**两种采集方式追踪 *
     ```typescript
     import {FTRumReactNavigationTracking} from './FTRumReactNavigationTracking';
     import type { NavigationContainerRef } from '@react-navigation/native';
-    
+
     const navigationRef: React.RefObject<NavigationContainerRef<ReactNavigation.RootParamList>> = React.createRef();
     <NavigationContainer ref={navigationRef} onReady={() => {
           FTRumReactNavigationTracking.startTrackingViews(navigationRef.current);
@@ -284,6 +288,8 @@ async getHttp(url:string){
             }
       }
 ```
+
+
 
 ##  Logger 日志打印 
 

@@ -17,10 +17,10 @@ Error 查看器支持查看用户在使用应用期间，浏览器发出的前�
 
 ## Error 查看器
 
-在用户访问监测的查看器，您可以切换至「error 查看器」对用户访问时的发生的代码错误进行查询和分析，您可以快速查看用户访问时的页面地址、代码错误类型、错误内容等。
+在用户访问监测的查看器，您可以切换至 **error 查看器**对用户访问时的发生的代码错误进行查询和分析，您可以快速查看用户访问时的页面地址、代码错误类型、错误内容等。
 
-- 错误内容 Load failed：是没有 response 的错误，默认 SDK 加了 Load failed
-- 错误内容 Network request failed：是 response 返回错误
+- 错误内容 Load failed：是没有 response 的错误，默认 SDK 加了 Load failed；  
+- 错误内容 Network request failed：是 response 返回错误。 
 
 ![](../img/12.rum_explorer_6.png)
 
@@ -32,7 +32,7 @@ Error 查看器支持查看用户在使用应用期间，浏览器发出的前�
 
 ### 来源
 
-在「来源」支持查看当前 Error 的 Session / View / Action 详情，筛选/复制查看当前的 Session ID / View ID / Action ID。
+在**来源**支持查看当前 Error 的 Session / View / Action 详情，筛选/复制查看当前的 Session ID / View ID / Action ID。
 
 ### 错误分布图
 
@@ -48,7 +48,7 @@ Error 查看器支持查看用户在使用应用期间，浏览器发出的前�
 
 观测云为应用程序提供 sourcemap 功能，支持还原混淆后的代码，方便错误排查时定位源码，帮助用户更快解决问题。
 
-您可以通过查看文档 [Sourcemap 转换](../../datakit/rum.md#sourcemap) 进行配置，配置完成后，您可以在错误详情中查看解析后的代码和原始的代码。
+> 您可以通过查看文档 [Sourcemap 转换](../../datakit/rum.md#sourcemap) 进行配置，配置完成后，您可以在错误详情中查看解析后的代码和原始的代码。
 
 ##### 解析代码示例
 
@@ -66,7 +66,7 @@ Error 查看器支持查看用户在使用应用期间，浏览器发出的前�
 
 ### 关联链路
 
-在用户访问监测中，错误的网络请求如若存在相关的链路，点击 error 详情的「链路」，即可查看详情。
+在用户访问监测中，错误的网络请求如若存在相关的链路，点击 error 详情的**链路**，即可查看详情。
 
 ![](../img/6.error_4.png)  
 

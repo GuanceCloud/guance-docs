@@ -5,8 +5,8 @@
 
 2023 年 2 月 16 日
 
-- 新增角色管理，为企业提供可访问和操作观测云功能模块的权限控制，更多详情可参考文档 [角色管理](role-management.md) 。
-- 新增 SSO 单点登录 SAML 映射，为企业提供更精细的单点登录方案，更多详情可参考文档 [SSO 管理](sso/index.md) 。
+- 新增[角色管理](role-management.md)，为企业提供可访问和操作观测云功能模块的权限控制；  
+- 新增 [SSO 单点登录](sso/index.md) SAML 映射，为企业提供更精细的单点登录方案；  
 - 新增设置账号级别的登录保持时间，为 [工作空间注册账号](../management/account-management.md#login-hold-time) 和 [SSO 登录账号](sso/index.md#login-hold-time) 设置登录会话保持时间。
 
 ## 简介
@@ -26,22 +26,29 @@
 
 ![](img/8.member_10.png)
 
-### 批量修改成员权限
+### 批量操作
 
-在成员管理，点击**批量修改权限**，选择需要批量修改权限的成员，点击**修改**，在弹出的对话框中为成员选择权限后**确认**即可。
-
-> 仅 Owner 和 Administrator 可以批量修改成员权限。
-
-![](img/8.member_3.png)
-
-### 修改/删除成员
-
-- 在成员管理，选择需要修改的成员，点击右侧的**修改**按钮，即可为成员修改权限和成员组，支持为成员配置多个角色；     
-- 在成员管理，选择需要删除的成员，点击右侧的**删除**按钮就可。  
+在成员管理，点击用户名旁的 :material-crop-square: ，您可以批量修改权限、批量删除。
 
 ???+ attention
 
-    仅 Owner 和 Administrator 可以删除成员， Owner 本身无法删除，可通过转让 Owner 降级为 Administrator 后，进行删除。
+    仅 Owner 和 Administrator 可以进行批量操作。
+
+![](img/8.member_3.png)
+
+### 删除成员
+     
+在**成员管理**，选择需要删除的成员，点击右侧 :fontawesome-regular-trash-can: 按钮即可。  
+
+仅 Owner 和 Administrator 可以删除成员，Owner 本身无法删除，可通过转让 Owner 降级为 Administrator 后，进行删除。
+
+### 编辑成员
+
+在**成员管理**，选择需要修改的成员，点击右侧 :material-rename-outline: 按钮，即可<u>为成员设置昵称、配置角色和成员组</u>。
+
+???+ attention
+
+    - 仅 Owner 可使用备注功能。
 
 ### 邀请成员
 

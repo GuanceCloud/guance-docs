@@ -72,9 +72,9 @@ For all of the following measurements, the `proto/dest_host/dest_port` global ta
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`response_time`|TCP 连接时间, 单位 us|int|μs|
-|`response_time_with_dns`|连接时间（含 DNS 解析）, 单位 us|int|μs|
-|`success`|只有 1/-1 两种状态, 1 表示成功, -1 表示失败|int|-|
+|`response_time`|TCP 连接时间|int|μs|
+|`response_time_with_dns`|连接时间（含 DNS 解析）|int|μs|
+|`success`|只有 1/-1 两种状态。1 表示成功/-1 表示失败|int|-|
 
 
 
@@ -94,6 +94,6 @@ For all of the following measurements, the `proto/dest_host/dest_port` global ta
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`success`|只有 1/-1 两种状态, 1 表示成功, -1 表示失败|int|-|
+|`success`|只有 1/-1 两种状态。1 表示成功/-1 表示失败|int|-|
 
 

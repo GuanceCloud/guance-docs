@@ -52,6 +52,7 @@ nav:
     - "升级商业版": upgrade-version.md
     - "SSO 管理":
       - "Keycloak 单点登录（部署版）":  keycloak-sso.md
+      - "配置 Keycloak 单点登录映射规则":  keycloak-rule.md
     - '管理后台手册': 
       - "工作空间管理": space.md
       - "用户管理": user.md
@@ -60,19 +61,24 @@ nav:
       - "数据网关": dataway.md
       - "设置管理": setting.md
   - '运维手册':
-    - '监控':
-      - '开启部署版自身的可观测': self-monitoring.md
-    - '域名访问修改成IP访问': ip-access.md
-    - '切换日志引擎': switch-logengine.md
-    - '切换域名': switch-domain.md
-    - '升级':
-      - "版本升级安装": version-upgrade.md
-#    - '离线相关':
-#      - '下载中心': download.md
+    - '部署配置手册':
+      - '开启自身的可观测': self-monitoring.md
+      - '域名访问修改成IP访问': ip-access.md
+      - '配置邮件服务': configuration-mail.md
+      - '切换域名': switch-domain.md
+      - '切换日志引擎': switch-logengine.md
+    - '故障排查':
+      - '访问日志、链路等页面报“视图模板不存在”': noscenes.md
+      - "监控器问题排查": troubleshooting-monitor.md
+      - '无数据问题排查': troubleshooting-log-nodata.md
+      - 'OpenSearch 或者 Elasticsearch 磁盘打满，如何处理': es-disk-full.md
+      - '集成中的 DataWay 列表为空': not-see-dataway.md
+      #- '为什么不能使用拨测服务': no-boce.md 
+    - '升级观测云': version-upgrade.md
     - '容量规划':  
       - "日志引擎容量规划": logengine-capacity-planning.md
   - '常见问题':
     - "部署运维 FAQ": faq.md
-    - "监控器问题排查": troubleshooting-monitor.md
+
     #- "集群故障 FAQ": faq-debug-cluster.md
     #- "all-in-one 一键部署 FAQ": faq-all-in-one.md    

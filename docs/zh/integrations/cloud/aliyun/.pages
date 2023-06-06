@@ -1,19 +1,18 @@
 nav:
-  - aliyun-prod-func.md
-  - 'ACK 集群': aliyun-ack.md
   - 'CDN': aliyun-cdn.md
   - 'ECS': aliyun-ecs.md
   - 'EIP': aliyun-eip.md
-  - 'ElasticSearch': aliyun-es.md
   - 'MongoDB': aliyun-mongodb.md
   - 'NAT': aliyun-nat.md
   - 'OSS': aliyun-oss.md
-  - 'PolarDB MySQL': aliyun-mysql.md
-  - 'PolarDB Oracle': aliyun-oracle.md
-  - 'PolarDB PostgreSQL': aliyun-postgresql.md
+  - 'PolarDB MySQL': aliyun-polardb-mysql.md
+  - 'PolarDB Oracle': aliyun-polardb-oracle.md
+  - 'PolarDB PostgreSQL': aliyun-polardb-postgresql.md
   - 'RDS Mysql': aliyun-rds-mysql.md
   - 'RDS SQLServer': aliyun-rds-sqlserver.md
   - 'Redis 标准版': aliyun-redis.md
+  - 'Redis 集群版': aliyun-redis-shard.md
   - 'SLB': aliyun-slb.md
   - 'SLS': aliyun-sls.md
   - '费用': aliyun-charges.md
+  - 'ACK 集群': aliyun-ack.md

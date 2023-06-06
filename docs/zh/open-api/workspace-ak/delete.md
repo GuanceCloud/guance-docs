@@ -27,8 +27,7 @@
 ```shell
 curl 'https://openapi.guance.com/api/v1/workspace/accesskey/wsak_fffdee290b0f49a2b084458fec88f91f/delete' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
---compressed \
---insecure
+--compressed 
 ```
 
 

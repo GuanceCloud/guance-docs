@@ -26,8 +26,7 @@
 ```shell
 curl 'https://openapi.guance.com/api/v1/keyevent/restore?monitorCheckerEventRef=09e6fdaa5235f1e49014254f7b1653fc' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
---compressed \
---insecure
+--compressed 
 ```
 
 

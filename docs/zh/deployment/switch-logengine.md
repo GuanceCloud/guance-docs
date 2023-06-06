@@ -6,43 +6,33 @@
 
 ## 前提条件
 
-- elasticsearch 
 
-  - 地址、用户名密码
-  - 确认 analysis-ik 是否安装成功
-  - 是否关闭自动创建索引
+- 准备日志引擎地址、账号密码
+- 确认 analysis-ik 是否安装成功
+- 是否关闭自动创建索引
+- 准备观测云 MySQL 的地址、`df_core` 数据库的账号密码
+  ![](switch-log-1.png)
 
-  ```none
-  PUT _cluster/settings
-  {
-    "persistent": {
-      "action.auto_create_index" : false
-    }
-  }
-  ```
 
-- mysql
-
-  - `df_core` 用户的地址、用户名密码
-
-## 关闭 kodo-x 服务
+## 切换步骤
+### 步骤一：关闭 kodo-x 服务
 
 ```shell
 kubectl scale -n forethought-kodo deploy kodo-x --replicas 0
 
 ```
 
-## 刷新配置
+### 步骤二：刷新配置
 
 登录 `df_core` 数据库
 
-1. 备份表
+1.备份表
 
    ```sql
    SQL> create table df_core.main_es_instance_copy select * from df_core.main_es_instance;
    ```
 
-2. 查询信息
+2.查询信息
 
    ```sql
    SQL> select authorization,configJSON,id,host from df_core.main_es_instance;
@@ -60,7 +50,7 @@ kubectl scale -n forethought-kodo deploy kodo-x --replicas 0
    1 rows in set (0.01 sec)
    ```
 
-3. 更新配置
+3.更新配置
 
    ```sql
    SQL> update df_core.main_es_instance a set a.authorization='{"admin": {"password": "xxxxx", "username": "elastic"}}',a.configJSON='{"provider": "elastic"}',a.host='http://elasticsearch-client-headless.middleware:9200' where id =1;
@@ -87,13 +77,13 @@ kubectl scale -n forethought-kodo deploy kodo-x --replicas 0
 
    
 
-## 重启服务
+### 步骤三：重启服务
 
 ```shell
-kubectl rollout restart -n forethought-kodo kodo kodo-x kodo-ws kodo-inner
+kubectl delete pods --all -n forethought-kodo
 ```
 
-## 初始化 es 模版
+### 步骤四：初始化 es 模版
 
 登录 `forethought-core` inner api 容器执行命令：
 
@@ -102,12 +92,12 @@ $ curl 'http://127.0.0.1:5000/api/v1/inner/es/init' -X 'POST'  -H 'Content-Type:
 $ curl 'http://127.0.0.1:5000/api/v1/inner/es/init_subsequent' -X 'POST'  -H 'Content-Type: application/json'
 ```
 
-## 启动 kodo-x
+### 步骤五：启动 kodo-x
 
 ```shell
 kubectl scale -n forethought-kodo deploy kodo-x --replicas 3
 ```
 
-## 验证
+### 步骤六：验证
 
 请登录观测云控制台仔细查看基础设施和日志功能。

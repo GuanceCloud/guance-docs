@@ -37,8 +37,7 @@ curl 'https://openapi.guance.com/api/v1/saml/mapping/field/fdmp_2f8f0085af264192
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"sourceField": "AAAAA","sourceValue": "lei","targetValue": "wsAdmin"}' \
---compressed \
---insecure
+--compressed 
 ```
 
 

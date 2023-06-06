@@ -22,7 +22,7 @@
 
 用户访问监测的场景构建和事件告警都可以通过下面的全局属性进行查询。
 
-### SDK属性
+### SDK 属性
 
 | **字段** | **类型** | **描述** |
 | --- | --- | --- |
@@ -33,17 +33,21 @@
 
 | 字段 | 类型 | 描述 |
 | --- | --- | --- |
-| `app_id` | string | 必填，用户访问应用唯一ID标识，在“观测云”控制台上面创建监控时自动生成。 |
+| `app_id` | string | 必填，用户访问应用唯一 ID 标识，在“观测云”控制台上面创建监控时自动生成。 |
 | `env` | string | 必填，环境字段。属性值：prod/gray/pre/common/local。其中<br>prod：线上环境<br>gray：灰度环境<br>pre：预发布环境<br>common：日常环境<br>local：本地环境 |
 | `version` | string | 必填，版本号。 |
+| `app_launch_query` | string | 启动小程序的 query 参数。 |
+| `app_launch_referrer_info` | string | 来源信息。从另一个小程序、公众号或 App 进入小程序时返回。 |
+
+> 点击了解更多[相关字段说明](https://developers.weixin.qq.com/miniprogram/dev/api/base/app/life-cycle/wx.getLaunchOptionsSync.html)。
 
 ### 用户 & 会话属性
 
 | **字段** | **类型** | **描述** |
 | --- | --- | --- |
-| `userid` | string | 未登录用户使用cookie作为userid，登录用户使用应用后台生成的用户id。 |
-| `session_id` | string | 会话id。 |
-| `session_type` | string | 会话类型。参考值：user &#124; synthetics<br>user表示是RUM功能产生的数据；<br>synthetics表示是headless拨测产生的数据。 |
+| `userid` | string | 未登录用户使用 cookie 作为 userid，登录用户使用应用后台生成的用户 id。 |
+| `session_id` | string | 会话 id。 |
+| `session_type` | string | 会话类型。参考值：user &#124; synthetics<br>user 表示是 RUM 功能产生的数据；<br>synthetics 表示是 headless 拨测产生的数据。 |
 | `is_signin` | boolean | 是否是注册用户，属性值：True / False。 |
 
 ### 设备 & 分辨率属性

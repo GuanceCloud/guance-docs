@@ -1,7 +1,7 @@
 # 切换域名
 
 ???+ warning "注意"
-     如果之前启用了HTTPS，您需要提前准备新域名的**证书**。此次更换域名假定为`dataflux.com` 替换为 `guance.com`
+     如果之前启用了HTTPS，您需要提前准备新域名的**证书**。此次更换域名假定为`dataflux.cn` 替换为 `guance.com`
 
 ## 简介
 
@@ -55,7 +55,7 @@ done
 
 ```shell
 # 设置要替换的键值对
-OLD_VALUE="dataflux.com"
+OLD_VALUE="dataflux.cn"
 NEW_VALUE="guance.com"
 NAMESPACE="forethought-core forethought-kodo forethought-webclient func2 middleware utils launcher"
 
@@ -85,7 +85,9 @@ done
 
 ![](img/faq-ssl-2.png)
 
-### 步骤四：修改所有 ingress 的域名
+### 步骤四：修改所有 Ingress 的域名
+???+ warning "注意"
+     如果使用主机模式安装的 DataWay，需要修改 DataWay 的 `remote_host ` 参数。
 
 可以执行以下脚本备份：
 
@@ -105,7 +107,7 @@ done
 执行以下脚本修改地址：
 
 ```shell
-OLD_VALUE="dataflux.com"
+OLD_VALUE="dataflux.cn"
 NEW_VALUE="guance.com"
 NAMESPACE="forethought-core forethought-kodo forethought-webclient func2 middleware utils launcher"
 

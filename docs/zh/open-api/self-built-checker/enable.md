@@ -14,7 +14,7 @@
 
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
-| ruleUUID | string |  | 自建巡检的UUID<br>例子: rul_xxxxx <br>允许为空: False <br> |
+| ruleUUIDs | array |  | 自建巡检的UUID<br>例子: rul_xxxxx <br>允许为空: False <br> |
 | refKey | string |  | 自建巡检的关联key<br>例子: xxx <br>允许为空: False <br> |
 
 ## 参数补充说明
@@ -25,12 +25,11 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/self_built_checker/rul_d0736e059fd74d859cdcdce102687378/enable' \
+curl 'https://openapi.guance.com/api/v1/self_built_checker/enable' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
---data-raw 'null' \
---compressed \
---insecure
+--data-raw '{"ruleUUIDs":["rul_8abfbf9a9a5a487aa4ba0cf90bf9d635","rul_8f2b0c759f3c47cc86e0e4ca042ca35a"]}' \
+--compressed 
 ```
 
 

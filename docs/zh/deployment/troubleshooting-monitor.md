@@ -5,8 +5,8 @@
 本文将介绍如何排查监控器常见问题：
 
 - 监控器不产生事件
-- 监控器有事件，但没有触发告警
-- 监控器告警
+- 监控器有事件，但没有推送消息通知
+
 
 ## 前提条件
 
@@ -56,6 +56,11 @@
 
 ### 步骤三：登录 Func 平台查询问题
 
+- Launcher 获取 Func 登录地址
+  ![](img/faq-cron-4.png)
+
+  ![](img/faq-cron-5.png)
+
 - 登录您的 func 平台
 
   ![](img/faq-func.png)
@@ -68,12 +73,12 @@
 
 - 你可以通过 「近期执行」查看详细报错信息
 
-  ​	![](img/faq-get-error.png)
+  ![](img/faq-get-error.png)
 
 ### 步骤四：查看告警通知日志排查
 
 ???+ warning "注意"
-     建议执行`kubectl rollout -n middleware deploy message-desk-worker message-desk`，再测试排查。
+     建议执行`kubectl rollout restart -n middleware deploy message-desk-worker message-desk`，再测试排查。
 
 message-desk-worker 服务是观测云告警通知模块，负责发送钉钉机器人通知，邮件通知，飞书机器人通知等。
 

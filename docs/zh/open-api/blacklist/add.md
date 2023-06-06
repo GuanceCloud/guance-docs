@@ -74,8 +74,7 @@ curl 'https://openapi.guance.com/api/v1/blacklist/add' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"type":"logging","source":"kodo-log","filters":[{"name":"host","value":["127.0.0.1"],"operation":"in","condition":"and"}]}' \
---compressed \
---insecure
+--compressed 
 ```
 
 

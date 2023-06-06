@@ -2,10 +2,13 @@ nav:
   - index.md
   - '内存泄漏巡检': memory-leak.md
   - '磁盘使用率巡检': disk-usage.md
+  - '主机重启巡检': host-restart.md
   - '应用性能巡检': apm.md
   - '云账户实例维度账单巡检': cloudfee-instance.md
   - '阿里云抢占式实例存活巡检': spot-alive.md
-  - '闲置资源巡检': idle-resources.md
+  - '闲置主机巡检': idle-resources.md
+  - '闲置云资源巡检': cloud-idle-resources.md
+  - '工作空间资产巡检': workspace-weekly-report.md
   - '前端应用日志错误巡检': rum_errors.md
   - 'RUM 性能巡检': rum-performance.md
   - '阿里云资产巡检': cloudasset.md

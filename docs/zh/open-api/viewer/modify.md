@@ -41,8 +41,7 @@ curl 'https://openapi.guance.com/api/v1/viewer/dsbd_e493a3c17d3c456bb1febfcbbe41
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"name":"modify_viewer","tagNames":["应用性能"]}' \
---compressed \
---insecure
+--compressed 
 ```
 
 

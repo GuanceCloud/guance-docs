@@ -11,12 +11,7 @@
 
 ## Android 应用接入 {#android-integration} 
 
-登录观测云控制台，进入「用户访问监测」页面，点击左上角「新建应用」，即可开始创建一个新的应用。
-
-输入「应用名称」、「应用ID」，选择「应用类型」，根据右侧显示的接入方式进行安装配置。
-
-- 应用名称：用于识别当前用户访问监测的应用名称。
-- 应用 ID ：应用在当前工作空间的唯一标识，对应字段：app_id 。该字段仅支持英文、数字、下划线输入，最多 48 个字符。
+登录观测云控制台，进入**用户访问监测**页面，点击左上角 **[新建应用](../index.md#create)**，即可开始创建一个新的应用。
 
 ![](../img/6.rum_android_1.png)
 
@@ -34,35 +29,77 @@
 
 在项目的根目录的 `build.gradle` 文件中添加 `SDK` 的远程仓库地址
 
-```groovy
-buildscript {
-    //...
-    repositories {
-        //...
-        //添加 SDK 的远程仓库地址
-        maven {
-            url 'https://mvnrepo.jiagouyun.com/repository/maven-releases'
-        }
-    }
-    dependencies {
-        //...
-        //添加 Plugin 的插件，依赖 AGP 7.4.2 以上，Gradle 7.2.0 以上
-        classpath 'com.cloudcare.ft.mobile.sdk.tracker.plugin:ft-plugin:[latest_version]'
-        // AGP 7.4.2 以下版本，请使用 ft-plugin-legacy 
-        //classpath 'com.cloudcare.ft.mobile.sdk.tracker.plugin:ft-plugin-legacy:[latest_version]'
-        
-    }
-}
-allprojects {
-    repositories {
-        //...
-        //添加 SDK 的远程仓库地址
-        maven {
-            url 'https://mvnrepo.jiagouyun.com/repository/maven-releases'
-        }
-    }
-}
-```
+=== "buildscript"
+
+	```groovy
+	buildscript {
+	    //...
+	    repositories {
+	        //...
+	        //添加 SDK 的远程仓库地址
+	        maven {
+	            url 'https://mvnrepo.jiagouyun.com/repository/maven-releases'
+	        }
+	    }
+	    dependencies {
+	        //...
+	        //添加 Plugin 的插件，依赖 AGP 7.4.2 以上，Gradle 7.2.0 以上
+	        classpath 'com.cloudcare.ft.mobile.sdk.tracker.plugin:ft-plugin:[latest_version]'
+	        // AGP 7.4.2 以下版本，请使用 ft-plugin-legacy 
+	        //classpath 'com.cloudcare.ft.mobile.sdk.tracker.plugin:ft-plugin-legacy:[latest_version]'
+	        
+	    }
+	}
+	allprojects {
+	    repositories {
+	        //...
+	        //添加 SDK 的远程仓库地址
+	        maven {
+	            url 'https://mvnrepo.jiagouyun.com/repository/maven-releases'
+	        }
+	    }
+	}
+	```
+
+=== "plugins DSL"
+
+	```groovy
+	//setting.gradle
+	
+	pluginManagement {
+	    repositories {
+	        google()
+	        mavenCentral()
+	        gradlePluginPortal()
+	        //添加 SDK 的远程仓库地址
+	        maven {
+	            url('https://mvnrepo.jiagouyun.com/repository/maven-releases')
+	        }
+	    }
+	}
+	dependencyResolutionManagement {
+	    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+	    repositories {
+	        google()
+	        mavenCentral()
+	        //添加 SDK 的远程仓库地址
+	        maven {
+	            url('https://mvnrepo.jiagouyun.com/repository/maven-releases')
+	        }
+	    }
+	}
+	
+	//build.gradle
+	
+	plugins{
+		//添加 Plugin 的插件，依赖 AGP 7.4.2 以上，Gradle 7.2.0 以上
+		id 'com.cloudcare.ft.mobile.sdk.tracker.plugin' version '[lastest_version]' apply false
+		// AGP 7.4.2 以下版本，请使用 ft-plugin-legacy 
+		//id 'com.cloudcare.ft.mobile.sdk.tracker.plugin.legacy' version '[lastest_version]' apply false
+	}
+	
+	```
+
 
 在项目主模块 `app` 的 `build.gradle` 文件中添加 `SDK` 的依赖及 `Plugin` 的使用 和 Java 8 的支持
 
@@ -151,7 +188,6 @@ android{
 | **方法名** | **含义** | **必须** | **注意** |
 | --- | --- | --- | --- |
 | metricsUrl | Datakit 安装地址 | 是 | datakit 安装地址 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529，。注意：安装 SDK 设备需能访问这地址 |
-| setXDataKitUUID | 设置数据采集端的识别 ID | 否 | 默认为随机`uuid` |
 | setDebug | 是否开启调试模式 | 否 | 默认为 `false`，开启后方可打印 SDK 运行日志 |
 | setEnv | 设置采集环境 | 否 | 默认为 `EnvType.PROD` |
 | setOnlySupportMainProcess | 是否只支持在主进程运行 | 否 | 默认为 `true` ，如果需要在其他进程中执行需要将该字段设置为 `false` |
@@ -202,6 +238,7 @@ android{
 | **方法名** | **含义** | **必须** | **注意** |
 | --- | --- | --- | --- |
 | setRumAppId | 设置`Rum AppId` | 是 | 对应设置 RUM `appid`，才会开启`RUM`的采集功能，[获取 appid 方法](#android-integration) |
+| setSampleRate | 设置采集率 | 否 | 采集率的值范围为>= 0、<= 1，默认值为 1 |
 | setEnableTrackAppCrash | 是否上报 App 崩溃日志 | 否 | 默认为 `false`，开启后会在错误分析中显示错误堆栈数据。<br> [关于崩溃日志中混淆内容转换的问题](#retrace-log) |
 | setExtraMonitorTypeWithError | 设置辅助监控信息 | 否 | 添加附加监控数据到 `Rum` 崩溃数据中，`ErrorMonitorType.BATTERY` 为电池余量，`ErrorMonitorType.MEMORY` 为内存用量，`ErrorMonitorType.CPU` 为 CPU 占有率 |
 | setDeviceMetricsMonitorType | 设置 View 监控信息 | 否 | 在 View 周期中，添加监控数据，`DeviceMetricsMonitorType.BATTERY` 监控当前页的最高输出电流输出情况，`DeviceMetricsMonitorType.MEMORY` 监控当前应用使用内存情况，`DeviceMetricsMonitorType.CPU` 监控 CPU 跳动次数 ，`DeviceMetricsMonitorType.FPS` 监控屏幕帧率|
@@ -1475,7 +1512,7 @@ FTExt {
 ## 常见问题 {#FAQ}
 ### 添加局变量避免冲突字段 {#key-conflict}
 
-为了避免自定义字段与 SDK 数据冲突，建议标签命名添加项目缩写的前缀，例如 `df_tag_name`，项目中使用 `key` 值可[查询源码](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java)。SDK 全局变量中出现与 RUM、Log 相同变量时，RUM、Log 会覆盖 SDK 中的全局变量。
+为了避免自定义字段与 SDK 数据冲突，建议标签命名添加 **项目缩写** 的前缀，例如 `df_tag_name`，项目中使用 `key` 值可[查询源码](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java)。SDK 全局变量中出现与 RUM、Log 相同变量时，RUM、Log 会覆盖 SDK 中的全局变量。
 
 ### 应对市场隐私审核 {#adpot-to-privacy-audits}
 #### 隐私声明
