@@ -1,6 +1,6 @@
 # Java 示例
 
-Pinpoint Java Agent [下载地址](https：//github.com/pinpoint-apm/pinpoint/releases){:target="_blank"}
+Pinpoint Java Agent [下载地址](https://github.com/pinpoint-apm/pinpoint/releases){:target="_blank"}
 
 ---
 
@@ -55,7 +55,7 @@ java -javaagent：/path-to-pinpoint-agent-path/pinpoint-bootstrap.jar \
 
 ## 兼容性 {#compatibility}
 
-当前 Datakit 使用的 Pinpoint Agent 为 [pinpoint-go-agent](https：//github.com/pinpoint-apm/pinpoint-go-agent){:target="_blank"}-v1.3.2
+当前 Datakit 使用的 Pinpoint Agent 为 [pinpoint-go-agent](https://github.com/pinpoint-apm/pinpoint-go-agent){:target="_blank"}-v1.3.2
 
 当前完成测试的 Pinpoint Agent 版本包括：
 
