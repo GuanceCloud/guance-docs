@@ -6,3 +6,4 @@ nav:
   - '禁用一个自建巡检': disable.md
   - '启用一个自建巡检': enable.md
   - '删除一个自建巡检': delete.md
+  - '批量自建巡检': batch-delete.md

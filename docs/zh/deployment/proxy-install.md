@@ -6,7 +6,7 @@
 
 ## 前提条件
 
-- 已部署 Kubernetes 集群，未部署可参考 [Kubernetes 部署](http://127.0.0.1:8000/deployment/infra-kubernetes/)
+- 已部署 Kubernetes 集群，未部署可参考 [Kubernetes 部署](infra-kubernetes.md)
 - 已部署 Ingress-nginx 服务，未部署可参考 [Ingress-nginx](ingress-nginx-install.md)
 
 ## 基础信息及兼容

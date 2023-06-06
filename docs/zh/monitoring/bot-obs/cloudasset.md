@@ -7,7 +7,7 @@
 
 ## 前置条件
 
-1. 自建 [DataFlux Func 观测云特别版](https://func.guance.com/#/) 的离线部署
+1. 自建 [DataFlux Func 观测云特别版](https://func.guance.com/#/) 的离线部署，或者开通 [DataFlux Func 托管版](../../dataflux-func/index.md)
 3. 在观测云「管理 / API Key 管理」中创建用于进行操作的 [API Key](../../management/api-key/open-api.md)
 5. 开启对应需要检测的「观测云自建巡检（阿里云）」中对象的[采集器(如: 阿里云 ECS)](https://func.guance.com/doc/script-market-guance-aliyun-ecs/)
 7. 在自建的 DataFlux Func 中，编写自建巡检处理函数
