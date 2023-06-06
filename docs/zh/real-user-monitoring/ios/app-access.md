@@ -3,11 +3,13 @@
 
 ## 简介
 
-观测云应用监测能够通过收集各个iOS应用的指标数据，以可视化的方式分析各个iOS应用端的性能。
+观测云应用监测能够通过收集各个 iOS 应用的指标数据，以可视化的方式分析各个 iOS 应用端的性能。
 
 ## 前置条件
 
-- 安装 DataKit（[DataKit 安装文档](../../datakit/datakit-install.md)）
+- 安装 [DataKit](../../datakit/datakit-install.md)；  
+- 配置 [RUM 采集器](../../datakit/rum.md)；
+- DataKit 配置为[公网可访问，并且安装 IP 地理信息库](../../datakit/datakit-tools-how-to.md#install-ipdb)。
 
 ## iOS 应用接入
 

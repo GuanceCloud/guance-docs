@@ -32,6 +32,14 @@
 }
 ```
 
+???+ attention
+
+    在您进行自定义信任策略配置，需填写观测云的 AWS ID 及用户名信息。
+
+    ![](img/role.png)
+
+    实际填写信息如下（此为固定配置）：`arn:aws-cn:iam::588271335135:user/guance-s3-bakcuplog`
+
 ![](img/role-auth-3.png)
 
 2.3 点击下一步，在**步骤 2 > 添加权限**，点击**创建策略**：
