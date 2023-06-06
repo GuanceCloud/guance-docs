@@ -29,7 +29,7 @@
 
 ### 列表相关操作 {#operations}
 
-- 在列表的**服务**列，点击右侧 :fontawesome-solid-palette:，可以点击修改颜色；  
+- 在列表的**服务**列，点击右侧 :fontawesome-solid-palette:，可以修改颜色，修改后相关服务列颜色均会改变；  
 - 对于可以排序的列，hover 时显示 :fontawesome-regular-hand-pointer: 以及排序 icon :octicons-triangle-up-16: & :octicons-triangle-down-16:，您可按需操作；  
 - 点击行，可以展开当前服务详情页。
 - 鼠标悬停至服务性能指标**错误数**，点击右侧显示的 :octicons-search-16: ，即可跳转至**链路**页，查看该服务在当前选定的时间范围内，数据状态 `status` 为 `error` 的链路数据。

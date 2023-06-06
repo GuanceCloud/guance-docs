@@ -20,7 +20,7 @@
 | 字段      | 描述                          |
 | ----------- | ------------------------------------ |
 | 索引名称       | 自定义索引的名称，索引名称必须唯一，不可修改，且已删除的索引名称不可再创建。  |
-| 过滤条件       | 不同字段之间的逻辑关系可以自定义选择 **任意(OR)** 或 **所有(AND)**；<br/>默认选中 **任意(OR)**，支持切换为**所有(AND)**：<br/><br/><u>逻辑关系示例参考如下：</u><br/>&emsp;示例 1：（默认 AND）<br/>&emsp;&emsp;host=[host1,host2] AND service = [service1,service2]；<br/>&emsp;示例 2：（切换为任意 OR）<br/>&emsp;&emsp;host=[host1,host2] OR service = [service1,service2]。<br/><br/>支持 `in` 、`not in` 、`match` 、`not match` 等筛选方式。 |
+| 过滤条件       | 支持 `in` 、`not in` 、`match` 、`not match` 等筛选方式。 |
 | 数据存储策略    | 支持选择 7 天、14 天、30 天 和 60 天。 |
 
 ![](img/6.index_2.png)

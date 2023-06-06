@@ -15,10 +15,10 @@ icon: zy/release-notes
 - 创建工作空间时新增[菜单风格选择](../management/index.md#create)，支持选择不同的工作空间风格属性。
 - 优化日志数据访问[权限相关规则](../logs/logdata-access.md#config)适配，进一步明确多角色数据查询权限及权限控制对应关系。
 - 事件详情页下的基础属性下的[检测维度](../events/event-details.md#attribute)新增关联查询，支持查看筛选当前检测维度下全部字段值的关联数据。
-- 告警策略管理支持[不同级别告警到不同的通知对象、同一个告警不同级别能到不同的通知对象](../monitoring/alert-setting.md#create)。
+- 告警策略管理支持[不同级别告警到不同的通知对象](../monitoring/alert-setting.md#create)。
 - [成员管理](../management/member-management.md)新增添加昵称备注功能，规范工作空间内的成员用户名，支持通过昵称备注搜索成员。
 - 仪表板、查看器、监控、成员管理、分享管理等页面列表新增批量操作功能。
-- 应用性能检测服务支持[修改颜色，支持表头排序调整](../application-performance-monitoring/service.md#operations)。
+- 应用性能监测服务支持[修改颜色，支持表头排序调整](../application-performance-monitoring/service.md#operations)。
 - 日志、应用性能监测 > 错误追踪查看器聚类分析支持对文档数量排序，默认倒叙。
 - 支持保存登录选择语言版本到浏览器本地，再次登录自动显示上一次登录选择语言版本。
 - 生成指标频率选项调整，支持选择 1 分钟、5 分钟、15 分钟。
