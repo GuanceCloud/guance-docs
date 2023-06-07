@@ -2,12 +2,16 @@
 ---
 
 
-观测云支持通过调用 Open API 接口的方式来获取和更新观测云工作空间的数据，关于 API 详细清单，可查看 [观测云 OpenAPI 文档库](../../open-api/index.md) 。
+观测云支持通过调用 Open API 接口的方式来获取和更新观测云工作空间的数据。
+
+> 关于 API 详细清单，可查看 [观测云 OpenAPI 文档库](../../open-api/index.md) 。
 
 
 ## 认证方式
 
-在调用 API 接口前，需要先创建 API Key 作为认证方式。关于如何创建 API Key，可参考文档 [API Key 管理](../../management/api-key/index.md) 。
+在调用 API 接口前，需要先创建 API Key 作为认证方式。
+
+> 关于如何创建 API Key，可参考文档 [API Key 管理](../../management/api-key/index.md) 。
 
 接口以 API KEY 为认证方式，每一次请求使用请求体 Header 中的 DF-API-KEY 的值作为有效性检验，以及本次请求的工作空间限定依据（取此 DF-API-KEY 所属的工作空间）。
 
@@ -32,7 +36,7 @@ curl -X GET "https://openapi.guance.com/api/v1/validate" \
 -H "DF-API-KEY: ${DF_API_KEY}"
 ```
 
-**注意**：我们简化了 HTTP 的请求方式，只使用 GET、POST 两种，GET 为数据获取类请求，如 获取仪表板列表 接口， POST 为所有数据变更类请求，如 创建仪表板、删除仪表板 接口等。
+<font color=coral>**注意：**</font>我们简化了 HTTP 的请求方式，只使用 GET、POST 两种，GET 为数据获取类请求，如 获取仪表板列表 接口， POST 为所有数据变更类请求，如 创建仪表板、删除仪表板 接口等。
 
 ### 接入地址 Endpoint
 
@@ -41,7 +45,7 @@ curl -X GET "https://openapi.guance.com/api/v1/validate" \
 | 阿里云 | https://openapi.guance.com |
 | AWS | https://aws-openapi.guance.com |
 
-**注意**：私有部署版也支持 openapi 接入，以实际部署的 Endpoint 为准。
+<font color=coral>**注意：**</font>私有部署版也支持 openapi 接入，以实际部署的 Endpoint 为准。
 
 ### 接口路由地址规范
 
@@ -60,7 +64,7 @@ curl -X GET "https://openapi.guance.com/api/v1/validate" \
 - 主机对象列表获取：**/api/v1/object/host/list**
 - 进程对象列表获取：**/api/v1/object/process/list**
 
-**注意**：路由中的 **v1** 为接口版本号，每个发布版本的接口，都需要向前兼容，如有不兼容的接口变化、或业务重大变化，需要增加一个版本号。
+<font color=coral>**注意：**</font>路由中的 **v1** 为接口版本号，每个发布版本的接口，都需要向前兼容，如有不兼容的接口变化、或业务重大变化，需要增加一个版本号。
 
 ## 返回结果
 
@@ -88,26 +92,28 @@ curl -X GET "https://openapi.guance.com/api/v1/validate" \
 ```
 
 ### 公共响应结果参数
+
 | **字段** | **类型** | **说明** |
 | --- | --- | --- |
-| code | Number | 返回的状态码，与 HTTP 状态码保持相同，无错误时固定为 200 |
-| content | String、Number、Array、Boolean、JSON | 返回的数据，具体返回什么类型的数据与实际接口的业务有关 |
+| code | Number | 返回的状态码，与 HTTP 状态码保持相同，无错误时固定为 200。 |
+| content | String、Number、Array、Boolean、JSON | 返回的数据，具体返回什么类型的数据与实际接口的业务有关。 |
 | pageInfo | JSON | 所有列表接口响应的列表分页信息。 |
-| errorCode | String | 返回的错误状态码，空表示无错误 |
-| message | String | 返回的错误码对应的具体说明信息 |
-| success | Boolean | 固定为 true，表示接口调用成功 |
-| traceId | String | traceId，用于跟踪每一次的请求情况 |
+| errorCode | String | 返回的错误状态码，空表示无错误。 |
+| message | String | 返回的错误码对应的具体说明信息。 |
+| success | Boolean | 固定为 true，表示接口调用成功。 |
+| traceId | String | traceId，用于跟踪每一次的请求情况。 |
 
 
 ## 公共错误定义
+
 | **错误代码** | **HTTP 状态码** | **错误信息** |
 | --- | --- | --- |
-| RouterNotFound | 400 | 请求路由地址不存在 |
-| InvalidApiKey | 403 | 无效的请求 API KEY |
-| InternalError | 503 | 未知的错误 |
+| RouterNotFound | 400 | 请求路由地址不存在。 |
+| InvalidApiKey | 403 | 无效的请求 API KEY。 |
+| InternalError | 503 | 未知的错误。 |
 | ... |  |  |
 
-> 更多关于 API 接口列表，可查看 [观测云 OpenAPI 文档库](../../open-api/index.md) 。
+> 更多关于 API 接口列表，可查看 [观测云 OpenAPI 文档库](../../open-api/index.md)。
 
 
 ---
