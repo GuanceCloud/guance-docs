@@ -7,7 +7,7 @@ It provides additional data access capability for Guance, which is convenient fo
 
 ## Preconditions
 
-1. Offline deployment of [**DataFlux Func GSE**](https://func.guance.com/#/)
+1. Offline deployment of [**DataFlux Func GSE**](https://func.guance.com/#/), Or activate the [**DataFlux Func Hosted Edition**](../../dataflux-func/index.md)
 3. Create [API Key](../../../management/api-key/open-api.md) in Guance "management/API Key management" 
 5. Open the [collector (such as Alibaba Cloud ECS)](https://func.guance.com/doc/script-market-guance-aliyun-ecs/) corresponding to the objects in the "Guance  Check (Alibaba Cloud)" to be detected
 7. In the DataFlux Func, write the  check processing function

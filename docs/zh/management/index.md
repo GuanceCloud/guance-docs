@@ -10,7 +10,7 @@ icon: zy/management
 
 ## 工作空间相关
 
-### 创建工作空间
+### 创建工作空间 {#create}
 
 您可以通过创建或者被邀请的方式加入一个或多个工作空间。
 
@@ -20,6 +20,7 @@ icon: zy/management
 
 ???+ attention
 
+    - 工作空间语言该配置影响工作空间内事件、告警、短信等模板。切换到英文后，上述对应模板将默认使用英文模板，请知悉； 
     - 单个观测云站点下，仅支持绑定一个手机号码、一个邮箱，暂不支持港澳台和国外手机号码；
     - 不同站点的账号独立不互通，更多站点说明可参考 [站点说明](../billing/commercial-register.md#site)；
     - 支持选择 [单点登录](../management/sso/index.md) 到观测云。
@@ -47,6 +48,27 @@ icon: zy/management
     ![](img/3.space_management_1.png)
 
 </div>
+
+在**创建工作空间**窗口，输入工作空间名称，选择该工作空间语言，按需描述该工作空间。您还可以根据角色定制化您的工作空间。
+
+- 不同角色下的工作空间默认展示如下：
+
+<font size=2>*研发：*</font>
+
+![](img/yanfa.png)
+
+<font size=2>*运维：*</font>
+
+![](img/yunwei.png)
+
+<font size=2>*测试：*</font>
+
+![](img/ceshi.png)
+
+<font size=2>*默认：*</font>
+
+![](img/moren.png)
+
 
 ### SSO 账号登录 {#sso}
 
@@ -168,3 +190,5 @@ icon: zy/management
 - [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **工作空间锁定/解锁/解散**</font>](../billing/cost-center/workspace-management.md#lock)
 
 </div>
+
+
