@@ -40,9 +40,9 @@ icon: zy/management
 </div>
 
 
-<img src="img/9.space_management_1.png" width="60%" >
-
 在**创建工作空间**窗口，输入工作空间名称，选择该工作空间语言，按需描述该工作空间。您还可以根据角色来选择不同的工作空间目录风格属性。
+
+<img src="img/9.space_management_1.png" width="60%" >
 
 - 不同角色下的工作空间目录默认展示如下：
 
