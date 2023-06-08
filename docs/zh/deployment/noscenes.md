@@ -17,9 +17,7 @@ kubectl exec -ti -n forethought-core <inner_pod_name> -- /bin/bash
 # 从公网 模板同步到本地和数据库
 curl 'http://0.0.0.0:5000/api/v1/inner/upgrade/tasks/execute_task_func' \
 -H 'Content-Type: application/json' \
---data-raw $'{"script_name": "timed_sync_integration", "func_name": "execute_update_integration
-", "funcKwargs": {"dir_names": ["dataflux-template", "dataflux-template-en"], "need_sync_integration
-": true}}' \
+--data-raw $'{"script_name": "timed_sync_integration", "func_name": "execute_update_integration", "funcKwargs": {"dir_names": ["dataflux-template", "dataflux-template-en"], "need_sync_integration": true}}' \
 --compressed
 ```
 
