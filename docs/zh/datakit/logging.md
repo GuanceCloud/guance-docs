@@ -401,6 +401,15 @@ Use the `source` of the config，if empty then use `default`
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
+|`__namespace`|Built-in extension fields added by server. The unique identifier for a log document dataType.|string|-|
+|`__truncated_count`|Built-in extension fields added by server. If the log is particularly large (usually exceeding 1M in size), the central system will split it and add three fields: `__truncated_id`, `__truncated_count`, and `__truncated_number` to define the splitting scenario. The __truncated_count field represents the total number of logs resulting from the split.|int|-|
+|`__truncated_id`|Built-in extension fields added by server. If the log is particularly large (usually exceeding 1M in size), the central system will split it and add three fields: `__truncated_id`, `__truncated_count`, and `__truncated_number` to define the splitting scenario. The __truncated_id field represents the unique identifier for the split log.|string|-|
+|`__truncated_number`|Built-in extension fields added by server. If the log is particularly large (usually exceeding 1M in size), the central system will split it and add three fields: `__truncated_id`, `__truncated_count`, and `__truncated_number` to define the splitting scenario. The __truncated_count field represents represents the current sequential identifier for the split logs.|int|-|
+|``__docid``|Built-in extension fields added by server. The unique identifier for a log document, typically used for sorting and viewing details|string|-|
+|`create_time`|Built-in extension fields added by server. The `create_time` field represents the time when the log is written to the storage engine.|int|ms|
+|`date`|Built-in extension fields added by server. The `date` field is set to the time when the log is collected by the collector by default, but it can be overridden using a pipeline.|int|ms|
+|`date_ns`|Built-in extension fields added by server. The `date_ns` field is set to the millisecond part of the time when the log is collected by the collector by default. Its maximum value is 1.0E+6 and its unit is nanoseconds. It is typically used for sorting.|int|ns|
+|`df_metering_size`|Built-in extension fields added by server. The `df_metering_size` field is used for logging cost statistics.|int|-|
 |`log_read_lines`|The lines of the read file ([:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)).|int|count|
 |`log_read_offset`|The offset of the read file ([:octicons-tag-24: Version-1.4.8](changelog.md#cl-1.4.8) · [:octicons-beaker-24: Experimental](index.md#experimental)).|int|-|
 |`log_read_time`|The timestamp of the read file.|s|-|

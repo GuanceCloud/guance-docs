@@ -649,7 +649,7 @@ The object of the Kubernetes CronJob.
 
 
 
-#### `kube_daemonset`
+#### `kubernetes_daemonset`
 
 The object of the Kubernetes DaemonSet.
 
@@ -667,9 +667,11 @@ The object of the Kubernetes DaemonSet.
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
+|`age`|age (seconds)|int|s|
 |`count`|Number of daemonsets|int|count|
 |`daemons_unavailable`|The number of nodes that should be running the daemon pod and have none of the daemon pod running and available (ready for at least spec.minReadySeconds).|int|count|
 |`desired`|The total number of nodes that should be running the daemon pod (including nodes correctly running the daemon pod).|int|count|
+|`message`|object details|string|-|
 |`misscheduled`|The number of nodes that are running the daemon pod, but are not supposed to run the daemon pod.|int|count|
 |`ready`|The number of nodes that should be running the daemon pod and have one or more of the daemon pod running and ready.|int|count|
 |`scheduled`|The number of nodes that are running at least one daemon pod and are supposed to run the daemon pod.|int|count|
