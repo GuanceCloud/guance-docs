@@ -249,7 +249,7 @@ election = true
 ```Golang
 import (
     ... // 其它已有采集器
-    _ "gitlab.jiagouyun.com/cloudcare-tools/datakit/plugins/inputs/zhangsan"
+    _ "gitlab.jiagouyun.com/cloudcare-tools/datakit/internal/plugins/inputs/zhangsan"
 )
 ```
 
@@ -349,9 +349,9 @@ datakit -M --vvv            # 检查所有采集器的运行情况
     - [LLVM](https://apt.llvm.org/){:target="_blank"}: 版本 >= 10.0
     - Clang: 版本 >= 10.0
     - Linux 内核（>= 5.4.0-99-generic）头文件：`apt-get install -y linux-headers-$(uname -r)` 
-    - cspell: https://cspell.org/
-    - markdownlint-cli：https://github.com/igorshubovych/markdownlint-cli
-    
+    - [cspell](https://cspell.org/){:target="_blank"}: `npm install -g cspell@6.31.1`
+    - [markdownlint-cli](https://github.com/igorshubovych/markdownlint-cli){:target="_blank"}: `npm install -g markdownlint-cli@0.34.0`
+
     #### 安装第三方库
     
     - `gcc-multilib`
@@ -462,7 +462,7 @@ alias ut='REMOTE_HOST=<YOUR-DOCKER-REMOTE-HOST> make ut'
 
 额外的配置：
 
-- 如果要排除部分 package 的测试（它可能临时无法通过测试），在 `make ut` 后面增加对应 package 名称即可，例如：`UT_EXCLUDE="gitlab.jiagouyun.com/cloudcare-tools/datakit/plugins/inputs/snmp"`
+- 如果要排除部分 package 的测试（它可能临时无法通过测试），在 `make ut` 后面增加对应 package 名称即可，例如：`UT_EXCLUDE="gitlab.jiagouyun.com/cloudcare-tools/datakit/internal/plugins/inputs/snmp"`
 - 如果要将测试的指标发送到观测云，添加一个 Dataway 地址以及对应工作空间的 token 即可，比如 `DATAWAY_URL="https://openway.guance.com/v1/write/logging?token=<YOUR-TOKEN>"`
 
 完整的例子如下：

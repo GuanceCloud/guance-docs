@@ -81,7 +81,11 @@ grant SELECT ON pg_stat_database to datakit;
       ## Run a custom SQL query and collect corresponding metrics. 
       #
       # [[inputs.postgresql.custom_queries]]
-      #   sql = "select datname,numbackends,blks_read from pg_stat_database"
+      #   sql = '''
+      #     select datname,numbackends,blks_read
+      #     from pg_stat_database
+      #     limit 10
+      #   '''
       #   metric = "postgresql_custom_stat"
       #   tags = ["datname" ]
       #   fields = ["numbackends", "blks_read"]
@@ -129,33 +133,14 @@ grant SELECT ON pg_stat_database to datakit;
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`active_time`|Time spent executing SQL statements in this database, in milliseconds.|int|count|
-|`archived_count`|Number of WAL files that have been successfully archived.|int|count|
-|`archived_failed_count`|Number of failed attempts for archiving WAL files.|int|count|
+|`active_time`|Time spent executing SQL statements in this database, in milliseconds.|float|count|
 |`blks_hit`|The number of times disk blocks were found in the buffer cache, preventing the need to read from the database.|int|count|
 |`blks_read`|The number of disk blocks read in this database.|int|count|
-|`buffers_alloc`|The number of buffers allocated|int|count|
-|`buffers_backend`|The number of buffers written directly by a backend.|int|count|
-|`buffers_backend_fsync`|The of times a backend had to execute its own fsync call instead of the background writer.|int|count|
-|`buffers_checkpoint`|The number of buffers written during checkpoints.|int|count|
-|`buffers_clean`|The number of buffers written by the background writer.|int|count|
-|`checkpoint_sync_time`|The total amount of checkpoint processing time spent synchronizing files to disk.|float|ms|
-|`checkpoint_write_time`|The total amount of checkpoint processing time spent writing files to disk.|float|ms|
-|`checkpoints_req`|The number of requested checkpoints that were performed.|int|count|
-|`checkpoints_timed`|The number of scheduled checkpoints that were performed.|int|count|
-|`confl_bufferpin`|Number of queries in this database that have been canceled due to pinned buffers.|int|count|
-|`confl_deadlock`|Number of queries in this database that have been canceled due to deadlocks.|int|count|
-|`confl_lock`|Number of queries in this database that have been canceled due to dropped tablespaces. This will occur when a `temp_tablespace` is dropped while being used on a standby.|int|count|
-|`confl_snapshot`|Number of queries in this database that have been canceled due to old snapshots.|int|count|
-|`confl_tablespace`|Number of queries in this database that have been canceled due to dropped tablespaces. This will occur when a `temp_tablespace` is dropped while being used on a standby.|int|count|
-|`database_size`|The disk space used by this database.|float|count|
+|`database_size`|The disk space used by this database.|int|count|
 |`deadlocks`|The number of deadlocks detected in this database.|int|count|
-|`idle_in_transaction_time`|Time spent idling while in a transaction in this database, in milliseconds.|int|count|
-|`max_connections`|The maximum number of client connections allowed to this database.|float|count|
-|`maxwritten_clean`|The number of times the background writer stopped a cleaning scan due to writing too many buffers.|int|count|
+|`idle_in_transaction_time`|Time spent idling while in a transaction in this database, in milliseconds.|float|count|
 |`numbackends`|The number of active connections to this database.|int|count|
-|`percent_usage_connections`|The number of connections to this database as a fraction of the maximum number of allowed connections.|float|count|
-|`session_time`|Time spent by database sessions in this database, in milliseconds.|int|count|
+|`session_time`|Time spent by database sessions in this database, in milliseconds.|float|count|
 |`sessions`|Total number of sessions established to this database.|int|count|
 |`sessions_abandoned`|Number of database sessions to this database that were terminated because connection to the client was lost.|int|count|
 |`sessions_fatal`|Number of database sessions to this database that were terminated by fatal errors.|int|count|
@@ -167,7 +152,7 @@ grant SELECT ON pg_stat_database to datakit;
 |`tup_inserted`|The number of rows inserted by queries in this database.|int|count|
 |`tup_returned`|The number of rows returned by queries in this database.|int|count|
 |`tup_updated`|The number of rows updated by queries in this database.|int|count|
-|`wraparound`|The number of transactions that can occur until a transaction wraparound.|int|count|
+|`wraparound`|The number of transactions that can occur until a transaction wraparound.|float|count|
 |`xact_commit`|The number of transactions that have been committed in this database.|int|count|
 |`xact_rollback`|The number of transactions that have been rolled back in this database.|int|count|
 
@@ -184,6 +169,7 @@ grant SELECT ON pg_stat_database to datakit;
 |`locktype`|The lock type|
 |`mode`|The lock mode|
 |`schema`|The schema name|
+|`server`|The server address|
 |`table`|The table name|
 
 - 指标列表
@@ -202,8 +188,10 @@ grant SELECT ON pg_stat_database to datakit;
 
 | Tag | Description |
 |  ----  | --------|
+|`db`|The database name|
 |`index`|The index name|
 |`schema`|The schema name|
+|`server`|The server address|
 |`table`|The table name|
 
 - 指标列表
@@ -221,7 +209,11 @@ grant SELECT ON pg_stat_database to datakit;
 
 - 标签
 
-NA
+
+| Tag | Description |
+|  ----  | --------|
+|`db`|The database name|
+|`server`|The server address|
 
 - 指标列表
 
@@ -240,7 +232,9 @@ NA
 
 | Tag | Description |
 |  ----  | --------|
+|`db`|The database name|
 |`schema`|The schema name|
+|`server`|The server address|
 |`table`|The table name|
 
 - 指标列表
@@ -248,9 +242,9 @@ NA
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`index_size`|The total disk space used by indexes attached to the specified table.|float|B|
-|`table_size`|The total disk space used by the specified table. Includes TOAST, free space map, and visibility map. Excludes indexes.|float|B|
-|`total_size`|The total disk space used by the table, including indexes and TOAST data.|float|B|
+|`index_size`|The total disk space used by indexes attached to the specified table.|int|B|
+|`table_size`|The total disk space used by the specified table. Includes TOAST, free space map, and visibility map. Excludes indexes.|int|B|
+|`total_size`|The total disk space used by the table, including indexes and TOAST data.|int|B|
 
 
 
@@ -261,7 +255,9 @@ NA
 
 | Tag | Description |
 |  ----  | --------|
+|`db`|The database name|
 |`schema`|The schema name|
+|`server`|The server address|
 |`table`|The table name|
 
 - 指标列表
@@ -289,6 +285,7 @@ NA
 |  ----  | --------|
 |`db`|The database name|
 |`schema`|The schema name|
+|`server`|The server address|
 |`table`|The table name|
 
 - 指标列表
@@ -320,7 +317,9 @@ NA
 
 | Tag | Description |
 |  ----  | --------|
+|`db`|The database name|
 |`name`|The name of the `SLRU`|
+|`server`|The server address|
 
 - 指标列表
 
@@ -334,6 +333,97 @@ NA
 |`blks_zeroed`|Number of blocks zeroed during initializations of `SLRU` (simple least-recently-used) cache.|int|count|
 |`flushes`|Number of flush of dirty data for this `SLRU` (simple least-recently-used) cache.|int|count|
 |`truncates`|Number of truncates for this `SLRU` (simple least-recently-used) cache.|int|count|
+
+
+
+### `postgresql_bgwriter`
+
+- 标签
+
+
+| Tag | Description |
+|  ----  | --------|
+|`db`|The database name|
+|`server`|The server address|
+
+- 指标列表
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`buffers_alloc`|The number of buffers allocated|int|count|
+|`buffers_backend`|The number of buffers written directly by a backend.|int|count|
+|`buffers_backend_fsync`|The of times a backend had to execute its own fsync call instead of the background writer.|int|count|
+|`buffers_checkpoint`|The number of buffers written during checkpoints.|int|count|
+|`buffers_clean`|The number of buffers written by the background writer.|int|count|
+|`checkpoint_sync_time`|The total amount of checkpoint processing time spent synchronizing files to disk.|float|ms|
+|`checkpoint_write_time`|The total amount of checkpoint processing time spent writing files to disk.|float|ms|
+|`checkpoints_req`|The number of requested checkpoints that were performed.|int|count|
+|`checkpoints_timed`|The number of scheduled checkpoints that were performed.|int|count|
+|`maxwritten_clean`|The number of times the background writer stopped a cleaning scan due to writing too many buffers.|int|count|
+
+
+
+### `postgresql_connection`
+
+- 标签
+
+
+| Tag | Description |
+|  ----  | --------|
+|`db`|The database name|
+|`server`|The server address|
+
+- 指标列表
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`max_connections`|The maximum number of client connections allowed to this database.|float|count|
+|`percent_usage_connections`|The number of connections to this database as a fraction of the maximum number of allowed connections.|float|count|
+
+
+
+### `postgresql_conflict`
+
+- 标签
+
+
+| Tag | Description |
+|  ----  | --------|
+|`db`|The database name|
+|`server`|The server address|
+
+- 指标列表
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`confl_bufferpin`|Number of queries in this database that have been canceled due to pinned buffers.|int|count|
+|`confl_deadlock`|Number of queries in this database that have been canceled due to deadlocks.|int|count|
+|`confl_lock`|Number of queries in this database that have been canceled due to dropped tablespaces. This will occur when a `temp_tablespace` is dropped while being used on a standby.|int|count|
+|`confl_snapshot`|Number of queries in this database that have been canceled due to old snapshots.|int|count|
+|`confl_tablespace`|Number of queries in this database that have been canceled due to dropped tablespaces. This will occur when a `temp_tablespace` is dropped while being used on a standby.|int|count|
+
+
+
+### `postgresql_archiver`
+
+- 标签
+
+
+| Tag | Description |
+|  ----  | --------|
+|`db`|The database name|
+|`server`|The server address|
+
+- 指标列表
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`archived_count`|Number of WAL files that have been successfully archived.|int|count|
+|`archived_failed_count`|Number of failed attempts for archiving WAL files.|int|count|
 
 
 
