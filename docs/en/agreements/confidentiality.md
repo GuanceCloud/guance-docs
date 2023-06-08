@@ -1,52 +1,56 @@
-# 数据安全保密协议
+
+# Data Security Confidentiality Agreement 
 ---
 
-本保密协议是观测云的经营者上海观测未来信息技术有限公司（以下简称为 “观测云” ），与用户（下称为 “您” ），共同缔结的对双方具有约束力的有效契约。 “观测云” 向用户提供本网站上所展示的产品与服务（下称 “本服务”/ “本产品”），并将不断更新服务内容，最新的服务以本网站上的相关产品及服务介绍的页面展示以及向用户实际提供的为准。
+Data Security Confidentiality Agreement (the “Confidentiality Agreement”)
 
-您确认：您在使用本服务之前，已经充分阅读、理解并接受本保密协议的全部内容（特别是以加粗及/或下划线标注的内容），一旦您选择“同意”并使用本服务，即表示您同意遵循本保密协议的所有约定。
+This Confidentiality Agreement is a binding and effective contract concluded by Guance Information Technology Co., Limited (hereinafter referred to as "Guance"), the operator of Guance, and the user (hereinafter referred to as “You”). Guance provides users with the products and services displayed on this website (hereinafter referred to as the “Service”/the “Product”), and will constantly update the service contents. The latest services are subject to the page display and the actual provision to users of relevant products and services on this website.
 
-## 保密协议内容
+You acknowledge that you have fully read, understood and accepted the entire content of this Confidentiality Agreement (in particular those highlighted in bold and/or underlined) prior to using this service, and that by choosing to agree to use this service, you agree to comply with all the provisions of this Confidentiality Agreement.
 
-1、保密内容的范围
+## Contents of Confidentiality Agreement
 
-（1）您在使用产品中所产生的行为数据；
+### 1. Scope of Confidential Content
 
-（2）通过您的授权，我们从相应云厂商 API 收集的相关数据；
+（1）Behavior data generated during your use of the product;
 
-（3）我们通过您自主安装的探针收集的相关数据；
+（2）Relevant data we collected from the corresponding cloud vendor API through your authorization;
 
-（4）您在使用本产品和服务时获知的有关 “观测云” 的一切机密或专有信息，包括但不限于 “观测云” 的运营资料、服务、产品、商业计划、销售计划、技术构思、技术资料、客户名单、经营渠道；与 “观测云” 的商业系统、产品设计、运营、预测、商业机会和策略、广告促销、人事有关的信息；以及任何其他机密或专有信息等。
+（3）Relevant data we collected through your self-installed probe;
 
-2、 “观测云” 将对您的数据进行加密保护
+（4）All confidential or proprietary information about Guance that you know when using this product and service, including but not limited to the operation data, services, products, business plans, sales plans, technical ideas, technical data, customer lists and business channels of Guance; information related to the business system, product design, operation, forecast, business opportunity and strategy, advertisement and promotion, and information related to the personnel of Guance; and any other confidential or proprietary information.
 
- “观测云” 收到和传输的所有信息都将完全加密，并且我们承诺致力于使用先进的加密技术来确保您的数据尽可能受到保护。
+### 2. Your data will be encrypted and protected by Guance
 
-3、双方的权利，义务与责任
+All information received and transmitted by Guance will be completely encrypted, and we are committed to using advanced encryption technology to ensure that your data is protected as much as possible.
 
-（1）双方均应遵守本协议的约定及与数据保护相关的所有法律法规。
+### 3. Rights, Obligations and Responsibilities of Both Parties
 
-（2）您承诺： “观测云” 经您授权所获取的信息均具有合法性且该信息的获取均已经过信息所有人的同意。
+3.1 Both parties shall abide by this Confidentiality Agreement and all laws and regulations related to data protection.
 
-（3）您了解并授权：
+3.2 You promise that the information obtained by Guance with your authorization is legal and the information has been obtained with the consent of the information owner.
 
-    （a）您在本合同项下的相关保密内容将用于帮助您分析并诊断云计算使用过程中的问题及提升您的服务体验；
-    （b）因向您提供服务的需要，您在本合同项下的相关保密内容可能会提供给 “观测云” 认为必要的第三方。
+3.3 You understand and authorize:
 
-（4）在您的服务终止后，当您提出相关数据删除的请求时，经 “观测云” 认可后， “观测云” 将销毁相关的数据。
+(a) your relevant confidential content under this Confidentiality Agreement be used to help you analyze and diagnose problems in the use of cloud computing and enhance your service experience;
 
-4、本协议的保密义务不适合用于如下情况
+(b) Due to the need to provide services to you, your relevant confidential contents under this Confidentiality Agreement be provided to a third party deemed necessary by Guance.
 
-（1）由于您的原因已经为公众所知的的信息；
+3.4 When you request to delete relevant data after your service is terminated, Guance will destroy relevant data after its approval.
 
-（2）由于您以外其他渠道被公众获知的信息，这些渠道并不受保密义务的限制；
+### 4. The confidentiality obligations of this Confidentiality Agreement are not applicable in the following situations:
 
-（3）由于法律的适用，法院或其他国家有权机关的需求而批露的信息。
+4.1 Information already known to the public because of you;
 
-## 免责声明
+4.2 Information already known to the public through other channels other than you, these channels are not restricted by the confidentiality obligations;
 
-**因您使用观测云某些功能的需要，观测云会明确指出或建议您提供相应权限范围的账号/密钥，如若您最终提供了超越前述权限的账号/密钥，因此所造成的一切后果（包括但不限于数据暴露、被篡改等）由您自行承担， 观测云对此不负任何法律责任。**
+4.3 Information disclosed due to the application of law and as required by courts or other state authorities.
 
-**您确认：在您使用观测云相应功能之前， 观测云已经就上述免责内容对您进行了充分的提示和明确的说明，基于前述提示和说明，您已经确认上述条款中进行明确标记部分系免除或限制观测云责任的条款，且对前述内容充分理解无异议。**
+## Disclaimer
 
-**本产品的保密协议最终解释权归上海观测未来信息技术有限公司。本协议条款之效力、解释、变更、执行与争议解决均适用中华人民共和国法律。因本协议产生之争议，均应依照中华人民共和国法律予以处理，并提交上海市浦东新区人民法院进行审理。**
+Due to your need of using certain functions of Guance, Guance will clearly specify or suggest that you provide the account number/key with the corresponding scope of authority. If you finally provide an account number/key beyond the aforesaid authority, all consequences (including but not limited to data exposure, tampering, etc.) will be borne by you, and Guance will not bear any legal responsibility for this.
+
+You confirm that before you use the corresponding functions of Guance, Guance has given you sufficient tips and clear explanations on the above disclaimer. Based on the aforesaid tips and explanations, you confirm that the clearly marked parts of the above clauses are clauses that exempt or limit the responsibilities of Guance, and fully understand the above contents without objection.
+
+The final right of interpretation of this Confidentiality Agreement of this Product belongs to Guance Information Technology Co., Limited. The validity, interpretation, alteration, enforcement and dispute resolution of the provisions of this Confidentiality Agreement shall be governed by the laws of Hong Kong. All disputes arising from this Confidentiality Agreement shall be resolved in accordance with the laws of Hong Kong and submitted to the courts of Hong Kong for trial.
 

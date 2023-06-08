@@ -2,4 +2,6 @@ nav:
   - index.md
   - 'Guance Commercial Plan Service Agreement': upgrade-agreement.md
   - 'Guance Exclusive Plan Service Agreement': service-agreement-sls.md
+  - 'Guance SaaS Service Level Agreement': sla.md
   - 'Legal Declaration': legal-declaration.md
+  - 'Data Security Confidentiality Agreement': confidentiality.md

@@ -9,7 +9,7 @@ Guance does not monitor, preview, edit, screen or vet any information that Guanc
 
 ## Declaration of Intellectual Property Rights
 
- The intellectual property rights of all data (including personal data), text, images, audio, video, photographs, and other content (in any format) provided by You are retained by You. Guance owns the copyright of all information contents in the website of Guance (including but not limited to text, pictures, software, audio and video) in relation to the Services. The authorized browsing, copying, printing and dissemination of the information content within the Guance website shall not be used for commercial purposes, and the use of all information content and any part of it must include this copyright notice.
+The intellectual property rights of all data (including personal data), text, images, audio, video, photographs, and other content (in any format) provided by You are retained by You. Guance owns the copyright of all information contents in the website of Guance (including but not limited to text, pictures, software, audio and video) in relation to the Services. The authorized browsing, copying, printing and dissemination of the information content within the Guance website shall not be used for commercial purposes, and the use of all information content and any part of it must include this copyright notice.
 
 Guance, other products and service names of "Guance" and related graphics and logos are registered trademarks of "Guance". No one is allowed to use them without the permission of "Guance" (including but not limited to: copying, spreading, displaying, mirroring, uploading and downloading in an illegal way). Otherwise,Guance will be investigated for legal responsibility according to law.
 

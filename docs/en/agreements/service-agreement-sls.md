@@ -254,12 +254,12 @@ First, the Entry into Force of the Agreement
 | Profile          | 0.2 yuan per day (every 10,000 articles)                          |
 
 
-## **Annex II Guance SaaS Service Level Agreement**
+## Annex II Guance SaaS Service Level Agreement
 
 
 This Service Level Agreement (hereinafter referred to as "SLA") stipulates the service availability level indicators and compensation scheme of the Guance SaaS Service (referred to as "Guance SaaS Service") provided by Guance to users.
 
-1.Definition
+1. Definition
 
 1.1 Service cycle: A service cycle is a natural month. If the user uses the Guance SaaS Service for less than one month, the accumulated usage time of the Guance SaaS Service in the current month will be taken as a service cycle.
 
@@ -271,7 +271,7 @@ This Service Level Agreement (hereinafter referred to as "SLA") stipulates the s
 
 1.5 Monthly service fee: The cash payment part of the billing fee incurred by users for a single Guance SaaS Service instance in a natural month (excluding gift vouchers, discount vouchers, etc.).
 
-2.Service Availability 
+2. Service Availability 
 
 2.1 Service Availability Calculation Formula
 
@@ -282,7 +282,7 @@ Service Availability = (Total Service Cycle Minutes-Service Unavailable Minutes)
 
 The availability of Guance SaaS Service is not less than 99.90%, that is, the monthly unavailable time is ≤ 43.2 min. If the Guance SaaS Service instance fails to meet the aforesaid availability commitment, the user can be compensated according to Article 4 of this agreement.
 
-3.Service Unavailable
+3. Service Unavailable
 
 3.1 The following are service unavailable scenarios
 
@@ -316,7 +316,7 @@ The length of service unavailability due to the following reasons is not include
 
     - Caused by other force majeure (the resulting service costs need not be borne by users).
 
-4.Compensation Programme
+4. Compensation Programme
 
 4.1 Compensation Standard
 
@@ -326,7 +326,7 @@ For each the Guance SaaS Service instance, according to the monthly service avai
 
 Users can claim compensation after the fifth (5) working days of each natural month for instances where service availability commitments have not been met in the previous month. Claims for compensation shall be filed by ticket or email no later than two (2) months after the end of the relevant month in which the Guance SaaS Service fails to meet the service availability commitment.
 
-5.Others
+5. Others
 
 Service availability compensation service standard:
 
