@@ -1,8 +1,9 @@
 ---
 icon: zy/agreements
 ---
-# 相关协议
+# Agreements
 ---
 
-相关协议包括服务协议、法律声明、数据安全保密协议、观测云移动应用隐私政策。
+Related agreements include service agreements, legal agreements, data security confidentiality agreements and others in Guance. 
+
 

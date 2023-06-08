@@ -44,7 +44,9 @@ Azure Active Directory (Azure AD) 是 Microsoft 推出的基于云的标识和�
 
 2）添加客户端凭据：
 
-<img src="img/aad-5-1.png" width="45%" >&nbsp;<img src="img/aad-5.png" width="45%" >
+![](img/aad-5-1.png)
+
+![](img/aad-5.png)
 
 ![](img/aad-5-2.png)
 
@@ -56,7 +58,9 @@ Azure Active Directory (Azure AD) 是 Microsoft 推出的基于云的标识和�
 
 4）添加 API 的作用域。进入公开 API，点击添加范围，按下图指示操作：
 
-<img src="img/aad-5-4.png" width="45%" >&nbsp;<img src="img/aad-5-5.png" width="45%" >
+![](img/aad-5-4.png)
+
+![](img/aad-5-5.png)
 
 5）继上一步，为客户端应用程序添加授权：
 
@@ -194,7 +198,7 @@ server {
 
 参考示例图：
 
-![](img/1.keycloak_4.png)
+![](img/aad-17.png)
 
 3）在观测云 Launcher **命名空间：forethought-webclient > frontWeb** 中配置 Azure AD 用户登录观测云部署版的入口地址。
 
@@ -213,7 +217,7 @@ window.DEPLOYCONFIG = {
 
 参考示例图：
 
-![](img/1.keycloak_5.png)
+![](img/aad-18.png)
 
 1) 配置完成后，勾选更新的**修改配置**，并确认重启。
 
