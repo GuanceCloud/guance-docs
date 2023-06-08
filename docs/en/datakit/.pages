@@ -18,7 +18,9 @@ nav:
     - 'DQL Query': datakit-dql-how-to.md
     - 'Other Commands': datakit-tools-how-to.md
     - 'Virtual Internet Access': aliyun-access.md
-    - 'Troubleshooting': why-no-data.md
+    - 'Trouble Shooting':
+        - 'No data collected': why-no-data.md
+        - 'Datakit Metrics': datakit-metrics.md
 
   - 'DataKit Configuration': 
     - 'Major Configuration': datakit-conf.md
@@ -111,6 +113,7 @@ nav:
         - 'Python': profile-python.md
         - 'Go': profile-go.md
         - 'C/C++': profile-cpp.md
+        - 'NodeJS': profile-nodejs.md
 
       - 'DDTrace':
         - ddtrace.md
@@ -145,6 +148,9 @@ nav:
 
       - 'Jaeger' :
         - jaeger.md
+
+      - 'CAT' :
+        - cat.md
 
     - RUM:
       - rum.md
