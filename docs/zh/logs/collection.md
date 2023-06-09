@@ -34,7 +34,7 @@ DataKit 安装完成后，您可以通过开启标准日志采集或者自定义
     - `time`：日志的产生时间，如果没有提取 `time` 字段或解析此字段失败，默认使用系统当前时间；
     - `status`：日志的等级，如果没有提取出 `status` 字段，则默认将 `stauts` 置为 `unknown`。
     
-    > 更多详情可参考文档 [Pipeline 配置和使用](../datakit/logging.md#pipeline) 。
+    > 更多详情可参考文档 [Pipeline 配置和使用](../datakit/logging.md#pipeline)。
 
 
 
