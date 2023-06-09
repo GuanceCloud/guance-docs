@@ -10,11 +10,9 @@
 
 在观测云工作空间**管理 > API Key 管理**，点击右上角**新建 Key**，输入 Key 名称，点击确定。
 
-???+ attention
+<font color=coral>**注意：**</font>API Key 管理支持管理员及以上可编辑。
 
-    API Key 管理支持管理员及以上可编辑。
-
-![](../img/3_apikey_1.png)
+<img src="../img/3_apikey_1.png" width="80%" >
 
 点击**确定**后，即可获取用于调用的 API Key ID 和密钥。
 

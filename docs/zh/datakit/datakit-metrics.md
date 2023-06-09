@@ -19,15 +19,12 @@ $ watch -n 3 'curl -s http://localhost:9529/metrics | grep datakit_cpu_usage'
 datakit_cpu_usage 4.9920266849857144
 ```
 
-其它指标也能通过类似方式来观察，目前已有的指标如下：
+其它指标也能通过类似方式来观察，目前已有的指标如下（当前版本 1.8.1）：
 
 <!-- 以下这些指标，通过执行 make show_metrics 方式能获取 -->
 
 ``` not-set
 TYPE                NAME                                               HELP
-SUMMARY             datakit_http_api_elapsed_seconds                   API request cost
-SUMMARY             datakit_http_api_req_size_bytes                    API request body size
-COUNTER             datakit_http_api_total                             API request counter
 COUNTER             datakit_dns_domain_total                           DNS watched domain counter
 COUNTER             datakit_dns_ip_updated_total                       Domain IP updated counter
 COUNTER             datakit_dns_watch_run_total                        Watch run counter
@@ -41,6 +38,44 @@ GAUGE               datakit_goroutine_alive                            Alive Gor
 COUNTER             datakit_goroutine_stopped_total                    Stopped Goroutines
 GAUGE               datakit_goroutine_groups                           Goroutine group count
 SUMMARY             datakit_goroutine_cost_seconds                     Goroutine running duration
+SUMMARY             datakit_http_api_elapsed_seconds                   API request cost
+SUMMARY             datakit_http_api_req_size_bytes                    API request body size
+COUNTER             datakit_http_api_total                             API request counter
+COUNTER             datakit_httpcli_tcp_conn_total                     HTTP TCP connection count
+COUNTER             datakit_httpcli_conn_reused_from_idle_total        HTTP connection reused from idle count
+SUMMARY             datakit_httpcli_conn_idle_time_seconds             HTTP connection idle time
+SUMMARY             datakit_httpcli_dns_cost_seconds                   HTTP DNS cost
+SUMMARY             datakit_httpcli_tls_handshake_seconds              HTTP TLS handshake cost
+SUMMARY             datakit_httpcli_http_connect_cost_seconds          HTTP connect cost
+SUMMARY             datakit_httpcli_got_first_resp_byte_cost_seconds   Got first response byte cost
+COUNTER             datakit_io_http_retry_total                        Dataway HTTP retried count
+COUNTER             datakit_io_dataway_sink_total                      Dataway Sinked count, partitioned by category.
+COUNTER             datakit_io_dataway_not_sink_point_total            Dataway not-Sinked points(condition or category not match)
+COUNTER             datakit_io_dataway_sink_point_total                Dataway Sinked points, partitioned by category and point send status(ok/failed/dropped)
+SUMMARY             datakit_io_flush_failcache_bytes                   IO flush fail-cache bytes(in gzip) summary
+COUNTER             datakit_io_dataway_point_total                     Dataway uploaded points, partitioned by category and send status(HTTP status)
+COUNTER             datakit_io_dataway_point_bytes_total               Dataway uploaded points bytes, partitioned by category and pint send status(HTTP status)
+SUMMARY             datakit_io_dataway_api_latency_seconds             Dataway HTTP request latency partitioned by HTTP API(method@url) and HTTP status
+GAUGE               datakit_filter_last_update_timestamp_seconds       Filter last update time
+COUNTER             datakit_filter_point_total                         Filter points of filters
+COUNTER             datakit_filter_point_dropped_total                 Dropped points of filters
+SUMMARY             datakit_filter_pull_latency_seconds                Filter pull(remote) latency
+SUMMARY             datakit_filter_latency_seconds                     Filter latency of these filters
+COUNTER             datakit_filter_update_total                        Filters(remote) updated count
+COUNTER             datakit_error_total                                Total errors, only count on error source, not include error message
+COUNTER             datakit_io_feed_point_total                        Input feed point total
+COUNTER             datakit_io_input_filter_point_total                Input filtered point total
+COUNTER             datakit_io_feed_total                              Input feed total
+GAUGE               datakit_io_last_feed_timestamp_seconds             Input last feed time(according to Datakit local time)
+SUMMARY             datakit_input_collect_latency_seconds              Input collect latency
+GAUGE               datakit_io_chan_usage                              IO channel usage(length of the channel)
+GAUGE               datakit_io_chan_capacity                           IO channel capacity
+SUMMARY             datakit_io_feed_cost_seconds                       IO feed waiting(on block mode) seconds
+COUNTER             datakit_io_feed_drop_point_total                   IO feed drop(on non-block mode) points
+GAUGE               datakit_io_flush_workers                           IO flush workers
+COUNTER             datakit_io_flush_total                             IO flush total
+GAUGE               datakit_io_queue_points                            IO module queued(cached) points
+GAUGE               datakit_last_err                                   Datakit errors(when error occurred), these errors come from inputs or any sub modules
 GAUGE               datakit_goroutines                                 Goroutine count within Datakit
 GAUGE               datakit_heap_alloc_bytes                           Datakit memory heap bytes
 GAUGE               datakit_sys_alloc_bytes                            Datakit memory system bytes
@@ -55,39 +90,6 @@ COUNTER             datakit_process_io_count_total                     Datakit p
 COUNTER             datakit_process_io_count_total                     Datakit process IO count
 COUNTER             datakit_process_io_bytes_total                     Datakit process IO bytes count
 COUNTER             datakit_process_io_bytes_total                     Datakit process IO bytes count
-COUNTER             datakit_io_http_conn_reused_from_idle_total        Dataway HTTP connection reused from idle count
-SUMMARY             datakit_io_http_conn_idle_time_seconds             Dataway HTTP connection idle time
-SUMMARY             datakit_io_http_dns_cost_seconds                   Dataway HTTP DNS cost
-SUMMARY             datakit_io_http_tls_handshake_seconds              Dataway TLS handshake cost
-SUMMARY             datakit_io_http_connect_cost_seconds               Dataway HTTP connect cost
-SUMMARY             datakit_io_http_got_first_resp_byte_cost_seconds   Dataway got first response byte cost
-SUMMARY             datakit_io_flush_failcache_bytes                   IO flush fail-cache bytes(in gzip) summary
-COUNTER             datakit_io_dataway_point_total                     Dataway uploaded points, partitioned by category and send status(HTTP status)
-COUNTER             datakit_io_dataway_point_bytes_total               Dataway uploaded points bytes, partitioned by category and pint send status(HTTP status)
-SUMMARY             datakit_io_dataway_api_latency_seconds             Dataway HTTP request latency partitioned by HTTP API(method@url) and HTTP status
-COUNTER             datakit_io_http_retry_total                        Dataway HTTP retried count
-COUNTER             datakit_io_dataway_sink_total                      Dataway Sinked count, partitioned by category.
-COUNTER             datakit_io_dataway_not_sink_point_total            Dataway not-Sinked points(condition or category not match)
-COUNTER             datakit_io_dataway_sink_point_total                Dataway Sinked points, partitioned by category and point send status(ok/failed/dropped)
-COUNTER             datakit_io_http_tcp_conn_total                     Dataway HTTP TCP connection count
-GAUGE               datakit_filter_last_update_timestamp_seconds       Filter last update time
-COUNTER             datakit_filter_point_total                         Filter points of filters
-COUNTER             datakit_filter_point_dropped_total                 Dropped points of filters
-SUMMARY             datakit_filter_pull_latency_seconds                Filter pull(remote) latency
-SUMMARY             datakit_filter_latency_seconds                     Filter latency of these filters
-COUNTER             datakit_filter_update_total                        Filters(remote) updated count
-COUNTER             datakit_io_input_filter_point_total                Input filtered point total
-COUNTER             datakit_io_feed_total                              Input feed total
-GAUGE               datakit_io_last_feed_timestamp_seconds             Input last feed time(according to Datakit local time)
-SUMMARY             datakit_input_collect_latency_seconds              Input collect latency
-GAUGE               datakit_io_chan_usage                              IO channel usage(length of the channel)
-GAUGE               datakit_io_chan_capacity                           IO channel capacity
-GAUGE               datakit_io_flush_workers                           IO flush workers
-COUNTER             datakit_io_flush_total                             IO flush total
-GAUGE               datakit_io_queue_points                            IO module queued(cached) points
-GAUGE               datakit_last_err                                   Datakit errors(when error occurred), these errors come from inputs or any sub modules
-COUNTER             datakit_error_total                                Total errors, only count on error source, not include error message
-COUNTER             datakit_io_feed_point_total                        Input feed point total
 COUNTER             datakit_pipeline_point_total                       Pipeline processed total points
 COUNTER             datakit_pipeline_drop_point_total                  Pipeline total dropped points
 COUNTER             datakit_pipeline_error_point_total                 Pipeline processed total error points
@@ -103,4 +105,7 @@ COUNTER             datakit_kafkamq_consumer_message_total             Kafka con
 COUNTER             datakit_kafkamq_group_election_total               Kafka group election count
 GAUGE               datakit_inputs_instance                            Input instance count
 COUNTER             datakit_inputs_crash_total                         Input crash count
+SUMMARY             datakit_prom_collect_points                        Total number of prom collection points
+SUMMARY             datakit_prom_http_get_bytes                        HTTP get bytes
+SUMMARY             datakit_prom_http_latency_in_second                HTTP latency(in second)
 ```

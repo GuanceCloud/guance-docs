@@ -4,6 +4,43 @@
 
 After deploying data collection (collected through DataKit or Function), sometimes you can't see the corresponding data update on the page of Guance Cloud, and you are tired every time you check it. In order to alleviate this situation, you can adopt the following steps to gradually encircle the problem of "why there is no data".
 
+## Checking input config {#check-input-conf}
+
+[:octicons-tag-24: Version-1.9.0](changelog.md#cl-1.9.0)
+
+We can run Datakit command to test if input configure able to collect data. For input `disk`, we can test like this:
+
+``` shell
+$ datakit debug --input-conf /usr/local/datakit/conf.d/host/disk.conf
+loading /Users/tanbiao/datakit/conf.d/host/disk.conf with 1 inputs...
+running input "disk"(0th)...
+disk,device=/dev/disk3s1s1,fstype=apfs free=167050518528i,inodes_free=1631352720i,inodes_free_mb=1631i,inodes_total=1631702195i,inodes_total_mb=1631i,inodes_used=349475i,inodes_used_mb=0i,inodes_used_percent=0.02141781760611041,total=494384795648i,used=327334277120i,used_percent=66.21042556354438 1685509141064064000
+disk,device=/dev/disk3s6,fstype=apfs free=167050518528i,inodes_free=1631352720i,inodes_free_mb=1631i,inodes_total=1631352732i,inodes_total_mb=1631i,inodes_used=12i,inodes_used_mb=0i,inodes_used_percent=0.0000007355858585707753,total=494384795648i,used=327334277120i,used_percent=66.21042556354438 1685509141064243000
+disk,device=/dev/disk3s2,fstype=apfs free=167050518528i,inodes_free=1631352720i,inodes_free_mb=1631i,inodes_total=1631353840i,inodes_total_mb=1631i,inodes_used=1120i,inodes_used_mb=0i,inodes_used_percent=0.00006865463350366712,total=494384795648i,used=327334277120i,used_percent=66.21042556354438 1685509141064254000
+disk,device=/dev/disk3s4,fstype=apfs free=167050518528i,inodes_free=1631352720i,inodes_free_mb=1631i,inodes_total=1631352837i,inodes_total_mb=1631i,inodes_used=117i,inodes_used_mb=0i,inodes_used_percent=0.000007171961659450622,total=494384795648i,used=327334277120i,used_percent=66.21042556354438 1685509141064260000
+disk,device=/dev/disk1s2,fstype=apfs free=503996416i,inodes_free=4921840i,inodes_free_mb=4i,inodes_total=4921841i,inodes_total_mb=4i,inodes_used=1i,inodes_used_mb=0i,inodes_used_percent=0.00002031760067015574,total=524288000i,used=20291584i,used_percent=3.8703125 1685509141064266000
+disk,device=/dev/disk1s1,fstype=apfs free=503996416i,inodes_free=4921840i,inodes_free_mb=4i,inodes_total=4921873i,inodes_total_mb=4i,inodes_used=33i,inodes_used_mb=0i,inodes_used_percent=0.000670476462923769,total=524288000i,used=20291584i,used_percent=3.8703125 1685509141064271000
+disk,device=/dev/disk1s3,fstype=apfs free=503996416i,inodes_free=4921840i,inodes_free_mb=4i,inodes_total=4921892i,inodes_total_mb=4i,inodes_used=52i,inodes_used_mb=0i,inodes_used_percent=0.0010565042873756677,total=524288000i,used=20291584i,used_percent=3.8703125 1685509141064276000
+disk,device=/dev/disk3s5,fstype=apfs free=167050518528i,inodes_free=1631352720i,inodes_free_mb=1631i,inodes_total=1634318356i,inodes_total_mb=1634i,inodes_used=2965636i,inodes_used_mb=2i,inodes_used_percent=0.18146011694186712,total=494384795648i,used=327334277120i,used_percent=66.21042556354438 1685509141064280000
+disk,device=/dev/disk2s1,fstype=apfs free=3697000448i,inodes_free=36103520i,inodes_free_mb=36i,inodes_total=36103578i,inodes_total_mb=36i,inodes_used=58i,inodes_used_mb=0i,inodes_used_percent=0.00016064889745830732,total=5368664064i,used=1671663616i,used_percent=31.137422570532436 1685509141064285000
+disk,device=/dev/disk3s1,fstype=apfs free=167050518528i,inodes_free=1631352720i,inodes_free_mb=1631i,inodes_total=1631702197i,inodes_total_mb=1631i,inodes_used=349477i,inodes_used_mb=0i,inodes_used_percent=0.0214179401512444,total=494384795648i,used=327334277120i,used_percent=66.21042556354438 1685509141064289000
+# 10 points("M") from disk, cost 1.544792ms | Ctrl+c to exit.
+```
+
+Here Datakit will start input `disk` and print the collected points to terminal. At the buttom, there will show some result about these point:
+
+- Collected points and its category(Here we got 10 points of category `Metric`)
+- Input name, here is `disk`
+- Collect cost, here is *1.544ms*
+
+We can interrupt the test by *Ctrl + c*. We can also change the `interval`(if exist) config to get test result more fequently.
+
+<!-- markdownlint-disable MD046 -->
+???+ attention
+
+    Some inputs that accept HTTP requests(such as DDTrace/RUM), we need to setup a HTTP server(`--http-listen=[IP:Port]`), then use some tools (such as `curl`) to post testing data to Datakit's HTTP server. For detailed info, see help with `datakit help debug`.
+<!-- markdownlint-enable -->
+
 ## Check whether the DataWay connection is normal  {#check-connection}
 
 ```shell
