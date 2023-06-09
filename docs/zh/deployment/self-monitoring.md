@@ -80,21 +80,22 @@ data:
           servers = ["http://guance:123.com@opensearch-cluster-client.middleware:9200"]   ## 修改用户名、密码等
           ......
           
-    tdengine.conf: |-
-        # {"version": "1.4.3", "desc": "do NOT edit this line"}
+    influxdb.conf: |-
+        [[inputs.influxdb]]
+	  url = "http://localhost:8086/debug/vars"
 
-        [[inputs.tdengine]]
-          ## adapter config (Required)
-          adapter_endpoint = "http://taos-tdengine.middleware:6041"        ## 修改TDengine的地址
-          user = "zhuyun"
-          password = "jfdlEGFH2143!"
+	  ## (optional) collect interval, default is 10 seconds
+	  interval = '10s'
 
-          ## add tag (optional)
-           [inputs.tdengine.tags]
-            app="hcs"
-            # some_tag = "some_value"
-            # more_tag = "some_other_value"
-            ......
+	  ## Username and password to send using HTTP Basic Authentication.
+	  # username = ""
+	  # password = ""
+
+	  ## http request & header timeout
+	  timeout = "5s"
+
+	  ## Set true to enable election
+	  election = true
 ```
 
 4）配置datakit采集器本身的日志收集功能
