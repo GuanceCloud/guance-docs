@@ -8,9 +8,9 @@
 ## 功能简介
 
 - 自定义日志数据采集，通过 SDK 接入客户端应用中，针对不同场景采集不同日志数据；
-- 可以自动收集应用端的错误信息（包括网络错误，console 错误，以及 js 错误）上报到观测云；
+- 自动收集应用端的错误信息（包括网络错误，console 错误，以及 js 错误）上报到观测云；
 - 自定义错误等级（`debug`,`critical`,`error`,`info`,`warn`），自定义 Logger 对象，以及自定义 Log 字段；
-- 可以自动收集 [RUM](../real-user-monitoring/web/app-access.md) 相关数据，关联 RUM 业务场景。
+- 自动收集 [RUM](../real-user-monitoring/web/app-access.md) 相关数据，关联 RUM 业务场景。
 
 ## 开始使用
 

@@ -375,7 +375,7 @@ spec:
               fieldPath: spec.nodeName
         - name: ENV_DATAWAY
           value: https://openway.guance.com?token=<your-token>
-        - name: ENV_GLOBAL_TAGS
+        - name: ENV_GLOBAL_HOST_TAGS
           value: host=__datakit_hostname,host_ip=__datakit_ip,cluster_name_k8s=k8s-prod
         - name: ENV_DEFAULT_ENABLED_INPUTS
           value: cpu,disk,diskio,mem,swap,system,hostobject,net,host_processes,kubernetes,container,statsd,ddtrace
