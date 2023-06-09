@@ -240,7 +240,7 @@ Kubernetes 下 DataKit 安装参照文档 <[Kubernetes 应用的 RUM-APM-LOG 联
                       fieldPath: spec.nodeName
                 - name: ENV_DATAWAY
                   value: https://openway.guance.com?token=<you token>
-                - name: ENV_GLOBAL_TAGS
+                - name: ENV_GLOBAL_HOST_TAGS
                   value: host=__datakit_hostname,host_ip=__datakit_ip,cluster_name=k8s-dev
                 - name: ENV_DEFAULT_ENABLED_INPUTS
                   value: cpu,disk,diskio,mem,swap,system,hostobject,net,host_processes,container,statsd,ddtrace

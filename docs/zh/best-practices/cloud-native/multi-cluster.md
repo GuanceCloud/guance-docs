@@ -18,7 +18,7 @@
   value: cluster_name_k8s=k8s-prod
 ```
 
-而针对非选举类的指标采集，比如为 Pod 增加 annotations 的方式进行指标采集，观测云提供了在 `ENV_GLOBAL_HOST_TAGS` 环境变量中增加全局 Tag 的方式。(**注意：**旧版本这个环境变量名称是 ENV_GLOBAL_TAGS。)
+而针对非选举类的指标采集，比如为 Pod 增加 annotations 的方式进行指标采集，观测云提供了在 `ENV_GLOBAL_HOST_TAGS` 环境变量中增加全局 Tag 的方式。
 
 ```yaml
 - name: ENV_GLOBAL_HOST_TAGS
@@ -48,7 +48,7 @@
 
 #### 1.3 增加全局 Tag
 
-- 在 `datakit.yaml` 文件中的 `ENV_GLOBAL_TAGS` 环境变量值，最后增加 `cluster_name_k8s=k8s-test`。
+- 在 `datakit.yaml` 文件中的 `ENV_GLOBAL_HOST_TAGS` 环境变量值，最后增加 `cluster_name_k8s=k8s-test`。
 - 再增加环境变量 `ENV_GLOBAL_ELECTION_TAGS`，这样测试环境的集群就是 k8s-test。
 - 设置环境变量 `ENV_NAMESPACE` 值是 `k8s-test`，这是开启了 DataKit 选举，工作空间 + 这个命名空间只有一个 DataKit 采集 kubernetes API Server 的指标。
 
