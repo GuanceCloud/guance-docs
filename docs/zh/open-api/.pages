@@ -30,3 +30,5 @@ nav:
   - '自建节点': dialing-region
   - 'DQL数据查询': query-data
   - '可用性监测,拨测任务': dialing-task
+  - '异常追踪,频道': channel
+  - '异常追踪,Issue': issue
