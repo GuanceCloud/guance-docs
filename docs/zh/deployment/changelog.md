@@ -2,7 +2,7 @@
 
 ## 1.64.129（2023 年 06 月 08 日）
 
-pubrepo.guance.com/dataflux/1.64.129:launcher-86a793a-1686206775
+pubrepo.guance.com/dataflux/1.64.129:launcher-ad357b8-1686206775
 
 ### 观测云部署版更新
 
