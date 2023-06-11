@@ -51,4 +51,5 @@ tail -f logs
 ```shell
 kubectl delete pods -n middleware <redis_pod_name>
 ```
+3、还有一种可能是，复制粘贴时导致的格式错误，导致系统工作空间的 token 找不到，可以再复制一遍 token，进入 vim 命令行 使用"/" 来查看格式问题。
 

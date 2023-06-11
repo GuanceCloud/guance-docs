@@ -7,10 +7,10 @@
 
 ## 功能简介
 
-- 自定义日志数据采集，通过 SDK 接入客户端应用中，针对不同场景采集不同日志数据。
-- 可以自动收集应用端的错误信息（包括网络错误，console 错误，以及 js 错误）上报到 DataFlux。
-- 自定义错误等级（`debug`,`critical`,`error`,`info`,`warn`）、自定义 Logger 对象及自定义 Log 字段
-- 可以自动收集 [RUM](../real-user-monitoring/miniapp/app-access.md) 相关数据，关联 RUM 业务场景（需要 rum,sdk 更新到最新版本）
+- 自定义日志数据采集，通过 SDK 接入客户端应用中，针对不同场景采集不同日志数据；  
+- 自动收集应用端的错误信息（包括网络错误，console 错误，以及 js 错误）上报到 DataFlux；  
+- 自定义错误等级（`debug`,`critical`,`error`,`info`,`warn`）、自定义 Logger 对象及自定义 Log 字段；  
+- 自动收集 [RUM](../real-user-monitoring/miniapp/app-access.md) 相关数据，关联 RUM 业务场景（需要 rum,sdk 更新到最新版本）。
 
 ## 开始使用
 
@@ -22,7 +22,7 @@
 
 - **支持小程序客户端**：微信，百度，支付宝，头条等大部分小程序端。
 
-### npm 引入
+### NPM 引入
 
 ```javascript
 //#ifndef H5 || APP-PLUS || APP-NVUE || APP-PLUS-NVUE
