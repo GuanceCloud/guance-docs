@@ -2,7 +2,7 @@
 
 ## 1.64.130（2023 年 06 月 12 日）
 
-pubrepo.guance.com/dataflux/1.64.130:launcher-5c4bf88-1686575695
+pubrepo.guance.com/dataflux/1.64.130:launcher-e504618-1686575695
 
 此版本是 fix 版本，主要有如下更新:
 
