@@ -169,6 +169,17 @@ sdk->install(gc)
 | addGlobalContext | dictionary | 否 | 添加 SDK 全局属性，添加规则请查阅[此处](#key-conflict)|
 | setServiceName|设置服务名|否|影响 Log 和 RUM 中 service 字段数据， 默认为 windows 为`df_rum_windows`，linux 为 `df_rum_linux` |
 
+### 启动 json 文件配置
+可以通过 `FTSDKFactory` 配置 `json` 文件启动 SDK 调试日志
+
+```json
+{    
+    "general_config": {
+        "enable_sdk_log": true  // 开启 debug 日志，默认关闭
+    }
+}
+```
+
 ### RUM 配置
 ```cpp
 FTRUMConfig rc;
@@ -481,6 +492,7 @@ sdk->unbindUserData();
 sdk->deinit();
 
 ```
+
 
 ## 常见问题 {#FAQ}
 ### 添加局变量避免冲突字段 {#key-conflict}
