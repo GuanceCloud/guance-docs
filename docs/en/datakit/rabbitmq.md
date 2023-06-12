@@ -172,8 +172,8 @@ For all of the following data collections, a global tag named `host` is appended
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`bindings_count`|Number of bindings for a specific queue|int|count|
-|`consumer_utilization`|Number of consumers|float|percent|
-|`consumers`|The ratio of time that a queue's consumers can take new messages|int|count|
+|`consumer_utilization`|The ratio of time that a queue's consumers can take new messages|float|percent|
+|`consumers`|Number of consumers|int|count|
 |`head_message_timestamp`|Timestamp of the head message of the queue. Shown as millisecond|int|msec|
 |`memory`|Bytes of memory consumed by the Erlang process associated with the queue, including stack, heap and internal structures|int|B|
 |`message_ack_count`|Number of messages in queues delivered to clients and acknowledged|int|count|

@@ -43,10 +43,10 @@
 
 ##### 1.1.3 设置全局标签
 
-在 datakit.yaml 文件中的 ENV_GLOBAL_TAGS 环境变量值最后增加 cluster_name_k8s=k8s-istio，其中  k8s-istio 为您的集群名称，此步骤为集群设置全局 tag。
+在 datakit.yaml 文件中的 ENV_GLOBAL_HOST_TAGS 环境变量值最后增加 cluster_name_k8s=k8s-istio，其中  k8s-istio 为您的集群名称，此步骤为集群设置全局 tag。
 
 ```yaml
-        - name: ENV_GLOBAL_TAGS
+        - name: ENV_GLOBAL_HOST_TAGS
           value: host=__datakit_hostname,host_ip=__datakit_ip,cluster_name_k8s=k8s-istio
 ```
 

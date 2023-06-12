@@ -128,8 +128,8 @@ Use "sealos [command] --help" for more information about a command.
 ### 4、安装集群
 
 ```shell
-sealos run pubrepo.jiagouyun.com/googleimages/kubernetes:v1.24.0 \
-    pubrepo.jiagouyun.com/googleimages/calico:v3.22.1 \
+sealos run pubrepo.guance.com/googleimages/kubernetes:v1.24.0 \
+    pubrepo.guance.com/googleimages/calico:v3.22.1 \
     --masters 192.168.100.101     \
     --nodes 192.168.100.102,192.168.100.103     \
     --passwd [your-ssh-passwd] 

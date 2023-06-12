@@ -35,10 +35,10 @@ Kubernetes 集群中，在使用 DaemonSet 部署的 DataKit 来采集指标、�
 
 ##### 1.1.3 设置全局 Tag
 
-在 datakit.yaml 文件中的 ENV_GLOBAL_TAGS 环境变量值最后增加 cluster_name_k8s=k8s-istio，其中  k8s-istio 为全局 tag。
+在 datakit.yaml 文件中的 ENV_GLOBAL_HOST_TAGS 环境变量值最后增加 cluster_name_k8s=k8s-istio，其中  k8s-istio 为全局 tag。
 
 ```yaml
-        - name: ENV_GLOBAL_TAGS
+        - name: ENV_GLOBAL_HOST_TAGS
           value: host=__datakit_hostname,host_ip=__datakit_ip,cluster_name_k8s=k8s-prod
 ```
 
@@ -242,7 +242,7 @@ spec:
               fieldPath: spec.nodeName
         - name: ENV_DATAWAY
           value: https://openway.guance.com?token=<your-token> # 此处填上 dataway 真实地址
-        - name: ENV_GLOBAL_TAGS
+        - name: ENV_GLOBAL_HOST_TAGS
           value: host=__datakit_hostname,host_ip=__datakit_ip
         - name: ENV_DEFAULT_ENABLED_INPUTS
           value: cpu,disk,diskio,mem,swap,system,hostobject,net,host_processes,container

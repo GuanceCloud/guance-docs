@@ -285,4 +285,4 @@ systemctl restart datakit
 
 ## 进一步阅读
 
-- <[Kafka 可观测最佳实践](../../best-practices/monitoring/kafka)>
+- <[Kafka 可观测最佳实践](../../best-practices/monitoring/kafka.md)>

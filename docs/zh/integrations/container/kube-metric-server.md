@@ -259,11 +259,11 @@ kubectl apply -f metric-server.yaml
   value: https://openway.guance.com?token=<your-token>
 ```
 
-在 `datakit.yaml` 文件中的 `ENV_GLOBAL_TAGS` 环境变量值最后增加 `cluster_name_k8s=k8s-prod` ，其中 k8s-prod 为指标设置的全局 tag，即指标所在的集群名称。
+在 `datakit.yaml` 文件中的 `ENV_GLOBAL_HOST_TAGS` 环境变量值最后增加 `cluster_name_k8s=k8s-prod` ，其中 k8s-prod 为指标设置的全局 tag，即指标所在的集群名称。
 
 ```yaml
 #非选举类的指标采集
-- name: ENV_GLOBAL_TAGS
+- name: ENV_GLOBAL_HOST_TAGS
   value: host=__datakit_hostname,host_ip=__datakit_ip,cluster_name_k8s=k8s-prod
 #选举类的指标采集
 - name: ENV_GLOBAL_ELECTION_TAGS

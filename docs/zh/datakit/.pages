@@ -21,9 +21,10 @@ nav:
     - '故障排查':
       - '无数据排查': why-no-data.md
       - 'Datakit Metrics': datakit-metrics.md
-    - '虚拟互联网接入': 
+    - '虚拟互联网接入':
       - '阿里云接入': aliyun-access.md
       - '华为云接入': huaweicloud-access.md
+      - 'AWS 接入': aws-access.md
 
   - 'DataKit 配置':
     - '主配置': datakit-conf.md
@@ -116,6 +117,7 @@ nav:
         - 'Python': profile-python.md
         - 'Go': profile-go.md
         - 'C/C++': profile-cpp.md
+        - 'NodeJS': profile-nodejs.md
 
       - 'DDTrace':
         - ddtrace.md
@@ -150,6 +152,9 @@ nav:
 
       - 'Jaeger':
         - jaeger.md
+
+      - 'CAT':
+        - cat.md
 
       - 'Pinpoint':
         -  pinpoint.md

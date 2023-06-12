@@ -49,7 +49,7 @@ func init() {
 ```Golang
 import (
 	... // Other existing collectors
-	_ "gitlab.jiagouyun.com/cloudcare-tools/datakit/plugins/inputs/zhangsan"
+	_ "gitlab.jiagouyun.com/cloudcare-tools/datakit/internal/plugins/inputs/zhangsan"
 )
 ```
 
@@ -156,9 +156,9 @@ datakit -M --vvv            # Check the operation of all collectors
     - [llvm](https://apt.llvm.org/){:target="_blank"}: version >= 10.0
     - clang: version >= 10.0
     - linux kernel（>= 5.4.0-99-generic）header file: `apt-get install -y linux-headers-$(uname -r)` 
-    - [cspell](https://cspell.org/){:target="_blank"}
-    - [markdownlint-cli](https://github.com/igorshubovych/markdownlint-cli){:target="_blank"}
-    
+    - [cspell](https://cspell.org/){:target="_blank"}: `npm install -g cspell@6.31.1`
+    - [markdownlint-cli](https://github.com/igorshubovych/markdownlint-cli){:target="_blank"}: `npm install -g markdownlint-cli@0.34.0`
+
     #### Installing third-party libraries
     
     - `gcc-multilib`
@@ -269,7 +269,7 @@ alias ut='REMOTE_HOST=<YOUR-DOCKER-REMOTE-HOST> make ut'
 
 Sometimes we need to configure more for integration testing:
 
-- If we need to exclude some testing on package, we can add `UT_EXCLUDE` in the alias: `UT_EXCLUDE="gitlab.jiagouyun.com/cloudcare-tools/datakit/plugins/inputs/snmp"`
+- If we need to exclude some testing on package, we can add `UT_EXCLUDE` in the alias: `UT_EXCLUDE="gitlab.jiagouyun.com/cloudcare-tools/datakit/internal/plugins/inputs/snmp"`
 
 - We can post the testing result to Guance Cloud, add a dataway and the token: `DATAWAY_URL="https://openway.guance.com/v1/write/logging?token=<YOUR-TOKEN>"`
 

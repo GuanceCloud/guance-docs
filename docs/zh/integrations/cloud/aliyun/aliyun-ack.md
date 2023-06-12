@@ -41,7 +41,7 @@
 
 - 为了避免指标采集重复，DataKit 开启了**选举**功能，这个时候区分集群的方式是增加 `ENV_GLOBAL_ELECTION_TAGS`；
 - 而针对非选举类的指标采集，比如为 Pod 增加 Annotations 的方式进行指标采集，观测云提供了在 `ENV_GLOBAL_HOST_TAGS` 环境变量中增加全局 Tag 的方式。
-> **注意：**旧版本这个环境变量名称是 `ENV_GLOBAL_TAGS`
+
 
 ```yaml
 - name: ENV_GLOBAL_HOST_TAGS
@@ -50,7 +50,7 @@
 
 根据上面的说明，下面修改 yaml 文件。
 
-- 在 `datakit.yaml` 文件中的 `ENV_GLOBAL_TAGS` 环境变量值最后增加 `cluster_name_k8s=aliyun-ack`；
+- 在 `datakit.yaml` 文件中的 `ENV_GLOBAL_HOST_TAGS` 环境变量值最后增加 `cluster_name_k8s=aliyun-ack`；
 - 再增加环境变量 `ENV_GLOBAL_ELECTION_TAGS`，这样测试环境的集群就是 aliyun-ack；
 - 增加环境变量 `ENV_NAMESPACE` 值是 aliyun-ack。
 

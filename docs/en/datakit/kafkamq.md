@@ -60,7 +60,7 @@ Copy configuration files and modify
         ## Required！ ipv6 is "[::1]:9529"
         #dk_endpoint="http://localhost:9529"
     
-        ## Required！ topics 
+        ## Required！ topics
         #topics=["jaeger-spans","jaeger-my-spans"]
     
       ## user custom message with PL script.
