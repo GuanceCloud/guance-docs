@@ -1,5 +1,20 @@
 # 版本历史
 
+## 1.64.130（2023 年 06 月 12 日）
+
+pubrepo.guance.com/dataflux/1.64.130:launcher-5c4bf88-1686575695
+
+此版本是 fix 版本，主要有如下更新:
+
+### 观测云部署版更新
+
+- 修复私有部署版 OIDC 对接的一些 bug。
+- 修复其他一些小 bug。
+
+
+更多详情可参考帮助文档：https://docs.guance.com/release-notes/
+
+
 ## 1.64.129（2023 年 06 月 08 日）
 
 pubrepo.guance.com/dataflux/1.64.129:launcher-ad357b8-1686206775
