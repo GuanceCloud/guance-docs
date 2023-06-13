@@ -1,13 +1,13 @@
 # Invoice Management
 ---
 
-Before using the invoice management of Guance expense center, real-name authentication is required. After authentication, invoice information and sending information can be managed, and invoices for generated monthly bills can be obtained.
+Before using the invoice management of Guance Expense Center, real-name authentication is required. After authentication, invoice information and sending information can be managed, and invoices for generated monthly bills can be obtained.
 
 ![](../img/13.invoice_8.1.png)
 
 ## Real-name Authentication
 
-Before using invoice management of Guance expense center, it is necessary to enter the name of enterprise business license and taxpayer identification number in **Account Management > Real Name Authentication** for enterprise authentication.
+Before using invoice management of Guance Expense Center, it is necessary to enter the name of enterprise business license and taxpayer identification number in **Account Management > Real Name Authentication** for enterprise authentication.
 
 ![](../img/13.invoice_2.png)
 
@@ -17,7 +17,7 @@ Information management includes invoice information and sending information, and
 
 ### Invoice Information Management
 
-In the Guance expense center **Invoice Management > Invoice Information > New Invoice Information**, select the invoice type (including VAT ordinary invoice, VAT special invoice and electronic ordinary invoice), and fill in the tax registration account, bank name, basic account number, registered place address and registered fixed telephone to create new invoice information.
+In the Guance Expense Center **Invoice Management > Invoice Information > New Invoice Information**, select the invoice type (including VAT ordinary invoice, VAT special invoice and electronic ordinary invoice), and fill in the tax registration account, bank name, basic account number, registered place address and registered fixed telephone to create new invoice information.
 
 ![](../img/13.invoice_3.png)
 

@@ -1,11 +1,11 @@
 # AWS Account Settlement
 ---
 
-AWS(Amazon Web Services) account refers to recharge settlement directly through AWS account, and one AWS account supports expense settlement associated with multiple workspaces and workspaces of multiple sites. This article will introduce how to open AWS account settlement in Guance Commercial Plan. See [register commercial plan](../../billing/commercial-register.md) for more information on opening methods.
+AWS(Amazon Web Services) account refers to recharge settlement directly through AWS account, and one AWS account supports expense settlement associated with multiple workspaces and workspaces of multiple sites. This article will introduce how to open AWS account settlement in Guance Commercial Plan. See [register Commercial Plan](../../billing/commercial-register.md) for more information on opening methods.
 
 ## Subscribe to Guance in Amazon Cloud Market {#subscribe}
 
-When registering or upgrading to Guance commercial plan, you can click **Subscribe in Amazon Web Services** to subscribe to Guance products in AWS Marketplace.
+When registering or upgrading to Guance Commercial Plan, you can click **Subscribe in Amazon Web Services** to subscribe to Guance products in AWS Marketplace.
 
 ![](../img/15.aws_register_4.png)
 
@@ -41,13 +41,13 @@ Enter the workspace name, select the workspace language, and click **Confirm**.
 
 ![](../img/15.aws_register_7.png)
 
-Prompt to successfully open the commercial plan of Guance.
+Prompt to successfully open the Commercial Plan of Guance.
 
 ![](../img/15.aws_register_8.png)
 
 ### Step 2: Bind Workspace in Expense Center
 
-After opening the commercial plan, switch back to the account login page of the Guance Expense Center in the current browser and enter the registered user name, account and password, then you complete the settlement of opening AWS account.
+After opening the Commercial Plan, switch back to the account login page of the Guance Expense Center in the current browser and enter the registered user name, account and password, then you complete the settlement of opening AWS account.
 
 ![](../img/15.aws_register_5.png)
 
@@ -121,7 +121,7 @@ After unsubscribing successfully, Guance service was cancelled in Amazon Cloud M
 
 ![](../img/8.space_17.png)
 
-> After you unsubscribe to the Guance service in AWS, all binding workspaces settled by this account in Guance expense center will delete the associated cloud account and lock all associated workspaces. You can unlock the workspace in **Expense Center > Workspace Management**. For more details, please refer to [lock workspace](../cost-center/workspace-management.md#lock).
+> After you unsubscribe to the Guance service in AWS, all binding workspaces settled by this account in Guance Expense Center will delete the associated cloud account and lock all associated workspaces. You can unlock the workspace in **Expense Center > Workspace Management**. For more details, please refer to [lock workspace](../cost-center/workspace-management.md#lock).
 
 
 

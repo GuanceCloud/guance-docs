@@ -6,7 +6,7 @@ Guance provides a variety of packages to help enterprises comprehensively observ
 <a name="SFSA6"></a>
 ## 1.Upgrade to Commercial Plan
 
-After upgrading the Guance workspace to the commercial plan, click "Enter the Expense Center" in the upper right corner to enter the Guance [Expense Center](https://boss.guance.com). Refer to the doc [billing](../../../../billing/index.md) 。<br />![](../../../img/11.account_center_10.png)
+After upgrading the Guance workspace to the Commercial Plan, click "Enter the Expense Center" in the upper right corner to enter the Guance [Expense Center](https://boss.guance.com). Refer to the doc [billing](../../../../billing/index.md) 。<br />![](../../../img/11.account_center_10.png)
 <a name="tr5vY"></a>
 ## 2.Buy a Package
 

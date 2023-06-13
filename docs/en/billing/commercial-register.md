@@ -16,7 +16,7 @@ Guance provides multiple registration sites, and you can select corresponding si
 ???+ attention
 
     - The accounts and data of different sites are independent of each other, so it is impossible to share and migrate data with each other. Please choose carefully.
-    - When registering the commercial plan, the corresponding default settlement method will be set according to the site you choose, which can be modified as needed later.<br/>
+    - When registering the Commercial Plan, the corresponding default settlement method will be set according to the site you choose, which can be modified as needed later.<br/>
     > Refer to the doc [<expense settlement method>](../billing/billing-account/index.md).
 
 | Site    | Login Address URL    |  Operator |Default Settlement Method           |
@@ -28,17 +28,17 @@ Guance provides multiple registration sites, and you can select corresponding si
 
 ### User Name
 
-When registering [Guance studio account](https://auth.guance.com/businessRegister) on this page, you will be registered with [Guance expense center account](https://boss.guance.com/) with **the same user name**, and the user name account of the expense center will be checked for uniqueness, which cannot be modified once registered.
+When registering [Guance studio account](https://auth.guance.com/businessRegister) on this page, you will be registered with [Guance Expense Center account](https://boss.guance.com/) with **the same user name**, and the user name account of the Expense Center will be checked for uniqueness, which cannot be modified once registered.
 
-> Refer to the doc [<expense center>](../billing/cost-center/index.md).
+> Refer to the doc [<Expense Center>](../billing/cost-center/index.md).
 
 #### Bind Expense Center User Name Account
 
-When registering on this page, you can directly bind the user name account of the expense center. After entering the user name, select **Do you still want to register with this user name?**.
+When registering on this page, you can directly bind the user name account of the Expense Center. After entering the user name, select **Do you still want to register with this user name?**.
 
 ![](img/9.billing_account_1.png)
 
-Enter the user name, account number and password of the expense center.
+Enter the user name, account number and password of the Expense Center.
 
 ![](img/9.billing_account_2.png)
 
@@ -77,9 +77,9 @@ You can **Select Opening Method**, fill in **Workspace Name**, select **Workspac
     For Alibaba Cloud users, you can also directly open Guance for use in the following ways.
     
     - You can purchase Guance directly from [Guance in Alibaba Cloud market](https://market.aliyun.com/products/56838014/cmgj00053362.html), and open Guance directly through login-free registration.<br/>
-    > For more details, please refer to the document [<open Guance commercial plan in Alibaba Cloud Market>](commercial-aliyun.md)
+    > For more details, please refer to the document [<open Guance Commercial Plan in Alibaba Cloud Market>](commercial-aliyun.md)
     - If you are an Alibaba Cloud SLS user and need to use SLS storage in Guance, you can purchase [Guance exclusive plan directly at Alibaba Cloud market](https://market.aliyun.com/products/56838014/cmgj00060481.html), and open Guance exclusive plan directly through login-free registration. <br/>
-    > For more detailed steps, please refer to the documentation [<open Guance exclusive at Alibaba Cloud market>](commercial-aliyun-sls.md) and [<difference between Guance commercial plan and Guance exclusive plan>](../billing/faq.md#_5).
+    > For more detailed steps, please refer to the documentation [<open Guance exclusive at Alibaba Cloud market>](commercial-aliyun-sls.md) and [<difference between Guance Commercial Plan and Guance exclusive plan>](../billing/faq.md#_5).
 
 ![](img/4.register_language_1.png)
 
@@ -135,7 +135,7 @@ After logging in to the workspace, you can view the version information of the c
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Introduction of Billing module in commercial plan</font>](../billing/commercial.md#_4)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Introduction of Billing module in Commercial Plan</font>](../billing/commercial.md#_4)
 
 <br/>
 

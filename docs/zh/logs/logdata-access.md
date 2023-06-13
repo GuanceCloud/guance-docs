@@ -88,7 +88,7 @@
 
 === "删除"
 
-    点击规则右侧 :fontawesome-regular-trash-can: 图标，点击**确认**，即可删除该条规则。
+    点击规则右侧 :fontawesome-regular-trash-can: 图标，点击**确认**，即可删除该条规则：
   
     ![](img/logdata_3.png)
 

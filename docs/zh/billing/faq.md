@@ -9,11 +9,11 @@
 
 ## AWS 用户如何开通观测云？
 
-AWS 用户可以通过选择“中国区2（宁夏）”、“海外区1（俄勒冈）”站点来 [注册观测云](../billing/commercial-register.md) ，注册以后您可以用 AWS 中国区账号进行结算。
+AWS 用户可以通过选择“中国区2（宁夏）”、“海外区1（俄勒冈）”站点来 [注册观测云](../billing/commercial-register.md) ，注册以后您可以[用 AWS 中国区账号进行结算](./billing-account/aws-account.md)。
 
 ## 华为云用户如何开通观测云？
 
-华为云用户可以通过选择“中国区4（广州）”站点来 [注册观测云](../billing/commercial-register.md) 。您可以在 [华为云市场购买储值卡](../billing/billing-account/huaweicloud-account.md) ，并在观测云费用中心绑定华为云储值卡来使用观测云。
+华为云用户可以通过选择“中国区4（广州）”站点来 [注册观测云](../billing/commercial-register.md)。注册以后您可以[用华为云云账号进行结算](./billing-account/huawei-account.md)。
 
 ## 若在开通观测云时流程中断，该如何操作？
 
@@ -25,13 +25,16 @@ AWS 用户可以通过选择“中国区2（宁夏）”、“海外区1（俄�
 
 不能相互切换。观测云商业版采用默认的 ES 存储方式，观测云专属版采用 SLS 存储方式，更多详情可参考文档 [数据存储方式](../billing/billing-method/data-storage.md#options) 。
 
-> 注意：仅支持通过在阿里云云市场购买观测云专属版来开通 SLS 存储，已开通默认存储的观测云工作空间不支持切换成 SLS 存储。更多详情可看参考文档  [阿里云市场购买观测云专属版商品](../billing/commercial-aliyun-sls.md) 。
+<font color=coral>**注意：**</font>仅支持通过在阿里云云市场购买观测云专属版来开通 SLS 存储，已开通默认存储的观测云工作空间不支持切换成 SLS 存储。
+
+> 更多详情可看参考文档 [阿里云市场购买观测云专属版商品](../billing/commercial-aliyun-sls.md)。
 
 ## 观测云企业账号结算和云账号结算有什么区别？
 
-- [观测云企业账号结算](../billing/billing-account/enterprise-account.md)：直接在观测云费用中心进行充值结算，您可以通过现金充值、购买代金券、储值卡来为观测云企业账号充值，或者您可以购买 [华为云储值卡](../billing/billing-account/huaweicloud-account.md) 为观测云企业账号进行充值结算；
+- [观测云企业账号结算](../billing/billing-account/enterprise-account.md)：直接在观测云费用中心进行充值结算，您可以通过现金充值、购买代金券、储值卡来为观测云企业账号充值；
 - [阿里云账号结算](../billing/billing-account/aliyun-account.md)：直接通过阿里云账号进行充值结算；
-- [AWS账号结算](../billing/billing-account/aws-account.md)：直接通过AWS账号进行充值结算。
+- [AWS 账号结算](../billing/billing-account/aws-account.md)：直接通过 AWS 账号进行充值结算；
+- [华为云账号结算](../billing/billing-account/huawei-account.md)：直接通过华为云账号进行充值结算。
 
 ## 如何更换结算方式？
 
@@ -45,35 +48,44 @@ AWS 用户可以通过选择“中国区2（宁夏）”、“海外区1（俄�
 
 任意账号结算是指您在观测云费用中心**更改结算方式**时，可以不受注册站点限制，任意选择云账号进行结算。如您在“中国区1（杭州）“站点注册的账号，默认开通的是**阿里云账号结算**，但是若开通了任意账号结算，您可以选择“亚马逊云账号结算”。
 
-> 注意：开通任意账号结算需要联系客户经理。
+<font color=coral>**注意：**</font>开通任意账号结算需要联系客户经理。
 
 ![](img/9.upgrade_7.png)
 
 ## 观测云如何收费？
 
-观测云支持免费开始，按需购买，按量付费的计费方式，为您提供开箱即用，实现全面观测的云平台。您可以通过文档 [计费方式](../billing/billing-method/index.md) 查看观测云如何收费。
+观测云支持免费开始，按需购买，按量付费的计费方式，为您提供开箱即用，实现全面观测的云平台。
+
+> 您可以通过文档 [计费方式](../billing/billing-method/index.md) 查看观测云如何收费。
 
 ## 如何充值？
 
 观测云支持企业账号结算和云账号结算。
 
-- 若您使用观测云企业账号结算，您可以通过现金充值、购买代金券、储值卡来为观测云企业账号充值，更多可参考文档 [账户钱包](../billing/cost-center/account-wallet/index.md) ；
+- 若您使用观测云企业账号结算，您可以通过现金充值、购买代金券、储值卡来为观测云企业账号充值；
+ 
+    > 更多可参考文档 [账户钱包](../billing/cost-center/account-wallet/index.md)。  
 - 若您使用云账号结算，您可以直接在云账号进行充值。
 
 ## 如何申请发票？
 
-- 观测云费用中心企业账号结算的用户可在**费用中心**-**发票管理**进行发票申请。更多详情可参考文档 [发票管理](../billing/cost-center/invoice-management.md) 。
-- 阿里云账号结算的用户可在阿里云进行发票申请
-- AWS账号结算的用户可在AWS 中国进行发票申请
+- 观测云费用中心企业账号结算的用户可在**费用中心 > 发票管理**进行发票申请。
+
+    > 更多详情可参考文档 [发票管理](../billing/cost-center/invoice-management.md)。
+- 阿里云账号结算的用户可在阿里云进行发票申请；  
+- AWS 账号结算的用户可在 AWS 中国进行发票申请；   
+- 华为云账号结算的用户可在华为云进行发票申请。 
 
 ## 如何查看账单明细？
 
-观测云费用中心提供账单管理，包括月账单、消费明细、收支明细、代金券明细和储值卡明细管理。更多详情可参考文档 [账单管理](../billing/cost-center/billing-management.md) 。
+观测云费用中心提供账单管理，包括月账单、消费明细、收支明细、代金券明细和储值卡明细管理。
+
+> 更多详情可参考文档 [账单管理](../billing/cost-center/billing-management.md)。
 
 ## 工作空间为何会被锁定？
 
 - 若您选择阿里云账号结算，一旦释放或者过期或者删除，将自动将原来相关结算的工作空间进行锁定。观测云会进行相关邮件通知；
-- 若您选择AWS账号结算，一旦取消订阅 AWS 商品，将自动将原来相关结算的工作空间进行锁定。观测云会进行相关邮件通知。
+- 若您选择 AWS 账号结算，一旦取消订阅 AWS 商品，将自动将原来相关结算的工作空间进行锁定。观测云会进行相关邮件通知。
 
 ## 工作空间被锁定后如何恢复？
 
@@ -83,4 +95,4 @@ AWS 用户可以通过选择“中国区2（宁夏）”、“海外区1（俄�
 
 ## 若以上常见问题无法解决，如何获得在线支持？
 
-观测云提供在线工单支持，更多详情可参考文档 [支持中心](../billing/cost-center/support-center.md) 。
+观测云提供在线工单[支持](../billing/cost-center/support-center.md)。
