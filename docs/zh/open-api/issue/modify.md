@@ -21,9 +21,9 @@
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
 | name | string |  | 标题名称<br>例子: name <br>允许为空: False <br>$maxCustomLength: 256 <br> |
-| level | integer |  | 等级<br>例子: level <br>允许为空: False <br> |
+| level | integer |  | 等级<br>例子: level <br>允许为空: False <br>可选值: [0, 1, 2] <br> |
 | description | string |  | 描述<br>例子: description <br>允许为空: False <br> |
-| statusType | integer |  | issue的状态<br>例子: statusType <br>允许为空: False <br> |
+| statusType | integer |  | issue的状态<br>例子: statusType <br>允许为空: False <br>可选值: [10, 20, 30] <br> |
 | extend | json |  | 额外拓展信息<br>例子: {} <br>允许为空: True <br> |
 | attachmentUuids | array |  | 附件上传列表uuid<br>例子: [] <br>允许为空: True <br> |
 
