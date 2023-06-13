@@ -1,7 +1,7 @@
 # Access to Exclusive Plan in Alibaba Cloud Market
 ---
 
-This article will introduce how to use the exclusiven plan of Guance after purchasing it in Alibaba Cloud Market. Refer to the doc [register commercial plan](../billing/commercial-register.md).
+This article will introduce how to use the exclusiven plan of Guance after purchasing it in Alibaba Cloud Market. Refer to the doc [register Commercial Plan](../billing/commercial-register.md).
 
 ## Perchase Guance Exclusive Plan
 
@@ -52,7 +52,7 @@ On the basic information page, select the site, enter the registration informati
 ???+ attention
 
     - The joint solution of Guance and SLS only supports China-Hangzhou and China-Zhangjiakou sites, and cannot be changed once the SLS data storage scheme is selected;
-    - The entered user name is also used to register the account of the Guance expense center. The user name account of the expense center will check its uniqueness and cannot be modified once registered;
+    - The entered user name is also used to register the account of the Guance Expense Center. The user name account of the Expense Center will check its uniqueness and cannot be modified once registered;
 
 ![](img/7.aliyun_sls_3.png)
 
@@ -155,7 +155,7 @@ If you have not created a workspace, you can click **Create Workspace**, enter t
 If the Guance account is not registered, you can click Register Guance Account, enter relevant information, and register through mobile phone number verification.
 
 > - Workspace language options affect templates for events, alarms and text messages in the workspace. If you select English, the above corresponding template will be used by default. Once created, the template language of this workspace cannot be modified, so please choose carefully.
-> - User name: used to register [Guance studio account](https://auth.guance.com/businessRegister), and will automatically register [Guance expense center account](https://boss.guance.com/) with the same user name for you, thus carrying out the subsequent expense settlement process. The user name account of the expense center will check its uniqueness and cannot be modified once registered; it is supported to bind the user name and account of the expense center. After the binding is completed, the user name cannot be modified. Please operate carefully.
+> - User name: used to register [Guance studio account](https://auth.guance.com/businessRegister), and will automatically register [Guance Expense Center account](https://boss.guance.com/) with the same user name for you, thus carrying out the subsequent expense settlement process. The user name account of the Expense Center will check its uniqueness and cannot be modified once registered; it is supported to bind the user name and account of the Expense Center. After the binding is completed, the user name cannot be modified. Please operate carefully.
 
 ![](img/4.register_language_10.png)
 
@@ -177,13 +177,13 @@ Guance enables you to view other sls data under Alibaba Cloud account synchronou
 
 You can open the Guance Exclusive Plan according to this document. The Guance Exclusive Plan only supports SLS storage mode. For more storage modes, please refer to the doc [data storage policy](../billing/billing-method/data-storage.md#options).
 
-**2.If the workspace that has used the commercial plan of Guance has been opened, can the exclusive plan of Guance be opened again?**
+**2.If the workspace that has used the Commercial Plan of Guance has been opened, can the exclusive plan of Guance be opened again?**
 
 Yes, open the exclusive product entrance of **Alibaba Cloud Market > Guance**, and build a new SLS workspace.
 
-**3.If the workspace of the commercial plan of Guance has been opened, can it be switched to the exclusive plan of Guance?**
+**3.If the workspace of the Commercial Plan of Guance has been opened, can it be switched to the exclusive plan of Guance?**
 
-No, the biggest difference between commercial plan and SLS exclusive plan lies in the location of data storage at the back end. Once the workspace is opened, the index storage ownership cannot be changed. Therefore, no matter what settlement method is the successful commercial plan opened before, it cannot be converted into the exclusive plan workspace of SLS.
+No, the biggest difference between Commercial Plan and SLS exclusive plan lies in the location of data storage at the back end. Once the workspace is opened, the index storage ownership cannot be changed. Therefore, no matter what settlement method is the successful Commercial Plan opened before, it cannot be converted into the exclusive plan workspace of SLS.
 
 **4.Can the free workspace created when registering be upgraded to the exclusive plan of Guance?**
 
@@ -238,7 +238,7 @@ SLS log data obtained through index binding, the cost is still charged according
 
 If you want to perform data processing, delivery and streaming reading operations from external network access points, the log service charges processing calculation fees, data delivery fees and external network reading traffic fees. For details, please refer to the doc [billing items](https://help.aliyun.com/document_detail/107745.htm?spm=a2c4g.11186623.0.0.1d086860NWfUQP#concept-xzl-hjg-vgb).
 
-**3.If the stored-value card in the expense center can be used for bill payment of the exclusive plan of Guance? How to pay for the exclusive plan of Guance?**
+**3.If the stored-value card in the Expense Center can be used for bill payment of the exclusive plan of Guance? How to pay for the exclusive plan of Guance?**
 
 Yes, the prerequisite for the exclusive plan of Guance is to use Alibaba Cloud account for settlement. For cloud account settlement, the deduction order of Guance pay-by-volume bills is: ordinary vouchers, full reduction vouchers, stored-value cards and cash balance of cloud accounts. SMS and dial-up consumption can only be paid by using stored-value cards and cash balances of cloud accounts.
 

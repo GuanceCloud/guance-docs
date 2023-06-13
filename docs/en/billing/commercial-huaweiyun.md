@@ -1,9 +1,9 @@
 # Access to Guance Commercial Plan in Huawei Cloud
 ---
 
-This article will introduce <u>the access to the Guance commercial plan  and use Huawei cloud account to settle expenses</u> after subscribing to Guance service in Huawei Cloud KooGallery.
+This article will introduce <u>the access to the Guance Commercial Plan  and use Huawei cloud account to settle expenses</u> after subscribing to Guance service in Huawei Cloud KooGallery.
 
-> If you want to register commercial plan directly, see [Register Conmmercial Plan](commercial-register.md).
+> If you want to register Commercial Plan directly, see [Register Conmmercial Plan](commercial-register.md).
 
 ## Step 1: [Purchase Cloud Service in KooGallery](./billing-account/huawei-account.md#market)
 

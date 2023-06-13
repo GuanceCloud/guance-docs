@@ -8,7 +8,7 @@ Guance Expense Center account is a separate account dedicated to managing the bi
 
 ## Information Changes
 
-If the enterprise personnel change, it is necessary to update the account information in the Guance expense center. You can change the enterprise name, industry, region, enterprise introduction, contact name, email address and telephone number in the Guance expense center **Account Management > Information**, where the email address and telephone number are the login accounts of the expense center, which need to be verified when changing the binding.
+If the enterprise personnel change, it is necessary to update the account information in the Guance Expense Center. You can change the enterprise name, industry, region, enterprise introduction, contact name, email address and telephone number in the Guance Expense Center **Account Management > Information**, where the email address and telephone number are the login accounts of the Expense Center, which need to be verified when changing the binding.
 
 ### Change Mailbox
 
@@ -38,20 +38,20 @@ Enter the mobile phone number to be updated, then obtain and enter the verificat
 
 ### Log in to Expense Center
 
-After changing the new email address or mobile phone number, you can use the new email address or mobile phone number to log in directly to the [expense center](https://boss.guance.com/#/signin).
+After changing the new email address or mobile phone number, you can use the new email address or mobile phone number to log in directly to the [Expense Center](https://boss.guance.com/#/signin).
 
 ![](../img/7.account_6.png)
 
 
 ## Secure Password Modification
 
-If you set a password when registering an account in the expense center, you can modify the password in **Account Management > Security**.
+If you set a password when registering an account in the Expense Center, you can modify the password in **Account Management > Security**.
 
 ![](../img/7.account_7.png)
 
 ## Real-name Authentication
 
-If you want to issue invoices in the expense center, you need to authenticate in **Account Management > Real Name Authentication** before you can ask for invoices in **Invoice Management**.
+If you want to issue invoices in the Expense Center, you need to authenticate in **Account Management > Real Name Authentication** before you can ask for invoices in **Invoice Management**.
 
 ![](../img/7.account_8.png)
 

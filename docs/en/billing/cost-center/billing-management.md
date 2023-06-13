@@ -1,7 +1,7 @@
 # Bill Management
 ---
 
-The bill management of Guance expense center, including monthly bill, consumption details, income and expenditure details, voucher details and stored-value card details management.
+The bill management of Guance Expense Center, including monthly bill, consumption details, income and expenditure details, voucher details and stored-value card details management.
 
 ![](../img/10.price_7.png)
 

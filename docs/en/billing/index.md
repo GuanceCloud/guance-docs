@@ -6,15 +6,15 @@ icon: zy/billing
 
 ## Plan Instructions
 
-There are three plans of Guance: experience plan, commercial plan and private cloud deployment plan.
+There are three plans of Guance: experience plan, Commercial Plan and private cloud deployment plan.
 
-- The experience plan and commercial plan provided by the public cloud all adopt the billing method of **pay-per-use**, and there is no difference in core functions.
+- The experience plan and Commercial Plan provided by the public cloud all adopt the billing method of **pay-per-use**, and there is no difference in core functions.
 
-    [Experience plan of the available data size](trail.md#trail-vs-commercial)is limited, **commercial plan of users support access to a larger amount of data, and more flexible data storage time**.
+    [Experience plan of the available data size](trail.md#trail-vs-commercial)is limited, **Commercial Plan of users support access to a larger amount of data, and more flexible data storage time**.
 
-- Private cloud deployment plan, community plan (i.e. experience plan) and commercial plan are also provided.
+- Private cloud deployment plan, community plan (i.e. experience plan) and Commercial Plan are also provided.
 
-    Commercial plan can flexibly choose **pay-per-use, subscription system, license system** and other billing methods.
+    Commercial Plan can flexibly choose **pay-per-use, subscription system, license system** and other billing methods.
 
 ???+ tip "How the current workspace version is viewed"
 
@@ -23,7 +23,7 @@ There are three plans of Guance: experience plan, commercial plan and private cl
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Public cloud commercial plan doc</font>](commercial.md)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Public cloud Commercial Plan doc</font>](commercial.md)
 
 - [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Public cloud experience plan doc</font>](trail.md)
 
@@ -33,16 +33,16 @@ There are three plans of Guance: experience plan, commercial plan and private cl
 
 ## Expense Center
 
-At present, there are two sets of account systems that operate independently and have related statistical data, which jointly realize the usage billing and expense settlement process for **commercial plan users**:
+At present, there are two sets of account systems that operate independently and have related statistical data, which jointly realize the usage billing and expense settlement process for **Commercial Plan users**:
 
-- [Guance studio](https://console.guance.com/) account, which can count the data volume, access scale and bill details of the current workspace and synchronize to the designated expense center account.
-- [Guance expense center](https://boss.guance.com/) account, which can be bound through `workspace ID` **to realize unified expense management at workspace level** and provide a variety of expense settlement methods for you to choose from.
+- [Guance studio](https://console.guance.com/) account, which can count the data volume, access scale and bill details of the current workspace and synchronize to the designated Expense Center account.
+- [Guance Expense Center](https://boss.guance.com/) account, which can be bound through `workspace ID` **to realize unified expense management at workspace level** and provide a variety of expense settlement methods for you to choose from.
 
 ![](img/billing-index-1.png)
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Expense center doc</font>](./cost-center/index.md)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Expense Center doc</font>](./cost-center/index.md)
 
 <br/>
 
@@ -50,7 +50,7 @@ At present, there are two sets of account systems that operate independently and
 
 ## Usage Billing Method
 
-The commercial plan users of the Guance workspace adopt the billing method of **pay-per-use**, and comprehensively calculate the current cost situation through different latitudes such as billing cycle, billing item, billing price and billing mode.
+The Commercial Plan users of the Guance workspace adopt the billing method of **pay-per-use**, and comprehensively calculate the current cost situation through different latitudes such as billing cycle, billing item, billing price and billing mode.
 
 The owner and administrator of the workspace can view the data access of the workspace and the corresponding bill details in the **Guance Studio > Billing** module; For other member roles, the **Billing** module is temporarily closed.
 
@@ -64,7 +64,7 @@ The owner and administrator of the workspace can view the data access of the wor
 
 ## Expense Settlement Method
 
-After calculating the bill details of the current workspace, Guance studio will push them to the bound Guance expense center account for subsequent expense settlement process.
+After calculating the bill details of the current workspace, Guance studio will push them to the bound Guance Expense Center account for subsequent expense settlement process.
 
 At present, it supports various settlement methods such as observing cloud enterprise accounts and cloud accounts. Cloud account settlement includes Alibaba Cloud account and AWS account settlement. In the cloud account settlement mode, it supports the merger of cloud bills from multiple sites into one cloud account for settlement.
 
