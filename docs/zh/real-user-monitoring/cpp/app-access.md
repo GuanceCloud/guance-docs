@@ -22,77 +22,28 @@
 
 **Demo 地址**：[https://github.com/GuanceCloud/datakit-cpp/ft-sdk-sample](https://github.com/GuanceCloud/datakit-cpp/blob/develop/src/datakit-sdk-cpp/ft-sdk-sample/ft-sdk-sample.cpp)
 
+
 === "Windows"
 	
-	* vcpkg 安装
-	
 	```bash
+	
 	git clone https://github.com/microsoft/vcpkg
 	cd vcpkg
+	
+	#下载自定义配置 registries 文件
+	curl https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/ft-sdk-package/vcpkg_config/vcpkg-configuration.json 
+	
 	bootstrap-vcpkg.bat
-	vcpkg install spdlog:x64-windows
-	vcpkg install nlohmann-json:x64-windows
-	vcpkg install restclient-cpp:x64-windows
-	vcpkg install stduuid[gsl-span]:x64-windows
-	vcpkg install sqlitecpp:x64-windows
-	vcpkg install gtest:x64-windows
+	vcpkg install datakit-cpp-sdk:x64-windows
 	vcpkg integrate install
 	```
 	
-	* Visual Studio 选择`ft-sdk`项目进行生成，先生成 **动态库**，再生成 **静态库**（直接生成静态库会因为动态库确实报错），生成后检查 `datakit_sdk_redist`
-	* 打包输出目录
-	
-	```
-	├─<root dir>
-	│	├─datakit_sdk_redist // 生成目录
-	│	├─src
-	│	├─ ...
-	``` 
-
-	* 拷贝或解压`datakit_sdk_redist`到本地安装目录。目录结构如下：
-
-	```
-	├─datakit_sdk_redist
-	│  ├─include
-	│  │      datakit_exports.h
-	│  │      Datakit_UUID.h
-	│  │      FTSDK.h
-	│  │      FTSDKConfig.h
-	│  │      FTSDKDataContracts.h
-	│  │      FTSDKFactory.h
-	│  │
-	│  └─lib
-	│      └─win64
-	│              fmt.dll
-	│              ft-sdkd.dll          //动态库
-	│              ft-sdkd.lib
-	│              ft-sdkd_static.lib	  // 静态库
-	│              libcurl.dll
-	│              sqlite3.dll
-	│              zlib1.dll
-	
-	```
-	
-	* 打开引用项目的工程属性，添加头文件路径。（以下的 datakit_sdk_redist 目录需替换成本地实际安装路径）
-	![](../img/rum_cpp_1.png)
-	
-	* 添加库文件路径
-	![](../img/rum_cpp_2.png)
-	
-	* 添加库文件引用
-	![](../img/rum_cpp_3.png)
-	
-	* 设置c++标准
-	![](../img/rum_cpp_4.png)
-	
-	* 设置动态库自动拷贝
-	![](../img/rum_cpp_5.png)
+	如果你是使用 `Visual Studio` 进行开发，可以直接使用进行项目中进行引用
 
 === "Linux"
 	
-	* vcpkg 安装
-	
 	```bash
+	
 	git clone https://github.com/microsoft/vcpkg
 	
 	#apt install ninja-build
@@ -100,57 +51,50 @@
 	
 	./vcpkg/bootstrap-vcpkg.sh
 	cd vcpkg
+	
+	#下载自定义配置 registries 文件
+	curl https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/ft-sdk-package/vcpkg_config/vcpkg-configuration.json 
+	
 	# 如果是 arm 64 需要添加 VCPKG_FORCE_SYSTEM_BINARIES
 	#export VCPKG_FORCE_SYSTEM_BINARIES=1
-	./vcpkg install spdlog
-	./vcpkg install nlohmann-json
-	./vcpkg install restclient-cpp
-	./vcpkg install stduuid[gsl-span]
-	./vcpkg install sqlitecpp
-	./vcpkg install gtest
-	export VCPKG_ROOT= [ your_vcpkg_dir ]
+	
+	./vcpkg install datakit-cpp-sdk:x64
+	
+	# 在编译环境中，引用 VCPKG_ROOT 变量
+	export VCPKG_ROOT= [ your_vcpkg_root_dir ]
 	
 	```
-	
-	* 创建生成目录：mkdir build;cd build
-	* 生成 Makefile：cmake ..
-	* 编译打包：make install
-	* 打包输出目录
-	
-	```
-	├─<root dir>
-	│	├─datakit_sdk_redist // 生成目录
-	│	├─src
-	│	├─ ...
-	``` 
-	
-	* 拷贝或解压`datakit_sdk_redist`到本地目录，目录结构如下：
-	
-	```
-	./datakit_sdk_redist/
-	├── include
-	│   ├── datakit_exports.h
-	│   ├── Datakit_UUID.h
-	│   ├── FTSDKConfig.h
-	│   ├── FTSDKDataContracts.h
-	│   ├── FTSDKFactory.h
-	│   └── FTSDK.h
-	├── install.sh
-	└── lib
-	    └── x86_64
-	        ├── libft-sdk.a
-	      	     └── libft-sdk.so
-	```
-	
-	* sudo chmod 777 datakit_sdk_redist/install.sh
-	* cd datakit_sdk_redist
-	* ./install.sh
+		
+## 引用头
+```cpp
+#include "datakit-sdk-cpp/FTSDKFactory.h"
+```	
 
 ## 初始化
 ```cpp
-auto sdk = FTSDKFactory::get("ft_sdk_config.json");
+auto sdk = FTSDKFactory::get();
 sdk->init();
 
+```
+
+| **字段** | **类型** | **必须** | **说明** |
+| --- | --- | --- | --- |
+| FTSDKFactory::get | string | 否 | 指定配置文件，默认为 `ft_sdk_config.json`| 
+
+### 启动 json 文件配置
+可以通过 `FTSDKFactory` 配置 `json` 文件启动 SDK 调试日志
+
+```json
+{    
+    "general_config": {
+        "enable_sdk_log": true  // 开启 debug 日志，默认关闭
+    }
+}
+```
+
+### 全局配置
+
+```cpp
 FTSDKConfig gc;
 gc.setServerUrl("http://10.0.0.1:9529")
     .setEnv(EnvType::PROD)
@@ -169,6 +113,8 @@ sdk->install(gc)
 | addGlobalContext | dictionary | 否 | 添加 SDK 全局属性，添加规则请查阅[此处](#key-conflict)|
 | setServiceName|设置服务名|否|影响 Log 和 RUM 中 service 字段数据， 默认为 windows 为`df_rum_windows`，linux 为 `df_rum_linux` |
 
+
+
 ### RUM 配置
 ```cpp
 FTRUMConfig rc;
@@ -185,8 +131,8 @@ sdk->initRUMWithConfig(rc);
 ### Log 配置
 ```cpp
 FTLogConfig lpc;
-//std::vector<LogLevel> llf;
-//llf.push_back(LogLevel::ERR);
+std::vector<LogLevel> llf;
+llf.push_back(LogLevel::ERR);
 lpc.setLogLevelFilters(llf);
 lpc.setEnableCustomLog(true)
     .setEnableLinkRumData(true);
@@ -481,6 +427,7 @@ sdk->unbindUserData();
 sdk->deinit();
 
 ```
+
 
 ## 常见问题 {#FAQ}
 ### 添加局变量避免冲突字段 {#key-conflict}
