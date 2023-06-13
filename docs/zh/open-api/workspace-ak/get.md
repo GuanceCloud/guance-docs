@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/workspace/accesskey/\{ak_uuid\}/get**
+<br />**GET /api/v1/workspace/accesskey/\{ak_uuid\}/get**
 
 ## 概述
 获取一个Key

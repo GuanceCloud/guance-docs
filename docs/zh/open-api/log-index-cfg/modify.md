@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/external_log_index_cfg/\{cfg_uuid\}/modify**
+<br />**POST /api/v1/external_log_index_cfg/\{cfg_uuid\}/modify**
 
 ## 概述
 修改一个绑定索引

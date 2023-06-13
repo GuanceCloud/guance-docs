@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/snapshots/\{snapshot_uuid\}/delete**
+<br />**POST /api/v1/snapshots/\{snapshot_uuid\}/delete**
 
 ## 概述
 根据`snapshot_uuid`删除指定的快照配置

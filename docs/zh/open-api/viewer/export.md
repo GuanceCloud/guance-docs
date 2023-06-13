@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/viewer/\{viewer_uuid\}/export**
+<br />**GET /api/v1/viewer/\{viewer_uuid\}/export**
 
 ## 概述
 将`viewer_uuid`指定的查看器导出为模板结构

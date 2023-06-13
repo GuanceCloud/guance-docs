@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/issue/\{issue_uuid\}/modify**
+<br />**POST /api/v1/issue/\{issue_uuid\}/modify**
 
 ## 概述
 

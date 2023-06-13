@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/outer_function/list**
+<br />**GET /api/v1/outer_function/list**
 
 ## 概述
 列出 OpenAPI 允许执行的 Func 函数列表

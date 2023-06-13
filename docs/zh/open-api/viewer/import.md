@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/viewer/\{viewer_uuid\}/import**
+<br />**POST /api/v1/viewer/\{viewer_uuid\}/import**
 
 ## 概述
 导入一个查看器

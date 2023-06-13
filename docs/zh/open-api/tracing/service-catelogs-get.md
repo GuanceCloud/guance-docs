@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/tracing/service_catelogs/get**
+<br />**GET /api/v1/tracing/service_catelogs/get**
 
 ## 概述
 获取服务清单的配置信息, 通过originStr字段确认所需Service Catelog的是原始字符串,还是结构化数据

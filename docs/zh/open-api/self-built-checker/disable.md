@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/self_built_checker/disable**
+<br />**POST /api/v1/self_built_checker/disable**
 
 ## 概述
 根据`checker_uuid`禁用一个自建巡检

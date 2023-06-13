@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/channel/\{channel_uuid\}/modify**
+<br />**POST /api/v1/channel/\{channel_uuid\}/modify**
 
 ## 概述
 

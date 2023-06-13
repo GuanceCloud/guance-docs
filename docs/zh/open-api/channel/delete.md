@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/channel/\{channel_uuid\}/delete**
+<br />**POST /api/v1/channel/\{channel_uuid\}/delete**
 
 ## 概述
 

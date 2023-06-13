@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/issue/add**
+<br />**POST /api/v1/issue/add**
 
 ## 概述
 

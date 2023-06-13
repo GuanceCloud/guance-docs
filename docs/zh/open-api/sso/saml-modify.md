@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/sso/saml_modify/\{sso_uuid\}**
+<br />**POST /api/v1/sso/saml_modify/\{sso_uuid\}**
 
 ## 概述
 更新一个SAML配置信息

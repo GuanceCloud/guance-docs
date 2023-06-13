@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/monitor/check/import**
+<br />**POST /api/v1/monitor/check/import**
 
 ## 概述
 导入一个/多个监控器配置

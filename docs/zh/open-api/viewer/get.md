@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/viewer/\{viewer_uuid\}/get**
+<br />**GET /api/v1/viewer/\{viewer_uuid\}/get**
 
 ## 概述
 获取查看器详情

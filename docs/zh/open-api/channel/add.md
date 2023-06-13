@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/channel/add**
+<br />**POST /api/v1/channel/add**
 
 ## 概述
 

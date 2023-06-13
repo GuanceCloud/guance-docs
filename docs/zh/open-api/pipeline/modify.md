@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/pipeline/\{pl_uuid\}/modify**
+<br />**POST /api/v1/pipeline/\{pl_uuid\}/modify**
 
 ## 概述
 修改一个Pipeline

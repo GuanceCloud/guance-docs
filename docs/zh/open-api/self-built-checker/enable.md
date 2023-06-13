@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/self_built_checker/enable**
+<br />**POST /api/v1/self_built_checker/enable**
 
 ## 概述
 根据`checker_uuid`启用一个自建巡检

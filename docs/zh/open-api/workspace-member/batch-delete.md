@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/workspace/member/batch_delete**
+<br />**POST /api/v1/workspace/member/batch_delete**
 
 ## 概述
 删除一个/多个成员

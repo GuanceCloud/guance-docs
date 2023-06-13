@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/workspace/create**
+<br />**POST /api/v1/workspace/create**
 
 ## 概述
 创建工作空间

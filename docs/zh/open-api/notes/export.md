@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/notes/\{notes_uuid\}/export**
+<br />**GET /api/v1/notes/\{notes_uuid\}/export**
 
 ## 概述
 将`notes_uuid`指定的笔记导出为模板结构

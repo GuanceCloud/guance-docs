@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/channel/quick_list**
+<br />**GET /api/v1/channel/quick_list**
 
 ## 概述
 

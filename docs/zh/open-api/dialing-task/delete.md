@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/dialing_task/delete**
+<br />**POST /api/v1/dialing_task/delete**
 
 ## 概述
 

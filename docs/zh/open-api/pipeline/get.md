@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/pipeline/\{pl_uuid\}/get**
+<br />**GET /api/v1/pipeline/\{pl_uuid\}/get**
 
 ## 概述
 获取一个Pipeline信息

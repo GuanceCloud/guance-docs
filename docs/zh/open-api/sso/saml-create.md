@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/sso/saml_create**
+<br />**POST /api/v1/sso/saml_create**
 
 ## 概述
 启用一个SAML

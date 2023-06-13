@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/object/hosts/label/list**
+<br />**POST /api/v1/object/hosts/label/list**
 
 ## 概述
 获取`label`列表(label是有缓存的，一般会有不超过5分钟的缓存) 

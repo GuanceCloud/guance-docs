@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/monitor/group/\{monitor_uuid\}/get**
+<br />**GET /api/v1/monitor/group/\{monitor_uuid\}/get**
 
 ## 概述
 获取一个告警策略
