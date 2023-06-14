@@ -6,17 +6,17 @@ icon: zy/billing
 
 ## Plan Instructions
 
-There are three plans of Guance: experience plan, Commercial Plan and private cloud deployment plan.
+There are three plans of Guance: Experience Plan, Commercial Plan and private cloud deployment plan.
 
-- The experience plan and Commercial Plan provided by the public cloud all adopt the billing method of **pay-per-use**, and there is no difference in core functions.
+- The Experience Plan and Commercial Plan provided by the public cloud all adopt the billing method of **pay-per-use**, and there is no difference in core functions.
 
-    [Experience plan of the available data size](trail.md#trail-vs-commercial)is limited, **Commercial Plan of users support access to a larger amount of data, and more flexible data storage time**.
+    [Experience Plan of the available data size](trail.md#trail-vs-commercial)is limited, **Commercial Plan of users support access to a larger amount of data, and more flexible data storage time**.
 
-- Private cloud deployment plan, community plan (i.e. experience plan) and Commercial Plan are also provided.
+- Private cloud deployment plan, community plan (i.e. Experience Plan) and Commercial Plan are also provided.
 
     Commercial Plan can flexibly choose **pay-per-use, subscription system, license system** and other billing methods.
 
-???+ tip "How the current workspace version is viewed"
+???+ info "How the current workspace version is viewed"
 
     - All member roles: can be viewed in **Guance Studio > Management > Settings > Basic Information > Current Version**.
     - Owner and administrator: it can also be viewed in **Guance Studio > Billing**.
@@ -25,7 +25,7 @@ There are three plans of Guance: experience plan, Commercial Plan and private cl
 
 - [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Public cloud Commercial Plan doc</font>](commercial.md)
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Public cloud experience plan doc</font>](trail.md)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Public cloud Experience Plan doc</font>](trail.md)
 
 - [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Private cloud deployment plan doc</font>](../deployment/deployment-description.md#_4)
 

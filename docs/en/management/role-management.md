@@ -63,8 +63,8 @@ Refer to the doc [Permission List](role-list.md) for permission scopes for custo
 
 When setting role permissions for workspace members, if the granted role permissions include the permission of "Token View", a verification message will be sent to Guance Expense Center to initiate the permission change audit process:
 
-- If the cost center accepts the verification, the permission change is successful;
-- If the cost center rejects the verification, the permission change fails and the original role permission continues to be maintained;
+- If the Expense Center accepts the verification, the permission change is successful;
+- If the Expense Center rejects the verification, the permission change fails and the original role permission continues to be maintained;
 - If the expense center has not been approved, the member can be modified to another role. After the modification is successful, the original permission change approval application will become invalid.
 
 See the doc [Permission List](role-list.md) for more information.

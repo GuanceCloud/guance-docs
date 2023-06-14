@@ -3,21 +3,23 @@
 
 ## Step 1: Register and Login to the Account {#step-1}
 
-Enter [Guance official site](https://www.guance.com/) and refer to [Registration Guide](../billing/commercial-register.md) to become Guance users.
+Enter [Guance official site](https://en.guance.com/) and refer to [Registration Guide](../billing/commercial-register.md) to become Guance users.
 
 ## Step 2: Install DataKit {#step-2}
 
 [DataKit](../datakit/datakit-arch.md) is an official data collection application released by Guance, which supports the collection of hundreds of kinds of data, and can collect a variety of data such as host, process, container, log, application performance and user access in real time.
 
-After the account registration is successful, log in to the [Guance studio](https://console.guance.com/) to start the installation.
+After the account registration is successful, log in to the [Guance studio](https://auth.guance.com/en/) to start the installation.
 
-???+ attention
+???+ info "Example"
 
-    Here, take the example of installing DataKit on Linux host. For more details, please refer to the documentation [Host Install DataKit](../datakit/datakit-install.md) and [K8s Install DataKit](../datakit/datakit-daemonset-deploy.md).
+    Here, take the example of installing DataKit on Linux host. 
+    
+    > For more details, please refer to the documentation [Host Install DataKit](../datakit/datakit-install.md) and [K8s Install DataKit](../datakit/datakit-daemonset-deploy.md).
 
 ### 1. Get the installation command
 
-Log in to studio, click **Integration** on the left, and select **DataKit** at the top to see the installation commands of various platforms.
+Log in to studio, click **Integrations** on the left, and select **DataKit** at the top to see the installation commands of various platforms.
 
 ![](img/getting-guance-1.png)
 
@@ -39,7 +41,7 @@ Copy the corresponding installation command and execute it. If the installation 
 
 === ":material-numeric-2-circle-outline: View in Terminal"
 
-    > More reading: [DataKit service management](../datakit/datakit-service-how-to.md), [DataKit status query](../datakit/datakit-monitor.md) and [DataKit troubleshooting](../datakit/why-no-data.md)
+    > More reading: [DataKit Service Management](../datakit/datakit-service-how-to.md), [DataKit Status Query](../datakit/datakit-monitor.md) and [DataKit Troubleshooting](../datakit/why-no-data.md).
 
     Execute the following command to get the basic operation of the native DataKit.
 
@@ -63,14 +65,15 @@ Guance supports collecting object data including hosts, cloud hosts, containers,
 
 ### [Scenes](../scene/index.md)
 
-In Guance, you can build **Scenes** that satisfy different businesses from different perspectives, including dashboards, notes and explorers.<br/>
-<u>(Take adding a Linux dashboard here as an example)</u>
+In Guance, you can build **Scenes** that satisfy different businesses from different perspectives, including dashboards, notes and explorers.
+
+<u>Take adding a Linux dashboard here as an example:</u>
 
 <div class="grid" markdown>
 
 === ":material-numeric-1-circle-outline: Add Dashboards"
 
-    Click **Scenes** on the left, click **Dashboards > Create** in turn, search for **Linux** in **System View**, select **Host Overview _ Linux Monitoring View** and click **Confirm** to successfully add it.
+    Click **Scenes** on the left, click **Dashboards > Create** in turn, search for **Linux** in **System View**, select `Host Overview _ Linux Monitoring View` and click **Confirm** to add it.
 
     ![](img/getting-guance-4.png)
 
@@ -89,23 +92,24 @@ Guance has the ability of collecting global data, and the metric data obtained b
 
 <div class="grid" markdown>
 
-=== ":material-numeric-1-circle-outline: Metric Management"
-    You can view all the metrics reported to the workspace, the number of timelines, data storage policy information.
-
-    ![](img/getting-guance-7.png)
-
 === ":material-numeric-2-circle-outline: Metric Analysis"
-    Metric Analysis can query and analyze metrics and other data types (log, basic object, custom object, event, application performance, user access, security inspection, network, Profile, etc.).
+    Metric Analysis can query and analyze metrics and other data types (Logs, basic objects, custom objects, events, APM, RUM, Security Check, network, Profile, etc.).
 
     The following example shows a comparative analysis of CPU utilization of different host ip in the current workspace in the last 15 minutes.
 
     ![](img/getting-guance-8.png)
 
+=== ":material-numeric-1-circle-outline: Metric Management"
+    You can view all the metrics reported to the workspace, the number of timelines and data storage policy information.
+
+    ![](img/getting-guance-7.png)
+
+
 </div>
 
 ### [Monitors](../monitoring/index.md)
 
-Guance has powerful anomaly monitoring capability, which not only provides a series of monitoring templates including Docker, ElasticSearch and Host, but also supports custom monitors. With the alarm notification function. It can find problems in time to help you quickly find, locate and solve problems.
+Guance has powerful anomaly monitoring capability, which not only provides a series of monitoring templates including Docker, ElasticSearch and Host, but also supports custom monitors. With the alarm notification function, it can find problems in time to help you quickly find, locate and solve problems.
 
 <div class="grid" markdown>
 
@@ -117,7 +121,7 @@ Guance has powerful anomaly monitoring capability, which not only provides a ser
 
 === ":material-numeric-2-circle-outline: Configure Monitor Information"
 
-    The following example shows that in the current workspace, once every 5 minutes, whether there is the maximum memory utilization value of a host ip in the past 5 minutes triggers different levels of threshold detection conditions.
+    The following example shows that in the current workspace, once every 1 minute, whether there is the maximum memory utilization value of a host ip in the past 15 minutes triggers different levels of threshold detection conditions.
 
     ![](img/getting-guance-10.png)
 
@@ -127,12 +131,15 @@ Guance has powerful anomaly monitoring capability, which not only provides a ser
 
     ![](img/getting-guance-11.png)
 
+    ![](img/getting-guance-12.png)
+
 </div>
 
 ### [Billing](../billing/index.md)
 
-In **Billing**, you can view the plan information, usage statistics, billing list and other information of the current workspace. <br/>
-The following figure shows the **perspective of the owner of the commercial workspace**:
+In **Billing**, you can view the plan information, usage statistics, billing list and other information of the current workspace.
+
+The following figure shows the <u>perspective of the owner of the commercial workspace</u>:
 
 ![](img/12.billing_1.png)
 
@@ -149,11 +156,16 @@ The following figure shows the **perspective of the owner of the commercial work
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; DataKit Collector: Middleware, APM, LOG, etc</font>](../datakit/datakit-input-conf.md)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **DataKit Collector: Middleware, APM, LOG, etc**</font>](../datakit/datakit-input-conf.md)
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Integration Documentation: Various Data Access Operational Guidelines</font>](../integrations/index.md)
+</div>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; DQL: Query Language through Guance</font>](../dql/query.md)
+
+
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **DQL: Query Language through Guance**</font>](../dql/query.md)
 
 </div>
 

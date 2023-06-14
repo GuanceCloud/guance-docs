@@ -5,7 +5,7 @@ This article will introduce how to use the exclusiven plan of Guance after purch
 
 ## Perchase Guance Exclusive Plan
 
-Open [Guance exclusive plan in Alibaba Cloud market](https://market.aliyun.com/products/56838014/cmgj00060481.html) and click **Getting Started**.
+Open [Guance Exclusive Plan in Alibaba Cloud market](https://market.aliyun.com/products/56838014/cmgj00060481.html) and click **Getting Started**.
 
 ![](img/7.aliyun_sls.png)
 
@@ -27,7 +27,7 @@ At the prompt **Open Application Submitted** dialog box, click **Confirm**.
 
 ## Drop-free Guance Exclusive Plan
 
-After confirming the opening application, jump directly to the list of services purchased by Alibaba Cloud to view the purchased instance of the exclusive plan of Guance.
+After confirming the opening application, jump directly to the list of services purchased by Alibaba Cloud to view the purchased instance of the Exclusive Plan of Guance.
 
 Note: Alibaba Cloud account needs real-name authentication to purchase Guance service.
 
@@ -173,23 +173,23 @@ Guance enables you to view other sls data under Alibaba Cloud account synchronou
 
 ### Open Guance Exclusive Plan
 
-**1.How to open exclusive plan of Guance (SLS storage)?**
+**1.How to open Exclusive Plan of Guance (SLS storage)?**
 
 You can open the Guance Exclusive Plan according to this document. The Guance Exclusive Plan only supports SLS storage mode. For more storage modes, please refer to the doc [data storage policy](../billing/billing-method/data-storage.md#options).
 
-**2.If the workspace that has used the Commercial Plan of Guance has been opened, can the exclusive plan of Guance be opened again?**
+**2.If the workspace that has used the Commercial Plan of Guance has been opened, can the Exclusive Plan of Guance be opened again?**
 
 Yes, open the exclusive product entrance of **Alibaba Cloud Market > Guance**, and build a new SLS workspace.
 
-**3.If the workspace of the Commercial Plan of Guance has been opened, can it be switched to the exclusive plan of Guance?**
+**3.If the workspace of the Commercial Plan of Guance has been opened, can it be switched to the Exclusive Plan of Guance?**
 
-No, the biggest difference between Commercial Plan and SLS exclusive plan lies in the location of data storage at the back end. Once the workspace is opened, the index storage ownership cannot be changed. Therefore, no matter what settlement method is the successful Commercial Plan opened before, it cannot be converted into the exclusive plan workspace of SLS.
+No, the biggest difference between Commercial Plan and SLS Exclusive Plan lies in the location of data storage at the back end. Once the workspace is opened, the index storage ownership cannot be changed. Therefore, no matter what settlement method is the successful Commercial Plan opened before, it cannot be converted into the Exclusive Plan workspace of SLS.
 
-**4.Can the free workspace created when registering be upgraded to the exclusive plan of Guance?**
+**4.Can the free workspace created when registering be upgraded to the Exclusive Plan of Guance?**
 
-No, at present, it only supports opening SLS exclusive plan workspace through Alibaba Cloud Market-Guance exclusive plan product portal, and the normal upgrade process does not support opening SLS exclusive plan workspace.
+No, at present, it only supports opening SLS Exclusive Plan workspace through Alibaba Cloud Market-Guance Exclusive Plan product portal, and the normal upgrade process does not support opening SLS Exclusive Plan workspace.
 
-### Data viewing problem after opening exclusive plan of Guance
+### Data viewing problem after opening Exclusive Plan of Guance
 
 **1.Why does SLS have logs, but they can't be displayed in Guance?**
 
@@ -201,9 +201,9 @@ As the SLS content field is content, Guance uses message, which needs to be solv
 
 **3.How can the data of SLS console be judged as the user himself or the access data of Guance?**
 
-You can judge by the name of the project. If the name of the project is in the format of `guance-wksp-workspace ID`, it can be considered as the resource and data index created when the exclusive plan of Guance SLS is opened. If there is a viewing requirement, you can get <workspace ID> from the workspace-management-basic settings page and find the corresponding data viewing in the SLS studio.
+You can judge by the name of the project. If the name of the project is in the format of `guance-wksp-workspace ID`, it can be considered as the resource and data index created when the Exclusive Plan of Guance SLS is opened. If there is a viewing requirement, you can get <workspace ID> from the workspace-management-basic settings page and find the corresponding data viewing in the SLS studio.
 
-**4.Can the free workspace created when registering be upgraded to the exclusive plan of Guance?**
+**4.Can the free workspace created when registering be upgraded to the Exclusive Plan of Guance?**
 
 The user's own SLS stored data can be viewed and analyzed in the workspace of Guance. At present, it only supports viewing and analyzing the bound index data, and does not support association analysis with other functional module data for the time being. Refer to the doc [binding indexes](../logs/multi-index.md#sls) for information on how to bind indexes.
 
@@ -211,7 +211,7 @@ The user's own SLS stored data can be viewed and analyzed in the workspace of Gu
 
 **1.How does the Guance Exclusive Plan store data?**
 
-Data such as metrics, logs, backup logs, availability monitoring, CI, security check and events of the exclusive plan of Guance are stored in SLS. Besides the above data, infrastructure, application performance monitoring and user access monitoring data are currently ES clusters with Guance.
+Data such as metrics, logs, backup logs, availability monitoring, CI, security check and events of the Exclusive Plan of Guance are stored in SLS. Besides the above data, infrastructure, application performance monitoring and user access monitoring data are currently ES clusters with Guance.
 
 - Metrics: Metricstore for SLS
 - Logs, Availability Monitor, CI, Scheck, Events: Logstore of SLS Standard type
@@ -219,16 +219,16 @@ Data such as metrics, logs, backup logs, availability monitoring, CI, security c
 
 > Note: Because the SLS data expiration policy only supports TTL expiration custom cleanup, Guance's practice of reducing the number of timeseries by adjusting the data preservation policy of measurement does not take effect in the SLS exclusive workspace.
 
-**2.Can I change the data storage area of the exclusive plan of Guance?**
+**2.Can I change the data storage area of the Exclusive Plan of Guance?**
 
-No, Guance will create Project and Metricstore and Logstore data indexes in the same Region of SLS according to the Region where the user currently selects the open site. Unless you re-create a new SLS Exclusive Edition workspace, the data storage Region cannot be changed. At present, the exclusive plan of Guance only supports China 1 (Hangzhou) site and China 3 (Zhangjiakou) site.
+No, Guance will create Project and Metricstore and Logstore data indexes in the same Region of SLS according to the Region where the user currently selects the open site. Unless you re-create a new SLS Exclusive Edition workspace, the data storage Region cannot be changed. At present, the Exclusive Plan of Guance only supports China 1 (Hangzhou) site and China 3 (Zhangjiakou) site.
 
-- China 1 (Hangzhou) site opens SLS exclusive plan, and the data will be saved in SLS cn-hangzhou Region;
-- China 3 (Zhangjiakou) site opens SLS exclusive plan, and the data will be saved in SLS cn-zhangjiakou Region;
+- China 1 (Hangzhou) site opens SLS Exclusive Plan, and the data will be saved in SLS cn-hangzhou Region;
+- China 3 (Zhangjiakou) site opens SLS Exclusive Plan, and the data will be saved in SLS cn-zhangjiakou Region;
 
 ### Guance Exclusive Plan Billing
 
-**1.After opening the exclusive plan of guance, how to charge the log data collected by using Guance collector DataKit?**
+**1.After opening the Exclusive Plan of guance, how to charge the log data collected by using Guance collector DataKit?**
 
 The log data collected through DataKit is charged according to Guance log charging logic, which can be found in the doc [billing method](../billing/billing-method/index.md).
 
@@ -238,9 +238,9 @@ SLS log data obtained through index binding, the cost is still charged according
 
 If you want to perform data processing, delivery and streaming reading operations from external network access points, the log service charges processing calculation fees, data delivery fees and external network reading traffic fees. For details, please refer to the doc [billing items](https://help.aliyun.com/document_detail/107745.htm?spm=a2c4g.11186623.0.0.1d086860NWfUQP#concept-xzl-hjg-vgb).
 
-**3.If the stored-value card in the Expense Center can be used for bill payment of the exclusive plan of Guance? How to pay for the exclusive plan of Guance?**
+**3.If the stored-value card in the Expense Center can be used for bill payment of the Exclusive Plan of Guance? How to pay for the Exclusive Plan of Guance?**
 
-Yes, the prerequisite for the exclusive plan of Guance is to use Alibaba Cloud account for settlement. For cloud account settlement, the deduction order of Guance pay-by-volume bills is: ordinary vouchers, full reduction vouchers, stored-value cards and cash balance of cloud accounts. SMS and dial-up consumption can only be paid by using stored-value cards and cash balances of cloud accounts.
+Yes, the prerequisite for the Exclusive Plan of Guance is to use Alibaba Cloud account for settlement. For cloud account settlement, the deduction order of Guance pay-by-volume bills is: ordinary vouchers, full reduction vouchers, stored-value cards and cash balance of cloud accounts. SMS and dial-up consumption can only be paid by using stored-value cards and cash balances of cloud accounts.
 
 ### Guance Exclusive Plan Function Query
 
@@ -266,7 +266,7 @@ At present, only the complete message can be returned according to the query of 
 
 ### Guance Exclusive Plan Field Filter
 
-**1.Why can't you filter fields after opening the exclusive plan of Guance?**
+**1.Why can't you filter fields after opening the Exclusive Plan of Guance?**
 
 Guance will automatically create a field index for log data containing the same fields for field filtering, but if the amount of data is small, automatic creation will not be triggered. In this case, you cannot query data through field filtering in Guance, and you can solve this problem by reporting more log data containing the same fields.
 

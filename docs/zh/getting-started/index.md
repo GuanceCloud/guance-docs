@@ -26,7 +26,7 @@ icon: zy/getting-started
 
     ---
 
-    指导您快速观测系统
+    指导您快速观测系统。
 
     <br/>
     [**:octicons-arrow-right-24: 更多**](./getting-guance.md)

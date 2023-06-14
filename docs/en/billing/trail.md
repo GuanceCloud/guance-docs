@@ -9,7 +9,7 @@ Step 1: **choosing register site** in **Basic Setting** is important, see [<site
 
 ![](img/commercial-register-1.png)
 
-Step 3: Select the opening method, click the upper right corner to switch to **Open Experience Plan Workspace**, enter **Workspace Name**, and click **OK** to open the public cloud experience plan of Guance.
+Step 3: Select the opening method, click the upper right corner to switch to **Open Experience Plan Workspace**, enter **Workspace Name**, and click **OK** to open the public cloud Experience Plan of Guance.
 
 ![](img/8.register_5.png)
 
@@ -18,15 +18,15 @@ Step 3: Select the opening method, click the upper right corner to switch to **O
 
 The experience versplanion and Commercial Plan provided by the public cloud all adopt the billing method of **pay-per-use**.
 
-There are limitations on the amount of data that can be accessed in the experience plan. After [upgrade to Commercial Plan](commercial-version.md), a larger amount of data can be accessed, and the data storage time can be customized more flexibly.
+There are limitations on the amount of data that can be accessed in the Experience Plan. After [upgrade to Commercial Plan](commercial-version.md), a larger amount of data can be accessed, and the data storage time can be customized more flexibly.
 
 ???+ attention
 
-    - There is no charge if the experience plan is not upgraded. **Once upgraded to the Commercial Plan, it cannot be refunded**;
-    - If the experience plan is upgraded to the Commercial Plan, the collected data will continue to be reported to the observation cloud workspace, but the data collected during the **experience plan will not be viewed**;
+    - There is no charge if the Experience Plan is not upgraded. **Once upgraded to the Commercial Plan, it cannot be refunded**;
+    - If the Experience Plan is upgraded to the Commercial Plan, the collected data will continue to be reported to the observation cloud workspace, but the data collected during the **Experience Plan will not be viewed**;
     - The upgraded Commercial Plan only supports the current workspace owner to view and operate;
     - Timeseries and backup log statistics are full data, and other billing items are incremental data; Incremental data statistics reset the free quota at 0 o'clock every day, which is valid on the same day;
-    - If the data quota is fully used for different billing items in the experience plan, the data will stop being reported and updated; Infrastructure and event data still support reporting updates, and you can still see infrastructure list data and event data.
+    - If the data quota is fully used for different billing items in the Experience Plan, the data will stop being reported and updated; Infrastructure and event data still support reporting updates, and you can still see infrastructure list data and event data.
     - The experience workspace does not support the use of **Snapshot Sharing** function because of data content security issues.
 
 The following is the difference between the scope of services supported by **Experience Plan** and **Commercial Plan**.

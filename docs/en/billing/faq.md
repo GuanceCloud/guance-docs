@@ -5,7 +5,7 @@
 
 Alibaba Cloud users can [register for Guance](../billing/commercial-register.md) by selecting the "China 1 (Hangzhou)" site, or you can open Guance by [purchasing Guance products at Alibaba Cloud market](../billing/commercial-aliyun.md).
 
-If you want to use the Alibaba Cloud SLS log service to store data in Guance, you can open Guance by [purchasing the exclusive plan of Guance product in Alibaba Cloud marketplace](../billing/commercial-aliyun-sls.md).
+If you want to use the Alibaba Cloud SLS log service to store data in Guance, you can open Guance by [purchasing the Exclusive Plan of Guance product in Alibaba Cloud marketplace](../billing/commercial-aliyun-sls.md).
 
 ## How do AWS users start Guance?
 
@@ -13,7 +13,7 @@ AWS users can [register Guance](../billing/commercial-register.md) by selecting 
 
 ## How do Huawei Cloud users open Guance?
 
-Huawei Cloud users can [register Guance](../billing/commercial-register.md) by selecting the "China 4 (Guangzhou)" site. You can purchase stored-value cards at [Huawei Cloud marketplace](../billing/billing-account/huaweicloud-account.md) and bind Huawei Cloud stored-value cards at Guance Expense Center to use Guance.
+Huawei Cloud users can [register Guance](../billing/commercial-register.md) by selecting the "China 4 (Guangzhou)" site. After registration, you can use Huawei Cloud account for settlement.
 
 ## If the process is interrupted when Guance is opened, what should I do?
 
@@ -21,19 +21,22 @@ If you have registered your Guance account, but have not created a workspace yet
 
 ![](img/8.register_6.png)
 
-## What is the difference between the Commercial Plan of Guance and the exclusive plan of Guance? Can I switch between each other?
+## What is the difference between the Commercial Plan and the Exclusive Plan of Guance? Can I switch between each other?
 
 You can't switch between each other. Guance Commercial Plan uses the default ES storage mode, and Guance Exclusive Plan uses SLS storage mode. 
 
-> For more details, please refer to the doc [data storage mode](../billing/billing-method/data-storage.md#options).
+> For more details, please refer to the doc [Data Storage Strategy](../billing/billing-method/data-storage.md#options).
 
-<font color=coral>**Note:**</font> SLS storage is only supported by purchasing the exclusive plan of Guance in Alibaba Cloud Market, and switching to SLS storage is not supported in the Guance workspace with default storage. More details can be found in the reference doc [Alibaba Cloud marketplace buying Guance exclusive products](../billing/commercial-aliyun-sls.md).
+<font color=coral>**Note:**</font> SLS storage is only supported by purchasing the Exclusive Plan of Guance in Alibaba Cloud Market, and switching to SLS storage is not supported in the Guance workspace with default storage. 
+
+> More details can be found in the reference doc [Alibaba Cloud Marketplace Buying Guance Exclusive Products](../billing/commercial-aliyun-sls.md).
 
 ## What is the difference between Guance enterprise account settlement and cloud account settlement?
 
-- [Guance enterprise account settlement](../billing/billing-account/enterprise-account.md): Recharge and settle directly at the Guance Expense Center. You can recharge the Guance Enterprise Account by recharging cash, purchasing vouchers and stored-value cards, or you can purchase [Huawei Cloud stored-Value card](../billing/billing-account/huaweicloud-account.md) to recharge and settle the Guance Enterprise Account;
+- [Guance enterprise account settlement](../billing/billing-account/enterprise-account.md): Recharge and settle directly at the Guance Expense Center. You can recharge the Guance Enterprise Account by recharging cash, purchasing vouchers and stored-value cards;
 - [Alibaba Cloud account settlement](../billing/billing-account/aliyun-account.md): Recharge settlement directly through Alibaba Cloud account;
 - [AWS account settlement](../billing/billing-account/aws-account.md): Recharge settlement directly through AWS account.
+- [Huawei Cloud account settlement](../billing/billing-account/huaweicloud-account.md): Recharge settlement directly through Huawei Cloud account. 
 
 ## How to change the settlement method?
 

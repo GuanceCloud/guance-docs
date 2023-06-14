@@ -3,7 +3,7 @@
 
 This article will introduce how to launch the Commercial Plan of Guance after purchasing Guance Service in Alibaba Cloud Market. For direct registration of Commercial Plan, refer to the doc [register Commercial Plan](../billing/commercial-register.md).
 
-> Note: If you need to open SLS storage in Guance, you can get [access to Guance exclusive plan in Alibaba Cloud market](../billing/commercial-aliyun-sls.md).
+> Note: If you need to open SLS storage in Guance, you can get [access to Guance Exclusive Plan in Alibaba Cloud market](../billing/commercial-aliyun-sls.md).
 
 ## Purchase Guance
 
