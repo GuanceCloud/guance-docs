@@ -1,25 +1,24 @@
 # Alibaba Cloud Account Settlement
 ---
 
-Alibaba Cloud account refers to recharge settlement directly through Alibaba Cloud account, and one Alibaba Cloud account supports expense settlement associated with multiple workspaces and workspaces of multiple sites. This article will introduce how to open Alibaba Cloud account settlement in Guance commercial plan. Refer to the doc [register commercial plan](../../billing/commercial-register.md) for information on how to launch a commercial plan.
+Alibaba Cloud account refers to recharge settlement directly through Alibaba Cloud account, and one Alibaba Cloud account supports expense settlement associated with multiple workspaces and workspaces of multiple sites. This article will introduce <u>how to open Alibaba Cloud account settlement in Guance Commercial Plan</u>. 
+
+> Refer to the doc [Register Commercial Plan](../../billing/commercial-register.md) for information on how to launch a Commercial Plan.
 
 ## Select Alibaba Cloud Account for Settlement
 
-When registering or upgrading the commercial plan of Guance, you can select Alibaba Cloud Account Settlement, or you can click **Expense Center > Workspace Management** in the workspace of Guance, click **Change Settlement Method**, and select **Alibaba Cloud Account Settlement** in the pop-up dialog box.
+When registering or upgrading the Commercial Plan of Guance, you can select **Alibaba Cloud Account Settlement**, or you can click **Expense Center > Workspace Management** in the workspace of Guance, click **Change Settlement Method**, and select **Alibaba Cloud Account Settlement** in the pop-up dialog box.
 
 ![](../img/9.upgrade_7.png)
 
 ## Open Guance in Alibaba Cloud Market
 
-On the **Change Settlement Method** page, click and go to Alibaba Cloud to open the Guance service free of charge. On Alibaba Cloud's heart selection platform, click **Open Now**.
+On the **Change Settlement Method, click and go to Alibaba Cloud to open the Guance service free of charge. On Alibaba Cloud's heart selection platform, click **Open Now**.
 
 ![](../img/6.aliyun_6.png)
 
-If you are not logged in to Alibaba Cloud, prompt your account to log in.
 
-![](../img/6.aliyun_7.png)
-
-After logging in to Alibaba Cloud, return to Alibaba Cloud Heart Selection, click **Open Now** again, and prompt **Open Service Paid-per-use**. After agreeing to the agreement, click **Open**.
+Click **Open Now** again, and prompt **Open Service Paid-per-use**. After agreeing to the agreement, click **Open**.
 
 ![](../img/6.aliyun_9.png)
 
@@ -87,4 +86,4 @@ After Alibaba Cloud selects and confirms the opening application, Guance directl
 
 ![](../img/1.aliyun_cancel_3.png)
 
-Note: After Alibaba Cloud cancels its subscription to the Guanced service, it will bind all workspaces of the account settlement in the Guance expense center, delete the associated cloud account, modify the current cloud account settlement to the enterprise account settlement of the Guance expense center, and notify the user by mail.
+Note: After Alibaba Cloud cancels its subscription to the Guanced service, it will bind all workspaces of the account settlement in the Guance Expense Center, delete the associated cloud account, modify the current cloud account settlement to the enterprise account settlement of the Guance Expense Center, and notify the user by mail.

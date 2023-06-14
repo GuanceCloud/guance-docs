@@ -7,7 +7,7 @@ Guance provides a SaaS version of independent storage with an independent data s
 
 ## Independent Storage Plan Expenses
 
-The independent storage plan of Guance provides users with higher performance and security, which is relatively more expensive than the commercial plan of Guance. Taking the basic billing of Guance as an example, the reference price of the independent storage version is as follows:
+The independent storage plan of Guance provides users with higher performance and security, which is relatively more expensive than the Commercial Plan of Guance. Taking the basic billing of Guance as an example, the reference price of the independent storage version is as follows:
 
 > Note: The following prices are for reference only, and the actual settlement price is determined according to the specific needs.
 

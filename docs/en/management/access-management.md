@@ -20,7 +20,7 @@ Guance supports customizing member permissions through **Member Management**. Cu
 Guance supports pre-setting membership when inviting members, or changing membership through **Management** > **Member Management**.
 
 - The current workspace Owner can set any membership or transfer the Owner identity to other workspace members.
-   - When upgrading the current workspace member to Administrator, the Owner needs to send a verification message to Guance expense center at the same time. If the expense center side **Accepts** the verification, the member's permission will be changed to Administrator; If the cost center side **Rejects** the verification, the member's right raising fails.
+   - When upgrading the current workspace member to Administrator, the Owner needs to send a verification message to Guance expense center at the same time. If the expense center side **Accepts** the verification, the member's permission will be changed to Administrator; If the Expense Center side **Rejects** the verification, the member's right raising fails.
    - Owner does not need additional validation when upgrading the current workspace member to Read-only or Standard.
 - The current workspace Administrator can define Read-only and Standard identities, and cannot modify other Administrator identities.
 - If the current workspace is upgraded to commercial plan, upgrading to Administrator requires the Owner to verify in the expense center before it can take effect.

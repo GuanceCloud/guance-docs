@@ -1,15 +1,15 @@
 # Huawei Cloud Stored-value Card Settlement
 ---
 
-This article will introduce how to use Huawei Cloud stored-value card for settlement after Guance is upgraded to the commercial plan.
+This article will introduce how to use Huawei Cloud stored-value card for settlement after Guance is upgraded to the Commercial Plan.
 
 ## Preconditions
 
-When using Huawei Cloud Stored-Value Card, it is necessary to [register/upgrade the commercial plan](../../billing/commercial-plan.md) Guance. Guance supports three settlement methods: Guance enterprise account, Alibaba Cloud account and AWS account. When using Huawei Cloud Stored-Value Card for settlement, the default selection is [Guance enterprise account settlement](enterprise-account.md).
+When using Huawei Cloud Stored-Value Card, it is necessary to [register/upgrade the Commercial Plan](../../billing/commercial-plan.md) Guance. Guance supports three settlement methods: Guance enterprise account, Alibaba Cloud account and AWS account. When using Huawei Cloud Stored-Value Card for settlement, the default selection is [Guance enterprise account settlement](enterprise-account.md).
 
 ## Bind Huawei Cloud Stored-value Card
 
-After opening the commercial plan of Guance, you can click **Expense Center** in the workspace of Guance, or you can click [Guance expense center](https://boss.guance.com/) to log in directly.
+After opening the Commercial Plan of Guance, you can click **Expense Center** in the workspace of Guance, or you can click [Guance Expense Center](https://boss.guance.com/) to log in directly.
 
 ![](../img/12.billing_1.png)
 
@@ -25,7 +25,7 @@ On the page of purchasing stored-value cards, select **Huawei Cloud Market Purch
 
 ![](../img/1.huaweicloud_12.png)
 
-After successful recharge, you can switch to stored-value card in the expense center to view the used stored-value card number, face value, available balance, status, purchase type, purchase time and other information.
+After successful recharge, you can switch to stored-value card in the Expense Center to view the used stored-value card number, face value, available balance, status, purchase type, purchase time and other information.
 
 ![](../img/1.huaweicloud_10.3.png)
 
@@ -37,7 +37,7 @@ Log in to the [Huawei Cloud](https://www.huaweicloud.com) studio through your ac
 
 ![](../img/1.huaweicloud_6.png)
 
-Enter My Voucher, click Copy Account ID on the API Voucher page, and fill in Huawei Cloud Account ID in the dialog box of purchasing stored-value cards in the guance expense center.
+Enter My Voucher, click Copy Account ID on the API Voucher page, and fill in Huawei Cloud Account ID in the dialog box of purchasing stored-value cards in the guance Expense Center.
 
 ![](../img/1.huaweicloud_8.png)
 
@@ -45,7 +45,7 @@ Enter My Voucher, click Copy Account ID on the API Voucher page, and fill in Hua
 
 ## How to Get the Order Number {#order-id}
 
-After purchasing Guance stored-value card in [Huawei Cloud marketplace](https://marketplace.huaweicloud.com/contents/181f3d92-f40b-48d7-8ad5-420df0a682d2), you can check the order number of the purchased stored-value card in **My Order**, as shown in the following figure. Copy the order number and fill in the Order Number of the Purchase Stored-value Card dialog box in Guance expense center.
+After purchasing Guance stored-value card in [Huawei Cloud marketplace](https://marketplace.huaweicloud.com/contents/181f3d92-f40b-48d7-8ad5-420df0a682d2), you can check the order number of the purchased stored-value card in **My Order**, as shown in the following figure. Copy the order number and fill in the Order Number of the Purchase Stored-value Card dialog box in Guance Expense Center.
 
 ![](../img/1.huaweicloud_5.png)
 

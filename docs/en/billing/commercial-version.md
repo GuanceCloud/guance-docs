@@ -1,18 +1,18 @@
 # Upgrade to Commercial Plan
 ---
 
-Compared with [the difference between Guance experience plan and commercial plan](trail.md#trail-vs-commercial), commercial users support accessing a larger amount of data and can customize data storage time more flexibly.
+Compared with [the difference between Guance Experience Plan and Commercial Plan](trail.md#trail-vs-commercial), commercial users support accessing a larger amount of data and can customize data storage time more flexibly.
 
 ## Preconditions
 
 - Register the account of [Guance studio](https://console.guance.com/), and use the experience workspace.
-- Register the account of [Guance expense center](https://boss.guance.com/) to connect with the follow-up expense settlement function.
+- Register the account of [Guance Expense Center](https://boss.guance.com/) to connect with the follow-up expense settlement function.
 
 ## Upgrade from Experience Plan to Commercial Plan
 
 ???+ attention
 
-    - After the experience plan is successfully upgraded to the commercial plan, **it cannot be rolled back.**；
+    - After the Experience Plan is successfully upgraded to the Commercial Plan, **it cannot be rolled back.**；
     - The collected data will continue to be reported to the Guance workspace, but **the data collected during the free plan will not be viewed**.
 
 ![](img/9.upgrade_1.png)
@@ -33,7 +33,7 @@ Enter the account registered in the [Guance Expense Center](https://boss.guance.
 
 ![](img/9.upgrade_3.png)
 
-If the expense center account has not been registered, please click **Register New Account** above before binding.
+If the Expense Center account has not been registered, please click **Register New Account** above before binding.
 
 ![](img/7.biling_account_5.png)
 
@@ -43,13 +43,13 @@ After the agreement is agreed, you will receive an opening reminder email.
 
 ## Upgrade Successfully
 
-After the agreement was agreed, the commercial plan was upgraded successfully.
+After the agreement was agreed, the Commercial Plan was upgraded successfully.
 
 ![](img/9.upgrade_5.png)
 
 ### Select Settlement Method
 
-After the commercial plan is successfully upgraded, the Guance expense center account is used for settlement by default. 
+After the Commercial Plan is successfully upgraded, the Guance Expense Center account is used for settlement by default. 
 
 If other settlement methods need to be changed, you can click the **Bind Settlement Cloud Account** button. At present, the Guance supports three settlement methods:
 
@@ -57,7 +57,7 @@ If other settlement methods need to be changed, you can click the **Bind Settlem
 - [Alibaba Cloud account settlement](../billing/billing-account/aliyun-account.md)Recharge settlement directly through Alibaba Cloud account;
 - [AWS account settlement](../billing/billing-account/aws-account.md): Recharge settlement directly through AWS account.
 
-> Note: Users registered on the "China 4 (Guangzhou)" site only support the settlement of enterprise accounts in Guance and directly return to **Billing** after the commercial plan is upgraded successfully.
+> Note: Users registered on the "China 4 (Guangzhou)" site only support the settlement of enterprise accounts in Guance and directly return to **Billing** after the Commercial Plan is upgraded successfully.
 
 
 Click the **Bind Settlement Cloud Account** button to select the settlement cloud account according to the registration site of your account.
@@ -72,17 +72,17 @@ Select "Alibaba Cloud Account" or "AWS Cloud Account", and select the settlement
 
 ![](img/9.upgrade_7.png)
 
-If you choose to use the Guance enterprise account for settlement, you can directly close the **Change Settlement Method** dialog box. Support to change the settlement method in the **Workspace Management** of the Guance expense center.
+If you choose to use the Guance enterprise account for settlement, you can directly close the **Change Settlement Method** dialog box. Support to change the settlement method in the **Workspace Management** of the Guance Expense Center.
 
 ![](img/9.upgrade_9.png)
 
 ## View Commercial Plan
 
-Returning to Guance billing, you can see that the current workspace has been upgraded to the commercial plan.
+Returning to Guance billing, you can see that the current workspace has been upgraded to the Commercial Plan.
 
 ![](img/9.upgrade_10.png)
 
-In Guance billing, click **Expense Center** to automatically jump to the Guance expense center.
+In Guance billing, click **Expense Center** to automatically jump to the Guance Expense Center.
 
 ![](img/9.upgrade_11.png)
 

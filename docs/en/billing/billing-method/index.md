@@ -1,4 +1,4 @@
-# Billing Method
+# Billing Methods
 ---
 
 
@@ -8,7 +8,7 @@ When you open the business workspace of Guance and start using it, Guance provid
 
 ## Billing Cycle {#cycle}
 
-The billing period of Guance is "days", that is, according to the statistical usage of the workspace on the same day, the daily bill is generated and synchronized to Guance [expense center](../../billing/cost-center/index.md), and finally the consumption amount is deducted from the corresponding account according to the actual binding settlement method.
+The billing period of Guance is "days", that is, according to the statistical usage of the workspace on the same day, the daily bill is generated and synchronized to Guance [Expense Center](../../billing/cost-center/index.md), and finally the consumption amount is deducted from the corresponding account according to the actual binding settlement method.
 
 ## Settlement Method {#account}
 

@@ -1,9 +1,9 @@
 # Access to Guance Commercial Plan in Alibaba Cloud Market
 ---
 
-This article will introduce how to launch the commercial plan of Guance after purchasing Guance Service in Alibaba Cloud Market. For direct registration of commercial plan, refer to the doc [register commercial plan](../billing/commercial-register.md).
+This article will introduce how to launch the Commercial Plan of Guance after purchasing Guance Service in Alibaba Cloud Market. For direct registration of Commercial Plan, refer to the doc [register Commercial Plan](../billing/commercial-register.md).
 
-> Note: If you need to open SLS storage in Guance, you can get [access to Guance exclusive plan in Alibaba Cloud market](../billing/commercial-aliyun-sls.md).
+> Note: If you need to open SLS storage in Guance, you can get [access to Guance Exclusive Plan in Alibaba Cloud market](../billing/commercial-aliyun-sls.md).
 
 ## Purchase Guance
 
@@ -29,13 +29,13 @@ In **Purchased Services**, you can view the Guance instance with subscription, a
 
 ![](img/12.aliyun_2.png)
 
-In the pop-up dialog box, click OK, and prompt **Register Guance commercial plan immediately** and **Exist enterprise account, bind it**.
+In the pop-up dialog box, click OK, and prompt **Register Guance Commercial Plan immediately** and **Exist enterprise account, bind it**.
 
 ![](img/10.aliyun_market_2.png)
 
 ### Sign up for Guance Commercial Plan
 
-If you don't have a Guance account yet, you can click Register Guance Commercial Plan. Refer to the doc [register commercial plan](../billing/commercial-register.md) for information on how to register a commercial plan.
+If you don't have a Guance account yet, you can click Register Guance Commercial Plan. Refer to the doc [register Commercial Plan](../billing/commercial-register.md) for information on how to register a Commercial Plan.
 
 ![](img/10.aliyun_market_3.png)
 
@@ -112,7 +112,7 @@ If you have not used the Guance service before, please register the Guance accou
 Click **Register Guance Account**, enter relevant information, and register through mobile phone number verification.
 
 > - Workspace language options affect templates for events, alarms and text messages in the workspace. If you select English, the above corresponding template will be used by default. Once created, the template language of this workspace cannot be modified, so please choose carefully.
-> - User name: used to register [Guance studio account](https://auth.guance.com/businessRegister), and will automatically register [Guance expense center account](https://boss.guance.com/) with the same user name for you, thus carrying out the subsequent expense settlement process. The user name account of the expense center will check its uniqueness and cannot be modified once registered; it is supported to bind the user name and account of the expense center. After the binding is completed, the user name cannot be modified. Please operate carefully.
+> - User name: used to register [Guance studio account](https://auth.guance.com/businessRegister), and will automatically register [Guance Expense Center account](https://boss.guance.com/) with the same user name for you, thus carrying out the subsequent expense settlement process. The user name account of the Expense Center will check its uniqueness and cannot be modified once registered; it is supported to bind the user name and account of the Expense Center. After the binding is completed, the user name cannot be modified. Please operate carefully.
 
 ![](img/4.register_language_10.png)
 
