@@ -51,12 +51,12 @@ The owner of the Guance workspace and view the expense:
 In the settlement account overview, you can view the settlement account name, cash account balance, voucher balance and stored-value card balance and recharge the account.
 
 - Recharge: Click to recharge the account.
-- Cost Center: Click to jump to open the Guance Expense Center.
-- Settlement method: Click to change the settlement method, including [Guance Cloud enterprise account settlement](billing-account/enterprise-account.md), [Amazon Cloud account settlement](billing-account/aws-account.md) and [Alibaba Cloud account settlement](billing-account/aliyun-account.md).
+- Expense Center: Click to jump to open the Guance Expense Center.
+- Settlement methods: Click to change the settlement method, including [Guance Cloud enterprise account settlement](billing-account/enterprise-account.md), [Amazon Cloud account settlement](billing-account/aws-account.md) and [Alibaba Cloud account settlement](billing-account/aliyun-account.md).
 - Change binding: Click to change the Guance billing account in the workspace, <u>provided that the current account and the new account must belong to the same enterprise, that is, the enterprise authentication of the two accounts in the Guance Expense Center must be the same</u>.
 - Set high consumption alert: After setting the alert, when the daily bill of billing item is greater than the alert threshold, an email notification will be sent to Owner and Administrator.
 
-    - Select the billing item, select the warning threshold, and click OK. After the addition is completed, you will receive the email notification of observing the cloud high consumption warning notification; Billing item alert notifications will not be sent repeatedly.
+    - Select the billing item, select the warning threshold, and click Confirm. After the addition is completed, you will receive the email notification of observing the cloud high consumption warning notification; Billing item alert notifications will not be sent repeatedly.
 
     ![](img/billing.gif)
 
@@ -73,7 +73,7 @@ In **Usage Statistics**, you can view the statistical data of charging items Dat
 
 In the **Billing List**: you can view the accumulated consumption amount and the consumption amount of each billing item; meanwhile, you can view the daily expense statistics according to different months. 
 
-> See the documentation [Billing Methods](billing-method/index.md).
+> See the doc [Billing Methods](billing-method/index.md).
 
 ![](img/consumption-2.png)
 

@@ -78,8 +78,8 @@ You can **Select Opening Method**, fill in **Workspace Name**, select **Workspac
     
     - You can purchase Guance directly from [Guance in Alibaba Cloud market](https://market.aliyun.com/products/56838014/cmgj00053362.html), and open Guance directly through login-free registration.<br/>
     > For more details, please refer to the document [<open Guance Commercial Plan in Alibaba Cloud Market>](commercial-aliyun.md)
-    - If you are an Alibaba Cloud SLS user and need to use SLS storage in Guance, you can purchase [Guance exclusive plan directly at Alibaba Cloud market](https://market.aliyun.com/products/56838014/cmgj00060481.html), and open Guance exclusive plan directly through login-free registration. <br/>
-    > For more detailed steps, please refer to the documentation [<open Guance exclusive at Alibaba Cloud market>](commercial-aliyun-sls.md) and [<difference between Guance Commercial Plan and Guance exclusive plan>](../billing/faq.md#_5).
+    - If you are an Alibaba Cloud SLS user and need to use SLS storage in Guance, you can purchase [Guance Exclusive Plan directly at Alibaba Cloud market](https://market.aliyun.com/products/56838014/cmgj00060481.html), and open Guance Exclusive Plan directly through login-free registration. <br/>
+    > For more detailed steps, please refer to the documentation [<open Guance exclusive at Alibaba Cloud market>](commercial-aliyun-sls.md) and [<difference between Guance Commercial Plan and Guance Exclusive Plan>](../billing/faq.md#_5).
 
 ![](img/4.register_language_1.png)
 

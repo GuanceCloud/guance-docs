@@ -13,7 +13,7 @@
 
 ### 1、新建钉钉机器人 {#dingding}
 
-进入**监控 > 通知对象管理**，点击**新建通知对象**，选择**钉钉机器人** ，输入配置信息，包括自定义的通知对象名称、密钥和Webhook地址。
+进入**监控 > 通知对象管理**，点击**新建通知对象**，选择**钉钉机器人** ，输入配置信息，包括自定义的通知对象名称、密钥和 Webhook 地址。
 
 <font color=coral>**注意：**</font>钉钉机器人告警通知是每分钟合并了发送，并不是产生后立刻发送，会存在约一分钟的延迟。
 
@@ -72,7 +72,7 @@ Webhook 自定义通知类型为 `HTTPRequest`，会向指定的地址发送纯�
 - 内存使用率过高(81%)
 ```
 
-发送的请求会根据所配置的请求类型不同而不同 ：
+发送的请求会根据所配置的请求类型不同而不同：
 
 1）当 `bodyType` 不指定或为 `text` 时，请求详情如下：
 
@@ -120,9 +120,9 @@ Content-Type: application/json
 }
 ```
 
-> Webhook自定义通知发送内容的类型仅支持使用 JSON 格式，各字段的详情见文档 [事件产生](../events/generating.md)。
+> Webhook 自定义通知发送内容的类型仅支持使用 JSON 格式，各字段的详情见文档 [事件产生](../events/generating.md)。
 >
-> 有关Webhook自定义更详细的实践文档，请参考《[观测云Webhook自定义告警通知集成](https://func.guance.com/doc/practice-guance-alert-webhook-integration/)》。
+> 有关 Webhook 自定义更详细的实践文档，请参考[观测云 Webhook 自定义告警通知集成](https://func.guance.com/doc/practice-guance-alert-webhook-integration/)。
 
 
 ### 5、新建邮件组

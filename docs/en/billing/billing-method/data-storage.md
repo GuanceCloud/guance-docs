@@ -60,18 +60,18 @@ If you need to change the data storage policy, you can make changes by [upgradin
 | ---------------------- | ------------- | ---------------- | ------------------------------------------------------------ |
 | Quantity of timeseries             | 3000 articles     | 7  days             |                                                              |
 | Quantity of log data         | 1 million articles per day | 7  days             | Log class data range: Events, security check, logs (excluding log data for availability monitoring) |
-| Quantity of backup log data       | /             | /                | Experience plan does not support backing up log data                                     |
+| Quantity of backup log data       | /             | /                | Experience Plan does not support backing up log data                                     |
 | Application performance Trace number    | 8,000 per day  | 7  days             |                                                              |
 | Quantity of PVs accessed by users       | 2,000 per day  | 7  days             |  
 | Quantity of session replay       | 1,000 per day  | 7  days             |                                                             |
 | Quantity of synthetic tests dialing tasks | 200,000 times per day  | 7  days             |                                                              |
 | Quantity of task calls           | 100,000 times per day  | /                |                                                              |
-| Quantity of short messages sent           | /             | /                | Experience plan does not support SMS notification                                         |
+| Quantity of short messages sent           | /             | /                | Experience Plan does not support SMS notification                                         |
 
 ???+ attention "Notes You Must Know"
 
-    - If the data quota is fully used for different billing items in the experience plan, the data will stop being reported and updated; Infrastructure and event data still support reporting and updating, and you can still see infrastructure list data and event data.
-    - The experience plan supports online upgrade to the Commercial Plan, and there is no charge if it is not upgraded. Once it is upgraded to the paid plan, it cannot be refunded.
-    - After the experience plan is upgraded to the Commercial Plan, the collected data will continue to be reported to Guance workspace, but the data collected during the experience plan will not be viewed.
+    - If the data quota is fully used for different billing items in the Experience Plan, the data will stop being reported and updated; Infrastructure and event data still support reporting and updating, and you can still see infrastructure list data and event data.
+    - The Experience Plan supports online upgrade to the Commercial Plan, and there is no charge if it is not upgraded. Once it is upgraded to the paid plan, it cannot be refunded.
+    - After the Experience Plan is upgraded to the Commercial Plan, the collected data will continue to be reported to Guance workspace, but the data collected during the Experience Plan will not be viewed.
     - Timeseries and backup log statistics are full data, and other billing items are incremental data; Incremental data statistics reset the free quota at 0 points every day when days are valid.
 

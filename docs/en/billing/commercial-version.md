@@ -1,7 +1,7 @@
 # Upgrade to Commercial Plan
 ---
 
-Compared with [the difference between Guance experience plan and Commercial Plan](trail.md#trail-vs-commercial), commercial users support accessing a larger amount of data and can customize data storage time more flexibly.
+Compared with [the difference between Guance Experience Plan and Commercial Plan](trail.md#trail-vs-commercial), commercial users support accessing a larger amount of data and can customize data storage time more flexibly.
 
 ## Preconditions
 
@@ -12,7 +12,7 @@ Compared with [the difference between Guance experience plan and Commercial Plan
 
 ???+ attention
 
-    - After the experience plan is successfully upgraded to the Commercial Plan, **it cannot be rolled back.**；
+    - After the Experience Plan is successfully upgraded to the Commercial Plan, **it cannot be rolled back.**；
     - The collected data will continue to be reported to the Guance workspace, but **the data collected during the free plan will not be viewed**.
 
 ![](img/9.upgrade_1.png)
