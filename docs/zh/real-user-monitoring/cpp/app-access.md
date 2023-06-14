@@ -38,7 +38,7 @@
 	vcpkg integrate install
 	```
 	
-	如果你是使用 `Visual Studio` 进行开发，可以直接使用进行项目中进行引用
+	如果你是使用 `Visual Studio` 进行开发，可以直接在项目中进行引用
 
 === "Linux"
 	
