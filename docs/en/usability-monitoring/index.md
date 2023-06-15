@@ -1,7 +1,7 @@
 ---
 icon: zy/usability-monitoring
 ---
-# Usability Monitoring
+# Synthetic Tests
 ---
 
 ## Overview

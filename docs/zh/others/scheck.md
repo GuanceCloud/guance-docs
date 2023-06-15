@@ -129,5 +129,5 @@ crontab -e
 
 在主机控制台执行命令：userdel xlsm
 ## 更多参考
-更多可参考文档 [安全巡检](../scheck/explorer.md) 。
+更多详情可参考文档 [安全巡检](../scheck/explorer.md) 。
 

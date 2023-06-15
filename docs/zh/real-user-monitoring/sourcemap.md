@@ -22,7 +22,7 @@
 
 ## 具体操作介绍
 
-### 步骤一：配置Javascript bundler
+### 步骤一：配置 Javascript bundler
 
 以使用 webpackJS 举例，使用内置插件 `SourceMapDevToolPlugin` 生成源映射，在下面查看如何在 `webpack.config.js` 文件中配置它：
 

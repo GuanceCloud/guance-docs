@@ -1,7 +1,7 @@
 # Access to Guance Commercial Plan in Amazon Web Services(AWS)
 ---
 
-This article will introduce how to open the commercial plan of Guance and use AWS account for fee settlement after subscribing to Guance Service in AWS Cloud Market. If you want to register commercial plan directly, see [register conmmercial plan](commercial-register.md).
+This article will introduce how to open the Commercial Plan of Guance and use AWS account for fee settlement after subscribing to Guance Service in AWS Cloud Market. If you want to register Commercial Plan directly, see [register conmmercial plan](commercial-register.md).
 
 ## Subscribe to Guance in AWS Marketplace {#subscribe}
 
@@ -26,7 +26,7 @@ In the pop-up dialog box, click **Set up your Account**.
 
 After clicking **Set up your Account** in AWS Marketplace, jump back to Guance to open. Prompt **Register Guance Commercial Plan Immediately** and **Exist enterprise account, bind it**.
 
-> Enterprise account is an independent account used by the Guance expense center to manage the billing related to the commercial plan of Guance, and one enterprise account can be associated with multiple workspace billing.
+> Enterprise account is an independent account used by the Guance Expense Center to manage the billing related to the Commercial Plan of Guance, and one enterprise account can be associated with multiple workspace billing.
 
 ![](img/15.aws_market_1.png)
 
@@ -60,7 +60,7 @@ If you don't have a Guance account yet, you can click **Register Guance Commerci
 
 === "Step 4: Successful opening"
 
-    After successfully selecting the opening method, it will be prompted to successfully open the commercial plan of Guance.
+    After successfully selecting the opening method, it will be prompted to successfully open the Commercial Plan of Guance.
     
     > Note: After successful opening, the expenses incurred by the bound workspace will be settled directly from the AWS account where the product was purchased.
 
