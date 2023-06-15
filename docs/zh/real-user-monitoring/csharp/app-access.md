@@ -3,7 +3,6 @@
 ## 前置条件
 
 - 安装 DataKit（[DataKit 安装文档](../../datakit/datakit-install.md)）
-- 安装 
 
 ## 应用接入 {#integration}
 当前 CPP 版本暂时支持 Windows 和 Linux 平台。登录观测云控制台，进入「用户访问监测」页面，点击左上角「新建应用」，即可开始创建一个新的应用。
@@ -19,33 +18,46 @@
 
 - 安装 [C++ SDK](../cpp/app-access.md#install)
 -  使用 C# [FTWrapper.cs](https://github.com/GuanceCloud/datakit-cpp/blob/develop/src/datakit-sdk-cpp/ft-sdk-wrapper-sample/FTWrapper.cs) 
--  调整目录	
+-  调整 dll FTWrapper.cs 路径	
+
+```csharp
+//class FTWrapper.cs
+
+const string dllName = "C:\\{vcpkg_root}\\vcpkg\\installed\\{platform}\\bin\\ft-sdk.dll";
+
+[DllImport(dllName)]
+public static extern void Install(string jsonConfig);
+...
+
+```
+
+`vcpkg_root`为 `vcpkg` 安装目录，`platform` 为 CPU 架构与操作系统，例如：`x64-windows`
 
 ## 初始化
-```cpp
-auto sdk = FTSDKFactory::get("ft_sdk_config.json");
-sdk->init();
-
-FTSDKConfig gc;
-gc.setServerUrl("http://10.0.0.1:9529")
-    .setEnv(EnvType::PROD)
-    .addGlobalContext("custom_key","custom_value")
-    .setEnableFileDBCache(true);
-sdk->install(gc)
+```csharp
+FTWrapper.Install(@"
+{
+    ""serverUrl"": ""http://10.0.0.1:9529"",
+    ""envType"": ""prod"",
+    ""serviceName"": ""Your Services"",
+    ""globalContext"": {
+        ""custom_key"": ""custom value""
+    }
+}");
 
 ```
 
 | **字段** | **类型** | **必须** | **说明** |
 | --- | --- | --- | --- |
-| setServerUrl | string | 是 | datakit 安装地址 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529。注意：安装 SDK 设备需能访问这地址 |
-| setEnv | enum | 否 | 环境，默认`EnvType::PROD` |
-| setAppVersion | enum | 否 | windows 会默认获取，linux 系统需要自行赋值 |
-| setEnableFileDBCache | Bool | 否 | 是否开启本地数据库，默认为 false|
-| addGlobalContext | dictionary | 否 | 添加 SDK 全局属性，添加规则请查阅[此处](#key-conflict)|
-| setServiceName|设置服务名|否|影响 Log 和 RUM 中 service 字段数据， 默认为 windows 为`df_rum_windows`，linux 为 `df_rum_linux` |
+| serverUrl | string | 是 | datakit 安装地址 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529。注意：安装 SDK 设备需能访问这地址 |
+| envType | enum | 否 | 环境，默认`prod` |
+| appVersion | enum | 否 | windows 会默认获取，linux 系统需要自行赋值 |
+| enableFileDBCache | bool | 否 | 是否开启本地数据库，默认为 false|
+| globalContext | dictionary | 否 | 添加 SDK 全局属性，添加规则请查阅[此处](#key-conflict)|
+| serviceName| string |否|影响 Log 和 RUM 中 service 字段数据， 默认为 windows 为`df_rum_windows`，linux 为 `df_rum_linux` |
 
 ### 启动 json 文件配置
-可以通过 `FTSDKFactory` 配置 `json` 文件启动 SDK 调试日志
+配置 `json` 文件启动 SDK 调试日志，放置与 dll 同一级目录
 
 ```json
 {    
@@ -56,102 +68,123 @@ sdk->install(gc)
 ```
 
 ### RUM 配置
-```cpp
-FTRUMConfig rc;
-rc.setRumAppId("appid_xxxx");
-sdk->initRUMWithConfig(rc);
+```csharp
+FTWrapper.InitRUMConfig(@"
+{
+    ""appId"": ""appid_win_xxxxxx"",
+    ""sampleRate"": 0.8,
+    ""globalContext"": {
+        ""rum_custom"": ""rum custom value""
+    }
+}");
 ```
 
 | **字段** | **类型** | **必须** | **说明** |
 | --- | --- | --- | --- |
-| setRumAppId | string | 是 | 对应设置 RUM `appid`，才会开启`RUM`的采集功能，[获取 appid 方法](#integration) |
-| setSamplingRate | float | 否 | 采集率的值范围为>= 0、<= 1，默认值为 1 |
-| addGlobalContext | dictionary | 否 | 添加标签数据，用于用户监测数据源区分，如果需要使用追踪功能，则参数 `key` 为 `track_id` ,`value` 为任意数值。添加规则请查阅 [此处](#key-conflict) |
+| rumAppId | string | 是 | 对应设置 RUM `appid`，才会开启`RUM`的采集功能，[获取 appid 方法](#integration) |
+| samplingRate | float | 否 | 采集率的值范围为>= 0、<= 1，默认值为 1 |
+| globalContext | dictionary | 否 | 添加标签数据，用于用户监测数据源区分，如果需要使用追踪功能，则参数 `key` 为 `track_id` ,`value` 为任意数值。添加规则请查阅 [此处](#key-conflict) |
 
 ### Log 配置
-```cpp
-FTLogConfig lpc;
-std::vector<LogLevel> llf;
-llf.push_back(LogLevel::ERR);
-lpc.setLogLevelFilters(llf);
-lpc.setEnableCustomLog(true)
-    .setEnableLinkRumData(true);
+```csharp
+FTWrapper.InitLogConfig(@"
+{
+    ""sampleRate"": 0.9,
+    ""enableCustomLog"": true,
+    ""enableLinkRumData"": true,
+    ""globalContext"": {
+        ""log_custom"": ""log custom value""
+    }
+}");
 ```
 
 | **字段** | **类型** | **必须** | **说明** |
 | --- | --- | --- | --- |
-| setSamplingRate | float | 否 | 采集率的值范围为>= 0、<= 1，默认值为 1 |
-| addGlobalContext | dictionary | 否 | 添加标签数据，添加规则请查阅 [此处](#key-conflict)  |
-| setLogLevelFilters | array | 否 | 设置等级日志过滤，默认不设置 |
-| setEnableCustomLog | bool | 否 | 是否上传自定义日志 ，默认为 false |
+| samplingRate | float | 否 | 采集率的值范围为>= 0、<= 1，默认值为 1 |
+| globalContext | dictionary | 否 | 添加标签数据，添加规则请查阅 [此处](#key-conflict)  |
+| logLevelFilters | array | 否 | 设置等级日志过滤，ok，info，warning，error，critical，默认不设置 |
+| enableCustomLog | bool | 否 | 是否上传自定义日志 ，默认为 false |
 
 ### Trace 配置
-```cpp
-FTTraceConfig tc;
-tc.setTraceType(TraceType::DDTRACE)
-   .setEnableLinkRUMData(true);
+```csharp
+FTWrapper.InitTraceConfig(@"
+{
+    ""sampleRate"": 0.9,
+    ""traceType"": ""ddtrace"",
+    ""enableLinkRumData"": true
+}");
 ```
 
 | **字段** | **类型** | **必须** | **说明** |
 | --- | --- | --- | --- |
-| setSamplingRate | float | 否 | 采集率的值范围为>= 0、<= 1，默认值为 1 |
-| setTraceType | enum | 否 | 默认为 `DDTrace`，目前支持 `Zipkin` , `Jaeger`, `DDTrace`，`Skywalking` (8.0+)，`TraceParent` (W3C)，如果接入 OpenTelemetry 选择对应链路类型时，请注意查阅支持类型及 agent 相关配置  |
-| setEnableLinkRUMData | bool | 否 | 是否与 RUM 数据关联，默认为 `false` |
+| samplingRate | float | 否 | 采集率的值范围为>= 0、<= 1，默认值为 1 |
+| traceType | enum | 否 | 默认为 `ddtrace`，目前支持 `zipkin` , `jaeger`, `ddtrace`，`skywalking` (8.0+)，`traceParent` (W3C)，如果接入 OpenTelemetry 选择对应链路类型时，请注意查阅支持类型及 agent 相关配置  |
+| enableLinkRUMData | bool | 否 | 是否与 RUM 数据关联，默认为 `false` |
 
 ## RUM 用户数据追踪
 目前只能通过手动方法调用来实现 RUM 数据传输
 
 ### Action
 #### 使用方法
-```cpp
+```csharp
 /**	
  * action 开始
  * 
  * @param actionName action 名称
  * @param actionType action 类型
  */
-void startAction(std::string actionName, std::string actionType);
-
-
-/**
- * action结束
- * 
- */
-void stopAction();
+void StartAction(string actionName,string actionType);
 		
 ```
 
 #### 代码示例
-```cpp
-sdk->startAction("just4test", "click");
+```csharp
+ FTWrapper.StartAction("click", "test");
 ```
 
 ### View
 #### 使用方法
-```cpp
+```csharp
 /**
  * view 开始.
  * 
  * @param viewName 当前页面名称
  */
-void startView(std::string viewName);
+void StartView(string viewName);
 
 /**
  * view 结束.
  * 
  */
-void stopView();
+void StopView();
 ```
 
 #### 代码示例
 
-```cpp
-sdk->startView("TEST_VIEW_ONE");
+```csharp
+FTWrapper.StartView("TEST_VIEW_ONE");
+
+FTWrapper.StopView();
 ```
 
 ### Resource
 #### 使用方法
-```cpp
+```csharp
+/**
+ * resource 起始
+ * 
+ * @param resourceId		资源 Id
+ */
+void StartResource(string resourceId)
+	
+/**
+ * resource 终止
+ * 
+ * @param resourceId 资源 Id
+ */
+void StopResource(string resourceId)
+
+
 /**
  * 设置网络传输内容
  * 
@@ -159,88 +192,66 @@ sdk->startView("TEST_VIEW_ONE");
  * @param params			网络传输参数
  * @param netStatusBean		网络状态统计
  */
-void addResource(std::string resourceId, ResourceParams params, NetStatus netStatusBean);
-	
-/**
- * resource 起始
- * 
- * @param resourceId		资源 Id
- */
-void startResource(std::string resourceId);
-	
-/**
- * resource 终止
- * 
- * @param resourceId 资源 Id
- */
-void stopResource(std::string resourceId);
-```
+void addResource((string resourceId,string resourceParams,string netStauts);
 
-| **方法名** | **含义** | **必须** | **说明** |
+```
+##### netStauts
+
+| **方法名** | **类型** | **必须** | **说明** |
 | --- | --- | --- | --- |
-| NetStatus.fetchStartTime | 请求开始时间 | 否 | |
-| NetStatus.tcpTime | tcp 连接耗时 | 否 |  |
-| NetStatus.dnsTime | dns 解析时间 | 否 |  |
-| NetStatus.responseTime | 响应内容传输耗时 | 否 |  |
-| NetStatus.sslTime | ssl 链接耗时| 否 |  |
-| NetStatus.firstByteTime | ssl dns 解析到接收到第一个数据包的总时| 否 |  |
-| NetStatus.ttfb | 请求响应时间，开始发送请求到接收到响应首包的时长| 否 |  |
-| NetStatus.tcpStartTime | tcp 连接时间 | 否 |  |
-| NetStatus.tcpEndTime | tcp 结束时间 | 否 |  |
-| NetStatus.dnsStartTime | dns 开始时间 | 否 |  |
-| NetStatus.dnsEndTime | dns 结束时间 | 否 |  |
-| NetStatus.responseStartTime | 响应开始时间 | 否 |  |
-| NetStatus.responseEndTime | 响应结束时间 | 否 |  |
-| NetStatus.sslStartTime | ssl 开始时间 | 否 |  |
-| NetStatus.sslEndTime | ssl 结束时间 | 否 |  |
-| ResourceParams.url | url 地址 | 是 |  |
-| ResourceParams.requestHeader | 请求头参数 | 否 |  |
-| ResourceParams.responseHeader | 响应头参数 | 否 |  |
-| ResourceParams.responseConnection | 响应  connection | 否 |  |
-| ResourceParams.responseContentType | 响应  ContentType | 否 |  |
-| ResourceParams.responseContentEncoding | 响应  ContentEncoding | 否 |  |
-| ResourceParams.resourceMethod | 请求方法 | 否 |  GET,POST 等 |
-| ResourceParams.responseBody | 返回 body 内容 | 否 |  |
+| fetchStartTime | long| 否 | 请求开始时间，ns|
+| tcpTime | long | 否 | tcp 连接耗时，ns |
+| dnsTime | long | 否 | dns 解析时间，ns |
+| responseTime | long | 否 |  响应内容传输耗时，ns|
+| sslTime |long | 否 | ssl 链接耗时，ns |
+| firstByteTime |long | 否 | ssl dns 解析到接收到第一个数据包的总时，ns |
+| ttfb | long | 否 | 请求响应时间，开始发送请求到接收到响应首包的时长，ns|
+| tcpStartTime | long  | 否 | tcp 连接时间，ns |
+| tcpEndTime | long | 否 | tcp 结束时间 ，ns|
+| dnsStartTime | long | 否 | dns 开始时间 ，ns|
+| dnsEndTime | long | 否 | dns 结束时间，ns |
+| responseStartTime | long | 否 |响应开始时间 ，ns |
+| responseEndTime | long | 否 | 响应结束时间，ns |
+| sslStartTime | long | 否 | ssl 开始时间，ns |
+| sslEndTime | long | 否 |ssl 结束时间，ns |
+
+##### resourceParams
+| **方法名** | **类型** | **必须** | **说明** |
+| --- | --- | --- | --- |
+| url | string| 是 | url 地址  |
+| requestHeader | string | 否 | 请求头参数，没有格式限制 |
+| responseHeader | string | 否 | 响应头参数，没有格式限制 |
+| responseConnection | string | 否 | 响应  connection |
+| responseContentType | string | 否 | 响应  ContentType |
+| responseContentEncoding | string | 否 | 响应  ContentEncoding |
+| resourceMethod | string | 否 | 请求方法 GET,POST 等 |
+| responseBody | string | 否 | 返回 body 内容 |
 
 #### 代码示例
-```cpp
-RestClient::init();
-RestClient::Connection* conn = new RestClient::Connection(url);
+```csharp
+FTWrapper.StartResource(resourceId);
 
-RestClient::HeaderFields headers;
-headers["Accept"] = "application/json";
+FTWrapper.StopResource(resourceId);
 
-RestClient::Response r = conn->get("/get");
-
-RestClient::Connection::Info info = conn->GetInfo();
-
-params.resourceMethod = "GET";
-params.requestHeader = convert(headers);
-params.responseHeader = convert(r.headers);
-
-ResourceParams params;
-params.responseBody = r.body;
-params.responseConnection = "Keep-Alive";
-params.responseContentEncoding = "UTF-8";
-params.responseContentType = r.headers["Content-Type"];
-params.url = url;
-params.resourceStatus = r.code;
-
-NetStatus status;
-status.dnsTime = info.lastRequest.nameLookupTime * ns_factor;
-status.tcpTime = (info.lastRequest.connectTime - info.lastRequest.nameLookupTime ) * ns_factor;
-status.sslTime = (info.lastRequest.appConnectTime - info.lastRequest.connectTime) * ns_factor;
-status.ttfb = (info.lastRequest.startTransferTime - info.lastRequest.preTransferTime) * ns_factor;
-status.responseTime = (info.lastRequest.totalTime -info.lastRequest.startTransferTime) * ns_factor;
-status.firstByteTime = info.lastRequest.startTransferTime * ns_factor;
-    
-RestClient::disable();
+FTWrapper.AddResource(resourceId, @"
+            {
+                ""url"": ""https://api.fxbsports.com/commune"",
+                ""resourceStatus"": 200
+            }",
+            @"{
+                ""requestHeader"": ""key1=value1,key2=value2"",
+                ""responseHeader"": ""key1=value1,key2=value2"",
+                ""dnsTime"": 0,
+                ""tcpTime"": 0,
+                ""sslTime"": 0,
+                ""ttfb"": 0
+            }");
 
 ```
 
 ### Error
 #### 使用方法
-```cpp
+```csharp
 /**
  * 添加错误信息
  * 
@@ -249,122 +260,144 @@ RestClient::disable();
  * @param errorType	错误类型
  * @param state		程序运行状态
  */
-void addError(std::string log, std::string message, RUMErrorType errorType, AppState state);
+void AddError(string log,string message,string errorType,string state);
 ```
 
-#### 代码示例
+##### errorType
 
-```cpp
-sdk->addError("test error 1", "first error", RUMErrorType::native_crash, AppState::UNKNOWN);
-sdk->addError("test error 2", "second error", RUMErrorType::network_error, AppState::UNKNOWN);
+| **方法名**  | **说明** |
+| --- | --- |
+| native_crash | 应用错误|
+| network_error | 网络错误|
+
+##### state
+
+| **方法名** | **说明** |
+| --- |  --- |
+| unknown | 未知|
+| startup | 启动时|
+| run | 运行中|
+
+#### 代码示例
+```csharp
+FTWrapper.AddError("error", "error msg", "native_crash", "run");
 ```
 
 ### LongTask
 #### 使用方法
-
-```cpp
+```csharp
 /**
  * 添加长耗时任务
  * 
  * @param log		日志
  * @param duration	持续时间(ns)
  */
-void addLongTask(std::string log, long duration);
+void AddLongTask(string log,long duration)
 ```
 
 #### 代码示例
-
-```cpp
-sdk->addLongTask("test long task", 100010);
+```csharp
+FTWrapper.AddLongTask("long task test", 100002);
 ```
 
 ## Log 日志打印
 ### 使用方法
-```cpp
+```csharp
 /**
   * 上传用户日志到datakit
   * @param content	日志内容
   * @param level		日志级别
   */
-void addLog(std::string content, LogLevel level);
+void AddLog(string log, string message);
 ```
 
 ### 代码示例
-```cpp
-sdk->addLog("this\\is a \"test\" log", LogLevel::info);
+```csharp
+FTWrapper.AddLog("test log", "test message");
 ```
 
 ## Tracer 网络链路追踪
 链路通过生成 Trace Header，然后通过将 Header 添加到 http 请求头上来实现链路功能
 
 ### 使用方法
-```cpp
+```csharp
 /**
- * 按配置生成trace header
+ * 按配置生成 trace header
  * 
  * @param url	网络地址
- * @return		trace数据
+ * @return trace 链路使用头数据
  */
-PropagationHeader generateTraceHeader(const std::string url);
+ IntPtr GetTraceHeaderWithUrl(string url);
+ 
+ 
+ /**
+ * 按配置生成 trace header
+ * 
+ * @param url	网络地址
+ * @param resourceId  
+ * @return trace 链路使用头数据
+ */
+ IntPtr GetTraceHeader(string resourceId, string url);
 ```
 
 ### 代码示例
-```cpp
-RestClient::init();
-RestClient::Connection* conn = new RestClient::Connection(url);
+```csharp
+IntPtr headData = FTWrapper.GetTraceHeader(resourceId, FAKE_URL);
+string headString = Marshal.PtrToStringAnsi(headData);
 
-RestClient::HeaderFields headers;
-headers["Accept"] = "application/json";
-
-auto headerWithRes = pSDK->generateTraceHeader(resId, url);
-for (auto& hd : headerWithRes)
-{
-    headers[hd.first] = hd.second;
-}
-conn->SetHeaders(headers);
-
-RestClient::Response r = conn->get("/get");
-RestClient::disable();
+IntPtr headData = FTWrapper.GetTraceHeader(FAKE_URL);
+string headString = Marshal.PtrToStringAnsi(headData);
 
 ```
 
 ## 用户信息绑定与解绑
 ### 使用方法
 
-```cpp 
+```csharp 
 /**
  * 绑定用户数据
  * 
  * @param config	用户数据
  * @return
  */
-FTSDK&& bindUserData(UserData& config);
+void BindUserData(string jsonConfig);
 		
 /**
  * 解绑用户数据
  *
  */
-void unbindUserData();
+void UnbindUserdata();
 
 ```
+
+| **方法名** | **类型** | **必须** | **说明** |
+| --- | --- | --- | --- |
+| userId | string| 是 | 用户 id |
+| userName | string | 否 | 用户名 |
+| userEmail | string | 否 | 用户邮箱 |
+| extra | dictionary | 否 | KV 方式赋值，添加规则请查阅 [此处](#key-conflict) |
+
+
 ### 代码示例
-```cpp 
-//绑定用户数据
-UserData uc;
-uc.init("username", "1001", "someone@email.com");
-uc.addCustomizeItem("ft_key", "ft_value");
-sdk->bindUserData(uc);
-    
-//解绑用户数据
-sdk->unbindUserData();
+```csharp 
+FTWrapper.BindUserData(@"
+{
+    ""userId"": ""userid"",
+    ""userName"": ""someone"",
+    ""userEmail"": ""someone@email.com"",
+    ""extra"": {
+        ""custom_data"": ""custom data""
+    }
+}");
+
 ```
 
 ## 关闭 SDK
-```cpp
+```csharp
 /**
  * 关闭SDK，执行相关资源清理操作 
  */
-sdk->deinit();
+FTWrapper.DeInit();
 
 ```
 

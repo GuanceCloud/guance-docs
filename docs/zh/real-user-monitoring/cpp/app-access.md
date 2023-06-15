@@ -111,7 +111,7 @@ sdk->install(gc)
 | setAppVersion | enum | 否 | windows 会默认获取，linux 系统需要自行赋值 |
 | setEnableFileDBCache | Bool | 否 | 是否开启本地数据库，默认为 false|
 | addGlobalContext | dictionary | 否 | 添加 SDK 全局属性，添加规则请查阅[此处](#key-conflict)|
-| setServiceName|设置服务名|否|影响 Log 和 RUM 中 service 字段数据， 默认为 windows 为`df_rum_windows`，linux 为 `df_rum_linux` |
+| setServiceName| string |否|影响 Log 和 RUM 中 service 字段数据， 默认为 windows 为`df_rum_windows`，linux 为 `df_rum_linux` |
 
 
 
@@ -131,9 +131,9 @@ sdk->initRUMWithConfig(rc);
 ### Log 配置
 ```cpp
 FTLogConfig lpc;
-std::vector<LogLevel> llf;
-llf.push_back(LogLevel::ERR);
-lpc.setLogLevelFilters(llf);
+//std::vector<LogLevel> llf;
+//llf.push_back(LogLevel::ERR);
+//lpc.setLogLevelFilters(llf);
 lpc.setEnableCustomLog(true)
     .setEnableLinkRumData(true);
 ```
@@ -143,7 +143,8 @@ lpc.setEnableCustomLog(true)
 | setSamplingRate | float | 否 | 采集率的值范围为>= 0、<= 1，默认值为 1 |
 | addGlobalContext | dictionary | 否 | 添加标签数据，添加规则请查阅 [此处](#key-conflict)  |
 | setLogLevelFilters | array | 否 | 设置等级日志过滤，默认不设置 |
-| setEnableCustomLog | bool | 否 | 是否上传自定义日志 ，默认为 false |
+| setEnableCustomLog | bool | 否 | 是否上传自定义日志 ，默认为 `false` |
+| setEnableLinkRUMData | bool | 否 | 是否与 RUM 数据关联，默认为 `false` |
 
 ### Trace 配置
 ```cpp
@@ -207,19 +208,13 @@ void stopView();
 
 ```cpp
 sdk->startView("TEST_VIEW_ONE");
+
+sdk->stopView();
 ```
 
 ### Resource
 #### 使用方法
 ```cpp
-/**
- * 设置网络传输内容
- * 
- * @param resourceId		资源 Id
- * @param params			网络传输参数
- * @param netStatusBean		网络状态统计
- */
-void addResource(std::string resourceId, ResourceParams params, NetStatus netStatusBean);
 	
 /**
  * resource 起始
@@ -234,6 +229,17 @@ void startResource(std::string resourceId);
  * @param resourceId 资源 Id
  */
 void stopResource(std::string resourceId);
+
+
+/**
+ * 设置网络传输内容
+ * 
+ * @param resourceId		资源 Id
+ * @param params			网络传输参数
+ * @param netStatusBean		网络状态统计
+ */
+void addResource(std::string resourceId, ResourceParams params, NetStatus netStatusBean);
+
 ```
 
 | **方法名** | **含义** | **必须** | **说明** |
