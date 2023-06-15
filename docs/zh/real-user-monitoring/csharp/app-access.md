@@ -57,7 +57,7 @@ FTWrapper.Install(@"
 | serviceName| string |否|影响 Log 和 RUM 中 service 字段数据， 默认为 windows 为`df_rum_windows`，linux 为 `df_rum_linux` |
 
 ### 启动 json 文件配置
-配置 `json` 文件启动 SDK 调试日志，放置与 dll 同一级目录
+配置 `json` 文件启动 SDK 调试日志，应用执行同一级目录
 
 ```json
 {    
@@ -102,8 +102,8 @@ FTWrapper.InitLogConfig(@"
 | --- | --- | --- | --- |
 | samplingRate | float | 否 | 采集率的值范围为>= 0、<= 1，默认值为 1 |
 | globalContext | dictionary | 否 | 添加标签数据，添加规则请查阅 [此处](#key-conflict)  |
-| logLevelFilters | array | 否 | 设置等级日志过滤，ok，info，warning，error，critical，默认不设置 |
-| enableCustomLog | bool | 否 | 是否上传自定义日志 ，默认为 false |
+| logLevelFilters | array | 否 | 设置等级日志过滤，`ok`，`info`，`warning`，`error`，`critical`，默认不设置 |
+| enableCustomLog | bool | 否 | 是否上传自定义日志 ，默认为 `false` |
 
 ### Trace 配置
 ```csharp
