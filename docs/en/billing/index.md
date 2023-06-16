@@ -31,18 +31,18 @@ There are three plans of Guance: Experience Plan, Commercial Plan and private cl
 
 </div>
 
-## Expense Center
+## Billing Center
 
 At present, there are two sets of account systems that operate independently and have related statistical data, which jointly realize the usage billing and expense settlement process for **Commercial Plan users**:
 
-- [Guance studio](https://console.guance.com/) account, which can count the data volume, access scale and bill details of the current workspace and synchronize to the designated Expense Center account.
-- [Guance Expense Center](https://boss.guance.com/) account, which can be bound through `workspace ID` **to realize unified expense management at workspace level** and provide a variety of expense settlement methods for you to choose from.
+- [Guance studio](https://console.guance.com/) account, which can count the data volume, access scale and bill details of the current workspace and synchronize to the designated Billing Center account.
+- [Guance Billing Center](https://boss.guance.com/) account, which can be bound through `workspace ID` **to realize unified expense management at workspace level** and provide a variety of expense settlement methods for you to choose from.
 
 ![](img/billing-index-1.png)
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Expense Center doc</font>](./cost-center/index.md)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Billing Center doc</font>](./cost-center/index.md)
 
 <br/>
 
@@ -64,7 +64,7 @@ The owner and administrator of the workspace can view the data access of the wor
 
 ## Expense Settlement Method
 
-After calculating the bill details of the current workspace, Guance studio will push them to the bound Guance Expense Center account for subsequent expense settlement process.
+After calculating the bill details of the current workspace, Guance studio will push them to the bound Guance Billing Center account for subsequent expense settlement process.
 
 At present, it supports various settlement methods such as observing cloud enterprise accounts and cloud accounts. Cloud account settlement includes Alibaba Cloud account and AWS account settlement. In the cloud account settlement mode, it supports the merger of cloud bills from multiple sites into one cloud account for settlement.
 

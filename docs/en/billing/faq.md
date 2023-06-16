@@ -33,20 +33,20 @@ You can't switch between each other. Guance Commercial Plan uses the default ES 
 
 ## What is the difference between Guance enterprise account settlement and cloud account settlement?
 
-- [Guance enterprise account settlement](../billing/billing-account/enterprise-account.md): Recharge and settle directly at the Guance Expense Center. You can recharge the Guance Enterprise Account by recharging cash, purchasing vouchers and stored-value cards;
+- [Guance enterprise account settlement](../billing/billing-account/enterprise-account.md): Recharge and settle directly at the Guance Billing Center. You can recharge the Guance Enterprise Account by recharging cash, purchasing vouchers and stored-value cards;
 - [Alibaba Cloud account settlement](../billing/billing-account/aliyun-account.md): Recharge settlement directly through Alibaba Cloud account;
 - [AWS account settlement](../billing/billing-account/aws-account.md): Recharge settlement directly through AWS account.
 - [Huawei Cloud account settlement](../billing/billing-account/huaweicloud-account.md): Recharge settlement directly through Huawei Cloud account. 
 
 ## How to change the settlement method?
 
-You can select Change Settlement Method in Workspace Management of Guance Expense Center.
+You can select Change Settlement Method in Workspace Management of Guance Billing Center.
 
 ![](img/9.upgrade_9.png)
 
 ## What is any account settlement?
 
-Arbitrary account settlement means that when you observe the "change of settlement method" in the cloud Expense Center, you can choose any cloud account for settlement without being restricted by the registered site. If you register your account at the "China 1 (Hangzhou)" site, "Alibaba Cloud Account Settlement" is opened by default, but if any account settlement is opened, you can choose "Amazon Cloud Account Settlement".
+Arbitrary account settlement means that when you observe the "change of settlement method" in the cloud Billing Center, you can choose any cloud account for settlement without being restricted by the registered site. If you register your account at the "China 1 (Hangzhou)" site, "Alibaba Cloud Account Settlement" is opened by default, but if any account settlement is opened, you can choose "Amazon Cloud Account Settlement".
 
 <font color=coral>**Note:**</font> You need to contact the account manager to open any account for settlement.
 
@@ -69,7 +69,7 @@ Guance supports enterprise account settlement and cloud account settlement.
 
 ## How to apply for an invoice?
 
-- Users who observe enterprise account settlement in cloud Expense Center can apply for invoices in **Expense Center > voice Management**. 
+- Users who observe enterprise account settlement in cloud Billing Center can apply for invoices in **Billing Center > voice Management**. 
 
     > For more details, please refer to the doc [invoice management](../billing/cost-center/invoice-management.md).
 - Users who settle Alibaba Cloud accounts can apply for invoices in Alibaba Cloud.
@@ -77,7 +77,7 @@ Guance supports enterprise account settlement and cloud account settlement.
 
 ## How to view the bill details?
 
-Guance Expense Center provides bill management, including monthly bill, consumption details, income and expenditure details, voucher details and stored-value card details management. 
+Guance Billing Center provides bill management, including monthly bill, consumption details, income and expenditure details, voucher details and stored-value card details management. 
 
 > See the doc [Billing Management](../billing/cost-center/billing-management.md) for more details.
 

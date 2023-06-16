@@ -3,7 +3,7 @@
 
 Guance provides a variety of packages to help enterprises comprehensively observe IT infrastructure, application systems and other enterprise assets at a lower price. According to different development stages of enterprises, it is divided into three packages: start-up acceleration package, start-up development package and enterprise standard package. In addition, Guance also provides traffic packages for enterprises to use according to their own needs and packages.
 
-In the Guance Expense Center, an account can be bound to multiple workspaces at the same time for annual package fee statistics, and the excess package is counted according to [pay-as-you-go](../../../../billing/billing-method/index.md), and only one settlement method of [Guance enterprise account settlement](../../../../billing/billing-account/enterprise-account.md) is supported.
+In the Guance Billing Center, an account can be bound to multiple workspaces at the same time for annual package fee statistics, and the excess package is counted according to [pay-as-you-go](../../../../billing/billing-method/index.md), and only one settlement method of [Guance enterprise account settlement](../../../../billing/billing-account/enterprise-account.md) is supported.
 
 ## Package Price
 

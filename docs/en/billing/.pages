@@ -12,7 +12,7 @@ nav:
     - Public Cloud Experience Plan: trail.md
     - Private Cloud Deployment Plan: deployment.md
     - Independent Storage Plan: independent-storage.md
-  - 'Expense Center': cost-center  
+  - 'Billing Center': cost-center  
   - 'Billing Methods': billing-method
   - 'Settlement Accounts': billing-account
   - 'FAQ': faq.md

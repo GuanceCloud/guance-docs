@@ -7,7 +7,7 @@ Alibaba Cloud account refers to recharge settlement directly through Alibaba Clo
 
 ## Select Alibaba Cloud Account for Settlement
 
-When registering or upgrading the Commercial Plan of Guance, you can select **Alibaba Cloud Account Settlement**, or you can click **Expense Center > Workspace Management** in the workspace of Guance, click **Change Settlement Method**, and select **Alibaba Cloud Account Settlement** in the pop-up dialog box.
+When registering or upgrading the Commercial Plan of Guance, you can select **Alibaba Cloud Account Settlement**, or you can click **Billing Center > Workspace Management** in the workspace of Guance, click **Change Settlement Method**, and select **Alibaba Cloud Account Settlement** in the pop-up dialog box.
 
 ![](../img/9.upgrade_7.png)
 
@@ -32,7 +32,7 @@ Note: Alibaba Cloud account needs real-name authentication to purchase Guance se
 
 ![](../img/6.aliyun_13.png)
 
-Return to the **Guance Expense Center**, prompt **Confirm Opening**, and click OK.
+Return to the **Guance Billing Center**, prompt **Confirm Opening**, and click OK.
 
 ![](../img/6.aliyun_12.png)
 
@@ -86,4 +86,4 @@ After Alibaba Cloud selects and confirms the opening application, Guance directl
 
 ![](../img/1.aliyun_cancel_3.png)
 
-Note: After Alibaba Cloud cancels its subscription to the Guanced service, it will bind all workspaces of the account settlement in the Guance Expense Center, delete the associated cloud account, modify the current cloud account settlement to the enterprise account settlement of the Guance Expense Center, and notify the user by mail.
+Note: After Alibaba Cloud cancels its subscription to the Guanced service, it will bind all workspaces of the account settlement in the Guance Billing Center, delete the associated cloud account, modify the current cloud account settlement to the enterprise account settlement of the Guance Billing Center, and notify the user by mail.

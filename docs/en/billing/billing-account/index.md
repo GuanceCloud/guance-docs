@@ -14,9 +14,9 @@ Guance supports various settlement methods such as Guance enterprise account and
 
 ## Guance Enterprise Account Settlement
 
-You can recharge and settle directly through the [Guance enterprise account settlement](../../billing/billing-account/enterprise-account.md) in [Expense Center](../../billing/cost-center/index.md), and one enterprise account can be associated with multiple workspaces for expense settlement.
+You can recharge and settle directly through the [Guance enterprise account settlement](../../billing/billing-account/enterprise-account.md) in [Billing Center](../../billing/cost-center/index.md), and one enterprise account can be associated with multiple workspaces for expense settlement.
 
-In the Guance Expense Center, you can recharge the enterprise account in cash, manage vouchers, manage stored-value cards and change settlement methods. At the same time, you can also manage the account through the Expense Center, and view the bill details, account balance, tied workspace and other related information.
+In the Guance Billing Center, you can recharge the enterprise account in cash, manage vouchers, manage stored-value cards and change settlement methods. At the same time, you can also manage the account through the Billing Center, and view the bill details, account balance, tied workspace and other related information.
 
 
 ## Cloud Account Settlement

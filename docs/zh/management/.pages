@@ -3,7 +3,7 @@ nav:
   - '设置': settings
   - '成员管理':
     - member-management.md
-    - '成员角色': role-management.md
+    - '角色管理': role-management.md
     - '权限清单': role-list.md
   - '空间管理': space-management.md
   - '文本处理（Pipelines）': overall-pipeline.md

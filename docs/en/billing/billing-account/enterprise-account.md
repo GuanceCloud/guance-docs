@@ -9,7 +9,7 @@ When registering or upgrading the Commercial Plan of Guance, **Guance Enterprise
 
 ![](../img/9.upgrade_7.png)
 
-You can change the settlement method in the Workspace Management of the Guance Expense Center.
+You can change the settlement method in the Workspace Management of the Guance Billing Center.
 
 ![](../img/9.upgrade_9.png)
 
@@ -17,9 +17,9 @@ Returning to Guance billing, you can see that the current workspace has been upg
 
 ![](../img/9.upgrade_10.png)
 
-## Enter Guance Expense Center
+## Enter Guance Billing Center
 
-In the Guance billing, click **Expense Center** to automatically jump to the Guance Expense Center.
+In the Guance billing, click **Billing Center** to automatically jump to the Guance Billing Center.
 
 ![](../img/9.upgrade_11.png)
 
