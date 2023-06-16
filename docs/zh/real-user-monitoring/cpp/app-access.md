@@ -31,14 +31,12 @@
 	cd vcpkg
 	
 	#下载自定义配置 registries 文件
-	curl https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/ft-sdk-package/vcpkg_config/vcpkg-configuration.json 
+	curl -o vcpkg-configuration.json https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/ft-sdk-package/vcpkg_config/vcpkg-configuration.json 
 	
 	bootstrap-vcpkg.bat
-	vcpkg install datakit-cpp-sdk:x64-windows
+	vcpkg install datakit-sdk-cpp:x64-windows
 	vcpkg integrate install
 	```
-	
-	如果你是使用 `Visual Studio` 进行开发，可以直接在项目中进行引用
 
 === "Linux"
 	
@@ -58,7 +56,7 @@
 	# 如果是 arm 64 需要添加 VCPKG_FORCE_SYSTEM_BINARIES
 	#export VCPKG_FORCE_SYSTEM_BINARIES=1
 	
-	./vcpkg install datakit-cpp-sdk:x64
+	./vcpkg install datakit-cpp-sdk:x64-linux
 	
 	# 在编译环境中，引用 VCPKG_ROOT 变量
 	export VCPKG_ROOT= [ your_vcpkg_root_dir ]
