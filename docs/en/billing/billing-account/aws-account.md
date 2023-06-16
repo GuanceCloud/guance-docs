@@ -45,17 +45,17 @@ Prompt to successfully open the Commercial Plan of Guance.
 
 ![](../img/15.aws_register_8.png)
 
-### Step 2: Bind Workspace in Expense Center
+### Step 2: Bind Workspace in Billing Center
 
-After opening the Commercial Plan, switch back to the account login page of the Guance Expense Center in the current browser and enter the registered user name, account and password, then you complete the settlement of opening AWS account.
+After opening the Commercial Plan, switch back to the account login page of the Guance Billing Center in the current browser and enter the registered user name, account and password, then you complete the settlement of opening AWS account.
 
 ![](../img/15.aws_register_5.png)
 
-Log in to the Guance Expense Center, select the workspace, and click **Confirm**.
+Log in to the Guance Billing Center, select the workspace, and click **Confirm**.
 
 ![](../img/15.aws_register_11.png)
 
-In the **Account Management** > **Cloud Account** of the Guance Expense Center, you can view the subscribed cloud account and the workspace of related settlement.
+In the **Account Management** > **Cloud Account** of the Guance Billing Center, you can view the subscribed cloud account and the workspace of related settlement.
 
 ![](../img/15.aws_register_12.png)
 
@@ -63,13 +63,13 @@ You can also view the associated settlement method in **Management Workspace**.
 
 ![](../img/15.aws_register_13.png)
 
-## Change AWS Account Settlement Method in Expense Center
+## Change AWS Account Settlement Method in Billing Center
 
 === "Bind the first AWS account settlement workspace"
 
-    If your workspace is not bound with AWS account for settlement, you can change the expense settlement method to AWS account through [Guance Expense Center](https://boss.guance.com/#/signin).
+    If your workspace is not bound with AWS account for settlement, you can change the expense settlement method to AWS account through [Guance Billing Center](https://boss.guance.com/#/signin).
 
-    You can also click **Expense Center > Workspace Management** in the Guance workspace **Billing**, select the workspace that needs to be changed to AWS account settlement, and click **Change Settlement Method** to complete the replacement process.
+    You can also click **Billing Center > Workspace Management** in the Guance workspace **Billing**, select the workspace that needs to be changed to AWS account settlement, and click **Change Settlement Method** to complete the replacement process.
 
     ![](../img/15.aws_register_9.png)
 
@@ -77,11 +77,11 @@ You can also view the associated settlement method in **Management Workspace**.
 
     ![](../img/15.aws_register_10.1.png)
 
-    After subscription, it will automatically jump to the Guance Expense Center. After selecting the workspace, click **Confirm**.
+    After subscription, it will automatically jump to the Guance Billing Center. After selecting the workspace, click **Confirm**.
 
     ![](../img/15.aws_register_11.png)
 
-    Select the workspace, confirm the submission, and view the subscribed cloud account and related settlement workspace in the **Account Management > Cloud Account** of the Guance Expense Center.
+    Select the workspace, confirm the submission, and view the subscribed cloud account and related settlement workspace in the **Account Management > Cloud Account** of the Guance Billing Center.
 
     ![](../img/15.aws_register_12.png)
 
@@ -91,7 +91,7 @@ You can also view the associated settlement method in **Management Workspace**.
 
 === "Bind the second AWS account settlement workspace"
 
-    If you need to bind multiple workspaces in the same AWS account for settlement, you can click **Change Settlement Method** in **[Guance Expense Center](https://boss.guance.com/#/signin) > Workspace Management**, and select the AWS account to be bound in **Registered Cloud Account Settlement**.
+    If you need to bind multiple workspaces in the same AWS account for settlement, you can click **Change Settlement Method** in **[Guance Billing Center](https://boss.guance.com/#/signin) > Workspace Management**, and select the AWS account to be bound in **Registered Cloud Account Settlement**.
 
     ![](../img/10.aws_change_1.png)
 
@@ -121,7 +121,7 @@ After unsubscribing successfully, Guance service was cancelled in Amazon Cloud M
 
 ![](../img/8.space_17.png)
 
-> After you unsubscribe to the Guance service in AWS, all binding workspaces settled by this account in Guance Expense Center will delete the associated cloud account and lock all associated workspaces. You can unlock the workspace in **Expense Center > Workspace Management**. For more details, please refer to [lock workspace](../cost-center/workspace-management.md#lock).
+> After you unsubscribe to the Guance service in AWS, all binding workspaces settled by this account in Guance Billing Center will delete the associated cloud account and lock all associated workspaces. You can unlock the workspace in **Billing Center > Workspace Management**. For more details, please refer to [lock workspace](../cost-center/workspace-management.md#lock).
 
 
 

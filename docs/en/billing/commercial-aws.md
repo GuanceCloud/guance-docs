@@ -26,7 +26,7 @@ In the pop-up dialog box, click **Set up your Account**.
 
 After clicking **Set up your Account** in AWS Marketplace, jump back to Guance to open. Prompt **Register Guance Commercial Plan Immediately** and **Exist enterprise account, bind it**.
 
-> Enterprise account is an independent account used by the Guance Expense Center to manage the billing related to the Commercial Plan of Guance, and one enterprise account can be associated with multiple workspace billing.
+> Enterprise account is an independent account used by the Guance Billing Center to manage the billing related to the Commercial Plan of Guance, and one enterprise account can be associated with multiple workspace billing.
 
 ![](img/15.aws_market_1.png)
 
@@ -66,7 +66,7 @@ If you don't have a Guance account yet, you can click **Register Guance Commerci
 
     ![](img/15.aws_market_register_7.png)
 
-    You can log in to [Guance Expense Center](https://boss.guance.com/#/signin) with the account you just registered, and view the opened settlement methods in **Workspace Management**.
+    You can log in to [Guance Billing Center](https://boss.guance.com/#/signin) with the account you just registered, and view the opened settlement methods in **Workspace Management**.
 
     ![](img/15.aws_market_register_10.png)
 
@@ -105,7 +105,7 @@ If you already have a Guance enterprise account, enter the **User Name** of Guan
 
     ![](img/15.aws_market_register_15.png)
 
-    You can check the open billing methods in **[Guance Expense Center](https://boss.guance.com/#/signin) > Workspace Management**.
+    You can check the open billing methods in **[Guance Billing Center](https://boss.guance.com/#/signin) > Workspace Management**.
 
     ![](img/15.aws_market_register_16.png)
 
