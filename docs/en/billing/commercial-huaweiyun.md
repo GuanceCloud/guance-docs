@@ -28,7 +28,7 @@ The default setting is that yourself is an administrator. After the organization
 II. Add Member
 In **My KooGallery > Joint Operations Services > Organizations > Organization Management > Add Member**, fill in the relevant information of the organization in the pop-up dialog box.
 
-> The "account" and "password" created here will be used to avoid login to the Guance Expense Center registration or enterprise account login. For wxample, "account number" is filled with "Wendy", the login account number is "Wendy @ gcy".
+> The "account" and "password" created here will be used to avoid login to the Guance Billing Center registration or enterprise account login. For wxample, "account number" is filled with "Wendy", the login account number is "Wendy @ gcy".
 
 ![](./img/13.huaweicloud_7.1.png)
 
@@ -63,7 +63,7 @@ Click the login address and enter the account number and password when adding me
 ![](./img/13.huaweicloud_15.png)
 
 
-If [Huawei Cloud Account ID ](./billing-account/huawei-account.md#id)is not bound to Guance Expense Center Account, you can jump to the following page after successful login. You can choose:
+If [Huawei Cloud Account ID ](./billing-account/huawei-account.md#id)is not bound to Guance Billing Center Account, you can jump to the following page after successful login. You can choose:
     
 - **[Register Guance Commercial Plan Now](commercial-register.md)**；   
     
@@ -137,7 +137,7 @@ If [Huawei Cloud Account ID ](./billing-account/huawei-account.md#id)is not boun
 
 ???+ attention
 
-    If [Huawei Cloud Account ID](./billing-account/huawei-account.md#id) has been bound to the Guance Expense Center account, click **Login Link**, and you can directly enter without login.
+    If [Huawei Cloud Account ID](./billing-account/huawei-account.md#id) has been bound to the Guance Billing Center account, click **Login Link**, and you can directly enter without login.
 
 ## Start Using Guance
 
