@@ -29,7 +29,12 @@ Microsoft IIS 采集器
   [inputs.iis.log]
     files = []
     ## grok pipeline script path
-    pipeline = "iis.p" 
+    pipeline = "iis.p"
+
+  [inputs.iis.tags]
+    ## tag1 = "v1"
+    ## tag2 = "v2"
+ 
 ```
 
 配置好后，重启 DataKit 即可。
