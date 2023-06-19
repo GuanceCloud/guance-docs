@@ -361,9 +361,10 @@ DataKit allows you to configure global labels for all the data it collects. Glob
   ip         = "__datakit_ip"
   host       = "__datakit_hostname"
 
-[global_election_tags]
-  project = "my-project"
-  cluster = "my-cluster"
+[election]
+  [election.tags]
+    project = "my-project"
+    cluster = "my-cluster"
 ```
 
 When adding a global Tag, there are several places to pay attention to:
