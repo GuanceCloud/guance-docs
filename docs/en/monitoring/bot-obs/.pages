@@ -9,6 +9,7 @@ nav:
   - 'Alibaba Cloud Preemptible Instance Survival Intelligent Inspection': spot-alive.md
   - 'Idle Resources Intelligent Inspection': idle-resources.md
   - 'Cloud Idle Resources Intelligent Inspection': cloud-idle-resources.md
+  - 'AWS Cloudtrail Exception Event Intelligent Inspection': aws_ak_errorlog.md
   - 'Workspace Asset Intelligent Inspection': workspace-weekly-report.md
   - 'RUM Log Error Intelligent Inspection': rum_errors.md
   - 'RUM Performance Intelligent Integration': rum-performance.md
