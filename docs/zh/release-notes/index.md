@@ -8,12 +8,34 @@ icon: zy/release-notes
 本文档记录观测云每次上线发布的更新内容说明，包括 DataKit、观测云最佳实践、观测云集成文档和观测云。
 
 
-<!--
-## 2023 年 6 月 8 日
+## 2023 年 6 月 20 日
 
-- 备份日志新增[外部存储类型选择](../logs/backup.md#aws)，支持写入 S3(AWS) 对象存储。
+### 观测云更新
 
--->
+- RUM (Real User Monitoring) 采集器用于收集网页端或移动端上报的用户访问监测数据。现提供 [RUM Headless一键开通服务](/dataflux-func/headless.md)，实现自动化安装部署在观测云的云主机中，自动完成 DataKit 安装，RUM 采集器部署。只需要手动接入应用即可。
+- **日志 > 备份日志**：新增外部存储类型选择，支持[写入 S3(AWS) 对象存储](../logs/backup.md#aws)、支持[华为云 OBS 数据写入](/logs/backup.md#obs)。
+- **日志 > 索引**：新增[日志易数据绑定配置入口](/logs/multi-index.md#rizhiyi)。
+- 仪表板/内置视图支持[根因分析和下钻分析](/scene/visual-chart/index.md#analysis)。
+- **管理 > 角色管理**：支持[克隆已有用户角色](/management/role-management.md#operations)减少操作步骤，快速增减权限并创建角色。
+- 文本输入框输入不合法的字符或长度限制提示优化
+- **基础设施 > 容器**：新增 [Daemonset 对象数据](/infrastructure/contrainer.md#daemonsets)显示，可拖拽改变对象分类显示顺序。
+- 新增[异常追踪 OpenAPI 接口](/open-api/channel/add)。
+- 工单状态更新或有新回复时，通过界面或者邮件提醒客户关注。
+- 仪表板图片下载水印文案调整。
+- **管理 > 成员管理**列表、**监控 > 通知对象管理 > 邮件组**、异常追踪,查看成员、所有选择通知对象处均支持按成员昵称进行检索。
+
+### 智能巡检更新
+
+- 新增巡检
+
+    - [AWS Cloudtrail 异常事件巡检](https://docs.guance.com/monitoring/bot-obs/aws_ak_errorlog/)：AWS CloudTrail 是一项用于跟踪、日志记录和监控AWS账户活动的服务。它记录了 AWS 账户中进行的操作，包括管理控制台访问、API 调用、资源变更等，我们可以通过监控 CloudTrail 的错误事件，及时发现潜在的安全问题。例如，非授权的 API 调用、访问被拒绝的资源、异常的身份验证尝试等。这有助于保护您的AWS账户和资源免受未经授权的访问和恶意活动；还可以了解到系统中发生的故障类型、频率和影响范围。这有助于您快速识别问题并采取适当的纠正措施，以减少服务中断时间和业务影响。
+
+- 新增脚本
+
+    - [观测云集成（阿里云-RDS错误日志）](https://func.guance.com/doc/script-market-guance-aliyun-rds-errorlog/)：收集阿里云的 RDS 错误日志，用于 RDS 的错误信息诊断；
+    - [filebeats 数据采集器](https://func.guance.com/doc/script-market-guance-middleware-filebeats/)：收集 FileBeats 性能数据用于观测 FileBeats 性能、延迟等场景；
+    - [logstash 数据采集器](https://func.guance.com/doc/script-market-guance-middleware-logstash/)：收集 Logstash 性能数据用于观测 Logstash 性能、延迟等场景。
+
 
 ## 2023 年 6 月 6 日
 
