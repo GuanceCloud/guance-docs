@@ -12,6 +12,7 @@ nav:
   - '前端应用日志错误巡检': rum_errors.md
   - 'RUM 性能巡检': rum-performance.md
   - '阿里云资产巡检': cloudasset.md
+  - 'AWS Cloudtrail 异常事件巡检': aws_ak_errorlog.md
   - 'MySQL 性能巡检': mysql-performance.md
   - '服务端应用错误巡检': apm-errors.md
   - 'Kubernetes': Kubernetes
