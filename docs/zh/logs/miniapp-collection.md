@@ -26,9 +26,9 @@
 
 ```javascript
 //#ifndef H5 || APP-PLUS || APP-NVUE || APP-PLUS-NVUE
-const { datafluxRum } = require('@cloudcare/dataflux-rum-miniapp-logs')
+const { datafluxLogs } = require('@cloudcare/dataflux-rum-miniapp-logs')
 // 初始化 Rum
-datafluxRum.init({
+datafluxLogs.init({
 	datakitOrigin: '<DATAKIT ORIGIN>'
   service: 'minapp',
   env: 'prod',
@@ -41,9 +41,9 @@ datafluxRum.init({
 
 ```javascript
 //#ifndef H5 || APP-PLUS || APP-NVUE || APP-PLUS-NVUE
-const { datafluxRum } = require('@cloudcare/dataflux-rum-miniapp-logs')
+const { datafluxLogs } = require('@cloudcare/dataflux-rum-miniapp-logs')
 // 初始化 Rum
-datafluxRum.init({
+datafluxLogs.init({
 	datakitOrigin: '<DATAKIT ORIGIN>'
   service: 'miniapp',
   env: 'prod',

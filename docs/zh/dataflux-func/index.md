@@ -28,7 +28,7 @@ DataFlux Func 是一个基于 Python 的脚本开发、管理、执行平台。
 ???+ attention
 
     - 一个工作空间只能开通一个 Func，仅 **Owner** 有开通权限和配置权限；  
-    - DataFlux Func 托管版<u>按月收费</u>，在开通成功后一次性扣除一个月的费用，在到期日前一天自动扣除下月费用（如：04/13 开通，则 04/12 扣费，05/12 扣费，以此类推...）
+    - DataFlux Func 托管版<u>按月收费</u>，在开通成功后一次性扣除一个月的费用，在到期日前一天自动扣除下月费用（如：04/13 开通，则 04/12 扣费，05/12 扣费，以此类推...）。
 
 1、进入**概览**页面，点击**开通**，填写域名、选择应用所需规格：
 
@@ -111,7 +111,6 @@ DataFlux Func 托管版采用按月收费的模式，在费用到期前，您仍
 </div>
 
 
-
 > 关于 DataFlux Func 的部署和维护手册、脚本开发手册、脚本市场等详细内容，可参考：
 
 <div class="grid cards" markdown>
@@ -124,6 +123,12 @@ DataFlux Func 托管版采用按月收费的模式，在费用到期前，您仍
 
 <br/>
 
-<br/>
+## RUM Headless
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; __一键开通 RUM Headless__ </font>](/dataflux-func/headless.md)
 
 <br/>
+
+</div>
