@@ -367,9 +367,10 @@ DataKit 允许给其采集的所有数据配置全局标签，全局标签分为
   ip         = "__datakit_ip"
   host       = "__datakit_hostname"
 
-[global_election_tags]
-  project = "my-project"
-  cluster = "my-cluster"
+[election]
+  [election.tags]
+    project = "my-project"
+    cluster = "my-cluster"
 ```
 
 加全局 Tag 时，有几个地方要注意：
