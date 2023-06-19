@@ -131,7 +131,7 @@
 
 3、点击**确定**，弹出确认框，进行创建规则的二次确定。
 
-<img src="img/back-7.png" width="60%" >
+![](img/back-7.png)
 
 #### 华为云 OBS
 
