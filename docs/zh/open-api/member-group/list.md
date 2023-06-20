@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/workspace/member_group/list**
+<br />**GET /api/v1/workspace/member_group/list**
 
 ## 概述
 列出当前工作空间中的所有成员组

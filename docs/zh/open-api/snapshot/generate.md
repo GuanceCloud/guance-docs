@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/snapshots/create**
+<br />**POST /api/v1/snapshots/create**
 
 ## 概述
 创建一个快照配置

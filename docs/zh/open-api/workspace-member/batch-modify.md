@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/workspace/member/batch_modify**
+<br />**POST /api/v1/workspace/member/batch_modify**
 
 ## 概述
 修改一个/多个成员

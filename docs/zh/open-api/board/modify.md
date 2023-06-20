@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/dashboards/\{dashboard_uuid\}/modify**
+<br />**POST /api/v1/dashboards/\{dashboard_uuid\}/modify**
 
 ## 概述
 修改仪表板的属性信息，

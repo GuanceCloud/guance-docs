@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/monitor/mute/create**
+<br />**POST /api/v1/monitor/mute/create**
 
 ## 概述
 创建一个静默规则

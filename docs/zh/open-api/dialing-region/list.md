@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/dialing_region/list**
+<br />**GET /api/v1/dialing_region/list**
 
 ## 概述
 获取自建节点列表

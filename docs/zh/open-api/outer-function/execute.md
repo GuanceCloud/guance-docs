@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/outer_function/execute**
+<br />**POST /api/v1/outer_function/execute**
 
 ## 概述
 对指定的 Func 函数发起一次执行请求

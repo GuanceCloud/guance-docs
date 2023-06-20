@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/workspace/get**
+<br />**GET /api/v1/workspace/get**
 
 ## 概述
 获取当前调用者所属工作空间信息

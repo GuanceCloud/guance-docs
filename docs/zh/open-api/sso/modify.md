@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/saml/mapping/field/\{fdmp_uuid\}/modify**
+<br />**POST /api/v1/saml/mapping/field/\{fdmp_uuid\}/modify**
 
 ## 概述
 修改一个SAML映射

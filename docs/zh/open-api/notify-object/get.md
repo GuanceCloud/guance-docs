@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/notify_object/get**
+<br />**GET /api/v1/notify_object/get**
 
 ## 概述
 获取指定的通知对象信息

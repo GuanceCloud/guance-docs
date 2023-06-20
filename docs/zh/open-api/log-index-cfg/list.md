@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/log_index_cfg/list**
+<br />**GET /api/v1/log_index_cfg/list**
 
 ## 概述
 列出索引信息

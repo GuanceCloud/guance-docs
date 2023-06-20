@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/saml/mapping/field/\{fdmp_uuid\}/delete**
+<br />**GET /api/v1/saml/mapping/field/\{fdmp_uuid\}/delete**
 
 ## 概述
 删除一个SAML映射

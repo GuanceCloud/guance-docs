@@ -1,0 +1,3 @@
+nav:
+  - '创建一个Issue消息': add.md
+  - '修改一个Issue信息': modify.md

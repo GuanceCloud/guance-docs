@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/monitor/group/list**
+<br />**GET /api/v1/monitor/group/list**
 
 ## 概述
 分页获取告警策略列表

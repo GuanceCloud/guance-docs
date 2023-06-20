@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/keyevent/restore**
+<br />**GET /api/v1/keyevent/restore**
 
 ## 概述
 根据`monitorCheckerEventRef`恢复指定事件

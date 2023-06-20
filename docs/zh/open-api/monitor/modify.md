@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/monitor/group/\{monitor_uuid\}/modify**
+<br />**POST /api/v1/monitor/group/\{monitor_uuid\}/modify**
 
 ## 概述
 根据`monitor_uuid`修改指定的告警策略配置信息

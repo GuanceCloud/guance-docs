@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/workspace/member_group/add**
+<br />**POST /api/v1/workspace/member_group/add**
 
 ## 概述
 新建一个成员组

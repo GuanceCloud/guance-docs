@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/notes/list**
+<br />**GET /api/v1/notes/list**
 
 ## 概述
 列出所有符合条件的笔记内容, 当前接口无分页

@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/pipeline/import**
+<br />**POST /api/v1/pipeline/import**
 
 ## 概述
 导入一个/多个Pipeline

@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/viewer/\{viewer_uuid\}/modify**
+<br />**POST /api/v1/viewer/\{viewer_uuid\}/modify**
 
 ## 概述
 修改查看器

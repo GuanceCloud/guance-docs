@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/events/create**
+<br />**POST /api/v1/events/create**
 
 ## 概述
 创建一个事件并指定事件内容, 通过该接口写入的事件其`df_source=custom`

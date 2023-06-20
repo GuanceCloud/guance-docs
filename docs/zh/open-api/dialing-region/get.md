@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/dialing_region/\{region_uuid\}/info**
+<br />**GET /api/v1/dialing_region/\{region_uuid\}/info**
 
 ## 概述
 获取一个自建节点的配置

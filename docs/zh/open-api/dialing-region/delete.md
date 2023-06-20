@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/dialing_region/\{region_uuid\}/delete**
+<br />**GET /api/v1/dialing_region/\{region_uuid\}/delete**
 
 ## 概述
 删除一个自建节点
