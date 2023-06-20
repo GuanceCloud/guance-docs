@@ -42,7 +42,6 @@
 
 **Label 属性**随容器信息默认自动上传。点击容器对象列表中的名称，即可划出详情页查看其对应的 Label 属性。容器标签添加后，可在容器对象列表通过添加的标签筛选展示相同标签的容器列表。
 
-![](img/1.container_1.png)
 
 #### 关联分析
 
@@ -110,7 +109,7 @@
 
 #### Pods 详情页
 
-点击 Pods 列表中的 Pods 名称即可划出详情页查看 Pods 的详细信息，包括运行状态、Pods 名称、所属的节点 Node、 Label 属性、关联指标、关联容器、关联日志、YAML 文件、网络连接状态、关联服务器运行状态等。
+点击 Pods 列表中的 Pods 名称即可划出详情页查看 Pods 的详细信息，包括运行状态、Pods 名称、所属的节点 Node、 Label 属性、关联指标、关联容器、关联日志、YAML 文件、网络连接状态、关联服务器运行状态以及关联 kubernetes。
 
 通过点击 Pods 详情页的标签**主机**，您可以对该主机相关的日志、容器、进程、链路、巡检等数据进行查询。
 
@@ -133,9 +132,6 @@
 #### Label 属性
 
 **Label 属性**随 Pods 信息默认自动上传。已有的 Pods 标签，可在 Pods 对象列表通过快捷筛选展示相同标签的 Pods 数据。
-
-![](img/1.container_1.png)
-
 
 
 #### 关联分析
@@ -200,10 +196,7 @@
 
 #### Label 属性
 
-**Label 属性**随 Services 信息默认自动上传。已有的标签，可在 Services 对象列表通过快捷筛选展示相同标签的  Services 数据。
-
-![](img/1.container_1.png)
-
+**Label 属性**随 Services 信息默认自动上传。已有的标签，可在 Services 对象列表通过快捷筛选展示相同标签的 Services 数据。
 
 
 ### Deployments 列表
@@ -212,7 +205,7 @@
 
 #### Deployments 详情页
 
-点击 Deployments 列表中的 Deployments 名称即可划出详情页查看 Deployments 的详细信息，包括名称、基础信息、 Label 属性和其他字段属性。支持查看关联的日志、Replica Set、 Pods、以及网络数据。
+点击 Deployments 列表中的 Deployments 名称即可划出详情页查看 Deployments 的详细信息，包括名称、基础信息、Label 属性和其他字段属性。支持查看关联的日志、Replica Set、Pods、网络数据以及关联 kubernetes。
 
 <font color=coral>**注意：**</font>若 Deployments 关联字段 `namespace`，则可以在 Services 详情页查看该字段对应的指标视图。
 
@@ -222,13 +215,12 @@
 
 **Label 属性**随 Deployments 信息默认自动上传。已有的标签，可在 Deployments 对象列表通过快捷筛选展示相同标签的 Deployments 数据。
 
-![](img/1.container_1.png)
 
 #### 关联分析 
 
 === "YAML"
 
-    支持查看 Deployments 对应的 YAML 文件。在基础设施 Deployments 的详情页，点击 **YAML** ，即可查看对应的YAML 文件。
+    支持查看 Deployments 对应的 YAML 文件。在基础设施 Deployments 的详情页，点击 **YAML** ，即可查看对应的 YAML 文件。
 
 
 === "日志"
@@ -247,7 +239,7 @@
 
 === "Replica Set"
 
-    支持查看 Deployments 对应 Replica Set 的准备状态、运行时长等，点击 Replica Set 或点击跳转按钮至 Replica Set 查看与本 Deployments 相关的全部 Replica Set。
+    支持查看 Deployments 对应 Replica Sets 的准备状态、运行时长等，点击 Replica Sets 或点击跳转按钮至 Replica Sets 查看与本 Deployments 相关的全部 Replica Set。
 
 === "网络"
 
@@ -257,7 +249,7 @@
 
 ### Clusters 列表
 
-通过左上角的对象 **Clusters** ，您可以切换至 **Clusters** 查看空间内留存的全部 Clusters 的信息，包括Clusters 名称、运行时间、kubernetes 注释等。
+通过左上角的对象 **Clusters** ，您可以切换至 **Clusters** 查看空间内留存的全部 Clusters 的信息，包括 Clusters 名称、运行时间、kubernetes 注释等。
 
 #### Clusters 详情页
 
@@ -269,10 +261,7 @@
 
 #### Label 属性
 
-**Label 属性**随 Clusters 信息默认自动上传。已有的标签，可在 Clusters 对象列表通过快捷筛选展示相同标签的  Clusters 数据。
-
-![](img/1.container_1.png)
-
+**Label 属性**随 Clusters 信息默认自动上传。已有的标签，可在 Clusters 对象列表通过快捷筛选展示相同标签的 Clusters 数据。
 
 
 ### Nodes 列表
@@ -291,17 +280,16 @@
 
 **Label 属性**随 Nodes 信息默认自动上传。已有的标签，可在 Nodes 对象列表通过快捷筛选展示相同标签的 Nodes 数据。
 
-![](img/1.container_1.png)
 
 ### Replica Sets 列表
 
-通过左上角的对象 **Replica Sets** ，您可以切换至 **Replica Sets** 查看空间内留存的全部 Replica Sets 的详尽信息，包括 Replica Set 名称、运行时间长，集群等。
+通过左上角的对象 **Replica Sets** ，您可以切换至 **Replica Sets** 查看空间内留存的全部 Replica Sets 的详尽信息，包括 Replica Sets 名称、运行时间长，集群等。
 
-#### Replica Set 详情页
+#### Replica Sets 详情页
 
-点击 Replica Sets 列表中的 Replica Set 名称即可划出 Replica Set 详情页查看 Replica Set 的信息，包括名称、基础属性信息、 Label 属性和其他字段属性。支持查看关联的 Pods 数据。
+点击 Replica Sets 列表中的 Replica Sets 名称即可划出 Replica Sets 详情页查看 Replica Sets 的信息，包括名称、基础属性信息、 Label 属性和其他字段属性。支持查看关联的 Pods 数据。
 
-<font color=coral>**注意：**</font>若 Replica Set 关联字段 `namespace`，则可以在 Services 详情页查看该字段对应的指标视图。
+<font color=coral>**注意：**</font>若 Replica Sets 关联字段 `namespace`，则可以在 Services 详情页查看该字段对应的指标视图。
 
 ![](img/12.sets_2.png)
 
@@ -309,10 +297,7 @@
 
 #### Label 属性
 
-**Label 属性**随 Replica Set 信息默认自动上传。已有的标签，可在 Replica Set 对象列表通过快捷筛选展示相同标签的 Replica Set 数据。
-
-![](img/1.container_1.png)
-
+**Label 属性**随 Replica Sets 信息默认自动上传。已有的标签，可在 Replica Sets 对象列表通过快捷筛选展示相同标签的 Replica Sets 数据。
 
 
 ### Jobs 列表
@@ -331,9 +316,6 @@
 
 **Label 属性**随 Jobs 信息默认自动上传。已有的标签，可在 Jobs 对象列表通过快捷筛选展示相同标签的 Jobs 数据。
 
-![](img/1.container_1.png)
-
-
 
 ### Cron Jobs 列表
 
@@ -351,21 +333,22 @@
 
 **Label 属性**随 Cron Jobs 信息默认自动上传。已有的标签，可在 Cron Jobs 对象列表通过快捷筛选展示相同标签的 Jobs 数据。
 
-![](img/1.container_1.png)
 
 ### Daemonsets 列表
 
-通过左上角的对象 **Daemonsets** ，您可以切换至 **Daemonsets** 查看空间内留存的全部 Daemonsets 的信息，默认显示 Daemonsets 名称、期望节点数、更新节点数、准备就绪节点数、运行时长等。
+通过左上角的对象 **Daemonsets**，您可以切换至 **Daemonsets** 查看空间内留存的全部 Daemonsets 的信息，默认显示 Daemonsets 名称、期望节点数、更新节点数、准备就绪节点数、运行时长等。
 
 #### Daemonsets 详情页 {#daemonsets}
 
 点击 Daemonsets 列表中的 Daemonsets 名称即可划出详情页查看 Daemonsets 更新节点数、准备就绪节点数和其他字段属性。
 
+![](img/daemonsets.png)
+
 #### Label 属性
 
 **Label 属性**随 Daemonsets 信息默认自动上传。已有的标签，可在 Daemonsets 对象列表通过快捷筛选展示相同标签的 Daemonsets 数据。
 
-![](img/daemonsets.png)
+
 
 ## 容器分布图 {#distribution}
 
