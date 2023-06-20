@@ -1,4 +1,5 @@
 nav:
+ - index.md
  - 'Pythond ': pythond.md
  - 'Text Data Processing':
     - 'Pipeline Manual': pipeline.md
