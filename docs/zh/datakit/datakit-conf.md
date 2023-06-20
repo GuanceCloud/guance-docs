@@ -19,7 +19,7 @@ DataKit 主配置用来配置 DataKit 自己的运行行为。
 
 ## Datakit 主配置示例 {#maincfg-example}
 
-Datakit 主配置示例如下，我们可以根据该示例来开启各种功能（当前版本 1.9.1）：
+Datakit 主配置示例如下，我们可以根据该示例来开启各种功能（当前版本 1.9.2）：
 
 <!-- markdownlint-disable MD046 -->
 ??? info "*datakit.conf*"
@@ -45,7 +45,7 @@ Datakit 主配置示例如下，我们可以根据该示例来开启各种功能
     
     # enable_pprof: bool
     # If pprof enabled, we can profiling the running datakit
-    enable_pprof = false
+    enable_pprof = true
     pprof_listen = "localhost:6060" # pprof listen
     
     # protect_mode: bool, default false
@@ -95,6 +95,13 @@ Datakit 主配置示例如下，我们可以根据该示例来开启各种功能
       use_sqlite = false
       # or use pure memory to cache the reftab data
       sqlite_mem_mode = false
+    
+      # Offload data processing tasks to post-level data processors.
+      [pipeline.offload]
+        receiver = "datakit-http"
+        addresses = [
+          # "http://<ip>:<port>"
+        ]
     
     ################################################
     # HTTP server(9529)
