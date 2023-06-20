@@ -110,32 +110,32 @@
 === "Windows 32 位"
 
     - [Installer](https://static.guance.com/datakit/installer-windows-386.exe){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-windows-386-1.9.1.tar.gz){:target="_blank"}
+    - [DataKit](https://static.guance.com/datakit/datakit-windows-386-1.9.2.tar.gz){:target="_blank"}
 
 === "Windows 64 位"
 
     - [Installer](https://static.guance.com/datakit/installer-windows-amd64.exe){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-windows-amd64-1.9.1.tar.gz){:target="_blank"}
+    - [DataKit](https://static.guance.com/datakit/datakit-windows-amd64-1.9.2.tar.gz){:target="_blank"}
 
 === "Linux X86 32 位"
 
     - [Installer](https://static.guance.com/datakit/installer-linux-386){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-linux-386-1.9.1.tar.gz){:target="_blank"}
+    - [DataKit](https://static.guance.com/datakit/datakit-linux-386-1.9.2.tar.gz){:target="_blank"}
 
 === "Linux X86 64 位"
 
     - [Installer](https://static.guance.com/datakit/installer-linux-amd64){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-linux-amd64-1.9.1.tar.gz){:target="_blank"}
+    - [DataKit](https://static.guance.com/datakit/datakit-linux-amd64-1.9.2.tar.gz){:target="_blank"}
 
 === "Linux Arm 32 位"
 
     - [Installer](https://static.guance.com/datakit/installer-linux-arm){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-linux-arm-1.9.1.tar.gz){:target="_blank"}
+    - [DataKit](https://static.guance.com/datakit/datakit-linux-arm-1.9.2.tar.gz){:target="_blank"}
 
 === "Linux Arm 64 位"
 
     - [Installer](https://static.guance.com/datakit/installer-linux-arm64){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-linux-arm64-1.9.1.tar.gz){:target="_blank"}
+    - [DataKit](https://static.guance.com/datakit/datakit-linux-arm64-1.9.2.tar.gz){:target="_blank"}
 <!-- markdownlint-enable -->
 
 下载完后，应该有三个文件（此处 `<OS-ARCH>` 指特定平台的安装包）：
@@ -154,7 +154,7 @@
     需以 administrator 权限运行 Powershell 执行：
 
     ```powershell
-    .\installer-windows-amd64.exe --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs .\datakit-windows-amd64-1.9.1.tar.gz,.\data.tar.gz
+    .\installer-windows-amd64.exe --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs .\datakit-windows-amd64-1.9.2.tar.gz,.\data.tar.gz
     ```
 
 === "Linux"
@@ -163,7 +163,7 @@
 
     ```shell
     chmod +x installer-linux-amd64
-    ./installer-linux-amd64 --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs datakit-linux-amd64-1.9.1.tar.gz,data.tar.gz
+    ./installer-linux-amd64 --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs datakit-linux-amd64-1.9.2.tar.gz,data.tar.gz
     ```
 <!-- markdownlint-enable -->
 
@@ -214,8 +214,8 @@ mkdir -p /datakit
 wget -P /datakit https://static.guance.com/datakit/install.sh
 wget -P /datakit https://static.guance.com/datakit/version
 wget -P /datakit https://static.guance.com/datakit/data.tar.gz
-wget -P /datakit https://static.guance.com/datakit/installer-linux-amd64-1.9.1
-wget -P /datakit https://static.guance.com/datakit/datakit-linux-amd64-1.9.1.tar.gz
+wget -P /datakit https://static.guance.com/datakit/installer-linux-amd64-1.9.2
+wget -P /datakit https://static.guance.com/datakit/datakit-linux-amd64-1.9.2.tar.gz
 
 # 下载其它工具包：sources 是开启 RUM sourcemap 功能使用的安装包，如果未开启此功能，可选择不下载
 sources=(
@@ -421,17 +421,17 @@ wget https://static.guance.com/datakit/datakit.yaml -P /home/guance/
 
 ```shell
 # 拉取 amd 镜像并打包
-docker pull --platform amd64 pubrepo.guance.com/datakit/datakit:1.9.1
-docker save -o datakit-amd64-1.9.1.tar pubrepo.guance.com/datakit/datakit:1.9.1
-mv datakit-amd64-1.9.1.tar /home/guance
+docker pull --platform amd64 pubrepo.guance.com/datakit/datakit:1.9.2
+docker save -o datakit-amd64-1.9.2.tar pubrepo.guance.com/datakit/datakit:1.9.2
+mv datakit-amd64-1.9.2.tar /home/guance
 
 # 拉取 arm 镜像并打包
-docker pull --platform arm64 pubrepo.guance.com/datakit/datakit:1.9.1
-docker save -o datakit-arm64-1.9.1.tar pubrepo.guance.com/datakit/datakit:1.9.1
-mv datakit-arm64-1.9.1.tar /home/guance
+docker pull --platform arm64 pubrepo.guance.com/datakit/datakit:1.9.2
+docker save -o datakit-arm64-1.9.2.tar pubrepo.guance.com/datakit/datakit:1.9.2
+mv datakit-arm64-1.9.2.tar /home/guance
 
 # 查看镜像架构是否正确
-docker image inspect pubrepo.jiagouyun.com/datakit/datakit:1.9.1 |grep Architecture
+docker image inspect pubrepo.jiagouyun.com/datakit/datakit:1.9.2 |grep Architecture
 
 ```
 
@@ -558,17 +558,17 @@ docker image inspect pubrepo.jiagouyun.com/datakit/datakit:1.9.1 |grep Architect
 
 ```shell
 wget http://<nginx-server-ip>:8080/datakit.yaml 
-wget http://<nginx-server-ip>:8080/datakit-amd64-1.9.1.tar 
+wget http://<nginx-server-ip>:8080/datakit-amd64-1.9.2.tar 
 ```
 
 5、解压镜像命令
 
 ```shell
 # docker 
-docker load -i /k8sdata/datakit/datakit-amd64-1.9.1.tar
+docker load -i /k8sdata/datakit/datakit-amd64-1.9.2.tar
 
 # containerd
-ctr -n=k8s.io image import /k8sdata/datakit/datakit-amd64-1.9.1.tar
+ctr -n=k8s.io image import /k8sdata/datakit/datakit-amd64-1.9.2.tar
 
 ```
 
@@ -586,10 +586,10 @@ kubectl apply -f datakit.yaml
 
 ```shell
 # docker 
-docker load -i datakit-amd64-1.9.1.tar
+docker load -i datakit-amd64-1.9.2.tar
 
 # containerd
-ctr -n=k8s.io image import datakit-amd64-1.9.1.tar
+ctr -n=k8s.io image import datakit-amd64-1.9.2.tar
 
 ```
 
