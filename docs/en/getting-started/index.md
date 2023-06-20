@@ -2,7 +2,7 @@
 icon: zy/getting-started
 ---
 
-# Quick Start
+# Getting Started
 ---
 
 

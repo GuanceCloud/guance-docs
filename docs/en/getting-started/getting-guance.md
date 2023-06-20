@@ -1,4 +1,4 @@
-# Get Started
+# Quick Start
 ---
 
 ## Step 1: Register and Login to the Account {#step-1}
