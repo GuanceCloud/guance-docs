@@ -142,7 +142,7 @@
 
     支持查看 Pods 对应的 YAML 文件。在基础设施 Pods 的详情页，点击 **YAML** ，即可查看对应的 YAML 文件。
     
-    ![Image title](img/1.YAML_1.png)
+    ![](img/1.YAML_1.png)
 
 === "指标"
 

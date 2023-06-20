@@ -52,7 +52,7 @@ Sourcemap（源代码映射）用于将生产环境中的压缩代码映射回�
 
 ![](img/headless-3.png)
 
-上传文件时，选择应用类型，[配置打包完成 Sourcemap 后](/datakit/rum.md#sourcemap)，拖拽或点击上传。
+上传文件时，选择应用类型，[配置打包完成 Sourcemap 后](../datakit/rum.md#sourcemap)，拖拽或点击上传。
 
 在 🔍 栏下方，可查看已上传的文件名称及应用类型，您可输入文件名称搜索；点击 :fontawesome-regular-trash-can: 可删除当前文件。
 
