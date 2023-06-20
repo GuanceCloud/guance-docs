@@ -249,10 +249,12 @@ spec:
 
 ### Datakit pprof 相关 {#env-pprof}
 
-| 环境变量名称       | 类型   | 默认值 | 必须   | 说明                |
-| ---------:         | ----:  | ---:   | ------ | ----                |
-| `ENV_ENABLE_PPROF` | bool   | -      | 否     | 是否开启 `pprof`    |
-| `ENV_PPROF_LISTEN` | string | 无     | 否     | `pprof` 服务监听地址|
+| 环境变量名称                             | 类型   | 默认值 | 必须   | 说明                 |
+| ---------:                               | ----:  | ---:   | ------ | ----                 |
+| `ENV_ENABLE_PPROF` :fontawesome-solid-x: | bool   | 无     | 否     | 是否开启 `pprof`     |
+| `ENV_PPROF_LISTEN`                       | string | 无     | 否     | `pprof` 服务监听地址 |
+
+> `ENV_ENABLE_PPROF`：[:octicons-tag-24: Version-1.9.2](changelog.md#cl-1.9.2) 已默认开启 pprof。
 
 ### 选举相关环境变量 {#env-elect}
 
@@ -399,6 +401,8 @@ DK_SINKER="[ { \"categories\": [\"L\", \"M\"], \"filters\": [ \"{measurement='cp
 | `ENV_HOSTNAME`                  | string   | 无     | 否     | 默认为本地主机名，可安装时指定，如， `dk-your-hostname`    |
 | `ENV_IPDB`                      | string   | 无     | 否     | 指定 IP 信息库类型，目前只支持 `iploc/geolite2` 两种       |
 | `ENV_ULIMIT`                    | int      | 无     | 否     | 指定 Datakit 最大的可打开文件数                            |
+| `ENV_PIPELINE_OFFLOAD_RECEIVER`   | string | `datakit-http`| false | 设置 Offload 目标接收器的类型 |
+| `ENV_PIPELINE_OFFLOAD_ADDRESSES`  |string  | 无   | false | 设置 Offload 目标地址|
 
 ### 特殊环境变量 {#env-special}
 
