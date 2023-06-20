@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/notes/\{notes_uuid\}/import**
+<br />**POST /api/v1/notes/\{notes_uuid\}/import**
 
 ## 概述
 将`notes_uuid`指定的笔记导出为模板结构。可根据条件设置导出模板中的笔记名称

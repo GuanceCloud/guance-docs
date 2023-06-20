@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/notify_object/create**
+<br />**POST /api/v1/notify_object/create**
 
 ## 概述
 创建一个通知对象

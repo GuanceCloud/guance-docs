@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/monitor/check/create**
+<br />**POST /api/v1/monitor/check/create**
 
 ## 概述
 创建一个监控器

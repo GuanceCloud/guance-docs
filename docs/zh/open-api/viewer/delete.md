@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/viewer/\{viewer_uuid\}/delete**
+<br />**GET /api/v1/viewer/\{viewer_uuid\}/delete**
 
 ## 概述
 删除查看器

@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/pipeline/export**
+<br />**POST /api/v1/pipeline/export**
 
 ## 概述
 导出一个/多个Pipeline

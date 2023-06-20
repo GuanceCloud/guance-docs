@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/notes/\{notes_uuid\}/delete**
+<br />**GET /api/v1/notes/\{notes_uuid\}/delete**
 
 ## 概述
 删除笔记

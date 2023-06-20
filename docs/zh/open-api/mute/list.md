@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/monitor/mute/list**
+<br />**GET /api/v1/monitor/mute/list**
 
 ## 概述
 分页获取静默规则列表

@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/snapshots/list**
+<br />**GET /api/v1/snapshots/list**
 
 ## 概述
 获取当前工作空间的快照列表

@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/workspace/accesskey/add**
+<br />**POST /api/v1/workspace/accesskey/add**
 
 ## 概述
 创建一个Key

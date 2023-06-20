@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/blacklist/import**
+<br />**POST /api/v1/blacklist/import**
 
 ## 概述
 导入一个/多个黑名单

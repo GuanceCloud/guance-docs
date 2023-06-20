@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/saml/mapping/field/list**
+<br />**GET /api/v1/saml/mapping/field/list**
 
 ## 概述
 获取SAML映射列表

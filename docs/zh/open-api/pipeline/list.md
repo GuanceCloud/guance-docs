@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/pipeline/list**
+<br />**GET /api/v1/pipeline/list**
 
 ## 概述
 获取Pipeline列表

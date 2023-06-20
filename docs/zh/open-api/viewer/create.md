@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/viewer/add**
+<br />**POST /api/v1/viewer/add**
 
 ## 概述
 创建一个查看器

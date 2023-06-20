@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/workspace/accesskey/list**
+<br />**GET /api/v1/workspace/accesskey/list**
 
 ## 概述
 获取Key列表

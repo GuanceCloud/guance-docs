@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/workspace/accesskey/\{ak_uuid\}/delete**
+<br />**GET /api/v1/workspace/accesskey/\{ak_uuid\}/delete**
 
 ## 概述
 删除一个Key

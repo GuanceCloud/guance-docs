@@ -1,0 +1,5 @@
+nav:
+  - '获取频道列表': quick-list.md
+  - '创建一个频道': add.md
+  - '修改一个频道信息': modify.md
+  - '删除一个频道信息': delete.md

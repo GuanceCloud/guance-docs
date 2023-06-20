@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/workspace/member_group/\{group_uuid\}/delete**
+<br />**GET /api/v1/workspace/member_group/\{group_uuid\}/delete**
 
 ## 概述
 删除一个成员组

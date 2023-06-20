@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/notify_object/list**
+<br />**GET /api/v1/notify_object/list**
 
 ## 概述
 分页获取通知对象列表

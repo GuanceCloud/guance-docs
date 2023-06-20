@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/tracing/service_catelogs/set**
+<br />**POST /api/v1/tracing/service_catelogs/set**
 
 ## 概述
 配置服务清单

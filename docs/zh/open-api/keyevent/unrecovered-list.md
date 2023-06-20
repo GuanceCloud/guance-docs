@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/events/abnormal/list**
+<br />**POST /api/v1/events/abnormal/list**
 
 ## 概述
 获取指定时间范围内的未恢复事件(相同`df_monitor_checker_event_ref`的最近一条事件状态不为`ok`)列表，一般查询最近6小时的数据;

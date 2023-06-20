@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/self_built_checker/modify**
+<br />**POST /api/v1/self_built_checker/modify**
 
 ## 概述
 修改一个自建巡检

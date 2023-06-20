@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/log_index_cfg/delete**
+<br />**POST /api/v1/log_index_cfg/delete**
 
 ## 概述
 删除一个绑定索引

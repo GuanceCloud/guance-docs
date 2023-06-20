@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/notes/create**
+<br />**POST /api/v1/notes/create**
 
 ## 概述
 创建笔记, `charUUIDs`为该笔记绑定的图表信息

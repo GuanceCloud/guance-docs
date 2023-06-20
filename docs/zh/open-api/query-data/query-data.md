@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/df/query_data**
+<br />**GET /api/v1/df/query_data**
 
 ## 概述
 DQL数据查询

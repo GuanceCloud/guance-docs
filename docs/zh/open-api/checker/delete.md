@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/monitor/check/delete**
+<br />**POST /api/v1/monitor/check/delete**
 
 ## 概述
 删除一个/多个监控器
