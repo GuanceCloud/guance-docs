@@ -182,6 +182,10 @@
     
     Pods 网络数据采集成功后会上报到观测云控制台，在**基础设施 > 容器 > Pods** 详情页中的**[网络](network.md)**，您可以查看到工作空间内全部 Pods 网络性能监测数据信息。
 
+=== "kubernetes"
+
+    点击 kubernetes 可查看 `namespace`、`pod_name` 或者 `namespace`、`deployment_name` 关联的对应日志数据。
+
 ### Services 列表
 
 通过左上角的对象 **Services** ，您可以切换至 **Services** 查看空间内留存的全部 Services 的信息，包括 Services 名称、服务类型、Cluster IP、External IP、运行时长等。
@@ -246,6 +250,10 @@
     Deployments 网络支持查看 Deployments 之间的网络流量。支持基于 IP/端口查看源 IP 到目标 IP 之间的网络流量和数据连接情况，通过可视化的方式进行实时展示，帮助企业实时了解业务系统的网络运行状态，快速分析、追踪和定位问题故障，预防或避免因网络性能下降或中断而导致的业务问题。
     
     Deployments 网络数据采集成功后会上报到观测云控制台，您可以在**基础设施 > 容器 > Pods**详情页中的**[网络](network.md)**，查看当前 Deployments 的网络性能监测数据信息。
+
+=== "kubernetes"
+
+    点击 kubernetes 可查看 `namespace`、`pod_name` 或者 `namespace`、`deployment_name` 关联的对应日志数据。
 
 ### Clusters 列表
 

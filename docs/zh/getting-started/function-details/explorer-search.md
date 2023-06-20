@@ -14,31 +14,26 @@
 
 <font color=coral>**注意：**</font>使用双引号可以将一组单词转换为短语。
 
-### 关键字搜索
 
-查看器中支持在搜索栏输入关键字进行检索，查询结果中会对输入的关键字高亮显示，如下图所示。
+<u>查询示例（此处示例为查看器输入搜索内容）：</u>
 
-![](../img/13.search_1.png)
+![](../img/0620.gif)
 
+```
+# 单词
+guance  // 精准搜索
+guanc[e   // 存在特殊字符写法示例（无需添加\转义）  
 
-???+ info "查询示例（此处示例为查看器输入搜索内容）"
+# 单词通配符搜索（出于性能考虑，观测云暂不支持前缀 * 写法，若存在通配搜索以下写法均支持）
+guance*
+gua?ce*  
+gua*ce
 
-    ```
-    # 单词
-    guance  // 精准搜索
-    guanc[e   // 存在特殊字符写法示例（无需添加\转义）  
+# 短语（双引号括起来的内容我们统称为短语，此写法下双引号的内容会作为一个整体发起匹配搜索）
+"guance test"  // 查询全文索引字段中，存在 "guance test" 内容的匹配结果
+"guance 127.0.0.1" // 存在特殊字符时写法示例
+```
 
-    # 单词通配符搜索（出于性能考虑，观测云暂不支持前缀 * 写法，若存在通配搜索以下写法均支持）
-    guance*
-    gua?ce*  
-    gua*ce
-
-    # 短语（双引号括起来的内容我们统称为短语，此写法下双引号的内容会作为一个整体发起匹配搜索）
-    "guance test"  // 查询全文索引字段中，存在 "guance test" 内容的匹配结果
-    "guance 127.0.0.1" // 存在特殊字符时写法示例
-    ```
-
-    ![](../img/0620.gif)
 
 ### JSON 搜索 {#json}
 
@@ -49,42 +44,29 @@
 
 ![](../img/7.log_json.png)
 
-???+ info "JSON 搜索示例"
+<u>JSON 搜索示例：</u>
 
-    ```
-    message 信息如下：
-    {
-        __namespace:tracing,
-        cluster_name_k8s:k8s-demo,
-        meta:{    
-            service:ruoyi-mysql-k8s,
-            name:mysql.query,
-            resource:select dict_code, dict_sort, dict_label, dict_value, dict_type, css_class, list_class, is_default, status, create_by, create_time, remark 
-                    from sys_dict_data
-     }
-    }
+```
+message 信息如下：
+{
+    __namespace:tracing,
+    cluster_name_k8s:k8s-demo,
+    meta:{    
+        service:ruoyi-mysql-k8s,
+        name:mysql.query,
+        resource:select dict_code, dict_sort, dict_label, dict_value, dict_type, css_class, list_class, is_default, status, create_by, create_time, remark 
+                from sys_dict_data
+ }
+}
 
-    # 查询 cluster_name_k8s = k8s-demo
-    @cluster_name_k8s:k8s-demo     // 精准匹配
-    @cluster_name_k8s:k?s*        // 模糊匹配
+# 查询 cluster_name_k8s = k8s-demo
+@cluster_name_k8s:k8s-demo     // 精准匹配
+@cluster_name_k8s:k?s*        // 模糊匹配
 
-    # 查询 meta 下 service = ruoyi-mysql-k8s
-    @meta.service:ruoyi-mysql-k8s   // 精准匹配
-    @meta.service:ruoyi?mysql*   // 模糊匹配匹配
-    ```
-    
-
-### 布尔运算符 {#bool}
-
-查看器中支持按照 `AND/OR/NOT` 逻辑进行关联搜索，可以与通配符搜索联合使用。
-
-![](../img/13.search_4.png)
-
-| 逻辑关系 | 描述                                    | 备注 |
-| -------- | --------------------------------- | --- |
-| a AND b  | 取前后查询结果交集 | 搜索、筛选条件间默认使用 AND 做连接。其中 `AND` 可以用 `空格`，即 `a` AND `b` = `a` `b`。   |
-| a OR b   | 取前后查询结果并集        | 返回结果需包含 a 或者 b 的任意一个关键字。示例：`a` OR `b:value`  |
-| NOT c    | 排除当前查询结果          | NOT 多用于搜索写法，筛选处排除逻辑使用 `≠` 代替。 |
+# 查询 meta 下 service = ruoyi-mysql-k8s
+@meta.service:ruoyi-mysql-k8s   // 精准匹配
+@meta.service:ruoyi?mysql*   // 模糊匹配匹配
+```
 
 
 ## 筛选 {#filter}
@@ -120,7 +102,7 @@
 
 #### Wildcard {#wildcard}
 
-支持 `?` 或 `*` 通配查询, `?` 表示匹配任意字符，`*` 匹配 0 或多个字符。
+支持 `?` 或 `*` 通配查询, `?` 表示匹配任意字符，`*` 匹配 0 或多个字符：
 
 ```
 值：guanceyun
@@ -156,18 +138,34 @@ key:(value1 AND *)                  // 等同于 key:value1
 key:(value1 AND * OR value3)        // 等同于 key:(value1 OR value3)
 ```
 
+## 布尔运算符 {#bool}
+
+支持以 `AND/OR/NOT` 的形式进一步<u>组合关联搜索与筛选</u>。
+
+![](../img/13.search_4.png)
+
+| 逻辑关系 | 描述                                    | 备注 |
+| -------- | --------------------------------- | --- |
+| a AND b  | 取前后查询结果交集 | 搜索、筛选条件间默认使用 AND 做连接。其中 `AND` 可以用 `空格`，即 `a` AND `b` = `a` `b`。   |
+| a OR b   | 取前后查询结果并集        | 返回结果需包含 a 或者 b 的任意一个关键字。示例：`a` OR `b:value`  |
+| NOT c    | 排除当前查询结果          | NOT 多用于搜索写法，筛选处排除逻辑使用 `≠` 代替。 |
+
 ## 搜索/筛选注意事项
 
+<!--
 ### 特殊字符
 
 若筛选、搜索查询中存在以下特殊字符：
 `-` `=` `>` `<` `!` `(` `)` `{` `}` `[` `]` `^` `"` `“` `”` `:` `\` `空格` `NOT` 则需要添加 `\` 转义处理。
+-->
 
 ### 分组
 
 使用括号 `()` 提高数据查询条件的优先级，即查询中若存在 `()` 选中部分搜索、筛选条件则 `()` 内的查询逻辑优先执行。`()` 内部的查询优先级仍然按照 `NOT > AND > OR` 执行。
 
 ### 手写模式
+
+<font color=coral>**注意：**</font>此前日志查看器支持的 DQL 手写模式新版本上线后将会做下线处理。
 
 本次手写模式上线覆盖所有查看器（仪表板/自定义查看器除外），新模式下支持 UI 交互添加搜索、筛选条件和手写模式自由切换，不会针对模式切换前的内容做任何变更，真正实现 UI 和手写输入的实时切换还原。
 

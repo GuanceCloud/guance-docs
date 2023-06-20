@@ -18,13 +18,12 @@ icon: zy/release-notes
 - **日志 > 索引**：新增[日志易数据绑定配置入口](../logs/multi-index.md#rizhiyi)。
 - 仪表板/内置视图支持[根因分析和下钻分析](../scene/visual-chart/index.md#analysis)。
 - **管理 > 角色管理**：支持[克隆已有用户角色](../management/role-management.md#operations)减少操作步骤，快速增减权限并创建角色。
-- 文本输入框输入不合法的字符或长度限制提示优化
 - **基础设施 > 容器**：新增 [Daemonset 对象数据](../infrastructure/contrainer.md#daemonsets)显示，可拖拽改变对象分类显示顺序。
 - **基础设施 > 容器**：Deployments、Pods 支持直接关联 kubernetes 事件日志，在详情页可直接查看具体日志信息。
 - 新增[异常追踪 OpenAPI 接口](../open-api/channel/add)。
 - **管理 > 成员管理**列表、**监控 > 通知对象管理 > 邮件组**、**异常追踪** > 查看成员、所有选择通知对象处均支持按成员昵称进行检索。
 - 工单状态更新或有新回复时，通过界面或者邮件提醒客户关注。
-- **拨测 > 高级设置 > Cookies**字数长度限制放宽至 4 KB。
+- 文本输入框输入不合法的字符或长度限制提示优化。
 
 ### 智能巡检更新
 
