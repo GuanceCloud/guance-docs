@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/sso/saml_delete/\{sso_uuid\}**
+<br />**GET /api/v1/sso/saml_delete/\{sso_uuid\}**
 
 ## 概述
 删除一个SAML

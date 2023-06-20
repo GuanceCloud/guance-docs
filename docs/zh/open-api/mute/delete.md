@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/monitor/mute/\{mute_uuid\}/delete**
+<br />**POST /api/v1/monitor/mute/\{mute_uuid\}/delete**
 
 ## 概述
 根据`mute_uuid`删除一个静默规则

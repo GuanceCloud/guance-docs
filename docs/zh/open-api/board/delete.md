@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/dashboards/\{dashboard_uuid\}/delete**
+<br />**POST /api/v1/dashboards/\{dashboard_uuid\}/delete**
 
 ## 概述
 根据指定的`dashboard_uuid` 删除仪表板

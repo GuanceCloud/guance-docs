@@ -6,11 +6,11 @@ Guance provides a variety of packages to help enterprises comprehensively observ
 <a name="SFSA6"></a>
 ## 1.Upgrade to Commercial Plan
 
-After upgrading the Guance workspace to the Commercial Plan, click "Enter the Expense Center" in the upper right corner to enter the Guance [Expense Center](https://boss.guance.com). Refer to the doc [billing](../../../../billing/index.md) 。<br />![](../../../img/11.account_center_10.png)
+After upgrading the Guance workspace to the Commercial Plan, click "Enter the Billing Center" in the upper right corner to enter the Guance [Billing Center](https://boss.guance.com). Refer to the doc [billing](../../../../billing/index.md) 。<br />![](../../../img/11.account_center_10.png)
 <a name="tr5vY"></a>
 ## 2.Buy a Package
 
-Click "Go Now" under "Buy Package" in the Guance Expense Center to select the package.<br />
+Click "Go Now" under "Buy Package" in the Guance Billing Center to select the package.<br />
 <a name="aJWr1"></a>
 ## 3.Choose the Package
 
@@ -31,7 +31,7 @@ For example, suppose you buy a start-up package for two workspaces A and B, the 
 
 On the package purchase page, confirm and submit the order and select the payment method. Guance supports any combination of cash, stored-value cards and vouchers to purchase packages.<br />![](../../../img/2.fee_package_2.png)
 
-After the purchase is completed, you can click "Package Management" under the purchase package on the homepage of Guance Expense Center to manage the purchased package.<br />![](../../../img/2.fee_package_3.png)
+After the purchase is completed, you can click "Package Management" under the purchase package on the homepage of Guance Billing Center to manage the purchased package.<br />![](../../../img/2.fee_package_3.png)
 
 
 ---

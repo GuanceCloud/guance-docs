@@ -52,7 +52,7 @@ On the basic information page, select the site, enter the registration informati
 ???+ attention
 
     - The joint solution of Guance and SLS only supports China-Hangzhou and China-Zhangjiakou sites, and cannot be changed once the SLS data storage scheme is selected;
-    - The entered user name is also used to register the account of the Guance Expense Center. The user name account of the Expense Center will check its uniqueness and cannot be modified once registered;
+    - The entered user name is also used to register the account of the Guance Billing Center. The user name account of the Billing Center will check its uniqueness and cannot be modified once registered;
 
 ![](img/7.aliyun_sls_3.png)
 
@@ -155,7 +155,7 @@ If you have not created a workspace, you can click **Create Workspace**, enter t
 If the Guance account is not registered, you can click Register Guance Account, enter relevant information, and register through mobile phone number verification.
 
 > - Workspace language options affect templates for events, alarms and text messages in the workspace. If you select English, the above corresponding template will be used by default. Once created, the template language of this workspace cannot be modified, so please choose carefully.
-> - User name: used to register [Guance studio account](https://auth.guance.com/businessRegister), and will automatically register [Guance Expense Center account](https://boss.guance.com/) with the same user name for you, thus carrying out the subsequent expense settlement process. The user name account of the Expense Center will check its uniqueness and cannot be modified once registered; it is supported to bind the user name and account of the Expense Center. After the binding is completed, the user name cannot be modified. Please operate carefully.
+> - User name: used to register [Guance studio account](https://auth.guance.com/businessRegister), and will automatically register [Guance Billing Center account](https://boss.guance.com/) with the same user name for you, thus carrying out the subsequent expense settlement process. The user name account of the Billing Center will check its uniqueness and cannot be modified once registered; it is supported to bind the user name and account of the Billing Center. After the binding is completed, the user name cannot be modified. Please operate carefully.
 
 ![](img/4.register_language_10.png)
 
@@ -238,7 +238,7 @@ SLS log data obtained through index binding, the cost is still charged according
 
 If you want to perform data processing, delivery and streaming reading operations from external network access points, the log service charges processing calculation fees, data delivery fees and external network reading traffic fees. For details, please refer to the doc [billing items](https://help.aliyun.com/document_detail/107745.htm?spm=a2c4g.11186623.0.0.1d086860NWfUQP#concept-xzl-hjg-vgb).
 
-**3.If the stored-value card in the Expense Center can be used for bill payment of the Exclusive Plan of Guance? How to pay for the Exclusive Plan of Guance?**
+**3.If the stored-value card in the Billing Center can be used for bill payment of the Exclusive Plan of Guance? How to pay for the Exclusive Plan of Guance?**
 
 Yes, the prerequisite for the Exclusive Plan of Guance is to use Alibaba Cloud account for settlement. For cloud account settlement, the deduction order of Guance pay-by-volume bills is: ordinary vouchers, full reduction vouchers, stored-value cards and cash balance of cloud accounts. SMS and dial-up consumption can only be paid by using stored-value cards and cash balances of cloud accounts.
 

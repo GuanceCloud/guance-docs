@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/notify_object/modify**
+<br />**POST /api/v1/notify_object/modify**
 
 ## 概述
 修改指定的通知对象信息

@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/dialing_task/\{task_uuid\}/get**
+<br />**GET /api/v1/dialing_task/\{task_uuid\}/get**
 
 ## 概述
 

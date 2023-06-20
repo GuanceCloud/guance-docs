@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/workspace/member/batch_invitation**
+<br />**POST /api/v1/workspace/member/batch_invitation**
 
 ## 概述
 邀请一个/多个成员

@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/viewer/list**
+<br />**GET /api/v1/viewer/list**
 
 ## 概述
 列出所有符合条件的查看器

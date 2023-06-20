@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/checker/set_disable**
+<br />**POST /api/v1/checker/set_disable**
 
 ## 概述
 启用/禁用一个监控器

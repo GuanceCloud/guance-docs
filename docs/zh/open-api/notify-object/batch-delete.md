@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/notify_object/batch_delete**
+<br />**POST /api/v1/notify_object/batch_delete**
 
 ## 概述
 删除指定的通知对象

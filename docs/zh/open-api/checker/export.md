@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/monitor/check/export**
+<br />**POST /api/v1/monitor/check/export**
 
 ## 概述
 根据指定的检查器UUID列表导出一个/多个监控器配置

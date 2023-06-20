@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/blacklist/\{blist_uuid\}/modify**
+<br />**POST /api/v1/blacklist/\{blist_uuid\}/modify**
 
 ## 概述
 修改一个黑名单

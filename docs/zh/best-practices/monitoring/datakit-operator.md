@@ -62,17 +62,7 @@ ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS} -jar ${jar} ${PARAMS} "]
         admission.datakit/java-lib.version: ""
 ```
 
-#### 2.3 添加环境变量
-
-```
-        - name: DD_AGENT_HOST
-          valueFrom:
-            fieldRef:
-              apiVersion: v1
-              fieldPath: status.hostIP
-```
-
-#### 2.4 修改应用 yaml
+#### 2.3 修改应用 yaml
 
 声明 JAVA_OPTS 环境变量，应用已经能访问到自动注入的 `/datadog-lib/dd-java-agent.jar` 包，启动参数可参考 [javaagent 参数](https://docs.guance.com/datakit/ddtrace-java/#start-options)，这里设置的服务名是 `java-demo-service`。
 
@@ -120,11 +110,11 @@ ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS} -jar ${jar} ${PARAMS} "]
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.name
-            - name: DD_AGENT_HOST
-              valueFrom:
-                fieldRef:
-                  apiVersion: v1
-                  fieldPath: status.hostIP
+            #- name: DD_AGENT_HOST
+            #  valueFrom:
+            #    fieldRef:
+            #      apiVersion: v1
+            #      fieldPath: status.hostIP
             - name: JAVA_OPTS
               value: |-
                 -javaagent:/datadog-lib/dd-java-agent.jar -Ddd.service=java-demo-service -Ddd.tags=container_host:$(POD_NAME) -Ddd.env=dev -Ddd.agent.port=9529

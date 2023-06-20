@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/blacklist/list**
+<br />**GET /api/v1/blacklist/list**
 
 ## 概述
 获取黑名单列表

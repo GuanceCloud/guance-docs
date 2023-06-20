@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/dialing_region/regist**
+<br />**POST /api/v1/dialing_region/regist**
 
 ## 概述
 创建一个自建节点

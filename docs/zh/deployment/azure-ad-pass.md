@@ -110,6 +110,7 @@ Azure Active Directory (Azure AD) 是 Microsoft 推出的基于云的标识和�
 1）在观测云 Launcher **命名空间：forethought-core > core** 中配置 Azure AD 的基本信息。
 
 ```
+
 # OIDC 客户端配置(当该项配置中配置了 wellKnowURL 时, KeyCloakPassSet 配置项自动失效)
 OIDCClientSet:
   # OIDC Endpoints 配置地址,即完整的 `https://xxx.xxx.com/xx/.well-known/openid-configuration` 地址.
@@ -121,19 +122,22 @@ OIDCClientSet:
   # 认证方式，目前只支持 authorization_code
   grantType: authorization_code
   verify: false
+  # 获取 token 接口的认证方式 basic: 位于请求头中的 Authorization 中; post_body: 位于请求body中
+  fetchTokenVerifyMethod: basic
+  # 获取账号信息响应结果中, 账号信息的实际获取路径, 以点号分割的路径字符串，例如 {"trace_id": xxx, "data": {"sub": "xxxx", "email":"xxx@xx.xx"}}; 则其对应的路径为 `data`
   # 数据访问范围
   scope: "openid profile email address"
   # 认证服务器认证成功之后的回调地址
   innerUrl: "{}://{}/oidc/callback"
   # 认证服务认证成功并回调 DF 系统之后，DF系统拿到用户信息后跳转到前端中专页面的地址
   frontUrl: "{}://{}/tomiddlepage?uuid={}"
-  # 从认证服务中获取到的账号信息 与 DF 系统账号的映射配置, 其中必填项为: username, email, exterId
+  # 从认证服务中获取到的账号信息 与 DF 系统账号的映射配置, 其中必填项为: username, email, exterId； 可选项为: mobile
   mapping:
     # 认证服务中，登录账号的用户名，必填，如果值不存在，则取 email
     username: preferred_username
     # 认证服务中，登录账号的邮箱，必填
     email: email
-    # 认证服务中，登录账号的唯一标识， 必填； 此值应对应第三方认证服务中账号的唯一标识ID。
+    # 认证服务中，登录账号的唯一标识， 必填
     exterId: sub
 ```
 

@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/saml/mapping/field/add**
+<br />**POST /api/v1/saml/mapping/field/add**
 
 ## 概述
 添加一个SAML映射

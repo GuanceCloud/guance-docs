@@ -52,7 +52,7 @@ The following is the difference between the scope of services supported by **Exp
 |          | Synthetic tests       | Dial test in China (200,000 times a day)      |Global dialing       |
 |          | SMS alarm notification     | /     | :white_check_mark: | 
 |          | DataFlux Func    | :white_check_mark: | :white_check_mark: | 
-|          | Account permissions         | Read-only, standard permissions are promoted to administrators without auditing | Read-only, standard permissions are promoted to administrators, and need to be approved by Expense Center administrators           |
+|          | Account permissions         | Read-only, standard permissions are promoted to administrators without auditing | Read-only, standard permissions are promoted to administrators, and need to be approved by Billing Center administrators           |
 | Service     | Basic service         | Community, phone, work order support (5 x 8 hours)     | Community, phone, work order support (5 x 8 hours)     |
 |          | Training services         | Regular training on observability              | Regular training on observability      |
 |          | Expert services         | /     | Professional product technical expert support       |

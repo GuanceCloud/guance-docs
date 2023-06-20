@@ -22,7 +22,7 @@ This article introduces the difference between the free plan and the Commercial 
 |  | Synthetic tests |China Dialing | Global dialing |
 |  | SMS alarm notification | / | Available |
 |  | DataFlux Func | Available | Available |
-|  | Account permissions | Read-only, standard permissions are promoted to administrators without auditing. | Read-only, standard permissions are promoted to administrators, and need to be approved by Expense Center administrators. |
+|  | Account permissions | Read-only, standard permissions are promoted to administrators without auditing. | Read-only, standard permissions are promoted to administrators, and need to be approved by Billing Center administrators. |
 | Services | Basic services | Community, phone, work order support (5 x 8 hours) | Community, phone, work order support (5 x 8 hours)|
 |  | Training services | Regular training on observability | Regular training on observability |
 |  | Expert services | / | Professional product technical expert support |

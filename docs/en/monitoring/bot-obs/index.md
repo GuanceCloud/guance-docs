@@ -4,6 +4,14 @@
 
 ---
 
+## June 20, 2023
+
+### New Inspection
+
+* **AWS Cloudtrail Exception Event Intelligent Inspection**: AWS CloudTrail is a service used to track, log, and monitor activity in an AWS account. It records various actions performed within the AWS account, including management console access, API calls, and resource changes. By monitoring CloudTrail for error events, potential security issues can be promptly identified. For example, unauthorized API calls, access to denied resources, and abnormal authentication attempts. This helps protect your AWS account and resources from unauthorized access and malicious activities. It also provides insights into the types, frequency, and scope of failures occurring in the system. This enables you to quickly identify issues and take appropriate corrective measures, reducing service downtime and minimizing the impact on your business.
+
+
+
 ## June 6, 2023
 
 ### New Inspection

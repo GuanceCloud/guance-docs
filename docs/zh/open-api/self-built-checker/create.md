@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/self_built_checker/create**
+<br />**POST /api/v1/self_built_checker/create**
 
 ## 概述
 创建一个自建巡检

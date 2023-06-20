@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/dialing_task/list**
+<br />**GET /api/v1/dialing_task/list**
 
 ## 概述
 

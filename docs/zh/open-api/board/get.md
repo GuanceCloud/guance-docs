@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/dashboards/\{dashboard_uuid\}/get**
+<br />**GET /api/v1/dashboards/\{dashboard_uuid\}/get**
 
 ## 概述
 根据`dashboard_uuid`获取指定的仪表板信息

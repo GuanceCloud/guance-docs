@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/blacklist/add**
+<br />**POST /api/v1/blacklist/add**
 
 ## 概述
 创建一个黑名单

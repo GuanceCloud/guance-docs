@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/workspace/member_group/get**
+<br />**GET /api/v1/workspace/member_group/get**
 
 ## 概述
 获取一个成员组

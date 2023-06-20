@@ -28,17 +28,17 @@ Guance provides multiple registration sites, and you can select corresponding si
 
 ### User Name
 
-When registering [Guance studio account](https://auth.guance.com/businessRegister) on this page, you will be registered with [Guance Expense Center account](https://boss.guance.com/) with **the same user name**, and the user name account of the Expense Center will be checked for uniqueness, which cannot be modified once registered.
+When registering [Guance studio account](https://auth.guance.com/businessRegister) on this page, you will be registered with [Guance Billing Center account](https://boss.guance.com/) with **the same user name**, and the user name account of the Billing Center will be checked for uniqueness, which cannot be modified once registered.
 
-> Refer to the doc [<Expense Center>](../billing/cost-center/index.md).
+> Refer to the doc [<Billing Center>](../billing/cost-center/index.md).
 
-#### Bind Expense Center User Name Account
+#### Bind Billing Center User Name Account
 
-When registering on this page, you can directly bind the user name account of the Expense Center. After entering the user name, select **Do you still want to register with this user name?**.
+When registering on this page, you can directly bind the user name account of the Billing Center. After entering the user name, select **Do you still want to register with this user name?**.
 
 ![](img/9.billing_account_1.png)
 
-Enter the user name, account number and password of the Expense Center.
+Enter the user name, account number and password of the Billing Center.
 
 ![](img/9.billing_account_2.png)
 

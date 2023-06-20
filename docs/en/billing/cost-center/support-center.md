@@ -6,7 +6,7 @@ Users can submit and manage work orders in the support center, and Guance techno
 
 ## Job Submission
 
-1.In the **Support Center** of the Guance Expense Center, click **Submit Work Order**.
+1.In the **Support Center** of the Guance Billing Center, click **Submit Work Order**.
 
 ![](../img/11.support_1.png)
 

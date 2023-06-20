@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/monitor/mute/\{mute_uuid\}/disable**
+<br />**POST /api/v1/monitor/mute/\{mute_uuid\}/disable**
 
 ## 概述
 根据`mute_uuid`禁用一个静默规则
