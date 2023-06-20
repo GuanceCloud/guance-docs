@@ -201,10 +201,12 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
 ###  Something about DataKit pprof {#env-pprof}
 
-| Environment Variable Name       | Type   | Default Value | Required   | Description                |
-| :---------         | :----  | :---   | :----- | :---                |
-| `ENV_ENABLE_PPROF` | bool   | -      | No     | Whether to start `pprof`    |
-| `ENV_PPROF_LISTEN` | string | None     | No     | `pprof` service listening address |
+| Environment Variable Name | Type   | Default Value | Required | Description                       |
+| :---------                | :----  | :---          | :-----   | :---                              |
+| `ENV_ENABLE_PPROF`        | bool   | -             | No       | Whether to start `pprof`          |
+| `ENV_PPROF_LISTEN`        | string | None          | No       | `pprof` service listening address |
+
+> `ENV_ENABLE_PPROF`: [:octicons-tag-24: Version-1.9.2](changelog.md#cl-1.9.2) enabled pprof by default.
 
 ### Election-related Environmental Variables {#env-elect}
 
@@ -341,6 +343,8 @@ DK_SINKER="[ { \"categories\": [\"L\", \"M\"], \"filters\": [ \"{measurement='cp
 | `ENV_HOSTNAME`                  | string   | None     | No     | The default is the local host name, which can be specified at installation time, such as, `dk-your-hostname`    |
 | `ENV_IPDB`                      | string   | None     | No     | Specify the IP repository type, currently only supports `iploc/geolite2`      |
 | `ENV_ULIMIT`                    | int      | None     | No     | Specify the maximum number of open files for Datakit                            |
+| `ENV_PIPELINE_OFFLOAD_RECEIVER` | string| `datakit-http`| false | Set offload receiver |
+| `ENV_PIPELINE_OFFLOAD_ADDRESSES`|string| None      | false    | Set offload addresses|
 
 ### Special Environment Variable {#env-special}
 

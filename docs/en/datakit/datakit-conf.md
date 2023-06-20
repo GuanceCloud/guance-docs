@@ -17,7 +17,7 @@ The DataKit master configuration is used to configure the running behavior of th
 
 ## Datakit Main Configure Sample {#maincfg-example}
 
-Datakit main configure is *datakit.conf*, here is the exmaple sample(1.9.1):
+Datakit main configure is *datakit.conf*, here is the exmaple sample(1.9.2):
 
 ??? info "datakit.conf"
 
@@ -42,7 +42,7 @@ Datakit main configure is *datakit.conf*, here is the exmaple sample(1.9.1):
     
     # enable_pprof: bool
     # If pprof enabled, we can profiling the running datakit
-    enable_pprof = false
+    enable_pprof = true
     pprof_listen = "localhost:6060" # pprof listen
     
     # protect_mode: bool, default false
@@ -92,6 +92,13 @@ Datakit main configure is *datakit.conf*, here is the exmaple sample(1.9.1):
       use_sqlite = false
       # or use pure memory to cache the reftab data
       sqlite_mem_mode = false
+    
+      # Offload data processing tasks to post-level data processors.
+      [pipeline.offload]
+        receiver = "datakit-http"
+        addresses = [
+          # "http://<ip>:<port>"
+        ]
     
     ################################################
     # HTTP server(9529)
@@ -589,7 +596,7 @@ The lookup priority is defined as follows:
 
 1. Find the specified file names one by one in the *git_repos* order configured in *datakit.conf* (it is an array that can configure multiple Git repositories), and return the first one if found. For example, look for *my-nginx.p*. If it is found under *pipeline* in the first repository directory, it will prevail. **Even if there is *my-nginx.p* with the same name in the second repository, it will not be selected.**。
 
-2. If not found in *git_repos* , go to the *<Datakit Installation Directory>/pipeline* directory for the Pipeline script, or go to the *<Datakit Installation Directory>/python.d* directory for the Python script.
+2. If not found in *git_repos* , go to the *<Datakit Installation Directory\>/pipeline* directory for the Pipeline script, or go to the *<Datakit Installation Directory\>/python.d* directory for the Python script.
 
 ### Set the Maximum Value of Open File Descriptor {#enable-max-fd}
 
