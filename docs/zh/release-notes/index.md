@@ -19,6 +19,7 @@ icon: zy/release-notes
 - **管理 > 角色管理**：支持[克隆已有用户角色](/management/role-management.md#operations)减少操作步骤，快速增减权限并创建角色。
 - 文本输入框输入不合法的字符或长度限制提示优化
 - **基础设施 > 容器**：新增 [Daemonset 对象数据](/infrastructure/contrainer.md#daemonsets)显示，可拖拽改变对象分类显示顺序。
+- **基础设施 > 容器**：Deployments、Pods 支持直接关联 kubernetes 事件日志，在详情页可直接查看详细日志。
 - 新增[异常追踪 OpenAPI 接口](/open-api/channel/add)。
 - 工单状态更新或有新回复时，通过界面或者邮件提醒客户关注。
 - 仪表板图片下载水印文案调整。
