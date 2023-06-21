@@ -121,13 +121,11 @@ DataFlux Func 托管版采用按月收费的模式，在费用到期前，您仍
 
 </div>
 
-<br/>
-
 ## RUM Headless
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; __一键开通 RUM Headless__ </font>](/dataflux-func/headless.md)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; __一键开通 RUM Headless__ </font>](./headless.md)
 
 <br/>
 
