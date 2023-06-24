@@ -80,6 +80,8 @@ drop database df_message_desk;
 drop user df_message_desk;
 drop database df_func;
 drop user df_func;
+drop database df_dialtesting;
+drop user df_dialtesting;
 ```
 ### 2.3 清理 InfluxDB 中自动创建的用户
 使用 influx 客户端工具，连接 InfluxDB，执行以下两个用户清理命令：
