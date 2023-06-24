@@ -2,7 +2,7 @@
 
 ## 1.65.131（2023 年 06 月 20 日）
 
-pubrepo.guance.com/dataflux/1.65.131:launcher-35d8d9c-1687506944
+pubrepo.guance.com/dataflux/1.65.131:launcher-d6c2ef5-1687506944
 
 ### 观测云更新
 
