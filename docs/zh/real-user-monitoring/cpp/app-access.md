@@ -62,6 +62,42 @@
 	export VCPKG_ROOT= [ your_vcpkg_root_dir ]
 	
 	```
+	
+	添加 CMake 配置
+	
+	```
+	cmake_minimum_required(VERSION 3.0)
+
+	project(ft-sdk-reference-sample VERSION 1.0.0 LANGUAGES CXX C)
+	
+	add_definitions(-fPIC -g -Werror=return-type)
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -O1 -ftree-vectorize -ffast-math ")
+	set(CMAKE_CXX_STANDARD 17)
+	
+	if(DEFINED ENV{VCPKG_ROOT})
+	if (EXISTS "$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake")
+	    include ("$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake")
+	  set(VCPKG_CMAKE_SHARE "$ENV{VCPKG_ROOT}/installed/${VCPKG_TARGET_TRIPLET}/share"
+	      CACHE STRING "TEST")
+	endif ()
+	else ()
+	message(STATUS "please set the system environment variable : VCPKG_ROOT" $ENV{VCPKG_ROOT})
+	endif ()
+	
+	#添加观测云 SDK 引用
+	find_path(FT-SDK_INCLUDE_DIR datakit-sdk-cpp/FTSDK.h)
+	find_library(FT-SDK_LIBRARY ft-sdk "${FT-SDK_INCLUDE_DIR}/../lib/")
+	include_directories(${FT-SDK_INCLUDE_DIR})
+	
+	file(GLOB PROJECT_SOURCE "*.cpp")
+	file(GLOB PROJECT_HEADER "../include/*.h" "*.h")
+	
+	add_executable (${PROJECT_NAME} ${PROJECT_SOURCE} ${PROJECT_HEADER})
+	
+	#链接 SDK
+	target_link_libraries(${PROJECT_NAME} PRIVATE ${FT-SDK_LIBRARY})
+
+	```
 		
 ## 引用头
 ```cpp
