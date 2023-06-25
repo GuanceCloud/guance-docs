@@ -1,10 +1,13 @@
 nav:
   - index.md
   - 'Glossary': glossary.md
-  - 'Login Method': login.md
+  - 'Login Methods': login.md
+  - 'Account Overview': account-wallet
+  - 'Support Center': support-center.md
+  - 'Billing Management': billing-management.md
+  - 'Invoice Management': invoice-management.md
   - 'Account Management': account-management.md
   - 'Workspace Management': workspace-management.md
-  - 'Account Wallet': account-wallet
-  - 'Billing Management': billing-management.md
-  - 'Support Center': support-center.md
-  - 'Invoice Management': invoice-management.md
+
+  
+  

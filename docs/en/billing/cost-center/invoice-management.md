@@ -9,7 +9,9 @@ Before using the invoice management of Guance Billing Center, real-name authenti
 
 Before using invoice management of Guance Billing Center, it is necessary to enter the name of enterprise business license and taxpayer identification number in **Account Management > Real Name Authentication** for enterprise authentication.
 
-![](../img/13.invoice_2.png)
+<!--
+![](../img/13.invoice_2.png) 
+-->
 
 ## Information Management
 
@@ -35,11 +37,11 @@ The created address information can be edited and deleted in **Invoice Managemen
 
 ![](../img/13.invoice_4.1.png)
 
-## Invoice Request
+## Request Invoice 
 
 In the **Invoice Management** of the Guance Billing Center, click **Request Now** next to the invoice amount that can be requested. On the invoice request page, select the invoice bill that needs to be requested, and click **Next**.
 
-Note:
+<font color=coral>**Note:**</font>
 
 - When requesting invoices, the object of request is the generated monthly bill content, and the cash balance must be over 0.
 - The stored-value cards purchased can be invoiced according to the equal amount.
@@ -54,9 +56,10 @@ After the request is completed, you can view the status of invoice request on th
 
 ![](../img/13.invoice_8.png)
 
-On the **Requested Invoice** page, click View on the right to view the details of requesting invoice information.
+On the **Invoice Requested** page, click **View** on the right to view the details of requesting invoice information.
 
+<!--
 ![](../img/13.invoice_9.png)
 
-
+-->
 
