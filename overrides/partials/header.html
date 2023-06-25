@@ -89,8 +89,10 @@ in features %} {% set class = class ~ " md-header--lifted" %} {% endif %}
     {% endif %}
     <div class="loginBtn">
       {% if config.theme.language == 'en' %}
-      <a class="register-btn" target="_blank" href="https://console.guance.com">GET STARTED</a>
+      <a class="login-btn" target="_blank" href="https://en.guance.com/">Learn More</a>
+      <a class="register-btn" target="_blank" href="https://console.guance.com/en">GET STARTED</a>
       {% endif %} {% if config.theme.language == 'zh' %}
+      <a class="login-btn" target="_blank" href="https://www.guance.com/">进入官网</a>
       <a class="register-btn" target="_blank" href="https://console.guance.com">进入观测云</a>
       {% endif %}
     </div>
