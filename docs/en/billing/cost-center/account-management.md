@@ -6,37 +6,29 @@ Guance Billing Center account is a separate account dedicated to managing the bi
 ![](../img/7.account_1.png)
 
 
-## Information Changes
+## Profile Changes
 
-If the enterprise personnel change, it is necessary to update the account information in the Guance Billing Center. You can change the enterprise name, industry, region, enterprise introduction, contact name, email address and telephone number in the Guance Billing Center **Account Management > Information**, where the email address and telephone number are the login accounts of the Billing Center, which need to be verified when changing the binding.
+If the enterprise personnel change, it is necessary to update the account information in the Guance Billing Center. You can change the enterprise name, industry, region, enterprise introduction, contact name, email address and telephone number in **Account Management > Profile**, where the email address and telephone number are the login accounts of the Billing Center, which need to be verified when changing the binding.
 
 ### Change Mailbox
 
-In the Guance Billing Center **Account Management > Information > Change Mailbox**, obtain and enter the verification code of the current mailbox, and click OK.
+In the Guance Billing Center **Account Management > Profile > Change Tied Email**, obtain and enter the verification code of the current mailbox, and click **OK**.
 
 ![](../img/7.account_2.png)
 
-Enter the email address to be updated, then obtain and enter the verification code, and click OK to change the email address successfully.
-
-![](../img/7.account_3.png)
+Enter the email address to be updated, then obtain and enter the verification code, and click **OK** to change the email address successfully.
 
 
 ### Change Mobile Phone
 
-In the Guance Billing Center **Account Management > Data > Change Mobile Phone**, obtain and enter the verification code of the current mobile phone, and click OK.
+In the Guance Billing Center **Account Management > Data > Change Your Cell Phone**, obtain and enter the verification code of the current mobile phone, and click **OK**.
 
-![](../img/7.account_4.png)
-
-
-
-Enter the mobile phone number to be updated, then obtain and enter the verification code, and click OK to change the mobile phone successfully.
+![](../img/7.account_3.png)
 
 
 
-![](../img/7.account_5.png)
+Enter the mobile phone number to be updated, then obtain and enter the verification code, and click **OK** to change the mobile phone successfully.
 
-
-### Log in to Billing Center
 
 After changing the new email address or mobile phone number, you can use the new email address or mobile phone number to log in directly to the [Billing Center](https://boss.guance.com/#/signin).
 
@@ -49,21 +41,32 @@ If you set a password when registering an account in the Billing Center, you can
 
 ![](../img/7.account_7.png)
 
+## Contract Management
+
+In **Contract Management**, you can see all the contracts.
+
+![](../img/0625.png)
+
+
+<!--
 ## Real-name Authentication
 
 If you want to issue invoices in the Billing Center, you need to authenticate in **Account Management > Real Name Authentication** before you can ask for invoices in **Invoice Management**.
 
 ![](../img/7.account_8.png)
-
+-->
 
 ## Cloud Account Management
 
-Cloud account is the cloud account information saved by cloud manufacturers after subscription, which can be used for settlement of new workspaces, that is, multiple workspaces can be settled with the same cloud account. Guance Billing Center supports Amazon Cloud Account and Alibaba Cloud Account. In **Account Management > Cloud Account**, you can view the subscribed cloud account, and support binding workspace for the subscribed cloud account.
-
-- Refer to the doc [Alibaba Cloud account settlement](../../billing/billing-account/aliyun-account.md) or [AWS account settlement](../../billing/billing-account/aws-account.md).
-- Refer to the doc [binding workspace](../../billing/cost-center/workspace-management.md) for information on how to bind workspaces.
+Cloud account is the cloud account information saved by cloud manufacturers after subscription, which can be used for settlement of new workspaces, that is, multiple workspaces can be settled with the same cloud account. Guance Billing Center supports AWS Account, Alibaba Cloud Account and Huawei Cloud Account. In **Account Management > Cloud Account**, you can view the subscribed cloud account, and support binding workspace for the subscribed cloud account.
 
 ![](../img/15.aws_5.png)
+
+> Refer to the doc [Alibaba Cloud Account Settlement](../../billing/billing-account/aliyun-account.md), [AWS Account Settlement](../../billing/billing-account/aws-account.md) and [Huawei Cloud Account Settlement](../commercial-huaweiyun.md) on how to subscribe cloud account; 
+>
+> 
+> Refer to the doc [Binding Workspace](../../billing/cost-center/workspace-management.md) for information on how to bind workspaces.
+
 
 
 ---
