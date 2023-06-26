@@ -31,15 +31,15 @@ Go to the `conf.d/db` directory under the DataKit installation directory, copy `
 ```toml
 
 [[inputs.postgresql]]
-  ## Server address 
+  ## Server address
   # URI format
-  # postgres://[pqgotest[:password]]@localhost[/dbname]?sslmode=[disable|verify-ca|verify-full]
-  # or simple string 
+  # postgres://[datakit[:PASSWORD]]@localhost[/dbname]?sslmode=[disable|verify-ca|verify-full]
+  # or simple string
   # host=localhost user=pqgotest password=... sslmode=... dbname=app_production
 
-  address = "postgres://postgres@localhost/test?sslmode=disable"
+  address = "postgres://datakit:PASSWORD@localhost?sslmode=disable"
 
-  ## Ignore databases which are gathered. Do not use with 'databases' option. 
+  ## Ignore databases which are gathered. Do not use with 'databases' option.
   #
   # ignored_databases = ["db1"]
 
@@ -47,11 +47,11 @@ Go to the `conf.d/db` directory under the DataKit installation directory, copy `
   #
   # databases = ["db1"]
 
-  ## Specify the name used as the "server" tag. 
+  ## Specify the name used as the "server" tag.
   #
   # outputaddress = "db01"
 
-  ## Collect interval 
+  ## Collect interval
   # Time unit: "ns", "us" (or "µs"), "ms", "s", "m", "h"
   #
   interval = "10s"
@@ -66,7 +66,7 @@ Go to the `conf.d/db` directory under the DataKit installation directory, copy `
   #   m(materialized view), c(composite type), f(foreign table)
   #
   # [[inputs.postgresql.relations]]
-  # relation_name = "<TABLE_NAME>" 
+  # relation_name = "<TABLE_NAME>"
   # relation_regex = "<TABLE_PATTERN>"
   # schemas = ["public"]
   # relkind = ["r", "p"]
@@ -74,7 +74,7 @@ Go to the `conf.d/db` directory under the DataKit installation directory, copy `
   ## Set true to enable election
   election = true
 
-  ## Run a custom SQL query and collect corresponding metrics. 
+  ## Run a custom SQL query and collect corresponding metrics.
   #
   # [[inputs.postgresql.custom_queries]]
   #   sql = '''
@@ -86,13 +86,13 @@ Go to the `conf.d/db` directory under the DataKit installation directory, copy `
   #   tags = ["datname" ]
   #   fields = ["numbackends", "blks_read"]
 
-  ## Log collection 
+  ## Log collection
   #
   # [inputs.postgresql.log]
   # files = []
   # pipeline = "postgresql.p"
 
-  ## Custom tags 
+  ## Custom tags
   #
   [inputs.postgresql.tags]
   # some_tag = "some_value"

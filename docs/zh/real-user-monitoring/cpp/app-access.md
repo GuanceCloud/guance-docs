@@ -151,6 +151,8 @@ sdk->install(gc)
 
 
 
+
+
 ### RUM 配置
 ```cpp
 FTRUMConfig rc;

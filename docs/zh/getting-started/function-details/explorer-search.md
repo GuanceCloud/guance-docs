@@ -48,7 +48,7 @@
 - 筛选条件：支持 `and / or`  任意组合，支持使用 `()` 括号表示执行搜索的优先级，支持 `=` 、`!=` 等操作符；
 - 搜索条件：支持使用 DQL 函数 `query_string()` 字符串查询，如输入 `message = query_string()` 对日志内容进行搜索。
 
-> 更多 DQL 语法可参考文档 [DQL 定义](../../dql/define.md) 。
+> 更多 DQL 语法可参考文档 [DQL 定义](../../dql/define.md)。
 
 <u>示例说明</u>
 
