@@ -50,9 +50,9 @@ select count(1) from customers where last_logined_time>=(unix_timestamp()-3600);
 
 ### Python 环境
 
-需要安装 Python，目前 Pythond 采集器处于 alpha 阶段，同时兼容 Python 2.7+ 和 Python 3+。
+目前处于 alpha 阶段，**只兼容 Python 3+**。已测试的版本：
 
-但为了以后的兼容性，**强烈建议使用 Python 3**，毕竟 Python 2 官方已经不作支持了。**下面的演示也是使用 Python 3**
+- [x] 3.10.1
 
 ### Python 依赖库
 
