@@ -24,7 +24,7 @@
 ### SDK 无法解析导入
 ![](../img/17.trouble_shooting_android_gradle_error_1.png)
 ![](../img/17.trouble_shooting_android_gradle_error_2.png)
-发生以上错误是因为因为 maven 仓库没有正确设置，请参考这里的[配置](app-access.md##gradle-setting)
+发生以上错误是因为因为 maven 仓库没有正确设置，请参考这里的[配置](app-access.md#gradle-setting)
 
 
 ### 编译错误
@@ -55,11 +55,11 @@ dependencies {
 
 ####  API 'android.registerTransform' is obsolete {#transform_deprecated}
 
-`AGP 7.0` 中 `Transform` 已标记为 `Deprecated`，并在 `AGP 8.0` 中已弃用。 `ft-plugin:1.2.0` 已经完成适配，请升级相应版本，修复这个错误。 具体说明请见[集成配置](./app-access.md/#gradle-setting) 
+`AGP 7.0` 中 `Transform` 已标记为 `Deprecated`，并在 `AGP 8.0` 中已弃用。 `ft-plugin:1.2.0` 已经完成适配，请升级相应版本，修复这个错误。 具体说明请见[集成配置](app-access.md/#gradle-setting) 
 
 ####  AndroidComponentsExtension ClassNotFoundException {#android_cts_ext_no_fd}
 
-`AndroidComponentsExtension` 是 AGP `7.4.2` 支持的方法，低于这个版本的编译环境，就会产生这个错误，可以使用 `ft-plugin-legacy` 版本，修复这个错误。具体说明请见[集成配置](./app-access.md/#gradle-setting) 
+`AndroidComponentsExtension` 是 AGP `7.4.2` 支持的方法，低于这个版本的编译环境，就会产生这个错误，可以使用 `ft-plugin-legacy` 版本，修复这个错误。具体说明请见[集成配置](app-access.md/#gradle-setting) 
 
 ![](../img/17.trouble_shooting_android_gradle_error_3.png)
 
@@ -110,7 +110,7 @@ dependencies {
 * 确认正确调用 `FTSdk.shutDown `，这个方法会释放 SDK 数据处理对象，包括缓存的数据。
 
 ### Resource 数据丢失 {#resource_missing}
-Plugin AOP ASM 插入之后，会在原工程代码基础上，会在 `OkHttpClient.Builder()` 加入 `addInterceptor`，分别加入 `FTTraceInterceptor` 和 `FTResourceInterceptor`,其中会使用 http 请求中 body contentLength 参与唯一 id 计算，`Resource` 数据各个阶段数据通过这个 id 进行上下文串联，所以如果集成方在使用 `Okhttp` 时，也加入 `addInterceptor` 并对数据进行二次处理使其发生大小改变，从而导致 id 各阶段计算不一致，导致数据丢失。这个问题可以通过自定义 `addInterceptor` 位置顺序，让 SDK 方法第一时间去计算 id，可以解决这个问题。详细见[ManualActivity](https://github.com/GuanceCloud/datakit-android/blob/dev/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt) 中 `OKHttp` 自定义 `EventListener``Interceptor` 的例子。
+Plugin AOP ASM 插入之后，会在原工程代码基础上，会在 `OkHttpClient.Builder()` 加入 `addInterceptor`，分别加入 `FTTraceInterceptor` 和 `FTResourceInterceptor`,其中会使用 http 请求中 body contentLength 参与唯一 id 计算，`Resource` 数据各个阶段数据通过这个 id 进行上下文串联，所以如果集成方在使用 `Okhttp` 时，也加入 `addInterceptor` 并对数据进行二次处理使其发生大小改变，从而导致 id 各阶段计算不一致，导致数据丢失。这个问题可以通过自定义 `addInterceptor` 位置顺序，让 SDK 方法第一时间去计算 id，可以解决这个问题。详细见 [ManualActivity](https://github.com/GuanceCloud/datakit-android/blob/dev/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt) 中 `OKHttp` 自定义 `EventListener` 和 `Interceptor` 的例子。
 
 ## 数据丢失某个字段信息
 ### 用户数据字段
@@ -133,7 +133,7 @@ Plugin AOP ASM 插入之后，会在原工程代码基础上，会在 `OkHttpCli
 如果发生有可能原因是日志采集的数据过大。`FTLoggerConfig.enableConsoleLog`原理是抓取编译 `android.util.Log`，Java 与 Kotlin`println`，建议按需调整`FTLoggerConfig`[配置](app-access.md#log-config)下`sampleRate`,`logPrefix`,`logLevelFilters`参数来消除或缓解这个问题
 
 ## Okhttp EventListener 集成 SDK 后失效
-Plugin AOP ASM 插入之后，会在原工程代码基础上，会在 `OkHttpClient.Builder()` 加入 `eventListenerFactory` ，这会覆盖原来的 `eventListener` 或 `eventListenerFactory` ，可以通过关闭自动 AOP 自动设置 `FTRUMConfig setEnableTraceUserResource(false)`，并自定义一个 `CustomEventListener` 并继承 `FTResourceEventListener.FTFactory`，详细见 [CustomEventListener](https://github.com/GuanceCloud/datakit-android/blob/dev/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/custom/okhttp/CustomEventListener.kt)
+Plugin AOP ASM 插入之后，会在原工程代码基础上，会在 `OkHttpClient.Builder()` 加入 `eventListenerFactory` ，这会覆盖原来的 `eventListener` 或 `eventListenerFactory` ，可以通过关闭自动 AOP 自动设置 `FTRUMConfig setEnableTraceUserResource(false)`，并自定义一个 `CustomEventListenerFactory` 并继承 `FTResourceEventListener.FTFactory`，详细见 [CustomEventListener](https://github.com/GuanceCloud/datakit-android/blob/dev/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/custom/okhttp/CustomEventListenerFactory.kt)
 
 
 
