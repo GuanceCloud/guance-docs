@@ -17,7 +17,7 @@
 
     - 不同站点的账号和数据相互独立，无法互相共享和迁移数据，请谨慎选择。
     - 注册商业版的同时，您可以根据所选择的站点，设置对应的结算方式，后续也可按需修改。<br/>
-    > 更多详情可参考文档 [<费用结算方式>](../billing/billing-account/index.md)。
+    > 更多详情可参考文档 [费用结算方式](../billing/billing-account/index.md)。
 
 | 站点    | 登录地址 URL    |  运营商 |
 | ----------------- | ---------------- | ------------------ |
@@ -34,7 +34,7 @@
 
 #### 绑定费用中心用户名账号
 
-在此页面注册时，您可以直接绑定费用中心用户名账号，输入用户名以后，在提示框中选择**仍想使用此用户名注册？</font>。
+在此页面注册时，您可以直接绑定费用中心用户名账号，输入用户名以后，在提示框中选择**仍想使用此用户名注册？**
 
 ![](img/9.billing_account_1.png)
 
@@ -79,7 +79,7 @@
 
 若您在注册时选择阿里云账号结算，工作空间内产生的所有费用会直接从您的阿里云账户中进行结算。
 
-您可以在**选择开通方式**，填写工作空间名称，选择工作空间语言，点击 **[前往阿里云免费开通观测云服务](https://market.aliyun.com/products/56838014/cmgj00053362.html)** 获取并填写 **[账号 ID](../billing/billing-account/aliyun-account.md#uid)、[商品实例ID](../billing/billing-account/aliyun-account.md#entity-id)**，点击**确定**即可完成注册。
+您可以在**选择开通方式**，填写工作空间名称，选择工作空间语言，点击 **[前往阿里云免费开通观测云服务](https://market.aliyun.com/products/56838014/cmgj00053362.html)** 获取并填写 **[账号 ID](../billing/billing-account/aliyun-account.md#uid)、[商品实例 ID](../billing/billing-account/aliyun-account.md#entity-id)**，点击**确定**即可完成注册。
 
 ???+ attention
 
@@ -111,11 +111,9 @@
 
 ![](img/1.register_guance-1.png)
 
-???+ attention
-
-    您也可以通过以下方式直接开通观测云。
+您也可以通过以下方式直接开通观测云：
     
-    - 您可以直接在 [华为云云商店](https://marketplace.huaweicloud.com/contents/8990a122-f456-43a4-892c-a458be31e336#productid=OFFI845592654693900288) ，购买观测云 SaaS 版，并直接通过免登注册开通观测云。<br/>
+直接前往 [华为云云商店](https://marketplace.huaweicloud.com/contents/8990a122-f456-43a4-892c-a458be31e336#productid=OFFI845592654693900288)，购买观测云 SaaS 版，并直接通过免登注册开通观测云。<br/>
 
 
 
@@ -125,7 +123,7 @@
 
 ![](img/1.sls_8.png)
 
-登陆工作空间后，可以在观测云付费计划与账单模块，查看当前工作空间的版本信息。
+登录工作空间后，可以在观测云付费计划与账单模块，查看当前工作空间的版本信息。
 
 ![](img/12.billing_1.png)
 
