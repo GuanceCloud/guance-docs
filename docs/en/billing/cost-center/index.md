@@ -22,12 +22,12 @@ At the Guance Billing Center, you can view and review your billing details throu
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :material-text-account: __Account__</font>](explorer.md): Support cash recharge, purchase vouchers recharge and purchase stored-value cards recharge.
-- [<font color="coral"> :fontawesome-solid-headphones: __Submit Tickets__</font>](generate-metrics.md): You can submit and manage tickets and Guance customer service will contact you once receiving tickets.
-- [<font color="coral"> :material-page-layout-header-footer: __Billing Management__</font>](multi-index.md): Being used to manage the bill information, including monthly bills, consumption, income and expenditure, vouchers and stored-value card details.
-- [<font color="coral"> :material-typewriter: __Invoice Management__</font>](../management/overall-blacklist.md): Being used to manage the invoice information. After authentication, invoice and sending information can be managed and invoices can be obtained for the generated monthly bills.      
-- [<font color="coral"> :octicons-person-fill-16: __Account Management__</font>](backup.md): Being used to manage the account information, including account data change, password modification, real-name authentication and cloud account management.
-- [<font color="coral"> :fontawesome-solid-photo-film: __Change Settlement__</font>](../getting-started/function-details/snapshot.md): You can manage and modify the settlement methods of Guance workspaces, including Guance enterprise account, Amazon cloud account and Alibaba cloud account.
+- [<font color="coral"> :material-text-account: __Account__</font>](../cost-center/account-wallet/index.md): Support cash recharge, purchase vouchers recharge and purchase stored-value cards recharge.
+- [<font color="coral"> :fontawesome-solid-headphones: __Submit Tickets__</font>](../cost-center/support-center.md): You can submit and manage tickets and Guance customer service will contact you once receiving tickets.
+- [<font color="coral"> :material-page-layout-header-footer: __Billing Management__</font>](../cost-center/billing-management.md): Being used to manage the bill information, including monthly bills, consumption, income and expenditure, vouchers and stored-value card details.
+- [<font color="coral"> :material-typewriter: __Invoice Management__</font>](../cost-center/invoice-management.md): Being used to manage the invoice information. After authentication, invoice and sending information can be managed and invoices can be obtained for the generated monthly bills.      
+- [<font color="coral"> :octicons-person-fill-16: __Account Management__</font>](../cost-center/account-management.md): Being used to manage the account information, including account data change, password modification, real-name authentication and cloud account management.
+- [<font color="coral"> :fontawesome-solid-photo-film: __Change Settlement__</font>](../billing-account/index.md): You can manage and modify the settlement methods of Guance workspaces.
       
 </div>
 

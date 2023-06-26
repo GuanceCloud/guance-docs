@@ -14,7 +14,7 @@
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 私有云部署版 文档</font>](../deployment/deployment-description.md#_4)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 私有云部署版</font>](../deployment/deployment-description.md#_4)
 
 
 </div>

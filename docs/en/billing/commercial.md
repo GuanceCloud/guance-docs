@@ -25,7 +25,7 @@ Users of Guance Commercial Plan need to successfully register two accounts, name
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Billing Center doc</font>](./cost-center/index.md)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Billing Center</font>](./cost-center/index.md)
 
 <br/>
 
@@ -40,7 +40,7 @@ The owner of the Guance workspace and view the expense:
 
 ???+ attention "Workspace role difference description"
 
-    - Owner: In **Billing**, there are **Recharge, Billing Center, Settlement Method and Change Binding** buttons.<br/>
+    - Owner: In **Billing**, there are **Recharge, Billing Center, Change Settlement and Change Account** buttons.<br/>
     - Administrator: In **Billing**, the above button is not available.<br/>
     - Other members: There is no **Billing** module, that is, there is no permission to view the expenses.
 
@@ -52,7 +52,7 @@ In the settlement account overview, you can view the settlement account name, ca
 
 - Recharge: Click to recharge the account.
 - Billing Center: Click to jump to open the Guance Billing Center.
-- Change Settlement: Click to change the settlement method, including [Guance Cloud enterprise account settlement](billing-account/enterprise-account.md), [AWS account settlement](billing-account/aws-account.md) and [Alibaba Cloud account settlement](billing-account/aliyun-account.md).
+- Change Settlement: Click to change the settlement method, including [Guance Cloud enterprise account settlement](./billing-account/enterprise-account.md), [AWS account settlement](./billing-account/aws-account.md), [Alibaba Cloud account settlement](./billing-account/aliyun-account.md) and [Huawei Cloud account settlement](./commercial-huaweiyun.md)
 - Change Account: Click to change the Guance billing account in the workspace, <u>provided that the current account and the new account must belong to the same enterprise, that is, the enterprise authentication of the two accounts in the Guance Billing Center must be the same</u>.
 - Set High Consumption Alert: After setting the alert, when the daily bill of billing item is greater than the alert threshold, an email notification will be sent to Owner and Administrator.
 

@@ -17,7 +17,7 @@ Guance provides multiple registration sites, and you can select corresponding si
 
     - The accounts and data of different sites are independent of each other, so it is impossible to share and migrate data with each other. Please choose carefully.
     - When registering the Commercial Plan, the corresponding default settlement method will be set according to the site you choose, which can be modified as needed later.<br/>
-    > Refer to the doc [<expense settlement method>](../billing/billing-account/index.md).
+    > Refer to the doc [Billing Settlement Methods](../billing/billing-account/index.md).
 
 | Site    | Login Address URL    |  Operator |Default Settlement Method           |
 | ----------------- | ---------------- | ------------------ |--- |
@@ -30,7 +30,7 @@ Guance provides multiple registration sites, and you can select corresponding si
 
 When registering [Guance studio account](https://auth.guance.com/businessRegister) on this page, you will be registered with [Guance Billing Center account](https://boss.guance.com/) with **the same user name**, and the user name account of the Billing Center will be checked for uniqueness, which cannot be modified once registered.
 
-> Refer to the doc [<Billing Center>](../billing/cost-center/index.md).
+> Refer to the doc [Billing Center](../billing/cost-center/index.md).
 
 #### Bind Billing Center User Name Account
 
@@ -56,7 +56,7 @@ On the **Enterprise Information** page, enter relevant information and click **R
 
 Depending on the site selected in [step 1: basic info](#info), the third step displays the corresponding default opening mode page.
 
-> Refer to the doc [<Guance expense settlement>](../billing/billing-account/index.md).
+> Refer to the doc [Guance Expense Settlement](../billing/billing-account/index.md).
 
 ### Workspace Name
 
@@ -74,18 +74,21 @@ You can **Select Opening Method**, fill in **Workspace Name**, select **Workspac
 
 ???+ attention
 
-    For Alibaba Cloud users, you can also directly open Guance for use in the following ways.
+    For Alibaba Cloud users, you can also directly open Guance for use in the following ways:
     
-    - You can purchase Guance directly from [Guance in Alibaba Cloud market](https://market.aliyun.com/products/56838014/cmgj00053362.html), and open Guance directly through login-free registration.<br/>
-    > For more details, please refer to the document [<open Guance Commercial Plan in Alibaba Cloud Market>](commercial-aliyun.md)
-    - If you are an Alibaba Cloud SLS user and need to use SLS storage in Guance, you can purchase [Guance Exclusive Plan directly at Alibaba Cloud market](https://market.aliyun.com/products/56838014/cmgj00060481.html), and open Guance Exclusive Plan directly through login-free registration. <br/>
-    > For more detailed steps, please refer to the documentation [<open Guance exclusive at Alibaba Cloud market>](commercial-aliyun-sls.md) and [<difference between Guance Commercial Plan and Guance Exclusive Plan>](../billing/faq.md#_5).
+    - You can purchase Guance directly from [Guance in Alibaba Cloud market](https://market.aliyun.com/products/56838014/cmgj00053362.html), and open Guance directly through login-free registration.
+  
+    > Please refer to the document [Open Guance Commercial Plan in Alibaba Cloud Market](commercial-aliyun.md).
+
+    - If you are an Alibaba Cloud SLS user and need to use SLS storage in Guance, you can purchase [Guance Exclusive Plan directly at Alibaba Cloud market](https://market.aliyun.com/products/56838014/cmgj00060481.html), and open Guance Exclusive Plan directly through login-free registration.
+
+    > Please refer to the documentation [Open Guance Independent Plan at Alibaba Cloud market](commercial-aliyun-sls.md) and [Difference between Guance Commercial Plan and Guance Independent Plan](../billing/faq.md#_5).
 
 ![](img/4.register_language_1.png)
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Alibaba Cloud account settlement doc</font>](./billing-account/aliyun-account.md)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Alibaba Cloud Account Settlement</font>](./billing-account/aliyun-account.md)
 
 <br/>
 
@@ -101,7 +104,7 @@ You can subscribe to Guance on AWS by clicking on [Go to Amazon Cloud marketplac
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; AWS account settlement doc</font>](./billing-account/aws-account.md)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; AWS Account Settlement</font>](./billing-account/aws-account.md)
 
 <br/>
 
@@ -117,9 +120,9 @@ You can enter **Workspace Name** in the dialog box below, select **Workspace Lan
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Guance enterprise account settlement doc</font>](./billing-account/enterprise-account.md)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Guance Enterprise Account Settlement</font>](./billing-account/enterprise-account.md)
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Huawei Cloud stored-value cards settlement doc</font>](./billing-account/huaweicloud-account.md)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Huawei Cloud Account Settlement</font>](./billing-account/huaweicloud-account.md)
 
 </div>
 
