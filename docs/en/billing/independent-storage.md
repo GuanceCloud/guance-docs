@@ -21,7 +21,7 @@ The independent storage plan of Guance provides users with higher performance an
 | Task calls     | per 10,000    | 1 yuan     | 1.5 yuan     |
 | SMS         | per 10     | 1 yuan     | 1.5 yuan     |
 
-> See [billing methods](../billing/billing-method/index.md) for more information.
+> See [Billing Methods](../billing/billing-method/index.md) for more information.
 
 ## How to Get Independent Storage Plan
 

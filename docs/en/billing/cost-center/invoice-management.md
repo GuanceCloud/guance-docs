@@ -19,9 +19,11 @@ Information management includes invoice information and sending information, and
 
 ### Invoice Information Management
 
-In the Guance Billing Center **Invoice Management > Invoice Information > New Invoice Information**, select the invoice type (including VAT ordinary invoice, VAT special invoice and electronic ordinary invoice), and fill in the tax registration account, bank name, basic account number, registered place address and registered fixed telephone to create new invoice information.
+In the Guance Billing Center **Invoice Management > Invoice Information**, you can add personal or corporate invoice information. Select the invoice type and fill in related information.
 
+<!--
 ![](../img/13.invoice_3.png)
+-->
 
 The created invoice information can be edited and deleted in **Invoice Management > Invoice Information** of Guance Billing Center.
 
@@ -29,7 +31,7 @@ The created invoice information can be edited and deleted in **Invoice Managemen
 
 ### Sending Information Management
 
-In the Invoice **Management > Sending Address > New Address** of the Guance Billing Center, fill in the recipient, telephone number, email address and detailed address to create a new sending address.
+In the Invoice **Management > Sending Address > Add Address** of the Guance Billing Center, fill in the recipient, telephone number, email address and detailed address to create a new sending address.
 
 ![](../img/13.invoice_4.png)
 
@@ -50,15 +52,20 @@ In the **Invoice Management** of the Guance Billing Center, click **Request Now*
 
 On the Request Invoice page, select the invoice information and receiving address, and click **Request Invoice**.
 
-![](../img/13.invoice_7.png)
+
 
 After the request is completed, you can view the status of invoice request on the **Requested Invoice** page.
 
-![](../img/13.invoice_8.png)
+
 
 On the **Invoice Requested** page, click **View** on the right to view the details of requesting invoice information.
 
 <!--
+
+![](../img/13.invoice_7.png)
+
+![](../img/13.invoice_8.png)
+
 ![](../img/13.invoice_9.png)
 
 -->

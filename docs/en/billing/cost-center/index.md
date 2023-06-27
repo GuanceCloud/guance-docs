@@ -5,11 +5,11 @@
 
 Billing Center is an expense settlement management platform of Guance Commercial Plan, which has an independent account system. The platform can obtain the bills of workspace and realize unified expense management at workspace level. Guance Commercial Plan adopts the billing method of <font color=coral>**pay-per-use**</font>. 
 
-> For more billing details, please refer to the document [Billing Method](../billing-method/index.md).
+> For more billing details, please refer to the document [Billing Methods](../billing-method/index.md).
 
 Guance provides a variety of settlement methods, such as Billing Center account settlement and cloud account settlement. Cloud account settlement includes Alibaba Cloud account settlement and AWS account settlement. In the cloud account settlement mode, cloud bills from multiple sites are supported to be merged into one cloud account for settlement. 
 
-> For more details, please refer to the documentation [Billing Settlement Method](../billing-account/index.md).
+> For more details, please refer to the documentation [Billing Settlement Methods](../billing-account/index.md).
 
 ![](../img/billing-index-1.png)
 

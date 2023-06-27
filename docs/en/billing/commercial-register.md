@@ -82,7 +82,7 @@ You can **Select Opening Method**, fill in **Workspace Name**, select **Workspac
 
     - If you are an Alibaba Cloud SLS user and need to use SLS storage in Guance, you can purchase [Guance Exclusive Plan directly at Alibaba Cloud market](https://market.aliyun.com/products/56838014/cmgj00060481.html), and open Guance Exclusive Plan directly through login-free registration.
 
-    > Please refer to the documentation [Open Guance Independent Plan at Alibaba Cloud market](commercial-aliyun-sls.md) and [Difference between Guance Commercial Plan and Guance Independent Plan](../billing/faq.md#_5).
+    > Please refer to the doc [Open Guance Independent Plan at Alibaba Cloud market](commercial-aliyun-sls.md) and [Difference between Guance Commercial Plan and Guance Independent Plan](../billing/faq.md#_5).
 
 ![](img/4.register_language_1.png)
 
