@@ -30,7 +30,7 @@ The strategy for Guance Experience Plan is as follows. For the billing method of
 
 You can provide Experience Plan and Commercial Plan registration options for Guance users a [Guance official website](https://www.guance.com/) and [register now](https://auth.guance.com/businessRegister).
 
-In the upper right corner of "Select Opening Method", click to switch to "Open Experience Workspace", enter "Workspace Name", and click "OK" to complete the registration. If you need to upgrade to the Commercial Plan after the Experience Plan is launched, you can refer to the doc [upgrade Commercial Plan](commercial-plan.md).
+In the upper right corner of "Select Opening Method", click to switch to "Open Experience Workspace", enter "Workspace Name", and click "OK" to complete the registration. If you need to upgrade to the Commercial Plan after the Experience Plan is launched, you can refer to the doc [Upgrade Commercial Plan](commercial-plan.md).
 
 Note:
 

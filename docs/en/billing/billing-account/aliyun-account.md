@@ -74,16 +74,16 @@ After Alibaba Cloud selects and confirms the opening application, Guance directl
 
 ## Unsubscribe from Guance at Alibaba Cloud
 
-1.Log in to Alibaba Cloud, open the menu in the upper left corner of Alibaba Cloud Studio, and click to enter **Cloud Market > Purchased Services**.
+I. Log in to Alibaba Cloud, open the menu in the upper left corner of Alibaba Cloud Studio, and click to enter **Cloud Market > Purchased Services**.
 
 ![](../img/10.aliyun_market_1.png)
 
-2.In **Purchased Services**, you can view Guance instance with subscription, and click **Close** in the upper right corner of the instance.
+II. In **Purchased Services**, you can view Guance instance with subscription, and click **Close** in the upper right corner of the instance.
 
 ![](../img/1.aliyun_cancel_2.png)
 
-3.In the pop-up **Business Closed** dialog box, after clicking **Confirm**, you can see that the instance has been closed, indicating that you have unsubscribed from Guance in Alibaba Cloud.
+III. In the pop-up **Business Closed** dialog box, after clicking **Confirm**, you can see that the instance has been closed, indicating that you have unsubscribed from Guance in Alibaba Cloud.
 
 ![](../img/1.aliyun_cancel_3.png)
 
-Note: After Alibaba Cloud cancels its subscription to the Guanced service, it will bind all workspaces of the account settlement in the Guance Billing Center, delete the associated cloud account, modify the current cloud account settlement to the enterprise account settlement of the Guance Billing Center, and notify the user by mail.
+<font color=coral>**Note:**</font> After Alibaba Cloud cancels its subscription to the Guance service, it will bind all workspaces of the account settlement in the Guance Billing Center, delete the associated cloud account, modify the current cloud account settlement to the enterprise account settlement of the Guance Billing Center, and notify the user by mail.

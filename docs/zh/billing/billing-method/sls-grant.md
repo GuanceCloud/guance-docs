@@ -8,7 +8,9 @@
 
 ## 步骤
 
-1、观测云一键开通 SLS 专属版的注册流程中下载 SLS 授权文件，打开后复制该 JSON 备份，后续会用到。关于开通流程，可参考文档 [阿里云市场开通观测云专属版](../commercial-aliyun-sls.md)；
+1、观测云一键开通 SLS 专属版的注册流程中下载 SLS 授权文件，打开后复制该 JSON 备份，后续会用到。
+
+> 关于开通流程，可参考文档 [阿里云市场开通观测云专属版](../commercial-aliyun-sls.md)；
 
 ![](../img/1.sls_6.jpeg)
 
@@ -24,7 +26,7 @@
 
 5、创建 AccessKey；
 
-注意：由于AccessKey Secret 只能查看一次，创建完成后建议复制出来备份。
+<font color=coral>**注意：**</font>由于AccessKey Secret 只能查看一次，创建完成后建议复制出来备份。
 
 ![](../img/3.RAM.png)
 

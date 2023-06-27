@@ -68,7 +68,7 @@ Click the **Bind Settlement Cloud Account** button to select the settlement clou
 
 ![](img/9.upgrade_6.png)
 
-Select "Alibaba Cloud Account" or "AWS Cloud Account", and select the settlement method in the pop-up dialog box. For specific steps, please refer to [opening Alibaba Cloud account settlement method](../billing/billing-account/aliyun-account.md) or [subscribing Guance in AWS](../billing/billing-account/aws-account.md).
+Select "Alibaba Cloud Account" or "AWS Cloud Account", and select the settlement method in the pop-up dialog box. For specific steps, please refer to [Opening Alibaba Cloud Account Settlement Method](../billing/billing-account/aliyun-account.md) or [Subscribing Guance in AWS](../billing/billing-account/aws-account.md).
 
 ![](img/9.upgrade_7.png)
 

@@ -3,13 +3,13 @@
 
 ## Overview
 
-Guance provides a SaaS version of independent storage with an independent data storage environment to provide users with better data isolation and security. It supports to adjust the size ratio of hot and cold data and provides faster data processing performance.
+The SaaS version provided by Guance has its own data storage environment, which enables you to enjoy better data isolation and security; You can also adjust the size ratio of hot and cold data to achieve faster data processing performance.
 
 ## Independent Storage Plan Expenses
 
 The independent storage plan of Guance provides users with higher performance and security, which is relatively more expensive than the Commercial Plan of Guance. Taking the basic billing of Guance as an example, the reference price of the independent storage version is as follows:
 
-> Note: The following prices are for reference only, and the actual settlement price is determined according to the specific needs.
+<font color=coral>**Note:**</font> The following prices are for reference only, and the actual settlement price is determined according to the specific needs.
 
 | **Billing Item**   | **Billing Unit** | **Price** | **Independent Storage Reference Price** |
 | ------------ | ------------ | -------- | -------- |
@@ -21,7 +21,7 @@ The independent storage plan of Guance provides users with higher performance an
 | Task calls     | per 10,000    | 1 yuan     | 1.5 yuan     |
 | SMS         | per 10     | 1 yuan     | 1.5 yuan     |
 
-See [billing methods](../billing/billing-method/index.md) for more information on Guance billing.
+> See [Billing Methods](../billing/billing-method/index.md) for more information.
 
 ## How to Get Independent Storage Plan
 
