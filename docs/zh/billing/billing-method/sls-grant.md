@@ -26,7 +26,7 @@
 
 5、创建 AccessKey；
 
-注意：由于AccessKey Secret 只能查看一次，创建完成后建议复制出来备份。
+<font color=coral>**注意：**</font>由于AccessKey Secret 只能查看一次，创建完成后建议复制出来备份。
 
 ![](../img/3.RAM.png)
 
