@@ -55,7 +55,7 @@ icon: zy/billing
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 用量计费方式 文档</font>](./billing-method/index.md)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 用量计费方式</font>](./billing-method/index.md)
 
 <br/>
 
@@ -69,7 +69,7 @@ icon: zy/billing
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 费用结算方式 文档</font>](./billing-account/index.md)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 费用结算方式</font>](./billing-account/index.md)
 
 <br/>
 
