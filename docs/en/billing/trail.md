@@ -35,7 +35,7 @@ The following is the difference between the scope of services supported by **Exp
 | -------- | ---------------- | ---------- | --------- |
 | Data  | <div style="width: 150px"> DataKit number </div>   | <div style="width: 240px"> not limited </div>    | not limited    |
 |          | Daily data reporting limit | Limited data is reported and excess data is no longer reported       | not limited |
-|          | Data storage policty     | 7-day cycle        |Customize the storage policy, please refer to [data storage policty](../billing/billing-method/data-storage.md) |
+|          | Data storage policty     | 7-day cycle        |Customize the storage policy, please refer to [Data Storage Policty](../billing/billing-method/data-storage.md) |
 |          | Quantity of timeline | 3000 | not limited    |
 |          | Number of log data | 1 million<br/>Log class data range: events, security check, log<br/>(Log data without synthetic test) | not limited    |
 |          | Quantity of application performance Trace |8,000 per day | not limited    |
@@ -53,7 +53,7 @@ The following is the difference between the scope of services supported by **Exp
 |          | SMS alarm notification     | /     | :white_check_mark: | 
 |          | DataFlux Func    | :white_check_mark: | :white_check_mark: | 
 |          | Account permissions         | Read-only, standard permissions are promoted to administrators without auditing | Read-only, standard permissions are promoted to administrators, and need to be approved by Billing Center administrators           |
-| Service     | Basic service         | Community, phone, work order support (5 x 8 hours)     | Community, phone, work order support (5 x 8 hours)     |
+| Service     | Basic service         | Community, phone, Billing Center support (5 x 8 hours)     | Community, phone, work order support (5 x 8 hours)     |
 |          | Training services         | Regular training on observability              | Regular training on observability      |
 |          | Expert services         | /     | Professional product technical expert support       |
 |          | Value-added services         | /     | Internet professional operation and maintenance service         |

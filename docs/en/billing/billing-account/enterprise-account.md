@@ -3,7 +3,7 @@
 
 This article will introduce how to open the account settlement of Guance enterprise in the Commercial Plan of Guance. 
 
-> Refer to the doc [register Commercial Plan](../../billing/commercial-register.md) for information on how to launch a Commercial Plan.
+> Refer to the doc [Register Commercial Plan](../../billing/commercial-register.md) for information on how to launch a Commercial Plan.
 
 ## Select Guance Enterprise Account Settlement
 

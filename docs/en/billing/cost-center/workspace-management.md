@@ -60,7 +60,7 @@ If the account of Billing Center is <u>in arrears or the subscription of the clo
         - AWS account settlement: Cancellation or invalidation of products subscribed in AWS cloud market will trigger locking of associated workspace;
         - Huawei Cloud Account Settlement: Closure or freezing of goods purchased in Huawei Koogallery will trigger locking of associated workspace.
 
-    > For more details, please refer to the doc [Expense Settlement Method](../billing/billing-account/index.md).
+    > For more details, please refer to the doc [Expense Settlement Methods](../billing/billing-account/index.md).
 
 
 ### Unlock {#unlock}

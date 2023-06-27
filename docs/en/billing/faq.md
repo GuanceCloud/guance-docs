@@ -64,14 +64,14 @@ Guance supports enterprise account settlement and cloud account settlement.
 
 - If you the use Guance enterprise account for settlement, you can recharge the Guance enterprise account by recharging cash, purchasing vouchers and stored-value cards. 
 
-    > For more information, please refer to the doc [account wallet](../billing/cost-center/account-wallet/index.md).
+    > For more information, please refer to the doc [Account Overview](../billing/cost-center/account-wallet/index.md).
 - If you use the cloud account for settlement, you can recharge directly in the cloud account.
 
 ## How to apply for an invoice?
 
 - Users who observe enterprise account settlement in cloud Billing Center can apply for invoices in **Billing Center > voice Management**. 
 
-    > For more details, please refer to the doc [invoice management](../billing/cost-center/invoice-management.md).
+    > For more details, please refer to the doc [Invoice Management](../billing/cost-center/invoice-management.md).
 - Users who settle Alibaba Cloud accounts can apply for invoices in Alibaba Cloud.
 - AWS account settlement users can apply for invoices in AWS China.
 
@@ -94,4 +94,4 @@ After you select and record the settlement method, Guance unlocks the workspace 
 
 ## If the above common problems cannot be solved, how can I get online support?
 
-Guance provides online work order [support](../billing/cost-center/support-center.md).
+Guance provides online ticket [support](../billing/cost-center/support-center.md).

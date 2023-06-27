@@ -121,7 +121,7 @@ After unsubscribing successfully, Guance service was cancelled in Amazon Cloud M
 
 ![](../img/8.space_17.png)
 
-> After you unsubscribe to the Guance service in AWS, all binding workspaces settled by this account in Guance Billing Center will delete the associated cloud account and lock all associated workspaces. You can unlock the workspace in **Billing Center > Workspace Management**. For more details, please refer to [lock workspace](../cost-center/workspace-management.md#lock).
+> After you unsubscribe to the Guance service in AWS, all binding workspaces settled by this account in Guance Billing Center will delete the associated cloud account and lock all associated workspaces. You can unlock the workspace in **Billing Center > Workspace Management**. For more details, please refer to [Lock Workspace](../cost-center/workspace-management.md#lock).
 
 
 

@@ -56,7 +56,7 @@ The owner and administrator of the workspace can view the data access of the wor
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Usage Billing Method</font>](./billing-method/index.md)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Usage Billing Methods</font>](./billing-method/index.md)
 
 <br/>
 
@@ -70,7 +70,7 @@ At present, it supports various settlement methods such as observing cloud enter
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Expense Settlement Method</font>](./billing-account/index.md)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Expense Settlement Methods</font>](./billing-account/index.md)
 
 <br/>
 
