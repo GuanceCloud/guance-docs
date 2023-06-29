@@ -27,7 +27,7 @@ On the package upgrade page, click **Upgrade**. Guance supports on-demand purcha
 
 ![](img/9.upgrade_2.png)
 
-## Bind Guance Enterprise Account
+## Bind Guance Billing Center account
 
 Enter the account registered in the [Guance Billing Center](https://boss.guance.com/) for binding, where the **User Name** will be verified. Please enter the **User Name** of the account opened in the Guance Billing Center.
 
@@ -53,11 +53,11 @@ After the Commercial Plan is successfully upgraded, the Guance Billing Center ac
 
 If other settlement methods need to be changed, you can click the **Bind Settlement Cloud Account** button. At present, the Guance supports three settlement methods:
 
-- [Guance Enterprise account settlement](../billing/billing-account/enterprise-account.md): Recharge and settle directly at the Guance Billing Center, and you can purchase [Huawei Cloud stored-value card](../billing/billing-account/huaweicloud-account.md) to recharge and settle the Guance enterprise account;
+- [Guance Billing Center account settlement](../billing/billing-account/enterprise-account.md): Recharge and settle directly at the Guance Billing Center, and you can purchase [Huawei Cloud stored-value card](../billing/billing-account/huaweicloud-account.md) to recharge and settle the Guance Billing Center account;
 - [Alibaba Cloud account settlement](../billing/billing-account/aliyun-account.md)Recharge settlement directly through Alibaba Cloud account;
 - [AWS account settlement](../billing/billing-account/aws-account.md): Recharge settlement directly through AWS account.
 
-> Note: Users registered on the "China 4 (Guangzhou)" site only support the settlement of enterprise accounts in Guance and directly return to **Billing** after the Commercial Plan is upgraded successfully.
+> Note: Users registered on the "China 4 (Guangzhou)" site only support the settlement of Billing Center accounts in Guance and directly return to **Billing** after the Commercial Plan is upgraded successfully.
 
 
 Click the **Bind Settlement Cloud Account** button to select the settlement cloud account according to the registration site of your account.
@@ -72,7 +72,7 @@ Select "Alibaba Cloud Account" or "AWS Cloud Account", and select the settlement
 
 ![](img/9.upgrade_7.png)
 
-If you choose to use the Guance enterprise account for settlement, you can directly close the **Change Settlement Method** dialog box. Support to change the settlement method in the **Workspace Management** of the Guance Billing Center.
+If you choose to use the Guance Billing Center account for settlement, you can directly close the **Change Settlement Method** dialog box. Support to change the settlement method in the **Workspace Management** of the Guance Billing Center.
 
 ![](img/9.upgrade_9.png)
 
