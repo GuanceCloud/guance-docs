@@ -52,7 +52,7 @@
 
 - 充值：点击即可为账户进行充值；
 - 费用中心：点击即可跳转打开观测云费用中心；
-- 结算方式：点击即可更改结算方式，包括 [观测云企业账号结算](billing-account/enterprise-account.md)、[亚马逊云账号结算](billing-account/aws-account.md)、[阿里云账号结算](billing-account/aliyun-account.md)和[华为云账号结算](commercial-huaweiyun.md)；
+- 结算方式：点击即可更改结算方式，包括 [观测云费用中心账号结算](billing-account/enterprise-account.md)、[亚马逊云账号结算](billing-account/aws-account.md)、[阿里云账号结算](billing-account/aliyun-account.md)和[华为云账号结算](commercial-huaweiyun.md)；
 - 更换绑定：点击即可更换工作空间的观测云计费账号，<u>前提是当前账户与新账户必须隶属于同一企业，即在观测云费用中心两个账号的企业认证需为同一个</u>。
 - 设置高消费预警：设置预警后，当计费项<u>日账单大于预警阈值</u>时，会向 Owner 和 Administrator 发送邮件通知。
 
