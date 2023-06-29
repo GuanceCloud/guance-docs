@@ -66,7 +66,7 @@ The owner and administrator of the workspace can view the data access of the wor
 
 After calculating the bill details of the current workspace, Guance studio will push them to the bound Guance Billing Center account for subsequent expense settlement process.
 
-At present, it supports various settlement methods such as observing cloud enterprise accounts and cloud accounts. Cloud account settlement includes Alibaba Cloud account and AWS account settlement. In the cloud account settlement mode, it supports the merger of cloud bills from multiple sites into one cloud account for settlement.
+At present, it supports various settlement methods such as observing cloud Billing Center accounts and cloud accounts. Cloud account settlement includes Alibaba Cloud account and AWS account settlement. In the cloud account settlement mode, it supports the merger of cloud bills from multiple sites into one cloud account for settlement.
 
 <div class="grid cards" markdown>
 

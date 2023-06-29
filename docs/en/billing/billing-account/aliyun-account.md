@@ -86,4 +86,4 @@ III. In the pop-up **Business Closed** dialog box, after clicking **Confirm**, y
 
 ![](../img/1.aliyun_cancel_3.png)
 
-<font color=coral>**Note:**</font> After Alibaba Cloud cancels its subscription to the Guance service, it will bind all workspaces of the account settlement in the Guance Billing Center, delete the associated cloud account, modify the current cloud account settlement to the enterprise account settlement of the Guance Billing Center, and notify the user by mail.
+<font color=coral>**Note:**</font> After Alibaba Cloud cancels its subscription to the Guance service, it will bind all workspaces of the account settlement in the Guance Billing Center, delete the associated cloud account, modify the current cloud account settlement to the Billing Center account settlement of the Guance Billing Center, and notify the user by mail.

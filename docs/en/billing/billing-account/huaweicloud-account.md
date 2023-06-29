@@ -5,7 +5,7 @@ This article will introduce how to use Huawei Cloud stored-value card for settle
 
 ## Preconditions
 
-When using Huawei Cloud Stored-Value Card, it is necessary to [register/upgrade the Commercial Plan](../../billing/commercial-plan.md) Guance. Guance supports three settlement methods: Guance enterprise account, Alibaba Cloud account and AWS account. When using Huawei Cloud Stored-Value Card for settlement, the default selection is [Guance enterprise account settlement](enterprise-account.md).
+When using Huawei Cloud Stored-Value Card, it is necessary to [register/upgrade the Commercial Plan](../../billing/commercial-plan.md) Guance. Guance supports three settlement methods: Guance Billing Center account, Alibaba Cloud account and AWS account. When using Huawei Cloud Stored-Value Card for settlement, the default selection is [Guance Billing Center account settlement](enterprise-account.md).
 
 ## Bind Huawei Cloud Stored-value Card
 
@@ -21,7 +21,7 @@ Or you can click **Manage Stored-value Cards** in the **Account Overview** of th
 
 ![](../img/1.huaweicloud_10.3.png)
 
-On the page of purchasing stored-value cards, select **Huawei Cloud Market Purchase**, enter **Huawei Cloud Account ID** and **Order Number**, and click **Recharge** to recharge the Guance enterprise account.
+On the page of purchasing stored-value cards, select **Huawei Cloud Market Purchase**, enter **Huawei Cloud Account ID** and **Order Number**, and click **Recharge** to recharge the Guance Billing Center account.
 
 ![](../img/1.huaweicloud_12.png)
 

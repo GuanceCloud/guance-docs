@@ -29,7 +29,7 @@ In **Purchased Services**, you can view the Guance instance with subscription, a
 
 ![](img/12.aliyun_2.png)
 
-In the pop-up dialog box, click OK, and prompt **Register Guance Commercial Plan immediately** and **Exist enterprise account, bind it**.
+In the pop-up dialog box, click OK, and prompt **Register Guance Commercial Plan immediately** and **Exist Billing Center account, bind it**.
 
 ![](img/10.aliyun_market_2.png)
 
@@ -41,23 +41,23 @@ If you don't have a Guance account yet, you can click Register Guance Commercial
 
 ### Bind Guance Workspace
 
-If you already have a Guance account, you can click **Exist enterprise account, bind it** and prompt **How to quickly bind Alibaba Cloud account for settlement**.
+If you already have a Guance account, you can click **Exist Billing Center account, bind it** and prompt **How to quickly bind Alibaba Cloud account for settlement**.
 
 ![](img/12.aliyun_4.png)
 
-Click OK to start binding the Guance workspace. Before binding the workspace, you need to bind the enterprise account of Guance.
+Click OK to start binding the Guance workspace. Before binding the workspace, you need to bind the Billing Center account of Guance.
 
-#### Bind Guance Enterprise Account
+#### Bind Guance Billing Center account
 
-##### Exist Enterprise Account
+##### Exist Billing Center account
 
-If you already have a Guance enterprise account, enter the user name of the Guance enterprise account and bind it through email verification.
+If you already have a Guance Billing Center account, enter the user name of the Guance Billing Center account and bind it through email verification.
 
 ![](img/1-aliyun-commercial.png)
 
-##### No Enterprise Account Yet
+##### No Billing Center account Yet
 
-If you don't have a Guance enterprise account yet, you can click **Register** to register a new Guance enterprise account.
+If you don't have a Guance Billing Center account yet, you can click **Register** to register a new Guance Billing Center account.
 
 ![](img/12.aliyun_6.png)
 
@@ -67,7 +67,7 @@ After successful binding, enter the binding Guance workspace page.
 
 ##### Bind Existing Workspace
 
-If you have a Guance associated workspace under the Guance enterprise account, you can bind it directly.
+If you have a Guance associated workspace under the Guance Billing Center account, you can bind it directly.
 
 ![](img/7.aliyun_sls_5.png)
 
