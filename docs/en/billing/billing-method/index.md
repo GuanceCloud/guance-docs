@@ -117,7 +117,8 @@ Metric data is collected through DataKit and reported to a workspace. This speci
 | ------------ | ------------ | ------ | ------ | ------ | ----- | ------- | ------ |
 | Data Storage Strategy |     | 3 days         | 7 days   | 14 days  | 30 days |     180 days   |    360 days     |
 | Unit Price (per thousand)   | <font color=coral>**CN**</font> | ￥ 0.6     | ￥ 0.7 | ￥ 0.8  |  ￥ 1  |    ￥ 4    |    ￥ 7    |
-| Unit Price (per thousand)   | <font color=coral>**US**</font> | $ 0.23        | $ 0.26 | $ 0.32  |  $ 0.35  |    $ 1.2   |    $ 2   |
+|    | <font color=coral>**CN (Overseas)**</font> | ￥ 1.6     | ￥ 1.8 | ￥ 2.2  |  ￥ 2.4  |    ￥ 8    |    ￥ 14    |
+|    | <font color=coral>**US**</font> | $ 0.23        | $ 0.26 | $ 0.32  |  $ 0.35  |    $ 1.2   |    $ 2   |
 
 #### Billing Statistics
 
@@ -152,7 +153,8 @@ Any of the following situations will generate corresponding log data:
 | ------------ | ------------ | ------ |------ | ------ | ----- | ------ |
 | Data Storage Strategy |    | 3 days         | 7 days   | 14 days  | 30 days | 60 days  |
 | Unit Price (Per Million)   |   <font color=coral>**CN**</font>     | ￥ 1        |   ￥ 1.2 | ￥ 1.5  | ￥ 2  | ￥ 2.5   |
-| Unit Price (Per Million)   |   <font color=coral>**US**</font>      | $ 0.3        |   $ 0.4 | $ 0.5  | $ 0.6  | $ 0.8   |
+|    |  <font color=coral>**CN (Overseas)**</font>| ￥ 2        |   ￥ 2.4 | ￥ 3 | ￥ 4  | ￥ 5   |
+|    |   <font color=coral>**US**</font>      | $ 0.3        |   $ 0.4 | $ 0.5  | $ 0.6  | $ 0.8   |
 
 #### Billing Statistics
 
@@ -183,6 +185,7 @@ Guance Studio can configure backup rules to synchronize reported log data for ba
 | **Total Statistics**   |  |  |
 | -------- | ---------- |---------- |
 |  Unit Price (Per GB) | <font color=coral>**CN**</font> |  ￥ 0.007 |
+|   |  <font color=coral>**CN (Overseas)**</font>   | ￥ 0.014 |
 
 #### Billing Statistics
 
@@ -205,7 +208,8 @@ The number of hosts statistically reported by network data uploaded by EBPF in t
 | **Incremental Statistics**   |  |  |
 | -------- | ---------- | ---------- |
 | Unit Price (Per Host)   | <font color=coral>**CN**</font> |  ￥ 2 |
-| Unit Price (Per Host)   | <font color=coral>**US**</font> |  $ 0.6 |
+|    | <font color=coral>**CN (Overseas)**</font> |  ￥ 4 |
+|    | <font color=coral>**US**</font> |  $ 0.6 |
 
 #### Billing Statistics
 
@@ -229,7 +233,8 @@ The number of traces in the uploaded link data is statistically counted. In gene
 | -------- | ---------- | -------- | ---------- |---------- |
 | Data Storage Strategy |           |3 days         | 7 days   | 14 days  |
 | Unit Price (Per Million)   |  <font color=coral>**CN**</font>       | ￥ 2 |  ￥ 3  |  ￥ 6|
-| Unit Price (Per Million)   |  <font color=coral>**US**</font>       | $ 0.9 |  $ 1.4 |  $ 2.8|
+|   |  <font color=coral>**CN (Overseas)**</font>       | ￥ 6 |  ￥ 10  |  ￥ 20|
+|    |  <font color=coral>**US**</font>       | $ 0.9 |  $ 1.4 |  $ 2.8|
 
 #### Billing Statistics
 
@@ -253,7 +258,8 @@ The number of application performance profile data uploaded is statistically cou
 | -------- | ---------- | -------- | ---------- |---------- |
 | Data Storage Strategy |  |3 days         | 7 days   | 14 days  |
 | Unit Price (Per Ten Thousand)   |<font color=coral>**CN**</font> |￥0.2 |  ￥ 0.3  |  ￥ 0.5|
-| Unit Price (Per Ten Thousand)   |<font color=coral>**CN**</font> |$ 0.06 |  $ 0.09  |  $ 0.14|
+|    |<font color=coral>**CN (Overseas)**</font> |￥0.4 |  ￥ 0.6  |  ￥ 1|
+|    |<font color=coral>**US**</font> |$ 0.06 |  $ 0.09  |  $ 0.14|
 
 #### Billing Statistics
 
@@ -289,7 +295,8 @@ Statistical number of page views accessed by users that is reported. Generally, 
 | -------- | ---------- | -------- | ---------- |---------- |
 | Data Storage Strategy |     |  3 days   | 7 days   | 14 days  |
 | Unit Price (Per Ten Thousand)  | <font color=coral>**CN**</font> | ￥ 0.7 | ￥ 1  |  ￥ 2|
-| Unit Price (Per Ten Thousand)  | <font color=coral>**US**</font> | $ 0.29 | $ 0.43  |  $ 0.71|
+|    | <font color=coral>**CN (Overseas)**</font> | ￥ 2 | ￥ 3  |  ￥ 5|
+|   | <font color=coral>**US**</font> | $ 0.29 | $ 0.43  |  $ 0.71|
 
 #### Billing Statistics
 
@@ -312,7 +319,8 @@ Statistical number of Sessions that actually generated session replay data. Gene
 | **Incremental Statistics**   |  |  |
 |-------- | ---------- |---------- |
 | Unit Price (Per Thousand)   |  <font color=coral>**CN**</font>   | ￥ 10 |
-| Unit Price (Per Thousand)   |  <font color=coral>**US**</font>   | $ 2.2 |
+|    |  <font color=coral>**CN (Overseas)**</font>   | ￥ 15.4 |
+|    |  <font color=coral>**US**</font>   | $ 2.2 |
 
 #### Billing Statistics
 
@@ -341,7 +349,8 @@ Daily Cost = Actual billing quantity / 1000 * Corresponding unit price
 | **Incremental Statistics**   |  |   |
 |-------- | ---------- |---------- |
 | Unit Price (Per Ten Thousand Times)   |  <font color=coral>**CN**</font>  | ￥ 1 |
-| Unit Price (Per Ten Thousand Times)   |   <font color=coral>**US**</font>  |  $ 1.43 |
+|    |  <font color=coral>**CN (Overseas)**</font>  | ￥ 10 |
+|    |   <font color=coral>**US**</font>  |  $ 1.43 |
 
 #### Billing Statistics
 
@@ -374,7 +383,8 @@ Daily Cost = Actual billing quantity / 10000 * Corresponding unit price
 | **Incremental Statistics**   |  |   |
 |-------- | ---------- |---------- |
 | Unit Price (Per Ten Thousand)   | <font color=coral>**CN**</font>   |  ￥ 1 |
-| Unit Price (Per Ten Thousand)   |  <font color=coral>**US**</font>  |  $ 0.3 |
+|   | <font color=coral>**CN (Overseas)**</font>   |  ￥ 2 |
+|    |  <font color=coral>**US**</font>  |  $ 0.3 |
 
 #### Billing Statistics
 
