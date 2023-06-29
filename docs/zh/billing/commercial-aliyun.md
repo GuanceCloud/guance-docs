@@ -43,7 +43,9 @@
 
 ### 注册观测云商业版
 
-若还未有观测云账号，可以点击**注册观测云商业版**。关于如何注册商业版，可参考文档 [注册商业版](../billing/commercial-register.md) 。
+若还未有观测云账号，可以点击**注册观测云商业版**。
+
+> 关于如何注册商业版，可参考文档 [注册商业版](../billing/commercial-register.md) 。
 
 ![](img/10.aliyun_market_3.png)
 

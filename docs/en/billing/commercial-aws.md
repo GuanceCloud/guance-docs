@@ -1,11 +1,13 @@
 # Access to Guance Commercial Plan in Amazon Web Services(AWS)
 ---
 
-This article will introduce how to open the Commercial Plan of Guance and use AWS account for fee settlement after subscribing to Guance Service in AWS Cloud Market. If you want to register Commercial Plan directly, see [register conmmercial plan](commercial-register.md).
+This article will introduce how to open the Commercial Plan of Guance and use AWS account for fee settlement after subscribing to Guance Service in AWS Cloud Market. 
+
+> If you want to register Commercial Plan directly, see [Register Commercial Plan](commercial-register.md).
 
 ## Subscribe to Guance in AWS Marketplace {#subscribe}
 
-Enter Guance commercial page in [AWS Marketplace](https://awsmarketplace.amazonaws.cn/marketplace/pp/prodview-ywkat3beera5k) and click **Continue Subscription**.
+Enter Guance commercial page in [AWS Marketplace](https://partners.amazonaws.com/partners/0018a00001lR2WSAA0/%E4%B8%8A%E6%B5%B7%E9%A9%BB%E4%BA%91%E4%BF%A1%E6%81%AF%E7%A7%91%E6%8A%80%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8) and click **Continue Subscription**.
 
 ![](img/8.space_4.png)
 
@@ -19,52 +21,50 @@ After logging in, click **Subscribe** on the page to which Guance belongs.
 
 In the pop-up dialog box, click **Set up your Account**.
 
-![](img/8.space_9.png)
-
 
 ## Open Guance Commercial Plan
 
 After clicking **Set up your Account** in AWS Marketplace, jump back to Guance to open. Prompt **Register Guance Commercial Plan Immediately** and **Exist enterprise account, bind it**.
 
-> Enterprise account is an independent account used by the Guance Billing Center to manage the billing related to the Commercial Plan of Guance, and one enterprise account can be associated with multiple workspace billing.
+<font color=coral>**Note:**</font> Enterprise account is an independent account used by the Guance Billing Center to manage the billing related to the Commercial Plan of Guance, and one enterprise account can be associated with multiple workspace billing.
 
 ![](img/15.aws_market_1.png)
 
 The overall process is as follows:
 
-![](img/17.process_1.jpg)
+![](img/17.process_1.png)
 
 ### Register Guance Commercial Plan
 
 If you don't have a Guance account yet, you can click **Register Guance Commercial Plan Now** to enter the account registration process.
 
-=== "Step 1: Basic information"
+=== "Step 1: Basic Info"
 
-   On the **Basic Information** page, select the "**China 2 (Ningxia)**" or "**Overseas 1 (Oregon)**" site, enter the registration information, and click **Next**.
+    On the **Basic Info** page, select the "**China 2 (Ningxia)**" or "**Overseas 1 (Oregon)**" site, enter the registration information, and click **Continue**.
 
     ![](img/15.aws_market_register_1.png)
 
-=== "Step 2: Enterprise information"
+=== "Step 2: Company Info"
 
-    On the **Enterprise Information** page, enter relevant information and click **Register**.
+    On the **Company Info** page, enter relevant information and click **Continue**.
 
-    ![](img/15.aws_market_register_3.png)
+    ![](img/11.account_center_4.png)
 
 === "Step 3: Select the opening method"
 
     In **Select Opening Method**, fill in **Workspace Name**, select **Workspace Language**, and click **Confirm** to complete the registration.
 
-    > Workspace language options affect templates for events, alarms and text messages in the workspace. If you select English, the above corresponding template will be used by default. Once created, the template language of this workspace cannot be modified, so please choose carefully.
+    <font color=coral>**Note:**</font> Workspace language options affect templates for events, alarms and text messages in the workspace. If you select English, the above corresponding template will be used by default. Once created, the template language of this workspace cannot be modified, so please choose carefully.
     
-    ![](img/15.aws_market_register_5.png)
+    ![](img/inter-create-workspace.png)
 
 === "Step 4: Successful opening"
 
     After successfully selecting the opening method, it will be prompted to successfully open the Commercial Plan of Guance.
     
-    > Note: After successful opening, the expenses incurred by the bound workspace will be settled directly from the AWS account where the product was purchased.
+    <font color=coral>**Note:**</font> After successful opening, the expenses incurred by the bound workspace will be settled directly from the AWS account where the product was purchased.
 
-    ![](img/15.aws_market_register_7.png)
+    ![](img/inter-1.sls_8.png)
 
     You can log in to [Guance Billing Center](https://boss.guance.com/#/signin) with the account you just registered, and view the opened settlement methods in **Workspace Management**.
 
@@ -74,9 +74,7 @@ If you don't have a Guance account yet, you can click **Register Guance Commerci
 
 If you already have a Guance account, you can click **Exist enterprise account, bind it** and prompt **How to quickly bind AWS account for settlement**.
 
-![](img/15.aws_market_2.png)
-
-Click **OK** to start binding the Guance workspace. Before binding the workspace, you need to bind the enterprise account of Guance.
+Click **Got it** to start binding the Guance workspace. Before binding the workspace, you need to bind the enterprise account of Guance.
 
 #### Bind Guance Enterprise Account
 
@@ -89,25 +87,15 @@ If you already have a Guance enterprise account, enter the **User Name** of Guan
 
 === "Bind Existing Workspace"
 
-    If you have a workspace that can be bound under the Guance enterprise account, click **Bind** directly.
+    If you have a workspace that can be bound under the Guance Billing Center account, click **Add** directly.
 
     ![](img/15.aws_market_register_11.png)
 
     In the pop-up confirmation dialog box, click **Confirm**.
 
-    ![](img/15.aws_market_register_13.png)
+    ![](img/inter-15.aws_market_register_13.png)
     
-    Jump to the **Bind Guance Workspace** page and prompt that it is bound.
-
-    ![](img/15.aws_market_register_14.png)
-
-    Click **Confirm** to show that the opening was successful.
-
-    ![](img/15.aws_market_register_15.png)
-
     You can check the open billing methods in **[Guance Billing Center](https://boss.guance.com/#/signin) > Workspace Management**.
-
-    ![](img/15.aws_market_register_16.png)
 
 
 === "Create a Workspace"
@@ -118,33 +106,28 @@ If you already have a Guance enterprise account, enter the **User Name** of Guan
 
     Enter the workspace name, select the workspace language, enter the mailbox used when registering the Guance account, and create it through mailbox verification.
 
-    > Workspace language options affect templates for events, alarms and text messages in the workspace. If you select English, the above corresponding template will be used by default. Once created, the template language of this workspace cannot be modified, so please choose carefully.
+    <font color=coral>**Note:**</font> Workspace language options affect templates for events, alarms and text messages in the workspace. If you select English, the above corresponding template will be used by default. Once created, the template language of this workspace cannot be modified, so please choose carefully.
 
-    ![](img/10.aws_create_space.png)
+    ![](img/inter-10.aws_create_space.png)
 
-    After the workspace is successfully created, it automatically jumps to the **Bind Guance Workspace** page.
+    Fill in all necessary information, click **Create**.
 
-    ![](img/15.aws_market_10.png)
-
-    Click **Confirm** to jump to the page **Successfully bound the following Guance workspace**.
-
-    ![](img/15.aws_market_11.png)
 
 === "Register Guance Account"
 
     If you have not used Guance service before, please register Guance account and create a workspace first.
 
-    ![](img/1-2-commercial-aliyun.png)
+    ![](img/inter-1-2-commercial-aliyun.png)
 
     Click **Register Guance Account**, enter relevant information, and register through email verification.
 
-    > Workspace language options affect templates for events, alarms and text messages in the workspace. If you select English, the above corresponding template will be used by default. Once created, the template language of this workspace cannot be modified, so please choose carefully.
+    <font color=coral>**Note:**</font> Workspace language options affect templates for events, alarms and text messages in the workspace. If you select English, the above corresponding template will be used by default. Once created, the template language of this workspace cannot be modified, so please choose carefully.
 
-    ![](img/10.aws_register.png)
+    ![](img/inter-10.aws_register.png)
 
 ## Start Using Guance
 
-After registration, you can watch the introduction video of Guance, or you can click **Start Installing DataKit** to install and configure the first DataKit.
+After registration, get started with the first DataKit.
 
 ![](img/1-free-start-1109.png)
 
