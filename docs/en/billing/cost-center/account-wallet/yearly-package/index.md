@@ -44,7 +44,7 @@ In the Guance Billing Center, an account can be bound to multiple workspaces at 
 
 Traffic package will be given different discounts according to the size of the purchased Capacity. For details, please contact the account manager.
 
-| **Traffic Package** | **Basic Unit** | **Buy Basic Capacity** | **Default data storage policy** | **Unit Price** | **Price(per day)** |
+| **Traffic Package** | **Basic Unit** | **Buy Basic Capacity** | **Default Data Storage Strategy** | **Unit Price** | **Price(per day)** |
 | --- | --- | --- | --- | --- | --- |
 | DataKit | 1 | 20 | / | 3 | 60 |
 | Log data (10,000 pieces) | 1 million | 1 million times | 14 days | 1.5 | 1.5 |
@@ -59,7 +59,7 @@ Traffic package will be given different discounts according to the size of the p
 ### Notes
 
 - Once the limited Capacity of the package package is exceeded, the excess part can be purchased as a traffic package or settled according to the "pay-as-you-go" method based on the **unit price of the default data storage strategy**.
-- According to the default policy, the data storage policy related to gradient Billing Item in the package is log data (14 days), application Trace (7 days) and user access PV (7 days).
+- According to the default policy, the Data Storage Strategy related to gradient Billing Item in the package is log data (14 days), application Trace (7 days) and user access PV (7 days).
 - If the data storage strategy of gradient Billing Item involved in the package is not in accordance with the default strategy, such as log data (30 days or 60 days), application of Trace (14 days) and user access to PV (14 days), then when observing the bill issued by the cloud billing platform, it is necessary to make corresponding conplan according to the usage reported by the workspace and the data storage strategy. The conplan strategy is as follows:
    - Log data conplan factor: default 14-day, 30-day usage * 2, 60-day usage * 3
    - Application Performance Trace Conplan Factor: Default 7 Days, 14 Days Usage * 2
@@ -98,9 +98,9 @@ Assume that log data, application performance Trace, and user access PV increase
 
 #### Package + Pay-as-you-go
 
-Assuming that the startup acceleration package has been purchased, the log data selection in the data storage policy is 30 days, and the application performance Trace and user access PV selection are 14 days.
+Assuming that the startup acceleration package has been purchased, the log data selection in the Data Storage Strategy is 30 days, and the application performance Trace and user access PV selection are 14 days.
 
-According to the description of precautions, if the log data in the data storage policy is selected for 30 days, and the application performance Trace and user access PV are selected for 14 days, the conplan factor is 2 (that is, the conplan policy "usage*2"), and the cost statistics for 1 day are as follows:
+According to the description of precautions, if the log data in the Data Storage Strategy is selected for 30 days, and the application performance Trace and user access PV are selected for 14 days, the conplan factor is 2 (that is, the conplan policy "usage*2"), and the cost statistics for 1 day are as follows:
 
 | Billing Item | Package Usage | Day1 |  |  |  |
 | --- | --- | --- | --- | --- | --- |
@@ -117,9 +117,9 @@ According to the usage and data storage strategy of the above example, the exces
 
 #### Package + Traffic Package + Pay-as-you-go
 
-Assuming that the start-up acceleration package has been purchased, and the log data traffic package is 20 million yuan, the price discount of the traffic package is calculated at 80%, the log data in the data storage policy is selected for 30 days, and the application performance Trace and user access PV are selected for 14 days.
+Assuming that the start-up acceleration package has been purchased, and the log data traffic package is 20 million yuan, the price discount of the traffic package is calculated at 80%, the log data in the Data Storage Strategy is selected for 30 days, and the application performance Trace and user access PV are selected for 14 days.
 
-According to the description of precautions, if the log data in the data storage policy is selected for 30 days, and the application performance Trace and user access PV are selected for 14 days, the conplan factor is 2 (that is, the conplan policy "usage*2"), and the cost statistics for 1 day are as follows:
+According to the description of precautions, if the log data in the Data Storage Strategy is selected for 30 days, and the application performance Trace and user access PV are selected for 14 days, the conplan factor is 2 (that is, the conplan policy "usage*2"), and the cost statistics for 1 day are as follows:
 
 | Billing Item | Package usage | Log class data traffic packet | Day1 |  |  |  |
 | --- | --- | --- | --- | --- | --- | --- |

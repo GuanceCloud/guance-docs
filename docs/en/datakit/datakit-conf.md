@@ -17,7 +17,7 @@ The DataKit master configuration is used to configure the running behavior of th
 
 ## Datakit Main Configure Sample {#maincfg-example}
 
-Datakit main configure is *datakit.conf*, here is the exmaple sample(1.9.2):
+Datakit main configure is *datakit.conf*, here is the exmaple sample(1.10.0):
 
 ??? info "datakit.conf"
 
@@ -222,8 +222,11 @@ Datakit main configure is *datakit.conf*, here is the exmaple sample(1.9.2):
       disable_color = false
     
       # log rotate size(in MB)
-      # DataKit will always keep at most 5+1(5 backup log and 1 writing log) splited log files on disk.
+      # DataKit will always keep at most n+1(n backup log and 1 writing log) splited log files on disk.
       rotate = 32
+    
+      # Upper limit count of backup log
+      rotate_backups = 5
     
     ################################################
     # Global tags

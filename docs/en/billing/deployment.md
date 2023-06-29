@@ -14,7 +14,7 @@ If you need to experience the Guance Community Plan or the Private Cloud Deploym
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Private cloud deployment plan doc</font>](../deployment/deployment-description.md#_4)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Private cloud deployment plan</font>](../deployment/deployment-description.md#_4)
 
 
 </div>

@@ -7,6 +7,15 @@ icon: zy/release-notes
 
 本文档记录观测云每次上线发布的更新内容说明，包括 DataKit、观测云最佳实践、观测云集成文档和观测云。
 
+## 2023 年 6 月 29 日
+
+### 观测云更新
+
+- 在注册观测云产品时，企业信息[除**企业名称**外均非必填](../billing/commercial-register.md#corporate)；
+- 观测云**企业账号**这一概念正式更改为**费用中心账号**；
+- 创建商业版工作空间时[支持一键同步创建费用中心账号](../billing/commercial-register.md#sync)（即原来的企业账号），简化用户注册流程。
+
+- [注册海外版观测云产品服务](https://www.guance.one/)正式上线，现支持[从俄勒冈站点](https://docs.guance.com/en/billing/inter-commercial/#site)注册登录。海外版观测云产品采用[以美元为单位的计价体系](../billing/billing-method/index.md#item)。
 
 ## 2023 年 6 月 20 日
 
