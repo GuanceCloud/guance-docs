@@ -78,9 +78,9 @@ If you need to set the menu, you can go to **Management > Advanced Settings > [F
 
 ### Four Settlement Methods
 
-#### Guance Enterprise Account Settlement
+#### Guance Billing Center account Settlement
 
-Guance provides the enterprise account settlement of Guance by default, and all expenses incurred in the workspace will be settled directly from the balance of vouchers and Huawei Cloud stored-value cards purchased by your [Guance enterprise account settlement](../billing/billing-account/enterprise-account.md).
+Guance provides the Billing Center account settlement of Guance by default, and all expenses incurred in the workspace will be settled directly from the balance of vouchers and Huawei Cloud stored-value cards purchased by your [Guance Billing Center account settlement](../billing/billing-account/enterprise-account.md).
 
 You can enter **Workspace Name** in the dialog box below, select **Workspace Language** and click OK to complete the registration.
 
@@ -88,7 +88,7 @@ You can enter **Workspace Name** in the dialog box below, select **Workspace Lan
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Guance Enterprise Account Settlement</font>](./billing-account/enterprise-account.md)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Guance Billing Center account Settlement</font>](./billing-account/enterprise-account.md)
 
 </div>
 
@@ -140,7 +140,7 @@ If you choose [Huawei Cloud Account for settlement](./billing-account/huawei-acc
 
 Click **[Go to Huawei Cloud to open free Guance service](../billing/billing-account/huawei-account.md#market)** and then subscribe to Guance services at Huawei Yunyun Store and open Huawei Cloud Account for settlement.
 
-![](img/1.register_guance-1.png)
+![](img/huawei-create.png)
 
 You can also open Guance directly in the following way:
     

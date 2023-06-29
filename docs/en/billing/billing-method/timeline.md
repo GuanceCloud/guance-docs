@@ -46,7 +46,8 @@ Metric data is collected through DataKit and reported to a workspace. This speci
 | ------------ | ------------ | ------ | ------ | ------ | ----- | ------- | ------ |
 | Data Storage Strategy |     | 3 days         | 7 days   | 14 days  | 30 days |     180 days   |    360 days     |
 | Unit Price (per thousand)   | <font color=coral>**CN**</font> | ￥ 0.6     | ￥ 0.7 | ￥ 0.8  |  ￥ 1  |    ￥ 4    |    ￥ 7    |
-| Unit Price (per thousand)   | <font color=coral>**US**</font> | $ 0.23        | $ 0.26 | $ 0.32  |  $ 0.35  |    $ 1.2   |    $ 2   |
+|    | <font color=coral>**CN (Overseas)**</font> | ￥ 1.6     | ￥ 1.8 | ￥ 2.2  |  ￥ 2.4  |    ￥ 8    |    ￥ 14    |
+|    | <font color=coral>**US**</font> | $ 0.23        | $ 0.26 | $ 0.32  |  $ 0.35  |    $ 1.2   |    $ 2   |
 
 ## Billing Statistics
 
