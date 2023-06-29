@@ -46,7 +46,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
       ## Containers logs to include and exclude, default collect all containers. Globs accepted.
       container_include_log = []
-      container_exclude_log = ["image:pubrepo.jiagouyun.com/datakit/logfwd*", "image:pubrepo.jiagouyun.com/datakit/datakit*"]
+      container_exclude_log = ["image:*logfwd*", "image:*datakit*"]
     
       exclude_pause_container = true
     
@@ -266,14 +266,13 @@ The count of the Kubernetes resource.
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`cluster_role`|RBAC cluster role count|int|-|
-|`cronjob`|cronjob count|int|-|
-|`deployment`|deployment count|int|-|
-|`job`|job count|int|-|
-|`node`|node count|int|-|
-|`pod`|pod count|int|-|
-|`replica_set`|replica_set count|int|-|
-|`service`|service count|int|-| 
+|`cronjob`|Cronjob count|int|-|
+|`deployment`|Deployment count|int|-|
+|`job`|Job count|int|-|
+|`node`|Node count|int|-|
+|`pod`|Pod count|int|-|
+|`replica_set`|Replica_set count|int|-|
+|`service`|Service count|int|-| 
 
 
 
@@ -453,7 +452,6 @@ The metric of the Kubernetes Node.
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`age`|The time in seconds since the creation of the node|int|s|
 |`count`|Number of nodes|int|count|
 |`cpu_allocatable`|The allocatable CPU of a node that is available for scheduling.|int|-|
 |`cpu_capacity`|The CPU capacity of a node.|int|-|
@@ -492,7 +490,9 @@ The metric of the Kubernetes Pod.
 | ---- |---- | :---:    | :----: |
 |`count`|Number of pods|int|count|
 |`cpu_usage`|The percentage of cpu used|float|percent|
-|`memory_usage_bytes`|The number of memory used in bytes|float|B|
+|`memory_capacity`|The memory capacity.|int|B|
+|`memory_usage_bytes`|The number of memory used in bytes|int|B|
+|`memory_used_percent`|The percentage usage of the memory.|float|percent|
 |`ready`|Describes whether the pod is ready to serve requests.|int|count| 
 
 
@@ -587,7 +587,7 @@ The object of containers, only supported Running status.
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`age`|The age of the container.|int|s|
+|`age`|Age (seconds)|int|s|
 |`block_read_byte`|Total number of bytes read from the container file system (unsupported containerd).|int|B|
 |`block_write_byte`|Total number of bytes wrote to the container file system (unsupported containerd).|int|B|
 |`cpu_delta`|The delta of the CPU (unsupported containerd).|int|ns|
@@ -635,8 +635,8 @@ The object of the Kubernetes CronJob.
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`active_jobs`|The number of pointers to currently running jobs.|int|count|
-|`age`|age (seconds)|int|s|
-|`message`|object details|string|-|
+|`age`|Age (seconds)|int|s|
+|`message`|Object details|string|-|
 |`schedule`|The schedule in Cron format, see [docs](https://en.wikipedia.org/wiki/Cron){:target="_blank"}|string|-|
 |`suspend`|This flag tells the controller to suspend subsequent executions, it does not apply to already started executions.|bool|-|
 
@@ -667,11 +667,11 @@ The object of the Kubernetes DaemonSet.
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`age`|age (seconds)|int|s|
+|`age`|Age (seconds)|int|s|
 |`count`|Number of daemonsets|int|count|
 |`daemons_unavailable`|The number of nodes that should be running the daemon pod and have none of the daemon pod running and available (ready for at least spec.minReadySeconds).|int|count|
 |`desired`|The total number of nodes that should be running the daemon pod (including nodes correctly running the daemon pod).|int|count|
-|`message`|object details|string|-|
+|`message`|Object details|string|-|
 |`misscheduled`|The number of nodes that are running the daemon pod, but are not supposed to run the daemon pod.|int|count|
 |`ready`|The number of nodes that should be running the daemon pod and have one or more of the daemon pod running and ready.|int|count|
 |`scheduled`|The number of nodes that are running at least one daemon pod and are supposed to run the daemon pod.|int|count|
@@ -700,11 +700,11 @@ The object of the Kubernetes Deployment.
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`age`|age (seconds)|int|s|
+|`age`|Age (seconds)|int|s|
 |`available`|Total number of available pods (ready for at least minReadySeconds) targeted by this deployment.|int|-|
 |`max_surge`|The maximum number of pods that can be scheduled above the desired number of pods|int|count|
 |`max_unavailable`|The maximum number of pods that can be unavailable during the update.|int|count|
-|`message`|object details|string|-|
+|`message`|Object details|string|-|
 |`ready`|Total number of ready pods targeted by this deployment.|string|-|
 |`strategy`|Type of deployment. Can be "Recreate" or "RollingUpdate". Default is RollingUpdate.|string|-|
 |`unavailable`|Total number of unavailable pods targeted by this deployment.|int|-|
@@ -751,11 +751,11 @@ The object of the Kubernetes Job.
 | ---- |---- | :---:    | :----: |
 |`active`|The number of actively running pods.|int|count|
 |`active_deadline`|Specifies the duration in seconds relative to the startTime that the job may be active before the system tries to terminate it|int|s|
-|`age`|age (seconds)|int|s|
+|`age`|Age (seconds)|int|s|
 |`backoff_limit`|Specifies the number of retries before marking this job failed.|int|count|
 |`completions`|Specifies the desired number of successfully finished pods the job should be run with.|int|count|
 |`failed`|The number of pods which reached phase Failed.|int|count|
-|`message`|object details|string|-|
+|`message`|Object details|string|-|
 |`parallelism`|Specifies the maximum desired number of pods the job should run at any given time.|int|count|
 |`succeeded`|The number of pods which reached phase Succeeded.|int|count|
 
@@ -790,9 +790,9 @@ The object of the Kubernetes Node.
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`age`|age (seconds)|int|s|
+|`age`|Age (seconds)|int|s|
 |`kubelet_version`|Kubelet Version reported by the node.|string|-|
-|`message`|object details|string|-|
+|`message`|Object details|string|-|
 
 
 
@@ -828,12 +828,14 @@ The object of the Kubernetes Pod.
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`age`|age (seconds)|int|s|
+|`age`|Age (seconds)|int|s|
 |`available`|Number of containers|int|count|
 |`cpu_usage`|The percentage of cpu used|float|percent|
 |`create_time`|CreationTimestamp is a timestamp representing the server time when this object was created.(milliseconds)|int|msec|
-|`memory_usage_bytes`|The number of memory used in bytes|float|B|
-|`message`|object details|string|-|
+|`memory_capacity`|The memory capacity.|int|B|
+|`memory_usage_bytes`|The number of memory used in bytes|int|B|
+|`memory_used_percent`|The percentage usage of the memory.|float|percent|
+|`message`|Object details|string|-|
 |`ready`|Describes whether the pod is ready to serve requests.|int|count|
 |`restart`|The number of times the container has been restarted. (Deprecated: use restarts)|int|count|
 |`restarts`|The number of times the container has been restarted.|int|count|
@@ -866,9 +868,9 @@ The object of the Kubernetes ReplicaSet.
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`age`|age (seconds)|int|s|
+|`age`|Age (seconds)|int|s|
 |`available`|The number of available replicas (ready for at least minReadySeconds) for this replica set.|int|-|
-|`message`|object details|string|-|
+|`message`|Object details|string|-|
 |`ready`|The number of ready replicas for this replica set.|int|-|
 
 
@@ -895,12 +897,12 @@ The object of the Kubernetes Service.
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`age`|age (seconds)|int|s|
+|`age`|Age (seconds)|int|s|
 |`cluster_ip`|clusterIP is the IP address of the service and is usually assigned randomly by the master.|string|-|
 |`external_ips`|externalIPs is a list of IP addresses for which nodes in the cluster will also accept traffic for this service.|string|-|
 |`external_name`|externalName is the external reference that Kube-DNS or equivalent will return as a CNAME record for this service.|string|-|
 |`external_traffic_policy`|externalTrafficPolicy denotes if this Service desires to route external traffic to node-local or cluster-wide endpoints.|string|-|
-|`message`|object details|string|-|
+|`message`|Object details|string|-|
 |`session_affinity`|Supports "ClientIP" and "None".|string|-|
 
 

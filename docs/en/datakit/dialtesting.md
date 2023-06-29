@@ -74,12 +74,19 @@ Go to the `conf.d/network` directory under the DataKit installation directory, c
   pull_interval = "1m"
 
   # The timeout for the HTTP request.
-  time_out = "1m"
+  time_out = "30s"
 
   # The number of the workers.
   workers = 6
 
+  # Stop the task when the task failed to send data to dataway over max_send_fail_count.
   max_send_fail_count = 16
+
+  # The max number of jobs sending data to dataway in parallel. Default 10.
+  max_job_number = 10
+
+  # The max number of job chan. Default 1000.
+  max_job_chan_number = 1000
 
   # Custom tags.
   [inputs.dialtesting.tags]

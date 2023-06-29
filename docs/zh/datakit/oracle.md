@@ -24,18 +24,70 @@ Oracle 监控指标采集，具有以下数据收集功能
 
 - 创建监控账号
 
+如果是使用单 PDB 或者非 CDB 实例，一个本地用户(local user)就足够了：
+
 ```sql
 -- Create the datakit user. Replace the password placeholder with a secure password.
 CREATE USER datakit IDENTIFIED BY <PASSWORD>;
 
 -- Grant access to the datakit user.
-GRANT CONNECT TO datakit;
-GRANT SELECT ON GV_$PROCESS TO datakit;
-GRANT SELECT ON gv_$sysmetric TO datakit;
-GRANT SELECT ON sys.dba_data_files TO datakit;
-GRANT SELECT ON sys.dba_tablespaces TO datakit;
-GRANT SELECT ON sys.dba_tablespace_usage_metrics TO datakit;
+GRANT CONNECT, CREATE SESSION TO datakit;
+GRANT SELECT_CATALOG_ROLE to datakit;
+GRANT SELECT ON DBA_TABLESPACE_USAGE_METRICS TO datakit;
+GRANT SELECT ON DBA_TABLESPACES TO datakit;
+GRANT SELECT ON DBA_USERS TO datakit;
+GRANT SELECT ON SYS.DBA_DATA_FILES TO datakit;
+GRANT SELECT ON V_$ACTIVE_SESSION_HISTORY TO datakit;
+GRANT SELECT ON V_$ARCHIVE_DEST TO datakit;
+GRANT SELECT ON V_$ASM_DISKGROUP TO datakit;
+GRANT SELECT ON V_$DATABASE TO datakit;
+GRANT SELECT ON V_$DATAFILE TO datakit;
+GRANT SELECT ON V_$INSTANCE TO datakit;
+GRANT SELECT ON V_$LOG TO datakit;
+GRANT SELECT ON V_$OSSTAT TO datakit;
+GRANT SELECT ON V_$PGASTAT TO datakit;
+GRANT SELECT ON V_$PROCESS TO datakit;
+GRANT SELECT ON V_$RECOVERY_FILE_DEST TO datakit;
+GRANT SELECT ON V_$RESTORE_POINT TO datakit;
+GRANT SELECT ON V_$SESSION TO datakit;
+GRANT SELECT ON V_$SGASTAT TO datakit;
+GRANT SELECT ON V_$SYSMETRIC TO datakit;
+GRANT SELECT ON V_$SYSTEM_PARAMETER TO datakit;
 ```
+
+如果想监控来自 CDB 和所有 PDB 中的表空间(tablespaces)，需要一个有合适权限的公共用户(common user):
+
+```sql
+-- Create the datakit user. Replace the password placeholder with a secure password.
+CREATE USER datakit IDENTIFIED BY <PASSWORD>;
+
+-- Grant access to the datakit user.
+ALTER USER datakit SET CONTAINER_DATA=ALL CONTAINER=CURRENT;
+GRANT CONNECT, CREATE SESSION TO datakit;
+GRANT SELECT_CATALOG_ROLE to datakit;
+GRANT SELECT ON v_$instance TO datakit;
+GRANT SELECT ON v_$database TO datakit;
+GRANT SELECT ON v_$sysmetric TO datakit;
+GRANT SELECT ON v_$system_parameter TO datakit;
+GRANT SELECT ON v_$session TO datakit;
+GRANT SELECT ON v_$recovery_file_dest TO datakit;
+GRANT SELECT ON v_$active_session_history TO datakit;
+GRANT SELECT ON v_$osstat TO datakit;
+GRANT SELECT ON v_$restore_point TO datakit;
+GRANT SELECT ON v_$process TO datakit;
+GRANT SELECT ON v_$datafile TO datakit;
+GRANT SELECT ON v_$pgastat TO datakit;
+GRANT SELECT ON v_$sgastat TO datakit;
+GRANT SELECT ON v_$log TO datakit;
+GRANT SELECT ON v_$archive_dest TO datakit;
+GRANT SELECT ON v_$asm_diskgroup TO datakit;
+GRANT SELECT ON sys.dba_data_files TO datakit;
+GRANT SELECT ON DBA_TABLESPACES TO datakit;
+GRANT SELECT ON DBA_TABLESPACE_USAGE_METRICS TO datakit;
+GRANT SELECT ON DBA_USERS TO datakit;
+```
+
+>注意：上述的 SQL 语句由于 Oracle 版本的原因部分可能会出现 "表不存在" 等错误，忽略即可。
 
 - 安装依赖包
 
@@ -135,10 +187,11 @@ apt-get install -y libaio-dev libaio1
 
 | Tag | Description |
 |  ----  | --------|
-|`host`|host|
+|`host`|Host name|
 |`oracle_server`|Server addr|
 |`oracle_service`|Server service|
-|`program`|Program|
+|`pdb_name`|PDB name|
+|`program`|Program in progress|
 
 - 指标列表
 
@@ -149,6 +202,7 @@ apt-get install -y libaio-dev libaio1
 |`pga_freeable_mem`|PGA memory freeable by process|float|B|
 |`pga_max_mem`|PGA maximum memory ever allocated by process|float|B|
 |`pga_used_mem`|PGA memory used by process|float|B|
+|`pid`|Oracle process identifier|int|-|
 
 
 
@@ -159,10 +213,11 @@ apt-get install -y libaio-dev libaio1
 
 | Tag | Description |
 |  ----  | --------|
-|`host`|host|
+|`host`|Host name|
 |`oracle_server`|Server addr|
 |`oracle_service`|Server service|
-|`tablespace_name`|Table space|
+|`pdb_name`|PDB name|
+|`tablespace_name`|Table space name|
 
 - 指标列表
 
@@ -183,9 +238,10 @@ apt-get install -y libaio-dev libaio1
 
 | Tag | Description |
 |  ----  | --------|
-|`host`|host|
+|`host`|Host name|
 |`oracle_server`|Server addr|
 |`oracle_service`|Server service|
+|`pdb_name`|PDB name|
 
 - 指标列表
 
@@ -193,25 +249,38 @@ apt-get install -y libaio-dev libaio1
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`active_sessions`|Number of active sessions|float|count|
-|`buffer_cachehit_ratio`|Ratio of buffer cache hits|float|count|
+|`buffer_cachehit_ratio`|Ratio of buffer cache hits|float|percent|
 |`cache_blocks_corrupt`|Corrupt cache blocks|float|count|
 |`cache_blocks_lost`|Lost cache blocks|float|count|
-|`cursor_cachehit_ratio`|Ratio of cursor cache hits|float|count|
-|`database_wait_time_ratio`|Memory sorts per second|float|count|
+|`consistent_read_changes`|Consistent read changes per second|float|count|
+|`consistent_read_gets`|Consistent read gets per second|float|count|
+|`cursor_cachehit_ratio`|Ratio of cursor cache hits|float|percent|
+|`database_cpu_time_ratio`|Database CPU time ratio|float|percent|
+|`database_wait_time_ratio`|Memory sorts per second|float|percent|
+|`db_block_changes`|DB block changes per second|float|count|
+|`db_block_gets`|DB block gets per second|float|count|
 |`disk_sorts`|Disk sorts per second|float|count|
-|`enqueue_timeouts`|Enqueue timeouts per sec|float|count|
+|`enqueue_timeouts`|Enqueue timeouts per second|float|count|
+|`execute_without_parse`|Execute without parse ratio|float|count|
 |`gc_cr_block_received`|GC CR block received|float|count|
-|`library_cachehit_ratio`|Ratio of library cache hits|float|count|
-|`memory_sorts_ratio`|Memory sorts ratio|float|count|
-|`physical_reads`|Physical reads per sec|float|count|
-|`physical_writes`|Physical writes per sec|float|count|
+|`host_cpu_utilization`|Host CPU utilization (%)|float|percent|
+|`library_cachehit_ratio`|Ratio of library cache hits|float|percent|
+|`logical_reads`|Logical reads per second|float|count|
+|`logons`|Number of logon attempts|float|count|
+|`memory_sorts_ratio`|Memory sorts ratio|float|percent|
+|`physical_reads`|Physical reads per second|float|count|
+|`physical_reads_direct`|Physical reads direct per second|float|count|
+|`physical_writes`|Physical writes per second|float|count|
+|`redo_generated`|Redo generated per second|float|count|
+|`redo_writes`|Redo writes per second|float|count|
 |`rows_per_sort`|Rows per sort|float|count|
-|`service_response_time`|Service response time|float|count|
+|`service_response_time`|Service response time|float|sec|
 |`session_count`|Session count|float|count|
-|`session_limit_usage`|Session limit usage|float|count|
-|`shared_pool_free`|Shared pool free memory %|float|B|
+|`session_limit_usage`|Session limit usage|float|percent|
+|`shared_pool_free`|Shared pool free memory %|float|percent|
+|`soft_parse_ratio`|Soft parse ratio|float|percent|
 |`sorts_per_user_call`|Sorts per user call|float|count|
-|`temp_space_used`|Temp space used|float|count|
+|`temp_space_used`|Temp space used|float|B|
 |`user_rollbacks`|Number of user rollbacks|float|count|
 
 
@@ -256,6 +325,6 @@ externals/oracle: /lib64/libc.so.6: version  `GLIBC_2.14` not found (required by
 
 ### 为什么看不到 `oracle_system` 指标集? {#faq-no-system}
 
-与 Oracle 数据库的版本有关。 `12c` 之前的版本，需要数据库运行起来之后，过几分钟才能看到。
+需要数据库运行起来之后，过 1 分钟才能看到。
 
 <!-- markdownlint-enable -->

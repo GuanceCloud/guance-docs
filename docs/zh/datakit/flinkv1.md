@@ -77,7 +77,7 @@ metrics.reporter.prom.port: 9250-9260
 
 
 
-### `Jobmanager`
+### `flink_jobmanager`
 
 - 标签
 
@@ -97,6 +97,10 @@ metrics.reporter.prom.port: 9250-9260
 |`Status_JVM_ClassLoader_ClassesUnloaded`|The total number of classes unloaded since the start of the JVM.|int|count|
 |`Status_JVM_GarbageCollector_Copy_Count`|The total number of collections that have occurred.|int|count|
 |`Status_JVM_GarbageCollector_Copy_Time`|The total time spent performing garbage collection.|int|count|
+|`Status_JVM_GarbageCollector_G1_Old_Generation_Count`|The total number of collections that have occurred.|int|count|
+|`Status_JVM_GarbageCollector_G1_Old_Generation_Time`|The total time spent performing garbage collection.|int|count|
+|`Status_JVM_GarbageCollector_G1_Young_Generation_Count`|The total number of collections that have occurred.|int|count|
+|`Status_JVM_GarbageCollector_G1_Young_Generation_Time`|The total time spent performing garbage collection.|int|count|
 |`Status_JVM_GarbageCollector_MarkSweepCompact_Count`|The total number of collections that have occurred.|int|count|
 |`Status_JVM_GarbageCollector_MarkSweepCompact_Time`|The total time spent performing garbage collection.|int|count|
 |`Status_JVM_Memory_Direct_Count`|The number of buffers in the direct buffer pool.|int|count|
@@ -122,7 +126,7 @@ metrics.reporter.prom.port: 9250-9260
 
 
 
-### `Taskmanager`
+### `flink_taskmanager`
 
 - 标签
 

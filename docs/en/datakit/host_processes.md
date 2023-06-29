@@ -163,6 +163,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`pid`|进程 ID|int|-|
 |`rss`|Resident Set Size （常驻内存大小）|int|B|
 |`start_time`|进程启动时间|int|msec|
+|`started_duration`|进程启动时长|int|sec|
 |`state_zombie`|是否是僵尸进程|bool|-|
 |`threads`|线程数|int|count|
 |`work_directory`|工作目录(仅支持 Linux)|string|-| 
