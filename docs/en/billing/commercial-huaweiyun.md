@@ -26,6 +26,7 @@ The default setting is that yourself is an administrator. After the organization
 ![](./img/13.huaweicloud_8.png)
 
 II. Add Member
+
 In **My KooGallery > Joint Operations Services > Organizations > Organization Management > Add Member**, fill in the relevant information of the organization in the pop-up dialog box.
 
 > The "account" and "password" created here will be used to avoid login to the Guance Billing Center registration or enterprise account login. For wxample, "account number" is filled with "Wendy", the login account number is "Wendy @ gcy".

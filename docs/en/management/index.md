@@ -7,12 +7,14 @@ Guance will introduce you to this path **at the personal account level**: regist
 ## Join Workspace
 
 ### Create Workspace
+
 Before entering the Guance workspace, be sure that you have [registered a Guance account](https://auth.guance.com/businessRegister).  
 
 After registration, you can click **Login** through [Guance Official Website](https://www.guance.com/), select the site you registered, enter the login account and password. For more registration details, please refer to the document [Register Commercial Plan](../billing/commercial-register.md).
 
-???+ attention
+???+ attention "Details Worthy of Attention"
 
+    - Workspace language options affect templates for events, alarms and text messages in the workspace. If you select English, the above corresponding template will be used by default. Once created, the template language of this workspace **cannot** be modified, so please choose carefully.  
     - Under a single Guance site, only one mobile phone number and one mailbox are supported, and Hong Kong, Macao and Taiwan and foreign mobile phone numbers are not supported for the time being.
     - The accounts of different sites are independent and do not communicate with each other. For more site descriptions, please refer to the document [select registered site](../getting-started/necessary-for-beginners/select-site.md).
     - [SSO](../management/sso/index.md) to Guance is supported.
@@ -40,10 +42,32 @@ You can create one or more workspaces from the following two entrances.
 
 </div>
 
+When **Creating Workspace**, enter a workspace name, select the workspace language, and describe the workspace as needed. You can also select different workspace directory style attributes based on roles.
+
+<img src="img/9.space_management_1.png" width="70%" >
+
+- The workspace directories under different roles are displayed by default as follows:
+
+<font size=2>*Dev:*</font>
+
+<img src="img/yanfa.png" width="60%" >
+
+<font size=2>*Ops:*</font>
+
+<img src="img/yunwei.png" width="60%" >
+
+<font size=2>*Test:*</font>
+
+<img src="img/ceshi.png" width="60%" >
+
+<font size=2>*Default:*</font>
+
+<img src="img/moren.png" width="60%" >
+
+If you need to set the menu, you can go to **Management > Advanced Settings > [Function Menu](./settings/customized-menu.md)** to modify it.
 
 The following dialog box will pop out once you click **Create**. If you need to create a **SLS workspace of Exclusive Plan**, please refer to the doc [Guance Exclusive Plan in Alibaba Cloud Market](../billing/commercial-aliyun-sls.md).
 
-> Workspace language options affect templates for events, alarms and text messages in the workspace. If you select English, the above corresponding template will be used by default. Once created, the template language of this workspace **cannot** be modified, so please choose carefully.
 
 ![](img/3.space_management_4.png)
 
@@ -56,16 +80,20 @@ Here you can:
 - modify avatar and user name;  
 - modify [login retention time](#login-hold-time).
 
-???+ note
+???+ attention "SSO"
 
-    For accounts logged in through SSO, the login retention time configured by SSO is used by default. After account management is modified, the modified login retention time is used. For more details, please refer to the document [SSO Management](../management/sso/index.md).
+    For accounts logged in through SSO, the login retention time configured by SSO is used by default. After account management is modified, the modified login retention time is used.
+    
+    > For more details, please refer to the doc [SSO Management](../management/sso/index.md).
 
 ### Switch Workspace   
+
 If you belong to multiple Guance workspaces, you can jump to the page by clicking the upper-left workspace name of the studio to toggle between them.  
 
 ![](img/1-workspaceinfo.png)
 
 ## Security  
+
 Guance has always valued users's account security, here are some related security settings. 
 
 ### MFA {#mfa}
