@@ -175,7 +175,7 @@ Guance enables you to view other sls data under Alibaba Cloud account synchronou
 
 **1.How to open Exclusive Plan of Guance (SLS storage)?**
 
-You can open the Guance Exclusive Plan according to this document. The Guance Exclusive Plan only supports SLS storage mode. For more storage modes, please refer to the doc [Data Storage Policy](../billing/billing-method/data-storage.md#options).
+You can open the Guance Exclusive Plan according to this document. The Guance Exclusive Plan only supports SLS storage mode. For more storage modes, please refer to the doc [Data Storage Strategy](../billing/billing-method/data-storage.md#options).
 
 **2.If the workspace that has used the Commercial Plan of Guance has been opened, can the Exclusive Plan of Guance be opened again?**
 

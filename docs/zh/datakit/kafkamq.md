@@ -70,6 +70,10 @@ Datakit 支持从 kafka 中订阅消息采集链路、指标和日志信息。�
       ## user custom message with PL script.
       #[inputs.kafkamq.custom]
         #spilt_json_body = true
+        ## spilt_topic_map determines whether to enable log splitting for specific topic based on the values in the spilt_topic_map[topic].
+        #[inputs.kafkamq.custom.spilt_topic_map]
+        #  "log_topic"=true
+        #  "log01"=false
         #[inputs.kafkamq.custom.log_topic_map]
         #  "log_topic"="log.p"
         #  "log01"="log_01.p"
@@ -160,6 +164,9 @@ kafka 插件默认会将 `traces/JVM metrics/logging/Instance Properties/profile
 # user custom message with PL script.
 [inputs.kafkamq.custom]
 # spilt_json_body = true
+[inputs.kafkamq.custom.spilt_topic_map]
+  "log_topic"=true
+  "log01"=false
 [inputs.kafkamq.custom.log_topic_map]
   "log_topic"="log.p"
   "log"="rum_apm.p"
@@ -174,7 +181,7 @@ kafka 插件默认会将 `traces/JVM metrics/logging/Instance Properties/profile
 
 > 注意：metric 的 Pipeline 脚本应该放在 *pipeline/metric/* 目录下，RUM 的 Pipeline 脚本应该放到 *pipeline/rum/* 目录下。
 
-理论上每一个消息体应该是一条日志或者一个指标，如果您的消息是多条日志，可以使用 `spilt_json_body` 开启 JSON 切割数组功能，当数据是 JSON 数组，配合 PL 可以将数组切割成单个日志或者指标数据。
+理论上每一个消息体应该是一条日志或者一个指标，如果您的消息是多条日志，可以使用 `spilt_json_body` 开启全局 JSON 切割数组功能，同时你也可以使用 `spilt_topic_map` 开启单个 Topic 的 JSON 切割数组功能，当数据是 JSON 数组，配合 PL 可以将数组切割成单个日志或者指标数据。
 
 ### 示例 {#example}
 

@@ -1002,7 +1002,7 @@ Example 3:
 #    ]
     
 # script:
-json(_, [0].nets[-1])
+json(_, .[0].nets[-1])
 ```
 
 Example 4:
@@ -1168,15 +1168,15 @@ add_key(abc, len(["abc"]))
 ```
 
 
-### `load_json()` {#fn-load_JSON}
+### `load_json()` {#fn-load-json}
 
 Function prototype: `fn load_json(val: str) nil|bool|float|map|list`
 
-Function description: Convert the JSON string to one of map, list, nil, bool, float, and the value can be obtained and modified through the index expression.
+Function description: Convert the JSON string to one of map, list, nil, bool, float, and the value can be obtained and modified through the index expression.If deserialization fails, it also returns nil instead of terminating the script run.
 
 Function parameters:
 
-- `val`: Requires data of type string
+- `val`: Requires data of type string.
 
 Example:
 
@@ -1892,6 +1892,96 @@ Example:
 # }
 
 json(_, userAgent) user_agent(userAgent)
+```
+
+
+### `vaild_json()` {#fn-vaild_json}
+
+Function prototype: `fn vaild_json(val: str) bool`
+
+Function description: Determine if it is a valid JSON string.
+
+Function parameters:
+
+- `val`: Requires data of type string.
+
+Example:
+
+```python
+a = "null"
+if vaild_json(a) { # true
+    if load_json(a) == nil {
+        add_key("a", "nil")
+    }
+}
+
+b = "[1, 2, 3]"
+if vaild_json(b) { # true
+    add_key("b", load_json(b))
+}
+
+c = "{\"a\": 1}"
+if vaild_json(c) { # true
+    add_key("c", load_json(c))
+}
+
+d = "???{\"d\": 1}"
+if vaild_json(d) { # true
+    add_key("d", load_json(c))
+} else {
+    add_key("d", "invaild json")
+}
+```
+
+Result:
+
+```json
+{
+  "a": "nil",
+  "b": "[1,2,3]",
+  "c": "{\"a\":1}",
+  "d": "invaild json",
+}
+```
+
+
+### `value_type()` {#fn-value-type}
+
+Function prototype: `fn value_type(val) str`
+
+Function description: Obtain the type of the variable's value and return the value range ["int", "float", "bool", "str", "list", "map", "]. If the value is nil, return an empty string.
+
+Function parameters:
+
+- `val`: The value of the type to be determined.
+
+Example:
+
+
+Input:
+
+```json
+{"a":{"first": [2.2, 1.1], "ff": "[2.2, 1.1]","second":2,"third":"aBC","forth":true},"age":47}
+```
+
+Script:
+
+```python
+d = load_json(_)
+
+if value_type(d) == "map" && "a" in d  {
+    add_key("val_type", value_type(d["a"]))
+}
+```
+
+Output:
+
+```json
+// Fields
+{
+  "message": "{\"a\":{\"first\": [2.2, 1.1], \"ff\": \"[2.2, 1.1]\",\"second\":2,\"third\":\"aBC\",\"forth\":true},\"age\":47}",
+  "val_type": "map"
+}
 ```
 
 

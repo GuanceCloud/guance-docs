@@ -988,7 +988,8 @@ json(zhangsan, age, "age")
 #    }
 
 # 处理脚本：
-json(_, name) json(name, first)
+json(_, name)
+json(name, first)
 ```
 
 示例三：
@@ -1002,7 +1003,7 @@ json(_, name) json(name, first)
 #    ]
     
 # 处理脚本，json 数组处理：
-json(_, [0].nets[-1])
+json(_, .[0].nets[-1])
 ```
 
 示例四：
@@ -1167,15 +1168,15 @@ add_key(abc, len(["abc"]))
 ```
 
 
-### `load_json()` {#fn-load_JSON}
+### `load_json()` {#fn-load-json}
 
 函数原型：`fn load_json(val: str) nil|bool|float|map|list`
 
-函数说明：将 JSON 字符串转换成 map、list、nil、bool、float 的其中一种，可通过 index 表达式取值及修改值。
+函数说明：将 JSON 字符串转换成 map、list、nil、bool、float 的其中一种，可通过 index 表达式取值及修改值。若反序列化失败，也返回 nil，而不是终止脚本运行。
 
 参数：
 
-- `val`: 要求是 string 类型的数据
+- `val`: 要求是 string 类型的数据。
 
 示例：
 
@@ -1892,6 +1893,95 @@ geoip(ip)
 #    }
 
 json(_, userAgent) user_agent(userAgent)
+```
+
+
+### `vaild_json()` {#fn-vaild_json}
+
+函数原型：`fn vaild_json(val: str) bool`
+
+函数说明：判断是否为一个有效的 JSON 字符串。
+
+参数：
+
+- `val`: 要求是 string 类型的数据。
+
+示例：
+
+```python
+a = "null"
+if vaild_json(a) { # true
+    if load_json(a) == nil {
+        add_key("a", "nil")
+    }
+}
+
+b = "[1, 2, 3]"
+if vaild_json(b) { # true
+    add_key("b", load_json(b))
+}
+
+c = "{\"a\": 1}"
+if vaild_json(c) { # true
+    add_key("c", load_json(c))
+}
+
+d = "???{\"d\": 1}"
+if vaild_json(d) { # true
+    add_key("d", load_json(c))
+} else {
+    add_key("d", "invaild json")
+}
+```
+
+结果：
+
+```json
+{
+  "a": "nil",
+  "b": "[1,2,3]",
+  "c": "{\"a\":1}",
+  "d": "invaild json",
+}
+```
+
+
+### `value_type()` {#fn-value-type}
+
+函数原型：`fn value_type(val) str`
+
+函数说明：获取变量的值的类型，返回值范围 ["int", "float", "bool", "str", "list", "map", ""], 若值为 nil，则返回空字符串
+
+参数：
+
+- `val`: 待判断类型的值
+
+示例：
+
+输入：
+
+```json
+{"a":{"first": [2.2, 1.1], "ff": "[2.2, 1.1]","second":2,"third":"aBC","forth":true},"age":47}
+```
+
+脚本：
+
+```python
+d = load_json(_)
+
+if value_type(d) == "map" && "a" in d  {
+    add_key("val_type", value_type(d["a"]))
+}
+```
+
+输出：
+
+```json
+// Fields
+{
+  "message": "{\"a\":{\"first\": [2.2, 1.1], \"ff\": \"[2.2, 1.1]\",\"second\":2,\"third\":\"aBC\",\"forth\":true},\"age\":47}",
+  "val_type": "map"
+}
 ```
 
 

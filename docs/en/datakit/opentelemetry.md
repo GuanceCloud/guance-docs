@@ -16,22 +16,21 @@ The purpose of this article is to introduce how to configure and enable OTEL dat
 
 ***Version Notes***: Datakit currently only accesses OTEL v1 version of otlp data.
 
+<!-- markdownlint-disable MD046 -->
 ## Configuration {#config}
 
 === "Host Installation"
 
     Go to the `conf.d/opentelemetry` directory under the DataKit installation directory, copy `opentelemetry.conf.sample` and name it `opentelemetry.conf`. Examples are as follows:
-    
+
     ```toml
         
     [[inputs.opentelemetry]]
-      ## When you create 'trace', 'Span', 'resource', you add a lot of tags that will eventually appear in 'Span'
-      ## If you don't want too many of these tags to cause unnecessary traffic loss on the network, you can choose to ignore these tags
-      ## Support regular expression, note: replace all '.' with '_'
-      ## When creating 'trace', 'span' and 'resource', many labels will be added, and these labels will eventually appear in all 'spans'
+      ## During creating 'trace', 'span' and 'resource', many labels will be added, and these labels will eventually appear in all 'spans'
       ## When you don't want too many labels to cause unnecessary traffic loss on the network, you can choose to ignore these labels
-      ## Support regular expression. Note!!!: all '.' Replace with '_'
-      # ignore_attribute_keys = ["os_*","process_*"]
+      ## with setting up an regular expression list.
+      ## Note: ignore_attribute_keys will be effected on both trace and metrics if setted up.
+      # ignore_attribute_keys = ["os_*", "process_*"]
     
       ## Keep rare tracing resources list switch.
       ## If some resources are rare enough(not presend in 1 hour), those resource will always send
@@ -77,56 +76,50 @@ The purpose of this article is to introduce how to configure and enable OTEL dat
         # path = "./otel_storage"
         # capacity = 5120
     
-      [inputs.opentelemetry.expectedHeaders]
-      # If header is configured, the request must carry the otherwise return status code 500
-      ## Be used as a security check and must be all lowercase
-      # ex_version = xxx
-      # ex_name = xxx
-      # ...
-    
-      ## grpc
-      [inputs.opentelemetry.grpc]
-      ## trace for grpc
-      trace_enable = true
-    
-      ## metric for grpc
-      metric_enable = true
-    
-      ## grpc listen addr
-      addr = "127.0.0.1:4317"
-    
-      ## http
+      ## OTEL agent HTTP config for trace and metrics
+      ## If enable set to be true, trace and metrics will be received on path respectively:
+      ## trace : /otel/v1/trace
+      ## metric: /otel/v1/metric
+      ## and the client side should be configured properly with Datakit listening port(default: 9529)
+      ## for example http://127.0.0.1:9529/otel/v1/trace
+      ## The acceptable http_status_ok values will be 200 or 202.
       [inputs.opentelemetry.http]
-      ## if enable=true
-      ## http path (do not edit):
-      ##	trace : /otel/v1/trace
-      ##	metric: /otel/v1/metric
-      ## use as : http://127.0.0.1:9529/otel/v1/trace . Method = POST
-      enable = true
-      ## return to client status_ok_code :200/202
-      http_status_ok = 200
+       enable = true
+       http_status_ok = 200
+    
+      ## OTEL agent GRPC config for trace and metrics.
+      ## GRPC services for trace and metrics can be enabled respectively as setting either to be true.
+      ## add is the listening on address for GRPC server.
+      [inputs.opentelemetry.grpc]
+       trace_enable = true
+       metric_enable = true
+       addr = "127.0.0.1:4317"
+    
+      ## If 'expected_headers' is well configed, then the obligation of sending certain wanted HTTP headers is on the client side,
+      ## otherwise HTTP status code 400(bad request) will be provoked.
+      ## Note: expected_headers will be effected on both trace and metrics if setted up.
+      # [inputs.opentelemetry.expected_headers]
+      # ex_version = "1.2.3"
+      # ex_name = "env_resource_name"
+      # ...
     
     ```
 
-    Once configured, [restart DataKit](datakit-service-how-to.md#manage-service) 即可。
+    Once configured, [Restart DataKit](datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
     The collector can now be turned on by [ConfigMap Injection Collector Configuration](datakit-daemonset-deploy.md#configmap-setting).
+<!-- markdownlint-enable -->
 
 ### Notes {#attentions}
 
 1. It is recommended to use grpc protocol, which has the advantages of high compression ratio, fast serialization and higher efficiency.
-
-1. The route of the http protocol is not configurable and the request path is trace: `/otel/v1/trace`, metric:`/otel/v1/metric`
-
-1. When data of type `float` `double` is involved, a maximum of two decimal places are reserved.
-
-1. Both http and grpc support the gzip compression format. You can configure the environment variable in exporter to turn it on: `OTEL_EXPORTER_OTLP_COMPRESSION = gzip`; gzip is not turned on by default.
-    
-1. The http protocol request format supports both json and protobuf serialization formats. But grpc only supports protobuf.
-
-1. The configuration field `ignore_attribute_keys` is to filter out some unwanted keys. But in OTEL, `attributes` are separated by `.` in most tags. For example, in the source code of resource:
+2. The route of the http protocol is configurable and the default request path is trace: `/otel/v1/trace`, metric:`/otel/v1/metric`
+3. When data of type `float` `double` is involved, a maximum of two decimal places are reserved.
+4. Both http and grpc support the gzip compression format. You can configure the environment variable in exporter to turn it on: `OTEL_EXPORTER_OTLP_COMPRESSION = gzip`; gzip is not turned on by default.
+5. The http protocol request format supports both json and protobuf serialization formats. But grpc only supports protobuf.
+6. The configuration field `ignore_attribute_keys` is to filter out some unwanted keys. But in OTEL, `attributes` are separated by `.` in most tags. For example, in the source code of resource:
 
 ```golang
 ServiceNameKey = attribute.Key("service.name")
