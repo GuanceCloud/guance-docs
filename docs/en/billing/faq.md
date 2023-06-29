@@ -31,9 +31,9 @@ You can't switch between each other. Guance Commercial Plan uses the default ES 
 
 > More details can be found in the reference doc [Alibaba Cloud Marketplace Buying Guance Exclusive Products](../billing/commercial-aliyun-sls.md).
 
-## What is the difference between Guance enterprise account settlement and cloud account settlement?
+## What is the difference between Guance Billing Center account settlement and cloud account settlement?
 
-- [Guance enterprise account settlement](../billing/billing-account/enterprise-account.md): Recharge and settle directly at the Guance Billing Center. You can recharge the Guance Enterprise Account by recharging cash, purchasing vouchers and stored-value cards;
+- [Guance Billing Center account settlement](../billing/billing-account/enterprise-account.md): Recharge and settle directly at the Guance Billing Center. You can recharge the Guance Billing Center account by recharging cash, purchasing vouchers and stored-value cards;
 - [Alibaba Cloud account settlement](../billing/billing-account/aliyun-account.md): Recharge settlement directly through Alibaba Cloud account;
 - [AWS account settlement](../billing/billing-account/aws-account.md): Recharge settlement directly through AWS account.
 - [Huawei Cloud account settlement](../billing/billing-account/huaweicloud-account.md): Recharge settlement directly through Huawei Cloud account. 
@@ -60,9 +60,9 @@ Guance supports the charging methods of free start, on-demand purchase and pay-a
 
 ## How to recharge?
 
-Guance supports enterprise account settlement and cloud account settlement.
+Guance supports Billing Center account settlement and cloud account settlement.
 
-- If you the use Guance enterprise account for settlement, you can recharge the Guance enterprise account by recharging cash, purchasing vouchers and stored-value cards. 
+- If you the use Guance Billing Center account for settlement, you can recharge the Guance Billing Center account by recharging cash, purchasing vouchers and stored-value cards. 
 
     > For more information, please refer to the doc [Account Overview](../billing/cost-center/account-wallet/index.md).
 
@@ -70,13 +70,13 @@ Guance supports enterprise account settlement and cloud account settlement.
 
 ## How to apply for an invoice?
 
-- Users who observe enterprise account settlement in cloud Billing Center can apply for invoices in **Billing Center > voice Management**. 
+- Users who settle with Billing Center account in Guance Billing Center can apply for invoices in **Billing Center > voice Management**. 
 
     > For more details, please refer to the doc [Invoice Management](../billing/cost-center/invoice-management.md).
 
-- Users who settle Alibaba Cloud accounts can apply for invoices in Alibaba Cloud.
+- Users who settle with Alibaba Cloud accounts can apply for invoices in Alibaba Cloud.
 - AWS account settlement users can apply for invoices in AWS China.
-- Users who settle Huawei Cloud accounts can apply for invoices in Huawei Cloud.
+- Users who settle with Huawei Cloud accounts can apply for invoices in Huawei Cloud.
 
 ## How to view the bill details?
 

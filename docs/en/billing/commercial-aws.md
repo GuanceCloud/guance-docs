@@ -24,9 +24,9 @@ In the pop-up dialog box, click **Set up your Account**.
 
 ## Open Guance Commercial Plan
 
-After clicking **Set up your Account** in AWS Marketplace, jump back to Guance to open. Prompt **Register Guance Commercial Plan Immediately** and **Exist enterprise account, bind it**.
+After clicking **Set up your Account** in AWS Marketplace, jump back to Guance to open. Prompt **Register Guance Commercial Plan Immediately** and **Exist Billing Center account, bind it**.
 
-<font color=coral>**Note:**</font> Enterprise account is an independent account used by the Guance Billing Center to manage the billing related to the Commercial Plan of Guance, and one enterprise account can be associated with multiple workspace billing.
+<font color=coral>**Note:**</font> Billing Center account is an independent account used by the Guance Billing Center to manage the billing related to the Commercial Plan of Guance, and one Billing Center account can be associated with multiple workspace billing.
 
 ![](img/15.aws_market_1.png)
 
@@ -72,13 +72,13 @@ If you don't have a Guance account yet, you can click **Register Guance Commerci
 
 ### Bind Guance Workspace
 
-If you already have a Guance account, you can click **Exist enterprise account, bind it** and prompt **How to quickly bind AWS account for settlement**.
+If you already have a Guance account, you can click **Exist Billing Center account, bind it** and prompt **How to quickly bind AWS account for settlement**.
 
-Click **Got it** to start binding the Guance workspace. Before binding the workspace, you need to bind the enterprise account of Guance.
+Click **Got it** to start binding the Guance workspace. Before binding the workspace, you need to bind the Billing Center account of Guance.
 
-#### Bind Guance Enterprise Account
+#### Bind Guance Billing Center account
 
-If you already have a Guance enterprise account, enter the **User Name** of Guance enterprise account and bind it through email verification.
+If you already have a Guance Billing Center account, enter the **User Name** of Guance Billing Center account and bind it through email verification.
 
 ![](img/15.aws_market_3.png)
 
