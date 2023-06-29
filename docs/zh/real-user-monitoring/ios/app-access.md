@@ -1,4 +1,5 @@
 # iOS 应用接入
+
 ---
 
 ## 简介
@@ -147,7 +148,7 @@
 | --- | --- | --- | --- |
 | metricsUrl | NSString | datakit 安装地址 URL 地址，例子：http://datakit.url:[port]。注意：安装 SDK 设备需能访问这地址 | 是 |
 | enableSDKDebugLog | BOOL | 设置是否允许打印日志 | 否（默认NO） |
-| env | NS_ENUM | 环境 | 否  （默认FTEnvProd） |
+| env | NSString | 环境，可以自定义，也可以根据提供的 `FTEnv` 枚举通过 `-setEnvWithType:` 方法设置 | 否  （默认prod） |
 | service | NSString | 设置所属业务或服务的名称，影响 Log 和 RUM 中 service 字段数据。默认：`df_rum_ios` | 否 |
 | globalContext | NSDictionary | [添加自定义标签](#user-global-context) |     否 |
 | groupIdentifiers | NSArray | 需要采集的 Extensions 对应的 AppGroups Identifier 数组 | 否 |
@@ -168,7 +169,9 @@ typedef NS_ENUM(NSInteger, FTEnv) {
     /// 本地环境
     FTEnvLocal,
 };
-@property (nonatomic, assign) FTEnv env;
+/// 根据提供的 FTEnv 类型设置 env
+/// - Parameter envType: 环境
+- (void)setEnvWithType:(FTEnv)envType;
 ```
 
 ### RUM 配置 {#rum-config}
@@ -264,9 +267,8 @@ typedef NS_ENUM(NSUInteger, FTMonitorFrequency) {
 | **字段** | **类型** | **说明** | **必须** |
 | --- | --- | --- | --- |
 | samplerate | int | 采样采集率 | 否（默认100） |
-| enableConsoleLog | BOOL | 设置是否需要采集控制台日志 | 否（默认NO） |
-| prefix | NSString | 设置采集控制台日志过滤字符串 | 否（默认全采集） |
 | enableCustomLog | BOOL | 是否上传自定义 log | 否（默认NO） |
+| printLogsToConsole | BOOL | 设置是否将自定义日志打印到控制台 | 否（默认NO） |
 | logLevelFilter | NSArray | 设置要采集的自定义 log 的状态数组 | 否（默认全采集） |
 | enableLinkRumData | BOOL | 是否与 RUM 数据关联 | 否（默认NO） |
 | discardType | FTLogCacheDiscard | 设置日志废弃策略 | 否（默认丢弃最新数据） |
@@ -559,13 +561,21 @@ typedef NS_ENUM(NSInteger, FTNetworkTraceType) {
 
 ## Logger 日志打印 {#user-logger}
 
-可以 `FTLoggerConfig` 配置开启自动采集控制台日志，也支持用户自定义添加日志。自定义添加相关 API 如下：
+ `FTLoggerConfig` 配置允许自定义添加日志 `enableCustomLog`。自定义添加相关 API 如下：
 
 ```objectivec
-[[FTMobileAgent sharedInstance] logging:@"TestLoggingBackground" status:FTStatusInfo];
+// 方法一：通过 FTMobileAgent
+// 注意：需要保证在使用的时候 SDK 已经初始化成功，否则在测试环境会断言失败从而崩溃。
+[[FTMobileAgent sharedInstance] logging:@"test_custom" status:FTStatusInfo];
+
+// 方法二：通过 FTLogger （推荐）
+// SDK 如果没有初始化成功，调用 FTLogger 中方法添加自定义日志会失败，但不会有断言失败崩溃问题。
+[[FTLogger sharedInstance] info:@"test" property:@{@"custom_key":@"custom_value"}];
 ```
 
 ```objectivec
+//  FTMobileAgent.h
+//  FTMobileSDK
 ///事件等级和状态，默认：FTStatusInfo
 typedef NS_ENUM(NSInteger, FTLogStatus) {
     /// 提示
@@ -590,6 +600,52 @@ typedef NS_ENUM(NSInteger, FTLogStatus) {
 /// @param property 事件属性
 -(void)logging:(NSString *)content status:(FTLogStatus)status property:(nullable NSDictionary *)property;
 ```
+
+```objective-c
+//
+//  FTLogger.h
+//  FTMobileSDK
+
+/// 添加 info 类型自定义日志
+/// - Parameters:
+///   - content: 日志内容
+///   - property: 自定义属性(可选)
+-(void)info:(NSString *)content property:(nullable NSDictionary *)property;
+/// 添加 warning 类型自定义日志
+/// - Parameters:
+///   - content: 日志内容
+///   - property: 自定义属性(可选)
+-(void)warning:(NSString *)content property:(nullable NSDictionary *)property;
+/// 添加 error 类型自定义日志
+/// - Parameters:
+///   - content: 日志内容
+///   - property: 自定义属性(可选)
+-(void)error:(NSString *)content  property:(nullable NSDictionary *)property;
+/// 添加 critical 类型自定义日志
+/// - Parameters:
+///   - content: 日志内容
+///   - property: 自定义属性(可选)
+-(void)critical:(NSString *)content property:(nullable NSDictionary *)property;
+/// 添加 ok 类型自定义日志
+/// - Parameters:
+///   - content: 日志内容
+///   - property: 自定义属性(可选)
+-(void)ok:(NSString *)content property:(nullable NSDictionary *)property;
+```
+
+设置 `printLogsToConsole = YES` ，开启将自定义日志输出到控制台，将会在 xcode 调试控制台看到以下格式的日志：
+
+```
+2023-06-29 13:47:56.960021+0800 App[64731:44595791] [IOS APP] [INFO] content
+```
+
+`2023-06-29 13:47:56.960021+0800 App[64731:44595791]`: os_log 日志输出的标准前缀；
+
+`[IOS APP]`: 用来区分 SDK 输出自定义日志的前缀；
+
+`[INFO]`: 自定义日志的等级；
+
+`content`:自定义日志内容。
 
 ## Trace 网络链接追踪
 
