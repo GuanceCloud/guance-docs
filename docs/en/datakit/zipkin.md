@@ -94,32 +94,34 @@ The Zipkin Agent embedded in Datakit is used to receive, calculate and analyze t
 
 | Tag | Description |
 |  ----  | --------|
-|`container_host`|container hostname|
-|`endpoint`|endpoint info|
-|`env`|application environment info|
-|`http_method`|http request method name|
-|`http_status_code`|http response code|
-|`operation`|span name|
-|`project`|project name|
-|`service`|service name|
-|`source_type`|tracing source type|
-|`span_type`|span type|
-|`status`|span status|
-|`version`|application version info|
+|`container_host`|Container hostname. Available in OpenTelemetry. Optional.|
+|`endpoint`|Endpoint info. Available in SkyWalking, Zipkin. Optional.|
+|`env`|Application environment info. Available in Jaeger. Optional.|
+|`http_method`|HTTP request method name. Available in ddtrace, OpenTelemetry. Optional.|
+|`http_route`|HTTP route. Optional.|
+|`http_status_code`|HTTP response code. Available in ddtrace, OpenTelemetry. Optional.|
+|`http_url`|HTTP URL. Optional.|
+|`operation`|Span name|
+|`project`|Project name. Available in Jaeger. Optional.|
+|`service`|Service name. Optional.|
+|`source_type`|Tracing source type|
+|`span_type`|Span type|
+|`status`|Span status|
+|`version`|Application version info. Available in Jaeger. Optional.|
 
 - metric list
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`duration`|duration of span|int|μs|
-|`message`|origin content of span|string|-|
-|`parent_id`|parent span ID of current span|string|-|
-|`pid`|application process id.|string|-|
-|`priority`||int|-|
-|`resource`|resource name produce current span|string|-|
-|`span_id`|span id|string|-|
+|`duration`|Duration of span|int|μs|
+|`message`|Origin content of span|string|-|
+|`parent_id`|Parent span ID of current span|string|-|
+|`pid`|Application process id. Available in ddtrace, OpenTelemetry. Optional.|string|-|
+|`priority`|Optional.|int|-|
+|`resource`|Resource name produce current span|string|-|
+|`span_id`|Span id|string|-|
 |`start`|start time of span.|int|usec|
-|`trace_id`|trace id|string|-|
+|`trace_id`|Trace id|string|-|
 
 

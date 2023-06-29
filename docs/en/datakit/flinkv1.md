@@ -78,7 +78,7 @@ Flink collects multiple metrics by default, and these [metrics](https://nightlie
 
 
 
-### `Jobmanager`
+### `flink_jobmanager`
 
 - tag
 
@@ -98,6 +98,10 @@ Flink collects multiple metrics by default, and these [metrics](https://nightlie
 |`Status_JVM_ClassLoader_ClassesUnloaded`|The total number of classes unloaded since the start of the JVM.|int|count|
 |`Status_JVM_GarbageCollector_Copy_Count`|The total number of collections that have occurred.|int|count|
 |`Status_JVM_GarbageCollector_Copy_Time`|The total time spent performing garbage collection.|int|count|
+|`Status_JVM_GarbageCollector_G1_Old_Generation_Count`|The total number of collections that have occurred.|int|count|
+|`Status_JVM_GarbageCollector_G1_Old_Generation_Time`|The total time spent performing garbage collection.|int|count|
+|`Status_JVM_GarbageCollector_G1_Young_Generation_Count`|The total number of collections that have occurred.|int|count|
+|`Status_JVM_GarbageCollector_G1_Young_Generation_Time`|The total time spent performing garbage collection.|int|count|
 |`Status_JVM_GarbageCollector_MarkSweepCompact_Count`|The total number of collections that have occurred.|int|count|
 |`Status_JVM_GarbageCollector_MarkSweepCompact_Time`|The total time spent performing garbage collection.|int|count|
 |`Status_JVM_Memory_Direct_Count`|The number of buffers in the direct buffer pool.|int|count|
@@ -123,7 +127,7 @@ Flink collects multiple metrics by default, and these [metrics](https://nightlie
 
 
 
-### `Taskmanager`
+### `flink_taskmanager`
 
 - tag
 
