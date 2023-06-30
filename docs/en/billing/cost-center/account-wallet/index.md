@@ -23,7 +23,7 @@ In the Guance workspace **Billing**, click **Billing Center** in the upper right
 
 #### Online Recharge
 
-I. On the Recharge, enter the amount to be recharged, select recharge method In a way convenient to you.
+I. On the page, enter the amount to be recharged, select recharge method in a way convenient to you.
 
 <!--
 II. At Alipay cashier, scan the QR code with your mobile phone to pay.
@@ -69,7 +69,7 @@ There are two ways to activate vouchers. One is that the administrator of Guance
 
 In the Guance Billing Center, click **Voucher > Manage > Activate Voucher**, enter the **Voucher Activation Code** and confirm submission.
 
-![](../../img/10.account_type_3.1.png)
+![](../../img/wallet.png)
 
 After the activation code is submitted successfully, you can view the face value, current balance, status, activation time and other information of the activated voucher in the management voucher.
 
@@ -101,7 +101,7 @@ After the stored-value card is purchased, you can view the available stored-valu
 
 - The stored-value card is bound to the purchase account, and can only be used to pay for the consumption order of the purchase account, and cannot be used across accounts or transferred.
 - The amount in the stored-value card must be used up within the validity period. Stored-value cards expire.
-- Billing methods supported by stored-value cards: pay-as-you-go.
+- Billing methods supported by stored-value cards: **pay-per-use**.
 - If the user has a stored-value card that can be used, he can choose whether to use the stored-value card at the cashier of prepaid orders; Stored-value cards will be automatically deducted when paying according to volume bills are deducted, and the deduction order is: giving priority to ordinary vouchers, fully reducing vouchers, re-accumulating stored-value cards, and finally deducting cash balance.
 - Unsubscribe is not supported for products purchased with stored-value cards.
 - After deducting the payment required for the order from the stored-value card, the unused balance will be retained in the stored-value card. During the validity period, the balance can be used for the next order payment.
