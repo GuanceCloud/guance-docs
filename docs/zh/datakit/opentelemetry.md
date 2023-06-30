@@ -77,15 +77,18 @@ OTEL 提供与 vendor 无关的实现，根据用户的需要将观测类数据�
         # capacity = 5120
     
       ## OTEL agent HTTP config for trace and metrics
-      ## If enable set to be true, trace and metrics will be received on path respectively:
+      ## If enable set to be true, trace and metrics will be received on path respectively, by default is:
       ## trace : /otel/v1/trace
       ## metric: /otel/v1/metric
       ## and the client side should be configured properly with Datakit listening port(default: 9529)
+      ## or custom HTTP request path.
       ## for example http://127.0.0.1:9529/otel/v1/trace
       ## The acceptable http_status_ok values will be 200 or 202.
       [inputs.opentelemetry.http]
        enable = true
        http_status_ok = 200
+       trace_api = "/otel/v1/trace"
+       metric_api = "/otel/v1/metric"
     
       ## OTEL agent GRPC config for trace and metrics.
       ## GRPC services for trace and metrics can be enabled respectively as setting either to be true.
@@ -141,6 +144,28 @@ OSDescriptionKey = attribute.Key("os.description")
 ignore_attribute_keys = ["os_*","teletemetry_sdk*"]
 ```
 
+使用 OTEL HTTP exporter 时注意环境变量的配置，由于 datakit 的默认配置是 `/otel/v1/trace` 和 `/otel/v1/metric`，所以想要使用 HTTP 协议的话，需要单独配置 `trace` 和 `metric`，
+
+otlp 的默认的请求路由是 `v1/traces` 和 `v1/metrics`, 需要为这两个单独进行配置。如果修改了配置文件中的路由，替换下面的路由地址即可。
+
+比如：
+
+```shell
+java -javaagent:/usr/local/opentelemetry-javaagent-1.26.1-guance.jar \
+ -Dotel.exporter=otlp \
+ -Dotel.exporter.otlp.protocol=http/protobuf \ 
+ -Dotel.exporter.otlp.traces.endpoint=http://localhost:9529/otel/v1/trace \ 
+ -Dotel.exporter.otlp.metrics.endpoint=http://localhost:9529/otel/v1/metric \ 
+ -jar tmall.jar
+ 
+# 如果修改了配置文件中的默认路由为 `v1/traces` 和 `v1/metrics` 那么 上面的命令可以这么写：
+java -javaagent:/usr/local/opentelemetry-javaagent-1.26.1-guance.jar \
+ -Dotel.exporter=otlp \
+ -Dotel.exporter.otlp.protocol=http/protobuf \ 
+ -Dotel.exporter.otlp.endpoint=http://localhost:9529/ \ 
+ -jar tmall.jar
+```
+
 ### 最佳实践 {#bp}
 
 Datakit 目前提供了 [Golang](opentelemetry-go.md)、[Java](opentelemetry-java.md) 两种语言的最佳实践，其他语言会在后续提供。
@@ -150,3 +175,4 @@ Datakit 目前提供了 [Golang](opentelemetry-go.md)、[Java](opentelemetry-jav
 - [Golang SDK](https://github.com/open-telemetry/opentelemetry-go){:target="_blank"}
 - [官方使用手册](https://opentelemetry.io/docs/){:target="_blank"}
 - [环境变量配置](https://github.com/open-telemetry/opentelemetry-java/blob/main/sdk-extensions/autoconfigure/README.md#otlp-exporter-both-span-and-metric-exporters){:target="_blank"}
+- [观测云二次开发版本](https://github.com/GuanceCloud/opentelemetry-java-instrumentation){:target="_blank"}
