@@ -9,7 +9,7 @@ You can log in to the Guance Billing Center through [https://boss.guance.com/](h
 
 If you forget your password, you can log in to the page of [Guance Billing Center](https://boss.guance.com/) and retrieve it through **Forget Password**.
 
-![](../img/3.billing_cost_1.png)
+![](../img/page.png)
 
 ### Login Through Guance Studio
 
