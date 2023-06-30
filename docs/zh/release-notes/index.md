@@ -13,14 +13,14 @@ icon: zy/release-notes
 
 本次更新简化了注册流程：
 
-- [海外版观测云产品服务](https://www.guance.one/)正式上线，用户可前往 [AWS 海外云市场](https://partners.amazonaws.com/partners/0018a00001lR2WSAA0/%E4%B8%8A%E6%B5%B7%E9%A9%BB%E4%BA%91%E4%BF%A1%E6%81%AF%E7%A7%91%E6%8A%80%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8)购买。   
-- [海外版观测云](https://docs.guance.com/en/billing/inter-commercial/)产品采用[以美元为单位的计价体系](../billing/billing-method/index.md#item)。国内原俄勒冈站点注册的工作空间数据费用上调。
+- [国际站观测云产品服务](https://www.guance.one/)正式上线，用户可前往 [AWS 海外云市场](https://aws.amazon.com/marketplace/pp/prodview-puxf6opnidvds?sr=0-1&ref_=beagle&applicationId=AWSMPContessa)购买。   
+- [国际站观测云](https://docs.guance.com/en/billing/inter-commercial/)产品采用[以美元为单位的计价体系](../billing/billing-method/index.md#item)。中国站原俄勒冈站点注册的工作空间数据将按照调整后的价格计费。
 
 - 观测云**企业账号**这一概念正式更改为**费用中心账号**；
 
 其他更新：
 
-- 快照[权限](../management/role-list.md)：只读成员仅支持删除自己账号创建的快照。
+- 快照[权限](../management/role-list.md)：只读成员支持创建和删除**仅自己可见**的快照。
 
 ## 2023 年 6 月 20 日
 

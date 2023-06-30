@@ -8,7 +8,7 @@ Guance Billing Center account is an independent account dedicated by Guance Bill
 - If you choose Guance Billing Center account settlement, the deduction order of Guance payment bill by volume is: ordinary vouchers, full reduction vouchers, stored-value cards, cash, stored-value card balance (negative arrears); SMS and dial-based consumption can only be paid by cash and stored-value card or stored-value card balance.
 - If you choose Guance account settlement, the deduction order of cloud pay-by-volume bills is as follows: ordinary vouchers, full reduction vouchers, stored-value cards and cash balance of cloud account. SMS and dial-up consumption can only be paid by using stored-value cards and cash balances of cloud accounts.
 
-![](../../img/1.account_1.png)
+![](../../img/3.billing_cost_1.png)
 
 ## Cash Management
 
