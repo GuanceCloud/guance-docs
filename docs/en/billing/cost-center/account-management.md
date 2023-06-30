@@ -45,6 +45,7 @@ If you set a password when registering an account in the Billing Center, you can
 
 In **Contract Management**, you can see all the contracts.
 
+
 ![](../img/0625.png)
 
 
