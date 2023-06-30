@@ -13,7 +13,7 @@ icon: zy/release-notes
 
 本次更新简化了注册流程：
 
-- [国际站观测云产品服务](https://www.guance.one/)正式上线，用户可前往 AWS 海外云市购买。   
+- [国际站观测云产品服务](https://www.guance.one/)正式上线，用户可前往 AWS 海外云市场购买。   
 - [国际站观测云](https://docs.guance.com/en/billing/inter-commercial/)产品采用[以美元为单位的计价体系](../billing/billing-method/index.md#item)。中国站原俄勒冈站点注册的工作空间数据将按照调整后的价格计费。
 
 - 观测云**企业账号**这一概念正式更改为**费用中心账号**；
