@@ -51,7 +51,7 @@
 	cd vcpkg
 	
 	#下载自定义配置 registries 文件
-	curl https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/ft-sdk-package/vcpkg_config/vcpkg-configuration.json 
+	curl -o vcpkg-configuration.json https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/ft-sdk-package/vcpkg_config/vcpkg-configuration.json 
 	
 	# 如果是 arm 64 需要添加 VCPKG_FORCE_SYSTEM_BINARIES
 	#export VCPKG_FORCE_SYSTEM_BINARIES=1
