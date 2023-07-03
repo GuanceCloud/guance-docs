@@ -290,24 +290,6 @@ typedef NS_ENUM(NSInteger, FTLogCacheDiscard)  {
 @property (nonatomic, assign) FTLogCacheDiscard  discardType;
 ```
 
-#### 采集控制台日志
-
-一般情况下， 因为 NSLog 的输出会消耗系统资源，而且输出的数据也可能会暴露出 App 里的保密数据， 所以在发布正式版时会把这些输出全部屏蔽掉。此时开启采集控制台日志，也并不能抓取到工程里打印的日志。建议使用 [自定义上报日志](#user-logger) 来上传想查看的日志。 
-
-- 开启采集控制台日志
-
-```objectivec
-/// 是否需要采集控制台日志 默认为 NO
-@property (nonatomic, assign) BOOL enableConsoleLog;
-```
-
-- 设置采集控制台日志的过滤条件
-
-```objectivec
-/// 采集控制台日志过滤字符串 包含该字符串控制台日志会被采集 默认为全采集
-@property (nonatomic, copy) NSString *prefix;
-```
-
 ### Trace 配置 {#trace-config}
 
 ```objectivec
