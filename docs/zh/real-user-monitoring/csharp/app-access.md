@@ -83,6 +83,7 @@ FTWrapper.InitRUMConfig(@"
 | --- | --- | --- | --- |
 | rumAppId | string | 是 | 对应设置 RUM `appid`，才会开启`RUM`的采集功能，[获取 appid 方法](#integration) |
 | samplingRate | float | 否 | 采集率的值范围为>= 0、<= 1，默认值为 1 |
+| extraMonitorTypeWithError | string | 否 | 添加附加监控数据到 `Rum` 崩溃数据中，`memory` 为内存用量，`cpu` 为 CPU 占有率，`all` 为全部 |
 | globalContext | dictionary | 否 | 添加标签数据，用于用户监测数据源区分，如果需要使用追踪功能，则参数 `key` 为 `track_id` ,`value` 为任意数值。添加规则请查阅 [此处](#key-conflict) |
 
 ### Log 配置
@@ -104,6 +105,7 @@ FTWrapper.InitLogConfig(@"
 | globalContext | dictionary | 否 | 添加标签数据，添加规则请查阅 [此处](#key-conflict)  |
 | logLevelFilters | array | 否 | 设置等级日志过滤，`ok`，`info`，`warning`，`error`，`critical`，默认不设置 |
 | enableCustomLog | bool | 否 | 是否上传自定义日志 ，默认为 `false` |
+| logCacheDiscardStrategy | string | 否 | `discard`为丢弃追加数据，`discard_oldest` 丢弃老数据，默认为 `discard` |
 
 ### Trace 配置
 ```csharp
