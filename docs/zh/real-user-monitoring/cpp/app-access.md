@@ -147,12 +147,6 @@ sdk->install(gc)
 | addGlobalContext | dictionary | 否 | 添加 SDK 全局属性，添加规则请查阅[此处](#key-conflict)|
 | setServiceName| string |否|影响 Log 和 RUM 中 service 字段数据， 默认为 windows 为`df_rum_windows`，linux 为 `df_rum_linux` |
 
-
-
-
-
-
-
 ### RUM 配置
 ```cpp
 FTRUMConfig rc;
@@ -164,6 +158,7 @@ sdk->initRUMWithConfig(rc);
 | --- | --- | --- | --- |
 | setRumAppId | string | 是 | 对应设置 RUM `appid`，才会开启`RUM`的采集功能，[获取 appid 方法](#integration) |
 | setSamplingRate | float | 否 | 采集率的值范围为>= 0、<= 1，默认值为 1 |
+| setExtraMonitorTypeWithError | ErrorMonitorType | 否 | `ErrorMonitorType.ALL` |
 | addGlobalContext | dictionary | 否 | 添加标签数据，用于用户监测数据源区分，如果需要使用追踪功能，则参数 `key` 为 `track_id` ,`value` 为任意数值。添加规则请查阅 [此处](#key-conflict) |
 
 ### Log 配置
@@ -183,6 +178,7 @@ lpc.setEnableCustomLog(true)
 | setLogLevelFilters | array | 否 | 设置等级日志过滤，默认不设置 |
 | setEnableCustomLog | bool | 否 | 是否上传自定义日志 ，默认为 `false` |
 | setEnableLinkRUMData | bool | 否 | 是否与 RUM 数据关联，默认为 `false` |
+| setExtraMonitorTypeWithError | bool | 否 | 添加错误附加指标数据 |
 
 ### Trace 配置
 ```cpp
