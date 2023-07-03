@@ -29,7 +29,7 @@ There must be a metric that you have always wanted, but it just doesn't exist in
 ## <u>Example</u>
 
 
-Let's take **Generate Test Results Report** as an example, and use the information in the test log **to understand the project status, product quality, etc.**. When testing the system, the test log will be uploaded to Guance in real time through Guance collector DataKit, and named as the log data source of "http_dial_testing".
+Let's take **Generate Test Results Report** as an example, and use the information in the test log <u>to understand the project status, product quality, etc.</u>. When testing the system, the test log will be uploaded to Guance in real time through Guance collector DataKit, and named as the log data source of `http_dial_testing`.
 
 In the workbench, all test logs of this log source can be queried through the **Logs** function.
 
