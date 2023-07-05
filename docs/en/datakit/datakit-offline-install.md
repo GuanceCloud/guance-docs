@@ -106,32 +106,32 @@ The address of the following files can be downloaded through wget and other down
 === "Windows 32 bit"
 
     - [Installer](https://static.guance.com/datakit/installer-windows-386.exe){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-windows-386-1.10.1.tar.gz){:target="_blank"}
+    - [DataKit](https://static.guance.com/datakit/datakit-windows-386-1.10.2.tar.gz){:target="_blank"}
 
 === "Windows 64 bit"
 
     - [Installer](https://static.guance.com/datakit/installer-windows-amd64.exe){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-windows-amd64-1.10.1.tar.gz){:target="_blank"}
+    - [DataKit](https://static.guance.com/datakit/datakit-windows-amd64-1.10.2.tar.gz){:target="_blank"}
 
 === "Linux X86 32 bit"
 
     - [Installer](https://static.guance.com/datakit/installer-linux-386){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-linux-386-1.10.1.tar.gz){:target="_blank"}
+    - [DataKit](https://static.guance.com/datakit/datakit-linux-386-1.10.2.tar.gz){:target="_blank"}
 
 === "Linux X86 64 bit"
 
     - [Installer](https://static.guance.com/datakit/installer-linux-amd64){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-linux-amd64-1.10.1.tar.gz){:target="_blank"}
+    - [DataKit](https://static.guance.com/datakit/datakit-linux-amd64-1.10.2.tar.gz){:target="_blank"}
 
 === "Linux Arm 32 bit"
 
     - [Installer](https://static.guance.com/datakit/installer-linux-arm){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-linux-arm-1.10.1.tar.gz){:target="_blank"}
+    - [DataKit](https://static.guance.com/datakit/datakit-linux-arm-1.10.2.tar.gz){:target="_blank"}
 
 === "Linux Arm 64 bit"
 
     - [Installer](https://static.guance.com/datakit/installer-linux-arm64){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-linux-arm64-1.10.1.tar.gz){:target="_blank"}
+    - [DataKit](https://static.guance.com/datakit/datakit-linux-arm64-1.10.2.tar.gz){:target="_blank"}
 
 After downloading, you should have three files (`<OS-ARCH>` here refers to the platform-specific installation package):
 
@@ -141,7 +141,15 @@ After downloading, you should have three files (`<OS-ARCH>` here refers to the p
 
 Copy these files to the corresponding machine (via USB flash drive or scp and other commands).
 
-#### Installation {#simple-install}
+### Installation {#install}
+
+=== "Windows"
+
+    You need to run the Powershell with administrator privileges to execute:
+    
+    ```powershell
+    .\installer-windows-amd64.exe --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs .\datakit-windows-amd64-1.10.2.tar.gz,.\data.tar.gz
+    ```
 
 === "Linux"
 
@@ -149,34 +157,7 @@ Copy these files to the corresponding machine (via USB flash drive or scp and ot
     
     ```shell
     chmod +x installer-linux-amd64
-    ./installer-linux-amd64 --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs datakit-linux-amd64-1.10.1.tar.gz,data.tar.gz
-    ```
-
-=== "Windows"
-
-    You need to run the Powershell with administrator privileges to execute:
-    
-    ```powershell
-    .\installer-windows-amd64.exe --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs .\datakit-windows-amd64-1.10.1.tar.gz,.\data.tar.gz
-    ```
-
-#### Upgrade {#simple-upgrade}
-
-=== "Linux"
-
-    To run with root privileges:
-
-    ```shell
-    chmod +x installer-linux-amd64
-    ./installer-linux-amd64 --offline --upgrade --srcs datakit-linux-amd64-1.10.1.tar.gz,data.tar.gz
-    ```
-
-=== "Windows"
-
-    You need to run the Powershell with administrator privileges to execute:
-
-    ```powershell
-    .\installer-windows-amd64.exe --offline --upgrade --srcs .\datakit-windows-amd64-1.10.1.tar.gz,.\data.tar.gz
+    ./installer-linux-amd64 --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs datakit-linux-amd64-1.10.2.tar.gz,data.tar.gz
     ```
 
 ### Advanced Mode {#offline-advanced}
@@ -227,8 +208,8 @@ mkdir -p /datakit
 wget -P /datakit https://static.guance.com/datakit/install.sh
 wget -P /datakit https://static.guance.com/datakit/version
 wget -P /datakit https://static.guance.com/datakit/data.tar.gz
-wget -P /datakit https://static.guance.com/datakit/installer-linux-amd64-1.10.1
-wget -P /datakit https://static.guance.com/datakit/datakit-linux-amd64-1.10.1.tar.gz
+wget -P /datakit https://static.guance.com/datakit/installer-linux-amd64-1.10.2
+wget -P /datakit https://static.guance.com/datakit/datakit-linux-amd64-1.10.2.tar.gz
 
 # Download other toolkits: sources is the installation package used to turn on the RUM sourcemap function. If this function is not turned on, you can choose not to download it.
 sources=(
@@ -258,36 +239,36 @@ for((i=0;i<${#sources[@]};i++)); do
 done
 ```
 
-#### Install {#advance-install}
+- Prepare for installation
 
 On the intranet machine, point it to the Nginx file server by setting `DK_INSTALLER_BASE_URL`:
 
-<!-- markdownlint-disable MD046 MD034 -->
 === "Linux/Mac"
-
+    
     ```shell
-    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> DK_INSTALLER_BASE_URL=http://[Nginx-Server]:8080/datakit HTTPS_PROXY=http://1.2.3.4:9530 bash -c "$(curl -L ${DK_INSTALLER_BASE_URL}/install.sh)"
+    HTTPS_PROXY=http://1.2.3.4:9530 \
+    DK_INSTALLER_BASE_URL="http://<nginxServer>:8080/datakit" \
+    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> bash -c "$(curl -L ${DK_INSTALLER_BASE_URL}/install.sh)"
     ```
 
 === "Windows"
 
-    ```powershell
+    ```powershel
+    HTTPS_PROXY=http://1.2.3.4:9530 \
+    DK_INSTALLER_BASE_URL="http://<nginxServer>:8080/datakit" \
     Remove-Item -ErrorAction SilentlyContinue Env:DK_*;
     $env:DK_DATAWAY="https://openway.guance.com?token=<TOKEN>";
-    $env:DK_INSTALLER_BASE_URL="http://[Nginx-Server]:8080/datakit";
-    $env:HTTPS_PROXY="1.2.3.4:9530";
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
     start-bitstransfer  -source ${DK_INSTALLER_BASE_URL}/install.ps1 -destination .install.ps1;
     powershell .install.ps1;
     ```
-<!-- markdownlint-enable -->
 
 So far, the offline installation is complete. Note that HTTPS_PROXY is additionally set here.
 
 ---
 
-#### Upgrade {#advance-upgrade}
+- Update DataKit
 
 If there is a new version of DataKit, you can download it as above and execute the following command to upgrade:
 
@@ -428,17 +409,17 @@ wget https://static.guance.com/datakit/datakit.yaml -P /home/guance/
 
 ```shell
 # Pull the image of the amd64 architecture and make it into an image package
-docker pull --platform amd64 pubrepo.guance.com/datakit/datakit:1.10.1
-docker save -o datakit-amd64-1.10.1.tar pubrepo.guance.com/datakit/datakit:1.10.1
-mv datakit-amd64-1.10.1.tar /home/guance
+docker pull --platform amd64 pubrepo.guance.com/datakit/datakit:1.10.2
+docker save -o datakit-amd64-1.10.2.tar pubrepo.guance.com/datakit/datakit:1.10.2
+mv datakit-amd64-1.10.2.tar /home/guance
 
 # Pull the image of the arm64 architecture and make it into an image package
-docker pull --platform arm64 pubrepo.guance.com/datakit/datakit:1.10.1
-docker save -o datakit-arm64-1.10.1.tar pubrepo.guance.com/datakit/datakit:1.10.1
-mv datakit-arm64-1.10.1.tar /home/guance
+docker pull --platform arm64 pubrepo.guance.com/datakit/datakit:1.10.2
+docker save -o datakit-arm64-1.10.2.tar pubrepo.guance.com/datakit/datakit:1.10.2
+mv datakit-arm64-1.10.2.tar /home/guance
 
 # Check whether the image architecture is correct
-docker image inspect pubrepo.jiagouyun.com/datakit/datakit:1.10.1 |grep Architecture
+docker image inspect pubrepo.jiagouyun.com/datakit/datakit:1.10.2 |grep Architecture
 
 ```
 
@@ -562,17 +543,17 @@ docker image inspect pubrepo.jiagouyun.com/datakit/datakit:1.10.1 |grep Architec
 
 ```shell
 wget http://<nginx-server-ip>:8080/datakit.yaml 
-wget http://<nginx-server-ip>:8080/datakit-amd64-1.10.1.tar 
+wget http://<nginx-server-ip>:8080/datakit-amd64-1.10.2.tar 
 ```
 
 - Unzip image command
 
 ```shell
 # docker 
-docker load -i /k8sdata/datakit/datakit-amd64-1.10.1.tar
+docker load -i /k8sdata/datakit/datakit-amd64-1.10.2.tar
 
 # containerd
-ctr -n=k8s.io image import /k8sdata/datakit/datakit-amd64-1.10.1.tar
+ctr -n=k8s.io image import /k8sdata/datakit/datakit-amd64-1.10.2.tar
 
 ```
 
@@ -590,10 +571,10 @@ When there is no external network in the environment, the installation package n
 
 ```shell
 # docker 
-docker load -i datakit-amd64-1.10.1.tar
+docker load -i datakit-amd64-1.10.2.tar
 
 # containerd
-ctr -n=k8s.io image import datakit-amd64-1.10.1.tar
+ctr -n=k8s.io image import datakit-amd64-1.10.2.tar
 
 ```
 
