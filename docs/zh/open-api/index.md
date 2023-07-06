@@ -64,7 +64,7 @@ icon: zy/open-api
 #### 以获取仪表板列表接口为例
 请求如下
 ```bash
-curl "http://testing-ft2x-open-api.cloudcare.cn/api/v1/dashboards/list?pageIndex=1&pageSize=10" \
+curl "https://openapi.guance.com/api/v1/dashboards/list?pageIndex=1&pageSize=10" \
   -H "Content-Type: application/json" \
   -H "DF-API-KEY: ${DF_API_KEY}" \
   --compressed \
@@ -96,7 +96,7 @@ curl "http://testing-ft2x-open-api.cloudcare.cn/api/v1/dashboards/list?pageIndex
 #### 以删除仪表板接口为例
 请求如下
 ```bash
-curl "http://testing-ft2x-open-api.cloudcare.cn/api/v1/dashboards/${dashboard_uuid}/delete" \
+curl "https://openapi.guance.com/api/v1/dashboards/${dashboard_uuid}/delete" \
   -X "POST" \
   -H "Content-Type: application/json" \
   -H "DF-API-KEY: ${DF_API_KEY}" \
