@@ -34,42 +34,44 @@ port 24220
 
 重新启动您的 td-agent 组件并通过 HTTP 获取指标：
 
-```bash
-$ curl http://host:24220/api/plugins.json
-{
-  "plugins":[
-   {
-     "plugin_id":"object:3fec669d6ac4",
-     "type":"forward",
-     "output_plugin":false,
-     "config":{
-       "type":"forward"
-     }
-   },
-   {
-     "plugin_id":"object:3fec669dfa48",
-     "type":"monitor_agent",
-     "output_plugin":false,
-     "config":{
-       "type":"monitor_agent",
-       "port":"24220"
-     }
-   },
-   {
-     "plugin_id":"object:3fec66aead48",
-     "type":"forward",
-     "output_plugin":true,
-     "buffer_queue_length":0,
-     "buffer_total_queued_size":0,
-     "retry_count":0,
-     "config":{
-       "type":"forward",
-       "host":"192.168.0.11"
-     }
-   }
-  ]
-}
-```
+??? quote "举例如下"
+
+    ```bash
+    $ curl http://host:24220/api/plugins.json
+    {
+      "plugins":[
+      {
+        "plugin_id":"object:3fec669d6ac4",
+        "type":"forward",
+        "output_plugin":false,
+        "config":{
+          "type":"forward"
+        }
+      },
+      {
+        "plugin_id":"object:3fec669dfa48",
+        "type":"monitor_agent",
+        "output_plugin":false,
+        "config":{
+          "type":"monitor_agent",
+          "port":"24220"
+        }
+      },
+      {
+        "plugin_id":"object:3fec66aead48",
+        "type":"forward",
+        "output_plugin":true,
+        "buffer_queue_length":0,
+        "buffer_total_queued_size":0,
+        "retry_count":0,
+        "config":{
+          "type":"forward",
+          "host":"192.168.0.11"
+        }
+      }
+      ]
+    }
+    ```
 
 ## 安装部署
 
@@ -231,4 +233,4 @@ buffer_available_buffer_space_ratios 100
 
 ## 故障排查
 
-<[无数据上报排查](../../datakit/why-no-data.md)>
+- <[无数据上报排查](../../datakit/why-no-data.md)>

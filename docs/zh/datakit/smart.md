@@ -1,5 +1,6 @@
 
 # 磁盘 S.M.A.R.T
+
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
@@ -10,17 +11,32 @@
 
 ## 前置条件 {#requrements}
 
-安装 smartmontools
+安装 `smartmontools`
 
 - Linux: `sudo apt install smartmontools -y`
 
-	如果固态硬盘，符合  nvme 标准，建议安装 nvme-cli 以得到更多 nvme 信息：`sudo apt install nvme-cli -y`
+如果固态硬盘，符合 NVMe 标准，建议安装 `nvme-cli` 以得到更多 NVMe 信息：
 
-- MacOS: `brew install smartmontools -y`
-- WinOS: 下载 [Windows 版本](https://www.smartmontools.org/wiki/Download#InstalltheWindowspackage){:target="_blank"}
+<!-- markdownlint-disable MD046 -->
+=== "Linux"
+
+    ```shell
+    sudo apt install nvme-cli -y
+    ```
+
+=== "macOS"
+
+    ```shell
+    brew install smartmontools -y
+    ```
+=== "Windows"
+
+    下载 [Windows 版本](https://www.smartmontools.org/wiki/Download#InstalltheWindowspackage){:target="_blank"}
+<!-- markdownlint-enable -->
 
 ## 配置 {#config}
 
+<!-- markdownlint-disable MD046 -->
 === "主机安装"
 
     进入 DataKit 安装目录下的 `conf.d/smart` 目录，复制 `smart.conf.sample` 并命名为 `smart.conf`。示例如下：
@@ -75,6 +91,7 @@
 === "Kubernetes"
 
     目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+<!-- markdownlint-enable -->
 
 ## 指标集 {#requrements}
 
@@ -94,7 +111,7 @@
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
 |`capacity`|disk capacity|
 |`device`|device mount name|
@@ -109,12 +126,12 @@
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`airflow_temperature_cel_raw_value`|The raw value of air celsius temperature read from device record.|int|C|
-|`airflow_temperature_cel_threshold`|The threshold of air celsius temperature read from device record.|int|C|
-|`airflow_temperature_cel_value`|The value of air celsius temperature read from device record.|int|C|
-|`airflow_temperature_cel_worst`|The worst value of air celsius temperature read from device record.|int|C|
+|`airflow_temperature_cel_raw_value`|The raw value of air Celsius temperature read from device record.|int|C|
+|`airflow_temperature_cel_threshold`|The threshold of air Celsius temperature read from device record.|int|C|
+|`airflow_temperature_cel_value`|The value of air Celsius temperature read from device record.|int|C|
+|`airflow_temperature_cel_worst`|The worst value of air Celsius temperature read from device record.|int|C|
 |`avg_write/erase_count_raw_value`|The raw value of average write/ease count.|int|count|
 |`avg_write/erase_count_value`|The value of average write/ease count.|int|count|
 |`avg_write/erase_count_worst`|The worst value of average write/ease count.|int|count|
@@ -134,7 +151,7 @@
 |`erase_fail_count_value`|The value of erase failed count.|int|count|
 |`erase_fail_count_worst`|The worst value of erase failed count.|int|count|
 |`fail`|Read attribute failed.|bool|count|
-|`flags`|Attribute falgs.|int|count|
+|`flags`|Attribute flags.|int|count|
 |`g-sense_error_rate_raw_value`|The raw value of|int|count|
 |`g-sense_error_rate_threshold`|The threshold value of g-sensor error rate.|int|count|
 |`g-sense_error_rate_value`|The value of g-sensor error rate.|int|count|
@@ -194,10 +211,10 @@
 |`reallocated_sector_ct_threshold`|The threshold value of reallocated sector count.|int|count|
 |`reallocated_sector_ct_value`|The value of reallocated sector count.|int|count|
 |`reallocated_sector_ct_worst`|The worst value of reallocated sector count.|int|count|
-|`reported_uncorrect_raw_value`|The raw value of reported uncorrect.|int|count|
-|`reported_uncorrect_threshold`|The threshold value of reported uncorrect.|int|count|
-|`reported_uncorrect_value`|The value of reported uncorrect.|int|count|
-|`reported_uncorrect_worst`|The worst value of reported uncorrect.|int|count|
+|`reported_uncorrect_raw_value`|The raw value of reported uncorrectable.|int|count|
+|`reported_uncorrect_threshold`|The threshold value of reported uncorrectable.|int|count|
+|`reported_uncorrect_value`|The value of reported uncorrectable.|int|count|
+|`reported_uncorrect_worst`|The worst value of reported uncorrectable.|int|count|
 |`sata_crc_error_raw_value`|The raw value of S-ATA cyclic redundancy check error.|int|count|
 |`sata_crc_error_value`|The value of S-ATA cyclic redundancy check error.|int|count|
 |`sata_crc_error_worst`|The worst value of S-ATA cyclic redundancy check error.|int|count|
@@ -220,7 +237,7 @@
 |`start_stop_count_worst`|The worst value of start and stop count.|int|count|
 |`temp_c`|Device temperature.|int|C|
 |`temperature_celsius_raw_value`|The raw value of temperature.|int|C|
-|`temperature_celsius_threshold`|The threshold value of themperature.|int|C|
+|`temperature_celsius_threshold`|The threshold value of temperature.|int|C|
 |`temperature_celsius_value`|The value of temperature.|int|C|
 |`temperature_celsius_worst`|The worst value of temperature.|int|C|
 |`thermal_throttle_raw_value`|The raw value of thermal throttle.|int|count|
@@ -249,8 +266,8 @@
 |`unexpect_power_loss_ct_raw_value`|The raw value of unexpected power loss count.|int|count|
 |`unexpect_power_loss_ct_value`|The value of unexpected power loss count.|int|count|
 |`unexpect_power_loss_ct_worst`|The worst value of unexpected power loss count.|int|count|
-|`unknown_attribute_raw_value`|The raw value of nknow attribute.|int|-|
-|`unknown_attribute_value`|The value of unknow attribute.|int|-|
-|`unknown_attribute_worst`|The worst value of unknow attribute.|int|-|
+|`unknown_attribute_raw_value`|The raw value of unknown attribute.|int|-|
+|`unknown_attribute_value`|The value of unknown attribute.|int|-|
+|`unknown_attribute_worst`|The worst value of unknown attribute.|int|-|
 
 

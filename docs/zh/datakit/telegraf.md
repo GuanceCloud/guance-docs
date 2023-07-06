@@ -1,14 +1,17 @@
 
 # Telegraf 数据接入
+
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple:
 
 ---
 
+<!-- markdownlint-disable MD046 -->
 ???+ attention
 
     建议在使用 Telegraf 之前，先确 DataKit 是否能满足期望的数据采集。如果 DataKit 已经支持，不建议用 Telegraf 来采集，这可能会导致数据冲突，从而造成使用上的困扰。
+<!-- markdownlint-enable -->
 
 Telegraf 是一个开源的数据采集工具。DataKit 通过简单的配置即可接入 Telegraf 采集的数据集。
 
@@ -38,7 +41,7 @@ sudo apt-get update && sudo apt-get install telegraf
 - Linux: `/etc/telegraf/telegraf.conf`
 - Windows：配置文件就在 Telegraf 二进制同级目录（视具体安装情况而定）
 
-> 注意： Mac 下，如果通过 [`datakit --install telegraf` 安装](datakit-tools-how-to.md#extras)，配置目录和 Linux 一样。
+> 注意：Mac 下，如果通过 [`datakit install --telegraf` 安装](datakit-tools-how-to.md#extras)，配置目录和 Linux 一样。
 
 修改配置文件如下：
 

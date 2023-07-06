@@ -45,9 +45,8 @@ yum -y install telegraf
 
 说明：示例 Linux 版本为：CentOS Linux release 7.8.2003 (Core)
 
-### 部署实施
 
-#### 指标采集 (必选)
+### 指标采集 (必选)
 
 1、 数据上传至 DataKit，修改主配置文件 `telegraf.conf`
 
@@ -106,7 +105,7 @@ systemctl start telegraf
 
 ![image](../imgs/input-chrony-3.png)
 
-#### 插件标签 (非必选)
+### 插件标签 (非必选)
 
 参数说明
 

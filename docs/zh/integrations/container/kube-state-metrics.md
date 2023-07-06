@@ -27,13 +27,9 @@ kube-state-metrics/ Kubernetes
 
 ## 安装配置
 
-说明：示例 kube-state-metrics 版本为 2.3.0，Kubernetes 集群 1.22.6 。
+说明：示例 kube-state-metrics 版本为 2.3.0，Kubernetes 集群 1.22.6
 
-### 部署实施
-
-(Kubernetes 集群)
-
-#### 指标采集 (必选)
+### 指标采集 (必选)
 
 1、 修改镜像
 
@@ -95,7 +91,7 @@ curl http://10.244.36.66:8080/metrics
 
 ![image](../imgs/input-kube-state-metrics-10.png)
 
-#### 插件标签 (非必选）
+### 插件标签 (非必选）
 
 暂无
 
@@ -156,4 +152,5 @@ dist：
 
 ## 进一步阅读
 
-暂无
+- <[TAG 在观测云中的最佳实践](../../best-practices/insight/tag.md)>
+- <[多个 Kubernetes 集群指标采集最佳实践](../../best-practices/cloud-native/multi-cluster.md)>

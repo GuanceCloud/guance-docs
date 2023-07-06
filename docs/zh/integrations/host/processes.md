@@ -23,11 +23,9 @@ Processes 性能指标展示，包括 CPU 使用率、内存使用率、线程�
 
 说明：示例 Linux 版本为：CentOS Linux release 7.8.2003 (Core)
 
-### 部署实施
-
 (Linux / Windows 环境相同)
 
-#### 指标采集 (必选)
+### 指标采集 (必选)
 
 1、 开启 Datakit Processes 插件，复制 sample 文件
 
@@ -55,7 +53,7 @@ cp host_processes.conf.sample host_processes.conf
 
 ![image](../imgs/input-processes-3.png)
 
-#### 插件标签 (非必选)
+### 插件标签 (非必选)
 
 参数说明
 

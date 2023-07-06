@@ -13,13 +13,10 @@ Etcd 性能指标展示，包括接收 gRPC 客户端的总字节数、发送 gR
 
 ## 版本支持
 
-操作系统支持：Linux
+- 操作系统支持：Linux
+- [Etcd 版本支持情况](../../datakit/etcd.md#requirements)
 
-## 安装部署
-
-说明：示例 Etcd 版本为 etcd-v3.4.13(CentOS)，各个不同版本指标可能存在差异。
-
-### 前置条件
+## 前置条件
 
 - Etcd 所在服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
 - 检查是否能正常收集数据，默认的 metrics 接口是 http://localhost:2379/metrics
@@ -30,9 +27,13 @@ curl http://127.0.0.1:2379/metrics
 
 ![image](../imgs/etcd2.png)
 
+## 安装部署
+
+说明：示例 Etcd 版本为 etcd-v3.4.13(CentOS)，各个不同版本指标可能存在差异。
+
 ### 配置实施
 
-#### 二进制安装
+### 二进制安装
 
 通过二进制方式安装的 Etcd，推荐在宿主机上部署 DataKit，使用 [http://127.0.0.1:2379/metrics](http://127.0.0.1:2379/metrics) 采集指标数据。
 **指标采集 (必选)**
@@ -159,7 +160,7 @@ systemctl restart datakit
 systemctl restart datakit
 ```
 
-#### Kubernetes 集群
+### Kubernetes 集群
 
 在 Kubernetes 集群，推荐使用 Daemonset 部署 DataKit，通过证书的方式访问 Etc。<br />
 下面的部署中，[https://172.16.0.229:2379/metrics](https://172.16.0.229:2379/metrics) 是 Etcd 的一个节点。
@@ -592,7 +593,7 @@ data:
 
 > **注意：**由于版本不同，请下载最新 `datakit.yaml` ，并结合自己开通的采集器情况做相应改动。
 
-#### 指标预览
+### 指标预览
 
 ![image](../imgs/etcd4.png)
 

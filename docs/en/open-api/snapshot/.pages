@@ -1,0 +1,5 @@
+nav:
+  - 'Get Snapshot List': list.md
+  - 'Create a Snapshot': generate.md
+  - 'Share a Snapshot': share.md
+  - 'Delete a Snapshot': delete.md

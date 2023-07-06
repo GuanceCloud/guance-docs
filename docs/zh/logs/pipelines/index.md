@@ -47,7 +47,7 @@
 
 ### 批量操作
 
-在观测云工作空间「日志」-「Pipelines」，点击「批量操作」，即可「批量导出」或「批量删除」Pipelines。
+在观测云工作空间「日志」-「Pipelines」，点击**批量操作**，即可**批量导出**或**批量删除**Pipelines。
 
 ???- attention
 
@@ -80,7 +80,7 @@
 
 ![](../img/1-log-pipeline-1.png)
 
-根据所选日志来源自动生成同名 pipeline 文件名称，点击「确定」后，即可创建一个自定义 pipeline 文件。
+根据所选日志来源自动生成同名 pipeline 文件名称，点击**确定**后，即可创建一个自定义 pipeline 文件。
 
 注意：DataKit 会自动获取官方库 pipeline 文件，若克隆的自定义 pipeline 文件与官方 pipeline 同名，此时 DataKit 会优先自动获取新建的自定义 pipeline 文件配置；若克隆的自定义 pipeline 文件与官方 pipeline 不同名，则需要在对应采集器的 pipeline 修改对应的 pipeline 的文件名称。
 
@@ -92,7 +92,7 @@
 
 ## 注意事项
 
-若您从未通过 DataKit 配置过日志采集器，在观测云工作空间创建了 pipeline 文件以后，您需要在您的主机上 [安装 DataKit](../../datakit/datakit-install.md)  ，且开启 pipeline 文件对应采集器的日志采集和 pipeline 功能。以 Nginx 为例，在 [Nginx 采集器](../../integrations/webservice/nginx.md) 中开启日志采集并开启 `pipeline = "nginx.p"`，开启完成后重启 DataKit 即可生效。
+若您从未通过 DataKit 配置过日志采集器，在观测云工作空间创建了 pipeline 文件以后，您需要在您的主机上 [安装 DataKit](../../datakit/datakit-install.md)  ，且开启 pipeline 文件对应采集器的日志采集和 pipeline 功能。以 Nginx 为例，在 [Nginx 采集器](../../integrations/webserver/nginx.md) 中开启日志采集并开启 `pipeline = "nginx.p"`，开启完成后重启 DataKit 即可生效。
 
 注意：`pipeline = "nginx.p" `中 `nginx.p` 可以不填，DataKit 会根据您选择的日志来源自动匹配您创建的日志 pipeline 文件。若日志来源和 pipeline 文件名称不一致，则需要在 `pipeline = "..."` 填入对应的 pipeline 文件名称，DataKit 会优先匹配用户自定义的 pipeline 文件。
 

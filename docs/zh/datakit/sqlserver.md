@@ -1,5 +1,6 @@
 
 # SQLServer
+
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](index.md#legends "支持选举")
@@ -16,7 +17,7 @@ SQL Server 采集器采集 SQL Server `waitstats`、`database_io` 等相关指�
 
 Linux、Windows:
 
-```
+```sql
 USE master;
 GO
 CREATE LOGIN [guance] WITH PASSWORD = N'yourpassword';
@@ -27,18 +28,18 @@ GRANT VIEW ANY DEFINITION TO [guance];
 GO
 ```
 
-aliyun RDS SQL Server:
+Aliyun RDS SQL Server:
 
-```
+```sql
 USE master;
 GO
 CREATE LOGIN [guance] WITH PASSWORD = N'yourpassword';
 GO
-
 ```
 
 ## 配置 {#config}
 
+<!-- markdownlint-disable MD046 -->
 === "主机安装"
 
     进入 DataKit 安装目录下的 `conf.d/db` 目录，复制 `sqlserver.conf.sample` 并命名为 `sqlserver.conf`。示例如下：
@@ -78,11 +79,12 @@ GO
     
     ```
     
-    配置好后，重启 DataKit 即可。
+    配置好后，[重启 DataKit](datakit-service-how-to.md#manage-service) 即可。
 
 === "Kubernetes"
 
     目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+<!-- markdownlint-enable -->
 
 ## 指标 {#measurements}
 
@@ -95,21 +97,22 @@ GO
   # ...
 ```
 
+<!-- markdownlint-disable MD024 -->
 
 
 ### `sqlserver`
 
--  标签
+- 标签
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
-|`sqlserver_host`|host name which installed sqlserver|
+|`sqlserver_host`|host name which installed SQLServer|
 
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cpu_count`|Specifies the number of logical CPUs on the system. Not nullable.|int|count|
 |`db_offline`|num of database state in offline|int|count|
@@ -125,19 +128,19 @@ GO
 
 ### `sqlserver_performance`
 
--  标签
+- 标签
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
 |`counter_name`|Name of the counter. To get more information about a counter, this is the name of the topic to select from the list of counters in Use SQL Server Objects.|
 |`object_name`|Category to which this counter belongs.|
-|`sqlserver_host`|host name which installed sqlserver|
+|`sqlserver_host`|host name which installed SQLServer|
 
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cntr_value`|Current value of the counter.|int|count|
 
@@ -146,19 +149,19 @@ GO
 
 ### `sqlserver_waitstats`
 
--  标签
+- 标签
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
-|`sqlserver_host`|host name which installed sqlserver|
+|`sqlserver_host`|host name which installed SQLServer|
 |`wait_category`|wait category info|
 |`wait_type`|Name of the wait type. For more information, see Types of Waits, later in this topic|
 
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`max_wait_time_ms`|Maximum wait time on this wait type.|int|ms|
 |`resource_wait_ms`|wait_time_ms-signal_wait_time_ms|int|ms|
@@ -171,21 +174,21 @@ GO
 
 ### `sqlserver_database_io`
 
--  标签
+- 标签
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
 |`database_name`|database name|
-|`file_type`|Description of the file type,ROWS、LOG、FILESTREAM、FULLTEXT (Full-text catalogs earlier than SQL Server 2008.)|
+|`file_type`|Description of the file type, `ROWS/LOG/FILESTREAM/FULLTEXT` (Full-text catalogs earlier than SQL Server 2008.)|
 |`logical_filename`|Logical name of the file in the database|
 |`physical_filename`|Operating-system file name.|
-|`sqlserver_host`|host name which installed sqlserver|
+|`sqlserver_host`|host name which installed SQLServer|
 
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`read`|Number of reads issued on the file.|int|count|
 |`read_bytes`|Total number of bytes read on this file|int|B|
@@ -201,19 +204,19 @@ GO
 
 ### `sqlserver_schedulers`
 
--  标签
+- 标签
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
 |`cpu_id`|CPU ID assigned to the scheduler.|
 |`scheduler_id`|ID of the scheduler. All schedulers that are used to run regular queries have ID numbers less than 1048576. Those schedulers that have IDs greater than or equal to 1048576 are used internally by SQL Server, such as the dedicated administrator connection scheduler. Is not nullable.|
-|`sqlserver_host`|host name which installed sqlserver|
+|`sqlserver_host`|host name which installed SQLServer|
 
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`active_workers_count`|Number of workers that are active. An active worker is never preemptive, must have an associated task, and is either running, runnable, or suspended. Is not nullable.|int|count|
 |`context_switches_count`|Number of context switches that have occurred on this scheduler|int|count|
@@ -235,18 +238,18 @@ GO
 
 ### `sqlserver_volumespace`
 
--  标签
+- 标签
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
-|`sqlserver_host`|host name which installed sqlserver|
+|`sqlserver_host`|host name which installed SQLServer|
 |`volume_mount_point`|Mount point at which the volume is rooted. Can return an empty string. Returns null on Linux operating system.|
 
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`volume_available_space_bytes`|Available free space on the volume|int|B|
 |`volume_total_space_bytes`|Total size in bytes of the volume|int|B|
@@ -265,21 +268,19 @@ GO
 
 
 
-
-
 ### `sqlserver_database_size`
 
--  标签
+- 标签
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
 |`name`|Name of the database|
 
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`data_size`|The size of file of Rows|float|KB|
 |`log_size`|The size of file of Log|float|KB|
@@ -288,6 +289,8 @@ GO
 
 
 ## 日志 {#logging}
+
+以下指标集均以日志形式收集，所有日志等级均为 `info`。
 
 
 
@@ -305,10 +308,10 @@ GO
 
 ### `sqlserver_lock_row`
 
--  标签
+- 标签
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
 |`host_name`|Name of the client workstation that is specific to a session|
 |`login_name`|SQL Server login name under which the session is currently executing|
@@ -318,7 +321,7 @@ GO
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`blocking_session_id`|ID of the session that is blocking the request|int|count|
 |`cpu_time`|CPU time in milliseconds that is used by the request|int|ms|
@@ -332,37 +335,12 @@ GO
 
 
 
-### `sqlserver_lock_database`
-
--  标签
-
-
-| 标签名 | 描述    |
-|  ----  | --------|
-|`db_name`|Name of the database under which this resource is scoped|
-|`object`|ID or name of the entity in a database with which a resource is associated|
-|`request_mode`|Mode of the request|
-|`request_status`|Current status of this request|
-|`request_type`|Request type|
-|`resource_type`|Represents the resource type|
-|`spid`|Session ID that currently owns this request, maximum length is 4 |
-
-- 字段列表
-
-
-| 指标 | 描述| 数据类型 | 单位   |
-| ---- |---- | :---:    | :----: |
-|`resource_database_id`|ID of the database under which this resource is scoped|int|count|
-
-
-
-
 ### `sqlserver_lock_table`
 
--  标签
+- 标签
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
 |`db_name`|Name of the database under which this resource is scoped|
 |`object_name`|Name of the entity in a database with which a resource is associated|
@@ -373,7 +351,7 @@ GO
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`resource_session_id`|Session ID that currently owns this request|int|count|
 
@@ -382,10 +360,10 @@ GO
 
 ### `sqlserver_lock_dead`
 
--  标签
+- 标签
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
 |`blocking_object_name`|Indicates the name of the object to which this partition belongs|
 |`blocking_text`|Text of the SQL query which is blocking|
@@ -397,7 +375,7 @@ GO
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`blocking_session_id`|ID of the session that is blocking the request|int|count|
 |`request_session_id`|Session ID that currently owns this request|int|count|
@@ -407,17 +385,17 @@ GO
 
 ### `sqlserver_logical_io`
 
--  标签
+- 标签
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
 |`message`|Text of the SQL query|
 
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`avg_logical_io`|Average number of logical writes and logical reads|int|count|
 |`creation_time`|The Unix time at which the plan was compiled, in millisecond|int|count|
@@ -432,17 +410,17 @@ GO
 
 ### `sqlserver_worker_time`
 
--  标签
+- 标签
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
 |`message`|Text of the SQL query|
 
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`avg_worker_time`|Average amount of CPU time, reported in milliseconds|int|count|
 |`creation_time`|The Unix time at which the plan was compiled, in millisecond|int|count|
@@ -454,42 +432,40 @@ GO
 
 
 
-
+<!-- markdownlint-enable -->
 
 ## 日志采集 {#logging}
 
+<!-- markdownlint-disable MD046 -->
 ???+ attention
 
     必须将 DataKit 安装在 SQLServer 所在主机才能采集日志。
+<!-- markdownlint-enable -->
 
-如需采集 SQL Server 的日志，可在 sqlserver.conf 中 将 `files` 打开，并写入 SQL Server 日志文件的绝对路径。比如：
+如需采集 SQL Server 的日志，可在 *sqlserver.conf* 中 将 `files` 打开，并写入 SQL Server 日志文件的绝对路径。比如：
 
-```toml
-    [[inputs.sqlserver]]
-      ...
-      [inputs.sqlserver.log]
+```toml hl_lines="4"
+[[inputs.sqlserver]]
+    ...
+    [inputs.sqlserver.log]
         files = ["/var/opt/mssql/log/error.log"]
 ```
 
+开启日志采集以后，默认会产生日志来源（*source*）为 `sqlserver` 的日志。
 
-开启日志采集以后，默认会产生日志来源（`source`）为 `sqlserver` 的日志。
+### 日志 Pipeline 功能切割字段说明 {#pipeline}
 
->注意：必须将 DataKit 安装在 SQL Server 所在主机才能采集 SQL Server 日志
+SQL Server 通用日志文本示例：
 
-### 日志 pipeline 功能切割字段说明 {#pipeline}
-
-- SQL Server 通用日志切割
-
-通用日志文本示例：
-```
+```log
 2021-05-28 10:46:07.78 spid10s     0 transactions rolled back in database 'msdb' (4:0). This is an informational message only. No user action is required
 ```
 
 切割后的字段列表如下：
 
-| 字段名 | 字段值              | 说明                                         |
-| ---    | ---                 | ---                                          |
-| msg    | spid...             | 日志内容                                     |
-| time   | 1622169967780000000 | 纳秒时间戳（作为行协议时间）                 |
-| origin | spid10s             | 源                                           |
-| status | info                | 由于日志没有明确字段说明日志等级，默认为info |
+| 字段名   | 字段值                | 说明                                          |
+| ---      | ---                   | ---                                           |
+| `msg`    | `spid...`             | 日志内容                                      |
+| `time`   | `1622169967780000000` | 纳秒时间戳（作为行协议时间）                  |
+| `origin` | `spid10s`             | 源                                            |
+| `status` | `info`                | 由于日志没有明确字段说明日志等级，默认为 info |

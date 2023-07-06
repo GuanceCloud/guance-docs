@@ -1,4 +1,3 @@
-<!-- This file required to translate to EN. -->
 
 # System
 ---
@@ -7,17 +6,17 @@
 
 ---
 
-system 采集器收集系统负载、正常运行时间、CPU 核心数量以及登录的用户数。
+The system collector collects system load, uptime, the number of CPU cores, and the number of users logged in.
 
-## 前置条件 {#requrements}
+## Preconditions {#requrements}
 
-无
+None
 
-## 配置 {#config}
+## Configuration {#config}
 
-=== "主机安装"
+=== "Host Installation"
 
-    进入 DataKit 安装目录下的 `conf.d/host` 目录，复制 `system.conf.sample` 并命名为 `system.conf`。示例如下：
+    Go to the `conf.d/host` directory under the DataKit installation directory, copy `system.conf.sample` and name it `system.conf`. Examples are as follows:
     
     ```toml
         
@@ -31,22 +30,22 @@ system 采集器收集系统负载、正常运行时间、CPU 核心数量以及
     
     ```
     
-    配置好后，重启 DataKit 即可。
+    After configuration, restart DataKit.
 
 === "Kubernetes"
 
-    支持以环境变量的方式修改配置参数：
+    Modifying configuration parameters as environment variables is supported:
     
-    | 环境变量名              | 对应的配置参数项 | 参数示例                                                     |
+    | Environment variable name              | Corresponding configuration parameter item | Parameter example                                                     |
     | :---                    | ---              | ---                                                          |
-    | `ENV_INPUT_SYSTEM_TAGS` | `tags`           | `tag1=value1,tag2=value2` 如果配置文件中有同名 tag，会覆盖它 |
+    | `ENV_INPUT_SYSTEM_TAGS` | `tags`           | `tag1=value1,tag2=value2`. If there is a tag with the same name in the configuration file, it will be overwritten. |
     | `ENV_INPUT_SYSTEM_INTERVAL` | `interval` | `10s` |
 
 ---
 
-## 指标集 {#measurements}
+## Measurements {#measurements}
 
-以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.system.tags]` 指定其它标签：
+For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration through `[inputs.system.tags]`:
 
 ``` toml
  [inputs.system.tags]
@@ -59,78 +58,80 @@ system 采集器收集系统负载、正常运行时间、CPU 核心数量以及
 
 ### `system`
 
-系统运行基础信息
+Basic information about system operation.
 
--  标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
-|`host`|主机名|
+|`host`|hostname|
 
-- 指标列表
+- metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`load1`|过去 1 分钟的 CPU 平均负载|float|-|
-|`load15`|过去 15 分钟的 CPU 平均负载|float|-|
-|`load15_per_core`|每个核心过去 15 分钟的 CPU 平均负载|float|-|
-|`load1_per_core`|每个核心过去 1 分钟的 CPU 平均负载|float|-|
-|`load5`|过去 5 分钟的 CPU 平均负载|float|-|
-|`load5_per_core`|每个核心过去 5 分钟的 CPU 平均负载|float|-|
-|`n_cpus`|CPU 逻辑核心数|int|count|
-|`n_users`|用户数|int|count|
-|`uptime`|系统运行时间|int|s|
+|`cpu_total_usage`|The percentage of used CPU.|float|percent|
+|`load1`|CPU load average over the past 1 minute.|float|-|
+|`load15`|CPU load average over the past 15 minutes.|float|-|
+|`load15_per_core`|CPU single core load average over the past 15 minutes.|float|-|
+|`load1_per_core`|CPU single core load average over the past 1 minute.|float|-|
+|`load5`|CPU load average over the past 5 minutes.|float|-|
+|`load5_per_core`|CPU single core load average over the last 5 minutes.|float|-|
+|`memory_usage`|The percentage of used memory.|float|percent|
+|`n_cpus`|CPU logical core count.|int|count|
+|`n_users`|User number.|int|count|
+|`uptime`|System uptime.|int|s|
 
 
 
 ### `conntrack`
 
-系统网络连接指标（仅 Linux 支持）
+Connection track metrics (Linux only).
 
--  标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
-|`host`|主机名|
+|`host`|hostname|
 
-- 指标列表
+- metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`entries`|当前连接数量|int|count|
-|`entries_limit`|连接跟踪表的大小|int|count|
-|`stat_drop`|跟踪失败被丢弃的包数目|int|count|
-|`stat_early_drop`|由于跟踪表满而导致部分已跟踪包条目被丢弃的数目|int|count|
-|`stat_found`|成功的搜索条目数目|int|count|
-|`stat_ignore`|已经被跟踪的报数目|int|count|
-|`stat_insert`|插入的包数目|int|count|
-|`stat_insert_failed`|插入失败的包数目|int|count|
-|`stat_invalid`|不能被跟踪的包数目|int|count|
-|`stat_search_restart`|由于hash表大小修改而导致跟踪表查询重启的数目|int|count|
+|`entries`|Current number of connections.|int|count|
+|`entries_limit`|The size of the connection tracking table.|int|count|
+|`stat_drop`|The number of packets dropped due to connection tracking failure.|int|count|
+|`stat_early_drop`|The number of partially tracked packet entries dropped due to connection tracking table full.|int|count|
+|`stat_found`|The number of successful search entries.|int|count|
+|`stat_ignore`|The number of reports that have been tracked.|int|count|
+|`stat_insert`|The number of packets inserted.|int|count|
+|`stat_insert_failed`|The number of packages that failed to insert.|int|count|
+|`stat_invalid`|The number of packets that cannot be tracked.|int|count|
+|`stat_search_restart`|The number of connection tracking table query restarts due to hash table size modification.|int|count|
 
 
 
 ### `filefd`
 
-系统文件句柄指标（仅 Linux 支持）
+System file handle metrics (Linux only).
 
--  标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
-|`host`|主机名|
+|`host`|hostname|
 
-- 指标列表
+- metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`allocated`|已分配文件句柄的数目|int|count|
-|`maximum_mega`|文件句柄的最大数目, 单位 M(10^6)|float|count|
+|`allocated`|The number of allocated file handles.|int|count|
+|`maximum_mega`|The maximum number of file handles, unit M(10^6).|float|count|
 
 

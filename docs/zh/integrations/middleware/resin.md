@@ -24,11 +24,9 @@ Resin 版本：ALL
 说明：示例 Resin 版本为 Windows 环境 Resin/4.0.66 (Windows ）。<br />
 指标采集是通过 jolokia-jvm-agent 来采集 Resin 运行时指标。
 
-### 部署实施
-
 (Linux / Windows 环境相同)
 
-#### 指标采集 (必选)
+### 指标采集 (必选)
 
 1、 配置 `config/resin.properties`
 
@@ -134,7 +132,7 @@ datakit --restart
 
 ![image](../imgs/input-resin-3.png)
 
-#### 日志采集 (非必选)
+### 日志采集 (非必选)
 
 参数说明
 
@@ -207,7 +205,7 @@ datakit --restart
 
 ![image](../imgs/input-resin-4.png)
 
-#### 插件标签 (非必选）
+### 插件标签 (非必选）
 
 参数说明
 

@@ -13,20 +13,21 @@ ElasticSearch 采集器主要采集节点运行情况、集群健康、JVM 性�
 - ElasticSearch 版本 >= 6.0.0
 - ElasticSearch 默认采集 `Node Stats` 指标，如果需要采集 `Cluster-Health` 相关指标，需要设置 `cluster_health = true`
 - 设置 `cluster_health = true` 可产生如下指标集
-  - `elasticsearch_cluster_health`
-
+    - `elasticsearch_cluster_health`
 - 设置 `cluster_stats = true` 可产生如下指标集
-  - `elasticsearch_cluster_stats`
+    - `elasticsearch_cluster_stats`
 
 ## 用户权限配置 {#user-permission}
 
-如果开启账号密码访问，需要配置相应的权限，否则会导致监控信息获取失败错误。目前支持 Elasticsearch , Open Distro for Elasticsearch 和 OpenSearch。
+如果开启账号密码访问，需要配置相应的权限，否则会导致监控信息获取失败错误。
+
+目前支持 [Elasticsearch](elasticsearch.md#perm-es)、[Open Distro for Elasticsearch](elasticsearch.md#perm-open-es) 和 [OpenSearch](elasticsearch.md#perm-opensearch)。
 
 ### Elasticsearch {#perm-es}
 
-- 创建角色`monitor`，设置如下权限
+- 创建角色 `monitor`，设置如下权限
 
-```javascript
+```json
   {
     "applications": [],
     "cluster": [
@@ -50,15 +51,15 @@ ElasticSearch 采集器主要采集节点运行情况、集群健康、JVM 性�
 
 ```
 
-- 创建自定义用户，并赋予新创建的`monitor`角色。
+- 创建自定义用户，并赋予新创建的 `monitor` 角色。
 - 其他信息请参考配置文件说明
 
-### Open Distro for Elasticsearch {#perm-open-es}
+### Open Distro for ElasticSearch {#perm-open-es}
 
 - 创建用户
-- 创建角色 `monitor`, 设置如下权限：
+- 创建角色 `monitor`，设置如下权限：
 
-```
+``` http
 PUT _opendistro/_security/api/roles/monitor
 {
   "description": "monitor es cluster",
@@ -89,9 +90,9 @@ PUT _opendistro/_security/api/roles/monitor
 ### OpenSearch {#perm-opensearch}
 
 - 创建用户
-- 创建角色 `monitor`, 设置如下权限：
+- 创建角色 `monitor`，设置如下权限：
 
-```
+``` http
 PUT _plugins/_security/api/roles/monitor
 {
   "description": "monitor es cluster",
@@ -119,6 +120,9 @@ PUT _plugins/_security/api/roles/monitor
 
 - 设置角色与用户之间的映射关系
 
+## 配置 {#config}
+
+<!-- markdownlint-disable MD046 -->
 === "主机安装"
 
     进入 DataKit 安装目录下的 `conf.d/db` 目录，复制 `elasticsearch.conf.sample` 并命名为 `elasticsearch.conf`。示例如下：
@@ -126,8 +130,8 @@ PUT _plugins/_security/api/roles/monitor
     ```toml
         
     [[inputs.elasticsearch]]
-      ## Elasticsearch服务器配置
-      # 支持Basic认证:
+      ## Elasticsearch 服务器配置
+      # 支持 Basic 认证
       # servers = ["http://user:pass@localhost:9200"]
       servers = ["http://localhost:9200"]
     
@@ -135,34 +139,34 @@ PUT _plugins/_security/api/roles/monitor
       # 单位 "ns", "us" (or "µs"), "ms", "s", "m", "h"
       interval = "10s"
     
-      ## HTTP超时设置
+      ## HTTP 超时设置
       http_timeout = "5s"
     
-      ## 发行版本: elasticsearch, opendistro, opensearch
+      ## 发行版本：elasticsearch/opendistro/opensearch
       distribution = "elasticsearch"
     
-      ## 默认local是开启的，只采集当前Node自身指标，如果需要采集集群所有Node，需要将local设置为false
+      ## 默认 local 是开启的，只采集当前 Node 自身指标，如果需要采集集群所有 Node，需要将 local 设置为 false
       local = true
     
-      ## 设置为true可以采集cluster health
+      ## 设置为 true 可以采集 cluster health
       cluster_health = false
     
       ## cluster health level 设置，indices (默认) 和 cluster
       # cluster_health_level = "indices"
     
-      ## 设置为true时可以采集cluster stats.
+      ## 设置为 true 时可以采集 cluster stats.
       cluster_stats = false
     
-      ## 只从master Node获取cluster_stats，这个前提是需要设置 local = true
+      ## 只从 master Node 获取 cluster_stats，这个前提是需要设置 local = true
       cluster_stats_only_from_master = true
     
-      ## 需要采集的Indices, 默认为 _all
+      ## 需要采集的 Indices, 默认为 _all
       indices_include = ["_all"]
     
-      ## indices级别，可取值："shards", "cluster", "indices"
+      ## indices 级别，可取值：shards/cluster/indices
       indices_level = "shards"
     
-      ## node_stats可支持配置选项有"indices", "os", "process", "jvm", "thread_pool", "fs", "transport", "http", "breaker"
+      ## node_stats 可支持配置选项有 indices/os/process/jvm/thread_pool/fs/transport/http/breaker
       # 默认是所有
       # node_stats = ["jvm", "http"]
     
@@ -197,6 +201,7 @@ PUT _plugins/_security/api/roles/monitor
 === "Kubernetes"
 
     目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+<!-- markdownlint-enable -->
 
 ## 指标集 {#measurements}
 
@@ -213,10 +218,10 @@ PUT _plugins/_security/api/roles/monitor
 
 ### `elasticsearch_node_stats`
 
--  标签
+- 标签
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
 |`cluster_name`|Name of the cluster, based on the Cluster name setting setting.|
 |`node_attribute_ml.enabled`|Set to true (default) to enable machine learning APIs on the node.|
@@ -230,7 +235,7 @@ PUT _plugins/_security/api/roles/monitor
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`fs_data_0_available_in_gigabytes`|Total number of gigabytes available to this Java virtual machine on this file store.|float|B|
 |`fs_data_0_free_in_gigabytes`|Total number of unallocated gigabytes in the file store.|float|B|
@@ -283,10 +288,10 @@ PUT _plugins/_security/api/roles/monitor
 
 ### `elasticsearch_indices_stats`
 
--  标签
+- 标签
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
 |`cluster_name`|Name of the cluster, based on the Cluster name setting setting.|
 |`index_name`|Name of the index. The name '_all' target all data streams and indices in a cluster.|
@@ -294,7 +299,7 @@ PUT _plugins/_security/api/roles/monitor
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`total_flush_total`|Number of flush operations.|float|count|
 |`total_flush_total_time_in_millis`|Total time in milliseconds spent performing flush operations.|float|ms|
@@ -320,10 +325,10 @@ PUT _plugins/_security/api/roles/monitor
 
 ### `elasticsearch_cluster_stats`
 
--  标签
+- 标签
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
 |`cluster_name`|Name of the cluster, based on the cluster.name setting.|
 |`node_name`|Name of the node.|
@@ -332,7 +337,7 @@ PUT _plugins/_security/api/roles/monitor
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`nodes_process_open_file_descriptors_avg`|Average number of concurrently open file descriptors. Returns -1 if not supported.|float|count|
 
@@ -340,10 +345,10 @@ PUT _plugins/_security/api/roles/monitor
 
 ### `elasticsearch_cluster_health`
 
--  标签
+- 标签
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
 |`cluster_name`|Name of the cluster.|
 |`cluster_status`|The cluster status: red, yellow, green.|
@@ -351,7 +356,7 @@ PUT _plugins/_security/api/roles/monitor
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`active_primary_shards`|The number of active primary shards in the cluster.|int|count|
 |`active_shards`|The number of active shards in the cluster.|int|count|
@@ -363,14 +368,15 @@ PUT _plugins/_security/api/roles/monitor
 |`status_code`|The health as a number: red = 3, yellow = 2, green = 1.|int|count|
 |`unassigned_shards`|The number of shards that are unassigned to a node.|int|count|
 
- 
 
 
 ## 日志采集 {#logging}
 
+<!-- markdownlint-disable MD046 -->
 ???+ attention
 
     日志采集仅支持采集已安装 DataKit 主机上的日志
+<!-- markdownlint-enable -->
 
 如需采集 ElasticSearch 的日志，可在 elasticsearch.conf 中 将 `files` 打开，并写入 ElasticSearch 日志文件的绝对路径。比如：
 
@@ -383,13 +389,13 @@ files = ["/path/to/your/file.log"]
 
 开启日志采集以后，默认会产生日志来源（`source`）为 `elasticsearch` 的日志。
 
-## 日志 pipeline 功能切割字段说明 {#pipeline}
+## 日志 Pipeline 功能切割字段说明 {#pipeline}
 
 - ElasticSearch 通用日志切割
   
 通用日志文本示例：
 
-```
+``` log
 [2021-06-01T11:45:15,927][WARN ][o.e.c.r.a.DiskThresholdMonitor] [master] high disk watermark [90%] exceeded on [A2kEFgMLQ1-vhMdZMJV3Iw][master][/tmp/elasticsearch-cluster/nodes/0] free: 17.1gb[7.3%], shards will be relocated away from this node; currently relocating away shards totalling [0] bytes; the node is expected to continue to exceed the high disk watermark when these relocations are complete
 ```
 
@@ -402,11 +408,11 @@ files = ["/path/to/your/file.log"]
 | status | WARN                           | 日志等级     |
 | nodeId | master                         | 节点名称     |
 
-- ElastiSearch 搜索慢日志切割
+- ElasticSearch 搜索慢日志切割
   
 搜索慢日志文本示例：
 
-```
+``` log
 [2021-06-01T11:56:06,712][WARN ][i.s.s.query              ] [master] [shopping][0] took[36.3ms], took_millis[36], total_hits[5 hits], types[], stats[], search_type[QUERY_THEN_FETCH], total_shards[1], source[{"query":{"match":{"name":{"query":"Nariko","operator":"OR","prefix_length":0,"max_expansions":50,"fuzzy_transpositions":true,"lenient":false,"zero_terms_query":"NONE","auto_generate_synonyms_phrase_query":true,"boost":1.0}}},"sort":[{"price":{"order":"desc"}}]}], id[], 
 ```
 
@@ -419,13 +425,13 @@ files = ["/path/to/your/file.log"]
 | status   | WARN                | 日志等级         |
 | nodeId   | master              | 节点名称         |
 | index    | shopping            | 索引名称         |
-| duration | 36000000            | 请求耗时，单位ns |
+| duration | 36000000            | 请求耗时，单位 ns|
 
 - ElasticSearch 索引慢日志切割
 
 索引慢日志文本示例：
 
-```
+``` log
 [2021-06-01T11:56:19,084][WARN ][i.i.s.index              ] [master] [shopping/X17jbNZ4SoS65zKTU9ZAJg] took[34.1ms], took_millis[34], type[_doc], id[LgC3xXkBLT9WrDT1Dovp], routing[], source[{"price":222,"name":"hello"}]
 ```
 
@@ -438,5 +444,4 @@ files = ["/path/to/your/file.log"]
 | status   | WARN                | 日志等级         |
 | nodeId   | master              | 节点名称         |
 | index    | shopping            | 索引名称         |
-| duration | 34000000            | 请求耗时，单位ns |
-
+| duration | 34000000            | 请求耗时，单位 ns|

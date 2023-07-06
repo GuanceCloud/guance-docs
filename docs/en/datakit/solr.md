@@ -1,4 +1,3 @@
-<!-- This file required to translate to EN. -->
 
 # Solr
 ---
@@ -7,17 +6,17 @@
 
 ---
 
-solr 采集器，用于采集 solr cache 和 request times 等的统计信息。
+Solr collector, which collects statistics of solr cache, request times, and so on.
 
-## 前置条件 {#requrements}
+## Preconditions {#requrements}
 
-DataKit 使用 Solr Metrics API 采集指标数据，支持 Solr 7.0 及以上版本。可用于 Solr 6.6，但指标数据不完整。
+DataKit uses the Solr Metrics API to collect metrics data and supports Solr 7.0 and above. Available for Solr 6.6, but the indicator data is incomplete.
 
-## 配置 {#config}
+## Configuration {#config}
 
-=== "主机安装"
+=== "Host Installation"
 
-    进入 DataKit 安装目录下的 `conf.d/db` 目录，复制 `solr.conf.sample` 并命名为 `solr.conf`。示例如下：
+    Go to the `conf.d/db` directory under the DataKit installation directory, copy `solr.conf.sample` and name it  `solr.conf`. Examples are as follows:
     
     ```toml
         
@@ -47,15 +46,18 @@ DataKit 使用 Solr Metrics API 采集指标数据，支持 Solr 7.0 及以上�
     
     ```
     
-    配置好后，重启 DataKit 即可。
+
+
+​    
+    After configuration, restart DataKit.
 
 === "Kubernetes"
 
-    目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+    The collector can now be turned on by [ConfigMap Injection Collector Configuration](datakit-daemonset-deploy.md#configmap-setting).
 
-## 指标集 {#measurements}
+## Measurements {#measurements}
 
-以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.solr.tags]` 指定其它标签：
+For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.solr.tags]`:
 
 ``` toml
  [inputs.solr.tags]
@@ -68,22 +70,22 @@ DataKit 使用 Solr Metrics API 采集指标数据，支持 Solr 7.0 及以上�
 
 ### `solr_cache`
 
--  标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
-|`category`|category name|
-|`core`|solr core|
-|`group`|metric group|
-|`host`|host name|
-|`instance`|instance name, generated based on server address|
-|`name`|cache name|
+|`category`|Category name.|
+|`core`|Solr core.|
+|`group`|Metric group.|
+|`host`|System hostname.|
+|`instance`|Instance name, generated based on server address.|
+|`name`|Cache name.|
 
-- 指标列表
+- metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cumulative_evictions`|Number of cache evictions across all caches since this node has been running.|int|count|
 |`cumulative_hitratio`|Ratio of cache hits to lookups across all the caches since this node has been running.|float|percent|
@@ -104,22 +106,22 @@ DataKit 使用 Solr Metrics API 采集指标数据，支持 Solr 7.0 及以上�
 
 ### `solr_request_times`
 
--  标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
-|`category`|category name|
-|`core`|solr core|
-|`group`|metric group|
-|`handler`|request handler|
-|`host`|host name|
-|`instance`|instance name, generated based on server address|
+|`category`|Category name.|
+|`core`|Solr core.|
+|`group`|Metric group.|
+|`handler`|Request handler.|
+|`host`|System hostname.|
+|`instance`|Instance name, generated based on server address.|
 
-- 指标列表
+- metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`count`|Total number of requests made since the Solr process was started.|int|count|
 |`max`|Max of all the request processing time.|float|ms|
@@ -127,34 +129,34 @@ DataKit 使用 Solr Metrics API 采集指标数据，支持 Solr 7.0 及以上�
 |`median`|Median of all the request processing time.|float|ms|
 |`min`|Min of all the request processing time.|float|ms|
 |`p75`|Request processing time for the request which belongs to the 75th Percentile.|float|ms|
-|`p95`|Request processing time in milliseconds for the request which belongs to the 95th Percentile. |float|ms|
-|`p99`|Request processing time in milliseconds for the request which belongs to the 99th Percentile. |float|ms|
-|`p999`|Request processing time in milliseconds for the request which belongs to the 99.9th Percentile. |float|ms|
-|`rate_15min`|Requests per second received over the past 15 minutes.|float|reqps|
-|`rate_1min`|Requests per second received over the past 1 minutes.|float|reqps|
-|`rate_5min`|Requests per second received over the past 5 minutes.|float|reqps|
-|`rate_mean`|Average number of requests per second received|float|reqps|
+|`p95`|Request processing time in milliseconds for the request which belongs to the 95th Percentile.|float|ms|
+|`p99`|Request processing time in milliseconds for the request which belongs to the 99th Percentile.|float|ms|
+|`p999`|Request processing time in milliseconds for the request which belongs to the 99.9th Percentile.|float|ms|
+|`rate_15min`|Requests per second received over the past 15 minutes.|float|req/s|
+|`rate_1min`|Requests per second received over the past 1 minutes.|float|req/s|
+|`rate_5min`|Requests per second received over the past 5 minutes.|float|req/s|
+|`rate_mean`|Average number of requests per second received|float|req/s|
 |`stddev`|Stddev of all the request processing time.|float|ms|
 
 
 
 ### `solr_searcher`
 
--  标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
-|`category`|category name|
-|`core`|solr core|
-|`group`|metric group|
-|`host`|host name|
-|`instance`|instance name, generated based on server address|
+|`category`|Category name.|
+|`core`|Solr core.|
+|`group`|Metric group.|
+|`host`|System hostname.|
+|`instance`|Instance name, generated based on server address.|
 
-- 指标列表
+- metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`deleted_docs`|The number of deleted documents.|int|count|
 |`max_docs`|The largest possible document number.|int|count|
@@ -163,25 +165,25 @@ DataKit 使用 Solr Metrics API 采集指标数据，支持 Solr 7.0 及以上�
 
 
 
-## 日志采集 {#logging}
+## Log Collection {#logging}
 
-如需采集 Solr 的日志，可在 solr.conf 中 将 `files` 打开，并写入 Solr 日志文件的绝对路径。比如：
+To collect Solr's log, open `files` in Solr.conf and write to the absolute path of the Solr log file. For example:
 
 ```toml
 [inputs.solr.log]
-    # 填入绝对路径
+    # fill in the absolute path
     files = ["/path/to/demo.log"]
 ```
 
-切割日志示例：
+Example of cutting logs:
 
 ```
 2013-10-01 12:33:08.319 INFO (org.apache.solr.core.SolrCore) [collection1] webapp.reporter
 ```
 
-切割后字段：
+Cut fields:
 
-| 字段名   | 字段值                        |
+| Field Name   | Field Value                        |
 | -------- | ----------------------------- |
 | Reporter | webapp.reporter               |
 | status   | INFO                          |

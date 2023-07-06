@@ -13,23 +13,23 @@ Ruby 应用的链路追踪，埋点后可在「应用性能监测」应用列表
 
 ## 版本支持
 
-操作系统：Linux / Windows<br />
-Ruby 版本：>=2.7.0
+- 操作系统：Linux / Windows<br />
+- Ruby 版本：>=2.7.0
 
 ## 前置条件
 
-- 在 Ruby 应用服务器上安装 Datakit <[安装 Datakit](../../datakit/datakit-install.md)>
-- 查看 Ruby 版本是否>=2.7.0
+- 在 Ruby 应用服务器上安装 Datakit <[安装 DataKit](../../datakit/datakit-install.md)>
+- [按需下载对应 agent](https://github.com/DataDog/dd-trace-rb)
 
-### 部署实施
+## 部署实施
 
-#### 1. 安装 ddtrace for ruby
+### 1. 安装 ddtrace for ruby
 
 ```shell
 gem install ddtrace -v 1.0.0.beta1
 ```
 
-#### 2. 配置 trace.rb
+### 2. 配置 trace.rb
 
 在 `config/initializers` 新增 `trace.rb`
 
@@ -74,16 +74,21 @@ Datadog.configure do |c|
 
 > 了解更多信息，可参考文档 [https://github.com/DataDog/dd-trace-rb/blob/v1.0.0.beta1/docs/GettingStarted.md](https://github.com/DataDog/dd-trace-rb/blob/v1.0.0.beta1/docs/GettingStarted.md)
 
-#### 3. 重启应用
+### 3. 重启应用
 
 ```shell
  bin/rails server
 ```
 
-#### 4. 进入观测云查看
+### 4. 进入观测云查看
 
 访问一下应用, 以便生成链路数据, 进入观测云「应用性能监测」即可看到自己的应用
 
-## 常见问题排查
 
-<[无数据上报排查](../../datakit/why-no-data.md)>
+## 更多阅读
+
+<[应用性能监测功能介绍](../../application-performance-monitoring/index.md)>
+
+<[链路追踪-字段说明](../../application-performance-monitoring/collection/index.md#_5)>
+
+<[链路追踪（APM）最佳实践](../../best-practices/monitoring/apm.md)>

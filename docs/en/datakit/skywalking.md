@@ -1,4 +1,3 @@
-<!-- This file required to translate to EN. -->
 
 # SkyWalking
 ---
@@ -7,20 +6,20 @@
 
 ---
 
-Datakit 内嵌的 SkyWalking Agent 用于接收，运算，分析 Skywalking Tracing 协议数据。
+The SkyWalking Agent embedded in Datakit is used to receive, compute and analyze Skywalking Tracing protocol data.
 
-## SkyWalking 文档 {#doc}
+## SkyWalking Doc {#doc}
 
-> APM v8.8.3 目前存在不兼容问题无法使用。目前已支持 v8.5.0 v8.6.0 v8.7.0
+> APM v8.8. 3 is currently incompatible and cannot be used. V8.5. 0 v8.6. 0 v8.7. 0 is currently supported.
 
 - [Quickstart](https://skywalking.apache.org/docs/skywalking-showcase/latest/readme/){:target="_blank"}
 - [Docs](https://skywalking.apache.org/docs/){:target="_blank"}
 - [Clients Download](https://skywalking.apache.org/downloads/){:target="_blank"}
 - [Souce Code](https://github.com/apache/skywalking){:target="_blank"}
 
-## 配置 SkyWalking Client {#client-config}
+## Configure SkyWalking Client {#client-config}
 
-打开文件 /path_to_skywalking_agent/config/agent.config 进行配置
+Open file /path_to_skywalking_agent/config/agent.config to configure.
 
 ```conf
 # The service name in UI
@@ -29,16 +28,20 @@ agent.service_name=${SW_AGENT_NAME:your-service-name}
 collector.backend_service=${SW_AGENT_COLLECTOR_BACKEND_SERVICES:<datakit-ip:skywalking-agent-port>}
 ```
 
-## 配置 SkyWalking Agent {#agent-config}
+## Configure SkyWalking Agent {#agent-config}
 
-=== "主机安装"
+=== "Install On Local Host"
 
-    进入 DataKit 安装目录下的 `conf.d/skywalking` 目录，复制 `skywalking.conf.sample` 并命名为 `skywalking.conf`。示例如下：
-    
+    Go to the `conf.d/skywalking` directory under the DataKit installation directory, copy `skywalking.conf.sample` and name it `skywalking.conf`. Examples are as follows:
+
     ```toml
-        
+          
     [[inputs.skywalking]]
-      ## Skywalking grpc server listening on address.
+      ## Skywalking HTTP endpoints for tracing, metric, logging and profiling.
+      ## NOTE: DO NOT EDIT.
+      endpoints = ["/v3/trace", "/v3/metric", "/v3/logging", "/v3/profiling"]
+    
+      ## Skywalking GRPC server listening on address.
       address = "localhost:11800"
     
       ## plugins is a list contains all the widgets used in program that want to be regarded as service.
@@ -77,6 +80,13 @@ collector.backend_service=${SW_AGENT_COLLECTOR_BACKEND_SERVICES:<datakit-ip:skyw
         # key2 = "value2"
         # ...
     
+      ## Threads config controls how many goroutines an agent cloud start to handle HTTP request.
+      ## buffer is the size of jobs' buffering of worker channel.
+      ## threads is the total number fo goroutines at running time.
+      # [inputs.skywalking.threads]
+        # buffer = 100
+        # threads = 8
+    
       ## Storage config a local storage space in hard dirver to cache trace data.
       ## path is the local file path used to cache data.
       ## capacity is total space size(MB) used to store data.
@@ -85,88 +95,100 @@ collector.backend_service=${SW_AGENT_COLLECTOR_BACKEND_SERVICES:<datakit-ip:skyw
         # capacity = 5120
     
     ```
-    
-    以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.skywalking.tags]` 指定其它标签：
-    
+
+    Datakit supports two kinds of Transport Protocol, HTTP & GRPC.
+
+    /v3/profiling API for now used as compatible facility and do not send profiling data to data center.
+
+    HTTP Protocol Config
     ```toml
-     [inputs.skywalking.tags]
+      ## Skywalking HTTP endpoints for tracing, metric, logging and profiling.
+      ## NOTE: DO NOT EDIT.
+      endpoints = ["/v3/trace", "/v3/metric", "/v3/logging", "/v3/logs", "/v3/profiling"]
+    ```
+
+    GRPC Protocol Config
+    ```toml
+      ## Skywalking GRPC server listening on address.
+      address = "localhost:11800"
+    ```
+
+    For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.skywalking.tags]`:
+
+    ```toml
+      [inputs.skywalking.tags]
       # some_tag = "some_value"
       # more_tag = "some_other_value"
       # ...
     ```
 
-=== "Kubernetes"
+=== "Install In Kubernetes Cluster"
 
-    目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+    The collector can now be turned on by [ConfigMap Injection Collector Configuration](datakit-daemonset-deploy.md#configmap-setting).
 
-## 启动 Java Client {#start-java}
+## Restart Java Client {#start-java}
 
 ```command
 java -javaagent:/path/to/skywalking/agent -jar /path/to/your/service.jar
 ```
 
-## 将日志发送到 Datakit {#logging}
+## Send Log to Datakit {#logging}
 - log4j2
 
-toolkit 依赖包添加到 maven 或者 gradle 中。
+The toolkit dependency package is added to the maven or gradle.
 ```xml
-	<dependency>
-      	<groupId>org.apache.skywalking</groupId>
-      	<artifactId>apm-toolkit-log4j-2.x</artifactId>
-      	<version>{project.release.version}</version>
-	</dependency>
+  <dependency>
+    <groupId>org.apache.skywalking</groupId>
+    <artifactId>apm-toolkit-log4j-2.x</artifactId>
+    <version>{project.release.version}</version>
+  </dependency>
 ```
 
-通过 grpc 协议发送出去：
+Sent through grpc protocol:
 ```xml
-<GRPCLogClientAppender name="grpc-log">
-        <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n"/>
-    </GRPCLogClientAppender>
+  <GRPCLogClientAppender name="grpc-log">
+    <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n"/>
+  </GRPCLogClientAppender>
 ```
 
-其他：
+Others:
 
 - [log4j-1.x](https://github.com/apache/skywalking-java/blob/main/docs/en/setup/service-agent/java-agent/Application-toolkit-log4j-1.x.md){:target="_blank"}
 - [logback-1.x](https://github.com/apache/skywalking-java/blob/main/docs/en/setup/service-agent/java-agent/Application-toolkit-logback-1.x.md){:target="_blank"}
 
 
-## SkyWalking JVM 指标集 {#jvm-measurements}
-
-
+## SkyWalking JVM Measurement {#jvm-measurements}
 
 jvm metrics collected by skywalking language agent.
 
-- 标签
+- Tag
+
+| Tag Name  | Description  |
+| --------- | ------------ |
+| `service` | service name |
+
+- Metrics List
 
 
-| 标签名 | 描述    |
-|  ----  | --------|
-|`service`|service name|
-
-- 指标列表
-
-
-| 指标 | 描述| 数据类型 | 单位   |
-| ---- |---- | :---:    | :----: |
-|`class_loaded_count`|loaded class count.|int|count|
-|`class_total_loaded_count`|total loaded class count.|int|count|
-|`class_total_unloaded_class_count`|total unloaded class count.|int|count|
-|`cpu_usage_percent`|cpu usage percentile|float|percent|
-|`gc_phrase_old/new_count`|gc old or new count.|int|count|
-|`heap/stack_committed`|heap or stack committed amount of memory.|int|count|
-|`heap/stack_init`|heap or stack initialized amount of memory.|int|count|
-|`heap/stack_max`|heap or stack max amount of memory.|int|count|
-|`heap/stack_used`|heap or stack used amount of memory.|int|count|
-|`pool_*_committed`|committed amount of memory in variety of pool(code_cache_usage,newgen_usage,oldgen_usage,survivor_usage,permgen_usage,metaspace_usage).|int|count|
-|`pool_*_init`|initialized amount of memory in variety of pool(code_cache_usage,newgen_usage,oldgen_usage,survivor_usage,permgen_usage,metaspace_usage).|int|count|
-|`pool_*_max`|max amount of memory in variety of pool(code_cache_usage,newgen_usage,oldgen_usage,survivor_usage,permgen_usage,metaspace_usage).|int|count|
-|`pool_*_used`|used amount of memory in variety of pool(code_cache_usage,newgen_usage,oldgen_usage,survivor_usage,permgen_usage,metaspace_usage).|int|count|
-|`thread_blocked_state_count`|blocked state thread count|int|count|
-|`thread_daemon_count`|thread daemon count.|int|count|
-|`thread_live_count`|thread live count.|int|count|
-|`thread_peak_count`|thread peak count.|int|count|
-|`thread_runnable_state_count`|runnable state thread count.|int|count|
-|`thread_time_waiting_state_count`|time waiting state thread count.|int|count|
-|`thread_waiting_state_count`|waiting state thread count.|int|count|
-
-
+| Metrics                            | Description                                                                                                                               | Data Type |  Unit   |
+| ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | :-------: | :-----: |
+| `class_loaded_count`               | loaded class count.                                                                                                                       |    int    |  count  |
+| `class_total_loaded_count`         | total loaded class count.                                                                                                                 |    int    |  count  |
+| `class_total_unloaded_class_count` | total unloaded class count.                                                                                                               |    int    |  count  |
+| `cpu_usage_percent`                | cpu usage percentile                                                                                                                      |   float   | percent |
+| `gc_phrase_old/new_count`          | gc old or new count.                                                                                                                      |    int    |  count  |
+| `heap/stack_committed`             | heap or stack committed amount of memory.                                                                                                 |    int    |  count  |
+| `heap/stack_init`                  | heap or stack initialized amount of memory.                                                                                               |    int    |  count  |
+| `heap/stack_max`                   | heap or stack max amount of memory.                                                                                                       |    int    |  count  |
+| `heap/stack_used`                  | heap or stack used amount of memory.                                                                                                      |    int    |  count  |
+| `pool_*_committed`                 | committed amount of memory in variety of pool(code_cache_usage,newgen_usage,oldgen_usage,survivor_usage,permgen_usage,metaspace_usage).   |    int    |  count  |
+| `pool_*_init`                      | initialized amount of memory in variety of pool(code_cache_usage,newgen_usage,oldgen_usage,survivor_usage,permgen_usage,metaspace_usage). |    int    |  count  |
+| `pool_*_max`                       | max amount of memory in variety of pool(code_cache_usage,newgen_usage,oldgen_usage,survivor_usage,permgen_usage,metaspace_usage).         |    int    |  count  |
+| `pool_*_used`                      | used amount of memory in variety of pool(code_cache_usage,newgen_usage,oldgen_usage,survivor_usage,permgen_usage,metaspace_usage).        |    int    |  count  |
+| `thread_blocked_state_count`       | blocked state thread count                                                                                                                |    int    |  count  |
+| `thread_daemon_count`              | thread daemon count.                                                                                                                      |    int    |  count  |
+| `thread_live_count`                | thread live count.                                                                                                                        |    int    |  count  |
+| `thread_peak_count`                | thread peak count.                                                                                                                        |    int    |  count  |
+| `thread_runnable_state_count`      | runnable state thread count.                                                                                                              |    int    |  count  |
+| `thread_time_waiting_state_count`  | time waiting state thread count.                                                                                                          |    int    |  count  |
+| `thread_waiting_state_count`       | waiting state thread count.                                                                                                               |    int    |  count  |

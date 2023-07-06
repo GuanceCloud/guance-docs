@@ -1,23 +1,22 @@
-<!-- This file required to translate to EN. -->
 
 # InfluxDB
 ---
 
-:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](index.md#legends "支持选举")
+:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](index.md#legends "支持选举")index.md#legends "支持选举")
 
 ---
 
-InfluxDB 采集器，用于采集 InfluxDB 的数据。
+The InfuxDB collector is used to collect the data of the InfuxDB.
 
-## 前置条件 {#requirements}
+## Preconditions {#requirements}
 
-InfluxDB 采集器仅适用于 InfluxDB v1.x, 对于 InfluxDB v2.x 需要使用 prom 采集器进行采集
+The infuxdb collector is only applicable to infuxdb v1.x, and the prom collector is required for infuxdb v2.x.
 
-## InfluxDB 采集器配置 {#config}
+## InfluxDB Collector Configuration {#config}
 
-=== "主机安装"
+=== "Host Installation"
 
-    进入 DataKit 安装目录下的 `conf.d/influxdb` 目录，复制 `influxdb.conf.sample` 并命名为 `influxdb.conf`。示例如下：
+    Go to the `conf.d/influxdb` directory under the DataKit installation directory, copy `influxdb.conf.sample` and name it `influxdb.conf`. Examples are as follows:
     
     ```toml
         
@@ -55,25 +54,25 @@ InfluxDB 采集器仅适用于 InfluxDB v1.x, 对于 InfluxDB v2.x 需要使用 
         # more_tag = "some_other_value"
     
     ```
-
-    配置好后，[重启 DataKit](datakit-service-how-to.md#manage-service) 即可。
+    
+    Once configured, [restart DataKit](datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+    The collector can now be turned on by [ConfigMap injection collector configuration](datakit-daemonset-deploy.md#configmap-setting).
 
-### 适用于 InfluxDB v2.x 的 prom 采集器配置示例 {#prom-config}
+### Sample Prom Collector Configuration for InfuxDB v2.x {#prom-config}
 
 ```toml
 [[inputs.prom]]
-  ## Exporter 地址
+  ## Exporter address
   url = "http://127.0.0.1:8086/metrics"
 
   metric_types = ["counter", "gauge"]
 
   interval = "10s"
 
-  ## TLS 配置
+  ## TLS configuration.
   tls_open = false
   # tls_ca = "/tmp/ca.crt"
   # tls_cert = "/tmp/peer.crt"
@@ -87,7 +86,7 @@ InfluxDB 采集器仅适用于 InfluxDB v1.x, 对于 InfluxDB v2.x 需要使用 
     prefix = "go_"
     name = "influxdb_v2_go"
   
-  ## histogram 类型
+  ## Histogram type.
   # [[inputs.prom.measurements]]
   #   prefix = "http_api_request_"
   #   name = "influxdb_v2_http_request"
@@ -104,16 +103,16 @@ InfluxDB 采集器仅适用于 InfluxDB v1.x, 对于 InfluxDB v2.x 需要使用 
     prefix = "task_"
     name = "influxdb_v2_task" 
 
-  ## 自定义Tags
+  ## Customize tags.
   [inputs.prom.tags]
   # some_tag = "some_value"
   # more_tag = "some_other_value"
 
 ```
 
-## 指标集 {#measurements}
+## Measurements {#measurements}
 
-以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.influxdb.tags]` 指定其它标签：
+For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.influxdb.tags]`:
 
 ``` toml
  [inputs.influxdb.tags]
@@ -126,37 +125,37 @@ InfluxDB 采集器仅适用于 InfluxDB v1.x, 对于 InfluxDB v2.x 需要使用 
 
 ### `influxdb_cq`
 
--  标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
-|`host`|host name|
+|`host`|System hostname.|
 
-- 指标列表
+- metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`query_fail`|The total number of continuous queries that executed but failed.|float|-|
-|`query_ok`|The total number of continuous queries that executed successfully. |float|-|
+|`query_ok`|The total number of continuous queries that executed successfully.|float|-|
 
 
 
 ### `influxdb_database`
 
--  标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
-|`database`|database name|
-|`host`|host name|
+|`database`|Database name.|
+|`host`|System hostname.|
 
-- 指标列表
+- metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`num_measurements`|The current number of measurements in the specified database.|float|-|
 |`num_series`|The current series cardinality of the specified database. |float|-|
@@ -165,18 +164,18 @@ InfluxDB 采集器仅适用于 InfluxDB v1.x, 对于 InfluxDB v2.x 需要使用 
 
 ### `influxdb_httpd`
 
--  标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
-|`bind`|bind port|
-|`host`|host name|
+|`bind`|Bind port.|
+|`host`|System hostname.|
 
-- 指标列表
+- metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`auth_fail`|The number of HTTP requests that were aborted due to authentication being required, but not supplied or incorrect.|float|-|
 |`client_error`|The number of HTTP responses due to client errors, with a 4XX HTTP status code.|float|-|
@@ -207,17 +206,17 @@ InfluxDB 采集器仅适用于 InfluxDB v1.x, 对于 InfluxDB v2.x 需要使用 
 
 ### `influxdb_memstats`
 
--  标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
-|`host`|host name|
+|`host`|System hostname.|
 
-- 指标列表
+- metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`alloc`|The currently allocated number of bytes of heap objects.|float|B|
 |`buck_hash_sys`|The bytes of memory in profiling bucket hash tables.|float|B|
@@ -236,11 +235,11 @@ InfluxDB 采集器仅适用于 InfluxDB v1.x, 对于 InfluxDB v2.x 需要使用 
 |`mcache_inuse`|The bytes of allocated mcache structures.|float|B|
 |`mcache_sys`|The bytes of memory obtained from the OS for mcache structures.|float|B|
 |`mspan_inuse`|The bytes of allocated mcache structures.|float|B|
-|`mspan_sys`|The bytes of memory obtained from the OS for mspan.|float|B|
+|`mspan_sys`|The bytes of memory obtained from the OS for `mspan`.|float|B|
 |`next_gc`|The target heap size of the next garbage collection cycle.|float|-|
 |`num_forced_gc`|The number of GC cycles that were forced by the application calling the GC function.|float|-|
 |`num_gc`|The number of completed garbage collection cycles.|float|-|
-|`other_sys`|The number of bytes of memory used other than heap_sys, stacks_sys, mspan_sys, mcache_sys, buckhash_sys, and gc_sys.|float|B|
+|`other_sys`|The number of bytes of memory used other than `heap_sys/stacks_sys/mspan_sys/mcache_sys/buckhash_sys/gc_sys`.|float|B|
 |`pause_ns`|The time garbage collection cycles are paused in nanoseconds.|float|ns|
 |`pause_total_ns`|The total time garbage collection cycles are paused in nanoseconds.|float|ns|
 |`stack_inuse`|The number of bytes in in-use stacks.|float|B|
@@ -252,17 +251,17 @@ InfluxDB 采集器仅适用于 InfluxDB v1.x, 对于 InfluxDB v2.x 需要使用 
 
 ### `influxdb_queryExecutor`
 
--  标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
-|`host`|host name|
+|`host`|System hostname.|
 
-- 指标列表
+- metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`queries_active`|The number of active queries currently being handled.|float|-|
 |`queries_executed`|The number of queries executed (started).|float|-|
@@ -274,17 +273,17 @@ InfluxDB 采集器仅适用于 InfluxDB v1.x, 对于 InfluxDB v2.x 需要使用 
 
 ### `influxdb_runtime`
 
--  标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
-|`host`|host name|
+|`host`|System hostname.|
 
-- 指标列表
+- metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`alloc`|The currently allocated number of bytes of heap objects.|float|B|
 |`frees`|The cumulative number of freed (live) heap objects.|float|-|
@@ -306,24 +305,24 @@ InfluxDB 采集器仅适用于 InfluxDB v1.x, 对于 InfluxDB v2.x 需要使用 
 
 ### `influxdb_shard`
 
--  标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
-|`database`|database name|
-|`engine`|engine|
-|`host`|host name|
-|`id`|id|
-|`index_type`|index type|
-|`path`|path|
-|`retention_policy`|retention policy|
-|`wal_path`|wal path|
+|`database`|Database name.|
+|`engine`|Engine.|
+|`host`|System hostname.|
+|`id`|ID.|
+|`index_type`|Index type.|
+|`path`|Path.|
+|`retention_policy`|Retention policy.|
+|`wal_path`|Wal path.|
 
-- 指标列表
+- metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`disk_bytes`|The size, in bytes, of the shard, including the size of the data directory and the WAL directory.|float|B|
 |`fields_create`|The number of fields created.|float|-|
@@ -341,17 +340,17 @@ InfluxDB 采集器仅适用于 InfluxDB v1.x, 对于 InfluxDB v2.x 需要使用 
 
 ### `influxdb_subscriber`
 
--  标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
-|`host`|host name|
+|`host`|System hostname.|
 
-- 指标列表
+- metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`create_failures`|The number of subscriptions that failed to be created.|float|-|
 |`points_written`|The total number of points that were successfully written to subscribers.|float|-|
@@ -361,24 +360,24 @@ InfluxDB 采集器仅适用于 InfluxDB v1.x, 对于 InfluxDB v2.x 需要使用 
 
 ### `influxdb_tsm1_cache`
 
--  标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
-|`database`|database name|
-|`engine`|engine|
-|`host`|host name|
-|`id`|id|
-|`index_type`|index type|
-|`path`|path|
-|`retention_policy`|retention policy|
-|`wal_path`|wal path|
+|`database`|Database name.|
+|`engine`|Engine.|
+|`host`|System hostname.|
+|`id`|ID.|
+|`index_type`|Index type.|
+|`path`|Path.|
+|`retention_policy`|Retention policy.|
+|`wal_path`|Wal path.|
 
-- 指标列表
+- metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cache_age_ms`|The duration, in milliseconds, since the cache was last snapshotted at sample time.|float|ms|
 |`cached_bytes`|The total number of bytes that have been written into snapshots.|float|B|
@@ -394,24 +393,24 @@ InfluxDB 采集器仅适用于 InfluxDB v1.x, 对于 InfluxDB v2.x 需要使用 
 
 ### `influxdb_tsm1_engine`
 
--  标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
-|`database`|database name|
-|`engine`|engine|
-|`host`|host name|
-|`id`|id|
-|`index_type`|index type|
-|`path`|path|
-|`retention_policy`|retention policy|
-|`wal_path`|wal path|
+|`database`|Database name.|
+|`engine`|Engine.|
+|`host`|System hostname.|
+|`id`|ID.|
+|`index_type`|Index type.|
+|`path`|Path.|
+|`retention_policy`|Retention policy.|
+|`wal_path`|Wal path.|
 
-- 指标列表
+- metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cache_compaction_duration`|The duration (wall time), in nanoseconds, spent in cache compactions.|float|ns|
 |`cache_compaction_err`|The number of cache compactions that have failed due to errors.|float|-|
@@ -447,24 +446,24 @@ InfluxDB 采集器仅适用于 InfluxDB v1.x, 对于 InfluxDB v2.x 需要使用 
 
 ### `influxdb_tsm1_filestore`
 
--  标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
-|`database`|database name|
-|`engine`|engine|
-|`host`|host name|
-|`id`|id|
-|`index_type`|index type|
-|`path`|path|
-|`retention_policy`|retention policy|
-|`wal_path`|wal path|
+|`database`|Database name.|
+|`engine`|Engine.|
+|`host`|System hostname.|
+|`id`|ID.|
+|`index_type`|Index type.|
+|`path`|Path.|
+|`retention_policy`|Retention policy.|
+|`wal_path`|Wal path.|
 
-- 指标列表
+- metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`disk_bytes`|The size, in bytes, of disk usage by the TSM file store.|float|B|
 |`num_files`|The total number of files in the TSM file store.|float|-|
@@ -473,23 +472,24 @@ InfluxDB 采集器仅适用于 InfluxDB v1.x, 对于 InfluxDB v2.x 需要使用 
 
 ### `influxdb_tsm1_wal`
 
--  标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
-|`database`|database name|
-|`engine`|engine|
-|`host`|host name|
-|`id`|id|
-|`index_type`|index type|
-|`path`|path|
-|`retention_policy`|retention policy|
+|`database`|Database name.|
+|`engine`|Engine.|
+|`host`|System hostname.|
+|`id`|ID.|
+|`index_type`|Index type.|
+|`path`|Path.|
+|`retention_policy`|Retention policy.|
+|`wal_path`|Wal path.|
 
-- 指标列表
+- metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`current_segment_disk_bytes`|The current size, in bytes, of the segment disk.|float|B|
 |`old_segments_disk_bytes`|The size, in bytes, of the segment disk.|float|B|
@@ -500,17 +500,17 @@ InfluxDB 采集器仅适用于 InfluxDB v1.x, 对于 InfluxDB v2.x 需要使用 
 
 ### `influxdb_write`
 
--  标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
-|`host`|host name|
+|`host`|System hostname.|
 
-- 指标列表
+- metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`point_req`|The total number of every point requested to be written to this data node.|float|-|
 |`point_req_local`|The total number of point requests that have been attempted to be written into a shard on the same (local) node.|float|-|
@@ -524,13 +524,13 @@ InfluxDB 采集器仅适用于 InfluxDB v1.x, 对于 InfluxDB v2.x 需要使用 
 
 
 
-## 日志采集 {#logging}
+## Log Collection {#logging}
 
-如需采集 InfluxDB 的日志，可在 influxdb.conf 中 将 `files` 打开，并写入 InfluxDB 日志文件的绝对路径。比如：
+To collect the InfuxDB log, open `files` in infuxdb.conf and write to the absolute path of the InfuxDB log file. For example:
 
 ```toml
 [inputs.influxdb.log]
-    # 填入绝对路径
+    # Fill in the absolute path
     files = ["/path/to/demo.log"] 
     ## grok pipeline script path
     pipeline = "influxdb.p"

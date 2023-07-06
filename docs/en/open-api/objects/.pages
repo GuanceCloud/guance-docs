@@ -1,0 +1,3 @@
+nav:
+  - 'Get All Labels': labels.md
+  - 'Modify One/More Labels of a Host': modify-labels.md

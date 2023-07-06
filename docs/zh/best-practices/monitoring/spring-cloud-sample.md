@@ -449,7 +449,7 @@ $ vim index.html
       env: 'test',
       version: '1.0.0',
       trackInteractions: true,
-      allowedDDTracingOrigins:["xxx.xxx.xxx.xxx"]
+      allowedTracingOrigins:["xxx.xxx.xxx.xxx"]
       })
 </script></head> 
 
@@ -460,7 +460,7 @@ $ vim index.html
 >    
 > **trackInteractions**：用户行为采集配置项，可实现页面端用户操作行为统计
 > 
-> **allowedDDTracingOrigins**：前后端（rum 与 apm）打通的配置项，可按需进行设置，需在此处填写与前端页面有交互关系的后端服务器所对应的域名或IP。
+> **allowedTracingOrigins**：前后端（rum 与 apm）打通的配置项，可按需进行设置，需在此处填写与前端页面有交互关系的后端服务器所对应的域名或IP。
 
 
 **注意事项：**
@@ -473,7 +473,7 @@ $ vim index.html
 
 ![image](../images/spring-cloud-sample/29.png)
 
-- **allowedDDTracingOrigins**：实现前后端（APM 与 RUM）打通，该场景只有在前端部署 RUM，后端部署APM 的情况才会生效，需在此处填写与前端页面有交互关系的后端应用服务器所对应的域名（生产环境）或 IP（测试环境）。**应用场景**：前端用户访问出现慢，是由后端代码逻辑异常导致，可通过前端 RUM 慢请求数据直接跳转至 APM 数据查看当次后端代码调用情况，判定慢的根因。**实现原理**：用户访问前端应用，前端应用进行资源及请求调用，触发 rum-js 性能数据采集，rum-js 会生成 trace-id 写在请求的 request_header 里，请求到达后端，后端的 ddtrace 会读取到该 trace_id 并记录在自己的 trace 数据里，从而实现通过相同的 trace_id 来实现应用性能监测和用户访问监测数据联动
+- **allowedTracingOrigins**：实现前后端（APM 与 RUM）打通，该场景只有在前端部署 RUM，后端部署APM 的情况才会生效，需在此处填写与前端页面有交互关系的后端应用服务器所对应的域名（生产环境）或 IP（测试环境）。**应用场景**：前端用户访问出现慢，是由后端代码逻辑异常导致，可通过前端 RUM 慢请求数据直接跳转至 APM 数据查看当次后端代码调用情况，判定慢的根因。**实现原理**：用户访问前端应用，前端应用进行资源及请求调用，触发 rum-js 性能数据采集，rum-js 会生成 trace-id 写在请求的 request_header 里，请求到达后端，后端的 ddtrace 会读取到该 trace_id 并记录在自己的 trace 数据里，从而实现通过相同的 trace_id 来实现应用性能监测和用户访问监测数据联动
 - **env**：必填，应用所属环境，是 test 或 product 或其他字段。
 - **version**：必填，应用所属版本号。
 - **trackInteractions**：用户行为统计，例如点击按钮，提交信息等动作。
@@ -567,7 +567,7 @@ $ vim scheck.conf
 
 ##### 1、标准日志采集（Nginx、Mysql、Redis 等）
 
-通过开启 DataKit 内置的各种 inputs，直接开启相关的日志采集，例如 [Ngnix](../../integrations/webservice/nginx.md)、[Redis](../../integrations/datastorage/redis.md)、[容器](../../integrations/container/index.md)、[ES](../../integrations/datastorage/elasticsearch.md) 等；
+通过开启 DataKit 内置的各种 inputs，直接开启相关的日志采集，例如 [Ngnix](../../integrations/webserver/nginx.md)、[Redis](../../integrations/datastorage/redis.md)、[容器](../../integrations/container/index.md)、[ES](../../integrations/datastorage/elasticsearch.md) 等；
 
 **示例：Nginx**
 

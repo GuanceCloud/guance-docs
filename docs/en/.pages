@@ -1,2 +1,32 @@
 nav:
   - Release Notes: release-notes
+  - <br/>Getting Started: ""
+  - Getting Started: getting-started
+  - DataKit: datakit
+  - <br/>Product Functions: ""
+  - Scenes: scene
+  - Infrastructure: infrastructure
+  - APM: application-performance-monitoring
+  - RUM: real-user-monitoring
+  - Logs: logs
+  - Synthetic Tests: usability-monitoring
+  - Metrics: metrics
+  - Monitoring: monitoring
+  - Events: events
+  - CI Visibility: ci-visibility
+  - <br/>Openess: ""
+  - DataFlux Func: dataflux-func
+  - Developers: developers
+  - OpenAPI: open-api
+  - <br/>Management: ""
+  - Workspace Management: management
+  - Billing: billing
+  - <br/>Deployment: ""
+  - Deployment: deployment
+  - <br/>Others: ""
+  - DQL: dql
+  - Mobile Application: mobile
+  - Agreements: agreements
+
+
+

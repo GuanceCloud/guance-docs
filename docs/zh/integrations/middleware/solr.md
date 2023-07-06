@@ -7,8 +7,12 @@ icon: integrations/solr
 
 ## 版本支持
 
-操作系统支持：Windows/AMD 64, Windows/386, Linux/ARM, Linux/ARM 64, Linux/386, Linux/AMD 64, Darwin/AMD 64
+- 操作系统支持：Windows/AMD 64, Windows/386, Linux/ARM, Linux/ARM 64, Linux/386, Linux/AMD 64, Darwin/AMD 64
+- [Solr 版本支持情况](../../datakit/solr.md#requirements)
 
+## 前置条件
+
+- 服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
 
 ## 安装部署
 
@@ -16,13 +20,7 @@ Solr 采集器，用于采集 solr cache 和 request times 等的统计信息。
 
 说明：示例 Solr 版本为：Solr 7.1 (CentOS)，各个不同版本指标可能存在差异。
 
-### 前置条件
-
-DataKit 使用 Solr Metrics API 采集指标数据，支持 Solr 7.0 及以上版本。可用于 Solr 6.6，但指标数据不完整。
-
-### 配置实施
-
-#### 指标采集 (必选)
+### 指标采集 (必选)
 
 1、 开启 DataKit Solr 插件，复制 sample 文件
 
@@ -67,7 +65,7 @@ systemctl restart datakit
 
 ![image](../imgs/input-solr-2.png)
 
-#### 日志采集 (非必选)
+### 日志采集 (非必选)
 
 1、 修改 `solr.conf` 配置文件
 
@@ -95,7 +93,7 @@ systemctl restart datakit
 
 ![image](../imgs/input-solr-4.png)
 
-#### 插件标签 (非必选)
+### 插件标签 (非必选)
 
 参数说明
 

@@ -8,323 +8,260 @@
 
 ---
 
-Datakit 支持从 kafka 中订阅消息采集链路、指标和日志信息。目前仅支持 `SkyWalking` 以及自定义 topic.
+Datakit 支持从 kafka 中订阅消息采集链路、指标和日志信息。目前仅支持 `SkyWalking` 、`Jaeger` 以及自定义 topic.
 
-## SkyWalking {#kafkamq-SkyWalking}
+## 如何配置 {#config}
 
-### java agent启动配置 {#agent}
+配置文件示例：
 
-kafka 插件默认会将 `traces`, `JVM metrics`, `logging`,  `Instance Properties`, and `profiled snapshots` 发送到 kafka 集群中。 该功能默认是关闭的。需要将 `kafka-reporter-plugin-x.y.z.jar`, 从 `agent/optional-reporter-plugins` 放到 `agent/plugins` 才会生效.
+<!-- markdownlint-disable MD046 -->
+=== "主机安装"
 
+    进入 DataKit 安装目录下的 `conf.d/kafkamq` 目录，复制 `kafkamq.conf.sample` 并命名为 `kafkamq.conf`。示例如下：
+    
+    ```toml
+        
+    [[inputs.kafkamq]]
+      addrs = ["localhost:9092"]
+      # your kafka version:0.8.2 ~ 3.2.0
+      kafka_version = "2.0.0"
+      group_id = "datakit-group"
+      # consumer group partition assignment strategy (range, roundrobin, sticky)
+      assignor = "roundrobin"
+    
+      ## rate limit.
+      #limit_sec = 100
+      ## sample
+      # sampling_rate = 1.0
+    
+      ## kafka tls config
+      # tls_enable = true
+      # tls_security_protocol = "SASL_PLAINTEXT"
+      # tls_sasl_mechanism = "PLAIN"
+      # tls_sasl_plain_username = "user"
+      # tls_sasl_plain_password = "pw"
+    
+      ## -1:Offset Newest, -2:Offset Oldest
+      offsets=-1
+    
+      ## skywalking custom
+      #[inputs.kafkamq.skywalking]
+        ## Required！send to datakit skywalking input.
+        #dk_endpoint="http://localhost:9529"
+    
+        #topics = [
+        #  "skywalking-metrics",
+        #  "skywalking-profilings",
+        #  "skywalking-segments",
+        #  "skywalking-managements",
+        #  "skywalking-meters",
+        #  "skywalking-logging",
+        #]
+        #namespace = ""
+    
+      ## Jaeger from kafka. Please make sure your Datakit Jaeger collector is open ！！！
+      #[inputs.kafkamq.jaeger]
+        ## Required！ ipv6 is "[::1]:9529"
+        #dk_endpoint="http://localhost:9529"
+    
+        ## Required！ topics
+        #topics=["jaeger-spans","jaeger-my-spans"]
+    
+      ## user custom message with PL script.
+      #[inputs.kafkamq.custom]
+        #spilt_json_body = true
+        ## spilt_topic_map determines whether to enable log splitting for specific topic based on the values in the spilt_topic_map[topic].
+        #[inputs.kafkamq.custom.spilt_topic_map]
+        #  "log_topic"=true
+        #  "log01"=false
+        #[inputs.kafkamq.custom.log_topic_map]
+        #  "log_topic"="log.p"
+        #  "log01"="log_01.p"
+        #[inputs.kafkamq.custom.metric_topic_map]
+        #  "metric_topic"="metric.p"
+        #  "metric01"="rum_apm.p"
+        #[inputs.kafkamq.custom.rum_topic_map]
+        #  "rum_topic"="rum_01.p"
+        #  "rum_02"="rum_02.p"
+    
+    
+      ## todo: add other input-mq
+    
+    ```
 
-修改配置文件 agent/config/agent.config
-```txt
-# 服务名称：最终会在 UI 中展示，确保唯一
-agent.service_name=${SW_AGENT_NAME:myApp}
+    配置好后，[重启 DataKit](datakit-service-how-to.md#manage-service) 即可。
 
-# kafka 地址
-plugin.kafka.bootstrap_servers=${SW_KAFKA_BOOTSTRAP_SERVERS:<ip>:<port>}
+=== "Kubernetes"
 
-```
+    目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+<!-- markdownlint-enable -->
 
-> 在启动之前请先确保 kafka 已经启动。
+---
 
-或者 通过环境变量方式
-```shell
--Dskywalking.agent.service_name=myApp 
--Dskywalking.plugin.kafka.bootstrap_servers=10.200.14.114:9092
-```
+> 注意：自 v1.6.0 开始全部支持采样和速率限制，之前的版本只有自定义消息支持。
 
+配置文件注意的地方：
 
-启动java项目（jar包形式启动）
+1. `kafka_version`: 长度为 3，例如：`1.0.0`，`1.2.1` 等等
+1. `offsets`: 注意是 `Newest` 还是 `Oldest`
+1. `SASL` : 如果开启了安全认证，请正确配置用户和密码，如果 Kafka 监听地址是域名形式，请在 `/etc/hosts` 添加映射 IP
 
-- Linux Tomcat 7, Tomcat 8, Tomcat 9  
-  Change the first line of `tomcat/bin/catalina.sh`.
+## SkyWalking {#kafkamq-skywalking}
 
-```shell
-CATALINA_OPTS="$CATALINA_OPTS -javaagent:/path/to/skywalking-agent/skywalking-agent.jar"; export CATALINA_OPTS
-```
+kafka 插件默认会将 `traces/JVM metrics/logging/Instance Properties/profiled snapshots` 发送到 Kafka 集群中。
 
-- Windows Tomcat 7, Tomcat 8, Tomcat 9  
-  Change the first line of `tomcat/bin/catalina.bat`.
+该功能默认是关闭的。需要将 *kafka-reporter-plugin-x.y.z.jar* 从 *agent/optional-reporter-plugins* 放到 *agent/plugins* 目录才会生效。
 
-```shell
-set "CATALINA_OPTS=-javaagent:/path/to/skywalking-agent/skywalking-agent.jar"
-```
+配置文件及说明：
 
-- JAR file  
-  Add `-javaagent` argument to command line in which you start your app. eg:
-
- ```shell
- java -javaagent:/path/to/skywalking-agent/skywalking-agent.jar -jar yourApp.jar
- ```
-
-- Jetty  
-  Modify `jetty.sh`, add `-javaagent` argument to command line in which you start your app. eg:
-
-```shell
-export JAVA_OPTIONS="${JAVA_OPTIONS} -javaagent:/path/to/skywalking-agent/skywalking-agent.jar"
-```
-
-
-### 配置 datakit {#datakit-config}
-复制配置文件并修改
-
-```txt
-cd /usr/local/datakit/conf/kafkamq
-cp kafkamq.conf.sample kafka.conf
-
-```
-
-配置文件说明
 ```toml
-[[inputs.kafkamq]]
-  addrs = ["localhost:9092"]
-  # your kafka version:0.8.2.0 ~ 2.8.0
-  kafka_version = "2.8.0"
-  group_id = "datakit-group"
-  plugins = ["db.type"]
-  # Consumer group partition assignment strategy (range, roundrobin, sticky)
-  assignor = "roundrobin"
+# skywalking custom
+[inputs.kafkamq.skywalking]
 
-  ## kafka tls config
-  # tls_enable = true
-  # tls_security_protocol = "text"
-  # tls_sasl_mechanism = "mechanism"
-  # tls_sasl_plain_username = "user"
-  # tls_sasl_plain_password = "pw"
-
-  ## -1:Offset Newest, -2:Offset Oldest
-  #offsets=-2
-
-  # customer_tags = ["key1", "key2", ...]
-
-  ## Keep rare tracing resources list switch.
-  ## If some resources are rare enough(not presend in 1 hour), those resource will always send
-  ## to data center and do not consider samplers and filters.
-  # keep_rare_resource = false
-
-  [inputs.kafkamq.skywalking]
-    topics = [
-      "skywalking-metrics",
-      "skywalking-profilings",
-      "skywalking-segments",
-      "skywalking-managements",
-      "skywalking-meters",
-      "skywalking-logging",
-    ]
-    namespace = ""
-
-  ## Ignore tracing resources map like service:[resources...].
-  ## The service name is the full service name in current application.
-  ## The resource list is regular expressions uses to block resource names.
-  ## If you want to block some resources universally under all services, you can set the
-  ## service name as "*". Note: double quotes "" cannot be omitted.
-  # [inputs.kafkamq.close_resource]
-    # service1 = ["resource1", "resource2", ...]
-    # service2 = ["resource1", "resource2", ...]
-    # "*" = ["close_resource_under_all_services"]
-    # ...
-
-  ## Sampler config uses to set global sampling strategy.
-  ## sampling_rate used to set global sampling rate.
-  # [inputs.kafkamq.sampler]
-    # sampling_rate = 1.0
-
-  # [inputs.kafkamq.tags]
-    # key1 = "value1"
-    # key2 = "value2"
-    # ...
-
-  ## Storage config a local storage space in hard dirver to cache trace data.
-  ## path is the local file path used to cache data.
-  ## capacity is total space size(MB) used to store data.
-  # [inputs.kafkamq.storage]
-    # path = "./skywalking_storage"
-    # capacity = 5120
-
-  ## user custom message with PL script.
-  ## 目前仅支持 log 和 metrics， topic 和 pl 是必填
-  [inputs.kafkamq.custom]
-  #group_id="datakit"
-  #log_topics=["apm"]
-  #log_pl="log.p"
-  #metric_topic=["metric1"]
-  #metric_pl="kafka_metric.p"
-  ## rate limit. 限速：速率/秒
-  #limit_sec = 100
-  ## sample 采样率
-  # sampling_rate = 1.0
-
-  ## todo: add other input-mq
- 
+  # !!!Required: send to datakit skywalking input.
+  dk_endpoint="http://localhost:9529"
+  
+  topics = [
+    "skywalking-metrics",
+    "skywalking-profilings",
+    "skywalking-segments",
+    "skywalking-managements",
+    "skywalking-meters",
+    "skywalking-logging",
+  ]
+  namespace = ""
 ```
 
-重启 datakit
+将注释打开即可开启订阅，订阅的主题在 SkyWalking agent 配置文件 *config/agent.config* 中。
 
-## 将日志发送到 kafka {#log-to-kafka}
+> 注意：该采集器只是将订阅的数据转发到 Datakit SkyWalking 采集器中，请打开 [SkyWalking](skywalking.md) 采集器，并将 `dk_endpoint` 注释打开。
 
-- log4j2
+## Jaeger {#jaeger}
 
-toolkit 依赖包添加到 maven 或者 gradle 中。
-```xml
-	<dependency>
-      	<groupId>org.apache.skywalking</groupId>
-      	<artifactId>apm-toolkit-log4j-2.x</artifactId>
-      	<version>{project.release.version}</version>
-	</dependency>
+配置文件：
+
+```toml
+# Jaeger from kafka. !!!Note: Make sure Datakit Jaeger collector is open.
+[inputs.kafkamq.jaeger]
+    ## !!!Required: ipv6 is "[::1]:9529"
+    dk_endpoint="http://localhost:9529"
+    
+    ## !!!Required: topics 
+    topics=["jaeger-spans","jaeger-my-spans"]
 ```
 
-在日志中打印 trace ID
+> 注意： 该采集器只是将订阅的数据转发到 Datakit Jaeger 采集器中，请打开 [jaeger](jaeger.md) 采集器，并将 `dk_endpoint` 注释打开。
 
-```xml
-    <Configuration>
-        <Appenders>
-            <Console name="Console" target="SYSTEM_OUT">
-                <PatternLayout pattern="%d [%traceId] %-5p %c{1}:%L - %m%n"/>
-            </Console>
-        </Appenders>
-        <Loggers>
-            <AsyncRoot level="INFO">
-                <AppenderRef ref="Console"/>
-            </AsyncRoot>
-        </Loggers>
-    </Configuration>
-```
+## 自定义 Topic {#kafka-custom}
 
-将日志发送到kafka
-```xml
-<GRPCLogClientAppender name="grpc-log">
-        <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
-    </GRPCLogClientAppender>
-```
-
-整体配置：
-```xml
-<Configuration status="WARN">
-    <Appenders>
-        <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%traceId] [%t] %-5level %logger{36} %msg%n"/>
-        </Console>
-        <GRPCLogClientAppender name="grpc-log">
-            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%traceId] [%t] %-5level %logger{36} %msg%n"/>
-        </GRPCLogClientAppender>
-        <RandomAccessFile name="fileAppender" fileName="${sys:user.home}/tmp/skywalking-logs/log4j2/e2e-service-provider.log" immediateFlush="true" append="true">
-            <PatternLayout>
-                <Pattern>[%sw_ctx] [%p] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c:%L - %m%n</Pattern>
-            </PatternLayout>
-        </RandomAccessFile>
-    </Appenders>
-
-    <Loggers>
-        <Root level="info">
-            <AppenderRef ref="Console"/>
-            <AppenderRef ref="grpc-log"/>
-        </Root>
-        <Logger name="fileLogger" level="info" additivity="false">
-            <AppenderRef ref="fileAppender"/>
-        </Logger>
-    </Loggers>
-</Configuration>
-```
-
-至此 agent 会将日志发送到 kafka 中。
-
-更多日志如何配置：
-
-- [log4j-1.x](https://github.com/apache/skywalking-java/blob/main/docs/en/setup/service-agent/java-agent/Application-toolkit-log4j-1.x.md){:target="_blank"}
-- [logback-1.x](https://github.com/apache/skywalking-java/blob/main/docs/en/setup/service-agent/java-agent/Application-toolkit-logback-1.x.md){:target="_blank"}
-
-从 kafka 中采集的日志不需要通过 pipeline 处理。已经全部切割好。
-
-## 自定义Topic {#kafka-custom}
-
-有些时候用户使用的并不是市面上常用的工具，有些的三方库并不是开源的，数据结构也不是公开的。这样就需要根据采集到的数据结构手动进行处理，这时候就体现到 pipeline  的强大之处，用户可通过自定义配置进行订阅并消费消息。
+有些时候用户使用的并不是市面上常用的工具，有些的三方库并不是开源的，数据结构也不是公开的。这样就需要根据采集到的数据结构手动进行处理，这时候就体现到 Pipeline 的强大之处，用户可通过自定义配置进行订阅并消费消息。
 
 更多的情况往往是现有的系统已经将数据发送到 kafka，而随着开发运维人员迭代，进行修改输出变的复杂难以实现，这时候使用自定义模式便是很好的方式。
 
 配置文件：
-```toml
- ...
-  ## 《复制时注意中文！》 
-  ## user custom message with PL script.
-  ## 目前仅支持 log 和 metrics， topic 和 pl 是必填
-  [inputs.kafkamq.custom]
-  group_id="datakit"
-  log_topics=["apm"]
-  log_pl="log.p"
-  metric_topic=["metric1"]
-  metric_pl="kafka_metric.p"
-  ## rate limit. 限速：速率/秒
-  limit_sec = 100
-  ## sample 采样率
-  sampling_rate = 1.0
 
- ...
+```toml
+# user custom message with PL script.
+[inputs.kafkamq.custom]
+# spilt_json_body = true
+[inputs.kafkamq.custom.spilt_topic_map]
+  "log_topic"=true
+  "log01"=false
+[inputs.kafkamq.custom.log_topic_map]
+  "log_topic"="log.p"
+  "log"="rum_apm.p"
+
+[inputs.kafkamq.custom.metric_topic_map]
+  "metric_topic"="rum_apm.p"
+  
+[inputs.kafkamq.custom.rum_topic_map]
+  "rum"="rum.p"
 
 ```
+
+> 注意：metric 的 Pipeline 脚本应该放在 *pipeline/metric/* 目录下，RUM 的 Pipeline 脚本应该放到 *pipeline/rum/* 目录下。
+
+理论上每一个消息体应该是一条日志或者一个指标，如果您的消息是多条日志，可以使用 `spilt_json_body` 开启全局 JSON 切割数组功能，同时你也可以使用 `spilt_topic_map` 开启单个 Topic 的 JSON 切割数组功能，当数据是 JSON 数组，配合 PL 可以将数组切割成单个日志或者指标数据。
 
 ### 示例 {#example}
 
-以一个简单的metric为例，介绍如何使用自定义配置订阅消息。
+以一个简单的 metric 为例，介绍如何使用自定义配置订阅消息。
 
-当不知道发送到 kafka 上的数据结构时什么格式时。可以先将 datakit 的日志级别改为 debug。 将订阅打开，在 datakit 日志中会有输出。假设拿到的如下数据：
+当不知道发送到 Kafka 上的数据结构时什么格式时。可以先将 Datakit 的日志级别改为 Debug。将订阅打开，在 Datakit 日志中会有输出。假设拿到的如下数据：
+
 ```shell
-# 打开 debug 日志级别之后,查看日志, datakit 会将消息信息打印出来.
+# 打开 debug 日志级别之后，查看日志，Datakit 会将消息信息打印出来。
 tailf /var/log/datakit/log | grep "kafka_message"
 ```
 
-假设拿到的这是一个 metric 的 json 格式纯文本字符串：
+假设拿到的这是一个 metric 的 JSON 格式纯文本字符串：
 
 ```json
 {"time": 1666492218, "dimensions": {"bk_biz_id": 225,"ip": "10.200.64.45" },  "metrics": { "cpu_usage_pct": 0.01}, "exemplar": null}
 ```
 
+有了数据格式，就可以手写 Pipeline 脚本。登录「观测云 -> 管理 -> 文本处理（Pipeline）编写脚本」。 如：
 
-有了数据格式，就可以手写 pipeline 脚本。登录 观测云 -> 管理 -> 文本处理(pipeline) 编写脚本。 如：
-
-```toml
-data=load_json(message)
+```python
+data = load_json(message)
 drop_origin_data()
 
-hostip=data["dimensions"]["ip"]
-bkzid=data["bk_biz_id"]
+hostip = data["dimensions"]["ip"]
+bkzid = data["bk_biz_id"]
 cast(bkzid,"sttr")
 
 set_tag(hostip,hostip)
 set_tag(bk_biz_id,bkzid)
 
 add_key(cpu_usage_pct,data["metrics"]["cpu_usage_pct"])
-# 注意 此处为行协议缺省值，pl脚本通过之后 这个 message_len 就可以删掉了。
+
+# 注意 此处为行协议缺省值，Pipeline 脚本通过之后 这个 message_len 就可以删掉了。
 drop_key(message_len)
 ```
 
-将文件放到 `/usr/local/datakit/pipeline/metric/` 目录下。
+将文件放到 */usr/local/datakit/pipeline/metric/* 目录下。
 
-> 注意：指标数据的pl脚本放到`metric/`下，logging数据的pl脚本放到 `pipeline/`
+> 注意：指标数据的 Pipeline 脚本放到 *metric/* 下，logging 数据的 Pipeline 脚本放到 *pipeline/* 目录下。
 
-配置好 PL 脚本，重启 datakit。
+配置好 Pipeline 脚本，重启 Datakit 即可。
 
-### 问题排查 {#some_problems}
+### 基准测试 {#benchmark}
 
-脚本测试命令 查看切割是否正确：
+消息的消费能力受限于网络和带宽的限制，所以基准测试只是测试 Datakit 的消费能力而不是 IO 能力。本次测试的机器配置是 4 核 8 线程、16G 内存。测试过程中 CPU 峰值 60%~70%，内存增加 10%。
+
+| 消息数量 | 用时    | 每秒消费能力（条） |
+| -------  | ------- | -----------        |
+| 100k     | 5s~7s   | 16k                |
+| 1000k    | 1m30s   | 11k                |
+
+另外减少日志输出、关闭 cgroup 限制、增加内网和公网带宽等，可以增加消费能力。
+
+### 多台 Datakit 负载均衡 {#datakit-assignor}
+
+当消息量很大，一台 Datakit 消费能力不足时可以增加多台 Datakit 进行消费，这里有三点需要注意：
+
+1. 确保 Topic 分区不是一个（至少 2 个），这个可以通过工具 [`kafka-map`](https://github.com/dushixiang/kafka-map/releases){:target="_blank"}查看
+1. 确保 KafkaMQ 采集器的配置是 `assignor = "roundrobin"`（负载均衡策略的一种），`group_id="datakit"`（组名称必须一致，否则会重复消费）
+1. 确保消息的生产者将消息发送多分区，语言不同方法不同 这里不列出代码了，自行查找相关实现
+
+### 问题排查 {#some-problems}
+
+当写好 Pipeline 脚本之后不确定是否能切割正确，可以使用测试命令：
+
 ```shell
-datakit pipeline metric.p -T '{"time": 1666492218,"dimensions":{"bk_biz_id": 225,"ip": "172.253.64.45"},"metrics": {"cpu_usage_pct": 0.01}, "exemplar": null}'
+datakit pipeline -P metric.p -T '{"time": 1666492218,"dimensions":{"bk_biz_id": 225,"ip": "172.253.64.45"},"metrics": {"cpu_usage_pct": 0.01}, "exemplar": null}'
 ```
 
-将 outputfile 设置为本地， 查看行协议格式是否正确：
+切割正确之后，可以查看行协议数据是否正确，暂时将 output_file 设置为本地文件：
+
 ```shell
 vim conf/datakit.conf
-# 设置为本地文件，就不会输出到io，测试结束之后赋值为空即可。
+
+# 设置为本地文件，就不会输出到 io，测试结束之后赋值为空即可。
 output_file = "/usr/local/datakit/out.pts"
 # 查看文件 out.pts 是否正确
 ```
 
-连接失败可能是版本问题：请在配置文件中正确填写 kafka 版本。
+连接失败可能是版本问题，请在配置文件中正确填写 kafka 版本。目前支持的版本列表：[0.8.2] - [3.3.1]
 
-其他问题：
-
-通过 `datakit monitor` 命令查看。 或者 `datakit monitor -V` 查看。
-
-
-
+其他问题： 通过 `datakit monitor` 命令查看，或者 `datakit monitor -V` 查看。

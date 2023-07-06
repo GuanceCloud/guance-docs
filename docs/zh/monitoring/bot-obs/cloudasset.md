@@ -7,46 +7,19 @@
 
 ## 前置条件
 
-1. 进行自建  [DataFlux Func](https://func.guance.com/#/) 的离线部署
-2. 开启自建 DataFlux Func 的[脚本市场](https://func.guance.com/doc/script-market-basic-usage/)
+1. 自建 [DataFlux Func 观测云特别版](https://func.guance.com/#/) 的离线部署，或者开通 [DataFlux Func 托管版](../../dataflux-func/index.md)
 3. 在观测云「管理 / API Key 管理」中创建用于进行操作的 [API Key](../../management/api-key/open-api.md)
-4. 在自建的 DataFlux Func 中，通过「脚本市场」安装「观测云自建巡检 Core 核心包」、「观测云自建巡检（阿里云）」
 5. 开启对应需要检测的「观测云自建巡检（阿里云）」中对象的[采集器(如: 阿里云 ECS)](https://func.guance.com/doc/script-market-guance-aliyun-ecs/)
-6. 在自建的 DataFlux Func 中，安装配套的第三方依赖包
 7. 在自建的 DataFlux Func 中，编写自建巡检处理函数
-8. 在自建的 DataFlux Func 中，通过「管理 / 自动触发配置」，为所编写的函数创建自动触发配置
 
-> **注意：**如果考虑采用云服务器来进行 DataFlux Func 离线部署的话，请考虑跟当前使用的观测云 SaaS 部署在[同一运营商同一地域](../../../getting-started/necessary-for-beginners/select-site/)。
+> **注意**：如果考虑采用云服务器来进行 DataFlux Func 离线部署的话，请考虑跟当前使用的观测云 SaaS 部署在[同一运营商同一地域](../../../getting-started/necessary-for-beginners/select-site/)。
 
 ## 配置巡检
 
-在自建 DataFlux Func 以配置「阿里云 ECS 状态」为例，其余巡检配置方式相同，将 import 改为「观测云自建巡检（阿里云）」包下其他的巡检即可
+在自建 DataFlux Func 创建新的脚本集开启云账户实例维度账单巡检配置，新建脚本集之后，在创建巡检脚本时选择对应的脚本模板保存，在生成的新脚本文件中根据需要更改即可。
 
-```python
-from guance_monitor__register import self_hosted_monitor
-from guance_monitor__runner import Runner
-import guance_monitor_aliyun__ecs_status as ecs_status
+![image](../img/cloudasset11.png)
 
-# 账号配置
-API_KEY_ID  = 'wsak_313xxxxxxx'
-API_KEY     = 'b9Vr06lxxxxxxxx'
-
-@self_hosted_monitor(API_KEY_ID, API_KEY)
-@DFF.API('阿里云资产检测测试-ecs 状态')
-def run():
-    '''
-    阿里云云主机、云数据库、负载均衡等资产检测
-    '''
-    # 云资产检测器配置
-    checkers = [
-        # 配置检测项(目前已支持的检测项见下文)
-        ecs_delete.CloudChecker(),
-    ]
-
-    # 执行云资产检测器
-    Runner(checkers, debug=False).run()
-
-```
 ## 开启巡检
 
 ### 在观测云中注册检测项
@@ -59,7 +32,7 @@ def run():
 
 #### 启用/禁用
 
-智能巡检「阿里云资产巡检」默认是「启动」状态，可手动「关闭」，开启后，将对配置好的云账户进行巡检。
+智能巡检「阿里云资产巡检」默认是**启动**状态，可手动「关闭」，开启后，将对配置好的云账户进行巡检。
 
 #### 导出
 
@@ -67,7 +40,7 @@ def run():
 
 #### 编辑
 
-智能巡检「阿里云资产巡检」支持用户手动添加筛选条件，在智能巡检列表右侧的操作菜单下，点击「编辑」按钮，即可对巡检模版进行编辑。
+智能巡检「阿里云资产巡检」支持用户手动添加筛选条件，在智能巡检列表右侧的操作菜单下，点击**编辑**按钮，即可对巡检模版进行编辑。
 
 * 筛选条件：该巡检不需要配置参数
 * 告警通知：支持选择和编辑告警策略，包括需要通知的事件等级、通知对象、以及告警沉默周期等
@@ -78,14 +51,14 @@ def run():
 
 ## 查看事件
 
-智能巡检基于观测云智能算法，会查找云资产指标中的异常情况，如云资产指标突然发生异常。对于异常情况，智能巡检会生成相应的事件，在智能巡检列表右侧的操作菜单下，点击「查看相关事件」按钮，即可查看对应异常事件。
+智能巡检基于观测云智能算法，会查找云资产指标中的异常情况，如云资产指标突然发生异常。对于异常情况，智能巡检会生成相应的事件，在智能巡检列表右侧的操作菜单下，点击**查看相关事件**按钮，即可查看对应异常事件。
 
 ![image](../img/cloudasset03.png)
 
 当配置好相应的自建巡检后，巡检会根据配置在发现异常后生成事件来配合我们来排查错误信息
 
 ### 事件详情页
-点击「事件」，可查看智能巡检事件的详情页，包括事件状态、异常发生的时间、异常名称、基础属性、事件详情、告警通知、历史记录和关联事件。
+点击**事件**，可查看智能巡检事件的详情页，包括事件状态、异常发生的时间、异常名称、基础属性、事件详情、告警通知、历史记录和关联事件。
 
 * 点击详情页右上角的「查看监控器配置」小图标，支持查看和编辑当前智能巡检的配置详情
 * 点击详情页右上角的「导出事件 JSON」小图标，支持导出事件的详情内容

@@ -1,7 +1,7 @@
 ---
 icon: material/language-go
 ---
-# Go
+# Golang
 
 ---
 
@@ -21,7 +21,8 @@ icon: material/language-go
 
 ### 前置条件
 
-- 需要进行链路追踪的应用服务器<[安装 Datakit](../../datakit/datakit-install.md)>
+- 需要进行链路追踪的应用服务器<[安装 DataKit](../../datakit/datakit-install.md)>
+- [按需下载对应 agent](https://github.com/DataDog/dd-trace-go)
 
 ### Go Redis APM 完整示例
 
@@ -110,27 +111,16 @@ create_time 1631502841700
 1 rows, cost 2ms
 ```
 
-#### 链路分析
-
-<[服务](../../application-performance-monitoring/service.md)><br />
-<[链路分析](../../application-performance-monitoring/explorer.md)>
+### [支持的环境变量](../../datakit/ddtrace-golang.md#start-options)
 
 ## 场景视图
 
 观测云平台已内置 应用性能监测模块，无需手动创建
 
-## 监控规则
+## 更多阅读
 
-暂无
+<[应用性能监测功能介绍](../../application-performance-monitoring/index.md)>
 
-## 相关术语说明
-
-<[链路追踪-字段说明](../../../application-performance-monitoring/collection)>
-
-## 最佳实践
+<[链路追踪-字段说明](../../application-performance-monitoring/collection/index.md#_5)>
 
 <[链路追踪（APM）最佳实践](../../best-practices/monitoring/apm.md)>
-
-## 故障排查
-
-暂无

@@ -4,6 +4,7 @@
 
 DataKit 主配置用来配置 DataKit 自己的运行行为。
 
+<!-- markdownlint-disable MD046 -->
 === "主机部署"
 
     其目录一般位于：
@@ -11,15 +12,312 @@ DataKit 主配置用来配置 DataKit 自己的运行行为。
     - Linux/Mac: `/usr/local/datakit/conf.d/datakit.conf`
     - Windows: `C:\Program Files\datakit\conf.d\datakit.conf`
 
-=== "Kubernates"
+=== "Kubernetes"
 
-    DaemonSet 安装时，虽然在对应目录下也存在这个文件，**但实际上 DataKit 并不加载这里的配置**。这些配是通过在 datakit.yaml 中[注入环境变量](datakit-daemonset-deploy.md#using-k8-env)来生成的。下面所有的配置，都能在 Kubernates 部署文档中找到[对应的环境变量](datakit-daemonset-deploy.md#using-k8-env)配置。
+    DaemonSet 安装时，虽然在对应目录下也存在这个文件，**但实际上 DataKit 并不加载这里的配置**。这些配是通过在 *datakit.yaml* 中[注入环境变量](datakit-daemonset-deploy.md#using-k8-env)来生成的。下面所有的配置，都能在 Kubernetes 部署文档中找到[对应的环境变量](datakit-daemonset-deploy.md#using-k8-env)配置。
+<!-- markdownlint-enable -->
+
+## Datakit 主配置示例 {#maincfg-example}
+
+Datakit 主配置示例如下，我们可以根据该示例来开启各种功能（当前版本 1.10.2）：
+
+<!-- markdownlint-disable MD046 -->
+??? info "*datakit.conf*"
+
+    ```toml linenums="1"
+        
+    
+    ################################################
+    # Global configures
+    ################################################
+    # Default enabled input list.
+    default_enabled_inputs = [
+      "cpu",
+      "disk",
+      "diskio",
+      "host_processes",
+      "hostobject",
+      "mem",
+      "net",
+      "swap",
+      "system",
+    ]
+    
+    # enable_pprof: bool
+    # If pprof enabled, we can profiling the running datakit
+    enable_pprof = true
+    pprof_listen = "localhost:6060" # pprof listen
+    
+    # protect_mode: bool, default false
+    # When protect_mode eanbled, we can set radical collect parameters, these may cause Datakit
+    # collect data more frequently.
+    protect_mode = true
+    
+    ################################################
+    # ulimit: set max open-files limit(Linux only)
+    ################################################
+    ulimit = 64000
+    
+    ################################################
+    # DCA configure
+    ################################################
+    [dca]
+      # Enable or disable DCA
+      enable = false
+    
+      # set DCA HTTP api server
+      listen = "0.0.0.0:9531"
+    
+      # DCA client white list(raw IP or CIDR ip format)
+      # Example: [ "1.2.3.4", "192.168.1.0/24" ]
+      white_list = []
+    
+    ################################################
+    # Pipeline
+    ################################################
+    [pipeline]
+      # IP database type, support iploc and geolite2
+      ipdb_type = "iploc"
+    
+      # How often to sync remote pipeline
+      remote_pull_interval = "1m"
+    
+      #
+      # reftab configures
+      #
+      # Reftab remote HTTP URL(https/http)
+      refer_table_url = ""
+    
+      # How often reftab sync the remote
+      refer_table_pull_interval = "5m"
+    
+      # use sqlite to store reftab data to release memory usage
+      use_sqlite = false
+      # or use pure memory to cache the reftab data
+      sqlite_mem_mode = false
+    
+      # Offload data processing tasks to post-level data processors.
+      [pipeline.offload]
+        receiver = "datakit-http"
+        addresses = [
+          # "http://<ip>:<port>"
+        ]
+    
+    ################################################
+    # HTTP server(9529)
+    ################################################
+    [http_api]
+    
+      # HTTP server address
+      listen = "localhost:9529"
+    
+      # Disable 404 page to hide detailed Datakit info
+      disable_404page = false
+    
+      # only enable these APIs. If list empty, all APIs are enabled.
+      public_apis = []
+    
+      # Datakit server-side timeout
+      timeout = "30s"
+      close_idle_connection = false
+    
+      #
+      # RUM related: we should port these configures to RUM inputs(TODO)
+      #
+      # When serving RUM(/v1/write/rum), extract the IP address from this HTTP header
+      rum_origin_ip_header = "X-Forwarded-For"
+      # When serving RUM(/v1/write/rum), only accept requests from these app-id.
+      # If the list empty, all app's requests accepted.
+      rum_app_id_white_list = []
+    
+    ################################################
+    # io configures
+    ################################################
+    [io]
+    
+      # How often Datakit flush data to dataway.
+      # Datakit will upload data points if cached(in memory) points
+      #  reached(>=) the max_cache_count or the flush_interval triggered.
+      max_cache_count = 1000
+      flush_workers   = 0 # default to (cpu_core * 2 + 1)
+      flush_interval  = "10s"
+    
+      # We can write these data points into file in line-proto format(truncated at 32MB).
+      output_file = ""
+      # only these input data points write to file. If list empy and output_file set,
+      # all points are write to the file.
+      output_file_inputs = []
+    
+      # Disk cache on datakit upload failed
+      enable_cache = false
+      # Cache all categories data point into disk
+      cache_all = false
+      # Max disk cache size(in GB), if cache size reached
+      # the limit, old data dropped(FIFO).
+      cache_max_size_gb = 10
+      # Cache clean interval: Datakit will try to clean these
+      # failed-data-point at specified interval.
+      cache_clean_interval = "5s"
+    
+      # Data point filter configures.
+      # NOTE: Most of the time, you should use web-side filter, it's a debug helper for developers.
+      #[io.filters]
+      #  logging = [
+      #   "{ source = 'datakit' or f1 IN [ 1, 2, 3] }"
+      #  ]
+      #  metric = [
+      #    "{ measurement IN ['datakit', 'disk'] }",
+      #    "{ measurement CONTAIN ['host.*', 'swap'] }",
+      #  ]
+      #  object = [
+      #    { class CONTAIN ['host_.*'] }",
+      #  ]
+      #  tracing = [
+      #    "{ service = re("abc.*") AND some_tag CONTAIN ['def_.*'] }",
+      #  ]
+    
+    ################################################
+    # Dataway configure
+    ################################################
+    [dataway]
+      # urls: Dataway URL list
+      # NOTE: do not configure multiple URLs here, it's a deprecated feature,
+      # we can use Dataway sinker(below) for that purpose.
+      urls = ["https://openway.guance.com?token=tkn_xxxxxxxxxxx"]
+    
+      # Dataway HTTP timeout
+      timeout_v2 = "30s"
+    
+      # HTTP Proxy(IP:Port)
+      http_proxy = ""
+    
+      max_idle_conns   = 0       # limit idle TCP connections for HTTP request to Dataway
+      enable_httptrace = false   # enable trace HTTP metrics(connection/NDS/TLS and so on)
+      idle_timeout     = "90s"   # not-set, default 90s
+    
+      # Sinkers: DataKit are able to upload data point to multiple workspace
+      #[[dataway.sinkers]]
+      #  categories = [ "L/M/O/..." ]
+      #  filters = [
+      #    "{ cpu = 'cpu-total' }",
+      #    "{ source = 'some-logging-source'}",
+      #  ]
+      #  url = "https//openway.guance.com?token=<YOUR-TOKEN>"
+      #
+      #[[dataway.sinkers]]
+      #  another sinker...
+    
+    ################################################
+    # Datakit logging configure
+    ################################################
+    [logging]
+    
+      # log path
+      log = "/var/log/datakit/log"
+    
+      # HTTP access log
+      gin_log = "/var/log/datakit/gin.log"
+    
+      # level level(info/debug)
+      level = "info"
+    
+      # Disable log color
+      disable_color = false
+    
+      # log rotate size(in MB)
+      # DataKit will always keep at most n+1(n backup log and 1 writing log) splited log files on disk.
+      rotate = 32
+    
+      # Upper limit count of backup log
+      rotate_backups = 5
+    
+    ################################################
+    # Global tags
+    ################################################
+    # We will try to add these tags to every collected data point if these
+    # tags do not exist in orignal data.
+    #
+    # NOTE: we can get the real IP of current note, we just need
+    # to set "$datakit_ip" or "__datakit_ip" here. Same for the hostname.
+    [global_host_tags]
+      ip   = "$datakit_ip"
+      host = "$datakit_hostname"
+    
+    [election]
+      # Enable election
+      enable = false
+    
+      # Election namespace.
+      # NOTE: for single workspace, there can be multiple election namespace.
+      namespace = "default"
+    
+      # If enabled, every data point will add a tag with election_namespace = <your-election-namespace>
+      enable_namespace_tag = false
+    
+      # Like global_host_tags, but only for data points that are remotely collected(such as MySQL/Nginx).
+      [election.tags]
+        #  project = "my-project"
+        #  cluster = "my-cluster"
+    
+    ###################################################
+    # Tricky: we can rename the default hostname here
+    ###################################################
+    [environments]
+      ENV_HOSTNAME = ""
+    
+    ################################################
+    # cgroup configures
+    ################################################
+    [cgroup]
+    
+      # enable or disable cgroup
+      enable = true
+    
+      # cgroup path
+      path = "/datakit"
+    
+      # set max CPU usage(%, max 100.0, no matter how many CPU cores here)
+      cpu_max = 30.0
+    
+      # set max memory usage(MB)
+      mem_max_mb = 4096
+    
+    ################################################
+    # git_repos configures
+    ################################################
+    
+    # We can hosting all input configures on git server
+    [git_repos]
+      # git pull interval
+      pull_interval = "1m"
+    
+      # git repository settings
+      [[git_repos.repo]]
+        # enable the repository or not
+        enable = false
+    
+        # the branch name to pull
+        branch = "master"
+    
+        # git repository URL. There are 3 formats here:
+        #   - HTTP(s): such as "https://github.datakit.com/path/to/datakit-conf.git"
+        #   - Git: such as "git@github.com:path/to/datakit.git"
+        #   - SSH: such as "ssh://git@github.com:9000/path/to/repository.git"
+        url = ""
+    
+        # For formats Git and SSH, we need extra configures:
+        ssh_private_key_path = ""
+        ssh_private_key_password = ""
+    
+    ```
+<!-- markdownlint-enable -->
 
 ## HTTP 服务的配置 {#config-http-server}
 
 DataKit 会开启 HTTP 服务，用来接收外部数据，或者对外提供基础的数据服务。
 
-=== "datakit.conf"
+<!-- markdownlint-disable MD046 -->
+=== "*datakit.conf*"
 
     ### 修改 HTTP 服务地址 {#update-http-server-host}
     
@@ -28,16 +326,20 @@ DataKit 会开启 HTTP 服务，用来接收外部数据，或者对外提供基
     ```toml
     [http_api]
        listen = "0.0.0.0:<other-port>"
+       # 或使用 IPV6 地址
+       # listen = "[::]:<other-port>"
     ```
+
+    注意，IPv6 支持需 [Datakit 升级到 1.5.7](changelog.md#cl-1.5.7-new)。
 
     #### 使用 Unix domain socket {#uds}
 
-    Datakit 支持 UNIX domain sockets 访问。开启方式如下: `listen` 字段配置为<b>一个不存在文件的全路径</b>，这里以 `datakit.sock` 举例，可以为任意文件名。
+    Datakit 支持 UNIX domain sockets 访问。开启方式如下：`listen` 字段配置为<b>一个不存在文件的全路径</b>，这里以 `datakit.sock` 举例，可以为任意文件名。
     ```toml
     [http_api]
        listen = "/tmp/datakit.sock"
     ```
-    配置完成后可以使用 `curl` 命令测试是否配置成功: `sudo curl --no-buffer -XGET --unix-socket /tmp/datakit.sock http:/localhost/v1/ping`。更多关于 `curl` 的测试命令的信息可以参阅[这里](https://superuser.com/a/925610)。
+    配置完成后可以使用 `curl` 命令测试是否配置成功：`sudo curl --no-buffer -XGET --unix-socket /tmp/datakit.sock http:/localhost/v1/ping`。更多关于 `curl` 的测试命令的信息可以参阅[这里](https://superuser.com/a/925610){:target="_blank"}。
     
     ### HTTP 请求频率控制 {#set-http-api-limit}
     
@@ -56,43 +358,46 @@ DataKit 会开启 HTTP 服务，用来接收外部数据，或者对外提供基
         timeout = "30s"              # 设置服务端 HTTP 超时
     ```
 
-=== "Kubernates"
+=== "Kubernetes"
 
     参见[这里](datakit-daemonset-deploy.md#env-http-api)
+<!-- markdownlint-enable -->
 
 ## 全局标签（Tag）修改 {#set-global-tag}
 
 [:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)
 
-DataKit 允许给其采集的所有数据配置全局标签，全局标签分为两类：
+Datakit 允许给其采集的所有数据配置全局标签，全局标签分为两类：
 
-- 主机类全局变量：采集的数据跟当前主机息息相关，比如 CPU/内存等指标数据
-- 环境类全局变量：采集的数据来自某个公共实体，比如 MySQL/Redis 等，这些采集一般都参与选举，故这些数据上不会带上主机相关的全局 tag
+- 主机类全局标签：采集的数据跟当前主机绑定，比如 CPU/内存等指标数据
+- 选举类全局标签：采集的数据来自某个公共（远程）实体，比如 MySQL/Redis 等，这些采集一般都参与选举，故这些数据上不会带上当前主机相关的标签
 
 ```toml
 [global_host_tags]
-  ip         = "__datakit_ip"
-  host       = "__datakit_hostname"
+  ip   = "__datakit_ip"
+  host = "__datakit_hostname"
 
-[global_election_tags]
-  project = "my-project"
-  cluster = "my-cluster"
+[election]
+  [election.tags]
+    project = "my-project"
+    cluster = "my-cluster"
 ```
 
 加全局 Tag 时，有几个地方要注意：
 
 - 这些全局 Tag 的值可以用 DataKit 目前已经支持的几个变量（双下划线（`__`）前缀和 `$` 都是可以的）：
-  - `__datakit_ip/$datakit_ip`：标签值会设置成 DataKit 获取到的第一个主网卡 IP
-  - `__datakit_hostname/$datakit_hostname`：标签值会设置成 DataKit 的主机名
+
+    - `__datakit_ip/$datakit_ip`：标签值会设置成 DataKit 获取到的第一个主网卡 IP
+    - `__datakit_hostname/$datakit_hostname`：标签值会设置成 DataKit 的主机名
 
 - 由于 [DataKit 数据传输协议限制](apis.md#lineproto-limitation)，不要在全局标签（Tag）中出现任何指标（Field）字段，否则会因为违反协议导致数据处理失败。具体参见具体采集器的字段列表。当然，也不要加太多 Tag，而且每个 Tag 的 Key 以及 Value 长度都有限制。
-
-- 如果被采集上来的数据中，本来就带有同名的 Tag，那么 DataKit 不会再追加这里配置的全局 Tag。
-- 即使 `global_host_tags` 不配置任何全局 Tag，DataKit 仍然会在所有数据上尝试添加一个 `host=$HOSTNAME` 的全局 Tag。
+- 如果被采集上来的数据中，本来就带有同名的 Tag，那么 DataKit 不会再追加这里配置的全局 Tag
+- 即使 `global_host_tags` 不配置任何全局 Tag，DataKit 仍然会在所有数据上尝试添加一个 `host=$HOSTNAME` 的全局 Tag
+- 这俩类全局标签是可以有交集的，比如都可以在其中设置一个 `project = "my-project"` 的标签
 
 ### 全局 Tag 在远程采集时的设置 {#notice-global-tags}
 
-因为 DataKit 会默认给采集到的所有数据追加标签 `host=<DataKit所在主机名>`，但某些情况这个默认追加的 `host` 会带来困扰。
+因为 DataKit 会默认给采集到的所有数据追加标签 `host=<DataKit 所在主机名>`，但某些情况这个默认追加的 `host` 会带来困扰。
 
 以 MySQL 为例，如果 MySQL 不在 DataKit 所在机器，但又希望这个 `host` 标签是被采集的 MySQL 的真实主机名（或云数据库的其它标识字段），而非 DataKit 所在的主机名。
 
@@ -107,13 +412,15 @@ DataKit 允许给其采集的所有数据配置全局标签，全局标签分为
 
 - 以 [HTTP API 方式往 DataKit 推送数据](apis.md#api-v1-write)时，可以通过 API 参数 `ignore_global_tags` 来屏蔽所有全局 Tag
 
+<!-- markdownlint-disable MD046 -->
 ???+ tip
 
     自 [1.4.20](changelog.md#cl-1.4.20) 之后，DataKit 默认会以被采集服务的 IP/Host 等字段为 `host` 字段，故这一问题升级之后将得到改善。建议大家升级到该版本来避免这一问题。
+<!-- markdownlint-enable -->
 
 ## DataKit 自身运行日志配置 {#logging-config}
 
-DataKit 自身日志有两个，一个是自身运行日志（*/var/log/datakit/log*），一个是 HTTP Access 日志（*/var/log/datakit/gin.log*）。 
+DataKit 自身日志有两个，一个是自身运行日志（*/var/log/datakit/log*），一个是 HTTP Access 日志（*/var/log/datakit/gin.log*）。
 
 DataKit 默认日志等级为 `info`。编辑 `datakit.conf`，可修改日志等级以及分片大小：
 
@@ -135,15 +442,17 @@ DataKit 默认日志等级为 `info`。编辑 `datakit.conf`，可修改日志�
 [:octicons-tag-24: Version-1.4.8](changelog.md#cl-1.4.8) ·
 [:octicons-beaker-24: Experimental](index.md#experimental)
 
-=== "datakit.conf"
+<!-- markdownlint-disable MD046 -->
+=== "*datakit.conf*"
 
     某些情况下，DataKit 的单机数据采集量非常大，如果网络带宽有限，可能导致部分数据的采集中断或丢弃。可以通过配置 io 模块的一些参数来缓解这一问题：
 
     ```toml
     [io]
-      feed_chan_size = 4096   # 数据处理队列（一个 job 一般都有多个 point）长度
+      feed_chan_size  = 4096  # 数据处理队列（一个 job 一般都有多个 point）长度
       max_cache_count = 512   # 数据批量发送点数的阈值，缓存中超过该值即触发发送
-      flush_interval = "10s"  # 数据发送的间隔阈值，每隔 10s 至少发送一次
+      flush_interval  = "10s" # 数据发送的间隔阈值，每隔 10s 至少发送一次
+      flush_workers   = 8     # 数据上传 worker 数（默认 CPU-core * 2 + 1）
     ```
 
     阻塞模式参见 [k8s 中的对应说明](datakit-daemonset-deploy.md#env-io)
@@ -151,18 +460,22 @@ DataKit 默认日志等级为 `info`。编辑 `datakit.conf`，可修改日志�
 === "Kubernetes"
 
     参见[这里](datakit-daemonset-deploy.md#env-io)
-
+<!-- markdownlint-enable -->
 
 #### IO 磁盘缓存 {#io-disk-cache}
 
+[:octicons-tag-24: Version-1.5.8](changelog.md#cl-1.5.8) · [:octicons-beaker-24: Experimental](index.md#experimental)
+
 当 DataKit 发送数据失败后，为了不丢失关键数据，可以开启磁盘缓存。磁盘缓存的目的在于将发送失败的数据暂时存入磁盘，待条件允许时，再将数据发送出去。
 
-=== "datakit.conf"
+<!-- markdownlint-disable MD046 -->
+=== "*datakit.conf*"
 
     ```toml
     [io]
-      enable_cache = true   # 开启磁盘缓存
-      cache_max_size_gb = 5 # 指定磁盘大小为 5GB
+      enable_cache      = true   # 开启磁盘缓存
+      cache_all         = false  # 是否全类缓存（默认情况下，指标/对象/拨测数据不缓存）
+      cache_max_size_gb = 5      # 指定每个分类磁盘大小为 5GB
     ```
 
 === "Kubernetes"
@@ -173,7 +486,8 @@ DataKit 默认日志等级为 `info`。编辑 `datakit.conf`，可修改日志�
 
 ???+ attention
 
-    目前不支持时序数据的缓存，除此之外的数据，都支持发送失败的磁盘缓存。另外，由于限制了磁盘大小，如果发送一直失败，导致磁盘超过上限，仍然会丢失数据（优先丢弃较老的数据）。
+    这里的 `cache_max_size_gb` 指每个分类（Category）的缓存大小，总共 10 个分类的话，如果每个指定 5GB，理论上会占用 50GB 左右的空间。
+<!-- markdownlint-enable -->
 
 ### cgroup 限制  {#enable-cgroup}
 
@@ -185,9 +499,6 @@ DataKit 默认日志等级为 `info`。编辑 `datakit.conf`，可修改日志�
 
   # 允许 CPU 最大使用率（百分制）
   cpu_max = 20.0
-
-  # 允许 CPU 最小使用率（百分制）
-  cpu_min = 5.0
 
   # 默认允许 4GB 内存(memory + swap)占用
   # 如果置为 0 或负数，则不启用内存限制
@@ -205,133 +516,42 @@ $ systemctl status datakit
    Main PID: 3474282 (code=killed, signal=KILL)
 ```
 
+<!-- markdownlint-disable MD046 -->
 ???+ attention
 
     - cgroup 限制只在[宿主机安装](datakit-install.md)的时候会默认开启
-    - cgourp 只支持 CPU 使用率和内存使用量（mem+swap）控制，且只支持 Linux 操作系统。
+    - cgroup 只支持 CPU 使用率和内存使用量（mem+swap）控制，且只支持 Linux 操作系统。
+
+???+ tip
+
+    Datakit 自 [1.5.8](changelog.md#cl-1.5.8) 开始支持 cgroup v2。如果不确定 cgroup 版本，可通过命令 `mount | grep cgroup` 来确认。
+<!-- markdownlint-enable -->
 
 ### 选举配置 {#election}
 
 参见[这里](election.md#config)
 
+### DataWay Sinker 配置 {#dataway-sink}
+
+参见[这里](datakit-sink-dataway.md)
+
 ### 使用 Git 管理 DataKit 配置 {#using-gitrepo}
 
-由于 DataKit 各种采集器的配置都是文本类型，如果逐个修改、生效，需要耗费大量的精力。这里我们可以使用 Git 来管理这些配置，其优点如下：
-
-- 自动从远端 Git 仓库同步最新的配置，并自动生效
-- Git 自带的版本管理，能有效的追踪各种配置的变更历史
-
-在安装 DataKit 时（[DaemonSet 安装](datakit-daemonset-deploy.md)和[主机安装](datakit-install.md#env-gitrepo)都支持），即可指定 Git 配置仓库。
-
-#### 手动配置 Git 管理 {#setup-gitrepo}
-
-Datakit 支持使用 git 来管理采集器配置、Pipeline 以及 Python 脚本。在 *datakit.conf* 中，找到 *git_repos* 位置，编辑如下内容：
-
-```toml
-[git_repos]
-  pull_interval = "1m" # 同步配置间隔，即 1 分钟同步一次
-
-  [[git_repos.repo]]
-    enable = false   # 不启用该 repo
-
-    ###########################################
-    # Git 地址支持的三种协议：http/git/ssh
-    ###########################################
-    url = "http://username:password@github.com/path/to/repository.git"
-
-    # 以下两种协议(git/ssh)，需配置 key-path 以及 key-password
-    # url = "git@github.com:path/to/repository.git"
-    # url = "ssh://git@github.com:9000/path/to/repository.git"
-    # ssh_private_key_path = "/Users/username/.ssh/id_rsa"
-    # ssh_private_key_password = "<YOUR-PASSSWORD>"
-
-    branch = "master" # 指定 git branch
-```
-
-注意：开启 Git 同步后，原 `conf.d` 目录下的采集器配置将不再生效（*datakit.conf* 除外）。
-
-#### 应用 Git 管理的 Pipeline 示例 {#gitrepo-example}
-
-我们可以在采集器配置中，增加 Pipeline 来对相关服务的日志进行切割。在开启 Git 同步的情况下，**DataKit 自带的 Pipeline 和 Git 同步下来的 Pipeline 均可使用**。在 [Nginx 采集器](nginx.md)的配置中，一个 pipeline 的配置示例：
-
-```toml
-[[inputs.nginx]]
-    ...
-    [inputs.nginx.log]
-    ...
-    pipeline = "my-nginx.p" # 具体加载哪里的 my-nginx.p，参见下面的 「约束」 说明
-```
-
-#### Git 管理的使用约束 {#gitrepo-limitation}
-
-在 Git 使用过程必须遵循以下约束:
-
-- git repo 里面新建 `conf.d` 文件夹，下面放 DataKit 采集器配置
-- git repo 里面新建 `pipeline` 文件夹，下面放置 Pipeline 文件
-- git repo 里面新建 `python.d` 文件夹，下面放置 Python 脚本文件
-
-下面以图例来说明：
-
-```
-datakit 根目录
-├── conf.d
-├── data
-├── pipeline # 顶层 Pipeline 脚本
-├── python.d # 顶层 python.d 脚本
-├── externals
-└── gitrepos
-    ├── repo-1  # 仓库 1
-    │   ├── conf.d    # 专门存放采集器配置
-    │   ├── pipeline  # 专门存放 pipeline 切割脚本
-    │   │   └── my-nginx.p # 合法的 pipeline 脚本
-    │   │   └── 123     # 不合法的 Pipeline 子目录，其下文件也不会生效
-    │   │       └── some-invalid.p
-    │   └── python.d    存放 python.d 脚本
-    │       └── core
-    └── repo-2  # 仓库 2
-        ├── ...
-```
-
-查找优先级定义如下:
-
-1. 按 *datakit.conf* 中配置的 *git_repos* 次序（它是一个数组，可配置多个 Git 仓库），逐个查找指定文件名，若找到，返回第一个。比如查找 *my-nginx.p*，如果在第一个仓库目录的 *pipeline* 下找到，则以该找到的为准，**即使第二个仓库中也有同名的 *my-nginx.p*，也不会选择它**。
-
-2. 在 *git_repos* 中找不到的情况下，则去 *<Datakit 安装目录>/pipeline* 目录查找 Pipeline 脚本，或者去 *<Datakit 安装目录>/python.d* 目录查找 Python 脚本。
+参见[这里](git-config-how-to.md)
 
 ### 设置打开的文件描述符的最大值 {#enable-max-fd}
 
-Linux 环境下，可以在 Datakit 主配置文件中配置 ulimit 项，以设置 Datakit 的最大可打开文件数，如下：
+Linux 环境下，可以在 Datakit 主配置文件中配置 `ulimit` 项，以设置 Datakit 的最大可打开文件数，如下：
 
 ```toml
 ulimit = 64000
 ```
 
-ulimit 默认配置为 64000。
+ulimit 默认配置为 64000。在 Kubernetes 中，通过[设置 `ENV_ULIMIT`](datakit-daemonset-deploy.md#env-others) 即可。
 
-## FAQ {#faq}
+### :material-chat-question: cgroup CPU 使用率说明 {#cgroup-how}
 
-### cgroup 设置失败 {#cgoup-fail}
-
-有时候启用 cgroup 会失败，在 [DataKit Monitor](datakit-monitor.md) 的 `Basic Info` 中会报告类似如下错误：
-
-```
-write /sys/fs/cgroup/memory/datakit/memory.limit_in_bytes: invalid argument
-```
-
-此时需手动删除已有 cgroup 规则库，然后再[重启 DataKit 服务](datakit-service-how-to.md#manage-service)。
-
-```shell
-sudo cgdelete memory:/datakit
-```
-
-> `cgdelete` 可能需额外安装工具包：
-> 
-> - Ubuntu: `apt-get install libcgroup-tools`
-> - CentOS: `yum install libcgroup-tools`
-
-### cgroup CPU 使用率说明 {#cgroup-how}
-
-CPU 使用率是百分比制（==最大值 100.0==），以一个 8 核心的 CPU 为例，如果限额 `cpu_max` 为 20.0（即 20%），则 DataKit 最大的 CPU 消耗，==在 top 命令上将显示为 160% 左右==。`cpu_min` 同理。
+CPU 使用率是百分比制（最大值 100.0），以一个 8 核心的 CPU 为例，如果限额 `cpu_max` 为 20.0（即 20%），则 DataKit 最大的 CPU 消耗，在 top 命令上将显示为 160% 左右。
 
 ## 延伸阅读 {#more-reading}
 

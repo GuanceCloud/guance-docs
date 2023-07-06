@@ -20,11 +20,9 @@
 
 说明：示例 Linux 版本为 CentOS Linux release 7.8.2003 (Core)，Windows 版本请修改对应的配置文件。
 
-### 部署实施
-
 (Linux / Windows 环境相同)
 
-#### 指标采集 (默认)
+### 指标采集 (默认)
 
 1、 MEM 数据采集默认开启，对应配置文件 `/usr/local/datakit/conf.d/host/mem.conf`
 
@@ -41,7 +39,7 @@
 
 ![image](../../imgs/input-mem-3.png)
 
-#### 插件标签 (非必选)
+### 插件标签 (非必选)
 
 参数说明
 

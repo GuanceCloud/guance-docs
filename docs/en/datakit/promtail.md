@@ -1,17 +1,24 @@
-<!-- This file required to translate to EN. -->
 
-# Promtail 数据接入
+# Promtail Data Access
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
 
 ---
 
-启动一个 HTTP 端点监听并接收 promtail 日志数据，上报到观测云。
+Start an HTTP endpoint to listen and receive promtail log data and report it to Guance Cloud.
 
-## 配置 {#config}
+## Configuration {#config}
 
-进入 DataKit 安装目录下的 `conf.d/log` 目录，复制 `promtail.conf.sample` 并命名为 `promtail.conf`。示例如下：
+Already tested version:
+
+- [x] 2.8.2
+- [x] 2.0.0
+- [x] 1.5.0
+- [x] 1.0.0
+- [x] 0.1.0
+
+Go to the `conf.d/log` directory under the DataKit installation directory, copy `promtail.conf.sample` and name it `promtail.conf`. Examples are as follows:
 
 ```toml
 
@@ -25,17 +32,15 @@
  
 ```
 
-### API 版本 {#API version}
+### API Version {#API version}
 
-通过配置 `legacy = true`，可以用 legacy 版本 API 处理接收到的 promtail
-日志数据。详见
+For Promtail versions `v0.3.0` and before, Datakit's configuration should set `legacy = true`, by using legacy API [`POST /api/prom/push`](https://grafana.com/docs/loki/latest/api/#post-apiprompush){:target="_blank"} to receiving logging data from Promtail.
 
-- [POST /api/prom/push](https://grafana.com/docs/loki/latest/api/#post-apiprompush){:target="_blank"}
-- [POST /loki/api/v1/push](https://grafana.com/docs/loki/latest/api/#post-lokiapiv1push){:target="_blank"}
+Using the default Datakit's configuration, namely `legacy = false` for the rest of Promtail versions, by using new API [`POST /loki/api/v1/push`](https://grafana.com/docs/loki/latest/api/#post-lokiapiv1push){:target="_blank"}.
 
-### 自定义标签 {#custom tags}
+### Custom Tags {#custom tags}
 
-通过配置 `[inputs.promtail.tags]`，可以在日志数据中添加自定义标签，示例如下：
+You can add custom tags to log data by configuring `[inputs.promtail.tags]`, as shown below:
 
 ```toml
   [inputs.promtail.tags]
@@ -43,42 +48,21 @@
     more_tag = "some_other_value"
 ```
 
-配置好后，重启 DataKit 即可。
+After configuration, restart DataKit.
 
-### 支持参数 {#args}
+### Supported parameter {#args}
 
-promtail 采集器支持在 HTTP URL 中添加参数。参数列表如下：
+The promtail collector supports adding parameters to the HTTP URL. The list of parameters is as follows:
 
-- `source`：标识数据来源。例如 `nginx` 或者 `redis`（`/v1/write/promtail?source=nginx`)，默认将 `source` 设为 `default`；
-- `pipeline`：指定数据需要使用的 pipeline 名称，例如 `nginx.p`（`/v1/write/promtail?pipeline=nginx.p`）；
-- `tags`：添加自定义 tag，以英文逗号 `,` 分割，例如 `key1=value1` 和 `key2=value2`（`/v1/write/promtail?tags=key1=value1,key2=value2`）。
+- `source`: Identifies the data source. Such as `nginx` or `redis`（`/v1/write/promtail?source=nginx`), With `source` set to `default`by default;
+- `pipeline`: Specify the pipeline name required for the data, Such as `nginx.p`（`/v1/write/promtail?pipeline=nginx.p`）；
+- `tags`: Add custom tags, separated by English commas `,`, such as `key1=value1` and `key2=value2`（`/v1/write/promtail?tags=key1=value1,key2=value2`）。
 
-## 最佳实践 {#best practice}
+## Best Practice {#best practice}
 
-promtail 的数据原本主要发送给 loki，即 `/loki/api/v1/push`，其配置样例如下：
+Promtail's data was originally sent to Loki, which is, `/loki/api/v1/push`. Change the `url` in Promtail's configuration to Datakit, after enabled Datakit's promtail collector, Promtail would send its data to Datakit's promtail collector.
 
-```yaml
-server:
-  http_listen_port: 9080
-  grpc_listen_port: 0
-
-positions:
-  filename: /tmp/positions.yaml
-
-clients:
-  - url: http://localhost:3100/loki/api/v1/push
-
-scrape_configs:
-  - job_name: system
-    static_configs:
-      - targets:
-          - localhost
-        labels:
-          job: varlogs
-          __path__: /var/log/*log
-```
-
-在开启 promtail 采集器后，可以配置 promtail 让其将数据发送给 Datakit 的 promtail 采集器：
+Promtail's configuration is like below:
 
 ```yaml
 server:
@@ -89,7 +73,7 @@ positions:
   filename: /tmp/positions.yaml
 
 clients:
-  - url: http://localhost:9529/v1/write/promtail    # 发送到 promtail 采集器监听的端点
+  - url: http://localhost:9529/v1/write/promtail    # Send to the endpoint that the promtail collector listens on
 
 scrape_configs:
   - job_name: system

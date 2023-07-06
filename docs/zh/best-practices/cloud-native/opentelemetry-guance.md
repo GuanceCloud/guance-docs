@@ -14,7 +14,7 @@ Grafana Tempo和 Loki 结合，能够让我们直观的看到日志链路情况�
 
 [观测云](https://www.guance.com)
 
-是一个集指标数据、日志数据、APM 、RUM、基础设施、容器、中间件、网络性能等多种数据统一收集管理平台。使用观测云可以为我们全方位观测应用，而不仅仅是日志链路之间的观测。更多观测云信息请跳转到[产品优势](../../getting-started/product-introduction/advantages.md)阅读。
+是一个集指标数据、日志数据、APM 、RUM、基础设施、容器、中间件、网络性能等多种数据统一收集管理平台。使用观测云可以为我们全方位观测应用，而不仅仅是日志链路之间的观测。更多观测云信息请跳转到[产品优势](../../getting-started/product-introduction/index.md)阅读。
 
 DataKit 是观测云的前置 gateway, 若要把数据打给观测云, 需要正确的配置 DataKit , 而且利用 DataKit 有以下优势:
 
@@ -94,106 +94,32 @@ const otelExporter = new OTLPTraceExporter({
 
 ### 开启 OpenTelemetry 采集器
 
-1. 开启 OpenTelemetry 插件，复制 Sample 文件
+参考[OpenTelemetry采集器接入文档](/datakit/opentelemetry/)
 
-```shell
-cd /usr/local/datakit/conf.d/opentelemetry
-cp opentelemetry.conf.sample opentelemetry.conf
-```
+#### 调整参数以下参数
 
-2. 修改 opentelemetry.conf
-
-```toml
-[[inputs.opentelemetry]]
-## 在创建'trace',Span','resource'时，会加入很多标签，这些标签最终都会出现在'Span'中
-## 当您不希望这些标签太多造成网络上不必要的流量损失时，可选择忽略掉这些标签
-## 支持正则表达，注意:将所有的'.'替换成'_'
-## When creating 'trace', 'span' and 'resource', many labels will be added, and these labels will eventually appear in all 'spans'
-## When you don't want too many labels to cause unnecessary traffic loss on the network, you can choose to ignore these labels
-## Support regular expression. Note!!!: all '.' Replace with '_'
-# ignore_attribute_keys = ["os_*","process_*"]
-
-## Keep rare tracing resources list switch.
-## If some resources are rare enough(not presend in 1 hour), those resource will always send
-## to data center and do not consider samplers and filters.
-# keep_rare_resource = false
-
-## Ignore tracing resources map like service:[resources...].
-## The service name is the full service name in current application.
-## The resource list is regular expressions uses to block resource names.
-# [inputs.opentelemetry.close_resource]
-# service1 = ["resource1", "resource2", ...]
-# service2 = ["resource1", "resource2", ...]
-# ...
-
-## Sampler config uses to set global sampling strategy.
-## priority uses to set tracing data propagation level, the valid values are -1, 0, 1
-##   -1: always reject any tracing data send to datakit
-##    0: accept tracing data and calculate with sampling_rate
-##    1: always send to data center and do not consider sampling_rate
-## sampling_rate used to set global sampling rate
-# [inputs.opentelemetry.sampler]
-# priority = 0
-# sampling_rate = 1.0
-
-# [inputs.opentelemetry.tags]
-# key1 = "value1"
-# key2 = "value2"
-# ...
-
-[inputs.opentelemetry.expectedHeaders]
-## 如有header配置 则请求中必须要携带 否则返回状态码500
-## 可作为安全检测使用,必须全部小写
-# ex_version = xxx
-# ex_name = xxx
-# ...
-
-## grpc
-[inputs.opentelemetry.grpc]
-## trace for grpc
-trace_enable = true
-
-## metric for grpc
-metric_enable = true
-
-## grpc listen addr
-# addr = "127.0.0.1:4317"
-addr = "0.0.0.0:4319"
-
-## http
-[inputs.opentelemetry.http]
-## if enable=true
-## http path (do not edit):
-##	trace : /otel/v1/trace
-##	metric: /otel/v1/metric
-## use as : http://127.0.0.1:9529/otel/v11/trace . Method = POST
-enable = true
-## return to client status_ok_code :200/202
-http_status_ok = 200
-
-```
 [inputs.opentelemetry.grpc] 参数说明
-
+	
 - trace_enable：true 		#开启grpc trace
 - metric_enable： true 	    #开启grpc metric
 - addr: 0.0.0.0:4319 		    #开启端口
 
-3. 重启 DataKit
+#### 重启 DataKit
 
 ```shell
-datakit --restart
+datakit service restart
 ```
 
 ### 开启日志采集
 
-1. 开启 Logging 插件，复制 Sample 文件
+1、 开启 Logging 插件，复制 Sample 文件
 
 ```shell
 cd /usr/local/datakit/conf.d/log
 cp logging.conf.sample logging-socket-4560.conf
 ```
 
-2. 修改 logging-socket-4560.conf
+2、 修改 logging-socket-4560.conf
 
 ```toml
 [[inputs.logging]]
@@ -244,7 +170,7 @@ cp logging.conf.sample logging-socket-4560.conf
 - sockets #配置socket信息
 - pipeline： log_socket.p # 日志解析
 
-3. 配置pipeline
+3、 配置pipeline
 
 > cd pipeline
 > vim  log_socket.p
@@ -262,7 +188,7 @@ set_tag(service)
 default_time(time)
 ```
 
-4. 重启 DataKit
+4、 重启 DataKit
 
 ```shell
 datakit --restart
@@ -270,14 +196,14 @@ datakit --restart
 
 ### 开启指标采集
 
-1. 开启 prom 插件，复制 Sample 文件
+1、 开启 prom 插件，复制 Sample 文件
 
 ```shell
 cd /usr/local/datakit/conf.d/prom
 cp prom.conf.sample prom-otel.conf
 ```
 
-2. 修改 prom-otel.conf
+2、 修改 prom-otel.conf
 
 ```toml
 [[inputs.prom]]
@@ -373,7 +299,7 @@ cp prom.conf.sample prom-otel.conf
 - urls #otel-collector 指标url
 - metric_types = []： 采集所有的指标
 
-3. 重启 DataKit
+3、 重启 DataKit
 
 ```shell
 datakit --restart
@@ -649,7 +575,7 @@ npm start
 
 ## APM 与 RUM 关联
 
-APM 与 RUM 主要通过 header 参数进行关联，为了保持一直，需要配置统一的传播器（`Propagator`），这里RUM 采用的是 `B3`，所以 APM 也需要配置`B3`，只需要在 APM 启动参数加上`-Dotel.propagators=b3`即可。
+APM 与 RUM 主要通过 header 参数进行关联，为了保持一致，需要配置统一的传播器（`Propagator`），这里RUM 采用的是 `B3`，所以 APM 也需要配置`B3`，只需要在 APM 启动参数加上`-Dotel.propagators=b3`即可。
 
 ## APM 与 Log 关联
 
@@ -664,15 +590,26 @@ APM 与 Log 主要是通过在日志埋点 traceId 和 spanId。不同的日志�
 ### 日志查看器
 
 ![guance-log.gif](../images/opentelemetry-guance-4.gif)
+
 ### 链路（**应用性能监测**）
+
 ![guance-trace.gif](../images/opentelemetry-guance-5.gif)
+
 ### 从链路查看对应的 Log
+
 ![guance-trace-log.gif](../images/opentelemetry-guance-6.gif)
+
 ### 应用Metrics
-![guance-metrics.gif](../images/opentelemetry-guance-7.gif)
+
+应用Metrics 都会存放在 measurement 为 `otel-service`的指标集中
+
+![guance-metrics.gif](../images/opentelemetry-guance-7.png)
+
 ### Otelcol Metrics
-![guance-otelcol-metrics.gif](../images/opentelemetry-guance-8.gif)
+
+![guance-otelcol-metrics.gif](../images/opentelemetry-guance-8.png)
 
 ### Otelcol 集成视图
+
 ![Otelcol 集成视图](../images/opentelemetry-guance-9.png)
 

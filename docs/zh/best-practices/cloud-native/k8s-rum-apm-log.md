@@ -550,7 +550,7 @@ EXPOSE 443
 观测云已提供这个镜像。
 
 ```
-pubrepo.jiagouyun.com/datakit/dk-sidecar:1.1
+pubrepo.jiagouyun.com/datakit-operator/dd-lib-java-init
 ```
 
 本示例使用的是 Sidecar 的方式，如果您想直接把 jar 打入镜像，请下载 [dd-java-agent](https://github.com/GuanceCloud/dd-trace-java)，并在您的 Dockerfile 中参考下面的脚本把 jar 打入中镜像中，在部署的 yaml 中 -javaagent 使用的 jar 改成您打入的即可。
@@ -638,7 +638,7 @@ ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS} -jar ${jar} ${PARAMS} 2>&1 > /d
               value: "172.16.0.230"
             - name: JAVA_OPTS
               value: |-
-                -javaagent:/usr/dd-java-agent/agent/dd-java-agent.jar -Ddd.service=demo-k8s-gateway  -Ddd.tags=container_host:$(POD_NAME) -Ddd.tags=node_ip:$(DD_AGENT_HOST) -Ddd.service.mapping=redis:redisk8s -Ddd.env=dev -Ddd.agent.port=9529
+                -javaagent:/usr/dd-java-agent/agent/dd-java-agent.jar -Ddd.service=demo-k8s-gateway  -Ddd.tags=container_host:$(POD_NAME),node_ip:$(DD_AGENT_HOST) -Ddd.service.mapping=redis:redisk8s -Ddd.env=dev -Ddd.agent.port=9529
             - name: PARAMS
               value: "--spring.redis.host=$(NACOS_IP) --spring.nacos.ip=$(NACOS_IP)"
             name: gateway-service
@@ -654,8 +654,8 @@ ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS} -jar ${jar} ${PARAMS} 2>&1 > /d
           - command:
             - sh
             - -c
-            - set -ex;mkdir -p /ddtrace/agent;cp -r /usr/dd-java-agent/agent/* /ddtrace/agent;
-            image: pubrepo.jiagouyun.com/datakit/dk-sidecar:1.1
+            - set -ex;mkdir -p /ddtrace/agent;cp -r /datadog-init/* /ddtrace/agent;
+            image: pubrepo.jiagouyun.com/datakit-operator/dd-lib-java-init
             imagePullPolicy: Always
             name: ddtrace-agent-sidecar
             volumeMounts:
@@ -740,7 +740,7 @@ ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS} -jar ${jar} ${PARAMS} 2>&1 > /d
               value: "172.16.0.230"
             - name: JAVA_OPTS
               value: |-
-                -javaagent:/usr/dd-java-agent/agent/dd-java-agent.jar -Ddd.service=demo-k8s-auth  -Ddd.tags=container_host:$(POD_NAME) -Ddd.tags=node_ip:$(DD_AGENT_HOST) -Ddd.service.mapping=redis:redisk8s -Ddd.env=dev -Ddd.agent.port=9529 
+                -javaagent:/usr/dd-java-agent/agent/dd-java-agent.jar -Ddd.service=demo-k8s-auth  -Ddd.tags=container_host:$(POD_NAME),node_ip:$(DD_AGENT_HOST) -Ddd.service.mapping=redis:redisk8s -Ddd.env=dev -Ddd.agent.port=9529 
             - name: PARAMS
               value: "--spring.redis.host=$(NACOS_IP) --spring.nacos.ip=$(NACOS_IP)"
             name: auth-service
@@ -756,8 +756,8 @@ ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS} -jar ${jar} ${PARAMS} 2>&1 > /d
           - command:
             - sh
             - -c
-            - set -ex;mkdir -p /ddtrace/agent;cp -r /usr/dd-java-agent/agent/* /ddtrace/agent;
-            image: pubrepo.jiagouyun.com/datakit/dk-sidecar:1.0
+            - set -ex;mkdir -p /ddtrace/agent;cp -r /datadog-init/* /ddtrace/agent;
+            image: pubrepo.jiagouyun.com/datakit-operator/dd-lib-java-init
             imagePullPolicy: Always
             name: ddtrace-agent-sidecar
             volumeMounts:
@@ -792,8 +792,8 @@ WORKDIR ${workdir}
 ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS}   -jar ${jar} ${PARAMS}  2>&1 > /dev/null"]
 ```
 
-新建 `/usr/local/k8s/system-deployment.yaml` ，Pod 中使用了 3 个镜像 `172.16.0.238/df-ruoyi/demo-system:v1` 、`pubrepo.jiagouyun.com/datakit/logfwd:1.2.7` 、`pubrepo.jiagouyun.com/datakit/dk-sidecar:1.1`。 <br />
-其中 dk-sidecar 是提供 `dd-java-agent.jar` 文件给 system-container 业务容器使用，logfwd 采集业务容器的日志文件。logfwd 的配置文件是通过 ConfigMap 来挂载到容器中的，在配置文件中指明需要采集的日志文件位置、source 名称等。
+新建 `/usr/local/k8s/system-deployment.yaml` ，Pod 中使用了 3 个镜像 `172.16.0.238/df-ruoyi/demo-system:v1` 、`pubrepo.jiagouyun.com/datakit/logfwd:1.2.7` 、`pubrepo.jiagouyun.com/datakit-operator/dd-lib-java-init`。 <br />
+其中 dd-lib-java-init 是提供 `dd-java-agent.jar` 文件给 system-container 业务容器使用，logfwd 采集业务容器的日志文件。logfwd 的配置文件是通过 ConfigMap 来挂载到容器中的，在配置文件中指明需要采集的日志文件位置、source 名称等。
 
 `system-deployment.yaml` 完整内容如下：
 
@@ -848,7 +848,7 @@ ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS}   -jar ${jar} ${PARAMS}  2>&1 >
               value: "172.16.0.230"
             - name: JAVA_OPTS
               value: |-
-                -javaagent:/usr/dd-java-agent/agent/dd-java-agent.jar -Ddd.service=demo-k8s-system  -Ddd.tags=container_host:$(PODE_NAME)  -Ddd.tags=node_ip:$(DD_AGENT_HOST) -Ddd.service.mapping=mysql:mysql-k8s,redis:redisk8s -Ddd.env=dev -Ddd.agent.port=9529 
+                -javaagent:/usr/dd-java-agent/agent/dd-java-agent.jar -Ddd.service=demo-k8s-system  -Ddd.tags=container_host:$(PODE_NAME),node_ip:$(DD_AGENT_HOST) -Ddd.service.mapping=mysql:mysql-k8s,redis:redisk8s -Ddd.env=dev -Ddd.agent.port=9529 
             - name: PARAMS
               value: "--spring.redis.host=$(DB_IP) --spring.nacos.ip=$(NACOS_IP) --spring.db.ip=$(DB_IP)"
             image: 172.16.0.238/df-ruoyi/demo-system:v1
@@ -902,8 +902,8 @@ ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS}   -jar ${jar} ${PARAMS}  2>&1 >
             command:
             - sh
             - -c
-            - set -ex;mkdir -p /ddtrace/agent;cp -r /usr/dd-java-agent/agent/* /ddtrace/agent;
-            image: pubrepo.jiagouyun.com/datakit/dk-sidecar:1.0
+            - set -ex;mkdir -p /ddtrace/agent;cp -r /datadog-init/* /ddtrace/agent;
+            image: pubrepo.jiagouyun.com/datakit-operator/dd-lib-java-init
             imagePullPolicy: Always
             volumeMounts:
             - mountPath: /ddtrace/agent
@@ -1024,7 +1024,7 @@ DataKit 开启 RUM 采集器是通过 `ENV_DEFAULT_ENABLED_INPUTS` 环境变量�
 
 - version: 必填，应用所属版本号。
 
-- allowedDDTracingOrigins: RUM 与 APM 打通，配置后端服务器地址或域名，由于本示例前端和后端访问地址都是 [http://8.136.193.105:30000/](http://8.136.193.105:30000/)，在配置时需要把 30000 端口加上。
+- allowedTracingOrigins: RUM 与 APM 打通，配置后端服务器地址或域名，由于本示例前端和后端访问地址都是 [http://8.136.193.105:30000/](http://8.136.193.105:30000/)，在配置时需要把 30000 端口加上。
 
 - trackInteractions: 用户行为统计，例如点击按钮，提交信息等动作。
 
@@ -1059,12 +1059,12 @@ JAVA_OPTS 详细说明：
 
 ```
 -Ddd.env：应用的环境类型，选填
--Ddd.tags：自定义标签，选填
+-Ddd.tags：自定义标签，多个采用,隔开，选填
 -Ddd.service：JVM数据来源的应用名称，必填
 -Ddd.agent.host=localhost    DataKit 地址，选填
 -Ddd.agent.port=9529         DataKit 端口，必填
 -Ddd.version:版本，选填
--Ddd.jmxfetch.check-period 表示采集频率，单位为毫秒，默认 true，选填
+-Ddd.jmxfetch.check-period 表示采集频率，单位为毫秒，默认 1500，选填
 -Ddd.jmxfetch.statsd.host=127.0.0.1 statsd 采集器的连接地址同 DataKit 地址，选填
 -Ddd.jmxfetch.statsd.port=8125 表示 DataKit 上 statsd 采集器的 UDP 连接端口，默认为 8125，选填
 -Ddd.trace.health.metrics.statsd.host=127.0.0.1  自身指标数据采集发送地址同 DataKit 地址，选填

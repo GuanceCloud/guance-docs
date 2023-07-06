@@ -1,4 +1,3 @@
-<!-- This file required to translate to EN. -->
 
 # Memcached
 ---
@@ -7,26 +6,31 @@
 
 ---
 
-Memcached 采集器可以从 Memcached 实例中采集实例运行状态指标，并将指标采集到观测云，帮助监控分析 Memcached 各种异常情况。
+Memcached collector can collect the running status metrics from Memcached instances, and collect the metrics to the observation cloud to help monitor and analyze various abnormal situations of Memcached.
 
-## 前置条件 {#requirements}
+## Preconditions {#requirements}
 
-- Memcached 版本 >= 1.5.0
+- Memcached version >= `1.5.0`. Already tested version:
+    - [x] 1.5.x
+    - [x] 1.6.x
 
-## 配置 {#config}
+## Configuration {#config}
 
-=== "主机安装"
+=== "Host Installation"
 
-    进入 DataKit 安装目录下的 `conf.d/db` 目录，复制 `memcached.conf.sample` 并命名为 `memcached.conf`。示例如下：
+    Go to the `conf.d/db` directory under the DataKit installation directory, copy `memcached.conf.sample` and name it `memcached.conf`. Examples are as follows:
     
     ```toml
         
     [[inputs.memcached]]
-      ## 服务器地址，可支持多个
+      ## Servers' addresses.
       servers = ["localhost:11211"]
       # unix_sockets = ["/var/run/memcached.sock"]
     
-      ## 采集间隔
+      ## Set true to enable election
+      election = true
+    
+      ## Collect interval.
       # 单位 "ns", "us" (or "µs"), "ms", "s", "m", "h"
       interval = "10s"
     
@@ -36,16 +40,16 @@ Memcached 采集器可以从 Memcached 实例中采集实例运行状态指标�
       # ...
     
     ```
-
-    配置好后，[重启 DataKit](datakit-service-how-to.md#manage-service) 即可。
+    
+    Once configured, [restart DataKit](datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+    The collector can now be turned on by [ConfigMap Injection Collector Configuration](datakit-daemonset-deploy.md#configmap-setting).
 
-## 指标集 {#measurements}
+## Measurements {#measurements}
 
-以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.memcached.tags]` 指定其它标签：
+For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.memcached.tags]`:
 
 ``` toml
  [inputs.memcached.tags]
@@ -58,17 +62,17 @@ Memcached 采集器可以从 Memcached 实例中采集实例运行状态指标�
 
 ### `memcached`
 
--  标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
 |`server`|The host name from which metrics are gathered|
 
-- 指标列表
+- metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`accepting_conns`|Whether or not server is accepting conns|int|count|
 |`auth_cmds`|Number of authentication commands handled, success or failure|int|count|
@@ -76,21 +80,21 @@ Memcached 采集器可以从 Memcached 实例中采集实例运行状态指标�
 |`bytes`|Current number of bytes used to store items|int|B|
 |`bytes_read`|Total number of bytes read by this server from network|int|B|
 |`bytes_written`|Total number of bytes sent by this server to network|int|B|
-|`cas_badval`|Number of CAS reqs for which a key was found, but the CAS value did not match|int|count|
-|`cas_hits`|Number of successful CAS reqs|int|count|
-|`cas_misses`|Number of CAS reqs against missing keys|int|count|
-|`cmd_flush`|Cumulative number of flush reqs|int|count|
-|`cmd_get`|Cumulative number of retrieval reqs|int|count|
-|`cmd_set`|Cumulative number of storage reqs|int|count|
-|`cmd_touch`|Cumulative number of touch reqs|int|count|
+|`cas_badval`|Number of CAS  for which a key was found, but the CAS value did not match|int|count|
+|`cas_hits`|Number of successful CAS requests|int|count|
+|`cas_misses`|Number of CAS requests against missing keys|int|count|
+|`cmd_flush`|Cumulative number of flush requests|int|count|
+|`cmd_get`|Cumulative number of retrieval requests|int|count|
+|`cmd_set`|Cumulative number of storage requests|int|count|
+|`cmd_touch`|Cumulative number of touch requests|int|count|
 |`conn_yields`|Number of times any connection yielded to another due to hitting the -R limit|int|count|
 |`connection_structures`|Number of connection structures allocated by the server|int|count|
 |`curr_connections`|Number of open connections|int|count|
 |`curr_items`|Current number of items stored|int|count|
-|`decr_hits`|Number of successful decr reqs|int|count|
-|`decr_misses`|Number of decr reqs against missing keys|int|count|
-|`delete_hits`|Number of deletion reqs resulting in an item being removed|int|count|
-|`delete_misses`|umber of deletions reqs for missing keys|int|count|
+|`decr_hits`|Number of successful `decr` requests|int|count|
+|`decr_misses`|Number of `decr` requests against missing keys|int|count|
+|`delete_hits`|Number of deletion requests resulting in an item being removed|int|count|
+|`delete_misses`|umber of deletions requests for missing keys|int|count|
 |`evicted_unfetched`|Items evicted from LRU that were never touched by get/incr/append/etc|int|count|
 |`evictions`|Number of valid items removed from cache to free memory for new items|int|count|
 |`expired_unfetched`|Items pulled from LRU that were never touched by get/incr/append/etc before expiring|int|count|
@@ -99,10 +103,10 @@ Memcached 采集器可以从 Memcached 实例中采集实例运行状态指标�
 |`hash_bytes`|Bytes currently used by hash tables|int|B|
 |`hash_is_expanding`|Indicates if the hash table is being grown to a new size|int|count|
 |`hash_power_level`|Current size multiplier for hash table|int|count|
-|`incr_hits`|Number of successful incr reqs|int|count|
-|`incr_misses`|Number of incr reqs against missing keys|int|count|
+|`incr_hits`|Number of successful incr requests|int|count|
+|`incr_misses`|Number of incr requests against missing keys|int|count|
 |`limit_maxbytes`|Number of bytes this server is allowed to use for storage|int|B|
-|`listen_disabled_num`|Number of times server has stopped accepting new connections (maxconns)|int|count|
+|`listen_disabled_num`|Number of times server has stopped accepting new connections (`maxconns`)|int|count|
 |`reclaimed`|Number of times an entry was stored using memory from an expired entry|int|count|
 |`threads`|Number of worker threads requested|int|count|
 |`total_connections`|Total number of connections opened since the server started running|int|count|

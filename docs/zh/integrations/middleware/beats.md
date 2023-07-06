@@ -16,7 +16,7 @@ Beats 指标展示，包括 CPU 负载、内存、事件、配置、输出流量
 
 ## 前置条件
 
-- 服务器 <[安装 Datakit](../../datakit/datakit-install.md)>
+- 服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
 - 服务器安装 Telegraf
 - Beats 应用开启 HTTP Endpoint
 
@@ -60,10 +60,7 @@ systemctl restart xxxbeats
 ## 安装配置
 
 说明：示例 Linux 版本为 CentOS Linux release 7.8.2003 (Core)，Windows 版本请修改对应的配置文件。
-
-### 部署实施
-
-#### 指标采集 (必选)
+### 指标采集 (必选)
 
 1、 数据上传至 DataKit，修改主配置文件 `telegraf.conf`
 
@@ -130,7 +127,7 @@ systemctl start telegraf
 
 ![image](../imgs/input-beats-3.png)
 
-#### 插件标签 (非必选)
+### 插件标签 (非必选)
 
 参数说明
 
@@ -175,8 +172,8 @@ systemctl restart telegraf
 
 ## 常见问题排查
 
-<[无数据上报排查](../../datakit/why-no-data.md)>
+- <[无数据上报排查](../../datakit/why-no-data.md)>
 
 ## 进一步阅读
 
-<[Elastic Beats 数据采集](https://www.elastic.co/beats/)>
+- <[Elastic Beats 数据采集](https://www.elastic.co/beats/)>

@@ -17,8 +17,8 @@ icon: integrations/aliyun
 
 ## 版本支持
 
-操作系统：Linux / Windows <br />
-EDAS 环境：ECS 集群，Java 运行环境 (Jar 包部署方式)
+- 操作系统：Linux / Windows
+- EDAS 环境：ECS 集群，Java 运行环境 (Jar 包部署方式)
 
 ## 前置条件
 
@@ -30,7 +30,6 @@ EDAS 环境：ECS 集群，Java 运行环境 (Jar 包部署方式)
 
 此处官方推荐 **ddtrace** 接入方式。ddtrace 是开源的 APM 监控方式，相较于其他方式，支持更多的自定义字段，也就意味着可以有足够多的标签与其他的组件进行关联。ddtrace 具体接入方式详细如下：
 
-## 部署实施
 
 1、 登录阿里云 EDAS 控制台 [https://edasnext.console.aliyun.com](https://edasnext.console.aliyun.com/)
 

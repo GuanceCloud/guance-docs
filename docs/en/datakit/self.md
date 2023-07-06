@@ -1,23 +1,22 @@
-<!-- This file required to translate to EN. -->
 
-# DataKit 自身指标
+# DataKit Self-metric
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
 
 ---
 
-self 采集器用于 DataKit 自身基本信息的采集，包括运行环境信息、CPU、内存占用情况等。
+Self collector is used to collect the basic information of DataKit itself, including running environment information, CPU, memory occupation and so on.
 
-## 前置条件 {#reqirement}
+## Preconditions {#reqirement}
 
-暂无
+None
 
-## 配置 {#config}
+## Configuration {#config}
 
-self 采集器会自动运行，无需配置，且无法关闭。
+The self collector runs automatically without configuration and cannot be shut down.
 
-## 指标 {#measurements}
+## Metrics {#measurements}
 
 
 
@@ -27,46 +26,45 @@ self 采集器会自动运行，无需配置，且无法关闭。
 
 
 
-- 标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
 |`arch`|Architecture of the DataKit|
 |`host`|Hostname of the DataKit|
-|`namespace`|Election namespace(datakit.conf/namespace) of DataKit, may be not set|
-|`os`|Operation System of the DataKit, such as linux/mac/windows|
+|`namespace`|Election namespace(`datakit.conf/namespace`) of DataKit, may be not set|
+|`os`|Operation System of the DataKit, such as Linux/macOS/Windows|
 |`os_version_detail`|Operation System release of the DataKit, such as Ubuntu 20.04.2 LTS, macOS 10.15 Catalina|
 |`uuid`|**Deprecated**, currently use `hostname` as DataKit's UUID|
 |`version`|DataKit version|
 
-- 字段列表
+- metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`cpu_usage`|CPU usage of the datakit|float|percent|
-|`cpu_usage_top`|CPU usage(command `top`) of the datakit|float|percent|
+|`cpu_usage`|CPU usage of current Datakit(same as `top`)|float|percent|
+|`cpu_usage_top`|**Deprecated**. Same as `cpu_usage`.|float|percent|
 |`dropped_point_total`|Total dropped points due to cache clean|int|count|
 |`dropped_points`|Current dropped points due to cache clean|int|count|
 |`elected`|Elected duration, if not elected, the value is 0|int|s|
 |`heap_alloc`|Bytes of allocated heap objects|int|B|
 |`heap_objects`|Number of allocated heap objects|int|count|
 |`heap_sys`|Bytes of heap memory obtained from OS(Estimates the largest size of the heap has had)|int|B|
-|`incumbency`|**Deprecated**. same as `elected`|int|s|
+|`incumbency`|**Deprecated**. Same as `elected`|int|s|
 |`max_heap_alloc`|Max bytes of allocated heap objects since DataKit start|int|B|
 |`max_heap_objects`|Max number of allocated heap objects since DataKit start|int|count|
 |`max_heap_sys`|Max bytes of heap memory obtained from OS since DataKit start|int|B|
-|`max_num_goroutines`|Max number of goroutines since DataKit start|int|count|
+|`max_num_goroutines`|Max number of Goroutine since DataKit start|int|count|
 |`min_heap_alloc`|Minimal bytes of allocated heap objects since DataKit start|int|B|
 |`min_heap_objects`|Minimal number of allocated heap objects since DataKit start|int|count|
 |`min_heap_sys`|Minimal bytes of heap memory obtained from OS since DataKit start|int|B|
-|`min_num_goroutines`|Minimal number of goroutines since DataKit start|int|count|
-|`num_goroutines`|Number of goroutines that currently exitst|int|count|
+|`min_num_goroutines`|Minimal number of Goroutine since DataKit start|int|count|
+|`num_goroutines`|Number of Goroutine that currently exists|int|count|
 |`open_files`|open files of DataKit(Only Linux support, others are -1)|int|count|
 |`pid`|DataKit process ID|int|-|
-|`uptime`|Uptime of DataKit|int|s|
-
+|`uptime`|Uptime of DataKit|int|s| 
 
 
 
@@ -76,17 +74,17 @@ self 采集器会自动运行，无需配置，且无法关闭。
 
 
 
-- 标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
 |`api`|API router of the DataKit HTTP|
 
-- 字段列表
+- metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`2XX`|HTTP status code 2xx count|int|count|
 |`3XX`|HTTP status code 3xx count|int|count|
@@ -95,8 +93,7 @@ self 采集器会自动运行，无需配置，且无法关闭。
 |`avg_latency`|HTTP average latency|int|ns|
 |`limited`|HTTP limited|int|count|
 |`max_latency`|HTTP max latency|int|ns|
-|`total_request_count`|HTTP total request count|int|count|
-
+|`total_request_count`|HTTP total request count|int|count| 
 
 
 
@@ -106,28 +103,28 @@ self 采集器会自动运行，无需配置，且无法关闭。
 
 
 
-- 标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
-|`group`|The group name of the goroutine.|
+|`group`|The group name of the Goroutine.|
 
-- 字段列表
+- metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`failed_num`|The number of the goroutine which has failed|int|count|
-|`finished_goroutine_num`|The number of the finished goroutine|int|count|
+|`failed_num`|The number of the Goroutine which has failed|int|count|
+|`finished_goroutine_num`|The number of the finished Goroutine|int|count|
 |`max_cost_time`|Maximum cost time in nanosecond|int|ns|
 |`min_cost_time`|Minimum cost time in nanosecond|int|ns|
-|`running_goroutine_num`|The number of the running goroutine|int|count|
-|`total_cost_time`|Total cost time in nanosecond|int|ns|
+|`running_goroutine_num`|The number of the running Goroutine|int|count|
+|`total_cost_time`|Total cost time in nanosecond|int|ns| 
 
 
 
 
-## 延申阅读 {#more-reading}
+## More Readings {#more-reading}
 
-- [主机采集器](hostobject.md)
+- [Host collector](hostobject.md)

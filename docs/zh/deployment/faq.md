@@ -80,6 +80,8 @@ drop database df_message_desk;
 drop user df_message_desk;
 drop database df_func;
 drop user df_func;
+drop database df_dialtesting;
+drop user df_dialtesting;
 ```
 ### 2.3 清理 InfluxDB 中自动创建的用户
 使用 influx 客户端工具，连接 InfluxDB，执行以下两个用户清理命令：
@@ -179,8 +181,9 @@ openssl x509 -in /etc/kubernetes/ssl/kube-apiserver.pem -noout -dates
 -       部署Dataway 的服务器无法与 kodo 服务通信。（包括dataway服务器并未在hosts中添加df-kodo 服务的正确解析）
 -       kodo 服务异常，具体可通过查看kodo 服务日志进行确认。
 -       df-kodo ingress 服务未正确配置。具体表现为无法访问 `http|https://df-kodo.<xxxx>:<port>`
-# 7 为什么不能使用拨测服务
-## 7.1 原因剖析
+
+## 7 为什么不能使用拨测服务
+### 7.1 原因剖析
 
 -       部署的观测云应用为离线环境，物理节点网络环境无法出网。（较为常见）
 -       自建探测节点网络异常。
@@ -191,7 +194,7 @@ openssl x509 -in /etc/kubernetes/ssl/kube-apiserver.pem -noout -dates
 
 ## 8 部署常见问题及解决方法
 
-## 8.1 `describe pods` 报 `unbound immediate PersistentVolumeClaims` 错误
+### 8.1 `describe pods` 报 `unbound immediate PersistentVolumeClaims` 错误
 
 - 查看 pvc 
 

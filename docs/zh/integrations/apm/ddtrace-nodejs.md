@@ -13,13 +13,13 @@ Node.js 应用的链路追踪，埋点后可在「应用性能监测」应用列
 
 ## 版本支持
 
-操作系统：Linux <br />
-Node 版本：>=12
+- 操作系统：Linux <br />
+- Node 版本：>=12
 
 ## 前置条件
 
-- 在 Node 应用服务器上安装 Datakit <[安装 Datakit](../../datakit/datakit-install.md)>
-- 查看 Node 版本是否>=12
+- 在 Node 应用服务器上安装 Datakit <[安装 DataKit](../../datakit/datakit-install.md)>
+- [按需下载对应 agent](https://github.com/DataDog/dd-trace-js)
 
 ## 安装配置
 
@@ -108,6 +108,12 @@ npm run start
 
 访问一下应用, 以便生成链路数据, 进入观测云「应用性能监测」即可看到自己的应用。
 
-## 常见问题排查
+### [支持的环境变量](../../datakit/ddtrace-nodejs.md#envs)
 
-<[无数据上报排查](../../datakit/why-no-data.md)>
+## 更多阅读
+
+<[应用性能监测功能介绍](../../application-performance-monitoring/index.md)>
+
+<[链路追踪-字段说明](../../application-performance-monitoring/collection/index.md#_5)>
+
+<[链路追踪（APM）最佳实践](../../best-practices/monitoring/apm.md)>

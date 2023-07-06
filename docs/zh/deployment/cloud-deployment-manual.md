@@ -58,45 +58,101 @@ ECS、SLB、NAT 网关，由ACK 来自动创建，不需要单独创建，也就
 
 ![](img/7.deployment_4.png)
 
-### 3.3 步骤四、五 自动存储配置
+### 3.3 步骤四、五 动态存储配置
 
-需提前创建 nas 文件系统，获取 nas_server_id
+需提前创建 nas 文件系统，获取 nas_server_url
 
-#### 3.3.1 NAS Controller
+#### 3.3.1 动态存储安装
 
-NAS Controller YAML 文件下载地址：
-[https://static.guance.com/launcher/nas_controller.yaml](https://static.guance.com/launcher/nas_controller.yaml)
+=== "CSI"
 
-将上面的 YAML 内容保存为 **nas_controller.yaml** 文件，放到**运维操作机**上。
+    阿里云容器服务ACK的容器存储功能基于Kubernetes容器存储接口（CSI），深度融合阿里云存储服务云盘EBS，文件存储NAS和CPFS，以及对象存储OSS，本地盘等，并完全兼容Kubernetes原生的存储服务，例如EmptyDir、HostPath、Secret、ConfigMap等存储。本文介绍ACK存储CSI的概览、ACK存储CSI支持的功能、CSI使用授权、CSI使用限制等。控制台将**默认安装**CSI-Plugin和CSI-Provisioner组件。
 
-#### 3.3.2 存储类配置
+    - 验证插件
+      - 执行以下命令，查看CSI-Plugin组件是否成功部署。
+        ```shell
+        kubectl get pod -n kube-system | grep csi-plugin
+        ```
+      - 执行以下命令，查看CSI-Provisioner组件是否成功部署。
+        ```shell
+        kubectl get pod -n kube-system | grep csi-provisioner
+        ```
+    - 创建 StorageClass
+       
+      创建并复制以下内容到 alicloud-nas-subpath.yaml 文件中。
 
-Storage Class YAML 下载：
- https://static.guance.com/launcher/storage_class.yaml
+    ???+ note "alicloud-nas-subpath.yaml"
+          ```yaml
+          apiVersion: storage.k8s.io/v1
+          kind: StorageClass
+          metadata:
+            name: alicloud-nas
+          mountOptions:
+          - nolock,tcp,noresvport
+          - vers=3
+          parameters:
+            volumeAs: subpath
+            server: "{{ nas_server_url }}:/k8s/"
+          provisioner: nasplugin.csi.alibabacloud.com
+          reclaimPolicy: Retain
+          ```
 
-将上面的 YAML 内容保存为 **storage_class.yaml** 文件，放到**运维操作机**上，然后替换文档内的变量部分：
+      **{{ nas_server_url }}** 替换为前面创建的 NAS 存储的 Server URL，在**运维操作机**上执行命令：  
 
-- **{{ nas_server_id }}** 替换为前面创建的 NAS 存储的 Server ID。
+      ```shell
+      kubectl apply -f ./alicloud-nas-subpath.yaml
+      ```
+=== "flexvolume(官方已废弃)"
 
-#### 3.3.3 导入存储配置
+    创建阿里云Kubernetes 1.16之前版本的集群时，若存储插件选择为Flexvolume，则控制台默认安装Flexvolume与Disk-Controller组件，但不会默认安装alicloud-nas-controller组件。
 
-- 导入**controller.yaml**，在**运维操作机**上执行命令： 
+    - 安装alicloud-nas-controller组件
 
-```shell
-$ kubectl apply -f ./nas_controller.yaml
-```
+      下载 [nas_controller.yaml](nas_controller.yaml)
+      在**运维操作机**上执行命令： 
+      ```shell
+      kubectl apply -f nas_controller.yaml
+      ```
 
-- 导入 **storage_class.yaml**，在**运维操作机**上执行命令：  
+    - 验证插件
 
-```shell
-$ kubectl apply -f ./storage_class.yaml
-```
+      执行以下命令，查看Disk-Controller组件是否成功部署。
+      ```shell
+      kubectl get pod -nkube-system | grep alicloud-nas-controller
+      ```
 
-#### 3.3.4 验证部署
+    - 创建 StorageClass
 
+      创建并复制以下内容到 storage_class.yaml 文件中。
 
-- 创建 pvc ,查看状态
-  执行命令，创建 pvc
+    ???+ note "storage_class.yaml"
+          ```yaml
+          apiVersion: storage.k8s.io/v1
+          kind: StorageClass
+          metadata:
+            name: alicloud-nas
+            annotations:
+              storageclass.beta.kubernetes.io/is-default-class: "true"
+              storageclass.kubernetes.io/is-default-class: "true"
+          mountOptions:
+          - nolock,tcp,noresvport
+          - vers=3
+          parameters:
+            server:  "{{ nas_server_url }}:/k8s/"
+            driver: flexvolume
+          provisioner: alicloud/nas
+          reclaimPolicy: Delete
+          ```
+      **{{ nas_server_url }}** 替换为前面创建的 NAS 存储的 Server URL，在**运维操作机**上执行命令：  
+
+      ```shell
+      kubectl apply -f ./storage_class.yaml
+      ```
+#### 3.3.2 验证部署
+
+##### 3.3.2.1 创建 pvc ,查看状态
+
+执行命令，创建 pvc
 
 ```shell
 $ cat <<EOF | kubectl apply -f -
@@ -110,16 +166,16 @@ spec:
  resources:
    requests:
      storage: 1Gi
- storageClassName: alicloud/nas
+ storageClassName: alicloud-nas
 EOF
 ```
 
-查看 pvc
+##### 3.3.2.2 查看 pvc
 
 ```shell
 $ kubectl get pvc | grep cfs-pvc001
 
-cfs-pvc001       Bound    pvc-a17a0e50-04d2-4ee0-908d-bacd8d53aaa4   1Gi        RWO            alicloud/nas           3d7h
+cfs-pvc001       Bound    pvc-a17a0e50-04d2-4ee0-908d-bacd8d53aaa4   1Gi        RWO            alicloud-nas           3d7h
 ```
 
 >`Bound` 为部署成功标准

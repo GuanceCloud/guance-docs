@@ -15,17 +15,15 @@ Docker 性能指标展示，包括 CPU 使用率、内存使用率、内存可�
 
 操作系统支持：Linux
 
+## 前置条件
+
+- Docker 所在服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
+
 ## 安装部署
 
 说明：示例 Docker 版本为 20.10.7(CentOS)，各个不同版本指标可能存在差异。
 
-### 前置条件
-
-- Docker 所在服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
-
-### 配置实施
-
-#### 指标采集 (必选)
+### 指标采集 (必选)
 
 1、 开启 Container 插件，复制 sample 文件
 
@@ -53,36 +51,42 @@ vi container.conf
 [Glob 规则](https://en.wikipedia.org/wiki/Glob_(programming))是一种轻量级的正则表达式，支持 `*` `?` 等基本匹配单元。
 
 ```
-      [inputs.container]
-        docker_endpoint = "unix:///var/run/docker.sock"
-        containerd_address = "/var/run/containerd/containerd.sock"
+  [inputs.container]
+    docker_endpoint = "unix:///var/run/docker.sock"
+    containerd_address = "/var/run/containerd/containerd.sock"
 
-        enable_container_metric = true
-        enable_k8s_metric = false
-        enable_pod_metric = false
+    enable_container_metric = true
+    enable_k8s_metric = false
+    enable_pod_metric = false
+    extract_k8s_label_as_tags = false
 
-        ## Containers logs to include and exclude, default collect all containers. Globs accepted.
-        container_include_log = []
-        container_exclude_log = ["image:pubrepo.jiagouyun.com/datakit/logfwd*", "image:pubrepo.jiagouyun.com/datakit/datakit*"]
+    ## Auto-Discovery of PrometheusMonitoring Annotations/CRDs
+    enable_auto_discovery_of_prometheus_service_annotations = false
+    enable_auto_discovery_of_prometheus_pod_monitors = false
+    enable_auto_discovery_of_prometheus_service_monitors = false
+    
+    ## Containers logs to include and exclude, default collect all containers. Globs accepted.
+    container_include_log = []
+    container_exclude_log = ["image:pubrepo.jiagouyun.com/datakit/logfwd*", "image:pubrepo.jiagouyun.com/datakit/datakit*"]
 
-        exclude_pause_container = true
+    exclude_pause_container = true
 
-        ## Removes ANSI escape codes from text strings
-        logging_remove_ansi_escape_codes = false
+    ## Removes ANSI escape codes from text strings
+    logging_remove_ansi_escape_codes = false
 
-        kubernetes_url = "https://kubernetes.default:443"
+    kubernetes_url = "https://kubernetes.default:443"
 
-        ## Authorization level:
-        ##   bearer_token -> bearer_token_string -> TLS
-        ## Use bearer token for authorization. ('bearer_token' takes priority)
-        ## linux at:   /run/secrets/kubernetes.io/serviceaccount/token
-        ## windows at: C:\var\run\secrets\kubernetes.io\serviceaccount\token
-        bearer_token = "/run/secrets/kubernetes.io/serviceaccount/token"
-        # bearer_token_string = "<your-token-string>"
+    ## Authorization level:
+    ##   bearer_token -> bearer_token_string -> TLS
+    ## Use bearer token for authorization. ('bearer_token' takes priority)
+    ## linux at:   /run/secrets/kubernetes.io/serviceaccount/token
+    ## windows at: C:\var\run\secrets\kubernetes.io\serviceaccount\token
+    bearer_token = "/run/secrets/kubernetes.io/serviceaccount/token"
+    # bearer_token_string = "<your-token-string>"
 
-        [inputs.container.tags]
-          # some_tag = "some_value"
-          # more_tag = "some_other_value"
+    [inputs.container.tags]
+      # some_tag = "some_value"
+      # more_tag = "some_other_value"
 ```
 
 3、 重启 DataKit (如果需要开启日志，请配置日志采集再重启)
@@ -95,7 +99,7 @@ systemctl restart datakit
 
 ![image](../imgs/input-docker-2.png)
 
-#### 日志采集 (非必选)
+### 日志采集 (非必选)
 
 查看 `/usr/local/datakit/conf.d/container/container.conf` ，如下的配置默认采集除了 DataKit 外所有容器输出到 stdout 的日志。
 
@@ -109,7 +113,7 @@ systemctl restart datakit
 
 ![image](../imgs/input-docker-3.png)
 
-#### 插件标签 (非必选)
+### 插件标签 (非必选)
 
 参数说明
 
@@ -137,16 +141,7 @@ systemctl restart datakit
 
 <场景 - 新建仪表板 - 模板库 - 系统视图 - Docker 监控视图>
 
-## 检测库
-
-暂无
-
-## [指标详解](../../../datakit/container#docker_containers)
-
-
-## 最佳实践
-
-暂无
+## [指标详解](../../datakit/container.md#docker_containers)
 
 ## 故障排查
 

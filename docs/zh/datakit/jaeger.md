@@ -10,13 +10,14 @@ Datakit 内嵌的 Jaeger Agent 用于接收，运算，分析 Jaeger Tracing 协
 
 ## Jaeger 文档 {#doc}
 
-- [Quickstart](https://www.jaegertracing.io/docs/1.27/getting-started/){:target="_blank"}
+- [Quick Start](https://www.jaegertracing.io/docs/1.27/getting-started/){:target="_blank"}
 - [Docs](https://www.jaegertracing.io/docs/){:target="_blank"}
 - [Clients Download](https://www.jaegertracing.io/download/){:target="_blank"}
 - [Source Code](https://github.com/jaegertracing/jaeger){:target="_blank"}
 
 ## 配置 Jaeger Agent {#config-agent}
 
+<!-- markdownlint-disable MD046 -->
 ???+ info
 
     当前 Jaeger 版本支持 HTTP 和 UDP 通信协议和 Apache Thrift 编码规范
@@ -88,6 +89,7 @@ Datakit 内嵌的 Jaeger Agent 用于接收，运算，分析 Jaeger Tracing 协
 === "Kubernetes"
 
     目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+<!-- markdownlint-enable -->
 
 ### 配置 Jaeger HTTP Agent {#config-http-agent}
 
@@ -288,35 +290,37 @@ func foo() {
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
-|`container_host`|container hostname|
-|`endpoint`|endpoint info|
-|`env`|application environment info|
-|`http_method`|http request method name|
-|`http_status_code`|http response code|
-|`operation`|span name|
-|`project`|project name|
-|`service`|service name|
-|`source_type`|tracing source type|
-|`span_type`|span type|
-|`status`|span status|
-|`version`|application version info|
+|`container_host`|Container hostname. Available in OpenTelemetry. Optional.|
+|`endpoint`|Endpoint info. Available in SkyWalking, Zipkin. Optional.|
+|`env`|Application environment info. Available in Jaeger. Optional.|
+|`http_method`|HTTP request method name. Available in ddtrace, OpenTelemetry. Optional.|
+|`http_route`|HTTP route. Optional.|
+|`http_status_code`|HTTP response code. Available in ddtrace, OpenTelemetry. Optional.|
+|`http_url`|HTTP URL. Optional.|
+|`operation`|Span name|
+|`project`|Project name. Available in Jaeger. Optional.|
+|`service`|Service name. Optional.|
+|`source_type`|Tracing source type|
+|`span_type`|Span type|
+|`status`|Span status|
+|`version`|Application version info. Available in Jaeger. Optional.|
 
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`duration`|duration of span|int|μs|
-|`message`|origin content of span|string|-|
-|`parent_id`|parent span ID of current span|string|-|
-|`pid`|application process id.|string|-|
-|`priority`||int|-|
-|`resource`|resource name produce current span|string|-|
-|`span_id`|span id|string|-|
+|`duration`|Duration of span|int|μs|
+|`message`|Origin content of span|string|-|
+|`parent_id`|Parent span ID of current span|string|-|
+|`pid`|Application process id. Available in ddtrace, OpenTelemetry. Optional.|string|-|
+|`priority`|Optional.|int|-|
+|`resource`|Resource name produce current span|string|-|
+|`span_id`|Span id|string|-|
 |`start`|start time of span.|int|usec|
-|`trace_id`|trace id|string|-|
+|`trace_id`|Trace id|string|-|
 
 
 

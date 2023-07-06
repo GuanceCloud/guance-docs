@@ -16,7 +16,7 @@ OpenTelemetry Collector 性能指标展示：collector 在线时长、内存使�
 
 ## 前置条件
 
-- OpenTelemetry Collector 服务器 <[安装 Datakit](../../datakit/datakit-install.md)>
+- OpenTelemetry Collector 服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
 
 ## 安装配置
 
@@ -28,13 +28,16 @@ OpenTelemetry Collector 性能指标展示：collector 在线时长、内存使�
 
 #### 指标采集 (必选)
 
-DataKit  有两种方案支持 otel-collector 指标采集，两种方案采集结果一致。
+???+ info
+	OpenTelemetry Collector 存在两种 metric
 
-> 方案一 ：通过 prom 采集 OpentTelemetry Collector 指标
-> 方案二：通过 OpenTelemetry  采集器采集 OpenTelemetry Collector 指标
+	1. OpenTelemetry Collector 自身的 metric，默认端口为：8888  
 
+	2. 来自应用的 metric，默认端口为：8889。
 
-##### 方案一 ：通过 prom 采集 OpenTelemetry Collector 指标
+#### OpenTelemetry Collector 自身的 metric
+
+DataKit 通过 prom 采集 OpenTelemetry Collector 指标
 
 1、 开启 OpenTelemetry Collector 指标端口，默认端口为：8888
 
@@ -179,7 +182,13 @@ systemctl restart datakit
 
 ![image](../imgs/input-otlcollector-4.png)
 
-##### 方案二：通过 OpenTelemetry  采集器采集 OpenTelemetry Collector 指标
+#### 采集来自应用的 metric
+
+???+ info
+
+	应用的 metric 也可以通过 `prometheus 采集器` 进行采集，这里主要介绍下如何通过 `opentelemetry 采集器` 进行采集，该采集器无法采集 Collector 的指标。
+	
+	**应用 Metrics 都会存放在 measurement 为 `otel-service`的指标集中，这仅限于`opentelemetry 采集器`**。
 
 1、 collector 新增 otlp exporter。
 
@@ -317,6 +326,9 @@ cp opentelemetry.conf.sample opentelemetry.conf
 datakit --restart
 ```
 
+5、指标预览
+
+![image](../imgs/input-otlcollector-5.png)
 
 #### 插件标签 (非必选）
 

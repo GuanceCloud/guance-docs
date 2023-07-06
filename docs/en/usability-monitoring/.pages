@@ -1,0 +1,6 @@
+nav:
+  - index.md
+  - 'Dialing Test Task': dialingtest-task
+  - 'Overview': overview.md
+  - 'Usability Explorer': explorer.md
+  - 'Self-built Node Management': self-node.md

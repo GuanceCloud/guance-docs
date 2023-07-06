@@ -1,0 +1,3 @@
+nav:
+  - 'Flutter Application Data Collection': app-data-collection.md
+  - 'Flutter Application Access': app-access.md

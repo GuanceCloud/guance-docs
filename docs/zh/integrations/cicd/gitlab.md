@@ -14,20 +14,18 @@ GitLab 性能指标展示，包括请求持续时间、队列数量、队列耗�
 
 ## 版本支持
 
-操作系统支持：Linux / Windows
+- 操作系统支持：Linux / Windows
+- [GitLab 版本支持情况](../../datakit/gitlab.md#requirements)
 
+## 前置条件
+
+- GitLab 所在服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
+- GitLab 已安装
 ## 安装部署
 
 说明：示例 GitLab 版本为：v14.6.2(CentOS)，各个不同版本指标可能存在差异。
 
-### 前置条件
-
-- GitLab 所在服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
-- GitLab 已安装
-
-### 配置实施
-
-#### 指标采集 (必选)
+### 指标采集 (必选)
 
 1、 GitLab 开启数据采集功能
 
@@ -105,7 +103,7 @@ systemctl restart datakit
 
 ![image](../imgs/input-gitlab-04.png)
 
-#### 插件标签 (非必选)
+### 插件标签 (非必选)
 
 参数说明
 
@@ -127,7 +125,7 @@ systemctl restart datakit
 systemctl restart datakit
 ```
 
-#### GitLab CI (非必选)
+### GitLab CI (非必选)
 
 在 GitLab 中使用 Pipeline 部署项目，通过 DataKit 采集 Pipeline 指标，可以通过观测云可视化 CI 的步骤。<br />
 依次进入 「Projects」 - 「Ruoyi Auth」（请选择您的项目） - 「Settings」 - 「Webhooks」

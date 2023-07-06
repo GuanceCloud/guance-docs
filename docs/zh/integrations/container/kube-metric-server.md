@@ -26,18 +26,16 @@ Kubernetes with Metric Server 性能指标展示，包括 Pod 数量、 Deployme
 
 操作系统支持：Linux
 
+## 前置条件
+
+- Kubernetes 集群 <[安装 DataKit](../../datakit/datakit-daemonset-deploy.md)>。
+- 采集 Kubernetes Pod 指标数据，[需要 Kubernetes 安装 Metrics-Server 组件](https://github.com/kubernetes-sigs/metrics-server#installation)。
+
 ## 安装部署
 
 说明：示例 Kubernetes 版本为 1.22.6
 
-### 前置条件
-
-- Kubernetes 集群 <[安装 Datakit](../../datakit/datakit-daemonset-deploy.md)>。
-- 采集 Kubernetes Pod 指标数据，[需要 Kubernetes 安装 Metrics-Server 组件](https://github.com/kubernetes-sigs/metrics-server#installation)。
-
-### 配置实施
-
-#### 部署 Metric-Server (必选)
+### 部署 Metric-Server (必选)
 
 新建 `metric-server.yaml` ，在 Kubernetes 集群执行
 
@@ -45,206 +43,206 @@ Kubernetes with Metric Server 性能指标展示，包括 Pod 数量、 Deployme
 kubectl apply -f metric-server.yaml
 ```
 
-`metric-server.yaml` 完整内容如下：
+??? quote " `metric-server.yaml` 完整内容如下："
 
-```yaml
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  labels:
-    k8s-app: metrics-server
-  name: metrics-server
-  namespace: kube-system
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  labels:
-    k8s-app: metrics-server
-    rbac.authorization.k8s.io/aggregate-to-admin: "true"
-    rbac.authorization.k8s.io/aggregate-to-edit: "true"
-    rbac.authorization.k8s.io/aggregate-to-view: "true"
-  name: system:aggregated-metrics-reader
-rules:
-  - apiGroups:
-      - metrics.k8s.io
-    resources:
-      - pods
-      - nodes
-    verbs:
-      - get
-      - list
-      - watch
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  labels:
-    k8s-app: metrics-server
-  name: system:metrics-server
-rules:
-  - apiGroups:
-      - ""
-    resources:
-      - pods
-      - nodes
-      - nodes/stats
-      - namespaces
-      - configmaps
-    verbs:
-      - get
-      - list
-      - watch
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
-metadata:
-  labels:
-    k8s-app: metrics-server
-  name: metrics-server-auth-reader
-  namespace: kube-system
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: Role
-  name: extension-apiserver-authentication-reader
-subjects:
-  - kind: ServiceAccount
-    name: metrics-server
-    namespace: kube-system
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  labels:
-    k8s-app: metrics-server
-  name: metrics-server:system:auth-delegator
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: system:auth-delegator
-subjects:
-  - kind: ServiceAccount
-    name: metrics-server
-    namespace: kube-system
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  labels:
-    k8s-app: metrics-server
-  name: system:metrics-server
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: system:metrics-server
-subjects:
-  - kind: ServiceAccount
-    name: metrics-server
-    namespace: kube-system
----
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    k8s-app: metrics-server
-  name: metrics-server
-  namespace: kube-system
-spec:
-  ports:
-    - name: https
-      port: 443
-      protocol: TCP
-      targetPort: https
-  selector:
-    k8s-app: metrics-server
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  labels:
-    k8s-app: metrics-server
-  name: metrics-server
-  namespace: kube-system
-spec:
-  selector:
-    matchLabels:
-      k8s-app: metrics-server
-  strategy:
-    rollingUpdate:
-      maxUnavailable: 0
-  template:
+    ```yaml
+    apiVersion: v1
+    kind: ServiceAccount
     metadata:
       labels:
         k8s-app: metrics-server
+      name: metrics-server
+      namespace: kube-system
+    ---
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRole
+    metadata:
+      labels:
+        k8s-app: metrics-server
+        rbac.authorization.k8s.io/aggregate-to-admin: "true"
+        rbac.authorization.k8s.io/aggregate-to-edit: "true"
+        rbac.authorization.k8s.io/aggregate-to-view: "true"
+      name: system:aggregated-metrics-reader
+    rules:
+      - apiGroups:
+          - metrics.k8s.io
+        resources:
+          - pods
+          - nodes
+        verbs:
+          - get
+          - list
+          - watch
+    ---
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRole
+    metadata:
+      labels:
+        k8s-app: metrics-server
+      name: system:metrics-server
+    rules:
+      - apiGroups:
+          - ""
+        resources:
+          - pods
+          - nodes
+          - nodes/stats
+          - namespaces
+          - configmaps
+        verbs:
+          - get
+          - list
+          - watch
+    ---
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: RoleBinding
+    metadata:
+      labels:
+        k8s-app: metrics-server
+      name: metrics-server-auth-reader
+      namespace: kube-system
+    roleRef:
+      apiGroup: rbac.authorization.k8s.io
+      kind: Role
+      name: extension-apiserver-authentication-reader
+    subjects:
+      - kind: ServiceAccount
+        name: metrics-server
+        namespace: kube-system
+    ---
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRoleBinding
+    metadata:
+      labels:
+        k8s-app: metrics-server
+      name: metrics-server:system:auth-delegator
+    roleRef:
+      apiGroup: rbac.authorization.k8s.io
+      kind: ClusterRole
+      name: system:auth-delegator
+    subjects:
+      - kind: ServiceAccount
+        name: metrics-server
+        namespace: kube-system
+    ---
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRoleBinding
+    metadata:
+      labels:
+        k8s-app: metrics-server
+      name: system:metrics-server
+    roleRef:
+      apiGroup: rbac.authorization.k8s.io
+      kind: ClusterRole
+      name: system:metrics-server
+    subjects:
+      - kind: ServiceAccount
+        name: metrics-server
+        namespace: kube-system
+    ---
+    apiVersion: v1
+    kind: Service
+    metadata:
+      labels:
+        k8s-app: metrics-server
+      name: metrics-server
+      namespace: kube-system
     spec:
-      containers:
-        - args:
-            - --cert-dir=/tmp
-            - --secure-port=4443
-            - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
-            - --kubelet-use-node-status-port
-            - --metric-resolution=15s
-            - --kubelet-insecure-tls
-          # image: k8s.gcr.io/metrics-server/metrics-server:v0.5.2
-          image: bitnami/metrics-server:0.5.2
-          imagePullPolicy: IfNotPresent
-          livenessProbe:
-            failureThreshold: 3
-            httpGet:
-              path: /livez
-              port: https
-              scheme: HTTPS
-            periodSeconds: 10
-          name: metrics-server
-          ports:
-            - containerPort: 4443
-              name: https
-              protocol: TCP
-          readinessProbe:
-            failureThreshold: 3
-            httpGet:
-              path: /readyz
-              port: https
-              scheme: HTTPS
-            initialDelaySeconds: 20
-            periodSeconds: 10
-          resources:
-            requests:
-              cpu: 100m
-              memory: 200Mi
-          securityContext:
-            readOnlyRootFilesystem: true
-            runAsNonRoot: true
-            runAsUser: 1000
-          volumeMounts:
-            - mountPath: /tmp
+      ports:
+        - name: https
+          port: 443
+          protocol: TCP
+          targetPort: https
+      selector:
+        k8s-app: metrics-server
+    ---
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      labels:
+        k8s-app: metrics-server
+      name: metrics-server
+      namespace: kube-system
+    spec:
+      selector:
+        matchLabels:
+          k8s-app: metrics-server
+      strategy:
+        rollingUpdate:
+          maxUnavailable: 0
+      template:
+        metadata:
+          labels:
+            k8s-app: metrics-server
+        spec:
+          containers:
+            - args:
+                - --cert-dir=/tmp
+                - --secure-port=4443
+                - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
+                - --kubelet-use-node-status-port
+                - --metric-resolution=15s
+                - --kubelet-insecure-tls
+              # image: k8s.gcr.io/metrics-server/metrics-server:v0.5.2
+              image: bitnami/metrics-server:0.5.2
+              imagePullPolicy: IfNotPresent
+              livenessProbe:
+                failureThreshold: 3
+                httpGet:
+                  path: /livez
+                  port: https
+                  scheme: HTTPS
+                periodSeconds: 10
+              name: metrics-server
+              ports:
+                - containerPort: 4443
+                  name: https
+                  protocol: TCP
+              readinessProbe:
+                failureThreshold: 3
+                httpGet:
+                  path: /readyz
+                  port: https
+                  scheme: HTTPS
+                initialDelaySeconds: 20
+                periodSeconds: 10
+              resources:
+                requests:
+                  cpu: 100m
+                  memory: 200Mi
+              securityContext:
+                readOnlyRootFilesystem: true
+                runAsNonRoot: true
+                runAsUser: 1000
+              volumeMounts:
+                - mountPath: /tmp
+                  name: tmp-dir
+          nodeSelector:
+            kubernetes.io/os: linux
+          priorityClassName: system-cluster-critical
+          serviceAccountName: metrics-server
+          volumes:
+            - emptyDir: {}
               name: tmp-dir
-      nodeSelector:
-        kubernetes.io/os: linux
-      priorityClassName: system-cluster-critical
-      serviceAccountName: metrics-server
-      volumes:
-        - emptyDir: {}
-          name: tmp-dir
----
-apiVersion: apiregistration.k8s.io/v1
-kind: APIService
-metadata:
-  labels:
-    k8s-app: metrics-server
-  name: v1beta1.metrics.k8s.io
-spec:
-  group: metrics.k8s.io
-  groupPriorityMinimum: 100
-  insecureSkipTLSVerify: true
-  service:
-    name: metrics-server
-    namespace: kube-system
-  version: v1beta1
-  versionPriority: 100
-```
+    ---
+    apiVersion: apiregistration.k8s.io/v1
+    kind: APIService
+    metadata:
+      labels:
+        k8s-app: metrics-server
+      name: v1beta1.metrics.k8s.io
+    spec:
+      group: metrics.k8s.io
+      groupPriorityMinimum: 100
+      insecureSkipTLSVerify: true
+      service:
+        name: metrics-server
+        namespace: kube-system
+      version: v1beta1
+      versionPriority: 100
+    ```
 
-#### Daemonset 部署 DataKit (必选)
+### Daemonset 部署 DataKit (必选)
 
 登录[观测云](https://console.guance.com/)，「集成」 - 「DataKit」 - 「Kubernetes」，下载 `datakit.yaml`（命名无要求）。
 
@@ -261,11 +259,15 @@ spec:
   value: https://openway.guance.com?token=<your-token>
 ```
 
-在 `datakit.yaml` 文件中的 `ENV_GLOBAL_TAGS` 环境变量值最后增加 `cluster_name_k8s=k8s-prod` ，其中 k8s-prod 为指标设置的全局 tag，即指标所在的集群名称。
+在 `datakit.yaml` 文件中的 `ENV_GLOBAL_HOST_TAGS` 环境变量值最后增加 `cluster_name_k8s=k8s-prod` ，其中 k8s-prod 为指标设置的全局 tag，即指标所在的集群名称。
 
 ```yaml
-- name: ENV_GLOBAL_TAGS
+#非选举类的指标采集
+- name: ENV_GLOBAL_HOST_TAGS
   value: host=__datakit_hostname,host_ip=__datakit_ip,cluster_name_k8s=k8s-prod
+#选举类的指标采集
+- name: ENV_GLOBAL_ELECTION_TAGS
+  value: cluster_name_k8s=k8s-prod
 ```
 
 2、 增加 `ENV_NAMESPACE` 环境变量
@@ -299,7 +301,11 @@ data:
     enable_k8s_metric = true
     enable_pod_metric = true
     extract_k8s_label_as_tags = false
-    auto_discovery_of_k8s_service_prometheus = false
+
+    ## Auto-Discovery of PrometheusMonitoring Annotations/CRDs
+    enable_auto_discovery_of_prometheus_service_annotations = false
+    enable_auto_discovery_of_prometheus_pod_monitors = false
+    enable_auto_discovery_of_prometheus_service_monitors = false
 
     ## Containers logs to include and exclude, default collect all containers. Globs accepted.
     container_include_log = []
@@ -389,18 +395,13 @@ kubectl apply -f datakit.yaml
 
 <场景 - 新建仪表板 - 模板库 - 系统视图 - Kubernetes 监控视图>
 
-## 检测库
+## [指标详解](../../datakit/container.md#measurements)
 
-暂无
+## 常见问题排查
 
-## 指标详解
+- <[无数据上报排查](../../datakit/why-no-data.md)>
 
-<[详情](../../../datakit/container#measurements)>
+## 进一步阅读
 
-## 最佳实践
-
-暂无
-
-## 故障排查
-
-<[无数据上报排查](../../datakit/why-no-data.md)>
+- <[TAG 在观测云中的最佳实践](../../best-practices/insight/tag.md)>
+- <[多个 Kubernetes 集群指标采集最佳实践](../../best-practices/cloud-native/multi-cluster.md)>

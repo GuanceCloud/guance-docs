@@ -4,3 +4,26 @@
 mkdocs.log
 __pycache__
 deadlink.log
+.vscode
+
+# ignore datakit files
+docs/en/datakit/datakit-docker-install.md
+docs/en/datakit/datakit-pl-global.md
+docs/en/datakit/datakit-pl-how-to.md
+docs/en/datakit/datakit-profiling-struct.md
+docs/en/datakit/datakit-refer-table.md
+docs/en/datakit/datatypes.md
+docs/en/datakit/dataway.md
+docs/en/datakit/demo.md
+docs/en/datakit/developers-index.md
+docs/en/datakit/dql-logql-promql.md
+docs/en/datakit/pipeline.md
+docs/en/datakit/pythond.md
+docs/zh/datakit/datakit-docker-install.md
+docs/zh/datakit/datakit-profiling-struct.md
+docs/zh/datakit/datatypes.md
+docs/zh/datakit/dataway.md
+docs/zh/datakit/demo.md
+docs/zh/datakit/developers-index.md
+docs/zh/datakit/dql-logql-promql.md
+docs/zh/datakit/pythond.md

@@ -1,0 +1,6 @@
+nav:
+  - 'Get a List of Alarm Policy': list.md
+  - 'Create an Alarm Policy': create.md
+  - 'Get an Alarm Policy': get.md
+  - 'Modify an Alarm Policy': modify.md
+  - 'Delete an Alarm Policy': delete.md

@@ -1,13 +1,14 @@
-# Sealos 急速安装 Kubernetes 集群
+# Kubernetes 集群部署
 
 ## 简介
 
-sealos 是一个简单的 go 二进制文件，可以安装在大多数 Linux 操作系统中。
+sealos 是一个简单的 go 二进制文件，可以安装在大多数 Linux 操作系统中。可用于灵活用于部署 Kubernetes 集群。
 
 ## 前提条件
 
 - 每个集群节点应该有不同的主机名。 主机名不要带下划线。
 - 所有节点的时间同步。
+- 所有节点可以使用root用户互相ssh登陆，而且所有节点root密码相同。
 - 在 Kubernetes 集群的第一个节点上运行sealos run命令，目前集群外的节点不支持集群安装。
 - 建议使用干净的操作系统来创建集群。不要自己装 Docker。
 - 支持大多数 Linux 发行版，例如：Ubuntu CentOS Rocky linux。
@@ -69,14 +70,14 @@ ntpdate cn.pool.ntp.org
 === "amd64"
 
     ``` shell
-    wget https://df-storage-dev.oss-cn-hangzhou.aliyuncs.com/liwenjin/sealos/sealos_4.1.3_linux_amd64.tar.gz \
-       && tar zxvf sealos_4.1.3_linux_amd64.tar.gz sealos && chmod +x sealos && mv sealos /usr/bin
+    wget https://static.guance.com/dataflux/package/sealos_4.1.5_linux_amd64.tar.gz \
+       && tar zxvf sealos_4.1.5_linux_amd64.tar.gz sealos && chmod +x sealos && mv sealos /usr/bin
     ```
 === "arm64"
 
     ``` shell
-    wget https://df-storage-dev.oss-cn-hangzhou.aliyuncs.com/liwenjin/sealos/sealos_4.1.3_linux_arm64.tar.gz \
-       && tar zxvf sealos_4.1.3_linux_arm64.tar.gz sealos && chmod +x sealos && mv sealos /usr/bin
+    wget https://static.guance.com/dataflux/package/sealos_4.1.5_linux_arm64.tar.gz \
+       && tar zxvf sealos_4.1.5_linux_arm64.tar.gz sealos && chmod +x sealos && mv sealos /usr/bin
     ```
 
 验证是否部署成功：
@@ -127,12 +128,15 @@ Use "sealos [command] --help" for more information about a command.
 ### 4、安装集群
 
 ```shell
-sealos run labring/kubernetes:v1.24.0 labring/calico:v3.22.1     \
+sealos run pubrepo.guance.com/googleimages/kubernetes:v1.24.0 \
+    pubrepo.guance.com/googleimages/calico:v3.22.1 \
     --masters 192.168.100.101     \
     --nodes 192.168.100.102,192.168.100.103     \
-    --ssh-passwd [your-ssh-passwd] 
+    --passwd [your-ssh-passwd] 
 ```
->注意命令中的 ip 和密码需要修改。
+
+> 注意命令中的 ip 和密码需要修改。
+
 > 请务必是 root 用户，节点环境端口要互通。
 
 参数说明：
@@ -141,7 +145,7 @@ sealos run labring/kubernetes:v1.24.0 labring/calico:v3.22.1     \
 | :----------: | :-----------------------------: | :----------------------------: |
 |  --masters   |         192.168.100.101         | kubernetes master 节点地址列表 |
 |   --nodes    | 192.168.100.102,192.168.100.103 |  kubernetes node 节点地址列表  |
-| --ssh-passwd |        [your-ssh-passwd]        |          ssh 登录密码          |
+|   --passwd   |        [your-ssh-passwd]        |          ssh 登录密码          |
 |  kubernetes  |   labring/kubernetes:v1.24.0    |        kubernetes 镜像         |
 
 

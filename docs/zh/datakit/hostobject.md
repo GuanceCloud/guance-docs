@@ -6,7 +6,7 @@
 
 ---
 
-hostobject 用于收集主机基本信息，如硬件型号、基础资源消耗等。
+主机对象采集器用于收集主机基本信息，如硬件型号、基础资源消耗等。
 
 ## 前置条件 {#requirements}
 
@@ -14,6 +14,7 @@ hostobject 用于收集主机基本信息，如硬件型号、基础资源消耗
 
 ## 配置 {#config}
 
+<!-- markdownlint-disable MD046 -->
 === "主机安装"
 
     一般情况下，主机对象是默认开启的，无需配置。
@@ -70,9 +71,10 @@ hostobject 用于收集主机基本信息，如硬件型号、基础资源消耗
     | `ENV_INPUT_HOSTOBJECT_ENABLE_ZERO_BYTES_DISK`        | `ignore_zero_bytes_disk`        | 忽略大小为 0 的磁盘                                                | `true`/`false`                                                                                             |
     | `ENV_INPUT_HOSTOBJECT_TAGS`                          | `tags`                          | 增加额外标签                                                       | `tag1=value1,tag2=value2` 如果配置文件中有同名 tag，会覆盖它                                               |
     | `ENV_INPUT_HOSTOBJECT_ONLY_PHYSICAL_DEVICE`          | `only_physical_device`          | 忽略非物理磁盘（如网盘、NFS 等，只采集本机硬盘/CD ROM/USB 磁盘等） | 任意给一个字符串值即可                                                                                     |
-    | `ENV_INPUT_HOSTOBJECT_EXCLUDE_DEVICE`                      | `exclude_device`                | 忽略的device                                | `"/dev/loop0","/dev/loop1"` 以英文逗号隔开                      |
-    | `ENV_INPUT_HOSTOBJECT_EXTRA_DEVICE`                        | `extra_device`                  | 额外增加的device                            | `"/nfsdata"` 以英文逗号隔开                      |
+    | `ENV_INPUT_HOSTOBJECT_EXCLUDE_DEVICE`                      | `exclude_device`                | 忽略的 device                                | `"/dev/loop0","/dev/loop1"` 以英文逗号隔开                      |
+    | `ENV_INPUT_HOSTOBJECT_EXTRA_DEVICE`                        | `extra_device`                  | 额外增加的 device                            | `"/nfsdata"` 以英文逗号隔开                      |
     | `ENV_CLOUD_PROVIDER`                                 | `tags`                          | 指定云服务商                                                       | `aliyun/aws/tencent/hwcloud/azure`                                                                         |
+<!-- markdownlint-enable -->
 
 ## 开启云同步 {#cloudinfo}
 
@@ -84,7 +86,7 @@ Datakit 默认开启云同步，目前支持阿里云/腾讯云/AWS/华为云/�
   cloud_provider = "aliyun"
 ```
 
-可以通过在 hostobject 配置文件中配置 `disable_cloud_provider_sync = true` 关闭云同步功能。
+可以通过在配置文件中配置 `disable_cloud_provider_sync = true` 关闭云同步功能。
 
 ## 指标集 {#measurements}
 
@@ -103,17 +105,19 @@ Datakit 默认开启云同步，目前支持阿里云/腾讯云/AWS/华为云/�
 
 ### `HOST`
 
--  标签
+- 标签
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
+|`host`|Hostname. Required.|
+|`name`|Hostname|
 |`os`|Host OS type|
 
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cpu_usage`|CPU usage|float|percent|
 |`datakit_ver`|collector version|string|-|
@@ -126,7 +130,7 @@ Datakit 默认开启云同步，目前支持阿里云/腾讯云/AWS/华为云/�
 |`message`|Summary of all host information|string|-|
 |`net_recv_bytes_per_sec`|network receive rate|int|B/S|
 |`net_send_bytes_per_sec`|network send rate|int|B/S|
-|`start_time`|Host startup time (Unix timestamp)|int|s|
+|`start_time`|Host startup time (Unix timestamp)|int|ms|
 |`state`|Host Status|string|-|
 
 
@@ -147,7 +151,6 @@ Datakit 默认开启云同步，目前支持阿里云/腾讯云/AWS/华为云/�
 | `private_ip`            | 实例私网 IP    | string |
 | `zone_id`               | 实例 Zone ID   | string |
 | `region`                | 实例 Region ID | string |
-
 
 ### `message` 指标字段结构 {#message-struct}
 
@@ -227,19 +230,20 @@ Datakit 默认开启云同步，目前支持阿里云/腾讯云/AWS/华为云/�
 
 #### `host.election` {#host-election}
 
-> 注意：当配置文件中 `enable_election`选项关闭时，该字段为null
+> 注意：当配置文件中 `enable_election` 选项关闭时，该字段为 null
 
 | 字段名      | 描述     | 类型   |
 | ---         | ----     | :---:  |
 | `elected`   | 选举状态 | string |
 | `namespace` | 选举空间 | string |
 
-
 #### `host.conntrack` {#host-conntrack}
 
+<!-- markdownlint-disable MD046 -->
 ???+ attention
 
     `conntrack` 仅 Linux 平台支持
+<!-- markdownlint-enable -->
 
 | 字段名                | 描述                                           | 类型  |
 | ---                   | ---                                            | :---: |
@@ -252,13 +256,15 @@ Datakit 默认开启云同步，目前支持阿里云/腾讯云/AWS/华为云/�
 | `stat_insert_failed`  | 插入失败的包数目                               | int   |
 | `stat_drop`           | 跟踪失败被丢弃的包数目                         | int   |
 | `stat_early_drop`     | 由于跟踪表满而导致部分已跟踪包条目被丢弃的数目 | int   |
-| `stat_search_restart` | 由于hash表大小修改而导致跟踪表查询重启的数目   | int   |
+| `stat_search_restart` | 由于 hash 表大小修改而导致跟踪表查询重启的数目 | int   |
 
 #### `host.filefd` {#host-filefd}
 
+<!-- markdownlint-disable MD046 -->
 ???+ attention
 
     `filefd` 仅 Linux 平台支持
+<!-- markdownlint-enable -->
 
 | 字段名         | 描述                                                 | 类型  |
 | ---            | ---                                                  | :---: |
@@ -270,10 +276,10 @@ Datakit 默认开启云同步，目前支持阿里云/腾讯云/AWS/华为云/�
 
 `collectors` 字段是一个对象列表，每个对象的字段如下：
 
-| 字段名          | 描述                                             | 类型   |
-| ---             | ----                                             | :---:  |
-| `name`          | 采集器名称                                       | string |
-| `count`         | 采集次数                                         | int    |
-| `last_err`      | 最后一次报错信息，只报告最近 30 秒(含)以内的错误 | string |
-| `last_err_time` | 最后一次报错时间（Unix 时间戳，单位为秒）        | int    |
-| `last_time`     | 最近一次采集时间（Unix 时间戳，单位为秒）        | int    |
+| 字段名          | 描述                                               | 类型   |
+| ---             | ----                                               | :---:  |
+| `name`          | 采集器名称                                         | string |
+| `count`         | 采集次数                                           | int    |
+| `last_err`      | 最后一次报错信息，只报告最近 30 秒（含）以内的错误 | string |
+| `last_err_time` | 最后一次报错时间（Unix 时间戳，单位为秒）          | int    |
+| `last_time`     | 最近一次采集时间（Unix 时间戳，单位为秒）          | int    |

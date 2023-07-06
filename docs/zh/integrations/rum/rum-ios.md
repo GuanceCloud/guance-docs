@@ -1,5 +1,5 @@
 ---
-icon: material/apple-ios
+icon: material/apple
 ---
 # iOS
 
@@ -116,6 +116,10 @@ end
 
 <[iOS 应用数据采集指标](../../real-user-monitoring/ios/app-data-collection.md)>
 
-## 故障排查
+## 更多阅读
 
-暂无
+<[更新 IP 数据库文件](../../datakit/datakit-tools-how-to.md#install-ipdb)>
+
+<[JAVA 应用 RUM-APM-LOG 联动分析](../../best-practices/insight/java-rum-apm-log.md)>
+
+<[Kubernetes 应用的 RUM-APM-LOG 联动分析](../../best-practices/cloud-native/k8s-rum-apm-log.md)>

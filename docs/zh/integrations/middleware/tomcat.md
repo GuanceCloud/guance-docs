@@ -14,21 +14,18 @@ Tomcat 性能指标展示，包括发送字节数、接收字节数、请求处�
 
 ## 版本支持
 
-操作系统支持：Windows/AMD 64, Windows/386, Linux/ARM, Linux/ARM 64, Linux/386, Linux/AMD 64, Darwin/AMD 64
+- 操作系统支持：Windows/AMD 64, Windows/386, Linux/ARM, Linux/ARM 64, Linux/386, Linux/AMD 64, Darwin/AMD 64
+- [Tomcat 版本支持情况](../../datakit/tomcat.md#requirements)
 
-
-## 安装部署
-
-说明：以 apache-tomcat-9.0.45 （centOS）为例，各个不同版本指标可能存在差异。
-
-### 前置条件
+## 前置条件
 
 - Tomcat 所在服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
 - 用于实现 Tomcat 可观测性的数据采集文件 jolokia.war 已内置在 `/usr/local/datakit/data` 文件夹下，需要在安装完毕 DataKit 后，将 jolokia.war 复制一份到 Tomcat 的 webapps 目录下。
 
-### 配置实施
+## 安装部署
 
-#### 新增权限用户（必选）
+说明：以 apache-tomcat-9.0.45 （centOS）为例，各个不同版本指标可能存在差异。
+### 新增权限用户（必选）
 
 **（以下为配置示例，实操时， jolokia user 的 username 和 password 请务必修改！！！）**
 
@@ -67,7 +64,7 @@ Linux 环境下成功示例如下：
 
 ![image](../imgs/input-tomcat-3.png)
 
-#### 开启指标及日志采集
+### 开启指标及日志采集
 
 进入 DataKit 安装目录下的 `conf.d/tomcat` 目录，复制 `tomcat.conf.sample`  并命名为 `tomcat.conf`。示例如下：<br />
 （**以下为示例，实操时， 下边内容中的 的 username 、password、urls 请务必修改！！！**）
@@ -162,7 +159,7 @@ systemctl restart datakit
 
 ![image](../imgs/input-tomcat-4.png)
 
-#### tomcat 插件标签 (非必选)
+### tomcat 插件标签 (非必选)
 
 参数说明
 

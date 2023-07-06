@@ -9,8 +9,8 @@
 
 MySQL 指标采集，收集以下数据：
 
-- MySQL global status 基础数据采集
-- Scheam 相关数据
+- MySQL Global Status 基础数据采集
+- Schema 相关数据
 - InnoDB 相关指标
 - 支持自定义查询数据采集
 
@@ -37,16 +37,18 @@ GRANT SELECT ON mysql.user TO 'datakit'@'localhost';
 GRANT replication client on *.*  to 'datakit'@'localhost';
 ```
 
-以上创建、授权操作，均限定了 `datakit` 这个用户的只能在 MySQL 主机上（`localhost`）访问 MySQL，如果对 MySQL 进行远程采集，建议将 `localhost` 替换成 `%`（表示 DataKit 可以在任意机器上访问 MySQL），也可用特定的 DataKit 安装机器地址。
+<!-- markdownlint-disable MD046 -->
+???+ attention
 
-> 注意，如用 `localhost` 时发现采集器有如下报错，需要将上面的 `localhost` 换成 `::1`
+    - 如用 `localhost` 时发现采集器有如下报错，需要将上述步骤的 `localhost` 换成 `::1` <br/>
+    `Error 1045: Access denied for user 'datakit'@'localhost' (using password: YES)`
 
-```
-Error 1045: Access denied for user 'datakit'@'::1' (using password: YES)
-```
+    - 以上创建、授权操作，均限定了 `datakit` 这个用户，只能在 MySQL 主机上（`localhost`）访问 MySQL。如果需要对 MySQL 进行远程采集，建议将 `localhost` 替换成 `%`（表示 DataKit 可以在任意机器上访问 MySQL），也可用特定的 DataKit 安装机器地址。
+<!-- markdownlint-enable -->
 
 ## 配置 {#config}
 
+<!-- markdownlint-disable MD046 -->
 === "主机安装"
 
     进入 DataKit 安装目录下的 `conf.d/db` 目录，复制 `mysql.conf.sample` 并命名为 `mysql.conf`。示例如下：
@@ -131,7 +133,7 @@ Error 1045: Access denied for user 'datakit'@'::1' (using password: YES)
 === "Kubernetes"
 
     目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
-
+<!-- markdownlint-enable -->
 
 ---
 
@@ -146,14 +148,14 @@ Error 1045: Access denied for user 'datakit'@'::1' (using password: YES)
 
 ### Binlog 开启 {#binlog}
 
-默认情况下，MySQL binlog 是不开启的。如果要统计 binlog 大小，需要开启 MySQL 对应 binlog 功能：
+默认情况下，MySQL Binlog 是不开启的。如果要统计 Binlog 大小，需要开启 MySQL 对应 Binlog 功能：
 
 ```sql
--- ON:开启, OFF:关闭
+-- ON: 开启/OFF: 关闭
 SHOW VARIABLES LIKE 'log_bin';
 ```
 
-binlog 开启，参见[这个问答](https://stackoverflow.com/questions/40682381/how-do-i-enable-mysql-binary-logging){:target="_blank"}，或者[这个问答](https://serverfault.com/questions/706699/enable-binlog-in-mysql-on-ubuntu){:target="_blank"}
+Binlog 开启，参见[这个问答](https://stackoverflow.com/questions/40682381/how-do-i-enable-mysql-binary-logging){:target="_blank"}，或者[这个问答](https://serverfault.com/questions/706699/enable-binlog-in-mysql-on-ubuntu){:target="_blank"}
 
 ### 数据库性能指标采集 {#performance-schema}
 
@@ -186,9 +188,9 @@ dbm = true
 
 ```
 
-- MySQL配置
+- MySQL 配置
 
-修改配置文件(如`mysql.conf`)，开启 `MySQL Performance Schema`， 并配置相关参数：
+修改配置文件（如 *mysql.conf*），开启 `MySQL Performance Schema`， 并配置相关参数：
 
 ```toml
 [mysqld]
@@ -208,7 +210,7 @@ performance-schema-consumer-events-statements-history = on
 账号授权
 
 ```sql
--- 	MySQL 5.6 & 5.7
+-- MySQL 5.6 & 5.7
 GRANT REPLICATION CLIENT ON *.* TO datakit@'%' WITH MAX_USER_CONNECTIONS 5;
 GRANT PROCESS ON *.* TO datakit@'%';
 
@@ -226,7 +228,7 @@ GRANT EXECUTE ON datakit.* to datakit@'%';
 GRANT CREATE TEMPORARY TABLES ON datakit.* TO datakit@'%';
 ```
 
-创建存储过程 `explain_statement`，用于获取 sql 执行计划
+创建存储过程 `explain_statement`，用于获取 SQL 执行计划
 
 ```sql
 DELIMITER $$
@@ -257,7 +259,7 @@ DELIMITER ;
 GRANT EXECUTE ON PROCEDURE <数据库名称>.explain_statement TO datakit@'%';
 ```
 
-- `consumers`配置
+- `consumers` 配置
 
 方法一（推荐）：通过 `DataKit` 动态配置 `performance_schema.events_*`，需要创建以下存储过程：
 
@@ -283,6 +285,7 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name = 'events
 
 ### 指标 {#measurement}
 
+<!-- markdownlint-disable MD024 -->
 
 
 
@@ -294,20 +297,21 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name = 'events
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
+|`host`|The server host address|
 |`server`|Server addr|
 
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`Aborted_clients`|The number of connections that were aborted because the client died without closing the connection properly.|int|count|
 |`Aborted_connects`|The number of failed attempts to connect to the MySQL server.|int|count|
 |`Binlog_cache_disk_use`|The number of transactions that used the temporary binary log cache but that exceeded the value of binlog_cache_size and used a temporary file to store statements from the transaction.|int|B|
 |`Binlog_cache_use`|The number of transactions that used the binary log cache.|int|B|
-|`Binlog_space_usage_bytes`|-|int|B|
+|`Binlog_space_usage_bytes`|TODO|int|B|
 |`Bytes_received`|The number of bytes received from all clients.|int|B|
 |`Bytes_sent`|The number of bytes sent to all clients.|int|B|
 |`Com_commit`|The number of times of commit statement has been executed.|int|count|
@@ -393,15 +397,16 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name = 'events
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
+|`host`|The server host address|
 |`schema_name`|Schema name|
 |`server`|Server addr|
 
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`query_run_time_avg`|Avg query response time per schema.|float|ns|
 |`schema_size`|Size of schemas(MiB)|float|MB|
@@ -418,14 +423,15 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name = 'events
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
+|`host`|The server host address|
 |`server`|Server addr|
 
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`adaptive_hash_searches`|Number of successful searches using Adaptive Hash Index|int|count|
 |`adaptive_hash_searches_btree`|Number of searches using B-tree on an index search|int|count|
@@ -504,9 +510,10 @@ MySQL 表指标
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
 |`engine`|The storage engine for the table. See The InnoDB Storage Engine, and Alternative Storage Engines.|
+|`host`|The server host address|
 |`server`|Server addr|
 |`table_name`|The name of the table.|
 |`table_schema`|The name of the schema (database) to which the table belongs.|
@@ -516,7 +523,7 @@ MySQL 表指标
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`data_free`|The number of rows. Some storage engines, such as MyISAM, store the exact count. For other storage engines, such as InnoDB, this value is an approximation, and may vary from the actual value by as much as 40% to 50%. In such cases, use SELECT COUNT(*) to obtain an accurate count.|int|count|
 |`data_length`|For InnoDB, DATA_LENGTH is the approximate amount of space allocated for the clustered index, in bytes. Specifically, it is the clustered index size, in pages, multiplied by the InnoDB page size|int|count|
@@ -535,14 +542,16 @@ MySQL 用户指标
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
+|`host`|The server host address|
+|`server`|The server address containing both host and port|
 |`user`|user|
 
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`bytes_received`|The number of bytes received this user|int|count|
 |`bytes_sent`|The number of bytes sent this user|int|count|
@@ -608,19 +617,19 @@ MySQL 用户指标
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
 |`digest`|The digest hash value computed from the original normalized statement. |
 |`host`|The server host address|
 |`query_signature`|The hash value computed from digest_text|
 |`schema_name`|The schema name|
-|`server`|The server address|
+|`server`|The server address containing both host and port|
 |`service`|The service name and the value is 'mysql'|
 
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`count_star`|The total count of executed queries per normalized query and schema.|int|count|
 |`message`|The text of the normalized statement digest.|string|-|
@@ -647,10 +656,11 @@ MySQL 用户指标
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
 |`current_schema`|The name of the current schema.|
 |`digest`|The digest hash value computed from the original normalized statement. |
+|`digest_text`|The digest_text of the statement.|
 |`host`| The server host address|
 |`network_client_ip`|The ip address of the client|
 |`plan_definition`|The plan definition of JSON format.|
@@ -659,15 +669,16 @@ MySQL 用户指标
 |`processlist_user`|The user name of the client.|
 |`query_signature`|The hash value computed from digest_text.|
 |`query_truncated`|It indicates whether the query is truncated.|
-|`resource_hash`|The hash value computed from sql text.|
+|`resource_hash`|The hash value computed from SQL text.|
+|`server`|The server address containing both host and port|
 |`service`|The service name and the value is 'mysql'|
 
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`duration`|Value in nanoseconds of the event's duration.|int|count|
+|`duration`|Value in nanoseconds of the event's duration.|float|count|
 |`lock_time_ns`|Time in nanoseconds spent waiting for locks. |int|count|
 |`message`|The text of the normalized statement digest.|string|-|
 |`no_good_index_used`|0 if a good index was found for the statement, 1 if no good index was found.|int|-|
@@ -684,8 +695,8 @@ MySQL 用户指标
 |`sort_range`|Number of sorts performed by the statement which used a range.|int|count|
 |`sort_rows`|Number of rows sorted by the statement. |int|count|
 |`sort_scan`|Number of sorts performed by the statement which used a full table scan.|int|count|
-|`timer_wait_ns`|Value in nanoseconds of the event's duration |int|ns|
-|`timestamp`|The timestamp(millisecond) when then the event ends.|int|msec|
+|`timer_wait_ns`|Value in nanoseconds of the event's duration |float|ns|
+|`timestamp`|The timestamp(millisecond) when then the event ends.|float|msec|
 
 
 
@@ -699,7 +710,7 @@ MySQL 用户指标
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
 |`host`|The server host address|
 |`server`|The server address|
@@ -708,7 +719,7 @@ MySQL 用户指标
 - 字段列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`connections`|The total number of the connection|int|count|
 |`current_schema`|The default database for the statement, NULL if there is none|string|-|
@@ -722,7 +733,7 @@ MySQL 用户指标
 |`index_name`|The name of the index used|string|-|
 |`ip`|The client IP address|string|-|
 |`lock_time`|The time spent waiting for table locks|int|ns|
-|`message`|The text of the normalized sql text|string|-|
+|`message`|The text of the normalized SQL text|string|-|
 |`object_name`|The name of the object being acted on|string|-|
 |`object_schema`|The schema of th object being acted on|string|-|
 |`object_type`|The type of the object being acted on|string|-|
@@ -730,19 +741,20 @@ MySQL 用户指标
 |`processlist_command`|The command of the thread|string|-|
 |`processlist_db`|The default database for the thread, or NULL if none has been selected|string|-|
 |`processlist_host`|The host name of the client with a thread|string|-|
-|`processlist_id`|The processlist id|string|-|
+|`processlist_id`|The process list ID|string|-|
 |`processlist_state`|The state of the thread|string|-|
 |`processlist_user`|The user associated with a thread|string|-|
-|`query_signature`|The hash value computed from sql text|string|-|
+|`query_signature`|The hash value computed from SQL text|string|-|
 |`socket_event_name`|The name of the wait/io/socket/* instrument that produced the event|string|-|
 |`sql_text`|The statement the thread is executing|string|-|
-|`thread_id`|The thread id|string|-|
+|`thread_id`|The thread ID|string|-|
 |`wait_event`|The name of the wait event|string|-|
 |`wait_timer_end`|The time when the waiting event timing ended|int|ns|
 |`wait_timer_start`|The time when the waiting event timing started|int|ns|
 
 
 
+<!-- markdownlint-enable -->
 
 ## MySQL 运行日志 {#mysql-logging}
 
@@ -769,7 +781,7 @@ MySQL 日志分为普通日志和慢日志两种。
 
 日志原文：
 
-```
+``` log
 2017-12-29T12:33:33.095243Z         2 Query     SELECT TABLE_SCHEMA, TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE CREATE_OPTIONS LIKE '%partitioned%';
 ```
 
@@ -785,7 +797,7 @@ MySQL 日志分为普通日志和慢日志两种。
 
 日志原文：
 
-```
+``` log
 # Time: 2019-11-27T10:43:13.460744Z
 # User@Host: root[root] @ localhost [1.2.3.4]  Id:    35
 # Query_time: 0.214922  Lock_time: 0.000184 Rows_sent: 248832  Rows_examined: 72
@@ -801,13 +813,13 @@ SELECT * FROM fruit f1, fruit f2, fruit f3, fruit f4, fruit f5
 | ---                 | ---                                                                                         | ---                            |
 | `bytes_sent`        | `123456`                                                                                    | 发送字节数                     |
 | `db_host`           | `localhost`                                                                                 | hostname                       |
-| `db_ip`             | `1.2.3.4`                                                                                   | ip                             |
-| `db_slow_statement` | `SET timestamp=1574851393;\nSELECT * FROM fruit f1, fruit f2, fruit f3, fruit f4, fruit f5` | 慢查询 sql                     |
+| `db_ip`             | `1.2.3.4`                                                                                   | IP                             |
+| `db_slow_statement` | `SET timestamp=1574851393;\nSELECT * FROM fruit f1, fruit f2, fruit f3, fruit f4, fruit f5` | 慢查询 SQL                     |
 | `db_user`           | `root[root]`                                                                                | 用户                           |
 | `lock_time`         | `0.000184`                                                                                  | 锁时间                         |
-| `query_id`          | `35`                                                                                        | 查询 id                        |
+| `query_id`          | `35`                                                                                        | 查询 ID                        |
 | `query_time`        | `0.2l4922`                                                                                  | SQL 执行所消耗的时间           |
 | `rows_examined`     | `72`                                                                                        | 为了返回查询的数据所读取的行数 |
 | `rows_sent`         | `248832`                                                                                    | 查询返回的行数                 |
-| `thread_id`         | `55`                                                                                        | 线程 id                        |
+| `thread_id`         | `55`                                                                                        | 线程 ID                        |
 | `time`              | `1514520249954078000`                                                                       | 纳秒时间戳（作为行协议时间）   |

@@ -24,7 +24,8 @@ icon: fontawesome/brands/python
 此处官方推荐 **ddtrace** 接入方式。ddtrace 是开源的 APM 监控方式，相较于其他方式，支持更多的自定义字段，也就意味着可以有足够多的标签与其他的组件进行关联。ddtrace 具体接入方式详细如下：
 ### 前置条件
 
-- 需要进行链路追踪的应用服务器<[安装 Datakit](../../datakit/datakit-install.md)>
+- 需要进行链路追踪的应用服务器<[安装 DataKit](../../datakit/datakit-install.md)>
+- [下载对应 dd-trace-py agent](../../datakit/ddtrace.md#doc-example)
 
 ### Python Flask 完整示例
 
@@ -177,27 +178,16 @@ operation 'flask.process_response'
 1 rows, cost 3ms
 ```
 
-#### 链路分析
-
-<[服务](../../application-performance-monitoring/service.md)><br />
-<[链路分析](../../application-performance-monitoring/explorer.md)>
+### [支持的环境变量](../../datakit/ddtrace-python.md#envs)
 
 ## 场景视图
 
 观测云平台已内置 应用性能监测模块，无需手动创建
 
-## 检测库
+## 更多阅读
 
-暂无
+<[应用性能监测功能介绍](../../application-performance-monitoring/index.md)>
 
-## 相关术语说明
-
-<[链路追踪-字段说明](../../../application-performance-monitoring/collection/)>
-
-## 最佳实践
+<[链路追踪-字段说明](../../application-performance-monitoring/collection/index.md#_5)>
 
 <[链路追踪（APM）最佳实践](../../best-practices/monitoring/apm.md)>
-
-## 故障排查
-
-暂无

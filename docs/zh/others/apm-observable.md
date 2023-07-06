@@ -13,6 +13,7 @@
 ## 方法/步骤
 
 ### Step1: 开启并配置 ddtrace.conf 采集器
+
 进入 DataKit 安装目录下的 `conf.d/ddtrace` 目录，复制 `ddtrace.conf.sample` 并命名为 `ddtrace.conf`，打开`ddtrace.conf`，`inputs`默认开启，无需修改。
 
 ```
@@ -185,12 +186,12 @@ def after_request(response):
       env: 'production',
       version: '1.0.0',
       trackInteractions: true,
-      allowedDDTracingOrigins: ["https://api.example.com", /https:\/\/.*\.my-api-domain\.com/]
+      allowedTracingOrigins: ["https://api.example.com", /https:\/\/.*\.my-api-domain\.com/]
     })
 </script>
 ```
 
-其中`allowedDDTracingOrigins`是用于前后端（ rum 与 apm ）打通的配置项，可按需进行设置，需在此处填写与前端页面有交互关系的后端服务器所对应的域名或 IP，其他配置项是用于采集用户访问数据，更多用户访问监测配置可参考文档 [web应用监控（RUM）最佳实践](../best-practices/monitoring/web.md) 。
+其中`allowedTracingOrigins`是用于前后端（ rum 与 apm ）打通的配置项，可按需进行设置，需在此处填写与前端页面有交互关系的后端服务器所对应的域名或 IP，其他配置项是用于采集用户访问数据，更多用户访问监测配置可参考文档 [web应用监控（RUM）最佳实践](../best-practices/monitoring/web.md) 。
 
 示意图如：
 

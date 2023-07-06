@@ -1,18 +1,31 @@
 
-# Filebeat
+# Filebeat 日志数据接入
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
 
 ---
 
-本文档主要介绍 [Elastic Beats](https://www.elastic.co/products/beats/){:target="_blank"} 数据采集。目前支持:
+本文档主要介绍 [Elastic Beats](https://www.elastic.co/products/beats/){:target="_blank"} 数据采集。目前支持：
 
 - [Filebeat](https://www.elastic.co/beats/filebeat/){:target="_blank"}
 - [下载地址](http://www.elastic.co/cn/downloads/past-releases/filebeat-7-17-3){:target="_blank"}
 
+已测试的版本：
+
+- [x] 8.6.2
+- [x] 7.17.9
+- [x] 7.17.6
+- [x] 6.0.0
+- [x] 5.0.0
+- [x] 1.3.0
+- [x] 1.2.0
+- [x] 1.1.0
+- [x] 1.0.0
+
 ## 配置采集器 {#config-input}
 
+<!-- markdownlint-disable MD046 -->
 === "主机安装"
 
     进入 DataKit 安装目录下的 `conf.d/beats_output` 目录，复制 `beats_output.conf.sample` 并命名为 `beats_output.conf`。示例如下：
@@ -51,10 +64,11 @@
     目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
 
 ---
-    
+
 ???+ attention
 
     上面配置的 `inputs.beats_output.tags` 中如果与原始 fields 中的 key 同名重复，则会被原始数据覆盖。
+<!-- markdownlint-enable -->
 
 ### 配置 Filebeat {#config-filebeat}
 
@@ -88,11 +102,11 @@ output.logstash:
   hosts: ["<Datakit-IP>:5044"]
 ```
 
-这里的 `5044` 端口要与 `<Datakit 安装目录>/conf.d/beats_output/beats_output.conf` 中配置的 `listen` 端口一致。
+这里的 `5044` 端口要与 *<Datakit 安装目录\>/conf.d/beats_output/beats_output.conf* 中配置的 `listen` 端口一致。
 
 这样就实现 Filebeat 采集日志文件 `/Users/mac/Downloads/tmp/1.log` 上报到 Datakit 了。
 
-需要注意的是，**需要将 elasticsearch 的配置 9200 端口给注释掉**，完整的 *filebeat.yml* 文件如下:
+需要注意的是，**需要将 elasticsearch 的配置 9200 端口给注释掉**，完整的 *filebeat.yml* 文件如下：
 
 ```yml
 #--------------------- Filebeat Configuration Example ------------------------#
@@ -325,7 +339,7 @@ processors:
 
 ## 指标集 {#measurements}
 
-以下所有数据采集, 默认会追加名为 `host`(值为 Filebeat 所在主机名) 和 `filepath`(值为 Filebeat 采集文件的全路径) 的全局 tag, 也可以在配置中通过 `[inputs.beats_output.tags]` 指定其它标签:
+以下所有数据采集，默认会追加名为 `host`(值为 Filebeat 所在主机名) 和 `filepath`(值为 Filebeat 采集文件的全路径) 的全局 tag, 也可以在配置中通过 `[inputs.beats_output.tags]` 指定其它标签：
 
 ``` toml
  [inputs.beats_output.tags]
@@ -336,27 +350,28 @@ processors:
 
 
 
-### `Elastic Beats 接收器`
+### `default`
 
-使用配置文件中的 `source` 字段值，如果该值为空，则默认为 `default`
+Using `source` field in the config file, default is `default`.
 
--  标签
+- 标签
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
-|`filepath`|此条记录来源的文件名，全路径|
-|`host`|主机名|
-|`service`|service 名称，对应配置文件中的 `service` 字段值|
+|`filepath`|This item source file, full path.|
+|`host`|Host name.|
+|`service`|Service name, equal to `service` field in the config file.|
 
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`message`|记录正文，默认存在，可以使用 pipeline 删除此字段|string|-|
+|`message`|Message text, existed when default. Could use Pipeline to delete this field.|string|-|
+|`status`|Log status.|string|-|
 
- 
+
 
 ## 其它 {#others}
 

@@ -1,19 +1,26 @@
-<!-- This file required to translate to EN. -->
 
-# Profile 采集配置
+# Profile Collection Configuration
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
 
 ---
 
-Profile 支持采集使用 Java / Python 等不同语言环境下应用程序运行过程中的动态性能数据，帮助用户查看 CPU、内存、IO 的性能问题。
+Profile supports collecting dynamic performance data of applications running in different language environments such as Java/Python, and helps users to view performance problems of CPU, memory and IO.
 
-## 配置说明 {#config}
+## Configuration Notes {#config}
 
-=== "主机安装"
+At present, DataKit collects profiling data in two ways: 
 
-    进入 DataKit 安装目录下的 `conf.d/profile` 目录，复制 `profile.conf.sample` 并命名为  `profile.conf` 。配置文件说明如下：
+- Push mode: the DataKit Profile service needs to be opened, and the client actively pushes data to the DataKit 
+
+- Pull method: currently only [Go](profile-go.md) support, need to manually configure relevant information
+
+### DataKit Configuration {#datakit-config}
+
+=== "Host Installation"
+
+    Go to the `conf.d/profile` directory under the DataKit installation directory, copy `profile.conf.sample` and name it `profile.conf`. The configuration file is described as follows:
     
     ```shell
         
@@ -49,19 +56,36 @@ Profile 支持采集使用 Java / Python 等不同语言环境下应用程序运
       #enabled_types = ["cpu","goroutine","heap","mutex","block"]
     
     #[inputs.profile.go.tags]
-      # tag1 = xxxxx
+      # tag1 = "val1"
+    
+    ## pyroscope config
+    #[[inputs.profile.pyroscope]]
+      ## listen url
+      #url = "0.0.0.0:4040"
+    
+      ## service name
+      #service = "pyroscope-demo"
+    
+      ## app env
+      #env = "dev"
+    
+      ## app version
+      #version = "0.0.0"
+    
+    #[inputs.profile.pyroscope.tags]
+      #tag1 = "val1"
     
     ```
     
-    配置好后，[重启 DataKit](datakit-service-how-to.md#manage-service) 即可。
+    Once configured, [restart DataKit](datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+    The collector can now be turned on by [ConfigMap Injection Collector Configuration](datakit-daemonset-deploy.md#configmap-setting).
 
-## 指标集 {#measurements}
+## Measurements {#measurements}
 
-以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.profile.tags]` 指定其它标签：
+For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.profile.tags]`:
 
 ``` toml
  [inputs.profile.tags]
@@ -76,38 +100,39 @@ Profile 支持采集使用 Java / Python 等不同语言环境下应用程序运
 
 
 
--  标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
-|`container_host`|container hostname|
-|`endpoint`|endpoint info|
-|`env`|application environment info|
-|`http_method`|http request method name|
-|`http_status_code`|http response code|
-|`operation`|span name|
-|`project`|project name|
-|`service`|service name|
-|`source_type`|tracing source type|
-|`span_type`|span type|
-|`status`|span status|
-|`version`|application version info|
+|`container_host`|Container hostname. Available in OpenTelemetry. Optional.|
+|`endpoint`|Endpoint info. Available in SkyWalking, Zipkin. Optional.|
+|`env`|Application environment info. Available in Jaeger. Optional.|
+|`http_method`|HTTP request method name. Available in ddtrace, OpenTelemetry. Optional.|
+|`http_route`|HTTP route. Optional.|
+|`http_status_code`|HTTP response code. Available in ddtrace, OpenTelemetry. Optional.|
+|`http_url`|HTTP URL. Optional.|
+|`operation`|Span name|
+|`project`|Project name. Available in Jaeger. Optional.|
+|`service`|Service name. Optional.|
+|`source_type`|Tracing source type|
+|`span_type`|Span type|
+|`status`|Span status|
+|`version`|Application version info. Available in Jaeger. Optional.|
 
-- 指标列表
+- metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`duration`|duration of span|int|μs|
-|`message`|origin content of span|string|-|
-|`parent_id`|parent span ID of current span|string|-|
-|`pid`|application process id.|string|-|
-|`priority`||int|-|
-|`resource`|resource name produce current span|string|-|
-|`span_id`|span id|string|-|
+|`duration`|Duration of span|int|μs|
+|`message`|Origin content of span|string|-|
+|`parent_id`|Parent span ID of current span|string|-|
+|`pid`|Application process id. Available in ddtrace, OpenTelemetry. Optional.|string|-|
+|`priority`|Optional.|int|-|
+|`resource`|Resource name produce current span|string|-|
+|`span_id`|Span id|string|-|
 |`start`|start time of span.|int|usec|
-|`trace_id`|trace id|string|-|
-
+|`trace_id`|Trace id|string|-|
 
 

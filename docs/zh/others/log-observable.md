@@ -45,7 +45,7 @@
         # ...
 ```
 
-配置完成后，使用命令行`datakit --restart`重启 DataKit 使配置生效。更多 Nginx 采集器配置可参考文档 [Nginx](../integrations/webservice/nginx.md) 。
+配置完成后，使用命令行`datakit --restart`重启 DataKit 使配置生效。更多 Nginx 采集器配置可参考文档 [Nginx](../integrations/webserver/nginx.md) 。
 
 ### Step2: 在观测云工作空间查看和分析日志数据
 
@@ -61,12 +61,12 @@
 
 ### 日志文本处理（Pipeline）
 
-观测云提供三种日志 Pipeline 文本处理方式：
+观测云提供两种日志 Pipeline 文本处理方式：
 
 - [Pipelines](../logs/pipelines/manual.md)：支持在观测云工作空间手动配置和查看日志 pipeline 文件，无需登录 DataKit 服务器进行操作，帮助您方便的使用在线日志Pipeline功能来切割您的日志；
 
-- [DataKit](../logs/pipelines/datakit-manual.md)：在服务器安装DataKit以后，在终端工具中配置DataKit的日志采集器及其对应的 pipeline 文件，对文本数据进行处理；
-- DCA：DataKit Control APP，是DataKit的桌面客户端应用，需要先安装，安装完成后可在客户端查看和编辑 DataKit 默认自带的日志 pipeline 文件和自定义手动添加 pipeline 文件。
+- [DataKit](../logs/pipelines/datakit-manual.md)：在服务器安装DataKit以后，在终端工具中配置DataKit的日志采集器及其对应的 pipeline 文件，对文本数据进行处理。
+
 
 ### 生成指标
 
@@ -101,7 +101,9 @@
 - 备份到 “观测云”：支持备份日志最多存储长达720天。
 - 备份到外部存储：支持备份日志到阿里云 OSS，具体可参考文档 [日志数据备份到 OSS 最佳实践](../best-practices/partner/log-backup-to-oss-by-func.md) 。
 
-在日志「备份日志」页面，点击「日志备份管理」-「新建规则」，输入「规则名称」即可添加一条新的规则，支持通过「过滤条件」和「搜索关键字」更精准定位需要备份的日志，节省备份日志存储费用。<br />**注意：**
+在日志「备份日志」页面，点击「日志备份管理」-「新建规则」，输入「规则名称」即可添加一条新的规则，支持通过「过滤条件」和「搜索关键字」更精准定位需要备份的日志，节省备份日志存储费用。
+
+**注意：**
 
 - 备份周期：按天进行备份，每天 `00:00:00` 开始备份前一天 `00:00:00—23:59:59` 的日志数据
 - 免费版用户：无法备份日志数据

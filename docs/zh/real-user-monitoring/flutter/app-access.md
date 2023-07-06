@@ -6,13 +6,20 @@
 - 安装 DataKit（[DataKit 安装文档](../../datakit/datakit-install.md)）
 
 ## 应用接入
-当前 Flutter 版本暂只支持 Android 和 iOS 平台。登录观测云控制台，进入「应用监测」页面，点击右上角「新建应用」，在新窗口输入「应用名称」，点击「创建」，然后相应接入的平台，即可开始配置。
+当前 Flutter 版本暂只支持 Android 和 iOS 平台。登录观测云控制台，进入「用户访问监测」页面，点击左上角「新建应用」，即可开始创建一个新的应用。
+
+1.输入「应用名称」、「应用ID」，选择平台对应「应用类型」
+
+- 应用名称：用于识别当前用户访问监测的应用名称。
+- 应用 ID ：应用在当前工作空间的唯一标识，对应字段：app_id 。该字段仅支持英文、数字、下划线输入，最多 48 个字符。
 
 ![](../img/image_12.png)
 
 ![](../img/image_13.png)
 
 ## 安装
+![](https://img.shields.io/badge/dynamic/json?label=pub.dev&color=blue&query=$.version&uri=https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/ft-sdk-package/badge/flutter/version.json) 
+![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/ft-sdk-package/badge/flutter/info.json)
 
 **Pub.Dev**: [ft_mobile_agent_flutter](https://pub.dev/packages/ft_mobile_agent_flutter)
 
@@ -30,7 +37,7 @@
 
 ```yaml
 dependencies:
-  ft_mobile_agent_flutter: ^0.2.7-dev.2
+  ft_mobile_agent_flutter: [lastest_version]
 ```
 
 现在在您的 Dart 代码中，您可以使用：
@@ -61,7 +68,7 @@ class CustomApplication : FlutterApplication() {
 ```
 
 ## SDK 初始化
-###  基础配置
+###  基础配置 {#base-setting}
 
 ```dart
 void main() async {
@@ -76,20 +83,17 @@ void main() async {
 
 | **字段** | **类型** | **必须** | **说明** |
 | --- | --- | --- | --- |
-| serverUrl | String | 是 | 数据上报地址 |
-| useOAID | bool | 否 | 是否使用 `OAID` 唯一识别，默认`false`,开启后替换 `deviceUUID` 进行使用，仅仅作用于 Android 设备 |
+| serverUrl | String | 是 | datakit 安装地址 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529。注意：安装 SDK 设备需能访问这地址 |
 | debug | bool | 否 | 设置是否允许打印日志，默认`false` |
-| datakitUUID | String | 否 | 请求`HTTP`请求头`X-Datakit-UUID` 数据采集端  如果用户不设置会自动配置 |
 | envType | enum EnvType | 否 | 环境，默认`prod` |
+| serviceName | String | 否 | 服务名 |
 
-### RUM 配置
+### RUM 配置 {#rum-config}
 
 ```dart
  await FTRUMManager().setConfig(
         androidAppId: appAndroidId, 
         iOSAppId: appIOSId,
-        enableNativeUserAction:false,
-        enableNativeUserView: false
     );
 
 ```
@@ -99,6 +103,7 @@ void main() async {
 | androidAppId | String | 是 | appId，监测中申请 |
 | iOSAppId | String | 是 | appId，监测中申请 |
 | sampleRate | double | 否 | 采样率，（采集率的值范围为>= 0、<= 1，默认值为 1） |
+| enableUserResource | bool | 否 | 是否开启  http `Resource` 数据自动抓取，默认为 `false`，这个是通过修改 `HttpOverrides.global` 来实现，如果项目有这方面需求需要继承 `FTHttpOverrides`，并设置 enableAutoTrace  为 `false` |
 | enableNativeUserAction | bool | 否 | 是否进行 `Native Action` 追踪，`Button` 点击事件，纯 `Flutter` 应用建议关闭，默认为 `false` |
 | enableNativeUserView | bool | 否 | 是否进行 `Native View` 自动追踪，纯 `Flutter` 应用建议关闭，，默认为 `false` |
 | enableNativeUserResource | bool | 否 | 是否进行 `Native Resource` 自动追踪，纯 `Flutter` 应用建议关闭，默认为 `false` |
@@ -162,13 +167,12 @@ String customDynamicValue = prefs.getString("customDynamicValue")?? "not set";
 > 注意：
 > 
 > 1. 特殊 key : track_id (用于追踪功能) 
-> 1. 当用户通过 globalContext 添加自定义标签与 SDK 自有标签相同时，SDK 的标签会覆盖用户设置的，建议标签命名添加项目缩写的前缀，例如 `df_tag_name`。项目中使用 `key` 值可[查询源码](https://github.com/DataFlux-cn/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java)。
+> 1. 当用户通过 globalContext 添加自定义标签与 SDK 自有标签相同时，SDK 的标签会覆盖用户设置的，建议标签命名添加项目缩写的前缀，例如 `df_tag_name`。项目中使用 `key` 值可[查询源码](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java)。
 
-### Log 配置
+### Log 配置 {#log-config}
 
 ```dart
  await FTLogger().logConfig(
-   serviceName: "flutter_agent", 
    enableCustomLog: true
  );
 ```
@@ -176,13 +180,12 @@ String customDynamicValue = prefs.getString("customDynamicValue")?? "not set";
 | **字段** | **类型** | **必须** | **说明** |
 | --- | --- | --- | --- |
 | sampleRate | double | 否 | 采样率，采集率的值范围为>= 0、<= 1，默认值为 1 |
-| serviceName | String | 否 | 服务名 |
 | enableLinkRumData | bool | 否 | 是否与 `RUM` 关联 |
 | enableCustomLog | bool | 否 | 是否开启自定义日志 |
 | discardStrategy | enum FTLogCacheDiscard | 否 | 日志丢弃策略，默认`FTLogCacheDiscard.discard` |
 | logLevelFilters | List<FTLogStatus> | 否 | 日志等级过滤 |
 
-### Trace 配置
+### Trace 配置 {#trace-config}
 
 ```dart
 await FTTracer().setConfig(
@@ -195,29 +198,75 @@ await FTTracer().setConfig(
 | **字段** | **类型** | **必须** | **说明** |
 | --- | --- | --- | --- |
 | sampleRate | double | 否 | 采样率，采集率的值范围为>= 0、<= 1，默认值为 1 |
-| serviceName | String | 否 | 服务名 |
 | traceType | enum TraceType | 否 | 链路类型，默认`TraceType.ddTrace` |
 | enableLinkRUMData | bool | 否 | 是否与 `RUM` 数据关联，默认`false` |
-| enableAutoTrace | bool | 否 | 是否开启 flutter 网络追踪，默认`false` |
+| enableAutoTrace | bool | 否 | 是否 `http` 请求中添加 `Trace Header`，默认`false`，这个是通过修改 `HttpOverrides.global` 来实现，如果项目有这方面需求需要继承 `FTHttpOverrides`，并设置 enableAutoTrace  为 `false`|
 | enableNativeAutoTrace |  bool | 否 | 是否开启原生网络自动追踪 iOS `NSURLSession` ,Android `OKhttp`，默认`false` |
 
 ## RUM 用户数据追踪
 
-### Action
+### Action {#action}
 
 ```dart
 FTRUMManager().startAction("action name", "action type");
 ```
 
-### View
+### View {#rum-view}
+#### 自动采集
+
+* **方法 1**:  `MaterialApp.navigatorObservers` 添加 `FTRouteObserver `，设置 `MaterialApp.routes` 需要跳转的页面，`routes` 中 `key` 即为页面名称(`view_name`)。
 
 ```dart
-FTRUMManager().createView("Current Page Name",100000000)
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: HomeRoute(),
+      navigatorObservers: [
+        //RUM View： 使用路由跳转时，监控页面生命周期
+        FTRouteObserver(),
+      ],
+      routes: <String, WidgetBuilder>{
+        //set Route 路由跳转
+        'logging': (BuildContext context) => Logging(),
+        'rum': (BuildContext context) => RUM(),
+        'tracing_custom': (BuildContext context) => CustomTracing(),
+        'tracing_auto': (BuildContext context) => AutoTracing(),
+      },
+    );
+  }
+}
 
-FTRUMManager().starView("Current Page Name");
-         
-FTRUMManager().stopView();
+//通过这种方式进行页面跳转，此处页面名称为 logging
+Navigator.pushNamed(context, "logging");
+
 ```
+
+* **方法 2**: `MaterialApp.navigatorObservers` 添加 `FTRouteObserver `，通过`FTMaterialPageRoute`配合使用生成，其中 `widget` 类名称即为页面名称(`view_name`)。
+
+```dart
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: HomeRoute(),
+      navigatorObservers: [
+        //RUM View： 使用路由跳转时，监控页面生命周期
+        FTRouteObserver(),
+      ],
+    );
+  }
+}
+
+//此处页面名称为 NoRouteNamePage
+Navigator.of(context).push(
+          FTMaterialPageRoute(builder: (context) => new NoRouteNamePage()
+```
+
+* 以上两种方法同时在一个项目中混合使用
+
+* 休眠和唤醒事件采集
 
 如果需要采集应用休眠和唤醒行为需要添加如下代码：
 
@@ -240,9 +289,19 @@ class _HomeState extends State<HomeRoute> {
 }
 
 ```
+#### 自定义 View
 
-### Error
+```dart
+FTRUMManager().createView("Current Page Name",100000000)
 
+FTRUMManager().starView("Current Page Name");
+         
+FTRUMManager().stopView();
+```
+
+
+### Error {#error}
+#### 自动采集
 ```dart
 /// flutter 自动采集 error
 void main() async {
@@ -255,8 +314,6 @@ void main() async {
     await FTRUMManager().setConfig(
         androidAppId: appAndroidId,
         iOSAppId: appIOSId,
-        enableNativeUserAction:false,
-        enableNativeUserView: false
     );
     
     // Flutter 框架异常捕获
@@ -266,13 +323,20 @@ void main() async {
     //其它异常捕获与日志收集
     FTRUMManager().addError(error, stack);
   });
-  
-  
+ 
+```
+#### 自定义 Error
+``` 
  ///自定义 error
  FTRUMManager().addCustomError("error stack", "error message");
 ```
 
 ### Resource
+
+#### 自动采集
+通过[配置](#rum-config) `FTRUMManager().setConfig` 开启 `enableUserResource`来实现。
+
+#### 自定义 Resource
 
 ```dart
 /// 使用 httpClient  
@@ -315,7 +379,7 @@ void httpClientGetHttp(String url) async {
   }
 ```
 
-使用 http 库与 dio 库，可参考 [example](https://github.com/DataFlux-cn/datakit-flutter/tree/dev/example/lib)。
+使用 http 库与 dio 库，可参考 [example](https://github.com/GuanceCloud/datakit-flutter/tree/dev/example/lib)。
 
 ## Logger 日志打印 
 
@@ -370,7 +434,7 @@ void httpClientGetHttp() async {
   }
 ```
 
-使用 http 库与 dio 库，可参考 [example](https://github.com/DataFlux-cn/datakit-flutter/tree/dev/example/lib)。
+使用 http 库与 dio 库，可参考 [example](https://github.com/GuanceCloud/datakit-flutter/tree/dev/example/lib)。
 
 ## 用户信息绑定与解绑
 

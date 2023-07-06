@@ -1,7 +1,7 @@
 nav:
-  - index.md
-  - '简介': tencent-prod-func.md
   - 'CDB': cdb.md
   - 'COS': cos.md
   - 'CLB': clb.md
   - 'CVM': cvm.md
+  - mongodb.md
+  - redis-mem.md

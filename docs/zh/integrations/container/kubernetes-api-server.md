@@ -13,9 +13,8 @@ Kubernetes API Server 性能指标展示，包括请求数、工作队列增速�
 
 ## 版本支持
 
-操作系统支持：Linux
-
-Kubernetes 版本：1.18+
+- 操作系统支持：Linux
+- Kubernetes 版本：1.18+
 
 ## 前置条件
 
@@ -25,9 +24,7 @@ Kubernetes 版本：1.18+
 
 说明：示例 Kubernetes 版本为 1.22.6，DataKit 版本为 1.2.17，各个不同版本指标可能存在差异。
 
-### 部署实施
-
-#### 指标采集 (必选)
+### 指标采集 (必选)
 
 1、 ConfigMap 增加 `api-server.conf` 配置
 
@@ -140,7 +137,7 @@ kubectl apply -f datakit.yaml
 
 ![image](../imgs/kubernetes-api-server-2.png)
 
-#### 插件标签 (必选）
+### 插件标签 (必选）
 
 参数说明
 
@@ -179,7 +176,7 @@ kubectl apply -f datakit.yaml
 ## 常见问题排查
 
 <[无数据上报排查](../../datakit/why-no-data.md)>
-
 ## 进一步阅读
 
-<[TAG 在观测云中的最佳实践](../../best-practices/insight/tag.md)>
+- <[TAG 在观测云中的最佳实践](../../best-practices/insight/tag.md)>
+- <[多个 Kubernetes 集群指标采集最佳实践](../../best-practices/cloud-native/multi-cluster.md)>

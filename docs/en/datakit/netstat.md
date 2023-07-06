@@ -1,4 +1,3 @@
-<!-- This file required to translate to EN. -->
 
 # NetStat
 ---
@@ -7,30 +6,30 @@
 
 ---
 
-Netstat 指标采集，包括 TCP/UDP 连接数、等待连接、等待处理请求等。
+Netstat metrics collection, including TCP/UDP connections, waiting for connections, waiting for requests to be processed, and so on.
 
-## 前置条件 {#precondition}
+## Preconditions {#precondition}
 
-暂无
+None
 
-## 配置 {#input-config}
+## Configuration {#input-config}
 
-=== "主机部署"
+=== "Host deployment"
 
-    进入 DataKit 安装目录下的 `conf.d/host` 目录，复制 `netstat.conf.sample` 并命名为 `netstat.conf`。示例如下：
-
+    Go to the `conf.d/host` directory under the DataKit installation directory, copy `netstat.conf.sample` and name it `netstat.conf`. Examples are as follows:
+    
     ```toml
         
     [[inputs.netstat]]
-      ##(optional) collect interval, default is 10 seconds
+      ##(Optional) Collect interval, default is 10 seconds
       interval = '10s'
     
-      ## the ports you want display
-      ## can and tags too
+      ## The ports you want display
+      ## Can add tags too
       # [[inputs.netstat.addr_ports]]
       #   ports = ["80","443"]
     
-      ## groups of ports and add different tags to facilitate statistics
+      ## Groups of ports and add different tags to facilitate statistics
       # [[inputs.netstat.addr_ports]]
       #   ports = ["80","443"]
       #   [inputs.netstat.addr_ports.tags]
@@ -41,9 +40,9 @@ Netstat 指标采集，包括 TCP/UDP 连接数、等待连接、等待处理请
       #     service = "datakit"
       #     foo = "bar"
     
-      ## server may have multiple network cards
-      ## display only some network cards
-      ## can and tags too
+      ## Server may have multiple network cards
+      ## Display only some network cards
+      ## Can add tags too
       # [[inputs.netstat.addr_ports]]
       #   ports = ["1.1.1.1:80","2.2.2.2:80"]
       #   ports_match is preferred if both ports and ports_match configured
@@ -53,25 +52,25 @@ Netstat 指标采集，包括 TCP/UDP 连接数、等待连接、等待处理请
       # some_tag = "some_value"
       # more_tag = "some_other_value"
     ```
-
-    配置好后，重启 DataKit 即可。
+    
+    After configuration, restart DataKit.
 
 === "Kubernetes"
 
-    Kubernetes 中支持以环境变量的方式修改配置参数：
+    Kubernetes supports modifying configuration parameters in the form of environment variables:
 
 
-    | 环境变量名                          | 对应的配置参数项 | 参数示例 |
+    | Environment Variable Name                          | Corresponding Configuration Parameter Item | Parameter Example |
     |:-----------------------------     | ---            | ---   |
-    | `ENV_INPUT_NETSTAT_TAGS`          | `tags`         | `tag1=value1,tag2=value2` 如果配置文件中有同名 tag，会覆盖它 |
+    | `ENV_INPUT_NETSTAT_TAGS`          | `tags`         | `tag1=value1,tag2=value2`; If there is a tag with the same name in the configuration file, it will be overwritten. |
     | `ENV_INPUT_NETSTAT_INTERVAL`      | `interval`     | `10s` |
     | `ENV_INPUT_NETSTAT_ADDR_PORTS`    | `ports`        | `["1.1.1.1:80","443"]` |
 
 ---
 
-## 指标集 {#measurements}
+## Measurements {#measurements}
 
-以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.netstat.tags]` 指定其它标签：
+For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.netstat.tags]`:
 
 ``` toml
  [inputs.netstat.tags]
@@ -80,24 +79,25 @@ Netstat 指标采集，包括 TCP/UDP 连接数、等待连接、等待处理请
   # ...
 ```
 
-不分端口号统计的指标集: `netstat` ，分端口号统计的指标集: `netstat_port` 。
+Measurements for statistics regardless of port number: `netstat` ; Measurements for statistics by port number: `netstat_port`.
 
 
 
--  标签 
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
-|`addr_port`|addr and port|
+|`addr_port`|Addr and port. Optional.|
 |`host`|Host name|
+|`ip_version`|IP version, 4 for IPV4, 6 for IPV6, unknown for others|
 
-- 指标列表
+- metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`pid`|pid.|int|count|
+|`pid`|PID. Optional.|int|count|
 |`tcp_close`|CLOSE : The number of TCP state be waiting for a connection termination request acknowledgement from remote TCP host.|int|count|
 |`tcp_close_wait`|CLOSE_WAIT : The number of TCP state be waiting for a connection termination request from local user.|int|count|
 |`tcp_closing`|CLOSING : The number of TCP state be waiting for a connection termination request acknowledgement from remote TCP host.|int|count|

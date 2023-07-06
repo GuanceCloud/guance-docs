@@ -1,4 +1,3 @@
-<!-- This file required to translate to EN. -->
 
 # Disk
 ---
@@ -7,18 +6,21 @@
 
 ---
 
-disk 采集器用于主机磁盘信息采集，如磁盘存储空间、inodes 使用情况等。
+Disk collector is used to collect disk information, such as disk storage space, inodes usage, etc.
 
-## 前置条件 {#requirements}
+## Preconditions {#requirements}
 
-暂无
+None
 
 
-## 配置 {#config}
+## Configuration {#config}
 
-=== "主机安装"
+=== "Host Installation"
 
-    进入 DataKit 安装目录下的 `conf.d/host` 目录，复制 `disk.conf.sample` 并命名为 `disk.conf`。示例如下：
+    Go to the `conf.d/host` directory under the DataKit installation directory, copy `disk.conf.sample` and name it `disk.conf`. Examples are as follows:
+
+
+​    
     ```toml
         
     [[inputs.disk]]
@@ -41,7 +43,7 @@ disk 采集器用于主机磁盘信息采集，如磁盘存储空间、inodes �
     
       ## Deprecated
       # fs = ["ext2", "ext3", "ext4", "NTFS"]
-      
+    
       ## We collect all devices prefixed with dev by default,If you want to collect additional devices, it's in extra_device add
       # extra_device = ["/nfsdata"]
     
@@ -51,24 +53,24 @@ disk 采集器用于主机磁盘信息采集，如磁盘存储空间、inodes �
       # some_tag = "some_value"
       # more_tag = "some_other_value"
     ```
-
-    配置好后，[重启 DataKit](datakit-service-how-to.md#manage-service) 即可。
+    
+    Once configured, [restart DataKit](datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    支持以环境变量的方式修改配置参数：
+    Supports modifying configuration parameters as environment variables:
     
-    | 环境变量名                            | 对应的配置参数项       | 参数示例                                                                                 |
+    | Environment Variable Name                            | Corresponding Configuration Parameter Item       | Parameter Example                                                                                 |
     | ---                                   | ---                    | ---                                                                                      |
-    | `ENV_INPUT_DISK_EXCLUDE_DEVICE`       | `exclude_device`       | `"/dev/loop0","/dev/loop1"` 以英文逗号隔开                      |
-    | `ENV_INPUT_DISK_EXTRA_DEVICE`         | `extra_device`         | `"/nfsdata"` 以英文逗号隔开                      |
-    | `ENV_INPUT_DISK_TAGS`                 | `tags`                 | `tag1=value1,tag2=value2` 如果配置文件中有同名 tag，会覆盖它                             |
-    | `ENV_INPUT_DISK_ONLY_PHYSICAL_DEVICE` | `only_physical_device` | 忽略非物理磁盘（如网盘、NFS 等，只采集本机硬盘/CD ROM/USB 磁盘等）任意给一个字符串值即可 |
+    | `ENV_INPUT_DISK_EXCLUDE_DEVICE`       | `exclude_device`       | `"/dev/loop0","/dev/loop1"`, separated by English commas                      |
+    | `ENV_INPUT_DISK_EXTRA_DEVICE`         | `extra_device`         | `"/nfsdata"`， separated by English commas                        |
+    | `ENV_INPUT_DISK_TAGS`                 | `tags`                 | `tag1=value1,tag2=value2`; If there is a tag with the same name in the configuration file, it will be overwritten                             |
+    | `ENV_INPUT_DISK_ONLY_PHYSICAL_DEVICE` | `only_physical_device` | Ignore non-physical disks (such as network disk, NFS, etc., only collect local hard disk/CD ROM/USB disk, etc.) and give a string value at will|
     | `ENV_INPUT_DISK_INTERVAL`             | `interval`             | `10s`                                                                                    |
 
-## 指标集 {#measurements}
+## Measurements {#measurements}
 
-以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.disk.tags]` 指定其它标签：
+For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.disk.tags]`:
 
 ``` toml
  [inputs.disk.tags]
@@ -81,31 +83,30 @@ disk 采集器用于主机磁盘信息采集，如磁盘存储空间、inodes �
 
 ### `disk`
 
--  标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
-|`device`|磁盘设备名|
-|`fstype`|文件系统名|
-|`host`|主机名|
-|`mode`|读写模式|
-|`path`|磁盘挂载点|
+|`device`|Disk device name.|
+|`fstype`|File system name.|
+|`host`|System hostname.|
 
-- 指标列表
+- metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`free`|Free disk size in bytes|int|B|
-|`inodes_free`|Free inodes(**DEPRECATED: use inodes_free_mb instead**)|int|count|
-|`inodes_free_mb`|Free inodes(in MB)|int|count|
-|`inodes_total`|Total inodes(**DEPRECATED: use inodes_total_mb instead**)|int|count|
-|`inodes_total_mb`|Total inodes(in MB)|int|count|
-|`inodes_used`|Used inodes(**DEPRECATED: use inodes_used_mb instead**)|int|count|
-|`inodes_used_mb`|Used inodes(in MB)|int|count|
-|`total`|Total disk size in bytes|int|B|
-|`used`|Used disk size in bytes|int|B|
-|`used_percent`|Used disk size in percent|float|percent|
+|`free`|Free disk size in bytes.|int|B|
+|`inodes_free`|Free Inode(**DEPRECATED: use inodes_free_mb instead**).|int|count|
+|`inodes_free_mb`|Free Inode(need to multiply by 10^6).|int|count|
+|`inodes_total`|Total Inode(**DEPRECATED: use inodes_total_mb instead**).|int|count|
+|`inodes_total_mb`|Total Inode(need to multiply by 10^6).|int|count|
+|`inodes_used`|Used Inode(**DEPRECATED: use inodes_used_mb instead**).|int|count|
+|`inodes_used_mb`|Used Inode(need to multiply by 10^6).|int|count|
+|`inodes_used_percent`|Inode used percent|float|percent|
+|`total`|Total disk size in bytes.|int|B|
+|`used`|Used disk size in bytes.|int|B|
+|`used_percent`|Used disk size in percent.|float|percent|
 
 

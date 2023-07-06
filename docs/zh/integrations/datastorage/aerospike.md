@@ -21,7 +21,7 @@ Aerospike 版本：LAST (6.0.0)
 
 ## 前置条件
 
-- Aerospike 服务器 <[安装 Datakit](../../datakit/datakit-install.md)>
+- Aerospike 服务器 <[安装 DataKit](../../datakit/datakit-install.md)>
 - Aerospike 已安装
 
 ## 安装配置

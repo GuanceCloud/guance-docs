@@ -90,41 +90,55 @@ mkdocs serve -f mkdocs.en.saas.yml
 
 ## 编辑文档注意事项
 
-1. 在编辑文档时，过期不用的图片需要从文档库删除。
+1. 添加标题
 
-2. 功能点引用采用「」，其他引用可以用“”
+`# 标题` ：仅用于文章名称
 
-3. 若图片不需要边框，可以用如下格式
+`## 标题` ：文章内容的一级标题，以此类推
+
+2. 添加图片
+
+注意事项：
+
+- 在编辑文档时，过期不用的图片需要从文档库删除
+- 图片大小建议不要超过 1 M（gif 格式除外）
+
+1）若图片不需要边框，可以用如下格式
 
 `<img src="img/xxxxxx.png" width=210px />`
 
-4. 若需要定义图片，需要手动加边框，可以用如下格式
+2）若需要定义图片，需要手动加边框，可以用如下格式
 
 `<img src="img/xxxxxx.png" width=210px border=1px />`
 
-5. 若使用多个图片并列，可使用空格 `&nbsp;`
+3）若使用多个图片并列，可使用空格 `&nbsp;`
 
 `<img src="img/xxxxxx.png" width=210px border=1px />&nbsp;<img src="img/xxxxxx.png" width=210px border=1px />`
 
-6. 注意事项可以用以下方式：
+
+3. 添加引用
+
+功能点引用采用「」，其他引用可以用“”
+
+4. 添加提示
 
 1）在注意事项前增加符号 >
 
 > 注意：xxxxxx
 
-2）使用如下格式
+2）注意事项使用如下格式
 
 ???+ attention
 
     xxxxxx
 
-7. 提示信息可以使用如下格式：
+3）提示信息可以使用如下格式：
 
 ???+ Note "关于xxxxxx的说明"
 
     xxxxxx
 
-8. 使用 tab 切换可以使用如下格式：
+5. 添加 tab 切换
 
 === "主机安装"
 
@@ -134,15 +148,33 @@ mkdocs serve -f mkdocs.en.saas.yml
 
     xxxxxx
 
-9. 表格按钮链接可以使用如下格式：
+6. 添加文字颜色
 
-|                          采集器配置                          |                                                              |                                                              |                                                              |                                                              |
-| :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
+`<font color=coral>**添加文字颜色**</font>`
+
+效果示例：<font color=coral>添加文字颜色</font>
+
+7. 添加表格按钮链接
+
+| 采集器配置    |          |            |           |            |
+| :---------: | :------: | :--------: | :--------: | :-------: |
 | [DDTrace](zh/datakit/ddtrace.md){ .md-button .md-button--primary } | [Skywalking](zh/datakit/skywalking.md){ .md-button .md-button--primary } | [OpenTelemetry](zh/datakit/opentelemetry.md){ .md-button .md-button--primary } | [Zipkin](zh/datakit/zipkin.md){ .md-button .md-button--primary } | [Jaeger](zh/datakit/jaeger.md){ .md-button .md-button--primary } |
 
-10. 图片大小建议不要超过 1 M（gif 格式除外）
+8. 添加跳转链接
 
-11. 与 md 文档同名的目录内不要有 md 文档，发现会影响中文搜索插件，导致无法搜索到中文，如下 ：
+```
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; **添加跳转链接**</font>](.md)
+
+<br/>
+
+</div>
+```
+
+9. 添加目录说明
+
+与 md 文档同名的目录内不要有 md 文档，发现会影响中文搜索插件，导致无法搜索到中文，如下 ：
 
 ```shell
 .

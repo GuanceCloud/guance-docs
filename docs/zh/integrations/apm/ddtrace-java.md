@@ -1,7 +1,7 @@
 ---
 icon: fontawesome/brands/java
 ---
-# JAVA
+# Java
 
 ---
 
@@ -26,8 +26,8 @@ icon: fontawesome/brands/java
 ### 前置条件
 
 - 需要进行链路追踪的应用服务器<[安装 DataKit](../../datakit/datakit-install.md)>
-- `dd-java-agent.jar` 已默认内置于 `/usr/local/datakit/data` 目录下
-- <[ddtrace -java -agent 框架兼容列表](https://docs.datadoghq.com/tracing/setup_overview/compatibility_requirements/java/)>
+- `dd-java-agent.jar` 已默认内置于 `/usr/local/datakit/data` 目录下，或[按需下载对应 agent](https://static.guance.com/dd-image/dd-java-agent.jar)
+- <[ddtrace-java-agent 框架兼容列表](https://docs.datadoghq.com/tracing/setup_overview/compatibility_requirements/java/)>
 
 ### 配置实施
 
@@ -39,33 +39,73 @@ java -javaagent:/xxx/ddtrace.jar -Ddd.env=xxx -Ddd.service.name=xxx -Ddd.agent.p
 
 > **注意：**其中 `xxx` 内容都需要填写。
 
-##### 开启 datakit.conf 中链路追踪 inputs
+#### 开启 ddtrace 采集器
 
-**（必须开启）**
+<div class="grid" markdown>
 
-```
-###########--------linux环境---------##########
+=== "主机环境"
 
- cd /usr/local/datakit/conf.d/
- cd /ddtrace
- cp ddtrace.conf.sample ddtrace.conf
+	```
+	###########--------linux环境---------##########
+
+	 cd /usr/local/datakit/conf.d/
+	 cd /ddtrace
+	 cp ddtrace.conf.sample ddtrace.conf
 
 
-## 复制完文件后，vim进入编辑模式，放开imputs的注释
-## 举例:ddtrace    tags相关注释可根据需要进行开启操作，添加业务或其他相关的标签
+	## 复制完文件后，vim进入编辑模式，放开inputs的注释
+	## 举例:ddtrace    tags相关注释可根据需要进行开启操作，添加业务或其他相关的标签
 
-#默认无需修改
- vim ddtrace.conf
+	#默认无需修改
+	vim ddtrace.conf
 
- wq!
+	wq!
 
-## 重启 DataKit
- systemctl restart datakit
-```
+	## 重启 DataKit
+	 systemctl restart datakit
+	 
+	```
+	
+	window 配置文件所在目录：`C:\Program Files\datakit\conf.d`
+
+=== "K8s 环境"
+	
+	K8s 环境主要是通过 [ConfigMap](../../datakit/datakit-daemonset-deploy.md#configmap-setting) 方式注入采集器配置来开启采集器。
+
+	```
+	# datakit.yaml
+
+	volumeMounts: # datakit.yaml 中已有该配置，直接搜索即可定位到
+	- mountPath: /usr/local/datakit/conf.d/ddtrace/ddtrace.conf
+	  name: datakit-conf
+	  subPath: ddtrace.conf
+
+	# 直接在 datakit.yaml 底部追加
+	---
+	apiVersion: v1
+	kind: ConfigMap
+	metadata:
+	  name: datakit-conf
+	  namespace: datakit
+	data:
+		ddtrace.conf: |-
+			[[inputs.ddtrace]]
+			  endpoints = ["/v0.3/traces", "/v0.4/traces", "/v0.5/traces"]
+			  # ignore_resources = []
+			  customer_tags = ["node_ip"]
+			  [inputs.ddtrace.close_resource]
+				"*" = ["PUT /nacos/*","GET /nacos/*","POST /nacos/*"]
+			  ## tags is ddtrace configed key value pairs
+			  # [inputs.ddtrace.tags]
+				# some_tag = "some_value"
+				# more_tag = "some_other_value"
+				   ...
+	```
+</div>
 
 #### ddtrace 相关环境变量（启动参数）释义
 
-**可根据需要进行添加**
+（可根据需要进行添加）
 
 - Ddd.env：自定义环境类型，可选项。
 - Ddd.service.name：自定义应用名称 ，**必填项**。
@@ -84,20 +124,21 @@ java -javaagent:/xxx/ddtrace.jar -Ddd.env=xxx -Ddd.service.name=xxx -Ddd.agent.p
 > **注意：**代码段中的 `xxx` 需替换为绝对路径
 
 ```
- cd /xxx/tomcat/bin
- vim catlina.sh
+cd /xxx/tomcat/bin
+vim catlina.sh
 
- CATALINA_OPTS="$CATALINA_OPTS -javaagent:/usr/local/datakit/data/dd-java-agent.jar -Ddd.env=test -Ddd.service.name=demo001 -Ddd.agent.port=9529"; export CATALINA_OPTS
+CATALINA_OPTS="$CATALINA_OPTS -javaagent:/usr/local/datakit/data/dd-java-agent.jar -Ddd.env=test -Ddd.service.name=demo001 -Ddd.agent.port=9529"; export CATALINA_OPTS
 
 ## 验证是否添加成功，可以查 Ddd相关字眼的进程，要确保应用启动可以调用到该环境参数。
 
- wq!
+wq!
 
 ## 重启tomcat
- ./startup.sh
+./startup.sh
+
 ```
 
-是 Windows 环境，设置 setenv.bat ：
+若是 Windows 环境，设置 setenv.bat ：
 
 ```
 set CATALINA_OPTS=%CATALINA_OPTS% -javaagent:"c:\path\to\dd-java-agent.jar"
@@ -114,82 +155,69 @@ set CATALINA_OPTS=%CATALINA_OPTS% -javaagent:"c:\path\to\dd-java-agent.jar"
 ```
 ## 举例
 ## 原启动脚本：
- nohup java -jar mall-admin.jar &
+nohup java -jar mall-admin.jar &
 
 ## 添加ddtrace启动参数后的启动脚本如下，执行命令重启应用：
- nohup java -javaagent:/xxx/dd-java-agent.jar -Ddd.service.name=mall-admin -Ddd.agent.port=9529 -jar mall-admin.jar &
+nohup java -javaagent:/xxx/dd-java-agent.jar -Ddd.service.name=mall-admin -Ddd.agent.port=9529 -jar mall-admin.jar &
 ```
 
 #### Docker 环境接入
 
 Docker 环境下接入方式有多种，本示例会展示两种方式：
 
-- 修改 dockerfile，重新打包镜像
-- 不修改 dockerfile，用启动参数覆盖原有启动命令
+- 1.修改 dockerfile，重新打包镜像
+- 2.不修改 dockerfile，用启动参数覆盖原有启动命令
 
-1、修改 dockerfile，重新打包
+**1. 修改 dockerfile，重新打包**
+
 > **注意：**代码段中的 `xxx` 需替换为绝对路径
 
 ```
- vim Dockerfile
+vim Dockerfile
 
 ##  Dockerfile中添加ddteace-agent路径,xxx字段均需要改写 IP要填写本机内网IP
 
- ADD dd-java-agent-0.75.0.jar /xxx/
+ADD dd-java-agent-0.75.0.jar /xxx/
 
- ENTRYPOINT ["java","-javaagent:/xxx/dd-java-agent-0.75.0.jar","-Ddd.service.name=xxx","-Ddd.version=xx","-Ddd.env=xxx","-Ddd.agent.port=9529","-Ddd.agent.host=xxx.xxx.xxx.xxx","-jar","xxx.jar"]
+ENTRYPOINT ["java","-javaagent:/xxx/dd-java-agent-0.75.0.jar","-Ddd.service.name=xxx","-Ddd.version=xx","-Ddd.env=xxx","-Ddd.agent.port=9529","-Ddd.agent.host=xxx.xxx.xxx.xxx","-jar","xxx.jar"]
 
- wq!
+wq!
+
 ```
 
 ![image](../imgs/input-ddtrace-java-6.png)
 
 ```
 ## build & run
- docker build -t xxx/xxx:v1 .  [ “.” 必须添加]
+docker build -t xxx/xxx:v1 .  [ “.” 必须添加]
 
 ## docker run   举例
- docker run -p 8080:8080 --name mall-admin --link mysql:db --link redis:redis -v /etc/localtime:/etc/localtime -v /mydata/app/admin/logs:/var/logs -d mall/mall-admin:v1
+docker run -p 8080:8080 --name mall-admin --link mysql:db --link redis:redis -v /etc/localtime:/etc/localtime -v /mydata/app/admin/logs:/var/logs -d mall/mall-admin:v1
 ```
 
-2、不修改 dockerfile，用启动参数覆盖原有启动命令（某些场景下可能不适用）
+**2. 不修改 dockerfile，用启动参数覆盖原有启动命令（某些场景下可能不适用）**
 
 举例如下：
 
 ```
 ## 原有启动命令
- docker run -p 8080:8080 --name mall-admin --link mysql:db --link redis:redis -v /etc/localtime:/etc/localtime -v /mydata/app/admin/logs:/var/logs -d mall/mall-admin:v1
+docker run -p 8080:8080 --name mall-admin --link mysql:db --link redis:redis -v /etc/localtime:/etc/localtime -v /mydata/app/admin/logs:/var/logs -d mall/mall-admin:v1
 
 ## 包含ddtrace的启动命令，需要查看dockerfile中jar包的启动命令
- docker run -p 8080:8080 --name mall-admin --link mysql:db --link redis:redis -v /etc/localtime:/etc/localtime -v /mydata/app/admin/logs:/var/logs -d mall/mall-admin:v1 java -javaagent:/wx/dd-java-agent-0.75.0.jar -Ddd.service.name=mall-admin -Ddd.version=v1 -Ddd.env=product -Ddd.agent.port=9529 -Ddd.agent.host=172.16.0.198 -jar -Dspring.profiles.active=prod /mall-admin-1.0-SNAPSHOT.jar
+docker run -p 8080:8080 --name mall-admin --link mysql:db --link redis:redis -v /etc/localtime:/etc/localtime -v /mydata/app/admin/logs:/var/logs -d mall/mall-admin:v1 java -javaagent:/wx/dd-java-agent-0.75.0.jar -Ddd.service.name=mall-admin -Ddd.version=v1 -Ddd.env=product -Ddd.agent.port=9529 -Ddd.agent.host=172.16.0.198 -jar -Dspring.profiles.active=prod /mall-admin-1.0-SNAPSHOT.jar
 
 ## 注意：添加完java –javaagent后需要在启动脚本后添加-jar your app name.jar
 ```
-
-#### 链路分析
-
-<[服务](../../application-performance-monitoring/service.md)><br />
-<[链路分析](../../application-performance-monitoring/explorer.md)>
+### [启动参数](../../datakit/ddtrace-java.md#start-options)
 
 ## 场景视图
 
 观测云平台已内置 应用性能监测模块，无需手动创建
 
-## 检测库
+## 更多阅读
 
-暂无
-
-## 相关术语说明
-
-<[链路追踪-字段说明](../../../application-performance-monitoring/collection/)>
-
-## 最佳实践
-
-<[JVM 可观测](../../best-practices/monitoring/jvm.md)><br />
-<[链路追踪（APM）最佳实践](../../best-practices/monitoring/apm.md)><br />
-<[JAVA 应用 RUM-APM-LOG 联动分析](../../best-practices/insight/java-rum-apm-log.md)><br />
-<[Kubernetes 应用的 RUM-APM-LOG 联动分析](../../best-practices/cloud-native/k8s-rum-apm-log.md)>
-
-## 故障排查
-
-暂无
+- <[应用性能监测功能介绍](../../application-performance-monitoring/index.md)>
+- <[链路追踪-字段说明](../../application-performance-monitoring/collection/index.md#_5)>
+- <[链路追踪（APM）最佳实践](../../best-practices/monitoring/apm.md)>
+- <[JAVA 应用 RUM-APM-LOG 联动分析](../../best-practices/insight/java-rum-apm-log.md)>
+- <[Kubernetes 应用的 RUM-APM-LOG 联动分析](../../best-practices/cloud-native/k8s-rum-apm-log.md)>

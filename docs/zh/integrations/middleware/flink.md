@@ -16,8 +16,7 @@ Flink 性能指标展示，包括运行的 Job 数、 TaskManager 数、 JVM 信
 
 ## 版本支持
 
-操作系统：Linux / Windows<br />
-Flink 版本：ALL
+操作系统：Linux / Windows
 
 ## 前置条件
 
@@ -27,7 +26,6 @@ Flink 版本：ALL
 
 说明：示例 Flink 版本为 Linux 环境 Flink/1.14.2 (CentOS)，各个不同版本指标可能存在差异。
 
-### 部署实施
 
 1、 修改 Flink 主配置文件 `flink-conf.yaml` ，添加 PrometheusReporter
 
@@ -227,11 +225,11 @@ systemctl restart datakit
 | Operator                                                                | currentOutputWatermark                                                                | The last watermark this operator has emitted (in milliseconds).                                                                                                                                                                                           | Gauge     |
 | Operator                                                                | numSplitsProcessed                                                                    | The total number of InputSplits this data source has processed (if the operator is a data source).                                                                                                                                                        | Gauge     |
 
-
-参考文档：[Flink 官方 Metrics 文档](https://nightlies.apache.org/flink/flink-docs-release-1.14/docs/ops/metrics/#cpu)
-
 ## 常见问题排查
 
-<[无数据上报排查](../../datakit/why-no-data.md)>
+- <[无数据上报排查](../../datakit/why-no-data.md)>
 
 ## 进一步阅读
+
+- <[Flink 官方 Metrics 文档](https://nightlies.apache.org/flink/flink-docs-release-1.14/docs/ops/metrics/#cpu)>
+

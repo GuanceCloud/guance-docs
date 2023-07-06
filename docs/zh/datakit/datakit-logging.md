@@ -6,7 +6,7 @@
 总体而言，DataKit 有如下几种日志采集方案：
 
 - 从[磁盘文件获取日志](logging.md)
-- 采集容器 stdout 日志 
+- 采集容器 stdout 日志
 - 远程推送日志给 DataKit
 - [Sidecar 形式的日志采集](logfwd.md)
 
@@ -17,7 +17,7 @@
 这是最原始的日志处理方式，不管是对开发者而言，还是传统的日志收集方案而言，日志最开始一般都是直接写到磁盘文件的，写到磁盘文件的日志有如下几个特点：
 
 <figure markdown>
-  ![](https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/images/datakit/datakit-logging-from-disk.png){ width="300" }
+  ![](https://static.guance.com/images/datakit/datakit-logging-from-disk.png){ width="300" }
   <figcaption>从磁盘文件提取日志</figcaption>
 </figure>
 
@@ -28,16 +28,16 @@
 
 > 这里建议使用通配路径（甚至可以配置当前不存在、但将来会冒出来的文件），而不是将日志路径写死，因为应用的日志可能不会立即出现（比如部分应用的 error log 只有 error 发生的时候才会出现）。
 
-磁盘文件采集有一点需要注意，即它只会采集==自 DataKit 启动后有更新的日志文件==，如果配置的日志文件（自 DataKit 启动后）没有更新，其==历史数据是不会采集的==。
+磁盘文件采集有一点需要注意，即它**只会采集自 DataKit 启动后有更新的日志文件**，如果配置的日志文件（自 DataKit 启动后）没有更新，其**历史数据是不会采集的**。
 
-正因为这个特性，如果日志文件持续在更新，中间停止 DataKit，==该空窗期的日志也不会被采集到==，后面可能会做一些策略来缓解这个问题。
+正因为这个特性，如果日志文件持续在更新，中间停止 DataKit，**该空窗期的日志也不会被采集到**，后面可能会做一些策略来缓解这个问题。
 
 ## 容器 stdout 日志 {#container-stdout}
 
 这种采集方式目前主要针对[容器环境中的 stdout 日志](container.md)，这种日志要求运行在容器（或 Kubernetes Pod）中的应用将日志输出到 stdout，这些 stdout 日志实际上会在 Node 上落盘，DataKit 通过对应的容器 ID 能找到对应的日志文件，然后按照普通磁盘文件的方式对其进行采集。
 
 <figure markdown>
-  ![](https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/images/datakit/datakit-logging-stdout.png){ width="300" }
+  ![](https://static.guance.com/images/datakit/datakit-logging-stdout.png){ width="300" }
   <figcaption>采集容器 stdout 日志</figcaption>
 </figure>
 
@@ -45,8 +45,8 @@
 
 - 由于部署在容器环境中的应用，均需构建对应的容器镜像。对 DataKit 而言，可以基于镜像名称，选择性的针对某些应用做日志采集
 
-	- 通过在 ConfigMap 的 container.conf 中，[选择部分镜像名称](container-log.md#logging-with-image-config)（或其通配）来定点采集 stdout 日志
-	- 染色标记：[通过 Annotation 修改 Pod 标注](container-log.md#logging-with-annotation-or-label)，DataKit 能识别到这些特殊的 Pod，进而对其 stdout 日志进行采集
+    - 通过在 ConfigMap 的 container.conf 中，[选择部分镜像名称](container-log.md#logging-with-image-config)（或其通配）来定点采集 stdout 日志
+    - 染色标记：[通过 Annotation 修改 Pod 标注](container-log.md#logging-with-annotation-or-label)，DataKit 能识别到这些特殊的 Pod，进而对其 stdout 日志进行采集
 
 这也是这种策略的一个缺陷，即要求应用将日志输出到 stdout，在一般的应用开发中，日志不太会直接写到 stdout（但主流的日志框架一般都支持输出到 stdout），需要开发者调整日志配置。但是，随着容器化部署方案不断普及，这种方案不失为一种可行的日志采集方式。
 
@@ -59,7 +59,7 @@
 - [第三方平台日志接入](logstreaming.md)
 
 <figure markdown>
-  ![](https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/images/datakit/datakit-logging-remote.png){ width="300" }
+  ![](https://static.guance.com/images/datakit/datakit-logging-remote.png){ width="300" }
   <figcaption>第三方日志接入</figcaption>
 </figure>
 
@@ -67,7 +67,7 @@
 
 - 对 TCP 形式的日志推送，其日志类型（`source/service`）如果多变，那么需要在 DataKit 上开多个 TCP 端口
 
-> 如果希望 DataKit 上只开启单个（或少数几个）TCP 端口，那么需要在后续 [Pipeline](../developers/pipeline.md) 处理中，对切割出来的字段，识别其特征，并通过函数 [`set_tag()`](../developers/pipeline.md#fn-set-tag) 来标记其 `service`（目前无法修改日志的 `source` 字段，且该功能只有 [1.2.8 以上的版本才支持](changelog.md#cl-1.2.8)）。
+> 如果希望 DataKit 上只开启单个（或少数几个）TCP 端口，那么需要在后续 [Pipeline](../developers/pipeline/index.md) 处理中，对切割出来的字段，识别其特征，并通过函数 [`set_tag()`](../developers/pipeline/pipeline-built-in-function.md#fn-set-tag) 来标记其 `service`（目前无法修改日志的 `source` 字段，且该功能只有 [1.2.8 以上的版本才支持](changelog.md#cl-1.2.8)）。
 
 - 对 HTTP 形式的日志推送，开发者需在 [HTTP 请求参数上标记好特征](logstreaming.md#args)，便于 DataKit 做后续处理
 
@@ -76,7 +76,7 @@
 这种方式的采集实际上是综合了磁盘日志采集和日志远程推送俩种方式，具体而言，就是在用户的 Pod 中添加一个跟 DataKit 配套（即 [logfwd](logfwd.md)）的 Sidecar 应用，其采集方式如下：
 
 <figure markdown>
-  ![](https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/images/datakit/datakit-logging-sidecar.png){ width="300" }
+  ![](https://static.guance.com/images/datakit/datakit-logging-sidecar.png){ width="300" }
   <figcaption>Sidecar 形式日志采集</figcaption>
 </figure>
 
@@ -92,8 +92,8 @@
 
 以上的日志采集到之后，均支持后续 Pipeline 的切割，但配置形式稍有差异：
 
-- 磁盘日志采集：直接配置在 logging.conf 中，其中指定 pipeline 名称即可
-- 容器 stdout 日志采集：==不能在 container.conf 中配置 Pipeline==，因为这里针对的是所有容器的日志采集，很难用一个通用的 Pipeline 处理所有的日志。故必须通过 Annotation 的方式，[指定相关 Pod 的 Pipeline 配置](container-log.md#logging-with-annotation-or-label)
+- 磁盘日志采集：直接配置在 logging.conf 中，其中指定 Pipeline 名称即可
+- 容器 stdout 日志采集：**不能在 container.conf 中配置 Pipeline**，因为这里针对的是所有容器的日志采集，很难用一个通用的 Pipeline 处理所有的日志。故必须通过 Annotation 的方式，[指定相关 Pod 的 Pipeline 配置](container-log.md#logging-with-annotation-or-label)
 - 远程日志采集：对 TCP/UDP 传输方式，可以也是在 logging.conf 中指定 Pipeline 配置。而对于 HTTP 传输方式，开发者需在 [HTTP 请求参数上来配置 Pipeline](logstreaming.md#args)
 - Sidecar 日志采集：在 [logfwd 的配置](logfwd.md#config)中，配置宿主 Pod 的 Pipeline，其本质上跟容器 stdout 相似，都是针对 Pod 的定点标记
 
@@ -103,7 +103,6 @@
 
 - 多行切割：大部分日志都是单行日志，但某些日志是多行形式，如调用栈日志、部分特殊应用的日志（如 MySQL 慢日志）
 - 编码：最终的日志都需要转换成 UTF8 存储，对于一些 Windows 日志，可能需要做编解码处理
-- 颜色字符：主要针对输出到 stdout 的日志，需要在采集的时候，过滤掉一些影响阅读的颜色修复字符
 
 ## 总结 {#summary}
 

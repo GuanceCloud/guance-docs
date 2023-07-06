@@ -1,31 +1,32 @@
-<!-- This file required to translate to EN. -->
+
 
 # DiskIO
+
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
 
 ---
 
-diskio 采集器用于磁盘流量和时间的指标的采集
+Diskio collector is used to collect the index of disk flow and time.
 
-## 前置条件 {#requests}
+## Preconditions {#requests}
 
-对于部分旧版本 Windows 操作系统，如若遇到 Datakit 报错： **"The system cannot find the file specified."**
+For some older versions of Windows operating systems, if you encounter an error with Datakit: **"The system cannot find the file specified."**
 
-请以管理员身份运行 PowerShell，并执行：
+Run PowerShell as an administrator and execute:
 
 ```powershell
 diskperf -Y
 ```
 
-在执行成功后需要重启 Datakit 服务。
+The Datakit service needs to be restarted after successful execution.
 
-## 配置 {#config}
+## Configuration {#config}
 
-=== "主机安装"
+=== "Host Installation"
 
-    进入 DataKit 安装目录下的 `conf.d/host` 目录，复制 `diskio.conf.sample` 并命名为 `diskio.conf`。示例如下：
+    Go to the `conf.d/host` directory under the DataKit installation directory, copy `diskio.conf.sample` and name it `diskio.conf`. Examples are as follows:
     
     ```toml
         
@@ -66,55 +67,233 @@ diskperf -Y
       # some_tag = "some_value"
       # more_tag = "some_other_value"
     ```
-
-    配置好后，[重启 DataKit](datakit-service-how-to.md#manage-service) 即可。
+    
+    Once configured, [restart DataKit](datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    支持以环境变量的方式修改配置参数：
+    Support modifying configuration parameters as environment variables:
     
-    | 环境变量名                            | 对应的配置参数项     | 参数示例                                                     |
+    | Environment Variable Name                            | Corresponding Configuration Parameter Item     | Parameter Example                                                     |
     | :---                                  | ---                  | ---                                                          |
     | `ENV_INPUT_DISKIO_SKIP_SERIAL_NUMBER` | `skip_serial_number` | `true`/`false`                                               |
-    | `ENV_INPUT_DISKIO_TAGS`               | `tags`               | `tag1=value1,tag2=value2` 如果配置文件中有同名 tag，会覆盖它 |
+    | `ENV_INPUT_DISKIO_TAGS`               | `tags`               | `tag1=value1,tag2=value2`; If there is a tag with the same name in the configuration file, it will be overwritten. |
     | `ENV_INPUT_DISKIO_INTERVAL`           | `interval`           | `10s`                                                        |
     | `ENV_INPUT_DISKIO_DEVICES`            | `devices`            | `'''^sdb\d*'''`                                              |
-    | `ENV_INPUT_DISKIO_DEVICE_TAGS`        | `device_tags`        | `"ID_FS_TYPE", "ID_FS_USAGE"` 以英文逗号隔开                 |
-    | `ENV_INPUT_DISKIO_NAME_TEMPLATES`     | `name_templates`     | `"$ID_FS_LABEL", "$DM_VG_NAME/$DM_LV_NAME"` 以英文逗号隔开   |
+    | `ENV_INPUT_DISKIO_DEVICE_TAGS`        | `device_tags`        | `"ID_FS_TYPE", "ID_FS_USAGE"`, separated by English commas                 |
+    | `ENV_INPUT_DISKIO_NAME_TEMPLATES`     | `name_templates`     | `"$ID_FS_LABEL", "$DM_VG_NAME/$DM_LV_NAME"`, separated by English commas   |
 
-## 指标集 {#measurements}
+## Measurements {#measurements}
 
-以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[[inputs.diskio.tags]]` 另择 host 来命名。
+For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or it can be named by `[[inputs.diskio.tags]]` alternative host in the configuration.
 
 
 
 ### `diskio`
 
--  标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
-|`host`|主机名|
-|`name`|磁盘设备名|
+|`host`|System hostname.|
+|`name`|Device name.|
 
-- 指标列表
+- metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`io_time`|time spent doing I/Os|int|ms|
-|`iops_in_progress`|I/Os currently in progress|int|count|
-|`merged_reads`|reads merged|int|count|
-|`merged_writes`|writes merged|int|count|
-|`read_bytes`|read bytes|int|B|
-|`read_bytes/sec`|read bytes per second|int|B/S|
-|`read_time`|time spent reading|int|ms|
-|`reads`|reads completed successfully|int|count|
-|`weighted_io_time`|weighted time spent doing I/Os|int|ms|
-|`write_bytes`|write bytes|int|B|
-|`write_bytes/sec`|write bytes per second|int|B/S|
-|`write_time`|time spent writing|int|ms|
-|`writes`|writes completed|int|count|
+|`io_time`|Time spent doing I/Os.|int|ms|
+|`iops_in_progress`|I/Os currently in progress.|int|count|
+|`merged_reads`|The number of merged read requests.|int|count|
+|`merged_writes`|The number of merged write requests.|int|count|
+|`read_bytes`|The number of bytes read from the device.|int|B|
+|`read_bytes/sec`|The number of bytes read from the per second.|int|B/S|
+|`read_time`|Time spent reading.|int|ms|
+|`reads`|The number of read requests.|int|count|
+|`weighted_io_time`|Weighted time spent doing I/Os.|int|ms|
+|`write_bytes`|The number of bytes written to the device.|int|B|
+|`write_bytes/sec`|The number of bytes written to the device per second.|int|B/S|
+|`write_time`|Time spent writing.|int|ms|
+|`writes`|The number of write requests.|int|count|
 
 
+
+## Extended measurements {#extend}
+
+[:octicons-tag-24: Version-1.5.7](changelog.md#cl-1.5.7)
+
+### Collecting disk `await` for Linux {#linux-await}
+
+By default, DataKit cannot collect the disk `await` metric. If you need to obtain this metric, you can collect it by [Custom Collector with Python](../../developers/pythond/).
+
+**Preconditions**
+
+- [Enable pythond collector](../../developers/pythond/) 
+
+Enter the DataKit installation directory, copy the `pythond.conf.sample` file and rename it to `pythond.conf`. Modify the corresponding configuration as follows:
+
+```toml
+
+[[inputs.pythond]]
+
+    # Python collector name 
+    name = 'diskio'  # required
+
+    # Environment variables 
+    #envs = ['LD_LIBRARY_PATH=/path/to/lib:$LD_LIBRARY_PATH',]
+
+    # Python collector executable path (preferably use absolute path) 
+    cmd = "python3" # required. python3 is recommended.
+
+    # Relative path of the user script
+    dirs = ["diskio"]
+
+```
+
+- Install `sar` command. You can refer to [https://github.com/sysstat/sysstat#installation](https://github.com/sysstat/sysstat#installation){:target="_blank"}
+
+Install from Ubuntu 
+
+```shell
+sudo apt-get install sysstat
+
+sudo vi /etc/default/sysstat
+# change ENABLED="false" to ENABLED="true"
+
+sudo service sysstat restart
+```
+
+After installation, you can ran the following command to check if it was successful.
+
+```shell
+sar -d -p 3 1
+
+Linux 2.6.32-696.el6.x86_64 (lgh)   10/06/2019      _x86_64_        (32 CPU)
+
+10:08:16 PM       DEV       tps  rd_sec/s  wr_sec/s  avgrq-sz  avgqu-sz     await     svctm     %util
+10:08:17 PM    dev8-0      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00
+10:08:17 PM  dev253-0      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00
+10:08:17 PM  dev253-1      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00
+
+10:08:17 PM       DEV       tps  rd_sec/s  wr_sec/s  avgrq-sz  avgqu-sz     await     svctm     %util
+10:08:18 PM    dev8-0      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00
+10:08:18 PM  dev253-0      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00
+10:08:18 PM  dev253-1      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00
+
+10:08:18 PM       DEV       tps  rd_sec/s  wr_sec/s  avgrq-sz  avgqu-sz     await     svctm     %util
+10:08:19 PM    dev8-0      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00
+10:08:19 PM  dev253-0      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00
+10:08:19 PM  dev253-1      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00
+
+Average:          DEV       tps  rd_sec/s  wr_sec/s  avgrq-sz  avgqu-sz     await     svctm     %util
+Average:       dev8-0      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00
+Average:     dev253-0      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00
+Average:     dev253-1      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00
+
+```
+
+**Python script**
+
+Create file *<DataKit Dir\>/python.d/diskio/diskio.py* and add the following content:
+
+```python
+import subprocess
+import re
+from datakit_framework import DataKitFramework
+
+
+class DiskIO(DataKitFramework):
+    name = "diskio"
+    interval = 10
+
+    def run(self):
+        stats = self.getStats()
+
+        data = []
+
+        for s in stats:
+            tags = {
+                "name": s.get("DEV", "")
+            }
+            awaitVal = 0.0
+            svctmVal = 0.0
+
+            try:
+                awaitVal = float(s.get("await"))
+            except:
+                awaitVal = 0.0
+            try:
+                svctmVal = float(s.get("svctm"))
+            except:
+                svctmVal = 0.0
+
+            fields = {
+                "await": awaitVal,
+                "svctm": svctmVal
+            }
+            data.append({
+                "measurement": "diskio",
+                "tags": tags,
+                "fields": fields
+            })
+
+        in_data = {
+            "M": data,
+            "input": "datakitpy"
+        }
+
+        return self.report(in_data)
+
+    def getStats(self):
+        result = subprocess.run(
+            ["sar", "-d", "-p", "3", "1"], stdout=subprocess.PIPE)
+        output = result.stdout.decode("utf-8")
+
+        str_list = output.splitlines()
+
+        columns = []
+        stats = []
+        pattern = r'\s+'
+        isAverage = False
+        for l in enumerate(str_list):
+            index, content = l
+            if index < 2:
+                continue
+
+            stat = re.split(pattern, content)
+
+            if len(stat) == 0 or stat[0] == "":
+                isAverage = True
+                continue
+
+            if not isAverage:
+                continue
+            if "await" in stat and "DEV" in stat:
+                columns = stat
+            else:
+                stat_info = {}
+                if len(stat) != len(columns):
+                    continue
+
+                for s in enumerate(columns):
+                    index, name = s
+                    if index == 0:
+                        continue
+                    stat_info[name] = stat[index]
+                stats.append(stat_info) 
+        return stats
+
+```
+
+After saving the file, restart DataKit and you will be able to see the corresponding metrics on the Guance platform shortly.
+
+**Metric list**
+
+The `sar` command can obtain many useful [disk metrics](https://man7.org/linux/man-pages/man1/sar.1.html){:target="_blank"}. The above script only collect `await` and `svctm`. If you need to collect additional metrics, you can modify the script accordingly.
+
+| Metric | Description | Type | Unit |
+| ---- | ---- | ---- | ---- |
+| `await` | The average time (in milliseconds) for I/O requests issued to the device to be served.  This includes the time spent by the requests in queue and the time spent servicing them. | float | ms |
+| `svctm` | awaitThe average service time (in milliseconds) for I/O requests that were issued to the device. | float | ms |

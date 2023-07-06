@@ -10,10 +10,10 @@ Microsoft IIS 采集器
 
 ## 前置条件 {#requirements}
 
-操作系统要求:
+操作系统要求：
 
-* Windows Vista 以上版本 (不包含 Windows Vista)
-* Windows Server 2008 R2 及以上版本
+- Windows 7 以上版本（含 Windows 7）
+- Windows Server 2008 R2 及以上版本
 
 ## 配置 {#config}
 
@@ -29,7 +29,12 @@ Microsoft IIS 采集器
   [inputs.iis.log]
     files = []
     ## grok pipeline script path
-    pipeline = "iis.p" 
+    pipeline = "iis.p"
+
+  [inputs.iis.tags]
+    ## tag1 = "v1"
+    ## tag2 = "v2"
+ 
 ```
 
 配置好后，重启 DataKit 即可。
@@ -37,10 +42,10 @@ Microsoft IIS 采集器
 以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.iis.tags]` 指定其它标签：
 
 ``` toml
-  [inputs.iis.tags]
-    # some_tag = "some_value"
-    # more_tag = "some_other_value"
-    # ...
+[inputs.iis.tags]
+  # some_tag = "some_value"
+  # more_tag = "some_other_value"
+  # ...
 ```
 
 ## 指标 {#measurements}
@@ -52,10 +57,10 @@ Microsoft IIS 采集器
 ### `iis_app_pool_was`
 
 
--  标签
+- 标签
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
 |`app_pool`|IIS app pool|
 |`host`|host name|
@@ -63,7 +68,7 @@ Microsoft IIS 采集器
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`current_app_pool_state`|The current status of the application pool (1 - Uninitialized, 2 - Initialized, 3 - Running, 4 - Disabling, 5 - Disabled, 6 - Shutdown Pending, 7 - Delete Pending).|float|-|
 |`current_app_pool_uptime`|The uptime of the application pool since it was started.|float|s|
@@ -77,10 +82,10 @@ Microsoft IIS 采集器
 ### `iis_web_service`
 
 
--  标签
+- 标签
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
 |`host`|host name|
 |`website`|IIS web site|
@@ -88,7 +93,7 @@ Microsoft IIS 采集器
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`anonymous_users`|Rate at which users are making anonymous connections using the web service.|float|-|
 |`bytes_received`|Rate at which bytes are received by the web service.|float|B/S|
@@ -100,16 +105,16 @@ Microsoft IIS 采集器
 |`error_not_found`|Rate of errors due to requests that cannot be satisfied by the server because the requested document could not be found. These errors are generally reported as an HTTP 404 error code to the client.|float|count|
 |`files_received`|Rate at which files are received by the web service.|float|-|
 |`files_sent`|Rate at which files are sent by the web service.|float|-|
-|`http_requests_delete`|Rate at which HTTP requests using the DELETE method are made.|float|reqps|
-|`http_requests_get`|Rate at which HTTP requests using the GET method are made.|float|reqps|
-|`http_requests_head`|Rate at which HTTP requests using the HEAD method are made.|float|reqps|
-|`http_requests_options`|Rate at which HTTP requests using the OPTIONS method are made.|float|reqps|
-|`http_requests_post`|Rate at which HTTP requests using the POST method are made.|float|reqps|
-|`http_requests_put`|Rate at which HTTP requests using the PUT method are made.|float|reqps|
-|`http_requests_trace`|Rate at which HTTP requests using the TRACE method are made.|float|reqps|
+|`http_requests_delete`|Rate at which HTTP requests using the DELETE method are made.|float|req/s|
+|`http_requests_get`|Rate at which HTTP requests using the GET method are made.|float|req/s|
+|`http_requests_head`|Rate at which HTTP requests using the HEAD method are made.|float|req/s|
+|`http_requests_options`|Rate at which HTTP requests using the OPTIONS method are made.|float|req/s|
+|`http_requests_post`|Rate at which HTTP requests using the POST method are made.|float|req/s|
+|`http_requests_put`|Rate at which HTTP requests using the PUT method are made.|float|req/s|
+|`http_requests_trace`|Rate at which HTTP requests using the TRACE method are made.|float|req/s|
 |`non_anonymous_users`|Rate at which users are making non-anonymous connections using the web service.|float|-|
-|`requests_cgi`|Rate of CGI requests that are simultaneously processed by the web service.|float|reqps|
-|`requests_isapi_extension`|Rate of ISAPI extension requests that are simultaneously processed by the web service.|float|reqps|
+|`requests_cgi`|Rate of CGI requests that are simultaneously processed by the web service.|float|req/s|
+|`requests_isapi_extension`|Rate of ISAPI extension requests that are simultaneously processed by the web service.|float|req/s|
 |`service_uptime`|Service uptime.|float|s|
 |`total_connection_attempts`|Number of connections that have been attempted using the web service (counted after service startup)|float|count|
 

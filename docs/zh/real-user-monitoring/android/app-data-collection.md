@@ -22,29 +22,32 @@
 
 用户访问监测的场景构建和事件告警都可以通过下面的全局属性进行查询。
 
-### SDK属性
+### SDK 属性
 
-| **字段**      | **类型** | **描述**                                                     |
-| ------------- | -------- | ------------------------------------------------------------ |
-| `sdk_name`    | string   | 采集器名称，固定名称：<br>`df_web_rum_sdk`<br>`df_miniapp_rum_sdk`<br>`df_ios_rum_sdk`<br>`df_android_rum_sdk` |
-| `sdk_version` | string   | 采集器版本信息                                               |
+| **字段** | **类型** | **描述** |
+| --- | --- | --- |
+| `sdk_name` | string | 采集器名称，固定名称：<br>`df_macos_rum_sdk`<br>`df_linux_rum_sdk`<br>`df_windows_rum_sdk`<br>`df_web_rum_sdk`<br>`df_miniapp_rum_sdk`<br>`df_ios_rum_sdk`<br>`df_android_rum_sdk` |
+| `sdk_version` | string | 采集器版本信息 |
 
 ### 应用属性
 
-| 字段      | 类型   | 描述                                                         |
-| --------- | ------ | ------------------------------------------------------------ |
-| `app_id`  | string | 必填，用户访问应用唯一ID标识，在观测云控制台上面创建监控时自动生成。 |
-| `env`     | string | 必填，环境字段。属性值：prod/gray/pre/common/local。其中<br>prod：线上环境<br>gray：灰度环境<br>pre：预发布环境<br>common：日常环境<br>local：本地环境 |
-| `version` | string | 必填，版本号。                                               |
+| **字段** | **类型** | 描述 |
+| --- | --- | --- |
+| `app_id` | string | 必填，用户访问应用唯一ID标识，在“观测云”控制台上面创建监控时自动生成。 |
+| `env` | string | 必填，环境字段。属性值：prod/gray/pre/common/local。其中<br>prod：线上环境<br>gray：灰度环境<br>pre：预发布环境<br>common：日常环境<br>local：本地环境 |
+| `version` | string | 必填，版本号。 |
+| `service` | string | 可选，所属业务或服务的名称。固定名称：<br/>`df_rum_ios`<br/>`df_rum_android`<br/>`df_rum_windows`<br/>`df_rum_linux` |
 
 ### 用户 & 会话属性
 
-| **字段**       | **类型** | **描述**                                                     |
-| -------------- | -------- | ------------------------------------------------------------ |
-| `userid`       | string   | 未登录用户使用cookie作为userid，登录用户使用应用后台生成的用户id。 |
-| `session_id`   | string   | 会话 id （后台停留30s以上，会生成一个新的session_id）。      |
-| `session_type` | string   | 会话类型。参考值：user &#124; synthetics<br>user 表示是 RUM 功能产生的数据；<br>synthetics 表示是 headless 拨测产生的数据。 |
-| `is_signin`    | boolean  | 是否是注册用户，属性值：True / False。                       |
+| **字段** | **类型** | **描述** |
+| --- | --- | --- |
+| `userid` | string | 未登录用户使用随机 uuid 作为 userid，登录用户使用应用后台生成的用户 id。 |
+| `user_name` | string | 可选，用户名称。 |
+| `user_email` | string | 可选，用户邮箱。 |
+| `session_id` | string | 会话id，未操作 15分钟以上，会生成一个新的 session_id。 |
+| `session_type` | string | 会话类型。参考值：user &#124; synthetics<br>user 表示是 RUM 功能产生的数据；<br>synthetics 表示是headless拨测产生的数据。 |
+| `is_signin` | boolean | 是否是注册用户，属性值：T / F。 |
 
 ### 设备 & 分辨率属性
 
@@ -64,7 +67,7 @@
 | ------------------ | -------- | ------------------------------------------------------------ |
 | `ip`               | string   | 用户访问IP地址                                               |
 | `isp`              | string   | 运营商                                                       |
-| `network_type`     | string   | 网络连接类型，属性值参考：<br>wifi &#124; 2g &#124; 3g &#124; 4g &#124; 5g &#124; unknown（未知网络）&#124; unreachable（网络不可用） |
+| `network_type`     | string   | 网络连接类型，属性值参考：<br>wifi & 2g & 3g & 4g & 5g & unknown（未知网络）& unreachable（网络不可用） |
 | `country`          | string   | 国家                                                         |
 | `country_iso_code` | string   | 国家 iso_code                                                |
 | `province`         | string   | 省                                                           |
@@ -80,41 +83,41 @@
 
 #### 属性
 
-| 字段 | 类型 | 描述 |
-| --- | --- | --- |
-| `session_id` | string | 会话id（后台停留30s以上，会生成一个新的session_id） |
-| `session_type` | string | 会话类型。参考值：user &#124; test<br>user表示是RUM功能产生的数据；<br>test表示是headless拨测产生的数据。 |
-| `session_referrer` | string | 会话来源。一般是记录来源的页面地址。 |
-| `session_first_view_id` | string | 当前会话的第一个页面的view_id |
-| `session_first_view_name` | string | 当前会话的第一个页面的URL |
-| `session_last_view_id` | string | 当前会话的最后一个访问页面的view_id |
-| `session_last_view_name` | string | 当前会话的最后一个页面的URL |
+| **字段**                      | **类型**   | **描述**                                                        |
+| ------------------------- | ------ | ------------------------------------------------------------ |
+| `session_id`              | string | 会话 id          |
+| `session_type`            | string | 会话类型。参考值：user &#124; test<br>user表示是RUM功能产生的数据；<br>test 表示是 headless 拨测产生的数据。 |
+| `session_referrer`        | string | 会话来源。一般是记录来源的页面地址。                         |
+| `session_first_view_id`   | string | 当前会话的第一个页面的 view_id                                |
+| `session_first_view_name` | string | 当前会话的第一个页面的URL                                    |
+| `session_last_view_id`    | string | 当前会话的最后一个访问页面的 view_id                          |
+| `session_last_view_name`  | string | 当前会话的最后一个页面的URL                                  |
 
 #### 统计指标
 
-| **字段**                  | **类型**   | **描述**                |
-| ------------------------- | ---------- | ----------------------- |
-| `time_spent`              | number(ns) | 当前会话持续时长        |
-| `session_view_count`      | number     | 当前会话关联view_id个数 |
-| `session_error_count`     | number     | 当前会话产生错误个数    |
-| `session_resource_count`  | number     | 当前会话加载资源个数    |
-| `session_action_count`    | number     | 当前会话用户操作次数    |
+| **字段** | **类型** | **描述** |
+| --- | --- | --- |
+| `time_spent` | number(ns) | 当前会话持续时长 |
+| `session_view_count` | number | 当前会话关联 view_id 个数 |
+| `session_error_count` | number | 当前会话产生错误个数 |
+| `session_resource_count` | number | 当前会话加载资源个数 |
+| `session_action_count` | number | 当前会话用户操作次数 |
 | `session_long_task_count` | number     | 当前会话产生长任务次数  |
 
 ### View 
 
 #### 属性
 
-| **字段**        | **类型** | **描述**                                        |
-| :-------------- | :------- | :---------------------------------------------- |
-| `view_id`       | string   | 每次访问页面时产生的唯一ID                      |
-| `is_active`     | boolean  | 判断用户是否还在活跃状态，参考值: true \| false |
-| `view_referrer` | string   | 页面来源，页面的父级                            |
-| `view_name`     | string   | 页面名称                                        |
+| **字段**        | **类型** | **描述**                                            |
+| --------------- | -------- | --------------------------------------------------- |
+| `view_id`       | string   | 每次访问页面时产生的唯一 ID                          |
+| `is_active`     | boolean  | 判断用户是否还在活跃状态，参考值: true &#124; false |
+| `view_referrer` | string   | 页面来源，页面的父级                                |
+| `view_name`     | string   | 页面名称                                            |
 
 #### 指标
 
-| 字段 | 类型 | 描述 |
+| **字段** | **类型** | **描述**   |
 | --- | --- | --- |
 | `loading_time` | number（ns） | 页面加载时间 |
 | `time_spent` | number（ns） | 页面停留时间 |
@@ -127,26 +130,46 @@
 | `view_long_task_count` | number | 每次页面加载时产生的长任务个数 |
 | `view_action_count` | number | 页面查看过程中操作的次数 |
 
+#### 监控指标
+
+| **字段**                    | **类型** | **描述**                 |
+| --------------------------- | -------- | ------------------------ |
+| `cpu_tick_count`            | number   | 可选，该页面 CPU 跳动次数    |
+| `cpu_tick_count_per_second` | number   | 可选，每秒平均 CPU 跳动次数  |
+| `fps_avg`                   | number   | 可选，页面平均每秒帧数   |
+| `fps_mini`                  | number   | 可选，页面最小每秒帧数   |
+| `memory_avg`                | number   | 可选，页面内存使用平均值 |
+| `memory_max`                | number   | 可选，页面内存峰值       |
+| `battery_current_avg `                | number   | 可选，页面电池电流平均值 |
+| `battery_current_max `                | number   | 可选，页面电池电流最大值 |
+
 ### Resource
 
 #### View 属性
 
-| **字段**        | **类型** | **描述**                                        |
-| :-------------- | :------- | :---------------------------------------------- |
-| `view_id`       | string   | 每次访问页面时产生的唯一ID                      |
-| `is_active`     | boolean  | 判断用户是否还在活跃状态，参考值: true \| false |
-| `view_referrer` | string   | 页面来源，页面的父级                            |
-| `view_name`     | string   | 页面名称                                        |
+| **字段**        | **类型** | **描述**                   |
+| --------------- | -------- | -------------------------- |
+| `view_id`       | string   | 每次访问页面时产生的唯一 ID |
+| `view_referrer` | string   | 页面来源，页面的父级       |
+| `view_name`     | string   | 页面名称                   |
+
+#### Action 属性
+
+| **字段**      | **类型** | **描述**                            |
+| ------------- | -------- | ----------------------------------- |
+| `action_id`   | string   | 用户页面操作时产生的唯一 ID          |
+| `action_name` | string   | 操作名称                            |
+| `action_type` | string   | 操作类型(冷热启动，click 点击等操作) |
 
 #### Resource 属性
 
 | **字段**                  | **类型** | **描述**                 |
 | ------------------------- | -------- | ------------------------ |
-| `resource_url`            | string   | 资源URL                  |
-| `resource_url_host`       | string   | 资源URL 域名部分         |
-| `resource_url_path`       | string   | 资源URL path部分         |
-| `resource_url_query`      | string   | 资源URL query部分        |
-| `resource_url_path_group` | string   | 资源URL path分组         |
+| `resource_url`            | string   | 资源 URL                  |
+| `resource_url_host`       | string   | 资源 URL 域名部分         |
+| `resource_url_path`       | string   | 资源 URL path 部分         |
+| `resource_url_query`      | string   | 资源 URL query部分        |
+| `resource_url_path_group` | string   | 资源 URL path 分组         |
 | `resource_type`           | string   | 资源的类别               |
 | `resource_method`         | string   | 资源请求方式             |
 | `resource_status`         | string   | 资源请求返回的状态值     |
@@ -164,6 +187,8 @@
 | `resource_trans` | number（ns） | 资源加载内容传输时间<br>计算方式：responseEnd - responseStart |
 | `resource_first_byte` | number（ns） | 资源加载首包时间<br>计算方式：responseStart - domainLookupStart |
 | `duration` | number（ns） | 资源加载时间<br>计算方式：duration(responseEnd-startTime) |
+| `request_header` | string | 资源请求头 |
+| `response_header` | string | 资源响应头 |
 
 ### Error
 
@@ -172,16 +197,21 @@
 | **字段**        | **类型** | **描述**                                        |
 | :-------------- | :------- | :---------------------------------------------- |
 | `view_id`       | string   | 每次访问页面时产生的唯一ID                      |
-| `is_active`     | boolean  | 判断用户是否还在活跃状态，参考值: true \| false |
 | `view_referrer` | string   | 页面来源，页面的父级                            |
 | `view_name`     | string   | 页面名称                                        |
+
+#### Action 属性
+
+| **字段**      | **类型** | **描述**                            |
+| ------------- | -------- | ----------------------------------- |
+| `action_id`   | string   | 用户页面操作时产生的唯一 ID          |
+| `action_name` | string   | 操作名称                            |
+| `action_type` | string   | 操作类型(冷热启动，click 点击等操作) |
 
 #### Error 属性
 
 | **字段** | **类型** | **描述** |
 | --- | --- | --- |
-| `error_message` | string | 错误信息 |
-| `error_stack` | string | 错误堆栈 |
 | `error_source` | string | 错误来源，参考值：logger &#124; network |
 | `error_type` | string | 错误类型<br>logger error type: java_crash &#124; native_crash &#124; abort &#124; ios_crash<br>network error type： |
 | `error_situation` | string | 错误发生的时机，参考值：startup(启动时)和run(运行时) |
@@ -197,15 +227,42 @@
 | `resource_url_path_group` | string | 资源URL path分组 |
 | `resource_method` | string | 资源请求方式 |
 
+#### Error 监控属性
+
+| **字段**       | **类型** | **描述**                 |
+| -------------- | -------- | ------------------------ |
+| `memory_total` | string   | 可选，内存总量           |
+| `memory_use`   | number   | 可选，内存使用率         |
+| `cpu_use`      | number   | 可选，cpu 使用率         |
+| `battery_use`  | number   | 可选，当前电手机的电池量 |
+| `locale`       | string   | 当前系统语言         |
+
+#### 指标
+
+| **字段**        | **类型** | **描述** |
+| --------------- | -------- | -------- |
+| `error_message` | string   | 错误信息 |
+| `error_stack`   | string   | 错误堆栈 |
+
 ### Long Task
 
 #### View 属性
 
+
+| **字段**        | **类型** | **描述**                   |
+| --------------- | -------- | -------------------------- |
+| `view_id`       | string   | 每次访问页面时产生的唯一 ID |
+| `view_referrer` | string   | 页面来源，页面的父级       |
+| `view_name`     | string   | 页面名称                   |
+
+#### Action 属性
+
 | **字段**      | **类型** | **描述**                            |
 | ------------- | -------- | ----------------------------------- |
-| `action_id`   | string   | 用户页面操作时产生的唯一ID          |
+| `action_id`   | string   | 用户页面操作时产生的唯一 ID          |
 | `action_name` | string   | 操作名称                            |
-| `action_type` | string   | 操作类型(冷热启动，click点击等操作) |
+| `action_type` | string   | 操作类型(冷热启动，click 点击等操作) |
+
 
 #### 指标
 
@@ -219,20 +276,19 @@
 
 #### View 属性
 
-| **字段**        | **类型** | **描述**                                        |
-| :-------------- | :------- | :---------------------------------------------- |
-| `view_id`       | string   | 每次访问页面时产生的唯一ID                      |
-| `is_active`     | boolean  | 判断用户是否还在活跃状态，参考值: true \| false |
-| `view_referrer` | string   | 页面来源，页面的父级                            |
-| `view_name`     | string   | 页面名称                                        |
+| **字段**        | **类型** | **描述**                   |
+| --------------- | -------- | -------------------------- |
+| `view_id`       | string   | 每次访问页面时产生的唯一 ID |
+| `view_referrer` | string   | 页面来源，页面的父级       |
+| `view_name`     | string   | 页面名称                   |
 
 #### Action 属性
 
 | **字段**      | **类型** | **描述**                            |
 | ------------- | -------- | ----------------------------------- |
-| `action_id`   | string   | 用户页面操作时产生的唯一ID          |
+| `action_id`   | string   | 用户页面操作时产生的唯一 ID          |
 | `action_name` | string   | 操作名称                            |
-| `action_type` | string   | 操作类型(冷热启动，click点击等操作) |
+| `action_type` | string   | 操作类型(冷热启动，click 点击等操作) |
 
 #### 指标
 

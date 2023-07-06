@@ -80,7 +80,7 @@ java  ${JAVA_OPTS} -jar your-app.jar
 -Ddd.agent.host=localhost    DataKit地址，选填  
 -Ddd.agent.port=9529         DataKit端口，必填  
 -Ddd.version:版本，选填 
--Ddd.jmxfetch.check-period 表示采集频率，单位为毫秒，默认true，选填   
+-Ddd.jmxfetch.check-period 表示采集频率，单位为毫秒，默认 1500，选填   
 -Ddd.jmxfetch.statsd.host=127.0.0.1 statsd 采集器的连接地址同DataKit地址，选填  
 -Ddd.jmxfetch.statsd.port=8125 表示DataKit上statsd采集器的UDP连接端口，默认为 8125，选填   
 -Ddd.trace.health.metrics.statsd.host=127.0.0.1  自身指标数据采集发送地址同DataKit地址，选填 
@@ -375,7 +375,7 @@ spec:
               fieldPath: spec.nodeName
         - name: ENV_DATAWAY
           value: https://openway.guance.com?token=<your-token>
-        - name: ENV_GLOBAL_TAGS
+        - name: ENV_GLOBAL_HOST_TAGS
           value: host=__datakit_hostname,host_ip=__datakit_ip,cluster_name_k8s=k8s-prod
         - name: ENV_DEFAULT_ENABLED_INPUTS
           value: cpu,disk,diskio,mem,swap,system,hostobject,net,host_processes,kubernetes,container,statsd,ddtrace

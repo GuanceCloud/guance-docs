@@ -6,7 +6,7 @@
 
 ## 前提条件
 
-- 已部署 Kubernetes 集群，未部署可参考 [Kubernetes 部署](http://127.0.0.1:8000/deployment/infra-kubernetes/)
+- 已部署 Kubernetes 集群，未部署可参考 [Kubernetes 部署](infra-kubernetes.md)
 - 已部署 Ingress-nginx 服务，未部署可参考 [Ingress-nginx](ingress-nginx-install.md)
 
 ## 基础信息及兼容
@@ -205,6 +205,7 @@ kubectl get svc -n ingress-nginx
                  acl management     hdr(Host)  -i df-management.dataflux.cn
                  acl management-api hdr(Host)  -i df-management-api.dataflux.cn
                  acl static         hdr(Host)  -i df-static-res.dataflux.cn
+                 acl docs            hdr(Host)  -i df-docs.dataflux.cn
     
                  acl dataway         hdr(Host)  -i df-dataway.dataflux.cn
                  use_backend vip_1_servers if dataflux
@@ -215,6 +216,7 @@ kubectl get svc -n ingress-nginx
                  use_backend vip_1_servers if management
                  use_backend vip_1_servers if management-api
                  use_backend vip_1_servers if kodo
+                 use_backend vip_1_servers if docs
                  use_backend vip_1_servers if test
          # ingress 端口 ip是k8s的集群的 请替换ip
          backend vip_1_servers

@@ -1,25 +1,26 @@
 
 # SkyWalking
+
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
 
 ---
 
-Datakit 内嵌的 SkyWalking Agent 用于接收，运算，分析 Skywalking Tracing 协议数据。
+Datakit 内嵌的 SkyWalking Agent 用于接收、运算、分析 SkyWalking Tracing 协议数据。
 
 ## SkyWalking 文档 {#doc}
 
-> 最新的 Datakit Skywalking 实现支持所有 8.x.x 的 Skywalking APM Agent
+> 最新的 Datakit SkyWalking 实现支持所有 8.x.x 的 SkyWalking APM Agent
 
-- [Quickstart](https://skywalking.apache.org/docs/skywalking-showcase/latest/readme/){:target="_blank"}
+- [Quick Start](https://skywalking.apache.org/docs/skywalking-showcase/latest/readme/){:target="_blank"}
 - [Docs](https://skywalking.apache.org/docs/){:target="_blank"}
 - [Clients Download](https://skywalking.apache.org/downloads/){:target="_blank"}
-- [Souce Code](https://github.com/apache/skywalking){:target="_blank"}
+- [Source Code](https://github.com/apache/skywalking){:target="_blank"}
 
 ## 配置 SkyWalking Client {#client-config}
 
-打开文件 /path_to_skywalking_agent/config/agent.config 进行配置
+打开文件 */path_to_skywalking_agent/config/agent.config* 进行配置
 
 ```conf
 # The service name in UI
@@ -30,6 +31,7 @@ collector.backend_service=${SW_AGENT_COLLECTOR_BACKEND_SERVICES:<datakit-ip:skyw
 
 ## 配置 SkyWalking Agent {#agent-config}
 
+<!-- markdownlint-disable MD046 -->
 === "主机安装"
 
     进入 DataKit 安装目录下的 `conf.d/skywalking` 目录，复制 `skywalking.conf.sample` 并命名为 `skywalking.conf`。示例如下：
@@ -37,7 +39,11 @@ collector.backend_service=${SW_AGENT_COLLECTOR_BACKEND_SERVICES:<datakit-ip:skyw
     ```toml
         
     [[inputs.skywalking]]
-      ## Skywalking grpc server listening on address.
+      ## Skywalking HTTP endpoints for tracing, metric, logging and profiling.
+      ## NOTE: DO NOT EDIT.
+      endpoints = ["/v3/trace", "/v3/metric", "/v3/logging", "/v3/profiling"]
+    
+      ## Skywalking GRPC server listening on address.
       address = "localhost:11800"
     
       ## plugins is a list contains all the widgets used in program that want to be regarded as service.
@@ -76,6 +82,13 @@ collector.backend_service=${SW_AGENT_COLLECTOR_BACKEND_SERVICES:<datakit-ip:skyw
         # key2 = "value2"
         # ...
     
+      ## Threads config controls how many goroutines an agent cloud start to handle HTTP request.
+      ## buffer is the size of jobs' buffering of worker channel.
+      ## threads is the total number fo goroutines at running time.
+      # [inputs.skywalking.threads]
+        # buffer = 100
+        # threads = 8
+    
       ## Storage config a local storage space in hard dirver to cache trace data.
       ## path is the local file path used to cache data.
       ## capacity is total space size(MB) used to store data.
@@ -85,67 +98,89 @@ collector.backend_service=${SW_AGENT_COLLECTOR_BACKEND_SERVICES:<datakit-ip:skyw
     
     ```
 
+    Datakit SkyWalking Agent 目前支持 HTTP 协议和 GRPC 协议两种网络传输方式。
+
+    `/v3/profiling` 接口目前只作为兼容性接口使用，profiling 数据并不上报数据中心。
+
+    通过 HTTP 协议传输
+
+    ```toml
+    ## Skywalking HTTP endpoints for tracing, metric, logging and profiling.
+    ## NOTE: DO NOT EDIT.
+    endpoints = ["/v3/trace", "/v3/metric", "/v3/logging", "/v3/logs", "/v3/profiling"]
+    ```
+
+    通过 GRPC 协议传输
+
+    ```toml
+    ## Skywalking GRPC server listening on address.
+    address = "localhost:11800"
+    ```
+
     以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.skywalking.tags]` 指定其它标签：
 
     ```toml
-     [inputs.skywalking.tags]
-      # some_tag = "some_value"
-      # more_tag = "some_other_value"
-      # ...
+    [inputs.skywalking.tags]
+    # some_tag = "some_value"
+    # more_tag = "some_other_value"
+    # ...
     ```
 
-=== "Kubernetes"
+=== "Kubernetes 内安装"
 
     目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+<!-- markdownlint-enable -->
 
 ## 启动 Java Client {#start-java}
 
 ```command
-java -javaagent:/path/to/skywalking/agent -jar /path/to/your/service.jar
+  java -javaagent:/path/to/skywalking/agent -jar /path/to/your/service.jar
 ```
 
 ## 将日志发送到 Datakit {#logging}
+
 - log4j2
 
-toolkit 依赖包添加到 maven 或者 gradle 中。
+toolkit 依赖包添加到 maven 或者 gradle 中：
+
 ```xml
-	<dependency>
-      	<groupId>org.apache.skywalking</groupId>
-      	<artifactId>apm-toolkit-log4j-2.x</artifactId>
-      	<version>{project.release.version}</version>
-	</dependency>
+<dependency>
+    <groupId>org.apache.skywalking</groupId>
+    <artifactId>apm-toolkit-log4j-2.x</artifactId>
+    <version>{project.release.version}</version>
+</dependency>
 ```
 
 通过 grpc 协议发送出去：
+
 ```xml
-<GRPCLogClientAppender name="grpc-log">
-        <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n"/>
-    </GRPCLogClientAppender>
+  <GRPCLogClientAppender name="grpc-log">
+    <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n"/>
+  </GRPCLogClientAppender>
 ```
 
 其他：
 
-- [log4j-1.x](https://github.com/apache/skywalking-java/blob/main/docs/en/setup/service-agent/java-agent/Application-toolkit-log4j-1.x.md){:target="_blank"}
-- [logback-1.x](https://github.com/apache/skywalking-java/blob/main/docs/en/setup/service-agent/java-agent/Application-toolkit-logback-1.x.md){:target="_blank"}
-
+- [Log4j-1.x](https://github.com/apache/skywalking-java/blob/main/docs/en/setup/service-agent/java-agent/Application-toolkit-log4j-1.x.md){:target="_blank"}
+- [Logback-1.x](https://github.com/apache/skywalking-java/blob/main/docs/en/setup/service-agent/java-agent/Application-toolkit-logback-1.x.md){:target="_blank"}
 
 ## SkyWalking JVM 指标集 {#jvm-measurements}
 
 
 
-jvm metrics collected by skywalking language agent.
+jvm metrics collected by SkyWalking language agent.
 
 - 标签
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
 |`service`|service name|
 
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`class_loaded_count`|loaded class count.|int|count|
 |`class_total_loaded_count`|total loaded class count.|int|count|

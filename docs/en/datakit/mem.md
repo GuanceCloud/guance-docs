@@ -1,23 +1,22 @@
-<!-- This file required to translate to EN. -->
 
-# 内存
+# Memory
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
 
 ---
 
-mem 采集器用于收集系统内存信息，一些通用的指标如主机总内存、用的内存、已使用的内存等  
+Mem collector is used to collect system memory information, some general metrics such as total memory, used memory and so on. 
 
-## 前置条件 {#requirements}
+## Preconditions {#requirements}
 
-暂无
+None
 
-## 配置 {#config}
+## Configuration {#config}
 
-=== "主机安装"
+=== "Host Installation"
 
-    进入 DataKit 安装目录下的 `conf.d/host` 目录，复制 `mem.conf.sample` 并命名为 `mem.conf`。示例如下：
+    Go to the `conf.d/host` directory under the DataKit installation directory, copy `mem.conf.sample` and name it `mem.conf`. Examples are as follows:
     
     ```toml
         
@@ -29,21 +28,21 @@ mem 采集器用于收集系统内存信息，一些通用的指标如主机总�
       # some_tag = "some_value"
       # more_tag = "some_other_value"
     ```
-
-    配置好后，[重启 DataKit](datakit-service-how-to.md#manage-service) 即可。
+    
+    Once configured, [restart DataKit](datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    支持以环境变量的方式修改配置参数：
+    Support modifying configuration parameters as environment variables:
     
-    | 环境变量名               | 对应的配置参数项 | 参数示例                                                     |
+    | Environment Variable Name               | Corresponding Configuration Parameter Item | Parameter Example                                                     |
     | :---                     | ---              | ---                                                          |
-    | `ENV_INPUT_MEM_TAGS`     | `tags`           | `tag1=value1,tag2=value2` 如果配置文件中有同名 tag，会覆盖它 |
+    | `ENV_INPUT_MEM_TAGS`     | `tags`           | `tag1=value1,tag2=value2`; If there is a tag with the same name in the configuration file, it will be overwritten. |
     | `ENV_INPUT_MEM_INTERVAL` | `interval`       | `10s`                                                        |
 
-## 指标集 {#measurements}
+## Measurements {#measurements}
 
-以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.mem.tags]` 指定其它标签：
+For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.mem.tags]`:
 
 ``` toml
  [inputs.mem.tags]
@@ -56,52 +55,52 @@ mem 采集器用于收集系统内存信息，一些通用的指标如主机总�
 
 ### `mem`
 
--  标签
+- tag
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
-|`host`|主机名|
+|`host`|System hostname.|
 
-- 指标列表
+- metric list
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`active`|Memory that has been used more recently and usually not reclaimed unless absolutely necessary. (Darwin, Linux)|int|B|
-|`available`|Amount of available memory|int|B|
-|`available_percent`|Available memory percent|float|percent|
-|`buffered`|buffered (Linux)|int|B|
+|`available`|Amount of available memory.|int|B|
+|`available_percent`|Available memory percent.|float|percent|
+|`buffered`|Buffered. (Linux)|int|B|
 |`cached`|In-memory cache for files read from the disk. (Linux)|int|B|
 |`commit_limit`|This is the total amount of memory currently available to be allocated on the system. (Linux)|int|B|
 |`committed_as`|The amount of memory presently allocated on the system. (Linux)|int|B|
 |`dirty`|Memory which is waiting to get written back to the disk. (Linux)|int|B|
-|`free`|Amount of free memory(Darwin, Linux)|int|B|
-|`high_free`|Amount of free highmem. (Linux)|int|B|
-|`high_total`|Total amount of highmem. (Linux)|int|B|
+|`free`|Amount of free memory. (Darwin, Linux)|int|B|
+|`high_free`|Amount of free high memory. (Linux)|int|B|
+|`high_total`|Total amount of high memory. (Linux)|int|B|
 |`huge_page_total`|The size of the pool of huge pages. (Linux)|int|count|
 |`huge_pages_free`|The number of huge pages in the pool that are not yet allocated. (Linux)|int|count|
 |`huge_pages_size`|The size of huge pages. (Linux)|int|B|
 |`inactive`|Memory which has been less recently used.  It is more eligible to be reclaimed for other purposes. (Darwin, Linux)|int|B|
-|`low_free`|Amount of free lowmem. (Linux)|int|B|
-|`low_total`|Total amount of lowmem. (Linux)|int|B|
+|`low_free`|Amount of free low memory. (Linux)|int|B|
+|`low_total`|Total amount of low memory. (Linux)|int|B|
 |`mapped`|Files which have been mapped into memory, such as libraries. (Linux)|int|B|
 |`page_tables`|Amount of memory dedicated to the lowest level of page tables. (Linux)|int|B|
-|`shared`|Amount of shared memory (Linux)|int|B|
+|`shared`|Amount of shared memory. (Linux)|int|B|
 |`slab`|In-kernel data structures cache. (Linux)|int|B|
 |`sreclaimable`|Part of Slab, that might be reclaimed, such as caches. (Linux)|int|B|
 |`sunreclaim`|Part of Slab, that cannot be reclaimed on memory pressure. (Linux)|int|B|
 |`swap_cached`|Memory that once was swapped out, is swapped back in but still also is in the swap file. (Linux)|int|B|
 |`swap_free`|Amount of swap space that is currently unused. (Linux)|int|B|
 |`swap_total`|Total amount of swap space available. (Linux)|int|B|
-|`total`|Total amount of memory|int|B|
-|`used`|Amount of used memory|int|B|
-|`used_percent`|Used memory percent|float|percent|
+|`total`|Total amount of memory.|int|B|
+|`used`|Amount of used memory.|int|B|
+|`used_percent`|Used memory percent.|float|percent|
 |`vmalloc_chunk`|Largest contiguous block of vmalloc area which is free. (Linux)|int|B|
 |`vmalloc_total`|Total size of vmalloc memory area. (Linux)|int|B|
 |`vmalloc_used`|Amount of vmalloc area which is used. (Linux)|int|B|
-|`wired`|wired (Darwin)|int|B|
+|`wired`|Wired. (Darwin)|int|B|
 |`write_back`|Memory which is actively being written back to the disk. (Linux)|int|B|
-|`write_back_tmp`|Memory used by FUSE for temporary writeback buffers. (Linux)|int|B|
+|`write_back_tmp`|Memory used by FUSE for temporary write back buffers. (Linux)|int|B|
 
 

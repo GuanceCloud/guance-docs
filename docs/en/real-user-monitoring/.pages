@@ -1,0 +1,14 @@
+nav:
+  - index.md
+  - 'Web Monitoring': web
+  - 'Android Monitoring': android
+  - 'iOS Monitoring': ios
+  - 'Miniapp Monitoring': miniapp
+  - 'React Native Monitoring': react-native
+  - 'Flutter Monitoring': flutter
+  - 'UniApp Monitoring': uni-app
+  - 'Explorer': explorer
+  - 'Session Replay': session-replay
+  - 'Generate Metrics': generate-metrics.md
+  - 'Self Tracking': self-tracking.md
+

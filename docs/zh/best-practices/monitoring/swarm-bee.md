@@ -85,7 +85,7 @@ Swarm 是以太坊项目官方的一部分，主要是由基金会开发，允�
 ```
 ### 配置 Swarm API 服务采集器
 
-### 安装 Dataflux Function
+### 安装 Dataflux Func
 
 #### 更改 DataKit 
 
@@ -130,8 +130,8 @@ disable_404page = false
 ```bash
 datakit --restart
 ```
-#### 安装 Function
-下载 DataFlux Function 依赖文件
+#### 安装 Func
+下载 DataFlux Func 依赖文件
 ```yaml
 /bin/bash -c "$(curl -fsSL https://t.dataflux.cn/func-portable-download)"
 ```

@@ -16,22 +16,29 @@ MySQL 指标展示，包括 MySQL 的基础信息、链接信息、存储空间�
 
 ## 版本支持
 
-操作系统支持：Windows/AMD 64, Windows/386, Linux/ARM, Linux/ARM 64, Linux/386, Linux/AMD 64, Darwin/AMD 64
+- 操作系统支持：Windows/AMD 64, Windows/386, Linux/ARM, Linux/ARM 64, Linux/386, Linux/AMD 64, Darwin/AMD 64
+- [MySQL 版本支持情况](../../datakit/mysql.md#requirements)
 
-## 前置条件
+## 前置条件 {#1}
 
-- MySQL 版本 5.7+ <[安装 DataKit](../../datakit/datakit-install.md)>
-- 创建监控账号（一般情况，需用 MySQL `root` 账号登陆才能创建 MySQL 用户）
+- <[安装 DataKit](../../datakit/datakit-install.md)>
+- 创建监控账号并授权
+
+（1）MySQL `root` 用户进入 MySQL，创建监控账号
 
 ```sql
 CREATE USER 'datakit'@'localhost' IDENTIFIED BY '<UNIQUEPASSWORD>';
 FLUSH PRIVILEGES;
 
--- MySQL 8.0+ create the datakit user with the native password hashing method
+-- MySQL 8.0+ 创建帐户时，请使用如下命令
 CREATE USER 'datakit'@'localhost' IDENTIFIED WITH mysql_native_password by '<UNIQUEPASSWORD>';
-```
+FLUSH PRIVILEGES;
 
-- 授权
+```
+> 示例创建的用户名为 `datakit` ,`<UNIQUEPASSWORD>`请替换成自定义密码。请留存用户信息，后续需要用到。
+
+
+（2）授权
 
 ```sql
 GRANT PROCESS ON *.* TO 'datakit'@'localhost';
@@ -42,14 +49,15 @@ GRANT replication client on *.*  to 'datakit'@'localhost';
 FLUSH PRIVILEGES;
 ```
 
-以上创建、授权操作，均限定了 `datakit` 这个用户的只能在 MySQL 主机上（`localhost`）访问 MySQL，如果对 MySQL 进行远程采集，建议将 `localhost` 替换成 `%`（表示 DataKit 可以在任意机器上访问 MySQL），也可用特定的 DataKit 安装机器地址。
+???+ attention
 
-> 注意，如用 `localhost` 时发现采集器有如下报错，需要将上面的 `localhost` 换成 `::1`
+    - 如用 `localhost` 时发现采集器有如下报错，需要将上述步骤的 `localhost` 换成 `::1` <br/>
+    `Error 1045: Access denied for user 'datakit'@'localhost' (using password: YES)`
+
+    - 以上创建、授权操作，均限定了 `datakit` 这个用户，只能在 MySQL 主机上（`localhost`）访问 MySQL。如果需要对 MySQL 进行远程采集，建议将 `localhost` 替换成 `%`（表示 DataKit 可以在任意机器上访问 MySQL），也可用特定的 DataKit 安装机器地址。
 
 
-```
-Error 1045: Access denied for user 'datakit'@'::1' (using password: YES)
-```
+
 ## 安装部署
 
 说明：示例 MySQL 版本为 MySQL 5.7(CentOS)，各个不同版本指标可能存在差异。
@@ -78,8 +86,8 @@ vi mysql.conf
 参数说明
 
 - host：要采集的 MySQL 所在的服务器
-- user：MySQL 数据库用户名(填写前置条件中创建的用户名)
-- pass：MySQL 数据库密码 (填写前置条件中创建的用户密码)
+- user：MySQL 数据库用户名(填写[前置条件](#1)中创建的用户名)
+- pass：MySQL 数据库密码 (填写[前置条件](#1)中创建的用户密码)
 - port：MySQL 数据库链接端口
 - sock：MySQL 数据库安全认证文件
 - charset：MySQL 数据字符集(默认 utf8 可以不做修改)
@@ -155,7 +163,7 @@ set global log_queries_not_using_indexes = 'ON';
 - files：日志文件路径 (通常填写访问日志和错误日志)
 - ignore：过滤 *.log 中不想被采集的日志(默认全采)
 - character_encoding：日志文件的字符集(默认 utf-8)
-- match：该配置为多行日志采集规则配置，开启 MySQL 慢查询日志请打开注释
+- multiline_match：该配置为多行日志采集规则配置，开启 MySQL 慢查询日志请打开注释
 - pipeline：日志切割文件(内置)，实际文件路径 /usr/local/datakit/pipeline/mysql.p
 - 相关文档 <[Pipeline 文本数据处理](../../datakit/pipeline.md)>
 
@@ -173,7 +181,7 @@ set global log_queries_not_using_indexes = 'ON';
 
     ## The pattern should be a regexp. Note the use of '''this regexp'''
     ## regexp link: https://golang.org/pkg/regexp/syntax/#hdr-Syntax
-    match = '''^(# Time|\d{4}-\d{2}-\d{2}|\d{6}\s+\d{2}:\d{2}:\d{2}).*'''
+    multiline_match = '''^(# Time|\d{4}-\d{2}-\d{2}|\d{6}\s+\d{2}:\d{2}:\d{2}).*'''
 
     ## grok pipeline script path
     pipeline = "mysql.p"

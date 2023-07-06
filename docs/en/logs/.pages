@@ -1,0 +1,9 @@
+nav:
+  - index.md
+  - 'Log Collection': collection.md
+  - 'Browser Log Collection': browser-collection.md
+  - 'Miniapp Log Collection': miniapp-collection.md
+  - 'Logs Explorer': explorer.md
+  - 'Generate Metrics': generate-metrics.md
+  - 'Log Index': multi-index.md
+  - 'Log Backup': backup.md

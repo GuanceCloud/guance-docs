@@ -9,9 +9,28 @@
 2022.3.29
 
 -   新增  `traceType` 配置，配置链路追踪工具类型，如果不配置默认为`ddtrace`。目前支持 `ddtrace`、`zipkin`、`skywalking_v3`、`jaeger`、`zipkin_single_header`、`w3c_traceparent` 6种数据类型。
-- 新增 `allowedTracingOrigins` 允许注入 trace 采集器所需header头部的所有请求列表。可以是请求的origin，也可以是是正则。
+- 新增 `allowedTracingOrigins` 允许注入 trace 采集器所需header头部的所有请求列表。可以是请求的origin，也可以是正则。
 
-通过引入 sdk 文件，监控小程序性能指标，错误 log，以及资源请求情况数据，上报到 DataFlux 平台。
+## 简介
+
+观测云应用监测能够通过收集各个小程序应用的指标数据，通过引入sdk文件，监控小程序性能指标，错误log，以及资源请求情况数据，上报到观测云平台，以可视化的方式分析各个小程序应用端的性能。
+
+## 前置条件
+
+- 安装 DataKit（[DataKit 安装文档](../../datakit/datakit-install.md)）
+
+## 小程序应用接入
+
+登录观测云控制台，进入**用户访问监测**页面，点击左上角「新建应用」，即可开始创建一个新的应用。
+
+1.输入**应用名称**、**应用 ID**，选择**应用类型**
+
+- 应用名称：用于识别当前用户访问监测的应用名称。
+- 应用 ID ：应用在当前工作空间的唯一标识，对应字段：app_id 。该字段仅支持英文、数字、下划线输入，最多 48 个字符。
+
+2.选择**应用类型**后，在右侧会显示对应的应用接入方式，选择安装配置的接入方式，点击右侧的「参数配置」，填入相关配置参数后，即可复制到项目中使用。
+
+![](../img/6.rum_uniapp.gif)
 
 ## 使用方法
 
@@ -30,11 +49,14 @@
 	const { datafluxRum } = require('@cloudcare/rum-uniapp')
 	// 初始化 Rum
 	datafluxRum.init(Vue, {
-		datakitOrigin: 'https://datakit.xxx.com/',// 必填，Datakit域名地址 需要在微信小程序管理后台加上域名白名单
-		applicationId: 'appid_xxxxxxx', // 必填，dataflux 平台生成的应用ID
-		env: 'testing', // 选填，小程序的环境
-		version: '1.0.0', // 选填，小程序版本
-		trackInteractions: true, // 用户行为数据
+	  datakitOrigin: '<DATAKIT ORIGIN>',// 必填，Datakit域名地址 需要在微信小程序管理后台加上域名白名单
+      applicationId: '<应用 ID>', // 必填，dataflux 平台生成的应用ID
+      env: 'testing', // 选填，小程序的环境
+      version: '1.0.0', // 选填，小程序版本
+      service: 'miniapp', //当前应用的服务名称
+      trackInteractions: true, // 用户行为数据
+      sampleRate: 100, //指标数据收集的百分比，100 表示全收集，0 表示不收集
+      allowedTracingOrigins: ['https://api.example.com',/https:\/\/.*\.my-api-domain\.com/],  // 非必填，允许注入trace采集器所需header头部的所有请求列表。可以是请求的origin，也可以是是正则
 	})
 	//#endif
 	....
@@ -49,11 +71,14 @@
 	import { datafluxRum } from '@cloudcare/rum-uniapp'
 	// 初始化 Rum
 	datafluxRum.initVue3({
-		datakitOrigin: 'https://datakit.xxx.com/',// 必填，Datakit域名地址 需要在微信小程序管理后台加上域名白名单
-		applicationId: 'appid_xxxxxxx', // 必填，dataflux 平台生成的应用ID
-		env: 'testing', // 选填，小程序的环境
-		version: '1.0.0', // 选填，小程序版本
-		trackInteractions: true, // 用户行为数据
+	  datakitOrigin: '<DATAKIT ORIGIN>',// 必填，Datakit域名地址 需要在微信小程序管理后台加上域名白名单
+      applicationId: '<应用 ID>', // 必填，dataflux 平台生成的应用ID
+      env: 'testing', // 选填，小程序的环境
+      version: '1.0.0', // 选填，小程序版本
+      service: 'miniapp', //当前应用的服务名称
+      trackInteractions: true, // 用户行为数据
+      sampleRate: 100, //指标数据收集的百分比，100 表示全收集，0 表示不收集
+      allowedTracingOrigins: ['https://api.example.com',/https:\/\/.*\.my-api-domain\.com/],  // 非必填，允许注入trace采集器所需header头部的所有请求列表。可以是请求的origin，也可以是是正则
 	})
 	//#endif
 	....
@@ -71,11 +96,14 @@
 	const { datafluxRum } = require('./dataflux-rum-miniapp.js'); // js文件本地路径
 	// 初始化 Rum
 	datafluxRum.init(Vue, {
-		datakitOrigin: 'https://datakit.xxx.com/',// 必填，Datakit域名地址 需要在微信小程序管理后台加上域名白名单
-		applicationId: 'appid_xxxxxxx', // 必填，dataflux 平台生成的应用ID
-		env: 'testing', // 选填，小程序的环境
-		version: '1.0.0', // 选填，小程序版本
-		trackInteractions: true, // 用户行为数据
+	  datakitOrigin: '<DATAKIT ORIGIN>',// 必填，Datakit域名地址 需要在微信小程序管理后台加上域名白名单
+      applicationId: '<应用 ID>', // 必填，dataflux 平台生成的应用ID
+      env: 'testing', // 选填，小程序的环境
+      version: '1.0.0', // 选填，小程序版本
+      service: 'miniapp', //当前应用的服务名称
+      trackInteractions: true, // 用户行为数据
+      sampleRate: 100, //指标数据收集的百分比，100 表示全收集，0 表示不收集
+      allowedTracingOrigins: ['https://api.example.com',/https:\/\/.*\.my-api-domain\.com/],  // 非必填，允许注入trace采集器所需header头部的所有请求列表。可以是请求的origin，也可以是是正则
 	})
 	//#endif
 	....
@@ -90,11 +118,14 @@
 	import { datafluxRum } from './dataflux-rum-miniapp.js'; // js文件本地路径
 	// 初始化 Rum
 	datafluxRum.initVue3({
-		datakitOrigin: 'https://datakit.xxx.com/',// 必填，Datakit域名地址 需要在微信小程序管理后台加上域名白名单
-		applicationId: 'appid_xxxxxxx', // 必填，dataflux 平台生成的应用ID
-		env: 'testing', // 选填，小程序的环境
-		version: '1.0.0', // 选填，小程序版本
-		trackInteractions: true, // 用户行为数据
+	  datakitOrigin: '<DATAKIT ORIGIN>',// 必填，Datakit域名地址 需要在微信小程序管理后台加上域名白名单
+      applicationId: '<应用 ID>', // 必填，dataflux 平台生成的应用ID
+      env: 'testing', // 选填，小程序的环境
+      version: '1.0.0', // 选填，小程序版本
+      service: 'miniapp', //当前应用的服务名称
+      trackInteractions: true, // 用户行为数据
+      sampleRate: 100, //指标数据收集的百分比，100 表示全收集，0 表示不收集
+      allowedTracingOrigins: ['https://api.example.com',/https:\/\/.*\.my-api-domain\.com/],  // 非必填，允许注入trace采集器所需header头部的所有请求列表。可以是请求的origin，也可以是是正则
 	})
 	//#endif
 	....
@@ -106,10 +137,11 @@
 
 | 参数                            | 类型    | 是否必须 | 默认值    | 描述                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | ------------------------------- | ------- | -------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `applicationId`                 | String  | 是       |           | 从 dataflux 创建的应用 ID                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `applicationId`                 | String  | 是       |           | 从观测云创建的应用 ID                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | `datakitOrigin`                 | String  | 是       |           | datakit 数据上报 Origin;`注意：需要在小程序管理后台加上request白名单`                                                                                                                                                                                                                                                                                                                                                                                                       |
 | `env`                           | String  | 否       |           | 小程序 应用当前环境， 如 prod：线上环境；gray：灰度环境；pre：预发布环境 common：日常环境；local：本地环境；                                                                                                                                                                                                                                                                                                                                                                |
 | `version`                       | String  | 否       |           | 小程序 应用的版本号                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| `service` | String | 否 | | 当前应用的服务名称，默认为 `miniapp`，支持自定义配置。 |
 | `sampleRate`                    | Number  | 否       | `100`     | 指标数据收集百分比:                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | `100`表示全收集，`0`表示不收集  |         |          |           |                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | `trackInteractions`             | Boolean | 否       | `false`   | 是否开启用户行为采集                                                                                                                                                                                                                                                                                                                                                                                                                                                        |

@@ -1,0 +1,23 @@
+nav:
+  - index.md
+  - 'Settings': settings 
+  - 'Member Management': 
+    - member-management.md
+    - 'Roles': role-management.md
+    - 'Permission List': role-list.md
+  - 'Pipelines': overall-pipeline.md
+  - 'Field Management': field-management.md
+  - 'Blacklist': overall-blacklist.md
+  - 'Data Authorization': data-authorization.md
+  - 'API Key': api-key
+  - 'Sharing': share-management.md
+  - 'Demo Space': space-demo.md
+  - 'SSO Management': sso
+  - 'MFA': mfa-management.md
+  - 'Help': 
+    - help.md
+    - 'Status Page': status-page.md
+    - 'Tickets': work-order-management.md
+
+    
+    

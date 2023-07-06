@@ -8,97 +8,33 @@ Kubernetes 帮助用户自动调度和扩展容器化应用程序，但现代 Ku
 
 ## 前置条件
 
-1. 在观测云中开启[「容器数据采集」](https://docs.guance.com/datakit/container/)
-2. 自建  [DataFlux Func](https://func.guance.com/#/) 的离线部署
-3. 开启自建 DataFlux Func 的[脚本市场](https://func.guance.com/doc/script-market-basic-usage/)
-4. 在观测云「管理 / API Key 管理」中创建用于进行操作的 [API Key](../../management/api-key/open-api.md)
-5. 在自建的 DataFlux Func 中，通过「脚本市场」安装「观测云自建巡检 Core 核心包」「观测云算法库」「 观测云自建巡检（K8S-Pod重启检测）」
-6. 在自建的 DataFlux Func 中，编写自建巡检处理函数
-7. 在自建的 DataFlux Func 中，通过「管理 / 自动触发配置」，为所编写的函数创建自动触发配置。
+1. 在观测云中开启「 [容器数据采集 ](https://docs.guance.com/datakit/container/)」
+2. 自建 [DataFlux Func 观测云特别版](https://func.guance.com/#/) 的离线部署，或者开通 [DataFlux Func 托管版](../../../dataflux-func/index.md)
+4. 在观测云「管理 / API Key 管理」中创建用于进行操作的 [API Key](../../../management/api-key/open-api.md)
 
-> **注意：**如果考虑采用云服务器来进行 DataFlux Func 离线部署的话，请考虑跟当前使用的观测云 SaaS 部署在[同一运营商同一地域](../../../../getting-started/necessary-for-beginners/select-site/)。
-
-## 配置巡检
-
-在自建 DataFlux Func 创建新的脚本集开启 Kubernetes Pod 异常重启巡检配置
-
-```python
-from guance_monitor__runner import Runner
-from guance_monitor__register import self_hosted_monitor
-import guance_monitor_k8s_pod_restart__main as k8s_pod_restart
-
-
-# 观测云空间 API_KEY 配置(用户自行配置)
-API_KEY_ID  = 'wsak_xxx'
-API_KEY     = '5Kxxx'
-
-# 函数 filters 参数过滤器和观测云 studio 监控\智能巡检配置中存在调用优先级，配置了函数 filters 参数过滤器后则不需要在观测云 studio 监控\智能巡检中更改检测配置了，如果两边都配置的话则优先生效脚本中 filters 参数
-
-def filter_namespace(cluster_namespaces):
-    '''
-    过滤 namespace 自定义符合要求 namespace 的条件，匹配的返回 True，不匹配的返回 False
-    return True｜False
-    '''
-
-    cluster_name = cluster_namespaces.get('cluster_name','')
-    namespace = cluster_namespaces.get('namespace','')
-    if cluster_name in ['k8s-prod']:
-        return True
-
-'''  
-任务配置参数请使用：
-@DFF.API('K8S-Pod异常重启巡检', fixed_crontab='*/30 * * * *', timeout=900)
-
-fixed_crontab：固定执行频率「每 30 分钟一次」
-timeout：任务执行超时时长，控制在 15 分钟
-'''    
-
-# Kubernetes Pod 异常重启巡检配置 用户无需修改
-@self_hosted_monitor(API_KEY_ID, API_KEY)
-@DFF.API('K8S-Pod异常重启巡检', fixed_crontab='*/30 * * * *', timeout=900)
-def run(configs=[]):
-    """
-    参数：
-        configs：
-            配置需要检测的 cluster_name （集群名称，可选，不配置根据 namespace 检测）
-            配置需要检测的 namespace （命名空间，必选）
-
-        配置示例： namespace 可以配置多个也可以配置单个
-        configs = [
-        {
-            "cluster_name": "xxx",
-            "namespace": ["xxx1", "xxx2"]
-        },
-        {
-            "cluster_name": "yyy",
-            "namespace": "yyy1"
-        }
-        ]
-
-    """
-    checkers = [
-         # 配置 Kubernetes Pod 异常重启巡检
-        k8s_pod_restart.K8SPodRestartCheck(configs=configs, filters=[filter_namespace]),
-    ]
-
-    Runner(checkers, debug=False).run()
-```
+> **注意**：如果考虑采用云服务器来进行 DataFlux Func 离线部署的话，请考虑跟当前使用的观测云 SaaS 部署在[同一运营商同一地域](../../../billing/commercial-register.md#site)。
 
 ## 开启巡检
 
-### 在观测云中注册检测项
+在自建的 DataFlux Func 中，通过「脚本市场」安装「 观测云自建巡检（K8S-Pod重启检测）」并根据提示配置观测云 API Key 完成开启。 
 
-在 DataFlux Func 中在配置好巡检之后可以通过直接再页面中选择 `run()` 方法点击运行进行注册，在点击发布之后就可以在观测云「监控 / 智能巡检」中查看并进行配置
+在 DataFlux Func 脚本市场中选择需要开启的巡检场景点击安装，配置观测云 API Key 和 [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/) 后选择部署启动脚本即可
 
-![image](../../img/k8s-pod-restart01.png)
+![image](../../img/create_checker.png)
 
-### 在观测云中配置 Kubernetes Pod 异常重启巡检
+启动脚本部署成功后，会自动创建启动脚本和自动触发配置，可以通过链接直接跳转查看对应配置。
+
+![image](../../img/success_checker.png)
+
+## 配置巡检
+
+### 在观测云中配置巡检
 
 ![image](../../img/k8s-pod-restart02.png)
 
 #### 启用/禁用
 
-  智能巡检默认是「禁用」状态，可手动「启用」，开启后，就可以对配置好的 Kubernetes 集群中 Pod 进行巡检了。
+  智能巡检默认是**禁用**状态，可手动**启用**，开启后，就可以对配置好的 Kubernetes 集群中 Pod 进行巡检了。
 
 #### 导出
 
@@ -106,7 +42,7 @@ def run(configs=[]):
 
 #### 编辑
 
-  智能巡检「Kubernetes Pod 异常重启巡检 」支持用户手动添加筛选条件，在智能巡检列表右侧的操作菜单下，点击「编辑」按钮，即可对巡检模版进行编辑。
+  智能巡检「Kubernetes Pod 异常重启巡检 」支持用户手动添加筛选条件，在智能巡检列表右侧的操作菜单下，点击**编辑**按钮，即可对巡检模版进行编辑。
 
   * 筛选条件：配置需要巡检 Kubernetes 的 cluster_name（集群名称，可选，不配置时检测所有 namespace）和需要检测的 namespace （命名空间，必填）
   * 告警通知：支持选择和编辑告警策略，包括需要通知的事件等级、通知对象、以及告警沉默周期等
@@ -118,22 +54,70 @@ def run(configs=[]):
   可以参考如下的 JSON 配置多个集群及命名空间信息
 
   ```json
-   // 配置示例： namespace 可以配置多个也可以配置单个
+   // 配置示例：namespace 可以配置多个也可以配置单个
       configs =[
           {"cluster_name": "xxx", "namespace": ["xxx1", "xxx2"]},
           {"cluster_name": "yyy","namespace": "yyy1"}
       ]
   ```
 
+>  **注意**：在自建的 DataFlux Func 中，编写自建巡检处理函数时也可以添加过滤条件（参考示例代码配置），要注意的是在观测云 studio 中配置的参数会覆盖掉编写自建巡检处理函数时配置的参数
+
+### 在 DataFlux Func 中配置巡检
+
+在 DataFlux Func 中在配置好巡检所需的过滤条件之后可以通过直接再页面中选择 `run()` 方法进行点击运行进行测试，在点击发布之后脚本就会正常执行了。也可以在观测云「监控 / 智能巡检」中查看或更改配置。
+
+```python
+from guance_monitor__runner import Runner
+from guance_monitor__register import self_hosted_monitor
+import guance_monitor_k8s_pod_restart__main as main
+
+# Support for using filtering functions to filter the objects being inspected, for example:
+def filter_namespace(cluster_namespaces):
+    '''
+    过滤 host，自定义符合要求 host 的条件，匹配的返回 True，不匹配的返回 False
+    return True｜False
+    '''
+     cluster_name = cluster_namespaces.get('cluster_name','')
+     namespace = cluster_namespaces.get('namespace','')
+     if cluster_name in ['xxxx']:
+         return True
+  
+  
+@self_hosted_monitor(account['api_key_id'], account['api_key'])
+@DFF.API('K8S-Pod 重启检测巡检', fixed_crontab='*/30 * * * *', timeout=900)
+def run(configs=None):
+    """
+    可选参数：
+        configs：(不配置默认检测所有，配置的情况请遵循下面的内容)
+            配置需要检测的 cluster_name （集群名称，可选，不配置根据 namespace 检测）
+            配置需要检测的 namespace （命名空间，必选）
+
+    示例：namespace 可以配置多个也可以配置单个
+        configs =[
+            {"cluster_name": "xxx", "namespace": ["xxx1", "xxx2"]},
+            {"cluster_name": "yyy","namespace": "yyy1"}
+        ]
+
+    """
+    checkers = [
+        k8s_pod_restart.K8SPodRestartCheck(configs=configs, filters=[filter_namespace]), # Support for user-configured multiple filtering functions that are executed in sequence.
+    ]
+
+    Runner(checkers, debug=False).run()
+```
+
+
+
 ### 查看事件
 
-  智能巡检基于观测云巡检算法，会查找当前配置的集群内是否会出现 Pod 异常重启的情况。对于异常情况，智能巡检会生成相应的事件，在智能巡检列表右侧的操作菜单下，点击「查看相关事件」按钮，即可查看对应异常事件。
+  智能巡检基于观测云巡检算法，会查找当前配置的集群内是否会出现 Pod 异常重启的情况。对于异常情况，智能巡检会生成相应的事件，在智能巡检列表右侧的操作菜单下，点击**查看相关事件**按钮，即可查看对应异常事件。
 
 ![image](../../img/k8s-pod-restart04.png)
 
 ### 事件详情页
 
-  点击「事件」，可查看智能巡检事件的详情页，包括事件状态、异常发生的时间、异常名称、基础属性、事件详情、告警通知、历史记录和关联事件。
+  点击**事件**，可查看智能巡检事件的详情页，包括事件状态、异常发生的时间、异常名称、基础属性、事件详情、告警通知、历史记录和关联事件。
 
   * 点击详情页右上角的「查看监控器配置」小图标，支持查看和编辑当前智能巡检的配置详情
   * 点击详情页右上角的「导出事件 JSON」小图标，支持导出事件的详情内容
@@ -192,6 +176,12 @@ def run(configs=[]):
 
 请在 DataFlux Func 的脚本市场中更新所引用的脚本集，可以通过[**变更日志**](https://func.guance.com/doc/script-market-guance-changelog/)来查看脚本市场的更新记录方便即时更新脚本。
 
-  
+**5.在升级巡检脚本过程中发现 Startup 中对应的脚本集无变化**
+
+请先删除对应的脚本集后，再点击升级按钮配置对应观测云 API key 完成升级。
+
+**6.开启巡检后如何判断巡检是否生效**
+
+在「管理 / 自动触发配置」中查看对应巡检状态，首先状态应为已启用，其次可以通过点击执行来验证巡检脚本是否有问题，如果出现 xxx 分钟前执行成功字样则巡检正常运行生效。
 
   

@@ -1,8 +1,398 @@
 # 版本历史
 
+## 1.65.131（2023 年 06 月 20 日）
+
+pubrepo.guance.com/dataflux/1.65.131:launcher-d6c2ef5-1687506944
+
+### 观测云更新
+
+- RUM (Real User Monitoring) 采集器用于收集网页端或移动端上报的用户访问监测数据。现提供 RUM Headless一键开通服务，实现自动化安装部署在观测云的云主机中，自动完成 DataKit 安装，RUM 采集器部署。只需要手动接入应用即可。
+- 查看器：优化筛选、搜索的交互转化等逻辑，让用户真正做到所见即所得，且能够在 UI 和手写模式自由切换。另：日志查看器支持的 DQL 手写模式新版本上线后将会做下线处理。
+- 日志 > 备份日志：新增外部存储类型选择，支持写入 S3(AWS) 对象存储、支持华为云 OBS 数据写入。
+- 日志 > 索引：新增日志易数据绑定配置入口。
+- 仪表板/内置视图支持根因分析和下钻分析。
+- 管理 > 角色管理：支持克隆已有用户角色减少操作步骤，快速增减权限并创建角色。
+- 基础设施 > 容器：新增 Daemonset 对象数据显示，可拖拽改变对象分类显示顺序。
+- 基础设施 > 容器：Deployments、Pods 支持直接关联 kubernetes 事件日志，在详情页可直接查看具体日志信息。
+- 新增异常追踪 OpenAPI 接口。
+- 管理 > 成员管理列表、监控 > 通知对象管理 > 邮件组、异常追踪 > 查看成员、所有选择通知对象处均支持按成员昵称进行检索。
+- 工单状态更新或有新回复时，通过界面或者邮件提醒客户关注。
+- 文本输入框输入不合法的字符或长度限制提示优化。
+
+### DataKit 更新
+
+- 新增 Chrony 采集器
+- 新增 RUM Headless 支持
+- Pipeline
+- 新增 offload 功能
+- 调整已有的文档结构
+- 在 Datakit HTTP API 返回中增加更多信息，便于错误排查
+- RUM 采集器增加更多 Prometheus 指标暴露
+- 默认开启 Datakit 的 pprof 功能，便于问题排查
+
+### 智能巡检更新
+
+- 新增巡检
+- AWS Cloudtrail 异常事件巡检：帮助快速识别问题并采取适当的纠正措施，以减少服务中断时间和业务影响。
+- 新增脚本
+- 观测云集成（阿里云-RDS错误日志）：收集阿里云的 RDS 错误日志，用于 RDS 的错误信息诊断；
+- filebeats 数据采集器：收集 FileBeats 性能数据用于观测 FileBeats 性能、延迟等场景；
+- logstash 数据采集器：收集 Logstash 性能数据用于观测 Logstash 性能、延迟等场景。
+
+更多详情可参考帮助文档：https://docs.guance.com/release-notes/
+
+## 1.64.130（2023 年 06 月 12 日）
+
+pubrepo.guance.com/dataflux/1.64.130:launcher-e504618-1686575695
+
+此版本是 fix 版本，主要有如下更新:
+
+### 观测云部署版更新
+
+- 修复私有部署版 OIDC 对接的一些 bug。
+- 修复其他一些小 bug。
+
+
+更多详情可参考帮助文档：https://docs.guance.com/release-notes/
+
+
+## 1.64.129（2023 年 06 月 08 日）
+
+pubrepo.guance.com/dataflux/1.64.129:launcher-ad357b8-1686206775
+
+### 观测云部署版更新
+
+- 管理后台新增密码安全策略：新增密码 8 位长度限制及密码有效期功能。
+
+### 观测云更新
+
+- 为进一步满足用户数据查看需求，商业版付费计划与账单新增设置高消费预警功能，新增消费分析列表，支持查看各类支出消费统计。
+- 创建工作空间时新增菜单风格选择，支持选择不同的工作空间风格属性。
+- 优化日志数据访问权限相关规则适配，进一步明确多角色数据查询权限及权限控制对应关系。
+- 事件详情页下的基础属性下的检测维度新增关联查询，支持查看筛选当前检测维度下全部字段值的关联数据。
+- 告警策略管理支持不同级别告警到不同的通知对象。
+- 成员管理新增添加昵称备注功能，规范工作空间内的成员用户名，支持通过昵称备注搜索成员。
+- 仪表板、查看器、监控、成员管理、分享管理等页面列表新增批量操作功能。
+- 应用性能监测服务支持修改颜色，支持表头排序调整。
+- 日志、应用性能监测 > 错误追踪查看器聚类分析支持对文档数量排序，默认倒叙。
+- 支持保存登录选择语言版本到浏览器本地，再次登录自动显示上一次登录选择语言版本。
+- 生成指标频率选项调整，支持选择 1 分钟、5 分钟、15 分钟。
+
+### 智能巡检更新
+
+- 新增巡检
+- 工作空间资产巡检
+- 新增脚本
+- gitlab 研发效能分析：根据 gitlab 的代码提交频率和每次代码量，分团队、个人、时间维度展示团队的研发效能。
+
+更多详情可参考帮助文档：https://docs.guance.com/release-notes/
+
+
+## 1.63.128（2023 年 05 月 22 日）
+
+pubrepo.guance.com/dataflux/1.63.128:launcher-d07d641-1685285792
+
+### 私有部署版更新
+
+- 支持选择使用私有拨测服务或 SaaS 拨测服务中心
+
+### 观测云更新
+
+- RUM 应用配置新增自定义类型和关联视图查看分析
+- DQL 函数支持正则聚合数据统计显示返回
+- 新增 PromQL 语法查询入口，支持通过 PromQL 查询时序数据
+- show_tag_value() 函数支持查询对应指标字段的关联标签
+- 小程序 SDK 支持采集启动参数相关的信息；新增自定义添加 Error
+- Status Page 支持订阅故障通知
+- 新增字段管理功能，在监控器、图表查询、查看器等位置若选择了相关字段则显示对应的描述和单位信息
+- 指标分析新增表格功能，支持下载
+- 工单状态调整
+- 新增异常追踪引导页，频道新增时间范围筛选
+- 备份日志优化：
+    - 新增备份规则入口移至备份日志 > 备份管理
+    - 新增全部备份逻辑：不添加筛选即表示保存全部日志数据
+
+### 智能巡检更新
+
+- 新增巡检
+    - 云上闲置资源巡检
+    - 主机重启巡检
+- 功能优化
+    - 闲置主机巡检：新增对云主机类型关联添加费用相关信息。
+
+更多详情可参考帮助文档：https://docs.guance.com/release-notes/
+
+
+## 1.62.127（2023 年 04 月 20 日）
+
+pubrepo.guance.com/dataflux/1.62.127:launcher-c737a19-1683555353
+
+### 观测云更新
+
+- 计费更新
+    - 观测云自研时序引擎 GuanceDB 全新上线，时序数据存储及计费将会做如下调整：
+    - 基础设施（DataKit）计费项下线，原 “DataKit + 时间线”、“仅时间线” 两种计费模式按照仅 GuanceDB 时间线作为出账逻辑使用；
+    - GuanceDB 时间线：统计当天活跃的时间线数量计费，单价低至 ￥0.6 / 每千条时间线。
+    - 用户访问监测 “会话重放” 正式启动付费，按照实际采集会话重放数据的 session 数量计费，￥10 / 每千个 Session。
+- 功能更新
+    - GuanceDB 时序引擎全新上线
+    - 异常追踪新功能上线
+    - 跨站点工作空间授权功能上线
+    - SLS 新增第三方授权开通或绑定
+    - 绑定索引配置页面优化，支持自定义添加映射字段配置
+    - 命令面板新增本地 Func 的自定义函数选择
+    - 时序图新增高级函数，支持本地 Func 根据 DQL 查询结果二次处理后返回显示
+    - 工作空间新增时区配置，用户可自定义配置当前工作空间查询时间的时区
+    - 智能巡检优化脚本集开启步骤，新增新增 AWS 同步多种认证方式、AWS Cloudwatch Logs 同步
+    - 集成 - DataKit 页面引导优化
+    - 查看器柱状分布图新增统计时间区间显示
+    - 导航菜单支持右键选择新页打开
+    - 黑名单重名导入问题修复
+- 私有部署版更新
+    - 新增账号登录映射规则配置，根据不同的映射规则动态分配成员加入的工作空间及对应的角色。
+
+### DataKit 更新
+
+- 新增 Pinpoint API 接入
+- 优化 Windows 安装脚本和升级脚本输出方式，便于在终端直接黏贴复制
+- 优化 Datakit 自身文档构建流程
+- 优化 OpenTelemetry 字段处理
+- Prom 采集器支持采集 info 类型的 label 并将其追加到所有关联指标上（默认开启）
+- 在 system 采集器 中，新增 CPU 和内存占用百分比指标
+- Datakit 在发送的数据中，增加数据点数标记（X-Points），便于中心相关指标构建
+- 优化 Datakit HTTP 的 User-Agent 标记，改为 datakit-<os>-<arch>/<version> 形态
+- KafkaMQ：
+- 支持处理 Jaeger 数据
+- 优化 SkyWalking 数据的处理流程
+- 新增第三方 RUM 接入功能
+- SkyWalking 新增 HTTP 接入功能
+
+更多详情可参考帮助文档：https://docs.guance.com/release-notes/
+
+
+## 1.61.126（2023 年 04 月 06 日）
+
+pubrepo.guance.com/dataflux/1.61.126:launcher-d290e0d-1681300585
+
+### 观测云更新
+
+- 日志新增 3 天数据保存策略和定价，计费相关请参考文档计费方式。
+- 日志新增数据访问权限控制，支持将某个范围内的日志数据查看权限授予给相关角色
+- 角色权限清单新增各功能模块数据查询权限，支持自定义角色配置对应模块的数据查询权限入口
+- 标准成员新增 “快照管理” 权限，支持快照增删操作
+- 快照分享支持搜索功能。（日志 DQL 查询模式下不支持调整搜索范围）
+- 支持本地 Func 通过 websocket 协议创建自定义的通知对象，实现外部通知渠道接收告警通知
+- 查看器新增copy as cURL数据查询功能
+- 仪表板图表配置交互优化
+- 概览图新增数值单位选项配置，支持选择中国科学记数法进位（default）和短级差制（short scale）
+- 新增视图变量是否应用到图表效果显示
+- 图表存在分组条件时，支持将某个分组条件值反向应用到视图变量实现联动筛选
+- 图表存在分组条件时，选中某个分组条件对应时间线或数据点时支持其他图表中相同分组联动高亮显示
+- 图表拖拽效果优化
+- 账号无操作会话过期时间默认调整为 3 小时，此次调整仅针对未编辑过无操作会话过期时间配置的账号，不影响已编辑过的无操作会话过期时间配置的账号。
+- 筛选历史新增搜索条件保存
+- 用户访问监测应用 SDK 接入引导优化
+- 生成指标配置优化，支持针对新生成的指标配置单位和描述
+- 主机查看器支持多行显示，多行模式下 label 将另起一行显示
+- 时序图、饼图新增返回显示数量配置
+
+### DataKit 更新 
+
+- 新加功能
+    - 新增伺服服务，用来管理 Datakit 升级
+    - 新增故障排查功能
+- 功能优化
+    - 优化升级功能，避免 datakit.conf 文件被破坏
+    - 优化 cgroup 配置，移除 CPU 最小值限制
+    - 优化 self 采集器，我们能选择是否开启该采集器，同时对其采集性能做了一些优化
+    - Prom 采集器允许增加 instance tag，以保持跟原生 Prometheus 体系一致
+    - DCA 增加 Kubernetes 部署方式
+    - 优化日志采集的磁盘缓存性能
+    - 优化 Datakit 自身指标体系，暴露更多 Prometheus 指标
+    - 优化 /v1/write
+    - 优化安装过程中 token 出错提示
+    - monitor 支持自动从 datakit.conf 中获取连接地址
+    - 取消 eBPF 对内核版本的强制检查，尽量支持更多的内核版本
+    - Kafka 订阅采集支持多行 json 功能
+    - 优化 IO 模块的配置，新增上传 worker 数配置字段
+- 兼容调整
+    - 本次移除了大部分 Sinker 功能，只保留了 Dataway 上的 Sinker 功能。同时 sinker 的主机安装配置以及 Kubernetes 安装配置都做了调整，其中的配置方式也跟之前不同，请大家升级的时候，注意调整
+    - 老版本的发送失败磁盘缓存由于性能问题，我们替换了实现方式。新的实现方式，其缓存的二进制格式不再兼容，如果升级的话，老的数据将不被识别。建议先手动删除老的缓存数据（老数据可能会影响新版本磁盘缓存），然后再升级新版本的 Datakit。尽管如此，新版本的磁盘缓存，仍然是一个实验性功能，请谨慎使用
+    - Datakit 自身指标体系做了更新，原有 DCA 获取到的指标将有一定的缺失，但不影响 DCA 本身功能的运行
+
+
+更多详情可参考帮助文档：https://docs.guance.com/release-notes/
+
+## 1.60.125（2023 年 03 月 23 日）
+
+pubrepo.guance.com/dataflux/1.60.125:launcher-6723827-1679932675
+
+### 私有部署版更新
+
+- 解决了在部署过程中无法使用包含复杂字符密码的中间件的问题
+- 提升了在部署过程中自动生成的数据库账号密码的复杂度
+
+### 观测云更新
+
+- 帮助文档搜索功能优化
+- 备份日志新增扩展字段保存逻辑
+- 查看器/仪表板时间控件新增“时区选择”和“全局锁定”功能
+- 监控器优化
+- 支持查看上次的历史配置，支持点击还原到历史配置版本
+- 列表和页面新增创建、变更信息显示
+- 突变检测新增对比维度，支持选择跟“昨日”“上一小时”统计指标比对逻辑
+- 智能巡检事件新增效果反馈入口
+- 快照分享支持添加“创建人”水印显示
+- 注册开通流程优化，云市场开通路径新增站点选择
+- 笔记创建逻辑和添加内容交互调整
+- 图表查询新增 label 反选逻辑
+- 链路详情页 Span 列表显示逻辑调整，按“持续时间”倒序显示
+- 成员管理触发审核流程后角色修改逻辑调整
+- 查看器列宽度保存、日志显示多行等逻辑调整
+
+更多详情可参考帮助文档：https://docs.guance.com/release-notes/
+
+## 1.59.124（2023 年 03 月 09 日）
+
+pubrepo.guance.com/dataflux/1.59.124:launcher-cfaec26-1679407401
+
+### 观测云更新
+
+- 数据存储策略变更优化
+- 图表链接配置优化
+- 新增支持创建重名的仪表板、笔记、自定义查看器
+- DQL 参数生效优先级调整
+- 日志 Message 数据展示优化
+- 监控配置页面优化
+- SSO 相关优化
+- 其他功能优化
+    - 商业版开通流程支持 “观测云直接开通”、“阿里云市场开通“和“亚马逊云市场开通“三种方式任意选择；
+    - 查看器左 * 查询功能范围调整，新开通的工作空间不再默认支持左 * 查询，如有需求请联系客户经理；
+    - SLIMIT 限制调整，时序图查询若存在 group by 分组时，默认返回最多 20 条数据；
+    - 新创建的工作空间新手引导流程优化。
+
+### DataKit 更新 
+
+- 新加功能
+    - Pipeline 支持 key 删除
+    - Pipeline 增加新的 KV 操作
+    - Pipeline 增加时间函数
+    - netstat 支持 IPV6
+    - diskio 支持 io wait 指标
+    - 容器采集允许 Docker 和 Containerd 共存
+    - 整合 Datakit Operator 配置文档
+- 功能优化
+    - 优化 Point Checker
+    - 优化 Pipeline replace 性能
+    - 优化 Windows 下 Datakit 安装流程
+    - 优化 confd 配置处理流程
+    - 添加 Filebeat 集成测试能力
+    - 添加 Nginx 集成测试能力
+    - 重构 OTEL Agent
+    - 重构 Datakit Monitor 信息
+
+更多详情可参考帮助文档：https://docs.guance.com/release-notes/
+
+## v1.58.123（2023 年 03 月 07 日）
+
+pubrepo.guance.com/dataflux/1.58.123:launcher-a4e6282-1678200092
+
+此版本是 fix 版本，主要有如下更新:
+
+### 观测云更新
+
+- 修复 Profiling 的数据过期清理的 bug
+- 修复 DQL series_sum 函数计算逻辑的 bug
+
+更多详情可参考帮助文档：[https://docs.guance.com/release-notes/](https://docs.guance.com/release-notes/)
+
+
+## v1.58.122（2023 年 03 月 04 日）
+
+pubrepo.guance.com/dataflux/1.58.122:launcher-08db157-1677907360
+
+此版本是 fix 版本，主要有如下更新:
+
+### 观测云更新
+
+- 修复 RUM Session Replay 功能播放时 bug
+- 一些其他小 bug 修复
+
+更多详情可参考帮助文档：[https://docs.guance.com/release-notes/](https://docs.guance.com/release-notes/)
+
+## v1.58.121（2023 年 02 月 23 日）
+
+pubrepo.guance.com/dataflux/1.58.121:launcher-105a217-1677566915
+
+### 观测云更新
+
+- 用户访问监测优化
+    - 新增用户访问监测自动化追踪
+    - 用户访问监测应用列表、查看器、分析看板布局整体调整
+    - 新增 CDN 质量分析
+- 场景优化
+    - 新增自定义查看器导航菜单
+    - 增强场景视图变量级联功能
+    - 饼图新增合并配置选项
+- 其他功能优化
+    - 观测云商业版注册流程支持绑定观测云费用中心账号；
+    - 配置监控器时，「检测维度」支持非必选。
+    - 图表查询中 match / not match 运算符翻译逻辑调整，日志类数据中 match 去除默认右 * 匹配逻辑。
+
+### DataKit 更新
+
+- 新加功能
+    - 命令行增加解析行协议功能
+    - Datakit yaml 和 helm 支持资源 limit 配置
+    - Datakit yaml 和 helm 支持 CRD 部署
+    - 添加 SQL-Server 集成测试
+    - RUM 支持 resource CDN 标注
+- 功能优化
+    - 优化拨测逻辑
+    - 优化 Windows 下安装提示
+    - 优化 powershell 安装脚本模板
+    - 优化 k8s 中 Pod, ReplicaSet, Deployment 的关联方法
+    - 重构 point 数据结构及功能
+    - Datakit 自带 eBPF 采集器二进制安装
+
+更多详情可参考帮助文档：[https://docs.guance.com/release-notes/](https://docs.guance.com/release-notes/)
+
+
+## v1.57.120（2023 年 01 月 12 日）
+
+pubrepo.guance.com/dataflux/1.57.120:launcher-e5345d3-1675061598
+
+### 观测云更新
+
+- 观测云英文语言支持
+- 新增观测云站点服务 Status Page
+- 新增绑定自建 Elasticsearch / OpenSearch 索引
+- 新增网络查看器列表模式
+- 新增前端应用 Span 请求耗时分布显示
+- 优化用户访问监测 Session 交互逻辑
+- Pod 指标数据采集默认关闭
+- 其他功能优化
+    - 绑定 MFA 认证调整为邮箱验证
+    - 注册时调整手机验证为邮箱验证
+    - 登录时安全验证调整为滑块验证
+    - 创建工作空间新增观测云专属版引导
+    - 工作空间新增备注显示功能
+    - 云账号结算用户新增在观测云付费计划与账单查看账单列表
+    - 表格图支持基于 「by 分组」设置别名
+    - 优化监控器配置中的时序图，仅在选择维度后显示
+    - 优化日志类数据无数据告警配置
+    - OpenAPI 新增创建接口
+
+### 最佳实践更新
+
+- 云平台接入：AWS - EKS 部署 DataKit。
+- 监控 Monitoring：应用性能监控 (APM) - 调用链 - 使用 datakit-operator 注入 dd-java-agent。
+
+更多详情可参考帮助文档：[https://docs.guance.com/release-notes/](https://docs.guance.com/release-notes/)
+
 ## v1.56.119（2022 年 12 月 29 日）
 
-pubrepo.jiagouyun.com/dataflux/1.56.119:launcher-e4d9302-1672825365
+pubrepo.guance.com/dataflux/1.56.119:launcher-e4d9302-1672825365
 
 ### 观测云更新
 
@@ -36,7 +426,7 @@ pubrepo.jiagouyun.com/dataflux/1.56.119:launcher-e4d9302-1672825365
 
 ## v1.55.117（2022 年 12 月 15 日）
 
-pubrepo.jiagouyun.com/dataflux/1.55.117:launcher-f4f56ef-1672025178
+pubrepo.guance.com/dataflux/1.55.117:launcher-f4f56ef-1672025178
 
 ### 观测云更新
 
@@ -80,7 +470,7 @@ pubrepo.jiagouyun.com/dataflux/1.55.117:launcher-f4f56ef-1672025178
 
 ## v1.54.116（2022 年 12 月 01 日）
 
-pubrepo.jiagouyun.com/dataflux/1.54.116:launcher-56de9cd-1670394824
+pubrepo.guance.com/dataflux/1.54.116:launcher-56de9cd-1670394824
 
 ### 观测云更新
 
@@ -125,7 +515,7 @@ pubrepo.jiagouyun.com/dataflux/1.54.116:launcher-56de9cd-1670394824
 
 ## v1.53.115（2022年11月17日）
 
-pubrepo.jiagouyun.com/dataflux/1.53.115:launcher-0da0220-1669271832
+pubrepo.guance.com/dataflux/1.53.115:launcher-0da0220-1669271832
 
 ### 观测云更新
 
@@ -174,7 +564,7 @@ pubrepo.jiagouyun.com/dataflux/1.53.115:launcher-0da0220-1669271832
 
 ## v1.52.114（2022年11月03日）
 
-pubrepo.jiagouyun.com/dataflux/1.52.114:launcher-86c0c1f-1668062771
+pubrepo.guance.com/dataflux/1.52.114:launcher-86c0c1f-1668062771
 
 ### 观测云更新
 
@@ -215,7 +605,7 @@ pubrepo.jiagouyun.com/dataflux/1.52.114:launcher-86c0c1f-1668062771
 
 ## v1.51.112（2022年10月20日）
 
-pubrepo.jiagouyun.com/dataflux/1.51.112:launcher-43db8d3-1667315533
+pubrepo.guance.com/dataflux/1.51.112:launcher-43db8d3-1667315533
 
 此版本是产品迭代版本，主要有如下更新:
 
@@ -268,7 +658,7 @@ pubrepo.jiagouyun.com/dataflux/1.51.112:launcher-43db8d3-1667315533
 
 ## v1.50.111（2022年10月12日）
 
-pubrepo.jiagouyun.com/dataflux/1.50.111:launcher-a3b4793-1665543227
+pubrepo.guance.com/dataflux/1.50.111:launcher-a3b4793-1665543227
 
 此版本是 fix 版本，主要有如下更新:
 
@@ -279,7 +669,7 @@ pubrepo.jiagouyun.com/dataflux/1.50.111:launcher-a3b4793-1665543227
 
 ## v1.50.110（2022年9月29日）
 
-pubrepo.jiagouyun.com/dataflux/1.50.110:launcher-bf5e4a7-1664640281
+pubrepo.guance.com/dataflux/1.50.110:launcher-bf5e4a7-1664640281
 
 ### 观测云更新
 
@@ -306,7 +696,7 @@ pubrepo.jiagouyun.com/dataflux/1.50.110:launcher-bf5e4a7-1664640281
 
 ## v1.49.108 (2022年9月23日)
 
-pubrepo.jiagouyun.com/dataflux/1.49.108:launcher-833084a-1663915927
+pubrepo.guance.com/dataflux/1.49.108:launcher-833084a-1663915927
 
 ### 观测云更新
 
@@ -317,7 +707,7 @@ pubrepo.jiagouyun.com/dataflux/1.49.108:launcher-833084a-1663915927
 
 ## v1.49.107 (2022年9月15日)
 
-pubrepo.jiagouyun.com/dataflux/1.49.107:launcher-e550301-1663603951
+pubrepo.guance.com/dataflux/1.49.107:launcher-e550301-1663603951
 
 ### 观测云更新
 
@@ -343,7 +733,7 @@ pubrepo.jiagouyun.com/dataflux/1.49.107:launcher-e550301-1663603951
 
 ## v1.48.106(2022年9月1日)
 
-pubrepo.jiagouyun.com/dataflux/1.48.106:launcher-e40becc-1662478572
+pubrepo.guance.com/dataflux/1.48.106:launcher-e40becc-1662478572
 
 ### 观测云更新
 
@@ -424,7 +814,7 @@ pubrepo.jiagouyun.com/dataflux/1.48.106:launcher-e40becc-1662478572
 
 ## v1.47.103(2022年8月18日)
 
-pubrepo.jiagouyun.com/dataflux/1.47.103:launcher-e472ac9-1661174654 
+pubrepo.guance.com/dataflux/1.47.103:launcher-e472ac9-1661174654 
 
 ### 观测云计费更新
 
@@ -494,7 +884,7 @@ pubrepo.jiagouyun.com/dataflux/1.47.103:launcher-e472ac9-1661174654
 
 ## v1.46.102(2022年8月10日)
 
-pubrepo.jiagouyun.com/dataflux/1.46.102:launcher-9765d09-1660104260 
+pubrepo.guance.com/dataflux/1.46.102:launcher-9765d09-1660104260 
 
 ### 观测云更新
 - Func 平台小 bug 修复
@@ -503,7 +893,7 @@ pubrepo.jiagouyun.com/dataflux/1.46.102:launcher-9765d09-1660104260
 
 ## v1.46.101(2022年8月9日)
 
-pubrepo.jiagouyun.com/dataflux/1.46.101:launcher-a785aaa-1660058667 
+pubrepo.guance.com/dataflux/1.46.101:launcher-a785aaa-1660058667 
 
 ### 观测云更新
 - DCA Web 端上线
@@ -526,7 +916,7 @@ pubrepo.jiagouyun.com/dataflux/1.46.101:launcher-a785aaa-1660058667
 
 ## v1.45.100(2022年8月4日)
 
-pubrepo.jiagouyun.com/dataflux/1.45.100:launcher-38e7844-1659597427 
+pubrepo.guance.com/dataflux/1.45.100:launcher-38e7844-1659597427 
 
 ### 观测云更新
 
@@ -538,7 +928,7 @@ pubrepo.jiagouyun.com/dataflux/1.45.100:launcher-38e7844-1659597427
 
 ## v1.45.99(2022年7月26日)
 
-pubrepo.jiagouyun.com/dataflux/1.45.99:launcher-fe8f074-1658756821 
+pubrepo.guance.com/dataflux/1.45.99:launcher-fe8f074-1658756821 
 
 ### 观测云更新
 - 新增智能巡检功能：内存泄漏、磁盘使用率、应用性能检测
@@ -593,7 +983,7 @@ pubrepo.jiagouyun.com/dataflux/1.45.99:launcher-fe8f074-1658756821
 
 ## v1.44.98(2022年7月7日)
 
-pubrepo.jiagouyun.com/dataflux/1.44.98:launcher-75d7974-1657638696 
+pubrepo.guance.com/dataflux/1.44.98:launcher-75d7974-1657638696 
 
 ### 观测云更新
 
@@ -608,15 +998,15 @@ pubrepo.jiagouyun.com/dataflux/1.44.98:launcher-75d7974-1657638696
 - 新增查看器详情页关联网络 48 小时数据回放功能
 - 调整未恢复事件保存策略，支持手动恢复事件
 - 其他功能优化
-    •  图表锁定时间新增【最新5分钟】时间范围，时间间隔新增【5s】【10s】【30s】三个秒级时间选择
-    •  场景查看器显示列、视图变量基础对象字段属性/标签支持自定义输入
-    •  调整事件详情关联仪表板位置
-    •  在指标管理新增时间线数量统计
-    •  优化日志详情页关联链路，根据日志当中的 trace_id 和 span_id 显示火焰图并选中对应span的所有数据
-    •  优化用户访问监测服务显示及交互
-    •  RUM、网络、可用性监测、CI 查看器下拉选项调整为平铺显示
-    •  监控器事件通知内容支持配置模版变量字段映射，支持通过在 DQL 查询语句配置模版变量对应值。
-    •  帮助中心首页新增重点功能快捷跳转入口
+  - 图表锁定时间新增【最新5分钟】时间范围，时间间隔新增【5s】【10s】【30s】三个秒级时间选择
+  - 场景查看器显示列、视图变量基础对象字段属性/标签支持自定义输入
+  - 调整事件详情关联仪表板位置
+  - 在指标管理新增时间线数量统计
+  - 优化日志详情页关联链路，根据日志当中的 trace_id 和 span_id 显示火焰图并选中对应span的所有数据
+  - 优化用户访问监测服务显示及交互
+  - RUM、网络、可用性监测、CI 查看器下拉选项调整为平铺显示
+  - 监控器事件通知内容支持配置模版变量字段映射，支持通过在 DQL 查询语句配置模版变量对应值。
+  - 帮助中心首页新增重点功能快捷跳转入口
 
 更多详情可参考帮助文档：[https://docs.guance.com/release-notes/](https://docs.guance.com/release-notes/)
 
@@ -652,7 +1042,7 @@ pubrepo.jiagouyun.com/dataflux/1.44.98:launcher-75d7974-1657638696
 
 ## v1.43.97(2022年6月22日)
 
-pubrepo.jiagouyun.com/dataflux/1.43.97:launcher-508cfe1-1656344897 
+pubrepo.guance.com/dataflux/1.43.97:launcher-508cfe1-1656344897 
 
 ### 观测云更新
 - 观测云帮助文档全新上线
@@ -703,7 +1093,7 @@ pubrepo.jiagouyun.com/dataflux/1.43.97:launcher-508cfe1-1656344897
 更多详情可参考帮助文档：[https://docs.guance.com/release-notes/](https://docs.guance.com/release-notes/) 
 
 ## v1.42.95(2022年6月10日)
-pubrepo.jiagouyun.com/dataflux/1.42.95:launcher-8478e83-1654839989 
+pubrepo.guance.com/dataflux/1.42.95:launcher-8478e83-1654839989 
 
 ### 观测云计费更新
 
@@ -772,7 +1162,8 @@ pubrepo.jiagouyun.com/dataflux/1.42.95:launcher-8478e83-1654839989
 更多详情可参考帮助文档：[https://docs.guance.com/release-notes/](https://docs.guance.com/release-notes/) 
 
 ## v1.41.94(2022年5月28日)
-pubrepo.jiagouyun.com/dataflux/1.41.94:launcher-249ba21-1653737335 
+
+pubrepo.guance.com/dataflux/1.41.94:launcher-249ba21-1653737335 
 
 ### 观测云更新
 
@@ -825,7 +1216,8 @@ pubrepo.jiagouyun.com/dataflux/1.41.94:launcher-249ba21-1653737335
 更多详情可参考帮助文档：[https://docs.guance.com/release-notes/](https://docs.guance.com/release-notes/) 
 
 ## v1.40.93(2022年5月9日)
-pubrepo.jiagouyun.com/dataflux/1.40.93:launcher-aa97377-1652102035 
+
+pubrepo.guance.com/dataflux/1.40.93:launcher-aa97377-1652102035 
 
 ### 观测云更新
 
@@ -862,7 +1254,7 @@ pubrepo.jiagouyun.com/dataflux/1.40.93:launcher-aa97377-1652102035
 
 ## v1.39.92(2022年5月5日)
 
-pubrepo.jiagouyun.com/dataflux/1.39.92:launcher-ffcd8f2-1651715327 
+pubrepo.guance.com/dataflux/1.39.92:launcher-ffcd8f2-1651715327 
 
 ### 安装器 Launcher：
 
@@ -872,7 +1264,7 @@ pubrepo.jiagouyun.com/dataflux/1.39.92:launcher-ffcd8f2-1651715327
 
 ## v1.39.91(2022年4月26日)
 
-pubrepo.jiagouyun.com/dataflux/1.39.91:launcher-8943ead-1650979666 
+pubrepo.guance.com/dataflux/1.39.91:launcher-8943ead-1650979666 
 
 ### 观测云更新
 
@@ -880,7 +1272,7 @@ pubrepo.jiagouyun.com/dataflux/1.39.91:launcher-8943ead-1650979666
 
 ## v1.39.90(2022年4月25日)
 
-pubrepo.jiagouyun.com/dataflux/1.39.90:launcher-23f161d-1650898148 
+pubrepo.guance.com/dataflux/1.39.90:launcher-23f161d-1650898148 
 
 ### 观测云社区版上线
 
@@ -938,7 +1330,7 @@ pubrepo.jiagouyun.com/dataflux/1.39.90:launcher-23f161d-1650898148
 
 ## v1.38.89(2022年4月10日)
 
-pubrepo.jiagouyun.com/dataflux/1.38.89:launcher-db22a51-1649942760 
+pubrepo.guance.com/dataflux/1.38.89:launcher-db22a51-1649942760 
 
 ### 观测云计费更新
 
@@ -994,7 +1386,7 @@ pubrepo.jiagouyun.com/dataflux/1.38.89:launcher-db22a51-1649942760
 
 ## v1.37.86(2022年3月28日)
 
-pubrepo.jiagouyun.com/dataflux/1.37.86:launcher-bd2650e-1648456839
+pubrepo.guance.com/dataflux/1.37.86:launcher-bd2650e-1648456839
 
 ### 观测云站点更新
 
@@ -1036,7 +1428,7 @@ pubrepo.jiagouyun.com/dataflux/1.37.86:launcher-bd2650e-1648456839
 
 ## v1.36.85(2022年3月14日)
 
-pubrepo.jiagouyun.com/dataflux/1.36.85:launcher-d8e6ee9-1647272237 
+pubrepo.guance.com/dataflux/1.36.85:launcher-d8e6ee9-1647272237 
 
 ### 观测云计费更新
 
@@ -1074,11 +1466,11 @@ pubrepo.jiagouyun.com/dataflux/1.36.85:launcher-d8e6ee9-1647272237
 
 ## v1.35.84(2022年2月22日)
 
-pubrepo.jiagouyun.com/dataflux/1.35.84:launcher-191ef71-1645780061 
+pubrepo.guance.com/dataflux/1.35.84:launcher-191ef71-1645780061 
 
-- 新增日志配置** pipeline **脚本
-- 新增** IFrame **图表组件
-- 新增事件详情历史记录、关联** SLO**
+- 新增日志配置 **pipeline** 脚本
+- 新增 **IFrame** 图表组件
+- 新增事件详情历史记录、关联 **SLO**
 - 新增保存快照默认开启绝对时间
 - 优化监控器无数据触发事件配置及触发条件单位提示
 - 优化图表查询表达式计算单位

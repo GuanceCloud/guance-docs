@@ -1,23 +1,26 @@
-# DQL函数
+# DQL 函数
 ---
 
 以下是 DQL 支持的函数列表。所有函数名均不区分大小写。
 
-## 名词
+## 概念先解
 
-- `M` - 指时序数据中的指标集
-- `L` - 日志数据，以字段 `source` 作为逻辑意义上的分类
-- `BL` - 备份日志数据，以字段 `source` 作为逻辑意义上的分类
-- `O` - 对象数据，以字段 `class` 作为逻辑意义上的分类
-- `OH` - 对象历史数据，以字段 `class` 作为逻辑意义上的分类
-- `CO` - 自定义对象数据，以字段 `class` 作为逻辑意义上的分类
-- `COH` - 自定义对象历史数据，以字段 `class` 作为逻辑意义上的分类
-- `E` - 事件数据，以字段 `source` 作为逻辑意义上的分类
-- `T` - 追踪数据，以字段 `service` 作为逻辑意义上的分类
-- `P` - profile数据，以字段 `service` 作为逻辑意义上的分类
-- `R` - RUM 数据，以字段 `source` 作为逻辑意义上的分类
-- `S` - 安全巡检数据，以字段 `category` 作为逻辑意义上的分类
-- `N` - 网络 eBPF 数据，以字段 `source` 作为逻辑意义上的分类
+| Method      | Description                          |
+| ----------- | ------------------------------------ |
+| `M`       | 指时序数据中的指标集。    |
+| `L`       | 日志数据，以字段 `source` 作为逻辑意义上的分类。 |
+| `BL`    | 备份日志数据，以字段 `source` 作为逻辑意义上的分类。 |
+| `O`      | 对象数据，以字段 `class` 作为逻辑意义上的分类。                          |
+| `OH`      | 对象历史数据，以字段 `class` 作为逻辑意义上的分类。                          |
+| `CO`      | 自定义对象数据，以字段 `class` 作为逻辑意义上的分类。                          |
+| `COH`      | 自定义对象历史数据，以字段 `class` 作为逻辑意义上的分类。                          |
+| `E`      | 事件数据，以字段 `source` 作为逻辑意义上的分类。                          |
+| `T`      | 追踪数据，以字段 `service` 作为逻辑意义上的分类。                          |
+| `P`      | Profile 数据，以字段 `service` 作为逻辑意义上的分类。                          |
+| `R`      | RUM 数据，以字段 `source` 作为逻辑意义上的分类                          |
+| `S`      | 安全巡检数据，以字段 `category` 作为逻辑意义上的分类。                          |
+| `N`      | 网络 eBPF 数据，以字段 `source` 作为逻辑意义上的分类。                          |
+
 
 ## SHOW 函数列表
 
@@ -386,7 +389,7 @@ show_tag_key(from=['cpu'])
 
 ```
 
-### show_tag_value()    
+### show_tag_value() {#show}   
 
 - 说明：返回数据库中指定 tag key 的 tag value 列表
 
@@ -396,7 +399,7 @@ show_tag_key(from=['cpu'])
 
 ```python
 # 请求
-show_tag_value(from=['cpu'], keyin=['host'])
+show_tag_value(from=['cpu'], keyin=['host'],field=['usage_total'])
 
 # 返回
 {
@@ -492,7 +495,7 @@ show_workspaces()
 
 - 适用：全部数据类型
 
-> Tips：`avg(field)` 应用的字段需须是数值类型，如果该字段 `field` 类型为字符串（如 `'10'`），可以使用 类型转换函数（如 `int()/float()`）来实现，如 `avg(int(field))`
+> 注意：`avg(field)` 应用的字段需须是数值类型，如果该字段 `field` 类型为字符串（如 `'10'`），可以使用 类型转换函数（如 `int()/float()`）来实现，如 `avg(int(field))`
 
 - 示例
 
@@ -600,7 +603,7 @@ L::nginx:(bottom(host, 2)) {__errorCode='200'}
 | ---------- | ----------------- | ------ | -------- | ------ | ------ |
 | field      | 字段名称/函数调用 | 数值型 | 是       | 无     | `host` |
 
-> Tips： field 可以是函数调用，如 `count(distinct(field))`，但该功能只适用于 `M` 数据类型
+> 注意： field 可以是函数调用，如 `count(distinct(field))`，但该功能只适用于 `M` 数据类型
 
 - 适用：全部
 - 示例
@@ -1656,7 +1659,7 @@ rum::js_error:(sdk_name, error_message) { error_message=match('not defined') } l
 
 > 注意：正则查询性能非常低，不建议使用。
 
-> Tips: 时序指标（`M`）数据的正则语法参考[这里](https://pkg.go.dev/regexp/syntax)， 非时序指标数据的正则语法参考了[这里](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-regexp-query.html)
+> 注意：时序指标（`M`）数据的正则语法参考[这里](https://pkg.go.dev/regexp/syntax)， 非时序指标数据的正则语法参考了[这里](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-regexp-query.html)
 
 - 示例：
 
@@ -1692,13 +1695,156 @@ rum::js_error:(sdk_name, error_message) { error_message=re('.*not defined.*') } 
 }
 ```
 
+### regexp_extract() {#regular-1}
+
+- 说明：根据正则表达式，提取目标字符串中符合正则表达式的子串，然后返回与目标捕获组匹配的第一个子串。
+
+| 非命名参数 | 描述         | 类型   | 是否必填 | 默认值 | 示例    |
+| ---------- | ------------ | ------ | -------- | ------ | ------- |
+| 字段名称     | 查询的字段 | `string` | 是       |        | `message` |
+| 正则表达式     | 包含捕获组的正则表达式 | `string` | 是       |        | `error (\\\\S+)` |
+| 返回的分组    |返回的第 n 个分组 | `int` | 否     |   0（表示匹配整个正则表达式）     | 1（表示匹配正则表达式中第一组，以此类推...） |
+
+- 适用：`M` 除外均支持
+
+- 示例：
+
+```python
+# 请求
+L::`*`:(regexp_extract(message,'error (\\\\S+)', 1) as m1, count(`*`) as c1) {index='default'} by m1
+
+# 返回
+{
+  "content": [
+    {
+      "series": [
+        {
+          "tags": {
+            "m1": "retrieving1"
+          },
+          "columns": [
+            "time",
+            "m1"
+          ],
+          "values": [
+            [
+              null,
+              7852
+            ]
+          ]
+        },
+        {
+          "tags": {
+            "m1": "retrieving2"
+          },
+          "columns": [
+            "time",
+            "m1"
+          ],
+          "values": [
+            [
+              null,
+              4
+            ]
+          ]
+        },
+        {
+          "tags": {
+            "m1": "retrieving3"
+          },
+          "columns": [
+            "time",
+            "m1"
+          ],
+          "values": [
+            [
+              null,
+              1
+            ]
+          ]
+        }
+      ],
+      "points": null,
+      "cost": "968ms",
+      "raw_query": "",
+      "total_hits": 10000
+    }
+  ]
+}
+```
+
+### regexp_extract_all() {#regular-2}
+
+- 说明：根据正则表达式，提取目标字符串中符合正则表达式的子串，并返回与目标捕获组匹配的子串合集。
+
+| 非命名参数 | 描述         | 类型   | 是否必填 | 默认值 | 示例    |
+| ---------- | ------------ | ------ | -------- | ------ | ------- |
+| 字段名称     | 查询的字段 | `string` | 是       |        | `message` |
+| 正则表达式     | 包含捕获组的正则表达式 | `string` | 是       |        | `error (\\\\S+) (\\\\S+)` |
+| 返回的分组    |返回的第 n 个分组 | `int` | 否     |   0（表示匹配整个正则表达式）     | 1（表示匹配正则表达式中第一组，以此类推...） |
+
+- 适用：`M` 除外均支持
+
+- 示例：
+
+```python
+# 请求
+
+L::`*`:(regexp_extract_all(message,'error (\\\\S+) (\\\\S+)', 2) as m1, count(`*`) as c1 ) {index='default'} by m1
+
+# 返回
+{
+  "content": [
+    {
+      "series": [
+        {
+          "tags": {
+            "m1": "[]"
+          },
+          "columns": [
+            "time",
+            "m1"
+          ],
+          "values": [
+            [
+              null,
+              168761
+            ]
+          ]
+        },
+        {
+          "tags": {
+            "m1": "[resource]"
+          },
+          "columns": [
+            "time",
+            "m1"
+          ],
+          "values": [
+            [
+              null,
+              7857
+            ]
+          ]
+        }
+      ],
+      "points": null,
+      "cost": "745ms",
+      "raw_query": "",
+      "total_hits": 10000
+    }
+  ]
+}
+```
+
+
 ### queryString()
 
 > 注意：`queryString()` 将被弃用，改用下划线形式的 `query_string()`，功能等同。
 
 ### query_string()
 
-- 说明：字符串查询。DQL 将使用特殊语法解析器，解析输入的字符串，查询文档
+- 说明：字符串查询。DQL 将使用特殊语法解析器，解析输入的字符串、查询文档。
 
 | 非命名参数 | 描述           | 类型     | 是否必填 | 默认值 | 示例               |
 | ---------- | -------------- | -------- | -------- | ------ | ------------------ |

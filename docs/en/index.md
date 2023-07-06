@@ -3,90 +3,90 @@ hide:
   - toc
 glightbox: false
 ---
-# <div class="homepage-title">欢迎使用观测云</div>
+# <div class="homepage-title">Welcome to Guance</div>
 <div class="homepage">
   <div class="title">
-    【观测云】是一款面向开发、运维、测试及业务团队的实时数据监测平台，能够统一满足云、云原生、应用及业务上的监测需求，快速实现基础设施、中间件、应用层和业务层的可观测。基础设施监测、日志与指标管理、应用性能监测、用户访问监测、可用性监测、异常检测、系统级安全巡检、场景和仪表板等是“观测云”的可观测解决方案，通过统一的数据采集、全面的数据监控、无缝的关联分析、自定义的场景搭建、高度的可编程性，敏捷的成员协作，为用户提供了最快、最轻松、最全面、最自由的系统可观测平台。
+    Guance is a real-time data monitoring platform designed for DevOps, testing, and business teams. It can meet the monitoring requirements of cloud, cloud-native, application, and business, enabling the observability of infrastructure, middleware, application layer and business layer.<br/><br/>Guance solves observable problems through infrastructure monitoring, log and metric management, application performance monitoring(APM), real user monitoring(RUM), synthetic tests, anomaly detection, system-level security check, scenes and dashboards. With unified data collection, comprehensive data monitoring, coherent correlation analysis, custom scene building, high programmability and prompt member cooperation, Guance provides users with the fastest, easiest, most comprehensive and flexible observability platform.
   </div>
   <div class="content">
     <div class="content-top">
-      <a href="/scene" class="content-item">
+      <a href="/en/scene" class="content-item">
         <div class="item-content">
           <img src='assets/images/homepage/scene.png' alt="" />
-          <span>数据洞察</span>
+          <span>Data Overview</span>
         </div>
       </a>
-      <a href="/infrastructure" class="content-item">
+      <a href="/en/infrastructure" class="content-item">
         <div class="item-content">
           <img src='assets/images/homepage/infrastructure.png' alt="" />
-          <span>基础设施监测</span>
+          <span>Infrastructure</span>
         </div>
       </a>
-      <a href="/logs" class="content-item">
+      <a href="/en/logs" class="content-item">
         <div class="item-content">
           <img src='assets/images/homepage/logs.png' alt="" />
-          <span>日志监测</span>
+          <span>Logs</span>
         </div>
       </a>
-      <a href="/application-performance-monitoring" class="content-item">
+      <a href="/en/application-performance-monitoring" class="content-item">
         <div class="item-content">
           <img src='assets/images/homepage/application-performance-monitoring.png' alt="" />
-          <span>应用性能监测</span>
+          <span>APM</span>
         </div>
       </a>
     </div>
     <div class="content-mid">
-      <a href="/ci-visibility" class="content-item">
+      <a href="/en/ci-visibility" class="content-item">
         <div class="item-content">
           <img src='assets/images/homepage/ci-visibility.png' alt="" />
-          <span>CI 可视化</span>
+          <span>CI Visibility</span>
         </div>
       </a>
-      <a href="/real-user-monitoring" class="content-item">
+      <a href="/en/real-user-monitoring" class="content-item">
         <div class="item-content">
           <img src='assets/images/homepage/real-user-monitoring.png' alt="" />
-          <span>用户访问监测</span>
+          <span>Real User Monitoring</span>
         </div>
       </a>
-      <a href="/scheck" class="content-item">
+      <a href="/en/scheck" class="content-item">
         <div class="item-content">
           <img src='assets/images/homepage/scheck.png' alt="" />
-          <span>安全巡检</span>
+          <span>Security Check</span>
         </div>
       </a>
-      <a href="/usability-monitoring" class="content-item">
+      <a href="/en/usability-monitoring" class="content-item">
         <div class="item-content">
           <img src='assets/images/homepage/usability-monitoring.png' alt="" />
-          <span>可用性监测</span>
+          <span>Synthetic Tests</span>
         </div>
       </a>
-      <a href="/monitoring" class="content-item">
+      <a href="/en/monitoring" class="content-item">
         <div class="item-content">
           <img src='assets/images/homepage/monitoring.png' alt="" />
-          <span>智能监控</span>
+          <span>Monitoring</span>
         </div>
       </a>
     </div>
     <div class="content-bottom">
-      <a href="/best-practices" class="content-item">
+      <a href="/en/best-practices" class="content-item">
         <div class="item-content">
           <img src='assets/images/homepage/best-practices.png' alt="" />
-          <span>最佳实践</span>
+          <span>Best Practices</span>
         </div>
       </a>
-      <a href="/integrations" class="content-item">
+      <a href="/en/integrations" class="content-item">
         <div class="item-content">
           <img src='assets/images/homepage/integrations.png' alt="" />
-          <span>集成</span>
+          <span>Integrations</span>
         </div>
       </a>
-      <a href="/datakit" class="content-item">
+      <a href="/en/datakit" class="content-item">
         <div class="item-content">
           <img src='assets/images/homepage/datakit.png' alt="" />
           <span>DataKit</span>
         </div>
       </a>
-      <a href="/dataflux-func/quick-start" class="content-item">
+      <a href="/en/dataflux-func/quick-start" class="content-item">
         <div class="item-content">
           <img src='assets/images/homepage/func.png' alt="" />
           <span>DataFlux Func</span>

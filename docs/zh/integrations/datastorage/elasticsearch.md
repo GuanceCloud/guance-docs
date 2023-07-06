@@ -24,24 +24,21 @@ ElasticSearch 内置视图主要展示了 ElasticSearch 的集群内的 JVM 和�
 
 ## 版本支持
 
-操作系统支持：Windows/AMD 64, Windows/386, Linux/ARM, Linux/ARM 64, Linux/386, Linux/AMD 64, Darwin/AMD 64
+- 操作系统支持：Windows/AMD 64, Windows/386, Linux/ARM, Linux/ARM 64, Linux/386, Linux/AMD 64, Darwin/AMD 64
+- [ElasticSearch 版本支持情况](../../datakit/elasticsearch.md#requirements)
 
 ## 前置条件
 
-- ElasticSearch 版本 >= 7.0.0
 - ElasticSearch 默认采集 `Node Stats` 指标，如果需要采集 `Cluster-Health` 相关指标，需要设置 `cluster_health = true`
 - 设置 `cluster_health = true` 可产生如下指标集 
       - `elasticsearch_cluster_health`
 - 设置 `cluster_stats = true` 可产生如下指标集 
       - `elasticsearch_cluster_stats`
-- 如果开启账号密码访问，需要配置该账号拥有访问集群和索引监控的 `monitor` 权限，否则会导致监控信息获取失败错误。用户设置参考如下： 
-      - 方法一：使用内置用户 `remote_monitoring_user` (推荐)
-      - 方法二：创建自定义用户，需要赋予角色 `remote_monitoring_collector`
-- 其他信息请参考配置文件说明
+- 如果开启账号密码访问，需要配置相应的权限，否则会导致监控信息获取失败错误。目前支持 Elasticsearch 、 Open Distro for Elasticsearch 和 OpenSearch，请参考[用户权限配置](../../datakit/elasticsearch.md#user-permission)。
 
 ## 安装部署
 
-说明：示例 ElasticSearch 版本为 ElasticSearch 7.6.1 (CentOS)，各个不同版本指标可能存在差异。
+说明：示例 ElasticSearch 版本为 7.6.1 (CentOS)，各个不同版本指标可能存在差异。
 ### 指标采集 (必选)
 
 1、 开启 DataKit ElasticSearch 插件，复制 sample 文件
@@ -73,7 +70,7 @@ vi elasticsearch.conf
 
 ??? quote "`elasticsearch.conf`"
 
-   ```yaml
+    ```toml  
       [[inputs.elasticsearch]]
       ## Elasticsearch服务器配置
       # 支持Basic认证:
@@ -123,7 +120,7 @@ vi elasticsearch.conf
       # tls_key = "/etc/telegraf/key.pem"
       ## Use TLS but skip chain & host verification
       # insecure_skip_verify = false
-      ```
+    ```
 
 3、 重启 DataKit (如果需要开启日志，请配置日志采集再重启)
 

@@ -11,21 +11,23 @@ icon: material/table-column-plus-after
 
 [**安装 DataKit**](../../datakit/datakit-install.md)之后，对于如下指标集，可通过不同采集方式获取：
 
-|默认采集 |   |  |  |    |
-| :----: | :------: | :------: | :---------------: | :-----------: |
-|  [CPU](default/cpu.md){ .md-button .md-button--primary }  | [Conntrack](default/conntrack.md){ .md-button .md-button--primary } | [DataKit](default/datakit.md){ .md-button .md-button--primary } |  [MEM](default/mem.md){ .md-button .md-button--primary }  |
-| [Disk](default/disk.md){ .md-button .md-button--primary } |    [DiskIO](default/diskio.md){ .md-button .md-button--primary }    |     [Net](default/net.md){ .md-button .md-button--primary }     | [Swap](default/swap.md){ .md-button .md-button--primary } | [System](default/system.md){ .md-button .md-button--primary } |
+<div class="grid cards" markdown>
 
+-   :material-table-column-plus-after:{ .lg .middle } __主机系统__
 
-|  **自定义开启**  |  |    |   |
-| :---------------------------------------------------------: | :---------------------------------------------------------: | :---------------------------------------------------------: | :-------------------------------------------------------------: |
-| [:octicons-file-directory-16: Directory](directory.md){ .md-button .md-button--primary } |      [:integrations-ebpf: eBPF](ebpf.md){ .md-button .md-button--primary }      | [:material-vector-square-plus: Processes](processes.md){ .md-button .md-button--primary } | [:material-security: Scheck(安全巡检)](scheck.md){ .md-button .md-button--primary } |
+    ---
 
+    |<font color="coral">默认采集</font> |   |  |  |    |
+    | :----: | :------: | :------: | :---------------: | :-----------: |
+    |  [CPU](default/cpu.md){ .md-button .md-button--primary }  | [Conntrack](default/conntrack.md){ .md-button .md-button--primary } | [DataKit](default/datakit.md){ .md-button .md-button--primary } |  [MEM](default/mem.md){ .md-button .md-button--primary }  |
+    | [Disk](default/disk.md){ .md-button .md-button--primary } |    [DiskIO](default/diskio.md){ .md-button .md-button--primary }    |     [Net](default/net.md){ .md-button .md-button--primary }     | [Swap](default/swap.md){ .md-button .md-button--primary } | [System](default/system.md){ .md-button .md-button--primary } |
+    |  <font color="coral">**自定义开启**</font>  |  |    |   |  |
+    | [:octicons-file-directory-16: Directory](directory.md){ .md-button .md-button--primary } |      [:integrations-ebpf: eBPF](ebpf.md){ .md-button .md-button--primary }      | [:material-vector-square-plus: Processes](processes.md){ .md-button .md-button--primary } | [:material-security: Scheck(安全巡检)](scheck.md){ .md-button .md-button--primary } | |
+    | <font color="coral">**Telegraf**</font>   |      |  |   |  |
+    |    [:material-clock-time-three-outline: Chrony](chrony.md){ .md-button .md-button--primary }    | [:material-dns-outline: DNS Query](dns-query.md){ .md-button .md-button--primary } |   [:integrations-ethtool: EthTool](ethtool.md){ .md-button .md-button--primary }   | [:octicons-arrow-switch-16: NetStat](netstat.md){ .md-button .md-button--primary }   |      [:material-timeline-clock-outline: NtpQ](ntpq.md){ .md-button .md-button--primary }      |
+    |[:material-camera-timer: ProcStat](procstat.md){ .md-button .md-button--primary }  |      |  |   |  |
 
-| **Telegraf**   |                                                             |                                                             |
-| :-------: | :---------------------------------------------------------: | :---------------------------------------------------------: |
-|    [:material-clock-time-three-outline: Chrony](chrony.md){ .md-button .md-button--primary }    | [:material-dns-outline: DNS Query](dns-query.md){ .md-button .md-button--primary } |   [:integrations-ethtool: EthTool](ethtool.md){ .md-button .md-button--primary }   |
-|   [:octicons-arrow-switch-16: NetStat](netstat.md){ .md-button .md-button--primary }   |      [:material-timeline-clock-outline: NtpQ](ntpq.md){ .md-button .md-button--primary }      |  [:material-camera-timer: ProcStat](procstat.md){ .md-button .md-button--primary }  | 
+</div>
 
 <br/>
 

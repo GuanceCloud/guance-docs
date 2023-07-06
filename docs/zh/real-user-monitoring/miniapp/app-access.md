@@ -2,50 +2,61 @@
 ---
 
 ## 更新日志
+
+2023.5.22
+
+- 新增启动小程序的 query 参数：`app_launch_query`；
+- 新增自定义添加 Error。
+
 2022.9.29
 
 - 初始化参数新增 `isIntakeUrl` 配置，用于根据请求资源 url 判断是否需要采集对应资源数据，默认都采集。 
 
 2022.3.29
 
--   新增  `traceType` 配置，配置链路追踪工具类型，如果不配置默认为`ddtrace`。目前支持 `ddtrace`、`zipkin`、`skywalking_v3`、`jaeger`、`zipkin_single_header`、`w3c_traceparent` 6种数据类型。
-- 新增 `allowedTracingOrigins` 允许注入 trace 采集器所需header头部的所有请求列表。可以是请求的origin，也可以是是正则。
+-  新增  `traceType` 配置，配置链路追踪工具类型，如果不配置默认为`ddtrace`。目前支持 `ddtrace`、`zipkin`、`skywalking_v3`、`jaeger`、`zipkin_single_header`、`w3c_traceparent` 6种数据类型。
+- 新增 `allowedTracingOrigins` 允许注入 trace 采集器所需header头部的所有请求列表。可以是请求的origin，也可以是正则。
 
   
 ## 简介
 
-观测云应用监测能够通过收集各个小程序应用的指标数据，通过引入sdk文件，监控小程序性能指标，错误log，以及资源请求情况数据，上报到DataFlux 平台，以可视化的方式分析各个小程序应用端的性能。
+观测云应用监测能够通过收集各个小程序应用的指标数据，通过引入sdk文件，监控小程序性能指标，错误log，以及资源请求情况数据，上报到观测云平台，以可视化的方式分析各个小程序应用端的性能。
 
 ## 前置条件
 
-- 安装 DataKit（[DataKit 安装文档](../../datakit/datakit-install.md)）
+- 安装 [DataKit](../../datakit/datakit-install.md)；  
+- 配置 [RUM 采集器](../../datakit/rum.md)；
+- DataKit 配置为[公网可访问，并且安装 IP 地理信息库](../../datakit/datakit-tools-how-to.md#install-ipdb)。
+
 ## 小程序应用接入
 
-登录观测云控制台，进入「用户访问监测」页面，点击右上角「新建应用」，在新窗口输入「应用名称」并自定义「应用 ID 标识」，点击「创建」，即可选择应用类型获取接入方式。
+登录观测云控制台，进入**用户访问监测**页面，点击左上角 **[新建应用](../index.md#create)**，即可开始创建一个新的应用。
 
-- 应用名称（必填项）：用于识别当前实施用户访问监测的应用名称。
-- 应用 ID（必填项）：应用在当前工作空间的唯一标识，用于 SDK 采集数据上传匹配，数据入库后对应字段：app_id 。该字段仅支持英文、数字、下划线输入，最多为 48 个字符。
-
-![](../img/13.rum_access_1.png)
+![](../img/6.rum_miniapp.gif)
 
 ## 使用方法
 
 ### 在小程序的app.js文件以如下方式引入代码
 
+**注意**：引入位置需要在 App() 初始化之前。
+
 === "NPM" 
 
-	引入(可参考微信官方[npm引入方式](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html))
+	NPM 包引入方式可参考微信官方 [npm引入方式](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html)
 	
 	```javascript
-	const { datafluxRum } = require('@cloudcare/rum-miniapp')
-	// 初始化 Rum
-	datafluxRum.init({
-		datakitOrigin: 'https://datakit.xxx.com/',// 必填，Datakit域名地址 需要在微信小程序管理后台加上域名白名单
-		applicationId: 'appid_xxxxxxx', // 必填，dataflux 平台生成的应用ID
-		env: 'testing', // 选填，小程序的环境
-		version: '1.0.0', // 选填，小程序版本
-		trackInteractions: true,
-	})
+    const { datafluxRum } = require('@cloudcare/rum-miniapp')
+    // 初始化 Rum
+    datafluxRum.init({
+      datakitOrigin: '<DATAKIT ORIGIN>',// 必填，Datakit域名地址 需要在微信小程序管理后台加上域名白名单
+      applicationId: '<应用 ID>', // 必填，dataflux 平台生成的应用ID
+      env: 'testing', // 选填，小程序的环境
+      version: '1.0.0', // 选填，小程序版本
+      service: 'miniapp', //当前应用的服务名称
+      trackInteractions: true,
+      traceType: 'ddtrace', // 非必填，默认为ddtrace，目前支持 ddtrace、zipkin、skywalking_v3、jaeger、zipkin_single_header、w3c_traceparent 6种类型
+      allowedTracingOrigins: ['https://api.example.com',/https:\/\/.*\.my-api-domain\.com/],  // 非必填，允许注入trace采集器所需header头部的所有请求列表。可以是请求的origin，也可以是是正则
+    })
 	```
 
 === "CDN" 
@@ -53,15 +64,18 @@
 	下载文件本地方式引入([下载地址](https://static.guance.com/miniapp-sdk/v2/dataflux-rum-miniapp.js))
 	
 	```javascript
-	const { datafluxRum } = require('./lib/dataflux-rum-miniapp.js')
-	// 初始化 Rum
-	datafluxRum.init({
-		datakitOrigin: 'https://datakit.xxx.com/',// 必填，Datakit域名地址 需要在微信小程序管理后台加上域名白名单
-		applicationId: 'appid_xxxxxxx', // 必填，dataflux 平台生成的应用ID
-		env: 'testing', // 选填，小程序的环境
-		version: '1.0.0', // 选填，小程序版本
-		trackInteractions: true,
-	})
+    const { datafluxRum } = require('./lib/dataflux-rum-miniapp.js')
+    // 初始化 Rum
+    datafluxRum.init({
+      datakitOrigin: '<DATAKIT ORIGIN>',// 必填，Datakit域名地址 需要在微信小程序管理后台加上域名白名单
+      applicationId: '<应用 ID>', // 必填，dataflux 平台生成的应用ID
+      env: 'testing', // 选填，小程序的环境
+      version: '1.0.0', // 选填，小程序版本
+      service: 'miniapp', //当前应用的服务名称
+      trackInteractions: true,
+      traceType: 'ddtrace', // 非必填，默认为ddtrace，目前支持 ddtrace、zipkin、skywalking_v3、jaeger、zipkin_single_header、w3c_traceparent 6种类型
+      allowedTracingOrigins: ['https://api.example.com',/https:\/\/.*\.my-api-domain\.com/],  // 非必填，允许注入trace采集器所需header头部的所有请求列表。可以是请求的origin，也可以是是正则
+    })
 	```
 
 ## 配置
@@ -70,10 +84,11 @@
 
 | 参数                            | 类型    | 是否必须 | 默认值    | 描述                                                         |
 | ------------------------------- | ------- | -------- | --------- | ------------------------------------------------------------ |
-| `applicationId`                 | String  | 是       |           | 从 dataflux 创建的应用 ID                                    |
+| `applicationId`                 | String  | 是       |           | 从观测云创建的应用 ID                                    |
 | `datakitOrigin`                 | String  | 是       |           | datakit 数据上报 Origin；`注意：需要在小程序管理后台加上request白名单` |
 | `env`                           | String  | 否       |           | 小程序 应用当前环境， 如 prod：线上环境；gray：灰度环境；pre：预发布环境 common：日常环境；local：本地环境； |
 | `version`                       | String  | 否       |           | 小程序 应用的版本号                                          |
+| `service` | String | 否 | | 当前应用的服务名称，默认为 `miniapp`，支持自定义配置。 |
 | `sampleRate`                    | Number  | 否       | `100`     | 指标数据收集百分比:`100`表示全收集，`0`表示不收集            |
 | `trackInteractions`             | Boolean | 否       | `false`   | 是否开启用户行为采集                                         |
 | `traceType`                    | Enum    | 否       | `ddtrace` | 配置链路追踪工具类型，如果不配置默认为`ddtrace`。目前支持 `ddtrace`、`zipkin`、`skywalking_v3`、`jaeger`、`zipkin_single_header`、`w3c_traceparent` 6种数据类型。注： `opentelemetry` 支持 `zipkin_single_header`,`w3c_traceparent`,`zipkin`、`jaeger`三种类型。<br><br>注意：配置相应类型的traceType 需要对相应的API服务 设置不同的 `Access-Control-Allow-Headers` 具体查看 [APM 如何关联 RUM ](../../application-performance-monitoring/collection/connect-web-app.md) |

@@ -1,0 +1,3 @@
+nav:
+  - index.md
+  - 'Build a Custom Log Explorer': custom-explorer.md

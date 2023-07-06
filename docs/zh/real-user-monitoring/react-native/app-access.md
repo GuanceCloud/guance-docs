@@ -7,14 +7,19 @@
 
 ## 应用接入
 
-当前 React Native 版本暂只支持 Android 和 iOS 平台。登录观测云控制台，进入「应用监测」页面，点击右上角「新建应用」，在新窗口输入「应用名称」，点击「创建」，然后相应接入的平台，即可开始配置。
+当前 React Native 版本暂只支持 Android 和 iOS 平台。登录观测云控制台，进入「用户访问监测」页面，点击左上角「新建应用」，即可开始创建一个新的应用。
+
+1.输入「应用名称」、「应用ID」，选择平台对应「应用类型」
+
+- 应用名称：用于识别当前用户访问监测的应用名称。
+- 应用 ID ：应用在当前工作空间的唯一标识，对应字段：app_id 。该字段仅支持英文、数字、下划线输入，最多 48 个字符。
 
 ![](../img/image_12.png)![](../img/image_13.png)
 
+## 安装
+![](https://img.shields.io/badge/dynamic/json?label=npm&color=orange&query=$.version&uri=https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/ft-sdk-package/badge/react-native/version.json&link=https://github.com/GuanceCloud/datakit-react-native) ![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/ft-sdk-package/badge/react-native/info.json&link=https://github.com/GuanceCloud/datakit-flutter)
 
-
-# 安装
-**源码地址**：[https://github.com/DataFlux-cn/datakit-react-native](https://github.com/DataFlux-cn/datakit-react-native)
+**源码地址**：[https://github.com/GuanceCloud/datakit-react-native](https://github.com/GuanceCloud/datakit-react-native)
 
 **Demo 地址**：[https://github.com/GuanceCloud/datakit-react-native/example](https://github.com/GuanceCloud/datakit-react-native/tree/dev/example)
 
@@ -28,7 +33,7 @@ npm install @cloudcare/react-native-mobile
 
 ```json
 "dependencies": {    
-   "@cloudcare/react-native-mobile: "^0.2.1",
+   "@cloudcare/react-native-mobile: [lastest_version],
    ···
 }
 ```
@@ -53,9 +58,9 @@ import {
 } from '@cloudcare/react-native-mobile';
 ```
 
-# SDK 初始化
+## SDK 初始化
 
-##  基础配置
+###  基础配置 {#base-setting}
 
 ```typescript
 let config: FTMobileConfig = {
@@ -67,43 +72,48 @@ FTMobileReactNative.sdkConfig(config)
 
 | **字段** | **类型** | **必须** | **说明** |
 | --- | --- | --- | --- |
-| serverUrl | string | 是 | 数据上报地址 |
-| useOAID | boolean | 否 | 是否使用 `OAID` 唯一识别，默认`false`,开启后替换 `deviceUUID` 进行使用 |
+| serverUrl | string | 是 | datakit 安装地址 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529。注意：安装 SDK 设备需能访问这地址 |
 | debug | boolean | 否 | 设置是否允许打印日志，默认`false` |
-| datakitUUID | string | 否 | 请求`HTTP`请求头`X-Datakit-UUID` 数据采集端  如果用户不设置会自动配置 |
 | envType | enum EnvType | 否 | 环境，默认`prod` |
 | globalContext | NSDictionary | 否 | [添加自定义标签](#user-global-context ) |
+| service | string | 否 | 设置所属业务或服务的名称，影响 Log 和 RUM 中 service 字段数据。默认：`df_rum_ios`、`df_rum_android` |
 
-## RUM 配置
+### RUM 配置 {#rum-config}
 
 ```typescript
 let rumConfig: FTRUMConfig = {
-      rumAppId: rumid,
-      monitorType: MonitorType.all,
-      enableAutoTrackUserAction:true,
-      enableAutoTrackError:true,
-      enableNativeUserAction: false,
-      enableNativeUserView: false,
-      enableNativeUserResource: true, // 开启后、能同时采集 React Native 与 原生部分 
-    }; 
+    androidAppId: Config.ANDROID_APP_ID,
+    iOSAppId:Config.IOS_APP_ID,
+    enableAutoTrackUserAction: true,
+    enableAutoTrackError: true,
+    enableNativeUserAction: true,
+    enableNativeUserView: false,
+    enableNativeUserResource: true,
+    errorMonitorType:ErrorMonitorType.all,
+    deviceMonitorType:DeviceMetricsMonitorType.all,
+    detectFrequency:DetectFrequency.rare
+  };
 
 FTReactNativeRUM.setConfig(rumConfig);
 ```
 
 | **字段** | **类型** | **必须** | **说明** |
 | --- | --- | --- | --- |
-| rumAppId | string | 是 | appId，监测中申请 |
+| androidAppId | string | 是 | app_id，应用访问监测控制台申请 |
+| iOSAppId | string | 是 | app_id，应用访问监测控制台申请 |
 | sampleRate | number | 否 | 采样率，（采集率的值范围为>= 0、<= 1，默认值为 1） |
 | enableAutoTrackUserAction | boolean | 否 | 是否自动采集 `React Native` 控件点击事件，开启后可配合  `accessibilityLabel`设置actionName |
 | enableAutoTrackError | boolean | 否 | 是否自动采集 `React Native` Error |
 | enableNativeUserAction | boolean | 否 | 是否进行 `Native Action` 追踪，`Button` 点击事件，纯 `React Native` 应用建议关闭，默认为 `false` |
 | enableNativeUserView | boolean | 否 | 是否进行 `Native View` 自动追踪，纯 `React Native` 应用建议关闭，，默认为 `false` |
 | enableNativeUserResource | boolean | 否 | 是否开始 `Native Resource`自动追踪，由于 React-Native 的网络请求在 iOS、Android 端是使用系统 API 实现的，所以开启 enableNativeUserResource 后，所有 resource 数据能够一并采集。 |
-| monitorType | enum MonitorType | 否 | 监控补充类型 |
+| errorMonitorType |enum ErrorMonitorType | 否 | 错误事件监控补充类型 |
+| deviceMonitorType | enum DeviceMetricsMonitorType | 否 | 视图的性能监控类型                                           |
+| detectFrequency | enum DetectFrequency | 否 | 视图的性能监控采样周期 |
 | globalContext | object | 否 | [添加自定义标签](#user-global-context) |
 
 
-## Log 配置
+### Log 配置 {#log-config}
 
 ```typescript
 let logConfig: FTLogConfig = {
@@ -116,14 +126,13 @@ FTReactNativeLog.logConfig(logConfig);
 | **字段** | **类型** | **必须** | **说明** |
 | --- | --- | --- | --- |
 | sampleRate | number | 否 | 采样率，采集率的值范围为>= 0、<= 1，默认值为 1 |
-| serviceName | string | 否 | 服务名 |
 | enableLinkRumData | boolean | 否 | 是否与 `RUM` 关联 |
 | enableCustomLog | boolean | 否 | 是否开启自定义日志 |
 | discardStrategy | enum FTLogCacheDiscard | 否 | 日志丢弃策略，默认`FTLogCacheDiscard.discard` |
 | logLevelFilters | Array<FTLogStatus> | 否 | 日志等级过滤 |
 | globalContext | NSDictionary | 否 | [添加自定义标签](#user-global-context) |
 
-## Trace 配置
+### Trace 配置 {#trace-config}
 
 ```typescript
  let traceConfig: FTTractConfig = {
@@ -136,39 +145,117 @@ FTReactNativeLog.logConfig(logConfig);
 | **字段** | **类型** | **必须** | **说明** |
 | --- | --- | --- | --- |
 | sampleRate | number | 否 | 采样率，采集率的值范围为>= 0、<= 1，默认值为 1 |
-| serviceName | string | 否 | 服务名 |
 | traceType | enum TraceType | 否 | 链路类型，默认`TraceType.zipkin` |
 | enableLinkRUMData | boolean | 否 | 是否与 `RUM` 数据关联，默认`false` |
 | enableNativeAutoTrace | boolean | 否 | 是否开启原生网络网络自动追踪 iOS NSURLSession ,Android OKhttp(由于 `React Native`的网络请求在 iOS、Android 端是使用系统 API 实现的，所以开启 `enableNativeAutoTrace` 后，所有 `React Native` 数据能够一并追踪。） |
-| globalContext | NSDictionary | 否 | [添加自定义标签](#user-global-context) |
 
-# RUM 用户数据追踪
+## RUM 用户数据追踪
 
-## Action
+SDK 提供 **自动采集** 和 **用户自定义采集** 两种采集方式追踪 **View** 、 **Action** 、 **Error** 、 **Resource** 四种类型的用户数据。
+
+### 自动采集
+
+在 SDK 初始化 [RUM 配置](#rum-config) 时可开启自动采集 **Error** 、 **Resource** 、 **Action** （`React Native` 控件、`Native`控件）、 **View** （`Native View`）。
+
+如果您在 React Native 中使用 `react-native-navigation ` 或 `react-navigation ` 导航组件，可以参考下面方式进行 `React Native View`  的自动采集：
+
+* **react-native-navigation**
+
+  将 example 中 [FTRumReactNavigationTracking.tsx](https://github.com/GuanceCloud/datakit-react-native/blob/dev/example/src/FTRumReactNativeNavigationTracking.tsx) 文件拖入您的工程；
+
+  调用 `FTRumReactNativeNavigationTracking.startTracking()` 方法，开启采集。
+
+  ```typescript
+  import { FTRumReactNativeNavigationTracking } from './FTRumReactNativeNavigationTracking';
+
+  function startReactNativeNavigation() {
+    FTRumReactNativeNavigationTracking.startTracking();
+    registerScreens();//Navigation registerComponent
+    Navigation.events().registerAppLaunchedListener( async () => {
+      await Navigation.setRoot({
+        root: {
+          stack: {
+            children: [
+              { component: { name: 'Home' } },
+            ],
+          },
+        },
+      });
+    });
+  }
+  ```
+
+* **react-navigation**
+
+  将 example 中 [FTRumReactNavigationTracking.tsx](https://github.com/GuanceCloud/datakit-react-native/blob/dev/example/src/FTRumReactNavigationTracking.tsx) 文件拖入您的工程；
+
+  * 方法一：
+
+    如果有使用 `createNativeStackNavigator();` 创建原生导航堆栈，
+
+    建议采用添加 screenListeners 方式开启采集， 这样可以统计到页面的加载时长，具体使用如下：
+
+    ```typescript
+    import {FTRumReactNavigationTracking} from './FTRumReactNavigationTracking';
+    import { createNativeStackNavigator } from '@react-navigation/native-stack';
+    const Stack = createNativeStackNavigator();
+
+    <Stack.Navigator   screenListeners={FTRumReactNavigationTracking.StackListener} initialRouteName='Home'>
+            <Stack.Screen name='Home' component={Home}  options={{ headerShown: false }} />
+            ......
+            <Stack.Screen name="Mine" component={Mine} options={{ title: 'Mine' }}/>
+     </Stack.Navigator>
+    ```
+
+  * 方法二：
+
+    如果没有使用 `createNativeStackNavigator();` 需要在 NavigationContainer 组件中进行开启采集，如下
+
+    ```typescript
+    import {FTRumReactNavigationTracking} from './FTRumReactNavigationTracking';
+    import type { NavigationContainerRef } from '@react-navigation/native';
+
+    const navigationRef: React.RefObject<NavigationContainerRef<ReactNavigation.RootParamList>> = React.createRef();
+    <NavigationContainer ref={navigationRef} onReady={() => {
+          FTRumReactNavigationTracking.startTrackingViews(navigationRef.current);
+        }}>
+          <Stack.Navigator initialRouteName='Home'>
+            <Stack.Screen name='Home' component={Home}  options={{ headerShown: false }} />
+            .....
+            <Stack.Screen name="Mine" component={Mine} options={{ title: 'Mine' }}/>
+          </Stack.Navigator>
+     </NavigationContainer>
+    ```
+
+具体使用示例可以参考 [example](https://github.com/GuanceCloud/datakit-react-native/tree/dev/example)。
+
+### 用户自定义采集
+
+通过 `FTReactNativeRUM` 类，进行传入，相关 API 如下。
+
+#### View {#rumview}
 
 ```typescript
-FTReactNativeRUM.startAction('actionName','actionType');
-```
+FTReactNativeRUM.onCreateView("RUM",duration);
 
-开启自动采集后可通过 `accessibilityLabel`设置 `actionName`。
-
-## View
-
-```typescript
 FTReactNativeRUM.startView("RUM");
 
 FTReactNativeRUM.stopView();
 ```
 
-使用 `react-native-navigation` 库与 `@react-navigation` 库，可参考 [example](https://github.com/DataFlux-cn/datakit-react-native)。
+#### Action
 
-## Error
+```typescript
+FTReactNativeRUM.startAction('actionName','actionType');
+```
+
+#### Error
 
 ```typescript
 FTReactNativeRUM.addError("error stack","error message");
 ```
 
-## Resource
+#### Resource
 
 ```typescript
 //自己采集 
@@ -202,13 +289,15 @@ async getHttp(url:string){
       }
 ```
 
-# Logger 日志打印 
+
+
+##  Logger 日志打印 
 
 ```typescript
 FTReactNativeLog.logging("info log content",FTLogStatus.info);
 ```
 
-## 日志等级
+### 日志等级
 
 | **方法名** | **含义** |
 | --- | --- |
@@ -218,7 +307,9 @@ FTReactNativeLog.logging("info log content",FTLogStatus.info);
 | FTLogStatus.critical | 严重 |
 | FTLogStatus.ok | 恢复 |
 
-# Tracer 网络链路追踪
+## Tracer 网络链路追踪
+
+SDK 初始化 [Trace 配置](#trace-config) 时可以开启自动网络链路追踪，也支持用户自定义采集，自定义采集使用示例如下：
 
 ```typescript
   async getHttp(url:string){
@@ -238,17 +329,17 @@ FTReactNativeLog.logging("info log content",FTLogStatus.info);
   }
 ```
 
-# 用户信息绑定与解绑
+## 用户信息绑定与解绑
 
 ```typescript
-FTMobileReactNative.bindRUMUserData('react-native-user')
+FTMobileReactNative.bindRUMUserData('react-native-user','uesr_name')
 
 FTMobileReactNative.unbindRUMUserData()
 ```
 
-# 添加自定义标签 {#user-global-context}
+## 添加自定义标签 {#user-global-context}
 
-## 静态使用
+### 静态使用
 
 1. 使用 `react-native-config`配置多环境，在不同的环境中设置对应的自定义标签值。
 
@@ -270,7 +361,7 @@ let rumConfig: FTRUMConfig = {
 });
 ```
 
-## 动态使用
+### 动态使用
 
 1. 通过数据持久化方式，如 `AsyncStorage`等，在初始化 SDK 时，获取存储的自定义标签。
 
@@ -315,9 +406,9 @@ AsyncStorage.setItem("track_id",valueString,(error)=>{
 > 注意：
 > 
 > 1. 特殊 key : track_id (在 RUM 中配置，用于追踪功能) 
-> 1. 当用户通过 globalContext 添加自定义标签与 SDK 自有标签相同时，SDK 的标签会覆盖用户设置的，建议标签命名添加项目缩写的前缀，例如 `df_tag_name`。项目中使用 `key` 值可[查询源码](https://github.com/DataFlux-cn/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java)。
+> 1. 当用户通过 globalContext 添加自定义标签与 SDK 自有标签相同时，SDK 的标签会覆盖用户设置的，建议标签命名添加项目缩写的前缀，例如 `df_tag_name`。项目中使用 `key` 值可[查询源码](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java)。
 
-# 常见问题
+## 常见问题
 
 - [iOS 相关](../ios/app-access.md#FAQ)
 - [Android 相关](../android/app-access.md#FAQ)

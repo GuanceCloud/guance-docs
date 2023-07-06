@@ -1,8 +1,46 @@
 
 # 如何排查无数据问题
+
 ---
 
 大家在部署完数据采集之后（通过 DataKit 或 Function 采集），有时候在观测云的页面上看不到对应的数据更新，每次排查起来都心力憔悴，为了缓解这一状况，可按照如下的一些步骤，来逐步围歼「为啥没有数据」这一问题。
+
+## 调试采集器配置 {#check-input-conf}
+
+[:octicons-tag-24: Version-1.9.0](changelog.md#cl-1.9.0)
+
+我们可以通过命令行来调试采集器是否能正常采集到数据，如调试磁盘采集器：
+
+``` shell
+$ datakit debug --input-conf /usr/local/datakit/conf.d/host/disk.conf
+loading /Users/tanbiao/datakit/conf.d/host/disk.conf with 1 inputs...
+running input "disk"(0th)...
+disk,device=/dev/disk3s1s1,fstype=apfs free=167050518528i,inodes_free=1631352720i,inodes_free_mb=1631i,inodes_total=1631702195i,inodes_total_mb=1631i,inodes_used=349475i,inodes_used_mb=0i,inodes_used_percent=0.02141781760611041,total=494384795648i,used=327334277120i,used_percent=66.21042556354438 1685509141064064000
+disk,device=/dev/disk3s6,fstype=apfs free=167050518528i,inodes_free=1631352720i,inodes_free_mb=1631i,inodes_total=1631352732i,inodes_total_mb=1631i,inodes_used=12i,inodes_used_mb=0i,inodes_used_percent=0.0000007355858585707753,total=494384795648i,used=327334277120i,used_percent=66.21042556354438 1685509141064243000
+disk,device=/dev/disk3s2,fstype=apfs free=167050518528i,inodes_free=1631352720i,inodes_free_mb=1631i,inodes_total=1631353840i,inodes_total_mb=1631i,inodes_used=1120i,inodes_used_mb=0i,inodes_used_percent=0.00006865463350366712,total=494384795648i,used=327334277120i,used_percent=66.21042556354438 1685509141064254000
+disk,device=/dev/disk3s4,fstype=apfs free=167050518528i,inodes_free=1631352720i,inodes_free_mb=1631i,inodes_total=1631352837i,inodes_total_mb=1631i,inodes_used=117i,inodes_used_mb=0i,inodes_used_percent=0.000007171961659450622,total=494384795648i,used=327334277120i,used_percent=66.21042556354438 1685509141064260000
+disk,device=/dev/disk1s2,fstype=apfs free=503996416i,inodes_free=4921840i,inodes_free_mb=4i,inodes_total=4921841i,inodes_total_mb=4i,inodes_used=1i,inodes_used_mb=0i,inodes_used_percent=0.00002031760067015574,total=524288000i,used=20291584i,used_percent=3.8703125 1685509141064266000
+disk,device=/dev/disk1s1,fstype=apfs free=503996416i,inodes_free=4921840i,inodes_free_mb=4i,inodes_total=4921873i,inodes_total_mb=4i,inodes_used=33i,inodes_used_mb=0i,inodes_used_percent=0.000670476462923769,total=524288000i,used=20291584i,used_percent=3.8703125 1685509141064271000
+disk,device=/dev/disk1s3,fstype=apfs free=503996416i,inodes_free=4921840i,inodes_free_mb=4i,inodes_total=4921892i,inodes_total_mb=4i,inodes_used=52i,inodes_used_mb=0i,inodes_used_percent=0.0010565042873756677,total=524288000i,used=20291584i,used_percent=3.8703125 1685509141064276000
+disk,device=/dev/disk3s5,fstype=apfs free=167050518528i,inodes_free=1631352720i,inodes_free_mb=1631i,inodes_total=1634318356i,inodes_total_mb=1634i,inodes_used=2965636i,inodes_used_mb=2i,inodes_used_percent=0.18146011694186712,total=494384795648i,used=327334277120i,used_percent=66.21042556354438 1685509141064280000
+disk,device=/dev/disk2s1,fstype=apfs free=3697000448i,inodes_free=36103520i,inodes_free_mb=36i,inodes_total=36103578i,inodes_total_mb=36i,inodes_used=58i,inodes_used_mb=0i,inodes_used_percent=0.00016064889745830732,total=5368664064i,used=1671663616i,used_percent=31.137422570532436 1685509141064285000
+disk,device=/dev/disk3s1,fstype=apfs free=167050518528i,inodes_free=1631352720i,inodes_free_mb=1631i,inodes_total=1631702197i,inodes_total_mb=1631i,inodes_used=349477i,inodes_used_mb=0i,inodes_used_percent=0.0214179401512444,total=494384795648i,used=327334277120i,used_percent=66.21042556354438 1685509141064289000
+# 10 points("M") from disk, cost 1.544792ms | Ctrl+c to exit.
+```
+
+该命令会启动采集器，并将采集器采集到的数据在终端打印出来。底部会显示：
+
+- 采集的点数以及其类型（此处 `M` 表示时序数据）
+- 采集器名称（此处为 `disk`）
+- 采集耗时
+
+用 Ctrl + c 可以结束调试。为了尽快得到采集的数据，可以适当调整采集器的采集间隔（如果有）。
+
+<!-- markdownlint-disable MD046 -->
+???+ attention
+
+    部分被动接收数据的采集器（比如 DDTrace/RUM）需要指定 HTTP 服务（`--hppt-listen=[IP:Port]`），然后通过一些 HTTP 客户端工具（比如 `curl`）将数据发送给 Datakit 对应地址。详见 `datakit help debug` 帮助。
+<!-- markdownlint-enable -->
 
 ## 检查 DataWay 连接是否正常 {#check-connection}
 
@@ -18,7 +56,7 @@ curl https://openway.guance.com
 
 如果得到如下结果，则表示网络是有问题的：
 
-```
+```shell
 curl: (6) Could not resolve host: openway.guance.com
 ```
 
@@ -39,7 +77,7 @@ Wed Jul 21 16:22:32 CST 2021
 
 有些情况下，这里可能显示成这样：
 
-```
+```shell
 Wed Jul 21 08:22:32 UTC 2021
 ```
 
@@ -53,7 +91,7 @@ Wed Jul 21 08:22:32 UTC 2021
 
 如果配置了[黑名单](datakit-filter.md)（如日志黑名单），新采集的数据可能会被黑名单过滤掉。
 
-同理，如果 Pipeline 中对数据进行了一些[丢弃操作](../developers/pipeline.md#fn-drop)，那么也可能导致中心看不到这些数据。
+同理，如果 Pipeline 中对数据进行了一些[丢弃操作](../developers/pipeline/pipeline-built-in-function.md#fn-drop)，那么也可能导致中心看不到这些数据。
 
 ## 查看 Monitor 页面 {#monitor}
 
@@ -63,11 +101,11 @@ Wed Jul 21 08:22:32 UTC 2021
 
 在 Windows/Linux/Mac 上，这一功能均支持，其中 Windows 需在 Powershell 中执行
 
-> DataKit [1.1.7-rc7](changelog.md#cl-1.1.7-rc7) 才支持这一功能
+> Datakit [1.1.7-rc7](changelog.md#cl-1.1.7-rc7) 才支持这一功能
 
 ```shell
 datakit dql
-> 这里即可输入 DQL 查询语句...
+> 这里即可输入 DQL 查询语句 ...
 ```
 
 对于无数据排查，建议对照着采集器文档，看对应的指标集叫什么名字，以 MySQL 采集器为例，目前文档中有如下几个指标集：
@@ -99,9 +137,9 @@ O::HOST {host='tan-air.local'}
 show_tracing_service()
 ```
 
-以此类推，如果数据确实上报了，那么通过 DQL 总能找到，至于前端不显示，可能是其它过滤条件给挡掉了。通过 DQL，不管是 DataKit 采集的数据，还是其它手段（如 Function）采集的数据，都可以零距离查看原式数据，特别便于 Debug。
+以此类推，如果数据确实上报了，那么通过 DQL 总能找到，至于前端不显示，可能是其它过滤条件给挡掉了。通过 DQL，不管是 Datakit 采集的数据，还是其它手段（如 Function）采集的数据，都可以零距离查看原式数据，特别便于 Debug。
 
-## 查看 DataKit 程序日志是否有异常 {#check-log}
+## 查看 Datakit 程序日志是否有异常 {#check-log}
 
 通过 Shell/Powershell 给出最近 10 个 ERROR, WARN 级别的日志
 
@@ -130,12 +168,12 @@ Get-Content -Path "C:\Program Files\datakit\log" -Wait | Select-String "<采集�
 
 也可以去掉 `ERROR/WARN` 等过滤，直接查看对应采集器日志。如果日志不够，可将 `datakit.conf` 中的调试日志打开，查看更多日志：
 
-```
+```toml
 # DataKit >= 1.1.8-rc0
 [logging]
-	...
-	level = "debug" # 将默认的 info 改为 debug
-	...
+    ...
+    level = "debug" # 将默认的 info 改为 debug
+    ...
 
 # DataKit < 1.1.8-rc0
 log_level = "debug"
@@ -148,3 +186,98 @@ log_level = "debug"
 ```shell
 tail -f /var/log/datakit/gin.log
 ```
+
+## 上传 DataKit 运行日志 {#upload-log}
+
+> Deprecated: 请使用 [Bug-Report 功能](why-no-data.md#bug-report)来代替。
+
+排查 DataKit 问题时，通常需要检查 DataKit 运行日志，为了简化日志搜集过程，DataKit 支持一键上传日志文件：
+
+```shell
+datakit debug --upload-log
+log info: path/to/tkn_xxxxx/your-hostname/datakit-log-2021-11-08-1636340937.zip # 将这个路径信息发送给我们工程师即可
+```
+
+运行命令后，会将日志目录下的所有日志文件进行打包压缩，然后上传至指定的存储。我们的工程师会根据上传日志的主机名以及 Token 传找到对应文件，进而排查 DataKit 问题。
+
+## 收集 DataKit 运行信息 {#bug-report}
+
+[:octicons-tag-24: Version-1.5.9](changelog.md#cl-1.5.9) · [:octicons-beaker-24: Experimental](index.md#experimental)
+
+在排查 DataKit 故障原因时，需要手动收集各种相关信息（如日志、配置文件和监控数据等），这通常比较繁琐。为了简化这个过程，DataKit 提供了一个命令，可以一次性获取所有相关信息并将其打包到一个文件中。使用方式如下：
+
+```shell
+datakit debug --bug-report
+```
+
+执行成功后，在当前目录下生成一个 zip 文件，命名格式为 `info-<时间戳毫秒数>.zip`。
+
+解压后的文件列表参考如下：
+
+```shell
+├── config
+│   ├── container
+│   │   └── container.conf.copy
+│   ├── datakit.conf.copy
+│   ├── db
+│   │   ├── kafka.conf.copy
+│   │   ├── mysql.conf.copy
+│   │   └── sqlserver.conf.copy
+│   ├── host
+│   │   ├── cpu.conf.copy
+│   │   ├── disk.conf.copy
+│   │   └── system.conf.copy
+│   ├── network
+│   │   └── dialtesting.conf.copy
+│   ├── profile
+│   │   └── profile.conf.copy
+│   ├── pythond
+│   │   └── pythond.conf.copy
+│   └── rum
+│       └── rum.conf.copy
+├── env.txt
+├── metrics 
+│   ├── metric-1680513455403 
+│   ├── metric-1680513460410
+│   └── metric-1680513465416 
+├── log
+│   ├── gin.log
+│   └── log
+├── syslog
+│   └── syslog-1680513475416
+└── profile
+    ├── allocs
+    ├── heap
+    └── profile
+```
+
+文件说明
+
+| 文件名称  | 是否目录 | 说明                                                                                                    |
+| ---:      | ---:     | ---:                                                                                                    |
+| `config`  | 是       | 配置文件，包括主配置和已开启的采集器配置                                                                |
+| `env.txt` | 否       | 运行环境的环境变量信息                                                                                  |
+| `log`     | 是       | 最新的日志文件，包括 log 和 gin log，暂不支持 `stdout`                                                  |
+| `profile` | 是       | pprof 开启时（[:octicons-tag-24: Version-1.9.2](changelog.md#cl-1.9.2)已默认开启），会采集 profile 数据 |
+| `metrics` | 是       | `/metrics` 接口返回的数据，命名格式为 `metric-<时间戳毫秒数>`                                           |
+| `syslog`  | 是       | 仅支持 `linux`, 基于 `journalctl` 来获取相关日志                                                        |
+
+### 敏感信息处理 {#sensitive}
+
+信息收集时，敏感信息（如 token、密码等）会被自动过滤替换，具体规则如下：
+
+- 环境变量
+
+只获取以 `ENV_` 开头的环境变量，且对环境变量名称中包含 `password`, `token`, `key`, `key_pw`, `secret` 的环境变量进行脱敏处理，替换为 `******`
+
+- 配置文件
+
+配置文件内容进行正则替换处理，如：
+
+``` not-set
+https://openway.guance.com?token=tkn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx` => `https://openway.guance.com?token=******
+pass = "1111111"` => `pass = "******"
+postgres://postgres:123456@localhost/test` => `postgres://postgres:******@localhost/test
+```
+
+经过上述处理，能够去除绝大部分敏感信息。尽管如此，如果导出的文件还存在敏感信息，可以手动将敏感信息移除，请务必确认。

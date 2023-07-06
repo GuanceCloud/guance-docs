@@ -1,12 +1,13 @@
 
 # RabbitMQ
+
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](index.md#legends "支持选举")
 
 ---
 
-RabbitMQ 采集器是通过插件 `rabbitmq-management` 采集数据监控 RabbitMQ ,它能够：
+RabbitMQ 采集器是通过插件 `rabbitmq-management` 采集数据监控 RabbitMQ，它能够：
 
 - RabbitMQ overview 总览，比如连接数、队列数、消息总数等
 - 跟踪 RabbitMQ queue 信息，比如队列大小，消费者计数等
@@ -15,7 +16,11 @@ RabbitMQ 采集器是通过插件 `rabbitmq-management` 采集数据监控 Rabbi
 
 ## 前置条件 {#reqirement}
 
-- RabbitMQ 版本 >= 3.8.14
+- RabbitMQ 版本 >= `3.8.14`; 已测试的版本：
+    - [x] 3.11.x
+    - [x] 3.10.x
+    - [x] 3.9.x
+    - [x] 3.8.x
 
 - 安装 `rabbitmq` 以 `Ubuntu` 为例
 
@@ -41,9 +46,10 @@ RabbitMQ 采集器是通过插件 `rabbitmq-management` 采集数据监控 Rabbi
 
 ## 配置 {#config}
 
+<!-- markdownlint-disable MD046 -->
 === "主机安装"
 
-    进入 DataKit 安装目录下的 `conf.d/rabbitmq` 目录，复制 `rabbitmq.conf.sample` 并命名为 `rabbitmq.conf`。示例如下：
+    进入 DataKit 安装目录下的 *conf.d/rabbitmq* 目录，复制 `rabbitmq.conf.sample` 并命名为 `rabbitmq.conf`。示例如下：
     
     ```toml
         
@@ -88,6 +94,7 @@ RabbitMQ 采集器是通过插件 `rabbitmq-management` 采集数据监控 Rabbi
 === "Kubernetes"
 
     目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+<!-- markdownlint-enable -->
 
 ## 指标集 {#measurements}
 
@@ -104,19 +111,20 @@ RabbitMQ 采集器是通过插件 `rabbitmq-management` 采集数据监控 Rabbi
 
 ### `rabbitmq_overview`
 
--  标签
+- 标签
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
-|`cluster_name`|rabbitmq cluster name|
-|`rabbitmq_version`|rabbitmq version|
-|`url`|rabbitmq url|
+|`cluster_name`|RabbitMQ cluster name|
+|`host`|Hostname of RabbitMQ running on.|
+|`rabbitmq_version`|RabbitMQ version|
+|`url`|RabbitMQ url|
 
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`message_ack_count`|Number of messages delivered to clients and acknowledged|int|count|
 |`message_ack_rate`|Rate of messages delivered to clients and acknowledged per second|float|percent|
@@ -149,26 +157,26 @@ RabbitMQ 采集器是通过插件 `rabbitmq-management` 采集数据监控 Rabbi
 
 ### `rabbitmq_queue`
 
--  标签
+- 标签
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
-|`node_name`|rabbitmq node name|
-|`queue_name`|rabbitmq queue name|
-|`url`|rabbitmq url|
+|`host`|Hostname of RabbitMQ running on.|
+|`node_name`|RabbitMQ node name|
+|`queue_name`|RabbitMQ queue name|
+|`url`|RabbitMQ host URL|
 
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`bindings_count`|Number of bindings for a specific queue|int|count|
-|`consumer_utilization`|Number of consumers|float|percent|
-|`consumers`|The ratio of time that a queue's consumers can take new messages|int|count|
+|`consumer_utilization`|The ratio of time that a queue's consumers can take new messages|float|percent|
+|`consumers`|Number of consumers|int|count|
 |`head_message_timestamp`|Timestamp of the head message of the queue. Shown as millisecond|int|msec|
 |`memory`|Bytes of memory consumed by the Erlang process associated with the queue, including stack, heap and internal structures|int|B|
-|`message`|Count of the total messages in the queue|int|count|
 |`message_ack_count`|Number of messages in queues delivered to clients and acknowledged|int|count|
 |`message_ack_rate`|Number per second of messages delivered to clients and acknowledged|float|percent|
 |`message_deliver_count`|Count of messages delivered in acknowledgement mode to consumers|int|count|
@@ -179,6 +187,7 @@ RabbitMQ 采集器是通过插件 `rabbitmq-management` 采集数据监控 Rabbi
 |`message_publish_rate`|Rate per second of messages published|float|percent|
 |`message_redeliver_count`|Count of subset of messages in queues in deliver_get which had the redelivered flag set|int|count|
 |`message_redeliver_rate`|Rate per second of subset of messages in deliver_get which had the redelivered flag set|float|percent|
+|`messages`|Count of the total messages in the queue|int|count|
 |`messages_rate`|Count per second of the total messages in the queue|float|percent|
 |`messages_ready`|Number of messages ready to be delivered to clients|int|count|
 |`messages_ready_rate`|Number per second of messages ready to be delivered to clients|float|percent|
@@ -189,23 +198,24 @@ RabbitMQ 采集器是通过插件 `rabbitmq-management` 采集数据监控 Rabbi
 
 ### `rabbitmq_exchange`
 
--  标签
+- 标签
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
 |`auto_delete`|If set, the exchange is deleted when all queues have finished using it|
 |`durable`|If set when creating a new exchange, the exchange will be marked as durable. Durable exchanges remain active when a server restarts. Non-durable exchanges (transient exchanges) are purged if/when a server restarts.|
-|`exchange_name`|rabbitmq exchange name|
+|`exchange_name`|RabbitMQ exchange name|
+|`host`|Hostname of RabbitMQ running on.|
 |`internal`|If set, the exchange may not be used directly by publishers, but only when bound to other exchanges. Internal exchanges are used to construct wiring that is not visible to applications|
-|`type`|rabbitmq exchange type|
-|`url`|rabbitmq url|
-|`vhost`|rabbitmq exchange virtual hosts|
+|`type`|RabbitMQ exchange type|
+|`url`|RabbitMQ host URL|
+|`vhost`|RabbitMQ exchange virtual hosts|
 
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`message_ack_count`|Number of messages in exchanges delivered to clients and acknowledged|int|count|
 |`message_ack_rate`|Rate of messages in exchanges delivered to clients and acknowledged per second|float|percent|
@@ -221,25 +231,26 @@ RabbitMQ 采集器是通过插件 `rabbitmq-management` 采集数据监控 Rabbi
 |`message_publish_rate`|Rate of messages in exchanges published per second|float|percent|
 |`message_redeliver_count`|Count of subset of messages in exchanges in deliver_get which had the redelivered flag set|int|count|
 |`message_redeliver_rate`|Rate of subset of messages in exchanges in deliver_get which had the redelivered flag set per second|float|percent|
-|`message_return_unroutable_count`|Count of messages in exchanges returned to publisher as unroutable|int|count|
-|`message_return_unroutable_count_rate`|Rate of messages in exchanges returned to publisher as unroutable per second|float|percent|
+|`message_return_unroutable_count`|Count of messages in exchanges returned to publisher as un-routable|int|count|
+|`message_return_unroutable_count_rate`|Rate of messages in exchanges returned to publisher as un-routable per second|float|percent|
 
 
 
 ### `rabbitmq_node`
 
--  标签
+- 标签
 
 
-| 标签名 | 描述    |
+| Tag | Description |
 |  ----  | --------|
-|`node_name`|rabbitmq node name|
-|`url`|rabbitmq url|
+|`host`|Hostname of RabbitMQ running on.|
+|`node_name`|RabbitMQ node name|
+|`url`|RabbitMQ url|
 
 - 指标列表
 
 
-| 指标 | 描述| 数据类型 | 单位   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`disk_free`|Current free disk space|int|B|
 |`disk_free_alarm`|Does the node have disk alarm|bool|-|
@@ -257,32 +268,32 @@ RabbitMQ 采集器是通过插件 `rabbitmq-management` 采集数据监控 Rabbi
 
 
 
-
 ## 日志采集 {#logging}
 
+<!-- markdownlint-disable MD046 -->
 ???+ attention
 
     必须将 DataKit 安装在 RabbitMQ 所在主机才能采集 RabbitMQ 日志
+<!-- markdownlint-enable -->
 
-如需采集 RabbitMQ 的日志，可在 rabbitmq.conf 中 将 `files` 打开，并写入 RabbitMQ 日志文件的绝对路径。比如：
+如需采集 RabbitMQ 的日志，可在 *rabbitmq.conf* 中 将 `files` 打开，并写入 RabbitMQ 日志文件的绝对路径。比如：
 
 ```toml
-    [[inputs.rabbitmq]]
-      ...
-      [inputs.rabbitmq.log]
-        files = ["/var/log/rabbitmq/rabbit@your-hostname.log"]
+[[inputs.rabbitmq]]
+  ...
+  [inputs.rabbitmq.log]
+    files = ["/var/log/rabbitmq/rabbit@your-hostname.log"]
 ```
-
 
 开启日志采集以后，默认会产生日志来源（`source`）为 `rabbitmq` 的日志。
 
-## 日志 pipeline 功能切割字段说明 {#pipeline}
+## 日志 Pipeline 功能切割字段说明 {#pipeline}
 
 - RabbitMQ 通用日志切割
 
-通用日志文本示例:
+通用日志文本示例：
 
-```
+``` log
 2021-05-26 14:20:06.105 [warning] <0.12897.46> rabbitmqctl node_health_check and its HTTP API counterpart are DEPRECATED. See https://www.rabbitmq.com/monitoring.html#health-checks for replacement options.
 ```
 
