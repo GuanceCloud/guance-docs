@@ -53,8 +53,12 @@ import {
   FTLogConfig,
   FTTraceConfig,
   FTRUMConfig,
-  MonitorType,
-  TraceType
+  ErrorMonitorType,
+  DeviceMetricsMonitorType,
+  DetectFrequency,
+  TraceType,
+  FTLogStatus,
+  EnvType,
 } from '@cloudcare/react-native-mobile';
 ```
 
@@ -74,7 +78,7 @@ FTMobileReactNative.sdkConfig(config)
 | --- | --- | --- | --- |
 | serverUrl | string | 是 | datakit 安装地址 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529。注意：安装 SDK 设备需能访问这地址 |
 | debug | boolean | 否 | 设置是否允许打印日志，默认`false` |
-| envType | enum EnvType | 否 | 环境，默认`prod` |
+| env | enum EnvType | 否 | 环境，默认`prod` |
 | globalContext | NSDictionary | 否 | [添加自定义标签](#user-global-context ) |
 | service | string | 否 | 设置所属业务或服务的名称，影响 Log 和 RUM 中 service 字段数据。默认：`df_rum_ios`、`df_rum_android` |
 
@@ -145,7 +149,7 @@ FTReactNativeLog.logConfig(logConfig);
 | **字段** | **类型** | **必须** | **说明** |
 | --- | --- | --- | --- |
 | sampleRate | number | 否 | 采样率，采集率的值范围为>= 0、<= 1，默认值为 1 |
-| traceType | enum TraceType | 否 | 链路类型，默认`TraceType.zipkin` |
+| traceType | enum TraceType | 否 | 链路类型，默认`TraceType.ddTrace` |
 | enableLinkRUMData | boolean | 否 | 是否与 `RUM` 数据关联，默认`false` |
 | enableNativeAutoTrace | boolean | 否 | 是否开启原生网络网络自动追踪 iOS NSURLSession ,Android OKhttp(由于 `React Native`的网络请求在 iOS、Android 端是使用系统 API 实现的，所以开启 `enableNativeAutoTrace` 后，所有 `React Native` 数据能够一并追踪。） |
 
