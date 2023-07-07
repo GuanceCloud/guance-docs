@@ -16,9 +16,7 @@
 
 在 DQL 查询窗口输入 DQL 查询语句，点击**执行**，即可在**返回结果**查看查询结果。**返回结果**以表格形式返回查询结果，默认返回 1000 条数据，您可以将返回数据导出为 CSV 文件。
 
-???+ attention
-
-    在使用 DQL 查询语句时，支持使用 [limit](define.md#limit) 或 [slimit](define.md#slimit) 来控制返回查询结果数量。
+<font color=coral>**注意：**</font>在使用 DQL 查询语句时，支持使用 [limit](define.md#limit) 或 [slimit](define.md#slimit) 来控制返回查询结果数量。
 
 ![](img/3.dql_1.png)
 
