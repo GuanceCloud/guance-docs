@@ -747,10 +747,10 @@ docker push registry.cn-shenzhen.aliyuncs.com/lr_715377484/springboot-logback-so
                   memory: 256Mi
           initContainers:
             - command:
-                - sh
-                - -c
-                - set -ex;mkdir -p /ddtrace/agent;cp -r /usr/dd-java-agent/agent/* /ddtrace/agent;
-              image: pubrepo.jiagouyun.com/datakit/dk-sidecar:1.0
+              - sh
+              - -c
+              - set -ex;mkdir -p /ddtrace/agent;cp -r /datadog-init/* /ddtrace/agent;
+              image: pubrepo.jiagouyun.com/datakit-operator/dd-lib-java-init
               imagePullPolicy: Always
               name: ddtrace-agent-sidecar
               volumeMounts:
