@@ -607,78 +607,134 @@ spec:
 
 4、 采集 istiod、ingressgateway、egressgateway pod 指标
 
-```yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: datakit-conf
-  namespace: datakit
-data: # 下面是新增部分
-  prom_istiod.conf: |-
-    [[inputs.prom]] 
-      url = "http://istiod.istio-system.svc.cluster.local:15014/metrics"
-      source = "prom-istiod"
-      metric_types = ["counter", "gauge"]
-      interval = "60s"
-      tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
-      metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
-      #measurement_prefix = ""
-      measurement_name = "istio_prom"
-      #[[inputs.prom.measurements]]
-      # prefix = "cpu_"
-      # name ="cpu"
-      [inputs.prom.tags]
-        app_id="istiod"
-  #### ingressgateway
-  prom-ingressgateway.conf: |-
-    [[inputs.prom]] 
-      url = "http://istio-ingressgateway-ext.istio-system.svc.cluster.local:15020/stats/prometheus"
-      source = "prom-ingressgateway"
-      metric_types = ["counter", "gauge"]
-      interval = "60s"
-      tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
-      metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
-      #measurement_prefix = ""
-      measurement_name = "istio_prom"
-      #[[inputs.prom.measurements]]
-      # prefix = "cpu_"
-      # name ="cpu"
-  #### egressgateway
-  prom-egressgateway.conf: |-
-    [[inputs.prom]] 
-      url = "http://istio-egressgateway-ext.istio-system.svc.cluster.local:15020/stats/prometheus"
-      source = "prom-egressgateway"
-      metric_types = ["counter", "gauge"]
-      interval = "60s"
-      tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
-      metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
-      #measurement_prefix = ""
-      measurement_name = "istio_prom"
-      #[[inputs.prom.measurements]]
-      # prefix = "cpu_"
-      # name ="cpu"
+采集 ingressgateway 和 egressgateway 使用 Service 来访问 `15020` 端口，所以需要新建 ingressgateway 和 egressgateway 的 Service。
+
+??? quote "`istio-ingressgateway-service-ext.yaml`"
+
+    ```yaml
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: istio-ingressgateway-ext
+      namespace: istio-system
+    spec:
+      ports:
+        - name: http-monitoring
+          port: 15020
+          protocol: TCP
+          targetPort: 15020
+      selector:
+        app: istio-ingressgateway
+        istio: ingressgateway
+      type: ClusterIP
+    ```
+
+??? quote "`istio-egressgateway-service-ext.yaml`"
+
+    ```yaml
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: istio-egressgateway-ext
+      namespace: istio-system
+    spec:
+      ports:
+        - name: http-monitoring
+          port: 15020
+          protocol: TCP
+          targetPort: 15020
+      selector:
+        app: istio-egressgateway
+        istio: egressgateway
+      type: ClusterIP
+    ```
+
+创建 Service
+
+```bash
+kubectl apply -f istio-ingressgateway-service-ext.yaml
+kubectl apply -f istio-egressgateway-service-ext.yaml
 ```
 
-```yaml
-apiVersion: apps/v1
-kind: DaemonSet
-...
-spec:
-  template
+下面是 `datakit.yaml` 文件的修改部分：
+
+??? quote "ConfigMap 增加"
+
+    ```yaml
+    apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      name: datakit-conf
+      namespace: datakit
+    data:
+      prom_istiod.conf: |-
+        [[inputs.prom]] 
+          url = "http://istiod.istio-system.svc.cluster.local:15014/metrics"
+          source = "prom-istiod"
+          metric_types = ["counter", "gauge"]
+          interval = "60s"
+          tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
+          metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
+          #measurement_prefix = ""
+          measurement_name = "istio_prom"
+          #[[inputs.prom.measurements]]
+          # prefix = "cpu_"
+          # name ="cpu"
+          [inputs.prom.tags]
+            app_id="istiod"
+
+      prom-ingressgateway.conf: |-
+        [[inputs.prom]] 
+          url = "http://istio-ingressgateway-ext.istio-system.svc.cluster.local:15020/stats/prometheus"
+          source = "prom-ingressgateway"
+          metric_types = ["counter", "gauge"]
+          interval = "60s"
+          tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
+          metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
+          #measurement_prefix = ""
+          measurement_name = "istio_prom"
+          #[[inputs.prom.measurements]]
+          # prefix = "cpu_"
+          # name ="cpu"
+
+      prom-egressgateway.conf: |-
+        [[inputs.prom]] 
+          url = "http://istio-egressgateway-ext.istio-system.svc.cluster.local:15020/stats/prometheus"
+          source = "prom-egressgateway"
+          metric_types = ["counter", "gauge"]
+          tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
+          interval = "60s"
+          metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
+          #measurement_prefix = ""
+          measurement_name = "istio_prom"
+          #[[inputs.prom.measurements]]
+          # prefix = "cpu_"
+          # name ="cpu"
+    ```
+
+??? quote "挂载 `conf`"
+
+    ```yaml
+    apiVersion: apps/v1
+    kind: DaemonSet
+    ...
     spec:
-      containers:
-      - env:
-        volumeMounts: # 下面是新增部分
-        - mountPath: /usr/local/datakit/conf.d/prom/prom_istiod.conf
-          name: datakit-conf
-          subPath: prom_istiod.conf
-        - mountPath: /usr/local/datakit/conf.d/prom/prom-ingressgateway.conf
-          name: datakit-conf
-          subPath: prom-ingressgateway.conf
-        - mountPath: /usr/local/datakit/conf.d/prom/prom-egressgateway.conf
-          name: datakit-conf
-          subPath: prom-egressgateway.conf
-```
+      template
+        spec:
+          containers:
+          - env:
+            volumeMounts: # 下面是新增部分
+            - mountPath: /usr/local/datakit/conf.d/prom/prom_istiod.conf
+              name: datakit-conf
+              subPath: prom_istiod.conf
+            - mountPath: /usr/local/datakit/conf.d/prom/prom-ingressgateway.conf
+              name: datakit-conf
+              subPath: prom-ingressgateway.conf
+            - mountPath: /usr/local/datakit/conf.d/prom/prom-egressgateway.conf
+              name: datakit-conf
+              subPath: prom-egressgateway.conf
+    ```
+
 
 重新部署 DataKit
 
