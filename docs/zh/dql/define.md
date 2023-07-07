@@ -5,9 +5,9 @@
 
 全局约束如下：
 
-- 非关键字（如指标名、标签名等）大小写敏感，**关键字及函数名大小写不敏感**
+- 非关键字（如指标名、标签名等）大小写敏感，<u>关键字及函数名大小写不敏感</u>；
 
-- 以 `#` 为行注释字符，不支持行内注释
+- 以 `#` 为行注释字符，不支持行内注释；
 
 - 支持的操作符：
 
@@ -36,25 +36,25 @@ NIL OFFSET OR PREVIOUS
 SLIMIT SOFFSET TRUE WITH
 ```
 
-- 标识符：标识符有几种形式，便于兼容各种变量命名形式
+- 标识符：标识符有几种形式，便于兼容各种变量命名形式：
 
-	- 正常变量名中只能出现 `[_a-zA-Z0-9]` 这些字符，且首字符不能是数字。如 `_abc, _abc123, _123ab`
+	- 正常变量名中只能出现 `[_a-zA-Z0-9]` 这些字符，且首字符不能是数字。如 `_abc, _abc123, _123ab`。
 	- 其它形式的变量名处理方式：
-		- `this+is-a*xx/yy^zz?variable`，`by` 需写成 `` `this+is-a*xx/yy^zz?variable` ``，`` `by` ``，前者变量中带运算符，后者的 `by` 是 DQL 关键字
-		- 支持中文等 UTF8 标识符，如 `M::cpu:(usage AS 使用率) [5m]`
-			- 支持表情符号：`M::cpu:(usage AS 使用率👍) [5m]`
-		- 变量中就带了一个反引号，`` this`is-a-vairalbe `` 需写成 `` `identifier("this`is-a-vairalbe")` `` 来修饰
+		- `this+is-a*xx/yy^zz?variable`，`by` 需写成 `` `this+is-a*xx/yy^zz?variable` ``，`` `by` ``，前者变量中带运算符，后者的 `by` 是 DQL 关键字；
+		- 支持中文等 UTF8 标识符，如 `M::cpu:(usage AS 使用率) [5m]`。
+			- 支持表情符号：`M::cpu:(usage AS 使用率👍) [5m]`。
+		- 变量中就带了一个反引号，`` this`is-a-vairalbe `` 需写成 `` `identifier("this`is-a-vairalbe")` `` 来修饰。
 
-- 字符串值可用双引号和单引号： `"this is a string"` 和 `'this is a string'` 是等价的
+- 字符串值可用双引号和单引号： `"this is a string"` 和 `'this is a string'` 是等价的。
 
-- 特殊字符串
+- 特殊字符串：
 	- base64 字符串：DQL 支持处理 base64 字符串，对于 bas64 字符串，DQL 在查询时能自动解出原始字符串，其写法如下：
 		- `` b64`some-base64-string` ``
 		- `b64'some-base64-string'`
 		- `b64"some-base64-string"`
 	
 	- 正则表达式字符串：原 `re('xxx')` 已弃用，建议使用如下形式来标识正则字符串。
-		- `` re`some-regexp` ``（推荐）
+		- `` re`some-regexp` ``*（推荐）*
 		- `re'some-regexp'`
 		- `re"some-regexp"`
 
@@ -65,13 +65,13 @@ SLIMIT SOFFSET TRUE WITH
 	- Boolean（`true`, `false`）
 	- Duration（`1y`, `1w`, `1d`, `1h`, `1m`, `1s`, `1ms`, `1us`, `1ns` 分别表示 1 年/周/天/时/分/秒/毫秒/微秒/纳秒）
 
-- 特殊函数
+- 特殊函数：
 
-	- `tz()` - 时区，有两种形式支持
+	- `tz()` - 时区，有两种形式支持：
 		- `tz(+-12)` 以 24 个时区的偏移来指定，如 `tz(+8),tz(8), tz('Asia/Shanghai')` 是一样的，夏令时不能通过这种形式来指定。
 		- `tz('Asia/Shanghai')` 以国际标准形式来指定时区。对于夏令时，只能通过这种形式来指定。
 
-	- `identifier()` 用于修饰变量名中带 `` ` `` 字符的变量
+	- `identifier()` 用于修饰变量名中带 `` ` `` 字符的变量。
 
 	- `int()` 和 `float()` 对返回的数据做类型转换，仅适用于时序数据。
 
@@ -93,7 +93,7 @@ namespace::
 	soffset-clause
 ```
 
-从语法角度而言， `data-source` 是必须的（类似于 SQL 中的 `FROM` 子句），其它部分都是可选的。但实际查询过程中，对查询的实际执行会施加一定约束（比如 `time_expr` 不允许时间跨度太大）
+从语法角度而言， `data-source` 是必须的（类似于 SQL 中的 `FROM` 子句），其它部分都是可选的。但实际查询过程中，对查询的实际执行会施加一定约束（比如 `time_expr` 不允许时间跨度太大）。
 
 举例：
 
@@ -121,7 +121,7 @@ O::human:(height, age) { age > 100, sex = "直男" } ORDER BY height desc LIMIT 
 M::cpu,mem:(time_active, time_guest_nice, host) { host = "host-name", cpu = "cpu0" } [5m] BY host,cpu
 ```
 
-注意，`::` 和 `:` 两边都是可以添加空白字符的，如下语句是等价的：
+<font color=coral>**注意：**</font>：`::` 和 `:` 两边都是可以添加空白字符的，如下语句是等价的：
 
 ```python
 M::cpu:(time_active, time_guest_nice)
@@ -134,11 +134,61 @@ M   :: cpu :   (time_active, time_guest_nice)
 	{ host = "host-name", cpu = "cpu0" } [5m]
 ```
 
+### 各数据类型查询示例 {#example}
+
+- M::`指标集名`:(聚合函数(`指标名`)) { `标签名` = '标签值' } BY `标签名`   
+	
+	- 比如：M::`cpu`:(last(`usage_system`)) {`host`=`xxx`} BY `host_ip`  
+
+- L::`日志来源`:(聚合函数(`属性名`)) { `属性名` = '属性值' } BY `属性名`  
+    
+	- 比如：L::`datakit`:(COUNT(`*`)) { `index` = 'default' } BY `host`
+
+- O::`类别名称`:(聚合函数(`属性名`)) { `属性名` = '属性值' } BY `属性名`  
+  
+    - 比如：O::`HOST`:(COUNT(`*`)) { `class` = 'HOST' } BY `host_ip`
+
+- E::`事件来源`:(聚合函数(`属性名`)) { `属性名` = '属性值' } BY `属性名` 
+
+	- 比如：E::`monitor`:(COUNT(`create_time`)) { `create_time` = 1688708829409 } BY `df_event_id`
+
+- T::`服务名称`:(聚合函数(`属性名`)) { `属性名` = '属性值' } BY `属性名` 
+
+	- 比如：T::`mysqli`:(COUNT(`resource`)) { `status` = 'ok' } BY `status`
+
+- R::`数据来源`:(聚合函数(`属性名`)) { `属性名` = '属性值' } BY `属性名` 
+
+	- 比如：R::`error`:(LAST(`browser`)) { `city` = 'unknown' } BY `city`
+
+- S::`分类名称`:(聚合函数(`属性名`)) { `属性名` = '属性值' } BY `属性名` 
+
+	- 比如：S::`storage`:(LAST(`host`)) { `level` = re('warn') } BY `level`
+
+- N::`网络来源`:(聚合函数(`属性名`)) { `属性名` = '属性值' } BY `属性名` 
+
+	- 比如：N::`httpflow`:(FIRST(`direction`)) { `http_version` = '1.1' } BY `dst_ip_type`
+
+- P::`Profiling 名称`:(聚合函数(`属性名`)) { `属性名` = '属性值' } BY `属性名` 
+
+	- 比如：P::`mysqli`:(COUNT(`resource`)) { `status` = 'ok' } BY `status`
+
+不使用聚合函数的情况：
+
+比如：
+
+- 统计不同【namespace】下的容器数量：
+
+O::`docker_containers`:(COUNT(`*`)) BY `namespace`
+
+- 查询容器的所有字段，并返回最新的 10 条：
+
+O::`docker_containers` {`host`=`xxx`} limit 10
+
 ## 语句
 
 ### namespace {#namespace}
 
-语义层面，目前支持以下几种种数据源：
+语义层面，目前支持以下几种数据源：
 
 - M/metric - 时序指标数据
 - O/object - 对象数据
@@ -203,7 +253,7 @@ O::human:(height) { age in [30, 40, 50], weight > 70}
 - 线性填充：如 `cpu:(fill(f1, LINEAR))`
 - 前值填充：如 `cpu:(fill(f1, PREVIOUS))`
 
-> 注意：多个过滤条件之间。默认是 `AND` 的关系，但如果要表达 `OR` 的关系，就用 `||` 操作符即可。如下两个语句的意思是相等的：
+<font color=coral>**注意：**</font>多个过滤条件之间。默认是 `AND` 的关系，但如果要表达 `OR` 的关系，就用 `||` 操作符即可。如下两个语句的意思是相等的：
 
 ```python
 O::human:(height) { age > 31, sex != re("男") }
@@ -228,9 +278,9 @@ DataFlux 数据特点均有时间属性，故将时间的表达用单独的子�
 |2 | `end_time` | 否 | 时间过滤的结束时间 |`2023-01-02 00:00:00` / `1672588800000` / `1672588800` |
 |3 | `time_interval`| 否 | 时间过滤的间隔，一般用于直方图聚合使用，简单过滤不需要该参数|`1s`/`1m`/`1h` 等|
 
-注意 ⚠️
+<font color=coral>**注意：**</font>
 
-`start_time`, `end_time` 支持 4种格式
+`start_time`, `end_time` 支持 4 种格式：
 
 - 带有时间单位的数值，例如: `1m`
 - 标准时区字符串，例如: `2023-01-01 00:00:00`
@@ -267,13 +317,13 @@ DataFlux 数据特点均有时间属性，故将时间的表达用单独的子�
 
 ### by-clause 语句
 
-`BY` 子句用来对结果进行分类聚合。类似 MySQL 中的 `GROUP BY`
+`BY` 子句用来对结果进行分类聚合。类似 MySQL 中的 `GROUP BY`。
 
 ### order-by-clause 语句
 
-`ORDER BY` 子句会对结果进行排序，类似 MySQL 中的 `ORDER BY`
+`ORDER BY` 子句会对结果进行排序，类似 MySQL 中的 `ORDER BY`。
 
-⚠️ 时序数据，只支持对 time 字段排序
+<font color=coral>**注意：**</font>时序数据，只支持对 time 字段排序。
 
 ```python
 # 获取不同主机的CPU 最大使用率，按照时间逆序
@@ -312,7 +362,7 @@ O::ecs:(host, region)
 
 用于指定返回行数，
 
-注意: 
+<font color=coral>**注意：**</font>
 
 对于时序数据，如果dql语句中同时包含了by短语和limit短语，limit约束的是每个聚合组中的返回条数
 
@@ -354,7 +404,7 @@ M::cpu:() by host limit 3 slimit 3
 - `SHOW_SECURITY_SOURCE()` - 查看安全巡检数据类型列表
 - `SHOW_WORKSPACES()` - 查看当前工作空间及其授权工作空间信息
 
-更多 show 函数，参见[函数文档](funcs.md)
+> 更多 show 函数，参见[函数文档](funcs.md)
 
 <!--
 ### 结果集函数结算
@@ -379,7 +429,7 @@ F::dataflux__dql:(EXPR_EVAL(
 
 ### 嵌套查询以及语句块
 
-以 `()` 来表示子查询和外层查询的分隔，如两层嵌套
+以 `()` 来表示子查询和外层查询的分隔，如两层嵌套：
 
 ```python
 M::(
@@ -389,13 +439,13 @@ M::cpu:(usage_total) {host='kind'}
 {}  # 外层查询过滤条件
 ```
 
-三层嵌套
+三层嵌套：
 
 ```python
 M::(M::(M::cpu:(usage_total) {host='kind'}):(usage_total) {usage_total > 0} ):(last(usage_total))
 ```
 
-原则上不对嵌套层次做限制。但**不允许某层嵌套中出现多个平级的子查询**，如：
+原则上不对嵌套层次做限制。但<u>不允许某层嵌套中出现多个平级的子查询</u>，如：
 
 ```python
 object::(     # 第二层查询
@@ -425,9 +475,14 @@ L::nginx { `message@json.abc.def` = "xyz" }
 
 ## 函数说明
 
-参见 [DQL 函数](funcs.md)
+<div class="grid cards" markdown>
 
-参见 [DQL 外层函数](out-funcs.md)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **DQL 函数**</font>](./funcs.md)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **DQL 外层函数**</font>](./out-funcs.md)
+
+</div>
+
+
 
 
 

@@ -27,7 +27,7 @@
 ### show_object_source() 
 
 - 说明：展示 `object` 数据的指标集合，该函数不需要参数
-- 示例
+- 示例:
 
 ```python
 # 请求
@@ -62,17 +62,17 @@ show_object_source()
 
 - 说明：展示 object 数据的指标集合，该函数不需要参数,
 
-> 注意：该函数将遗弃，使用 `show_object_source()` 代替
+<font color=coral>**注意：**</font>该函数将遗弃，使用 `show_object_source()` 代替
 
 ### show_object_field()
 
-- 说明：展示对象的 `fileds` 列表
+- 说明：展示对象的 `fileds` 列表：
 
 | 非命名参数 | 描述     | 类型     | 是否必填 | 默认值 | 示例   |
 | ---------- | -------- | -------- | -------- | ------ | ------ |
 | 对象分类名 | 对象类型 | `string` | 否       | 无     | `HOST` |
 
-- 示例
+- 示例：
 
 ```python
 # 请求
@@ -107,18 +107,19 @@ show_object_field('servers')
 
 ### show_object_label() 
 
-- 说明：展示对象包含的标签信息
+- 说明：展示对象包含的标签信息：
 
 | 参数    | 描述         | 类型       | 是否必填 | 默认值 | 示例                |
 | ------- | ------------ | ---------- | -------- | ------ | ------------------- |
 | `class` | 对象来源类型 | `string`   | 是       |        | `HOST`              |
 | `names` | 对象名称列表 | `[]string` | 否       |        | `['aws', 'aliyun']` |
 
-- 注意
-  - `names` 参数可选，如果不传，表示展示所有 `class='source_class'` 的标签
-  - 最多展示 1000 个对象的标签信息
+<font color=coral>**注意：**</font>
 
-- 示例
+- `names` 参数可选，如果不传，表示展示所有 `class='source_class'` 的标签；
+- 最多展示 1000 个对象的标签信息。
+
+- 示例：
 
 ```python
 # 请求
