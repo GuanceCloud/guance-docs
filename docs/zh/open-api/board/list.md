@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/dashboards/list**
+<br />**GET /api/v1/dashboards/list**
 
 ## 概述
 获取仪表板列表，默认按照更新时间降序排列

@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/notes/\{notes_uuid\}/modify**
+<br />**POST /api/v1/notes/\{notes_uuid\}/modify**
 
 ## 概述
 修改笔记, `charUUIDs`为该笔记绑定的图表信息

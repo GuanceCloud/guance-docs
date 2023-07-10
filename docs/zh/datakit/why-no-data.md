@@ -91,7 +91,7 @@ Wed Jul 21 08:22:32 UTC 2021
 
 如果配置了[黑名单](datakit-filter.md)（如日志黑名单），新采集的数据可能会被黑名单过滤掉。
 
-同理，如果 Pipeline 中对数据进行了一些[丢弃操作](../developers/pipeline.md#fn-drop)，那么也可能导致中心看不到这些数据。
+同理，如果 Pipeline 中对数据进行了一些[丢弃操作](../developers/pipeline/pipeline-built-in-function.md#fn-drop)，那么也可能导致中心看不到这些数据。
 
 ## 查看 Monitor 页面 {#monitor}
 
@@ -253,14 +253,14 @@ datakit debug --bug-report
 
 文件说明
 
-| 文件名称  | 是否目录 | 说明                                                          |
-| ---:      | ---:     | ---:                                                          |
-| `config`  | 是       | 配置文件，包括主配置和已开启的采集器配置                      |
-| `env.txt` | 否       | 运行环境的环境变量信息                                        |
-| `log`     | 是       | 最新的日志文件，包括 log 和 gin log，暂不支持 `stdout`        |
-| `profile` | 是       | pprof 开启时，会采集 profile 数据                             |
-| `metrics` | 是       | `/metrics` 接口返回的数据，命名格式为 `metric-<时间戳毫秒数>` |
-| `syslog`  | 是       | 仅支持 `linux`, 基于 `journalctl` 来获取相关日志 |
+| 文件名称  | 是否目录 | 说明                                                                                                    |
+| ---:      | ---:     | ---:                                                                                                    |
+| `config`  | 是       | 配置文件，包括主配置和已开启的采集器配置                                                                |
+| `env.txt` | 否       | 运行环境的环境变量信息                                                                                  |
+| `log`     | 是       | 最新的日志文件，包括 log 和 gin log，暂不支持 `stdout`                                                  |
+| `profile` | 是       | pprof 开启时（[:octicons-tag-24: Version-1.9.2](changelog.md#cl-1.9.2)已默认开启），会采集 profile 数据 |
+| `metrics` | 是       | `/metrics` 接口返回的数据，命名格式为 `metric-<时间戳毫秒数>`                                           |
+| `syslog`  | 是       | 仅支持 `linux`, 基于 `journalctl` 来获取相关日志                                                        |
 
 ### 敏感信息处理 {#sensitive}
 

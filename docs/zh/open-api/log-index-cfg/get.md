@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/log_index_cfg/\{cfg_uuid\}/get**
+<br />**GET /api/v1/log_index_cfg/\{cfg_uuid\}/get**
 
 ## 概述
 获取一个绑定索引

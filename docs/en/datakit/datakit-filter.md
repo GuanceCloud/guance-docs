@@ -90,7 +90,13 @@ In `datakt.conf`, you can manually configure blacklist filtering, as shown in th
     ]
 ```
 
-Once the filter is configured in *datakit.conf* , the filter configured by **Guance Cloud Studio will no longer take effect**.
+<!-- markdownlint-disable MD046 -->
+???+ warning
+
+    Filters in *datakit.conf* developped for debugging, you should use web-side Blacklist for production usage. Once the filter is configured in *datakit.conf*, the Blacklist configured in web-side will **no longer take effect**.
+
+    PS: Blacklist will be deprecated in the future, we recomment use Pipeline `drop()` to drop unwanted data.
+<!-- markdownlint-enable -->
 
 The configuration here should follow the following rules:
 
@@ -103,7 +109,7 @@ The configuration here should follow the following rules:
 
 ### Basic Grammar Rules {#basic}
 
-The basic syntax rules of filter are basically the same as Pipeline, see [here](../developers/pipeline.md#basic-syntax).
+The basic syntax rules of filter are basically the same as Pipeline, see [here](../developers/pipeline/pipeline-platypus-grammar.md).
 
 ### Operator {#operator}
 
@@ -341,7 +347,7 @@ You can see in the datakit monitor that `regionid` for `cn-qingdao` is filtered 
 
 [:octicons-tag-24: Version-1.4.2](changelog.md#cl-1.4.2)
 
-For filters synchronized from the center, DataKit records a copy to *<DataKit Installation Directory>/data/.pull*, which can be viewed directly.
+For filters synchronized from the center, DataKit records a copy to *<DataKit Installation Directory\>/data/.pull*, which can be viewed directly.
 
 ```shell
 $ cat .filters  | jq

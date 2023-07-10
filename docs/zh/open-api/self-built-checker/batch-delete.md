@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/self_built_checker/batch_delete**
+<br />**POST /api/v1/self_built_checker/batch_delete**
 
 ## 概述
 根据`checker_uuid`删除自建巡检

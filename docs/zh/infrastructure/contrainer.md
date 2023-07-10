@@ -142,7 +142,7 @@
 
     支持查看 Pods 对应的 YAML 文件。在基础设施 Pods 的详情页，点击 **YAML** ，即可查看对应的 YAML 文件。
     
-    ![Image title](img/1.YAML_1.png)
+    ![](img/1.YAML_1.png)
 
 === "指标"
 
@@ -181,6 +181,10 @@
     Pods 网络支持查看 Pods 之间的网络流量。支持基于 IP/端口查看源 IP 到目标 IP 之间的网络流量和数据连接情况，通过可视化的方式进行实时展示，帮助企业实时了解业务系统的网络运行状态，快速分析、追踪和定位问题故障，预防或避免因网络性能下降或中断而导致的业务问题。
     
     Pods 网络数据采集成功后会上报到观测云控制台，在**基础设施 > 容器 > Pods** 详情页中的**[网络](network.md)**，您可以查看到工作空间内全部 Pods 网络性能监测数据信息。
+
+=== "kubernetes"
+
+    点击 kubernetes 可查看 `namespace`、`pod_name` 或者 `namespace`、`deployment_name` 关联的对应日志数据。
 
 ### Services 列表
 
@@ -246,6 +250,10 @@
     Deployments 网络支持查看 Deployments 之间的网络流量。支持基于 IP/端口查看源 IP 到目标 IP 之间的网络流量和数据连接情况，通过可视化的方式进行实时展示，帮助企业实时了解业务系统的网络运行状态，快速分析、追踪和定位问题故障，预防或避免因网络性能下降或中断而导致的业务问题。
     
     Deployments 网络数据采集成功后会上报到观测云控制台，您可以在**基础设施 > 容器 > Pods**详情页中的**[网络](network.md)**，查看当前 Deployments 的网络性能监测数据信息。
+
+=== "kubernetes"
+
+    点击 kubernetes 可查看 `namespace`、`pod_name` 或者 `namespace`、`deployment_name` 关联的对应日志数据。
 
 ### Clusters 列表
 

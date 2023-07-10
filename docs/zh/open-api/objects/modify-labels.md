@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/object/hosts/\{host\}/label/modify**
+<br />**POST /api/v1/object/hosts/\{host\}/label/modify**
 
 ## 概述
 修改某台主机一个/多个label, 接口调用成功之后, 一般会有不超过5分钟的缓存 

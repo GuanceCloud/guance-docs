@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/self_built_checker/get**
+<br />**GET /api/v1/self_built_checker/get**
 
 ## 概述
 根据给定的自建巡检标识获取监控器详情

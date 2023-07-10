@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/pipeline/delete**
+<br />**GET /api/v1/pipeline/delete**
 
 ## 概述
 删除一个/多个Pipeline

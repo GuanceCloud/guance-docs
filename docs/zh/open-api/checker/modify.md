@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/checker/\{rule_uuid\}/modify**
+<br />**POST /api/v1/checker/\{rule_uuid\}/modify**
 
 ## 概述
 根据`rule_uuid`修改指定的监控器信息

@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/workspace/member_group/\{group_uuid\}/modify**
+<br />**POST /api/v1/workspace/member_group/\{group_uuid\}/modify**
 
 ## 概述
 修改一个成员组

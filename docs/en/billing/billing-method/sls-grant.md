@@ -8,7 +8,7 @@ The content of this article is to create a RAM account from 0 and authorize it. 
 
 ## Operating Instructions
 
-1.Download the SLS authorization file in the registration process of opening the SLS Exclusive Plan with one click in Guance, and copy the JSON backup after opening, which will be used later. For the launch process, please refer to the doc [opening Guance Exclusive Plan in the Alibaba Cloud market](../commercial-aliyun-sls.md).
+1.Download the SLS authorization file in the registration process of opening the SLS Exclusive Plan with one click in Guance, and copy the JSON backup after opening, which will be used later. For the launch process, please refer to the doc [Opening Guance Exclusive Plan in the Alibaba Cloud market](../commercial-aliyun-sls.md).
 
 ![](../img/1.sls_6.jpeg)
 

@@ -37,7 +37,7 @@ After establishing the account, return to Guance and click **Confirm**.
 
 Enter the workspace name, select the workspace language, and click **Confirm**.
 
-> Workspace language options affect templates for events, alarms and text messages in the workspace. If you select English, the above corresponding template will be used by default. Once created, the template language of this workspace cannot be modified, so please choose carefully.
+<font color=coral>**Note:**</font> Workspace language options affect templates for events, alarms and text messages in the workspace. If you select English, the above corresponding template will be used by default. Once created, the template language of this workspace cannot be modified, so please choose carefully.
 
 ![](../img/15.aws_register_7.png)
 
@@ -121,7 +121,7 @@ After unsubscribing successfully, Guance service was cancelled in Amazon Cloud M
 
 ![](../img/8.space_17.png)
 
-> After you unsubscribe to the Guance service in AWS, all binding workspaces settled by this account in Guance Billing Center will delete the associated cloud account and lock all associated workspaces. You can unlock the workspace in **Billing Center > Workspace Management**. For more details, please refer to [lock workspace](../cost-center/workspace-management.md#lock).
+> After you unsubscribe to the Guance service in AWS, all binding workspaces settled by this account in Guance Billing Center will delete the associated cloud account and lock all associated workspaces. You can unlock the workspace in **Billing Center > Workspace Management**. For more details, please refer to [Lock Workspace](../cost-center/workspace-management.md#lock).
 
 
 

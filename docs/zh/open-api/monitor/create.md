@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/monitor/group/create**
+<br />**POST /api/v1/monitor/group/create**
 
 ## 概述
 创建一个告警策略

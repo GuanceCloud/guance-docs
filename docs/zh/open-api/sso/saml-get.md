@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/sso/saml_get/\{sso_uuid\}**
+<br />**GET /api/v1/sso/saml_get/\{sso_uuid\}**
 
 ## 概述
 获取一个SAML配置信息

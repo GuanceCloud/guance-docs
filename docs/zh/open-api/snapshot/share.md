@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/snapshots/\{snapshot_uuid\}/share**
+<br />**POST /api/v1/snapshots/\{snapshot_uuid\}/share**
 
 ## 概述
 根据`snapshot_uuid`生成指定快照的分享链接

@@ -106,32 +106,32 @@ The address of the following files can be downloaded through wget and other down
 === "Windows 32 bit"
 
     - [Installer](https://static.guance.com/datakit/installer-windows-386.exe){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-windows-386-1.9.1.tar.gz){:target="_blank"}
+    - [DataKit](https://static.guance.com/datakit/datakit-windows-386-1.9.2.tar.gz){:target="_blank"}
 
 === "Windows 64 bit"
 
     - [Installer](https://static.guance.com/datakit/installer-windows-amd64.exe){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-windows-amd64-1.9.1.tar.gz){:target="_blank"}
+    - [DataKit](https://static.guance.com/datakit/datakit-windows-amd64-1.9.2.tar.gz){:target="_blank"}
 
 === "Linux X86 32 bit"
 
     - [Installer](https://static.guance.com/datakit/installer-linux-386){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-linux-386-1.9.1.tar.gz){:target="_blank"}
+    - [DataKit](https://static.guance.com/datakit/datakit-linux-386-1.9.2.tar.gz){:target="_blank"}
 
 === "Linux X86 64 bit"
 
     - [Installer](https://static.guance.com/datakit/installer-linux-amd64){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-linux-amd64-1.9.1.tar.gz){:target="_blank"}
+    - [DataKit](https://static.guance.com/datakit/datakit-linux-amd64-1.9.2.tar.gz){:target="_blank"}
 
 === "Linux Arm 32 bit"
 
     - [Installer](https://static.guance.com/datakit/installer-linux-arm){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-linux-arm-1.9.1.tar.gz){:target="_blank"}
+    - [DataKit](https://static.guance.com/datakit/datakit-linux-arm-1.9.2.tar.gz){:target="_blank"}
 
 === "Linux Arm 64 bit"
 
     - [Installer](https://static.guance.com/datakit/installer-linux-arm64){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-linux-arm64-1.9.1.tar.gz){:target="_blank"}
+    - [DataKit](https://static.guance.com/datakit/datakit-linux-arm64-1.9.2.tar.gz){:target="_blank"}
 
 After downloading, you should have three files (`<OS-ARCH>` here refers to the platform-specific installation package):
 
@@ -148,7 +148,7 @@ Copy these files to the corresponding machine (via USB flash drive or scp and ot
     You need to run the Powershell with administrator privileges to execute:
     
     ```powershell
-    .\installer-windows-amd64.exe --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs .\datakit-windows-amd64-1.9.1.tar.gz,.\data.tar.gz
+    .\installer-windows-amd64.exe --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs .\datakit-windows-amd64-1.9.2.tar.gz,.\data.tar.gz
     ```
 
 === "Linux"
@@ -157,7 +157,7 @@ Copy these files to the corresponding machine (via USB flash drive or scp and ot
     
     ```shell
     chmod +x installer-linux-amd64
-    ./installer-linux-amd64 --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs datakit-linux-amd64-1.9.1.tar.gz,data.tar.gz
+    ./installer-linux-amd64 --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs datakit-linux-amd64-1.9.2.tar.gz,data.tar.gz
     ```
 
 ### Advanced Mode {#offline-advanced}
@@ -208,8 +208,8 @@ mkdir -p /datakit
 wget -P /datakit https://static.guance.com/datakit/install.sh
 wget -P /datakit https://static.guance.com/datakit/version
 wget -P /datakit https://static.guance.com/datakit/data.tar.gz
-wget -P /datakit https://static.guance.com/datakit/installer-linux-amd64-1.9.1
-wget -P /datakit https://static.guance.com/datakit/datakit-linux-amd64-1.9.1.tar.gz
+wget -P /datakit https://static.guance.com/datakit/installer-linux-amd64-1.9.2
+wget -P /datakit https://static.guance.com/datakit/datakit-linux-amd64-1.9.2.tar.gz
 
 # Download other toolkits: sources is the installation package used to turn on the RUM sourcemap function. If this function is not turned on, you can choose not to download it.
 sources=(
@@ -409,17 +409,17 @@ wget https://static.guance.com/datakit/datakit.yaml -P /home/guance/
 
 ```shell
 # Pull the image of the amd64 architecture and make it into an image package
-docker pull --platform amd64 pubrepo.guance.com/datakit/datakit:1.9.1
-docker save -o datakit-amd64-1.9.1.tar pubrepo.guance.com/datakit/datakit:1.9.1
-mv datakit-amd64-1.9.1.tar /home/guance
+docker pull --platform amd64 pubrepo.guance.com/datakit/datakit:1.9.2
+docker save -o datakit-amd64-1.9.2.tar pubrepo.guance.com/datakit/datakit:1.9.2
+mv datakit-amd64-1.9.2.tar /home/guance
 
 # Pull the image of the arm64 architecture and make it into an image package
-docker pull --platform arm64 pubrepo.guance.com/datakit/datakit:1.9.1
-docker save -o datakit-arm64-1.9.1.tar pubrepo.guance.com/datakit/datakit:1.9.1
-mv datakit-arm64-1.9.1.tar /home/guance
+docker pull --platform arm64 pubrepo.guance.com/datakit/datakit:1.9.2
+docker save -o datakit-arm64-1.9.2.tar pubrepo.guance.com/datakit/datakit:1.9.2
+mv datakit-arm64-1.9.2.tar /home/guance
 
 # Check whether the image architecture is correct
-docker image inspect pubrepo.jiagouyun.com/datakit/datakit:1.9.1 |grep Architecture
+docker image inspect pubrepo.jiagouyun.com/datakit/datakit:1.9.2 |grep Architecture
 
 ```
 
@@ -543,17 +543,17 @@ docker image inspect pubrepo.jiagouyun.com/datakit/datakit:1.9.1 |grep Architect
 
 ```shell
 wget http://<nginx-server-ip>:8080/datakit.yaml 
-wget http://<nginx-server-ip>:8080/datakit-amd64-1.9.1.tar 
+wget http://<nginx-server-ip>:8080/datakit-amd64-1.9.2.tar 
 ```
 
 - Unzip image command
 
 ```shell
 # docker 
-docker load -i /k8sdata/datakit/datakit-amd64-1.9.1.tar
+docker load -i /k8sdata/datakit/datakit-amd64-1.9.2.tar
 
 # containerd
-ctr -n=k8s.io image import /k8sdata/datakit/datakit-amd64-1.9.1.tar
+ctr -n=k8s.io image import /k8sdata/datakit/datakit-amd64-1.9.2.tar
 
 ```
 
@@ -571,10 +571,10 @@ When there is no external network in the environment, the installation package n
 
 ```shell
 # docker 
-docker load -i datakit-amd64-1.9.1.tar
+docker load -i datakit-amd64-1.9.2.tar
 
 # containerd
-ctr -n=k8s.io image import datakit-amd64-1.9.1.tar
+ctr -n=k8s.io image import datakit-amd64-1.9.2.tar
 
 ```
 

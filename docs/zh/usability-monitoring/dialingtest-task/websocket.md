@@ -3,7 +3,7 @@
 
 ## 简介
 
-WEBSOCKET 拨测允许您的客户端向服务端发起 HTTP 请求，建立 WebSocket 连接，以验证定义请求和判断条件，例如请求头、响应时间等。
+WEBSOCKET 拨测允许您的客户端向服务端发起 HTTP 请求，建立 WEBSOCKET 连接，以验证定义请求和判断条件，例如请求头、响应时间等。
 
 ## 创建 WEBSOCKET 拨测任务
 
@@ -13,7 +13,7 @@ WEBSOCKET 拨测允许您的客户端向服务端发起 HTTP 请求，建立 Web
 
 ### 定义请求格式
 
-- URL：同时支持 ws / wss 两种协议的 URL；  
+- URL：同时支持 WS / WSS 两种协议的 URL；  
 - 高级设置：根据实际情况进行高级设置，包括请求设置、身份验证；  
 
 ![](../img/4.dailtesting_websocket_2.png)

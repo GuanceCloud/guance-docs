@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/dashboards/\{dashboard_uuid\}/import**
+<br />**POST /api/v1/dashboards/\{dashboard_uuid\}/import**
 
 ## 概述
 根据`templateInfo`内容重置`dashboard_uuid`对应的仪表板内容，操作完成之后视图UUID比变，视图内的图表，视图变量等将重建。此时原视图内的分享资源将失效;

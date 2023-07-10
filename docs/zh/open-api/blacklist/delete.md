@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/blacklist/delete**
+<br />**GET /api/v1/blacklist/delete**
 
 ## 概述
 删除一个/多个黑名单

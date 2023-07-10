@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/log_index_cfg/bind**
+<br />**POST /api/v1/log_index_cfg/bind**
 
 ## 概述
 创建一个绑定索引

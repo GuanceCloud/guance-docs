@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/dialing_task/add**
+<br />**POST /api/v1/dialing_task/add**
 
 ## 概述
 

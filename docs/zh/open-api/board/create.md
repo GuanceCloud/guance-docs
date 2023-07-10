@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/dashboards/create**
+<br />**POST /api/v1/dashboards/create**
 
 ## 概述
 创建一个空仪表板，或者是根据`仪表板模板`创建一个仪表板

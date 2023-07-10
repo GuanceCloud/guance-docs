@@ -2,7 +2,7 @@
 
 ---
 
-<br />**post /api/v1/blacklist/export**
+<br />**POST /api/v1/blacklist/export**
 
 ## 概述
 导出一个/多个黑名单

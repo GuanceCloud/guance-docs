@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/monitor/check/list**
+<br />**GET /api/v1/monitor/check/list**
 
 ## 概述
 分页列出监控器列表

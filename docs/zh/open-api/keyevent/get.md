@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/events/\{doc_id\}/get**
+<br />**GET /api/v1/events/\{doc_id\}/get**
 
 ## 概述
 根据`__docid`获取指定事件内容

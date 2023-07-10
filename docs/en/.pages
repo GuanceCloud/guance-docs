@@ -15,6 +15,7 @@ nav:
   - Events: events
   - CI Visibility: ci-visibility
   - <br/>Openess: ""
+  - DataFlux Func: dataflux-func
   - Developers: developers
   - OpenAPI: open-api
   - <br/>Management: ""

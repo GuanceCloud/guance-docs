@@ -1,5 +1,5 @@
 nav:
   - index.md
   - 'Product Introduction': product-introduction
-  - 'Get Started': getting-guance.md
+  - 'Quick Start': getting-guance.md
   - 'Function Details': function-details

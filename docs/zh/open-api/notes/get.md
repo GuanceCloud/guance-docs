@@ -2,7 +2,7 @@
 
 ---
 
-<br />**get /api/v1/notes/\{notes_uuid\}/get**
+<br />**GET /api/v1/notes/\{notes_uuid\}/get**
 
 ## 概述
 获取笔记详情
