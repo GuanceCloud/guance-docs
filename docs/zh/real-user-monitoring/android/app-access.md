@@ -386,6 +386,7 @@ android{
 | setLogCacheDiscardStrategy | 设置频繁日志丢弃规则 | 否 | 默认为 `LogCacheDiscard.DISCARD`，`DISCARD` 为丢弃追加数据，`DISCARD_OLDEST` 丢弃老数据 |
 | setEnableCustomLog | 是否上传自定义日志 | 否 | 默认为 `false` |
 | setLogLevelFilters | 设置日志等级过滤 | 否 | 设置等级日志过滤，默认不设置 |
+| setPrintCustomLogToConsole | 设置是否在控制台打印| 否 | 在 LogCat 中会显示 [FT-SDK] Tag 的日志，默认为 `false |
 | addGlobalContext | 添加 log 全局属性 | 否 | 添加规则请查阅[此处](#key-conflict) |
 
 ### Trace 配置 {#trace-config}
