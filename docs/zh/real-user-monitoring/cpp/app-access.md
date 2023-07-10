@@ -56,7 +56,7 @@
 	# 如果是 arm 64 需要添加 VCPKG_FORCE_SYSTEM_BINARIES
 	#export VCPKG_FORCE_SYSTEM_BINARIES=1
 	
-	./vcpkg install datakit-cpp-sdk:x64-linux
+	./vcpkg install datakit-sdk-cpp:x64-linux
 	
 	# 在编译环境中，引用 VCPKG_ROOT 变量
 	export VCPKG_ROOT= [ your_vcpkg_root_dir ]
