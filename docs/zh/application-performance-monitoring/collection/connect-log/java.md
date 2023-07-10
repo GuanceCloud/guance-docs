@@ -122,7 +122,7 @@
 ```shell
 java -javaagent:/your/path/dd-java-agent.jar \
 -Ddd.logs.injection=true \
--Ddd.service.name=cbis-billing \
+-Ddd.service=cbis-billing \
 -Ddd.env=staging \
 -Ddd.version=1.0 \
 -Ddd.agent.host=127.0.0.1 \

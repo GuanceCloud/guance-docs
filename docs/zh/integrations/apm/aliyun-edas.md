@@ -46,11 +46,11 @@ icon: integrations/aliyun
 参数说明：
 
 - javaagent：引入 dd-java-agent.jar 包
-- Ddd.service.name：服务名称 (自定义)
+- Ddd.service：服务名称 (自定义)
 - Ddd.agent.port：数据传输到 datakit 端口 (默认 9529)
 
 ```
--javaagent:/usr/local/datakit/data/dd-java-agent.jar -Ddd.service.name=service.name -Ddd.agent.port=9529
+-javaagent:/usr/local/datakit/data/dd-java-agent.jar -Ddd.service=service.name -Ddd.agent.port=9529
 ```
 
 ![image](../imgs/input-aliyun-edas-07.png)
