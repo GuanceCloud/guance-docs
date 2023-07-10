@@ -148,7 +148,7 @@
 | --- | --- | --- | --- |
 | metricsUrl | NSString | datakit 安装地址 URL 地址，例子：http://datakit.url:[port]。注意：安装 SDK 设备需能访问这地址 | 是 |
 | enableSDKDebugLog | BOOL | 设置是否允许打印日志 | 否（默认NO） |
-| env | NSString | 环境，可以自定义，也可以根据提供的 `FTEnv` 枚举通过 `-setEnvWithType:` 方法设置 | 否  （默认prod） |
+| env | NSString | 环境，支持自定义，也可根据提供的 `FTEnv` 枚举通过 `-setEnvWithType:` 方法设置 | 否  （默认prod） |
 | service | NSString | 设置所属业务或服务的名称，影响 Log 和 RUM 中 service 字段数据。默认：`df_rum_ios` | 否 |
 | globalContext | NSDictionary | [添加自定义标签](#user-global-context) |     否 |
 | groupIdentifiers | NSArray | 需要采集的 Extensions 对应的 AppGroups Identifier 数组 | 否 |
@@ -258,7 +258,7 @@ typedef NS_ENUM(NSUInteger, FTMonitorFrequency) {
     FTLoggerConfig *loggerConfig = [[FTLoggerConfig alloc]init];
     loggerConfig.enableCustomLog = YES;
     loggerConfig.enableLinkRumData = YES;
-    loggerConfig.printLogsToConsole = YES;
+    loggerConfig.printCustomLogToConsole = YES;
     loggerConfig.logLevelFilter = @[@(FTStatusError),@(FTStatusCritical)];
     loggerConfig.discardType = FTDiscardOldest;
     [[FTMobileAgent sharedInstance] startLoggerWithConfigOptions:loggerConfig];
@@ -268,7 +268,7 @@ typedef NS_ENUM(NSUInteger, FTMonitorFrequency) {
 | --- | --- | --- | --- |
 | samplerate | int | 采样采集率 | 否（默认100） |
 | enableCustomLog | BOOL | 是否上传自定义 log | 否（默认NO） |
-| printLogsToConsole | BOOL | 设置是否将自定义日志打印到控制台 | 否（默认NO） |
+| printCustomLogToConsole | BOOL | 设置是否将自定义日志打印到控制台 | 否（默认NO） |
 | logLevelFilter | NSArray | 设置要采集的自定义 log 的状态数组 | 否（默认全采集） |
 | enableLinkRumData | BOOL | 是否与 RUM 数据关联 | 否（默认NO） |
 | discardType | FTLogCacheDiscard | 设置日志废弃策略 | 否（默认丢弃最新数据） |
@@ -615,19 +615,21 @@ typedef NS_ENUM(NSInteger, FTLogStatus) {
 -(void)ok:(NSString *)content property:(nullable NSDictionary *)property;
 ```
 
-设置 `printLogsToConsole = YES` ，开启将自定义日志输出到控制台，将会在 xcode 调试控制台看到以下格式的日志：
+设置 `printCustomLogToConsole = YES` ，开启将自定义日志输出到控制台，将会在 xcode 调试控制台看到以下格式的日志：
 
 ```
-2023-06-29 13:47:56.960021+0800 App[64731:44595791] [IOS APP] [INFO] content
+2023-06-29 13:47:56.960021+0800 App[64731:44595791] [IOS APP] [INFO] content ,{K=V,...,Kn=Vn}
 ```
 
-`2023-06-29 13:47:56.960021+0800 App[64731:44595791]`: os_log 日志输出的标准前缀；
+`2023-06-29 13:47:56.960021+0800 App[64731:44595791]`：os_log 日志输出的标准前缀；
 
-`[IOS APP]`: 用来区分 SDK 输出自定义日志的前缀；
+`[IOS APP]`：用来区分 SDK 输出自定义日志的前缀；
 
-`[INFO]`: 自定义日志的等级；
+`[INFO]`：自定义日志的等级；
 
-`content`:自定义日志内容。
+`content`：自定义日志内容；
+
+`{K=V,...,Kn=Vn}`：自定义属性。
 
 ## Trace 网络链接追踪
 
@@ -896,7 +898,6 @@ FT_ENV=SDK_ENV
 | -------------------------- | --------- | ---------------------------------------------- | ------------------ |
 | groupIdentifier            | NSString  | 文件共享 Group Identifier                      | 是                 |
 | enableSDKDebugLog          | BOOL      | 设置是否允许 SDK 打印 Debug 日志               | 否（默认NO）       |
-| enableConsoleLog           | BOOL      | 是否允许采集自定义 log                         | 否（默认NO）       |
 | enableTrackAppCrash        | BOOL      | 设置是否需要采集崩溃日志                       | 否（默认NO）       |
 | enableRUMAutoTraceResource | BOOL      | 设置是否追踪用户网络请求 (仅作用于native http) | 否（默认NO）       |
 | enableTracerAutoTrace      | BOOL      | 设置是否开启自动 http 链路追踪                 | 否（默认NO）       |
