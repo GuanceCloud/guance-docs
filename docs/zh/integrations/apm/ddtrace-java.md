@@ -34,7 +34,7 @@ icon: fontawesome/brands/java
 Java 所有部署方式都是在原有应用启动脚本中添加 `ddtrace.jar` 启动参数，具体添加字段如下：
 
 ```
-java -javaagent:/xxx/ddtrace.jar -Ddd.env=xxx -Ddd.service.name=xxx -Ddd.agent.port=xxx    -jar xxx.jar
+java -javaagent:/xxx/ddtrace.jar -Ddd.env=xxx -Ddd.service=xxx -Ddd.agent.port=xxx    -jar xxx.jar
 ```
 
 > **注意：**其中 `xxx` 内容都需要填写。
@@ -108,7 +108,7 @@ java -javaagent:/xxx/ddtrace.jar -Ddd.env=xxx -Ddd.service.name=xxx -Ddd.agent.p
 （可根据需要进行添加）
 
 - Ddd.env：自定义环境类型，可选项。
-- Ddd.service.name：自定义应用名称 ，**必填项**。
+- Ddd.service：自定义应用名称 ，**必填项**。
 - Ddd.agent.port：数据上传端口（默认 9529 ），**必填项**。
 - Ddd.version：应用版本，可选项。
 - Ddd.trace.sample.rate：设置采样率（默认是全采），可选项，如需采样，可设置 0~1 之间的数，例如 0.6，即采样 60%。
@@ -127,7 +127,7 @@ java -javaagent:/xxx/ddtrace.jar -Ddd.env=xxx -Ddd.service.name=xxx -Ddd.agent.p
 cd /xxx/tomcat/bin
 vim catlina.sh
 
-CATALINA_OPTS="$CATALINA_OPTS -javaagent:/usr/local/datakit/data/dd-java-agent.jar -Ddd.env=test -Ddd.service.name=demo001 -Ddd.agent.port=9529"; export CATALINA_OPTS
+CATALINA_OPTS="$CATALINA_OPTS -javaagent:/usr/local/datakit/data/dd-java-agent.jar -Ddd.env=test -Ddd.service=demo001 -Ddd.agent.port=9529"; export CATALINA_OPTS
 
 ## 验证是否添加成功，可以查 Ddd相关字眼的进程，要确保应用启动可以调用到该环境参数。
 
@@ -158,7 +158,7 @@ set CATALINA_OPTS=%CATALINA_OPTS% -javaagent:"c:\path\to\dd-java-agent.jar"
 nohup java -jar mall-admin.jar &
 
 ## 添加ddtrace启动参数后的启动脚本如下，执行命令重启应用：
-nohup java -javaagent:/xxx/dd-java-agent.jar -Ddd.service.name=mall-admin -Ddd.agent.port=9529 -jar mall-admin.jar &
+nohup java -javaagent:/xxx/dd-java-agent.jar -Ddd.service=mall-admin -Ddd.agent.port=9529 -jar mall-admin.jar &
 ```
 
 #### Docker 环境接入
@@ -179,7 +179,7 @@ vim Dockerfile
 
 ADD dd-java-agent-0.75.0.jar /xxx/
 
-ENTRYPOINT ["java","-javaagent:/xxx/dd-java-agent-0.75.0.jar","-Ddd.service.name=xxx","-Ddd.version=xx","-Ddd.env=xxx","-Ddd.agent.port=9529","-Ddd.agent.host=xxx.xxx.xxx.xxx","-jar","xxx.jar"]
+ENTRYPOINT ["java","-javaagent:/xxx/dd-java-agent-0.75.0.jar","-Ddd.service=xxx","-Ddd.version=xx","-Ddd.env=xxx","-Ddd.agent.port=9529","-Ddd.agent.host=xxx.xxx.xxx.xxx","-jar","xxx.jar"]
 
 wq!
 
@@ -204,7 +204,7 @@ docker run -p 8080:8080 --name mall-admin --link mysql:db --link redis:redis -v 
 docker run -p 8080:8080 --name mall-admin --link mysql:db --link redis:redis -v /etc/localtime:/etc/localtime -v /mydata/app/admin/logs:/var/logs -d mall/mall-admin:v1
 
 ## 包含ddtrace的启动命令，需要查看dockerfile中jar包的启动命令
-docker run -p 8080:8080 --name mall-admin --link mysql:db --link redis:redis -v /etc/localtime:/etc/localtime -v /mydata/app/admin/logs:/var/logs -d mall/mall-admin:v1 java -javaagent:/wx/dd-java-agent-0.75.0.jar -Ddd.service.name=mall-admin -Ddd.version=v1 -Ddd.env=product -Ddd.agent.port=9529 -Ddd.agent.host=172.16.0.198 -jar -Dspring.profiles.active=prod /mall-admin-1.0-SNAPSHOT.jar
+docker run -p 8080:8080 --name mall-admin --link mysql:db --link redis:redis -v /etc/localtime:/etc/localtime -v /mydata/app/admin/logs:/var/logs -d mall/mall-admin:v1 java -javaagent:/wx/dd-java-agent-0.75.0.jar -Ddd.service=mall-admin -Ddd.version=v1 -Ddd.env=product -Ddd.agent.port=9529 -Ddd.agent.host=172.16.0.198 -jar -Dspring.profiles.active=prod /mall-admin-1.0-SNAPSHOT.jar
 
 ## 注意：添加完java –javaagent后需要在启动脚本后添加-jar your app name.jar
 ```
