@@ -107,7 +107,8 @@ void main() async {
 | enableNativeUserAction | bool | 否 | 是否进行 `Native Action` 追踪，`Button` 点击事件，纯 `Flutter` 应用建议关闭，默认为 `false` |
 | enableNativeUserView | bool | 否 | 是否进行 `Native View` 自动追踪，纯 `Flutter` 应用建议关闭，，默认为 `false` |
 | enableNativeUserResource | bool | 否 | 是否进行 `Native Resource` 自动追踪，纯 `Flutter` 应用建议关闭，默认为 `false` |
-| monitorType | enum MonitorType | 否 | 监控补充类型 |
+| errorMonitorType | enum ErrorMonitorType | 否 | 设置辅助监控信息，添加附加监控数据到 `Rum` Error 数据中，`ErrorMonitorType.battery` 为电池余量，`ErrorMonitorType.memory` 为内存用量，`ErrorMonitorType.cpu` 为 CPU 占有率 |
+| deviceMetricsMonitorType | enum DeviceMetricsMonitorType | 否 |在 View 周期中，添加监控数据，`DeviceMetricsMonitorType.battery` 监控当前页的最高输出电流输出情况，`DeviceMetricsMonitorType.memory` 监控当前应用使用内存情况，`DeviceMetricsMonitorType.cpu` 监控 CPU 跳动次数 ，`DeviceMetricsMonitorType.fps` 监控屏幕帧率 |
 | globalContext | Map | 否 | 自定义全局参数 |
 
 #### 添加自定义标签
@@ -115,8 +116,8 @@ void main() async {
 ##### 静态使用
 
 1. 拆分原有的 main.dart 为 2 个部分，一部分为 main()，一部分为 App() MaterialApp 组件；
-1. 建立对应各个环境的入口文件，如：main_prod.dart、main_gray.dart 等；
-1. 在对应的环境文件中进行自定义标签配置。例如：
+2. 建立对应各个环境的入口文件，如：main_prod.dart、main_gray.dart 等；
+3. 在对应的环境文件中进行自定义标签配置。例如：
 
 ```dart
 ///main_prod.dart
