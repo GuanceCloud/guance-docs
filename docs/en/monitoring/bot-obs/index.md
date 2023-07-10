@@ -4,6 +4,24 @@
 
 ---
 
+## July 11, 2023
+
+### Function optimization
+
+* **APM Intelligent Inspection**: Added a default detection threshold change entry. Now when the inspection is turned on, the trigger value of the service that needs to be changed can be synchronized.
+
+
+
+## July 4, 2023
+
+### Function optimization
+
+* **RUM performance Intelligent Inspection**: Optimize the root cause display logic in the page details module, and now the root cause location is more accurate.
+
+- **Workspace asset Intelligent Inspection**: Added default configuration (7 days), now you can run the inspection without parameters
+
+
+
 ## June 20, 2023
 
 ### New Inspection
