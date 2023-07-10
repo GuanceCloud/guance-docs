@@ -1,8 +1,8 @@
 nav:
   - '方法论 (Methodology)': 
-    - SLO 从方法论到实践: Part1 建立有效的 SLO: slo-part1.md
-    - SLO 从方法论到实践: Part2 SLO 工具选型: slo-part2.md
-    - SLO 从方法论到实践: Part3 使用观测云管理SLO 的最佳实践: slo-part3.md
+    - 'SLO 从方法论到实践: Part1 建立有效的 SLO': slo-part1.md
+    - 'SLO 从方法论到实践: Part2 SLO 工具选型': slo-part2.md
+    - 'SLO 从方法论到实践: Part3 使用观测云管理 SLO 的最佳实践': slo-part3.md
 
   - '数据关联 (Data-Binding)':
     - '数据关联最佳实践': data-ship.md
@@ -13,14 +13,14 @@ nav:
 
   - '技术理解 (Tech)':
     - '观测云 VS ELK、EFK': guance-elk-efk.md
-    - '观测云 vs 阿里云ARMS 3.0': guance-arms.md
+    - '观测云 VS 阿里云 ARMS 3.0': guance-arms.md
     - 'InfluxDB 时间线简析': influxdb-descr.md
 
   - '观测云小妙招 (Skills)':
     - 'DataKit DaemonSet 配置管理最佳实践': datakit-daemonset.md
     - 'DataKit 批量部署最佳实践': datakit-ansible.md
-    - 'TAG在观测云中的最佳实践': tag.md
-    - 'Datakit版本更新最佳实践': datakit-update.md
+    - 'TAG 在观测云中的最佳实践': tag.md
+    - 'Datakit 版本更新最佳实践': datakit-update.md
     - '快速上手 Pythond 采集器的最佳实践': pythond.md
     - 'DataKit 配置 HTTPS': datakit-https.md
 
