@@ -52,19 +52,35 @@ Azure Active Directory (Azure AD) 是 Microsoft 推出的基于云的标识和�
 
 <font color=coral>**注意：**</font>此处列表中的<u>**值**即为 OIDC 客户端配置中的 clientSecret 值</u>，请立即保存！
 
-3）进入**令牌配置 > 添加可选声明**页面，选择 **ID** 为令牌类型，全选所有声明，使登录的客户端能够拿到相关令牌数据。
+3）进入**令牌配置 > 添加可选声明**页面，**添加组声明**。添加完毕之后，会产生一个 `groups` 记录。
+
+![](img/aad-5-3-1.png)
+
+同时分别对令牌类型**ID** 与**访问**选择图示声明，使登录的客户端能够拿到相关令牌数据。
 
 ![](img/aad-5-3.png)
 
-4）添加 API 的作用域。进入公开 API，点击添加范围，按下图指示操作：
+![](img/aad-5-3-2.png)
+
+4）添加 API 的作用域。进入**公开 API**，分别添加作用域：`User.Read`、`User.Read.All`、`GroupMember.Read.All`、`Group.Read.All`。点击**添加范围**，为当前这个应用客户端公开图示四个权限：
 
 ![](img/aad-5-4.png)
 
 ![](img/aad-5-5.png)
 
-5）继上一步，为客户端应用程序添加授权：
+5）继上一步添加完毕四个作用域后，为客户端应用程序添加授权。进入 **API 权限**：
+
+- 先选择微软接口权限：
 
 ![](img/aad-5-6.png)
+
+- 再选择应用需要对应的权限：
+
+![](img/aad-5-6-1.png)
+
+需代表当前租户管理员同意授权：
+
+![](img/aad-5-6-2.png)
 
 <font color=coral>**注意：**</font>客户端 ID 即为**应用程序(客户端) ID**。
 
@@ -80,7 +96,7 @@ Azure Active Directory (Azure AD) 是 Microsoft 推出的基于云的标识和�
 <font color=coral>至此，三项关键配置信息已获取完毕。</font>
 
 
-## 二、配置 Azure AD 用户组
+## 二、配置 Azure AD 应用内的用户组
 
 ![](img/aad-11.png)
 
@@ -105,12 +121,29 @@ Azure Active Directory (Azure AD) 是 Microsoft 推出的基于云的标识和�
 
 ![](img/aad-13.png)
 
+## 三、设置企业应用配置
+
+1、进入您的应用，选择**概述 > 自助服务**。
+
+![](img/aad-19.png)
+
+2、选择允许用户请求访问此应用程序，并决定将已分配的用户添加到哪个组。
+
+![](img/aad-20.png)
+
+3、在您的**应用 > 用户和组**，添加需要登录的组和用户。
+
+![](img/aad-21.png)
+
+4、在您的**应用 > 单一登录**，可以查看到存在 `groups` 的属性声明。
+
+![](img/aad-22.png)
+
 ## 三、在观测云 Launcher 配置关联 {#config}
 
 1）在观测云 Launcher **命名空间：forethought-core > core** 中配置 Azure AD 的基本信息。
 
 ```
-
 # OIDC 客户端配置(当该项配置中配置了 wellKnowURL 时, KeyCloakPassSet 配置项自动失效)
 OIDCClientSet:
   # OIDC Endpoints 配置地址,即完整的 `https://xxx.xxx.com/xx/.well-known/openid-configuration` 地址.
@@ -122,16 +155,13 @@ OIDCClientSet:
   # 认证方式，目前只支持 authorization_code
   grantType: authorization_code
   verify: false
-  # 获取 token 接口的认证方式 basic: 位于请求头中的 Authorization 中; post_body: 位于请求body中
-  fetchTokenVerifyMethod: basic
-  # 获取账号信息响应结果中, 账号信息的实际获取路径, 以点号分割的路径字符串，例如 {"trace_id": xxx, "data": {"sub": "xxxx", "email":"xxx@xx.xx"}}; 则其对应的路径为 `data`
   # 数据访问范围
   scope: "openid profile email address"
   # 认证服务器认证成功之后的回调地址
   innerUrl: "{}://{}/oidc/callback"
   # 认证服务认证成功并回调 DF 系统之后，DF系统拿到用户信息后跳转到前端中专页面的地址
   frontUrl: "{}://{}/tomiddlepage?uuid={}"
-  # 从认证服务中获取到的账号信息 与 DF 系统账号的映射配置, 其中必填项为: username, email, exterId； 可选项为: mobile
+  # 从认证服务中获取到的账号信息 与 DF 系统账号的映射配置, 其中必填项为: username, email, exterId
   mapping:
     # 认证服务中，登录账号的用户名，必填，如果值不存在，则取 email
     username: preferred_username

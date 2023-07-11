@@ -146,7 +146,7 @@
 
 将这些文件拷贝到对应机器上（通过 U 盘或 scp 等命令）。
 
-### 安装 {#install}
+#### 安装 {#simple-install}
 
 <!-- markdownlint-disable MD046 -->
 === "Windows"
@@ -245,7 +245,7 @@ for((i=0;i<${#sources[@]};i++)); do
 done
 ```
 
-- 准备安装
+#### 安装 {#advance-install}
 
 在内网机器上，通过设置 `DK_INSTALLER_BASE_URL`，将其指向 Nginx 文件服务器：
 
@@ -274,7 +274,7 @@ done
 
 ---
 
-- 更新 DataKit
+#### 升级 {#advance-upgrade}
 
 如果有新的 DataKit 版本，可以将其安装上面的方式下载下来，执行如下命令来升级：
 
@@ -288,7 +288,6 @@ done
 === "Windows"
 
     ```powershell
-
     Remove-Item -ErrorAction SilentlyContinue Env:DK_*;
     $env:DK_INSTALLER_BASE_URL="http://[Nginx-Server]:8080/datakit";
     $env:DK_UPGRADE="1";

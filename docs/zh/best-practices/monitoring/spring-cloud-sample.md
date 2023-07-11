@@ -396,7 +396,7 @@ $ nohup java -Dfile.encoding=utf-8 -javaagent:dd-java-agent-0.80.0.jar -XX:Fligh
 
 - Ddd.env：自定义环境类型，可选项。
 - Ddd.tags：自定义应用标签 ，可选项。
-- Ddd.service.name：自定义应用名称 ，必填项。
+- Ddd.service：自定义应用名称 ，必填项。
 - Ddd.agent.port：数据上传端口（默认9529 ），必填项。
 - Ddd.version:应用版本，可选项。
 - Ddd.trace.sample.rate：设置采样率（默认是全采），可选项，如需采样，可设置 0~1 之间的数，例如 0.6，即采样 60%。

@@ -239,36 +239,36 @@ for((i=0;i<${#sources[@]};i++)); do
 done
 ```
 
-- Prepare for installation
+#### Install {#advance-install}
 
 On the intranet machine, point it to the Nginx file server by setting `DK_INSTALLER_BASE_URL`:
 
+<!-- markdownlint-disable MD046 MD034 -->
 === "Linux/Mac"
-    
+
     ```shell
-    HTTPS_PROXY=http://1.2.3.4:9530 \
-    DK_INSTALLER_BASE_URL="http://<nginxServer>:8080/datakit" \
-    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> bash -c "$(curl -L ${DK_INSTALLER_BASE_URL}/install.sh)"
+    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> DK_INSTALLER_BASE_URL=http://[Nginx-Server]:8080/datakit HTTPS_PROXY=http://1.2.3.4:9530 bash -c "$(curl -L ${DK_INSTALLER_BASE_URL}/install.sh)"
     ```
 
 === "Windows"
 
-    ```powershel
-    HTTPS_PROXY=http://1.2.3.4:9530 \
-    DK_INSTALLER_BASE_URL="http://<nginxServer>:8080/datakit" \
+    ```powershell
     Remove-Item -ErrorAction SilentlyContinue Env:DK_*;
     $env:DK_DATAWAY="https://openway.guance.com?token=<TOKEN>";
+    $env:DK_INSTALLER_BASE_URL="http://[Nginx-Server]:8080/datakit";
+    $env:HTTPS_PROXY="1.2.3.4:9530";
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
     start-bitstransfer  -source ${DK_INSTALLER_BASE_URL}/install.ps1 -destination .install.ps1;
     powershell .install.ps1;
     ```
+<!-- markdownlint-enable -->
 
 So far, the offline installation is complete. Note that HTTPS_PROXY is additionally set here.
 
 ---
 
-- Update DataKit
+#### Upgrade {#advance-upgrade}
 
 If there is a new version of DataKit, you can download it as above and execute the following command to upgrade:
 

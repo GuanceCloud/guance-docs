@@ -14,7 +14,7 @@
 
 ### 执行安装
 
-复制 Datakit 安装命令在需要被监控的服务器上直接运行。
+复制 DataKit 安装命令在需要被监控的服务器上直接运行。
 
 - 安装目录 `/usr/local/datakit/`
 - 日志目录 `/var/log/datakit/`
@@ -23,7 +23,7 @@
 
 ### DataKit 默认已安装如下插件
 
-DataKit 安装完成后，已经默认开启 Linux 主机常用插件，可以在DF——基础设施——内置视图查看。
+DataKit 安装完成后，已经默认开启 Linux 主机常用插件，可以在工作空间——基础设施，进入主机中的基本信息中查看。
 
 | 采集器名称 | 说明 |
 | --- | --- |
@@ -463,23 +463,36 @@ metadata:
   namespace: datakit
 data:
     #### container
-    container.conf: |- 
+    container.conf: |-
       [inputs.container]
-        endpoint = "unix:///var/run/docker.sock"
+        docker_endpoint = "unix:///var/run/docker.sock"
+        containerd_address = "/var/run/containerd/containerd.sock"
 
-        ## Containers metrics to include and exclude, default not collect. Globs accepted.
-        container_include_metric = []
-        container_exclude_metric = ["image:*"]
+        enable_container_metric = true
+        enable_k8s_metric = true
+        enable_pod_metric = false
+        extract_k8s_label_as_tags = false
+
+        ## Auto-Discovery of PrometheusMonitoring Annotations/CRDs
+        enable_auto_discovery_of_prometheus_pod_annotations = false
+        enable_auto_discovery_of_prometheus_service_annotations = false
+        enable_auto_discovery_of_prometheus_pod_monitors = false
+        enable_auto_discovery_of_prometheus_service_monitors = false
 
         ## Containers logs to include and exclude, default collect all containers. Globs accepted.
-        container_include_log = ["image:*"]
-        container_exclude_log = []
+        container_include_log = []
+        container_exclude_log = ["image:*logfwd*", "image:*datakit*"]
 
         exclude_pause_container = true
 
         ## Removes ANSI escape codes from text strings
         logging_remove_ansi_escape_codes = false
-  
+        ## Search logging interval, default "60s"
+        #logging_search_interval = ""
+
+        ## If the data sent failure, will retry forevery
+        logging_blocking_mode = true
+
         kubernetes_url = "https://kubernetes.default:443"
 
         ## Authorization level:
@@ -490,10 +503,21 @@ data:
         bearer_token = "/run/secrets/kubernetes.io/serviceaccount/token"
         # bearer_token_string = "<your-token-string>"
 
+        logging_auto_multiline_detection = true
+        logging_auto_multiline_extra_patterns = []
+
+        ## Set true to enable election for k8s metric collection
+        election = true
+
+        [inputs.container.logging_extra_source_map]
+        # source_regexp = "new_source"
+
+        [inputs.container.logging_source_multiline_map]
+        # source = '''^\d{4}'''
+
         [inputs.container.tags]
           # some_tag = "some_value"
-          # more_tag = "some_other_value"
-           
+          # more_tag = "some_other_value"          
 
           
     #### logging
@@ -601,7 +625,7 @@ $ kubectl get pod -n datakit
 在jar使用方式中使用到了 dd-java-agent.jar，而在用户的镜像中并不一定存在这个 jar，为了不侵入客户的业务镜像，我们需要制作一个包含 dd-java-agent.jar 的镜像，再以 sidecar 的方式先于业务容器启动，以共享存储的方式提供 dd-java-agent.jar。
 
 ```
-pubrepo.jiagouyun.com/datakit/dk-sidecar:1.0
+pubrepo.jiagouyun.com/datakit-operator/dd-lib-java-init
 ```
 
 #### 3.3 编写 Java 应用的 Dockerfile
@@ -690,8 +714,8 @@ spec:
       - command:
         - sh
         - -c
-        - set -ex;mkdir -p /ddtrace/agent;cp -r /usr/dd-java-agent/agent/* /ddtrace/agent;
-        image: pubrepo.jiagouyun.com/datakit/dk-sidecar:1.0
+        - set -ex;mkdir -p /ddtrace/agent;cp -r /datadog-init/* /ddtrace/agent;
+        image: pubrepo.jiagouyun.com/datakit-operator/dd-lib-java-init
         imagePullPolicy: Always
         name: ddtrace-agent-sidecar
         volumeMounts:
