@@ -7,6 +7,38 @@ icon: zy/release-notes
 
 本文档记录观测云每次上线发布的更新内容说明，包括 DataKit、观测云最佳实践、观测云集成文档和观测云。
 
+## 2023 年 7 月 11 日
+
+### 观测云更新
+
+
+
+- **应用性能监测 > 链路**：**Span 列表**页面新增[瀑布图模式](../application-performance-monitoring/explorer.md#waterfall)，帮助用户以更直观的视角分析 Span 数据信息；**[服务调用关系](../application-performance-monitoring/explorer.md#call)** 从服务（service）变更为服务资源（service / resource）级别，通过下钻到接口级别来更好地分析对应的性能及调用问题，从而通过接口级别的调用帮助用户更快发现问题点。
+- **集成**详情页优化：点击任意集成方案，即可在同一页面上了解从配置接入、数据采集到数据应用的全链路使用方案。
+- **[图表 > 概览图](../scene/visual-chart/overview-chart.md)**：新增千位分隔符；**单位 > 数值**中，默认改为万进制；**值映射**中新增空值映射。
+- **[图表 > 矩形树图](../scene/visual-chart/treemap.md)**：新增图例选项。
+- **[图表 > 添加链接](../scene/visual-chart/chart-link.md#description)**：新增 `query` 参数，删除 `tags`、`search` 两个参数。
+- **[监控器 > 模板](../monitoring/monitor/template.md#create)** 功能优化：支持基于单个检测规则创建或批量创建；支持基于检测库进行筛选。
+
+- **应用性能监测 > 服务**列表支持导出。
+
+### 智能巡检更新
+
+功能优化：  
+
+- 应用性能巡检：新增默认检测阈值更改入口，现在在开启巡检时可以同步需改需要检测服务的触发值。  
+- RUM 性能巡检：对页面详情模块中根因展示逻辑进行优化，优化后，根因定位更加准确。  
+- 工作空间资产巡检：新增默认配置(7 天)，现在开启巡检不需要参数也可以运行。
+
+新增脚本：
+
+- [云消息队列 RocketMQ4.0](https://func.guance.com/doc/script-market-guance-aliyun-rocketmq4/)  
+- [华为云-CSS](https://func.guance.com/doc/script-market-guance-huaweicloud-css/)  
+- [华为云-RocketMQ](https://func.guance.com/doc/script-market-guance-huaweicloud-rocketmq/)  
+- [华为云-RabbitMQ](https://func.guance.com/doc/script-market-guance-huaweicloud-rabbitmq/)  
+- 华为云-WAF-事件列表
+- 华为云-WAF-事件概览
+
 ## 2023 年 6 月 29 日
 
 ### 观测云更新
