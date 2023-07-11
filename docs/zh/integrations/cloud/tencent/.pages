@@ -1,7 +1,0 @@
-nav:
-  - 'CDB': cdb.md
-  - 'COS': cos.md
-  - 'CLB': clb.md
-  - 'CVM': cvm.md
-  - mongodb.md
-  - redis-mem.md
