@@ -1,6 +1,0 @@
-nav:
-  - 'SkyWalking': skywalking.md
-  - 'OpenTelemetry': 
-    - 'OpenTelemetry': opentelemetry.md
-    - 'OpenTelemetry-SDK': opentelemetry-sdk.md
-  - 'Jaeger': jaeger.md
