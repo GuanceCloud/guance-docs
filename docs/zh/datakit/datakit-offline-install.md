@@ -149,6 +149,14 @@
 #### 安装 {#simple-install}
 
 <!-- markdownlint-disable MD046 -->
+=== "Windows"
+
+    需以 administrator 权限运行 Powershell 执行：
+
+    ```powershell
+    .\installer-windows-amd64.exe --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs .\datakit-windows-amd64-1.10.2.tar.gz,.\data.tar.gz
+    ```
+
 === "Linux"
 
     需以 root 权限运行：
@@ -156,35 +164,6 @@
     ```shell
     chmod +x installer-linux-amd64
     ./installer-linux-amd64 --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs datakit-linux-amd64-1.10.2.tar.gz,data.tar.gz
-    ```
-
-=== "Windows"
-
-    需以 administrator 权限运行 Powershell 执行：
-
-    ```powershell
-    .\installer-windows-amd64.exe --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs .\datakit-windows-amd64-1.10.1.tar.gz,.\data.tar.gz
-    ```
-<!-- markdownlint-enable -->
-
-#### 升级 {#simple-upgrade}
-
-<!-- markdownlint-disable MD046 -->
-=== "Linux"
-
-    需以 root 权限运行：
-
-    ```shell
-    chmod +x installer-linux-amd64
-    ./installer-linux-amd64 --offline --upgrade --srcs datakit-linux-amd64-1.10.1.tar.gz,data.tar.gz
-    ```
-
-=== "Windows"
-
-    需以 administrator 权限运行 Powershell 执行：
-
-    ```powershell
-    .\installer-windows-amd64.exe --offline --upgrade --srcs .\datakit-windows-amd64-1.10.1.tar.gz,.\data.tar.gz
     ```
 <!-- markdownlint-enable -->
 
