@@ -187,15 +187,17 @@ android{
 </application> 
 ```
 
-| **方法名** | **含义** | **必须** | **注意** |
-| --- | --- | --- | --- |
-| metricsUrl | Datakit 安装地址 | 是 | datakit 安装地址 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529，。注意：安装 SDK 设备需能访问这地址 |
-| setDebug | 是否开启调试模式 | 否 | 默认为 `false`，开启后方可打印 SDK 运行日志 |
-| setEnv | 设置采集环境 | 否 | 默认为 `EnvType.PROD` |
-| setOnlySupportMainProcess | 是否只支持在主进程运行 | 否 | 默认为 `true` ，如果需要在其他进程中执行需要将该字段设置为 `false` |
-| setEnableAccessAndroidID | 开启获取 `Android ID` | 否 | 默认，为 `true`，设置为 `false`，则 `device_uuid` 字段数据将不进行采集,市场隐私审核相关[查看这里](#adpot-to-privacy-audits)|
-| addGlobalContext | 添加 SDK 全局属性 | 否 | 添加规则请查阅[此处](#key-conflict) |
-| setServiceName|设置服务名|否|影响 Log 和 RUM 中 service 字段数据， 默认为 `df_rum_android` |
+| **方法名** | **类型** | **必须** | **含义** | **注意** |
+| --- | --- | --- | --- | --- |
+| metricsUrl | String | 是 | Datakit 安装地址 | datakit 安装地址 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529，。注意：安装 SDK 设备需能访问这地址 |
+| setDebug | String | 否 | 是否开启调试模式 | 默认为 `false`，开启后方可打印 SDK 运行日志 |
+| setEnv | EnvType | 否 | 设置采集环境 | 默认为 `EnvType.PROD` |
+| setEnv | String | 否 | 设置采集环境 | 默认为 `prod` |
+| setOnlySupportMainProcess | Boolean | 否 | 是否只支持在主进程运行 | 默认为 `true` ，如果需要在其他进程中执行需要将该字段设置为 `false` |
+| setEnableAccessAndroidID | Boolean | 否 | 开启获取 `Android ID` | 默认，为 `true`，设置为 `false`，则 `device_uuid` 字段数据将不进行采集,市场隐私审核相关[查看这里](#adpot-to-privacy-audits) |
+| addGlobalContext | Dictionary | 否 | 添加 SDK 全局属性 | 添加规则请查阅[此处](#key-conflict) |
+| setServiceName | String | 否 | 设置服务名 | 影响 Log 和 RUM 中 service 字段数据，默认为 `df_rum_android` |
+
 
 ### RUM 配置 {#rum-config}
 
@@ -237,20 +239,22 @@ android{
 	        )
 	```
 
-| **方法名** | **含义** | **必须** | **注意** |
-| --- | --- | --- | --- |
-| setRumAppId | 设置`Rum AppId` | 是 | 对应设置 RUM `appid`，才会开启`RUM`的采集功能，[获取 appid 方法](#android-integration) |
-| setSampleRate | 设置采集率 | 否 | 采集率的值范围为>= 0、<= 1，默认值为 1 |
-| setEnableTrackAppCrash | 是否上报 App 崩溃日志 | 否 | 默认为 `false`，开启后会在错误分析中显示错误堆栈数据。<br> [关于崩溃日志中混淆内容转换的问题](#retrace-log) |
-| setExtraMonitorTypeWithError | 设置辅助监控信息 | 否 | 添加附加监控数据到 `Rum` 崩溃数据中，`ErrorMonitorType.BATTERY` 为电池余量，`ErrorMonitorType.MEMORY` 为内存用量，`ErrorMonitorType.CPU` 为 CPU 占有率 |
-| setDeviceMetricsMonitorType | 设置 View 监控信息 | 否 | 在 View 周期中，添加监控数据，`DeviceMetricsMonitorType.BATTERY` 监控当前页的最高输出电流输出情况，`DeviceMetricsMonitorType.MEMORY` 监控当前应用使用内存情况，`DeviceMetricsMonitorType.CPU` 监控 CPU 跳动次数 ，`DeviceMetricsMonitorType.FPS` 监控屏幕帧率|
-| setEnableTrackAppANR | 是否开启  ANR 检测 | 否 | 默认为 `false` |
-| setEnableTrackAppUIBlock | 是否开启 UI 卡顿检测 | 否 | 默认为 `false` |
-| setEnableTraceUserAction | 是否自动追踪用户操作 | 否 | 目前只支持用户启动和点击操作，默认为 `false` |
-| setEnableTraceUserView | 是否自动追踪用户页面操作 | 否 | 默认为 `false` |
-| setEnableTraceUserResource | 是否自动追动用户网络请求 | 否 | 仅支持 `Okhttp`，默认为 `false` |
-| setResourceUrlHandler | 设置需要过滤的 Resource 条件| 否 | 默认不过滤 |
-| addGlobalContext | 添加自定义标签 | 否 | 添加标签数据，用于用户监测数据源区分，如果需要使用追踪功能，则参数 `key` 为 `track_id` ,`value` 为任意数值，添加规则注意事项请查阅[此处](#key-conflict) |
+
+| **方法名** | **类型** | **必须** | **含义** | **注意** |
+| --- | --- | --- | --- | --- |
+| setRumAppId | String | 是 | 设置`Rum AppId` | 对应设置 RUM `appid`，才会开启`RUM`的采集功能，[获取 appid 方法](#android-integration) |
+| setSampleRate | Boolean | 否 | 设置采集率 | 采集率的值范围为>= 0、<= 1，默认值为 1 |
+| setEnableTrackAppCrash | Boolean | 否 | 是否上报 App 崩溃日志 | 默认为 `false`，开启后会在错误分析中显示错误堆栈数据。<br> [关于崩溃日志中混淆内容转换的问题](#retrace-log) |
+| setExtraMonitorTypeWithError | Array| 否 | 设置辅助监控信息 | 添加附加监控数据到 `Rum` 崩溃数据中，`ErrorMonitorType.BATTERY` 为电池余量，`ErrorMonitorType.MEMORY` 为内存用量，`ErrorMonitorType.CPU` 为 CPU 占有率 |
+| setDeviceMetricsMonitorType | Array | 否 | 设置 View 监控信息 | 在 View 周期中，添加监控数据，`DeviceMetricsMonitorType.BATTERY` 监控当前页的最高输出电流输出情况，`DeviceMetricsMonitorType.MEMORY` 监控当前应用使用内存情况，`DeviceMetricsMonitorType.CPU` 监控 CPU 跳动次数 ，`DeviceMetricsMonitorType.FPS` 监控屏幕帧率|
+| setEnableTrackAppANR | Boolean | 否 | 是否开启  ANR 检测 | 默认为 `false` |
+| setEnableTrackAppUIBlock | Boolean | 否 | 是否开启 UI 卡顿检测 | 默认为 `false` |
+| setEnableTraceUserAction | Boolean | 否 | 是否自动追踪用户操作 | 目前只支持用户启动和点击操作，默认为 `false` |
+| setEnableTraceUserView | Boolean | 否 | 是否自动追踪用户页面操作 | 默认为 `false` |
+| setEnableTraceUserResource | Boolean | 否 | 是否自动追动用户网络请求 | 仅支持 `Okhttp`，默认为 `false` |
+| setResourceUrlHandler | callback| 否 | 设置需要过滤的 Resource 条件| 默认不过滤 |
+| addGlobalContext | Dictionary | 否 | 添加自定义标签 | 添加标签数据，用于用户监测数据源区分，如果需要使用追踪功能，则参数 `key` 为 `track_id` ,`value` 为任意数值，添加规则注意事项请查阅[此处](#key-conflict) |
+
 
 #### 添加自定义标签 {#track}
 
@@ -378,15 +382,15 @@ android{
 	        )
 	```
 
-| **方法名** | **含义** | **必须** | **注意** |
-| --- | --- | --- | --- |
-| setSampleRate | 设置采集率 | 否 | 采集率的值范围为>= 0、<= 1，默认值为 1 |
-| setEnableConsoleLog | 是否上报控制台日志 | 否 | 日志等级对应关系<br>Log.v -> ok;<br>Log.i、Log.d -> info;<br>Log.e -> error;<br>Log.w -> warning，<br> `prefix` 为控制前缀过滤参数，默认不设置过滤 |
-| setEnableLinkRUMData | 是否与 RUM 数据关联 | 否 | 默认为 `false` |
-| setLogCacheDiscardStrategy | 设置频繁日志丢弃规则 | 否 | 默认为 `LogCacheDiscard.DISCARD`，`DISCARD` 为丢弃追加数据，`DISCARD_OLDEST` 丢弃老数据 |
-| setEnableCustomLog | 是否上传自定义日志 | 否 | 默认为 `false` |
-| setLogLevelFilters | 设置日志等级过滤 | 否 | 设置等级日志过滤，默认不设置 |
-| addGlobalContext | 添加 log 全局属性 | 否 | 添加规则请查阅[此处](#key-conflict) |
+| **方法名** | **类型** | **必须** | **含义** | **注意** |
+| --- | --- | --- | --- | --- |
+| setSampleRate | Boolean | 否 | 设置采集率 | 采集率的值范围为>= 0、<= 1，默认值为 1 |
+| setEnableConsoleLog | Boolean | 否 | 是否上报控制台日志 | 日志等级对应关系<br>Log.v -> ok;<br>Log.i、Log.d -> info;<br>Log.e -> error;<br>Log.w -> warning，<br> `prefix` 为控制前缀过滤参数，默认不设置过滤 |
+| setEnableLinkRUMData | Boolean | 否 | 是否与 RUM 数据关联 | 默认为 `false` |
+| setLogCacheDiscardStrategy| LogCacheDiscard | 否 | 设置频繁日志丢弃规则 | 默认为 `LogCacheDiscard.DISCARD`，`DISCARD` 为丢弃追加数据，`DISCARD_OLDEST` 丢弃老数据 |
+| setEnableCustomLog | Boolean| 否 | 是否上传自定义日志 | 默认为 `false` |
+| setLogLevelFilters | Array | 否 | 设置日志等级过滤 | 设置等级日志过滤，默认不设置 |
+| addGlobalContext | Dictionary | 否 | 添加 log 全局属性 | 添加规则请查阅[此处](#key-conflict) |
 
 ### Trace 配置 {#trace-config}
 
@@ -410,14 +414,13 @@ android{
 	        )
 	```
 
-| **方法名** | **含义** | **必须** | **注意** |
-| --- | --- | --- | --- |
-| setSampleRate | 设置采集率 | 否 | 采集率的值范围为>= 0、<= 1，默认值为 1 |
-| setTraceType | 设置链路追踪的类型 | 否 | 默认为 `DDTrace`，目前支持 `Zipkin` , `Jaeger`, `DDTrace`，`Skywalking` (8.0+)，`TraceParent` (W3C)，如果接入 OpenTelemetry 选择对应链路类型时，请注意查阅支持类型及 agent 相关配置 |
-| setEnableLinkRUMData | 是否与 RUM 数据关联 | 否 | 默认为 `false` |
-| setEnableAutoTrace | 设置是否开启自动 http trace | 否 | 目前只支持 OKhttp 的自动追踪，默认为 `false` |
-| setEnableWebTrace | 设置 webview 是否开启链路追踪 | 否 | alpha 功能，有一部分场景可能会有部分 js 加载问题，默认为 `false` |
-
+| **方法名** | **类型** | **必须** | **含义** | **注意** |
+| --- | --- | --- | --- | --- |
+| setSampleRate | Boolean | 否 | 设置采集率 | 采集率的值范围为>= 0、<= 1，默认值为 1 |
+| setTraceType | TraceType | 否 | 设置链路追踪的类型 | 默认为 `DDTrace`，目前支持 `Zipkin` , `Jaeger`, `DDTrace`，`Skywalking` (8.0+)，`TraceParent` (W3C)，如果接入 OpenTelemetry 选择对应链路类型时，请注意查阅支持类型及 agent 相关配置 |
+| setEnableLinkRUMData | Boolean | 否 | 是否与 RUM 数据关联 | 默认为 `false` |
+| setEnableAutoTrace | Boolean | 否 | 设置是否开启自动 http trace | 目前只支持 OKhttp 的自动追踪，默认为 `false` |
+| setEnableWebTrace | Boolean | 否 | 设置 webview 是否开启链路追踪 | alpha 功能，有一部分场景可能会有部分 js 加载问题，默认为 `false` |
 
 ## RUM 用户数据追踪 {#rum-trace}
 
