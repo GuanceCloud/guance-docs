@@ -1,5 +1,6 @@
 
 # DataKit 主配置
+---
 
 DataKit 主配置用来配置 DataKit 自己的运行行为。
 

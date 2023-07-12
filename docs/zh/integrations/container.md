@@ -19,11 +19,11 @@ monitor:
     path: 'monitor/zh/kubernetes'
 ---
 
+
 <!-- markdownlint-disable MD025 -->
 # 容器基础采集
 <!-- markdownlint-enable -->
-
-# Kubernetes 指标采集
+---
 
 :fontawesome-brands-linux: :material-kubernetes: :material-docker:
 
