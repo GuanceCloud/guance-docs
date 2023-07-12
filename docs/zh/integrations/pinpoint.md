@@ -1,7 +1,7 @@
 ---
 title     : 'Pinpoint'
 summary   : 'Pinpoint Tracing 数据接入'
-icon      : 'icon/pinpoint'
+__int_icon      : 'icon/pinpoint'
 dashboard :
   - desc  : '暂无'
     path  : '-'

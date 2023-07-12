@@ -1,7 +1,7 @@
 ---
 title     : 'OpenTelemetry'
 summary   : '接收 OpenTelemetry 指标、日志、APM 数据'
-icon      : 'icon/opentelemetry'
+__int_icon      : 'icon/opentelemetry'
 dashboard :
   - desc  : '暂无'
     path  : '-'
