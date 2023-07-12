@@ -21,7 +21,7 @@ icon: octicons/cloud-16
 
     ---
 
-    指导观测 [`CDN`](./aliyun/aliyun-cdn.md) [`ECS`](./aliyun/aliyun-ecs.md) [`MongoDB`](./aliyun/aliyun-mongodb.md) [`NAT`](./aliyun/aliyun-nat.md) [`OSS`](./aliyun/aliyun-oss.md) [`PolarDB Mysql`](./aliyun/aliyun-polardb-mysql.md) [`Redis`](./aliyun/aliyun-redis.md) [`SLB`](./aliyun/aliyun-slb.md) [`SLS`](./aliyun/aliyun-sls.md) [`费用`](./aliyun/aliyun-charges.md) [`ACK`](./aliyun/aliyun-ack.md) 等指标集数据
+    指导观测 [`CDN`](aliyun_cdn.md) [`ECS`](aliyun-ecs.md) [`MongoDB`](./aliyun/aliyun-mongodb.md) [`NAT`](./aliyun/aliyun-nat.md) [`OSS`](./aliyun/aliyun-oss.md) [`PolarDB Mysql`](./aliyun/aliyun-polardb-mysql.md) [`Redis`](./aliyun/aliyun-redis.md) [`SLB`](./aliyun/aliyun-slb.md) [`SLS`](./aliyun/aliyun-sls.md) [`费用`](./aliyun/aliyun-charges.md) [`ACK`](./aliyun/aliyun-ack.md) 等指标集数据
 
     <br/>
     [**:octicons-arrow-right-24: 官方脚本市场**](https://func.guance.com/doc/intro-script-market/)

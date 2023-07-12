@@ -1,6 +1,5 @@
 nav:
   - 公有云:
-    - cloud-index.md
     - 阿里云:
       - 'CDN': aliyun_cdn.md
       - 'ECS': aliyun_ecs.md
