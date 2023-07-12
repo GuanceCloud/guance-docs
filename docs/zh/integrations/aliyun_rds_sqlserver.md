@@ -1,7 +1,7 @@
 ---
 title: '阿里云 RDS SQLServer'
 summary: '阿里云 RDS SQLServer 指标展示，包括 CPU 使用率、内存使用率、 IOPS、网络带宽、 InnoDB、 TPS、 QPS 等。'
-icon: 'icon/aliyun_rds_sqlserver'
+__int_icon: 'icon/aliyun_rds_sqlserver'
 dashboard:
   - desc: '阿里云 RDS SQLServer 内置视图'
     path: 'dashboard/zh/aliyun_rds_sqlserver/'

@@ -1,7 +1,7 @@
 ---
 title: '阿里云 EDAS'
 summary: ''
-icon: icon/aliyun_redis
+__int_icon: icon/aliyun_redis
 ---
 # 阿里云 EDAS
 

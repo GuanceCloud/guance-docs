@@ -1,7 +1,7 @@
 ---
 title: '腾讯云 Redis'
 summary: '使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云'
-icon: 'icon/tencent_redis_mem'
+__int_icon: 'icon/tencent_redis_mem'
 dashboard:
 
   - desc: '腾讯云 Redis 内置视图'
