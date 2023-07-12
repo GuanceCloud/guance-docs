@@ -141,16 +141,7 @@ After downloading, you should have three files (`<OS-ARCH>` here refers to the p
 
 Copy these files to the corresponding machine (via USB flash drive or scp and other commands).
 
-#### Installation {#simple-install}
-
-=== "Linux"
-
-    To run with root privileges:
-    
-    ```shell
-    chmod +x installer-linux-amd64
-    ./installer-linux-amd64 --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs datakit-linux-amd64-1.10.1.tar.gz,data.tar.gz
-    ```
+### Installation {#install}
 
 === "Windows"
 
@@ -160,23 +151,13 @@ Copy these files to the corresponding machine (via USB flash drive or scp and ot
     .\installer-windows-amd64.exe --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs .\datakit-windows-amd64-1.10.2.tar.gz,.\data.tar.gz
     ```
 
-#### Upgrade {#simple-upgrade}
-
 === "Linux"
 
     To run with root privileges:
-
+    
     ```shell
     chmod +x installer-linux-amd64
-    ./installer-linux-amd64 --offline --upgrade --srcs datakit-linux-amd64-1.10.1.tar.gz,data.tar.gz
-    ```
-
-=== "Windows"
-
-    You need to run the Powershell with administrator privileges to execute:
-
-    ```powershell
-    .\installer-windows-amd64.exe --offline --upgrade --srcs .\datakit-windows-amd64-1.10.1.tar.gz,.\data.tar.gz
+    ./installer-linux-amd64 --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs datakit-linux-amd64-1.10.2.tar.gz,data.tar.gz
     ```
 
 ### Advanced Mode {#offline-advanced}
