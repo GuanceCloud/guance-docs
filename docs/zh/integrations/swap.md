@@ -1,7 +1,11 @@
 ---
 title     : 'Swap'
 summary   : '采集主机 swap 的指标数据'
+<<<<<<< HEAD
 icon      : 'icon/swap'
+=======
+__int_icon      : 'icon/swap'
+>>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
 dashboard :
   - desc  : 'Swap'
     path  : 'dashboard/zh/swap'

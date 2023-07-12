@@ -1,7 +1,11 @@
 ---
 title     : 'eBPF'
 summary   : '通过 eBPF 采集 Linux 网络数据'
+<<<<<<< HEAD
 icon      : 'icon/ebpf'
+=======
+__int_icon      : 'icon/ebpf'
+>>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
 dashboard :
   - desc  : '暂无'
     path  : '-'

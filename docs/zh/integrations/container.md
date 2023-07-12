@@ -1,7 +1,11 @@
 ---
 title: '容器基础采集'
 summary: '采集 Container 和 Kubernetes 的指标、对象和日志数据，上报到观测云。'
+<<<<<<< HEAD
 icon:    'icon/kubernetes/'  
+=======
+__int_icon:    'icon/kubernetes/'  
+>>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
 dashboard:
   - desc: 'Kubernetes 监控视图'
     path: 'dashboard/zh/kubernetes'

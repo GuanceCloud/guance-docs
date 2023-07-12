@@ -1,7 +1,11 @@
 ---
 title     : 'CoreDNS'
 summary   : '采集 CoreDNS 的指标数据'
+<<<<<<< HEAD
 icon      : 'icon/coredns'
+=======
+__int_icon      : 'icon/coredns'
+>>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
 dashboard :
   - desc  : 'CoreDNS'
     path  : 'dashboard/zh/coredns'

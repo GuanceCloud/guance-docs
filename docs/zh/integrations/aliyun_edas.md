@@ -1,7 +1,11 @@
 ---
 title: '阿里云 EDAS'
 summary: ''
+<<<<<<< HEAD
 icon: icon/aliyun_redis
+=======
+__int_icon: icon/aliyun_redis
+>>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
 ---
 # 阿里云 EDAS
 

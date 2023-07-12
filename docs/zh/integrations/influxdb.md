@@ -1,7 +1,11 @@
 ---
 title     : 'InfluxDB'
 summary   : '采集 InfluxDB 指标数据'
+<<<<<<< HEAD
 icon      : 'icon/influxdb'
+=======
+__int_icon      : 'icon/influxdb'
+>>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
 dashboard :
   - desc  : 'InfluxDB'
     path  : 'dashboard/zh/influxdb'

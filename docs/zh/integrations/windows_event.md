@@ -1,7 +1,11 @@
 ---
 title     : 'Windows 事件'
 summary   : '采集 Windows 中的事件日志'
+<<<<<<< HEAD
 icon      : 'icon/winevent'
+=======
+__int_icon      : 'icon/winevent'
+>>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
 dashboard :
   - desc  : '暂无'
     path  : '-'

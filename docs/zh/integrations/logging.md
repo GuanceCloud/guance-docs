@@ -1,7 +1,11 @@
 ---
 title     : '日志采集'
 summary   : '采集主机上的日志数据'
+<<<<<<< HEAD
 icon      : 'icon/logging'
+=======
+__int_icon      : 'icon/logging'
+>>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
 dashboard :
   - desc  : '日志'
     path  : '-'

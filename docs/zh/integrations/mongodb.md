@@ -1,7 +1,11 @@
 ---
 title     : 'MongoDB'
 summary   : '采集 MongoDB 的指标数据'
+<<<<<<< HEAD
 icon      : 'icon/mongodb'
+=======
+__int_icon      : 'icon/mongodb'
+>>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
 dashboard :
   - desc  : 'Mongodb 监控视图'
     path  : 'dashboard/zh/mongodb'

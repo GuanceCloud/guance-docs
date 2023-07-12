@@ -1,7 +1,11 @@
 ---
 title     : 'Promtail'
 summary   : '采集 Promtail 上报的日志数据'
+<<<<<<< HEAD
 icon      : 'icon/promtail'
+=======
+__int_icon      : 'icon/promtail'
+>>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
 dashboard :
   - desc  : '暂无'
     path  : '-'

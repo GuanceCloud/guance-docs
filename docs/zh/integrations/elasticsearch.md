@@ -1,7 +1,11 @@
 ---
 title     : 'ElasticSearch'
 summary   : '采集 ElasticSearch 的指标数据'
+<<<<<<< HEAD
 icon      : 'icon/elasticsearch'
+=======
+__int_icon      : 'icon/elasticsearch'
+>>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
 dashboard :
   - desc  : '暂无'
     path  : '-'

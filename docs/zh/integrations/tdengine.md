@@ -1,7 +1,11 @@
 ---
 title     : 'TDengine'
 summary   : '采集 TDengine 的指标数据'
+<<<<<<< HEAD
 icon      : 'icon/tdengine'
+=======
+__int_icon      : 'icon/tdengine'
+>>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
 dashboard :
   - desc  : 'TDengine'
     path  : 'dashboard/zh/tdengine'

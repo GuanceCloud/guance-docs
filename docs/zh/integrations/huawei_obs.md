@@ -1,7 +1,11 @@
 ---
 title: '华为云 OBS'
 summary: '使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云'
+<<<<<<< HEAD
 icon: 'icon/huawei_obs'
+=======
+__int_icon: 'icon/huawei_obs'
+>>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
 dashboard:
 
   - desc: '华为云 OBS 内置视图'

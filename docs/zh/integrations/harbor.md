@@ -1,5 +1,5 @@
 ---
-icon: integrations/harbor
+__int_icon: integrations/harbor
 ---
 # Harbor
 

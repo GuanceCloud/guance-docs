@@ -1,7 +1,11 @@
 ---
 title     : 'GitLab'
 summary   : '采集 Gitlat 的指标数据'
+<<<<<<< HEAD
 icon      : 'icon/gitlab'
+=======
+__int_icon      : 'icon/gitlab'
+>>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
 dashboard :
   - desc  : 'GitLab'
     path  : 'dashboard/zh/gitlab'

@@ -1,7 +1,11 @@
 ---
 title: 'DataKit 自身指标采集'
 summary: '采集 Datakit 自身运行指标'
+<<<<<<< HEAD
 icon: 'icon/dk'
+=======
+__int_icon: 'icon/dk'
+>>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
 dashboard:
   - desc: 'Datakit 内置视图'
     path: 'dashboard/zh/dk'

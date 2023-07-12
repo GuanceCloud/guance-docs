@@ -1,7 +1,11 @@
 ---
 title     : 'JVM'
 summary   : '采集 JVM 的指标数据'
+<<<<<<< HEAD
 icon      : 'icon/jvm'
+=======
+__int_icon      : 'icon/jvm'
+>>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
 dashboard :
   - desc  : 'JVM'
     path  : 'dashboard/zh/jvm'

@@ -1,7 +1,11 @@
 ---
 title     : 'NetStat'
 summary   : '采集网卡流量指标数据'
+<<<<<<< HEAD
 icon      : 'icon/netstat'
+=======
+__int_icon      : 'icon/netstat'
+>>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
 dashboard :
   - desc  : 'NetStat'
     path  : 'dashboard/zh/netstat'

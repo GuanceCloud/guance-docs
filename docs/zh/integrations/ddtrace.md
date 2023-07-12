@@ -1,7 +1,11 @@
 ---
 title     : 'DDTrace'
 summary   : '接收 DDTrace 的 APM 数据'
+<<<<<<< HEAD
 icon      : 'icon/ddtrace'
+=======
+__int_icon: 'icon/ddtrace'
+>>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
 dashboard :
   - desc  : '暂无'
     path  : '-'

@@ -1,7 +1,11 @@
 ---
 title     : 'Zipkin'
 summary   : 'Zipkin Tracing 数据接入'
+<<<<<<< HEAD
 icon      : 'icon/zipkin'
+=======
+__int_icon      : 'icon/zipkin'
+>>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
 dashboard :
   - desc  : '暂无'
     path  : '-'

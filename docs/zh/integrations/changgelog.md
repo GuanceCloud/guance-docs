@@ -1,5 +1,5 @@
 ---
-icon: zy/integrations
+__int_icon: zy/integrations
 ---
 # 集成更新记录
 ---

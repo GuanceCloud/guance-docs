@@ -1,7 +1,11 @@
 ---
 title     : 'ClickHouse'
 summary   : '采集 ClickHouse 的指标数据'
+<<<<<<< HEAD
 icon      : 'icon/clickhouse'
+=======
+__int_icon      : 'icon/clickhouse'
+>>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
 dashboard :
   - desc  : 'ClickHouse'
     path  : 'dashboard/zh/clickhouse'

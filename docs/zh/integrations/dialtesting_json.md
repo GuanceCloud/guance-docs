@@ -1,7 +1,11 @@
 ---
 title     : '自定义拨测任务'
 summary   : '自定义拨测采集器来定制拨测任务'
+<<<<<<< HEAD
 icon      : 'icon/dialtesting'
+=======
+__int_icon      : 'icon/dialtesting'
+>>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
 dashboard :
   - desc  : '暂无'
     path  : '-'

@@ -1,7 +1,11 @@
 ---
 title     : '磁盘 IO'
 summary   : '采集磁盘 IO 指标数据'
+<<<<<<< HEAD
 icon      : 'icon/diskio'
+=======
+__int_icon      : 'icon/diskio'
+>>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
 dashboard :
   - desc  : '磁盘 IO'
     path  : 'dashboard/zh/diskio'

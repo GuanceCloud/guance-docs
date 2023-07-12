@@ -1,7 +1,11 @@
 ---
 title     : '主机对象'
 summary   : '采集主机基本信息'
+<<<<<<< HEAD
 icon      : 'icon/hostobject'
+=======
+__int_icon      : 'icon/hostobject'
+>>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
 dashboard :
   - desc  : '暂无'
     path  : '-'

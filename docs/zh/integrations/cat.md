@@ -1,7 +1,11 @@
 ---
 title     : 'CAT'
 summary   : '美团点评的性能、容量和业务指标监控系统'
+<<<<<<< HEAD
 icon      : 'icon/cat'
+=======
+__int_icon      : 'icon/cat'
+>>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
 dashboard :
   - desc  : 'Cat 监控视图'
     path  : 'dashboard/zh/cat'

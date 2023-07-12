@@ -1,7 +1,11 @@
 ---
 title     : 'Memcached'
 summary   : '采集 Memcached 的指标数据'
+<<<<<<< HEAD
 icon      : 'icon/memcached'
+=======
+__int_icon      : 'icon/memcached'
+>>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
 dashboard :
   - desc  : 'Memcached'
     path  : 'dashboard/zh/memcached'

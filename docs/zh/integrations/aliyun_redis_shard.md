@@ -1,7 +1,11 @@
 ---
 title: '阿里云 Redis 集群版'
 summary: '阿里云 Redis 集群版指标展示，包括 CPU 使用率、内存使用率、磁盘读写、网络流量、每秒访问次数等。'
+<<<<<<< HEAD
 icon: icon/aliyun_redis
+=======
+__int_icon: icon/aliyun_redis
+>>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
 dashboard:
   - desc: '阿里云 Redis 集群版内置视图'
     path: 'dashboard/zh/aliyun_redis_shard/'

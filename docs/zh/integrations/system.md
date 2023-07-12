@@ -1,7 +1,11 @@
 ---
 title     : 'System'
 summary   : '采集主机系统相关的指标数据'
+<<<<<<< HEAD
 icon      : 'icon/system'
+=======
+__int_icon      : 'icon/system'
+>>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
 dashboard :
   - desc  : 'System'
     path  : 'dashboard/zh/system'

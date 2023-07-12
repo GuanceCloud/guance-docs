@@ -1,7 +1,11 @@
 ---
 title     : 'Profiling'
 summary   : '采集应用程序的运行时性能数据'
+<<<<<<< HEAD
 icon      : 'icon/profiling'
+=======
+__int_icon: 'icon/profiling'
+>>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
 dashboard :
   - desc  : '暂无'
     path  : '-'

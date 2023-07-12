@@ -1,7 +1,11 @@
 ---
 title     : '磁盘'
 summary   : '采集磁盘的指标数据'
+<<<<<<< HEAD
 icon      : 'icon/disk'
+=======
+__int_icon      : 'icon/disk'
+>>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
 dashboard :
   - desc  : '磁盘'
     path  : 'dashboard/zh/disk'

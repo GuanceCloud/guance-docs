@@ -1,7 +1,11 @@
 ---
 title     : 'Filebeat'
 summary   : '接收 Filebeat 采集的日志数据'
+<<<<<<< HEAD
 icon      : 'icon/beats'
+=======
+__int_icon      : 'icon/beats'
+>>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
 dashboard :
   - desc  : '暂无'
     path  : '-'

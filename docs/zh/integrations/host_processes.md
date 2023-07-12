@@ -1,7 +1,11 @@
 ---
 title     : 'Process'
 summary   : '采集进程的指标和对象数据'
+<<<<<<< HEAD
 icon      : 'icon/process'
+=======
+__int_icon      : 'icon/process'
+>>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
 dashboard :
   - desc  : '进程'
     path  : 'dashboard/zh/process'

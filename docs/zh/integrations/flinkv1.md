@@ -1,7 +1,11 @@
 ---
 title     : 'Flink'
 summary   : '采集 Flink 的指标数据'
+<<<<<<< HEAD
 icon      : 'icon/flink'
+=======
+__int_icon      : 'icon/flink'
+>>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
 dashboard :
   - desc  : 'Flink'
     path  : 'dashboard/zh/flink'

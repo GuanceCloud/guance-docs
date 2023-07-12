@@ -1,7 +1,11 @@
 ---
 title: '腾讯云 CVM'
 summary: '使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云'
+<<<<<<< HEAD
 icon: 'icon/tencent_cvm'
+=======
+__int_icon: 'icon/tencent_cvm'
+>>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
 dashboard:
 
   - desc: '腾讯云 CVM 内置视图'
