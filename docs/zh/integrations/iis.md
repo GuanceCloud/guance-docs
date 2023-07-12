@@ -1,7 +1,7 @@
 ---
 title     : 'IIS'
 summary   : '采集 IIS 指标数据'
-icon      : 'icon/iis'
+__int_icon      : 'icon/iis'
 dashboard :
   - desc  : 'IIS'
     path  : 'dashboard/zh/iis'

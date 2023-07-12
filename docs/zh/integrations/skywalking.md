@@ -1,7 +1,7 @@
 ---
 title     : 'SkyWalking'
 summary   : 'SkyWalking Tracing 数据接入'
-icon      : 'icon/skywalking'
+__int_icon      : 'icon/skywalking'
 dashboard :
   - desc  : 'Skywalking JVM 监控视图'
     path  : 'dashboard/zh/skywalking'

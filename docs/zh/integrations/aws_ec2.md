@@ -1,7 +1,7 @@
 ---
 title: 'AWS EC2'
 summary: '使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云'
-icon: 'icon/aws_ec2'
+__int_icon: 'icon/aws_ec2'
 dashboard:
 
   - desc: 'AWS EC2 内置视图'

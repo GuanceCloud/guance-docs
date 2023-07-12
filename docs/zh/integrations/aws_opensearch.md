@@ -1,7 +1,7 @@
 ---
 title: 'AWS OpenSearch'
 summary: '使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云'
-icon: 'icon/aws_opensearch'
+__int_icon: 'icon/aws_opensearch'
 dashboard:
 
   - desc: 'AWS OpenSearch 内置视图'

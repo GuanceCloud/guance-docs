@@ -1,7 +1,7 @@
 ---
 title: '阿里云 OSS'
 summary: '阿里云 OSS 指标展示，包括请求数、可用性、网络流量、请求占比等。'
-icon: icon/aliyun_oss
+__int_icon: icon/aliyun_oss
 dashboard:
   - desc: '阿里云 OSS 内置视图'
     path: 'dashboard/zh/aliyun_oss/'

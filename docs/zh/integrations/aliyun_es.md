@@ -1,7 +1,7 @@
 ---
 title: '阿里云 ElasticSearch'
 summary: '阿里云 ElasticSearch 指标展示，包括集群状态、索引 QPS、 节点 CPU/内存/磁盘使用率等。'
-icon: 'icon/aliyun_es'
+__int_icon: 'icon/aliyun_es'
 dashboard:
   - desc: '阿里云 ElasticSearch 内置视图'
     path: 'dashboard/zh/aliyun_es/'

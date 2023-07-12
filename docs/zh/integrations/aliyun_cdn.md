@@ -1,7 +1,7 @@
 ---
 title: '阿里云 CDN'
 summary: '阿里云 CDN 性能指标展示，包括每秒访问次数、下行流量、边缘带宽、响应时间、回源带宽、状态码等。'
-icon: 'icon/aliyun_cdn'
+__int_icon: 'icon/aliyun_cdn'
 dashboard:
   - desc: '阿里云 CDN 内置视图'
     path: 'dashboard/zh/aliyun_cdn/'
