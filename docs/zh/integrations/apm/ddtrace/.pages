@@ -1,6 +1,0 @@
-nav:
-  - index.md
-  - 'ddtrace 常见参数': ddtrace-skill-param.md
-  - 'ddtrace api': ddtrace-skill-api.md
-  - 'ddtrace 采样': ddtrace-skill-sampling.md
-  - 'ddtrace log 关联': ddtrace-skill-log.md

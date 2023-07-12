@@ -1,6 +1,5 @@
 
 # DataKit 主配置
----
 
 DataKit 主配置用来配置 DataKit 自己的运行行为。
 
@@ -19,7 +18,7 @@ DataKit 主配置用来配置 DataKit 自己的运行行为。
 
 ## Datakit 主配置示例 {#maincfg-example}
 
-Datakit 主配置示例如下，我们可以根据该示例来开启各种功能（当前版本 1.10.2）：
+Datakit 主配置示例如下，我们可以根据该示例来开启各种功能（当前版本 1.11.0）：
 
 <!-- markdownlint-disable MD046 -->
 ??? info "*datakit.conf*"
