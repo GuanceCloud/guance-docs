@@ -209,10 +209,6 @@ Datakit 目前提供了如下两种语言的最佳实践：
 
 ## 链路字段 {#tracing}
 
-待补充。
-
-## 指标集 {#measurements}
-
 
 
 
