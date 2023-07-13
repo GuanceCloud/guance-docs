@@ -371,6 +371,39 @@ if cidr(ip, "192.0.2.1/24") {
 ```
 
 
+### `conv_traceid_w3c_to_dd()`  {#fn-conv-traceid-w3c-to-dd}
+
+函数原型：`fn conv_traceid_w3c_to_dd(key)`
+
+函数说明：将 16 进制编码的 128-bit/64-bit  W3C Trace ID 字符串（长度 32 个字符或 16 个字符）转换为 10 进制编码的 64-bit DataDog Trace ID 字符串。
+
+函数参数
+
+- `key`: 待转换的 128-bit/64-bit Trace ID
+
+示例：
+
+```python
+
+# script input:
+
+"18962fdd9eea517f2ae0771ea69d6e16"
+
+# script:
+
+grok(_, "%{NOTSPACE:trace_id}")
+
+conv_traceid_w3c_to_dd(trace_id)
+
+# result:
+
+{
+    "trace_id": "3089600317904219670",
+}
+
+```
+
+
 ### `cover()` {#fn-cover}
 
 函数原型：`fn cover(key: str, range: list)`
@@ -656,14 +689,14 @@ json(_, str_b)
 
 函数说明：删除已提取字段
 
-函数参数
+函数参数：
 
 - `key`: 待删除字段名
 
 示例：
 
 ```python
-# data = `{\"age\": 17, \"name\": \"zhangsan\", \"height\": 180}`
+# data = "{\"age\": 17, \"name\": \"zhangsan\", \"height\": 180}"
 
 # 处理脚本
 json(_, age,)
