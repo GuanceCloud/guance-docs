@@ -2,10 +2,14 @@
 title     : 'Net'
 summary   : '采集网卡的指标数据'
 <<<<<<< HEAD
+<<<<<<< HEAD
 icon      : 'icon/net'
 =======
 __int_icon: 'icon/net'
 >>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
+=======
+__int_icon: 'icon/net'
+>>>>>>> c66e8140414e8da5bc40d96d0cea42cd2412a7c6
 dashboard :
   - desc  : 'Net'
     path  : 'dashboard/zh/net'

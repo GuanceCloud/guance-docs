@@ -2,10 +2,14 @@
 title     : 'Solr'
 summary   : '采集 Solr 的指标数据'
 <<<<<<< HEAD
+<<<<<<< HEAD
 icon      : 'icon/solr'
 =======
 __int_icon      : 'icon/solr'
 >>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
+=======
+__int_icon      : 'icon/solr'
+>>>>>>> c66e8140414e8da5bc40d96d0cea42cd2412a7c6
 dashboard :
   - desc  : 'Solr'
     path  : 'dashboard/zh/solr'

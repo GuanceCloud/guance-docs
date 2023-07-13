@@ -2,10 +2,14 @@
 title     : 'CPU'
 summary   : '采集 CPU 指标数据'
 <<<<<<< HEAD
+<<<<<<< HEAD
 icon      : 'icon/cpu'
 =======
 __int_icon      : 'icon/cpu'
 >>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
+=======
+__int_icon      : 'icon/cpu'
+>>>>>>> c66e8140414e8da5bc40d96d0cea42cd2412a7c6
 dashboard :
   - desc  : 'CPU'
     path  : 'dashboard/zh/cpu'

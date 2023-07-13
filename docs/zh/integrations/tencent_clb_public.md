@@ -2,10 +2,14 @@
 title: '腾讯云 CLB Public'
 summary: '使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云'
 <<<<<<< HEAD
+<<<<<<< HEAD
 icon: 'icon/tencent_clb'
 =======
 __int_icon: 'icon/tencent_clb'
 >>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
+=======
+__int_icon: 'icon/tencent_clb'
+>>>>>>> c66e8140414e8da5bc40d96d0cea42cd2412a7c6
 dashboard:
 
   - desc: '腾讯云 CLB Public 内置视图'

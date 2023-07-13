@@ -2,10 +2,14 @@
 title     : 'SNMP'
 summary   : '采集 SNMP 设备的指标和对象数据'
 <<<<<<< HEAD
+<<<<<<< HEAD
 icon      : 'icon/snmp'
 =======
 __int_icon      : 'icon/snmp'
 >>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
+=======
+__int_icon      : 'icon/snmp'
+>>>>>>> c66e8140414e8da5bc40d96d0cea42cd2412a7c6
 dashboard :
   - desc  : '暂无'
     path  : '-'

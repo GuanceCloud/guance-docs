@@ -2,10 +2,14 @@
 title     : 'IIS'
 summary   : '采集 IIS 指标数据'
 <<<<<<< HEAD
+<<<<<<< HEAD
 icon      : 'icon/iis'
 =======
 __int_icon      : 'icon/iis'
 >>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
+=======
+__int_icon      : 'icon/iis'
+>>>>>>> c66e8140414e8da5bc40d96d0cea42cd2412a7c6
 dashboard :
   - desc  : 'IIS'
     path  : 'dashboard/zh/iis'
@@ -26,10 +30,13 @@ monitor   :
 
 采集 IIS 指标数据。
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 ## 配置 {#config}
 =======
 >>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
+=======
+>>>>>>> c66e8140414e8da5bc40d96d0cea42cd2412a7c6
 
 ## 配置 {#config}
 
@@ -41,10 +48,15 @@ monitor   :
 - Windows Server 2008 R2 及以上版本
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 ### 采集器配置 {#input-config}
 
 >>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
+=======
+### 采集器配置 {#input-config}
+
+>>>>>>> c66e8140414e8da5bc40d96d0cea42cd2412a7c6
 进入 DataKit 安装目录下的 `conf.d/iis` 目录，复制 `iis.conf.sample` 并命名为 `iis.conf`。示例如下：
 
 ```toml
