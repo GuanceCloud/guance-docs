@@ -7,6 +7,14 @@
 		{
 			"pattern": "en.wikipedia.org",
 			"why": "maybe GFWed"
+		},
+		{
+			"pattern": "console.amazonaws.cn",
+			"why": "expected"
+		},
+		{
+			"pattern": "console.aws.amazon.com",
+			"why": "expected"
 		}
 	],
 	"timeout": "5s",
