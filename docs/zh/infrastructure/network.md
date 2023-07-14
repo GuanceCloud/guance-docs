@@ -10,7 +10,7 @@
 
 ## 前提条件
 
-你需要先创建一个 [观测云账号](https://auth.guance.com/register?channel=帮助文档)，并在你的主机上 [安装 DataKit](../datakit/datakit-install.md)，开启 [eBPF 采集器](../integrations/ebpf.md)。
+你需要先创建一个 [观测云账号](https://auth.guance.com/register?channel=帮助文档)，并在你的主机上 [安装 DataKit](../datakit/datakit-install.md)，开启 [eBPF 采集器](../integrations/host/ebpf.md)。
 
 ## 主机网络 {#host}
 

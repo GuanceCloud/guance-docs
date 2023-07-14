@@ -8,9 +8,9 @@ On the basic information page, select the site and enter the registration inform
 
 ![](img/inter-commercial-register-1.png)
 
-### Sites {#site}
+### site {#site}
 
-Currently, Guance supports login registration <u>through Oregon site and Frankfurt site</u>. More sites are on the way.
+Currently, Guance supports login registration <u>through Oregon site</u>, and more sites are on the way.
 
 ## Step 2: Company Info {#step2}
 
