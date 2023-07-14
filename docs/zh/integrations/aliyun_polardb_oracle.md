@@ -1,7 +1,15 @@
 ---
 title: '阿里云 PolarDB Oracle'
 summary: '阿里云 PolarDB Oracle 指标展示，包括 CPU 使用率、内存使用率、网络流量、连接数、IOPS、 TPS、 数据盘大小等。'
+<<<<<<< HEAD
+<<<<<<< HEAD
+icon: icon/aliyun_polardb_oracle
+=======
 __int_icon: icon/aliyun_polardb_oracle
+>>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
+=======
+__int_icon: icon/aliyun_polardb_oracle
+>>>>>>> c66e8140414e8da5bc40d96d0cea42cd2412a7c6
 dashboard:
   - desc: '阿里云 PolarDB Oracle 内置视图'
     path: 'dashboard/zh/aliyun_polardb_oracle/'
