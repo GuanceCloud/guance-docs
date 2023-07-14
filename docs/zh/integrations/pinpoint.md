@@ -1,15 +1,7 @@
 ---
 title     : 'Pinpoint'
 summary   : 'Pinpoint Tracing 数据接入'
-<<<<<<< HEAD
-<<<<<<< HEAD
-icon      : 'icon/pinpoint'
-=======
 __int_icon      : 'icon/pinpoint'
->>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
-=======
-__int_icon      : 'icon/pinpoint'
->>>>>>> c66e8140414e8da5bc40d96d0cea42cd2412a7c6
 dashboard :
   - desc  : '暂无'
     path  : '-'
@@ -165,15 +157,7 @@ Pinpoint APM 链路数据较为复杂：
   <figcaption>Pinpoint</figcaption>
 </figure>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-## 指标集 {#measurements}
-=======
 ## 链路字段 {#tracing}
->>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
-=======
-## 链路字段 {#tracing}
->>>>>>> c66e8140414e8da5bc40d96d0cea42cd2412a7c6
 
 
 

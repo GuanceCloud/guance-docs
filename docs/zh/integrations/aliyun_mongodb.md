@@ -1,15 +1,7 @@
 ---
 title: '阿里云 MongoDB'
 summary: '阿里云 MongoDB 副本集指标展示，包括 CPU 使用率、内存使用率、连接数、网络流量、 QPS 等。'
-<<<<<<< HEAD
-<<<<<<< HEAD
-icon: 'icon/aliyun_mongodb'
-=======
 __int_icon: 'icon/aliyun_mongodb'
->>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
-=======
-__int_icon: 'icon/aliyun_mongodb'
->>>>>>> c66e8140414e8da5bc40d96d0cea42cd2412a7c6
 dashboard:
   - desc: '阿里云 MongoDB 内置视图'
     path: 'dashboard/zh/aliyun_mongodb/'

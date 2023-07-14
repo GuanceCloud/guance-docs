@@ -1,15 +1,7 @@
 ---
 title     : 'Redis'
 summary   : 'Redis 指标和日志采集'
-<<<<<<< HEAD
-<<<<<<< HEAD
-icon      : 'icon/redis'
-=======
 __int_icon      : 'icon/redis'
->>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
-=======
-__int_icon      : 'icon/redis'
->>>>>>> c66e8140414e8da5bc40d96d0cea42cd2412a7c6
 dashboard :
   - desc  : 'Redis'
     path  : 'dashboard/zh/redis'
