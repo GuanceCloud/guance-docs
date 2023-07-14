@@ -1,15 +1,7 @@
 ---
 title     : 'Socket'
 summary   : '主要用于 Java/Go/Python 日志框架如何配置 Socket，将日志发送给 Datakit 日志采集器中。'
-<<<<<<< HEAD
-<<<<<<< HEAD
-icon      : 'icon/socket'
-=======
 __int_icon      : 'icon/socket'
->>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
-=======
-__int_icon      : 'icon/socket'
->>>>>>> c66e8140414e8da5bc40d96d0cea42cd2412a7c6
 dashboard :
   - desc  : '暂无'
     path  : '-'

@@ -1,15 +1,7 @@
 ---
 title     : 'OpenTelemetry'
 summary   : '接收 OpenTelemetry 指标、日志、APM 数据'
-<<<<<<< HEAD
-<<<<<<< HEAD
-icon      : 'icon/opentelemetry'
-=======
 __int_icon      : 'icon/opentelemetry'
->>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
-=======
-__int_icon      : 'icon/opentelemetry'
->>>>>>> c66e8140414e8da5bc40d96d0cea42cd2412a7c6
 dashboard :
   - desc  : '暂无'
     path  : '-'
@@ -217,16 +209,6 @@ Datakit 目前提供了如下两种语言的最佳实践：
 
 ## 链路字段 {#tracing}
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-待补充。
-
-## 指标集 {#measurements}
-
-=======
->>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
-=======
->>>>>>> c66e8140414e8da5bc40d96d0cea42cd2412a7c6
 
 
 

@@ -1,15 +1,7 @@
 ---
 title     : '磁盘 S.M.A.R.T'
 summary   : '通过 smartctl 采集磁盘指标'
-<<<<<<< HEAD
-<<<<<<< HEAD
-icon      : 'icon/smartctl'
-=======
 __int_icon      : 'icon/smartctl'
->>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
-=======
-__int_icon      : 'icon/smartctl'
->>>>>>> c66e8140414e8da5bc40d96d0cea42cd2412a7c6
 dashboard :
   - desc  : '暂无'
     path  : '-'
