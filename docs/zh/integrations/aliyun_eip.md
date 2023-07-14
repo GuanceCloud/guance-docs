@@ -1,7 +1,15 @@
 ---
 title: '阿里云 EIP'
 summary: '阿里云 EIP 指标展示，包括网络带宽、网络数据包、限速丢包率、带宽利用率等。'
+<<<<<<< HEAD
+<<<<<<< HEAD
+icon: 'icon/aliyun_eip'
+=======
 __int_icon: 'icon/aliyun_eip'
+>>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
+=======
+__int_icon: 'icon/aliyun_eip'
+>>>>>>> c66e8140414e8da5bc40d96d0cea42cd2412a7c6
 dashboard:
   - desc: '阿里云 EIP 内置视图'
     path: 'dashboard/zh/aliyun_eip/'

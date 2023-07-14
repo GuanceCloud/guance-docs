@@ -1,7 +1,15 @@
 ---
 title     : 'Proxy'
 summary   : '代理 Datakit 的 HTTP 请求'
+<<<<<<< HEAD
+<<<<<<< HEAD
+icon      : 'icon/proxy'
+=======
 __int_icon      : 'icon/proxy'
+>>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
+=======
+__int_icon      : 'icon/proxy'
+>>>>>>> c66e8140414e8da5bc40d96d0cea42cd2412a7c6
 dashboard :
   - desc  : '暂无'
     path  : '-'

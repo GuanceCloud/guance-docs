@@ -1,7 +1,15 @@
 ---
 title: '阿里云 RDS MySQL'
 summary: '阿里云 RDS MySQL 指标展示，包括 CPU 使用率、内存使用率、 IOPS、网络带宽、 InnoDB、 TPS、 QPS 等。'
+<<<<<<< HEAD
+<<<<<<< HEAD
+icon: 'icon/aliyun_rds_mysql'
+=======
 __int_icon: 'icon/aliyun_rds_mysql'
+>>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
+=======
+__int_icon: 'icon/aliyun_rds_mysql'
+>>>>>>> c66e8140414e8da5bc40d96d0cea42cd2412a7c6
 dashboard:
   - desc: '阿里云 RDS MySQL 内置视图'
     path: 'dashboard/zh/aliyun_rds_mysql/'

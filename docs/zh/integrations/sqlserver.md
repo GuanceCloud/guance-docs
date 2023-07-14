@@ -1,7 +1,15 @@
 ---
 title     : 'SQLServer'
 summary   : '采集 SQLServer 的指标数据'
+<<<<<<< HEAD
+<<<<<<< HEAD
+icon      : 'icon/sqlserver'
+=======
 __int_icon      : 'icon/sqlserver'
+>>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
+=======
+__int_icon      : 'icon/sqlserver'
+>>>>>>> c66e8140414e8da5bc40d96d0cea42cd2412a7c6
 dashboard :
   - desc  : 'SQLServer'
     path  : 'dashboard/zh/sqlserver'

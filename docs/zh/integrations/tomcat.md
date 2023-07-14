@@ -1,7 +1,15 @@
 ---
 title     : 'Tomcat'
 summary   : '采集 Tomcat 的指标数据'
+<<<<<<< HEAD
+<<<<<<< HEAD
+icon      : 'icon/tomcat'
+=======
 __int_icon      : 'icon/tomcat'
+>>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
+=======
+__int_icon      : 'icon/tomcat'
+>>>>>>> c66e8140414e8da5bc40d96d0cea42cd2412a7c6
 dashboard :
   - desc  : 'Tomcat'
     path  : 'dashboard/zh/tomcat'
