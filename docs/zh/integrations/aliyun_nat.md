@@ -1,7 +1,15 @@
 ---
 title: '阿里云 NAT'
 summary: '阿里云 NAT 指标展示，包括并发连接数、新建连接数、 VPC 流量、 VPC 数据包等。'
+<<<<<<< HEAD
+<<<<<<< HEAD
+icon: 'icon/aliyun_nat'
+=======
 __int_icon: 'icon/aliyun_nat'
+>>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
+=======
+__int_icon: 'icon/aliyun_nat'
+>>>>>>> c66e8140414e8da5bc40d96d0cea42cd2412a7c6
 dashboard:
   - desc: '阿里云 NAT 内置视图'
     path: 'dashboard/zh/aliyun_nat/'

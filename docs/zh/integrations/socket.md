@@ -1,7 +1,15 @@
 ---
 title     : 'Socket'
 summary   : '采集 TCP/UDP 端口的指标数据'
+<<<<<<< HEAD
+<<<<<<< HEAD
+icon      : 'icon/socket'
+=======
 __int_icon      : 'icon/socket'
+>>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
+=======
+__int_icon      : 'icon/socket'
+>>>>>>> c66e8140414e8da5bc40d96d0cea42cd2412a7c6
 dashboard :
   - desc  : 'Socket'
     path  : 'dashboard/zh/socket'
