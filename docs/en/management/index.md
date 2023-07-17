@@ -10,17 +10,13 @@ Guance will introduce you to this path **at the personal account level**: regist
 
 Before entering the Guance workspace, be sure that you have [registered a Guance account](https://auth.guance.com/businessRegister).  
 
-After registration, you can click **Login** through [Guance Official Website](https://www.guance.com/), select the site you registered, enter the login account and password. 
+After registration, you can click **Login** through [Guance Official Website](https://www.guance.com/), select the site you registered, enter the login account and password. For more registration details, please refer to the document [Register Commercial Plan](../billing/commercial-register.md).
 
-<img src="img/0712-login.png" width="70%" >
+???+ attention "Details Worthy of Attention"
 
-> For more registration details, please refer to the document [Register Commercial Plan](../billing/commercial-register.md).
-
-???- attention "Details Worthy of Attention"
-
-    - Under a single Guance site, only one mobile phone number and one mailbox are supported, and Hong Kong, Macao and Taiwan and foreign mobile phone numbers are not supported for the time being.   
-    - The accounts of different sites are independent and do not communicate with each other.   
-    > For more site descriptions, please refer to the document [Select Registered Site](../getting-started/necessary-for-beginners/select-site.md).
+    - Workspace language options affect templates for events, alarms and text messages in the workspace. If you select English, the above corresponding template will be used by default. Once created, the template language of this workspace **cannot** be modified, so please choose carefully.  
+    - Under a single Guance site, only one mobile phone number and one mailbox are supported, and Hong Kong, Macao and Taiwan and foreign mobile phone numbers are not supported for the time being.
+    - The accounts of different sites are independent and do not communicate with each other. For more site descriptions, please refer to the document [select registered site](../getting-started/necessary-for-beginners/select-site.md).
     - [SSO](../management/sso/index.md) to Guance is supported.
 
 After finishing steps above, you will join a workspace the system created by default, in which you obtain the **Owner** permission. 
@@ -70,9 +66,7 @@ When **Creating Workspace**, enter a workspace name, select the workspace langua
 
 If you need to set the menu, you can go to **Management > Advanced Settings > [Function Menu](./settings/customized-menu.md)** to modify it.
 
-The following dialog box will pop out once you click **Create**. 
-
-> If you need to create a **SLS workspace of Exclusive Plan**, please refer to the doc [Guance Exclusive Plan in Alibaba Cloud Market](../billing/commercial-aliyun-sls.md).
+The following dialog box will pop out once you click **Create**. If you need to create a **SLS workspace of Exclusive Plan**, please refer to the doc [Guance Exclusive Plan in Alibaba Cloud Market](../billing/commercial-aliyun-sls.md).
 
 
 ![](img/3.space_management_4.png)
@@ -84,11 +78,11 @@ In addition to logging in by registering a Guance account, enterprise users are 
 Here you can:    
 
 - modify avatar and user name;  
-- modify [login session](#login-hold-time).
+- modify [login retention time](#login-hold-time).
 
 ???+ attention "SSO"
 
-    For accounts logged in through SSO, the login session configured by SSO is used by default. After account management is modified, the modified login session is used.
+    For accounts logged in through SSO, the login retention time configured by SSO is used by default. After account management is modified, the modified login retention time is used.
     
     > For more details, please refer to the doc [SSO Management](../management/sso/index.md).
 
@@ -104,17 +98,15 @@ Guance has always valued users's account security, here are some related securit
 
 ### MFA {#mfa}
 
-Guance provides MFA management, which helps to add an additional layer of security protection to the account user name and password. After MFA is turned on, you need to perform secondary verification when logging in to help you improve the security of your account. 
+Guance provides MFA management, which helps to add an additional layer of security protection to the account user name and password. After MFA is turned on, you need to perform secondary verification when logging in to help you improve the security of your account. See the documentation [MFA Management](mfa-management.md).
 
-> See the documentation [MFA Management](mfa-management.md).
+### Session Retention Time {#login-hold-time}
 
-### Login Session {#login-hold-time}
+Guance supports setting session retention time for accounts logged into the workspace, including accounts registered in the workspace and SSO accounts.
 
-Guance supports setting login session for accounts logged into the workspace, including accounts registered in the workspace and SSO accounts.
+Click your account on the lower-right corner of the stuido and click **Account Management**. In the session retention time, click to modify the default session retention time, including the inactive session retention time and the maximum session retention time. After setting, the timeout session will be invalid.
 
-Click your account on the lower-right corner of the stuido and click **Account Management**. In the login session, click to modify the default login session, including the inactive login session and the maximum login session. After setting, the timeout session will be invalid.
-
-- No operation login session: From 30 to 1440 minutes, and the default is 30 minutes;
+- No operation session retention time: From 30 to 1440 minutes, and the default is 30 minutes;
 - Maximum retention time of session: From 0 to 7 days, where 0 means never timeout, and the default is 7 days.
    
 ![](img/6.mfa_2.1.png)

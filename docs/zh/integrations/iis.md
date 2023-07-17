@@ -31,7 +31,6 @@ monitor   :
 - Windows 7 以上版本（含 Windows 7）
 - Windows Server 2008 R2 及以上版本
 
-
 ### 采集器配置 {#input-config}
 
 进入 DataKit 安装目录下的 `conf.d/iis` 目录，复制 `iis.conf.sample` 并命名为 `iis.conf`。示例如下：
