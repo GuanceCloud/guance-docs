@@ -21,11 +21,11 @@ DataKit 安装完成后，您可以通过开启标准日志采集或者自定义
 
     进入 DataKit 安装目录下的 `conf.d/log` 目录，复制 `logging.conf.sample` 并命名为 `logging.conf` 进行配置。配置完成后，重启 DataKit 即可生效。
     
-    > 详情可参考[主机日志采集](../datakit/logging.md)。
+    > 详情可参考[主机日志采集](../integrations/logging.md)。
 
 === "标准日志采集器"
 
-    通过开启观测云支持的标准日志采集器，如 [Nginx](../datakit/nginx.md)、[Redis](../datakit/redis.md)、[ES](../datakit/elasticsearch.md) 等，您可以一键开启日志采集。
+    通过开启观测云支持的标准日志采集器，如 [Nginx](../integrations/nginx.md)、[Redis](../integrations/redis.md)、[ES](../integrations/elasticsearch.md) 等，您可以一键开启日志采集。
 
 ???+ attention
 
@@ -34,7 +34,7 @@ DataKit 安装完成后，您可以通过开启标准日志采集或者自定义
     - `time`：日志的产生时间，如果没有提取 `time` 字段或解析此字段失败，默认使用系统当前时间；
     - `status`：日志的等级，如果没有提取出 `status` 字段，则默认将 `stauts` 置为 `unknown`。
     
-    > 更多详情可参考文档 [Pipeline 配置和使用](../datakit/logging.md#pipeline)。
+    > 更多详情可参考文档 [Pipeline 配置和使用](../integrations/logging.md#pipeline)。
 
 
 

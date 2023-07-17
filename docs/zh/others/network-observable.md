@@ -14,7 +14,7 @@
 
 ## 方法步骤
 
-### Step1：开启 [eBPF](../integrations/host/ebpf.md) 集成的运行，采集网络数据
+### Step1：开启 [eBPF](../integrations/ebpf.md) 集成的运行，采集网络数据
 
 ebpf 采集器，采集主机网络 tcp、udp 连接信息，bash 执行日志等，包含 ebpf-net 及 ebpf-bash:
 
