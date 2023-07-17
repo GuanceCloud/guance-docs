@@ -15,7 +15,7 @@
 
 ## 数据采集
 
-DataKit 安装完成后，您可以在 DataKit 安装目录开启 [Gitlab](../integrations/cicd/gitlab.md)  / [Jenkins](../integrations/cicd/jenkins.md) 采集器，重启 DataKit 以后，即可获取 CI 相关数据。
+DataKit 安装完成后，您可以在 DataKit 安装目录开启 [Gitlab](../integrations/gitlab.md)  / [Jenkins](../integrations/jenkins.md) 采集器，重启 DataKit 以后，即可获取 CI 相关数据。
 
 ## 更多参考
 
