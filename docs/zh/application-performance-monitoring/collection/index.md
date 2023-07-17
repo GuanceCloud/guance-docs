@@ -15,7 +15,7 @@ DataKit 目前支持采集 `DDTrace` 、`Apache Jaeger` 、`OpenTelemetry` 、`S
 
 |                          采集器配置                          |                                                              |                                                              |                                                              |                                                              |
 | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| [DDTrace](../../datakit/ddtrace.md){ .md-button .md-button--primary } | [Skywalking](../../datakit/skywalking.md){ .md-button .md-button--primary } | [OpenTelemetry](../../datakit/opentelemetry.md){ .md-button .md-button--primary } | [Zipkin](../../datakit/zipkin.md){ .md-button .md-button--primary } | [Jaeger](../../datakit/jaeger.md){ .md-button .md-button--primary } |
+| [DDTrace](../../datakit/ddtrace.md){ .md-button .md-button--primary } | [Skywalking](../../integrations/skywalking.md){ .md-button .md-button--primary } | [OpenTelemetry](../../datakit/opentelemetry.md){ .md-button .md-button--primary } | [Zipkin](../../datakit/zipkin.md){ .md-button .md-button--primary } | [Jaeger](../../datakit/jaeger.md){ .md-button .md-button--primary } |
 
 ### 数据采集步骤示意图
 
