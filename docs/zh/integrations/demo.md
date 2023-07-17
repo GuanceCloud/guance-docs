@@ -1,11 +1,7 @@
 ---
 title: 'Demo'
 summary: 'Demo 采集器'
-<<<<<<< HEAD
-icon: 'icon/demo'
-=======
 __int_icon: 'icon/demo'
->>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
 dashboard:
   - desc: '暂无'
     path: '-'

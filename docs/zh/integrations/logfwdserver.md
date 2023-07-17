@@ -1,15 +1,7 @@
 ---
 title     : 'Log Forward'
 summary   : '通过 sidecar 方式收集 Pod 内日志数据'
-<<<<<<< HEAD
-<<<<<<< HEAD
-icon      : 'icon/logfwd'
-=======
 __int_icon      : 'icon/logfwd'
->>>>>>> bcdb7fa10debda85713fee55db2e1181e9301f46
-=======
-__int_icon      : 'icon/logfwd'
->>>>>>> c66e8140414e8da5bc40d96d0cea42cd2412a7c6
 dashboard :
   - desc  : '暂无'
     path  : '-'
