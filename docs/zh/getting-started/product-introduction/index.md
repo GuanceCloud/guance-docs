@@ -66,7 +66,7 @@
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **开始观测**</font>](../getting-guance.md)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **开始观测**</font>](../getting-guance/index.md)
 - [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **名词解释**</font>](./glossary.md)
 
 </div>
