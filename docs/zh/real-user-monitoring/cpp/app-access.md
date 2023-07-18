@@ -1,7 +1,6 @@
 # C++ 应用接入
 ---
 ## 前置条件
-
 - 安装 DataKit（[DataKit 安装文档](../../datakit/datakit-install.md)）
 
 ## 应用接入 {#integration}
@@ -15,7 +14,7 @@
 ![](../img/image_14.png)
 
 ## 安装 {#install}
-![](https://img.shields.io/badge/dynamic/json?label=github&color=orange&query=$.version&uri=https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/ft-sdk-package/badge/cpp/version.json) ![](https://img.shields.io/badge/dynamic/json?label=cpp&color=blue&query=$.cpp_version&uri=https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/ft-sdk-package/badge/cpp/info.json) ![](https://img.shields.io/badge/dynamic/json?label=gcc&color=blue&query=$.gcc_support&uri=https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/ft-sdk-package/badge/cpp/info.json) ![](https://img.shields.io/badge/dynamic/json?label=cmake&color=blue&query=$.cmake&uri=https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/ft-sdk-package/badge/cpp/info.json) ![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/ft-sdk-package/badge/cpp/info.json)
+![](https://img.shields.io/badge/dynamic/json?label=github&color=orange&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/cpp/version.json) ![](https://img.shields.io/badge/dynamic/json?label=cpp&color=blue&query=$.cpp_version&uri=https://static.guance.com/ft-sdk-package/badge/cpp/info.json) ![](https://img.shields.io/badge/dynamic/json?label=gcc&color=blue&query=$.gcc_support&uri=https://static.guance.com/ft-sdk-package/badge/cpp/info.json) ![](https://img.shields.io/badge/dynamic/json?label=cmake&color=blue&query=$.cmake&uri=https://static.guance.com/ft-sdk-package/badge/cpp/info.json) ![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://static.guance.com/ft-sdk-package/badge/cpp/info.json)
 
 
 **源码地址**：[https://github.com/GuanceCloud/datakit-cpp](https://github.com/GuanceCloud/datakit-cpp)
@@ -31,7 +30,7 @@
 	cd vcpkg
 	
 	#下载自定义配置 registries 文件
-	curl -o vcpkg-configuration.json https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/ft-sdk-package/vcpkg_config/vcpkg-configuration.json 
+	curl -o vcpkg-configuration.json https://static.guance.com/ft-sdk-package/vcpkg_config/vcpkg-configuration.json 
 	
 	bootstrap-vcpkg.bat
 	vcpkg install datakit-sdk-cpp:x64-windows
@@ -51,7 +50,7 @@
 	cd vcpkg
 	
 	#下载自定义配置 registries 文件
-	curl -o vcpkg-configuration.json https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/ft-sdk-package/vcpkg_config/vcpkg-configuration.json 
+	curl -o vcpkg-configuration.json https://static.guance.com/ft-sdk-package/vcpkg_config/vcpkg-configuration.json 
 	
 	# 如果是 arm 64 需要添加 VCPKG_FORCE_SYSTEM_BINARIES
 	#export VCPKG_FORCE_SYSTEM_BINARIES=1
