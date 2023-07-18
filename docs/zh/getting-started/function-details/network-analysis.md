@@ -18,7 +18,7 @@
 
 ## 前置条件
 
-您需要先创建一个 [观测云账号](https://www.guance.com)，并在您的主机上 [安装 DataKit](../../datakit/datakit-install.md) ，开启 [ eBPF](../../datakit/ebpf.md) 集成的运行，采集网络数据。
+您需要先创建一个 [观测云账号](https://www.guance.com)，并在您的主机上 [安装 DataKit](../../datakit/datakit-install.md) ，开启 [eBPF](../../integrations/ebpf.md) 集成的运行，采集网络数据。
 
 ## 利用网络可观测定位解决我们的问题
 

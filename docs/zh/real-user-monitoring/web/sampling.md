@@ -16,7 +16,7 @@
 
 ![](../img/rum-code.png)
 
-以“同步载入”为例，在代码中加入` sessionSampleRate: 100`，然后复制粘贴到需要接入的页面 HTML 的第一行，即可按 90% 的比例采集Web应用的用户访问数据。
+以“同步载入”为例，在代码中加入` sessionSampleRate: 90`，然后复制粘贴到需要接入的页面 HTML 的第一行，即可按 90% 的比例采集Web应用的用户访问数据。
 
 ```
 import { datafluxRum } from '@cloudcare/browser-rum';
