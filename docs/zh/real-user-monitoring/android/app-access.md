@@ -359,7 +359,6 @@ android{
 
 	```java
 	FTSdk.initLogWithConfig(new FTLoggerConfig()
-	    .setEnableConsoleLog(true)
 	    //.setEnableConsoleLog(true,"log prefix")
 	    .setEnableLinkRumData(true)
 	    .setEnableCustomLog(true)
@@ -373,7 +372,6 @@ android{
 	```kotlin
 	   FTSdk.initLogWithConfig(
 	            FTLoggerConfig()
-	                .setEnableConsoleLog(true)
 	              //.setEnableConsoleLog(true,"log prefix")
 	                .setEnableLinkRumData(true)
 	                .setEnableCustomLog(true)
