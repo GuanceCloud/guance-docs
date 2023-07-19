@@ -14,7 +14,7 @@
 
 2021.5.20 
 
--  配合V2 版本指标数据变更，需要升级DataKit 1.1.7-rc0之后的版本 参考 [DataKit配置](../../datakit/rum.md) 。 
+-  配合V2 版本指标数据变更，需要升级 DataKit 1.1.7-rc0之后的版本 参考 [DataKit配置](../../integrations/rum.md) 。 
 -  SDK升级V2版本，CDN地址变更为 `https://static.guance.com/browser-sdk/v2/dataflux-rum.js`。
 - 删除 `rum_web_page_performance`,  `rum_web_resource_performance`,` js_error`, `page` 指标数据收集，新增 `view`, `action`, `long_task`, `error` 指标数据采集。
 - 初始化新增 `trackInteractions` 配置，用于开启action（用户行为数据）采集，默认关闭状态。
@@ -26,7 +26,7 @@
 ## 前置条件
 
 - 安装 [DataKit](../../datakit/datakit-install.md)；  
-- 配置 [RUM 采集器](../../datakit/rum.md)；
+- 配置 [RUM 采集器](../../integrations/rum.md)；
 - DataKit 配置为[公网可访问，并且安装 IP 地理信息库](../../datakit/datakit-tools-how-to.md#install-ipdb)。
 
   

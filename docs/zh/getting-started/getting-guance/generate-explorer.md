@@ -115,3 +115,11 @@
 可以看到刚才自定义关联的视图已经出现在这里了。
 
 ![](../img/0714-explorer-25.png)
+
+## 更多阅读
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 解锁日志查看器更多功能</font>](../function-details/explorer-search.md)
+
+</div>
