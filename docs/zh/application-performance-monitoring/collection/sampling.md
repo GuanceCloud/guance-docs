@@ -5,16 +5,18 @@
 
 观测云的**应用性能监测**功能支持对符合 Opentracing 协议的采集器所采集的链路数据进行分析和管理。默认情况下，按照全量的方式采集应用性能数据，即每次调用都会产生数据，若不加以限制，采集到的数据量大，会占用过多的数据存储。您可以通过设置采样的方式采集应用性能数据，节约数据存储量，降低成本费用。
 
-下面将以 <u>[DDtrace 采集器](../../datakit/ddtrace.md) 为例，介绍如何配置采样率为 5％ 的应用性能数据</u>。
+下面将以 <u>[DDtrace 采集器](../../integrations/ddtrace.md) 为例，介绍如何配置采样率为 5％ 的应用性能数据</u>。
 ## 前置条件
 
 - [注册登录观测云](https://auth.guance.com/login/pwd)；  
-- [安装 DataKit ](../../datakit/datakit-install.md)；   
-- [开启 DDtrace 采集器](../../datakit/ddtrace.md)。 
+- [安装 DataKit](../../datakit/datakit-install.md)；   
+- [开启 DDtrace 采集器](../../integrations/ddtrace.md)。 
 
 ## 采样设置
 
-在开始采集应用性能数据之前，需要先根据不同的语言配置 DDtrace。下面以 Python 中常用的 Webserver Flask 应用为例，介绍如何采样应用性能数据。示例中 `SERVICE_A` 提供 HTTP 服务，并且调用 `SERVICE_B` HTTP 服务。
+在开始采集应用性能数据之前，需要先根据不同的语言配置 DDtrace。
+
+下面以 Python 中常用的 Webserver Flask 应用为例，介绍如何采样应用性能数据。示例中 `SERVICE_A` 提供 HTTP 服务，并且调用 `SERVICE_B` HTTP 服务。
 
 ### Step 1：安装 DDtrace 运行环境
 
@@ -36,7 +38,7 @@ pip install flask
 
 在创建时，需要引用 DDtrace 并设置服务名、服务名映射关系并且通过环境变量设置项目名、环境名、版本号相关信息，并且配置 DataKit trace API 服务地址（具体地址视 DataKit 地址而定端口号为 9529）。
 
-> 可参考文档 [Python Flask 完整示例](../../integrations/apm/ddtrace-python.md) 。
+> 可参考文档 [Python Flask 完整示例](../../integrations/apm/ddtrace-python.md)。
 
 #### 1.SERVICE_A
 
@@ -88,7 +90,7 @@ if __name__ == '__main__':
 
 ```
 
-示例：
+*示例：*
 
 ![](../img/sampler.png)
 

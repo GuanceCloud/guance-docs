@@ -229,12 +229,12 @@ The number of traces in the uploaded link data is statistically counted. In gene
 
 #### Pricing Model
 
-|  **Incremental Statistics**  |  |   |     |  |
-| -------- | ---------- | -------- | ---------- |---------- |
-| Data Storage Strategy |           |3 days         | 7 days   | 14 days  |
-| Unit Price (Per Million)   |  <font color=coral>**China Sites (China)**</font>       | ￥ 2 |  ￥ 3  |  ￥ 6|
-|   |  <font color=coral>**China Site (Overseas-Oregon)**</font>       | ￥ 6 |  ￥ 10  |  ￥ 20|
-|    |  <font color=coral>**International Site**</font>       | $ 0.9 |  $ 1.4 |  $ 2.8|
+|  **Incremental Statistics**  |  |   |     |
+| -------- | ---------- | -------- | ---------- |
+| Data Storage Strategy |           |3 days         | 7 days   |
+| Unit Price (Per Million)   |  <font color=coral>**China Sites (China)**</font>       | ￥ 2 |  ￥ 3  |
+|   |  <font color=coral>**China Site (Overseas-Oregon)**</font>       | ￥ 6 |  ￥ 10  |
+|    |  <font color=coral>**International Site**</font>       | $ 0.9 |  $ 1.4 |
 
 #### Billing Statistics
 

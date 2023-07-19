@@ -1,12 +1,12 @@
 # 标准应用性能监测（APM）查看器使用介绍
 
-## 进入**应用性能监测 > 服务**
+## 进入应用性能监测 > 服务
 
 ![](../img/apm-1.png)
 
 ![](../img/apm-2.png)
 
-## 切换为**服务拓扑视图**
+## 切换为服务拓扑视图
 
 可以直观查看服务之间的关联拓扑。
 
@@ -92,10 +92,18 @@
 
 ![](../img/apm-18.png)
 
-点击任意一条 Profile 数据，可以查看耗时详情，可以通过点击 类型 筛选框，进行类型切换。
+点击任意一条 Profile 数据，可以查看耗时详情，可以通过点击类型筛选框，进行类型切换。
 
 ![](../img/apm-19.png)
 
 可以通过切换不同类型的数据，快速定位到性能瓶颈或耗时最长的方法。
 
 > 关于 Profile 详细使用介绍，可参考文档 [Profile](../../application-performance-monitoring/profile.md)。
+
+## 更多阅读
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 解锁应用性能监测（APM）查看器更多功能</font>](../../application-performance-monitoring/explorer.md)
+
+</div>
