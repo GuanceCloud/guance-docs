@@ -34,7 +34,7 @@ datakit --restart  或者  service datakit restart  或者 systemctl restart dat
 
 注意：`endpoints` 默认开启，不要修改。
 
-观测云支持为应用性能监测自定义标签来做关联查询，可通过命令行注入环境变量或者在`ddtrace.conf`中开启`inputs.ddtrace.tags`并添加`tag`的方式，详细配置可参考文档 [ddtrace 环境变量设置](../datakit/ddtrace.md) 。
+观测云支持为应用性能监测自定义标签来做关联查询，可通过命令行注入环境变量或者在`ddtrace.conf`中开启`inputs.ddtrace.tags`并添加`tag`的方式，详细配置可参考文档 [ddtrace 环境变量设置](../integrations/ddtrace.md) 。
 
 ### Step2: 安装 ddtrace
 

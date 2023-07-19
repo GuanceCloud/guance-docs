@@ -10,7 +10,7 @@ APM 通过 `DDTrace`、`Zipkin`、`Skywalking`、`Jaeger`、`Opentelemetry` 采�
 
 ## 前置条件
 
-- 在对应的 Web 应用目标服务器配置 [DDTrace](../../datakit/ddtrace.md)、[Skywalking](../../datakit/skywalking.md)、[Opentelemetry](../../datakit/opentelemetry.md)、[Jaeger](../../datakit/jaeger.md)、[Zipkin](../../datakit/zipkin.md)；  
+- 在对应的 Web 应用目标服务器配置 [DDTrace](../../integrations/ddtrace.md)、[Skywalking](../../integrations/skywalking.md)、[Opentelemetry](../../integrations/opentelemetry.md)、[Jaeger](../../integrations/jaeger.md)、[Zipkin](../../integrations/zipkin.md)；  
 - 对于前后的分离的前端应用（有跨域的条件），需要对目标服务器允许跟踪的前端请求响应头设置 Header 白名单。
 
 对应不同 APM 工具，具体 Access-Control-Allow-Headers 的请求头对应的 Key 如下：
@@ -23,7 +23,7 @@ APM 通过 `DDTrace`、`Zipkin`、`Skywalking`、`Jaeger`、`Opentelemetry` 采�
 - w3c_traceparent: `traceparent`。
 - opentelemetry: 该类型支持 `zipkin_single_header`,`w3c_traceparent`,`zipkin`、`jaeger`三种类型的配置方式，根据在 rum sdk 中配置的 traceType 类型 添加对应的 header。
 
-Python 示例：
+*Python 示例：*
 
 ```python
 app = Flask(__name__)
@@ -37,14 +37,14 @@ def after_request(response):
  ....
 ```
 
-目标服务器需要使用的是 HTTP 服务
+<font color=coral>**注意：**</font>目标服务器需要使用的是 HTTP 服务。
 
 ### 前端 RUM 设置步骤
 
-1. 在前端应用中引入 RUM SDK[RUM 引入](../../real-user-monitoring/web/app-access.md)；  
-2. 在初始化配置中添加 `allowedTracingOrigins`参数，配置允许跟踪的前端请求 origin 白名单，可以是字符串数组，也可以是正则表达式。 origin 的定义：`<scheme> "://" <hostname> [ ":" <port> ]`。
+:material-numeric-1-circle: 在前端应用中[引入 RUM SDK](../../real-user-monitoring/web/app-access.md)；  
+:material-numeric-2-circle: 在初始化配置中添加 `allowedTracingOrigins` 参数，配置允许跟踪的前端请求 origin 白名单，可以是字符串数组，也可以是正则表达式。*（origin 的定义：`<scheme> "://" <hostname> [ ":" <port> ]`。）*
 
-示例：
+*示例：*
 
 ```javascript
 import { datafluxRum } from '@cloudcare/browser-rum'

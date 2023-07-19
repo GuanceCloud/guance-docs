@@ -110,7 +110,7 @@
 
 
 ## 更多文档
-<[ddtrace 配置](../../datakit/ddtrace.md)>
+<[ddtrace 配置](../../integrations/ddtrace.md)>
 
 <[Kubernetes 应用的 RUM-APM-LOG 联动分析](../cloud-native/k8s-rum-apm-log.md)>
 

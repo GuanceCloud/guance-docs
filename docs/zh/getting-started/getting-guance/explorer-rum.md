@@ -133,3 +133,11 @@ Error（错误）查看用户在使用应用期间，浏览器发出的前端错
 ![](../img/rum-23.png)
 
 > 仪表板及数据联动的详细解释和使用可以参考该文档 [仪表板](../function-details/dashboard.md)。
+
+## 更多阅读
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 解锁用户访问监测（RUM）查看器更多功能</font>](../../real-user-monitoring/explorer/index.md)
+
+</div>
