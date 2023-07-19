@@ -25,7 +25,7 @@
 ## 前置条件
 
 - 安装 [DataKit](../../datakit/datakit-install.md)；  
-- 配置 [RUM 采集器](../../datakit/rum.md)；
+- 配置 [RUM 采集器](../../integrations/rum.md)；
 - DataKit 配置为[公网可访问，并且安装 IP 地理信息库](../../datakit/datakit-tools-how-to.md#install-ipdb)。
 
 ## 小程序应用接入

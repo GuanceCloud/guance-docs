@@ -17,9 +17,7 @@
 
 在观测云工作空间**应用性能监测 > 错误追踪**，选择**所有错误**列表，即可查看和分析所有链路的错误数据。
 
-???+ attention
-
-    所有错误的数据统计的是基于错误状态 `status=error`，且含有错误类型 `error_type` 字段的 Span。
+<font color=coral>**注意：**</font>所有错误的数据统计的是基于错误状态 `status=error`，且含有错误类型 `error_type` 字段的 Span。
 
 ![](img/1.apm_error_12.png)
 
@@ -52,7 +50,7 @@
 
     聚类分析是对所有错误的链路数据基于错误信息 `error_message` 和错误类型 `error_type` 两个字段进行相似度计算分析，根据右上方选择的时间范围固定当前时间段，并获取该时间段内 10000 条数据进行聚类分析，将近似度高的错误链路进行聚合，提取并统计共同的 Pattern 聚类，帮助快速发现异常链路和定位问题。
 
-![](img/1.apm_error_10.0.png)
+    ![](img/1.apm_error_10.0.png)
 
 
 
@@ -62,6 +60,6 @@
 
 ![](img/1.apm_error_10.png)
 
-- 聚类分析页面中，点击排序 icon :octicons-triangle-up-16: & :octicons-triangle-down-16:，您可对文档数量升/降序排序（默认倒序）。
+- 聚类分析页面中，点击排序 icon :octicons-triangle-up-16: & :octicons-triangle-down-16:，您可对文档数量升/降序排序（默认倒序。
 
 ![](img/error-1.png)

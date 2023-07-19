@@ -44,7 +44,7 @@
 
  - [注册观测云账号](https://www.guance.com/) ；  
  - [安装 DataKit](../datakit/datakit-install.md) ；  
- - [开启用户访问监测采集器](../datakit/rum.md) ；  
+ - [开启用户访问监测采集器](../integrations/rum.md) ；  
  - [接入 Web 应用](web/app-access.md) 。
 
 #### 第二步：安装插件

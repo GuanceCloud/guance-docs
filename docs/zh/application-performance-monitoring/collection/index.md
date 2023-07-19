@@ -3,21 +3,27 @@
 
 ## 简介
 
-观测云的链路数据采集目前支持使用 Opentracing 协议的采集器。在 DataKit 中开启链路数据接收服务后，通过完成采集器在代码中的埋点，DataKit 将自动完成数据的格式转换和采集，最终上报到观测云中心。
+观测云的链路数据采集目前支持使用 Opentracing 协议的采集器。在 DataKit 中开启链路数据接收服务后，通过完成采集器在代码中的埋点，DataKit 将自动完成数据的格式转换和采集，最终上报到观测云。
 
 
 
 ## 数据采集
 
-DataKit 目前支持采集 `DDTrace` 、`Apache Jaeger` 、`OpenTelemetry` 、`Skywalking` 、`Zipkin` 等第三方的 Tracing 数据。
+DataKit 目前支持采集 `DDTrace`、`Apache Jaeger`、`OpenTelemetry`、`Skywalking`、`Zipkin` 等第三方的 Tracing 数据。
 
-首先，需要 [安装 DataKit](../../datakit/datakit-install.md)，安装完成后需要开启链路采集器的配置文件。进入**观测云控制台 > 集成**页面，输入搜索**应用性能监测**，即可查看所有链路数据采集的相关采集器，打开采集器的配置说明文档，按照文档中的步骤进行配置即可。或者您可以直接点击以下链接查看对应的采集器配置：
+采集数据前，您需要：
+
+:material-numeric-1-circle: [安装 DataKit](../../datakit/datakit-install.md)；
+
+:material-numeric-2-circle: 安装完成后需要开启链路采集器的配置文件。进入**观测云控制台 > 集成**页面，输入搜索**应用性能监测**，即可查看所有链路数据采集的相关采集器，打开采集器的配置说明文档，按照文档中的步骤进行配置即可。
+
+或者您可以直接点击以下链接查看对应的采集器配置：
 
 |                          采集器配置                          |                                                              |                                                              |                                                              |                                                              |
 | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
 | [DDTrace](../../integrations/ddtrace.md){ .md-button .md-button--primary } | [Skywalking](../../integrations/skywalking.md){ .md-button .md-button--primary } | [OpenTelemetry](../../integrations/opentelemetry.md){ .md-button .md-button--primary } | [Zipkin](../../integrations/zipkin.md){ .md-button .md-button--primary } | [Jaeger](../../integrations/jaeger.md){ .md-button .md-button--primary } |
 
-### 数据采集步骤示意图
+### 数据采集步骤
 
 - 第一步：[安装主机 DataKit](../../datakit/datakit-install.md) 或者 [安装 Kubernetes DataKit](../../datakit/datakit-daemonset-deploy.md)；  
 - 第二步：在 DataKit 中开启链路数据接收服务；  
@@ -31,7 +37,7 @@ DataKit 目前支持采集 `DDTrace` 、`Apache Jaeger` 、`OpenTelemetry` 、`S
 
 DataKit 会根据采集器的不同将上报的数据转换为观测云链路数据的格式保留标签和指标。下面是常用的字段说明：
 
-> 更多字段列表可参考文档 [DataKit Tracing 数据结构](../../datakit/datakit-tracing-struct.md#point-proto) 。
+> 更多字段列表可参考文档 [DataKit Tracing 数据结构](../../datakit/datakit-tracing-struct.md#point-proto)。
 
 | 字段名    | 说明                                                         |
 | --------- | ------------------------------------------------------------ |

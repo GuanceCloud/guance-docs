@@ -472,7 +472,7 @@ DataFlux Func 是观测云的扩展编程平台，可用于同步云平台数据
 
 ##### 新增 CDN 质量分析 
 
-用户访问监测新增 CDN 厂商信息采集，通过分析图表对不同厂商的 CDN 进行质量分析。更多配置可参考 [用户访问监测采集器配置](../datakit/rum.md#cdn-resolve) 。
+用户访问监测新增 CDN 厂商信息采集，通过分析图表对不同厂商的 CDN 进行质量分析。更多配置可参考 [用户访问监测采集器配置](../integrations/rum.md#cdn-resolve) 。
 
 ##### 新增 UniAPP 应用接入
 
