@@ -9,7 +9,7 @@
 ## 前置条件
 
 - 安装 [DataKit](../../datakit/datakit-install.md)；  
-- 配置 [RUM 采集器](../../datakit/rum.md)；
+- 配置 [RUM 采集器](../../integrations/rum.md)；
 - DataKit 配置为[公网可访问，并且安装 IP 地理信息库](../../datakit/datakit-tools-how-to.md#install-ipdb)。
 
 ## iOS 应用接入
@@ -875,7 +875,7 @@ FT_ENV=SDK_ENV
 
 #### 方法三：手动上传
 
-[Sourcemap 上传](../../datakit/rum.md#sourcemap)
+[Sourcemap 上传](../../integrations/rum.md#sourcemap)
 
 ## Widget Extension 数据采集
 

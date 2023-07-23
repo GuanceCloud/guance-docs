@@ -1,12 +1,12 @@
-# Python日志关联链路数据
+# Python 日志关联链路数据
 ---
 
 
-`Python`应用日志关联链路数据需经过如下步骤：
+`Python` 应用日志关联链路数据需经过如下步骤：
 
-- 应用中开启日志与链路功能
-- Datakit 开启链路数据采集（请参考[链接](../../../datakit/ddtrace.md)），并配置日志切割的 `Pipeline`脚本（请参考[链接](../../../datakit/pipeline.md)），启动 Datakit
-- 启动 Python 应用
+- 应用中开启日志与链路功能；  
+- Datakit 开启[链路数据采集](../../../integrations/ddtrace.md)，并配置日志切割的 [`Pipeline` 脚本](../../../datakit/pipeline.md)，启动 Datakit；  
+- 启动 Python 应用。
 
 ## 应用开启日志与链路
 
@@ -85,7 +85,7 @@ DATADOG_TRACE_AGENT_PORT="9529" \
 ddtrace-run python log_connect_trace.py 
 ```
 
-## 配置Pipeline脚本
+## 配置 Pipeline 脚本
 
 日志数据同样需要经过切割转换后才能和链路数据进行关联，可以通过配置 Pipeline 脚本实现，脚本如下：
 
@@ -99,7 +99,7 @@ drop_key(trace)
 default_time(time)
 ```
 
-经过 Pipeline 脚本切割处理后数据如下，通过 `trace_id`, `span_id`等字段信息，日志数据就和链路数据关联起来。
+经过 Pipeline 脚本切割处理后数据如下，通过 `trace_id`, `span_id` 等字段信息，日志数据即和链路数据关联起来。
 
 ```json
 {

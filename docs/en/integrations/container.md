@@ -211,7 +211,7 @@ The metric of containers, only supported Running status.
 |  ----  | --------|
 |`container_id`|Container ID|
 |`container_name`|Container name from k8s (label `io.kubernetes.container.name`). If empty then use $container_runtime_name.|
-|`container_runtime_name`|Container name from runtime (like 'docker ps'). If empty then use 'unknown' ([:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)).|
+|`container_runtime_name`|Container name from runtime (like 'docker ps'). If empty then use 'unknown'.|
 |`container_type`|The type of the container (this container is created by Kubernetes/Docker/containerd).|
 |`deployment`|The deployment name of the container's pod (unsupported containerd).|
 |`docker_image`|The full name of the container image, example `nginx.org/nginx:1.21.0` (Deprecated: use image).|
@@ -567,7 +567,7 @@ The object of containers, only supported Running status.
 |`container_host`|The name of the container host (unsupported containerd).|
 |`container_id`|Container ID|
 |`container_name`|Container name from k8s (label `io.kubernetes.container.name`). If empty then use $container_runtime_name.|
-|`container_runtime_name`|Container name from runtime (like 'docker ps'). If empty then use 'unknown' ([:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)).|
+|`container_runtime_name`|Container name from runtime (like 'docker ps'). If empty then use 'unknown'.|
 |`container_type`|The type of the container (this container is created by Kubernetes/Docker/containerd).|
 |`deployment`|The deployment name of the container's pod (unsupported containerd).|
 |`docker_image`|The full name of the container image, example `nginx.org/nginx:1.21.0` (Deprecated: use image).|
@@ -926,7 +926,7 @@ The logging of the container.
 |`[POD_LABEL]`|The pod labels will be extracted as tags if `extract_k8s_label_as_tags` is enabled.|
 |`container_id`|Container ID|
 |`container_name`|Container name from k8s (label `io.kubernetes.container.name`). If empty then use $container_runtime_name.|
-|`container_runtime_name`|Container name from runtime (like 'docker ps'). If empty then use 'unknown' ([:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)).|
+|`container_runtime_name`|Container name from runtime (like 'docker ps'). If empty then use 'unknown'.|
 |`container_type`|The type of the container (this container is created by Kubernetes/Docker/containerd).|
 |`deployment`|The deployment name of the container's pod (unsupported containerd).|
 |`namespace`|The pod namespace of the container (label `io.kubernetes.pod.namespace`).|
@@ -938,8 +938,8 @@ The logging of the container.
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`log_read_lines`|The lines of the read file ([:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)).|int|count|
-|`log_read_offset`|The offset of the read file ([:octicons-tag-24: Version-1.4.8](changelog.md#cl-1.4.8) · [:octicons-beaker-24: Experimental](index.md#experimental)).|int|-|
+|`log_read_lines`|The lines of the read file.|int|count|
+|`log_read_offset`|The offset of the read file.|int|-|
 |`log_read_time`|The timestamp of the read file.|s|-|
 |`message`|The text of the logging.|string|-|
 |`message_length`|The length of the message content.|B|count|

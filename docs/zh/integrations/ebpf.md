@@ -31,30 +31,18 @@ eBPF 采集器，采集主机网络 TCP、UDP 连接信息，Bash 执行日志�
     - 数据类别：Logging
     - 采集 Bash 的执行日志，包含 Bash 进程号、用户名、执行的命令和时间等；
 
-- `ebpf-conntrack`: [:octicons-tag-24: Version-1.8.0](changelog.md#cl-1.8.0) · [:octicons-beaker-24: Experimental](index.md#experimental)
+- `ebpf-conntrack`: [:octicons-tag-24: Version-1.8.0](../datakit/changelog.md#cl-1.8.0) · [:octicons-beaker-24: Experimental](../datakit/index.md#experimental)
     - 往网络流数据上添加两个标签 `dst_nat_ip` 和 `dst_nat_port`；
 
 ## 配置 {#config}
 
 ### 前置条件 {#requirements}
 
-对于 v1.5.6 之前的 DataKit，需执行安装命令进行安装：
-
-- v1.2.13 ~ v1.2.18
-    - 安装时[指定环境变量](datakit-install.md#extra-envs)：`DK_INSTALL_EXTERNALS="datakit-ebpf"`
-    - DataKit 安装完后，再手动安装 eBPF 采集器：`datakit install --datakit-ebpf`
-- v1.2.19+
-    - 安装时[指定环境变量](datakit-install.md#extra-envs)：`DK_INSTALL_EXTERNALS="ebpf"`
-    - DataKit 安装完后，再手动安装 eBPF 采集器：`datakit install --ebpf`
-- v1.5.6+
-    - 无需手动安装
-
 在 Kubernetes 环境下部署时，必须挂载主机的 `/sys/kernel/debug` 目录到 Pod 内，可参考最新的 *datakit.yaml*；
 
-### HTTPS 支持 {#https}
+> 1.5.6+ 版本的 Datakit 无需手动安装。
 
-[:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6) ·
-[:octicons-beaker-24: Experimental](index.md#experimental)
+### HTTPS 支持 {#https}
 
 若需要 `ebpf-net` 开启对容器内的进程采集 HTTPS 请求数据采集支持，则需要挂载 overlay 目录到容器
 
@@ -200,8 +188,8 @@ setenforce 0
 
     Kubernetes 中可以通过 ConfigMap 或者直接默认启用 eBPF 采集器两种方式来开启采集：
 
-    1. ConfigMap 方式参照通用的[安装示例](datakit-daemonset-deploy.md#configmap-setting)。
-    2. 在 *datakit.yaml* 中的环境变量 `ENV_ENABLE_INPUTS` 中追加 `ebpf`，此时使用默认配置，即仅开启 `ebpf-net` 网络数据采集
+    1. ConfigMap 方式参照通用的[安装示例](../datakit/datakit-daemonset-deploy.md#configmap-setting)。
+    1. 在 *datakit.yaml* 中的环境变量 `ENV_ENABLE_INPUTS` 中追加 `ebpf`，此时使用默认配置，即仅开启 `ebpf-net` 网络数据采集
     
     ```yaml
     - name: ENV_ENABLE_INPUTS

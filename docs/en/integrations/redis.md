@@ -1,22 +1,10 @@
----
-title: 'Redis'
-summary: 'Redis metrics and logging'
-dashboard:
-  - desc: 'Redis Dashboard'
-    path: 'dashboard/en/redis'
-
-monitor:
-  - desc: 'Redis Monitor'
-    path: 'monitor/en/redis'
----
-
 <!-- markdownlint-disable MD025 -->
 # Redis
 <!-- markdownlint-enable -->
 
 ---
 
-:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](index.md#legends "Election Enabled")
+:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 
 ---
 

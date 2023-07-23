@@ -16,7 +16,7 @@ monitor:
 
 ---
 
-:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](index.md#legends "Election Enabled")
+:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 
 ---
 
@@ -398,8 +398,6 @@ ACL SETUSER username on +ping
 
 
 ## 日志 {#logging}
-
-[:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)
 
 <!-- markdownlint-disable MD024 -->
 
