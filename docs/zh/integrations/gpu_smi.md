@@ -15,7 +15,7 @@ monitor   :
 <!-- markdownlint-enable -->
 ---
 
-:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](index.md#legends "Election Enabled")
+:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 
 采集包括 GPU 温度、时钟、GPU 占用率、内存占用率、GPU 内每个运行程序的内存占用等。
 
@@ -85,7 +85,7 @@ monitor   :
         1. 开启远程采集后，必须开启选举。（防止多个 Datakit 上传重复数据）。
         1. 出于安全考虑，可以变更 SSH 端口号，也可以单独为 GPU 远程采集创建专用的账户。 
     
-    配置好后，[重启 DataKit](datakit-service-how-to.md#manage-service) 即可。
+    配置好后，[重启 DataKit](../datakit/datakit-service-how-to.md#manage-service) 即可。
 
 === "Kubernetes"
 
@@ -288,7 +288,7 @@ DCGM 指标包括 GPU 卡温度、时钟、GPU 占用率、内存占用率等。
   # more_tag = "some_other_value"
 ```
 
-配置好后，[重启 DataKit](datakit-service-how-to.md#manage-service) 即可。
+配置好后，[重启 DataKit](../datakit/datakit-service-how-to.md#manage-service) 即可。
 
 ### DCGM 指标字段 {#dcgm-metric}
 

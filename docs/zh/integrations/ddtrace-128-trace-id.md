@@ -1,6 +1,6 @@
 # 支持 128 位的链路 ID
 
-[:octicons-tag-24: Datakit-1.8.0](changelog.md#cl-1.8.0)
+[:octicons-tag-24: Datakit-1.8.0](../datakit/changelog.md#cl-1.8.0)
 [:octicons-tag-24: DDTrace-1.4.0-guance](ddtrace-ext-changelog.md#cl-1.14.0-guance)
 
 DDTrace agent 默认的 trace-id 是 64 位，Datakit 在接收到的链路数据中 trace-id 也是 64 位，从 v1.11.0 开始支持 W3C 协议并支持接收 128 位的 trace-id。但是发送到链路中的 trace-id 依旧是 64 位。

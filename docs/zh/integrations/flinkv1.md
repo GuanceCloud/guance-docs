@@ -16,7 +16,7 @@ monitor   :
 
 ---
 
-:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](index.md#legends "Election Enabled")
+:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 
 ---
 
@@ -148,7 +148,7 @@ metrics.reporter.prom.port: 9250-9260
 | Tag | Description |
 |  ----  | --------|
 |`host`|Host name.|
-|`tm_id`|Taskmanager ID.|
+|`tm_id`|Task manager ID.|
 
 - 指标列表
 

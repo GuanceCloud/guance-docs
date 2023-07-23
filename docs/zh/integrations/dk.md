@@ -17,7 +17,7 @@ monitor:
 
 ---
 
-:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker: · [:octicons-tag-24: Version-1.9.2](changelog.md#cl-1.9.2)
+:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker: · [:octicons-tag-24: Version-1.11.0](../datakit/changelog.md#cl-1.11.0)
 
 ---
 
@@ -25,7 +25,7 @@ Datakit 采集器用于自身基本信息的采集，包括运行环境信息、
 
 ## 配置 {#config}
 
-Datakit 启动后。默认会暴露一些 [Prometheus 指标](datakit-metrics.md)，没有额外的操作需要执行，本采集器也是默认启动的，替代了之前的 `self` 采集器。
+Datakit 启动后。默认会暴露一些 [Prometheus 指标](../datakit/datakit-metrics.md)，没有额外的操作需要执行，本采集器也是默认启动的，替代了之前的 `self` 采集器。
 
 <!-- markdownlint-disable MD046 -->
 === "主机部署"
@@ -94,7 +94,7 @@ Datakit 启动后。默认会暴露一些 [Prometheus 指标](datakit-metrics.md
 
 ## 指标 {#metric}
 
-Datakit 自身指标主要是一些 Prometheus 指标，其文档参见[这里](datakit-metrics.md)
+Datakit 自身指标主要是一些 Prometheus 指标，其文档参见[这里](../datakit/datakit-metrics.md)
 
 以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.dk.tags]` 指定其它标签：
 
@@ -145,10 +145,10 @@ NA
 |`datakit_filter_point_total`|Filter points of filters|float|-|
 |`datakit_filter_pull_latency_seconds`|Filter pull(remote) latency|float|-|
 |`datakit_filter_update_total`|Filters(remote) updated count|float|-|
-|`datakit_goroutine_alive`|Alive Goroutines|float|-|
+|`datakit_goroutine_alive`|Alive Goroutine|float|-|
 |`datakit_goroutine_cost_seconds`|Goroutine running duration|float|-|
 |`datakit_goroutine_groups`|Goroutine group count|float|-|
-|`datakit_goroutine_stopped_total`|Stopped Goroutines|float|-|
+|`datakit_goroutine_stopped_total`|Stopped Goroutine|float|-|
 |`datakit_goroutines`|Goroutine count within Datakit|float|-|
 |`datakit_heap_alloc_bytes`|Datakit memory heap bytes|float|-|
 |`datakit_http_api_elapsed_seconds`|API request cost|float|-|

@@ -2,7 +2,7 @@
 # SQLServer
 ---
 
-:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](index.md#legends "Election Enabled")
+:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 
 ---
 
@@ -317,7 +317,7 @@ For all of the following data collections, a global tag name `host` is appended 
 |  ----  | --------|
 |`database`|Database name|
 |`file_id`|ID of the file within database|
-|`file_type`|File type: 0 = Rows, 1 = Log, 2 = FILESTREAM, 3 =  Identified for informational purposes only, 4 = Full-text|
+|`file_type`|File type: 0 = Rows, 1 = Log, 2 = File-Stream, 3 = Identified for informational purposes only, 4 = Full-text|
 |`physical_name`|Operating-system file name|
 |`state`|Database file state: 0 = Online, 1 = Restoring, 2 = Recovering, 3 = Recovery_Pending, 4 = Suspect, 5 = Unknown, 6 = Offline, 7 = Defunct|
 |`state_desc`|Description of the file state|

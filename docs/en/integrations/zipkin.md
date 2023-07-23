@@ -111,9 +111,9 @@ The Zipkin Agent embedded in Datakit is used to receive, calculate and analyze t
 |`container_host`|Container hostname. Available in OpenTelemetry. Optional.|
 |`endpoint`|Endpoint info. Available in SkyWalking, Zipkin. Optional.|
 |`env`|Application environment info. Available in Jaeger. Optional.|
-|`http_method`|HTTP request method name. Available in ddtrace, OpenTelemetry. Optional.|
+|`http_method`|HTTP request method name. Available in DDTrace, OpenTelemetry. Optional.|
 |`http_route`|HTTP route. Optional.|
-|`http_status_code`|HTTP response code. Available in ddtrace, OpenTelemetry. Optional.|
+|`http_status_code`|HTTP response code. Available in DDTrace, OpenTelemetry. Optional.|
 |`http_url`|HTTP URL. Optional.|
 |`operation`|Span name|
 |`project`|Project name. Available in Jaeger. Optional.|
@@ -131,7 +131,7 @@ The Zipkin Agent embedded in Datakit is used to receive, calculate and analyze t
 |`duration`|Duration of span|int|μs|
 |`message`|Origin content of span|string|-|
 |`parent_id`|Parent span ID of current span|string|-|
-|`pid`|Application process id. Available in ddtrace, OpenTelemetry. Optional.|string|-|
+|`pid`|Application process id. Available in DDTrace, OpenTelemetry. Optional.|string|-|
 |`priority`|Optional.|int|-|
 |`resource`|Resource name produce current span|string|-|
 |`span_id`|Span id|string|-|

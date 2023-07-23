@@ -205,7 +205,15 @@ mkdocs serve -f mkdocs.en.saas.yml
 │   ├── resource.md
 │   ├── session.md
 │   └── view.md
-└── explorer.md
+└── explorer.md  <--- 不要有这个名字
+```
+
+### 本地图片 Git LFS 问题
+
+由于采用 gitlfs 来保存图片等多媒体资源，本地如果预览，会出现某些图片无法展示的问题，建议将图片拉到本地（可能时间比较长）：
+
+```shell
+$ git lfs fetch --all
 ```
 
 ## 文档协作流程

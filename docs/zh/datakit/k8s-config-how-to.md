@@ -9,8 +9,8 @@
 
 - 通过 [conf](datakit-daemonset-deploy.md#configmap-setting)  配置
 - 通过 [ENV](datakit-daemonset-deploy.md#using-k8-env) 配置
-- 通过 [Annotation](container-log.md#logging-with-annotation-or-label) 配置
-- 通过 [CRD](kubernetes-crd.md)配置
+- 通过 [Annotation](../integrations/container-log.md#logging-with-annotation-or-label) 配置
+- 通过 [CRD](../integrations/kubernetes-crd.md)配置
 - 通过 [Git](datakit-conf.md#using-gitrepo) 配置
 - 通过 [DCA](dca.md) 配置
 
@@ -38,7 +38,7 @@ DataKit 运行在 K8s 环境中时，实际上跟运行在主机上并无太大�
 ENV_INPUT_XXX_YYY
 ```
 
-此处 `XXX` 指采集器名字，`YYY` 即该采集器配置中的特定配置字段，比如 `ENV_INPUT_CPU_PERCPU` 用来调整 [CPU 采集器](cpu.md) 「是否采集每个 CPU 核心的指标」（默认情况下，该选项是默认关闭的，即不采集每个核心的 CPU 指标）
+此处 `XXX` 指采集器名字，`YYY` 即该采集器配置中的特定配置字段，比如 `ENV_INPUT_CPU_PERCPU` 用来调整 [CPU 采集器](../integrations/cpu.md) 「是否采集每个 CPU 核心的指标」（默认情况下，该选项是默认关闭的，即不采集每个核心的 CPU 指标）
 
 需要注意的是，目前并不是所有的采集器都支持 ENV 注入。支持 ENV 注入的采集器，一般都是[默认开启的采集器](datakit-input-conf.md#default-enabled-inputs)。通过 ConfigMap 开启的采集器，也支持 ENV 注入的（具体看该采集器是否支持），而且**默认以 ENV 注入的为准**。
 
@@ -74,13 +74,13 @@ spec:
     ...
 ```
 
-> 注意：目前 Annotation 方式还不支持主流的采集器开启（目前只支持 [Prom](prom.md)）。后续会增加更多采集器。
+> 注意：目前 Annotation 方式还不支持主流的采集器开启（目前只支持 [Prom](../integrations/prom.md)）。后续会增加更多采集器。
 
 到此为止，目前 DataKit 中，主流的几种 K8s 环境下的配置方式就这三种，它们优先级逐次提升，即 conf 方式优先级最低，ENV 次之，Annotation 方式优先级最高。
 
 - 通过 CRD 配置
 
-CRD 是 Kubernetes 一种广泛使用的配置方式，相比 Annotation，CRD 无需更改被采集对象的部署，相比而言，它的侵入性更小。详见 [DataKit CRD 使用文档](kubernetes-crd.md)。
+CRD 是 Kubernetes 一种广泛使用的配置方式，相比 Annotation，CRD 无需更改被采集对象的部署，相比而言，它的侵入性更小。详见 [DataKit CRD 使用文档](../integrations/kubernetes-crd.md)。
 
 ### Git 配置方式 {#git}
 

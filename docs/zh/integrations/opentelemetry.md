@@ -152,7 +152,7 @@ OTEL 提供与 vendor 无关的实现，根据用户的需要将观测类数据�
 ### 注意事项 {#attentions}
 
 1. 建议使用 gRPC 协议，gRPC 具有压缩率高、序列化快、效率更高等优点
-2. 自 datakit v1.10.0 版本开始，http 协议的路由是可配置的，默认请求路径（Trace/Metric）分别为 `/otel/v1/trace` 和 `/otel/v1/metric`
+2. 自 [Datakit 1.10.0](../datakit/changelog.md#cl-1.10.0) 版本开始，http 协议的路由是可配置的，默认请求路径（Trace/Metric）分别为 `/otel/v1/trace` 和 `/otel/v1/metric`
 3. 在涉及到 `float/double` 类型数据时，会最多保留两位小数
 4. HTTP 和 gRPC 都支持 gzip 压缩格式。在 exporter 中可配置环境变量来开启：`OTEL_EXPORTER_OTLP_COMPRESSION = gzip`, 默认是不会开启 gzip。
 5. HTTP 协议请求格式同时支持 JSON 和 Protobuf 两种序列化格式。但 gRPC 仅支持 Protobuf 一种。
@@ -178,9 +178,9 @@ OSDescriptionKey = attribute.Key("os.description")
 ignore_attribute_keys = ["os_*","teletemetry_sdk*"]
 ```
 
-使用 OTEL HTTP exporter 时注意环境变量的配置，由于 datakit 的默认配置是 `/otel/v1/trace` 和 `/otel/v1/metric`，所以想要使用 HTTP 协议的话，需要单独配置 `trace` 和 `metric`，
+使用 OTEL HTTP exporter 时注意环境变量的配置，由于 Datakit 的默认配置是 `/otel/v1/trace` 和 `/otel/v1/metric`，所以想要使用 HTTP 协议的话，需要单独配置 `trace` 和 `metric`，
 
-otlp 的默认的请求路由是 `v1/traces` 和 `v1/metrics`, 需要为这两个单独进行配置。如果修改了配置文件中的路由，替换下面的路由地址即可。
+OpenTelemetry 的默认的请求路由是 `v1/traces` 和 `v1/metrics`, 需要为这两个单独进行配置。如果修改了配置文件中的路由，替换下面的路由地址即可。
 
 比如：
 
@@ -225,9 +225,9 @@ Datakit 目前提供了如下两种语言的最佳实践：
 |`container_host`|Container hostname. Available in OpenTelemetry. Optional.|
 |`endpoint`|Endpoint info. Available in SkyWalking, Zipkin. Optional.|
 |`env`|Application environment info. Available in Jaeger. Optional.|
-|`http_method`|HTTP request method name. Available in ddtrace, OpenTelemetry. Optional.|
+|`http_method`|HTTP request method name. Available in DDTrace, OpenTelemetry. Optional.|
 |`http_route`|HTTP route. Optional.|
-|`http_status_code`|HTTP response code. Available in ddtrace, OpenTelemetry. Optional.|
+|`http_status_code`|HTTP response code. Available in DDTrace, OpenTelemetry. Optional.|
 |`http_url`|HTTP URL. Optional.|
 |`operation`|Span name|
 |`project`|Project name. Available in Jaeger. Optional.|
@@ -245,7 +245,7 @@ Datakit 目前提供了如下两种语言的最佳实践：
 |`duration`|Duration of span|int|μs|
 |`message`|Origin content of span|string|-|
 |`parent_id`|Parent span ID of current span|string|-|
-|`pid`|Application process id. Available in ddtrace, OpenTelemetry. Optional.|string|-|
+|`pid`|Application process id. Available in DDTrace, OpenTelemetry. Optional.|string|-|
 |`priority`|Optional.|int|-|
 |`resource`|Resource name produce current span|string|-|
 |`span_id`|Span id|string|-|
