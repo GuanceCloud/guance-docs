@@ -15,6 +15,10 @@
 		{
 			"pattern": "console.aws.amazon.com",
 			"why": "expected"
+		},
+		{
+			"pattern": "http",
+			"why": "skip all outlink http request"
 		}
 	],
 	"timeout": "5s",

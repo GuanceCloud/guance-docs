@@ -2,7 +2,7 @@
 # ClickHouse
 ---
 
-:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](index.md#legends "Election Enabled")
+:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 
 ---
 
@@ -355,16 +355,16 @@ For all the following data collections, a global tag named `host` is appended by
 |`Uptime`|The server uptime in seconds. It includes the time spent for server initialization before accepting connections.|float|s|
 |`jemalloc_active`|Total number of bytes in active pages allocated by the application. This is a multiple of the page size, and greater than or equal to.|float|B|
 |`jemalloc_allocated`|Total number of bytes allocated by the application.|float|B|
-|`jemalloc_arenas_all_dirty_purged`|Number of madvise() or similar calls made to purge dirty pages.|float|count|
+|`jemalloc_arenas_all_dirty_purged`|Number of `madvise()` or similar calls made to purge dirty pages.|float|count|
 |`jemalloc_arenas_all_muzzy_purged`|Number of muzzy page purge sweeps performed.|float|count|
 |`jemalloc_arenas_all_pactive`|Number of pages in active extents.|float|count|
-|`jemalloc_arenas_all_pdirty`|Number of pages within unused extents that are potentially dirty, and for which madvise() or similar has not been called. |float|count|
+|`jemalloc_arenas_all_pdirty`|Number of pages within unused extents that are potentially dirty, and for which `madvise()` or similar has not been called. |float|count|
 |`jemalloc_arenas_all_pmuzzy`|Number of pages within unused extents that are muzzy.|float|count|
 |`jemalloc_background_thread_num_runs`|Total number of runs from all background threads.|float|count|
 |`jemalloc_background_thread_num_threads`|Number of background threads running currently.|float|count|
 |`jemalloc_background_thread_run_intervals`|Average run interval in nanoseconds of background threads.|float|ns|
 |`jemalloc_epoch`|An internal incremental update number of the statistics of jemalloc (Jason Evans' memory allocator), used in all other jemalloc metrics.|float|count|
-|`jemalloc_mapped`|If a value is passed in, refresh the data from which the mallctl*() functions report values, and increment the epoch. Return the current epoch. This is useful for detecting whether another thread caused a refresh..|float|-|
+|`jemalloc_mapped`|If a value is passed in, refresh the data from which the `mallctl*()` functions report values, and increment the epoch. Return the current epoch. This is useful for detecting whether another thread caused a refresh..|float|-|
 |`jemalloc_metadata`|Total number of bytes dedicated to metadata, which comprise base allocations used for bootstrap-sensitive allocator metadata structures .|float|B|
 |`jemalloc_metadata_thp`|Number of transparent huge pages (THP) used for metadata.|float|count|
 |`jemalloc_resident`|Maximum number of bytes in physically resident data pages mapped by the allocator.|float|B|
@@ -533,7 +533,7 @@ For all the following data collections, a global tag named `host` is appended by
 |`RWLockActiveWriters`|Number of threads holding write lock in a table RWLock.|float|count|
 |`RWLockWaitingReaders`|Number of threads waiting for read on a table RWLock.|float|count|
 |`RWLockWaitingWriters`|Number of threads waiting for write on a table RWLock.|float|count|
-|`Read`|Number of read (read, pread, `io_getevents`, etc.) `syscalls` in fly|float|count|
+|`Read`|Number of read (`read`, `pread`, `io_getevents`, etc.) `syscalls` in fly|float|count|
 |`ReadTaskRequestsSent`|The current number of callback requests in flight from the remote server back to the initiator server to choose the read task (for s3Cluster table function and similar). Measured on the remote server side.|float|count|
 |`ReadonlyReplica`|Number of Replicated tables that are currently in readonly state due to re-initialization after ZooKeeper session loss or due to startup without ZooKeeper configured.|float|count|
 |`RemoteRead`|Number of read with remote reader in fly|float|count|
@@ -576,7 +576,7 @@ For all the following data collections, a global tag named `host` is appended by
 |`ThreadsInOvercommitTracker`|Number of waiting threads inside of `OvercommitTracker`|float|count|
 |`TotalTemporaryFiles`|Number of temporary files created|float|count|
 |`VersionInteger`|Version of the server in a single integer number in base-1000. For example, version 11.22.33 is translated to 11022033.|float|count|
-|`Write`|Number of write (write, pwrite, `io_getevents`, etc.) `syscalls` in fly|float|count|
+|`Write`|Number of write (`write`/`pwrite`/`io_getevents`, etc.) `syscalls` in fly|float|count|
 |`ZooKeeperRequest`|Number of requests to ZooKeeper in fly.|float|count|
 |`ZooKeeperSession`|Number of sessions (connections) to ZooKeeper. Should be no more than one, because using more than one connection to ZooKeeper may lead to bugs due to lack of `linearizability` (stale reads) that ZooKeeper consistency model allows.|float|count|
 |`ZooKeeperWatch`|Number of watches (event subscriptions) in ZooKeeper.|float|count| 
@@ -841,10 +841,10 @@ For all the following data collections, a global tag named `host` is appended by
 |`NotCreatedLogEntryForMutation`|Log entry to mutate parts in ReplicatedMergeTree is not created due to concurrent log update by another replica.|float|count|
 |`OSCPUVirtualTimeMicroseconds`|CPU time spent seen by OS. Does not include involuntary waits due to virtualization.|float|ms|
 |`OSCPUWaitMicroseconds`|Total time a thread was ready for execution but waiting to be scheduled by OS, from the OS point of view.|float|ms|
-|`OSIOWaitMicroseconds`|Total time a thread spent waiting for a result of IO operation, from the OS point of view. This is real IO that doesn't include page cache.|float|ms|
-|`OSReadBytes`|Number of bytes read from disks or block devices. Doesn't include bytes read from page cache. May include excessive data due to block size, `readahead`, etc.|float|B|
+|`OSIOWaitMicroseconds`|Total time a thread spent waiting for a result of IO operation, from the OS point of view. This is real IO that does not include page cache.|float|ms|
+|`OSReadBytes`|Number of bytes read from disks or block devices. Does not include bytes read from page cache. May include excessive data due to block size, `readahead`, etc.|float|B|
 |`OSReadChars`|Number of bytes read from filesystem, including page cache.|float|B|
-|`OSWriteBytes`|Number of bytes written to disks or block devices. Doesn't include bytes that are in page cache dirty pages. May not include data that was written by OS asynchronously.|float|B|
+|`OSWriteBytes`|Number of bytes written to disks or block devices. Does not include bytes that are in page cache dirty pages. May not include data that was written by OS asynchronously.|float|B|
 |`OSWriteChars`|Number of bytes written to filesystem, including page cache.|float|B|
 |`ObsoleteReplicatedParts`|Number of times a data part was covered by another data part that has been fetched from a replica (so, we have marked a covered data part as obsolete and no longer needed).|float|count|
 |`OpenedFileCacheHits`|Number of times a file has been found in the opened file cache, so we didn't have to open it again.|float|count|
@@ -894,9 +894,9 @@ For all the following data collections, a global tag named `host` is appended by
 |`ReadBackoff`|Number of times the number of query processing threads was lowered due to slow reads.|float|count|
 |`ReadBufferAIORead`|Read buffer AIO read|float|count|
 |`ReadBufferAIOReadBytes`|Read buffer AIO read bytes|float|B|
-|`ReadBufferFromFileDescriptorRead`|Number of reads (read/pread) from a file descriptor. Does not include sockets.|float|count|
+|`ReadBufferFromFileDescriptorRead`|Number of reads (`read`/`pread`) from a file descriptor. Does not include sockets.|float|count|
 |`ReadBufferFromFileDescriptorReadBytes`|Number of bytes read from file descriptors. If the file is compressed, this will show the compressed data size.|float|B|
-|`ReadBufferFromFileDescriptorReadFailed`|Number of times the read (read/pread) from a file descriptor have failed.|float|count|
+|`ReadBufferFromFileDescriptorReadFailed`|Number of times the read (`read`/`pread`) from a file descriptor have failed.|float|count|
 |`ReadBufferFromS3Bytes`|Bytes read from S3.|float|B|
 |`ReadBufferFromS3InitMicroseconds`|Time spent initializing connection to S3.|float|ms|
 |`ReadBufferFromS3Microseconds`|Time spent on reading from S3.|float|ms|
@@ -925,7 +925,7 @@ For all the following data collections, a global tag named `host` is appended by
 |`RemoteWriteThrottlerBytes`|Bytes passed through 'max_remote_write_network_bandwidth_for_server'/'max_remote_write_network_bandwidth' throttler.|float|B|
 |`RemoteWriteThrottlerSleepMicroseconds`|Total time a query was sleeping to conform 'max_remote_write_network_bandwidth_for_server'/'max_remote_write_network_bandwidth' throttling.|float|ms|
 |`ReplicaPartialShutdown`|How many times Replicated table has to `deinitialize` its state due to session expiration in ZooKeeper. The state is reinitialized every time when ZooKeeper is available again.|float|count|
-|`ReplicatedDataLoss`|Number of times a data part that we wanted doesn't exist on any replica (even on replicas that are offline right now). That data parts are definitely lost. This is normal due to asynchronous replication (if quorum inserts were not enabled), when the replica on which the data part was written was failed and when it became online after fail it doesn't contain that data part.|float|count|
+|`ReplicatedDataLoss`|Number of times a data part that we wanted does not exist on any replica (even on replicas that are offline right now). That data parts are definitely lost. This is normal due to asynchronous replication (if quorum inserts were not enabled), when the replica on which the data part was written was failed and when it became online after fail it does not contain that data part.|float|count|
 |`ReplicatedPartChecks`|Number of times we had to perform advanced search for a data part on replicas or to clarify the need of an existing data part.|float|count|
 |`ReplicatedPartChecksFailed`|Number of times the advanced search for a data part on replicas did not give result or when unexpected part has been found and moved away.|float|count|
 |`ReplicatedPartFailedFetches`|Number of times a data part was failed to download from replica of a ReplicatedMergeTree table.|float|count|
@@ -1015,9 +1015,9 @@ For all the following data collections, a global tag named `host` is appended by
 |`WaitPrefetchTaskMicroseconds`|Time spend waiting for prefetched reader|float|ms|
 |`WriteBufferAIOWrite`|Write Buffer AIO Write|float|count|
 |`WriteBufferAIOWriteBytes`|Write buffer AIO write bytes|float|B|
-|`WriteBufferFromFileDescriptorWrite`|Number of writes (write/pwrite) to a file descriptor. Does not include sockets.|float|count|
+|`WriteBufferFromFileDescriptorWrite`|Number of writes (`write`/`pwrite`) to a file descriptor. Does not include sockets.|float|count|
 |`WriteBufferFromFileDescriptorWriteBytes`|Number of bytes written to file descriptors. If the file is compressed, this will show compressed data size.|float|B|
-|`WriteBufferFromFileDescriptorWriteFailed`|Number of times the write (write/pwrite) to a file descriptor have failed.|float|count|
+|`WriteBufferFromFileDescriptorWriteFailed`|Number of times the write (`write`/`pwrite`) to a file descriptor have failed.|float|count|
 |`WriteBufferFromS3Bytes`|Bytes written to S3.|float|B|
 |`WriteBufferFromS3Microseconds`|Time spent on writing to S3.|float|ms|
 |`WriteBufferFromS3RequestsErrors`|Number of exceptions while writing to S3.|float|count|

@@ -306,7 +306,7 @@ DCA 开启和安装以后，即可在浏览器输入地址 `localhost:8000` 打�
 
 远程连接到 DataKit 以后，点击「帮助」，即可查看采集器文档列表。点击需要查看的采集器名称，直接跳转显示该采集器的帮助文档。
 
-关于如何查看更多采集器的帮助文档，可参考文档 [采集器](hostobject.md) 。
+关于如何查看更多采集器的帮助文档，可参考文档 [采集器](../integrations/hostobject.md) 。
 
 <figure markdown>
   ![](https://static.guance.com/images/datakit/dca-help.png){ width="800" }
