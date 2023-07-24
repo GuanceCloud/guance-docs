@@ -253,7 +253,7 @@ cp telegraf.conf.sample telegraf.conf
 telegraf --config telegraf.conf
 ```
 
-关于 Telegraf 的使用事项，参见[这里](telegraf.md)。
+关于 Telegraf 的使用事项，参见[这里](../integrations/telegraf.md)。
 
 ### Security Checker 集成 {#scheck}
 
@@ -406,7 +406,7 @@ $ datakit debug --glob-conf glob-config
 ### 正则表达式匹配文本 {#regex-conf}
 [:octicons-tag-24: Version-1.8.0](changelog.md#cl-1.8.0)
 
-在日志采集中，支持配置 [正则表达式实现多行日志采集](logging.md#multiline)。
+在日志采集中，支持配置 [正则表达式实现多行日志采集](../integrations/logging.md#multiline)。
 
 通过使用 Datakit 调试正则表达式规则。需要提供一个配置文件，该文件的**第一行是正则表达式**，剩余内容是被匹配的文本（可以是多行）。
 

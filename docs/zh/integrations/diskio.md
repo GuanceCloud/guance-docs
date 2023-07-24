@@ -143,7 +143,7 @@ $ diskperf -Y
 
 ### 扩展指标 {#extend}
 
-[:octicons-tag-24: Version-1.5.7](changelog.md#cl-1.5.7)
+[:octicons-tag-24: Version-1.5.7](../datakit/changelog.md#cl-1.5.7)
 
 ### Linux 平台下采集磁盘 `await` {#linux-await}
 

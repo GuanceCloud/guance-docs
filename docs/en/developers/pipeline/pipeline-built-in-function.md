@@ -159,8 +159,6 @@ After using `adjust_timezone` will get:
 
 ### `agg_create()` {#fn-agg-create}
 
-[:octicons-tag-24: Version-1.5.10](../datakit/changelog.md#cl-1.5.10)
-
 Function prototype: `fn agg_create(bucket: str, on_interval: str = "60s", on_count: int = 0, keep_value: bool = false, const_tags: map[string]string = nil)`
 
 Function description: Create an aggregation measurement, set the time or number of times through `on_interval` or `on_count` as the aggregation period, upload the aggregated data after the aggregation is completed, and choose whether to keep the last aggregated data
@@ -427,8 +425,6 @@ cover(abc, [2, 4])
 
 ### `datetime()` {#fn-datetime}
 
-[:octicons-tag-24: Version-1.5.7](../datakit/changelog.md#cl-1.5.7)
-
 Function prototype: `fn datetime(key, precision: str, fmt: str, tz: str = "")`
 
 Function description: Convert timestamp to specified date format
@@ -632,8 +628,6 @@ rename("time", log_time)
 
 
 ### `delete()` {#fn-delete}
-
-[:octicons-tag-24: Version-1.5.8](../datakit/changelog.md#cl-1.5.8)
 
 Function prototype: `fn delete(src: map[string]any, key: str)`
 
@@ -973,7 +967,7 @@ Function parameters:
 - `json_path`: JSON path information
 - `newkey`：Write the data to the new key after extraction
 - `trim_space`: Delete the leading and trailing blank characters in the extracted characters, the default value is true
-- `delete_after_extract`: After extract delete the extracted info from input. Only map key and map value are deletable, list(array) are not supported. Default is `false'.  [:octicons-tag-24: Version-1.5.7](../datakit/changelog.md#cl-1.5.7)
+- `delete_after_extract`: After extract delete the extracted info from input. Only map key and map value are deletable, list(array) are not supported. Default is `false'.
 
 ```python
 # Directly extract the x.y field in the original input json, and name it as a new field abc
@@ -1074,8 +1068,6 @@ json(_, item2.item3[0], item, delete_after_extract = true)
 
 
 ### `kv_split()` {#fn-kv_split}
-
-[:octicons-tag-24: Version-1.5.7](../datakit/changelog.md#cl-1.5.7)
 
 Function prototype: `fn kv_split(key, field_split_pattern = " ", value_split_pattern = "=", trim_key = "", trim_value = "", include_keys = [], prefix = "") -> bool`
 
@@ -1928,9 +1920,9 @@ json(_, userAgent) user_agent(userAgent)
 ```
 
 
-### `vaild_json()` {#fn-vaild_json}
+### `valid_json()` {#fn-valid-json}
 
-Function prototype: `fn vaild_json(val: str) bool`
+Function prototype: `fn valid_json(val: str) bool`
 
 Function description: Determine if it is a valid JSON string.
 
@@ -1942,27 +1934,27 @@ Example:
 
 ```python
 a = "null"
-if vaild_json(a) { # true
+if valid_json(a) { # true
     if load_json(a) == nil {
         add_key("a", "nil")
     }
 }
 
 b = "[1, 2, 3]"
-if vaild_json(b) { # true
+if valid_json(b) { # true
     add_key("b", load_json(b))
 }
 
 c = "{\"a\": 1}"
-if vaild_json(c) { # true
+if valid_json(c) { # true
     add_key("c", load_json(c))
 }
 
 d = "???{\"d\": 1}"
-if vaild_json(d) { # true
+if valid_json(d) { # true
     add_key("d", load_json(c))
 } else {
-    add_key("d", "invaild json")
+    add_key("d", "invalid json")
 }
 ```
 
@@ -1973,7 +1965,7 @@ Result:
   "a": "nil",
   "b": "[1,2,3]",
   "c": "{\"a\":1}",
-  "d": "invaild json",
+  "d": "invalid json",
 }
 ```
 

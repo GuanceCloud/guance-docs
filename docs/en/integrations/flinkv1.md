@@ -2,7 +2,7 @@
 # Flink
 ---
 
-:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](index.md#legends "Election Enabled")
+:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 
 ---
 
@@ -135,7 +135,7 @@ Flink collects multiple metrics by default, and these [metrics](https://nightlie
 | Tag | Description |
 |  ----  | --------|
 |`host`|Host name.|
-|`tm_id`|Taskmanager ID.|
+|`tm_id`|Task manager ID.|
 
 - metric list
 

@@ -2,7 +2,7 @@
 # Oracle
 ---
 
-:fontawesome-brands-linux:  · [:fontawesome-solid-flag-checkered:](index.md#legends "Election Enabled")
+:fontawesome-brands-linux:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 
 ---
 

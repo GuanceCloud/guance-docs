@@ -154,9 +154,9 @@ Effect display:
 |`domain`|IP 地址|
 |`hostName`|主机名|
 |`os_arch`|CPU 架构：amd/arm|
-|`os_name`|操作系统名称：windows、linux，mac 等|
+|`os_name`|操作系统名称：`windows/linux/mac` 等|
 |`os_version`|操作系统的内核版本|
-|`runtime_java-version`|java version|
+|`runtime_java-version`|Java version|
 |`runtime_user-dir`|启动程序的 jar 包位置|
 |`runtime_user-name`|用户名|
 

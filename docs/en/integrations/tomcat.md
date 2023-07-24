@@ -2,7 +2,7 @@
 # Tomcat
 ---
 
-:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](index.md#legends "Election Enabled")
+:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 
 ---
 
@@ -122,9 +122,9 @@ All the following data collections will have a global tag named `host` appended 
 |`max_time`|The longest request processing time (in milliseconds).|float|count|
 |`processing_time`|The sum of request processing times across all requests handled by the request processors (in milliseconds) per second.|float|count|
 |`request_count`|The number of requests per second across all request processors.|float|count|
-|`servlet_error_count`|The number of erroneous requests received by the servlet per second.|float|count|
-|`servlet_processing_time`|The sum of request processing times across all requests to the servlet (in milliseconds) per second.|float|count|
-|`servlet_request_count`|The number of requests received by the servlet per second.|float|count|
+|`servlet_error_count`|The number of erroneous requests received by the Servlet per second.|float|count|
+|`servlet_processing_time`|The sum of request processing times across all requests to the Servlet (in milliseconds) per second.|float|count|
+|`servlet_request_count`|The number of requests received by the Servlet per second.|float|count|
 |`string_cache_access_count`|The number of accesses to the string cache per second.|float|count|
 |`string_cache_hit_count`|The number of string cache hits per second.|float|count|
 |`threads_busy`|The number of threads that are in use.|float|count|

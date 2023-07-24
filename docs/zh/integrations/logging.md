@@ -353,7 +353,7 @@ Pipeline 的几个注意事项：
 
 ### 文件读取的偏移位置 {#read-position}
 
-*支持 Datakit [:octicons-tag-24: Version-1.5.5](changelog.md#cl-1.5.5) 及以上版本。*
+*支持 Datakit [:octicons-tag-24: Version-1.5.5](../datakit/changelog.md#cl-1.5.5) 及以上版本。*
 
 文件读取的偏移是指打开文件后，从哪个位置开始读取。一般是 “首部（head）” 或 “尾部（tail）”。
 
@@ -411,11 +411,11 @@ Use the `source` of the config，if empty then use `default`
 |`__truncated_number`|Built-in extension fields added by server. If the log is particularly large (usually exceeding 1M in size), the central system will split it and add three fields: `__truncated_id`, `__truncated_count`, and `__truncated_number` to define the splitting scenario. The __truncated_count field represents represents the current sequential identifier for the split logs.|int|-|
 |``__docid``|Built-in extension fields added by server. The unique identifier for a log document, typically used for sorting and viewing details|string|-|
 |`create_time`|Built-in extension fields added by server. The `create_time` field represents the time when the log is written to the storage engine.|int|ms|
-|`date`|Built-in extension fields added by server. The `date` field is set to the time when the log is collected by the collector by default, but it can be overridden using a pipeline.|int|ms|
+|`date`|Built-in extension fields added by server. The `date` field is set to the time when the log is collected by the collector by default, but it can be overridden using a Pipeline.|int|ms|
 |`date_ns`|Built-in extension fields added by server. The `date_ns` field is set to the millisecond part of the time when the log is collected by the collector by default. Its maximum value is 1.0E+6 and its unit is nanoseconds. It is typically used for sorting.|int|ns|
 |`df_metering_size`|Built-in extension fields added by server. The `df_metering_size` field is used for logging cost statistics.|int|-|
-|`log_read_lines`|The lines of the read file ([:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)).|int|count|
-|`log_read_offset`|The offset of the read file ([:octicons-tag-24: Version-1.4.8](changelog.md#cl-1.4.8) · [:octicons-beaker-24: Experimental](index.md#experimental)).|int|-|
+|`log_read_lines`|The lines of the read file.|int|count|
+|`log_read_offset`|The offset of the read file.|int|-|
 |`log_read_time`|The timestamp of the read file.|s|-|
 |`message`|The text of the logging.|string|-|
 |`message_length`|The length of the message content.|B|count|
@@ -497,4 +497,4 @@ bytes * 2 * 8 /1024/1024 = xxx MBit
 - [Pipeline 调试](../developers/datakit-pl-how-to.md)
 - [Pipeline 性能测试和对比](logging-pipeline-bench.md)
 - [通过 Sidecar(logfwd) 采集容器内部日志](logfwd.md)
-- [正确使用正则表达式来配置](datakit-input-conf.md#debug-regex)
+- [正确使用正则表达式来配置](../datakit/datakit-input-conf.md#debug-regex)

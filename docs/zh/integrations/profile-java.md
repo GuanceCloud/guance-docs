@@ -137,7 +137,7 @@ Done
 
 准备工作
 
-- [准备 DataKit 服务](datakit-install.md)，版本 DataKit >= 1.4.3
+- [准备 DataKit 服务](../datakit/datakit-install.md)，版本 DataKit >= 1.4.3
 
 以下操作默认地址为 `http://localhost:9529`。如果不是，需要修改为实际的 DataKit 服务地址。
 
