@@ -73,7 +73,7 @@
 
 ### 复制、克隆、删除
 
-在图表中，点击 :fontawesome-solid-gear: 按钮，按需选择**复制**，即可对制作的可视化图表进行相应的复制、克隆或删除。
+在图表中，点击 :fontawesome-solid-gear: 按钮，即可对制作的可视化图表进行相应的复制、克隆或删除。
 
 <font color=coral>**注意：**</font>
 
