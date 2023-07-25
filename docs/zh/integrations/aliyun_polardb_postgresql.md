@@ -7,8 +7,6 @@ dashboard:
     path: 'dashboard/zh/aliyun_polardb_postgresql/'
 ---
 
-# 阿里云 PolarDB PostgreSQL
-
 阿里云 PolarDB PostgreSQL 指标展示，包括 CPU 使用率、内存使用率、网络流量、连接数、 IOPS、 TPS、 数据盘大小等。
 
 ## 配置 {#config}

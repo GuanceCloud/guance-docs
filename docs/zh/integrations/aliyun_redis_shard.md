@@ -9,7 +9,6 @@ monitor:
   - desc: '阿里云 Redis 集群版监控器'
     path: 'monitor/zh/aliyun_redis_shard/'
 ---
-# 阿里云 Redis 集群版
 
 阿里云 Redis 集群版指标展示，包括 CPU 使用率、内存使用率、磁盘读写、网络流量、每秒访问次数等。
 

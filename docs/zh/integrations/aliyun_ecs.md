@@ -10,7 +10,6 @@ monitor:
   - desc: '阿里云 ECS 监控器'
     path: 'monitor/zh/aliyun_ecs/'
 ---
-# 阿里云 ECS
 
 使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云。
 

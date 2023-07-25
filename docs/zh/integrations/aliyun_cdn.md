@@ -11,10 +11,6 @@ monitor:
     path: 'monitor/zh/aliyun_cdn/'
 ---
 
-
-
-# 阿里云 CDN
-
 阿里云 CDN 性能指标展示，包括每秒访问次数、下行流量、边缘带宽、响应时间、回源带宽、状态码等。
 
 ## 配置 {#config}
