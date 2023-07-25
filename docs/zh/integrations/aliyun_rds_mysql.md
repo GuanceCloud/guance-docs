@@ -11,10 +11,6 @@ monitor:
     path: 'monitor/zh/aliyun_rds_mysql/'
 ---
 
-
-
-# 阿里云 RDS MySQL
-
 阿里云 RDS MySQL 指标展示，包括 CPU 使用率、内存使用率、 IOPS、网络带宽、 InnoDB、 TPS、 QPS 等。
 
 ## 配置 {#config}
