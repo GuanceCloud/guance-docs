@@ -11,8 +11,6 @@ monitor:
     path: 'monitor/zh/aliyun_mongodb/'
 ---
 
-# 阿里云 MongoDB
-
 阿里云 MongoDB 副本集指标展示，包括 CPU 使用率、内存使用率、连接数、网络流量、 QPS 等。
 
 ## 配置 {#config}

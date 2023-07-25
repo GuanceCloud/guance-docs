@@ -5,6 +5,19 @@ variables:
 stages:
   - deploy
 
+lint:
+  stage: deploy
+  only:
+    - /.*/ # any branch
+  script: # only lint datakit/integrations, other docs need too many fix
+    - nvm use v16.14.0
+    - make lint DOC_DIR=docs/zh/integrations
+    - make lint DOC_DIR=docs/zh/datakit
+  except:
+    - tags # disable me under tag push
+  tags:
+    - cloudcare-ft
+
 buildTesting:
   stage: deploy
   only:

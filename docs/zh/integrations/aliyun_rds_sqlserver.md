@@ -8,8 +8,6 @@ dashboard:
 
 ---
 
-# 阿里云 RDS SQLServer
-
 阿里云 RDS SQLServer 指标展示，包括 CPU 使用率、内存使用率、 IOPS、网络带宽、 InnoDB、 TPS、 QPS 等。
 
 ## 配置 {#config}

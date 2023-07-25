@@ -3,7 +3,6 @@ title: '阿里云 EDAS'
 summary: ''
 __int_icon: icon/aliyun_redis
 ---
-# 阿里云 EDAS
 
 ## 配置  {#config}
 

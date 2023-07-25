@@ -11,8 +11,6 @@ monitor:
     path: 'monitor/zh/aliyun_eip/'
 ---
 
-# 阿里云 EIP
-
 阿里云 EIP 指标展示，包括网络带宽、网络数据包、限速丢包率、带宽利用率等。
 
 ## 配置 {#config}

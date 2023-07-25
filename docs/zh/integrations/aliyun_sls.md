@@ -7,10 +7,8 @@ dashboard:
     path: 'dashboard/zh/aliyun_sls/'
 
 ---
-# 阿里云 SLS
 
 阿里云 SLS 指标展示，包括服务状态、日志流量、操作次数、总体 QPS 等。
-
 
 ## 配置 {#config}
 
