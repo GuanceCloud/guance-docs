@@ -17,7 +17,7 @@
 
 进入**异常追踪**，在当前页面左侧的频道列表下方，点击**添加频道**，输入频道名称，即添加完成。
 
-![](img/exception-1.png)
+<img src="../img/exception-1.png" width="80%" >
 
 您还可以在以下情况新建频道：
 
@@ -46,7 +46,7 @@
 
 在 Issue 列表左上方，点击图标 :octicons-people-24: ，展开显示页。您可以在搜索栏通过输入当前工作空间内成员的名称或邮箱进行搜索，即可查看该成员的订阅程度。
 
-![](img/exception-4.png)
+<img src="../img/exception-4.png" width="50%" >
 
 ### 查看通知对象 / 设置
 
@@ -65,7 +65,7 @@
     - 默认频道名称不可改；
     - 默认频道无法删除，只能退出。
 
-![](img/exception-5.png)
+<img src="../img/exception-5.png" width="50%" >
 
 ### 时间范围筛选 {#time}
 
@@ -94,7 +94,7 @@
 
 您还可以更改详情页此处信息，可参考[权限清单](../management/role-list.md)。
 
-![](img/exception-6.png)
+<img src="../img/exception-6.png" width="70%" >
 
 ### 回复 Issue {#reply-issue}
 
@@ -106,7 +106,7 @@ Issue 存在回复记录一般源于两种情况：
 
 1）若您在回复内容中需要艾特 `成员`，且该 `成员` 名称存在，则会自动触发通知；若该 `成员` 名称不存在，则不会触发通知；
 
-![](img/exception-7.png)
+<img src="../img/exception-7.png" width="70%" >
 
 2）若您在回复内容中输入 `#`，则可能有以下两种场景：
 
@@ -114,7 +114,7 @@ Issue 存在回复记录一般源于两种情况：
 
 - 该频道不存在：可在弹窗中选择**添加**，即可新建频道；
 
-![](img/channel-reply.png)
+<img src="../img/channel-reply.png" width="70%" >
 
 3）您可以在回复中添加链接或上传图片，视频，文本（CSV/TXT/JSON/PDF等）。
 
@@ -122,9 +122,7 @@ Issue 存在回复记录一般源于两种情况：
 
 点击**回复**右侧的编辑与删除按钮，可针对该条回复进行**编辑**或**删除**。
 
-???+ attention
-
-    仅回复创建者支持修改回复。
+<font color=coral>**注意：**</font>仅回复创建者支持修改回复。
 
 
 

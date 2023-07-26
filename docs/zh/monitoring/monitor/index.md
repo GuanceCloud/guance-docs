@@ -15,11 +15,11 @@
 
 观测云内置多种开箱即用的监控[模板](../monitor/template.md)，支持一键创建主机、Docker、Elasticsearch、Redis、阿里云 RDS、阿里云 SLB、Flink 监控等。即自动添加对应的官方监控器至当前工作空间。
 
-???+ attention
+![](../img/monitoring-0725.png)
 
-    反复从模板创建监控器会导致监控器列表内出现重复的监控器，观测云支持检测重复的监控器，您可以通过在弹窗提示中选择“是”正常创建模板库中所有的监控器，或选择“否”仅创建不重复的监控器。
+<font color=coral>**注意：**</font>反复从模板创建监控器会导致监控器列表内出现重复的监控器，观测云支持检测重复的监控器，您可以通过在弹窗提示中选择“是”正常创建模板库中所有的监控器，或选择“否”仅创建不重复的监控器。
 
-    ![](../img/image_8.png)
+<img src="../img/image_8.png" width="60%" >
 
 ### 自定义新建 {#rules}
 
@@ -29,20 +29,50 @@
 
 #### 检测规则 {#detect}
 
-|                   <font color=coral size=3>**检测规则**</font>                         |                                                              |                                                              |
+目前观测云支持 12 种监控检测规则，不同的规则覆盖不同的数据范围。
+
+| 规则名称 | 数据范围 | 基本描述 |
+| --- | --- | --- |
+| 阈值检测 | 全部 | 基于设置的阈值对指标数据进行异常检测。 |
+| 突变检测 | 指标(M) | 基于历史数据对指标的突发反常表现进行异常检测，多适用于业务数据、时问窗短的场景。 |
+| 区间检测 | 指标(M) | 基于动态阈值范围对指标的异常数据点进行检测，多适用于趋势稳定时间线。 |
+| 离群检测 | 指标(M) | 检测特定分组下检测对象的指标/统计数据是否存在离群偏差情况。 |
+| 日志检测 | 日志(L) | 基于日志数据进行业务应用的异常检测。 |
+| 进程异常检测 | 进程对象(O::`host_processes`) | 定时检测进程数据，了解进程异常情况。 |
+| 基础设施存活检测 | 对象(O) | 基于基础设施对象数据，设置存活条件，监控基础设施的稳定性。 |
+| 应用性能指标检测 | 链路(T) | 基于应用性能监测数据，设置阈值规则，检测异常情况。 |
+| 用户访问指标检测 | 用户访问数据(R) | 基于用户访问监测数据，设置阈值规则，检测异常情况。 |
+| 安全巡检异常检测 | 安全巡检(S) | 基于安全巡检产生的数据进行异常检测，可以有效感知主机健康状态。 |
+| 可用性数据检测 | 可用性数据(L::`类型`) | 基于可用性监测数据，设置阈值规则，检测异常情况。 |
+| 网络数据检测 | 网络(N) | 基于网络数据，设置阈值规则，检测网络性能的稳定性。 |
+
+
+|                   <font color=coral size=3>:fontawesome-regular-circle-down: &nbsp;**了解更多**</font>                         |                                                              |                                                              |
 | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
 | [阈值检测](threshold-detection.md){ .md-button .md-button--primary } | [日志检测](log-detection.md){ .md-button .md-button--primary } | [突变检测](mutation-detection.md){ .md-button .md-button--primary } |
 | [区间检测](interval-detection.md){ .md-button .md-button--primary } | [离群检测](outlier-detection.md){ .md-button .md-button--primary } | [安全巡检异常检测](security_checker.md){ .md-button .md-button--primary } |
 | [应用性能指标检测](application-performance-detection.md){ .md-button .md-button--primary } | [用户访问指标检测](real-user-detection.md){ .md-button .md-button--primary } | [进程异常检测](processes-detection.md){ .md-button .md-button--primary } |
 | [基础设施存活检测](infrastructure-detection.md){ .md-button .md-button--primary } | [可用性监测数据检测](usability-detection.md){ .md-button .md-button--primary } | [网络数据检测](network-detection.md){ .md-button .md-button--primary } |
 
+### 用户监控器模板
+
+您可以将已创建好的监控器再次保存为监控器模版，便于您快速添加或删除监控器配置条件。
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 用户监控器模板</font>](../monitor/custom-template.md)
+
+<br/>
+
+</div>
+
 ## 恢复监控器 {#recover}
 
 观测云支持查看已有监控器的状态、最后更新时间、创建时间以及创建人，支持通过恢复监控器来查看监控器的历史配置，帮助您快速和团队其他成员沟通协作来更新监控器。
 
-### <u>操作示例</u>
+*<u>操作示例</u>*
 
-在**监控 > 监控器**，选择编辑已有的监控器，在监控器配置页面，点击右上角的 ![](../img/8.monitor_recover_3.png) 按钮，即可查看监控器的状态、最后更新时间、创建时间以及创建人。
+在**监控 > 监控器**，选择编辑已有的监控器，在监控器配置页面，点击右上角的 :fontawesome-brands-creative-commons-nd: 按钮，即可查看监控器的状态、最后更新时间、创建时间以及创建人。
 
 ![](../img/8.monitor_recover_1.png)
 
@@ -52,7 +82,7 @@
 
 点击上一版本监控器右上角的**恢复此版本**，在弹出的对话框中，确认恢复，即可恢复到上一版本的监控器配置进行编辑和保存。
 
-![](../img/8.monitor_recover_1.2.png)
+<img src="../img/8.monitor_recover_1.2.png" width="60%" >
 
 ## 告警策略管理
 
@@ -73,7 +103,7 @@
 
 创建告警策略以后，可以为监视器选择告警策略。在观测云工作空间**监控 > 监控器**，点击**新建监控器**，即可在创建监控器时选择告警策略。
 
-## 监控器列表
+## 监控器列表 {#list}
 
 **监控器**列表中，保存有当前工作空间内的全部监控器。您可以查看监控器名称、告警策略、状态、操作和是否被添加到 SLO 的 SLI 目标列表中。被添加至 SLO 作为 SLI 的监控器将以特殊标识展示。
 
