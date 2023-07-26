@@ -24,6 +24,10 @@
 
 ![](../img/chart014.png)
 
+其中，[日志流图](log-stream.md)支持 Copy as cURL、导出为 CSV 文件。
+
+![](../img/stream-0724.png)
+
 ### 修改
 
 在图表中，点击 :fontawesome-solid-gear: 按钮，选择**修改**，即可对图表进行编辑。
