@@ -1,7 +1,7 @@
-# Bill Management
+# Billing Management
 ---
 
-**Bill Management** of Guance Billing Center, including monthly bills, consumption, income and expenditure, vouchers and stored-value cards.
+**Billing Management** of Guance Billing Center, including monthly bills, consumption, statement, vouchers and stored-value cards.
 
 ![](../img/10.price_7.png)
 
@@ -13,7 +13,7 @@ In the Guance Billing Center, click **Monthly Bills** to view all detailed consu
 
 ![](../img/10.price_8.png)
 
-## Consumption Details
+## Consumption
 
 In the Guance Billing Center, click **Consumption Details** to view the daily detailed consumption records. It supports viewing daily detailed consumption records according to the selected accounting period. Click **Export** to export the current consumption record list information. 
 
@@ -21,7 +21,7 @@ In the Guance Billing Center, click **Consumption Details** to view the daily de
 
 ![](../img/10.price_9.png)
 
-## Income and Expenditure Details
+## Statement
 
 In the Guance Billing Center, click **Income and Expense Details** to view the changes of account balance, including the increase and decrease of cash, vouchers and stored-value cards. Support to view account balance changes according to the selected transaction time range. Click **Export** to export the current account balance change list information.
 
@@ -33,7 +33,7 @@ In the Guance Billing Center, click **Vouchers** to view the details of activate
 
 ![](../img/10.price_11.png)
 
-## Stored-value card
+## Stored Value Card
 
 In the Guance Billing Center, click **Stored-value Card** to view the details of purchased stored value cards, including various set values, available balances and expiration dates. After purchasing stored value cards, you can apply for invoices according to the same amount, and the balance will gradually decrease with consumption.
 

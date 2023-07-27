@@ -89,6 +89,17 @@
 
 <font color=coral>**注意：**</font>仅支持统计分析 6 月之后的消费数据；时间范围默认选中本月。
 
+指标生成逻辑：
+
+| 指标集      | bill：总账单          | bill_infos：每日账单          |
+| ----------- | -------------- | -------------- |
+| 指标      | money：应付金额          | originPrice：原价          |
+|       |           | count：使用量          |
+|       |           | billPrice：应付金额          |
+|       |           | billDateTimeStamp：账单日期对应的时间戳          |
+| 标签      | type：计费项          | billDate：账单日期          |
+|       |          | type：计费项         |
+
 ![](img/consumption.png)
 
 
