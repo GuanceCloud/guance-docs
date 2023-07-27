@@ -2,7 +2,7 @@
 # CPU
 ---
 
-:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
+:fontawesome-brands-linux: :fontawesome-brands-windows: :material-kubernetes: :material-docker:
 
 ---
 

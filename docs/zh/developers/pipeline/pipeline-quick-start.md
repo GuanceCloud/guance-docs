@@ -172,13 +172,13 @@ datakit pipeline -P test.p -T "$(<multi-line.log)"
 
 另外，所有采集上来的日志，均存在如下多个保留字段。**我们不应该去覆盖这些字段**，否则可能导致数据在查看器页面显示不正常。
 
-| 字段名    | 类型          | 说明                                  |
-| ---       | ----          | ----                                  |
-| `source`  | string(tag)   | 日志来源                              |
-| `service` | string(tag)   | 日志对应的服务，默认跟 `service` 一样 |
-| `status`  | string(tag)   | 日志对应的[等级](../../integrations/logging.md#status)   |
-| `message` | string(field) | 原始日志                              |
-| `time`    | int           | 日志对应的时间戳                      |
+| 字段名    | 类型          | 说明                                                   |
+| ---       | ----          | ----                                                   |
+| `source`  | string(tag)   | 日志来源                                               |
+| `service` | string(tag)   | 日志对应的服务，默认跟 `source` 一样                   |
+| `status`  | string(tag)   | 日志对应的[等级](../../integrations/logging.md#status) |
+| `message` | string(field) | 原始日志                                               |
+| `time`    | int           | 日志对应的时间戳                                       |
 
 <!-- markdownlint-disable MD046 -->
 ???+ tip

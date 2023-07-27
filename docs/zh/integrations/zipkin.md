@@ -35,10 +35,9 @@ Datakit 内嵌的 Zipkin Agent 用于接收，运算，分析 Zipkin Tracing 协
       pathV1 = "/api/v1/spans"
       pathV2 = "/api/v2/spans"
     
-      ## customer_tags is a list of keys contains keys set by client code like span.SetTag(key, value)
-      ## that want to send to data center. Those keys set by client code will take precedence over
-      ## keys in [inputs.zipkin.tags]. DOT(.) IN KEY WILL BE REPLACED BY DASH(_) WHEN SENDING.
-      # customer_tags = ["key1", "key2", ...]
+      ## ignore_tags will work as a blacklist to prevent tags send to data center.
+      ## Every value in this list is a valid string of regular expression.
+      # ignore_tags = ["block1", "block2"]
     
       ## Keep rare tracing resources list switch.
       ## If some resources are rare enough(not presend in 1 hour), those resource will always send
@@ -94,7 +93,7 @@ Datakit 内嵌的 Zipkin Agent 用于接收，运算，分析 Zipkin Tracing 协
     | ------------------------------------- | ----------- | -------------------------------------------------------------------------------- |
     | `ENV_INPUT_ZIPKIN_PATH_V1`            | string      | "/api/v1/spans"                                                                  |
     | `ENV_INPUT_ZIPKIN_PATH_V2`            | string      | "/api/v2/spans"                                                                  |
-    | `ENV_INPUT_ZIPKIN_CUSTOMER_TAGS`      | JSON string | `["key1", "key2", "key3"]`                                                       |
+    | `ENV_INPUT_ZIPKIN_IGNORE_TAGS`        | JSON string | `["block1", "block2"]`                                                           |
     | `ENV_INPUT_ZIPKIN_KEEP_RARE_RESOURCE` | bool        | true                                                                             |
     | `ENV_INPUT_ZIPKIN_CLOSE_RESOURCE`     | JSON string | `{"service1":["resource1"], "service2":["resource2"], "service3":["resource3"]}` |
     | `ENV_INPUT_ZIPKIN_SAMPLER`            | float       | 0.3                                                                              |
