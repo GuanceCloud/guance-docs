@@ -89,6 +89,27 @@ monitor   :
   ![](https://static.guance.com/images/datakit/dialtesting-net-arch.png){ width="800" }
 </figure>
 
+## 指标 {#metric}
+
+拨测采集器会暴露 [Prometheus 指标](../datakit/datakit-metrics.md)，如果需要上报这些指标至观测云，可以通过 [DataKit 采集器](dk.md) 进行采集，相关配置参考如下：
+
+```toml
+[[inputs.dk]]
+  ......
+
+  metric_name_filter = [
+  
+  ### others...
+  
+  ### dialtesting
+  "datakit_dialtesting_.*",
+
+  ]
+
+  ......
+
+```
+
 ## 日志 {#logging}
 
 以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[[inputs.dialtesting.tags]]` 另择 host 来命名。
@@ -102,31 +123,38 @@ monitor   :
 
 | Tag | Description |
 |  ----  | --------|
-|`city`|拨测发起所在城市|
-|`country`|拨测发起所在国家|
-|`dest_ip`|目标 IP, 如 127.0.0.1|
-|`internal`|国内/海外，`true` 表示国内/`false` 表示国外|
-|`isp`|运营商，电信/移动/联通|
-|`name`|拨测名称|
-|`proto`|HTTP 版本，如 `HTTP/1.0`|
-|`province`|拨测发起所在省份|
-|`status`|拨测状态，OK/FAIL|
-|`status_code_class`|HTTP 状态码，如 `200`|
-|`status_code_string`|HTTP 状态字符串，如 `200 OK`|
-|`url`|拨测地址，如 `http://wwww.baidu.com`|
+|`city`|The name of the city|
+|`country`|The name of the country|
+|`dest_ip`|The IP address of the destination|
+|`internal`|The boolean value, true for domestic and false for overseas|
+|`isp`|ISP, such as `chinamobile`, `chinaunicom`, `chinatelecom`|
+|`method`|HTTP method, such as `GET`|
+|`name`|The name of the task|
+|`owner`|The owner name|
+|`proto`|The protocol of the HTTP, such as 'HTTP/1.1'|
+|`province`|The name of the province|
+|`status`|The status of the task, either 'OK' or 'FAIL'|
+|`status_code_class`|The class of the status code, such as '2xx'|
+|`status_code_string`|The status string, such as '200 OK'|
+|`url`|The URL of the endpoint to be monitored|
 
 - 指标列表
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`fail_reason`|拨测失败原因|string|-|
-|`message`|包括请求头（`request_header`）/请求体（`request_body`）/返回头（`response_header`）/返回体（`response_body`）/`fail_reason` 会冗余一份|string|-|
-|`proto`|示例 HTTP/1.0|string|-|
-|`response_body_size`|body 长度|int|B|
-|`response_time`|HTTP 响应时间|int|μs|
-|`status_code`|web page response code|int|-|
-|`success`|只有 1/-1 两种状态。1 表示成功/-1 表示失败|int|-|
+|`fail_reason`|The reason that leads to the failure of the task|string|-|
+|`message`|The message string which includes the header and the body of the request or the response|string|-|
+|`response_body_size`|The length of the body of the response|int|B|
+|`response_connection`|HTTP connection time|float|μs|
+|`response_dns`|HTTP DNS parsing time|float|μs|
+|`response_download`|HTTP downloading time|float|μs|
+|`response_ssl`|HTTP ssl handshake time|float|μs|
+|`response_time`|The time of the response|int|μs|
+|`response_ttfb`|HTTP response `ttfb`|float|μs|
+|`seq_number`|The sequence number of the test|int|count|
+|`status_code`|The response code|int|-|
+|`success`|The number to specify whether is successful, 1 for success, -1 for failure|int|-|
 
 
 
@@ -137,29 +165,31 @@ monitor   :
 
 | Tag | Description |
 |  ----  | --------|
-|`city`|城市|
-|`country`|国家|
-|`dest_host`|示例 `wwww.baidu.com`|
-|`dest_ip`|目标 IP, 如 127.0.0.1|
-|`dest_port`|端口号，如 `80`|
-|`internal`|国内/海外，`true` 表示国内/`false` 表示国外|
-|`isp`|运营商，电信/移动/联通|
-|`name`|拨测名称，如「百度测试」|
-|`proto`|协议类型，此处统一为 `tcp`|
-|`province`|省份|
-|`status`|拨测状态，OK/FAIL|
+|`city`|The name of the city|
+|`country`|The name of the country|
+|`dest_host`|The name of the host to be monitored|
+|`dest_ip`|The IP address|
+|`dest_port`|The port of the TCP connection|
+|`internal`|The boolean value, true for domestic and false for overseas|
+|`isp`|ISP, such as `chinamobile`, `chinaunicom`, `chinatelecom`|
+|`name`|The name of the task|
+|`owner`|The owner name|
+|`proto`|The protocol of the task|
+|`province`|The name of the province|
+|`status`|The status of the task, either 'OK' or 'FAIL'|
 
 - 指标列表
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`fail_reason`|拨测失败原因|string|-|
-|`message`|包括响应时间（`response_time`）/错误原因（`fail_reason`）|string|-|
-|`response_time`|TCP 连接时间 |int|μs|
-|`response_time_with_dns`|连接时间（含 DNS 解析）|int|μs|
-|`success`|只有 1/-1 两种状态。1 表示成功/-1 表示失败|int|-|
-|`traceroute`|路由跟踪数据文本（JSON 格式）|string|-|
+|`fail_reason`|The reason that leads to the failure of the task|string|-|
+|`message`|The message string includes the response time or fail reason|string|-|
+|`response_time`|The time of the response |int|μs|
+|`response_time_with_dns`|The time of the response, which contains DNS time|int|μs|
+|`seq_number`|The sequence number of the test|int|count|
+|`success`|The number to specify whether is successful, 1 for success, -1 for failure|int|-|
+|`traceroute`|The json string fo the `traceroute` result|string|-|
 
 
 
@@ -170,36 +200,38 @@ monitor   :
 
 | Tag | Description |
 |  ----  | --------|
-|`city`|拨测发起所在城市，如杭州|
-|`country`|拨测发起所在国家，如德国|
-|`dest_host`|拨测地址，如 `wwww.baidu.com`|
-|`internal`|国内/海外，`true` 表示国内/`false` 表示国外|
-|`isp`|运营商，电信/移动/联通|
-|`name`|拨测名称，如百度测试|
-|`proto`|协议类型，此处统一为 `icmp`|
-|`province`|拨测发起所在省份，如浙江|
-|`status`|拨测状态，OK/FAIL|
+|`city`|The name of the city|
+|`country`|The name of the country|
+|`dest_host`|The name of the host to be monitored|
+|`internal`|The boolean value, true for domestic and false for overseas|
+|`isp`|ISP, such as `chinamobile`, `chinaunicom`, `chinatelecom`|
+|`name`|The name of the task|
+|`owner`|The owner name|
+|`proto`|The protocol of the task|
+|`province`|The name of the province|
+|`status`|The status of the task, either 'OK' or 'FAIL'|
 
 - 指标列表
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`average_round_trip_time`|平均往返时间(RTT)|float|μs|
-|`average_round_trip_time_in_millis`|平均往返时间(RTT). 本字段将被弃用|float|ms|
-|`fail_reason`|拨测失败原因|string|-|
-|`max_round_trip_time`|最大往返时间(RTT)|float|μs|
-|`max_round_trip_time_in_millis`|最大往返时间(RTT). 本字段将被弃用|float|ms|
-|`message`|包括平均 RTT 时间(average_round_trip_time)/错误原因(fail_reason)|string|-|
-|`min_round_trip_time`|最小往返时间(RTT)|float|μs|
-|`min_round_trip_time_in_millis`|最小往返时间(RTT). 本字段将被弃用|float|ms|
-|`packet_loss_percent`|丢包率|float|-|
-|`packets_received`|接受的数据包|int|count|
-|`packets_sent`|发送的数据包|int|count|
-|`std_round_trip_time`|往返时间(RTT)标准差|float|μs|
-|`std_round_trip_time_in_millis`|往返时间（RTT）标准差。本字段将被弃用|float|ms|
-|`success`|只有 1/-1 两种状态。1 表示成功/-1 表示失败|int|-|
-|`traceroute`|路由跟踪数据文本(JSON 格式)|string|-|
+|`average_round_trip_time`|The average time of the round trip(RTT)|float|μs|
+|`average_round_trip_time_in_millis`|The average time of the round trip(RTT), deprecated|float|ms|
+|`fail_reason`|The reason that leads to the failure of the task|string|-|
+|`max_round_trip_time`|The maximum time of the round trip(RTT)|float|μs|
+|`max_round_trip_time_in_millis`|The maximum time of the round trip(RTT), deprecated|float|ms|
+|`message`|The message string includes the average time of the round trip or the failure reason|string|-|
+|`min_round_trip_time`|The minimum time of the round trip(RTT)|float|μs|
+|`min_round_trip_time_in_millis`|The minimum time of the round trip(RTT), deprecated|float|ms|
+|`packet_loss_percent`|The loss percent of the packets|float|-|
+|`packets_received`|The number of the packets received|int|count|
+|`packets_sent`|The number of the packets sent|int|count|
+|`seq_number`|The sequence number of the test|int|count|
+|`std_round_trip_time`|The standard deviation of the round trip|float|μs|
+|`std_round_trip_time_in_millis`|The standard deviation of the round trip, deprecated|float|ms|
+|`success`|The number to specify whether is successful, 1 for success, -1 for failure|int|-|
+|`traceroute`|The `json` string fo the `traceroute` result|string|-|
 
 
 
@@ -210,28 +242,30 @@ monitor   :
 
 | Tag | Description |
 |  ----  | --------|
-|`city`|拨测发起所在城市|
-|`country`|拨测发起所在国家|
-|`internal`|国内/海外，`true` 表示国内/`false` 表示国外|
-|`isp`|运营商，电信/移动/联通|
-|`name`|拨测名称|
-|`proto`|协议类型，此处统一为 `websocket`|
-|`province`|拨测发起所在省份|
-|`status`|拨测状态，OK/FAIL|
-|`url`|拨测地址，如 `ws://www.abc.com`|
+|`city`|The name of the city|
+|`country`|The name of the country|
+|`internal`|The boolean value, true for domestic and false for overseas|
+|`isp`|ISP, such as `chinamobile`, `chinaunicom`, `chinatelecom`|
+|`name`|The name of the task|
+|`owner`|The owner name|
+|`proto`|The protocol of the task|
+|`province`|The name of the province|
+|`status`|The status of the task, either 'OK' or 'FAIL'|
+|`url`|The URL string, such as `ws://www.abc.com`|
 
 - 指标列表
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`fail_reason`|拨测失败原因|string|-|
-|`message`|包括响应时间(response_time)/错误原因(fail_reason)|string|-|
-|`response_message`|拨测返回的消息|string|-|
-|`response_time`|连接时间|int|μs|
-|`response_time_with_dns`|连接时间（含 DNS 解析）|int|μs|
-|`sent_message`|拨测发送的消息|string|-|
-|`success`|只有 1/-1 两种状态。1 表示成功/-1 表示失败|int|-|
+|`fail_reason`|The reason that leads to the failure of the task|string|-|
+|`message`|The message string includes the response time or the failure reason|string|-|
+|`response_message`|The message of the response|string|-|
+|`response_time`|The time of the response|int|μs|
+|`response_time_with_dns`|The time of the response, include DNS|int|μs|
+|`sent_message`|The sent message |string|-|
+|`seq_number`|The sequence number of the test|int|count|
+|`success`|The number to specify whether is successful, 1 for success, -1 for failure|int|-|
 
 
 

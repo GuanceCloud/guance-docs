@@ -57,10 +57,9 @@ collector.backend_service=${SW_AGENT_COLLECTOR_BACKEND_SERVICES:<datakit-ip:skyw
       ## the value of the key word will be used to set the service name.
       # plugins = ["db.type"]
     
-      ## customer_tags is a list of keys contains keys set by client code like span.SetTag(key, value)
-      ## that want to send to data center. Those keys set by client code will take precedence over
-      ## keys in [inputs.skywalking.tags]. DOT(.) IN KEY WILL BE REPLACED BY DASH(_) WHEN SENDING.
-      # customer_tags = ["key1", "key2", ...]
+      ## ignore_tags will work as a blacklist to prevent tags send to data center.
+      ## Every value in this list is a valid string of regular expression.
+      # ignore_tags = ["block1", "block2"]
     
       ## Keep rare tracing resources list switch.
       ## If some resources are rare enough(not presend in 1 hour), those resource will always send
@@ -143,7 +142,7 @@ collector.backend_service=${SW_AGENT_COLLECTOR_BACKEND_SERVICES:<datakit-ip:skyw
     | `ENV_INPUT_SKYWALKING_HTTP_ENDPOINTS`     | JSON string | `["/v3/trace", "/v3/metric", "/v3/logging", "/v3/profiling"]`                        |
     | `ENV_INPUT_SKYWALKING_GRPC_ENDPOINT`      | string      | "127.0.0.1:11800"                                                                    |
     | `ENV_INPUT_SKYWALKING_PLUGINS`            | JSON string | `["db.type", "os.call"]`                                                             |
-    | `ENV_INPUT_SKYWALKING_CUSTOMER_TAGS`      | JSON string | `["key1", "key2", "key3"]`                                                           |
+    | `ENV_INPUT_SKYWALKING_IGNORE_TAGS`        | JSON string | `["block1", "block2"]`                                                               |
     | `ENV_INPUT_SKYWALKING_KEEP_RARE_RESOURCE` | bool        | true                                                                                 |
     | `ENV_INPUT_SKYWALKING_CLOSE_RESOURCE`     | JSON string | `{"service1":["resource1"], "service2":["resource2"], "service3":    ["resource3"]}` |
     | `ENV_INPUT_SKYWALKING_SAMPLER`            | float       | 0.3                                                                                  |
@@ -220,7 +219,6 @@ SkyWalking 会上报一些 JVM 指标数据。
 | `thread_waiting_state_count`       | waiting state thread count.                                                                                                               |    int    |  count  |
 
 ## 链路字段 {#tracing}
-
 
 
 

@@ -22,15 +22,15 @@ __int_icon: icon/aliyun_redis
 
 3、 「基本信息」 - 编辑「JVM 参数」
 
-4、 选择「自定义」，填入 javaagent 参数，修改完成点击 「配置 JVM 参数」
+4、 选择「自定义」，填入 Javaagent 参数，修改完成点击 「配置 JVM 参数」
 
 5、 选择「实例部署信息」，重启应用
 
 参数说明：
 
-- javaagent：引入 dd-java-agent.jar 包
+- Javaagent：引入 dd-java-agent.jar 包
 - Ddd.service.name：服务名称 (自定义)
-- Ddd.agent.port：数据传输到 datakit 端口 (默认 9529)
+- Ddd.agent.port：数据传输到 Datakit 端口 (默认 9529)
 
 ```shell
 -javaagent:/usr/local/datakit/data/dd-java-agent.jar -Ddd.service.name=service.name -Ddd.agent.port=9529

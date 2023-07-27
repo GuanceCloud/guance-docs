@@ -17,7 +17,7 @@ monitor   :
 <!-- markdownlint-enable -->
 ---
 
-:fontawesome-brands-linux: :fontawesome-brands-windows: · [:fontawesome-solid-flag-checkered:](index.md#legends "Election Enabled")
+:fontawesome-brands-linux: :fontawesome-brands-windows: · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 
 ---
 Aerospike Namespace 性能指标展示，包括集群、空间下的内存使用情况、磁盘使用、对象数、读写速率等。
@@ -335,4 +335,3 @@ ignore_dead_log = "10m"
 ## 指标详解 {#metric}
 
 [参照 Aerospike 官网指标](https://docs.aerospike.com/server/operations/monitor/key_metrics)
-

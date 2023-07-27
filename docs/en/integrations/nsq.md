@@ -12,7 +12,11 @@ Collect NSQ operation data and report it to Guance Cloud in the form of indicato
 
 - NSQ installed（[NSQ official website](https://nsq.io/){:target="_blank"}）
 
-- NSQ version >= 1.0.0
+- Recommend NSQ version >= 1.0.0, already tested version:
+
+- [x] 1.2.1
+- [x] 1.1.0
+- [x] 0.3.8
 
 ## Configuration {#config}
 
@@ -112,6 +116,7 @@ NSQ 集群所有 node 的指标
 
 | Tag | Description |
 |  ----  | --------|
+|`host`|Hostname|
 |`server_host`|服务地址，即 `host:ip`|
 
 - metric list

@@ -64,22 +64,27 @@ It is recommended that RUM be deployed separately on the public network, not wit
       ## buffer is the size of jobs' buffering of worker channel.
       ## threads is the total number fo goroutines at running time.
       # [inputs.rum.threads]
-        # buffer = 100
-        # threads = 8
+      #   buffer = 100
+      #   threads = 8
     
       ## Storage config a local storage space in hard dirver to cache trace data.
       ## path is the local file path used to cache data.
       ## capacity is total space size(MB) used to store data.
       # [inputs.rum.storage]
-        # path = "./rum_storage"
-        # capacity = 5120
+      #   path = "./rum_storage"
+      #   capacity = 5120
     
       # Provide a list to resolve CDN of your static resource.
       # Below is the Datakit default built-in CDN list, you can uncomment that and change it to your cdn list,
       # it's a JSON array like: [{"domain": "CDN domain", "name": "CDN human readable name", "website": "CDN official website"},...],
       # domain field value can contains '*' as wildcard, for example: "kunlun*.com",
       # it will match "kunluna.com", "kunlunab.com" and "kunlunabc.com" but not "kunlunab.c.com".
-      # cdn_map = '[{"domain":"15cdn.com","name":"腾正安全加速(原 15CDN)","website":"https://www.15cdn.com"},{"domain":"tzcdn.cn","name":"腾正安全加速(原 15CDN)","website":"https://www.15cdn.com"},...]'
+      # cdn_map = '''
+      # [
+      #   {"domain":"15cdn.com","name":"腾正安全加速(原 15CDN)","website":"https://www.15cdn.com"},
+      #   {"domain":"tzcdn.cn","name":"腾正安全加速(原 15CDN)","website":"https://www.15cdn.com"}
+      # ]
+      # '''
     
     ```
 

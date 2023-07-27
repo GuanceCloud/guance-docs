@@ -62,5 +62,5 @@ systemctl restart datakit
 
 ## 常见问题排查 {#faq}
 
-[无数据上报排查](../../datakit/why-no-data.md)
+[无数据上报排查](../datakit/why-no-data.md)
 

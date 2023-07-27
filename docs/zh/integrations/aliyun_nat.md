@@ -16,7 +16,7 @@ dashboard:
 
 推荐开通 观测云集成 - 扩展 - 托管版 Func: 一切前置条件都自动安装好, 请继续脚本安装
 
-如果自行部署 Func 参考 [自行部署 Func ](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+如果自行部署 Func 参考 [自行部署 Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 > 推荐部署GSE版
 
@@ -42,7 +42,7 @@ dashboard:
 
 我们默认采集了一些配置, 具体见指标一栏
 
-[配置自定义云对象指标] (https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
+[配置自定义云对象指标](https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
 
 
 ### 验证
@@ -54,54 +54,11 @@ dashboard:
 ## 指标 {#metric}
 配置好阿里云-云监控,默认的指标集如下, 可以通过配置的方式采集更多的指标 [阿里云云监控指标详情](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
 
-| Metric Id                         | Metric Name              | Dimensions              | Statistics | Unit   | Min Periods |
-| ---- | ------ | ------ | ---- | ---- | ---- |
-| BWRateInFromInside                | 从VPC来流量速率          | userId,instanceId       | Value      | bps    | 60 s        |
-| BWRateInFromOutside               | 从公网来流量速率         | userId,instanceId       | Value      | bps    | 60 s        |
-| BWRateOutToInside                 | 入VPC流量速率            | userId,instanceId       | Value      | bps    | 60 s        |
-| BWRateOutToOutside                | 入公网流量速率           | userId,instanceId       | Value      | bps    | 60 s        |
-| BytesInFromInside                 | 从VPC来流量              | userId,instanceId       | Value      | bytes  | 60 s        |
-| BytesInFromOutside                | 从公网来流量             | userId,instanceId       | Value      | bytes  | 60 s        |
-| BytesOutToInside                  | 入VPC流量                | userId,instanceId       | Value      | bytes  | 60 s        |
-| BytesOutToOutside                 | 入公网流量               | userId,instanceId       | Value      | bytes  | 60 s        |
-| DropTotalBps                      | 报文丢弃总带宽           | userId,instanceId       | Value      | bit/s  | 60 s        |
-| DropTotalPps                      | 报文丢弃总速率           | userId,instanceId       | Value      | countS | 60 s        |
-| EniBytesDropRx                    | 接口入丢弃流量           | userId,instanceId,eniId | Value      | bytes  | 60 s        |
-| EniBytesDropTx                    | 接口出丢弃流量           | userId,instanceId,eniId | Value      | bytes  | 60 s        |
-| EniBytesRx                        | 接口入流量               | userId,instanceId,eniId | Value      | bytes  | 60 s        |
-| EniBytesTx                        | 接口出流量               | userId,instanceId,eniId | Value      | bytes  | 60 s        |
-| EniPacketsDropPortAllocationFail  | 接口端口分配失败包数量   | userId,instanceId,eniId | Value      | count  | 60 s        |
-| EniPacketsDropRx                  | 接口入丢弃报文量         | userId,instanceId,eniId | Value      | count  | 60 s        |
-| EniPacketsDropTx                  | 接口出丢弃报文量         | userId,instanceId,eniId | Value      | count  | 60 s        |
-| EniPacketsRx                      | 接口入报文量             | userId,instanceId,eniId | Value      | count  | 60 s        |
-| EniPacketsTx                      | 接口出报文量             | userId,instanceId,eniId | Value      | count  | 60 s        |
-| EniSessionActiveConnection        | 接口并发连接数           | userId,instanceId,eniId | Value      | count  | 60 s        |
-| EniSessionLimitDropConnection     | 接口新建丢弃连接速率     | userId,instanceId,eniId | Value      | countS | 60 s        |
-| EniSessionNewConnection           | 接口新建连接速率         | userId,instanceId,eniId | Value      | countS | 60 s        |
-| EniSessionNewLimitDropConnection  | 接口并发丢弃连接速率     | userId,instanceId,eniId | Value      | countS | 60 s        |
-| ErrorPortAllocationCount          | 区间内port分配失败的个数 | userId,instanceId       | Value      | count  | 60 s        |
-| ErrorPortAllocationRate           | 区间内port分配失败的速率 | userId,instanceId       | Value      | countS | 60 s        |
-| InBpsSum                          | 吞吐                     | userId,instanceId       | Value      | bit/s  | 60 s        |
-| PPSRateInFromInside               | 从VPC来包速率            | userId,instanceId       | Value      | countS | 60 s        |
-| PPSRateInFromOutside              | 从公网来包速率           | userId,instanceId       | Value      | countS | 60 s        |
-| PPSRateOutToInside                | 入VPC包速率              | userId,instanceId       | Value      | countS | 60 s        |
-| PPSRateOutToOutside               | 入公网包速率             | userId,instanceId       | Value      | countS | 60 s        |
-| PacketsInFromInside               | 从VPC来包量              | userId,instanceId       | Value      | count  | 60 s        |
-| PacketsInFromOutside              | 从公网来包量             | userId,instanceId       | Value      | count  | 60 s        |
-| PacketsOutToInside                | 入VPC包量                | userId,instanceId       | Value      | count  | 60 s        |
-| PacketsOutToOutside               | 入公网包量               | userId,instanceId       | Value      | count  | 60 s        |
-| SessionActiveConnection           | 并发连接数               | userId,instanceId       | Value      | count  | 60 s        |
-| SessionActiveConnectionWaterLever | 并发连接水位             | userId,instanceId       | Value      | %      | 60 s        |
-| SessionLimitDropConnection        | 并发丢弃连接速率         | userId,instanceId       | Value      | countS | 60 s        |
-| SessionNewConnection              | 新建连接速率             | userId,instanceId       | Value      | countS | 60 s        |
-| SessionNewConnectionWaterLever    | 新建连接水位             | userId,instanceId       | Value      | %      | 60 s        |
-| SessionNewLimitDropConnection     | 新建丢弃连接速率         | userId,instanceId       | Value      | countS | 60 s        |
-
-## {#object}
+## 对象{#object}
 
 采集到的阿里云 SLB 对象数据结构, 可以从「基础设施-自定义」里看到对象数据
 
-```
+```json
 {
   "measurement": "aliyun_nat",
   "tags": {

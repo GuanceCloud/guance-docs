@@ -27,7 +27,11 @@ monitor   :
 
 ### 前置条件 {#requirements}
 
-NSQ 版本 >= 1.0.0
+推荐 NSQ 版本 >= 1.0.0，已测试的版本：
+
+- [x] 1.2.1
+- [x] 1.1.0
+- [x] 0.3.8
 
 ### 采集器配置 {#input-config}
 
@@ -129,6 +133,7 @@ NSQ 集群所有 node 的指标
 
 | Tag | Description |
 |  ----  | --------|
+|`host`|Hostname|
 |`server_host`|服务地址，即 `host:ip`|
 
 - 指标列表

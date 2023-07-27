@@ -20,7 +20,7 @@ monitor:
 
 推荐开通 观测云集成 - 扩展 - 托管版 Func: 一切前置条件都自动安装好, 请继续脚本安装
 
-如果自行部署 Func 参考 [自行部署 Func ](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+如果自行部署 Func 参考 [自行部署 Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 
 
@@ -45,7 +45,7 @@ monitor:
 
 我们默认采集了一些配置, 具体见指标一栏
 
-[配置自定义云对象指标] (https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
+[配置自定义云对象指标](https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
 
 
 ### 验证
@@ -57,43 +57,12 @@ monitor:
 ## 指标 {#metric}
 配置好阿里云-云监控,默认的指标集如下, 可以通过配置的方式采集更多的指标 [阿里云云监控指标详情](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
 
-> 注意：需要在 aliyun ECS 控制台安装监控插件
-
-| Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
-|`CPUUtilization`|CPU使用率|float|%|
-|`memory_usedutilization`|内存使用率|float|%|
-|`load_1m`|load.1m|float|count|
-|`load_15m`|load.15m|float|count|
-|`load_5m`|load.5m|float|count|
-|`DiskReadBPS`|所有磁盘读取BPS|float|bytes/s|
-|`DiskWriteBPS`|所有磁盘写入BPS|float|bytes/s|
-|`DiskReadIOPS`|所有磁盘每秒读取次数|float|Count/Second|
-|`DiskWriteIOPS`|所有磁盘每秒写入次数|float|Count/Second|
-|`diskusage_utilization`|Host.diskusage.utilization|float|%|
-|`fs_inodeutilization`|(Agent)fs.inode.utilization_device|float|%|
-|`GroupVPC_PublicIP_InternetInRate`|IP维度公网流入带宽|float|bits/s|
-|`GroupVPC_PublicIP_InternetOutRate`|IP维度公网流出带宽|float|bits/s|
-|`IntranetInRate`|内网流入带宽|float|bits/s|
-|`IntranetOutRate`|内网流出带宽|float|bits/s|
-|`concurrentConnections`|同时连接数|float|count|
-|`cpu_wait`|(Agent)cpu.wait|float|%|
-|`cpu_user`|(Agent)cpu.user|float|%|
-|`cpu_system`|(Agent)cpu.total|float|%|
-|`memory_freeutilization`|(Agent)memory.free.utilization|float|%|
-|`disk_readbytes`|(Agent)disk.read.bytes_device|float|bytes/s|
-|`disk_writebytes`|(Agent)disk.write.bytes_device|float|bytes/s|
-|`networkin_rate`|(Agent)network.in.rate_device|float|bits/s|
-|`networkin_packages`|(Agent)network.in.packages_device|float|Count/s|
-|`net_tcpconnection`|(Agent)network.tcp.connection_state|float|Count|
-|`memory_freespace`|(Agent)memory.free.space|float|bytes|
-|`memory_usedspace`|(Agent)memory.free.space|float|bytes|
-|`memory_totalspace`|(Agent)memory.total.space|float|bytes|
+> 注意：需要在 Aliyun ECS 控制台安装监控插件
 
 ## 对象 {#object}
 采集到的阿里云 ECS 对象数据结构, 可以从「基础设施-自定义」里看到对象数据
 
-```
+```json
 {
   "measurement": "aliyun_ecs",
   "tags": {
