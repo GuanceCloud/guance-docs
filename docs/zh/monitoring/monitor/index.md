@@ -11,7 +11,7 @@
 
 观测云支持您从主机、Docker、Elasticsearch 等监控模板快速创建监控器，或自定义新的监控器和触发条件并配置告警。
 
-### 从模板新建 {#template}
+### 官方模板库 {#template}
 
 观测云内置多种开箱即用的监控[模板](../monitor/template.md)，支持一键创建主机、Docker、Elasticsearch、Redis、阿里云 RDS、阿里云 SLB、Flink 监控等。即自动添加对应的官方监控器至当前工作空间。
 
@@ -21,9 +21,9 @@
 
 <img src="../img/image_8.png" width="60%" >
 
-### 自定义新建 {#rules}
+### 监控器 {#rules}
 
-在监控器中，支持通过 **+新建监控器** 添加新的监控器，并自定义触发规则。
+在监控器中，支持通过点击 **监控器** 添加新的监控器，自定义触发规则。
 
 ![](../img/monitor1.png)
 
@@ -54,13 +54,13 @@
 | [应用性能指标检测](application-performance-detection.md){ .md-button .md-button--primary } | [用户访问指标检测](real-user-detection.md){ .md-button .md-button--primary } | [进程异常检测](processes-detection.md){ .md-button .md-button--primary } |
 | [基础设施存活检测](infrastructure-detection.md){ .md-button .md-button--primary } | [可用性监测数据检测](usability-detection.md){ .md-button .md-button--primary } | [网络数据检测](network-detection.md){ .md-button .md-button--primary } |
 
-### 用户监控器模板
+### 自定义模板库
 
 您可以将已创建好的监控器再次保存为监控器模版，便于您快速添加或删除监控器配置条件。
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 用户监控器模板</font>](../monitor/custom-template.md)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 创建自定义模板库</font>](../monitor/custom-template.md)
 
 <br/>
 
