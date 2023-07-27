@@ -1,4 +1,3 @@
-
 # 开启部署版自身的可观测
 
 ## 概述
@@ -19,7 +18,7 @@
 === "一对多统一观测模式"
 
     此模式是指，客户的多个观测云都往同一节点去打。优点：不会造成数据传输闭环的情况，并且能够实时监测到自身集群的状态。
-
+    
     ![guance2](img/self-guance2.jpg)
 
 
@@ -152,7 +151,7 @@ kubectl apply -f datakit.yaml
 ???+ "前置条件"
 
      1. 您的主机上需 [安装 DataKit](https://docs.guance.com/datakit/datakit-install/) 
-
+    
      2. 如果您不懂相关的Pipeline知识，请查看[日志Pipeline使用手册](https://docs.guance.com/logs/pipelines/manual/)
 
 #### 配置日志和指标采集
@@ -253,7 +252,8 @@ template:
 
     [Pipeline下载地址](Pipelines 模板.json)
 
-    
+
+​    
     ![pipeline001](img/self-pipeline001.jpg)
 
 
@@ -288,13 +288,13 @@ template:
     3）开启后的状态
     
       ![image-20221129165203967](https://docs.guance.com/logs/img/12.pipeline_4.png)
-    
+
 ### 配置应用性能监测
 
 ???+ "前置条件"
 
      1、您的主机上需 [安装 DataKit](https://docs.guance.com/datakit/datakit-install/) 
-
+    
      2、并在DataKit上[开启ddtrace采集器](https://docs.guance.com/datakit/ddtrace/#__tabbed_1_2),采用K8S `ConfigMap`的方式注入
 
 **开始配置**
@@ -355,7 +355,7 @@ spec:
 
 ???+ warning "注意"
      根据实际设置的域名进行修改
-  
+
    | 名称               | 拨测地址                                                     | 类型 | 任务状态 | 操作                                                         |
    | ------------------ | ------------------------------------------------------------ | ---- | -------- | ------------------------------------------------------------ |
    | cn4-console-api    | https://cn4-console-api.guance.com                           | HTTP | 启动     | ![img](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAUCAYAAAD/Rn+7AAAAAXNSR0IArs4c6QAAA59JREFUSEutll9sFFUUxr8zs/23ZKUUSjRAFAnQBU0Wuq1pin0gxqTEaOtCytqYPmiiYvyHJBiTtYI0vAASEhpCJSGVPrQqxLYKBJJCCG7dbRHbIoTQbo1arIBotEg7c+8xd+i2SzqbsLM7mcnM3NzzzW/OyT33IyQ5Sr/f6BdMLxJzKZgWgzAXoCyA1eUCiOxCmXl6OP6oxggMCRMEgxkGgFsAYkQUEcTHLpa3Ru30ZnzEH64tB+QeAKXJ4JONz4BTYPdOuLUclM3xwffQchRmz4HJAqPjtxD5qx+9f/8EAyKiMzb3VLSdT9S/D7CkO/gBM3YA0DMBp/hc0PHygudQt+gFeFxuW9nrd2+gcbgV3944J0hDqHdN2874xCnA4u6XQsS8PVWw+Pyp7Kl0MYMlY7buwa4V72N1vveBZNuvd6HhWhMEZH1vRavFYgE+1V37rIA8Ab73nuphB5cFFw48GYIvvygluaMjp9Ew2KR+s/JCRdtJQtsG3b/QdRWEx1NSSphsAcYzp+5C4o1Ha/DqYwFHklsGdqHrz8jQhVEsI393MADGl46UrGpOLlV1k2y955MHnWX7kafnOJIdHvsNgeh7YJ3WU3E4eISAWkdKiYAKTrIFWTV/LULe151KWnG10a24MjbcQv5w8BqAJU7V7iuvgjQlGoreRuUjTzuVtOI+vdqMz0c6B1WJ/wVjllO1KcDJDEpT4jPfxyguWOlU0opr+bkTu4eaxzIGaJVXSEhDomnVNvjnpgd4JNaBPTEFmKESTwFOCDR438G6hRVpZXD35cNoUSXOyCJRXSaewQmBqsK1qPe9mRZg8NwWXBmPtWSmzSQCGhKzTTeOP3MQea5cR5Cxf35F1dm3oOfq69Nu1HaLRN4xsGlJEK95axwBvhveia7b0aG+da5laW91dm1Gjgtod4FDa3Zg1bwVKUF+MXgCnww0spaTXflj5Vcnp83Cd8GPiLAtJbUkjVqtZPmfCY90Y2/Zh/DPf+KBZI/FTmH7D40QWVzf//zX02YhHu3EbtltdapZxyF1g1C3tAqveDfAk23fbkfG/sC+/mZ888sZoWXpob7q9pl2Kw7pxLDamQUpGDwhoMotJwTclIPyh4uxet5KFOYVQLCJ3+/cRHj0InpuDkCQjLCmbb4UaE9uWBPrUHK+pkTqWjUxlYJ4MTBp+Xmm5bezW2pPtiBNCVaQpmQ2pUkMQ4INYmX5KQaNotDp6KVAh63l/x/CLxkxSh9tAgAAAABJRU5ErkJggg==) |
@@ -524,6 +524,26 @@ token: xxxxxxxxxxx       ## 修改成实际的token
 
 ???+ warning "注意"
      导入后**监控**要修改相应的跳转链接配置。要把url中的dsbd_xxxx换到对应的仪表板下，wksp_xxxx换成要监测的空间下。
+
+## Func 自观测（可选）
+
+### Func 任务日志数据上报
+
+DataFlux Func 的函数运行日志、自动触发配置等信息可以直接上报至观测云。步骤如下图
+
+![allin](img/self-func.png)
+
+
+
+在观测云数据上报中填写 DataWay / OpenWay 地址和 Token 信息即可，格式如下：
+
+```shell
+http://openway.guance.com?token=tkn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
+> *注意：`如果Func数据上报失败，可查看 [DataFlux Func文档](https://func.guance.com/doc/ui-guide-management-module-system-setting/){:target="_blank"}*
+
+
 
 ## 验证方式
 

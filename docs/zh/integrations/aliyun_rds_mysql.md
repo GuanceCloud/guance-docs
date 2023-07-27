@@ -19,7 +19,7 @@ monitor:
 
 推荐开通 观测云集成 - 扩展 - 托管版 Func: 一切前置条件都自动安装好, 请继续脚本安装
 
-如果自行部署 Func 参考 [自行部署 Func ](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+如果自行部署 Func 参考 [自行部署 Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 > 推荐部署GSE版
 
@@ -45,7 +45,7 @@ monitor:
 
 我们默认采集了一些配置, 具体见指标一栏
 
-[配置自定义云对象指标] (https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
+[配置自定义云对象指标](https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
 
 
 ### 验证
@@ -56,60 +56,6 @@ monitor:
 
 ## 指标 {#metric}
 配置好阿里云-云监控,默认的指标集如下, 可以通过配置的方式采集更多的指标 [阿里云云监控指标详情](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
-
-| Metric Id                    |          Metric Name           | Dimensions        | Statistics              | Unit        |
-| ---- | :----: | ------ | ------ | ---- |
-| ConnectionUsage              |          连接数使用率          | userId,instanceId | Average,Minimum,Maximum | %           |
-| CpuUsage                     |           CPU使用率            | userId,instanceId | Average,Minimum,Maximum | %           |
-| DataDelay                    |          只读实例延迟          | userId,instanceId | Average,Minimum,Maximum | Second      |
-| DiskUsage                    |           磁盘使用率           | userId,instanceId | Average,Minimum,Maximum | %           |
-| GroupCPUUtilization          |      (分组维度)CPU使用率       | userId,groupId    | Average,Minimum,Maximum | %           |
-| GroupConnectionUtilization   |     (分组维度)连接数使用率     | userId,groupId    | Average,Minimum,Maximum | %           |
-| GroupDiskUtilization         |      (分组维度)磁盘使用率      | userId,groupId    | Average,Minimum,Maximum | %           |
-| GroupIOPSUtilization         |      (分组维度)IOPS使用率      | userId,groupId    | Average,Minimum,Maximum | %           |
-| IOPSUsage                    |           IOPS使用率           | userId,instanceId | Average,Minimum,Maximum | %           |
-| MemoryUsage                  |           内存使用率           | userId,instanceId | Average,Minimum,Maximum | %           |
-| MySQL_ActiveSessions         |      MySQL_ActiveSessions      | userId,instanceId | Average,Minimum,Maximum | count       |
-| MySQL_ComDelete              |       MySQL每秒Delete量        | userId,instanceId | Average,Maximum,Minimum | countSecond |
-| MySQL_ComInsert              |       MySQL每秒Insert量        | userId,instanceId | Average,Maximum,Minimum | countSecond |
-| MySQL_ComInsertSelect        |    MySQL每秒InsertSelect量     | userId,instanceId | Average,Maximum,Minimum | countSecond |
-| MySQL_ComReplace             |       MySQL每秒Replace量       | userId,instanceId | Average,Maximum,Minimum | countSecond |
-| MySQL_ComReplaceSelect       |    MySQL每秒ReplaceSelect量    | userId,instanceId | Average,Maximum,Minimum | countSecond |
-| MySQL_ComSelect              |       MySQL每秒Select量        | userId,instanceId | Average,Maximum,Minimum | countSecond |
-| MySQL_ComUpdate              |       MySQL每秒Update量        | userId,instanceId | Average,Maximum,Minimum | countSecond |
-| MySQL_DataDiskSize           |      MySQL_数据磁盘使用量      | userId,instanceId | Average,Maximum,Minimum | Megabytes   |
-| MySQL_IbufDirtyRatio         |       MySQL_BP脏页百分率       | userId,instanceId | Average,Maximum,Minimum | %           |
-| MySQL_IbufReadHit            |        MySQL_BP读命中率        | userId,instanceId | Average,Maximum,Minimum | %           |
-| MySQL_IbufRequestR           |      MySQL每秒逻辑读次数       | userId,instanceId | Average,Maximum,Minimum | countSecond |
-| MySQL_IbufRequestW           |      MySQL每秒逻辑写次数       | userId,instanceId | Average,Maximum,Minimum | countSecond |
-| MySQL_IbufUseRatio           |         MySQL_BP利用率         | userId,instanceId | Average,Maximum,Minimum | %           |
-| MySQL_InnoDBDataRead         |   MySQL_InnoDB每秒读取数据量   | userId,instanceId | Average,Maximum,Minimum | Kbyte       |
-| MySQL_InnoDBDataWritten      |   MySQL_InnoDB每秒写入数据量   | userId,instanceId | Average,Maximum,Minimum | Kbyte       |
-| MySQL_InnoDBLogFsync         |  MySQL_InnoDB每秒日志fsync量   | userId,instanceId | Average,Maximum,Minimum | countSecond |
-| MySQL_InnoDBLogWriteRequests | MySQL_InnoDB每秒日志写请求次数 | userId,instanceId | Average,Maximum,Minimum | countSecond |
-| MySQL_InnoDBLogWrites        | MySQL_InnoDB每秒日志物理写次数 | userId,instanceId | Average,Maximum,Minimum | countSecond |
-| MySQL_InnoDBRowDelete        |    MySQL_InnoDB每秒删除行数    | userId,instanceId | Average,Maximum,Minimum | countSecond |
-| MySQL_InnoDBRowInsert        |    MySQL_InnoDB每秒插入行数    | userId,instanceId | Average,Maximum,Minimum | countSecond |
-| MySQL_InnoDBRowRead          |    MySQL_InnoDB每秒读取行数    | userId,instanceId | Average,Maximum,Minimum | countSecond |
-| MySQL_InnoDBRowUpdate        |    MySQL_InnoDB每秒更新行数    | userId,instanceId | Average,Maximum,Minimum | countSecond |
-| MySQL_InstanceDiskSize       |      MySQL_实例磁盘使用量      | userId,instanceId | Average,Maximum,Minimum | Megabytes   |
-| MySQL_LogDiskSize            |      MySQL_日志磁盘使用量      | userId,instanceId | Average,Maximum,Minimum | Megabytes   |
-| MySQL_NetworkInNew           |       MySQL网络流入带宽        | userId,instanceId | Average,Minimum,Maximum | bits/s      |
-| MySQL_NetworkOutNew          |       MySQL网络流出带宽        | userId,instanceId | Average,Minimum,Maximum | bits/s      |
-| MySQL_OtherDiskSize          |      MySQL_其他磁盘使用量      | userId,instanceId | Average,Maximum,Minimum | Megabytes   |
-| MySQL_ProxyCpuUsage          |      MySQL_ProxyCpu使用率      | userId,instanceId | Average,Maximum,Minimum | %           |
-| MySQL_QPS                    |        MySQL每秒查询量         | userId,instanceId | Average,Maximum,Minimum | countSecond |
-| MySQL_SlaveIORunning         |       只读实例IO线程状态       | userId,instanceId | Average,Maximum,Minimum | value       |
-| MySQL_SlaveSQLRunning        |      只读实例SQL线程状态       | userId,instanceId | Average,Maximum,Minimum | value       |
-| MySQL_SlowQueries            |       MySQL每秒慢查询量        | userId,instanceId | Average,Maximum,Minimum | countSecond |
-| MySQL_TPS                    |        MySQL每秒事务数         | userId,instanceId | Average,Maximum,Minimum | countSecond |
-| MySQL_TempDiskTableCreates   |    MySQL每秒创建临时表数量     | userId,instanceId | Average,Maximum,Minimum | countSecond |
-| MySQL_ThreadsConnected       |        MySQL_线程连接数        | userId,instanceId | Average,Maximum,Minimum | count       |
-| MySQL_ThreadsRunning         |        MySQL_活跃线程数        | userId,instanceId | Average,Maximum,Minimum | count       |
-| MySQL_TmpDiskSize            |      MySQL_临时磁盘使用量      | userId,instanceId | Average,Maximum,Minimum | Megabytes   |
-| MySQL_ibufPoolReads          |      MySQL每秒物理读次数       | userId,instanceId | Average,Maximum,Minimum | countSecond |
-| SQLServer_NetworkInNew       |     SQLServer网络流入带宽      | userId,instanceId | Average,Minimum,Maximum | bits/s      |
-| SQLServer_NetworkOutNew      |     SQLServer网络流出带宽      | userId,instanceId | Average,Minimum,Maximum | bits/s      |
 
 ## 对象 {#object}
 
@@ -159,12 +105,10 @@ monitor:
 #### 前提条件
 
 > 提示 1：本脚本的代码运行依赖 RDS 实例对象采集，如果未配置 RDS 的自定义对象采集，慢日志脚本无法采集到慢日志数据
-
 > 提示 2：因阿里云统计数据返回有 6~8 小时的延迟，所以采集器更新数据可能会有延迟，详细参考阿里云文档：云数据库 RDS 查询慢日志统计
-
 > 提示 3：本采集器支持 MySQL所有版本（MySQL 5.7基础版除外）、SQL Server 2008 R2、MariaDB 10.3 类型数据库，若要采集其他类型数据库，请使用 [阿里云-RDS 慢查询明细](https://func.guance.com/doc/script-market-guance-aliyun-rds-slowlog-record/){:target="_blank"} 采集器
 
-#### 安装脚本
+#### 部署脚本
 
 在之前的基础上，需要再安装一个对应 **RDS 慢查询统计日志采集的脚本**
 
@@ -223,17 +167,16 @@ monitor:
 | `MySQLTotalExecutionCounts`     | int  | MySQL 执行次数（总值）                 |
 
 > *注意：`AvgExecutionTime`、`SQLServerAvgExecutionTime`、`SQLServerTotalExecutionTimes`、等字段仅 SQL Server 实例支持*
-
 > *注意：`tags`、`fields`中的字段可能会随后续更新有所变动*
 
 ### 慢查询明细
 
-#### 前提条件
+#### 前置条件
 
 
 > 提示：本脚本的代码运行依赖 RDS 实例对象采集，如果未配置 RDS 的自定义对象采集，慢日志脚本无法采集到慢日志数据
 
-#### 安装脚本
+#### 部署配置脚本
 
 在之前的基础上，需要再安装一个对应 **RDS 慢查询明细日志采集的脚本**
 
@@ -298,8 +241,6 @@ monitor:
 | `LastRowsAffectedCount` | int  | 最后一条语句影响行数       |
 
 > *注意：`CpuTime`、`RowsAffectedCount`、`LastRowsAffectedCount`等字段仅 SQL Server 实例支持*
-
 > *注意：`tags`、`fields`中的字段可能会随后续更新有所变动*
-
 > 提示：`fields.message`为 JSON 序列化后字符串
 

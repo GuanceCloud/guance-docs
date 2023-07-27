@@ -12,9 +12,10 @@ icon: octicons/cloud-16
 
 <br />
 
-[**安装 DataKit**](../datakit/datakit-install.md)和[**安装 DataFlux Func**](https://func.guance.com/doc/quick-start/)之后，可以很好得观测各大云厂商相关指标数据：
+[安装 DataKit](../datakit/datakit-install.md)和[安装 DataFlux Func](https://func.guance.com/doc/quick-start/)之后，可以很好得观测各大云厂商相关指标数据：
 
 
+<!-- markdownlint-disable MD030 -->
 <div class="grid cards" markdown>
 
 -   :integrations-aliyun:{ .lg .middle } __阿里云__
@@ -63,3 +64,4 @@ icon: octicons/cloud-16
 <br/>
 
 <br/>
+<!-- markdownlint-enable -->

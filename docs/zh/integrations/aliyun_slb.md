@@ -19,7 +19,7 @@ monitor:
 
 推荐开通 观测云集成 - 扩展 - 托管版 Func: 一切前置条件都自动安装好, 请继续脚本安装
 
-如果自行部署 Func 参考 [自行部署 Func ](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+如果自行部署 Func 参考 [自行部署 Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 > 推荐部署GSE版
 
@@ -43,7 +43,7 @@ monitor:
 
 我们默认采集了一些配置, 具体见指标一栏
 
-[配置自定义云对象指标] (https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
+[配置自定义云对象指标](https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
 
 
 ### 验证
@@ -55,38 +55,11 @@ monitor:
 ## 指标 {#metric}
 配置好阿里云-云监控,默认的指标集如下, 可以通过配置的方式采集更多的指标 [阿里云云监控指标详情](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
 
-| Metric | **Description** |              Dimensions               | Statistics | **Unit** |
-| ---- | :---:    | :----: | ------ | ------ |
-| ActiveConnection           |        TCP每秒活跃连接数        |    userId,instanceId,port,protocol    | Average,Minimum,Maximum     | Count    |
-| DropConnection             |       监听每秒丢失连接数        |    userId,instanceId,port,protocol    | Average,Minimum,Maximum     | Count/s  |
-| DropPacketRX               |       监听每秒丢失入包数        |    userId,instanceId,port,protocol    | Average,Minimum,Maximum     | Count/s  |
-| DropPacketTX               |       监听每秒丢失出包数        |    userId,instanceId,port,protocol    | Average,Minimum,Maximum     | Count/s  |
-| DropTrafficRX              |       监听每秒丢失入bit数       |    userId,instanceId,port,protocol    | Average,Minimum,Maximum     | bits/s   |
-| DropTrafficTX              |       监听每秒丢失出bit数       |    userId,instanceId,port,protocol    | Average,Minimum,Maximum     | bits/s   |
-| GroupActiveConnection      |   (分组维度)TCP每秒活跃连接数   |                groupId                | Average,Maximum,Minimum,Sum | Count    |
-| GroupNewConnection         |     (分组维度)TCP新建连接数     |                groupId                | Average,Maximum,Minimum,Sum | Count    |
-| GroupTotalTrafficRX        |         TotalTrafficRX          |                groupId                | Value                       | bits/s   |
-| GroupTotalTrafficTX        |         TotalTrafficTX          |                groupId                | Value                       | bits/s   |
-| GroupTrafficRX             |       (分组维度)流入带宽        |                groupId                | Average,Minimum,Maximum,Sum | bits/s   |
-| GroupTrafficTX             |       (分组维度)流出带宽        |                groupId                | Average,Minimum,Maximum,Sum | bits/s   |
-| GroupUnhealthyServerCount  |  (分组维度)后端异常ECS实例个数  |                groupId                | Average,Maximum,Minimum,Sum | Count    |
-| HealthyServerCountWithRule | 七层转发规则后端健康ECS实例个数 | userId,instanceId,port,vip,domain,url | Average,Maximum,Minimum     | Count    |
-| HeathyServerCount          |   健康检查后端健康ECS实例个数   |      userId,instanceId,port,vip       | Average,Minimum,Maximum     | Count    |
-| InactiveConnection         |         TCP非活跃连接数         |    userId,instanceId,port,protocol    | Average,Minimum,Maximum     | Count    |
-| InstanceActiveConnection   |       实例每秒活跃连接数        |           userId,instanceId           | Average,Minimum,Maximum     | Count/s  |
-| InstanceDropConnection     |       实例每秒丢失连接数        |           userId,instanceId           | Average,Minimum,Maximum,Sum | Count/s  |
-| InstanceDropPacketRX       |       实例每秒丢失入包数        |           userId,instanceId           | Average,Minimum,Maximum     | Count/s  |
-| InstanceDropPacketTX       |       实例每秒丢失出包数        |           userId,instanceId           | Average,Minimum,Maximum     | Count/s  |
-| InstanceDropTrafficRX      |       实例每秒丢失入bit数       |           userId,instanceId           | Average,Minimum,Maximum     | bits/s   |
-| InstanceDropTrafficTX      |       实例每秒丢失出bit数       |           userId,instanceId           | Average,Minimum,Maximum     | bits/s   |
-| InstanceInactiveConnection |      实例每秒非活跃连接数       |           userId,instanceId           | Average,Minimum,Maximum     | Count/s  |
-| InstanceMaxConnection      |     实例每秒最大并发连接数      |           userId,instanceId           | Average,Minimum,Maximum     | Count/s  |
-
 ## 对象 {#object}
 
 采集到的阿里云 SLB 对象数据结构, 可以从「基础设施-自定义」里看到对象数据
 
-```
+```json
 {
   "measurement": "aliyun_slb",
   "tags": {
