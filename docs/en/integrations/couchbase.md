@@ -1,12 +1,12 @@
 ---
 title     : 'Couchbase'
-summary   : '采集 Couchbase 服务器相关的指标数据'
+summary   : 'Collect Couchbase server metrics'
 __int_icon      : 'icon/couchbase'
 dashboard :
-  - desc  : 'Couchbase 内置视图'
-    path  : 'dashboard/zh/couchbase'
+  - desc  : 'Couchbase dashboard'
+    path  : 'dashboard/en/couchbase'
 monitor   :
-  - desc  : '暂无'
+  - desc  : 'null'
     path  : '-'
 ---
 
@@ -19,39 +19,40 @@ monitor   :
 
 ---
 
-Couchbase 采集器用于采集 Couchbase 服务器相关的指标数据。
+The Couchbase collector can take metrics from the Couchbase server. 
 
-Couchbase 采集器支持远程采集，可以运行在多种操作系统中。
 
-已测试的版本：
+Already tested version:
 
 - [x] Couchbase enterprise-7.2.0
 - [x] Couchbase community-7.2.0
 
-## 配置 {#config}
+## Config {#config}
 
-### 前置条件 {#requirements}
+### Preconditions {#requirements}
 
-- 安装 Couchbase 服务
+- Install Couchbase server
   
-[官方文档 - CentOS/RHEL 安装](https://docs.couchbase.com/server/current/install/install-intro.html){:target="_blank"}
+[official document - CentOS/RHEL install](https://docs.couchbase.com/server/current/install/install-intro.html){:target="_blank"}
 
-[官方文档 - Debian/Ubuntu 安装](https://docs.couchbase.com/server/current/install/ubuntu-debian-install.html){:target="_blank"}
+[official document - Debian/Ubuntu install](https://docs.couchbase.com/server/current/install/ubuntu-debian-install.html){:target="_blank"}
 
-[官方文档 - Windows 安装](https://docs.couchbase.com/server/current/install/install-package-windows.html){:target="_blank"}
+[official document - Windows install](https://docs.couchbase.com/server/current/install/install-package-windows.html){:target="_blank"}
 
-- 验证是否正确安装
+- Verify correct installation
 
-  在浏览器访问网址 `<ip>:8091` 可以进入 Couchbase 管理界面。
+  Visit URL in browser `<ip>:8091` can open Couchbase manage UI.
+
 
 ???+ tip
 
-  采集数据需要用到 `8091` `9102` `18091` `19102` 几个端口，远程采集的时候，被采集服务器这些端口需要打开。
+  To collect data, several ports `8091` `9102` `18091` `19102` need to be used. 
+  When collecting data remotely, these ports need to be opened.
 
 <!-- markdownlint-disable MD046 -->
-=== "主机安装"
+=== "Host Installation"
 
-    进入 DataKit 安装目录下的 `conf.d/couchbase` 目录，复制 `couchbase.conf.sample` 并命名为 `couchbase.conf`。示例如下：
+    Go to the `conf.d/couchbase` directory under the DataKit installation directory, copy `couchbase.conf.sample` and name it `couchbase.conf`. Examples are as follows:
     
     ```toml
         
@@ -101,13 +102,14 @@ Couchbase 采集器支持远程采集，可以运行在多种操作系统中。
     
     ```
 
-    配置好后，[重启 DataKit](datakit-service-how-to.md#manage-service) 即可。
+    Once configured, [restart DataKit](datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    支持以环境变量的方式修改配置参数（只在 Datakit 以 K8s DaemonSet 方式运行时生效，主机部署的 Datakit 不支持此功能）：
+    
+    The configuration parameters can be adjusted by the following environment variables:
 
-    | 环境变量名                              | 对应的配置参数项    | 参数示例                                                 |
+    | Environment Variable Name       | Parameter Item | Parameter example                                                |
     | :-----------------------------        | ---               | ---                                                     |
     | `ENV_INPUT_COUCHBASE_INTERVAL`        | `interval`        | `"30s"` (`"10s"` ~ `"60s"`)                             |
     | `ENV_INPUT_COUCHBASE_TIMEOUT`         | `timeout`         | `"5s"`  (`"5s"` ~ `"30s"`)                              |
@@ -121,28 +123,28 @@ Couchbase 采集器支持远程采集，可以运行在多种操作系统中。
     | `ENV_INPUT_COUCHBASE_TLS_CA`          | `tls_ca`          | `""`                                                    |
     | `ENV_INPUT_COUCHBASE_TLS_CERT`        | `tls_cert`        | `"/var/cb/clientcertfiles/travel-sample.pem"`           |
     | `ENV_INPUT_COUCHBASE_TLS_KEY`         | `tls_key`         | `"/var/cb/clientcertfiles/travel-sample.key"`           |
-    | `ENV_INPUT_COUCHBASE_TAGS`            | `tags`            | `tag1=value1,tag2=value2` 如果配置文件中有同名 tag，会覆盖它 |
+    | `ENV_INPUT_COUCHBASE_TAGS`            | `tags`            | `tag1=value1,tag2=value2`                               |
     | `ENV_INPUT_COUCHBASE_ELECTION`        | `election`        | `true` or `false`                                       |
 
-    也可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+    The collector can also be turned on by [ConfigMap injection collector configuration](datakit-daemonset-deploy.md#configmap-setting).
 
 <!-- markdownlint-enable -->
 
-### TLS 配置 {#tls}
+### TLS config {#tls}
 
-TLS 需要 Couchbase enterprise 版支持
+TLS need Couchbase enterprise
 
-[官方文档 - 配置服务器证书](https://docs.couchbase.com/server/current/manage/manage-security/configure-server-certificates.html){:target="_blank"}
+[official document - configure-server-certificates](https://docs.couchbase.com/server/current/manage/manage-security/configure-server-certificates.html){:target="_blank"}
 
-[官方文档 - 配置客户端证书](https://docs.couchbase.com/server/current/manage/manage-security/configure-client-certificates.html){:target="_blank"}
+[official document - configure-client-certificates](https://docs.couchbase.com/server/current/manage/manage-security/configure-client-certificates.html){:target="_blank"}
 
-## 指标 {#metric}
+## Metric {#metric}
 
 
 
 ### `cbnode`
 
-- 标签
+- Tag
 
 
 | Tag | Description |
@@ -152,7 +154,7 @@ TLS 需要 Couchbase enterprise 版支持
 |`instance`|Instance endpoint.|
 |`node`|Node ip.|
 
-- 指标列表
+- Metric list
 
 
 | Metric | Description | Type | Unit |
@@ -200,7 +202,7 @@ TLS 需要 Couchbase enterprise 版支持
 
 ### `cbbucketinfo`
 
-- 标签
+- Tag
 
 
 | Tag | Description |
@@ -210,7 +212,7 @@ TLS 需要 Couchbase enterprise 版支持
 |`host`|Host name.|
 |`instance`|Instance endpoint.|
 
-- 指标列表
+- Metric list
 
 
 | Metric | Description | Type | Unit |
@@ -227,7 +229,7 @@ TLS 需要 Couchbase enterprise 版支持
 
 ### `cbtask`
 
-- 标签
+- Tag
 
 
 | Tag | Description |
@@ -240,7 +242,7 @@ TLS 需要 Couchbase enterprise 版支持
 |`source`|Source id.|
 |`target`|Target id.|
 
-- 指标列表
+- Metric list
 
 
 | Metric | Description | Type | Unit |
@@ -263,7 +265,7 @@ TLS 需要 Couchbase enterprise 版支持
 
 ### `cbquery`
 
-- 标签
+- Tag
 
 
 | Tag | Description |
@@ -272,7 +274,7 @@ TLS 需要 Couchbase enterprise 版支持
 |`host`|Host name.|
 |`instance`|Instance endpoint.|
 
-- 指标列表
+- Metric list
 
 
 | Metric | Description | Type | Unit |
@@ -301,7 +303,7 @@ TLS 需要 Couchbase enterprise 版支持
 
 ### `cbindex`
 
-- 标签
+- Tag
 
 
 | Tag | Description |
@@ -311,7 +313,7 @@ TLS 需要 Couchbase enterprise 版支持
 |`instance`|Instance endpoint.|
 |`keyspace`|Key space name.|
 
-- 指标列表
+- Metric list
 
 
 | Metric | Description | Type | Unit |
@@ -336,7 +338,7 @@ TLS 需要 Couchbase enterprise 版支持
 
 ### `cbfts`
 
-- 标签
+- Tag
 
 
 | Tag | Description |
@@ -345,7 +347,7 @@ TLS 需要 Couchbase enterprise 版支持
 |`host`|Host name.|
 |`instance`|Instance endpoint.|
 
-- 指标列表
+- Metric list
 
 
 | Metric | Description | Type | Unit |
@@ -358,7 +360,7 @@ TLS 需要 Couchbase enterprise 版支持
 
 ### `cbcbas`
 
-- 标签
+- Tag
 
 
 | Tag | Description |
@@ -367,7 +369,7 @@ TLS 需要 Couchbase enterprise 版支持
 |`host`|Host name.|
 |`instance`|Instance endpoint.|
 
-- 指标列表
+- Metric list
 
 
 | Metric | Description | Type | Unit |
@@ -385,7 +387,7 @@ TLS 需要 Couchbase enterprise 版支持
 
 ### `cbeventing`
 
-- 标签
+- Tag
 
 
 | Tag | Description |
@@ -394,7 +396,7 @@ TLS 需要 Couchbase enterprise 版支持
 |`host`|Host name.|
 |`instance`|Instance endpoint.|
 
-- 指标列表
+- Metric list
 
 
 | Metric | Description | Type | Unit |
@@ -426,7 +428,7 @@ TLS 需要 Couchbase enterprise 版支持
 
 ### `cbpernodebucket`
 
-- 标签
+- Tag
 
 
 | Tag | Description |
@@ -437,7 +439,7 @@ TLS 需要 Couchbase enterprise 版支持
 |`instance`|Instance endpoint.|
 |`node`|Node ip.|
 
-- 指标列表
+- Metric list
 
 
 | Metric | Description | Type | Unit |
@@ -645,7 +647,7 @@ TLS 需要 Couchbase enterprise 版支持
 
 ### `cbbucketstat`
 
-- 标签
+- Tag
 
 
 | Tag | Description |
@@ -655,7 +657,7 @@ TLS 需要 Couchbase enterprise 版支持
 |`host`|Host name.|
 |`instance`|Instance endpoint.|
 
-- 指标列表
+- Metric list
 
 
 | Metric | Description | Type | Unit |
