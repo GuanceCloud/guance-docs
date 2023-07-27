@@ -15,6 +15,7 @@ nav:
     - OpenTelemetry to Grafana: opentelemetry-grafana.md
     - OpenTelemetry to 观测云: opentelemetry-guance.md
     - OpenTelemetry 采样最佳实践: opentelemetry-simpling.md
+    - OpenTelemetry Java Agent端采样策略: otel-agent-sampling.md
 
   - '日志 (Logs)':
     - K8s日志采集之logback socket最佳实践: k8s-logback-socket.md

@@ -138,6 +138,7 @@ OTLP
 RUM
 SAAS
 SNMP
+EMQX
 
 # 合成词
 agentid
