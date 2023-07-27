@@ -24,6 +24,7 @@ nav:
     - 'Storage':
       - 'MySQL': mysql.md
       - clickhousev1.md
+      - couchbase.md
       - oracle.md
       - sqlserver.md
       - postgresql.md
