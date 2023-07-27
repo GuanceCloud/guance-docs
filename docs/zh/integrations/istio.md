@@ -29,7 +29,7 @@ Istio 性能指标展示，包括 Incoming Request Volume、Incoming Success Rat
 
 - 已部署 [Kubernetes](https://kubernetes.io/docs/setup/production-environment/tools/)
 
-- 已部署 DataKit，请参考 Kubernetes 集群 <[安装 Datakit](../../datakit/datakit-daemonset-deploy.md)>
+- 已部署 DataKit，请参考 Kubernetes 集群 [安装 Datakit](../datakit/datakit-daemonset-deploy.md)
 
 - Istio 已部署
 
@@ -287,9 +287,9 @@ DataKit 默认的配置，采集容器输出到 `/dev/stdout` 的日志。<br />
 
 更多日志采集请参考
 
-<[Pod 日志采集最佳实践](../../best-practices/cloud-native/pod-log.md)>
+<[Pod 日志采集最佳实践](../best-practices/cloud-native/pod-log.md)>
 
-<[Kubernetes 集群中日志采集的几种玩法](../../best-practices/cloud-native/k8s-logs.md)>
+<[Kubernetes 集群中日志采集的几种玩法](../best-practices/cloud-native/k8s-logs.md)>
 
 
 ---
@@ -298,7 +298,7 @@ DataKit 默认的配置，采集容器输出到 `/dev/stdout` 的日志。<br />
 
 最佳实践中包含 istio 安装， istio 自带项目部署， RUM+APM 关联等扩展操作，详细请参考
 
-<[基于 Istio 实现微服务可观测最佳实践](../../best-practices/cloud-native/istio.md)>
+<[基于 Istio 实现微服务可观测最佳实践](../best-practices/cloud-native/istio.md)>
 
 ---
 

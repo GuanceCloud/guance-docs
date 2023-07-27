@@ -19,7 +19,7 @@ monitor:
 
 推荐开通 观测云集成 - 扩展 - 托管版 Func: 一切前置条件都自动安装好, 请继续脚本安装
 
-如果自行部署 Func 参考 [自行部署 Func ](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+如果自行部署 Func 参考 [自行部署 Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 > 推荐部署GSE版
 
@@ -45,7 +45,7 @@ monitor:
 
 我们默认采集了一些配置, 具体见指标一栏
 
-[配置自定义云对象指标] (https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
+[配置自定义云对象指标](https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
 
 
 ### 验证
@@ -57,41 +57,11 @@ monitor:
 ## 指标 {#metric}
 配置好阿里云-云监控,默认的指标集如下, 可以通过配置的方式采集更多的指标 [阿里云云监控指标详情](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
 
-### 云数据库 MongoDB 版-副本集
-
-| Metric Id                  |   MetricCategory   | Metric Name            | Dimensions             | Statistics                       | Unit      | Min Periods |
-| ---- | :----: | ------ | ------ | ---- | ---- | ---- |
-| CPUUtilization             | mongodb_replicaset | CPU使用率              | userId,instanceId,role | Average,Minimum,Maximum          | %         | 60 s        |
-| ConnectionAmount           | mongodb_replicaset | 连接数使用量           | userId,instanceId,role | Average,Minimum,Maximum          | Count     | 60 s        |
-| ConnectionUtilization      | mongodb_replicaset | 连接数使用率           | userId,instanceId,role | Average,Minimum,Maximum          | %         | 60 s        |
-| DataDiskAmount             | mongodb_replicaset | 数据占用磁盘空间量     | userId,instanceId,role | Average,Minimum,Maximum          | bytes     | 60 s        |
-| DiskUtilization            | mongodb_replicaset | 磁盘使用率             | userId,instanceId,role | Average,Minimum,Maximum          | %         | 60 s        |
-| GroupCPUUtilization        | mongodb_replicaset | (分组维度)CPU使用率    | userId,groupId         | Average,Minimum,Maximum          | %         | 60 s        |
-| GroupConnectionUtilization | mongodb_replicaset | (分组维度)连接数使用率 | userId,groupId         | Average,Minimum,Maximum          | %         | 60 s        |
-| GroupDiskUtilization       | mongodb_replicaset | (分组维度)磁盘使用率   | userId,groupId         | Average,Minimum,Maximum          | %         | 60 s        |
-| GroupIOPSUtilization       | mongodb_replicaset | (分组维度)IOPS使用率   | userId,groupId         | Average,Minimum,Maximum          | %         | 60 s        |
-| GroupMemoryUtilization     | mongodb_replicaset | (分组维度)内存使用率   | userId,groupId         | Average,Minimum,Maximum          | %         | 60 s        |
-| IOPSUtilization            | mongodb_replicaset | IOPS使用率             | userId,instanceId,role | Average,Minimum,Maximum          | %         | 60 s        |
-| InstanceDiskAmount         | mongodb_replicaset | 实例占用磁盘空间量     | userId,instanceId,role | Average,Minimum,Maximum          | bytes     | 60 s        |
-| IntranetIn                 | mongodb_replicaset | 网络入流量             | userId,instanceId,role | Average,Minimum,Maximum          | bytes     | 60 s        |
-| IntranetOut                | mongodb_replicaset | 网络出流量             | userId,instanceId,role | Average,Minimum,Maximum          | bytes     | 60 s        |
-| LogDiskAmount              | mongodb_replicaset | 日志占用磁盘空间量     | userId,instanceId,role | Average,Minimum,Maximum          | bytes     | 60 s        |
-| MemoryUtilization          | mongodb_replicaset | 内存使用率             | userId,instanceId,role | Average,Minimum,Maximum          | %         | 60 s        |
-| NumberRequests             | mongodb_replicaset | 请求数                 | userId,instanceId,role | Average,Minimum,Maximum          | Count     | 60 s        |
-| OpCommand                  | mongodb_replicaset | Command操作次数        | userId,instanceId,role | Average,Minimum,Maximum          | Frequency | 60 s        |
-| OpDelete                   | mongodb_replicaset | Delete操作次数         | userId,instanceId,role | Average,Minimum,Maximum          | Frequency | 60 s        |
-| OpGetmore                  | mongodb_replicaset | Getmore操作次数        | userId,instanceId,role | Average,Minimum,Maximum          | Frequency | 60 s        |
-| OpInsert                   | mongodb_replicaset | Insert操作次数         | userId,instanceId,role | Average,Minimum,Maximum          | Count     | 60 s        |
-| OpQuery                    | mongodb_replicaset | Query操作次数          | userId,instanceId,role | Average,Minimum,Maximum          | Frequency | 60 s        |
-| OpUpdate                   | mongodb_replicaset | Update操作次数         | userId,instanceId,role | Average,Minimum,Maximum          | Frequency | 60 s        |
-| QPS                        | mongodb_replicaset | 平均每秒SQL查询数      | userId,instanceId,role | Average,Minimum,Maximum          | Count     | 60 s        |
-| ReplicationLag             | mongodb_replicaset | 复制延迟               | userId,instanceId,role | Average,Maximum,Minimum,cms_null | seconds   | 60 s        |
-
 ## 对象 {#object}
 
 采集到的阿里云 SLB 对象数据结构, 可以从「基础设施-自定义」里看到对象数据
 
-```
+```json
 {
   "measurement": "aliyun_mongodb",
   "tags": {
@@ -128,7 +98,7 @@ monitor:
 
 > 提示：本脚本的代码运行依赖 mongodb 实例对象采集，如果未配置 mongodb 的自定义对象采集，慢日志脚本无法采集到慢日志数据
 
-#### 安装脚本
+#### 部署脚本
 
 在之前的基础上，需要再安装一个对应 **MongoDB 慢查询采集的脚本**
 

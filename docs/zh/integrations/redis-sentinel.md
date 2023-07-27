@@ -272,4 +272,4 @@ systemctl restart datakit
 
 ## 故障排查 {#faq}
 
-[无数据上报排查](../../datakit/why-no-data.md)
+[无数据上报排查](../datakit/why-no-data.md)
