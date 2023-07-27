@@ -13,12 +13,7 @@ monitor:
 
 ---
 
-
-
-# 腾讯云 CLB Public
-
 使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云
-
 
 ## 配置 {#config}
 
@@ -27,8 +22,6 @@ monitor:
 推荐开通 观测云集成 - 扩展 - 托管版 Func: 一切前置条件都自动安装好, 请继续脚本安装
 
 如果自行部署 Func 参考 [自行部署 Func ](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
-
-
 
 ### 安装脚本
 

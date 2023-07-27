@@ -30,7 +30,7 @@ for f in "${files[@]}"; do
 	printf "*************************************\n"
 	printf "            checking ${HL}%04d/%d(%.2f%%)${NC}           \n" $ITER $TOTAL $j
 	printf "*************************************\n"
-	markdown-link-check -q -p -c 404-check.json $f | tee -a deadlink.log;
+	markdown-link-check -q -p -c $2 $f | tee -a deadlink.log;
 	ITER=$(expr $ITER + 1)
 done
 

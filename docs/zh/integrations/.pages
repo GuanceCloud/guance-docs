@@ -69,6 +69,7 @@ nav:
     - '存储':
       - 'MySQL': mysql.md
       - clickhousev1.md
+      - couchbase.md
       - oracle.md
       - sqlserver.md
       - postgresql.md
@@ -158,6 +159,7 @@ nav:
       - '观测云二次开发':
         - '更新历史': otel-ext-changelog.md
         - 'DB语句脱敏': otel-sql-obfuscation.md
+        - 'guance-java-exporter': otel-guance-exporter.md
 
     - 'Zipkin':
       - zipkin.md

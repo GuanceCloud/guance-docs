@@ -7,7 +7,6 @@ dashboard:
     path: 'dashboard/zh/aliyun_oss/'
 
 ---
-# 阿里云 OSS 
 
 阿里云 OSS 指标展示，包括请求数、可用性、网络流量、请求占比等。
 
