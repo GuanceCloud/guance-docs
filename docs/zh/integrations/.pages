@@ -125,6 +125,7 @@ nav:
       - 'Go': profile-go.md
       - 'C/C++': profile-cpp.md
       - 'NodeJS': profile-nodejs.md
+      - '.NET': profile-dotnet.md
 
     - 'DDTrace':
       - ddtrace.md
