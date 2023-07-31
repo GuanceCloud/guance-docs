@@ -1,4 +1,5 @@
 nav:
+  - integration-index.md
   - Host:
     - Default Collection:
       - 'DataKit': dk.md 
