@@ -2,72 +2,76 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: datakit
+
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: datakit
 rules:
-- apiGroups:
-  - rbac.authorization.k8s.io
-  resources:
-  - clusterroles
-  verbs:
-  - get
-  - list
-  - watch
-- apiGroups:
-  - ""
-  resources:
-  - nodes
-  - nodes/proxy
-  - namespaces
-  - pods
-  - pods/log
-  - events
-  - services
-  - endpoints
-  verbs:
-  - get
-  - list
-  - watch
-- apiGroups:
-  - apps
-  resources:
-  - deployments
-  - daemonsets
-  - statefulsets
-  - replicasets
-  verbs:
-  - get
-  - list
-  - watch
-- apiGroups:
-  - batch
-  resources:
-  - jobs
-  - cronjobs
-  verbs:
-  - get
-  - list
-  - watch
-- apiGroups:
-  - guance.com
-  resources:
-  - datakits
-  verbs:
-  - get
-  - list
-- apiGroups:
-  - metrics.k8s.io
-  resources:
-  - pods
-  - nodes
-  verbs:
-  - get
-  - list
+- apiGroups: ["rbac.authorization.k8s.io"]
+  resources: ["clusterroles"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: [""]
+  resources: ["nodes", "nodes/proxy", "namespaces", "pods", "pods/log", "events", "services", "endpoints"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: ["apps"]
+  resources: ["deployments", "daemonsets", "statefulsets", "replicasets"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: ["batch"]
+  resources: ["jobs", "cronjobs"]
+  verbs: [ "get", "list", "watch"]
+- apiGroups: ["guance.com"]
+  resources: ["datakits"]
+  verbs: ["get","list"]
+- apiGroups: ["monitoring.coreos.com"]
+  resources: ["podmonitors", "servicemonitors"]
+  verbs: ["get", "list"]
+- apiGroups: ["metrics.k8s.io"]
+  resources: ["pods", "nodes"]
+  verbs: ["get", "list"]
 - nonResourceURLs: ["/metrics"]
   verbs: ["get"]
+
+---
+
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: datakits.guance.com
+spec:
+  group: guance.com
+  versions:
+    - name: v1beta1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                instances:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      k8sNamespace:
+                        type: string
+                      k8sDeployment:
+                        type: string
+                      datakit/logs:
+                        type: string
+                      inputConf:
+                        type: string
+  scope: Namespaced
+  names:
+    plural: datakits
+    singular: datakit
+    kind: Datakit
+    shortNames:
+    - dk
 
 ---
 
@@ -125,13 +129,6 @@ spec:
     metadata:
       labels:
         app: daemonset-datakit
-      annotations:
-        datakit/logs: |
-          [
-            {
-              "disable": true
-            }
-          ]
     spec:
       hostNetwork: true
       dnsPolicy: ClusterFirstWithHostNet
@@ -148,25 +145,17 @@ spec:
               apiVersion: v1
               fieldPath: spec.nodeName
         - name: ENV_DATAWAY
-          value: https://openway.guance.com?token=tkn_axxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ## 此处填上 dataway 真实地址
+          value: https://openway.guance.com?token=tkn_83b339919xxxxxxxxxc052101
         - name: ENV_GLOBAL_TAGS
           value: host=__datakit_hostname,host_ip=__datakit_ip
         - name: ENV_DEFAULT_ENABLED_INPUTS
-          value: cpu,disk,diskio,mem,swap,system,hostobject,net,host_processes,container
+          value: self,cpu,disk,diskio,mem,swap,system,hostobject,net,host_processes,container
         - name: ENV_ENABLE_ELECTION
           value: enable
         - name: ENV_LOG
-          value: /var/log/datakit/log
+          value: stdout
         - name: ENV_HTTP_LISTEN
           value: 0.0.0.0:9529
-        - name: ENV_LOG_LEVEL
-          value: debug
-        - name: ENV_INPUT_DISK_EXCLUDE_DEVICE
-          value: /dev/sda1
-        - name: ENV_INPUT_DISK_EXTRA_DEVICE
-          value : 10.100.14.144:/nfsdata            ## 修改成实际的nfs 目录
-        - name: ENV_IPDB
-          value: iploc
         - name: HOST_PROC
           value: /rootfs/proc
         - name: HOST_SYS
@@ -179,8 +168,14 @@ spec:
           value: /rootfs/run
         - name: HOST_DEV
           value: /rootfs/dev
-        image: pubrepo.jiagouyun.com/datakit/datakit:1.5.6     ## 修改成最新镜像版本
-        imagePullPolicy: IfNotPresent
+        - name: HOST_ROOT
+          value: /rootfs
+        # # ---iploc-start
+        #- name: ENV_IPDB
+        #  value: iploc
+        # # ---iploc-end
+        image: pubrepo.jiagouyun.com/datakit/datakit:1.9.2
+        imagePullPolicy: Always
         name: datakit
         ports:
         - containerPort: 9529
@@ -188,27 +183,28 @@ spec:
           name: port
           protocol: TCP
         resources:
+          requests:
+            cpu: "200m"
+            memory: "128Mi"
           limits:
-            cpu: "1000m"
-            memory: "2Gi"
+            cpu: "2000m"
+            memory: "4Gi"
         securityContext:
           privileged: true
         volumeMounts:
         - mountPath: /usr/local/datakit/cache
           name: cache
           readOnly: false
-        - mountPath: /var/run
-          name: run
-        - mountPath: /var/lib
-          name: lib
-        - mountPath: /var/log
-          name: log
         - mountPath: /rootfs
           name: rootfs
+        - mountPath: /var/run
+          name: run
         - mountPath: /sys/kernel/debug
           name: debugfs
-        - mountPath: /usr/local/datakit/data
+        # # ---iploc-start
+        - mountPath: /usr/local/datakit/data/ipdb/iploc/
           name: datakit-ipdb
+        # # ---iploc-end
         - mountPath: /usr/local/datakit/conf.d/db/mysql.conf
           name: datakit-conf
           subPath: mysql.conf
@@ -217,29 +213,32 @@ spec:
           name: datakit-conf
           subPath: redis.conf
           readOnly: true
-        - mountPath: /usr/local/datakit/conf.d/db/elasticsearch.conf
+        - mountPath: /usr/local/datakit/conf.d/db/openes.conf
           name: datakit-conf
           subPath: elasticsearch.conf
           readOnly: false
-        - mountPath: /usr/local/datakit/conf.d/db/tdengine.conf
+        - mountPath: /usr/local/datakit/conf.d/influxdb/influxdb.conf
           name: datakit-conf
-          subPath: tdengine.conf
-          readOnly: false
-        # - mountPath: /usr/local/datakit/conf.d/ddtrace/ddtrace.conf
-        #   name: datakit-conf
-        #   subPath: ddtrace.conf
-        #   readOnly: false
+          subPath: influxdb.conf
+        - mountPath: /usr/local/datakit/conf.d/ddtrace/ddtrace.conf
+          name: datakit-conf
+          subPath: ddtrace.conf
         workingDir: /usr/local/datakit
+      # # ---iploc-start
       initContainers:
-        - name: init-volume
-          image: "pubrepo.jiagouyun.com/datakit/iploc:1.0"
-          imagePullPolicy: IfNotPresent
-          command: ["bash", "-c"]
-          args:
-            - tar -xf /opt/iploc.tar.gz -C /usr/local/datakit/data
-          volumeMounts:
-            - name: datakit-ipdb
-              mountPath: /usr/local/datakit/data
+      - args:
+        - tar -xf /opt/iploc.tar.gz -C /usr/local/datakit/data/ipdb/iploc/
+        command:
+        - bash
+        - -c
+        image: pubrepo.jiagouyun.com/datakit/iploc:1.0
+        imagePullPolicy: IfNotPresent
+        name: init-volume
+        resources: {}
+        volumeMounts:
+        - mountPath: /usr/local/datakit/data/ipdb/iploc/
+          name: datakit-ipdb
+      # # ---iploc-end
       hostIPC: true
       hostPID: true
       restartPolicy: Always
@@ -252,26 +251,21 @@ spec:
           name: datakit-conf
         name: datakit-conf
       - hostPath:
-          path: /var/run
-        name: run
-      - hostPath:
-          path: /var/lib
-        name: lib
-      - hostPath:
-          path: /var/log
-        name: log
+          path: /root/datakit_cache
+        name: cache
       - hostPath:
           path: /
         name: rootfs
       - hostPath:
+          path: /var/run
+        name: run
+      - hostPath:
           path: /sys/kernel/debug
         name: debugfs
-      - hostPath:
-          path: /usr/local/datakit/data
+      # # ---iploc-start
+      - emptyDir: {}
         name: datakit-ipdb
-      - hostPath:
-          path: /root/datakit_cache
-        name: cache
+      # # ---iploc-end
   updateStrategy:
     rollingUpdate:
       maxUnavailable: 1
@@ -475,17 +469,96 @@ data:
             # some_tag = "some_value"
             # more_tag = "some_other_value"
             
-    tdengine.conf: |-
-        # {"version": "1.4.3", "desc": "do NOT edit this line"}
+    influxdb.conf: |-
+        # {"version": "1.6.997_new-release", "desc": "do NOT edit this line"}
 
-        [[inputs.tdengine]]
-          ## adapter config (Required)
-          adapter_endpoint = "http://taos-tdengine.middleware:6041"        ## 修改TDengine的地址
-          user = "zhuyun"                                                  ## 修改TDengine用户
-          password = "jfdlEGFH2143!"                                       ## 修改TDengine密码
+        [[inputs.influxdb]]
+          url = "http://localhost:8086/debug/vars"                   ## 修改相关配置
 
-          ## add tag (optional)
-           [inputs.tdengine.tags]
-            app="hcs"
+          ## (optional) collect interval, default is 10 seconds
+          interval = '10s'
+          
+          ## Username and password to send using HTTP Basic Authentication.
+          # username = ""                                            ## 修改相关配置
+          # password = ""                                            ## 修改相关配置
+
+          ## http request & header timeout
+          timeout = "5s"
+
+          ## Set true to enable election
+          election = true
+
+          ## (Optional) TLS connection config
+          # [inputs.influxdb.tlsconf]
+          # ca_certs = ["/path/to/ca.pem"]
+          # cert = "/path/to/cert.pem"
+          # cert_key = "/path/to/key.pem"
+          ## Use TLS but skip chain & host verification
+          # insecure_skip_verify = false
+
+          # [inputs.influxdb.log]
+          # files = []
+          # #grok pipeline script path
+          # pipeline = "influxdb.p"
+
+          [inputs.influxdb.tags]
             # some_tag = "some_value"
             # more_tag = "some_other_value"
+
+    ddtrace.conf: |-
+        # {"version": "1.6.997_new-release", "desc": "do NOT edit this line"}
+
+        [[inputs.ddtrace]]
+          ## DDTrace Agent endpoints register by version respectively.
+          ## Endpoints can be skipped listen by remove them from the list.
+          ## NOTE: DO NOT EDIT.
+          endpoints = ["/v0.3/traces", "/v0.4/traces", "/v0.5/traces"]
+
+          ## customer_tags is a list of keys contains keys set by client code like span.SetTag(key, value)
+          ## that want to send to data center. Those keys set by client code will take precedence over
+          ## keys in [inputs.ddtrace.tags]. DOT(.) IN KEY WILL BE REPLACED BY DASH(_) WHEN SENDING.
+          # customer_tags = ["key1", "key2", ...]
+
+          ## Keep rare tracing resources list switch.
+          ## If some resources are rare enough(not presend in 1 hour), those resource will always send
+          ## to data center and do not consider samplers and filters.
+          # keep_rare_resource = false
+
+          ## By default every error presents in span will be send to data center and omit any filters or
+          ## sampler. If you want to get rid of some error status, you can set the error status list here.
+          # omit_err_status = ["404"]
+
+          ## Ignore tracing resources map like service:[resources...].
+          ## The service name is the full service name in current application.
+          ## The resource list is regular expressions uses to block resource names.
+          ## If you want to block some resources universally under all services, you can set the
+          ## service name as "*". Note: double quotes "" cannot be omitted.
+          # [inputs.ddtrace.close_resource]
+            # service1 = ["resource1", "resource2", ...]
+            # service2 = ["resource1", "resource2", ...]
+            # "*" = ["close_resource_under_all_services"]
+            # ...
+
+          ## Sampler config uses to set global sampling strategy.
+          ## sampling_rate used to set global sampling rate.
+          # [inputs.ddtrace.sampler]
+            # sampling_rate = 1.0
+
+          # [inputs.ddtrace.tags]
+            # key1 = "value1"
+            # key2 = "value2"
+            # ...
+
+          ## Threads config controls how many goroutines an agent cloud start to handle HTTP request.
+          ## buffer is the size of jobs' buffering of worker channel.
+          ## threads is the total number fo goroutines at running time.
+          # [inputs.ddtrace.threads]
+            # buffer = 100
+            # threads = 8
+
+          ## Storage config a local storage space in hard dirver to cache trace data.
+          ## path is the local file path used to cache data.
+          ## capacity is total space size(MB) used to store data.
+          # [inputs.ddtrace.storage]
+            # path = "./ddtrace_storage"
+            # capacity = 5120
