@@ -49,7 +49,7 @@ monitor   :
 
 === "Kubernetes"
 
-    目前可以通过 [ConfigMap 方式注入 logfwdserver 采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+    目前可以通过 [ConfigMap 方式注入 logfwdserver 采集器配置](../datakit/datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
 <!-- markdownlint-enable -->
 
 ### logfwd 使用和配置 {#config}
@@ -140,7 +140,7 @@ spec:
           fieldPath: metadata.namespace
     - name: LOGFWD_GLOBAL_SOURCE
       value: nginx-souce-test
-    image: pubrepo.jiagouyun.com/datakit/logfwd:1.11.0
+    image: pubrepo.jiagouyun.com/datakit/logfwd:1.12.1
     imagePullPolicy: Always
     resources:
       requests:
@@ -242,7 +242,7 @@ spec:
         fieldRef:
           apiVersion: v1
           fieldPath: metadata.namespace
-    image: pubrepo.jiagouyun.com/datakit/logfwd:1.11.0
+    image: pubrepo.jiagouyun.com/datakit/logfwd:1.12.1
     imagePullPolicy: Always
     resources:
       requests:

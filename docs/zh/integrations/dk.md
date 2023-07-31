@@ -5,6 +5,8 @@ __int_icon: 'icon/dk'
 dashboard:
   - desc: 'Datakit 内置视图'
     path: 'dashboard/zh/dk'
+  - desc: 'Datakit 拨测内置视图'
+    path: 'dashboard/zh/dialtesting'
 
 monitor:
   - desc: '暂无'
@@ -62,6 +64,9 @@ Datakit 启动后。默认会暴露一些 [Prometheus 指标](../datakit/datakit
     
         ### Filter
         #"datakit_filter_.*",
+    
+        ### dialtesting
+        #"datakit_dialtesting_.*",
     
         ### Input feed
         #".*_feed_.*",

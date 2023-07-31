@@ -19,9 +19,7 @@ monitor:
 
 推荐开通 观测云集成 - 扩展 - 托管版 Func: 一切前置条件都自动安装好, 请继续脚本安装
 
-如果自行部署 Func 参考 [自行部署 Func ](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
-
-
+如果自行部署 Func 参考 [自行部署 Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 ### 安装脚本
 
@@ -44,7 +42,7 @@ monitor:
 
 我们默认采集了一些配置, 具体见指标一栏
 
-[配置自定义云对象指标] (https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
+[配置自定义云对象指标](https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
 
 
 ### 验证
@@ -56,45 +54,11 @@ monitor:
 ## 指标 {#metric}
 配置好阿里云-云监控,默认的指标集如下, 可以通过配置的方式采集更多的指标 [阿里云云监控指标详情](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
 
-| Metric Id                       | Metric Name               | Dimensions               | Statistics      | Unit     |
-| ---- | ---- | ---- | ---- | ---- |
-| ShardingAdminClients            | Proxy到DB连接数           | userId,instanceId,nodeId | Average,Maximum | Count    |
-| ShardingAvgRt                   | 平均响应时间              | userId,instanceId,nodeId | Average,Maximum | us       |
-| ShardingBlockedClients          | 阻塞客户端连接数          | userId,instanceId,nodeId | Average,Maximum | Count    |
-| ShardingConnectionUsage         | 连接数使用率              | userId,instanceId,nodeId | Average,Maximum | %        |
-| ShardingCpuUsage                | CPU使用率                 | userId,instanceId,nodeId | Average,Maximum | %        |
-| ShardingHitRate                 | 命中率                    | userId,instanceId,nodeId | Average,Maximum | %        |
-| ShardingInstProxyIntranetIn     | Proxy实例流入带宽         | userId,instanceId        | Value           | KBytes/s |
-| ShardingInstProxyIntranetOut    | Proxy实例流出带宽         | userId,instanceId        | Value           | KBytes/s |
-| ShardingInstProxyTotalQps       | Proxy实例每秒总请求数     | userId,instanceId        | Value           | Count/s  |
-| ShardingInstProxyUsedConnection | Proxy实例已用连接数       | userId,instanceId        | Value           | Count    |
-| ShardingIntranetIn              | 入方向流量                | userId,instanceId,nodeId | Average,Maximum | KBytes/s |
-| ShardingIntranetInRatio         | 流入带宽使用率            | userId,instanceId,nodeId | Average,Maximum | %        |
-| ShardingIntranetOut             | 出方向流量                | userId,instanceId,nodeId | Average,Maximum | KBytes/s |
-| ShardingIntranetOutRatio        | 流出带宽使用率            | userId,instanceId,nodeId | Average,Maximum | %        |
-| ShardingKeys                    | 缓存内 Key 数量           | userId,instanceId,nodeId | Average,Maximum | Count    |
-| ShardingMemoryUsage | 内存使用率 | userId,instanceId,nodeId | Average,Maximum | % |
-| ShardingProxyAvgRequestSize | Proxy单个请求的平均字节数 | userId,instanceId,nodeId | Average,Maximum | Byte |
-| ShardingProxyAvgResponseSize | Proxy单个响应的平均字节数 | userId,instanceId,nodeId | Average,Maximum | Byte |
-| ShardingProxyAvgRt | Proxy平均时延 | userId,instanceId,nodeId | Average,Maximum | us |
-| ShardingProxyConnectionUsage | Proxy连接数使用率 | userId,instanceId,nodeId | Average,Maximum | % |
-| ShardingProxyCpuUsage | Proxy CPU使用率 | userId,instanceId,nodeId | Average,Maximum | % |
-| ShardingProxyIntranetIn | Proxy入流量速率 | userId,instanceId,nodeId | Average,Maximum | KBytes/s |
-| ShardingProxyIntranetOut | Proxy出流量速率 | userId,instanceId,nodeId | Average,Maximum | KBytes/s |
-| ShardingProxyMaxRequestSize | Proxy单个请求最大字节数 | userId,instanceId,nodeId | Average,Maximum | Byte |
-| ShardingProxyMaxResponseSize | Proxy单个响应的最大字节数 | userId,instanceId,nodeId | Average,Maximum | Byte |
-| ShardingProxyTotalQps | Proxy每秒总请求数 | userId,instanceId,nodeId | Average,Maximum | Count/s |
-| ShardingProxyUsedConnection | Proxy已使用连接数 | userId,instanceId,nodeId | Average,Maximum | Count |
-| ShardingSyncDelayTime | 多活同步时延 | userId,instanceId,nodeId | Maximum,Average | seconds |
-| ShardingUsedConnection | 已用连接数 | userId,instanceId,nodeId | Average,Maximum | Count |
-| ShardingUsedMemory | 内存使用量 | userId,instanceId,nodeId | Average,Maximum | Bytes |
-| ShardingUsedQPS | 平均每秒访问次数 | userId,instanceId,nodeId | Average,Maximum | Count |
-
 ## 对象 {#object}
 
 采集到的阿里云 redis 的对象数据结构, 可以从「基础设施-自定义」里看到对象数据
 
-```
+```json
 {
   "measurement": "aliyun_redis",
   "tags": {
@@ -132,7 +96,7 @@ monitor:
 
 > 提示：本脚本的代码运行依赖 Redis 实例对象采集，如果未配置 Redis 的自定义对象采集，慢日志脚本无法采集到慢日志数据
 
-#### 安装脚本
+#### 部署脚本
 
 在之前的基础上，需要再安装一个对应 **Redis 慢查询日志采集的脚本**
 
