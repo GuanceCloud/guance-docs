@@ -123,7 +123,7 @@ nav:
   - RUM:
     - rum.md
 
-  - logs:
+  - Logs:
     - 'Log Collection Overview': datakit-logging.md
     - 'Log Process Overview': datakit-logging-how.md
     - 'Log Collection':
@@ -132,9 +132,9 @@ nav:
     - 'Other Log Access':
       - 'LogStreaming': logstreaming.md
 
-  - 'Dialtesting':
+  - 'Synthetic Tests':
     - dialtesting.md
-    - 'Custom Dialtesting': dialtesting_json.md
+    - 'Customize Request Tasks': dialtesting_json.md
 
   - 'Third-party Data Access':
     - "Prometheus":
