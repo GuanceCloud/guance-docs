@@ -198,7 +198,7 @@ In addition, you should fill in the detailed mailing address or email address fo
 
  
 
-### **11. Liability for Breach of Contract**
+### **11. Notice**
 
 11.1 When you use the Guance service, you should provide Guance with real and effective contact information (including your email address, contact telephone number, contact address, etc.). If the contact information changes, you have the obligation to update the relevant information in time and keep it in a contactable state. The member account number (including sub-account number) of your receiving station mail and system message is also your effective contact information.
 

@@ -1,15 +1,14 @@
-# Create HTTP Dial Test Task
----
+# HTTP Request Task
 
 ## Introduction
 
-HTTP Dial Test carries out periodic usability monitoring of websites, domain names and background interfaces based on the `HTTP` protocol. Through real-time monitoring of the site, statistics of its availability, provide dial-up log and real-time alarm, help you quickly find network problems and improve the quality of network access.
+HTTP Request carries out periodic usability monitoring of websites, domain names and background interfaces based on the `HTTP` protocol. Through real-time monitoring of the site, statistics of its availability, provide dial-up log and real-time alarm, help you quickly find network problems and improve the quality of network access.
 
-HTTP dialing allows you to send HTTP requests to the API interface of your application to validate defined requests and criteria such as request headers status codes response times and so on.
+HTTP Request allows you to send HTTP requests to the API interface of your application to validate defined requests and criteria such as request headers status codes response times and so on.
 
-## Create HTTP Dial Test Task
+## Create HTTP Request
 
-In the Guance workspace, click "New"-"API Dial Test" and select "HTTP Protocol" to create a new HTTP dial test task, and periodically monitor the performance of websites, domain names and background interfaces based on the `HTTP` protocol.
+In the Guance workspace, click "New"-"API Test" and select "HTTP Protocol" to create a new HTTP Request, and periodically monitor the performance of websites, domain names and background interfaces based on the `HTTP` protocol.
 
 ![](../img/4.dailtesting_http_1.png)
 
@@ -20,7 +19,7 @@ In the Guance workspace, click "New"-"API Dial Test" and select "HTTP Protocol" 
 
 ![](../img/4.dailtesting_http_2.png)
 
-- Name: User-defined HTTP dialing task name. Duplicate name is not supported in current space.
+- Name: User-defined HTTP Request task name. Duplicate name is not supported in current space.
 
 ### Available Judgment
 
@@ -28,7 +27,7 @@ It supports adding judgment condition matching data. When multiple judgment cond
 
 ![](../img/4.dailtesting_http_3.png)
 
-### Select the Dial Test Node
+### Select the Test Node
 
 At present, Guance has covered 16 nodes in the world, and it supports selecting one or more nodes in China and overseas regions (only commercial and above users are supported), so as to quickly start the service quality monitoring of the site.
 
