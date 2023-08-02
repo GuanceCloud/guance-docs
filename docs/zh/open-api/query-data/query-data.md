@@ -14,8 +14,9 @@ DQL数据查询
 
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
-| queries_body | string | Y | dql查询query结构体<br>允许为空: False <br> |
-| search_after | string |  | 分页查询请求参数<br>允许为空: False <br> |
+| body | string |  | dql查询query结构体<br>允许为空: False <br> |
+| queries_body | string |  | dql查询query结构体(2023-08-11日下架该参数)<br>允许为空: False <br> |
+| search_after | string |  | 分页查询请求参数(2023-08-11日下架该参数)<br>允许为空: False <br> |
 
 ## 参数补充说明
 
@@ -27,18 +28,29 @@ DQL数据查询
 
 |  参数名        |   type  | 必选  |          说明          |
 |---------------|----------|----|------------------------|
-| queries_body[*]    |  string  |  Y | 查询列表 |
-| search_after    |  string  |  Y | 查询分页数据. 首次查询默认为[], 需要查询更多分页数据时,将上次查询结果中的search_after字段加上,用于查询后续数据 |
+| body    |  string  |  Y | 查询请求体 |
+| queries_body[\*]    |  string  |   |(旧版参数，2023-08-10 日下架) 查询列表 |
+| search_after    |  string  |   | (旧版参数，2023-08-10 日下架, 新版参数位置挪移至 query 结构体中) 查询分页数据. 首次查询默认为[], 需要查询更多分页数据时,将上次查询结果中的search_after字段加上,用于查询后续数据 |
 
-2. DQL JSON结构参数说明(queries_body[\*]元素)
+2. body 中 JSON结构参数说明
 
 * 基础字段*
 
 | 参数名  | type  | 必选  | 说明  |
 | :------------ | :------------ | :------------ | :------------ |
-|  qtype | string  |  Y |  查询类型, dql  |
+|  queries | array  |  Y |  多命令查询，其内容为 query 对象组成的列表  |
+|  fieldTagDescNeeded  | boolean |   | 是否需要field 或者tag描述信息 |
+
+
+3. queries[\*]成员参数结构说明
+
+* 基础字段*
+
+| 参数名  | type  | 必选  | 说明  |
+| :------------ | :------------ | :------------ | :------------ |
+|  qtype | string  |  Y |  查询语句的类型 <br/> dql: 表示dql类型查询语句; <br/> promql: 表示 PromQl类型查询语句   |
 |  query | json  |  Y |  查询结构 |
-|  query.q  | string |   | dql 查询语句 |
+|  query.q  | string |   | 与 qtype 类型保持一致的 查询语句，例如 dql 或者 promql 查询语句|
 |  query.highlight  | boolean |   | 是否显示高亮数据 |
 |  query.timeRange  | array  |   | 时间范围的时间戳列表 |
 |  query.disableMultipleField  | bool  |   | 是否打开单列模式，默认为 `true` |
@@ -59,10 +71,9 @@ DQL数据查询
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/df/query_data?search_after=\[1680226330509,8572,"L_1680226330509_cgj4hqbrhi85kl1m6os0"\]&queries_body=%7B%22queries%22:\[%7B%22uuid%22:%222eb41760-cf6e-11ed-a983-7d559044c3fc%22,%22qtype%22:%22dql%22,%22query%22:%7B%22q%22:%22L::re(%60.*%60):(%60*%60)%7B+%60index%60+IN+\[%27default%27\]+%7D%22,%22highlight%22:true,%22limit%22:50,%22orderby%22:\[%7B%22time%22:%22desc%22%7D\],%22_funcList%22:\[\],%22funcList%22:\[\],%22disableMultipleField%22:false,%22disable_slimit%22:false,%22is_optimized%22:true,%22offset%22:0,%22search_after%22:\[1680226330509,8572,%22L_1680226330509_cgj4hqbrhi85kl1m6os0%22\],%22timeRange%22:\[1680187562081,1680230762081\],%22tz%22:%22Asia%2FShanghai%22%7D%7D\]%7D' \
-- H 'DF-API-KEY: <DF-API-KEY>' \
-- -compressed \
-- -insecure
+curl 'https://openapi.guance.com/api/v1/df/query_data?body=\{%22queries%22:\[\{%22uuid%22:%2205ea25f0-2fa3-11ee-aa03-57233270ef0c%22,%22qtype%22:%22dql%22,%22query%22:\{%22q%22:%22L::re(`.*`):(`*`)\{+`index`+IN+\[%27default%27\]+\}%22,%22highlight%22:true,%22limit%22:50,%22orderby%22:\[\{%22time%22:%22desc%22\}\],%22_funcList%22:\[\],%22funcList%22:\[\],%22disableMultipleField%22:false,%22align_time%22:false,%22is_optimized%22:true,%22offset%22:0,%22search_after%22:\[1690808645037,538070,%22L_1690808645037_cj3r2itnel8fnfu5tlag%22\],%22timeRange%22:\[1690807857000,1690808757999\],%22tz%22:%22Asia/Shanghai%22\}\}\],%22expensiveQueryCheck%22:true\}' \
+-H 'DF-API-KEY: <DF-API-KEY>' \
+--compressed
 ```
 
 
