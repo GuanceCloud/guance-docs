@@ -14,7 +14,8 @@ DQL数据查询
 
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
-| queries_body | string | Y | dql查询query结构体<br>允许为空: False <br> |
+| body | string |  | dql查询query结构体<br>允许为空: False <br> |
+| queries_body | string |  | dql查询query结构体<br>允许为空: False <br> |
 | search_after | string |  | 分页查询请求参数<br>允许为空: False <br> |
 
 ## 参数补充说明
@@ -27,18 +28,29 @@ DQL数据查询
 
 |  参数名        |   type  | 必选  |          说明          |
 |---------------|----------|----|------------------------|
-| queries_body[*]    |  string  |  Y | 查询列表 |
-| search_after    |  string  |  Y | 查询分页数据. 首次查询默认为[], 需要查询更多分页数据时,将上次查询结果中的search_after字段加上,用于查询后续数据 |
+| body    |  string  |  Y | 查询请求体 |
+| queries_body[*]    |  string  |  Y |(旧版参数，2023-08-10 日下架) 查询列表 |
+| search_after    |  string  |  Y | (旧版参数，2023-08-10 日下架, 新版参数位置挪移至 query 结构体中) 查询分页数据. 首次查询默认为[], 需要查询更多分页数据时,将上次查询结果中的search_after字段加上,用于查询后续数据 |
 
-2. DQL JSON结构参数说明(queries_body[\*]元素)
+2. body 中 JSON结构参数说明
 
 * 基础字段*
 
 | 参数名  | type  | 必选  | 说明  |
 | :------------ | :------------ | :------------ | :------------ |
-|  qtype | string  |  Y |  查询类型, dql  |
+|  queries | array  |  Y |  多命令查询，其内容为 query 对象组成的列表  |
+|  fieldTagDescNeeded  | boolean |   | 是否需要field 或者tag描述信息 |
+
+
+3. queries[\*]成员参数结构说明
+
+* 基础字段*
+
+| 参数名  | type  | 必选  | 说明  |
+| :------------ | :------------ | :------------ | :------------ |
+|  qtype | string  |  Y |  查询语句的类型 <br/> dql: 表示dql类型查询语句; <br/> promql: 表示 PromQl类型查询语句   |
 |  query | json  |  Y |  查询结构 |
-|  query.q  | string |   | dql 查询语句 |
+|  query.q  | string |   | 与 qtype 类型保持一致的 查询语句，例如 dql 或者 promql 查询语句|
 |  query.highlight  | boolean |   | 是否显示高亮数据 |
 |  query.timeRange  | array  |   | 时间范围的时间戳列表 |
 |  query.disableMultipleField  | bool  |   | 是否打开单列模式，默认为 `true` |

@@ -5,7 +5,7 @@
 <br />**POST /api/v1/workspace/modify**
 
 ## 概述
-修改工作空间
+修改当前API Key所属的工作空间信息
 
 
 
