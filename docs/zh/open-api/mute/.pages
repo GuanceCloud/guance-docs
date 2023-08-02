@@ -1,6 +1,7 @@
 nav:
   - '获取静默规则列表': list.md
   - '创建一个静默规则': create.md
+  - '修改一个静默规则': modify.md
   - '禁用一个静默规则': disable.md
   - '启用一个静默规则': enable.md
   - '删除一个静默规则': delete.md
