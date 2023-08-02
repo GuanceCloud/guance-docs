@@ -1,0 +1,3 @@
+nav:
+  - '【日志logmine】获取Logmine查询任务结果': querytask.md
+  - '【日志logmine】发送Logmine查询任务': sendtask.md
