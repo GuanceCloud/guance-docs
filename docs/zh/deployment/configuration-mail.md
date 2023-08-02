@@ -7,13 +7,13 @@
 ## 前提条件
 
 - 已完全初始化观测云
-- 拥有邮件服务的信息：`host`，`port`，`useTLS`，`user`，`password`
+- 拥有邮件服务的信息：`host`，`port`，`useTLS`，`user`，`password`, `useSSL`, `usePlainAuth`
 
 ## 配置步骤
 
 ### 步骤一：测试邮件服务信息
 
-修改以下 python 代码`host`,`port`,`sender`,`password`,`use_tls` ,`recipient`参数， 并在 middleware 下的 message-desk-worker pod 执行创建：
+修改以下 python 代码 `host`, `port`, `sender`, `password`, `use_tls`, `recipient`, `useSSL`, `usePlainAuth` 参数， 并在 middleware 下的 message-desk-worker pod 执行创建：
 
 ```python
 cat <<EOF> test-maile.py
@@ -26,12 +26,14 @@ sender = 'your_email@example.com'
 password = 'your_email_password'
 use_tls = True
 recipient = 'recipient@example.com'
+use_ssl = False
+use_plain_auth = False
 
 message = Message(From=sender, To=recipient)
 message.Subject = 'Test email'
 message.Body = 'This is a test email'
 
-mailer = Mailer(host=host, port=587, use_tls=use_tls, usr=sender, pwd=password)
+mailer = Mailer(host=host, port=587, use_tls=use_tls, usr=sender, pwd=password, use_plain_auth=use_plain_auth, use_ssl=use_ssl)
 
 try:
     mailer.send(message)

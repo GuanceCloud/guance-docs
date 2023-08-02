@@ -1,13 +1,13 @@
-# Create WEBSOCKET Dial Test Task
+# WEBSOCKET Request Task
 ---
 
 ## Introduction
 
-The WebSocket dial test allows your client to make an HTTP request to the server and establish a WebSocket connection to validate defined requests and criteria such as request headers response times and so on.
+WebSocket allows your client to make an HTTP request to the server and establish a WebSocket connection to validate defined requests and criteria such as request headers response times and so on.
 
-## Create WEBSOCKET Dial Test Task
+## Create WEBSOCKET Request Task
 
-In Guance workspace, click "New"-"API Dialing Test" and select "WEBSOCKET Protocol" to create a new WEBSOCKET dialing test task.
+In Guance workspace, click "New"-"API Dialing Test" and select "WEBSOCKET Protocol" to create a new WEBSOCKET task.
 
 ![](../img/4.dailtesting_websocket_1.png)
 
@@ -27,7 +27,7 @@ It supports adding judgment condition matching data. When multiple judgment cond
 
 ![](../img/4.dailtesting_websocket_3.png)
 
-### Select Dial Test Node
+### Select Request Node
 
 At present, Guance has covered 16 nodes in the world, and it supports selecting one or more nodes in China and overseas regions (only commercial and above users are supported), so as to quickly start the service quality monitoring of the site.
 
