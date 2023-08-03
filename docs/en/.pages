@@ -14,6 +14,7 @@ nav:
   - Metrics: metrics
   - Monitoring: monitoring
   - Events: events
+  - Incidents: exception
   - CI Visibility: ci-visibility
   - <br/>Openess: ""
   - DataFlux Func: dataflux-func

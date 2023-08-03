@@ -1,0 +1,5 @@
+nav:
+  - index.md
+  - 'Create Issue': issue.md
+  - 'Manage Issue': channel.md
+  
