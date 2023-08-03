@@ -270,6 +270,3 @@ systemctl restart datakit
 | redis_sentinel_ping_latency | 哨兵ping的延迟显示为毫秒 | Gauge |
 | redis_sentinel_last_ok_ping_latency | 哨兵ping成功的秒数 | Gauge |
 
-## 故障排查 {#faq}
-
-[无数据上报排查](../datakit/why-no-data.md)
