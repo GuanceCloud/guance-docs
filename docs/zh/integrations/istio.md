@@ -29,7 +29,7 @@ Istio 性能指标展示，包括 Incoming Request Volume、Incoming Success Rat
 
 - 已部署 [Kubernetes](https://kubernetes.io/docs/setup/production-environment/tools/)
 
-- 已部署 DataKit，请参考 Kubernetes 集群 [安装 Datakit](../datakit/datakit-daemonset-deploy.md)
+- 已部署 DataKit，请参考 Kubernetes 集群 <[安装 Datakit](../datakit/datakit-daemonset-deploy.md)>
 
 - Istio 已部署
 
@@ -177,29 +177,27 @@ spec:
 
 ### 指标详解
 
-
-| 指标   | 描述  | 数据类型 | 单位 |
-| ------------------------------------------------------------------ | --------------------------------------------------------------------------------------------- | -------- | ------ |
-| istio_agent_process_virtual_memory_bytes                           | Virtual memory size in bytes                                                                  | int      | B      |
-| istio_agent_go_memstats_alloc_bytes                                | Number of bytes allocated and still in use.                                                   | int      | B      |
-| istio_agent_go_memstats_heap_inuse_bytes                           | Number of heap bytes that are in use.                                                         | int      | B      |
-| istio_agent_go_memstats_stack_inuse_bytes                          | Number of bytes in use by the stack allocator.                                                | int      | B      |
-| istio_agent_go_memstats_last_gc_time_seconds                       | Number of seconds since 1970 of last garbage collection                                       | int      | s      |
-| istio_agent_go_memstats_next_gc_bytes                              | Number of heap bytes when next garbage collection will take place.                            | int      | B      |
-| istio_agent_process_cpu_seconds_total                              | Total user and system CPU time spent in seconds.                                              | int      | count  |
-| istio_agent_outgoing_latency                                       | The latency of outgoing requests (e.g. to a token exchange server, CA, etc.) in milliseconds. | int      | count  |
-| istio_requests_total                                               | requests total.                                                                               | int      | <br /> |
-| istio_agent_pilot_xds                                              | Number of endpoints connected to this pilot using XDS.                                        | int      | count  |
-| istio_agent_pilot_xds_pushes                                       | Pilot build and send errors for lds, rds, cds and eds.                                        | int      | count  |
-| istio_agent_pilot_xds_expired_nonce                                | Total number of XDS requests with an expired nonce.                                           | int      | count  |
-| istio_agent_pilot_push_triggers                                    | Total number of times a push was triggered, labeled by reason for the push.                   | int      | count  |
-| istio_agent_pilot_endpoint_not_ready                               | Endpoint found in unready state.                                                              | int      | count  |
-| envoy_cluster_upstream_cx_total                                    | envoy cluster upstream cx total                                                               | int      | count  |
-| istio_agent_pilot_conflict_inbound_listener                        | Number of conflicting inbound listeners                                                       | int      | count  |
-| istio_agent_pilot_conflict_outbound_listener_http_over_current_tcp | Number of conflicting wildcard http listeners with current wildcard tcp listener.             | int      | count  |
-| istio_agent_pilot_conflict_outbound_listener_tcp_over_current_tcp  | Number of conflicting tcp listeners with current tcp listener.                                | int      | count  |
-| istio_agent_pilot_conflict_outbound_listener_tcp_over_current_http | Number of conflicting wildcard tcp listeners with current wildcard http listener.             | int      | count  |
-
+| 指标                                                                 | 描述                                                                                          | 数据类型 | 单位   |
+| ---                                                                  | ---                                                                                           | ---      | ---    |
+| `istio_agent_process_virtual_memory_bytes`                           | Virtual memory size in bytes                                                                  | int      | B      |
+| `istio_agent_go_memstats_alloc_bytes`                                | Number of bytes allocated and still in use.                                                   | int      | B      |
+| `istio_agent_go_memstats_heap_inuse_bytes`                           | Number of heap bytes that are in use.                                                         | int      | B      |
+| `istio_agent_go_memstats_stack_inuse_bytes`                          | Number of bytes in use by the stack allocator.                                                | int      | B      |
+| `istio_agent_go_memstats_last_gc_time_seconds`                       | Number of seconds since 1970 of last garbage collection                                       | int      | s      |
+| `istio_agent_go_memstats_next_gc_bytes`                              | Number of heap bytes when next garbage collection will take place.                            | int      | B      |
+| `istio_agent_process_cpu_seconds_total`                              | Total user and system CPU time spent in seconds.                                              | int      | count  |
+| `istio_agent_outgoing_latency`                                       | The latency of outgoing requests (e.g. to a token exchange server, CA, etc.) in milliseconds. | int      | count  |
+| `istio_requests_total`                                               | requests total.                                                                               | int      | <br /> |
+| `istio_agent_pilot_xds`                                              | Number of endpoints connected to this pilot using XDS.                                        | int      | count  |
+| `istio_agent_pilot_xds_pushes`                                       | Pilot build and send errors for lds, rds, cds and eds.                                        | int      | count  |
+| `istio_agent_pilot_xds_expired_nonce`                                | Total number of XDS requests with an expired nonce.                                           | int      | count  |
+| `istio_agent_pilot_push_triggers`                                    | Total number of times a push was triggered, labeled by reason for the push.                   | int      | count  |
+| `istio_agent_pilot_endpoint_not_ready`                               | Endpoint found in unready state.                                                              | int      | count  |
+| `envoy_cluster_upstream_cx_total`                                    | envoy cluster upstream cx total                                                               | int      | count  |
+| `istio_agent_pilot_conflict_inbound_listener`                        | Number of conflicting inbound listeners                                                       | int      | count  |
+| `istio_agent_pilot_conflict_outbound_listener_http_over_current_tcp` | Number of conflicting wildcard http listeners with current wildcard tcp listener.             | int      | count  |
+| `istio_agent_pilot_conflict_outbound_listener_tcp_over_current_tcp`  | Number of conflicting tcp listeners with current tcp listener.                                | int      | count  |
+| `istio_agent_pilot_conflict_outbound_listener_tcp_over_current_http` | Number of conflicting wildcard tcp listeners with current wildcard http listener.             | int      | count  |
 
 ---
 
@@ -296,9 +294,4 @@ DataKit 默认的配置，采集容器输出到 `/dev/stdout` 的日志。<br />
 
 ## 最佳实践
 
-最佳实践中包含 istio 安装， istio 自带项目部署， RUM+APM 关联等扩展操作，详细请参考
-
-<[基于 Istio 实现微服务可观测最佳实践](../best-practices/cloud-native/istio.md)>
-
----
-
+最佳实践中包含 Istio 安装、Istio 自带项目部署、RUM/APM 关联等扩展操作，详细请参考[基于 Istio 实现微服务可观测最佳实践](../best-practices/cloud-native/istio.md)

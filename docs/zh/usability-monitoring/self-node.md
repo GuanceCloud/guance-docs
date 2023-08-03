@@ -42,6 +42,6 @@
 
 **Step 2**: 在 DataKit 中完成拨测节点的安装，并确保部署拨测节点的服务器可探测到目标节点（国家、地区、运营商）。
 
-> 详情可参考[网络拨测](../integrations/network/dialtesting.md) 。
+> 详情可参考[网络拨测](../integrations/dialtesting.md) 。
 
 完成拨测节点的安装后，您可以在配置**云拨测**时选择**自建**节点。

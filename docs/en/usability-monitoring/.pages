@@ -1,6 +1,6 @@
 nav:
   - index.md
-  - 'Tasks': dialingtest-task
+  - 'Tasks': request-task
   - 'Overview': overview.md
   - 'Explorers': explorer.md
   - 'Self-built Node Management': self-node.md

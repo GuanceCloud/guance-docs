@@ -60,7 +60,4 @@ systemctl restart datakit
 
 详细指标信息参考[官方文档](https://juicefs.com/docs/zh/community/p8s_metrics)
 
-## 常见问题排查 {#faq}
-
-[无数据上报排查](../datakit/why-no-data.md)
 

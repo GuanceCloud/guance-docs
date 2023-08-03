@@ -528,7 +528,3 @@ TiDB 各组件（共 4 个组件）均已暴露 `metrics` ,协议为 http
 systemctl restart datakit
 ```
 
-## 常见问题排查 {#faq}
-
-<[无数据上报排查](../datakit/why-no-data.md)>
-
