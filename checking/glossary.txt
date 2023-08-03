@@ -15,6 +15,7 @@ Collector
 Confd
 ConfigMag
 Corefile # CoreDNS
+Couchbase
 DBCP
 DDTrace
 DKProto
@@ -151,6 +152,8 @@ applicationname
 APPLICATIONNAME
 applicationtype
 APPLICATIONTYPE
+backoff
+backoffs
 batchcount
 BATCHCOUNT
 collectinterval
@@ -160,6 +163,7 @@ COUNTERRATE
 defragmentation
 defragmented
 freeable
+interestingstats
 ISAPI
 maxcallstackdepth
 MAXCALLSTACKDEPTH
@@ -175,6 +179,8 @@ PERCENTRATE
 queuesize
 QUEUESIZE
 RCVD # received
+rebalance
+rebalancing
 roadmap
 routable
 scavaged
@@ -188,6 +194,7 @@ uncorrectable
 unroutable
 dialtesting
 JuiceFS
+wakeups
 
 # 连词
 golangci
