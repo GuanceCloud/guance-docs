@@ -74,6 +74,7 @@ nav:
       - sqlserver.md
       - postgresql.md
       - redis.md
+      - redis-sentinel.md
       - memcached.md
       - etcd.md
       - mongodb.md
@@ -81,11 +82,17 @@ nav:
       - tdengine.md
       - elasticsearch.md
       - solr.md
+      - minio.md
+      - aerospike.md
+      - tidb.md
+      - couchbase.md
+      - couchbase-prom.md
 
     - '消息队列':
       - 'Kafka': kafka.md
       - nsq.md
       - rabbitmq.md
+      - juicefs.md
 
     - 'Web 服务器':
       - 'Nginx': nginx.md
@@ -175,6 +182,10 @@ nav:
       -  pinpoint.md
       -  pinpoint-java.md
       -  pinpoint-go.md
+
+  - '语言':
+    - 'Java': java.md
+    - dotnet.md
 
   - 用户访问监测（RUM）:
     - rum.md

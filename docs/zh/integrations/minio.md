@@ -172,7 +172,3 @@ systemctl restart datakit
 | s3_requests_4xx_errors_total      | s3 4xx 异常数           |
 | s3_time_ttfb_seconds_distribution | s3 TTFB                 |
 | usage_last_activity_nano_seconds  | 自上使用活动以来的时间  |
-
-## 常见问题排查 {#faq}
-
-<[无数据上报排查](../datakit/why-no-data.md)>
