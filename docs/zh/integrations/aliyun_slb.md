@@ -11,6 +11,12 @@ monitor:
     path: 'monitor/zh/aliyun_slb/'
 ---
 
+
+<!-- markdownlint-disable MD025 -->
+# 阿里云 SLB
+<!-- markdownlint-enable -->
+
+
 阿里云 SLB 指标展示，包括后端 ECS 实例状态、端口连接数、 QPS、网络流量、状态码等。
 
 ## 配置 {#config}
@@ -27,21 +33,19 @@ monitor:
 
 > 提示：请提前准备好符合要求的阿里云 AK（简单起见，可直接授予全局只读权限`ReadOnlyAccess`）
 
-同步云资源的监控数据，我们一般情况下要安装两个脚本，一个采集对应云资产基本信息的脚本，一个是采集云监控信息的脚本。
-
-如果要采集对应的日志，还要开启相应的日志采集脚本。如果要采集账单，要开启云账单采集脚本。
-
-分别在「管理 / 脚本市场」中，依次点击并按照对应的脚本包：
-
-- 「观测云集成（阿里云-）」(ID：`guance_aliyun_slb`)
+同步 SLB 云资源的监控数据，我们安装对应的采集脚本：「观测云集成（阿里云-）」(ID：`guance_aliyun_slb`)
 
 点击【安装】后，输入相应的参数：阿里云 AK、阿里云账户名。
 
 点击【部署启动脚本】，系统会自动创建 `Startup` 脚本集，并自动配置相应的启动脚本。
 
-此外，在「管理 / 自动触发配置」里看到对应的自动触发配置。点击【执行】，即可立即执行一次，无需等待定期时间。稍等片刻，可以查看执行任务记录以及对应日志。
+开启后可以在「管理 / 自动触发配置」里看到对应的自动触发配置。点击【执行】，即可立即执行一次，无需等待定期时间。稍等片刻，可以查看执行任务记录以及对应日志。
+
+> 如果要采集对应的日志，还要开启相应的日志采集脚本。如果要采集账单，要开启云账单采集脚本。
 
 我们默认采集了一些配置, 具体见指标一栏
+
+
 
 [配置自定义云对象指标](https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
 
@@ -54,6 +58,33 @@ monitor:
 
 ## 指标 {#metric}
 配置好阿里云-云监控,默认的指标集如下, 可以通过配置的方式采集更多的指标 [阿里云云监控指标详情](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
+
+| Metric | **Description** |              Dimensions               | Statistics | **Unit** |
+| ---- | :---:    | :----: | ------ | ------ |
+| ActiveConnection           |        TCP每秒活跃连接数        |    userId,instanceId,port,protocol    | Average,Minimum,Maximum     | Count    |
+| DropConnection             |       监听每秒丢失连接数        |    userId,instanceId,port,protocol    | Average,Minimum,Maximum     | Count/s  |
+| DropPacketRX               |       监听每秒丢失入包数        |    userId,instanceId,port,protocol    | Average,Minimum,Maximum     | Count/s  |
+| DropPacketTX               |       监听每秒丢失出包数        |    userId,instanceId,port,protocol    | Average,Minimum,Maximum     | Count/s  |
+| DropTrafficRX              |       监听每秒丢失入bit数       |    userId,instanceId,port,protocol    | Average,Minimum,Maximum     | bits/s   |
+| DropTrafficTX              |       监听每秒丢失出bit数       |    userId,instanceId,port,protocol    | Average,Minimum,Maximum     | bits/s   |
+| GroupActiveConnection      |   (分组维度)TCP每秒活跃连接数   |                groupId                | Average,Maximum,Minimum,Sum | Count    |
+| GroupNewConnection         |     (分组维度)TCP新建连接数     |                groupId                | Average,Maximum,Minimum,Sum | Count    |
+| GroupTotalTrafficRX        |         TotalTrafficRX          |                groupId                | Value                       | bits/s   |
+| GroupTotalTrafficTX        |         TotalTrafficTX          |                groupId                | Value                       | bits/s   |
+| GroupTrafficRX             |       (分组维度)流入带宽        |                groupId                | Average,Minimum,Maximum,Sum | bits/s   |
+| GroupTrafficTX             |       (分组维度)流出带宽        |                groupId                | Average,Minimum,Maximum,Sum | bits/s   |
+| GroupUnhealthyServerCount  |  (分组维度)后端异常ECS实例个数  |                groupId                | Average,Maximum,Minimum,Sum | Count    |
+| HealthyServerCountWithRule | 七层转发规则后端健康ECS实例个数 | userId,instanceId,port,vip,domain,url | Average,Maximum,Minimum     | Count    |
+| HeathyServerCount          |   健康检查后端健康ECS实例个数   |      userId,instanceId,port,vip       | Average,Minimum,Maximum     | Count    |
+| InactiveConnection         |         TCP非活跃连接数         |    userId,instanceId,port,protocol    | Average,Minimum,Maximum     | Count    |
+| InstanceActiveConnection   |       实例每秒活跃连接数        |           userId,instanceId           | Average,Minimum,Maximum     | Count/s  |
+| InstanceDropConnection     |       实例每秒丢失连接数        |           userId,instanceId           | Average,Minimum,Maximum,Sum | Count/s  |
+| InstanceDropPacketRX       |       实例每秒丢失入包数        |           userId,instanceId           | Average,Minimum,Maximum     | Count/s  |
+| InstanceDropPacketTX       |       实例每秒丢失出包数        |           userId,instanceId           | Average,Minimum,Maximum     | Count/s  |
+| InstanceDropTrafficRX      |       实例每秒丢失入bit数       |           userId,instanceId           | Average,Minimum,Maximum     | bits/s   |
+| InstanceDropTrafficTX      |       实例每秒丢失出bit数       |           userId,instanceId           | Average,Minimum,Maximum     | bits/s   |
+| InstanceInactiveConnection |      实例每秒非活跃连接数       |           userId,instanceId           | Average,Minimum,Maximum     | Count/s  |
+| InstanceMaxConnection      |     实例每秒最大并发连接数      |           userId,instanceId           | Average,Minimum,Maximum     | Count/s  |
 
 ## 对象 {#object}
 
