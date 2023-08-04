@@ -2,6 +2,7 @@
 Aerospike
 Akka
 Aliyun
+Tencent
 Ansible
 BATIS
 Batis
