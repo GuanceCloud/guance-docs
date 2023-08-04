@@ -126,6 +126,8 @@ usec
 vmalloc
 xpack
 zhangsan
+apiserver
+workqueue
 
 # 缩写
 CNCF
