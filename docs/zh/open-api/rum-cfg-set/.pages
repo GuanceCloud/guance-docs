@@ -1,0 +1,5 @@
+nav:
+  - '快速列出RUM配置信息': quick-list.md
+  - '添加RUM配置信息': add.md
+  - '修改RUM配置': modify.md
+  - '删除RUM配置': delete.md
