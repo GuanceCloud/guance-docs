@@ -284,7 +284,7 @@ go get -v github.com/DataDog/dd-trace-go
 
 #### 设置 DataKit
 
-需先[安装](../../datakit/datakit-install.md)、[启动 datakit](../../datakit/datakit-service-how-to.md)，并开启 [ddtrace 采集器](../../datakit/ddtrace.md#config)
+需先[安装](../../datakit/datakit-install.md)、[启动 datakit](../../datakit/datakit-service-how-to.md)，并开启 [ddtrace 采集器](../../integrations/ddtrace.md#config)
 
 #### 代码示例
 

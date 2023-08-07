@@ -16,7 +16,7 @@ monitor   :
 
 ---
 
-:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](index.md#legends "Election Enabled")
+:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 
 ---
 
@@ -28,6 +28,11 @@ Solr 采集器，用于采集 Solr Cache 和 Request Times 等的统计信息。
 
 - DataKit 使用 Solr Metrics API 采集指标数据，支持 Solr 7.0 及以上版本。
 - 也可用于 Solr 6.6，但指标数据不完整。
+
+已测试的版本：
+
+- [x] 8.11.2
+- [x] 7.0.0
 
 ### 采集器配置 {#input-config}
 

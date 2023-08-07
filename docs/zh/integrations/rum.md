@@ -41,8 +41,8 @@ RUM（Real User Monitor）采集器用于收集网页端或移动端上报的用
 
 建议将 RUM 以单独的方式部署在公网上，不要跟已有的服务部署在一起（如 Kubernetes 集群）。因为 RUM 这个接口上的流量可能很大，集群内部的流量会被它干扰到，而且一些可能的集群内部资源调度机制，可能影响 RUM 服务的运行。
 
-- 在 DataKit 上[安装 IP 地理信息库](datakit-tools-how-to.md#install-ipdb)
-- 自 [1.2.7](changelog.md#cl-1.2.7) 之后，由于调整了 IP 地理信息库的安装方式，默认安装不再自带 IP 信息库，需手动安装
+- 在 DataKit 上[安装 IP 地理信息库](../datakit/datakit-tools-how-to.md#install-ipdb)
+- 自 [1.2.7](../datakit/changelog.md#cl-1.2.7) 之后，由于调整了 IP 地理信息库的安装方式，默认安装不再自带 IP 信息库，需手动安装
 
 ### 采集器配置 {#input-config}
 
@@ -81,22 +81,27 @@ RUM（Real User Monitor）采集器用于收集网页端或移动端上报的用
       ## buffer is the size of jobs' buffering of worker channel.
       ## threads is the total number fo goroutines at running time.
       # [inputs.rum.threads]
-        # buffer = 100
-        # threads = 8
+      #   buffer = 100
+      #   threads = 8
     
       ## Storage config a local storage space in hard dirver to cache trace data.
       ## path is the local file path used to cache data.
       ## capacity is total space size(MB) used to store data.
       # [inputs.rum.storage]
-        # path = "./rum_storage"
-        # capacity = 5120
+      #   path = "./rum_storage"
+      #   capacity = 5120
     
       # Provide a list to resolve CDN of your static resource.
       # Below is the Datakit default built-in CDN list, you can uncomment that and change it to your cdn list,
       # it's a JSON array like: [{"domain": "CDN domain", "name": "CDN human readable name", "website": "CDN official website"},...],
       # domain field value can contains '*' as wildcard, for example: "kunlun*.com",
       # it will match "kunluna.com", "kunlunab.com" and "kunlunabc.com" but not "kunlunab.c.com".
-      # cdn_map = '[{"domain":"15cdn.com","name":"腾正安全加速(原 15CDN)","website":"https://www.15cdn.com"},{"domain":"tzcdn.cn","name":"腾正安全加速(原 15CDN)","website":"https://www.15cdn.com"},...]'
+      # cdn_map = '''
+      # [
+      #   {"domain":"15cdn.com","name":"腾正安全加速(原 15CDN)","website":"https://www.15cdn.com"},
+      #   {"domain":"tzcdn.cn","name":"腾正安全加速(原 15CDN)","website":"https://www.15cdn.com"}
+      # ]
+      # '''
     
     ```
 
@@ -106,7 +111,7 @@ RUM（Real User Monitor）采集器用于收集网页端或移动端上报的用
     default_enabled_inputs = [ "rum", "cpu", "disk", "diskio", "mem", "swap", "system", "hostobject", "net", "host_processes" ]
     ```
 
-    配置好后，[重启 DataKit](datakit-service-how-to.md#manage-service) 即可。
+    配置好后，[重启 DataKit](../datakit/datakit-service-how-to.md#manage-service) 即可。
 
 === "Kubernetes"
 
@@ -120,7 +125,7 @@ RUM（Real User Monitor）采集器用于收集网页端或移动端上报的用
 
 ### 安全限制 {#security-setting}
 
-由于 RUM DataKit 一般部署在公网环境，但是只会使用其中特定的 [DataKit API](apis.md) 接口，其它接口是不能开放的。通过如下方式可加强 API 访问控制，在 *datakit.conf* 中，修改如下 *public_apis* 字段配置：
+由于 RUM DataKit 一般部署在公网环境，但是只会使用其中特定的 [DataKit API](../datakit/apis.md) 接口，其它接口是不能开放的。通过如下方式可加强 API 访问控制，在 *datakit.conf* 中，修改如下 *public_apis* 字段配置：
 
 ```toml
 [http_api]
@@ -138,7 +143,7 @@ RUM（Real User Monitor）采集器用于收集网页端或移动端上报的用
   ]
 ```
 
-其它接口依然可用，但只能通过 DataKit 本机访问，比如[查询 DQL](datakit-dql-how-to.md) 或者查看 [DataKit 运行状态](datakit-tools-how-to.md#using-monitor)。
+其它接口依然可用，但只能通过 DataKit 本机访问，比如[查询 DQL](../datakit/datakit-dql-how-to.md) 或者查看 [DataKit 运行状态](../datakit/datakit-tools-how-to.md#using-monitor)。
 
 ### 禁用 DataKit 404 页面 {#disable-404}
 
@@ -370,7 +375,7 @@ curl -X DELETE '<dca_address>/v1/rum/sourcemap?app_id=<app_id>&env=<env>&version
 - `<app_id>`: 对应 RUM 的 `applicationId`
 - `<env>`: 对应 RUM 的 `env`
 - `<version>`: 对应 RUM 的 `version`
-- `<platform>` 应用平台，当前支持 web/miniapp/android/ios
+- `<platform>` 应用平台，当前支持 `web/miniapp/android/ios`
 - `<sourcemap_path>`: 待上传的 `sourcemap` 压缩包文件路径
 
 <!-- markdownlint-disable MD046 -->
@@ -405,7 +410,7 @@ DataKit 内置了一个主流 CDN 厂家信息列表，如果发现你所使用�
 
 ## RUM 会话重放 {#rum-session-replay}
 
-从 Datakit [:octicons-tag-24: Version-1.5.5](changelog.md#cl-1.5.5) 版本开始支持采集 RUM 会话重放数据，该功能需要修改 RUM 采集器配置，增加配置项 `session_replay_endpoints` 并重启 Datakit。
+从 Datakit [:octicons-tag-24: Version-1.5.5](../datakit/changelog.md#cl-1.5.5) 版本开始支持采集 RUM 会话重放数据，该功能需要修改 RUM 采集器配置，增加配置项 `session_replay_endpoints` 并重启 Datakit。
 
 ```toml
 [[inputs.rum]]

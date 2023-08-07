@@ -28,6 +28,7 @@ nav:
 
   - 'DataKit 配置':
     - '主配置': datakit-conf.md
+    - '采集器配置': datakit-input-conf.md
     - '选举配置': election.md
     - '代理配置': datakit-proxy.md
     - 'Datakit Operator': datakit-operator.md
@@ -41,6 +42,7 @@ nav:
   - 'DataKit 开发手册':
     - development.md
     - datakit-filter.md
+    - datakit-port.md
     - apis.md
     - common-tags.md
     - '文档撰写':

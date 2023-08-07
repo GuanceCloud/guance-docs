@@ -2,7 +2,7 @@
 # Flink
 ---
 
-:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](index.md#legends "Election Enabled")
+:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 
 ---
 
@@ -135,7 +135,7 @@ Flink collects multiple metrics by default, and these [metrics](https://nightlie
 | Tag | Description |
 |  ----  | --------|
 |`host`|Host name.|
-|`tm_id`|Taskmanager ID.|
+|`tm_id`|Task manager ID.|
 
 - metric list
 
@@ -172,6 +172,7 @@ Flink collects multiple metrics by default, and these [metrics](https://nightlie
 |`Status_Network_TotalMemorySegments`|The number of allocated memory segments.|int|count|
 |`Status_Shuffle_Netty_AvailableMemory`|The amount of unused memory in bytes.|int|count|
 |`Status_Shuffle_Netty_AvailableMemorySegments`|The number of unused memory segments.|int|count|
+|`Status_Shuffle_Netty_RequestedMemoryUsage`|Experimental: The usage of the network memory. Shows (as percentage) the total amount of requested memory from all of the subtasks. It can exceed 100% as not all requested memory is required for subtask to make progress. However if usage exceeds 100% throughput can suffer greatly and please consider increasing available network memory, or decreasing configured size of network buffer pools.|int|count|
 |`Status_Shuffle_Netty_TotalMemory`|The amount of allocated memory in bytes.|int|count|
 |`Status_Shuffle_Netty_TotalMemorySegments`|The number of allocated memory segments.|int|count|
 |`Status_Shuffle_Netty_UsedMemory`|The amount of used memory in bytes.|int|count|

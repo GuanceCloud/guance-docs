@@ -18,7 +18,7 @@ monitor   :
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
 
-[:octicons-tag-24: Version-1.6.0](changelog.md#cl-1.6.0) · [:octicons-beaker-24: Experimental](index.md#experimental)
+[:octicons-tag-24: Version-1.6.0](../datakit/changelog.md#cl-1.6.0) · [:octicons-beaker-24: Experimental](../datakit/index.md#experimental)
 
 ---
 
@@ -175,9 +175,9 @@ Pinpoint APM 链路数据较为复杂：
 |`container_host`|Container hostname. Available in OpenTelemetry. Optional.|
 |`endpoint`|Endpoint info. Available in SkyWalking, Zipkin. Optional.|
 |`env`|Application environment info. Available in Jaeger. Optional.|
-|`http_method`|HTTP request method name. Available in ddtrace, OpenTelemetry. Optional.|
+|`http_method`|HTTP request method name. Available in DDTrace, OpenTelemetry. Optional.|
 |`http_route`|HTTP route. Optional.|
-|`http_status_code`|HTTP response code. Available in ddtrace, OpenTelemetry. Optional.|
+|`http_status_code`|HTTP response code. Available in DDTrace, OpenTelemetry. Optional.|
 |`http_url`|HTTP URL. Optional.|
 |`operation`|Span name|
 |`project`|Project name. Available in Jaeger. Optional.|
@@ -195,7 +195,7 @@ Pinpoint APM 链路数据较为复杂：
 |`duration`|Duration of span|int|μs|
 |`message`|Origin content of span|string|-|
 |`parent_id`|Parent span ID of current span|string|-|
-|`pid`|Application process id. Available in ddtrace, OpenTelemetry. Optional.|string|-|
+|`pid`|Application process id. Available in DDTrace, OpenTelemetry. Optional.|string|-|
 |`priority`|Optional.|int|-|
 |`resource`|Resource name produce current span|string|-|
 |`span_id`|Span id|string|-|

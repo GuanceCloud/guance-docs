@@ -108,6 +108,7 @@ Profile 支持采集使用 Java, Python 和 Go 等不同语言环境下应用程
 - [Python](profile-python.md)
 - [C/C++](profile-cpp.md)
 - [NodeJS](profile-nodejs.md)
+- [.NET](profile-dotnet.md)
 
 ## Profiling 字段 {#profiling}
 
@@ -134,9 +135,9 @@ Profile 支持采集使用 Java, Python 和 Go 等不同语言环境下应用程
 |`container_host`|Container hostname. Available in OpenTelemetry. Optional.|
 |`endpoint`|Endpoint info. Available in SkyWalking, Zipkin. Optional.|
 |`env`|Application environment info. Available in Jaeger. Optional.|
-|`http_method`|HTTP request method name. Available in ddtrace, OpenTelemetry. Optional.|
+|`http_method`|HTTP request method name. Available in DDTrace, OpenTelemetry. Optional.|
 |`http_route`|HTTP route. Optional.|
-|`http_status_code`|HTTP response code. Available in ddtrace, OpenTelemetry. Optional.|
+|`http_status_code`|HTTP response code. Available in DDTrace, OpenTelemetry. Optional.|
 |`http_url`|HTTP URL. Optional.|
 |`operation`|Span name|
 |`project`|Project name. Available in Jaeger. Optional.|
@@ -154,7 +155,7 @@ Profile 支持采集使用 Java, Python 和 Go 等不同语言环境下应用程
 |`duration`|Duration of span|int|μs|
 |`message`|Origin content of span|string|-|
 |`parent_id`|Parent span ID of current span|string|-|
-|`pid`|Application process id. Available in ddtrace, OpenTelemetry. Optional.|string|-|
+|`pid`|Application process id. Available in DDTrace, OpenTelemetry. Optional.|string|-|
 |`priority`|Optional.|int|-|
 |`resource`|Resource name produce current span|string|-|
 |`span_id`|Span id|string|-|

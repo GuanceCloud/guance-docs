@@ -1,7 +1,7 @@
 ---
 title     : 'Chrony'
 summary   : '采集 Chrony 服务器相关的指标数据'
-__int_icon      : 'icon/chrony'
+__int_icon: 'icon/chrony'
 dashboard :
   - desc  : '暂无'
     path  : '-'
@@ -15,7 +15,7 @@ monitor   :
 <!-- markdownlint-enable -->
 ---
 
-:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](index.md#legends "Election Enabled")
+:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 
 ---
 
@@ -27,7 +27,7 @@ Chrony 采集器支持远程采集，采集器 Datakit 可以运行在多种操�
 
 ### 前置条件 {#requirements}
 
-- 安装 [chrony 服务]
+- 安装 Chrony 服务
 
 ```shell
 $ yum -y install chrony    # [On CentOS/RHEL]
@@ -76,7 +76,7 @@ Leap status     : Normal
     
       ## (Optional) The binPath of chrony
       bin_path = "chronyc"
-     
+    
       ## (Optional) Remote chrony servers
       ## If use remote chrony servers, election must be true
       ## If use remote chrony servers, bin_paths should be shielded
@@ -136,7 +136,7 @@ Leap status     : Normal
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`frequency`|This is the rate by which the system clock would be wrong if chronyd was not correcting it.|float|PPM|
+|`frequency`|This is the rate by which the system clock would be wrong if *chronyd* was not correcting it.|float|PPM|
 |`last_offset`|This is the estimated local offset on the last clock update.|float|sec|
 |`residual_freq`|This shows the residual frequency for the currently selected reference source.|float|PPM|
 |`rms_offset`|This is a long-term average of the offset value.|float|sec|

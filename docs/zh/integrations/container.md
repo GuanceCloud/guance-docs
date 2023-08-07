@@ -36,13 +36,13 @@ monitor:
 ### 前置条件 {#requrements}
 
 - 目前 container 会默认连接 Docker 服务，需安装 Docker v17.04 及以上版本。
-- 采集 Kubernetes 数据需要 DataKit 以 [DaemonSet 方式部署](datakit-daemonset-deploy.md)。
+- 采集 Kubernetes 数据需要 DataKit 以 [DaemonSet 方式部署](../datakit/datakit-daemonset-deploy.md)。
 - 采集 Kubernetes Pod 指标数据，[需要 Kubernetes 安装 Metrics-Server 组件](https://github.com/kubernetes-sigs/metrics-server#installation){:target="_blank"}。
 
 <!-- markdownlint-disable MD046 -->
 ???+ info
 
-    - 容器采集支持 Docker 和 Containerd 两种运行时[:octicons-tag-24: Version-1.5.7](changelog.md#cl-1.5.7)，且默认都开启采集。
+    - 容器采集支持 Docker 和 Containerd 两种运行时[:octicons-tag-24: Version-1.5.7](../datakit/changelog.md#cl-1.5.7)，且默认都开启采集。
 
 === "主机安装"
 
@@ -148,7 +148,7 @@ monitor:
     
     - ENV_INPUT_CONTAINER_TAGS：如果配置文件（*container.conf*）中有同名 tag，将会被这里的配置覆盖掉。
     
-    - ENV_INPUT_CONTAINER_LOGGING_EXTRA_SOURCE_MAP：指定替换 source，参数格式是「正则表达式=new_source」，当某个 source 能够匹配正则表达式，则这个 source 会被 new_source 替换。如果能够替换成功，则不再使用 `annotations/labels` 中配置的 source（[:octicons-tag-24: Version-1.4.7](changelog.md#cl-1.4.7)）。如果要做到精确匹配，需要使用 `^` 和 `$` 将内容括起来。比如正则表达式写成 `datakit`，不仅可以匹配 `datakit` 字样，还能匹配到 `datakit123`；写成 `^datakit$` 则只能匹配到的 `datakit`。
+    - ENV_INPUT_CONTAINER_LOGGING_EXTRA_SOURCE_MAP：指定替换 source，参数格式是「正则表达式=new_source」，当某个 source 能够匹配正则表达式，则这个 source 会被 new_source 替换。如果能够替换成功，则不再使用 `annotations/labels` 中配置的 source（[:octicons-tag-24: Version-1.4.7](../datakit/changelog.md#cl-1.4.7)）。如果要做到精确匹配，需要使用 `^` 和 `$` 将内容括起来。比如正则表达式写成 `datakit`，不仅可以匹配 `datakit` 字样，还能匹配到 `datakit123`；写成 `^datakit$` 则只能匹配到的 `datakit`。
     
     - ENV_INPUT_CONTAINER_LOGGING_SOURCE_MULTILINE_MAP_JSON：用来指定 source 到多行配置的映射，如果某个日志没有配置 `multiline_match`，就会根据它的 source 来此处查找和使用对应的 `multiline_match`。因为 `multiline_match` 值是正则表达式较为复杂，所以 value 格式是 JSON 字符串，可以使用 [json.cn](https://www.json.cn/){:target="_blank"} 辅助编写并压缩成一行。
 
@@ -234,7 +234,7 @@ The metric of containers, only supported Running status.
 |  ----  | --------|
 |`container_id`|Container ID|
 |`container_name`|Container name from k8s (label `io.kubernetes.container.name`). If empty then use $container_runtime_name.|
-|`container_runtime_name`|Container name from runtime (like 'docker ps'). If empty then use 'unknown' ([:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)).|
+|`container_runtime_name`|Container name from runtime (like 'docker ps'). If empty then use 'unknown'.|
 |`container_type`|The type of the container (this container is created by Kubernetes/Docker/containerd).|
 |`deployment`|The deployment name of the container's pod (unsupported containerd).|
 |`docker_image`|The full name of the container image, example `nginx.org/nginx:1.21.0` (Deprecated: use image).|
@@ -600,7 +600,7 @@ The object of containers, only supported Running status.
 |`container_host`|The name of the container host (unsupported containerd).|
 |`container_id`|Container ID|
 |`container_name`|Container name from k8s (label `io.kubernetes.container.name`). If empty then use $container_runtime_name.|
-|`container_runtime_name`|Container name from runtime (like 'docker ps'). If empty then use 'unknown' ([:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)).|
+|`container_runtime_name`|Container name from runtime (like 'docker ps'). If empty then use 'unknown'.|
 |`container_type`|The type of the container (this container is created by Kubernetes/Docker/containerd).|
 |`deployment`|The deployment name of the container's pod (unsupported containerd).|
 |`docker_image`|The full name of the container image, example `nginx.org/nginx:1.21.0` (Deprecated: use image).|
@@ -959,7 +959,7 @@ The logging of the container.
 |`[POD_LABEL]`|The pod labels will be extracted as tags if `extract_k8s_label_as_tags` is enabled.|
 |`container_id`|Container ID|
 |`container_name`|Container name from k8s (label `io.kubernetes.container.name`). If empty then use $container_runtime_name.|
-|`container_runtime_name`|Container name from runtime (like 'docker ps'). If empty then use 'unknown' ([:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)).|
+|`container_runtime_name`|Container name from runtime (like 'docker ps'). If empty then use 'unknown'.|
 |`container_type`|The type of the container (this container is created by Kubernetes/Docker/containerd).|
 |`deployment`|The deployment name of the container's pod (unsupported containerd).|
 |`namespace`|The pod namespace of the container (label `io.kubernetes.pod.namespace`).|
@@ -971,8 +971,8 @@ The logging of the container.
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`log_read_lines`|The lines of the read file ([:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)).|int|count|
-|`log_read_offset`|The offset of the read file ([:octicons-tag-24: Version-1.4.8](changelog.md#cl-1.4.8) · [:octicons-beaker-24: Experimental](index.md#experimental)).|int|-|
+|`log_read_lines`|The lines of the read file.|int|count|
+|`log_read_offset`|The offset of the read file.|int|-|
 |`log_read_time`|The timestamp of the read file.|s|-|
 |`message`|The text of the logging.|string|-|
 |`message_length`|The length of the message content.|B|count|
@@ -1151,5 +1151,5 @@ kubectl apply -f mysecret.yaml
 ## 延伸阅读 {#more-reading}
 
 - [eBPF 采集器：支持容器环境下的流量采集](ebpf.md)
-- [正确使用正则表达式来配置](datakit-input-conf.md#debug-regex)
-- [Kubernetes 下 DataKit 的几种配置方式](k8s-config-how-to.md)
+- [正确使用正则表达式来配置](../datakit/datakit-input-conf.md#debug-regex)
+- [Kubernetes 下 DataKit 的几种配置方式](../datakit/k8s-config-how-to.md)

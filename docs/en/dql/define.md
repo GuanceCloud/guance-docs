@@ -5,7 +5,7 @@ The following is the DataFlux Query Language (dql) definition. With the gradual 
 
 The whole constraints are as follows:
 
-- Non-keywords (such as metric name and tag name) are case sensitive; **keywords and function names are case-insensitive**.
+- Non-keywords (such as metric name and tag name) are case sensitive; <u>keywords and function names are case-insensitive</u>.
 
 - With `#` as line comment character; inline comment is not supported.
 

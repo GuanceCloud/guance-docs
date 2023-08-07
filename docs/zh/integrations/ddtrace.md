@@ -10,7 +10,6 @@ monitor   :
     path  : '-'
 ---
 
-
 <!-- markdownlint-disable MD025 -->
 # DDTrace
 <!-- markdownlint-enable -->
@@ -110,10 +109,9 @@ DDTrace 是 DataDog 开源的 APM 产品，Datakit 内嵌的 DDTrace Agent 用�
       ## NOTE: DO NOT EDIT.
       endpoints = ["/v0.3/traces", "/v0.4/traces", "/v0.5/traces"]
     
-      ## customer_tags is a list of keys contains keys set by client code like span.SetTag(key, value)
-      ## that want to send to data center. Those keys set by client code will take precedence over
-      ## keys in [inputs.ddtrace.tags]. DOT(.) IN KEY WILL BE REPLACED BY DASH(_) WHEN SENDING.
-      # customer_tags = ["key1", "key2", ...]
+      ## ignore_tags will work as a blacklist to prevent tags send to data center.
+      ## Every value in this list is a valid string of regular expression.
+      # ignore_tags = ["block1", "block2"]
     
       ## Keep rare tracing resources list switch.
       ## If some resources are rare enough(not presend in 1 hour), those resource will always send
@@ -172,7 +170,7 @@ DDTrace 是 DataDog 开源的 APM 产品，Datakit 内嵌的 DDTrace Agent 用�
     | 环境变量名                             | 类型        | 示例                                                                             |
     | -------------------------------------- | ----------- | -------------------------------------------------------------------------------- |
     | `ENV_INPUT_DDTRACE_ENDPOINTS`          | JSON string | `["/v0.3/traces", "/v0.4/traces", "/v0.5/traces"]`                               |
-    | `ENV_INPUT_DDTRACE_CUSTOMER_TAGS`      | JSON string | `["key1", "key2", "key3"]`                                                       |
+    | `ENV_INPUT_DDTRACE_IGNORE_TAGS`        | JSON string | `["block1", "block2"]`                                                           |
     | `ENV_INPUT_DDTRACE_KEEP_RARE_RESOURCE` | bool        | true                                                                             |
     | `ENV_INPUT_DDTRACE_OMIT_ERR_STATUS`    | JSON string | `["404", "403", "400"]`                                                          |
     | `ENV_INPUT_DDTRACE_CLOSE_RESOURCE`     | JSON string | `{"service1":["resource1"], "service2":["resource2"], "service3":["resource3"]}` |
@@ -204,7 +202,7 @@ DDTrace 是 DataDog 开源的 APM 产品，Datakit 内嵌的 DDTrace Agent 用�
 
 如果 Trace 数据是跨机器发送过来的，那么需要设置 [DataKit 的 HTTP 设置](datakit-conf.md#config-http-server)。
 
-如果有 DDTrace 数据发送给 Datakit，那么在 [DataKit 的 monitor](datakit-monitor.md) 上能看到：
+如果有 DDTrace 数据发送给 Datakit，那么在 [DataKit 的 monitor](../datakit/datakit-monitor.md) 上能看到：
 
 <figure markdown>
   ![](https://static.guance.com/images/datakit/input-ddtrace-monitor.png){ width="800" }
@@ -294,9 +292,9 @@ customer_tags = [
 |`container_host`|Container hostname. Available in OpenTelemetry. Optional.|
 |`endpoint`|Endpoint info. Available in SkyWalking, Zipkin. Optional.|
 |`env`|Application environment info. Available in Jaeger. Optional.|
-|`http_method`|HTTP request method name. Available in ddtrace, OpenTelemetry. Optional.|
+|`http_method`|HTTP request method name. Available in DDTrace, OpenTelemetry. Optional.|
 |`http_route`|HTTP route. Optional.|
-|`http_status_code`|HTTP response code. Available in ddtrace, OpenTelemetry. Optional.|
+|`http_status_code`|HTTP response code. Available in DDTrace, OpenTelemetry. Optional.|
 |`http_url`|HTTP URL. Optional.|
 |`operation`|Span name|
 |`project`|Project name. Available in Jaeger. Optional.|
@@ -314,7 +312,7 @@ customer_tags = [
 |`duration`|Duration of span|int|μs|
 |`message`|Origin content of span|string|-|
 |`parent_id`|Parent span ID of current span|string|-|
-|`pid`|Application process id. Available in ddtrace, OpenTelemetry. Optional.|string|-|
+|`pid`|Application process id. Available in DDTrace, OpenTelemetry. Optional.|string|-|
 |`priority`|Optional.|int|-|
 |`resource`|Resource name produce current span|string|-|
 |`span_id`|Span id|string|-|
@@ -328,4 +326,4 @@ customer_tags = [
 
 - [DataKit Tracing 字段定义](datakit-tracing-struct.md)
 - [DataKit 通用 Tracing 数据采集说明](datakit-tracing.md)
-- [正确使用正则表达式来配置](datakit-input-conf.md#debug-regex)
+- [正确使用正则表达式来配置](../datakit/datakit-input-conf.md#debug-regex)

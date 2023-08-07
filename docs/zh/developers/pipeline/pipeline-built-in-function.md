@@ -159,8 +159,6 @@ adjust_timezone(time)
 
 ### `agg_create()` {#fn-agg-create}
 
-[:octicons-tag-24: Version-1.5.10](../datakit/changelog.md#cl-1.5.10)
-
 函数原型：`fn agg_create(bucket: str, on_interval: str = "60s", on_count: int = 0, keep_value: bool = false, const_tags: map[string]string = nil)`
 
 函数说明：创建一个用于聚合的指标集，通过 `on_interval` 或 `on_count` 设置时间或次数作为聚合周期，聚合结束后将上传聚合数据，可以选择是否保留上一次聚合的数据
@@ -181,8 +179,6 @@ agg_create("cpu_agg_info", on_interval = "30s")
 
 
 ### `agg_metric()` {#fn-agg-metric}
-
-[:octicons-tag-24: Version-1.5.10](../datakit/changelog.md#cl-1.5.10)
 
 函数原型：`fn agg_metric(bucket: str, new_field: str, agg_fn: str, agg_by: []string, agg_field: str)`
 
@@ -430,8 +426,6 @@ cover(abc, [2, 4])
 
 ### `datetime()` {#fn-datetime}
 
-[:octicons-tag-24: Version-1.5.7](../datakit/changelog.md#cl-1.5.7)
-
 函数原型：`fn datetime(key, precision: str, fmt: str, tz: str = "")`
 
 函数说明：将时间戳转成指定日期格式
@@ -632,7 +626,6 @@ rename("time", log_time)
 
 
 ### `delete()` {#fn-delete}
-[:octicons-tag-24: Version-1.5.8](../datakit/changelog.md#cl-1.5.8)
 
 函数原型：`fn delete(src: map[string]any, key: str)`
 
@@ -974,7 +967,7 @@ group_in(log_level, ["error", "panic"], "not-ok", status)
 - `json_path`: JSON 路径信息
 - `newkey`：提取后数据写入新 key
 - `trim_space`: 删除提取出的字符中的空白首尾字符，默认值为 `true`
-- `delete_after_extract`: 在提取结束后删除当前对象，在重新序列化后回写待提取对象；只能应用于 map 的 key 与 value 的删除，不能用于删除 list 的元素；默认值为 `false`，不进行任何操作[:octicons-tag-24: Version-1.5.7](../datakit/changelog.md#cl-1.5.7)
+- `delete_after_extract`: 在提取结束后删除当前对象，在重新序列化后回写待提取对象；只能应用于 map 的 key 与 value 的删除，不能用于删除 list 的元素；默认值为 `false`，不进行任何操作
 
 ```python
 # 直接提取原始输入 JSON 中的 x.y 字段，并可将其命名成新字段 abc
@@ -1074,8 +1067,6 @@ json(_, item2.item3[0], item, true, true)
 
 
 ### `kv_split()` {#fn-kv_split}
-
-[:octicons-tag-24: Version-1.5.7](../datakit/changelog.md#cl-1.5.7)
 
 函数原型：`fn kv_split(key, field_split_pattern = " ", value_split_pattern = "=", trim_key = "", trim_value = "", include_keys = [], prefix = "") -> bool`
 
@@ -1929,9 +1920,9 @@ json(_, userAgent) user_agent(userAgent)
 ```
 
 
-### `vaild_json()` {#fn-vaild_json}
+### `valid_json()` {#fn-valid-json}
 
-函数原型：`fn vaild_json(val: str) bool`
+函数原型：`fn valid_json(val: str) bool`
 
 函数说明：判断是否为一个有效的 JSON 字符串。
 
@@ -1943,27 +1934,27 @@ json(_, userAgent) user_agent(userAgent)
 
 ```python
 a = "null"
-if vaild_json(a) { # true
+if valid_json(a) { # true
     if load_json(a) == nil {
         add_key("a", "nil")
     }
 }
 
 b = "[1, 2, 3]"
-if vaild_json(b) { # true
+if valid_json(b) { # true
     add_key("b", load_json(b))
 }
 
 c = "{\"a\": 1}"
-if vaild_json(c) { # true
+if valid_json(c) { # true
     add_key("c", load_json(c))
 }
 
 d = "???{\"d\": 1}"
-if vaild_json(d) { # true
+if valid_json(d) { # true
     add_key("d", load_json(c))
 } else {
-    add_key("d", "invaild json")
+    add_key("d", "invalid json")
 }
 ```
 
@@ -1974,7 +1965,7 @@ if vaild_json(d) { # true
   "a": "nil",
   "b": "[1,2,3]",
   "c": "{\"a\":1}",
-  "d": "invaild json",
+  "d": "invalid json",
 }
 ```
 

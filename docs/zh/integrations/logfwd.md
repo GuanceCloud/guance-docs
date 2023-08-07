@@ -45,11 +45,11 @@ monitor   :
       # more_tag = "some_other_value"
     ```
 
-    配置好后，[重启 DataKit](datakit-service-how-to.md#manage-service) 即可。
+    配置好后，[重启 DataKit](../datakit/datakit-service-how-to.md#manage-service) 即可。
 
 === "Kubernetes"
 
-    目前可以通过 [ConfigMap 方式注入 logfwdserver 采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+    目前可以通过 [ConfigMap 方式注入 logfwdserver 采集器配置](../datakit/datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
 <!-- markdownlint-enable -->
 
 ### logfwd 使用和配置 {#config}
@@ -140,7 +140,7 @@ spec:
           fieldPath: metadata.namespace
     - name: LOGFWD_GLOBAL_SOURCE
       value: nginx-souce-test
-    image: pubrepo.jiagouyun.com/datakit/logfwd:1.11.0
+    image: pubrepo.jiagouyun.com/datakit/logfwd:1.12.3
     imagePullPolicy: Always
     resources:
       requests:
@@ -242,7 +242,7 @@ spec:
         fieldRef:
           apiVersion: v1
           fieldPath: metadata.namespace
-    image: pubrepo.jiagouyun.com/datakit/logfwd:1.11.0
+    image: pubrepo.jiagouyun.com/datakit/logfwd:1.12.3
     imagePullPolicy: Always
     resources:
       requests:
@@ -331,7 +331,7 @@ MiB Swap:   2048.0 total,      0.0 free,   2048.0 used.   8793.3 avail Mem
 - [Socket 日志接入最佳实践](logging_socket.md)
 - [Kubernetes 中指定 Pod 的日志采集配置](container-log.md#logging-with-annotation-or-label)
 - [第三方日志接入](logstreaming.md)
-- [Kubernetes 环境下 DataKit 配置方式介绍](k8s-config-how-to.md)
-- [以 DaemonSet 形式安装 DataKit](datakit-daemonset-deploy.md)
+- [Kubernetes 环境下 DataKit 配置方式介绍](../datakit/k8s-config-how-to.md)
+- [以 DaemonSet 形式安装 DataKit](../datakit/datakit-daemonset-deploy.md)
 - [在 DataKit 上部署 `logfwdserver`](logfwdserver.md)
-- [正确使用正则表达式来配置](datakit-input-conf.md#debug-regex)
+- [正确使用正则表达式来配置](../datakit/datakit-input-conf.md#debug-regex)

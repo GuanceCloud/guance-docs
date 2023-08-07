@@ -13,7 +13,7 @@ Profile 支持自动获取应用程序运行过程中 CPU、内存和 I/O 的使
 ## 前提条件
 
 1. [安装 DataKit](../datakit/datakit-install.md) 
-2. [开启 Profile 采集器](../datakit/profile.md)
+2. [开启 Profile 采集器](../integrations/profile.md)
 
 ## 数据查询与分析
 

@@ -1,26 +1,58 @@
 # 更新日志
 ---
 
-<!--
-[:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6) · [:octicons-beaker-24: Experimental](index.md#experimental)
-[:fontawesome-solid-flag-checkered:](index.md#legends "支持选举")
+## 1.12.3(2023/08/03) {#cl-1.12.3}
 
-    ```toml
-        
-    ```
+- 修复 Windows 下日志采集文件延迟释放问题（#1805）
+- 修复新容器头部日志不采集的问题
+- 修复几个正则表达式可能导致的崩溃问题（#1781）
+- 修复安装包体积过大的问题（#1804）
+- 修复日志采集器开启磁盘缓存可能失败的问题
 
-# 外链的添加方式
-[some text](http://external-host.com){:target="_blank"}
+## 1.12.2(2023/07/31) {#cl-1.12.2}
 
-## x.x.x(YY/MM/DD) {#cl-x.x.x}
+- 修复 OpenTelemetry Metric 和 Trace 路由配置问题
+
+## 1.12.1(2023/07/28) {#cl-1.12.1}
+
+- 修复老版本 DDTrace Python Profile 接入问题（#1800）
+
+---
+
+## 1.12.0(2023/07/27) {#cl-1.12.0}
 
 本次发布属于迭代发布，主要有如下更新：
 
-### 新加功能 {#cl-x.x.x-new}
-### 问题修复 {#cl-x.x.x-fix}
-### 功能优化 {#cl-x.x.x-opt}
-### 兼容调整 {#cl-x.x.x-brk}
--->
+### 新加功能 {#cl-1.12.0-new}
+
+- [HTTP API](apis.md##api-sourcemap) 增加 sourcemap 文件上传（#1782）
+- 新增 .net Profiling 接入支持（#1772）
+- 新增 Couchbase 采集器（#1717）
+
+### 问题修复 {#cl-1.12.0-fix}
+
+- 修复拨测采集器缺失 `owner` 字段问题（#1789）
+- 修复 DDTrace 采集器缺失 `host` 问题，同时各类 Trace 的 tag 采集改为黑名单机制[^trace-black-list]（#1776）
+- 修复 RUM API 跨域问题（#1785）
+
+[^trace-black-list]: 各类 Trace 会在其数据上带上各种业务字段（称之为 Tag、Annotation 或 Attribute 等），Datakit 为了收集更多数据，默认这些字段都予以接收。
+
+### 功能优化 {#cl-1.12.0-opt}
+
+- 优化 SNMP 采集器加密算法识别方法；优化 SNMP 采集器文档，增加更多示例解释（#1795）
+- 增加 Pythond 采集器 Kubernetes 部署示例，增加 Git 部署示例（#1732）
+- 增加 InfluxDB、Solr、NSQ、Net 采集器集成测试（#1758/#1736/#1759/#1760）
+- 增加 Flink 指标（#1777）
+- 扩展 Memcached、MySQL 指标采集（#1773/#1742）
+- 更新 Datakit 自身指标暴露（#1492）
+- Pipeline 增加更多运算符支持（#1749）
+- 拨测采集器
+    - 增加拨测采集器内置仪表板（#1765）
+    - 优化拨测任务启动，避免资源集中消耗（#1779）
+- 文档更新（#1769/#1775/#1761/#1642）
+- 其它优化（#1777/#1794/#1778/#1783/#1775/#1774/#1737）
+
+---
 
 ## 1.11.0(2023/07/11) {#cl-1.11.0}
 
@@ -45,13 +77,16 @@
 - 容器日志采集支持配置容器内文件(#1723)
 - SQLServer 采集器指标完善和集成测试功能重构(#1694)
 
-<!-- 
 ### 兼容调整 {#cl-1.11.0-brk}
-1. 容器日志采集对于创建时间小于 5 分钟的容器，不再提供自动 `from_beginning`
-2. 移除容器日志的 `deployment` tag
-3. 移除容器 stdout source 会以 `short_image_name` 来命名的逻辑，现在只使用容器自身名称和 labels["io.kubernetes.container.name"]
-4. 移除对旧版容器内部文件采集方案——配置 labels `datakit/logs/inside` 的支持，改为 ENV 配置
--->
+
+以下兼容性修改，可能会导致数据采集上的问题，如果您使用了以下的功能，请考虑是否升级，或者采用新的对应方案。
+
+1. 移除容器日志的 `deployment` tag
+1. 移除容器 stdout 日志的 `source` 字段以 `short_image_name` 来命名的逻辑。现在只使用容器名称或 Kubernetes 中的 label `io.kubernetes.container.name` 来命名[^cl-1.11.0-brk-why-1]。
+1. 移除通过容器 label 采集其外挂文件路径的功能（`datakit/logs/inside`），改成通过[容器环境变量（`DATAKIT_LOGS_CONFIG`）](../integrations/container-log.md)的方式来实现[^cl-1.11.0-brk-why-2]。
+
+[^cl-1.11.0-brk-why-1]: 在 Kubernetes 中，`io.kubernetes.container.name` 值是不变的，而主机容器中，容器名也不太变，故不再采用原始镜像名作为 `source` 字段的来源。
+[^cl-1.11.0-brk-why-2]: 相比修改容器的 Label（一般情况下需要重新构建镜像），给容器追加环境变量更为方便（启动容器的时候，注入环境变量即可）。
 
 ---
 
@@ -84,7 +119,7 @@
 - Kubernetes Pod 指标和对象采集新增 `memory_capacity` 和 `memory_used_percent` 两个字段 (#1721)
 - OpenTelemetry HTTP 路由支持自定义（#1718）
 - Oracle 采集器优化 `oracle_system` 指标集丢失的问题，优化采集逻辑并增加部分指标（#1693）
-- Pipeline 增加 `in` 运算符，增加 `value_type()` 和 `vaild_json()` 函数，调整 `load_json()` 函数反序列化失败后的行为 (#1712)
+- Pipeline 增加 `in` 运算符，增加 `value_type()` 和 `valid_json()` 函数，调整 `load_json()` 函数反序列化失败后的行为 (#1712)
 - 主机进程对象中采集新增启动时长（`started_duration`）字段（#1722）
 - 优化拨测数据发送逻辑（#1708）
 - 更新更多集成测试（#1666/#1667/#1668/#1693/#1599/#1573/#1572/#1563/#1512/#1715）
@@ -2454,3 +2489,24 @@ powershell .install.ps1;
 - `tailf` 采集器新日志匹配改成正向匹配
 - 其它一些细节问题修复
 - 支持 Mac 平台的 CPU 数据采集
+
+<!--
+[:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6) · [:octicons-beaker-24: Experimental](index.md#experimental)
+[:fontawesome-solid-flag-checkered:](index.md#legends "支持选举")
+
+    ```toml
+        
+    ```
+
+# 外链的添加方式
+[some text](http://external-host.com){:target="_blank"}
+
+## x.x.x(YY/MM/DD) {#cl-x.x.x}
+
+本次发布属于迭代发布，主要有如下更新：
+
+### 新加功能 {#cl-x.x.x-new}
+### 问题修复 {#cl-x.x.x-fix}
+### 功能优化 {#cl-x.x.x-opt}
+### 兼容调整 {#cl-x.x.x-brk}
+-->

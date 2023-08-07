@@ -1,6 +1,6 @@
 ---
 title     : 'GitLab'
-summary   : '采集 Gitlat 的指标数据'
+summary   : '采集 Gitlab 的指标数据'
 __int_icon      : 'icon/gitlab'
 dashboard :
   - desc  : 'GitLab'
@@ -16,7 +16,7 @@ monitor   :
 
 ---
 
-:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](index.md#legends "Election Enabled")
+:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 
 ---
 

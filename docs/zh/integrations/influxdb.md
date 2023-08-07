@@ -16,7 +16,7 @@ monitor   :
 
 ---
 
-:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](index.md#legends "Election Enabled")
+:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 
 ---
 
@@ -28,6 +28,10 @@ InfluxDB 采集器，用于采集 InfluxDB 的数据。
 
 - InfluxDB 采集器，仅适用于 InfluxDB v1.x
 - InfluxDB v2.x ，需要使用 prom 采集器进行采集
+
+已测试的版本：
+
+- [x] 1.8.10
 
 <!-- markdownlint-disable MD046 -->
 === "主机安装"

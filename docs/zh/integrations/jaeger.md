@@ -43,10 +43,9 @@ Datakit 内嵌的 Jaeger Agent 用于接收，运算，分析 Jaeger Tracing 协
       # Jaeger agent host:port address for UDP transport.
       # address = "127.0.0.1:6831"
     
-      ## customer_tags is a list of keys contains keys set by client code like span.SetTag(key, value)
-      ## that want to send to data center. Those keys set by client code will take precedence over
-      ## keys in [inputs.jaeger.tags]. DOT(.) IN KEY WILL BE REPLACED BY DASH(_) WHEN SENDING.
-      # customer_tags = ["key1", "key2", ...]
+      ## ignore_tags will work as a blacklist to prevent tags send to data center.
+      ## Every value in this list is a valid string of regular expression.
+      # ignore_tags = ["block1", "block2"]
     
       ## Keep rare tracing resources list switch.
       ## If some resources are rare enough(not presend in 1 hour), those resource will always send
@@ -103,7 +102,7 @@ Datakit 内嵌的 Jaeger Agent 用于接收，运算，分析 Jaeger Tracing 协
     | ------------------------------------- | ----------- | -------------------------------------------------------------------------------- |
     | `ENV_INPUT_JAEGER_HTTP_ENDPOINT`      | string      | "/apis/traces"                                                                   |
     | `ENV_INPUT_JAEGER_UDP_ENDPOINT`       | string      | "127.0.0.1:6831"                                                                 |
-    | `ENV_INPUT_JAEGER_CUSTOMER_TAGS`      | JSON string | `["key1", "key2", "key3"]`                                                       |
+    | `ENV_INPUT_JAEGER_IGNORE_TAGS`        | JSON string | `["block1", "block2"]`                                                           |
     | `ENV_INPUT_JAEGER_KEEP_RARE_RESOURCE` | bool        | true                                                                             |
     | `ENV_INPUT_JAEGER_CLOSE_RESOURCE`     | JSON string | `{"service1":["resource1"], "service2":["resource2"], "service3":["resource3"]}` |
     | `ENV_INPUT_JAEGER_SAMPLER`            | float       | 0.3                                                                              |
@@ -319,9 +318,9 @@ func foo() {
 |`container_host`|Container hostname. Available in OpenTelemetry. Optional.|
 |`endpoint`|Endpoint info. Available in SkyWalking, Zipkin. Optional.|
 |`env`|Application environment info. Available in Jaeger. Optional.|
-|`http_method`|HTTP request method name. Available in ddtrace, OpenTelemetry. Optional.|
+|`http_method`|HTTP request method name. Available in DDTrace, OpenTelemetry. Optional.|
 |`http_route`|HTTP route. Optional.|
-|`http_status_code`|HTTP response code. Available in ddtrace, OpenTelemetry. Optional.|
+|`http_status_code`|HTTP response code. Available in DDTrace, OpenTelemetry. Optional.|
 |`http_url`|HTTP URL. Optional.|
 |`operation`|Span name|
 |`project`|Project name. Available in Jaeger. Optional.|
@@ -339,7 +338,7 @@ func foo() {
 |`duration`|Duration of span|int|μs|
 |`message`|Origin content of span|string|-|
 |`parent_id`|Parent span ID of current span|string|-|
-|`pid`|Application process id. Available in ddtrace, OpenTelemetry. Optional.|string|-|
+|`pid`|Application process id. Available in DDTrace, OpenTelemetry. Optional.|string|-|
 |`priority`|Optional.|int|-|
 |`resource`|Resource name produce current span|string|-|
 |`span_id`|Span id|string|-|

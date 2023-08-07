@@ -2,7 +2,7 @@
 # InfluxDB
 ---
 
-:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](index.md#legends "Election Enabled")index.md#legends "支持选举")
+:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")index.md#legends "支持选举")
 
 ---
 
@@ -11,6 +11,10 @@ The InfuxDB collector is used to collect the data of the InfuxDB.
 ## Preconditions {#requirements}
 
 The infuxdb collector is only applicable to infuxdb v1.x, and the prom collector is required for infuxdb v2.x.
+
+Already tested version:
+
+- [x] 1.8.10
 
 ## InfluxDB Collector Configuration {#config}
 

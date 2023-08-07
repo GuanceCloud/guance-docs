@@ -7,7 +7,7 @@
 
 ---
 
-[:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6) · [:octicons-beaker-24: Experimental](index.md#experimental)
+[:octicons-beaker-24: Experimental](../datakit/index.md#experimental)
 
 ## 介绍 {#intro}
 
@@ -124,7 +124,7 @@ spec:
 
 #### 前提条件 {#nginx-requirements}
 
-- 已部署 [DaemonSet DataKit](datakit-daemonset-deploy.md)
+- 已部署 [DaemonSet DataKit](../datakit/datakit-daemonset-deploy.md)
 - 如果 `Deployment` 名称为 `ingress-nginx-controller`，那边 yaml 配置如下：
 
   ``` yaml

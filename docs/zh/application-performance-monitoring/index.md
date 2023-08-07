@@ -4,13 +4,15 @@ icon: zy/application-performance-monitoring
 # 应用性能监测
 ---
 
-## 简介
+<video controls="controls" poster="https://static.guance.com/dataflux/help/video/apm.jpeg" >
+      <source id="mp4" src="https://static.guance.com/dataflux/help/video/apm.mp4" type="video/mp4">
+</video>
 
-应用性能监测支持使用 Opentracing 协议的采集器，实现对分布式架构的应用进行端到端的链路分析，并与基础设施、日志、用户访问监测进行关联分析，快速定位并解决故障，提高用户体验。
+应用性能监测支持使用 Opentracing 协议的采集器，实现对分布式架构的应用进行端到端的链路分析，并与基础设施、日志、用户访问监测进行关联，快速定位并解决故障，提高用户体验。
 
 ## 部署架构
 
-最佳部署方案是将 DataKit 部署在每一台应用服务器中，通过服务所在主机的 DataKit 后将数据打到观测云中心，能更好的对应用服务的服务器主机指标、应用日志、系统日志、应用服务链路数据等统一汇聚，进行各项数据的关联分析。
+最佳部署方案是将 DataKit 部署在每一台应用服务器中，通过服务所在主机的 DataKit 后将数据打到观测云中心，能更好地对应用服务的服务器主机指标、应用日志、系统日志、应用服务链路数据等统一汇聚，进行各项数据的关联分析。
 
 ![](img/1.apm-2.png)
 

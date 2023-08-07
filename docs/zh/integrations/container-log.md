@@ -57,7 +57,7 @@ Datakit 支持采集 Kubernetes 和主机容器日志，从数据来源上，可
 | `pipeline`           | 字符串           | 适用该日志的 Pipeline 脚本，默认值为与日志来源匹配的脚本名（`<source>.p`）                                                                                          |
 | `multiline_match`    | 正则表达式字符串 | 用于[多行日志匹配](logging.md#multiline)时的首行识别，例如 `"multiline_match":"^\\d{4}"` 表示行首是 4 个数字，在正则表达式规则中 `\d` 是数字，前面的 `\` 是用来转义 |
 | `character_encoding` | 字符串           | 选择编码，如果编码有误会导致数据无法查看，支持 `utf-8`, `utf-16le`, `utf-16le`, `gbk`, `gb18030` or ""。默认为空即可                                                |
-| `tags`               | key/value 键值对 | 添加额外的 tags，如果已经存在同名的 key 将以此为准（[:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6) ）                                                     |
+| `tags`               | key/value 键值对 | 添加额外的 tags，如果已经存在同名的 key 将以此为准（[:octicons-tag-24: Version-1.4.6](../datakit/changelog.md#cl-1.4.6) ）                                                     |
 
 完整示例如下：
 
@@ -328,8 +328,8 @@ Datakit 支持采集 Kubernetes 和主机容器日志，从数据来源上，可
 
 > 所谓不手动指定容器日志来源，就是指在 Pod Annotation 中不指定，在 container.conf 中也不指定（目前 container.conf 中无指定容器日志来源的配置项）
 
-- 容器本身的名称：通过 `docker ps` 或 `crictl ps` 能看到的容器名
 - Kubernetes 指定的容器名：从容器的 `io.kubernetes.container.name` 这个 label 上取值
+- 容器本身的名称：通过 `docker ps` 或 `crictl ps` 能看到的容器名
 - `default`: 默认的 `source`
 
 ## 延伸阅读 {#more-reading}

@@ -7,8 +7,6 @@ dashboard:
     path: 'dashboard/zh/aliyun_polardb_mysql/'
 ---
 
-# 阿里云 PolarDB MySQL
-
 阿里云 PolarDB MySQL 指标展示，包括 CPU 使用率、内存命中率、网络流量、连接数、QPS、 TPS、 只读节点延迟等。
 
 ## 配置 {#config}
@@ -17,7 +15,7 @@ dashboard:
 
 推荐开通 观测云集成 - 扩展 - 托管版 Func: 一切前置条件都自动安装好, 请继续脚本安装
 
-如果自行部署 Func 参考 [自行部署 Func ](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+如果自行部署 Func 参考 [自行部署 Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 > 推荐部署GSE版
 
@@ -43,7 +41,7 @@ dashboard:
 
 我们默认采集了一些配置, 具体见指标一栏
 
-[配置自定义云对象指标] (https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
+[配置自定义云对象指标](https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
 
 
 ### 验证
@@ -55,42 +53,11 @@ dashboard:
 ## 指标 {#metric}
 配置好阿里云-云监控,默认的指标集如下, 可以通过配置的方式采集更多的指标 [阿里云云监控指标详情](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
 
-| Metric Id                      | Metric Name            | Dimensions                  | Statistics              | Unit        |
-| ---- | ------ | ------ | ---- | ---- |
-| cluster_active_sessions        | 活跃连接数             | userId,clusterId,nodeId     | Average                 | count       |
-| cluster_blktag_utilization     | blktag使用率           | userId,clusterId            | Average                 | %           |
-| cluster_connection_utilization | 连接数使用率           | userId,clusterId,nodeId     | Average,Maximum,Minimum | %           |
-| cluster_cpu_utilization        | CPU使用率              | userId,clusterId,nodeId     | Average                 | %           |
-| cluster_data_io                | 每秒存储引擎IO吞吐量   | userId,clusterId,nodeId     | Average                 | KB          |
-| cluster_data_iops              | 每秒存储引擎IO次数     | userId,clusterId,nodeId     | Average                 | countSecond |
-| cluster_direntry_utilization   | direntry使用率         | userId,clusterId            | Average                 | %           |
-| cluster_disk_utilization       | 磁盘使用率             | userId,clusterId            | Average                 | %           |
-| cluster_imci_datasize          | IMCI节点列存索引存储量 | userId,clusterId,nodeId     | Average                 | MB          |
-| cluster_imci_exememusage       | IMCI执行器使用内存量   | userId,clusterId,nodeId     | Average                 | Byte        |
-| cluster_imci_stmtsexepersec    | IMCI每秒查询SQL数量    | userId,clusterId,nodeId     | Average                 | count/s     |
-| cluster_imci_stmtsinqueue      | IMCI调度队列中SQL数量  | userId,clusterId,nodeId     | Average                 | count       |
-| cluster_imci_tmpfileusedsize   | IMCI执行器临时表大小   | userId,clusterId,nodeId     | Average                 | Byte        |
-| cluster_inode_utilization      | inode使用率            | userId,clusterId            | Average                 | %           |
-| cluster_input_traffic          | 每秒网络输入流量       | userId,clusterId,nodeId     | Average,Maximum,Minimum | KByte/s     |
-| cluster_iops                   | 每秒IO次数             | userId,clusterId,nodeId     | Average                 | countSecond |
-| cluster_iops_usage             | IOPS使用率             | userId,clusterId,nodeId     | Average,Maximum,Minimum | %           |
-| cluster_mem_hit_ratio          | 内存命中率             | userId,clusterId,nodeId     | Average                 | %           |
-| cluster_memory_utilization     | 内存使用率             | userId,clusterId,nodeId     | Average                 | %           |
-| cluster_mps                    | 每秒数据操作数         | userId,clusterId,instanceId | Average,Maximum,Minimum | countSecond |
-| cluster_output_traffic         | 每秒网络输出流量       | userId,clusterId,nodeId     | Average,Maximum,Minimum | KByte/s     |
-| cluster_proxy_cpu_utilization  | ProxyCPU使用率         | userId,clusterId            | Average,Maximum,Minimum | %           |
-| cluster_qps                    | 每秒查询数量           | userId,clusterId,nodeId     | Average                 | count       |
-| cluster_redo_write_rate        | redo日志写入速率       | userId,clusterId,nodeId     | Average                 | Byte/s      |
-| cluster_replica_lag            | 只读节点复制延迟       | userId,clusterId,instanceId | Average,Minimum,Maximum | seconds     |
-| cluster_slow_queries_ps        | 每秒慢查询数量         | userId,clusterId,nodeId     | Average                 | countS      |
-| cluster_total_session          | 当前总连接数           | userId,clusterId,nodeId     | Average,Maximum,Minimum | count       |
-| cluster_tps                    | 每秒事务数             | userId,clusterId,nodeId     | Average                 | countS      |
-
 ## 对象 {#object}
 
 采集到的阿里云 PolarDB MySQL 对象数据结构, 可以从「基础设施-自定义」里看到对象数据
 
-```
+```json
 {
   "measurement": "aliyun_polardb",
   "tags": {
@@ -129,7 +96,7 @@ dashboard:
 
 > 提示：本脚本的代码运行依赖 PolarDB 实例对象采集，如果未配置 PolarDB 的自定义对象采集，慢日志脚本无法采集到慢日志数据
 
-#### 安装脚本
+#### 部署配置脚本
 
 在之前的基础上，需要再安装一个对应 **PolarDB 慢查询统计日志采集的脚本**
 
@@ -187,11 +154,11 @@ dashboard:
 
 ### 慢查询明细
 
-#### 前提条件
+#### 前置条件
 
 > 提示：本脚本的代码运行依赖 PolarDB 实例对象采集，如果未配置 PolarDB 的自定义对象采集，慢日志脚本无法采集到慢日志数据
 
-#### 安装脚本
+#### 部署脚本
 
 在之前的基础上，需要再安装一个对应 **PolarDB 慢查询明细日志采集的脚本**
 

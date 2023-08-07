@@ -74,8 +74,6 @@ As mentioned above, on the Workspace Lock Prompt page, click **Unlock Now** to j
     - After recharging, the enterprise certification account will be settled according to the bill. After settlement, the relevant workspace will be unlocked;  
     - For cloud account settlement, in **Workspace Management > Change Settlement**, you can rebind the cloud account, re-subscribe to the related cloud account, or select the Billing Center for settlement, and the related workspace will be unlocked automatically after the operation is completed.
 
-![](../img/unclock.png)
-
 
 ### Dissolve
 

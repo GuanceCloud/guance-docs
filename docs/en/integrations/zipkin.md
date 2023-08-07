@@ -26,10 +26,9 @@ The Zipkin Agent embedded in Datakit is used to receive, calculate and analyze t
       pathV1 = "/api/v1/spans"
       pathV2 = "/api/v2/spans"
     
-      ## customer_tags is a list of keys contains keys set by client code like span.SetTag(key, value)
-      ## that want to send to data center. Those keys set by client code will take precedence over
-      ## keys in [inputs.zipkin.tags]. DOT(.) IN KEY WILL BE REPLACED BY DASH(_) WHEN SENDING.
-      # customer_tags = ["key1", "key2", ...]
+      ## ignore_tags will work as a blacklist to prevent tags send to data center.
+      ## Every value in this list is a valid string of regular expression.
+      # ignore_tags = ["block1", "block2"]
     
       ## Keep rare tracing resources list switch.
       ## If some resources are rare enough(not presend in 1 hour), those resource will always send
@@ -85,7 +84,7 @@ The Zipkin Agent embedded in Datakit is used to receive, calculate and analyze t
     | ------------------------------------- | ----------- | -------------------------------------------------------------------------------- |
     | `ENV_INPUT_ZIPKIN_PATH_V1`            | string      | "/api/v1/spans"                                                                  |
     | `ENV_INPUT_ZIPKIN_PATH_V2`            | string      | "/api/v2/spans"                                                                  |
-    | `ENV_INPUT_ZIPKIN_CUSTOMER_TAGS`      | JSON string | `["key1", "key2", "key3"]`                                                       |
+    | `ENV_INPUT_ZIPKIN_IGNORE_TAGS`        | JSON string | `["block1", "block2"]`                                                           |
     | `ENV_INPUT_ZIPKIN_KEEP_RARE_RESOURCE` | bool        | true                                                                             |
     | `ENV_INPUT_ZIPKIN_CLOSE_RESOURCE`     | JSON string | `{"service1":["resource1"], "service2":["resource2"], "service3":["resource3"]}` |
     | `ENV_INPUT_ZIPKIN_SAMPLER`            | float       | 0.3                                                                              |
@@ -111,9 +110,9 @@ The Zipkin Agent embedded in Datakit is used to receive, calculate and analyze t
 |`container_host`|Container hostname. Available in OpenTelemetry. Optional.|
 |`endpoint`|Endpoint info. Available in SkyWalking, Zipkin. Optional.|
 |`env`|Application environment info. Available in Jaeger. Optional.|
-|`http_method`|HTTP request method name. Available in ddtrace, OpenTelemetry. Optional.|
+|`http_method`|HTTP request method name. Available in DDTrace, OpenTelemetry. Optional.|
 |`http_route`|HTTP route. Optional.|
-|`http_status_code`|HTTP response code. Available in ddtrace, OpenTelemetry. Optional.|
+|`http_status_code`|HTTP response code. Available in DDTrace, OpenTelemetry. Optional.|
 |`http_url`|HTTP URL. Optional.|
 |`operation`|Span name|
 |`project`|Project name. Available in Jaeger. Optional.|
@@ -131,7 +130,7 @@ The Zipkin Agent embedded in Datakit is used to receive, calculate and analyze t
 |`duration`|Duration of span|int|μs|
 |`message`|Origin content of span|string|-|
 |`parent_id`|Parent span ID of current span|string|-|
-|`pid`|Application process id. Available in ddtrace, OpenTelemetry. Optional.|string|-|
+|`pid`|Application process id. Available in DDTrace, OpenTelemetry. Optional.|string|-|
 |`priority`|Optional.|int|-|
 |`resource`|Resource name produce current span|string|-|
 |`span_id`|Span id|string|-|

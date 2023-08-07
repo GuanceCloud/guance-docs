@@ -1,15 +1,3 @@
----
-title: 'DataKit Self Metrics'
-summary: 'Collecting DataKit self metrics'
-dashboard:
-  - desc: 'Datakit Dashboard'
-    path: 'dashboard/en/dk'
-
-monitor:
-  - desc: 'Datakit Monitor'
-    path: 'monitor/en/dk.json'
----
-
 # DataKit Metrics
 
 ---
@@ -62,6 +50,9 @@ these metrics.
         ### Filter
         #"datakit_filter_.*",
     
+        ### dialtesting
+        #"datakit_dialtesting_.*",
+    
         ### Input feed
         #".*_feed_.*",
       ]
@@ -87,7 +78,7 @@ these metrics.
     | Environment Name                  | Description                                                            | Examples                                                                               |
     | :---                              | ---                                                                    | ---                                                                                    |
     | `ENV_INPUT_DK_ENABLE_ALL_METRICS` | Enable all metrics, this may collect more than 300+ metrics on Datakit | `on/yes/`                                                                              |
-    | `ENV_INPUT_DK_ADD_METRICS`        | Add extra metrics (JSON array)                                         | `["datakit_io_.*", "datakit_pipeline_.*"]`, Available metrics list [here](datakit-metrics.md) |
+    | `ENV_INPUT_DK_ADD_METRICS`        | Add extra metrics (JSON array)                                         | `["datakit_io_.*", "datakit_pipeline_.*"]`, Available metrics list [here](../datakit/datakit-metrics.md) |
     | `ENV_INPUT_DK_ONLY_METRICS`       | **Only** enalbe specified metrics(JSON array)                          | `["datakit_io_.*", "datakit_pipeline_.*"]`                                             |
 <!-- markdownlint-enable -->
 
@@ -142,10 +133,10 @@ NA
 |`datakit_filter_point_total`|Filter points of filters|float|-|
 |`datakit_filter_pull_latency_seconds`|Filter pull(remote) latency|float|-|
 |`datakit_filter_update_total`|Filters(remote) updated count|float|-|
-|`datakit_goroutine_alive`|Alive Goroutines|float|-|
+|`datakit_goroutine_alive`|Alive Goroutine|float|-|
 |`datakit_goroutine_cost_seconds`|Goroutine running duration|float|-|
 |`datakit_goroutine_groups`|Goroutine group count|float|-|
-|`datakit_goroutine_stopped_total`|Stopped Goroutines|float|-|
+|`datakit_goroutine_stopped_total`|Stopped Goroutine|float|-|
 |`datakit_goroutines`|Goroutine count within Datakit|float|-|
 |`datakit_heap_alloc_bytes`|Datakit memory heap bytes|float|-|
 |`datakit_http_api_elapsed_seconds`|API request cost|float|-|

@@ -3,7 +3,7 @@
 
 ---
 
-:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](index.md#legends "Election Enabled")
+:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 
 ---
 
@@ -308,7 +308,7 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name = 'events
 |`Aborted_connects`|The number of failed attempts to connect to the MySQL server.|int|count|
 |`Binlog_cache_disk_use`|The number of transactions that used the temporary binary log cache but that exceeded the value of binlog_cache_size and used a temporary file to store statements from the transaction.|int|B|
 |`Binlog_cache_use`|The number of transactions that used the binary log cache.|int|B|
-|`Binlog_space_usage_bytes`|TODO|int|B|
+|`Binlog_space_usage_bytes`|Total binary log file size.|int|B|
 |`Bytes_received`|The number of bytes received from all clients.|int|B|
 |`Bytes_sent`|The number of bytes sent to all clients.|int|B|
 |`Com_commit`|The number of times of commit statement has been executed.|int|count|
@@ -428,6 +428,7 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name = 'events
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
+|`active_transactions`|The number of active transactions on InnoDB tables|int|count|
 |`adaptive_hash_searches`|Number of successful searches using Adaptive Hash Index|int|count|
 |`adaptive_hash_searches_btree`|Number of searches using B-tree on an index search|int|count|
 |`buffer_data_reads`|Amount of data read in bytes (innodb_data_reads)|int|count|
@@ -435,23 +436,44 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name = 'events
 |`buffer_pages_created`|Number of pages created (innodb_pages_created)|int|count|
 |`buffer_pages_read`|Number of pages read (innodb_pages_read)|int|count|
 |`buffer_pages_written`|Number of pages written (innodb_pages_written)|int|count|
+|`buffer_pool_bytes_data`|The total number of bytes in the InnoDB buffer pool containing data. The number includes both dirty and clean pages.|int|B|
 |`buffer_pool_bytes_dirty`|Buffer bytes containing data (innodb_buffer_pool_bytes_data)|int|count|
 |`buffer_pool_pages_data`|Buffer pages containing data (innodb_buffer_pool_pages_data)|int|count|
 |`buffer_pool_pages_dirty`|Buffer pages currently dirty (innodb_buffer_pool_pages_dirty)|int|count|
+|`buffer_pool_pages_flushed`|The number of requests to flush pages from the InnoDB buffer pool|int|count|
 |`buffer_pool_pages_free`|Buffer pages currently free (innodb_buffer_pool_pages_free)|int|count|
 |`buffer_pool_pages_misc`|Buffer pages for misc use such as row locks or the adaptive hash index (innodb_buffer_pool_pages_misc)|int|count|
 |`buffer_pool_pages_total`|Total buffer pool size in pages (innodb_buffer_pool_pages_total)|int|count|
 |`buffer_pool_read_ahead`|Number of pages read as read ahead (innodb_buffer_pool_read_ahead)|int|count|
 |`buffer_pool_read_ahead_evicted`|Read-ahead pages evicted without being accessed (innodb_buffer_pool_read_ahead_evicted)|int|count|
+|`buffer_pool_read_ahead_rnd`|The number of random `read-aheads` initiated by InnoDB. This happens when a query scans a large portion of a table but in random order.|int|count|
 |`buffer_pool_read_requests`|Number of logical read requests (innodb_buffer_pool_read_requests)|int|count|
 |`buffer_pool_reads`|Number of reads directly from disk (innodb_buffer_pool_reads)|int|count|
 |`buffer_pool_size`|Server buffer pool size (all buffer pools) in bytes|int|count|
 |`buffer_pool_wait_free`|Number of times waited for free buffer (innodb_buffer_pool_wait_free)|int|count|
 |`buffer_pool_write_requests`|Number of write requests (innodb_buffer_pool_write_requests)|int|count|
+|`checkpoint_age`|Checkpoint age as shown in the LOG section of the `SHOW ENGINE INNODB STATUS` output|int|count|
+|`current_transactions`|Current `InnoDB` transactions|int|count|
+|`data_fsyncs`|The number of fsync() operations per second.|int|count|
+|`data_pending_fsyncs`|The current number of pending fsync() operations.|int|count|
+|`data_pending_reads`|The current number of pending reads.|int|count|
+|`data_pending_writes`|The current number of pending writes.|int|count|
+|`data_read`|The amount of data read per second.|int|B|
+|`data_written`|The amount of data written per second.|int|B|
+|`dblwr_pages_written`|The number of pages written per second to the `doublewrite` buffer.|int|count|
+|`dblwr_writes`|The number of `doublewrite` operations performed per second.|int|B|
 |`dml_deletes`|Number of rows deleted|int|count|
 |`dml_inserts`|Number of rows inserted|int|count|
 |`dml_updates`|Number of rows updated|int|count|
 |`file_num_open_files`|Number of files currently open (innodb_num_open_files)|int|count|
+|`hash_index_cells_total`|Total number of cells of the adaptive hash index|int|count|
+|`hash_index_cells_used`|Number of used cells of the adaptive hash index|int|count|
+|`history_list_length`|History list length as shown in the TRANSACTIONS section of the `SHOW ENGINE INNODB STATUS` output.|int|count|
+|`ibuf_free_list`|Insert buffer free list, as shown in the INSERT BUFFER AND ADAPTIVE HASH INDEX section of the `SHOW ENGINE INNODB STATUS` output.|int|count|
+|`ibuf_merged`|Insert buffer and `adaptative` hash index merged|int|count|
+|`ibuf_merged_delete_marks`|Insert buffer and `adaptative` hash index merged delete marks|int|count|
+|`ibuf_merged_deletes`|Insert buffer and `adaptative` hash index merged delete|int|count|
+|`ibuf_merged_inserts`|Insert buffer and `adaptative` hash index merged inserts|int|count|
 |`ibuf_merges`|Number of change buffer merges|int|count|
 |`ibuf_merges_delete`|Number of purge records merged by change buffering|int|count|
 |`ibuf_merges_delete_mark`|Number of deleted records merged by change buffering|int|count|
@@ -461,8 +483,8 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name = 'events
 |`ibuf_merges_insert`|Number of inserted records merged by change buffering|int|count|
 |`ibuf_size`|Change buffer size in pages|int|count|
 |`innodb_activity_count`|Current server activity count|int|count|
-|`innodb_dblwr_pages_written`|Number of pages that have been written for doublewrite operations (innodb_dblwr_pages_written)|int|count|
-|`innodb_dblwr_writes`|Number of doublewrite operations that have been performed (innodb_dblwr_writes)|int|count|
+|`innodb_dblwr_pages_written`|Number of pages that have been written for `doublewrite` operations (innodb_dblwr_pages_written)|int|count|
+|`innodb_dblwr_writes`|Number of `doublewrite` operations that have been performed (innodb_dblwr_writes)|int|count|
 |`innodb_page_size`|InnoDB page size in bytes (innodb_page_size)|int|count|
 |`innodb_rwlock_s_os_waits`|Number of OS waits due to shared latch request|int|count|
 |`innodb_rwlock_s_spin_rounds`|Number of rwlock spin loop rounds due to shared latch request|int|count|
@@ -479,19 +501,66 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name = 'events
 |`lock_row_lock_time_avg`|The average time to acquire a row lock, in milliseconds (innodb_row_lock_time_avg)|int|ms|
 |`lock_row_lock_time_max`|The maximum time to acquire a row lock, in milliseconds (innodb_row_lock_time_max)|int|ms|
 |`lock_row_lock_waits`|Number of times a row lock had to be waited for (innodb_row_lock_waits)|int|count|
+|`lock_structs`|Lock `structs`|int|count|
 |`lock_timeouts`|Number of lock timeouts|int|count|
+|`locked_tables`|Locked tables|int|count|
+|`locked_transactions`|Locked transactions|int|count|
 |`log_padded`|Bytes of log padded for log write ahead|int|count|
 |`log_waits`|Number of log waits due to small log buffer (innodb_log_waits)|int|count|
 |`log_write_requests`|Number of log write requests (innodb_log_write_requests)|int|count|
 |`log_writes`|Number of log writes (innodb_log_writes)|int|count|
+|`lsn_current`|Log sequence number as shown in the LOG section of the `SHOW ENGINE INNODB STATUS` output.|int|count|
+|`lsn_flushed`|Flushed up to log sequence number as shown in the LOG section of the `SHOW ENGINE INNODB STATUS` output.|int|count|
+|`lsn_last_checkpoint`|Log sequence number last checkpoint as shown in the LOG section of the `SHOW ENGINE INNODB STATUS` output.|int|count|
+|`mem_adaptive_hash`|As shown in the BUFFER POOL AND MEMORY section of the `SHOW ENGINE INNODB STATUS` output.|int|B|
+|`mem_additional_pool`|As shown in the BUFFER POOL AND MEMORY section of the `SHOW ENGINE INNODB STATUS` output.|int|B|
+|`mem_dictionary`|As shown in the BUFFER POOL AND MEMORY section of the `SHOW ENGINE INNODB STATUS` output.|int|B|
+|`mem_file_system`|As shown in the BUFFER POOL AND MEMORY section of the `SHOW ENGINE INNODB STATUS` output.|int|B|
+|`mem_lock_system`|As shown in the BUFFER POOL AND MEMORY section of the `SHOW ENGINE INNODB STATUS` output.|int|count|
+|`mem_page_hash`|As shown in the BUFFER POOL AND MEMORY section of the `SHOW ENGINE INNODB STATUS` output.|int|count|
+|`mem_recovery_system`|As shown in the BUFFER POOL AND MEMORY section of the `SHOW ENGINE INNODB STATUS` output.|int|count|
+|`mem_thread_hash`|As shown in the BUFFER POOL AND MEMORY section of the `SHOW ENGINE INNODB STATUS` output.|int|count|
+|`mem_total`|As shown in the BUFFER POOL AND MEMORY section of the `SHOW ENGINE INNODB STATUS` output.|int|count|
 |`os_data_fsyncs`|Number of fsync() calls (innodb_data_fsyncs)|int|count|
 |`os_data_reads`|Number of reads initiated (innodb_data_reads)|int|count|
 |`os_data_writes`|Number of writes initiated (innodb_data_writes)|int|count|
+|`os_file_fsyncs`|(Delta) The total number of fsync() operations performed by InnoDB.|int|count|
+|`os_file_reads`|(Delta) The total number of files reads performed by read threads within InnoDB.|int|count|
+|`os_file_writes`|(Delta) The total number of file writes performed by write threads within InnoDB.|int|count|
 |`os_log_bytes_written`|Bytes of log written (innodb_os_log_written)|int|count|
 |`os_log_fsyncs`|Number of fsync log writes (innodb_os_log_fsyncs)|int|count|
 |`os_log_pending_fsyncs`|Number of pending fsync write (innodb_os_log_pending_fsyncs)|int|count|
 |`os_log_pending_writes`|Number of pending log file writes (innodb_os_log_pending_writes)|int|count|
-|`trx_rseg_history_len`|Length of the TRX_RSEG_HISTORY list|int|count| 
+|`os_log_written`|Number of bytes written to the InnoDB log.|int|B|
+|`pages_created`|Number of InnoDB pages created.|int|count|
+|`pages_read`|Number of InnoDB pages read.|int|count|
+|`pages_written`|Number of InnoDB pages written.|int|count|
+|`pending_aio_log_ios`|As shown in the FILE I/O section of the `SHOW ENGINE INNODB STATUS` output.|int|count|
+|`pending_aio_sync_ios`|As shown in the FILE I/O section of the `SHOW ENGINE INNODB STATUS` output.|int|count|
+|`pending_buffer_pool_flushes`|As shown in the FILE I/O section of the `SHOW ENGINE INNODB STATUS` output.|int|count|
+|`pending_checkpoint_writes`|As shown in the FILE I/O section of the `SHOW ENGINE INNODB STATUS` output.|int|count|
+|`pending_ibuf_aio_reads`|As shown in the FILE I/O section of the `SHOW ENGINE INNODB STATUS` output.|int|count|
+|`pending_log_flushes`|As shown in the FILE I/O section of the `SHOW ENGINE INNODB STATUS` output.|int|count|
+|`pending_log_writes`|As shown in the FILE I/O section of the `SHOW ENGINE INNODB STATUS` output.|int|count|
+|`pending_normal_aio_reads`|As shown in the FILE I/O section of the `SHOW ENGINE INNODB STATUS` output.|int|count|
+|`pending_normal_aio_writes`|As shown in the FILE I/O section of the `SHOW ENGINE INNODB STATUS` output.|int|count|
+|`queries_inside`|As shown in the FILE I/O section of the `SHOW ENGINE INNODB STATUS` output.|int|count|
+|`queries_queued`|As shown in the FILE I/O section of the `SHOW ENGINE INNODB STATUS` output.|int|count|
+|`read_views`|As shown in the FILE I/O section of the `SHOW ENGINE INNODB STATUS` output.|int|count|
+|`rows_deleted`|Number of rows deleted from InnoDB tables.|int|count|
+|`rows_inserted`|Number of rows inserted into InnoDB tables.|int|count|
+|`rows_read`|Number of rows read from InnoDB tables.|int|count|
+|`rows_updated`|Number of rows updated in InnoDB tables.|int|count|
+|`s_lock_os_waits`|As shown in the SEMAPHORES section of the `SHOW ENGINE INNODB STATUS` output|int|count|
+|`s_lock_spin_rounds`|As shown in the SEMAPHORES section of the `SHOW ENGINE INNODB STATUS` output.|int|count|
+|`s_lock_spin_waits`|As shown in the SEMAPHORES section of the `SHOW ENGINE INNODB STATUS` output.|int|count|
+|`semaphore_wait_time`|Semaphore wait time|int|count|
+|`semaphore_waits`|The number semaphore currently being waited for by operations on InnoDB tables.|int|count|
+|`tables_in_use`|Tables in use|int|count|
+|`trx_rseg_history_len`|Length of the TRX_RSEG_HISTORY list|int|count|
+|`x_lock_os_waits`|As shown in the SEMAPHORES section of the `SHOW ENGINE INNODB STATUS` output.|int|count|
+|`x_lock_spin_rounds`|As shown in the SEMAPHORES section of the `SHOW ENGINE INNODB STATUS` output.|int|count|
+|`x_lock_spin_waits`|As shown in the SEMAPHORES section of the `SHOW ENGINE INNODB STATUS` output.|int|count| 
 
 
 
@@ -815,3 +884,22 @@ The list of cut fields is as follows:
 | `rows_sent`         | `248832`                                                                                    | Number of rows returned by query                 |
 | `thread_id`         | `55`                                                                                        | Thread id                        |
 | `time`              | `1514520249954078000`                                                                       | Nanosecond timestamp (as line protocol time)   |
+
+## FAQ {#faq}
+
+### :material-chat-question: Why the measurement `mysql_user_status` is not collected for Aliyun RDS? {#faq-user-no-data}
+
+The measurment is collected from MySQL `performance_schema`. You should check if it is enabled by the SQL below：
+
+```sql
+show variables like "performance_schema";
+
++--------------------+-------+
+| Variable_name      | Value |
++--------------------+-------+
+| performance_schema | ON    |
++--------------------+-------+
+
+```
+
+If the value is `OFF`, please refer to the [document](https://help.aliyun.com/document_detail/41726.html?spm=a2c4g.276975.0.i9) to enable it.

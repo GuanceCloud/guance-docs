@@ -136,9 +136,7 @@ kubectl apply -f deployment.yaml
 
 ## 自动发现 Pod/Service 的 Prometheus 指标 {#auto-discovery-metrics-with-prometheus}
 
-[:octicons-tag-24: Version-1.5.10](changelog.md#cl-1.5.10)
-
-[:octicons-tag-24: Version-1.5.10](changelog.md#cl-1.5.10)
+[:octicons-tag-24: Version-1.5.10](../datakit/changelog.md#cl-1.5.10)
 
 根据 Pod 或 Service 的指定 Annotations，拼接一个 HTTP URL 并以此创建 Prometheus 指标采集。
 
