@@ -11,7 +11,7 @@
 
 - [聚类分析](#analysis)：用于<u>快速查看最频繁发生</u>的需要被解决的链路错误
 
-> 观测云查看器提供强大的查询和分析功能，更多详情可参考文档 [查看器说明](../getting-started/function-details/explorer-search.md) 。
+> 观测云查看器提供强大的查询和分析功能，更多详情可参考文档 [查看器说明](../getting-started/function-details/explorer-search.md)。
 
 ## 所有错误 {#errors}
 

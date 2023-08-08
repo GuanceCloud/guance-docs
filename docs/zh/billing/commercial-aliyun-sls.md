@@ -215,7 +215,7 @@
 
 您可以按照本文档开通观测云专属版，观测云专属版仅支持 SLS 存储方式。
 
-> 更多存储方式可参考文档 [数据存储方式](../billing/billing-method/data-storage.md#options) 。
+> 更多存储方式可参考文档 [数据存储方式](../billing/billing-method/data-storage.md#options)。
 
 <font color=coral>2、若已经开通使用过观测云商业版的工作空间还能再开通观测云专属版吗？</font>
 

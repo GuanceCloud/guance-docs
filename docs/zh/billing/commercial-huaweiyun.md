@@ -13,7 +13,7 @@
 
 因此，购买完观测云 SaaS 服务以后，您需要<u>先关联组织</u>。
 
-您可以通过以下步骤完成联营服务组织的关联绑定，或者直接参考华为云文档 [联营SaaS类商品使用指导](https://support.huaweicloud.com/ug-marketplace/sp_topic_0000212.html) 。
+您可以通过以下步骤完成联营服务组织的关联绑定，或者直接参考华为云文档 [联营SaaS类商品使用指导](https://support.huaweicloud.com/ug-marketplace/sp_topic_0000212.html)。
 
 1）创建组织
 

@@ -87,7 +87,7 @@ Span 表示给定时间段内分布式系统中的逻辑工作单元，多个 Sp
 
     用户访问监测 SDK 必须是 2.2.10 以及上才可以看到这部分数据显示，如存在跨域情况需要调整 header 配置。
     
-    > 更多详情可参考文档 [Web 应用接入](../real-user-monitoring/web/app-access.md#header) 。
+    > 更多详情可参考文档 [Web 应用接入](../real-user-monitoring/web/app-access.md#header)。
 
 ![](img/11.apm_browse_1.png)
 
@@ -95,7 +95,7 @@ Span 表示给定时间段内分布式系统中的逻辑工作单元，多个 Sp
 
 火焰图可清晰展示整条链路中每个 Span 的流转和执行时间。你可以在火焰图右侧查看对应的服务列表及响应时间。点击火焰图的 Span，在**链路详情**可查看对应的 Json 内容，通过鼠标滚轴缩放可查看具体 Span 信息。
 
-> 更多火焰图的应用详情可参考文档 [巧用火焰图分析链路性能](../best-practices/monitoring/trace-glame-graph.md) 。
+> 更多火焰图的应用详情可参考文档 [巧用火焰图分析链路性能](../best-practices/monitoring/trace-glame-graph.md)。
 
 === "火焰图链路说明"
 
@@ -229,7 +229,7 @@ Span 表示给定时间段内分布式系统中的逻辑工作单元，多个 Sp
     
         关联日志自定义字段和服务清单关联分析配置自定义字段相互影响，若在服务清单配置了自定义字段，此处同步展示。
     
-        > 更多详情可参考文档 [服务清单关联分析](service-catalog.md#analysis) 。
+        > 更多详情可参考文档 [服务清单关联分析](service-catalog.md#analysis)。
     
     ![](img/3.apm_8.png)
 

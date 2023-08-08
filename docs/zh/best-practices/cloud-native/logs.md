@@ -589,4 +589,4 @@ No data extracted from pipeline
 
 [日志](../../datakit/logging.md)
 
-[第三方日志接入](../../datakit/logstreaming.md)
+[第三方日志接入](../../integrations/logstreaming.md)

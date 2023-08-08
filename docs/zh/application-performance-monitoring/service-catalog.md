@@ -27,7 +27,7 @@
 
 在**应用性能监测 > 服务**，选择任意**服务**右侧操作按钮，即可打开服务清单进行配置，包括服务所属团队、紧急联系人邮箱、仓库配置、日志关联分析自定义字段、帮助文档地址。
 
-> 点击右上角的文档可查看 [如何通过 Open API 配置服务清单](../open-api/tracing/service-catelogs-get.md) 。
+> 点击右上角的文档可查看 [如何通过 Open API 配置服务清单](../open-api/tracing/service-catelogs-get.md)。
 
 ![](img/9.service_list_2.1.png)
 

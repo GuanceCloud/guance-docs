@@ -885,7 +885,7 @@ pubrepo.guance.com/dataflux/1.48.106:launcher-e40becc-1662478572
 - 几乎每个采集器都增加了 k8s 配置入口
 - 调整文档头部显示，除了操作系统标识外，对支持选举的采集器，增加选举标识
 
-更多 DataKit 更新可参考 [DataKit 版本历史](https://docs.guance.com/datakit/changelog/) 。
+更多 DataKit 更新可参考 [DataKit 版本历史](https://docs.guance.com/datakit/changelog/)。
 
 ### 最佳实践更新
 
@@ -895,7 +895,7 @@ pubrepo.guance.com/dataflux/1.48.106:launcher-e40becc-1662478572
     - 应用性能监控 (APM) - [DDtrace 自定义 Instrumentation](https://docs.guance.com/best-practices/monitoring/ddtrace-instrumentation/)
     - 应用性能监控 (APM) - [DDtrace 观测云二次开发实践](https://docs.guance.com/developers/ddtrace-guance/)
 
-更多最佳实践更新可参考 [最佳实践版本历史](https://docs.guance.com/best-practices/) 。
+更多最佳实践更新可参考 [最佳实践版本历史](https://docs.guance.com/best-practices/)。
 
 ## v1.47.103(2022年8月18日)
 

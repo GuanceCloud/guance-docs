@@ -3,7 +3,7 @@
 
 本文将介绍<u>在 AWS 云市场订阅观测云服务以后，如何开通观测云商业版并使用 AWS 账号进行费用结算</u>。
 
-> 关于直接注册商业版，可参考文档 [注册商业版](commercial-register.md) 。
+> 关于直接注册商业版，可参考文档 [注册商业版](commercial-register.md)。
 
 ## 在 AWS 云市场订阅观测云 {#subscribe}
 

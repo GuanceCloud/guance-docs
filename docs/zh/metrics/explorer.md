@@ -9,7 +9,7 @@
 
 **指标分析**支持用户基于**简单查询**、**表达式查询**、**DQL 查询**、**PromQL 查询**四种方式，对指标数据以<u>面积图、折线图、柱状图、表格图四种查看模式</u>进行可视化查询。
 
-> 更多数据查询说明可参考 [图表查询](../scene/visual-chart/chart-query.md#query) 。
+> 更多数据查询说明可参考 [图表查询](../scene/visual-chart/chart-query.md#query)。
 
 ![](img/4.changelog_1.2.gif)
 

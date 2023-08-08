@@ -25,7 +25,7 @@
 
 #### Step1：添加 DataKit Helm 仓库
 
-使用 Helm 安装 DataKit 采集 Kubernetes 资源，需要先在服务器上 [安装 Helm](https://helm.sh/zh/docs/intro/install/) 。Helm 安装完成后，即可添加 DataKit Helm 仓库。
+使用 Helm 安装 DataKit 采集 Kubernetes 资源，需要先在服务器上 [安装 Helm](https://helm.sh/zh/docs/intro/install/)。Helm 安装完成后，即可添加 DataKit Helm 仓库。
 
 注意：添加完 DataKit Helm 仓库后，必须执行升级操作 `helm repo update` 。
 
