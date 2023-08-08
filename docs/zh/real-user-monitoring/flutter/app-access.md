@@ -18,11 +18,7 @@
 ![](../img/image_13.png)
 
 ## 安装
-![](https://img.shields.io/badge/dynamic/json?label=pub.dev&color=blue&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/flutter/version.json) 
-
-![](https://img.shields.io/badge/dynamic/json?label=legacy.github.tag&color=blue&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/flutter/legacy/version.json) 
-
-![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://static.guance.com/ft-sdk-package/badge/flutter/info.json)
+![](https://img.shields.io/badge/dynamic/json?label=pub.dev&color=blue&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/flutter/version.json) ![](https://img.shields.io/badge/dynamic/json?label=legacy.github.tag&color=blue&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/flutter/legacy/version.json) ![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://static.guance.com/ft-sdk-package/badge/flutter/info.json)
 
 **Pub.Dev**: [ft_mobile_agent_flutter](https://pub.dev/packages/ft_mobile_agent_flutter)
 
@@ -33,9 +29,7 @@
 在项目路径下，终端运行 Flutter 命令：
 
 ```bash
-
  $ flutter pub add ft_mobile_agent_flutter
- 
 ```
 
 这将在包的 pubspec.yaml 中添加这样的一行（并运行一个隐式 flutter pub get ）：
@@ -49,8 +43,6 @@ dependencies:
     git:
       url: https://github.com/GuanceCloud/datakit-flutter.git
       ref: [github_legacy_lastest_tag]
-  
-  
 ```
 
 现在在您的 Dart 代码中，您可以使用：
