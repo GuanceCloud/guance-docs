@@ -25,7 +25,7 @@
 
 **源码地址**：[https://github.com/GuanceCloud/datakit-android](https://github.com/GuanceCloud/datakit-android)
 
-**Demo**：[查看](https://github.com/GuanceDemo/guance-app-demo/tree/master/src/android/demo)
+**Demo**：[https://github.com/GuanceDemo/guance-app-demo](https://github.com/GuanceDemo/guance-app-demo/tree/master/src/android/demo)
 
 ### Gradle 配置 {#gradle-setting}
 
