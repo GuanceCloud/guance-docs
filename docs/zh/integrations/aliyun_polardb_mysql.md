@@ -5,7 +5,15 @@ __int_icon: icon/aliyun_polardb_mysql
 dashboard:
   - desc: '阿里云 PolarDB MySQL 内置视图'
     path: 'dashboard/zh/aliyun_polardb_mysql/'
+
+monitor:
+  - desc: '阿里云 PolarDB MySQL 监控器'
+    path: 'monitor/zh/aliyun_polardb_mysql/'    
 ---
+
+<!-- markdownlint-disable MD025 -->
+# 阿里云 PolarDB MySQL
+<!-- markdownlint-enable -->
 
 阿里云 PolarDB MySQL 指标展示，包括 CPU 使用率、内存命中率、网络流量、连接数、QPS、 TPS、 只读节点延迟等。
 
@@ -23,35 +31,61 @@ dashboard:
 
 > 提示：请提前准备好符合要求的阿里云 AK（简单起见，可直接授予全局只读权限`ReadOnlyAccess`）
 
-同步云资源的监控数据，我们一般情况下要安装两个脚本，一个采集对应云资产基本信息的脚本，一个是采集云监控信息的脚本。
-
-如果要采集对应的日志，还要开启相应的日志采集脚本。如果要采集账单，要开启云账单采集脚本。
-
-分别在「管理 / 脚本市场」中，依次点击并安装对应的脚本包：
-
-- 「观测云集成（阿里云-云监控）」(ID：`guance_aliyun_monitor`)
-
-- 「观测云集成（阿里云-PolarDB采集）」(ID：`guance_aliyun_polardb`)
+同步 阿里云 PolarDB MySQL 的监控数据，我们安装对应的采集脚本：「观测云集成（阿里云-PolarDB采集）」(ID：`guance_aliyun_polardb`)
 
 点击【安装】后，输入相应的参数：阿里云 AK、阿里云账户名。
 
 点击【部署启动脚本】，系统会自动创建 `Startup` 脚本集，并自动配置相应的启动脚本。
 
-此外，在「管理 / 自动触发配置」里看到对应的自动触发配置。点击【执行】，即可立即执行一次，无需等待定期时间。稍等片刻，可以查看执行任务记录以及对应日志。
+开启后可以在「管理 / 自动触发配置」里看到对应的自动触发配置。点击【执行】，即可立即执行一次，无需等待定期时间。稍等片刻，可以查看执行任务记录以及对应日志。
+
+> 如果要采集对应的日志，还要开启相应的日志采集脚本。如果要采集账单，要开启云账单采集脚本。
+
+
 
 我们默认采集了一些配置, 具体见指标一栏
 
 [配置自定义云对象指标](https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
 
-
 ### 验证
 
-1. 在「管理 / 自动触发配置」确认对应的任务是否已存在对应的自动触发配置，同时可以查看对应任务记录及日志检查是否有异常
+1. 在「管理/自动触发配置」确认对应的任务是否已存在对应的自动触发配置，同时可以查看对应任务记录及日志检查是否有异常
 2. 在观测云平台，「基础设施 / 自定义」中查看是否存在资产信息
 3. 在观测云平台，「指标」查看是否有对应监控数据
 
 ## 指标 {#metric}
 配置好阿里云-云监控,默认的指标集如下, 可以通过配置的方式采集更多的指标 [阿里云云监控指标详情](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
+
+| Metric Id                      | Metric Name            | Dimensions                  | Statistics              | Unit        |
+| ---- | ------ | ------ | ---- | ---- |
+| `cluster_active_sessions`      | 活跃连接数             | userId,clusterId,nodeId     | Average                 | count       |
+| `cluster_blktag_utilization`   | **blktag**使用率       | userId,clusterId            | Average                 | %           |
+| `cluster_connection_utilization` | 连接数使用率           | userId,clusterId,nodeId     | Average,Maximum,Minimum | %           |
+| `cluster_cpu_utilization`      | CPU使用率              | userId,clusterId,nodeId     | Average                 | %           |
+| `cluster_data_io`              | 每秒存储引擎IO吞吐量   | userId,clusterId,nodeId     | Average                 | KB          |
+| `cluster_data_iops`            | 每秒存储引擎IO次数     | userId,clusterId,nodeId     | Average                 | countSecond |
+| `cluster_direntry_utilization` | **direntry**使用率     | userId,clusterId            | Average                 | %           |
+| `cluster_disk_utilization`     | 磁盘使用率             | userId,clusterId            | Average                 | %           |
+| `cluster_imci_datasize`        | **IMCI**节点列存索引存储量 | userId,clusterId,nodeId     | Average                 | MB          |
+| `cluster_imci_exememusage`     | **IMCI**执行器使用内存量 | userId,clusterId,nodeId     | Average                 | Byte        |
+| `cluster_imci_stmtsexepersec`  | **IMCI**每秒查询SQL数量 | userId,clusterId,nodeId     | Average                 | count/s     |
+| `cluster_imci_stmtsinqueue`    | **IMCI**调度队列中SQL数量 | userId,clusterId,nodeId     | Average                 | count       |
+| `cluster_imci_tmpfileusedsize` | **IMCI**执行器临时表大小 | userId,clusterId,nodeId     | Average                 | Byte        |
+| `cluster_inode_utilization`    | inode使用率            | userId,clusterId            | Average                 | %           |
+| `cluster_input_traffic`        | 每秒网络输入流量       | userId,clusterId,nodeId     | Average,Maximum,Minimum | KByte/s     |
+| `cluster_iops`                 | 每秒IO次数             | userId,clusterId,nodeId     | Average                 | countSecond |
+| `cluster_iops_usage`           | IOPS使用率             | userId,clusterId,nodeId     | Average,Maximum,Minimum | %           |
+| `cluster_mem_hit_ratio`        | 内存命中率             | userId,clusterId,nodeId     | Average                 | %           |
+| `cluster_memory_utilization`   | 内存使用率             | userId,clusterId,nodeId     | Average                 | %           |
+| `cluster_mps`                  | 每秒数据操作数         | userId,clusterId,instanceId | Average,Maximum,Minimum | countSecond |
+| `cluster_output_traffic`       | 每秒网络输出流量       | userId,clusterId,nodeId     | Average,Maximum,Minimum | KByte/s     |
+| `cluster_proxy_cpu_utilization` | ProxyCPU使用率         | userId,clusterId            | Average,Maximum,Minimum | %           |
+| `cluster_qps`                  | 每秒查询数量           | userId,clusterId,nodeId     | Average                 | count       |
+| `cluster_redo_write_rate`      | redo日志写入速率       | userId,clusterId,nodeId     | Average                 | Byte/s      |
+| `cluster_replica_lag`          | 只读节点复制延迟       | userId,clusterId,instanceId | Average,Minimum,Maximum | seconds     |
+| `cluster_slow_queries_ps`      | 每秒慢查询数量         | userId,clusterId,nodeId     | Average                 | countS      |
+| `cluster_total_session`        | 当前总连接数           | userId,clusterId,nodeId     | Average,Maximum,Minimum | count       |
+| `cluster_tps`                  | 每秒事务数             | userId,clusterId,nodeId     | Average                 | countS      |
 
 ## 对象 {#object}
 
@@ -92,11 +126,19 @@ dashboard:
 
 ### 慢查询统计
 
+<!-- markdownlint-disable MD024 -->
+
 #### 前提条件
+
+<!-- markdownlint-enable -->
 
 > 提示：本脚本的代码运行依赖 PolarDB 实例对象采集，如果未配置 PolarDB 的自定义对象采集，慢日志脚本无法采集到慢日志数据
 
-#### 部署配置脚本
+<!-- markdownlint-disable MD024 -->
+
+#### 安装脚本
+
+<!-- markdownlint-enable -->
 
 在之前的基础上，需要再安装一个对应 **PolarDB 慢查询统计日志采集的脚本**
 
@@ -154,11 +196,19 @@ dashboard:
 
 ### 慢查询明细
 
-#### 前置条件
+<!-- markdownlint-disable MD024 -->
+
+#### 前提条件
+
+<!-- markdownlint-enable -->
 
 > 提示：本脚本的代码运行依赖 PolarDB 实例对象采集，如果未配置 PolarDB 的自定义对象采集，慢日志脚本无法采集到慢日志数据
 
-#### 部署脚本
+<!-- markdownlint-disable MD024 -->
+
+#### 安装脚本
+
+<!-- markdownlint-enable -->
 
 在之前的基础上，需要再安装一个对应 **PolarDB 慢查询明细日志采集的脚本**
 

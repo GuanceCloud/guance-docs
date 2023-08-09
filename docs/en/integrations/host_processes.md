@@ -56,7 +56,7 @@ The process collector can monitor various running processes in the system, acqui
     
     ```
     
-    Once configured, [restart DataKit](datakit-service-how-to.md#manage-service).
+    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 

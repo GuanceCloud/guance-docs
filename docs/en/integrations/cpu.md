@@ -40,7 +40,7 @@ None.
     
     ```
     
-    After configuration, [restart Datakit](datakit-service-how-to.md#manage-service).
+    After configuration, [restart Datakit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 

@@ -161,11 +161,11 @@ apt-get install -y libaio-dev libaio1
     
     ```
     
-    Once configured, [restart DataKit](datakit-service-how-to.md#manage-service).
+    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    The collector can now be turned on by [ConfigMap Injection Collector Configuration](datakit-daemonset-deploy.md#configmap-setting).
+    The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 
 ## Measurements {#measurements}
 

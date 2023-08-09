@@ -11,7 +11,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
 ## Preconditions {#requrements}
 
 - At present, container will connect to Docker service by default, and Docker v17.04 and above should be installed.
-- Collecting Kubernetes data requires the DataKit to [be deployed as a DaemonSet](datakit-daemonset-deploy.md).
+- Collecting Kubernetes data requires the DataKit to [be deployed as a DaemonSet](../datakit/datakit-daemonset-deploy.md).
 - Collecting Kubernetes Pod metric data [requires Kubernetes to install the Metrics-Server component](https://github.com/kubernetes-sigs/metrics-server#installation){:target="_blank"}.
 
 ???+ info
