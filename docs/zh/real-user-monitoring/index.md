@@ -18,7 +18,7 @@ icon: zy/real-user-monitoring
 
 > 具体的 DataKit 安装方法与配置方法，见 [DataKit 安装文档](../datakit/datakit-install.md)。
 
-DataKit 安装完成后，开启 [RUM 采集器](../datakit/rum.md)，接入应用配置，即可开始采集用户访问的相关数据。
+DataKit 安装完成后，开启 [RUM 采集器](../integrations/rum.md)，接入应用配置，即可开始采集用户访问的相关数据。
 
 ## 新建应用 {#create}
 

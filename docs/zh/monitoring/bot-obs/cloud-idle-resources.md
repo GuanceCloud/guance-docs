@@ -8,7 +8,7 @@
 
 ## 前置条件
 
-1. 自建 [DataFlux Func 观测云特别版](https://func.guance.com/#/) 的离线部署，或者开通 [DataFlux Func 托管版](../../dataflux-func/index.md)
+1. 自建 [DataFlux Func 观测云特别版](https://func.guance.com/#/) ，或者开通 [DataFlux Func 托管版](../../dataflux-func/index.md)
 2. 在观测云「管理 / API Key 管理」中创建用于进行操作的 [API Key](../../management/api-key/open-api.md)
 
 > **注意**：如果考虑采用云服务器来进行 DataFlux Func 离线部署的话，请考虑跟当前使用的观测云 SaaS 部署在[同一运营商同一地域](../../../getting-started/necessary-for-beginners/select-site/)。
@@ -53,12 +53,6 @@
 
 
 
-#### 导出
-
-  智能巡检支持“导出 JSON 配置”。在智能巡检列表右侧的操作菜单下，点击「导出」按钮，即可导出当前巡检的 JSON 代码，导出文件名格式：智能巡检名称.json 。
-
-
-
 #### 编辑
 
   智能巡检「 闲置云资源巡检 」支持用户手动添加筛选条件，在智能巡检列表右侧的操作菜单下，点击**编辑**按钮，即可对巡检模版进行编辑。
@@ -96,7 +90,6 @@
   点击**事件**，可查看智能巡检事件的详情页，包括事件状态、异常发生的时间、异常名称、基础属性、事件详情、告警通知、历史记录和关联事件。
 
   * 点击详情页右上角的「查看监控器配置」小图标，支持查看和编辑当前智能巡检的配置详情
-  * 点击详情页右上角的「导出事件 JSON」小图标，支持导出事件的详情内容
 
 
 

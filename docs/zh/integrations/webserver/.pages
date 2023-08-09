@@ -1,5 +1,0 @@
-nav:
-  - index.md
-  - 'Apache': apache.md
-  - 'HAProxy': haproxy.md
-  - 'Nginx': nginx.md

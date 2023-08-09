@@ -26,9 +26,10 @@ The default setting is that yourself is an administrator. After the organization
 ![](./img/13.huaweicloud_8.png)
 
 II. Add Member
+
 In **My KooGallery > Joint Operations Services > Organizations > Organization Management > Add Member**, fill in the relevant information of the organization in the pop-up dialog box.
 
-> The "account" and "password" created here will be used to avoid login to the Guance Billing Center registration or enterprise account login. For wxample, "account number" is filled with "Wendy", the login account number is "Wendy @ gcy".
+> The "account" and "password" created here will be used to avoid login to the Guance Billing Center registration or Billing Center account login. For wxample, "account number" is filled with "Wendy", the login account number is "Wendy @ gcy".
 
 ![](./img/13.huaweicloud_7.1.png)
 
@@ -67,11 +68,11 @@ If [Huawei Cloud Account ID ](./billing-account/huawei-account.md#id)is not boun
     
 - **[Register Guance Commercial Plan Now](commercial-register.md)**；   
     
-- **Exist enterprise account, bind it** to log in to the Guance workspace, please refer to the following steps:  
+- **Exist Billing Center account, bind it** to log in to the Guance workspace, please refer to the following steps:  
 
 ![](./img/huaweicloud-1-register.png)
 
-1. Click **Exist enterprise account, bind it** and the dynamic diagram of **How to quickly bind Huawei cloud account settlement** appears. Click **OK**.
+1. Click **Exist Billing Center account, bind it** and the dynamic diagram of **How to quickly bind Huawei cloud account settlement** appears. Click **OK**.
     
 ![](./img/huawei-register-2.png)
 
@@ -85,7 +86,7 @@ If [Huawei Cloud Account ID ](./billing-account/huawei-account.md#id)is not boun
 
 === "Bind Existing Workspace"
 
-    If you have a workspace that can be bound under the Guance enterprise account, click **Bind** directly, and confirm the binding in the pop-up dialog box.
+    If you have a workspace that can be bound under the Guance Billing Center account, click **Bind** directly, and confirm the binding in the pop-up dialog box.
 
     ![](img/15.aliyun_register_6.1.png)  
 

@@ -253,7 +253,7 @@ cp telegraf.conf.sample telegraf.conf
 telegraf --config telegraf.conf
 ```
 
-关于 Telegraf 的使用事项，参见[这里](telegraf.md)。
+关于 Telegraf 的使用事项，参见[这里](../integrations/telegraf.md)。
 
 ### Security Checker 集成 {#scheck}
 
@@ -267,7 +267,7 @@ datakit install --scheck
 
 ### DataKit eBPF 集成 {#ebpf}
 
-安装 DataKit eBPF 采集器，当前只支持 `linux/amd64 | linux/arm64` 平台，采集器使用说明见 [DataKit eBPF 采集器](ebpf.md)
+安装 DataKit eBPF 采集器，当前只支持 `linux/amd64 | linux/arm64` 平台，采集器使用说明见 [DataKit eBPF 采集器](../integrations/ebpf.md)
 
 ```shell
 datakit install --ebpf
@@ -376,7 +376,7 @@ datakit tool --completer-script > datakit-completer.sh
 ### 使用 glob 规则获取文件路径 {#glob-conf}
 [:octicons-tag-24: Version-1.8.0](changelog.md#cl-1.8.0)
 
-在日志采集中，支持以 [glob 规则配置日志路径](logging.md#glob-rules)。
+在日志采集中，支持以 [glob 规则配置日志路径](../integrations/logging.md#glob-rules)。
 
 通过使用 Datakit 调试 glob 规则。需要提供一个配置文件，该文件的每一行都是一个 glob 语句。
 
@@ -406,9 +406,9 @@ $ datakit debug --glob-conf glob-config
 ### 正则表达式匹配文本 {#regex-conf}
 [:octicons-tag-24: Version-1.8.0](changelog.md#cl-1.8.0)
 
-在日志采集中，支持配置 [正则表达式实现多行日志采集](logging.md#multiline)。
+在日志采集中，支持配置 [正则表达式实现多行日志采集](../integrations/logging.md#multiline)。
 
-通过使用 Datakit 调试正则表达式规则。需要提供一个配置文件，该文件的第一行是正则表达式语句，剩余内容是匹配文本。
+通过使用 Datakit 调试正则表达式规则。需要提供一个配置文件，该文件的**第一行是正则表达式**，剩余内容是被匹配的文本（可以是多行）。
 
 配置文件示例如下：
 

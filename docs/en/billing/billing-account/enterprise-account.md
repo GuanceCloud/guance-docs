@@ -1,13 +1,13 @@
-# Guance Enterprise Account Settlement
+# Guance Billing Center account Settlement
 ---
 
 This article will introduce how to open the account settlement of Guance enterprise in the Commercial Plan of Guance. 
 
 > Refer to the doc [Register Commercial Plan](../../billing/commercial-register.md) for information on how to launch a Commercial Plan.
 
-## Select Guance Enterprise Account Settlement
+## Select Guance Billing Center account Settlement
 
-When registering or upgrading the Commercial Plan of Guance, **Guance Enterprise Account Settlement** is selected by default, and the **Change Settlement Method** dialog box can be directly closed.
+When registering or upgrading the Commercial Plan of Guance, **Guance Billing Center account Settlement** is selected by default, and the **Change Settlement Method** dialog box can be directly closed.
 
 ![](../img/9.upgrade_7.png)
 

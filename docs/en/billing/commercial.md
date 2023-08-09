@@ -52,7 +52,7 @@ In the settlement account overview, you can view the settlement account name, ca
 
 - Recharge: Click to recharge the account.
 - Billing Center: Click to jump to open the Guance Billing Center.
-- Change Settlement: Click to change the settlement method, including [Guance Cloud enterprise account settlement](./billing-account/enterprise-account.md), [AWS account settlement](./billing-account/aws-account.md), [Alibaba Cloud account settlement](./billing-account/aliyun-account.md) and [Huawei Cloud account settlement](./commercial-huaweiyun.md)
+- Change Settlement: Click to change the settlement method, including [Guance Cloud Billing Center account settlement](./billing-account/enterprise-account.md), [AWS account settlement](./billing-account/aws-account.md), [Alibaba Cloud account settlement](./billing-account/aliyun-account.md) and [Huawei Cloud account settlement](./commercial-huaweiyun.md)
 - Change Account: Click to change the Guance billing account in the workspace, <u>provided that the current account and the new account must belong to the same enterprise, that is, the enterprise authentication of the two accounts in the Guance Billing Center must be the same</u>.
 - Set High Consumption Alert: After setting the alert, when the daily bill of billing item is greater than the alert threshold, an email notification will be sent to Owner and Administrator.
 

@@ -1,244 +1,446 @@
 # Billing Methods
 ---
 
+**2023.4.20 Release Note**
+
+I. Guance's self-developed timeseries database GuanceDB is newly launched, and the timeseries data storage and billing will be adjusted as follows:
+
+- The infrastructure (DataKit) billing item goes offline, and the original two billing modes of "DataKit + Timeline" and "Timeline Only" are used as billing logic according to GuanceDB Timeline Only;
+
+- GuanceDB timeline: count the number of active timelines on the same day, and the unit price is as low as 0.6/per thousand timelines. See [Timeline Description](#timeline)；
+  
+II. RUM Session replay officially starts to charge, and charges according to the number of sessions actually collected Session playback data, namely ￥10/per thousand sessions. Refer to [Session Instruction](#session).
+
+**Maybe you want to know:**
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Guance's Self-Developed Timeseries Database —— GuanceDB</font>](../billing-method/gauncedb.md)
+
+<br/>
+
+</div>
+
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Description of Timeseries Billing Items</font>](../billing-method/timeline.md)
+
+<br/>
+
+</div>
 
 ## Overview
 
-When you open the business workspace of Guance and start using it, Guance provides a pay-as-you-go billing method. This article mainly introduces the detailed information of pay-as-you-go for Guance products, including [billing cycle](#cycle), [billing method](#account), [billing item](#item), [billing price](#price), [billing mode](#method) and [billing example](#example).
+When you open the business workspace of Guance and start using it, Guance provides a <font color=coral>pay-per-use billing method</font>. This article mainly introduces the detailed information of pay-per-use for Guance products, including [billing cycle](#cycle), [billing method](#account), [billing item](#item), and [billing example](#example).
+
+## Concepts
+
+| Glossary   | Description |
+| -------- | ---------- |
+| Data Storage Strategy   | Guance supports users to customize the saving time for different data types. The corresponding storage time option configuration can refer to [Data Storage Strategy](data-storage.md).|
+| Total Statistics   | Count the number of corresponding data <u>in the current data storage strategy period of a billing item</u>. |
+| Incremental Statistics   | Count <u>the increase of data corresponding to a billing item on the same day</u>. For specific valuation methods, please refer to the following [Log Price Example](#exapmle). |
+| Basic Billing   | The unit price of a billing item is a <u>fixed value</u>. |
+| Gradient Billing   | The unit price of a billing item is a <u>dynamic value</u>, which will have <u>different single value</u> according to the data storage strategy selected by the current data type. |
 
 ## Billing Cycle {#cycle}
 
-The billing period of Guance is "days", that is, according to the statistical usage of the workspace on the same day, the daily bill is generated and synchronized to Guance [Billing Center](../../billing/cost-center/index.md), and finally the consumption amount is deducted from the corresponding account according to the actual binding settlement method.
+The billing period of Guance is <font color=coral>days</font>, that is, according to the statistical usage of the workspace on the same day, the daily bill is generated and synchronized to Guance [Billing Center](../../billing/cost-center/index.md), and finally the consumption amount is deducted from the corresponding account according to the actual binding settlement method.
 
-## Settlement Method {#account}
+## Billing Methods {#account}
 
-Guance supports various settlement methods such as Guance enterprise account and cloud account. Cloud account settlement includes Alibaba Cloud account and AWS account settlement. In cloud account settlement mode, cloud bills from multiple sites are supported to be merged into one cloud account for settlement. Please refer to [Guance settlement method](../../billing/billing-account/index.md).
+Guance supports various settlement methods such as Guance Billing Center account and cloud account. Cloud account settlement includes Alibaba Cloud account settlement, AWS account settlement and Huawei Cloud account settlement. In cloud account settlement mode, cloud bills from multiple sites are supported to be merged into one cloud account for settlement. 
 
-## Billing Item {#item}
-
-All charging items of Guance are charged separately. For example, the log data you report will incur the cost of log storage, and the application performance link tracking data you report will incur the cost related to application performance Trace.
-
-???+ attention
-
-    - The statistical range of Guance billing items can be divided into "incremental statistics" and "full statistics", and the statistical range corresponding to different billing items is different. Please refer to [Statistical Range](#count) for detailed logic.
-    
-    - Guance metric data is charged according to the number of "timeseries". For detailed logic, please refer to [Timeseries Example](#time-example)
-    
-    - You can view the statistics of each billing item, historical billing, usage statistical trends and other information of the previous day in the Guance workspace payment plan and billing.
+> Please refer to [Guance Settlement Methods](../../billing/billing-account/index.md).
 
 ### Statistical Range {#count}
 
 **Total Statistics**
 
-In the current workspace, count the amount of all data within the current data storage policy as of now.
+![](../img/all.png)
 
-Note: Data storage policies for different types of data in Guance support custom selection. Please refer to [Data Storage Policy](../../billing/billing-method/data-storage.md) for details.
 
 **Incremental Statistic**
 
-Under the current workspace, count the amount of data generated on that day.
+![](../img/add.png)
 
-### Billing Item Description
+> Data storage policies for different types of data in Guance support custom selection. Please refer to [Data Storage Strategy](../../billing/billing-method/data-storage.md) for details.
 
-Detailed billing items for Guance are shown below, and the specific price is shown in [billing price](#price).
+## Billing Item {#item}
 
-| **Billing Item**       | **Billing Instructions**                                                 | **Statistical Range** | **Billing Type** |
-| ---------------- | ------------------------------------------------------------ | ------------ | ------------ |
-| DataKit          | Count the number of DataKits in the workspace that have historically survived for 12 hours or more and still survived on the same day, and the survival time is calculated from the start of DataKit.<br><br>**Note:** <br><li>DataKit quantity statistics is the maximum value within 24 hours<li>After the host installs DataKit and starts collecting data, changing the host name `host_name` will add a new host by default, so it will be counted as 2 hosts for charging in this charging period. | Incremental Statistics     | Basic Billing     |
-| Timeseries           | Count the number of timeseries generated by all metric data in the workspace.<br><br>**Note:** Metric data is composed of four parts: time, measurement, metrics and label. The timeseries number of a single measurement is equal to how many label combinations exist under the current measurement in a certain period of time. The number of timeseries in the Guance workspace = the sum of timeseries of all measurements in the workspace. For details, please refer to [Timeseries Example](#time-example). | Total Statistics     | Basic Billing     |
-| Network (host)     | Count the number of hosts with network data reported on the same day in the workspace.           | Incremental Statistics     | Basic Billing     |
-| Log data       | Statistics the amount of log data reported in the workspace on the same day.<br>Scope of statistics:<br><li>Log data<br><li>Self-built node dial test data（ `source= [‘http_dial_testing',‘tcp_dial_testing’,'icmp_dial_testing','websocket_dial_testing'] ` and `owner != default` ）<br><li>scheck<br><li>event data<br>-Events generated by monitoring and intelligent check（`source=monitor`）<br>- User-defined escalation events（`source=custom`）<br><br>**Note:**Oversized log data will be split into multiple pieces for charging, and the calculation logic is different according to different storage methods, including ES storage and SLS storage.<br><li>ES storage: Log size exceeds 10 KB, number of log billing = integer (log size/10 KB)<br><li>SLS storage: Log size exceeds 2 KB, number of log charges = integer (log size/2 KB). For more information on storage, please refer to the doc [Data Storage Policy](../../billing/billing-method/data-storage.md). | Incremental Statistics      | Gradient Billing     |
-| Backup log capacity     | Statistics the storage capacity of backup logs in the workspace                             | Total Statistics     | Basic Billing     |
-| AP Trace   | Count the number of trace_id with unique application performance reported in the workspace on the same day<br>Statistical data range: trace data of application performance link tracing | Incremental Statistics      | Gradient Billing     |
-| AP Profile | Statistical data range: trace data of application performance link tracing<br>Data statistics range: Profile basic data + data of each Profile analysis file<br><br>**Note:**Oversized Profile analysis file data will be split into multiple pieces for billing.<br><li> Profile profiling file data less than 300 KB, count by 1<br><li> Profile profiling file data larger than 300 KB, billing number = integer (Profile profiling file size/300 KB) | Incremental Statistics      | Gradient Billing     |
-| User Access PV      | Count the number of page views visited by users reported on the same day in the workspace<br>Statistical data range: view data accessed by users | Incremental Statistics      | Gradient Billing     |
-| Usability dialing test       | Count the number of dialing data reported on the same day in the workspace (only count the data returned by dialing nodes provided by Guance)<br>Scope of statistics: dailing statistics of `source= [‘http_dial_testing',‘tcp_dial_testing’,'icmp_dial_testing','websocket_dial_testing'] ` | Incremental Statistics      | Basic Billing     |
-| Task Scheduling         | Count the number of task calls generated in the workspace on the same day<br>Statistical data range: Monitor timing detection task, generating index timing task, and sending alarm notification will all generate task call | Incremental Statistics      | Basic Billing     |
-| SMS             | Count the number of short messages sent in the workspace on the same day                             | Incremental Statistics      | Basic Billing     |
+All charging items of Guance are charged separately. For example, the log data you report will incur the cost of log storage, and the application performance link tracking data you report will incur the cost related to application performance Trace.
 
-## Billing Price {#price}
+Detailed billing items of Guance and their corresponding statistical scope and billing types are as follows:
 
-### Basic Billing
+![](../img/billing-1.png)
 
-| **Billing Item**   | **Billing Unit** | **Price** |
-| ------------ | ------------ | -------- |
-| DataKit      | Each 1 unit      | 3 yuan     |
-| Timeseries       | Per 1,000   | 3 yuan     |
-| Network (host) | Each 1 unit      | 2 yuan     |
-| Backup log capacity | Every 1 GB      | 0.007 yuan |
-| Usability dialing test   | Every 10,000 times    | 1 yuan     |
-| Task invocation     | Every 10,000 times   | 1 yuan     |
-| SMS         | Every 10 times     | 1 yuan     |
+<font color=coral>**Note:**</font> You can view the statistics of each billing item, historical billing, usage statistical trends and other information of the previous day in the Guance **Studio > Billing**.
 
-### Gradient Billing
+### Timeseries {#timeline}
 
-Guance enables you to select different [data storage policies](../../billing/billing-method/data-storage.md) for different data types, and gradient billing is based on the billing statistics of your selected data storage policies.
+That is, it is used to count the number of label combinations corresponding to all metrics in the metric data reported by users through DataKit on the same day.
 
-#### Log Data {#log}
+The timing engine of Guance mainly involves the following basic concepts:
 
-| **Billing Item**   | **Billing Unit** | **Gradient Price** |        |       |        |
-| ------------ | ------------ | ------------ | ------ | ----- | ------ |
-| Data storage strategy |              | 7 days         | 14 days  | 30 days | 60 days  |
-| Log data   | Per million     | 1.2 yuan       | 1.5 yuan | 2 yuan  | 2.5 yuan |
+| Glossary   | Description |
+| -------- | ---------- |
+| Measurement   | In general, it is used to represent a set corresponding to a certain statistical value, which is more like the concept of `table` in relational database in principle. |
+| Data Point   | When applied to the metric data reporting scenario, it refers to an metric data sample, which can be analogized to `row` data in relational database. |
+| Time   | Time stamp represents the time when data points are generated, which can also be understood as the time when DataKit collects a certain index data generation row protocol and reports it. |
+| Metrics   | Generally, data of numerical type will change with the change of timestamp. For example, `cpu_total`,`cpu_use`,`cpu_use_pencent`, etc., which are common in CPU measurement, are all metrics. |
+| Tags   | Generally, attribute information that does not change with timestamp is stored. For example, the common fields such as `host`、`project` in CPU measurement are label attributes, which are used to identify the actual object attributes of metrics. |
 
-Note: The saving strategy of log data finally determines the unit price according to the saving strategy of log data.
+#### <u>Exapmle</u> {#exapmle}
 
-#### AP Trace {#trace}
+![](../img/billing-2.png)
 
-| **Billing Item**       | **Billing Unit** | **Gradient Price** |        |        |
-| ---------------- | ------------ | ------------ | ------ | ------ |
-| Data storage strategy     |              | 3 days         | 7 days   | 14 days  |
-| AP Trace   | Per million     | 2 yuan         | 3 yuan   | 6 yuan   |
-| AP Profile | Every 10,000 articles    | 0.2 yuan       | 0.3 yuan | 0.5 yuan |
+Using the example above, the CPU measurement has a total of 6 data points based on a single metric, each with a time field: `time`, an metric: `cpu_use_pencent`, and two tags: `host` and `project`. The first and fourth rows of data show the CPU usage (`cpu_use_pencent`) for `host` named `Hangzhou_test1` and `project` belonging to Guance, followed by the second and fifth rows showing the CPU usage for `host` named `Ningxia_test1` and `project` belonging to Guance, and the third and sixth rows showing the CPU usage for `host` named `Singapore_test1` and `project` belonging to Guance_oversea.
 
-#### User Access PV {#pv}
+Based on the statistical data on the timeline above, there are a total of 3 combinations of timelines based on the metric `cpu_use_pencent`, which are:
 
-| **Billing Item**   | **Billing Unit** | **Gradient Price** |      |       |
-| ------------ | ------------ | ------------ | ---- | ----- |
-| Data storage strategy |              | 3 days         | 7 days | 14 days |
-| User access PV  | Every 10,000 articles    | 0.7 yuan       | 1 yuan | 2 yuan  |
+`"host":"Hangzhou_test1","project":"Guance"`
 
-## Billing Mode {#method}
+`"host":"Ningxia_test1","project":"Guance"`
 
-Under SaaS billing-by-volume mode, users can freely choose the billing mode according to the characteristics of reported data.
+`"host":"Singapore_test1","project":"Guance_oversea"`
 
-### Default Billing Logic {#default}
+Similarly, if you need to calculate the timeline for all metrics in the current workspace, simply add up the actual timelines for each metric to get the total.
 
-Calculate the bill of the day according to the Billing Item listed above, and both DataKit and Timeseries are charged. In this mode, each DataKit will come with 300 free timeseries by default. Therefore, the actual timeseries quantity will be charged after deducting the free quantity. The calculation logic is as follows:
+#### Generate Bills
 
-- Billing Timeseries Quantity = Timeseries Quantity-DataKit Quantity * 300
-- Billing Timeseries Quantity Billing = (Timeseries Quantity-DataKit Quantity * 300)/1000 * Unit Price.
+Metric data is collected through DataKit and reported to a workspace. This specifically refers to the data obtained by querying the NameSpace in DQL that starts with **M**.
 
-Note: If the calculated number of billing timeseries is less than 0, it will be calculated according to 0.
+#### Pricing Model
 
-### Timeseries Only + Data Billing Logic {#time-data}
+| **Incremental Statistics**   |        |        |        |         |       |      |      |
+| ------------ | ------------ | ------ | ------ | ------ | ----- | ------- | ------ |
+| Data Storage Strategy |     | 3 days         | 7 days   | 14 days  | 30 days |     180 days   |    360 days     |
+| Unit Price (per thousand)   | <font color=coral>**China Sites (China)**</font> | ￥ 0.6     | ￥ 0.7 | ￥ 0.8  |  ￥ 1  |    ￥ 4    |    ￥ 7    |
+|    | <font color=coral>**China Site (Overseas-Oregon)**</font> | ￥ 1.6     | ￥ 1.8 | ￥ 2.2  |  ￥ 2.4  |    ￥ 8    |    ￥ 14    |
+|    | <font color=coral>**International Site**</font> | $ 0.23        | $ 0.26 | $ 0.32  |  $ 0.35  |    $ 1.2   |    $ 2   |
 
-In this mode, DataKit does not charge, and there is no free timeseries logic. Except for DataKit and timeseries billing logic changes, other data Billing Item logic remains unchanged. The calculation logic is as follows:
+#### Billing Statistics
 
-- Billing Timeseries Quantity = Timeseries Quantity
-- Billing Timeseries Quantity Billing = Timeseries Quantity/1000 * Unit Price
+The number of newly added timelines within each hour of <u>a day</u> is calculated, and the maximum value of the 24 data points is taken as the actual billing quantity.
+
+#### Cost Calculation Formula
+
+Daily cost = actual billing quantity / 1000 * unit price (corresponding to the data storage strategy above)
+
+### Logs
+
+That is, logs, events, security check, synthetic tests, and other data generated by various features.
+
+???+ attention
+
+    - If the **Custom Multi-Index** feature is enabled for logs, the data will be counted based on different indexes to calculate the actual cost according to the corresponding data storage pricing strategy.    
+    - Events include events generated by monitoring modules (monitoring, SLO) configuration detection tasks, events reported by intelligent inspections, and events reported by users.     
+    - Availability testing data is reported by self-built testing nodes.        
+    - The cost of events, security inspections, and availability testing data is calculated based on the data storage pricing strategy of the "Default" index for logs.  
+
+#### Generate Bills
+
+Any of the following situations will generate corresponding log data:
+
+- Log data collection and reporting is enabled.  
+- Exception detection tasks such as monitoring, intelligent inspections, SLO configuration, or custom events are enabled or reported through OpenAPI.  
+- Availability testing tasks are enabled, and testing data is triggered to be reported through self-built testing nodes.
+
+#### Pricing Model
+
+|  **Incremental Statistics**  |    |    |        |         |       |       | 
+| ------------ | ------------ | ------ |------ | ------ | ----- | ------ |
+| Data Storage Strategy |    | 3 days         | 7 days   | 14 days  | 30 days | 60 days  |
+| Unit Price (Per Million)   |   <font color=coral>**China Sites (China)**</font>     | ￥ 1        |   ￥ 1.2 | ￥ 1.5  | ￥ 2  | ￥ 2.5   |
+|    |  <font color=coral>**China Site (Overseas-Oregon)**</font>| ￥ 2        |   ￥ 2.4 | ￥ 3 | ￥ 4  | ￥ 5   |
+|    |   <font color=coral>**International Site**</font>      | $ 0.3        |   $ 0.4 | $ 0.5  | $ 0.6  | $ 0.8   |
+
+#### Billing Statistics
+
+The number of log data points added in each hour is calculated in increments of 1 hour and the sum of the 24 resulting data points is used as the actual billing quantity.
+
+???+ attention
+
+    <u>For ultra-large log data, it will be split into multiple pieces for billing according to different storage types</u>:
+
+    **ES Storage**: If the log size exceeds 10 KB, the number of logs billed for this log is equal to the integer value of (log size / 10 KB).  
+
+    **SLS Storage**: If the log size exceeds 2 KB, the number of logs billed for this log is equal to the integer value of (log size / 2 KB).
+
+    If the size of a single data is less than the above limits, it will still be counted as 1 piece.
+
+#### Cost Calculation Formula
+
+Daily Cost = Actual billing quantity / 1000000 * Unit price (corresponding unit price applied based on the above data storage pricing strategy)
+
+### Backup Log Data {#backup}
+
+#### Generate Bills
+
+Guance Studio can configure backup rules to synchronize reported log data for backup. The data matching the backup rules will be stored in the backup log index. Guance will calculate the capacity size of the backup log based on the index.
+
+#### Pricing Model
+
+| **Total Statistics**   |  |  |
+| -------- | ---------- |---------- |
+|  Unit Price (Per GB) | <font color=coral>**China Sites (China)**</font> |  ￥ 0.007 |
+|   |  <font color=coral>**China Site (Overseas-Oregon)**</font>   | ￥ 0.014 |
+
+#### Billing Statistics
+
+The capacity size of the backup log is calculated in increments of each hour within the data storage strategy. The maximum value of the 24 resulting data points is used as the actual billing quantity. The default capacity unit is Bytes.
+
+#### Cost Calculation Formula
+
+Daily Cost = Actual billing capacity / 1000000000 * Corresponding unit price
+
+### Network
+
+The number of hosts statistically reported by network data uploaded by EBPF in the workspace.
+
+#### Generate Bills
+
+- Enable EBPF network data collection.
+
+#### Pricing Model
+
+| **Incremental Statistics**   |  |  |
+| -------- | ---------- | ---------- |
+| Unit Price (Per Host)   | <font color=coral>**China Sites (China)**</font> |  ￥ 2 |
+|    | <font color=coral>**China Site (Overseas-Oregon)**</font> |  ￥ 4 |
+|    | <font color=coral>**International Site**</font> |  $ 0.6 |
+
+#### Billing Statistics
+
+The number of new hosts added within each day is calculated in increments of each hour. The maximum value of the 24 resulting data points is used as the actual billing quantity.
+
+#### Cost Calculation Formula
+
+Daily Cost = Actual billing quantity * Corresponding unit price
+
+### Application Performance Trace
+
+The number of traces in the uploaded link data is statistically counted. In general, if the `trace_id` of the span data is the same, these spans will be classified under one trace.
+
+#### Generate Bills
+
+- Enable application performance monitoring (APM) data collection.
+
+#### Pricing Model
+
+|  **Incremental Statistics**  |  |   |     |
+| -------- | ---------- | -------- | ---------- |
+| Data Storage Strategy |           |3 days         | 7 days   |
+| Unit Price (Per Million)   |  <font color=coral>**China Sites (China)**</font>       | ￥ 2 |  ￥ 3  |
+|   |  <font color=coral>**China Site (Overseas-Oregon)**</font>       | ￥ 6 |  ￥ 10  |
+|    |  <font color=coral>**International Site**</font>       | $ 0.9 |  $ 1.4 |
+
+#### Billing Statistics
+
+The number of new `trace_id` added within each hour is calculated in increments of each hour. The sum of the 24 resulting data points is used as the actual billing quantity.
+
+#### Cost Calculation Formula
+
+Daily Cost = Actual billing quantity / 1000000 * Corresponding unit price
+
+### Application Performance Profile
+
+The number of application performance profile data uploaded is statistically counted.
+
+#### Generate Bills
+
+- Enable application performance profile data collection.
+
+#### Pricing Model
+
+| **Incremental Statistics**   |  |   |     |  |
+| -------- | ---------- | -------- | ---------- |---------- |
+| Data Storage Strategy |  |3 days         | 7 days   | 14 days  |
+| Unit Price (Per Ten Thousand)   |<font color=coral>**China Sites (China)**</font> |￥0.2 |  ￥ 0.3  |  ￥ 0.5|
+|    |<font color=coral>**China Site (Overseas-Oregon)**</font> |￥0.4 |  ￥ 0.6  |  ￥ 1|
+|    |<font color=coral>**International Site**</font> |$ 0.06 |  $ 0.09  |  $ 0.14|
+
+#### Billing Statistics
+
+The number of new profile data added within each hour is calculated in increments of each hour. The sum of the 24 resulting data points is used as the actual billing quantity.
+
+???+ attention
+
+    Profile data consists of two parts: **Basic Properties Data + Profile Analysis File**:
+
+    If there is an ultra-large profile analysis file, the profile data will be split into multiple pieces for billing.
+
+    If the profile analysis file data is greater than 300 KB, the number of billing items is equal to the integer value of (Profile analysis file size / 300 KB).
+
+    If the analysis file is less than the above limit, it will still be counted as 1 piece.
+
+#### Cost Calculation Formula
+
+Daily Cost = Actual billing quantity / 10000 * Corresponding unit price
+
+### User Access PV
+
+Statistical number of page views accessed by users that is reported. Generally, the number of `view_id` in the View data is used.
+
+<font color=coral>**Note:**</font> Whether it is an SPA (single-page application) or an MPA (multi-page application), every time a user visits a page (including refresh or re-entry), it counts as 1 PV.
+
+#### Generate Bills
+
+- Enable user access monitoring (RUM) collection.
+
+#### Pricing Model
+
+| **Incremental Statistics**   |  |   |     |  |
+| -------- | ---------- | -------- | ---------- |---------- |
+| Data Storage Strategy |     |  3 days   | 7 days   | 14 days  |
+| Unit Price (Per Ten Thousand)  | <font color=coral>**China Sites (China)**</font> | ￥ 0.7 | ￥ 1  |  ￥ 2|
+|    | <font color=coral>**China Site (Overseas-Oregon)**</font> | ￥ 2 | ￥ 3  |  ￥ 5|
+|   | <font color=coral>**International Site**</font> | $ 0.29 | $ 0.43  |  $ 0.71|
+
+#### Billing Statistics
+
+The number of new PV data added within each hour is calculated in increments of each hour. The sum of the 24 resulting data points is used as the actual billing quantity.
+
+#### Cost Calculation Formula
+
+Daily Cost = Actual billing quantity / 10000 * Unit price (*corresponding unit price applied based on the above data storage pricing strategy*)
+
+### Session Replay {#session}
+
+Statistical number of Sessions that actually generated session replay data. Generally, the number of `session_id` in the Session data that `has has_replay: true` is used.
+
+#### Generate Bills
+
+- Enable Session replay collection.
+
+#### Pricing Model
+
+| **Incremental Statistics**   |  |  |
+|-------- | ---------- |---------- |
+| Unit Price (Per Thousand)   |  <font color=coral>**China Sites (China)**</font>   | ￥ 10 |
+|    |  <font color=coral>**China Site (Overseas-Oregon)**</font>   | ￥ 15.4 |
+|    |  <font color=coral>**International Site**</font>   | $ 2.2 |
+
+#### Billing Statistics
+
+The number of new Sessions added within each day is calculated in increments of each hour. The maximum value of the 24 resulting data points is used as the actual billing quantity.
+
+???+ attention
+
+    If there is an ultra-long active Session, the Session will be split into multiple pieces for billing according to `time_spent`.
+
+    If the Session `time_spent` > 4 hours, the number of billing items is equal to the integer value of (time_spent / 4 hours).
+
+    If the Session `time_spent` is less than the above 4 hours, it will still be counted as 1 Session.
+
+#### Cost Calculation Formula
+
+Daily Cost = Actual billing quantity / 1000 * Corresponding unit price
+
+### Synthetic Tests
+
+#### Generate Bills
+
+- Enable availability test tasks and return test results through the provided testing nodes of Guance.
+  
+#### Pricing Model
+
+| **Incremental Statistics**   |  |   |
+|-------- | ---------- |---------- |
+| Unit Price (Per Ten Thousand Times)   |  <font color=coral>**China Sites (China)**</font>  | ￥ 1 |
+|    |  <font color=coral>**China Site (Overseas-Oregon)**</font>  | ￥ 10 |
+|    |   <font color=coral>**International Site**</font>  |  $ 1.43 |
+
+#### Billing Statistics
+
+The number of newly added dialing and testing data within one hour is counted at an hourly interval, and 24 data points are finally obtained, which are summed as the actual billing number.
+
+???+ attention
+
+    Because the dialing data is currently stored in the log **default** index, DQL queries or statistics need to add the following filters to query the dialing data.
+    
+    `index = ['default'], source = [‘http_dial_testing',‘tcp_dial_testing’,'icmp_dial_testing','websocket_dial_testing']`.
+
+#### Cost Calculation Formula
+
+Daily Cost = Actual billing quantity / 10000 * Corresponding unit price
+
+### Triggers
+
+#### Generate Bills
+
+- Turn on regular detection tasks such as monitor and SLO;
+
+- Open the generation index;
+
+- Start the alarm notification sending;
+
+- Select the advanced function query provided by the central Func.      
+
+#### Pricing Model
+
+| **Incremental Statistics**   |  |   |
+|-------- | ---------- |---------- |
+| Unit Price (Per Ten Thousand)   | <font color=coral>**China Sites (China)**</font>   |  ￥ 1 |
+|   | <font color=coral>**China Site (Overseas-Oregon)**</font>   |  ￥ 2 |
+|    |  <font color=coral>**International Site**</font>  |  $ 0.3 |
+
+#### Billing Statistics
+
+The number of new tasks in one hour is counted at an hourly interval, and after 24 data points are finally obtained, the sum is taken as the actual billing quantity.
+
+#### Cost Calculation Formula
+
+Daily Cost = Actual billing quantity / 10000 * Corresponding unit price
+
+### SMS
+
+Count the number of short messages sent on the same day.
+
+#### Generate Bills
+
+- Alarm policy configuration SMS notification sending.
+
+#### Pricing Model
+
+| **Incremental Statistics**   |  |   |
+|-------- | ---------- |---------- |
+| Unit Price (Per Ten)   | <font color=coral>**China Sites (China)**</font>   |  ￥ 1 |
+
+#### Billing Statistics 
+
+The number of new short messages sent within one hour is counted at an hourly interval, and after 24 data points are finally obtained, the sum is taken as the actual billing quantity.
+
+#### Cost Calculation Formula
+
+Daily Cost = Actual billing quantity / 10 * Corresponding unit price
 
 
-### Billing Logic {#gradient}
+## Billing Example {#example}
 
-- Billing Item Bill = Billing Unit Quantity * Unit Price
-- Billing Item Item Units = Actual Statistical Number / Billing Unit(Note: the result value is not carried here, and two decimal places of the value are reserved)
-
-## Billing Sample {#example}
-
-### Timeseries Number Measurement Example {#time-example}
-
-**Basic Conceptual**
-
-Metric data is composed of four parts: time, measurement, metrics and label. The timeseries number of a single measurement is equal to how many label combinations exist under the current measurement in a certain period of time. The number of timeseries in Guance workspace = the sum of timeseries of all measurement in the workspace.
-
-**Timeseries of Statistical Measurements**
-
-DataKit collects host and K8s cluster metric data generation timeseries estimation:
-
-| Measurement   | Metrics                                               | Timeseries Estimation                                        |
-| -------- | -------------------------------------------------- | ------------------------------------------------- |
-| Host     | Single disk and single network card per host                             | About 20 ~ 30 timeseries                            |
-| K8S cluster | 16 Node<br>300 POD<br>Meric data saving strategy: 14 days | About 6409 timeseries<br>![](../img/2.billing_1.png) |
-
-You can also estimate your timeseries data based on the following example:
-
-Suppose you collect the metric `http_response` from two hosts ( `host: A` and `host: B`) simultaneously to monitor application access. There are two labels here:
-
-- `host`: Including `host: A` and `host: B` 
-- `status_code`: Including `status_code: 200`, `status_code: 404` and `status_code: 500`
-
-Suppose ` host: A ` has two requests that return status codes and ` host: B ` has three requests that return status codes, as shown in the following diagram:
-
-<img src="../img/3.billing_time_1.png" width=800px />
-
-According to the diagram above, the measurement  `http_response` will produce five timeseries.
-
-```
- host: A ， status_code: 200 
- host: A ， status_code: 404 
- host: B ， status_code: 200 
- host: B ， status_code: 404 
- host: B ， status_code: 500 
-```
-
-**Label-based Timeseries of Change Statistics Measurement**
-
-Based on the above schematic diagram, we add a label `url` to the measurement `http_response`, including two values `https://docs.guance.com/` and `https://www.guance.com/`, and then the measurement  `http_response` will produce 10 timeseries (i.e. 5*2=10).
-
-```
- host: A ， status_code: 200 ， url: https://docs.guance.com/
- host: A ， status_code: 200 ， url: https://www.guance.com/
- host: A ， status_code: 404 ， url: https://docs.guance.com/
- host: A ， status_code: 404 ， url: https://www.guance.com/
- host: B ， status_code: 200 ， url: https://docs.guance.com/
- host: B ， status_code: 200 ， url: https://www.guance.com/
- host: B ， status_code: 404 ， url: https://docs.guance.com/
- host: B ， status_code: 404 ， url: https://www.guance.com/
- host: B ， status_code: 500 ， url: https://docs.guance.com/
- host: B ， status_code: 500 ， url: https://www.guance.com/
-```
-
-Based on the above example, we add a tag `host_ip` to the measurement `http_response`. Since the values of `host_ip` and `host` are one-to-one, the measurement `http_response` will not generate more timeseries, that is, although a tag attribute is added, only 10 timeseries will be generated.
-
-```
- host: A ， status_code: 200 ， url: https://docs.guance.com/ ， host_ip: 192.168.0.1
- host: A ， status_code: 200 ， url: https://www.guance.com/ ， host_ip: 192.168.0.1
- host: A ， status_code: 404 ， url: https://docs.guance.com/ ， host_ip: 192.168.0.1
- host: A ， status_code: 404 ， url: https://www.guance.com/ ， host_ip: 192.168.0.1
- host: B ， status_code: 200 ， url: https://docs.guance.com/ ， host_ip: 192.168.0.2
- host: B ， status_code: 200 ， url: https://www.guance.com/ ， host_ip: 192.168.0.2
- host: B ， status_code: 404 ， url: https://docs.guance.com/ ， host_ip: 192.168.0.2
- host: B ， status_code: 404 ， url: https://www.guance.com/ ， host_ip: 192.168.0.2
- host: B ， status_code: 500 ， url: https://docs.guance.com/ ， host_ip: 192.168.0.2
- host: B ， status_code: 500 ， url: https://www.guance.com/ ， host_ip: 192.168.0.2
-```
-
-### Other Expense Related Examples
 
 Suppose Company A uses Guance to observe the IT infrastructure and application systems of the company as a whole.
 
-#### Example One
 
-Suppose Company A has 10 hosts and produces 500 timeseries, 2 million log data, 2 million Trace data, 20,000 PV data and 20,000 task schedules every day. The data storage strategy used is as follows:
+Assuming that Company A has a total of 10 hosts (the default daily active timeline of each host is 600), it generates 6,000 timelines, 2 million log data, 2 million Trace data, 20,000 PV data and 20,000 task schedules every day. The data storage strategy used is as follows:
+
 
 | Billing Item       | Metric (timeseries) | Log | AP Trace | User access PV |
 | ------------ | -------------- | ---- | -------------- | ----------- |
 | Data storage strategy | 3 days           | 7 days | 3 days           | 3 days        |
 
-Using [default billing logic](#default), the daily cost is 39.8 yuan, and the specific details are as follows:
+The details are as follows:
 
 | Billing Item   | Daily Billing Quantity | Billing Unit Price        | Billing Logic                                                     | Daily Billing Fee |
 | -------- | ---------- | --------------- | ------------------------------------------------------------ | ---------- |
-| Host     | 10 sets      | 3 yuan / per host       | (Actual statistical quantity / Billing Unit) * unit price<br/>（10 / 1) * 3 yuan | 30 yuan      |
-| Timeseries   | 500 articles     | 3 yuan / 1,000     | （number of timeseries - DataKit numbers * 300）/ 1000 * unit price<br>namely （500 - 10 * 300） / 1000 * 3 yuan | 0 yuan       |
-| Log     | 2 million  | 1.2 yuan / million | (Actual statistical quantity / Billing Unit) * unit price<br>namely （2 million / 1 million） * 1.2 yuan | 2.4 yuan     |
-| Trace    | 2 million   | 2 yuan / million个   | (Actual statistical quantity / Billing Unit) * unit price<br/>namely （2 million / 1 million） * 2 yuan | 4 yuan       |
-| PV       | 20,000     | 0.7 yuan / 10,000   | (Actual statistical quantity / billing unit) * unit price<br/>namely （20,000 / 10,000） * 0.7 yuan | 1.4 yuan     |
-| Task scheduling |20,000     | 1 yuan / 10,000     | (Actual statistical quantity / billing unit) * unit price<br/>namely （20,000 / 10,000） * 1 yuan | 2 yuan       |
+| Timeseries   | 6000     | 0.6 / per thousand     | (actual statistical quantity  / 1000 * Unit price<br>namely 6000 / 1000 * 0.6      | 3.6     |
+| Log     | 2 million   | 1.2 / per million | (actual statistical quantity / billing unit) * unit price<br>namely (2 million / 1 million * 1.2 | 2.4     |
+| Trace    | 200,000   | 2 /per  million   | (actual statistical quantity / billing unit) * unit price<br/>namely (2 million / 1 million * 2 | 4       |
+| PV       | 200,000     | 0.7 / 10,000   | (actual statistical quantity / billing unit) * unit price<br/>namely （20,000 / 10,000） * 0.7 | 1.4     |
+| Task scheduling | 20,000     | 1 / 10,000    | (actual statistical quantity / Billing Unit) * unit price<br/>namely (20,000 / 10,000） * 1 | 2       |
 
-Note: Because the timeseries is a full Billing Item, the change of the timeseries may lead to an increase in the number of timeseries and incur expenses. For more timeseries quantity measurements, please refer to the doc [Timeseries Example](#time-example).
+<font color=coral>**Note:**</font> Because the timeseries is a full Billing Item, the change of the timeseries may lead to an increase in the number of timeseries and incur expenses. 
 
-
-
-#### Example Two
-
-Suppose that Company A has a total of 10 hosts, generating 500 timeseries, 2 million log data, 2 million Trace data, 20,000 PV data and 20,000 task schedules every day. The data storage strategy used is as follows:
-
-| Billing Item       | Metric (timeseries) | Log | AP Trace | User access PV |
-| ------------ | -------------- | ---- | -------------- | ----------- |
-| Data storage strategy | 3 days           | 7 days | 3 days           | 3 days        |
-
-Using [timeseries only + data billing logic](#time-data), the daily cost is 11.3 yuan, and the details are as follows:
-
-| Billing Item   | Daily Billing Quantity | Billing Unit Price        | Billing Logic                                                     | Daily Billing Fee |
-| -------- | ---------- | --------------- | ------------------------------------------------------------ | ---------- |
-| Host     | 10      | /               | /                                                            | /          |
-| Timeseries   | 500     | 3 yuan / per thousand     | number of timeseries  / 1000 * Unit price<br>namely 500 / 1000 * 3 yuan      | 1.5 yuan     |
-| Log     | 2 million   | 1.2 yuan / per million | (actual statistical quantity / billing unit) * unit price<br>namely (2 million / 1 million * 1.2 yuan | 2.4 yuan     |
-| Trace    | 200,000   | 2 yuan /per  million   | (actual statistical quantity / billing unit) * unit price<br/>namely (2 million / 1 million * 2 yuan | 4 yuan       |
-| PV       | 200,000     | 0.7 yuan / 10,000   | (actual statistical quantity / billing unit) * unit price<br/>namely （20,000 / 10,000） * 0.7 yuan | 1.4 yuan     |
-| Task scheduling | 20,000     | 1 yuan / 10,000    | (actual statistical quantity / Billing Unit) * unit price<br/>namely (20,000 / 10,000） * 1 yuan | 2 yuan       |
-
-Note: Because the timeseries is a full Billing Item, the change of the timeseries may lead to an increase in the number of timeseries and incur expenses. For more timeseries quantity measurements, please refer to the doc [Timeseries Example](#time-example).
+> For more timeseries quantity measurements, please refer to the doc [Timeseries Example](#timeline).
 

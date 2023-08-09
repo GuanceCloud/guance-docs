@@ -1,7 +1,7 @@
 # Register Commercial Plan
 ---
 
-You can go to [Guance official website](https://www.guance.com/), [register now](https://auth.guance.com/businessRegister) as a Guance user.
+You can go to [Guance official website](https://www.guance.one/), [register now](https://auth.guance.com/en/businessRegister) as a Guance user.
 
 ## Step 1: Basic Information {#info}
 
@@ -9,6 +9,7 @@ On the basic information page, select the site and enter the registration inform
 
 ![](img/commercial-register-1.png)
 
+<!--
 ### Site {#site}
 
 Guance provides multiple registration sites, and you can select corresponding sites according to your current cloud environment or settlement methods.
@@ -25,6 +26,7 @@ Guance provides multiple registration sites, and you can select corresponding si
 | China 2 (Ningxia)   | [https://aws-auth.guance.com/](https://aws-auth.guance.com/login/pwd) |AWS (Ningxia, China) | [AWS account settlement](#aws)        |
 | China 4 (Guangzhou)   | [https://cn4-auth.guance.com/](https://cn4-auth.guance.com/login/pwd) | Huawei Cloud (Guangzhou, China) |[Guance account settlement](#guanceyun) |
 | Overseas Region 1 (Oregon) | [https://us1-auth.guance.com/](https://us1-auth.guance.com/) | AWS (Oregon, USA) |[AWS account settlement](#aws)      |
+
 
 ### User Name
 
@@ -45,36 +47,58 @@ Enter the user name, account number and password of the Billing Center.
 **Username** can no longer be modified after the binding is completed, please be careful.
 
 ![](img/9.billing_account_3.png)
+-->
 
 ## Step 2: Enterprise Info
 
-On the **Enterprise Information** page, enter relevant information and click **Register**.
+On the **Enterprise Information** page, enter necessary information and click **Continue**.
 
 ![](img/11.account_center_4.png)
 
-## Step 3: Select Opening Method
-
-Depending on the site selected in [step 1: basic info](#info), the third step displays the corresponding default opening mode page.
+## Step 3: Create Workspace
 
 > Refer to the doc [Guance Expense Settlement](../billing/billing-account/index.md).
 
 ### Workspace Name
 
-Workspace is a collaborative space for Guance data insight. Users can query and analyze data in the workspace, and support custom workspace names.
+Workspace is a collaborative space for Guance data insight. Customize your workspace names.
 
 ### Workspace Language
 
 Workspace language options will affect templates such as events, alarms and short messages in the workspace. If English is selected, the above corresponding template will be used by default. Once created, the template language of this workspace cannot be modified, so please choose carefully.
 
-### Alibaba Cloud Account Settlement {#aliyun}
 
-If you select **China 1 (Hangzhou)** site when registering, Guance will provide Alibaba Cloud account settlement by default, and all expenses incurred in the workspace will be settled directly from your Alibaba Cloud account.
+### Workspace Style
+
+Guance has designed four workspace styles: Dev, Ops, Test and Default. When you select a specific style and complete the registration, Guance will show you the corresponding function menu style in the workspace.
+
+> Go check [different styles of workspace function menu](../management/index.md#create).
+
+If you need to set the menu, you can go to **Management > Advanced Settings > [Function Menu](../management/settings/customized-menu.md)** to modify it.
+
+### Four Settlement Methods
+
+#### Guance Billing Center account Settlement
+
+Guance provides the Billing Center account settlement of Guance by default, and all expenses incurred in the workspace will be settled directly from the balance of vouchers and Huawei Cloud stored-value cards purchased by your [Guance Billing Center account settlement](../billing/billing-account/enterprise-account.md).
+
+You can enter **Workspace Name** in the dialog box below, select **Workspace Language** and click OK to complete the registration.
+
+![](img/4.register_language_2.2.png)
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Guance Billing Center account Settlement</font>](./billing-account/enterprise-account.md)
+
+</div>
+
+#### Alibaba Cloud Account Settlement {#aliyun}
+
+Guance provides Alibaba Cloud account settlement, and all expenses incurred in the workspace will be settled directly from your Alibaba Cloud account.
 
 You can **Select Opening Method**, fill in **Workspace Name**, select **Workspace Language**, [go to Alibaba Cloud to open Guance service for free](https://market.aliyun.com/products/56838014/cmgj00053362.html) to obtain and fill in [Ali user ID](../billing/billing-account/aliyun-account.md#uid) and [commodity instance ID](../billing/billing-account/aliyun-account.md#entity-id), and click OK to complete the registration.
 
-???+ attention
-
-    For Alibaba Cloud users, you can also directly open Guance for use in the following ways:
+???+ attention "Alibaba Cloud users can directly open Guance in the following ways:"
     
     - You can purchase Guance directly from [Guance in Alibaba Cloud market](https://market.aliyun.com/products/56838014/cmgj00053362.html), and open Guance directly through login-free registration.
   
@@ -94,11 +118,11 @@ You can **Select Opening Method**, fill in **Workspace Name**, select **Workspac
 
 </div>
 
-### AWS Account Settlement
+#### AWS Account Settlement
 
-If you select "China 2 (Ningxia)" and "Overseas 1 (Oregon)" sites when registering, Guance will provide AWS account settlement by default, and all expenses incurred in the workspace will be settled directly from your AWS account.
+Guance provides AWS account settlement, and all expenses incurred in the workspace will be settled directly from your AWS account.
 
-You can subscribe to Guance on AWS by clicking on [Go to Amazon Cloud marketplace to subscribe](../billing/billing-account/aws-account.md#subscribe) in **Choose how to Open it**. After completing the subscription, enter **Workspace Name** in the dialog box below, select **Workspace Language** and click OK to complete the registration.
+You can subscribe to Guance on AWS by clicking on [Go to Amazon Cloud marketplace to subscribe](../billing/billing-account/aws-account.md#subscribe) in **Choose how to Open it**. After completing the subscription, enter **Workspace Name** in the dialog box below, select **Workspace Language** and click **Register** to complete the registration.
 
 ![](img/4.register_language_2.1.png)
 
@@ -110,27 +134,31 @@ You can subscribe to Guance on AWS by clicking on [Go to Amazon Cloud marketplac
 
 </div>
 
-### Guance Enterprise Account Settlement
+#### Huawei Cloud Account Settlement {#huawei-cloud}
 
-If you select the "China 4 (Guangzhou)" site when registering, Guance will provide the enterprise account settlement of Guance by default, and all expenses incurred in the workspace will be settled directly from the balance of vouchers and Huawei Cloud stored-value cards purchased by your [Guance enterprise account settlement](../billing/billing-account/enterprise-account.md).
+If you choose [Huawei Cloud Account for settlement](./billing-account/huawei-account.md) when registering, all expenses incurred in the workspace will be settled directly from your Huawei Cloud Account.
 
-You can enter **Workspace Name** in the dialog box below, select **Workspace Language** and click OK to complete the registration.
+Click **[Go to Huawei Cloud to open free Guance service](../billing/billing-account/huawei-account.md#market)** and then subscribe to Guance services at Huawei Yunyun Store and open Huawei Cloud Account for settlement.
 
-![](img/4.register_language_2.2.png)
+![](img/huawei-create.png)
 
-<div class="grid cards" markdown>
+You can also open Guance directly in the following way:
+    
+Go directly to [Huawei Cloud KooGallery](https://marketplace.huaweicloud.com/intl), purchase SaaS version of Guance, and open Guance directly through login-free registration.
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Guance Enterprise Account Settlement</font>](./billing-account/enterprise-account.md)
+### Synchronize Creation of Billing Center Account
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Huawei Cloud Account Settlement</font>](./billing-account/huaweicloud-account.md)
+<u>The initial user name and password of the Billing Center are the same as those of Guance (that is, the user name/password you filled in in the first step)</u>, and the account systems of the two platforms are independent of each other. Subsequent modification of the user name/password will not affect the other platform.
 
-</div>
+
+When checked, you can create a Billing Center account for you simultaneously.
+
 
 ## Step 4: Open Successfully
 
 After selecting the opening mode, if the registration is successful, it will be prompted to successfully open Guance.
 
-![](img/1.sls_8.png)
+![](img/inter-1.sls_8.png)
 
 After logging in to the workspace, you can view the version information of the current workspace in the Billing module of Guance.
 
@@ -138,7 +166,7 @@ After logging in to the workspace, you can view the version information of the c
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Introduction of Billing module in Commercial Plan</font>](../billing/commercial.md#_4)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Introduction of Billing Module in Commercial Plan</font>](../billing/commercial.md#_4)
 
 <br/>
 

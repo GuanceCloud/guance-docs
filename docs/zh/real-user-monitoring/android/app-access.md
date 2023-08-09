@@ -8,7 +8,7 @@
 ## 前置条件
 
 - 安装 [DataKit](../../datakit/datakit-install.md)；  
-- 配置 [RUM 采集器](../../datakit/rum.md)；
+- 配置 [RUM 采集器](../../integrations/rum.md)；
 - DataKit 配置为[公网可访问，并且安装 IP 地理信息库](../../datakit/datakit-tools-how-to.md#install-ipdb)。
 
 ## Android 应用接入 {#android-integration} 
@@ -1481,7 +1481,7 @@ FTExt {
 
 ```
 ### 手动上传
-需要开发者将符号文件自行打包成 `zip` 文件，然后自行上传至 `datakit` ，推荐使用 `zip` 命令行进行打包，避免将一些系统隐藏文件打入 `zip` 包中，符号上传请参考 [sourcemap 上传](../../datakit/rum.md#sourcemap)
+需要开发者将符号文件自行打包成 `zip` 文件，然后自行上传至 `datakit` ，推荐使用 `zip` 命令行进行打包，避免将一些系统隐藏文件打入 `zip` 包中，符号上传请参考 [sourcemap 上传](../../integrations/rum.md#sourcemap)
 
 ## 权限配置说明
 

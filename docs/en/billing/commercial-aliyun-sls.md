@@ -37,7 +37,7 @@ Click No Login on the right side of the instance. In the pop-up dialog box, clic
 
 ![](img/7.aliyun_sls_2.png)
 
-Prompt **Register Guance Commercial Plan Immediately** and **Existing Enterprise Account**, bind it.
+Prompt **Register Guance Commercial Plan Immediately** and **Existing Billing Center account**, bind it.
 
 ![](img/10.aliyun_market_2.png)
 
@@ -90,7 +90,7 @@ After the verification is passed, click **Confirm Opening** and prompt **Success
 
 ### Bind Guance Workspace
 
-After registering the Guance account, you can return to the bound Guance workspace. Click **Existing enterprise account, bind it**.
+After registering the Guance account, you can return to the bound Guance workspace. Click **Existing Billing Center account, bind it**.
 
 ![](img/10.aliyun_market_2.png)
 
@@ -98,19 +98,19 @@ Prompt **How to quickly bind Alibaba Cloud account for settlement**.
 
 ![](img/12.aliyun_4.png)
 
-Click OK to start binding the Guance workspace. Before binding the workspace, you need to bind the enterprise account of Guance.
+Click OK to start binding the Guance workspace. Before binding the workspace, you need to bind the Billing Center account of Guance.
 
-#### Bind Guance Enterprise Account
+#### Bind Guance Billing Center account
 
-##### Existing Enterprise Account
+##### Existing Billing Center account
 
-Enter the user name of the Guance enterprise account and bind it through email verification.
+Enter the user name of the Guance Billing Center account and bind it through email verification.
 
 ![](img/7.aliyun_sls_4.png)
 
-##### No Enterprise Account yet
+##### No Billing Center account yet
 
-If you don't have a Guance enterprise account yet, you can click **Register** to register a new Guance enterprise account.
+If you don't have a Guance Billing Center account yet, you can click **Register** to register a new Guance Billing Center account.
 
 ![](img/12.aliyun_6.png)
 
@@ -175,7 +175,7 @@ Guance enables you to view other sls data under Alibaba Cloud account synchronou
 
 **1.How to open Exclusive Plan of Guance (SLS storage)?**
 
-You can open the Guance Exclusive Plan according to this document. The Guance Exclusive Plan only supports SLS storage mode. For more storage modes, please refer to the doc [Data Storage Policy](../billing/billing-method/data-storage.md#options).
+You can open the Guance Exclusive Plan according to this document. The Guance Exclusive Plan only supports SLS storage mode. For more storage modes, please refer to the doc [Data Storage Strategy](../billing/billing-method/data-storage.md#options).
 
 **2.If the workspace that has used the Commercial Plan of Guance has been opened, can the Exclusive Plan of Guance be opened again?**
 

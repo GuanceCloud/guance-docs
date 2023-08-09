@@ -9,7 +9,7 @@
 ## 前置条件
 
 - 安装 [DataKit](../../datakit/datakit-install.md)；  
-- 配置 [RUM 采集器](../../datakit/rum.md)；
+- 配置 [RUM 采集器](../../integrations/rum.md)；
 - DataKit 配置为[公网可访问，并且安装 IP 地理信息库](../../datakit/datakit-tools-how-to.md#install-ipdb)。
 
 ## iOS 应用接入
@@ -24,7 +24,7 @@
 
 **源码地址**：[https://github.com/GuanceCloud/datakit-ios](https://github.com/GuanceCloud/datakit-ios)
 
-**Demo**：[https://github.com/GuanceCloud/datakit-ios/demo](https://github.com/GuanceCloud/datakit-ios/tree/develop/demo)
+**Demo**：[https://github.com/GuanceDemo/guance-app-demo](https://github.com/GuanceDemo/guance-app-demo/tree/master/src/ios/demo)
 
 === "CocoaPods"
 
@@ -765,7 +765,7 @@ rumConfig.globalContext = @{@"dynamic_tag":dynamicTag};
 
 4. `FTMobileConfig` 中配置的自定义标签将添加在所有类型的数据中。
 
-详细细节请见 [SDK Demo](https://github.com/GuanceCloud/datakit-ios/tree/develop/demo)。
+详细细节请见 [SDK Demo](https://github.com/GuanceDemo/guance-app-demo/tree/master/src/ios/demo)。
 
 ## 崩溃日志符号化
 
@@ -775,7 +775,7 @@ rumConfig.globalContext = @{@"dynamic_tag":dynamicTag};
 
 1. XCode 添加自定义 Run Script Phase：` Build Phases -> + -> New Run Script Phase`
 2. 将脚本复制到 Xcode 项目的构建阶段运行脚本中，脚本中需要设置参数如：＜app_id＞、＜dea_address＞、＜env＞、＜version＞(脚本默认配置的版本格式为 `CFBundleShortVersionString`)。
-3. [脚本](https://github.com/GuanceCloud/datakit-ios/blob/develop/demo/FTdSYMUploader.sh)
+3. [脚本](https://github.com/GuanceDemo/guance-app-demo/tree/master/src/ios/demo/FTdSYMUploader.sh)
 
 ```sh
 #脚本中需要配置的参数
@@ -809,7 +809,7 @@ FT_ENV="common"
 .xcconfig 文件中配置预设宏：
 
 ```sh
-//如果有使用 cocoapods ，需要将 pods 的.xcconfig 路径添加到您的 .xcconfig 文件中，如果您不清楚路径是什么，可以使用终端进入项目文件夹，执行 pod install，终端会有提示路径，将该路径复制后如下使用即可。
+//如果有使用 cocoapods ，需要将 pods 的.xcconfig 路径添加到您的 .xcconfig 文件中
 #include "Pods/Target Support Files/Pods-testDemo/Pods-testDemo.debug.xcconfig"
 
 SDK_APP_ID = app_id_common
@@ -842,30 +842,25 @@ FT_ENV=SDK_ENV
 
 **项目某一文件中** 
 
-方法一：对指定文件进行配置：-D'SDK_APP_ID=@"$(SDK_APP_ID)"'
-
-![](../img/multi-environment-configuration6.png)
-
-
-
- 在指定文件中可以使用
-
-![](../img/multi-environment-configuration7.png)
-
-
-
-方法二：映射到  `Info.plist` 文件中
+映射到  `Info.plist` 文件中
 
 ![](../img/multi-environment-configuration8.png)
 
-
-
 在文件中可以使用
 
-![](../img/multi-environment-configuration9.png)
+```swift
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        let info = Bundle.main.infoDictionary!
+        let appid:String = info["SDK_APP_ID"] as! String
+        let env:String  = info["SDK_ENV"] as! String
+
+        print("SDK_APP_ID:\(appid)")
+        print("SDK_ENV:\(env)")
+}
+```
 
 
-详细细节请见 [SDK Demo](https://github.com/GuanceCloud/datakit-ios/tree/develop/demo)。
+详细细节请见 [SDK Demo](https://github.com/GuanceDemo/guance-app-demo/tree/master/src/ios/demo)。
 
 #### 方法二：终端运行脚本
 
@@ -875,7 +870,7 @@ FT_ENV=SDK_ENV
 
 #### 方法三：手动上传
 
-[Sourcemap 上传](../../datakit/rum.md#sourcemap)
+[Sourcemap 上传](../../integrations/rum.md#sourcemap)
 
 ## Widget Extension 数据采集
 

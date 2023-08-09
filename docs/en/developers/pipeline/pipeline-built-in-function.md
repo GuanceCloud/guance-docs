@@ -159,8 +159,6 @@ After using `adjust_timezone` will get:
 
 ### `agg_create()` {#fn-agg-create}
 
-[:octicons-tag-24: Version-1.5.10](../datakit/changelog.md#cl-1.5.10)
-
 Function prototype: `fn agg_create(bucket: str, on_interval: str = "60s", on_count: int = 0, keep_value: bool = false, const_tags: map[string]string = nil)`
 
 Function description: Create an aggregation measurement, set the time or number of times through `on_interval` or `on_count` as the aggregation period, upload the aggregated data after the aggregation is completed, and choose whether to keep the last aggregated data
@@ -368,6 +366,39 @@ if cidr(ip, "192.0.2.1/24") {
 ```
 
 
+### `conv_traceid_w3c_to_dd()`  {#fn-conv-traceid-w3c-to-dd}
+
+Function prototype: `fn conv_traceid_w3c_to_dd(key)`
+
+Function description: Convert a hex-encoded 128-bit/64-bit W3C Trace ID string(length 32 characters or 16 characters) to a decimal-encoded 64-bit DataDog Trace ID string.
+
+Function parameters:
+
+- `key`: 128-bit/64-bit Trace ID to convert
+
+Example:
+
+```python
+
+# script input:
+
+"18962fdd9eea517f2ae0771ea69d6e16"
+
+# script:
+
+grok(_, "%{NOTSPACE:trace_id}")
+
+conv_traceid_w3c_to_dd(trace_id)
+
+# result:
+
+{
+    "trace_id": "3089600317904219670",
+}
+
+```
+
+
 ### `cover()` {#fn-cover}
 
 Function prototype: `fn cover(key: str, range: list)`
@@ -393,8 +424,6 @@ cover(abc, [2, 4])
 
 
 ### `datetime()` {#fn-datetime}
-
-[:octicons-tag-24: Version-1.5.7](../datakit/changelog.md#cl-1.5.7)
 
 Function prototype: `fn datetime(key, precision: str, fmt: str, tz: str = "")`
 
@@ -600,8 +629,6 @@ rename("time", log_time)
 
 ### `delete()` {#fn-delete}
 
-[:octicons-tag-24: Version-1.5.8](../datakit/changelog.md#cl-1.5.8)
-
 Function prototype: `fn delete(src: map[string]any, key: str)`
 
 Function description: Delete the key in the JSON map
@@ -662,10 +689,10 @@ Function parameters:
 
 - `key`: key to be deleted
 
-示例：
+Example：
 
 ```python
-# data = `{\"age\": 17, \"name\": \"zhangsan\", \"height\": 180}`
+# data = "{\"age\": 17, \"name\": \"zhangsan\", \"height\": 180}"
 
 json(_, age,)
 json(_, name)
@@ -940,7 +967,7 @@ Function parameters:
 - `json_path`: JSON path information
 - `newkey`：Write the data to the new key after extraction
 - `trim_space`: Delete the leading and trailing blank characters in the extracted characters, the default value is true
-- `delete_after_extract`: After extract delete the extracted info from input. Only map key and map value are deletable, list(array) are not supported. Default is `false'.  [:octicons-tag-24: Version-1.5.7](../datakit/changelog.md#cl-1.5.7)
+- `delete_after_extract`: After extract delete the extracted info from input. Only map key and map value are deletable, list(array) are not supported. Default is `false'.
 
 ```python
 # Directly extract the x.y field in the original input json, and name it as a new field abc
@@ -1002,7 +1029,7 @@ Example 3:
 #    ]
     
 # script:
-json(_, [0].nets[-1])
+json(_, .[0].nets[-1])
 ```
 
 Example 4:
@@ -1041,8 +1068,6 @@ json(_, item2.item3[0], item, delete_after_extract = true)
 
 
 ### `kv_split()` {#fn-kv_split}
-
-[:octicons-tag-24: Version-1.5.7](../datakit/changelog.md#cl-1.5.7)
 
 Function prototype: `fn kv_split(key, field_split_pattern = " ", value_split_pattern = "=", trim_key = "", trim_value = "", include_keys = [], prefix = "") -> bool`
 
@@ -1168,15 +1193,15 @@ add_key(abc, len(["abc"]))
 ```
 
 
-### `load_json()` {#fn-load_JSON}
+### `load_json()` {#fn-load-json}
 
 Function prototype: `fn load_json(val: str) nil|bool|float|map|list`
 
-Function description: Convert the JSON string to one of map, list, nil, bool, float, and the value can be obtained and modified through the index expression.
+Function description: Convert the JSON string to one of map, list, nil, bool, float, and the value can be obtained and modified through the index expression.If deserialization fails, it also returns nil instead of terminating the script run.
 
 Function parameters:
 
-- `val`: Requires data of type string
+- `val`: Requires data of type string.
 
 Example:
 
@@ -1892,6 +1917,96 @@ Example:
 # }
 
 json(_, userAgent) user_agent(userAgent)
+```
+
+
+### `valid_json()` {#fn-valid-json}
+
+Function prototype: `fn valid_json(val: str) bool`
+
+Function description: Determine if it is a valid JSON string.
+
+Function parameters:
+
+- `val`: Requires data of type string.
+
+Example:
+
+```python
+a = "null"
+if valid_json(a) { # true
+    if load_json(a) == nil {
+        add_key("a", "nil")
+    }
+}
+
+b = "[1, 2, 3]"
+if valid_json(b) { # true
+    add_key("b", load_json(b))
+}
+
+c = "{\"a\": 1}"
+if valid_json(c) { # true
+    add_key("c", load_json(c))
+}
+
+d = "???{\"d\": 1}"
+if valid_json(d) { # true
+    add_key("d", load_json(c))
+} else {
+    add_key("d", "invalid json")
+}
+```
+
+Result:
+
+```json
+{
+  "a": "nil",
+  "b": "[1,2,3]",
+  "c": "{\"a\":1}",
+  "d": "invalid json",
+}
+```
+
+
+### `value_type()` {#fn-value-type}
+
+Function prototype: `fn value_type(val) str`
+
+Function description: Obtain the type of the variable's value and return the value range ["int", "float", "bool", "str", "list", "map", "]. If the value is nil, return an empty string.
+
+Function parameters:
+
+- `val`: The value of the type to be determined.
+
+Example:
+
+
+Input:
+
+```json
+{"a":{"first": [2.2, 1.1], "ff": "[2.2, 1.1]","second":2,"third":"aBC","forth":true},"age":47}
+```
+
+Script:
+
+```python
+d = load_json(_)
+
+if value_type(d) == "map" && "a" in d  {
+    add_key("val_type", value_type(d["a"]))
+}
+```
+
+Output:
+
+```json
+// Fields
+{
+  "message": "{\"a\":{\"first\": [2.2, 1.1], \"ff\": \"[2.2, 1.1]\",\"second\":2,\"third\":\"aBC\",\"forth\":true},\"age\":47}",
+  "val_type": "map"
+}
 ```
 
 

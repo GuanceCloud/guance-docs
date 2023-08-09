@@ -5,4 +5,3 @@ nav:
   - 'Network Analysis': network-analysis.md
   - 'Log Blacklist': logs-blacklist.md
   - 'Notification Grouping': inform-group.md
-  - 'Generate Metrics': generate-metrics.md

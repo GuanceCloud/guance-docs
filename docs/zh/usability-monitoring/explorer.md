@@ -27,7 +27,7 @@
 
 ### 分析
 
-在查看器[分析栏](../getting-started/function-details/explorer-search.md#analysis)，支持基于 <u>1-3 个标签</u>进行多维度分析统计，并支持多种数据图表分析方式。
+在查看器[分析栏](../getting-started/function-details/explorer-search.md#analysis)，支持基于 ^^1-3 个标签^^进行多维度分析统计，并支持多种数据图表分析方式。
 
 ### 拨测统计
 

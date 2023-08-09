@@ -1,3 +1,7 @@
 nav:
+  - '查询所有的issue列表信息数据': list.md
   - '创建一个Issue消息': add.md
   - '修改一个Issue信息': modify.md
+  - '创建一个issue评论': createissuereply.md
+  - '修改issue评论': modifyissuereply.md
+  - '删除issue对应的回复消息': deleteissuereply.md

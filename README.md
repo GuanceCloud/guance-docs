@@ -1,3 +1,5 @@
+[[_TOC_]]
+
 # 如何在本地调试文档
 
 ## 安装 Python 环境
@@ -90,13 +92,13 @@ mkdocs serve -f mkdocs.en.saas.yml
 
 ## 编辑文档注意事项
 
-1. 添加标题
+### 添加标题
 
 `# 标题` ：仅用于文章名称
 
 `## 标题` ：文章内容的一级标题，以此类推
 
-2. 添加图片
+### 添加图片
 
 注意事项：
 
@@ -105,41 +107,53 @@ mkdocs serve -f mkdocs.en.saas.yml
 
 1）若图片不需要边框，可以用如下格式
 
-`<img src="img/xxxxxx.png" width=210px />`
+```
+<img src="img/xxxxxx.png" width=210px />
+```
 
 2）若需要定义图片，需要手动加边框，可以用如下格式
 
-`<img src="img/xxxxxx.png" width=210px border=1px />`
+```
+<img src="img/xxxxxx.png" width=210px border=1px />
+```
 
 3）若使用多个图片并列，可使用空格 `&nbsp;`
 
-`<img src="img/xxxxxx.png" width=210px border=1px />&nbsp;<img src="img/xxxxxx.png" width=210px border=1px />`
+```
+<img src="img/xxxxxx.png" width=210px border=1px />&nbsp;<img src="img/xxxxxx.png" width=210px border=1px />
+```
 
-
-3. 添加引用
+### 添加引用
 
 功能点引用采用「」，其他引用可以用“”
 
-4. 添加提示
+### 添加提示
 
-1）在注意事项前增加符号 >
+1）在注意事项前增加符号 `>`
 
+``` markdown
 > 注意：xxxxxx
+```
 
 2）注意事项使用如下格式
 
+```markdown
 ???+ attention
 
     xxxxxx
+```
 
 3）提示信息可以使用如下格式：
 
+``` markdown
 ???+ Note "关于xxxxxx的说明"
 
     xxxxxx
+```
 
-5. 添加 tab 切换
+### 添加 tab 切换
 
+```markdown
 === "主机安装"
 
     xxxxxx
@@ -147,20 +161,25 @@ mkdocs serve -f mkdocs.en.saas.yml
 === "容器安装"
 
     xxxxxx
+```
 
-6. 添加文字颜色
+### 添加文字颜色
 
+```markdown
 `<font color=coral>**添加文字颜色**</font>`
+```
 
 效果示例：<font color=coral>添加文字颜色</font>
 
-7. 添加表格按钮链接
+### 添加表格按钮链接
 
+```markdown
 | 采集器配置    |          |            |           |            |
 | :---------: | :------: | :--------: | :--------: | :-------: |
 | [DDTrace](zh/datakit/ddtrace.md){ .md-button .md-button--primary } | [Skywalking](zh/datakit/skywalking.md){ .md-button .md-button--primary } | [OpenTelemetry](zh/datakit/opentelemetry.md){ .md-button .md-button--primary } | [Zipkin](zh/datakit/zipkin.md){ .md-button .md-button--primary } | [Jaeger](zh/datakit/jaeger.md){ .md-button .md-button--primary } |
+```
 
-8. 添加跳转链接
+### 添加跳转链接
 
 ```
 <div class="grid cards" markdown>
@@ -172,7 +191,7 @@ mkdocs serve -f mkdocs.en.saas.yml
 </div>
 ```
 
-9. 添加目录说明
+### 添加目录说明
 
 与 md 文档同名的目录内不要有 md 文档，发现会影响中文搜索插件，导致无法搜索到中文，如下 ：
 
@@ -186,5 +205,68 @@ mkdocs serve -f mkdocs.en.saas.yml
 │   ├── resource.md
 │   ├── session.md
 │   └── view.md
-└── explorer.md
+└── explorer.md  <--- 不要有这个名字
 ```
+
+### 本地图片 Git LFS 问题
+
+由于采用 gitlfs 来保存图片等多媒体资源，本地如果预览，会出现某些图片无法展示的问题，建议将图片拉到本地（可能时间比较长）：
+
+```shell
+$ git lfs fetch --all
+```
+
+## 文档规范检查
+
+现有 Datakit 文档中有部分文档规则说明[^dk-docs]，此处添加一些描述，说明如何处理检查出俩的错误。
+
+### 拼写检查
+
+由于文档涉及非常多的专有名词，如果遇到拼写检查不通过，可以用如下方式来处理：
+
+1. 如果是文件名中检测出拼写错误，比如 `java-agent.jar` 中含有 `java`
+这个禁用词，但是这确实是个文件名，不能改写成 `Java-agent.jar`，对此，
+我们建议将其用文件名（斜体）排版： `*java-agent.jar*`，现有的拼写检查会绕过
+文件名中的单词。
+
+1. 如果是一段代码单词，比如 `java_agent`，此处也使用了禁用词 `java`，
+但是将其用代码字体修饰（`` `ava_agent` ``）即可绕过单词拼写。
+
+1. 如果是正文中插入这些单词，则必须用标准的方式，比如：
+
+``` markdown
+# 错误写法
+在 java 代码中，我们需要做如下改动：
+...
+
+#正确写法
+在 Java 代码中，我们需要做如下改动：
+...
+```
+
+## 文档协作流程
+
+目前项目的 master 分支只有 maintainer 可以直接推送；dev 分支禁止了任何推送，只能从其它分支合并更新。
+
+所有文档更新，都应该走如下流程：
+
+1. 作者：文档更新，应该在本地创建一个 git 分支（xxx），修改完成后，将该分支推送上来。
+1. 作者：创建一个 merge request，将该分支合并到 dev 分支（当前项目已经将 dev 设为默认分支，所有 MR 默认都是往 dev 合并）
+1. maintainer：合并该分支到 dev
+1. maintainer：在其本地切换到 dev 分支，拉取最新的 dev 分支
+1. maintainer：切换到 master 分支，拉取最新的 master 分支
+1. maintainer：将本地的 dev 分支合并到 master
+1. maintainer：将本地的 master 分支推送到 gitlab
+1. 至此分支合并完毕，等 gitlab CI 跑完，即完成文档发送
+1. 作者：本地从其 xxx 分支切换到 dev，拉取 dev 的更新
+1. 作者：删除本地 xxx 分支。对于已经合并的本地 xxx 分支，不要在上面再做任何更新。可以将 xxx 删掉（`git branch -D xxx`），再在 dev 基础上，再次新建一个分支（该分支甚至能跟之前的命名一致）
+
+即使是 maintainer，也不建议直接往 master 推送自己的更新，也需要走如上的流程，以保持 dev 跟 master 的一致。
+
+> 分支建议：建议在一个特定的分支上，只做一件特定的事情，不要所有事情都在一个分支上修改，这样不利于分支提交：
+>  - 事情 1 做好了，但是事情 2 还没改完，但它们混在一个分支上，导致当前该分支不能提交。
+>  - 事情 1 出了问题，一堆冲突，跟事情 2 的提交混在一起，不利于修改。
+
+---
+<!-- links -->
+[^dk-docs]: https://docs.guance.com/datakit/mkdocs-howto/#mdlint-cspell

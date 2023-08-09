@@ -19,7 +19,7 @@ DataKit 主配置用来配置 DataKit 自己的运行行为。
 
 ## Datakit 主配置示例 {#maincfg-example}
 
-Datakit 主配置示例如下，我们可以根据该示例来开启各种功能（当前版本 1.9.2）：
+Datakit 主配置示例如下，我们可以根据该示例来开启各种功能（当前版本 1.12.3）：
 
 <!-- markdownlint-disable MD046 -->
 ??? info "*datakit.conf*"
@@ -225,8 +225,11 @@ Datakit 主配置示例如下，我们可以根据该示例来开启各种功能
       disable_color = false
     
       # log rotate size(in MB)
-      # DataKit will always keep at most 5+1(5 backup log and 1 writing log) splited log files on disk.
+      # DataKit will always keep at most n+1(n backup log and 1 writing log) splited log files on disk.
       rotate = 32
+    
+      # Upper limit count of backup log
+      rotate_backups = 5
     
     ################################################
     # Global tags

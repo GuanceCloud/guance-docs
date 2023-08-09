@@ -1,5 +1,18 @@
+---
+title     : 'Pythond'
+summary   : '通过 Python 扩展采集数据'
+__int_icon      : 'icon/pythond'
+dashboard :
+  - desc  : '暂无'
+    path  : '-'
+monitor   :
+  - desc  : '暂无'
+    path  : '-'
+---
 
+<!-- markdownlint-disable MD025 -->
 # 用 Python 开发自定义采集器
+<!-- markdownlint-enable -->
 
 ---
 
@@ -9,7 +22,25 @@
 
 PythonD 是定时触发用户自定义 Python 采集脚本的一整套方案。
 
-## 前置条件 {#reqirement}
+## 配置 {#config}
+
+进入 DataKit 安装目录下的 *conf.d/pythond* 目录，复制 *pythond.conf.sample* 并命名为 *pythond.conf*。示例如下：
+
+```toml
+
+[[inputs.pythond]]
+  # Python input name
+  name = 'some-python-inputs'  # required
+
+  # System environments to run Python
+  #envs = ['LD_LIBRARY_PATH=/path/to/lib:$LD_LIBRARY_PATH',]
+
+  # Python path(recomment abstract Python path)
+  cmd = "python3" # required. python3 is recommended.
+
+  # Python scripts relative path
+  dirs = []
+```
 
 ### Python 环境 {#req-python}
 
@@ -275,27 +306,7 @@ class Demo(DataKitFramework):
             )
 ```
 
-## 配置 {#config}
-
-进入 DataKit 安装目录下的 *conf.d/pythond* 目录，复制 *pythond.conf.sample* 并命名为 *pythond.conf*。示例如下：
-
-```toml
-
-[[inputs.pythond]]
-  # Python input name
-  name = 'some-python-inputs'  # required
-
-  # System environments to run Python
-  #envs = ['LD_LIBRARY_PATH=/path/to/lib:$LD_LIBRARY_PATH',]
-
-  # Python path(recomment abstract Python path)
-  cmd = "python3" # required. python3 is recommended.
-
-  # Python scripts relative path
-  dirs = []
-```
-
-## Git 支持 {#git}
+### Git 支持 {#git}
 
 支持使用 git repo，一旦开启 git repo 功能，则 conf 里面的 args 里面填写的路径是相对于 `gitrepos` 的路径。比如下面这种情况，args 就填写 `mytest`：
 

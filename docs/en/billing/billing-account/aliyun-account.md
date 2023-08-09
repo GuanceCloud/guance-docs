@@ -9,7 +9,7 @@ Alibaba Cloud account refers to recharge settlement directly through Alibaba Clo
 
 When registering or upgrading the Commercial Plan of Guance, you can select **Alibaba Cloud Account Settlement**, or you can click **Billing Center > Workspace Management** in the workspace of Guance, click **Change Settlement Method**, and select **Alibaba Cloud Account Settlement** in the pop-up dialog box.
 
-![](../img/9.upgrade_7.png)
+![](../img/9.upgrade_7-0629.png)
 
 ## Open Guance in Alibaba Cloud Market
 
@@ -38,9 +38,9 @@ Return to the **Guance Billing Center**, prompt **Confirm Opening**, and click O
 
 ## Enter Alibaba Cloud User ID and Product Instance ID
 
-In the Change Settlement Mode dialog box, enter [Ali user ID](#uid) and [commodity instance ID](#entity-id), and click OK to open the settlement mode of Alibaba Cloud account.
+In the Change Settlement Mode dialog box, enter [user ID](#uid) and [Instance ID](#entity-id), and click **OK** to open the settlement mode of Alibaba Cloud account.
 
-![](../img/9.upgrade_7.png)
+![](../img/9.upgrade_7-0629.png)
 
 ## How to Get Alibaba User ID {#uid}
 
@@ -50,7 +50,7 @@ Log in to [Alibaba Cloud](https://www.aliyun.com) through the main account, ente
 
 ![](../img/6.aliyun_2.png)
 
-Or you can get the UID of Alibaba Cloud's main account directly from the Account ID on the right side of the studio, and fill in the **Alibaba User ID** in the dialog box of changing settlement method.
+Or you can get the UID of Alibaba Cloud's main account directly from the Account ID on the right side of the studio, and fill in the **User ID** in the dialog box of changing settlement method.
 
 ![](../img/20.aliyun_1.png)
 
@@ -86,4 +86,4 @@ III. In the pop-up **Business Closed** dialog box, after clicking **Confirm**, y
 
 ![](../img/1.aliyun_cancel_3.png)
 
-<font color=coral>**Note:**</font> After Alibaba Cloud cancels its subscription to the Guance service, it will bind all workspaces of the account settlement in the Guance Billing Center, delete the associated cloud account, modify the current cloud account settlement to the enterprise account settlement of the Guance Billing Center, and notify the user by mail.
+<font color=coral>**Note:**</font> After Alibaba Cloud cancels its subscription to the Guance service, it will bind all workspaces of the account settlement in the Guance Billing Center, delete the associated cloud account, modify the current cloud account settlement to the Billing Center account settlement of the Guance Billing Center, and notify the user by mail.

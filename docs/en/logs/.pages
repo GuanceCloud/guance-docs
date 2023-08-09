@@ -7,3 +7,4 @@ nav:
   - 'Generate Metrics': generate-metrics.md
   - 'Log Index': multi-index.md
   - 'Log Backup': backup.md
+  - 'Data Access': logdata-access.md

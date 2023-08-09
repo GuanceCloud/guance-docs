@@ -5,7 +5,7 @@
 <br />**GET /api/v1/workspace/get**
 
 ## 概述
-获取当前调用者所属工作空间信息
+获取当前API Key所属的工作空间信息
 
 
 

@@ -16,11 +16,11 @@ As the number of applications used increases and the range of data observation r
 
 ## Change Data Storage Duration
 
-The owner of the commercial workspace can adjust the data storage policy several times on the same day. Except for the first modification, it will take effect immediately, and other modification operations will take effect the next day according to the last adjustment record.
+The owner of the commercial workspace can adjust the Data Storage Strategy several times on the same day. Except for the first modification, it will take effect immediately, and other modification operations will take effect the next day according to the last adjustment record.
 
 The data storage duration change steps are as follows:
 
-:material-numeric-1-circle: In **Management > Settings** in the Guance workspace, click **Change** in **Change Data Storage Policy**;  
+:material-numeric-1-circle: In **Management > Settings** in the Guance workspace, click **Change** in **Change Data Storage Strategy**;  
 :material-numeric-2-circle: Select the data type to modify the data storage strategy, click **Edit**, select the time to be modified in the pop-up dialog box, and click **Confirm**;  
 :material-numeric-3-circle: You can modify the storage time of other data types according to the second step. After all the modifications are completed, click **Confirm** to change the data storage time in the current workspace.
 
@@ -29,13 +29,13 @@ The data storage duration change steps are as follows:
 ???+ attention "Notes You Must Know"
 
     1. Only commercial workspace owners are allowed to do this.
-    2. After the metric data storage policy is changed, the data in the old storage policy will be deleted. Please choose carefully. You can [set custom](../../metrics/dictionary.md#storage) data storage policies for measurements.
+    2. After the metric Data Storage Strategy is changed, the data in the old storage policy will be deleted. Please choose carefully. You can [set custom](../../metrics/dictionary.md#storage) data storage policies for measurements.
     3. After the storage policy is changed, the new storage policy will take effect immediately, and the data in the old storage policy will not be deleted immediately. This part of billing still exists before the old data is deleted by the policy scrolling.
    
         - Shortening of data storage time: assuming that the application performance data is adjusted from 14 days to 7 days, taking the time when days are adjusted as the dividing line, the data before this is still calculated according to the 14 days storage strategy, and the data after this will generate a new index and calculate the cost according to the new 7 days storage strategy;
         - Lengthening of data storage time: assuming that the application performance data is adjusted from 7 days to 14 days, taking the time when days are adjusted as the dividing line, the data before this will still be charged according to the 7 days storage strategy, and the data after this will generate a new index and calculate the cost according to the new 14 days storage strategy.
     
-        > For more information on data storage policy changes, see [Guance ES multi-Tenant lifecycle management practices](../../billing/billing-method/es-life-cycle.md).
+        > For more information on Data Storage Strategy changes, see [Guance ES multi-Tenant lifecycle management practices](../../billing/billing-method/es-life-cycle.md).
 
 
 ## Data Storage Methods {#options}
@@ -50,11 +50,11 @@ Guance provides two data storage schemes: **Default Storage** and **SLS Storage*
 
     > Please refer to [Opening Guance Exclusive Plan in the Alibaba Cloud Market](../../billing/commercial-aliyun-sls.md).
 
-## Data Storage Policy of Experience Plan {#free}
+## Data Storage Strategy of Experience Plan {#free}
 
-Guance supports the charging methods of free start, on-demand purchase and pay-per-use, providing you with a cloud platform that can be used out of the box and realize comprehensive observation. Guance Experience Plan provides users with a 7 days data storage policy. 
+Guance supports the charging methods of free start, on-demand purchase and pay-per-use, providing you with a cloud platform that can be used out of the box and realize comprehensive observation. Guance Experience Plan provides users with a 7 days Data Storage Strategy. 
 
-If you need to change the data storage policy, you can make changes by [upgrading to Guance Commercial Plan](../../billing/commercial-plan.md).
+If you need to change the Data Storage Strategy, you can make changes by [upgrading to Guance Commercial Plan](../../billing/commercial-plan.md).
 
 | **Billing Item**             | <div style="width: 120px">**Experience Quota**</div>  | <div style="width: 140px">**Data Storage Strategy**</div> | **Notes**                                                     |
 | ---------------------- | ------------- | ---------------- | ------------------------------------------------------------ |

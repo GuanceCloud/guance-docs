@@ -159,8 +159,6 @@ adjust_timezone(time)
 
 ### `agg_create()` {#fn-agg-create}
 
-[:octicons-tag-24: Version-1.5.10](../datakit/changelog.md#cl-1.5.10)
-
 函数原型：`fn agg_create(bucket: str, on_interval: str = "60s", on_count: int = 0, keep_value: bool = false, const_tags: map[string]string = nil)`
 
 函数说明：创建一个用于聚合的指标集，通过 `on_interval` 或 `on_count` 设置时间或次数作为聚合周期，聚合结束后将上传聚合数据，可以选择是否保留上一次聚合的数据
@@ -181,8 +179,6 @@ agg_create("cpu_agg_info", on_interval = "30s")
 
 
 ### `agg_metric()` {#fn-agg-metric}
-
-[:octicons-tag-24: Version-1.5.10](../datakit/changelog.md#cl-1.5.10)
 
 函数原型：`fn agg_metric(bucket: str, new_field: str, agg_fn: str, agg_by: []string, agg_field: str)`
 
@@ -371,6 +367,39 @@ if cidr(ip, "192.0.2.1/24") {
 ```
 
 
+### `conv_traceid_w3c_to_dd()`  {#fn-conv-traceid-w3c-to-dd}
+
+函数原型：`fn conv_traceid_w3c_to_dd(key)`
+
+函数说明：将 16 进制编码的 128-bit/64-bit  W3C Trace ID 字符串（长度 32 个字符或 16 个字符）转换为 10 进制编码的 64-bit DataDog Trace ID 字符串。
+
+函数参数
+
+- `key`: 待转换的 128-bit/64-bit Trace ID
+
+示例：
+
+```python
+
+# script input:
+
+"18962fdd9eea517f2ae0771ea69d6e16"
+
+# script:
+
+grok(_, "%{NOTSPACE:trace_id}")
+
+conv_traceid_w3c_to_dd(trace_id)
+
+# result:
+
+{
+    "trace_id": "3089600317904219670",
+}
+
+```
+
+
 ### `cover()` {#fn-cover}
 
 函数原型：`fn cover(key: str, range: list)`
@@ -396,8 +425,6 @@ cover(abc, [2, 4])
 
 
 ### `datetime()` {#fn-datetime}
-
-[:octicons-tag-24: Version-1.5.7](../datakit/changelog.md#cl-1.5.7)
 
 函数原型：`fn datetime(key, precision: str, fmt: str, tz: str = "")`
 
@@ -599,7 +626,6 @@ rename("time", log_time)
 
 
 ### `delete()` {#fn-delete}
-[:octicons-tag-24: Version-1.5.8](../datakit/changelog.md#cl-1.5.8)
 
 函数原型：`fn delete(src: map[string]any, key: str)`
 
@@ -656,14 +682,14 @@ json(_, str_b)
 
 函数说明：删除已提取字段
 
-函数参数
+函数参数：
 
 - `key`: 待删除字段名
 
 示例：
 
 ```python
-# data = `{\"age\": 17, \"name\": \"zhangsan\", \"height\": 180}`
+# data = "{\"age\": 17, \"name\": \"zhangsan\", \"height\": 180}"
 
 # 处理脚本
 json(_, age,)
@@ -941,7 +967,7 @@ group_in(log_level, ["error", "panic"], "not-ok", status)
 - `json_path`: JSON 路径信息
 - `newkey`：提取后数据写入新 key
 - `trim_space`: 删除提取出的字符中的空白首尾字符，默认值为 `true`
-- `delete_after_extract`: 在提取结束后删除当前对象，在重新序列化后回写待提取对象；只能应用于 map 的 key 与 value 的删除，不能用于删除 list 的元素；默认值为 `false`，不进行任何操作[:octicons-tag-24: Version-1.5.7](../datakit/changelog.md#cl-1.5.7)
+- `delete_after_extract`: 在提取结束后删除当前对象，在重新序列化后回写待提取对象；只能应用于 map 的 key 与 value 的删除，不能用于删除 list 的元素；默认值为 `false`，不进行任何操作
 
 ```python
 # 直接提取原始输入 JSON 中的 x.y 字段，并可将其命名成新字段 abc
@@ -988,7 +1014,8 @@ json(zhangsan, age, "age")
 #    }
 
 # 处理脚本：
-json(_, name) json(name, first)
+json(_, name)
+json(name, first)
 ```
 
 示例三：
@@ -1002,7 +1029,7 @@ json(_, name) json(name, first)
 #    ]
     
 # 处理脚本，json 数组处理：
-json(_, [0].nets[-1])
+json(_, .[0].nets[-1])
 ```
 
 示例四：
@@ -1040,8 +1067,6 @@ json(_, item2.item3[0], item, true, true)
 
 
 ### `kv_split()` {#fn-kv_split}
-
-[:octicons-tag-24: Version-1.5.7](../datakit/changelog.md#cl-1.5.7)
 
 函数原型：`fn kv_split(key, field_split_pattern = " ", value_split_pattern = "=", trim_key = "", trim_value = "", include_keys = [], prefix = "") -> bool`
 
@@ -1167,15 +1192,15 @@ add_key(abc, len(["abc"]))
 ```
 
 
-### `load_json()` {#fn-load_JSON}
+### `load_json()` {#fn-load-json}
 
 函数原型：`fn load_json(val: str) nil|bool|float|map|list`
 
-函数说明：将 JSON 字符串转换成 map、list、nil、bool、float 的其中一种，可通过 index 表达式取值及修改值。
+函数说明：将 JSON 字符串转换成 map、list、nil、bool、float 的其中一种，可通过 index 表达式取值及修改值。若反序列化失败，也返回 nil，而不是终止脚本运行。
 
 参数：
 
-- `val`: 要求是 string 类型的数据
+- `val`: 要求是 string 类型的数据。
 
 示例：
 
@@ -1892,6 +1917,95 @@ geoip(ip)
 #    }
 
 json(_, userAgent) user_agent(userAgent)
+```
+
+
+### `valid_json()` {#fn-valid-json}
+
+函数原型：`fn valid_json(val: str) bool`
+
+函数说明：判断是否为一个有效的 JSON 字符串。
+
+参数：
+
+- `val`: 要求是 string 类型的数据。
+
+示例：
+
+```python
+a = "null"
+if valid_json(a) { # true
+    if load_json(a) == nil {
+        add_key("a", "nil")
+    }
+}
+
+b = "[1, 2, 3]"
+if valid_json(b) { # true
+    add_key("b", load_json(b))
+}
+
+c = "{\"a\": 1}"
+if valid_json(c) { # true
+    add_key("c", load_json(c))
+}
+
+d = "???{\"d\": 1}"
+if valid_json(d) { # true
+    add_key("d", load_json(c))
+} else {
+    add_key("d", "invalid json")
+}
+```
+
+结果：
+
+```json
+{
+  "a": "nil",
+  "b": "[1,2,3]",
+  "c": "{\"a\":1}",
+  "d": "invalid json",
+}
+```
+
+
+### `value_type()` {#fn-value-type}
+
+函数原型：`fn value_type(val) str`
+
+函数说明：获取变量的值的类型，返回值范围 ["int", "float", "bool", "str", "list", "map", ""], 若值为 nil，则返回空字符串
+
+参数：
+
+- `val`: 待判断类型的值
+
+示例：
+
+输入：
+
+```json
+{"a":{"first": [2.2, 1.1], "ff": "[2.2, 1.1]","second":2,"third":"aBC","forth":true},"age":47}
+```
+
+脚本：
+
+```python
+d = load_json(_)
+
+if value_type(d) == "map" && "a" in d  {
+    add_key("val_type", value_type(d["a"]))
+}
+```
+
+输出：
+
+```json
+// Fields
+{
+  "message": "{\"a\":{\"first\": [2.2, 1.1], \"ff\": \"[2.2, 1.1]\",\"second\":2,\"third\":\"aBC\",\"forth\":true},\"age\":47}",
+  "val_type": "map"
+}
 ```
 
 

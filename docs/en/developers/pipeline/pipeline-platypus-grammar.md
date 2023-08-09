@@ -16,7 +16,7 @@ Identifiers can be composed of numbers (`0-9`), letters (`A-Z a-z`), and undersc
 - `abc1`
 - `abc_1_`
 
-Use backticks if you need to start with a letter or use characters other than the above in the identifier:
+Use backticks if you need to start with a non-alphabet or non-underscore, or use characters other than the above in the identifier:
 
 - `` `1abc` ``
 - `` `@some-variable` ``
@@ -137,21 +137,30 @@ The following operators are currently supported by Platypus, and the higher the 
 |Priority|Symbol|Associativity|Description|
 |-|-|-|-|
 | 1 | `=` | right | assignment; named argument; lowest precedence|
+| 1 | `+=` | right | assignment, left operand = left operand + right operand|
+| 1 | `-=` | right | assignment, left operand = left operand - right operand|
+| 1 | `*=` | right | assignment, left operand = left operand * right operand|
+| 1 | `/=` | right | assignment, left operand = left operand / right operand|
+| 1 | `%=` | right | assignment, left operand = left operand % right operand|
 | 2 | `||` | left | logical "or" |
-| 3 | `&&` | Left | Logical AND |
-| 4 | `>=` | left | condition "greater than or equal to" |
-| 4 | `>` | left | condition "greater than" |
-| 4 | `!=` | left | condition "not equal to" |
-| 4 | `==` | left | condition "equal to" |
-| 4 | `<=` | left | condition "less than or equal to" |
-| 4 | `<` | left | condition "less than" |
-| 5 | `+` | left | arithmetic "plus" |
-| 5 | `-` | left | arithmetic "minus" |
-| 6 | `*` | left | arithmetic "multiply" |
-| 6 | `/` | left | arithmetic "division" |
-| 6 | `%` | left | arithmetic "remainder"|
-| 7 | `[]` | Left | Subscript operator; can use list subscript or map key to get value|
-| 7 | `()` | None | Can change operator precedence; function call|
+| 3 | `&&` | left | Logical AND |
+| 4 | `in` | left | Determine whether the key is in the map; Specify the element in the list; The substring is included in the string|
+| 5 | `>=` | left | condition "greater than or equal to" |
+| 5 | `>` | left | condition "greater than" |
+| 5 | `!=` | left | condition "not equal to" |
+| 5 | `==` | left | condition "equal to" |
+| 5 | `<=` | left | condition "less than or equal to" |
+| 5 | `<` | left | condition "less than" |
+| 6 | `+` | left | arithmetic "plus" |
+| 6 | `-` | left | arithmetic "minus" |
+| 7 | `*` | left | arithmetic "multiply" |
+| 7 | `/` | left | arithmetic "division" |
+| 7 | `%` | left | arithmetic "remainder"|
+| 8 | `!`  | right | unary operator; logical "negation", available for 6 built-in data types |
+| 8 | `+`  | right | unary operator; positive sign, can be used to represent positive numbers |
+| 8 | `-`  | right | unary operator; minus sign, used to flip the sign and represent negative numbers |
+| 9 | `[]` | left | Subscript operator; can use list subscript or map key to get value|
+| 9 | `()` | left | Can change operator precedence; function call|
 
 ## Expression {#expr}
 
@@ -194,7 +203,7 @@ Binary expressions consist of binary operators and left and right operands.
 
 The current version of the assignment expression is a binary expression, which has a return value; but because the assignment expression may cause some problems, this syntax will be deleted in the future, and the **assignment statement** syntax will be added.
 
-```txt
+```python
 #0
 2 out of 5
 
@@ -212,6 +221,14 @@ a = b = 3
 # Note: Since the assignment expression syntax is about to be abolished, please replace it with an assignment statement
 b = 3
 a = b
+
+"a"   in  [1,"a"]   # true
+"def" in  "abcdef"  # true
+"a"   in  {"a": 1}  # true
+"b"   in  {"a": 1}  # false
+
+x = 1; y= [1]
+x in y  # true
 ```
 
 ### Index Expression {#index-expr}

@@ -87,7 +87,7 @@ DCA web 是 DCA 客户端的 web 版本，它通过部署一个后端服务来�
     运行容器之前，首先通过 `docker pull` 下载 DCA 镜像。
 
     ```shell
-    $ docker pull pubrepo.guance.com/tools/dca:latest
+    docker pull pubrepo.guance.com/tools/dca:latest
     ```
 
     - 运行容器
@@ -95,7 +95,7 @@ DCA web 是 DCA 客户端的 web 版本，它通过部署一个后端服务来�
     通过 `docker run` 命令来创建和启动 DCA 容器，容器默认暴露访问端口是 80。
 
     ```shell
-    $ docker run -d --name dca -p 8000:80 pubrepo.guance.com/tools/dca
+    docker run -d --name dca -p 8000:80 pubrepo.guance.com/tools/dca
     ```
 
     - 测试
@@ -278,7 +278,7 @@ DCA 开启和安装以后，即可在浏览器输入地址 `localhost:8000` 打�
 
 #### Pipelines 管理 {#view-pipeline}
 
-远程连接到 DataKit 以后，点击「Pipelines」，即可查看，编辑和测试 DataKit 默认自带的 Pipeline 文件。关于 Pipeline 可参考文档 [文本数据处理](pipeline.md) 。
+远程连接到 DataKit 以后，点击「Pipelines」，即可查看，编辑和测试 DataKit 默认自带的 Pipeline 文件。关于 Pipeline 可参考文档 [文本数据处理](../developers/pipeline/index.md) 。
 
 <figure markdown>
   ![](https://static.guance.com/images/datakit/dca-pipeline.png){ width="800" }
@@ -306,7 +306,7 @@ DCA 开启和安装以后，即可在浏览器输入地址 `localhost:8000` 打�
 
 远程连接到 DataKit 以后，点击「帮助」，即可查看采集器文档列表。点击需要查看的采集器名称，直接跳转显示该采集器的帮助文档。
 
-关于如何查看更多采集器的帮助文档，可参考文档 [采集器](hostobject.md) 。
+关于如何查看更多采集器的帮助文档，可参考文档 [采集器](../integrations/hostobject.md) 。
 
 <figure markdown>
   ![](https://static.guance.com/images/datakit/dca-help.png){ width="800" }

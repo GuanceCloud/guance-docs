@@ -58,10 +58,23 @@ Intelligent Inspection "APM Intelligent Inspection" supports users to manually a
 You can refer to the following configuration for multiple projects, environments, versions and services
 
   ```json
-   // Configuration example:
-      configs:
-          project1:service1:env1:version1
-          project2:service2:env2:version2
+   // config example：
+          enabled_service = [
+              "project1:service1:env1:version1",
+              "project2:service2:env2:version2"
+          ]
+  
+          disabled_service = [
+              "project2:service2:env2:version2"
+          ]
+  
+          [service_error_rate_threshold]
+          "project1:service1:env1:version1"=0.1
+          "project2:service2:env2:version2"=0.2
+  
+          [service_p99_threshold]
+          "project1:service1:env1:version1"=15000000
+          "project2:service2:env2:version2"=90000000
   ```
 
 >  **Note**: In the  DataFlux Func, filter conditions can also be added when writing the  check processing function (refer to the sample code configuration). Note that the parameters configured in the Guance studio will override the parameters configured when writing the  check processing function.
@@ -78,7 +91,7 @@ import guance_monitor_apm_performance__main as main
 # Support for using filtering functions to filter the objects being inspected, for example:
 def filter_project_servcie_sub(data):
     '''
-    Filter the "project" and "service_sub" attributes, check for objects that meet the requirements, and return True if there is a match, and False if there is no match.
+    过滤 project，service_sub，检测符合要求的对象，匹配的返回 True，不匹配的返回 False
     '''
     project = data['project']
     service_sub = data['service_sub']
@@ -89,21 +102,71 @@ def filter_project_servcie_sub(data):
 @self_hosted_monitor(account['api_key_id'], account['api_key'])
 @DFF.API('APM 性能巡检', fixed_crontab='0 * * * *', timeout=900)
 def run(configs=None):
-    """
-    Optional parameters：
-        configs :
-            Multiple services can be specified (concatenated by line breaks), and if not specified, all services will be checked.
-			Each service is composed of the project to which the service belongs, the service itself, the environment, and the version concatenated by ":". Example: "project1:service:env:version"
- 
-        configs example：
-            project1:service1:env1:version1
-            project2:service2:env2:version2
-    """
+    '''
+    zh-CN:
+        title: APM 性能巡检
+        doc: |
+            可选参数：
+                configs ：
+                    可以指定检测 service（enabled_service），不指定则检测所有 service。
+                    可以指定过滤 service （disabled_service），不指定不过滤
+                    可以针对 service 单独设置 p99 阈值（service_p99_threshold），错误率阈值（service_error_rate_threshold）
+                    注：每个 service 由服务所属项目 (project), 服务（service）、环境（env）、版本（version）通过 ":" 拼接而成，例："project1:service:env:version"
+
+                configs 按照 toml 格式配置示例 ：
+
+                    enabled_service = [
+                        "project1:service1:env1:version1",
+                        "project2:service2:env2:version2"
+                    ]
+
+                    disabled_service = [
+                        "project2:service2:env2:version2"
+                    ]
+
+                    [service_error_rate_threshold]
+                    "project1:service1:env1:version1"=0.1
+                    "project2:service2:env2:version2"=0.2
+
+                    [service_p99_threshold]
+                    "project1:service1:env1:version1"=15000000
+                    "project2:service2:env2:version2"=90000000
+    en:
+        title: APM Performance Check
+        doc: |
+            Optional parameter：
+                configs :
+                    You can specify the detection service (enabled_service), otherwise all services will be detected.
+                    You can specify the filtering service (disabled_service), and do not specify no filtering
+                    You can set the p99 threshold (service_p99_threshold) and error rate threshold (service_error_rate_threshold) separately for services
+                    Note: Each service by service belongs to the project (project), service (service), environment (env), version (version) by ":" patchwork, example: "project1: service: env: version"
+
+
+                Example of configuring configs toml format:
+
+                    enabled_service = [
+                        "project1:service1:env1:version1",
+                        "project2:service2:env2:version2"
+                    ]
+
+                    disabled_service = [
+                        "project1:service2:env2:version2",
+                    ]
+
+                    [service_error_rate_threshold]
+                    "project1:service1:env1:version1"=0.1
+                    "project2:service2:env2:version2"=0.2
+
+                    [service_p99_threshold]
+                    "project1:service1:env1:version1"=15000000
+                    "project2:service2:env2:version2"=90000000
+    '''
+
     checkers = [
-        apm_performance_main.APMCheck(configs=configs, filters=[filter_project_servcie_sub]),  # Support for user-configured multiple filtering functions that are executed in sequence.
+        main.APMCheck(configs=configs)
     ]
 
-    Runner(checkers, debug=False).run()
+    Runner(checkers).run_v2()
 ```
 
 ## View Events

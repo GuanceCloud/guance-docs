@@ -180,7 +180,7 @@ slb,name=zzz,tag2=b f1=1i,f2=1.2,f3="abc",message="xxx" 1620723870000000000
 
 ### RUM {#api-rum}
 
-参见 [RUM 文档](rum.md)
+参见 [RUM 文档](../integrations/rum.md)
 
 ## `/v1/ping` {#api-ping}
 
@@ -209,6 +209,7 @@ Content-Type: application/json
 
 {
     "input":"redis",
+    "source":"us-east-9xwha",
     "err_content":"Cache avalanche"
 }
 ```
@@ -595,6 +596,53 @@ HTTP Code: 400
 }
 ```
 
+## `/v1/sourcemap` | `PUT` {#api-sourcemap}
+
+[:octicons-tag-24: Version-1.12.0](changelog.md#cl-1.12.0)
+
+上传 sourcemap 文件。
+
+请求参数说明。
+
+|           参数 | 描述                                                                          | 类型     |
+| -------------: | ----------------------------------------------------------------------------- | -------- |
+| `token` |`datakit.conf` 配置中的 `dataway` 地址中包含的 token                      | `string` |
+| `app_id` | 用户访问应用唯一 ID 标识，如 `test-sourcmap`                            | `string` |
+|  `env` | 应用的部署环境，如 `prod`                           | `string` |
+|  `version` |应用的版本，如 `1.0.0`     | `string` |
+
+请求示例：
+
+``` shell
+curl -X PUT "http://localhost:9529/v1/sourcemap?app_id=test_sourcemap&env=production&version=1.0.0&token=tkn_xxxxx" \
+-F "file=@./sourcemap.zip" \
+-H "Content-Type: multipart/form-data"
+```
+
+成功返回示例：
+
+``` json
+{
+    "code":200,
+    "content":"uploaded to [/datakit/dir/data/rum/web/test_sourcemap-production-1.0.0.zip]!",
+    "errorCode":"",
+    "errorMsg":"",
+    "success":true
+}
+```
+
+失败返回示例：
+
+``` json
+{
+    "code":401,
+    "content":null,
+    "errorCode":"auth.failed",
+    "errorMsg":"auth failed",
+    "success":false
+}
+```
+
 ## `/metrics` | `GET` {#api-metrics}
 
 获取 Datakit 暴露的 Prometheus 指标。
@@ -616,4 +664,4 @@ HTTP Code: 400
 
 - [API 访问设置](datakit-conf.md#config-http-server)
 - [API 限流配置](datakit-conf.md#set-http-api-limit)
-- [API 安全控制](rum.md#security-setting)
+- [API 安全控制](../integrations/rum.md#security-setting)

@@ -18,7 +18,7 @@
 | long_task | 对于浏览器中的任何阻塞主线程超过50ms的任务，都会生成一条长任务记录。 |
 | action | 跟踪用户页面浏览过程中所有的用户交互记录。 |
 
-### 六种数据类型的层次结构如下图
+### 六种数据类型的层次结构如下图：
 
 ![](../img/rumcollection1.png)
 
@@ -26,7 +26,7 @@
 
 用户访问监测的场景构建和事件告警都可以通过下面的全局属性进行查询。
 
-### SDK属性
+### SDK 属性
 
 | **字段**      | **类型** | **描述**                                                     |
 | ------------- | -------- | ------------------------------------------------------------ |
@@ -143,7 +143,6 @@
 | dom_content_loaded | number（ns） | DOM 内容加载时间<br>计算方式：domContentLoadedEventEnd - domContentLoadedEventStart |
 | dom_complete | number（ns） | DOM 树解析完成时间<br>获取方式：time = performanceTiming.domComplete;<br>参考链接：[MDN dom_complete](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming/domComplete) |
 | load_event | number（ns） | 事件加载时间<br>计算方式：loadEventEnd - loadEventStart |
-| first_meaningful_paint | number（ns） | 首屏时间<br>计算方式：firstPaintContentEnd - firstPaintContentStart |
 | first_paint_time | number（ns） | 首次渲染时间<br>计算方式：responseEnd - fetchStart |
 | resource_load_time | number（ns） | 资源加载时间<br>计算方式：loadEventStart - domContentLoadedEventEnd |
 | time_to_interactive | number（ns） | 首次可交互时间<br>计算方式：domInteratice - requestStart |

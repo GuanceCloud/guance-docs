@@ -1,26 +1,137 @@
 # 更新日志
 ---
 
-<!--
-[:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6) · [:octicons-beaker-24: Experimental](index.md#experimental)
-[:fontawesome-solid-flag-checkered:](index.md#legends "支持选举")
+## 1.12.3(2023/08/03) {#cl-1.12.3}
 
-    ```toml
-        
-    ```
+- 修复 Windows 下日志采集文件延迟释放问题（#1805）
+- 修复新容器头部日志不采集的问题
+- 修复几个正则表达式可能导致的崩溃问题（#1781）
+- 修复安装包体积过大的问题（#1804）
+- 修复日志采集器开启磁盘缓存可能失败的问题
 
-# 外链的添加方式
-[some text](http://external-host.com){:target="_blank"}
+## 1.12.2(2023/07/31) {#cl-1.12.2}
 
-## x.x.x(YY/MM/DD) {#cl-x.x.x}
+- 修复 OpenTelemetry Metric 和 Trace 路由配置问题
+
+## 1.12.1(2023/07/28) {#cl-1.12.1}
+
+- 修复老版本 DDTrace Python Profile 接入问题（#1800）
+
+---
+
+## 1.12.0(2023/07/27) {#cl-1.12.0}
 
 本次发布属于迭代发布，主要有如下更新：
 
-### 新加功能 {#cl-x.x.x-new}
-### 问题修复 {#cl-x.x.x-fix}
-### 功能优化 {#cl-x.x.x-opt}
-### 兼容调整 {#cl-x.x.x-brk}
--->
+### 新加功能 {#cl-1.12.0-new}
+
+- [HTTP API](apis.md##api-sourcemap) 增加 sourcemap 文件上传（#1782）
+- 新增 .net Profiling 接入支持（#1772）
+- 新增 Couchbase 采集器（#1717）
+
+### 问题修复 {#cl-1.12.0-fix}
+
+- 修复拨测采集器缺失 `owner` 字段问题（#1789）
+- 修复 DDTrace 采集器缺失 `host` 问题，同时各类 Trace 的 tag 采集改为黑名单机制[^trace-black-list]（#1776）
+- 修复 RUM API 跨域问题（#1785）
+
+[^trace-black-list]: 各类 Trace 会在其数据上带上各种业务字段（称之为 Tag、Annotation 或 Attribute 等），Datakit 为了收集更多数据，默认这些字段都予以接收。
+
+### 功能优化 {#cl-1.12.0-opt}
+
+- 优化 SNMP 采集器加密算法识别方法；优化 SNMP 采集器文档，增加更多示例解释（#1795）
+- 增加 Pythond 采集器 Kubernetes 部署示例，增加 Git 部署示例（#1732）
+- 增加 InfluxDB、Solr、NSQ、Net 采集器集成测试（#1758/#1736/#1759/#1760）
+- 增加 Flink 指标（#1777）
+- 扩展 Memcached、MySQL 指标采集（#1773/#1742）
+- 更新 Datakit 自身指标暴露（#1492）
+- Pipeline 增加更多运算符支持（#1749）
+- 拨测采集器
+    - 增加拨测采集器内置仪表板（#1765）
+    - 优化拨测任务启动，避免资源集中消耗（#1779）
+- 文档更新（#1769/#1775/#1761/#1642）
+- 其它优化（#1777/#1794/#1778/#1783/#1775/#1774/#1737）
+
+---
+
+## 1.11.0(2023/07/11) {#cl-1.11.0}
+
+本次发布属于迭代发布，包含如下更新：
+
+### 新加功能 {#cl-1.11.0-new}
+
+- 新增 dk 采集器，移除 self 采集器(#1648)
+
+### 问题修复 {#cl-1.11.0-fix}
+
+- 修复 Redis 采集器时间线冗余的问题(#1743)，完善集成测试
+- 修复 Oracle 采集器动态库安全问题(#1730)
+- 修复 DCA 服务启动失败(#1731)
+- 修复 MySQL/ElasticSearch 采集器集成测试(#1720)
+
+### 功能优化 {#cl-1.11.0-opt}
+
+- 优化 etcd 采集器(#1741)
+- StatsD 采集器支持配置区分不同数据源(#1728)
+- Tomcat 采集器支持 10 及以上版本，弃用 Jolokia(#1703)
+- 容器日志采集支持配置容器内文件(#1723)
+- SQLServer 采集器指标完善和集成测试功能重构(#1694)
+
+### 兼容调整 {#cl-1.11.0-brk}
+
+以下兼容性修改，可能会导致数据采集上的问题，如果您使用了以下的功能，请考虑是否升级，或者采用新的对应方案。
+
+1. 移除容器日志的 `deployment` tag
+1. 移除容器 stdout 日志的 `source` 字段以 `short_image_name` 来命名的逻辑。现在只使用容器名称或 Kubernetes 中的 label `io.kubernetes.container.name` 来命名[^cl-1.11.0-brk-why-1]。
+1. 移除通过容器 label 采集其外挂文件路径的功能（`datakit/logs/inside`），改成通过[容器环境变量（`DATAKIT_LOGS_CONFIG`）](../integrations/container-log.md)的方式来实现[^cl-1.11.0-brk-why-2]。
+
+[^cl-1.11.0-brk-why-1]: 在 Kubernetes 中，`io.kubernetes.container.name` 值是不变的，而主机容器中，容器名也不太变，故不再采用原始镜像名作为 `source` 字段的来源。
+[^cl-1.11.0-brk-why-2]: 相比修改容器的 Label（一般情况下需要重新构建镜像），给容器追加环境变量更为方便（启动容器的时候，注入环境变量即可）。
+
+---
+
+## 1.10.2(2023/07/04) {#cl-1.10.2}
+
+- 修复 Kubernetes 中 prom 采集器识别问题
+
+## 1.10.1(2023/06/30) {#cl-1.10.1}
+
+- 修复 OpenTelemetry HTTP 路由支持自定义
+- 修复主机进程对象中启动时长（`started_duration`）字段缺失问题
+
+---
+
+## 1.10.0(2023/06/29) {#cl-1.10.0}
+
+本次发布属于迭代发布，包含如下更新：
+
+### 问题修复 {#cl-1.10.0-fix}
+
+- 修复 Proxy 环境下 Profiling 数据上传问题（#1710）
+- 修复升级过程中默认采集器开启问题（#1709）
+- 修复 SQLServer 采集数据中日志被截断问题（#1689）
+- 修复 Kubernetes 中 Metric Server 指标采集问题（#1719）
+
+### 功能优化 {#cl-1.10.0-opt}
+
+- KafkaMQ 支持 topic 级别的多行切割配置（#1661）
+- Kubernetes DaemonSet 安装时支持通过 ENV 修改 Datakit 日志分片数和分片大小（#1711）
+- Kubernetes Pod 指标和对象采集新增 `memory_capacity` 和 `memory_used_percent` 两个字段 (#1721)
+- OpenTelemetry HTTP 路由支持自定义（#1718）
+- Oracle 采集器优化 `oracle_system` 指标集丢失的问题，优化采集逻辑并增加部分指标（#1693）
+- Pipeline 增加 `in` 运算符，增加 `value_type()` 和 `valid_json()` 函数，调整 `load_json()` 函数反序列化失败后的行为 (#1712)
+- 主机进程对象中采集新增启动时长（`started_duration`）字段（#1722）
+- 优化拨测数据发送逻辑（#1708）
+- 更新更多集成测试（#1666/#1667/#1668/#1693/#1599/#1573/#1572/#1563/#1512/#1715）
+- 模块重构以及优化（#1714/#1680/#1656）
+
+### 兼容调整 {#cl-1.10.0-brk}
+
+- Profile 数据的时间戳单位从纳秒改成微秒（#1679）
+
+<!-- markdown-link-check-disable -->
+
+---
 
 ## 1.9.2(2023/06/20) {#cl-1.9.2}
 
@@ -28,7 +139,7 @@
 
 ### 新加功能 {#cl-1.9.2-new}
 
-- 新增 [Chrony 采集器](chrony.md)（#1671）
+- 新增 [Chrony 采集器](../integrations/chrony.md)（#1671）
 - 新增 RUM Headless 支持（#1644）
 - Pipeline
     - 新增 [offload 功能](../developers/pipeline/pipeline-offload.md)（#1634）
@@ -71,8 +182,8 @@
 
 ### 新加功能 {#cl-1.9.0-new}
 
-- 新增 [NodeJS Profiling](profile-nodejs.md) 接入支持（#1638）
-- 新增点评 [Cat](cat.md) 接入支持（#1593）
+- 新增 [NodeJS Profiling](../integrations/profile-nodejs.md) 接入支持（#1638）
+- 新增点评 [Cat](../integrations/cat.md) 接入支持（#1593）
 - 新增采集器配置[调试方法](why-no-data.md#check-input-conf)（#1649）
 
 ### 问题修复 {#cl-1.9.0-fix}
@@ -82,8 +193,8 @@
 ### 功能优化 {#cl-1.9.0-opt}
 
 - K8s DaemonSet 对象增加 `age` 字段（#1670）
-- 优化 [PostgreSQL](postgresql.md) 启动设置（#1658）
-- SkyWalking 增加 [`/v3/log/`](skywalking.md) 支持（#1654）
+- 优化 [PostgreSQL](../integrations/postgresql.md) 启动设置（#1658）
+- SkyWalking 增加 [`/v3/log/`](../integrations/skywalking.md) 支持（#1654）
 - 优化日志采集处理（#1652/#1651）
 - 优化[升级文档](datakit-update.md#prepare)（#1653）
 - 其它重构和优化（#1673/#1650/#1630）
@@ -127,7 +238,7 @@
 - 优化 localhost 采集的 `host` 字段问题（#1637）
 - 优化 Datakit 自身指标，新增 [Datakit 自身指标文档](datakit-metrics.md)（#1639/#1492）
 - 优化 Pod 上的 Prometheus 指标采集，自动支持所有 Prometheus 指标类型（#1636）
-- 新增 Trace 类采集的[性能测试文档](datakit-trace-performance.md)（#1616）
+- 新增 Trace 类采集的[性能测试文档](../integrations/datakit-trace-performance.md)（#1616）
 - 新增 Kubernetes DaemonSet 对象采集（#1643）
 - Pinpoint gRPC 服务支持 `x-b3-traceid` 透传 Trace ID（#1605）
 - 优化集群选举策略（#1534）
@@ -174,7 +285,7 @@
 本次发布属于 Hotfix 发布，修复如下问题：
 
 - 老版本升级上来可能导致黑名单不生效(#1603)
-- [Prom](prom.md) 采集 `info` 类数据问题(#1544)
+- [Prom](../integrations/prom.md) 采集 `info` 类数据问题(#1544)
 - 修复 Dataway Sinker 模块可能导致的数据丢失问题(#1606)
 
 ---
@@ -185,7 +296,7 @@
 
 ### 新加功能 {#cl-1.6.0-new}
 
-- 新增 [Pinpoint](pinpoint.md) API 接入(#973)
+- 新增 [Pinpoint](../integrations/pinpoint.md) API 接入(#973)
 
 ### 功能优化 {#cl-1.6.0-opt}
 
@@ -2380,3 +2491,25 @@ powershell .install.ps1;
 - `tailf` 采集器新日志匹配改成正向匹配
 - 其它一些细节问题修复
 - 支持 Mac 平台的 CPU 数据采集
+
+<!--
+[:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6) · [:octicons-beaker-24: Experimental](index.md#experimental)
+[:fontawesome-solid-flag-checkered:](index.md#legends "支持选举")
+
+    ```toml
+        
+    ```
+
+# 外链的添加方式
+[some text](http://external-host.com){:target="_blank"}
+
+## x.x.x(YY/MM/DD) {#cl-x.x.x}
+
+本次发布属于迭代发布，主要有如下更新：
+
+### 新加功能 {#cl-x.x.x-new}
+### 问题修复 {#cl-x.x.x-fix}
+### 功能优化 {#cl-x.x.x-opt}
+### 兼容调整 {#cl-x.x.x-brk}
+-->
+<!-- markdown-link-check-enable -->

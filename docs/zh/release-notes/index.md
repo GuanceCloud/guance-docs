@@ -8,6 +8,83 @@ icon: zy/release-notes
 本文档记录观测云每次上线发布的更新内容说明，包括 DataKit、观测云最佳实践、观测云集成文档和观测云。
 
 
+## 2023 年 7 月 27 日
+
+### 观测云更新
+
+<video controls="controls" poster="https://static.guance.com/dataflux/help/video/20230727.png" >
+      <source id="mp4" src="https://static.guance.com/dataflux/help/video/20230727.mp4" type="video/mp4">
+</video>
+
+- **场景 > 仪表板**：新增[定时报告功能](../scene/report.md)，支持用户创建基于某仪表板的报告，并可以配置定时邮件发送；
+- 导航栏新增 **[邀请成员](../management/invite-member.md#navigation)** 入口，可通过该入口快速邀请成员。在管理页面，新增**邀请审批**按钮。该按钮开启情况下，向成员发送邀请后，须移至邀请记录审批管理成员加入申请。
+- **日志 > 备份日志**有以下调整：
+    - 观测云默认存档类型下线：
+        - 新创建的备份规则中将不再支持【观测云】默认选项；
+        - 历史已创建的备份规则依然生效。
+    - 新增支持备份到外部存储[阿里云 OSS](../logs/backup.md#oss)。
+- **监控 > 新建**：支持将监控器保存为[自定义模板库](../monitoring/monitor/custom-template.md)，以便后续用户快速创建同类型监控器检测。
+- **监控 > 新建监控器 > 自定义新建**：除【突变检测】【区间检测】【离群检测】以外，所有检测规则的检测频率新增【最近 12 小时】【最新 24 小时】选项。
+- **[异常追踪](../exception/issue.md#manual)**：新建 Issue 页面新增**投递频道**配置入口，支持多选；等级新增**未知**选项，默认选中该选项。
+- 为满足用户数据合规性要求，[快照](../getting-started/function-details/snapshot.md#sensitive)支持针对字段通过正则语法对某些内容脱敏。
+- **场景 >日志流图**新增 Copy as cURL、导出为 CSV 文件功能。
+- **用户访问监测 > 查看器 > Error**：新增 **[聚类分析](../real-user-monitoring/explorer/error.md#analysis)** 功能，方便查看发生频次较高的错误。
+- 新增数据上限提示：即日志、链路等数据量到达今日上限，将停止数据接收，如需调整，请联系客户经理。
+
+<!--
+- **付费计划与账单 > [消费分析](../billing/commercial.md#consume)**：仅支持统计分析 6 月之后的消费数据。
+
+- 支持备份日志导出至 [Kafka 消息队列](../logs/backup.md#kafka)。
+-->
+## 2023 年 7 月 11 日
+
+### 观测云更新
+
+<video controls="controls" poster="https://static.guance.com/dataflux/help/video/20230711.jpeg" >
+      <source id="mp4" src="https://static.guance.com/dataflux/help/video/20230711.mp4" type="video/mp4">
+</video>
+
+
+- **集成**升级：点击任意集成方案，即可在同一页面上了解从配置接入、数据采集到数据应用的全链路使用方案。
+- **[监控器 > 模板](../monitoring/monitor/template.md#create)** 功能优化：支持基于单个检测规则创建或批量创建；支持基于检测库进行筛选。
+- **应用性能监测 > 链路**：**Span 列表**页面新增[瀑布图模式](../application-performance-monitoring/explorer.md#waterfall)，帮助用户以更直观的视角分析 Span 数据信息；**[服务调用关系](../application-performance-monitoring/explorer.md#call)** 从服务（service）变更为服务资源（service / resource）级别，通过下钻到接口级别来更好地分析对应的性能及调用问题，从而通过接口级别的调用帮助用户更快发现问题点。
+- **[图表 > 概览图](../scene/visual-chart/overview-chart.md)**：新增千位分隔符；**单位 > 数值**中，“默认”改为“万进制”；**值映射**中新增空值映射。
+- **[图表 > 矩形树图](../scene/visual-chart/treemap.md#ui)**：新增显示值选项，选中可在图中直接显示查询结果值。
+- **[图表 > 添加链接](../scene/visual-chart/chart-link.md#description)**：新增 `query` 参数，删除 `tags`、`search` 两个参数。
+- **应用性能监测 > 服务**列表支持导出。
+
+### 智能巡检更新
+
+功能优化：  
+
+- 应用性能巡检：新增默认检测阈值更改入口，现在在开启巡检时可以同步需改需要检测服务的触发值。  
+- RUM 性能巡检：对页面详情模块中根因展示逻辑进行优化，优化后，根因定位更加准确。  
+- 工作空间资产巡检：新增默认配置(7 天)，现在开启巡检不需要参数也可以运行。
+
+新增脚本：
+
+- [云消息队列 RocketMQ4.0](https://func.guance.com/doc/script-market-guance-aliyun-rocketmq4/)  
+- [华为云-CSS](https://func.guance.com/doc/script-market-guance-huaweicloud-css/)  
+- [华为云-RocketMQ](https://func.guance.com/doc/script-market-guance-huaweicloud-rocketmq/)  
+- [华为云-RabbitMQ](https://func.guance.com/doc/script-market-guance-huaweicloud-rabbitmq/)  
+- 华为云-WAF-事件列表
+- 华为云-WAF-事件概览
+
+## 2023 年 6 月 29 日
+
+### 观测云更新
+
+本次更新简化了注册流程：
+
+- [国际站观测云产品服务](https://www.guance.one/)正式上线，用户可前往 AWS 海外云市场购买。   
+- [国际站观测云](https://docs.guance.com/en/billing/inter-commercial/)产品采用[以美元为单位的计价体系](../billing/billing-method/index.md#item)。中国站原俄勒冈站点注册的工作空间数据将按照调整后的价格计费。
+
+- 观测云**企业账号**这一概念正式更改为**费用中心账号**；
+
+其他更新：
+
+- 快照[权限](../management/role-list.md)：只读成员支持创建和删除**仅自己可见**的快照。
+
 ## 2023 年 6 月 20 日
 
 ### 观测云更新
@@ -424,7 +501,7 @@ DataFlux Func 是观测云的扩展编程平台，可用于同步云平台数据
 
 ##### 新增 CDN 质量分析 
 
-用户访问监测新增 CDN 厂商信息采集，通过分析图表对不同厂商的 CDN 进行质量分析。更多配置可参考 [用户访问监测采集器配置](../datakit/rum.md#cdn-resolve) 。
+用户访问监测新增 CDN 厂商信息采集，通过分析图表对不同厂商的 CDN 进行质量分析。更多配置可参考 [用户访问监测采集器配置](../integrations/rum.md#cdn-resolve) 。
 
 ##### 新增 UniAPP 应用接入
 

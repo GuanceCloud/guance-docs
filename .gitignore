@@ -5,6 +5,8 @@ mkdocs.log
 __pycache__
 deadlink.log
 .vscode
+cspell.lint
+mdlint.out
 
 # ignore datakit files
 docs/en/datakit/datakit-docker-install.md

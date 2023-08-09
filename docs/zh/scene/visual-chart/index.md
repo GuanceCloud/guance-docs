@@ -24,6 +24,10 @@
 
 ![](../img/chart014.png)
 
+其中，[日志流图](log-stream.md)支持 Copy as cURL、导出为 CSV 文件。
+
+![](../img/stream-0724.png)
+
 ### 修改
 
 在图表中，点击 :fontawesome-solid-gear: 按钮，选择**修改**，即可对图表进行编辑。
@@ -73,7 +77,7 @@
 
 ### 复制、克隆、删除
 
-在图表中，点击 :fontawesome-solid-gear: 按钮，按需选择**复制**，即可对制作的可视化图表进行相应的复制、克隆或删除。
+在图表中，点击 :fontawesome-solid-gear: 按钮，即可对制作的可视化图表进行相应的复制、克隆或删除。
 
 <font color=coral>**注意：**</font>
 

@@ -24,11 +24,14 @@ nav:
   - '快照': snapshot
   - 'Func 函数': outer-function
   - '通知对象': notify-object
-  - '链路': tracing
+  - 'Rum应用配置': rum-cfg-set
+  - '服务清单': service-manage
   - 'Pipeline': pipeline
   - '黑名单': blacklist
   - '自建节点': dialing-region
   - 'DQL数据查询': query-data
+  - '日志聚类查询': logmine
   - '可用性监测,拨测任务': dialing-task
   - '异常追踪,频道': channel
   - '异常追踪,Issue': issue
+  - '账单分析': billing

@@ -9,7 +9,7 @@
 ## 前置条件
 
 1. 观测云「[应用性能监测](../../application-performance-monitoring/collection/index)」已经存在接入的应用
-2. 自建 [DataFlux Func 观测云特别版](https://func.guance.com/#/) 的离线部署，或者开通 [DataFlux Func 托管版](../../dataflux-func/index.md)
+2. 自建 [DataFlux Func 观测云特别版](https://func.guance.com/#/) ，或者开通 [DataFlux Func 托管版](../../dataflux-func/index.md)
 4. 在观测云「管理 / API Key 管理」中创建用于进行操作的 [API Key](../../management/api-key/open-api.md)
 
 > **注意**：如果考虑采用云服务器来进行 DataFlux Func 离线部署的话，请考虑跟当前使用的观测云 SaaS 部署在[同一运营商同一地域](../../../getting-started/necessary-for-beginners/select-site/)。
@@ -44,12 +44,6 @@
 
 
 
-#### 导出
-
-  智能巡检支持“导出 JSON 配置”。在智能巡检列表右侧的操作菜单下，点击「导出」按钮，即可导出当前巡检的 JSON 代码，导出文件名格式：智能巡检名称.json 。
-
-
-
 #### 编辑
 
   智能巡检「 应用性能巡检 」支持用户手动添加筛选条件，在智能巡检列表右侧的操作菜单下，点击**编辑**按钮，即可对巡检模版进行编辑。
@@ -65,9 +59,26 @@
 
   ```json
    // 配置示例：
-   configs 配置示例：
-      project1:service1:env1:version1
-      project2:service2:env2:version2
+  configs 按照 toml 格式配置示例 ：
+          enabled_service = [
+              "project1:service1:env1:version1",
+              "project2:service2:env2:version2"
+          ]
+  
+  				# 需要指定巡检的服务，默认整个工作空间
+          disabled_service = [
+              "project2:service2:env2:version2"
+          ]
+  
+  				# 需要指定服务的错误率，默认为 0
+          [service_error_rate_threshold]
+          "project1:service1:env1:version1"=0.1
+          "project2:service2:env2:version2"=0.2
+  
+  				# 需要指定服务的错误率，默认为 15s 
+          [service_p99_threshold]
+          "project1:service1:env1:version1"=15000000
+          "project2:service2:env2:version2"=90000000
   ```
 
 > **注意**：在自建的 DataFlux Func 中，编写自建巡检处理函数时也可以添加过滤条件（参考示例代码配置），要注意的是在观测云 studio 中配置的参数会覆盖掉编写自建巡检处理函数时配置的参数
@@ -95,21 +106,71 @@ def filter_project_servcie_sub(data):
 @self_hosted_monitor(account['api_key_id'], account['api_key'])
 @DFF.API('APM 性能巡检', fixed_crontab='0 * * * *', timeout=900)
 def run(configs=None):
-    """
-    可选参数：
-        configs :
-            可以指定多个 service（通过换行拼接），不指定则检测所有 service。
-            每个 service 由服务所属项目 (project), 服务（service）、环境（env）、版本（version）通过 ":" 拼接而成，例："project1:service:env:version"
-    示例：
-        configs 配置实例：
-            project1:service1:env1:version1
-            project2:service2:env2:version2
-    """
+    '''
+    zh-CN:
+        title: APM 性能巡检
+        doc: |
+            可选参数：
+                configs ：
+                    可以指定检测 service（enabled_service），不指定则检测所有 service。
+                    可以指定过滤 service （disabled_service），不指定不过滤
+                    可以针对 service 单独设置 p99 阈值（service_p99_threshold），错误率阈值（service_error_rate_threshold）
+                    注：每个 service 由服务所属项目 (project), 服务（service）、环境（env）、版本（version）通过 ":" 拼接而成，例："project1:service:env:version"
+
+                configs 按照 toml 格式配置示例 ：
+
+                    enabled_service = [
+                        "project1:service1:env1:version1",
+                        "project2:service2:env2:version2"
+                    ]
+
+                    disabled_service = [
+                        "project2:service2:env2:version2"
+                    ]
+
+                    [service_error_rate_threshold]
+                    "project1:service1:env1:version1"=0.1
+                    "project2:service2:env2:version2"=0.2
+
+                    [service_p99_threshold]
+                    "project1:service1:env1:version1"=15000000
+                    "project2:service2:env2:version2"=90000000
+    en:
+        title: APM Performance Check
+        doc: |
+            Optional parameter：
+                configs :
+                    You can specify the detection service (enabled_service), otherwise all services will be detected.
+                    You can specify the filtering service (disabled_service), and do not specify no filtering
+                    You can set the p99 threshold (service_p99_threshold) and error rate threshold (service_error_rate_threshold) separately for services
+                    Note: Each service by service belongs to the project (project), service (service), environment (env), version (version) by ":" patchwork, example: "project1: service: env: version"
+
+
+                Example of configuring configs toml format:
+
+                    enabled_service = [
+                        "project1:service1:env1:version1",
+                        "project2:service2:env2:version2"
+                    ]
+
+                    disabled_service = [
+                        "project1:service2:env2:version2",
+                    ]
+
+                    [service_error_rate_threshold]
+                    "project1:service1:env1:version1"=0.1
+                    "project2:service2:env2:version2"=0.2
+
+                    [service_p99_threshold]
+                    "project1:service1:env1:version1"=15000000
+                    "project2:service2:env2:version2"=90000000
+    '''
+
     checkers = [
-        apm_performance_main.APMCheck(configs=configs, filters=[filter_project_servcie_sub]),  # Support for user-configured multiple filtering functions that are executed in sequence.
+        main.APMCheck(configs=configs)
     ]
 
-    Runner(checkers, debug=False).run()
+    Runner(checkers).run_v2()
 ```
 
 
@@ -127,7 +188,6 @@ def run(configs=None):
   点击**事件**，可查看智能巡检事件的详情页，包括事件状态、异常发生的时间、异常名称、基础属性、事件详情、告警通知、历史记录和关联事件。
 
   * 点击详情页右上角的「查看监控器配置」小图标，支持查看和编辑当前智能巡检的配置详情
-  * 点击详情页右上角的「导出事件 JSON」小图标，支持导出事件的详情内容
 
 
 

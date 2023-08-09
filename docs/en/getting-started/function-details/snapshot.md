@@ -3,10 +3,10 @@
 
 ## Overview
 
-Snapshot in Guance supports **creating a copy of data immediately copied in custom time period and generating a quick access link with specified viewing permissions** for explorers in Dashboards, Infrastructure, Metrics, Logs, Events, APM, RUM, cloud dialing test, Security Check, CI Visualization, etc.
+Snapshot in Guance supports <u>creating a copy of data immediately copied in custom time period and generating a quick access link with specified viewing permissions</u> for explorers in Dashboards, Infrastructure, Metrics, Logs, Events, APM, RUM, cloud dialing test, Security Check, CI Visualization, etc.
 
-- If there is a similar need to **keep data of problems or abnormal moments in business systems**, the **Save Snapshot** function can effectively help IT engineers **quickly record true and accurate observation data** and thus quickly locate problems.
-- If there is a need to **share some observation data** among different teams within the enterprise or with external partners on the premise of ensuring data authority isolation, the function of **Share Snapshot** can **effectively improve the cooperation efficiency among members of different division of labor** and help the enterprise solve problems quickly.
+- If there is a similar need to <u>keep data of problems or abnormal moments in business systems</u>, the **Save Snapshot** function can effectively help IT engineers quickly record true and accurate observation data and thus quickly locate problems.
+- If there is a need to <u>share some observation data</u> among different teams within the enterprise or with external partners on the premise of ensuring data authority isolation, the function of **Share Snapshot** can effectively improve the cooperation efficiency among members of different division of labor and help the enterprise solve problems quickly.
 
 ## Step 1: Save Snapshot  
 
@@ -27,19 +27,19 @@ Enter the page where you want to save the snapshot, adjust the time control in t
 
     :fontawesome-brands-apple: &nbsp; &nbsp; ++cmd+k++
 
-    > **Note**: When a shortcut exists in your daemon that conflicts with the shortcut above, **Save Snapshot** shortcut function will not be available.
+    <font color=coral>**Note:**</font> When a shortcut exists in your daemon that conflicts with the shortcut above, **Save Snapshot** shortcut function will not be available.
 
-=== "Explorer Page/Snapshot Button"
+=== "Explorer > Snapshot Button"
     
     **Save Snapshot** at the top (left of search box), click **Save Snapshot**.
 
     <img src="../../img/snapshot-1.png" width="60%" >
 
-=== "Dashboards/Settings Button"
+=== "Explorer > Settings Button"
 
     **Explorers > Settings** at the top (left side of time control), click **Save Snapshot**.
 
-    ![](../../img/snapshot-13.png)
+    <img src="../../img/snapshot-13.png" width="60%" >
 
 </div>
 
@@ -49,10 +49,12 @@ After the **Save Snapshot** window pops up successfully, you can set up the snap
 
 <img src="../../img/snapshot-2.png" width="60%" >
 
-- **Visible Scopes**: Includes **Public** and **Private**.<br/>
-&nbsp;Users who publicly represent the current workspace can view this snapshot; Private only means that other users DO NOT have the right to view the snapshot.
-- **Include Time Filter**: That is, save the currently selected time range, and the shared links do not support switching time controls; If it is closed, it will follow the system default, and the shared snapshot can switch the time control.
-- **Lock Absolute Time**: **Include Time Filter** will only be displayed when it is turned on, and when it is turned on, it is selected to save the currently selected absolute time.
+
+| Fields      | Description                          |
+| ----------- | ------------------------------------ |
+| Visible range      | Includes **Public** and **Private**.<br/>Users who publicly represent the current workspace can view this snapshot; Private only means that other users DO NOT have the right to view the snapshot.                     |
+| Time screening      | Save the currently selected time range, and the shared links do not support switching time controls; If it is closed, it will follow the system default, and the shared snapshot can switch the time control.                          |
+| Save as absolute time      | Time screening will only be displayed when it is turned on, and when it is turned on, it is selected to save the currently selected absolute time.  |      
 
 ## Step 2: View Snapshots
 
@@ -76,18 +78,17 @@ In addition to the above general functions, the following two ways to view snaps
 
     - Up to 20 snapshot names can be displayed on each page and you can view more snapshots by jumping to the next page.
 
-    <img src="../../img/snapshot-4.png" width="50%" >
 
 === "View on Explorer Page" 
 
-    - **Explorers > Snapshots** at the top, showing only **all saved snapshots in the current explorers**. For example, snapshots saved in **Logs> Explorers** cannot be viewed in **Explorers** in **APM > Links**.
+    - **Explorers > Snapshots** at the top, showing only <u>all saved snapshots in the current explorers</u>. For example, snapshots saved in **Logs> Explorers** cannot be viewed in **Explorers** in **APM > Links**.
     - When hover on the saved history snapshot, the window will be suspended to show the corresponding time range and filter conditions. The time range is divided into **Absolute Time**, **Relative Time** and **Default** according to the choice when saving snapshots.
 
-    <img src="../../img/snapshot-5.png" width="60%" >
+    <img src="../../img/snapshot-5.png" width="70%" >
 
-    - If you have clicked to enter a historical snapshot, click **Snapshot** again, and a **Return to Explorer** button will be added. Click to return to the default explorer before entering the historical snapshot.
+    - If you have entered a historical snapshot, click **Snapshot** again, and a **Return** button will emerge to back default explorer before entering the historical snapshot.
 
-    <img src="../../img/snapshot-6.png" width="60%" >
+    ![](../../img/snapshot-6.gif)
 
 </div>
 
@@ -95,24 +96,24 @@ In addition to the above general functions, the following two ways to view snaps
 
 ### Sharing Methods {#sharing-method}
 
-Guance supports two snapshot sharing methods: public sharing and encryption, and the shared snapshots will automatically generate corresponding links. You can share the snapshot link to "anyone" or share it encrypted to someone who owns the key.
+Guance supports two snapshot sharing methods: public sharing and encryption, and the shared snapshots will automatically generate corresponding links. You can share the snapshot link to anyone or share it encrypted to someone who owns the key.
 
-???+ tip "Data slot description for sharing snapshot links"
+???+ info "Data slot description for sharing snapshot links"
 
-    - If you select **Open Absolute Time** when saving snapshots, the absolute time when saving snapshots will be displayed after sharing.<br/>
+    - If you open absolute time when saving snapshots, the absolute time when saving snapshots will be displayed after sharing.<br/>
     For example, if you choose to save a snapshot of the last 15 minutes at `13:30`, open the snapshot link at `14:00` and display the data from `13:15 to 13:30`.
-    - If **Close Absolute Time** is selected when saving the snapshot, the relative time when saving the snapshot will be displayed after sharing.<br/>
+    - If saving as absolute time is selected when saving the snapshot, the relative time when saving the snapshot will be displayed after sharing.<br/>
     For example, if you choose to save a snapshot of the last 15 minutes at `13:30`, open the snapshot link at `14:00` and display the data from `13:45 to 14:00`.
 
 <div class="grid" markdown>
 
-=== "Open Sharing" 
+=== "Public Sharing" 
     
     Users who get the sharing link can view the Guance workspace data displayed in this snapshot.
 
     <img src="../../img/snapshot-7.png" width="50%" >
 
-=== "Encrypted Sharing" 
+=== "Password Sharing" 
 
     Set the password form that conforms to `4 to 8 digits and English combination`, and only users who get the sharing link and corresponding password can view the Guance workspace data displayed in this snapshot.
 
@@ -126,26 +127,26 @@ Guance supports two snapshot sharing methods: public sharing and encryption, and
 
 === "Set Effective Time" 
 
-    Snapshot sharing supports setting effective time, and supports selecting "48 hours" or "permanent effective".<br/>
-    > **Note**: Permanently and effectively sharing is prone to data security risks, so please use it carefully.
+    Snapshot sharing supports setting effective time, and supports selecting "48 hours" or "Permanent".
+
+    <font color=coral>**Note:**</font> Permanently and effectively sharing is prone to data security risks, so please use it carefully.
 
     <img src="../../img/7.snapshot_1.png" width="50%" >
 
 === "Show Top Bar" 
     
-    - Turn on the effect of sharing in the top bar, and you can see that there will be an introduction to the platform at the top.
+    - Turn on the effect of sharing in the top bar, and you can see that there will be an introduction to the platform at the top:
 
     <img src="../../img/snapshot-11.png" width="90%" >
 
-    - Turn off the effect of showing sharing in the top bar.
+    - Turn off the effect of showing sharing in the top bar:
 
     <img src="../../img/snapshot-10.png" width="90%" >
 
-=== "Display Watermark"
+=== "Show Watermark"
 
     When sharing snapshot, it supports the watermark of displaying the name of the sharer in the format of "sharer: name".
 
-    <img src="../../img/7.snapshot_3.png" width="90%" >
 
 </div>
 

@@ -5,7 +5,10 @@
 <br />**POST /api/v1/workspace/create**
 
 ## 概述
-创建工作空间
+创建工作空间.
+
+使用已存在的工作空间 API Key, 创建新工作空间.
+新工作空间的拥有者 默认为本次请求 API Key 所属的空间拥有者
 
 
 
@@ -44,6 +47,7 @@
 | akInfo       | dict | 新空间的API KEY 信息 |
 | ownerInfo             | dict | 新空间的拥有者信息                                                 |
 | wsInfo    | dict | 空间相关信息                  |
+| versionType    | string | 空间版本类型                  |
 
 ------
 

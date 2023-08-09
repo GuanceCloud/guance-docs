@@ -167,13 +167,13 @@ In all the fields cut out by Pipeline, they are a field rather than a tag. We sh
 
 In addition, all collected logs have the following reserved fields. We should not override these fields, otherwise the data may not appear properly on the observer page.
 
-| Field Name | Type          | Description                                                                  |
-| ---        | ----          | ----                                                                         |
-| `source`   | string(tag)   | Log source                                                                   |
-| `service`  | string(tag)   | The service corresponding to the log is the same as the `service` by default |
-| `status`   | string(tag)   | The [level](../../datakit/logging.md#status)  corresponding to the log                     |
-| `message`  | string(field) | Original log                                                                 |
-| `time`     | int           | Timestamp corresponding to log                                               |
+| Field Name | Type          | Description                                                                 |
+| ---        | ----          | ----                                                                        |
+| `source`   | string(tag)   | Log source                                                                  |
+| `service`  | string(tag)   | The service corresponding to the log is the same as the `source` by default |
+| `status`   | string(tag)   | The [level](../../datakit/logging.md#status)  corresponding to the log      |
+| `message`  | string(field) | Original log                                                                |
+| `time`     | int           | Timestamp corresponding to log                                              |
 
 
 ???+ tip

@@ -1,4 +1,3 @@
-
 # Developing Custom Collector with Python
 ---
 

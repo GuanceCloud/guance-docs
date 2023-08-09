@@ -1,8 +1,0 @@
-nav:
-  - 'EC2': aws-ec2.md
-  - aws-elb.md
-  - aws-elasticache-redis.md
-  - aws-msk.md
-  - aws-opensearch.md
-  - aws-rds-mysql.md
-  - aws-s3.md
