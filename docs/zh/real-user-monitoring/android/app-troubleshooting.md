@@ -110,7 +110,7 @@ dependencies {
 * 确认正确调用 `FTSdk.shutDown `，这个方法会释放 SDK 数据处理对象，包括缓存的数据。
 
 ### Resource 数据丢失 {#resource_missing}
-Plugin AOP ASM 插入之后，会在原工程代码基础上，会在 `OkHttpClient.Builder()` 加入 `addInterceptor`，分别加入 `FTTraceInterceptor` 和 `FTResourceInterceptor`,其中会使用 http 请求中 body contentLength 参与唯一 id 计算，`Resource` 数据各个阶段数据通过这个 id 进行上下文串联，所以如果集成方在使用 `Okhttp` 时，也加入 `addInterceptor` 并对数据进行二次处理使其发生大小改变，从而导致 id 各阶段计算不一致，导致数据丢失。这个问题可以通过自定义 `addInterceptor` 位置顺序，让 SDK 方法第一时间去计算 id，可以解决这个问题。详细见 [ManualActivity](https://github.com/GuanceCloud/datakit-android/blob/dev/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt) 中 `OKHttp` 自定义 `EventListener` 和 `Interceptor` 的例子。
+Plugin AOP ASM 插入之后，会在原工程代码基础上，会在 `OkHttpClient.Builder()` 加入 `addInterceptor`，分别加入 `FTTraceInterceptor` 和 `FTResourceInterceptor`,其中会使用 http 请求中 body contentLength 参与唯一 id 计算，`Resource` 数据各个阶段数据通过这个 id 进行上下文串联，所以如果集成方在使用 `Okhttp` 时，也加入 `addInterceptor` 并对数据进行二次处理使其发生大小改变，从而导致 id 各阶段计算不一致，导致数据丢失。这个问题可以通过自定义 `addInterceptor` 位置顺序，让 SDK 方法第一时间去计算 id，可以解决这个问题。详细见 [ManualActivity](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt) 中 `OKHttp` 自定义 `EventListener` 和 `Interceptor` 的例子。
 
 ## 数据丢失某个字段信息
 ### 用户数据字段
@@ -133,7 +133,7 @@ Plugin AOP ASM 插入之后，会在原工程代码基础上，会在 `OkHttpCli
 如果发生有可能原因是日志采集的数据过大。`FTLoggerConfig.enableConsoleLog`原理是抓取编译 `android.util.Log`，Java 与 Kotlin`println`，建议按需调整`FTLoggerConfig`[配置](app-access.md#log-config)下`sampleRate`,`logPrefix`,`logLevelFilters`参数来消除或缓解这个问题
 
 ## Okhttp EventListener 集成 SDK 后失效
-Plugin AOP ASM 插入之后，会在原工程代码基础上，会在 `OkHttpClient.Builder()` 加入 `eventListenerFactory` ，这会覆盖原来的 `eventListener` 或 `eventListenerFactory` ，可以通过关闭自动 AOP 自动设置 `FTRUMConfig setEnableTraceUserResource(false)`，并自定义一个 `CustomEventListenerFactory` 并继承 `FTResourceEventListener.FTFactory`，详细见 [CustomEventListener](https://github.com/GuanceCloud/datakit-android/blob/dev/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/custom/okhttp/CustomEventListenerFactory.kt)
+Plugin AOP ASM 插入之后，会在原工程代码基础上，会在 `OkHttpClient.Builder()` 加入 `eventListenerFactory` ，这会覆盖原来的 `eventListener` 或 `eventListenerFactory` ，可以通过关闭自动 AOP 自动设置 `FTRUMConfig setEnableTraceUserResource(false)`，并自定义一个 `CustomEventListenerFactory` 并继承 `FTResourceEventListener.FTFactory`，详细见 [CustomEventListener](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/custom/okhttp/CustomEventListenerFactory.kt)
 
 
 
