@@ -129,7 +129,6 @@ For all of the following data collections, a global tag named `host` is appended
 |`net_recv_bytes_per_sec`|network receive rate|int|B/S|
 |`net_send_bytes_per_sec`|network send rate|int|B/S|
 |`start_time`|Host startup time (Unix timestamp)|int|ms|
-|`state`|Host Status|string|-|
 
 
 

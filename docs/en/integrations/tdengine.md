@@ -40,12 +40,12 @@ TDengine collector needs to connect `taos_adapter` can work normally, taosAdapte
       # more_tag = "some_other_value"
     ```
     
-    After configuration, [restart DataKit](datakit-service-how-to.md#manage-service).
+    After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 
 === "Kubernetes"
 
-    At present, the collector can be turned on by [injecting the collector configuration in ConfigMap mode](datakit-daemonset-deploy.md#configmap-setting).
+    At present, the collector can be turned on by [injecting the collector configuration in ConfigMap mode](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 
 ???+ tip
 

@@ -99,6 +99,7 @@ All the following data collections will have a global tag named `host` appended 
 
 | Tag | Description |
 |  ----  | --------|
+|`host`|Hostname.|
 |`instance`|Instance.|
 |`jmx_domain`|JMX domain.|
 |`metric_type`|Metric type.|
@@ -316,7 +317,7 @@ Go to `http://localhost:8080/jolokia` to see if the configuration was successful
 
 === "Kubernetes"
 
-    The collector can now be turned on by [ConfigMap Injection Collector Configuration](datakit-daemonset-deploy.md#configmap-setting).
+    The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 
 ## Measurement {#measurements}
 

@@ -82,11 +82,11 @@ The Jaeger Agent embedded in Datakit is used to receive, calculate and analyze J
     
     ```
 
-    Once configured, [restart DataKit](datakit-service-how-to.md#manage-service).
+    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    The collector can now be turned on by [ConfigMap injection collector configuration](datakit-daemonset-deploy.md#configmap-setting).
+    The collector can now be turned on by [ConfigMap injection collector configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 
     Multiple environment variables supported that can be used in Kubernetes showing below:
 
@@ -306,6 +306,7 @@ func foo() {
 |`container_host`|Container hostname. Available in OpenTelemetry. Optional.|
 |`endpoint`|Endpoint info. Available in SkyWalking, Zipkin. Optional.|
 |`env`|Application environment info. Available in Jaeger. Optional.|
+|`host`|Hostname.|
 |`http_method`|HTTP request method name. Available in DDTrace, OpenTelemetry. Optional.|
 |`http_route`|HTTP route. Optional.|
 |`http_status_code`|HTTP response code. Available in DDTrace, OpenTelemetry. Optional.|
