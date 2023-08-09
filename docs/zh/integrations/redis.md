@@ -70,7 +70,7 @@ ACL SETUSER username on +ping
       # connect_timeout = "10s"
     
       ## @param service - string - optional
-      # service = "<SERVICE>"
+      service = "redis"
     
       ## @param interval - number - optional - default: 15
       interval = "15s"
@@ -129,11 +129,11 @@ ACL SETUSER username on +ping
     
     ```
     
-    配置好后，[重启 DataKit](datakit-service-how-to.md#manage-service) 即可。
+    配置好后，[重启 DataKit](../datakit/datakit-service-how-to.md#manage-service) 即可。
 
 === "Kubernetes"
 
-    目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+    目前可以通过 [ConfigMap 方式注入采集器配置](../datakit/datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
 
 ---
 
@@ -185,8 +185,10 @@ ACL SETUSER username on +ping
 | Tag | Description |
 |  ----  | --------|
 |`db_name`|db|
+|`host`|Hostname|
 |`key`|monitor key|
 |`server`|Server addr|
+|`service_name`|Service name|
 
 - 字段列表
 
@@ -213,6 +215,7 @@ ACL SETUSER username on +ping
 |`host`|Hostname|
 |`name`|The name set by the client with `CLIENT SETNAME`, default unknown|
 |`server`|Server addr|
+|`service_name`|Service name|
 
 - 字段列表
 
@@ -239,7 +242,9 @@ ACL SETUSER username on +ping
 
 | Tag | Description |
 |  ----  | --------|
+|`host`|Hostname|
 |`server`|Server addr|
+|`service_name`|Service name|
 
 - 字段列表
 
@@ -275,6 +280,7 @@ ACL SETUSER username on +ping
 |`host`|Hostname|
 |`method`|Command type|
 |`server`|Server addr|
+|`service_name`|Service name|
 
 - 字段列表
 
@@ -300,6 +306,9 @@ ACL SETUSER username on +ping
 | Tag | Description |
 |  ----  | --------|
 |`db`|db name|
+|`host`|Hostname|
+|`server`|Server addr|
+|`service_name`|Service name|
 
 - 字段列表
 
@@ -327,6 +336,7 @@ ACL SETUSER username on +ping
 |`host`|Hostname|
 |`redis_version`|Version of the Redis server|
 |`server`|Server addr|
+|`service_name`|Service name|
 
 - 字段列表
 
@@ -438,6 +448,7 @@ ACL SETUSER username on +ping
 | Tag | Description |
 |  ----  | --------|
 |`server`|Server addr|
+|`service_name`|Service name|
 
 - 字段列表
 
@@ -466,6 +477,7 @@ Redis 慢查询命令历史，这里我们将其以日志的形式采集
 |`host`|host|
 |`message`|log message|
 |`server`|server|
+|`service_name`|Service name|
 
 - 字段列表
 

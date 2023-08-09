@@ -123,11 +123,11 @@ OTEL 提供与 vendor 无关的实现，根据用户的需要将观测类数据�
     
     ```
 
-    配置好后，[重启 DataKit](datakit-service-how-to.md#manage-service) 即可。
+    配置好后，[重启 DataKit](../datakit/datakit-service-how-to.md#manage-service) 即可。
 
 === "Kubernetes"
 
-    目前可以通过 [ConfigMap 方式注入采集器配置](datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+    目前可以通过 [ConfigMap 方式注入采集器配置](../datakit/datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
 
     在 Kubernetes 中支持的环境变量如下表：
 
@@ -202,6 +202,7 @@ Datakit 目前提供了如下两种语言的最佳实践：
 |`container_host`|Container hostname. Available in OpenTelemetry. Optional.|
 |`endpoint`|Endpoint info. Available in SkyWalking, Zipkin. Optional.|
 |`env`|Application environment info. Available in Jaeger. Optional.|
+|`host`|Hostname.|
 |`http_method`|HTTP request method name. Available in DDTrace, OpenTelemetry. Optional.|
 |`http_route`|HTTP route. Optional.|
 |`http_status_code`|HTTP response code. Available in DDTrace, OpenTelemetry. Optional.|

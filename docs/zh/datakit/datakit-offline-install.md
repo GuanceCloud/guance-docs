@@ -104,43 +104,50 @@
 
 - 先下载数据包 [data.tar.gz](https://static.guance.com/datakit/data.tar.gz)，每个平台都一样。
 
-- 然后再下载俩个安装程序：
+- 然后再下载其他所需安装程序：
 
 <!-- markdownlint-disable MD046 -->
 === "Windows 32 位"
 
-    - [Installer](https://static.guance.com/datakit/installer-windows-386.exe){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-windows-386-1.12.3.tar.gz){:target="_blank"}
+    - [`Installer`](https://static.guance.com/datakit/installer-windows-386.exe){:target="_blank"}
+    - [`DataKit`](https://static.guance.com/datakit/datakit-windows-386-1.12.3.tar.gz){:target="_blank"}
+    - [`Upgrader`](https://static.guance.com/datakit/dk_upgrader-windows-386.tar.gz){:target="_blank"}
 
 === "Windows 64 位"
 
-    - [Installer](https://static.guance.com/datakit/installer-windows-amd64.exe){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-windows-amd64-1.12.3.tar.gz){:target="_blank"}
+    - [`Installer`](https://static.guance.com/datakit/installer-windows-amd64.exe){:target="_blank"}
+    - [`DataKit`](https://static.guance.com/datakit/datakit-windows-amd64-1.12.3.tar.gz){:target="_blank"}
+    - [`Upgrader`](https://static.guance.com/datakit/dk_upgrader-windows-amd64.tar.gz){:target="_blank"}
 
 === "Linux X86 32 位"
 
-    - [Installer](https://static.guance.com/datakit/installer-linux-386){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-linux-386-1.12.3.tar.gz){:target="_blank"}
+    - [`Installer`](https://static.guance.com/datakit/installer-linux-386){:target="_blank"}
+    - [`DataKit`](https://static.guance.com/datakit/datakit-linux-386-1.12.3.tar.gz){:target="_blank"}
+    - [`Upgrader`](https://static.guance.com/datakit/dk_upgrader-linux-386.tar.gz){:target="_blank"}
 
 === "Linux X86 64 位"
 
-    - [Installer](https://static.guance.com/datakit/installer-linux-amd64){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-linux-amd64-1.12.3.tar.gz){:target="_blank"}
+    - [`Installer`](https://static.guance.com/datakit/installer-linux-amd64){:target="_blank"}
+    - [`DataKit`](https://static.guance.com/datakit/datakit-linux-amd64-1.12.3.tar.gz){:target="_blank"}
+    - [`Upgrader`](https://static.guance.com/datakit/dk_upgrader-linux-amd64.tar.gz){:target="_blank"}
 
 === "Linux Arm 32 位"
 
-    - [Installer](https://static.guance.com/datakit/installer-linux-arm){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-linux-arm-1.12.3.tar.gz){:target="_blank"}
+    - [`Installer`](https://static.guance.com/datakit/installer-linux-arm){:target="_blank"}
+    - [`DataKit`](https://static.guance.com/datakit/datakit-linux-arm-1.12.3.tar.gz){:target="_blank"}
+    - [`Upgrader`](https://static.guance.com/datakit/dk_upgrader-linux-arm.tar.gz){:target="_blank"}
 
 === "Linux Arm 64 位"
 
-    - [Installer](https://static.guance.com/datakit/installer-linux-arm64){:target="_blank"}
-    - [DataKit](https://static.guance.com/datakit/datakit-linux-arm64-1.12.3.tar.gz){:target="_blank"}
+    - [`Installer`](https://static.guance.com/datakit/installer-linux-arm64){:target="_blank"}
+    - [`DataKit`](https://static.guance.com/datakit/datakit-linux-arm64-1.12.3.tar.gz){:target="_blank"}
+    - [`Upgrader`](https://static.guance.com/datakit/dk_upgrader-linux-arm64.tar.gz){:target="_blank"}
 <!-- markdownlint-enable -->
 
-下载完后，应该有三个文件（此处 `<OS-ARCH>` 指特定平台的安装包）：
+下载完后，应该有以下文件（此处 `<OS-ARCH>` 指特定平台的安装包）：
 
 - `datakit-<OS-ARCH>.tar.gz`
+- `dk_upgrader-<OS-ARCH>.tar.gz`
 - `installer-<OS-ARCH>` 或 `installer-<OS-ARCH>.exe`
 - `data.tar.gz`
 
@@ -155,7 +162,7 @@
 
     ```shell
     chmod +x installer-linux-amd64
-    ./installer-linux-amd64 --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs datakit-linux-amd64-1.12.3.tar.gz,data.tar.gz
+    ./installer-linux-amd64 --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs datakit-linux-amd64-1.12.3.tar.gz,dk_upgrader-linux-amd64.tar.gz,data.tar.gz
     ```
 
 === "Windows"
@@ -163,7 +170,7 @@
     需以 administrator 权限运行 Powershell 执行：
 
     ```powershell
-    .\installer-windows-amd64.exe --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs .\datakit-windows-amd64-1.12.3.tar.gz,.\data.tar.gz
+    .\installer-windows-amd64.exe --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs .\datakit-windows-amd64-1.12.3.tar.gz,.\dk_upgrader-windows-amd64.tar.gz,.\data.tar.gz
     ```
 <!-- markdownlint-enable -->
 
@@ -237,6 +244,7 @@ wget -P /datakit https://static.guance.com/datakit/version
 wget -P /datakit https://static.guance.com/datakit/data.tar.gz
 wget -P /datakit https://static.guance.com/datakit/installer-linux-amd64-1.12.3
 wget -P /datakit https://static.guance.com/datakit/datakit-linux-amd64-1.12.3.tar.gz
+wget -P /datakit https://static.guance.com/datakit/dk_upgrader-linux-amd64.tar.gz
 
 # 下载其它工具包：sources 是开启 RUM sourcemap 功能使用的安装包，如果未开启此功能，可选择不下载
 sources=(
@@ -249,22 +257,29 @@ sources=(
   "/datakit/sourcemap/proguard/proguard-7.2.2.tar.gz"
   "/datakit/sourcemap/ndk/android-ndk-r22b-x64-mac-simplified.tar.gz"
   "/datakit/sourcemap/ndk/android-ndk-r25-x64-linux-simplified.tar.gz"
-  "/datakit/sourcemap/libs/libdwarf-code-20200114.tar.gz"
-  "/datakit/sourcemap/libs/binutils-2.24.tar.gz"
-  "/datakit/sourcemap/atosl/atosl-20220804-x64-linux.tar.gz"
+  "/datakit/sourcemap/atosl/atosl-darwin-x64"
+  "/datakit/sourcemap/atosl/atosl-darwin-arm64"
+  "/datakit/sourcemap/atosl/atosl-linux-x64"
+  "/datakit/sourcemap/atosl/atosl-linux-arm64"
 )
 
 mkdir -p /datakit/sourcemap/jdk \
   /datakit/sourcemap/R8       \
   /datakit/sourcemap/proguard \
   /datakit/sourcemap/ndk      \
-  /datakit/sourcemap/libs     \
   /datakit/sourcemap/atosl
 
 for((i=0;i<${#sources[@]};i++)); do
   wget https://static.guance.com${sources[$i]} -O ${sources[$i]}
 done
 ```
+
+<!-- markdownlint-disable MD046 -->
+???+ Attention
+
+    Windows 下的 `Installer` 程序的下载链接需添加 **.exe** 后缀，如 [*https://static.guance.com/datakit/installer-windows-386-1.12.3.exe*](https://static.guance.com/datakit/installer-windows-386-1.12.3.exe) 和
+    [*https://static.guance.com/datakit/installer-windows-amd64-1.12.3.exe*](https://static.guance.com/datakit/installer-windows-amd64-1.12.3.exe)。
+<!-- markdownlint-enable -->
 
 #### 安装 {#advance-install}
 
