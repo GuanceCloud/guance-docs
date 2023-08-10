@@ -55,11 +55,11 @@ dependencies {
 
 ####  API 'android.registerTransform' is obsolete {#transform_deprecated}
 
-`AGP 7.0` 中 `Transform` 已标记为 `Deprecated`，并在 `AGP 8.0` 中已弃用。 `ft-plugin:1.2.0` 已经完成适配，请升级相应版本，修复这个错误。 具体说明请见[集成配置](app-access.md/#gradle-setting) 
+`AGP 7.0` 中 `Transform` 已标记为 `Deprecated`，并在 `AGP 8.0` 中已弃用。 `ft-plugin:1.2.0` 已经完成适配，请升级相应版本，修复这个错误。 具体说明请见[集成配置](app-access.md#gradle-setting) 
 
 ####  AndroidComponentsExtension ClassNotFoundException {#android_cts_ext_no_fd}
 
-`AndroidComponentsExtension` 是 AGP `7.4.2` 支持的方法，低于这个版本的编译环境，就会产生这个错误，可以使用 `ft-plugin-legacy` 版本，修复这个错误。具体说明请见[集成配置](app-access.md/#gradle-setting) 
+`AndroidComponentsExtension` 是 AGP `7.4.2` 支持的方法，低于这个版本的编译环境，就会产生这个错误，可以使用 `ft-plugin-legacy` 版本，修复这个错误。具体说明请见[集成配置](app-access.md#gradle-setting) 
 
 ![](../img/17.trouble_shooting_android_gradle_error_3.png)
 
