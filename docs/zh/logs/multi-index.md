@@ -256,7 +256,7 @@
 
     **注意**：变更存储策略会删除索引中的数据，请谨慎操作。
 
-    <img src="img/6.index_3.png" width="60%" >
+    <img src="../img/6.index_3.png" width="60%" >
 
 === "删除"
 

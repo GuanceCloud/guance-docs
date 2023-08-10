@@ -7,6 +7,19 @@ icon: zy/release-notes
 
 本文档记录观测云每次上线发布的更新内容说明，包括 DataKit、观测云最佳实践、观测云集成文档和观测云。
 
+## 2023 年 8 月 10 日
+
+### 观测云更新
+
+- 新增计费项：
+    - [定时报告](../billing/billing-method/index.md#report)：按工作空间内定时报告当日发送的次数出账计费；
+    - [日志写入流量](../billing/billing-method/index.md#ingested-log)：按用户上报的原始日志写入流量大小出账计费。
+- 场景：
+    - 新增[服务管理](../scene/service-manag.md)：服务管理是一个用于访问所有服务关键信息的集中入口，用户可查看当前工作空间内不同服务的性能和业务数据及所有的关联分析等信息，快速定位并解决服务的相关问题。  
+    - 图表均支持 PromQL 查询和表达式查询。
+- 日志：在日志详情页新增[上下文日志](../logs/explorer.md#up-down) tab，用户可直接跳转；同时支持选择上下文检索范围。
+- 查看器：打开某条数据详情页，支持一键[导出](../getting-started/function-details/explorer-search.md#export)当前数据为 JSON 文件。
+- 监控器 > 阈值检测：检测指标新增**转换为 PromQL 查询**。
 
 ## 2023 年 7 月 27 日
 
@@ -16,7 +29,7 @@ icon: zy/release-notes
       <source id="mp4" src="https://static.guance.com/dataflux/help/video/20230727.mp4" type="video/mp4">
 </video>
 
-- **场景 > 仪表板**：新增[定时报告功能](../scene/report.md)，支持用户创建基于某仪表板的报告，并可以配置定时邮件发送；
+- **场景 > 仪表板**：新增[定时报告功能](../scene/report.md)，支持用户创建基于某仪表板的报告，并可以配置定时邮件发送。
 - 导航栏新增 **[邀请成员](../management/invite-member.md#navigation)** 入口，可通过该入口快速邀请成员。在管理页面，新增**邀请审批**按钮。该按钮开启情况下，向成员发送邀请后，须移至邀请记录审批管理成员加入申请。
 - **日志 > 备份日志**有以下调整：
     - 观测云默认存档类型下线：

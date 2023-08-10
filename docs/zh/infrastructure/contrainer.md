@@ -25,7 +25,7 @@
 | [显示列说明](../getting-started/function-details/explorer-search.md#columns)      | 在容器查看器列表，点击 :material-cog: 按钮，可通过**显示列**自定义添加、编辑、删除、拖动显示列。        |
 | 排序      | 点击列表菜单，如：CPU 使用率、MEM 使用率，您可以基于选中的标签进行升降排序。        |
 | [分析模式](../getting-started/function-details/explorer-search.md#analysis)      |         |
-| 数据导出      | 查看器右上角的 :material-cog: 图标，您可以：<br/>- 导出到 CSV 文件：保存当前列表为 CSV 文件到本地； <br/>- 导出到仪表板：保存当前列表为**可视化图表**到指定**仪表板**；<br/>- 导出到笔记：保存当前列表为**可视化图表**到指定**笔记**。    |
+| 数据导出      | 查看器右上角的 :material-cog: 图标，您可以：<br /><li>导出到 CSV 文件：保存当前列表为 CSV 文件到本地； <br /><li>导出到仪表板：保存当前列表为**可视化图表**到指定**仪表板**；<br /><li>导出到笔记：保存当前列表为**可视化图表**到指定**笔记**。<br/><br/>如果需要导出某条数据，打开该条数据详情页，点击右上角 :material-tray-arrow-up: 图标即可。    |
 
 
 ### Containers 列表

@@ -504,7 +504,7 @@ key:(value1 AND * OR value3)        // 等同于 key:(value1 OR value3)
 
 如果需要导出某条数据，打开该条数据详情页，点击右上角 :material-tray-arrow-up: 图标即可。
 
-![](img/export-log-0808.png)
+![](../img/export-log-0808.png)
 
 ## 图表 {#chart}
 
