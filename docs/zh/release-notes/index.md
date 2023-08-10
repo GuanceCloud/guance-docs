@@ -7,6 +7,21 @@ icon: zy/release-notes
 
 本文档记录观测云每次上线发布的更新内容说明，包括 DataKit、观测云最佳实践、观测云集成文档和观测云。
 
+## 2023 年 8 月 10 日
+
+### 观测云更新
+
+- 新增计费项：
+    - [定时报告](../billing/billing-method/index.md#report)：按工作空间内定时报告单日发送的次数出账计费；
+    - [日志写入流量](../billing/billing-method/index.md#ingested-log)：按用户上报的原始日志写入流量大小出账计费。
+- 场景：
+    - 新增 **[服务管理](../scene/service-manag.md)**：服务管理是一个用于访问所有服务关键信息的集中入口，用户可查看当前工作空间内不同服务的性能和业务数据及所有的关联分析等信息，快速定位并解决服务的相关问题。  
+    - 图表均支持 PromQL 查询和表达式查询。
+- 日志：在日志详情页新增[上下文日志](../logs/explorer.md#up-down) tab，用户可直接跳转；同时支持选择上下文检索范围。
+- 查看器：打开某条数据详情页，支持一键[导出](../getting-started/function-details/explorer-search.md#export)当前数据为 JSON 文件。
+- 应用性能监测 > 服务 > [调用拓扑](../application-performance-monitoring/service-catalog.md#map)：新增当前服务的上下游调用关系表格，展示服务单向关系的请求数、平均响应时间和错误数。
+- 监控器 > 阈值检测：检测指标新增**转换为 PromQL 查询**。
+- 基础设施 > 容器：新增 **Kubernets 事件**组件。
 
 ## 2023 年 7 月 27 日
 
@@ -16,7 +31,7 @@ icon: zy/release-notes
       <source id="mp4" src="https://static.guance.com/dataflux/help/video/20230727.mp4" type="video/mp4">
 </video>
 
-- **场景 > 仪表板**：新增[定时报告功能](../scene/report.md)，支持用户创建基于某仪表板的报告，并可以配置定时邮件发送；
+- **场景 > 仪表板**：新增[定时报告功能](../scene/report.md)，支持用户创建基于某仪表板的报告，并可以配置定时邮件发送。
 - 导航栏新增 **[邀请成员](../management/invite-member.md#navigation)** 入口，可通过该入口快速邀请成员。在管理页面，新增**邀请审批**按钮。该按钮开启情况下，向成员发送邀请后，须移至邀请记录审批管理成员加入申请。
 - **日志 > 备份日志**有以下调整：
     - 观测云默认存档类型下线：
@@ -291,7 +306,7 @@ DataFlux Func 是观测云的扩展编程平台，可用于同步云平台数据
 
 ### 观测云更新
 
-- 日志新增 3 天数据保存策略和定价，计费相关请参考文档 [计费方式](../billing/billing-method/index.md) 。
+- 日志新增 3 天数据保存策略和定价，计费相关请参考文档 [计费方式](../billing/billing-method/index.md)。
 - 日志新增 [数据访问](../logs/logdata-access.md) 权限控制，支持将某个范围内的日志数据查看权限授予给相关角色
 - [角色权限清单](../management/role-list.md) 新增各功能模块数据查询权限，支持自定义角色配置对应模块的数据查询权限入口
 - 标准成员新增 “快照管理” 权限，支持快照增删操作
@@ -340,7 +355,7 @@ DataFlux Func 是观测云的扩展编程平台，可用于同步云平台数据
 - 老版本的发送失败磁盘缓存由于性能问题，我们替换了实现方式。新的实现方式，其缓存的二进制格式不再兼容，如果升级的话，老的数据将不被识别。建议先手动删除老的缓存数据（老数据可能会影响新版本磁盘缓存），然后再升级新版本的 Datakit。尽管如此，新版本的磁盘缓存，仍然是一个实验性功能，请谨慎使用
 - Datakit 自身指标体系做了更新，原有 DCA 获取到的指标将有一定的缺失，但不影响 DCA 本身功能的运行
 
-更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md) 。
+更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md)。
 
 ## 2023 年 3 月 23 号
 
@@ -380,11 +395,11 @@ DataFlux Func 是观测云的扩展编程平台，可用于同步云平台数据
 
 取消数据存储策略每天只能修改 1 次的逻辑，支持用户当天内多次调整数据存储策略。
 
-> 注意：数据存储策略除当天内第一次修改会立即生效，其他的修改操作将按照最后一次调整记录次日生效。关于如何变更，可参考文档 [数据存储策略](../billing/billing-method/data-storage.md) 。
+> 注意：数据存储策略除当天内第一次修改会立即生效，其他的修改操作将按照最后一次调整记录次日生效。关于如何变更，可参考文档 [数据存储策略](../billing/billing-method/data-storage.md)。
 
 #### 图表链接配置优化
 
-图表链接配置交互升级，在文本框输入基础上，支持通过参数配置自由组合生成最终图表关联链接 URL。更多详情可参考文档 [自定义链接](../scene/visual-chart/chart-link.md#custom-link) 。
+图表链接配置交互升级，在文本框输入基础上，支持通过参数配置自由组合生成最终图表关联链接 URL。更多详情可参考文档 [自定义链接](../scene/visual-chart/chart-link.md#custom-link)。
 
 ![](img/6.link_5.1.png)
 
@@ -395,7 +410,7 @@ DataFlux Func 是观测云的扩展编程平台，可用于同步云平台数据
 - 场景：仪表板、笔记、查看器
 - 管理：设置 - 配置迁移
 
-> 注意：若选择「取消」导入后，当次选中的文件均不会做导入操作。更多详情可参考文档 [配置迁移](../management/index.md#export-import) 。
+> 注意：若选择「取消」导入后，当次选中的文件均不会做导入操作。更多详情可参考文档 [配置迁移](../management/index.md#export-import)。
 
 ![](img/5.input_rename_1.png)
 
@@ -423,7 +438,7 @@ DataFlux Func 是观测云的扩展编程平台，可用于同步云平台数据
 - 支持自定义「无数据」事件通知模板
 - 事件内容支持添加跳转链接，除官方提供的默认链接，您还可以自定义跳转链接
 
-更多详情可参考文档 [监控器配置](../monitoring/monitor/threshold-detection.md#notification) 。
+更多详情可参考文档 [监控器配置](../monitoring/monitor/threshold-detection.md#notification)。
 
 #### SSO 相关优化
 
@@ -461,7 +476,7 @@ DataFlux Func 是观测云的扩展编程平台，可用于同步云平台数据
 - 重构 OTEL Agent
 - 重构 Datakit Monitor 信息
 
-更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md) 。
+更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md)。
 
 ## 2023 年 2 月 28 号
 
@@ -469,11 +484,11 @@ DataFlux Func 是观测云的扩展编程平台，可用于同步云平台数据
 
 #### 新增会话重放功能
 
-会话重放是用户体验网站的重建演示，通过捕获单击、鼠标移动和页面滚动等内容，生成视频记录，深入了解用户的操作体验。更多详情可参考文档 [会话重放](../real-user-monitoring/session-replay/index.md) 。
+会话重放是用户体验网站的重建演示，通过捕获单击、鼠标移动和页面滚动等内容，生成视频记录，深入了解用户的操作体验。更多详情可参考文档 [会话重放](../real-user-monitoring/session-replay/index.md)。
 
 #### 优化 AWS 开通流程
 
-观测云优化 AWS 云市场一键开通观测云的流程，在 AWS 云市场订阅观测云商品后，可直接开通使用观测云。更多详情可参考文档 [在 AWS 开通观测云](../billing/commercial-aws.md) 。
+观测云优化 AWS 云市场一键开通观测云的流程，在 AWS 云市场订阅观测云商品后，可直接开通使用观测云。更多详情可参考文档 [在 AWS 开通观测云](../billing/commercial-aws.md)。
 
 ## 2023 年 2 月 23 号
 
@@ -483,7 +498,7 @@ DataFlux Func 是观测云的扩展编程平台，可用于同步云平台数据
 
 ##### 新增用户访问监测自动化追踪
 
-用户访问监测新增自动化追踪，通过“浏览器插件”的实现方式，使用浏览器记录用户访问行为，创建无代码的端到端测试。更多详情可参考文档 [自动化追踪](../real-user-monitoring/self-tracking.md#auto-tracking) 。
+用户访问监测新增自动化追踪，通过“浏览器插件”的实现方式，使用浏览器记录用户访问行为，创建无代码的端到端测试。更多详情可参考文档 [自动化追踪](../real-user-monitoring/self-tracking.md#auto-tracking)。
 
 ##### 用户访问监测应用列表、查看器、分析看板布局整体调整
 
@@ -501,25 +516,25 @@ DataFlux Func 是观测云的扩展编程平台，可用于同步云平台数据
 
 ##### 新增 CDN 质量分析 
 
-用户访问监测新增 CDN 厂商信息采集，通过分析图表对不同厂商的 CDN 进行质量分析。更多配置可参考 [用户访问监测采集器配置](../integrations/rum.md#cdn-resolve) 。
+用户访问监测新增 CDN 厂商信息采集，通过分析图表对不同厂商的 CDN 进行质量分析。更多配置可参考 [用户访问监测采集器配置](../integrations/rum.md#cdn-resolve)。
 
 ##### 新增 UniAPP 应用接入
 
-用户访问监测新增 UniAPP 应用接入，当前版本支持 Android 和 iOS 平台。更多详情可参考 [UniApp 应用接入](../real-user-monitoring/uni-app/app-access.md) 。
+用户访问监测新增 UniAPP 应用接入，当前版本支持 Android 和 iOS 平台。更多详情可参考 [UniApp 应用接入](../real-user-monitoring/uni-app/app-access.md)。
 
 #### 场景优化
 
 ##### 新增自定义查看器导航菜单
 
-在场景查看器列表，新增支持将当前查看器添加至基础设施、指标、日志、应用性能监测、用户访问监测、可用性监测、安全巡检、CI 可视化导航菜单。更多详情可参考 [添加查看器导航菜单](../scene/explorer/index.md#menu) 。
+在场景查看器列表，新增支持将当前查看器添加至基础设施、指标、日志、应用性能监测、用户访问监测、可用性监测、安全巡检、CI 可视化导航菜单。更多详情可参考 [添加查看器导航菜单](../scene/explorer/index.md#menu)。
 
 ##### 增强场景视图变量级联功能
 
-在场景视图变量配置级联查询时，支持使用 `=` 、`!=` 精确匹配变量值，支持使用 `match（re）` 、`not match（re）` 、`wildcard` 、`not wildcard` 模糊匹配变量值。更多详情可参考文档 [视图变量](../scene/view-variable.md#query) 。
+在场景视图变量配置级联查询时，支持使用 `=` 、`!=` 精确匹配变量值，支持使用 `match（re）` 、`not match（re）` 、`wildcard` 、`not wildcard` 模糊匹配变量值。更多详情可参考文档 [视图变量](../scene/view-variable.md#query)。
 
 ##### 饼图新增合并配置选项
 
-饼图新增合并配置选项，支持用户将冗余的数据点合并到 “其他” 显示，提高饼图的可读性。更多详情可参考文档 [饼图](../scene/visual-chart/pie-chart.md) 。
+饼图新增合并配置选项，支持用户将冗余的数据点合并到 “其他” 显示，提高饼图的可读性。更多详情可参考文档 [饼图](../scene/visual-chart/pie-chart.md)。
 
 #### 调整图表查询运算符翻译逻辑
 
@@ -552,7 +567,7 @@ DataFlux Func 是观测云的扩展编程平台，可用于同步云平台数据
 - 重构 point 数据结构及功能
 - Datakit 自带 eBPF 采集器二进制安装
 
-更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md) 。
+更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md)。
 
 ## 2023 年 2 月 16 号
 
@@ -564,19 +579,19 @@ DataFlux Func 是观测云的扩展编程平台，可用于同步云平台数据
 
 观测云新增角色管理功能，支持对企业中的员工设置不同的观测云功能访问权限，以达到不同员工之间的权限隔离。
 
-观测云默认提供四种成员角色，分别为“Owner”、“Administrator”、“Standard”和“Read-only”，除了默认角色以外，观测云支持在角色管理创建新的角色，并为角色赋予权限范围，满足不同用户的权限需要。更多详情可参考文档 [角色管理](../management/role-management.md) 。
+观测云默认提供四种成员角色，分别为“Owner”、“Administrator”、“Standard”和“Read-only”，除了默认角色以外，观测云支持在角色管理创建新的角色，并为角色赋予权限范围，满足不同用户的权限需要。更多详情可参考文档 [角色管理](../management/role-management.md)。
 
 ![](img/8.member_6.png)
 
 ##### 优化成员邀请，增加选择成员权限
 
-在当前空间内，邀请的新成员，默认权限为只读成员，新增支持选择一个或多个角色来设置新成员的权限，更多详情可参考文档 [成员管理](../management/member-management.md) 。
+在当前空间内，邀请的新成员，默认权限为只读成员，新增支持选择一个或多个角色来设置新成员的权限，更多详情可参考文档 [成员管理](../management/member-management.md)。
 
 ![](img/8.member_1.png)
 
 ##### 新增批量修改成员权限
 
-在成员管理，新增批量修改权限功能，点击「批量修改权限」，选择需要批量修改权限的成员，点击「确定」，在弹出的对话框中为成员选择权限后「确定」即可。更多详情可参考文档 [成员管理](../management/member-management.md) 。
+在成员管理，新增批量修改权限功能，点击「批量修改权限」，选择需要批量修改权限的成员，点击「确定」，在弹出的对话框中为成员选择权限后「确定」即可。更多详情可参考文档 [成员管理](../management/member-management.md)。
 
 ![](img/8.member_3.png)
 
@@ -584,19 +599,19 @@ DataFlux Func 是观测云的扩展编程平台，可用于同步云平台数据
 
 观测云新增基于配置 SAML 映射关系，为企业提供更精细的单点登录方案，开启 SAML 映射后，支持为企业员工动态的分配访问权限，员工可根据被分配的角色权限来访问观测云。
 
-在观测云工作空间「管理」-「成员管理」-「SSO管理」-「SSO 登录」，启用 「SAML 映射」，并在「SAML 映射」配置映射关系。更多详情可参考文档 [SSO管理](../management/sso/index.md) 。
+在观测云工作空间「管理」-「成员管理」-「SSO管理」-「SSO 登录」，启用 「SAML 映射」，并在「SAML 映射」配置映射关系。更多详情可参考文档 [SSO管理](../management/sso/index.md)。
 
 ![](img/5.sso_mapping_10.png)
 
 ##### 成员管理页面显示优化
 
-在成员管理，新增自定义角色管理功能，调整搜索、快捷筛选等布局。更多详情可参考文档 [成员管理](../management/member-management.md) 。
+在成员管理，新增自定义角色管理功能，调整搜索、快捷筛选等布局。更多详情可参考文档 [成员管理](../management/member-management.md)。
 
 ![](img/8.member_5.png)
 
 ##### 权限变更审核优化
 
-基于新增的角色权限管理，调整费用中心审核的触发条件，当用户角色被赋予 Token 的查看、操作权限，即触发观测云费用中心的审核。更多详情可参考文档 [权限变更审核](../management/role-management.md#upgrade) 。
+基于新增的角色权限管理，调整费用中心审核的触发条件，当用户角色被赋予 Token 的查看、操作权限，即触发观测云费用中心的审核。更多详情可参考文档 [权限变更审核](../management/role-management.md#upgrade)。
 
 #### 新增登录会话保持时间设置
 
@@ -609,14 +624,14 @@ DataFlux Func 是观测云的扩展编程平台，可用于同步云平台数据
 
 针对在观测云中遇到的问题，用户可以通过提交工单的方式进行咨询与建议，官方会进行及时的处理与反馈。例如：使用过程中遇到难以解决的问题、购买以及费用相关的咨询、向观测云提出需求建议等等。
 
-工单系统是基于个人账号级别的，用户可以在工单管理中查看由本人提交的所有工单，不区分工作空间。工单管理入口：左下角「账号」-「工单管理」。更多详情可参考文档 [工单管理](../management/work-order-management.md) 。
+工单系统是基于个人账号级别的，用户可以在工单管理中查看由本人提交的所有工单，不区分工作空间。工单管理入口：左下角「账号」-「工单管理」。更多详情可参考文档 [工单管理](../management/work-order-management.md)。
 
 ![](img/1.work_order_1.png)
 
 #### 其他功能优化
 
 - 工作空间创建时新增语言选择，语言选项影响工作空间内事件、告警、短信等模板，若选择英文，上述对应模板将默认使用英文模板；
-- 优化工作空间锁定功能，若费用中心账号欠费或云市场订阅异常等情况会导致工作空间锁定，工作空间锁定以后，新数据将停止上报，观测云提供 14 天的缓冲期，您可以在这期间继续查看和分析历史数据，并通过解除锁定状态，继续使用观测云。更多详情可参考文档 [工作空间锁定](../management/index.md#lock) 。
+- 优化工作空间锁定功能，若费用中心账号欠费或云市场订阅异常等情况会导致工作空间锁定，工作空间锁定以后，新数据将停止上报，观测云提供 14 天的缓冲期，您可以在这期间继续查看和分析历史数据，并通过解除锁定状态，继续使用观测云。更多详情可参考文档 [工作空间锁定](../management/index.md#lock)。
 
 
 ### 智能巡检更新
@@ -624,14 +639,14 @@ DataFlux Func 是观测云的扩展编程平台，可用于同步云平台数据
 - **RUM 性能巡检：**支持影响用户的会话 ID 跳转查看问题 Session，在巡检事件报告中提供更专业的优化手段。
 - **云账户实例维度账单巡检：**新增对 AWS 账户实例维度账单巡检支持。
 
-更多智能巡检更新可参考 [智能巡检更新日志](../monitoring/bot-obs/index.md) 。
+更多智能巡检更新可参考 [智能巡检更新日志](../monitoring/bot-obs/index.md)。
 
 ### 最佳实践更新
 
 - 云平台接入
     - 阿里云 - [阿里云事件总线 EventBridge 最佳实践](../best-practices/partner/aliyun_eventbridge.md)
 
-更多最佳实践更新可参考 [最佳实践版本历史](../best-practices/index.md) 。
+更多最佳实践更新可参考 [最佳实践版本历史](../best-practices/index.md)。
 
 
 ## 2023 年 2 月 9 号
@@ -653,7 +668,7 @@ DataFlux Func 是观测云的扩展编程平台，可用于同步云平台数据
 - 优化日志采集流程
 - iploc yaml 配置方法文档支持
 
-更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md) 。
+更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md)。
 
 ### 智能巡检更新
 
@@ -662,7 +677,7 @@ DataFlux Func 是观测云的扩展编程平台，可用于同步云平台数据
 - **RUM 性能巡检：**Real User Monitoring（RUM）是一种应用性能监测技术，旨在通过模拟真实用户在浏览网站时的行为来评估网站性能。RUM 的目的是从用户的角度了解网站性能，了解网站加载时间，网页呈现的效果，页面元素的加载情况以及交互的反应。RUM 性能巡检的使用场景主要是对于客户端类型的网站，例如：电子商务网站、金融网站、娱乐网站等等，这些网站都需要向用户呈现一个快速和流畅的访问体验。通过对 RUM 性能结果分析，可以快速帮助开发人员可以了解用户的实际体验，以便快速改进网站的性能。
 - **Kubernetes 健康巡检：**现如今 Kubernetes 已经席卷了整个容器生态系统，它充当着容器分布式部署的大脑，旨在使用跨主机集群分布的容器来管理面向服务的应用程序。Kubernetes 提供了用于应用程序部署、调度、更新、服务发现和扩展的机制，但是该如何来保障 Kubernetes 节点的健康呢，通过智能巡检可以根据当前节点的资源状态、应用性能管理、服务故障日志等信息的检索和问题发现，从而加快事件调查、减轻工程师的压力、减少平均修复时间并改善最终用户体验。
 
-更多智能巡检更新可参考 [智能巡检更新日志](../monitoring/bot-obs/index.md) 。
+更多智能巡检更新可参考 [智能巡检更新日志](../monitoring/bot-obs/index.md)。
 
 ## 2023 年 1 月 17 号
 
@@ -674,19 +689,19 @@ DataFlux Func 是观测云的扩展编程平台，可用于同步云平台数据
 
 #### 新增观测云站点服务 Status Page
 
-观测云提供 Status Page，帮助您实时查看观测云不同站点的服务状态。若您已经登录到观测云，您可以通过点击左下角的**帮助 > Status Page**来查看观测云各个站点的服务状态。更多详情可参考文档 [Status Page](../management/status-page) 。
+观测云提供 Status Page，帮助您实时查看观测云不同站点的服务状态。若您已经登录到观测云，您可以通过点击左下角的**帮助 > Status Page**来查看观测云各个站点的服务状态。更多详情可参考文档 [Status Page](../management/status-page)。
 
 ![](img/6.status_page_4.png)
 
 #### 新增绑定自建 Elasticsearch / OpenSearch 索引
 
-观测云新增支持绑定自建 Elasticsearch / OpenSearch 索引，帮助您统一快速查看和分析您的日志数据。更多详情可参考文档 [绑定索引](../logs/multi-index.md#binding-index) 。
+观测云新增支持绑定自建 Elasticsearch / OpenSearch 索引，帮助您统一快速查看和分析您的日志数据。更多详情可参考文档 [绑定索引](../logs/multi-index.md#binding-index)。
 
 ![](img/9.log_index_2.png)
 
 #### 新增网络查看器列表模式
 
-在「基础设施」-「网络」，选择「主机 / Pod / Deployment / Service」，支持切换至对应网络列表查看源 IP/端口和目标 IP/端口之间的 TCP 重传次数、TCP 连接数、TCP 关闭次数、TCP 延时、发送字节数、接收字节数、状态码等。更多详情可参考文档 [网络](../infrastructure/network.md) 。
+在「基础设施」-「网络」，选择「主机 / Pod / Deployment / Service」，支持切换至对应网络列表查看源 IP/端口和目标 IP/端口之间的 TCP 重传次数、TCP 连接数、TCP 关闭次数、TCP 延时、发送字节数、接收字节数、状态码等。更多详情可参考文档 [网络](../infrastructure/network.md)。
 
 ![](img/4.network_2.png)
 
@@ -696,7 +711,7 @@ DataFlux Func 是观测云的扩展编程平台，可用于同步云平台数据
 
 在链路详情页，若当前的链路属于前端应用调用产生的 Span，您可以在链路详情查看请求耗时分布，包括 Queueing（队列）、First Byte（首包）、Download（下载）的请求耗时占比，帮助您直观的查看前端某个 Span 的过程消耗占比。
 
-> 注意：用户访问监测 SDK 必须是 2.2.10 以及上才可以看到这部分数据显示，如存在跨域情况需要调整 header 配置，更多详情可参考文档 [Web 应用接入](../real-user-monitoring/web/app-access.md#header) 。
+> 注意：用户访问监测 SDK 必须是 2.2.10 以及上才可以看到这部分数据显示，如存在跨域情况需要调整 header 配置，更多详情可参考文档 [Web 应用接入](../real-user-monitoring/web/app-access.md#header)。
 
 ![](img/8.apm_browser_2.png)
 
@@ -707,13 +722,13 @@ DataFlux Func 是观测云的扩展编程平台，可用于同步云平台数据
 - Session 会话更新逻辑优化：Session 数据更新从追加的逻辑调整为基于 session_id 覆盖的逻辑
 - 链路中若存在前端应用调用产生的 Span，该 Span 对应的 service 值会根据当前用户访问数据中的 service 值做填充，若用户访问数据中不存在 service 的信息，则默认填充 "browser"
 
-更多详情可参考文档 [Session（会话）](../real-user-monitoring/explorer/session.md) 。
+更多详情可参考文档 [Session（会话）](../real-user-monitoring/explorer/session.md)。
 
 ![](img/7.rum_session.png)
 
 #### Pod 指标数据采集默认关闭
 
-在最新的 DataKit 版本中，`container` 采集器的 Pod 指标数据配置调整为默认关闭 `enable_pod_metric = false` 。更多详情可参考文档 [容器数据采集](../datakit/container.md#config) 。
+在最新的 DataKit 版本中，`container` 采集器的 Pod 指标数据配置调整为默认关闭 `enable_pod_metric = false` 。更多详情可参考文档 [容器数据采集](../datakit/container.md#config)。
 
 #### 其他功能优化
 
@@ -739,7 +754,7 @@ DataFlux Func 是观测云的扩展编程平台，可用于同步云平台数据
 - 优化 SQL 数据资源占用较高问题
 - 优化 Datakit Monitor
 
-更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md) 。
+更多 DataKit 更新可参考 [DataKit 版本历史](../datakit/changelog.md)。
 
 ### 最佳实践更新
 
@@ -748,5 +763,5 @@ DataFlux Func 是观测云的扩展编程平台，可用于同步云平台数据
 - 监控 Monitoring
     - 应用性能监控 (APM) - 调用链 - [使用 datakit-operator 注入 dd-java-agent](../best-practices/monitoring/datakit-operator.md)。
 
-更多最佳实践更新可参考 [最佳实践版本历史](../best-practices/index.md) 。
+更多最佳实践更新可参考 [最佳实践版本历史](../best-practices/index.md)。
 

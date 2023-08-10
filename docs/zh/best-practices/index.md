@@ -122,7 +122,7 @@ icon: zy/best-practices
 ### 新增最佳实践
 
 - 监控 Monitoring  
-    - [使用 extract + TextMapAdapter 实现了自定义 traceId](./monitoring/ddtrace-custom-traceId.md) 。
+    - [使用 extract + TextMapAdapter 实现了自定义 traceId](./monitoring/ddtrace-custom-traceId.md)。
 
 ### 更新记录
 

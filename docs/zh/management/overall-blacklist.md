@@ -99,4 +99,4 @@
 
 - 若在安装配置 DataKit 时，在 `datakit.conf` 文件中配置了[黑名单过滤](../datakit/datakit-filter.md#manual)，则观测云中配置的黑名单规则不会对其生效；   
 - DataKit 每 10 秒会拉取一次数据，黑名单配置后不会立即生效，需要等待至少 10 秒时间；
-- 黑名单配置以后，统一保存在 DataKit 的目录 `/usr/local/datakit/data` 下的 `.pull` 文件中，更多详情可参考文档 [查看黑名单](../datakit/dca.md) 。
+- 黑名单配置以后，统一保存在 DataKit 的目录 `/usr/local/datakit/data` 下的 `.pull` 文件中，更多详情可参考文档 [查看黑名单](../datakit/dca.md)。

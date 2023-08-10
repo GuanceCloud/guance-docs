@@ -39,7 +39,7 @@
 
 ![](img/1.custom_1.png)
 
-更多详情可参考帮助文档 [自定义对象分类](../infrastructure/custom/index.md) 。
+更多详情可参考帮助文档 [自定义对象分类](../infrastructure/custom/index.md)。
 
 
 
@@ -51,4 +51,4 @@
 
 ![](img/custom_1.png)
 
-具体操作过程可参考文档 [自定义对象数据上报](../infrastructure/custom/data-reporting.md) 。
+具体操作过程可参考文档 [自定义对象数据上报](../infrastructure/custom/data-reporting.md)。

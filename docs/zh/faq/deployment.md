@@ -10,7 +10,7 @@
 
 ## 观测云部署版必须添加 DataWay ？
 
-DataWay 作为数据网关，用于收集采集上来的数据，并对数据进行清洗处理，再上报到观测云工作空间，观测云部署版需手动安装部署 DataWay 以后方可安装 DataKit 采集数据。更多详情可参考文档 [如何安装和使用 DataWay](../others/install-dataway.md) 。
+DataWay 作为数据网关，用于收集采集上来的数据，并对数据进行清洗处理，再上报到观测云工作空间，观测云部署版需手动安装部署 DataWay 以后方可安装 DataKit 采集数据。更多详情可参考文档 [如何安装和使用 DataWay](../others/install-dataway.md)。
 
 ## DataWay 如何升级？
 
@@ -28,13 +28,13 @@ DataWay 作为数据网关，用于收集采集上来的数据，并对数据进
 
 ## 如何创建工作空间？
 
-在观测云管理后台「工作空间列表」，点击右上角「新建工作空间」。更多详情可参考文档 [如何创建工作空间](../others/create-workspace-member.md) 。
+在观测云管理后台「工作空间列表」，点击右上角「新建工作空间」。更多详情可参考文档 [如何创建工作空间](../others/create-workspace-member.md)。
 
 ![](img/17.manage_1.png)
 
 ## 如何创建用户？
 
-在观测云管理后台「用户」页面，点击右上角「添加用户」。更多详情可参考文档 [如何创建用户](../others/create-user.md) 。<br />![](img/18.user_1.png)
+在观测云管理后台「用户」页面，点击右上角「添加用户」。更多详情可参考文档 [如何创建用户](../others/create-user.md)。<br />![](img/18.user_1.png)
 
 ## 如何查看用户都加入了哪些工作空间？
 

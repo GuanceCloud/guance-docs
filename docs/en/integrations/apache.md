@@ -75,11 +75,11 @@ sudo apachectl restart
       # ... 
     ```
     
-    After configuration, [restart DataKit](datakit-service-how-to.md#manage-service).
+    After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    The collector can now be turned on by [configMap injection collector configuration](datakit-daemonset-deploy.md#configmap-setting).
+    The collector can now be turned on by [configMap injection collector configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 
 ## Measurement {#measurements}
 
@@ -103,7 +103,7 @@ For all of the following data collections, a global tag named  `host` is appende
 
 | Tag | Description |
 |  ----  | --------|
-|`host`|Hostname of the DataKit.|
+|`host`|Hostname.|
 |`server_mpm`|Apache server Multi-Processing Module, `prefork`, `worker` and `event`. Optional.|
 |`server_version`|Apache server version. Optional.|
 |`url`|Apache server status url.|

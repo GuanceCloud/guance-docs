@@ -18,8 +18,7 @@
 ![](../img/image_13.png)
 
 ## 安装
-![](https://img.shields.io/badge/dynamic/json?label=pub.dev&color=blue&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/flutter/version.json) 
-![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://static.guance.com/ft-sdk-package/badge/flutter/info.json)
+![](https://img.shields.io/badge/dynamic/json?label=pub.dev&color=blue&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/flutter/version.json) ![](https://img.shields.io/badge/dynamic/json?label=legacy.github.tag&color=blue&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/flutter/legacy/version.json) ![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://static.guance.com/ft-sdk-package/badge/flutter/info.json)
 
 **Pub.Dev**: [ft_mobile_agent_flutter](https://pub.dev/packages/ft_mobile_agent_flutter)
 
@@ -38,6 +37,12 @@
 ```yaml
 dependencies:
   ft_mobile_agent_flutter: [lastest_version]
+  
+  # flutter 2.0 兼容版本使用下面的引用方式
+  ft_mobile_agent_flutter:
+    git:
+      url: https://github.com/GuanceCloud/datakit-flutter.git
+      ref: [github_legacy_lastest_tag]
 ```
 
 现在在您的 Dart 代码中，您可以使用：

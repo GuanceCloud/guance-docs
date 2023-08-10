@@ -70,7 +70,7 @@ monitor   :
     
     ```
 
-    配置好后，[重启 DataKit](datakit-service-how-to.md#manage-service) 即可。
+    配置好后，[重启 DataKit](../datakit/datakit-service-how-to.md#manage-service) 即可。
 
 === "Kubernetes"
 
@@ -143,7 +143,6 @@ Datakit 默认开启云同步，目前支持阿里云/腾讯云/AWS/华为云/�
 |`net_recv_bytes_per_sec`|network receive rate|int|B/S|
 |`net_send_bytes_per_sec`|network send rate|int|B/S|
 |`start_time`|Host startup time (Unix timestamp)|int|ms|
-|`state`|Host Status|string|-|
 
 
 

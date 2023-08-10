@@ -11,7 +11,7 @@
 
 ## 前提条件
 
-您需要创建一个 [观测云账号](https://auth.guance.com/register?channel=帮助文档)，并在您的主机上 [安装 DataKit](../datakit/datakit-install.md) 。
+您需要创建一个 [观测云账号](https://auth.guance.com/register?channel=帮助文档)，并在您的主机上 [安装 DataKit](../datakit/datakit-install.md)。
 
 ## 数据采集
 

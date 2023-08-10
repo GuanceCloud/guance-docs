@@ -109,11 +109,11 @@ The purpose of this article is to introduce how to configure and enable OTEL dat
     
     ```
 
-    Once configured, [Restart DataKit](datakit-service-how-to.md#manage-service).
+    Once configured, [Restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    The collector can now be turned on by [ConfigMap Injection Collector Configuration](datakit-daemonset-deploy.md#configmap-setting).
+    The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 
     Multiple environment variables supported that can be used in Kubernetes showing below:
 
@@ -187,6 +187,7 @@ Datakit currently provides [Go language](opentelemetry-go.md)、[Java](opentelem
 |`container_host`|Container hostname. Available in OpenTelemetry. Optional.|
 |`endpoint`|Endpoint info. Available in SkyWalking, Zipkin. Optional.|
 |`env`|Application environment info. Available in Jaeger. Optional.|
+|`host`|Hostname.|
 |`http_method`|HTTP request method name. Available in DDTrace, OpenTelemetry. Optional.|
 |`http_route`|HTTP route. Optional.|
 |`http_status_code`|HTTP response code. Available in DDTrace, OpenTelemetry. Optional.|
