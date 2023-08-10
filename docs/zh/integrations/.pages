@@ -134,6 +134,7 @@ nav:
       - 'C/C++': profile-cpp.md
       - 'NodeJS': profile-nodejs.md
       - '.NET': profile-dotnet.md
+      - 'PHP': profile-php.md
 
     - 'DDTrace':
       - ddtrace.md
