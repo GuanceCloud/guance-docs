@@ -35,11 +35,11 @@ datafluxRum.init({
 ```
 **注意：设置采样后，初始化会随机生成一个 0-100 之间的随机数，当这个随机数小于你设置的采集率时，那么会上报当前用户访问的相关数据，否则就不会上报。**
 
-“NPM 接入”和“异步载入”可以按照同样的方法进行设置。更多设置可参考文档 [Web 应用接入](app-access.md) 。
+“NPM 接入”和“异步载入”可以按照同样的方法进行设置。更多设置可参考文档 [Web 应用接入](app-access.md)。
 
 ## 其他应用采样
 
-- iOS 采样设置可参考 [iOS 应用接入](../ios/app-access.md) 。
-- Android 采样设置可参考 [Android 应用接入](../android/app-access.md) 。
-- 小程序采样设置可参考 [小程序应用接入](../miniapp/app-access.md) 。
+- iOS 采样设置可参考 [iOS 应用接入](../ios/app-access.md)。
+- Android 采样设置可参考 [Android 应用接入](../android/app-access.md)。
+- 小程序采样设置可参考 [小程序应用接入](../miniapp/app-access.md)。
 

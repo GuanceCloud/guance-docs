@@ -85,7 +85,7 @@ Okta 是身份识别与访问管理解决方案提供商。观测云支持基于
 
 1）启用 SSO 单点登录，在观测云工作空间**管理 > 成员管理 > SSO 管理**，点击**启用**即可。
 
-> 可参考文档 [新建SSO](../../management/sso/index.md) 。
+> 可参考文档 [新建SSO](../../management/sso/index.md)。
 
 ???+ attention
 

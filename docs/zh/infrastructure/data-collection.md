@@ -39,7 +39,7 @@
 
 ### 云主机
 
-假如 DataKit 所在的主机是云主机，通过 `cloud_provider` 标签即可开启云同步。配置完成后，重启 DataKit 即可。更多详情可参考文档 [开启云同步](../datakit/hostobject.md) 。
+假如 DataKit 所在的主机是云主机，通过 `cloud_provider` 标签即可开启云同步。配置完成后，重启 DataKit 即可。更多详情可参考文档 [开启云同步](../datakit/hostobject.md)。
 
 ### 容器
 

@@ -225,7 +225,7 @@ OpenTelemetry `SpanContext` 符合 [W3C TraceContext](https://www.w3.org/TR/trac
 
 3. **`TraceFlags`** 包含该 trace 的详情。不像 `TraceFlags`，`TraceFlags` 影响所有的 traces。当前版本和定义的 Flags 只有 sampled 。
 
-4. **`TraceState`** 携带特定 trace 标识数据，通过一个 KV 对数组进行标识。`TraceState`允许多个跟踪系统参与同一个 Trace。完整定义请参考 [W3C Trace Context specification](https://www.w3.org/TR/trace-context/#tracestate-header) 。
+4. **`TraceState`** 携带特定 trace 标识数据，通过一个 KV 对数组进行标识。`TraceState`允许多个跟踪系统参与同一个 Trace。完整定义请参考 [W3C Trace Context specification](https://www.w3.org/TR/trace-context/#tracestate-header)。
 
 本 API 必须实现创建 SpanContext 的方法。这些方法应当是唯一的方法用于创建 SpanContext。这个功能必须在 API 中完全实现，并且不应当可以被覆盖。
 
