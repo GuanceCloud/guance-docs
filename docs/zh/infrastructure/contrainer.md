@@ -182,9 +182,13 @@
     
     Pods 网络数据采集成功后会上报到观测云控制台，在**基础设施 > 容器 > Pods** 详情页中的**[网络](network.md)**，您可以查看到工作空间内全部 Pods 网络性能监测数据信息。
 
-=== "kubernetes"
+=== "kubernetes 日志/事件"
 
-    点击 kubernetes 可查看 `namespace`、`pod_name` 或者 `namespace`、`deployment_name` 关联的对应日志数据。
+    点击 kubernetes 日志/事件可查看 `namespace`、`source`、`kind`、`name` 关联的对应数据。
+
+    点击右上角时间控件，可自定义时间范围筛选数据。
+
+    ![](img/0810-pods.png)
 
 ### Services 列表
 
@@ -202,6 +206,13 @@
 
 **Label 属性**随 Services 信息默认自动上传。已有的标签，可在 Services 对象列表通过快捷筛选展示相同标签的 Services 数据。
 
+#### kubernetes 事件
+
+点击 kubernetes 事件可查看 `namespace`、`source`、`kind`、`name` 关联的对应数据。
+
+点击右上角时间控件，可自定义时间范围筛选数据。
+
+![](img/0810-pods.png)
 
 ### Deployments 列表
 
@@ -251,9 +262,13 @@
     
     Deployments 网络数据采集成功后会上报到观测云控制台，您可以在**基础设施 > 容器 > Pods**详情页中的**[网络](network.md)**，查看当前 Deployments 的网络性能监测数据信息。
 
-=== "kubernetes"
+=== "kubernetes 日志/事件"
 
-    点击 kubernetes 可查看 `namespace`、`pod_name` 或者 `namespace`、`deployment_name` 关联的对应日志数据。
+    点击 kubernetes 日志/事件点击 kubernetes 事件可查看 `namespace`、`source`、`kind`、`name` 关联的对应数据。
+
+    点击右上角时间控件，可自定义时间范围筛选数据。
+
+    ![](img/0810-pods.png)
 
 ### Clusters 列表
 
@@ -282,6 +297,9 @@
 
 ![](img/11.nodes_2.png)
 
+其中，点击 kubernetes 事件可查看 `namespace`、`source`、`kind`、`name` 关联的对应数据。右上角时间控件支持自定义时间范围筛选数据。
+
+![](img/0810-pods.png)
 
 
 #### Label 属性
@@ -299,8 +317,12 @@
 
 <font color=coral>**注意：**</font>若 Replica Sets 关联字段 `namespace`，则可以在 Services 详情页查看该字段对应的指标视图。
 
+
 ![](img/12.sets_2.png)
 
+其中，点击 kubernetes 事件可查看 `namespace`、`source`、`kind`、`name` 关联的对应数据。右上角时间控件支持自定义时间范围筛选数据。
+
+![](img/0810-pods.png)
 
 
 #### Label 属性
@@ -335,7 +357,9 @@
 
 ![](img/14.cronjobs_2.png)
 
+其中，点击 kubernetes 事件可查看 `namespace`、`source`、`kind`、`name` 关联的对应数据。右上角时间控件支持自定义时间范围筛选数据。
 
+![](img/0810-pods.png)
 
 #### Label 属性
 
@@ -351,6 +375,10 @@
 点击 Daemonsets 列表中的 Daemonsets 名称即可划出详情页查看 Daemonsets 更新节点数、准备就绪节点数和其他字段属性。
 
 ![](img/daemonsets.png)
+
+其中，点击 kubernetes 事件可查看 `namespace`、`source`、`kind`、`name` 关联的对应数据。右上角时间控件支持自定义时间范围筛选数据。
+
+![](img/0810-pods.png)
 
 #### Label 属性
 
