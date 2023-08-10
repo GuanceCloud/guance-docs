@@ -25,7 +25,7 @@ SAML 基本概念如下：
 - 实体 ID：[https://auth.guance.com/saml/metadata.xml](https://auth.guance.com/saml/metadata.xml)；  
 - 断言地址，临时使用：[https://auth.guance.com/saml/assertion](https://auth.guance.com/saml/assertion/)。  
 
-> 在观测云中启用SSO单点登录后，获取到正确的**实体ID**和**断言地址**后重新替换。关于如何获取观测云的断言地址和实体 ID，可参考文档 [启用SSO](../../management/sso/index.md) 。
+> 在观测云中启用SSO单点登录后，获取到正确的**实体ID**和**断言地址**后重新替换。关于如何获取观测云的断言地址和实体 ID，可参考文档 [启用SSO](../../management/sso/index.md)。
 
 
 #### 问题三：常见的SAML协议的SSO单点登录需要通过配置**实体ID**和**回调地址（断言地址）**进行登录，如何获取观测云的**实体ID**和**回调地址（断言地址）**？
@@ -80,7 +80,7 @@ SAML 基本概念如下：
 
 SSO单点登录配置时支持设置角色访问权限包括**标准成员**和**只读成员**，可以在**成员管理**设置升级到“管理员”，若工作空间内启用 [SAML 映射](index.md#saml-mapping)功能，成员登录时会优先分配映射规则中的角色。
 
-> 详情可参考文档 [角色管理](../role-management.md) 。
+> 详情可参考文档 [角色管理](../role-management.md)。
 
 
 #### 问题九：通过 SSO 登录的账号是否可以在观测云删除？删除后是否可以再次登录？

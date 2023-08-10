@@ -85,7 +85,7 @@ $ vim /usr/local/datakit/conf.d/datakit.conf
 
 ### 1 配置 Nginx 自身指标监控
 
-> 详细配置参考集成文档<[Nginx](../../integrations/webserver/nginx.md)>
+> 详细配置参考集成文档<[Nginx](../../integrations/nginx.md)>
 
 1、 开启 `nginx.conf` 自身性能指标统计模块
 

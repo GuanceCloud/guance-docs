@@ -52,7 +52,7 @@
 sudo datakit --restart
 ```
 
-> 更多详情可参考文档 [连接并操作DataKit](https://func.guance.com/doc/practice-connect-to-datakit/) 。
+> 更多详情可参考文档 [连接并操作DataKit](https://func.guance.com/doc/practice-connect-to-datakit/)。
 
 ## 上报自定义对象数据
 

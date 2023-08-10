@@ -10,7 +10,7 @@ icon: zy/monitoring
 
 <div class="grid cards" markdown>
 
--   :material-monitor-eye:{ .lg .middle } __[监控器](./monitor/index.md)__ 
+-   [<font color=coral> :material-monitor-eye:{ .lg .middle } __监控器__</font>](./monitor/index.md)
 
     ---
 
@@ -19,7 +19,7 @@ icon: zy/monitoring
 
     <br/>
 
--   :material-eye-check:{ .lg .middle } __[智能巡检](./bot-obs/index.md)__
+-   [<font color=coral> :material-eye-check:{ .lg .middle } __智能巡检__</font>](./bot-obs/index.md)
 
     ---
 
@@ -28,7 +28,7 @@ icon: zy/monitoring
     <br/>
 
 
--   :fontawesome-regular-object-ungroup:{ .lg .middle } __[SLO](./slo.md)__
+-   [<font color=coral> :fontawesome-regular-object-ungroup:{ .lg .middle } __SLO__</font>](./slo.md)
 
     ---
 
@@ -36,7 +36,7 @@ icon: zy/monitoring
 
     <br/>
 
--   :octicons-mute-16:{ .lg .middle } __[静默管理](./silent-management.md)__
+-   [<font color=coral> :octicons-mute-16:{ .lg .middle } __静默管理__</font>](./silent-management.md)
 
     ---
 
@@ -44,7 +44,7 @@ icon: zy/monitoring
 
     <br/>
 
--   :octicons-light-bulb-16:{ .lg .middle } __[告警策略管理](./alert-setting.md)__
+-   [<font color=coral> :octicons-light-bulb-16:{ .lg .middle } __告警策略管理__</font>](./alert-setting.md)
 
     ---
 
@@ -53,7 +53,7 @@ icon: zy/monitoring
 
     <br/>
 
--   :material-satellite-uplink:{ .lg .middle } __[通知对象管理](./notify-object.md)__
+-   [<font color=coral> :material-satellite-uplink:{ .lg .middle } __通知对象管理__</font>](./notify-object.md)
 
     ---
 

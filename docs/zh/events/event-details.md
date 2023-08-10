@@ -9,7 +9,7 @@
 
 在事件详情页，您可以：
 
-- 点击右上角的**跳转到监控器**，可查看和调整 [监控器配置](../monitoring/monitor/index.md) ；  
+- 点击右上角的**跳转到监控器**，可查看和调整 [监控器配置](../monitoring/monitor/index.md)；  
 - 点击右上角的**导出**按钮，支持选择**导出 JSON 文件**与**导出 PDF 文件**，从而获取当前事件所对应的所有关键数据。
 
 ### 基础属性 {#attribute}
@@ -101,12 +101,12 @@
 
 若事件来源于智能巡检事件，您可以在事件详情页查看智能巡检的事件详情，如以下示意图是 Pod 的智能巡检，您可以在事件详情查看事件概览、异常 Pod 、container 状态、错误日志等信息。
 
-> 更多详情可参考文档 [智能巡检](../monitoring/bot-obs/index.md) 。
+> 更多详情可参考文档 [智能巡检](../monitoring/bot-obs/index.md)。
 
 ![](img/5.event_16.png)
 
 同时您也可以查看为该智能巡检添加的 Kubernets 指标视图（关联字段：`df_dimension_tags`）。
 
-> 更多详情可参考文档 [绑定内置视图](../scene/built-in-view/bind-view.md) 。
+> 更多详情可参考文档 [绑定内置视图](../scene/built-in-view/bind-view.md)。
 
 ![](img/5.event_17.png)

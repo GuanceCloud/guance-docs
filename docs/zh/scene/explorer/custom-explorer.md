@@ -1,7 +1,7 @@
 # 快速搭建自定义日志查看器
 ---
 
-日志查看器作为日志可观测的重要工具，支持我们通过搜索、筛选等方式快速定位问题所在。观测云在原有的日志观测查看器的基础上，<u>支持在场景处新建自定义的日志查看器</u>。
+日志查看器作为日志可观测的重要工具，支持我们通过搜索、筛选等方式快速定位问题所在。观测云在原有的日志观测查看器的基础上，**支持在场景处新建自定义的日志查看器**。
 
 自定义的查看器采用全新统一布局，响应式的配置模式和更科学的数据关联配置，下面将<u>以 Redis 日志自定义查看器为例</u>，您可以在自定义查看器中体验以下功能：
 
@@ -16,9 +16,9 @@
 
 进入**场景 > 查看器**页面，点击**新建查看器**，新建自定义查看器。
 
-???+ attention
+**注意**：若在 **日志 > 索引** 设置索引以后，可以在自定义查看器选择不同的索引对应的日志内容。
 
-    若在 **日志 > 索引** 设置索引以后，支持在自定义查看器选择不同的索引对应的日志内容。更多详情可参考文档 [日志索引](../../logs/multi-index.md) 。
+> 更多详情，可参考[日志索引](../../logs/multi-index.md)。
 
 ![](../img/1111.gif)
 
@@ -54,7 +54,7 @@
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 通过自定义日志查看器定制化您的查看需求</font>](./index.md)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 通过自定义日志查看器定制化您的查看需求</font>](./index.md)
 
 <br/>
 
@@ -62,7 +62,7 @@
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 如何绑定内置视图</font>](../built-in-view/bind-view.md)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 如何绑定内置视图</font>](../built-in-view/bind-view.md)
 
 <br/>
 

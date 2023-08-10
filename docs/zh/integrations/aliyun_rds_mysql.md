@@ -11,6 +11,11 @@ monitor:
     path: 'monitor/zh/aliyun_rds_mysql/'
 ---
 
+
+<!-- markdownlint-disable MD025 -->
+# 阿里云 RDS MySQL
+<!-- markdownlint-enable -->
+
 阿里云 RDS MySQL 指标展示，包括 CPU 使用率、内存使用率、 IOPS、网络带宽、 InnoDB、 TPS、 QPS 等。
 
 ## 配置 {#config}
@@ -19,7 +24,7 @@ monitor:
 
 推荐开通 观测云集成 - 扩展 - 托管版 Func: 一切前置条件都自动安装好, 请继续脚本安装
 
-如果自行部署 Func 参考 [自行部署 Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+如果自行部署 Func 参考 [自行部署Func](https://func.guance.com/doc/script-market-guance-integration/)
 
 > 推荐部署GSE版
 
@@ -27,15 +32,7 @@ monitor:
 
 > 提示：请提前准备好符合要求的阿里云 AK（简单起见，可直接授予全局只读权限`ReadOnlyAccess`）
 
-同步云资源的监控数据，我们一般情况下要安装两个脚本，一个采集对应云资产基本信息的脚本，一个是采集云监控信息的脚本。
-
-如果要采集对应的日志，还要开启相应的日志采集脚本。如果要采集账单，要开启云账单采集脚本。
-
-分别在「管理 / 脚本市场」中，依次点击并安装对应的脚本包：
-
-- 「观测云集成（阿里云-云监控）」(ID：`guance_aliyun_monitor`)
-
-- 「观测云集成（阿里云- RDS 采集）」(ID：`guance_aliyun_rds`)
+同步 RDS 云资源的监控数据，我们安装对应的采集脚本：「观测云集成（阿里云- RDS 采集）」(ID：`guance_aliyun_rds`)
 
 点击【安装】后，输入相应的参数：阿里云 AK、阿里云账户名。
 
@@ -56,6 +53,47 @@ monitor:
 
 ## 指标 {#metric}
 配置好阿里云-云监控,默认的指标集如下, 可以通过配置的方式采集更多的指标 [阿里云云监控指标详情](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
+
+| Metric Id                    |          Metric Name           | Dimensions        | Statistics              | Unit        |
+| ---- | :----: | ------ | ------ | ---- |
+| `ConnectionUsage`     |          连接数使用率          | userId,instanceId | Average,Minimum,Maximum | %           |
+| `CpuUsage`        |           CPU使用率            | userId,instanceId | Average,Minimum,Maximum | %           |
+| `DiskUsage`           |           磁盘使用率           | userId,instanceId | Average,Minimum,Maximum | %           |
+| `IOPSUsage`         |           IOPS使用率           | userId,instanceId | Average,Minimum,Maximum | %           |
+| `MemoryUsage`        |           内存使用率           | userId,instanceId | Average,Minimum,Maximum | %           |
+| `MySQL_ComDelete`     |       MySQL每秒Delete量        | userId,instanceId | Average,Maximum,Minimum | countSecond |
+| `MySQL_ComInsert`    |       MySQL每秒Insert量        | userId,instanceId | Average,Maximum,Minimum | countSecond |
+| `MySQL_ComInsertSelect`   |    MySQL每秒InsertSelect量     | userId,instanceId | Average,Maximum,Minimum | countSecond |
+| `MySQL_ComReplace`   |       MySQL每秒Replace量       | userId,instanceId | Average,Maximum,Minimum | countSecond |
+| `MySQL_ComReplaceSelect`  |    MySQL每秒ReplaceSelect量    | userId,instanceId | Average,Maximum,Minimum | countSecond |
+| `MySQL_ComSelect`  |       MySQL每秒Select量        | userId,instanceId | Average,Maximum,Minimum | countSecond |
+| `MySQL_ComUpdate`   |       MySQL每秒Update量        | userId,instanceId | Average,Maximum,Minimum | countSecond |
+| `MySQL_DataDiskSize`    |      MySQL_数据磁盘使用量      | userId,instanceId | Average,Maximum,Minimum | Megabytes   |
+| `MySQL_IbufDirtyRatio`  |       MySQL_BP脏页百分率       | userId,instanceId | Average,Maximum,Minimum | %           |
+| `MySQL_IbufReadHit`  |        MySQL_BP读命中率        | userId,instanceId | Average,Maximum,Minimum | %           |
+| `MySQL_IbufRequestR`    |      MySQL每秒逻辑读次数       | userId,instanceId | Average,Maximum,Minimum | countSecond |
+| `MySQL_IbufRequestW`    |      MySQL每秒逻辑写次数       | userId,instanceId | Average,Maximum,Minimum | countSecond |
+| `MySQL_IbufUseRatio`   |         MySQL_BP利用率         | userId,instanceId | Average,Maximum,Minimum | %           |
+| `MySQL_InnoDBDataRead`  |   MySQL_InnoDB每秒读取数据量   | userId,instanceId | Average,Maximum,Minimum | **Kbyte**   |
+| `MySQL_InnoDBDataWritten` |   MySQL_InnoDB每秒写入数据量   | userId,instanceId | Average,Maximum,Minimum | **Kbyte**   |
+| `MySQL_InnoDBLogFsync`   |  MySQL_InnoDB每秒日志fsync量   | userId,instanceId | Average,Maximum,Minimum | countSecond |
+| `MySQL_InnoDBLogWriteRequests` | MySQL_InnoDB每秒日志写请求次数 | userId,instanceId | Average,Maximum,Minimum | countSecond |
+| `MySQL_InnoDBLogWrites` | MySQL_InnoDB每秒日志物理写次数 | userId,instanceId | Average,Maximum,Minimum | countSecond |
+| `MySQL_InnoDBRowDelete`  |    MySQL_InnoDB每秒删除行数    | userId,instanceId | Average,Maximum,Minimum | countSecond |
+| `MySQL_InnoDBRowInsert` |    MySQL_InnoDB每秒插入行数    | userId,instanceId | Average,Maximum,Minimum | countSecond |
+| `MySQL_InnoDBRowRead` |    MySQL_InnoDB每秒读取行数    | userId,instanceId | Average,Maximum,Minimum | countSecond |
+| `MySQL_InnoDBRowUpdate` |    MySQL_InnoDB每秒更新行数    | userId,instanceId | Average,Maximum,Minimum | countSecond |
+| `MySQL_InstanceDiskSize`   |      MySQL_实例磁盘使用量      | userId,instanceId | Average,Maximum,Minimum | Megabytes   |
+| `MySQL_LogDiskSize`   |      MySQL_日志磁盘使用量      | userId,instanceId | Average,Maximum,Minimum | Megabytes   |
+| `MySQL_NetworkInNew`   |       MySQL网络流入带宽        | userId,instanceId | Average,Minimum,Maximum | bits/s      |
+| `MySQL_NetworkOutNew`    |       MySQL网络流出带宽        | userId,instanceId | Average,Minimum,Maximum | bits/s      |
+| `MySQL_OtherDiskSize`   |      MySQL_其他磁盘使用量      | userId,instanceId | Average,Maximum,Minimum | Megabytes   |
+| `MySQL_QPS`    |        MySQL每秒查询量         | userId,instanceId | Average,Maximum,Minimum | countSecond |
+| `MySQL_SlowQueries`  |       MySQL每秒慢查询量        | userId,instanceId | Average,Maximum,Minimum | countSecond |
+| `MySQL_TPS`  |        MySQL每秒事务数         | userId,instanceId | Average,Maximum,Minimum | countSecond |
+| `MySQL_TempDiskTableCreates` |    MySQL每秒创建临时表数量     | userId,instanceId | Average,Maximum,Minimum | countSecond |
+| `MySQL_ThreadsConnected` |        MySQL_线程连接数        | userId,instanceId | Average,Maximum,Minimum | count       |
+| `MySQL_ThreadsRunning` |        MySQL_活跃线程数        | userId,instanceId | Average,Maximum,Minimum | count       |
 
 ## 对象 {#object}
 
@@ -102,13 +140,13 @@ monitor:
 
 ### 慢查询统计
 
-#### 前提条件
+#### 慢查询统计前提条件
 
 > 提示 1：本脚本的代码运行依赖 RDS 实例对象采集，如果未配置 RDS 的自定义对象采集，慢日志脚本无法采集到慢日志数据
 > 提示 2：因阿里云统计数据返回有 6~8 小时的延迟，所以采集器更新数据可能会有延迟，详细参考阿里云文档：云数据库 RDS 查询慢日志统计
 > 提示 3：本采集器支持 MySQL所有版本（MySQL 5.7基础版除外）、SQL Server 2008 R2、MariaDB 10.3 类型数据库，若要采集其他类型数据库，请使用 [阿里云-RDS 慢查询明细](https://func.guance.com/doc/script-market-guance-aliyun-rds-slowlog-record/){:target="_blank"} 采集器
 
-#### 部署脚本
+#### 慢查询统计安装脚本
 
 在之前的基础上，需要再安装一个对应 **RDS 慢查询统计日志采集的脚本**
 
@@ -171,12 +209,12 @@ monitor:
 
 ### 慢查询明细
 
-#### 前置条件
+#### 慢查询明细前提条件
 
 
 > 提示：本脚本的代码运行依赖 RDS 实例对象采集，如果未配置 RDS 的自定义对象采集，慢日志脚本无法采集到慢日志数据
 
-#### 部署配置脚本
+#### 慢查询明细安装脚本
 
 在之前的基础上，需要再安装一个对应 **RDS 慢查询明细日志采集的脚本**
 
@@ -243,4 +281,3 @@ monitor:
 > *注意：`CpuTime`、`RowsAffectedCount`、`LastRowsAffectedCount`等字段仅 SQL Server 实例支持*
 > *注意：`tags`、`fields`中的字段可能会随后续更新有所变动*
 > 提示：`fields.message`为 JSON 序列化后字符串
-
