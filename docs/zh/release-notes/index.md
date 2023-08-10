@@ -11,17 +11,22 @@ icon: zy/release-notes
 
 ### 观测云更新
 
+<video controls="controls" poster="https://static.guance.com/dataflux/help/video/20230810.png" >
+      <source id="mp4" src="https://static.guance.com/dataflux/help/video/20230810.mp4" type="video/mp4">
+</video>
+
+
 - 新增计费项：
     - [定时报告](../billing/billing-method/index.md#report)：按工作空间内定时报告单日发送的次数出账计费；
     - [日志写入流量](../billing/billing-method/index.md#ingested-log)：按用户上报的原始日志写入流量大小出账计费。
 - 场景：
     - 新增 **[服务管理](../scene/service-manag.md)**：服务管理是一个用于访问所有服务关键信息的集中入口，用户可查看当前工作空间内不同服务的性能和业务数据及所有的关联分析等信息，快速定位并解决服务的相关问题。  
     - 图表均支持 PromQL 查询和表达式查询。
-- 日志：在日志详情页新增[上下文日志](../logs/explorer.md#up-down) tab，用户可直接跳转；同时支持选择上下文检索范围。
+- 日志：支持在日志详情页直接查看[上下文日志](../logs/explorer.md#up-down)；可选择上下文检索范围。
 - 查看器：打开某条数据详情页，支持一键[导出](../getting-started/function-details/explorer-search.md#export)当前数据为 JSON 文件。
 - 应用性能监测 > 服务 > [调用拓扑](../application-performance-monitoring/service-catalog.md#map)：新增当前服务的上下游调用关系表格，展示服务单向关系的请求数、平均响应时间和错误数。
 - 监控器 > 阈值检测：检测指标新增**转换为 PromQL 查询**。
-- 基础设施 > 容器：新增 **Kubernets 事件**组件。
+- 基础设施 > 容器：Pods、Services、Deployments、Nodes、Replica Sets、Cron Jobs、Daemonset 详情页新增 **Kubernets 事件**组件。
 
 ## 2023 年 7 月 27 日
 
