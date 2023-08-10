@@ -648,7 +648,7 @@ MySQL 用户指标
 
 ### Log {#logging}
 
-[:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)
+[:octicons-tag-24: Version-1.4.6](../datakit/changelog.md#cl-1.4.6)
 
 
 
