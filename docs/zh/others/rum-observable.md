@@ -56,22 +56,22 @@ c.  修改完成后保存退出
 
 观测云支持自定义数据采样率，控制数据上报体量，优化数据存储和采集效率。您可以在配置应用接入时，通过 resourceSampleRate（资源类数据采样率）和 sampleRate（指标类数据采样率）自定义数据收集百分比。
 
-更多详情可参考文档 [如何配置用户访问监测采样](../real-user-monitoring/web/sampling.md) 。
+更多详情可参考文档 [如何配置用户访问监测采样](../real-user-monitoring/web/sampling.md)。
 
 ### 生成指标
 
 为了便于您依据需求设计并实现新的技术指标。“观测云” 支持基于当前空间内的现有数据生成新的指标数据。通过选择「用户访问检测」-「生成指标」功能。
 
-更多详情可参考文档 [用户访问监测-生成指标](../real-user-monitoring/generate-metrics.md) 。
+更多详情可参考文档 [用户访问监测-生成指标](../real-user-monitoring/generate-metrics.md)。
 
 ### Souremap
 
 应用在生产环境中发布的时候，为了防止代码泄露等安全问题，一般打包过程中会针对文件做转换、压缩等操作。Souremap 作为一类信息文件，记录了转换压缩后的代码所对应的转换前的源代码位置，构建了处理前以及处理后的代码之间的一座桥梁，方便定位生产环境中出现 bug 的位置。"观测云" 为 Web 应用程序提供 Sourcemap 功能，支持还原混淆后的代码，方便错误排查时在源码中debug，及时帮助用户更快解决问题。
 
-更多详情可参考文档 [Sourcemap 转换](../real-user-monitoring/explorer/error.md#sourcemap) 。
+更多详情可参考文档 [Sourcemap 转换](../real-user-monitoring/explorer/error.md#sourcemap)。
 
 ### 自建追踪
 
 观测云支持你通过「用户访问监测」新建追踪任务，对自定义的链路追踪轨迹进行实时监控。通过预先设定链路追踪轨迹，可以集中筛选链路数据，精准查询用户访问体验，及时发现漏洞、异常和风险。
 
-更多详情可参考文档 [自建追踪](../real-user-monitoring/self-tracking.md) 。
+更多详情可参考文档 [自建追踪](../real-user-monitoring/self-tracking.md)。

@@ -13,9 +13,9 @@
 | --- | --- | --- |
 | 时间变量 | #{TR} | 当前图表查询的时间范围。假设当前查询时间是 `最近1小时` ，则：<br />模板变量：`&time=#{TR}` 等同为 `&time=1h`  |
 | 标签变量 | #{T} | 当前图表查询的所有分组标签集合。假设当前图表查询为：<br />`M::'datakit':(LAST('cpu_usage'))  BY 'host','os'`<br />查询结果为：host=abc、os=linux，则：<br />模板变量：`&query=#{T} `等同为 `&query=host:abc os:linux` |
-|  | #{T.name} | 当前图表查询中某一个标签的值，name 可替换为查询中的任意tagKey。<br />假设当前图表查询为：<br />`M::'datakit':(LAST('cpu_usage')) BY 'host', 'os'`<br />查询结果为：host=abc、os=linux，则：<br />-模板变量 `#{T.host} = abc`<br />- `&query=hostname:#{T.host}` 等同为 `&query=hostname:abc` |
+|  | #{T.name} | 当前图表查询中某一个标签的值，name 可替换为查询中的任意tagKey。<br />假设当前图表查询为：<br />`M::'datakit':(LAST('cpu_usage')) BY 'host', 'os'`<br />查询结果为：host=abc、os=linux，则：<br /><li>模板变量 `#{T.host} = abc`<br /><li> `&query=hostname:#{T.host}` 等同为 `&query=hostname:abc` |
 | 视图变量 | #{V} | 当前仪表板中所有视图变量的集合 <br />假设当前仪表板的视图变量为：<br />version=V1.7.0 和 region=cn-hangzhou<br />模板变量` &query=#{V}  `等同为 `&query=version:V1.7.0 region:cn-hangzhou` |
-|  | #{V.name} | 当前仪表板中某一个视图变量的值，name 可替换为任意变量名。<br />假设当前仪表板的视图变量 version=V1.7.0，则：<br />- 模板变量  `#{V.version} = V1.7.0`<br />- `&query=version:{V.version}` 等同为 `&query=version:V1.7.0`<br /> |
+|  | #{V.name} | 当前仪表板中某一个视图变量的值，name 可替换为任意变量名。<br />假设当前仪表板的视图变量 version=V1.7.0，则：<br /><li> 模板变量  `#{V.version} = V1.7.0`<br /><li> `&query=version:#{V.version}` 等同为 `&query=version:V1.7.0`<br /> |
 
 
 ## 内置链接
@@ -37,7 +37,7 @@
 
 在**仪表板**，选择**图表 > 链接**，输入**名称**，即可开始为图表添加自定义链接。
 
-![](../img/6.link_5.1.png)
+<img src="../../img/6.link_5.1.png" width="60%" >
 
 ### 链接地址
 
@@ -67,7 +67,7 @@
 | ------------ | -------------------------------------------- |
 | time         | 时间筛选，可用于查看器、仪表板中，链接格式如下：<br><li>通过模板变量传递查询时间：`&time=#{TR}` <br><li>查询最近15分钟：`&time=15m`<br><li>设定具体的开始时间和结束时间：`&time=1675247688602,1676457288602` |
 | variable     | 视图变量查询，一般用于仪表板视图中。<br/>链接格式：`&variable={"host":"guance","service":"kodo"}` |
-| dashboard_id | 仪表板ID，可用于指定仪表板/内置视图。<br/>链接格式：`&dashboard_id=dsbd_069b2b90f562123456789123456789` |
+| dashboard_id | 仪表板 ID，可用于指定仪表板/内置视图。<br/>链接格式：`&dashboard_id=dsbd_069b2b90f562123456789123456789` |
 | name         | 名称，可用于指定仪表板名称/笔记名称/自定义查看器名称等。<br/>链接格式：`&name=Linux 主机监控视图` |
 | query         | 标签筛选或文本搜索，一般用于查看器中数据过滤使用。支持通过 `空格`、`AND`、`OR` 组合拼接标签筛选和文本搜索。（空格等同于 AND）                                          |
 | cols         | 查看器的显示列，一般用于指定查看器的显示列。若没有指定，则显示为系统默认。<br/>链接格式：`&cols=time,host,service,message` |
@@ -125,7 +125,7 @@
 
 ## 场景示例
 
-前提：已经在观测云仪表板下完成图表创建，现在需要为图表添加链接。
+**前提**：已经在观测云仪表板下完成图表创建，现在需要为图表添加链接。
 
 ### 链接到其他视图
 
@@ -135,7 +135,7 @@
 
     或者您也可以直接打开需要在图表中链接的视图，复制浏览器中的网址后粘贴链接地址，并根据需要展示的效果修改模版变量。
 
-    ![](../img/6.link_5.1.png)
+    <img src="../../img/6.link_5.1.png" width="60%" >
 
 === "步骤二：在图表中打开链接"
 

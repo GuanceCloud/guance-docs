@@ -9,13 +9,13 @@
 
 ### 1. 安装 DataKit
 
-在观测云工作空间「集成」-「DataKit」，选择DataKit安装方式，获取「安装指令」在主机执行。更多详情可参考 [DataKit 安装文档](../datakit/datakit-install.md) 。
+在观测云工作空间「集成」-「DataKit」，选择DataKit安装方式，获取「安装指令」在主机执行。更多详情可参考 [DataKit 安装文档](../datakit/datakit-install.md)。
 
 ![](img/2.datakit.png)
 
 ### 2. 安装安全巡检采集器
 
-在主机上执行如下命令安装安全巡检采集器。更多详情可参考 [Scheck 安装文档](scheck-install.md) 。
+在主机上执行如下命令安装安全巡检采集器。更多详情可参考 [Scheck 安装文档](scheck-install.md)。
 
 ```shell
 $ sudo datakit install --scheck

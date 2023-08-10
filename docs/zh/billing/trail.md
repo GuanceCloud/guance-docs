@@ -54,7 +54,7 @@
 
 1、填写**基本信息**与**企业信息**；
 
-<font color=coral>**注意：**</font>在**基本信息**，**[站点](./commercial-register.md#site)** 的选择十分重要，按需谨慎选择。
+**注意**：在**基本信息**，**[站点](./commercial-register.md#site)** 的选择十分重要，按需谨慎选择。
 
 ![](img/commercial-register-1.png)
 

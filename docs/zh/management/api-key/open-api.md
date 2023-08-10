@@ -4,14 +4,14 @@
 
 观测云支持通过调用 Open API 接口的方式来获取和更新观测云工作空间的数据。
 
-> 关于 API 详细清单，可查看 [观测云 OpenAPI 文档库](../../open-api/index.md) 。
+> 关于 API 详细清单，可查看 [观测云 OpenAPI 文档库](../../open-api/index.md)。
 
 
 ## 认证方式
 
 在调用 API 接口前，需要先创建 API Key 作为认证方式。
 
-> 关于如何创建 API Key，可参考文档 [API Key 管理](../../management/api-key/index.md) 。
+> 关于如何创建 API Key，可参考文档 [API Key 管理](../../management/api-key/index.md)。
 
 接口以 API KEY 为认证方式，每一次请求使用请求体 Header 中的 DF-API-KEY 的值作为有效性检验，以及本次请求的工作空间限定依据（取此 DF-API-KEY 所属的工作空间）。
 

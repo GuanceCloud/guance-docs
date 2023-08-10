@@ -174,7 +174,7 @@ curl http://localhost:54322/stop
 
 ## 更多阅读
 
-> 以上是通过客户端配置应用性能监测的采样率，除了以上的方式以外，还可以直接通过 DataKit 配置采样率，只需开启应用性能采集器配置中的采样即可，更多关于采样说明可参考 [Datakit Samplers](../../datakit/datakit-tracing.md#samplers) 。
+> 以上是通过客户端配置应用性能监测的采样率，除了以上的方式以外，还可以直接通过 DataKit 配置采样率，只需开启应用性能采集器配置中的采样即可，更多关于采样说明可参考 [Datakit Samplers](../../datakit/datakit-tracing.md#samplers)。
 
 ```python
   ## Sampler config uses to set global sampling strategy.

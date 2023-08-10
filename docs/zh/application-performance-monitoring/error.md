@@ -11,7 +11,7 @@
 
 - [聚类分析](#analysis)：用于<u>快速查看最频繁发生</u>的需要被解决的链路错误
 
-> 观测云查看器提供强大的查询和分析功能，更多详情可参考文档 [查看器说明](../getting-started/function-details/explorer-search.md) 。
+> 观测云查看器提供强大的查询和分析功能，更多详情可参考文档 [查看器说明](../getting-started/function-details/explorer-search.md)。
 
 ## 所有错误 {#errors}
 
@@ -60,3 +60,7 @@
 - 聚类分析页面中，点击排序 icon :octicons-triangle-up-16: & :octicons-triangle-down-16:，您可对文档数量升/降序排序（默认倒序）。
 
 ![](img/error-1.png)
+
+- 如果需要导出某条数据，打开该条数据详情页，点击右上角 :material-tray-arrow-up: 图标即可。
+
+![](img/error-0809.png)
