@@ -1,6 +1,40 @@
 # 更新日志
 ---
 
+## 1.13.0(2023/08/10) {#cl-1.13.0}
+
+本次发布属于迭代发布，主要有如下更新：
+
+### 新加功能 {#cl-1.13.0-new}
+
+- 主机对象采集器支持调试命令。（#1802）
+- KafkaMQ 增加支持外部插件 handle 功能 (#1797)
+- 容器采集支持 cri-o 运行时。 (#1763)
+- Pipeline 增加用于指标生成的 create_point 函数 (#1803)
+- 增加 PHP 语言的 Profiling 支持 （#1811）
+
+### 问题修复 {#cl-1.13.0-fix}
+
+- 修复 Cat 采集器 NPE 异常。
+- 修复拨测采集器 http response_download 时间。（#1820）
+- 修复 containerd 日志采集没有正常拼接 partial 日志的问题。（#1825）
+- 修复 eBPF 采集器 `ebpf-conntrack` 插件探针失效问题。 (#1793)
+
+### 功能优化 {#cl-1.13.0-opt}
+
+- bug-report 命令优化（#1810）
+- RabbitMQ 采集器支持多个同时运行。（#1756）
+- 主机对象采集器调整。移除 state 字段。（#1802）
+- 优化错误上报机制。解决 eBPF 采集器不能上报错误的问题。（#1802）
+- Oracle 外置采集器增加在发生错误情况下将信息发送给中心。（#1802）
+- 优化 Pythond 文档，增加 module not found 解决案例。（#1807）
+- 部分采集器增加 global tag 的集成测试案例。（#1791）
+- 优化 Oracle 集成测试。（#1802）
+- OpenTelemetry 增加指标集和仪表板。
+- 调整 k8s event 字段。 (#1766)
+- 添加新的容器采集字段。 (#1819)
+- eBPF 采集器增加流量字段至 `httpflow` 中。 (#1790)
+
 ## 1.12.3(2023/08/03) {#cl-1.12.3}
 
 - 修复 Windows 下日志采集文件延迟释放问题（#1805）
@@ -129,6 +163,8 @@
 
 - Profile 数据的时间戳单位从纳秒改成微秒（#1679）
 
+<!-- markdown-link-check-disable -->
+
 ---
 
 ## 1.9.2(2023/06/20) {#cl-1.9.2}
@@ -137,7 +173,7 @@
 
 ### 新加功能 {#cl-1.9.2-new}
 
-- 新增 [Chrony 采集器](chrony.md)（#1671）
+- 新增 [Chrony 采集器](../integrations/chrony.md)（#1671）
 - 新增 RUM Headless 支持（#1644）
 - Pipeline
     - 新增 [offload 功能](../developers/pipeline/pipeline-offload.md)（#1634）
@@ -180,8 +216,8 @@
 
 ### 新加功能 {#cl-1.9.0-new}
 
-- 新增 [NodeJS Profiling](profile-nodejs.md) 接入支持（#1638）
-- 新增点评 [Cat](cat.md) 接入支持（#1593）
+- 新增 [NodeJS Profiling](../integrations/profile-nodejs.md) 接入支持（#1638）
+- 新增点评 [Cat](../integrations/cat.md) 接入支持（#1593）
 - 新增采集器配置[调试方法](why-no-data.md#check-input-conf)（#1649）
 
 ### 问题修复 {#cl-1.9.0-fix}
@@ -191,8 +227,8 @@
 ### 功能优化 {#cl-1.9.0-opt}
 
 - K8s DaemonSet 对象增加 `age` 字段（#1670）
-- 优化 [PostgreSQL](postgresql.md) 启动设置（#1658）
-- SkyWalking 增加 [`/v3/log/`](skywalking.md) 支持（#1654）
+- 优化 [PostgreSQL](../integrations/postgresql.md) 启动设置（#1658）
+- SkyWalking 增加 [`/v3/log/`](../integrations/skywalking.md) 支持（#1654）
 - 优化日志采集处理（#1652/#1651）
 - 优化[升级文档](datakit-update.md#prepare)（#1653）
 - 其它重构和优化（#1673/#1650/#1630）
@@ -236,7 +272,7 @@
 - 优化 localhost 采集的 `host` 字段问题（#1637）
 - 优化 Datakit 自身指标，新增 [Datakit 自身指标文档](datakit-metrics.md)（#1639/#1492）
 - 优化 Pod 上的 Prometheus 指标采集，自动支持所有 Prometheus 指标类型（#1636）
-- 新增 Trace 类采集的[性能测试文档](datakit-trace-performance.md)（#1616）
+- 新增 Trace 类采集的[性能测试文档](../integrations/datakit-trace-performance.md)（#1616）
 - 新增 Kubernetes DaemonSet 对象采集（#1643）
 - Pinpoint gRPC 服务支持 `x-b3-traceid` 透传 Trace ID（#1605）
 - 优化集群选举策略（#1534）
@@ -283,7 +319,7 @@
 本次发布属于 Hotfix 发布，修复如下问题：
 
 - 老版本升级上来可能导致黑名单不生效(#1603)
-- [Prom](prom.md) 采集 `info` 类数据问题(#1544)
+- [Prom](../integrations/prom.md) 采集 `info` 类数据问题(#1544)
 - 修复 Dataway Sinker 模块可能导致的数据丢失问题(#1606)
 
 ---
@@ -294,7 +330,7 @@
 
 ### 新加功能 {#cl-1.6.0-new}
 
-- 新增 [Pinpoint](pinpoint.md) API 接入(#973)
+- 新增 [Pinpoint](../integrations/pinpoint.md) API 接入(#973)
 
 ### 功能优化 {#cl-1.6.0-opt}
 
@@ -2510,3 +2546,4 @@ powershell .install.ps1;
 ### 功能优化 {#cl-x.x.x-opt}
 ### 兼容调整 {#cl-x.x.x-brk}
 -->
+<!-- markdown-link-check-enable -->

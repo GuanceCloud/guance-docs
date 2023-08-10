@@ -29,11 +29,11 @@ It is divided into two parts, one is to configure DataKit to start the correspon
       # more_tag = "some_other_value"
     ```
     
-    Once configured, [restart DataKit](datakit-service-how-to.md#manage-service).
+    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    The collector can now be turned on by [injecting logfwdserver collector configuration in ConfigMap mode](datakit-daemonset-deploy.md#configmap-setting).
+    The collector can now be turned on by [injecting logfwdserver collector configuration in ConfigMap mode](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 
 ### logfwd Usage and Configuration  {#config}
 
@@ -79,14 +79,14 @@ Description of configuration parameters:
 
 Supported environment variables:
 
-| Environment Variable Name                       | Configuration Item Mmeaning                                                                     |
-| :---                             | :---                                                                           |
-| `LOGFWD_DATAKIT_HOST`            | Datakit 地址                                                                   |
-| `LOGFWD_DATAKIT_PORT`            | Datakit Port                                                                   |
-| `LOGFWD_GLOBAL_SOURCE`           | Configure the global source with the highest priority                                                    |
-| `LOGFWD_GLOBAL_SERVICE`          | Configure the global service with the highest priority                                                   |
-| `LOGFWD_POD_NAME`                | Specifying pod name adds `pod_name` to tags                                       |
-| `LOGFWD_POD_NAMESPACE`           | Specifying pod namespace adds `pod_namespace` to tags                            |
+| Environment Variable Name        | Configuration Item Mmeaning                                                                                                 |
+| :---                             | :---                                                                                                                        |
+| `LOGFWD_DATAKIT_HOST`            | Datakit 地址                                                                                                                |
+| `LOGFWD_DATAKIT_PORT`            | Datakit Port                                                                                                                |
+| `LOGFWD_GLOBAL_SOURCE`           | Configure the global source with the highest priority                                                                       |
+| `LOGFWD_GLOBAL_SERVICE`          | Configure the global service with the highest priority                                                                      |
+| `LOGFWD_POD_NAME`                | Specifying pod name adds `pod_name` to tags                                                                                 |
+| `LOGFWD_POD_NAMESPACE`           | Specifying pod namespace adds `namespace` to tags                                                                           |
 | `LOGFWD_ANNOTATION_DATAKIT_LOGS` | Use the annotations `datakit/logs` configuration of the current Pod with higher priority than the logfwd JSON configuration |
 
 #### Installation and Running {#install-run}
@@ -122,7 +122,7 @@ spec:
           fieldPath: metadata.namespace
     - name: LOGFWD_GLOBAL_SOURCE
       value: nginx-souce-test
-    image: pubrepo.jiagouyun.com/datakit/logfwd:1.12.3
+    image: pubrepo.jiagouyun.com/datakit/logfwd:1.13.0
     imagePullPolicy: Always
     resources:
       requests:
@@ -224,7 +224,7 @@ spec:
         fieldRef:
           apiVersion: v1
           fieldPath: metadata.namespace
-    image: pubrepo.jiagouyun.com/datakit/logfwd:1.12.3
+    image: pubrepo.jiagouyun.com/datakit/logfwd:1.13.0
     imagePullPolicy: Always
     resources:
       requests:
@@ -314,6 +314,6 @@ MiB Swap:   2048.0 total,      0.0 free,   2048.0 used.   8793.3 avail Mem
 - [Log collection configuration for specifying pod in Kubernetes](container-log.md#logging-with-annotation-or-label)
 - [Third-party log access](logstreaming.md)
 - [Introduction of DataKit configuration mode in Kubernetes environment](k8s-config-how-to.md)
-- [Install DataKit as DaemonSet](datakit-daemonset-deploy.md)
+- [Install DataKit as DaemonSet](../datakit/datakit-daemonset-deploy.md)
 - [Deploy `logfwdserver` on DataKit](logfwdserver.md)
 - [Proper use of regular expressions to configure](datakit-input-conf.md#debug-regex)

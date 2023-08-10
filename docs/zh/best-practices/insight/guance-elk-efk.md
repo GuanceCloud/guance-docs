@@ -443,7 +443,7 @@ LogStash 集群 + Kafka 集群 + ElasticSearch 集群 + Kibana
 | 存储 | 50 GB | ESSD：0.5元/GB | 25 |
 | 总计 | <br /> | <br /> | 129 |
 
-按业务规模不大的存储和服务器配置来计价 LogStash + Kafka + ElasticSearch + Kibana 一个月总费用为 5175.4 (元) 。
+按业务规模不大的存储和服务器配置来计价 LogStash + Kafka + ElasticSearch + Kibana 一个月总费用为 5175.4 (元)。
 
 按简单架构不使用 Kafka 集群 LogStash + ElasticSearch + Kibana 一个月总费用为 2511.4 (元)。
 

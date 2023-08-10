@@ -61,7 +61,7 @@ ACL SETUSER username on +ping
       # connect_timeout = "10s"
     
       ## @param service - string - optional
-      # service = "<SERVICE>"
+      service = "redis"
     
       ## @param interval - number - optional - default: 15
       interval = "15s"
@@ -120,11 +120,11 @@ ACL SETUSER username on +ping
     
     ```
     
-    After configuration, [restart DataKit](datakit-service-how-to.md#manage-service).
+    After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    The collector can now be turned on by [ConfigMap injection collector configuration](datakit-daemonset-deploy.md#configmap-setting).
+    The collector can now be turned on by [ConfigMap injection collector configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 
 ---
 
@@ -174,8 +174,10 @@ For all of the following data collections, a global tag named `host` is appended
 | Tag | Description |
 |  ----  | --------|
 |`db_name`|db|
+|`host`|Hostname|
 |`key`|monitor key|
 |`server`|Server addr|
+|`service_name`|Service name|
 
 - feld list
 
@@ -201,6 +203,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`host`|Hostname|
 |`name`|The name set by the client with `CLIENT SETNAME`, default unknown|
 |`server`|Server addr|
+|`service_name`|Service name|
 
 - feld list
 
@@ -226,7 +229,9 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Tag | Description |
 |  ----  | --------|
+|`host`|Hostname|
 |`server`|Server addr|
+|`service_name`|Service name|
 
 - feld list
 
@@ -261,6 +266,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`host`|Hostname|
 |`method`|Command type|
 |`server`|Server addr|
+|`service_name`|Service name|
 
 - feld list
 
@@ -285,6 +291,9 @@ For all of the following data collections, a global tag named `host` is appended
 | Tag | Description |
 |  ----  | --------|
 |`db`|db name|
+|`host`|Hostname|
+|`server`|Server addr|
+|`service_name`|Service name|
 
 - feld list
 
@@ -311,6 +320,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`host`|Hostname|
 |`redis_version`|Version of the Redis server|
 |`server`|Server addr|
+|`service_name`|Service name|
 
 - feld list
 
@@ -382,7 +392,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 ## Logging {#logging}
 
-[:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)
+[:octicons-tag-24: Version-1.4.6](../datakit/changelog.md#cl-1.4.6)
 
 
 
@@ -422,6 +432,7 @@ For all of the following data collections, a global tag named `host` is appended
 | Tag | Description |
 |  ----  | --------|
 |`server`|Server addr|
+|`service_name`|Service name|
 
 - field list
 
@@ -449,6 +460,7 @@ Redis 慢查询命令历史，这里我们将其以日志的形式采集
 |`host`|host|
 |`message`|log message|
 |`server`|server|
+|`service_name`|Service name|
 
 - field list
 

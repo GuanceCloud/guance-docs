@@ -101,3 +101,22 @@ kubectl scale -n forethought-kodo deploy kodo-x --replicas 3
 ### 步骤六：验证
 
 请登录观测云控制台仔细查看基础设施和日志功能。
+
+
+## FAQ {#FAQ}
+
+### 页面查询 query failed
+
+![](img/query-failed.png)
+#### 前提条件
+
+- 获取报错空间的空间 ID
+- 可以访问 OpenSearch
+
+#### 删除错误索引
+
+```shell
+curl -XDELETE -u "user:password" http://<OPenSearchHost>:9200/<工作空间ID>*
+```
+
+**那个\*不要省**

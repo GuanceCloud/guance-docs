@@ -21,7 +21,7 @@
 
 ### 自定义对象数据上报
 
-添加完自定义对象分类以后，即可进行自定义数据上报。进行自定义对象数据上报时，需要先安装并连通 DataKit 和 DataFlux Func，再通过 DataFlux Func 上报数据到 DataKit，最终通过 DataKit 上报数据到观测云工作空间。具体操作过程可参考文档 [自定义对象数据上报](data-reporting.md) 。
+添加完自定义对象分类以后，即可进行自定义数据上报。进行自定义对象数据上报时，需要先安装并连通 DataKit 和 DataFlux Func，再通过 DataFlux Func 上报数据到 DataKit，最终通过 DataKit 上报数据到观测云工作空间。具体操作过程可参考文档 [自定义对象数据上报](data-reporting.md)。
 
 ???+ attention
 

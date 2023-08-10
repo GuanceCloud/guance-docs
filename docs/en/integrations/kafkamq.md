@@ -80,6 +80,15 @@ Copy configuration files and modify
         #  "rum_topic"="rum_01.p"
         #  "rum_02"="rum_02.p"
     
+      #[inputs.kafkamq.remote_handle]
+        ## Required！
+        #endpoint="http://localhost:8080"
+        ## Required！ topics
+        #topics=["spans","my-spans"]
+        # send_message_count = 100
+        # debug = false
+        # is_response_point = true
+        # header_check = false
     
       ## todo: add other input-mq
     
@@ -87,7 +96,7 @@ Copy configuration files and modify
 
 === "Kubernetes/Docker/Containerd"
 
-    The collector can now be turned on by [ConfigMap Injection Collector Configuration](datakit-daemonset-deploy.md#configmap-setting).   
+    The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).   
 
 
 Notes on configuration files:
@@ -206,6 +215,70 @@ Place the file in the directory `/usr/local/datakit/pipeline/metric/`.
 > Note: The pl script for metrics data is placed under `metric/` and the pl script for logging data is placed under `pipeline/`
 
 Configure the PL script and restart datakit.
+
+## Handle {#handle}
+
+Configuration:
+```toml
+  [inputs.kafkamq.remote_handle]
+    ## Required！
+    endpoint="http://localhost:8080"
+    ## Required！ topics
+    topics=["spans","my-spans"]
+    send_message_count = 100
+    debug = false
+    is_response_point = true
+    # header_check = false 
+```
+
+KafkaMQ provides a plug-in mechanism: send data ([]byte) to an external handle via HTTP, and then return the formatted data of the LineProtocol through response after processing. 
+Realize customized data processing.
+
+Config instructions:
+
+- `endpoint` Handle addr
+- `send_message_count` The number of messages sent at one time.
+- `topics`  Topic array
+- `debug` bool value, When the debug function is enabled, `message_points` will be invalid. If the debug mode is enabled, the data in the original message body will be sent without message merging.
+- `is_response_point` Whether to send row protocol data back
+
+After receiving the messages, KafkaMQ merges them into a package containing `send_message_count` messages and sends them to the specified handle address.
+
+The data structure is as follows:
+
+```txt
+[
+  {"topic": "bfySpan", "value": "dmFsdWUx"},
+  {"topic": "bfySpan", "value": "dmFsdWUx"},
+  {"topic": "bfySpan", "value": "dmFsdWUx"},
+  {"topic": "bfySpan", "value": "dmFsdWUx"},
+  ...
+]
+```
+
+The returned data should comply with `v1/write/tracing` interface regulations, [Interface Documentation](apis.md#api-v1-write)
+
+The returned header should also indicate the type of the data: the default is `tracing`
+
+```txt
+X-category=tracing  
+```
+
+[DataKit api categorys](apis/#category)
+
+As long as the data is received, it means that KafkaMQ has successfully sent the data. Regardless of the parsing, it should return 200 and wait for the next request.
+
+If the parsing fails, it is recommended to set `debug=true` in the KafkaMQ configuration. At this time, JSON assembly and serialization will not be performed. Instead, the `body` of the request is the message itself.
+
+---
+
+External plugins have some constraints:
+
+- KafkaMQ receives data but is not responsible for serialization after parsing, because this is a custom development and cannot be used by all users.
+- The data parsed by the external plug-in can be sent to [dk apis](apis.md#api-v1-write) , or returned to KafkaMQ and then sent to Observation Cloud.
+- The response returned to KafkaMQ must be in the ***line protocol format***, if it is `JSON` format, the header information needs to be included: `Content-Type:application/json` In addition, the returned header information should also include Type: `X-category:tracing` indicates this link information.
+- External plug-ins should return 200 regardless of parsing failure or not when data is received.
+- If KafkaMQ sends data to the external plug-in, if there is a timeout, the port does not exist and other problems. Will try to reconnect. Messages from Kafka are no longer consumed.
 
 ## benchmark {#benchmark}
 

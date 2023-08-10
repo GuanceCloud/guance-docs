@@ -6,7 +6,7 @@
 
 ## 注册账号
 
-您可以在 [观测云官网](https://www.guance.com/) ，**[立即注册](https://auth.guance.com/businessRegister)** 为观测云用户，更多注册详情可参考文档 [注册商业版](../billing/commercial-register.md) 。
+您可以在 [观测云官网](https://www.guance.com/) ，**[立即注册](https://auth.guance.com/businessRegister)** 为观测云用户，更多注册详情可参考文档 [注册商业版](../billing/commercial-register.md)。
 
 ### 登录账号
 
@@ -16,7 +16,7 @@
 ???+ attention
 
     - 单个观测云站点下，仅支持绑定一个手机号码、一个邮箱，暂不支持港澳台和国外手机号码；
-    - 不同站点的账号独立不互通，更多站点说明可参考 [站点说明](../billing/commercial-register.md#site) ；
+    - 不同站点的账号独立不互通，更多站点说明可参考 [站点说明](../billing/commercial-register.md#site)；
     - 支持选择 [单点登录](../management/sso/index.md) 到观测云。
 
 ![](img/7.login_site_1.png)
@@ -32,9 +32,9 @@
 注册完成后，您可在工作空间，点击左侧**账号 > 账号管理**进行账号修改。
 
 - 支持修改头像、用户名、邮箱、手机和密码；
-- 支持绑定 [MFA 认证](#mfa) ；
-- 支持修改 [登录保持时间](#login-hold-time) ；
-- 支持修改 [时区](#zone) 。
+- 支持绑定 [MFA 认证](#mfa)；
+- 支持修改 [登录保持时间](#login-hold-time)；
+- 支持修改 [时区](#zone)。
 
 ![](img/11.management_account_1.png)
 
@@ -43,7 +43,7 @@
 除了通过注册观测云账号登录以外，支持企业用户通过 SSO 单点登录的方式登录到观测云，进入工作空间后，点击左侧**账号 > 账号管理**，可对 SSO 账号进行修改。
 
 - 支持修改头像、用户名；  
-- 支持修改 [登录保持时间](#login-hold-time) 。
+- 支持修改 [登录保持时间](#login-hold-time)。
 
 ???+ attention
 
@@ -55,7 +55,7 @@
 
 ### MFA 认证 {#mfa}
 
-观测云提供 MFA 认证管理，帮助在账号用户名和密码之外再额外增加一层安全保护，开启 MFA 认证后，您在登录时需要进行二次校验，帮助您提高账户的安全性。更多详情可参考文档 [MFA 管理](mfa-management.md) 。
+观测云提供 MFA 认证管理，帮助在账号用户名和密码之外再额外增加一层安全保护，开启 MFA 认证后，您在登录时需要进行二次校验，帮助您提高账户的安全性。更多详情可参考文档 [MFA 管理](mfa-management.md)。
 
 ### 登录保持时间 {#login-hold-time}
 

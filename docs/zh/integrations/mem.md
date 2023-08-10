@@ -45,7 +45,7 @@ Memory 采集器用于收集系统内存信息，一些通用的指标如主机�
       # more_tag = "some_other_value"
     ```
 
-    配置好后，[重启 DataKit](datakit-service-how-to.md#manage-service) 即可。
+    配置好后，[重启 DataKit](../datakit/datakit-service-how-to.md#manage-service) 即可。
 
 === "Kubernetes"
 

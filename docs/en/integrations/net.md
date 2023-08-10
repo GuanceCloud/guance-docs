@@ -46,7 +46,7 @@ None
     
     ```
     
-    Once configured, [restart DataKit](datakit-service-how-to.md#manage-service) 即可。
+    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service) 即可。
 
 === "Kubernetes"
 

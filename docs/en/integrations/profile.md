@@ -77,11 +77,11 @@ At present, DataKit collects profiling data in two ways:
     
     ```
     
-    Once configured, [restart DataKit](datakit-service-how-to.md#manage-service).
+    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    The collector can now be turned on by [ConfigMap Injection Collector Configuration](datakit-daemonset-deploy.md#configmap-setting).
+    The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 
 ## Measurements {#measurements}
 
@@ -108,6 +108,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`container_host`|Container hostname. Available in OpenTelemetry. Optional.|
 |`endpoint`|Endpoint info. Available in SkyWalking, Zipkin. Optional.|
 |`env`|Application environment info. Available in Jaeger. Optional.|
+|`host`|Hostname.|
 |`http_method`|HTTP request method name. Available in DDTrace, OpenTelemetry. Optional.|
 |`http_route`|HTTP route. Optional.|
 |`http_status_code`|HTTP response code. Available in DDTrace, OpenTelemetry. Optional.|

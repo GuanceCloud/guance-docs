@@ -76,7 +76,7 @@ The Zipkin Agent embedded in Datakit is used to receive, calculate and analyze t
 
 === "Kubernetes"
 
-    At present, the collector can be turned on by [injecting the collector configuration in ConfigMap mode](datakit-daemonset-deploy.md#configmap-setting).
+    At present, the collector can be turned on by [injecting the collector configuration in ConfigMap mode](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 
     Multiple environment variables supported that can be used in Kubernetes showing below:
 
@@ -110,6 +110,7 @@ The Zipkin Agent embedded in Datakit is used to receive, calculate and analyze t
 |`container_host`|Container hostname. Available in OpenTelemetry. Optional.|
 |`endpoint`|Endpoint info. Available in SkyWalking, Zipkin. Optional.|
 |`env`|Application environment info. Available in Jaeger. Optional.|
+|`host`|Hostname.|
 |`http_method`|HTTP request method name. Available in DDTrace, OpenTelemetry. Optional.|
 |`http_route`|HTTP route. Optional.|
 |`http_status_code`|HTTP response code. Available in DDTrace, OpenTelemetry. Optional.|

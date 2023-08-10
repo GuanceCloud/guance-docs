@@ -2,7 +2,7 @@
 # Jenkins
 ---
 
-:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](index.md#legends "支持选举")
+:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 
 ---
 
@@ -67,11 +67,11 @@ The Jenkins collector monitors Jenkins through plugin `Metrics` data collection,
     
     ```
     
-    Once configured, [restart DataKit](datakit-service-how-to.md#manage-service).
+    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    The collector can now be turned on by [ConfigMap Injection Collector Configuration](datakit-daemonset-deploy.md#configmap-setting).
+    The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 
 ## Jenkins CI Visibility {#ci-visibility}
 
@@ -116,6 +116,7 @@ You can specify additional tags for the Jenkins CI Event in the configuration by
 
 | Tag | Description |
 |  ----  | --------|
+|`host`|Hostname|
 |`metric_plugin_version`|Jenkins plugin version|
 |`url`|Jenkins URL|
 |`version`|Jenkins  version|

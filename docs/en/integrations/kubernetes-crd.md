@@ -5,7 +5,7 @@
 
 ---
 
-[:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6) · [:octicons-beaker-24: Experimental](index.md#experimental) 
+[:octicons-tag-24: Version-1.4.6](../datakit/changelog.md#cl-1.4.6) · [:octicons-beaker-24: Experimental](../datakit/index.md#experimental) 
 
 ## Introduction {#intro}
 
@@ -121,7 +121,7 @@ Here, we use DataKit CRD extension to collect Ingress metrics, that is, we colle
 
 #### Prerequirements {#nginx-requirements}
 
-- Deployed [DaemonSet DataKit](datakit-daemonset-deploy.md)
+- Deployed [DaemonSet DataKit](../datakit/datakit-daemonset-deploy.md)
 - If the `Deployment` is called `ingress-nginx-controller`, the yaml configuration over there is as follows:
 
   ``` yaml

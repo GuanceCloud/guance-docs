@@ -62,7 +62,7 @@ Net 采集器用于采集主机网络信息，如各网络接口的流量信息�
     
     ```
 
-    配置好后，[重启 DataKit](datakit-service-how-to.md#manage-service) 即可。
+    配置好后，[重启 DataKit](../datakit/datakit-service-how-to.md#manage-service) 即可。
 
 === "Kubernetes"
 

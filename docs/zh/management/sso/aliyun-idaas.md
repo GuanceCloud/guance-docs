@@ -41,7 +41,7 @@
 
 1）启用 SSO 单点登录，在观测云工作空间**管理 > 成员管理 > SSO 管理**，点击**启用**即可。
 
-> 可参考文档[新建 SSO](../../management/sso/index.md) 。
+> 可参考文档[新建 SSO](../../management/sso/index.md)。
 
 ???+ attention
 
