@@ -25,7 +25,7 @@
 
 **源码地址**：[https://github.com/GuanceCloud/datakit-android](https://github.com/GuanceCloud/datakit-android)
 
-**Demo**：[https://github.com/GuanceCloud/datakit-android/demo](https://github.com/GuanceCloud/datakit-android/tree/dev/demo)
+**Demo**：[https://github.com/GuanceDemo/guance-app-demo](https://github.com/GuanceDemo/guance-app-demo/tree/master/src/android/demo)
 
 ### Gradle 配置 {#gradle-setting}
 
@@ -179,7 +179,7 @@ android{
 	}
     ```
 
-理论上最佳初始化 SDK 的位置在 `Application` 的 `onCreate` 方法中，如果你的应用还没有创建 `Application`，你需要创建一个，并且在 `AndroidManifest.xml` 中 `Application` 中声明，示例请参考[这里](https://github.com/GuanceCloud/datakit-android/blob/dev/demo/app/src/main/AndroidManifest.xml)
+理论上最佳初始化 SDK 的位置在 `Application` 的 `onCreate` 方法中，如果你的应用还没有创建 `Application`，你需要创建一个，并且在 `AndroidManifest.xml` 中 `Application` 中声明，示例请参考[这里](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/AndroidManifest.xml)
 
 ```xml
 <application 
@@ -1443,7 +1443,9 @@ android{
 
 -keep class ftnative.*{*;}
 
+### 防止获取时 ActionName 被混淆###
 -keepnames class * extends android.view.View
+-keepnames class * extends android.view.MenuItem
 ```
 
 ## 符号文件上传
@@ -1569,7 +1571,7 @@ SDK 为更好关联相同用户数据，会使用 Android ID。如果需要在�
 
 目前针对这种情况，我们有另外一种集成方案，应对方案如下：
 
-* Application 应用启动事件， 源码示例参考[DemoForManualSet.kt](https://github.com/GuanceCloud/datakit-android/tree/dev/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/DemoForManualSet.kt)
+* Application 应用启动事件， 源码示例参考[DemoForManualSet.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/DemoForManualSet.kt)
 
 === "Java"
 
@@ -1599,7 +1601,7 @@ SDK 为更好关联相同用户数据，会使用 Android ID。如果需要在�
 	    }
 	```
 
-* 按键等事件需要在触发处自行添加，例如，Button onClick 事件为例，源码示例参考[ManualActivity.kt](https://github.com/GuanceCloud/datakit-android/tree/dev/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt)：
+* 按键等事件需要在触发处自行添加，例如，Button onClick 事件为例，源码示例参考[ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt)：
 
 === "Java"
 
@@ -1621,7 +1623,7 @@ SDK 为更好关联相同用户数据，会使用 Android ID。如果需要在�
 		}
 	```
 
-* `OKhttp` 通过 `addInterceptor` ，`eventListener` 方式接入 `Resource`，`Trace`，示例如下，源码示例参考[ManualActivity.kt](https://github.com/GuanceCloud/datakit-android/tree/dev/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt)：
+* `OKhttp` 通过 `addInterceptor` ，`eventListener` 方式接入 `Resource`，`Trace`，示例如下，源码示例参考[ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt)：
 
 === "Java"
 
@@ -1643,7 +1645,7 @@ SDK 为更好关联相同用户数据，会使用 Android ID。如果需要在�
 	val client = builder.build()
 	```
 
-* 其他网络框架需要自行实现使用 `FTRUMGlobalManager` 中 `startResource` ,`stopResource`,`addResource`, `FTTraceManager.getTraceHeader` 。具体实现方式，请参考源码示例[ManualActivity.kt](https://github.com/GuanceCloud/datakit-android/tree/dev/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt)
+* 其他网络框架需要自行实现使用 `FTRUMGlobalManager` 中 `startResource` ,`stopResource`,`addResource`, `FTTraceManager.getTraceHeader` 。具体实现方式，请参考源码示例[ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt)
 
 
 
