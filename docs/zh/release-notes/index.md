@@ -18,7 +18,6 @@ icon: zy/release-notes
 
 - 新增计费项：
     - [定时报告](../billing/billing-method/index.md#report)：按工作空间内定时报告单日发送的次数出账计费；
-    - [日志写入流量](../billing/billing-method/index.md#ingested-log)：按用户上报的原始日志写入流量大小出账计费。
 - 场景：
     - 新增 **[服务管理](../scene/service-manag.md)**：服务管理是一个用于访问所有服务关键信息的集中入口，用户可查看当前工作空间内不同服务的性能和业务数据及所有的关联分析等信息，快速定位并解决服务的相关问题。  
     - 图表均支持 PromQL 查询和表达式查询。
