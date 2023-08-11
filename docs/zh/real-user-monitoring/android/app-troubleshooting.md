@@ -63,6 +63,10 @@ dependencies {
 
 ![](../img/17.trouble_shooting_android_gradle_error_3.png)
 
+#### java.lang.IllegalArgumentException: Invalid opcode 169 {#android_invalid_opcode_169}
+
+如果在使用 `ft_plugin_legacy` 发生了这个错误，这个是 `asm-commons:7.0` 版本的 bug，原始 issue 在[这里](https://gitlab.ow2.org/asm/asm/-/issues/317873),  通过在 plugin 配置中依赖 `org.ow2.asm:asm-commons:7.2` 以上的版本，解决这个问题。通过 ` ./gradlew buildEnvironment` 可以确认真实 `asm-commons` 使用版本。
+
 
 ## SDK 初始化异常校验
 
