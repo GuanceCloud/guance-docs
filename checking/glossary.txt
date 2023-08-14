@@ -2,7 +2,6 @@
 Aerospike
 Akka
 Aliyun
-Tencent
 Ansible
 BATIS
 Batis
@@ -88,11 +87,13 @@ Sinker
 SkyWalking
 Solr
 Stddev
+Tencent
 Uprobe
 Vertx
 Weblogic
 Websphere
 Zipkin
+apiserver
 cgroup
 configfile
 containerd
@@ -104,6 +105,7 @@ gRPC
 guance
 jemalloc
 keyevent
+kubedns
 kubelet
 libc
 logfwd
@@ -125,10 +127,9 @@ tcmalloc
 unflushed
 usec
 vmalloc
+workqueue
 xpack
 zhangsan
-apiserver
-workqueue
 
 # 缩写
 CNCF

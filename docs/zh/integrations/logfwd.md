@@ -104,7 +104,7 @@ logfwd 主配置是 JSON 格式，以下是配置示例：
 | `LOGFWD_GLOBAL_SOURCE`           | 配置全局 source，优先级最高                                                                                             |
 | `LOGFWD_GLOBAL_SERVICE`          | 配置全局 service，优先级最高                                                                                            |
 | `LOGFWD_POD_NAME`                | 指定 pod name，会 tags 中添加 `pod_name`                                                                                |
-| `LOGFWD_POD_NAMESPACE`           | 指定 pod namespace，会 tags 中添加 `pod_namespace`                                                                      |
+| `LOGFWD_POD_NAMESPACE`           | 指定 pod namespace，会 tags 中添加 `namespace`                                                                          |
 | `LOGFWD_ANNOTATION_DATAKIT_LOGS` | 使用当前 Pod 的 Annotations `datakit/logs` 配置，优先级比 logfwd JSON 配置更高                                          |
 
 #### 安装和运行 {#install-run}
@@ -140,7 +140,7 @@ spec:
           fieldPath: metadata.namespace
     - name: LOGFWD_GLOBAL_SOURCE
       value: nginx-souce-test
-    image: pubrepo.jiagouyun.com/datakit/logfwd:1.12.3
+    image: pubrepo.jiagouyun.com/datakit/logfwd:1.13.0
     imagePullPolicy: Always
     resources:
       requests:
@@ -242,7 +242,7 @@ spec:
         fieldRef:
           apiVersion: v1
           fieldPath: metadata.namespace
-    image: pubrepo.jiagouyun.com/datakit/logfwd:1.12.3
+    image: pubrepo.jiagouyun.com/datakit/logfwd:1.13.0
     imagePullPolicy: Always
     resources:
       requests:

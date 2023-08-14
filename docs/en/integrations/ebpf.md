@@ -17,7 +17,7 @@ eBPF collector, collecting host network TCP, UDP connection information, Bash ex
     * Data category: Logging
     * Collect Bash execution log, including Bash process number, user name, executed command and time, etc.;
 
-* `ebpf-conntrack`: [:octicons-tag-24: Version-1.8.0](changelog.md#cl-1.8.0) · [:octicons-beaker-24: Experimental](index.md#experimental)
+* `ebpf-conntrack`: [:octicons-tag-24: Version-1.8.0](../datakit/changelog.md#cl-1.8.0) · [:octicons-beaker-24: Experimental](../datakit/index.md#experimental)
     * Add two tags `dst_nat_ip` and `dst_nat_port` to the network flow data.
 
 ## Preconditions {#requirements}
@@ -37,8 +37,8 @@ When deploying in Kubernetes environment, you must mount the host's' `/sys/kerne
 
 ### HTTPS Support {#https}
 
-[:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6) ·
-[:octicons-beaker-24: Experimental](index.md#experimental)
+[:octicons-tag-24: Version-1.4.6](../datakit/changelog.md#cl-1.4.6) ·
+[:octicons-beaker-24: Experimental](../datakit/index.md#experimental)
 
 If ebpf-net is required to start https request data collection support for processes in the container, you need to mount the overlay directory to the container.
 
@@ -80,6 +80,12 @@ You can view the overlay mount point through `cat /proc/mounts`
 ### Linux Kernel Version Requirement {#kernel}
 
 In addition to CentOS 7.6+ and Ubuntu 16.04, other distributions recommend that the Linux kernel version is higher than 4.9, otherwise the ebpf collector may not start.
+
+If you want to enable the  *ebpf-conntrack*  plugin, usually requires a higher kernel version, such as v5.4.0 etc., please confirm whether the symbols in the kernel contain `nf_ct_delete` and `__nf_conntrack_hash_insert`, you can execute the following command to view:
+
+```sh
+cat /proc/kallsyms | awk '{print $3}' | grep "^nf_ct_delete$\|^__nf_conntrack_hash_insert$"
+```
 
 ???+ warning "kernel restrictions"
 
@@ -358,6 +364,8 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
+|`bytes_read`|The number of bytes read.|int|B|
+|`bytes_written`|The number of bytes written.|int|B|
 |`count`|The total number of HTTP requests in a collection cycle.|int|-|
 |`http_version`|1.1 / 1.0 ...|string|-|
 |`latency`|TTFB.|int|ns|
