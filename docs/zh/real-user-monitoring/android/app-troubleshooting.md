@@ -55,13 +55,17 @@ dependencies {
 
 ####  API 'android.registerTransform' is obsolete {#transform_deprecated}
 
-`AGP 7.0` 中 `Transform` 已标记为 `Deprecated`，并在 `AGP 8.0` 中已弃用。 `ft-plugin:1.2.0` 已经完成适配，请升级相应版本，修复这个错误。 具体说明请见[集成配置](app-access.md/#gradle-setting) 
+`AGP 7.0` 中 `Transform` 已标记为 `Deprecated`，并在 `AGP 8.0` 中已弃用。 `ft-plugin:1.2.0` 已经完成适配，请升级相应版本，修复这个错误。 具体说明请见[集成配置](app-access.md#gradle-setting) 
 
 ####  AndroidComponentsExtension ClassNotFoundException {#android_cts_ext_no_fd}
 
-`AndroidComponentsExtension` 是 AGP `7.4.2` 支持的方法，低于这个版本的编译环境，就会产生这个错误，可以使用 `ft-plugin-legacy` 版本，修复这个错误。具体说明请见[集成配置](app-access.md/#gradle-setting) 
+`AndroidComponentsExtension` 是 AGP `7.4.2` 支持的方法，低于这个版本的编译环境，就会产生这个错误，可以使用 `ft-plugin-legacy` 版本，修复这个错误。具体说明请见[集成配置](app-access.md#gradle-setting) 
 
 ![](../img/17.trouble_shooting_android_gradle_error_3.png)
+
+#### java.lang.IllegalArgumentException: Invalid opcode 169 {#android_invalid_opcode_169}
+
+如果在使用 `ft_plugin_legacy` 发生了这个错误，这个是 `asm-commons:7.0` 版本的 bug，原始 issue 在[这里](https://gitlab.ow2.org/asm/asm/-/issues/317873),  通过在 plugin 配置中依赖 `org.ow2.asm:asm-commons:7.2` 以上的版本，解决这个问题。通过 ` ./gradlew buildEnvironment` 可以确认真实 `asm-commons` 使用版本。
 
 
 ## SDK 初始化异常校验
