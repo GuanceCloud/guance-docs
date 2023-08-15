@@ -95,7 +95,7 @@ GRANT replication client on *.*  to 'datakit'@'localhost';
       ## user
       users = []
     
-      ## 开启数据库性能指标采集
+      ## Set dbm to true to collect database activity 
       # dbm = false
     
       # [inputs.mysql.log]
@@ -122,18 +122,18 @@ GRANT replication client on *.*  to 'datakit'@'localhost';
       # [[inputs.mysql.custom_queries]]
       #   sql = "SELECT foo, COUNT(*) FROM table.events GROUP BY foo"
       #   metric = "xxxx"
-      #   tagKeys = ["column1", "column1"]
-      #   fieldKeys = ["column3", "column1"]
+      #   tags = ["column1", "column1"]
+      #   fields = ["column3", "column1"]
       
-      ## 监控指标配置
+      ## Config dbm metric 
       [inputs.mysql.dbm_metric]
         enabled = true
       
-      ## 监控采样配置
+      ## Config dbm sample 
       [inputs.mysql.dbm_sample]
         enabled = true  
     
-      ## 等待事件采集
+      ## Config dbm activity
       [inputs.mysql.dbm_activity]
         enabled = true  
     
@@ -407,7 +407,7 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name = 'events
 
 ### `mysql_schema`
 
-具体字段，以实际采集上来的数据为准，部分字段，会因 MySQL 配置、已有数据等原因，采集不到
+MySQL schema information
 
 - 标签
 
@@ -589,7 +589,7 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name = 'events
 
 ### `mysql_table_schema`
 
-MySQL 表指标
+MySQL table information
 
 - 标签
 
@@ -621,7 +621,7 @@ MySQL 表指标
 
 ### `mysql_user_status`
 
-MySQL 用户指标
+MySQL user information
 
 - 标签
 
@@ -696,7 +696,7 @@ MySQL 用户指标
 
 ### `mysql_dbm_metric`
 
-记录查询语句的执行次数、等待耗时、锁定时间和查询的记录行数等。
+Record the number of executions of the query statement, wait time, lock time, and the number of rows queried.
 
 - 标签
 
@@ -735,7 +735,7 @@ MySQL 用户指标
 
 ### `mysql_dbm_sample`
 
-选取部分执行耗时较高的 SQL 语句，获取其执行计划，并采集实际执行过程中的各种性能指标。
+Select some of the SQL statements with high execution time, collect their execution plans, and collect various performance indicators during the actual execution process.
 
 - 标签
 
@@ -789,7 +789,7 @@ MySQL 用户指标
 
 ### `mysql_dbm_activity`
 
-记录当前线程的等待事件信息
+Collect the waiting event of the current thread
 
 - 标签
 
