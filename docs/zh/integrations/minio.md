@@ -55,9 +55,8 @@ cp prom.conf.sample prom-minio.conf
 ```
 
 3、修改 `prom-minio.conf` 配置文件
-
-??? quote "`prom-minio.conf`"
 <!-- markdownlint-disable MD046 -->
+??? quote "`prom-minio.conf`"
     ```toml hl_lines="3 8 9 12 24 28 29 30"
     [[inputs.prom]]
       # Exporter URLs
@@ -146,9 +145,8 @@ cp prom.conf.sample prom-minio.conf
 
 4、 重启 DataKit
 
-```shell
-systemctl restart datakit
-```
+[重启 DataKit](../datakit/datakit-service-how-to.md#manage-service)
+
 
 ## 指标 {#metric}
 
