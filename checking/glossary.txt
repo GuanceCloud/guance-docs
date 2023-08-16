@@ -145,6 +145,7 @@ RUM
 SAAS
 SNMP
 XDCR
+Seata
 
 # 合成词
 AGENTID
