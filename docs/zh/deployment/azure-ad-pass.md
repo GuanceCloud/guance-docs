@@ -154,21 +154,27 @@ OIDCClientSet:
   clientSecret:
   # 认证方式，目前只支持 authorization_code
   grantType: authorization_code
-  verify: false
   # 数据访问范围
-  scope: "openid profile email address"
+  scope: "openid profile email address User.Read User.Read.All GroupMember.Read.All Group.Read.All"
   # 认证服务器认证成功之后的回调地址
   innerUrl: "{}://{}/oidc/callback"
   # 认证服务认证成功并回调 DF 系统之后，DF系统拿到用户信息后跳转到前端中专页面的地址
   frontUrl: "{}://{}/tomiddlepage?uuid={}"
-  # 从认证服务中获取到的账号信息 与 DF 系统账号的映射配置, 其中必填项为: username, email, exterId
+  # 从认证服务中获取到的账号信息 与 DF 系统账号信息字段的映射关系配置, 其中必填项为: username, email, exterId； 可选项为: mobile
   mapping:
-    # 认证服务中，登录账号的用户名，必填，如果值不存在，则取 email
+    # 认证服务中，登录账号的用户名字段名，必填，如果值不存在，则取 email
     username: preferred_username
-    # 认证服务中，登录账号的邮箱，必填
+    # 认证服务中，登录账号的邮箱字段名，必填
     email: email
-    # 认证服务中，登录账号的唯一标识， 必填
+    # 认证服务中，登录账号的唯一标识字段名， 必填
     exterId: sub
+  # http请求配置设置，根据认证服务接口动态调整适配（目前只支持 userinfo 信息的获取）
+  requestSet:
+    userinfo:
+      # 用户信息数据来源, 可选值(id_token: 表示从 id_token 的声明中获取； origin: 表示从第三方认证服务获取)
+      sourceMethod: origin
+      # 是否合并访问令牌声明中的数据, 当 sourceMethod=origin 时生效
+      mergeTokenDeclaration: false
 ```
 
 参考示例图：
