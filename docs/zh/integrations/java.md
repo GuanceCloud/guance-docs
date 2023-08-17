@@ -1,5 +1,5 @@
 ---
-title     : 'Java'
+title     : 'JAVA'
 summary   : '获取 JAVA 应用的指标、链路追踪和日志信息'
 __int_icon: 'icon/jvm'
 dashboard :
@@ -11,7 +11,7 @@ monitor   :
 ---
 
 <!-- markdownlint-disable MD025 -->
-# Java
+# JAVA
 <!-- markdownlint-enable -->
 
 使用观测云链接到 JAVA 应用程序：

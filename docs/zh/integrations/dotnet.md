@@ -1,7 +1,7 @@
 ---
-title     : '.Net'
-summary   : '通过 DDTrace 采集 .Net 应用相关 Metrics、Tracing、Logging 和 Profiling 信息'
-__int_icon: 'icon/.net'
+title     : '.NET'
+summary   : '采集 .NET 应用相关 Metrics、Tracing、Logging 和 Profiling 信息。'
+__int_icon: 'icon/dotnet'
 dashboard :
   - desc  : '暂无'
     path  : '-'
@@ -11,25 +11,25 @@ monitor   :
 ---
 
 <!-- markdownlint-disable MD025 -->
-# .Net
+# .NET
 <!-- markdownlint-enable -->
 
-通过 [DDTrace](ddtrace.md) 采集 .Net 应用相关 Metrics、Tracing、Logging 和 Profiling 信息。
+通过 [DDTrace](ddtrace.md) 采集 .NET 应用相关 Metrics、Tracing、Logging 和 Profiling 信息。
 
 ## 安装配置 {#config}
 
 ### 支持版本
 
-| 版本          | 微软终止状态 | 支持的版本 | 包版本             |
-| --            | --           | --         | --                 |
-| .NET 7        | -            | GA         | latest (>= 2.20.0) |
-| .NET 6        | -            | GA         | latest (>= 2.0.0)  |
-| .NET 5        | -            | GA         | latest (>= 2.0.0)  |
-| .NET Core 3.1 | 12/03/2022   | GA         | latest             |
-| .NET Core 2.1 | 08/21/2021   | GA         | latest             |
-| .NET Core 3.0 | 03/03/2020   | EOL        | Not recommended    |
-| .NET Core 2.2 | 12/23/2019   | EOL        | Not recommended    |
-| .NET Core 2.0 | 10/01/2018   | EOL        | Not recommended    |
+| 版本 | 微软终止状态 | 支持的版本 | 包版本 |
+| -- | -- | -- | -- |
+|.NET 7 | - |GA |latest (>= 2.20.0)|
+|.NET 6 | - |GA |latest (>= 2.0.0)|
+|.NET 5 | - |GA |latest (>= 2.0.0)|
+|.NET Core 3.1 |12/03/2022 |GA |latest|
+|.NET Core 2.1 |08/21/2021 |GA |latest|
+|.NET Core 3.0 |03/03/2020 |EOL |Not recommended|
+|.NET Core 2.2 |12/23/2019 |EOL |Not recommended|
+|.NET Core 2.0 |10/01/2018 |EOL |Not recommended|
 
 ### 安装 Agent
 <!-- markdownlint-disable MD046 MD009 MD051-->
@@ -51,20 +51,14 @@ monitor   :
 
     1. 下载 [.NET Tracer MSI](https://github.com/DataDog/dd-trace-dotnet/releases) 安装程序。为与操作系统（x64或x86）匹配的体系结构选择MSI安装程序。
     2. 根据操作系统运行以下相关安装包，并使用适当的权限创建`.NET`跟踪程序日志的目录`/var/log/datadog/dotnet`：
-
-    ```shell
-    # Debian or Ubuntu
-    $ sudo dpkg -i ./datadog-dotnet-apm_<TRACER_VERSION>_amd64.deb && /opt/datadog/createLogPath.sh
-
-    # CentOS or Fedora
-    $ sudo rpm -Uvh datadog-dotnet-apm<TRACER_VERSION>-1.x86_64.rpm && /opt/datadog/createLogPath.sh
-
-    # Alpine or other musl-based distributions
-    $ sudo tar -C /opt/datadog -xzf datadog-dotnet-apm-<TRACER_VERSION>-musl.tar.gz && sh /opt/datadog/createLogPath.sh
-
-    # Other distributions
-    $ sudo tar -C /opt/datadog -xzf datadog-dotnet-apm<TRACER_VERSION>-tar.gz && /opt/datadog/createLogPath.sh
-    ```
+    > **Debian or Ubuntu**  
+    > `sudo dpkg -i ./datadog-dotnet-apm_<TRACER_VERSION>_amd64.deb && /opt/datadog/createLogPath.sh`  
+    > **CentOS or Fedora**  
+    > `sudo rpm -Uvh datadog-dotnet-apm<TRACER_VERSION>-1.x86_64.rpm && /opt/datadog/createLogPath.sh`  
+    > **Alpine or other musl-based distributions**  
+    > `sudo tar -C /opt/datadog -xzf datadog-dotnet-apm-<TRACER_VERSION>-musl.tar.gz && sh /opt/datadog/createLogPath.sh`  
+    > **Other distributions**  
+    > `sudo tar -C /opt/datadog -xzf datadog-dotnet-apm<TRACER_VERSION>-tar.gz && /opt/datadog/createLogPath.sh`  
 
 === "Nuget"
 

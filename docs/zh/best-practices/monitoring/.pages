@@ -1,6 +1,7 @@
 nav:
   - '应用性能监控 (APM)':
     - '调用链 (Tracing)':
+      - 'SpringBoot3 WebFlux 可观测最佳实践': springboot3_webflux.md
       - 分布式链路追踪(APM)最佳实践: apm.md
       - ddtrace-custom-traceId.md
       - ddtrace-instrumentation.md
