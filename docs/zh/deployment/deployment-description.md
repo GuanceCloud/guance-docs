@@ -14,7 +14,7 @@
 | RedHat | :white_check_mark:（7.3+）   | :white_check_mark:（8.0+）   |
 | Ubuntu | :white_check_mark:（18.04+） | :white_check_mark:（18.04+） |
 | 麒麟   | :white_check_mark:（10）     | :white_check_mark:（10）     |
-
+| Amazon Linux | :white_check_mark:（2） | :white_check_mark:（2）(AWS Graviton) |
 
 
 ## 产品架构
