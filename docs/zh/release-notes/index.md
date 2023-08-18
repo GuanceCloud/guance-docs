@@ -17,6 +17,7 @@ icon: zy/release-notes
 
 - 管理：新增[敏感数据扫描](../management/data-scanner.md)功能：通过为数据创建脱敏规则的方式，实现信息屏蔽。
 - 新增计费项：[敏感数据扫描流量](../billing/billing-method/index.md#scanned-data)：基于扫描规则统计扫描到的敏感数据原始流量大小（每 GB / 天）。
+- 付费计划与账单：消费分析板块因坐改造优化处理，暂时下架。
 
 ## 2023 年 8 月 10 日
 
