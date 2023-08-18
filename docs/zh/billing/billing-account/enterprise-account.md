@@ -3,7 +3,7 @@
 
 本文将介绍观测云商业版如何开通费用中心账号结算。
 
-> 关于如何开通商业版，可参考文档 [注册商业版](../../billing/commercial-register.md。
+> 关于如何开通商业版，可参考文档 [注册商业版](../../billing/commercial-register.md)。
 
 ## 选择观测云账号结算
 
