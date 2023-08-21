@@ -93,8 +93,8 @@ systemctl restart datakit
 
 | Metrics | 描述 |
 | -- | -- |
-| bytes_received | 当前连接数量 |
-| bytes_sent | 已接收字节数 |
+| bytes_received | 已接收字节数 |
+| bytes_sent | 已发送字节数 |
 
 
 #### 报文 (Packets)

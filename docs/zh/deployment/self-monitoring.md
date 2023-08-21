@@ -178,7 +178,7 @@ kubectl edit -n forethought-kodo cm <configmap_name>
 |                  | kodo-inner         |
 |                  | kodo-x             |
 |                  | kodo-asynq-client  |
- 
+
 - 在对应的应用中配置`Deployment Annotations`，以下内容不用修改
 
 ```yaml
@@ -262,7 +262,7 @@ template:
     **界面上一键导入 Pipeline 模板**
 
     [Pipeline下载地址](Pipelines 模板.json)
-
+    
     ![pipeline001](img/self-pipeline001.jpg)
 
 === "方法二"
@@ -553,7 +553,7 @@ DataFlux Func 的函数运行日志、自动触发配置等信息可以直接上
 在观测云数据上报中填写 DataWay / OpenWay 地址和 Token 信息即可，格式如下：
 
 ```shell
-http://openway.guance.com?token=tkn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+https://openway.guance.com?token=tkn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
 > *注意：如果Func数据上报失败，可查看 [DataFlux Func文档](https://func.guance.com/doc/ui-guide-management-module-system-setting/){:target="_blank"}*

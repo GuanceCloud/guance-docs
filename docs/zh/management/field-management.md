@@ -9,7 +9,7 @@
 
 官方字段是<u>观测云官方提供的默认字段</u>，您可以在工作空间**管理 > 字段管理**查看所有的官方字段，包括字段名称、字段类型以及字段的详细描述。
 
-<font color=coral>**注意：**</font>官方字段不支持修改和删除。
+**注意**：官方字段不支持修改和删除。
 
 
 ## 自定义字段 {#custom}
@@ -72,7 +72,7 @@
 
     ![](img/3.field_9.png)
 
-    <font color=coral>**注意：**</font>当选择 `count`、`count_distinct` 函数时不显示单位。
+    **注意**：当选择 `count`、`count_distinct` 函数时不显示单位。
 
 === "查看器"
 
@@ -92,7 +92,7 @@
 
     ![](img/3.field_9.1.gif)
 
-    <font color=coral>**注意：**</font>若检测指标选择函数 `count`、`count_distinct`，则不显示单位。
+    **注意**：若检测指标选择函数 `count`、`count_distinct`，则不显示单位。
 
 === "快捷入口 > 查询工具"
 

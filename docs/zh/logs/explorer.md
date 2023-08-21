@@ -188,7 +188,7 @@ curl '<Endpoint>/api/v1/df/query_data?search_after=\[1680226330509,8572,"L_16802
 
 ### 查看上下文日志 {#up-down}
 
-在日志详情页，点击**上下文日志**，即可跳转到日志查看器。
+在日志详情页，您可以直接查看该条数据内容的**上下文日志**；点击 :fontawesome-solid-arrow-up-right-from-square: 即可跳转到查看器打开。
 
 ![](img/2.log_updown_1.png)
 

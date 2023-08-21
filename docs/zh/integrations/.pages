@@ -87,12 +87,15 @@ nav:
       - tidb.md
       - couchbase.md
       - couchbase-prom.md
+      - juicefs.md
 
     - '消息队列':
+      - emqx.md
       - 'Kafka': kafka.md
       - nsq.md
       - rabbitmq.md
-      - juicefs.md
+      - rocketmq.md
+
 
     - 'Web 服务器':
       - 'Nginx': nginx.md
@@ -103,16 +106,21 @@ nav:
       - tomcat.md
 
     - '其它':
-      - 'Flink': flinkv1.md
+      - apollo.md
       - consul.md
       - coredns.md
+      - 'Flink': flinkv1.md
+      - nacos.md
       - snmp.md
+      - seata.md
+      - zookeeper.md
 
   - CI/CD:
       - 'Jenkins': jenkins.md
       - gitlab.md
 
   - 云原生:
+    - 'Ingress Nginx': ingress-nginx-prom.md
     - '指标采集': container.md
     - '日志采集':
       - container-log.md
@@ -134,6 +142,7 @@ nav:
       - 'C/C++': profile-cpp.md
       - 'NodeJS': profile-nodejs.md
       - '.NET': profile-dotnet.md
+      - 'PHP': profile-php.md
 
     - 'DDTrace':
       - ddtrace.md

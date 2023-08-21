@@ -388,7 +388,7 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name = 'events
 
 #### `mysql_schema`
 
-具体字段，以实际采集上来的数据为准，部分字段，会因 MySQL 配置、已有数据等原因，采集不到
+MySQL schema information
 
 - tag
 
@@ -568,7 +568,7 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name = 'events
 
 #### `mysql_table_schema`
 
-MySQL 表指标
+MySQL table information
 
 - tag
 
@@ -599,7 +599,7 @@ MySQL 表指标
 
 #### `mysql_user_status`
 
-MySQL 用户指标
+MySQL user information
 
 - tag
 
@@ -648,7 +648,7 @@ MySQL 用户指标
 
 ### Log {#logging}
 
-[:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)
+[:octicons-tag-24: Version-1.4.6](../datakit/changelog.md#cl-1.4.6)
 
 
 
@@ -676,7 +676,7 @@ MySQL 用户指标
 
 #### `mysql_dbm_metric`
 
-记录查询语句的执行次数、等待耗时、锁定时间和查询的记录行数等。
+Record the number of executions of the query statement, wait time, lock time, and the number of rows queried.
 
 - tag
 
@@ -714,7 +714,7 @@ MySQL 用户指标
 
 #### `mysql_dbm_sample`
 
-选取部分执行耗时较高的 SQL 语句，获取其执行计划，并采集实际执行过程中的各种性能指标。
+Select some of the SQL statements with high execution time, collect their execution plans, and collect various performance indicators during the actual execution process.
 
 - tag
 
@@ -767,7 +767,7 @@ MySQL 用户指标
 
 #### `mysql_dbm_activity`
 
-记录当前线程的等待事件信息
+Collect the waiting event of the current thread
 
 - tag
 
