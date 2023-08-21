@@ -58,27 +58,27 @@ monitor:
 
 | 指标名称 | 描述 | 单位 | 维度 |
 | :---: | :---: | :---: | :---: |
-| nosql001_cpu_usage | CPU利用率 | % | redis_node_id |
-| nosql002_mem_usage | 内存利用率 | % | redis_node_id |
-| nosql005_disk_usage | 磁盘利用率 | % | redis_node_id |
-| nosql006_disk_total_size | 磁盘总容量 | GB | redis_node_id |
-| nosql007_disk_used_size | 磁盘使用量 | GB | redis_node_id |
-| redis017_proxy_accept | proxy接收的客户端总数 | count | redis_node_id |
-| redis018_proxy_request_ps | proxy的接收请求速率 | counts/s | redis_node_id |
-| redis019_proxy_response_ps | proxy的返回请求速率 | count/s | redis_node_id |
-| redis020_proxy_recv_client_bps | proxy接收客户端字节流的速率 | bytes/s | redis_node_id |
-| redis021_proxy_send_client_bps | proxy发送给客户端字节流的速率 | bytes/s | redis_node_id |
-| redis032_shard_qps | shard的qps | count | redis_node_id |
-| Invocationredis064_get_avg_usecs | proxy执行命令“get”的平均时延 | μs | redis_node_id |
-| redis065_get_max_usec | proxy执行命令“get”的最大时延 | μs | redis_node_id |
-| redis066_get_p99 | proxy执行命令“get”的p99时延 | μs | redis_node_id |
-| redis067_get_qps | proxy执行命令“get”的速率 | count/s | redis_node_id |
-| redis316_all_avg_usec | proxy执行所有命令的平均时延 | μs | redis_node_id |
-| redis317_all_max_usec | proxy执行所有命令的最大时延 | μs | redis_node_id |
-| redis318_all_p99 | proxy执行所有命令的p99时延 | μs | redis_node_id |
-| redis319_all_qps | proxy执行所有命令的速率 | count/s | redis_node_id |
-| redis669_connection_usage | 连接数使用率 | % | redis_node_id |
-| redis670_hit_rate | 命中率 | % | redis_node_id |
+| `nosql001_cpu_usage` | CPU利用率 | % | redis_node_id |
+| `nosql002_mem_usage` | 内存利用率 | % | redis_node_id |
+| `nosql005_disk_usage` | 磁盘利用率 | % | redis_node_id |
+| `nosql006_disk_total_size` | 磁盘总容量 | GB | redis_node_id |
+| `nosql007_disk_used_size` | 磁盘使用量 | GB | redis_node_id |
+| `redis017_proxy_accept` | proxy接收的客户端总数 | count | redis_node_id |
+| `redis018_proxy_request_ps` | proxy的接收请求速率 | counts/s | redis_node_id |
+| `redis019_proxy_response_ps` | proxy的返回请求速率 | count/s | redis_node_id |
+| `redis020_proxy_recv_client_bps` | proxy接收客户端字节流的速率 | bytes/s | redis_node_id |
+| `redis021_proxy_send_client_bps` | proxy发送给客户端字节流的速率 | bytes/s | redis_node_id |
+| `redis032_shard_qps` | shard的qps | count | redis_node_id |
+| `Invocationredis064_get_avg_usecs` | proxy执行命令“get”的平均时延 | μs | redis_node_id |
+| `redis065_get_max_usec` | proxy执行命令“get”的最大时延 | μs | redis_node_id |
+| `redis066_get_p99` | proxy执行命令“get”的p99时延 | μs | redis_node_id |
+| `redis067_get_qps` | proxy执行命令“get”的速率 | count/s | redis_node_id |
+| `redis316_all_avg_usec` | proxy执行所有命令的平均时延 | μs | redis_node_id |
+| `redis317_all_max_usec` | proxy执行所有命令的最大时延 | μs | redis_node_id |
+| `redis318_all_p99` | proxy执行所有命令的p99时延 | μs | redis_node_id |
+| `redis319_all_qps` | proxy执行所有命令的速率 | count/s | redis_node_id |
+| `redis669_connection_usage` | 连接数使用率 | % | redis_node_id |
+| `redis670_hit_rate` | 命中率 | % | redis_node_id |
 
 
 ## 对象 {#object}
