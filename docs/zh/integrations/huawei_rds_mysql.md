@@ -161,7 +161,7 @@ RDS for MySQL数据库代理监控指标，如[表2](https://support.huaweicloud
 
 | Key                   | Value                     |
 | --------------------- | ------------------------- |
-| `rds_cluster_id`      | RDS for MySQL实例ID       |
+| `rds_cluster_id`     | RDS for MySQL实例ID |
 | `dbproxy_instance_id` | RDS for MySQL Proxy实例ID |
 | `dbproxy_node_id`     | RDS for MySQL Proxy节点ID |
 
