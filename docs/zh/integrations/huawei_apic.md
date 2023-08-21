@@ -32,13 +32,13 @@ monitor:
 
 > 提示：请提前准备好符合要求的华为云 AK（简单起见，可直接授予全局只读权限`ReadOnlyAccess`）
 
-同步华为云 API 的监控数据，我们安装对应的采集脚本：「观测云集成（华为云-APIG 采集）」(ID：`guance_huaweicloud_apig`)
+同步华为云 API 的监控数据，我们安装对应的采集脚本：「观测云集成（华为云 - **APIG** 采集）」(ID：`guance_huaweicloud_apig`)
 
 点击【安装】后，输入相应的参数：华为云 AK、华为云账户名。
 
 点击【部署启动脚本】，系统会自动创建 `Startup` 脚本集，并自动配置相应的启动脚本。
 
-脚本安装完后，在Func中「开发」里找到脚本「观测云集成（华为云-APIG 采集）」，展开修改此脚本，找到`collector_configs`将`regions`后的地域换成自己实际的地域，再找到`monitor_configs`下面的`region_projects`,更改为实际的地域和Project ID。再点击保存发布
+脚本安装完后，在Func中「开发」里找到脚本「观测云集成（华为云 - **APIG** 采集）」，展开修改此脚本，找到`collector_configs`将`regions`后的地域换成自己实际的地域，再找到`monitor_configs`下面的`region_projects`,更改为实际的地域和Project ID。再点击保存发布
 
 此外，在「管理 / 自动触发配置」里看到对应的自动触发配置。点击【执行】，即可立即执行一次，无需等待定期时间。稍等片刻，可以查看执行任务记录以及对应日志。
 

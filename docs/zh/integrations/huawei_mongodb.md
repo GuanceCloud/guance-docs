@@ -68,7 +68,7 @@ monitor:
 | `mongodb003_insert_ps`          |  insert语句执行频率  | 该指标用于统计平均每秒insert语句在节点上执行次数。单位：Counts/s | ≥ 0 Counts/s | GaussDB(for Mongo)实例的节点 | 1分钟                    |
 | `mongodb004_query_ps`           |  query语句执行频率   | 该指标用于统计平均每秒query语句在节点上执行次数。单位：Counts/s | ≥ 0 Counts/s | GaussDB(for Mongo)实例的节点 | 1分钟                    |
 | `mongodb005_update_ps`          |  update语句执行频率  | 该指标用于统计平均每秒update语句执行次数。单位：Counts/s     | ≥ 0 Counts/s | GaussDB(for Mongo)实例的节点 | 1分钟                    |
-| `mongodb006_getmore_ps`         | getmore语句执行频率  | 该指标用于统计平均每秒getmore语句在节点上执行次数。单位：Counts/s | ≥ 0 Counts/s | GaussDB(for Mongo)实例的节点 | 1分钟                    |
+| `mongodb006_getmore_ps`         | **getmore**语句执行频率  | 该指标用于统计平均每秒**getmore**语句在节点上执行次数。单位：Counts/s | ≥ 0 Counts/s | GaussDB(for Mongo)实例的节点 | 1分钟                    |
 | `mongodb007_connections`        |    当前活动连接数    | 该指标用于统计试图连接到实例节点的连接数。单位：Counts       | ≥ 0 Counts   | GaussDB(for Mongo)实例的节点 | 1分钟                    |
 | `mongodb007_connections_usage`  | 当前活动连接数百分比 | 该指标用于统计试图连接到实例节点的连接数占可用连接数百分比。单位：% | 0~100 %      | GaussDB(for Mongo)实例的节点 | 1分钟                    |
 | `mongodb008_mem_resident`       |       驻留内存       | 该指标用于统计当前驻留内存的大小。单位：MB                   | ≥ 0 MB       | GaussDB(for Mongo)实例的节点 | 1分钟                    |
