@@ -55,7 +55,7 @@ We collected some configurations by default, as described in the Metrics column 
 3. On the APIervation cloud platform, press 「Metrics」 to check whether monitoring data exists
 
 ## Metric {#metric}
-Configure Huawei Cloud - cloud monitoring. The default indicator set is as follows. You can collect more indicators by configuring them [Huawei CloudMonitor Metrics Details](https://support.huaweicloud.com/ugAPI-API/API_41_0048.html){:target="_blank"}
+Configure Huawei Cloud - cloud monitoring. The default indicator set is as follows. You can collect more indicators by configuring them [Huawei CloudMonitor Metrics Details](https://support.huaweicloud.com/usermanual-apig/apig-ug-180427085.html){:target="_blank"}
 
 | Indicator ID| Indicator Name            | Indicator Meaning                                                | Value range     | Measurement object       | Monitoring cycle (original indicator) |
 |-------------------------------------|---------------------------| -------------------------------------------------------- |----------| --------------- | -------------------- |

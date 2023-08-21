@@ -55,7 +55,7 @@ We collected some configurations by default, as described in the Metrics column 
 3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists
 
 ## Metric {#metric}
-Configure Huawei Cloud - cloud monitoring. The default indicator set is as follows. You can collect more indicators by configuring them [Huawei CloudMonitor Metrics Details](https://support.huaweicloud.com/ugobs-obs/obs_41_0048.html){:target="_blank"}
+Configure Huawei Cloud - cloud monitoring. The default indicator set is as follows. You can collect more indicators by configuring them [Huawei CloudMonitor Metrics Details](https://support.huaweicloud.com/usermanual-obs/obs_03_0010.html){:target="_blank"}
 
 | Indicator ID                       | Index name                                               | Indicator meaning                                                      | Value range    | Measurement object (dimension)         | Monitoring cycle (raw metrics) |
 |------------------------------------|----------------------------------------------------------| ------------------------------------------------------------ | ---------- | ---------------- | -------------------- |

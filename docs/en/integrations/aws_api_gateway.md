@@ -53,7 +53,7 @@ We collected some configurations by default, as described in the Metrics column 
 3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists
 
 ## Metric {#metric}
-Configure AWS Cloud - cloud monitoring. The default indicator set is as follows. You can collect more indicators by configuring them [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/viewing_metrics_with_cloudwatch.html){:target="_blank"}
+Configure AWS Cloud - cloud monitoring. The default indicator set is as follows. You can collect more indicators by configuring them [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-metrics-and-dimensions.html){:target="_blank"}
 
 ### Metric
 
