@@ -29,15 +29,18 @@
 
 === "图表分析"
 
-    选择右上角**分析**即可对原始日志数据基于<u>1-3 个标签</u>进行分组统计，以反映出日志数据在不同的分组下，不同时间的分布特征与趋势。观测云支持多种分组数据浏览方式：时序图、排行榜、饼图和矩形树图。
+    选择右上角**分析**即可对原始日志数据基于<u>1-3 个标签</u>进行分组统计，以反映出日志数据在不同的分组下，不同时间的分布特征与趋势。
     
-    > 更多详情可参考文档 [查看器的分析模式](../getting-started/function-details/explorer-search.md#analysis)。
+    观测云支持多种分组数据浏览方式：时序图、排行榜、饼图和矩形树图。
+    
+    > 更多详情，可参考 [查看器的分析模式](../getting-started/function-details/explorer-search.md#analysis)。
     
     ![](img/5.log_analysis.gif)
-
+---
+  
 ## 日志查询与分析
 
-观测云支持多种方式对日志数据进行查询和分析，包括搜索与筛选、快捷筛选、日志统计、多行浏览、颜色高亮、格式化配置、日志数据导出等。
+观测云支持通过多种操作对日志数据进行查询和分析：
 
 ### 日志统计
 
@@ -58,7 +61,7 @@
 
 在**日志 > 索引**设置索引以后，支持在查看器选择不同的索引查看对应的日志内容。
 
-> 更多详情可参考文档 [日志索引](multi-index.md)。
+> 更多详情，可参考 [日志索引](multi-index.md)。
 
 ![](img/5.log_3.1.png)
 
@@ -75,7 +78,7 @@
 - 筛选条件：支持 `and / or` 任意组合，支持使用 `()` 括号表示执行搜索的优先级，支持 `=` 、`!=` 等操作符；
 - 搜索条件：支持使用 DQL 函数 `query_string()` 字符串查询，如输入 `message = query_string()` 对日志内容进行搜索。
 
-> 更多 DQL 语法可参考文档 [DQL 定义](../dql/define.md)。
+> 更多 DQL 语法，可参考 [DQL 定义](../dql/define.md)。
 
 ### 快捷筛选
 
@@ -85,7 +88,7 @@
 
 日志查看器默认显示 `time` 和 `message` 字段，其中 `time` 字段为固定字段无法删除。当鼠标放在查看器显示列上时，点击**设置**按钮，支持对显示列进行升序、降序、向左移动列、向右移动列、向左添加列、向右添加列、替换列、添加到快捷筛选、添加到分组、移除列等操作。
 
-> 更多自定义显示列可参考文档 [显示列说明](../getting-started/function-details/explorer-search.md#columns)。
+> 更多自定义显示列，可参考 [显示列说明](../getting-started/function-details/explorer-search.md#columns)。
 
 ### Copy as cURL
 
@@ -99,7 +102,7 @@
 
 > 关于更多相关参数说明，可参考 [DQL 数据查询](../open-api/query-data/query-data.md)。
 
-> 关于 API 更多信息可参考 [Open API](../management/api-key/open-api.md)。
+> 关于 API 更多信息，可参考 [Open API](../management/api-key/open-api.md)。
 
 ```shell
 curl '<Endpoint>/api/v1/df/query_data?search_after=\[1680226330509,8572,"L_1680226330509_cgj4hqbrhi85kl1m6os0"\]&queries_body=%7B%22queries%22:\[%7B%22uuid%22:%222eb41760-cf6e-11ed-a983-7d559044c3fc%22,%22qtype%22:%22dql%22,%22query%22:%7B%22q%22:%22L::re(%60.*%60):(%60*%60)%7B+%60index%60+IN+\[%27default%27\]+%7D%22,%22highlight%22:true,%22limit%22:50,%22orderby%22:\[%7B%22time%22:%22desc%22%7D\],%22_funcList%22:\[\],%22funcList%22:\[\],%22disableMultipleField%22:false,%22disable_slimit%22:false,%22is_optimized%22:true,%22offset%22:0,%22search_after%22:\[1680226330509,8572,%22L_1680226330509_cgj4hqbrhi85kl1m6os0%22\],%22timeRange%22:\[1680187562081,1680230762081\],%22tz%22:%22Asia%2FShanghai%22%7D%7D\]%7D' \
@@ -170,7 +173,7 @@ curl '<Endpoint>/api/v1/df/query_data?search_after=\[1680226330509,8572,"L_16802
 
 ## 日志详情
 
-点击日志列表，即可划出当前日志的详情页查看日志的详细信息，包括日志产生的时间、主机、来源、服务、内容、扩展字段、查看上下文等。支持通过键盘 ESC 按钮直接关闭详情页弹窗；支持通过键盘上下切换键（↑ ↓ ），切换查看上下日志详情。
+点击日志列表，即可划出当前日志的详情页查看日志的详细信息，包括日志产生的时间、主机、来源、服务、内容、扩展字段、查看上下文等多项信息。
 
 ### 查看完整日志
 
@@ -251,7 +254,7 @@ curl '<Endpoint>/api/v1/df/query_data?search_after=\[1680226330509,8572,"L_16802
 
     通过详情页下方的**链路**，您可以查看当前日志相关的链路（关联字段：`trace_id`）火焰图和 Span 列表，点击右上角的跳转按钮可直接对应的链路详情。
     
-    > 更多关于链路火焰图和 Span 列表的介绍，可查看文档 [链路分析](../application-performance-monitoring/explorer.md)。
+    > 更多关于链路火焰图和 Span 列表的介绍，可参考 [链路分析](../application-performance-monitoring/explorer.md)。
     
     - 火焰图：
     
@@ -270,7 +273,7 @@ curl '<Endpoint>/api/v1/df/query_data?search_after=\[1680226330509,8572,"L_16802
     
     ![](img/6.log_5.png)
     
-    - 指标视图：支持查看相关容器<u>在该日志结束前 30 分钟到日志结束后 30 分钟</u>的性能指标状态，包括容器 CPU、内存等性能指标视图。
+    - 指标视图：支持查看相关容器**在该日志结束前 30 分钟到日志结束后 30 分钟**的性能指标状态，包括容器 CPU、内存等性能指标视图。
     
     ![](img/6.log_6.png)
 
@@ -282,7 +285,7 @@ curl '<Endpoint>/api/v1/df/query_data?search_after=\[1680226330509,8572,"L_16802
     
     ![](img/6.log_pod_1.png)
     
-    - 指标视图：支持查看相关容器 Pod <u>在该日志结束前30分钟到日志结束后30分钟</u>的性能指标状态，包括 Pod CPU、内存等性能指标视图。
+    - 指标视图：支持查看相关容器 Pod **在该日志结束前30分钟到日志结束后 30 分钟**的性能指标状态，包括 Pod CPU、内存等性能指标视图。
     
     ![](img/6.log_pod_2.png)
 
@@ -290,23 +293,23 @@ curl '<Endpoint>/api/v1/df/query_data?search_after=\[1680226330509,8572,"L_16802
 
     日志关联的指标按照关联的字段分成三个视图，分别为 `service`、`project`、`source`。
     
-    - Service 指标
+    - Service 指标：
     
     ![](img/6.log_7.png)
     
-    - Project 指标
+    - Project 指标：
     
     ![](img/6.log_9.png)
     
-    - Source 指标
+    - Source 指标：
     
     ![](img/6.log_8.png)
 
 === "网络"
 
-    观测云支持您通过详情页下方的**网络**，查看 48 小时内的网络数据连接情况。包括 Host 、Pod 、Deployment 和 Service。
+    观测云支持您通过详情页下方的**网络**，查看 48 小时内的网络数据连接情况。包括 Host 、Pod、Deployment 和 Service。
     
-    > 更多详情可参考文档 [网络](../infrastructure/network.md)。
+    > 更多详情，可参考 [网络](../infrastructure/network.md)。
     
     ![](img/7.host_network_2.png)
     
@@ -344,4 +347,10 @@ curl '<Endpoint>/api/v1/df/query_data?search_after=\[1680226330509,8572,"L_16802
     ???+ attention 
 
         - 若同时查询到 Host、Pod、Deployment、Service 的关联字段，进入详情页时则按照此顺序显示网络数据；
-        - 若未查询到关联字段，则排在末端显示为灰色，点击提示<u>未匹配到网络视图</u>。
+        - 若未查询到关联字段，则排在末端显示为灰色，点击提示**未匹配到网络视图**。
+
+### 绑定内置视图
+
+观测云支持设置绑定或者删除内置视图（系统视图、用户视图）到日志详情页面。点击绑定内置视图，即可为当前日志详情页添加新的视图。
+
+![](img/log-view.png)

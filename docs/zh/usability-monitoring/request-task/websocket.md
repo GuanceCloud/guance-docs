@@ -7,7 +7,7 @@ WEBSOCKET 拨测允许您的客户端向服务端发起 HTTP 请求，建立 WEB
 
 ## 创建任务
 
-在观测云工作空间，点击**新建 > API 拨测**，选择 **WEBSOCKET 协议**即可新建 WEBSOCKET 拨测任务。
+在观测云工作空间，点击**新建 > API 拨测**，选择 **WEBSOCKET 协议**。
 
 ![](../img/4.dailtesting_websocket_1.png)
 
