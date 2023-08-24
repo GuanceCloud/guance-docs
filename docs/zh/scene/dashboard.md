@@ -44,21 +44,36 @@
 
 仪表板创建完成后，可点击右上角**添加图表**为仪表板添加新的图表。
 
-> 您可为图表添加全局变量，完成图表的动态筛选。详细介绍可前往[视图变量](view-variable.md)进行查看。
+> 您可为图表添加全局变量，完成图表的动态筛选。更多详细介绍，可参考[视图变量](view-variable.md)。
 
 ![](img/2.dashboard_4.png)
-
-### 时间控件
-
-观测云支持通过[时间控件](../getting-started/function-details/explorer-search.md#time)控制当前仪表板的数据展示范围，用户可以手动输入时间范围，或快速选择当前仪表板的内置时间范围，或通过自定义设置时间范围。
-
-<img src="../img/dashboard002.png" width="80%" >
 
 ### 大屏模式
 
 在仪表板，点击**预览 > 大屏模式**按钮后，观测云将自动帮您收起左侧和顶部的导航栏并全屏显示视图。点击 **ESC** 按钮，即可退出大屏模式。
 
 ![](img/2.dashboard_2.png)
+
+### 时间控件
+
+观测云支持通过[时间控件](../getting-started/function-details/explorer-search.md#time)控制当前仪表板的数据展示范围，用户可以手动输入时间范围，或快速选择当前仪表板的内置时间范围，或通过自定义设置时间范围。
+
+<img src="../img/dashboard002.png" width="70%" >
+
+## 自动刷新 {#refresh}
+
+为快速获得实时的查看器数据，观测云在查看器内提供刷新功能。您可进行以下操作：
+
+- 开启自动刷新时：  
+    - 支持选择自动刷新时间，包含 5s/10s/30s/1m/5m/30m/1h；默认选中 30s；  
+    - 支持点击 :octicons-sync-24: 手动刷新。
+- 停止自动刷新时，支持点击 :octicons-sync-24: 手动刷新；
+
+
+![](img/dashboard-refresh.gif)
+
+**注意**：此处的刷新功能的设置与[查看器自动刷新](../getting-started/function-details/explorer-search.md#auto-refresh)互不冲突。
+
 
 ### 设置
 
@@ -70,21 +85,23 @@
 
 您可以将当前仪表板内观测到的异常现象创建为 Issue。
  
-> 相关操作可参考[如何在视图级别手动创建 Issue](../exception/issue.md#dashboards)。关于 Issue 更多相关信息，您可参考[异常追踪](../exception/index.md)。
+> 更多相关操作，可参考[如何在视图级别手动创建 Issue](../exception/issue.md#dashboards)。关于 Issue 更多相关信息，可参考[异常追踪](../exception/index.md)。
 
 #### 保存快照
 
 在仪表板用快捷键 `(Windows: Ctrl+K / Mac OS: Cmd+K)` 快速保存快照，即可为当前仪表板保存快照，或者选择在**设置**按钮点击**保存快照**进行保存。
 
-> 更多介绍可参考文档 [快照](../getting-started/function-details/snapshot.md)。
+> 更多介绍，可参考 [快照](../getting-started/function-details/snapshot.md)。
 
 ![](img/dashboard004.png)
 
+<!--
 #### 设置刷新频率
 
 在仪表板，点击**设置**按钮，选择**设置刷新频率**，即可手动配置图表数据的刷新频率。初次设置刷新频率默认为 30 秒，支持 10 秒、30 秒、60 秒三种选项，若时间控件设置为**暂停**，则不再刷新。
 
 ![](img/9.dashboard_3.png)
+-->
 
 #### 保存到内置视图
 
