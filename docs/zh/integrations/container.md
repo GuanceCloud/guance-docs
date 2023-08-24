@@ -303,7 +303,7 @@ The metric of the Kubernetes CronJob.
 |  ----  | --------|
 |`cronjob`|Name must be unique within a namespace.|
 |`namespace`|Namespace defines the space within each name must be unique.|
-|`uid`|The UID of cronjob.|
+|`uid`|The UID of CronJob.|
 
 - 指标列表
 
@@ -339,6 +339,7 @@ The metric of the Kubernetes DaemonSet.
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
+|`daemons_available`|The number of nodes that should be running the daemon pod and have one or more of the daemon pod running and available (ready for at least spec.minReadySeconds).|int|count|
 |`daemons_unavailable`|The number of nodes that should be running the daemon pod and have none of the daemon pod running and available (ready for at least spec.minReadySeconds).|int|count|
 |`desired`|The total number of nodes that should be running the daemon pod (including nodes correctly running the daemon pod).|int|count|
 |`misscheduled`|The number of nodes that are running the daemon pod, but are not supposed to run the daemon pod.|int|count|
@@ -366,17 +367,17 @@ The metric of the Kubernetes Deployment.
 |  ----  | --------|
 |`deployment`|Name must be unique within a namespace.|
 |`namespace`|Namespace defines the space within each name must be unique.|
-|`uid`|The UID of deployment.|
+|`uid`|The UID of Deployment.|
 
 - 指标列表
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`condition`|The current status conditions of a deployment|int|count|
-|`paused`|Indicates that the deployment is paused (true or false).|bool|-|
 |`replicas`|Total number of non-terminated pods targeted by this deployment (their labels match the selector).|int|count|
 |`replicas_available`|Total number of available pods (ready for at least minReadySeconds) targeted by this deployment.|int|count|
+|`replicas_desired`|Number of desired pods for a Deployment.|int|count|
+|`replicas_ready`|The number of pods targeted by this Deployment with a Ready Condition.|int|count|
 |`replicas_unavailable`|Total number of unavailable pods targeted by this deployment.|int|count|
 |`replicas_updated`|Total number of non-terminated pods targeted by this deployment that have the desired template spec.|int|count|
 |`rollingupdate_max_surge`|The maximum number of pods that can be scheduled above the desired number of pods. |int|count|
@@ -402,7 +403,7 @@ The metric of the Kubernetes Endpoints.
 |  ----  | --------|
 |`endpoint`|Name must be unique within a namespace.|
 |`namespace`|Namespace defines the space within each name must be unique.|
-|`uid`|The UID of endpoint.|
+|`uid`|The UID of Endpoint.|
 
 - 指标列表
 
@@ -432,7 +433,7 @@ The metric of the Kubernetes Job.
 |  ----  | --------|
 |`job`|Name must be unique within a namespace.|
 |`namespace`|Namespace defines the space within each name must be unique.|
-|`uid`|The UID of job.|
+|`uid`|The UID of Job.|
 
 - 指标列表
 
@@ -464,7 +465,7 @@ The metric of the Kubernetes Node.
 | Tag | Description |
 |  ----  | --------|
 |`node`|Name must be unique within a namespace|
-|`uid`|The UID of node.|
+|`uid`|The UID of Node.|
 
 - 指标列表
 
@@ -541,7 +542,8 @@ The metric of the Kubernetes ReplicaSet.
 | Tag | Description |
 |  ----  | --------|
 |`namespace`|Namespace defines the space within each name must be unique.|
-|`replica_set`|Name must be unique within a namespace.|
+|`replica_set_name`|Name must be unique within a namespace. (Deprecated)|
+|`replicaset_name`|Name must be unique within a namespace.|
 |`uid`|The UID of ReplicaSet.|
 
 - 指标列表
@@ -550,13 +552,48 @@ The metric of the Kubernetes ReplicaSet.
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`fully_labeled_replicas`|The number of fully labeled replicas per ReplicaSet.|int|count|
-|`replicas`|Replicas is the most recently observed number of replicas.|int|count|
-|`replicas_desired`|Replicas is the number of desired replicas.|int|count|
+|`replicas`|The most recently observed number of replicas.|int|count|
+|`replicas_available`|The number of available replicas (ready for at least minReadySeconds) for this replica set.|int|count|
+|`replicas_desired`|The number of desired replicas.|int|count|
 |`replicas_ready`|The number of ready replicas for this replica set.|int|count|
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+### `kube_statefulset`
+
+The metric of the Kubernetes StatefulSet.
+
+- 标签
+
+
+| Tag | Description |
+|  ----  | --------|
+|`namespace`|Namespace defines the space within each name must be unique.|
+|`statefulset`|Name must be unique within a namespace.|
+|`uid`|The UID of StatefulSet.|
+
+- 指标列表
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`replicas`|The number of Pods created by the StatefulSet controller.|int|count|
+|`replicas_available`|Total number of available pods (ready for at least minReadySeconds) targeted by this StatefulSet.|int|count|
+|`replicas_current`|The number of Pods created by the StatefulSet controller from the StatefulSet version indicated by currentRevision.|int|count|
+|`replicas_desired`|The desired number of replicas of the given Template.|int|count|
+|`replicas_ready`|The number of pods created for this StatefulSet with a Ready Condition.|int|count|
+|`replicas_updated`|The number of Pods created by the StatefulSet controller from the StatefulSet version indicated by updateRevision.|int|count|
 
 
 
@@ -645,9 +682,9 @@ The object of the Kubernetes CronJob.
 | Tag | Description |
 |  ----  | --------|
 |`cron_job_name`|Name must be unique within a namespace.|
-|`name`|The UID of cronjob.|
+|`name`|The UID of CronJob.|
 |`namespace`|Namespace defines the space within each name must be unique.|
-|`uid`|The UID of cronjob.|
+|`uid`|The UID of CronJob.|
 
 - 指标列表
 
@@ -689,6 +726,7 @@ The object of the Kubernetes DaemonSet.
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`age`|Age (seconds)|int|s|
+|`daemons_available`|The number of nodes that should be running the daemon pod and have one or more of the daemon pod running and available (ready for at least spec.minReadySeconds).|int|count|
 |`daemons_unavailable`|The number of nodes that should be running the daemon pod and have none of the daemon pod running and available (ready for at least spec.minReadySeconds).|int|count|
 |`desired`|The total number of nodes that should be running the daemon pod (including nodes correctly running the daemon pod).|int|count|
 |`message`|Object details|string|-|
@@ -716,9 +754,9 @@ The object of the Kubernetes Deployment.
 | Tag | Description |
 |  ----  | --------|
 |`deployment_name`|Name must be unique within a namespace.|
-|`name`|The UID of deployment.|
+|`name`|The UID of Deployment.|
 |`namespace`|Namespace defines the space within each name must be unique.|
-|`uid`|The UID of deployment.|
+|`uid`|The UID of Deployment.|
 
 - 指标列表
 
@@ -726,14 +764,23 @@ The object of the Kubernetes Deployment.
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`age`|Age (seconds)|int|s|
-|`available`|Total number of available pods (ready for at least minReadySeconds) targeted by this deployment.|int|-|
-|`max_surge`|The maximum number of pods that can be scheduled above the desired number of pods|int|count|
-|`max_unavailable`|The maximum number of pods that can be unavailable during the update.|int|count|
+|`available`|Total number of available pods (ready for at least minReadySeconds) targeted by this deployment. (Deprecated)|int|count|
+|`max_surge`|The maximum number of pods that can be scheduled above the desired number of pods. (Deprecated)|int|count|
+|`max_unavailable`|The maximum number of pods that can be unavailable during the update. (Deprecated)|int|count|
 |`message`|Object details|string|-|
-|`ready`|Total number of ready pods targeted by this deployment.|string|-|
+|`paused`|Indicates that the deployment is paused (true or false).|bool|-|
+|`ready`|The number of pods targeted by this Deployment with a Ready Condition. (Deprecated)|int|count|
+|`replicas`|Total number of non-terminated pods targeted by this deployment (their labels match the selector).|int|count|
+|`replicas_available`|Total number of available pods (ready for at least minReadySeconds) targeted by this deployment.|int|count|
+|`replicas_desired`|Number of desired pods for a Deployment.|int|count|
+|`replicas_ready`|The number of pods targeted by this Deployment with a Ready Condition.|int|count|
+|`replicas_unavailable`|Total number of unavailable pods targeted by this deployment.|int|count|
+|`replicas_updated`|Total number of non-terminated pods targeted by this deployment that have the desired template spec.|int|count|
+|`rollingupdate_max_surge`|The maximum number of pods that can be scheduled above the desired number of pods. |int|count|
+|`rollingupdate_max_unavailable`|The maximum number of pods that can be unavailable during the update.|int|count|
 |`strategy`|Type of deployment. Can be "Recreate" or "RollingUpdate". Default is RollingUpdate.|string|-|
-|`unavailable`|Total number of unavailable pods targeted by this deployment.|int|-|
-|`up_dated`|Total number of non-terminated pods targeted by this deployment that have the desired template spec.|int|-|
+|`unavailable`|Total number of unavailable pods targeted by this deployment. (Deprecated)|int|count|
+|`up_dated`|Total number of non-terminated pods targeted by this deployment that have the desired template spec. (Deprecated)|int|count|
 
 
 
@@ -762,9 +809,9 @@ The object of the Kubernetes Job.
 | Tag | Description |
 |  ----  | --------|
 |`job_name`|Name must be unique within a namespace.|
-|`name`|The UID of job.|
+|`name`|The UID of Job.|
 |`namespace`|Namespace defines the space within each name must be unique.|
-|`uid`|The UID of job.|
+|`uid`|The UID of Job.|
 
 - 指标列表
 
@@ -800,12 +847,12 @@ The object of the Kubernetes Node.
 | Tag | Description |
 |  ----  | --------|
 |`internal_ip`|Node internal IP|
-|`name`|The UID of node.|
+|`name`|The UID of Node.|
 |`namespace`|Namespace defines the space within each name must be unique.|
 |`node_name`|Name must be unique within a namespace.|
 |`role`|Node role. (master/node)|
 |`status`|NodePhase is the recently observed lifecycle phase of the node. (Pending/Running/Terminated)|
-|`uid`|The UID of node.|
+|`uid`|The UID of Node.|
 
 - 指标列表
 
@@ -836,7 +883,7 @@ The object of the Kubernetes Pod.
 |  ----  | --------|
 |`daemonset`|The name of the DaemonSet which the object belongs to.|
 |`deployment`|The name of the Deployment which the object belongs to.|
-|`name`|The UID of pod.|
+|`name`|The UID of Pod.|
 |`namespace`|Namespace defines the space within each name must be unique.|
 |`node_name`|NodeName is a request to schedule this pod onto a specific node.|
 |`phase`|The phase of a Pod is a simple, high-level summary of where the Pod is in its lifecycle.(Pending/Running/Succeeded/Failed/Unknown)|
@@ -844,7 +891,7 @@ The object of the Kubernetes Pod.
 |`qos_class`|The Quality of Service (QOS) classification assigned to the pod based on resource requirements|
 |`statefulset`|The name of the StatefulSet which the object belongs to.|
 |`status`|Reason the container is not yet running.|
-|`uid`|The UID of pod.|
+|`uid`|The UID of Pod.|
 
 - 指标列表
 
@@ -886,20 +933,27 @@ The object of the Kubernetes ReplicaSet.
 
 | Tag | Description |
 |  ----  | --------|
-|`deployment`|The name of the deployment which the object belongs to.|
+|`deployment`|The name of the Deployment which the object belongs to.|
 |`name`|The UID of ReplicaSet.|
 |`namespace`|Namespace defines the space within each name must be unique.|
-|`replica_set_name`|Name must be unique within a namespace.|
+|`replica_set_name`|Name must be unique within a namespace. (Deprecated)|
+|`replicaset_name`|Name must be unique within a namespace.|
+|`statefulset`|The name of the StatefulSet which the object belongs to.|
+|`uid`|The UID of ReplicaSet.|
 
 - 指标列表
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`age`|age (seconds)|int|s|
-|`available`|The number of available replicas (ready for at least minReadySeconds) for this replica set.|int|-|
+|`age`|Age (seconds)|int|s|
+|`available`|The number of available replicas (ready for at least minReadySeconds) for this replica set. (Deprecated)|int|-|
 |`message`|Object details|string|-|
-|`ready`|The number of ready replicas for this replica set.|int|-|
+|`ready`|The number of ready replicas for this replica set. (Deprecated)|int|-|
+|`replicas`|The most recently observed number of replicas.|int|count|
+|`replicas_available`|The number of available replicas (ready for at least minReadySeconds) for this replica set.|int|count|
+|`replicas_desired`|The number of desired replicas.|int|count|
+|`replicas_ready`|The number of ready replicas for this replica set.|int|count|
 
 
 
@@ -915,24 +969,61 @@ The object of the Kubernetes Service.
 
 | Tag | Description |
 |  ----  | --------|
-|`name`|The UID of service|
+|`name`|The UID of Service|
 |`namespace`|Namespace defines the space within each name must be unique.|
 |`service_name`|Name must be unique within a namespace.|
 |`type`|type determines how the Service is exposed. Defaults to ClusterIP. (ClusterIP/NodePort/LoadBalancer/ExternalName)|
-|`uid`|The UID of service|
+|`uid`|The UID of Service|
 
 - 指标列表
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`age`|age (seconds)|int|s|
-|`cluster_ip`|clusterIP is the IP address of the service and is usually assigned randomly by the master.|string|-|
-|`external_ips`|externalIPs is a list of IP addresses for which nodes in the cluster will also accept traffic for this service.|string|-|
-|`external_name`|externalName is the external reference that kubedns or equivalent will return as a CNAME record for this service.|string|-|
-|`external_traffic_policy`|externalTrafficPolicy denotes if this Service desires to route external traffic to node-local or cluster-wide endpoints.|string|-|
-|`message`|object details|string|-|
+|`age`|Age (seconds)|int|s|
+|`cluster_ip`|ClusterIP is the IP address of the service and is usually assigned randomly by the master.|string|-|
+|`external_ips`|ExternalIPs is a list of IP addresses for which nodes in the cluster will also accept traffic for this service.|string|-|
+|`external_name`|ExternalName is the external reference that kubedns or equivalent will return as a CNAME record for this service.|string|-|
+|`external_traffic_policy`|ExternalTrafficPolicy denotes if this Service desires to route external traffic to node-local or cluster-wide endpoints.|string|-|
+|`message`|Object details|string|-|
 |`session_affinity`|Supports "ClientIP" and "None".|string|-|
+
+
+
+
+
+
+
+
+
+
+### `kubernetes_statefulsets`
+
+The object of the Kubernetes StatefulSet.
+
+- 标签
+
+
+| Tag | Description |
+|  ----  | --------|
+|`name`|The UID of StatefulSet.|
+|`namespace`|Namespace defines the space within each name must be unique.|
+|`statefulset_name`|Name must be unique within a namespace.|
+|`uid`|The UID of StatefulSet.|
+
+- 指标列表
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`age`|Age (seconds)|int|s|
+|`message`|Object details|string|-|
+|`replicas`|The number of Pods created by the StatefulSet controller.|int|count|
+|`replicas_available`|Total number of available pods (ready for at least minReadySeconds) targeted by this StatefulSet.|int|count|
+|`replicas_current`|The number of Pods created by the StatefulSet controller from the StatefulSet version indicated by currentRevision.|int|count|
+|`replicas_desired`|The desired number of replicas of the given Template.|int|count|
+|`replicas_ready`|The number of pods created for this StatefulSet with a Ready Condition.|int|count|
+|`replicas_updated`|The number of Pods created by the StatefulSet controller from the StatefulSet version indicated by updateRevision.|int|count|
 
 
 
@@ -1075,7 +1166,25 @@ The logging of the Kubernetes Event.
 
 
 
+
+
+
+
+
+
+
+
 <!-- markdownlint-enable -->
+
+
+## 联动 Dataway Sink 功能 {#link-dataway-sink}
+
+Dataway Sink [详见文档](../datakit/dataway-sink.md#sink-intro)。
+
+所有的 Kubernetes 资源采集，都会添加与 CustomerKey 匹配的 Label。例如 CustomerKey 是 `name`，DaemonSet、Deployment、Pod 等资源，会在自己当前的 Labels 中找到 `name`，并将其添加到 tags。
+
+容器会添加其所属 Pod 的 Customer Labels。
+
 
 ## FAQ {#faq}
 
