@@ -11,16 +11,41 @@ icon: zy/release-notes
 
 ### 观测云更新
 
+<video controls="controls" poster="https://static.guance.com/dataflux/help/video/20230824.png" >
+      <source id="mp4" src="https://static.guance.com/dataflux/help/video/20230824.mp4" type="video/mp4">
+</video>
+
 - [计费项](../billing/billing-method/index.md)：
     - 备份日志：新增 OSS、OBS、AWS S3、Kafka 四种存档类型计费项，基于用户选择的对应存档类型统计汇总转发的流量大小，并根据数据对应出账；
     - 应用性能 Trace、用户访问 PV 新增 30天/60天的数据存储策略。
 - 监控：
     - [静默规则](../monitoring/silent-management.md)：支持基于不同维度配置告警沉默。
-    - [监控器](../monitoring/monitor/index.md#list)：支持为监控器添加标签；监控器列表增加快捷筛选列，并对列表进行了一些优化；  
+    - [监控器](../monitoring/monitor/index.md#list)：支持为监控器添加标签，根据标签过滤列表；监控器列表增加快捷筛选列，并对列表进行了一些优化；  
     - SLO：新增**故障时间**显示列。
 - 日志 > 备份日志：新增 [Kafka 消息队列](../logs/backup.md#kafka)外部存储。
 - 查看器/仪表板：新增[自动刷新功能](../getting-started/function-details/explorer-search.md#refresh)。
-- 查看器详情页：新增绑定内置视图入口。
+- 查看器详情页：新增[绑定内置视图](../infrastructure/host.md#view)入口。
+
+### 智能巡检更新
+
+- [阿里云 RDS MariaDB](../integrations/aliyun_rds_mariadb.md)：阿里云 RDS MariaDB 的展示指标包括响应时间、并发连接数、QPS 和 TPS 等。  
+- [阿里云 RocketMQ4](../integrations/aliyun_rocketmq4.md)：阿里云 RocketMQ 4.0 的展示指标包括消息吞吐量、延迟、可靠性和水平扩展能力等。
+- [阿里云 Tair 社区版](../integrations/aliyun_tair.md)：阿里云 Tair 社区版指标展示包括 CPU 使用率、内存使用率、代理总QPS、网络流量、命中率等。
+- [AWS DynamoDB](../integrations/aws_dynamodb.md)：AWS DynamoDB 的展示指标包括吞吐量容量单位（Capacity Units）、延迟、并发连接数和读写吞吐量，这些指标反映了 DynamoDB 在处理大规模数据存储和访问时的性能表现和可扩展性。
+- [AWS EventBridge](../integrations/aws_eventbridge.md)：AWS EventBridge 的展示指标包括事件传递延迟、吞吐量、事件规模和可伸缩性，这些指标反映了 EventBridge 在处理大规模事件流和实时数据传递时的性能表现和可靠性。
+- [AWS Lambda](../integrations/aws_lambda.md)：AWS Lambda 的展示指标包括冷启动时间、执行时间、并发执行数和内存使用量，这些指标反映了 Lambda 函数的响应速度、可扩展性和资源利用情况。
+- [HUAWEI SYS.AS](../integrations/huawei_SYS.AS.md)：HUAWEI SYS.AS 的展示指标包括响应时间、并发连接数、吞吐量和可靠性，这些指标反映了 SYS.AS 在处理应用程序请求和数据交互时的性能表现和稳定性。  
+- [HUAWEI SYS.CBR](../integrations/huawei_SYS.CBR.md)：HUAWEI SYS.CBR 的展示指标包括带宽利用率、延迟、丢包率和网络吞吐量，这些指标反映了CBR在网络传输和带宽管理方面的性能表现和质量保证。  
+- [华为云 GaussDB-Cassandra](../integrations/huawei_gaussdb_cassandra.md)：华为云 GaussDB-Cassandra 的展示指标包括读写吞吐量、延迟、数据一致性和可扩展性，这些指标反映了 GaussDB-Cassandra 在处理大规模分布式数据存储和访问时的性能表现和可靠性。  
+- [华为云 GaussDB for MySQL](../integrations/huawei_gaussdb_for_mysql.md)：华为云 GaussDB for MySQL 的展示指标包括响应时间、并发连接数、读写吞吐量和可扩展性，这些指标反映了 GaussDB for MySQL 在处理大规模关系型数据库操作时的性能表现和可靠性。  
+- [华为云 GaussDB-Influx](../integrations/huawei_gaussdb_influx.md)：华为云 GaussDB-Influx 的展示指标包括写入吞吐量、查询延迟、数据保留策略和可扩展性，这些指标反映了 GaussDB-Influx 在处理大规模时序数据存储和查询时的性能表现和可靠性。  
+- [华为云 GaussDB-Redis](../integrations/huawei_gaussdb_redis.md)：华为云 GaussDB-Redis 的展示指标包括读写吞吐量、响应时间、并发连接数和数据持久性，这些指标反映了 GaussDB-Redis 在处理高并发数据存储和缓存时的性能表现和可靠性。  
+- [华为云 GaussDB SYS.GAUSSDBV5](../integrations/huawei_gaussdb_sys.gaussdbv5.md)：华为云 GaussDB `SYS.GAUSSDBV5`，提供 CPU、内存、磁盘、死锁、`SQL` 响应时间指标等数据。  
+- [华为云 MongoDB](../integrations/huawei_mongodb.md)：华为云 MongoDB 的展示指标包括读写吞吐量、延迟、并发连接数和数据可靠性，这些指标反映了 MongoDB 在处理大规模文档存储和查询时的性能表现和可扩展性。  
+- [华为云 RDS PostgreSQL](../integrations/huawei_rds_postgresql.md)：华为云 RDS PostgreSQL 的展示指标包括查询性能、事务吞吐量、并发连接数和数据可靠性，这些指标反映了 RDS PostgreSQL 在处理大规模关系型数据存储和事务处理时的性能表现和可靠性。  
+- 腾讯云 CKafka：腾讯云 CKafka 的展示指标包括消息吞吐量、延迟、并发连接数和可靠性，这些指标反映了 CKafka 在处理大规模消息传递和实时数据流时的性能表现和可靠性保证。  
+- [Zadigx](../integrations/zadigx.md)：Zadigx 展示包括概览、自动化构建、自动化部署、自动化测试等。  
+- [飞书与异常追踪联动](../integrations/feishu_im.md)：为方便更加及时可方便的获取异常追踪中的新 Issue，可以通过在内部群中创建一个飞书、钉钉或者企业微信的机器人来接受异常追踪中的新 Issue 或新回复的提醒，帮助及时处理 Issue；也可以通过 @机器人的这种方式来快速进行 Issue 回复，提高我们的异常处理效率。
 
 ## 2023 年 8 月 17 日
 

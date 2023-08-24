@@ -7,7 +7,7 @@
 * AGP `com.android.tools.build:gradle` 版本 `3.5.0` 以上
 * gradle 版本 `5.4.0` 以上
 * java 版本 `8.0` 以上
-*  Android minSdkVersion 21
+* Android minSdkVersion 21
 
 >  随着 Android Studio 版本更新，这部分版本兼容度也会发生变化，如果你有碰到编译环境符合以上条件，但是仍然遇到编译出错的问题，请联系我们的开发人员
  
@@ -63,9 +63,36 @@ dependencies {
 
 ![](../img/17.trouble_shooting_android_gradle_error_3.png)
 
-#### java.lang.IllegalArgumentException: Invalid opcode 169 {#android_invalid_opcode_169}
+#### java.lang.IllegalArgumentException:  {#android_illegal_argument_exception}
+
+* Invalid opcode 169
 
 如果在使用 `ft_plugin_legacy` 发生了这个错误，这个是 `asm-commons:7.0` 版本的 bug，原始 issue 在[这里](https://gitlab.ow2.org/asm/asm/-/issues/317873),  通过在 plugin 配置中依赖 `org.ow2.asm:asm-commons:7.2` 以上的版本，解决这个问题。通过 ` ./gradlew buildEnvironment` 可以确认真实 `asm-commons` 使用版本。
+
+```groovy
+buildscript {
+	dependencies {
+        classpath 'com.cloudcare.ft.mobile.sdk.tracker.plugin:ft-plugin-legacy:[version]'
+        // 添加依赖
+        classpath 'org.ow2.asm:asm-commons:7.2' 
+    }
+}
+```
+
+* org.ow2.asm:asm 版本低于 7.0
+
+目前 plugin 版本仅支持使用  `org.ow2.asm:asm7.x` 以上版本的 build 环境，通过 ` ./gradlew buildEnvironment` 可以查询 build 环境，来确认这个问题。这个问题可以通过强行依赖 7.x 以上的版本来修复这个问题，建议使用 7.2 以上的版本。
+
+```groovy
+buildscript {
+	dependencies {
+        classpath 'com.cloudcare.ft.mobile.sdk.tracker.plugin:ft-plugin-legacy:[version]'
+         // 添加依赖
+        classpath 'org.ow2.asm:asm:7.2'
+        classpath 'org.ow2.asm:asm-commons:7.2'
+    }
+}
+```
 
 
 ## SDK 初始化异常校验
