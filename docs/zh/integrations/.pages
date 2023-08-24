@@ -21,7 +21,7 @@ nav:
       - 'SQLServer': aliyun_rds_sqlserver.md
       - 'Tair': aliyun_tair.md
 
-    - 华为云:
+    - 华为云: 
       - 'DCS': huawei_dcs.md
       - 'ECS': huawei_ecs.md
       - 'ELB': huawei_elb.md
@@ -29,15 +29,15 @@ nav:
       - 'GaussDB(MySQL)': huawei_gaussdb_for_mysql.md
       - 'GaussDB(Influx)': huawei_gaussdb_influx.md
       - 'GaussDB(Redis)': huawei_gaussdb_redis.md
-      - 'GaussDBV5: huawei_gaussdb_sys.gaussdbv5.md
-      - 'MySQL': huawei_rds_mysql.md
+      - 'GaussDBV5': huawei_gaussdb_sys.gaussdbv5.md
+      - 'RDS(MySQL)': huawei_rds_mysql.md
       - 'MongoDB': huawei_mongodb.md
       - 'OBS': huawei_obs.md
       - 'RDS(PostgreSQL)': huawei_rds_postgresql.md
       - 'SYS.AS': huawei_SYS.AS.md
       - 'SYS.CBR': huawei_SYS.CBR.md
 
-    - AWS:
+    - AWS: 
       - 'DynamoDB': aws_dynamodb.md
       - 'EC2': aws_ec2.md
       - 'ELB': aws_elb.md
