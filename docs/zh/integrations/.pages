@@ -12,22 +12,37 @@ nav:
       - 'OSS': aliyun_oss.md
       - 'Oracle(PolarDB)': aliyun_polardb_oracle.md
       - 'PostgreDQL(PolarDB)': aliyun_polardb_postgresql.md
+      - 'RDS(MariaDB)' : aliyun_rds_mariadb.md
       - 'Redis Shard': aliyun_redis_shard.md
       - 'Redis': aliyun_redis.md
+      - 'RocketMQ4' : aliyun_rocketmq4.md
       - 'SLB': aliyun_slb.md
       - 'SLS': aliyun_sls.md
       - 'SQLServer': aliyun_rds_sqlserver.md
+      - 'Tair': aliyun_tair.md
 
     - 华为云:
       - 'DCS': huawei_dcs.md
       - 'ECS': huawei_ecs.md
       - 'ELB': huawei_elb.md
+      - 'GaussDB(Cassandra)': huawei_gaussdb_cassandra.md
+      - 'GaussDB(MySQL)': huawei_gaussdb_for_mysql.md
+      - 'GaussDB(Influx)': huawei_gaussdb_influx.md
+      - 'GaussDB(Redis)': huawei_gaussdb_redis.md
+      - 'GaussDBV5: huawei_gaussdb_sys.gaussdbv5.md
       - 'MySQL': huawei_rds_mysql.md
+      - 'MongoDB': huawei_mongodb.md
       - 'OBS': huawei_obs.md
+      - 'RDS(PostgreSQL)': huawei_rds_postgresql.md
+      - 'SYS.AS': huawei_SYS.AS.md
+      - 'SYS.CBR': huawei_SYS.CBR.md
 
     - AWS:
+      - 'DynamoDB': aws_dynamodb.md
       - 'EC2': aws_ec2.md
       - 'ELB': aws_elb.md
+      - 'EventBridge': aws_eventbridge.md
+      - 'Lambda': aws_lambda.md
       - 'MSK': aws_msk.md
       - 'MySQL': aws_rds_mysql.md
       - 'OpenSearch': aws_opensearch.md
@@ -114,6 +129,8 @@ nav:
       - snmp.md
       - seata.md
       - zookeeper.md
+      - 'Zadigx': zadigx.md
+      - '飞书与异常追踪联动': feishu_im.md
 
   - CI/CD:
       - 'Jenkins': jenkins.md
