@@ -60,8 +60,10 @@
                 "s3:GetObject",
                 "s3:ListBucket"
             ],
-            "Resource": "arn:aws-cn:s3:::bucket-test-0529/*"   //只针对特定bucket授权
-            "Resource": "arn:aws-cn:s3:::*"                    //所有bucket授权
+            "Resource": [
+                "arn:aws-cn:s3:::<bucket name>",
+                "arn:aws-cn:s3:::<bucket name>/*"
+            ]
         }
     ]
 }

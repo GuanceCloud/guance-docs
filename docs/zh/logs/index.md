@@ -4,7 +4,9 @@ icon: zy/logs
 # 日志
 ---
 
-## 概述
+<video controls="controls" poster="https://static.guance.com/dataflux/help/video/log.png" >
+      <source id="mp4" src="https://static.guance.com/dataflux/help/video/log.mp4" type="video/mp4">
+</video>
 
 日志是程序产生的，遵循一定格式（通常包含时间戳）的文本数据。通常日志由服务器生成，输出到不同的文件中，一般会有系统日志、应用日志、安全日志等。这些日志分散地存储在不同的服务器上，当系统发生故障时，需要登录到各个服务器上，在日志里查找故障原因，这对于我们排查故障造成了比较大的麻烦。
 
@@ -20,7 +22,7 @@ icon: zy/logs
 
 -->
 
-观测云提供全面的日志采集能力，通过配置 [日志采集](collection.md) 把日志数据统一上报到观测云工作空间，您可以对所采集的日志数据进行统一存储、审计、监控、告警、分析、导出等。
+观测云提供全面的日志采集能力，通过[日志采集](collection.md)把日志数据统一上报到观测云工作空间，您可以对所采集的日志数据进行统一存储、审计、监控、告警、分析、导出等。
 
 ## 在本模块，您将了解：
 
