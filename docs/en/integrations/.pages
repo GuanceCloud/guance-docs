@@ -58,6 +58,7 @@ nav:
       - jenkins.md
       - gitlab.md
       - snmp.md
+      - netflow.md
 
   - Cloud Native:
     - 'Metric Collection': container.md
