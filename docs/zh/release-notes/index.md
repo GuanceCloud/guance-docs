@@ -24,7 +24,7 @@ icon: zy/release-notes
     - SLO：新增**故障时间**显示列。
 - 日志 > 备份日志：新增 [Kafka 消息队列](../logs/backup.md#kafka)外部存储。
 - 查看器/仪表板：新增[自动刷新功能](../getting-started/function-details/explorer-search.md#refresh)。
-- 查看器详情页：新增绑定内置视图入口。
+- 查看器详情页：新增[绑定内置视图](../infrastructure/host.md#view)入口。
 
 ## 2023 年 8 月 17 日
 
