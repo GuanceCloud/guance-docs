@@ -7,6 +7,21 @@ icon: zy/release-notes
 
 本文档记录观测云每次上线发布的更新内容说明，包括 DataKit、观测云最佳实践、观测云集成文档和观测云。
 
+## 2023 年 8 月 24 日
+
+### 观测云更新
+
+- [计费项](../billing/billing-method/index.md)：
+    - 备份日志：新增 OSS、OBS、AWS S3、Kafka 四种存档类型计费项，基于用户选择的对应存档类型统计汇总转发的流量大小，并根据数据对应出账；
+    - 应用性能 Trace、用户访问 PV 新增 30天/60天的数据存储策略。
+- 监控：
+    - [静默规则](../monitoring/silent-management.md)：支持基于不同维度配置告警沉默。
+    - [监控器](../monitoring/monitor/index.md#list)：支持为监控器添加标签；监控器列表增加快捷筛选列，并对列表进行了一些优化；  
+    - SLO：新增**故障时间**显示列。
+- 日志 > 备份日志：新增 [Kafka 消息队列](../logs/backup.md#kafka)外部存储。
+- 查看器/仪表板：新增[自动刷新功能](../getting-started/function-details/explorer-search.md#refresh)。
+- 查看器详情页：新增绑定内置视图入口。
+
 ## 2023 年 8 月 17 日
 
 ### 观测云更新
