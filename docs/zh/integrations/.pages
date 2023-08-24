@@ -127,6 +127,7 @@ nav:
       - 'Flink': flinkv1.md
       - nacos.md
       - snmp.md
+      - netflow.md
       - seata.md
       - zookeeper.md
       - 'Zadigx': zadigx.md
