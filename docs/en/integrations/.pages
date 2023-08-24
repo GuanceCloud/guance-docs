@@ -26,6 +26,7 @@ nav:
       - 'MySQL': mysql.md
       - clickhousev1.md
       - couchbase.md
+      - couchdb.md
       - oracle.md
       - sqlserver.md
       - postgresql.md
