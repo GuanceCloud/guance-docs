@@ -20,6 +20,7 @@ DBCP
 DDTrace
 DKProto
 DKSpan
+Dataflux
 DaemonSet
 DataDog
 Datakit
@@ -56,6 +57,8 @@ Log4j
 Logback
 Loki
 Minio
+Gaussdb
+Innodb
 MkDocs
 MyISAM
 NGINX
@@ -130,6 +133,7 @@ vmalloc
 workqueue
 xpack
 zhangsan
+Zadigx
 
 # 缩写
 CNCF
