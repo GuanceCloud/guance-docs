@@ -55,7 +55,7 @@ We collected some configurations by default, as described in the Metrics column 
 3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists
 
 ## Metric {#metric}
-Configure Ali Cloud - cloud monitoring. The default indicator set is as follows. You can collect more indicators by configuring them [Alibaba Cloud Monitor Metrics Details](https://cms.console.aliyun.com/metric-meta/acs_ecs_dashboard/ecs){:target="_blank"}
+Configure Ali Cloud - cloud monitoring. The default indicator set is as follows. You can collect more indicators by configuring them [Alibaba Cloud Monitor Metrics Details](https://cms.console.aliyun.com/metric-meta/acs_ecs_dashboard/ecs?spm=a2c4g.11186623.0.0.252476abTrNabN){:target="_blank"}
 
 > Tip：The monitoring plug-in needs to be installed on the aliyun ECS console
 

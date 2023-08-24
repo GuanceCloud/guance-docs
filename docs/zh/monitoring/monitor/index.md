@@ -12,16 +12,6 @@
 
 观测云支持您从主机、Docker、Elasticsearch 等监控模板快速创建监控器，或自定义新的监控器和触发条件并配置告警。
 
-### 官方模板库 {#template}
-
-观测云内置多种开箱即用的监控[模板](../monitor/template.md)，支持一键创建主机、Docker、Elasticsearch、Redis、阿里云 RDS、阿里云 SLB、Flink 监控等官方监控器至当前工作空间。
-
-![](../img/monitoring-0725.png)
-
-**注意**：反复从模板创建监控器会导致监控器列表内出现重复的监控器，观测云支持检测重复的监控器，您可以通过在弹窗提示中选择“是”正常创建模板库中所有的监控器，或选择“否”仅创建不重复的监控器。
-
-<img src="../img/image_8.png" width="60%" >
-
 ### 监控器 {#rules}
 
 您可以通过**监控器**设置自定义触发规则。
@@ -55,9 +45,20 @@
 | [应用性能指标检测](application-performance-detection.md){ .md-button .md-button--primary } | [用户访问指标检测](real-user-detection.md){ .md-button .md-button--primary } | [进程异常检测](processes-detection.md){ .md-button .md-button--primary } |
 | [基础设施存活检测](infrastructure-detection.md){ .md-button .md-button--primary } | [可用性监测数据检测](usability-detection.md){ .md-button .md-button--primary } | [网络数据检测](network-detection.md){ .md-button .md-button--primary } |
 
+### 官方模板库 {#template}
+
+观测云内置多种开箱即用的监控[模板](../monitor/template.md)，支持一键创建主机、Docker、Elasticsearch、Redis、阿里云 RDS、阿里云 SLB、Flink 监控等官方监控器至当前工作空间。
+
+![](../img/monitoring-0725.png)
+
+**注意**：反复从模板创建监控器会导致监控器列表内出现重复的监控器，观测云支持检测重复的监控器，您可以通过在弹窗提示中选择“是”正常创建模板库中所有的监控器，或选择“否”仅创建不重复的监控器。
+
+<img src="../img/image_8.png" width="60%" >
+
+
 ### 自定义模板库
 
-您可以将已创建好的监控器再次保存为监控器模版，便于您快速添加或删除监控器配置条件。
+您可以将已创建好的监控器保存为模版，便于您之后快速添加或删除监控器配置条件。
 
 <div class="grid cards" markdown>
 
@@ -82,7 +83,7 @@
 | 删除 | 观测云支持对已有的监控器进行**删除**。<br>:warning: 一旦删除监控器，将无法恢复监控器数据，事件数据仍做保留。 |
 | 查看相关事件 | 由同一监控器触发的告警事件统一存储在对应**监控器**下，通过**查看相关事件**，可直接跳转由该规则触发的全部未恢复事件来进行[事件管理](../../events/index.md)。 |
 | 查看相关视图 | 每一个监控器都支持关联一个仪表板，编辑监控器，即可通过**关联仪表板**功能关联对应所需的仪表板。 |
-| 手动触发测试 | 观测云支持手动触发监控器检测。若当前检测规则触发，您可以在事件查看器查看相关详情。<br>:warning: <br>为方便进行监控器的测试，手工触发的事件不受到**告警沉默**影响（即只要手工触发，一定会发送告警通知）。<br>**静默规则**不受影响，被指定为静默的对象依然会被跳过。 |
+| 手动触发测试 | 观测云支持手动触发监控器检测。若当前检测规则触发，您可以在事件查看器查看相关详情。<br>:warning: <br>在测试监控器时，只要手工触发，一定会产生事件记录并发送告警通知。<br>手动测试时，静默规则依旧生效。 |
 
 ![](../img/monitor-1.gif)
 
@@ -106,7 +107,7 @@
 
 ### 标签显示 {#tags}
 
-观测云支持为监控器添加标签。您可以选中已有标签，也可以直接手动输入，回车后创建新标签。
+观测云支持为监控器添加标签。您可以选中已有标签，也可以直接手动输入，回车后创建新标签。监控器检测触发的事件同样会附带上这些标签。
 
 <img src="../img/tag-02.png" width="60%" >
 
@@ -116,7 +117,7 @@
 
 **标签逻辑补充**：
 
-:material-numeric-1-circle-outline: 标签值格式不限，可以是普通的字符串，例如 `aaa`，或是带冒号的字符串，例如 `test:123`；  
+:material-numeric-1-circle-outline: 标签值格式不限，可以是 `value` 的格式，例如 `aaa`，或是`key:value`，例如 `test:123`；  
 
 :material-numeric-2-circle-outline: 若您自定义的标签 key 与其他事件属性重复，则做丢弃操作（tags 除外）。例如：当设置监控器 by `host`，最终生成的事件属性有 `host:guance_01`。若您为监控器添加了标签 `host:000`，则丢弃自定义标签 `host:000`，不写入到事件属性中。
 
@@ -136,6 +137,7 @@ Hover 可查看关联的 SLO 列表，点击 :fontawesome-solid-arrow-up-right-f
 
 **注意**：
 
+- 为监控器配置告警策略时，为保证检测时间范围内的数据不会因为网络、落库等延迟影响，监控器的异常事件检测配置了 2 分钟的等待处理时间；  
 - 每个监控器创建时必须选择一个告警策略，默认选中**默认**；
 - 当某个告警策略被删除时，删除告警策略下的监控器将自动归类到**默认**下。
 

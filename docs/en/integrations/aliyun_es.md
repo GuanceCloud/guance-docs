@@ -18,7 +18,7 @@ monitor:
 Aliyun ElasticSearch metrics display, including cluster status, index QPS, node CPU/memory/disk utilization and so on.
 
 
-## config {#config}
+## Config {#config}
 
 ### Install Func
 
@@ -103,7 +103,7 @@ The collected Alibaba Cloud ElasticSearch object data structure can see the obje
 }
 ```
 
-## logging {#logging}
+## Logging {#logging}
 
 ### Prerequisites
 > Note: The code of this script depends on elasticsearch instance object collection to run. If elasticsearch's custom object collection is not configured, the slow log script cannot collect slow log data
