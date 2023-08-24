@@ -151,7 +151,7 @@ root@ruoyi-system-c9c54dbd5-ltcvf:/data/app#
 
 ### 2、请求
 
-浏览器输入 [http://localhost:9201/exec/directBufferOOM](http://localhost:9201/exec/directBufferOOM) 。
+浏览器输入 [http://localhost:9201/exec/directBufferOOM](http://localhost:9201/exec/directBufferOOM)。
 
 ### 3、观测云查看日志
 

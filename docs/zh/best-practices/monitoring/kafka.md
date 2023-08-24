@@ -204,7 +204,7 @@ RequestsPerSec 每秒请求次数。通过观测该指标，可以实时掌握�
 
 ## 场景视图
 
-在开始使用观测云观测 Kafka 之前，您需要先注册一个 [观测云账号](https://auth.guance.com/register?channel=帮助文档)，注册完成后登录到观测云工作空间。然后按照 <[Kafka 集成文档](../../integrations/middleware/kafka.md)>来实现 Kafka 的可观测。
+在开始使用观测云观测 Kafka 之前，您需要先注册一个 [观测云账号](https://auth.guance.com/register?channel=帮助文档)，注册完成后登录到观测云工作空间。然后按照 <[Kafka 集成文档](/integrations/kafka/)>来实现 Kafka 的可观测。
 
 ![image.png](../images/kafka-4.png)
 

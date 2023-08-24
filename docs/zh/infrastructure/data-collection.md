@@ -15,7 +15,7 @@
 
 在需要被观测的主机上完成 DataKit 安装后，系统会默认开启一批与主机相关的采集器，并主动上报数据至观测云工作空间。
 
-> 详情可参考 [DataKit 采集器使用](../datakit/datakit-input-conf.md) / [主机对象](../datakit/hostobject.md)。
+> 详情可参考 [DataKit 采集器使用](../datakit/datakit-input-conf.md) / [主机对象](../integrations/hostobject.md)。
 
 ???+ attention
 
@@ -39,7 +39,7 @@
 
 ### 云主机
 
-假如 DataKit 所在的主机是云主机，通过 `cloud_provider` 标签即可开启云同步。配置完成后，重启 DataKit 即可。更多详情可参考文档 [开启云同步](../datakit/hostobject.md) 。
+假如 DataKit 所在的主机是云主机，通过 `cloud_provider` 标签即可开启云同步。配置完成后，重启 DataKit 即可。更多详情可参考文档 [开启云同步](../integrations/hostobject.md)。
 
 ### 容器
 

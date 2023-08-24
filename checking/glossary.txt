@@ -2,7 +2,6 @@
 Aerospike
 Akka
 Aliyun
-Tencent
 Ansible
 BATIS
 Batis
@@ -21,6 +20,7 @@ DBCP
 DDTrace
 DKProto
 DKSpan
+Dataflux
 DaemonSet
 DataDog
 Datakit
@@ -57,6 +57,8 @@ Log4j
 Logback
 Loki
 Minio
+Gaussdb
+Innodb
 MkDocs
 MyISAM
 NGINX
@@ -88,11 +90,13 @@ Sinker
 SkyWalking
 Solr
 Stddev
+Tencent
 Uprobe
 Vertx
 Weblogic
 Websphere
 Zipkin
+apiserver
 cgroup
 configfile
 containerd
@@ -104,6 +108,7 @@ gRPC
 guance
 jemalloc
 keyevent
+kubedns
 kubelet
 libc
 logfwd
@@ -125,10 +130,10 @@ tcmalloc
 unflushed
 usec
 vmalloc
+workqueue
 xpack
 zhangsan
-apiserver
-workqueue
+Zadigx
 
 # 缩写
 CNCF
@@ -144,6 +149,7 @@ RUM
 SAAS
 SNMP
 XDCR
+Seata
 
 # 合成词
 AGENTID

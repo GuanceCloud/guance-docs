@@ -73,7 +73,7 @@ spec:
 kubectl create -f virtual-service-reviews.yaml
 ```
 
-访问 [http://8.136.193.105:32156/productpage](http://8.136.193.105:32156/productpage) 。
+访问 [http://8.136.193.105:32156/productpage](http://8.136.193.105:32156/productpage)。
 
 ![image](../images/microservices/64.png)	
 

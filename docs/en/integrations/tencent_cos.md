@@ -59,64 +59,64 @@ Configure Tencent Cloud COS monitoring. The default indicator set is as follows.
 
 | Metric name           | 指标中文名               | Implication                                                     | Unit | Dimensions          |
 | -------------------- | ------------------------ | ------------------------------------------------------------ | ---- | ------------- |
-| StdReadRequests      | 标准存储读请求           | 标准存储类型读取请求次数，请求次数根据发送请求指令的次数来计算 | 次   | appid、bucket |
-| StdWriteRequests     | 标准存储写请求           | 标准存储类型写入请求次数，请求次数根据发送请求指令的次数来计算 | 次   | appid、bucket |
-| MazStdReadRequests   | 多 AZ 标准存储读请求     | 多AZ标准存储类型读取请求次数，请求次数根据发送请求指令的次数来计算 | 次   | appid、bucket |
-| MazStdWriteRequests  | 多 AZ 标准存储写请求     | 多AZ标准存储类型写入请求次数，请求次数根据发送请求指令的次数来计算 | 次   | appid、bucket |
-| IaReadRequests       | 低频存储读请求           | 低频存储类型读取请求次数，请求次数根据发送请求指令的次数来计算 | 次   | appid、bucket |
-| IaWriteRequests      | 低频存储写请求           | 低频存储类型写入请求次数，请求次数根据发送请求指令的次数来计算 | 次   | appid、bucket |
-| MazIaReadRequests    | 多 AZ 低频存储读请求     | 多 AZ 低频存储类型读取请求次数，请求次数根据发送请求指令的次数来计算 | 次   | appid、bucket |
-| MazIaWriteRequests   | 多 AZ 低频存储写请求     | 多 AZ 低频存储类型写入请求次数，请求次数根据发送请求指令的次数来计算 | 次   | appid、bucket |
-| DeepArcReadRequests  | 深度归档存储读请求       | 深度归档存储类型读取请求次数，请求次数根据发送请求指令的次数来计算 | 次   | appid、bucket |
-| DeepArcWriteRequests | 深度归档存储写请求       | 深度归档存储类型写入请求次数，请求次数根据发送请求指令的次数来计算 | 次   | appid、bucket |
-| ItReadRequests       | 智能分层存储读请求       | 智能分层存储类型读取请求次数，请求次数根据发送请求指令的次数来计算 | 次   | appid、bucket |
-| ItWriteRequests      | 智能分层存储写请求       | 智能分层存储类型写入请求次数，请求次数根据发送请求指令的次数来计算 | 次   | appid、bucket |
-智能分层存储类型写入请求次数，请求次数根据发送请求指令的次数来计算 | 次   | appid、bucket |
-| TotalRequests        | 总请求数                 | 所有存储类型的读写总请求次数，请求次数根据发送请求指令的次数来计算 | 次   | appid、bucket |
-| GetRequests          | GET 类总请求数           | 所有存储类型 GET 类总请求次数，请求次数根据发送请求指令的次数来计算 | 次   | appid、bucket |
-| PutRequests          | PUT 类总请求数           | 所有存储类型 PUT 类总请求次数，请求次数根据发送请求指令的次数来计算 | 次   | appid、bucket |
+| StdReadRequests      | 标准存储读请求           | Number of standard storage type read requests, the number of requests is calculated based on the number of request commands sent | count   | appid、bucket |
+| StdWriteRequests     | 标准存储写请求           | Number of standard storage type write requests, the number of requests is calculated based on the number of request commands sent | count   | appid、bucket |
+| MazStdReadRequests   | 多 AZ 标准存储读请求     | Number of read requests for multiple AZ standard storage types, with the number of requests calculated based on the number of request commands sent | count   | appid、bucket |
+| MazStdWriteRequests  | 多 AZ 标准存储写请求     | Number of write requests to multiple AZ standard storage types, with the number of requests counted based on the number of request commands sent | count   | appid、bucket |
+| IaReadRequests       | 低频存储读请求           | Low-frequency storage type read request count, the request count is calculated based on the number of request commands sent | count   | appid、bucket |
+| IaWriteRequests      | 低频存储写请求           | Low-frequency storage type write request count, the request count is calculated based on the number of request commands sent | count   | appid、bucket |
+| MazIaReadRequests    | 多 AZ 低频存储读请求     | Multi-AZ low-frequency storage type read request count, the request count is calculated based on the number of request commands sent | count   | appid、bucket |
+| MazIaWriteRequests   | 多 AZ 低频存储写请求     | Multi-AZ low-frequency storage type write request count, the request count is calculated based on the number of request commands sent | count   | appid、bucket |
+| DeepArcReadRequests  | 深度归档存储读请求       | Number of read requests for deep archive storage types, with the number of requests calculated based on the number of request commands sent | count   | appid、bucket |
+| DeepArcWriteRequests | 深度归档存储写请求       | Number of deep archive storage type write requests, the number of requests is calculated based on the number of request commands sent | count   | appid、bucket |
+| ItReadRequests       | 智能分层存储读请求       | Intelligent hierarchical storage type read request count, the request count is calculated based on the number of request commands sent | count   | appid、bucket |
+| ItWriteRequests      | 智能分层存储写请求       | Intelligent tiered storage type write request count, request count is calculated based on the number of request commands sent | count   | appid、bucket |
+Intelligent tiered storage type write request count, request count is calculated based on the number of request commands sent | count   | appid、bucket |
+| TotalRequests        | 总请求数                 | Total number of read and write requests for all storage types, with the number of requests calculated based on the number of request commands sent | count   | appid、bucket |
+| GetRequests          | GET 类总请求数           | Total number of requests for all storage type GET classes, the number of requests is calculated based on the number of request commands sent | count   | appid、bucket |
+| PutRequests          | PUT 类总请求数           | Total number of requests for all storage type PUT classes, the number of requests is calculated according to the number of request commands sent | count   | appid、bucket |
 
 ### Storage class
 
-| 指标英文名                   | 指标中文名                        | 单位 | 维度          |
+| Metric name                   | 指标中文名                        | Unit | Dimensions          |
 | ---------------------------- | --------------------------------- | ---- | ------------- |
 | Size                   | bucket存储容量                |  B   | Name |
 
 
 ### Traffic class
 
-| 指标英文名                    | 指标中文名           | 指标含义                                                 | 单位 | 维度          |
+| Metric name                    | 指标中文名           | Implication                                                 | Unit | Dimensions          |
 | ----------------------------- | -------------------- | -------------------------------------------------------- | ---- | ------------- |
-| InternetTraffic               | 外网下行流量         | 数据通过互联网从 COS 下载到客户端产生的流量              | B    | appid、bucket |
-| InternetTrafficUp             | 外网上行流量         | 数据通过互联网从客户端上传到 COS 产生的流量              | B    | appid、bucket |
-| InternalTraffic               | 内网下行流量         | 数据通过腾讯云内网从 COS 下载到客户端产生的流量          | B    | appid、bucket |
-| InternalTrafficUp             | 内网上行流量         | 数据通过腾讯云内网从客户端上传到 COS 产生的流量          | B    | appid、bucket |
-| CdnOriginTraffic              | CDN 回源流量         | 数据从 COS 传输到腾讯云 CDN 边缘节点产生的流量           | B    | appid、bucket |
-| InboundTraffic                | 外网、内网上传总流量 | 数据通过互联网、腾讯云内网从客户端上传到 COS 产生的流量  | B    | appid、bucket |
-| CrossRegionReplicationTraffic | 跨地域复制流量       | 数据从一个地域的存储桶传输到另一个地域的存储桶产生的流量 | B    | appid、bucket |
+| InternetTraffic               | 外网下行流量         | Traffic generated by data downloading from COS to clients over the Internet              | B    | appid、bucket |
+| InternetTrafficUp             | 外网上行流量         | Traffic generated by the uploading of data from the client to the COS over the Internet              | B    | appid、bucket |
+| InternalTraffic               | 内网下行流量         | Traffic generated by the data being downloaded from the COS to the client via Tencent Cloud intranet          | B    | appid、bucket |
+| InternalTrafficUp             | 内网上行流量         | Traffic generated by uploading data from client to COS via Tencent Cloud intranet          | B    | appid、bucket |
+| CdnOriginTraffic              | CDN 回源流量         | Traffic generated by the transmission of data from COS to the edge nodes of Tencent Cloud CDN           | B    | appid、bucket |
+| InboundTraffic                | 外网、内网上传总流量 | Traffic generated by data uploaded from clients to COS via Internet, Tencent Cloud intranet  | B    | appid、bucket |
+| CrossRegionReplicationTraffic | 跨地域复制流量       | Traffic generated by the transfer of data from storage buckets in one geographic region to storage buckets in another geographic region | B    | appid、bucket |
 
 ### Return code class (computing)
 
-| 指标英文名      | 指标中文名     | 指标含义                                        | 单位 | 维度          |
+| Metric name      | 指标中文名     | Implication                                        | Unit | Dimensions          |
 | --------------- | -------------- | ----------------------------------------------- | ---- | ------------- |
-| 2xxResponse     | 2xx 状态码     | 返回状态码为 2xx 的请求次数                     | 次   | appid、bucket |
-| 3xxResponse     | 3xx 状态码     | 返回状态码为 3xx 的请求次数                     | 次   | appid、bucket |
-| 4xxResponse     | 4xx 状态码     | 返回状态码为 4xx 的请求次数                     | 次   | appid、bucket |
-| 5xxResponse     | 5xx 状态码     | 返回状态码为 5xx 的请求次数                     | 次   | appid、bucket |
-| 2xxResponseRate | 2xx 状态码占比 | 返回状态码为 2xx 的请求次数在总请求次数中的占比 | %    | appid、bucket |
-| 3xxResponseRate | 3xx 状态码占比 | 返回状态码为 3xx 的请求次数在总请求次数中的占比 | %    | appid、bucket |
-| 4xxResponseRate | 4xx 状态码占比 | 返回状态码为 4xx 的请求次数在总请求次数中的占比 | %    | appid、bucket |
-| 5xxResponseRate | 5xx 状态码占比 | 返回状态码为 5xx 的请求次数在总请求次数中的占比 | %    | appid、bucket |
-| 400Response     | 400 状态码     | 返回状态码为 400 的请求次数                     | 次   | appid、bucket |
-| 403Response     | 403 状态码     | 返回状态码为 403 的请求次数                     | 次   | appid、bucket |
-| 404Response     | 404 状态码     | 返回状态码为 404 的请求次数                     | 次   | appid、bucket |
-| 400ResponseRate | 400 状态码占比 | 返回状态码为 400 的请求次数在总请求次数中的占比 | %    | appid、bucket |
-| 403ResponseRate | 403 状态码占比 | 返回状态码为 403 的请求次数在总请求次数中的占比 | %    | appid、bucket |
-| 404ResponseRate | 404 状态码占比 | 返回状态码为 404 的请求次数在总请求次数中的占比 | %    | appid、bucket |
-| 500ResponseRate | 500 状态码占比 | 返回状态码为 500 的请求次数在总请求次数中的占比 | %    | appid、bucket |
-| 501ResponseRate | 501 状态码占比 | 返回状态码为 501 的请求次数在总请求次数中的占比 | %    | appid、bucket |
-| 502ResponseRate | 502 状态码占比 | 返回状态码为 502 的请求次数在总请求次数中的占比 | %    | appid、bucket |
-| 503ResponseRate | 503 状态码占比 | 返回状态码为 503 的请求次数在总请求次数中的占比 | %    | appid、bucket |
+| 2xxResponse     | 2xx 状态码     | Returns the number of requests with status code 2xx                     | count   | appid、bucket |
+| 3xxResponse     | 3xx 状态码     | Returns the number of requests with status code 3xx                     | count   | appid、bucket |
+| 4xxResponse     | 4xx 状态码     | Returns the number of requests with status code 4xx                     | count   | appid、bucket |
+| 5xxResponse     | 5xx 状态码     | Returns the number of requests with status code 5xx                     | count   | appid、bucket |
+| 2xxResponseRate | 2xx 状态码占比 | Returns the number of requests with status code 2xx as a percentage of the total number of requests | %    | appid、bucket |
+| 3xxResponseRate | 3xx 状态码占比 | Returns the number of requests with status code 3xx as a percentage of the total number of requests | %    | appid、bucket |
+| 4xxResponseRate | 4xx 状态码占比 | Returns the number of requests with status code 4xx as a percentage of the total number of requests | %    | appid、bucket |
+| 5xxResponseRate | 5xx 状态码占比 | Returns the number of requests with status code 5xx as a percentage of the total number of requests | %    | appid、bucket |
+| 400Response     | 400 状态码     | Returns the number of requests with status code 400                     | count   | appid、bucket |
+| 403Response     | 403 状态码     | Returns the number of requests with status code 403                     | count   | appid、bucket |
+| 404Response     | 404 状态码     | Returns the number of requests with status code 404                     | count   | appid、bucket |
+| 400ResponseRate | 400 状态码占比 | Returns the number of requests with status code 400 as a percentage of the total number of requests | %    | appid、bucket |
+| 403ResponseRate | 403 状态码占比 | Returns the number of requests with status code 403 as a percentage of the total number of requests | %    | appid、bucket |
+| 404ResponseRate | 404 状态码占比 | Returns the number of requests with status code 404 as a percentage of the total number of requests | %    | appid、bucket |
+| 500ResponseRate | 500 状态码占比 | Returns the number of requests with status code 500 as a percentage of the total number of requests | %    | appid、bucket |
+| 501ResponseRate | 501 状态码占比 | Returns the number of requests with status code 501 as a percentage of the total number of requests | %    | appid、bucket |
+| 502ResponseRate | 502 状态码占比 | Returns the number of requests with status code 502 as a percentage of the total number of requests | %    | appid、bucket |
+| 503ResponseRate | 503 状态码占比 | Returns the number of requests with status code 503 as a percentage of the total number of requests | %    | appid、bucket |
 
 ## Object {#object}
 

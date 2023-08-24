@@ -2,6 +2,14 @@
 icon: zy/best-practices
 ---
 
+## (2023/08/8)
+
+### 新增最佳实践
+
+- 监控 Monitoring
+    - 应用性能监控 (APM) - 调用链 - [使用 datakit-operator 注入 dd-java-agent](./monitoring/datakit-operator.md)。
+
+
 ## (2023/2/10)
 
 ### 新增最佳实践
@@ -122,7 +130,7 @@ icon: zy/best-practices
 ### 新增最佳实践
 
 - 监控 Monitoring  
-    - [使用 extract + TextMapAdapter 实现了自定义 traceId](./monitoring/ddtrace-custom-traceId.md) 。
+    - [使用 extract + TextMapAdapter 实现了自定义 traceId](./monitoring/ddtrace-custom-traceId.md)。
 
 ### 更新记录
 

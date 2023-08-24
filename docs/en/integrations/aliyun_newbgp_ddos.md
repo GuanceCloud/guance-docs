@@ -14,7 +14,7 @@ dashboard:
 
 Use the「观测云云同步」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.
 
-## config {#config}
+## Config {#config}
 
 ### Install Func
 

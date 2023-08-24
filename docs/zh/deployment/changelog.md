@@ -1,5 +1,22 @@
 # 版本历史
 
+## 1.68.134（2023 年 08 月 10 日）
+
+pubrepo.guance.com/dataflux/1.68.134:launcher-9651bb3-1691936534
+
+### 观测云更新
+
+- 新增计费项定时报告：按工作空间内定时报告单日发送的次数出账计费。
+- 场景新增服务管理：服务管理是一个用于访问所有服务关键信息的集中入口，用户可查看当前工作空间内不同服务的性能和业务数据及所有的关联分析等信息，快速定位并解决服务的相关问题。
+- 场景图表均支持 PromQL 查询和表达式查询。
+- 日志：支持在日志详情页直接查看上下文日志；可选择上下文检索范围。
+- 查看器：打开某条数据详情页，支持一键导出当前数据为 JSON 文件。
+- 应用性能监测 > 服务 > 调用拓扑：新增当前服务的上下游调用关系表格，展示服务单向关系的请求数、平均响应时间和错误数。
+- 监控器 > 阈值检测：检测指标新增转换为 PromQL 查询。
+- 基础设施 > 容器：Pods、Services、Deployments、Nodes、Replica Sets、Cron Jobs、Daemonset 详情页新增 Kubernets 事件组件。
+
+更多详情可参考帮助文档：https://docs.guance.com/release-notes/
+
 ## 1.67.133（2023 年 07 月 27 日）
 
 pubrepo.guance.com/dataflux/1.67.133:launcher-3840753-1690897331
@@ -885,7 +902,7 @@ pubrepo.guance.com/dataflux/1.48.106:launcher-e40becc-1662478572
 - 几乎每个采集器都增加了 k8s 配置入口
 - 调整文档头部显示，除了操作系统标识外，对支持选举的采集器，增加选举标识
 
-更多 DataKit 更新可参考 [DataKit 版本历史](https://docs.guance.com/datakit/changelog/) 。
+更多 DataKit 更新可参考 [DataKit 版本历史](https://docs.guance.com/datakit/changelog/)。
 
 ### 最佳实践更新
 
@@ -895,7 +912,7 @@ pubrepo.guance.com/dataflux/1.48.106:launcher-e40becc-1662478572
     - 应用性能监控 (APM) - [DDtrace 自定义 Instrumentation](https://docs.guance.com/best-practices/monitoring/ddtrace-instrumentation/)
     - 应用性能监控 (APM) - [DDtrace 观测云二次开发实践](https://docs.guance.com/developers/ddtrace-guance/)
 
-更多最佳实践更新可参考 [最佳实践版本历史](https://docs.guance.com/best-practices/) 。
+更多最佳实践更新可参考 [最佳实践版本历史](https://docs.guance.com/best-practices/)。
 
 ## v1.47.103(2022年8月18日)
 
