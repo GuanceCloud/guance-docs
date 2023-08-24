@@ -85,6 +85,7 @@ nav:
       - 'MySQL': mysql.md
       - clickhousev1.md
       - couchbase.md
+      - couchdb.md
       - oracle.md
       - sqlserver.md
       - postgresql.md
@@ -100,7 +101,6 @@ nav:
       - minio.md
       - aerospike.md
       - tidb.md
-      - couchbase.md
       - couchbase-prom.md
       - juicefs.md
 
