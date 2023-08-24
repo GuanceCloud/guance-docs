@@ -19,7 +19,7 @@ DataKit 主配置用来配置 DataKit 自己的运行行为。
 
 ## Datakit 主配置示例 {#maincfg-example}
 
-Datakit 主配置示例如下，我们可以根据该示例来开启各种功能（当前版本 1.13.2）：
+Datakit 主配置示例如下，我们可以根据该示例来开启各种功能（当前版本 1.14.0）：
 
 <!-- markdownlint-disable MD046 -->
 ??? info "*datakit.conf*"
@@ -181,8 +181,7 @@ Datakit 主配置示例如下，我们可以根据该示例来开启各种功能
     ################################################
     [dataway]
       # urls: Dataway URL list
-      # NOTE: do not configure multiple URLs here, it's a deprecated feature,
-      # we can use Dataway sinker(below) for that purpose.
+      # NOTE: do not configure multiple URLs here, it's a deprecated feature.
       urls = ["https://openway.guance.com?token=tkn_xxxxxxxxxxx"]
     
       # Dataway HTTP timeout
@@ -195,17 +194,10 @@ Datakit 主配置示例如下，我们可以根据该示例来开启各种功能
       enable_httptrace = false   # enable trace HTTP metrics(connection/NDS/TLS and so on)
       idle_timeout     = "90s"   # not-set, default 90s
     
-      # Sinkers: DataKit are able to upload data point to multiple workspace
-      #[[dataway.sinkers]]
-      #  categories = [ "L/M/O/..." ]
-      #  filters = [
-      #    "{ cpu = 'cpu-total' }",
-      #    "{ source = 'some-logging-source'}",
-      #  ]
-      #  url = "https//openway.guance.com?token=<YOUR-TOKEN>"
-      #
-      #[[dataway.sinkers]]
-      #  another sinker...
+      # Customer tag or field keys that will extract from exist points
+      # to build the X-Global-Tags HTTP header value.
+      global_customer_keys = []
+      enable_sinker        = false # disable sinker
     
     ################################################
     # Datakit logging configure
@@ -533,7 +525,7 @@ $ systemctl status datakit
 
 ### DataWay Sinker 配置 {#dataway-sink}
 
-参见[这里](datakit-sink-dataway.md)
+参见[这里](dataway-sink.md)
 
 ### 使用 Git 管理 DataKit 配置 {#using-gitrepo}
 
