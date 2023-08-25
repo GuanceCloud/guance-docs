@@ -26,7 +26,7 @@ icon: zy/release-notes
 - 查看器/仪表板：新增[自动刷新功能](../getting-started/function-details/explorer-search.md#refresh)。
 - 查看器详情页：新增[绑定内置视图](../infrastructure/host.md#view)入口。
 
-### 智能巡检更新
+### 集成更新
 
 - [阿里云 RDS MariaDB](../integrations/aliyun_rds_mariadb.md)：阿里云 RDS MariaDB 的展示指标包括响应时间、并发连接数、QPS 和 TPS 等。  
 - [阿里云 RocketMQ4](../integrations/aliyun_rocketmq4.md)：阿里云 RocketMQ 4.0 的展示指标包括消息吞吐量、延迟、可靠性和水平扩展能力等。
