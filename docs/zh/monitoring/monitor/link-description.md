@@ -20,8 +20,8 @@
 | --- | --- | --- |
 | 查看相关日志 | 事件产生时间向前15分钟 | `[查看相关日志](/logIndi/log/all?ime={{ date * 1000 - 900000}},{{date *  1000}}&tags={host:{{host}},service:mysql})` |
 | 查看相关链路 | 事件产生时间向前15分钟 | `[查看相关链路](/tracing/link/all?time={{ date * 1000 - 900000}},{{date *  1000}}&tags={host:{{host}},service:mysql})` |
-| 查看相关错误追踪 | 事件产生时间向前15分钟 | `[查看相关错误追踪](/tracing/profile?time={{ date * 1000 - 900000}},{{date *  1000}}&tags={host:{{host}},service:mysql})` |
-| 查看相关Profile | 事件产生时间向前15分钟 | `[查看相关Profile](/tracing/errorTrack?time={{ date * 1000 - 900000}},{{date *  1000}}&tags={host:{{host}},service:mysql})` |
+| 查看相关错误追踪 | 事件产生时间向前15分钟 | `[查看相关错误追踪](/tracing/errorTrack?time={{ date * 1000 - 900000}},{{date *  1000}}&tags={host:{{host}},service:mysql})` |
+| 查看相关 Profile | 事件产生时间向前15分钟 | `[查看相关Profile](/tracing/profile?time={{ date * 1000 - 900000}},{{date *  1000}}&tags={host:{{host}},service:mysql})` |
 | 查看相关容器 | 不带时间 | `[查看相关容器](/objectadmin/docker_containers?routerTabActive=ObjectadminDocker&tags={host:{{host}},service:mysql})` |
 | 查看相关Pod | 不带时间 | `[查看相关Pod](/objectadmin/kubelet_pod?routerTabActive=ObjectadminDocker&tags={host:{{host}},service:mysql})` |
 | 查看相关进程 | 事件产生时间向前5分钟 | `[查看相关进程](/objectadmin/host_processes?routerTabActive=ObjectadminProcesses&time={{ date * 1000 - 300000}},{{date *  1000}}&tags={host:{{host}},service:mysql})` |
