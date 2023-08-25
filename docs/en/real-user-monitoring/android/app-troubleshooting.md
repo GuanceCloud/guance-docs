@@ -10,8 +10,6 @@ An error occurred during the compilation process. First, check the compilation e
 * Android `minSdkVersion` is 21.
 
 > As Android Studio versions update, compatibility of these versions might change. If you encounter compilation errors even with a compilation environment meeting the above conditions, please reach out to our developers for assistance.
- 
-
 
 #### ⚠️ Compatible 
 * AGP (`com.android.tools.build:gradle`) version is `3.0.1` or higher.
@@ -25,7 +23,6 @@ An error occurred during the compilation process. First, check the compilation e
 ![](../img/17.trouble_shooting_android_gradle_error_1.png)
 ![](../img/17.trouble_shooting_android_gradle_error_2.png)
 The error you encountered is likely due to the Maven repository not being correctly set up. Please refer to the [configuration guide](app-access.md#gradle-setting) provided here for proper setup. 
-
 
 ### Compile Error
 
@@ -83,7 +80,6 @@ buildscript {
 
 Currently, the plugin version only supports build environments using `org.ow2.asm:asm7.x` or higher versions. You can use `./gradlew buildEnvironment` to check your build environment and confirm this issue. To resolve this, you can forcefully depend on a version above 7.x. It is recommended to use version 7.2 or higher.
 
-
 ```groovy
 buildscript {
 	dependencies {
@@ -94,8 +90,6 @@ buildscript {
     }
 }
 ```
-
-
 
 ## Check For SDK Initialization Error
 Check the `Logcat` to confirm the presence of logs with a `Level` of `Error` and a `Tag` prefixed with `[FT-SDK]`. 
@@ -168,10 +162,3 @@ If the issue is possibly due to the collected log data being too large, consider
 
 ## Okhttp EventListener No Working After Integrating
 After Plugin AOP ASM insertion, the `OkHttpClient.Builder()` in the original project code is modified to include `eventListenerFactory`. This might override the existing `eventListener` or `eventListenerFactory`. To address this, you can disable the automatic AOP setup using `FTRUMConfig setEnableTraceUserResource(false)`, and then customize a `CustomEventListenerFactory` that inherits from `FTResourceEventListener.FTFactory`. For more details, refer to the [CustomEventListener](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/custom/okhttp/CustomEventListenerFactory.kt) example in the demo repository.
-
-
-
-
-
-
-
