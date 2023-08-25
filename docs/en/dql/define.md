@@ -89,6 +89,7 @@ namespace::
 	order-by-clause
 	limit-clause
 	offset-clause
+  sorder-by-clause
 	slimit-clause
 	soffset-clause
 ```
@@ -257,6 +258,25 @@ M::cpu:(max('usage_total')) by host order by time desc
 ```python
 # Obtain the response time of processing requests under different hosts, in ascending order of response time.
 L::`*`:(max('response_time') as m1) by host order by m1 asc
+```
+
+### sorder-by-clause statement
+
+The `SORDER BY` clause sorts groups.
+
+```python
+# Get the maximum CPU utilization of different hosts, in reverse order of hostname.
+M::cpu:(max(`usage_total`)) by host sorder by host desc
+```
+
+```python
+# Get the maximum CPU utilization of different hosts, in ascending order of the maximum CPU utilization.
+M::cpu:(max(`usage_total`) as m) by host sorder by m
+```
+
+```python
+# Get CPU utilization,  in ascending order of the last CPU utilization.
+M::cpu:(`usage_total`) sorder by usage_total
 ```
 
 ### Filter-clause Statement

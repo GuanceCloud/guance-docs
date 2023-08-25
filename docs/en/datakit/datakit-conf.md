@@ -17,7 +17,7 @@ The DataKit master configuration is used to configure the running behavior of th
 
 ## Datakit Main Configure Sample {#maincfg-example}
 
-Datakit main configure is *datakit.conf*, here is the exmaple sample(1.13.2):
+Datakit main configure is *datakit.conf*, here is the exmaple sample(1.14.0):
 
 ??? info "datakit.conf"
 
@@ -178,8 +178,7 @@ Datakit main configure is *datakit.conf*, here is the exmaple sample(1.13.2):
     ################################################
     [dataway]
       # urls: Dataway URL list
-      # NOTE: do not configure multiple URLs here, it's a deprecated feature,
-      # we can use Dataway sinker(below) for that purpose.
+      # NOTE: do not configure multiple URLs here, it's a deprecated feature.
       urls = ["https://openway.guance.com?token=tkn_xxxxxxxxxxx"]
     
       # Dataway HTTP timeout
@@ -192,17 +191,10 @@ Datakit main configure is *datakit.conf*, here is the exmaple sample(1.13.2):
       enable_httptrace = false   # enable trace HTTP metrics(connection/NDS/TLS and so on)
       idle_timeout     = "90s"   # not-set, default 90s
     
-      # Sinkers: DataKit are able to upload data point to multiple workspace
-      #[[dataway.sinkers]]
-      #  categories = [ "L/M/O/..." ]
-      #  filters = [
-      #    "{ cpu = 'cpu-total' }",
-      #    "{ source = 'some-logging-source'}",
-      #  ]
-      #  url = "https//openway.guance.com?token=<YOUR-TOKEN>"
-      #
-      #[[dataway.sinkers]]
-      #  another sinker...
+      # Customer tag or field keys that will extract from exist points
+      # to build the X-Global-Tags HTTP header value.
+      global_customer_keys = []
+      enable_sinker        = false # disable sinker
     
     ################################################
     # Datakit logging configure
@@ -516,6 +508,10 @@ $ systemctl status datakit
 ### Election Configuration {#election}
 
 See [here](election.md#config)
+
+### Dataway Sinker {#dataway-sink}
+
+See [here](dataway-sink.md)
 
 ### Managing DataKit Configuration with Git {#using-gitrepo}
 

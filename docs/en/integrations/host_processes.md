@@ -159,7 +159,6 @@ For all of the following data collections, a global tag named `host` is appended
 |`mem_used_percent`|内存使用占比（%*100）|float|percent|
 |`message`|进程详细信息|string|-|
 |`open_files`|打开的文件个数(仅支持 Linux)|int|count|
-|`open_files_list`|进程打开的文件及其描述符列表(仅支持 Linux)|string|-|
 |`pid`|进程 ID|int|-|
 |`rss`|Resident Set Size （常驻内存大小）|int|B|
 |`start_time`|进程启动时间|int|msec|
