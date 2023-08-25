@@ -1,3 +1,4 @@
 nav:
   - index.md
+  - 'Logic Behind Billing': billing-item.md
   - 'Data Storage Strategy': data-storage.md
