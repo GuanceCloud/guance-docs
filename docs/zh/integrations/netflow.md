@@ -214,6 +214,12 @@ NetFlow 是最广泛使用的流量数据统计标准，由 Cisco 开发，用�
   # ...
 ```
 
+<!-- markdownlint-disable MD046 -->
+???+ info
+
+    Netflow 采集的数据，存放在日志类（`L`）数据中。
+<!-- markdownlint-enable -->
+
 
 
 ### `netflow` {#netflow}
