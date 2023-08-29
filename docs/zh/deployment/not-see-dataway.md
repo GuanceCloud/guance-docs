@@ -19,16 +19,16 @@ kubectl get pods -n launcher
 
 3、正常运行时有无报错
 
- ```shell
+```shell
 kubectl logs -f -n launcher <launcher_name>
- ```
+```
 
 4、部署的 kodo 服务是否异常，可通过查看 kodo 服务日志进行确认
 
 - 先进入 kodo 服务的 pod 中
 
 ```shell
-kubectl exec -ti -n forethought-kodo <kodo_pod_name>
+kubectl exec -ti -n forethought-kodo <kodo_pod_name> -- /bin/bash
 ```
 
 - 然后进入到 /logdata 目录下查看 log 文件
