@@ -37,7 +37,7 @@ DataKit 目前支持采集 `DDTrace`、`Apache Jaeger`、`OpenTelemetry`、`Skyw
 
 DataKit 会根据采集器的不同将上报的数据转换为观测云链路数据的格式保留标签和指标。下面是常用的字段说明：
 
-> 更多字段列表可参考文档 [DataKit Tracing 数据结构](../../datakit/datakit-tracing-struct.md#point-proto)。
+> 更多字段列表可参考文档 [DataKit Tracing 数据结构](../../integrations/datakit-tracing-struct.md#point-proto)。
 
 | 字段名    | 说明                                                         |
 | --------- | ------------------------------------------------------------ |
