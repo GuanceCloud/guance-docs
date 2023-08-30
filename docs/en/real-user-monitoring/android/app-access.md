@@ -7,7 +7,9 @@ Guance Real User Monitoring can analyze the performance of each Android applicat
 
 ## Precondition
 
-- Installing DataKit ([DataKit Installation Documentation](... /... /datakit/datakit-install.md))
+- Installing [DataKit](../../datakit/datakit-install.md)；  
+- Collector Configuration [RUM Coloctor](../../integrations/rum.md)；
+- DataKit Configure[ for public access and install IP geolocation services.](../../datakit/datakit-tools-how-to.md#install-ipdb)
 
 ## Android Application Access {#android-integration} 
 
@@ -20,55 +22,101 @@ Login to Guance Console, enter "Real User Monitoring" page, click "New Applicati
 
 ## Installation {#setup}
 
-![](https://img.shields.io/maven-metadata/v?label=ft-sdk&metadataUrl=https%3A%2F%2Fmvnrepo.jiagouyun.com%2Frepository%2Fmaven-releases%2Fcom%2Fcloudcare%2Fft%2Fmobile%2Fsdk%2Ftracker%2Fagent%2Fft-sdk%2Fmaven-metadata.xml#crop=0&crop=0&crop=1&crop=1&id=qIyeD&originHeight=20&originWidth=138&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)![](https://img.shields.io/maven-metadata/v?label=ft-native&metadataUrl=https%3A%2F%2Fmvnrepo.jiagouyun.com%2Frepository%2Fmaven-releases%2Fcom%2Fcloudcare%2Fft%2Fmobile%2Fsdk%2Ftracker%2Fagent%2Fft-native%2Fmaven-metadata.xml#crop=0&crop=0&crop=1&crop=1&id=mC9jW&originHeight=20&originWidth=152&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)![](https://img.shields.io/maven-metadata/v?label=ft-plugin&metadataUrl=https%3A%2F%2Fmvnrepo.jiagouyun.com%2Frepository%2Fmaven-releases%2Fcom%2Fcloudcare%2Fft%2Fmobile%2Fsdk%2Ftracker%2Fplugin%2Fft-plugin%2Fmaven-metadata.xml#crop=0&crop=0&crop=1&crop=1&id=RzYsx&originHeight=20&originWidth=152&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+![](https://img.shields.io/badge/dynamic/json?label=ft-sdk&color=orange&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/android/agent/version.json&link=https://github.com/GuanceCloud/datakit-android) ![](https://img.shields.io/badge/dynamic/json?label=ft-native&color=orange&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/android/native/version.json&link=https://github.com/GuanceCloud/datakit-android
+) ![](https://img.shields.io/badge/dynamic/json?label=ft-plugin&color=orange&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/android/plugin/version.json&link=https://github.com/GuanceCloud/datakit-android) ![](https://img.shields.io/badge/dynamic/json?label=ft-plugin-legacy&color=orange&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/android/plugin_legacy/version.json&link=https://github.com/GuanceCloud/datakit-android)
 
-**Demo**：[https://github.com/GuanceCloud/datakit-android/demo](https://github.com/GuanceCloud/datakit-android/tree/dev/demo)
+**Source Code**：[https://github.com/GuanceCloud/datakit-android](https://github.com/GuanceCloud/datakit-android)
 
-**Source Code Address**：[https://github.com/GuanceCloud/datakit-android](https://github.com/GuanceCloud/datakit-android)
+**Demo**：[https://github.com/GuanceDemo/guance-app-demo](https://github.com/GuanceDemo/guance-app-demo/tree/master/src/android/demo)
+
+
 
 ### Gradle Configuration {#gradle-setting}
 
 Add the remote repository address of `DataFlux SDK` to the `build.gradle` file in the root of the project
 
-```groovy
-buildscript {
-    //...
-    repositories {
-        //...
-        //add SDK remote repo url
-        maven {
-            url 'https://mvnrepo.jiagouyun.com/repository/maven-releases'
-        }
-    }
-    dependencies {
-        //...
-        //add Plugin dependency AGP 7.4.2 above，Gradle 7.2.0 above
-        classpath 'com.cloudcare.ft.mobile.sdk.tracker.plugin:ft-plugin:1.2.0-beta01'
-        // AGP 7.4.2 below，using ft-plugin-legacy 
-        //classpath 'com.cloudcare.ft.mobile.sdk.tracker.plugin:ft-plugin-legacy:1.1.4-beta01'
-    }
-}
-allprojects {
-    repositories {
-        //...
-        // add SDK remote repo url
-        maven {
-            url 'https://mvnrepo.jiagouyun.com/repository/maven-releases'
-        }
-    }
-}
-```
+=== "buildscript"
 
-Add `SDK` dependencies and use of `Plugin` and Java 8 support to the `build.gradle` file of the main project module `app`.
+	```groovy
+	buildscript {
+	    //...
+	    repositories {
+	        //...
+	         //add SDK remote repo url
+	        maven {
+	            url 'https://mvnrepo.jiagouyun.com/repository/maven-releases'
+	        }
+	    }
+	    dependencies {
+	        //...
+	        //add Plugin dependency AGP 7.4.2 above，Gradle 7.2.0 above
+	        classpath 'com.cloudcare.ft.mobile.sdk.tracker.plugin:ft-plugin:[latest_version]'
+	        // AGP 7.4.2 below，using ft-plugin-legacy  
+	        //classpath 'com.cloudcare.ft.mobile.sdk.tracker.plugin:ft-plugin-legacy:[latest_version]'
+	        
+	    }
+	}
+	allprojects {
+	    repositories {
+	        //...
+	         //add SDK remote repo url
+	        maven {
+	            url 'https://mvnrepo.jiagouyun.com/repository/maven-releases'
+	        }
+	    }
+	}
+	```
+
+=== "plugins DSL"
+
+	```groovy
+	//setting.gradle
+	
+	pluginManagement {
+	    repositories {
+	        google()
+	        mavenCentral()
+	        gradlePluginPortal()
+	         //add SDK remote repo url
+	        maven {
+	            url('https://mvnrepo.jiagouyun.com/repository/maven-releases')
+	        }
+	    }
+	}
+	dependencyResolutionManagement {
+	    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+	    repositories {
+	        google()
+	        mavenCentral()
+	         //add SDK remote repo url
+	        maven {
+	            url('https://mvnrepo.jiagouyun.com/repository/maven-releases')
+	        }
+	    }
+	}
+	
+	//build.gradle
+	
+	plugins{
+		//add Plugin dependency AGP 7.4.2 above，Gradle 7.2.0 above
+		id 'com.cloudcare.ft.mobile.sdk.tracker.plugin' version '[lastest_version]' apply false
+		// AGP 7.4.2 below，using ft-plugin-legacy 
+		//id 'com.cloudcare.ft.mobile.sdk.tracker.plugin.legacy' version '[lastest_version]' apply false
+	}
+	
+	```
+
+
+Add SDK dependencies and Plugin usage, and provide Java 8 support in the build.gradle file of the main module app of the project.
 
 ```groovy
 dependencies {
 
     //add SDK dependency
-    implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-sdk:1.3.11-beta01'
+    implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-sdk:[latest_version]'
     
     //native crash dependency, needs to be used with ft-sdk and cannot be used alone
-    implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-native:1.0.0-alpha05'
+    implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-native:[latest_version]'
     
     //Gson version recommend
     implementation 'com.google.code.gson:gson:2.8.5'
@@ -146,15 +194,15 @@ The optimal location for initializing an SDK theoretically is in the `onCreate` 
 </application> 
 ```
 
-| **Method Name** | **Meaning** | **Required** | **Attention** |
-| --- | --- | --- | --- |
-| metricsUrl | Datakit installation address | Yes | The url of the datakit installation address, example: http://10.0.0.1:9529, port 9529. Datakit url address needs to be accessible by the device where the SDK is installed |
-| setXDataKitUUID | Set the identification ID of the data acquisition terminal | No | Default is random `uuid` |
-| setDebug | Whether to turn on debug mode | No | Default is `false`, enable to print SDK run log |
-| setEnv | Set the acquisition environment | No | Default is `EnvType.PROD` |
-| setOnlySupportMainProcess | Does it only support running in the master process | No | Default is `true`, if you need to execute in other processes you need to set this field to `false` |
-| setEnableAccessAndroidID | Enable to get `Android ID` | No | Default, is `true`, set to `false`, then `device_uuid` field data will not be collected, market privacy audit related [see here](#adpot-to-privacy-audits) |
-| addGlobalContext | Add SDK global properties | No | Adding rules can be found [here](#key-conflict) |
+| **Method Name** | **Type** | **Required** | **Meaning** |  **Attention** |
+| ---  | --- | --- | --- | --- |
+| metricsUrl |String| Yes | Datakit installation address | The url of the datakit installation address, example: http://10.0.0.1:9529, port 9529. Datakit url address needs to be accessible by the device where the SDK is installed |
+| setDebug |String| No |  Whether to turn on debug mode | Default is `false`, enable to print SDK run log |
+| setEnv | EnvType|  No | Set the acquisition environment |Default is `EnvType.PROD` |
+| setOnlySupportMainProcess |Boolean|  No | Does it only support running in the master process |Default is `true`, if you need to execute in other processes you need to set this field to `false` |
+| setEnableAccessAndroidID |Boolean|  No | Enable to get `Android ID` | Default, is `true`, set to `false`, then `device_uuid` field data will not be collected, market privacy audit related [see here](#adpot-to-privacy-audits) |
+| addGlobalContext| Dictionary |  No | Add SDK global properties |Adding rules can be found [here](#key-conflict) |
+| setServiceName | String | No | Set Service Name | Impact the service field data in Log and RUM, which is set to `df_rum_android` by default.|
 
 ### RUM Configuration {#rum-config}
 
@@ -196,19 +244,19 @@ The optimal location for initializing an SDK theoretically is in the `onCreate` 
 	        )
 	```
 
-| **Method Name** | **Meaning** | **Required** | **Attention** |
-| --- | --- | --- | --- |
-| setRumAppId | Set `Rum AppId` | Yes | Corresponding to setting RUM `appid` to enable `RUM` collection, [get appid method](#android-integration) |
-| setEnableTrackAppCrash | Whether to report App crash logs | No | Default is `false`, when enabled it will show the error stack data in the error analysis. <br/> [On the issue of obfuscated content conversion in the crash log](#retrace-log) |
-| setExtraMonitorTypeWithError | Set up auxiliary monitoring information | No | Add additional monitoring data to `Rum` crash data, `ErrorMonitorType.BATTERY` for battery balance, `ErrorMonitorType.MEMORY` for memory usage, `ErrorMonitorType.CPU` for CPU occupancy |
-| setDeviceMetricsMonitorType | Setting View Monitoring Information | No | In the View cycle, add monitoring data, `DeviceMetricsMonitorType.BATTERY` to monitor the highest output current output of the current page, `DeviceMetricsMonitorType.MEMORY` to monitor the current application memory usage, ` CPU` monitors the number of CPU bounces, `DeviceMetricsMonitorType.FPS` monitors the screen frame rate |
-| setEnableTrackAppANR | Whether to turn on ANR detection | No | Default is `false` |
-| setEnableTrackAppUIBlock | Whether to enable UI lag detection | No | Default is `false` |
-| setEnableTraceUserAction | Whether to automatically track user actions | No | Currently only user start and click operations are supported,  default is `false` |
-| setEnableTraceUserView | Whether to automatically track user page actions | No | Default is `false` |
-| setEnableTraceUserResource | Whether to automatically chase user network requests | No | Only `Okhttp` is supported, default is `false` |
-| setResourceUrlHandler | Configure Reousrce filter| No | Not filter default |
-| addGlobalContext | Add custom tags | No | Add tag data for user monitoring data source distinction, if you need to use the tracking function, the parameter `key` is `track_id` ,`value` is any value, add rule notes please refer to [here](#key-conflict) |
+| **Method Name** | **Type**| **Meaning** | **Required** | **Attention** |
+| --- | --- | --- | --- | --- |
+| setRumAppId | String | Set `Rum AppId` | Yes | Corresponding to setting RUM `appid` to enable `RUM` collection, [get appid method](#android-integration) |
+| setEnableTrackAppCrash | Boolean  | Whether to report App crash logs | No | Default is `false`, when enabled it will show the error stack data in the error analysis. <br/> [On the issue of obfuscated content conversion in the crash log](#retrace-log) |
+| setExtraMonitorTypeWithError | Array | Set up auxiliary monitoring information | No | Add additional monitoring data to `Rum` crash data, `ErrorMonitorType.BATTERY` for battery balance, `ErrorMonitorType.MEMORY` for memory usage, `ErrorMonitorType.CPU` for CPU occupancy |
+| setDeviceMetricsMonitorType | Array | Setting View Monitoring Information | No | In the View cycle, add monitoring data, `DeviceMetricsMonitorType.BATTERY` to monitor the highest output current output of the current page, `DeviceMetricsMonitorType.MEMORY` to monitor the current application memory usage, ` CPU` monitors the number of CPU bounces, `DeviceMetricsMonitorType.FPS` monitors the screen frame rate |
+| setEnableTrackAppANR | Boolean | Whether to turn on ANR detection | No | Default is `false` |
+| setEnableTrackAppUIBlock | Boolean | Whether to enable UI lag detection | No | Default is `false` |
+| setEnableTraceUserAction| Boolean | Whether to automatically track user actions | No | Currently only user start and click operations are supported,  default is `false` |
+| setEnableTraceUserView | Boolean | Whether to automatically track user page actions | No | Default is `false` |
+| setEnableTraceUserResource| Boolean | Whether to automatically chase user network requests | No | Only `Okhttp` is supported, default is `false` |
+| setResourceUrlHandler | callback | Configure Reousrce filter| No | Not filter default |
+| addGlobalContext | Dictionary | Add custom tags | No | Add tag data for user monitoring data source distinction, if you need to use the tracking function, the parameter `key` is `track_id` ,`value` is any value, add rule notes please refer to [here](#key-conflict) |
 
 #### Add Custom Tags {#track}
 
@@ -315,7 +363,6 @@ android{
 	
 	```java
 	FTSdk.initLogWithConfig(new FTLoggerConfig()
-	    .setEnableConsoleLog(true)
 	    //.setEnableConsoleLog(true,"log prefix")
 	    .setEnableLinkRumData(true)
 	    .setEnableCustomLog(true)
@@ -329,7 +376,6 @@ android{
 	```kotlin
 	   FTSdk.initLogWithConfig(
 	            FTLoggerConfig()
-	                .setEnableConsoleLog(true)
 	              //.setEnableConsoleLog(true,"log prefix")
 	                .setEnableLinkRumData(true)
 	                .setEnableCustomLog(true)
@@ -338,16 +384,15 @@ android{
 	        )
 	```
 
-| **Method Name** | **Meaning** | **Required** | **Attention** |
-| --- | --- | --- | --- |
-| setServiceName | Set the service name | No | Default is `df_rum_android` |
-| setSampleRate | Set acquisition rate | No | The value of the acquisition rate ranges from >= 0, <= 1, and the default value is 1 |
-| setTraceConsoleLog | Whether to report console logs | No | Log level correspondence<br>Log.v -> ok;<br>Log.i、Log.d -> info;<br>Log.e -> error;<br>Log.w -> warning，<br> `prefix` is the control prefix filter parameter, no filter is set by default |
-| setEnableLinkRUMData | Whether to associate with RUM data | No | Default is `false` |
-| setLogCacheDiscardStrategy | Set frequent log discard rules | No | Default is `LogCacheDiscard.DISCARD`, `DISCARD` to discard additional data, `DISCARD_OLDEST` to discard old data |
-| setEnableCustomLog | Whether to upload custom logs | No | Default is `false` |
-| setLogLevelFilters | Set log level filtering | No | Set level log filtering, no setting by default |
-| addGlobalContext | Add log global property | No | Adding rules can be found [here](#key-conflict) |
+| **Method Name**  | **Type** | **Required** | **Meaning** | **Attention** |
+| --- | --- | --- | --- | --- |
+| setSampleRate |Boolean| No| Set acquisition rate  | The value of the acquisition rate ranges from >= 0, <= 1, and the default value is 1 |
+| setEnableConsoleLog |Boolean| No | Whether to report console logs |  Log level correspondence<br>Log.v -> ok;<br>Log.i、Log.d -> info;<br>Log.e -> error;<br>Log.w -> warning，<br> `prefix` is the control prefix filter parameter, no filter is set by default |
+| setEnableLinkRUMData |Boolean| No | Whether to associate with RUM data |  Default is `false` |
+| setLogCacheDiscardStrategy | No |LogCacheDiscard| Set frequent log discard rules | Default is `LogCacheDiscard.DISCARD`, `DISCARD` to discard additional data, `DISCARD_OLDEST` to discard old data |
+| setEnableCustomLog |Boolean| No | Whether to upload custom logs |  Default is `false` |
+| setLogLevelFilters |Array| No | Set log level filtering |  Set level log filtering, no setting by default |
+| addGlobalContext |Dictionary| No | Add log global property |  Adding rules can be found [here](#key-conflict) |
 
 ### Trace Configuration {#trace-config}
 
@@ -371,13 +416,13 @@ android{
 	        )
 	```
 
-| **Method Name** | **Meaning** | **Required** | **Attention** |
-| --- | --- | --- | --- |
-| setSampleRate | Set sample rate | No | The value of the acquisition rate ranges from >= 0, <= 1, and the default value is 1 |
-| setTraceType | Set the type of tracing | No | Default is `DDTrace`, currently support `Zipkin`, `Jaeger`, `DDTrace`, `Skywalking` (8.0+), `TraceParent` (W3C), if you access OpenTelemetry to choose the corresponding trace type, please pay attention to check the supported types and agent-related configuration |
-| setEnableLinkRUMData | Whether to associate with RUM data | No | Default is `false` |
-| setEnableAutoTrace | Set whether to enable automatic http trace | No | Currently only OKhttp auto-tracking is supported, the default is `false`. |
-| setEnableWebTrace | Set the webview to enable tracing or not | No | alpha function, some scenarios may have partial js loading problems, default is `false` |
+| **Method Name** | **Type**  | **Required** | **Meaning**  | **Attention** |
+| --- | --- | --- | --- |--- |
+| setSampleRate | Boolean  | No | Set sample rate | The value of the acquisition rate ranges from >= 0, <= 1, and the default value is 1 |
+| setTraceType | TraceType | No | Set the type of tracing  | Default is `DDTrace`, currently support `Zipkin`, `Jaeger`, `DDTrace`, `Skywalking` (8.0+), `TraceParent` (W3C), if you access OpenTelemetry to choose the corresponding trace type, please pay attention to check the supported types and agent-related configuration |
+| setEnableLinkRUMData | Boolean | No | Whether to associate with RUM data  | Default is `false` |
+| setEnableAutoTrace | Boolean | No | Set whether to enable automatic http trace | Currently only OKhttp auto-tracking is supported, the default is `false`. |
+| setEnableWebTrace | Boolean | No | Set the webview to enable tracing or not  | alpha function, some scenarios may have partial js loading problems, default is `false` |
 
 
 ## RUM User Data Tracking {#rum-trace}
@@ -565,6 +610,7 @@ Configure enableTraceUserAction, enableTraceUserView, and enableTraceUserResourc
 	    // Scene 2 : extra property
 	    HashMap<String, Object> map = new HashMap<>();
 	    map.put("ft_key_will_change", "ft_value_change"); // ft_key_will_change will be changed to ft_value_change when stopResource is called.
+	    FTRUMGlobalManager.get().startView("Current Page Name", map);
 	}
 	```
 
@@ -1488,7 +1534,7 @@ Ignore ASM insertion by adding `@IngoreAOP` to Plugin AOP override method
 	```
 
 
-## Frequently Asked Questions {#FAQ}
+## FAQ {#FAQ}
 ### Adding Bureau Variables to Avoid Conflicting Fields {#key-conflict}
 
 To avoid conflicts between custom fields and SDK data, it is recommended that the tag naming add the prefix of the project abbreviation, for example `df_tag_name`, and the `key` value can be used in the project [query source](https://github.com/DataFlux-cn/datakit-android/blob/dev/ft- sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java). If the same variables as RUM and Log appear in the SDK global variables, RUM and Log will overwrite the global variables in the SDK.
