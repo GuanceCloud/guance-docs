@@ -181,7 +181,7 @@ In the "Logs" section, you can synchronize and view log data from the Guance wor
 
 Please note that the translation is based on the provided text and may be slightly adjusted according to contextual needs. If there are specific terms or context that require further adjustments, please make appropriate modifications.
 
-**日志小图标说明**
+**Log Icon**
 
 - Search: Quickly search using keywords or fields.
 - Filter: Swiftly filter and view based on the log status.
@@ -192,13 +192,13 @@ Please note that the translation is based on the provided text and may be slight
 
 
 ## Events {#event}
-Guance's mobile app enables you to stay connected with the Guance workspace anytime, anywhere. You can use the "All" events section to view, search, and filter all unrecovered events triggered by **monitors**, including critical events, important events, warning events, and more. Through the "My" events section, you can view events that have been notified to you through emails, DingTalk robots, WeChat Work robots, Webhooks, and similar methods, and that are currently unresolved. Once you receive notifications for alert events, the Guance mobile app promptly sends you alerts to ensure you can react and resolve issues swiftly. For more details, please refer to the [Events section](../events/index.md).
+Guance mobile app enables you to stay connected with the Guance workspace anytime, anywhere. You can use the "All" events section to view, search, and filter all unrecovered events triggered by **monitors**, including critical events, important events, warning events, and more. Through the "My" events section, you can view events that have been notified to you through emails, DingTalk robots, WeChat Work robots, Webhooks, and similar methods, and that are currently unresolved. Once you receive notifications for alert events, the Guance mobile app promptly sends you alerts to ensure you can react and resolve issues swiftly. For more details, please refer to the [Events section](../events/index.md).
 
 > Note: In the "All Events" and "My Events" sections of the Guance mobile app, only up to 1000 event entries are provided. If you need to view more events, please go to the web version for additional access.
 
 **Event Icon Explanations**
 
-- 折叠 (Collapse): Collapse or expand the window for unrecovered events.
+- Collapse: Collapse or expand the window for unrecovered events.
 - All Events/Unrecovered Events: Switch between viewing all events and unrecovered events.
 - Filter: Swiftly filter and view based on event status.
 - Search: Quickly search using keywords or fields.
