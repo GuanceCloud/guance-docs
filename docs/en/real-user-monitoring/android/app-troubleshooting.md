@@ -91,7 +91,7 @@ buildscript {
 }
 ```
 
-## Check For SDK Initialization Error
+## Check for SDK Initialization Error
 Check the `Logcat` to confirm the presence of logs with a `Level` of `Error` and a `Tag` prefixed with `[FT-SDK]`. 
 
 ```kotlin
@@ -99,7 +99,7 @@ Check the `Logcat` to confirm the presence of logs with a `Level` of `Error` and
 ``` 
 
 ## Enable Debug Mode
-You can enable the SDK's debug functionality through the following configuration. Once enabled, the console's `LogCat` will output SDK debug logs. You can filter by the `[FT-SDK]` keyword to locate the Observability Cloud SDK logs.
+You can enable the SDK's debug functionality through the following configuration. Once enabled, the console's `LogCat` will output SDK debug logs. You can filter by the `[FT-SDK]` keyword to locate the Guance SDK logs.
 
 ```kotlin
   val config = FTSDKConfig.setDebug(true);
@@ -107,7 +107,7 @@ You can enable the SDK's debug functionality through the following configuration
 ```
 > **It is recommended to disable this configuration when releasing the version.**
 
-## Running Normally But No Data
+## Running normally but no data
 * [Ensure Datakit](../../datakit/why-no-data.md) is running properly. 
 
 * Confirm that the SDK's upload address `metricsUrl` is [configured correctly](app-access.md#base-setting) and initialized properly. In debug mode, you can use the following logs to identify issues with the upload address configuration.
@@ -125,7 +125,8 @@ You can enable the SDK's debug functionality through the following configuration
     10:51:48.996 [FT-SDK]SyncTaskManager com.demo D **********************同步数据成功**********************
 	
 	```
-* Check if Datakit is uploading data to the corresponding workspace and whether it's in an offline state. You can confirm this by logging into Observability Cloud and checking the "Infrastructure" section.
+	
+* Check if Datakit is uploading data to the corresponding workspace and whether it's in an offline state. You can confirm this by logging into Guance and checking the "Infrastructure" section.
 
 	![](../img/17.trouble_shooting_android_datakit_check.png)
 	
@@ -136,11 +137,17 @@ You can enable the SDK's debug functionality through the following configuration
 * Confirm that you're correctly calling `FTSdk.shutDown`. This method releases SDK data processing objects, including cached data.
 
 ### Resource Data Loss {#resource_missing}
+
+####OkHttpClient.build() before SDK initialization
+The writing of Plugin AOP ASM occurs automatically during the `OkHttpClient.build()` invocation. It writes the `FTTraceInterceptor`, `FTResourceInterceptor`, and `FTResourceEventListener.FTFactory`. If this process occurs before SDK initialization, it can lead to loading an empty configuration, resulting in the loss of Resource-related data.
+
+#### Data undergoes secondary processing using Interceptors or EventListener
+
 After Plugin AOP ASM insertion, the `OkHttpClient.Builder()` in the original project code is modified to include `addInterceptor`. This adds both `FTTraceInterceptor` and `FTResourceInterceptor`. The `Resource` data from different stages is connected contextually through a unique ID calculated using the `contentLength` of the HTTP request's body. If the integration modifies the data size by adding a secondary interceptor using `addInterceptor` in `Okhttp`, it can result in inconsistent ID calculations across stages and lead to data loss.
 
-To solve this issue, you can ensure that the SDK's methods calculate the ID first by customizing the order of `addInterceptor`. For a detailed example of using a custom `EventListener` and `Interceptor` with `OKHttp`, refer to the [ManualActivity](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt) in the demo repository.
+To solve this issue, you can ensure that the SDK's methods calculate the ID first by customizing the order of `addInterceptor`. For a detailed example of using a custom `EventListener` and `Interceptor` with `OKHttp`, refer to the [ManualActivity](https://github.com/GuanceDemo/guance-app-demo/blob/a57679eb287ba961f6607ca47048312e91635492/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt#L72) in the demo repository.
 
-## Loss With Specific Field
+## Loss with Specific Field
 ### User Data
 * Confirm that you're correctly calling the [user data binding methods](app-access.md#userdata-bind-and-unbind). In debug mode, you can track this issue through logs.
 	
@@ -157,8 +164,8 @@ To solve this issue, you can ensure that the SDK's methods calculate the ID firs
 * In debug mode, check the `[FT-SDK]SyncTaskManager` logs. These logs can help verify the correctness of custom field parameters.
 
 
-## Low Performace with Log 'enableConsoleLog' 
+## Low performace with Log 'enableConsoleLog' 
 If the issue is possibly due to the collected log data being too large, consider adjusting the `FTLoggerConfig` [configuration](app-access.md#log-config) parameters such as `sampleRate`, `logPrefix`, and `logLevelFilters` to eliminate or mitigate the problem. The `FTLoggerConfig.enableConsoleLog` works by intercepting `android.util.Log` and Java/Kotlin `println`. Adjust these parameters as needed to address the issue.
 
-## Okhttp EventListener No Working After Integrating
+## Okhttp 'EventListener' no working after integrating
 After Plugin AOP ASM insertion, the `OkHttpClient.Builder()` in the original project code is modified to include `eventListenerFactory`. This might override the existing `eventListener` or `eventListenerFactory`. To address this, you can disable the automatic AOP setup using `FTRUMConfig setEnableTraceUserResource(false)`, and then customize a `CustomEventListenerFactory` that inherits from `FTResourceEventListener.FTFactory`. For more details, refer to the [CustomEventListener](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/custom/okhttp/CustomEventListenerFactory.kt) example in the demo repository.
