@@ -100,6 +100,7 @@ Basic information about system operation.
 |`memory_usage`|The percentage of used memory.|float|percent|
 |`n_cpus`|CPU logical core count.|int|count|
 |`n_users`|User number.|int|count|
+|`process_count`|Number of Processes running on the machine.|int|-|
 |`uptime`|System uptime.|int|s|
 
 
@@ -153,3 +154,9 @@ System file handle metrics (Linux only).
 |`maximum_mega`|The maximum number of file handles, unit M(10^6).|float|count|
 
 
+
+## FAQ {#faq}
+
+### 为什么没有 `cpu_total_usage` 指标？ {#no-cpu}
+
+CPU 部分采集功能不支持部分平台，如 macOS。

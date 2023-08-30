@@ -26,6 +26,7 @@ nav:
       - 'MySQL': mysql.md
       - clickhousev1.md
       - couchbase.md
+      - couchdb.md
       - oracle.md
       - sqlserver.md
       - postgresql.md
@@ -58,6 +59,7 @@ nav:
       - jenkins.md
       - gitlab.md
       - snmp.md
+      - netflow.md
 
   - Cloud Native:
     - 'Metric Collection': container.md

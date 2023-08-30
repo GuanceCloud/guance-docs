@@ -298,7 +298,21 @@ key:(value1 AND * OR value3)        // 等同于 key:(value1 OR value3)
 
 ![](../img/linkexplorer.png)
 
+## 自动刷新 {#refresh}
 
+为快速获得实时的查看器数据，观测云在查看器内提供刷新功能。您可进行以下操作：
+
+- 停止自动刷新时，支持点击 :octicons-sync-24: 手动刷新；
+
+<img src="../../img/refresh-1.png" width="60%" >
+
+- 开启自动刷新时：  
+    - 支持选择自动刷新时间，包含 5s/10s/30s/1m/5m/30m/1h；默认选中 30s；  
+    - 支持点击 :octicons-sync-24: 手动刷新。
+
+<img src="../../img/refresh-2.png" width="60%" >
+
+**注意**：此处的刷新功能的设置与[查看器自动刷新](#auto-refresh)互不冲突。
 
 ## 时间控件 {#time}
 
@@ -425,7 +439,7 @@ key:(value1 AND * OR value3)        // 等同于 key:(value1 OR value3)
 您也可以在 **[账号管理](../../management/account-management.md#zone)** 进行修改。
 
 
-### 查看器自动刷新
+### 查看器自动刷新 {#auto-refresh}
 
 在观测云工作空间，点击**账号**，可开启 / 关闭**查看器自动刷新**。
 

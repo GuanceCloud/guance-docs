@@ -59,8 +59,11 @@ RUM（Real User Monitor）采集器用于收集网页端或移动端上报的用
       ## Default value set as below. DO NOT MODIFY THESE ENDPOINTS if not necessary.
       endpoints = ["/v1/write/rum"]
     
-      ## use to upload rum screenshot,html,etc...
+      ## used to upload rum session replay.
       session_replay_endpoints = ["/v1/write/rum/replay"]
+    
+      ## specify which metrics should be captured.
+      measurements = ["view", "resource", "action", "long_task", "error", "telemetry"]
     
       ## Android command-line-tools HOME
       android_cmdline_home = "/usr/local/datakit/data/rum/tools/cmdline-tools"
@@ -428,5 +431,5 @@ DataKit 内置了一个主流 CDN 厂家信息列表，如果发现你所使用�
 <!-- markdownlint-disable MD046 -->
 ???+ info
 
-    RUM 配置文件默认位于 `/usr/local/datakit/conf.d/rum/rum.conf`，具体根据你所使用的操作系统和 Datakit 安装位置确定。
+    RUM 配置文件默认位于 */usr/local/datakit/conf.d/rum/rum.conf*（Linux/macOS）和 *C:\\Program Files\\datakit\\conf.d\\rum*（Windows），具体根据你所使用的操作系统和 Datakit 安装位置确定。
 <!-- markdownlint-enable -->

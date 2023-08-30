@@ -7,6 +7,53 @@ icon: zy/release-notes
 
 本文档记录观测云每次上线发布的更新内容说明，包括 DataKit、观测云最佳实践、观测云集成文档和观测云。
 
+## 2023 年 8 月 29 日
+
+### 观测云更新
+
+- 场景 > SLO 图表：新增故障时间显示。
+- 部署版：管理后台[映射规则](../deployment/setting.md#mapping)新增仅针对新加入成员应用适配规则，用户启用选择该选项时，映射规则适配仅针对首次加入成员生效。
+
+## 2023 年 8 月 24 日
+
+### 观测云更新
+
+<video controls="controls" poster="https://static.guance.com/dataflux/help/video/20230824.png" >
+      <source id="mp4" src="https://static.guance.com/dataflux/help/video/20230824.mp4" type="video/mp4">
+</video>
+
+- [计费项](../billing/billing-method/index.md)：
+    - 备份日志：新增 OSS、OBS、AWS S3、Kafka 四种存档类型计费项，基于用户选择的对应存档类型统计汇总转发的流量大小，并根据数据对应出账；
+    - 应用性能 Trace、用户访问 PV 新增 30天/60天的数据存储策略。
+- 监控：
+    - [静默规则](../monitoring/silent-management.md)：支持基于不同维度配置告警沉默。
+    - [监控器](../monitoring/monitor/index.md#list)：支持为监控器添加标签，根据标签过滤列表；监控器列表增加快捷筛选列，并对列表进行了一些优化；
+    - SLO：新增**故障时间**显示列。
+- 日志 > 备份日志：新增 [Kafka 消息队列](../logs/backup.md#kafka)外部存储。
+- 查看器/仪表板：新增[自动刷新功能](../getting-started/function-details/explorer-search.md#refresh)。
+- 查看器详情页：新增[绑定内置视图](../infrastructure/host.md#view)入口。
+
+### 集成更新
+
+- [阿里云 RDS MariaDB](../integrations/aliyun_rds_mariadb.md)：阿里云 RDS MariaDB 的展示指标包括响应时间、并发连接数、QPS 和 TPS 等。
+- [阿里云 RocketMQ4](../integrations/aliyun_rocketmq4.md)：阿里云 RocketMQ 4.0 的展示指标包括消息吞吐量、延迟、可靠性和水平扩展能力等。
+- [阿里云 Tair 社区版](../integrations/aliyun_tair.md)：阿里云 Tair 社区版指标展示包括 CPU 使用率、内存使用率、代理总QPS、网络流量、命中率等。
+- [AWS DynamoDB](../integrations/aws_dynamodb.md)：AWS DynamoDB 的展示指标包括吞吐量容量单位（Capacity Units）、延迟、并发连接数和读写吞吐量，这些指标反映了 DynamoDB 在处理大规模数据存储和访问时的性能表现和可扩展性。
+- [AWS EventBridge](../integrations/aws_eventbridge.md)：AWS EventBridge 的展示指标包括事件传递延迟、吞吐量、事件规模和可伸缩性，这些指标反映了 EventBridge 在处理大规模事件流和实时数据传递时的性能表现和可靠性。
+- [AWS Lambda](../integrations/aws_lambda.md)：AWS Lambda 的展示指标包括冷启动时间、执行时间、并发执行数和内存使用量，这些指标反映了 Lambda 函数的响应速度、可扩展性和资源利用情况。
+- [HUAWEI SYS.AS](../integrations/huawei_SYS.AS.md)：HUAWEI SYS.AS 的展示指标包括响应时间、并发连接数、吞吐量和可靠性，这些指标反映了 SYS.AS 在处理应用程序请求和数据交互时的性能表现和稳定性。
+- [HUAWEI SYS.CBR](../integrations/huawei_SYS.CBR.md)：HUAWEI SYS.CBR 的展示指标包括带宽利用率、延迟、丢包率和网络吞吐量，这些指标反映了CBR在网络传输和带宽管理方面的性能表现和质量保证。
+- [华为云 GaussDB-Cassandra](../integrations/huawei_gaussdb_cassandra.md)：华为云 GaussDB-Cassandra 的展示指标包括读写吞吐量、延迟、数据一致性和可扩展性，这些指标反映了 GaussDB-Cassandra 在处理大规模分布式数据存储和访问时的性能表现和可靠性。
+- [华为云 GaussDB for MySQL](../integrations/huawei_gaussdb_for_mysql.md)：华为云 GaussDB for MySQL 的展示指标包括响应时间、并发连接数、读写吞吐量和可扩展性，这些指标反映了 GaussDB for MySQL 在处理大规模关系型数据库操作时的性能表现和可靠性。
+- [华为云 GaussDB-Influx](../integrations/huawei_gaussdb_influx.md)：华为云 GaussDB-Influx 的展示指标包括写入吞吐量、查询延迟、数据保留策略和可扩展性，这些指标反映了 GaussDB-Influx 在处理大规模时序数据存储和查询时的性能表现和可靠性。
+- [华为云 GaussDB-Redis](../integrations/huawei_gaussdb_redis.md)：华为云 GaussDB-Redis 的展示指标包括读写吞吐量、响应时间、并发连接数和数据持久性，这些指标反映了 GaussDB-Redis 在处理高并发数据存储和缓存时的性能表现和可靠性。
+- [华为云 GaussDB SYS.GAUSSDBV5](../integrations/huawei_gaussdb_sys.gaussdbv5.md)：华为云 GaussDB `SYS.GAUSSDBV5`，提供 CPU、内存、磁盘、死锁、`SQL` 响应时间指标等数据。
+- [华为云 MongoDB](../integrations/huawei_mongodb.md)：华为云 MongoDB 的展示指标包括读写吞吐量、延迟、并发连接数和数据可靠性，这些指标反映了 MongoDB 在处理大规模文档存储和查询时的性能表现和可扩展性。
+- [华为云 RDS PostgreSQL](../integrations/huawei_rds_postgresql.md)：华为云 RDS PostgreSQL 的展示指标包括查询性能、事务吞吐量、并发连接数和数据可靠性，这些指标反映了 RDS PostgreSQL 在处理大规模关系型数据存储和事务处理时的性能表现和可靠性。
+- 腾讯云 CKafka：腾讯云 CKafka 的展示指标包括消息吞吐量、延迟、并发连接数和可靠性，这些指标反映了 CKafka 在处理大规模消息传递和实时数据流时的性能表现和可靠性保证。
+- [Zadigx](../integrations/zadigx.md)：Zadigx 展示包括概览、自动化构建、自动化部署、自动化测试等。
+- [飞书与异常追踪联动](../integrations/feishu_im.md)：为方便更加及时可方便的获取异常追踪中的新 Issue，可以通过在内部群中创建一个飞书、钉钉或者企业微信的机器人来接受异常追踪中的新 Issue 或新回复的提醒，帮助及时处理 Issue；也可以通过 @机器人的这种方式来快速进行 Issue 回复，提高我们的异常处理效率。
+
 ## 2023 年 8 月 17 日
 
 ### 观测云更新
@@ -17,7 +64,7 @@ icon: zy/release-notes
 
 - 管理：新增[敏感数据扫描](../management/data-scanner.md)功能：通过为数据创建脱敏规则的方式，实现信息屏蔽。
 - 新增计费项：[敏感数据扫描流量](../billing/billing-method/index.md#scanned-data)：基于扫描规则统计扫描到的敏感数据原始流量大小（每 GB / 天）。
-- 付费计划与账单：消费分析板块因坐改造优化处理，暂时下架。
+- 付费计划与账单：消费分析板块因作改造优化处理，暂时下架。
 
 ## 2023 年 8 月 10 日
 
@@ -31,7 +78,7 @@ icon: zy/release-notes
 - 新增计费项：
     - [定时报告](../billing/billing-method/index.md#report)：按工作空间内定时报告单日发送的次数出账计费；
 - 场景：
-    - 新增 **[服务管理](../scene/service-manag.md)**：服务管理是一个用于访问所有服务关键信息的集中入口，用户可查看当前工作空间内不同服务的性能和业务数据及所有的关联分析等信息，快速定位并解决服务的相关问题。  
+    - 新增 **[服务管理](../scene/service-manag.md)**：服务管理是一个用于访问所有服务关键信息的集中入口，用户可查看当前工作空间内不同服务的性能和业务数据及所有的关联分析等信息，快速定位并解决服务的相关问题。
     - 图表均支持 PromQL 查询和表达式查询。
 - 日志：支持在日志详情页直接查看[上下文日志](../logs/explorer.md#up-down)；可选择上下文检索范围。
 - 查看器：打开某条数据详情页，支持一键[导出](../getting-started/function-details/explorer-search.md#export)当前数据为 JSON 文件。
@@ -86,18 +133,18 @@ icon: zy/release-notes
 
 ### 智能巡检更新
 
-功能优化：  
+功能优化：
 
-- 应用性能巡检：新增默认检测阈值更改入口，现在在开启巡检时可以同步需改需要检测服务的触发值。  
-- RUM 性能巡检：对页面详情模块中根因展示逻辑进行优化，优化后，根因定位更加准确。  
+- 应用性能巡检：新增默认检测阈值更改入口，现在在开启巡检时可以同步需改需要检测服务的触发值。
+- RUM 性能巡检：对页面详情模块中根因展示逻辑进行优化，优化后，根因定位更加准确。
 - 工作空间资产巡检：新增默认配置(7 天)，现在开启巡检不需要参数也可以运行。
 
 新增脚本：
 
-- [云消息队列 RocketMQ4.0](https://func.guance.com/doc/script-market-guance-aliyun-rocketmq4/)  
-- [华为云-CSS](https://func.guance.com/doc/script-market-guance-huaweicloud-css/)  
-- [华为云-RocketMQ](https://func.guance.com/doc/script-market-guance-huaweicloud-rocketmq/)  
-- [华为云-RabbitMQ](https://func.guance.com/doc/script-market-guance-huaweicloud-rabbitmq/)  
+- [云消息队列 RocketMQ4.0](https://func.guance.com/doc/script-market-guance-aliyun-rocketmq4/)
+- [华为云-CSS](https://func.guance.com/doc/script-market-guance-huaweicloud-css/)
+- [华为云-RocketMQ](https://func.guance.com/doc/script-market-guance-huaweicloud-rocketmq/)
+- [华为云-RabbitMQ](https://func.guance.com/doc/script-market-guance-huaweicloud-rabbitmq/)
 - 华为云-WAF-事件列表
 - 华为云-WAF-事件概览
 
@@ -107,7 +154,7 @@ icon: zy/release-notes
 
 本次更新简化了注册流程：
 
-- [国际站观测云产品服务](https://www.guance.one/)正式上线，用户可前往 AWS 海外云市场购买。   
+- [国际站观测云产品服务](https://www.guance.one/)正式上线，用户可前往 AWS 海外云市场购买。
 - [国际站观测云](https://docs.guance.com/en/billing/inter-commercial/)产品采用[以美元为单位的计价体系](../billing/billing-method/index.md#item)。中国站原俄勒冈站点注册的工作空间数据将按照调整后的价格计费。
 
 - 观测云**企业账号**这一概念正式更改为**费用中心账号**；
@@ -222,21 +269,21 @@ DataFlux Func 是观测云的扩展编程平台，可用于同步云平台数据
 
 ### 观测云更新
 
-- 概览图支持同时展示多个同期对比维度（日同比/周同比/月同比/...）     
-- 标准成员新增快照分享功能     
-- DQL 查询更名为[查询工具](../dql/query.md)，新增执行按钮    
-- 主机列表显示优化，处于告警沉默的主机新增静默提示     
-- SLO 告警通知内容优化，新增工作空间和站点的信息     
-- 优化工作空间 ID 和 Token 的显示逻辑，默认隐藏，支持查看和复制     
-- 体验版工作空间新增 Session Replay、Profile 的使用限制     
+- 概览图支持同时展示多个同期对比维度（日同比/周同比/月同比/...）
+- 标准成员新增快照分享功能
+- DQL 查询更名为[查询工具](../dql/query.md)，新增执行按钮
+- 主机列表显示优化，处于告警沉默的主机新增静默提示
+- SLO 告警通知内容优化，新增工作空间和站点的信息
+- 优化工作空间 ID 和 Token 的显示逻辑，默认隐藏，支持查看和复制
+- 体验版工作空间新增 Session Replay、Profile 的使用限制
 
 ## 2023 年 4 月 23 日
 
 ### 观测云计费更新：
 
-- 观测云自研时序数据库 GuanceDB 全新上线，时序数据存储及计费将会做如下调整：      
-    - 基础设施（DataKit）计费项下线，原 “DataKit + 时间线”、“仅时间线” 两种计费模式按照仅 GuanceDB 时间线作为出账逻辑使用；         
-    - GuanceDB 时间线：统计当天活跃的时间线数量计费，单价低至 ￥0.6 / 每千条时间线。        
+- 观测云自研时序数据库 GuanceDB 全新上线，时序数据存储及计费将会做如下调整：
+    - 基础设施（DataKit）计费项下线，原 “DataKit + 时间线”、“仅时间线” 两种计费模式按照仅 GuanceDB 时间线作为出账逻辑使用；
+    - GuanceDB 时间线：统计当天活跃的时间线数量计费，单价低至 ￥0.6 / 每千条时间线。
 
 - 用户访问监测 “会话重放” 正式启动付费，按照实际采集会话重放数据的 session 数量计费，￥10 / 每千个 Session。
 
@@ -244,19 +291,19 @@ DataFlux Func 是观测云的扩展编程平台，可用于同步云平台数据
 
 ### 观测云功能更新：
 
-- [GuanceDB 时序数据库](../billing/billing-method/gauncedb.md)全新上线         
+- [GuanceDB 时序数据库](../billing/billing-method/gauncedb.md)全新上线
 - [异常追踪](../exception/index.md) 新功能上线
-- [跨站点工作空间授权](../management/data-authorization.md#data-authorization) 功能上线         
-- SLS 新增[第三方授权](../billing/commercial-aliyun-sls.md#method)开通        
-- 绑定索引配置页面优化，支持自定义添加映射字段配置      
-- 图表优化       
-    - [命令面板](../scene/visual-chart/command-panel.md) 新增本地 Func 的自定义函数选择        
-    - 时序图新增 [高级函数](../dql/advanced-funcs/index.md)，支持本地 Func 根据 DQL 查询结果二次处理后返回显示      
-- 工作空间新增[时区配置](../management/account-management.md#workspace)，用户可自定义配置当前工作空间查询时间的时区    
-- 集成 > DataKit 页面引导优化    
-- 查看器柱状分布图新增统计时间区间显示      
-- 导航菜单支持右键选择新页打开       
-- 黑名单重名导入问题修复      
+- [跨站点工作空间授权](../management/data-authorization.md#data-authorization) 功能上线
+- SLS 新增[第三方授权](../billing/commercial-aliyun-sls.md#method)开通
+- 绑定索引配置页面优化，支持自定义添加映射字段配置
+- 图表优化
+    - [命令面板](../scene/visual-chart/command-panel.md) 新增本地 Func 的自定义函数选择
+    - 时序图新增 [高级函数](../dql/advanced-funcs/index.md)，支持本地 Func 根据 DQL 查询结果二次处理后返回显示
+- 工作空间新增[时区配置](../management/account-management.md#workspace)，用户可自定义配置当前工作空间查询时间的时区
+- 集成 > DataKit 页面引导优化
+- 查看器柱状分布图新增统计时间区间显示
+- 导航菜单支持右键选择新页打开
+- 黑名单重名导入问题修复
 
 ### 观测云部署版更新
 
@@ -298,15 +345,15 @@ DataFlux Func 是观测云的扩展编程平台，可用于同步云平台数据
 ## 2023 年 4 月 13 日
 
 ### 智能巡检更新
- 
-- 脚本市场智能巡检脚本集:     
-    - 优化开启步骤，无须新创建脚本，无须新建调度，从官方脚本市场点击安装后，自动完成创建与调度，配置参数后即可开启；      
+
+- 脚本市场智能巡检脚本集:
+    - 优化开启步骤，无须新创建脚本，无须新建调度，从官方脚本市场点击安装后，自动完成创建与调度，配置参数后即可开启；
     - 更新磁盘使用率巡检：对磁盘使用率巡检趋势判断算法优化，为用户提供更精准的问题定位。
-      
-- 脚本市场云同步脚本集:      
-    - 优化开启步骤，无须新创建脚本，无须新建调度，从官方脚本市场点击安装后，自动完成创建与调度，配置参数后即可开启；    
-    - 新增 AWS 同步多种认证方式；      
-    - 新增 AWS Cloudwatch Logs 同步。    
+
+- 脚本市场云同步脚本集:
+    - 优化开启步骤，无须新创建脚本，无须新建调度，从官方脚本市场点击安装后，自动完成创建与调度，配置参数后即可开启；
+    - 新增 AWS 同步多种认证方式；
+    - 新增 AWS Cloudwatch Logs 同步。
 
 更多智能巡检更新可参考 [智能巡检版本历史](../monitoring/bot-obs/index.md)。
 
@@ -530,7 +577,7 @@ DataFlux Func 是观测云的扩展编程平台，可用于同步云平台数据
 
 ![](img/11.rum_3.png)
 
-##### 新增 CDN 质量分析 
+##### 新增 CDN 质量分析
 
 用户访问监测新增 CDN 厂商信息采集，通过分析图表对不同厂商的 CDN 进行质量分析。更多配置可参考 [用户访问监测采集器配置](../integrations/rum.md#cdn-resolve)。
 
@@ -780,4 +827,3 @@ DataFlux Func 是观测云的扩展编程平台，可用于同步云平台数据
     - 应用性能监控 (APM) - 调用链 - [使用 datakit-operator 注入 dd-java-agent](../best-practices/monitoring/datakit-operator.md)。
 
 更多最佳实践更新可参考 [最佳实践版本历史](../best-practices/index.md)。
-

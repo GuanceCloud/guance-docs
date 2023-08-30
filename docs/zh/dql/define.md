@@ -89,6 +89,7 @@ namespace::
 	order-by-clause
 	limit-clause
 	offset-clause
+	sorder-by-clause
 	slimit-clause
 	soffset-clause
 ```
@@ -333,6 +334,25 @@ M::cpu:(max('usage_total')) by host order by time desc
 ```python
 # 获取不同主机下，处理请求响应时间，按照响应时间升序
 L::`*`:(max('response_time') as m1) by host order by m1 asc
+```
+
+### sorder-by-clause 语句
+
+`SORDER BY` 子句会对分组进行排。
+
+```python
+# 获取不同主机的 CPU 最大使用率，按照主机名逆序
+M::cpu:(max(`usage_total`)) by host sorder by host desc
+```
+
+```python
+# 获取不同主机的 CPU 最大使用率，按照最大 CPU 使用率升序
+M::cpu:(max(`usage_total`) as m) by host sorder by m
+```
+
+```python
+# 获取不同主机的 CPU 使用率，按照最新 CPU 使用率升序
+M::cpu:(`usage_total`) sorder by usage_total
 ```
 
 ### filter-clause 语句

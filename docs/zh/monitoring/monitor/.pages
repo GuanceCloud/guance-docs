@@ -1,7 +1,7 @@
 nav:
   - index.md
-  - '官方监控器模板库': template.md
-  - '用户监控器模板': custom-template.md
+  - '官方模板库': template.md
+  - '自定义模板库': custom-template.md
   - '阈值检测': threshold-detection.md
   - '突变检测': mutation-detection.md
   - '区间检测': interval-detection.md

@@ -9,31 +9,32 @@ When customizing the content of triggering actions, besides the fixed copy writt
 
 The syntax used to render event fields is `{{ field name }}`, and the event fields that can be used for copywriting rendering are as follows:
 
-| Template Variable                           | Type           | Description                                                                                                                        |
-| ---------------------------------- | -------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| `date`、`timestamp`                | Integer        | Event generation time, unit: seconds                                                                                                      |
-| `df_dimension_tags`                | String         | Event dimension, that is, according to the permutation and combination after `by` configured in the monitor, used to identify the detected object<br>for example:`{"host":"web-001"}`                                |
-| `df_event_id`                      | String         | Event ID (unique identity                                                                                                         |
-| `df_monitor_checker_id`            | String         | Detector ID<br>_If you have any questions about the detection, you can feedback this ID to us_                                                                     |
-| `df_monitor_checker_name`          | String         | Detector name, that is, the name filled in when creating the detector                                                                                      |
-| `df_monitor_checker_value`         | String         | Detection value, that is, the value detected when this event is generated<br>Note: The detected value is cast to String type to ensure compatibility                                      |
-| `df_monitor_id`                    | String         | Detection grouping ID<br>_If you have any questions about the detection, you can feedback this ID to us_                                                                   |
-| `df_monitor_name`                  | String         | Detect the packet name, that is, the packet name specified when creating the detector                                                                                  |
-| `df_status`                        | String(Enum)   | Event status, the possible values are:<br>critical`critical`<br>error`error`<br>warning`warning`<br>ok`ok`<br>notata`nodata`                      |
-| `df_workspace_name`                | String         | Owning workspace name                                                                                                              |
-| `df_workspace_uuid`                | String         | Owning workspace ID<br>_If you have any questions about the detection, you can feedback this ID to us_                                                               |
-| `Result`                           | Integer, Float | The instrumented value, like `df_monitor_checker_value`, is the value detected when this event was generated, but the field type is the original type obtained when instrumented and is not cast to String |
-| {Detect the `by` or `dimension` fields specified in the configuration} | String         | If `by region, host` is specified during detection, the corresponding `region` and `host` fields will be generated at the same time.                                     |
+| Template Variable                                                      | Type           | Description                                                                                                                                                                                                |
+| ---------------------------------------------------------------------- | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `date`、`timestamp`                                                    | Integer        | Event generation time, unit: seconds                                                                                                                                                                       |
+| `df_dimension_tags`                                                    | String         | Event dimension, that is, according to the permutation and combination after `by` configured in the monitor, used to identify the detected object<br>for example:`{"host":"web-001"}`                      |
+| `df_event_id`                                                          | String         | Event ID (unique identity)                                                                                                                                                                                 |
+| `df_monitor_checker_id`                                                | String         | Detector ID<br>_If you have any questions about the detection, you can feedback this ID to us_                                                                                                             |
+| `df_monitor_checker_name`                                              | String         | Detector name, that is, the name filled in when creating the detector                                                                                                                                      |
+| `df_monitor_checker_value`                                             | String         | Detection value, that is, the value detected when this event is generated<br>Note: The detected value is cast to String type to ensure compatibility                                                       |
+| `df_monitor_id`                                                        | String         | Detection grouping ID<br>_If you have any questions about the detection, you can feedback this ID to us_                                                                                                   |
+| `df_monitor_name`                                                      | String         | Detect the packet name, that is, the packet name specified when creating the detector                                                                                                                      |
+| `df_status`                                                            | String(Enum)   | Event status, the possible values are:<br>critical`critical`<br>error`error`<br>warning`warning`<br>ok`ok`<br>notata`nodata`                                                                               |
+| `df_workspace_name`                                                    | String         | Owning workspace name                                                                                                                                                                                      |
+| `df_workspace_uuid`                                                    | String         | Owning workspace ID<br>_If you have any questions about the detection, you can feedback this ID to us_                                                                                                     |
+| `Result`                                                               | Integer, Float | The instrumented value, like `df_monitor_checker_value`, is the value detected when this event was generated, but the field type is the original type obtained when instrumented and is not cast to String |
+| {Detect the `by` or `dimension` fields specified in the configuration} | String         | If `by region, host` is specified during detection, the corresponding `region` and `host` fields will be generated at the same time.                                                                       |
+| `df_event`                                                             | Dict           | Entire event data                                                                                                                                                                                          |
 
 ### Real User Metrics Monitoring (RUM)
 
 In the Real User Metrics Monitoring (RUM) detector, in addition to the general template variables mentioned above, the following template variables are supported:
 
-| Template Variable   | Type   | Description     |
-| ---------- | ------ | -------- |
-| `app_id`   | String | application ID  |
-| `app_name` | String | application name |
-| `app_type` | String | application type |
+| Template Variable | Type   | Description      |
+| ----------------- | ------ | ---------------- |
+| `app_id`          | String | application ID   |
+| `app_name`        | String | application name |
+| `app_type`        | String | application type |
 
 ### Sample Template Variables
 
@@ -73,6 +74,14 @@ Output event content:
 - Monitor: My Monitor (Group: Default Group)
 ```
 
+### Dimension fields that contain a dash `-`
+
+In some cases, the `by` or `dimension` field specified in the configuration may contain a median `-`, e.g. `host-name`.
+
+Due to syntax issues, the template engine will parse `host-name` as "`host` minus `name`", resulting in failure to render properly.
+
+In this case, `df_event['host-name']` can be used instead of `host-name`, e.g.: `{{ df_event['host-name'] }}`
+
 ## Template Function
 
 In addition to directly displaying the field values in the event, you can use template functions to further process the field values and optimize the output.
@@ -103,14 +112,14 @@ CPU utilization: {{ (Result * 100) | to_round(2) }}%
 
 The complete list of template functions is as follows:
 
-| Template Function          | Parameter         | Description                                                                                                               |
-| ----------------- | ------------ | ------------------------------------------------------------------------------------------------------------------ |
-| `to_datetime`     | Time zone         | Convert a timestamp to a date (the default time zone is `Asia/Shanghai`）<br>such as: `{{ date | to_datetime }}`<br>output: `2022-01-01 01:23:45` |
-| `to_status_human` |              | Convert `df_status` to readable form<br>such as: `{{ df_status | to_status_human }}`<br>output: `critical`                           |
-| `to_fixed`        | Fixed decimal places | Output numbers to fixed decimal places (0 decimal places are reserved by default)<br>such as: `{{ Result | to_fixed(3) }}`<br>output: `1.230`               |
-| `to_round`        | Maximum size digit | Rounding numbers (0 decimal places are reserved by default)<br>such as: `{{ Result | to_round(2) }}`<br>output: `1.24`                          |
-| `to_percent`      | Fixed decimal places | Output decimal as a percentage (0 decimal places are reserved by default)<br>such as: `{{ Result | to_percent(1) }}`<br>output: `12.3%`                   |
-| `to_pretty_tags`  |              | Beautify the output label<br>such as: `{{ df_dimension_tags | to_pretty_tags }}`<br>output: `region=hanghzou, host=web-001`          |
+| Template Function | Parameter            | Description                                                                                                                                      |
+| ----------------- | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `to_datetime`     | Time zone            | Convert a timestamp to a date (the default time zone is `Asia/Shanghai`)<br>such as: `{{ date | to_datetime }}`<br>output: `2022-01-01 01:23:45` |
+| `to_status_human` |                      | Convert `df_status` to readable form<br>such as: `{{ df_status | to_status_human }}`<br>output: `critical`                                       |
+| `to_fixed`        | Fixed decimal places | Output numbers to fixed decimal places (0 decimal places are reserved by default)<br>such as: `{{ Result | to_fixed(3) }}`<br>output: `1.230`    |
+| `to_round`        | Maximum size digit   | Rounding numbers (0 decimal places are reserved by default)<br>such as: `{{ Result | to_round(2) }}`<br>output: `1.24`                           |
+| `to_percent`      | Fixed decimal places | Output decimal as a percentage (0 decimal places are reserved by default)<br>such as: `{{ Result | to_percent(1) }}`<br>output: `12.3%`          |
+| `to_pretty_tags`  |                      | Beautify the output label<br>such as: `{{ df_dimension_tags | to_pretty_tags }}`<br>output: `region=hanghzou, host=web-001`                      |
 
 ### Sample Template Function
 
@@ -215,7 +224,7 @@ You can then use `{{ dql_data.xxx }}` in the template to output specific fields 
 
 *Note: Variable names follow the naming requirements of general programming languages, and can be any string that starts in English and contains only English, numbers and underscores. emoji is not recommended.*
 
-*Note: If you use a function for a field in the DQL (e.g. `O::HOST:( last(host) )`, it is recommended to use `AS` to alias the field for subsequent use (e.g. `O::HOST:( last(host) AS last_host )`）*
+*Note: If you use a function for a field in the DQL (e.g. `O::HOST:( last(host) )`), it is recommended to use `AS` to alias the field for subsequent use (e.g. `O::HOST:( last(host) AS last_host )`)*
 
 ### Passing DQL parameters using template variables
 
@@ -268,7 +277,7 @@ O::HOST:(host, host_ip, os, datakit_ver) { host = 'my_server' }
 
 1. Embed the variable name assigned by DQL query function, *don't* duplicate the name with any existing template variable and template function, otherwise it will cause unexpected problems.
 2. Because the embedded DQL query function is located in the event content template, it is recommended to write it at the beginning of the whole content template, and the system will automatically remove the blank lines before and after the content.
-3. If you use a function for a field in your DQL (e.g. `O::HOST:( last(host) )`, it is recommended to use `AS` to alias the field for subsequent use (e.g. `O::HOST:( last(host) AS last_host )`)
+3. If you use a function for a field in your DQL (e.g. `O::HOST:( last(host) )`), it is recommended to use `AS` to alias the field for subsequent use (e.g. `O::HOST:( last(host) AS last_host )`)
 
 ### Appendix
 

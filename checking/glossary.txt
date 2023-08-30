@@ -133,6 +133,9 @@ vmalloc
 workqueue
 xpack
 zhangsan
+netflow
+Wakeup
+wakeup
 Zadigx
 
 # 缩写
@@ -210,6 +213,16 @@ wakeups
 
 # 连词
 golangci
+bboltdb
+unsynced
+defrag
+txns
+fsyncing
+goroutines
+mallocs
+mspan
+sflow
+ipfix
 
 # 极限词
 !github
