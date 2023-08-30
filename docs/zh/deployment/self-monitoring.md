@@ -165,24 +165,27 @@ kubectl edit -n forethought-kodo cm <configmap_name>
 
 2）把 forethought-kodo Namespace 下的`ConfigMap`，里面的日志输出改成 stdout。
 
-3）开启下表中应用的指标数据
+3）开启下表中对应服务的指标采集
 
-| `Namespace`      | 服务名             |
-| ---------------- | ------------------ |
-| forethought-core | front-backend      |
-|                  | inner              |
-|                  | management-backend |
-|                  | openapi            |
-|                  | websocket          |
-| forethought-kodo | kodo               |
-|                  | kodo-inner         |
-|                  | kodo-x             |
-|                  | kodo-asynq-client  |
+| `Namespace`      | 服务名             | 是否开启指标采集   | 是否开启 DDtrace 采集 |
+| ---------------- | ------------------ | ------------------ | ------------------    |
+| forethought-core | front-backend      | 否                 |  是                   |
+|                  | inner              | 是                 |  是                   |
+|                  | management-backend | 否                 |  是                   |
+|                  | openapi            | 否                 |  是                   |
+|                  | websocket          | 否                 |  是                   |
+| forethought-kodo | kodo               | 是                 |  是                   |
+|                  | kodo-inner         | 是                 |  是                   |
+|                  | kodo-x             | 是                 |  是                   |
+|                  | kodo-asynq-client  | 是                 |  是                   |
+|                  | kodo-x-backuplog   | 是                 |  是                   |
+|                  | kodo-x-scan        | 是                 |  否                   |
 
 - 在对应的应用中配置`Deployment Annotations`，以下内容不用修改
 
 ```yaml
-template:
+spec:
+  template:
     metadata:
       annotations:
         datakit/prom.instances: |-
@@ -332,7 +335,7 @@ spec:
         - RUN_APP_CODE=front
         - --timeout
         - "300"
-        env:                     ## 添加以下内容（包括上表中 forethought-kodo Namespace 下的服务）
+        env:                     ## 开启 DDtrace 采集，添加以下内容（包括上表中 forethought-kodo Namespace 下的服务）
         - name: DD_PATCH_MODULES
           value: redis:true,urllib3:true,httplib:true,httpx:true
         - name: DD_AGENT_PORT
@@ -340,7 +343,7 @@ spec:
         - name: DD_GEVENT_PATCH_ALL
           value: "true"
         - name: DD_SERVICE
-          value: py-front-backend
+          value: py-front-backend    ## 修改成对应服务名
         - name: DD_TAGS
           value: project:dataflux
         - name: DD_AGENT_HOST
@@ -511,7 +514,7 @@ window.DEPLOYCONFIG = {
     cloudDatawayUrl: '',
     isSaas: '1',
     showHelp: 1,
-    rumEnable: 0,                                                                              ## 0是关闭，1是开启，此处开启
+    rumEnable: 1,                                                                              ## 0是关闭，1是开启，此处开启
     rumDatakitUrl: "",                                                                         ## 修改成deployment的datakit地址
     rumApplicationId: "",                                                                      ## 修改成实际appid
     rumJsUrl: "https://static.guance.com/browser-sdk/v2/dataflux-rum.js",
