@@ -30,6 +30,30 @@
 ## 参数补充说明
 
 
+**基本参数说明**
+
+|     参数名      | 参数类型 | 是否必填 |                  参数说明                   |
+|:---------------:|:--------:|:--------:|:-------------------------------------------:|
+|      name       |  string  |    Y     |                issue标题名称                |
+|      level      | integer  |    Y     |        issue等级 [0, 1, 2, 3] 3:未知        |
+|   decription    |  string  |    Y     |                issue描述信息                |
+| attachmentUuids |  array   |    N     |              附件上传列表uuid               |
+|     extend      |   json   |    Y     |                  扩展字段，默认传{}                  |
+|  resourceType   |  string  |    N     | event:事件；dashboard:仪表板；viewer:查看器 |
+|  resourceUUID   |  string  |    N     |     资源关联的uuid     |
+|    resource     |  string  |    N     |                对应资源名称                 |
+|  channelUUIDs   |  array   |    N     |           期望issue投递的资源列表，默认投递默认空间默认频道  |
+
+
+**扩展字段extend说明**
+
+**更新场景中，channels和channelUUIDs的作用会默认的向默认频道和追加的频道中进行关联处理， 如果传[]，默认只会存在空间默认频道中**
+
+|  参数名  | 参数类型 | 是否必填 |        参数说明         |
+|:--------:|:--------:|:--------:|:-----------------------:|
+| channels |  array   |    N     | 期望issue投递的资源列表 |
+| members  |     array     |     N     |       期望issue通知的通知对象成员    |
+
 
 
 
