@@ -46,7 +46,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/service_manage/sman_5eaba28c14e94876b4aa0157ecb1e090/get?originStr=0' \
+curl 'https://openapi.guance.com/api/v1/service_manage/sman_eb3e3c7acaef4d53acab866b83410edb/get?originStr=0' \
   -H 'Content-Type: application/json' \
   -H 'DF-API-KEY: <DF-API-KEY>' \
   --compressed
@@ -60,8 +60,16 @@ curl 'https://openapi.guance.com/api/v1/service_manage/sman_5eaba28c14e94876b4aa
 {
     "code": 200,
     "content": {
-        "createAt": 1691233484,
-        "service": "kodo",
+        "colour": "#40C9C9",
+        "createAt": 1693798688,
+        "creatorInfo": {
+            "acntWsNickname": "",
+            "email": "wsak_470962cc97584f6a8b09d6c43db10752",
+            "iconUrl": "",
+            "name": "阿里云监控数据源",
+            "username": "wsak_470962cc97584f6a8b09d6c43db10752"
+        },
+        "service": "test",
         "serviceCatelog": {
             "Docs": [
                 {
@@ -75,6 +83,17 @@ curl 'https://openapi.guance.com/api/v1/service_manage/sman_5eaba28c14e94876b4aa
                     "provider": "guanceyun"
                 }
             ],
+            "Related": {
+                "AppId": "a138bcb0_47ef_11ee_9d75_31ea50b9d85a",
+                "DashboardUUIDs": [
+                    "dsbd_b7ded4391b5e497ba7112d81a922d14d",
+                    "dsbd_3e7194379a2a42f0b7b61c822108bbd6"
+                ],
+                "Tags": [
+                    "mysql",
+                    "test"
+                ]
+            },
             "Repos": [
                 {
                     "link": "https://www.guance.com",
@@ -88,22 +107,50 @@ curl 'https://openapi.guance.com/api/v1/service_manage/sman_5eaba28c14e94876b4aa
                 }
             ],
             "Team": {
+                "colour": "#40C9C9",
                 "oncall": [
-                    "xxx@guance.com"
+                    {
+                        "emails": [
+                            "test1@guance.com",
+                            "test2@guance.com"
+                        ],
+                        "name": "guanceyun",
+                        "type": "email"
+                    },
+                    {
+                        "mobiles": [
+                            "17621725786",
+                            "17621724231"
+                        ],
+                        "name": "zhuyun",
+                        "type": "mobile"
+                    },
+                    {
+                        "name": "test",
+                        "slack": "#test",
+                        "type": "slack"
+                    }
                 ],
-                "service": "kodo",
-                "team": "guance",
-                "type": "custom"
+                "service": "jinlei_1",
+                "team": "group_a8caea614b2644549557b476cf2d946c",
+                "type": "db"
             }
         },
-        "type": "custom",
-        "updateAt": 1691234734,
-        "uuid": "sman_5eaba28c14e94876b4aa0157ecb1e090"
+        "type": "db",
+        "updateAt": 1693798688,
+        "updatorInfo": {
+            "acntWsNickname": "",
+            "email": "wsak_470962cc97584f6a8b09d6c43db10752",
+            "iconUrl": "",
+            "name": "阿里云监控数据源",
+            "username": "wsak_470962cc97584f6a8b09d6c43db10752"
+        },
+        "uuid": "sman_eb3e3c7acaef4d53acab866b83410edb"
     },
     "errorCode": "",
     "message": "",
     "success": true,
-    "traceId": "TRACE-BBA1B402-6CD2-4798-BB6D-C1DCDFA04E41"
+    "traceId": "TRACE-1255F7E2-9035-4696-B7EE-9DDBB2BC13D2"
 } 
 ```
 

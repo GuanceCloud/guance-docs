@@ -1,4 +1,5 @@
 nav:
+  - '获取某个Issue的所有回复信息': getissuereplylist.md
   - '查询所有的issue列表信息数据': list.md
   - '创建一个Issue消息': add.md
   - '修改一个Issue信息': modify.md

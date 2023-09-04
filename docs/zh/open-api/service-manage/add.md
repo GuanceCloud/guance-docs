@@ -30,35 +30,70 @@
 
 |  参数名        |   type  | 必选  |          说明          |
 |---------------|----------|----|------------------------|
-| Team    |  dict  |  Y | 服务,团队相关相关信息 |
+| Team    |  dict  |  Y | 服务,团队等信息 |
 | Repos |  array  |  N | 仓库配置 |
 | Docs    |  array  |  N | 帮助配置 |
+| Related    |  array  |  N | 关联配置 |
 
 **Team 字段 说明**
 
 |  参数名        |   type  | 必选  |          说明          |
 |---------------|----------|----|------------------------|
 | service    |  string  |  Y | 服务名称 |
-| type |  string  |  Y | 服务类型, 该字段值为枚举类型(app, framework, cache, message_queue, custom, db, web) |
-| team    |  string  |  N | 团队名称 |
-| oncall    |  array  |  N | 紧急联系人 |
+| type |  string  |  N | 服务类型, 该字段值为枚举类型(app, framework, cache, message_queue, custom, db, web) |
+| team    |  string  |  N | 团队UUID |
+| colour    |  string  |  N | 服务颜色 |
+| oncall    |  array  |  N | 联系方式 |
+
+**oncall 字段 说明**
+
+|  参数名        |   type  | 必选  |          说明          |
+|---------------|----------|----|------------------------|
+| name    |  string  |  N | 联系方式名称 |
+| type |  string  |  N | 联系方式类型, 枚举值 email,mobile,slack |
+| emails    |  array  |  N | 邮件 |
+| mobiles    |  array  |  N | 电话 |
+| slack    |  string  |  N | Slack 频道地址 |
 
 **Repos, Docs 字段 说明**
 
 |  参数名        |   type  | 必选  |          说明          |
 |---------------|----------|----|------------------------|
-| link    |  string  |  Y | 仓库代码URL/关联文档URL |
-| name |  string  |  Y | 显示名称 |
+| link    |  string  |  N | 仓库代码URL/关联文档URL |
+| name |  string  |  N | 显示名称 |
 | provider    |  string  |  N | 提供商名称 |
+
+**Related 字段 说明**
+
+|  参数名        |   type  | 必选  |          说明          |
+|---------------|----------|----|------------------------|
+| AppId    |  string  |  N | 用户访问监测应用ID |
+| DashboardUUIDs |  array  |  N | 绑定内置视图UUID |
+| Tags    |  array  |  N | 关联标签 |
 
 serviceCatelog 字段示列:
 ```toml
 
 [Team]    #团队
-service = "mysql"    # 必填
+service = "jinlei_1"    # 必填
 type = "db"  # 必填，当前服务所属类型
-team = "abc"   # 当前服务所属团队
-oncall = ["xxx@guance.com"]    # 服务异常或发生故障时紧急联系人名单
+team = "group_a8caea614b2644549557b476cf2d946c"   # 当前服务所属团队UUID
+colour = "#40C9C9"   # 当前服务颜色信息
+
+[[Team.oncall]]  # 联系方式配置
+name = "guanceyun"
+type = "email"
+emails = ["test1@guance.com", "test2@guance.com"]
+
+[[Team.oncall]]  # 联系方式配置
+name = "zhuyun"
+type = "mobile"
+mobiles = ["17621725786", "17621724231"]
+
+[[Team.oncall]]  # 联系方式配置
+name = "test"
+type = "slack"
+slack = "#test"
 
 [[Repos]]  # 仓库配置, # 填写仓库链接对应的提供商和期望显示文本
 link = "https://www.guance.com"
@@ -81,6 +116,13 @@ link = "https://func.guance.com/doc"
 name = "func"
 provider = "guanceyun"
 
+
+[Related]  # 关联配置
+AppId = "a138bcb0_47ef_11ee_9d75_31ea50b9d85a"
+Tags = ["test", "mysql"]
+DashboardUUIDs = ["dsbd_b7ded4391b5e497ba7112d81a922d14d", "dsbd_3e7194379a2a42f0b7b61c822108bbd6"]
+
+
 ```
 
 
@@ -91,7 +133,7 @@ provider = "guanceyun"
 curl 'https://openapi.guance.com/api/v1/service_manage/add' \
   -H 'Content-Type: application/json;charset=UTF-8' \
   -H 'DF-API-KEY: <DF-API-KEY>' \
-  --data-binary '{"serviceCatelog":"[Team]    #团队\nservice = \"test\"    # 必填\ntype = \"custom\"  # 必填，当前服务所属类型\nteam = \"abc\"   # 当前服务所属团队\noncall = [\"xxx@guance.com\"]    # 服务异常或发生故障时紧急联系人名单\n\n[[Repos]]  # 仓库配置, # 填写仓库链接对应的提供商和期望显示文本\nlink = \"https://www.guance.com\"\nname = \"guance\"\nprovider = \"guanceyun\"\n\n[[Repos]]  # 仓库配置\nlink = \"https://func.guance.com\"\nname = \"func\"\nprovider = \"guanceyun\"\n\n\n[[Docs]]  # 帮助, 填写帮助链接对应的内容提供方和期望显示文本\nlink = \"https://www.docs.guance.com\"\nname = \"guance\"\nprovider = \"guanceyun\"\n\n[[Docs]]  # 帮助\nlink = \"https://func.guance.com/doc\"\nname = \"func\"\nprovider = \"guanceyun\"\n"}' \
+  --data-binary '{"serviceCatelog": "\n[Team]    #团队\nservice = \"test\"    # 必填\ntype = \"db\"  # 必填，当前服务所属类型\nteam = \"group_a8caea614b2644549557b476cf2d946c\"   # 当前服务所属团队UUID\ncolour = \"#40C9C9\"   # 当前服务颜色信息\n\n[[Team.oncall]]  # 联系方式配置\nname = \"guanceyun\"\ntype = \"email\"\nemails = [\"test1@guance.com\", \"test2@guance.com\"]\n\n[[Team.oncall]]  # 联系方式配置\nname = \"zhuyun\"\ntype = \"mobile\"\nmobiles = [\"17621725786\", \"17621724231\"]\n\n[[Team.oncall]]  # 联系方式配置\nname = \"test\"\ntype = \"slack\"\nslack = \"#test\"\n\n[[Repos]]  # 仓库配置, # 填写仓库链接对应的提供商和期望显示文本\nlink = \"https://www.guance.com\"\nname = \"guance\"\nprovider = \"guanceyun\"\n\n[[Repos]]  # 仓库配置\nlink = \"https://func.guance.com\"\nname = \"func\"\nprovider = \"guanceyun\"\n\n\n[[Docs]]  # 帮助, 填写帮助链接对应的内容提供方和期望显示文本\nlink = \"https://www.docs.guance.com\"\nname = \"guance\"\nprovider = \"guanceyun\"\n\n[[Docs]]  # 帮助\nlink = \"https://func.guance.com/doc\"\nname = \"func\"\nprovider = \"guanceyun\"\n\n\n[Related]  # 关联配置\nAppId = \"a138bcb0_47ef_11ee_9d75_31ea50b9d85a\"\nTags = [\"test\", \"mysql\"]\nDashboardUUIDs = [\"dsbd_b7ded4391b5e497ba7112d81a922d14d\", \"dsbd_3e7194379a2a42f0b7b61c822108bbd6\"]"}' \
   --compressed
 ```
 
@@ -104,8 +146,8 @@ curl 'https://openapi.guance.com/api/v1/service_manage/add' \
     "code": 200,
     "content": {
         "service": "test",
-        "type": "custom",
-        "uuid": "sman_d4d1a628710240548bef465b8ca2613e"
+        "type": "db",
+        "uuid": "sman_eb3e3c7acaef4d53acab866b83410edb"
     },
     "errorCode": "",
     "message": "",
