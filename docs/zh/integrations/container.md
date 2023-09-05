@@ -516,7 +516,7 @@ The metric of the Kubernetes Pod.
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cpu_usage`|The sum of the cpu usage of all containers in this Pod.|float|percent|
-|`cpu_usage_base100`|The normalized cpu usage, with a maximum of 100%.|float|percent|
+|`cpu_usage_base100`|The normalized cpu usage, with a maximum of 100%. (Experimental)|float|percent|
 |`mem_capacity`|The total memory in the host machine.|int|B|
 |`mem_limit`|The sum of the memory limit of all containers in this Pod.|int|B|
 |`mem_usage`|The sum of the memory usage of all containers in this Pod.|int|B|
@@ -905,7 +905,7 @@ The object of the Kubernetes Pod.
 |`age`|Age (seconds)|int|s|
 |`available`|Number of containers|int|count|
 |`cpu_usage`|The sum of the cpu usage of all containers in this Pod.|float|percent|
-|`cpu_usage_base100`|The normalized cpu usage, with a maximum of 100%.|float|percent|
+|`cpu_usage_base100`|The normalized cpu usage, with a maximum of 100%. (Experimental)|float|percent|
 |`mem_capacity`|The total memory in the host machine.|int|B|
 |`mem_limit`|The sum of the memory limit of all containers in this Pod.|int|B|
 |`mem_usage`|The sum of the memory usage of all containers in this Pod.|int|B|
