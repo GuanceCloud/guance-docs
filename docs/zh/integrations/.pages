@@ -103,6 +103,7 @@ nav:
       - tidb.md
       - couchbase-prom.md
       - juicefs.md
+      - 'IBM Db2': db2.md
 
     - '消息队列':
       - emqx.md
