@@ -152,6 +152,14 @@ In addition to global properties, you can also build scenarios and configure eve
 | `view_referrer` | string   | The URL of the previous web page from which a link to the currently requested page was followed.                            |
 | `view_name`     | string   | View name                                        |
 
+#### Action Properties
+
+| **Fields**    | **Type** | **Description**                                     |
+| ------------- | -------- | --------------------------------------------------- |
+| `action_id`   | string   | Unique ID for each page view.                       |
+| `action_name` | string   | Action name                                         |
+| `action_type` | string   | Type of the user action. (Launch, Click action,etc) |
+
 #### Resource Properties
 
 | Fields                    | Type   | Description              |
@@ -191,6 +199,14 @@ In addition to global properties, you can also build scenarios and configure eve
 | `view_referrer` | string   | The URL of the previous web page from which a link to the currently requested page was followed.                            |
 | `view_name`     | string   | View name                                        |
 
+#### Action Properties
+
+| **Fields**    | **Type** | **Description**                                         |
+| ------------- | -------- | ------------------------------------------------------- |
+| `action_id`   | string   | Unique ID generated when the user operates on the page. |
+| `action_name` | string   | Action name                                             |
+| `action_type` | string   | Type of the user action. (Launch, Click action,etc)     |
+
 #### Error Properties
 
 | **Fields** | **Type** | **Description** |
@@ -212,7 +228,7 @@ When type=network, the following Network Error properties is added.
 
 #### Error Monitor Metrics
 
-| **字段**       | **类型** | **描述**                                          |
+| **Fields**     | **Type** | **Description**                                   |
 | -------------- | -------- | ------------------------------------------------- |
 | `memory_total` | string   | Optional,Total memory.                            |
 | `memory_use`   | number   | Optional,Memory usage.                            |
@@ -236,6 +252,14 @@ When type=network, the following Network Error properties is added.
 | `view_id`       | string   | Unique ID for each page view.                      |
 | `view_referrer` | string   | The URL of the previous web page from which a link to the currently requested page was followed.                            |
 | `view_name`     | string   | View name.                                        |
+
+#### Action Properties
+
+| **Fields**    | **Type** | **Description**                                         |
+| ------------- | -------- | ------------------------------------------------------- |
+| `action_id`   | string   | Unique ID generated when the user operates on the page. |
+| `action_name` | string   | Action name                                             |
+| `action_type` | string   | Type of the user action. (Launch, Click action,etc)     |
 
 #### Metrics
 
@@ -261,7 +285,7 @@ When type=network, the following Network Error properties is added.
 | ------------- | ------ | --------------------------- |
 | `action_id`   | string | Unique ID generated when the user operates on the page. |
 | `action_name` | string | Action name                    |
-| `action_type` | string | Type of the user action.                   |
+| `action_type` | string | Type of the user action. (Launch, Click action,etc) |
 
 #### Metrics
 

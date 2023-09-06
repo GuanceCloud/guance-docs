@@ -115,14 +115,6 @@
 | `view_referrer` | string   | 页面来源，页面的父级                                |
 | `view_name`     | string   | 页面名称                                            |
 
-#### Action 属性
-
-| **字段**      | **类型** | **描述**                            |
-| ------------- | -------- | ----------------------------------- |
-| `action_id`   | string   | 用户页面操作时产生的唯一 ID          |
-| `action_name` | string   | 操作名称                            |
-| `action_type` | string   | 操作类型(冷热启动，click 点击等操作) |
-
 #### 指标
 
 | **字段** | **类型** | **描述**   |
@@ -145,8 +137,8 @@
 | --------------------------- | -------- | ------------------------ |
 | `cpu_tick_count`            | number   | 可选，该页面 CPU 跳动次数    |
 | `cpu_tick_count_per_second` | number   | 可选，每秒平均 CPU 跳动次数  |
-| ~~`fps_avg`~~               | number   | 可选，页面平均每秒帧数   |
-| ~~`fps_mini`~~              | number   | 可选，页面最小每秒帧数   |
+| ~~`fps_avg`~~               | number   | <del>可选，页面平均每秒帧数</del> |
+| ~~`fps_mini`~~              | number   | <del>可选，页面最小每秒帧数</del> |
 | `memory_avg`                | number   | 可选，页面内存使用平均值 |
 | `memory_max`                | number   | 可选，页面内存峰值       |
 

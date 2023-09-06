@@ -117,14 +117,6 @@ wifi &#124; 2g &#124; 3g &#124; 4g &#124; 5g &#124; unknown（未知网络）&#1
 | `view_referrer` | string   | 页面来源，页面的父级                                |
 | `view_name`     | string   | 页面名称                                            |
 
-#### Action 属性
-
-| **字段**      | **类型** | **描述**                            |
-| ------------- | -------- | ----------------------------------- |
-| `action_id`   | string   | 用户页面操作时产生的唯一 ID          |
-| `action_name` | string   | 操作名称                            |
-| `action_type` | string   | 操作类型(冷热启动，click 点击等操作) |
-
 #### 指标
 
 | **字段** | **类型** | **描述**   |
@@ -262,25 +254,25 @@ wifi &#124; 2g &#124; 3g &#124; 4g &#124; 5g &#124; unknown（未知网络）&#1
 
 | **字段**        | **类型** | **描述**                   |
 | --------------- | -------- | -------------------------- |
-| `view_id`       | string   | 每次访问页面时产生的唯一 ID |
-| `view_referrer` | string   | 页面来源，页面的父级       |
-| `view_name`     | string   | 页面名称                   |
+| <del>`view_id`</del> | string   | <del>每次访问页面时产生的唯一 ID</del> |
+| <del>`view_referrer`</del> | string   | <del>页面来源，页面的父级</del> |
+| <del>`view_name`</del> | string   | <del>页面名称</del>        |
 
 #### Action 属性
 
 | **字段**      | **类型** | **描述**                            |
 | ------------- | -------- | ----------------------------------- |
-| `action_id`   | string   | 用户页面操作时产生的唯一 ID          |
-| `action_name` | string   | 操作名称                            |
-| `action_type` | string   | 操作类型(冷热启动，click 点击等操作) |
+| <del>`action_id`</del> | string   | <del>用户页面操作时产生的唯一 ID</del> |
+| <del>`action_name`</del> | string   | <del>操作名称</del>                 |
+| <del>`action_type`</del> | string   | <del>操作类型(冷热启动，click 点击等操作)</del> |
 
 #### 指标
 
 | **字段** | **类型** | **描述** |
 | --- | --- | --- |
-| `duration` | number（ns） | 卡顿时长 |
-| `long_task_message` | string | 卡顿信息 |
-| `long_task_stack` | string | 卡顿堆栈 |
+| <del>`duration`</del> | number（ns） | <del>卡顿时长</del> |
+| <del>`long_task_message`</del> | string | <del>卡顿信息</del> |
+| <del>`long_task_stack`</del> | string | <del>卡顿堆栈</del> |
 
 ### Action
 

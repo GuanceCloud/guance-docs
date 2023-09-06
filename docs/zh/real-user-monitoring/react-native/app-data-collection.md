@@ -115,13 +115,6 @@ React Native  数据采集依赖于 Android iOS Native 框架，为了与 Androi
 | `view_referrer` | string   | 页面来源，页面的父级                                |
 | `view_name`     | string   | 页面名称                                            |
 
-#### Action 属性
-
-| **字段**      | **类型** | **描述**                            |
-| ------------- | -------- | ----------------------------------- |
-| `action_id`   | string   | 用户页面操作时产生的唯一 ID          |
-| `action_name` | string   | 操作名称                            |
-| `action_type` | string   | 操作类型(冷热启动，click 点击等操作) |
 
 #### 指标
 
@@ -258,17 +251,17 @@ React Native  数据采集依赖于 Android iOS Native 框架，为了与 Androi
 
 | **字段**        | **类型** | **描述**                   |
 | --------------- | -------- | -------------------------- |
-| `view_id`       | string   | 每次访问页面时产生的唯一 ID |
-| `view_referrer` | string   | 页面来源，页面的父级       |
-| `view_name`     | string   | 页面名称                   |
+| <del>`view_id`</del> | string   | <del>每次访问页面时产生的唯一 ID</del> |
+| <del>`view_referrer`</del> | string   | <del>页面来源，页面的父级</del> |
+| <del>`view_name`</del> | string   | <del>页面名称</del>        |
 
 #### Action 属性
 
 | **字段**      | **类型** | **描述**                            |
 | ------------- | -------- | ----------------------------------- |
-| `action_id`   | string   | 用户页面操作时产生的唯一 ID          |
-| `action_name` | string   | 操作名称                            |
-| `action_type` | string   | 操作类型(冷热启动，click 点击等操作) |
+| <del>`action_id`</del> | string   | <del>用户页面操作时产生的唯一 ID</del> |
+| <del>`action_name`</del> | string   | <del>操作名称</del>                 |
+| <del>`action_type`</del> | string   | <del>操作类型(冷热启动，click 点击等操作)</del> |
 
 
 #### 指标
