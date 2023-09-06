@@ -1,4 +1,5 @@
-# UniApp App Access
+# UniApp Application Access
+
 ---
 
 ## Precondition
@@ -61,7 +62,7 @@ None yet.
             guanceModule.sdkConfig({
                 'serverUrl': 'your severurl',
                 'debug': true,
-                'envType': 'common',
+                'env': 'common',
                 'globalContext': {
                     'custom_key': 'custom value'
                 }
@@ -83,8 +84,7 @@ None yet.
 | :------------ | :------- | :--- | ------------------------------------------------------------ |
 | serverUrl     | string   | Yes   |The url of the datakit installation address, example: http://10.0.0.1:9529, port 9529. Datakit url address needs to be accessible by the device where the SDK is installed                                                  |
 | debug         | boolean  | No   | Set whether to allow printing of Debug logs, default  `false`                            |
-| datakitUUID   | string   | No   | Request `HTTP` request header `X-Datakit-UUID` data collection end, automatically configured if not set by user |
-| envType       | string   | No   | Environment fields: `prod` online (default), `gray` grayscale, `pre` advance, `common` daily, `local` local |
+| env    | string   | No   | Environment, defaulting to `prod`, any character is allowed, preferably a single word, such as test, etc. |
 | service       | string   | No   | Set the name of the business or service to which it belongs by default: `df_rum_ios`, `df_rum_android` |
 | globalContext | object   | No   | Add custom labels                                               |
 | offlinePakcage | boolean   | No   | Only supported by Android, whether to use offline packaging, the default is `false`. For detailed Description, see [difference between Android cloud packaging and offline packaging](#package)       |
@@ -159,7 +159,7 @@ var rum = uni.requireNativePlugin("GCUniPlugin-RUM");
 
 ### Action
 
-####API - startAction
+#### API - startAction
 
 Add Action event:
 

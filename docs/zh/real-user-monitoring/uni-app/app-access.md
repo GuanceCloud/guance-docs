@@ -1,4 +1,5 @@
 # UniApp 应用接入
+
 ---
 
 ## 前置条件
@@ -91,7 +92,7 @@
 | :------------ | :------- | :--- | ------------------------------------------------------------ |
 | serverUrl     | string   | 是   | datakit 安装地址 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529。注意：安装 SDK 设备需能访问这地址                                               |
 | debug         | boolean  | 否   | 设置是否允许打印 Debug 日志，默认`false`                            |
-| envType       | string   | 否   | 环境字段： `prod`线上（默认）、`gray`灰度、`pre`预发、`common`日常、`local`本地 |
+| env    | string   | 否   | 环境，默认`prod`，任意字符，建议使用单个单词，例如 `test` 等 |
 | service       | string   | 否   | 设置所属业务或服务的名称 默认：`df_rum_ios`、`df_rum_android` |
 | globalContext | object   | 否   | 添加自定义标签                                               |
 | offlinePakcage | boolean   | 否   | 仅 Android 支持，是否使用离线打包，默认为 `false`，详细说明见[Android 云打包与离线打包区别](#package)       |
