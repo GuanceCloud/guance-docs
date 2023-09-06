@@ -1,6 +1,6 @@
 ---
 title: '阿里云 RDS MariaDB'
-summary: '使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云。'
+summary: '阿里云 RDS MariaDB 的展示指标包括响应时间、并发连接数、QPS 和 TPS 等。'
 __int_icon: 'icon/aliyun_rds_mariadb'
 dashboard:
   - desc: '阿里云 RDS MariaDB 内置视图'
@@ -16,7 +16,7 @@ monitor:
 # 阿里云 RDS MariaDB
 <!-- markdownlint-enable -->
 
-使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云。
+阿里云 RDS MariaDB 的展示指标包括响应时间、并发连接数、QPS 和 TPS 等。
 
 ## 配置 {#config}
 

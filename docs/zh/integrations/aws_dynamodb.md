@@ -1,6 +1,6 @@
 ---
 title: 'AWS DynamoDB'
-summary: '使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云'
+summary: 'AWS DynamoDB的展示指标包括吞吐量容量单位、延迟、并发连接数和读写吞吐量等，这些指标反映了 DynamoDB 在处理大规模数据存储和访问时的性能表现和可扩展性。'
 __int_icon: 'icon/aws_dynamodb'
 dashboard:
 
@@ -19,7 +19,7 @@ monitor:
 <!-- markdownlint-enable -->
 
 
-使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云
+AWS DynamoDB的展示指标包括吞吐量容量单位、延迟、并发连接数和读写吞吐量等，这些指标反映了 **DynamoDB** 在处理大规模数据存储和访问时的性能表现和可扩展性。
 
 
 ## 配置 {#config}

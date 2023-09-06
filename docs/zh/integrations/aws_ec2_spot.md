@@ -1,6 +1,6 @@
 ---
 title: 'Amazon EC2 Spot'
-summary: '使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云'
+summary: ' Amazon EC2 Spot，包括请求容量池、目标容量池、中止容量等。'
 __int_icon: 'icon/aws_ec2_spot'
 dashboard:
 
