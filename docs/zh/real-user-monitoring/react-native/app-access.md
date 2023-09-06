@@ -14,7 +14,9 @@
 - 应用名称：用于识别当前用户访问监测的应用名称。
 - 应用 ID ：应用在当前工作空间的唯一标识，对应字段：app_id 。该字段仅支持英文、数字、下划线输入，最多 48 个字符。
 
-![](../img/image_12.png)![](../img/image_13.png)
+![](../img/image_12.png)
+
+![](../img/image_13.png)
 
 ## 安装
 ![](https://img.shields.io/badge/dynamic/json?label=npm&color=orange&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/react-native/version.json&link=https://github.com/GuanceCloud/datakit-react-native) ![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://static.guance.com/ft-sdk-package/badge/react-native/info.json&link=https://github.com/GuanceCloud/datakit-flutter)
@@ -78,9 +80,10 @@ FTMobileReactNative.sdkConfig(config)
 | --- | --- | --- | --- |
 | serverUrl | string | 是 | datakit 安装地址 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529。注意：安装 SDK 设备需能访问这地址 |
 | debug | boolean | 否 | 设置是否允许打印日志，默认`false` |
-| env | enum EnvType | 否 | 环境，默认`prod` |
-| globalContext | NSDictionary | 否 | [添加自定义标签](#user-global-context ) |
+| env | string | 否 | 环境，默认`prod`，任意字符，建议使用单个单词，例如 `test` 等 |
+| envType | enum EnvType | 否 | 环境，默认`EnvType.prod` |
 | service | string | 否 | 设置所属业务或服务的名称，影响 Log 和 RUM 中 service 字段数据。默认：`df_rum_ios`、`df_rum_android` |
+| globalContext | NSDictionary | 否 | [添加自定义标签](#user-global-context ) |
 
 ### RUM 配置 {#rum-config}
 
@@ -140,7 +143,7 @@ FTReactNativeLog.logConfig(logConfig);
 
 ```typescript
  let traceConfig: FTTractConfig = {
-      enableNativeAutoTrace: true, // 开启后、能同时追踪 React Native 与 原生部分 
+      enableNativeAutoTrace: true, 
     };
 
  FTReactNativeTrace.setConfig(traceConfig);
@@ -165,7 +168,7 @@ SDK 提供 **自动采集** 和 **用户自定义采集** 两种采集方式追�
 
 * **react-native-navigation**
 
-  将 example 中 [FTRumReactNavigationTracking.tsx](https://github.com/GuanceCloud/datakit-react-native/blob/dev/example/src/FTRumReactNativeNavigationTracking.tsx) 文件拖入您的工程；
+  将 example 中 [FTRumReactNavigationTracking.tsx](https://github.com/GuanceCloud/datakit-react-native/blob/dev/example/src/FTRumReactNativeNavigationTracking.tsx) 文件添加到您的工程；
 
   调用 `FTRumReactNativeNavigationTracking.startTracking()` 方法，开启采集。
 
@@ -191,34 +194,32 @@ SDK 提供 **自动采集** 和 **用户自定义采集** 两种采集方式追�
 
 * **react-navigation**
 
-  将 example 中 [FTRumReactNavigationTracking.tsx](https://github.com/GuanceCloud/datakit-react-native/blob/dev/example/src/FTRumReactNavigationTracking.tsx) 文件拖入您的工程；
+  将 example 中 [FTRumReactNavigationTracking.tsx](https://github.com/GuanceCloud/datakit-react-native/blob/dev/example/src/FTRumReactNavigationTracking.tsx) 文件添加到您的工程；
 
   * 方法一：
 
-    如果有使用 `createNativeStackNavigator();` 创建原生导航堆栈，
-
-    建议采用添加 screenListeners 方式开启采集， 这样可以统计到页面的加载时长，具体使用如下：
+    如果您使用 `createNativeStackNavigator();` 创建原生导航堆栈，建议采用添加 `screenListeners` 方式开启采集， 这样可以统计到页面的加载时长，具体使用如下：
 
     ```typescript
     import {FTRumReactNavigationTracking} from './FTRumReactNavigationTracking';
     import { createNativeStackNavigator } from '@react-navigation/native-stack';
     const Stack = createNativeStackNavigator();
-
+    
     <Stack.Navigator   screenListeners={FTRumReactNavigationTracking.StackListener} initialRouteName='Home'>
             <Stack.Screen name='Home' component={Home}  options={{ headerShown: false }} />
             ......
             <Stack.Screen name="Mine" component={Mine} options={{ title: 'Mine' }}/>
      </Stack.Navigator>
     ```
-
+    
   * 方法二：
 
-    如果没有使用 `createNativeStackNavigator();` 需要在 NavigationContainer 组件中进行开启采集，如下
+    如果没有使用 `createNativeStackNavigator();` 需要在 `NavigationContainer` 组件中添加自动采集方法，如下
 
     ```typescript
     import {FTRumReactNavigationTracking} from './FTRumReactNavigationTracking';
     import type { NavigationContainerRef } from '@react-navigation/native';
-
+    
     const navigationRef: React.RefObject<NavigationContainerRef<ReactNavigation.RootParamList>> = React.createRef();
     <NavigationContainer ref={navigationRef} onReady={() => {
           FTRumReactNavigationTracking.startTrackingViews(navigationRef.current);
@@ -235,9 +236,9 @@ SDK 提供 **自动采集** 和 **用户自定义采集** 两种采集方式追�
 
 ### 用户自定义采集
 
-通过 `FTReactNativeRUM` 类，进行传入，相关 API 如下。
+通过 `FTReactNativeRUM` 类，进行添加，相关 API 如下。
 
-#### View {#rumview}
+#### View 
 
 ```typescript
 FTReactNativeRUM.onCreateView("RUM",duration);
