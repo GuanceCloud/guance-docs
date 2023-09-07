@@ -6,7 +6,7 @@ icon: zy/management
 
 工作空间是观测云的基本操作单元。在观测云工作空间内，您可以使用观测云提供的多样化功能。而**工作空间管理**是针对当前工作空间进行的设置、管理和操作。在加入工作空间并被分配到权限后，您可以对该空间的基本信息、成员权限、SSO 登录、数据权限、API Key、通知对象、内置视图、图表和快照分享等进行管理。
 
-下文将从个人账户层级向您介绍<u>如何注册登录帐户并进入您的工作空间 > 关注您的帐户安全 > 设置您的工作空间外观</u>。
+下文将从**个人账户层级**向您介绍**如何注册登录帐户并进入您的工作空间、关注您的帐户安全、设置您的工作空间外观**。
 
 ## 工作空间相关
 
@@ -14,30 +14,25 @@ icon: zy/management
 
 您可以通过创建或者被邀请的方式加入一个或多个工作空间。
 
-在以任何方式加入工作空间之前，需要先 [注册观测云账号](https://auth.guance.com/businessRegister)，[注册完成](../billing/trail.md#register-trail)后，您可以通过 [观测云官网](https://www.guance.com/)，点击**登录**，选择注册站点，输入登录账号和密码，登录到观测云控制台。系统会默认为您创建一个工作空间，并赋予**拥有者**权限。
+在以任何方式加入工作空间之前，需要先[注册观测云账号](https://auth.guance.com/businessRegister)。[注册完成](../billing/trail.md#register-trail)后，您可以通过 [观测云官网](https://www.guance.com/)，点击**登录**，选择注册站点，输入登录账号和密码，登录到观测云控制台。系统会默认为您创建一个工作空间，并赋予**拥有者**权限。
 
 <img src="img/7.login_site_1.png" width="60%" >
 
 
 在现有的工作空间内，您还可以从以下两个入口创建其他多个工作空间：
 
-<div class="grid" markdown>
 
-=== "入口 1"
+- 入口 1：
 
-    点击左下角的**账号 > 创建工作空间**。
+点击左下角的**账号 > 创建工作空间**。
 
-    <img src="img/3.space_management_3.png" width="80%" >
+<img src="img/3.space_management_3.png" width="60%" >
 
-=== "入口 2"
+- 入口 2：
 
-    点击左上角的**工作空间名称 > 新建工作空间**。
-    
-    > 您可以通过点击工作空间切换至其他工作空间。
+点击左上角的**工作空间名称 > 新建工作空间**。
 
-    ![](img/3.space_management_1.png)
-
-</div>
+![](img/3.space_management_1.png)
 
 
 在**创建工作空间**窗口，输入工作空间名称，选择该工作空间语言，按需描述该工作空间。您还可以根据角色来选择不同的工作空间目录风格属性。
@@ -46,30 +41,35 @@ icon: zy/management
 
 - 不同角色下的工作空间目录默认展示如下：
 
-<font size=2>*研发：*</font>
+<div class="grid" markdown>
 
-<img src="img/yanfa.png" width="60%" >
+=== "研发"
 
-<font size=2>*运维：*</font>
+    <img src="img/yanfa.png" width="60%" >
 
-<img src="img/yunwei.png" width="60%" >
+=== "运维"
 
-<font size=2>*测试：*</font>
+    <img src="img/yunwei.png" width="60%" >
 
-<img src="img/ceshi.png" width="60%" >
+=== "测试"
 
-<font size=2>*默认：*</font>
+    <img src="img/ceshi.png" width="60%" >
 
-<img src="img/moren.png" width="60%" >
+=== "默认"
 
-若您需要设置菜单，可前往**管理 > 高级设置 > [功能菜单管理](./settings/customized-menu.md)** 进行修改。
+    <img src="img/moren.png" width="60%" >
 
-???+ attention "值得关注的细节"
+</div>
+
+
+若您需要进一步设置菜单，可前往**管理 > 高级设置 > [功能菜单管理](./settings/customized-menu.md)** 进行修改。
+
+???+ attention "注意"
 
     - 工作空间语言该配置影响工作空间内事件、告警、短信等模板。切换到英文后，上述对应模板将默认使用英文模板，请知悉； 
     - 单个观测云站点下，仅支持绑定一个手机号码、一个邮箱，暂不支持港澳台和国外手机号码；
-    - 不同站点的账号独立不互通，更多站点说明可参考 [站点说明](../billing/commercial-register.md#site)；
-    - 支持选择 [单点登录](../management/sso/index.md) 到观测云。
+    - 不同站点的账号独立不互通，更多站点说明，可参考 [站点说明](../billing/commercial-register.md#site)；
+    - 支持选择[单点登录](../management/sso/index.md) 到观测云。
 
 > 您可按需参考文档 [阿里云市场开通观测云专属版](../billing/commercial-aliyun-sls.md) 来创建 SLS 专属版工作空间。
 
@@ -85,7 +85,7 @@ icon: zy/management
 
     通过 SSO 登录的账号，默认使用 SSO 配置的登录保持时间，在账号管理修改后，使用修改后的登录保持时间。
     
-    > 更多 SSO 配置详情可参考文档 [SSO 管理](../management/sso/index.md)。
+    > 更多 SSO 配置详情，可参考 [SSO 管理](../management/sso/index.md)。
 
 ## 账户安全相关
 
@@ -95,7 +95,7 @@ icon: zy/management
 
 观测云提供 MFA 认证管理，帮助在账号用户名和密码之外再额外增加一层安全保护。开启 MFA 认证后，您在登录时需要进行二次校验，从而帮助您提高账户的安全性。
 
-> 更多详情可参考文档 [MFA 管理](mfa-management.md)。
+> 更多详情，可参考 [MFA 管理](mfa-management.md)。
 
 ### 登录保持时间 {#login-hold-time}
 
@@ -106,7 +106,7 @@ icon: zy/management
 - 无操作登录会话保持时间：支持设置范围 180 ～ 1440 分钟，默认为 180 分钟；
 - 登录会话最大保持时间：支持设置范围 0 ～ 7 天，其中 0 表示永不超时，默认为 7 天。
 
-<img src="img/6.mfa_2.1.png" width="70%" >
+<img src="img/6.mfa_2.1.png" width="60%" >
 
 ### 数据隔离和数据授权
 
@@ -114,7 +114,7 @@ icon: zy/management
 
 若您需要对所有部门不同工作空间的数据进行统一查看，您可以通过配置数据授权的方式，授权多个工作空间的数据给到当前的工作空间，通过场景仪表板和笔记的图表组件进行查询和展示。
 
-> 更多配置详情，可参考文档 [数据授权](data-authorization.md)。
+> 更多配置详情，可参考 [数据授权](data-authorization.md)。
 
 ## 个人偏好设置
 
@@ -132,7 +132,7 @@ icon: zy/management
 
 ![](img/account-zone.png)
 
-您也可以在观测云提供的 [时间控件](../getting-started/function-details/explorer-search.md#time) 来快速修改时区。
+您也可以在观测云提供的[时间控件](../getting-started/function-details/explorer-search.md#time)来快速修改时区。
 
 
 #### 工作空间时区 {#workspace}
@@ -161,37 +161,39 @@ icon: zy/management
 
 观测云支持图表高性能加载模式，默认关闭，可通过点击左下角账号，在**高性能模式**选择开启。
 
-<img src="img/3.customized_1.1.png" width="80%" >
+<img src="img/3.customized_1.1.png" width="60%" >
 
-<u>示例效果：</u>
+*示例：*
 
 开启高性能模式以后，所有图表不进行动态加载，在点击进入页面的时候直接全部加载，即在超出当前页面使用往下滑动查看时图表已全部加载完成，可直接查看展示结果。
 
 **注意**：高性能模式开启后仅针对当前用户查看图表。
 
-<!--
+![](img/3.high_performance_2.gif)
 
-![](img/3.high_performance_2.png)
-
--->
 
 ### 系统主题
 
 #### 主题设置
 
-观测云支持切换主题颜色，有浅色和深色两种，点击左下角账号，在**系统主题**选择使用。
+观测云支持切换主题颜色。
 
-系统主题选择“自动”，可根据电脑外观设置自动切换主题颜色。
+若系统主题选择【自动】，则可根据电脑外观自动切换主题颜色。
 
-<img src="img/3.high_performance_1.png" width="80%" >
+<img src="img/3.high_performance_1.png" width="60%" >
 
-- 浅色效果：
 
-![](img/08_color_02.png)
+<div class="grid" markdown>
 
-- 深色效果：
+=== "浅色效果"
 
-![](img/08_color_03.png)
+    ![](img/08_color_02.png)
+
+=== "深色效果"
+
+    ![](img/08_color_03.png)
+
+</div>
 
 
 ## 更多阅读

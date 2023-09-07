@@ -90,6 +90,14 @@
 
 > 更多自定义显示列，可参考 [显示列说明](../getting-started/function-details/explorer-search.md#columns)。
 
+### 新建监控器 {#new}
+
+您可以在日志查看器通过该入口，直接跳转至监控器新建页面，为日志数据快速设置异常检测规则。
+
+![](img/explorer-monitor.png)
+
+> 关于细节操作，可参考 [新建监控器](../monitoring/monitor/index.md#new)。
+
 ### Copy as cURL
 
 日志查看器支持通过命令行形式来获取日志数据。在日志数据列表右侧**设置**，点击 **Copy as cURL** 即可复制 cURL 命令行，前往主机终端执行该命令，从可获取当前时间段内相关筛选及搜索条件下的日志数据。
@@ -98,10 +106,10 @@
 
 <u>**示例**</u>
 
-复制 cURL 命令行后，如下图所示：其中 `<Endpoint>` 需替换为域名，`<DF-API-KEY>` 需前往 [API管理](../management/api-key/index.md) 更换为 **Key ID**。
+复制 cURL 命令行后，如下图所示：其中 `<Endpoint>` 需替换为域名，`<DF-API-KEY>` 需前往 [API 管理](../management/api-key/index.md) 更换为 **Key ID**。
 
 > 关于更多相关参数说明，可参考 [DQL 数据查询](../open-api/query-data/query-data.md)。
-
+> 
 > 关于 API 更多信息，可参考 [Open API](../management/api-key/open-api.md)。
 
 ```shell
@@ -229,7 +237,13 @@ curl '<Endpoint>/api/v1/df/query_data?search_after=\[1680226330509,8572,"L_16802
 
 ### 扩展字段
 
-当鼠标选中扩展字段，点击前面的下拉图标，显示**筛选字段值**、**反向筛选字段值**、**添加到显示列**和**复制**的小图标进行快速筛选查看。
+:material-numeric-1-circle-outline: 在搜索栏，可输入字段名称或值快速搜索定位；
+
+:material-numeric-2-circle-outline: 勾选字段别名后，可在字段名后查看；您可按需选择。
+
+![](img/extension.png)
+
+:material-numeric-3-circle-outline: 当鼠标选中扩展字段，点击前面的下拉图标，显示**筛选字段值**、**反向筛选字段值**、**添加到显示列**和**复制**的小图标进行快速筛选查看。
 
 ![](img/17.explorer_4.png)
 

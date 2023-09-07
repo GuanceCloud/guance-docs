@@ -1,11 +1,71 @@
 ---
 icon: zy/release-notes
 ---
-
 # 更新日志（2023 年）
 ---
 
 本文档记录观测云每次上线发布的更新内容说明，包括 DataKit、观测云最佳实践、观测云集成文档和观测云。
+
+## 2023 年 9 月 7 日
+
+### 观测云更新
+
+- 场景 > 仪表板/查看器：新增全局[跨工作空间查询](../scene/dashboard.md#cross-workspace)配置。  
+- 场景 > [服务管理](../scene/service-manag.md)：
+    - 新增绑定多个内置视图到分析看板；
+    - 新增服务接口调用分析看板；
+    - 支持保存快照；
+    - 服务清单新增关联、团队信息。
+- 日志：
+    - [数据转发](../logs/backup.md)：原备份日志；新增链路、用户访问数据源。
+    - 查看器：新增新建监控器入口。
+- 管理：
+    - [全局标签](../management/global-label.md)：新增全局标签功能，对标签进行统一管理。
+    - [字段管理](../management/field-management.md)：新增别名、设置显示列。
+    - [空间管理](../management/space-management.md)：功能整合和页面优化。
+    - 敏感数据扫描：新增扫描规则数量统计；新增跳转链接。
+- 监控：
+    - 可用性数据检测：新增拨测指标，可以基于【指标】维度进行检测；
+    - 突变、离群、区间检测：支持选择所有数据源。 
+
+### 集成更新
+
+阿里云：
+
+- [aliyun_analyticdb_postgresql](https://docs.guance.com/integrations/aliyun_analyticdb_postgresql/aliyun_analyticdb_postgresql/)：阿里云 AnalyticDB PostgreSQL 指标展示，包括 CPU、内存、磁盘、协调节点、实例查询等。  
+- [aliyun_clickhouse_community](https://docs.guance.com/integrations/aliyun_clickhouse_community/)：阿里云 ClickHouse 指标展示，包括服务状态、日志流量、操作次数、总体 QPS 等。  
+- [aliyun_kafka](https://docs.guance.com/integrations/aliyun_kafka/)：阿里云 `KafKa` 包括消息吞吐量、延迟、并发连接数和可靠性，这些指标反映了 Kafka 在处理大规模消息传递和实时数据流时的性能表现和可靠性保证。  
+- [aliyun_lindorm](https://docs.guance.com/integrations/aliyun_lindorm/)：包括高吞吐量、低延迟的数据读写能力，支持高并发的事务处理，以及强一致性和高可靠性的数据存储和查询服务。  
+- [aliyun_polardb_1.0](https://docs.guance.com/integrations/aliyun_polardb_1.0/)：阿里云 PolarDB 分布式 1.0 展示指标包括CPU利用率、内存利用率、网络带宽和磁盘 IOPS。  
+- [aliyun_polardb_2.0](https://docs.guance.com/integrations/aliyun_polardb_2.0/)：阿里云 PolarDB 分布式 2.0 展示计算层和存储节点的指标，包括 CPU 利用率、连接使用率、磁盘使用量、磁盘使用率、内存利用率、网络带宽等。  
+- [aliyun_rds_postgresql](https://docs.guance.com/integrations/aliyun_rds_postgresql/)：阿里云 RDS PostgreSQL 指标展示，包括 CPU 使用率、内存使用率等。  
+- [aliyun_rocketmq5](https://docs.guance.com/integrations/aliyun_rocketmq5/)：阿里云 RocketMQ 5.0 的展示指标包括消息吞吐量、延迟、可靠性和水平扩展能力等。  
+
+AWS：
+
+- [aws_dynamodb_DAX](https://docs.guance.com/integrations/aws_dynamodb_DAX/)：AWS DynamoDB DAX 的展示指标包括节点或集群的 CPU 使用率、在所有网络接口上收到或发出的字节数、数据包的数量等，这些指标反映了 DynamoDB DAX 的运行状态。  
+- [aws_memorydb](https://docs.guance.com/integrations/aws_memorydb/)：AWS MemoryDB 的核心性能指标包括低延迟的内存读写能力、高并发的事务处理能力，以及可线性扩展的存储容量和吞吐量。
+
+华为云：
+
+- [huawei_functiongraph](https://docs.guance.com/integrations/huawei_functiongraph/)：HUAWEI FunctionGraph 的展示指标包括调用次数,错误次数,被拒绝次数,并发数,预留实例个数，运行时间（包括最大运行时间、最小运行时间、平均运行时间）等，这些指标反映了 FunctionGraph 函数运行情况。  
+- [huawei_kafka](https://docs.guance.com/integrations/huawei_kafka/)：包括消息吞吐量、延迟、并发连接数和可靠性，这些指标反映了 Kafka 在处理大规模消息传递和实时数据流时的性能表现和可靠性保证。  
+- [huaweiyun_SYS_DDMS](https://docs.guance.com/integrations/huaweiyun_SYS_DDMS/)：'华为云 SYS.DDMS 监控视图展示指标包括消息吞吐量、延迟、并发连接数和可靠性，这些指标反映了 DDMS 在处理大规模消息传递和实时数据流时的性能表现和可靠性保证。  
+
+腾讯云：
+
+- [tencent_keewidb](https://docs.guance.com/integrations/tencent_keewidb/)：腾讯云 KeeWiDB 指标展示，包括连接数、请求、缓存、key、慢查询等。    
+- [tencent_mariadb](https://docs.guance.com/integrations/tencent_mariadb/)：包括高性能的读写能力、低延迟的查询响应时间，以及支持高并发的事务处理和扩展性能。    
+- [tencent_memcached](https://docs.guance.com/integrations/tencent_memcached/)：包括高速的内存读写能力、低延迟的数据访问时间，以及高并发的访问处理能力。    
+- [tencent_tdsql_c_mysql](https://docs.guance.com/integrations/tencent_tdsql_c_mysql/)：包括高吞吐量的读写能力、低延迟的查询响应时间，以及支持高并发的事务处理和可扩展性能。    
+
+其他：
+
+- [openai](https://docs.guance.com/integrations/openai/)：OpenAI的展示指标包括请求总数，响应时间，，请求数量，请求错误数和消耗token数。  
+- [monitor_jira](https://docs.guance.com/integrations/monitor_jira/)：当我们的应用程序或系统出现异常时，通常需要及时处理以保证系统的正常运行。为了更好地管理和跟踪异常事件，我们可以将这些事件发送到 Jira 中创建事件，这样我们就可以在 Jira 中进行跟踪、分析和解决这些问题，通过快速地将异常事件发送到 Jira 中创建事件，为我们提供更好的管理和跟踪异常事件的能力，从而更好地保证系统的正常运行。同时，这种方法也可以帮助我们更好地分析和解决问题，提高系统的稳定性和可靠性。  
+
+
+
 
 ## 2023 年 8 月 29 日
 

@@ -3,7 +3,9 @@
 
 ## 前置条件
 
-- 安装 DataKit（[DataKit 安装文档](../../datakit/datakit-install.md)）
+- 安装 [DataKit](../../datakit/datakit-install.md)；  
+- 配置 [RUM 采集器](../../integrations/rum.md)；
+- DataKit 配置为[公网可访问，并且安装 IP 地理信息库](../../datakit/datakit-tools-how-to.md#install-ipdb)。
 
 ## 应用接入
 当前 Flutter 版本暂只支持 Android 和 iOS 平台。登录观测云控制台，进入「用户访问监测」页面，点击左上角「新建应用」，即可开始创建一个新的应用。
@@ -113,7 +115,7 @@ void main() async {
 | enableNativeUserAction | bool | 否 | 是否进行 `Native Action` 追踪，`Button` 点击事件，纯 `Flutter` 应用建议关闭，默认为 `false` |
 | enableNativeUserView | bool | 否 | 是否进行 `Native View` 自动追踪，纯 `Flutter` 应用建议关闭，，默认为 `false` |
 | enableNativeUserResource | bool | 否 | 是否进行 `Native Resource` 自动追踪，纯 `Flutter` 应用建议关闭，默认为 `false` |
-| errorMonitorType | enum ErrorMonitorType | 否 | 设置辅助监控信息，添加附加监控数据到 `Rum` Error 数据中，`ErrorMonitorType.battery` 为电池余量，`ErrorMonitorType.memory` 为内存用量，`ErrorMonitorType.cpu` 为 CPU 占有率 |
+| errorMonitorType | enum ErrorMonitorType | 否 | 设置辅助监控信息，添加附加监控数据到 `RUM` Error 数据中，`ErrorMonitorType.battery` 为电池余量，`ErrorMonitorType.memory` 为内存用量，`ErrorMonitorType.cpu` 为 CPU 占有率 |
 | deviceMetricsMonitorType | enum DeviceMetricsMonitorType | 否 |在 View 周期中，添加监控数据，`DeviceMetricsMonitorType.battery` 监控当前页的最高输出电流输出情况，`DeviceMetricsMonitorType.memory` 监控当前应用使用内存情况，`DeviceMetricsMonitorType.cpu` 监控 CPU 跳动次数 ，`DeviceMetricsMonitorType.fps` 监控屏幕帧率 |
 | globalContext | Map | 否 | 自定义全局参数 |
 
@@ -266,7 +268,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-//此处页面名称为 NoRouteNamePage
+//此处“页面名称”为 NoRouteNamePage
 Navigator.of(context).push(
           FTMaterialPageRoute(builder: (context) => new NoRouteNamePage()
 ```
@@ -310,7 +312,7 @@ FTRUMManager().stopView();
 ### Error {#error}
 #### 自动采集
 ```dart
-/// flutter 自动采集 error
+
 void main() async {
   runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
@@ -323,11 +325,11 @@ void main() async {
         iOSAppId: appIOSId,
     );
     
-    // Flutter 框架异常捕获
+    // Flutter 异常捕获
     FlutterError.onError = FTRUMManager().addFlutterError;
     runApp(MyApp());
   }, (Object error, StackTrace stack) {
-    //其它异常捕获与日志收集
+    //添加 Error 数据
     FTRUMManager().addError(error, stack);
   });
  

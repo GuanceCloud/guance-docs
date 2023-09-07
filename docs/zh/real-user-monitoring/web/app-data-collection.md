@@ -88,7 +88,6 @@
 | --- | --- | --- |
 | `session_id` | string | 会话 id（用户会话 15 分钟内未产生交互行为则视为过期 ） |
 | `session_type` | string | 会话类型。参考值：user \| synthetics<br><li>user 表示是RUM功能产生的数据；<br><li>synthetics 表示是 headless拨测产生的数据。 |
-| `session_referrer` | string | 会话来源。一般是记录来源的页面地址。 |
 | `session_first_view_id` | string | 当前会话的第一个页面的 view_id |
 | `session_first_view_url` | string | 当前会话的第一个页面的 URL |
 | `session_first_view_host` | string | 当前会话的第一个页面的域名 |
