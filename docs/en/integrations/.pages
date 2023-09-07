@@ -60,6 +60,7 @@ nav:
       - gitlab.md
       - snmp.md
       - netflow.md
+      - external.md
 
   - Cloud Native:
     - 'Metric Collection': container.md
