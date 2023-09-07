@@ -12,7 +12,7 @@
 
 观测云商业版用户可使用数据转发功能，[体验版](../billing/trail.md)用户需先[升级商业版](../billing/commercial-version.md)。
 
-## 新建备份
+## 新建规则
 
 进入**日志 > 数据转发**页面，点击**转发规则 > 新建规则**。
 
@@ -25,16 +25,20 @@
 
 ### 输入规则名称
 
+![](img/back-9.png)
+
 在弹出的对话框，输入**规则名称**即可添加一条新的规则，
 
 | 字段      | 描述     | 
 | ------------- | -------------- |
 | 规则名称 | 限制最多输入 30 个字符。 |
-| 同步备份扩展字段      | 默认仅备份 message 内容到数据转发，若勾选此选项，将备份符合筛选条件的整条日志数据。<br/>:warning: 若创建多个数据转发规则，则优先匹配勾选同步备份扩展字段的规则，即若不同的规则命中同一条数据，则优先按照同步备份扩展字段的逻辑展示整条日志数据。     |
+| 包含扩展字段      | 若勾选 “包含扩展字段”，符合条件的整条日志数据都会被转发。应用性能和用户访问数据默认转发整条数据，不受此选项影响。<br/>:warning: 若创建多个数据转发规则，则优先匹配勾选包含扩展字段的规则，即若不同的规则命中同一条数据，则优先按照同步包含扩展字段的逻辑展示整条日志数据。     |
 
 ### 定义过滤条件
 
-:material-numeric-1-circle-outline: 数据源：日志、链路、用户访问
+![](img/back-1.png)
+
+:material-numeric-1-circle-outline: 数据源：日志、链路、用户访问.
 
 :material-numeric-2-circle-outline: 过滤条件：支持自定义条件间的运算逻辑，您可以选择**所有条件**、**任意条件**：
 
@@ -51,7 +55,6 @@
 | in 、not in      | 精确匹配，支持多值（逗号隔开） | 
 | match、not match | 模糊匹配，支持输入正则语法 | 
 
-![](img/back-1.png)
 
 ### 选择存档类型
 
@@ -123,7 +126,7 @@
 #### 华为云 OBS {#obs}
 
 
-1、存档类型选择**华为云 OBS**，即表示将匹配到规则的日志自动备份到外部 OBS；
+1、存档类型选择**华为云 OBS**，即表示将匹配到规则的日志自动转发到外部 OBS；
 
 ![](img/back-8.png)
 
@@ -139,7 +142,7 @@
 
 ???+ attention "配置须知"
 
-    备份到外部存储（OSS）的数据目前暂不支持在数据转发查看器中查询分析。为避免产生额外的流量开销，当前仅支持与观测云站点同 Region 的外部存储数据写入。
+    转发到外部存储（OSS）的数据目前暂不支持在数据转发查看器中查询分析。为避免产生额外的流量开销，当前仅支持与观测云站点同 Region 的外部存储数据写入。
 
     - 中国区1（杭州）：cn-hangzhou   
     - 中国区3（张家口）：cn-zhangjiakou   
@@ -243,7 +246,7 @@
 
 ### 查看数据转发
 
-进入**日志 > 数据转发**页面，即可查看符合备份条件的日志数据。
+进入**日志 > 数据转发**页面，即可查看符合条件的日志数据。
 
 - [时间控件](../getting-started/function-details/explorer-search.md#time) ：通过选择时间范围筛选查看数据转发；
 - [搜索和筛选](../getting-started/function-details/explorer-search.md#search) ：通过搜索关键字或者筛选字段的方式查看和分析数据转发；
@@ -252,11 +255,11 @@
 <!--
 - [显示列](../getting-started/function-details/explorer-search.md#columns) ：在创建数据转发规则时：
 
-    若勾选**同步备份扩展字段**，可自定义添加除了日志产生的时间和内容以外的字段，见下图：
+    若勾选**包含扩展字段**，可自定义添加除了日志产生的时间和内容以外的字段，见下图：
 
     ![](img/5.log_backup_6.png)
 
-    在创建数据转发规则时，若不勾选**同步备份扩展字段**，则数据转发仅保存日志数据的时间和内容，见下图：
+    在创建数据转发规则时，若不勾选**包含扩展字段**，则数据转发仅保存日志数据的时间和内容，见下图：
 
     ![](img/5.log_backup_5.png)
 -->
@@ -269,13 +272,13 @@
 
 点击规则右侧 :material-text-search: 、编辑、 :fontawesome-regular-trash-can: 按钮，即可进行相应操作。
 
-**注意**：若需要修改创建的备份规则，可删除规则后再创建新的备份规则。规则删除后已备份的数据不会被删除，但不再产生新的数据转发数据。
+**注意**：若需要修改创建的转发规则，可删除规则后再创建新的转发规则。规则删除后已转发的数据不会被删除，但不再产生新的数据转发数据。
 
 ## 更多阅读
 
 <div class="grid cards" markdown>
 
 - [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 数据转发计费逻辑</font>](../billing/billing-method/billing-item.md#backup)
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 日志数据备份到 OSS 最佳实践</font>](../best-practices/partner/log-backup-to-oss-by-func.md)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 日志数据转发到 OSS 最佳实践</font>](../best-practices/partner/log-backup-to-oss-by-func.md)
 
 </div>

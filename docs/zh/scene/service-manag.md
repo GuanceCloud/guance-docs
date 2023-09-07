@@ -6,16 +6,14 @@
 
 ---
 
-**服务管理**作为一个集中管理入口，以全局的视角访问和查看当前工作空间内所有服务下的关键信息；同时，其将业务属性与业务数据相串联，通过关联的仓库和文档，快速确定紧急问题的代码位置和问题解决方案。
+**服务管理**作为一个集中管理入口，以全局的视角访问和查看当前工作空间内所有服务下的关键信息；同时，其将业务属性与链路数据相串联，通过关联的仓库和文档，快速确定紧急问题的代码位置和问题解决方案。
 
-进入**场景 > 服务管理**页面：
-
-您可查看所有服务的状态、关联仓库及文档等信息。
+在**场景 > 服务管理**，您可按需添加服务清单。添加完成后，支持从[服务清单列表](#list-deatils)、[性能列表](#performance)以及[服务拓扑图](#service-map)三个维度进行查看。在对应列表页面，可借助全局筛选、快捷筛选、搜索、时间控件等方式快速定位至目标服务清单，缩减查询时间；还可通过保存快照随时记录查询条件；多种设置与操作满足服务数据查询诉求。
 
 ![](img/service-2.png)
 
 
-## 添加服务清单
+## 添加服务清单 {#create}
 
 <img src="../img/service-1.png" width="60%" >
 
@@ -45,7 +43,7 @@
 
 输入相关信息后，点击**确定**即可创建成功。
 
-## 服务列表 {#list}
+## 查看服务 {#list}
 
 创建完成后，您可以在清单列表查看所有服务：
 
@@ -53,9 +51,7 @@
 
 ### 服务清单 {#list-deatils}
 
-#### 清单列表管理
-
-您可以通过以下操作来管理列表：
+您可以通过以下操作来管理服务清单列表：
 
 1、搜索：在搜索栏，可输入关键词搜索服务名称。
 
@@ -91,31 +87,6 @@
 
 **注意**：因**应用性能监测 > 服务**与**场景 > 服务**合二为一，历史保存的服务列表快照不在此列出，如需查看，请前往快捷入口的快照处查看。此处仅显示新创建的快照信息。更多详情，可参考[快照](../getting-started/function-details/snapshot.md)。
 
-#### 清单列表详情
-
-在服务清单，点击某条服务，可进入其详情页。点击页面上方 tab，即可进入分析看板、资源调用、Pod、日志、链路、错误追踪、事件查看器，查询关联服务下的所有相关信息。
-
-:material-numeric-1-circle: 分析看板：默认打开分析看板的概览页面。若该服务关联了相关视图，可切换查看：
-
-![](img/service-5.gif)
-
-:material-numeric-2-circle: 资源调用
-
-![](img/service-8.png)
-
-1. 可根据环境和版本进行全局筛选；
-2. 资源调用排行（TOP 20）列表支持基于请求数(默认)、错误请求数、P75 响应时间和 P99 响应时间查询分析；支持直接输入资源名称进行搜索。
-3. 在资源右侧的详情页内，可查看其请求数、错误率、响应时间及响应时间分布；
-4. 可查询关联链路信息，支持[搜索](../getting-started/function-details/explorer-search.md#search)；点击**跳转**即可进入**服务管理 > 链路**页面。
-
-
-|                   <font color=coral size=3>:fontawesome-regular-circle-down: &nbsp;**关于 Tab 页其他信息，您可点击前往：**</font>                         |                                                              |
-| :----------------------------------------------------------: | :----------------------------------------------------------: | 
-| [Pods 查看器](../infrastructure/contrainer.md#pods){ .md-button .md-button--primary } | [日志查看器](../logs/explorer.md){ .md-button .md-button--primary } | 
-| [链路查看器](../application-performance-monitoring/explorer.md){ .md-button .md-button--primary } | [错误追踪查看器](../application-performance-monitoring/error.md){ .md-button .md-button--primary } |
-|  [事件查看器](../events/unrecovered-events.md){ .md-button .md-button--primary } |  |
-
-
 ### 性能 {#performance}
 
 在性能，您可以：
@@ -141,11 +112,11 @@
 ![](img/service-6.gif)
 
 
-## 服务拓扑 {#service-map}
+### 服务拓扑 {#service-map}
 
 您可以切换至**服务拓扑**模式查看各个服务之间的调用关系。
 
-### 拓扑图 {#map}
+#### 拓扑图 {#map}
 
 - 区分环境和版本：支持基于服务（service）和服务环境版本（service+env+version) 两种维度绘制链路拓扑图，开启区分环境和版本后，将按照不同的环境版本绘制服务拓扑图。比如说金丝雀发布，通过开启环境和版本，即可查看不同环境版本下的服务调用情况。
 
@@ -187,4 +158,34 @@
 
 
 ![](img/service-7.gif)
+
+
+## 服务详情 {#details}
+
+在各服务清单列表，点击某条服务，可进入其详情页。点击页面上方 tab，即可进入分析看板、资源调用、Pods、日志、链路、错误追踪、事件查看器，查询关联服务下的所有相关信息。
+
+### 分析看板
+
+默认打开分析看板的概览页面。若您在[创建或编辑服务](#create)时关联了内置视图，则可切换查看：
+
+![](img/service-5.gif)
+
+### 资源调用
+
+在资源调用，观测云会展示出资源调用排行，默认在页面右侧向您展排行首位的资源信息，包含请求数、错误率、响应时间、响应时间分布及其链路数据。您还可以基于环境和版本进行全局筛选。若出现资源信息为空的情况，观测云在页面右侧则展示该条服务的相关数据。
+
+![](img/service-8.png)
+
+1. 资源调用排行（TOP 20）列表支持基于请求数(默认)、错误请求数、P75 响应时间和 P99 响应时间查询分析；支持直接输入资源名称进行搜索。
+2. 在资源右侧的详情页内，可查看其请求数、错误率、响应时间及响应时间分布；
+3. 可查询关联链路信息，支持[搜索](../getting-started/function-details/explorer-search.md#search)；点击**跳转**即可进入**服务管理 > 链路**页面。
+
+### 关联查看器
+
+|                   <font color=coral size=3>:fontawesome-regular-circle-down: &nbsp;**关于 Tab 页其他查看器信息，您可点击前往：**</font>                         |                                                              |
+| :----------------------------------------------------------: | :----------------------------------------------------------: | 
+| [Pods 查看器](../infrastructure/contrainer.md#pods){ .md-button .md-button--primary } | [日志查看器](../logs/explorer.md){ .md-button .md-button--primary } | 
+| [链路查看器](../application-performance-monitoring/explorer.md){ .md-button .md-button--primary } | [错误追踪查看器](../application-performance-monitoring/error.md){ .md-button .md-button--primary } |
+|  [事件查看器](../events/unrecovered-events.md){ .md-button .md-button--primary } |  |
+
 
