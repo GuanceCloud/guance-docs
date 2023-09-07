@@ -45,7 +45,7 @@
 
 :material-numeric-1-circle-outline: 在上方状态栏，支持根据不同的状态进行筛选，快速锁定范围。
 
-![](img/invite-3.png)
+<img src="../img/invite-3.png" width="70%" >
 
 不同的状态值含义如下：
 
