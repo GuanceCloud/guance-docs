@@ -8,21 +8,29 @@ icon: zy/release-notes
 
 ## 2023 年 9 月 7 日
 
+<video controls="controls" poster="https://static.guance.com/dataflux/help/video/20230907.jpeg" >
+      <source id="mp4" src="https://static.guance.com/dataflux/help/video/20230907.mp4" type="video/mp4">
+</video>
+
+
 ### 观测云更新
 
 - 场景 > 仪表板/查看器：新增全局[跨工作空间查询](../scene/dashboard.md#cross-workspace)配置。  
+- 场景 > 图表查询：时间控件范围小于等于【最近 15 分钟】，自动对齐时间间隔新增 “1 秒”显示。
 - 场景 > [服务管理](../scene/service-manag.md)：
-    - 新增绑定多个内置视图到分析看板；
-    - 新增服务接口调用分析看板；
-    - 支持保存快照；
-    - 服务清单新增关联、团队信息。
-- 日志：
-    - [数据转发](../logs/backup.md)：原备份日志；新增链路、用户访问数据源。
-    - 查看器：新增新建监控器入口。
+    - 服务清单新增绑定多个内置视图到分析看板；新增关联、团队信息；
+    - 新增资源调用分析看板；
+    - 支持保存快照。
+- 日志 > 备份日志：
+    - 正式更改为[数据转发](../logs/backup.md)；
+    - 新增链路、用户访问数据源；
+    - 原备份日志计费项名称更改为数据转发计费项。  
+- 日志 > 查看器：新增新建监控器入口；支持针对查看器详情页做快照保存。
 - 管理：
-    - [全局标签](../management/global-label.md)：新增全局标签功能，对标签进行统一管理。
-    - [字段管理](../management/field-management.md)：新增别名、设置显示列。
-    - [空间管理](../management/space-management.md)：功能整合和页面优化。
+    - [全局标签](../management/global-label.md)：新增全局标签功能，对标签进行统一管理；
+    - [字段管理](../management/field-management.md)：新增别名、设置显示列；
+    - [空间管理](../management/space-management.md)：功能整合和页面优化；
+    - 成员管理：原成员组的定义正式更改为团队；
     - 敏感数据扫描：新增扫描规则数量统计；新增跳转链接。
 - 监控：
     - 可用性数据检测：新增拨测指标，可以基于【指标】维度进行检测；
