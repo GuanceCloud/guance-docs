@@ -1,6 +1,6 @@
 ---
 title: '阿里云 RocketMQ4'
-summary: '使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云。'
+summary: '阿里云 RocketMQ 4.0 的展示指标包括消息吞吐量、延迟、可靠性和水平扩展能力等。'
 __int_icon: 'icon/aliyun_rocketmq4'
 dashboard:
   - desc: '阿里云 RocketMQ4 内置视图'
@@ -15,7 +15,7 @@ monitor:
 # 阿里云 RocketMQ4
 <!-- markdownlint-enable -->
 
-使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云。
+阿里云 RocketMQ 4.0 的展示指标包括消息吞吐量、延迟、可靠性和水平扩展能力等。
 
 
 ## 配置 {#config}

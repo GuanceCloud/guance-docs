@@ -96,8 +96,8 @@ GRANT SELECT ON DBA_USERS TO datakit;
 Select the appropriate installation package based on the operating system and Oracle version, refer to [here](https://oracle.github.io/odpi/doc/installation.html){:target="_blank"}，如：
 
 ```shell
-wget https://download.oracle.com/otn_software/linux/instantclient/211000/instantclient-basiclite-linux.x64-21.1.0.0.0.zip
-unzip instantclient-basiclite-linux.x64-21.1.0.0.0.zip
+wget https://download.oracle.com/otn_software/linux/instantclient/2110000/instantclient-basiclite-linux.x64-21.10.0.0.0dbru.zip
+unzip instantclient-basiclite-linux.x64-21.10.0.0.0dbru.zip
 ```
 
 Add the extracted directory file path to the `LD_LIBRARY_PATH` environment variable path in the following configuration information.
@@ -105,9 +105,9 @@ Add the extracted directory file path to the `LD_LIBRARY_PATH` environment varia
 > You can also download our pre-prepared dependency package directly:
 
 ```shell
-wget -q https://static.guance.com/otn_software/instantclient/instantclient-basiclite-linux.x64-19.8.0.0.0dbru.zip \
-			-O /usr/local/datakit/externals/instantclient-basiclite-linux.zip \
-			&& unzip /usr/local/datakit/externals/instantclient-basiclite-linux.zip -d /opt/oracle;
+wget -q https://static.guance.com/otn_software/instantclient/instantclient-basiclite-linux.x64-21.10.0.0.0dbru.zip \
+    -O /usr/local/datakit/externals/instantclient-basiclite-linux.zip \
+    && unzip /usr/local/datakit/externals/instantclient-basiclite-linux.zip -d /opt/oracle;
 ```
 
 In addition, you may need to install additional dependent libraries: 
@@ -126,12 +126,13 @@ apt-get install -y libaio-dev libaio1
         
     [[inputs.external]]
       daemon = true
-      name = 'oracle'
-      cmd  = "/usr/local/datakit/externals/oracle"
+      name   = 'oracle'
+      cmd    = "/usr/local/datakit/externals/oracle"
     
       ## Set true to enable election
       election = true
     
+      ## The "--inputs" line below should not be modified.
       args = [
         '--interval'       , '1m'                        ,
         '--host'           , '<your-oracle-host>'        ,
@@ -141,7 +142,7 @@ apt-get install -y libaio-dev libaio1
         '--service-name'   , '<oracle-service-name>'     ,
       ]
       envs = [
-        'LD_LIBRARY_PATH=/opt/oracle/instantclient_19_8:$LD_LIBRARY_PATH',
+        'LD_LIBRARY_PATH=/opt/oracle/instantclient_21_10:$LD_LIBRARY_PATH',
       ]
     
       [inputs.external.tags]
@@ -149,15 +150,14 @@ apt-get install -y libaio-dev libaio1
         # more_tag = "some_other_value"
     
       #############################
-      # 参数说明(标 * 为必选项)
+      # Parameter Description (Marked with * is mandatory field)
       #############################
-      # *--interval       : 采集的频度，最小粒度 5m
-      # *--host           : Oracle 实例地址(ip)
-      #  --port           : Oracle 监听端口
-      # *--username       : Oracle 用户名
-      # *--password       : Oracle 密码
-      # *--service-name   : Oracle 的服务名
-      # *--query          : 自定义查询语句，格式为 <sql:metricName:tags>，sql 为自定义采集的语句，tags 填入使用 tag 字段
+      # *--interval       : Collect interval (Default is 1m)
+      # *--host           : Oracle instance address (IP)
+      # *--port           : Oracle listen port (Default is 1521)
+      # *--username       : Oracle username
+      # *--password       : Oracle password
+      # *--service-name   : Oracle service name
     
     ```
     
@@ -169,10 +169,10 @@ apt-get install -y libaio-dev libaio1
 
 ## Measurements {#measurements}
 
-For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.oracle.tags]`:
+For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.external.tags]`:
 
 ``` toml
- [inputs.oracle.tags]
+ [inputs.external.tags]
   # some_tag = "some_value"
   # more_tag = "some_other_value"
   # ...
@@ -318,10 +318,10 @@ If the following information is reported, it is basically caused by the low glib
 externals/oracle: /lib64/libc.so.6: version  `GLIBC_2.14` not found (required by externals/oracle)
 ```
 
-- Oracle Collector is only available on Linux/amd64 Architecture DataKit and is not supported on other platforms.
+- Oracle Collector is only available on Linux/AMD64 architecture DataKit and is not supported on other platforms.
 
-This means that the Oracle collector can only run on amd64 (X86) Linux, and no other platform can run the current Oracle collector.
+This means that the Oracle collector can only run on AMD64 Linux, and no other platform can run the current Oracle collector.
 
-### Why can't see `oracle_system` measurements? {#faq-no-system}
+### :material-chat-question: Why can't see `oracle_system` measurements? {#faq-no-system}
 
 It needs to taking 1 minute to see them after the database system starting up.

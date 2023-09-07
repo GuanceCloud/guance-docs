@@ -49,32 +49,28 @@ end
 
 ## etcd 设置 {#etcd-settings}
 
+> 以下命令均在 Linux 下操作。
+
+Dataway 作为 etcd 客户端，可以在 etcd 中设置如下用户名和角色（etcd 3.5+），参见[这里](https://etcd.io/docs/v3.5/op-guide/authentication/rbac/#using-etcdctl-to-authenticate){:target="_blank"}
+
+创建 `dataway` 账号以及对应角色：
+
+```shell
+# 添加用户名，此处会提示输入密码
+$ etcdctl user add dataway 
+
+# 添加 sinker 这个角色
+$ etcdctl role add sinker 
+
+# 将 dataway 添加到角色中
+$ etcdctl user grant-role dataway sinker
+
+# 限制 role 的 key 权限（此处 /dw_sinker 和 /ping 是默认使用的两个 key）
+$ etcdctl role grant-permission sinker readwrite /dw_sinker
+$ etcdctl role grant-permission sinker readwrite /ping       # 用于检测连通性
+```
+
 <!-- markdownlint-disable MD046 -->
-=== "已有 etcd 设置"
-
-    Dataway 作为 etcd 客户端，可以在 etcd 中设置如下用户名和角色（etcd 3.5+），参见[这里](https://etcd.io/docs/v3.5/op-guide/authentication/rbac/#using-etcdctl-to-authenticate){:target="_blank"}
-
-    创建 `dataway` 账号以及对应角色：
-
-    ```shell
-    # 添加用户名，此处会提示输入密码
-    $ etcdctl user add dataway 
-    
-    # 添加 sinker 这个角色
-    $ etcdctl role add sinker 
-    
-    # 将 dataway 添加到角色中
-    $ etcdctl user grant-role dataway sinker
-    
-    # 限制 role 的 key 权限（此处 /dw_sinker 和 /ping 是默认使用的两个 key）
-    $ etcdctl role grant-permission sinker readwrite /dw_sinker
-    $ etcdctl role grant-permission sinker readwrite /ping       # 用于检测连通性
-    ```
-
-=== "Kubernetes 自建 etcd 节点"
-
-    参见[这里](https://github.com/etcd-io/etcd/tree/main/hack/kubernetes-deploy){:target="_blank"}。
-
 ???+ info "为什么创建角色？"
 
     角色用来控制对应用户在某些 key 上的权限，此处我们使用的可能是用户已有的 etcd 服务，有必要限制一下 Dataway 这个用户的数据权限。
@@ -178,8 +174,6 @@ sinker:
 ???+ attention
 
     如果不设置 `secret_token`，则任何 Datakit 发送过来的请求都能通过，这不会造成数据问题。但如果 Dataway 部署在公网，还是建议设置一下 `secret_token`。
-
-    如果 etcd 没有设置用户名/密码，则这里将 `username` 和 `password` 均设置为 `""` 即可。
 <!-- markdownlint-enable -->
 
 ## Token 规则 {#spec-on-secret-token}
@@ -228,47 +222,24 @@ Datakit 会在其采集的数据中，寻找带有这些 Key 的字段（只寻�
 
 ## Dataway 指标采集 {#collect-metrics}
 
+Dataway 自身暴露了 Prometheus 指标，通过 Datakit 自带的 `prom` 采集器能采集其指标，采集器示例配置如下：
+
+```toml
+[[inputs.prom]]
+  ## Exporter URLs.
+  urls = [ "http://localhost:9090/metrics", ]
+
+  source = "dataway"
+
+  election = true
+
+  ## dataway 指标集固定为 dw，不要更改
+  measurement_name = "dw"
+```
+
+配置好以后，即可在内置视图中，搜索 `dataway` 即可看到对应的内置视图。
+
 <!-- markdownlint-disable MD046 -->
-=== "主机部署"
-
-    Dataway 自身暴露了 Prometheus 指标，通过 Datakit 自带的 `prom` 采集器能采集其指标，采集器示例配置如下：
-    
-    ```toml
-    [[inputs.prom]]
-      ## Exporter URLs.
-      urls = [ "http://localhost:9090/metrics", ]
-    
-      source = "dataway"
-    
-      election = true
-    
-      ## dataway 指标集固定为 dw，不要更改
-      measurement_name = "dw"
-    ```
-    
-    配置好以后，即可在内置视图中，搜索 `dataway` 即可看到对应的内置视图。
-
-=== "Kubernetes"
-
-    可在 Pod 上增加 Annotation（需 [Datakit 1.14.2](changelog.md#cl-1.14.2) 以上版本）：
-
-    ```yaml
-    annotations:
-       datakit/prom.instances: |
-         [[inputs.prom]]
-           url = "http://$IP:9090/metrics" # 此处端口（默认 9090）视情况而定
-           source = "dataway"
-           measurement_name = "dw" # 固定为该指标集
-           interval = "30s"
-
-           [inputs.prom.tags]
-             namespace = "$NAMESPACE"
-             pod_name = "$PODNAME"
-             node_name = "$NODENAME"
-    ```
-
-如果采集成功，在观测云「场景」/「内置视图」中搜索 `dataway` 即可看到对应的监控视图。
-
 ???+ attention "HTTP client 指标采集"
 
     如果要采集 Dataway HTTP 请求 Kodo（或者下一跳 Dataway）的指标，需要手动开启 `http_client_trace` 配置。也可以在安装阶段，指定 `DW_HTTP_CLIENT_TRACE=on`。
