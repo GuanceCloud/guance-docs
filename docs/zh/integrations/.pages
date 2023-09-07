@@ -132,6 +132,7 @@ nav:
       - zookeeper.md
       - 'Zadigx': zadigx.md
       - '飞书与异常追踪联动': feishu_im.md
+      - external.md
 
   - CI/CD:
       - 'Jenkins': jenkins.md
