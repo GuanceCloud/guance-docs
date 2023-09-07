@@ -38,6 +38,7 @@ nav:
       - tdengine.md
       - elasticsearch.md
       - solr.md
+      - 'IBM Db2': db2.md
 
     - 'Messaging Queue':
       - kafka.md
