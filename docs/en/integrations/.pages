@@ -124,6 +124,9 @@ nav:
     - 'CAT' :
       - cat.md
 
+    - 'Tracing Propagator':
+      - tracing-propagator.md
+
   - RUM:
     - rum.md
 

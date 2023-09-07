@@ -210,6 +210,9 @@ nav:
       -  pinpoint.md
       -  pinpoint-java.md
       -  pinpoint-go.md
+      
+    - '链路工具及串联':
+      - tracing-propagator.md
 
   - '语言':
     - 'Java': java.md
