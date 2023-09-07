@@ -26,7 +26,7 @@ Session Replay Record 功能集成在 RUM SDK 中, 所以不需要额外引入�
  }
 ```
 
-#### NPM
+#### NPM {#npm}
 
 引入 @cloudcare/browser-rum 包，并且保证 [@cloudcare/browser-rum](https://www.npmjs.com/package/@cloudcare/browser-rum) 的版本 `> 3.0.0`, 如果要开始录制，在初始化后，请执行 `datafluxRum.startSessionReplayRecording()`.
 
@@ -47,7 +47,7 @@ datafluxRum.init({
 datafluxRum.startSessionReplayRecording();
 ```
 
-#### CDN
+#### CDN {#cdn}
 
 替换原来的 CDN 地址 `https://static.guance.com/browser-sdk/v2/dataflux-rum.js` 为 `https://static.guance.com/browser-sdk/v3/dataflux-rum.js`, 并在执行  `DATAFLUX_RUM.init()` 之后，执行 `DATAFLUX_RUM.startSessionReplayRecording()`
 

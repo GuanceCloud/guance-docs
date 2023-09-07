@@ -122,6 +122,10 @@ DDTrace 是 DataDog 开源的 APM 产品，Datakit 内嵌的 DDTrace Agent 用�
       ## sampler. If you want to get rid of some error status, you can set the error status list here.
       # omit_err_status = ["404"]
     
+      ## compatible otel: It is possible to compatible OTEL Trace with DDTrace trace.
+      ## make span_id and parent_id to hex encoding.
+      # compatible_otel=true
+    
       ## Ignore tracing resources map like service:[resources...].
       ## The service name is the full service name in current application.
       ## The resource list is regular expressions uses to block resource names.
@@ -172,6 +176,7 @@ DDTrace 是 DataDog 开源的 APM 产品，Datakit 内嵌的 DDTrace Agent 用�
     | `ENV_INPUT_DDTRACE_ENDPOINTS`          | JSON string | `["/v0.3/traces", "/v0.4/traces", "/v0.5/traces"]`                               |
     | `ENV_INPUT_DDTRACE_IGNORE_TAGS`        | JSON string | `["block1", "block2"]`                                                           |
     | `ENV_INPUT_DDTRACE_KEEP_RARE_RESOURCE` | bool        | true                                                                             |
+    | `ENV_INPUT_DDTRACE_COMPATIBLE_OTEL`    | bool        | true                                                                             |
     | `ENV_INPUT_DDTRACE_OMIT_ERR_STATUS`    | JSON string | `["404", "403", "400"]`                                                          |
     | `ENV_INPUT_DDTRACE_CLOSE_RESOURCE`     | JSON string | `{"service1":["resource1"], "service2":["resource2"], "service3":["resource3"]}` |
     | `ENV_INPUT_DDTRACE_SAMPLER`            | float       | 0.3                                                                              |
@@ -328,3 +333,4 @@ customer_tags = [
 - [DataKit Tracing 字段定义](datakit-tracing-struct.md)
 - [DataKit 通用 Tracing 数据采集说明](datakit-tracing.md)
 - [正确使用正则表达式来配置](../datakit/datakit-input-conf.md#debug-regex)
+- [多链路串联](tracing-propagator.md)
