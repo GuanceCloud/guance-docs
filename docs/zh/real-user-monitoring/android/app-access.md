@@ -1565,6 +1565,69 @@ SDK 为更好关联相同用户数据，会使用 Android ID。如果需要在�
 	//用户同意隐私协议后再开启
 	FTSdk.setEnableAccessAndroidID(true);
 	```
+#### 延迟初始化 SDK
+如果需要在应用中延迟加载 SDK，建议使用如下方式初始化。
+
+=== "Java"
+
+	```java
+	// Application
+	public class DemoApplication extends Application {
+		@Override
+		public void onCreate() {
+		    //如果已经同意协议，在 Application 中初始化
+			if(agreeProtocol){
+				FTSdk.init();
+			}
+		}
+	}
+	
+	// 隐私声明  Activity 页面
+	public class MainActivity extends Activity {
+		@Override
+		protected void onCreate(Bundle savedInstanceState) {
+			//未阅读隐私声明
+			if ( notReadProtocol ) {
+			    //隐私声明弹出弹窗
+				showProtocolView();
+	
+			    //如果同意隐私声明
+				if( agreeProtocol ){
+					FTSdk.init();
+				}
+			}
+		}
+	}
+	
+=== "Kotlin"
+
+	```kotlin
+	// Application	
+	class DemoApplication : Application() {
+	    override fun onCreate() {
+	        // 如果已经同意协议，在 Application 中初始化
+	        if (agreeProtocol) {
+	            FTSdk.init()
+	        }
+	    }
+	}
+	
+	// 隐私声明 Activity 页面
+	class MainActivity : Activity() {
+	    override fun onCreate(savedInstanceState: Bundle?) {
+	        // 未阅读隐私声明
+	        if (notReadProtocol) {
+	            // 隐私声明弹出弹窗
+	            showProtocolView()
+	
+	            // 如果同意隐私声明
+	            if (agreeProtocol) {
+	                FTSdk.init()
+	            }
+	        }
+	    }
+	}
+	```
 
 ### 无法使用 ft-plugin 情况下如何接入 SDK {#manual-set}
 观测云使用的 Androig Grale Plugin Transformation 实现的代码注入，从而实现数据自动收集。但是由于一些兼容性问题，可能存在无法使用 `ft-plugin` 的问题。受影响包括 **RUM** `Action`，`Resource`，和 `android.util.Log` ，Java 与 Kotlin`println` **控制台日志自动抓取**，以及符号文件的自动上传。

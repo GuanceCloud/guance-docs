@@ -159,7 +159,7 @@ adjust_timezone(time)
 
 ### `agg_create()` {#fn-agg-create}
 
-函数原型：`fn agg_create(bucket: str, on_interval: str = "60s", on_count: int = 0, keep_value: bool = false, const_tags: map[string]string = nil)`
+函数原型：`fn agg_create(bucket: str, on_interval: str = "60s", on_count: int = 0, keep_value: bool = false, const_tags: map[string]string = nil, category: str = "M")`
 
 函数说明：创建一个用于聚合的指标集，通过 `on_interval` 或 `on_count` 设置时间或次数作为聚合周期，聚合结束后将上传聚合数据，可以选择是否保留上一次聚合的数据
 
@@ -170,6 +170,7 @@ adjust_timezone(time)
 - `on_count`: 默认值 `0`，以处理的点数作为聚合周期，值大于 `0` 时参数生效
 - `keep_value`: 默认值 `false`
 - `const_tags`: 自定义的 tags，默认为空
+- `category`: 聚合数据的数据类别，可选参数，默认值为 "M"，表示指标类别数据。
 
 示例：
 
@@ -180,7 +181,7 @@ agg_create("cpu_agg_info", on_interval = "30s")
 
 ### `agg_metric()` {#fn-agg-metric}
 
-函数原型：`fn agg_metric(bucket: str, new_field: str, agg_fn: str, agg_by: []string, agg_field: str)`
+函数原型：`fn agg_metric(bucket: str, new_field: str, agg_fn: str, agg_by: []string, agg_field: str, category: str = "M")`
 
 函数说明：根据输入的数据中的字段的名，自动取值后作为聚合数据的 tag，并将这些聚合数据存储在对应的 bucket 中
 
@@ -191,6 +192,7 @@ agg_create("cpu_agg_info", on_interval = "30s")
 - `agg_fn`: 聚合函数，可以是 `"avg"`,`"sum"`,`"min"`,`"max"`,`"set"` 中的一种
 - `agg_by`: 输入的数据中的字段的名，将作为聚合出的数据的 tag，这些字段的值只能是字符串类型的数据
 - `agg_field`: 输入的数据中的字段名，自动获取字段值进行聚合
+- `category`: 聚合数据的数据类别，可选参数，默认值为 "M"，表示指标类别数据。
 
 示例：
 
@@ -792,6 +794,54 @@ json(_, str_b)
 # }
 ```
 
+
+
+### `format_int()` {#fn-format-int}
+
+函数原型：`fn format_int(val: int, base: int) str`
+
+函数说明：将数值转换为指定进制的数值字符串。
+
+参数：
+
+- `val`: 待转换的整数
+- `base`: 进制，范围 2 到 36；进制大于 10 时使用小写字母 a 到 z 表示 10 及以后的数值。
+
+示例：
+
+```python
+# script0
+a = 7665324064912355185
+b = format_int(a, 16)
+if b != "6a60b39fd95aaf71" {
+    add_key(abc, b)
+} else {
+    add_key(abc, "ok")
+}
+
+# result
+'''
+{
+    "abc": "ok"
+}
+'''
+
+# script1
+a = "7665324064912355185"
+b = format_int(parse_int(a, 10), 16)
+if b != "6a60b39fd95aaf71" {
+    add_key(abc, b)
+} else {
+    add_key(abc, "ok")
+}
+
+# result
+'''
+{
+    "abc": "ok"
+}
+'''
+```
 
 
 ### `geoip()` {#fn-geoip}
@@ -1448,6 +1498,77 @@ parse_duration(abc) # 结果 abc = -2300000000
 
 ```
 
+
+
+### `parse_int()` {#fn-parse-int}
+
+函数原型：`fn parse_int(val: int, base: int) str`
+
+函数说明：将数值的字符串表示转换为数值。
+
+参数：
+
+- `val`: 待转换的字符串
+- `base`: 进制，范围 0，或 2 到 36；值为 0 时根据字符串前缀判断进制。
+
+示例：
+
+```python
+# script0
+a = "7665324064912355185"
+b = format_int(parse_int(a, 10), 16)
+if b != "6a60b39fd95aaf71" {
+    add_key(abc, b)
+} else {
+    add_key(abc, "ok")
+}
+
+# result
+'''
+{
+    "abc": "ok"
+}
+'''
+
+# script1
+a = "6a60b39fd95aaf71" 
+b = parse_int(a, 16)            # base 16
+if b != 7665324064912355185 {
+    add_key(abc, b)
+} else {
+    add_key(abc, "ok")
+}
+
+# result
+'''
+{
+    "abc": "ok"
+}
+'''
+
+
+# script2
+a = "0x6a60b39fd95aaf71" 
+b = parse_int(a, 0)            # the true base is implied by the string's 
+if b != 7665324064912355185 {
+    add_key(abc, b)
+} else {
+    c = format_int(b, 16)
+    if "0x"+c != a {
+        add_key(abc, c)
+    } else {
+        add_key(abc, "ok")
+    }
+}
+
+
+# result
+'''
+{
+    "abc": "ok"
+}
+'''
+```
 
 
 ### `query_refer_table()` {#fn-query-refer-table}

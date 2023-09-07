@@ -1,6 +1,6 @@
 ---
 title: 'AWS API Gateway'
-summary: '使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云'
+summary: 'AWS API Gateway的展示指标包括请求响应时间、吞吐量、并发连接数和错误率，这些指标反映了API Gateway在处理API请求和流量管理时的性能表现和可靠性。'
 __int_icon: 'icon/aws_api_gateway'
 dashboard:
 
@@ -18,7 +18,7 @@ monitor:
 # AWS API Gateway
 <!-- markdownlint-enable -->
 
-使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云
+AWS API Gateway的展示指标包括请求响应时间、吞吐量、并发连接数和错误率，这些指标反映了API Gateway在处理API请求和流量管理时的性能表现和可靠性。
 
 
 ## 配置 {#config}
@@ -43,7 +43,7 @@ monitor:
 
 此外，在「管理 / 自动触发配置」里看到对应的自动触发配置。点击【执行】，即可立即执行一次，无需等待定期时间。稍等片刻，可以查看执行任务记录以及对应日志。
 
-我们默认采集了一些配置, 具体见指标一栏 [配置自定义云对象指标](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
+我们默认采集了一些配置, 具体见指标一栏 [配置自定义云对象指标](https://func.guance.com/doc/script-market-guance-aws-gateway/){:target="_blank"}
 
 
 ### 验证

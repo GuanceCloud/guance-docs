@@ -1,6 +1,6 @@
 ---
 title: '华为云 GaussDB SYS.GAUSSDBV5'
-summary: '使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云'
+summary: '华为云 GaussDB SYS.GAUSSDBV5，提供cpu、内存、磁盘、死锁、SQL 响应时间指标等数据。'
 __int_icon: 'icon/huawei_gaussdb_sys.gaussdbv5'
 dashboard:
 

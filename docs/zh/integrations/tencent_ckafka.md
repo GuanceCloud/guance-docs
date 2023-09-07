@@ -1,6 +1,6 @@
 ---
 title: '腾讯云 CKafka'
-summary: '使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云'
+summary: '腾讯云CKafka的展示指标包括消息吞吐量、延迟、并发连接数和可靠性，这些指标反映了CKafka在处理大规模消息传递和实时数据流时的性能表现和可靠性保证。'
 __int_icon: 'icon/tencent_ckafka'
 dashboard:
 
@@ -16,7 +16,7 @@ monitor:
 # 腾讯云 CKafka
 <!-- markdownlint-enable -->
 
-使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云
+腾讯云CKafka的展示指标包括消息吞吐量、延迟、并发连接数和可靠性，这些指标反映了CKafka在处理大规模消息传递和实时数据流时的性能表现和可靠性保证。
 
 ## 配置 {#config}
 

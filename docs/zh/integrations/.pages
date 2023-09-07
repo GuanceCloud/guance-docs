@@ -2,9 +2,13 @@ nav:
   - integration-index.md
   - 公有云:
     - 阿里云:
+      - 'AnalyticDB PostgresSQL': aliyun_analyticdb_postgresql.md
       - 'CDN': aliyun_cdn.md
+      - 'ClickHouse': aliyun_clickhouse_community.md
       - 'ECS': aliyun_ecs.md
       - 'EIP': aliyun_eip.md
+      - 'Kafka': aliyun_kafka.md
+      - 'Lindorm': aliyun_lindorm.md
       - 'MongoDB': aliyun_mongodb.md
       - 'MySQL' : aliyun_rds_mysql.md
       - 'MySQL(PolarDB)': aliyun_polardb_mysql.md
@@ -12,10 +16,14 @@ nav:
       - 'OSS': aliyun_oss.md
       - 'Oracle(PolarDB)': aliyun_polardb_oracle.md
       - 'PostgreDQL(PolarDB)': aliyun_polardb_postgresql.md
+      - 'PolarDB 1.0': aliyun_polardb_1.0.md
+      - 'PolarDB 2.0': aliyun_polardb_2.0.md
       - 'RDS(MariaDB)' : aliyun_rds_mariadb.md
+      - 'RDS(PostgreSQL)' : aliyun_rds_postgresql.md
       - 'Redis Shard': aliyun_redis_shard.md
       - 'Redis': aliyun_redis.md
       - 'RocketMQ4' : aliyun_rocketmq4.md
+      - 'RocketMQ5' : aliyun_rocketmq5.md
       - 'SLB': aliyun_slb.md
       - 'SLS': aliyun_sls.md
       - 'SQLServer': aliyun_rds_sqlserver.md
@@ -25,24 +33,29 @@ nav:
       - 'DCS': huawei_dcs.md
       - 'ECS': huawei_ecs.md
       - 'ELB': huawei_elb.md
+      - 'FunctionGraph': huawei_functiongraph.md
       - 'GaussDB(Cassandra)': huawei_gaussdb_cassandra.md
       - 'GaussDB(MySQL)': huawei_gaussdb_for_mysql.md
       - 'GaussDB(Influx)': huawei_gaussdb_influx.md
       - 'GaussDB(Redis)': huawei_gaussdb_redis.md
       - 'GaussDBV5': huawei_gaussdb_sys.gaussdbv5.md
+      - 'Kafka': huawei_kafka.md
       - 'RDS(MySQL)': huawei_rds_mysql.md
       - 'MongoDB': huawei_mongodb.md
       - 'OBS': huawei_obs.md
       - 'RDS(PostgreSQL)': huawei_rds_postgresql.md
       - 'SYS.AS': huawei_SYS.AS.md
       - 'SYS.CBR': huawei_SYS.CBR.md
+      - 'SYS DDMS': huaweiyun_SYS_DDMS.md
 
     - AWS: 
       - 'DynamoDB': aws_dynamodb.md
+      - 'DynamoDB(DAX)': aws_dynamodb_DAX.md
       - 'EC2': aws_ec2.md
       - 'ELB': aws_elb.md
       - 'EventBridge': aws_eventbridge.md
       - 'Lambda': aws_lambda.md
+      - 'MemoryDB': aws_memorydb.md
       - 'MSK': aws_msk.md
       - 'MySQL': aws_rds_mysql.md
       - 'OpenSearch': aws_opensearch.md
@@ -55,8 +68,12 @@ nav:
       - 'CLB(Public)': tencent_clb_public.md
       - 'COS': tencent_cos.md
       - 'CVM': tencent_cvm.md
+      - 'KeewiDB': tencent_keewidb.md
+      - 'MariaDB': tencent_mariadb.md
+      - 'Memcached': tencent_memcached.md
       - 'MongoDB': tencent_mongodb.md
       - 'Redis': tencent_redis_mem.md
+      - 'Tdsql-C': tencent_tdsql_c_mysql.md
 
   - 主机:
     - 默认采集:
@@ -126,12 +143,14 @@ nav:
       - consul.md
       - coredns.md
       - 'Flink': flinkv1.md
+      - 'Jira': monitor_jira.md
       - nacos.md
       - snmp.md
       - netflow.md
       - seata.md
       - zookeeper.md
       - 'Zadigx': zadigx.md
+      - 'openai': openai.md
       - '飞书与异常追踪联动': feishu_im.md
       - external.md
 
