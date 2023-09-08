@@ -11,10 +11,10 @@ monitor:
 ---
 
 <!-- markdownlint-disable MD025 -->
-# 阿里云 `Tair` 社区版
+# 阿里云 **Tair** 社区版
 <!-- markdownlint-enable -->
 
-阿里云 `Tair` 社区版指标展示，包括CPU 使用率、内存使用率、代理总QPS、网络流量、命中率等。
+阿里云 **Tair** 社区版指标展示，包括CPU 使用率、内存使用率、代理总QPS、网络流量、命中率等。
 
 
 ## 配置 {#config}

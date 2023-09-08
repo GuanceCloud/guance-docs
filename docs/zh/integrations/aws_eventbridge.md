@@ -18,7 +18,7 @@ monitor:
 # AWS EventBridge
 <!-- markdownlint-enable -->
 
-使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云
+**AWS** **EventBridge** 的展示指标包括事件传递延迟、吞吐量、事件规模和可伸缩性，这些指标反映了 **EventBridge** 在处理大规模事件流和实时数据传递时的性能表现和可靠性。
 
 
 ## 配置 {#config}

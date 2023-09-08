@@ -1,6 +1,6 @@
 ---
 title: '华为云 GaussDB-Cassandra'
-summary: '使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云'
+summary: '华为云GaussDB-Cassandra的展示指标包括读写吞吐量、延迟、数据一致性和可扩展性，这些指标反映了GaussDB-Cassandra在处理大规模分布式数据存储和访问时的性能表现和可靠性。'
 __int_icon: 'icon/huawei_gaussdb_cassandra'
 dashboard:
 
@@ -18,7 +18,7 @@ monitor:
 # 华为云 GaussDB-Cassandra
 <!-- markdownlint-enable -->
 
-使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云
+华为云GaussDB-Cassandra的展示指标包括读写吞吐量、延迟、数据一致性和可扩展性，这些指标反映了GaussDB-Cassandra在处理大规模分布式数据存储和访问时的性能表现和可靠性。
 
 
 ## 配置 {#config}
@@ -120,7 +120,6 @@ monitor:
 > - `fields.datastore`
 > - `fields.groups`
 > - `fields.actions`
-
 
 
 

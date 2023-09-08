@@ -16,6 +16,7 @@
 |:-----------|:-------|:-----|:----------------|
 | source | string | Y | 数据源<br>允许为空: False <br> |
 | names | array |  | 对象名列表<br>允许为空: False <br> |
+| timeRange | array |  | 时间范围<br>允许为空: False <br> |
 
 ## 参数补充说明
 

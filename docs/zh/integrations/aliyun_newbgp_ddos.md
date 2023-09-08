@@ -1,7 +1,7 @@
 ---
 title: '阿里云 DDoS 新BGP高防'
-summary: '使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云。'
-__int_icon: 'icon/aliyun_nat'
+summary: '阿里云DDoS新BGP高防的展示指标包括攻击防护能力、清洗能力、响应时间和可靠性，这些指标反映了新BGP高防服务在应对大规模DDoS攻击时的性能表现和可信度。'
+__int_icon: 'icon/aliyun_newbgp_ddos'
 dashboard:
   - desc: '阿里云 DDoS 新BGP高防 内置视图'
     path: 'dashboard/zh/aliyun_newbgp_ddos/'
@@ -12,7 +12,7 @@ dashboard:
 # 阿里云 DDoS 新BGP高防
 <!-- markdownlint-enable -->
 
-使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云。
+阿里云DDoS新BGP高防的展示指标包括攻击防护能力、清洗能力、响应时间和可靠性，这些指标反映了新BGP高防服务在应对大规模DDoS攻击时的性能表现和可信度。
 
 ## 配置 {#config}
 
