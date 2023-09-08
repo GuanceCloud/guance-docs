@@ -75,7 +75,9 @@
     
     3.在 `TARGETS`  -> `Build Setting` ->  `Other Linker Flags`  添加  `-ObjC`。
     
-    4.目前只支持 1.3.4-beta.2 及以上的版本，1.4.0-beta.1 及以上支持 Widget Extension。
+    4.使用 Carthage 集成，SDK 版本支持：
+      `FTMobileAgent`：>=1.3.4-beta.2 
+      `FTMobileExtension`：>=1.4.0-beta.1
 
 === "Swift Package Manager"
 
@@ -114,9 +116,9 @@
 
     ```
     //CocoaPods、SPM 
-    #import "FTMobileAgent.h"
+    #import "FTMobileSDK.h"
     //Carthage 
-    #import <FTMobileAgent/FTMobileAgent.h>
+    #import <FTMobileSDK/FTMobileSDK.h>
     ```
 
 === "Swift"
@@ -211,7 +213,7 @@
 | enableTraceUserView | BOOL | 否 | 设置是否追踪用户 View 操作 | 默认`NO` |
 | enableTraceUserAction | BOOL | 否 | 设置是否追踪用户 Action 操作 | 默认`NO` |
 | enableTraceUserResource | BOOL | 否 | 设置是否追踪用户网络请求 | 默认`NO`，仅作用于 native http |
-| errorMonitorType | FTErrorMonitorType | 否 | 错误事件监控补充类型 | 将在采集的崩溃数据中添加对应的信息。<br>`FTErrorMonitorType`<br>`FTErrorMonitorAll`：开启所有监控： 电池、内存、CPU 使用率<br>`FTErrorMonitorBattery`：电池电量<br>`FTErrorMonitorMemory`：内存总量、内存使用率<br>`FTErrorMonitorCpu`：Cpu 使用率 |
+| errorMonitorType | FTErrorMonitorType | 否 | 错误事件监控补充类型 | 在采集的崩溃数据中添加监控的信息。<br>`FTErrorMonitorType`<br>`FTErrorMonitorAll`：开启所有监控： 电池、内存、CPU 使用率<br>`FTErrorMonitorBattery`：电池电量<br>`FTErrorMonitorMemory`：内存总量、内存使用率<br>`FTErrorMonitorCpu`：Cpu 使用率 |
 | deviceMetricsMonitorType | FTDeviceMetricsMonitorType | 否 | 视图的性能监控类型 | 在采集的  **View** 数据中添加对应监控项信息。<br>`FTDeviceMetricsMonitorType`<br>`FTDeviceMetricsMonitorAll`：开启所有监控项:内存、CPU、FPS<br>`FTDeviceMetricsMonitorMemory`：平均内存、最高内存<br>`FTDeviceMetricsMonitorCpu`：CPU 跳动最大、平均数<br>`FTDeviceMetricsMonitorFps`：Fps 最低帧率、平均帧率 |
 | monitorFrequency | FTMonitorFrequency | 否 | 视图的性能监控采样周期 | 配置 `monitorFrequency` 来设置 **View** 监控项信息的采样周期。<br>`FTMonitorFrequency`<br>`FTMonitorFrequencyDefault`：500ms (默认)<br>`FTMonitorFrequencyFrequent`：100ms<br>`FTMonitorFrequencyRare`：1000ms |
 | globalContext | NSDictionary |     否 | 添加自定义标签 | 添加规则请查阅[此处](#user-global-context) |
@@ -280,7 +282,7 @@
 | enableLinkRumData | BOOL | 否 | 是否与 RUM 数据关联 | 默认`NO` |
 | enableAutoTrace | BOOL | 否 | 设置是否开启自动 http trace | 默认`NO`，目前只支持 NSURLSession |
 
-## RUM 用户数据追踪
+## RUM 用户数据追踪 {#rum}
 
 在 SDK 初始化 [RUM 配置](https://docs.guance.com/real-user-monitoring/react-native/app-access/#rum-config) 时可开启自动采集  **View**、 **Action** 、 **Error** 、**LongTask** 、**Resource**  外， SDK 也提供了自定义采集的 API ，用户自定义采集 RUM 相关数据，需要使用  `FTExternalDataManager` 单例，示例如下：
 
@@ -493,6 +495,15 @@
     ///   - stack: 堆栈信息
     ///   - property: 事件自定义属性(可选)
     - (void)addErrorWithType:(NSString *)type message:(NSString *)message stack:(NSString *)stack property:(nullable NSDictionary *)property;
+    
+    /// 添加 Error 事件
+    /// - Parameters:
+    ///   - type: error 类型
+    ///   - state: 程序运行状态
+    ///   - message: 错误信息
+    ///   - stack: 堆栈信息
+    ///   - property: 事件自定义属性(可选)
+    - (void)addErrorWithType:(NSString *)type state:(FTAppState)state  message:(NSString *)message stack:(NSString *)stack property:(nullable NSDictionary *)property;
     ```
 
 === "Swift"
@@ -504,7 +515,7 @@
     ///   - type: error 类型
     ///   - message: 错误信息
     ///   - stack: 堆栈信息
-    func addError(withType: String, message: String, stack: String)
+    open func addError(withType: String, message: String, stack: String)
     
     /// 添加 Error 事件
     /// - Parameters:
@@ -512,7 +523,16 @@
     ///   - message: 错误信息
     ///   - stack: 堆栈信息
     ///   - property: 事件自定义属性(可选)
-    func addError(withType: String, message: String, stack: String, property: [AnyHashable : Any]?)
+    open func addError(withType: String, message: String, stack: String, property: [AnyHashable : Any]?)
+    
+    /// 添加 Error 事件
+    /// - Parameters:
+    ///   - type: error 类型
+    ///   - state: 程序运行状态
+    ///   - message: 错误信息
+    ///   - stack: 堆栈信息
+    ///   - property: 事件自定义属性(可选)
+    open func addError(withType type: String, state: FTAppState, message: String, stack: String, property: [AnyHashable : Any]?)
     ```
 #### 代码示例
 
@@ -523,6 +543,8 @@
     [[FTExternalDataManager sharedManager] addErrorWithType:@"type" message:@"message" stack:@"stack"];
     // 场景2: 动态参数
     [[FTExternalDataManager sharedManager] addErrorWithType:@"ios_crash" message:@"crash_message" stack:@"crash_stack" property:@{@"custom_key":@"custom_value"}];
+    // 场景3: 动态参数
+    [[FTExternalDataManager sharedManager] addErrorWithType:@"ios_crash" state:FTAppStateUnknown message:@"crash_message" stack:@"crash_stack" property:@{@"custom_key":@"custom_value"}];
     ```
 
 === "Swift"
@@ -532,6 +554,8 @@
     FTExternalDataManager.shared().addError(withType: "custom_type", message: "custom_message", stack: "custom_stack")
     // 场景2: 动态参数
     FTExternalDataManager.shared().addError(withType: "custom_type", message: "custom_message", stack: "custom_stack",property: ["custom_key":"custom_value"])
+    // 场景3: 动态参数       
+    FTExternalDataManager.shared().addError(withType: "custom_type", state: .unknown, message: "custom_message", stack: "custom_stack", property: ["custom_key":"custom_value"])
     ```
 
 
@@ -580,13 +604,19 @@
 === "Objective-C"
 
     ```objectivec
+    // 场景1
     [[FTExternalDataManager sharedManager] addLongTaskWithStack:@"stack string" duration:@1000000000];
+    // 场景2: 动态参数
+    [[FTExternalDataManager sharedManager] addLongTaskWithStack:@"stack string" duration:@1000000000 property:@{@"custom_key":@"custom_value"}];
+    
     ```
 
 === "Swift"
 
     ```swift
+    // 场景1
     FTExternalDataManager.shared().addLongTask(withStack: "stack string", duration: 1000000000)
+    // 场景2: 动态参数
     FTExternalDataManager.shared().addLongTask(withStack: "stack string", duration: 1000000000 ,property: [["custom_key":"custom_value"]])
     ```
 
@@ -748,7 +778,7 @@
 
 ## Logger 日志打印 {#user-logger}
 
- `FTLoggerConfig` 配置允许自定义添加日志 `enableCustomLog`。
+在 SDK 初始化 [Log 配置](#log-config) 时，配置 `enableCustomLog` 允许自定义添加日志。
 
 ### 使用方法
 
@@ -882,18 +912,18 @@
 === "Swift"
 
     ```swift
-    /// 环境。属性值：prod/gray/pre/common/local。
-    public enum FTEnv : Int, @unchecked Sendable {
-        /// 线上环境
-        case prod = 0
-        /// 灰度环境
-        case gray = 1
-        /// 预发布环境
-        case pre = 2
-        /// 日常环境
-        case common = 3
-        /// 本地环境
-        case local = 4
+    ///事件等级和状态，默认：FTStatusInfo
+    public enum FTLogStatus : Int, @unchecked Sendable {
+        /// 提示
+        case statusInfo = 0
+        /// 警告
+        case statusWarning = 1
+        /// 错误
+        case statusError = 2
+        /// 严重
+        case statusCritical = 3
+        /// 恢复
+        case statusOk = 4
     }
     ```
 
@@ -1017,7 +1047,7 @@
     - (void)bindUserWithUserID:(NSString *)Id userName:(nullable NSString *)userName userEmail:(nullable NSString *)userEmail extra:(nullable NSDictionary *)extra;
     
     /// 注销当前用户
-    - (void)logout;
+    - (void)unbindUser;
     ```
 
 === "Swift"
@@ -1047,7 +1077,7 @@
     open func bindUser(withUserID Id: String, userName: String?, userEmail: String?, extra: [AnyHashable : Any]?)
     
     /// 注销当前用户
-    open func logout()
+    open func unbindUser()
     ```
 
 ### 代码示例
@@ -1063,7 +1093,7 @@
     [[FTMobileAgent sharedInstance] bindUserWithUserID:USERID userName:USERNAME userEmail:USEREMAIL extra:@{EXTRA_KEY:EXTRA_VALUE}];
     
     // 可以在用户退出登录后调用此方法来解绑用户信息
-    [[FTMobileAgent sharedInstance] logout];
+    [[FTMobileAgent sharedInstance] unbindUser];
     ```
 === "Swift"
 
@@ -1076,7 +1106,7 @@
     FTMobileAgent.sharedInstance().bindUser(withUserID: USERID, userName: USERNAME, userEmail: USEREMAIL,extra:[EXTRA_KEY:EXTRA_VALUE])
     
     // 可以在用户退出登录后调用此方法来解绑用户信息
-    FTMobileAgent.sharedInstance().logout()
+    FTMobileAgent.sharedInstance().unbindUser()
     ```
 
 ## 关闭 SDK
@@ -1257,7 +1287,7 @@ FT_DEA_ADDRESS=SDK_DEA_ADDRESS
 FT_ENV=SDK_ENV
 ```
 
-**项目某一文件中** 
+**项目文件中** 
 
 映射到  `Info.plist` 文件中
 
@@ -1315,7 +1345,7 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 | enableTracerAutoTrace      | BOOL      | 否（默认NO）       | 设置是否开启自动 http 链路追踪                 |
 | memoryMaxCount             | NSInteger | 否（默认 1000 条） | 数据保存在 Widget Extension 数量最大值         |
 
-extension SDK 使用示例：
+Widget Extension SDK 使用示例：
 
 ```swift
 let extensionConfig = FTExtensionConfig.init(groupIdentifier: "group.identifier")
@@ -1324,43 +1354,73 @@ extensionConfig.enableRUMAutoTraceResource = true
 extensionConfig.enableTracerAutoTrace = true
 extensionConfig.enableSDKDebugLog = true
 FTExtensionManager.start(with: extensionConfig)
-  
 FTExternalDataManager.shared().startView(withName: "WidgetDemoEntryView")
 ```
 
 同时在主项目中设置 `FTMobileConfig` 时，必须设置 `groupIdentifiers` 。
 
-```objective-c
-// 主项目
- FTMobileConfig *config = [[FTMobileConfig alloc]initWithMetricsUrl:url];
- config.enableSDKDebugLog = YES;
- config.groupIdentifiers = @[@"group.com.ft.widget.demo"]; 
-```
+=== "Objective-C"
+
+    ```objective-c
+    // 主项目
+     FTMobileConfig *config = [[FTMobileConfig alloc]initWithMetricsUrl:url];
+     config.enableSDKDebugLog = YES;
+     config.groupIdentifiers = @[@"group.com.ft.widget.demo"]; 
+    ```
+
+=== "Swift"
+
+    ````swift
+    let config = FTMobileConfig.init(metricsUrl: url)
+    config.enableSDKDebugLog = true
+    config.groupIdentifiers = ["group.com.ft.widget.demo"]
+    ````
 
 ### Widget Extension 采集的数据上传
 
-Widget Extension 中仅实现数据的采集，数据上传逻辑交给主项目的 SDK 来实现。采集的数据同步到主项目的时机由用户自定义。
+Widget Extension SDK 中仅实现数据的采集，数据上传逻辑交给主项目的 SDK 来实现。采集的数据同步到主项目的时机由用户自定义。
 
-```objective-c
-// 在主项目中调用
-/**
- @abstract
- * Track App Extension groupIdentifier 中缓存的数据，会保存在数据库中等待时机上传
- *
- * @param groupIdentifier 需要进行上传的 Widget Extension groupIdentifier
- * @param completion  完成 track 后的 callback
- */
-- (void)trackEventFromExtensionWithGroupIdentifier:(NSString *)groupIdentifier completion:(nullable void (^)(NSString *groupIdentifier, NSArray *events)) completion;
-```
+#### 使用方法
 
-示例：
+=== "Objective-C"
 
-```objective-c
-// 在主项目中
--(void)applicationDidBecomeActive:(UIApplication *)application{
-    [[FTMobileAgent sharedInstance] trackEventFromExtensionWithGroupIdentifier:@"group.identifier" completion:nil];
-}
-```
+    ```objective-c
+    // 在主项目中调用
+    /// Track App Extension groupIdentifier 中缓存的数据
+    /// - Parameters:
+    ///   - groupIdentifier: groupIdentifier
+    ///   - completion: 完成 track 后的 callback
+    - (void)trackEventFromExtensionWithGroupIdentifier:(NSString *)groupIdentifier completion:(nullable void (^)(NSString *groupIdentifier, NSArray *events)) completion;
+    ```
+
+=== "Swift"
+
+    ```swift
+    /// Track App Extension groupIdentifier 中缓存的数据
+    /// - Parameters:
+    ///   - groupIdentifier: groupIdentifier
+    ///   - completion: 完成 track 后的 callback
+    open func trackEventFromExtension(withGroupIdentifier groupIdentifier: String, completion: ((String, [Any]) -> Void)? = nil)
+    ```
+
+#### 代码示例
+
+=== "Objective-C"
+
+    ```objective-c
+    // 在主项目中
+    -(void)applicationDidBecomeActive:(UIApplication *)application{
+        [[FTMobileAgent sharedInstance] trackEventFromExtensionWithGroupIdentifier:@"group.identifier" completion:nil];
+    }
+    ```
+
+=== "Swift"
+
+    ```swift
+    func applicationDidBecomeActive(_ application: UIApplication) {
+       FTMobileAgent.sharedInstance().trackEventFromExtension(withGroupIdentifier: "group.identifier" )     
+    }
+    ```
 
 ## 常见问题 {#FAQ}
 
