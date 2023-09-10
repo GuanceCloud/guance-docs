@@ -1,0 +1,6 @@
+FROM registry.jiagouyun.com/basis/uos-mkdocs-material-insiders:4.20.0
+
+WORKDIR /tmp
+COPY ./requirements.txt /tmp/requirements.txt
+
+RUN pip install  -i https://mirrors.aliyun.com/pypi/simple -r requirements.txt
