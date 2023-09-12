@@ -158,10 +158,10 @@ Login to Guance Console, enter "Real User Monitoring" page, click "New Applicati
 | --- | --- | --- | --- | --- |
 | metricsUrl | NSString | Yes | Datakit installation address | The url of the datakit installation address, example: http://10.0.0.1:9529, port 9529. Datakit url address needs to be accessible by the device where the SDK is installed |
 | enableSDKDebugLog | BOOL | No | Whether to turn on debug mode | Default is `NO`, enable to print SDK run log |
-| env | NSString | No | Set the acquisition environment | 默认 `prod`，支持自定义，也可根据提供的 `FTEnv` 枚举通过 `-setEnvWithType:` 方法设置<br/>`FTEnv`<br/>`FTEnvProd`： 线上环境<br/>`FTEnvGray`： 灰度环境<br/>`FTEnvPre` ：预发布 <br/>`FTEnvCommon` ：日常环境 <br/>`FTEnvLocal`： 本地环境 |
+| env | NSString | No | Set the acquisition environment | Default `prod`, support for custom. It can also be set using the `-setEnvWithType:` method based on the 'FTEnv' enumeration.<br/>`FTEnv`<br/>`FTEnvProd`： prod<br/>`FTEnvGray`： gray<br/>`FTEnvPre` ：pre <br/>`FTEnvCommon` ：common <br/>`FTEnvLocal`： local |
 | service | NSString | No | Set Service Name | Impact the service field data in Log and RUM, which is set to `df_rum_ios` by default. |
-| globalContext | NSDictionary |    No | Add SDK global properties       | Adding rules can be found [here](#user-global-context) |
-| groupIdentifiers | NSArray      | No |  |  |
+| globalContext | NSDictionary |    No | Add SDK global properties                                    | Adding rules can be found [here](#user-global-context) |
+| groupIdentifiers | NSArray      | No | An array of AppGroups identifiers corresponding to the Widget Extensions to be collected | If Widget Extensions data collection is enabled, You must set [App Groups](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_security_application-groups), And configure the Identifier to this property |
 
 ### RUM Configuration
 
@@ -209,9 +209,9 @@ Login to Guance Console, enter "Real User Monitoring" page, click "New Applicati
 | enableTraceUserView | BOOL | No | Set whether to track user View actions | Default `NO` |
 | enableTraceUserAction | BOOL | No | Set whether to track user Action actions | Default `NO` |
 | enableTraceUserResource | BOOL | No | Set whether to track user network requests | Default `NO` |
-| errorMonitorType | NS_OPTIONS | No | Error Event Monitoring Supplementary Type                    | Add monitoring information to the collected crash data.<br/>`FTErrorMonitorType`<br/>`FTErrorMonitorAll`：all<br/>`FTErrorMonitorBattery`：battery power<br/>`FTErrorMonitorMemory`：total memory, memory usage<br/>`FTErrorMonitorCpu`：CPU usage |
-| deviceMetricsMonitorType | NS_OPTIONS | No | The performance monitoring type of the view | Add the monitoring item information to the collected **View** data。<br/>`FTDeviceMetricsMonitorType`<br/>`FTDeviceMetricsMonitorAll`:all<br/>`FTDeviceMetricsMonitorMemory`:average memory, maximum memory<br/>`FTDeviceMetricsMonitorCpu`：The maximum and average number of CPU ticks<br/>`FTDeviceMetricsMonitorFps`：fps minimum frame rate, average frame rate |
-| monitorFrequency | NS_OPTIONS | No | View's Performance Monitoring Sampling Period | Configure 'monitorFrequency' to set the sampling period for **View** monitor information.<br/>`FTMonitorFrequency`<br/>`FTMonitorFrequencyDefault`：500ms (default)<br/>`FTMonitorFrequencyFrequent`：100ms<br/>`FTMonitorFrequencyRare`：1000ms |
+| errorMonitorType | FTErrorMonitorType | No | Error Event Monitoring Supplementary Type                    | Add monitoring information to the collected crash data.<br/>`FTErrorMonitorType`<br/>`FTErrorMonitorAll`：all<br/>`FTErrorMonitorBattery`：battery power<br/>`FTErrorMonitorMemory`：total memory, memory usage<br/>`FTErrorMonitorCpu`：CPU usage |
+| deviceMetricsMonitorType | FTDeviceMetricsMonitorType | No | The performance monitoring type of the view | Add the monitoring item information to the collected **View** data。<br/>`FTDeviceMetricsMonitorType`<br/>`FTDeviceMetricsMonitorAll`:all<br/>`FTDeviceMetricsMonitorMemory`:average memory, maximum memory<br/>`FTDeviceMetricsMonitorCpu`：The maximum and average number of CPU ticks<br/>`FTDeviceMetricsMonitorFps`：fps minimum frame rate, average frame rate |
+| monitorFrequency | FTMonitorFrequency | No | View's Performance Monitoring Sampling Period | Configure 'monitorFrequency' to set the sampling period for **View** monitor information.<br/>`FTMonitorFrequency`<br/>`FTMonitorFrequencyDefault`：500ms (default)<br/>`FTMonitorFrequencyFrequent`：100ms<br/>`FTMonitorFrequencyRare`：1000ms |
 | globalContext | NSDictionary |    No | Add Rum global properties | Adding rules can be found [here](#user-global-context) |
 
 ### Log Configuration
@@ -274,8 +274,8 @@ Login to Guance Console, enter "Real User Monitoring" page, click "New Applicati
 | --- | --- | --- | --- | --- |
 | samplerate | int | No | Set acquisition rate                       | The collection rate ranges from >= 0 to <= 100. The default value is 100 |
 | networkTraceType | NS_ENUM | No | Set the type of tracing | Default is `DDTrace`, currently support `Zipkin`, `Jaeger`, `DDTrace`, `Skywalking` (8.0+), `TraceParent` (W3C), if you access OpenTelemetry to choose the corresponding trace type, please pay attention to check the supported types and agent-related configuration |
-| enableLinkRumData | BOOL | No | Whether to associate Trace data with rum | Default `NO` |
 | enableAutoTrace | BOOL | No | Set whether to enable automatic http trace | Default `NO`,currently only NSURLSession is supported |
+| enableLinkRumData | BOOL | No | Whether to associate Trace data with rum | Default `NO` |
 
 ## RUM {#rum}
 
@@ -353,6 +353,7 @@ You can configure `FTRUMConfig` to enable automatic mode or add it manually. Rum
 
     ```objectivec
     - (void)viewDidAppear:(BOOL)animated{
+      [super viewDidAppear:animated];
       // Scene 1：
       [[FTExternalDataManager sharedManager] startViewWithName:@"TestVC"];  
       
@@ -360,6 +361,7 @@ You can configure `FTRUMConfig` to enable automatic mode or add it manually. Rum
       [[FTExternalDataManager sharedManager] startViewWithName:@"TestVC" property:@{@"custom_key":@"custom_value"}];  
     }
     -(void)viewDidDisappear:(BOOL)animated{
+      [super viewDidDisappear:animated];
       // Scene 1：
       [[FTExternalDataManager sharedManager] stopView];  
       

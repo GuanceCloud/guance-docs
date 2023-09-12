@@ -162,7 +162,7 @@
 | --- | --- | --- | --- | --- |
 | metricsUrl | NSString | 是 | datakit 安装地址 URL 地址 | 例子：http://datakit.url:[port]。注意：安装 SDK 设备需能访问这地址 |
 | enableSDKDebugLog | BOOL | 否 | 设置是否允许打印日志 | 默认 `NO` |
-| env | NSString | 否 | 设置采集环境 | 默认 `prod`，支持自定义，也可根据提供的 `FTEnv` 枚举通过 `-setEnvWithType:` 方法设置<br>`FTEnv`<br>`FTEnvProd`： 线上环境<br>`FTEnvGray`： 灰度环境<br>`FTEnvPre` ：预发布 <br>`FTEnvCommon` ：日常环境 <br>`FTEnvLocal`： 本地环境 |
+| env | NSString | 否 | 设置采集环境 | 默认 `prod`，支持自定义，也可根据提供的 `FTEnv` 枚举通过 `-setEnvWithType:` 方法设置<br>`FTEnv`<br>`FTEnvProd`： prod<br>`FTEnvGray`： gray<br>`FTEnvPre` ：pre <br>`FTEnvCommon` ：common <br>`FTEnvLocal`： local |
 | service | NSString | 否 | 设置所属业务或服务的名称 | 影响 Log 和 RUM 中 service 字段数据。默认：`df_rum_ios` |
 | globalContext | NSDictionary |     否 | 添加自定义标签 | 添加规则请查阅[此处](#user-global-context) |
 | groupIdentifiers | NSArray | 否 | 需要采集的 Widget Extensions 对应的 AppGroups Identifier 数组 | 若开启 Widget Extensions 数据采集，则必须设置 [App Groups](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_security_application-groups)，并将 Identifier 配置到该属性中 |
@@ -358,6 +358,7 @@
 
     ```objectivec
     - (void)viewDidAppear:(BOOL)animated{
+      [super viewDidAppear:animated];
       // 场景 1：
       [[FTExternalDataManager sharedManager] startViewWithName:@"TestVC"];  
       
@@ -365,6 +366,7 @@
       [[FTExternalDataManager sharedManager] startViewWithName:@"TestVC" property:@{@"custom_key":@"custom_value"}];  
     }
     -(void)viewDidDisappear:(BOOL)animated{
+      [super viewDidDisappear:animated];
       // 场景 1：
       [[FTExternalDataManager sharedManager] stopView];  
       
