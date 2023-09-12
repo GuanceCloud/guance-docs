@@ -2,7 +2,7 @@
 
 ## 1.70.136（2023 年 09 月 07 日）
 
-pubrepo.guance.com/dataflux/1.70.136:launcher-feaddf5-1694354213
+pubrepo.guance.com/dataflux/1.70.136:launcher-6ccb06b-1694354213
 
 ### 观测云更新
 
