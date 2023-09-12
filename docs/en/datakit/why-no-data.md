@@ -66,7 +66,7 @@ We can run Datakit command to test if input configure able to collect data. For 
 
 ``` shell
 $ datakit debug --input-conf /usr/local/datakit/conf.d/host/disk.conf
-loading /Users/tanbiao/datakit/conf.d/host/disk.conf with 1 inputs...
+loading /usr/local/datakit/conf.d/host/disk.conf with 1 inputs...
 running input "disk"(0th)...
 disk,device=/dev/disk3s1s1,fstype=apfs free=167050518528i,inodes_free=1631352720i,inodes_free_mb=1631i,inodes_total=1631702195i,inodes_total_mb=1631i,inodes_used=349475i,inodes_used_mb=0i,inodes_used_percent=0.02141781760611041,total=494384795648i,used=327334277120i,used_percent=66.21042556354438 1685509141064064000
 disk,device=/dev/disk3s6,fstype=apfs free=167050518528i,inodes_free=1631352720i,inodes_free_mb=1631i,inodes_total=1631352732i,inodes_total_mb=1631i,inodes_used=12i,inodes_used_mb=0i,inodes_used_percent=0.0000007355858585707753,total=494384795648i,used=327334277120i,used_percent=66.21042556354438 1685509141064243000
@@ -257,10 +257,17 @@ After running the command, all log files in the log directory are packaged and c
 
 [:octicons-tag-24: Version-1.5.9](changelog.md#cl-1.5.9) · [:octicons-beaker-24: Experimental](index.md#experimental)
 
-When troubleshooting issues with DataKit, it is necessary to manually collect various relevant information such as logs, configuration files, and monitoring data. This process can be cumbersome. To simplify this process, DataKit provides a command that can retrieve all the relevant information at once and package it into a file. Usage is as follows:
+When troubleshooting issues with DataKit, it is necessary to manually collect various relevant information such as logs, configuration files, profile data and monitoring data. This process can be cumbersome. To simplify this process, DataKit provides a command that can retrieve all the relevant information at once and package it into a file. Usage is as follows:
 
 ```shell
 datakit debug --bug-report
+```
+
+This command will collect profile data by default which may have a certain performance impact on DataKit. And you can disable collecting profile data by running command ([:octicons-tag-24: Version-1.15.0](changelog.md#cl-1.15.0)):
+
+
+```shell
+datakit debug --bug-report --disable-profile
 ```
 
 After successful execution, a zip file will be generated in the current directory with the naming format of `info-<timestamp in milliseconds>.zip`。

@@ -18,7 +18,7 @@ monitor:
 # HUAWEI SYS.CBR
 <!-- markdownlint-enable -->
 
-HUAWEI SYS.CBR，包括存储库使用量、存储库使用率。
+HUAWEI SYS.CBR的展示指标包括带宽利用率、延迟、丢包率和网络吞吐量，这些指标反映了CBR在网络传输和带宽管理方面的性能表现和质量保证。
 
 
 ## 配置 {#config}

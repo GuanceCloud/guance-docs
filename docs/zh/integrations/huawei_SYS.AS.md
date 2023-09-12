@@ -18,7 +18,7 @@ monitor:
 # HUAWEI SYS.AS
 <!-- markdownlint-enable -->
 
-HUAWEI SYS.CBR，包括存储库使用量、存储库使用率。
+HUAWEI SYS.AS的展示指标包括响应时间、并发连接数、吞吐量和可靠性，这些指标反映了SYS.AS在处理应用程序请求和数据交互时的性能表现和稳定性。
 
 
 ## 配置 {#config}
@@ -35,7 +35,7 @@ HUAWEI SYS.CBR，包括存储库使用量、存储库使用率。
 
 > 提示：请提前准备好符合要求的华为云 AK（简单起见，可直接授予全局只读权限`ReadOnlyAccess`）
 
-同步 HUAWEI SYS.CBR 的监控数据，我们安装对应的采集脚本：「观测云集成（华为云-AS采集）」(ID：`guance_huaweicloud_cbr`)
+同步 HUAWEI SYS.AS 的监控数据，我们安装对应的采集脚本：「观测云集成（华为云-AS采集）」(ID：`guance_huaweicloud_cbr`)
 
 点击【安装】后，输入相应的参数：华为云 AK、华为云账户名。
 

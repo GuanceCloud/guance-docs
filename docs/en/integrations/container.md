@@ -67,6 +67,9 @@ Collect indicators, objects and log data of container and Kubernetes and report 
       logging_auto_multiline_detection = true
       logging_auto_multiline_extra_patterns = []
     
+      ## Removes ANSI escape codes from text strings.
+      logging_remove_ansi_escape_codes = false
+    
       ## Search logging interval, default "60s"
       #logging_search_interval = ""
     
@@ -90,7 +93,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
     | Environment Variable Name                                                     | Descrition                                                                                                                                                                          | Default Value                                                                                                   | Parameter example (need to be enclosed in double quotation marks when configuring yaml)           |
     | ----:                                                                         | ----:                                                                                                                                                                               | ----:                                                                                                           | ----                                                                                              |
-    | `ENV_INPUT_CONTAINER_ENDPOINTS`                                               | Append to container endpoints                                                                                                                                                       | ["unix:///var/run/docker.sock", "unix:///var/run/containerd/containerd.sock", "unix:///var/run/crio/crio.sock"] | `["unix:///<new_path>/run/containerd.sock"]`                                                      |
+    | `ENV_INPUT_CONTAINER_ENDPOINTS`                                               | Append to container endpoints                                                                                                                                                       | "unix:///var/run/docker.sock,unix:///var/run/containerd/containerd.sock,unix:///var/run/crio/crio.sock" | `"unix:///<new_path>/run/containerd.sock"`                                                      |
     | `ENV_INPUT_CONTAINER_DOCKER_ENDPOINT`                                         | Deprecated, specify the enpoint of Docker Engine                                                                                                                                    | "unix:///var/run/docker.sock"                                                                                   | `"unix:///var/run/docker.sock"`                                                                   |
     | `ENV_INPUT_CONTAINER_CONTAINERD_ADDRESS`                                      | Deprecated, Specify the enpoint of Containerd                                                                                                                                       | "/var/run/containerd/containerd.sock"                                                                           | `"/var/run/containerd/containerd.sock"`                                                           |
     | `ENV_INPUT_CONTAINER_ENABLE_CONTAINER_METRIC`                                 | Start container index collection                                                                                                                                                    | true                                                                                                            | `"true"`/`"false"`                                                                                |
@@ -114,6 +117,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     | `ENV_INPUT_CONTAINER_LOGGING_AUTO_MULTILINE_EXTRA_PATTERNS_JSON`              | Automatic multi-line pattern pattens list for log collection, supporting manual configuration of multiple multi-line rules.                                                         | For more default rules, see [doc](logging.md#auto-multiline)                                                    | `'["^\\d{4}-\\d{2}", "^[A-Za-z_]"]'`an array of strings in JSON format                            |
     | `ENV_INPUT_CONTAINER_LOGGING_MIN_FLUSH_INTERVAL`                              | Minimum upload interval for log collection. If there is no new data during this period, the cached data will be emptied and uploaded to avoid accumulation.                         | "5s"                                                                                                            | `"10s"`                                                                                           |
     | `ENV_INPUT_CONTAINER_LOGGING_MAX_MULTILINE_LIFE_DURATION`                     | Maximum single multi-row life cycle of log collection. At the end of this cycle, existing multi-row data will be emptied and uploaded to avoid accumulation.                        | "3s"                                                                                                            | `"5s"`                                                                                            |
+    | `ENV_INPUT_CONTAINER_LOGGING_REMOVE_ANSI_ESCAPE_CODES`                        | Remove ansi escape codes and color characters, refered to [ansi-decode doc](logging.md#ansi-decode)                                                                                 | false                                                                                                           | `"true"`/`"false"`                                                                                |
     | `ENV_INPUT_CONTAINER_TAGS`                                                    | add extra tags                                                                                                                                                                      | None                                                                                                            | `"tag1=value1,tag2=value2"`       multiple "key=value" separated by English commas                |
     | `ENV_INPUT_CONTAINER_PROMETHEUS_MONITORING_MATCHES_CONFIG`                    | Deprecated.                                                                                                                                                                         | None                                                                                                            |                                                                                                   |
     
@@ -457,7 +461,7 @@ The metric of the Kubernetes Pod.
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cpu_usage`|The sum of the cpu usage of all containers in this Pod.|float|percent|
-|`cpu_usage_base100`|The normalized cpu usage, with a maximum of 100%.|float|percent|
+|`cpu_usage_base100`|The normalized cpu usage, with a maximum of 100%. (Experimental)|float|percent|
 |`mem_capacity`|The total memory in the host machine.|int|B|
 |`mem_limit`|The sum of the memory limit of all containers in this Pod.|int|B|
 |`mem_usage`|The sum of the memory usage of all containers in this Pod.|int|B|
@@ -843,7 +847,7 @@ The object of the Kubernetes Pod.
 |`age`|Age (seconds)|int|s|
 |`available`|Number of containers|int|count|
 |`cpu_usage`|The sum of the cpu usage of all containers in this Pod.|float|percent|
-|`cpu_usage_base100`|The normalized cpu usage, with a maximum of 100%.|float|percent|
+|`cpu_usage_base100`|The normalized cpu usage, with a maximum of 100%. (Experimental)|float|percent|
 |`mem_capacity`|The total memory in the host machine.|int|B|
 |`mem_limit`|The sum of the memory limit of all containers in this Pod.|int|B|
 |`mem_usage`|The sum of the memory usage of all containers in this Pod.|int|B|

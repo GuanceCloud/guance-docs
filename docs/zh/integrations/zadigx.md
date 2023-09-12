@@ -1,6 +1,6 @@
 ---
 title: 'Zadigx'
-summary: 'ZadigX 是由 KodeRover 公司基于 Kubernetes 自主研发的云原生 DevOps 价值链平台。'
+summary: 'Zadigx 展示包括概览、自动化构建、自动化部署、自动化测试等指标。'
 __int_icon: 'icon/zadigx'
 dashboard:
   - desc: 'Zadigx'
@@ -16,7 +16,7 @@ monitor:
 # Zadigx
 <!-- markdownlint-enable -->
 
-Zadigx  展示，包括概览、自动化构建、自动化部署、自动化测试等。
+Zadigx  展示包括概览、自动化构建、自动化部署、自动化测试等指标。
 
 
 

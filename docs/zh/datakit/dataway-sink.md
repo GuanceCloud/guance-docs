@@ -252,7 +252,7 @@ Dataway 自身暴露了 Prometheus 指标，通过 Datakit 自带的 `prom` 采�
 > 某些指标如果查询不到，可能是相关业务模块尚未运行所致。
 
 ```shell
-watch -n 3 'curl -s http://localhost:9090 | grep -a <METRIC-NAME>'
+watch -n 3 'curl -s http://localhost:9090/metrics | grep -a <METRIC-NAME>'
 ```
 
 |TYPE|NAME|LABELS|HELP|
@@ -406,7 +406,7 @@ Datakit 内置了一下几个可用的自定义 Key，它们一般不会出现�
     "rules": [
         {
             "rules": [
-                "{ __dataway_api in ['/v1/datakit/pull', '/v1/election', '/v1/election/heartbeat'  }",
+                "{ __dataway_api in ['/v1/datakit/pull', '/v1/election', '/v1/election/heartbeat'] }",
             ],
             "url": "https://openway.guance.com?token=<YOUR-TOKEN>",
         }

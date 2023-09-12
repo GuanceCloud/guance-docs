@@ -1,12 +1,59 @@
 # Changelog
 ---
 
+## 1.15.0 (2023/09/07) {#cl-1.15.0}
+
+This release is an iterative release, mainly including the following updates:
+
+### New features {#cl-1.15.0-new}
+
+- [Windows](datakit-install.md#resource-limit) support memory/CPU limit (#1850)
+- Added [IBM Db2 Collector](../integrations/db2.md) (#1818)
+
+### Bug fixes {#cl-1.15.0-fix}
+
+- Fix the double star(`**`) problem of container acquisition configuration include/exclude (#1855)
+- Fixed a field error in k8s Service object data
+
+### Function optimization {#cl-1.15.0-opt}
+
+- [DataKit Lite](datakit-install.md#lite-install) support logging module (#1861)
+- [`bug report`](why-no-data.md#bug-report) supports disabling profile data collection (#1868)
+- Added [documentation](../integrations/tracing-propagator.md) for different Trace delivery instructions (#1824)
+- Pipeline added functions `parse_int` and `format_int` (#1824)
+- Pipeline data aggregation functions `agg_create` and `agg_metric` support outputting any type of data (#1865)
+- Optimize Datakit image size (#1869)
+- Optimize the `--bug-report` command to turn off Profile collection (to avoid pressure on the current Datakit) (#1868)
+- Added [Datakit Metric Performance Test Report](../integrations/datakit-metric-performance.md) (#1867)
+- Add [documentation of external collector](../integrations/external.md) (#1851)
+
+### Compatibility adjustments {#cl-1.15.0-brk}
+
+---
+
+## 1.14.2(2023/09/04) {#cl-1.14.2}
+
+### Bug fixes {#cl-1.14.2-fix}
+
+- Fix `instance` tag missing for Prometheus metrics on Kubernetes Pod's Annotation
+- Fix Kubernetes pod missing bug
+
+---
+
+### Bug fixes {#cl-1.14.1-fix}
+
+- Optimize Prometheus metrics collecting(streaming collection) in Kubernetes to avoid possible large memory usage(#1853/#1845)
+
+- Fix [colored loggging](../integrations/logging.md#ansi-decode)
+    - For Kubernetes, the environment key is `ENV_INPUT_CONTAINER_LOGGING_REMOVE_ANSI_ESCAPE_CODES`
+
+---
 
 ## 1.14.0 (2023/08/24) {#cl-1.14.0}
 
 This release is an iterative release, mainly including the following updates:
 
-### New features {#cl-1.12.0-new}
+### New features {#cl-1.14.0-new}
 
 - Added collector [NetFlow](../integrations/netflow.md) (#1821)
 - Added [Filter(Blacklist) Debugger](datakit-tools-how-to.md#debug-filter) (#1787)
@@ -465,7 +512,7 @@ This release is an iteration release and includes the following updates:
 ### Feature Optimization {#cl-1.5.9-opt}
 
 - Optimized the upgrade function to avoid damaging the *datakit.conf* file (#1449)
-- Optimized the [cgroup configuration](datakit-conf.md#enable-cgroup) and removed the minimum CPU limit (#1538)
+- Optimized the [cgroup configuration](datakit-conf.md#resource-limit) and removed the minimum CPU limit (#1538)
 - Optimized the *self* input to allow users to choose whether or not to enable it, and also improved its performance (#1386)
 - Simplified monitor due to the addition of new troubleshooting methods (#1505)
 - Added the ability to add an *instance tag* to the [Prom input](prom.md) to maintain compatibility with the native Prometheus system (#1517)
@@ -505,7 +552,7 @@ This release is an iterative release, mainly for bug fixes and feature improveme
 ### Feature Optimization {#cl-1.5.8-opt}
 
 - Add memory-related metrics for the [Jenkins](jenkins.md) input(#1489)
-- Improve support for [cgroup v2](datakit-conf.md#enable-cgroup) (#1494)
+- Improve support for [cgroup v2](datakit-conf.md#resource-limit) (#1494)
 - Add an environment variable (`ENV_CLUSTER_K8S_NAME`) to configure the cluster name during Kubernetes installation (#1504)
 - Pipeline
   - Add protective measures to the [`kv_split()`](../developers/pipeline/pipeline-built-in-function.md#fn-kv_split) function to prevent data inflation (#1510)
