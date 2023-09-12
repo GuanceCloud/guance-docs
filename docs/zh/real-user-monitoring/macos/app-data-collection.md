@@ -36,7 +36,7 @@
 | `app_id` | string | 必填，用户访问应用唯一ID标识，在"观测云"控制台上面创建监控时自动生成。 |
 | `env` | string | 必填，环境字段。属性值：prod/gray/pre/common/local。其中<br>prod：线上环境<br>gray：灰度环境<br>pre：预发布环境<br>common：日常环境<br>local：本地环境 |
 | `version` | string | 必填，版本号。 |
-| `service` | string | 可选，所属业务或服务的名称。固定名称：<br/>`df_rum_ios`<br/>`df_rum_android`<br/>`df_rum_windows`<br/>`df_rum_linux` |
+| `service` | string | 可选，所属业务或服务的名称。固定名称：<br/>`df_rum_ios`<br/>`df_rum_macos`<br/>`df_rum_android`<br/>`df_rum_windows`<br/>`df_rum_linux` |
 
 ### 用户 & 会话属性
 
