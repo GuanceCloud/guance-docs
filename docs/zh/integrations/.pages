@@ -120,6 +120,7 @@ nav:
       - tidb.md
       - couchbase-prom.md
       - juicefs.md
+      - 'IBM Db2': db2.md
 
     - '消息队列':
       - emqx.md
@@ -229,6 +230,9 @@ nav:
       -  pinpoint.md
       -  pinpoint-java.md
       -  pinpoint-go.md
+      
+    - '链路工具及串联':
+      - tracing-propagator.md
 
   - '语言':
     - 'Java': java.md

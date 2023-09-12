@@ -38,6 +38,7 @@ nav:
       - tdengine.md
       - elasticsearch.md
       - solr.md
+      - 'IBM Db2': db2.md
 
     - 'Messaging Queue':
       - kafka.md
@@ -123,6 +124,9 @@ nav:
 
     - 'CAT' :
       - cat.md
+
+    - 'Tracing Propagator':
+      - tracing-propagator.md
 
   - RUM:
     - rum.md
