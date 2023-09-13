@@ -103,6 +103,7 @@ nav:
       - clickhousev1.md
       - couchbase.md
       - couchdb.md
+      - neo4j.md
       - oracle.md
       - sqlserver.md
       - postgresql.md
