@@ -1,11 +1,11 @@
-# 删除一个成员组
+# 删除一个团队
 
 ---
 
 <br />**GET /api/v1/workspace/member_group/\{group_uuid\}/delete**
 
 ## 概述
-删除一个成员组
+删除一个团队
 
 
 
@@ -14,7 +14,7 @@
 
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
-| group_uuid | string | Y | 成员组<br> |
+| group_uuid | string | Y | 团队<br> |
 
 
 ## 参数补充说明
