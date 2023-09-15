@@ -23,7 +23,7 @@ eg：当配置 SDK 时，未设置  datakit metrics 写入地址，程序会崩�
 
 ## 开启 Debug 调试 {#debug-mode}
 
-你可以通过以下配置，开启 SDK 的 debug 功能。
+您可以通过以下配置，开启 SDK 的 debug 功能。
 
 ```tsx
  let config: FTMobileConfig = {

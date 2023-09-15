@@ -1,15 +1,13 @@
 # C++ 应用接入
 ---
 ## 前置条件
-- 安装 DataKit（[DataKit 安装文档](../../datakit/datakit-install.md)）
+
+- 安装 [DataKit](../../datakit/datakit-install.md)
 
 ## 应用接入 {#integration}
-当前 CPP 版本暂时支持 Windows 和 Linux 平台。登录观测云控制台，进入「用户访问监测」页面，点击左上角「新建应用」，即可开始创建一个新的应用。
 
-1.输入「应用名称」、「应用ID」，选择 「自定义」 应用类型
+当前 CPP 版本暂时支持 Windows 和 Linux 平台。登录观测云控制台，进入**用户访问监测**页面，点击左上角 **[新建应用](../index.md#create)**，即可开始创建一个新的应用。
 
-- 应用名称：用于识别当前用户访问监测的应用名称。
-- 应用 ID ：应用在当前工作空间的唯一标识，对应字段：app_id 。该字段仅支持英文、数字、下划线输入，最多 48 个字符。
 
 ![](../img/image_14.png)
 
@@ -99,6 +97,7 @@
 	```
 		
 ## 引用头
+
 ```cpp
 #include "datakit-sdk-cpp/FTSDKFactory.h"
 ```	

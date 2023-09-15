@@ -73,3 +73,46 @@ SELECT name from class where name = ?
 
 > 更多详情，可参考 [SDK 数据拦截以及数据修改](./before-send.md)。
 
+#### Session Repaly 隐私设置 {#session-replay}
+
+Session Replay 提供隐私控制，以确保任何公司都不会暴露敏感数据或个人数据。并且数据是加密存储的。
+Session Replay 的默认隐私选项旨在保护最终用户隐私并防止敏感的组织信息被收集。
+
+通过开启 Session Replay，可以自动屏蔽敏感元素，使其不被 RUM SDK 记录。
+
+要启用您的隐私设置，请在您的 SDK 配置中将 defaultPrivacyLevel 设置为 mask-user-input、mask 或 allow。
+
+```js
+import { datafluxRum } from '@cloudcare/browser-rum';
+
+datafluxRum.init({
+    applicationId: '<DATAFLUX_APPLICATION_ID>',
+    datakitOrigin: '<DATAKIT ORIGIN>',
+    service: 'browser',
+    env: 'production',
+    version: '1.0.0',
+    sessionSampleRate: 100,
+    sessionReplaySampleRate: 100,
+    trackInteractions: true,
+    defaultPrivacyLevel: 'mask-user-input' | 'mask' | 'allow'
+});
+
+datafluxRum.startSessionReplayRecording();
+```
+
+更新配置后，您可以使用以下隐私选项覆盖 HTML 文档的元素：
+
+:material-numeric-1-circle-outline: Mask user input mode：屏蔽大多数表单字段，例如输入、文本区域和复选框值，同时按原样记录所有其他文本。输入被替换为三个星号 (***)，文本区域被保留空间的 x 字符混淆。
+
+**注意**：默认情况下，mask-user-input 是启用会话重放时的隐私设置。
+
+:material-numeric-2-circle-outline: Mask mode：屏蔽所有 HTML 文本、用户输入、图像和链接。应用程序上的文本被替换为 X，将页面呈现为线框。
+
+:material-numeric-3-circle-outline: Allow mode：记录所有数据。
+
+一些限制：
+
+为了数据安全考虑，不管您配置的 `defaultPrivacyLevel` 是何种模式，以下元素都会被屏蔽：
+
+- password、email 和 tel 类型的输入元；
+- 具有 `autocomplete` 属性的元素，例如信用卡号、到期日期和安全代码。
