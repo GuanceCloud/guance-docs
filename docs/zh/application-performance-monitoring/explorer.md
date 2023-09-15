@@ -177,8 +177,6 @@ Span 表示给定时间段内分布式系统中的逻辑工作单元，多个 Sp
 
 :material-numeric-2-circle-outline: 勾选字段别名后，可在字段名后查看；您可按需选择。
 
-![](img/extension.png)
-
 :material-numeric-3-circle-outline: 在链路详情页，你可以在**扩展属性**查看当前链路的相关字段属性：
 
 | 字段      | 属性                          |
@@ -187,6 +185,8 @@ Span 表示给定时间段内分布式系统中的逻辑工作单元，多个 Sp
 | 反向筛选字段值      | 即添加该字段至查看器，查看除了该字段以外的其他数据。                          |
 | 添加到显示列      | 即添加该字段到查看器列表进行查看。                          |
 | 复制      | 即复制该字段至剪贴板。                          |
+
+![](img/extension.png)
 
 ???- info "部分字段不支持筛选聚合等相关逻辑"
 
@@ -203,7 +203,6 @@ Span 表示给定时间段内分布式系统中的逻辑工作单元，多个 Sp
     | RUM 错误      | `error_message` / `error_stack`                  |
     | RUM 长任务      | `long_task_message` / `long_task_stack`                  |
 
-![](img/9.apm_explorer_7.png)
 
 <font size=2>*图一*</font>
 
