@@ -1,30 +1,33 @@
 # 故障排查
+
 ## 编译故障排查
-编译过程发生错误，需要首先检查编译环境
+
+编译过程发生错误，需要首先检查编译环境。
 
 ### 可运行编译环境 
 #### ✅ 可运行环境 
+
 * AGP `com.android.tools.build:gradle` 版本 `3.5.0` 以上
 * gradle 版本 `5.4.0` 以上
 * java 版本 `8.0` 以上
 * Android minSdkVersion 21
 
->  随着 Android Studio 版本更新，这部分版本兼容度也会发生变化，如果你有碰到编译环境符合以上条件，但是仍然遇到编译出错的问题，请联系我们的开发人员
+**注意**：随着 Android Studio 版本更新，这部分版本兼容度也会发生变化，如果您有碰到编译环境符合以上条件，但是仍然遇到编译出错的问题，请联系我们的开发人员。
  
 
 
-#### ⚠️ 可兼容运行环境 
+#### ✅ 可兼容运行环境 
 * AGP `com.android.tools.build:gradle` 版本 `3.0.1` 以上
 * Gradle 版本 `4.8.1` 以上
 * Java 版本 `8.0` 以上
 * Android minSdkVersion 21
 
-> 此环境 `ft-plugin` 无法使用，数据自动捕获的部分需要，手动接入完成。更多手动接入相关请参考[这里](app-access.md#manual-set)
+> 此环境 `ft-plugin` 无法使用，数据自动捕获的部分需要，手动接入完成。更多手动接入相关，可参考 [这里](app-access.md#manual-set)。
 
 ### SDK 无法解析导入
 ![](../img/17.trouble_shooting_android_gradle_error_1.png)
 ![](../img/17.trouble_shooting_android_gradle_error_2.png)
-发生以上错误是因为因为 maven 仓库没有正确设置，请参考这里的[配置](app-access.md#gradle-setting)
+发生以上错误是因为因为 maven 仓库没有正确设置，请参考这里的[配置](app-access.md#gradle-setting)。
 
 
 ### 编译错误
@@ -44,7 +47,7 @@
 		at org.objectweb.asm.ClassReader.accept(Unknown Source)
 		at com.google.devtools.build. android.desugar. Desugar.desugarClassesInInput (Desugar.java:401) at com.google.devtools.build.android.desugar.Desugar.desugar0neInput(Desugar.java:326) at com.google.devtools.build.android.desugar. Desugar.desugar (Desugar.java:280) at com.google.devtools.build.android.desugar. Desugar.main (Desugar.java:584)
 ```
-如果编译过程中出现以上错误，这个是由于 AGP`3.0.0`兼容性问题导致，这里 [issue](https://github.com/gradle/gradle/issues/2384) 说明了这个问题，可以提升 AGP`3.1.0`以上版本来解决这个问题，或者使用较新版本 SDK, 在`app/build.gradle`中升级版本即可。
+如果编译过程中出现以上错误，这个是由于 AGP `3.0.0` 兼容性问题导致，这里 [issue](https://github.com/gradle/gradle/issues/2384) 说明了这个问题，可以提升 AGP `3.1.0` 以上版本来解决这个问题，或者使用较新版本 SDK, 在`app/build.gradle`中升级版本即可。
 
 ```gradle
 dependencies {
@@ -104,7 +107,7 @@ buildscript {
 ``` 
 
 ## 开启 Debug 调试
-你可以通过以下配置，开启 SDK 的 debug 功能，开启之后，控制台 `LogCat` 会输出 SDK 调试日志，你可以过滤 `[FT-SDK]` 字符，定位到观测云 SDK 日志。
+您可以通过以下配置，开启 SDK 的 debug 功能，开启之后，控制台 `LogCat` 会输出 SDK 调试日志，您可以过滤 `[FT-SDK]` 字符，定位到观测云 SDK 日志。
 
 ```kotlin
   val config = FTSDKConfig.setDebug(true);
@@ -155,7 +158,7 @@ Plugin AOP ASM 插入之后，会在原工程代码基础上，会在 `OkHttpCli
 	```java
 	13:41:00.749 [FT-SDK]FTRUMConfigManager com.demo D  bindUserData xxxx
 	
-	///---> 你的数据操作 <-----
+	///---> 您的数据操作 <-----
 	
 	13:41:10.749 [FT-SDK]FTRUMConfigManager com.demo D unbindUserData
 	```

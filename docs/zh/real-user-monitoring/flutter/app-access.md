@@ -8,14 +8,9 @@
 - DataKit 配置为[公网可访问，并且安装 IP 地理信息库](../../datakit/datakit-tools-how-to.md#install-ipdb)。
 
 ## 应用接入
-当前 Flutter 版本暂只支持 Android 和 iOS 平台。登录观测云控制台，进入「用户访问监测」页面，点击左上角「新建应用」，即可开始创建一个新的应用。
 
-1.输入「应用名称」、「应用ID」，选择平台对应「应用类型」
+当前 Flutter 版本暂只支持 Android 和 iOS 平台。登录观测云控制台，进入**用户访问监测**页面，点击左上角 **[新建应用](../index.md#create)**，即可开始创建一个新的应用。
 
-- 应用名称：用于识别当前用户访问监测的应用名称。
-- 应用 ID ：应用在当前工作空间的唯一标识，对应字段：app_id 。该字段仅支持英文、数字、下划线输入，最多 48 个字符。
-
-![](../img/image_12.png)
 
 ![](../img/image_13.png)
 
@@ -53,7 +48,7 @@ dependencies:
 import 'package:ft_mobile_agent_flutter/ft_mobile_agent_flutter.dart';
 ```
 
-> Android 需要在 app/android 目录下 build.gradle 安装 ft-plugin 配合使用，并在创建自定义 Application，并且 AndroidMainifest.xml  中声明使用，代码如下，详细配置请见 [Android SDK](../android/app-access.md#gradle-setting) 配置，或参考 demo
+> Android 需要在 app/android 目录下 build.gradle 安装 ft-plugin 配合使用，并在创建自定义 Application，并且 AndroidMainifest.xml  中声明使用，代码如下，详细配置可参考 [Android SDK](../android/app-access.md#gradle-setting) 配置，或参考 demo。
 
 ```kotlin
 import io.flutter.app.FlutterApplication
@@ -90,10 +85,10 @@ void main() async {
 
 | **字段** | **类型** | **必须** | **说明** |
 | --- | --- | --- | --- |
-| serverUrl | String | 是 | datakit 安装地址 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529。注意：安装 SDK 设备需能访问这地址 |
-| debug | bool | 否 | 设置是否允许打印日志，默认`false` |
-| envType | enum EnvType | 否 | 环境，默认`EnvType.prod` |
-| env | String | 否 | 环境，默认`prod`，任意字符，建议使用单个单词，例如 `test` 等|
+| serverUrl | String | 是 | datakit 安装地址 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529。<br/>:warning: 安装 SDK 设备需能访问该地址。 |
+| debug | bool | 否 | 设置是否允许打印日志，默认 `false` |
+| envType | enum EnvType | 否 | 环境，默认 `EnvType.prod` |
+| env | String | 否 | 环境，默认 `prod`，任意字符，建议使用单个单词，例如 `test` 等|
 | serviceName | String | 否 | 服务名 |
 
 ### RUM 配置 {#rum-config}
@@ -173,10 +168,10 @@ String customDynamicValue = prefs.getString("customDynamicValue")?? "not set";
 
 3. 最后重启应用。
 
-> 注意：
-> 
-> 1. 特殊 key : track_id (用于追踪功能) 
-> 1. 当用户通过 globalContext 添加自定义标签与 SDK 自有标签相同时，SDK 的标签会覆盖用户设置的，建议标签命名添加项目缩写的前缀，例如 `df_tag_name`。项目中使用 `key` 值可[查询源码](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java)。
+**注意**：
+
+1. 特殊 key : track_id (用于追踪功能) 。
+2. 当用户通过 globalContext 添加自定义标签与 SDK 自有标签相同时，SDK 的标签会覆盖用户设置的，建议标签命名添加项目缩写的前缀，例如 `df_tag_name`。项目中使用 `key` 值可[查询源码](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java)。
 
 ### Log 配置 {#log-config}
 
@@ -206,11 +201,11 @@ await FTTracer().setConfig(
 
 | **字段** | **类型** | **必须** | **说明** |
 | --- | --- | --- | --- |
-| sampleRate | double | 否 | 采样率，采集率的值范围为>= 0、<= 1，默认值为 1 |
-| traceType | enum TraceType | 否 | 链路类型，默认`TraceType.ddTrace` |
-| enableLinkRUMData | bool | 否 | 是否与 `RUM` 数据关联，默认`false` |
-| enableAutoTrace | bool | 否 | 是否 `http` 请求中添加 `Trace Header`，默认`false`，这个是通过修改 `HttpOverrides.global` 来实现，如果项目有这方面需求需要继承 `FTHttpOverrides`，并设置 enableAutoTrace  为 `false`|
-| enableNativeAutoTrace |  bool | 否 | 是否开启原生网络自动追踪 iOS `NSURLSession` ,Android `OKhttp`，默认`false` |
+| sampleRate | double | 否 | 采样率，采集率的值范围为>= 0、<= 1，默认值为 1。 |
+| traceType | enum TraceType | 否 | 链路类型，默认`TraceType.ddTrace`。 |
+| enableLinkRUMData | bool | 否 | 是否与 `RUM` 数据关联，默认`false`。 |
+| enableAutoTrace | bool | 否 | 是否 `http` 请求中添加 `Trace Header`，默认`false`，这个是通过修改 `HttpOverrides.global` 来实现，如果项目有这方面需求需要继承 `FTHttpOverrides`，并设置 enableAutoTrace  为 `false`。|
+| enableNativeAutoTrace |  bool | 否 | 是否开启原生网络自动追踪 iOS `NSURLSession` ,Android `OKhttp`，默认`false`。 |
 
 ## RUM 用户数据追踪
 
@@ -388,7 +383,7 @@ void httpClientGetHttp(String url) async {
   }
 ```
 
-使用 http 库与 dio 库，可参考 [example](https://github.com/GuanceCloud/datakit-flutter/tree/dev/example/lib)。
+> 使用 http 库与 dio 库，可参考 [example](https://github.com/GuanceCloud/datakit-flutter/tree/dev/example/lib)。
 
 ## Logger 日志打印 
 
@@ -443,7 +438,7 @@ void httpClientGetHttp() async {
   }
 ```
 
-使用 http 库与 dio 库，可参考 [example](https://github.com/GuanceCloud/datakit-flutter/tree/dev/example/lib)。
+> 使用 http 库与 dio 库，可参考 [example](https://github.com/GuanceCloud/datakit-flutter/tree/dev/example/lib)。
 
 ## 用户信息绑定与解绑
 
@@ -453,7 +448,7 @@ void httpClientGetHttp() async {
  FTMobileFlutter.unbindUser();
 ```
 
-## 常见问题
+## FAQ
 
 - [iOS 相关](../ios/app-access.md#FAQ)
 - [Android 相关](../android/app-access.md#FAQ)
