@@ -710,20 +710,46 @@ If the views inside the window is  complex, you can use the following API to cus
 
 When the automatic collection is enabled, the internal processing will not collect the data reporting address of the SDK. You can also set filter conditions through the Open API to collect the network addresses you need.
 
-```objective-c
-[[FTSDKAgent sharedInstance] isIntakeUrl:^BOOL(NSURL * _Nonnull url) {
-        // Your collection judgment logic
-        return YES;//return NO; (YES collect，NO do not collect)
- }];
-```
+##### Method
 
-```objective-c
-//  FTSDKAgent.h
-//  
-/// Determine whether the URL is collected
-/// - Parameter handler: callback，(YES collect，NO do not collect)
-- (void)isIntakeUrl:(BOOL(^)(NSURL *url))handler;
-```
+=== "Objective-C"
+
+    ```objective-c
+    //  FTSDKAgent.h
+    //  
+    /// Determine whether the URL is collected
+    /// - Parameter handler: callback，(YES collect，NO do not collect)
+    - (void)isIntakeUrl:(BOOL(^)(NSURL *url))handler;
+    ```
+
+=== "Swift"
+
+    ````swift
+    //  FTSDKAgent
+    /// Determine whether the URL is collected
+    /// - Parameter handler: callback，(YES collect，NO do not collect)
+    open func isIntakeUrl(_ handler: @escaping (URL) -> Bool)
+    ````
+
+##### Code Example
+
+=== "Objective-C"
+
+    ````objective-c
+    [[FTSDKAgent sharedInstance] isIntakeUrl:^BOOL(NSURL * _Nonnull url) {
+            // Your collection judgment logic
+            return YES;//return NO; (YES collect，NO do not collect)
+     }];
+    ````
+
+=== "Swift"
+
+    ````swift
+    FTSDKAgent.sharedInstance().isIntakeUrl {  url in
+             //  Your collection judgment logic
+           return true //return false (true collect，false do not collect)
+     } 
+    ````
 
 ## Logging {#user-logger}
 

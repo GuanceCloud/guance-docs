@@ -778,22 +778,45 @@ You can configure `FTRUMConfig` to enable automatic mode or add it manually. Rum
 
 When the automatic collection is enabled, the internal processing will not collect the data reporting address of the SDK. You can also set filter conditions through the Open API to collect the network addresses you need.
 
-```objective-c
-[[FTMobileAgent sharedInstance] isIntakeUrl:^BOOL(NSURL * _Nonnull url) {
-        // Your collection judgment logic
-        return YES;//return NO; (YES collect，NO do not collect)
- }];
-```
+##### Method
 
-```objective-c
-//  FTMobileAgent+Public.h
-//  FTMobileAgent
-/**
- * @abstract
- * Determine whether the URL is collected
- */
-- (void)isIntakeUrl:(BOOL(^)(NSURL *url))handler;
-```
+=== "Objective-C"
+
+    ```objective-c
+    //  FTMobileAgent.h
+    
+    /// Determine whether the URL is collected
+    - (void)isIntakeUrl:(BOOL(^)(NSURL *url))handler;
+    ```
+
+=== "Swift"
+
+    ```swift
+    //  FTMobileAgent
+    
+    /// Determine whether the URL is collected
+    open func isIntakeUrl(_ handler: @escaping (URL) -> Bool)
+    ```
+
+##### Code Example
+
+=== "Objective-C"
+
+    ````objective-c
+    [[FTMobileAgent sharedInstance] isIntakeUrl:^BOOL(NSURL * _Nonnull url{
+            // Your collection judgment logic
+            return YES;//return NO; (YES collect，NO do not collect)
+     }];
+    ````
+
+=== "Swift"
+
+    ````swift
+    FTMobileAgent.sharedInstance().isIntakeUrl {  url in
+            // Your collection judgment logic
+            return true //return false (true collect，false do not collect)
+     } 
+    ````
 
 ## Logging {#user-logger}
 

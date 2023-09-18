@@ -773,28 +773,52 @@
     FTExternalDataManager.shared().addResource(withKey: resource.key, metrics: metricsModel, content: contentModel)
     ```
 
-
-
 #### Resource url 过滤
 
 当开启自动采集后，内部会进行处理不采集 SDK 的数据上报地址。您也可以通过 Open API 设置过滤条件，采集您需要的网络地址。
 
-```objective-c
-[[FTMobileAgent sharedInstance] isIntakeUrl:^BOOL(NSURL * _Nonnull url) {
-        // 您的采集判断逻辑
-        return YES;//return NO; (YES 采集，NO 不采集)
- }];
-```
+##### 使用方法
 
-```objective-c
-//  FTMobileAgent+Public.h
-//  FTMobileAgent
-/**
- * @abstract
- * 判断 URL 是否采集
- */
-- (void)isIntakeUrl:(BOOL(^)(NSURL *url))handler;
-```
+=== "Objective-C"
+
+    ```objective-c
+    //  FTMobileAgent.h
+    
+    /// 设置过滤 Trace、RUM Resource 域名
+    /// - Parameter handler: 判断是否采集回调，返回 YES 采集， NO 过滤掉
+    - (void)isIntakeUrl:(BOOL(^)(NSURL *url))handler;
+    ```
+
+=== "Swift"
+
+    ```swift
+    // FTMobileAgent
+    
+    /// 设置过滤 Trace、 RUM Resource 域名
+    /// - Parameter handler: 判断是否采集回调，返回 YES 采集， NO 过滤掉
+    
+    open func isIntakeUrl(_ handler: @escaping (URL) -> Bool)
+    ```
+
+##### 代码示例
+
+=== "Objective-C"
+
+    ```objective-c
+    [[FTMobileAgent sharedInstance] isIntakeUrl:^BOOL(NSURL * _Nonnull url{
+            // 您的采集判断逻辑
+            return YES;//return NO; (YES 采集，NO 不采集)
+     }];
+    ```
+
+=== "Swift"
+
+    ```swift
+     FTMobileAgent.sharedInstance().isIntakeUrl {  url in
+             // 您的采集判断逻辑
+            return true //return false (true 采集，false 不采集)
+     } 
+    ```
 
 ## Logger 日志打印 {#user-logger}
 
