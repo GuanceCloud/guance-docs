@@ -17,7 +17,7 @@ nav:
   - '自建巡检': self-built-checker
   - '静默配置': mute
   - '工作空间成员': workspace-member
-  - '工作空间成员组': member-group
+  - '工作空间团队': member-group
   - 'SSO': sso
   - 'API KEY': workspace-ak
   - '工作空间': workspace
