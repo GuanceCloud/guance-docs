@@ -140,7 +140,7 @@ token 可以在观测云工作空间的「集成」-「Datakit」获取。
 
  token 替换后，保存 `datakit.yaml` 文件
 
-![img](img/cce_im10.png)
+![img](imgs/cce_im10.png)
 
 ##### 3. 安装 YAML 文件
 
