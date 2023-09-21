@@ -6,6 +6,53 @@ icon: zy/release-notes
 
 本文档记录观测云每次上线发布的更新内容说明，包括 DataKit、观测云最佳实践、观测云集成文档和观测云。
 
+## 2023 年 9 月 21 日
+
+### 观测云更新
+
+- 日志：
+    - 数据转发：新增外部存储转发规则数据查询；
+    - 绑定索引：日志易新增标签绑定。
+- 基础设施 > [自定义](../infrastructure/custom/index.md)：
+    - 【默认属性】这一概念更改为【必有属性】：上报的数据中必须包含该属性字段，否则将会上报失败；
+    - 自定义查看器新增快捷筛选。
+- 场景：
+    - [定时报告](../scene/report.md)：新增了【钉钉】【企业微信】【飞书】三种通知方式；
+    - 图表：【时序图、饼图、柱状图、直方图、散点图、气泡图、表格图、矩形树图、漏斗图、排行榜、地图、蜂窝图】新增数据格式，可以定义【小数位数】以及【千分位分隔符】。
+- 监控 > [通知对象管理](../monitoring/notify-object.md)：邮件组类型下架，已创建的不受影响。
+- 快照：[分享快照](../getting-started/function-details/snapshot.md#share)：新增 IP 白名单访问限制。
+- [异常追踪](../exception/issue.md#level)：【等级】支持自定义创建。
+- **集成 > 扩展**：DataFlux Func 托管版和 RUM Headless 现支持海外站点：俄勒冈，法兰克福，新加坡。
+
+### 集成更新
+
+华为云：
+
+- [Huawei CCE](../integrations/huawei_cce.md)：观测云支持对 CCE 中各类资源的运行状态和服务能力进行监测，包括 Containers、Pods、Services、Deployments、Clusters、Nodes、Replica Sets、Jobs、Cron Jobs 等。您可以在 Kubernetes 中通过 DaemonSet 方式安装 `DataKit`，进而完成对 Kubernetes 资源的数据采集。最终，在观测云中实时监测 Kubernetes 各类资源的运行情况。
+
+- [Huawei CSS(Elasticsearch)](../integrations/huawei_css_es.md)：华为云搜索服务 CSS for Elasticsearch 的核心性能指标包括查询延迟、索引速度、搜索速度、磁盘使用率和 CPU 使用率，这些都是评估和优化 Elasticsearch 性能的关键指标。
+
+- [Huawei SYS.AS](../integrations/huawei_SYS.AS.md)：华为 SYS.AS 的核心性能指标包括 CPU 利用率、内存使用率、磁盘I/O、网络吞吐量和系统负载等，这些都是评估和优化自动缩放系统性能的关键指标。
+
+- [Huawei ASM](../integrations/huawei_asm.md)：华为云的 ASM 的链路追踪数据输出到观测云，进行查看、分析。
+
+AWS：
+
+- [AWS CloudFront](../integrations/aws_cloudfront.md)：AWS CloudFront 的核心性能指标包括请求总数、数据传输量、HTTP 错误率、缓存命中率和延迟，这些可以帮助用户评估和优化内容分发网络的性能。
+
+- [AWS MediaConvert](../integrations/aws_mediaconvert.md)：AWS MediaConvert 包括数据传输、视频报错、作业数、填充等。
+
+- [AWS Aurora Serverless V2](../integrations/aws_aurora_serverless_v2.md)：AWS Aurora Serverless V2，包括连接数、IOPS、队列、读写延迟、网络吞吐量等。
+
+- [AWS Redshift](../integrations/aws_redshift.md)：AWS Redshift 的核心性能指标包括查询性能、磁盘空间使用率、CPU 利用率、数据库连接数和磁盘 I/O 操作，这些都是评估和优化数据仓库性能的关键指标。
+
+- [AWS Simple Queue Service](../integrations/aws_sqs.md)：AWS Simple Queue Service 的展示指标包括队列中最旧的未删除消息的大约存在时间、延迟且无法立即读取的消息数量、处于空中状态的消息的数量、可从队列取回的消息数量等。
+
+- [AWS Timestream](../integrations/aws_timestream.md)：AWS Timestream 的展示指标包括系统错误数（内部服务错误数）、当前 AWS 区域和当前 AWS 帐户的无效请求的总和、成功请求经过的时间和样本数量、存储在内存中的数据量以及存储在磁存储器中的数据量等。
+
+- [AWS Neptune Cluster](../integrations/aws_neptune_cluster.md)：AWS Neptune Cluster 的展示指标包括冷启动时间、执行时间、并发执行数和内存使用量，这些指标反映了 Neptune Cluster函数的响应速度、可扩展性和资源利用情况。
+
+
 ## 2023 年 9 月 7 日
 
 <video controls="controls" poster="https://static.guance.com/dataflux/help/video/20230907.jpeg" >
