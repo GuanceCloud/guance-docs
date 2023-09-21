@@ -37,6 +37,7 @@
 | `app_id`  | string | 必填，用户访问应用唯一 ID 标识，在观测云控制台上面创建监控时自动生成。 |
 | `env`     | string | 必填，环境字段。属性值：prod/gray/pre/common/local。其中：<br>prod：线上环境；<br>gray：灰度环境；<br>pre：预发布环境；<br>common：日常环境；<br>local：本地环境。 |
 | `version` | string | 必填，版本号。                                               |
+| `service` | string | 必填，用户访问 SDK 内配置的 service 字段对应值。                                               |
 
 ### 用户 & 会话属性
 
@@ -91,18 +92,21 @@
 | `session_first_view_path` | string | 当前会话的第一个页面的地址 |
 | `session_first_view_path_group` | string | 当前会话的第一个页面的地址分组 |
 | `session_first_view_url_query` | string | 当前会话的第一个页面的 query 信息 |
+| `session_first_view_name` | string | 当前会话的第一个页面的地址分组，同 `session_first_view_path_group` 字段 |
 | `session_last_view_id` | string | 当前会话的最后一个访问页面的 `view_id` |
 | `session_last_view_url` | string | 当前会话的最后一个页面的 URL |
 | `session_last_view_host` | string | 当前会话的最后一个页面的域名 |
 | `session_last_view_path` | string | 当前会话的最后一个页面的地址 |
 | `session_last_view_path_group` | string | 当前会话的最后一个页面的地址分组 |
 | `session_last_view_url_query` | object | 当前会话的最后一个页面的 query 信息 |
+| `session_last_view_name` | string | 	当前会话的最后一个页面的地址分组，同 `session_last_view_path_group` 字段 |
 
 #### 统计指标
 
 | 字段                  | 类型       | 描述                 |
 | ------------------------- | ---------- | ------------------------- |
 | `time_spent`              | number(ns) | 当前会话持续时长          |
+| `session_time_spent_count`                  | number       | 以 4 小时为时间间隔，超出的按每 4 小时加 1 统计得到	                 |
 | `session_view_count`      | number     | 当前会话关联 `view_id` 个数 |
 | `session_error_count`     | number     | 当前会话产生错误个数      |
 | `session_resource_count`  | number     | 当前会话加载资源个数      |
@@ -147,6 +151,7 @@
 | `time_spent` | number（ns） | 页面停留时间 |
 
 #### 统计指标
+
 | 字段 | 类型 | 描述|
 | --- | --- | --- |
 | `view_error_count` | number | 每次页面加载时发生的错误次数 |

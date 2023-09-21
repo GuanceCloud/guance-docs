@@ -4,9 +4,13 @@
 
 ???+ quote "更新日志"
 
+    **2023.9.21**：新增外部存储转发规则数据查询入口。
+
     **2023.9.7**：原【备份日志】正式更名为【数据转发】。
 
 观测云提供日志、链路和用户访问数据转发到外部存储的功能，您可以自由选择外部存储对象，灵活管理数据转发数据。
+
+在数据转发页面，您可以通过设置查询时间和数据转发规则快速查询外部存储数据（包含 AWS S3、华为云 OBS、阿里云 OSS 和 Kafka 消息队列），还可以查看观测云历史备份日志和 SLS Query Logstore 数据。
 
 ## 前提条件
 
@@ -63,7 +67,6 @@
 **注意**：四种存档类型全站点开放。
 
 <img src="../img/back-4.png" width="70%" >
-
 
 
 
@@ -242,37 +245,38 @@
 4、点击**确定**，即可创建成功。
 
 
-## 相关操作
+## 查看转发规则
 
-### 查看数据转发
+规则创建完成后，自动进入转发规则列表：
 
-进入**日志 > 数据转发**页面，即可查看符合条件的日志数据。
+![](img/rule-update.png)
 
-- [时间控件](../getting-started/function-details/explorer-search.md#time) ：通过选择时间范围筛选查看数据转发；
-- [搜索和筛选](../getting-started/function-details/explorer-search.md#search) ：通过搜索关键字或者筛选字段的方式查看和分析数据转发；
-- 数据转发详情：点击任意一条日志可查看日志的详情，包括日志产生的时间、内容和扩展字段。
+:material-numeric-1-circle-outline: [时间控件](../getting-started/function-details/explorer-search.md#time) ：通过选择时间范围筛选查看数据转发；  
 
-<!--
-- [显示列](../getting-started/function-details/explorer-search.md#columns) ：在创建数据转发规则时：
+:material-numeric-2-circle-outline: [搜索和筛选](../getting-started/function-details/explorer-search.md#search) ：通过搜索关键字或者筛选字段的方式查看和分析数据转发；  
 
-    若勾选**包含扩展字段**，可自定义添加除了日志产生的时间和内容以外的字段，见下图：
+:material-numeric-3-circle-outline: 您可以选择启用、禁用当前规则； 
 
-    ![](img/5.log_backup_6.png)
+:material-numeric-4-circle-outline: 点击规则右侧 :material-text-search: 、编辑、 :fontawesome-regular-trash-can: 按钮，即可进行相应操作。
 
-    在创建数据转发规则时，若不勾选**包含扩展字段**，则数据转发仅保存日志数据的时间和内容，见下图：
+**注意**：若需要修改创建的转发规则，可删除规则后再创建新的转发规则。规则删除后已转发的数据不会被删除，但不再产生新的转发数据。
 
-    ![](img/5.log_backup_5.png)
--->
+:material-numeric-5-circle-outline: 您可以选中多个规则进行批量操作。
+
+![](img/rule-update-1.png)
+
+### 转发规则查看器
+
+回到**数据转发**页面，您可以在**转发规则** tab 页根据时间筛选出对应有效的外部存储数据：
 
 
 
-数据转发规则创建以后，统一存储在日志索引下的**数据转发**。规则创建后，您可以查看、编辑、删除。
+在索引下，您可以查看观测云历史备份日志和 SLS Query Logstore 数据：
 
-### 查看、编辑、删除
+![](img/rule-update-2.png)
 
-点击规则右侧 :material-text-search: 、编辑、 :fontawesome-regular-trash-can: 按钮，即可进行相应操作。
+> 关于查看器具体操作，可参考 [查看器的强大之处](../getting-started/function-details/explorer-search.md)。
 
-**注意**：若需要修改创建的转发规则，可删除规则后再创建新的转发规则。规则删除后已转发的数据不会被删除，但不再产生新的数据转发数据。
 
 ## 更多阅读
 
