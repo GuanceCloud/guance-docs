@@ -1,11 +1,126 @@
 ---
 icon: zy/release-notes
 ---
-
 # 更新日志（2023 年）
 ---
 
 本文档记录观测云每次上线发布的更新内容说明，包括 DataKit、观测云最佳实践、观测云集成文档和观测云。
+
+## 2023 年 9 月 21 日
+
+### 观测云更新
+
+- 日志：
+    - 数据转发：新增外部存储转发规则数据查询；
+    - 绑定索引：日志易新增标签绑定。
+- 基础设施 > [自定义](../infrastructure/custom/index.md)：
+    - 【默认属性】这一概念更改为【必有属性】：上报的数据中必须包含该属性字段，否则将会上报失败；
+    - 自定义查看器新增快捷筛选。
+- 场景：
+    - [定时报告](../scene/report.md)：新增了【钉钉】【企业微信】【飞书】三种通知方式；
+    - 图表：【时序图、饼图、柱状图、直方图、散点图、气泡图、表格图、矩形树图、漏斗图、排行榜、地图、蜂窝图】新增数据格式，可以定义【小数位数】以及【千分位分隔符】。
+- 监控 > [通知对象管理](../monitoring/notify-object.md)：邮件组类型下架，已创建的不受影响。
+- 快照：[分享快照](../getting-started/function-details/snapshot.md#share)：新增 IP 白名单访问限制。
+- [异常追踪](../exception/issue.md#level)：【等级】支持自定义创建。
+- **集成 > 扩展**：DataFlux Func 托管版和 RUM Headless 现支持海外站点：俄勒冈，法兰克福，新加坡。
+
+### 集成更新
+
+华为云：
+
+- [Huawei CCE](../integrations/huawei_cce.md)：观测云支持对 CCE 中各类资源的运行状态和服务能力进行监测，包括 Containers、Pods、Services、Deployments、Clusters、Nodes、Replica Sets、Jobs、Cron Jobs 等。您可以在 Kubernetes 中通过 DaemonSet 方式安装 `DataKit`，进而完成对 Kubernetes 资源的数据采集。最终，在观测云中实时监测 Kubernetes 各类资源的运行情况。
+
+- [Huawei CSS(Elasticsearch)](../integrations/huawei_css_es.md)：华为云搜索服务 CSS for Elasticsearch 的核心性能指标包括查询延迟、索引速度、搜索速度、磁盘使用率和 CPU 使用率，这些都是评估和优化 Elasticsearch 性能的关键指标。
+
+- [Huawei SYS.AS](../integrations/huawei_SYS.AS.md)：华为 SYS.AS 的核心性能指标包括 CPU 利用率、内存使用率、磁盘I/O、网络吞吐量和系统负载等，这些都是评估和优化自动缩放系统性能的关键指标。
+
+- [Huawei ASM](../integrations/huawei_asm.md)：华为云的 ASM 的链路追踪数据输出到观测云，进行查看、分析。
+
+AWS：
+
+- [AWS CloudFront](../integrations/aws_cloudfront.md)：AWS CloudFront 的核心性能指标包括请求总数、数据传输量、HTTP 错误率、缓存命中率和延迟，这些可以帮助用户评估和优化内容分发网络的性能。
+
+- [AWS MediaConvert](../integrations/aws_mediaconvert.md)：AWS MediaConvert 包括数据传输、视频报错、作业数、填充等。
+
+- [AWS Aurora Serverless V2](../integrations/aws_aurora_serverless_v2.md)：AWS Aurora Serverless V2，包括连接数、IOPS、队列、读写延迟、网络吞吐量等。
+
+- [AWS Redshift](../integrations/aws_redshift.md)：AWS Redshift 的核心性能指标包括查询性能、磁盘空间使用率、CPU 利用率、数据库连接数和磁盘 I/O 操作，这些都是评估和优化数据仓库性能的关键指标。
+
+- [AWS Simple Queue Service](../integrations/aws_sqs.md)：AWS Simple Queue Service 的展示指标包括队列中最旧的未删除消息的大约存在时间、延迟且无法立即读取的消息数量、处于空中状态的消息的数量、可从队列取回的消息数量等。
+
+- [AWS Timestream](../integrations/aws_timestream.md)：AWS Timestream 的展示指标包括系统错误数（内部服务错误数）、当前 AWS 区域和当前 AWS 帐户的无效请求的总和、成功请求经过的时间和样本数量、存储在内存中的数据量以及存储在磁存储器中的数据量等。
+
+- [AWS Neptune Cluster](../integrations/aws_neptune_cluster.md)：AWS Neptune Cluster 的展示指标包括冷启动时间、执行时间、并发执行数和内存使用量，这些指标反映了 Neptune Cluster函数的响应速度、可扩展性和资源利用情况。
+
+
+## 2023 年 9 月 7 日
+
+<video controls="controls" poster="https://static.guance.com/dataflux/help/video/20230907.jpeg" >
+      <source id="mp4" src="https://static.guance.com/dataflux/help/video/20230907.mp4" type="video/mp4">
+</video>
+
+
+### 观测云更新
+
+- 场景 > 仪表板/查看器：新增全局[跨工作空间查询](../scene/dashboard.md#cross-workspace)配置。  
+- 场景 > 图表查询：时间控件范围小于等于【最近 15 分钟】，自动对齐时间间隔新增 “1 秒”显示。
+- 场景 > [服务管理](../scene/service-manag.md)：
+    - 服务清单新增绑定多个内置视图到分析看板；新增关联、团队信息；
+    - 新增资源调用分析看板；
+    - 支持保存快照。
+- 日志 > 备份日志：
+    - 正式更改为[数据转发](../logs/backup.md)；
+    - 新增链路、用户访问数据源；
+    - 原备份日志计费项名称更改为数据转发计费项。  
+- 日志 > 查看器：新增新建监控器入口；支持针对查看器详情页做快照保存。
+- 管理：
+    - [全局标签](../management/global-label.md)：新增全局标签功能，对标签进行统一管理；
+    - [字段管理](../management/field-management.md)：新增别名、设置显示列；
+    - [空间管理](../management/space-management.md)：功能整合和页面优化；
+    - 成员管理：原成员组的定义正式更改为团队；
+    - 敏感数据扫描：新增扫描规则数量统计；新增跳转链接。
+- 监控：
+    - 可用性数据检测：新增拨测指标，可以基于【指标】维度进行检测；
+    - 突变、离群、区间检测：支持选择所有数据源。 
+
+### 集成更新
+
+阿里云：
+
+- [aliyun_analyticdb_postgresql](../integrations/aliyun_analyticdb_postgresql.md)：阿里云 AnalyticDB PostgreSQL 指标展示，包括 CPU、内存、磁盘、协调节点、实例查询等。  
+- [aliyun_clickhouse_community](../integrations/aliyun_clickhouse_community.md)：阿里云 ClickHouse 指标展示，包括服务状态、日志流量、操作次数、总体 QPS 等。  
+- [aliyun_kafka](../integrations/aliyun_kafka.md)：阿里云 `KafKa` 包括消息吞吐量、延迟、并发连接数和可靠性，这些指标反映了 Kafka 在处理大规模消息传递和实时数据流时的性能表现和可靠性保证。  
+- [aliyun_lindorm](../integrations/aliyun_lindorm.md)：包括高吞吐量、低延迟的数据读写能力，支持高并发的事务处理，以及强一致性和高可靠性的数据存储和查询服务。  
+- [aliyun_polardb_1.0](../integrations/aliyun_polardb_1.0.md)：阿里云 PolarDB 分布式 1.0 展示指标包括CPU利用率、内存利用率、网络带宽和磁盘 IOPS。  
+- [aliyun_polardb_2.0](../integrations/aliyun_polardb_2.0.md)：阿里云 PolarDB 分布式 2.0 展示计算层和存储节点的指标，包括 CPU 利用率、连接使用率、磁盘使用量、磁盘使用率、内存利用率、网络带宽等。  
+- [aliyun_rds_postgresql](../integrations/aliyun_rds_postgresql.md)：阿里云 RDS PostgreSQL 指标展示，包括 CPU 使用率、内存使用率等。  
+- [aliyun_rocketmq5](../integrations/aliyun_rocketmq5.md)：阿里云 RocketMQ 5.0 的展示指标包括消息吞吐量、延迟、可靠性和水平扩展能力等。  
+
+AWS：
+
+- [aws_dynamodb_DAX](../integrations/aws_dynamodb_DAX.md)：AWS DynamoDB DAX 的展示指标包括节点或集群的 CPU 使用率、在所有网络接口上收到或发出的字节数、数据包的数量等，这些指标反映了 DynamoDB DAX 的运行状态。  
+- [aws_memorydb](../integrations/aws_memorydb.md)：AWS MemoryDB 的核心性能指标包括低延迟的内存读写能力、高并发的事务处理能力，以及可线性扩展的存储容量和吞吐量。
+
+华为云：
+
+- [huawei_functiongraph](../integrations/huawei_FunctionGraph.md)：HUAWEI FunctionGraph 的展示指标包括调用次数,错误次数,被拒绝次数,并发数,预留实例个数，运行时间（包括最大运行时间、最小运行时间、平均运行时间）等，这些指标反映了 FunctionGraph 函数运行情况。  
+- [huawei_kafka](../integrations/huawei_kafka.md)：包括消息吞吐量、延迟、并发连接数和可靠性，这些指标反映了 Kafka 在处理大规模消息传递和实时数据流时的性能表现和可靠性保证。  
+- [huaweiyun_SYS_DDMS](../integrations/huaweiyun_SYS_DDMS.md)：'华为云 SYS.DDMS 监控视图展示指标包括消息吞吐量、延迟、并发连接数和可靠性，这些指标反映了 DDMS 在处理大规模消息传递和实时数据流时的性能表现和可靠性保证。  
+
+腾讯云：
+
+- [tencent_keewidb](../integrations/tencent_keewidb.md)：腾讯云 KeeWiDB 指标展示，包括连接数、请求、缓存、key、慢查询等。    
+- [tencent_mariadb](../integrations/tencent_mariadb.md)：包括高性能的读写能力、低延迟的查询响应时间，以及支持高并发的事务处理和扩展性能。    
+- [tencent_memcached](../integrations/tencent_memcached.md)：包括高速的内存读写能力、低延迟的数据访问时间，以及高并发的访问处理能力。    
+- [tencent_tdsql_c_mysql](../integrations/tencent_tdsql_c_mysql.md)：包括高吞吐量的读写能力、低延迟的查询响应时间，以及支持高并发的事务处理和可扩展性能。    
+
+其他：
+
+- [openai](../integrations/openai.md)：OpenAI的展示指标包括请求总数，响应时间，请求数量，请求错误数和消耗token数。  
+- [monitor_jira](../integrations/monitor_jira.md)：当我们的应用程序或系统出现异常时，通常需要及时处理以保证系统的正常运行。为了更好地管理和跟踪异常事件，我们可以将这些事件发送到 Jira 中创建事件，这样我们就可以在 Jira 中进行跟踪、分析和解决这些问题，通过快速地将异常事件发送到 Jira 中创建事件，为我们提供更好的管理和跟踪异常事件的能力，从而更好地保证系统的正常运行。同时，这种方法也可以帮助我们更好地分析和解决问题，提高系统的稳定性和可靠性。  
+
+
+
 
 ## 2023 年 8 月 29 日
 

@@ -16,7 +16,10 @@
 |:-----------|:-------|:-----|:----------------|
 | search | string |  | 搜索服务名<br>例子: mysql <br>允许为空: False <br> |
 | originStr | string |  | 原始字符串传1, 结构化数据传0, 默认为1<br>允许为空: False <br> |
-| filter | string |  | 过滤条件<br>例子: total <br>允许为空: False <br>可选值: ['total', 'myCreate'] <br> |
+| filter | string |  | 过滤条件<br>例子: total <br>允许为空: False <br>可选值: ['total', 'favorite', 'myCreate', 'oftenBrowse'] <br> |
+| createType | commaArray |  | 创建类型<br>例子: openapi,manual,automatic <br>允许为空: False <br> |
+| serviceType | commaArray |  | 服务类型<br>例子: web,custom <br>允许为空: False <br> |
+| teamUUID | commaArray |  | 团队UUID<br>例子: group_x,group_y <br>允许为空: False <br> |
 | pageIndex | integer |  | 页码<br>允许为空: False <br>例子: 1 <br>$minValue: 1 <br> |
 | pageSize | integer |  | 每页返回数量<br>允许为空: False <br>例子: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
 
@@ -30,6 +33,9 @@
 | search    |  string  |  N | 搜索服务名 |
 | originStr |  string  |  N | 是否需要返回的 serviceCatelog 为原始字符串, 1为是, 0为否. 默认为1|
 | filter    |  string  |  N | 过滤条件 |
+| createType|  string  |  N | 过滤服务创建类型,以','间隔, manual,openapi,automatic|
+| serviceType|  string  |  N | 过滤服务的类型,以','间隔, app,framework,cache,message_queue,custom,db,web |
+| teamUUID    |  string  |  N | 过滤团队,以','间隔 |
 | pageIndex |  string  |  N | 分页页码 |
 | pageSize  |  string  |  N | 每页返回数量 |
 
@@ -50,7 +56,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/service_manage/list?originStr=1' \
+curl 'https://openapi.guance.com/api/v1/service_manage/list?originStr=0' \
   -H 'Content-Type: application/json' \
   -H 'DF-API-KEY: <DF-API-KEY>' \
   --compressed
@@ -62,69 +68,141 @@ curl 'https://openapi.guance.com/api/v1/service_manage/list?originStr=1' \
 ## 响应
 ```shell
 {
-    "code": 200,
-    "content": [
+    "automaticFoundTime": "1693807201",
+    "data": [
         {
-            "createAt": 1691233484,
-            "createType": "openapi",
+            "uuid": "sman_eb3e3c7acaef4d53acab866b83410edb",
+            "createAt": 1693798688,
+            "updateAt": 1693805504,
             "creatorInfo": {
-                "acntWsNickname": "",
-                "email": "wsak_7692b2cefe104fffa07916f09cbac52e",
+                "username": "wsak_470962cc97584f6a8b09d6c43db10752",
+                "name": "阿里云监控数据源",
                 "iconUrl": "",
-                "name": "API接口",
-                "username": "wsak_7692b2cefe104fffa07916f09cbac52e"
+                "email": "wsak_470962cc97584f6a8b09d6c43db10752",
+                "acntWsNickname": ""
+            },
+            "colour": "#40C922",
+            "updatorInfo": {
+                "username": "wsak_470962cc97584f6a8b09d6c43db10752",
+                "name": "阿里云监控数据源",
+                "iconUrl": "",
+                "email": "wsak_470962cc97584f6a8b09d6c43db10752",
+                "acntWsNickname": ""
             },
             "dfStatus": "ok",
             "isFavorite": false,
-            "service": "kodo",
-            "serviceCatelog": "[[Repos]]\nlink = \\\"https://www.guance.com\\\"\nname = \\\"guance\\\"\nprovider = \\\"guanceyun\\\"\n\n[[Repos]]\nlink = \\\"https://func.guance.com\\\"\nname = \\\"func\\\"\nprovider = \\\"guanceyun\\\"\n\n[[Docs]]\nlink = \\\"https://www.docs.guance.com\\\"\nname = \\\"guance\\\"\nprovider = \\\"guanceyun\\\"\n\n[[Docs]]\nlink = \\\"https://func.guance.com/doc\\\"\nname = \\\"func\\\"\nprovider = \\\"guanceyun\\\"\n\n[Team]\nservice = \\\"kodo\\\"\ntype = \\\"custom\\\"\nteam = \\\"guance\\\"\noncall = [\\\"xxx@guance.com\\\"]\n",
-            "type": "custom",
-            "updateAt": 1691234734,
-            "updatorInfo": {
-                "acntWsNickname": "昵称asdasfasfasfagasgasdfasfa",
-                "email": "88@qq.com",
-                "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_349ee5f70a89442fa94b4f754b5acbfe.png",
-                "name": "88测试",
-                "username": "测试"
-            },
-            "uuid": "sman_5eaba28c14e94876b4aa0157ecb1e090"
+            "createType": "openapi",
+            "service": "test_02",
+            "type": "db",
+            "serviceCatelog": {
+                "Team": {
+                    "service": "test_02",
+                    "type": "db",
+                    "team": "group_a8caea614b2644549557b476cf2d946c",
+                    "colour": "#40C922",
+                    "oncall": [
+                        {
+                            "name": "guanceyun",
+                            "type": "email",
+                            "emails": [
+                                "test1@guance.com",
+                                "test3@guance.com"
+                            ]
+                        },
+                        {
+                            "name": "zhuyun",
+                            "type": "mobile",
+                            "mobiles": [
+                                "17621725786",
+                                "17621724231"
+                            ]
+                        },
+                        {
+                            "name": "test",
+                            "type": "slack",
+                            "slack": "#test"
+                        }
+                    ]
+                },
+                "Repos": [
+                    {
+                        "link": "https://www.guance.com",
+                        "name": "guance",
+                        "provider": "guanceyun"
+                    },
+                    {
+                        "link": "https://func.guance.com",
+                        "name": "func",
+                        "provider": "guanceyun"
+                    }
+                ],
+                "Docs": [
+                    {
+                        "link": "https://www.docs.guance.com",
+                        "name": "guance",
+                        "provider": "guanceyun"
+                    },
+                    {
+                        "link": "https://func.guance.com/doc",
+                        "name": "func",
+                        "provider": "guanceyun"
+                    }
+                ],
+                "Related": {
+                    "AppId": "a138bcb0_47ef_11ee_9d75_31ea50b9d85a",
+                    "Tags": [
+                        "test"
+                    ],
+                    "DashboardUUIDs": [
+                        "dsbd_b7ded4391b5e497ba7112d81a922d14d"
+                    ]
+                }
+            }
         },
         {
-            "createAt": 1691045130,
-            "createType": "manual",
+            "uuid": "sman_cb24ea0f1c694db08bfa6ee8afb05914",
+            "createAt": 1693728357,
+            "updateAt": 1693728357,
             "creatorInfo": {
-                "acntWsNickname": "昵称asdasfasfasfagasgasdfasfa",
-                "email": "88@qq.com",
-                "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_349ee5f70a89442fa94b4f754b5acbfe.png",
-                "name": "88测试",
-                "username": "测试"
+                "username": "test@jiagouyun.com",
+                "name": "test",
+                "iconUrl": "",
+                "email": "test@jiagouyun.com",
+                "acntWsNickname": ""
+            },
+            "colour": "",
+            "updatorInfo": {
+                "username": "test@jiagouyun.com",
+                "name": "test",
+                "iconUrl": "",
+                "email": "test@jiagouyun.com",
+                "acntWsNickname": ""
             },
             "dfStatus": "ok",
             "isFavorite": false,
-            "service": "anypath",
-            "serviceCatelog": "[[Repos]]\nname = \\\"观测云\\\"\nprovider = \\\"gitlab\\\"\nlink = \\\"https://gitlab.jiagouyun.com/\\\"\n\n[[Docs]]\nname = \\\"服务清单配置\\\"\nprovider = \\\"观测云\\\"\nlink = \\\"https://preprod-docs.cloudcare.cn/open-api/tracing/service-catelogs-get/\\\"\n\n[Team]\nservice = \\\"anypath\\\"\ntype = \\\"app\\\"\nteam = \\\"test\\\"\noncall = [\\\"guanyu@guance.com\\\", \\\"tt@163.com\\\"]\n",
-            "type": "app",
-            "updateAt": 1691133424,
-            "updatorInfo": {
-                "acntWsNickname": "",
-                "email": "tt@jiagouyun.com",
-                "iconUrl": "",
-                "name": "tt",
-                "username": "tt@jiagouyun.com"
-            },
-            "uuid": "sman_d1258a79a26a4c1fb0b946504ea4e498"
+            "createType": "manual",
+            "service": "test-lml3",
+            "type": "custom",
+            "serviceCatelog": {
+                "Team": {
+                    "service": "test-lml3",
+                    "type": "custom",
+                    "colour": "",
+                    "team": "",
+                    "oncall": []
+                },
+                "Related": {
+                    "Tags": []
+                }
+            }
         }
     ],
-    "errorCode": "",
-    "message": "",
     "pageInfo": {
-        "count": 2,
         "pageIndex": 1,
-        "pageSize": 100,
+        "pageSize": 50,
+        "count": 2,
         "totalCount": 2
-    },
-    "success": true,
-    "traceId": "TRACE-26509352-0ED4-4A8F-8D28-8DEA416B294A"
+    }
 } 
 ```
 

@@ -1,6 +1,6 @@
 ---
-title: 'GaussDB for MySQL'
-summary: '使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云'
+title: '华为云 GaussDB for MySQL'
+summary: 'GaussDB for MySQL，包括cpu、内存、网络、缓冲池、存储、慢日志、`innoDB`等相关指标。'
 __int_icon: 'icon/huawei_gaussdb_for_mysql'
 dashboard:
 
@@ -15,7 +15,7 @@ monitor:
 
 
 <!-- markdownlint-disable MD025 -->
-# GaussDB for MySQL
+# 华为云 GaussDB for MySQL
 <!-- markdownlint-enable -->
 
 GaussDB for MySQL，包括cpu、内存、网络、缓冲池、存储、慢日志、`innoDB`等相关指标。

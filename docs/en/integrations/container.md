@@ -93,7 +93,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
     | Environment Variable Name                                                     | Descrition                                                                                                                                                                          | Default Value                                                                                                   | Parameter example (need to be enclosed in double quotation marks when configuring yaml)           |
     | ----:                                                                         | ----:                                                                                                                                                                               | ----:                                                                                                           | ----                                                                                              |
-    | `ENV_INPUT_CONTAINER_ENDPOINTS`                                               | Append to container endpoints                                                                                                                                                       | ["unix:///var/run/docker.sock", "unix:///var/run/containerd/containerd.sock", "unix:///var/run/crio/crio.sock"] | `["unix:///<new_path>/run/containerd.sock"]`                                                      |
+    | `ENV_INPUT_CONTAINER_ENDPOINTS`                                               | Append to container endpoints                                                                                                                                                       | "unix:///var/run/docker.sock,unix:///var/run/containerd/containerd.sock,unix:///var/run/crio/crio.sock" | `"unix:///<new_path>/run/containerd.sock"`                                                      |
     | `ENV_INPUT_CONTAINER_DOCKER_ENDPOINT`                                         | Deprecated, specify the enpoint of Docker Engine                                                                                                                                    | "unix:///var/run/docker.sock"                                                                                   | `"unix:///var/run/docker.sock"`                                                                   |
     | `ENV_INPUT_CONTAINER_CONTAINERD_ADDRESS`                                      | Deprecated, Specify the enpoint of Containerd                                                                                                                                       | "/var/run/containerd/containerd.sock"                                                                           | `"/var/run/containerd/containerd.sock"`                                                           |
     | `ENV_INPUT_CONTAINER_ENABLE_CONTAINER_METRIC`                                 | Start container index collection                                                                                                                                                    | true                                                                                                            | `"true"`/`"false"`                                                                                |
@@ -242,6 +242,36 @@ The metric of containers, only supported Running status.
 
 
 
+
+
+
+
+
+#### `kubernetes`
+
+The count of the Kubernetes resource.
+
+- Tags
+
+
+| Tag | Description |
+|  ----  | --------|
+|`namespace`|namespace|
+
+- Metrics
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`cronjob`|CronJob count|int|-|
+|`daemonset`|Service count|int|-|
+|`deployment`|Deployment count|int|-|
+|`job`|Job count|int|-|
+|`node`|Node count|int|-|
+|`pod`|Pod count|int|-|
+|`replicaset`|ReplicaSet count|int|-|
+|`service`|Service count|int|-|
+|`statefulset`|StatefulSet count|int|-| 
 
 
 
@@ -618,6 +648,10 @@ The object of containers, only supported Running status.
 
 
 
+
+
+
+
 #### `kubernetes_cron_jobs`
 
 The object of the Kubernetes CronJob.
@@ -808,6 +842,8 @@ The object of the Kubernetes Node.
 |`age`|Age (seconds)|int|s|
 |`kubelet_version`|Kubelet Version reported by the node.|string|-|
 |`message`|Object details|string|-|
+|`node_ready`|NodeReady means kubelet is healthy and ready to accept pods (true/false/unknown)|string|-|
+|`unschedulable`|Unschedulable controls node `schedulability` of new pods (yes/no).|string|-|
 
 
 
@@ -1049,6 +1085,10 @@ The logging of the container.
 
 
 
+
+
+
+
 #### `kubernetes_events`
 
 The logging of the Kubernetes Event.
@@ -1121,7 +1161,7 @@ The logging of the Kubernetes Event.
 
 ## Link Dataway Sink Function {#link-dataway-sink}
 
-Dataway Sink [see documentation](../datakit/dataway-sink.md#sink-intro).
+Dataway Sink [see documentation](../deployment/dataway-sink.md).
 
 All collected Kubernetes resources will have a Label that matches the CustomerKey. For example, if the CustomerKey is `name`, DaemonSets, Deployments, Pods, and other resources will search for `name` in their own current Labels and add it to tags.
 

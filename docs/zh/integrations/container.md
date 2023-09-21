@@ -115,7 +115,7 @@ monitor:
     
     | 环境变量名                                                                    | 配置项含义                                                                                                                                            | 默认值                                                                                                          | 参数示例（yaml 配置时需要用英文双引号括起来）                                    |
     | ----:                                                                         | ----:                                                                                                                                                 | ----:                                                                                                           | ----                                                                             |
-    | `ENV_INPUT_CONTAINER_ENDPOINTS`                                               | 追加多个容器运行时的 endpoint                                                                                                                         | ["unix:///var/run/docker.sock", "unix:///var/run/containerd/containerd.sock", "unix:///var/run/crio/crio.sock"] | `["unix:///<new_path>/run/containerd.sock"]`                                     |
+    | `ENV_INPUT_CONTAINER_ENDPOINTS`                                               | 追加多个容器运行时的 endpoint                                                                                                                         | "unix:///var/run/docker.sock,unix:///var/run/containerd/containerd.sock,unix:///var/run/crio/crio.sock" | `unix:///<new_path>/run/containerd.sock`                                     |
     | `ENV_INPUT_CONTAINER_DOCKER_ENDPOINT`                                         | Deprecated，指定 Docker Engine 的 endpoint                                                                                                            | "unix:///var/run/docker.sock"                                                                                   | `"unix:///var/run/docker.sock"`                                                  |
     | `ENV_INPUT_CONTAINER_CONTAINERD_ADDRESS`                                      | Deprecated，指定 Containerd 的 endpoint                                                                                                               | "/var/run/containerd/containerd.sock"                                                                           | `"/var/run/containerd/containerd.sock"`                                          |
     | `ENV_INPUT_CONTAINER_ENABLE_CONTAINER_METRIC`                                 | 开启容器指标采集                                                                                                                                      | true                                                                                                            | `"true"`/`"false"`                                                               |
@@ -290,6 +290,37 @@ The metric of containers, only supported Running status.
 
 
 
+
+
+
+
+
+
+### `kubernetes`
+
+The count of the Kubernetes resource.
+
+- 标签
+
+
+| Tag | Description |
+|  ----  | --------|
+|`namespace`|namespace|
+
+- 指标列表
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`cronjob`|CronJob count|int|-|
+|`daemonset`|Service count|int|-|
+|`deployment`|Deployment count|int|-|
+|`job`|Job count|int|-|
+|`node`|Node count|int|-|
+|`pod`|Pod count|int|-|
+|`replicaset`|ReplicaSet count|int|-|
+|`service`|Service count|int|-|
+|`statefulset`|StatefulSet count|int|-|
 
 
 
@@ -676,6 +707,10 @@ The object of containers, only supported Running status.
 
 
 
+
+
+
+
 ### `kubernetes_cron_jobs`
 
 The object of the Kubernetes CronJob.
@@ -866,6 +901,8 @@ The object of the Kubernetes Node.
 |`age`|Age (seconds)|int|s|
 |`kubelet_version`|Kubelet Version reported by the node.|string|-|
 |`message`|Object details|string|-|
+|`node_ready`|NodeReady means kubelet is healthy and ready to accept pods (true/false/unknown)|string|-|
+|`unschedulable`|Unschedulable controls node `schedulability` of new pods (yes/no).|string|-|
 
 
 
@@ -1108,6 +1145,10 @@ The logging of the container.
 
 
 
+
+
+
+
 ### `kubernetes_events`
 
 The logging of the Kubernetes Event.
@@ -1180,10 +1221,9 @@ The logging of the Kubernetes Event.
 
 <!-- markdownlint-enable -->
 
-
 ## 联动 Dataway Sink 功能 {#link-dataway-sink}
 
-Dataway Sink [详见文档](../datakit/dataway-sink.md#sink-intro)。
+Dataway Sink [详见文档](../deployment/dataway-sink.md)。
 
 所有的 Kubernetes 资源采集，都会添加与 CustomerKey 匹配的 Label。例如 CustomerKey 是 `name`，DaemonSet、Deployment、Pod 等资源，会在自己当前的 Labels 中找到 `name`，并将其添加到 tags。
 

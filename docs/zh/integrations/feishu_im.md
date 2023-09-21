@@ -29,19 +29,19 @@ __int_icon: 'icon/feishu_im'
 
 由于飞书不直接提供 outgoing 这种连续对话方式的机器人应用，所以需要我们通过多个机器人应用流程来实现类似的对话功能。
 
-![img](https://guanceyun.feishu.cn/space/api/box/stream/download/asynccode/?code=NTQ4YTFhNzM4NTNjNmVjYmM0ODVlNDE2YjVmM2I0MTJfNGdYTWsza1hRdHlidzFoUnVXVVVZMGhpYmJPTlBsTkxfVG9rZW46WmhqYmJXT293b2hCZzd4Y05hWmN6aU42bmJkXzE2OTIzMzg2ODc6MTY5MjM0MjI4N19WNA)
+![img](imgs/feishu_im01.png)
 
 首先我们要有一个收取 issue 信息的流程来捕获新 issue 或新回复信息
 
-![img](https://guanceyun.feishu.cn/space/api/box/stream/download/asynccode/?code=YTQ3YjQ5NDVkOTE1OWEyZjk4YjVlMzBiOTRkYzU2MjdfeEJ1MjBISEpyN0tXdGZROVI2eW9JM09SZGdURXJKRDZfVG9rZW46TGExSWJkSDB3b1ZIYVF4ZG1ZNWNNY3hVblRlXzE2OTIzMzg2ODc6MTY5MjM0MjI4N19WNA)
+![img](imgs/feishu_im02.png)
 
 我们通过 Webhook 作为流程触发条件，当我们监听脚本发现有新 issue 记录或者回复时就可以通过调用飞书的 webhook 来触发机器人的消息推送流程了
 
-![img](https://guanceyun.feishu.cn/space/api/box/stream/download/asynccode/?code=NGM4YzFkNTAwZTUxNjczYjhiOTQ2MjAwMWI5MTVjMmJfTWdWNWZ6b2tnd0FmMng5cnBReWdvRzhyMURKbk5rNURfVG9rZW46RE5qeGJjeUpBb0xLeXR4T01CdWNxbkRMbmNjXzE2OTIzMzg2ODc6MTY5MjM0MjI4N19WNA)
+![img](imgs/feishu_im03.png)
 
 我们可以通过配置 Webhook 触发器将我们 Issue 中的一些参数捕获作为机器人发送飞书消息的入参
 
-![img](https://guanceyun.feishu.cn/space/api/box/stream/download/asynccode/?code=MzBhZjgwZTk3MWZlOTU0ZmI3NDM1YjNkOTExOWRhNWNfVjR0U0Y2dUdWdWtORVpDN2FkR21JSnQ2dWtDOFA0Zm5fVG9rZW46QUFzeWJqamZnb1V6d1R4aW5OTGNPUkZSbkNFXzE2OTIzMzg2ODc6MTY5MjM0MjI4N19WNA)
+![img](imgs/feishu_im04.png)
 
 我们可以通过 markdown 的方式来编写我们想要呈现的消息样式，同时引用我们上面在 webhook 中配置的参数来呈现消息
 
@@ -187,25 +187,25 @@ def main():
 
 当异常追踪中有新 Issue 时我们就可以在我们配置了机器人应用的飞书群中获取到新 Issue 提醒了。
 
-![img](https://guanceyun.feishu.cn/space/api/box/stream/download/asynccode/?code=NDhiNjBlNWViZjc0NGQ1MDc5YjQ2YWJhN2Q1MTAwNWRfUDF6bTEwa3JGMXNBQXZiMURVV1M4SHp1OHRENEtxRzVfVG9rZW46RVpEa2I1SktZb1NxYWN4OE1EcmNWMm1xbnNkXzE2OTIzMzg2ODc6MTY5MjM0MjI4N19WNA)
+![img](imgs/feishu_im05.png)
 
 这时我们要想对本条 Issue 记录行回复评论的时候就需要我们配置另外一条飞书机器人应用的回复 Issue 规则了
 
-![img](https://guanceyun.feishu.cn/space/api/box/stream/download/asynccode/?code=ZjBkZWRiY2RlMzk0MmFjNjkzZDYyMGE4MWY3YTRiMWFfUlV2WG9LT2NQODR3QWR6alpUZ1c0VE1YWVl2WE5sc3FfVG9rZW46T212NWJkOVBKb0szZnV4QmV4QWNtdUk3bkxmXzE2OTIzMzg2ODc6MTY5MjM0MjI4N19WNA)
+![img](imgs/feishu_im06.png)
 
 那这条规则的触发条件就是当我们需要进行 Issue 消息的回复时 @机器人的动作触发时，我们可以配置在指定群主中生效该规则，也可以配置指定的触发词等条件
 
-![img](https://guanceyun.feishu.cn/space/api/box/stream/download/asynccode/?code=ODgzMzJhMWQ1Y2FlYjIxNzE1MzM4OGRlYWVkZjM1MTdfalY2aVVVT1VuaTFDcUdyb0dNRWY5NmdtblVlS0JiWXNfVG9rZW46UU9sbWJSd2lKb1oxeW14UG1PU2N1amNCbk5mXzE2OTIzMzg2ODc6MTY5MjM0MjI4N19WNA)
+![img](imgs/feishu_im07.png)
 
 在配置好机器人触发规则后我们需要创建我们回复消息的规则，由于需要拆解我们回复消息中的 IssueID 所以我们需要一个 API 服务作为中转，再向 OpenAPI 发送添加评论请求
 
-![img](https://guanceyun.feishu.cn/space/api/box/stream/download/asynccode/?code=MTExZWIyZDI5MWU4ZmFkNTA4ODI4MTVkY2YzYjNjYmJfNGM0cFh0U3FOM1puakw4U3pxOFdZbW91azRJYTFNcDJfVG9rZW46VVJFZ2J6TDAyb3dUVTB4RnM2QWNROXVkbmFoXzE2OTIzMzg2ODc6MTY5MjM0MjI4N19WNA)
+![img](imgs/feishu_im08.png)
 
 > 由于原消息会带上 @机器人 所以在选择参数时要选择**源消息(去除@部分)**
 
 我们可以通过填写 API 的返回示例来验证我们添加评论是否成功
 
-![img](https://guanceyun.feishu.cn/space/api/box/stream/download/asynccode/?code=MmY1NTJlYzBmOTNiZDFiODY1YjA2NTkyODFjMjFkYWRfRUlMV1hEUTA5ZTkwYkkzRkJ6RTRnWllFUWN0akRHOExfVG9rZW46U0FDVmJ3c3g0b2h4SWZ4ZXB3RWNwZk4wbnF3XzE2OTIzMzg2ODc6MTY5MjM0MjI4N19WNA)
+![img](imgs/feishu_im09.png)
 
 当发送评论成功后我们可以通过上面获取的返回参数，来给消息发送者发送消息成功发送的通知
 
@@ -266,16 +266,14 @@ def create_issue_reply(content):
 
 在编写好 API 脚本后我们需要通过【管理 / 授权链接】配置开启 API 服务来作为飞书 webhook http 请求的接收端
 
-![img](https://guanceyun.feishu.cn/space/api/box/stream/download/asynccode/?code=ODNiN2ZkZjhiZTU5YzMzNjA2OGVlMWJmNWZkOWM0MWZfVXdHMW9KcWNtRklHQTdCOEZEQ2N5TGRrVDJyZGVGMldfVG9rZW46TGxhNGJXUWhVb3J0RUV4TW5QZGNWbm1hbkpmXzE2OTIzMzg2ODc6MTY5MjM0MjI4N19WNA)
+![img](imgs/feishu_im10.png)
 
 由于我们需要中转解析参数，所以再 @机器人发送消息时需要按照指定规则才可以成功将消息发送成功，这里的采用的方式是 `#issueUUID#消息内容`  的方式来进行的，当获取到正确的参数后就可以将回复内容发送到 OpenAPI
 
-![img](https://guanceyun.feishu.cn/space/api/box/stream/download/asynccode/?code=Mzk5ZDUyMjU3N2I1YzhiZTA2Y2I1ZmRjNjk4ZDcwYThfVVdYMGFSMjdhZnY4aGFRa2tweFd1c203WXo2bzJoblhfVG9rZW46QXJ6WmJtcDNhbzMzOFp4NXc1ZWNXVmdjbnJiXzE2OTIzMzg2ODc6MTY5MjM0MjI4N19WNA)
+![img](imgs/feishu_im11.png)
 
 当消息成功发送后我们可以从我们自己配置的返回结构中获取数据进行通知
 
-![img](https://guanceyun.feishu.cn/space/api/box/stream/download/asynccode/?code=ZmQ1Y2I0ZjJkY2FjNGQxYzU0YTQ3OWE4NjdlNGY5YjhfZlRoWG9mZlZSODl1bmIzZklRSU1mOFdUS3p5S3NBZGZfVG9rZW46RG8zZGJjYnBVb0dXZlZ4OVJMS2MzbGJFbmNiXzE2OTIzMzg2ODc6MTY5MjM0MjI4N19WNA)
+![img](imgs/feishu_im12.png)
 
-同时也可以在 Studio 中查看我们回复的消息内容
-
-![img](https://guanceyun.feishu.cn/space/api/box/stream/download/asynccode/?code=YmRiNjAwNzFjODJlNWMzNjQ3ZWE2YmZhZGY3NWRkNDBfTjVTS1lENENEeTlQYnZLejNvT2tsTzdKaVZhQzJkamJfVG9rZW46QUNlaGJXQ3Vob3ZnaVV4WmVPZGNXdElNblliXzE2OTIzMzg2ODc6MTY5MjM0MjI4N19WNA)
+同时也可以在 Studio 中查看我们回复的消息内容![img](imgs/feishu_im13.png)

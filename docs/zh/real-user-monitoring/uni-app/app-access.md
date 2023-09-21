@@ -188,7 +188,7 @@ rum.startAction({
 
 ```javascript
 // 自动采集，可参考 SDK 包内 GCUniPlugin 插件的示例工程
-// step 1. 在 SDK 包内找到 GCWatchRouter.js、GCPageMixin.js 文件，添加到你的工程
+// step 1. 在 SDK 包内找到 GCWatchRouter.js、GCPageMixin.js 文件，添加到您的工程
 // step 2. 在 App.vue 添加 Router 监控，如下：
 <script>
 	import WatchRouter from '@/GCWatchRouter.js'

@@ -108,22 +108,47 @@ GRANT SELECT ON DBA_USERS TO datakit;
 
 根据操作系统和 Oracle 版本选择安装对应的安装包，参考[这里](https://oracle.github.io/odpi/doc/installation.html){:target="_blank"}，如：
 
-```shell
-wget https://download.oracle.com/otn_software/linux/instantclient/211000/instantclient-basiclite-linux.x64-21.1.0.0.0.zip
-unzip instantclient-basiclite-linux.x64-21.1.0.0.0.zip
-```
+<!-- markdownlint-disable MD046 -->
 
-将解压后的目录文件路径添加到以下配置信息中的 `LD_LIBRARY_PATH` 环境变量路径中。
+=== "x86_64 系统"
 
-> 也可以直接下载我们预先准备好的依赖包：
+    ```shell
+    wget https://download.oracle.com/otn_software/linux/instantclient/2110000/instantclient-basiclite-linux.x64-21.10.0.0.0dbru.zip
+    unzip instantclient-basiclite-linux.x64-21.10.0.0.0dbru.zip
+    ```
 
-```shell
-wget -q https://static.guance.com/otn_software/instantclient/instantclient-basiclite-linux.x64-19.8.0.0.0dbru.zip \
-    -O /usr/local/datakit/externals/instantclient-basiclite-linux.zip \
-    && unzip /usr/local/datakit/externals/instantclient-basiclite-linux.zip -d /opt/oracle;
-```
+    将解压后的目录文件路径添加到以下配置信息中的 `LD_LIBRARY_PATH` 环境变量路径中。
 
-另外，可能还需要安装额外的依赖库：
+    > 也可以直接下载我们预先准备好的依赖包：
+
+    ```shell
+    wget -q https://static.guance.com/otn_software/instantclient/instantclient-basiclite-linux.x64-21.10.0.0.0dbru.zip \
+        -O /usr/local/datakit/externals/instantclient-basiclite-linux.zip \
+        && unzip /usr/local/datakit/externals/instantclient-basiclite-linux.zip -d /opt/oracle \
+        && mv /opt/oracle/instantclient_21_10 /opt/oracle/instantclient;
+    ```
+
+=== "ARM64 系统"
+
+    ```shell
+    wget https://download.oracle.com/otn_software/linux/instantclient/2110000/instantclient-basiclite-linux.arm64-19.19.0.0.0dbru.zip
+    unzip instantclient-basiclite-linux.arm64-19.19.0.0.0dbru.zip
+    ```
+
+    将解压后的目录文件路径添加到以下配置信息中的 `LD_LIBRARY_PATH` 环境变量路径中。
+
+    > 也可以直接下载我们预先准备好的依赖包：
+
+    ```shell
+    wget -q https://static.guance.com/otn_software/instantclient/instantclient-basiclite-linux.arm64-19.19.0.0.0dbru.zip \
+        -O /usr/local/datakit/externals/instantclient-basiclite-linux.zip \
+        && unzip /usr/local/datakit/externals/instantclient-basiclite-linux.zip -d /opt/oracle \
+        && mv /opt/oracle/instantclient_19_19 /opt/oracle/instantclient;
+    ```
+
+<!-- markdownlint-enable -->
+
+- 部分系统需要安装额外的依赖库：
 
 ```shell
 apt-get install -y libaio-dev libaio1
@@ -140,12 +165,13 @@ apt-get install -y libaio-dev libaio1
         
     [[inputs.external]]
       daemon = true
-      name = 'oracle'
-      cmd  = "/usr/local/datakit/externals/oracle"
+      name   = 'oracle'
+      cmd    = "/usr/local/datakit/externals/oracle"
     
       ## Set true to enable election
       election = true
     
+      ## The "--inputs" line below should not be modified.
       args = [
         '--interval'       , '1m'                        ,
         '--host'           , '<your-oracle-host>'        ,
@@ -155,7 +181,7 @@ apt-get install -y libaio-dev libaio1
         '--service-name'   , '<oracle-service-name>'     ,
       ]
       envs = [
-        'LD_LIBRARY_PATH=/opt/oracle/instantclient_19_8:$LD_LIBRARY_PATH',
+        'LD_LIBRARY_PATH=/opt/oracle/instantclient:$LD_LIBRARY_PATH',
       ]
     
       [inputs.external.tags]
@@ -163,15 +189,14 @@ apt-get install -y libaio-dev libaio1
         # more_tag = "some_other_value"
     
       #############################
-      # 参数说明(标 * 为必选项)
+      # Parameter Description (Marked with * is mandatory field)
       #############################
-      # *--interval       : 采集的频度，最小粒度 5m
-      # *--host           : Oracle 实例地址(ip)
-      #  --port           : Oracle 监听端口
-      # *--username       : Oracle 用户名
-      # *--password       : Oracle 密码
-      # *--service-name   : Oracle 的服务名
-      # *--query          : 自定义查询语句，格式为 <sql:metricName:tags>，sql 为自定义采集的语句，tags 填入使用 tag 字段
+      # *--interval       : Collect interval (Default is 1m)
+      # *--host           : Oracle instance address (IP)
+      # *--port           : Oracle listen port (Default is 1521)
+      # *--username       : Oracle username
+      # *--password       : Oracle password
+      # *--service-name   : Oracle service name
     
     ```
     
@@ -334,11 +359,11 @@ $ ldd <DataKit 安装目录>/externals/oracle
 externals/oracle: /lib64/libc.so.6: version  `GLIBC_2.14` not found (required by externals/oracle)
 ```
 
-- Oracle 采集器只能在 Linux/amd64 架构的 DataKit 使用，其它平台均不支持
+- Oracle 采集器只能在 Linux/AMD64 架构的 DataKit 使用，其它平台均不支持
 
-这意味着 Oracle 这个采集器只能在 amd64(X86) 的 Linux 上运行，其它平台一律无法运行当前的 Oracle 采集器。
+这意味着 Oracle 这个采集器只能在 AMD64 的 Linux 上运行，其它平台一律无法运行当前的 Oracle 采集器。
 
-### 为什么看不到 `oracle_system` 指标集? {#faq-no-system}
+### :material-chat-question: 为什么看不到 `oracle_system` 指标集? {#faq-no-system}
 
 需要数据库运行起来之后，过 1 分钟才能看到。
 

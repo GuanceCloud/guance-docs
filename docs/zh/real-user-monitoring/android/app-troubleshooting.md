@@ -1,30 +1,33 @@
 # 故障排查
+
 ## 编译故障排查
-编译过程发生错误，需要首先检查编译环境
+
+编译过程发生错误，需要首先检查编译环境。
 
 ### 可运行编译环境 
 #### ✅ 可运行环境 
+
 * AGP `com.android.tools.build:gradle` 版本 `3.5.0` 以上
 * gradle 版本 `5.4.0` 以上
 * java 版本 `8.0` 以上
 * Android minSdkVersion 21
 
->  随着 Android Studio 版本更新，这部分版本兼容度也会发生变化，如果你有碰到编译环境符合以上条件，但是仍然遇到编译出错的问题，请联系我们的开发人员
+**注意**：随着 Android Studio 版本更新，这部分版本兼容度也会发生变化，如果您有碰到编译环境符合以上条件，但是仍然遇到编译出错的问题，请联系我们的开发人员。
  
 
 
-#### ⚠️ 可兼容运行环境 
+#### ✅ 可兼容运行环境 
 * AGP `com.android.tools.build:gradle` 版本 `3.0.1` 以上
 * Gradle 版本 `4.8.1` 以上
 * Java 版本 `8.0` 以上
 * Android minSdkVersion 21
 
-> 此环境 `ft-plugin` 无法使用，数据自动捕获的部分需要，手动接入完成。更多手动接入相关请参考[这里](app-access.md#manual-set)
+> 此环境 `ft-plugin` 无法使用，数据自动捕获的部分需要，手动接入完成。更多手动接入相关，可参考 [这里](app-access.md#manual-set)。
 
 ### SDK 无法解析导入
 ![](../img/17.trouble_shooting_android_gradle_error_1.png)
 ![](../img/17.trouble_shooting_android_gradle_error_2.png)
-发生以上错误是因为因为 maven 仓库没有正确设置，请参考这里的[配置](app-access.md#gradle-setting)
+发生以上错误是因为因为 maven 仓库没有正确设置，请参考这里的[配置](app-access.md#gradle-setting)。
 
 
 ### 编译错误
@@ -44,7 +47,7 @@
 		at org.objectweb.asm.ClassReader.accept(Unknown Source)
 		at com.google.devtools.build. android.desugar. Desugar.desugarClassesInInput (Desugar.java:401) at com.google.devtools.build.android.desugar.Desugar.desugar0neInput(Desugar.java:326) at com.google.devtools.build.android.desugar. Desugar.desugar (Desugar.java:280) at com.google.devtools.build.android.desugar. Desugar.main (Desugar.java:584)
 ```
-如果编译过程中出现以上错误，这个是由于 AGP`3.0.0`兼容性问题导致，这里 [issue](https://github.com/gradle/gradle/issues/2384) 说明了这个问题，可以提升 AGP`3.1.0`以上版本来解决这个问题，或者使用较新版本 SDK, 在`app/build.gradle`中升级版本即可。
+如果编译过程中出现以上错误，这个是由于 AGP `3.0.0` 兼容性问题导致，这里 [issue](https://github.com/gradle/gradle/issues/2384) 说明了这个问题，可以提升 AGP `3.1.0` 以上版本来解决这个问题，或者使用较新版本 SDK, 在`app/build.gradle`中升级版本即可。
 
 ```gradle
 dependencies {
@@ -104,7 +107,7 @@ buildscript {
 ``` 
 
 ## 开启 Debug 调试
-你可以通过以下配置，开启 SDK 的 debug 功能，开启之后，控制台 `LogCat` 会输出 SDK 调试日志，你可以过滤 `[FT-SDK]` 字符，定位到观测云 SDK 日志。
+您可以通过以下配置，开启 SDK 的 debug 功能，开启之后，控制台 `LogCat` 会输出 SDK 调试日志，您可以过滤 `[FT-SDK]` 字符，定位到观测云 SDK 日志。
 
 ```kotlin
   val config = FTSDKConfig.setDebug(true);
@@ -130,6 +133,7 @@ buildscript {
     10:51:48.996 [FT-SDK]SyncTaskManager com.demo D **********************同步数据成功**********************
 	
 	```
+	
 * datakit 是否往对应工作空间上传数据，是否处于离线状态。这个可以通过登录观测云，查看「基础设施」来确认这个问题。
 
 	![](../img/17.trouble_shooting_android_datakit_check.png)
@@ -141,7 +145,11 @@ buildscript {
 * 确认正确调用 `FTSdk.shutDown `，这个方法会释放 SDK 数据处理对象，包括缓存的数据。
 
 ### Resource 数据丢失 {#resource_missing}
-Plugin AOP ASM 插入之后，会在原工程代码基础上，会在 `OkHttpClient.Builder()` 加入 `addInterceptor`，分别加入 `FTTraceInterceptor` 和 `FTResourceInterceptor`,其中会使用 http 请求中 body contentLength 参与唯一 id 计算，`Resource` 数据各个阶段数据通过这个 id 进行上下文串联，所以如果集成方在使用 `Okhttp` 时，也加入 `addInterceptor` 并对数据进行二次处理使其发生大小改变，从而导致 id 各阶段计算不一致，导致数据丢失。这个问题可以通过自定义 `addInterceptor` 位置顺序，让 SDK 方法第一时间去计算 id，可以解决这个问题。详细见 [ManualActivity](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt) 中 `OKHttp` 自定义 `EventListener` 和 `Interceptor` 的例子。
+####OkHttpClient.build() 在 SDK 初始化之前
+Plugin AOP ASM 写入是在 `OkHttpClient.build()` 调用时自动写入 `FTTraceInterceptor` ,`FTResourceInterceptor`,`FTResourceEventListener.FTFactory`，如果在 SDK 初始化之前，会导致加载空配置，因而丢失 Resource 相关数据。
+
+#### 使用 Interceptor 或 EventListener 对数据进行了二次处理
+Plugin AOP ASM 插入之后，会在原工程代码基础上，会在 `OkHttpClient.Builder()` 加入 `addInterceptor`，分别加入 `FTTraceInterceptor` 和 `FTResourceInterceptor`,其中会使用 http 请求中 body contentLength 参与唯一 id 计算，`Resource` 数据各个阶段数据通过这个 id 进行上下文串联，所以如果集成方在使用 `Okhttp` 时，也加入 `addInterceptor` 并对数据进行二次处理使其发生大小改变，从而导致 id 各阶段计算不一致，导致数据丢失。这个问题可以通过自定义 `addInterceptor` 位置顺序，让 SDK 方法第一时间去计算 id，可以解决这个问题。详细见 [ManualActivity](https://github.com/GuanceDemo/guance-app-demo/blob/a57679eb287ba961f6607ca47048312e91635492/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt#L72) 中 `OKHttp` 自定义 `EventListener` 和 `Interceptor` 的例子。
 
 ## 数据丢失某个字段信息
 ### 用户数据字段
@@ -150,7 +158,7 @@ Plugin AOP ASM 插入之后，会在原工程代码基础上，会在 `OkHttpCli
 	```java
 	13:41:00.749 [FT-SDK]FTRUMConfigManager com.demo D  bindUserData xxxx
 	
-	///---> 你的数据操作 <-----
+	///---> 您的数据操作 <-----
 	
 	13:41:10.749 [FT-SDK]FTRUMConfigManager com.demo D unbindUserData
 	```

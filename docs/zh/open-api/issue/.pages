@@ -1,7 +1,14 @@
 nav:
+  - '获取某个Issue的所有回复信息': getissuereplylist.md
   - '查询所有的issue列表信息数据': list.md
   - '创建一个Issue消息': add.md
   - '修改一个Issue信息': modify.md
   - '创建一个issue评论': createissuereply.md
   - '修改issue评论': modifyissuereply.md
   - '删除issue对应的回复消息': deleteissuereply.md
+  - '添加异常追踪自定义等级': level-add.md
+  - '修改异常追踪自定义等级': level-modify.md
+  - '删除异常追踪自定义等级': level-delete.md
+  - '获取空间异常追踪默认配置状态': config-get.md
+  - '修改空间异常追踪默认配置状态': config-set.md
+  - '获取空间异常追踪默认配置列表': level-list.md

@@ -1,6 +1,75 @@
 # 更新日志
 ---
 
+## 1.16.0(2023/09/21) {#cl-1.16.0}
+本次发布属于迭代发布，主要有如下更新：
+
+### 新加功能 {#cl-1.16.0-new}
+
+- 新增 Neo4j 采集器（#1846）
+- [RUM](../integrations/rum.md#upload-delete) 采集器新增 sourcemap 文件上传、删除和校验接口，并移除 DCA 服务中 sourcemap 上传和删除接口 (#1860)
+- 新增 IBM Db2 采集器的监控视图和检测库（#1862）
+
+### 问题修复 {#cl-1.16.0-fix}
+
+- 修复环境变量 `ENV_GLOBAL_HOST_TAGS` 中使用 `__datakit_hostname` 无法获取主机 hostname 的问题 (#1874)
+- 修复 [host_processes](../integrations/host_processes.md) 采集器指标数据缺少 `open_files` 字段 (#1875)
+- 修复 Pinpoint 采集器 resource 大量为空的情况和 Pinpoint 占用内存过高问题 (#1857 #1849)
+
+### 功能优化 {#cl-1.16.0-opt}
+
+- 优化 Kubernetes 指标采集和对象采集的效率 (#1854)
+- 优化日志采集的 metrics 输出 (#1881)
+- Kubernetes Node 对象采集添加 unschedulable 和 node_ready 两个新字段 (#1886)
+- [Oracle 采集器](../integrations/oracle.md)支持 Linux ARM64 架构（#1859）
+- `logstreaming` 采集器增加集成测试（#1570）
+- [Datakit 开发文档](development.md)中增加 IBM Db2 采集器内容（#1870）
+- [Kafka](../integrations/kafka.md)、[MongoDB](../integrations/mongodb.md) 采集器文档完善（#1883）
+- [MySQL](../integrations/mysql.md) 采集器监控帐号创建时，MySQL 8.0+ 默认采用 `caching_sha2_password` 加密方式 (#1882)
+- 优化 [`bug report`](why-no-data.md#bug-report) 命令采集 syslog 文件过大问题（#1872）
+
+### Breaking Changes {#cl-1.16.0-bc}
+
+- 删除 DCA 服务中的 sourcemap 文件上传和删除接口，相关接口移至 [RUM](../integrations/rum.md#upload-delete) 采集器
+
+---
+
+## 1.15.1(2023/09/12) {#cl-1.15.1}
+
+### 问题修复 {#cl-1.15.1-fix}
+
+- 修复 logfwd 重复采集的问题
+
+---
+
+## 1.15.0(2023/09/07) {#cl-1.15.0}
+本次发布属于迭代发布，主要有如下更新：
+
+### 新加功能 {#cl-1.15.0-new}
+
+- [Windows](datakit-install.md#resource-limit) 支持内存/CPU 限制（#1850）
+- 新增 [IBM Db2 采集器](../integrations/db2.md)（#1818）
+
+### 问题修复 {#cl-1.15.0-fix}
+
+- 修复容器采集配置 include/exclude 的 double star 问题 (#1855)
+- 修复一处 k8s Service 对象数据的字段错误
+
+### 功能优化 {#cl-1.15.0-opt}
+
+- [DataKit 精简版](datakit-install.md#lite-install)支持[日志](../integrations/logging.md)采集（#1861）
+- [Bug Report](why-no-data.md#bug-report) 支持禁用 profile 数据采集（避免给当前 Datakit 造成压力）（#1868）
+- Pipeline
+    - 增加函数 `parse_int()` 和 `format_int()`（#1824）
+    - 数据聚合函数 `agg_create()` 和 `agg_metric()` 支持输出任意类别的数据（#1865）
+- 优化 Datakit 镜像大小（#1869）
+- 文档
+    - 增加[Datakit 指标性能测试报告](../integrations/datakit-metric-performance.md)（#1867）
+    - 增加[external 采集器的使用文档](../integrations/external.md)（#1851）
+    - 增加不同 Trace 传递说明的[文档](../integrations/tracing-propagator.md)（#1824）
+
+---
+
 ## 1.14.2(2023/09/04) {#cl-1.14.2}
 
 ### 问题修复 {#cl-1.14.2-fix}
@@ -50,7 +119,7 @@
 
 ### 兼容调整 {#cl-1.14.0-brk}
 
-- 移除 Datakit 端的 Sinker 功能，将其功能转移到 [Dataway 侧实现](dataway-sink.md)（#1801）
+- 移除 Datakit 端的 Sinker 功能，将其功能转移到 [Dataway 侧实现](../deployment/dataway-sink.md)（#1801）
 - 移除 Kubernetes Deployment 指标数据的 `pasued` 和 `condition` 字段，新增对象数据 `paused` 字段
 
 ---
@@ -487,7 +556,7 @@
 ### 功能优化 {#cl-1.5.9-opt}
 
 - 优化升级功能，避免 *datakit.conf* 文件被破坏(#1449)
-- 优化 [cgroup 配置](datakit-conf.md#enable-cgroup)，移除 CPU 最小值限制(#1538)
+- 优化 [cgroup 配置](datakit-conf.md#resource-limit)，移除 CPU 最小值限制(#1538)
 - 优化 *self* 采集器，我们能选择是否开启该采集器，同时对其采集性能做了一些优化(#1386)
 - 由于有了新的故障排查手段，简化了现有 monitor 展示(#1505)
 - [Prom 采集器](prom.md)允许增加 *instance tag*，以保持跟原生 Prometheus 体系一致(#1517)
@@ -526,7 +595,7 @@
 ### 功能优化 {#cl-1.5.8-opt}
 
 - 补全 Jenkins 采集器内存有关的指标(#1489)
-- 完善 [cgroup v2](datakit-conf.md#enable-cgroup) 支持(#1494)
+- 完善 [cgroup v2](datakit-conf.md#resource-limit) 支持(#1494)
 - Kubernetes 安装时增加环境变量（`ENV_CLUSTER_K8S_NAME`）来配置 cluster 名称(#1504)
 - Pipeline
     - [`kv_split()`](../developers/pipeline/pipeline-built-in-function.md#fn-kv_split) 函数增加强制保护措施，避免数据膨胀(#1510)

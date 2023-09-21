@@ -1,7 +1,6 @@
 # Android 应用接入
 ---
 
-## 简介
 
 观测云应用监测能够通过收集各个 Android 应用的指标数据，以可视化的方式分析各个 Android 应用端的性能。
 
@@ -11,7 +10,7 @@
 - 配置 [RUM 采集器](../../integrations/rum.md)；
 - DataKit 配置为[公网可访问，并且安装 IP 地理信息库](../../datakit/datakit-tools-how-to.md#install-ipdb)。
 
-## Android 应用接入 {#android-integration} 
+## 应用接入 {#android-integration} 
 
 登录观测云控制台，进入**用户访问监测**页面，点击左上角 **[新建应用](../index.md#create)**，即可开始创建一个新的应用。
 
@@ -179,7 +178,7 @@ android{
 	}
     ```
 
-理论上最佳初始化 SDK 的位置在 `Application` 的 `onCreate` 方法中，如果你的应用还没有创建 `Application`，你需要创建一个，并且在 `AndroidManifest.xml` 中 `Application` 中声明，示例请参考[这里](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/AndroidManifest.xml)
+理论上最佳初始化 SDK 的位置在 `Application` 的 `onCreate` 方法中，如果您的应用还没有创建 `Application`，您需要创建一个，并且在 `AndroidManifest.xml` 中 `Application` 中声明，示例请参考[这里](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/AndroidManifest.xml)
 
 ```xml
 <application 
@@ -1564,6 +1563,70 @@ SDK 为更好关联相同用户数据，会使用 Android ID。如果需要在�
 
 	//用户同意隐私协议后再开启
 	FTSdk.setEnableAccessAndroidID(true);
+	```
+#### 延迟初始化 SDK
+如果需要在应用中延迟加载 SDK，建议使用如下方式初始化。
+
+=== "Java"
+
+	```java
+	// Application
+	public class DemoApplication extends Application {
+		@Override
+		public void onCreate() {
+		    //如果已经同意协议，在 Application 中初始化
+			if(agreeProtocol){
+				FTSdk.init();
+			}
+		}
+	}
+	
+	// 隐私声明  Activity 页面
+	public class MainActivity extends Activity {
+		@Override
+		protected void onCreate(Bundle savedInstanceState) {
+			//未阅读隐私声明
+			if ( notReadProtocol ) {
+			    //隐私声明弹出弹窗
+				showProtocolView();
+	
+			    //如果同意隐私声明
+				if( agreeProtocol ){
+					FTSdk.init();
+				}
+			}
+		}
+	}
+	```
+	
+=== "Kotlin"
+
+	```kotlin
+	// Application	
+	class DemoApplication : Application() {
+	    override fun onCreate() {
+	        // 如果已经同意协议，在 Application 中初始化
+	        if (agreeProtocol) {
+	            FTSdk.init()
+	        }
+	    }
+	}
+	
+	// 隐私声明 Activity 页面
+	class MainActivity : Activity() {
+	    override fun onCreate(savedInstanceState: Bundle?) {
+	        // 未阅读隐私声明
+	        if (notReadProtocol) {
+	            // 隐私声明弹出弹窗
+	            showProtocolView()
+	
+	            // 如果同意隐私声明
+	            if (agreeProtocol) {
+	                FTSdk.init()
+	            }
+	        }
+	    }
+	}
 	```
 
 ### 无法使用 ft-plugin 情况下如何接入 SDK {#manual-set}

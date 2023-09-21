@@ -18,11 +18,12 @@ Corefile # CoreDNS
 Couchbase
 DBCP
 DDTrace
+DIMM
 DKProto
 DKSpan
-Dataflux
 DaemonSet
 DataDog
+Dataflux
 Datakit
 Dataway
 DialTesting
@@ -34,6 +35,7 @@ Fastjson
 Filebeat
 Flink
 Fluentd
+Gaussdb
 GitLab
 Goroutine
 Gson
@@ -44,6 +46,7 @@ Hbase
 IPDB
 Informix
 InnoDB
+Innodb
 Inode
 JTDS
 JXMFetch
@@ -57,8 +60,6 @@ Log4j
 Logback
 Loki
 Minio
-Gaussdb
-Innodb
 MkDocs
 MyISAM
 NGINX
@@ -90,14 +91,19 @@ Sinker
 SkyWalking
 Solr
 Stddev
+Tablespace
 Tencent
 Uprobe
 Vertx
+Wakeup
 Weblogic
 Websphere
+XDA
+Zadigx
 Zipkin
 apiserver
 cgroup
+clidriver
 configfile
 containerd
 datagram
@@ -116,6 +122,7 @@ logfwdserver
 macOS
 mcache
 mysqld
+netflow
 nginx
 nsec
 nullable
@@ -130,13 +137,10 @@ tcmalloc
 unflushed
 usec
 vmalloc
+wakeup
 workqueue
 xpack
 zhangsan
-netflow
-Wakeup
-wakeup
-Zadigx
 
 # 缩写
 CNCF
