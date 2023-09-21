@@ -29,7 +29,6 @@ icon: zy/release-notes
 - [异常追踪](../exception/issue.md#level)：【等级】支持自定义创建；支持启用/禁用默认等级。
 - **集成 > 扩展**：DataFlux Func 托管版和 RUM Headless 现支持海外站点：俄勒冈，法兰克福，新加坡。
 
-
 ### 集成更新
 
 华为云：

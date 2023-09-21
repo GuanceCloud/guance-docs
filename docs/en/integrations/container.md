@@ -247,6 +247,36 @@ The metric of containers, only supported Running status.
 
 
 
+#### `kubernetes`
+
+The count of the Kubernetes resource.
+
+- Tags
+
+
+| Tag | Description |
+|  ----  | --------|
+|`namespace`|namespace|
+
+- Metrics
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`cronjob`|CronJob count|int|-|
+|`daemonset`|Service count|int|-|
+|`deployment`|Deployment count|int|-|
+|`job`|Job count|int|-|
+|`node`|Node count|int|-|
+|`pod`|Pod count|int|-|
+|`replicaset`|ReplicaSet count|int|-|
+|`service`|Service count|int|-|
+|`statefulset`|StatefulSet count|int|-| 
+
+
+
+
+
 #### `kube_cronjob`
 
 The metric of the Kubernetes CronJob.
@@ -618,6 +648,10 @@ The object of containers, only supported Running status.
 
 
 
+
+
+
+
 #### `kubernetes_cron_jobs`
 
 The object of the Kubernetes CronJob.
@@ -808,6 +842,8 @@ The object of the Kubernetes Node.
 |`age`|Age (seconds)|int|s|
 |`kubelet_version`|Kubelet Version reported by the node.|string|-|
 |`message`|Object details|string|-|
+|`node_ready`|NodeReady means kubelet is healthy and ready to accept pods (true/false/unknown)|string|-|
+|`unschedulable`|Unschedulable controls node `schedulability` of new pods (yes/no).|string|-|
 
 
 
@@ -1016,6 +1052,10 @@ The logging of the container.
 |`message`|The text of the logging.|string|-|
 |`message_length`|The length of the message content.|B|count|
 |`status`|The status of the logging, only supported `info/emerg/alert/critical/error/warning/debug/OK/unknown`.|string|-| 
+
+
+
+
 
 
 
