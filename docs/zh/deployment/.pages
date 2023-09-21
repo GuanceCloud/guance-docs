@@ -50,6 +50,9 @@ nav:
         - "业务组件":
           - "Launcher": Launcher-deployment.md
           - "Proxy": Proxy-deployment.md
+      - "单机环境部署":
+        - "资源、系统要求": single-required.md
+        - "离线部署": single-deploy.md
   - '开始使用':
     - "如何开始": how-to-start.md
     - "升级商业版": upgrade-version.md
