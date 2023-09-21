@@ -1,6 +1,8 @@
 ARG release_env
 ARG GUANCE_HELPS_OSS_AK_ID
 ARG GUANCE_HELPS_OSS_AK_SECRET
+ARG GUANCE_HELPS_CDN_AK_ID
+ARG GUANCE_HELPS_CDN_AK_SECRET
 ARG GUANCE_HELPS_OSS_BUCKET
 ARG GUANCE_HELPS_OSS_ENDPOINT
 # 配置文档索引搜索的ES实例信息
@@ -12,6 +14,8 @@ FROM registry.jiagouyun.com/basis/mkdocs:2.3 as build
 ARG release_env
 ARG GUANCE_HELPS_OSS_AK_ID
 ARG GUANCE_HELPS_OSS_AK_SECRET
+ARG GUANCE_HELPS_CDN_AK_ID
+ARG GUANCE_HELPS_CDN_AK_SECRET
 ARG GUANCE_HELPS_OSS_BUCKET
 ARG GUANCE_HELPS_OSS_ENDPOINT
 # 配置文档索引搜索的ES实例信息
@@ -63,7 +67,7 @@ RUN \
         tools/ossutil64 cp site/en ${OSS_UPLOAD_PATH}/en -r -f -e ${GUANCE_HELPS_OSS_ENDPOINT} -i ${GUANCE_HELPS_OSS_AK_ID} -k ${GUANCE_HELPS_OSS_AK_SECRET}; \
         tools/ossutil64 cp tools/rum-config.js ${OSS_UPLOAD_PATH}/assets/javascripts/rum-config.js -r -f -e ${GUANCE_HELPS_OSS_ENDPOINT} -i ${GUANCE_HELPS_OSS_AK_ID} -k ${GUANCE_HELPS_OSS_AK_SECRET}; \
         echo "refresh CDN ..." ; \
-        python tools/cdn-refresh-tool.py Directory ${CDN_REFRESH_PATH} -i ${GUANCE_HELPS_OSS_AK_ID} -k ${GUANCE_HELPS_OSS_AK_SECRET}; \
+        python tools/cdn-refresh-tool.py Directory ${CDN_REFRESH_PATH} -i ${GUANCE_HELPS_CDN_AK_ID} -k ${GUANCE_HELPS_CDN_AK_SECRET}; \
     fi
 
 # build static site
