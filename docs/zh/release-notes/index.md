@@ -8,21 +8,27 @@ icon: zy/release-notes
 
 ## 2023 年 9 月 21 日
 
+<video controls="controls" poster="https://static.guance.com/dataflux/help/video/20230921.jpg" >
+      <source id="mp4" src="​https://static.guance.com/dataflux/help/video/20230921.mp4" type="video/mp4">
+</video>
+
 ### 观测云更新
 
 - 日志：
-    - 数据转发：新增外部存储转发规则数据查询；
-    - 绑定索引：日志易新增标签绑定。
+    - 数据转发：新增外部存储转发规则数据查询；支持启用/禁用转发规则；
+    - 绑定索引：日志易新增标签绑定，从而实现更细颗粒度的数据范围查询授权能力。
 - 基础设施 > [自定义](../infrastructure/custom/index.md)：
     - 【默认属性】这一概念更改为【必有属性】：上报的数据中必须包含该属性字段，否则将会上报失败；
+    - 支持将自定义对象添加至二级菜单，便于查看。
     - 自定义查看器新增快捷筛选。
 - 场景：
-    - [定时报告](../scene/report.md)：新增了【钉钉】【企业微信】【飞书】三种通知方式；
+    - [定时报告](../scene/report.md)：新增【钉钉】【企业微信】【飞书】三种通知方式；
     - 图表：【时序图、饼图、柱状图、直方图、散点图、气泡图、表格图、矩形树图、漏斗图、排行榜、地图、蜂窝图】新增数据格式，可以定义【小数位数】以及【千分位分隔符】。
 - 监控 > [通知对象管理](../monitoring/notify-object.md)：邮件组类型下架，已创建的不受影响。
 - 快照：[分享快照](../getting-started/function-details/snapshot.md#share)：新增 IP 白名单访问限制。
-- [异常追踪](../exception/issue.md#level)：【等级】支持自定义创建。
+- [异常追踪](../exception/issue.md#level)：【等级】支持自定义创建；支持启用/禁用默认等级。
 - **集成 > 扩展**：DataFlux Func 托管版和 RUM Headless 现支持海外站点：俄勒冈，法兰克福，新加坡。
+
 
 ### 集成更新
 
