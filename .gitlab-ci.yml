@@ -66,6 +66,8 @@ buildMain:
       --build-arg release_env="saas_production"
       --build-arg GUANCE_HELPS_OSS_AK_ID="${GUANCE_HELPS_OSS_AK_ID}"
       --build-arg GUANCE_HELPS_OSS_AK_SECRET="${GUANCE_HELPS_OSS_AK_SECRET}"
+      --build-arg GUANCE_HELPS_CDN_AK_ID="${GUANCE_HELPS_CDN_AK_ID}"
+      --build-arg GUANCE_HELPS_CDN_AK_SECRET="${GUANCE_HELPS_CDN_AK_SECRET}"
       --build-arg GUANCE_HELPS_OSS_BUCKET="${GUANCE_HELPS_OSS_BUCKET}"
       --build-arg GUANCE_HELPS_OSS_ENDPOINT="${GUANCE_HELPS_OSS_ENDPOINT}"
       --build-arg ES_VAR_DOC_SEARCH_TEST=$ES_VAR_DOC_SEARCH_TEST
