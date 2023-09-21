@@ -4,7 +4,7 @@
 
 ???+ quote "更新日志"
 
-    **2023.9.21**：新增外部存储转发规则数据查询入口。
+    **2023.9.21**：新增外部存储转发规则数据查询入口；支持启用/禁用转发规则。
 
     **2023.9.7**：原【备份日志】正式更名为【数据转发】。
 
@@ -251,15 +251,13 @@
 
 ![](img/rule-update.png)
 
-:material-numeric-1-circle-outline: [时间控件](../getting-started/function-details/explorer-search.md#time) ：通过选择时间范围筛选查看数据转发；  
+:material-numeric-1-circle-outline: 支持输入规则名称进行搜索； 
 
-:material-numeric-2-circle-outline: [搜索和筛选](../getting-started/function-details/explorer-search.md#search) ：通过搜索关键字或者筛选字段的方式查看和分析数据转发；  
+:material-numeric-2-circle-outline: 您可以选择启用、禁用当前规则；
 
-:material-numeric-3-circle-outline: 您可以选择启用、禁用当前规则； 
+:material-numeric-3-circle-outline: 点击规则右侧 :material-text-search: 、编辑、 :fontawesome-regular-trash-can: 按钮，即可进行相应操作。
 
-:material-numeric-4-circle-outline: 点击规则右侧 :material-text-search: 、编辑、 :fontawesome-regular-trash-can: 按钮，即可进行相应操作。
-
-**注意**：若需要修改创建的转发规则，可删除规则后再创建新的转发规则。规则删除后已转发的数据不会被删除，但不再产生新的转发数据。
+**注意**：规则删除后已转发的数据不会被删除，但不再产生新的转发数据。
 
 :material-numeric-5-circle-outline: 您可以选中多个规则进行批量操作。
 
@@ -267,11 +265,22 @@
 
 ### 转发规则查看器
 
-回到**数据转发**页面，您可以在**转发规则** tab 页根据时间筛选出对应有效的外部存储数据：
+回到**数据转发**页面，默认进入**转发规则** tab 页。首先在下拉框选定规则，在右上角时间控件处选择日期。此时，右侧会出现在该日期下存在数据的小时区间，您可按需选择。
+
+![](img/rule-update-3.png)
+
+**注意**：
+
+- 您可以输入关键字来搜索查询匹配数据； 
+- 时间控件默认为空，选定日期后再选择小时。会根据转发规则列出可点击的小时选项；   
+
+<img src="../img/rule-update-4.png" width="60%" >
+
+- 观测云会根据选中的小时按批次获取文件搜索匹配数据，直至满足每次返回数据的最低数量要求，每批 10 条数据。若每批次未查询到数据，您可以选择继续往后扫描直至扫描完成。
+- 由于查询到的数据为乱序状态，您可以针对列出的数据的时间范围做排序。此行为不会影响数据查询结果。
 
 
-
-在索引下，您可以查看观测云历史备份日志和 SLS Query Logstore 数据：
+在**索引**下，您可以查看观测云历史备份日志和 SLS Query Logstore 数据：
 
 ![](img/rule-update-2.png)
 
