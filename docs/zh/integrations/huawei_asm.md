@@ -132,3 +132,32 @@ traces/apm:
 点击一条trace查看详细信息
 
 ![img](imgs/huawei_asm/huawei_asm11.png)
+
+### 指标数据发送到观测云
+#### 指标采集配置 ####
+1. DataKit开启Prometheus Exportter数据采集，可以参考[Prometheus Exportter](https://docs.guance.com/integrations/prom/#__tabbed_1_2)，configmap如下：
+
+   ``` yaml
+       prom.conf: |
+         [[inputs.prom]]
+           urls = ["http://istiod.istio-system:15014/metrics"] ##istiod地址
+           uds_path = ""
+           ignore_req_err = false
+           source = "prom"
+           measurement_prefix = ""
+           measurement_name = "istio_prom"
+   ```
+
+2. 挂载配置文件
+
+   ``` yaml
+           - mountPath: /usr/local/datakit/conf.d/prom/prom.conf
+             name: datakit-conf
+             subPath: prom.conf
+   ```
+
+3. 重新部署DataKit
+
+   ``` yaml
+   Kubectl apply -f datakit.yml 
+   ```
