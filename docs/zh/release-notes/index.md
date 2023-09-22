@@ -9,7 +9,7 @@ icon: zy/release-notes
 ## 2023 年 9 月 21 日
 
 <video controls="controls" poster="https://static.guance.com/dataflux/help/video/20230921.jpg" >
-      <source id="mp4" src="​https://static.guance.com/dataflux/help/video/20230921.mp4" type="video/mp4">
+      <source id="mp4" src="https://static.guance.com/dataflux/help/video/20230921.mp4" type="video/mp4">
 </video>
 
 ### 观测云更新

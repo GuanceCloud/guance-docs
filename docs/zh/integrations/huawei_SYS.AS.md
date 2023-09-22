@@ -1,7 +1,7 @@
 ---
 title: 'HUAWEI SYS.AS'
-summary: '使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云'
-__int_icon: 'icon/huawei_SYS.AS'
+summary: '华为SYS.AS的核心性能指标包括CPU利用率、内存使用率、磁盘I/O、网络吞吐量和系统负载等，这些都是评估和优化自动缩放系统性能的关键指标。'
+__int_icon: 'icon/huawei_SYS_AS'
 dashboard:
 
   - desc: 'HUAWEI SYS.AS 内置视图'
@@ -13,12 +13,12 @@ monitor:
 
 ---
 
-
 <!-- markdownlint-disable MD025 -->
+
 # HUAWEI SYS.AS
 <!-- markdownlint-enable -->
 
-HUAWEI SYS.AS的展示指标包括响应时间、并发连接数、吞吐量和可靠性，这些指标反映了SYS.AS在处理应用程序请求和数据交互时的性能表现和稳定性。
+华为SYS.AS的核心性能指标包括CPU利用率、内存使用率、磁盘I/O、网络吞吐量和系统负载等，这些都是评估和优化自动缩放系统性能的关键指标。
 
 
 ## 配置 {#config}
@@ -35,7 +35,7 @@ HUAWEI SYS.AS的展示指标包括响应时间、并发连接数、吞吐量和�
 
 > 提示：请提前准备好符合要求的华为云 AK（简单起见，可直接授予全局只读权限`ReadOnlyAccess`）
 
-同步 HUAWEI SYS.AS 的监控数据，我们安装对应的采集脚本：「观测云集成（华为云-AS采集）」(ID：`guance_huaweicloud_cbr`)
+同步 HUAWEI SYS.AS 的监控数据，我们安装对应的采集脚本：「观测云集成（华为云-AS采集）」(ID：`guance_huaweicloud_as`)
 
 点击【安装】后，输入相应的参数：华为云 AK、华为云账户名。
 
@@ -60,10 +60,12 @@ HUAWEI SYS.AS的展示指标包括响应时间、并发连接数、吞吐量和�
 
 | 指标名称 | 描述 | 单位 | 维度 |
 | :---: | :---: | :---: | :---: |
-| Invocations | 规则为响应事件而调用目标的次数 | count | RuleName |
-| TriggeredRules | 已运行并与任何事件匹配的规则数量。 | count | RuleName |
-| Invocations | 规则为响应事件而调用目标的次数 | count | RuleName |
-| Invocations | 规则为响应事件而调用目标的次数 | count | RuleName |
+| cpu_util | 该指标用于统计弹性伸缩组的CPU使用率 | % | AutoScalingGroup |
+| instance_num | 该指标用于统计弹性伸缩组中可用的云服务器云主机数量 | count | AutoScalingGroup |
+| disk_read_bytes_rate | 该指标用于统计每秒从弹性伸缩组读出的数据量 | Byte/s | AutoScalingGroup |
+| disk_write_bytes_rate | 该指标用于统计每秒写到弹性伸缩组的数据量 | Byte/s | AutoScalingGroup |
+| mem_usedPercent | 该指标用于统计弹性伸缩组的（Agent）内存使用率 | % | AutoScalingGroup |
+| cpu_usage | 该指标用于统计弹性伸缩组的（Agent）CPU使用率 | % | AutoScalingGroup |
 
 ## 对象 {#object}
 
@@ -84,7 +86,6 @@ HUAWEI SYS.AS的展示指标包括响应时间、并发连接数、吞吐量和�
     "message"         : "{实例 JSON 数据}"
   }
 }
-
 
 ```
 
