@@ -37,6 +37,7 @@
     </li>
   {% else %}
     <li class="{{ class }}">
+      <span class="nav__prefix"></span>
       <a href="{{ toc_item.url | url }}" class="md-nav__link">
         {{ render_content(toc_item) }}
       </a>
