@@ -65,6 +65,7 @@ MyISAM
 NGINX
 Nacos
 Ning
+ODBC
 OpenSSL
 OpenTelemetry
 OpenTracing
