@@ -91,7 +91,18 @@ h4 {
   text-overflow: ellipsis;
   white-space: nowrap;
   max-width: 240px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.md-nav--secondary .md-nav__link .md-ellipsis {
   display: inline-block;
+  width: 100%;
+}
+
+.md-nav--secondary .left-md-nav__link {
+  position: relative;
+  top: -1px;
 }
 
 .md-nav__link[data-md-state='blur'] {
@@ -146,7 +157,10 @@ h4 {
 .md-nav__icon:hover {
   background-color: #fff;
 }
-
+.md-nav--primary .md-nav__link .md-nav__icon {
+  width: 10px;
+  height: 10px;
+}
 .md-nav--primary .md-nav__link .md-nav__icon::after {
   width: 10px;
   height: 10px;
@@ -403,9 +417,9 @@ h4 {
   margin-right: 0;
 }
 
-.md-nav__item--nested .md-nav__toggle:checked ~ .md-nav__link .md-nav__icon {
+/* .md-nav__item--nested .md-nav__toggle:checked ~ .md-nav__link .md-nav__icon {
   padding-top: 0.227rem;
-}
+} */
 
 .loginBtn {
   margin-left: 2rem;
@@ -612,6 +626,20 @@ h4 {
   width: 40px;
   height: 40px;
   fill: currentColor;
+}
+
+.md-nav--secondary .md-nav__link .md-nav__icon {
+  width: 10px;
+  height: 10px;
+  display: none;
+  margin-right: 4px;
+}
+.md-nav--secondary .md-nav__link:hover .md-nav__icon {
+  display: flex;
+}
+.md-nav--secondary .md-nav__link .md-nav__icon::after {
+  width: 10px;
+  height: 10px;
 }
 
 .md-content .widget-content .helpful-btn,
