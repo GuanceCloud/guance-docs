@@ -312,7 +312,7 @@ Based on the different types of external archives of backup logs in the current 
 
 ### Network Monitoring {#network}
 
-The number of hosts statistically reported by network data uploaded by eBPF in the workspace（each reporting network data host / days）.
+The number of hosts statistically reported by network data uploaded by eBPF in the workspace（each reporting network data host / day）.
 
 <font color=coral>**When settled in RMB**: </font>
 
@@ -357,7 +357,7 @@ The number of hosts statistically reported by network data uploaded by eBPF in t
 
 ### APM Traces {#trace}
 
-The number of traces in the uploaded link data is statistically counted. In general, if the `trace_id` of the span data is the same, these spans will be classified under one trace（per million traces / days）.
+The number of traces in the uploaded link data is statistically counted. In general, if the `trace_id` of the span data is the same, these spans will be classified under one trace（per million traces / day）.
 
 <font color=coral>**When settled in RMB**: </font>
 
@@ -400,7 +400,7 @@ The number of traces in the uploaded link data is statistically counted. In gene
 
 ### APM Profiles {#profile}
 
-The number of application performance profile data uploaded is statistically counted.（per million profile / days）.
+The number of application performance profile data uploaded is statistically counted.（per 10,000 profiles / day）.
 
 <font color=coral>**When settled in RMB**: </font>
 
@@ -443,7 +443,7 @@ The number of application performance profile data uploaded is statistically cou
 
 ### RUM PV {#pv}
 
-Statistical number of page views accessed by users that is reported. Generally, the number of view_id in the View data is used（every 10k PV / days）.
+Statistical number of page views accessed by users that is reported. Generally, the number of view_id in the View data is used（every 10k PV / day）.
 
 **Note**: Whether it is an SPA (single-page application) or an MPA (multi-page application), every time a user visits a page (including refresh or re-entry), it counts as 1 PV.
 

@@ -6,6 +6,13 @@ icon: zy/release-notes
 
 本文档记录观测云每次上线发布的更新内容说明，包括 DataKit、观测云最佳实践、观测云集成文档和观测云。
 
+## 2023 年 9 月 26 日
+
+### 观测云更新
+
+- 场景 > 服务管理：资源调用新增【上下游拓扑】组件，用户可查看当前资源的上下游资源调用关系。
+- 日志 > 数据转发：数据转发规则查询支持 RUM、APM 数据。
+
 ## 2023 年 9 月 21 日
 
 <video controls="controls" poster="https://static.guance.com/dataflux/help/video/20230921.jpg" >
