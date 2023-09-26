@@ -3,18 +3,13 @@
 
 ## 前置条件
 
-- 安装 DataKit（[DataKit 安装文档](../../datakit/datakit-install.md)）
+- 安装 [DataKit](../../datakit/datakit-install.md)。
 
 ## 应用接入
 
-当前 React Native 版本暂只支持 Android 和 iOS 平台。登录观测云控制台，进入「用户访问监测」页面，点击左上角「新建应用」，即可开始创建一个新的应用。
+当前 React Native 版本暂只支持 Android 和 iOS 平台。登录观测云控制台，进入**用户访问监测**页面，点击左上角 **[新建应用](../index.md#create)**，即可开始创建一个新的应用。
 
-1.输入「应用名称」、「应用ID」，选择平台对应「应用类型」
-
-- 应用名称：用于识别当前用户访问监测的应用名称。
-- 应用 ID ：应用在当前工作空间的唯一标识，对应字段：app_id 。该字段仅支持英文、数字、下划线输入，最多 48 个字符。
-
-![](../img/image_12.png)![](../img/image_13.png)
+![](../img/image_13.png)
 
 ## 安装
 ![](https://img.shields.io/badge/dynamic/json?label=npm&color=orange&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/react-native/version.json&link=https://github.com/GuanceCloud/datakit-react-native) ![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://static.guance.com/ft-sdk-package/badge/react-native/info.json&link=https://github.com/GuanceCloud/datakit-flutter)
@@ -74,7 +69,7 @@ let config: FTMobileConfig = {
 FTMobileReactNative.sdkConfig(config)
 ```
 
-| **字段** | **类型** | **必须** | **说明** |
+| 字段 | 类型 | 必须 | 说明 |
 | --- | --- | --- | --- |
 | serverUrl | string | 是 | datakit 安装地址 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529。注意：安装 SDK 设备需能访问这地址 |
 | debug | boolean | 否 | 设置是否允许打印日志，默认`false` |
@@ -101,7 +96,7 @@ let rumConfig: FTRUMConfig = {
 FTReactNativeRUM.setConfig(rumConfig);
 ```
 
-| **字段** | **类型** | **必须** | **说明** |
+| 字段 | 类型 | 必须 | 说明 |
 | --- | --- | --- | --- |
 | androidAppId | string | 是 | app_id，应用访问监测控制台申请 |
 | iOSAppId | string | 是 | app_id，应用访问监测控制台申请 |
@@ -127,7 +122,7 @@ let logConfig: FTLogConfig = {
 FTReactNativeLog.logConfig(logConfig);
 ```
 
-| **字段** | **类型** | **必须** | **说明** |
+| 字段 | 类型 | 必须 | 说明 |
 | --- | --- | --- | --- |
 | sampleRate | number | 否 | 采样率，采集率的值范围为>= 0、<= 1，默认值为 1 |
 | enableLinkRumData | boolean | 否 | 是否与 `RUM` 关联 |
@@ -146,7 +141,7 @@ FTReactNativeLog.logConfig(logConfig);
  FTReactNativeTrace.setConfig(traceConfig);
 ```
 
-| **字段** | **类型** | **必须** | **说明** |
+| 字段 | 类型 | 必须 | 说明 |
 | --- | --- | --- | --- |
 | sampleRate | number | 否 | 采样率，采集率的值范围为>= 0、<= 1，默认值为 1 |
 | traceType | enum TraceType | 否 | 链路类型，默认`TraceType.ddTrace` |
@@ -155,11 +150,11 @@ FTReactNativeLog.logConfig(logConfig);
 
 ## RUM 用户数据追踪
 
-SDK 提供 **自动采集** 和 **用户自定义采集** 两种采集方式追踪 **View** 、 **Action** 、 **Error** 、 **Resource** 四种类型的用户数据。
+SDK 提供**自动采集**和**用户自定义采集**两种采集方式追踪 **View**、**Action**、**Error**、**Resource** 四种类型的用户数据。
 
 ### 自动采集
 
-在 SDK 初始化 [RUM 配置](#rum-config) 时可开启自动采集 **Error** 、 **Resource** 、 **Action** （`React Native` 控件、`Native`控件）、 **View** （`Native View`）。
+在 SDK 初始化 [RUM 配置](#rum-config) 时可开启自动采集 **Error**、**Resource**、**Action**（`React Native` 控件、`Native`控件）、**View**（`Native View`）。
 
 如果您在 React Native 中使用 `react-native-navigation ` 或 `react-navigation ` 导航组件，可以参考下面方式进行 `React Native View`  的自动采集：
 
@@ -345,7 +340,7 @@ FTMobileReactNative.unbindRUMUserData()
 
 ### 静态使用
 
-1. 使用 `react-native-config`配置多环境，在不同的环境中设置对应的自定义标签值。
+1. 使用 `react-native-config` 配置多环境，在不同的环境中设置对应的自定义标签值。
 
 ```typescript
 let rumConfig: FTRUMConfig = {
@@ -367,7 +362,7 @@ let rumConfig: FTRUMConfig = {
 
 ### 动态使用
 
-1. 通过数据持久化方式，如 `AsyncStorage`等，在初始化 SDK 时，获取存储的自定义标签。
+1、通过数据持久化方式，如 `AsyncStorage` 等，在初始化 SDK 时，获取存储的自定义标签。
 
 ```typescript
  let rumConfig: FTRUMConfig = {
@@ -393,7 +388,7 @@ let rumConfig: FTRUMConfig = {
       })
 ```
 
-2. 在任意处添加或改变自定义标签到文件。
+2、在任意处添加或改变自定义标签到文件。
 
 ```typescript
 AsyncStorage.setItem("track_id",valueString,(error)=>{
@@ -405,12 +400,12 @@ AsyncStorage.setItem("track_id",valueString,(error)=>{
 })
 ```
 
-3. 最后重启应用。
+3、最后重启应用。
 
-> 注意：
-> 
-> 1. 特殊 key : track_id (在 RUM 中配置，用于追踪功能) 
-> 1. 当用户通过 globalContext 添加自定义标签与 SDK 自有标签相同时，SDK 的标签会覆盖用户设置的，建议标签命名添加项目缩写的前缀，例如 `df_tag_name`。项目中使用 `key` 值可[查询源码](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java)。
+**注意**：
+
+- 特殊 key : track_id (在 RUM 中配置，用于追踪功能) ；  
+- 当用户通过 globalContext 添加自定义标签与 SDK 自有标签相同时，SDK 的标签会覆盖用户设置的，建议标签命名添加项目缩写的前缀，例如 `df_tag_name`。项目中使用 `key` 值可[查询源码](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java)。
 
 ## 常见问题
 

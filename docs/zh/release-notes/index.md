@@ -6,10 +6,17 @@ icon: zy/release-notes
 
 本文档记录观测云每次上线发布的更新内容说明，包括 DataKit、观测云最佳实践、观测云集成文档和观测云。
 
+## 2023 年 9 月 26 日
+
+### 观测云更新
+
+- 场景 > 服务管理：资源调用新增【上下游拓扑】组件，用户可查看当前资源的上下游资源调用关系。
+- 日志 > 数据转发：数据转发规则查询支持 RUM、APM 数据。
+
 ## 2023 年 9 月 21 日
 
 <video controls="controls" poster="https://static.guance.com/dataflux/help/video/20230921.jpg" >
-      <source id="mp4" src="​https://static.guance.com/dataflux/help/video/20230921.mp4" type="video/mp4">
+      <source id="mp4" src="https://static.guance.com/dataflux/help/video/20230921.mp4" type="video/mp4">
 </video>
 
 ### 观测云更新
@@ -28,6 +35,7 @@ icon: zy/release-notes
 - 快照：[分享快照](../getting-started/function-details/snapshot.md#share)：新增 IP 白名单访问限制。
 - [异常追踪](../exception/issue.md#level)：【等级】支持自定义创建；支持启用/禁用默认等级。
 - **集成 > 扩展**：DataFlux Func 托管版和 RUM Headless 现支持海外站点：俄勒冈，法兰克福，新加坡。
+
 
 ### 集成更新
 
