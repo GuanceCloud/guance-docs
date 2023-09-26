@@ -103,6 +103,7 @@ h4 {
 .md-nav--secondary .left-md-nav__link {
   position: relative;
   top: -1px;
+  flex-grow: 0 !important;
 }
 
 .md-nav__link[data-md-state='blur'] {
@@ -648,11 +649,13 @@ h4 {
 }
 .md-nav--secondary .md-nav__item .nav__prefix {
   display: inline-block;
-  width: 14px;
+  width: 10px;
   height: 10px;
   opacity: 0;
 }
-
+.md-nav--secondary .left-md-nav__nav__container {
+  margin-top: 0 !important;
+}
 .md-content .widget-content .helpful-btn,
 .md-content .widget-content .helpful-btn-checked {
   margin-right: 40px;
@@ -661,6 +664,11 @@ h4 {
 .md-content .widget-content .improved-btn-checked {
   display: none;
   color: #f60 !important;
+}
+@media screen and (max-width: 76.1875em) {
+  .md-nav--secondary {
+    display: none !important;
+  }
 }
 
 @media screen and (max-width: 59.9375em) {
