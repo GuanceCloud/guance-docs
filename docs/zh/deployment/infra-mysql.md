@@ -127,6 +127,7 @@ MySQL 是最流行的关系型数据库管理系统，在 WEB 应用方面 MySQL
             volumeMounts:
             - mountPath: /var/lib/mysql
               name: db
+              subPath: data
             - mountPath: /etc/mysql/mysql.conf.d/mysqld.cnf
               name: config
               subPath: mysqld.cnf
@@ -134,6 +135,13 @@ MySQL 是最流行的关系型数据库管理系统，在 WEB 应用方面 MySQL
           restartPolicy: Always
           schedulerName: default-scheduler
           securityContext: {}
+          resources:
+            limits:
+              cpu: '4'
+              memory: 4Gi
+            requests:
+              cpu: 100m
+              memory: 512Mi           
           terminationGracePeriodSeconds: 30
           volumes:
           - name: db
