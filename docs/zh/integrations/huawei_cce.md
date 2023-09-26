@@ -2,6 +2,14 @@
 title: '使用观测云采集华为云CCE指标数据'
 summary: '观测云支持对 CCE 中各类资源的运行状态和服务能力进行监测，包括 Containers、Pods、Services、Deployments、Clusters、Nodes、Replica Sets、Jobs、Cron Jobs 等。'
 __int_icon: 'icon/huawei_cce'
+dashboard:
+
+  - desc: '华为云 CCE 监控视图'
+    path: 'dashboard/zh/huawei_cce'
+
+monitor:
+  - desc: '华为云 CCE 检测库'
+    path: 'monitor/zh/huawei_cce'
 ---
 
 <!-- markdownlint-disable MD025 -->
@@ -123,24 +131,45 @@ wget https://static.guance.com/datakit/datakit.yaml
 
 ##### 2. 修改 `datakit.yaml` 文件
 
-编辑 `datakit.yaml` 文件中数据网关 `dataway` 的配置，把 token 替换成工作空间的 token，添加k8s集群名称环境。
+编辑 `datakit.yaml` 文件中数据网关 `dataway` 的配置，把 `token` 替换成工作空间的 `token`
 
-```YAML
-        - name: ENV_DATAWAY
-          value: https://openway.guance.com?token=<your-token> # 此处填上 dataway 真实地址
-        - name: ENV_NAMESPACE
-          value: cluster_name_k8s=hwcce-k8s
-        - name: ENV_GLOBAL_ELECTION_TAGS
-          value: cluster_name_k8s=hwcce-k8s
+``` yaml
+1.  - name: ENV_DATAWAY
+2.    value: https://openway.guance.com?token=<your-token> # 此处填上 dataway 真实地址
 ```
 
-token 可以在观测云工作空间的「集成」-「Datakit」获取。
+```
+增加环境变量`ENV_NAMESPACE`设置集群名称，名称可以自定义，比如设置成`hwcce_k8s`：
+```
+
+``` yaml
+1. - name: ENV_NAMESPACE 
+     value: hwcce_k8s #此处填上 集群名称
+```
+
+​	增加环境变量`ENV_GLOBAL_ELECTION_TAGS`，设置选举类指标区分集群
+
+``` yaml
+1. - name: ENV_GLOBAL_ELECTION_TAGS
+2.   value: cluster_name_k8s=hwcce_k8s #此处填上 集群名称
+```
+
+​	修改环境变量`ENV_GLOBAL_TAGS`，设置非选举类指标设置全局tag
+
+``` yaml
+1. - name: ENV_GLOBAL_TAGS
+2.   value: host=__datakit_hostname,host_ip=__datakit_ip,cluster_name_k8s=hwcce_k8s #此处新增填上cluster_name_k8s 集群名称
+```
+
+`token` 可以在观测云工作空间的「集成」-「Datakit」获取。
 
 ![img](imgs/cce_im09.png)
 
- token 替换后，保存 `datakit.yaml` 文件
+替换修改后，保存 `datakit.yaml` 文件
 
 ![img](imgs/cce_im10.png)
+
+
 
 ##### 3. 安装 YAML 文件
 
