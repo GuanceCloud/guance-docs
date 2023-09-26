@@ -653,8 +653,8 @@ h4 {
   height: 10px;
   opacity: 0;
 }
-.md-nav--secondary .left-md-nav__nav__container {
-  margin-top: 0 !important;
+.md-nav--secondary .md-nav__container.left-md-nav__nav__container {
+  margin-top: 0.625em;
 }
 .md-content .widget-content .helpful-btn,
 .md-content .widget-content .helpful-btn-checked {
