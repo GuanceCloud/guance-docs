@@ -131,6 +131,8 @@ nav:
       - couchbase-prom.md
       - juicefs.md
       - 'IBM Db2': db2.md
+      - dm_v8.md
+      - dongfangtong_ths.md
 
     - '消息队列':
       - emqx.md
@@ -143,6 +145,7 @@ nav:
     - 'Web 服务器':
       - 'Nginx': nginx.md
       - apache.md
+      - resin.md
 
     - 'Java':
       - 'JVM': jvm.md
@@ -213,6 +216,7 @@ nav:
         - 'OTEL 和 DDTrace 链路串联': ddtrace-128-trace-id.md
       - 'jmxfetch 指标':
         - '指标暴露和自定义指标': ddtrace-jmxfetch.md
+      - nginx_tracing.md
 
     - 'SkyWalking':
       - skywalking.md
@@ -247,6 +251,10 @@ nav:
   - '语言':
     - 'Java': java.md
     - dotnet.md
+    - golang.md
+    - nodejs.md
+    - php.md
+
 
   - 用户访问监测（RUM）:
     - rum.md
@@ -256,6 +264,7 @@ nav:
     - '日志处理综述': datakit-logging-how.md
     - '日志采集':
       - logging.md
+      - ilogtail.md
       - 'Socket 接入示例': logging_socket.md
     - '其它日志接入':
       - 'LogStreaming': logstreaming.md

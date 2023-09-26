@@ -70,6 +70,13 @@
                   mountPath: /data
                 - name: config
                   mountPath: /usr/local/etc/redis
+              resources:
+                limits:
+                  cpu: '4'
+                  memory: 4Gi
+                requests:
+                  cpu: 100m
+                  memory: 512Mi            
           volumes:
             - name: data
               emptyDir: {}
