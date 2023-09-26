@@ -15,7 +15,7 @@ APM 通过 `DDTrace`、`Zipkin`、`Skywalking`、`Jaeger`、`Opentelemetry` 采�
 
 对应不同 APM 工具，具体 Access-Control-Allow-Headers 的请求头对应的 Key 如下：
 
-- ddtrace ：`x-datadog-parent-id`,`x-datadog-sampled`,`x-datadog-sampling-priority`,`x-datadog-trace-id`。
+- ddtrace ：`x-datadog-parent-id`,`x-datadog-origin`,`x-datadog-sampling-priority`,`x-datadog-trace-id`。
 - skywalking: `sw8`。
 - jaeger: `uber-trace-id`。
 - zipkin: `X-B3-TraceId`、`X-B3-SpanId`、`X-B3-ParentSpanId`、`X-B3-Sampled`、`X-B3-Flags`。

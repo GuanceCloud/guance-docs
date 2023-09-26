@@ -1,11 +1,11 @@
 # 如何配置应用性能监测采样
 ---
 
-## 简介
 
 观测云的**应用性能监测**功能支持对符合 Opentracing 协议的采集器所采集的链路数据进行分析和管理。默认情况下，按照全量的方式采集应用性能数据，即每次调用都会产生数据，若不加以限制，采集到的数据量大，会占用过多的数据存储。您可以通过设置采样的方式采集应用性能数据，节约数据存储量，降低成本费用。
 
 下面将以 <u>[DDtrace 采集器](../../integrations/ddtrace.md) 为例，介绍如何配置采样率为 5％ 的应用性能数据</u>。
+
 ## 前置条件
 
 - [注册登录观测云](https://auth.guance.com/login/pwd)；  
@@ -174,7 +174,7 @@ curl http://localhost:54322/stop
 
 ## 更多阅读
 
-> 以上是通过客户端配置应用性能监测的采样率，除了以上的方式以外，还可以直接通过 DataKit 配置采样率，只需开启应用性能采集器配置中的采样即可，更多关于采样说明可参考 [Datakit Samplers](../../datakit/datakit-tracing.md#samplers)。
+> 以上是通过客户端配置应用性能监测的采样率，除了以上的方式以外，还可以直接通过 DataKit 配置采样率，只需开启应用性能采集器配置中的采样即可，更多关于采样说明，可参考 [Datakit Samplers](../../integrations/datakit-tracing.md#samplers)。
 
 ```python
   ## Sampler config uses to set global sampling strategy.
@@ -183,4 +183,4 @@ curl http://localhost:54322/stop
     sampling_rate = 1.0
 ```
 
-> 设置应用性能采样后，有可能会错过重要的链路，您可以通过配置过滤器来保证上报关键的链路，如配置 `keep_rare_resource = true`，那么被判定为稀有的链路将会被直接上报到观测云。更多关于过滤器介绍可参考 [Datakit Filters](../../datakit/datakit-tracing.md#filters)。
+> 设置应用性能采样后，有可能会错过重要的链路，您可以通过配置过滤器来保证上报关键的链路，如配置 `keep_rare_resource = true`，那么被判定为稀有的链路将会被直接上报到观测云。更多关于过滤器介绍，可参考 [Datakit Filters](../../integrations/datakit-tracing.md#filters)。

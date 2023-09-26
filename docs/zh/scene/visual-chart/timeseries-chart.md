@@ -111,7 +111,21 @@
 
 :material-numeric-1-circle: 别名：在添加别名后，图例的名称也随之变化，方便更直观的区分相关指标。
 
-别名支持设置为变量 {{tags}}：例如 `country:china`，若输入多个用空格分隔：`country:china city:shanghai`；  
+别名支持设置为变量 {{tags}}：例如 `country:china`，若输入多个用空格分隔：`country:china city:shanghai`。
+
+示例：基于指标，别名的设置会出现以下场景：
+
+未添加别名效果：
+
+<img src="../../img/alias-1.png" width="60%" > 
+
+输入纯文本替换效果：
+
+<img src="../../img/alias-2.png" width="60%" > 
+
+基于 by 条件输入变量 {tags}}：
+
+<img src="../../img/alias-3.png" width="60%" >
 
 :material-numeric-2-circle: 位置：目前支持选择隐藏、底部、右侧图例（点击图例中的指标行，可隐藏/显示对应指标)。
 

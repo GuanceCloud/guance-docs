@@ -4,6 +4,11 @@ icon: zy/real-user-monitoring
 # 用户访问监测
 ---
 
+<video controls="controls" poster="https://static.guance.com/dataflux/help/video/rum.png" >
+      <source id="mp4" src="https://static.guance.com/dataflux/help/video/rum.mp4" type="video/mp4">
+</video>
+
+
 ## 为何需要用户访问监测（RUM）？
 
 云原生时代，如何提升用户体验成为企业关注的新命题。企业不仅需要观测全面、真实的数据来确保其系统的稳定性和可靠性，还需要快速监测用户的使用行为和遇到的问题。
