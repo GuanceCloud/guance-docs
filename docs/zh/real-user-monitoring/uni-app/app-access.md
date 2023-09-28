@@ -92,7 +92,7 @@
 | :------------ | :------- | :--- | ------------------------------------------------------------ |
 | serverUrl     | string   | 是   | datakit 安装地址 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529。注意：安装 SDK 设备需能访问这地址                                               |
 | debug         | boolean  | 否   | 设置是否允许打印 Debug 日志，默认`false`                            |
-| env    | string   | 否   | 环境，默认`prod`，任意字符，建议使用单个单词，例如 `test` 等 |
+| envType | string   | 否   | 环境，默认`prod`，任意字符，建议使用单个单词，例如 `test` 等 |
 | service       | string   | 否   | 设置所属业务或服务的名称 默认：`df_rum_ios`、`df_rum_android` |
 | globalContext | object   | 否   | 添加自定义标签                                               |
 | offlinePakcage | boolean   | 否   | 仅 Android 支持，是否使用离线打包，默认为 `false`，详细说明见[Android 云打包与离线打包区别](#package)       |
@@ -380,16 +380,16 @@ HTTP 请求结束
 
 #### content object
 
-| prototype      | 参数说明       |
-| -------------- | -------------- |
-| url            | 请求 url       |
-| httpMethod     | http 方法      |
-| requestHeader  | 请求头         |
-| responseHeader | 响应头         |
-| responseBody   | 响应结果       |
-| resourceStatus | 请求结果状态码 |
+| prototype      | 参数类型 | 参数说明       |
+| -------------- | -------- | -------------- |
+| url            | string   | 请求 url       |
+| httpMethod     | string   | http 方法      |
+| requestHeader  | object   | 请求头         |
+| responseHeader | object   | 响应头         |
+| responseBody   | string   | 响应结果       |
+| resourceStatus | string   | 请求结果状态码 |
 
-## Logger 日志打印 
+## Logger 日志打印
 
 ```javascript
 var logger = uni.requireNativePlugin("GCUniPlugin-Logger");
@@ -517,8 +517,6 @@ SDK 包结构说明
    因为 Xcode 12 提供的模拟器支持 arm64 架构，uni_app 提供的 framework 支持的是 arm64 的真机，x86_64 的模拟器。所以
 
    *  `Excluded Architectures` 设置 `Any iOS Simulator SDK` : `arm64`。
-
-   * `Pods` 工程里所有 Target 设置 `Build Active Architecture only` 设置为 NO。
 
 2. Other Linker Flags 
 

@@ -84,7 +84,7 @@ None yet.
 | :------------ | :------- | :--- | ------------------------------------------------------------ |
 | serverUrl     | string   | Yes   |The url of the datakit installation address, example: http://10.0.0.1:9529, port 9529. Datakit url address needs to be accessible by the device where the SDK is installed                                                  |
 | debug         | boolean  | No   | Set whether to allow printing of Debug logs, default  `false`                            |
-| env    | string   | No   | Environment, defaulting to `prod`, any character is allowed, preferably a single word, such as test, etc. |
+| envType | string   | No   | Environment, defaulting to `prod`, any character is allowed, preferably a single word, such as test, etc. |
 | service       | string   | No   | Set the name of the business or service to which it belongs by default: `df_rum_ios`, `df_rum_android` |
 | globalContext | object   | No   | Add custom labels                                               |
 | offlinePakcage | boolean   | No   | Only supported by Android, whether to use offline packaging, the default is `false`. For detailed Description, see [difference between Android cloud packaging and offline packaging](#package)       |
@@ -373,14 +373,14 @@ HTTP request ends:
 
 #### Content Object
 
-| prototype      | Parameter Description       |
-| -------------- | -------------- |
-| url            | Request url       |
-| httpMethod     | http method      |
-| requestHeader  | Request head         |
-| responseHeader | Response head         |
-| responseBody   | Response result       |
-| resourceStatus | Request result status code |
+| prototype      | Parameter Type | Parameter Description       |
+| -------------- | -------------- | -------------- |
+| url            | string | Request url       |
+| httpMethod     | string | http method      |
+| requestHeader  | object | Request head         |
+| responseHeader | object | Response head         |
+| responseBody   | string | Response result       |
+| resourceStatus | string | Request result status code |
 
 ## Logger Log Printing 
 
@@ -510,8 +510,6 @@ Drag the dependent libraries and dependent resource files **SDK** folder into th
    As the simulator provided by Xcode 12 supports the arm64 architecture, the framework provided by uni_app supports the real machine of arm64 and the simulator of x86_64. So:
 
    * `Excluded Architectures` sets `Any iOS Simulator SDK`: `arm64`.
-
-   * All Targets in the `Pods` project set `Build Active Architecture only` to NO.
 
 2. Other Linker Flags 
 
