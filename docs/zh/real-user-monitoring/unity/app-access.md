@@ -21,7 +21,7 @@
 
 **Demo 地址**：[https://github.com/GuanceCloud/datakit-unity/blob/dev/Assets/Scenes](https://github.com/GuanceCloud/datakit-unity/blob/dev/Assets/Scenes/ClickEvent.cs)
 
-* 下载最新 [ft-sdk-unity.unitypackage](https://static.guance.com/ft-sdk-package/unitypackage/ft-sdk-unity.unitypackage)
+* 下载最新 [ft-sdk-unity.unitypackage](https://static.guance.com/ft-sdk-package/unitypackage/alpha/ft-sdk-unity.unitypackage)
 
 ```
 Assets/Plugins
@@ -43,10 +43,13 @@ Assets/Plugins
 ```
 
 * `Asserts` -> `Import Package` -> `Custom Package...` 导入 `ft-sdk-unity.unitypackage`
-* 添加 json 解析第三方库 `"com.unity.nuget.newtonsoft-json"`，可以在 Pakcage Manager `Newtonsoft Json`  中搜索获取 
-*  将 `FTSDK.prefab` 拖拽至第一个场景页面，并在 `FTSDK.cs` 中 `_InitSDK` 方法中初始化 SDK，如果原生 Android 和 iOS 工程原本就集成了 SDK，需要注释 `_InitSDK`方法，避免重复设置
+* 添加 json 解析第三方库 `"com.unity.nuget.newtonsoft-json"`，可以在 `Pakcage Manager` -> `Add Package by name ...` 
+*  将 `FTSDK.prefab` 拖拽至第一个场景页面，并在 `FTSDK.cs` 中 `_InitSDK` 方法中初始化 SDK，如果原生 Android 和 iOS 工程已集成了原生 SDK，需要注释 `_InitSDK`方法，避免重复设置
 *  将 `FTViewObserver.prefab`拖拽至其他场景页面，来达到页面 `View` 生命周期监听的目的，包括应用休眠和唤醒
 *  通过 `Application.logMessageReceived` 监听转化 Unity 崩溃数据和普通日志数据，见 `FTSDK.cs` `OnEnable` `OnDisable` 方法
+
+>注意：如果已经集成原生 SDK Android gson-2.8.5.jar、ft-sdk-release.aar	，iOS FTMobileSDK.framework 可以在项目中移除。
+> 另外，Android  Okhttp 请求和启动耗时功能，需要配合 ft-plugin 使用，详细配置请见 [Android SDK](../android/app-access.md#gradle-setting) 
 
 ## 初始化
 ```csharp
