@@ -5,7 +5,7 @@
 - 安装 DataKit（[DataKit 安装文档](../../datakit/datakit-install.md)）
 
 ## 应用接入 {#integration}
-当前 CPP 版本暂时支持 Windows 和 Linux 平台。登录观测云控制台，进入「用户访问监测」页面，点击左上角「新建应用」，即可开始创建一个新的应用。
+当前 Charp 版本暂时支持 Windows 和 Linux 平台。登录观测云控制台，进入「用户访问监测」页面，点击左上角「新建应用」，即可开始创建一个新的应用。
 
 1.输入「应用名称」、「应用ID」，选择 「自定义」 应用类型
 
@@ -17,7 +17,7 @@
 ## 安装 {#install}
 
 - 安装 [C++ SDK](../cpp/app-access.md#install)
--  使用 C# [FTWrapper.cs](https://github.com/GuanceCloud/datakit-cpp/blob/develop/src/datakit-sdk-cpp/ft-sdk-wrapper-sample/FTWrapper.cs) 
+- 使用 C# [FTWrapper.cs](https://github.com/GuanceCloud/datakit-cpp/blob/develop/src/datakit-sdk-cpp/ft-sdk-wrapper-sample/FTWrapper.cs) 
 -  调整 dll FTWrapper.cs 路径	
 
 ```csharp
@@ -81,8 +81,8 @@ FTWrapper.InitRUMConfig(@"
 
 | **字段** | **类型** | **必须** | **说明** |
 | --- | --- | --- | --- |
-| rumAppId | string | 是 | 对应设置 RUM `appid`，才会开启`RUM`的采集功能，[获取 appid 方法](#integration) |
-| samplingRate | float | 否 | 采集率的值范围为>= 0、<= 1，默认值为 1 |
+| appId | string | 是 | 对应设置 RUM `appid`，才会开启`RUM`的采集功能，[获取 appid 方法](#integration) |
+| sampleRate | float | 否 | 采集率的值范围为>= 0、<= 1，默认值为 1 |
 | extraMonitorTypeWithError | string | 否 | 添加附加监控数据到 `Rum` 崩溃数据中，`memory` 为内存用量，`cpu` 为 CPU 占有率，`all` 为全部 |
 | globalContext | dictionary | 否 | 添加标签数据，用于用户监测数据源区分，如果需要使用追踪功能，则参数 `key` 为 `track_id` ,`value` 为任意数值。添加规则请查阅 [此处](#key-conflict) |
 
@@ -101,7 +101,7 @@ FTWrapper.InitLogConfig(@"
 
 | **字段** | **类型** | **必须** | **说明** |
 | --- | --- | --- | --- |
-| samplingRate | float | 否 | 采集率的值范围为>= 0、<= 1，默认值为 1 |
+| sampleRate | float | 否 | 采集率的值范围为>= 0、<= 1，默认值为 1 |
 | globalContext | dictionary | 否 | 添加标签数据，添加规则请查阅 [此处](#key-conflict)  |
 | logLevelFilters | array | 否 | 设置等级日志过滤，`ok`，`info`，`warning`，`error`，`critical`，默认不设置 |
 | enableCustomLog | bool | 否 | 是否上传自定义日志 ，默认为 `false` |
@@ -119,7 +119,7 @@ FTWrapper.InitTraceConfig(@"
 
 | **字段** | **类型** | **必须** | **说明** |
 | --- | --- | --- | --- |
-| samplingRate | float | 否 | 采集率的值范围为>= 0、<= 1，默认值为 1 |
+| sampleRate | float | 否 | 采集率的值范围为>= 0、<= 1，默认值为 1 |
 | traceType | enum | 否 | 默认为 `ddtrace`，目前支持 `zipkin` , `jaeger`, `ddtrace`，`skywalking` (8.0+)，`traceParent` (W3C)，如果接入 OpenTelemetry 选择对应链路类型时，请注意查阅支持类型及 agent 相关配置  |
 | enableLinkRUMData | bool | 否 | 是否与 RUM 数据关联，默认为 `false` |
 
@@ -238,11 +238,11 @@ FTWrapper.StopResource(resourceId);
 FTWrapper.AddResource(resourceId, @"
             {
                 ""url"": ""https://api.fxbsports.com/commune"",
+                ""requestHeader"": ""key1=value1,key2=value2"",
+                ""responseHeader"": ""key1=value1,key2=value2"",
                 ""resourceStatus"": 200
             }",
             @"{
-                ""requestHeader"": ""key1=value1,key2=value2"",
-                ""responseHeader"": ""key1=value1,key2=value2"",
                 ""dnsTime"": 0,
                 ""tcpTime"": 0,
                 ""sslTime"": 0,
@@ -310,12 +310,21 @@ FTWrapper.AddLongTask("long task test", 100002);
   * @param content	日志内容
   * @param level		日志级别
   */
-void AddLog(string log, string message);
+void AddLog(string log, string level);
 ```
+### level
+
+| **方法名** | **含义** |
+| --- | --- |
+| info | 提示 |
+| warning | 警告 |
+| error | 错误 |
+|critical | 严重 |
+| ok | 恢复 |
 
 ### 代码示例
 ```csharp
-FTWrapper.AddLog("test log", "test message");
+FTWrapper.AddLog("test log", "info");
 ```
 
 ## Tracer 网络链路追踪
