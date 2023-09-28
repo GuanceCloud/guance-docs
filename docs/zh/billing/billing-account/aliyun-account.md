@@ -41,11 +41,11 @@
 
 点击**立即开通**，提示**开通按量服务**，同意协议后，点击**开通**。
 
-<img src="../img/6.aliyun_9.png" width="60%" >
+<img src="../../img/6.aliyun_9.png" width="60%" >
 
 在提示**开通申请已提交**对话框，点击**确认**。
 
-<img src="../img/6.aliyun_10.png" width="60%" >
+<img src="../../img/6.aliyun_10.png" width="60%" >
 
 确认开通申请后，直接跳转到阿里云已购买的服务列表查看购买的观测云服务。
 
@@ -55,7 +55,7 @@
 
 返回观测云费用中心，提示**确认开通**，点击确定。
 
-<img src="../img/6.aliyun_12.png" width="60%" >
+<img src="../../img/6.aliyun_12.png" width="60%" >
 
 ## 第三步：在费用中心绑定阿里云账号结算
 
