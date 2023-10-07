@@ -1,6 +1,47 @@
 # Changelog
 ---
 
+## 1.16.0(2023/09/21) {#cl-1.16.0}
+This release is an iterative release, mainly including the following updates:
+
+### New features {#cl-1.16.0-new}
+
+- Added the Neo4j collector (#1846)
+- The [RUM](../integrations/rum.md#upload-delete) collector has added API for uploading, deleting, and verifying sourcemap files, and removed the sourcemap upload and deletion API from the DCA service (#1860)
+- Added a monitoring view and detection libraries for the IBM Db2 collector（#1862）
+
+### Bug fixes {#cl-1.16.0-fix}
+
+- Fixed an issue where environment variable `ENV_GLOBAL_HOST_TAGS` couldn't fetch the hostname of the machine by `__datakit_hostname` (#1874)
+- Fixed an issue where the open_files field was missing from the metrics data of the [host_processes](../integrations/host_processes.md) collector (#1875)
+- Fixed an issue where the Pinpoint collector had a large number of empty resources and was using too much memory (#1857 #1849) 
+
+### Function optimization {#cl-1.16.0-opt}
+
+- Optimized the efficiency of Kubernetes metrics collection and object collection (#1854)
+- Optimized the metrics output of log collection (#1881)
+- The Kubernetes Node object collector has added two new fields: `unschedulable` and `node_ready` (#1886)
+- The [Oracle](../integrations/oracle.md) collector now supports Linux ARM64 architecture (#1859)
+- The `logstreaming` collector has added integration tests (#1570)
+- The [Datakit development documentation](development.md) added content about IBM Db2 collector (#1870)
+- Improve the documentation of the [Kafka](../integrations/kafka.md) and [MongoDB](../integrations/mongodb.md) collectors (#1883)
+- When creating a monitoring account for [MySQL](../integrations/mysql.md), MySQL 8.0+ now defaults to use the `caching_sha2_password` encryption method (#1882)
+- Optimized the syslog file size issue in the [`bug report`](why-no-data.md#bug-report) command (#1872)
+
+### Breaking Changes {#cl-1.16.0-bc}
+
+- Removed the sourcemap file upload and deletion API from the DCA service and moved them to the [RUM](../integrations/rum.md#upload-delete) collector
+
+---
+
+## 1.15.1(2023/09/12) {#cl-1.15.1}
+
+### Bug fix {#cl-1.15.1-fix}
+
+- Fix the bug of repeated collection of logfwd
+
+---
+
 ## 1.15.0 (2023/09/07) {#cl-1.15.0}
 
 This release is an iterative release, mainly including the following updates:
@@ -13,19 +54,20 @@ This release is an iterative release, mainly including the following updates:
 ### Bug fixes {#cl-1.15.0-fix}
 
 - Fix the double star(`**`) problem of container acquisition configuration include/exclude (#1855)
-- Fixed a field error in k8s Service object data
+- Fixed field error in Kubernetes service object data
 
 ### Function optimization {#cl-1.15.0-opt}
 
-- [DataKit Lite](datakit-install.md#lite-install) support logging module (#1861)
-- [`bug report`](why-no-data.md#bug-report) supports disabling profile data collection (#1868)
-- Added [documentation](../integrations/tracing-propagator.md) for different Trace delivery instructions (#1824)
-- Pipeline added functions `parse_int` and `format_int` (#1824)
-- Pipeline data aggregation functions `agg_create` and `agg_metric` support outputting any type of data (#1865)
+- [DataKit Lite](datakit-install.md#lite-install) add [logging collector](../integrations/loggging.md)(#1861)
+- [`Bug Report`](why-no-data.md#bug-report) supports disabling profile data collection(to avoid pressure on the current Datakit) (#1868)
 - Optimize Datakit image size (#1869)
-- Optimize the `--bug-report` command to turn off Profile collection (to avoid pressure on the current Datakit) (#1868)
-- Added [Datakit Metric Performance Test Report](../integrations/datakit-metric-performance.md) (#1867)
-- Add [documentation of external collector](../integrations/external.md) (#1851)
+- Docs:
+    - Add [documentation](../integrations/tracing-propagator.md) for different Trace delivery instructions (#1824)
+    - Add [Datakit Metric Performance Test Report](../integrations/datakit-metric-performance.md) (#1867)
+    - Add [documentation of external collector](../integrations/external.md) (#1851)
+- Pipeline
+    - Added functions `parse_int()` and `format_int()` (#1824)
+    - Aggregation functions `agg_create()` and `agg_metric()` support outputting any type of data (#1865)
 
 ### Compatibility adjustments {#cl-1.15.0-brk}
 
@@ -80,7 +122,7 @@ This release is an iterative release, mainly including the following updates:
 
 ### Compatibility adjustments {#cl-1.14.0-brk}
 
-- Remove the Sinker function on the Datakit side and transfer its function to [Dataway side implementation](dataway-sink.md) (#1801)
+- Remove the Sinker function on the Datakit side and transfer its function to [Dataway side implementation](../deployment/dataway-sink.md) (#1801)
 - Remove `pasued` and `condition` fields from Kubernetes Deployment metrics data, and add object data `paused` field
 
 ## 1.13.2 (2023/08/15) {#cl-1.13.2}
@@ -168,7 +210,7 @@ This release is an iterative release, mainly including the following updates:
 
 ### New features {#cl-1.12.0-new}
 
-- [HTTP API](apis.md##api-sourcemap) Add sourcemap file upload (#1782)
+- [HTTP API](apis.md##api-sourcemap-upload) Add sourcemap file upload (#1782)
 - Added support for .net Profiling access (#1772)
 - Added Couchbase collector (#1717)
 

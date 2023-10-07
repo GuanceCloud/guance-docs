@@ -7,14 +7,12 @@ stages:
 
 lint:
   stage: deploy
-  only:
-    - /.*/ # any branch
+  rules: # all branches with merge request will trigger the CI
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
   script: # only lint datakit/integrations, other docs need too many fix
     - nvm use v16.14.0
     - make lint DOC_DIR=docs/zh/integrations
     - make lint DOC_DIR=docs/zh/datakit
-  except:
-    - tags # disable me under tag push
   tags:
     - cloudcare-ft
 
@@ -68,6 +66,8 @@ buildMain:
       --build-arg release_env="saas_production"
       --build-arg GUANCE_HELPS_OSS_AK_ID="${GUANCE_HELPS_OSS_AK_ID}"
       --build-arg GUANCE_HELPS_OSS_AK_SECRET="${GUANCE_HELPS_OSS_AK_SECRET}"
+      --build-arg GUANCE_HELPS_CDN_AK_ID="${GUANCE_HELPS_CDN_AK_ID}"
+      --build-arg GUANCE_HELPS_CDN_AK_SECRET="${GUANCE_HELPS_CDN_AK_SECRET}"
       --build-arg GUANCE_HELPS_OSS_BUCKET="${GUANCE_HELPS_OSS_BUCKET}"
       --build-arg GUANCE_HELPS_OSS_ENDPOINT="${GUANCE_HELPS_OSS_ENDPOINT}"
       --build-arg ES_VAR_DOC_SEARCH_TEST=$ES_VAR_DOC_SEARCH_TEST
@@ -86,7 +86,7 @@ buildBasis:
     - /basis-\d+/
   script:
     - docker buildx build --platform linux/arm64,linux/amd64
-      -t registry.jiagouyun.com/basis/mkdocs:2.3
+      -t registry.jiagouyun.com/basis/mkdocs:2.4
       -f Dockerfile.basis .
       --push
   tags:

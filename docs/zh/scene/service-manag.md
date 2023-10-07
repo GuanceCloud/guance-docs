@@ -172,13 +172,27 @@
 
 ### 资源调用
 
-在资源调用，观测云会展示出资源调用排行，默认在页面右侧向您展排行首位的资源信息，包含请求数、错误率、响应时间、响应时间分布及其链路数据。您还可以基于环境和版本进行全局筛选。若出现资源信息为空的情况，观测云在页面右侧则展示该条服务的相关数据。
+在**资源调用**，观测云会展示出资源调用排行，默认在页面右侧向您展排行首位的资源信息，包含请求数、错误率、响应时间、响应时间分布及其链路数据。您还可以基于环境和版本进行全局筛选。若出现资源信息为空的情况，观测云在页面右侧则展示该条服务的相关数据。
 
 ![](img/service-8.png)
 
 1. 资源调用排行（TOP 20）列表支持基于请求数(默认)、错误请求数、P75 响应时间和 P99 响应时间查询分析；支持直接输入资源名称进行搜索。
 2. 在资源右侧的详情页内，可查看其请求数、错误率、响应时间及响应时间分布；
 3. 可查询关联链路信息，支持[搜索](../getting-started/function-details/explorer-search.md#search)；点击**跳转**即可进入**服务管理 > 链路**页面。
+
+#### 上下游拓扑
+
+在资源右侧的详情页，除关联的链路数据外，您还可查看当前资源的上下游拓扑。
+
+![](img/service-9.png)
+
+在上下游拓扑 tab 页，您可以：
+
+1. 事件状态图例：从左到右，各颜色色块依次表示：无数据、信息、警告、重要、紧急、正常。
+2. 在卡片上，您可以查看各资源的平均请求速率、P99 响应时间、错误请求率（请求数）和关联监控器。
+3. 点击卡片，则可查看相关日志、用户访问和事件；若该资源关联了监控器，则可跳转到对应监控器查看监控器配置、查看相关事件。
+
+
 
 ### 关联查看器
 
@@ -187,5 +201,7 @@
 | [Pods 查看器](../infrastructure/contrainer.md#pods){ .md-button .md-button--primary } | [日志查看器](../logs/explorer.md){ .md-button .md-button--primary } | 
 | [链路查看器](../application-performance-monitoring/explorer.md){ .md-button .md-button--primary } | [错误追踪查看器](../application-performance-monitoring/error.md){ .md-button .md-button--primary } |
 |  [事件查看器](../events/unrecovered-events.md){ .md-button .md-button--primary } |  |
+
+**注意**：因为 Pods 对象数据中并未存在 `service` 等相关字段，此处观测云使用 `deployment:服务名称` 做过滤列出。
 
 

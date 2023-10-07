@@ -272,13 +272,13 @@
               containerPort: 9200
             - name: transport
               containerPort: 9300
-            # resources:
-            #   limits:
-            #     cpu: 4
-            #     memory: 8Gi
-            #   requests:
-            #     cpu: 4
-            #     memory: 8Gi
+            resources:
+              limits:
+                cpu: 4
+                memory: 8Gi
+              requests:
+                cpu: 1
+                memory: 2Gi
             env:
             - name: node.name
               valueFrom:

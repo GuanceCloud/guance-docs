@@ -16,8 +16,8 @@
 |:-----------|:-------|:-----|:----------------|
 | accountUUIDs | array | Y | 账号列表<br>例子: ['未加入工作空间的账号UUID1', '未加入工作空间的账号UUID2'] <br>允许为空: True <br> |
 | roleUUIDs | array | Y | 用户角色uuid列表<br>例子: None <br>允许为空: False <br> |
-| onlyModifyRoles | boolean | Y | 是否只修改成员角色, True 不修改成员组信息<br>例子: True <br>允许为空: False <br> |
-| memberGroupUUIDs | array |  | 成员组列表<br>例子: ['xxx', 'xxx'] <br>允许为空: True <br> |
+| onlyModifyRoles | boolean | Y | 是否只修改成员角色, True 不修改团队信息<br>例子: True <br>允许为空: False <br> |
+| memberGroupUUIDs | array |  | 团队列表<br>例子: ['xxx', 'xxx'] <br>允许为空: True <br> |
 | acntWsNickname | string |  | 账号在该空间的昵称<br>例子: 昵称AAA <br>允许为空: True <br>$maxCustomLength: 128 <br> |
 
 ## 参数补充说明
@@ -33,7 +33,7 @@
 | accountUUIDs       | list | 成员账号UUID |
 | roleUUIDs             | list | 角色UUID                                              |
 | onlyModifyRoles    | boolean | 是否只改动角色信息(true批量修改, false单个修改)                 |
-| memberGroupUUIDs       | list  | 单个修改成员是必传成员组信息     |
+| memberGroupUUIDs       | list  | 单个修改成员是必传团队信息     |
 | acntWsNickname       | string  | 账号在空间的昵称     |
 ------
 

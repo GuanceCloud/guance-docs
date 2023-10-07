@@ -17,7 +17,7 @@ The DataKit master configuration is used to configure the running behavior of th
 
 ## Datakit Main Configure Sample {#maincfg-example}
 
-Datakit main configure is *datakit.conf*, here is the exmaple sample(1.15.0):
+Datakit main configure is *datakit.conf*, here is the exmaple sample(1.16.0):
 
 ??? info "datakit.conf"
 
@@ -511,7 +511,7 @@ See [here](election.md#config)
 
 ### Dataway Sinker {#dataway-sink}
 
-See [here](dataway-sink.md)
+See [here](../deployment/dataway-sink.md)
 
 ### Managing DataKit Configuration with Git {#using-gitrepo}
 

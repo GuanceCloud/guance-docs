@@ -30,10 +30,13 @@ nav:
       - 'Tair': aliyun_tair.md
 
     - 华为云: 
+      - 'ASM': huawei_asm.md
       - 'DCS': huawei_dcs.md
+      - 'CCE': huawei_cce.md
+      - 'CSS(Elasticsearch)': huawei_css_es.md
       - 'ECS': huawei_ecs.md
       - 'ELB': huawei_elb.md
-      - 'FunctionGraph': huawei_functiongraph.md
+      - 'FunctionGraph': huawei_FunctionGraph.md
       - 'GaussDB(Cassandra)': huawei_gaussdb_cassandra.md
       - 'GaussDB(MySQL)': huawei_gaussdb_for_mysql.md
       - 'GaussDB(Influx)': huawei_gaussdb_influx.md
@@ -49,18 +52,25 @@ nav:
       - 'SYS DDMS': huaweiyun_SYS_DDMS.md
 
     - AWS: 
+      - 'Aurora Serverless V2': aws_aurora_serverless_v2.md
+      - 'CloudFront': aws_cloudfront.md
       - 'DynamoDB': aws_dynamodb.md
       - 'DynamoDB(DAX)': aws_dynamodb_DAX.md
       - 'EC2': aws_ec2.md
       - 'ELB': aws_elb.md
       - 'EventBridge': aws_eventbridge.md
       - 'Lambda': aws_lambda.md
+      - 'MediaConvert': aws_mediaconvert.md
       - 'MemoryDB': aws_memorydb.md
       - 'MSK': aws_msk.md
       - 'MySQL': aws_rds_mysql.md
+      - 'Neptune Cluster': aws_neptune_cluster.md
       - 'OpenSearch': aws_opensearch.md
+      - 'Redshift': aws_redshift.md
       - 'Redis': aws_elasticache_redis.md
+      - 'Simple Queue Service': aws_sqs.md
       - 'S3': aws_s3.md
+      - 'Timestream': aws_timestream.md
 
     - 腾讯云:
       - 'CDB': tencent_cdb.md
@@ -121,6 +131,8 @@ nav:
       - couchbase-prom.md
       - juicefs.md
       - 'IBM Db2': db2.md
+      - dm_v8.md
+      - dongfangtong_ths.md
 
     - '消息队列':
       - emqx.md
@@ -133,6 +145,7 @@ nav:
     - 'Web 服务器':
       - 'Nginx': nginx.md
       - apache.md
+      - resin.md
 
     - 'Java':
       - 'JVM': jvm.md
@@ -203,6 +216,7 @@ nav:
         - 'OTEL 和 DDTrace 链路串联': ddtrace-128-trace-id.md
       - 'jmxfetch 指标':
         - '指标暴露和自定义指标': ddtrace-jmxfetch.md
+      - nginx_tracing.md
 
     - 'SkyWalking':
       - skywalking.md
@@ -237,6 +251,10 @@ nav:
   - '语言':
     - 'Java': java.md
     - dotnet.md
+    - golang.md
+    - nodejs.md
+    - php.md
+
 
   - 用户访问监测（RUM）:
     - rum.md
@@ -246,6 +264,7 @@ nav:
     - '日志处理综述': datakit-logging-how.md
     - '日志采集':
       - logging.md
+      - ilogtail.md
       - 'Socket 接入示例': logging_socket.md
     - '其它日志接入':
       - 'LogStreaming': logstreaming.md

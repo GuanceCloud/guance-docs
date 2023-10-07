@@ -1,6 +1,8 @@
 ARG release_env
 ARG GUANCE_HELPS_OSS_AK_ID
 ARG GUANCE_HELPS_OSS_AK_SECRET
+ARG GUANCE_HELPS_CDN_AK_ID
+ARG GUANCE_HELPS_CDN_AK_SECRET
 ARG GUANCE_HELPS_OSS_BUCKET
 ARG GUANCE_HELPS_OSS_ENDPOINT
 # 配置文档索引搜索的ES实例信息
@@ -12,6 +14,8 @@ FROM registry.jiagouyun.com/basis/mkdocs:2.3 as build
 ARG release_env
 ARG GUANCE_HELPS_OSS_AK_ID
 ARG GUANCE_HELPS_OSS_AK_SECRET
+ARG GUANCE_HELPS_CDN_AK_ID
+ARG GUANCE_HELPS_CDN_AK_SECRET
 ARG GUANCE_HELPS_OSS_BUCKET
 ARG GUANCE_HELPS_OSS_ENDPOINT
 # 配置文档索引搜索的ES实例信息
@@ -46,8 +50,9 @@ RUN \
     fi; \
     if [ $release_env != "rtm" ]; then \
         # 安装对应文档先关的插件的pypi
-        pip install -i https://pypi.douban.com/simple mkdocs==1.4.2 beautifulsoup4==4.11.2 requests==2.28.2; \
-        pip install -i https://pmgmt.jiagouyun.com/repository/guance-pypi/simple mkdocs-plugins==0.0.9; \
+        # pip install -i https://pypi.douban.com/simple mkdocs==1.5.3 beautifulsoup4==4.11.2 requests==2.28.2; \
+        pip install -i https://pypi.douban.com/simple beautifulsoup4==4.12.2; \
+        pip install -i https://pmgmt.jiagouyun.com/repository/guance-pypi/simple mkdocs-plugins==1.0.0; \
     fi; \
     # 打包编译中英文的索引信息
     mkdocs build -f ${enFileArg}; \
@@ -63,7 +68,7 @@ RUN \
         tools/ossutil64 cp site/en ${OSS_UPLOAD_PATH}/en -r -f -e ${GUANCE_HELPS_OSS_ENDPOINT} -i ${GUANCE_HELPS_OSS_AK_ID} -k ${GUANCE_HELPS_OSS_AK_SECRET}; \
         tools/ossutil64 cp tools/rum-config.js ${OSS_UPLOAD_PATH}/assets/javascripts/rum-config.js -r -f -e ${GUANCE_HELPS_OSS_ENDPOINT} -i ${GUANCE_HELPS_OSS_AK_ID} -k ${GUANCE_HELPS_OSS_AK_SECRET}; \
         echo "refresh CDN ..." ; \
-        python tools/cdn-refresh-tool.py Directory ${CDN_REFRESH_PATH} -i ${GUANCE_HELPS_OSS_AK_ID} -k ${GUANCE_HELPS_OSS_AK_SECRET}; \
+        python tools/cdn-refresh-tool.py Directory ${CDN_REFRESH_PATH} -i ${GUANCE_HELPS_CDN_AK_ID} -k ${GUANCE_HELPS_CDN_AK_SECRET}; \
     fi
 
 # build static site

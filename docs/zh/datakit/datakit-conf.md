@@ -19,7 +19,7 @@ DataKit 主配置用来配置 DataKit 自己的运行行为。
 
 ## Datakit 主配置示例 {#maincfg-example}
 
-Datakit 主配置示例如下，我们可以根据该示例来开启各种功能（当前版本 1.15.0）：
+Datakit 主配置示例如下，我们可以根据该示例来开启各种功能（当前版本 1.16.0）：
 
 <!-- markdownlint-disable MD046 -->
 ??? info "*datakit.conf*"
@@ -525,7 +525,7 @@ $ systemctl status datakit
 
 ### DataWay Sinker 配置 {#dataway-sink}
 
-参见[这里](dataway-sink.md)
+参见[这里](../deployment/dataway-sink.md)
 
 ### 使用 Git 管理 DataKit 配置 {#using-gitrepo}
 

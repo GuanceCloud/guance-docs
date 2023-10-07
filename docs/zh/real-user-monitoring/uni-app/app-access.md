@@ -3,19 +3,11 @@
 
 ## 前置条件
 
-- 安装 DataKit（[DataKit 安装文档](../../datakit/datakit-install.md)）
+- 安装 [DataKit](../../datakit/datakit-install.md)。
 
 ## 应用接入
 
-当前 UniApp 版本支持 Android 和 iOS 平台。登录观测云控制台，进入「用户访问监测」页面，点击左上角「新建应用」，即可开始创建一个新的应用。
-
-1.输入「应用名称」、「应用ID」，选择平台对应「应用类型」
-
-- 应用名称：用于识别当前用户访问监测的应用名称。
-- 应用 ID ：应用在当前工作空间的唯一标识，对应字段：app_id 。该字段仅支持英文、数字、下划线输入，最多 48 个字符。
-
-
-![](../img/image_12.png)
+当前 UniApp 版本支持 Android 和 iOS 平台。登录观测云控制台，进入**用户访问监测**页面，点击左上角 **[新建应用](../index.md#create)**，即可开始创建一个新的应用。
 
 ![](../img/image_13.png)
 
@@ -48,9 +40,9 @@
 
 ![img](../img/15.uniapp_intergration.png)
 
->注意：保存后，需要提交云端打包，（制作 **自定义基座** 也属于云端打包）后插件才会生效
+**注意**：保存后，需要提交云端打包，（制作 **自定义基座** 也属于云端打包）后插件才会生效。
 
-参考：[HBuilderX中使用本地插件](https://nativesupport.dcloud.net.cn/NativePlugin/use/use_local_plugin.html#)、[自定义基座](https://uniapp.dcloud.net.cn/tutorial/run/run-app.html#customplayground)
+> 更多详情，可参考：[HBuilderX中使用本地插件](https://nativesupport.dcloud.net.cn/NativePlugin/use/use_local_plugin.html#)、[自定义基座](https://uniapp.dcloud.net.cn/tutorial/run/run-app.html#customplayground)
 
 ### 市场插件方式
 （未提供）
@@ -108,7 +100,7 @@ rum.setConfig({
 			})
 ```
 
-| 参数名称                 | 参数类型     | **必须** | **说明**                                                     |
+| 参数名称                 | 参数类型     | 必须 | 说明                                                     |
 | ------------------------ | ------------ | :------- | ------------------------------------------------------------ |
 | androidAppId             | string       | 是       | appId，监测中申请                                            |
 | iOSAppId                 | string       | 是       | appId，监测中申请                                            |
@@ -150,7 +142,7 @@ tracer.setConfig({
 			})
 ```
 
-| 参数名称              | 参数类型 | **必须** | 参数说明                                                     |
+| 参数名称              | 参数类型 | 必须 | 参数说明                                                     |
 | --------------------- | -------- | -------- | ------------------------------------------------------------ |
 | samplerate            | double   | 否       | 采样率，采集率的值范围为>= 0、<= 1，默认值为 1               |
 | traceType             | string   | 否       | 链路类型：`ddTrace`（默认）、`zipkinMultiHeader`、`zipkinSingleHeader`、`traceparent`、`skywalking`、`jaeger` |
@@ -167,7 +159,7 @@ var rum = uni.requireNativePlugin("GCUniPlugin-RUM");
 
 #### API - startAction
 
-添加 Action 事件
+添加 Action 事件：
 
 ```javascript
 rum.startAction({
@@ -176,7 +168,7 @@ rum.startAction({
 				})
 ```
 
-| 参数名称   | 参数类型 | **必须** | 参数说明         |
+| 参数名称   | 参数类型 | 必须 | 参数说明         |
 | ---------- | -------- | -------- | ---------------- |
 | actionName | string   | 是       | 事件名称         |
 | actionType | string   | 是       | 事件类型         |
@@ -188,7 +180,7 @@ rum.startAction({
 
 ```javascript
 // 自动采集，可参考 SDK 包内 GCUniPlugin 插件的示例工程
-// step 1. 在 SDK 包内找到 GCWatchRouter.js、GCPageMixin.js 文件，添加到你的工程
+// step 1. 在 SDK 包内找到 GCWatchRouter.js、GCPageMixin.js 文件，添加到您的工程
 // step 2. 在 App.vue 添加 Router 监控，如下：
 <script>
 	import WatchRouter from '@/GCWatchRouter.js'
@@ -227,7 +219,7 @@ rum.stopView()
 
 创建页面时长记录
 
-| 参数名称 | 参数类型 | **必须** | 参数说明                     |
+| 参数名称 | 参数类型 | 必须 | 参数说明                     |
 | -------- | -------- | -------- | ---------------------------- |
 | viewName | string   | 是       | 页面名称                     |
 | loadTime | number   | 是       | 页面加载时间(纳秒级别时间戳) |
@@ -236,7 +228,7 @@ rum.stopView()
 
 进入页面
 
-| 参数名称 | 参数类型 | **必须** | 参数说明         |
+| 参数名称 | 参数类型 | 必须 | 参数说明         |
 | -------- | -------- | -------- | ---------------- |
 | viewName | string   | 是       | 页面名称         |
 | property | object   | 否       | 事件上下文(可选) |
@@ -245,7 +237,7 @@ rum.stopView()
 
 离开页面
 
-| 参数名称 | 参数类型 | **必须** | 参数说明         |
+| 参数名称 | 参数类型 | 必须 | 参数说明         |
 | -------- | -------- | -------- | ---------------- |
 | property | object   | 否       | 事件上下文(可选) |
 
@@ -301,7 +293,7 @@ rum.addError({
 
 添加 Error 事件
 
-| 参数名称 | 参数类型 | **必须** | 参数说明         |
+| 参数名称 | 参数类型 | 必须 | 参数说明         |
 | :------- | -------- | -------- | ---------------- |
 | message  | string   | 是       | 错误信息         |
 | stack    | string   | 是       | 堆栈信息         |
@@ -356,7 +348,7 @@ rum.addError({
 
 HTTP 请求开始
 
-| 参数名称 | 参数类型 | **必须** | 参数说明         |
+| 参数名称 | 参数类型 | 必须 | 参数说明         |
 | :------- | -------- | -------- | ---------------- |
 | key      | string   | 是       | 请求唯一标识     |
 | property | object   | 否       | 事件上下文(可选) |
@@ -365,14 +357,14 @@ HTTP 请求开始
 
 HTTP 请求结束
 
-| 参数名称 | 参数类型 | **必须** | 参数说明         |
+| 参数名称 | 参数类型 | 必须 | 参数说明         |
 | :------- | -------- | -------- | ---------------- |
 | key      | string   | 是       | 请求唯一标识     |
 | property | object   | 否       | 事件上下文(可选) |
 
 #### API - addResource
 
-| 参数名称 | 参数类型       | **必须** | 参数说明     |
+| 参数名称 | 参数类型       | 必须 | 参数说明     |
 | :------- | -------------- | -------- | ------------ |
 | key      | string         | 是       | 请求唯一标识 |
 | content  | content object | 是       | 请求相关数据 |
@@ -400,7 +392,7 @@ logger.logging({
 
 #### API - logging
 
-| 参数名称 | 参数类型 | **必须** | 参数说明                 |
+| 参数名称 | 参数类型 | 必须 | 参数说明                 |
 | :------- | -------- | -------- | ------------------------ |
 | content  | string   | 是       | 日志内容，可为json字符串 |
 | status   | string   | 是       | 日志等级                 |
@@ -408,7 +400,7 @@ logger.logging({
 
 ### 日志等级
 
-| 字符串   | **含义** |
+| 字符串   | 含义 |
 | -------- | -------- |
 | info     | 提示     |
 | warning  | 警告     |
@@ -442,7 +434,7 @@ uni.request({
 
 获取 trace 需要添加的请求头，获取后添加到 HTTP 请求的请求头中。
 
-| 参数名称 | 参数类型 | **必须** | 参数说明     |
+| 参数名称 | 参数类型 | 必须 | 参数说明     |
 | :------- | -------- | -------- | ------------ |
 | key      | string   | 是       | 请求唯一标识 |
 | url      | string   | 是       | 请求 URL     |
@@ -468,9 +460,9 @@ guanceModule.unbindRUMUserData()
 
 #### API - bindRUMUserData
 
-绑定用户信息
+绑定用户信息：
 
-| 参数名称  | 参数类型 | **必须** | 参数说明       |
+| 参数名称  | 参数类型 | 必须 | 参数说明       |
 | :-------- | -------- | -------- | -------------- |
 | userId    | string   | 是       | 用户Id         |
 | userName  | string   | 否       | 用户名称       |
@@ -488,7 +480,7 @@ guanceModule.unbindRUMUserData()
 
 #### 下载 UniApp 离线开发 SDK
 
- 根据 uni-app 开发工具 **HBuilderX** 的版本号，下载开发插件需要的 [SDK包](https://nativesupport.dcloud.net.cn/AppDocs/download/ios) 
+根据 uni-app 开发工具 **HBuilderX** 的版本号，下载开发插件需要的 [SDK包](https://nativesupport.dcloud.net.cn/AppDocs/download/ios) 
 
 SDK 包结构说明
 
@@ -507,7 +499,7 @@ SDK 包结构说明
 	|-- SDK							// 依赖库及依赖资源文件
 ```
 
- 参考：[iOS插件开发环境配置](https://nativesupport.dcloud.net.cn/NativePlugin/course/ios.html#开发环境)
+更多详情，可参考 [iOS 插件开发环境配置](https://nativesupport.dcloud.net.cn/NativePlugin/course/ios.html#开发环境)。
 
 #### 工程配置
 
@@ -538,7 +530,8 @@ SDK 包结构说明
 
 ### 插件开发 Android 主工程 UniPlugin-Android 使用
 #### 工程配置
-详细依赖配置参见 [Demo](https://github.com/GuanceCloud/datakit-uniapp-native-plugin/tree/develop/Hbuilder_Example)
+
+> 详细依赖配置，可参考 [Demo](https://github.com/GuanceCloud/datakit-uniapp-native-plugin/tree/develop/Hbuilder_Example)。
 
 ```
 |-- UniPlugin-Android
@@ -569,7 +562,8 @@ SDK 包结构说明
 ```
 
 ### Android 云打包与离线打包区别 {#package}
-Android 云打包与离线打包使用了两种不同的集成逻辑。离线打包集成方式与观测云 `Android SDK` 集成方式相同，使用是 `Android Studio Gradle Plugin` 的方式，云打包无法使用 `Android Studio Gradle Plugin` ，所以只能通过观测云 `UniApp Native Plugin` 中内部代码实现部分功能。所以离线打包版本配置可选项要比云打包版本更多，SDK 配置中 `offlinePakcage`[参数](#base-config)就是为了区分两种情况。
+
+Android 云打包与离线打包使用了两种不同的集成逻辑。离线打包集成方式与观测云 `Android SDK` 集成方式相同，使用 `Android Studio Gradle Plugin` 的方式，云打包无法使用 `Android Studio Gradle Plugin` ，所以只能通过观测云 `UniApp Native Plugin` 中内部代码实现部分功能。所以离线打包版本配置可选项要比云打包版本更多，SDK 配置中 `offlinePakcage`[参数](#base-config)就是为了区分两种情况。
 
 ### [iOS 相关](../ios/app-access.md#FAQ)
 
