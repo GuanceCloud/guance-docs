@@ -66,7 +66,7 @@ FTUnityBridge.Install(new SDKConfig
 | **字段** | **类型** | **必须** | **说明** |
 | --- | --- | --- | --- |
 | serverUrl | string | 是 | datakit 安装地址 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529。注意：安装 SDK 设备需能访问这地址 |
-| envType | enum | 否 | 环境，默认`prod` |
+| envType | enum | 否 | 环境，默认`prod`.prod：线上环境；gray：灰度环境；pre：预发布环境；common：日常环境；local：本地环境，支持自定义 |
 | debug | bool | 否 | 是否开启调试模式 |
 | globalContext | dictionary | 否 | 添加 SDK 全局属性，添加规则请查阅[此处](#key-conflict)|
 | serviceName| string |否|影响 Log 和 RUM 中 service 字段数据， 默认为 android 为`df_rum_android`，iOS 为 `df_rum_ios` |
@@ -118,7 +118,7 @@ FTUnityBridge.InitLogConfig(new LogConfig
 FTUnityBridge.InitTraceConfig(new TraceConfig
             {
                 sampleRate = 0.9f,
-                traceType = "ddtrace",
+                traceType = TraceType.DDTrace,
                 enableAutoTrace = true,
                 enableLinkRumData = true
 
@@ -277,7 +277,8 @@ FTUnityBridge.StopResource(resourceId);
 
 ResourceParams resourceParams = new ResourceParams();
 resourceParams.url = url;
-resourceParams.requestHeader = client.DefaultRequestHeaders + "";
+resourceParams.requestHeader = client.DefaultRequestHeaders.ToDictionary(header => header.Key, header => string.Join(",", header.Value));
+resourceParams.responseHeader = response.Headers.ToDictionary(header => header.Key, header => string.Join(",", header.Value));
 resourceParams.resourceStatus = (int)response.StatusCode;
 resourceParams.responseBody = responseData;
 resourceParams.resourceMethod = "GET";
@@ -374,7 +375,7 @@ FTUnityBridge.AddLongTask("long task test", 100002);
 /// <param name="log">日志内容</param>
 /// <param name="level">日志等级 info，warning，error，critical，ok</param>
 /// <returns></returns>
-public static async Task AddLog(string log, string level)
+public static async Task AddLog(string log, LogLevel level)
     
  /// <summary>
 /// 添加日志
@@ -383,17 +384,17 @@ public static async Task AddLog(string log, string level)
 /// <param name="level">日志等级 info，warning，error，critical，ok</param>
 /// <param name="property">附加属性参数</param>
 /// <returns></returns>
-public static async Task AddLog(string log, string level, Dictionary<string, object> property)
+public static async Task AddLog(string log, LogLevel level, Dictionary<string, object> property)
 ```
 
-### level
+### LogLevel
 
 | **方法名** | **含义** |
 | --- | --- |
 | info | 提示 |
 | warning | 警告 |
 | error | 错误 |
-|critical | 严重 |
+| critical | 严重 |
 | ok | 恢复 |
 
 
