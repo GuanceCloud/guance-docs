@@ -9,6 +9,7 @@ nav:
   - 'UniApp 监测': uni-app
   - 'macOS 监测': macos
   - 'C++ 监测': cpp
+  - 'Unity 监测': unity
   - '查看器': explorer
   - '分析看板': app-analysis.md
   - '会话重放': session-replay
