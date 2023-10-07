@@ -138,23 +138,23 @@ wget https://static.guance.com/datakit/datakit.yaml
 2.    value: https://openway.guance.com?token=<your-token> # 此处填上 dataway 真实地址
 ```
 
-```
-增加环境变量`ENV_NAMESPACE`设置集群名称，名称可以自定义，比如设置成`hwcce_k8s`：
-```
+
+> 增加环境变量`ENV_NAMESPACE`设置集群名称，名称可以自定义，比如设置成`hwcce_k8s`：
+
 
 ``` yaml
 1. - name: ENV_NAMESPACE 
      value: hwcce_k8s #此处填上 集群名称
 ```
 
-​	增加环境变量`ENV_GLOBAL_ELECTION_TAGS`，设置选举类指标区分集群
+> 增加环境变量`ENV_GLOBAL_ELECTION_TAGS`，设置选举类指标区分集群
 
 ``` yaml
 1. - name: ENV_GLOBAL_ELECTION_TAGS
 2.   value: cluster_name_k8s=hwcce_k8s #此处填上 集群名称
 ```
 
-​	修改环境变量`ENV_GLOBAL_TAGS`，设置非选举类指标设置全局tag
+> 修改环境变量`ENV_GLOBAL_TAGS`，设置非选举类指标设置全局tag
 
 ``` yaml
 1. - name: ENV_GLOBAL_TAGS

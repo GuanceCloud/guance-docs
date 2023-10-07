@@ -41,9 +41,11 @@ nav:
       - 'IBM Db2': db2.md
 
     - 'Messaging Queue':
-      - kafka.md
+      - emqx.md
+      - 'Kafka': kafka.md
       - nsq.md
       - rabbitmq.md
+      - rocketmq.md
 
     - 'Web Server':
       - 'Nginx': nginx.md
@@ -54,14 +56,18 @@ nav:
       - tomcat.md
 
     - 'Others':
+      - apollo.md
       - 'Flink': flinkv1.md
       - consul.md
       - coredns.md
+      - nacos.md
       - jenkins.md
       - gitlab.md
       - snmp.md
+      - seata.md
       - netflow.md
       - external.md
+      - zookeeper.md
 
   - Cloud Native:
     - 'Metric Collection': container.md
@@ -130,6 +136,13 @@ nav:
 
   - RUM:
     - rum.md
+
+  - 'Langue':
+    - 'Java': java.md
+    - dotnet.md
+    - golang.md
+    - nodejs.md
+    - php.md
 
   - Logs:
     - 'Log Collection Overview': datakit-logging.md
