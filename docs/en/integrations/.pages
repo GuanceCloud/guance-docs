@@ -2,8 +2,6 @@ nav:
   - integration-index.md
   - Public Cloud:
     - Aliyun:
-      - 'AnalyticDB PostgresSQL': aliyun_analyticdb_postgresql.md
-      - 'CDN': aliyun_cdn.md
       - 'ClickHouse': aliyun_clickhouse_community.md
       - 'ECS': aliyun_ecs.md
       - 'EIP': aliyun_eip.md
@@ -24,8 +22,6 @@ nav:
       - 'Redis': aliyun_redis.md
       - 'RocketMQ4' : aliyun_rocketmq4.md
       - 'RocketMQ5' : aliyun_rocketmq5.md
-      - 'SLB': aliyun_slb.md
-      - 'SLS': aliyun_sls.md
       - 'SQLServer': aliyun_rds_sqlserver.md
       - 'Tair': aliyun_tair.md
 
@@ -62,7 +58,6 @@ nav:
       - 'Lambda': aws_lambda.md
       - 'MediaConvert': aws_mediaconvert.md
       - 'MemoryDB': aws_memorydb.md
-      - 'MSK': aws_msk.md
       - 'MySQL': aws_rds_mysql.md
       - 'Neptune Cluster': aws_neptune_cluster.md
       - 'OpenSearch': aws_opensearch.md
@@ -159,7 +154,6 @@ nav:
       - zookeeper.md
       - 'Zadigx': zadigx.md
       - 'openai': openai.md
-      - 'Lark and Exception Tracking Integration': feishu_im.md
       - external.md
 
   - CI/CD:
