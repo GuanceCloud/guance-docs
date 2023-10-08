@@ -84,7 +84,7 @@ None yet.
 | :------------ | :------- | :--- | ------------------------------------------------------------ |
 | serverUrl     | string   | Yes   |The url of the datakit installation address, example: http://10.0.0.1:9529, port 9529. Datakit url address needs to be accessible by the device where the SDK is installed                                                  |
 | debug         | boolean  | No   | Set whether to allow printing of Debug logs, default  `false`                            |
-| envType | string   | No   | Environment, defaulting to `prod`, any character is allowed, preferably a single word, such as test, etc. |
+| env | string   | No   | Environment, defaulting to `prod`, any character is allowed, preferably a single word, such as test, etc. |
 | service       | string   | No   | Set the name of the business or service to which it belongs by default: `df_rum_ios`, `df_rum_android` |
 | globalContext | object   | No   | Add custom labels                                               |
 | offlinePakcage | boolean   | No   | Only supported by Android, whether to use offline packaging, the default is `false`. For detailed Description, see [difference between Android cloud packaging and offline packaging](#package)       |
