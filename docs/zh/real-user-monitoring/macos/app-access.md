@@ -1,17 +1,15 @@
 # macOS 应用接入
 ---
 
-## 简介
-
 观测云应用监测能够通过收集各个 macOS 应用的指标数据，以可视化的方式分析各个 macOS 应用端的性能。
 
 ## 前置条件
 
-- 安装 DataKit（[DataKit 安装文档](../../datakit/datakit-install.md)）
+- 安装 [DataKit](../../datakit/datakit-install.md)。
 
 ## macOS 应用接入 {#macOS-integration}
 
-登录观测云控制台，进入「用户访问监测」页面，点击左上角「新建应用」，即可开始创建一个新的应用。
+登录观测云控制台，进入**用户访问监测**页面，点击左上角 **[新建应用](../index.md#create)**，选择**自定义**，即可开始创建一个新的应用。
 
 1.输入「应用名称」、「应用ID」，选择 「自定义」 应用类型
 
@@ -19,6 +17,7 @@
 - 应用 ID ：应用在当前工作空间的唯一标识，对应字段：app_id 。该字段仅支持英文、数字、下划线输入，最多 48 个字符。
 
 ![](../img/image_14.png)
+
 ## 安装
 
 ![](https://img.shields.io/badge/dynamic/json?label=pod&color=orange&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/macos/version.json&link=https://github.com/GuanceCloud/datakit-macos) ![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://static.guance.com/ft-sdk-package/badge/macos/info.json&link=https://github.com/GuanceCloud/datakit-macos) ![](https://img.shields.io/badge/dynamic/json?label=license&color=lightgrey&query=$.license&uri=https://static.guance.com/ft-sdk-package/badge/macos/info.json&link=https://github.com/GuanceCloud/datakit-macos) ![](https://img.shields.io/badge/dynamic/json?label=macOS&color=brightgreen&query=$.macos_api_support&uri=https://static.guance.com/ft-sdk-package/badge/macos/info.json&link=https://github.com/GuanceCloud/datakit-macos) 
@@ -1142,17 +1141,17 @@
 
 ### 静态使用
 
-可采用创建多 Configurations ，使用预编译指令进行设置值
+可采用创建多 Configurations，使用预编译指令进行设置值：
 
-1. 创建多 Configurations ：
+1、创建多 Configurations：
 
 ![](../img/image_9.png)
 
-2. 设置预设属性来区分不同 Configurations:
+2、设置预设属性来区分不同 Configurations:
 
 ![](../img/image_10.png)
 
-3. 使用预编译指令：
+3、使用预编译指令：
 
 ```objectivec
 //Target -> Build Settings -> GCC_PREPROCESSOR_DEFINITIONS 进行配置预设定义
@@ -1177,7 +1176,7 @@ rumConfig.globalContext = @{@"track_id":Track_id,@"static_tag":STATIC_TAG};
 
 因 RUM 启动后设置的 globalContext 不会生效，用户可自行本地保存，在下次应用启动时进行设置生效。
 
-1. 通过存文件本地保存，例如`NSUserDefaults`，配置使用 `SDK`，在配置处添加获取标签数据的代码。
+1、通过存文件本地保存，例如 `NSUserDefaults`，配置使用 `SDK`，在配置处添加获取标签数据的代码。
 
 ```objectivec
 NSString *dynamicTag = [[NSUserDefaults standardUserDefaults] valueForKey:@"DYNAMIC_TAG"]?:@"NO_VALUE";
@@ -1188,13 +1187,13 @@ rumConfig.globalContext = @{@"dynamic_tag":dynamicTag};
 [[FTSDKAgent sharedInstance] startRumWithConfigOptions:rumConfig];
 ```
 
-2. 在任意处添加改变文件数据的方法。
+2、在任意处添加改变文件数据的方法。
 
 ```objectivec
  [[NSUserDefaults standardUserDefaults] setValue:@"dynamic_tags" forKey:@"DYNAMIC_TAG"];
 ```
 
-3. 最后重启应用生效。
+3、最后重启应用生效。
 
 ### 注意
 
@@ -1206,7 +1205,7 @@ rumConfig.globalContext = @{@"dynamic_tag":dynamicTag};
 
 4. `FTSDKConfig` 中配置的自定义标签将添加在所有类型的数据中。
 
-详细细节请见 [SDK Demo](https://github.com/GuanceCloud/datakit-macos/tree/development/Example)。
+> 更多详细细节，可参考 [SDK Demo](https://github.com/GuanceCloud/datakit-macos/tree/development/Example)。
 
 
 

@@ -89,6 +89,7 @@
 | [用户访问监测 (`rum`)](../integrations/rum.md)                    | 用于收集用户访问监测数据                                                |
 | [网络拨测 (`dialtesting`)](../integrations/dialtesting.md)        | 采集网络拨测数据                                                |
 | [Prom 采集 (`prom`)](../integrations/prom.md)                     | 采集 Prometheus Exporters 暴露出来的指标数据                          |
+| [日志采集 (`logging`)](../integrations/logging.md)                 | 采集文件日志数据                          |
 
 ### 安装指定版本的 DataKit {#version-install}
 
@@ -157,7 +158,7 @@ NAME1="value1" NAME2="value2"
 - `DK_GLOBAL_TAGS`：已弃用，改用 DK_GLOBAL_HOST_TAGS
 - `DK_GLOBAL_HOST_TAGS`：支持安装阶段填写全局主机 tag，格式范例：`host=__datakit_hostname,host_ip=__datakit_ip`（多个 tag 之间以英文逗号分隔）
 - `DK_GLOBAL_ELECTION_TAGS`：支持安装阶段填写全局选举 tag，格式范例：`project=my-porject,cluster=my-cluster`（多个 tag 之间以英文逗号分隔）
-- `DK_CLOUD_PROVIDER`：支持安装阶段填写云厂商(`aliyun/aws/tencent/hwcloud/azure`)
+- `DK_CLOUD_PROVIDER`：支持安装阶段填写云厂商(目前支持如下几类云主机 `aliyun/aws/tencent/hwcloud/azure`)。**该功能已弃用**，Datakit 已经可以自动识别云主机类型。
 - `DK_USER_NAME`：Datakit 服务运行时的用户名。目前仅支持 `root` 和 `datakit`, 默认为 `root`。
 - `DK_DEF_INPUTS`：[默认开启的采集器](datakit-input-conf.md#default-enabled-inputs)配置。如果要禁用某些采集器，需手动将其屏蔽，比如，要禁用 `cpu` 和 `mem` 采集器，需这样指定：`-cpu,-mem`，即除了这两个采集器之外，其它默认采集器均开启。
 - `DK_LITE`：安装精简版 DataKit 时，可设置该变量为 `1`。([:octicons-tag-24: Version-1.14.0](changelog.md#cl-1.14.0))
@@ -260,14 +261,13 @@ NAME1="value1" NAME2="value2"
     ```
 <!-- markdownlint-enable -->
 
-### cgroup 配置相关 {#env-cgroup}
+### 资源限制配置相关 {#env-cgroup}
 
-以下安装选项仅 Linux 平台支持：
+目前仅支持 Linux 和 Windows ([:octicons-tag-24: Version-1.15.0](changelog.md#cl-1.15.0)) 操作系统。
 
-- `DK_CGROUP_DISABLED`：Linux 系统下关闭 Cgroup 功能（默认开启）
-- `DK_LIMIT_CPUMAX`：Linux 系统下支持 CPU 的最大功率，默认 30.0
-- `DK_LIMIT_CPUMIN`：Linux 系统下支持 CPU 的最小功率，默认 5.0
-- `DK_LIMIT_MEMMAX`：Linux 系统下限制内存（含 swap）最大用量，默认 4096（4GB）
+- `DK_LIMIT_DISABLED`：关闭资源限制功能（默认开启）
+- `DK_LIMIT_CPUMAX`：支持 CPU 的最大功率，默认 30.0
+- `DK_LIMIT_MEMMAX`：限制内存（含 swap）最大用量，默认 4096（4GB）
 
 ### 其它安装选项 {#env-others}
 

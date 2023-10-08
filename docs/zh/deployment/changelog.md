@@ -1,5 +1,146 @@
 # 版本历史
 
+## 1.70.136（2023 年 09 月 07 日）
+
+pubrepo.guance.com/dataflux/1.70.136:launcher-6ccb06b-1694354213
+
+### 观测云更新
+
+- 场景 > 仪表板/查看器：新增全局跨工作空间查询配置。
+- 场景 > 图表查询：时间控件范围小于等于【最近 15 分钟】，自动对齐时间间隔新增 “1 秒”显示。
+- 场景 > 服务管理：
+- 服务清单新增绑定多个内置视图到分析看板；新增关联、团队信息；
+- 新增资源调用分析看板；
+- 支持保存快照。
+- 日志 > 备份日志：
+- 正式更改为数据转发；
+- 新增链路、用户访问数据源；
+- 原备份日志计费项名称更改为数据转发计费项。
+- 日志 > 查看器：新增新建监控器入口；支持针对查看器详情页做快照保存。
+- 管理：
+- 全局标签：新增全局标签功能，对标签进行统一管理；
+- 字段管理：新增别名、设置显示列；
+- 空间管理：功能整合和页面优化；
+- 成员管理：原成员组的定义正式更改为团队；
+- 敏感数据扫描：新增扫描规则数量统计；新增跳转链接。
+- 监控：
+- 可用性数据检测：新增拨测指标，可以基于【指标】维度进行检测；
+- 突变、离群、区间检测：支持选择所有数据源。
+
+### DataKit 更新
+
+- 新加功能：
+    - Windows 支持内存/CPU 限制
+    - 新增 IBM Db2 采集器
+- 问题修复：
+    - 修复容器采集配置 include/exclude 的 double star 问题
+    - 修复一处 k8s Service 对象数据的字段错误
+- 功能优化：
+    - DataKit 精简版支持 logging 模块
+    - bug report 支持禁用 profile 数据采集
+    - 增加不同 Trace 传递说明的文档
+    - Pipeline 增加函数 parse_int 和 format_int
+    - Pipeline 数据聚合函数 agg_create 和 agg_metric 支持输出任意类别的数据
+    - 优化 Datakit 镜像大小
+    - 优化 --bug-report 命令，可关闭 Profile 收集（避免给当前 Datakit 造成压力）
+    - 增加Datakit 指标性能测试报告
+    - 增加external 采集器的使用文档
+
+### 集成更新
+
+- 阿里云：
+    - aliyun_analyticdb_postgresql：阿里云 AnalyticDB PostgreSQL 指标展示，包括 CPU、内存、磁盘、协调节点、实例查询等。
+    - aliyun_clickhouse_community：阿里云 ClickHouse 指标展示，包括服务状态、日志流量、操作次数、总体 QPS 等。
+    - aliyun_kafka：阿里云 KafKa 包括消息吞吐量、延迟、并发连接数和可靠性，这些指标反映了 Kafka 在处理大规模消息传递和实时数据流时的性能表现和可靠性保证。
+    - aliyun_lindorm：包括高吞吐量、低延迟的数据读写能力，支持高并发的事务处理，以及强一致性和高可靠性的数据存储和查询服务。
+    - aliyun_polardb_1.0：阿里云 PolarDB 分布式 1.0 展示指标包括CPU利用率、内存利用率、网络带宽和磁盘 IOPS。
+    - aliyun_polardb_2.0：阿里云 PolarDB 分布式 2.0 展示计算层和存储节点的指标，包括 CPU 利用率、连接使用率、磁盘使用量、磁盘使用率、内存利用率、网络带宽等。
+    - aliyun_rds_postgresql：阿里云 RDS PostgreSQL 指标展示，包括 CPU 使用率、内存使用率等。
+    - aliyun_rocketmq5：阿里云 RocketMQ 5.0 的展示指标包括消息吞吐量、延迟、可靠性和水平扩展能力等。
+- AWS：
+    - aws_dynamodb_DAX：AWS DynamoDB DAX 的展示指标包括节点或集群的 CPU 使用率、在所有网络接口上收到或发出的字节数、数据包的数量等，这些指标反映了 DynamoDB DAX 的运行状态。
+    - aws_memorydb：AWS MemoryDB 的核心性能指标包括低延迟的内存读写能力、高并发的事务处理能力，以及可线性扩展的存储容量和吞吐量。
+- 华为云：
+    - huawei_functiongraph：HUAWEI FunctionGraph 的展示指标包括调用次数,错误次数,被拒绝次数,并发数,预留实例个数，运行时间（包括最大运行时间、最小运行时间、平均运行时间）等，这些指标反映了 FunctionGraph 函数运行情况。
+    - huawei_kafka：包括消息吞吐量、延迟、并发连接数和可靠性，这些指标反映了 Kafka 在处理大规模消息传递和实时数据流时的性能表现和可靠性保证。
+    - huaweiyun_SYS_DDMS：'华为云 SYS.DDMS 监控视图展示指标包括消息吞吐量、延迟、并发连接数和可靠性，这些指标反映了 DDMS 在处理大规模消息传递和实时数据流时的性能表现和可靠性保证。
+- 腾讯云：
+    - tencent_keewidb：腾讯云 KeeWiDB 指标展示，包括连接数、请求、缓存、key、慢查询等。
+    - tencent_mariadb：包括高性能的读写能力、低延迟的查询响应时间，以及支持高并发的事务处理和扩展性能。
+    - tencent_memcached：包括高速的内存读写能力、低延迟的数据访问时间，以及高并发的访问处理能力。
+    - tencent_tdsql_c_mysql：包括高吞吐量的读写能力、低延迟的查询响应时间，以及支持高并发的事务处理和可扩展性能。
+- 其他：
+    - openai：OpenAI的展示指标包括请求总数，响应时间，，请求数量，请求错误数和消耗token数。
+    - monitor_jira：当我们的应用程序或系统出现异常时，通常需要及时处理以保证系统的正常运行。为了更好地管理和跟踪异常事件，我们可以将这些事件发送到 Jira 中创建事件，这样我们就可以在 Jira 中进行跟踪、分析和解决这些问题，通过快速地将异常事件发送到 Jira 中创建事件，为我们提供更好的管理和跟踪异常事件的能力，从而更好地保证系统的正常运行。同时，这种方法也可以帮助我们更好地分析和解决问题，提高系统的稳定性和可靠性。
+
+更多详情可参考帮助文档：https://docs.guance.com/release-notes/
+
+## 1.69.135（2023 年 08 月 24 日）
+
+pubrepo.guance.com/dataflux/1.69.135:launcher-7130e81-1693313758
+
+### 部署版更新
+
+- 管理后台映射规则新增仅针对新加入成员应用适配规则，用户启用选择该选项时，映射规则适配仅针对首次加入成员生效。
+
+### 观测云更新
+
+- 计费项：
+    - 备份日志：新增 OSS、OBS、AWS S3、Kafka 四种存档类型计费项，基于用户选择的对应存档类型统计汇总转发的流量大小，并根据数据对应出账；
+    - 应用性能 Trace、用户访问 PV 新增 30天/60天的数据存储策略。
+- 监控：
+    - 静默规则：支持基于不同维度配置告警沉默。
+    - 监控器：支持为监控器添加标签，根据标签过滤列表；监控器列表增加快捷筛选列，并对列表进行了一些优化；
+- SLO：新增故障时间显示列。
+- 日志 > 备份日志：新增 Kafka 消息队列外部存储。
+- 查看器/仪表板：新增自动刷新功能。
+- 查看器详情页：新增绑定内置视图入口。
+- 场景 > SLO 图表：新增故障时间显示。
+
+### DataKit 更新
+
+- 新增采集器 NetFlow
+- 新增黑名单调试器
+- 新增 Kubernetes StatefulSet 指标和对象采集，新增 replicas_desired 对象字段
+- 新增 DK_LITE 环境变量，用于安装 DataKit 精简版
+- 修复 Container 和 Kubernetes 采集没有正确添加 HostTags 和 ElectionTags 的问题
+- 修复 MySQL 自定义采集 Tags 为空时指标无法采集的问题
+- 增加 System 采集器中的 process_count 指标表示当前机器的进程数
+- 去掉 Process 采集器中的 open_files_list 字段
+- 增加主机对象采集器文档中指标丢失的处理案例
+- 优化 Datakit 视图，完善 Datakit Prometheus 指标文档
+- 优化 Pod/容器 日志采集的 mount 方式
+- 增加 Process、System 采集器集成测试
+- 优化 etcd 集成测试
+- 升级 Golang 1.19.12
+- 增加通过 ash 命令安装 DataKit
+- RUM 采集支持自定义指标集，默认的指标集新增 telemetry
+- 移除 Datakit 端的 Sinker 功能，将其功能转移到 Dataway 侧实现
+- 移除 Kubernetes Deployment 指标数据的 pasued 和 condition 字段，新增对象数据 paused 字段
+
+### 智能巡检更新
+
+- 阿里云 RDS MariaDB：阿里云 RDS MariaDB 的展示指标包括响应时间、并发连接数、QPS 和 TPS 等。
+- 阿里云 RocketMQ4：阿里云 RocketMQ 4.0 的展示指标包括消息吞吐量、延迟、可靠性和水平扩展能力等。
+- 阿里云 Tair 社区版：阿里云 Tair 社区版指标展示包括 CPU 使用率、内存使用率、代理总QPS、网络流量、命中率等。
+- AWS DynamoDB：AWS DynamoDB 的展示指标包括吞吐量容量单位（Capacity Units）、延迟、并发连接数和读写吞吐量，这些指标反映了 DynamoDB 在处理大规模数据存储和访问时的性能表现和可扩展性。
+- AWS EventBridge：AWS EventBridge 的展示指标包括事件传递延迟、吞吐量、事件规模和可伸缩性，这些指标反映了 EventBridge 在处理大规模事件流和实时数据传递时的性能表现和可靠性。
+- AWS Lambda：AWS Lambda 的展示指标包括冷启动时间、执行时间、并发执行数和内存使用量，这些指标反映了 Lambda 函数的响应速度、可扩展性和资源利用情况。
+- HUAWEI SYS.AS：HUAWEI SYS.AS 的展示指标包括响应时间、并发连接数、吞吐量和可靠性，这些指标反映了 SYS.AS 在处理应用程序请求和数据交互时的性能表现和稳定性。
+- HUAWEI SYS.CBR：HUAWEI SYS.CBR 的展示指标包括带宽利用率、延迟、丢包率和网络吞吐量，这些指标反映了CBR在网络传输和带宽管理方面的性能表现和质量保证。
+- 华为云 GaussDB-Cassandra：华为云 GaussDB-Cassandra 的展示指标包括读写吞吐量、延迟、数据一致性和可扩展性，这些指标反映了 GaussDB-Cassandra 在处理大规模分布式数据存储和访问时的性能表现和可靠性。
+- 华为云 GaussDB for MySQL：华为云 GaussDB for MySQL 的展示指标包括响应时间、并发连接数、读写吞吐量和可扩展性，这些指标反映了 GaussDB for MySQL 在处理大规模关系型数据库操作时的性能表现和可靠性。
+- 华为云 GaussDB-Influx：华为云 GaussDB-Influx 的展示指标包括写入吞吐量、查询延迟、数据保留策略和可扩展性，这些指标反映了 GaussDB-Influx 在处理大规模时序数据存储和查询时的性能表现和可靠性。
+- 华为云 GaussDB-Redis：华为云 GaussDB-Redis 的展示指标包括读写吞吐量、响应时间、并发连接数和数据持久性，这些指标反映了 GaussDB-Redis 在处理高并发数据存储和缓存时的性能表现和可靠性。
+- 华为云 GaussDB SYS.GAUSSDBV5：华为云 GaussDB SYS.GAUSSDBV5，提供 CPU、内存、磁盘、死锁、SQL 响应时间指标等数据。
+- 华为云 MongoDB：华为云 MongoDB 的展示指标包括读写吞吐量、延迟、并发连接数和数据可靠性，这些指标反映了 MongoDB 在处理大规模文档存储和查询时的性能表现和可扩展性。
+- 华为云 RDS PostgreSQL：华为云 RDS PostgreSQL 的展示指标包括查询性能、事务吞吐量、并发连接数和数据可靠性，这些指标反映了 RDS PostgreSQL 在处理大规模关系型数据存储和事务处理时的性能表现和可靠性。
+- 腾讯云 CKafka：腾讯云 CKafka 的展示指标包括消息吞吐量、延迟、并发连接数和可靠性，这些指标反映了 CKafka 在处理大规模消息传递和实时数据流时的性能表现和可靠性保证。
+- Zadigx：Zadigx 展示包括概览、自动化构建、自动化部署、自动化测试等。
+- 飞书与异常追踪联动：为方便更加及时可方便的获取异常追踪中的新 Issue，可以通过在内部群中创建一个飞书、钉钉或者企业微信的机器人来接受异常追踪中的新 Issue 或新回复的提醒，帮助及时处理 Issue；也可以通过 @机器人的这种方式来快速进行 Issue 回复，提高我们的异常处理效率。
+
+更多详情可参考帮助文档：https://docs.guance.com/release-notes/
+
 ## 1.68.134（2023 年 08 月 10 日）
 
 pubrepo.guance.com/dataflux/1.68.134:launcher-9651bb3-1691936534

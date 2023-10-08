@@ -1,6 +1,6 @@
 ---
 title: '华为云 MongoDB'
-summary: '使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云。'
+summary: '华为云MongoDB的展示指标包括读写吞吐量、延迟、并发连接数和数据可靠性，这些指标反映了MongoDB在处理大规模文档存储和查询时的性能表现和可扩展性。'
 __int_icon: 'icon/huawei_mongodb'
 dashboard:
   - desc: '华为云 MongoDB 内置视图'
@@ -16,7 +16,7 @@ monitor:
 # 华为云 MongoDB
 <!-- markdownlint-enable -->
 
-使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云。
+华为云MongoDB的展示指标包括读写吞吐量、延迟、并发连接数和数据可靠性，这些指标反映了MongoDB在处理大规模文档存储和查询时的性能表现和可扩展性。
 
 ## 配置 {#config}
 

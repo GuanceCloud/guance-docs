@@ -91,6 +91,9 @@ monitor:
       logging_auto_multiline_detection = true
       logging_auto_multiline_extra_patterns = []
     
+      ## Removes ANSI escape codes from text strings.
+      logging_remove_ansi_escape_codes = false
+    
       ## Search logging interval, default "60s"
       #logging_search_interval = ""
     
@@ -112,7 +115,7 @@ monitor:
     
     | 环境变量名                                                                    | 配置项含义                                                                                                                                            | 默认值                                                                                                          | 参数示例（yaml 配置时需要用英文双引号括起来）                                    |
     | ----:                                                                         | ----:                                                                                                                                                 | ----:                                                                                                           | ----                                                                             |
-    | `ENV_INPUT_CONTAINER_ENDPOINTS`                                               | 追加多个容器运行时的 endpoint                                                                                                                         | ["unix:///var/run/docker.sock", "unix:///var/run/containerd/containerd.sock", "unix:///var/run/crio/crio.sock"] | `["unix:///<new_path>/run/containerd.sock"]`                                     |
+    | `ENV_INPUT_CONTAINER_ENDPOINTS`                                               | 追加多个容器运行时的 endpoint                                                                                                                         | "unix:///var/run/docker.sock,unix:///var/run/containerd/containerd.sock,unix:///var/run/crio/crio.sock" | `unix:///<new_path>/run/containerd.sock`                                     |
     | `ENV_INPUT_CONTAINER_DOCKER_ENDPOINT`                                         | Deprecated，指定 Docker Engine 的 endpoint                                                                                                            | "unix:///var/run/docker.sock"                                                                                   | `"unix:///var/run/docker.sock"`                                                  |
     | `ENV_INPUT_CONTAINER_CONTAINERD_ADDRESS`                                      | Deprecated，指定 Containerd 的 endpoint                                                                                                               | "/var/run/containerd/containerd.sock"                                                                           | `"/var/run/containerd/containerd.sock"`                                          |
     | `ENV_INPUT_CONTAINER_ENABLE_CONTAINER_METRIC`                                 | 开启容器指标采集                                                                                                                                      | true                                                                                                            | `"true"`/`"false"`                                                               |
@@ -136,6 +139,7 @@ monitor:
     | `ENV_INPUT_CONTAINER_LOGGING_AUTO_MULTILINE_EXTRA_PATTERNS_JSON`              | 日志采集的自动多行模式 pattens 列表，支持手动配置多个多行规则                                                                                         | 默认规则详见[文档](logging.md#auto-multiline)                                                                   | `'["^\\d{4}-\\d{2}", "^[A-Za-z_]"]'` JSON 格式的字符串数组                       |
     | `ENV_INPUT_CONTAINER_LOGGING_MIN_FLUSH_INTERVAL`                              | 日志采集的最小上传间隔，如果在此期间没有新数据，将清空和上传缓存数据，避免堆积                                                                        | "5s"                                                                                                            | `"10s"`                                                                          |
     | `ENV_INPUT_CONTAINER_LOGGING_MAX_MULTILINE_LIFE_DURATION`                     | 日志采集的单次多行最大生命周期，此周期结束将清空和上传现存的多行数据，避免堆积                                                                        | "3s"                                                                                                            | `"5s"`                                                                           |
+    | `ENV_INPUT_CONTAINER_LOGGING_REMOVE_ANSI_ESCAPE_CODES`                        | 日志采集删除包含的颜色字符，详见[日志特殊字符处理说明](logging.md#ansi-decode)                                                                            | false                                                                                                           | `"true"`/`"false"`                                                               |
     | `ENV_INPUT_CONTAINER_TAGS`                                                    | 添加额外 tags                                                                                                                                         | 无                                                                                                              | `"tag1=value1,tag2=value2"`       以英文逗号分割的多个"key=value"                |
     | `ENV_INPUT_CONTAINER_PROMETHEUS_MONITORING_MATCHES_CONFIG`                    | 已弃用                                                                                                                                                | 无                                                                                                              |                                                                                  |
 
@@ -286,6 +290,37 @@ The metric of containers, only supported Running status.
 
 
 
+
+
+
+
+
+
+### `kubernetes`
+
+The count of the Kubernetes resource.
+
+- 标签
+
+
+| Tag | Description |
+|  ----  | --------|
+|`namespace`|namespace|
+
+- 指标列表
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`cronjob`|CronJob count|int|-|
+|`daemonset`|Service count|int|-|
+|`deployment`|Deployment count|int|-|
+|`job`|Job count|int|-|
+|`node`|Node count|int|-|
+|`pod`|Pod count|int|-|
+|`replicaset`|ReplicaSet count|int|-|
+|`service`|Service count|int|-|
+|`statefulset`|StatefulSet count|int|-|
 
 
 
@@ -512,7 +547,7 @@ The metric of the Kubernetes Pod.
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cpu_usage`|The sum of the cpu usage of all containers in this Pod.|float|percent|
-|`cpu_usage_base100`|The normalized cpu usage, with a maximum of 100%.|float|percent|
+|`cpu_usage_base100`|The normalized cpu usage, with a maximum of 100%. (Experimental)|float|percent|
 |`mem_capacity`|The total memory in the host machine.|int|B|
 |`mem_limit`|The sum of the memory limit of all containers in this Pod.|int|B|
 |`mem_usage`|The sum of the memory usage of all containers in this Pod.|int|B|
@@ -658,6 +693,10 @@ The object of containers, only supported Running status.
 |`mem_used_percent_base_limit`|The percentage usage of the memory is calculated based on the limit.|float|percent|
 |`network_bytes_rcvd`|Total number of bytes received from the network (only count the usage of the main process in the container, excluding loopback).|int|B|
 |`network_bytes_sent`|Total number of bytes send to the network (only count the usage of the main process in the container, excluding loopback).|int|B|
+
+
+
+
 
 
 
@@ -862,6 +901,8 @@ The object of the Kubernetes Node.
 |`age`|Age (seconds)|int|s|
 |`kubelet_version`|Kubelet Version reported by the node.|string|-|
 |`message`|Object details|string|-|
+|`node_ready`|NodeReady means kubelet is healthy and ready to accept pods (true/false/unknown)|string|-|
+|`unschedulable`|Unschedulable controls node `schedulability` of new pods (yes/no).|string|-|
 
 
 
@@ -901,7 +942,7 @@ The object of the Kubernetes Pod.
 |`age`|Age (seconds)|int|s|
 |`available`|Number of containers|int|count|
 |`cpu_usage`|The sum of the cpu usage of all containers in this Pod.|float|percent|
-|`cpu_usage_base100`|The normalized cpu usage, with a maximum of 100%.|float|percent|
+|`cpu_usage_base100`|The normalized cpu usage, with a maximum of 100%. (Experimental)|float|percent|
 |`mem_capacity`|The total memory in the host machine.|int|B|
 |`mem_limit`|The sum of the memory limit of all containers in this Pod.|int|B|
 |`mem_usage`|The sum of the memory usage of all containers in this Pod.|int|B|
@@ -1104,6 +1145,10 @@ The logging of the container.
 
 
 
+
+
+
+
 ### `kubernetes_events`
 
 The logging of the Kubernetes Event.
@@ -1176,10 +1221,9 @@ The logging of the Kubernetes Event.
 
 <!-- markdownlint-enable -->
 
-
 ## 联动 Dataway Sink 功能 {#link-dataway-sink}
 
-Dataway Sink [详见文档](../datakit/dataway-sink.md#sink-intro)。
+Dataway Sink [详见文档](../deployment/dataway-sink.md)。
 
 所有的 Kubernetes 资源采集，都会添加与 CustomerKey 匹配的 Label。例如 CustomerKey 是 `name`，DaemonSet、Deployment、Pod 等资源，会在自己当前的 Labels 中找到 `name`，并将其添加到 tags。
 

@@ -2,8 +2,6 @@
 
 ---
 
-## 简介
-
 观测云应用监测能够通过收集各个 iOS 应用的指标数据，以可视化的方式分析各个 iOS 应用端的性能。
 
 ## 前置条件
@@ -12,7 +10,7 @@
 - 配置 [RUM 采集器](../../integrations/rum.md)；
 - DataKit 配置为[公网可访问，并且安装 IP 地理信息库](../../datakit/datakit-tools-how-to.md#install-ipdb)。
 
-## iOS 应用接入 {#iOS-integration}
+## 应用接入 {#iOS-integration}
 
 登录观测云控制台，进入**用户访问监测**页面，点击左上角 **[新建应用](../index.md#create)**，即可开始创建一个新的应用。
 
@@ -1277,7 +1275,7 @@ FT_DEA_ADDRESS="YOUR_DEA_ADDRESS"
 # ＜env＞ 环境字段。属性值：prod/gray/pre/common/local。需要与 SDK 设置一致
 FT_ENV="common"
 #
-#＜version＞ 脚本默认配置的版本格式为CFBundleShortVersionString,如果你修改默认的版本格式, 请设置此变量。注意：需要确保在此填写的与SDK设置的一致。
+#＜version＞ 脚本默认配置的版本格式为CFBundleShortVersionString,如果您修改默认的版本格式, 请设置此变量。注意：需要确保在此填写的与SDK设置的一致。
 # FT_VERSION=""
 ```
 
@@ -1491,7 +1489,7 @@ XCode Release 编译默认会生成 dSYM 文件，而 Debug 编译默认不会�
 
 #### 开启了 bitCode 怎么上传符号表？
 
-当你上传你的 bitcode App 到 App Store，在提交对话框里勾选声明符号文件（dSYM文件）的生成：
+当您上传您的 bitcode App 到 App Store，在提交对话框里勾选声明符号文件（dSYM文件）的生成：
 
 - 在配置符号表文件之前，需要从App Store中把该版本对应的dSYM文件下载回本地，然后用脚本根据输入参数处理上传符号表文件。
 - 不需要将脚本集成到 Xcode 工程的 Target 了，也不要用本地生成的 dSYM 文件来生成符号表文件，因为本地编译生成的 dSYM 文件的符号表信息都被隐藏了。如果用本地编译生成的 dSYM 文件上传，还原出来的结果将是类似于“__hiden#XXX”这样的符号。

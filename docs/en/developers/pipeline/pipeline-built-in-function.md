@@ -159,7 +159,7 @@ After using `adjust_timezone` will get:
 
 ### `agg_create()` {#fn-agg-create}
 
-Function prototype: `fn agg_create(bucket: str, on_interval: str = "60s", on_count: int = 0, keep_value: bool = false, const_tags: map[string]string = nil)`
+Function prototype: `fn agg_create(bucket: str, on_interval: str = "60s", on_count: int = 0, keep_value: bool = false, const_tags: map[string]string = nil, category: str = "M")`
 
 Function description: Create an aggregation measurement, set the time or number of times through `on_interval` or `on_count` as the aggregation period, upload the aggregated data after the aggregation is completed, and choose whether to keep the last aggregated data
 
@@ -170,6 +170,7 @@ Function parameters:
 - `on_count`: The default value is `0`, the number of processed points is used as the aggregation period, and the parameter takes effect when the value is greater than `0`
 - `keep_value`: The default value is `false`
 - `const_tags`: Custom tags, empty by default
+- `category`: Data category for aggregated data, optional parameter, the default value is "M", indicating the indicator category data.
 
 示例：
 
@@ -178,12 +179,11 @@ agg_create("cpu_agg_info", interval = 60)
 ```
 
 
-
 ### `agg_metric()` {#fn-agg-metric}
 
 [:octicons-tag-24: Version-1.5.10](../datakit/changelog.md#cl-1.5.10)
 
-Function prototype: `fn agg_metric(bucket: str, new_field: str, agg_fn: str, agg_by: []string, agg_field: str)`
+Function prototype: `fn agg_metric(bucket: str, new_field: str, agg_fn: str, agg_by: []string, agg_field: str, category: str = "M")`
 
 Function description: According to the field name in the input data, the value is automatically taken as the label of the aggregated data, and the aggregated data is stored in the corresponding bucket.
 
@@ -194,6 +194,7 @@ Function parameters:
 - `agg_fn`: Aggregation function, can be one of `"avg"`, `"sum"`, `"min"`, `"max"`, `"set"`.
 - `agg_by`: The name of the field in the input data will be used as the tag of the aggregated data, and the value of these fields can only be string type data.
 - `agg_field`: The field name in the input data, automatically obtain the field value for aggregation.
+- `category`: Data category for aggregated data, optional parameter, the default value is "M", indicating the indicator category data.
 
 Example:
 
@@ -791,6 +792,54 @@ json(_, str_b)
 #   "message": "{\"str_a\": \"2\", \"str_b\": \"3\"}",
 #   "str_a": "2"
 # }
+```
+
+
+### `format_int()` {#fn-format-int}
+
+Function prototype: `fn format_int(val: int, base: int) str`
+
+Function description: Converts a numeric value to a numeric string in the specified base.
+
+Function parameters:
+
+- `val`: The number to be converted.
+- `base`: Base, ranging from 2 to 36; when the base is greater than 10, lowercase letters a to z are used to represent values 10 and later.
+
+Example:
+
+```python
+# script0
+a = 7665324064912355185
+b = format_int(a, 16)
+if b != "6a60b39fd95aaf71" {
+    add_key(abc, b)
+} else {
+    add_key(abc, "ok")
+}
+
+# result
+'''
+{
+    "abc": "ok"
+}
+'''
+
+# script1
+a = "7665324064912355185"
+b = format_int(parse_int(a, 10), 16)
+if b != "6a60b39fd95aaf71" {
+    add_key(abc, b)
+} else {
+    add_key(abc, "ok")
+}
+
+# result
+'''
+{
+    "abc": "ok"
+}
+'''
 ```
 
 
@@ -1443,6 +1492,77 @@ parse_duration(abc) # result abc = -3500000000
 
 # support floating point: abc = "-2.3s"
 parse_duration(abc) # result abc = -2300000000
+```
+
+
+### `parse_int()` {#fn-parse-int}
+
+Function prototype: `fn parse_int(val: int, base: int) str`
+
+Function description: Converts the string representation of a numeric value to a numeric value.
+
+Function parameters:
+
+- `val`: The string to be converted.
+- `base`: Base, the range is 0, or 2 to 36; when the value is 0, the base is judged according to the string prefix.
+
+Example:
+
+```python
+# script0
+a = "7665324064912355185"
+b = format_int(parse_int(a, 10), 16)
+if b != "6a60b39fd95aaf71" {
+    add_key(abc, b)
+} else {
+    add_key(abc, "ok")
+}
+
+# result
+'''
+{
+    "abc": "ok"
+}
+'''
+
+# script1
+a = "6a60b39fd95aaf71" 
+b = parse_int(a, 16)            # base 16
+if b != 7665324064912355185 {
+    add_key(abc, b)
+} else {
+    add_key(abc, "ok")
+}
+
+# result
+'''
+{
+    "abc": "ok"
+}
+'''
+
+
+# script2
+a = "0x6a60b39fd95aaf71" 
+b = parse_int(a, 0)            # the true base is implied by the string's 
+if b != 7665324064912355185 {
+    add_key(abc, b)
+} else {
+    c = format_int(b, 16)
+    if "0x"+c != a {
+        add_key(abc, c)
+    } else {
+        add_key(abc, "ok")
+    }
+}
+
+
+# result
+'''
+{
+    "abc": "ok"
+}
+'''
 ```
 
 
