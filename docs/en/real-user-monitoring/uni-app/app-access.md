@@ -251,12 +251,14 @@ Leave the page:
 /// Triggered when a script error or an API call error occurs using the uniapp error listener function
 <script>
   var rum = uni.requireNativePlugin("GCUniPlugin-MobileAgent");
+  var appState = 'startup';
 	// only listen in App.vue
 	export default {
 		onLaunch: function() {
 			console.log('App Launch')
 		},
 		onShow: function() {
+      appState = 'run'
 			console.log('App Show')
 		},
 		onHide: function() {
@@ -270,12 +272,14 @@ Leave the page:
 				rum.addError({
 					'message': err.message,
 					'stack': err.stack,
+          'state': appState,
 				})
 			}else if(err instanceof String){
 				console.log('Error:', err);
 				rum.addError({
 					'message': err,
 					'stack': err,
+          'state': appState,
 				})
 			}
 	}
@@ -299,6 +303,7 @@ Add Error events:
 | :------- | -------- | -------- | ---------------- |
 | message  | string   | Yes       | Error message         |
 | stack    | string   | Yes       | Stack information         |
+| state | string | No | App running state (`unknown`、`startup`、`run`) |
 | property | object   | No       | Event context(optional) |
 
 ### Resource

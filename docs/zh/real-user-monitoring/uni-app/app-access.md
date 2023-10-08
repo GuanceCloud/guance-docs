@@ -70,7 +70,7 @@
             guanceModule.sdkConfig({
                 'serverUrl': 'your severurl',
                 'debug': true,
-                'envType': 'common',
+                'env': 'common',
                 'globalContext': {
                     'custom_key': 'custom value'
                 }
@@ -258,12 +258,14 @@ rum.stopView()
 /// 使用 uniapp 错误监听函数 发生脚本错误或 API 调用报错时触发
 <script>
   var rum = uni.requireNativePlugin("GCUniPlugin-MobileAgent");
+  var appState = 'startup';
 	// 只能在App.vue里监听
 	export default {
 		onLaunch: function() {
 			console.log('App Launch')
 		},
 		onShow: function() {
+      appState = 'run'
 			console.log('App Show')
 		},
 		onHide: function() {
@@ -277,12 +279,14 @@ rum.stopView()
 				rum.addError({
 					'message': err.message,
 					'stack': err.stack,
+          'state': appState,
 				})
 			}else if(err instanceof String){
 				console.log('Error:', err);
 				rum.addError({
 					'message': err,
 					'stack': err,
+          'state': appState,
 				})
 			}
 	}
@@ -302,11 +306,12 @@ rum.addError({
 
 添加 Error 事件
 
-| 参数名称 | 参数类型 | **必须** | 参数说明         |
-| :------- | -------- | -------- | ---------------- |
-| message  | string   | 是       | 错误信息         |
-| stack    | string   | 是       | 堆栈信息         |
-| property | object   | 否       | 事件上下文(可选) |
+| 参数名称 | 参数类型 | **必须** | 参数说明                                   |
+| :------- | -------- | -------- | ------------------------------------------ |
+| message  | string   | 是       | 错误信息                                   |
+| stack    | string   | 是       | 堆栈信息                                   |
+| state    | string   | 否       | App 运行状态 (`unknown`、`startup`、`run`) |
+| property | object   | 否       | 事件上下文(可选)                           |
 
 ### Resource
 
