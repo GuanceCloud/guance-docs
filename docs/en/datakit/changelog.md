@@ -1,6 +1,22 @@
 # Changelog
 ---
 
+## 1.16.1(2023/10/09) {#cl-1.16.1}
+
+### Bug fixes {#cl-1.16.1-fix}
+
+- [Container](../integrations/container.md)(#1895)
+    - Fixed failed to get CPU metrics 
+    - Fixed bug on handing multi-line logging text under containerd
+- Fixed [Prom collector](../integrations/prom.md) eat too many memory bug(#1905)
+
+### Breaking Changes {#cl-1.16.1-bc}
+
+- Dash(`-`) will no longer be replaced with `_` in all tracing collectors. This change was made to avoid problems when associate tracing and logging with these dash-named keys(#1903)
+- All [Prometheus exporter collector](../integrations/prom.md) by default uses streaming mode to avoid eat too much memory on collecting large exporter URLs.
+
+---
+
 ## 1.16.0(2023/09/21) {#cl-1.16.0}
 This release is an iterative release, mainly including the following updates:
 
