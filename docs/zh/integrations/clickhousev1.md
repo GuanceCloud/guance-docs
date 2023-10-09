@@ -61,7 +61,7 @@ vim /etc/clickhouse-server/config.xml
         
     [[inputs.clickhousev1]]
       ## Exporter URLs.
-      # urls = ["http://127.0.0.1:9363/metrics"]
+      urls = ["http://127.0.0.1:9363/metrics"]
     
       ## Unix Domain Socket URL. Using socket to request data when not empty.
       uds_path = ""

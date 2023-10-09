@@ -7,6 +7,7 @@ nav:
   - 'React Native Monitoring': react-native
   - 'Flutter Monitoring': flutter
   - 'UniApp Monitoring': uni-app
+  - 'macOS Monitoring': macos
   - 'Explorer': explorer
   - 'Session Replay': session-replay
   - 'Generate Metrics': generate-metrics.md

@@ -36,7 +36,7 @@
 | `app_id` | string | 必填，用户访问应用唯一 ID 标识，在观测云控制台上面创建监控时自动生成。 |
 | `env` | string | 必填，环境字段。属性值：prod/gray/pre/common/local。其中：<br>prod：线上环境<br>gray：灰度环境<br>pre：预发布环境<br>common：日常环境<br>local：本地环境 |
 | `version` | string | 必填，版本号。 |
-| `service` | string | 可选，所属业务或服务的名称。固定名称：<br/>`df_rum_ios`<br/>`df_rum_android`<br/>`df_rum_windows`<br/>`df_rum_linux` |
+| `service` | string | 可选，所属业务或服务的名称。固定名称：<br/>`df_rum_ios`<br/>`df_rum_macos`<br/>`df_rum_android`<br/>`df_rum_windows`<br/>`df_rum_linux` |
 
 ### 用户 & 会话属性
 
@@ -115,14 +115,6 @@
 | `view_referrer` | string   | 页面来源，页面的父级                                |
 | `view_name`     | string   | 页面名称                                            |
 
-#### Action 属性
-
-| **字段**      | **类型** | **描述**                            |
-| ------------- | -------- | ----------------------------------- |
-| `action_id`   | string   | 用户页面操作时产生的唯一 ID          |
-| `action_name` | string   | 操作名称                            |
-| `action_type` | string   | 操作类型(冷热启动，click 点击等操作) |
-
 #### 指标
 
 | **字段** | **类型** | **描述**   |
@@ -145,8 +137,8 @@
 | --------------------------- | -------- | ------------------------ |
 | `cpu_tick_count`            | number   | 可选，该页面 CPU 跳动次数    |
 | `cpu_tick_count_per_second` | number   | 可选，每秒平均 CPU 跳动次数  |
-| ~~`fps_avg`~~               | number   | 可选，页面平均每秒帧数   |
-| ~~`fps_mini`~~              | number   | 可选，页面最小每秒帧数   |
+| ~~`fps_avg`~~               | number   | <del>可选，页面平均每秒帧数</del> |
+| ~~`fps_mini`~~              | number   | <del>可选，页面最小每秒帧数</del> |
 | `memory_avg`                | number   | 可选，页面内存使用平均值 |
 | `memory_max`                | number   | 可选，页面内存峰值       |
 

@@ -26,8 +26,8 @@ Only metric data in Prometheus form can be accessed.
     
       ## Stream Size. 
       ## The source stream segmentation size.
-      ## Default 0, source stream undivided. 
-      # stream_size = 0
+      ## Default 1, source stream undivided. 
+      # stream_size = 1
     
       ## Unix Domain Socket URL. Using socket to request data when not empty.
       uds_path = ""
