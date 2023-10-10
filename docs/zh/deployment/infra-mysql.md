@@ -118,6 +118,13 @@ MySQL 是最流行的关系型数据库管理系统，在 WEB 应用方面 MySQL
             image: pubrepo.guance.com/googleimages/mysql:5.7
             imagePullPolicy: IfNotPresent
             name: mysql
+            resources:
+               limits:
+                 cpu: '4'
+                 memory: 4Gi
+               requests:
+                 cpu: 100m
+                 memory: 512Mi                   
             ports:
             - containerPort: 3306
               name: dbport
@@ -135,13 +142,7 @@ MySQL 是最流行的关系型数据库管理系统，在 WEB 应用方面 MySQL
           restartPolicy: Always
           schedulerName: default-scheduler
           securityContext: {}
-          resources:
-            limits:
-              cpu: '4'
-              memory: 4Gi
-            requests:
-              cpu: 100m
-              memory: 512Mi           
+     
           terminationGracePeriodSeconds: 30
           volumes:
           - name: db
