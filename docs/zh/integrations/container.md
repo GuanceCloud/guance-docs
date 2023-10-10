@@ -315,6 +315,7 @@ The count of the Kubernetes resource.
 |`cronjob`|CronJob count|int|-|
 |`daemonset`|Service count|int|-|
 |`deployment`|Deployment count|int|-|
+|`endpoint`|Endpoint count|int|-|
 |`job`|Job count|int|-|
 |`node`|Node count|int|-|
 |`pod`|Pod count|int|-|
@@ -902,7 +903,7 @@ The object of the Kubernetes Node.
 |`kubelet_version`|Kubelet Version reported by the node.|string|-|
 |`message`|Object details|string|-|
 |`node_ready`|NodeReady means kubelet is healthy and ready to accept pods (true/false/unknown)|string|-|
-|`unschedulable`|Unschedulable controls node `schedulability` of new pods (yes/no).|string|-|
+|`unschedulable`|Unschedulable controls node schedulability of new pods (yes/no).|string|-|
 
 
 
@@ -943,6 +944,7 @@ The object of the Kubernetes Pod.
 |`available`|Number of containers|int|count|
 |`cpu_usage`|The sum of the cpu usage of all containers in this Pod.|float|percent|
 |`cpu_usage_base100`|The normalized cpu usage, with a maximum of 100%. (Experimental)|float|percent|
+|`cpu_usage_nano_cores`|Total CPU usage (sum of all cores) averaged over the sample window.|int|ns|
 |`mem_capacity`|The total memory in the host machine.|int|B|
 |`mem_limit`|The sum of the memory limit of all containers in this Pod.|int|B|
 |`mem_usage`|The sum of the memory usage of all containers in this Pod.|int|B|

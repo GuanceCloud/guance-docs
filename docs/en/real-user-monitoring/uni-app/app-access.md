@@ -1,4 +1,5 @@
-# UniApp App Access
+# UniApp Application Access
+
 ---
 
 ## Precondition
@@ -61,7 +62,7 @@ None yet.
             guanceModule.sdkConfig({
                 'serverUrl': 'your severurl',
                 'debug': true,
-                'envType': 'common',
+                'env': 'common',
                 'globalContext': {
                     'custom_key': 'custom value'
                 }
@@ -83,8 +84,7 @@ None yet.
 | :------------ | :------- | :--- | ------------------------------------------------------------ |
 | serverUrl     | string   | Yes   |The url of the datakit installation address, example: http://10.0.0.1:9529, port 9529. Datakit url address needs to be accessible by the device where the SDK is installed                                                  |
 | debug         | boolean  | No   | Set whether to allow printing of Debug logs, default  `false`                            |
-| datakitUUID   | string   | No   | Request `HTTP` request header `X-Datakit-UUID` data collection end, automatically configured if not set by user |
-| envType       | string   | No   | Environment fields: `prod` online (default), `gray` grayscale, `pre` advance, `common` daily, `local` local |
+| env | string   | No   | Environment, defaulting to `prod`, any character is allowed, preferably a single word, such as test, etc. |
 | service       | string   | No   | Set the name of the business or service to which it belongs by default: `df_rum_ios`, `df_rum_android` |
 | globalContext | object   | No   | Add custom labels                                               |
 | offlinePakcage | boolean   | No   | Only supported by Android, whether to use offline packaging, the default is `false`. For detailed Description, see [difference between Android cloud packaging and offline packaging](#package)       |
@@ -159,7 +159,7 @@ var rum = uni.requireNativePlugin("GCUniPlugin-RUM");
 
 ### Action
 
-####API - startAction
+#### API - startAction
 
 Add Action event:
 
@@ -251,12 +251,14 @@ Leave the page:
 /// Triggered when a script error or an API call error occurs using the uniapp error listener function
 <script>
   var rum = uni.requireNativePlugin("GCUniPlugin-MobileAgent");
+  var appState = 'startup';
 	// only listen in App.vue
 	export default {
 		onLaunch: function() {
 			console.log('App Launch')
 		},
 		onShow: function() {
+      appState = 'run'
 			console.log('App Show')
 		},
 		onHide: function() {
@@ -270,12 +272,14 @@ Leave the page:
 				rum.addError({
 					'message': err.message,
 					'stack': err.stack,
+          'state': appState,
 				})
 			}else if(err instanceof String){
 				console.log('Error:', err);
 				rum.addError({
 					'message': err,
 					'stack': err,
+          'state': appState,
 				})
 			}
 	}
@@ -299,6 +303,7 @@ Add Error events:
 | :------- | -------- | -------- | ---------------- |
 | message  | string   | Yes       | Error message         |
 | stack    | string   | Yes       | Stack information         |
+| state | string | No | App running state (`unknown`、`startup`、`run`) |
 | property | object   | No       | Event context(optional) |
 
 ### Resource
@@ -373,14 +378,14 @@ HTTP request ends:
 
 #### Content Object
 
-| prototype      | Parameter Description       |
-| -------------- | -------------- |
-| url            | Request url       |
-| httpMethod     | http method      |
-| requestHeader  | Request head         |
-| responseHeader | Response head         |
-| responseBody   | Response result       |
-| resourceStatus | Request result status code |
+| prototype      | Parameter Type | Parameter Description       |
+| -------------- | -------------- | -------------- |
+| url            | string | Request url       |
+| httpMethod     | string | http method      |
+| requestHeader  | object | Request head         |
+| responseHeader | object | Response head         |
+| responseBody   | string | Response result       |
+| resourceStatus | string | Request result status code |
 
 ## Logger Log Printing 
 
@@ -505,32 +510,31 @@ Drag the dependent libraries and dependent resource files **SDK** folder into th
 
 #### Project Configuration
 
-1. Architectures settings
+1.Architectures settings
 
-   As the simulator provided by Xcode 12 supports the arm64 architecture, the framework provided by uni_app supports the real machine of arm64 and the simulator of x86_64. So:
+As the simulator provided by Xcode 12 supports the arm64 architecture, the framework provided by uni_app supports the real machine of arm64 and the simulator of x86_64. So:
 
-   * `Excluded Architectures` sets `Any iOS Simulator SDK`: `arm64`.
+`Excluded Architectures` sets `Any iOS Simulator SDK`: `arm64`.
 
-   * All Targets in the `Pods` project set `Build Active Architecture only` to NO.
+2.Other Linker Flags 
 
-2. Other Linker Flags 
+```
+$(inherited) -ObjC -framework "FTMobileSDK" -framework "Guance_UniPlugin_App"
+```
 
-   ```
-   $(inherited) -ObjC -framework "FTMobileSDK" -framework "Guance_UniPlugin_App"
-   ```
+3.Framework Search Paths
 
-3. Framework Search Paths
-
-   ```
-   $(inherited)
-   "${PODS_CONFIGURATION_BUILD_DIR}/FTMobileSDK"
-   "${PODS_CONFIGURATION_BUILD_DIR}/Guance-UniPlugin-App"
-   $(DEVELOPER_FRAMEWORKS_DIR)
-   $(PROJECT_DIR)/../SDK/libs
-   $(PROJECT_DIR)
-   ```
+```
+$(inherited)
+"${PODS_CONFIGURATION_BUILD_DIR}/FTMobileSDK"
+"${PODS_CONFIGURATION_BUILD_DIR}/Guance-UniPlugin-App"
+$(DEVELOPER_FRAMEWORKS_DIR)
+$(PROJECT_DIR)/../SDK/libs
+$(PROJECT_DIR)
+```
 
 ### Plug-in Development Android Main Project UniPlugin-Android Use
+
 #### Project Configuration
 See [Demo](https://github.com/GuanceCloud/datakit-uniapp-native-plugin/tree/develop/Hbuilder_Example) for detailed dependency configuration.
 

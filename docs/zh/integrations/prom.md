@@ -37,8 +37,8 @@ Prom 采集器可以获取各种 Prometheus Exporters 暴露出来的指标数�
     
       ## Stream Size. 
       ## The source stream segmentation size.
-      ## Default 0, source stream undivided. 
-      # stream_size = 0
+      ## Default 1, source stream undivided. 
+      # stream_size = 1
     
       ## Unix Domain Socket URL. Using socket to request data when not empty.
       uds_path = ""

@@ -143,18 +143,22 @@ nav:
 
     - 'Others':
       - apollo.md
+      - 'Flink': flinkv1.md
       - consul.md
       - coredns.md
-      - 'Flink': flinkv1.md
       - 'Jira': monitor_jira.md
       - nacos.md
+      - jenkins.md
+      - gitlab.md
       - snmp.md
+      - seata.md
       - netflow.md
       - seata.md
       - zookeeper.md
       - 'Zadigx': zadigx.md
       - 'openai': openai.md
       - external.md
+      - zookeeper.md
 
   - CI/CD:
       - 'Jenkins': jenkins.md
@@ -229,6 +233,13 @@ nav:
 
   - RUM:
     - rum.md
+
+  - 'Langue':
+    - 'Java': java.md
+    - dotnet.md
+    - golang.md
+    - nodejs.md
+    - php.md
 
   - Logs:
     - 'Log Collection Overview': datakit-logging.md

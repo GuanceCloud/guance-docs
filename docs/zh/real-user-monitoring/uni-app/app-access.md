@@ -1,4 +1,5 @@
 # UniApp 应用接入
+
 ---
 
 ## 前置条件
@@ -61,7 +62,7 @@
             guanceModule.sdkConfig({
                 'serverUrl': 'your severurl',
                 'debug': true,
-                'envType': 'common',
+                'env': 'common',
                 'globalContext': {
                     'custom_key': 'custom value'
                 }
@@ -83,7 +84,7 @@
 | :------------ | :------- | :--- | ------------------------------------------------------------ |
 | serverUrl     | string   | 是   | datakit 安装地址 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529。注意：安装 SDK 设备需能访问这地址                                               |
 | debug         | boolean  | 否   | 设置是否允许打印 Debug 日志，默认`false`                            |
-| envType       | string   | 否   | 环境字段： `prod`线上（默认）、`gray`灰度、`pre`预发、`common`日常、`local`本地 |
+| env | string   | 否   | 环境，默认`prod`，任意字符，建议使用单个单词，例如 `test` 等 |
 | service       | string   | 否   | 设置所属业务或服务的名称 默认：`df_rum_ios`、`df_rum_android` |
 | globalContext | object   | 否   | 添加自定义标签                                               |
 | offlinePakcage | boolean   | 否   | 仅 Android 支持，是否使用离线打包，默认为 `false`，详细说明见[Android 云打包与离线打包区别](#package)       |
@@ -249,12 +250,14 @@ rum.stopView()
 /// 使用 uniapp 错误监听函数 发生脚本错误或 API 调用报错时触发
 <script>
   var rum = uni.requireNativePlugin("GCUniPlugin-MobileAgent");
+  var appState = 'startup';
 	// 只能在App.vue里监听
 	export default {
 		onLaunch: function() {
 			console.log('App Launch')
 		},
 		onShow: function() {
+      appState = 'run'
 			console.log('App Show')
 		},
 		onHide: function() {
@@ -268,12 +271,14 @@ rum.stopView()
 				rum.addError({
 					'message': err.message,
 					'stack': err.stack,
+          'state': appState,
 				})
 			}else if(err instanceof String){
 				console.log('Error:', err);
 				rum.addError({
 					'message': err,
 					'stack': err,
+          'state': appState,
 				})
 			}
 	}
@@ -293,11 +298,12 @@ rum.addError({
 
 添加 Error 事件
 
-| 参数名称 | 参数类型 | 必须 | 参数说明         |
-| :------- | -------- | -------- | ---------------- |
-| message  | string   | 是       | 错误信息         |
-| stack    | string   | 是       | 堆栈信息         |
-| property | object   | 否       | 事件上下文(可选) |
+| 参数名称 | 参数类型 | 必须 | 参数说明                                   |
+| :------- | -------- | -------- | ------------------------------------------ |
+| message  | string   | 是       | 错误信息                                   |
+| stack    | string   | 是       | 堆栈信息                                   |
+| state    | string   | 否       | App 运行状态 (`unknown`、`startup`、`run`) |
+| property | object   | 否       | 事件上下文(可选)                           |
 
 ### Resource
 
@@ -371,16 +377,16 @@ HTTP 请求结束
 
 #### content object
 
-| prototype      | 参数说明       |
-| -------------- | -------------- |
-| url            | 请求 url       |
-| httpMethod     | http 方法      |
-| requestHeader  | 请求头         |
-| responseHeader | 响应头         |
-| responseBody   | 响应结果       |
-| resourceStatus | 请求结果状态码 |
+| prototype      | 参数类型 | 参数说明       |
+| -------------- | -------- | -------------- |
+| url            | string   | 请求 url       |
+| httpMethod     | string   | http 方法      |
+| requestHeader  | object   | 请求头         |
+| responseHeader | object   | 响应头         |
+| responseBody   | string   | 响应结果       |
+| resourceStatus | string   | 请求结果状态码 |
 
-## Logger 日志打印 
+## Logger 日志打印
 
 ```javascript
 var logger = uni.requireNativePlugin("GCUniPlugin-Logger");
@@ -503,30 +509,28 @@ SDK 包结构说明
 
 #### 工程配置
 
-1. Architectures 设置
+1.Architectures 设置
 
-   因为 Xcode 12 提供的模拟器支持 arm64 架构，uni_app 提供的 framework 支持的是 arm64 的真机，x86_64 的模拟器。所以
+因为 Xcode 12 提供的模拟器支持 arm64 架构，uni_app 提供的 framework 支持的是 arm64 的真机，x86_64 的模拟器。所以
 
-   *  `Excluded Architectures` 设置 `Any iOS Simulator SDK` : `arm64`。
+`Excluded Architectures` 设置 `Any iOS Simulator SDK` : `arm64`。
 
-   * `Pods` 工程里所有 Target 设置 `Build Active Architecture only` 设置为 NO。
+2.Other Linker Flags 
 
-2. Other Linker Flags 
+```
+$(inherited) -ObjC -framework "FTMobileSDK" -framework "Guance_UniPlugin_App"
+```
 
-   ```
-   $(inherited) -ObjC -framework "FTMobileSDK" -framework "Guance_UniPlugin_App"
-   ```
+3.Framework Search Paths
 
-3. Framework Search Paths
-
-   ```
-   $(inherited)
-   "${PODS_CONFIGURATION_BUILD_DIR}/FTMobileSDK"
-   "${PODS_CONFIGURATION_BUILD_DIR}/Guance-UniPlugin-App"
-   $(DEVELOPER_FRAMEWORKS_DIR)
-   $(PROJECT_DIR)/../SDK/libs
-   $(PROJECT_DIR)
-   ```
+```
+$(inherited)
+"${PODS_CONFIGURATION_BUILD_DIR}/FTMobileSDK"
+"${PODS_CONFIGURATION_BUILD_DIR}/Guance-UniPlugin-App"
+$(DEVELOPER_FRAMEWORKS_DIR)
+$(PROJECT_DIR)/../SDK/libs
+$(PROJECT_DIR)
+```
 
 ### 插件开发 Android 主工程 UniPlugin-Android 使用
 #### 工程配置
