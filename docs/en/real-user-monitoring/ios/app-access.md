@@ -29,7 +29,7 @@ Login to Guance Console, enter "Real User Monitoring" page, click "New Applicati
 
     1.Configure the `Podfile` file.
     
-    **use dynamic framework**
+    **Use Dynamic Library**
      
     ```
     platform :ios, '10.0' 
@@ -51,7 +51,7 @@ Login to Guance Console, enter "Real User Monitoring" page, click "New Applicati
     end
     ```
     
-    **use static framework**
+    **Use Static Library**
     
     ```
     use_modular_headers!

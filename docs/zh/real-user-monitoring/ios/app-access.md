@@ -28,7 +28,7 @@
 
     1.配置 `Podfile` 文件。
     
-    **使用 dynamic framework**
+    **使用 Dynamic Library**
     
     ```
     platform :ios, '10.0' 
@@ -50,7 +50,7 @@
     end
     ```
     
-    **使用 static framework**
+    **使用 Static Library**
     
     ```
     use_modular_headers!
