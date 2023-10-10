@@ -509,28 +509,28 @@ SDK 包结构说明
 
 #### 工程配置
 
-1. Architectures 设置
+1.Architectures 设置
 
-   因为 Xcode 12 提供的模拟器支持 arm64 架构，uni_app 提供的 framework 支持的是 arm64 的真机，x86_64 的模拟器。所以
+因为 Xcode 12 提供的模拟器支持 arm64 架构，uni_app 提供的 framework 支持的是 arm64 的真机，x86_64 的模拟器。所以
 
-   *  `Excluded Architectures` 设置 `Any iOS Simulator SDK` : `arm64`。
+`Excluded Architectures` 设置 `Any iOS Simulator SDK` : `arm64`。
 
-2. Other Linker Flags 
+2.Other Linker Flags 
 
-   ```
-   $(inherited) -ObjC -framework "FTMobileSDK" -framework "Guance_UniPlugin_App"
-   ```
+```
+$(inherited) -ObjC -framework "FTMobileSDK" -framework "Guance_UniPlugin_App"
+```
 
-3. Framework Search Paths
+3.Framework Search Paths
 
-   ```
-   $(inherited)
-   "${PODS_CONFIGURATION_BUILD_DIR}/FTMobileSDK"
-   "${PODS_CONFIGURATION_BUILD_DIR}/Guance-UniPlugin-App"
-   $(DEVELOPER_FRAMEWORKS_DIR)
-   $(PROJECT_DIR)/../SDK/libs
-   $(PROJECT_DIR)
-   ```
+```
+$(inherited)
+"${PODS_CONFIGURATION_BUILD_DIR}/FTMobileSDK"
+"${PODS_CONFIGURATION_BUILD_DIR}/Guance-UniPlugin-App"
+$(DEVELOPER_FRAMEWORKS_DIR)
+$(PROJECT_DIR)/../SDK/libs
+$(PROJECT_DIR)
+```
 
 ### 插件开发 Android 主工程 UniPlugin-Android 使用
 #### 工程配置
