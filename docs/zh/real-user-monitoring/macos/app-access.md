@@ -637,11 +637,9 @@
 
 === "Objective-C"
 
-    #import "FTMacOSSDK.h"
-    #import "FTResourceContentModel.h"
-    #import "FTResourceMetricsModel.h"
-    
     ```objectivec
+    #import "FTMacOSSDK.h"
+    
     //第一步：请求开始前
     [[FTGlobalRumManager sharedManager] startResourceWithKey:key];
     
@@ -673,8 +671,9 @@
 
 === "Swift"
 
-    import FTMacOSSDK
     ```swift
+    import FTMacOSSDK
+    
     //第一步：请求开始前
     FTGlobalRumManager.shared().startResource(withKey: key)
     

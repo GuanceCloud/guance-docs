@@ -644,11 +644,9 @@ If the views inside the window is  complex, you can use the following API to cus
 
 === "Objective-C"
 
-    #import "FTMacOSSDK.h"
-    #import "FTResourceContentModel.h"
-    #import "FTResourceMetricsModel.h"
-    
     ```objectivec
+    #import "FTMacOSSDK.h"
+    
     //step 1： Before the network request starts
     [[FTGlobalRumManager sharedManager] startResourceWithKey:key];
     
@@ -680,8 +678,9 @@ If the views inside the window is  complex, you can use the following API to cus
 
 === "Swift"
 
-    import FTMacOSSDK
     ```swift
+    import FTMacOSSDK
+    
     //step 1： Before the network request starts
     FTGlobalRumManager.shared().startResource(withKey: key)
     
@@ -1152,11 +1151,11 @@ You can create multiple Configurations to set values using pre-compiled instruct
 
 1. Create multiple configurations.
 
-![](image_9.png)
+![](../img/image_9.png)
 
 2. Set preset properties to distinguish between Configurations.
 
-![](image_10.png)
+![](../img/image_10.png)
 
 3. Use the pre-compile command.
 
