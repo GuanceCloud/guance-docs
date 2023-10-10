@@ -160,6 +160,7 @@ traces/apm:
 
 3. 重新部署 DataKit
 
+
    ```yaml
    Kubectl apply -f datakit.yml 
    ```

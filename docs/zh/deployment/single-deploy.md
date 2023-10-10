@@ -128,19 +128,25 @@ sudo systemctl restart containerd
 
     CentOS离线安装命令
     ```shell
-    tar -zvcf nfs-utils.tar.gz
+    tar -zvxf nfs-utils.tar.gz
+    cd nfs-utils
     rpm -Uvh *.rpm --nodeps --force
     ```
 === "Ubuntu"
 
     Ubuntu离线安装命令
     ```shell
-    tar -zvcf nfs-utils.tar.gz
+    tar -zvxf nfs-utils.tar.gz
+    cd nfs-utils
     sudo dpkg -i *.deb    
     ```
 
 2.4.3 配置nfs共享路径
 
+创建共享目录
+```shell
+mkdir /nfsdata
+```
 执行命令vim /etc/exports，创建exports文件，文件内容如下：
 
 ```shell
@@ -185,8 +191,12 @@ showmount -e localhost
 
 ```shell
 sealos load -i nfs_4.0.2.tar.gz
+# 获取nfs集群镜像的imageId
+sealos images
+# 将获取到的集群镜像id替换下边的imagesId值
 sealos run imagesId -e nfs_server=192.168.0.41,nfs_path=/nfsdata
 ```
+> 注：下文中其他组件的imageId都可使用相同方式进行获取和替换
 
 参数解释：
 
@@ -225,7 +235,7 @@ sealos run imagesId
 
 
 
- ###### 2.8 创建middleware namespace
+##### 2.8 创建middleware namespace
 
 2.8.1 创建middleware namespace
 
@@ -239,15 +249,13 @@ kubectl create ns middleware
 
 2.9.1 安装MySQL
 
-为worker节点打上app=mysql标签
-```shell
-kubectl get nodes
-kubectl label node nodename app=mysql
-```
 sealos安装mysql
 ```shell
 sealos load -i mysql_8.0.tar.gz 
+# 样例1: 磁盘类型为nfs，storageclass名称为df-nfs-storage的部署命令
 sealos run imageId -e storageclass_type=nfs,openebs_localpath='',nfs_name=df-nfs-storage
+# 样例2: 磁盘类型为openebs，本地共享路径为/data/mysql_data的部署命令
+sealos run imageId -e storageclass_type=openebs,openebs_localpath='/data/mysql_data',nfs_name=''
 ```
 
 参数解释：
@@ -301,6 +309,7 @@ sealos run imagesId
 
 ```shell
 sealos load -i influxdb_1.7.8.tar.gz
+# 样例参考MySQL
 sealos run imagesId -e storageclass_type=nfs,openebs_localpath='',nfs_name=df-nfs-storage
 
 # 连接信息
@@ -325,9 +334,10 @@ sealos run imagesId -e storageclass_type=nfs,openebs_localpath='',nfs_name=df-nf
 2.12.1 安装OpenSearch
 
 ```shell
-sealos load -i influxdb_1.7.8.tar.gz
+sealos load -i opensearch_2.3.0.tar.gz
 sealos run imagesId -e nfs_name=df-nfs-storage
 ```
+> 注：opensearch磁盘类型目前只支持nfs
 
 参数解释：
 
@@ -365,6 +375,7 @@ kubectl exec -ti -n middleware opensearch-single-0 -- curl -u admin:admin \
 sealos load -i guancedb.tar.gz
 sealos run imagesId -e nfs_name=df-nfs-storage
 ```
+> 注：GuanceDB磁盘类型目前只支持nfs
 
 参数解释：
 

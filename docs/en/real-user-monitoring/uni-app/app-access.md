@@ -510,30 +510,31 @@ Drag the dependent libraries and dependent resource files **SDK** folder into th
 
 #### Project Configuration
 
-1. Architectures settings
+1.Architectures settings
 
-   As the simulator provided by Xcode 12 supports the arm64 architecture, the framework provided by uni_app supports the real machine of arm64 and the simulator of x86_64. So:
+As the simulator provided by Xcode 12 supports the arm64 architecture, the framework provided by uni_app supports the real machine of arm64 and the simulator of x86_64. So:
 
-   * `Excluded Architectures` sets `Any iOS Simulator SDK`: `arm64`.
+`Excluded Architectures` sets `Any iOS Simulator SDK`: `arm64`.
 
-2. Other Linker Flags 
+2.Other Linker Flags 
 
-   ```
-   $(inherited) -ObjC -framework "FTMobileSDK" -framework "Guance_UniPlugin_App"
-   ```
+```
+$(inherited) -ObjC -framework "FTMobileSDK" -framework "Guance_UniPlugin_App"
+```
 
-3. Framework Search Paths
+3.Framework Search Paths
 
-   ```
-   $(inherited)
-   "${PODS_CONFIGURATION_BUILD_DIR}/FTMobileSDK"
-   "${PODS_CONFIGURATION_BUILD_DIR}/Guance-UniPlugin-App"
-   $(DEVELOPER_FRAMEWORKS_DIR)
-   $(PROJECT_DIR)/../SDK/libs
-   $(PROJECT_DIR)
-   ```
+```
+$(inherited)
+"${PODS_CONFIGURATION_BUILD_DIR}/FTMobileSDK"
+"${PODS_CONFIGURATION_BUILD_DIR}/Guance-UniPlugin-App"
+$(DEVELOPER_FRAMEWORKS_DIR)
+$(PROJECT_DIR)/../SDK/libs
+$(PROJECT_DIR)
+```
 
 ### Plug-in Development Android Main Project UniPlugin-Android Use
+
 #### Project Configuration
 See [Demo](https://github.com/GuanceCloud/datakit-uniapp-native-plugin/tree/develop/Hbuilder_Example) for detailed dependency configuration.
 

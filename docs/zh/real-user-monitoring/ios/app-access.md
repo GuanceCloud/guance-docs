@@ -27,37 +27,42 @@
 === "CocoaPods"
 
     1.配置 `Podfile` 文件。
-     * dynamic
-            ```
-            platform :ios, '10.0' 
-            use_frameworks!
-            def shared_pods
-              pod 'FTMobileSDK', '[latest_version]'
-              # 如果需要采集 widget Extension 数据
-              pod 'FTMobileSDK/Extension', '[latest_version]'
-            end
-            //主工程
-            target 'yourProjectName' do
-            shared_pods
-            end
-          
-            //Widget Extension
-            target 'yourWidgetExtensionName' do
-            shared_pods
-            end
-            ```
-     * static
-            ```
-            use_modular_headers!
-            //主工程
-            target 'yourProjectName' do
-            pod 'FTMobileSDK', '[latest_version]'
-            end
-            //Widget Extension
-            target 'yourWidgetExtensionName' do
-            pod 'FTMobileSDK/Extension', '[latest_version]'
-            end
-            ```
+    
+    **使用 Dynamic Library**
+    
+    ```
+    platform :ios, '10.0' 
+    use_frameworks!
+    def shared_pods
+    pod 'FTMobileSDK', '[latest_version]'
+    # 如果需要采集 widget Extension 数据
+    pod 'FTMobileSDK/Extension', '[latest_version]'
+    end
+    
+    //主工程
+    target 'yourProjectName' do
+    shared_pods
+    end
+    
+    //Widget Extension
+    target 'yourWidgetExtensionName' do
+    shared_pods
+    end
+    ```
+    
+    **使用 Static Library**
+    
+    ```
+    use_modular_headers!
+    //主工程
+    target 'yourProjectName' do
+    pod 'FTMobileSDK', '[latest_version]'
+    end
+    //Widget Extension
+    target 'yourWidgetExtensionName' do
+    pod 'FTMobileSDK/Extension', '[latest_version]'
+    end
+    ```
     
     2.在 `Podfile` 目录下执行 `pod install` 安装 SDK。
 

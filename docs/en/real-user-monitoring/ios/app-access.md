@@ -29,38 +29,41 @@ Login to Guance Console, enter "Real User Monitoring" page, click "New Applicati
 
     1.Configure the `Podfile` file.
     
-     * dynamic
-            ```
-            platform :ios, '10.0' 
-            use_frameworks!
-            def shared_pods
-              pod 'FTMobileSDK', '[latest_version]'
-              # If you need to collect widget Extension data
-              pod 'FTMobileSDK/Extension', '[latest_version]'
-            end
-            //Main Project Target
-            target 'yourProjectName' do
-            shared_pods
-            end
+    **Use Dynamic Library**
+     
+    ```
+    platform :ios, '10.0' 
+    use_frameworks!
+    def shared_pods
+    pod 'FTMobileSDK', '[latest_version]'
+    # If you need to collect widget Extension data
+    pod 'FTMobileSDK/Extension', '[latest_version]'
+    end
+    //Main Project Target
+    target 'yourProjectName' do
+    shared_pods
+    end
           
-            //Widget Extension
-            target 'yourWidgetExtensionName' do
-            # If you need to collect widget Extension data
-            shared_pods
-            end
-            ```
-     * static
-            ```
-            use_modular_headers!
-            //Main Project Target
-            target 'yourProjectName' do
-            pod 'FTMobileSDK', '[latest_version]'
-            end
-            //Widget Extension
-            target 'yourWidgetExtensionName' do
-            pod 'FTMobileSDK/Extension', '[latest_version]'
-            end
-            ```
+    //Widget Extension
+    target 'yourWidgetExtensionName' do
+    # If you need to collect widget Extension data
+    shared_pods
+    end
+    ```
+    
+    **Use Static Library**
+    
+    ```
+    use_modular_headers!
+    //Main Project Target
+    target 'yourProjectName' do
+    pod 'FTMobileSDK', '[latest_version]'
+    end
+    //Widget Extension
+    target 'yourWidgetExtensionName' do
+    pod 'FTMobileSDK/Extension', '[latest_version]'
+    end
+    ```
     
     2.Run `pod install` in the `Podfile` directory to install the SDK.
 
