@@ -1,5 +1,85 @@
 nav:
   - integration-index.md
+  - Public Cloud:
+    - Aliyun:
+      - 'ClickHouse': aliyun_clickhouse_community.md
+      - 'ECS': aliyun_ecs.md
+      - 'EIP': aliyun_eip.md
+      - 'Kafka': aliyun_kafka.md
+      - 'Lindorm': aliyun_lindorm.md
+      - 'MongoDB': aliyun_mongodb.md
+      - 'MySQL' : aliyun_rds_mysql.md
+      - 'MySQL(PolarDB)': aliyun_polardb_mysql.md
+      - 'NAT': aliyun_nat.md
+      - 'OSS': aliyun_oss.md
+      - 'Oracle(PolarDB)': aliyun_polardb_oracle.md
+      - 'PostgreDQL(PolarDB)': aliyun_polardb_postgresql.md
+      - 'PolarDB 1.0': aliyun_polardb_1.0.md
+      - 'PolarDB 2.0': aliyun_polardb_2.0.md
+      - 'RDS(MariaDB)' : aliyun_rds_mariadb.md
+      - 'RDS(PostgreSQL)' : aliyun_rds_postgresql.md
+      - 'Redis Shard': aliyun_redis_shard.md
+      - 'Redis': aliyun_redis.md
+      - 'RocketMQ4' : aliyun_rocketmq4.md
+      - 'RocketMQ5' : aliyun_rocketmq5.md
+      - 'SQLServer': aliyun_rds_sqlserver.md
+      - 'Tair': aliyun_tair.md
+
+    - Huawei: 
+      - 'ASM': huawei_asm.md
+      - 'DCS': huawei_dcs.md
+      - 'CCE': huawei_cce.md
+      - 'CSS(Elasticsearch)': huawei_css_es.md
+      - 'ECS': huawei_ecs.md
+      - 'ELB': huawei_elb.md
+      - 'FunctionGraph': huawei_FunctionGraph.md
+      - 'GaussDB(Cassandra)': huawei_gaussdb_cassandra.md
+      - 'GaussDB(MySQL)': huawei_gaussdb_for_mysql.md
+      - 'GaussDB(Influx)': huawei_gaussdb_influx.md
+      - 'GaussDB(Redis)': huawei_gaussdb_redis.md
+      - 'GaussDBV5': huawei_gaussdb_sys.gaussdbv5.md
+      - 'Kafka': huawei_kafka.md
+      - 'RDS(MySQL)': huawei_rds_mysql.md
+      - 'MongoDB': huawei_mongodb.md
+      - 'OBS': huawei_obs.md
+      - 'RDS(PostgreSQL)': huawei_rds_postgresql.md
+      - 'SYS.AS': huawei_SYS.AS.md
+      - 'SYS.CBR': huawei_SYS.CBR.md
+      - 'SYS DDMS': huaweiyun_SYS_DDMS.md
+
+    - AWS: 
+      - 'Aurora Serverless V2': aws_aurora_serverless_v2.md
+      - 'CloudFront': aws_cloudfront.md
+      - 'DynamoDB': aws_dynamodb.md
+      - 'DynamoDB(DAX)': aws_dynamodb_DAX.md
+      - 'EC2': aws_ec2.md
+      - 'ELB': aws_elb.md
+      - 'EventBridge': aws_eventbridge.md
+      - 'Lambda': aws_lambda.md
+      - 'MediaConvert': aws_mediaconvert.md
+      - 'MemoryDB': aws_memorydb.md
+      - 'MySQL': aws_rds_mysql.md
+      - 'Neptune Cluster': aws_neptune_cluster.md
+      - 'OpenSearch': aws_opensearch.md
+      - 'Redshift': aws_redshift.md
+      - 'Redis': aws_elasticache_redis.md
+      - 'Simple Queue Service': aws_sqs.md
+      - 'S3': aws_s3.md
+      - 'Timestream': aws_timestream.md
+
+    - Tencent:
+      - 'CDB': tencent_cdb.md
+      - 'CLB(Private)': tencent_clb_private.md
+      - 'CLB(Public)': tencent_clb_public.md
+      - 'COS': tencent_cos.md
+      - 'CVM': tencent_cvm.md
+      - 'KeewiDB': tencent_keewidb.md
+      - 'MariaDB': tencent_mariadb.md
+      - 'Memcached': tencent_memcached.md
+      - 'MongoDB': tencent_mongodb.md
+      - 'Redis': tencent_redis_mem.md
+      - 'Tdsql-C': tencent_tdsql_c_mysql.md
+
   - Host:
     - Default Collection:
       - 'DataKit': dk.md 
@@ -31,6 +111,7 @@ nav:
       - sqlserver.md
       - postgresql.md
       - redis.md
+      - redis-sentinel.md
       - memcached.md
       - etcd.md
       - mongodb.md
@@ -38,6 +119,11 @@ nav:
       - tdengine.md
       - elasticsearch.md
       - solr.md
+      - minio.md
+      - aerospike.md
+      - tidb.md
+      - couchbase-prom.md
+      - juicefs.md
       - 'IBM Db2': db2.md
 
     - 'Messaging Queue':
@@ -60,14 +146,23 @@ nav:
       - 'Flink': flinkv1.md
       - consul.md
       - coredns.md
+      - 'Jira': monitor_jira.md
       - nacos.md
       - jenkins.md
       - gitlab.md
       - snmp.md
       - seata.md
       - netflow.md
+      - seata.md
+      - zookeeper.md
+      - 'Zadigx': zadigx.md
+      - 'openai': openai.md
       - external.md
       - zookeeper.md
+
+  - CI/CD:
+      - 'Jenkins': jenkins.md
+      - gitlab.md
 
   - Cloud Native:
     - 'Metric Collection': container.md
@@ -85,11 +180,13 @@ nav:
 
     - 'Profiling':
       - profile.md
-      - 'Java': profile-java.md 
+      - 'Java': profile-java.md
       - 'Python': profile-python.md
       - 'Go': profile-go.md
       - 'C/C++': profile-cpp.md
       - 'NodeJS': profile-nodejs.md
+      - '.NET': dotnet.md
+      - 'PHP': php.md
 
     - 'DDTrace':
       - ddtrace.md
