@@ -27,19 +27,19 @@ RocketMQ 指标展示，包括生产者 TPS/消息大小、消费者 TPS/消息�
 
 ### 安装 exporter
 
-1、 拉取 `rocketmq-exporter`
+- 拉取 `rocketmq-exporter`
 
 ```shell
 git clone https://github.com/apache/rocketmq-exporter.git
 ```
 
-2、 进入安装目录
+- 进入安装目录
 
 ```shell
 cd rocketmq-exporter/
 ```
 
-3、 构建安装包 (2选1即可)
+- 构建安装包 (2选1即可)
 
 （1）构建 jar 包方式  
 
@@ -71,7 +71,7 @@ mvn package -Dmaven.test.skip=true docker:build
 docker run -d --net="host" --name rocketmq-exporter -p 5557:5557 docker.io/rocketmq-exporter --rocketmq.config.namesrvAddr=nameserverip:9876
 ```
 
-4、 测试 `rocketmq-exporter` 是否正常
+- 测试 `rocketmq-exporter` 是否正常
 
 ```shell
 curl http://127.0.0.1:5557/metrics
@@ -79,14 +79,14 @@ curl http://127.0.0.1:5557/metrics
 
 ### 指标采集
 
-1、 开启 DataKit Prometheus 插件，复制 sample 文件
+- 开启 DataKit Prometheus 插件，复制 sample 文件
 
 ```shell
 cd /usr/local/datakit/conf.d/prom
 cp prom.conf.sample prom.conf
 ```
 
-2、 修改配置文件 `prom.conf`
+- 修改配置文件 `prom.conf`
 
 主要参数说明
 

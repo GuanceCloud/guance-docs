@@ -1,6 +1,6 @@
 ---
 title: 'Istio'
-summary: 'Istio performance indicator display, including Incoming Request Volume, Incoming Success Rate, Incoming Requests By Source And Response Code, Outgoing Requests By Destination And Response Code, etc.'
+summary: 'Istio performance metric display, including Incoming Request Volume, Incoming Success Rate, Incoming Requests By Source And Response Code, Outgoing Requests By Destination And Response Code, etc.'
 dashboard:
   - desc: 'Istio Workload Monitoring View'
     path: 'dashboard/zh/istio_workload'
@@ -19,7 +19,7 @@ monitor:
 # Istio
 <!-- markdownlint-enable -->
 
-Istio performance indicators display, including Incoming Request Volume, Incoming Success Rate, Incoming Requests By Source And Response Code, Outgoing Requests By Destination And Response Code, etc.
+Istio performance metrics display, including Incoming Request Volume, Incoming Success Rate, Incoming Requests By Source And Response Code, Outgoing Requests By Destination And Response Code, etc.
 
 ---
 
@@ -121,9 +121,9 @@ kubectl apply -f  datakit.yaml
 
 ### Application Access Configuration
 
-Open Envoy Indicator Collector
+Open Envoy Metric Collector
 
-Add the following annotations at the Business Pod (specific path `spec.template.metadata`) to collect Envoy's indicator data.
+Add the following annotations at the Business Pod (specific path `spec.template.metadata`) to collect Envoy's metric data.
 
 ```yaml
 apiVersion: apps/v1
@@ -228,7 +228,8 @@ kubectl delete -f datakit.yaml
 kubectl apply -f  datakit.yaml
 ```
 
-Link data is typed on Service with ** zipkin.istio-system ** and the reporting port is `9411`. <br />
+Link data is typed on Service with **zipkin.istio-system** and the reporting port is `9411`.
+
 The Zipkin collector for link metrics collection was turned on when the DataKit was deployed. Since the namespace of the DataKit service is `datakit`, and the port is `9529`, a conversion is required here.
 
 ### 2 Define services for ClusterIP
@@ -275,7 +276,7 @@ Refer to for more log collection
 
 <[Pod logging collector best practices](../best-practices/cloud-native/pod-log.md)>
 
-<[Kubernetes Several gameplay for log collection in clusters](../best-practices/cloud-native/k8s-logs.md)>
+<[Kubernetes Several `gameplay` for log collection in clusters](../best-practices/cloud-native/k8s-logs.md)>
 
 
 
@@ -283,4 +284,4 @@ Refer to for more log collection
 
 ## Best Practices
 
-Best practices include Istio installation, Istio built-in project deployment, RUM/APM associations, and other extensions, as detailed in [ Best practices for observable microservices based on Istio ](../best-practices/cloud-native/istio.md)
+Best practices include Istio installation, Istio built-in project deployment, RUM/APM associations, and other extensions, as detailed in [Best practices for observable microservices based on Istio](../best-practices/cloud-native/istio.md)

@@ -56,14 +56,14 @@ zk_connection_token_deficit_count{zk_host="172.16.0.23:2181"} 2.0
 
 ### 开启 DataKit 采集器
 
-1、 开启 DataKit Prom 插件，复制 sample 文件
+- 开启 DataKit Prom 插件，复制 sample 文件
 
 ```bash
 /usr/local/datakit/conf.d/prom
 cp prom.conf.sample prom.conf
 ```
 
-2、 修改 `prom.conf` 配置文件
+- 修改 `prom.conf` 配置文件
 
 <!-- markdownlint-disable MD046 -->
 
@@ -149,13 +149,13 @@ cp prom.conf.sample prom.conf
     # more_tag = "some_other_value"
     ```
 <!-- markdownlint-enable -->
-3、 重启 DataKit (如果需要开启日志，请配置日志采集再重启)
+- 重启 DataKit (如果需要开启日志，请配置日志采集再重启)
 
 ```bash
 systemctl restart datakit
 ```
 
-4、 DQL 验证
+- DQL 验证
 
 ```bash
 [root@df-solution-ecs-018 prom]# datakit -Q

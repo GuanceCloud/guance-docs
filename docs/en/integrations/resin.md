@@ -1,12 +1,12 @@
 ---
 title     : 'Resin'
-summary   : 'Resin 性能指标展示，包括启动时间、堆内存、非堆内存、类、线程等。'
+summary   : 'Resin Performance metrics display, including startup time, heap memory, non heap memory, classes, threads, etc.'
 __int_icon: 'icon/resin'
 dashboard :
-  - desc  : 'Resin 监控视图'
+  - desc  : 'Resin Monitoring View'
     path  : 'dashboard/zh/resin'
 monitor   :
-  - desc  : '暂无'
+  - desc  : 'No'
     path  : '-'
 ---
 
@@ -14,46 +14,45 @@ monitor   :
 # Resin
 <!-- markdownlint-enable -->
 
-## 安装配置 {#config}
+## Installation Configuration{#config}
 
-说明：示例 Resin 版本为 Windows 环境 Resin/4.0.66 (Windows ）。
+Explanation: The example Resin version is Windows environment Resin/4.0.66 (Windows).
 
-指标采集是通过 `jolokia-jvm-agent` 来采集 Resin 运行时指标。
+Metric collection is achieved through the use of `jolokia-jvm-agent` to collect Resin runtime metrics.
 
+### Resin enables metric collection
 
-### Resin 开启指标采集
+- Configure `config/resin.properties`
 
-- 配置 `config/resin.properties`
-
-新增 `jvm_args` ，参数说明：
+ADD `jvm_args` ，parameter description：
 
 - `javaagent`：`jolokia-jvm-agent`
-- port=9530 # `jolokia-jvm-agent`对外暴露的指标端口
+- port=9530 # `jolokia-jvm-agent` export port
 
 ```shell
 jvm_args  : -Xmx2048m -XX:MaxPermSize=256m -javaagent:C:/"Program Files"/datakit/data/jolokia-jvm-agent.jar=port=9530
 ```
 
-- 重启 Resin
+- Restart Resin
 
-双击`resin.exe`
+Double-click `resin.exe`
 
-### DataKit 采集器配置
+### DataKit Collector Configuration
 
-- 开启 DataKit JVM 插件，复制 `sample` 文件
+- Enables the DataKit JVM plugin and copy the 'sample' file
 
 ```shell
 cd datakit/conf.d/jvm
 cp jvm.conf.sample jvm.conf
 ```
 
-- 修改 `jvm.conf` 配置文件
+- Modify `jvm.conf` configuration file
 
-主要参数说明
+Main parameter description
 
-- urls：`jolokia` agent 访问地址
-- interval：采集频率
-- inputs.jvm.metric：jvm 相关指标
+- urls：`jolokia` agent access url
+- interval：acquisition frequency
+- inputs.jvm.metric：jvm metrics
 
 ```toml
 # {"version": "1.2.12", "desc": "do NOT edit this line"}
@@ -117,55 +116,56 @@ tag_keys = ["name"]
   # ...
 ```
 
-- 重启 DataKit (如果需要开启日志，请配置日志采集再重启)
+- Restart DataKit
 
+[Restart DataKit](../datakit/datakit-service-how-to.md#manage-service)
 
-## 指标 {#metric}
+## Metric {#metric}
 
-### 指标集 resin_runtime
+### Metric Set resin_runtime
 
-| 指标 | 描述 |
+|Metrics| Describe |
 | --- | --- |
-| `Uptime` | 在线时长 |
-| `StartTime` | 启动时间 |
-| `VmVersion` | 虚拟机版本 |
-| `SpecName` | Java 虚拟机规范名称 |
+| `Uptime` | Online duration |
+| `StartTime` | resin start time |
+| `VmVersion` | jvm version |
+| `SpecName` | Java virtual machine specification name |
 
-### 指标集 resin_memory
+### Metric Set resin_memory
 
-| 指标 | 描述 |
+|Metrics| Describe |
 | --- | --- |
-| `HeapMemoryUsage` | 堆内存 |
-| `NonHeapMemoryUsage` | 非堆内存 |
+| `HeapMemoryUsage` | heap memory used |
+| `NonHeapMemoryUsage` | nonHeap memory used |
 
-### 指标集 resin_threading
+### Metric Set resin_threading
 
-| 指标 | 描述 |
+|Metrics| Describe |
 | --- | --- |
-| `TotalStartedThreadCount` | 启动线程总数 |
-| `ThreadCount` | 活动线程数量 |
-| `DaemonThreadCount` | 守护线程数量 |
-| `PeakThreadCount` | 峰值 |
+| `TotalStartedThreadCount` | Total number of startup threads |
+| `ThreadCount` | Number of active threads |
+| `DaemonThreadCount` | Number of daemon threads |
+| `PeakThreadCount` | Thread Peak |
 
-### 指标集 resin_class_loading
+### Metric Set resin_class_loading
 
-| 指标 | 描述 |
+|Metrics| Describe |
 | --- | --- |
-| LoadedClassCount | 已加载当前类 |
-| UnloadedClassCount | 已卸载类总数 |
-| TotalLoadedClassCount | 已加载类总数 |
+| LoadedClassCount | The current class has been loaded |
+| UnloadedClassCount | Total number of `unloadun` classes |
+| TotalLoadedClassCount | Total number of loaded classes |
 
-### 指标集 resin_memory_pool
+### Metric Set resin_memory_pool
 
-| 指标 | 描述 |
+|Metrics| Describe |
 | --- | --- |
-| Usage | 已使用内存池 |
-| PeakUsage | 已使用内存池峰值 |
-| CollectionUsage | 已使用内存池回收 |
+| Usage | Memory pool used |
+| PeakUsage | Used Memory Pool Peak |
+| CollectionUsage | Used memory pool recycling |
 
-### 指标集 resin_garbage_collector
+### Metric Set resin_garbage_collector
 
-| 指标 | 描述 |
+|Metrics| Describe |
 | --- | --- |
-| CollectionTime | GC时间 |
-| CollectionCount | GC次数 |
+| CollectionTime | GC time |
+| CollectionCount | GC count |

@@ -1,6 +1,6 @@
 ---
 title     : '东方通 THS（TongHttpServer）'
-summary   : '采集达梦数据库运行指标信息'
+summary   : '采集东方通 THS（TongHttpServer）运行指标信息'
 __int_icon: 'icon/dongfangtong'
 dashboard :
   - desc  : '东方通 THS（TongHttpServer）监控视图'
@@ -79,9 +79,7 @@ interval = "10s"
 
 ### 重启 DataKit
 
-```shell
-systemctl restart datakit
-```
+[重启 DataKit](../datakit/datakit-service-how-to.md#manage-service)
 
 ## 指标 {#metric}
 

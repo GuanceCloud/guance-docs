@@ -15,7 +15,7 @@ monitor   :
 <!-- markdownlint-enable -->
 
 
-Kubernetes API Server performance indicators display, including number of requests, work queue growth, work queue depth, CPU, Memory, Goroutine, etc.
+Kubernetes API Server performance metrics display, including number of requests, work queue growth, work queue depth, CPU, Memory, Goroutine, etc.
 
 
 ## Configuration {#config}
@@ -30,10 +30,11 @@ Kubernetes API Server performance indicators display, including number of reques
 
 - DataKit has been deployed, see Kubernetes Cluster [安装 Datakit](../datakit/datakit-daemonset-deploy.md)>
 
-- Kubernetes API Server indicator data was collected, [ Kubernetes is required to install the Metrics-Server component ](https://github.com/kubernetes-sigs/metrics-server#installation){: target="_blank"}.
+- Kubernetes API Server metric data was collected, [Kubernetes is required to install the Metrics-Server component](https://github.com/kubernetes-sigs/metrics-server#installation){: target="_blank"}.
 
-### Indicator Collection
-1. Use `yaml` to create `bearer-token` authorization information
+### Metric Collection
+
+- Use `yaml` to create `bearer-token` authorization information
 
 ```yaml
 ---
@@ -89,14 +90,14 @@ subjects:
   namespace: default
 ```
 
-2. Get bearer token
+- Get bearer token
 
 ```shell
 kubectl get secret `kubectl get secret -ndefault | grep bearer-token | awk '{print $1}'` -o jsonpath={.data.token} | base64 -d
 ```
 
 
-3. ConfigMap increase `api-server.conf` Configuration
+- ConfigMap increase `api-server.conf` Configuration
 
 In the `datakit.yaml` file used to deploy DataKit, add `api-server.conf` to the ConfigMap resource.
 
@@ -137,7 +138,7 @@ data:
         instance = "172.31.16.148:6443"
 ```
 
-4. Mount `api-server.conf`
+- Mount `api-server.conf`
 
 Add the following under `datakit.yaml` file `volumeMounts`.
 
@@ -147,13 +148,13 @@ Add the following under `datakit.yaml` file `volumeMounts`.
   subPath: api-server.conf
 ```
 
-5. Kubernetes has exposed indicators by default and can view them directly through curl.
+- Kubernetes has exposed metrics by default and can view them directly through curl.
 
 ```shell
 curl -k "https://172.31.16.148:6443/metrics" -H "Authorization: Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6ImlfX2V6UXdXWkpKUWZ6QlBxTGdSRTBpa0J1a2VpQUU3Q0JMWGFfYWNDYWcifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJkZWZhdWx0Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6ImJlYXJlci10b2tlbi10b2tlbi05emI5dCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJiZWFyZXItdG9rZW4iLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC51aWQiOiJkNWQxNDkzNi00NmM1LTRjZjMtYmI2MS00ODhhOTFiYTRjMTQiLCJzdWIiOiJzeXN0ZW06c2VydmljZWFjY291bnQ6ZGVmYXVsdDpiZWFyZXItdG9rZW4ifQ.sBQUGE67N6BV6mnC0g72k8ciiSjEZ-ctFjHcyiP_rBp9paUnGwd3ouheF0ddGormn6esOGR1t6vvDdta9BiE3i5mHpJsOifkVXzv85N3qllJfSpXvIIn-LNq-wxnK55QbOhXQjeFKF0PBanJk4m_kWCM6SOuFrH9s8cHGhKEVCYw_7ScUwHCDGQVUq_zKCfKll20GHSwhlzjjt2tz07UYdQs5kQ9AN8VbM9qNIJmpasPOeqod9hTbevnL3kO5Lcd4h4NUOT8JfJ2Om72NvH71-xWNH0U_Hqf2yS0_ZlnneBESq4FDjbm1VnJPxeIOJL0dMaoRJVPPtA0yUhX5MYV7A"
 ```
 
-6. Restart DataKit
+- Restart DataKit
 
 ```yaml
 kubectl delete -f datakit.yaml
