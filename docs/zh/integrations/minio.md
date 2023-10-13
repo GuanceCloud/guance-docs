@@ -30,7 +30,7 @@ MinIO 性能指标展示，包括 MinIO 在线时长、存储空间分布、buck
 
 MinIO 默认已暴露 [metric](https://docs.min.io/minio/baremetal/monitoring/metrics-alerts/collect-minio-metrics-using-prometheus.html?ref=con#minio-metrics-collect-using-prometheus) ，可以直接通过 Prometheus 来采集相关指标。
 
-1、 使用`minio-client`（简称`mc`）创建授权信息
+- 使用`minio-client`（简称`mc`）创建授权信息
 
 ```shell
 $ mc alias set myminio http://192.168.0.210:9000 minioadmin minioadmin
@@ -47,14 +47,14 @@ scrape_configs:
 ???+ info "注意"
     Minio 只提供了通过 `mc` 来生成`token` 信息，可用于`prometheus` 指标采集。其中并不包含生成对应 prometheus server, 输出信息包含了 `bearer_token`、`metrics_path`、`scheme`以及`targets`，通过这些信息可以进行拼装最终的 url 。
 
-2、 开启 DataKit 采集器
+- 开启 DataKit 采集器
 
 ```shell
 cd /usr/local/datakit/conf.d/prom/
 cp prom.conf.sample prom-minio.conf
 ```
 
-3、修改 `prom-minio.conf` 配置文件
+-修改 `prom-minio.conf` 配置文件
 <!-- markdownlint-disable MD046 -->
 ??? quote "`prom-minio.conf`"
     ```toml hl_lines="3 8 9 12 24 28 29 30"
@@ -143,7 +143,7 @@ cp prom.conf.sample prom-minio.conf
 - [inputs.prom.auth]：配置授权信息
 - token : bearer_token 值
 
-4、 重启 DataKit
+- 重启 DataKit
 
 [重启 DataKit](../datakit/datakit-service-how-to.md#manage-service)
 

@@ -31,28 +31,28 @@ Nacos 性能指标展示，包括 Nacos 在线时长、Nacos Config 长链接数
 
 ### 指标采集 (必选)
 
-1、 配置 `application.properties` 文件，暴露 metrics 数据
+- 配置 `application.properties` 文件，暴露 metrics 数据
 
 ```shell
 management.endpoints.web.exposure.include=*
 ```
 
-2、 重启 Nacos
+- 重启 Nacos
 
 集群方式和单例模式启动参数有差异，具体参考 [Nacos 官方文档](https://nacos.io/zh-cn/docs/quick-start.html)。
 
-3、 校验
+- 校验
 
 访问 `{ip}:8848/nacos/actuator/prometheus`，看是否能访问到 metrics 数据
 
-4、 开启 DataKit Prometheus 插件
+- 开启 DataKit Prometheus 插件
 
 ```shell
 cd /usr/local/datakit/conf.d/prom/
 cp prom.conf.sample nacos-prom.conf
 ```
 
-5、 修改 `nacos-prom.conf` 配置文件
+- 修改 `nacos-prom.conf` 配置文件
 
 主要参数说明
 
@@ -82,7 +82,7 @@ cp prom.conf.sample nacos-prom.conf
   # more_tag = "some_other_value"
 ```
 
-6、 重启 DataKit
+- 重启 DataKit
 
 [重启 DataKit](../datakit/datakit-service-how-to.md#manage-service)
 

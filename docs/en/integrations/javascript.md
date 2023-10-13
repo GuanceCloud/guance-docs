@@ -11,13 +11,11 @@ monitor   :
 ---
 
 
-<!--Markdownlint disable MD025-->
-
+<!-- markdownlint-disable MD025-->
 # JavaScript
+<!-- markdownlint-enable -->
 
-<!--Markdownlint enable -->
-
-JavaScript belongs to the category of [RUM (User Access Detection)](../real-user-monitoring/) and is mainly used to detect browser user access behavior and report it to the observation cloud. 
+JavaScript belongs to the category of [RUM (User Access Detection)](../real-user-monitoring/) and is mainly used to detect browser user access behavior and report it to the observation cloud.
 
 
 
@@ -33,20 +31,20 @@ JavaScript belongs to the category of [RUM (User Access Detection)](../real-user
 ### Web application access
 
 
-There are three ways to access web applications: NPM access, synchronous loading, and asynchronous loading. 
+There are three ways to access web applications: NPM access, synchronous loading, and asynchronous loading.
 
 
 | Access Method | Introduction|
 |-------- | --------|
 |NPM | By packaging SDK code together into your front-end project, this method can ensure that there is no impact on the performance of front-end pages, but it may miss requests and error collection before SDK initialization|
 |CDN Asynchronous Loading | By accelerating caching through CDN, SDK scripts are introduced in an asynchronous manner. This method ensures that downloading SDK scripts does not affect page loading performance, but may miss requests and error collection before SDK initialization|
-|CDN synchronous loading | By accelerating caching through CDN and introducing SDK scripts through synchronous scripts, this method ensures that all errors, resources, requests, and performance indicators can be collected. However, it may affect the loading performance of the page|
+|CDN synchronous loading | By accelerating caching through CDN and introducing SDK scripts through synchronous scripts, this method ensures that all errors, resources, requests, and performance metrics can be collected. However, it may affect the loading performance of the page|
 
 
-<!--Markdownlint disable MD046-->
+<!--markdownlint-disable MD046 MD009 MD051-->
 
 === "NPM"
-
+    
     ```javascript
     import { datafluxRum } from '@cloudcare/browser-rum'
     
@@ -64,7 +62,7 @@ There are three ways to access web applications: NPM access, synchronous loading
     ```
 
 === "CDN asynchronous loading"
-
+    
     ```javascript
     <script>
      (function (h, o, u, n, d) {
@@ -103,7 +101,7 @@ There are three ways to access web applications: NPM access, synchronous loading
     ```
 
 === "CDN synchronous loading"
-
+    
     ```javascript
     <script src="https://static.guance.com/browser-sdk/v3/dataflux-rum.js" type="text/javascript"></script>
     <script>
@@ -122,8 +120,8 @@ There are three ways to access web applications: NPM access, synchronous loading
     </script>
     ```
 
-<!--Markdownlint enable -->
+<!-- markdownlint-enable -->
 
-###Parameter configuration
+### Parameter configuration
 
 JavaScript provides many parameters to achieve personalized [configuration](../real-user-monitoring/web/app-access.md#config) of web monitoring.

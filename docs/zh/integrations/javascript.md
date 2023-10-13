@@ -47,7 +47,7 @@ Web 应用接入的有三种方式：NPM 接入、同步载入和异步载入。
       sessionSampleRate: 100,
       sessionReplaySampleRate: 70,
       trackInteractions: true,
-      traceType: 'ddtrace', // 非必填，默认为ddtrace，目前支持 ddtrace、zipkin、skywalking_v3、jaeger、zipkin_single_header、w3c_traceparent 6种类型
+      traceType: 'ddtrace', // 非必填，默认为ddtrace，目前支持 ddtrace、zipkin、skywalking_v-jaeger、zipkin_single_header、w3c_traceparent 6种类型
       allowedTracingOrigins: ['https://api.example.com', /https:\/\/.*\.my-api-domain\.com/],  // 非必填，允许注入trace采集器所需header头部的所有请求列表。可以是请求的origin，也可以是是正则
     })
     ```
@@ -84,7 +84,7 @@ Web 应用接入的有三种方式：NPM 接入、同步载入和异步载入。
           sessionSampleRate: 100,
           sessionReplaySampleRate: 70,
           trackInteractions: true,
-          traceType: 'ddtrace', // 非必填，默认为ddtrace，目前支持 ddtrace、zipkin、skywalking_v3、jaeger、zipkin_single_header、w3c_traceparent 6种类型
+          traceType: 'ddtrace', // 非必填，默认为ddtrace，目前支持 ddtrace、zipkin、skywalking_v-jaeger、zipkin_single_header、w3c_traceparent 6种类型
           allowedTracingOrigins: ['https://api.example.com', /https:\/\/.*\.my-api-domain\.com/],  // 非必填，允许注入trace采集器所需header头部的所有请求列表。可以是请求的origin，也可以是是正则
         })
       })
@@ -105,7 +105,7 @@ Web 应用接入的有三种方式：NPM 接入、同步载入和异步载入。
           sessionSampleRate: 100,
           sessionReplaySampleRate: 70,
           trackInteractions: true,
-          traceType: 'ddtrace', //非必填，默认为ddtrace，目前支持 ddtrace、zipkin、skywalking_v3、jaeger、zipkin_single_header、w3c_traceparent 6种类型
+          traceType: 'ddtrace', //非必填，默认为ddtrace，目前支持 ddtrace、zipkin、skywalking_v-jaeger、zipkin_single_header、w3c_traceparent 6种类型
           allowedTracingOrigins: ['https://api.example.com', /https:\/\/.*\.my-api-domain\.com/],  //非必填，允许注入trace采集器所需header头部的所有请求列表。可以是请求的origin，也可以是是正则
         })
     </script>

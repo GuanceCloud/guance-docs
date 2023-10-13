@@ -33,7 +33,8 @@ Kubernetes API Server 性能指标展示，包括请求数、工作队列增速�
 - 采集 Kubernetes API Server 指标数据，[需要 Kubernetes 安装 Metrics-Server 组件](https://github.com/kubernetes-sigs/metrics-server#installation){:target="_blank"}。
 
 ### 指标采集
-1、 使用`yaml` 创建`bearer-token`授权信息
+
+- 使用`yaml` 创建`bearer-token`授权信息
 
 ```yaml
 ---
@@ -89,14 +90,14 @@ subjects:
   namespace: default
 ```
 
-2、获取bearer_token
+- 获取bearer_token
 
 ```shell
 kubectl get secret `kubectl get secret -ndefault | grep bearer-token | awk '{print $1}'` -o jsonpath={.data.token} | base64 -d
 ```
 
 
-3、 ConfigMap 增加 `api-server.conf` 配置
+- ConfigMap 增加 `api-server.conf` 配置
 
 在部署 DataKit 使用的 `datakit.yaml` 文件中，ConfigMap 资源中增加 `api-server.conf`。
 
@@ -170,7 +171,7 @@ data:
         instance = "172.31.16.148:6443"
 ```
 
-4、 参数说明：
+- 参数说明：
 
 - url：api-server metrics 地址
 - source：采集器别名
@@ -187,7 +188,7 @@ data:
 - token_file：认证文件路径
 - inputs.prom.tags：请参考插件标签
 
-5、 挂载 `api-server.conf`
+- 挂载 `api-server.conf`
 
 在 `datakit.yaml` 文件的 `volumeMounts` 下面增加下面内容。
 
@@ -197,13 +198,13 @@ data:
   subPath: api-server.conf
 ```
 
-6、 Kubernetes默认已暴露指标，可以直接通过 curl 方式来查看相关指标。
+- Kubernetes默认已暴露指标，可以直接通过 curl 方式来查看相关指标。
 
 ```shell
 curl -k "https://172.31.16.148:6443/metrics" -H "Authorization: Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6ImlfX2V6UXdXWkpKUWZ6QlBxTGdSRTBpa0J1a2VpQUU3Q0JMWGFfYWNDYWcifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJkZWZhdWx0Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6ImJlYXJlci10b2tlbi10b2tlbi05emI5dCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJiZWFyZXItdG9rZW4iLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC51aWQiOiJkNWQxNDkzNi00NmM1LTRjZjMtYmI2MS00ODhhOTFiYTRjMTQiLCJzdWIiOiJzeXN0ZW06c2VydmljZWFjY291bnQ6ZGVmYXVsdDpiZWFyZXItdG9rZW4ifQ.sBQUGE67N6BV6mnC0g72k8ciiSjEZ-ctFjHcyiP_rBp9paUnGwd3ouheF0ddGormn6esOGR1t6vvDdta9BiE3i5mHpJsOifkVXzv85N3qllJfSpXvIIn-LNq-wxnK55QbOhXQjeFKF0PBanJk4m_kWCM6SOuFrH9s8cHGhKEVCYw_7ScUwHCDGQVUq_zKCfKll20GHSwhlzjjt2tz07UYdQs5kQ9AN8VbM9qNIJmpasPOeqod9hTbevnL3kO5Lcd4h4NUOT8JfJ2Om72NvH71-xWNH0U_Hqf2yS0_ZlnneBESq4FDjbm1VnJPxeIOJL0dMaoRJVPPtA0yUhX5MYV7A"
 ```
 
-7、 重启 DataKit
+- 重启 DataKit
 
 ```yaml
 kubectl delete -f datakit.yaml

@@ -1,6 +1,6 @@
 ---
 title     : 'Redis Sentinel'
-summary   : 'Collect Redis Sentinel Cluster Indicators, Log Information'
+summary   : 'Collect Redis Sentinel Cluster Metrics, Log Information'
 __int_icon: 'icon/redis'
 dashboard :
   - desc  : 'Redis-sentinel Monitoring View'
@@ -15,7 +15,7 @@ monitor   :
 # Redis Sentinel
 <!-- markdownlint-enable -->
 
-Redis-sentinel indicators display, including Redis clusters, Slaves, node distribution information, and so on.
+Redis-sentinel metrics display, including Redis clusters, Slaves, node distribution information, and so on.
 
 
 ## Configuration {#config}
@@ -24,7 +24,7 @@ Redis-sentinel indicators display, including Redis clusters, Slaves, node distri
 
 - redis-sentinel-exporter >=0.1
 
-### Download redis-sentinel-exporter indicator collector
+### Download redis-sentinel-exporter metric collector
 
 Download address [https://github.com/lrwh/redis-sentinel-exporter/releases](https://github.com/lrwh/redis-sentinel-exporter/releases)
 
@@ -39,16 +39,16 @@ Parameter description spring.redis.sentinel.master: Cluster name spring.redis.se
 
 ### Collector Configuration
 
-#### Indicator Collection
+#### Metric Collection
 
-1. Open the DataKit Prom plug-in and copy the sample file
+- Open the DataKit Prom plug-in and copy the sample file
 
 ```bash
 cd /usr/local/datakit/conf.d/prom/
 cp prom.conf.sample redis-sentinel-prom.conf
 ```
 
-2. Modify `redis-sentinel-prom.conf` Profile
+- Modify `redis-sentinel-prom.conf` Profile
 
 ??? Quote' `redis-sentinel-prom.conf` '
 <!-- markdownlint-disable MD046 -->
@@ -72,7 +72,7 @@ cp prom.conf.sample redis-sentinel-prom.conf
 <!-- markdownlint-enable -->
 
 
-3. Restart DataKit (configure log collection to restart if log needs to be turned on)
+- Restart DataKit (configure log collection to restart if log needs to be turned on)
 
 ```bash
 systemctl restart datakit
@@ -83,7 +83,7 @@ systemctl restart datakit
 
 ### Configure Collector
 
-1. Modify `redis.conf` Profile
+- Modify `redis.conf` Profile
 
 ```toml
 
@@ -135,7 +135,7 @@ systemctl restart datakit
 
 ```
 
-2. Restart DataKit (If you need to turn on custom tags, configure plug-in tags to restart)
+- Restart DataKit (If you need to turn on custom tags, configure plug-in tags to restart)
 
 ```bash
 systemctl restart datakit

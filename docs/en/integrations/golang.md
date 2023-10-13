@@ -10,29 +10,23 @@ monitor   :
     path  : '-'
 ---
 
-<!--Markdownlint disable MD025-->
-
+<!-- markdownlint-disable MD025 -->
 # Golang
+<!-- markdownlint enable -->
 
-<!--Markdownlint enable -->
+Report relevant information about the Golang application to the Observation Cloud:
 
-
-Report relevant information about the Golang application to the Observation Cloud: 
-
-- Collect custom indicator data from the application; 
-
-- Collect link tracking data from the application; 
-
-- Manage all logs for the application. 
-
+- Collect custom metric data from the application;
+- Collect link tracking data from the application;
+- Manage all logs for the application.
 
 ## Trace {#tracing}
 
 
-Golang provides invasive injection of probe information. 
+Golang provides invasive injection of probe information.
 
 
-<!-- Markdownlint disable MD046 -->
+<!-- markdownlint-disable MD046 MD009 MD051 -->
 
 === "OpenTelemetry"
 
@@ -42,17 +36,17 @@ Golang provides invasive injection of probe information.
 
     [DDTrace](ddtrace-golang.md)
 
-<!--Markdownlint enable -->
+<!-- markdownlint-enable -->
 
 
 ## Profiling {#profiling}
 
-Golang Profiling can be used to collect performance data during program operation. 
+Golang Profiling can be used to collect performance data during program operation.
 
-<!--Markdownlint disable MD046-->
+<!-- markdownlint-disable MD046 MD009 MD051-->
 
 === "DDTrace"
 
     [DDTrace Go profiling](profile-go.md)
 
-<!--Markdownlint enable -->
+<!--markdownlint-enable -->
