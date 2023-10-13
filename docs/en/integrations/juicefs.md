@@ -1,6 +1,6 @@
 ---
 title     : 'JuiceFS'
-summary   : 'Collect JuiceFS data size, IO, things, objects, clients and other related component indicator information'
+summary   : 'Collect JuiceFS data size, IO, things, objects, clients and other related component metric information'
 __int_icon: 'icon/juicefs'
 dashboard :
   - desc  : 'JuiceFS Monitoring View'
@@ -15,18 +15,18 @@ monitor   :
 # [JuiceFS](https://juicefs.com/docs/zh/community/introduction/)
 <!-- markdownlint-enable -->
 
-Collect JuiceFS data size, IO, things, objects, clients and other related component indicators information.
+Collect JuiceFS data size, IO, things, objects, clients and other related component metrics information.
 
 ## Configuration {#config}
 
 
-### JuiceFS Indicators
+### JuiceFS Metrics
 
 JuiceFS default exposure metrics port is: `9567`, you can view metrics related information through the browser: `http://clientIP:9567/metrics`.
 
 ### DataKit Collector Configuration
 
-Because `JuiceFS` can expose `metrics` URL directly, it can be collected directly through [ `prom`](./prom.md) collector.
+Because `JuiceFS` can expose `metrics` URL directly, it can be collected directly through [`prom`](./prom.md) collector.
 
 
 
@@ -47,7 +47,7 @@ interval = "10s"
 <!-- markdownlint-enable -->
 , adjust parameter description:
 
-- Urls: `prometheus` Indicator address, where you fill in the indicator URL exposed by the corresponding component
+- Urls: `prometheus` Metric address, where you fill in the metric URL exposed by the corresponding component
 - Source: Collector alias, recommended to distinguish
 - Interval: collection interval
 
@@ -59,6 +59,6 @@ systemctl restart datakit
 
 ## index{#metric}
 
-Detailed Indicator Information Reference [doc](https://juicefs.com/docs/zh/community/p8s_metrics)
+Detailed Metric Information Reference [doc](https://juicefs.com/docs/zh/community/p8s_metrics)
 
 

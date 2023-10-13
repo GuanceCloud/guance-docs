@@ -125,6 +125,8 @@ nav:
       - couchbase-prom.md
       - juicefs.md
       - 'IBM Db2': db2.md
+      - dm_v8.md
+      - dongfangtong_ths.md
 
     - 'Messaging Queue':
       - emqx.md
@@ -136,6 +138,8 @@ nav:
     - 'Web Server':
       - 'Nginx': nginx.md
       - apache.md
+      - resin.md
+      - dongfangtong_tweb.md
 
     - 'Java':
       - 'JVM': jvm.md

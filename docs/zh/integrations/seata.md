@@ -21,7 +21,7 @@ Seata 支持在 TC 开启 Metrics 数据采集并输出到 Prometheus 监控系�
 
 ### 开启 Seata Metrics
 
-1、 配置在 TC 中配置开启 Metrics，打开 TC 中 Metrics 的配置项，Seata Server 已经包含了 Metrics(`seata-metrics-all`)依赖, 但是默认是关闭状态，需要开启 metrics 的采集配置。（**这一步非常重要）**
+- 配置在 TC 中配置开启 Metrics，打开 TC 中 Metrics 的配置项，Seata Server 已经包含了 Metrics(`seata-metrics-all`)依赖, 但是默认是关闭状态，需要开启 metrics 的采集配置。（**这一步非常重要）**
 
 `Seata 1.5.0+`中使用 `application.yaml`
 
@@ -76,7 +76,7 @@ config {
 }
 ```
 
-2、 访问 [http://tc-server-ip:9898/metrics](http://tc-server-ip:9898/metrics)，查看是否能访问到 metrics 数据
+- 访问 [http://tc-server-ip:9898/metrics](http://tc-server-ip:9898/metrics)，查看是否能访问到 metrics 数据
 
 ```shell
 # HELP seata seata
@@ -97,14 +97,14 @@ seata_transaction{meter="timer",role="tc",statistic="average",status="committed"
 
 ### 开启 DataKit 采集器
 
-1、开启 DataKit Prometheus 插件，创建 `seata-prom.conf`
+-开启 DataKit Prometheus 插件，创建 `seata-prom.conf`
 
 ```shell
 cd /usr/local/datakit/conf.d/prom/
 cp prom.conf.sample seata-prom.conf
 ```
 
-2、修改 `seata-prom.conf` 配置文件
+-修改 `seata-prom.conf` 配置文件
 
 ```toml
 [[inputs.prom]]
@@ -127,7 +127,7 @@ cp prom.conf.sample seata-prom.conf
   # more_tag = "some_other_value"
 ```
 
-3、重启 DataKit
+-重启 DataKit
 
 ```shell
 systemctl restart datakit

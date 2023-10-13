@@ -42,14 +42,14 @@ spring.redis.sentinel.nodes ： 哨兵节点地址
 
 #### 指标采集
 
-1、 开启 DataKit prom 插件，复制 sample 文件
+- 开启 DataKit prom 插件，复制 sample 文件
 
 ```bash
 cd /usr/local/datakit/conf.d/prom/
 cp prom.conf.sample redis-sentinel-prom.conf
 ```
 
-2、 修改 `redis-sentinel-prom.conf` 配置文件
+- 修改 `redis-sentinel-prom.conf` 配置文件
 
 ??? quote "`redis-sentinel-prom.conf`"
 <!-- markdownlint-disable MD046 -->
@@ -146,7 +146,7 @@ cp prom.conf.sample redis-sentinel-prom.conf
 - metric_types：指标类型，不填，代表采集所有指标
 - [inputs.prom.tags]：额外定义的 tag
 
-3、 重启 DataKit (如果需要开启日志，请配置日志采集再重启)
+- 重启 DataKit (如果需要开启日志，请配置日志采集再重启)
 
 ```bash
 systemctl restart datakit
@@ -157,7 +157,7 @@ systemctl restart datakit
 
 ### 配置采集器
 
-1、 修改 `redis.conf` 配置文件
+- 修改 `redis.conf` 配置文件
 
 ```toml
 
@@ -219,7 +219,7 @@ systemctl restart datakit
 - match：开启多行日志收集
 ```
 
-2、 重启 DataKit (如果需要开启自定义标签，请配置插件标签再重启)
+- 重启 DataKit (如果需要开启自定义标签，请配置插件标签再重启)
 
 ```bash
 systemctl restart datakit

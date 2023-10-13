@@ -1,6 +1,6 @@
 ---
 title     : 'MinIO'
-summary   : 'Collect information about MinIO related indicators'
+summary   : 'Collect information about MinIO related metrics'
 __int_icon: 'icon/minio'
 dashboard :
   - desc  : 'MinIO Monitoring View'
@@ -15,7 +15,7 @@ monitor   :
 <!-- markdownlint-enable -->
 
 
-MinIO performance indicators, including MinIO online time, storage space distribution, bucket details, file size interval distribution, S3 TTFB (s) distribution, S3 traffic, S3 requests, etc.
+MinIO performance metrics, including MinIO online time, storage space distribution, bucket details, file size interval distribution, S3 TTFB (s) distribution, S3 traffic, S3 requests, etc.
 
 
 ## Configuration {#config}
@@ -26,11 +26,11 @@ MinIO performance indicators, including MinIO online time, storage space distrib
 
 Description: Example MinIO version is RELEASE.2022-06-25T15-50-16Z (commit-id=bd099f5e71d0ea5163869bfcb280a5da2f6)
 
-### Indicator Collection
+### Metric Collection
 
-MinIO is exposed by default [metric](https://docs.min.io/minio/baremetal/monitoring/metrics-alerts/collect-minio-metrics-using-prometheus.html?ref=con#minio-metrics-collect-using-prometheus) and can collect relevant indicators directly through Prometheus.
+MinIO is exposed by default [metric](https://docs.min.io/minio/baremetal/monitoring/metrics-alerts/collect-minio-metrics-using-prometheus.html?ref=con#minio-metrics-collect-using-prometheus) and can collect relevant metrics directly through Prometheus.
 
-1. Create authorization information using `minio-client` (referred to as `mc`)
+- Create authorization information using `minio-client` (referred to as `mc`)
 
 ```shell
 $ mc alias set myminio http://192.168.0.210:9000 minioadmin minioadmin
@@ -46,14 +46,15 @@ scrape_configs:
 
 ????+ Info "Attention"
 
-2. Open DataKit Collector
+- Open DataKit Collector
 
 ```shell
 cd /usr/local/datakit/conf.d/prom/
 cp prom.conf.sample prom-minio.conf
 ```
 
-3. Modify `prom-minio.conf` Profile
+- Modify `prom-minio.conf` Profile
+
 <!-- markdownlint-disable MD046 -->
 ??? Quote " `prom-minio.conf` "
     ```toml hl_lines="3 8 9 12 24 28 29 30"
@@ -115,9 +116,9 @@ cp prom.conf.sample prom-minio.conf
 <!-- markdownlint-enable -->
 
 
-4. Restart DataKit
+- Restart DataKit
 
-[Restart DataKit] (.. /datakit/datakit-service-how-to.md/#manage-service)
+[Restart DataKit](../datakit/datakit-service-how-to.md#manage-service)
 
 
 ## Metric {#metric}

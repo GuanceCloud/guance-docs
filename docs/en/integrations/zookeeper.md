@@ -35,7 +35,7 @@ Note: The example ZooKeeper version is 3.6.3 (CentOS), and the version of 3.6 + 
 ```
 
 - Restart ZooKeeper Cluster Application Configuration
-- Download and install [ zookeeper_exporter ](https://github.com/carlpett/zookeeper_exporter/releases/download/v1.1.0/zookeeper_exporter) in ZooKeeper Cluster and start chmod+x after granting execute privileges. The default port is 9141, which can be used to validate data by command
+- Download and install [`zookeeper_exporter`](https://github.com/carlpett/zookeeper_exporter/releases/download/v1.1.0/zookeeper_exporter) in ZooKeeper Cluster and start chmod+x after granting execute privileges. The default port is 9141, which can be used to validate data by command
 
 ```bash
 [root@d ~]# curl 0.0.0.0:9141/metrics
@@ -56,14 +56,14 @@ zk_connection_token_deficit_count{zk_host="172.16.0.23:2181"} 2.0
 
 ### Open DataKit Collector
 
-1. Open the DataKit Prom plug-in and copy the sample file
+- Open the DataKit Prom plug-in and copy the sample file
 
 ```bash
 /usr/local/datakit/conf.d/prom
 cp prom.conf.sample prom.conf
 ```
 
-2. Modify `prom.conf` Profile
+- Modify `prom.conf` Profile
 
 <!-- markdownlint-disable MD046 -->
 
@@ -86,13 +86,13 @@ cp prom.conf.sample prom.conf
     # more_tag = "some_other_value"
     ```
 <!-- markdownlint-enable -->
-3. Restart DataKit (configure log collection to restart if log needs to be turned on)
+- Restart DataKit (configure log collection to restart if log needs to be turned on)
 
 ```bash
 systemctl restart datakit
 ```
 
-4. DQL Validation
+- DQL Validation
 
 ```bash
 [root@df-solution-ecs-018 prom]# datakit -Q
@@ -126,7 +126,7 @@ dql > M::zookeeper LIMIT 1
 ```
 
 ## Metric {#metric}
-| **Metic** | **Description** | **Data type** |**Availability **|
+| **Metic** | **Description** | **Data type** |**Availability**|
 | --- | --- | --- | --- |
 |**zookeeper_approximate_data_size** |required for the server to respond to client requests (ms) | Measurement |  |
 |**zookeeper_avg_latency** | Number of bytes received | Measurement | |
