@@ -1,80 +1,83 @@
 ---
-title: '阿里云 RDS PostgreSQL'
-summary: '阿里云 RDS PostgreSQL 指标展示，包括 CPU 使用率、内存使用率等。'
+title: 'AliCloud RDS PostgreSQL'
+summary: 'AliCloud RDS PostgreSQL metrics showcase, including CPU utilization, memory usage, and more.'
 __int_icon: 'icon/aliyun_rds_postgresql'
 dashboard:
-  - desc: '阿里云 RDS PostgreSQL 内置视图'
+  - desc: 'AliCloud RDS PostgreSQL Built-in Dashboard'
     path: 'dashboard/zh/aliyun_rds_postgresql/'
 
 monitor:
-  - desc: '阿里云 RDS PostgreSQL 监控器'
+  - desc: 'AliCloud RDS PostgreSQL Monitor'
     path: 'monitor/zh/aliyun_rds_postgresql/'
 ---
 
 
 <!-- markdownlint-disable MD025 -->
-# 阿里云 RDS PostgreSQL
+# AliCloud RDS PostgreSQL
 <!-- markdownlint-enable -->
 
-阿里云 RDS PostgreSQL 指标展示，包括 CPU 使用率、内存使用率等。
+AliCloud RDS PostgreSQL metrics showcase, including CPU utilization, memory usage, and more.
 
-## 配置 {#config}
+## Config {#config}
 
-### 安装 Func
+### Install Func
 
-推荐开通 观测云集成 - 扩展 - 托管版 Func: 一切前置条件都自动安装好, 请继续脚本安装
+Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
 
-如果自行部署 Func 参考 [自行部署Func](https://func.guance.com/doc/script-market-guance-integration/)
+If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/)
 
-> 推荐部署GSE版
+> Recommended deployment of GSE version
 
-### 安装脚本
+### Installation script
 
-> 提示：请提前准备好符合要求的阿里云 AK（简单起见，可直接授予全局只读权限`ReadOnlyAccess`）
+> Tip：Please prepare Aliyun AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-同步 RDS 云资源的监控数据，我们安装对应的采集脚本：「观测云集成（阿里云- RDS 采集）」(ID：`guance_aliyun_rds`)
+To synchronize the monitoring data of RDS cloud resources, we install the corresponding collection script：「观测云集成（阿里云- RDS 采集）」(ID：`guance_aliyun_rds`)
 
-点击【安装】后，输入相应的参数：阿里云 AK、阿里云账户名。
+Click 【Install】 and enter the corresponding parameters: Aliyun AK, Aliyun account name.
 
-点击【部署启动脚本】，系统会自动创建 `Startup` 脚本集，并自动配置相应的启动脚本。
+tap【Deploy startup Script】，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script。
 
-此外，在「管理 / 自动触发配置」里看到对应的自动触发配置。点击【执行】，即可立即执行一次，无需等待定期时间。稍等片刻，可以查看执行任务记录以及对应日志。
+After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」。Click【Run】，you can immediately execute once, without waiting for a regular time。After a while, you can view task execution records and corresponding logs。
 
-我们默认采集了一些配置, 具体见指标一栏[配置自定义云对象指标](https://func.guance.com/doc/script-market-guance-aliyun-rds/){:target="_blank"}
+> If you want to collect logs, you must enable the corresponding log collection script. If you want to collect bills, start the cloud bill collection script.
 
-
-### 验证
-
-1. 在「管理 / 自动触发配置」确认对应的任务是否已存在对应的自动触发配置，同时可以查看对应任务记录及日志检查是否有异常
-2. 在观测云平台，「基础设施 / 自定义」中查看是否存在资产信息
-3. 在观测云平台，「指标」查看是否有对应监控数据
-
-## 指标 {#metric}
-配置好阿里云-云监控,默认的指标集如下, 可以通过配置的方式采集更多的指标 [阿里云云监控指标详情](https://cms.console.aliyun.com/metric-meta/acs_rds_dashboard/postgresql?spm=a2c4g.11186623.0.0.252476abya93cJ){:target="_blank"}
-
-| 指标名  | 描述  | 单位  | 维度  |
-| PG_DBAge | PG_数据库年龄 | **xids** | instanceId |
-| PG_InactiveSlots | PG_非活跃复制槽数量 | count | instanceId |
-| PG_MaxExecutingSQLTime | PG_最慢SQL执行耗时 | seconds | instanceId |
-| PG_MaxSlotWalDelay | PG_最大复制槽延迟(MB) | byte | instanceId |
-| PG_ReplayLatency | PG_最慢Standby回放延迟(MB) | byte | instanceId |
-| PG_SwellTime | PG_最长事务执行耗时 | seconds | instanceId |
-| active_connections_per_cpu | PG_每CPU平均活跃连接数 | count | instanceId |
-| conn_usgae | PG_连接数使用率 | % | instanceId |
-| cpu_usage | PG_CPU使用率 | % | instanceId |
-| five_seconds_executing_sqls | PG_五秒慢SQL | count | instanceId |
-| iops_usage | PG_IOPS使用率 | % | instanceId |
-| local_fs_inode_usage | PG_INODE使用率 | % | instanceId |
-| local_fs_size_usage | PG_磁盘空间使用率 | % | instanceId |
-| local_pg_wal_dir_size | PG_WAL文件大小 | MB | instanceId |
-| mem_usage | PG_内存使用率 | % | instanceId |
-| one_second_executing_sqls | PG_一秒慢SQL | count | instanceId |
-| three_seconds_executing_sqls | PG_三秒慢SQL | count | instanceId |
+We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-aliyun-rds/){:target="_blank"}
 
 
-## 对象 {#object}
+### Verify
 
-采集到的阿里云 RDS PostgreSQL 对象数据结构, 可以从「基础设施-自定义」里看到对象数据
+1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
+2. On the observation cloud platform, click 「Infrastructure / Custom」 to check whether asset information exists
+3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists
+
+## Metric {#metric}
+Configure Ali Cloud - cloud monitoring. The default indicator set is as follows. You can collect more indicators by configuring them [Alibaba Cloud Monitor Metrics Details](https://cms.console.aliyun.com/metric-meta/acs_rds_dashboard/postgresql?spm=a2c4g.11186623.0.0.252476abya93cJ){:target="_blank"}
+
+| Metric Name  | Descriptive  | Unit  | Dimensions  |
+| ---- | :----: | ------ | ------ |
+| PG_DBAge | PG_Database Age | count | instanceId |
+| PG_InactiveSlots | PG_Number of inactive replication slots | count | instanceId |
+| PG_MaxExecutingSQLTime | PG_Slowest SQL Execution Time Consumption | seconds | instanceId |
+| PG_MaxSlotWalDelay | PG_Maximum Copy Slot Delay(MB) | byte | instanceId |
+| PG_ReplayLatency | PG_Slowest Standby Playback Delay(MB) | byte | instanceId |
+| PG_SwellTime | PG_Maximum transaction execution time | seconds | instanceId |
+| active_connections_per_cpu | PG_Average Active Connections per CPU | count | instanceId |
+| conn_usgae | PG_Connections Utilization | % | instanceId |
+| cpu_usage | PG_CPU utilization | % | instanceId |
+| five_seconds_executing_sqls | PG_Five Seconds Slow SQL | count | instanceId |
+| iops_usage | PG_IOPS utilization | % | instanceId |
+| local_fs_inode_usage | PG_INODE utilization rate | % | instanceId |
+| local_fs_size_usage | PG_Disk Space Utilization | % | instanceId |
+| local_pg_wal_dir_size | PG_WAL file size | MB | instanceId |
+| mem_usage | PG_Memory Usage | % | instanceId |
+| one_second_executing_sqls | PG_One Second Slow SQL | count | instanceId |
+| three_seconds_executing_sqls | PG_Three Seconds Slow SQL | count | instanceId |
+
+
+## Object {#object}
+
+The collected Alibaba Cloud RDS object data structure can see the object data from 「Infrastructure-custom-defined」
 
 ```json
 {
@@ -115,27 +118,29 @@ monitor:
 ```
 
 
-## 日志 {#logging}
+## Log {#logging}
 
-### 慢查询统计
+### Slow query statistics
 
-#### 慢查询统计前提条件
+#### The prerequisite for slow query statistics
 
-> 提示 1：本脚本的代码运行依赖 RDS 实例对象采集，如果未配置 RDS 的自定义对象采集，慢日志脚本无法采集到慢日志数据
-> 提示 2：因阿里云统计数据返回有 6~8 小时的延迟，所以采集器更新数据可能会有延迟，详细参考阿里云文档：云数据库 RDS 查询慢日志统计
-> 提示 3：本采集器支持 MySQL所有版本（MySQL 5.7基础版除外）、SQL Server 2008 R2、MariaDB 10.3 类型数据库，若要采集其他类型数据库，请使用 [阿里云-RDS 慢查询明细](https://func.guance.com/doc/script-market-guance-aliyun-rds-slowlog-record/){:target="_blank"} 采集器
+> Tip 1：The execution of this script depends on RDS instance object collection. If RDS custom object collection is not configured, the slow log script will not be able to collect slow log data.
+>
+> Tip 2：Due to the 6 to 8 hours data delay in the statistics returned by Alibaba Cloud, there might be a delay in the collector's data updates. For more details, please refer to the Alibaba Cloud documentation on "Cloud Database RDS Query Slow Log Statistics."
+>
+> Tip 3：This collector supports all versions of MySQL (except for MySQL 5.7 Basic Edition), SQL Server 2008 R2, and MariaDB 10.3 databases. If you want to collect data from other types of databases, please use the [Aliyun-RDS Slow query details](https://func.guance.com/doc/script-market-guance-aliyun-rds-slowlog-record/){:target="_blank"} collector.
 
-#### 慢查询统计安装脚本
+#### Slow Query Statistics Installation Script
 
-在之前的基础上，需要再安装一个对应 **RDS 慢查询统计日志采集的脚本**
+On top of that, you need to install a corresponding collector. **The script for RDS slow query log collection**
 
-在「管理 / 脚本市场」中点击并安装对应的脚本包：
+Click and install the corresponding script package in「Management / Script market」：
 
 - 「观测云集成（阿里云- RDS 慢查询统计日志采集）」(ID：`guance_aliyun_rds_slowlog`)
 
-数据正常同步后，可以在观测云的「日志」中查看数据。
+Once the data is successfully synchronized, you can view it in the "Logs" section of Observing Cloud.
 
-上报的数据示例如下：
+Examples of reported data are as follows：
 
 ```json
 {
@@ -171,41 +176,42 @@ monitor:
 
 ```
 
-部分参数说明如下：
+The partial parameter explanations are as follows：
 
-| 字段                            | 类型 | 说明                                   |
+| Fields                            | Type | Description                                   |
 | :------------------------------ | :--- | :------------------------------------- |
-| `SQLServerTotalExecutionTimes`  | int  | SQL Server 执行时长（总值，毫秒）      |
-| `AvgExecutionTime`              | int  | 执行时间（平均值）单位：秒             |
-| `SQLServerAvgExecutionTime`     | int  | 执行时间（平均值）单位：秒             |
-| `MySQLTotalExecutionTimes`      | int  | MySQL 执行时间（总值）单位：秒         |
-| `SQLServerTotalExecutionTimes`  | int  | SQL Server 执行时间（总值） 单位：毫秒 |
-| `SQLServerTotalExecutionCounts` | int  | SQL Server 执行次数（总值）            |
-| `MySQLTotalExecutionCounts`     | int  | MySQL 执行次数（总值）                 |
+| `SQLServerTotalExecutionTimes`  | int  | SQL Server Execution Duration (Total, in milliseconds)      |
+| `AvgExecutionTime`              | int  | Execution Time (Average), Unit: Seconds             |
+| `SQLServerAvgExecutionTime`     | int  | Execution Time (Average), Unit: Seconds             |
+| `MySQLTotalExecutionTimes`      | int  | MySQL Execution Time (Total), Unit: Seconds         |
+| `SQLServerTotalExecutionTimes`  | int  | SQL Server Execution Time (Total), Unit: Milliseconds |
+| `SQLServerTotalExecutionCounts` | int  | SQL Server Execution Count (Total)            |
+| `MySQLTotalExecutionCounts`     | int  | MySQL Execution Count (Total)                 |
 
-> *注意：`AvgExecutionTime`、`SQLServerAvgExecutionTime`、`SQLServerTotalExecutionTimes`、等字段仅 SQL Server 实例支持*
-> *注意：`tags`、`fields`中的字段可能会随后续更新有所变动*
+> *Attention：The fields `AvgExecutionTime`, `SQLServerAvgExecutionTime`, `SQLServerTotalExecutionTimes`, etc. are only supported by SQL Server instances.*
+>
+> *Attention：The fields in `tags` and `fields` may be subject to changes in subsequent updates.*
 
-### 慢查询明细
+### Slow query details
 
-#### 慢查询明细前提条件
+#### Prerequisite for slow query of details
 
 
-> 提示：本脚本的代码运行依赖 RDS 实例对象采集，如果未配置 RDS 的自定义对象采集，慢日志脚本无法采集到慢日志数据
+> Tip：This script's code execution relies on RDS instance object collection. If RDS custom object collection is not configured, the slow log script will not be able to collect slow log data.
 
-#### 慢查询明细安装脚本
+#### Slow query details installation script
 
-在之前的基础上，需要再安装一个对应 **RDS 慢查询明细日志采集的脚本**
+On top of that, you need to install a corresponding script for **The script for RDS slow query log collection.**
 
-在「管理 / 脚本市场」中点击并安装对应的脚本包：
+Click and install the corresponding script package in「Management / Script market」：
 
 - 「观测云集成（阿里云-RDS慢查询明细日志采集）」(ID：`guance_aliyun_rds_slowlog_record`)
 
-数据正常同步后，可以在观测云的「日志」中查看数据。
+After the data is successfully synchronized, you can view it in the 「Logs」 section of Observing Cloud.
 
-配置[云数据库 RDS 慢查询明细](https://func.guance.com/doc/script-market-guance-aliyun-rds-slowlog-record/){:target="_blank"}
+settings[Cloud Database RDS slow query details](https://func.guance.com/doc/script-market-guance-aliyun-rds-slowlog-record/){:target="_blank"}
 
-上报的数据示例如下：
+The reported data example is as follows：
 
 ```json
 {
@@ -244,21 +250,21 @@ monitor:
 
 ```
 
+The partial parameter explanations are as follows：
 
-部分参数说明如下：
-
-| 字段                    | 类型 | 说明                       |
+| Fields                    | Type | Description                       |
 | :---------------------- | :--- | :------------------------- |
-| `QueryTimes`            | int  | 执行时长。单位：秒（s）    |
-| `QueryTimesMS`          | int  | 执行时长。单位：毫秒（ms） |
-| `ReturnRowCounts`       | int  | 返回行数                   |
-| `ParseRowCounts`        | int  | 解析行数                   |
-| `ExecutionStartTime`    | str  | 执行开始时间               |
-| `CpuTime`               | int  | CPU处理时长                |
-| `RowsAffectedCount`     | int  | 影响行数                   |
-| `LastRowsAffectedCount` | int  | 最后一条语句影响行数       |
+| `QueryTimes`            | int  | Execution Duration. Unit: Seconds (s)    |
+| `QueryTimesMS`          | int  | Execution Duration. Unit: Milliseconds (ms) |
+| `ReturnRowCounts`       | int  | Number of Rows Returned                  |
+| `ParseRowCounts`        | int  | Number of Rows Parsed                   |
+| `ExecutionStartTime`    | str  | Execution Start Time               |
+| `CpuTime`               | int  | CPU Processing Duration                |
+| `RowsAffectedCount`     | int  | Number of Rows Affected                   |
+| `LastRowsAffectedCount` | int  | Number of Rows Affected by the Last Statement       |
 
-> *注意：`CpuTime`、`RowsAffectedCount`、`LastRowsAffectedCount`等字段仅 SQL Server 实例支持*
-> *注意：`tags`、`fields`中的字段可能会随后续更新有所变动*
-> 提示：`fields.message`为 JSON 序列化后字符串
-
+> *Attention：The fields `CpuTime`, `RowsAffectedCount`, `LastRowsAffectedCount`, etc. are only supported by SQL Server instances.*
+>
+> *Attention：The fields in `tags` and `fields` may be subject to changes in subsequent updates.*
+>
+> *Attention：The `fields.message` is a JSON-serialized string.

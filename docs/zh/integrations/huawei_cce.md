@@ -138,7 +138,7 @@ wget https://static.guance.com/datakit/datakit.yaml
 2.    value: https://openway.guance.com?token=<your-token> # 此处填上 dataway 真实地址
 ```
 
-> 增加环境变量`ENV_NAMESPACE`设置集群名称，名称可以自定义，比如设置成`hwcce_k8s`：`
+> 增加环境变量`ENV_NAMESPACE`设置集群名称，名称可以自定义，比如设置成`hwcce_k8s`：
 
 ``` yaml
 1. - name: ENV_NAMESPACE 

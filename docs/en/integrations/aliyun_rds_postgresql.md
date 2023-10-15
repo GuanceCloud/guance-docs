@@ -55,7 +55,8 @@ We collected some configurations by default, as described in the Metrics column 
 Configure Ali Cloud - cloud monitoring. The default indicator set is as follows. You can collect more indicators by configuring them [Alibaba Cloud Monitor Metrics Details](https://cms.console.aliyun.com/metric-meta/acs_rds_dashboard/postgresql?spm=a2c4g.11186623.0.0.252476abya93cJ){:target="_blank"}
 
 | Metric Name  | Descriptive  | Unit  | Dimensions  |
-| PG_DBAge | PG_Database Age | xids | instanceId |
+| ---- | :----: | ------ | ------ |
+| PG_DBAge | PG_Database Age | count | instanceId |
 | PG_InactiveSlots | PG_Number of inactive replication slots | count | instanceId |
 | PG_MaxExecutingSQLTime | PG_Slowest SQL Execution Time Consumption | seconds | instanceId |
 | PG_MaxSlotWalDelay | PG_Maximum Copy Slot Delay(MB) | byte | instanceId |
