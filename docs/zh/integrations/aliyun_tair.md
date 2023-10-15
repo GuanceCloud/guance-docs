@@ -1,81 +1,79 @@
 ---
-title: '阿里云 Tair 社区版'
-summary: '阿里云 Tair 社区版指标展示，包括 CPU 使用率、内存使用率、代理总QPS、网络流量、命中率等。'
-__int_icon: 'icon/aliyun_tair'
+title: 'Aliyun Tair Standard'
+summary: 'Aliyun Tair Standard Indicator display,including cpu usage, memory usage, disk read and write, network traffic, accesses per second, etc.'
+__int_icon: icon/aliyun_tair
 dashboard:
-  - desc: '阿里云 Tair 社区版内置视图'
-    path: 'dashboard/zh/aliyun_tair'
+  - desc: 'Aliyun Tair Standard Built-in Dashboard'
+    path: 'dashboard/zh/aliyun_tair/'
 monitor:
-  - desc: '阿里云 Tair 监控器'
-    path: 'monitor/zh/aliyun_tair'
+  - desc: 'Aliyun Tair Standard Monitor'
+    path: 'monitor/zh/aliyun_tair/'
 ---
 
 <!-- markdownlint-disable MD025 -->
-# 阿里云 **Tair** 社区版
+# Aliyun Tair Standard
 <!-- markdownlint-enable -->
 
-阿里云 **Tair** 社区版指标展示，包括CPU 使用率、内存使用率、代理总QPS、网络流量、命中率等。
+Aliyun Tair Standard Indicator display,including cpu usage, memory usage, disk read and write, network traffic, accesses per second, etc.
 
 
-## 配置 {#config}
+## config {#config}
 
-### 安装 Func
+### Install Func
 
-推荐开通 观测云集成 - 扩展 - 托管版 Func: 一切前置条件都自动安装好, 请继续脚本安装
+Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
 
-如果自行部署 Func 参考 [自行部署 Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
-
-
-
-### 安装脚本
-
-> 提示：请提前准备好符合要求的阿里云 AK（简单起见，可直接授予全局只读权限`ReadOnlyAccess`）
-
-同步阿里云 `tair` 社区版的监控数据，我们安装对应的采集脚本：观测云集成（阿里云- `tair`采集）」(ID：`startup__guance_aliyun_tair`)
-
-点击【安装】后，输入相应的参数：阿里云 AK、阿里云账户名。
-
-点击【部署启动脚本】，系统会自动创建 `Startup` 脚本集，并自动配置相应的启动脚本。
-
-此外，在「管理 / 自动触发配置」里看到对应的自动触发配置。点击【执行】，即可立即执行一次，无需等待定期时间。稍等片刻，可以查看执行任务记录以及对应日志。
-
-我们默认采集了一些配置, 具体见指标一栏
-
-[配置自定义云对象指标](https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
+If you deploy Func yourself,Refer to  [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 
-### 验证
 
-1. 在「管理 / 自动触发配置」确认对应的任务是否已存在对应的自动触发配置，同时可以查看对应任务记录及日志检查是否有异常
-2. 在观测云平台，「基础设施 / 自定义」中查看是否存在资产信息
-3. 在观测云平台，「指标」查看是否有对应监控数据
+### Installation script
 
-## 指标 {#metric}
-配置好阿里云-云监控,默认的指标集如下, 可以通过配置的方式采集更多的指标 [阿里云云监控指标详情](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
+> Tip：Please prepare Aliyun AK that meets the requirements in advance (For simplicity's sake,，You can directly grant the global read-only permission `ReadOnlyAccess`)
+
+To synchronize the monitoring data of Aliyun Tair Standard resources,we install the corresponding collection script:「观测云集成（阿里云- Tair采集）」(ID：`startup__guance_aliyun_tair`)
+
+Click 【Install】 and enter the corresponding parameters: Aliyun AK, Aliyun account name.
+
+Tap【Deploy startup Script】，The system automatically creates Startup script sets，And automatically configure the corresponding startup script.
+
+After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」. Click【Run】, you can immediately execute once, without waiting for a regular time. After a while, you can view task execution records and corresponding logs.
+
+We have collected some configurations by default, see the index column for details
+
+[Configure Custom Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
+
+
+### Verify
+
+1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
+2. On Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
+3. On Guance platform, press 「Metrics」 to check whether monitoring data exists
+
+## Metric {#metric}
+Configure Ali Cloud - cloud monitoring. The default indicator set is as follows. You can collect more indicators by configuring them [Alibaba Cloud Monitor Metrics Details](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
 
 | Metric Id                | Metric Name      | Dimensions        | Statistics      | Unit     |
 | ---- | ---- | ---- | ---- | ---- |
-| ShardingAvgRt | 平均响应时间     | userId,instanceId | Average,Maximum | us       |
-| ShardingProxyUsedConnection | 分片连接使用率 | userId,instanceId | Average,Maximum | Count    |
-| StandardConnectionUsage  | 连接数使用率     | userId,instanceId | Average,Maximum | %        |
-| ShardingCpuUsage | CPU使用率        | userId,instanceId | Average,Maximum | %        |
-| ShardingHitRate  | 命中率           | userId,instanceId | Average,Maximum | %        |
-| ShardingIntranetIn | 入方向流量       | userId,instanceId | Average,Maximum | KBytes/s |
-| ShardingIntranetInRatio | 流入带宽使用率   | userId,instanceId | Average,Maximum | %        |
-| ShardingIntranetOut | 出方向流量       | userId,instanceId | Average,Maximum | KBytes/s |
-| ShardingIntranetOutRatio | 流出带宽使用率   | userId,instanceId | Average,Maximum | %        |
-| ShardingKeys     | 缓存内 Key 数量  | userId,instanceId | Average,Maximum | Count    |
-| ShardingMemoryUsage | 内存使用率       | userId,instanceId | Average,Maximum | %        |
-| ShardingSyncDelayTime | 多活同步时延     | userId,instanceId | Average,Maximum | seconds  |
-| ShardingUsedConnection      | 已用连接数       | userId,instanceId | Average,Maximum | Count    |
-| ShardingUsedMemory          | 内存使用量       | userId,instanceId | Average,Maximum | Bytes    |
-| ShardingUsedQPS             | 平均每秒访问次数 | userId,instanceId | Average,Maximum | Count    |
+| ShardingAvgRt | Average response time     | userId,instanceId | Average,Maximum | us       |
+| ShardingProxyUsedConnection | Number of blocked client connections | userId,instanceId | Average,Maximum | Count    |
+| StandardConnectionUsage | Connection usage     | userId,instanceId | Average,Maximum | %        |
+| ShardingCpuUsage | Cpu usage        | userId,instanceId | Average,Maximum | %        |
+| ShardingHitRate | Hit rate           | userId,instanceId | Average,Maximum | %        |
+| ShardingIntranetIn | Inbound traffic       | userId,instanceId | Average,Maximum | KBytes/s |
+| ShardingIntranetInRatio | Incoming bandwidth utilization   | userId,instanceId | Average,Maximum | %        |
+| ShardingIntranetOut | Outbound traffic       | userId,instanceId | Average,Maximum | KBytes/s |
+| ShardingIntranetOutRatio | Outgoing bandwidth usage   | userId,instanceId | Average,Maximum | %        |
+| ShardingKeys | Number of keys in the cache  | userId,instanceId | Average,Maximum | Count    |
+| ShardingMemoryUsage | Memory usage       | userId,instanceId | Average,Maximum | %        |
+| ShardingSyncDelayTime | Multi-active synchronization delay     | userId,instanceId | Average,Maximum | seconds  |
+| ShardingUsedConnection | Used connections       | userId,instanceId | Average,Maximum | Count    |
+| ShardingUsedMemory | Used memory       | userId,instanceId | Average,Maximum | Bytes    |
+| StandingUsedQPS       | Average Used QPS | userId,instanceId | Average,Maximum | Count    |
 
+## Object {#object}
 
-
-## 对象 {#object}
-
-采集到的阿里云 redis 的对象数据结构, 可以从「基础设施-自定义」里看到对象数据
+The collected Alibaba Cloud Tair  object data structure can see the object data from「基础设施-自定义」
 
 ```json
 "measurement": "aliyun_acs_kvstore",
@@ -200,4 +198,67 @@ monitor:
     "timestamp": 1692338533
   }
 ]
+
 ```
+
+## Logging {#logging}
+
+### Longquery
+
+#### Prerequisite
+
+> Tip：The code operation of this script depends on the collection of Tair instance objects. If the custom object collection of Tair is not configured, the slow log script cannot collect slow log data
+
+#### Installation script
+
+On the previous basis, you need to install **Tair Script for longquery log **
+
+Click and install the corresponding script package in [Management / Script Market]:「观测云集成（阿里云- Tair 慢查询日志采集）」(ID：`guance_aliyun_Tair_slowlog`)
+
+After the data is synchronized normally, you can view the data in the [log] of Guance platform.
+
+An example of reported data is as follows:
+
+```json
+{
+  "measurement": "aliyun_Tair_slowlog",
+  "tags": {
+      "name"            : "r-bp1c4xxxxxxxofy2vm",
+      "Account"         : "(null)",
+      "IPAddress"       : "172.xx.x.201",
+      "AccountName"     : "(null)",
+      "DBName"          : "3",
+      "NodeId"          : "(null)",
+      "ChargeType"      : "PrePaid",
+      "ConnectionDomain": "r-bpxxxxxxxxxxy2vm.Tair.rds.aliyuncs.com",
+      "EngineVersion"   : "4.0",
+      "InstanceClass"   : "Tair.master.small.default",
+      "InstanceId"      : "r-bpxxxxxxxxxxxxxxx2vm",
+      "InstanceName"    : "xx3.0-xx 系统",
+      "NetworkType"     : "VPC",
+      "Port"            : "6379",
+      "PrivateIp"       : "172.xxx.xx.200",
+      "RegionId"        : "cn-hangzhou",
+      "ZoneId"          : "cn-hangzhou-h"
+  },
+  "fields": {
+    "Command"    : "latency:eventloop",
+    "ElapsedTime": 192000,
+    "ExecuteTime": "2022-07-26T03:18:36Z",
+    "message"    : "{实例 JSON 数据}"
+  }
+}
+
+```
+
+Some parameters are described as follows:
+
+| Field          | Type | Description                 |
+| :------------ | :--- | :------------------- |
+| `ElapsedTime` | int  | Execution time, in milliseconds |
+| `ExecuteTime` | str  | Execution start time         |
+| `IPAddress`   | str  | Client ip address     |
+
+> *Notice：The fields in `tags` and `fields` may change with subsequent updates*
+>
+> Tip：The `fields.message` is JSON serialized string

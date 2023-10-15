@@ -1,77 +1,79 @@
 ---
-title: '华为云 DIS'
-summary: '使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云'
+title: 'Huawei DIS'
+summary: 'Use the「观测云云同步」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
 __int_icon: 'icon/huawei_dis'
 dashboard:
 
-  - desc: '华为云 DIS 内置视图'
+  - desc: 'Huawei DIS Built-in Dashboard'
     path: 'dashboard/zh/huawei_dis'
 
 monitor:
-  - desc: '华为云 DIS 监控器'
+  - desc: 'Huawei DIS Monitor'
     path: 'monitor/zh/huawei_dis'
 
 ---
 
 
 <!-- markdownlint-disable MD025 -->
-# 华为云 DIS
+# Huawei DIS
 <!-- markdownlint-enable -->
 
-使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云
+Use the「Guance Cloud Synchronization」series script package in the script market to monitor the cloud ,The data of the cloud asset is synchronized to the observation cloud。
 
 
-## 配置 {#config}
+## Config {#config}
 
-### 安装 Func
+### Install Func
 
-推荐开通 观测云集成 - 扩展 - 托管版 Func: 一切前置条件都自动安装好, 请继续脚本安装
+Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
 
-如果自行部署 Func 参考 [自行部署 Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
-
-
-### 安装脚本
-
-> 提示：请提前准备好符合要求的华为云 AK（简单起见，可直接授予全局只读权限`ReadOnlyAccess`）
-
-同步华为云 DIS 的监控数据，我们安装对应的采集脚本：「观测云集成（华为云-DIS采集）」(ID：`guance_huaweicloud_dis`)
-
-点击【安装】后，输入相应的参数：华为云 AK、华为云账户名。
-
-点击【部署启动脚本】，系统会自动创建 `Startup` 脚本集，并自动配置相应的启动脚本。
-
-脚本安装完后，在Func中「开发」里找到脚本「观测云集成（华为云-DIS采集）」，展开修改此脚本，找到`collector_configs`和`monitor_configs`分别编辑下面`region_projects`中的内容，将地域和Project ID,更改为实际的地域和 Project ID，再点击保存发布。
-
-此外，在「管理 / 自动触发配置」里看到对应的自动触发配置。点击【执行】，即可立即执行一次，无需等待定期时间。稍等片刻，可以查看执行任务记录以及对应日志。
-
-我们默认采集了一些配置, 具体见指标一栏 [配置自定义云对象指标](https://func.guance.com/doc/script-market-guance-huaweicloud-ces/){:target="_blank"}
+If you deploy Func yourself,Refer to  [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 
-### 验证
+### Installation script
 
-1. 在「管理 / 自动触发配置」确认对应的任务是否已存在对应的自动触发配置，同时可以查看对应任务记录及日志检查是否有异常
-2. 在观测云平台，「基础设施 / 自定义」中查看是否存在资产信息
-3. 在观测云平台，「指标」查看是否有对应监控数据
+> Tip：Please prepare Huawei AK that meets the requirements in advance（For simplicity's sake, You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-## 指标 {#metric}
-配置好华为云-云监控,默认的指标集如下, 可以通过配置的方式采集更多的指标 [华为云云监控指标详情](https://support.huaweicloud.com/usermanual-dis/dis_01_0131.html){:target="_blank"}
+To synchronize the monitoring data of  Huawei OBS cloud resources, we install the corresponding collection script：「观测云集成（华为云-DIS采集）」(ID：`guance_huaweicloud_dis`)
 
-| 指标ID                                | 指标名称             | 指标含义                                                     | 取值范围      | 测量对象（维度） | 监控周期（原始指标）|
-| ------------------------------------- | -------------------- | ------------------------------------------------------------ | ------------- | ---------------- | ------------------------------------------------- |
-| dis01_stream_put_bytes_rate   | 总输入流量             | 该指标用于统计指定时间范围内，通道上传数据量。 单位：byte/s。 | ≥ 0 bytes/s | 通道                              | 1分钟                                             |
-| dis02_stream_get_bytes_rate              | 总输出流量             | 该指标用于统计指定时间范围内，通道下载数据量。单位：byte/s。 | ≥ 0 bytes/s | 通道                              | 1分钟                    |
-| dis03_stream_put_records                 | 总输入记录数           | 该指标用于统计指定时间范围内，通道上传记录数。单位：Count/s。 | ≥ 0 Count/s | 通道                              | 1分钟                    |
-| dis04_stream_get_records                 | 总输出记录数           | 该指标用于统计指定时间范围内，通道下载记录数。  单位：Count/s。 | ≥ 0 Count/s | 通道                              | 1分钟                    |
-| dis05_stream_put_requests_succeed        | 上传请求成功数         | 该指标用于统计指定时间范围内，通道上传请求成功次数。 单位：Count/s。 | ≥ 0 Count/s | 通道                              | 1分钟                    |
-| dis06_stream_get_requests_succeed        | 下载请求成功数         | 该指标用于统计指定时间范围内，通道下载请求成功次数。 单位：Count/s。 | ≥ 0 Count/s | 通道                              | 1分钟                    |
-| dis07_stream_put_req_average_latency     | 上传请求平均处理时间   | 该指标用于统计指定时间范围内，通道上传请求平均时延。单位：ms。 | 0~50ms      | 通道                              | 1分钟                    |
-| dis08_stream_get_req_average_latency     | 下载请求平均处理时间   | 该指标用于统计指定时间范围内，通道下载请求平均时延。 单位：ms。 | 0~50ms      | 通道                              | 1分钟                    |
-| dis09_stream_traffic_control_put_records | 因流控拒绝的上传请求数 | 该指标用于统计指定时间范围内，通道由于流控而拒绝的上传请求数。 单位：Count/s。 | 0~1Count/s  | 通道                              | 1分钟                    |
-| dis10_stream_traffic_control_get_records | 因流控拒绝的下载请求数 | 该指标用于统计指定时间范围内，通道由于流控而拒绝的下载请求数。 单位：Count/s。 | 0~1Count/s  | 通道                              | 1分钟                    |
+Click 【Install】 and enter the corresponding parameters: Huawei AK, Huawei account name.
 
-## 对象 {#object}
+tap【Deploy startup Script】, The system automatically creates `Startup` script sets, And automatically configure the corresponding startup script.
 
-采集到的华为云 DIS 对象数据结构, 可以从「基础设施-自定义」里看到对象数据
+After the script is installed, Find the script in「Development」in Func「观测云集成（华为云-DIS采集）」, Expand to modify this script, find `collector_configs`and`monitor_configs`Edit the content in`region_projects`, Change the locale and Project ID to the actual locale and Project ID, Click Save Publish again.
+
+In addition, the corresponding automatic trigger configuration is displayed in「Management / Crontab Config」. tap【Run】, It can be executed immediately once, without waiting for a periodic time. After a while, you can view task execution records and corresponding logs.
+
+We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-huaweicloud-ces/){:target="_blank"}
+
+
+### Verify
+
+1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
+2. On the observation cloud platform, click 「Infrastructure / Custom」 to check whether asset information exists
+3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists
+
+## Metric {#metric}
+Configure Huawei Cloud - cloud monitoring. The default indicator set is as follows. You can collect more indicators by configuring them [Huawei CloudMonitor Metrics Details](https://support.huaweicloud.com/intl/en-us/usermanual-dis/dis_01_0131.html){:target="_blank"}
+
+
+| Metric Name                                | Description                                                     | Value Range      | Monitored Object | Monitoring Period (Raw Data) |
+| ------------------------------------- | ------------------------------------------------------------ | ------------- | ---------------- | ------------------------------------------------- |
+| Total Input Traffic                  | The amount of data uploaded through a stream during a specific period. Unit: byte/s | ≥ 0         | Stream                        | 1 minute                     |
+| Total Output Traffic              | The amount of data downloaded through a stream during a specific period.  Unit: byte/s | ≥ 0         | Stream                        | 1 minute                     |
+| Total Input Records                 | The number of records uploaded through a stream during a specific period. Unit: count/s | ≥ 0         | Stream                        | 1 minute                     |
+| Total Output Records                 | The number of records downloaded through a stream during a specific period. Unit: count/s | ≥ 0         | Stream                        | 1 minute                     |
+| Successful Upload Requests        | The number of successful requests for uploading data through a stream during a specific period. Unit: count/s | ≥ 0         | Stream                        | 1 minute                     |
+| Successful Download Requests        | The number of successful requests for downloading data through a stream during a specific period.  Unit: count/s | ≥ 0         | Stream                        | 1 minute                     |
+| Average Processing Time of Upload Requests     | Average upload request delay of a stream during a specific period. Unit: ms | 0 to 50 ms  | Stream                        | 1 minute                     |
+| Average Processing Time of Download Requests    | Average download request delay of a stream during a specific period. Unit: ms | 0 to 50 ms  | Stream                        | 1 minute                     |
+| Throttled Upload Requests | The number of rejected upload requests due to flow control. Unit: count/s | 0 to 1      | Stream                        | 1 minute                     |
+| Throttled Download Requests | The number of rejected download requests due to flow control. Unit: count/s | 0 to 1      | Stream                        | 1 minute            |
+
+## Object {#object}
+
+The collected Huawei Cloud DIS object data structure can see the object data from 「基础设施-自定义」
+
 
 ``` json
 {
@@ -95,27 +97,21 @@ monitor:
 }
 ```
 
-部分参数说明如下：
+Some parameters are described as follows：
 
-| 字段                  | 类型                   |   说明                  |
+| Parameter                  | Type                   |   Description                  |
 | :------------------- | :--------------------- | :---------------------  |
-| `create_time`        | integer | 通道创建的时间，13位时间戳。|
-| `retention_period`  | integer | 数据保留时长，单位是小时。 |
-| `status`  | str | 通道的当前状态。 CREATING：创建中  RUNNING：运行中  TERMINATING：删除中  TERMINATED：已删除 |
-| `stream_type`  | str | 通道类型。 COMMON：普通通道，表示1MB带宽。 ADVANCED：高级通道，表示5MB带宽。 |
-| `data_type`  | str | 源数据类型。 BLOB：存储在数据库管理系统中的一组二进制数据。 JSON：一种开放的文件格式，以易读的文字为基础，用来传输由属性值或者序列性的值组成的数据对象。 CSV：纯文本形式存储的表格数据，分隔符默认采用逗号。 缺省值：BLOB。 |
-| `auto_scale_enabled`  | bool | 是否开启自动扩缩容。 true：开启自动扩缩容。 false：关闭自动扩缩容。 默认不开启。 缺省值：false |
+| `create_time`        | integer               |  Time when the stream is created. The value is a 13-bit timestamp. |
+| `retention_period	`  | integer               | Period for storing data in units of hours. |
+| `status	`  | str               | Current status of the stream: CREATING: creating, RUNNING: running, TERMINATING: deleting, TERMINATED: deleted. Enumeration values: CREATING, RUNNING, TERMINATING, FROZEN |
+| `stream_type	`  | str               | Stream type: COMMON: a common stream with a bandwidth of 1 MB/s, ADVANCED: an advanced stream with a bandwidth of 5 MB/s. Enumeration values: COMMON, ADVANCED |
+| `data_type	`  | str               | Source data type: BLOB: a collection of binary data stored as a single entity in a database management system, JSON: an open-standard file format that uses human-readable text to transmit data objects consisting of attribute-value pairs and array data types, CSV: a simple text format for storing tabular data in a plain text file. Commas are used as delimiters, Default value: BLOB. Enumeration values: BLOB, JSON, CSV |
+| `auto_scale_enabled		`  | bool               | Whether to enable auto scaling: true: Auto scaling is enabled, false: Auto scaling is disabled, By default, this function is disabled. Default: false |
 
-
-
-> *注意：`tags`、`fields`中的字段可能会随后续更新有所变动*
+> *notice：`tags`、`fields`The fields in this section may change with subsequent updates*
 >
-> 提示 1：`tags.name`值为实例 ID，作为唯一识别
+> Tips 1：`tags.name`The value is the instance ID for unique identification
 >
-> 提示 2：以下字段均为 JSON 序列化后字符串
+> Tips 2：The following fields are JSON serialized strings
 >
 > - fields.message
-
-
-
-
