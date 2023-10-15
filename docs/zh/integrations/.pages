@@ -164,7 +164,8 @@ nav:
       - seata.md
       - zookeeper.md
       - 'Zadigx': zadigx.md
-      - 'openai': openai.md
+      - 'OpenAI': openai.md
+      - 'PagerDuty': pagerduty.md
       - '飞书与异常追踪联动': feishu_im.md
       - external.md
 

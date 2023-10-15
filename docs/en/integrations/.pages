@@ -154,6 +154,7 @@ nav:
       - nacos.md
       - jenkins.md
       - gitlab.md
+      - 'PagerDuty': pagerduty.md
       - snmp.md
       - seata.md
       - netflow.md
