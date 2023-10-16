@@ -92,7 +92,7 @@
 
 #### 第三方快捷授权
 
-**注意**：海外站点不支持此项功能。
+**注意**：中国香港及海外站点不支持此项功能。
 
 1、点击 **[立即前往](https://market.console.aliyun.com/auth?role=VendorCrossAccountGUANCEREADONLYRole&token=fe4be994690698821d5f581475e3b441)**，即可跳转至阿里云，登录后进行授权操作；   
 
