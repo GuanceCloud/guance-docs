@@ -1,4 +1,4 @@
-# 更新一个SAML配置信息
+# 更新 SAML SSO 登录配置
 
 ---
 
@@ -21,7 +21,7 @@
 
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
-| idpName | string |  | 用户名<br>例子: 我的第一个idp <br>允许为空: False <br> |
+| idpName | string |  | 供应商<br>例子: 默认供应商 <br>允许为空: False <br> |
 | idpData | string | Y | xml文档内容<br>例子:  <br>允许为空: False <br> |
 | emailDomains | array | Y | 邮箱域名<br>例子: ['jiagouyun.com', 'guance.com'] <br> |
 | role | string | Y | 角色<br>允许为空: False <br>可选值: ['general', 'readOnly'] <br> |

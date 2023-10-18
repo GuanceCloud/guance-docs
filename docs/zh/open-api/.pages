@@ -11,6 +11,8 @@ nav:
   - '查看器（场景下的自定义查看器）': viewer
   - '事件': keyevent
   - '日志 - 绑定索引': log-index-cfg
+  - '日志 - 数据转发': log-backup-cfg
+  - '日志 - 数据访问': logging-query-rule
   - '基础设施': objects
   - '告警策略管理': monitor
   - '监控器': checker
@@ -18,6 +20,7 @@ nav:
   - '静默配置': mute
   - '工作空间成员': workspace-member
   - '工作空间团队': member-group
+  - '管理 - 角色管理': role
   - 'SSO': sso
   - 'API KEY': workspace-ak
   - '工作空间': workspace
@@ -35,3 +38,4 @@ nav:
   - '异常追踪,频道': channel
   - '异常追踪,Issue': issue
   - '账单分析': billing
+  - '自定义映射规则': custom-login-mapping

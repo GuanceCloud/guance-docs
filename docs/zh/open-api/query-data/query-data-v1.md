@@ -1,8 +1,8 @@
-# DQL数据查询(废弃当前接口将于2023-10-31日后下架)
+# DQL数据查询
 
 ---
 
-<br />**POST /api/v1/df/query_data**
+<br />**POST /api/v1/df/query_data_v1**
 
 ## 概述
 DQL数据查询
@@ -10,13 +10,12 @@ DQL数据查询
 
 
 
-## Query 请求参数
+## Body 请求参数
 
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
-| body | string |  | dql查询query结构体<br>允许为空: False <br> |
-| queries_body | string |  | dql查询query结构体(2023-08-11日下架该参数)<br>允许为空: False <br> |
-| search_after | string |  | 分页查询请求参数(2023-08-11日下架该参数)<br>允许为空: False <br> |
+| queries | array |  | 多命令查询，其内容为 query 对象组成的列表<br>允许为空: False <br> |
+| fieldTagDescNeeded | boolean |  | 是否需要field 或者tag描述信息<br>允许为空: False <br> |
 
 ## 参数补充说明
 
@@ -24,15 +23,7 @@ DQL数据查询
 
 --------------
 
-1.查询字符串 元素字段说明
-
-|  参数名        |   type  | 必选  |          说明          |
-|---------------|----------|----|------------------------|
-| body    |  string  |  Y | 查询请求体 |
-| queries_body[\*]    |  string  |   |(旧版参数，2023-08-10 日下架) 查询列表 |
-| search_after    |  string  |   | (旧版参数，2023-08-10 日下架, 新版参数位置挪移至 query 结构体中) 查询分页数据. 首次查询默认为[], 需要查询更多分页数据时,将上次查询结果中的search_after字段加上,用于查询后续数据 |
-
-2. body 中 JSON结构参数说明
+1. 参数说明
 
 * 基础字段*
 
@@ -62,7 +53,7 @@ DQL数据查询
 |  query.orderby  | array  |   | 排序列表，`{fieldName:method}` , 注意指标集查询的排序只支持 fieldName=time; method in ["desc", "asc"];注意指标集查询的排序只支持 fieldName=time|
 |  query.density  | string  |   | 响应的点密度, 优先级小于 autoDensity 且大于 dql语句中设置的密度 |
 |  query.interval  | integer  |   | 单位是秒，时间分片间隔，用于计算响应点数；计算出的点数小于等于density=high时的点数，则有效，否则无效|
-|  query.search_after  | array  |   | 分页标记, 由当前接口返回的分页标记，用于下一次请求时传入 |
+|  query.search_after  | array  |   | 分页查询标记。相同参数上次请求响应结果中的 search_after 值作为本次请求的参数。|
 |  query.maxPointCount  | integer  |   | 最大点数 |
 |  query.workspaceUUID  | string  |   | 要查询工作空间的uuid |
 |  query.output_format  | string  |   | lineprotocol: 行协议输出，默认不填的话，默认保持现有输出格式不变 |
