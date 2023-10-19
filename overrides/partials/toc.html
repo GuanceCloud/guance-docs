@@ -1,0 +1,37 @@
+{#-
+  This file was automatically generated - do not edit
+-#}
+{% set title = lang.t("toc") %}
+{% if config.mdx_configs.toc and config.mdx_configs.toc.title %}
+  {% set title = config.mdx_configs.toc.title %}
+{% endif %}
+
+<nav class="md-nav md-nav--secondary" aria-label="{{ title }}">
+  {% set toc = page.toc %}
+  {% set first = toc | first %}
+  {% if first and first.level == 1 %}
+    {% set toc = first.children %}
+  {% endif %}
+  {% if toc %}
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      {{ title }}
+    </label>
+    {% if not path %}
+      <ul class="md-nav__list md-nav__list__secondary" data-md-component="toc" data-md-scrollfix>
+        {% for toc_item in toc %}
+          {% set path = "__toc_" ~ loop.index %}
+          {% set level = 1 %}
+          {% include "partials/toc-item.html" %}
+        {% endfor %}
+      </ul>
+    {% else %}
+      <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        {% for toc_item in toc %}
+          {% include "partials/source-toc-item.html" %}
+        {% endfor %}
+      </ul>
+    {% endif %}
+    
+  {% endif %}
+</nav>

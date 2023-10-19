@@ -13,6 +13,8 @@ lint:
     - nvm use v16.14.0
     - make lint DOC_DIR=docs/zh/integrations
     - make lint DOC_DIR=docs/zh/datakit
+    - make lint DOC_DIR=docs/en/integrations
+    - make lint DOC_DIR=docs/en/datakit
   tags:
     - cloudcare-ft
 
@@ -20,7 +22,7 @@ buildTesting:
   stage: deploy
   only:
     - dev
-    - testing
+    - /^testing.*/
   script:
     # - echo "$ES_VAR_DOC_SEARCH_TEST"
     # - echo "$ES_VAR_DOC_SEARCH_PROD"
@@ -86,7 +88,7 @@ buildBasis:
     - /basis-\d+/
   script:
     - docker buildx build --platform linux/arm64,linux/amd64
-      -t registry.jiagouyun.com/basis/mkdocs:2.4
+      -t registry.jiagouyun.com/basis/mkdocs:2.5
       -f Dockerfile.basis .
       --push
   tags:

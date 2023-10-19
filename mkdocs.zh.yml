@@ -16,6 +16,7 @@ theme:
     - toc.follow
     - content.tabs.link
     - navigation.top
+    - navigation.path
 
 markdown_extensions:
   tables: {}
