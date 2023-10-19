@@ -77,3 +77,18 @@
 观测云费用中心提供账单管理，包括月账单、消费明细、收支明细、代金券明细和储值卡明细管理。
 
 > 更多详情，可参考 [账单管理](../../billing/cost-center/billing-management.md)。
+
+
+## 如何只针对企业财务相关人员赋予付费与账单处理权限？
+
+此处会与观测云工作空间 > [成员管理](../../management/member-management.md)这一功能联动。
+
+:material-numeric-1-circle-outline: 进入**管理 > 成员管理 > 角色管理 > 添加角色**，将该角色命名为【财务】，选择【付费计划与账单】这一权限：
+
+![](../img/faq-billing.png)
+
+:material-numeric-2-circle-outline: 在[邀请目标成员](../../management/invite-member.md)时，选择加入时赋予的这一成员角色:
+
+<img src="../../img/faq-billing-1.png" width="60%" >
+
+:material-numeric-3-circle-outline: 若目标成员已在当前工作空间，可直接在 **管理 > [成员管理](../../management/member-management.md#edit)** 编辑角色。
