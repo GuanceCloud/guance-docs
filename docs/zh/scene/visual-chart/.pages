@@ -1,7 +1,7 @@
 nav:
   - index.md
   - '图表查询': chart-query.md
-  - '图表Json': chart-json.md
+  - '图表 JSON': chart-json.md
   - '图表链接': chart-link.md
   - '事件关联': events-relative.md
   - '图表分享': chart-share.md

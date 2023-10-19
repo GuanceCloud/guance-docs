@@ -9,9 +9,11 @@
 
 观测云支持 3 种模板变量，分别为<u>时间变量、标签变量和视图变量</u>。
 
-| 变量类型 | 变量 | 说明 |
+| 变量类型 | <div style="width: 130px">变量</div> | 说明 |
 | --- | --- | --- |
 | 时间变量 | #{TR} | 当前图表查询的时间范围。假设当前查询时间是 `最近1小时` ，则：<br />模板变量：`&time=#{TR}` 等同为 `&time=1h`  |
+|  | #{timestamp.start} | 当前图表查询所选数据点的开始时间。  |
+|  | #{timestamp.end} | 当前图表查询所选数据点的结束时间。  |
 | 标签变量 | #{T} | 当前图表查询的所有分组标签集合。假设当前图表查询为：<br />`M::'datakit':(LAST('cpu_usage'))  BY 'host','os'`<br />查询结果为：host=abc、os=linux，则：<br />模板变量：`&query=#{T} `等同为 `&query=host:abc os:linux` |
 |  | #{T.name} | 当前图表查询中某一个标签的值，name 可替换为查询中的任意tagKey。<br />假设当前图表查询为：<br />`M::'datakit':(LAST('cpu_usage')) BY 'host', 'os'`<br />查询结果为：host=abc、os=linux，则：<br /><li>模板变量 `#{T.host} = abc`<br /><li> `&query=hostname:#{T.host}` 等同为 `&query=hostname:abc` |
 | 视图变量 | #{V} | 当前仪表板中所有视图变量的集合 <br />假设当前仪表板的视图变量为：<br />version=V1.7.0 和 region=cn-hangzhou<br />模板变量` &query=#{V}  `等同为 `&query=version:V1.7.0 region:cn-hangzhou` |
@@ -129,6 +131,8 @@
 
 ### 链接到其他视图
 
+<div class="grid" markdown>
+
 === "步骤一：添加图表链接"
 
     在图表链接中，输入名称 “cpu usage”，根据预设的链接和参数添加链接地址，选择打开方式为**侧滑页**。
@@ -147,7 +151,12 @@
 
     ![](../img/6.link_7.png)
 
+</div>
+
+
 ### 链接到基础设施
+
+<div class="grid" markdown>
 
 === "步骤一：添加图表链接"
 
@@ -161,7 +170,11 @@
 
     ![](../img/2.link_11.png)
 
+</div>
+
 ### 链接到外部帮助文档
+
+<div class="grid" markdown>
 
 === "步骤一：添加图表链接"
 
@@ -175,3 +188,4 @@
 
     <img src="../../img/6.link_10.png" width="70%" >
 
+</div>

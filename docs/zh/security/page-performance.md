@@ -10,12 +10,12 @@
 
 ![](img/before-send.png)
 
-[Largest Contentful Paint (LCP)](https://web.dev/lcp/)：最大内容绘制，测量加载性能。为了提供良好的用户体验，LCP 应在页面首次开始加载后的2.5 秒内发生。
+[Largest Contentful Paint (LCP)](https://web.dev/lcp/)：最大内容绘制，测量加载性能。为了提供良好的用户体验，LCP 应在页面首次开始加载后的 2.5 秒内发生。
 
-[First Input Delay (FID)](https://web.dev/fid/) ：首次输入延迟，测量交互性。为了提供良好的用户体验，页面的 FID 应为100 毫秒或更短。
+[First Input Delay (FID)](https://web.dev/fid/) ：首次输入延迟，测量交互性。为了提供良好的用户体验，页面的 FID 应为 100 毫秒或更短。
 
 
-[Cumulative Layout Shift (CLS)](https://web.dev/cls/)：累积布局偏移，测量视觉稳定性。为了提供良好的用户体验，页面的 CLS 应保持在 0.1. 或更少。
+[Cumulative Layout Shift (CLS)](https://web.dev/cls/)：累积布局偏移，测量视觉稳定性。为了提供良好的用户体验，页面的 CLS 应保持在 0.1 或更少。
 
 为了确保您能够在大部分用户的访问期间达成建议目标值，对于上述每项指标，一个良好的测量阈值为页面加载的第 75 个百分位数，且该阈值同时适用于移动和桌面设备。
 
@@ -40,7 +40,7 @@
 
 ## 关于单页应用（SPA）
 
-对于单页应用程序 (SPA)，RUM 浏览器 SDK 使用 `loading_type` 标签区分 `initial_load` 和  `route_change`。RUM SDK 会生成一个带有 `loading_type:route_change` 标签的 `view`事件。 RUM 使用 [History API](https://developer.mozilla.org/en-US/docs/Web/API/History) 监听 URL 的改变。
+对于单页应用程序 (SPA)，RUM 浏览器 SDK 使用 `loading_type` 标签区分 `initial_load` 和  `route_change`。RUM SDK 会生成一个带有 `loading_type:route_change` 标签的 `view`事件。RUM 使用 [History API](https://developer.mozilla.org/en-US/docs/Web/API/History) 监听 URL 的改变。
 
 
 ## Loading Time 计算方式
@@ -48,8 +48,8 @@
 基于现代浏览器提供了强大的 API 能力，Loading Time 会监听页面的 DOM 变化，以及网络请求情况。
 
 - Initial Load：Loading Time 取下面两个较长者。
-  - loadEventEnd - navigationStart
-  - 页面第一次没有活动的时间 - navigationStart
+    - loadEventEnd - navigationStart
+    - 页面第一次没有活动的时间 - navigationStart
 - SPA Route Change: 页面第一次没有活动的时间 - url 变化的时间
 
 ## 页面的活动状态
@@ -61,7 +61,7 @@
 
 Note：当页面在 100ms 内没有任何事件产生，则被认为当前页面是不活跃的
 
-注意事项：
+**注意**：
 
 以下情况，可能会出现自上次请求或 DOM 变化以来 100 毫秒的标准可能无法准确确定活动：
    - 该应用程序通过定期或在每次点击后向 API 发送请求来收集分析数据。

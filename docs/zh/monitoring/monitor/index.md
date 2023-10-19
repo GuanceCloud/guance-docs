@@ -20,7 +20,7 @@
 
 #### 检测规则 {#detect}
 
-目前观测云支持 12 种监控检测规则，不同的规则覆盖不同的数据范围。
+目前观测云支持 13 种监控检测规则，不同的规则覆盖不同的数据范围。
 
 | 规则名称 | 数据范围 | 基本描述 |
 | --- | --- | --- |
@@ -36,6 +36,7 @@
 | 安全巡检异常检测 | 安全巡检(S) | 基于安全巡检产生的数据进行异常检测，可以有效感知主机健康状态。 |
 | 可用性数据检测 | 可用性数据(L::`类型`) | 基于可用性监测数据，设置阈值规则，检测异常情况。 |
 | 网络数据检测 | 网络(N) | 基于网络数据，设置阈值规则，检测网络性能的稳定性。 |
+| 外部事件检测 | 其他 | 将第三方系统产生的异常事件或记录通过指定 URL 地址，以 POST 请求方式发送到 HTTP 服务器后生成观测云的事件数据。 |
 
 
 |                   <font color=coral size=3>:fontawesome-regular-circle-down: &nbsp;**了解更多**</font>                         |                                                              |                                                              |
@@ -44,6 +45,7 @@
 | [区间检测](interval-detection.md){ .md-button .md-button--primary } | [离群检测](outlier-detection.md){ .md-button .md-button--primary } | [安全巡检异常检测](security_checker.md){ .md-button .md-button--primary } |
 | [应用性能指标检测](application-performance-detection.md){ .md-button .md-button--primary } | [用户访问指标检测](real-user-detection.md){ .md-button .md-button--primary } | [进程异常检测](processes-detection.md){ .md-button .md-button--primary } |
 | [基础设施存活检测](infrastructure-detection.md){ .md-button .md-button--primary } | [可用性监测数据检测](usability-detection.md){ .md-button .md-button--primary } | [网络数据检测](network-detection.md){ .md-button .md-button--primary } |
+| [外部事件检测](/monitor/third-party-event-detection.md){ .md-button .md-button--primary } |   |
 
 ### 官方模板库 {#template}
 
@@ -91,7 +93,7 @@
 
 在左侧的**快捷筛选**，您可以基于告警策略、状态、标签和监控器类型快速定位至需要查看的目标监控器。
 
-您还可以基于监控器名称、告警策略名称直接在搜索框 🔍 进行搜索。
+您还可以基于监控器名称、告警策略名称直接在搜索框进行搜索。
 
 ### 批量操作
 

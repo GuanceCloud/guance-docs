@@ -4,6 +4,8 @@
 
 ## 前置条件
 
+**注意**：若您开通了 [RUM Headless](../../dataflux-func/headless.md) 服务，前置条件已自动帮您配置完成，直接接入应用即可。
+
 - 安装 [DataKit](../../datakit/datakit-install.md)。
 
 ## 应用接入
