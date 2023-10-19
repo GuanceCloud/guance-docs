@@ -17,7 +17,7 @@ The DataKit master configuration is used to configure the running behavior of th
 
 ## Datakit Main Configure Sample {#maincfg-example}
 
-Datakit main configure is *datakit.conf*, here is the exmaple sample(1.16.1):
+Datakit main configure is *datakit.conf*, here is the exmaple sample(1.17.0):
 
 ??? info "datakit.conf"
 
@@ -127,6 +127,11 @@ Datakit main configure is *datakit.conf*, here is the exmaple sample(1.16.1):
       # If the list empty, all app's requests accepted.
       rum_app_id_white_list = []
     
+      # Start Datakit web server with HTTPS
+      [http_api.tls]
+        cert = "path/to/certificate/file"
+        privkey = "path/to/private_key/file"
+    
     ################################################
     # io configures
     ################################################
@@ -183,6 +188,13 @@ Datakit main configure is *datakit.conf*, here is the exmaple sample(1.16.1):
     
       # Dataway HTTP timeout
       timeout_v2 = "30s"
+    
+      # max_retry_count specifies at most how many times the data sending operation will be tried when it fails,
+      # valid minimum value is 1 (NOT 0) and maximum value is 10.
+      max_retry_count = 4
+    
+      # The interval between two retry operation, valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h"
+      retry_delay = "200ms"
     
       # HTTP Proxy(IP:Port)
       http_proxy = ""

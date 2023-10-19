@@ -251,7 +251,8 @@ The metric of containers, only supported Running status.
 |`container_id`|Container ID|
 |`container_name`|Container name from k8s (label `io.kubernetes.container.name`). If empty then use $container_runtime_name.|
 |`container_runtime`|Container runtime (this container from Docker/Containerd/cri-o).|
-|`container_runtime_name`|Container name from runtime (like 'docker ps'). If empty then use 'unknown' ([:octicons-tag-24: Version-1.4.6](../datakit/changelog.md#cl-1.4.6)).|
+|`container_runtime_name`|Container name from runtime (like 'docker ps'). If empty then use 'unknown'.|
+|`container_runtime_version`|Container runtime version.|
 |`container_type`|The type of the container (this container is created by Kubernetes/Docker/Containerd/cri-o).|
 |`daemonset`|The name of the DaemonSet which the object belongs to.|
 |`deployment`|The name of the Deployment which the object belongs to.|
@@ -660,7 +661,8 @@ The object of containers, only supported Running status.
 |`container_id`|Container ID|
 |`container_name`|Container name from k8s (label `io.kubernetes.container.name`). If empty then use $container_runtime_name.|
 |`container_runtime`|Container runtime (this container from Docker/Containerd/cri-o).|
-|`container_runtime_name`|Container name from runtime (like 'docker ps'). If empty then use 'unknown' ([:octicons-tag-24: Version-1.4.6](../datakit/changelog.md#cl-1.4.6)).|
+|`container_runtime_name`|Container name from runtime (like 'docker ps'). If empty then use 'unknown'.|
+|`container_runtime_version`|Container runtime version.|
 |`container_type`|The type of the container (this container is created by Kubernetes/Docker/Containerd/cri-o).|
 |`daemonset`|The name of the DaemonSet which the object belongs to.|
 |`deployment`|The name of the Deployment which the object belongs to.|
@@ -942,9 +944,10 @@ The object of the Kubernetes Pod.
 | ---- |---- | :---:    | :----: |
 |`age`|Age (seconds)|int|s|
 |`available`|Number of containers|int|count|
+|`cpu_limit_millicores`|Max limits for CPU resources.|int|ms|
 |`cpu_usage`|The sum of the cpu usage of all containers in this Pod.|float|percent|
 |`cpu_usage_base100`|The normalized cpu usage, with a maximum of 100%. (Experimental)|float|percent|
-|`cpu_usage_nano_cores`|Total CPU usage (sum of all cores) averaged over the sample window.|int|ns|
+|`cpu_usage_millicores`|Total CPU usage (sum of all cores) averaged over the sample window.|int|ms|
 |`mem_capacity`|The total memory in the host machine.|int|B|
 |`mem_limit`|The sum of the memory limit of all containers in this Pod.|int|B|
 |`mem_usage`|The sum of the memory usage of all containers in this Pod.|int|B|
