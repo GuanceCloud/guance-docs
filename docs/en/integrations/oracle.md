@@ -107,7 +107,7 @@ Select the appropriate installation package based on the operating system and Or
     > You can also download our pre-prepared dependency package directly:
 
     ```shell
-    wget -q https://static.guance.com/otn_software/instantclient/instantclient-basiclite-linux.x64-21.10.0.0.0dbru.zip \
+    wget https://static.guance.com/otn_software/instantclient/instantclient-basiclite-linux.x64-21.10.0.0.0dbru.zip \
         -O /usr/local/datakit/externals/instantclient-basiclite-linux.zip \
         && unzip /usr/local/datakit/externals/instantclient-basiclite-linux.zip -d /opt/oracle \
         && mv /opt/oracle/instantclient_21_10 /opt/oracle/instantclient;
@@ -116,7 +116,7 @@ Select the appropriate installation package based on the operating system and Or
 === "ARM64 OS"
 
     ```shell
-    wget https://download.oracle.com/otn_software/linux/instantclient/2110000/instantclient-basiclite-linux.arm64-19.19.0.0.0dbru.zip
+    wget https://download.oracle.com/otn_software/linux/instantclient/1919000/instantclient-basiclite-linux.arm64-19.19.0.0.0dbru.zip
     unzip instantclient-basiclite-linux.arm64-19.19.0.0.0dbru.zip
     ```
 
@@ -125,7 +125,7 @@ Select the appropriate installation package based on the operating system and Or
     > You can also download our pre-prepared dependency package directly:
 
     ```shell
-    wget -q https://static.guance.com/otn_software/instantclient/instantclient-basiclite-linux.arm64-19.19.0.0.0dbru.zip \
+    wget https://static.guance.com/otn_software/instantclient/instantclient-basiclite-linux.arm64-19.19.0.0.0dbru.zip \
         -O /usr/local/datakit/externals/instantclient-basiclite-linux.zip \
         && unzip /usr/local/datakit/externals/instantclient-basiclite-linux.zip -d /opt/oracle \
         && mv /opt/oracle/instantclient_19_19 /opt/oracle/instantclient;
@@ -155,12 +155,13 @@ apt-get install -y libaio-dev libaio1
     
       ## The "--inputs" line below should not be modified.
       args = [
-        '--interval'       , '1m'                        ,
-        '--host'           , '<your-oracle-host>'        ,
-        '--port'           , '1521'                      ,
-        '--username'       , '<oracle-user-name>'        ,
-        '--password'       , '<oracle-password>'         ,
-        '--service-name'   , '<oracle-service-name>'     ,
+        '--interval'        , '1m'                        ,
+        '--host'            , '<your-oracle-host>'        ,
+        '--port'            , '1521'                      ,
+        '--username'        , '<oracle-user-name>'        ,
+        '--password'        , '<oracle-password>'         ,
+        '--service-name'    , '<oracle-service-name>'     ,
+        '--slow-query-time' , '0s'                        ,
       ]
       envs = [
         'LD_LIBRARY_PATH=/opt/oracle/instantclient:$LD_LIBRARY_PATH',
@@ -173,12 +174,13 @@ apt-get install -y libaio-dev libaio1
       #############################
       # Parameter Description (Marked with * is mandatory field)
       #############################
-      # *--interval       : Collect interval (Default is 1m)
-      # *--host           : Oracle instance address (IP)
-      # *--port           : Oracle listen port (Default is 1521)
-      # *--username       : Oracle username
-      # *--password       : Oracle password
-      # *--service-name   : Oracle service name
+      # *--interval         : Collect interval (Default is 1m)
+      # *--host             : Oracle instance address (IP)
+      # *--port             : Oracle listen port (Default is 1521)
+      # *--username         : Oracle username
+      # *--password         : Oracle password
+      # *--service-name     : Oracle service name
+      # *--slow-query-time  : Oracle slow query time threshold defined. If larger than this, the executed sql will be reported.
     
     ```
     
@@ -305,6 +307,31 @@ For all of the following data collections, a global tag named `host` is appended
 |`user_rollbacks`|Number of user rollbacks|float|count|
 
 
+
+## Long Running Queries {#slow}
+
+Datakit could reports the SQLs, those executed time exceeded the threshold time defined by user, to Guance Cloud, displays in the `Logs` side bar, the source name is `oracle_logging`.
+
+This function is disabled by default, user could enabling it by modify Datakit's Oracle configuraion like followings:
+
+Change the string value after `--slow-query-time` from `0s` to the threshold time, minimal value is 1 millsecond. Generally, recommand it to `10s`.
+
+```conf
+  args = [
+    ...
+    '--slow-query-time' , '10s',
+  ]
+```
+
+???+ info "Fields description"
+    - `avg_elapsed`: The SQL executed average time cost.
+    - `username`: The user who executed the SQL.
+    - `failed_obfuscate`：SQL obfuscated failed reason. Only exist when SQL obfuscated failed. Original SQL will be reported when SQL obfuscated failed.
+    [More fields](https://docs.oracle.com/en/database/oracle/oracle-database/19/refrn/V-SQLAREA.html#GUID-09D5169F-EE9E-4297-8E01-8D191D87BDF7).
+
+???+ attention "Attention"
+    - If the string value after `--slow-query-time` is `0s` or empty or less than 1 millsecond, this function is disabled, which is also the default state.
+    - The SQL would not display here when NOT executed completed.
 
 ## FAQ {#faq}
 

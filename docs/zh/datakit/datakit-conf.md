@@ -19,7 +19,7 @@ DataKit 主配置用来配置 DataKit 自己的运行行为。
 
 ## Datakit 主配置示例 {#maincfg-example}
 
-Datakit 主配置示例如下，我们可以根据该示例来开启各种功能（当前版本 1.16.1）：
+Datakit 主配置示例如下，我们可以根据该示例来开启各种功能（当前版本 1.17.0）：
 
 <!-- markdownlint-disable MD046 -->
 ??? info "*datakit.conf*"
@@ -130,6 +130,11 @@ Datakit 主配置示例如下，我们可以根据该示例来开启各种功能
       # If the list empty, all app's requests accepted.
       rum_app_id_white_list = []
     
+      # Start Datakit web server with HTTPS
+      [http_api.tls]
+        cert = "path/to/certificate/file"
+        privkey = "path/to/private_key/file"
+    
     ################################################
     # io configures
     ################################################
@@ -186,6 +191,13 @@ Datakit 主配置示例如下，我们可以根据该示例来开启各种功能
     
       # Dataway HTTP timeout
       timeout_v2 = "30s"
+    
+      # max_retry_count specifies at most how many times the data sending operation will be tried when it fails,
+      # valid minimum value is 1 (NOT 0) and maximum value is 10.
+      max_retry_count = 4
+    
+      # The interval between two retry operation, valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h"
+      retry_delay = "200ms"
     
       # HTTP Proxy(IP:Port)
       http_proxy = ""

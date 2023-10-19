@@ -62,7 +62,7 @@ After done with commands above, filling the `user` and `pwd` to Datakit configur
     
       ## A list of Mongodb servers URL
       ## Note: must escape special characters in password before connect to Mongodb server, otherwise parse will failed.
-      ## Form: "mongodb://" [user ":" pass "@"] host [ ":" port]
+      ## Form: "mongodb://[user ":" pass "@"] host [ ":" port]"
       ## Some examples:
       ## mongodb://user:pswd@localhost:27017/?authMechanism=SCRAM-SHA-256&authSource=admin
       ## mongodb://user:pswd@127.0.0.1:27017,
