@@ -10,7 +10,7 @@ icon: zy/release-notes
 
 ### 观测云更新
 
-- 付费计划与账单：计费项【[数据转发](../billing/billing-method/billing-item.md#backup)】目前按照数据转发规则，分别统计转发数据量进行计费。
+- 付费计划与账单：计费项【[数据转发](../billing/billing-method/billing-item.md#backup)】统计逻辑变更为 “按照数据转发规则” 统计转发数据量大小。
 - 管理
     - [SSO 管理](../management/sso/index.md#corporate)：支持创建多个 SSO 的 IDP 配置，并支持针对单个 IDP 配置进行启用、禁用操作、开启 SAML 映射。
     - 数据权限管理 > [敏感数据脱敏](../management/data-authorization.md#data-mask)：支持基于角色级别配置敏感数据屏蔽规则，配置时可采用正则表达式脱敏，支持针对某个数据类型下的字段做脱敏规则配置，并由此新增脱敏规则预览测试。
