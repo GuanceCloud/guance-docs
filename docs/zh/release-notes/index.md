@@ -10,7 +10,7 @@ icon: zy/release-notes
 
 ### 观测云更新
 
-- 付费计划与账单：计费项【[数据转发](../billing/billing-method/billing-item.md#backup)】目前按照数据转发规则，分别统计转发数据量进行计费。
+- 付费计划与账单：计费项【[数据转发](../billing/billing-method/billing-item.md#backup)】统计逻辑变更为 “按照数据转发规则” 统计转发数据量大小。
 - 管理
     - [SSO 管理](../management/sso/index.md#corporate)：支持创建多个 SSO 的 IDP 配置，并支持针对单个 IDP 配置进行启用、禁用操作、开启 SAML 映射。
     - 数据权限管理 > [敏感数据脱敏](../management/data-authorization.md#data-mask)：支持基于角色级别配置敏感数据屏蔽规则，配置时可采用正则表达式脱敏，支持针对某个数据类型下的字段做脱敏规则配置，并由此新增脱敏规则预览测试。
@@ -29,6 +29,10 @@ icon: zy/release-notes
 - [新增自定义映射规则配置](../deployment/space.md#others)：启用该配置后，对应工作空间可以自定义映射规则。工作空间的自定义映射规则优先级大于管理后台的映射规则；
 - [新增查询数量上限](../deployment/space.md#others)：针对不同用户的工作空间的查询数量有定制化的限制，避免因查询数据量过大导致集群查询性能低，影响产品使用体验；
 - 本地账号新增更换密码。
+
+### 集成更新
+
+- [异常事件与 PagerDuty 联动](../integrations/pagerduty.md)：当我们的应用程序或系统出现异常时，通常需要及时处理以保证系统的正常运行。为了更好地管理和跟踪异常事件，我们可以将这些事件发送到 PagerDuty 中创建事件，这样我们就可以在 PagerDuty 中进行跟踪、分析和解决这些问题，通过快速地将异常事件发送到 PagerDuty 中创建事件，为我们提供更好的管理和跟踪异常事件的能力，从而更好地保证系统的正常运行。同时，这种方法也可以帮助我们更好地分析和解决问题，提高系统的稳定性和可靠性。
 
 ## 2023 年 9 月 26 日
 
