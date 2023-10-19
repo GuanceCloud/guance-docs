@@ -9,7 +9,7 @@ ARG GUANCE_HELPS_OSS_ENDPOINT
 ARG ES_VAR_DOC_SEARCH_TEST
 ARG ES_VAR_DOC_SEARCH_PROD
 
-FROM registry.jiagouyun.com/basis/mkdocs:2.3 as build
+FROM registry.jiagouyun.com/basis/mkdocs:2.5 as build
 
 ARG release_env
 ARG GUANCE_HELPS_OSS_AK_ID
