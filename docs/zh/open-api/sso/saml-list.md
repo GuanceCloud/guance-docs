@@ -10,13 +10,6 @@
 
 
 
-## 路由参数
-
-| 参数名        | 类型     | 必选   | 说明              |
-|:-----------|:-------|:-----|:----------------|
-| showMemberCount | boolean | Y | 是否统计成员数量<br> |
-
-
 ## 参数补充说明
 
 
@@ -53,12 +46,12 @@ curl 'https://openapi.guance.com/api/v1/sso/saml_list' \
             "tokenHoldTime": 10800,
             "tokenMaxValidDuration": 604800,
             "type": "saml-1",
-            "updateAt": 1697626521,
+            "updateAt": 1697627656,
             "updator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
             "updatorInfo": {
                 "acntWsNickname": "",
                 "email": "88@qq.com",
-                "iconUrl": "http://testing-static-res.dataflux.cn/icon/acnt_349ee5f70a89442fa94b4f754b5acbfe.png",
+                "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_349ee5f70a89442fa94b4f754b5acbfe.png",
                 "name": "88测试",
                 "username": "测试"
             },
@@ -85,7 +78,7 @@ curl 'https://openapi.guance.com/api/v1/sso/saml_list' \
             "updatorInfo": {
                 "acntWsNickname": "",
                 "email": "88@qq.com",
-                "iconUrl": "http://testing-static-res.dataflux.cn/icon/acnt_349ee5f70a89442fa94b4f754b5acbfe.png",
+                "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_349ee5f70a89442fa94b4f754b5acbfe.png",
                 "name": "88测试",
                 "username": "测试"
             },
@@ -96,7 +89,7 @@ curl 'https://openapi.guance.com/api/v1/sso/saml_list' \
     "errorCode": "",
     "message": "",
     "success": true,
-    "traceId": "11773519661716477119"
+    "traceId": "TRACE-4E238298-4DD2-4CA3-94A0-6F27F68F0C5F"
 } 
 ```
 
