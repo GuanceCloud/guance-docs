@@ -303,6 +303,31 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
+|`index_number_of_replicas`|Number of replicas.|float|count|
+|`index_number_of_shards`|Number of shards.|float|count|
+|`primaries_docs_count`|Number of documents. Only for the primary shards.|float|count|
+|`primaries_docs_deleted`|Number of deleted documents. Only for the primary shards.|float|count|
+|`primaries_flush_total`|Number of flush operations. Only for the primary shards.|float|count|
+|`primaries_flush_total_time_in_millis`|Total time in milliseconds spent performing flush operations. Only for the primary shards.|float|ms|
+|`primaries_get_missing_total`|Total number of failed get operations. Only for the primary shards.|float|count|
+|`primaries_indexing_index_current`|Number of indexing operations currently running. Only for the primary shards.|float|count|
+|`primaries_indexing_index_time_in_millis`|Total time in milliseconds spent performing indexing operations. Only for the primary shards.|float|ms|
+|`primaries_indexing_index_total`|Total number of indexing operations. Only for the primary shards.|float|count|
+|`primaries_merges_current_docs`|Number of document merges currently running. Only for the primary shards.|float|count|
+|`primaries_merges_total`|Total number of merge operations. Only for the primary shards.|float|count|
+|`primaries_merges_total_docs`|Total number of merged documents. Only for the primary shards.|float|count|
+|`primaries_merges_total_time_in_millis`|Total time in milliseconds spent performing merge operations. Only for the primary shards.|float|ms|
+|`primaries_refresh_total`|Total number of refresh operations. Only for the primary shards.|float|count|
+|`primaries_refresh_total_time_in_millis`|Total time in milliseconds spent performing refresh operations. Only for the primary shards.|float|ms|
+|`primaries_search_fetch_current`|Number of fetch operations currently running. Only for the primary shards.|float|count|
+|`primaries_search_fetch_time_in_millis`|Time in milliseconds spent performing fetch operations. Only for the primary shards.|float|ms|
+|`primaries_search_fetch_total`|Total number of fetch operations. Only for the primary shards.|float|count|
+|`primaries_search_query_current`|Number of query operations currently running. Only for the primary shards.|float|count|
+|`primaries_search_query_time_in_millis`|Time in milliseconds spent performing query operations. Only for the primary shards.|float|ms|
+|`primaries_search_query_total`|Total number of query operations. Only for the primary shards.|float|count|
+|`primaries_store_size_in_bytes`|Total size, in bytes, of all shards assigned to selected nodes. Only for the primary shards.|float|B|
+|`total_docs_count`|Number of documents.|float|B|
+|`total_docs_deleted`|Number of deleted documents.|float|B|
 |`total_flush_total`|Number of flush operations.|float|count|
 |`total_flush_total_time_in_millis`|Total time in milliseconds spent performing flush operations.|float|ms|
 |`total_get_missing_total`|Total number of failed get operations.|float|count|
