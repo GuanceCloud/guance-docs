@@ -243,13 +243,13 @@ nav:
       - cat.md
 
     - 'Pinpoint':
-      -  pinpoint.md
-      -  pinpoint-java.md
-      -  pinpoint-go.md
+      - pinpoint.md
+      - pinpoint-java.md
+      - pinpoint-go.md
 
     - 'New Relic':
-      -  newrelic.md
-	
+      - newrelic.md
+
     - '链路工具及串联':
       - tracing-propagator.md
 
