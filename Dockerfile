@@ -68,7 +68,7 @@ RUN \
             tools/ossutilarm64 cp ${OSS_UPLOAD_PATH} site/zh -r -f -e ${GUANCE_HELPS_OSS_ENDPOINT} -i ${GUANCE_HELPS_OSS_AK_ID} -k ${GUANCE_HELPS_OSS_AK_SECRET}; \
             tools/ossutilarm64 cp ${OSS_UPLOAD_PATH}/en site/en -r -f -e ${GUANCE_HELPS_OSS_ENDPOINT} -i ${GUANCE_HELPS_OSS_AK_ID} -k ${GUANCE_HELPS_OSS_AK_SECRET}; \
         else \
-            echo "Unsupported architecture $(dpkgArch)"; exit 1 ;; \
+            echo "Unsupported architecture $(dpkgArch)"; exit 1 ; \
         fi; \
     fi
 
