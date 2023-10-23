@@ -9,7 +9,7 @@ ARG GUANCE_HELPS_OSS_ENDPOINT
 ARG ES_VAR_DOC_SEARCH_TEST
 ARG ES_VAR_DOC_SEARCH_PROD
 
-FROM registry.jiagouyun.com/basis/mkdocs:2.5 as build
+FROM registry.jiagouyun.com/basis/mkdocs:2.6 as build
 
 ARG release_env
 ARG GUANCE_HELPS_OSS_AK_ID
@@ -30,11 +30,9 @@ COPY ./ /dataflux-doc
 ENV ES_VAR_DOC_SEARCH_TEST=$ES_VAR_DOC_SEARCH_TEST
 ENV ES_VAR_DOC_SEARCH_PROD=$ES_VAR_DOC_SEARCH_PROD
 
-
 RUN \
     enFileArg=mkdocs.en.saas.yml; \
     zhFileArg=mkdocs.zh.saas.yml; \
-    dpkgArch="$(dpkg --print-architecture)"; \
     if [ "$release_env" = "saas_production" ]; then \
         echo "SaaS Build ..."; \
         cp -r -f overrides-saas/* overrides/; \
@@ -49,7 +47,11 @@ RUN \
         cp -r -f overrides-deploy/* overrides/; \
         enFileArg=mkdocs.en.yml; \
         zhFileArg=mkdocs.zh.yml; \
-    fi; \
+    fi; 
+
+RUN \
+    enFileArg=mkdocs.en.saas.yml; \
+    zhFileArg=mkdocs.zh.saas.yml; \
     if [ "$release_env" != "rtm" ]; then \
         # 安装对应文档先关的插件的pypi \
         pip install -i https://pypi.douban.com/simple beautifulsoup4==4.12.2; \
@@ -61,16 +63,19 @@ RUN \
         # 如何是部署版打包，直接从 SaaS 的 OSS 目录中下载静态资源 \
         echo "download from OSS bucket..."; \
         OSS_UPLOAD_PATH="oss://${GUANCE_HELPS_OSS_BUCKET}"; \
-        if [ "$dpkgArch" = "amd64" ]; then \
+        dpkgArch="$(dpkg --print-architecture)"; \
+        echo "arch: ${dpkgArch}"; \
+        if [[ "$dpkgArch" = *"amd64"* ]]; then \
             tools/ossutil64 cp ${OSS_UPLOAD_PATH} site/zh -r -f -e ${GUANCE_HELPS_OSS_ENDPOINT} -i ${GUANCE_HELPS_OSS_AK_ID} -k ${GUANCE_HELPS_OSS_AK_SECRET}; \
             tools/ossutil64 cp ${OSS_UPLOAD_PATH}/en site/en -r -f -e ${GUANCE_HELPS_OSS_ENDPOINT} -i ${GUANCE_HELPS_OSS_AK_ID} -k ${GUANCE_HELPS_OSS_AK_SECRET}; \
-        elif [ "$dpkgArch" = "arm64" ]; then \
+        elif [[ "$dpkgArch" = *"arm64"* ]]; then \
             tools/ossutilarm64 cp ${OSS_UPLOAD_PATH} site/zh -r -f -e ${GUANCE_HELPS_OSS_ENDPOINT} -i ${GUANCE_HELPS_OSS_AK_ID} -k ${GUANCE_HELPS_OSS_AK_SECRET}; \
             tools/ossutilarm64 cp ${OSS_UPLOAD_PATH}/en site/en -r -f -e ${GUANCE_HELPS_OSS_ENDPOINT} -i ${GUANCE_HELPS_OSS_AK_ID} -k ${GUANCE_HELPS_OSS_AK_SECRET}; \
         else \
-            echo "Unsupported architecture $(dpkgArch)"; exit 1 ; \
+            echo "Unsupported architecture ${dpkgArch}"; \
+            exit 1 ; \
         fi; \
-    fi
+    fi;
 
 RUN \
     if [ "$release_env" = "saas_production" ]; then \
