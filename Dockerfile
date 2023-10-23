@@ -56,7 +56,7 @@ RUN \
         # 打包编译中英文的索引信息
         mkdocs build -f ${enFileArg}; \
         mkdocs build -f ${zhFileArg}; \
-    else; \
+    else \
         # 如何是部署版打包，直接从 SaaS 的 OSS 目录中下载静态资源
         echo "download from OSS bucket..."; \
         OSS_UPLOAD_PATH="oss://${GUANCE_HELPS_OSS_BUCKET}"; \
