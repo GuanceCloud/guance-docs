@@ -4,7 +4,7 @@ nav:
   - '添加 SAML SSO 登录配置': saml-create.md
   - '更新 SAML SSO 登录配置': saml-modify.md
   - '删除 SAML SSO 登录配置': saml-delete.md
-  - '启用/禁用 SAML SSO 登录': saml-set-disable.md
+  - '启用/禁用 SAML SSO 登录配置': saml-set-disable.md
   - '获取SAML映射列表': list.md
   - '新建映射规则': add.md
   - '修改映射规则': modify.md
