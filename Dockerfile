@@ -53,19 +53,15 @@ RUN \
         # pip install -i https://pypi.douban.com/simple mkdocs==1.5.3 beautifulsoup4==4.11.2 requests==2.28.2; \
         pip install -i https://pypi.douban.com/simple beautifulsoup4==4.12.2; \
         pip install -i https://pmgmt.jiagouyun.com/repository/guance-pypi/simple mkdocs-plugins==1.0.0; \
-    fi; \
-
-    if [ $release_env = "rtm" ]; then \
-        # 如何是部署版打包，直接从 SaaS 的 OSS 目录中下载静态资源
-        echo "download from OSS bucket..."; \
-        OSS_UPLOAD_PATH="oss://${GUANCE_HELPS_OSS_BUCKET}"; \
-        pip install -r tools/requirements.txt -i https://mirrors.aliyun.com/pypi/simple; \
-        tools/ossutil64 cp ${OSS_UPLOAD_PATH} site/zh -r -f -e ${GUANCE_HELPS_OSS_ENDPOINT} -i ${GUANCE_HELPS_OSS_AK_ID} -k ${GUANCE_HELPS_OSS_AK_SECRET}; \
-        tools/ossutil64 cp ${OSS_UPLOAD_PATH}/en site/en -r -f -e ${GUANCE_HELPS_OSS_ENDPOINT} -i ${GUANCE_HELPS_OSS_AK_ID} -k ${GUANCE_HELPS_OSS_AK_SECRET}; \
-    else; \
         # 打包编译中英文的索引信息
         mkdocs build -f ${enFileArg}; \
         mkdocs build -f ${zhFileArg}; \
+    else; \
+        # 如何是部署版打包，直接从 SaaS 的 OSS 目录中下载静态资源
+        echo "download from OSS bucket..."; \
+        OSS_UPLOAD_PATH="oss://${GUANCE_HELPS_OSS_BUCKET}"; \
+        tools/ossutil64 cp ${OSS_UPLOAD_PATH} site/zh -r -f -e ${GUANCE_HELPS_OSS_ENDPOINT} -i ${GUANCE_HELPS_OSS_AK_ID} -k ${GUANCE_HELPS_OSS_AK_SECRET}; \
+        tools/ossutil64 cp ${OSS_UPLOAD_PATH}/en site/en -r -f -e ${GUANCE_HELPS_OSS_ENDPOINT} -i ${GUANCE_HELPS_OSS_AK_ID} -k ${GUANCE_HELPS_OSS_AK_SECRET}; \
     fi;
 
 RUN \
