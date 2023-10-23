@@ -5,7 +5,7 @@ WORKDIR /tmp
 COPY ./requirements.txt /tmp/requirements.txt
 
 RUN \
-    apk upgrade --update-cache -a\
+    apk upgrade --update-cache -a \
     && \
     apk add install --no-cache dpkg
 
