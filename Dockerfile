@@ -30,9 +30,11 @@ COPY ./ /dataflux-doc
 ENV ES_VAR_DOC_SEARCH_TEST=$ES_VAR_DOC_SEARCH_TEST
 ENV ES_VAR_DOC_SEARCH_PROD=$ES_VAR_DOC_SEARCH_PROD
 
+
 RUN \
     enFileArg=mkdocs.en.saas.yml; \
     zhFileArg=mkdocs.zh.saas.yml; \
+    dpkgArch="$(dpkg --print-architecture)"; \
     if [ "$release_env" = "saas_production" ]; then \
         echo "SaaS Build ..."; \
         cp -r -f overrides-saas/* overrides/; \
@@ -59,8 +61,15 @@ RUN \
         # 如何是部署版打包，直接从 SaaS 的 OSS 目录中下载静态资源 \
         echo "download from OSS bucket..."; \
         OSS_UPLOAD_PATH="oss://${GUANCE_HELPS_OSS_BUCKET}"; \
-        tools/ossutil64 cp ${OSS_UPLOAD_PATH} site/zh -r -f -e ${GUANCE_HELPS_OSS_ENDPOINT} -i ${GUANCE_HELPS_OSS_AK_ID} -k ${GUANCE_HELPS_OSS_AK_SECRET}; \
-        tools/ossutil64 cp ${OSS_UPLOAD_PATH}/en site/en -r -f -e ${GUANCE_HELPS_OSS_ENDPOINT} -i ${GUANCE_HELPS_OSS_AK_ID} -k ${GUANCE_HELPS_OSS_AK_SECRET}; \
+        if [ "$dpkgArch" = "amd64" ]; then \
+            tools/ossutil64 cp ${OSS_UPLOAD_PATH} site/zh -r -f -e ${GUANCE_HELPS_OSS_ENDPOINT} -i ${GUANCE_HELPS_OSS_AK_ID} -k ${GUANCE_HELPS_OSS_AK_SECRET}; \
+            tools/ossutil64 cp ${OSS_UPLOAD_PATH}/en site/en -r -f -e ${GUANCE_HELPS_OSS_ENDPOINT} -i ${GUANCE_HELPS_OSS_AK_ID} -k ${GUANCE_HELPS_OSS_AK_SECRET}; \
+        elif [ "$dpkgArch" = "arm64" ]; then \
+            tools/ossutilarm64 cp ${OSS_UPLOAD_PATH} site/zh -r -f -e ${GUANCE_HELPS_OSS_ENDPOINT} -i ${GUANCE_HELPS_OSS_AK_ID} -k ${GUANCE_HELPS_OSS_AK_SECRET}; \
+            tools/ossutilarm64 cp ${OSS_UPLOAD_PATH}/en site/en -r -f -e ${GUANCE_HELPS_OSS_ENDPOINT} -i ${GUANCE_HELPS_OSS_AK_ID} -k ${GUANCE_HELPS_OSS_AK_SECRET}; \
+        else \
+            echo "Unsupported architecture $(dpkgArch)"; exit 1 ;; \
+        fi; \
     fi
 
 RUN \
