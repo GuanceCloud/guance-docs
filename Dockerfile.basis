@@ -7,6 +7,6 @@ COPY ./requirements.txt /tmp/requirements.txt
 RUN \
     apk upgrade --update-cache -a \
     && \
-    apk add install --no-cache dpkg
+    apk add --no-cache dpkg
 
 RUN pip install  -i https://mirrors.aliyun.com/pypi/simple -r requirements.txt
