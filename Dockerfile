@@ -33,22 +33,22 @@ ENV ES_VAR_DOC_SEARCH_PROD=$ES_VAR_DOC_SEARCH_PROD
 RUN \
     enFileArg=mkdocs.en.saas.yml; \
     zhFileArg=mkdocs.zh.saas.yml; \
-    if [ $release_env = "saas_production" ]; then \
+    if [ "$release_env" = "saas_production" ]; then \
         echo "SaaS Build ..."; \
         cp -r -f overrides-saas/* overrides/; \
     # 添加对应的测试环境的配置信息 \
-    elif [ $release_env = "peprod" ]; then \
+    elif [ "$release_env" = "peprod" ]; then \
         echo "Peprod Build ...."; \
         cp -r -f overrides-saas-test/* overrides/; \
         enFileArg=mkdocs.en.saas.test.yml; \
         zhFileArg=mkdocs.zh.saas.test.yml; \
-    elif [ $release_env = "rtm" ]; then \
+    elif [ "$release_env" = "rtm" ]; then \
         echo "RTM Build ..."; \
         cp -r -f overrides-deploy/* overrides/; \
         enFileArg=mkdocs.en.yml; \
         zhFileArg=mkdocs.zh.yml; \
     fi; \
-    if [ $release_env != "rtm" ]; then \
+    if [ "$release_env" != "rtm" ]; then \
         # 安装对应文档先关的插件的pypi \
         pip install -i https://pypi.douban.com/simple beautifulsoup4==4.12.2; \
         pip install -i https://pmgmt.jiagouyun.com/repository/guance-pypi/simple mkdocs-plugins==1.0.0; \
@@ -64,7 +64,7 @@ RUN \
     fi
 
 RUN \
-    if [ $release_env = "saas_production" ]; then \
+    if [ "$release_env" = "saas_production" ]; then \
         echo "upload to OSS bucket..."; \
         OSS_UPLOAD_PATH="oss://${GUANCE_HELPS_OSS_BUCKET}"; \
         CDN_REFRESH_PATH="docs.guance.com/"; \
