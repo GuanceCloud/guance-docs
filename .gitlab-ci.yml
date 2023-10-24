@@ -88,7 +88,7 @@ buildBasis:
     - /basis-\d+/
   script:
     - docker buildx build --platform linux/arm64,linux/amd64
-      -t registry.jiagouyun.com/basis/mkdocs:2.5
+      -t registry.jiagouyun.com/basis/mkdocs:2.6
       -f Dockerfile.basis .
       --push
   tags:
@@ -106,6 +106,12 @@ buildRTM:
     
     - docker buildx build 
       --build-arg release_env="rtm"
+      --build-arg GUANCE_HELPS_OSS_AK_ID="${GUANCE_HELPS_OSS_AK_ID}"
+      --build-arg GUANCE_HELPS_OSS_AK_SECRET="${GUANCE_HELPS_OSS_AK_SECRET}"
+      --build-arg GUANCE_HELPS_CDN_AK_ID="${GUANCE_HELPS_CDN_AK_ID}"
+      --build-arg GUANCE_HELPS_CDN_AK_SECRET="${GUANCE_HELPS_CDN_AK_SECRET}"
+      --build-arg GUANCE_HELPS_OSS_BUCKET="${GUANCE_HELPS_OSS_BUCKET}"
+      --build-arg GUANCE_HELPS_OSS_ENDPOINT="${GUANCE_HELPS_OSS_ENDPOINT}"
       --platform linux/arm64,linux/amd64 
       -t pubrepo.jiagouyun.com/$REPO:$TAG . --push
   tags:
@@ -123,6 +129,12 @@ buildUOSRTM:
     
     - docker buildx build 
       --build-arg release_env="rtm"
+      --build-arg GUANCE_HELPS_OSS_AK_ID="${GUANCE_HELPS_OSS_AK_ID}"
+      --build-arg GUANCE_HELPS_OSS_AK_SECRET="${GUANCE_HELPS_OSS_AK_SECRET}"
+      --build-arg GUANCE_HELPS_CDN_AK_ID="${GUANCE_HELPS_CDN_AK_ID}"
+      --build-arg GUANCE_HELPS_CDN_AK_SECRET="${GUANCE_HELPS_CDN_AK_SECRET}"
+      --build-arg GUANCE_HELPS_OSS_BUCKET="${GUANCE_HELPS_OSS_BUCKET}"
+      --build-arg GUANCE_HELPS_OSS_ENDPOINT="${GUANCE_HELPS_OSS_ENDPOINT}"
       --platform linux/amd64 
       -t pubrepo.jiagouyun.com/$REPO:$TAG
       -f Dockerfile.uos . --push
@@ -141,6 +153,12 @@ buildRTMPrev:
 
     - docker build 
       --build-arg release_env="rtm"
+      --build-arg GUANCE_HELPS_OSS_AK_ID="${GUANCE_HELPS_OSS_AK_ID}"
+      --build-arg GUANCE_HELPS_OSS_AK_SECRET="${GUANCE_HELPS_OSS_AK_SECRET}"
+      --build-arg GUANCE_HELPS_CDN_AK_ID="${GUANCE_HELPS_CDN_AK_ID}"
+      --build-arg GUANCE_HELPS_CDN_AK_SECRET="${GUANCE_HELPS_CDN_AK_SECRET}"
+      --build-arg GUANCE_HELPS_OSS_BUCKET="${GUANCE_HELPS_OSS_BUCKET}"
+      --build-arg GUANCE_HELPS_OSS_ENDPOINT="${GUANCE_HELPS_OSS_ENDPOINT}"
       -t pubrepo.jiagouyun.com/$REPO:$TAG .
     - docker push pubrepo.jiagouyun.com/$REPO:$TAG
   tags:

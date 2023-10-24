@@ -4,4 +4,9 @@ FROM registry.jiagouyun.com/basis/mkdocs-material-insiders:4.42.0
 WORKDIR /tmp
 COPY ./requirements.txt /tmp/requirements.txt
 
+RUN \
+    apk upgrade --update-cache -a \
+    && \
+    apk add --no-cache dpkg
+
 RUN pip install  -i https://mirrors.aliyun.com/pypi/simple -r requirements.txt
