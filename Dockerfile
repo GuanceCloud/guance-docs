@@ -47,11 +47,7 @@ RUN \
         cp -r -f overrides-deploy/* overrides/; \
         enFileArg=mkdocs.en.yml; \
         zhFileArg=mkdocs.zh.yml; \
-    fi; 
-
-RUN \
-    enFileArg=mkdocs.en.saas.yml; \
-    zhFileArg=mkdocs.zh.saas.yml; \
+    fi; \
     if [ "$release_env" != "rtm" ]; then \
         # 安装对应文档先关的插件的pypi \
         pip install -i https://pypi.douban.com/simple beautifulsoup4==4.12.2; \
@@ -82,6 +78,11 @@ RUN \
                 exit 1; \
                 ;; \
         esac ; \
+
+        # 部署版本不需要 RUM 埋点 \
+        echo "" > site/zh/assets/javascripts/rum-config.js; \
+        cat tools/on-premises.css > site/zh/assets/javascripts/on-premises.css; \
+        cat tools/on-premises.js > site/zh/assets/javascripts/on-premises.js; \
     fi;
 
 RUN \
@@ -93,6 +94,13 @@ RUN \
         tools/ossutil64 cp site/zh ${OSS_UPLOAD_PATH} -r -f -e ${GUANCE_HELPS_OSS_ENDPOINT} -i ${GUANCE_HELPS_OSS_AK_ID} -k ${GUANCE_HELPS_OSS_AK_SECRET}; \
         tools/ossutil64 cp site/en ${OSS_UPLOAD_PATH}/en -r -f -e ${GUANCE_HELPS_OSS_ENDPOINT} -i ${GUANCE_HELPS_OSS_AK_ID} -k ${GUANCE_HELPS_OSS_AK_SECRET}; \
         tools/ossutil64 cp tools/rum-config.js ${OSS_UPLOAD_PATH}/assets/javascripts/rum-config.js -r -f -e ${GUANCE_HELPS_OSS_ENDPOINT} -i ${GUANCE_HELPS_OSS_AK_ID} -k ${GUANCE_HELPS_OSS_AK_SECRET}; \
+
+        # SaaS 版本不需要做专为私有部署做的 hack 操作，只要一个空的 css 和 js 文件，防止前端 404 \
+        echo "" > tools/on-premises.css; \
+        echo "" > tools/on-premises.js; \
+        tools/ossutil64 cp tools/on-premises.css ${OSS_UPLOAD_PATH}/assets/stylesheets/on-premises.css -r -f -e ${GUANCE_HELPS_OSS_ENDPOINT} -i ${GUANCE_HELPS_OSS_AK_ID} -k ${GUANCE_HELPS_OSS_AK_SECRET}; \
+        tools/ossutil64 cp tools/on-premises.js ${OSS_UPLOAD_PATH}/assets/javascripts/on-premises.js -r -f -e ${GUANCE_HELPS_OSS_ENDPOINT} -i ${GUANCE_HELPS_OSS_AK_ID} -k ${GUANCE_HELPS_OSS_AK_SECRET}; \
+
         echo "refresh CDN ..." ; \
         python tools/cdn-refresh-tool.py Directory ${CDN_REFRESH_PATH} -i ${GUANCE_HELPS_CDN_AK_ID} -k ${GUANCE_HELPS_CDN_AK_SECRET}; \
     fi
