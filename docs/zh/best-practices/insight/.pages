@@ -28,6 +28,7 @@ nav:
     - 'ddtrace-api 使用指南': ddtrace-skill-api.md
     - 'ddtrace log 关联': ddtrace-skill-log.md
     - 'OpenTelemetry Java SDK': opentelemetry-sdk.md
+    - 'trace_thread.md'
 
   - '场景 (Scene)': 
     - '内网场景 Dubbo 微服务接入观测云': scene-dubbo.md
