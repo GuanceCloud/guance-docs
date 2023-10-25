@@ -164,7 +164,7 @@ OK
     ```
 <!-- markdownlint-enable -->
 
-### Dataway 安装 {#dw-install}
+## Dataway 安装 {#dw-install}
 
 参见[这里](dataway.md#install)
 
@@ -202,6 +202,145 @@ sinker:
 
     如果不设置 `secret_token`，则任何 Datakit 发送过来的请求都能通过，这不会造成数据问题。但如果 Dataway 部署在公网，还是建议设置一下 `secret_token`。
 <!-- markdownlint-enable -->
+
+## Dataway sink 命令 {#dw-sink-command}
+
+Dataway 自版本 [:octicons-tag-24: Version-1.3.6](dataway-changelog.md#cl-1.3.6) 起，支持通过命令行来管理 `sinker` 的配置，具体使用方式如下:
+
+```shell
+$ ./dataway sink --help
+
+Usage of sink:
+  -add string
+    	single rule json file
+  -cfg-file string
+    	configure file (default "/usr/local/cloudcare/dataflux/dataway/dataway.yaml")
+  -file string
+    	file path of the rule json, only used for command put and get
+  -get
+    	get the rule json
+  -list
+    	list rules
+  -log string
+    	log file path (default "/dev/null")
+  -put
+    	save the rule json
+  -token string
+    	rules filtered by token, eg: xx,yy
+```
+
+**指定配置文件**
+
+命令执行时，默认加载的配置文件是 `/usr/local/cloudcare/dataflux/dataway/dataway.yaml`，如果需要加载其他配置，可以通过 `--cfg-file` 来指定。
+
+```shell
+$ ./dataway sink --cfg-file dataway.yaml [--list...]
+```
+
+**命令日志设置**
+
+默认情况下，命令的输出日志被禁用，如果需要查看，可以通过设置 `--log` 参数。
+
+```shell
+# output log to stdout
+$ ./dataway sink --list --log stdout
+
+# output log to file
+$ ./dataway sink --list --log /tmp/log
+```
+
+**查看规则列表**
+
+```shell
+
+# list all rules 
+$ ./dataway sink --list
+
+# list all rules filtered by token 
+$ ./dataway sink --list --token=token1,token2
+
+CreateRevision: 2
+ModRevision: 41
+Version: 40
+Rules: 
+[
+    {
+        "rules": [
+            "{ workspace = 'zhengb-test'}"
+        ],
+        "url": "https://openway.guance.com?token=token1"
+    }
+]
+```
+
+**新增规则**
+
+创建规则文件 `rule.json`，内容参考如下:
+
+```json
+[
+  {
+    "rules": [
+      "{ host = 'HOST1'}"
+    ],
+    "url": "https://openway.guance.com?token=tkn_xxxxxxxxxxxxx"
+  },
+  {
+    "rules": [
+      "{ host = 'HOST2'}"
+    ],
+    "url": "https://openway.guance.com?token=tkn_yyyyyyyyyyyyy"
+  }
+]
+
+```
+
+新增规则
+
+```shell
+$ ./dataway sink --add rule.json
+
+add 2 rules ok!
+
+```
+
+**导出配置**
+
+导出配置可以将 `sinker` 配置导出到本地文件。
+
+```shell
+$ ./dataway sink --get --file sink-get.json
+
+rules json was saved to sink-get.json!
+
+```
+
+**写入配置**
+
+写入规则将本地规则文件同步到 `sinker` 中。
+
+创建规则文件 `sink-put.json`, 内容参考如下：
+
+```json
+{
+    "rules": [
+        {
+            "rules": [
+                "{ workspace = 'test'}"
+            ],
+            "url": "https://openway.guance.com?token=tkn_xxxxxxxxxxxxxx"
+        }
+    ],
+    "strict": true
+}
+
+```
+
+写入配置
+
+```shell
+$ ./dataway sink --put --file sink-put.json
+```
 
 ## Token 规则 {#spec-on-secret-token}
 

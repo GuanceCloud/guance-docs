@@ -1,6 +1,12 @@
 
 ## 更新历史 {#changelog}
 
+### 1.3.6(2023/10/24) {#cl-1.3.6}
+
+- 新增 Dataway `sink` [管理命令](./dataway-sink.md#dw-sink-command)
+
+---
+
 ### 1.3.5(2023/09/13) {#cl-1.3.5}
 
 - Kubernetes 下支持通过[环境变量](dataway.md#img-envs)注入来安装 Dataway
