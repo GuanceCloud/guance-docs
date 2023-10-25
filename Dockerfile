@@ -77,7 +77,7 @@ RUN \
                 ;; \
         esac ; \
 
-        mkdir site/en && mv site/zh/en site/en \
+        mkdir site/en && mv site/zh/en/* site/en; \
 
         # 部署版本不需要 RUM 埋点 \
         echo "" > site/zh/assets/javascripts/rum-config.js; \
