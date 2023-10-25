@@ -66,12 +66,10 @@ RUN \
             *arm64*) \
                 echo "do arm64 arch"; \
                 tools/ossutilarm64 cp ${OSS_UPLOAD_PATH} site/zh -r -f -e ${GUANCE_HELPS_OSS_ENDPOINT} -i ${GUANCE_HELPS_OSS_AK_ID} -k ${GUANCE_HELPS_OSS_AK_SECRET}; \
-                tools/ossutilarm64 cp ${OSS_UPLOAD_PATH}/en site/en -r -f -e ${GUANCE_HELPS_OSS_ENDPOINT} -i ${GUANCE_HELPS_OSS_AK_ID} -k ${GUANCE_HELPS_OSS_AK_SECRET}; \
                 ;; \
             *amd64*) \
                 echo "do amd64 arch"; \
                 tools/ossutil64 cp ${OSS_UPLOAD_PATH} site/zh -r -f -e ${GUANCE_HELPS_OSS_ENDPOINT} -i ${GUANCE_HELPS_OSS_AK_ID} -k ${GUANCE_HELPS_OSS_AK_SECRET}; \
-                tools/ossutil64 cp ${OSS_UPLOAD_PATH}/en site/en -r -f -e ${GUANCE_HELPS_OSS_ENDPOINT} -i ${GUANCE_HELPS_OSS_AK_ID} -k ${GUANCE_HELPS_OSS_AK_SECRET}; \
                 ;; \
             *) \
                 echo "Unsupported architecture ${dpkgArch}"; \
