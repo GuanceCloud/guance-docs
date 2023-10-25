@@ -1,5 +1,14 @@
 # 版本历史
 
+## 1.72.140（2023 年 10 月 24 日）
+
+pubrepo.guance.com/dataflux/1.72.140:launcher-b2acabc-1698160292
+
+### 私有部署版更新
+
+- 支持在部署时选择 GuanceDB 作为默认时序引擎
+- 一些其他已知 bug 修复
+
 ## 1.72.139（2023 年 10 月 19 日）
 
 pubrepo.guance.com/dataflux/1.72.139:launcher-27b5e0f-1697980093
