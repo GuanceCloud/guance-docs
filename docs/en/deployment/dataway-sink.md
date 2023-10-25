@@ -168,9 +168,148 @@ OK
     ```
 <!-- markdownlint-enable -->
 
-### Dataway installation {#dw-install}
+## Dataway installation {#dw-install}
 
 See [here](dataway.md#install)
+
+## Dataway sink command {#dw-sink-command}
+
+Dataway supports managing the configuration of `sinker` through the command line since version [:octicons-tag-24: Version-1.3.6](dataway-changelog.md#cl-1.3.6). The specific usage is as follows:
+
+```shell
+$ ./dataway sink --help
+
+Usage of sink:
+  -add string
+    	single rule json file
+  -cfg-file string
+    	configure file (default "/usr/local/cloudcare/dataflux/dataway/dataway.yaml")
+  -file string
+    	file path of the rule json, only used for command put and get
+  -get
+    	get the rule json
+  -list
+    	list rules
+  -log string
+    	log file path (default "/dev/null")
+  -put
+    	save the rule json
+  -token string
+    	rules filtered by token, eg: xx,yy
+```
+
+**Specify configuration file**
+
+When the command is executed, the default configuration file loaded is `/usr/local/cloudcare/dataflux/dataway/dataway`.yaml, and if additional configurations need to be loaded, they can be specified using the `--cfg-file` option.
+
+```shell
+$ ./dataway sink --cfg-file dataway.yaml [--list...]
+```
+
+**Command log setting**
+
+The command log was disabled by default. If you need to view it, you can set the `--log` parameter.
+
+```shell
+# output log to stdout
+$ ./dataway sink --list --log stdout
+
+# output log to file
+$ ./dataway sink --list --log /tmp/log
+```
+
+**View sinker rules**
+
+```shell
+
+# list all rules 
+$ ./dataway sink --list
+
+# list all rules filtered by token 
+$ ./dataway sink --list --token=token1,token2
+
+CreateRevision: 2
+ModRevision: 41
+Version: 40
+Rules: 
+[
+    {
+        "rules": [
+            "{ workspace = 'zhengb-test'}"
+        ],
+        "url": "https://openway.guance.com?token=token1"
+    }
+]
+```
+
+**Add sinker rules**
+
+Create file `rule.json` and add the following content:
+
+```json
+[
+  {
+    "rules": [
+      "{ host = 'HOST1'}"
+    ],
+    "url": "https://openway.guance.com?token=tkn_xxxxxxxxxxxxx"
+  },
+  {
+    "rules": [
+      "{ host = 'HOST2'}"
+    ],
+    "url": "https://openway.guance.com?token=tkn_yyyyyyyyyyyyy"
+  }
+]
+
+```
+
+Add the rules.
+
+```shell
+$ ./dataway sink --add rule.json
+
+add 2 rules ok!
+
+```
+
+**Export sinker configuration**
+
+Export the `sinker` configuration content to local file.
+
+```shell
+$ ./dataway sink --get --file sink-get.json
+
+rules json was saved to sink-get.json!
+
+```
+
+**Import sinker configuration**
+
+Import `sinker` configuration from local file.
+
+Create file `sink-put.json` and add following content:
+
+```json
+{
+    "rules": [
+        {
+            "rules": [
+                "{ workspace = 'test'}"
+            ],
+            "url": "https://openway.guance.com?token=tkn_xxxxxxxxxxxxxx"
+        }
+    ],
+    "strict": true
+}
+
+```
+
+Import the file.
+
+```shell
+$ dataway sink --put --file sink-put.json
+```
 
 ## Dataway Settings {#dw-config}
 

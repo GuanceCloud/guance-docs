@@ -3,7 +3,7 @@
 
 ## 简介 {#intro}
 
-DataWay 是观测云的数据网关，采集器上报数据到观测云都需要经过 DataWay 网关
+DataWay 是观测云的数据网关，采集器上报数据到观测云都需要经过 DataWay 网关。
 
 ## Dataway 安装 {#install}
 
