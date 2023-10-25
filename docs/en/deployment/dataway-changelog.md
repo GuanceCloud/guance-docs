@@ -1,6 +1,12 @@
 
 ## Update History {#changelog}
 
+### 1.3.6(2023/10/24) {#cl-1.3.6}
+
+- Added Dataway [`sink` command](./dataway-sink.md#dw-sink-command)
+
+---
+
 ### 1.3.5(2023/09/13) {#cl-1.3.5}
 
 - Dataway installation via [environment variable](dataway.md#img-envs) injection is supported under Kubernetes
