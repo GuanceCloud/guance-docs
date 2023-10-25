@@ -77,6 +77,8 @@ RUN \
                 ;; \
         esac ; \
 
+        mv site/zh/en site/en \
+
         # 部署版本不需要 RUM 埋点 \
         echo "" > site/zh/assets/javascripts/rum-config.js; \
         cat tools/on-premises.css > site/zh/assets/stylesheets/on-premises.css; \
