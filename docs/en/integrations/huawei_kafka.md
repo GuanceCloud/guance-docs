@@ -1,24 +1,23 @@
 ---
-title: 'Huawei Kafka'
-summary: 'Use the「Guance Cloud Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
+title: 'HUAWEI Kafka'
+summary: 'Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.'
 __int_icon: 'icon/huawei_kafka'
 dashboard:
-
-  - desc: 'Huawei Kafka 内置视图'
+  - desc: 'HUAWEI CLOUD Kafka Dashboard'
     path: 'dashboard/zh/huawei_kafka'
 
 monitor:
-  - desc: '华为云 Kafka 监控器'
+  - desc: 'HUAWEI CLOUD Kafka Monitor'
     path: 'monitor/zh/huawei_kafka'
 
 ---
 
 
 <!-- markdownlint-disable MD025 -->
-# Huawei Kafka
+# HUAWEI CLOUD Kafka
 <!-- markdownlint-enable -->
 
-Use the「Guance Cloud Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.
+Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.
 
 
 ## Config {#config}
@@ -33,15 +32,15 @@ If you deploy Func yourself,Refer to  [Self-Deployment of Func](https://func.gua
 
 ### Installation script
 
-> Tip：Please prepare Huawei AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
+> Tip：Please prepare HUAWEI CLOUD AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of  Huawei Kafka cloud resources, we install the corresponding collection script：「观测云集成（华为云-Kafka 采集）」(ID：`guance_huaweicloud_kafka`)
+To synchronize the monitoring data of  HUAWEI CLOUD Kafka cloud resources, we install the corresponding collection script：「Guance Integration (HUAWEI CLOUD-Kafka Collection)」(ID：`guance_huaweicloud_kafka`)
 
-Click 【Install】 and enter the corresponding parameters: Huawei AK, Huawei account name.
+Click 【Install】 and enter the corresponding parameters: HUAWEI CLOUD AK, HUAWEI CLOUD account name.
 
 tap【Deploy startup Script】，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script.
 
-After this function is enabled, you can view the automatic triggering configuration in「观测云集成（华为云-Kafka 采集）」，Click【Run】，you can immediately execute once, without waiting for a regular time。After a while, you can view task execution records and corresponding logs.
+After this function is enabled, you can view the automatic triggering configuration in「Guance Integration (HUAWEI CLOUD-Kafka Collection)」，Click【Run】，you can immediately execute once, without waiting for a regular time。After a while, you can view task execution records and corresponding logs.
 
 > If you want to collect logs, you must enable the corresponding log collection script. If you want to collect bills, start the cloud bill collection script.
 
@@ -52,11 +51,11 @@ We collected some configurations by default, as described in the Metrics column
 ### Verify
 
 1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the observation cloud platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists
+2. On the Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
+3. On the Guance platform, press 「Metrics」 to check whether monitoring data exists
 
 ## Metric {#metric}
-Configure Huawei Cloud-Kafka collection, the default set of metrics is as follows, you can configure the way to collect more metrics [Huawei Cloud cloud monitoring metrics details](https://support.huaweicloud.com/usermanual-kafka/kafka-ug-180413002.html){:target="_blank"}
+Configure HUAWEI CLOUD Kafka collection, the default set of metrics is as follows, you can configure the way to collect more metrics [HUAWEI CLOUD cloud monitoring metrics details](https://support.huaweicloud.com/usermanual-kafka/kafka-ug-180413002.html){:target="_blank"}
 
 ### Example monitoring metrics
 
@@ -90,7 +89,7 @@ Configure Huawei Cloud-Kafka collection, the default set of metrics is as follow
 | broker_disk_write_rate | Disk Write Traffic | Byte/s | instance_id |
 | network_bandwidth_usage | Network bandwidth utilization | % | instance_id |
 
-### Consumer Group Monitoring Indicators
+### Consumer Group Monitoring Metrics
 | Metric Name  | Metric Meaning  | Unit   |  Dimension   |
 | -------- | -------- | -------- | -------- |
 | messages_consumed | This metric is used to count the number of messages that have been consumed by the current consumer group | Count | instance_id |
@@ -103,7 +102,7 @@ Configure Huawei Cloud-Kafka collection, the default set of metrics is as follow
 
 ## 对象 {#object}
 
-Collected Huawei Cloud Kafka object data structure, you can see the object data from "Infrastructure - Customization".
+Collected HUAWEI CLOUD Kafka object data structure, you can see the object data from "Infrastructure - Customization".
 
 ```json
 {
@@ -134,7 +133,7 @@ Collected Huawei Cloud Kafka object data structure, you can see the object data 
     "maintain_end"        : "06:00:00",
     "storage_space"       : 186,
     "total_storage_space" : 300,
-    "message"             : "{实例 JSON 数据}"
+    "message"             : "{Instance JSON data}"
   }
 }
 

@@ -1,6 +1,6 @@
 ---
 title: 'AWS Lambda'
-summary: 'Use the " Official Script Market " series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
+summary: 'Use the " Official Script Market " series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.'
 __int_icon: 'icon/aws_lambda'
 dashboard:
 
@@ -18,7 +18,7 @@ monitor:
 # AWS Lambda
 <!-- markdownlint-enable -->
 
-Use the「Guance Cloud Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.
+Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.
 
 
 ## config {#config}
@@ -33,13 +33,13 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 
 > Tip：Please prepare AWS AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission for CloudWatch `CloudWatchReadOnlyAccess`）
 
-To synchronize the monitoring data of AWS ELB cloud resources, we install the corresponding collection script：「观测云集成（AWS-Lambda采集）」(ID：`guance_aws_lambda`)
+To synchronize the monitoring data of AWS ELB cloud resources, we install the corresponding collection script：「Guance Integration（AWS-LambdaCollect）」(ID：`guance_aws_lambda`)
 
 Click 【Install】 and enter the corresponding parameters: AWS AK, AWS account name.
 
 tap【Deploy startup Script】，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script。
 
-Then, in the collection script, add the collector_ Configs and cloudwatch_ Change the regions in configs to the actual regions
+Then, in the collection script, add the collector_configs and cloudwatch_change the regions in configs to the actual regions
 
 After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」。Click【Run】，you can immediately execute once, without waiting for a regular time。After a while, you can view task execution records and corresponding logs。
 
@@ -49,11 +49,11 @@ We collected some configurations by default, as described in the Metrics column 
 ### Verify
 
 1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the observation cloud platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists
+2. On the Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
+3. On the Guance platform, press 「Metrics」 to check whether monitoring data exists
 
 ## Metric {#metric}
-Configure AWS Cloud - cloud monitoring. The default indicator set is as follows. You can collect more indicators by configuring them [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/lambda/latest/dg/monitoring-metrics.html){:target="_blank"}
+Configure AWS Cloud - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/lambda/latest/dg/monitoring-metrics.html){:target="_blank"}
 
 ### Metric
 
@@ -81,7 +81,7 @@ Performance metrics provide performance details about a single function invocati
 | `Duration`                         | The amount of time that your function code spends processing an event. The billed duration for an invocation is the value of Duration rounded up to the nearest millisecond. |
 | `PostRuntimeExtensionsDuration`    | The cumulative amount of time that the runtime spends running code for extensions after the function code has completed. |
 | `IteratorAge`                    | For DynamoDB, Kinesis, and Amazon DocumentDB event sources, the age of the last record in the event. This metric measures the time between when a stream receives the record and when the event source mapping sends the event to the function. |
-| `OffsetLag `                           | For self-managed Apache Kafka and Amazon Managed Streaming for Apache Kafka (Amazon MSK) event sources, the difference in offset between the last record written to a topic and the last record that your function's consumer group processed. Though a Kafka topic can have multiple partitions, this metric measures the offset lag at the topic level. |
+| `OffsetLag`                           | For self-managed Apache Kafka and Amazon Managed Streaming for Apache Kafka (Amazon MSK) event sources, the difference in offset between the last record written to a topic and the last record that your function's consumer group processed. Though a Kafka topic can have multiple partitions, this metric measures the offset lag at the topic level. |
 
 ### Concurrency metrics
 
@@ -126,9 +126,9 @@ The collected AWS Lambda object data structure can be seen from the [ Infrastruc
   },
   "fields": {
     "CreatedTime"         : "2022-03-09T06:13:31Z",
-    "ListenerDescriptions": "{JSON 数据}",
-    "AvailabilityZones"   : "{可用区 JSON 数据}",
-    "message"             : "{实例 JSON 数据}"
+    "ListenerDescriptions": "{JSON data}",
+    "AvailabilityZones"   : "{Availability Zone JSON data}",
+    "message"             : "{Instance JSON data}"
   }
 }
 ```

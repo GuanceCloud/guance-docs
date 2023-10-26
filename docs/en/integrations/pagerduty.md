@@ -20,7 +20,7 @@ When our application or system encounters exceptions, it usually needs to be dea
 1. Deploy a [Dataflux Func Observation Cloud Special Edition](https://func.guance.com/#/) to generate authorization links
 2. Create a [webhook custom notification object](https://docs.guance.com/monitoring/notify-object/#4-webhook) (the webhook address is the Func authorization link address)
 3. Correctly configure the [monitor](https://docs.guance.com/monitoring/monitor/)
-4. Create a Service in PagerDuty with **Integrations** as **Events API V2** 
+4. Create a Service in PagerDuty with **Integrations** as **Events API V2**
 
 ### Deployment process
 

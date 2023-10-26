@@ -1,14 +1,12 @@
 ---
 title: 'AWS EventBridge'
-summary: 'Use the「观测云云同步」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
+summary: 'Use the「Guance   Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance .'
 __int_icon: 'icon/aws_eventbridge'
 dashboard:
-
-  - desc: 'AWS EventBridge 监控视图'
+  - desc: 'AWS EventBridge Monitoring View'
     path: 'dashboard/zh/aws_eventbridge'
-
 monitor:
-  - desc: 'AWS EventBridge 监控器'
+  - desc: 'AWS EventBridge Monitor'
     path: 'monitor/zh/aws_eventbridge'
 
 ---
@@ -18,7 +16,7 @@ monitor:
 # AWS EventBridge
 <!-- markdownlint-enable -->
 
-Use the「Guance Cloud Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.
+Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance .
 
 
 ## config {#config}
@@ -33,13 +31,14 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 
 > Tip：Please prepare AWS AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of AWS EventBridge cloud resources, we install the corresponding collection script：「观测云集成（AWS-EventBridge采集）」(ID：`guance_awsguance_aws_eventbridge_gateway`)
+To synchronize the monitoring data of AWS EventBridge cloud resources, we install the corresponding collection script：「Guance Integration（AWS-EventBridge Collect）」(ID：`guance_awsguance_aws_eventbridge_gateway`)
+
 
 Click 【Install】 and enter the corresponding parameters: AWS AK, AWS account name.
 
 tap【Deploy startup Script】，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script。
 
-Then, in the collection script, add the collector_ Configs and cloudwatch_ Change the regions in configs to the actual regions
+Then, in the collection script, add the collector_configs and cloudwatch_change the regions in configs to the actual regions
 
 After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」。Click【Run】，you can immediately execute once, without waiting for a regular time。After a while, you can view task execution records and corresponding logs。
 
@@ -49,24 +48,25 @@ We collected some configurations by default, as described in the Metrics column 
 ### Verify
 
 1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the observation cloud platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists
+2. On the Guance  platform, click 「Infrastructure / Custom」 to check whether asset information exists
+3. On the Guance  platform, press 「Metrics」 to check whether monitoring data exists
 
 ## Metric {#metric}
-Configure AWS Cloud - cloud monitoring. The default indicator set is as follows. You can collect more indicators by configuring them [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-monitoring.html){:target="_blank"}
+Configure AWS Cloud - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-monitoring.html){:target="_blank"}
 
 ### Metric
 
 `AWS/ApiGateway` The namespace includes the following instance metrics 。
 
-| 指标                 | 描述                                                         |
+| Metric                 | Description                                                         |
 |:-------------------| :----------------------------------------------------------- |
-| `Invocations`      | The number of times a target is invoked by a rule in response to an event. This includes successful and failed invocations, but doesn't include throttled or retried attempts until they fail permanently. It doesn't include DeadLetterInvocations.Note:EventBridge only sends this metric to CloudWatch if it isn't zero.Valid Dimensions: RuleNameUnits: Count |
+| `Invocations`      | The number of times a target is invoked by a rule in response to an event. This includes successful and failed invocations, but does not include throttled or retried attempts until they fail permanently. It does not include DeadLetterInvocations.Note:EventBridge only sends this metric to CloudWatch if it isn't zero.Valid Dimensions: RuleNameUnits: Count |
 | `TriggeredRules`   | The number of rules that have run and matched with any event.You won't see this metric in CloudWatch until a rule is triggered.Valid Dimensions: RuleNameUnits: Count |
 
 ## Object {#object}
 
-The collected AWS EventBridge object data structure, You can see the object data from「基础设施-自定义」
+The collected AWS EventBridge object data structure, You can see the object data from「Infrastructure - Customization」
+
 
 ```json
 {
@@ -84,4 +84,4 @@ The collected AWS EventBridge object data structure, You can see the object data
 ```
 
 > *Note: The fields in 'tags' may change with subsequent updates*
->
+

@@ -1,22 +1,20 @@
 ---
 title: 'Tencent Cloud PostgreSQL'
-summary: 'Use the「观测云云同步」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
+summary: 'Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.'
 __int_icon: 'icon/tencent_postgresql'
 dashboard:
 
-  - desc: '腾讯云 PostgreSQL 内置视图'
+  - desc: 'Tencent PostgreSQL Dashboard'
     path: 'dashboard/zh/tencent_postgresql'
 
 monitor:
-  - desc: '腾讯云 PostgreSQL 监控器'
-    path: 'monitor/zh/tencent_postgresql'
-
+  - desc: 'Tencent PostgreSQL Monitor'
 ---
 <!-- markdownlint-disable MD025 -->
 # Tencent Cloud PostgreSQL
 <!-- markdownlint-enable -->
 
-Use the「观测云云同步」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.
+Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.
 
 
 ## Config {#config}
@@ -33,7 +31,8 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 
 > Tip：Please prepare Aliyun AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of PostgreSQL cloud resources, we install the corresponding collection script：「观测云集成（腾讯云-PostgreSQL采集）」(ID：`guance_tencentcloud_postgresql`)
+
+To synchronize the monitoring data of PostgreSQL cloud resources, we install the corresponding collection script：「Guance Integration（Tencent Cloud - **PostgreSQLCollect**）」(ID：`guance_tencentcloud_postgresql`)
 
 Click 【Install】 and enter the corresponding parameters: Aliyun AK, Aliyun account name.
 
@@ -43,52 +42,53 @@ You can see the corresponding auto-trigger configuration in "Management / Auto-t
 
 We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-tencentcloud-monitor/){:target="_blank"}
 
-
+<!-- markdownlint-disable MD001 -->
 ### Verify
+<!-- markdownlint-enable -->
 
 1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist.
-2. On the observation cloud platform, click 「Infrastructure / Custom」 to check whether asset information exists.
-3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists.
+2. On the Guance cloud platform, click 「Infrastructure / Custom」 to check whether asset information exists.
+3. On the Guance cloud platform, press 「Metrics」 to check whether monitoring data exists.
 
 ## Metric {#metric}
-Configure Tencent Cloud COS monitoring. The default indicator set is as follows. You can collect more indicators by configuring them [Tencent Cloud Monitor Metrics Details](https://cloud.tencent.com/document/product/248/45105){:target="_blank"}
+Configure Tencent Cloud COS monitoring. The default metric set is as follows. You can collect more metrics by configuring them [Tencent Cloud Monitor Metrics Details](https://cloud.tencent.com/document/product/248/45105){:target="_blank"}
 
-### 监控指标
+### Monitor Metric
 
-| Metric name      | 指标中文名             | Implication                        | Unit  | Dimensions              |
+| Metric name      | Metric        | Implication                        | Unit  | Dimensions              |
 | --------------- | ---------------------- | --------------------------- | ----- | ----------------- |
-| Cpu  | CPU 利用率     | Actual CPU utilization  | %    | resourceId |
-| DataFileSize  | 数据文件大小  | Size of space occupied by data files   | GB | resourceId |
-| LogFileSize  | 日志文件大小  | wal Log file size  | MB | resourceId |
-| TempFileSize  | 临时文件大小  | Size of temporary files  | 次 | resourceId |
-| StorageRate  | 存储空间使用率  | Total storage space utilization, including temporary files, data files, log files, and other types of database files  | % | resourceId |
-| Qps  | 每秒查询数   | Average number of SQL statements executed per second  | 次/秒 | resourceId |
-| Connections  | 连接数   | The current total number of connections to the database when initiating a collection against the database  | 个 | resourceId |
-| NewConnIn5s  | 5秒内新建连接数  | When initiating a collection against a database, query about the number of all connections established in the last 5 seconds  | 次 | resourceId |
-| ActiveConns | 活跃连接数 | Database transient active connection (non-idle connection) when initiating a collection against the database    | 个 | resourceId |
-| IdleConns | 空闲连接数 | Instantaneous idle connections (idle connections) to the database queried when initiating a collection against the database  | 个 | resourceId |
-| Waiting   | 等待会话数   | Number of sessions the database is waiting for when a capture is initiated against the database (status is waiting) | 次/秒 | resourceId |
-| LongWaiting | 等待超过5秒的会话数 | Number of sessions where the database waited for more than 5 seconds during a collection cycle (status is waiting and the wait status was maintained for 5 seconds)  | 个 | resourceId |
-| IdleInXact  | 空闲事务数  | The number of transactions in the database that are in idle state at the time the capture is initiated on the database | 个 | resourceId |
-| LongXact   | 执行时长超过1秒的事务数目  | Number of transactions with an execution time of more than 1 second in a capture cycle  | 个 | resourceId |
-| Tps | 每秒事务数 | Average number of successful transactions executed per second (including rollbacks and commits)  | 次/秒 | resourceId |
-| XactCommit | 事务提交数  | Average number of transactions committed per second  | 次/秒 | resourceId |
-| XactRollback   | 事务回滚数  | Average number of transactions rolled back per second  | 次/秒 | resourceId |
-| ReadWriteCalls | 请求数  | Total number of requests in a statistical cycle  | 次 | resourceId |
-| ReadCalls | 读请求数  | Number of read requests in a statistical cycle  | 次 | resourceId |
-| WriteCalls | 写请求数  | Number of write requests in a statistical cycle  | 次 | resourceId |
-| OtherCalls | 其他请求数  | Number of other requests (begin, create, non-DML, DDL, DQL operations) in a statistical cycle  | 次 | resourceId |
-| HitPercent | 缓冲区缓存命中率  | Hit rate of all SQL statements executed in a request cycle  | % | resourceId |
-| SqlRuntimeAvg | 平均执行时延  | Average execution latency of all SQL statements in a statistical cycle  | ms | resourceId |
-| SqlRuntimeMax | 最长 TOP10 执行时延  | Average execution latency of the top 10 longest SQLs in a statistical period  | ms | resourceId |
-| SqlRuntimeMin | 最短 TOP10 执行时延  | Average execution latency of the top 10 shortest SQLs in a statistical cycle  | ms | resourceId |
-| SlowQueryCnt | 慢查询数量  | Number of slow queries in a collection cycle  | 个 | resourceId |
-| LongQuery | 执行时长超过1秒的 SQL 数  | Number of SQL queries that take longer than 1s to execute when a collection is initiated against the database.  | 个 | resourceId |
-| 2pc | 2pc事务数  | Number of current 2PC transactions when initiating a collection against the database  | 个 | resourceId |
-| Long2pc | 超过5s未提交的 2PC 事务数  | Number of 2PC transactions with a current execution time of more than 5s when the database initiates a collection  | 个 | resourceId |
-| Deadlocks | 死锁数  | Number of all deadlocks in an acquisition cycle  | 个 | resourceId |
-| Memory | 内存占用量  | Memory Used  | MB | resourceId |
-| MemoryRate | 内存使用率  | Memory Used Percentage of Total Occupancy  | % | resourceId |
+| `Cpu`  | CPU Utilization     | Actual CPU utilization  | %    | resourceId |
+| `DataFileSize`  | Data File Size  | Size of space occupied by data files   | GB | resourceId |
+| `LogFileSize`  | Log File Size  | Size of log files  | MB | resourceId |
+| `TempFileSize`  | Temporary File Size  | Size of temporary files  | times | resourceId |
+| `StorageRate`  | Storage Utilization Rate  | Total storage space utilization, including temporary files, data files, log files, and other types of database files  | % | resourceId |
+| `Qps`  | Queries per Second   | Average number of SQL statements executed per second  | times/s | resourceId |
+| `Connections`  | Connections   | The current total number of connections to the database when initiating a collection against the database  | count | resourceId |
+| `NewConnIn5s`  | New Connections in 5 Seconds  | Number of all connections established in the last 5 seconds when initiating a collection against a database  | times | resourceId |
+| `ActiveConns` | Active Connections | Database transient active connection (non-idle connection) when initiating a collection against the database    | count | resourceId |
+| `IdleConns` | Idle Connections | Instantaneous idle connections (idle connections) to the database queried when initiating a collection against the database  | count | resourceId |
+| `Waiting`   | Waiting Sessions   | Number of sessions the database is waiting for when a capture is initiated against the database (status is waiting) | times/s | resourceId |
+| `LongWaiting` | Long Waiting Sessions | Number of sessions where the database waited for more than 5 seconds during a collection cycle (status is waiting and the wait status was maintained for 5 seconds)  | count | resourceId |
+| `IdleInXact`  | Idle Transactions  | The number of transactions in the database that are in idle state at the time the capture is initiated on the database | count | resourceId |
+| `LongXact`   | Transactions with Execution Time Longer than 1 Second  | Number of transactions with an execution time of more than 1 second in a capture cycle  | count | resourceId |
+| `Tps` | Transactions per Second | Average number of successful transactions executed per second (including rollbacks and commits)  | times/s | resourceId |
+| `XactCommit` | Transactions Committed per Second  | Average number of transactions committed per second  | times/s | resourceId |
+| `XactRollback`   | Transactions Rolled Back per Second  | Average number of transactions rolled back per second  | times/s | resourceId |
+| `ReadWriteCalls` | Requests  | Total number of requests in a statistical cycle  | count | resourceId |
+| `ReadCalls` | Read Requests  | Number of read requests in a statistical cycle  | count | resourceId |
+| `WriteCalls` | Write Requests  | Number of write requests in a statistical cycle  | count | resourceId |
+| `OtherCalls` | Other Requests  | Number of other requests (begin, create, non-DML, DDL, DQL operations) in a statistical cycle  | count | resourceId |
+| `HitPercent` | Buffer Cache Hit Rate  | Hit rate of all SQL statements executed in a request cycle  | % | resourceId |
+| `SqlRuntimeAvg` | Average Execution Latency  | Average execution latency of all SQL statements in a statistical cycle  | ms | resourceId |
+| `SqlRuntimeMax` | Top 10 Longest Execution Latency  | Average execution latency of the top 10 longest SQLs in a statistical period  | ms | resourceId |
+| `SqlRuntimeMin` | Top 10 Shortest Execution Latency  | Average execution latency of the top 10 shortest SQLs in a statistical cycle  | ms | resourceId |
+| `SlowQueryCnt` | Number of Slow Queries  | Number of slow queries in a collection cycle  | count | resourceId |
+| `LongQuery` | Number of SQL Queries with Execution Time Longer than 1 Second  | Number of SQL queries that take longer than 1s to execute when a collection is initiated against the database.  | count | resourceId |
+| `2pc` | Number of 2PC Transactions  | Number of current 2PC transactions when initiating a collection against the database  | count | resourceId |
+| `Long2pc` | Number of 2PC Transactions Not Committed for More than 5 Seconds  | Number of 2PC transactions with a current execution time of more than 5s when the database initiates a collection  | count | resourceId |
+| `Deadlocks` | Number of Deadlocks  | Number of all deadlocks in an acquisition cycle  | count | resourceId |
+| `Memory` | Memory Usage  | Memory Used  | MB | resourceId |
+| `MemoryRate` | Memory Utilization Rate  | Memory Used Percentage of Total Occupancy  | % | resourceId |
 
 ## Object {#object}
 
@@ -117,10 +117,10 @@ Collected Tencent Cloud PostgreSQL object data structure, you can see the object
     "CreateTime"       : "2022-08-24 13:54:00",
     "DeadLine"         : "2072-08-24 13:54:00",
     "ReadonlyInstances": "[]",
-    "RelatedInstance"  : "{实例 JSON 数据}",
-    "ReplicaSets"      : "{实例 JSON 数据}",
+    "RelatedInstance"  : "{Instance JSON data}",
+    "ReplicaSets"      : "{Instance JSON data}",
     "StandbyInstances" : "[]",
-    "message"          : "{实例 JSON 数据}",
+    "message"          : "{Instance JSON data}",
   }
 }
 ```
@@ -133,16 +133,19 @@ Collected Tencent Cloud PostgreSQL object data structure, you can see the object
 
 > Tip 1: The code running of this script depends on the collection of PostgreSQL instance objects. If the custom collection of PostgreSQL object is not configured, the slow log script cannot collect slow log data.
 
-
+<!-- markdownlint-disable MD024 -->
 #### Installation script
+<!-- markdownlint-enable -->
 
-On the basis of the previous, you need to install another script for **PostgreSQL slow query statistics log collection **
+On the basis of the previous, you need to install another script for TencentCloud PostgreSQL slow query statistics log collection.
 
 In "Manage/Script Marketplace", click and install the corresponding script package:
 
-- 「观测云集成（腾讯云-PostgreSQL慢查询日志采集）  」(ID：`guance_tencentcloud_postgresql_slowlog`)
 
-After data is synchronized, you can view the data in Logs of the observation cloud.
+- 「Guance Integration (Tencent Cloud - PostgreSQL Slow Query Log Collection)  」(ID：`guance_tencentcloud_postgresql_slowlog`)
+
+
+After data is synchronized, you can view the data in Logs of the Guance.
 
 The following is an example of the reported data:
 
@@ -183,14 +186,14 @@ The following is an example of the reported data:
       "LastTime"    : "2021-07-27 03:12:01",
       "MaxCostTime" : "101.828125",
       "MinCostTime" : "101.828125",
-      "message"     : "{慢查询 JSON 数据}"
+      "message"     : "{Slow query JSON data}"
   }
 }
 
 
 ```
 
-> * Note: The fields in tags and Fields may change with subsequent updates *
+> Note: The fields in tags and Fields may change with subsequent updates
 >
 > Tip 1: The tags value is supplemented by a custom object
 >
@@ -198,7 +201,7 @@ The following is an example of the reported data:
 >
 > Tip 3: 'fields.Slowlog' records each record for all slow query details
 
-### Appendice
+### **Appendice**
 
 #### TencentCloud-PostgreSQL「Region」
 

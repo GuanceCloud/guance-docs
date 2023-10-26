@@ -1,24 +1,24 @@
 ---
-title: 'GaussDB for MySQL'
-summary: 'Use the「观测云云同步」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
+title: 'HUAWEI GaussDB for MySQL'
+summary: 'Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
 __int_icon: 'icon/gaussdb_for_mysql'
 dashboard:
 
-  - desc: 'GaussDB for MySQL 内置视图'
+  - desc: 'HUAWEI CLOUD GaussDB for MySQL Monitoring View'
     path: 'dashboard/zh/gaussdb_for_mysql'
 
 monitor:
-  - desc: 'GaussDB for MySQL 监控器'
+  - desc: 'HUAWEI CLOUD GaussDB for MySQL Monitor'
     path: 'monitor/zh/gaussdb_for_mysql'
 
 ---
 
 
 <!-- markdownlint-disable MD025 -->
-# GaussDB for MySQL
+# HUAWEI CLOUD GaussDB for MySQL
 <!-- markdownlint-enable -->
 
-GaussDB for MySQL includes metrics related to CPU, memory, network, buffer pool, storage, slow logs, and `InnoDB` performance.
+HUAWEI CLOUD GaussDB for MySQL includes metrics related to CPU, memory, network, buffer pool, storage, slow logs, and `InnoDB` performance.
 
 
 ## Config {#config}
@@ -33,11 +33,11 @@ If you deploy Func yourself,Refer to  [Self-Deployment of Func](https://func.gua
 
 ### Installation script
 
-> Tip：Please prepare Huawei AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
+> Tip：Please prepare HUAWEI CLOUD AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of  GaussDB for MySQL , we install the corresponding collection script：「观测云集成（华为云-CBR采集）」(ID：`guance_huaweicloud_ddm_gaussdb_mysql`)
+To synchronize the monitoring data of  GaussDB for MySQL , we install the corresponding collection script：「Guance Integration（HUAWEI CLOUD-CBRCollect）」(ID：`guance_huaweicloud_ddm_gaussdb_mysql`)
 
-Click 【Install】 and enter the corresponding parameters: Huawei AK, Huawei account name.
+Click 【Install】 and enter the corresponding parameters: HUAWEI CLOUD AK, HUAWEI CLOUD account name.
 
 tap【Deploy startup Script】，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script。
 
@@ -52,7 +52,7 @@ We collected some configurations by default, as described in the Metrics column 
 3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists
 
 ## Metric {#metric}
-Configure HUAWEI SYS.CBR monitoring. The default indicator set is as follows. You can collect more indicators by configuring them [Huawei CloudMonitor Metrics Details](https://support.huaweicloud.com/usermanual-gaussdb/gaussdb_03_0085.html){:target="_blank"}
+Configure HUAWEI CLOUD SYS.CBR monitoring. The default metric set is as follows. You can collect more metrics by configuring them [HUAWEI CLOUD Monitor Metrics Details](https://support.huaweicloud.com/usermanual-gaussdb/gaussdb_03_0085.html){:target="_blank"}
 
 | **Metric**                                         | **Name**                                       | **Description**                                              | **Value Range** | **Remarks**                                                  |
 |------------------------------------|----------------------------------------------------------| ------------------------------------------------------------ | ---------- | ---------------- |
@@ -93,22 +93,21 @@ Configure HUAWEI SYS.CBR monitoring. The default indicator set is as follows. Yo
 | gaussdb_mysql110_innodb_bufpool_reads                            | InnoDB Storage Layer Read Requests per Second  | Number of times that InnoDB reads data from the storage layer per second | ≥0 Times/s      | Monitored object: databaseMonitored instance type: GaussDB(for MySQL) instance |
 | gaussdb_mysql111_innodb_bufpool_read_requests                       | InnoDB Read Requests per Second                | Number of InnoDB read requests per second                    | ≥0 Requests/s   | Monitored object: databaseMonitored instance type: GaussDB(for MySQL) instance |
 | gaussdb_mysql119_disk_used_ratio                            | Disk Usage                                     | Disk usage of the monitored object                           | 0-100%          | Monitored object: databaseMonitored instance type: GaussDB(for MySQL) instance1 minute |
-| gaussdb_mysql116_innodb_bufpool_read_ahead_rnd                       | InnoDB Bufpool Read Ahead Rnd                  | Number of random read-aheads initiated by InnoDB             | ≥0 Read-aheads  | Monitored object: databaseMonitored instance type: GaussDB(for MySQL) instance |
+| gaussdb_mysql116_innodb_bufpool_read_ahead_rnd                       | InnoDB **Bufpool** Read Ahead Rnd                  | Number of random **read-aheads** initiated by InnoDB             | ≥0 **Read-aheads**  | Monitored object: databaseMonitored instance type: GaussDB(for MySQL) instance |
 | gaussdb_mysql117_innodb_pages_read                            | InnoDB Pages Read                              | Number of pages read from the InnoDB buffer pool by operations on InnoDB tables | ≥0 Pages        | Monitored object: databaseMonitored instance type: GaussDB(for MySQL) instance |
 | gaussdb_mysql118_innodb_pages_written                       | InnoDB Pages Written                           | Number of pages written by operations on InnoDB tables       | ≥0 Pages        | Monitored object: databaseMonitored instance type: GaussDB(for MySQL) instance |
 | gaussdb_mysql342_iostat_iops_write                            | I/O Write IOPS                                 | Number of disk writes per second                             | ≥0 Operations/s | Monitored object: databaseMonitored instance type: GaussDB(for MySQL) instance |
 | gaussdb_mysql344_iostat_iops_read                       | I/O Read IOPS                                  | Number of disk reads per second                              | ≥0 Operations/s | Monitored object: databaseMonitored instance type: GaussDB(for MySQL) instance |
 | gaussdb_mysql346_iostat_throughput_write                            | I/O Write Bandwidth                            | Disk write bandwidth per second                              | ≥0 Bytes/s      | Monitored object: databaseMonitored instance type: GaussDB(for MySQL) instance |
 | gaussdb_mysql348_iostat_throughput_read                       | I/O Read Bandwidth                             | Disk read bandwidth per second                               | ≥0 Bytes/s      | Monitored object: databaseMonitored instance type: GaussDB(for MySQL) instance |
-| gaussdb_mysql114_innodb_bufpool_read_ahead                            | InnoDB Bufpool Read Ahead                      | Number of pages read into the InnoDB buffer pool by the read-ahead background thread | ≥0 Pages        | Monitored object: databaseMonitored instance type: GaussDB(for MySQL) instance |
+| gaussdb_mysql114_innodb_bufpool_read_ahead                            | InnoDB **Bufpool** Read Ahead                      | Number of pages read into the InnoDB buffer pool by the read-ahead background thread | ≥0 Pages        | Monitored object: databaseMonitored instance type: GaussDB(for MySQL) instance |
 | gaussdb_mysql378_create_temp_tbl_per_min                       | Temporary Tables Created per Minute            | Number of temporary tables automatically created on disks per minute when GaussDB(for MySQL) statements are executed | ≥0counts/min    | Monitored object: databaseMonitored instance type: GaussDB(for MySQL) instance1 minute |
-| gaussdb_mysql371_taurus_binlog_total_file_counts                            | Binlog Files                                   | Number of GaussDB(for MySQL) binlog files                    | ≥0              | Monitored object: databaseMonitored instance type: GaussDB(for MySQL) instance5 minutes |
-| gaussdb_mysql115_innodb_bufpool_read_ahead_evicted                       | InnoDB Bufpool Read Ahead Evicted              | Number of pages read into the InnoDB buffer pool by the read-ahead background thread that were subsequently evicted without having been accessed by queries | ≥0 Pages        | Monitored object: databaseMonitored instance type: GaussDB(for MySQL) instance |
-                                      |
+| gaussdb_mysql371_taurus_binlog_total_file_counts                            | Binlog Files                                   | Number of GaussDB(for MySQL) **binlog** files                    | ≥0              | Monitored object: databaseMonitored instance type: GaussDB(for MySQL) instance5 minutes |
+| gaussdb_mysql115_innodb_bufpool_read_ahead_evicted                       | InnoDB **Bufpool** Read Ahead Evicted              | Number of pages read into the InnoDB buffer pool by the read-ahead background thread that were subsequently evicted without having been accessed by queries | ≥0 Pages        | Monitored object: databaseMonitored instance type: GaussDB(for MySQL) instance |
 
 ## Object {#object}
 
-The collected Huawei Cloud OBS object data structure can see the object data from 「基础设施-自定义」
+The collected HUAWEI CLOUD OBS object data structure can see the object data from 「Infrastructure-Custom」
 
 ``` json
 {
@@ -126,13 +125,13 @@ The collected Huawei Cloud OBS object data structure can see the object data fro
     "instance_name"           : "nosql-efa7"
   },
   "fields": {
-    "charge_info"          : "{计费类型信息，支持包年包月和按需，默认为按需}",
+    "charge_info"          : "{The value can be yearly or monthly or on-demand. The default value is on-demand}",
     "create_time"          : "2023-08-01T14:17:40+0800",
     "update_time"          : "2023-08-01T14:17:42+0800",
     "private_ips"          : "[\"192.168.0.223\"]",
     "proxy_ips"            : "[]",
-    "readonly_private_ips" : "[实例读内网IP地址列表]",
-    "message"              : "{实例 JSON 数据}"
+    "readonly_private_ips" : "[Instance Reads the Intranet IP address list]",
+    "message"              : "{Instance JSON data}"
   }
 }
 

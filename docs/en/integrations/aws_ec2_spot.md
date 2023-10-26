@@ -1,14 +1,14 @@
 ---
 title: 'Amazon EC2 Spot'
-summary: 'Use the「观测云云同步」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud'
+summary: 'Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance'
 __int_icon: 'icon/aws_ec2_spot'
 dashboard:
 
-  - desc: 'Amazon EC2 Spot 内置视图'
+  - desc: 'Amazon EC2 Spot Monitoring View'
     path: 'dashboard/zh/aws_ec2_spot'
 
 monitor:
-  - desc: 'Amazon EC2 Spot 监控器'
+  - desc: 'Amazon EC2 Spot Monitor'
     path: 'monitor/zh/aws_ec2_spot'
 
 ---
@@ -35,7 +35,7 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 
 > Tip：Please prepare AWS AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of Amazon EC2 Spot, we install the corresponding collection script：「观测云集成（AWS-EC2 Spot采集）」(ID：`guance_aws_ec2_spot`)
+To synchronize the monitoring data of Amazon EC2 Spot, we install the corresponding collection script：「Guance Integration（AWS-EC2 SpotCollect）」(ID：`guance_aws_ec2_spot`)
 
 Click 【Install】 and enter the corresponding parameters: Aws AK, Aws account name.。
 
@@ -49,11 +49,11 @@ After this function is enabled, you can view the automatic triggering configurat
 ### Verify
 
 1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the observation cloud platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists
+2. On the Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
+3. On the Guance platform, press 「Metrics」 to check whether monitoring data exists
 
 ## Metric {#metric}
-Configure Amazon EC2 Spot monitoring. The default indicator set is as follows. You can collect more indicators by configuring them [Aws Cloud Monitor Metrics Details](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet-cloudwatch-metrics.html){:target="_blank"}
+Configure Amazon EC2 Spot monitoring. The default metric set is as follows. You can collect more metrics by configuring them [Aws Cloud Monitor Metrics Details](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet-cloudwatch-metrics.html){:target="_blank"}
 
 
 

@@ -1,24 +1,24 @@
 ---
 title: 'HUAWEI SYS.CBR'
-summary: 'Use the「观测云云同步」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
+summary: 'Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.'
 __int_icon: 'icon/huawei_SYS.CBR'
 dashboard:
 
-  - desc: 'HUAWEI SYS.CBR 内置视图'
+  - desc: 'HUAWEI CLOUD SYS.CBR Monitoring View'
     path: 'dashboard/zh/huawei_SYS.CBR'
 
 monitor:
-  - desc: 'HUAWEI SYS.CBR 监控器'
+  - desc: 'HUAWEI CLOUD SYS.CBR Monitor'
     path: 'monitor/zh/huawei_SYS.CBR'
 
 ---
 
 
 <!-- markdownlint-disable MD025 -->
-# HUAWEI SYS.CBR
+# HUAWEI CLOUD SYS.CBR
 <!-- markdownlint-enable -->
 
-HUAWEI SYS.CBR includes metrics such as repository usage and repository utilization.
+HUAWEI CLOUD SYS.CBR includes metrics such as repository usage and repository utilization.
 
 
 ## Config {#config}
@@ -33,15 +33,15 @@ If you deploy Func yourself,Refer to  [Self-Deployment of Func](https://func.gua
 
 ### Installation script
 
-> Tip：Please prepare Huawei AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
+> Tip：Please prepare HUAWEI CLOUD AK that meets the requirements in advance（For simplicity's sake,,You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of  HUAWEI SYS.CBR, we install the corresponding collection script：「观测云集成（华为云-CBR采集）」(ID：`guance_huaweicloud_cbr`)
+To synchronize the monitoring data of  HUAWEI CLOUD SYS.CBR, we install the corresponding collection script：「Guance Integration（HUAWEI CLOUD-CBR Collect）」(ID：`guance_huaweicloud_cbr`)
 
-Click 【Install】 and enter the corresponding parameters: Huawei AK, Huawei account name.。
+Click [Install] and enter the corresponding parameters: HUAWEI CLOUD AK, HUAWEI CLOUD account name..
 
-tap【Deploy startup Script】，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script。
+tap[Deploy startup Script],The system automatically creates `Startup` script sets,And automatically configure the corresponding startup script.
 
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」。Click【Run】，you can immediately execute once, without waiting for a regular time。After a while, you can view task execution records and corresponding logs。
+After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」.Click[Run],you can immediately execute once, without waiting for a regular time.After a while, you can view task execution records and corresponding logs.
 
 We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-huaweicloud-cbr/){:target="_blank"}
 
@@ -52,16 +52,16 @@ We collected some configurations by default, as described in the Metrics column 
 3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists
 
 ## Metric {#metric}
-Configure HUAWEI SYS.CBR monitoring. The default indicator set is as follows. You can collect more indicators by configuring them [Huawei CloudMonitor Metrics Details](https://support.huaweicloud.com/intl/en-us/usermanual-cbr/cbr_03_0114.html){:target="_blank"}
+Configure HUAWEI CLOUD SYS.CBR monitoring. The default metric set is as follows. You can collect more metrics by configuring them [HUAWEI CLOUD Monitor Metrics Details](https://support.huaweicloud.com/intl/en-us/usermanual-cbr/cbr_03_0114.html){:target="_blank"}
 
-| Indicator ID                       | Index name                                               | Indicator meaning                                                      | Value range    | Measurement object (dimension)         | Monitoring cycle (raw metrics) |
+| Metric ID                       | Index name                                               | Metric meaning                                                      | Value range    | Measurement object (dimension)         | Monitoring cycle (raw metrics) |
 |------------------------------------|----------------------------------------------------------| ------------------------------------------------------------ | ---------- | ---------------- | -------------------- |
 | used_vault_size                       | Used Vault Size            | Used capacity of the vault. Unit: GB.                       | >=0           | Vault          | 15min                                           |
 | vault_util                            | Vault Usage         | Capacity usage of the vault.                                | 0~100%          | Vault          | 15min                                            |
 
 ## Object {#object}
 
-The collected Huawei Cloud OBS object data structure can see the object data from 「基础设施-自定义」
+The collected HUAWEI CLOUD OBS object data structure can see the object data from 「Infrastructure-Custom」
 
 ``` json
 {
@@ -78,12 +78,12 @@ The collected Huawei Cloud OBS object data structure can see the object data fro
   "fields": {
     "auto_bind"   : false,
     "auto_expand" : false,
-    "billing"     : "{运营信息}",
-    "bind_rules"  : "{绑定规则}",
-    "resources"   : "{存储库资源}",
+    "billing"     : "{Operations Information}",
+    "bind_rules"  : "{Binding rule}",
+    "resources"   : "{Repository Resources}",
     "created_at"  : "2023-07-24Txx : xx : xx.936999",
     "threshold"   : 80,
-    "message"     : "{实例 JSON 数据}"
+    "message"     : "{Instance JSON data}"
   }
 }
 
