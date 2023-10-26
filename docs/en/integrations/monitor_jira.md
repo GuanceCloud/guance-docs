@@ -20,9 +20,6 @@ When our applications or systems encounter exceptions, it is important to handle
 2. Create a [webhook custom notification object](https://docs.guance.com/monitoring/notify-object/#4-webhook) (the webhook address should be the authorization link of Func).
 3. Properly configure the [monitor](https://docs.guance.com/monitoring/monitor/).
 
-1. https://docs.guance.com/monitoring/monitor/)
-
-
 
 ### Deployment Process
 
@@ -30,7 +27,7 @@ When our applications or systems encounter exceptions, it is important to handle
 
 In the Observability Cloud Studio, go to "Monitoring/Notification Object Management" and create a new notification object. Choose **webhook custom** and enter the webhook address as the authorization link of the deployed Dataflux Func.
 
-![1693212890543.png](https://pacher.cn:8580/i/2023/08/28/64ec60dd9d5bd.png)
+![1693212890543.png](imgs/monitor_jira/monitor_jira01.png)
 
 > Note: Please select the authorization link in Func without parameters.
 
@@ -38,7 +35,7 @@ In the Observability Cloud Studio, go to "Monitoring/Notification Object Managem
 
 In the Observability Cloud Studio, go to "Monitoring/Monitors" and create a new monitor. Select the desired metrics to monitor, and configure the notification content for events. In the alert policy, specify the webhook custom notification object created earlier as the alert notification object.
 
-![1693212934306.png](https://pacher.cn:8580/i/2023/08/28/64ec610974edc.png)
+![1693212934306.png](imgs/monitor_jira/monitor_jira02.png)
 
 #### Write Listening Script
 
@@ -129,7 +126,7 @@ def create_jira_issue_reply(**kwargs):
         'project': {'key': project_key},
         'summary': summary,
         'description': description,
-        'issuetype': {'name': '故障'},  # 更改问题类型为 Task
+        'issuetype': {'name': 'Fault'},  # Change the question type to Task
         'assignee': {'name': 'pacher'},
         'priority': {'name': 'Highest'}
     }
@@ -138,15 +135,15 @@ def create_jira_issue_reply(**kwargs):
     issue = jira.create_issue(fields=issue_dict)
 
     # Print the key of the newly created issue
-    print(f"新创建问题的 key：{issue.key}")
+    print(f"Key for the newly created question：{issue.key}")
 ```
 
 By creating a Jira instance, we can create an issue dictionary from the event details obtained from Observability Cloud and send it to Jira. After sending successfully, the log will be generated, which is the `issue.key` we created.
 
-![1693213100705.png](https://pacher.cn:8580/i/2023/08/28/64ec61ad32e32.png)
+![1693213100705.png](imgs/monitor_jira/monitor_jira03.png)
 
 Then, we can view the corresponding issue in Jira using the created `issue.key`.
 
-![1693213121459.png](https://pacher.cn:8580/i/2023/08/28/64ec61c1cf987.png)
+![1693213121459.png](imgs/monitor_jira/monitor_jira04.png)
 
 After writing the script, we can click on "Publish" to deploy it.

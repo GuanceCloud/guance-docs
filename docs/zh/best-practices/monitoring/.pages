@@ -13,6 +13,7 @@ nav:
       - Skywalking 采集 JVM 可观测最佳实践: skywalking-jvm.md
       - 使用 datakit-operator 注入 dd-java-agent: datakit-operator.md
       - trace-glame-graph.md
+      - 'tomcat_ruoyi.md'
     - '中间件 (Middleware)':
       - 'Nginx 可观测最佳实践': nginx.md
       - 'Redis 可观测最佳实践': redis.md

@@ -1,20 +1,20 @@
 ---
-title: '腾讯云 KeeWiDB'
-summary: '使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云'
+title: 'Tencent KeeWiDB'
+summary: 'Tencent Cloud KeeWiDB metric display includes metrics such as connection count, requests, cache, keys, and slow queries.'
 __int_icon: 'icon/tencent_keewidb'
 dashboard:
 
-  - desc: '腾讯云 KeeWiDB 内置视图'
+  - desc: 'Tencent KeeWiDB Built-in Dashboard'
     path: 'dashboard/zh/tencent_keewidb'
 
 monitor:
-  - desc: '腾讯云 KeeWiDB 监控器'
+  - desc: 'Tencent KeeWiDB Monitor'
     path: 'monitor/zh/tencent_keewidb'
 
 ---
 
 <!-- markdownlint-disable MD025 -->
-# Tencent KeeWiDB
+# Tencent Cloud KeeWiDB
 <!-- markdownlint-enable -->
 
 
@@ -35,7 +35,7 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 
 > Tip：Please prepare Tencent AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of KeeWiDB, we install the corresponding collection script：「观测云集成（腾讯云-KeeWiDB 采集）」(ID：`guance_tencentcloud_keewidb`)
+To synchronize the monitoring data of KeeWiDB, we install the corresponding collection script：「Guance Integration（Tencent Cloud-KeeWiDB Collect）」(ID：`guance_tencentcloud_keewidb`)
 
 Click 【Install】 and enter the corresponding parameters: Tencent AK, Tencent account name.。
 
@@ -54,7 +54,7 @@ We collected some configurations by default, as described in the Metrics column 
 3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists
 
 ## Metric {#metric}
-Configure Tencent Cloud Redis monitoring. The default indicator set is as follows. You can collect more indicators by configuring them [Tencent Cloud Monitor Metrics Details](https://cloud.tencent.com/document/product/248/49729){:target="_blank"}
+Configure Tencent Cloud Redis monitoring. The default metric set is as follows. You can collect more metrics by configuring them [Tencent Cloud Monitor Metrics Details](https://cloud.tencent.com/document/product/248/49729){:target="_blank"}
 
 
 | Metric English Name       | Metric Chinese Name          | Metric Description                                                     | Unit  | Dimension       | Granularity                         |
@@ -74,10 +74,6 @@ Configure Tencent Cloud Redis monitoring. The default indicator set is as follow
 | KeeDiskUsed        | Disk usage.             | Disk capacity already in use.                                | MB    | `instanceid`              | 5s、 60s、 300s、 3600s、 86400s |
 | KeeDiskUtil        | Disk usage rate.        | Ratio of the disk capacity already in use to the maximum capacity. | %     | `instanceid`                | 5s、 60s、 300s、 3600s、 86400s |
 | KeeDiskIops        | Disk IOPS usage.        | Number of input-output operations per second on the disk.    | times per second | `instanceid`              | 5s、 60s、 300s、 3600s、 86400s |
-
-
-                 |
-
 
 
 ## Object {#object}
@@ -105,10 +101,10 @@ The data structure of collected Tencent Cloud Redis object can be viewed in 'Inf
     "ClientLimits"    : "10000",
     "Createtime"      : "2022-07-14 13:54:14",
     "DeadlineTime"    : "0000-00-00 00:00:00",
-    "InstanceNodeInfo": "{实例节点信息}",
-    "InstanceTitle"   : "运行中",
+    "InstanceNodeInfo": "{Instance节点信息}",
+    "InstanceTitle"   : "Running",
     "Size"            : 1024,
-    "message"         : "{实例 JSON 数据}"
+    "message"         : "{Instance JSON data}"
   }
 }
 

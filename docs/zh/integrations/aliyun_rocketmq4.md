@@ -1,77 +1,80 @@
 ---
-title: 'Aliyun RocketMQ4'
-summary: 'Use the「Guance Cloud Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
+title: '阿里云 RocketMQ4'
+summary: '阿里云 RocketMQ 4.0 的展示指标包括消息吞吐量、延迟、可靠性和水平扩展能力等。'
 __int_icon: 'icon/aliyun_rocketmq4'
 dashboard:
-  - desc: 'Aliyun RocketMQ4 Built-in Dashboard'
+  - desc: '阿里云 RocketMQ4 内置视图'
     path: 'dashboard/zh/aliyun_rocketmq4/'
 
 monitor:
-  - desc: 'Aliyun RocketMQ4 Monitor'
+  - desc: '阿里云 RocketMQ4 监控器'
     path: 'monitor/zh/aliyun_rocketmq4/'
 ---
 
 <!-- markdownlint-disable MD025 -->
-# Aliyun RocketMQ4
+# 阿里云 RocketMQ4
 <!-- markdownlint-enable -->
 
-Use the「Guance Cloud Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.
-
-## Config {#config}
-
-### Install Func
-
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
-If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+阿里云 RocketMQ 4.0 的展示指标包括消息吞吐量、延迟、可靠性和水平扩展能力等。
 
 
+## 配置 {#config}
 
-### Installation script
+### 安装 Func
 
-> Tip：Please prepare Aliyun AK that meets the requirements in advance(For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`)
+推荐开通 观测云集成 - 扩展 - 托管版 Func: 一切前置条件都自动安装好, 请继续脚本安装
 
-To synchronize the monitoring data of  Aliyun RocketMQ cloud resources, we install the corresponding collection script：「 观测云集成（阿里云-RocketMQ 4.0）」(ID：`guance_aliyun_rocketmq4`)
-
-Click 【Install】 and enter the corresponding parameters: Aliyun AK, Aliyun account name.。
-
-tap【Deploy startup Script】，The system automatically creates Startup script sets，And automatically configure the corresponding startup script。
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」。Click【Run】，you can immediately execute once, without waiting for a regular time。After a while, you can view task execution records and corresponding logs.
-
-We collected some configurations by default, as described in the Metrics column
-
-[Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
+如果自行部署 Func 参考 [自行部署 Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 
-### Verify
 
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the observation cloud platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists
+### 安装脚本
 
-## Metric  {#metric}
-Configure Aliyun - cloud monitoring. The default indicator set is as follows. You can collect more indicators by configuring them [ Aliyun CloudMonitor Metrics Details](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
+> 提示：请提前准备好符合要求的阿里云 AK（简单起见，可直接授予全局只读权限`ReadOnlyAccess`）
+
+同步阿里云 RocketMQ4 的监控数据，我们安装对应的采集脚本：「 观测云集成（阿里云-RocketMQ 4.0）」(ID：`guance_aliyun_rocketmq4`)
+
+点击【安装】后，输入相应的参数：阿里云 AK、阿里云账户名。
+
+点击【部署启动脚本】，系统会自动创建 `Startup` 脚本集，并自动配置相应的启动脚本。
+
+此外，在「管理 / 自动触发配置」里看到对应的自动触发配置。点击【执行】，即可立即执行一次，无需等待定期时间。稍等片刻，可以查看执行任务记录以及对应日志。
+
+我们默认采集了一些配置, 具体见指标一栏
+
+[配置自定义云对象指标](https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
+
+
+### 验证
+
+1. 在「管理 / 自动触发配置」确认对应的任务是否已存在对应的自动触发配置，同时可以查看对应任务记录及日志检查是否有异常
+2. 在观测云平台，「基础设施 / 自定义」中查看是否存在资产信息
+3. 在观测云平台，「指标」查看是否有对应监控数据
+
+## 指标 {#metric}
+配置好阿里云-云监控,默认的指标集如下, 可以通过配置的方式采集更多的指标 [阿里云云监控指标详情](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
 
 | Metric Id                | Metric Name      | Dimensions        | Statistics      | Uni     |
 | ---- | ---- | ---- | ---- | ---- |
-| ReadyMessages                       | ready messages(Group)                    | account_name,InstanceName | Average,Maximum | count      |
-| ReadyMessagesPerGidTopic            | ready messages(Group&Topic)              | account_name,InstanceName | Average,Maximum | count      |
-| ReceiveMessageCountPerGid           | receive message count(Group)        | account_name,InstanceName | Average,Maximum | count/min  |
-| ReceiveMessageCountPerGidTopic      | receive message count(Group&Topic)  | account_name,InstanceName | Average,Maximum | count/min  |
-| ReceiveMessageCountPerInstance      | receive message count per min(Instance) | account_name,InstanceName | Average,Maximum | count/min  |
-| ReceiveMessageCountPerTopic         | receive message count per min(Topic)      | account_name,InstanceName | Average,Maximum | count/min  |
-| SendDLQMessageCountPerGid           | send DLQ message count per min(Group)        | account_name,InstanceName | Average,Maximum | count/min  |
-| SendDLQMessageCountPerGidTopic      | send DLQ message count per min(Group&Topic)  | account_name,InstanceName | Average,Maximum | count/min  |
-| SendMessageCountPerInstance         | Send message count per min(Instance)     | account_name,InstanceName | Average,Maximum | count/min  |
-| SendMessageCountPerTopic            | Send message count per min(Topic)        | account_name,InstanceName | Average,Maximum | count/min  |
-| ThrottledReceiveRequestsPerGid      | throttled receive requests per min(GroupId)          | account_name,InstanceName | Average,Maximum | counts/min |
-| ThrottledReceiveRequestsPerGidTopic | throttled receive requests per min(GroupId&Topic)    | account_name,InstanceName | Average,Maximum | counts/min |
-| ThrottledReceiveRequestsPerInstance | throttled receive requests per min(Instance)         | account_name,InstanceName | Average,Maximum | counts/min |
-| ThrottledSendRequestsPerInstance    | throttled send requests per min(Instance)         | account_name,InstanceName | Average,Maximum | counts/min |
-| ThrottledSendRequestsPerTopic       | throttled send requests per min(Topic)            | account_name,InstanceName | Average,Maximum | counts/min |
+| ReadyMessages                       | 已就绪消息量(Group)                    | account_name,InstanceName | Average,Maximum | count      |
+| ReadyMessagesPerGidTopic            | 已就绪消息量(Group&Topic)              | account_name,InstanceName | Average,Maximum | count      |
+| ReceiveMessageCountPerGid           | 消费者每分钟接收消息数量(Group)        | account_name,InstanceName | Average,Maximum | count/min  |
+| ReceiveMessageCountPerGidTopic      | 消费者每分钟接收消息数量(Group&Topic)  | account_name,InstanceName | Average,Maximum | count/min  |
+| ReceiveMessageCountPerInstance      | 消费者每分钟接收消息数的数量(Instance) | account_name,InstanceName | Average,Maximum | count/min  |
+| ReceiveMessageCountPerTopic         | 消费者每分钟接收消息的数量(Topic)      | account_name,InstanceName | Average,Maximum | count/min  |
+| SendDLQMessageCountPerGid           | 每分钟产生死信消息的数量(Group)        | account_name,InstanceName | Average,Maximum | count/min  |
+| SendDLQMessageCountPerGidTopic      | 每分钟产生死信消息的数量(Group&Topic)  | account_name,InstanceName | Average,Maximum | count/min  |
+| SendMessageCountPerInstance         | 生产者每分钟发送消息数量(Instance)     | account_name,InstanceName | Average,Maximum | count/min  |
+| SendMessageCountPerTopic            | 生产者每分钟发送消息数量(Topic)        | account_name,InstanceName | Average,Maximum | count/min  |
+| ThrottledReceiveRequestsPerGid      | 每分钟(GroupId)消费被限流次数          | account_name,InstanceName | Average,Maximum | counts/min |
+| ThrottledReceiveRequestsPerGidTopic | 每分钟(GroupId&Topic)消费被限流次数    | account_name,InstanceName | Average,Maximum | counts/min |
+| ThrottledReceiveRequestsPerInstance | 每分钟(Instance)消费被限流次数         | account_name,InstanceName | Average,Maximum | counts/min |
+| ThrottledSendRequestsPerInstance    | 每分钟(Instance)发送被限流次数         | account_name,InstanceName | Average,Maximum | counts/min |
+| ThrottledSendRequestsPerTopic       | 每分钟(Topic)发送被限流次数            | account_name,InstanceName | Average,Maximum | counts/min |
 
-## Object {#object}
+## 对象 {#object}
 
-The collected Aliyun RocketMQ4 object data structure can see the object data from 「Infrastructure-custom-defined」
+采集到的阿里云 RocketMQ4 的对象数据结构, 可以从「基础设施-自定义」里看到对象数据
 
 ```json
 {

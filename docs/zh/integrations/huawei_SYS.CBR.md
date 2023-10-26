@@ -1,6 +1,6 @@
 ---
 title: 'HUAWEI SYS.CBR'
-summary: '使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云'
+summary: '华为云 SYS.CBR的展示指标包括带宽利用率、延迟、丢包率和网络吞吐量，这些指标反映了CBR在网络传输和带宽管理方面的性能表现和质量保证。'
 __int_icon: 'icon/huawei_SYS.CBR'
 dashboard:
 
@@ -15,10 +15,10 @@ monitor:
 
 
 <!-- markdownlint-disable MD025 -->
-# HUAWEI SYS.CBR
+# 华为云 SYS.CBR
 <!-- markdownlint-enable -->
 
-HUAWEI SYS.CBR的展示指标包括带宽利用率、延迟、丢包率和网络吞吐量，这些指标反映了CBR在网络传输和带宽管理方面的性能表现和质量保证。
+华为云 SYS.CBR 的展示指标包括带宽利用率、延迟、丢包率和网络吞吐量，这些指标反映了 CBR 在网络传输和带宽管理方面的性能表现和质量保证。
 
 
 ## 配置 {#config}

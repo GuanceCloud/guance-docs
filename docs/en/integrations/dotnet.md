@@ -110,7 +110,7 @@ For information about the different methods for setting environment variables, s
 === "Nuget"
 
 
-    1. In application code, access the global tracker through the `Datadog.Trace.Trace.Instance` property to create a new `span`.
+    1. In application code, access the global tracker through the `Datadog.Trace.Tracer.Instance` property to create a new `span`.
 
 
 ### Environment variable configuration{#env}

@@ -32,7 +32,7 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 
 > Tip：Please prepare Aliyun AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of Kafka, install the corresponding data collection script: "Observation Cloud Integration (aliyun - Kafka)" (ID: `guance_aliyun_kafka`).
+To synchronize the monitoring data of Kafka, install the corresponding data collection script: "Guance Integration (aliyun - Kafka)" (ID: `guance_aliyun_kafka`).
 
 Click 【Install】 and enter the corresponding parameters: Aliyun AK, Aliyun account name.
 

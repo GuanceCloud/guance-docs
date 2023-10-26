@@ -1,14 +1,11 @@
 ---
-title: 'AWS DynamoDB'
-summary: 'Use the「观测云云同步」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
+summary: 'Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance .'
 __int_icon: 'icon/aws_dynamodb'
 dashboard:
-
-  - desc: 'AWS DynamoDB 内置视图'
+  - desc: 'AWS DynamoDB Monitoring View'
     path: 'dashboard/zh/aws_dynamodb'
-
 monitor:
-  - desc: 'AWS DynamoDB 监控器'
+  - desc: 'AWS DynamoDB Monitor'
     path: 'monitor/zh/aws_dynamodb'
 
 ---
@@ -19,7 +16,7 @@ monitor:
 <!-- markdownlint-enable -->
 
 
-Use the「Guance Cloud Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.
+Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance .
 
 
 ## Config {#config}
@@ -28,7 +25,7 @@ Use the「Guance Cloud Synchronization」series script package in the script mar
 
 Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
 
-If you deploy Func yourself,Refer to (https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func yourself,[Refer to](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 
 
@@ -36,7 +33,7 @@ If you deploy Func yourself,Refer to (https://func.guance.com/doc/script-market-
 
 > Tip：Please prepare AWS AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of DynamoDB cloud resources, we install the corresponding collection script：「观测云集成（AWS-DynamoDB采集）」(ID：`guance_aws_dynamodb`)
+To synchronize the monitoring data of DynamoDB cloud resources, we install the corresponding collection script：「Guance Integration（AWS-DynamoDBCollect）」(ID：`guance_aws_dynamodb`)
 
 Click 【Install】 and enter the corresponding parameters: AWS AK, AWS account name.
 
@@ -50,11 +47,11 @@ We collected some configurations by default, as described in the Metrics column 
 ### Verify
 
 1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the observation cloud platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists
+2. On the Guance  platform, click 「Infrastructure / Custom」 to check whether asset information exists
+3. On the Guance  platform, press 「Metrics」 to check whether monitoring data exists
 
 ## Metric {#metric}
-Configure AWS Cloud - cloud monitoring. The default indicator set is as follows. You can collect more indicators by configuring them [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/zh_cn/amazondynamodb/latest/developerguide/metrics-dimensions.html){:target="_blank"}
+Configure AWS Cloud - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/zh_cn/amazondynamodb/latest/developerguide/metrics-dimensions.html){:target="_blank"}
 
 ### ConditionalCheckFailedRequests
 
@@ -113,7 +110,7 @@ Collected AWS DynamoDB object data structure, you can see the object data from t
     "KeySchema"             : "[{\"AttributeName\": \"LockID\", \"KeyType\": \"HASH\"}]",
     "LocalSecondaryIndexes" : "{}",
     "TableSizeBytes"        : "96",
-    "message"               : "{实例 json 信息}"
+    "message"               : "{Instance json}"
   }
 }
 

@@ -1,14 +1,14 @@
 ---
 title: 'AWS OpenSearch'
-summary: 'Use the「观测云云同步」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud'
+summary: 'Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance'
 __int_icon: 'icon/aws_opensearch'
 dashboard:
 
-  - desc: 'AWS OpenSearch 内置视图'
+  - desc: 'AWS OpenSearch Monitoring View'
     path: 'dashboard/zh/aws_opensearch'
 
 monitor:
-  - desc: 'AWS OpenSearch 监控器'
+  - desc: 'AWS OpenSearch Monitor'
     path: 'monitor/zh/aws_opensearch'
 
 ---
@@ -35,7 +35,7 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 
 > Tip：Please prepare AWS AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of ECS cloud resources, we install the corresponding collection script：「观测云集成（AWS-OpenSearch采集）」(ID：`guance_aws_open_search`)
+To synchronize the monitoring data of ECS cloud resources, we install the corresponding collection script：「Guance Integration（AWS-OpenSearchCollect）」(ID：`guance_aws_open_search`)
 
 Click 【Install】 and enter the corresponding parameters: Aws AK, Aws account name.。
 
@@ -50,11 +50,11 @@ We collected some configurations by default, as described in the Metrics column 
 ### Verify
 
 1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the observation cloud platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists
+2. On the Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
+3. On the Guance platform, press 「Metrics」 to check whether monitoring data exists
 
 ## Metric {#metric}
-Configure AWS OpenSearch monitoring. The default indicator set is as follows. You can collect more indicators by configuring them [Aws Cloud Monitor Metrics Details](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-cloudwatchmetrics.html){:target="_blank"}
+Configure AWS OpenSearch monitoring. The default metric set is as follows. You can collect more metrics by configuring them [Aws Cloud Monitor Metrics Details](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-cloudwatchmetrics.html){:target="_blank"}
 
 
 
@@ -87,8 +87,8 @@ Configure AWS OpenSearch monitoring. The default indicator set is as follows. Yo
 | `SegmentCount`                                               | The number of shards on the data nodes. The more shards you have, the longer it takes for each search. OpenSearch sometimes merges smaller shards into larger ones. Relevant node statistical data: Maximum, Average. Relevant cluster statistical data: Sum, Maximum, Average |
 | `SysMemoryUtilization`                                       | The percentage of used instance memory. A higher value for this metric is normal and usually does not indicate any issues with the cluster. For better indications of potential performance and stability problems, refer to the JVMMemoryPressure metric. Relevant node statistical data: Minimum, Maximum, Average. Relevant cluster statistical data: Minimum, Maximum, Average |
 | `OpenSearchDashboardsConcurrentConnections`                  | The active concurrent connection count on the OpenSearch dashboard. If this number is consistently high, consider scaling your cluster. Relevant node statistical data: Maximum. Relevant cluster statistical data: Sum, Maximum, Average |
-| `OpenSearchDashboardsHeapTotal`                              | The amount of heap memory allocated to the OpenSearch dashboard, measured in MiB (Mebibytes). The precise memory allocation may vary based on different EC2 instance types. Relevant node statistical data: Maximum. Relevant cluster statistical data: Sum, Maximum, Average |
-| `OpenSearchDashboardsHeapUsed`                               | The absolute amount of heap memory used by the OpenSearch dashboard, measured in MiB (Mebibytes). Relevant node statistical data: Maximum. Relevant cluster statistical data: Sum, Maximum, Average |
+| `OpenSearchDashboardsHeapTotal`                              | The amount of heap memory allocated to the OpenSearch dashboard, measured in MiB (`Mebibytes`). The precise memory allocation may vary based on different EC2 instance types. Relevant node statistical data: Maximum. Relevant cluster statistical data: Sum, Maximum, Average |
+| `OpenSearchDashboardsHeapUsed`                               | The absolute amount of heap memory used by the OpenSearch dashboard, measured in MiB (`Mebibytes`). Relevant node statistical data: Maximum. Relevant cluster statistical data: Sum, Maximum, Average |
 | `OpenSearchDashboardsHeapUtilization`                        | The maximum available heap memory percentage used by the OpenSearch dashboard. If this value exceeds 80%, consider scaling your cluster. Relevant node statistical data: Maximum. Relevant cluster statistical data: Minimum, Maximum, Average |
 | `OpenSearchDashboardsResponseTimesMaxInMillis`               | The maximum time (measured in milliseconds) required for the OpenSearch dashboard to respond to requests. If requests consistently take a long time to return results, consider increasing the instance type size. Relevant node statistical data: Maximum. Relevant cluster statistical data: Maximum, Average|
 | `OpenSearchDashboardsOS1MinuteLoad`                          | The one-minute average CPU load on the OpenSearch dashboard. Ideally, the CPU load should be kept below 1.00. While temporary spikes are acceptable, if this metric consistently stays above 1.00, we recommend increasing the instance type size. Relevant node statistical data: Average. Relevant cluster statistical data: Average, Maximum |
@@ -132,7 +132,7 @@ Configure AWS OpenSearch monitoring. The default indicator set is as follows. Yo
 | `SQLFailedRequestCountBySysErr`                              | The number of requests to the _SQL API that failed due to server issues or feature limitations. For example, requests may fail with an HTTP status code 503 if there's a VerificationException. Relevant statistic: Total |
 | `OldGenJVMMemoryPressure`                                    | The maximum percentage of the Java heap used for "old generation" on all data nodes in the cluster. This metric is also available at the node level. Relevant statistic: Maximum |
 | `OpenSearchDashboardsHealthyNodes`（以前称之为 `KibanaHealthyNodes`） | Health check of the OpenSearch dashboard. If the minimum, maximum, and average values are all equal to 1, then the dashboard is running normally. For example, if you have 10 nodes and the maximum value is 1, the minimum value is 0, and the average value is 0.7, it means that 7 nodes (70%) are running normally, and 3 nodes (30%) are not in good health. Relevant statistics: Minimum, Maximum, Average |
-| `InvalidHostHeaderRequests`                                  | The number of HTTP requests to the OpenSearch cluster that contain invalid (or missing) host headers. Valid requests include domain hostnames as the host header value. OpenSearch service rejects invalid requests made to public access domains without restrictive access policies. It is recommended to apply restrictive access policies to all domains. If you see a large value for this metric, please verify that your OpenSearch client includes the domain hostname in its requests (e.g., instead of its IP address). Relevant statistics: Total |
+| `InvalidHostHeaderRequests`                                  | The number of HTTP requests to the OpenSearch cluster that contain invalid (or missing) host headers. Valid requests include domain `hostnames` as the host header value. OpenSearch service rejects invalid requests made to public access domains without restrictive access policies. It is recommended to apply restrictive access policies to all domains. If you see a large value for this metric, please verify that your OpenSearch client includes the domain hostname in its requests (e.g., instead of its IP address). Relevant statistics: Total |
 | `OpenSearchRequests(previously ElasticsearchRequests)`       | The number of requests made to the OpenSearch cluster. Relevant Statistics: Total         |
 | `2xx, 3xx, 4xx, 5xx`                                         | The number of requests to the domain that resulted in the specified HTTP response code (2*xx*, 3*xx*, 4*xx*, 5*xx*). Relevant Statistics: Total |
 
@@ -162,10 +162,10 @@ The data structure of collected Tencent Cloud Redis object can be viewed in 'Inf
     "ClientLimits"    : "10000",
     "Createtime"      : "2022-07-14 13:54:14",
     "DeadlineTime"    : "0000-00-00 00:00:00",
-    "InstanceNodeInfo": "{实例节点信息}",
-    "InstanceTitle"   : "运行中",
+    "InstanceNodeInfo": "{Instance node info}",
+    "InstanceTitle"   : "instance",
     "Size"            : 1024,
-    "message"         : "{实例 JSON 数据}"
+    "message"         : "{Instance JSON data}"
   }
 }
 ```
