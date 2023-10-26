@@ -39,11 +39,6 @@ CoreDNS 采集器用于采集 CoreDNS 相关的指标数据。
     source = "coredns"
     metric_types = ["counter", "gauge"]
     
-    ## Stream Size. 
-    ## The source stream segmentation size.
-    ## Default 1, source stream undivided. 
-    # stream_size = 1
-    
     ## filter metrics by names
     metric_name_filter = ["^coredns_(acl|cache|dnssec|forward|grpc|hosts|template|dns)_([a-z_]+)$"]
     

@@ -146,12 +146,12 @@ PUT _plugins/_security/api/roles/monitor
     ```toml
         
     [[inputs.elasticsearch]]
-      ## Elasticsearch server url 
-      # Basic Authentication is allowed 
+      ## Elasticsearch server url
+      # Basic Authentication is allowed
       # servers = ["http://user:pass@localhost:9200"]
       servers = ["http://localhost:9200"]
     
-      ## Collect interval 
+      ## Collect interval
       # Time unit: "ns", "us" (or "µs"), "ms", "s", "m", "h"
       interval = "10s"
     
@@ -161,11 +161,11 @@ PUT _plugins/_security/api/roles/monitor
       ## Distribution: elasticsearch, opendistro, opensearch
       distribution = "elasticsearch"
     
-      ## Set local true to collect the metrics of the current node only. 
+      ## Set local true to collect the metrics of the current node only.
       # Or you can set local false to collect the metrics of all nodes in the cluster.
       local = true
     
-      ## Set true to collect the health metric of the cluster. 
+      ## Set true to collect the health metric of the cluster.
       cluster_health = false
     
       ## Set cluster health level, either indices or cluster.

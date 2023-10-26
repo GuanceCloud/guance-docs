@@ -31,15 +31,15 @@ The Datakit service needs to be restarted after successful execution.
     [[inputs.diskio]]
       ##(optional) collect interval, default is 10 seconds
       interval = '10s'
-      ##
+    
       ## By default, gather stats for all devices including
       ## disk partitions.
       ## Setting interfaces using regular expressions will collect these expected devices.
       # devices = ['''^sda\d*''', '''^sdb\d*''', '''vd.*''']
-      #
+    
       ## If the disk serial number is not required, please uncomment the following line.
       # skip_serial_number = true
-      #
+    
       ## On systems which support it, device metadata can be added in the form of
       ## tags.
       ## Currently only Linux is supported via udev properties. You can view
@@ -48,7 +48,7 @@ The Datakit service needs to be restarted after successful execution.
       ## Note: Most, but not all, udev properties can be accessed this way. Properties
       ## that are currently inaccessible include DEVTYPE, DEVNAME, and DEVPATH.
       # device_tags = ["ID_FS_TYPE", "ID_FS_USAGE"]
-      #
+    
       ## Using the same metadata source as device_tags,
       ## you can also customize the name of the device through a template.
       ## The "name_templates" parameter is a list of templates to try to apply equipment.
@@ -59,7 +59,6 @@ The Datakit service needs to be restarted after successful execution.
       ## not DM-0 names which are almost meaningless.
       ## In addition, "device" is reserved specifically to indicate the device name.
       # name_templates = ["$ID_FS_LABEL","$DM_VG_NAME/$DM_LV_NAME", "$device:$ID_FS_TYPE"]
-      #
     
     [inputs.diskio.tags]
       # some_tag = "some_value"
