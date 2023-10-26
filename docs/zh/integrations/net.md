@@ -37,28 +37,24 @@ Net 采集器用于采集主机网络信息，如各网络接口的流量信息�
     ```toml
         
     [[inputs.net]]
-      ##(optional) collect interval, default is 10 seconds
+      ## (optional) collect interval, default is 10 seconds
       interval = '10s'
-      ##
+    
       ## By default, gathers stats from any up interface, but Linux does not contain virtual interfaces.
       ## Setting interfaces using regular expressions will collect these expected interfaces.
-      ##
       # interfaces = ['''eth[\w-]+''', '''lo''', ]
-      ##
+    
       ## Datakit does not collect network virtual interfaces under the linux system.
       ## Setting enable_virtual_interfaces to true will collect virtual interfaces stats for linux.
-      ##
       # enable_virtual_interfaces = true
-      ##
+    
       ## On linux systems also collects protocol stats.
       ## Setting ignore_protocol_stats to true will skip reporting of protocol metrics.
-      ##
       # ignore_protocol_stats = false
-      ##
     
     [inputs.net.tags]
-    # some_tag = "some_value"
-    # more_tag = "some_other_value"
+      # some_tag = "some_value"
+      # more_tag = "some_other_value"
     
     ```
 
@@ -140,6 +136,7 @@ Net 采集器用于采集主机网络信息，如各网络接口的流量信息�
 |`udp_indatagrams`|The number of UDP datagram delivered to UDP users.|int|count|
 |`udp_indatagrams/sec`|The number of UDP datagram delivered to UDP users per second.|int|count|
 |`udp_inerrors`|The number of packet receive errors.|int|count|
+|`udp_memerrors`|The number of memory errors.|int|count|
 |`udp_noports`|The number of packets to unknown port received.|int|count|
 |`udp_outdatagrams`|The number of UDP datagram sent from this entity.|int|count|
 |`udp_outdatagrams/sec`|The number of UDP datagram sent from this entity per second.|int|count|

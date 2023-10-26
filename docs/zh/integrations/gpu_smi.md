@@ -74,6 +74,7 @@ monitor   :
     [inputs.gpu_smi.tags]
       # some_tag = "some_value"
       # more_tag = "some_other_value"
+    
     ```
 
     ???+ attention

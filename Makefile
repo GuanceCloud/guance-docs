@@ -24,4 +24,4 @@ markdown_check:
 		exit -1; \
 	fi
 
-lint: markdown_check 404_check spell_check
+lint: 404_check spell_check markdown_check 

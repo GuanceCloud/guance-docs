@@ -40,7 +40,7 @@ See [ClickHouse official documents](https://ClickHouse.com/docs/en/operations/se
 
 === "Host Installation"
 
-    Go to the `conf.d/clickhouse` directory under the DataKit installation directory, copy `clickhousev1.conf.sample` and name it `clickhousev1.conf`. Examples are as follows:
+    Go to the `conf.d/clickhousev1` directory under the DataKit installation directory, copy `clickhousev1.conf.sample` and name it `clickhousev1.conf`. Examples are as follows:
     
     ```toml
         
@@ -53,9 +53,6 @@ See [ClickHouse official documents](https://ClickHouse.com/docs/en/operations/se
     
       ## Ignore URL request errors.
       ignore_req_err = false
-    
-      ## Collector alias.
-      source = "clickhouse"
     
       ## Collect data output.
       ## Fill this when want to collect the data to local file nor center.
@@ -160,12 +157,6 @@ See [ClickHouse official documents](https://ClickHouse.com/docs/en/operations/se
         # tag1 = "new-name-1"
         # tag2 = "new-name-2"
         # tag3 = "new-name-3"
-    
-      ## Send collected metrics to center as log.
-      ## When 'service' field is empty, using 'service tag' as measurement set name.
-      [inputs.clickhousev1.as_logging]
-        enable = false
-        service = "service_name"
     
       ## Customize tags.
       [inputs.clickhousev1.tags]

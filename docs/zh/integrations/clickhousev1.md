@@ -55,7 +55,7 @@ vim /etc/clickhouse-server/config.xml
 <!-- markdownlint-disable MD046 -->
 === "主机安装"
 
-    进入 DataKit 安装目录下的 `conf.d/clickhouse` 目录，复制 `clickhousev1.conf.sample` 并命名为 `clickhousev1.conf`。示例如下：
+    进入 DataKit 安装目录下的 `conf.d/clickhousev1` 目录，复制 `clickhousev1.conf.sample` 并命名为 `clickhousev1.conf`。示例如下：
     
     ```toml
         
@@ -68,9 +68,6 @@ vim /etc/clickhouse-server/config.xml
     
       ## Ignore URL request errors.
       ignore_req_err = false
-    
-      ## Collector alias.
-      source = "clickhouse"
     
       ## Collect data output.
       ## Fill this when want to collect the data to local file nor center.
@@ -175,12 +172,6 @@ vim /etc/clickhouse-server/config.xml
         # tag1 = "new-name-1"
         # tag2 = "new-name-2"
         # tag3 = "new-name-3"
-    
-      ## Send collected metrics to center as log.
-      ## When 'service' field is empty, using 'service tag' as measurement set name.
-      [inputs.clickhousev1.as_logging]
-        enable = false
-        service = "service_name"
     
       ## Customize tags.
       [inputs.clickhousev1.tags]

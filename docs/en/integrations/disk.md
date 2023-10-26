@@ -27,8 +27,8 @@ None
       ##(optional) collect interval, default is 10 seconds
       interval = '10s'
     
-      # Physical devices only (e.g. hard disks, cd-rom drives, USB keys)
-      # and ignore all others (e.g. memory partitions such as /dev/shm)
+      ## Physical devices only (e.g. hard disks, cd-rom drives, USB keys)
+      ## and ignore all others (e.g. memory partitions such as /dev/shm)
       only_physical_device = false
     
       ## Deprecated
@@ -36,7 +36,6 @@ None
     
       ## Deprecated
       # mount_points = ["/"]
-    
     
       ## Deprecated
       # ignore_fs = ["tmpfs", "devtmpfs", "devfs", "iso9660", "overlay", "aufs", "squashfs"]
@@ -49,9 +48,11 @@ None
     
       ## exclude some with dev prefix (We collect all devices prefixed with dev by default)
       # exclude_device = ["/dev/loop0","/dev/loop1"]
+    
       [inputs.disk.tags]
-      # some_tag = "some_value"
-      # more_tag = "some_other_value"
+        # some_tag = "some_value"
+        # more_tag = "some_other_value"
+    
     ```
     
     Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
