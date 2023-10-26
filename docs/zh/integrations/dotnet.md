@@ -112,7 +112,7 @@ monitor   :
 
     为 .NET 应用天津自定义探针：
 
-    1. 在应用程序代码中，通过`Datadog.Trace.Trace.Instance`属性访问全局跟踪器以创建新的 `span`。
+    1. 在应用程序代码中，通过`Datadog.Trace.Tracer.Instance`属性访问全局跟踪器以创建新的 `span`。
 
 
 ### 环境变量配置 {#env}
