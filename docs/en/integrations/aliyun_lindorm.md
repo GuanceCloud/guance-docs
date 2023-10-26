@@ -1,22 +1,22 @@
 ---
 title: 'Aliyun Lindorm'
-summary: 'Use the「观测云云同步」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.' 
+summary: 'Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.' 
 __int_icon: 'icon/aliyun_lindorm'
 dashboard:
-  - desc: '阿里云 Lindorm 内置视图'
+  - desc: 'Aliyun Lindorm Monitoring View'
     path: 'dashboard/zh/aliyun_lindorm/'
 
 monitor:
-  - desc: '阿里云 Lindorm 监控器'
+  - desc: 'Aliyun Lindorm Monitor'
     path: 'monitor/zh/aliyun_lindorm/'
 ---
 
 <!-- markdownlint-disable MD025 -->
-# Aliyun Lindorm
+# Aliyun **Lindorm**
 <!-- markdownlint-enable -->
 
 
-Use the「Guance Cloud Synchronization」series script package in the script market to monitor the cloud ,The data of the cloud asset is synchronized to the observation cloud。
+Use the「Guance Synchronization」series script package in the script market to monitor the cloud ,The data of the cloud asset is synchronized to the Guance。
 
 
 ## Config {#config}
@@ -28,17 +28,18 @@ Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All
 If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 
-### Install Func
+### Installation script
+
 
 > Tip：Please prepare Aliyun AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of Lindorm cloud resources, we install the corresponding collection script：「观测云集成（阿里云-Lindorm采集）」(ID：`guance_aliyun_lindorm`)
+To synchronize the monitoring data of **Lindorm** cloud resources, we install the corresponding collection script：「Guance Integration（Aliyun -**Lindorm** Collect）」(ID：`guance_aliyun_lindorm`)
 
-Click 【Install】 and enter the corresponding parameters: Aliyun AK, Aliyun account name.
+Click "Install" and enter the corresponding parameters: Aliyun AK, Aliyun account name.
 
-tap【Deploy startup Script】，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script.
+tap "Deploy startup Script"，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script.
 
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」。Click【Run】，you can immediately execute once, without waiting for a regular time。After a while, you can view task execution records and corresponding logs.
+After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」。Click "Run"，you can immediately execute once, without waiting for a regular time。After a while, you can view task execution records and corresponding logs.
 
 > If you want to collect logs, you must enable the corresponding log collection script. If you want to collect bills, start the cloud bill collection script.
 
@@ -48,11 +49,11 @@ We collected some configurations by default, as described in the Metrics column 
 ### Verify
 
 1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the observation cloud platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists
+2. On the Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
+3. On the Guance platform, press 「Metrics」 to check whether monitoring data exists
 
 ## Metric  {#metric}
-Configure Ali Cloud - cloud monitoring. The default indicator set is as follows. You can collect more indicators by configuring them [Alibaba Cloud Monitor Metrics Details](https://cms.console.aliyun.com/metric-meta/acs_lindorm/lindorm){:target="_blank"}
+Configure Ali Cloud - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them [Alibaba Cloud Monitor Metrics Details](https://cms.console.aliyun.com/metric-meta/acs_lindorm/lindorm){:target="_blank"}
 
 | MetricName | MetricDescribe           | Dimensions | Statistics | Unit | MinPeriods |
 | ---- | :---:    | :----: | ------ | ------ | :----: |
@@ -80,16 +81,16 @@ Configure Ali Cloud - cloud monitoring. The default indicator set is as follows.
 | `cold_storage_total_bytes`   |    cold_storage_total_bytes    | userId,instanceId,host | Average,Maximum,Minimum | bytes   |    60 s    |
 | `cold_storage_token_percent` |   cold_storage_token_percent   | userId,instanceId,host | Average,Maximum,Minimum | %       |    60 s    |
 | `store_locality`             |         store_locality         | userId,instanceId,host | Average,Maximum,Minimum | %       |    60 s    |
-| `disk_readbytes`             |         disk_readbytes         | userId,instanceId,host | Average,Maximum,Minimum | bytes/s |    60 s    |
-| `disk_writebytes` |        disk_writebytes         | userId,instanceId,host | Average,Maximum,Minimum | bytes/s | 60 s |
+| `disk_readbytes`             |         **disk_readbytes**         | userId,instanceId,host | Average,Maximum,Minimum | bytes/s |    60 s    |
+| `disk_writebytes` |        **disk_writebytes**         | userId,instanceId,host | Average,Maximum,Minimum | bytes/s | 60 s |
 | `table_cold_storage_used_bytes` | table_cold_storage_used_bytes  | userId,instanceId,host | Average,Maximum,Minimum | bytes | 60 s |
 | `table_hot_storage_used_bytes` |  table_hot_storage_used_bytes  | userId,instanceId,host | Average,Maximum,Minimum | Byte | 60 s |
 | `read_ops` |            read_ops            | userId,instanceId,host | Average,Maximum,Minimum | countS | 60 s |
 | `read_rt` |            read_rt             | userId,instanceId,host | Average,Maximum,Minimum | milliseconds | 60 s |
 | `read_data_kb` |          read_data_kb          | userId,instanceId,host | Average,Maximum,Minimum | KB/s | 60 s |
 | `get_num_ops` |          get_num_ops           | userId,instanceId,host | Average,Maximum,Minimum | countS | 60 s |
-| `get_rt_avg` |           get_rt_avg           | userId,instanceId,host | Average,Maximum,Minimum | milliseconds | 60 s |
-| `get_rt_p99` |           get_rt_p99           | userId,instanceId,host | Average,Maximum,Minimum | millseconds | 60 s |
+| `get_rt_avg` |           get_rt_avg           | userId,instanceId,host | Average,Maximum,Minimum | **milliseconds** | 60 s |
+| `get_rt_p99` |           get_rt_p99           | userId,instanceId,host | Average,Maximum,Minimum | **millseconds** | 60 s |
 | `scan_num_ops` |          scan_num_ops          | userId,instanceId,host | Average,Maximum,Minimum | countS | 60 s |
 | `scan_rt_avg` | scan_rt_avg | userId,instanceId,host | Average,Maximum,Minimum | milliseconds | 60 s |
 | `scan_rt_p99` | scan_rt_p99 | userId,instanceId,host | Average,Maximum,Minimum | milliseconds | 60 s |
@@ -114,11 +115,11 @@ Configure Ali Cloud - cloud monitoring. The default indicator set is as follows.
 | `lql_delete_ops` |         lql_delete_ops         | userId,instanceId,host | Average,Maximum | countSecond | 60 s |
 | `lql_delete_avg_rt` |       lql_delete_avg_rt        | userId,instanceId,host | Average,Maximum | milliseconds | 60 s |
 | `lql_delete_p99_rt` |       lql_delete_p99_rt        | userId,instanceId,host | Average,Maximum | milliseconds | 60 s |
-| `regions_per_ldserver` |      regions_per_ldserver      | userId,instanceId,host | Average,Maximum,Minimum | count | 60 s |
+| `regions_per_ldserver` |      **regions_per_ldserver**      | userId,instanceId,host | Average,Maximum,Minimum | count | 60 s |
 | `handler_queue_size` |       handler_queue_size       | userId,instanceId,host | Average,Maximum,Minimum | count | 60 s |
 | `compaction_queue_size` |     compaction_queue_size      | userId,instanceId,host | Average,Maximum,Minimum | count | 60 s |
 | `tsdb_jvm_used_percent` |     tsdb_jvm_used_percent      | userId,instanceId,host | Average,Maximum,Minimum | % | 60 s |
-| `tsdb_disk_used` |         tsdb_disk_used         | userId,instanceId,host | Average,Maximum,Minimum | Gbyte | 60 s |
+| `tsdb_disk_used` |         tsdb_disk_used         | userId,instanceId,host | Average,Maximum,Minimum | **Gbyte** | 60 s |
 | `tsdb_hot_storage_used_bytes` |  tsdb_hot_storage_used_bytes   | userId,instanceId,host | Average,Maximum,Minimum | bytes | 60 s |
 | `tsdb_cold_storage_used_bytes` |  tsdb_cold_storage_used_bytes  | userId,instanceId,host | Average,Maximum,Minimum | bytes | 60 s |
 | `tsdb_datapoints_added` |     tsdb_datapoints_added      | userId,instanceId,host | Average,Maximum,Minimum | count | 60 s |
@@ -142,7 +143,7 @@ Configure Ali Cloud - cloud monitoring. The default indicator set is as follows.
 | `task_delay_max` |         task_delay_max         | userId,instanceId,host | Average,Maximum,Minimum | ms | 60 s |
 
 ## Object  {#object}
-The collected Alibaba Cloud Lindorm object data structure can see the object data from 「基础设施-自定义」
+The collected Alibaba Cloud **Lindorm** object data structure can see the object data from 「Infrastructure-Custom」
 
 ``` json
 {
@@ -157,14 +158,14 @@ The collected Alibaba Cloud Lindorm object data structure can see the object dat
     "ServiceType"    : "lindorm_standalone",
     "VpcId"          : "vpc-bp1pxxxxxx4t75e73v",
     "ZoneId"         : "cn-hangzhou-f",
-    "account_name"   : "xxx 账号",
+    "account_name"   : "xxx Account",
     "cloud_provider" : "aliyun"
   },
   "fields": {
     "CreateTime"      : "2023-07-14 10:54:05",
     "EnableStream"    : "False",
     "InstanceStorage" : "20",
-    "message"         : "{实例 JSON 数据}"
+    "message"         : "{Instance JSON data}"
   }
 }
 ```

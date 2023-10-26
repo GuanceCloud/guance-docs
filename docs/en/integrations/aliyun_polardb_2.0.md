@@ -1,21 +1,21 @@
----Alibaba Cloud
-title: 'Alibaba Cloud PolarDB distributed2.0'
-summary: 'Alibaba Cloud PolarDB distributed2.0 displays indicators of the computing layer and storage nodes, including CPU usage, connection usage, disk usage, disk usage, memory usage, and network bandwidth.'
+---
+title: 'Aliyun PolarDB distributed2.0'
+summary: 'Aliyun PolarDB distributed2.0 displays metrics of the computing layer and storage nodes, including CPU usage, connection usage, disk usage, disk usage, memory usage, and network bandwidth.'
 __int_icon: 'icon/aliyun_polardb_2.0'
 dashboard:
-  - desc: 'Alibaba Cloud PolarDB distributed2.0 dashboard'
+  - desc: 'Aliyun PolarDB distributed2.0 dashboard'
     path: 'dashboard/zh/aliyun_polardb_2.0/'
 
 monitor:
-  - desc: 'Alibaba Cloud PolarDB distributed2.0 monitor'
+  - desc: 'Aliyun PolarDB distributed2.0 monitor'
     path: 'monitor/zh/aliyun_polardb_2.0/'
 ---
 
 <!-- markdownlint-disable MD025 -->
-# Alibaba Cloud PolarDB distributed2.0
+# Aliyun PolarDB distributed2.0
 <!-- markdownlint-enable -->
 
-Alibaba Cloud PolarDB distributed2.0 displays indicators of the computing layer and storage nodes, including CPU usage, connection usage, disk usage, disk usage, memory usage, and network bandwidth.
+Aliyun PolarDB distributed2.0 displays metrics of the computing layer and storage nodes, including CPU usage, connection usage, disk usage, disk usage, memory usage, and network bandwidth.
 
 ## Config {#config}
 
@@ -29,13 +29,13 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 
 > Tip: Please prepare AWS AK that meets the requirements in advance (For simplicity's sake, you can directly grant the global read-only permission for CloudWatch `CloudWatchReadOnlyAccess`)
 
-To synchronize the monitoring data of PolarDB distributed 2.0 cloud resources, we install the corresponding collection [ 观测云集成（Alibaba Cloud-PolarDB-X 1.0采集）] (ID: `guance_aliyun_polardbx_2`)
+To synchronize the monitoring data of PolarDB distributed 2.0 cloud resources, we install the corresponding collection [ Guance Integration（Aliyun-PolarDB-X 1.0Collect）] (ID: `guance_aliyun_polardbx_2`)
 
-Click [Install] and enter the corresponding parameters: Alibaba Cloud AK ID, Alibaba Cloud AK SECRET and Account Name.
+Click [Install] and enter the corresponding parameters: Aliyun AK ID, Aliyun AK SECRET and Account Name.
 
 Tap [Deploy startup Script],The system automatically creates `Startup` script sets,And automatically configure the corresponding startup script.
 
-Then, in the collection script, add the collector_ Configs and cloudwatch_ Change the regions in configs to the actual regions
+Then, in the collection script, add the collector_Configs and cloudwatch_Change the regions in configs to the actual regions
 
 After this function is enabled, you can view the automatic triggering configuration in [Management / Crontab Config]. Click[Run],you can immediately execute once, without waiting for a regular time. After a while, you can view task execution records and corresponding logs.
 
@@ -45,15 +45,15 @@ We collected some configurations by default, as described in the Metrics column 
 ### Verify
 
 1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the observation cloud platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists
+2. On the Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
+3. On the Guance platform, press 「Metrics」 to check whether monitoring data exists
 
 ## Metric {#metric}
-After Configure Alibaba Cloud PolarDB distributed 2.0 monitoring, the default indicator set is as follows. You can collect more indicators by configuring them
+After Configure Aliyun PolarDB distributed 2.0 monitoring, the default metric set is as follows. You can collect more metrics by configuring them
 
- [ Alibaba Cloud PolarDB distributed 2.0 compute node indicator details](https://cms.console.aliyun.com/metric-meta/acs_drds/polardb-x_v2){:target="_blank"}
+ [Aliyun PolarDB distributed 2.0 compute node metric details](https://cms.console.aliyun.com/metric-meta/acs_drds/polardb-x_v2){:target="_blank"}
 
- [ Alibaba Cloud PolarDB distributed 2.0 storage node indicator details](https://cms.console.aliyun.com/metric-meta/acs_drds/polardbx_v2_dn){:target="_blank"}
+ [Aliyun PolarDB distributed 2.0 storage node metric details](https://cms.console.aliyun.com/metric-meta/acs_drds/polardbx_v2_dn){:target="_blank"}
 
 ### Compute node index
 
@@ -75,7 +75,7 @@ After Configure Alibaba Cloud PolarDB distributed 2.0 monitoring, the default in
 
 | Metric | Description                  |       Statistics        |     Unit     |
 | ---- |------------------------------|:-----------------------:|:------------:|
-|`ActiveSessionsOfDN`| 	PolarDB-X ActiveSessions of storage nodes |         Average         |    count     |
+|`ActiveSessionsOfDN`| PolarDB-X ActiveSessions of storage nodes  | Average         |    count     |
 |`CPUUsageOfDN`| PolarDB-X CPU usage of the storage node |         Average         |    %     |
 |`ConnUsageOfDN`| PolarDB-X Connection usage of storage nodes |         Average         |    %    |
 |`DiskSizeOfDN`| PolarDB-X Disk usage of a storage node |         Average         |    Megabytes     |
@@ -98,7 +98,7 @@ After Configure Alibaba Cloud PolarDB distributed 2.0 monitoring, the default in
 
 ## Object {#object}
 
-The collected Alibaba Cloud PolarDB distributed 2.0  object data structure can be seen from the [ Infrastructure - Custom]  object data.
+The collected Aliyun PolarDB distributed 2.0  object data structure can be seen from the [ Infrastructure - Custom]  object data.
 
 ``` json
 {
@@ -134,13 +134,11 @@ The collected Alibaba Cloud PolarDB distributed 2.0  object data structure can b
     "ReadDBInstances"       : "[]",
     "ResourceGroupId"       : "rg-acfmv3ro3xnfwaa",
     "StorageUsed"           : 2343567360,
-    "message"               : "{实例 json 数据}}",
+    "message"               : "{Instance json data}}",
   }
 }
 ```
 
 > *Note: The fields in `tags` and `fields` may change with subsequent updates*
-> 
 > > Tip: tags.name value is the instance ID as a unique identification.
-> > 
 > > Tip 2: fields.message are JSON serialized strings.

@@ -1,14 +1,13 @@
 ---
 title: 'AWS MemoryDB'
-summary: 'Use the「观测云云同步」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud'
+summary: 'Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance'
 __int_icon: 'icon/aws_memorydb'
 dashboard:
-
-  - desc: 'AWS MemoryDB 内置视图'
+  - desc: 'AWS MemoryDB Monitoring View'
     path: 'dashboard/zh/aws_memorydb'
 
 monitor:
-  - desc: 'AWS MemoryDB 监控器'
+  - desc: 'AWS MemoryDB Monitor'
     path: 'monitor/zh/aws_memorydb'
 
 ---
@@ -18,7 +17,7 @@ monitor:
 # AWS MemoryDB
 <!-- markdownlint-enable -->
 
-Use the「Guance Cloud Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.
+Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.
 
 
 ## Config {#config}
@@ -33,13 +32,13 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 
 > Tip：Please prepare AWS AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of MemoryDB cloud resources, we install the corresponding collection script：「观测云集成（AWS MemoryDB采集）」(ID：`guance_aws_memorydb)
+To synchronize the monitoring data of MemoryDB cloud resources, we install the corresponding collection script：「Guance Integration（AWS MemoryDB Collect）」(ID：`guance_aws_memorydb`)
 
 Click 【Install】 and enter the corresponding parameters: AWS AK, AWS account name.
 
 tap【Deploy startup Script】，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script。
 
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」。Click【Run】，you can immediately execute once, without waiting for a regular time。After a while, you can view task execution records and corresponding logs。
+After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」. Click【Run】，you can immediately execute once, without waiting for a regular time. After a while, you can view task execution records and corresponding logs。
 
 > If you want to collect logs, you must enable the corresponding log collection script. If you want to collect bills, start the cloud bill collection script.
 
@@ -50,12 +49,12 @@ We collected some configurations by default, as described in the Metrics column 
 ### Verify
 
 1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the observation cloud platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists
+2. On the Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
+3. On the Guance platform, press 「Metrics」 to check whether monitoring data exists
 
 ## Metric {#metric}
 
-Configure AWS Cloud - cloud monitoring. The default indicator set is as follows. You can collect more indicators by configuring them [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/zh_cn/memorydb/latest/devguide/metrics.memorydb.html){:target="_blank"}
+Configure AWS Cloud - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/zh_cn/memorydb/latest/devguide/metrics.memorydb.html){:target="_blank"}
 
 
 | Metric                    | Description                                                          |**Unit**     |
@@ -65,7 +64,7 @@ Configure AWS Cloud - cloud monitoring. The default indicator set is as follows.
 | `BytesUsedForMemoryDB`              | The total number of bytes allocated by MemoryDB for all purposes, including the dataset, buffers, and so on. | Bytes            |
 | `CommandAuthorizationFailures`      | The total number of failed attempts by users to run commands they don’t have permission to call. You can find more information about individual authentication failures using the [ACL LOG](https://redis.io/commands/acl-log) command. We suggest setting an alarm on this to detect unauthorized access attempts. | Count            |
 | `CurrConnections`                   | The number of client connections, excluding connections from read replicas. MemoryDB uses two to four of the connections to monitor the cluster in each case. This is derived from the `connected_clients` statistic at [Redis INFO](http://redis.io/commands/info). | Count            |
-| `CurrItems`                         | The number of items in the cache. This is derived from the Redis `keyspace` statistic, summing all of the keys in the entire keyspace. | Count            |
+| `CurrItems`                         | The number of items in the cache. This is derived from the Redis `keyspace` statistic, summing all of the keys in the entire `keyspace`. | Count            |
 | `DatabaseMemoryUsagePercentage`     | Percentage of the memory available for the cluster that is in use. This is calculated using `used_memory/maxmemory` from [Redis INFO](http://redis.io/commands/info). | Percent          |
 | `EngineCPUUtilization`              | Provides CPU utilization of the Redis engine thread. Because Redis is single-threaded, you can use this metric to analyze the load of the Redis process itself. The `EngineCPUUtilization` metric provides a more precise visibility of the Redis process. You can use it in conjunction with the `CPUUtilization` metric. `CPUUtilization` exposes CPU utilization for the server instance as a whole, including other operating system and management processes. For larger node types with four vCPUs or more, use the `EngineCPUUtilization` metric to monitor and set thresholds for scaling.NoteOn a MemoryDB host, background processes monitor the host to provide a managed database experience. These background processes can take up a significant portion of the CPU workload. This is not significant on larger hosts with more than two vCPUs. But it can affect smaller hosts with 2vCPUs or fewer. If you only monitor the `EngineCPUUtilization` metric, you will be unaware of situations where the host is overloaded with both high CPU usage from Redis and high CPU usage from the background monitoring processes. Therefore, we recommend monitoring the `CPUUtilization` metric for hosts with two vCPUs or less. | Percent          |
 | `Evictions`                         | The number of keys that have been evicted due to the `maxmemory` limit. This is derived from the `evicted_keys` statistic at [Redis INFO](http://redis.io/commands/info). | Count            |
@@ -124,7 +123,7 @@ The collected AWS MemoryDB object data structure can be viewed in "Infrastructur
     "SnapshotRetentionLimit": "xxxxxx",
     "AutoMinorVersionUpgrade": "xxxxxx",
     "NumberOfShards" : "1",
-    "message"     : "{实例 JSON 数据}"
+    "message"     : "{Instance JSON data}"
   }
 }
 ```

@@ -1,24 +1,24 @@
 ---
 title: 'HUAWEI SYS.AS'
-summary: 'Use the「观测云云同步」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
+summary: 'Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.'
 __int_icon: 'icon/huawei_SYS.AS'
 dashboard:
 
-  - desc: 'HUAWEI SYS.AS 内置视图'
+  - desc: 'HUAWEI CLOUD SYS.AS Dashboard'
     path: 'dashboard/zh/huawei_SYS.AS'
 
 monitor:
-  - desc: 'HUAWEI SYS.AS 监控器'
+  - desc: 'HUAWEI CLOUD SYS.AS Monitor'
     path: 'monitor/zh/huawei_SYS.AS'
 
 ---
 
 
 <!-- markdownlint-disable MD025 -->
-# HUAWEI SYS.AS
+# HUAWEI CLOUD SYS.AS
 <!-- markdownlint-enable -->
 
-Use the「观测云云同步」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.
+Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.
 
 
 ## Config {#config}
@@ -33,15 +33,15 @@ If you deploy Func yourself,Refer to  [Self-Deployment of Func](https://func.gua
 
 ### Installation script
 
-> Tip：Please prepare Huawei AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
+> Tip：Please prepare HUAWEI CLOUD AK that meets the requirements in advance（For simplicity's sake,,You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of  HUAWEI SYS.CBR, we install the corresponding collection script：「观测云集成（华为云-AS采集）」(ID：`guance_huaweicloud_as`)
+To synchronize the monitoring data of  HUAWEI CLOUD SYS.CBR, we install the corresponding collection script：「Guance Integration (HUAWEI CLOUD AS Collect)」(ID：`guance_huaweicloud_as`)
 
-Click 【Install】 and enter the corresponding parameters: Huawei AK, Huawei account name.
+Click [Install] and enter the corresponding parameters: HUAWEI CLOUD AK, HUAWEI CLOUD account name.
 
-tap【Deploy startup Script】，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script.
+tap[Deploy startup Script],The system automatically creates `Startup` script sets,And automatically configure the corresponding startup script.
 
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」。Click【Run】，you can immediately execute once, without waiting for a regular time。After a while, you can view task execution records and corresponding logs.
+After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」.Click [Run],you can immediately execute once, without waiting for a regular time.After a while, you can view task execution records and corresponding logs.
 
 We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-huaweicloud-cbr/){:target="_blank"}
 
@@ -50,11 +50,11 @@ We collected some configurations by default, as described in the Metrics column 
 ### Verify
 
 1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the observation cloud platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists
+2. On the Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
+3. On the Guance platform, press 「Metrics」 to check whether monitoring data exists
 
 ## Metric {#metric}
-Configure HUAWEI SYS.CBR monitoring. The default indicator set is as follows. You can collect more indicators by configuring them [Huawei CloudMonitor Metrics Details](https://support.huaweicloud.com/usermanual-as/as_06_0105.html){:target="_blank"}
+Configure HUAWEI CLOUD SYS.CBR monitoring. The default metric set is as follows. You can collect more metrics by configuring them [HUAWEI CLOUD Monitor Metrics Details](https://support.huaweicloud.com/usermanual-as/as_06_0105.html){:target="_blank"}
 
 | Metric Name | Descriptive | Unit | Dimension |
 | :---: | :---: | :---: | :---: |
@@ -80,8 +80,8 @@ AS object data structure collected, you can see the object data from "Infrastruc
   },
   "fields": {
     "created_time"    : "2022-06-21T06:17:27+0000",
-    "instance_config" : "{实例配置信息}",
-    "message"         : "{实例 JSON 数据}"
+    "instance_config" : "{Instance Configuration Information}",
+    "message"         : "{Instance JSON data}"
   }
 }
 

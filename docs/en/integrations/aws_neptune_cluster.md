@@ -1,14 +1,14 @@
 ---
 title: 'AWS Neptune Cluster'
-summary: 'Use the「观测云云同步」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud'
+summary: 'Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance'
 __int_icon: 'icon/aws_neptune_cluster'
 
 dashboard:
-  - desc: 'AWS Neptune Cluster 内置视图'
+  - desc: 'AWS Neptune Cluster Monitoring View'
     path: 'dashboard/zh/aws_neptune_cluster'
 
 monitor:
-  - desc: 'AWS Neptune Cluster 监控器'
+  - desc: 'AWS Neptune Cluster Monitor'
     path: 'monitor/zh/aws_neptune_cluster'
 
 ---
@@ -33,7 +33,7 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 
 > Tip：Please prepare AWS AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of Neptune Cluster cloud resources, we install the corresponding collection script：「观测云集成（AWS-Neptune Cluster采集）」(ID：`guance_aws_neptune_cluster`)
+To synchronize the monitoring data of Neptune Cluster cloud resources, we install the corresponding collection script：「Guance Integration（AWS-Neptune ClusterCollect）」(ID：`guance_aws_neptune_cluster`)
 
 Click 【Install】 and enter the corresponding parameters: AWS AK, AWS account name.
 
@@ -58,25 +58,24 @@ After configuring Amazon CloudWatch - cloud monitoring, the default set of metri
 
 | Metric                                              | Describe                                                         |
 | :------------------------------------------------ | :----------------------------------------------------------- |
-| `BackupRetentionPeriodStorageUsed`                           | 用于从 Neptune 数据库集群的备份保留窗口支持的备份存储总量（以字节为单位）。包含在 TotalBackupStorageBilled 指标报告的总数中。 |
-| `BufferCacheHitRatio`                           | 缓冲区缓存提供的请求的百分比。此指标可用于诊断查询延迟，因为缓存失误会导致大量延迟。如果缓存命中率低于 99.9，请考虑升级实例类型以在内存中缓存更多数据。 |
-| `ClusterReplicaLag`                           | 对于只读副本，从主实例中复制更新时的滞后总量 (以毫秒为单位)。 |
-| `ClusterReplicaLagMaximum`                           | 数据库集群中主实例和每个 Neptune 数据库实例之间的最大延迟量，以毫秒为单位。 |
-| `ClusterReplicaLagMinimum`                           | 数据库集群中主实例和每个 Neptune 数据库实例之间的最小延迟量，以毫秒为单位。 |
-| `CPUUtilization`                           | CPU 使用百分率。 |
-| `EngineUptime`                           | 实例运行时间长度 (以秒为单位)。 |
-| `FreeableMemory`                           | 随机存取内存的可用量 (以字节为单位)。 |
-| `GlobalDbDataTransferBytes`                           | 从主服务器传输的重做日志数据的字节数AWS 区域到中学AWS 区域在海王星全球数据库中。 |
-| `GlobalDbReplicatedWriteIO`                           | 从主服务器复制的写入 I/O 操作的数量AWS 区域在全局数据库中存储到辅助数据库中的群集卷AWS 区域。
-
-Neptune 全局数据库中每个数据库集群的账单计算使用VolumeWriteIOPS衡量在该集群内执行的写入操作的指标。对于主数据库集群，账单计算使用GlobalDbReplicatedWriteIO以考虑到辅助数据库集群的跨区域复制。 |
-| `GlobalDbProgressLag`                           | 对于用户事务和系统事务，辅助群集落后于主群集的毫秒数。 |
-| `GremlinRequestsPerSec`                           | 每秒对 Gremlin 引擎的请求数。 |
-| `GremlinWebSocketOpenConnections`                           | 打开的次数WebSocket与海王星的连接。 |
-| `LoaderRequestsPerSec`                           | 每秒的加载程序请求数。 |
-| `MainRequestQueuePendingRequests`                           | 在输入队列中等待执行的请求数。当请求超过最大队列容量时，Neptune 会开始限制请求。 |
-| `NCUUtilization`                           | 在集群层面，NCUUtilization报告整个集群使用的最大容量的百分比。 |
-| `NetworkThroughput`                           | Neptune 数据库集群中每个实例从客户端接收和传输到客户端的网络吞吐量，以每秒字节数为单位。这个吞吐量确实如此不包括数据库集群中的实例与集群卷之间的网络流量。 |
+| `BackupRetentionPeriodStorageUsed`                           | The total amount of backup storage supported in bytes from the backup retention window of the Neptune data library cluster. Included in the total number of reports in the TotalBackupStorage Billed Metric. |
+| `BufferCacheHitRatio`                           | The percentage of requests provided by the buffer cache. This Metric can be used to diagnose query latency, as cache errors can cause significant delays. If the cache hit rate is below 99.9, please consider upgrading the Instance type to cache more data in memory.|
+| `ClusterReplicaLag`                           | For read-only replicas, the total amount of latency (in milliseconds) when replicating updates from the primary instance. |
+| `ClusterReplicaLagMaximum`                           | The maximum latency, in milliseconds, between the main instance and each Neptune data repository instance in the data repository cluster. |
+| `ClusterReplicaLagMinimum`                           | The minimum latency, in milliseconds, between the main instance and each Neptune data repository instance in the data repository cluster. |
+| `CPUUtilization`                           | CPU usage percentage. |
+| `EngineUptime`                           | The length of the instance runtime in seconds.|
+| `FreeableMemory`                           | The available amount of random access memory in bytes. |
+| `GlobalDbDataTransferBytes`                           | The number of bytes of redo log data transmitted from the primary server in the AWS region to the secondary AWS region in the Neptune global data library. |
+| `GlobalDbReplicatedWriteIO`                           | The number of write I/O operations replicated from the primary server is stored in the global data library in the cluster volume AWS area in the secondary data library.|
+| `Neptune` | The billing calculation for each data repository cluster in the global data repository uses VolumeWriteIOPS to measure the metric of write operations performed within that cluster. For the primary data repository cluster, the billing calculation uses GlobalDbReplicatedWriteIO to consider cross regional replication of the secondary data repository cluster.|
+| `GlobalDbProgressLag`                           | For user and system transactions, the secondary cluster lags behind the primary cluster in milliseconds. |
+| `GremlinRequestsPerSec`                           | The number of requests to the Gremlin engine per second. |
+| `GremlinWebSocketOpenConnections`                           | The number of times WebSocket is connected to Neptune. |
+| `LoaderRequestsPerSec`                           | The number of loader requests per second. |
+| `MainRequestQueuePendingRequests`                           | The number of requests waiting to be executed in the input queue. When the request exceeds the maximum queue capacity, Neptune will start restricting the request. |
+| `NCUUtilization`                           | At the cluster level, NCUUtilization reports the percentage of maximum capacity used by the entire cluster.|
+| `NetworkThroughput`                           | The network throughput, in bytes per second, of each instance in the Neptune data library cluster received and transmitted from the client to the client. This throughput does not include the network traffic between instances in the data library cluster and cluster volumes. |
 
 
 ## Object {#object}
@@ -101,13 +100,12 @@ The collected AWS Neptune Cluster object data structure can be viewed in "Infras
   },
   "fields": {
     "CreatedTime"         : "2022-03-09T06:13:31Z",
-    "ListenerDescriptions": "{JSON 数据}",
-    "AvailabilityZones"   : "{可用区 JSON 数据}",
-    "message"             : "{实例 JSON 数据}"
+    "ListenerDescriptions": "{JSON data}",
+    "AvailabilityZones"   : "{Availability Zone JSON data}",
+    "message"             : "{Instance JSON data}"
   }
 }
 ```
 
-> *注意：`tags`、`fields`中的字段可能会随后续更新有所变动*
+> *Note: The fields in `tags` and `fields` may be subject to changes in subsequent updates.*
 >
-> 提示 1：`tags.account_name`值为实例 ID，作为唯一识别

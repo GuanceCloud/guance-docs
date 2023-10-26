@@ -1,24 +1,24 @@
 ---
 title: 'Tencent Cloud CLB Public'
-summary: 'Use the「观测云云同步」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
+summary: 'Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
 __int_icon: 'icon/tencent_clb'
 dashboard:
 
-  - desc: '腾讯云 CLB Public 内置视图'
+  - desc: 'Tencent Cloud CLB Public Monitoring View'
     path: 'dashboard/zh/tencent_clb_public'
 
 monitor:
-  - desc: '腾讯云 CLB Public 监控器'
+  - desc: 'Tencent Cloud CLB Public Monitor'
     path: 'monitor/zh/tencent_clb_public'
 
 ---
 
 
 <!-- markdownlint-disable MD025 -->
-# 腾讯云 CLB Public
+# Tencent CLB Public
 <!-- markdownlint-enable -->
 
-Use the「Guance Cloud Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.
+Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.
 
 
 ## config {#config}
@@ -33,7 +33,7 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 ### Installation script
 > Tip：Please prepare Tencent Cloud AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of CLB Public cloud resources, we install the corresponding collection script：「观测云集成（腾讯云 CLB采集）」(ID：`guance_tencentcloud_clb`)
+To synchronize the monitoring data of CLB Public cloud resources, we install the corresponding collection script：「Guance Integration（Tencent Cloud CLBCollect）」(ID：`guance_tencentcloud_clb`)
 
 Click 【Install】 and enter the corresponding parameters: Tencent Cloud AK, Tencent Cloud account name.。
 
@@ -54,7 +54,7 @@ We collected some configurations by default, as described in the Metrics column 
 
 ## Metric {#metric}
 
-Configure Tencent Cloud - cloud monitoring. The default indicator set is as follows. You can collect more indicators by configuring them [Tencent Cloud Monitor Metrics Details](https://www.tencentcloud.com/document/product/248/10997){:target="_blank"}
+Configure Tencent Cloud - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them [Tencent Cloud Monitor Metrics Details](https://www.tencentcloud.com/document/product/248/10997){:target="_blank"}
 
 
 | Parameter          | Metric                 | Description                                                     | Unit        | Statistical Granularity             |
@@ -93,15 +93,15 @@ Configure Tencent Cloud - cloud monitoring. The default indicator set is as foll
 | `Http4xx`             | 4xx status codes | Number of 4xx status codes returned by real servers in the statistical period.This metric is available to layer-7 listeners only. | Count/min | 60s、300s、3600s |
 | `Http5xx`             | 5xx status codes | Number of 5xx status codes returned by real servers in the statistical period.This metric is available to layer-7 listeners only. | Count/min | 60s、300s、3600s     |
 | `UnhealthRsCount`     | Health check exceptions | Number of health check exceptions of the CLB instance in the statistical period. | -          | 60s、300s            |
-| `InDropBits`          | Dropped inbound bandwidth | Bandwidth dropped when the client accesses CLB over the public network within a reference period.This metric is supported by only standard accounts but not traditional accounts. | 字Byte | 60s、300s、3600s |
-| `OutDropBits`         | Dropped outbound traffic | Bandwidth dropped when the CLB instance accesses the public network in the statistical period.This metric is supported by only standard accounts but not traditional accounts. | Byte节 | 60s、300s、3600s |
+| `InDropBits`          | Dropped inbound bandwidth | Bandwidth dropped when the client accesses CLB over the public network within a reference period.This metric is supported by only standard accounts but not traditional accounts. | Byte | 60s、300s、3600s |
+| `OutDropBits`         | Dropped outbound traffic | Bandwidth dropped when the CLB instance accesses the public network in the statistical period.This metric is supported by only standard accounts but not traditional accounts. | Byte | 60s、300s、3600s |
 | `InDropPkts`          | Dropped inbound packets | Number of data packets dropped when the client accesses the CLB instance over the public network in the statistical period.This metric is supported by only standard accounts. | Count/s | 60s、300s、3600s |
 | `OutDropPkts`         | Dropped outbound packets | Number of data packets dropped when the CLB instance accesses the public network in the statistical period.This metric is supported by only standard accounts but not traditional accounts. | Count/s | 60s、300s、3600s |
 | `DropQps`             | Dropped QPS | Number of requests dropped by the CLB instance or listener in the statistical period.This metric is available to layer-7 listeners only and supported by only standard accounts but not traditional accounts. | - | 60s、300s |
 
 ## 对象 {#object}
 
-The collected Tencent Cloud ECS object data structure can see the object data from 「基础设施-自定义」
+The collected Tencent Cloud ECS object data structure can see the object data from 「Infrastructure-Custom」
 
 ```json
 {
@@ -120,8 +120,8 @@ The collected Tencent Cloud ECS object data structure can see the object data fr
   },
   "fields": {
     "CreateTime": "2022-04-27 15:19:49",
-    "listeners" : "{监听器 JSON 数据}",
-    "message"   : "{实例 JSON 数据}"
+    "listeners" : "{Listener JSON data}",
+    "message"   : "{Instance JSON data}"
   }
 }
 ```

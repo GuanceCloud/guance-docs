@@ -1,115 +1,107 @@
 ---
-title: 'Huawei RDS PostgreSQL'
-summary: 'Use the「Guance Cloud Synchronization」series script package in the script market to monitor the cloud ,The data of the cloud asset is synchronized to the Guance cloud.'
+title: '华为云 RDS PostgreSQL'
+summary: '华为云 RDS PostgreSQL 的展示指标包括查询性能、事务吞吐量、并发连接数和数据可靠性，这些指标反映了RDS PostgreSQL 在处理大规模关系型数据存储和事务处理时的性能表现和可靠性。'
 __int_icon: 'icon/huawei_rds_postgresql'
 dashboard:
 
-  - desc: 'Huawei RDS PostgreSQL Built-in Dashboard'
+  - desc: '华为云 RDS PostgreSQL 内置视图'
     path: 'dashboard/zh/huawei_rds_postgresql'
 
 monitor:
-  - desc: 'Huawei RDS PostgreSQL Monitor'
+  - desc: '华为云 RDS PostgreSQL 监控器'
     path: 'monitor/zh/huawei_rds_postgresql'
 
 ---
 
 
 <!-- markdownlint-disable MD025 -->
-# Huawei RDS postgresql
+# 华为云 RDS PostgreSQL
 <!-- markdownlint-enable -->
 
-Use the「Guance Cloud Synchronization」series script package in the script market to monitor the cloud ,The data of the cloud asset is synchronized to the Guance cloud.
+华为云 RDS PostgreSQL 的展示指标包括查询性能、事务吞吐量、并发连接数和数据可靠性，这些指标反映了RDS PostgreSQL 在处理大规模关系型数据存储和事务处理时的性能表现和可靠性。
 
 
-## Config {#config}
+## 配置 {#config}
 
-### Install Func
+### 安装 Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically,Please continue with the script installation
+推荐开通 观测云集成 - 扩展 - 托管版 Func: 一切前置条件都自动安装好, 请继续脚本安装
 
-If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
-
-
-
-### Installation script
-
-> Tip: Please prepare Huawei AK that meets the requirements in advance（For simplicity's sake,You can directly grant the global read-only permission`ReadOnlyAccess`）
-
-To synchronize the monitoring data of  Huawei RDS PostgreSQL cloud resources, we install the corresponding collection script:To access the [脚本市场] via the web service of Func,「观测云集成（华为云-RDS-PostgreSQL 采集）」(ID：`guance_huaweicloud_rds_postgresql`)
-
-Click 【Install】 and enter the corresponding parameters: Huawei AK,SK,Huawei account name.
-
-Tap【Deploy startup Script】，The system automatically creates Startup script sets，And automatically configure the corresponding startup script.
-
-After the script is installed,Find the script in「Development」in Func「观测云集成（华为云-RDS采集）」,Expand to modify this script,find collector_configsandmonitor_configsEdit the content inregion_projects,Change the locale and Project ID to the actual locale and Project ID,Click Save Publish again.
-
-In addition, the corresponding automatic trigger configuration is displayed in「Management / Crontab Config」. Tap【Run】,It can be executed immediately once,without waiting for a periodic time.After a while,you can view task execution records and corresponding logs.
-
-We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-huaweicloud-rds-postgresql/){:target="_blank"}
+如果自行部署 Func 参考 [自行部署 Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 
-### Verify
 
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On Guance platform, press 「Metrics」 to check whether monitoring data exists
+### 安装脚本
 
-## Metric {#metric}
-Configure Huawei Cloud - cloud monitoring. The default indicator set is as follows. You can collect more indicators by configuring them [Huawei CloudMonitor Metrics Details](https://support.huaweicloud.com/usermanual-rds/rds_pg_06_0001.html){:target="_blank"}
+> 提示：请提前准备好符合要求的华为云 AK（简单起见，可直接授予全局只读权限`ReadOnlyAccess`）
 
-### Instance monitoring metric
+同步华为云 RDS PostgreSQL 的监控数据，我们安装对应的采集脚本：通过访问func的web服务进入【脚本市场】，「观测云集成（华为云-RDS-PostgreSQL 采集）」(ID：`guance_huaweicloud_rds_postgresql`)
 
-RDS for postgresql instance performance monitoring metric,as shown in the table below.
+点击【安装】后，输入相应的参数：华为云 AK、SK、华为云账户名。
 
-| Indicator ID                                     | Indicator name                                | Indicator meaning                                                     | Value range           | Monitoring cycle(original indicator) |
-| ------------------------------------------ | --------------------------------------- | ------------------------------------------------------------ | ------------------ | -------------------- |
-| `rds001_cpu_util`| CPU usage rate| This metric is used to track the CPU usage rate of the measured object, in ratio units.| 0-100%|  1 minute| 
-| `rds002_mem_util`| Memory usage rate| This metric is used to track the memory usage rate of the measured object, in ratio units.| 0-100%|  1 minute| 
-| `rds047_disk_total_size`| Total disk size| This metric is used to track the total disk size of the measured object.| 40GB~15000GB|  1 minute| 
-| `rds048_disk_used_size`| Disk usage| This metric is used to track the disk usage size of the measured object.| 0GB~15000GB|  1 minute| 
-| `rds039_disk_util`| Disk utilization rate| This metric is used to track the disk utilization rate of the measured object, in ratio units.| 0-100%|  1 minute| 
-| `disk_io_usage`| Disk IO usage rate| This metric is used to track the disk IO usage rate.| 0-100%|  1 minute| 
-| `rds049_disk_read_throughput`| Disk read throughput| This metric is used to track the number of bytes read from the disk per second.| ≥ 0 bytes/s|  1 minute| 
-| `rds050_disk_write_throughput`| Disk write throughput| This metric is used to track the number of bytes written to the disk per second.| ≥ 0 bytes/s|  1 minute| 
-| `swap_total_size`| Total capacity of swap area| This metric is used to track the total amount of swap space.| ≥ 0 MB|  1 minute| 
-| `swap_usage`| Swap area usage rate| This metric is used to track the swap space usage rate.| 0-100%|  1 minute| 
-| `rds005_bytes_out`| Network output throughput| This metric is used to track the average amount of traffic output from all network adapters of the measured object per second, in bytes/second.| ≥ 0 bytes/s|  1 minute| 
-| `rds004_bytes_in`| Network input throughput| This metric is used to track the average amount of traffic input from all network adapters of the measured object per second, in bytes/second.| ≥ 0 bytes/s|  1 minute| 
-| `rds003_iops`| IOPS| This metric is used to track the average number of I/O requests processed by the system per unit time (average).| ≥ 0 counts/s|  1 minute| 
-| `read_count_per_second`| Read IOPS| This metric is used to track the average number of read I/O requests processed by the system per unit time (average).| ≥ 0 counts/s|  1 minute| 
-| `write_count_per_second`| Write IOPS| This metric is used to track the average number of write I/O requests processed by the system per unit time (average).| ≥ 0 counts/s|  1 minute| 
-| `rds042_database_connections`| Database connection count| The number of backends currently connected to the database.| ≥ 0 counts|  1 minute| 
-| `rds083_conn_usage`| Connection usage rate| This metric is used to track the percentage of used PgSQL connections to total connections.| 0-100%|  1 minute| 
-| `active_connections`| Active connection count| This metric is used to track the current active connections to the database.| ≥ 0|  1 minute| 
-| `rds082_tps`| TPS| This metric is used to track the number of transaction executions per second, including commits and rollbacks.| ≥ 0 次/秒|  1 minute| 
-| `rds046_replication_lag`| Replication delay| Replication lag delay.| ≥ 0 ms|  1 minute| 
-| `synchronous_replication_blocking_time`| Synchronous replication blocking time| This metric is used to track the duration of replication blocking between the synchronous replication master and standby machine.| ≥ 0 s|  1 minute| 
-| `inactive_logical_replication_slot`| Number of inactive logical replication slots| This metric is used to track the number of inactive logical replication slots in the current database.| ≥ 0|  1 minute| 
-| `rds041_replication_slot_usage`| Replication slot usage| Disk space used by replication slot files.| ≥ 0 MB|  1 minute| 
-| `rds043_maximum_used_transaction_ids`| Maximum number of used transaction IDs| Maximum transaction ID used.| ≥ 0 counts|  1 minute| 
-| `idle_transaction_connections`| Number of idle connections for transactions| Number of current idle connections to the database.| ≥ 0|  1 minute| 
-| `oldest_transaction_duration`| Longest transaction lifetime| Longest transaction lifetime in the current database.| ≥ 0 ms|  1 minute| 
-| `oldest_transaction_duration_2pc`| Longest pending transaction lifetime| Longest pending transaction lifetime in the current database.| ≥ 0 ms|  1 minute| 
-| `rds040_transaction_logs_usage`| Transaction log usage| Disk space occupied by transaction logs.| ≥ 0 MB|  1 minute| 
-| `lock_waiting_sessions`| Number of sessions waiting for locks| Number of sessions currently blocked.| ≥ 0|  1 minute| 
-| `slow_sql_log_min_duration_statement`| Number of SQL statements executed with log_min_duration_statement| Number of slow SQL queries that take longer than the log_min_duration_statement parameter. The parameter size can be adjusted based on business needs.| ≥ 0|  1 minute| 
-| `slow_sql_one_second`| Number of SQL statements executed in 1 second| Number of slow SQL queries that take longer than 1 second.| ≥ 0|  1 minute| 
-| `slow_sql_three_second`| Number of SQL statements executed in 3 seconds| Number of slow SQL queries that take longer than 3 seconds.| ≥ 0|  1 minute| 
-| `slow_sql_five_second`| Number of SQL statements executed in 5 seconds| Number of slow SQL queries that take longer than 5 seconds.| ≥ 0|  1 minute| 
+点击【部署启动脚本】，系统会自动创建 `Startup` 脚本集，并自动配置相应的启动脚本。
 
-## Object {#object}
+脚本安装完后，在 Func 中「开发」里找到脚本「观测云集成（华为云-RDS-PostgreSQL 采集）」，展开修改此脚本，找到 collector_configs 和monitor_configs 分别编辑下面region_projects中的内容，将地域和 Project ID,更改为实际的地域和 Project ID，再点击保存发布。
 
-The collected Huawei Cloud RDS PostgreSQL object data structure can see the object data from「基础设施-自定义」
+此外，在「管理 / 自动触发配置」里看到对应的自动触发配置。点击【执行】，即可立即执行一次，无需等待定期时间。稍等片刻，可以查看执行任务记录以及对应日志。
+
+我们默认采集了一些配置, 具体见指标一栏 [配置自定义云对象指标](https://func.guance.com/doc/script-market-guance-huaweicloud-rds-postgresql/){:target="_blank"}
+
+
+### 验证
+
+1. 在「管理 / 自动触发配置」确认对应的任务是否已存在对应的自动触发配置，同时可以查看对应任务记录及日志检查是否有异常
+2. 在观测云平台，「基础设施 / 自定义」中查看是否存在资产信息
+3. 在观测云平台，「指标」查看是否有对应监控数据
+
+## 指标 {#metric}
+配置好华为云-云监控,默认的指标集如下, 可以通过配置的方式采集更多的指标 [华为云云监控指标详情](https://support.huaweicloud.com/usermanual-rds/rds_pg_06_0001.html){:target="_blank"}
+
+### 实例监控指标
+
+RDS for PostgreSQL实例性能监控指标，如下表所示。更多指标请参考[表1](https://support.huaweicloud.com/usermanual-rds/rds_pg_06_0001.html){:target="_blank"}
+
+| 指标ID                                       | 指标名称                                | 指标含义                                                     | 取值范围           | 监控周期（原始指标） |
+| -------------------------------------------- | --------------------------------------- | ------------------------------------------------------------ | ------------------ | -------------------- |
+| `swap_total_size`| 交换区总容量大小| 该指标为统计交换区总量。| ≥ 0 MB| 1分钟|
+| `swap_usage`| 交换区容量使用率| 该指标为统计交换区使用率。| 0-100%| 1分钟|
+| `rds005_bytes_out`| 网络输出吞吐量| 该指标用于统计平均每秒从测量对象的所有网络适配器输出的流量，以字节/秒为单位。| ≥ 0 bytes/s| 1分钟|
+| `rds004_bytes_in`| 网络输入吞吐量| 该指标用于统计平均每秒从测量对象的所有网络适配器输入的流量，以字节/秒为单位。| ≥ 0 bytes/s| 1分钟|
+| `rds003_iops`| IOPS| 该指标用于统计当前实例，单位时间内系统处理的I/O请求数量（平均值）。| ≥ 0 counts/s| 1分钟|
+| `read_count_per_second`| 读IOPS| 该指标用于统计当前实例，单位时间内系统处理的读I/O请求数量（平均值）。| ≥ 0 counts/s| 1分钟|
+| `write_count_per_second`| 写IOPS| 该指标用于统计当前实例，单位时间内系统处理的写I/O请求数量（平均值）。| ≥ 0 counts/s| 1分钟|
+| `rds042_database_connections`| 数据库连接数| 当前连接到数据库的后端量。| ≥ 0 counts| 1分钟|
+| `rds083_conn_usage`| 连接数使用率| 该指标用于统计当前已用的PgSQL连接数占总连接数的百分比。| 0-100%| 1分钟|
+| `active_connections`| 活跃连接数| 该指标为统计数据库当前活跃连接数。| ≥ 0| 1分钟|
+| `rds082_tps`| TPS| 该指标用于统计每秒事务执行次数，含提交的和回退的。| ≥ 0 次/秒| 1分钟|
+| `rds046_replication_lag`| 复制时延| 副本滞后时延。| ≥ 0 ms| 1分钟|
+| `synchronous_replication_blocking_time`| 同步复制阻塞时间| 该指标为获取同步复制主备机间复制阻塞的时长。| ≥ 0 s| 1分钟|
+| `inactive_logical_replication_slot`| 非活跃逻辑复制槽数量| 该指标用于统计当前数据库中存在的非活跃逻辑复制槽数量。| ≥ 0| 1分钟|
+| `rds041_replication_slot_usage`| 复制插槽使用量| 复制插槽文件所占磁盘容量。| ≥ 0 MB| 1分钟|
+| `rds043_maximum_used_transaction_ids`| 事务最大已使用ID数| 事务最大已使用ID。| ≥ 0 counts| 1分钟|
+| `idle_transaction_connections`| 事务空闲连接数| 该指标为统计数据库当前空闲连接数。| ≥ 0| 1分钟|
+| `oldest_transaction_duration`| 最长事务存活时长| 该指标为统计当前数据库中存在的最长事务存活时长。| ≥ 0 ms| 1分钟|
+| `oldest_transaction_duration_2pc`| 最长未决事务存活时长| 该指标为统计当前数据库存在的最长未决事务存活时长。| ≥ 0 ms| 1分钟|
+| `rds040_transaction_logs_usage`| 事务日志使用量| 事务日志所占用的磁盘容量。| ≥ 0 MB| 1分钟|
+| `lock_waiting_sessions`| 等待锁的会话数| 该指标为统计当前处于阻塞状态的会话个数。| ≥ 0| 1分钟|
+| `slow_sql_log_min_duration_statement`| 已执行log_min_duration_statement时长的SQL数| 该指标为统计数据库执行时长比参数log_min_duration_statement大的慢SQL个数，该参数大小可根据业务需要进行更改。| ≥ 0| 1分钟|
+| `slow_sql_one_second`| 已执行1s的SQL数| 该指标为统计数据库执行时长1秒以上的慢SQL个数。| ≥ 0| 1分钟|
+| `slow_sql_three_second`| 已执行3s的SQL数| 该指标为统计数据库执行时长3秒以上的慢SQL个数。| ≥ 0| 1分钟|
+| `slow_sql_five_second`| 已执行5s的SQL数| 该指标为统计数据库执行时长5秒以上的慢SQL个数。| ≥ 0| 1分钟|
+
+## 对象 {#object}
+
+采集到的华为云 RDS PostgreSQL 对象数据结构, 可以从「基础设施-自定义」里看到对象数据
 
 ```json
 {
-  "measurement": "huaweicloud_rds",
+  "measurement": "huaweicloud_rds_postgresql",
   "tags": {
     "name"                   : "1d0c91561f4644daxxxxx68304b0520din01",
     "id"                     : "1d0c91561f4644dxxxxxxd68304b0520din01",
     "instance_name"          : "rds-df54-xxxx",
     "status"                 : "ACTIVE",
-    "port"                   : "3306",
+    "port"                   : "5432",
     "type"                   : "Single",
     "RegionId"               : "cn-north-4",
     "security_group_id"      : "d13ebb59-d4fe-xxxx-xxxx-c22bcea6f987",
@@ -118,8 +110,8 @@ The collected Huawei Cloud RDS PostgreSQL object data structure can see the obje
     "time_zone"              : "UTC+08:00",
     "enable_ssl"             : "False",
     "charge_info.charge_mode": "postPaid",
-    "engine"                 : "postgresql",
-    "engine_version"         : "5.7"
+    "engine"                 : "PostgreSQL",
+    "engine_version"         : "14"
   },
   "fields": {
     "created_time"    : "2022-06-21T06:17:27+0000",
@@ -139,11 +131,11 @@ The collected Huawei Cloud RDS PostgreSQL object data structure can see the obje
 }
 ```
 
-> *notice：`tags`、`fields`The fields in this section may change with subsequent updates*
+> *注意：`tags`、`fields`中的字段可能会随后续更新有所变动*
 >
-> Tips  1：`tags.name`The value is the instance ID for unique identification
+> 提示 1：`tags.name`值为实例 ID，作为唯一识别
 >
-> Tips  2：The following fields are JSON serialized strings
+> 提示 2：以下字段均为 JSON 序列化后字符串
 >
 > - `fields.message`
 > - `fields.private_ips`
@@ -153,4 +145,4 @@ The collected Huawei Cloud RDS PostgreSQL object data structure can see the obje
 > - `fields.related_instance`
 > - `fields.backup_strategy`
 >
-> Tips 3：`type`The value is “Single”，“Ha” or “Replica”, "Enterprise"，corresponding to stand-alone instance, active/standby instance, read-only instance, and distributed instance (enterprise edition) respectively.
+> 提示 3：`type`取值为“Single”，“Ha”或“Replica”, "Enterprise"，分别对应于单机实例、主备实例、只读实例、分布式实例（企业版）。

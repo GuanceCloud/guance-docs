@@ -1,24 +1,24 @@
 ---
-title: 'HUAWEI FunctionGraph'
-summary: '使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云'
+title: '华为云 FunctionGraph'
+summary: '华为云 FunctionGraph的展示指标包括调用次数,错误次数,被拒绝次数,并发数,预留实例个数，运行时间（包括最大运行时间、最小运行时间、平均运行时间）等，这些指标反映了FunctionGraph函数运行情况。'
 __int_icon: 'icon/huawei_functiongraph'
 dashboard:
 
-  - desc: 'HUAWEI FunctionGraph 内置视图'
+  - desc: '华为云 FunctionGraph 内置视图'
     path: 'dashboard/zh/huawei_functiongraph'
 
 monitor:
-  - desc: 'HUAWEI FunctionGraph 监控器'
+  - desc: '华为云 FunctionGraph 监控器'
     path: 'monitor/zh/huawei_functiongraph'
 
 ---
 
 
 <!-- markdownlint-disable MD025 -->
-# HUAWEI FunctionGraph
+# 华为云 FunctionGraph
 <!-- markdownlint-enable -->
 
-HUAWEI FunctionGraph的展示指标包括调用次数,错误次数,被拒绝次数,并发数,预留实例个数，运行时间（包括最大运行时间、最小运行时间、平均运行时间）等，这些指标反映了FunctionGraph函数运行情况。
+华为云 FunctionGraph的展示指标包括调用次数,错误次数,被拒绝次数,并发数,预留实例个数，运行时间（包括最大运行时间、最小运行时间、平均运行时间）等，这些指标反映了FunctionGraph函数运行情况。
 
 
 ## 配置 {#config}

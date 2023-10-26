@@ -1,21 +1,21 @@
 ---
-title: 'Alibaba Cloud RocketMQ 5'
-summary: 'Alibaba Cloud RocketMQ 5.0 display metrics including message throughput, latency, reliability, and horizontal scalability.'
+title: 'Aliyun RocketMQ 5'
+summary: 'Aliyun RocketMQ 5.0 display metrics including message throughput, latency, reliability, and horizontal scalability.'
 __int_icon: 'icon/aliyun_rocketmq5'
 dashboard:
-  - desc: '阿里云 RocketMQ5 内置视图'
+  - desc: 'Aliyun  RocketMQ5 Monitoring View'
     path: 'dashboard/en/aliyun_rocketmq5/'
 
 monitor:
-  - desc: '阿里云 RocketMQ4 监控器'
+  - desc: 'Aliyun  RocketMQ4 Monitor'
     path: 'monitor/en/aliyun_rocketmq5/'
 ---
 
 <!-- markdownlint-disable MD025 -->
-# Alibaba Cloud RocketMQ 5
+# Aliyun RocketMQ 5
 <!-- markdownlint-enable -->
 
-Alibaba Cloud RocketMQ 5.0 display metrics including message throughput, latency, reliability, and horizontal scalability.
+Aliyun RocketMQ 5.0 display metrics including message throughput, latency, reliability, and horizontal scalability.
 
 ## Configuration {#config}
 
@@ -27,11 +27,11 @@ If you want to deploy Func on your own, please refer to [Deploy Func on Your Own
 
 ### Install Script
 
-> Note: Please prepare Alibaba Cloud Access Key (AK) that meets the requirements in advance (For simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
+> Note: Please prepare Aliyun Access Key (AK) that meets the requirements in advance (For simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-To synchronize monitoring data from Alibaba Cloud RocketMQ 5, we will install the corresponding collection script: "Observability Cloud Integration (Alibaba Cloud - RocketMQ 5.0)" (ID: `guance_aliyun_rocketmq5`).
+To synchronize monitoring data from Aliyun RocketMQ 5, we will install the corresponding collection script: "Observability Cloud Integration (Aliyun - RocketMQ 5.0)" (ID: `guance_aliyun_rocketmq5`).
 
-After clicking "Install", enter the corresponding parameters: Alibaba Cloud AK, Alibaba Cloud account name.
+After clicking "Install", enter the corresponding parameters: Aliyun AK, Aliyun account name.
 
 Click "Deploy Startup Script", and the system will automatically create a `Startup` script collection and configure the corresponding startup script.
 
@@ -48,42 +48,42 @@ We have default collections for certain configurations, details are in the "Metr
 3. In the Guance platform, under "Metrics", check for corresponding monitoring data.
 
 ## Metrics {#metric}
-After configuring Alibaba Cloud Cloud Monitor, the default set of metrics are as follows. You can collect more metrics by configuring [Alibaba Cloud Cloud Monitor Metrics Details](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
+After configuring Aliyun Cloud Monitor, the default set of metrics are as follows. You can collect more metrics by configuring [Aliyun Cloud Monitor Metrics Details](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
 
 | MetricName | MetricCategory | MetricDescribe | Dimensions | Statistics | Unit | MinPeriods |
 | :--------- | :------------- | :------------- | :--------- | :--------- | :--- | :--------- |
-| ConsumerLag                         | rocketmq | Message Accumulation (Group)                | userId,instanceId,groupId       | Sum     | count        | 60 s |
-| ConsumerLagLatencyPerGid            | rocketmq | Message Processing Latency (GroupId)       | userId,instanceId,groupId       | Maximum | milliseconds | 60 s |
-| ConsumerLagLatencyPerGidTopic       | rocketmq | Message Processing Latency (GroupId&Topic) | userId,instanceId,topic,groupId | Maximum | milliseconds | 60 s |
-| ConsumerLagPerGidTopic              | rocketmq | Message Accumulation (Group&Topic)          | userId,instanceId,groupId,topic | Sum     | count        | 60 s |
-| InstanceApiCallTps                  | rocketmq | Instance API Call Frequency (Instance)     | userId,instanceId               | Sum     | countSecond  | 60 s |
-| InstanceInternetFlowoutBandwidth    | rocketmq | 5.0 Series Instance Public Network Downstream Bandwidth | userId,instanceId               | Sum     | bytes/Second | 60 s |
-| InstanceReceiveApiCallTps           | rocketmq | 5.0 Series Instance Consumer API Call TPS Peak | userId,instanceId               | Maximum | countSecond  | 60 s |
-| InstanceSendApiCallTps              | rocketmq | 5.0 Series Instance Producer API Call TPS Peak | userId,instanceId               | Maximum | countSecond  | 60 s |
-| InstanceStorageSize                 | rocketmq | 5.0 Series Instance Storage Size           | userId,instanceId               | Sum     | Bytes        | 60 s |
-| ReadyMessageQueueTime               | rocketmq | Ready Message Queuing Time (Group)         | userId,instanceId,groupId       | Maximum | milliseconds | 60 s |
-| ReadyMessageQueueTimePerGidTopic    | rocketmq | Ready Message Queuing Time (Group&Topic)   | userId,instanceId,groupId,topic | Maximum | milliseconds | 60 s |
-| ReadyMessages                       | rocketmq | Ready Messages (Group)                    | userId,instanceId,groupId       | Sum     | count        | 60 s |
-| ReadyMessagesPerGidTopic            | rocketmq | Ready Messages (Group&Topic)              | userId,instanceId,groupId,topic | Sum     | count        | 60 s |
-| ReceiveMessageCountPerGid           | rocketmq | Consumer Received Message Count per Minute (Group) | userId,instanceId,groupId       | Sum     | count/min    | 60 s |
-| ReceiveMessageCountPerGidTopic      | rocketmq | Consumer Received Message Count per Minute (Group&Topic) | userId,instanceId,topic,groupId | Sum     | count/min    | 60 s |
-| ReceiveMessageCountPerInstance      | rocketmq | Consumer Received Message Count per Minute (Instance) | userId,instanceId               | Sum     | count/min    | 60 s |
-| ReceiveMessageCountPerTopic         | rocketmq | Consumer Received Message Count per Minute (Topic) | userId,instanceId,topic         | Sum     | count/min    | 60 s |
-| SendDLQMessageCountPerGid           | rocketmq | Number of Dead Letter Messages Generated per Minute (Group) | userId,instanceId,groupId       | Sum     | count/min    | 60 s |
-| SendDLQMessageCountPerGidTopic      | rocketmq | Number of Dead Letter Messages Generated per Minute (Group&Topic) | userId,instanceId,groupId,topic | Sum     | count/min    | 60 s |
-| SendMessageCountPerInstance         | rocketmq | Producer Sent Message Count per Minute (Instance) | userId,instanceId               | Sum     | count/min    | 60 s |
-| SendMessageCountPerTopic            | rocketmq | Producer Sent Message Count per Minute (Topic) | userId,instanceId,topic         | Sum     | count/min    | 60 s |
-| ThrottledReceiveRequestsPerGid      | rocketmq | Throttled Receive Requests per Minute (GroupId) | userId,instanceId,groupId       | Sum     | counts/min   | 60 s |
-| ThrottledReceiveRequestsPerGidTopic | rocketmq | Throttled Receive Requests per Minute (GroupId&Topic) | userId,instanceId,topic,groupId | Sum     | counts/min   | 60 s |
-| ThrottledReceiveRequestsPerInstance | rocketmq | Throttled Receive Requests per Minute (Instance) | userId,instanceId               | Sum     | counts/min   | 60 s |
-| ThrottledSendRequestsPerInstance    | rocketmq | Throttled Send Requests per Minute (Instance) | userId,instanceId               | Sum     | counts/min   | 60 s |
-| ThrottledSendRequestsPerTopic       | rocketmq | Throttled Send Requests per Minute (Topic) | userId,instanceId,topic         | Sum     | counts/min   | 60 s |
+| ConsumerLag                         | **rocketmq** | Message Accumulation (Group)                | userId,instanceId,groupId       | Sum     | count        | 60 s |
+| ConsumerLagLatencyPerGid            | **rocketmq** | Message Processing Latency (GroupId)       | userId,instanceId,groupId       | Maximum | milliseconds | 60 s |
+| ConsumerLagLatencyPerGidTopic       | **rocketmq** | Message Processing Latency (GroupId&Topic) | userId,instanceId,topic,groupId | Maximum | milliseconds | 60 s |
+| ConsumerLagPerGidTopic              | **rocketmq** | Message Accumulation (Group&Topic)          | userId,instanceId,groupId,topic | Sum     | count        | 60 s |
+| InstanceApiCallTps                  | **rocketmq** | Instance API Call Frequency (Instance)     | userId,instanceId               | Sum     | countSecond  | 60 s |
+| **InstanceInternetFlowoutBandwidth**    | **rocketmq** | 5.0 Series Instance Public Network Downstream Bandwidth | userId,instanceId               | Sum     | bytes/Second | 60 s |
+| InstanceReceiveApiCallTps           | **rocketmq** | 5.0 Series Instance Consumer API Call TPS Peak | userId,instanceId               | Maximum | countSecond  | 60 s |
+| InstanceSendApiCallTps              | **rocketmq** | 5.0 Series Instance Producer API Call TPS Peak | userId,instanceId               | Maximum | countSecond  | 60 s |
+| InstanceStorageSize                 | **rocketmq** | 5.0 Series Instance Storage Size           | userId,instanceId               | Sum     | Bytes        | 60 s |
+| ReadyMessageQueueTime               | **rocketmq** | Ready Message Queuing Time (Group)         | userId,instanceId,groupId       | Maximum | milliseconds | 60 s |
+| ReadyMessageQueueTimePerGidTopic    | **rocketmq** | Ready Message Queuing Time (Group&Topic)   | userId,instanceId,groupId,topic | Maximum | milliseconds | 60 s |
+| ReadyMessages                       | **rocketmq** | Ready Messages (Group)                    | userId,instanceId,groupId       | Sum     | count        | 60 s |
+| ReadyMessagesPerGidTopic            | **rocketmq** | Ready Messages (Group&Topic)              | userId,instanceId,groupId,topic | Sum     | count        | 60 s |
+| ReceiveMessageCountPerGid           | **rocketmq** | Consumer Received Message Count per Minute (Group) | userId,instanceId,groupId       | Sum     | count/min    | 60 s |
+| ReceiveMessageCountPerGidTopic      | **rocketmq** | Consumer Received Message Count per Minute (Group&Topic) | userId,instanceId,topic,groupId | Sum     | count/min    | 60 s |
+| ReceiveMessageCountPerInstance      | **rocketmq** | Consumer Received Message Count per Minute (Instance) | userId,instanceId               | Sum     | count/min    | 60 s |
+| ReceiveMessageCountPerTopic         | **rocketmq** | Consumer Received Message Count per Minute (Topic) | userId,instanceId,topic         | Sum     | count/min    | 60 s |
+| SendDLQMessageCountPerGid           | **rocketmq** | Number of Dead Letter Messages Generated per Minute (Group) | userId,instanceId,groupId       | Sum     | count/min    | 60 s |
+| SendDLQMessageCountPerGidTopic      | **rocketmq** | Number of Dead Letter Messages Generated per Minute (Group&Topic) | userId,instanceId,groupId,topic | Sum     | count/min    | 60 s |
+| SendMessageCountPerInstance         | **rocketmq** | Producer Sent Message Count per Minute (Instance) | userId,instanceId               | Sum     | count/min    | 60 s |
+| SendMessageCountPerTopic            | **rocketmq** | Producer Sent Message Count per Minute (Topic) | userId,instanceId,topic         | Sum     | count/min    | 60 s |
+| ThrottledReceiveRequestsPerGid      | **rocketmq** | Throttled Receive Requests per Minute (GroupId) | userId,instanceId,groupId       | Sum     | counts/min   | 60 s |
+| ThrottledReceiveRequestsPerGidTopic | **rocketmq** | Throttled Receive Requests per Minute (GroupId&Topic) | userId,instanceId,topic,groupId | Sum     | counts/min   | 60 s |
+| ThrottledReceiveRequestsPerInstance | **rocketmq** | Throttled Receive Requests per Minute (Instance) | userId,instanceId               | Sum     | counts/min   | 60 s |
+| ThrottledSendRequestsPerInstance    | **rocketmq** | Throttled Send Requests per Minute (Instance) | userId,instanceId               | Sum     | counts/min   | 60 s |
+| ThrottledSendRequestsPerTopic       | **rocketmq** | Throttled Send Requests per Minute (Topic) | userId,instanceId,topic         | Sum     | counts/min   | 60 s |
 
 ## Object {#object}
 
-The data structure of Alibaba Cloud RocketMQ 5 collected, which can be seen from "Infrastructure - Custom"
+The data structure of Aliyun RocketMQ 5 collected, which can be seen from "Infrastructure - Custom"
 
-```json
+```txt
 {
   "serviceCode": "rmq",
   "__namespace": "custom_object",
@@ -95,17 +95,17 @@ The data structure of Alibaba Cloud RocketMQ 5 collected, which can be seen from
   "__docid": "CO_d3bed3ab447566645796455f37fcb66c",
   "message": "{\"accountInfo\": {\"username\": \"If02i2f3f4nYtUsA\"}, \"aclInfo\": {\"aclType\": \"default\"}, \"bid\": \"26842\", \"commodityCode\": \"ons_rmqpost_public_cn\", \"createTime\": \"2023-08-21 10:54:25\", \"expireTime\": \"2123-08-22 00:00:00\", \"extConfig\": {\"aclType\": \"default\", \"autoScaling\": false, \"flowOutBandwidth\": 1, \"flowOutType\": \"payByBandwidth\", \"internetSpec\": \"enable\", \"messageRetentionTime\": 72, \"msgProcessSpec\": \"rmq.s1.micro\", \"sendReceiveRatio\": 0.5, \"supportAutoScaling\": false}, \"groupCount\": 1, \"instanceId\": \"rmq-cn-wwo3cwoyn0b\", \"instanceName\": \"rmq-cn-wwo3cwoyn0b\", \"instanceQuotas\": [{\"quotaName\": \"MAX_TPS\", \"totalCount\": 500}, {\"quotaName\": \"SCALING_TPS_MAX\", \"totalCount\": 0}, {\"quotaName\": \"STORAGE_SIZE\", \"usedCount\": 0.109}, {\"quotaName\": \"TOPIC_COUNT\", \"totalCount\": 100, \"usedCount\": 1}, {\"quotaName\": \"CONSUMER_GROUP_COUNT\", \"totalCount\": 1000, \"usedCount\": 1}], \"networkInfo\": {\"endpoints\": [{\"endpointType\": \"TCP_VPC\", \"endpointUrl\": \"rmq-cn-wwo3cwoyn0b-vpc.cn-hangzhou.rmq.aliyuncs.com:8080\"}, {\"endpointType\": \"TCP_INTERNET\", \"endpointUrl\": \"rmq-cn-wwo3cwoyn0b.cn-hangzhou.rmq.aliyuncs.com:8080\"}], \"internetInfo\": {\"flowOutBandwidth\": 1, \"flowOutType\": \"payByBandwidth\", \"internetSpec\": \"enable\"}, \"vpcInfo\": {\"vSwitchId\": \"vsw-bp1qzepqz845moheet831\", \"vpcId\": \"vpc-bp1pftfpllxna4t75e73v\"}}, \"paymentType\": \"PayAsYouGo\", \"productInfo\": {\"autoScaling\": false, \"messageRetentionTime\": 72, \"msgProcessSpec\": \"rmq.s1.micro\", \"sendReceiveRatio\": 0.5, \"supportAutoScaling\": false}, \"regionId\": \"cn-hangzhou\", \"releaseTime\": \"2123-08-29 00:00:00\", \"resourceGroupId\": \"rg-acfmv3ro3xnfwaa\", \"seriesCode\": \"standard\", \"serviceCode\": \"rmq\", \"software\": {\"maintainTime\": \"02:00-06:00\", \"softwareVersion\": \"5.0-rmq-20230818-2\"}, \"startTime\": \"2023-08-21 10:54:24\", \"status\": \"RUNNING\", \"subSeriesCode\": \"single_node\", \"tags\": [{\"key\": \"acs:rm:rgId\", \"value\": \"rg-acfmv3ro3xnfwaa\"}], \"topicCount\": 1, \"updateTime\": \"2023-08-21 10:57:31\", \"userId\": \"1067807587588864\"}",
   "paymentType": "PayAsYouGo",
-  "regionId": "cn-hangzhou",
+  "regionId": "**cn-hangzhou**",
   "startTime": "2023-08-21 10:54:24",
   "accountInfo": "{\"username\": \"If02i2f3f4nYtUsA\"}",
-  "class": "aliyun_rocketmq",
+  "class": "**aliyun_rocketmq**",
   "instanceQuotas": "[{\"quotaName\": \"MAX_TPS\", \"totalCount\": 500}, {\"quotaName\": \"SCALING_TPS_MAX\", \"totalCount\": 0}, {\"quotaName\": \"STORAGE_SIZE\", \"usedCount\": 0.109}, {\"quotaName\": \"TOPIC_COUNT\", \"totalCount\": 100, \"usedCount\": 1}, {\"quotaName\": \"CONSUMER_GROUP_COUNT\", \"totalCount\": 1000, \"usedCount\": 1}]",
   "releaseTime": "2123-08-29 00:00:00",
   "create_time": 1692600804719,
   "groupCount": "1",
-  "networkInfo": "{\"endpoints\": [{\"endpointType\": \"TCP_VPC\", \"endpointUrl\": \"rmq-cn-wwo3cwoyn0b-vpc.cn-hangzhou.rmq.aliyuncs.com:8080\"}, {\"endpointType\": \"TCP_INTERNET\", \"endpointUrl\": \"rmq-cn-wwo3cwoyn0b.cn-hangzhou.rmq.aliyuncs.com:8080\"}], \"internetInfo\": {\"flowOutBandwidth\": 1, \"flowOutType\": \"payByBandwidth\", \"internetSpec\": \"enable\"}, \"vpcInfo\": {\"vSwitchId\": \"vsw-bp1qzepqz845moheet831\", \"vpcId\": \"vpc-bp1pftfpllxna4t75e73v\"}}",
-  "instanceName": "rmq-cn-wwo3cwoyn0b",
-  "resourceGroupId": "rg-acfmv3ro3xnfwaa",
+  "networkInfo": "{\"endpoints\": [{\"endpointType\": \"TCP_VPC\", \"endpointUrl\": \"rmq-cn-wwo3cwoyn0b-vpc.cn-hangzhou.rmq.aliyuncs.com:8080\"}, {\"endpointType\": \"TCP_INTERNET\", \"endpointUrl\": \"rmq-cn-wwo3cwoyn0b.cn-hangzhou.rmq.aliyuncs.com:8080\"}], \"internetInfo\": {\"flowOutBandwidth\": 1, \"flowOutType\": \"payByBandwidth\", \"internetSpec\": \"enable\"}, \"vpcInfo\": {\"vSwitchId\": \"vsw-bp1qzepqz845moheet831\", \"vpcId\": \"**vpc-bp1pftfpllxna4t75e73v**\"}}",
+  "instanceName": "**rmq-cn-wwo3cwoyn0b**",
+  "resourceGroupId": "**rg-acfmv3ro3xnfwaa**",
   "commodityCode": "ons_rmqpost_public_cn",
   "seriesCode": "standard",
   "subSeriesCode": "single_node",
@@ -114,9 +114,9 @@ The data structure of Alibaba Cloud RocketMQ 5 collected, which can be seen from
   "account_name": "guance",
   "bid": "26842",
   "date": 1692600804000,
-  "name": "rmq-cn-wwo3cwoyn0b",
-  "cloud_provider": "aliyun",
+  "name": "**rmq-cn-wwo3cwoyn0b**",
+  "cloud_provider": "**aliyun**",
   "date_ns": 0,
-  "instanceId": "rmq-cn-wwo3cwoyn0b",
+  "instanceId": "**rmq-cn-wwo3cwoyn0b**",
   "productInfo": "{\"autoScaling\": false, \"messageRetentionTime\": 72, \"msgProcessSpec\": \"rmq.s1.micro\", \"sendReceiveRatio\": 0.5, \"supportAutoScaling\": false}"
 }

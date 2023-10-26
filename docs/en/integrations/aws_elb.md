@@ -1,6 +1,6 @@
 ---
 title: 'AWS ELB'
-summary: 'Use the " Official Script Market " series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
+summary: 'Use the " Official Script Market " series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.'
 __int_icon: 'icon/aws_api_gateway'
 dashboard:
 
@@ -22,7 +22,7 @@ monitor:
 # AWS ELB
 <!-- markdownlint-enable -->
 
-Use the[ Guance Cloud Synchronization]  series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.
+Use the[ Guance  Synchronization]  series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.
 
 
 ## config {#config}
@@ -35,25 +35,25 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 
 ### Installation script
 
-> Tip: Please prepare AWS AK that meets the requirements in advance ( For simplicity's sake, , You can directly grant the global read-only permission for CloudWatch `CloudWatchReadOnlyAccess` )  
+> Tip: Please prepare AWS AK that meets the requirements in advance (For simplicity's sake, You can directly grant the global read-only permission for CloudWatch `CloudWatchReadOnlyAccess`)  
 
-To synchronize the monitoring data of AWS ELB cloud resources, we install the corresponding collection script: 
+To synchronize the monitoring data of AWS ELB cloud resources, we install the corresponding collection script :
 
-AWS Application ELB select[ 观测云集成 ( AWS-ApplicationELB采集 )  ]  (ID: `guance_aws_applicationelb`)
+AWS Application ELB select[Guance Integration ( AWS-ApplicationELBCollect )]  (ID: `guance_aws_applicationelb`)
 
-AWS Network ELB select[ 观测云集成 ( AWS-NetworkELB采集 )  ]  (ID: `guance_aws_networkelb`)
+AWS Network ELB select[Guance Integration ( AWS-NetworkELBCollect )]  (ID: `guance_aws_networkelb`)
 
-AWS Gateway ELB select[ 观测云集成 ( AWS-GatewayELB采集 )  ]  (ID: `guance_aws_gatewayelb`)
+AWS Gateway ELB select[Guance Integration ( AWS-GatewayELBCollect )]  (ID: `guance_aws_gatewayelb`)
 
-AWS Classic ELB select[ 观测云集成 ( AWS-ELB采集 )  ]  (ID: `guance_aws_elb`)
+AWS Classic ELB select[Guance Integration ( AWS-ELBCollect )]  (ID: `guance_aws_elb`)
 
-Click  [ Install ]  and enter the corresponding parameters: AWS AK, AWS account name.
+Click  [Install]  and enter the corresponding parameters: AWS AK, AWS account name.
 
-tap [ Deploy startup Script ]  , The system automatically creates `Startup` script sets , And automatically configure the corresponding startup script. 
+tap [Deploy startup Script]  , The system automatically creates `Startup` script sets , And automatically configure the corresponding startup script.
 
-Then, in the collection script, add the collector_ Configs and cloudwatch_ Change the regions in configs to the actual regions
+Then, in the collection script, add the collector_configs and cloudwatch_change the regions in configs to the actual regions
 
-After this function is enabled, you can view the automatic triggering configuration in[ Management / Crontab Config]  . Click [ Run ]  , you can immediately execute once, without waiting for a regular time. After a while, you can view task execution records and corresponding logs. 
+After this function is enabled, you can view the automatic triggering configuration in[ Management / Crontab Config]  . Click [ Run ]  , you can immediately execute once, without waiting for a regular time. After a while, you can view task execution records and corresponding logs.
 
 We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
 
@@ -61,11 +61,11 @@ We collected some configurations by default, as described in the Metrics column 
 ### Verify
 
 1. In[ Management / Crontab Config]  check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the observation cloud platform, click [Infrastructure / Custom] to check whether asset information exists
-3. On the observation cloud platform, press [ Metrics]   to check whether monitoring data exists
+2. On the Guance platform, click [Infrastructure / Custom] to check whether asset information exists
+3. On the Guance platform, press [ Metrics]   to check whether monitoring data exists
 
 ## Metric {#metric}
-Configure AWS Cloud - cloud monitoring. The default indicator set is as follows. You can collect more indicators by configuring them
+Configure AWS Cloud - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them
 
 [AWS Application Load Balancer details](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-cloudwatch-metrics.html){:target="_blank"}
 
@@ -77,33 +77,33 @@ Configure AWS Cloud - cloud monitoring. The default indicator set is as follows.
 
 ### Application Load Balancer Metric
 
-| Metric	                                          | Description                                                  |
+| Metric | Description |
 | :------------------------------------------------ | :----------------------------------------------------------- |
-| `ActiveConnectionCount`                           | The total number of concurrent TCP connections active from clients to the load balancer and from the load balancer to targets. Reporting criteria: There is a nonzero value. **Statistics**: The most useful statistic is Sum.**Dimensions**:`LoadBalancer`,`AvailabilityZone` `LoadBalancer` | 
+| `ActiveConnectionCount`                           | The total number of concurrent TCP connections active from clients to the load balancer and from the load balancer to targets. Reporting criteria: There is a nonzero value. **Statistics**: The most useful statistic is Sum.**Dimensions**:`LoadBalancer`,`AvailabilityZone` `LoadBalancer` |
 
 | `ConsumedLCUs`    | The number of load balancer capacity units (LCU) used by your load balancer. You pay for the number of LCUs that you use per hour. For more information, see Elastic Load Balancing pricing.**Reporting criteria**: Always reported. **Statistics**: All. **Dimensions**: `LoadBalancer` |
 
-| `DesyncMitigationMode_NonCompliant_Request_Count`   | The number of requests that do not comply with RFC 7230. **Reporting criteria**: There is a nonzero value. **Statistics**: The most useful statistic is Sum. **Dimensions**: `LoadBalancer`, `AvailabilityZone` `LoadBalancer` | 
+| `DesyncMitigationMode_NonCompliant_Request_Count`   | The number of requests that do not comply with RFC 7230. **Reporting criteria**: There is a nonzero value. **Statistics**: The most useful statistic is Sum. **Dimensions**: `LoadBalancer`, `AvailabilityZone` `LoadBalancer` |
 
-| `HTTPCode_ELB_3XX_Count`       | The number of HTTP 3XX redirection codes that originate from the load balancer. This count does not include response codes generated by targets. **Reporting criteria**: There is a nonzero value. **Statistics**: The only meaningful statistic is Sum. **Dimensions**: `LoadBalancer`,`AvailabilityZone` `LoadBalancer` | 
+| `HTTPCode_ELB_3XX_Count`       | The number of HTTP 3XX redirection codes that originate from the load balancer. This count does not include response codes generated by targets. **Reporting criteria**: There is a nonzero value. **Statistics**: The only meaningful statistic is Sum. **Dimensions**: `LoadBalancer`,`AvailabilityZone` `LoadBalancer` |
 
-| `HTTPCode_ELB_4XX_Count`          | The number of HTTP 4XX client error codes that originate from the load balancer. This count does not include response codes generated by targets. Client errors are generated when requests are malformed or incomplete. These requests were not received by the target, other than in the case where the load balancer returns an HTTP 460 error code. This count does not include any response codes generated by the targets. **Reporting criteria**: There is a nonzero value. **Statistics**: The most useful statistic is Sum. Minimum, Maximum, and Average all return 1.**Dimensions**: `LoadBalancer`,`AvailabilityZone` `LoadBalancer` | 
+| `HTTPCode_ELB_4XX_Count`          | The number of HTTP 4XX client error codes that originate from the load balancer. This count does not include response codes generated by targets. Client errors are generated when requests are malformed or incomplete. These requests were not received by the target, other than in the case where the load balancer returns an HTTP 460 error code. This count does not include any response codes generated by the targets. **Reporting criteria**: There is a nonzero value. **Statistics**: The most useful statistic is Sum. Minimum, Maximum, and Average all return 1.**Dimensions**: `LoadBalancer`,`AvailabilityZone` `LoadBalancer` |
 
-| `HTTPCode_ELB_5XX_Count`     | The number of HTTP 5XX server error codes that originate from the load balancer. This count does not include any response codes generated by the targets. **Reporting criteria**: There is a nonzero value. **Statistics**: The most useful statistic is Sum. Minimum, Maximum, and Average all return 1.**Dimensions**: `LoadBalancer`,`AvailabilityZone` `LoadBalancer` | 
+| `HTTPCode_ELB_5XX_Count`     | The number of HTTP 5XX server error codes that originate from the load balancer. This count does not include any response codes generated by the targets. **Reporting criteria**: There is a nonzero value. **Statistics**: The most useful statistic is Sum. Minimum, Maximum, and Average all return 1.**Dimensions**: `LoadBalancer`,`AvailabilityZone` `LoadBalancer` |
 
-| `HTTPCode_ELB_500_Count`     | The number of HTTP 500 error codes that originate from the load balancer. **Reporting criteria**: There is a nonzero value. **Statistics**: The only meaningful statistic is Sum. **Dimensions**: `LoadBalancer`,`AvailabilityZone` `LoadBalancer` | 
+| `HTTPCode_ELB_500_Count`     | The number of HTTP 500 error codes that originate from the load balancer. **Reporting criteria**: There is a nonzero value. **Statistics**: The only meaningful statistic is Sum. **Dimensions**: `LoadBalancer`,`AvailabilityZone` `LoadBalancer` |
 
-| `HTTPCode_ELB_502_Count`    | The number of HTTP 502 error codes that originate from the load balancer. **Reporting criteria**: There is a nonzero value. **Statistics**: The only meaningful statistic is Sum. **Dimensions**: `LoadBalancer`,`AvailabilityZone` `LoadBalancer` | 
+| `HTTPCode_ELB_502_Count`    | The number of HTTP 502 error codes that originate from the load balancer. **Reporting criteria**: There is a nonzero value. **Statistics**: The only meaningful statistic is Sum. **Dimensions**: `LoadBalancer`,`AvailabilityZone` `LoadBalancer` |
 
-| `HTTPCode_ELB_503_Count`	| The number of HTTP 503 error codes that originate from the load balancer. **Reporting criteria**: There is a nonzero value. **Statistics**: The only meaningful statistic is Sum. **Dimensions**: `LoadBalancer`,`AvailabilityZone` `LoadBalancer` | 
+| `HTTPCode_ELB_503_Count` | The number of HTTP 503 error codes that originate from the load balancer. **Reporting criteria**: There is a nonzero value. **Statistics**: The only meaningful statistic is Sum. **Dimensions**: `LoadBalancer`,`AvailabilityZone` `LoadBalancer` |
 
-| `HTTPCode_ELB_504_Count`	| The number of HTTP 504 error codes that originate from the load balancer. **Reporting criteria**: There is a nonzero value. **Statistics**: The only meaningful statistic is Sum. **Dimensions**: `LoadBalancer`,`AvailabilityZone` `LoadBalancer` | 
+| `HTTPCode_ELB_504_Count` | The number of HTTP 504 error codes that originate from the load balancer. **Reporting criteria**: There is a nonzero value. **Statistics**: The only meaningful statistic is Sum. **Dimensions**: `LoadBalancer`,`AvailabilityZone` `LoadBalancer` |
 
-| `NewConnectionCount`	| The total number of new TCP connections established from clients to the load balancer and from the load balancer to targets. **Reporting criteria**: There is a nonzero value. **Statistics**: The most useful statistic is Sum. **Dimensions**: `LoadBalancer`,`AvailabilityZone` `LoadBalancer` | 
+| `NewConnectionCount` | The total number of new TCP connections established from clients to the load balancer and from the load balancer to targets. **Reporting criteria**: There is a nonzero value. **Statistics**: The most useful statistic is Sum. **Dimensions**: `LoadBalancer`,`AvailabilityZone` `LoadBalancer` |
 
-| `ProcessedBytes`	| The total number of bytes processed by the load balancer over IPv4 and IPv6 (HTTP header and HTTP payload). This count includes traffic to and from clients and Lambda functions, and traffic from an Identity Provider (IdP) if user authentication is enabled. **Reporting criteria**: There is a nonzero value. **Statistics**: The most useful statistic is Sum. **Dimensions**: `LoadBalancer`,`AvailabilityZone` `LoadBalancer` | 
+| `ProcessedBytes` | The total number of bytes processed by the load balancer over IPv4 and IPv6 (HTTP header and HTTP payload). This count includes traffic to and from clients and Lambda functions, and traffic from an Identity Provider (IdP) if user authentication is enabled. **Reporting criteria**: There is a nonzero value. **Statistics**: The most useful statistic is Sum. **Dimensions**: `LoadBalancer`,`AvailabilityZone` `LoadBalancer` |
 
-| `RequestCount`	| The number of requests processed over IPv4 and IPv6. This metric is only incremented for requests where the load balancer node was able to choose a target. Requests that are rejected before a target is chosen are not reflected in this metric. **Reporting criteria**: Always reported. **Statistics**: The most useful statistic is Sum. **Dimensions**: `LoadBalancer`,`AvailabilityZone` `LoadBalancer` | 
+| `RequestCount` | The number of requests processed over IPv4 and IPv6. This metric is only incremented for requests where the load balancer node was able to choose a target. Requests that are rejected before a target is chosen are not reflected in this metric. **Reporting criteria**: Always reported. **Statistics**: The most useful statistic is Sum. **Dimensions**: `LoadBalancer`,`AvailabilityZone` `LoadBalancer` |
 
 `AWS/ApplicationELB` namespace includes the following metrics for targets.
 
@@ -112,7 +112,7 @@ Configure AWS Cloud - cloud monitoring. The default indicator set is as follows.
 | `HTTPCode_Target_2XX_Count`, `HTTPCode_Target_3XX_Count`, `HTTPCode_Target_4XX_Count`, `HTTPCode_Target_5XX_Count` | The number of targets that are considered healthy. **Reporting criteria**: Reported if health checks are enabled. **Statistics**: The most useful statistics are Average, Minimum, and Maximum. **Dimensions**: `TargetGroup` `LoadBalancer`, `TargetGroup` `AvailabilityZone` `LoadBalancer`, `AvailabilityZone` `TargetGroup` `LoadBalancer` |
 | `TargetResponseTime`                                         | The time elapsed, in seconds, after the request leaves the load balancer until a response from the target is received. This is equivalent to the target_processing_time field in the access logs. **Reporting criteria**: There is a nonzero value. **Statistics**: The most useful statistics are Average and pNN.NN (percentiles). **Dimensions**: `TargetGroup` `LoadBalancer`, `TargetGroup` `AvailabilityZone` `LoadBalancer`, `AvailabilityZone` `TargetGroup` `LoadBalancer` |
 
-`AWS/ApplicationELB` namespace includes the following metrics for target group health. For more information, see [ Target group health ](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/target-group-health.html){:target="_blank"}.
+`AWS/ApplicationELB` namespace includes the following metrics for target group health. For more information, see [Target group health](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/target-group-health.html){:target="_blank"}.
 
 | Metric                                                         | Description                                                         |
 | :--------------------------------------------------------  --- | :------------------------------------------------------------------ |
@@ -120,7 +120,7 @@ Configure AWS Cloud - cloud monitoring. The default indicator set is as follows.
 
 ### Network Load Balancer Metric
 
-| Metric	                                          | Description                                                  |
+| Metric                                          | Description                                                  |
 | :------------------------------------------------ | :----------------------------------------------------------- |
 | `ActiveFlowCount`                           | The total number of concurrent flows (or connections) from clients to targets. This metric includes connections in the SYN_SENT and ESTABLISHED states. TCP connections are not terminated at the load balancer, so a client opening a TCP connection to a target counts as a single flow. **Reporting criteria**: Always reported.**Statistics**: Always reported. **Dimensions**: `LoadBalancer``AvailabilityZone`, `LoadBalancer` |
 | `ActiveFlowCount_TCP`                           | The total number of concurrent TCP flows (or connections) from clients to targets. This metric includes connections in the SYN_SENT and ESTABLISHED state. TCP connections are not terminated at the load balancer, so a client opening a TCP connection to a target counts as a single flow. **Reporting criteria**: There is a nonzero value. **Statistics**: The most useful statistics are Average, Maximum, and Minimum. **Dimensions**: `LoadBalancer`,`AvailabilityZone` `LoadBalancer` |
@@ -139,7 +139,7 @@ Configure AWS Cloud - cloud monitoring. The default indicator set is as follows.
 
 ### Gateway Load Balancer Metric
 
-| Metric	                                          | Description                                                  |
+| Metric                                        | Description                                                  |
 | :------------------------------------------------ | :----------------------------------------------------------- |
 | `ActiveFlowCount`                           | The total number of concurrent flows (or connections) from clients to targets. **Reporting criteria**: There is a nonzero value. **Statistics**: The most useful statistics are Average, Maximum, and Minimum. **Dimensions**: `LoadBalancer``AvailabilityZone`, `LoadBalancer` |
 | `ConsumedLCUs`                           | The number of load balancer capacity units (LCU) used by your load balancer. You pay for the number of LCUs that you use per hour. **Reporting criteria**: Always reported. **Statistics**: All. **Dimensions**: `LoadBalancer` |
@@ -150,7 +150,7 @@ Configure AWS Cloud - cloud monitoring. The default indicator set is as follows.
 
 ### Classic Load Balancer Metric
 
-| Metric	                                          | Description                                                  |
+| Metric                                   | Description                                                  |
 | :------------------------------------------------ | :----------------------------------------------------------- |
 | `BackendConnectionErrors`                           | The number of connections that were not successfully established between the load balancer and the registered instances. Because the load balancer retries the connection when there are errors, this count can exceed the request rate. Note that this count also includes any connection errors related to health checks.**Reporting criteria**: There is a nonzero value. **Statistics**: The most useful statistic is Sum. Note that Average, Minimum, and Maximum are reported per load balancer node and are not typically useful. However, the difference between the minimum and maximum (or peak to average or average to trough) might be useful to determine whether a load balancer node is an outlier. **Example**: Suppose that your load balancer has 2 instances in us-west-2a and 2 instances in us-west-2b, and that attempts to connect to 1 instance in us-west-2a result in back-end connection errors. The sum for us-west-2a includes these connection errors, while the sum for us-west-2b does not include them. Therefore, the sum for the load balancer equals the sum for us-west-2a. |
 | `DesyncMitigationMode_NonCompliant_Request_Count`                           | [HTTP listener] The number of requests that do not comply with RFC 7230. **Reporting criteria**: There is a nonzero value. **Statistics**: The most useful statistic is Sum. |
@@ -164,20 +164,20 @@ Configure AWS Cloud - cloud monitoring. The default indicator set is as follows.
 | `SurgeQueueLength`                           | The total number of requests (HTTP listener) or connections (TCP listener) that are pending routing to a healthy instance. The maximum size of the queue is 1,024. Additional requests or connections are rejected when the queue is full. **Reporting criteria**: There is a nonzero value. **Statistics**: The most useful statistic is Maximum, because it represents the peak of queued requests. The Average statistic can be useful in combination with Minimum and Maximum to determine the range of queued requests. Note that Sum is not useful. **Example**: Suppose that your load balancer has us-west-2a and us-west-2b enabled, and that instances in us-west-2a are experiencing high latency and are slow to respond to requests. As a result, the surge queue for the load balancer nodes in us-west-2a fills, with clients likely experiencing increased response times. If this continues, the load balancer will likely have spillovers (see the SpilloverCount metric). If us-west-2b continues to respond normally, the max for the load balancer will be the same as the max for us-west-2a. |
 | `UnHealthyHostCount`                           | The number of unhealthy instances registered with your load balancer. An instance is considered unhealthy after it exceeds the unhealthy threshold configured for health checks. An unhealthy instance is considered healthy again after it meets the healthy threshold configured for health checks. **Reporting criteria**: There are registered instances. **Statistics**: The most useful statistics are Average and Minimum. These statistics are determined by the load balancer nodes. Note that some load balancer nodes might determine that an instance is unhealthy for a brief period while other nodes determine that it is healthy. **Example**: See HealthyHostCount. |
 
-### Metric dimensions for Application Load Balancers
+### Metric for Application Load Balancers
 
-To filter the metrics for your Application / Network / Gateway Load Balancer, use the following dimensions.
+To filter the metrics for your Application / Network / Gateway Load Balancer .
 
-| Dimension               | Description                                                         |
+| Metric               | Description                                                         |
 | :----------------- | :----------------------------------------------------------- |
 | `AvailabilityZone` | Filters the metric data by Availability Zone.                                       |
-| `LoadBalancer`     | Filters the metric data by load balancer. Specify the load balancer as follows: app/load-balancer-name/1234567890123456 (the final portion of the load balancer ARN). |
-| `TargetGroup`      | Filters the metric data by target group. Specify the target group as follows: targetgroup/target-group-name/1234567890123456 (the final portion of the target group ARN). |
+| `LoadBalancer`     | Filters the metric data by load balancer. Specify the load balancer as follows: `app/load-balancer-name/1234567890123456` (the final portion of the load balancer ARN). |
+| `TargetGroup`      | Filters the metric data by target group. Specify the target group as follows: `targetgroup/target-group-name/1234567890123456` (the final portion of the target group ARN). |
 
 
-To filter the metrics for your Classic Load Balancer, use the following dimensions.
+To filter the metrics for your Classic Load Balancer .
 
-| Dimension               | Description                                                        |
+| Metric               | Description                                                        |
 | :----------------- | :---------------------------------------------------------------------- |
 | `AvailabilityZone` | Filters the metric data by the specified Availability Zone.             |
 | `LoadBalancerName` | Filters the metric data by the specified load balancer.                 |
@@ -203,16 +203,16 @@ The collected AWS ELB object data structure can be seen from the [ Infrastructur
   },
   "fields": {
     "CreatedTime"         : "2022-03-09T06:13:31Z",
-    "ListenerDescriptions": "{JSON 数据}",
-    "AvailabilityZones"   : "{可用区 JSON 数据}",
-    "message"             : "{实例 JSON 数据}"
+    "ListenerDescriptions": "{JSON data}",
+    "AvailabilityZones"   : "{Availability Zone JSON data}",
+    "message"             : "{Instance JSON data}"
   }
 }
 ```
 
 > *Notice: `tags`,`fields`*The fields in this section may change with subsequent updates*
 >
-> > Remind 1: AWS ELB indicator set is divided into four types according to different types of load balancing:
+> > Remind 1: AWS ELB metric set is divided into four types according to different types of load balancing:
 > >
 > > 1. The index set of Application ELB is `aws_aelb`
 > > 2. The index set of Network ELB is `aws_nelb`
@@ -224,17 +224,17 @@ The collected AWS ELB object data structure can be seen from the [ Infrastructur
 > > 1. Classic Load Balancers use the field of LoadBalancerName.
 > > 2. Application,Network,Gateway Load Balancers intercept the end of the load balancer ARN (LoadBalancerArn).
 > >
-> > Take Network Load Balancer for example: 
+> > Take Network Load Balancer for example:
 > >
 > > ```txt
-> > LoadBalancerArn` is `arn:awS-cn:elasticloadbalancing:cn-northwest-1:xxxx1335135:loadbalancer/net/k8s-forethou-kodongin-xxxxa46f01/xxxxe75ae81d08c2
+> > LoadBalancerArn is `arn:awS-cn:elasticloadbalancing:cn-northwest-1:xxxx1335135:loadbalancer/net/k8s-forethou-kodongin-xxxxa46f01/xxxxe75ae81d08c2`
 > > ```
 > >
 > > `tags.name` is `net/k8s-forethou-kodongin-xxxxa46f01/xxxxe75ae81d08c2`
 > >
-> > Remind 3: 
+> > Remind 3:
 > >
-> > - `fields.message`,`tags.AvailabilityZones` are postserialized character for JSON.
+> > - `fields.message`,`tags.AvailabilityZones` are post serialized character for JSON.
 > > - `tags.state` means Load Balancers status,value:`active`,`provisioning`,`active_impaired`,`failed` (Classic ELB does not exist this field ).
 > > - `tags.Type`means Load Balancers type,value:`application`,`network`,`gateway`,`classic`.
 > > - `tags.Scheme`means Load Balancers mode,value:`internet-facing`,`internal`.

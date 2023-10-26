@@ -1,14 +1,14 @@
 ---
 title: 'AWS EMR'
-summary: 'Use the「观测云云同步」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud'
+summary: 'Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance'
 __int_icon: 'icon/aws_emr'
 dashboard:
 
-  - desc: 'AWS EMR 内置视图'
+  - desc: 'AWS EMR Monitoring View'
     path: 'dashboard/zh/aws_emr'
 
 monitor:
-  - desc: 'AWS DocumentDB 监控器'
+  - desc: 'AWS DocumentDB Monitor'
     path: 'monitor/zh/aws_emr'
 
 ---
@@ -18,7 +18,7 @@ monitor:
 # AWS EMR
 <!-- markdownlint-enable -->
 
-Use the「Guance Cloud Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.
+Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.
 
 
 ## config  {#config}
@@ -33,7 +33,7 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 
 > Tip：Please prepare AWS AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of EMR cloud resources, we install the corresponding collection script：「观测云集成（AWS EMR采集）」(ID：`guance_aws_emr`)
+To synchronize the monitoring data of EMR cloud resources, we install the corresponding collection script：「Guance Integration（AWS EMRCollect）」(ID：`guance_aws_emr`)
 
 Click 【Install】 and enter the corresponding parameters: AWS AK, AWS account name.
 
@@ -49,11 +49,11 @@ We collected some configurations by default, as described in the Metrics column 
 ### Verify
 
 1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the observation cloud platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists
+2. On the Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
+3. On the Guance platform, press 「Metrics」 to check whether monitoring data exists
 
 ## Metric {#metric}
-Configure AWS Cloud - cloud monitoring. The default indicator set is as follows. You can collect more indicators by configuring them [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/zh_cn/emr/latest/ManagementGuide/UsingEMR_ViewingMetrics.html){:target="_blank"}
+Configure AWS Cloud - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/zh_cn/emr/latest/ManagementGuide/UsingEMR_ViewingMetrics.html){:target="_blank"}
 
 
 | Metric                    | Description                                                         |
@@ -70,27 +70,27 @@ Configure AWS Cloud - cloud monitoring. The default indicator set is as follows.
 | `AppsSubmitted` | The number of applications submitted to YARN. Use case: Monitor cluster progress Units: Count |
 | `CoreNodesRunning` | The number of core nodes working. Data points for this metric are reported only when a corresponding instance group exists. Use case: Monitor cluster health Units: Count |
 | `LiveDataNodes` | The percentage of data nodes that are receiving work from Hadoop. Use case: Monitor cluster health Units: Percent |
-| `MRActiveNodes` | The number of nodes presently running MapReduce tasks or jobs. Equivalent to YARN metric mapred.resourcemanager.NoOfActiveNodes. Use case: Monitor cluster progress Units: Count |
-| `MRLostNodes` | The number of nodes allocated to MapReduce that have been marked in a LOST state. Equivalent to YARN metric mapred.resourcemanager.NoOfLostNodes. Use case: Monitor cluster health, Monitor cluster progress Units: Count |
-| `MRTotalNodes` | The number of nodes presently available to MapReduce jobs. Equivalent to YARN metric mapred.resourcemanager.TotalNodes. Use ase: Monitor cluster progress Units: Count |
-| `MRActiveNodes` | The number of nodes presently running MapReduce tasks or jobs. Equivalent to YARN metric mapred.resourcemanager.NoOfActiveNodes. Use case: Monitor cluster progress Units: Count |
-| `MRRebootedNodes` | The number of nodes available to MapReduce that have been rebooted and marked in a REBOOTED state. Equivalent to YARN metric mapred.resourcemanager.NoOfRebootedNodes. Use case: Monitor cluster health, Monitor cluster progress Units: Count |
-| `MRUnhealthyNodes` | The number of nodes available to MapReduce jobs marked in an UNHEALTHY state. Equivalent to YARN metric mapred.resourcemanager.NoOfUnhealthyNodes. Use case: Monitor cluster progress Units: Count |
-| `MRDecommissionedNodes` | The number of nodes allocated to MapReduce applications that have been marked in a DECOMMISSIONED state. Equivalent to YARN metric mapred.resourcemanager.NoOfDecommissionedNodes. Use ase: Monitor cluster health, Monitor cluster progress Units: Count |
+| `MRActiveNodes` | The number of nodes presently running MapReduce tasks or jobs. Equivalent to YARN metric `mapred.resourcemanager.NoOfActiveNodes`. Use case: Monitor cluster progress Units: Count |
+| `MRLostNodes` | The number of nodes allocated to MapReduce that have been marked in a LOST state. Equivalent to YARN metric `mapred.resourcemanager.NoOfLostNodes.` Use case: Monitor cluster health, Monitor cluster progress Units: Count |
+| `MRTotalNodes` | The number of nodes presently available to MapReduce jobs. Equivalent to YARN metric `mapred.resourcemanager.TotalNodes`. Use ase: Monitor cluster progress Units: Count |
+| `MRActiveNodes` | The number of nodes presently running MapReduce tasks or jobs. Equivalent to YARN metric `mapred.resourcemanager.NoOfActiveNodes`. Use case: Monitor cluster progress Units: Count |
+| `MRRebootedNodes` | The number of nodes available to MapReduce that have been rebooted and marked in a REBOOTED state. Equivalent to YARN metric `mapred.resourcemanager.NoOfRebootedNodes.` Use case: Monitor cluster health, Monitor cluster progress Units: Count |
+| `MRUnhealthyNodes` | The number of nodes available to MapReduce jobs marked in an UNHEALTHY state. Equivalent to YARN metric `mapred.resourcemanager.NoOfUnhealthyNodes`. Use case: Monitor cluster progress Units: Count |
+| `MRDecommissionedNodes` | The number of nodes allocated to MapReduce applications that have been marked in a DECOMMISSIONED state. Equivalent to YARN metric `mapred.resourcemanager.NoOfDecommissionedNodes`. Use ase: Monitor cluster health, Monitor cluster progress Units: Count |
 | `S3BytesWritten` | The number of bytes written to Amazon S3. This metric aggregates MapReduce jobs only, and does not apply for other workloads on Amazon EMR. Use case: Analyze cluster performance, Monitor cluster progress Units: Count |
 | `S3BytesRead` | The number of bytes read from Amazon S3. This metric aggregates MapReduce jobs only, and does not apply for other workloads on Amazon EMR. Use case: Analyze cluster performance, Monitor cluster progress Units: Count |
-| `HDFSUtilization` | The percentage of HDFS storage currently used. Use case: Analyze cluster performance Units: Percent |
+| `HDFSUtilization` | The percentage of `HDFS` storage currently used. Use case: Analyze cluster performance Units: Percent |
 | `TotalLoad` | The total number of concurrent data transfers. Use case: Monitor cluster health Units: Count |
 | `MemoryTotalMB` | The total amount of memory in the cluster. Use case: Monitor cluster progress Units: Count |
 | `MemoryReservedMB` | The amount of memory reserved. Use case: Monitor cluster progress Units: Count |
-| `HDFSBytesRead`               | The number of bytes read from HDFS. This metric aggregates MapReduce jobs only, and does not apply for other workloads on Amazon EMR. Use case: Analyze cluster performance, Monitor cluster progress Units: Count |
-| `HDFSBytesWritten`            | The number of bytes written to HDFS. This metric aggregates MapReduce jobs only, and does not apply for other workloads on Amazon EMR. Use case: Analyze cluster performance, Monitor cluster progress Units: Count |
-| `MissingBlocks`               | The number of blocks in which HDFS has no replicas. These might be corrupt blocks. Use case: Monitor cluster health Units: Count |
+| `HDFSBytesRead`               | The number of bytes read from `HDFS`. This metric aggregates MapReduce jobs only, and does not apply for other workloads on Amazon EMR. Use case: Analyze cluster performance, Monitor cluster progress Units: Count |
+| `HDFSBytesWritten`            | The number of bytes written to `HDFS`. This metric aggregates MapReduce jobs only, and does not apply for other workloads on Amazon EMR. Use case: Analyze cluster performance, Monitor cluster progress Units: Count |
+| `MissingBlocks`               | The number of blocks in which `HDFS` has no replicas. These might be corrupt blocks. Use case: Monitor cluster health Units: Count |
 | `MemoryAvailableMB`           | The amount of memory available to be allocated. Use case: Monitor cluster progress Units: Count |
 | `MemoryAllocatedMB` | The amount of memory allocated to the cluster. Use case: Monitor cluster progress Units: Count |
 | `PendingDeletionBlocks` | The number of blocks marked for deletion. Use case: Monitor cluster progress, Monitor cluster health Units: Count |
 | `UnderReplicatedBlocks` | The number of blocks that need to be replicated one or more times. Use case: Monitor cluster progress, Monitor cluster health Units: Count |
-| `CapacityRemainingGB` | The amount of remaining HDFS disk capacity. Use case: Monitor cluster progress, Monitor cluster health Units: Count |
+| `CapacityRemainingGB` | The amount of remaining `HDFS` disk capacity. Use case: Monitor cluster progress, Monitor cluster health Units: Count |
 
 
 ## Object {#object}
@@ -108,8 +108,8 @@ The collected AWS EMR object data structure can be viewed in "Infrastructure - C
     "OutpostArn"         : "xxxx",
   },
   "fields": {
-    "Status"               : "{实例状态 JSON 数据}",
-    "message"              : "{实例 JSON 数据}"
+    "Status"               : "{Instance status JSON data}",
+    "message"              : "{Instance JSON data}"
   }
 }
 
