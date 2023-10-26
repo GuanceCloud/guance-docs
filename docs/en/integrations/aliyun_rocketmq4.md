@@ -1,13 +1,13 @@
 ---
-title: '阿里云 RocketMQ4'
-summary: '使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云。'
+title: 'Aliyun RocketMQ4'
+summary: 'Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.'
 __int_icon: 'icon/aliyun_rocketmq4'
 dashboard:
-  - desc: '阿里云 RocketMQ4 内置视图'
+  - desc: 'Aliyun RocketMQ4 Built-in Dashboard'
     path: 'dashboard/zh/aliyun_rocketmq4/'
 
 monitor:
-  - desc: '阿里云 RocketMQ4 监控器'
+  - desc: 'Aliyun RocketMQ4 Monitor'
     path: 'monitor/zh/aliyun_rocketmq4/'
 ---
 
@@ -15,7 +15,7 @@ monitor:
 # Aliyun RocketMQ4
 <!-- markdownlint-enable -->
 
-Use the「Guance Cloud Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.
+Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.
 
 ## Config {#config}
 
@@ -30,12 +30,12 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 
 > Tip：Please prepare Aliyun AK that meets the requirements in advance(For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`)
 
-To synchronize the monitoring data of  Aliyun RocketMQ cloud resources, we install the corresponding collection script：「 观测云集成（阿里云-RocketMQ 4.0）」(ID：`guance_aliyun_rocketmq4`)
+To synchronize the monitoring data of  Aliyun RocketMQ cloud resources, we install the corresponding collection script：「 Guance Integration（Aliyun -RocketMQ 4.0）」(ID：`guance_aliyun_rocketmq4`)
 
-Click 【Install】 and enter the corresponding parameters: Aliyun AK, Aliyun account name.。
+Click "Install" and enter the corresponding parameters: Aliyun AK, Aliyun account name.。
 
-tap【Deploy startup Script】，The system automatically creates Startup script sets，And automatically configure the corresponding startup script。
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」。Click【Run】，you can immediately execute once, without waiting for a regular time。After a while, you can view task execution records and corresponding logs.
+tap "Deploy startup Script"，The system automatically creates Startup script sets，And automatically configure the corresponding startup script。
+After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」。Click "Run"，you can immediately execute once, without waiting for a regular time。After a while, you can view task execution records and corresponding logs.
 
 We collected some configurations by default, as described in the Metrics column
 
@@ -45,11 +45,11 @@ We collected some configurations by default, as described in the Metrics column
 ### Verify
 
 1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the observation cloud platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists
+2. On the Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
+3. On the Guance platform, press 「Metrics」 to check whether monitoring data exists
 
 ## Metric  {#metric}
-Configure Aliyun - cloud monitoring. The default indicator set is as follows. You can collect more indicators by configuring them [ Aliyun CloudMonitor Metrics Details](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
+Configure Aliyun - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them [Aliyun CloudMonitor Metrics Details](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
 
 | Metric Id                | Metric Name      | Dimensions        | Statistics      | Uni     |
 | ---- | ---- | ---- | ---- | ---- |

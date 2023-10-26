@@ -4,11 +4,11 @@ summary: 'AWS MediaConvert, including data transfer, video errors, job count, pa
 __int_icon: 'icon/aws_mediaconvert'
 dashboard:
 
-  - desc: 'AWS MediaConvert 内置视图'
+  - desc: 'AWS MediaConvert Monitoring View'
     path: 'dashboard/zh/aws_mediaconvert'
 
 monitor:
-  - desc: 'AWS MediaConvert 监控器'
+  - desc: 'AWS MediaConvert Monitor'
     path: 'monitor/zh/aws_mediaconvert'
 
 ---
@@ -35,7 +35,7 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 
 > Tip：Please prepare AWS AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of AWS MediaConvert, we install the corresponding collection script：「观测云集成（AWS-MediaConvert 采集）」(ID：`guance_aws_mediaconvert`)
+To synchronize the monitoring data of AWS MediaConvert, we install the corresponding collection script：「Guance Integration（AWS-MediaConvert Collect）」(ID：`guance_aws_mediaconvert`)
 
 Click 【Install】 and enter the corresponding parameters: Aws AK, Aws account name.。
 
@@ -49,11 +49,11 @@ After this function is enabled, you can view the automatic triggering configurat
 ### Verify
 
 1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the observation cloud platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists
+2. On the Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
+3. On the Guance platform, press 「Metrics」 to check whether monitoring data exists
 
 ## Metric {#metric}
-Configure AWS MediaConvert. The default indicator set is as follows. You can collect more indicators by configuring them [Aws Cloud Monitor Metrics Details](https://docs.amazonaws.cn/mediaconvert/latest/ug/what-is.html){:target="_blank"}
+Configure AWS MediaConvert. The default metric set is as follows. You can collect more metrics by configuring them [Aws Cloud Monitor Metrics Details](https://docs.amazonaws.cn/mediaconvert/latest/ug/what-is.html){:target="_blank"}
 
 
 

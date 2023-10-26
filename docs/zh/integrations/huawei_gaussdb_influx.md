@@ -1,80 +1,80 @@
 ---
-title: 'Huawei GaussDB-Influx'
-summary: 'Use the「观测云云同步」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
+title: '华为云 GaussDB-Influx'
+summary: '华为云GaussDB-Influx的展示指标包括写入吞吐量、查询延迟、数据保留策略和可扩展性，这些指标反映了GaussDB-Influx在处理大规模时序数据存储和查询时的性能表现和可靠性。'
 __int_icon: 'icon/huawei_gaussdb_influx'
 dashboard:
 
-  - desc: 'Huawei GaussDB-Influx Built-in Dashboard'
+  - desc: '华为云 GaussDB-Influx 内置视图'
     path: 'dashboard/zh/huawei_gaussdb_influx'
 
 monitor:
-  - desc: 'Huawei GaussDB-Influx Monitor'
+  - desc: '华为云 GaussDB-Influx 监控器'
     path: 'monitor/zh/huawei_gaussdb_influx'
 
 ---
 
 
 <!-- markdownlint-disable MD025 -->
-# Huawei GaussDB-Influx
+# 华为云 GaussDB-Influx
 <!-- markdownlint-enable -->
 
-Use the「观测云云同步」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.
+华为云GaussDB-Influx的展示指标包括写入吞吐量、查询延迟、数据保留策略和可扩展性，这些指标反映了GaussDB-Influx在处理大规模时序数据存储和查询时的性能表现和可靠性。
 
 
-## Config {#config}
+## 配置 {#config}
 
-### Install Func
+### 安装 Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automate)」: All preconditions are installed automatically, Please continue with the script installation.
+推荐开通 观测云集成 - 扩展 - 托管版 Func: 一切前置条件都自动安装好, 请继续脚本安装
 
-If you deploy Func yourself, Refer to  [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
-
-
-### Installation script
-
-> Tip：Please prepare Huawei AK that meets the requirements in advance（For simplicity's sake, You can directly grant the global read-only permission`ReadOnlyAccess`）
-
-To synchronize the monitoring data of  Huawei GaussDB-Influx cloud resources, we install the corresponding collection script：「观测云集成（华为云-GaussDB-Influx采集）」(ID：`guance_huaweicloud_gaussdb_influx`)
-
-Click 【Install】 and enter the corresponding parameters: Huawei AK, Huawei account name.
-
-tap【Deploy startup Script】, The system automatically creates `Startup` script sets, And automatically configure the corresponding startup script.
-
-After the script is installed, Find the script in「Development」in Func「观测云集成（华为云-GaussDB-Influx采集）」, Expand to modify this script, find `collector_configs`and`monitor_configs`Edit the content in`region_projects`, Change the locale and Project ID to the actual locale and Project ID, Click Save Publish again.
-
-In addition, the corresponding automatic trigger configuration is displayed in「Management / Crontab Config」. tap【Run】, It can be executed immediately once, without waiting for a periodic time. After a while, you can view task execution records and corresponding logs.
-
-We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-huaweicloud-ces/){:target="_blank"}
+如果自行部署 Func 参考 [自行部署 Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 
-### Verify
+### 安装脚本
 
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the observation cloud platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists
+> 提示：请提前准备好符合要求的华为云 AK（简单起见，可直接授予全局只读权限`ReadOnlyAccess`）
 
-## Metric {#metric}
-Configure Huawei Cloud - cloud monitoring. The default indicator set is as follows. You can collect more indicators by configuring them [Huawei CloudMonitor Metrics Details](https://support.huaweicloud.com/intl/en-us/influxug-nosql/nosql_09_0036.html){:target="_blank"}
+同步华为云 DIS 的监控数据，我们安装对应的采集脚本：「观测云集成（华为云-GaussDB-Influx采集）」(ID：`guance_huaweicloud_gaussdb_influx`)
 
-| **Metric ID**                 | Metric Name               | **Description**                                           | Value Range | Monitored Object                  | Monitoring Period (Raw Data) |
+点击【安装】后，输入相应的参数：华为云 AK、华为云账户名。
+
+点击【部署启动脚本】，系统会自动创建 `Startup` 脚本集，并自动配置相应的启动脚本。
+
+脚本安装完后，在Func中「开发」里找到脚本「观测云集成（华为云-GaussDB-Influx采集）」，展开修改此脚本，找到`collector_configs`和`monitor_configs`分别编辑下面`region_projects`中的内容，将地域和Project ID,更改为实际的地域和 Project ID，再点击保存发布。
+
+此外，在「管理 / 自动触发配置」里看到对应的自动触发配置。点击【执行】，即可立即执行一次，无需等待定期时间。稍等片刻，可以查看执行任务记录以及对应日志。
+
+我们默认采集了一些配置, 具体见指标一栏 [配置自定义云对象指标](https://func.guance.com/doc/script-market-guance-huaweicloud-ces/){:target="_blank"}
+
+
+### 验证
+
+1. 在「管理 / 自动触发配置」确认对应的任务是否已存在对应的自动触发配置，同时可以查看对应任务记录及日志检查是否有异常
+2. 在观测云平台，「基础设施 / 自定义」中查看是否存在资产信息
+3. 在观测云平台，「指标」查看是否有对应监控数据
+
+## 指标 {#metric}
+配置好华为云-云监控,默认的指标集如下, 可以通过配置的方式采集更多的指标 [华为云云监控指标详情](https://support.huaweicloud.com/influxug-nosql/nosql_09_0036.html){:target="_blank"}
+
+| 指标ID                                | 指标名称             | 指标含义                                                     | 取值范围      | 测量对象 | 监控周期（原始指标）|
 | ------------------------------------- | -------------------- | ------------------------------------------------------------ | ------------- | ---------------- | ------------------------------------------------- |
-| `nosql001_cpu_usage`       | CPU Usage                 | CPU usage of the monitored system. Unit: Percent          | 0~100  | GaussDB(for Influx) instance node | 1 minute                     |
-| `nosql002_mem_usage`       | Memory Usage              | Memory usage of the monitored system. Unit: Percent       | 0–100       | GaussDB(for Influx) instance node | 1 minute                     |
-| `nosql003_bytes_out`       | Network Output Throughput | Outgoing traffic in bytes per second.  Unit: kbit/s       | ≥ 0         | GaussDB(for Influx) instance node | 1 minute                     |
-| `nosql004_bytes_in`        | Network Input Throughput  | Incoming traffic in bytes per second.  Unit: kbit/s       | ≥ 0         | GaussDB(for Influx) instance node | 1 minute                     |
-| `nosql005_disk_usage`      | Disk Usage                | Storage space usage of the monitored object.Unit: Percent | 0~100       | GaussDB(for Influx) instance node | 1 minute                     |
-| `nosql006_disk_total_size` | Total Storage Space       | Total storage space of the monitored object.  Unit: GB    | ≥ 0         | for Influx) instance node         | 1 minute                     |
-| `nosql007_disk_used_size`  | Used Storage Space        | Used storage space of the monitored object.  Unit: GB     | ≥ 0         | GaussDB(for Influx) instance node | 1 minute                     |
-| `influxdb001_series_num` | Time Series               | Total number of time series. Unit: count/s                | ≥ 0         | GaussDB(for Influx) instance node | 1 minute                     |
-| `influxdb002_query_req_ps` | Query Requests Per Second | Number of query requests per second. Unit: count/s        | ≥ 0         | GaussDB(for Influx) instance node | 1 minute                     |
-| `influxdb003_write_req_ps` | Write Requests Per Second | Number of write requests per second. Unit: count/s        | ≥ 0         | GaussDB(for Influx) instance node | 1 minute                     |
-| `influxdb004_write_points_ps` | Write Points              | Number of write points per second. Unit: count/s          | ≥ 0         | GaussDB(for Influx) instance node | 1 minute                     |
-| `influxdb005_write_concurrency` | Concurrent Write Requests | Number of concurrent write requests. Unit: count/s        | ≥ 0         | GaussDB(for Influx) instance node | 1 minute                     |
-| `influxdb006_query_concurrency` | Concurrent Queries        | Number of concurrent query requests. Unit: count/s        | ≥ 0         | GaussDB(for Influx) instance node | 1 minute                     |
+| `nosql001_cpu_usage`       | CPU利用率      | 该指标为从系统层面采集的CPU使用率。 单位：%                  | 0~100 %  | GaussDB(for Influx)实例的节点 | 1分钟                                             |
+| `nosql002_mem_usage`       | 内存利用率     | 该指标为从系统层面采集的内存使用率。 单位：%                 | 0~100 %  | GaussDB(for Influx)实例的节点 | 1分钟                |
+| `nosql003_bytes_out`       | 网络输出吞吐量 | 统计平均每秒从测量对象的所有网络适配器输出的流量。单位：kb/s | ≥ 0 kb/s | GaussDB(for Influx)实例的节点 | 1分钟                |
+| `nosql004_bytes_in`        | 网络输入吞吐量 | 统计平均每秒从测量对象的所有网络适配器输入的流量。 单位：kb/s | ≥ 0 kb/s | GaussDB(for Influx)实例的节点 | 1分钟                |
+| `nosql005_disk_usage`      | 磁盘利用率     | 该指标用于统计测量对象的磁盘利用率。 单位：%                 | 0~100 %  | GaussDB(for Influx)实例的节点 | 1分钟                |
+| `nosql006_disk_total_size` | 磁盘总大小     | 该指标用于统计测量对象的磁盘总大小。 单位：GB                | ≥ 0 GB   | GaussDB(for Influx)实例的节点 | 1分钟                |
+| `nosql007_disk_used_size`  | 磁盘使用量     | 该指标用于统计测量对象的磁盘已使用总大小。 单位：GB          | ≥ 0 GB   | GaussDB(for Influx)实例的节点 | 1分钟                |
+| `influxdb001_series_num` | 时间线数量 | 描述总的时间线数量。 单位：Counts | ≥ 0 Counts | GaussDB(for Influx)实例的节点 | 1分钟 |
+| `influxdb002_query_req_ps` | 每秒查询请求 | 描述每秒查询请求的数量。 单位：Counts/s | ≥ 0 Counts/s | GaussDB(for Influx)实例的节点 | 1分钟 |
+| `influxdb003_write_req_ps` | 每秒写入请求 | 描述每秒写入请求的数量。 单位：Counts/s | ≥ 0 Counts/s | GaussDB(for Influx)实例的节点 | 1分钟 |
+| `influxdb004_write_points_ps` | 写入数据点 | 描述每秒写入的数据点数量。 单位：Counts/s | ≥ 0 Counts/s | GaussDB(for Influx)实例的节点 | 1分钟 |
+| `influxdb005_write_concurrency` | 写入并发量 | 描述并发写入的请求数量。 单位：Counts | ≥ 0 Counts | GaussDB(for Influx)实例的节点 | 1分钟 |
+| `influxdb006_query_concurrency` | 查询并发量 | 描述并发查询的请求数量。 单位：Counts | ≥ 0 Counts | GaussDB(for Influx)实例的节点 | 1分钟 |
 
-## Object {#object}
+## 对象 {#object}
 
-The collected Huawei Cloud GaussDB-Influx  object data structure can see the object data from 「基础设施-自定义」
+采集到的华为云 GaussDB-Influx 对象数据结构, 可以从「基础设施-自定义」里看到对象数据
 
 ``` json
 {
@@ -109,14 +109,18 @@ The collected Huawei Cloud GaussDB-Influx  object data structure can see the obj
 ```
 
 
-> *notice：`tags`、`fields`The fields in this section may change with subsequent updates*
+
+> *注意：`tags`、`fields`中的字段可能会随后续更新有所变动*
 >
-> Tips 1：`tags.name`The value is the instance ID for unique identification
+> 提示 1：`tags.name`值为实例 ID，作为唯一识别
 >
-> Tips 2：The following fields are JSON serialized strings
+> 提示 2：以下字段均为 JSON 序列化后字符串
 >
 > - `fields.message`
 > - `fields.backup_strategy`
 > - `fields.datastore`
 > - `fields.groups`
 > - `fields.actions`
+
+
+

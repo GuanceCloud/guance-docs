@@ -85,11 +85,6 @@ CouchDB 采集器用于采集 CouchDB 相关的指标数据，目前只支持 Pr
       ## Exporter URLs.
       urls = ["http://127.0.0.1:17986/_node/_local/_prometheus"]
     
-      ## Stream Size. 
-      ## The source stream segmentation size.
-      ## Default 1, source stream undivided. 
-      # stream_size = 1
-    
       ## TLS configuration.
       tls_open = false
       # tls_ca = "/tmp/ca.crt"

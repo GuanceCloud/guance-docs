@@ -137,7 +137,7 @@ The collected Tencent Cloud CKafka object data structure can be viewed from "Inf
 
 ### Appendix
 
-#### TencentCloud-CKafka "Regions and Availability Zones"
+#### TencentCloud-CKafka Regions and Availability Zones
 
 Please refer to the Tencent official documentation:
 

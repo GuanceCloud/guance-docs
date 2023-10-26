@@ -291,7 +291,9 @@ nav:
     - 'Scheck': sec-checker.md
 
   - '其它采集器':
-    - eBPF: ebpf.md
+    - eBPF:
+      - ebpf.md
+      - 'eBPF Tracing': ebpftrace.md
     - Sensors: sensors.md
     - smart.md
     - ipmi.md

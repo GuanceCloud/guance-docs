@@ -1,24 +1,24 @@
 ---
-title: '华为云 DIS'
-summary: 'Use the「观测云云同步」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
+title: 'HUAWEI DIS'
+summary: 'Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
 __int_icon: 'icon/huawei_dis'
 dashboard:
 
-  - desc: '华为云 DIS 内置视图'
+  - desc: 'HUAWEI CLOUD DIS Built-in Dashboard'
     path: 'dashboard/zh/huawei_dis'
 
 monitor:
-  - desc: '华为云 DIS 监控器'
+  - desc: 'HUAWEI CLOUD DIS Monitor'
     path: 'monitor/zh/huawei_dis'
 
 ---
 
 
 <!-- markdownlint-disable MD025 -->
-# Huawei DIS
+# HUAWEI CLOUD DIS
 <!-- markdownlint-enable -->
 
-Use the「Guance Cloud Synchronization」series script package in the script market to monitor the cloud ,The data of the cloud asset is synchronized to the observation cloud。
+Use the「Guance Synchronization」series script package in the script market to monitor the cloud ,The data of the cloud asset is synchronized to the observation cloud。
 
 
 ## Config {#config}
@@ -32,15 +32,15 @@ If you deploy Func yourself,Refer to  [Self-Deployment of Func](https://func.gua
 
 ### Installation script
 
-> Tip：Please prepare Huawei AK that meets the requirements in advance（For simplicity's sake, You can directly grant the global read-only permission`ReadOnlyAccess`）
+> Tip：Please prepare HUAWEI CLOUD AK that meets the requirements in advance（For simplicity's sake, You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of  Huawei OBS cloud resources, we install the corresponding collection script：「观测云集成（华为云-DIS采集）」(ID：`guance_huaweicloud_dis`)
+To synchronize the monitoring data of  HUAWEI CLOUD OBS cloud resources, we install the corresponding collection script：「Guance Integration（HUAWEI CLOUD-DIS Collect）」(ID：`guance_huaweicloud_dis`)
 
-Click 【Install】 and enter the corresponding parameters: Huawei AK, Huawei account name.
+Click 【Install】 and enter the corresponding parameters: HUAWEI CLOUD AK, HUAWEI CLOUD account name.
 
 tap【Deploy startup Script】, The system automatically creates `Startup` script sets, And automatically configure the corresponding startup script.
 
-After the script is installed, Find the script in「Development」in Func「观测云集成（华为云-DIS采集）」, Expand to modify this script, find `collector_configs`and`monitor_configs`Edit the content in`region_projects`, Change the locale and Project ID to the actual locale and Project ID, Click Save Publish again.
+After the script is installed, Find the script in「Development」in Func「Guance Integration（HUAWEI CLOUD-DIS Collect）」, Expand to modify this script, find `collector_configs`and`monitor_configs`Edit the content in`region_projects`, Change the locale and Project ID to the actual locale and Project ID, Click Save Publish again.
 
 In addition, the corresponding automatic trigger configuration is displayed in「Management / Crontab Config」. tap【Run】, It can be executed immediately once, without waiting for a periodic time. After a while, you can view task execution records and corresponding logs.
 
@@ -54,7 +54,7 @@ We collected some configurations by default, as described in the Metrics column 
 3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists
 
 ## Metric {#metric}
-Configure Huawei Cloud - cloud monitoring. The default indicator set is as follows. You can collect more indicators by configuring them [Huawei CloudMonitor Metrics Details](https://support.huaweicloud.com/intl/en-us/usermanual-dis/dis_01_0131.html){:target="_blank"}
+Configure HUAWEI CLOUD - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them [HUAWEI CLOUD Monitor Metrics Details](https://support.huaweicloud.com/intl/en-us/usermanual-dis/dis_01_0131.html){:target="_blank"}
 
 
 | Metric Name                                | Description                                                     | Value Range      | Monitored Object | Monitoring Period (Raw Data) |
@@ -72,7 +72,7 @@ Configure Huawei Cloud - cloud monitoring. The default indicator set is as follo
 
 ## Object {#object}
 
-The collected Huawei Cloud DIS object data structure can see the object data from 「基础设施-自定义」
+The collected HUAWEI CLOUD DIS object data structure can see the object data from 「Infrastructure-Custom」
 
 
 ``` json
@@ -92,7 +92,7 @@ The collected Huawei Cloud DIS object data structure can see the object data fro
     "retention_period"   : 24,
     "auto_scale_enabled" : false,
     "create_time"        : 1691484876645,
-    "message"            : "{实例 JSON 数据}"
+    "message"            : "{Instance JSON data}"
   }
 }
 ```
@@ -102,11 +102,11 @@ Some parameters are described as follows：
 | Parameter                  | Type                   |   Description                  |
 | :------------------- | :--------------------- | :---------------------  |
 | `create_time`        | integer               |  Time when the stream is created. The value is a 13-bit timestamp. |
-| `retention_period	`  | integer               | Period for storing data in units of hours. |
-| `status	`  | str               | Current status of the stream: CREATING: creating, RUNNING: running, TERMINATING: deleting, TERMINATED: deleted. Enumeration values: CREATING, RUNNING, TERMINATING, FROZEN |
-| `stream_type	`  | str               | Stream type: COMMON: a common stream with a bandwidth of 1 MB/s, ADVANCED: an advanced stream with a bandwidth of 5 MB/s. Enumeration values: COMMON, ADVANCED |
-| `data_type	`  | str               | Source data type: BLOB: a collection of binary data stored as a single entity in a database management system, JSON: an open-standard file format that uses human-readable text to transmit data objects consisting of attribute-value pairs and array data types, CSV: a simple text format for storing tabular data in a plain text file. Commas are used as delimiters, Default value: BLOB. Enumeration values: BLOB, JSON, CSV |
-| `auto_scale_enabled		`  | bool               | Whether to enable auto scaling: true: Auto scaling is enabled, false: Auto scaling is disabled, By default, this function is disabled. Default: false |
+| `retention_period`   | integer               | Period for storing data in units of hours. |
+| `status`  | str      | Current status of the stream: CREATING: creating, RUNNING: running, TERMINATING: deleting, TERMINATED: deleted. Enumeration values: CREATING, RUNNING, TERMINATING, FROZEN |
+| `stream_type`  | str               | Stream type: COMMON: a common stream with a bandwidth of 1 MB/s, ADVANCED: an advanced stream with a bandwidth of 5 MB/s. Enumeration values: COMMON, ADVANCED |
+| `data_type`  | str               | Source data type: BLOB: a collection of binary data stored as a single entity in a database management system, JSON: an open-standard file format that uses human-readable text to transmit data objects consisting of attribute-value pairs and array data types, CSV: a simple text format for storing tabular data in a plain text file. Commas are used as delimiters, Default value: BLOB. Enumeration values: BLOB, JSON, CSV |
+| `auto_scale_enabled`  | bool               | Whether to enable auto scaling: true: Auto scaling is enabled, false: Auto scaling is disabled, By default, this function is disabled. Default: false |
 
 > *notice：`tags`、`fields`The fields in this section may change with subsequent updates*
 >

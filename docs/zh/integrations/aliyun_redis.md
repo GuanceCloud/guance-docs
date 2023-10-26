@@ -1,79 +1,79 @@
 ---
-title: 'Aliyun Redis Standard'
-summary: 'Aliyun Redis Standard Indicator display,including cpu usage, memory usage, disk read and write, network traffic, accesses per second, etc.'
+title: '阿里云 Redis 标准版'
+summary: '阿里云 Redis 标准版指标展示，包括 CPU 使用率、内存使用率、磁盘读写、网络流量、每秒访问次数等。'
 __int_icon: icon/aliyun_redis
 dashboard:
-  - desc: 'Aliyun Redis Standard Built-in Dashboard'
+  - desc: '阿里云 Redis 标准版内置视图'
     path: 'dashboard/zh/aliyun_redis/'
 monitor:
-  - desc: 'Aliyun Redis Standard Monitor'
+  - desc: '阿里云 Redis 监控器'
     path: 'monitor/zh/aliyun_redis_standard/'
 ---
 
 <!-- markdownlint-disable MD025 -->
-# Aliyun Redis Standard
+# 阿里云 Redis 标准版
 <!-- markdownlint-enable -->
 
-Aliyun Redis Standard Indicator display,including cpu usage, memory usage, disk read and write, network traffic, accesses per second, etc.
+阿里云 Redis 标准版指标展示，包括 CPU 使用率、内存使用率、磁盘读写、网络流量、每秒访问次数等。
 
 
-## config {#config}
+## 配置 {#config}
 
-### Install Func
+### 安装 Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
+推荐开通 观测云集成 - 扩展 - 托管版 Func: 一切前置条件都自动安装好, 请继续脚本安装
 
-If you deploy Func yourself,Refer to  [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
-
-
-
-### Installation script
-
-> Tip：Please prepare Aliyun AK that meets the requirements in advance (For simplicity's sake,，You can directly grant the global read-only permission `ReadOnlyAccess`)
-
-To synchronize the monitoring data of Aliyun Redis Standard resources,we install the corresponding collection script:「观测云集成（阿里云- Redis采集）」(ID：`guance_aliyun_redis`)
-
-Click 【Install】 and enter the corresponding parameters: Aliyun AK, Aliyun account name.
-
-Tap【Deploy startup Script】，The system automatically creates Startup script sets，And automatically configure the corresponding startup script.
-
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」. Click【Run】, you can immediately execute once, without waiting for a regular time. After a while, you can view task execution records and corresponding logs.
-
-We have collected some configurations by default, see the index column for details
-
-[Configure Custom Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
+如果自行部署 Func 参考 [自行部署 Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 
-### Verify
 
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On Guance platform, press 「Metrics」 to check whether monitoring data exists
+### 安装脚本
 
-## Metric {#metric}
-Configure Ali Cloud - cloud monitoring. The default indicator set is as follows. You can collect more indicators by configuring them [Alibaba Cloud Monitor Metrics Details](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
+> 提示：请提前准备好符合要求的阿里云 AK（简单起见，可直接授予全局只读权限`ReadOnlyAccess`）
+
+同步阿里云 Redis 标准版的监控数据，我们安装对应的采集脚本：观测云集成（阿里云- Redis采集）」(ID：`guance_aliyun_redis`)
+
+点击【安装】后，输入相应的参数：阿里云 AK、阿里云账户名。
+
+点击【部署启动脚本】，系统会自动创建 `Startup` 脚本集，并自动配置相应的启动脚本。
+
+此外，在「管理 / 自动触发配置」里看到对应的自动触发配置。点击【执行】，即可立即执行一次，无需等待定期时间。稍等片刻，可以查看执行任务记录以及对应日志。
+
+我们默认采集了一些配置, 具体见指标一栏
+
+[配置自定义云对象指标](https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
+
+
+### 验证
+
+1. 在「管理 / 自动触发配置」确认对应的任务是否已存在对应的自动触发配置，同时可以查看对应任务记录及日志检查是否有异常
+2. 在观测云平台，「基础设施 / 自定义」中查看是否存在资产信息
+3. 在观测云平台，「指标」查看是否有对应监控数据
+
+## 指标 {#metric}
+配置好阿里云-云监控,默认的指标集如下, 可以通过配置的方式采集更多的指标 [阿里云云监控指标详情](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
 
 | Metric Id                | Metric Name      | Dimensions        | Statistics      | Unit     |
 | ---- | ---- | ---- | ---- | ---- |
-| StandardAvgRt            | Average response time     | userId,instanceId | Average,Maximum | us       |
-| StandardBlockedClients   | Number of blocked client connections | userId,instanceId | Average,Maximum | Count    |
-| StandardConnectionUsage  | Connection usage     | userId,instanceId | Average,Maximum | %        |
-| StandardCpuUsage         | Cpu usage        | userId,instanceId | Average,Maximum | %        |
-| StandardHitRate          | Hit rate           | userId,instanceId | Average,Maximum | %        |
-| StandardIntranetIn       | Inbound traffic       | userId,instanceId | Average,Maximum | KBytes/s |
-| StandardIntranetInRatio  | Incoming bandwidth utilization   | userId,instanceId | Average,Maximum | %        |
-| StandardIntranetOut      | Outbound traffic       | userId,instanceId | Average,Maximum | KBytes/s |
-| StandardIntranetOutRatio | Outgoing bandwidth usage   | userId,instanceId | Average,Maximum | %        |
-| StandardKeys             | Number of keys in the cache  | userId,instanceId | Average,Maximum | Count    |
-| StandardMemoryUsage      | Memory usage       | userId,instanceId | Average,Maximum | %        |
-| StandardSyncDelayTime    | Multi-active synchronization delay     | userId,instanceId | Average,Maximum | seconds  |
-| StandardUsedConnection   | Used connections       | userId,instanceId | Average,Maximum | Count    |
-| StandardUsedMemory       | Used memory       | userId,instanceId | Average,Maximum | Bytes    |
-| StandardUsedQPS          | Average Used QPS | userId,instanceId | Average,Maximum | Count    |
+| StandardAvgRt            | 平均响应时间     | userId,instanceId | Average,Maximum | us       |
+| StandardBlockedClients   | 阻塞客户端连接数 | userId,instanceId | Average,Maximum | Count    |
+| StandardConnectionUsage  | 连接数使用率     | userId,instanceId | Average,Maximum | %        |
+| StandardCpuUsage         | CPU使用率        | userId,instanceId | Average,Maximum | %        |
+| StandardHitRate          | 命中率           | userId,instanceId | Average,Maximum | %        |
+| StandardIntranetIn       | 入方向流量       | userId,instanceId | Average,Maximum | KBytes/s |
+| StandardIntranetInRatio  | 流入带宽使用率   | userId,instanceId | Average,Maximum | %        |
+| StandardIntranetOut      | 出方向流量       | userId,instanceId | Average,Maximum | KBytes/s |
+| StandardIntranetOutRatio | 流出带宽使用率   | userId,instanceId | Average,Maximum | %        |
+| StandardKeys             | 缓存内 Key 数量  | userId,instanceId | Average,Maximum | Count    |
+| StandardMemoryUsage      | 内存使用率       | userId,instanceId | Average,Maximum | %        |
+| StandardSyncDelayTime    | 多活同步时延     | userId,instanceId | Average,Maximum | seconds  |
+| StandardUsedConnection   | 已用连接数       | userId,instanceId | Average,Maximum | Count    |
+| StandardUsedMemory       | 内存使用量       | userId,instanceId | Average,Maximum | Bytes    |
+| StandardUsedQPS          | 平均每秒访问次数 | userId,instanceId | Average,Maximum | Count    |
 
-## Object {#object}
+## 对象 {#object}
 
-The collected Alibaba Cloud redis  object data structure can see the object data from「基础设施-自定义」
+采集到的阿里云 redis 的对象数据结构, 可以从「基础设施-自定义」里看到对象数据
 
 ```json
 {
@@ -105,23 +105,29 @@ The collected Alibaba Cloud redis  object data structure can see the object data
 
 ```
 
-## Logging {#logging}
+## 日志 {#logging}
 
-### Longquery
+### 慢查询
 
-#### Prerequisite
+#### 前提条件
 
-> Tip：The code operation of this script depends on the collection of Redis instance objects. If the custom object collection of Redis is not configured, the slow log script cannot collect slow log data
+> 提示：本脚本的代码运行依赖 Redis 实例对象采集，如果未配置 Redis 的自定义对象采集，慢日志脚本无法采集到慢日志数据
 
-#### Installation script
+<!-- markdownlint-disable MD024 -->
 
-On the previous basis, you need to install **Redis Script for longquery log **
+#### 安装脚本
 
-Click and install the corresponding script package in [Management / Script Market]:「观测云集成（阿里云- Redis 慢查询日志采集）」(ID：`guance_aliyun_redis_slowlog`)
+<!-- markdownlint-enable -->
 
-After the data is synchronized normally, you can view the data in the [log] of Guance platform.
+在之前的基础上，需要再安装一个对应 **Redis 慢查询日志采集的脚本**
 
-An example of reported data is as follows:
+在「管理 / 脚本市场」中点击并安装对应的脚本包：
+
+- 「观测云集成（阿里云- Redis 慢查询日志采集）」(ID：`guance_aliyun_redis_slowlog`)
+
+数据正常同步后，可以在观测云的「日志」中查看数据。
+
+上报的数据示例如下：
 
 ```json
 {
@@ -155,14 +161,14 @@ An example of reported data is as follows:
 
 ```
 
-Some parameters are described as follows:
+部分参数说明如下：
 
-| Field          | Type | Description                 |
+| 字段          | 类型 | 说明                 |
 | :------------ | :--- | :------------------- |
-| `ElapsedTime` | int  | Execution time, in milliseconds |
-| `ExecuteTime` | str  | Execution start time         |
-| `IPAddress`   | str  | Client ip address     |
+| `ElapsedTime` | int  | 执行时长，单位为毫秒 |
+| `ExecuteTime` | str  | 执行开始时间         |
+| `IPAddress`   | str  | 客户端的 ip 地址     |
 
-> *Notice：The fields in `tags` and `fields` may change with subsequent updates*
+> *注意：`tags`、`fields`中的字段可能会随后续更新有所变动*
 >
-> Tip：The `fields.message` is JSON serialized string
+> 提示：`fields.message`为 JSON 序列化后字符串

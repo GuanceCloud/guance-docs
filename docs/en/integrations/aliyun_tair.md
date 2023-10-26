@@ -1,20 +1,20 @@
 ---
-title: '阿里云 Tair 标准版'
-summary: '阿里云 Tair 标准版指标展示，包括 CPU 使用率、内存使用率、磁盘读写、网络流量、每秒访问次数等。'
-__int_icon: icon/aliyun_tair
+title: 'Aliyun Tair Standard'
+summary: 'Aliyun Tair Standard Metric display,including cpu usage, memory usage, disk read and write, network traffic, accesses per second, etc.'
+__int_icon: 'icon/aliyun_tair'
 dashboard:
-  - desc: '阿里云 Tair 标准版内置视图'
+  - desc: 'Aliyun Tair Standard Built-in Dashboard'
     path: 'dashboard/zh/aliyun_tair/'
 monitor:
-  - desc: '阿里云 Tair 监控器'
+  - desc: 'Aliyun Tair Standard Monitor'
     path: 'monitor/zh/aliyun_tair/'
 ---
 
 <!-- markdownlint-disable MD025 -->
-# Aliyun Tair Standard
+# Aliyun **Tair** Standard
 <!-- markdownlint-enable -->
 
-Aliyun Tair Standard Indicator display,including cpu usage, memory usage, disk read and write, network traffic, accesses per second, etc.
+Aliyun **Tair** Standard Metric display,including cpu usage, memory usage, disk read and write, network traffic, accesses per second, etc.
 
 
 ## config {#config}
@@ -31,13 +31,13 @@ If you deploy Func yourself,Refer to  [Self-Deployment of Func](https://func.gua
 
 > Tip：Please prepare Aliyun AK that meets the requirements in advance (For simplicity's sake,，You can directly grant the global read-only permission `ReadOnlyAccess`)
 
-To synchronize the monitoring data of Aliyun Tair Standard resources,we install the corresponding collection script:「观测云集成（阿里云- Tair采集）」(ID：`startup__guance_aliyun_tair`)
+To synchronize the monitoring data of Aliyun **Tair** Standard resources,we install the corresponding collection script:「Guance Integration（Aliyun - **Tair** Collect）」(ID：`startup__guance_aliyun_tair`)
 
-Click 【Install】 and enter the corresponding parameters: Aliyun AK, Aliyun account name.
+Click "Install" and enter the corresponding parameters: Aliyun AK, Aliyun account name.
 
-Tap【Deploy startup Script】，The system automatically creates Startup script sets，And automatically configure the corresponding startup script.
+Tap "Deploy startup Script"，The system automatically creates Startup script sets，And automatically configure the corresponding startup script.
 
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」. Click【Run】, you can immediately execute once, without waiting for a regular time. After a while, you can view task execution records and corresponding logs.
+After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」. Click "Run", you can immediately execute once, without waiting for a regular time. After a while, you can view task execution records and corresponding logs.
 
 We have collected some configurations by default, see the index column for details
 
@@ -51,7 +51,7 @@ We have collected some configurations by default, see the index column for detai
 3. On Guance platform, press 「Metrics」 to check whether monitoring data exists
 
 ## Metric {#metric}
-Configure Ali Cloud - cloud monitoring. The default indicator set is as follows. You can collect more indicators by configuring them [Alibaba Cloud Monitor Metrics Details](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
+Configure Ali Cloud - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them [Aliyun Monitor Metrics Details](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
 
 | Metric Id                | Metric Name      | Dimensions        | Statistics      | Unit     |
 | ---- | ---- | ---- | ---- | ---- |
@@ -73,7 +73,7 @@ Configure Ali Cloud - cloud monitoring. The default indicator set is as follows.
 
 ## Object {#object}
 
-The collected Alibaba Cloud Tair  object data structure can see the object data from「基础设施-自定义」
+The collected Aliyun **Tair** object data structure can see the object data from「Infrastructure-Custom」
 
 ```json
 "measurement": "aliyun_acs_kvstore",
@@ -203,17 +203,18 @@ The collected Alibaba Cloud Tair  object data structure can see the object data 
 
 ## Logging {#logging}
 
-### Longquery
+### **Longquery**
 
 #### Prerequisite
 
-> Tip：The code operation of this script depends on the collection of Tair instance objects. If the custom object collection of Tair is not configured, the slow log script cannot collect slow log data
+> Tip：The code operation of this script depends on the collection of **Tair** instance objects. If the custom object collection of **Tair** is not configured, the slow log script cannot collect slow log data
 
+<!-- markdownlint-disable MD024 -->
 #### Installation script
+<!-- markdownlint-enable -->
+On the previous basis, you need to install **Tair Script for longquery log**
 
-On the previous basis, you need to install **Tair Script for longquery log **
-
-Click and install the corresponding script package in [Management / Script Market]:「观测云集成（阿里云- Tair 慢查询日志采集）」(ID：`guance_aliyun_Tair_slowlog`)
+Click and install the corresponding script package in [Management / Script Market]:「Guance Integration（Aliyun - **Tair** Slow Log Collect）」(ID：`guance_aliyun_Tair_slowlog`)
 
 After the data is synchronized normally, you can view the data in the [log] of Guance platform.
 
@@ -234,7 +235,7 @@ An example of reported data is as follows:
       "EngineVersion"   : "4.0",
       "InstanceClass"   : "Tair.master.small.default",
       "InstanceId"      : "r-bpxxxxxxxxxxxxxxx2vm",
-      "InstanceName"    : "xx3.0-xx 系统",
+      "InstanceName"    : "xx3.0-xx System",
       "NetworkType"     : "VPC",
       "Port"            : "6379",
       "PrivateIp"       : "172.xxx.xx.200",
@@ -245,7 +246,7 @@ An example of reported data is as follows:
     "Command"    : "latency:eventloop",
     "ElapsedTime": 192000,
     "ExecuteTime": "2022-07-26T03:18:36Z",
-    "message"    : "{实例 JSON 数据}"
+    "message"    : "{Instance JSON data}"
   }
 }
 

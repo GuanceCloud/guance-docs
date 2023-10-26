@@ -58,7 +58,7 @@ Already tested version:
     [[inputs.couchbase]]
       ## Collect interval, default is 30 seconds. (optional)
       # interval = "30s"
-      
+    
       ## Timeout: (defaults to "5s"). (optional)
       # timeout = "5s"
     

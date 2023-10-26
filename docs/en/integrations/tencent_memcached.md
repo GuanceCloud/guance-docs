@@ -1,14 +1,14 @@
 ---
 title: 'Tencent Cloud Memcached'
-summary: 'Use the 「Observation Cloud Synchronization」 series of script packages in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud'
+summary: 'Use the 「Guance Synchronization」 series of script packages in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud'
 __int_icon: 'icon/tencent_memcached'
 dashboard:
 
-  - desc: 'Tencent Cloud Memcached 内置视图'
+  - desc: 'Tencent Cloud Memcached Monitoring View'
     path: 'dashboard/zh/tencent_memcached'
 
 monitor:
-  - desc: 'Tencent Cloud Memcached 监控器'
+  - desc: 'Tencent Cloud Memcached Monitor'
     path: 'monitor/zh/tencent_memcached'
 
 ---
@@ -17,7 +17,7 @@ monitor:
 # Tencent Cloud Memcached
 <!-- markdownlint-enable -->
 
-Use the 「Observation Cloud Synchronization」 series of script packages in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud
+Use the 「Guance Synchronization」 series of script packages in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud
 
 ## Config {#config}
 
@@ -31,7 +31,7 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 
 > Tip：Please prepare Aliyun AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of ECS cloud resources, we install the corresponding collection script：「观测云集成（腾讯云-Memcached 采集）」(ID：`guance_tencentcloud_memcached`)
+To synchronize the monitoring data of ECS cloud resources, we install the corresponding collection script：「Guance Integration（Tencent Cloud - Memcached Collect）」(ID：`guance_tencentcloud_memcached`)
 
 Click 【Install】 and enter the corresponding parameters: Aliyun AK, Aliyun account name.。
 
@@ -51,10 +51,10 @@ We collected some configurations by default, as described in the Metrics column 
 
 ## Metric {#metric}
 
-Configure Tencent Cloud OSS monitoring. The default indicator set is as follows. You can collect more indicators by configuring them [Tencent Cloud Monitor Metrics Details](https://cloud.tencent.com/document/product/248/62458){:target="_blank"}
+Configure Tencent Cloud OSS monitoring. The default metric set is as follows. You can collect more metrics by configuring them [Tencent Cloud Monitor Metrics Details](https://cloud.tencent.com/document/product/248/62458){:target="_blank"}
 
 
-| Indicator Name  | meaning                                 |   unit  | Dimension                 |
+| Metric Name  | meaning                                 |   unit  | Dimension                 |
 |-----------------|-----------------------------------------|  ----- |--------------------|
 | `allocsize`     | Allocated capacity space                |  MBytes    | InstanceName(Instance Name) |
 | `usedsize`      | Used capacity space                     |  MBytes    |InstanceName(Instance Name)）      |

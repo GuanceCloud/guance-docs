@@ -1,14 +1,14 @@
 ---
 title: 'AWS Kinesis'
-summary: 'Use the「观测云云同步」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
+summary: 'Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.'
 __int_icon: 'icon/aws_kinesis'
 dashboard:
 
-  - desc: 'AWS Kinesis 监控视图'
+  - desc: 'AWS Kinesis Monitoring View'
     path: 'dashboard/zh/aws_kinesis'
 
 monitor:
-  - desc: 'AWS Kinesis 监控器'
+  - desc: 'AWS Kinesis Monitor'
     path: 'monitor/zh/aws_kinesis'
 
 ---
@@ -18,7 +18,7 @@ monitor:
 # AWS Kinesis
 <!-- markdownlint-enable -->
 
-Use the「Guance Cloud Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.
+Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.
 
 
 ## config {#config}
@@ -33,13 +33,13 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 
 > Tip：Please prepare AWS AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of AWS Kinesis cloud resources, we install the corresponding collection script：「观测云集成（AWS-Kinesis采集）」(ID：`guance_aws_kinesis`)
+To synchronize the monitoring data of AWS Kinesis cloud resources, we install the corresponding collection script：「Guance Integration（AWS-KinesisCollect）」(ID：`guance_aws_kinesis`)
 
 Click 【Install】 and enter the corresponding parameters: AWS AK, AWS account name.
 
 tap【Deploy startup Script】，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script。
 
-Then, in the collection script, add the collector_ Configs and cloudwatch_ Change the regions in configs to the actual regions
+Then, in the collection script, add the collector_configs and cloudwatch_change the regions in configs to the actual regions
 
 After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」。Click【Run】，you can immediately execute once, without waiting for a regular time。After a while, you can view task execution records and corresponding logs。
 
@@ -49,17 +49,17 @@ We collected some configurations by default, as described in the Metrics column 
 ### Verify
 
 1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the observation cloud platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists
+2. On the Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
+3. On the Guance platform, press 「Metrics」 to check whether monitoring data exists
 
 ## Metric {#metric}
-Configure AWS Cloud - cloud monitoring. The default indicator set is as follows. You can collect more indicators by configuring them [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/streams/latest/dev/monitoring-with-cloudwatch.html){:target="_blank"}
+Configure AWS Cloud - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/streams/latest/dev/monitoring-with-cloudwatch.html){:target="_blank"}
 
 ### Metric
 
 `AWS/Kinesis` The namespace includes the following instance metrics 。
 
-| 指标                                   | 描述                                                                                                                                                                                                                                                                                                                                                                             |
+| Metric                                   | Description                                                                                                                                                                                                                                                                                                                                                                             |
 |:-------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `IncomingBytes`                      | The number of bytes successfully put to the Kinesis stream over the specified time period. This metric includes bytes from PutRecord and PutRecords operations. Minimum, Maximum, and Average statistics represent the bytes in a single put operation for the stream in the specified time period.Shard-level metric name: IncomingBytes.Dimensions: StreamName.Units: Bytes  |
 | `IncomingRecords`                    | The number of records successfully put to the Kinesis stream over the specified time period. This metric includes record counts from PutRecord and PutRecords operations. Minimum, Maximum, and Average statistics represent the records in a single put operation for the stream in the specified time period.Shard-level metric name: IncomingRecords.Dimensions: StreamName.Units: Count      |
@@ -72,7 +72,7 @@ Configure AWS Cloud - cloud monitoring. The default indicator set is as follows.
 | `utRecords.TotalRecords`             | The total number of records sent in a PutRecords operation per Kinesis data stream, measured over the specified time period.Dimensions: StreamName.Units: Count                                                                                                                                                                                                                                                                                                                     |
 ## Object {#object}
 
-The collected AWS Kinesis object data structure, You can see the object data from「基础设施-自定义」
+The collected AWS Kinesis object data structure, You can see the object data from「Infrastructure-Custom」
 
 ```json
 {

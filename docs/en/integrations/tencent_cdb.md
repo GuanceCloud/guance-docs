@@ -33,17 +33,17 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 ### Installation script
 > Tip : Please prepare Tencent Cloud AK that meets the requirements in advance ( For simplicity's sake,You can directly grant the global read-only permission`ReadOnlyAccess`)
 
-To synchronize the monitoring data of CLB Public cloud resources, we install the corresponding collection script : 「观测云集成 ( 腾讯云-CDB采集)」(ID : `guance_tencentcloud_clb`)
+To synchronize the monitoring data of CLB Public cloud resources, we install the corresponding collection script : 「Guance Integration (Tencent Cloud - CDBCollect)」(ID : `guance_tencentcloud_clb`)
 
 Click  [ Install ]  and enter the corresponding parameters: Tencent Cloud AK, Tencent Cloud account name.
 
-tap [ Deploy startup Script ]  , The system automatically creates `Startup` script sets, And automatically configure the corresponding startup script . 
+tap [ Deploy startup Script ]  , The system automatically creates `Startup` script sets, And automatically configure the corresponding startup script.
 
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」Click [ Run ] , you can immediately execute once, without waiting for a regular time . After a while, you can view task execution records and corresponding logs . 
+After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」Click [ Run ] , you can immediately execute once, without waiting for a regular time . After a while, you can view task execution records and corresponding logs.
 
 > If you want to collect logs, you must enable the corresponding log collection script. If you want to collect bills, start the cloud bill collection script.
 
-We collected some configurations by default, as described in the Metrics column [ Configure custom cloud object metrics ](https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
+We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
 
 
 ### Verify
@@ -53,33 +53,20 @@ We collected some configurations by default, as described in the Metrics column 
 3. On the observing cloud platform, click [ Metric ] to check whether monitoring data exists
 
 ## Metric {#metric}
-Configure 「观测云集成 ( 腾讯云-CDB采集)」,The default indicator set is as follows. More indicators can be collected through configuration [TencentDB for MySQL Monitoring Metrics details](https://www.tencentcloud.com/document/product/248/11006){:target="_blank"}
+Configure 「Guance Integration ( Tencent Cloud - CDBCollect)」,The default metric set is as follows. More metrics can be collected through configuration [TencentDB for MySQL Monitoring Metrics details](https://www.tencentcloud.com/document/product/248/11006){:target="_blank"}
 
 ### Resources monitoring
-
-| Parameter     	| Metric Name	      | Description	| Unit	| Dimension	           | Statistical Period   |
-| --------------- | ------------ | ---------- | ----------- | ------| -------------------- | -------------------- |
-| `BytesReceived`	| Private network inbound traffic	| Number of bytes received per second	| B/sec	| InstanceId, InstanceType (optional)	| 5s, 60s, 300s, 3,600s, 86,400s|
-| `BytesSent`	| 	Private network outbound traffic	| Number of bytes sent per second	B/sec	InstanceId, InstanceType (optional)	5s, 60s, 300s, 3,600s, 86,400s
-| `Capacity`	| 	Disk usage	| Including the space taken up by the MySQL data directory and logs (binlog, relaylog, undolog, errorlog, and slowlog)	MB	InstanceId, InstanceType (optional)	5s, 60s, 300s, 3,600s, 86,400s
-| `CPUUseRate`	| 	CPU usage	| If overuse of idle resources is permitted, the CPU utilization may exceed 100%.	%	InstanceId, InstanceType (optional)	5s, 60s, 300s, 3,600s, 86,400s
-| `IOPS`	| 	Input/output operations per second	| Input and output operations (or number of reads/writes) per second	Times/sec	InstanceId, InstanceType (optional)	5s, 60s, 300s, 3,600s, 86,400s
-| `MemoryUse`	| 	Memory usage	| If overuse of idle resources is permitted, the memory utilization may exceed 100%.	MB	InstanceId, InstanceType (optional)	5s, 60s, 300s, 3,600s, 86,400s
-| `MemoryUseRate`	| 	Memory utilization	| If overuse of idle resources is permitted, the memory utilization may exceed 100%.	%	InstanceId, InstanceType (optional)	5s, 60s, 300s, 3,600s, 86,400s
-| `RealCapacity`	| 	Data usage	| The space taken up by the MySQL data directory, excluding that by logs (binlog, relaylog, undolog, errorlog, or slowlog)	MB	InstanceId, InstanceType (optional)	5s, 60s, 300s, 3,600s, 86,400s
-| `VolumeRate`	| 	Disk utilization	| Used disk space / purchased instance space	%	InstanceId, InstanceType (optional)	5s, 60s, 300s, 3,600s, 86,400s
-
 
 | Parameter      | Metric Name   |  Description                                                      |   Unit     |   Dimension                              |  Statistical Period                        |
 | --------------- | ------------ | ------------------------------------------------------------ | ------- | -------------------------------- | ------------------------------ |
 | `BytesReceived` | Private network inbound traffic   | Number of bytes received per second                                             | B/sec | InstanceId , InstanceType (optional) | 5s , 60s , 300s , 3600s , 86400s   |
 | `BytesSent`     | Private network outbound traffic   | Number of bytes sent per second                                             | B/sec | InstanceId , InstanceType (optional) | 5s ,  60s ,  300s , 3600s , 86400s |
-| `Capacity`      | Disk usage | Including the space taken up by the MySQL data directory and logs (binlog, relaylog, undolog, errorlog, and slowlog) | MB      | InstanceId , InstanceType (optional) | 5s ,  60s ,  300s , 3600s , 86400s |
+| `Capacity`      | Disk usage | Including the space taken up by the MySQL data directory and logs (**binlog**, **relaylog**, **undolog**, errorlog, and **slowlog**) | MB      | InstanceId , InstanceType (optional) | 5s ,  60s ,  300s , 3600s , 86400s |
 | `CpuUseRate`    | CPU usage   | If overuse of idle resources is permitted, the CPU utilization may exceed 100%.          | %       | InstanceId , InstanceType  (optional)   | 5s ,  60s ,  300s , 3600s , 86400s |
 | `IOPS`          | Input/output operations per second         | Input and output operations (or number of reads/writes) per second      | Times/sec  | InstanceId , InstanceType (optional)  | 5s ,  60s ,  300s , 3600s , 86400s |
 | `MemoryUse`     | Memory usage    | If overuse of idle resources is permitted, the memory utilization may exceed 100%.              | MB      | InstanceId , InstanceType  (optional)   | 5s ,  60s ,  300s , 3600s , 86400s |
 | `MemoryUseRate` | Memory utilization   | If overuse of idle resources is permitted, the memory utilization may exceed 100%.       | %       | InstanceId , InstanceType  (optional)   | 5s ,  60s ,  300s , 3600s , 86400s |
-| `RealCapacity`  | Data usage | The space taken up by the MySQL data directory, excluding that by logs (binlog, relaylog, undolog, errorlog, or slowlog) | MB      | InstanceId , InstanceType  (optional)   | 5s ,  60s ,  300s , 3600s , 86400s |
+| `RealCapacity`  | Data usage | The space taken up by the MySQL data directory, excluding that by logs (**binlog**, **relaylog**, **undolog**, errorlog, or **slowlog**) | MB      | InstanceId , InstanceType  (optional)   | 5s ,  60s ,  300s , 3600s , 86400s |
 | `VolumeRate`    | Disk utilization   | Used disk space / purchased instance space                      | %       | InstanceId , InstanceType  (optional)   | 5s ,  60s ,  300s , 3600s , 86400s |
 
 ### Engine (general) - MyISAM
@@ -105,7 +92,7 @@ Configure 「观测云集成 ( 腾讯云-CDB采集)」,The default indicator set
 |  Parameter           |  Metric Name      |  Description                                                      |   Unit   |   Dimension                              |  Statistical Period                      |
 | ------------------- | -------------- | ------------------------------------------------------------ | ----- | -------------------------------- | ---------------------------- |
 | `ConnectionUseRate` | Connection utilization   | Number of current connections/maximum number of connections allowed     | %     | InstanceId , InstanceType  (optional)   | 5s , 10s , 60s , 300s , 3600s    |
-| `MaxConnections`    | Maximum number of connections	   | Maximum number of connections allowed                  | Connection(s)    | InstanceId , InstanceType  (optional)   | 5s , 60s , 300s , 3600s , 86400s |
+| `MaxConnections`    | Maximum number of connections    | Maximum number of connections allowed    | Connection(s)    | InstanceId , InstanceType  (optional)   | 5s , 60s , 300s , 3600s , 86400s |
 | `Qps`               | Number of queries processed per second | Number of SQL queries processed (including the execution of the INSERT, SELECT, UPDATE, DELETE, and REPLACE statements) in the database per second. It is a metric of the actual processing capability of TencentDB instances. | Times/sec | InstanceId , InstanceType  (optional)   | 5s , 60s , 300s , 3600s , 86400s |
 | `ThreadsConnected`  | Current connections     | Number of current connections      | 个    | InstanceId , InstanceType  (optional)   | 5s , 60s , 300s , 3600s , 86400s |
 | `Tps`               | Transactions per second | Number of transactions performed in the database per second          | Transaction(s)/sec | InstanceId , InstanceType  (optional)   | 5s , 60s , 300s , 3600s , 86400s |
@@ -177,7 +164,7 @@ Configure 「观测云集成 ( 腾讯云-CDB采集)」,The default indicator set
 |  Parameter            |  Metric Name      |  Description                  |   Unit   |   Dimension                              |  Statistical Period                      |
 | -------------------- | -------------- | ------------------------ | ----- | -------------------------------- | ---------------------------- |
 | `HandlerCommit`      | Number of internal commits     | Number of transaction commits per second    | Times/sec | InstanceId , InstanceType  (optional)   | 5s , 60s , 300s , 3600s , 86400s |
-| `HandlerReadRndNext` | Number of read-next-row requests| Number of requests to read the next row per second	 | Times/sec | InstanceId , InstanceType  (optional)   | 5s , 60s , 300s , 3600s , 86400s |
+| `HandlerReadRndNext` | Number of read-next-row requests  | Number of requests to read the next row per second    | Times/sec | InstanceId , InstanceType (optional)  | 5s , 60s , 300s , 3600s , 86400s |
 | `HandlerRollback`    | Number of internal rollbacks    | Number of transaction rollbacks per second     | Times/sec | InstanceId , InstanceType  (optional)   | 5s , 60s , 300s , 3600s , 86400s |
 
 ### Engine (extended) - buffer
@@ -215,7 +202,7 @@ Configure 「观测云集成 ( 腾讯云-CDB采集)」,The default indicator set
 
 |  Parameter                 |  Metric Name    |  Description              |   Unit                                 |   Dimension                              |  Statistical Period                      |
 | ------------------------- | ------------ | -------------------- | ----------------------------------- | -------------------------------- | ---------------------------- |
-| `MasterSlaveSyncDistance` | Source-replica delay in size | Source-replica binlog delay in size | MB                                  | InstanceId , InstanceType  (optional)   | 5s , 60s , 300s , 3600s , 86400s |
+| `MasterSlaveSyncDistance` | Source-replica delay in size | Source-replica **binlog** delay in size | MB                                  | InstanceId , InstanceType  (optional)   | 5s , 60s , 300s , 3600s , 86400s |
 | `SecondsBehindMaster`     | Source-replica delay in time | Source-replica delay in time         | Sec                                  | InstanceId , InstanceType  (optional)   | 5s , 60s , 300s , 3600s , 86400s |
 | `SlaveIoRunning`          | IO thread status  | IO thread status      | Values: 0: Yes; 1: No; 2: Connecting | InstanceId , InstanceType  (optional)   | 5s , 60s , 300s , 3600s , 86400s |
 | `SlaveSqlRunning`         | SQL thread status | SQL thread status    | Values: 0: Yes; 1: No; 2: Connecting             | InstanceId , InstanceType  (optional)   | 5s , 60s , 300s , 3600s , 86400s |
@@ -250,7 +237,7 @@ The collected Tencent Cloud CDB object data structure can be seen from "Infrastr
     "Volume"      : 25,
     "DeadlineTime": "0000-00-00 00:00:00",
     "CreateTime"  : "2022-04-27 15:18:06",
-    "message"     : "{实例 JSON 数据}"
+    "message"     : "{Instance JSON data}"
   }
 }
 ```
@@ -269,11 +256,11 @@ The collected Tencent Cloud CDB object data structure can be seen from "Infrastr
 
 <!-- markdownlint-enable -->
 
-On the basis of the previous, you need to install another script ** that corresponds to the collection of **CDB slow query statistics logs**
+On the basis of the previous, you need to install another script ** that corresponds to the collection of CDB slow query statistics logs
 
 In "Script Marketplace - Official Script Market", click and install the corresponding script package:
 
-- 「观测云集成 ( 腾讯云-CDB慢查询日志采集)  」(ID : `guance_tencentcloud_cdb_slowlog`)
+- 「Guance Integration ( Tencent Cloud - CDB Slow Query Log Collect)  」(ID : `guance_tencentcloud_cdb_slowlog`)
 
 After data is synchronized, you can view the data in 'Logs' of the observation cloud.
 
@@ -313,7 +300,7 @@ The following is an example of the reported data:
       "RowsSent"    : 1,
       "SqlTemplate" : "select sleep(?);",
       "Md5"         : "26A15F1AE530F28F",
-      "message"     : "{实例 JSON 数据}"
+      "message"     : "{Instance JSON data}"
   }
 }
 ```

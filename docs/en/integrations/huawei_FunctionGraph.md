@@ -4,21 +4,21 @@ summary: 'Use the " Official Script Market " series script package in the script
 __int_icon: 'icon/huawei_functiongraph'
 dashboard:
 
-  - desc: 'HUAWEI FunctionGraph dashboard'
+  - desc: 'HUAWEI CLOUD FunctionGraph dashboard'
     path: 'dashboard/zh/huawei_functiongraph'
 
 monitor:
-  - desc: 'HUAWEI FunctionGraph monitor'
+  - desc: 'HUAWEI CLOUD FunctionGraph monitor'
     path: 'monitor/zh/huawei_functiongraph'
 
 ---
 
 
 <!-- markdownlint-disable MD025 -->
-# HUAWEI FunctionGraph
+# HUAWEI CLOUD FunctionGraph
 <!-- markdownlint-enable -->
 
-HUAWEI FunctionGraphdisplay indicators include count,failcount,rejectcount,concurrency,reservedinstancenum and so on, these metrics Indicates the operation of funtions for FuntionGraph.
+HUAWEI CLOUD FunctionGraph display metrics include count,**failcount**,**rejectcount**,concurrency,**reservedinstancenum** and so on, these metrics Indicates the operation of function for **FuntionGraph**.
 
 ## Config {#config}
 
@@ -32,19 +32,19 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 
 ### Installation script
 
-> Tip：Please prepare HUAWEI Cloud AK that meets the requirements in advance（For simplicity's sake, You can directly grant the global read-only permission for CloudWatch `ReadOnlyAccess`）
+> Tip：Please prepare HUAWEI CLOUD AK that meets the requirements in advance（For simplicity's sake, You can directly grant the global read-only permission for CloudWatch `ReadOnlyAccess`）
 
-To synchronize the monitoring data of HUAWEI FunctionGraph cloud resources, we install the corresponding collection script：「观测云集成（华为云-FunctionGraph采集）」(ID：`guance_huaweicloud_functiongraph`)
+To synchronize the monitoring data of HUAWEI CLOUD FunctionGraph cloud resources, we install the corresponding collection script：「Guance Integration（HUAWEI CLOUD-FunctionGraphCollect）」(ID：`guance_huaweicloud_functiongraph`)
 
-Click 【Install】 and enter the corresponding parameters: HUAWEI Cloud AK, HUAWEI Cloud account name.
+Click 【Install】 and enter the corresponding parameters: HUAWEI CLOUD AK, HUAWEI CLOUD account name.
 
 tap【Deploy startup Script】，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script。
 
-Then, in the collection script, add the collector_ Configs and cloudwatch_ Change the regions in configs to the actual regions
+Then, in the collection script, add the collector-Configs and cloudwatch-Change the regions in configs to the actual regions
 
 After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」。Click【Run】，you can immediately execute once, without waiting for a regular time。After a while, you can view task execution records and corresponding logs。
 
-We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics] (https://func.guance.com/doc/script-market-guance-huaweicloud-functiongraph/){:target="_blank"}
+We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-huaweicloud-functiongraph/){:target="_blank"}
 
 
 
@@ -56,7 +56,7 @@ We collected some configurations by default, as described in the Metrics column 
 
 ## Metric {#metric}
 
-Configure HUAWEI SYS.FunctionGraph. The default indicator set is as follows. You can collect more indicators by configuring them [HUAWEI Cloud CloudWatch Metrics Details](https://support.huaweicloud.com/intl/en-us/usermanual-functiongraph/functiongraph_01_0213.html){:target="_blank"}
+Configure HUAWEI SYS.FunctionGraph. The default metric set is as follows. You can collect more metrics by configuring them [HUAWEI CLOUD CloudWatch Metrics Details](https://support.huaweicloud.com/intl/en-us/usermanual-functiongraph/functiongraph_01_0213.html){:target="_blank"}
 
 | Metric ID        | Metric Name     | Description                                      | Value Range      | Monitored Object   | **Monitoring Period of Raw Data (Minute)** |
 | ---- -------- | ----------- | -------------------------------------------- | ------------- | --------- | ---------------------- |
@@ -71,7 +71,7 @@ Configure HUAWEI SYS.FunctionGraph. The default indicator set is as follows. You
 
 ## Object {#object}
 
-The collected HUAWEI SYS.FunctionGraph object data structure can be seen from the [ Infrastructure - Custom]  object data.
+The collected HUAWEI CLOUD SYS.FunctionGraph object data structure can be seen from the [ Infrastructure - Custom]  object data.
 
 ``` json
 {
@@ -94,8 +94,8 @@ The collected HUAWEI SYS.FunctionGraph object data structure can be seen from th
     "last_modified"   : "2023-07-18TXX:XX:XX+08:00",
     "memory_size"     : 128,
     "timeout"         : 3,
-    "strategy_config" : "{函数策略配置}",
-    "message"         : "{实例 JSON 数据}"
+    "strategy_config" : "{Function policy configuration}",
+    "message"         : "{Instance JSON data}"
   }
 }
 
