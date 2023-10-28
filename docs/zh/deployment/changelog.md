@@ -1,5 +1,13 @@
 # 版本历史
 
+## 1.72.141（2023 年 10 月 28 日）
+
+pubrepo.guance.com/dataflux/1.72.141:launcher-9c1d6ec-1698481094
+
+### 私有部署版更新
+
+- 修复安装程序的一些 bug
+
 ## 1.72.140（2023 年 10 月 24 日）
 
 pubrepo.guance.com/dataflux/1.72.140:launcher-b2acabc-1698160292
