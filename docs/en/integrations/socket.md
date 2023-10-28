@@ -12,8 +12,15 @@ The socket collector is used to collect UDP/TCP port information.
 
 UDP metrics require the operating system to have `nc` programs.
 
+<!-- markdownlint-disable MD046 -->
+???+ attention
+
+    The socket collector are suitable for collecting local network TCP/UDP service. For public network, [Dialtesting](dialtest.md) is recommended. If the URLs point to localhost, please turn off the election flag(`election: false`).
+<!-- markdownlint-enable -->
+
 ## Configuration {#config}
 
+<!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
     Go to the `conf.d/socket` directory under the DataKit installation directory, copy `socket.conf.sample` and name it `socket.conf`. Examples are as follows:
@@ -23,14 +30,22 @@ UDP metrics require the operating system to have `nc` programs.
     [[inputs.socket]]
       ## Support TCP/UDP.
       ## If the quantity to be detected is too large, it is recommended to open more collectors
-      dest_url = ["tcp://host:port", "udp://host:port"]
+      dest_url = [
+        "tcp://host:port",
+        "udp://host:port",
+      ]
     
       ## @param interval - number - optional - default: 30
       interval = "30s"
-      ## @param interval - number - optional - default: 10
-      udp_timeout = "10s"
+    
       ## @param interval - number - optional - default: 10
       tcp_timeout = "10s"
+    
+      ## @param interval - number - optional - default: 10
+      udp_timeout = "10s"
+    
+      ## set false to disable election
+      election = true
     
     [inputs.socket.tags]
       # some_tag = "some_value"
@@ -42,6 +57,7 @@ UDP metrics require the operating system to have `nc` programs.
 === "Kubernetes"
 
     The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+<!-- markdownlint-enable -->
 
 ## Measurements {#requrements}
 
@@ -63,18 +79,18 @@ For all of the following measurements, the `proto/dest_host/dest_port` global ta
 
 | Tag | Description |
 |  ----  | --------|
-|`dest_host`|示例 `wwww.baidu.com`|
-|`dest_port`|示例 80|
-|`proto`|示例 `tcp`|
+|`dest_host`|TCP domain or host, such as `wwww.baidu.com`, `1.2.3.4`|
+|`dest_port`|TCP port, such as `80`|
+|`proto`|Protocol, const to be `tcp`|
 
 - metric list
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`response_time`|TCP 连接时间|int|μs|
-|`response_time_with_dns`|连接时间（含 DNS 解析）|int|μs|
-|`success`|只有 1/-1 两种状态。1 表示成功/-1 表示失败|int|-|
+|`response_time`|TCP connection time(without DNS query time)|int|μs|
+|`response_time_with_dns`|TCP connection time(with DNS query time)|int|μs|
+|`success`|1: success/-1: failed|int|-|
 
 
 
@@ -85,15 +101,15 @@ For all of the following measurements, the `proto/dest_host/dest_port` global ta
 
 | Tag | Description |
 |  ----  | --------|
-|`dest_host`|目的主机的 host|
-|`dest_port`|目的主机的端口号|
-|`proto`|示例 `udp`|
+|`dest_host`|UDP host|
+|`dest_port`|UDP port|
+|`proto`|Protocol, const to be `udp`|
 
 - metric list
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`success`|只有 1/-1 两种状态。1 表示成功/-1 表示失败|int|-|
+|`success`|1: success/-1: failed|int|-|
 
 

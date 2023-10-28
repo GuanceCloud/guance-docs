@@ -1,54 +1,42 @@
 ---
-title: 'Huawei Cloud ASM link tracking to Guance'
-summary: 'The link tracking data from Huawei Cloud's ASM is exported to Guance for viewing and analysis.'
+title: 'HUAWEI ASM'
+summary: 'The link tracking data from HUAWEI CLOUD's ASM is exported to Guance for viewing and analysis.'
 __int_icon: 'icon/huawei_asm'
 ---
 
 <!-- markdownlint-disable MD025 -->
-# Huawei Cloud ASM link tracking to Guance
+# HUAWEI CLOUD ASM
 <!-- markdownlint-enable -->
 
-The link tracking data from Huawei Cloud's ASM is exported to Guance for viewing and analysis.
+The link tracking data from HUAWEI CLOUD ASM is exported to Guance for viewing and analysis.
 
 ## Config {#config}
 
 ### Preparatory work
-The prerequisite for using ASM is to have purchased a CCE (Cloud Container Engine) cluster.，Deploy the  `datakit`  [`daemonset`](https://docs.guance.com/datakit/datakit-daemonset-deploy/)。
+The prerequisite for using ASM is to have purchased a CCE (Cloud Container Engine) cluster.，Deploy the  `datakit`  [`daemonset`](https://docs.guance.com/en/datakit/datakit-daemonset-deploy/)。
 
 
 ### Creating ASM
-Service Mesh =》Purchasing a Mesh =》Basic Edition
-![img](../zh/img/huawei_asm/huawei_asm.png)
+Service Mesh -> Purchasing a Mesh -> Basic Edition
+![img](imgs/huawei_asm/huawei_asm.png)
 
-Grid name," select the "Istio" version, choose the cluster version, and the control nodes for "Istio," then submit directly.
+Grid name," select the "**Istio**" version, choose the cluster version, and the control nodes for "**Istio**", then submit directly.
 
-![img](../zh/img/huawei_asm/huawei_asm01.png)
+After approximately 1-3 minutes, the installed page will displays the running status of ASM, billing methods, and the number and status of clusters, instances, and **grayscale** tasks.
 
-After approximately 1-3 minutes, the installed page will look like this:
+After the installation is completed, create the "**bookinfo**" application.
 
-![img](../zh/img/huawei_asm/huawei_asm02.png)
+Before installation, you need to prepare a load balancer. Here, I have already prepared it. You can select it, choose port 80 for external access, and select the Docker image repository address as `docker.io/istio`. Then, proceed with the installation.
 
-After the installation is complete, create the "bookinfo" application.
+After that, it will view the created services and gateways in chart of 'service management' and 'gateway management'.
 
-![img](../zh/img/huawei_asm/huawei_asm03.png)
+Accessing the external access address (such as `http://external-access-address-ip/productpage`) to check if the service is functioning properly.
 
-Before installation, you need to prepare a load balancer. Here, I have already prepared it. You can select it, choose port 80 for external access, and select the Docker image repository address as `docker.io/istio`. Then, proceed with the installation
+![img](imgs/huawei_asm/huawei_asm07.png)
 
-![img](../zh/img/huawei_asm/huawei_asm04.png)
+### Sending trace data to the Guance
 
-View the created gateways and services
-
-![img](../zh/img/huawei_asm/huawei_asm05.png)
-
-![img](../zh/img/huawei_asm/huawei_asm06.png)
-
-Accessing `http://124.70.68.49/productpage` to check if the service is functioning properly.
-
-![img](../zh/img/huawei_asm/huawei_asm07.png)
-
-### Sending trace data to the Guance.
-
-#### Enable the OpenTelemetry collector.
+#### Enable the OpenTelemetry collector
 
 Reference[`OpenTelemetry` Documentation for Integrating the Collector](https://docs.guance.com/datakit/opentelemetry/)
 
@@ -82,15 +70,15 @@ Redeploy `datakit`
 kubectl apply -f datakit.yaml
 ```
 
-After deployment, check in the monitor to see if "opentelemetry" has been enabled.
+After deployment, check in the monitor to see if "**opentelemetry**" has been enabled.
 
 ```shell
 # kubectl exec -it -n datakit pods/datakit-lfb95 datakit monitor
 ```
 
-![img](../zh/img/huawei_asm/huawei_asm08.png)
+![img](imgs/huawei_asm/huawei_asm08.png)
 
-#### Modify the ASM output address.
+#### Modify the ASM output address
 
 To facilitate testing, first modify the sampling rate of ASM
 
@@ -123,12 +111,8 @@ traces/apm:
           exporters: [ otlp ]   #Change the output to OTLP.
 ```
 
-![img](../zh/img/huawei_asm/huawei_asm09.png)
+![img](imgs/huawei_asm/huawei_asm09.png)
 
-After configuring the changes, let's access the address `http://124.70.68.49/productpage` several times. Then, go to the Observability Cloud space to check the traces
+After configuring the changes, let's access the address `http://124.70.68.49/productpage` several times. Then, go to the Guance workspace, into the 'APM' -> 'Traces', select the host ip, and enter 'All Traces', you can check the traces.
 
-![img](../zh/img/huawei_asm/huawei_asm10.png)
-
-Click on a trace to view detailed information.
-
-![img](../zh/img/huawei_asm/huawei_asm11.png)
+Click on a trace, and point the 'Service Invocation Relation' to view detailed information.

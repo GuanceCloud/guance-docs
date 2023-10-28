@@ -68,8 +68,8 @@ Leap status     : Normal
     ```toml
         
     [[inputs.chrony]]
-      ## (Optional) Collect interval, default is 30 seconds
-      # interval = "30s"
+      ## (Optional) Collect interval, default is 10 seconds
+      # interval = "10s"
     
       ## (Optional) Exec chronyc timeout, default is 8 seconds
       # timeout = "8s"
@@ -93,6 +93,7 @@ Leap status     : Normal
     [inputs.chrony.tags]
       # some_tag = "some_value"
       # more_tag = "some_other_value"
+    
     ```
 
     配置好后，[重启 DataKit](../datakit/datakit-service-how-to.md#manage-service) 即可。

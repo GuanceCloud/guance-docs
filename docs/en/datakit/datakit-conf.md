@@ -17,7 +17,7 @@ The DataKit master configuration is used to configure the running behavior of th
 
 ## Datakit Main Configure Sample {#maincfg-example}
 
-Datakit main configure is *datakit.conf*, here is the exmaple sample(1.17.0):
+Datakit main configure is *datakit.conf*, here is the exmaple sample(1.17.1):
 
 ??? info "datakit.conf"
 
@@ -203,6 +203,13 @@ Datakit main configure is *datakit.conf*, here is the exmaple sample(1.17.0):
       enable_httptrace = false   # enable trace HTTP metrics(connection/NDS/TLS and so on)
       idle_timeout     = "90s"   # not-set, default 90s
     
+      # HTTP body content type, other candidates are(case insensitive):
+      #  - v1: line-protocol
+      #  - v2: protobuf
+      content_encoding = "v1"
+    
+      max_raw_body_size = 10485760 # max body size(before gizp) in bytes
+    
       # Customer tag or field keys that will extract from exist points
       # to build the X-Global-Tags HTTP header value.
       global_customer_keys = []
@@ -271,7 +278,7 @@ Datakit main configure is *datakit.conf*, here is the exmaple sample(1.17.0):
     ################################################
     [resource_limit]
     
-      # enable or disable resource limit 
+      # enable or disable resource limit
       enable = true
     
       # Linux only, cgroup path
@@ -520,6 +527,22 @@ $ systemctl status datakit
 ### Election Configuration {#election}
 
 See [here](election.md#config)
+
+### Dataway Settings {#dataway-settings}
+
+Dataway got following settings to be configured:
+
+- `timeout`: The timeout for request data to Dataway. The default value is 30s
+- `max_retry_count`: Sets the number of retries to request Dataway (4 by default) [:octicons-tag-24: Version-1.17.0](changelog.md#cl-1.17.0)
+- `retry_delay` : Set the basic step of the retry interval. The default value is 200ms. The so-called basic step is 200ms for the first time, 400ms for the second time, 800ms for the third time, and so on (in increments of $2^n$) [:octicons-tag-24: Version-1.17.0](changelog.md#cl-1.17.0)
+- `max_raw_body_size`: Set the maximum size of a single uploaded package (before compression), in bytes [:octicons-tag-24: Version-1.17.1](changelog.md#cl-1.17.1)
+
+<!-- 
+- `content_encoding` : v1 or v2 can be selected [:octicons-tag-24: Version-1.17.1](Changelog.md #cl-1.17.1)
+    - v1 is line-protocol (default: v1)
+    - v2 is the Protobuf protocol. Compared with v1, it has better performance in all aspects -->
+
+See [here](datakit-daemonset-deploy.m #env-dataway) for configuration under Kubernetes.
 
 ### Dataway Sinker {#dataway-sink}
 

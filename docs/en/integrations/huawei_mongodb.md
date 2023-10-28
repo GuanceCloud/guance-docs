@@ -1,22 +1,22 @@
 ---
-title: 'Huawei MongoDB'
-summary: 'Use the「Guance Cloud Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
+title: 'HUAWEI MongoDB'
+summary: 'Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
 __int_icon: 'icon/huawei_mongodb'
 dashboard:
-  - desc: '华为云 MongoDB 内置视图'
+  - desc: 'HUAWEI CLOUD MongoDB Monitoring View'
     path: 'dashboard/zh/huawei_mongodb/'
 
 monitor:
-  - desc: '华为云 MongoDB 监控器'
+  - desc: 'HUAWEI CLOUD MongoDB Monitor'
     path: 'monitor/zh/huawei_mongodb/'
 ---
 
 
 <!-- markdownlint-disable MD025 -->
-# Huawei MongoDB
+# HUAWEI CLOUD MongoDB
 <!-- markdownlint-enable -->
 
-Use the「Guance Cloud Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.
+Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.
 
 ## Config {#config}
 
@@ -30,11 +30,11 @@ If you deploy Func yourself,Refer to  [Self-Deployment of Func](https://func.gua
 
 ### Installation script
 
-> Tip：Please prepare Huawei AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
+> Tip：Please prepare HUAWEI CLOUD AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of  Huawei MongoDB cloud resources, we install the corresponding collection script：「观测云集成（华为云-MongoDB）」(ID：guance_huaweicloud_gaussdb_mongo)
+To synchronize the monitoring data of  HUAWEI CLOUD MongoDB cloud resources, we install the corresponding collection script：「Guance Integration（HUAWEI CLOUD-MongoDB）」(ID：guance_huaweicloud_gaussdb_mongo)
 
-Click 【Install】 and enter the corresponding parameters: Huawei AK, Huawei account name.
+Click 【Install】 and enter the corresponding parameters: HUAWEI CLOUD AK, HUAWEI CLOUD account name.
 
 tap【Deploy startup Script】，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script。
 
@@ -53,7 +53,7 @@ We collected some configurations by default, as described in the Metrics column
 3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists
 
 ## Metric {#metric}
-Configure Huawei Cloud - cloud monitoring. The default indicator set is as follows. You can collect more indicators by configuring them  [Huawei CloudMonitor Metrics Details](https://support.huaweicloud.com/mongoug-nosql/nosql_08_0106.html){:target="_blank"}
+Configure HUAWEI CLOUD - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them  [HUAWEI CLOUD Monitor Metrics Details](https://support.huaweicloud.com/mongoug-nosql/nosql_08_0106.html){:target="_blank"}
 
 | **MetricID**            |          **Metric Name**   | **Metric Meaning** | **Value Range**      | **Measured Object** | **Monitoring Period (Raw Metric)** |
 | ---- | :----: | ------ | ------ | ---- | ---- |
@@ -61,9 +61,9 @@ Configure Huawei Cloud - cloud monitoring. The default indicator set is as follo
 | nosql002_mem_usage            |      Memory Utilization      | This metric represents the memory utilization collected from the system level. Unit：% | 0~100 %      | GaussDB(for Mongo) Nodes of the instance | 1Minutes               |
 | nosql003_bytes_out            |    Network Out Throughput    | This metric calculates the average amount of network traffic output from all network adapters of the measurement object per second. Unit：bytes/s | ≥ 0 bytes/s  | GaussDB(for Mongo) Nodes of the instance | 1Minutes               |
 | nosql004_bytes_in             |    Network In Throughput    | This metric calculates the average amount of network traffic input into all network adapters of the measurement object per second. Unit：bytes/s | ≥ 0 bytes/s  | GaussDB(for Mongo) Nodes of the instance | 1Minutes               |
-| nosql005_disk_usage           |      Disk Utilization      | This metric is used to measure the disk utilization of the measurement object. Unit：% | 0~100 %      | GaussDB(for Mongo)实例       | 1Minutes               |
-| nosql006_disk_total_size      |      Total Disk Size      | This metric is used to measure the total disk size of the measurement object. Unit：GB | ≥ 0 GB       | GaussDB(for Mongo)实例       | 1Minutes               |
-| nosql007_disk_used_size       |      Disk Usage      | This metric is used to measure the total used disk size of the measurement object. Unit：GB | ≥ 0 GB       | GaussDB(for Mongo)实例       | 1Minutes               |
+| nosql005_disk_usage           |      Disk Utilization      | This metric is used to measure the disk utilization of the measurement object. Unit：% | 0~100 %      | GaussDB(for Mongo)Instance       | 1Minutes               |
+| nosql006_disk_total_size      |      Total Disk Size      | This metric is used to measure the total disk size of the measurement object. Unit：GB | ≥ 0 GB       | GaussDB(for Mongo)Instance       | 1Minutes               |
+| nosql007_disk_used_size       |      Disk Usage      | This metric is used to measure the total used disk size of the measurement object. Unit：GB | ≥ 0 GB       | GaussDB(for Mongo)Instance       | 1Minutes               |
 | mongodb001_command_ps         |   command Execution Frequency   | This metric is used to measure the average number of command statements executed per second on the node. Unit：Counts/s | ≥ 0 Counts/s | GaussDB(for Mongo) Nodes of the instance | 1Minutes               |
 | mongodb002_delete_ps          |  delete Statement Execution Frequency  | This metric is used to measure the average number of "DELETE" statements executed per second on the node. Unit：Counts/s | ≥ 0 Counts/s | GaussDB(for Mongo) Nodes of the instance | 1Minutes               |
 | mongodb003_insert_ps          |  insert Statement Execution Frequency  | This metric is used to measure the average number of "INSERT" statements executed per second on the node. Unit：Counts/s | ≥ 0 Counts/s | GaussDB(for Mongo) Nodes of the instance | 1Minutes               |
@@ -88,7 +88,7 @@ Configure Huawei Cloud - cloud monitoring. The default indicator set is as follo
 
 ## Object {#object}
 
-The collected Huawei Cloud ELB object data structure can see the object data from 「Infrastructure-custom-defined」
+The collected HUAWEI CLOUD ELB object data structure can see the object data from 「Infrastructure-custom-defined」
 
 ```json
 {
@@ -112,11 +112,11 @@ The collected Huawei Cloud ELB object data structure can see the object data fro
     "actions"         : "[]",
     "create_time"     : "2023-08-01T14:17:40+0800",
     "update_time"     : "2023-08-01T14:17:42+0800",
-    "backup_strategy" : "{实例 JSON 数据}",
-    "datastore"       : "{实例 JSON 数据}",
-    "groups"          : "[{实例 JSON 数据}]",
+    "backup_strategy" : "{Instance JSON data}",
+    "datastore"       : "{Instance JSON data}",
+    "groups"          : "[{Instance JSON data}]",
     "time_zone"       : "",
-    "message"         : "{实例 JSON 数据}"
+    "message"         : "{Instance JSON data}"
   }
 }
 ```

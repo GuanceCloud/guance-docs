@@ -1,14 +1,12 @@
 ---
 title: 'AWS Redshift'
-summary: 'Use the「观测云云同步」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
+summary: 'Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance .'
 __int_icon: 'icon/aws_redshift'
 dashboard:
-
-  - desc: 'AWS Redshift 内置视图'
+  - desc: 'AWS Redshift Dashboard'
     path: 'dashboard/zh/aws_redshift'
-
 monitor:
-  - desc: 'AWS Redshift 监控器'
+  - desc: 'AWS Redshift Monitor'
     path: 'monitor/zh/aws_redshift'
 
 ---
@@ -18,8 +16,8 @@ monitor:
 # AWS Redshift
 <!-- markdownlint-enable -->
 
+Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance .
 
-Use the「观测云云同步」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.
 
 
 ## Config {#config}
@@ -30,13 +28,11 @@ Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All
 
 If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
-
-
 ### Installation script
 
 > Tip：Please prepare AWS AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of EC2 cloud resources, we install the corresponding collection script：「观测云集成（AWS EC2采集）」(ID：`guance_aws_ec2`)
+To synchronize the monitoring data of EC2 cloud resources, we install the corresponding collection script：「Guance Integration（AWS EC2 Collect）」(ID：`guance_aws_ec2`)
 
 Click 【Install】 and enter the corresponding parameters: AWS AK, AWS account name.
 
@@ -44,19 +40,17 @@ tap【Deploy startup Script】，The system automatically creates `Startup` scri
 
 After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」。Click【Run】，you can immediately execute once, without waiting for a regular time。After a while, you can view task execution records and corresponding logs.
 
-
-
 We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
 
 
 ### Verify
 
 1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the observation cloud platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists
+2. On the Guance  platform, click 「Infrastructure / Custom」 to check whether asset information exists
+3. On the Guance  platform, press 「Metrics」 to check whether monitoring data exists
 
 ## Metric {#metric}
-Configure AWS Cloud - cloud monitoring. The default indicator set is as follows. You can collect more indicators by configuring them [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/zh_cn/redshift/latest/mgmt/metrics-listing.html){:target="_blank"}
+Configure AWS Cloud - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/zh_cn/redshift/latest/mgmt/metrics-listing.html){:target="_blank"}
 
 ### Redshift Metric
 
@@ -64,7 +58,7 @@ Configure AWS Cloud - cloud monitoring. The default indicator set is as follows.
 | :---: | :---: | :---: | :---: |
 | CPUUtilization | CPU Utilization Percentage. For clusters, this metric represents the sum of the CPU utilization values of all nodes (leader and compute nodes) | % | ClusterIdentifier |
 | HealthStatus | Operational status check of the cluster | 1: healthy or 0: unhealthy | ClusterIdentifier |
-| MaintenanceMode	 | Whether the cluster is in maintenance mode | 1：ON or 0：OFF | ClusterIdentifier |
+| MaintenanceMode  | Whether the cluster is in maintenance mode | 1：ON or 0：OFF | ClusterIdentifier |
 | PercentageDiskSpaceUsed | Percentage of used disk space | % | ClusterIdentifier |
 | DatabaseConnections | Number of database connections in the cluster | count | ClusterIdentifier |
 | CommitQueueLength | Number of transactions waiting to commit at a given point in time | count | ClusterIdentifier |
@@ -84,7 +78,8 @@ Configure AWS Cloud - cloud monitoring. The default indicator set is as follows.
 
 ## Object {#object}
 
-The collected AWS Redshift object data structure can see the object data from 「基础设施-自定义」
+The collected AWS Redshift object data structure can see the object data from 「Infrastructure - Customization」
+
 
 ```json
 {
@@ -116,7 +111,7 @@ The collected AWS Redshift object data structure can see the object data from �
     "PendingModifiedValues"             : "{\"MasterUserPassword\": \"****\"}",
     "PubliclyAccessible"                : false,
     "VpcSecurityGroups"                 : "[{\"Status\": \"active\", \"VpcSecurityGroupId\": \"sg-467a\"}]",
-    "message"                           : "{实例 JSON 数据}"
+    "message"                           : "{Instance JSON data}"
   }
 }
 

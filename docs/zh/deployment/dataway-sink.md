@@ -466,7 +466,7 @@ Datakit 内置了以下几个可用的自定义 Key，它们一般不会出现�
 
 - `source` 针对日志（L）、eBPF 网络指标（N）、事件（E）以及 RUM 数据
 - `service` 针对 Tracing、Scheck 以及 Profiling
-- `category` 针对所有[常规数据分类](apis.md#category)，其取值为对应数据分类的「名称」列（如时序是 `metric`，对象为 `object` 等）。以日志为例，我们可以这样来单独针对日志做分流规则：
+- `category` 针对所有[常规数据分类](../datakit/apis.md#category)，其取值为对应数据分类的「名称」列（如时序是 `metric`，对象为 `object` 等）。以日志为例，我们可以这样来单独针对日志做分流规则：
 
 ``` json
 {

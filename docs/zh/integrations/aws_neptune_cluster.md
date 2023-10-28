@@ -1,6 +1,6 @@
 ---
 title: 'AWS Neptune Cluster'
-summary: '使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云'
+summary: 'AWS Neptune Cluster的展示指标包括冷启动时间、执行时间、并发执行数和内存使用量，这些指标反映了Neptune Cluster函数的响应速度、可扩展性和资源利用情况。'
 __int_icon: 'icon/aws_neptune_cluster'
 
 dashboard:

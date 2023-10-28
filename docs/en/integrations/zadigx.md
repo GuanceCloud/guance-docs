@@ -36,9 +36,9 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 
 > Note: Please prepare a Zadigx API Token that meets the requirements in advance.
 
-To synchronize Zadigx monitoring data, we need to install the corresponding collection script:「观测云集成（Zadig 数据采集）」(ID：`guance_zadig`)
+To synchronize Zadigx monitoring data, we need to install the corresponding collection script:「Guance Integration（**Zadig** dataCollect）」(ID：`guance_zadig`)
 
-Click "Install" and modify the `private_token` in the created "start up" collection script for zadigx to your API Token.
+Click "Install" and modify the `private_token` in the created "start up" collection script for **zadigx** to your API Token.
 
 You can see the corresponding auto-trigger configuration in "Management / Auto-trigger Configuration" after you turn it on. Click "Execute" to execute the task immediately without waiting for the regular time. Wait for a while, you can check the record and log of the executed task.
 
@@ -51,12 +51,12 @@ We have collected some default configurations. Please refer to the metric for de
 ### Verify
 
 1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist.
-3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists.
+2. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists.
 
 ## Metric {#metric}
-After configuring Zadigx monitoring, the default set of indicators is as follows:
+After configuring Zadigx monitoring, the default set of metrics is as follows:
 
-| **Indicator** |        **Indicator Name**        | **Unit** |
+| **Metric** |        **Metric Name**        | **Unit** |
 | ---- | :----: | ---- |
 | `zadig_overview_project_count` | `Number of Projects`     | `Count` |
 | `zadig_overview_cluster_count` |     `Number of Clusters`     | `Count` |

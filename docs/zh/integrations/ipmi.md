@@ -175,6 +175,7 @@ Temp             | 0Fh | ok  |  3.2 | 45 degrees C
     [inputs.ipmi.tags]
       # some_tag = "some_value"
       # more_tag = "some_other_value"
+    
     ```
 
     配置好后，重启 DataKit 即可。

@@ -1,24 +1,24 @@
 ---
-title: '华为云 GaussDB-Influx'
-summary: 'Use the「观测云云同步」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
-__int_icon: 'icon/huawei_gaussdb_influx'
+title: 'HUAWEI GaussDB-Influx'
+summary: 'Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
+__int_icon: 'icon/HUAWEI CLOUD_gaussdb_influx'
 dashboard:
 
-  - desc: '华为云 GaussDB-Influx 内置视图'
-    path: 'dashboard/zh/huawei_gaussdb_influx'
+  - desc: 'HUAWEI CLOUD GaussDB-Influx Dashboard'
+    path: 'dashboard/zh/HUAWEI CLOUD_gaussdb_influx'
 
 monitor:
-  - desc: '华为云 GaussDB-Influx 监控器'
-    path: 'monitor/zh/huawei_gaussdb_influx'
+  - desc: 'HUAWEI CLOUD GaussDB-Influx Monitor'
+    path: 'monitor/zh/HUAWEI CLOUD_gaussdb_influx'
 
 ---
 
 
 <!-- markdownlint-disable MD025 -->
-# Huawei GaussDB-Influx
+# HUAWEI CLOUD GaussDB-Influx
 <!-- markdownlint-enable -->
 
-Use the「观测云云同步」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.
+Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.
 
 
 ## Config {#config}
@@ -32,15 +32,15 @@ If you deploy Func yourself, Refer to  [Self-Deployment of Func](https://func.gu
 
 ### Installation script
 
-> Tip：Please prepare Huawei AK that meets the requirements in advance（For simplicity's sake, You can directly grant the global read-only permission`ReadOnlyAccess`）
+> Tip：Please prepare HUAWEI CLOUD AK that meets the requirements in advance（For simplicity's sake, You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of  Huawei GaussDB-Influx cloud resources, we install the corresponding collection script：「观测云集成（华为云-GaussDB-Influx采集）」(ID：`guance_huaweicloud_gaussdb_influx`)
+To synchronize the monitoring data of  HUAWEI CLOUD GaussDB-Influx cloud resources, we install the corresponding collection script：「Guance Integration（HUAWEI CLOUD-GaussDB-Influx Collect）」(ID：`guance_HUAWEI CLOUDcloud_gaussdb_influx`)
 
-Click 【Install】 and enter the corresponding parameters: Huawei AK, Huawei account name.
+Click 【Install】 and enter the corresponding parameters: HUAWEI CLOUD AK, HUAWEI CLOUD account name.
 
 tap【Deploy startup Script】, The system automatically creates `Startup` script sets, And automatically configure the corresponding startup script.
 
-After the script is installed, Find the script in「Development」in Func「观测云集成（华为云-GaussDB-Influx采集）」, Expand to modify this script, find `collector_configs`and`monitor_configs`Edit the content in`region_projects`, Change the locale and Project ID to the actual locale and Project ID, Click Save Publish again.
+After the script is installed, Find the script in「Development」in Func「Guance Integration（HUAWEI CLOUD-GaussDB-InfluxCollect）」, Expand to modify this script, find `collector_configs`and`monitor_configs`Edit the content in`region_projects`, Change the locale and Project ID to the actual locale and Project ID, Click Save Publish again.
 
 In addition, the corresponding automatic trigger configuration is displayed in「Management / Crontab Config」. tap【Run】, It can be executed immediately once, without waiting for a periodic time. After a while, you can view task execution records and corresponding logs.
 
@@ -54,14 +54,14 @@ We collected some configurations by default, as described in the Metrics column 
 3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists
 
 ## Metric {#metric}
-Configure Huawei Cloud - cloud monitoring. The default indicator set is as follows. You can collect more indicators by configuring them [Huawei CloudMonitor Metrics Details](https://support.huaweicloud.com/intl/en-us/influxug-nosql/nosql_09_0036.html){:target="_blank"}
+Configure HUAWEI CLOUD - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them [HUAWEI CLOUD Monitor Metrics Details](https://support.huaweicloud.com/intl/en-us/influxug-nosql/nosql_09_0036.html){:target="_blank"}
 
 | **Metric ID**                 | Metric Name               | **Description**                                           | Value Range | Monitored Object                  | Monitoring Period (Raw Data) |
 | ------------------------------------- | -------------------- | ------------------------------------------------------------ | ------------- | ---------------- | ------------------------------------------------- |
 | `nosql001_cpu_usage`       | CPU Usage                 | CPU usage of the monitored system. Unit: Percent          | 0~100  | GaussDB(for Influx) instance node | 1 minute                     |
 | `nosql002_mem_usage`       | Memory Usage              | Memory usage of the monitored system. Unit: Percent       | 0–100       | GaussDB(for Influx) instance node | 1 minute                     |
-| `nosql003_bytes_out`       | Network Output Throughput | Outgoing traffic in bytes per second.  Unit: kbit/s       | ≥ 0         | GaussDB(for Influx) instance node | 1 minute                     |
-| `nosql004_bytes_in`        | Network Input Throughput  | Incoming traffic in bytes per second.  Unit: kbit/s       | ≥ 0         | GaussDB(for Influx) instance node | 1 minute                     |
+| `nosql003_bytes_out`       | Network Output Throughput | Outgoing traffic in bytes per second.  Unit: **kbit/s**       | ≥ 0         | GaussDB(for Influx) instance node | 1 minute                     |
+| `nosql004_bytes_in`        | Network Input Throughput  | Incoming traffic in bytes per second.  Unit: **kbit/s**       | ≥ 0         | GaussDB(for Influx) instance node | 1 minute                     |
 | `nosql005_disk_usage`      | Disk Usage                | Storage space usage of the monitored object.Unit: Percent | 0~100       | GaussDB(for Influx) instance node | 1 minute                     |
 | `nosql006_disk_total_size` | Total Storage Space       | Total storage space of the monitored object.  Unit: GB    | ≥ 0         | for Influx) instance node         | 1 minute                     |
 | `nosql007_disk_used_size`  | Used Storage Space        | Used storage space of the monitored object.  Unit: GB     | ≥ 0         | GaussDB(for Influx) instance node | 1 minute                     |
@@ -74,11 +74,11 @@ Configure Huawei Cloud - cloud monitoring. The default indicator set is as follo
 
 ## Object {#object}
 
-The collected Huawei Cloud GaussDB-Influx  object data structure can see the object data from 「基础设施-自定义」
+The collected HUAWEI CLOUD GaussDB-Influx  object data structure can see the object data from 「Infrastructure-Custom」
 
 ``` json
 {
-  "measurement": "huaweicloud_gaussdb_nosql",
+  "measurement": "HUAWEI CLOUDcloud_gaussdb_nosql",
   "tags": {
     "RegionId"          : "cn-north-4",
     "db_user_name"      : "rwuser",
@@ -98,11 +98,11 @@ The collected Huawei Cloud GaussDB-Influx  object data structure can see the obj
     "actions"         : "[]",
     "create_time"     : "2023-08-01T14:17:40+0800",
     "update_time"     : "2023-08-01T14:17:42+0800",
-    "backup_strategy" : "{实例 JSON 数据}",
-    "datastore"       : "{实例 JSON 数据}",
-    "groups"          : "[{实例 JSON 数据}]",
+    "backup_strategy" : "{Instance JSON data}",
+    "datastore"       : "{Instance JSON data}",
+    "groups"          : "[{Instance JSON data}]",
     "time_zone"       : "",
-    "message"         : "{实例 JSON 数据}"
+    "message"         : "{Instance JSON data}"
   }
 }
 

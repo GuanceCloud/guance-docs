@@ -1,14 +1,14 @@
 ---
 title: 'AWS DocumentDB'
-summary: 'Use the「Guance Cloud Synchronization」series script package in the script market to monitor the cloud ,The data of the cloud asset is synchronized to the observation cloud。'
+summary: 'Use the「Guance  Synchronization」series script package in the script market to monitor the cloud ,The data of the cloud asset is synchronized to the Guance。'
 __int_icon: 'icon/aws_documentdb'
 dashboard:
 
-  - desc: 'AWS DocumentDB 内置视图'
+  - desc: 'AWS DocumentDB Monitoring View'
     path: 'dashboard/zh/aws_documentdb'
 
 monitor:
-  - desc: 'AWS DocumentDB 监控器'
+  - desc: 'AWS DocumentDB Monitor'
     path: 'monitor/zh/aws_documentdb'
 
 ---
@@ -18,7 +18,7 @@ monitor:
 # AWS DocumentDB
 <!-- markdownlint-enable -->
 
-Use the「Guance Cloud Synchronization」series script package in the script market to monitor the cloud ,The data of the cloud asset is synchronized to the observation cloud。
+Use the「Guance  Synchronization」series script package in the script market to monitor the cloud ,The data of the cloud asset is synchronized to the Guance。
 
 
 ## config {#config}
@@ -33,7 +33,7 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 
 > Tip：Please prepare AWS AK that meets the requirements in advance（For simplicity's sake, You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of DocumentDB cloud resources, we install the corresponding collection script：「观测云集成（AWS-RDS采集）」(ID：`guance_aws_documentdb`)
+To synchronize the monitoring data of DocumentDB cloud resources, we install the corresponding collection script：「Guance Integration（AWS-RDSCollect）」(ID：`guance_aws_documentdb`)
 
 Click 【Install】 and enter the corresponding parameters: AWS AK, AWS account name.
 
@@ -81,7 +81,7 @@ After configuring Amazon CloudWatch - cloud monitoring, the default set of metri
 | `OpcountersQuery` | The number of queries issued in a one-minute period.         |
 | `OpcountersCommand` | The number of commands issued in a one-minute period.        |
 | `OpcountersDelete` | The number of delete operations issued in a one-minute period. |
-| `OpcountersGetmore` | The number of getmores issued in a one-minute period.        |
+| `OpcountersGetmore` | The number of get mores issued in a one-minute period.        |
 | `OpcountersInsert` | The number of insert operations issued in a one-minute period. |
 | `OpcountersUpdate` | The number of updated documents in a one-minute period.      |
 | `DocumentsDeleted` | The number of deleted documents in a one-minute period.      |
@@ -89,7 +89,7 @@ After configuring Amazon CloudWatch - cloud monitoring, the default set of metri
 | `DocumentsReturned` | The number of returned documents in a one-minute period.     |
 | `DocumentsUpdated` | The number of updated documents in a one-minute period.      |
 | `TTLDeletedDocuments` | The number of documents deleted by a TTLMonitor in a one-minute period. |
-| `IndexBufferCacheHitRatio` | The percentage of index requests that are served by the buffer cache. You might see a spike greather than 100% for the metric right after you drop an index, collection or database. This will automatically be corrected after 60 seconds. This limitation will be fixed in a future patch update. |
+| `IndexBufferCacheHitRatio` | The percentage of index requests that are served by the buffer cache. You might see a spike greater than 100% for the metric right after you drop an index, collection or database. This will automatically be corrected after 60 seconds. This limitation will be fixed in a future patch update. |
 | `BufferCacheHitRatio` | The percentage of requests that are served by the buffer cache. |
 | `DiskQueueDepth` | the number of concurrent write requests to the distributed storage volume. |
 | `EngineUptime` | The amount of time, in seconds, that the instance has been running. |
@@ -125,7 +125,7 @@ The collected AWS DocumentDB object data structure can be viewed in "Infrastruct
     "PubliclyAccessible": "False",
     "StatusInfos": "{}",
     "VpcSecurityGroups": "[{\"Status\": \"active\", \"VpcSecurityGroupId\": \"sg-08895f59\"}]",
-    "message": "{实例 json 信息}"
+    "message": "{Instance json 信息}"
   }
 }
 

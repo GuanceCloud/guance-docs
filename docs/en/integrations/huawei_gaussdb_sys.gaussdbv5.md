@@ -1,24 +1,24 @@
 ---
 title: 'HUAWEI GaussDB SYS.GAUSSDBV5'
-summary: 'Use the「观测云云同步」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
+summary: 'Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
 __int_icon: 'icon/huawei_gaussdb_sys.gaussdbv5'
 dashboard:
 
-  - desc: 'HUAWEI GaussDB SYS.GAUSSDBV5'
+  - desc: 'HUAWEI CLOUD GaussDB SYS.GAUSSDBV5'
     path: 'dashboard/zh/huawei_gaussdb_sys.gaussdbv5'
 
 monitor:
-  - desc: 'HUAWEI GaussDB SYS.GAUSSDBV5'
+  - desc: 'HUAWEI CLOUD GaussDB SYS.GAUSSDBV5'
     path: 'monitor/zh/huawei_gaussdb_sys.gaussdbv5'
 
 ---
 
 
 <!-- markdownlint-disable MD025 -->
-# HUAWEI GaussDB SYS.GAUSSDBV5
+# HUAWEI CLOUD GaussDB **SYS.GAUSSDBV5**
 <!-- markdownlint-enable -->
 
-HUAWEI  GaussDB SYS.GAUSSDBV5 includes metrics such as CPU, memory, disk, deadlock, and SQL response time indicators.
+HUAWEI CLOUD GaussDB **SYS.GAUSSDBV5** includes metrics such as CPU, memory, disk, deadlock, and SQL response time metrics.
 
 
 ## Config {#config}
@@ -33,11 +33,11 @@ If you deploy Func yourself,Refer to  [Self-Deployment of Func](https://func.gua
 
 ### Installation script
 
-> Tip：Please prepare Huawei AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
+> Tip：Please prepare HUAWEI CLOUD AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of  HUAWEI GaussDB SYS.GAUSSDBV5, we install the corresponding collection script：「观测云集成（华为云- GaussDB 采集）」(ID：`guance_huaweicloud_gaussdb`)
+To synchronize the monitoring data of  HUAWEI CLOUD GaussDB **SYS.GAUSSDBV5**, we install the corresponding collection script：「Guance Integration（HUAWEI CLOUD- GaussDB Collect）」(ID：`guance_huaweicloud_gaussdb`)
 
-Click 【Install】 and enter the corresponding parameters: Huawei AK, Huawei account name.。
+Click 【Install】 and enter the corresponding parameters: HUAWEI CLOUD AK, HUAWEI CLOUD account name.。
 
 tap【Deploy startup Script】，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script。
 
@@ -52,9 +52,9 @@ We collected some configurations by default, as described in the Metrics column 
 3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists
 
 ## Metric {#metric}
-Configure GaussDB `SYS.GAUSSDBV5` monitoring. The default indicator set is as follows. You can collect more indicators by configuring them [Huawei CloudMonitor Metrics Details](https://support.huaweicloud.com/intl/en-us/usermanual-opengauss/opengauss_01_0071.html){:target="_blank"}
+Configure GaussDB `SYS.GAUSSDBV5` monitoring. The default metric set is as follows. You can collect more metrics by configuring them [HUAWEI CLOUD Monitor Metrics Details](https://support.huaweicloud.com/intl/en-us/usermanual-opengauss/opengauss_01_0071.html){:target="_blank"}
 
-| Indicator ID                       | Index name                                               | Indicator meaning                                                      | Value range    | Measurement object (dimension)         | Monitoring cycle (raw metrics) |
+| Metric ID                       | Index name                                               | Metric meaning                                                      | Value range    | Measurement object (dimension)         | Monitoring cycle (raw metrics) |
 |------------------------------------|----------------------------------------------------------| ------------------------------------------------------------ | ---------- | ---------------- | -------------------- |
 | rds005_instance_disk_used_size  | Used Instance Disk Size             | Real-time used data disk size of the monitored instance      | Instance     | Instance                       | 60s                            |
 | rds006_instance_disk_total_size | Total Instance Disk Size            | Real-time total data disk size of the monitored instance     | Instance     | Instance                       | 60s                            |
@@ -79,7 +79,7 @@ Configure GaussDB `SYS.GAUSSDBV5` monitoring. The default indicator set is as fo
 
 ## Object {#object}
 
-The collected GaussDB `SYS.GAUSSDBV5` object data structure can see the object data from 「基础设施-自定义」
+The collected GaussDB `SYS.GAUSSDBV5` object data structure can see the object data from 「Infrastructure-Custom」
 
 ``` json
 {
@@ -96,14 +96,14 @@ The collected GaussDB `SYS.GAUSSDBV5` object data structure can see the object d
     "instance_name"           : "xxxxx-efa7"
   },
   "fields": {
-    "charge_info"          : "{计费类型信息，支持按需和包周期}",
-    "flavor_info"          : "{规格信息}",
-    "volume"               : "{volume信息}",
+    "charge_info"          : "{Accounting type information, including on demand and packet cycle}",
+    "flavor_info"          : "{Specification information}",
+    "volume"               : "{volume information}",
     "create_time"          : "2023-08-01T14:17:40+0800",
     "update_time"          : "2023-08-01T14:17:42+0800",
     "public_ips"           : "[\"192.168.0.223\"]",
     "nodes"                : "[]",
-    "message"              : "{实例 JSON 数据}",
+    "message"              : "{Instance JSON data}",
     "time_zone"            : "UTC+08:00"
   }
 }

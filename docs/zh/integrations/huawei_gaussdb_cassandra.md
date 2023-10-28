@@ -1,60 +1,62 @@
 ---
-title: 'Huawei GaussDB-Cassandra'
-summary: 'Use the「观测云云同步」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
+title: '华为云 GaussDB-Cassandra'
+summary: '华为云GaussDB-Cassandra的展示指标包括读写吞吐量、延迟、数据一致性和可扩展性，这些指标反映了GaussDB-Cassandra在处理大规模分布式数据存储和访问时的性能表现和可靠性。'
 __int_icon: 'icon/huawei_gaussdb_cassandra'
 dashboard:
 
-  - desc: 'Huawei GaussDB-Cassandra Built-in Dashboard'
+  - desc: '华为云 GaussDB-Cassandra 内置视图'
     path: 'dashboard/zh/huawei_gaussdb_cassandra'
 
 monitor:
-  - desc: 'Huawei GaussDB-Cassandra Monitor'
+  - desc: '华为云 GaussDB-Cassandra 监控器'
     path: 'monitor/zh/huawei_gaussdb_cassandra'
 
 ---
 
 
 <!-- markdownlint-disable MD025 -->
-# Huawei GaussDB-Cassandra
+# 华为云 GaussDB-Cassandra
 <!-- markdownlint-enable -->
 
-Use the「观测云云同步」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.
-
-## ConfiG {#config}
-
-### Install Func
-
-Recommend opening 「Integrations - Extension - DataFlux Func (Automate)」: All preconditions are installed automatically, Please continue with the script installation.
-
-If you deploy Func yourself, Refer to  [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+华为云GaussDB-Cassandra的展示指标包括读写吞吐量、延迟、数据一致性和可扩展性，这些指标反映了GaussDB-Cassandra在处理大规模分布式数据存储和访问时的性能表现和可靠性。
 
 
-### Installation script
+## 配置 {#config}
 
-> Tip：Please prepare Huawei AK that meets the requirements in advance（For simplicity's sake, You can directly grant the global read-only permission`ReadOnlyAccess`）
+### 安装 Func
 
-To synchronize the monitoring data of  Huawei GaussDB-Cassandra cloud resources, we install the corresponding collection script：「观测云集成（华为云-GaussDB-Cassandra采集）」(ID：`guance_huaweicloud_gaussdb_cassandra`)
+推荐开通 观测云集成 - 扩展 - 托管版 Func: 一切前置条件都自动安装好, 请继续脚本安装
 
-Click 【Install】 and enter the corresponding parameters: Huawei AK, Huawei account name.
+如果自行部署 Func 参考 [自行部署 Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
-tap【Deploy startup Script】, The system automatically creates `Startup` script sets, And automatically configure the corresponding startup script.
 
-After the script is installed, Find the script in「Development」in Func「观测云集成（华为云-GaussDB-Cassandra采集）」, Expand to modify this script, find `collector_configs`and`monitor_configs`Edit the content in`region_projects`, Change the locale and Project ID to the actual locale and Project ID, Click Save Publish again.
+### 安装脚本
 
-In addition, the corresponding automatic trigger configuration is displayed in「Management / Crontab Config」. tap【Run】, It can be executed immediately once, without waiting for a periodic time. After a while, you can view task execution records and corresponding logs.
+> 提示：请提前准备好符合要求的华为云 AK（简单起见，可直接授予全局只读权限`ReadOnlyAccess`）
 
-We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-huaweicloud-ces/){:target="_blank"}
+同步华为云 DIS 的监控数据，我们安装对应的采集脚本：「观测云集成（华为云-GaussDB-Cassandra采集）」(ID：`guance_huaweicloud_gaussdb_cassandra`)
 
-### Verify
+点击【安装】后，输入相应的参数：华为云 AK、华为云账户名。
 
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the observation cloud platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists
+点击【部署启动脚本】，系统会自动创建 `Startup` 脚本集，并自动配置相应的启动脚本。
 
-## Metric {#metric}
-Configure Huawei Cloud - cloud monitoring. The default indicator set is as follows. You can collect more indicators by configuring them [Huawei CloudMonitor Metrics Details](https://support.huaweicloud.com/cassandraug-nosql/nosql_03_0011.html){:target="_blank"}
+脚本安装完后，在Func中「开发」里找到脚本「观测云集成（华为云-GaussDB-Cassandra采集）」，展开修改此脚本，找到`collector_configs`和`monitor_configs`分别编辑下面`region_projects`中的内容，将地域和Project ID,更改为实际的地域和 Project ID，再点击保存发布。
 
-| **Metric ID**                 | Metric Name               | **Description**                                           | Value Range | Monitored Object                  | Monitoring Period (Raw Data) |
+此外，在「管理 / 自动触发配置」里看到对应的自动触发配置。点击【执行】，即可立即执行一次，无需等待定期时间。稍等片刻，可以查看执行任务记录以及对应日志。
+
+我们默认采集了一些配置, 具体见指标一栏 [配置自定义云对象指标](https://func.guance.com/doc/script-market-guance-huaweicloud-ces/){:target="_blank"}
+
+
+### 验证
+
+1. 在「管理 / 自动触发配置」确认对应的任务是否已存在对应的自动触发配置，同时可以查看对应任务记录及日志检查是否有异常
+2. 在观测云平台，「基础设施 / 自定义」中查看是否存在资产信息
+3. 在观测云平台，「指标」查看是否有对应监控数据
+
+## 指标 {#metric}
+配置好华为云-云监控,默认的指标集如下, 可以通过配置的方式采集更多的指标 [华为云云监控指标详情](https://support.huaweicloud.com/cassandraug-nosql/nosql_03_0011.html){:target="_blank"}
+
+| 指标ID                                | 指标名称             | 指标含义                                                     | 取值范围      | 测量对象 | 监控周期（原始指标）|
 | ------------------------------------- | -------------------- | ------------------------------------------------------------ | ------------- | ---------------- | ------------------------------------------------- |
 | `cassandra001_cpu_usage`       | CPU利用率      | 该指标为从系统层面采集的CPU使用率。 单位：%                  | 0~100 %  | GaussDB(for Cassandra)实例的节点 | 1分钟                                             |
 | `cassandra002_mem_usage`       | 内存利用率     | 该指标为从系统层面采集的内存使用率。 单位：%                 | 0~100 %  | GaussDB(for Cassandra)实例的节点 | 1分钟                |
@@ -69,9 +71,9 @@ Configure Huawei Cloud - cloud monitoring. The default indicator set is as follo
 | `cassandra037_pending_write` | 挂起的写任务数 | 描述当前排队等待的写任务数。 单位：Counts | ≥ 0 Counts | GaussDB(for Cassandra)实例的节点 | 1分钟 |
 | `cassandra038_pending_read` | 挂起的读任务数 | 描述当前排队等待的读任务数。 单位：Counts | ≥ 0 Counts | GaussDB(for Cassandra)实例的节点 | 1分钟 |
 
-## Object {#object}
+## 对象 {#object}
 
-The collected Huawei Cloud GaussDB-Cassandra  object data structure can see the object data from 「基础设施-自定义」
+采集到的华为云 GaussDB-Cassandra 对象数据结构, 可以从「基础设施-自定义」里看到对象数据
 
 ``` json
 {
@@ -106,11 +108,12 @@ The collected Huawei Cloud GaussDB-Cassandra  object data structure can see the 
 ```
 
 
-> *notice：`tags`、`fields`The fields in this section may change with subsequent updates*
+
+> *注意：`tags`、`fields`中的字段可能会随后续更新有所变动*
 >
-> Tips 1：`tags.name`The value is the instance ID for unique identification
+> 提示 1：`tags.name`值为实例 ID，作为唯一识别
 >
-> Tips 2：The following fields are JSON serialized strings
+> 提示 2：以下字段均为 JSON 序列化后字符串
 >
 > - `fields.message`
 > - `fields.backup_strategy`

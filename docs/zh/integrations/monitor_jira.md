@@ -27,7 +27,7 @@ __int_icon: 'icon/monitor_jira'
 
 在观测云 studio 中【监控/通知对象管理】中新建一个通知对象，选择**webhook 自定义**，webhook 地址填入我们部署的 Dataflux Func 的授权链接地址
 
-![1693212890543.png](https://pacher.cn:8580/i/2023/08/28/64ec60dd9d5bd.png)
+![1693212890543.png](imgs/monitor_jira/monitor_jira01.png)
 
 > 注意 Func 中的授权链接请选择不带参数的授权链接
 
@@ -35,7 +35,7 @@ __int_icon: 'icon/monitor_jira'
 
 在观测云 studio 中【监控/监控器】中新建一个监控器，选择需要观测的指标，配置好事件的通知内容后需要将告警策略中的告警通知对象指定为我们刚刚创建的**webhook 自定义**的通知对象的名称。
 
-![1693212934306.png](https://pacher.cn:8580/i/2023/08/28/64ec610974edc.png)
+![1693212934306.png](imgs/monitor_jira/monitor_jira02.png)
 
 #### 编写监听脚本
 
@@ -140,10 +140,10 @@ def create_jira_issue_reply(**kwargs):
 
 我们通过创建 Jira 实例将获取到的观测云中的事件详情创建成事件字典，从而发送的 Jira 中，再发送成功后会生成日志，也就是我们创建的`issue.key`。
 
-![1693213100705.png](https://pacher.cn:8580/i/2023/08/28/64ec61ad32e32.png)
+![1693213100705.png](imgs/monitor_jira/monitor_jira03.png)
 
 然后我们就可以通过创建的`issue.key` 在 Jira 中查看对应的事件了
 
-![1693213121459.png](https://pacher.cn:8580/i/2023/08/28/64ec61c1cf987.png)
+![1693213121459.png](imgs/monitor_jira/monitor_jira04.png)
 
 再编写好脚本后我们点击发布即可。

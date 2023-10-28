@@ -1,6 +1,6 @@
 ---
 title: 'Tencent Cloud SQLServer'
-summary: 'Use the 「Observation Cloud Synchronization」 series of script packages in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
+summary: 'Use the 「Guance Synchronization」 series of script packages in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
 __int_icon: 'icon/tencent_sqlserver'
 dashboard:
 
@@ -17,7 +17,7 @@ monitor:
 # Tencent Cloud SQLServer
 <!-- markdownlint-enable -->
 
-Use the 「Observation Cloud Synchronization」 series of script packages in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.
+Use the 「Guance Synchronization」 series of script packages in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.
 
 ## Config {#config}
 
@@ -32,7 +32,7 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 
 > Tip：Please prepare Aliyun AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of SQL Server cloud resources, we install the corresponding collection script：「观测云集成（腾讯云-SQLServer采集）」(ID：`guance_tencentcloud_sqlserver`)
+To synchronize the monitoring data of SQL Server cloud resources, we install the corresponding collection script：「Guance Integration（Tencent Cloud-SQLServerCollect）」(ID：`guance_tencentcloud_sqlserver`)
 
 Click 【Install】 and enter the corresponding parameters: Aliyun AK, Aliyun account name.
 
@@ -51,7 +51,7 @@ We collected some configurations by default, as described in the Metrics column 
 
 ## Metric {#metric}
 
-Configure Tencent Cloud monitoring. The default indicator set is as follows. You can collect more indicators by configuring them [Tencent Cloud Monitor Metrics Details](https://cloud.tencent.com/document/product/248/45146){:target="_blank"}
+Configure Tencent Cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them [Tencent Cloud Monitor Metrics Details](https://cloud.tencent.com/document/product/248/45146){:target="_blank"}
 
 ### Common metrics
 
@@ -135,7 +135,7 @@ Collected Tencent Cloud SQLServer object data structure, you can see the object 
       "Storage"         : "20",
       "UpdateTime"      : "2023-07-20 14:14:13",
       "UsedStorage"     : "0",
-      "message"         : "{实例 JSON 数据}"
+      "message"         : "{Instance JSON data}"
   }
 }
 ```

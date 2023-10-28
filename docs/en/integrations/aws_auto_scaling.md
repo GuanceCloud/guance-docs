@@ -1,14 +1,14 @@
 ---
 title: 'AWS Auto Scaling'
-summary: 'Use the「观测云云同步」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud'
+summary: 'Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance'
 __int_icon: 'icon/aws_auto_scaling'
 dashboard:
 
-  - desc: 'AWS Auto Scaling 内置视图'
+  - desc: 'AWS Auto Scaling Monitoring View'
     path: 'dashboard/zh/aws_auto_scaling'
 
 monitor:
-  - desc: 'AWS Auto Scaling 监控器'
+  - desc: 'AWS Auto Scaling Monitor'
     path: 'monitor/zh/aws_auto_scaling'
 
 ---
@@ -35,7 +35,7 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 
 > Tip：Please prepare AWS AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of AWS Auto Scaling, we install the corresponding collection script：「观测云集成（AWS-Auto Scaling采集）」(ID：`guance_aws_auto_scaling`)
+To synchronize the monitoring data of AWS Auto Scaling, we install the corresponding collection script：「Guance Integration（AWS-Auto ScalingCollect）」(ID：`guance_aws_auto_scaling`)
 
 Click 【Install】 and enter the corresponding parameters: Aws AK, Aws account name.。
 
@@ -49,11 +49,11 @@ After this function is enabled, you can view the automatic triggering configurat
 ### Verify
 
 1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the observation cloud platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists
+2. On the Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
+3. On the Guance platform, press 「Metrics」 to check whether monitoring data exists
 
 ## Metric {#metric}
-Configure AWS Auto Scaling monitoring. The default indicator set is as follows. You can collect more indicators by configuring them [Aws Cloud Monitor Metrics Details](https://docs.aws.amazon.com/autoscaling/ec2/userguide/viewing-monitoring-graphs.html){:target="_blank"}
+Configure AWS Auto Scaling monitoring. The default metric set is as follows. You can collect more metrics by configuring them [Aws Cloud Monitor Metrics Details](https://docs.aws.amazon.com/autoscaling/ec2/userguide/viewing-monitoring-graphs.html){:target="_blank"}
 
 
 

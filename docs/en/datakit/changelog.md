@@ -1,6 +1,25 @@
 # Changelog
 ---
 
+## 1.17.1(2023/10/26) {#cl-1.17.1}
+
+This release is a Hotfix release, which fixes the following issues:
+
+### Bug fix{#cl-1.17.1-fix}
+
+- Fix dialtesting bug that do not upload data(#1931)
+
+### New featuress {#cl-1.17.1-new}
+
+- eBPF can also [build APM data](../integrations/ebpftrace.md) to trace process/thread relationship under Linux(#1835)
+- Pipeline add new function [`pt_name`](../developers/pipeline/pipeline-built-in-function.md#fn-pt-name)(#1937)
+
+### Features Optimizations {#cl-1.17.1-opt}
+
+- Optimize point build to save CPU and memory(#1792)
+
+---
+
 ## 1.17.0(2023/10/19) {#cl-1.17.0}
 This release is an iterative release, mainly including the following updates:
 
