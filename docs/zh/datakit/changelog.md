@@ -1,6 +1,19 @@
 # 更新日志
 ---
 
+## 1.17.2(2023/10/27) {#cl-1.17.2}
+
+本次发布属于 Hotfix 发布，修复如下问题：
+
+### 问题修复 {#cl-1.17.2-fix}
+
+- 修复日志采集没有带 global host tag 的问题（#1942）
+- 优化 Session Replay 数据的处理（#1943）
+- 优化 Point 编码对非 UTF8 字符串的处理
+
+
+---
+
 ## 1.17.1(2023/10/26) {#cl-1.17.1}
 
 本次发布属于 Hotfix 发布，修复如下问题：
@@ -14,7 +27,7 @@
 - 新增通过 [eBPF 构建链路数据](../integrations/ebpftrace.md)，用来表示 Linux 进程/线程的调用关系（#1836）
 - Pipeline 新增函数 [`pt_name`](../developers/pipeline/pipeline-built-in-function.md#fn-pt-name)（#1937）
 
-### 功能优化 {#cl-1.17.0-opt}
+### 功能优化 {#cl-1.17.1-opt}
 
 - 优化 point 数据构建，提升内存使用效率（#1792）
 
