@@ -1,4 +1,4 @@
-# 导入一个/多个Pipeline
+# 导入 Pipeline 规则
 
 ---
 

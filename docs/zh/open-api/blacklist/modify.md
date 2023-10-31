@@ -14,7 +14,7 @@
 
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
-| blist_uuid | string | Y | 日志过滤规则uuid<br>允许为空: False <br> |
+| blist_uuid | string | Y | 黑名单规则uuid<br>允许为空: False <br> |
 
 
 ## Body 请求参数

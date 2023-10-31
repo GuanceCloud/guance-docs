@@ -1,4 +1,4 @@
-# 获取一个Pipeline信息
+# 获取 Pipeline 规则
 
 ---
 

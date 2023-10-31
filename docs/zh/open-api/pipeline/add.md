@@ -1,4 +1,4 @@
-# 创建一个Pipeline
+# 新建 Pipeline 规则
 
 ---
 

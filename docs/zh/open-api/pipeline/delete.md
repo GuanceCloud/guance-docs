@@ -1,4 +1,4 @@
-# 删除一个/多个Pipeline
+# 删除 Pipeline 规则
 
 ---
 

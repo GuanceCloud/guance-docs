@@ -1,4 +1,4 @@
-# 导出一个/多个Pipeline
+# 导出 Pipeline 规则
 
 ---
 
