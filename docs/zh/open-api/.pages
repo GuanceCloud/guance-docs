@@ -12,33 +12,33 @@ nav:
   - '场景 - 内置视图': inner-dashboard
   - '场景 - 服务管理': service-manage
   - '事件': keyevent
+  - '异常追踪 - 频道': channel
+  - '异常追踪 - Issue': issue
+  - '基础设施': objects
   - '日志 - 索引': log-index-cfg
   - '日志 - 数据转发': log-backup-cfg
   - '日志 - 数据访问': logging-query-rule
-  - '基础设施': objects
-  - '监控 - 告警策略': monitor
+  - '用户访问监测 - 应用': rum-cfg-set
+  - '可用性监测 - 拨测任务': dialing-task
+  - '可用性监测 - 自建节点管理': dialing-region
   - '监控 - 监控器': checker
   - '监控 - 智能巡检': self-built-checker
   - '监控 - 静默配置': mute
+  - '监控 - 告警策略': monitor
+  - '监控 - 通知对象管理': notify-object
   - '管理 - 成员管理': workspace-member
   - '管理 - 成员管理 - 团队管理': member-group
   - '管理 - 成员管理 - 角色管理': role
   - '管理 - 成员管理 - SSO管理': sso
-  - '管理 - API Key管理': workspace-ak
-  - '工作空间': workspace
-  - '快照': snapshot
-  - 'Func 函数': outer-function
-  - '监控 - 通知对象管理': notify-object
-  - 'Rum应用配置': rum-cfg-set
+  - '管理 - SSO管理 - 自定义映射规则(部署版)': custom-login-mapping
   - '管理 - Pipeline': pipeline
   - '管理 - 全局标签': tag
   - '管理 - 黑名单': blacklist
-  - '自建节点': dialing-region
+  - '管理 - API Key管理': workspace-ak
+  - '工作空间': workspace
+  - '快照管理': snapshot
   - 'DQL数据查询': query-data
   - '日志聚类查询': logmine
-  - '可用性监测,拨测任务': dialing-task
-  - '异常追踪,频道': channel
-  - '异常追踪,Issue': issue
-  - '账单分析': billing
-  - '自定义映射规则': custom-login-mapping
+  - 'Func 函数': outer-function
   - '外部事件监控器': outer-event-checker-webhook
+  - '账单分析': billing
