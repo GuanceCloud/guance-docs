@@ -61,7 +61,7 @@ datafluxLogs.init({
     window,
     document,
     'script',
-    'https://static.guance.com/browser-sdk/v1/dataflux-logs.js',
+    'https://static.guance.com/browser-sdk/v3/dataflux-logs.js',
     'DATAFLUX_LOGS'
   )
   DATAFLUX_LOGS.onReady(function () {
@@ -78,7 +78,7 @@ datafluxLogs.init({
 
 ```html
 <script
-  src="https://static.guance.com/browser-sdk/v1/dataflux-logs.js" 
+  src="https://static.guance.com/browser-sdk/v3/dataflux-logs.js" 
   type="text/javascript"
 ></script>
 <script>

@@ -54,7 +54,7 @@ Keycloak环境搭建完成后，在浏览器输入`https://IP地址:8443/auth`�
 
 ### 1、创建 Keycloak realm
 
-???+ attention
+???+ warning
 
     Keycloak 本身有一个主域（Master），我们需要创建一个新的领域（类似工作空间）。
 
@@ -69,7 +69,7 @@ Keycloak环境搭建完成后，在浏览器输入`https://IP地址:8443/auth`�
 
 ### 2、创建 Client 并配置 SAML {#step2}
 
-???+ attention
+???+ warning
 
     本步骤将创建 Keycloak 客户端并配置 SAML ，建立 Keycloak 和观测云之间的信任关系使之相互信任。
 
@@ -83,7 +83,7 @@ Keycloak环境搭建完成后，在浏览器输入`https://IP地址:8443/auth`�
 - Client Protocol：选择**SAML**；   
 - Client SAML Endpoint（断言地址），临时使用：[https://auth.guance.com/saml/assertion](https://auth.guance.com/saml/assertion/)。   
 
-???+ attention
+???+ warning
 
     此次配置仅为获取下一步的元数据文档使用，需要在观测云中启用SSO单点登录后，获取到正确的**实体ID**和**断言地址**后重新替换。
 
@@ -111,7 +111,7 @@ Client 创建后，在**Settings**可以看到上一步填写的实体ID、协�
 - Property：按照身份提供商的支持的规则填入 **Email**；  
 - SAML Attribute Name：必需填入 **Email**。
 
-???+ attention
+???+ warning
 
     观测云定义了一个映射字段，必须填入 **Email** 用于关联身份提供商的用户邮箱（即身份提供商将登录用户的邮箱映射到Email）。
 
@@ -119,7 +119,7 @@ Client 创建后，在**Settings**可以看到上一步填写的实体ID、协�
 
 ### 3、获取 KeyCloak 元数据文档 {#step3}
 
-???+ attention
+???+ warning
 
     本步骤可获取在观测云创建身份提供商的元数据文档。
 
@@ -141,7 +141,7 @@ Client 创建后，在**Settings**可以看到上一步填写的实体ID、协�
 
 > 可参考文档 [新建SSO](../../management/sso/index.md)。
 
-???+ attention
+???+ warning
 
     基于账号安全考虑，观测云支持工作空间仅配置一个 SSO，若您之前已经配置过 SAML 2.0，我们默认会将您最后一次更新的 SAML2.0 配置视为最终单点登录验证入口。
 
@@ -149,7 +149,7 @@ Client 创建后，在**Settings**可以看到上一步填写的实体ID、协�
 
 2）上传在[步骤3](#step3)中下载的**元数据文档**，配置**域名（邮箱的后缀域名）**，选择**角色**，即可获取该身份提供商的**实体ID**和**断言地址**，支持直接复制**登录地址**进行登录。
 
-???+ attention
+???+ warning
 
     域名用于观测云和身份提供商进行邮箱域名映射来实现单点登录，即用户邮箱的后缀域名需和观测云中添加的域名保持一致。
 
@@ -159,7 +159,7 @@ Client 创建后，在**Settings**可以看到上一步填写的实体ID、协�
 
 1）返回 Keycloak，更新[步骤2](#step2)中的**实体 ID** 和**断言地址**。
 
-???+ attention
+???+ warning
 
     在观测云配置单点登录时，身份提供商SAML中配置的断言地址必须和观测云中的保持一致，才能实现单点登录。
 
@@ -167,7 +167,7 @@ Client 创建后，在**Settings**可以看到上一步填写的实体ID、协�
 
 ### 6、配置 Keycloak 用户
 
-???+ attention
+???+ warning
 
     本步骤配置在观测云创建身份提供商的授权用户邮箱账号，通过配置的 Keycloak 用户邮箱账号可单点登录到观测云平台。
 
@@ -199,7 +199,7 @@ Client 创建后，在**Settings**可以看到上一步填写的实体ID、协�
 
 3）登录到观测云对应的工作空间。
 
-???+ attention
+???+ warning
 
     若多个工作空间同时配置了相同的身份提供商 SSO 点单登录，用户通过 SSO 单点登录到工作空间后，可以点击观测云左上角的工作空间选项，切换不同的工作空间查看数据。
 
@@ -225,7 +225,7 @@ Client 创建后，在**Settings**可以看到上一步填写的实体ID、协�
 
 5）登录到观测云对应的工作空间。
 
-???+ attention
+???+ warning
 
     若多个工作空间同时配置了相同的身份提供商 SSO 点单登录，用户通过 SSO 单点登录到工作空间后，可以点击观测云左上角的工作空间选项，切换不同的工作空间查看数据。
 
