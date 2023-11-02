@@ -244,19 +244,46 @@ Datakit 支持采集 Kubernetes 和主机容器日志，从数据来源上，可
 
 ## 根据容器 image 来调整日志采集 {#logging-with-image-config}
 
-默认情况下，DataKit 会收集所在机器/Node 上所有容器的 stdout/stderr 日志，这可能不是大家的预期行为。某些时候，我们希望只采集（或不采集）部分容器的日志，这里可以通过镜像名称来间接指代目标容器。
+默认情况下，DataKit 会收集所在机器/Node 上所有容器的 stdout/stderr 日志，这可能不是大家的预期行为。某些时候，我们希望只采集（或不采集）部分容器的日志，这里可以通过镜像名称或命名空间来间接指代目标容器。
 
 <!-- markdownlint-disable MD046 -->
 === "主机安装"
 
     ``` toml
-    ## 当容器的 image 能够匹配 `hello*` 时，会采集此容器的日志
-    container_include_log = ["image:hello*"]
-    ## 忽略所有容器
-    container_exclude_log = ["image:*"]
+    ## 以 image 为例
+    ## 当容器的 image 能够匹配 `datakit` 时，会采集此容器的日志
+    container_include_log = ["image:datakit"]
+    ## 忽略所有 kodo 容器
+    container_exclude_log = ["image:kodo"]
     ```
     
-    `container_include` 和 `container_exclude` 必须以 `image` 开头，格式为一种[类正则的 Glob 通配](https://en.wikipedia.org/wiki/Glob_(programming)){:target="_blank"}：`"image:<glob 规则>"`
+    `container_include` 和 `container_exclude` 必须以属性字段开头，格式为一种[类正则的 Glob 通配](https://en.wikipedia.org/wiki/Glob_(programming)){:target="_blank"}：`"<字段名>:<glob 规则>"`
+
+    现支持以下 4 个字段规则，这 4 个字段都是基础设施的属性字段：
+
+    - image : `image:pubrepo.guance.com/datakit/datakit:1.18.0`
+    - image_name : `image_name:pubrepo.guance.com/datakit/datakit`
+    - image_short_name : `image_short_name:datakit`
+    - namespace : `namespace:datakit-ns`
+
+    对于同一类规则（`image` 或 `namespace`），如果同时存在 `include` 和 `exclude`，需要同时满足 `include` 成立，且 `exclude` 不成立的条件。例如：
+    ```toml
+    ## 这会导致所有容器都被过滤。如果有一个容器 `datakit`，它满足 include，同时又满足 exclude，那么它会被过滤，不采集日志；如果一个容器 `nginx`，首先它不满足 include，它会被过滤掉不采集。
+
+    container_include_log = ["image_name:datakit"]
+    container_exclude_log = ["image_name:*"]
+    ```
+
+    多种类型的字段规则有任意一条匹配，就不再采集它的日志。例如：
+    ```toml
+    ## 容器只需要满足 `image_name` 和 `namespace` 任意一个，就不再采集日志。
+
+    container_include_log = []
+    container_exclude_log = ["image_name:datakit", "namespace:datakit-ns"]
+    ```
+
+    `container_include_log` 和 `container_exclude_log` 的配置规则比较复杂，同时使用会有多种优先级情况。建议只使用 `container_exclude_log` 一种。
+
 
 === "Kubernetes"
 
@@ -269,7 +296,7 @@ Datakit 支持采集 Kubernetes 和主机容器日志，从数据来源上，可
 
     - A：`hello/hello-http:latest`
     - B：`world/world-http:latest`
-    - C：`registry.jiagouyun.com/datakit/datakit:1.2.0`
+    - C：`pubrepo.guance.com/datakit/datakit:1.2.0`
 
     如果只希望采集 Pod A 的日志，那么配置 ENV_INPUT_CONTAINER_CONTAINER_INCLUDE_LOG 即可：
 
@@ -277,6 +304,14 @@ Datakit 支持采集 Kubernetes 和主机容器日志，从数据来源上，可
     - env:
       - name: ENV_INPUT_CONTAINER_CONTAINER_INCLUDE_LOG
         value: image:hello*  # 指定镜像名或其通配
+    ```
+
+    或以命名空间来配置：
+
+    ``` yaml
+    - env:
+      - name: ENV_INPUT_CONTAINER_CONTAINER_EXCLUDE_LOG
+        value: namesapce:foo  # 指定命名空间的容器日志不采集
     ```
 
 ???+ tip "如何查看镜像"
@@ -344,7 +379,7 @@ Datakit 需要挂载 `/mnt/container_logs` hostPath 才能使得正常采集，�
     spec:
       containers:
       - name: datakit
-        image: pubrepo.jiagouyun.com/datakit/datakit:1.16.0
+        image: pubrepo.guance.com/datakit/datakit:1.16.0
         volumeMounts:
         - mountPath: /mnt/container_logs
           name: container-logs
