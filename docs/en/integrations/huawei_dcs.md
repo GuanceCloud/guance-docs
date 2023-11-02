@@ -18,7 +18,7 @@ monitor:
 # HUAWEI CLOUD DCS
 <!-- markdownlint-enable -->
 
-Use the「Guance Synchronization」series script package in the script market to monitor the cloud ,The data of the cloud asset is synchronized to the observation cloud。
+Use the「Guance Synchronization」series script package in the script market to monitor the cloud ,The data of the cloud asset is synchronized to the observation cloud.
 
 
 ## Config {#config}
@@ -33,7 +33,7 @@ If you deploy Func yourself,Refer to  [Self-Deployment of Func](https://func.gua
 
 ### Installation script
 
-> Tip：Please prepare HUAWEI CLOUD AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
+> Tip：Please prepare HUAWEI CLOUD AK that meets the requirements in advance（For simplicity's sake,,You can directly grant the global read-only permission`ReadOnlyAccess`）
 
 To synchronize the monitoring data of  HUAWEI CLOUD DCS cloud resources, we install the corresponding collection script：「Guance Integration（HUAWEI CLOUD-DCSCollect）」(ID：`guance_huaweicloud_dcs`)
 

@@ -74,7 +74,7 @@
 
 > 更多权限详情可参考文档 [权限清单](role-list.md)。
 
-???+ attention
+???+ warning
 
     - 目前仅 Owner 和 Administrator 具有 "Token 查看" 权限，若商业版工作空间成员需要提权到 Administrator，需到观测云费用中心审核；     
     - 体验版工作空间成员可直接提权 Administrator，无需到观测云费用中心审核。

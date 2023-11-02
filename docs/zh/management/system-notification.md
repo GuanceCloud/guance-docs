@@ -19,7 +19,7 @@
 
 ![](img/13_inform_02.png)
 
-???+ attention
+???+ warning
 
     为防止重复信息，预警通知信息在一天内仅会发送一次。
 
@@ -30,7 +30,7 @@
 
 ![](img/13_inform_03.png)
 
-???+ attention
+???+ warning
 
     为防止重复信息，免费额度信息在一天内仅会发送一次。
 

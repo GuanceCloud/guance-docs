@@ -106,7 +106,7 @@ The collected HUAWEI CLOUD GaussDB-Cassandra  object data structure can see the 
 ```
 
 
-> *notice：`tags`、`fields`The fields in this section may change with subsequent updates*
+> *notice：`tags`,`fields`The fields in this section may change with subsequent updates*
 >
 > Tips 1：`tags.name`The value is the instance ID for unique identification
 >

@@ -18,7 +18,7 @@ monitor:
 # HUAWEI CLOUD API Gateway
 <!-- markdownlint-enable -->
 
-Use the「Guance Synchronization」series script package in the script market to monitor the cloud ,The data of the cloud asset is synchronized to the **APIervation** cloud。
+Use the「Guance Synchronization」series script package in the script market to monitor the cloud ,The data of the cloud asset is synchronized to the **APIervation** cloud.
 
 
 ## Config {#config}
@@ -26,24 +26,24 @@ Use the「Guance Synchronization」series script package in the script market to
 ### Install Func
 
 Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
-
+,
 If you deploy Func yourself,Refer to  [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 
 
 ### Installation script
 
-> Tip：Please prepare HUAWEI CLOUD AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
+> Tip：Please prepare HUAWEI CLOUD AK that meets the requirements in advance（For simplicity's sake,You can directly grant the global read-only permission`ReadOnlyAccess`）
 
 To synchronize the monitoring data of  HUAWEI CLOUD API resources, we install the corresponding collection script：「Guance Integration（HUAWEI CLOUD-APIG Collect）」(ID：`guance_huaweicloud_apig`)
 
-Click 【Install】 and enter the corresponding parameters: HUAWEI CLOUD AK, HUAWEI CLOUD account name.。
+Click 【Install】 and enter the corresponding parameters: HUAWEI CLOUD AK, HUAWEI CLOUD account name.
 
-tap【Deploy startup Script】，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script。
+tap【Deploy startup Script】,The system automatically creates `Startup` script sets,And automatically configure the corresponding startup script.
 
-After the script is installed，Find the script in「Development」in Func「HUAWEI CLOUD-APIG Collect」，Expand to modify this script，find`collector_configs`-`regions`，Change the region to your actual region，Then find `region_projects` under `monitor_configs`,Change to the actual locale and Project ID。Click Save Publish again
+After the script is installed,Find the script in「Development」in Func「HUAWEI CLOUD-APIG Collect」,Expand to modify this script,find`collector_configs`-`regions`,Change the region to your actual region,Then find `region_projects` under `monitor_configs`,Change to the actual locale and Project ID.Click Save Publish again
 
-In addition, the corresponding automatic trigger configuration is displayed in「Management / Crontab Config」。tap【Run】，It can be executed immediately once, without waiting for a periodic time。After a while, you can view task execution records and corresponding logs.
+In addition, the corresponding automatic trigger configuration is displayed in「Management / Crontab Config」.tap【Run】,It can be executed immediately once, without waiting for a periodic time.After a while, you can view task execution records and corresponding logs.
 
 We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-huaweicloud-apig/){:target="_blank"}
 
@@ -72,8 +72,8 @@ Configure HUAWEI CLOUD - cloud monitoring. The default metric set is as follows.
 | `req_count_error`              | Number of anomalies                      | This metric is used to measure the total number of errors in the API interface | ≥ 0| Single API  | 1 minute                |
 | `avg_latency`            | Average latency milliseconds                   | This metric is used to measure the average response delay time of API interfaces| ≥0 Unit: milliseconds | Single API      | 1 minute                |
 | `max_latency`                | Maximum Delay Milliseconds                   | This metric is used to measure the maximum response delay time of API interfaces | ≥0 Unit: milliseconds | Single API      | 1 minute                |
-| `input_throughput`                | Inflow flow                      | This metric is used for statistical measurement of API interface request traffic | ≥0。Unit：Byte/KB/MB/GB| Single API | 1 minute                |
-| `output_throughput`      | Outflow flow                      | This metric is used for statistical measurement of API interface return traffic | ≥0。Unit：Byte/KB/MB/GB | Single API          | 1 minute                |
+| `input_throughput`                | Inflow flow                      | This metric is used for statistical measurement of API interface request traffic | ≥0.Unit：Byte/KB/MB/GB| Single API | 1 minute                |
+| `output_throughput`      | Outflow flow                      | This metric is used for statistical measurement of API interface return traffic | ≥0.Unit：Byte/KB/MB/GB | Single API          | 1 minute                |
 
 
 ## Object {#object}

@@ -33,15 +33,15 @@ If you deploy Func yourself,Refer to  [Self-Deployment of Func](https://func.gua
 
 ### Installation script
 
-> Tip：Please prepare HUAWEI CLOUD AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
+> Tip：Please prepare HUAWEI CLOUD AK that meets the requirements in advance（For simplicity's sake,You can directly grant the global read-only permission`ReadOnlyAccess`）
 
 To synchronize the monitoring data of  GaussDB for MySQL , we install the corresponding collection script：「Guance Integration（HUAWEI CLOUD-CBRCollect）」(ID：`guance_huaweicloud_ddm_gaussdb_mysql`)
 
 Click 【Install】 and enter the corresponding parameters: HUAWEI CLOUD AK, HUAWEI CLOUD account name.
 
-tap【Deploy startup Script】，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script。
+tap【Deploy startup Script】,The system automatically creates `Startup` script sets,And automatically configure the corresponding startup script.
 
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」。Click【Run】，you can immediately execute once, without waiting for a regular time。After a while, you can view task execution records and corresponding logs.
+After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」.Click【Run】,you can immediately execute once, without waiting for a regular time.After a while, you can view task execution records and corresponding logs.
 
 We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-huaweicloud-gaussdb-mysql/){:target="_blank"}
 
@@ -56,7 +56,6 @@ Configure HUAWEI CLOUD SYS.CBR monitoring. The default metric set is as follows.
 
 | **Metric**                                         | **Name**                                       | **Description**                                              | **Value Range** | **Remarks**                                                  |
 |------------------------------------|----------------------------------------------------------| ------------------------------------------------------------ | ---------- | ---------------- |
-| ------------------------------------- | -------------------- | ------------------------------------------------------------ | ------------- | ---------------- |
 | gaussdb_mysql001_cpu_util                          | CPU Usage                                      | CPU usage of the monitored object                            | 0–100%          | Monitored object: ECSMonitored instance type: GaussDB(for MySQL) instance |
 | gaussdb_mysql002_mem_util                          | Memory Usage                                   | Memory usage of the monitored object                         | 0–100%          | Monitored object: ECSMonitored instance type: GaussDB(for MySQL) instance |
 | gaussdb_mysql004_bytes_in                          | Network Input Throughput                       | Incoming traffic in bytes per second                         | ≥0 Bytes/s      | Monitored object: ECSMonitored instance type: GaussDB(for MySQL) instance |

@@ -30,7 +30,7 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 
 ### Installation script
 
-> Tip：Please prepare HUAWEI CLOUD AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
+> Tip：Please prepare HUAWEI CLOUD AK that meets the requirements in advance（For simplicity's sake,You can directly grant the global read-only permission`ReadOnlyAccess`）
 
 To synchronize the monitoring data **SYS.DDMS**, install the corresponding data collection script: "Guance Integration (HUAWEI CLOUD **SYS.DDMS** Collect)" (ID: `startup__guance_huaweicloud_ddm`).
 
