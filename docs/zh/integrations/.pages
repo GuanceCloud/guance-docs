@@ -256,7 +256,8 @@ nav:
       - tracing-propagator.md
 
   - '语言':
-    - 'Java': java.md
+    - 'Java': 
+      - java.md
       - jmx.md
       - jvm_jmx_exporter.md
       - jvm_jolokia.md

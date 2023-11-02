@@ -5,7 +5,7 @@ icon: zy/dataflux-func
 # DataFlux Func
 ---
 
-???+ quote "更新日志"
+???- quote "更新日志"
 
     **2023.9.21**：DataFlux Func 托管版和 RUM Headless 现支持海外站点：俄勒冈，法兰克福，新加坡。
 
