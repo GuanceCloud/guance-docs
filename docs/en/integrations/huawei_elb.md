@@ -18,7 +18,7 @@ monitor:
 # HUAWEI CLOUD ELB
 <!-- markdownlint-enable -->
 
-Use the「Guance Synchronization」series script package in the script market to monitor the cloud ,The data of the cloud asset is synchronized to the observation cloud。
+Use the「Guance Synchronization」series script package in the script market to monitor the cloud ,The data of the cloud asset is synchronized to the observation cloud.
 
 
 ## Config {#config}
@@ -32,15 +32,15 @@ If you deploy Func yourself,Refer to  [Self-Deployment of Func](https://func.gua
 
 ### Installation script
 
-> Tip：Please prepare HUAWEI CLOUD AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
+> Tip：Please prepare HUAWEI CLOUD AK that meets the requirements in advance（For simplicity's sake,You can directly grant the global read-only permission`ReadOnlyAccess`）
 
 To synchronize the monitoring data of  HUAWEI CLOUD ELB cloud resources, we install the corresponding collection script：「Guance Integration（HUAWEI CLOUD-ELBCollect）」(ID：guance_huaweicloud_elb)
 
-Click 【Install】 and enter the corresponding parameters: HUAWEI CLOUD AK, HUAWEI CLOUD account name.。
+Click 【Install】 and enter the corresponding parameters: HUAWEI CLOUD AK, HUAWEI CLOUD account name.
 
-tap【Deploy startup Script】，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script。
+tap【Deploy startup Script】,The system automatically creates `Startup` script sets,And automatically configure the corresponding startup script.
 
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」。Click【Run】，you can immediately execute once, without waiting for a regular time。After a while, you can view task execution records and corresponding logs。
+After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」.Click【Run】,you can immediately execute once, without waiting for a regular time.After a while, you can view task execution records and corresponding logs.
 
 > If you want to collect logs, you must enable the corresponding log collection script. If you want to collect bills, start the cloud bill collection script.
 

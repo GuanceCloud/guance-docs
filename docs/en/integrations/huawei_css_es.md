@@ -127,7 +127,7 @@ The collected HUAWEI CLOUD CSS for Elasticsearch object data structure can see t
 
 Some parameter descriptions are as follows:
 | parameter name     | illustrate  |
-| :------- | :----------- |
+| ------------------ | ----------- |
 | `status` | Cluster status value   |
 | `updated`  | The last modification time of the cluster, in the format of ISO8601 |
 | `bandwidthSize` | Public network bandwidth, unit: `Mbit/s`  |
@@ -136,14 +136,14 @@ Some parameter descriptions are as follows:
 
 status (cluster status value) value meaning:
 | value     | illustrate         |
-| :------- | :----------- |
+| --------- | ------------------ |
 | `100` | Creating   |
 | `200` | Available   |
 | `303` | unavailable   |
 
 Actions (current behavior of the cluster) value meaning:
 | value     | illustrate         |
-| :------- | :----------- |
+| --------- | ------------------ |
 | `REBOOTING` | Restart   |
 | `GROWING` | Expansion   |
 | `RESTORING` | Restoring the cluster   |
@@ -151,10 +151,10 @@ Actions (current behavior of the cluster) value meaning:
 
 period value meaning:
 | value     | illustrate         |
-| :------- | :----------- |
+| --------- | ------------------ |
 | `true` | Periodic billing cluster   |
 | `false` | On-demand billing cluster   |
 
-> Note: tagsThe **fieldsfields** in , may change with subsequent updates.
+> *notice:`tags`、`fields`The fields in this section may change with subsequent updates*
 >
-> Tip: tags.nameThe value is the cluster ID as a unique identification
+> Tip: `tags.name` The value is the cluster ID as a unique identification

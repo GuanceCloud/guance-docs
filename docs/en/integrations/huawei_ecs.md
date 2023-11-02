@@ -18,7 +18,7 @@ monitor:
 # HUAWEI CLOUD ECS
 <!-- markdownlint-enable -->
 
-Use the「Guance Synchronization」series script package in the script market to monitor the cloud ,The data of the cloud asset is synchronized to the observation cloud。
+Use the「Guance Synchronization」series script package in the script market to monitor the cloud ,The data of the cloud asset is synchronized to the observation cloud.
 
 ## Config {#config}
 
@@ -32,17 +32,17 @@ If you deploy Func yourself,Refer to  [Self-Deployment of Func](https://func.gua
 
 ### Installation script
 
-> Tip：Please prepare HUAWEI CLOUD AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
+> Tip：Please prepare HUAWEI CLOUD AK that meets the requirements in advance（For simplicity's sake,You can directly grant the global read-only permission`ReadOnlyAccess`）
 
 To synchronize the monitoring data of  HUAWEI CLOUD OBS cloud resources, we install the corresponding collection script：「Guance Integration（HUAWEI CLOUD-ECS Collect）」(ID：`guance_huaweicloud_ecs`)
 
-Click 【Install】 and enter the corresponding parameters: HUAWEI CLOUD AK, HUAWEI CLOUD account name.。
+Click 【Install】 and enter the corresponding parameters: HUAWEI CLOUD AK, HUAWEI CLOUD account name.
 
-tap【Deploy startup Script】，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script。
+tap【Deploy startup Script】,The system automatically creates `Startup` script sets,And automatically configure the corresponding startup script.
 
-After the script is installed，Find the script in「Development」in Func「Guance Integration（HUAWEI CLOUD-ECS Collect）」，Expand to modify this script，find `collector_configs`and`monitor_configs`Edit the content in`region_projects`，Change the locale and Project ID to the actual locale and Project ID，Click Save Publish again。
+After the script is installed,Find the script in「Development」in Func「Guance Integration（HUAWEI CLOUD-ECS Collect）」,Expand to modify this script,find `collector_configs`and`monitor_configs`Edit the content in`region_projects`,Change the locale and Project ID to the actual locale and Project ID,Click Save Publish again.
 
-In addition, the corresponding automatic trigger configuration is displayed in「Management / Crontab Config」。tap【Run】，It can be executed immediately once, without waiting for a periodic time。After a while, you can view task execution records and corresponding logs.
+In addition, the corresponding automatic trigger configuration is displayed in「Management / Crontab Config」.tap【Run】,It can be executed immediately once, without waiting for a periodic time.After a while, you can view task execution records and corresponding logs.
 
 We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-huaweicloud-ces/){:target="_blank"}
 
@@ -58,7 +58,7 @@ Configure HUAWEI CLOUD - cloud monitoring. The default metric set is as follows.
 
 | Metric ID                           | Index name                  | Metric meaning                                                                             | Value range      | Measurement object (dimension) | Monitoring cycle (raw metrics) |
 | -------------------------------- |-----------------------|----------------------------------------------------------------------------------| ------------- | ---------------- | -------------------------------------------- |
-| cpu_usage             | CPU usage             | This metric measures the CPU usage of a measurement object. Unit: percentage。 | 0-100%    | Cloud server       | 1 min                                       |
+| cpu_usage             | CPU usage             | This metric measures the CPU usage of a measurement object. Unit: percentage. | 0-100%    | Cloud server       | 1 min                                       |
 | load_average1         | Average load in 1 minute | Measures the average CPU load of a measurement object in the past 1 minute.      | ≥ 0%          | Cloud server         | 1 min                                      |
 | load_average5        | Average load in 5 minute | Measures the average CPU load of a measurement object in the past 5 minute.      | ≥ 0%          | Cloud server         | 1 min                                       |
 | load_average15        | Average load in 15 minute | Measures the average CPU load of a measurement object in the past 15 minute.     | ≥ 0 Byte/s    | Cloud server         | 1 min                                        |
