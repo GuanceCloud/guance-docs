@@ -116,6 +116,7 @@ nav:
       - couchbase.md
       - couchdb.md
       - oracle.md
+      - 'OceanBase': oceanbase.md
       - sqlserver.md
       - postgresql.md
       - redis.md
