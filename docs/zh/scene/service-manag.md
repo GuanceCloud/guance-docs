@@ -1,6 +1,6 @@
 # 服务管理
 
-???+ quote "更新日志"
+???- quote "更新日志"
 
     **2023.9.7**：应用性能检测 > 服务入口与此处功能整合。
 
@@ -176,9 +176,10 @@
 
 ![](img/service-8.png)
 
-1. 资源调用排行（TOP 20）列表支持基于请求数(默认)、错误请求数、P75 响应时间和 P99 响应时间进行查询分析；您可针对对应列表进行数量排序，默认从大到小；
-2. 在资源右侧的详情页内，可查看其请求数、错误率、响应时间及响应时间分布；
-3. 可查询关联链路信息，支持[搜索](../getting-started/function-details/explorer-search.md#search)；点击**跳转**即可进入**服务管理 > 链路**页面。
+1. 资源调用排行（TOP 20）列表支持基于请求数(默认)、错误请求数、每秒请求数、P75 响应时间和 P99 响应时间进行查询分析；您可针对对应列表进行数量排序，默认从大到小。
+2. Hover 在某条资源，点击右侧 :fontawesome-regular-copy: 按钮，即可复制当前资源完整名称。
+3. 在资源右侧的详情页内，可查看其请求数、错误率、响应时间及响应时间分布。
+4. 可查询关联链路信息，支持[搜索](../getting-started/function-details/explorer-search.md#search)；点击**跳转**即可进入**服务管理 > 链路**页面。
 
 #### 上下游拓扑
 
@@ -186,7 +187,7 @@
 
 <img src="../img/service-9.png" width="70%" >
 
-在上下游拓扑 tab 页，您可以：
+在上下游拓扑 Tab 页，您可以：
 
 1. 事件状态图例：从左到右，各颜色色块依次表示：无数据、信息、警告、重要、紧急、正常。
 2. 在卡片上，您可以查看各资源的平均请求速率、P99 响应时间、错误请求率（请求数）和关联监控器。
@@ -196,7 +197,7 @@
 
 ### 关联查看器
 
-|                   <font color=coral size=3>:fontawesome-regular-circle-down: &nbsp;**关于 Tab 页其他查看器信息，您可点击前往：**</font>                         |                                                              |
+|                   <font color=coral size=3>:fontawesome-regular-circle-down: &nbsp;**关于 Tab 页其他查看器，您可点击前往：**</font>                         |                                                              |
 | :----------------------------------------------------------: | :----------------------------------------------------------: | 
 | [Pods 查看器](../infrastructure/contrainer.md#pods){ .md-button .md-button--primary } | [日志查看器](../logs/explorer.md){ .md-button .md-button--primary } | 
 | [链路查看器](../application-performance-monitoring/explorer.md){ .md-button .md-button--primary } | [错误追踪查看器](../application-performance-monitoring/error.md){ .md-button .md-button--primary } |
