@@ -90,9 +90,9 @@ The collected HUAWEI CLOUD OBS object data structure can see the object data fro
 ```
 
 
-> *notice：`tags`、`fields`The fields in this section may change with subsequent updates*
+> *notice：`tags`,`fields`The fields in this section may change with subsequent updates*
 >
 > Tips 1：`tags.name`The value serves as the instance ID for unique identification
 >
-> Tips 2：`fields.message`、`fields.billing`、`fields.bind_rules`、`fields.message`、`fields.resources`、are all JSON-serialized string representations.
+> Tips 2：`fields.message`,`fields.billing`,`fields.bind_rules`,`fields.message`,`fields.resources`,are all JSON-serialized string representations.
 

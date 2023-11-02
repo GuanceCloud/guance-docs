@@ -106,6 +106,8 @@ nav:
     - Windows 相关:
       - 'Windows 事件': windows_event.md
       - iis.md
+      - active_directory.md
+      - exchange.md
 
   - 中间件:
     - '存储':
@@ -255,6 +257,12 @@ nav:
 
   - '语言':
     - 'Java': java.md
+      - jmx.md
+      - jvm_jmx_exporter.md
+      - jvm_jolokia.md
+      - jvm_micrometer.md
+      - jvm_statsd.md
+
     - dotnet.md
     - golang.md
     - nodejs.md
