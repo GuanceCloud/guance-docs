@@ -22,7 +22,7 @@ Azure Active Directory （Azure AD） 是 Microsoft 推出的基于云的标识�
 
 ### 2、为 Azure AD 应用程序配置 SAML {#step2}
 
-???+ attention
+???+ warning
 
     本步骤将 Azure AD 应用程序属性映射到观测云的属性，建立 Azure AD 和观测云之间的信任关系。
 
@@ -39,7 +39,7 @@ Azure Active Directory （Azure AD） 是 Microsoft 推出的基于云的标识�
 - 标识符（实体 ID）：[https://auth.guance.com/saml/metadata.xml](https://auth.guance.com/saml/metadata.xml)
 - 回复 URL（断言地址），临时使用：[https://auth.guance.com/saml/assertion](https://auth.guance.com/saml/assertion/)
 
-???+ attention
+???+ warning
 
     此次配置仅为获取下一步的元数据文档使用，需要在观测云中启用 SSO 单点登录后，获取到正确的**实体 ID** 和**断言地址**后重新替换。
 
@@ -58,7 +58,7 @@ Azure Active Directory （Azure AD） 是 Microsoft 推出的基于云的标识�
 - 名称：必需填入 **Email**，此部分内容为必填项，如果不填，SSO单点登录时将提示无法登录；  
 - 源属性：根据身份提供商实际邮箱选择“user.mail”。
 
-???+ attention
+???+ warning
 
     观测云定义了一个字段，必须填入 **Email** 用于关联身份提供商的用户邮箱（即身份提供商将登录用户的邮箱映射到 Email）。
 
@@ -66,7 +66,7 @@ Azure Active Directory （Azure AD） 是 Microsoft 推出的基于云的标识�
 
 ### 3、获取 Azure AD 元数据文档 {#step3}
 
-???+ attention
+???+ warning
 
     本步骤可获取在观测云创建身份提供商的元数据文档。
 
@@ -81,7 +81,7 @@ Azure Active Directory （Azure AD） 是 Microsoft 推出的基于云的标识�
 
 > 可参考文档 [新建 SSO](../../management/sso/index.md)。
 
-???+ attention
+???+ warning
 
     基于账号安全考虑，观测云支持工作空间仅配置一个 SSO，若您之前已经配置过 SAML 2.0，我们默认会将您最后一次更新的 SAML2.0 配置视为最终单点登录验证入口。
 
@@ -89,7 +89,7 @@ Azure Active Directory （Azure AD） 是 Microsoft 推出的基于云的标识�
 
 2）上传在[步骤 3](#step3)中下载的**元数据文档**，配置**域名（邮箱的后缀域名）**，选择**角色**，即可获取该身份提供商的**实体ID**和**断言地址**，支持直接复制**登录地址**进行登录。
 
-???+ attention
+???+ warning
 
     域名用于观测云和身份提供商进行邮箱域名映射来实现单点登录，即用户邮箱的后缀域名需和观测云中添加的域名保持一致。
 
@@ -100,7 +100,7 @@ Azure Active Directory （Azure AD） 是 Microsoft 推出的基于云的标识�
 
 1）返回 Azure AD，更新[步骤 2](#step2)中的**实体 ID** 和**断言地址**。
 
-???+ attention
+???+ warning
 
     在观测云配置单点登录时，身份提供商 SAML 中配置的断言地址必须和观测云中的保持一致，才能实现单点登录。
 
@@ -109,7 +109,7 @@ Azure Active Directory （Azure AD） 是 Microsoft 推出的基于云的标识�
 
 ### 6、配置 Azure AD 用户
 
-???+ attention
+???+ warning
 
     本步骤配置在观测云创建身份提供商的授权用户邮箱账号，通过配置的 Azure AD 用户邮箱账号可单点登录到观测云平台。
 
@@ -129,7 +129,7 @@ Azure Active Directory （Azure AD） 是 Microsoft 推出的基于云的标识�
 
 ![](../img/02_azure_13.png)
 
-???+ attention
+???+ warning
 
     若无用户，可在**用户**菜单下新建用户。
 
@@ -156,7 +156,7 @@ Azure Active Directory （Azure AD） 是 Microsoft 推出的基于云的标识�
 
 5）登录到观测云对应的工作空间。
 
-???+ attention
+???+ warning
 
     若多个工作空间同时配置了相同的身份提供商 SSO 点单登录，用户通过 SSO 单点登录到工作空间后，可以点击观测云左上角的工作空间选项，切换不同的工作空间查看数据。
 
