@@ -49,7 +49,7 @@
 
 2、通过 [DaemonSet 方式安装](../datakit/datakit-daemonset-deploy.md) DataKit。
 
-???+ attention
+???+ warning
 
     - 通过主机安装 DataKit，开启容器采集器仅支持采集 Containers、Pods 数据；
 
