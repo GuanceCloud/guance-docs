@@ -1065,6 +1065,216 @@
     }
     ```
 
+## 通过设置 URLSession Delegate 自定义采集 RUM Resource
+
+**注意：该方法不适用于 Swift URLSession async/await APIs**
+
+需要关闭 `FTRUMConfig` 的 `enableTraceUserResource` ，`FTTraceConfig` 的 `enableAutoTrace` 配置。
+
+SDK 提供了一个类 `FTURLSessionDelegate`，需要您将 URLSession 的 delegate 转发给 `FTURLSessionDelegate`，以帮助 SDK 采集 resource 的相关数据。
+
+下面提供了三种方法，来满足用户的不同场景。
+
+### 方法一
+
+直接设置 URLSession 的 delegate 对象设置为 `FTURLSessionDelegate` 的实例
+
+=== "Objective-C"
+
+````
+```objective-c
+id<NSURLSessionDelegate> delegate = [[FTURLSessionDelegate alloc]init];
+// 添加自定义 RUM 资源属性，建议标签命名添加项目缩写的前缀，例如 `df_tag_name`。
+delegate.provider = ^NSDictionary * _Nullable(NSURLRequest *request, NSURLResponse *response, NSData *data, NSError *error) {
+                NSString *body = [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding];
+                return @{@"df_requestbody":body};
+            };
+NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:delegate delegateQueue:nil];
+```
+````
+
+=== "Swift"
+
+````
+```swift
+let delegate = FTURLSessionDelegate.init()
+// 添加自定义 RUM 资源属性，建议标签命名添加项目缩写的前缀，例如 `df_tag_name`。
+delegate.provider = { request,response,data,error in
+            var extraData:Dictionary<String, Any> = Dictionary()
+            if let data = data,let requestBody = String(data: data, encoding: .utf8) {
+                extraData["df_requestBody"] = requestBody
+            }
+            if let error = error {
+                extraData["df_error"] = error.localizedDescription
+            }
+            return extraData
+        }
+let session =  URLSession.init(configuration: URLSessionConfiguration.default, delegate:delegate 
+, delegateQueue: nil)
+```
+````
+
+### 方法二
+
+设置 URLSession 的 delegate 对象设置为 `FTURLSessionDelegate` 的子类
+
+=== "Objective-C"
+
+````
+```objective-c
+@interface InstrumentationInheritClass:FTURLSessionDelegate
+@property (nonatomic, strong) NSURLSession *session;
+@end
+@implementation InstrumentationInheritClass
+-(instancetype)init{
+    self = [super init];
+    if(self){
+        _session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:self delegateQueue:nil];
+        // 添加自定义 RUM 资源属性，建议标签命名添加项目缩写的前缀，例如 `df_tag_name`。
+         self.provider = ^NSDictionary * _Nullable(NSURLRequest *request, NSURLResponse *response, NSData *data, NSError *error) {
+          NSString *body = [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding];
+          return @{@"df_requestbody":body};
+      };
+    }
+    return self;
+}
+-(void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didFinishCollectingMetrics:(NSURLSessionTaskMetrics *)metrics{
+    // 一定要调用 父类 方法
+    [super URLSession:session task:task didFinishCollectingMetrics:metrics];
+    // 您自己的逻辑
+    // ......
+}
+@end
+```
+````
+
+=== "Swift"
+
+````
+```swift
+class InheritHttpEngine:FTURLSessionDelegate {
+    var session:URLSession?
+    /// HttpEngine 初始化，当 apiHostUrl 为空 或 token 为"" 则初始化失败
+    override init(){
+        session = nil
+        super.init()
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = 30
+        session = URLSession.init(configuration: configuration, delegate:self, delegateQueue: nil)
+        override init() {
+        super.init()
+        // 添加自定义 RUM 资源属性，建议标签命名添加项目缩写的前缀，例如 `df_tag_name`。
+        provider = { request,response,data,error in
+            var extraData:Dictionary<String, Any> = Dictionary()
+            if let data = data,let requestBody = String(data: data, encoding: .utf8) {
+                extraData["df_requestBody"] = requestBody
+            }
+            if let error = error {
+                extraData["df_error"] = error.localizedDescription
+            }
+            return extraData
+        }
+    }
+    }
+ 
+    override func urlSession(_ session: URLSession, task: URLSessionTask, didFinishCollecting metrics: URLSessionTaskMetrics) {
+        // 一定要调用 父类 方法
+        super.urlSession(session, task: task, didFinishCollecting: metrics)
+        // 用户自己的逻辑
+        // ......
+    }
+}
+```
+````
+
+### 方法三
+
+使 URLSession 的 delegate 对象遵循 `FTURLSessionDelegateProviding` 协议，在该类里声明名为 ftURLSessionDelegate 的  `FTURLSessionDelegate` 属性（readwrite），实现 `- ftURLSessionDelegate` 方法。
+
+接收到 session 的 delegate 方法：
+
+`-URLSession:dataTask:didReceiveData:`
+
+`-URLSession:task:didCompleteWithError:`
+
+`-URLSession:task:didFinishCollectingMetrics:`
+
+后发送给 `ftURLSessionDelegate` ，以能够使 SDK 进行数据采集。
+
+=== "Objective-C"
+
+````
+```objective-c
+@interface InstrumentationPropertyClass:NSObject<NSURLSessionDataDelegate,FTURLSessionDelegateProviding>
+@property (nonatomic, strong) FTURLSessionDelegate *ftURLSessionDelegate;
+@end
+@implementation InstrumentationPropertyClass
+
+- (nonnull FTURLSessionDelegate *)ftURLSessionDelegate {
+    if(!_ftURLSessionDelegate){
+        _ftURLSessionDelegate = [[FTURLSessionDelegate alloc]init];
+        _ftURLSessionDelegate.provider =  ^NSDictionary * _Nullable(NSURLRequest *request, NSURLResponse *response, NSData *data, NSError *error) {
+                NSString *body = [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding];
+                return @{@"df_requestbody":body};
+            };
+    }
+    return _ftURLSessionDelegate;
+}
+- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data{
+    [self.ftURLSessionDelegate URLSession:session dataTask:dataTask didReceiveData:data];
+}
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error{
+    [self.ftURLSessionDelegate URLSession:session task:task didCompleteWithError:error];
+}
+-(void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didFinishCollectingMetrics:(NSURLSessionTaskMetrics *)metrics{
+    [self.ftURLSessionDelegate URLSession:session task:task didFinishCollectingMetrics:metrics];
+}
+@end
+```
+````
+
+=== "Swift"
+
+````
+```swift
+class HttpEngine:NSObject,URLSessionDataDelegate,FTURLSessionDelegateProviding {
+    var ftURLSessionDelegate: FTURLSessionDelegate = FTURLSessionDelegate()
+    var session:URLSession?
+
+    override init(){
+        session = nil
+        super.init()
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = 30
+        session = URLSession.init(configuration: configuration, delegate:self, delegateQueue: nil)
+        // 添加自定义 RUM 资源属性，建议标签命名添加项目缩写的前缀，例如 `df_tag_name`。
+        ftURLSessionDelegate.provider = { request,response,data,error in
+            var extraData:Dictionary<String, Any> = Dictionary()
+            if let data = data,let requestBody = String(data: data, encoding: .utf8) {
+                extraData["df_requestBody"] = requestBody
+            }
+            if let error = error {
+                extraData["df_error"] = error.localizedDescription
+            }
+            return extraData
+        }
+    }
+    // 下面方法一定要实现
+    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
+        ftURLSessionDelegate.urlSession(session, dataTask: dataTask, didReceive: data)
+    }
+    
+    func urlSession(_ session: URLSession, task: URLSessionTask, didFinishCollecting metrics: URLSessionTaskMetrics) {
+        ftURLSessionDelegate.urlSession(session, task: task, didFinishCollecting: metrics)
+    }
+    
+    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+        ftURLSessionDelegate.urlSession(session, task: task, didCompleteWithError: error)
+    }
+}
+```
+````
+
 ## 用户的绑定与注销
 
 ### 使用方法

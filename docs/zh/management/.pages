@@ -11,6 +11,7 @@ nav:
   - '字段管理': field-management.md
   - '全局标签': global-label.md
   - '黑名单': overall-blacklist.md
+  - '数据转发': backup.md
   - '数据权限管理': data-authorization.md
   - '敏感数据扫描': data-scanner.md
   - 'API Key 管理': api-key

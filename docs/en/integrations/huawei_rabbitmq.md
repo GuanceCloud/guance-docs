@@ -22,14 +22,14 @@ Use the「Guance Synchronization」series script package in the script market to
 
 ### Install Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
+Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically. Please continue with the script installation.
 
 If you deploy Func yourself,Refer to  [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 
 ### Installation script
 
-> Tip：Please prepare HUAWEI CLOUD AK that meets the requirements in advance（For simplicity's sake,,You can directly grant the global read-only permission`ReadOnlyAccess`）
+> Tip：Please prepare HUAWEI CLOUD AK that meets the requirements in advance（For simplicity's sake, you can directly grant the global read-only permission`ReadOnlyAccess`）
 
 To synchronize the monitoring data of  HUAWEI CLOUD RocketMQ cloud resources, we install the corresponding collection script：「Guance Integration（HUAWEI CLOUD- RabbitMQ）」(ID：`guance_huaweicloud_rabbitmq`)
 
@@ -159,12 +159,12 @@ The collected HUAWEI CLOUD ELB object data structure can see the object data fro
 
 
 
-> *notice：`tags`、`fields`The fields in this section may change with subsequent updates*
+> *notice：`tags`,`fields`The fields in this section may change with subsequent updates*
 >
 > Tips 1：`tags.name`The value is the instance ID for unique identification
 >
 > Tips 2：
 >
-> - `fields.message`、`fields.listeners` are JSON-serialized strings.
+> - `fields.message`,`fields.listeners` are JSON-serialized strings.
 > - `tags.operating_status`represents the operating status of the load balancer. It can have the values "ONLINE" and "FROZEN".
 

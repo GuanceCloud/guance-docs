@@ -112,6 +112,7 @@ containerd
 datagram
 dnssec
 eBPF
+ebpftrace
 fsyncs
 gRPC
 guance

@@ -358,7 +358,7 @@ curl '<Endpoint>/api/v1/df/query_data?search_after=\[1680226330509,8572,"L_16802
     | namespace、service      |
 
     
-    ???+ attention 
+    ???+ warning 
 
         - 若同时查询到 Host、Pod、Deployment、Service 的关联字段，进入详情页时则按照此顺序显示网络数据；
         - 若未查询到关联字段，则排在末端显示为灰色，点击提示**未匹配到网络视图**。
