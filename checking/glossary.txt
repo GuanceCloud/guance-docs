@@ -61,6 +61,7 @@ Kubernetes
 Log4j
 Logback
 Loki
+Memtable
 Minio
 MkDocs
 MyISAM
@@ -143,6 +144,7 @@ unflushed
 usec
 vmalloc
 wakeup
+workarea
 workqueue
 xpack
 zhangsan
