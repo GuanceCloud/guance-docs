@@ -89,9 +89,10 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Tag | Description |
 |  ----  | --------|
-|`device`|Disk device name.|
+|`device`|Disk device name. (on /dev/mapper return symbolic link, like `readlink /dev/mapper/*` result)|
 |`fstype`|File system name.|
 |`host`|System hostname.|
+|`mount_point`|Mount point.|
 
 - metric list
 

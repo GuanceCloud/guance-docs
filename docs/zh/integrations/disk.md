@@ -102,9 +102,10 @@ monitor   :
 
 | Tag | Description |
 |  ----  | --------|
-|`device`|Disk device name.|
+|`device`|Disk device name. (on /dev/mapper return symbolic link, like `readlink /dev/mapper/*` result)|
 |`fstype`|File system name.|
 |`host`|System hostname.|
+|`mount_point`|Mount point.|
 
 - 指标列表
 
