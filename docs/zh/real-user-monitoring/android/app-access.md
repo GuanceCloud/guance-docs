@@ -1298,7 +1298,7 @@ android{
                                 }))
                                 .eventListenerFactory(new FTResourceEventListener.FTFactory())
                                 .build();
-		```
+	```
 	
 === "Kotlin"
 
