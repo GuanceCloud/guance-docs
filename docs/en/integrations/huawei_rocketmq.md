@@ -33,11 +33,11 @@ If you deploy Func yourself,Refer to  [Self-Deployment of Func](https://func.gua
 
 To synchronize the monitoring data of  HUAWEI CLOUD RocketMQ cloud resources, we install the corresponding collection script：「Guance Integration（HUAWEI CLOUD- RocketMQ Collect）」(ID：`guance_huaweicloud_rocketmq`)
 
-Click [Install] and enter the corresponding parameters: HUAWEI CLOUD AK, HUAWEI CLOUD account name.。
+Click [Install] and enter the corresponding parameters: HUAWEI CLOUD AK, HUAWEI CLOUD account name.
 
-tap[Deploy startup Script]，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script。
+tap[Deploy startup Script]，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script.
 
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」。Click[Run]，you can immediately execute once, without waiting for a regular time。After a while, you can view task execution records and corresponding logs。
+After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」.Click[Run]，you can immediately execute once, without waiting for a regular time.After a while, you can view task execution records and corresponding logs.
 
 > If you want to collect logs, you must enable the corresponding log collection script. If you want to collect bills, start the cloud bill collection script.
 
@@ -124,11 +124,11 @@ The collected HUAWEI CLOUD ELB object data structure can see the object data fro
 | `maintain_begin`     | String | Maintenance time window start time in the format HH:mm:ss.                          |
 | `maintain_end`       | String | Maintenance time window end time in the format HH:mm:ss.                          |
 
-> *notice：`tags`、`fields`The fields in this section may change with subsequent updates*
+> *notice：`tags`,`fields`The fields in this section may change with subsequent updates*
 >
 > Tips 1：`tags.name`The value is the instance ID for unique identification
 >
 > Tips 2：
 >
-> - `fields.message`、`fields.listeners` are JSON-serialized strings.
+> - `fields.message`,`fields.listeners` are JSON-serialized strings.
 > - `tags.operating_status`represents the operating status of the load balancer. It can have the values "ONLINE" and "FROZEN".

@@ -1,6 +1,66 @@
 # Changelog
 ---
 
+## 1.18.0(2023/11/02) {#cl-1.18.0}
+
+This release is an iterative release with the following updates:
+
+### New addition {#cl-1.18.0-new}
+
+- Added OceanBase Collector(#1924)
+
+### Fix {#cl-1.18.0-fix}
+
+- Fixed compatibility of large Tag values in Tracing data, now adjusted to 32MB(#1932)
+- Fix RUM session replay dirty data issue(#1958)
+- Fixed indicator information export issue(#1953)
+- Fix the [v2 version protocol](Datakit-conf.m#datawawe-Settings) build error
+
+### Function optimization {#cl-1.18.0-opt}
+
+- Added mount points and other indicators in host directory Collection and Disk Collection(#1941)
+- KafkaMQ supports OpenTelemetry Tracing for data processing(#1887)
+- Added more information collection in Bug Report(#1908)
+- Improved self-index exposure during Prom collection(#1951)
+- Update default IP library to support IPv6(#1957)
+- Update image name Download address is `pubrepo.guance.com`(#1949)
+- Optimized log capture file location function(#1961)
+- Kubernetes
+    - Support Node-Local Pod collection(metric&object) to relieve pressure on election nodes(#1960)
+    - Container log collector supports more filtering(#1959)
+    - Added Service related metric collecting(#1948)
+    - Support for selecting labels from PodMonitor and ServiceMonitor(#1963)
+    - Support for converting Node labels to tags on Node object(#1962)
+
+### Compatible adjustment {#cl-1.18.0-brk}
+
+- Kubernetes no longer collects CPU&memory metrics for Pods created by Job/CronJob(#1964)
+
+---
+
+## 1.17.3(2023/10/31) {#cl-1.17.3}
+
+This release is a Hotfix release, which fixes the following issues:
+
+### Bug fix{#cl-1.17.3-fix}
+
+- Fix Pipeline not working for logging(#1954)
+- Fix eBPF not working under arm64(#1955)
+
+---
+
+## 1.17.2(2023/10/27) {#cl-1.17.2}
+
+This release is a Hotfix release, which fixes the following issues:
+
+### Bug fix{#cl-1.17.2-fix}
+
+- Fix logging input that missing host global tags(#1942)
+- Fix RUM session replay uploading(#1943)
+- Fix point encoding error on non-UTF8 string
+
+---
+
 ## 1.17.1(2023/10/26) {#cl-1.17.1}
 
 This release is a Hotfix release, which fixes the following issues:

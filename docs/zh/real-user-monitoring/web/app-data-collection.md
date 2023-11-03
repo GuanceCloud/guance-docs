@@ -138,7 +138,7 @@
 | `largest_contentful_paint` | number（ns） | 最大内容绘制（[LCP](https://web.dev/lcp/)，页面加载时间轴中的一刹那，其中呈现了视口中最大的 DOM 对象）<br>计算方式：统计最近上报的一次 PerformanceEntry 时间。 |
 | `cumulative_layout_shift` | number | 累计布局版面转移 (CLS)，0 表示载入过程没有版面移动变化。 |
 | `first_input_delay` | number（ns） | 首次输入延时 (FID)<br>计算方式：performance.now() - event.timeStamp |
-| `loading_time` | number（ns） | 页面加载时间<br>initial_load 模式下计算公式:<br>① loadEventEnd - navigationStart<br>② 页面首次无活动时间 - navigationStart<br>`route_change` 模式下计算公式：用户点击时间 - 页面首次无活动时间。<br>页面首次无活动时间：页面超过 100ms 无网络请求或 DOM 突变。 |
+| [`loading_time`](../../security/page-performance.md#loading-time) | number（ns） | 页面加载时间<br>initial_load 模式下计算公式:<br>① loadEventEnd - navigationStart<br>② 页面首次无活动时间 - navigationStart<br>`route_change` 模式下计算公式：用户点击时间 - 页面首次无活动时间。<br>页面首次无活动时间：页面超过 100ms 无网络请求或 DOM 突变。 |
 | [`dom_interactive`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming/domInteractive) | number（ns） | DOM 结构构建完毕时间<br>获取方式：time = performanceTiming.domInteractive |
 | `dom_content_loaded` | number（ns） | DOM 内容加载时间<br>计算方式：domContentLoadedEventEnd - domContentLoadedEventStart |
 | [`dom_complete`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming/domComplete) | number（ns） | DOM 树解析完成时间<br>获取方式：time = performanceTiming.domComplete |
@@ -202,6 +202,10 @@
 | `resource_trans` | number（ns） | 资源加载内容传输时间<br>计算方式：responseEnd - responseStart |
 | `resource_first_byte` | number（ns） | 资源加载首包时间<br>计算方式：responseStart - domainLookupStart |
 | `duration` | number（ns） | 资源加载时间<br>计算方式：duration(responseEnd-startTime) |
+| `resource_response_body_text` [(BETA 版本独有)](https://static.guance.com/browser-sdk/v3/BETA/dataflux-rum.js) |  | |
+| `resource_response_headers` [(BETA 版本独有)](https://static.guance.com/browser-sdk/v3/BETA/dataflux-rum.js)|  | |
+| `resource_request_body_text` [(BETA 版本独有)](https://static.guance.com/browser-sdk/v3/BETA/dataflux-rum.js) |  | |
+| `resource_request_headers` [(BETA 版本独有)](https://static.guance.com/browser-sdk/v3/BETA/dataflux-rum.js)  |  | |
 
 ### Error
 

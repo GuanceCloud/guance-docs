@@ -14,7 +14,7 @@
 
 1、创建绑定关系
 
-您可以可以基于链路服务(`service`)、应用(`app_id`)、日志源(`source`)、项目(`project`)、标签(`label`) 或自定义输入空间内的 `key`、`value` 进行内置视图与查看器绑定；支持 `value` 的模糊匹配。
+您可以基于链路服务(`service`)、应用(`app_id`)、日志源(`source`)、项目(`project`)、标签(`label`) 或自定义输入空间内的 `key`、`value` 进行内置视图与查看器绑定；支持 `value` 的模糊匹配。
 
 ![](../img/4.view_7.png)
 

@@ -24,7 +24,7 @@
 
 ![](img/6.index_2.png)
 
-???+ attention
+???+ warning
 
     - 默认情况下，所有日志都存在一个名称为 `default` 的默认索引中，默认索引不允许修改和删除；  
     - 设置日志多索引以后，日志会流入第一个匹配的索引中，同一条日志不会跨索引重复保存；  
@@ -57,7 +57,7 @@
 
 观测云支持绑定外部的索引数据，包括 **[SLS Logstore](#sls) 、[Elasticsearch](#es)、[OpenSearch](#opensearch)** 的索引数据，绑定成功后，您可以在观测云工作空间对外部索引数据进行查询和分析。
 
-???+ attention
+???+ warning
 
     - 绑定的索引仅支持删除（删除即为取消绑定），取消绑定后则无法查询该索引下的日志；
     - 其他索引不能与日志索引重名，也不能与历史日志索引重名。
@@ -82,7 +82,7 @@
 
 > 关于如何开通 SLS 存储方案，可参考文档 [阿里云市场开通观测云专属版](../billing/commercial-aliyun-sls.md)。
 
-???+ attention
+???+ warning
 
     - 若您是观测云商业版用户，您可以参考文档 [RAM 账号授权](../billing/billing-method/sls-grant.md)，获取 AK / AKS 进行索引绑定；       
     - 若您是观测云专属版用户，您可以直接使用开通专属版时的 AK / AKS 进行索引绑定，关于如何开通专属版，你可以参考文档 [阿里云市场开通观测云专属版](../billing/commercial-aliyun-sls.md)；     
@@ -118,7 +118,7 @@
 
 ![](img/sls-index-1.png)
 
-???+ attention
+???+ warning
 
     - 操作跨账号角色授权需使用<u>阿里云主账号</u>或<u>授权了 RAM 访问控制 GetRole、GetPolicy、CreatePolicy、CreatePolicyVersion、CreateRole、UpdateRole、AttachPolicyToRole 权限</u>的子账号；
 
@@ -237,7 +237,7 @@
 
 您也可以在**绑定索引 > 其他索引**，选择需要修改字段映射的索引，点击**编辑**，修改该索引的映射字段。
 
-???+ attention
+???+ warning
 
     - 每个索引的映射规则不相通，各自独立保存；
     - 若某条日志存在 `_docid` 字段，又映射了一个相同字段，则原日志中的 `_docid` 不生效。

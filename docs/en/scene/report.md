@@ -1,6 +1,6 @@
 # Regular Report {#report}
 
-Guance enables you to export dashboards into reports, which are regularly pushed to relevant members in the form of emails according to different time dimensions such as daily/weekly/monthly.
+Guance enables you to export dashboards into reports, which are regularly pushed to relevant members in different forms according to different time dimensions such as daily/weekly/monthly.
 
 Enter **Scenes > Regular Report**:
 

@@ -13,7 +13,7 @@
 
 观测云提供多个注册站点，可根据您当前云环境或者结算方式等实际情况，选择对应站点。
 
-???+ attention "站点相关"
+???+ warning "站点相关"
 
     - 不同站点的账号和数据相互独立，无法互相共享和迁移数据，请谨慎选择。
     - 注册商业版的同时，您可以根据所选择的站点，设置对应的结算方式，后续也可按需修改。<br/>
@@ -76,7 +76,7 @@
 
 您可以在**选择开通方式**，填写工作空间名称，选择工作空间语言，点击 **[前往阿里云免费开通观测云服务](https://market.aliyun.com/products/56838014/cmgj00053362.html)** 获取并填写 **[账号 ID](../billing/billing-account/aliyun-account.md#uid)、[商品实例 ID](../billing/billing-account/aliyun-account.md#entity-id)**，点击**确定**即可完成注册。
 
-???+ attention "阿里云用户也可以通过以下方式直接开通观测云："
+???+ warning "阿里云用户也可以通过以下方式直接开通观测云："
     
     - 您可以直接在 [阿里云市场观测云](https://market.aliyun.com/products/56838014/cmgj00053362.html) ，购买观测云，并直接通过免登注册开通观测云。
     

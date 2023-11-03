@@ -19,7 +19,6 @@ monitor:
 <!-- markdownlint-enable -->
 
 Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.
->>>>>>> 07149e6ff311a6b89b144646817a5ff8da1c189b
 
 
 ## Config {#config}
@@ -42,7 +41,7 @@ Click 【Install】 and enter the corresponding parameters: HUAWEI CLOUD AK, HUA
 
 tap【Deploy startup Script】, The system automatically creates `Startup` script sets, And automatically configure the corresponding startup script.
 
-After the script is installed, Find the script in「Development」in Func「Guance Integration (HUAWEI CLOUD-GaussDB-Redis Collection)」，Expand to modify this script, find `collector_configs`and`monitor_configs`Edit the content in`region_projects`, Change the locale and Project ID to the actual locale and Project ID, Click Save Publish again.
+After the script is installed, Find the script in「Development」in Func「Guance Integration (HUAWEI CLOUD-GaussDB-Redis Collection)」,Expand to modify this script, find `collector_configs`and`monitor_configs`Edit the content in`region_projects`, Change the locale and Project ID to the actual locale and Project ID, Click Save Publish again.
 
 In addition, the corresponding automatic trigger configuration is displayed in「Management / Crontab Config」. tap【Run】, It can be executed immediately once, without waiting for a periodic time. After a while, you can view task execution records and corresponding logs.
 

@@ -1,8 +1,6 @@
 # 视图变量
 ---
 
-## 简介
-
 观测云支持向视图中添加全局变量，当您想要在仪表板中，动态地完成图表的筛选，可以选择使用视图变量来实现。
 
 ## 添加视图变量
@@ -137,6 +135,12 @@ O::docker_containers:(distinct(`host`)) [10m]
 | show_tag_key(from=['cpu']) | 返回当前工作空间指标集 cpu 下面的标签。 |
 | show_tag_key(from=["cpu"],keyin=["host"]) | 查询当前工作空间指标集 cpu 的 host 标签值列表。 |
 
+#### PromQL 查询 {#promql}
+
+在 PromQL 查询中，支持手写查询语句。查询中默认使用仪表板时间控件所选时间，并查询返回对应的数据值。
+
+> 关于 PromQL 查询相关信息，可参考 [PromQL 快速上手](../dql/promql.md)。
+
 #### UI 查询
 
 在 UI 查询中，支持选择指标、基础对象、自定义对象、日志、应用性能、用户访问、安全巡检数据来源，通过直接在 UI 上点击选择查询变量，查询返回对应的数据值。
@@ -260,7 +264,7 @@ R::view:(distinct(`version`)) {app_id = '#{appid}' and env = '#{env}'  and sdk_n
 
 2、在图表中，选中特定时间线或数据点，可直接点击实现反向添加，实现全局联动查看选中值相关的图表数据分析。
 
-???+ attention
+???+ warning
 
     - 前提：其对应的 [DQL](../scene/view-variable.md#dql) 中存在 by 分组条件；
     - 涉及图表范围：时序图、概览图、饼图、排行榜、仪表盘、柱状图、散点图、气泡图、表格图、矩形树图、中国地图、世界地图、蜂窝图
@@ -310,7 +314,7 @@ R::view:(distinct(`version`)) {app_id = '#{appid}' and env = '#{env}'  and sdk_n
 
 ![](img/x12.png)
 
-???+ attention
+???+ warning
 
     - 对象映射只支持设置对象类数据；   
     - 使用对象映射时，必须先定义一个基于对象类字段的视图变量；           

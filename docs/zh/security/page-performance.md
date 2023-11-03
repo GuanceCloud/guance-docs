@@ -43,7 +43,7 @@
 对于单页应用程序 (SPA)，RUM 浏览器 SDK 使用 `loading_type` 标签区分 `initial_load` 和  `route_change`。RUM SDK 会生成一个带有 `loading_type:route_change` 标签的 `view`事件。RUM 使用 [History API](https://developer.mozilla.org/en-US/docs/Web/API/History) 监听 URL 的改变。
 
 
-## Loading Time 计算方式
+## Loading Time 计算方式 {#loading-time}
 
 基于现代浏览器提供了强大的 API 能力，Loading Time 会监听页面的 DOM 变化，以及网络请求情况。
 

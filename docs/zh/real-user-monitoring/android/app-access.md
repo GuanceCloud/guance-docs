@@ -247,7 +247,7 @@ android{
 | setSampleRate | Boolean | 否 | 设置采集率 | 采集率的值范围为>= 0、<= 1，默认值为 1 |
 | setEnableTrackAppCrash | Boolean | 否 | 是否上报 App 崩溃日志 | 默认为 `false`，开启后会在错误分析中显示错误堆栈数据。<br> [关于崩溃日志中混淆内容转换的问题](#retrace-log) |
 | setExtraMonitorTypeWithError | Array| 否 | 设置辅助监控信息 | 添加附加监控数据到 `Rum` 崩溃数据中，`ErrorMonitorType.BATTERY` 为电池余量，`ErrorMonitorType.MEMORY` 为内存用量，`ErrorMonitorType.CPU` 为 CPU 占有率 |
-| setDeviceMetricsMonitorType | Array | 否 | 设置 View 监控信息 | 在 View 周期中，添加监控数据，`DeviceMetricsMonitorType.BATTERY` 监控当前页的最高输出电流输出情况，`DeviceMetricsMonitorType.MEMORY` 监控当前应用使用内存情况，`DeviceMetricsMonitorType.CPU` 监控 CPU 跳动次数 ，`DeviceMetricsMonitorType.FPS` 监控屏幕帧率|
+| setDeviceMetricsMonitorType | Array | 否 | 设置 View 监控信息 | 在 View 周期中，添加监控数据，`DeviceMetricsMonitorType.BATTERY` 监控当前页的最高输出电流输出情况，`DeviceMetricsMonitorType.MEMORY` 监控当前应用使用内存情况，`DeviceMetricsMonitorType.CPU` 监控 CPU 跳动次数 ，`DeviceMetricsMonitorType.FPS` 监控屏幕帧率。监控周期，`DetectFrequency.DEFAULT` 500 毫秒，`DetectFrequency.FREQUENT` 100毫秒，`DetectFrequency.RARE` 1 秒 |
 | setEnableTrackAppANR | Boolean | 否 | 是否开启  ANR 检测 | 默认为 `false` |
 | setEnableTrackAppUIBlock | Boolean | 否 | 是否开启 UI 卡顿检测 | 默认为 `false` |
 | setEnableTraceUserAction | Boolean | 否 | 是否自动追踪用户操作 | 目前只支持用户启动和点击操作，默认为 `false` |
@@ -1048,6 +1048,7 @@ android{
 | NetStatusBean.responseEndTime | 响应结束时间 | 否 |  |
 | NetStatusBean.sslStartTime | ssl 开始时间 | 否 |  |
 | NetStatusBean.sslEndTime | ssl 结束时间 | 否 |  |
+| NetStatusBean.property| 附加属性 | 否 |  |
 | ResourceParams.url | url 地址 | 是 |  |
 | ResourceParams.requestHeader | 请求头参数 | 否 |  |
 | ResourceParams.responseHeader | 响应头参数 | 否 |  |
@@ -1056,6 +1057,7 @@ android{
 | ResourceParams.responseContentEncoding | 响应  ContentEncoding | 否 |  |
 | ResourceParams.resourceMethod | 请求方法 | 否 |  GET,POST 等 |
 | ResourceParams.responseBody | 返回 body 内容 | 否 |  |
+| ResourceParams.property| 附加属性 | 否 |  |
 
 ## Logger 日志打印 {#log} 
 使用 `FTLogger` 进行日志输出
@@ -1246,8 +1248,98 @@ android{
 
 	 val builder: Request.Builder = Request.Builder().url(url).method(RequestMethod.GET.name, null)
 	client.newCall(builder.build()).execute()
+	```
 
-    ```
+## 通过 OKHttp Interceptor 自定义 Resource 和 TraceHeader {#okhttp_resource_trace_interceptor_custom}
+
+关闭 `FTRUMConfig`的`enableTraceUserResource` ，`FTTraceConfig`的 `enableAutoTrace` 配置
+
+=== "Java"
+
+	```java
+	OkHttpClient client = new OkHttpClient.Builder()
+	                               .addInterceptor(new FTTraceInterceptor(new FTTraceInterceptor.HeaderHandler() {
+	                                    @Override
+	                                    public HashMap<String, String> getTraceHeader(Request request) {
+	                                        HashMap<String, String> map = new HashMap<>();
+	                                        map.put("custom_header","custom_value");
+	                                        return map;
+	                                   }
+	                             }))
+                                .addInterceptor(new FTResourceInterceptor(new FTResourceInterceptor.ContentHandlerHelper() {
+                                    @Override
+                                    public void onRequest(Request request, HashMap<String, Object> extraData) {
+                                        String contentType = request.header("Content-Type");
+                                        extraData.put("df_request_header", request.headers().toString());
+                                        if ("application/json".equals(contentType) ||
+                                                "application/x-www-form-urlencoded".equals(contentType) ||
+                                                "application/xml".equals(contentType)) {
+                                            extraData.put("df_request_body", request.body());
+                                        }
+
+                                    }
+
+                                    @Override
+                                    public void onResponse(Response response, HashMap<String, Object> extraData) throws IOException {
+                                        String contentType = response.header("Content-Type");
+                                        extraData.put("df_response_header", response.headers().toString());
+                                        if ("application/json".equals(contentType) ||
+                                                "application/xml".equals(contentType)) {
+                                            //copy 读取部分 body，避免大数据消费
+                                            ResponseBody body = response.peekBody(33554432);
+                                            extraData.put("df_response_body", body.string());
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onException(Exception e, HashMap<String, Object> extraData) {
+
+                                    }
+                                }))
+                                .eventListenerFactory(new FTResourceEventListener.FTFactory())
+                                .build();
+	```
+	
+=== "Kotlin"
+
+	```kotlin
+	val client = OkHttpClient.Builder()
+    .addInterceptor(FTTraceInterceptor(object : FTTraceInterceptor.HeaderHandler {
+        override fun getTraceHeader(request: Request): HashMap<String, String> {
+            val map = HashMap<String, String>()
+            map["custom_header"] = "custom_value"
+            return map
+        }
+    }))
+    .addInterceptor(FTResourceInterceptor(object : FTResourceInterceptor.ContentHandlerHelper {
+        override fun onRequest(request: Request, extraData: HashMap<String, Any>) {
+            val contentType = request.header("Content-Type")
+            extraData["df_request_header"] = request.headers().toString()
+            if ("application/json" == contentType ||
+                "application/x-www-form-urlencoded" == contentType ||
+                "application/xml" == contentType) {
+                extraData["df_request_body"] = request.body()
+            }
+        }
+
+        override fun onResponse(response: Response, extraData: HashMap<String, Any>) {
+            val contentType = response.header("Content-Type")
+            extraData["df_response_header"] = response.headers().toString()
+            if ("application/json" == contentType ||
+                "application/xml" == contentType) {
+                // 复制部分响应体以避免大数据消耗
+                val body = response.peekBody(33554432)
+                extraData["df_response_body"] = body.string()
+            }
+        }
+
+        override fun onException(e: Exception, extraData: HashMap<String, Any>) {
+            // 处理异常情况
+        }
+    }))
+    .eventListenerFactory(FTResourceEventListener.FTFactory())
+    .build()
+	```
 
 ## 用户信息绑定与解绑 {#userdata-bind-and-unbind}
 使用  `FTSdk` 进行用户的绑定和解绑 
@@ -1256,7 +1348,7 @@ android{
 
 === "Java"
 
-	```
+	```java
 
 	   /**
 	     * 绑定用户信息
@@ -1437,7 +1529,7 @@ android{
 
 ## R8 / Proguard 混淆配置
 
-```c
+```java
 -dontwarn com.ft.sdk.**
 
 -keep class com.ft.sdk.**{*;}

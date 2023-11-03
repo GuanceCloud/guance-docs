@@ -100,6 +100,8 @@ nav:
     - About Windows:
       - 'Windows Event': windows_event.md
       - iis.md
+      - active_directory.md
+      - exchange.md
 
   - Middleware:
     - 'Storage':
@@ -108,6 +110,7 @@ nav:
       - couchbase.md
       - couchdb.md
       - oracle.md
+      - 'OceanBase': oceanbase.md
       - sqlserver.md
       - postgresql.md
       - redis.md
@@ -241,6 +244,11 @@ nav:
 
   - 'Langue':
     - 'Java': java.md
+      - jmx.md
+      - jvm_jmx_exporter.md
+      - jvm_jolokia.md
+      - jvm_micrometer.md
+      - jvm_statsd.md
     - dotnet.md
     - golang.md
     - nodejs.md

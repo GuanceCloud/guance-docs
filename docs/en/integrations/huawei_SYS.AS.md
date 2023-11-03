@@ -87,9 +87,9 @@ AS object data structure collected, you can see the object data from "Infrastruc
 
 ```
 
-> *notice：`tags`、`fields`The fields in this section may change with subsequent updates*
+> *notice：`tags`,`fields`The fields in this section may change with subsequent updates*
 >
 > Tips 1：`tags.name`The value serves as the instance ID for unique identification
 >
-> Tips 2：`fields.message`、`fields.billing`、`fields.bind_rules`、`fields.message`、`fields.resources`、are all JSON-serialized string representations.
+> Tips 2：`fields.message`,`fields.billing`,`fields.bind_rules`,`fields.message`,`fields.resources`,are all JSON-serialized string representations.
 

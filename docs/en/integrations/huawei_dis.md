@@ -18,7 +18,7 @@ monitor:
 # HUAWEI CLOUD DIS
 <!-- markdownlint-enable -->
 
-Use the「Guance Synchronization」series script package in the script market to monitor the cloud ,The data of the cloud asset is synchronized to the observation cloud。
+Use the「Guance Synchronization」series script package in the script market to monitor the cloud ,The data of the cloud asset is synchronized to the observation cloud.
 
 
 ## Config {#config}

@@ -80,6 +80,18 @@ RUM（Real User Monitor）采集器用于收集网页端或移动端上报的用
       ## such as https://github.com/everettjf/atosl-rs
       atos_bin_path = "/usr/local/datakit/data/rum/tools/atosl"
     
+      # Provide a list to resolve CDN of your static resource.
+      # Below is the Datakit default built-in CDN list, you can uncomment that and change it to your cdn list,
+      # it's a JSON array like: [{"domain": "CDN domain", "name": "CDN human readable name", "website": "CDN official website"},...],
+      # domain field value can contains '*' as wildcard, for example: "kunlun*.com",
+      # it will match "kunluna.com", "kunlunab.com" and "kunlunabc.com" but not "kunlunab.c.com".
+      # cdn_map = '''
+      # [
+      #   {"domain":"15cdn.com","name":"腾正安全加速(原 15CDN)","website":"https://www.15cdn.com"},
+      #   {"domain":"tzcdn.cn","name":"腾正安全加速(原 15CDN)","website":"https://www.15cdn.com"}
+      # ]
+      # '''
+    
       ## Threads config controls how many goroutines an agent cloud start to handle HTTP request.
       ## buffer is the size of jobs' buffering of worker channel.
       ## threads is the total number fo goroutines at running time.
@@ -94,17 +106,20 @@ RUM（Real User Monitor）采集器用于收集网页端或移动端上报的用
       #   path = "./rum_storage"
       #   capacity = 5120
     
-      # Provide a list to resolve CDN of your static resource.
-      # Below is the Datakit default built-in CDN list, you can uncomment that and change it to your cdn list,
-      # it's a JSON array like: [{"domain": "CDN domain", "name": "CDN human readable name", "website": "CDN official website"},...],
-      # domain field value can contains '*' as wildcard, for example: "kunlun*.com",
-      # it will match "kunluna.com", "kunlunab.com" and "kunlunabc.com" but not "kunlunab.c.com".
-      # cdn_map = '''
-      # [
-      #   {"domain":"15cdn.com","name":"腾正安全加速(原 15CDN)","website":"https://www.15cdn.com"},
-      #   {"domain":"tzcdn.cn","name":"腾正安全加速(原 15CDN)","website":"https://www.15cdn.com"}
-      # ]
-      # '''
+      ## session_replay config is used to control Session Replay uploading behavior.
+      ## cache_path set the disk directory where temporarily cache session replay data.
+      ## cache_capacity_mb specify the max storage space (in MiB) that session replay cache can use.
+      ## clear_cache_on_start set whether we should clear all previous session replay cache on restarting Datakit.
+      ## upload_workers set the count of session replay uploading workers.
+      ## send_timeout specify the http timeout when uploading session replay data to dataway.
+      ## send_retry_count set the max retry count when sending every session replay request.
+      # [inputs.rum.session_replay]
+      #   cache_path = "/usr/local/datakit/cache/session_replay"
+      #   cache_capacity_mb = 20480
+      #   clear_cache_on_start = false
+      #   upload_workers = 16
+      #   send_timeout = "75s"
+      #   send_retry_count = 3
     
     ```
 

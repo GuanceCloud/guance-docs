@@ -32,15 +32,15 @@ If you deploy Func yourself,Refer to  [Self-Deployment of Func](https://func.gua
 
 ### Installation script
 
-> Tip：Please prepare HUAWEI CLOUD AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
+> Tip：Please prepare HUAWEI CLOUD AK that meets the requirements in advance（For simplicity's sake, you can directly grant the global read-only permission`ReadOnlyAccess`）
 
 To synchronize the monitoring data of  HUAWEI CLOUD Kafka cloud resources, we install the corresponding collection script：「Guance Integration (HUAWEI CLOUD-Kafka Collection)」(ID：`guance_huaweicloud_kafka`)
 
 Click 【Install】 and enter the corresponding parameters: HUAWEI CLOUD AK, HUAWEI CLOUD account name.
 
-tap【Deploy startup Script】，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script.
+tap【Deploy startup Script】,The system automatically creates `Startup` script sets,And automatically configure the corresponding startup script.
 
-After this function is enabled, you can view the automatic triggering configuration in「Guance Integration (HUAWEI CLOUD-Kafka Collection)」，Click【Run】，you can immediately execute once, without waiting for a regular time。After a while, you can view task execution records and corresponding logs.
+After this function is enabled, you can view the automatic triggering configuration in「Guance Integration (HUAWEI CLOUD-Kafka Collection)」,Click【Run】,you can immediately execute once, without waiting for a regular time.After a while, you can view task execution records and corresponding logs.
 
 > If you want to collect logs, you must enable the corresponding log collection script. If you want to collect bills, start the cloud bill collection script.
 
@@ -50,7 +50,7 @@ We collected some configurations by default, as described in the Metrics column
 
 ### Verify
 
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
+1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task. In addition, you can view task records and logs to check whether exceptions exist
 2. On the Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
 3. On the Guance platform, press 「Metrics」 to check whether monitoring data exists
 

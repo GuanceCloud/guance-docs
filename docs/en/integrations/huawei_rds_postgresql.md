@@ -39,7 +39,7 @@ To synchronize the monitoring data of  HUAWEI CLOUD RDS PostgreSQL cloud resourc
 
 Click [Install] and enter the corresponding parameters: HUAWEI CLOUD AK,SK,HUAWEI CLOUD account name.
 
-Tap[Deploy startup Script]，The system automatically creates Startup script sets，And automatically configure the corresponding startup script.
+Tap[Deploy startup Script],The system automatically creates Startup script sets,And automatically configure the corresponding startup script.
 
 After the script is installed,Find the script in「Development」in Func「Guance Integration（HUAWEI CLOUD RDS PostgreSQL Collect）」,Expand to modify this script,find collector_configsandmonitor_configsEdit the content inregion_projects,Change the locale and Project ID to the actual locale and Project ID,Click Save Publish again.
 
@@ -50,9 +50,9 @@ We collected some configurations by default, as described in the Metrics column 
 
 ### Verify
 
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On Guance platform, press 「Metrics」 to check whether monitoring data exists
+1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist.
+2. On Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists.
+3. On Guance platform, press 「Metrics」 to check whether monitoring data exists.
 
 ## Metric {#metric}
 Configure HUAWEI CLOUD - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them [HUAWEI CLOUD Monitor Metrics Details](https://support.huaweicloud.com/eu/api-rds/rds_10_0204.html){:target="_blank"}
@@ -139,7 +139,7 @@ The collected HUAWEI CLOUD RDS PostgreSQL object data structure can see the obje
 }
 ```
 
-> *notice：`tags`、`fields`The fields in this section may change with subsequent updates*
+> *notice：`tags`,`fields`The fields in this section may change with subsequent updates*
 >
 > Tips  1：`tags.name`The value is the instance ID for unique identification
 >
@@ -153,4 +153,4 @@ The collected HUAWEI CLOUD RDS PostgreSQL object data structure can see the obje
 > - `fields.related_instance`
 > - `fields.backup_strategy`
 >
-> Tips 3：`type`The value is “Single”，“Ha” or “Replica”, "Enterprise"，corresponding to stand-alone instance, active/standby instance, read-only instance, and distributed instance (enterprise edition) respectively.
+> Tips 3：`type`The value is “Single”,“Ha” or “Replica”, "Enterprise",corresponding to stand-alone instance, active/standby instance, read-only instance, and distributed instance (enterprise edition) respectively.

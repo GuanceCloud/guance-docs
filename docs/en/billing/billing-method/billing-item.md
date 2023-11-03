@@ -1,15 +1,25 @@
 # Logic Behind Billing 
 ---
 
-**2023.4.20 Release Note**
 
-I. Guance's self-developed timeseries database GuanceDB is newly launched, and the timeseries data storage and billing will be adjusted as follows:
+???+ quote "Release Note"
 
-- The infrastructure (DataKit) billing item goes offline, and the original two billing modes of "DataKit + Timeline" and "Timeline Only" are used as billing logic according to GuanceDB Timeline Only;
+    **October 19, 2023**: The billing item Data Forward will be charged based on the data forwarding rules, and the forwarded data volume will be separately counted for billing.
 
-- GuanceDB timeline: count the number of active timelines on the same day, and the unit price is as low as 0.6/per thousand timelines. See [Timeline Description](#timeline)；
+    **September 26, 2023**：
+
+    - Add Span Quantity Statistics to APM billing items, where the billing data for the day is calculated as the maximum value between "Quantity/10" and the number of `trace_id` occurrences.
+    - Add new statistics logic to RUM billing items: calculate the Resource, Long Task, Error, and Action data within the workspace, and the billing data for the day is calculated as the maximum value between "Quantity/100" and the number of PV occurrences.
+
+    **April 20, 2023**
+
+    I. Guance's self-developed timeseries database GuanceDB is newly launched, and the timeseries data storage and billing will be adjusted as follows:
+
+    - The infrastructure (DataKit) billing item goes offline, and the original two billing modes of "DataKit + Timeline" and "Timeline Only" are used as billing logic according to GuanceDB Timeline Only;
+
+    - GuanceDB timeline: count the number of active timelines on the same day, and the unit price is as low as 0.6/per thousand timelines. See [Timeline Description](#timeline)；
   
-II. RUM Session replay officially starts to charge, and charges according to the number of sessions actually collected Session playback data, namely ￥10/per thousand sessions. Refer to [Session Instruction](#session).
+    II. RUM Session replay officially starts to charge, and charges according to the number of sessions actually collected Session playback data, namely ￥10/per thousand sessions. Refer to [Session Instruction](#session).
 
 **Maybe you want to know:**
 
@@ -32,15 +42,13 @@ II. RUM Session replay officially starts to charge, and charges according to the
 
 ## Overview
 
-When you open the business workspace of Guance and start using it, Guance provides a <font color=coral>pay-per-use billing method</font>. This article mainly introduces the detailed information of pay-per-use for Guance products, including [billing cycle](#cycle), [billing method](#account), [billing item](#item), and [billing example](#example).
+This article mainly introduces the billing generation and price calculation logic of each billing item under the pay-as-you-go billing framework for Guance products.
 
 ## Concepts
 
 | Glossary   | Description |
 | -------- | ---------- |
 | Data Storage Strategy   | Guance supports users to customize the saving time for different data types. The corresponding storage time option configuration can refer to [Data Storage Strategy](data-storage.md).|
-| Total Statistics   | Count the number of corresponding data <u>in the current data storage strategy period of a billing item</u>. |
-| Incremental Statistics   | Count <u>the increase of data corresponding to a billing item on the same day</u>. For specific valuation methods, please refer to the following [Log Price Example](#exapmle). |
 | Basic Billing   | The unit price of a billing item is a <u>fixed value</u>. |
 | Gradient Billing   | The unit price of a billing item is a <u>dynamic value</u>, which will have <u>different single value</u> according to the data storage strategy selected by the current data type. |
 
@@ -52,23 +60,21 @@ The billing period of Guance is <font color=coral>days</font>, that is, accordin
 
 Guance supports various settlement methods such as Guance Billing Center account and cloud account. Cloud account settlement includes Alibaba Cloud account settlement, AWS account settlement and Huawei Cloud account settlement. In cloud account settlement mode, cloud bills from multiple sites are supported to be merged into one cloud account for settlement. 
 
-> Please refer to [Guance Settlement Methods](../../billing/billing-account/index.md).
+> See [Guance Settlement Methods](../../billing/billing-account/index.md).
 
 
 
-## Billing Item {#item}
+## Billing Items {#item}
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Billing Item and Pricing Model</font>](../billing-method/index.md)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Billing Items and Billing Detailss</font>](../billing-method/index.md)
 
 <br/>
 
 </div>
 
 ### Timeseries {#timeline}
-
-That is, it is used to count the number of label combinations corresponding to all metrics in the metric data reported by users through DataKit on the same day.
 
 The timing engine of Guance mainly involves the following basic concepts:
 
@@ -96,39 +102,32 @@ Based on the statistical data on the timeline above, there are a total of 3 comb
 
 Similarly, if you need to calculate the timeline for all metrics in the current workspace, simply add up the actual timelines for each metric to get the total.
 
-#### Generate Bills
+#### Billing Generation
 
 Metric data is collected through DataKit and reported to a workspace. This specifically refers to the data obtained by querying the NameSpace in DQL that starts with **M**.
 
-#### Pricing Model
+#### Billing Details
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Timeseries Pricing Model</font>](../billing-method/index.md#timeline)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Timeseries Billing Details</font>](../billing-method/index.md#timeline)
 
 <br/>
 
 </div>
+
 #### Billing Statistics
 
 The number of newly added timelines within each hour of <u>a day</u> is calculated, and the maximum value of the 24 data points is taken as the actual billing quantity.
 
-#### Cost Calculation Formula
+#### Billing Formula
 
 Daily cost = actual billing quantity / 1000 * unit price (corresponding to the data storage strategy above)
 
 ### Logs
 
-That is, logs, events, security check, synthetic tests, and other data generated by various features.
 
-???+ attention
-
-    - If the **Custom Multi-Index** feature is enabled for logs, the data will be counted based on different indexes to calculate the actual cost according to the corresponding data storage pricing strategy.    
-    - Events include events generated by monitoring modules (monitoring, SLO) configuration detection tasks, events reported by intelligent inspections, and events reported by users.     
-    - Availability testing data is reported by self-built testing nodes.        
-    - The cost of events, security inspections, and availability testing data is calculated based on the data storage pricing strategy of the "Default" index for logs.  
-
-#### Generate Bills
+#### Billing Generation
 
 Any of the following situations will generate corresponding log data:
 
@@ -136,11 +135,11 @@ Any of the following situations will generate corresponding log data:
 - Exception detection tasks such as monitoring, intelligent inspections, SLO configuration, or custom events are enabled or reported through OpenAPI.  
 - Availability testing tasks are enabled, and testing data is triggered to be reported through self-built testing nodes.
 
-#### Pricing Model
+#### Billing Details
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Logs Pricing Model</font>](../billing-method/index.md#logs)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Logs Billing Details</font>](../billing-method/index.md#logs)
 
 <br/>
 
@@ -150,7 +149,7 @@ Any of the following situations will generate corresponding log data:
 
 The number of log data points added in each hour is calculated in increments of 1 hour and the sum of the 24 resulting data points is used as the actual billing quantity.
 
-???+ attention
+???+ warning
 
     <u>For ultra-large log data, it will be split into multiple pieces for billing according to different storage types</u>:
 
@@ -160,21 +159,23 @@ The number of log data points added in each hour is calculated in increments of 
 
     If the size of a single data is less than the above limits, it will still be counted as 1 piece.
 
-#### Cost Calculation Formula
+#### Billing Formula
 
 Daily Cost = Actual billing quantity / 1000000 * Unit price (corresponding unit price applied based on the above data storage pricing strategy)
 
-### Backup Log Data {#backup}
+### Data Forward {#backup}
 
-#### Generate Bills
+#### Billing Generation
 
-Guance Studio can configure backup rules to synchronize reported log data for backup. The data matching the backup rules will be stored in the backup log index. Guance will calculate the capacity size of the backup log based on the index.
+Guance supports four ways to forward log data to external storage. Based on the data forwarding rules, the size of the forwarded traffic is counted for billing purposes.
 
-#### Pricing Model
+**Notes**: The data forwarded to the Observation Cloud for storage will still be kept as records.
+
+#### Billing Details
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Backup Log Data Pricing Model</font>](../billing-method/index.md#backup)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Backup Log Data Billing Details</font>](../billing-method/index.md#backup)
 
 <br/>
 
@@ -184,48 +185,47 @@ Guance Studio can configure backup rules to synchronize reported log data for ba
 
 The capacity size of the backup log is calculated in increments of each hour within the data storage strategy. The maximum value of the 24 resulting data points is used as the actual billing quantity. The default capacity unit is Bytes.
 
-#### Cost Calculation Formula
+#### Billing Formula
 
 Daily Cost = Actual billing capacity / 1000000000 * Corresponding unit price
 
 ### Network Monitoring
 
-The number of hosts statistically reported by network data uploaded by EBPF in the workspace.
-
-#### Generate Bills
+#### Billing Generation
 
 - Enable EBPF network data collection.
 
-#### Pricing Model
+#### Billing Details
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Report Network Data Host Pricing Model</font>](../billing-method/index.md#network)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Report Network Data Host Billing Details</font>](../billing-method/index.md#network)
 
 <br/>
 
 </div>
+
 #### Billing Statistics
 
 The number of new hosts added within each day is calculated in increments of each hour. The maximum value of the 24 resulting data points is used as the actual billing quantity.
 
-#### Cost Calculation Formula
+#### Billing Formula
 
 Daily Cost = Actual billing quantity * Corresponding unit price
 
 ### Application Performance Trace
 
-The number of traces in the uploaded link data is statistically counted. In general, if the `trace_id` of the span data is the same, these spans will be classified under one trace.
+#### Billing Generation
 
-#### Generate Bills
+- Statistics of the daily number of Span data generated in the workspace.
 
-- Enable application performance monitoring (APM) data collection.
+**Note**: In the new billing adjustment of Guance, the larger value between "quantity/10" and the number of `trace_id` will be used as the billing data for the day.
 
-#### Pricing Model
+#### Billing Details
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Application Performance Trace Pricing Model</font>](../billing-method/index.md#trace)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Application Performance Trace Billing Details</font>](../billing-method/index.md#trace)
 
 <br/>
 
@@ -235,23 +235,22 @@ The number of traces in the uploaded link data is statistically counted. In gene
 
 The number of new `trace_id` added within each hour is calculated in increments of each hour. The sum of the 24 resulting data points is used as the actual billing quantity.
 
-#### Cost Calculation Formula
+#### Billing Formula
 
 Daily Cost = Actual billing quantity / 1000000 * Corresponding unit price
 
 ### Application Performance Profile
 
-The number of application performance profile data uploaded is statistically counted.
 
-#### Generate Bills
+#### Billing Generation
 
-- Enable application performance profile data collection.
+- Enable application performance Profile data collection.
 
-#### Pricing Model
+#### Billing Details
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Application Performance Profile Pricing Model</font>](../billing-method/index.md#pv)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Application Performance Profile Billing Details</font>](../billing-method/index.md#pv)
 
 <br/>
 
@@ -261,7 +260,7 @@ The number of application performance profile data uploaded is statistically cou
 
 The number of new profile data added within each hour is calculated in increments of each hour. The sum of the 24 resulting data points is used as the actual billing quantity.
 
-???+ attention
+???+ warning
 
     Profile data consists of two parts: **Basic Properties Data + Profile Analysis File**:
 
@@ -271,25 +270,24 @@ The number of new profile data added within each hour is calculated in increment
 
     If the analysis file is less than the above limit, it will still be counted as 1 piece.
 
-#### Cost Calculation Formula
+#### Billing Formula
 
 Daily Cost = Actual billing quantity / 10000 * Corresponding unit price
 
 ### Real User Monitoring PV
 
-Statistical number of page views accessed by users that is reported. Generally, the number of `view_id` in the View data is used.
 
-<font color=coral>**Note:**</font> Whether it is an SPA (single-page application) or an MPA (multi-page application), every time a user visits a page (including refresh or re-entry), it counts as 1 PV.
+#### Billing Generation
 
-#### Generate Bills
+- Daily statistics of the quantity of Resources, Long Tasks, Errors, and Actions generated within the workspace.
 
-- Enable user access monitoring (RUM) collection.
+**Note**: In the new billing adjustment of Guance, the "Quantity/100" will be used along with the larger value in PV as the billing data for the day.
 
-#### Pricing Model
+#### Billing Details
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Real User Monitoring PV Pricing Model</font>](../billing-method/index.md#pv)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Real User Monitoring PV Billing Details</font>](../billing-method/index.md#pv)
 
 <br/>
 
@@ -299,23 +297,22 @@ Statistical number of page views accessed by users that is reported. Generally, 
 
 The number of new PV data added within each hour is calculated in increments of each hour. The sum of the 24 resulting data points is used as the actual billing quantity.
 
-#### Cost Calculation Formula
+#### Billing Formula
 
 Daily Cost = Actual billing quantity / 10000 * Unit price (*corresponding unit price applied based on the above data storage pricing strategy*)
 
 ### Session Replay {#session}
 
-Statistical number of Sessions that actually generated session replay data. Generally, the number of `session_id` in the Session data that `has has_replay: true` is used.
 
-#### Generate Bills
+#### Billing Generation
 
-- Enable Session replay collection.
+- Enable Session Replay collection.
 
-#### Pricing Model
+#### Billing Details
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Session Replay Pricing Model</font>](../billing-method/index.md#session)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Session Replay Billing Details</font>](../billing-method/index.md#session)
 
 <br/>
 
@@ -325,7 +322,7 @@ Statistical number of Sessions that actually generated session replay data. Gene
 
 The number of new Sessions added within each day is calculated in increments of each hour. The maximum value of the 24 resulting data points is used as the actual billing quantity.
 
-???+ attention
+???+ warning
 
     If there is an ultra-long active Session, the Session will be split into multiple pieces for billing according to `time_spent`.
 
@@ -333,21 +330,21 @@ The number of new Sessions added within each day is calculated in increments of 
 
     If the Session `time_spent` is less than the above 4 hours, it will still be counted as 1 Session.
 
-#### Cost Calculation Formula
+#### Billing Formula
 
 Daily Cost = Actual billing quantity / 1000 * Corresponding unit price
 
-### Synthetic Tests
+### Synthetic Tests {#st} 
 
-#### Generate Bills
+#### Billing Generation
 
 - Enable availability test tasks and return test results through the provided testing nodes of Guance.
   
-#### Pricing Model
+#### Billing Details
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Synthetic Tests Pricing Model</font>](../billing-method/index.md#st)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Synthetic Tests Billing Details</font>](../billing-method/index.md#st)
 
 <br/>
 
@@ -357,19 +354,19 @@ Daily Cost = Actual billing quantity / 1000 * Corresponding unit price
 
 The number of newly added dialing and testing data within one hour is counted at an hourly interval, and 24 data points are finally obtained, which are summed as the actual billing number.
 
-???+ attention
+???+ warning
 
     Because the dialing data is currently stored in the log **default** index, DQL queries or statistics need to add the following filters to query the dialing data.
     
     `index = ['default'], source = [‘http_dial_testing',‘tcp_dial_testing’,'icmp_dial_testing','websocket_dial_testing']`.
 
-#### Cost Calculation Formula
+#### Billing Formula
 
 Daily Cost = Actual billing quantity / 10000 * Corresponding unit price
 
 ### Triggers
 
-#### Generate Bills
+#### Billing Generation
 
 - Turn on regular detection tasks such as monitor and SLO;
 
@@ -379,11 +376,11 @@ Daily Cost = Actual billing quantity / 10000 * Corresponding unit price
 
 - Select the advanced function query provided by the central Func.      
 
-#### Pricing Model
+#### Billing Details
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Triggers Pricing Model</font>](../billing-method/index.md#trigger)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Triggers Billing Details</font>](../billing-method/index.md#trigger)
 
 <br/>
 
@@ -393,23 +390,22 @@ Daily Cost = Actual billing quantity / 10000 * Corresponding unit price
 
 The number of new tasks in one hour is counted at an hourly interval, and after 24 data points are finally obtained, the sum is taken as the actual billing quantity.
 
-#### Cost Calculation Formula
+#### Billing Formula
 
 Daily Cost = Actual billing quantity / 10000 * Corresponding unit price
 
-### SMS
+### SMS {#sms}
 
-Count the number of short messages sent on the same day.
 
-#### Generate Bills
+#### Billing Generation
 
 - Alarm policy configuration SMS notification sending.
 
-#### Pricing Model
+#### Billing Details
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; SMS Pricing Model</font>](../billing-method/index.md#sms)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; SMS Billing Details</font>](../billing-method/index.md#sms)
 
 <br/>
 
@@ -419,7 +415,7 @@ Count the number of short messages sent on the same day.
 
 The number of new short messages sent within one hour is counted at an hourly interval, and after 24 data points are finally obtained, the sum is taken as the actual billing quantity.
 
-#### Cost Calculation Formula
+#### Billing Formula
 
 Daily Cost = Actual billing quantity / 10 * Corresponding unit price
 
@@ -447,6 +443,6 @@ The details are as follows:
 | PV       | 200,000     | 0.7 / 10,000   | (actual statistical quantity / billing unit) * unit price<br/>namely （20,000 / 10,000） * 0.7 | 1.4     |
 | Task scheduling | 20,000     | 1 / 10,000    | (actual statistical quantity / Billing Unit) * unit price<br/>namely (20,000 / 10,000） * 1 | 2       |
 
-<font color=coral>**Note:**</font> Because the timeseries is a full Billing Item, the change of the timeseries may lead to an increase in the number of timeseries and incur expenses. 
+**Note**: Because the timeseries is a full Billing Item, the change of the timeseries may lead to an increase in the number of timeseries and incur expenses. 
 
-> For more timeseries quantity measurements, please refer to the doc [Timeseries Example](#timeline).
+> For more timeseries quantity measurements, see [Timeseries Example](#timeline).
