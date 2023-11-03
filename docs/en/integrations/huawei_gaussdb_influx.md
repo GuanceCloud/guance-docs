@@ -109,7 +109,7 @@ The collected HUAWEI CLOUD GaussDB-Influx  object data structure can see the obj
 ```
 
 
-> *notice：`tags`、`fields`The fields in this section may change with subsequent updates*
+> *notice：`tags`,`fields`The fields in this section may change with subsequent updates*
 >
 > Tips 1：`tags.name`The value is the instance ID for unique identification
 >

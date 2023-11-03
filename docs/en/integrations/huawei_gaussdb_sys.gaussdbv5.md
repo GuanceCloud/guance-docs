@@ -33,15 +33,15 @@ If you deploy Func yourself,Refer to  [Self-Deployment of Func](https://func.gua
 
 ### Installation script
 
-> Tip：Please prepare HUAWEI CLOUD AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
+> Tip：Please prepare HUAWEI CLOUD AK that meets the requirements in advance（For simplicity's sake,You can directly grant the global read-only permission`ReadOnlyAccess`）
 
 To synchronize the monitoring data of  HUAWEI CLOUD GaussDB **SYS.GAUSSDBV5**, we install the corresponding collection script：「Guance Integration（HUAWEI CLOUD- GaussDB Collect）」(ID：`guance_huaweicloud_gaussdb`)
 
-Click 【Install】 and enter the corresponding parameters: HUAWEI CLOUD AK, HUAWEI CLOUD account name.。
+Click 【Install】 and enter the corresponding parameters: HUAWEI CLOUD AK, HUAWEI CLOUD account name.
 
-tap【Deploy startup Script】，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script。
+tap【Deploy startup Script】,The system automatically creates `Startup` script sets,And automatically configure the corresponding startup script.
 
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」。Click【Run】，you can immediately execute once, without waiting for a regular time。After a while, you can view task execution records and corresponding logs。
+After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」,Click【Run】,you can immediately execute once, without waiting for a regular time,After a while, you can view task execution records and corresponding logs.
 
 We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-huaweicloud-gaussdb/){:target="_blank"}
 
@@ -111,9 +111,9 @@ The collected GaussDB `SYS.GAUSSDBV5` object data structure can see the object d
 ```
 
 
-> *notice：`tags`、`fields`The fields in this section may change with subsequent updates*
+> *notice：`tags`,`fields`The fields in this section may change with subsequent updates*
 >
 > Tips 1：`tags.name`The value serves as the instance ID for unique identification
 >
-> Tips 2：`fields.message`、`fields.charge_info`、`fields.flavor_info`、`fields.volume`、`fields.public_ips`、`fields.nodes`、are all JSON-serialized string representations.
+> Tips 2：`fields.message`,`fields.charge_info`,`fields.flavor_info`,`fields.volume`,`fields.public_ips`,`fields.nodes`,are all JSON-serialized string representations.
 

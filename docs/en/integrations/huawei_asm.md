@@ -13,7 +13,7 @@ The link tracking data from HUAWEI CLOUD ASM is exported to Guance for viewing a
 ## Config {#config}
 
 ### Preparatory work
-The prerequisite for using ASM is to have purchased a CCE (Cloud Container Engine) cluster.，Deploy the  `datakit`  [`daemonset`](https://docs.guance.com/en/datakit/datakit-daemonset-deploy/)。
+The prerequisite for using ASM is to have purchased a CCE (Cloud Container Engine) cluster.Deploy the  `datakit`  [`daemonset`](https://docs.guance.com/en/datakit/datakit-daemonset-deploy/).
 
 
 ### Creating ASM
