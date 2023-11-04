@@ -83,6 +83,10 @@ RUN \
         echo "" > site/zh/assets/javascripts/rum-config.js; \
         cat tools/on-premises.css > site/zh/assets/stylesheets/on-premises.css; \
         cat tools/on-premises.js > site/zh/assets/javascripts/on-premises.js; \
+
+        # 禁止任何爬虫爬取部署版的文档，防止干扰 SaaS 的文档中心 \
+        echo "User-agent: *" > site/zh/Robots.txt; \
+        echo "Disallow: /" >> site/zh/Robots.txt; \
     fi;
 
 RUN \
