@@ -1,0 +1,6 @@
+nav:
+  - '获取全局标签列表': list.md
+  - '获取标签信息': get.md
+  - '添加标签': create.md
+  - '修改标签': modify.md
+  - '删除标签': delete.md

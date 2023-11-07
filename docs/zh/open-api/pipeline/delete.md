@@ -1,4 +1,4 @@
-# 删除一个/多个Pipeline
+# 删除 Pipeline 规则
 
 ---
 
@@ -26,7 +26,7 @@
 ```shell
 curl 'https://openapi.guance.com/api/v1/pipeline/delete?pipelineUUIDs=pl_d221f03ac39d468d8d7fb262b5792607' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
---compressed 
+--compressed
 ```
 
 

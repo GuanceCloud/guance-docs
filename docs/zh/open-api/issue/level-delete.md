@@ -13,7 +13,7 @@
 
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
-| uuids | array | Y | 自定义等级uuids<br>例子: [uuid1,uuid2] <br>允许为空: False <br> |
+| uuids | array | Y | 自定义等级uuids<br>例子: ['uuid1', 'uuid2'] <br>允许为空: False <br> |
 
 ## 参数补充说明
 
