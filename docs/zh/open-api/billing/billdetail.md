@@ -36,18 +36,18 @@
 |serviceBillingAmount   |服务费 可忽略 |
 |couponAmount           |代金券扣款 |
 |storedCardAmount       |储值卡扣款     |
-|cashAmount             |现金扣款    | 
-|cashCouldAmount        |云市场扣款    | 
-|commodityCategory      |产品类型  包年包月、按量付费    | 
-|consumePlatform        |结算方式   | 
-|customerIdentifier     |云市场的账号   | 
-|consumption            |可忽略   | 
-|workspaceUuid          |工作空间uuid   | 
-|workspaceName          |工作空间名称   | 
-|consumeTime            |消费时间时间戳   | 
-|tag6                   |计量名称   | 
-|billingResultDetails   |可忽略   | 
-|count                  |使用量   | 
+|cashAmount             |现金扣款    |
+|cashCouldAmount        |云市场扣款    |
+|commodityCategory      |产品类型  包年包月、按量付费    |
+|consumePlatform        |结算方式   |
+|customerIdentifier     |云市场的账号   |
+|consumption            |可忽略   |
+|workspaceUuid          |工作空间uuid   |
+|workspaceName          |工作空间名称   |
+|consumeTime            |消费时间时间戳   |
+|tag6                   |计量名称   |
+|billingResultDetails   |可忽略   |
+|count                  |使用量   |
 
 
 
@@ -57,7 +57,7 @@
 curl 'https://openapi.guance.com/billing/detail/list' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
---compressed 
+--compressed
 ```
 
 

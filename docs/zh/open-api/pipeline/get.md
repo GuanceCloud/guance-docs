@@ -1,4 +1,4 @@
-# 获取一个Pipeline信息
+# 获取 Pipeline 规则
 
 ---
 
@@ -27,7 +27,7 @@
 ```shell
 curl 'https://openapi.guance.com/api/v1/pipeline/pl_d221f03ac39d468d8d7fb262b5792607/get' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
---compressed 
+--compressed
 ```
 
 

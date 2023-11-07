@@ -29,7 +29,7 @@ curl 'https://openapi.guance.com/api/v1/blacklist/import' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"blacklists":[{"filters":[{"condition":"and","name":"host","operation":"in","value":["127.0.0.1"]}],"source":"kodo-log","type":"logging"}],"blacklistType":"all"}' \
---compressed 
+--compressed
 ```
 
 

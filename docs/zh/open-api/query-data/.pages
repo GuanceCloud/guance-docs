@@ -1,2 +1,3 @@
 nav:
-  - 'DQL数据查询': query-data.md
+  - 'DQL数据查询(旧版)': query-data.md
+  - 'DQL数据查询': query-data-v1.md
