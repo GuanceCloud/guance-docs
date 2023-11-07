@@ -5,7 +5,7 @@
 <br />**POST /api/v1/object/hosts/label/list**
 
 ## 概述
-获取`label`列表(label是有缓存的，一般会有不超过5分钟的缓存) 
+获取`label`列表(label是有缓存的，一般会有不超过5分钟的缓存)
 
 
 
@@ -30,7 +30,7 @@ curl 'https://openapi.guance.com/api/v1/object/hosts/label/list' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"source": "HOST"}' \
---compressed 
+--compressed
 ```
 
 

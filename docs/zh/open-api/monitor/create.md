@@ -79,7 +79,7 @@ curl 'https://openapi.guance.com/api/v1/monitor/group/create' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"name": "JMcCQWwy", "alertOpt": {}}' \
---compressed 
+--compressed
 ```
 
 
