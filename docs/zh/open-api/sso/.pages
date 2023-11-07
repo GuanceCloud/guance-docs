@@ -1,9 +1,12 @@
 nav:
-  - '获取一个SAML配置信息': saml-get.md
-  - '删除一个SAML': saml-delete.md
+  - '获取 SAML SSO 登录配置': saml-get.md
+  - '获取 SAML SSO 登录配置 列表': saml-list.md
+  - '添加 SAML SSO 登录配置': saml-create.md
+  - '更新 SAML SSO 登录配置': saml-modify.md
+  - '删除 SAML SSO 登录配置': saml-delete.md
+  - '启用/禁用 SAML SSO 登录配置': saml-set-disable.md
   - '获取SAML映射列表': list.md
-  - '删除一个SAML映射': delete.md
-  - '启用一个SAML': saml-create.md
-  - '添加一个SAML映射': add.md
-  - '更新一个SAML配置信息': saml-modify.md
-  - '修改一个SAML映射': modify.md
+  - '新建映射规则': add.md
+  - '修改映射规则': modify.md
+  - '删除映射规则': delete.md
+  - '开启/禁用 SAML 映射': set-disable.md

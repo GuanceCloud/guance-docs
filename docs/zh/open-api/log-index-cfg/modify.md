@@ -1,11 +1,11 @@
-# 修改一个绑定索引
+# 修改单个索引配置
 
 ---
 
-<br />**POST /api/v1/external_log_index_cfg/\{cfg_uuid\}/modify**
+<br />**POST /api/v1/log_index_cfg/\{cfg_uuid\}/modify**
 
 ## 概述
-修改一个绑定索引
+修改单个默认存储索引配置
 
 
 
@@ -21,17 +21,8 @@
 
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
-| exterStoreName | string | Y | 与name互为映射的外部存储的名字<br>允许为空: False <br> |
-| accessCfg | json | Y | 外部资源访问配置信息<br>允许为空: False <br> |
-| accessCfg.ak | string |  | 密钥Id<br>允许为空: False <br> |
-| accessCfg.sk | string |  | 密钥<br>允许为空: False <br> |
-| accessCfg.url | string |  | 链接地址<br>允许为空: False <br> |
-| accessCfg.username | string |  | 用户名<br>允许为空: False <br> |
-| accessCfg.password | string |  | 密码<br>允许为空: False <br> |
-| fields | array |  | 待更新的字段映射配置列表<br>允许为空: False <br> |
-| fields[*] | None |  | <br> |
-| fields[*].field | string | Y | 字段名<br>例子: message <br>允许为空: False <br> |
-| fields[*].originalField | string | Y | 原始字段名<br>例子: content <br>允许为空: False <br>允许空字符串: True <br> |
+| extend | json |  | 前端自定义数据<br>允许为空: True <br> |
+| duration | string |  | 数据保留时长<br>允许为空: False <br>可选值: ['3d', '7d', '14d', '30d', '60d'] <br> |
 
 ## 参数补充说明
 
@@ -41,11 +32,13 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/external_log_index_cfg/lgim_1145381480dd4a4f95bccdb1f0889141/modify' \
--H 'DF-API-KEY: <DF-API-KEY>' \
+curl 'https://openapi.guance.com/api/v1/log_index_cfg/lgim_6351251e2103441abb96a0b43bdabc02/modify' \
+-H 'Accept: application/json, text/plain, */*' \
+-H 'Accept-Language: zh' \
 -H 'Content-Type: application/json;charset=UTF-8' \
---data-raw '{"accessCfg":{"url":"aabb.com","username":"test33"},"exterStoreName":"aa_uuid","fields":[{"field":"time","originalField":"time"},{"field":"__docid","originalField":"__docid"},{"field":"message","originalField":"message"}]}' \
---compressed 
+-H 'DF-API-KEY: <DF-API-KEY>' \
+--data-raw '{"duration":"7d","extend":{"filters":[{"condition":"and","name":"host","operation":"in","value":["guance"]}]}}' \
+--compressed
 ```
 
 
@@ -55,11 +48,46 @@ curl 'https://openapi.guance.com/api/v1/external_log_index_cfg/lgim_1145381480dd
 ```shell
 {
     "code": 200,
-    "content": true,
+    "content": {
+        "conditions": "{  `host` in [ 'guance' ] }",
+        "createAt": 1698751853,
+        "creator": "wsak_72b16919b18c411496b6dd06fc9ccc72",
+        "deleteAt": -1,
+        "duration": "7d",
+        "extend": {
+            "filters": [
+                {
+                    "condition": "and",
+                    "name": "host",
+                    "operation": "in",
+                    "value": [
+                        "guance"
+                    ]
+                }
+            ]
+        },
+        "exterStoreName": "",
+        "exterStoreProject": "",
+        "externalResourceAccessCfgUUID": "",
+        "id": 1376,
+        "isBindCustomStore": 0,
+        "isPublicNetworkAccess": 0,
+        "name": "test_index",
+        "queryType": "logging",
+        "region": "",
+        "setting": {},
+        "sortNo": 3,
+        "status": 0,
+        "storeType": "",
+        "updateAt": 1698752013.27368,
+        "updator": "wsak_72b16919b18c411496b6dd06fc9ccc72",
+        "uuid": "lgim_e5ef2a328d084732a6bbcbac33fc2d67",
+        "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
+    },
     "errorCode": "",
     "message": "",
     "success": true,
-    "traceId": "TRACE-63EE56F5-8EFB-4FF9-994D-11848B6EFA80"
+    "traceId": "TRACE-09F7E56D-1DE5-48C9-A77A-108A53462A75"
 } 
 ```
 

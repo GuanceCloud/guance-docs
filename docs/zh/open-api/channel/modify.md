@@ -36,7 +36,7 @@ curl 'https://openapi.guance.com/api/v1/channel/chan_a074092121c145e5b3a8741c4ea
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"description":"dasdgahjsdgashjgdhajsgdasjhgdhjasgdajhsgzxvchv @sadddddd","notifyTarget":["notify_12b372b5b70a4d5bb7e9d93168abff82"]}' \
---compressed 
+--compressed
 ```
 
 

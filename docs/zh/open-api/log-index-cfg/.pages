@@ -1,6 +1,9 @@
 nav:
-  - '获取绑定的索引列表': list.md
-  - '获取一个绑定索引': get.md
-  - '删除一个绑定索引': delete.md
-  - '创建一个绑定索引': bind.md
-  - '修改一个绑定索引': modify.md
+  - '获取索引列表': list.md
+  - '获取单个索引/绑定索引配置': get.md
+  - '新建单个索引配置': add.md
+  - '修改单个索引配置': modify.md
+  - '创建单个绑定索引配置': bind.md
+  - '修改单个绑定索引配置': external-modify.md
+  - '启用/禁用 索引配置': set-disable.md
+  - '删除一个索引/绑定索引配置': delete.md
