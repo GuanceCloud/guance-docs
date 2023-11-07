@@ -242,8 +242,9 @@ nav:
   - RUM:
     - rum.md
 
-  - 'Langue':
-    - 'Java': java.md
+  - 'Languages':
+    - 'Java': 
+      - java.md
       - jmx.md
       - jvm_jmx_exporter.md
       - jvm_jolokia.md

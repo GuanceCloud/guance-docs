@@ -1,4 +1,4 @@
-# 获取一个SAML配置信息
+# 获取 SAML SSO 登录配置
 
 ---
 
@@ -27,7 +27,7 @@
 ```shell
 curl 'https://openapi.guance.com/api/v1/sso/saml_get/sso_dcbddede142844058fe64baed58ed580' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
---compressed 
+--compressed
 ```
 
 
