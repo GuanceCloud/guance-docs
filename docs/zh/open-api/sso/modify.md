@@ -1,4 +1,4 @@
-# 修改一个SAML映射
+# 修改映射规则
 
 ---
 
@@ -21,9 +21,10 @@
 
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
-| sourceField | string | Y | 源字段<br>例子: sourceField <br>允许为空: False <br> |
-| sourceValue | string | Y | 源字段值<br>例子:  <br>允许为空: False <br> |
-| targetValue | string | Y | 目标字段值（目前默认为 角色的UUID 值）<br>例子: readOnly <br> |
+| ssoUUID | string |  | sso配置UUID<br>例子: sso_xxx <br>允许为空: False <br>最大长度: 48 <br> |
+| sourceField | string | Y | 源字段<br>例子: sourceField <br>允许为空: False <br>最大长度: 256 <br> |
+| sourceValue | string | Y | 源字段值<br>例子:  <br>允许为空: False <br>最大长度: 256 <br> |
+| targetValues | array | Y | 目标字段值（目前默认为 角色的UUID 值列表）<br>例子: ['readOnly'] <br> |
 
 ## 参数补充说明
 
@@ -36,7 +37,7 @@
 curl 'https://openapi.guance.com/api/v1/saml/mapping/field/fdmp_2f8f0085af2641928e8388da7d1318f5/modify' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
---data-raw '{"sourceField": "AAAAA","sourceValue": "lei","targetValue": "wsAdmin"}' \
+--data-raw '{"ssoUUID":"sso_98e73764a5144f41a2f5621120bff5b4","sourceField":"sd1","sourceValue":"sd1_value1","targetValues":["general","readOnly"]}' \
 --compressed 
 ```
 

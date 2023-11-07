@@ -27,7 +27,7 @@
 curl 'https://openapi.guance.com/api/v1/channel/chan_a074092121c145e5b3a8741c4ea350da/delete' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
---compressed 
+--compressed
 ```
 
 

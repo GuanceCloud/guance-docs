@@ -1,4 +1,4 @@
-# 修改一个Pipeline
+# 修改 Pipeline 规则
 
 ---
 
@@ -44,7 +44,7 @@ curl 'https://openapi.guance.com/api/v1/pipeline/pl_d221f03ac39d468d8d7fb262b579
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"name":"test_modify","category":"logging","asDefault":0,"content":"YWRkX2tleShjaXR5LCAic2hhbmdoYWkiKQ==","testData":"W10=","source":["nsqlookupd"]}' \
---compressed 
+--compressed
 ```
 
 
