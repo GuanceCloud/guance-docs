@@ -33,7 +33,7 @@ curl 'https://openapi.guance.com/api/v1/issue/list' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"pageIndex":1,"pageSize":20,"search":"","filters":[],"channelUUID":"xxxxxxxx"}' \
---compressed 
+--compressed
 ```
 
 

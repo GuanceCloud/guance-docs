@@ -1,8 +1,8 @@
-# DQL数据查询
+# DQL数据查询(旧版)
 
 ---
 
-<br />**GET /api/v1/df/query_data**
+<br />**POST /api/v1/df/query_data**
 
 ## 概述
 DQL数据查询
@@ -61,10 +61,26 @@ DQL数据查询
 |  query.offset  | integer  |   | 分页偏移量 |
 |  query.orderby  | array  |   | 排序列表，`{fieldName:method}` , 注意指标集查询的排序只支持 fieldName=time; method in ["desc", "asc"];注意指标集查询的排序只支持 fieldName=time|
 |  query.density  | string  |   | 响应的点密度, 优先级小于 autoDensity 且大于 dql语句中设置的密度 |
-|  query.interval  | integer  |   | 时间分片间隔，用于计算响应点数；计算出的点数小于等于density=high时的点数，则有效，否则无效, 事件单位：秒 |
+|  query.interval  | integer  |   | 单位是秒，时间分片间隔，用于计算响应点数；计算出的点数小于等于density=high时的点数，则有效，否则无效|
+|  query.search_after  | array  |   | 分页标记, 由当前接口返回的分页标记，用于下一次请求时传入 |
 |  query.maxPointCount  | integer  |   | 最大点数 |
 |  query.workspaceUUID  | string  |   | 要查询工作空间的uuid |
 |  query.output_format  | string  |   | lineprotocol: 行协议输出，默认不填的话，默认保持现有输出格式不变 |
+|  query.cursor_time  | integer  |   | 分段查询阀值: 第一次分段查询时，需要把 cursor_time 设置为 end_time；之后的分段查询，需要把 cursor_time 设置为响应中的 next_cursor_time |
+|  query.disable_sampling  | bool  |   | 采样禁用开关, 默认值为 false |
+
+
+4. 响应点密度`density` 参数值说明
+
+| 可选值  | 说明  |
+| :------------ | :------------ |
+|  lower |  较低，60个点  |
+|  low   |  低，180个点 |
+|  medium|   中等，360个点 |
+|  high  |  低，720个点 |
+
+* 注意点密度参数的优先级，最大密度`density[high]` *
+maxPointCount > interval > density > dql语句中的控制参数   
 
 
 

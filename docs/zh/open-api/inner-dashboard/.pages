@@ -1,0 +1,7 @@
+nav:
+  - '获取用户视图列表': innerlist.md
+  - '获取单个用户视图': get.md
+  - '导出单个用户视图': export.md
+  - '新建单个用户视图': add.md
+  - '修改单个用户视图': modify.md
+  - '删除单个用户视图': delete.md
