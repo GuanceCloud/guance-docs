@@ -308,9 +308,9 @@
 
 ![](img/rule-update-1.png)
 
-### 转发规则查看器
+### 转发规则查看器 {#explorer}
 
-回到**数据转发**页面，默认进入**转发规则** tab 页。首先在下拉框选定规则，在右上角时间控件处选择日期。此时，右侧会出现在该日期下存在数据的小时区间，您可按需选择。
+回到**数据转发**页面，默认进入**转发规则** tab 页。首先在下拉框选定规则，您可以自定义时间范围查询，可选择多个日期及定义开始时间和结束时间，时间会精确到小时：
 
 ![](img/rule-update-3.png)
 
@@ -318,10 +318,11 @@
 
 - 您可以输入关键字来搜索查询匹配数据； 
 - 时间控件默认为空，选定日期后再选择小时。会根据转发规则列出可点击的小时选项；   
+- 当您选择了未来的时间范围，系统会自动更正为当前日期；
 
 <img src="../img/rule-update-4.png" width="60%" >
 
-- 观测云会根据选中的小时按批次获取文件搜索匹配数据，直至满足每次返回数据的最低数量要求，每次 10 批数据。若每批次未查询到数据，您可以选择继续往后扫描直至扫描完成。
+- 观测云会根据选中的时间按批次获取文件搜索匹配数据，每批返回 50 条数据。**首次查询若未查到数据，或返回的数据未满足每页 50 条的要求**，您可以手动点击**继续查询**直至扫描完成。
 - 由于查询到的数据为乱序状态，您可以针对列出的数据的时间范围做排序。此行为不会影响数据查询结果。
 
 
@@ -335,7 +336,7 @@
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 数据转发计费逻辑</font>](../billing/billing-method/billing-item.md#backup)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 数据转发计费逻辑</font>](../billing/billing-method/billing-item.md#backup) <br/>
 - [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 日志数据转发到 OSS 最佳实践</font>](../best-practices/partner/log-backup-to-oss-by-func.md)
 
 </div>

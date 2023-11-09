@@ -1,11 +1,10 @@
 # Miniapp Log collection
 ---
 
-## Overview
 
 Miniapp sends different levels of log data (`corresponding source: browser_log` metric type log data) to [Guance](https://www.guance.com/).
 
-## Function List
+## Feature List
 
 - Custom log data collection is applied to client through sdk and then collect different log data for different scenarios. 
 - Automatically collect application-side error messages (including network errors, console errors and js errors) and report them to DataFlux. 
@@ -54,7 +53,8 @@ datafluxRum.init({
 ```
 ## Configuration
 
-### Initialization
+### Initialization Parameter
+
 | **Parameter**              | **Type** | **Option** | **Default** | **Description**                                                                                                                           |
 | --------------------- | -------- | ------------ | ---------- | ---------------------------------------------------------------------------------------------------------------------------------- |
 | `datakitOrigin`       | String   | Required           |            | datakit data report origin note: ` Protocol (including://), domain name (or IP address) [and port number] ` For example: https://www.datakit.com, http://100.20.34.3:8088 |
@@ -138,7 +138,7 @@ datafluxLogs.logger.info('Button clicked', { name: 'buttonName', id: 123 })
 
 ## Status Parameter
 
-After the SDk is initialized, you can define different types of states using the `log` API provided
+After the SDk is initialized, you can define different types of states using the `log` API provided.
 
 ```javascript
 log (message: string, messageContext: Context, status? = 'debug' | 'info' | 'warning' | 'error' | 'critical')
@@ -153,6 +153,7 @@ datafluxLogs.logger.log(<MESSAGE>,<JSON_ATTRIBUTES>,<STATUS>);
 ```
 
 ## Parameter Description
+
 | **Parameter**            | **Description**                                                   |
 | ------------------- | ---------------------------------------------------------- |
 | `<MESSAGE>`         | message field in Guance Log                             |
