@@ -31,7 +31,7 @@
         "dimension_tags": {"heros": "caiwenji"},
         "check_data": 20
     },
-    "extra_data": {
+    "extraData": {
         "name": "xxxxxxxx"
     }
 }
