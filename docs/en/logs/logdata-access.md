@@ -1,8 +1,6 @@
 # Data Access
 ---
 
-## Introduction
-
 In order to make the data query scope of different [member roles](../management/role-list.md) in the current workspace finer, Guance supports configuring corresponding log data access query scope for different roles on the data access page.      
 
 
@@ -12,6 +10,7 @@ On the **Logs > Access** page, click **Create**.
 
 ![](img/data-1.png)
 
+> For more information on additional operations related to indexes, see [Log Index](../logs/multi-index.md). 
 
 | <div style="width: 100px"> Field </div>      | Description                          |
 | :---------- | :----------------------------------- |
@@ -19,7 +18,6 @@ On the **Logs > Access** page, click **Create**.
 | Data Range      | The logical relationship between different fields can be customized to choose **OR** or **AND**;<br/>**AND** is selected by default, **AND** switching to **OR** is supported:<br/><br/><u>*Examples of logical relationships are as follows:* </u><br/>&emsp;Example 1: (default AND)<br/>&emsp;&emsp;host=[host1,host2] AND service = [service1,service2]；<br/>&emsp;Example 2: (switch to OR）<br/>&emsp;&emsp;host=[host1,host2] OR service = [service1,service2]。<br/><br/>It supports value filtering by `Label/Attribute`, including forward filtering, reverse filtering, fuzzy matching, reverse fuzzy matching, existence and nonexistence, etc. |
 | Authorize to    | Multiple choices; Contain default roles and self-built roles in the system.  |
 
-> See the doc [Log Index](../logs/multi-index.md) for more information. 
 
 ???+ info "Multi-role Data Query Permission"
 
@@ -59,7 +57,7 @@ iii. After completing the creation, you can view the number of roles associated 
 ![](img/logdata_6.png)
 
 
-???+ attention  
+???+ warning  
 
     - When the default role is not configured with data access rules, it has data query permission for all logs;
     - The log data access rules can only take effect <u>based on the existence of log data query authority in user roles</u>;
