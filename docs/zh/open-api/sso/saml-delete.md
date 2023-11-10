@@ -1,11 +1,11 @@
-# 删除一个SAML
+# 删除 SAML SSO 登录配置
 
 ---
 
 <br />**GET /api/v1/sso/saml_delete/\{sso_uuid\}**
 
 ## 概述
-删除一个SAML
+删除一个SAML SSO 登录配置
 
 
 

@@ -26,7 +26,7 @@
 ```shell
 curl 'https://openapi.guance.com/api/v1/blacklist/delete?blacklistUUIDs=blist_d221f03ac39d468d8d7fb262b5792607' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
---compressed 
+--compressed
 ```
 
 

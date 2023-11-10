@@ -18,7 +18,7 @@
 | `df_monitor_checker_value`         | String         | 检测值，即产生本事件时，检测到的值<br>注意：检测值会强制转换为 String 类型以保证兼容性                                      |
 | `df_monitor_id`                    | String         | 检测分组 ID<br>_如果对检测有疑问，可以将此 ID 反馈给我们_                                                                   |
 | `df_monitor_name`                  | String         | 检测分组名称，即在创建检测器时指定的分组名                                                                                  |
-| `df_status`                        | String(Enum)   | 事件状态，可能的值为：<br>紧急`critical`<br>重要`error`<br>警告`warning`<br>正常`ok`<br>无数据`nodata`                      |
+| `df_status`                        | String(Enum)   | 事件状态，可能的值为：<br>紧急`critical`<br>重要`error`<br>警告`warning`<br>正常、无数据视为恢复`ok`<br>无数据`nodata`                      |
 | `df_workspace_name`                | String         | 所属工作空间名                                                                                                              |
 | `df_workspace_uuid`                | String         | 所属工作空间 ID<br>_如果对检测有疑问，可以将此 ID 反馈给我们_                                                               |
 | `Result`                           | Integer, Float | 检测值，与`df_monitor_checker_value`一样为产生本事件时，检测到的值，但字段类型为检测时获得的原始类型，不会强制转换为 String |
@@ -221,7 +221,7 @@ xxx 字段：{{ dql_data.xxx }}
 
 此后的模板中即可使用`{{ dql_data.xxx }}`输出查询结果中的具体字段。
 
-???+ attention
+???+ warning
 
     变量名遵循一般编程语言的命名要求，可以为任意英文开头，且仅包含英文、数字、下划线的字符串。不建议使用 emoji；
 

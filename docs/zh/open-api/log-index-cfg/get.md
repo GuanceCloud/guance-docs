@@ -1,4 +1,4 @@
-# 获取一个绑定索引
+# 获取单个索引/绑定索引配置
 
 ---
 
@@ -26,6 +26,14 @@
 
 ## 参数补充说明
 
+**响应主体结构说明**
+
+|  参数名                |   type  |          说明          |
+|-----------------------|----------|------------------------|
+|isBindCustomStore         |int |  1:绑定自定义存储的索引配置 0: 默认|
+|storeType         |string |  存储类型, ('es': Elasticsearch存储 , 'sls': SLS Logstore存储, 'opensearch': OpenSearch存储, 'beaver':日志易存储) |
+|fields         |array |  字段映射配置 |
+|accessCfg         |array |  自定义存储索引权限配置项 |
 
 
 
@@ -34,7 +42,7 @@
 ```shell
 curl 'https://openapi.guance.com/api/v1/log_index_cfg/lgim_1145381480dd4a4f95bccdb1f0889141/get' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
---compressed 
+--compressed
 ```
 
 

@@ -27,7 +27,7 @@
 ```shell
 curl 'https://openapi.guance.com/api/v1/workspace/accesskey/wsak_b0f7f2b592614f0bbdb003eb9961717d/get' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
---compressed 
+--compressed
 ```
 
 
