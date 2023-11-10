@@ -63,7 +63,7 @@ curl 'https://openapi.guance.com/api/v1/issue/issue_7b1f8986a7b44d7a987976fb5c78
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"statusType":20}'\
---compressed 
+--compressed
 ```
 
 

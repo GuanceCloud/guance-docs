@@ -28,7 +28,7 @@
 ```shell
 curl 'https://openapi.guance.com/api/v1/monitor/group/list?pageIndex=1&pageSize=10' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
---compressed 
+--compressed
 ```
 
 

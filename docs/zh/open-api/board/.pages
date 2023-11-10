@@ -6,3 +6,14 @@ nav:
   - '获取一个仪表板': get.md
   - '导出一个仪表板': export.md
   - '导入一个仪表板': import.md
+  - '获取仪表板轮播列表': carousel-list.md
+  - '获取单个仪表板轮播配置': carousel-get.md
+  - '新建单个仪表板轮播配置': carousel-add.md
+  - '修改单个仪表板轮播配置': carousel-modify.md
+  - '删除仪表板轮播配置': carousel-delete.md
+  - '获取定时报告列表': crontab-report-list.md
+  - '新建单个定时报告': crontab-report-add.md
+  - '获取单个定时报告': crontab-report-get.md
+  - '修改单个定时报告': crontab-report-modify.md
+  - '启用/禁用 定时报告': crontab-report-set-disable.md
+  - '删除定时报告': crontab-report-delete.md

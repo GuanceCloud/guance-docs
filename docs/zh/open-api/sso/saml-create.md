@@ -1,4 +1,4 @@
-# 启用一个SAML
+# 添加 SAML SSO 登录配置
 
 ---
 
@@ -14,9 +14,11 @@
 
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
-| idpName | string |  | 用户名<br>例子: 我的第一个idp <br>允许为空: False <br> |
-| idpData | string | Y | xml文档内容<br>例子:  <br>允许为空: False <br> |
+| type | string | Y | 类型<br>例子:  <br>允许为空: False <br>可选值: ['saml', 'oidc'] <br> |
+| idpData | string | Y | xml文档内容(saml 类型必填)<br>例子:  <br>允许为空: False <br> |
+| config | json |  | 访问配置表(oidc 类型必填)<br>例子:  <br>允许为空: False <br> |
 | emailDomains | array | Y | 邮箱域名<br>例子: ['jiagouyun.com', 'guance.com'] <br> |
+| idpName | string | Y | 供应商<br>例子: 默认供应商 <br>最大长度: 64 <br>$matchRegExp: [a-zA-Z_一-龥-]* <br> |
 | role | string | Y | 角色<br>允许为空: False <br>可选值: ['general', 'readOnly'] <br> |
 | remark | string |  | 备注<br>允许为空: False <br>允许空字符串: True <br> |
 | tokenHoldTime | integer |  | token 保持时长, 秒级时间戳，默认值 14400<br>允许为空: False <br>允许空字符串: False <br>$minValue: 1800 <br>$maxValue: 86400 <br> |

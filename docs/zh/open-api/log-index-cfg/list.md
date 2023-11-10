@@ -1,4 +1,4 @@
-# 获取绑定的索引列表
+# 获取索引列表
 
 ---
 
@@ -20,6 +20,12 @@
 
 ## 参数补充说明
 
+**响应主体结构说明**
+
+|  参数名                |   type  |          说明          |
+|-----------------------|----------|------------------------|
+|isBindCustomStore         |int |  1:绑定自定义存储的索引配置 0: 默认|
+|storeType         |string |  存储类型, ('es': Elasticsearch存储 , 'sls': SLS Logstore存储, 'opensearch': OpenSearch存储, 'beaver':日志易存储) |
 
 
 
