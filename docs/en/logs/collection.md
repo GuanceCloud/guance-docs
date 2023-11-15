@@ -1,15 +1,16 @@
 # Log Collection
 ---
 
-## Overview
 
-Guance has comprehensive log collection capability, which is mainly divided into host log collection and K8S container log collection. The installation methods of DataKit and log collection methods are different. The collected log data are uniformly collected into the guance for unified storage, search and analysis, which helps us quickly locate and solve problems.
+Guance has comprehensive log collection capabilities, mainly divided into <u>host log collection and K8S container log collection</u>. The installation methods of DataKit for both are different, and the log collection methods are also different. The collected log data is centralized in Guance for unified storage, search and analysis, helping us quickly identify and resolve issues.
 
-This article mainly introduces how to collect logs in **host environment**. For collecting logs in K8S environment, please refer to the best practice [Several Ways to Collect Logs in Kubernetes Cluster](../best-practices/cloud-native/k8s-logs.md).
+This article mainly introduces how to collect logs in **host environment**. 
+
+> For collecting logs in K8S environment, please refer to our best practice [Several Ways to Collect Logs in Kubernetes Cluster](../best-practices/cloud-native/k8s-logs.md).
 
 ## Preconditions
 
-- [Install DataKit](../datakit/datakit-install.md) 
+[Install DataKit](../datakit/datakit-install.md) 
 
 You can also login to [Guance](https://auth.guance.com/login/pwd), In **Integration > DataKit** and select "Linux", "Windows" and "MacOS" according to the host system, and get the DataKit installation instructions and installation steps.
 
@@ -26,19 +27,21 @@ After the DataKit installation is completed, you can log collect various log dat
     You can turn on log collection with one click by turning on standard log collectors supported by Guance, such as [Nginx](../datakit/nginx.md), [Redis](../datakit/redis.md), [ES](../datakit/elasticsearch.md) and so on. 
 
 
-???+ attention
+???+ warning
 
     When configuring the log collector, you need to turn on the Pipeline function of the log and extract the fields of log time `time` and log level `status`: 
  
-    - time: the time when the log is generated. If the time field is not extracted or parsing this field fails, the current system time is used by default. 
-    - status: The level of the log. If the status field is not extracted, the default is to set stats to unknown. 
+    - `time`: the time when the log is generated. If the time field is not extracted or parsing this field fails, the current system time is used by default. 
+    - `status`: The level of the log. If the status field is not extracted, the default is to set stats to unknown. 
  
-    See the documentation [Pipeline Configuration and Use](../datakit/logging.md#pipeline) for more details. 
+    > See [Pipeline Configuration and Use](../integrations/logging.md#pipeline) for more details. 
 
 After the log collector is configured, restart the DataKit, and the log data can be uniformly reported to the guance workspace. 
 
 ## Log Data Storage
- 
-- For users with a large amount of log data, you can use [log index](multi-index.md) or [log blacklist](blacklist.md) to save data storage costs; 
-- For users who need long-term log storage, you can use [log backup](backup.md) to save log data. 
+
+Once the configuration of the log collector is completed, restart DataKit, and the log data will be uniformly reported to the Guance workspace.
+
+- For users with a large amount of log data, you can use [log index](multi-index.md) or [log blacklist](../getting-started/function-details/logs-blacklist.md) to save data storage costs; 
+- For users who need long-term log storage, you can use [data forward](backup.md) to save log data. 
 
