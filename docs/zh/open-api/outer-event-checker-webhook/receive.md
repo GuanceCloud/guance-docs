@@ -26,7 +26,7 @@
 | event.title | string |  | 事件标题<br>允许为空: False <br>$required: False <br> |
 | event.message | string |  | 事件内容<br>允许为空: False <br>$required: False <br> |
 | event.dimension_tags | json |  | 维度标签，如：{ 'host': 'WebServer' }<br>允许为空: False <br>$required: False <br> |
-| event.check_data | int |  | 检测值<br>允许为空: False <br>$required: False <br> |
+| event.check_value | float |  | 检测值<br>允许为空: False <br>$required: False <br> |
 | extraData | json |  | 额外数据 最终会加入事件的df_meta.extra_data字段中<br>允许为空: False <br>$required: False <br> |
 
 ## 参数补充说明
@@ -48,7 +48,7 @@
 |title            |   string     |   否        |   事件标题 |
 |message          |   string     |   否        |   事件内容 |
 |dimension_tags   |   json       |   否        |   维度标签，如：{ "host": "WebServer" } |
-|check_data       |   int        |   否        |   检测值 |
+|check_value      |   float      |   否        |   检测值 |
 
 
 
