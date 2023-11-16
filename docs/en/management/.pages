@@ -8,6 +8,7 @@ nav:
   - 'Pipelines': overall-pipeline.md
   - 'Field Management': field-management.md
   - 'Blacklist': overall-blacklist.md
+  - 'Data Forward': backup.md
   - 'Data Authorization': data-authorization.md
   - 'Sensitive Data Scanner': data-scanner.md
   - 'API Key': api-key
