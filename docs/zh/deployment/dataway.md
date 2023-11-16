@@ -190,6 +190,15 @@ Kubernetes 重启对应的 Pod 即可。
 
 Dataway 在 Kubernetes 环境中运行时，支持如下环境变量。
 
+??? attention "兼容已有 dataway.yaml"
+
+    由于一些老的 Dataway 是通过 ConfigMap 方式来注入配置的（挂到容器中的文件名一般都是 *dataway.yaml*），
+    如果 Dataway 镜像启动后，发现安装目录中存在 ConfigMap 挂进来的文件，则下述 `DW_*` 环境变量将不生效。
+    移除已有的 ConfigMap 挂载后，这些环境变量方可生效。
+
+    如果环境变量生效，则在 Dataway 安装目录下会有一个隐藏（通过 `ls -a` 查看）的 *.dataway.yaml* 文件，可以 `cat`
+    该文件以确认环境变量的生效情况。
+
 #### API 有关 {#env-apis}
 
 | Env                         | 是否必需 | 说明                                                                                               | 取值 |
