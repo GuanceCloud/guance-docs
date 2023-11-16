@@ -44,6 +44,12 @@ For example, Tomcat or Kafka:
     ```toml
         
     [[inputs.statsd]]
+      ## Collector alias.
+      # source = "statsd/-/-"
+    
+      ## Collect interval, default is 10 seconds. (optional)
+      # interval = '10s'
+    
       protocol = "udp"
     
       ## Address and port to host UDP listener on
@@ -91,8 +97,8 @@ For example, Tomcat or Kafka:
       metric_mapping = [ ]
     
       ## Number of UDP messages allowed to queue up, once filled,
-      ## the statsd server will start dropping packets
-      allowed_pending_messages = 10000
+      ## the statsd server will start dropping packets, default is 128.
+      # allowed_pending_messages = 128
     
       ## Number of timing/histogram values to track per-measurement in the
       ## calculation of percentiles. Raising this limit increases the accuracy
@@ -112,6 +118,12 @@ For example, Tomcat or Kafka:
 === "Kubernetes"
 
     The collector can now be turned on by [configMap injection collector configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+
+<!-- markdownlint-disable MD046 -->
+???+ info
+
+    If find lot of Feed: io busy in the log, can configure interval='1s', minimum is 1s.
+<!-- markdownlint-enable -->
 
 ### Tag data sources {#config-tag}
 

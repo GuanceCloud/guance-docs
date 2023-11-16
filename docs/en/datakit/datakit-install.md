@@ -152,6 +152,7 @@ The environment variables supported by the installation script are as follows (s
 - `DK_GLOBAL_ELECTION_TAGS`: Support filling in the global election tag during the installation phase，format example: `project=my-porject,cluster=my-cluster` (support filling in the global election tag during the installation phase)
 - `DK_DEF_INPUTS`: List of collector names opened by default, format example: `cpu,mem,disk`. We can also ban some default inputs by putting a `-` prefix at input name, such as `-cpu,-mem,-disk`. But if mixed them, such as `cpu,mem,-disk,-system`, we only accept the banned list, the effect is only `disk` and `system` disabled, but others enabled.
 - `DK_CLOUD_PROVIDER`: Support filling in cloud vendors during installation (Currently support following clouds `aliyun/aws/tencent/hwcloud/azure`). **Deprecated:** Datakit can infer cloud type automatically.
+- `DK_USER_NAME`：Datakit service running user name. Default is `root`. More details is in *Attention* below.
 - `DK_LITE`： When installing the simplified DataKit, you can set this variable to `1`. ([:octicons-tag-24: Version-1.14.0](changelog.md#cl-1.14.0))
 
 ???+ tip "Disable all default inputs[:octicons-tag-24: Version-1.5.5](changelog.md#cl-1.5.5)"
@@ -165,6 +166,54 @@ The environment variables supported by the installation script are as follows (s
     ```
 
     Beside, if Datakit has been installed before, we must delete all default inputs *.conf* files manually. During installing, Datakit able to add new inputs configure, not cant delete them.
+
+???+ attention "Attention"
+
+    For privilege reason, using `DK_USER_NAME` with not `root` name could cause following collector unavailable:
+
+    - [eBPF](../integrations/ebpf.md){:target="_blank"}
+
+    In addition, the following items need to be noted.
+
+    - Manualy create user and group first, then start install. There are difference between Linux distro releases, below commands are for reference:
+
+        === "CentOS/RedHat"
+
+            ```sh
+            groupadd --system datakit
+
+            adduser --system --no-create-home datakit -g datakit
+
+            usermod -s /sbin/nologin datakit
+            ```
+
+        === "Ubuntu/Debian"
+
+            ```sh
+            groupadd --system datakit
+
+            adduser --system --no-create-home datakit
+            
+            usermod -a -G datakit datakit
+
+            usermod -s /usr/sbin/nologin datakit
+            ```
+
+        === "其它 Linux"
+
+            ```sh
+            groupadd --system datakit
+            
+            adduser --system --no-create-home datakit
+            
+            usermod -a -G datakit datakit
+            
+            usermod -s /bin/false datakit
+            ```
+
+        ```sh
+        DK_USER_NAME="datakit" DK_DATAWAY="..." bash -c ...
+        ```
 
 ### On DataKit's Own Log  {#env-logging}
 
@@ -203,18 +252,18 @@ The environment variables supported by the installation script are as follows (s
 
 ### On Confd Configuration  {#env-connfd}
 
-| Environment Variable Name                 | Type   | Applicable Scenario            | Description     | Sample Value |
-| ----                     | ----   | ----               | ----     | ---- |
-| DK_CONFD_BACKEND        | string |  All              | Backend Source Type  | `etcdv3`, `zookeeper`, `redis` or `consul` |
-| DK_CONFD_BASIC_AUTH     | string | `etcdv3`, `consul` | Optional      | |
-| DK_CONFD_CLIENT_CA_KEYS | string | `etcdv3`, `consul` | Optional      | |
-| DK_CONFD_CLIENT_CERT    | string | `etcdv3`, `consul` | Optional      | |
-| DK_CONFD_CLIENT_KEY     | string | `etcdv3`, `consul` or `redis` | Optional      | |
-| DK_CONFD_BACKEND_NODES  | string |  All              | Backend Source Address | `[IP地址:2379,IP address 2:2379]` |
-| DK_CONFD_PASSWORD       | string | `etcdv3`, `consul` | Optional      |  |
-| DK_CONFD_SCHEME         | string | `etcdv3`, `consul` | Optional      |  |
-| DK_CONFD_SEPARATOR      | string | `redis`            | Optional default 0 |  |
-| DK_CONFD_USERNAME       | string | `etcdv3`, `consul` | Optional      |  |
+| Environment Variable Name | Type   | Applicable Scenario           | Description            | Sample Value                               |
+| ----                      | ----   | ----                          | ----                   | ----                                       |
+| DK_CONFD_BACKEND          | string | All                           | Backend Source Type    | `etcdv3`, `zookeeper`, `redis` or `consul` |
+| DK_CONFD_BASIC_AUTH       | string | `etcdv3`, `consul`            | Optional               |                                            |
+| DK_CONFD_CLIENT_CA_KEYS   | string | `etcdv3`, `consul`            | Optional               |                                            |
+| DK_CONFD_CLIENT_CERT      | string | `etcdv3`, `consul`            | Optional               |                                            |
+| DK_CONFD_CLIENT_KEY       | string | `etcdv3`, `consul` or `redis` | Optional               |                                            |
+| DK_CONFD_BACKEND_NODES    | string | All                           | Backend Source Address | `[IP地址:2379,IP address 2:2379]`          |
+| DK_CONFD_PASSWORD         | string | `etcdv3`, `consul`            | Optional               |                                            |
+| DK_CONFD_SCHEME           | string | `etcdv3`, `consul`            | Optional               |                                            |
+| DK_CONFD_SEPARATOR        | string | `redis`                       | Optional default 0     |                                            |
+| DK_CONFD_USERNAME         | string | `etcdv3`, `consul`            | Optional               |                                            |
 
 ### On Git Configuration {#env-gitrepo}
 
@@ -259,16 +308,19 @@ Only Linux and Windows ([:octicons-tag-24: Version-1.15.0](changelog.md#cl-1.15.
 
 ### Other Installation Options {#env-others}
 
-- `DK_INSTALL_ONLY`: Install only, not run
-- `DK_HOSTNAME`: Support custom configuration hostname during installation
-- `DK_UPGRADE`: Upgrade to the latest version (Note: Once this option is turned on, all other options except `DK_UPGRADE_MANAGER` are invalid)
-- `DK_UPGRADE_MANAGER`: Whether we upgrade the **Remote Upgrade Service** when upgrading Datakit, it's used in conjunction with `DK_UPGRADE`, supported start from [1.5.9](changelog.md#cl-1.5.9)
-- `DK_INSTALLER_BASE_URL`: You can choose the installation script for different environments, default to `https://static.guance.com/datakit`
-- `DK_PROXY_TYPE`: Proxy type. The options are: "datakit" or "nginx", both lowercase
-- `DK_NGINX_IP`: Proxy server IP address (only need to fill in IP but not port). With the highest priority, this is mutually exclusive with the above "HTTP_PROXY" and "HTTPS_PROXY" and will override both.
-- `DK_INSTALL_LOG`: Set the setup log path, default to *install.log* in the current directory, if set to `stdout`, output to the command line terminal.
-- `HTTPS_PROXY`: Installed through the Datakit agent
-- `DK_INSTALL_RUM_SYMBOL_TOOLS` Install source map tools for RUM, support from Datakit [1.9.2](changelog.md#cl-1.9.2).
+| Environment Variable Name     | Sample             | Description                                                                                                                                                                                 |
+| ----                          | ---                | ----                                                                                                                                                                                        |
+| `DK_INSTALL_ONLY`             | `on`               | Install only, not run                                                                                                                                                                       |
+| `DK_HOSTNAME`                 | `some-host-name`   | Support custom configuration hostname during installation                                                                                                                                   |
+| `DK_UPGRADE`                  | `1`                | Upgrade to the latest version (Note: Once this option is turned on, all other options except `DK_UPGRADE_MANAGER` are invalid)                                                              |
+| `DK_UPGRADE_MANAGER`          | `on`               | Whether we upgrade the **Remote Upgrade Service** when upgrading Datakit, it's used in conjunction with `DK_UPGRADE`, supported start from [1.5.9](changelog.md#cl-1.5.9)                   |
+| `DK_INSTALLER_BASE_URL`       | `https://your-url` | You can choose the installation script for different environments, default to `https://static.guance.com/datakit`                                                                           |
+| `DK_PROXY_TYPE`               | -                  | Proxy type. The options are: "datakit" or "nginx", both lowercase                                                                                                                           |
+| `DK_NGINX_IP`                 | -                  | Proxy server IP address (only need to fill in IP but not port). With the highest priority, this is mutually exclusive with the above "HTTP_PROXY" and "HTTPS_PROXY" and will override both. |
+| `DK_INSTALL_LOG`              | -                  | Set the setup log path, default to *install.log* in the current directory, if set to `stdout`, output to the command line terminal.                                                         |
+| `HTTPS_PROXY`                 | `IP:Port`          | Installed through the Datakit agent                                                                                                                                                         |
+| `DK_INSTALL_RUM_SYMBOL_TOOLS` | `on`               | Install source map tools for RUM, support from Datakit [1.9.2](changelog.md#cl-1.9.2).                                                                                                      |
+| `DK_VERBOSE`                  | `on`               | Enable more verbose info during install(only for Linux/Mac)[:octicons-tag-24: Version-1.19.0](changelog.md#cl-1.19.0)                                                                       |
 
 ## FAQ {#faq}
 
