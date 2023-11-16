@@ -166,6 +166,8 @@ OIDCClientSet:
     username: preferred_username
     # 认证服务中，登录账号的邮箱字段名，必填
     email: email
+    # 认证服务中，登录账号的手机号字段名，选填
+    mobile: phone_number
     # 认证服务中，登录账号的唯一标识字段名， 必填
     exterId: sub
   # http请求配置设置，根据认证服务接口动态调整适配（目前只支持 userinfo 信息的获取）
