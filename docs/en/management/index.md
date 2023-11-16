@@ -17,7 +17,7 @@ After registration, you can click **Login** through [Guance Official Website](ht
 
 > For more registration details, please refer to the document [Register Commercial Plan](../billing/commercial-register.md).
 
-???- attention "Details Worthy of Attention"
+???- warning "Details Worthy of Attention"
 
     - Under a single Guance site, only one mobile phone number and one mailbox are supported, and Hong Kong, Macao and Taiwan and foreign mobile phone numbers are not supported for the time being.   
     - The accounts of different sites are independent and do not communicate with each other.   
@@ -87,7 +87,7 @@ Here you can:
 - modify avatar and user name;  
 - modify [login session](#login-hold-time).
 
-???+ attention "SSO"
+???+ warning "SSO"
 
     For accounts logged in through SSO, the login session configured by SSO is used by default. After account management is modified, the modified login session is used.
     

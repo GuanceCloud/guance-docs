@@ -92,13 +92,17 @@
 
 观测云支持将未恢复事件导出为 CSV 文件。
 
-### Issue & 新建 Issue
+### Issue & 新建 Issue {#issue}
 
 您可以针对当前未恢复事件[创建 Issue](../exception/issue.md#event)，并通知相关成员来追踪处理。
  
 ![](img/event-2.png)
 
 ![](img/event-3.png)
+
+若当前事件与某个异常追踪产生关联，在事件列表，您可点击图标直接跳转查看：
+
+![](img/event-6.png)
 
 ### 恢复事件 {#recover}
 

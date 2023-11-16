@@ -24,6 +24,44 @@
 ## 参数补充说明
 
 
+**filters过滤条件说明**
+
+|     参数名      | 参数类型 | 是否必填 |                  参数说明                   |
+|:---------------:|:--------:|:--------:|:-------------------------------------------:|
+|      channelUUID   |  string  |    Y   |                频道uuid                |
+|      startTime   |  int  |    F   |               开始时间               |
+|      endTime   |  int  |    F   |               结束时间               |
+|      pageIndex   |  int  |    F   |               页码               |
+|      pageSize   |  int  |    F   |               每页条数               |
+|      search   |  string  |    F   |               搜索字段(名称和描述)              |
+|      filters   |  array  |    F   |                issue列表过滤条件                |
+
+
+**filters详细说明**
+
+|     参数名      | 参数类型 |                  参数说明                   |
+|:---------------:|:--------:|:-------------------------------------------:|
+|      filters.key     |  string  |  过滤条件key                          |                       
+|      filters.value   |  string  |  过滤条件值                           |
+|      filters.equal   |  string  |  比较符号 （true:等于；false:不等于）   |
+
+
+**filters.key详细说明**
+
+|     参数名      |                 说明                   |
+|:---------------:|:-------------------------------------------:|
+|      resource |            资源名称              |
+|      level   |          issue等级uuid            |
+|      statusType   |     issue状态 [10:Open,20:Resolve,30:Pending]       |
+|      creator   |     创建人       |
+|      updator   |     更新人       |
+
+**filters示例**
+
+```json
+[{"key": "statusType", "value": 30, "equal": true}, {"key": "resource", "value": 'dds', "equal": false}]
+```
+
 
 
 
