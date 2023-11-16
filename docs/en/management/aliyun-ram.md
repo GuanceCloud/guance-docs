@@ -1,14 +1,14 @@
-# 在阿里云中配置观测云 RAM 策略
+# Configure Guance RAM Policy in Alibaba Cloud
 
-1. Grant Permission:
+I. Grant Permission:
 
 ![](img/cn1-ram.png)
 
-2. Create Policy:
+II. Create Policy:
 
 ![](img/cn2-ram.png)
 
-3. Edit policy information:
+III. Edit policy information:
 
 ```
 {
@@ -34,10 +34,10 @@
 
 ![](img/cn3.png)
 
-4. Create sucessfully:
+IV. Create sucessfully:
 
 ![](img/cn4.png)
 
-5. Add Custom Policy sucessfully:
+V. Add Custom Policy sucessfully:
 
 ![](img/cn5.png)

@@ -190,7 +190,7 @@ As the index of ES or OpenSearch has multiple index rules or names caused by scr
 - An index alias is a secondary name used to reference one or more existing indexes.
 - An alias can bind multiple indexes, and an index can bind multiple aliases.
 
-![](img/2.index_out_1.png)
+<img src="../img/2.index_out_1.png" width="60%" >
 
 As shown in the above figure, there are two fragments in the index of index1. If users need to query the log contents in index1, they only need to bind the index with index name of index1 in Guance, and have no awareness of the number and size of fragments.
 
