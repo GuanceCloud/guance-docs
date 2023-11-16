@@ -1,80 +1,385 @@
 # Backup Log
 ---
 
-## Overview
+???- quote "Release Notes"
 
-After log backup rules is created, the local log would be uploaded (copied) to the backup space in real time to form a log backup. Based on the log backup feature, you can restore data to any point in time during the backup retention time.<br/> This article describes how to back up logs to Guance for viewing and analysis.<br/>
+    **November 2, 2023**:
+    
+    - Support saving data to storage repositories such as OSS, S3 and OBS inside Guance.
+    - Data Forward: The navigation position has been adjusted to the **Management** module, and you can still be accessed through the secondary menu of the original **Logs**, **Real User Monitoring** and **Application Performance Monitoring**.
 
-Log backups are supported in two ways:<br/><br/>
-- Backup to Guance: The maximum storage time of Guance basic log is 60 days, and the maximum storage time of backup log is 720 days. See the doc [Data Storage Policy](../billing/billing-method/data-storage.md) for more info.     
-- Backup to external storage: You can back up logs to Alibaba Cloud OSS, see the doc [Best Practices for Backing Up Log Data to OSS](../best-practices/partner/log-backup-to-oss-by-func.md) for more info.  
+    **September 26, 2023**: RUM and APM data are supported in Data forwarding rule query.
+
+    **September 21, 2023**: Add an entry for querying external storage forwarding rule data; enable/disable forwarding rules is supported.
+
+    **September 7, 2023**: The original **Backup Logs** has been officially renamed to **Data Forward**.
 
 
-## Setup
+Guance offers the functionality to save logs, traces and user access data to the object storage of Guance and forward it to external storage. You are free to choose the storage objects and manage data forwarding flexibly.
 
-### Create Rules
+On the data forwarding page, you can quickly query stored data (including Guance backup logs, AWS S3, Huawei Cloud OBS, Alibaba Cloud OSS, and Kafka message queues) by setting query time and data forwarding rules. You can also view the historical backup logs of Guance and SLS Query Logstore data.
 
-On the **Log Index** page, click **Create** under **Backup Log**. 
+## Precondition
+
+Only Guance Commercial Plan users can use the data forwarding function, [Experience Plan](../billing/trail.md) users need to [upgrade to the Commercial Plan](../billing/commercial-version.md).
+
+## Create Rules
+
+On the **Data Forward** page, click **Forward rules > Create**. 
  
 ![](img/backup-log-en-1.png) 
  
-Enter **Rule Name** to add a new rule.
  
 ![](img/backup-log-en-2.png) 
 
 
-**Note:**
-
-- Data Preview: Preview logs in the last 15 minutes.
-- Rule Name: 30 characters are limited.   
-- Synchronous Backup Extended Field: If this option is checked, the entire log data that meets the filter criteria would be backed up. You can go to the **Backup Log** details page to filter and view the information corresponding to the extended fields.  
-- Filter: Logs can be filtered by adding filters.   
-
-???+ attention
-
-    - Only users of Guance Commercial Plan can use backup log, and users from Experience Plan  can [upgrade to commercial version](../billing/commercial-version.md) first;  
-    - Backup Cycle: Rule verification and backup are performed every 5 minutes, you can see the backup log data after configuring backup rules for up to 5 minutes.     
-
-## Backup Log
-
-Enter **Log > Backup Log** to view the log data that meets the backup conditions.
-
-- Time Widget: Selecting the generated time range of backup logs that you want to view.  
-- Search and Filter: Positioning backup logs by searching for keywords or filtering fields.  
-- Display column: If you check **Synchronous Backup Extended Field** when creating backup log rules, you can add customizing fields other than **Time** and **Message**.
+**Note**: After creating the data forwarding rule, the rule validation will be executed every 5 minutes. 
 
 
-- Backup Log Details: Click any log to view the log details, including log generation time, content and extended fields.  
+### Enter Rule Name
 
-![](img/backup-log-en-6.png)
+![](img/back-9.png)
+
+In the pop-up dialog box, enter a name to add a new rule.
+
+| Field      | Description     | 
+| ------------- | -------------- |
+| Rule Name | Limit the input to a maximum of 30 characters. |
+| Include extend fields      | If the option is selected, the entire log data that meets the criteria will be forwarded. The application performance and user access data will be forwarded by default, regardless of this option.<br/>:warning: If multiple data forwarding rules are created, the rule that includes extended fields will be prioritized. In other words, if different rules match the same data, the entire log data will be displayed according to the logic of synchronously including extended fields.     |
+
+### Define Filter Conditions
+
+![](img/back-1.png)
+
+:material-numeric-1-circle-outline: Data Source: Logs, Trace and RUM.
+
+:material-numeric-2-circle-outline: Filtering Conditions: Support custom logical operations between conditions. You can choose **All Conditions** or **Any Condition**:
+
+- All Conditions: Only log data that meets all filtering conditions will be saved to data forwarding.  
+- Any Condition: Log data that meets any of the filtering conditions will be saved to data forwarding.
+
+**Note**: Not adding any filtering conditions means saving all log data. You can add multiple filtering conditions.
+
+The operators for conditions are shown in the table below:
+
+| Conditional Operators      | Matching Types     | 
+| ------------- | -------------- | 
+| in, not in      | Exact Match: Support multiple values (comma-separated) | 
+| match, not match | Fuzzy Match: Support input regular expressions | 
 
 
-### View Rules
+### Select Archive Type
+
+To provide a more comprehensive data forwarding and storage method, Guance supports the following five storage paths:
+
+- [Guance](#guance);  
+- [AWS S3](#aws);    
+- [Huawei Cloud OBS](#obs);  
+- [Alibaba Cloud OSS](#oss);  
+- [Kafka Message Queue](#kafka).
+
+**Note**: All five types of archives are open to the entire site.
+
+<img src="../img/back-4.png" width="70%" >
+
+#### Guance {#guance}
+
+![](img/backup-guance.png)
+
+When the data forwarding storage object is set to Observation Cloud, the matched log data will be saved in the OSS, S3 and OBS object storage on Guance.
+
+The minimum storage duration for log data under this rule is **180 days** by default. Once the rule is created, it cannot be canceled, and fees will be charged daily during the storage period. You can go to **Management > Settings > Change Data Storage Policy** to modify the data forwarding storage policy.
+
+#### AWS S3 {#aws}
+
+<!--
+![](img/s3-0725.png)
+-->
+
+I. Select the archival type as AWS S3, which means that the matched log data will be saved in the S3 object storage;    
+II. Choose the access type:
+
+=== "Role Authorization"
+
+    ![](img/back-2.png)
+
+    You need to configure third-party access to AWS resources using the external ID generated by Guance.
+    
+    After configuring the [Guance IAM role in AWS](./role-auth.md), fill in the archive information with your AWS account ID, AWS role name, region and bucket name.
+
+    Click **Test Connection**. If the above information meets the requirements, a successful connection test will be prompted.
+    
+    If the test fails, you need to verify the following:
+
+    - Whether the external ID is invalid;  
+    - Whether the account ID is correct;  
+    - Whether the account role exists;  
+    - Whether the bucket exists;  
+    - Whether the region is consistent.
+
+    <font color=coral>**When this situation occurs, please note:**</font>
+    
+    - If you click on **Regenerate External ID**, the previous ID will become invalid after 24 hours. Please go to the AWS console as soon as possible to replace it.  
+    - Do not generate the external ID multiple times, please proceed with caution!
+
+=== "Access Keys"
+
+    ![](img/back-3.png)
+
+    Click to download the AWS Resource Authorization Template, [go to AWS to configure the Guance IAM policy](./ak-auth.md).
+
+    Once the configuration is complete, fill in the account information, enter the AWS Account ID, AWS AK & SK, region and Bucket name.
+
+    Click **Test Connection**. If the above information meets the requirements, a successful connection test will be prompted.
+    
+    If the test fails, please check:
+
+    - Is the Account ID correct?
+    - Do the AK/SK exist?
+    - Does the bucket exist?
+    - Are the regions consistent?  
+
+=== "Account Authorization"
+
+    ![](img/back-2-1.png)
+
+    AWS provides cross-account authorization capabilities. You need to use the account ID specific to Guance and add the cross-account access authorization policy according to the [configuration instructions](./aws-cross-account.md).
+
+    **Note**: The account ID for overseas sites is different from that of the Chinese site, please make a distinction:
+
+    | Sites | ID    |
+    | ---------- | ------------- |
+    | HongKong(China) | 588271335135    |
+    | Oregon | 521643107266    |
+    | Singapore | 521643107266    |
+    | Frankfurt | 521643107266    |
+
+    After the configuration is complete, select the region and enter the bucket name.
+
+    Click **Test Connection**. If the above information meets the requirements, a successful connection test will be prompted.
+
+    If the test fails, you need to confirm:
+
+    - Whether the account ID is correct;
+    - Whether the storage bucket exists;
+    - Whether the region is inconsistent.
+
+III. Click **Confirm** to create successfully.
+
+**Note**: If there are changes in the archive type information, a confirmation dialog will pop up to confirm the creation rule.
+
+<!--
+<img src="../img/back-7.png" width="60%" >
+-->
+
+#### Huawei Cloud OBS {#obs}
+
+![](img/back-8.png)
+
+
+I. Select the Huawei Cloud OBS as the archive type, which means that the matched logs will be automatically forwarded to external OBS.
+
+
+II. In order to configure the access authorization for Huawei Cloud resources, you need to use the exclusive Huawei Cloud account ID `f000ee4d7327428da2f53a081e7109bd` provided by Guance. [Go here to add cross-account access authorization policies](./obs-config.md).
+
+**Note**: The account ID for overseas sites is different from that of the Chinese site, please make a distinction:
+
+| Sites | ID    |
+| ---------- | ------------- |
+| HongKong(China) | 25507c35fe7e40aeba77f7309e94dd77    |
+| Oregon | 25507c35fe7e40aeba77f7309e94dd77    |
+| Singapore | 25507c35fe7e40aeba77f7309e94dd77    |
+| Frankfurt | 25507c35fe7e40aeba77f7309e94dd77    |
+
+III. Select Region.
+
+IV. In the Bucket, enter the name of your bucket in Huawei Cloud.
+
+V. Click **Confirm** to create successfully.
+
+#### Alibaba Cloud OSS {#oss}
+
+I. Select the Alibaba Cloud OSS as the archive type, which means that the matched log data will be saved to Alibaba Cloud OSS object storage.   
+II. Choose access type:
+
+=== "Role Authorization"
+
+    ![](img/oss-1.png)
+
+    You need to use the external ID generated by Guance to configure role authorization.
+    
+    [After configuring the authorized role in the Alibaba Cloud console](./aliyun-account.md), fill in the archive information including the Alibaba Cloud account ID, OSS role name, region, and bucket name.
+
+    Click **Test Connection**. If the above information meets the requirements, a successful connection test will be prompted.
+    
+    If the test fails, you need to confirm:
+
+    - Whether the authorization is successful;
+    - Whether the account ID is correct;
+    - Whether the bucket exists;
+    - Whether the region is inconsistent. 
+
+    <font color=coral>**When this situation occurs, please note:**</font>
+    
+    - If you click on **Regenerate External ID**, the previous ID will become invalid after 24 hours. Please go to the Alibaba console as soon as possible to replace it.  
+    - Do not generate the external ID multiple times, please proceed with caution!
+
+=== "Access Keys"
+
+    ![](img/oss-2.png)
+
+    You need to [configure the OBS RAM policy](./aliyun-ram.md) in Alibaba Cloud. After configuring it, fill in the account information, including your Alibaba Cloud Account ID, Alibaba Cloud AK & SK, region and Bucket name.
+
+    Click **Test Connection**. If the above information meets the requirements, a successful connection test will be prompted.
+    
+    If the test fails, you need to confirm:
+
+    - Whether the authorization is successful;
+    - Whether the account ID is correct;
+    - Whether the bucket exists;
+    - Whether the region is inconsistent. 
+
+=== "Account Authorization"
+
+    ![](img/oss-2-1.png)
+
+
+    Alibaba Cloud provides cross-account authorization capabilities. You need to use the account ID exclusive to Guance and add a cross-account access authorization policy according to the configuration instructions [here](./ali-cross-account.md).
+
+    **Note**: The account ID for overseas sites is different from that of the Chinese site, please make a distinction:
+
+    | Sites | ID    |
+    | ---------- | ------------- |
+    | HongKong(China) | 1702505505232494    |
+    | Oregon | 218475797167922022    |
+    | Singapore | 218475797167922022    |
+    | Frankfurt | 218475797167922022    |
+
+    After the configuration is complete, select the region and enter the bucket name.
+
+    Click **Test Connection**. If the above information meets the requirements, a successful connection test will be prompted.
+
+    If the test fails, you need to confirm:
+
+    - Whether the account ID is correct;
+    - Whether the storage bucket exists;
+    - Whether the region is inconsistent.
+
+
+III. Click **Confirm** to create successfully.
+
+**Note**: If there are changes in the archive type information, a confirmation dialog will pop up to confirm the creation rule.
+
+<!--
+<img src="../img/back-7.png" width="60%" >
+-->
+
+#### Kafka Message Queue {#kafka}
+
+<!--
+![](img/kafka.png)
+-->
+
+I. Server Address: Host:Port; multiple nodes are separated by commas.
+
+II. Topic: the name of the topic.
+
+III. Security protocol:
+
+On the Kafka side, SASL can use either the PLAINTEXT or SSL protocol as the transport layer. Correspondingly, you can use SASL_PLAINTEXT or SASL_SSL security protocol. If using SASL_SSL security protocol, SSL certificate must be configured.
+
+=== "PLAINTEXT"
+
+    No need for any security verification, you can directly test the connection.
+
+=== "SASL_PLAINTEXT"
+
+    The authentication method is set to PLAIN by default, with the optional choices of SCRAM-SHA-256 and SCRAM-SHA-512.
+
+    Please provide the username/password for authentication on the Kafka side and then test the connection.
+
+    ![](img/kafka-1.png)
+
+=== "SASL_SSL"
+
+    Here, [SSL certificate needs to be uploaded](https://kafka.apachecn.org/documentation.html#security_ssl.
+
+    The default authentication method is PLAIN, with the options of SCRAM-SHA-256 and SCRAM-SHA-512.
+
+    Enter the username/password for security authentication on the Kafka side and then test the connection.
+
+    ![](img/kafka-2.png)
+
+Click **Test Connection**. If the above information meets the requirements, a successful connection test will be prompted.
+    
+If the test fails, you need to confirm:
+
+- Whether the address is correct;
+- Whether the message topic name is correct;
+- Whether the SSL certificate is correct;
+- Whether the username is correct;
+- Whether the password is correct.
+
+V. Click **Confirm** to create successfully.
+
+
+## View Forwarding Rules
+
+After the rule is created, it will automatically enter the forwarding rule list:
+
+![](img/rule-update.png)
+
+:material-numeric-1-circle-outline: You can search by entering the rule name. 
+
+:material-numeric-2-circle-outline: You can choose to enable or disable the current rule.
+
+:material-numeric-3-circle-outline: Click the :material-text-search: , edit button and :fontawesome-regular-trash-can: button on the right side of the rule to perform the corresponding operation.
+
+**Note**: Data that has been forwarded will not be deleted after the rule is deleted, but no new forwarding data will be generated.
+
+:material-numeric-4-circle-outline: You can select multiple rules for batch operations.
+
+![](img/rule-update-1.png)
+
+### Forwarding Rule Explorer {#explorer}
+
+Go back to the Data Forward page, which defaults to the **Forward Rules** tab. First, select a rule from the dropdown menu. You can customize the time range for the query, selecting multiple dates and defining a start and end time. The time will be accurate to the hour:
+
+![](img/rule-update-3.png)
+
+**Note**:
+
+- You can enter keywords to search for matching data.   
+- The time control is initially empty, and you can select the hour after selecting a date. Clickable hour options will be listed based on the forwarding rule.   
+- If you select a future time range, the system will automatically correct it to the current date.
+
+<img src="../img/rule-update-4.png" width="60%" >
+
+- Guance will retrieve file search matching data in batches based on the selected time. Each batch returns 50 pieces of data. If no data is found in the first query, or the returned data does not meet the requirement of 50 pieces per page, you can manually click **Continue Query** until the scan is complete.
+- Since the retrieved data is in a disordered state, you can sort the data based on the listed time range. This action will not affect the data query results.
+
+
+Under **Index**, you can view Guance historical backup logs and SLS Query Logstore data:
+
+![](img/rule-update-2.png)
+
+> For specific operations of Explorer, see [The Power of the Explorer](../getting-started/function-details/explorer-search.md).
+
+## More Readings
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; Billing Logic Behind Data Forward</font>](../billing/billing-method/billing-item.md#backup)
+
+</div>
+
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; Best Practices for Forwarding Log Data to OSS</font>](../best-practices/partner/log-backup-to-oss-by-func.md)
+
+</div>
+
+
  
-After being created, **Backup Rule** would be stored in **Backup Log** under **Log Index** in a unified way. Click the **View** button to view the configured backup rule filters. 
-
-> Once a rule is created, it cannot be edited, but can only be viewed and deleted. 
-
-![](img/backup-log-en-4.png)
-
-
-### Delete Rules
-
-If you create a rule that is no longer needed or needs to be modified, you can delete the rule and then create a new backup rule. 
-
-> After the rule is deleted, the backed-up data will not be deleted, but no new log backup data will be generated.
-
-![](img/backup-log-en-5.png)
-
-
-#### <u>Example</u>
- 
-In the following picture, the backup log rule name is `http_dial_testing`, and the extended fields need to be backed up synchronously. The filter matches the data whose source is `http_dial_testing`.
-
-![](img/backup-log-en-3.png)
-
-You can check the filtered backup logs that meet created rules in **Backup Log**. Click any log to enter details page and you can gain information on its sorce, message and extended fileds.
-
-
-
 

@@ -2,6 +2,8 @@
 
 ???- quote "更新日志"
 
+    **2023.11.16**：【Pod】 页面下线处理。
+
     **2023.9.7**：应用性能检测 > 服务入口与此处功能整合。
 
 ---
@@ -61,7 +63,7 @@
 
 - 在列表左侧，可根据创建类型、团队、服务类型进行相应筛选。
 
-<img src="../img/service-4.png" width="50%" >
+<img src="../img/service-4.png" width="40%" >
 
 3、在列表页：
 
@@ -162,7 +164,12 @@
 
 ## 服务详情 {#details}
 
-在各服务清单列表，点击某条服务，可进入其详情页。点击页面上方 tab，即可进入分析看板、资源调用、Pods、日志、链路、错误追踪、事件查看器，查询关联服务下的所有相关信息。
+在各服务清单列表，点击某条服务，可进入其详情页。点击页面上方 tab，即可进入分析看板、资源调用、日志、链路、错误追踪、事件查看器，查询关联服务下的所有相关信息。
+
+如您需要切换至其他服务详情，点击当前服务图标即可；在打开的窗口中，可直接输入关键词搜索：
+
+<img src="../img/list.png" width="60%" >
+
 
 ### 分析看板
 
@@ -199,10 +206,10 @@
 
 |                   <font color=coral size=3>:fontawesome-regular-circle-down: &nbsp;**关于 Tab 页其他查看器，您可点击前往：**</font>                         |                                                              |
 | :----------------------------------------------------------: | :----------------------------------------------------------: | 
-| [Pods 查看器](../infrastructure/contrainer.md#pods){ .md-button .md-button--primary } | [日志查看器](../logs/explorer.md){ .md-button .md-button--primary } | 
-| [链路查看器](../application-performance-monitoring/explorer.md){ .md-button .md-button--primary } | [错误追踪查看器](../application-performance-monitoring/error.md){ .md-button .md-button--primary } |
-|  [事件查看器](../events/unrecovered-events.md){ .md-button .md-button--primary } |  |
+| [日志查看器](../logs/explorer.md){ .md-button .md-button--primary } | [链路查看器](../application-performance-monitoring/explorer.md){ .md-button .md-button--primary } | 
+| [错误追踪查看器](../application-performance-monitoring/error.md){ .md-button .md-button--primary } | [事件查看器](../events/unrecovered-events.md){ .md-button .md-button--primary } |
 
+<!--
 **注意**：因为 Pods 对象数据中并未存在 `service` 等相关字段，此处观测云使用 `deployment:服务名称` 做过滤列出。
-
+-->
 
