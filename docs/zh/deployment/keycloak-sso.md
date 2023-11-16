@@ -93,6 +93,8 @@ OIDCClientSet:
     username: preferred_username
     # 认证服务中，登录账号的邮箱，必填
     email: email
+    # 认证服务中，登录账号的手机号字段名，选填
+    mobile: phone_number
     # 认证服务中，登录账号的唯一标识， 必填
     exterId: sub
 ```
