@@ -171,6 +171,7 @@ nav:
       - 'PagerDuty': pagerduty.md
       - '飞书与异常追踪联动': feishu_im.md
       - external.md
+      - argocd.md
 
   - CI/CD:
       - 'Jenkins': jenkins.md
@@ -281,6 +282,7 @@ nav:
       - logging.md
       - ilogtail.md
       - 'Socket 接入示例': logging_socket.md
+      - fluentd.md
     - '其它日志接入':
       - 'LogStreaming': logstreaming.md
 

@@ -69,7 +69,7 @@ ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS} -jar ${jar} ${PARAMS} "]
 ```
         - name: JAVA_OPTS
           value: |-
-            -javaagent:/datadog-lib/dd-java-agent.jar -Ddd.service=java-demo-service -Ddd.tags=container_host:$(POD_NAME) -Ddd.env=dev -Ddd.agent.port=9529
+            -javaagent:/datadog-lib/dd-java-agent.jar -Ddd.service.name=java-demo-service -Ddd.tags=container_host:$(POD_NAME) -Ddd.env=dev -Ddd.agent.port=9529
 ```
 
 ??? quote "示例完整 `java-demo.yaml` "
@@ -117,7 +117,7 @@ ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS} -jar ${jar} ${PARAMS} "]
             #      fieldPath: status.hostIP
             - name: JAVA_OPTS
               value: |-
-                -javaagent:/datadog-lib/dd-java-agent.jar -Ddd.service=java-demo-service -Ddd.tags=container_host:$(POD_NAME) -Ddd.env=dev -Ddd.agent.port=9529
+                -javaagent:/datadog-lib/dd-java-agent.jar -Ddd.service.name=java-demo-service -Ddd.tags=container_host:$(POD_NAME) -Ddd.env=dev -Ddd.agent.port=9529
             ports:
             - containerPort: 8090
               protocol: TCP
