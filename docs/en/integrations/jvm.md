@@ -114,7 +114,7 @@ Note:
 
 - For the download of the `dd-java-agent.jar` package, see [here](ddtrace.md)
 - It is recommended to name the following fields:
-    - `service` is used to indicate which application the JVM data comes from
+    - `service.name` is used to indicate which application the JVM data comes from
     - `env` is used to indicate which environment of an application the JVM data comes from (e.g. prod/test/preprod, etc.)
 
 - The meaning of several options here:
