@@ -13,7 +13,7 @@
 
   ```shell
   java -javaagent:D:/ddtrace/dd-java-agent-0.114.0.jar \
-  -Ddd.service=ddtrace-server \
+  -Ddd.service.name=ddtrace-server \
   -Ddd.agent.port=9529 \
   -jar springboot-ddtrace-server.jar
   ```
