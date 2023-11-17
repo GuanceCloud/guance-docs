@@ -167,6 +167,7 @@ nav:
       - 'openai': openai.md
       - external.md
       - zookeeper.md
+      - argocd.md
 
   - CI/CD:
       - 'Jenkins': jenkins.md
@@ -260,7 +261,9 @@ nav:
     - 'Log Process Overview': datakit-logging-how.md
     - 'Log Collection':
       - logging.md
+      - ilogtail.md
       - 'Socket Access Example': logging_socket.md
+      - fluentd.md
     - 'Other Log Access':
       - 'LogStreaming': logstreaming.md
 

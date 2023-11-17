@@ -723,7 +723,7 @@ docker push registry.cn-shenzhen.aliyuncs.com/lr_715377484/springboot-logback-so
                   value: "9541"
                 - name: JAVA_OPTS
                   value: |-
-                    -javaagent:/usr/dd-java-agent/agent/dd-java-agent.jar -Ddd.service=demo-k8s-logback-socket  -Ddd.tags=container_host:$(PODE_NAME) -Ddd.service.mapping=mysql:mysql-k8s,redis:redisk8s -Ddd.env=dev -Ddd.agent.port=9529
+                    -javaagent:/usr/dd-java-agent/agent/dd-java-agent.jar -Ddd.service.name=demo-k8s-logback-socket  -Ddd.tags=container_host:$(PODE_NAME) -Ddd.service.mapping=mysql:mysql-k8s,redis:redisk8s -Ddd.env=dev -Ddd.agent.port=9529
                 - name: PARAMS
                   value: "--datakit.socket.host=$(DD_AGENT_HOST) --datakit.socket.port=$(DATAKIT_SOCKET_PORT)"
                 - name: DD_AGENT_HOST
