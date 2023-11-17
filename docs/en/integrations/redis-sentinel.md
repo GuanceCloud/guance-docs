@@ -182,7 +182,7 @@ systemctl restart datakit
 |redis_sentinel_link_pending_commands| sentinel pending command count | Gauge |
 |redis_sentinel_odown_slaves| slave down count | Gauge |
 |redis_sentinel_sdown_slaves| slave master down count | Gauge |
-|redis_sentinel_ok_slaves| 正在运行的slave数 | Gauge |
+|redis_sentinel_ok_slaves|  running slaves | Gauge |
 |redis_sentinel_ping_latency| sentinel ping latency | Gauge |
 |redis_sentinel_last_ok_ping_latency| sentinel ping ok latency  | Gauge |
-
+| redis_sentinel_node_state  | redis node state     | Gauge |

@@ -14,7 +14,7 @@
 ```shell
 java -javaagent:/path/to/dd-java-agent.jar \
          -Ddd.logs.injection=true \
-         -Ddd.service=my-app \
+         -Ddd.service.name=my-app \
          -Ddd.env=staging \
          -Ddd.version=1.0.0 \
          -Ddd.agent.host=localhost \
