@@ -13,7 +13,7 @@ You can run your java Code in a variety of ways, such as IDE, Maven, Gradle, or 
 ```shell
 java -javaagent:/path/to/dd-java-agent.jar \
 -Ddd.logs.injection=true \
--Ddd.service.name=my-app \
+-Ddd.service=my-app \
 -Ddd.env=staging \
 -Ddd.version=1.0.0 \
 -Ddd.agent.host=localhost \
