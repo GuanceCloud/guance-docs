@@ -57,6 +57,7 @@ DQL数据查询
 |  query.showLabel  | bool  |   | 是否显示对象的lables，默认无 |
 |  query.funcList  | array  |   | 再次聚合修饰dql返回值，注意 disableMultipleField=Flse时, 当前参数无效 |
 |  query.slimit  | integer  |   | 时间线分组大小，只针对指标查询有效 |
+|  query.soffset  | integer  |   | 时间线分组偏移量 |
 |  query.limit  | integer  |   | 分页大小 |
 |  query.offset  | integer  |   | 分页偏移量 |
 |  query.orderby  | array  |   | 排序列表，`{fieldName:method}` , 注意指标集查询的排序只支持 fieldName=time; method in ["desc", "asc"];注意指标集查询的排序只支持 fieldName=time|
