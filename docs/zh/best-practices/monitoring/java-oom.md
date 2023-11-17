@@ -70,7 +70,7 @@ root@ruoyi-system-c9c54dbd5-ltcvf:/data/app#
 
 > -Xmx80m
 > -javaagent:C:/"Program Files"/datakit/data/dd-java-agent.jar
-> -Ddd.service=system
+> -Ddd.service.name=system
 > -Ddd.agent.port=9529
 
 ### 2、请求
@@ -88,7 +88,7 @@ root@ruoyi-system-c9c54dbd5-ltcvf:/data/app#
 ### 1、启动参数
 > -Xmx80m
 > -javaagent:C:/"Program Files"/datakit/data/dd-java-agent.jar
-> -Ddd.service=system
+> -Ddd.service.name=system
 > -Ddd.agent.port=9529
 
 ### 2、请求
@@ -116,7 +116,7 @@ root@ruoyi-system-c9c54dbd5-ltcvf:/data/app#
 ### 1、启动参数
 > -Xmx80m
 > -javaagent:C:/"Program Files"/datakit/data/dd-java-agent.jar
-> -Ddd.service=system
+> -Ddd.service.name=system
 > -Ddd.agent.port=9529
 
 ### 2、请求
@@ -131,7 +131,7 @@ root@ruoyi-system-c9c54dbd5-ltcvf:/data/app#
 > -XX:MetaspaceSize=30M
 > -XX:MaxMetaspaceSize=90M
 > -javaagent:C:/"Program Files"/datakit/data/dd-java-agent.jar
-> -Ddd.service=system
+> -Ddd.service.name=system
 > -Ddd.agent.port=9529
 
 ### 2、请求
@@ -146,7 +146,7 @@ root@ruoyi-system-c9c54dbd5-ltcvf:/data/app#
 ### 1、启动参数
 > -Xmx80m
 > -javaagent:C:/"Program Files"/datakit/data/dd-java-agent.jar
-> -Ddd.service=system
+> -Ddd.service.name=system
 > -Ddd.agent.port=9529
 
 ### 2、请求

@@ -43,7 +43,7 @@ systemctl restart datakit
 
 ```shell
 -javaagent:/usr/local/datakit/data/dd-java-agent.jar \
- -Ddd.service=<your-service>   \
+ -Ddd.service.name=<your-service>   \
  -Ddd.env=dev  \
  -Ddd.agent.port=9529  
 ```
