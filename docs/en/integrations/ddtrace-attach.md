@@ -41,7 +41,7 @@ java -jar agent-attach-java.jar [-options <dd options>]
                                 [-help]
 [-options]:
    this is dd-java-agnet.jar env, example:
-       dd.agent.port=9529,dd.agent.host=localhost,dd.service.name=serviceName,...
+       dd.agent.port=9529,dd.agent.host=localhost,dd.service=serviceName,...
 [-agent-jar]:
    default is: /usr/local/ddtrace/dd-java-agent.jar
 [-pid]:
@@ -51,7 +51,7 @@ java -jar agent-attach-java.jar [-options <dd options>]
 Note: -pid or -displayName must have a non empty !!!
 
 example command line:
-java -jar agent-attach-java.jar -options 'dd.service.name=test,dd.tag=v1'\
+java -jar agent-attach-java.jar -options 'dd.service=test,dd.tag=v1'\
  -displayName tmall.jar \
  -agent-jar /usr/local/ddtrace/dd-java-agent.jar
 
