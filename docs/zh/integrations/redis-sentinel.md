@@ -269,4 +269,4 @@ systemctl restart datakit
 | redis_sentinel_ok_slaves | 正在运行的slave数 | Gauge |
 | redis_sentinel_ping_latency | 哨兵ping的延迟显示为毫秒 | Gauge |
 | redis_sentinel_last_ok_ping_latency | 哨兵ping成功的秒数 | Gauge |
-
+| redis_sentinel_node_state  | redis 节点状态     | Gauge |

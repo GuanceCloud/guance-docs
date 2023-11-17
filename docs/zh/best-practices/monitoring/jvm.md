@@ -60,7 +60,7 @@ java  ${JAVA_OPTS} -jar your-app.jar
  -Ddd.profiling.enabled=true  \
  -Ddd.logs.injection=true   \
  -Ddd.trace.sample.rate=1   \
- -Ddd.service=your-app-name   \
+ -Ddd.service.name=your-app-name   \
  -Ddd.env=dev  \ 
  -Ddd.agent.port=9529   \
  -Ddd.jmxfetch.enabled=true   \
@@ -115,7 +115,7 @@ $ datakit --restart
 ```shell
 nohup java -Dfile.encoding=utf-8  \
  -javaagent:/usr/local/datakit/data/dd-java-agent.jar \
- -Ddd.service=your-app   \
+ -Ddd.service.name=your-app   \
  -Ddd.service.mapping=mysql:mysql01   \
  -Ddd.env=dev  \
  -Ddd.agent.port=9529   \
@@ -165,7 +165,7 @@ $ docker build -t your-app-image:v1 .
 **Docker run 启动**，请修改 172.16.0.215 为您的服务器的内网 ip 地址，替换 9299 为您应用的端口，替换 your-app 为您的应用名，替换 your-app-image:v1 为您的镜像名
 
 ```shell
-docker run  -v /tmp/work:/tmp/work -e JAVA_OPTS="-javaagent:/tmp/work/dd-java-agent.jar -Ddd.service=your-app  -Ddd.service.mapping=mysql:mysql01 -Ddd.env=dev  -Ddd.agent.host=172.16.0.215 -Ddd.agent.port=9529  -Ddd.jmxfetch.statsd.host=172.16.0.215  " --name your-app -d -p 9299:9299 your-app-image:v1
+docker run  -v /tmp/work:/tmp/work -e JAVA_OPTS="-javaagent:/tmp/work/dd-java-agent.jar -Ddd.service.name=your-app  -Ddd.service.mapping=mysql:mysql01 -Ddd.env=dev  -Ddd.agent.host=172.16.0.215 -Ddd.agent.port=9529  -Ddd.jmxfetch.statsd.host=172.16.0.215  " --name your-app -d -p 9299:9299 your-app-image:v1
 
 ```
 **Docker compose 启动**
@@ -200,7 +200,7 @@ services:
       dockerfile: DockerfileTest
       context: .
       args:
-        - JAVA_ARG=-javaagent:/tmp/work/dd-java-agent.jar  -Ddd.service=your-app  -Ddd.service.mapping=mysql:mysql01 -Ddd.env=dev  -Ddd.agent.host=172.16.0.215 -Ddd.agent.port=9529  -Ddd.jmxfetch.statsd.host=172.16.0.215  
+        - JAVA_ARG=-javaagent:/tmp/work/dd-java-agent.jar  -Ddd.service.name=your-app  -Ddd.service.mapping=mysql:mysql01 -Ddd.env=dev  -Ddd.agent.host=172.16.0.215 -Ddd.agent.port=9529  -Ddd.jmxfetch.statsd.host=172.16.0.215  
     ports:
       
     networks:
@@ -695,7 +695,7 @@ spec:
               fieldPath: metadata.name
         - name: JAVA_OPTS
           value: |-
-            -javaagent:/usr/dd-java-agent/agent/dd-java-agent.jar -Ddd.service=<your-app-name> -Ddd.tags=container_host:$(PODE_NAME)  -Ddd.env=dev  -Ddd.agent.port=9529   
+            -javaagent:/usr/dd-java-agent/agent/dd-java-agent.jar -Ddd.service.name=<your-app-name> -Ddd.tags=container_host:$(PODE_NAME)  -Ddd.env=dev  -Ddd.agent.port=9529   
         - name: DD_AGENT_HOST
           valueFrom:
             fieldRef:
