@@ -70,7 +70,7 @@ ddtrace,env=Testing,host=DESKTOP-7BK497S,operation=flask.do_teardown_appcontext,
 产生的日志数据如下：
 
 ```
-2021-06-18 10:07:08,786 INFO [__main__] [lt.py:26] [dd.service=Python-App dd.env=Testing dd.version=V1.1 dd.trace_id=16108321602917563239 dd.span_id=12837828046733169079] - Hello, World!
+2021-06-18 10:07:08,786 INFO [__main__] [lt.py:26] [dd.service.name=Python-App dd.env=Testing dd.version=V1.1 dd.trace_id=16108321602917563239 dd.span_id=12837828046733169079] - Hello, World!
 ```
 
 DDtrace 相关配置除了在源文件中指定外，还可以在启动应用时通过环境变量注入来实现：
