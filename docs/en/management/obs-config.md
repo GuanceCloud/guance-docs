@@ -24,7 +24,7 @@ V. If you do not have download permissions, you need to check the **Object Read*
 
 ![](img/obs-3.png)
 
-## More Readings
+## More Reading
 
 <div class="grid cards" markdown>
 

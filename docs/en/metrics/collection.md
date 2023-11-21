@@ -1,7 +1,6 @@
 # Metrics Collection
 ---
 
-## Overview
 
 Guance, equipped with global data collection capability, supports a variety of standard collectors. It can quickly configure data sources and easily collect hundreds of types of data.
 
@@ -14,13 +13,11 @@ There are two ways to collect metrics, and the prerequisite is that you need to 
 
 ![](img/2.datakit_1.png)
 
-## Delete Measurement {#delete}
+If you need to delete measurements in workspace, enter **Management** > **Basic Settings**, click **Delete Specified Measurement**, enter the complete measurement name and click **Confirm** to delete.
 
-Guance supports administrators to delete measurements in workspace, enter **Management** > **Basic Settings**, click **Delete Measurement**, enter the complete measurement name and click **Confirm** to delete.
+**Notes**:
 
-???+ attention
-
-    - Only space owners and administrators are allowed to do this;
-    - Once the measurement is deleted, it cannot be restored. Please be careful.
+- Only space owners and administrators are allowed to do this;
+- Once the measurement is deleted, it cannot be restored. Please be careful.
 
 ![](img/3.metric_10.png)

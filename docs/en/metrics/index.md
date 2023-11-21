@@ -22,7 +22,7 @@ The metric function of Guance can help you:
 
 ## Steps
 
-- Step 1: Before using **Metrics**, you need to start the relevant integrated [metrics collection](collection.md) through DataKit, and the successfully collected metric data would be automatically reported to the studio.
+- Step 1: Before using **Metrics**, you need to start the relevant integrated [metric collection](collection.md) through DataKit, and the successfully collected metric data would be automatically reported to the studio.
 - Step 2: All metric data reported to the workspace by DataKit collector can be viewed through **Metric Management**, including measurement, metrics (metric name, field type, unit and description), tag, etc.
 - Step 3: All metric data in the workspace can be queried and analyzed visually in **Metrics** and **[Dashboards](../scene/dashboard.md)** of the studio.
 
