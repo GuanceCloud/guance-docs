@@ -1279,7 +1279,7 @@ Using Secret in env:
 
 See [doc](https://kubernetes.io/zh-cn/docs/concepts/configuration/secret/#using-secrets-as-environment-variables){:target="_blank"}.
 
-## More Readings {#more-reading}
+## More Reading {#more-reading}
 
 - [eBPF Collector: Support flow collection in container environment](ebpf.md)
 - [Proper use of regular expressions to configure](datakit-input-conf.md#debug-regex) 
