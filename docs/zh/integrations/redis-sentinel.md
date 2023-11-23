@@ -19,10 +19,6 @@ Redis-sentinel 指标展示，包括 Redis 集群、Slaves、节点分布信息�
 
 ## 安装部署 {#config}
 
-### 前置条件
-
-- redis-sentinel-exporter >=0.1
-
 ### 下载 redis-sentinel-exporter 指标采集器
 
 下载地址 [https://github.com/lrwh/redis-sentinel-exporter/releases](https://github.com/lrwh/redis-sentinel-exporter/releases)
@@ -31,7 +27,7 @@ Redis-sentinel 指标展示，包括 Redis 集群、Slaves、节点分布信息�
 ### 启动 redis-sentinel-exporter
 
 ```bash
-java -Xmx64m -jar redis-sentinel-exporter-0.1.jar --spring.redis.sentinel.master=mymaster --spring.redis.sentinel.nodes="127.0.0.1:26379,127.0.0.1:26380,127.0.0.1:26381"
+java -Xmx64m -jar redis-sentinel-exporter-0.2.jar --spring.redis.sentinel.master=mymaster --spring.redis.sentinel.nodes="127.0.0.1:26379,127.0.0.1:26380,127.0.0.1:26381"
 ```
 
 参数说明
