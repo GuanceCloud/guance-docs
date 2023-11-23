@@ -157,7 +157,7 @@ ddtrace 相关环境变量（启动参数）释义
 
 ```java
 Ddd.env：自定义环境类型    （可选项）
-Ddd.service：自定义应用名称   （必填项）    如果该配置配置后数据依旧无法展示，可将name去掉进行尝试
+Ddd.service.name: 自定义应用名称   （必填项）    如果该配置配置后数据依旧无法展示，可将name去掉进行尝试
 Ddd.agent.port:数据上传端口（默认9529 ）（必填项）
 Ddd.version:应用版本 （可选项）
 Ddd.trace.sample.rate：设置采样率（默认是全采）（可选项）

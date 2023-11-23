@@ -20,9 +20,6 @@ Redis-sentinel metrics display, including Redis clusters, Slaves, node distribut
 
 ## Configuration {#config}
 
-### Preconditions
-
-- redis-sentinel-exporter >=0.1
 
 ### Download redis-sentinel-exporter metric collector
 
@@ -32,7 +29,7 @@ Download address [https://github.com/lrwh/redis-sentinel-exporter/releases](http
 ### Start redis-sentinel-exporter
 
 ```bash
-java -Xmx64m -jar redis-sentinel-exporter-0.1.jar --spring.redis.sentinel.master=mymaster --spring.redis.sentinel.nodes="127.0.0.1:26379,127.0.0.1:26380,127.0.0.1:26381"
+java -Xmx64m -jar redis-sentinel-exporter-0.2.jar --spring.redis.sentinel.master=mymaster --spring.redis.sentinel.nodes="127.0.0.1:26379,127.0.0.1:26380,127.0.0.1:26381"
 ```
 
 Parameter description spring.redis.sentinel.master: Cluster name spring.redis.sentinel.nodes: Sentry node address

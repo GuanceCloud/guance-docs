@@ -136,6 +136,7 @@ nav:
       - 'IBM Db2': db2.md
       - dm_v8.md
       - dongfangtong_ths.md
+      - opengauss.md
 
     - '消息队列':
       - emqx.md
@@ -187,6 +188,7 @@ nav:
     - 'Prometheus':
       - 'Exporter': kubernetes-prom.md
       - 'CRD': kubernetes-prometheus-operator-crd.md
+    - 'NPD': npd.md
 
   - 应用性能监测（APM）:
     - 'Tracing 综述': datakit-tracing.md
