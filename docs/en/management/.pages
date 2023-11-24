@@ -3,13 +3,16 @@ nav:
   - 'Settings': settings 
   - 'Member Management': 
     - member-management.md
+    - 'Invite Members': invite-member.md
     - 'Roles': role-management.md
     - 'Permission List': role-list.md
+  - 'Space Management': space-management.md
   - 'Pipelines': overall-pipeline.md
   - 'Field Management': field-management.md
+  - 'Global Labels': global-label.md 
   - 'Blacklist': overall-blacklist.md
   - 'Data Forward': backup.md
-  - 'Data Authorization': data-authorization.md
+  - 'Data Rights Management': data-authorization.md
   - 'Sensitive Data Scanner': data-scanner.md
   - 'API Key': api-key
   - 'Sharing': share-management.md
