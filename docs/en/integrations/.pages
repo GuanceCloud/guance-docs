@@ -130,6 +130,7 @@ nav:
       - 'IBM Db2': db2.md
       - dm_v8.md
       - dongfangtong_ths.md
+      - opengauss.md
 
     - 'Messaging Queue':
       - emqx.md
@@ -182,6 +183,7 @@ nav:
     - 'Prometheus':
       - 'Exportor': kubernetes-prom.md
       - 'CRD': kubernetes-prometheus-operator-crd.md
+    - 'NPD': npd.md
 
   - APM:
     - Tracing Overview': datakit-tracing.md

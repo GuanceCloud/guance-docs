@@ -76,7 +76,7 @@ java  ${JAVA_OPTS} -jar your-app.jar
 ```
 -Ddd.env：应用的环境类型，选填 
 -Ddd.tags：自定义标签，选填    
--Ddd.service：JVM数据来源的应用名称，必填  
+-Ddd.service.name: JVM数据来源的应用名称，必填  
 -Ddd.agent.host=localhost    DataKit地址，选填  
 -Ddd.agent.port=9529         DataKit端口，必填  
 -Ddd.version:版本，选填 
