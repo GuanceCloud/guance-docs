@@ -30,7 +30,7 @@ end
 
 dk -.-> |HTTP: X-Global-Tags/Secret-Token|dw
 
-subgraph "Dataway 集群(Nginx)" 
+subgraph "Dataway 集群(Nginx)"
 %%direction LR
 rules -->  dw
 dw --> check_token -->|No| drop
@@ -80,7 +80,55 @@ sink_dw --> |分流|openway;
 end
 ```
 
-## etcd 设置 {#etcd-settings}
+## Dataway 安装 {#dw-install}
+
+参见[这里](dataway.md#install)
+
+## Dataway 设置 {#dw-config}
+
+除了 Dataway 常规的设置之外，需要额外设置几个配置（位于 */usr/local/cloudcare/dataflux/dataway/dataway.yaml*）：
+
+```yaml
+# 此处设置 Dataway 要上传的地址，一般为 Kodo，但也可以是另一个 Dataway
+remote_host: https://kodo.guance.com
+
+# 如果上传地址为 Dataway，则此处要置为 true，表示 Dataway 级联
+cascaded: false
+
+# 该 token 为 dataway 上随意设置的一段 token，我们需要将其填写到
+# Datakit 的 datakit.conf 配置中。这里需保持一定长度和格式。
+secret_token: tkn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+# sinker 规则设置
+sinker:
+  etcd: # 支持 etcd
+    urls:
+    - http://localhost:2379
+    dial_timeout: 30s
+    key_space: /dw_sinker
+    username: "dataway"
+    password: "<PASSWORD>"
+
+  #file: # 也支持本地文件方式，常用于调试
+  #  path: /path/to/sinker.json
+```
+
+<!-- markdownlint-disable MD046 -->
+???+ attention
+
+    如果不设置 `secret_token`，则任何 Datakit 发送过来的请求都能通过，这不会造成数据问题。但如果 Dataway 部署在公网，还是建议设置一下 `secret_token`。
+<!-- markdownlint-enable -->
+
+### Sinker 规则设置 {#setup-sinker-rules}
+
+Dataway Sinker 规则是一组 JSON 形式的配置，目前支持两种配置来源：
+
+- 在本地指定一个 JSON 文件，主要用于调试 Sinker 规则，这种情况下，更新 JSON 文件中的 Sinker 规则后，**需要重启 Dataway 才能生效**
+- etcd：将调试好的规则文件，存放到 etcd 中，后面微调规则的时候，直接更新 etcd 即可，**不用重启 Dataway**
+
+实际上，存放在 etcd 中的 JSON 跟本地文件中的 JSON 内容相同，下面只介绍 etcd 的托管方式。
+
+#### etcd 设置 {#etcd-settings}
 
 > 以下命令均在 Linux 下操作。
 
@@ -90,10 +138,10 @@ Dataway 作为 etcd 客户端，可以在 etcd 中设置如下用户名和角色
 
 ```shell
 # 添加用户名，此处会提示输入密码
-$ etcdctl user add dataway 
+$ etcdctl user add dataway
 
 # 添加 sinker 这个角色
-$ etcdctl role add sinker 
+$ etcdctl role add sinker
 
 # 将 dataway 添加到角色中
 $ etcdctl user grant-role dataway sinker
@@ -117,7 +165,9 @@ $ etcdctl role grant-permission sinker readwrite /ping       # 用于检测连�
     ```
 <!-- markdownlint-enable -->
 
-### 写入 Sinker 规则 {#prepare-sink-rules}
+#### 写入 Sinker 规则 {#prepare-sink-rules}
+
+> 新版本（1.3.6）的 Dataway 支持通过 `dataway` 命令来操作 etcd  中的 Sinker 规则。
 
 假定 *sinker.json* 规则定义如下：
 
@@ -164,44 +214,74 @@ OK
     ```
 <!-- markdownlint-enable -->
 
-## Dataway 安装 {#dw-install}
+### Token 规则 {#spec-on-secret-token}
 
-参见[这里](dataway.md#install)
+由于 Datakit 会对 Dataway 上的 token 做检测，故这里设置的 `token`（含 `secret_token`） 需满足如下条件：
 
-## Dataway 设置 {#dw-config}
+> 以 `token_` 或 `tkn_` 开头，后面的字符长度为 32。
 
-除了 Dataway 常规的设置之外，需要额外设置几个配置（位于 */usr/local/cloudcare/dataflux/dataway/* 目录下）：
+对于不满足该条件的 token，Datakit 会安装失败。
 
-```yaml
-# 此处设置 Dataway 要上传的地址，一般为 Kodo，但也可以是另一个 Dataway
-remote_host: https://kodo.guance.com
+## Datakit 端设置 {#config-dk}
 
-# 如果上传地址为 Dataway，则此处要置为 true，表示 Dataway 级联
-cascaded: false
+在 Datakit 中，我们需要对其做几个设置，让其可以将采集到的数据打上特定的标签以进行分组。
 
-# 该 token 为 dataway 上随意设置的一段 token，我们需要将其填写到
-# Datakit 的 datakit.conf 配置中。这里需保持一定长度和格式。
-secret_token: tkn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+- 配置全局自定义 Key 列表
 
-# sinker 规则设置
-sinker:
-  etcd: # 支持 etcd
-    urls:
-    - http://localhost:2379
-    dial_timeout: 30s
-    key_space: /dw_sinker
-    username: "dataway"
-    password: "<PASSWORD>"
-
-  #file: # 也支持本地文件方式，常用于调试
-  #  path: /path/to/sinker.json
-```
+Datakit 会在其采集的数据中，寻找带有这些 Key 的字段（只寻找字符串类型的字段），并将其提取出来，作为分组发送的依据。
 
 <!-- markdownlint-disable MD046 -->
-???+ attention
+=== "主机安装"
 
-    如果不设置 `secret_token`，则任何 Datakit 发送过来的请求都能通过，这不会造成数据问题。但如果 Dataway 部署在公网，还是建议设置一下 `secret_token`。
+    参见[这里](../datakit/datakit-install.md#env-sink)
+
+=== "Kubernetes"
+
+    参见[这里](../datakit/datakit-daemonset-deploy.md#env-sinker)
 <!-- markdownlint-enable -->
+
+- 配置「全局主机 Tag」 以及「全局选举 Tag」
+
+在所有 Datakit 上传的数据中，都会带上配置的这些全局 tag（含 tag key 和 tag value），作为分组发送的依据。
+
+<!-- markdownlint-disable MD046 -->
+=== "主机安装"
+
+    参见[这里](../datakit/datakit-install.md#common-envs)
+
+=== "Kubernetes"
+
+    参见[这里](../datakit/datakit-daemonset-deploy.md#env-common)
+<!-- markdownlint-enable -->
+
+### Datakit 端 Customer Key 设置 {#dk-customer-key}
+
+如果希望某个具体 Datakit 所采集的数据能够满足分流的需求，需要确保几点：
+
+- Datakit 开启了 Sinker 功能
+- Datakit 中配置了有效的 Global Customer Key
+
+这两个配置如下：
+
+```toml
+# /usr/local/datakit/conf.d/datakit.conf
+[dataway]
+
+  # 指定一组 customer key
+  global_customer_keys = [
+    # 示例：添加 category 和 class 俩个 key
+    # 此处不宜配置太多 key，一般 2 ~ 3 个即可
+    "category",
+    "class",
+  ]
+
+  # 开启 sinker 功能
+  enable_sinker = true
+```
+
+此处 `global_customer_keys` 除了手动配置进去的字段外，还会自动追加 Datakit 中配置的全局选举 Tag 和全局选举 Tag。
+
+除拨测数据、[常规的数据分类](../datakit/apis.md#category)外，还支持 [Session Replay](../integrations/rum.md#rum-session-replay) 以及 [Profiling](../integrations/profile.md) 等二进制文件数据，故此处可以选择所有的字段名，需要注意的一点是，**不要配置非字符串类型的字段**，正常的 Key 一般都来自于 Tag（所有 Tag 值都是字符串类型）。Datakit 不会将非字符串类型的字段当做分流依据。
 
 ## Dataway sink 命令 {#dw-sink-command}
 
@@ -212,21 +292,21 @@ $ ./dataway sink --help
 
 Usage of sink:
   -add string
-    	single rule json file
+        single rule json file
   -cfg-file string
-    	configure file (default "/usr/local/cloudcare/dataflux/dataway/dataway.yaml")
+        configure file (default "/usr/local/cloudcare/dataflux/dataway/dataway.yaml")
   -file string
-    	file path of the rule json, only used for command put and get
+        file path of the rule json, only used for command put and get
   -get
-    	get the rule json
+        get the rule json
   -list
-    	list rules
+        list rules
   -log string
-    	log file path (default "/dev/null")
+        log file path (default "/dev/null")
   -put
-    	save the rule json
+        save the rule json
   -token string
-    	rules filtered by token, eg: xx,yy
+        rules filtered by token, eg: xx,yy
 ```
 
 **指定配置文件**
@@ -253,16 +333,16 @@ $ ./dataway sink --list --log /tmp/log
 
 ```shell
 
-# list all rules 
+# list all rules
 $ ./dataway sink --list
 
-# list all rules filtered by token 
+# list all rules filtered by token
 $ ./dataway sink --list --token=token1,token2
 
 CreateRevision: 2
 ModRevision: 41
 Version: 40
-Rules: 
+Rules:
 [
     {
         "rules": [
@@ -342,49 +422,180 @@ rules json was saved to sink-get.json!
 $ ./dataway sink --put --file sink-put.json
 ```
 
-## Token 规则 {#spec-on-secret-token}
-
-由于 Datakit 会对 Dataway 上的 token 做检测，故这里设置的 `token`（含 `secret_token`） 需满足如下条件：
-
-> 以 `token_` 或 `tkn_` 开头，后面的字符长度为 32。
-
-对于不满足该条件的 token，Datakit 会安装失败。
-
-## Datakit 端设置 {#config-dk}
-
-在 Datakit 中，我们需要对其做几个设置，让其可以将采集到的数据打上特定的标签以进行分组。
-
-- 配置全局自定义 Key 列表
-
-Datakit 会在其采集的数据中，寻找带有这些 Key 的字段（只寻找字符串类型的字段），并将其提取出来，作为分组发送的依据。
+## 配置示例 {#config-examples}
 
 <!-- markdownlint-disable MD046 -->
-=== "主机安装"
+??? info "Kubernetes 中 dataway.yaml 示例（下拉展开）"
 
-    参见[这里](../datakit/datakit-install.md#env-sink)
+    在 yaml 中直接指定 sinker JSON：
 
-=== "Kubernetes"
 
-    参见[这里](../datakit/datakit-daemonset-deploy.md#env-sinker)
+    ```yaml
+    ---
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      labels:
+        app: deployment-utils-dataway
+      name: dataway
+      namespace: utils
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: deployment-utils-dataway
+      template:
+        metadata:
+          labels:
+            app: deployment-utils-dataway
+          annotations:
+            datakit/logs: |
+              [{"disable": true}]
+            datakit/prom.instances: |
+              [[inputs.prom]]
+                url = "http://$IP:9090/metrics" # 此处端口（默认 9090）视情况而定
+                source = "dataway"
+                measurement_name = "dw" # 固定为该指标集
+                interval = "10s"
+
+                [inputs.prom.tags]
+                  namespace = "$NAMESPACE"
+                  pod_name = "$PODNAME"
+                  node_name = "$NODENAME"
+        spec:
+          affinity:
+            podAffinity: {}
+            podAntiAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                - labelSelector:
+                    matchExpressions:
+                      - key: app
+                        operator: In
+                        values:
+                          - deployment-utils-dataway
+                  topologyKey: kubernetes.io/hostname
+
+          containers:
+          - image: registry.jiagouyun.com/dataway/dataway:1.3.6 # 此处选择合适的版本号
+            #imagePullPolicy: IfNotPresent
+            imagePullPolicy: Always
+            name: dataway
+            env:
+            - name: DW_REMOTE_HOST
+              value: "http://kodo.forethought-kodo:9527" # 此处填写真实的 Kodo 地址，或者下一个 Dataway 地址
+            - name: DW_BIND
+              value: "0.0.0.0:9528"
+            - name: DW_UUID
+              value: "agnt_xxxxx" # 此处填写真实的 Dataway UUID
+            - name: DW_TOKEN
+              value: "tkn_oooooooooooooooooooooooooooooooo" # 此处填写真实的 Dataway token，一般是系统工作空间的 token
+            - name: DW_PROM_LISTEN
+              value: "0.0.0.0:9090"
+            - name: DW_SECRET_TOKEN
+              value: "tkn_zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+            - name: DW_SINKER_FILE_PATH
+              value: "/usr/local/cloudcare/dataflux/dataway/sinker.json"
+            ports:
+            - containerPort: 9528
+              name: 9528tcp01
+              protocol: TCP
+            volumeMounts:
+              - mountPath: /usr/local/cloudcare/dataflux/dataway/cache
+                name: dataway-cache
+              - mountPath: /usr/local/cloudcare/dataflux/dataway/sinker.json
+                name: sinker
+                subPath: sinker.json
+            resources:
+              limits:
+                cpu: '4'
+                memory: 4Gi
+              requests:
+                cpu: 100m
+                memory: 512Mi
+          # nodeSelector:
+          #   key: string
+          imagePullSecrets:
+          - name: registry-key
+          restartPolicy: Always
+          volumes:
+          - hostPath:
+              path: /root/dataway_cache
+            name: dataway-cache
+          - configMap:
+              name: sinker
+            name: sinker
+    ---
+
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: dataway
+      namespace: utils
+    spec:
+      ports:
+      - name: 9528tcp02
+        port: 9528
+        protocol: TCP
+        targetPort: 9528
+        nodePort: 30928
+      selector:
+        app: deployment-utils-dataway
+      type: NodePort
+
+    ---
+    apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      name: sinker
+      namespace: utils
+    data:
+      sinker.json: |
+        {
+            "strict":true,
+            "rules": [
+                {
+                    "rules": [
+                        "{ project = 'xxxxx'}"
+                    ],
+                    "url": "http://kodo.forethought-kodo:9527?token=tkn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+                },
+                {
+                    "rules": [
+                        "{ project = 'xxxxx'}"
+                    ],
+                    "url": "http://kodo.forethought-kodo:9527?token=tkn_yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"
+                }
+             ]
+        }
+    ```
+
 <!-- markdownlint-enable -->
-
-- 配置「全局主机 Tag」 以及「全局选举 Tag」
-
-在所有 Datakit 上传的数据中，都会带上配置的这些全局 tag（含 tag key 和 tag value），作为分组发送的依据。
 
 <!-- markdownlint-disable MD046 -->
-=== "主机安装"
+??? info "Ingress 配置示例（下拉展开）"
 
-    参见[这里](../datakit/datakit-install.md#common-envs)
+    ```yaml
+    apiVersion: networking.k8s.io/v1
+    kind: Ingress
+    metadata:
+      name: dataway-sinker
+      namespace: utils
+    spec:
+      ingressClassName: nginx
+      rules:
+      - host: datawaysinker-xxxx.com
+        http:
+          paths:
+          - backend:
+              service:
+                name: dataway
+                port:
+                  number: 9528
+            path: /
+            pathType: ImplementationSpecific
+    ```
 
-=== "Kubernetes"
-
-    参见[这里](../datakit/datakit-daemonset-deploy.md#env-common)
 <!-- markdownlint-enable -->
-
-## Sinker 覆盖的数据范围 {#coverage}
-
-除拨测外，[常规的数据分类](../datakit/apis.md#category)外，还支持 [Session Replay](../integrations/rum.md#rum-session-replay) 以及 [Profiling](../integrations/profile.md) 等二进制文件数据。
 
 ## FAQ {#faq}
 
