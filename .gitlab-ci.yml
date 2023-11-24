@@ -8,7 +8,11 @@ stages:
 lint:
   stage: deploy
   rules: # all branches with merge request will trigger the CI
-    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TITLE =~ /^(\[Draft\]|\(Draft\)|Draft:)/
+      when: never
+    # Trigger a pipeline in case of MR event, which means the MR is ready, since we did not go through the first case
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+
   script: # only lint datakit/integrations, other docs need too many fix
     - nvm use v16.14.0
     - make lint DOC_DIR=docs/zh/integrations
