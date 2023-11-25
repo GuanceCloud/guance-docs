@@ -63,6 +63,6 @@
 
 :material-numeric-2-circle-outline: 在 🔍栏，支持通过昵称、名称、邮箱进行搜索。
 
-:material-numeric-3-circle-outline: 在操作列，若某成员邀请处于【待审批】状态，可以进行选择通过 :white_check_mark: 或不通过 :negative_squared_cross_mark:。
+:material-numeric-3-circle-outline: 在操作列，若某成员邀请处于【待审批】状态，可以进行选择通过或不通过。
 
-:material-numeric-4-circle-outline: 批量操作：点击邮箱旁的 :material-square-outline:，若某成员邀请处于【待审批】状态，可以批量选择通过 :white_check_mark: 或不通过 :negative_squared_cross_mark:。
+:material-numeric-4-circle-outline: 批量操作：点击邮箱旁的 :material-square-outline:，若某成员邀请处于【待审批】状态，可以批量选择通过或不通过。
