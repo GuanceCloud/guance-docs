@@ -156,6 +156,15 @@ Kubernetes can restart the corresponding pod.
 
 When installing a host, you can inject the following environment variables into the installation command:
 
+??? attention "Compatible with lagacy dataway.yaml"
+
+    Some old Dataway's configure imported by ConfigMap(and mount to install path with the name of *dataway.yaml*).
+    After Dataway image started, if detect the file *dataway.yaml*, all the configures from `DW_*` are ignored and only
+    apply the lagacy *dataway.yaml*. We can remove the ConfigMap on *dataway.yaml* to recover these environment configures.
+
+    If these environment configures applied, there was a hidden file `.dataway.ayml`(view them via `ls -a`) under
+    install path, we can `cat` it to check if all these environment configures applied ok.
+
 | Env                  | Required | Description | Value |
 | ---                  | ---      | ---                                                                                                | ---  |
 | DW_BIND              | N        | Dataway HTTP API binding address, default `0.0.0.0:9528` |      |
@@ -170,7 +179,7 @@ When installing a host, you can inject the following environment variables into 
 | DW_UPGRADE           | N        | Specify it as 1|when upgrading      |
 | DW_UUID              | Y        | Dataway UUID, this will generate | in the system workspace when creating a new Dataway      |
 
-### Mirror environment variable {#img-envs}
+### Docker image environment variable {#img-envs}
 
 When Dataway runs in a Kubernetes environment, it supports the following environment variables.
 

@@ -17,7 +17,7 @@ The DataKit master configuration is used to configure the running behavior of th
 
 ## Datakit Main Configure Sample {#maincfg-example}
 
-Datakit main configure is *datakit.conf*, here is the exmaple sample(1.18.0):
+Datakit main configure is *datakit.conf*, here is the exmaple sample(1.19.2):
 
 ??? info "datakit.conf"
 
@@ -49,6 +49,9 @@ Datakit main configure is *datakit.conf*, here is the exmaple sample(1.18.0):
     # When protect_mode eanbled, we can set radical collect parameters, these may cause Datakit
     # collect data more frequently.
     protect_mode = true
+    
+    # The user name running datakit. Generally for audit purpose. Default is root.
+    datakit_user = "root"
     
     ################################################
     # ulimit: set max open-files limit(Linux only)
@@ -129,8 +132,8 @@ Datakit main configure is *datakit.conf*, here is the exmaple sample(1.18.0):
     
       # Start Datakit web server with HTTPS
       [http_api.tls]
-        cert = "path/to/certificate/file"
-        privkey = "path/to/private_key/file"
+        # cert = "path/to/certificate/file"
+        # privkey = "path/to/private_key/file"
     
     ################################################
     # io configures
@@ -143,12 +146,6 @@ Datakit main configure is *datakit.conf*, here is the exmaple sample(1.18.0):
       max_cache_count = 1000
       flush_workers   = 0 # default to (cpu_core * 2 + 1)
       flush_interval  = "10s"
-    
-      # We can write these data points into file in line-proto format(truncated at 32MB).
-      output_file = ""
-      # only these input data points write to file. If list empy and output_file set,
-      # all points are write to the file.
-      output_file_inputs = []
     
       # Disk cache on datakit upload failed
       enable_cache = false
@@ -177,6 +174,24 @@ Datakit main configure is *datakit.conf*, here is the exmaple sample(1.18.0):
       #  tracing = [
       #    "{ service = re("abc.*") AND some_tag CONTAIN ['def_.*'] }",
       #  ]
+    
+    [recorder]
+      enabled = false
+      #path = "/path/to/point-data/dir"
+      encoding = "v2"  # use protobuf-json format
+      duration = "30m" # record for 30 minutes
+    
+      # only record these inputs, if empty, record all
+      inputs = [
+        #"cpu",
+        #"mem",
+      ]
+    
+      # only record these categoris, if empty, record all
+      category = [
+        #"logging",
+        #"object",
+      ]
     
     ################################################
     # Dataway configure
@@ -207,6 +222,11 @@ Datakit main configure is *datakit.conf*, here is the exmaple sample(1.18.0):
       #  - v1: line-protocol
       #  - v2: protobuf
       content_encoding = "v1"
+    
+      # Enable GZip to upload point data.
+      #
+      # do NOT disable gzip or your get large network payload.
+      gzip = true
     
       max_raw_body_size = 10485760 # max body size(before gizp) in bytes
     
@@ -285,7 +305,7 @@ Datakit main configure is *datakit.conf*, here is the exmaple sample(1.18.0):
       path = "/datakit"
     
       # set max CPU usage(%, max 100.0, no matter how many CPU cores here)
-      cpu_max = 30.0
+      cpu_max = 20.0
     
       # set max memory usage(MB)
       mem_max_mb = 4096
@@ -519,6 +539,7 @@ $ systemctl status datakit
 
     - resource restriction will only be turned on by default during [host installation](datakit-install.md).
     - resource limit only supports CPU usage and memory usage (mem + swap) controls, and only supports Linux and Windows ([:octicons-tag-24: Version-1.15.0](changelog.md#cl-1.15.0)) operating systems.
+    - CPU usage controls is not supported in these windows systems: Windows 7, Windows Server 2008 R2, Windows Server 2008, Windows Vista, Windows Server 2003 and Windows XP.
 
 ???+ tip
 

@@ -100,7 +100,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     | `ENV_INPUT_CONTAINER_ENABLE_CONTAINER_METRIC`                                 | Start container index collection                                                                                                                                                    | true                                                                                                    | `"true"`/`"false"`                                                                                |
     | `ENV_INPUT_CONTAINER_ENABLE_K8S_METRIC`                                       | Start k8s index collection                                                                                                                                                          | true                                                                                                    | `"true"`/`"false"`                                                                                |
     | `ENV_INPUT_CONTAINER_ENABLE_POD_METRIC`                                       | Turn on Pod index collection                                                                                                                                                        | true                                                                                                    | `"true"`/`"false"`                                                                                |
-    | `ENV_INPUT_CONTAINER_ENABLE_K8S_NODE_LOCAL`                                   | Enable sub-Node collection mode, where the Datakit deployed on each Node independently collects the resources of the current Node.                                                  | false                                                                                                   | `"true"`/`"false"`                                                                                |
+    | `ENV_INPUT_CONTAINER_ENABLE_K8S_NODE_LOCAL`                                   | Enable sub-Node collection mode, where the Datakit deployed on each Node independently collects the resources of the current Node.[:octicons-tag-24: Version-1.5.7](../datakit/changelog.md#cl-1.5.7) Need new RABC [link](#rbac-nodes-stats)          | false                                                                                                   | `"true"`/`"false"`                                                                                |
     | `ENV_INPUT_CONTAINER_EXTRACT_K8S_LABEL_AS_TAGS`                               | Whether to append pod/node label to the collected indicator tag                                                                                                                     | false                                                                                                   | `"true"`/`"false"`                                                                                |
     | `ENV_INPUT_CONTAINER_ENABLE_AUTO_DISCOVERY_OF_PROMETHEUS_POD_ANNOTATIONS`     | Whether to turn on Prometheuse Pod Annotations and collect metrics automatically                                                                                                    | false                                                                                                   | `"true"`/`"false"`                                                                                |
     | `ENV_INPUT_CONTAINER_ENABLE_AUTO_DISCOVERY_OF_PROMETHEUS_SERVICE_ANNOTATIONS` | Whether to turn on Prometheuse Service Annotations and collect metrics automatically                                                                                                | false                                                                                                   | `"true"`/`"false"`                                                                                |
@@ -485,6 +485,7 @@ The metric of the Kubernetes Pod.
 |`daemonset`|The name of the DaemonSet which the object belongs to.|
 |`deployment`|The name of the Deployment which the object belongs to.|
 |`namespace`|Namespace defines the space within each name must be unique.|
+|`node_name`|NodeName is a request to schedule this pod onto a specific node.|
 |`pod`|Name must be unique within a namespace.|
 |`statefulset`|The name of the StatefulSet which the object belongs to.|
 |`uid`|The UID of pod.|
@@ -1208,6 +1209,23 @@ Containers will add Customer Labels of the Pods they belong to.
 
 ## FAQ {#faq}
 
+### NODE_LOCAL mode requires new RBAC permissions {#rbac-nodes-stats}
+
+The `ENV_INPUT_CONTAINER_ENABLE_K8S_NODE_LOCAL` mode is only recommended for DaemonSet deployment and requires access to kubelet, so the `nodes/state` permission needs to be added to RBAC. For example:
+
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: datakit
+rules:
+- apiGroups: [""]
+  resources: ["nodes", "nodes/stats"]
+  verbs: ["get", "list"]
+```
+
+In addition, the Datakit Pod needs to have the `hostNetwork: true` configuration item enabled.
+
 ### Kubernetes YAML Sensitive Field Mask {#yaml-secret}
 
 Datakit collects yaml configurations for resources such as Kubernetes Pod or Service and stores them in the `yaml` field of the object data. If the yaml contains sensitive data (such as passwords), Datakit does not support manually configuring and shielding sensitive fields for the time being. It is recommended to use Kubernetes' official practice, that is, to use ConfigMap or Secret to hide sensitive fields.
@@ -1261,7 +1279,7 @@ Using Secret in env:
 
 See [doc](https://kubernetes.io/zh-cn/docs/concepts/configuration/secret/#using-secrets-as-environment-variables){:target="_blank"}.
 
-## More Readings {#more-reading}
+## More Reading {#more-reading}
 
 - [eBPF Collector: Support flow collection in container environment](ebpf.md)
 - [Proper use of regular expressions to configure](datakit-input-conf.md#debug-regex) 

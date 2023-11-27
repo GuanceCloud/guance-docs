@@ -1,35 +1,41 @@
-# 华为云 OBS 桶授权
+# HUAWEI Cloud OBS Authorization
 
-## 具体操作
+## Steps
 
-1、[登录华为云控制台](https://auth.huaweicloud.com/authui/login.html?service=https://console.huaweicloud.com/console/#/login).
+I. [Login to HUAWEI Cloud console](https://auth.huaweicloud.com/authui/login.html?service=https://console.huaweicloud.com/console/#/login).
 
-2、在**服务列表**页面，找到**对象存储服务**，进入**并行文件系统**页面，即进入桶：
+II. Enter **Object Storage Service > Parallel File Systems**, namely what we called Bucket:
 
 ![](img/obs.png)
 
-3、选择目标文件系统，进入**访问权限控制 > ACL**：
+III. Enter **Parallel File Systems > Permissions > ACLs**:
 
 ![](img/obs-1.png)
 
-4、点击**增加**，进入**新增账号授权**页面。
+IV. Click **Add** to enter the **Add Account Authorization** page.
 
-4.1 填写被授权的华为云账号 ID，勾选桶访问权限和 ACL 访问权限，点击确定即可：
+i. Please fill in the authorized Huawei Cloud account ID, check the bucket access permission and ACL access permission, and click **OK** to confirm:
 
-**注意**：此处的账号 ID 即观测云为您提供的专属华为云账号 ID：`f000ee4d7327428da2f53a081e7109bd`
+**Note**: The account ID here refers to the exclusive Huawei Cloud account provided by Guance for you: `f000ee4d7327428da2f53a081e7109bd`
 
 ![](img/obs-2.png)
 
-5、若没有下载权限，需要勾选上**对象读权限**，点击**确定**即可。
+V. If you do not have download permissions, you need to check the **Object Read** Permission and click **OK** to proceed.
 
 ![](img/obs-3.png)
 
-## 更多阅读
+## More Reading
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 什么是桶策略？</font>](https://support.huaweicloud.com/perms-cfg-obs/obs_40_0004.html)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; What is Bucket Permission?</font>](https://support.huaweicloud.com/perms-cfg-obs/obs_40_0004.html)
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 在华为云，如何对其他帐号授予桶的读写权限？</font>](https://support.huaweicloud.com/perms-cfg-obs/obs_40_0025.html)
+</div>
+
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; In Huawei Cloud, how can I grant read and write permissions for buckets to other accounts?</font>](https://support.huaweicloud.com/perms-cfg-obs/obs_40_0025.html)
+
 
 </div>

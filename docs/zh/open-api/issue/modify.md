@@ -35,7 +35,7 @@
 |     参数名      | 参数类型 | 是否必填 |                  参数说明                   |
 |:---------------:|:--------:|:--------:|:-------------------------------------------:|
 |      name       |  string  |    Y     |                issue标题名称                |
-|      level      | integer  |    Y     |        issue等级 [0, 1, 2, 3] 3:未知        |
+|      level      | string  |    Y     |        issue等级 对应配置等级uuid        |
 |   decription    |  string  |    Y     |                issue描述信息                |
 | attachmentUuids |  array   |    N     |              附件上传列表uuid               |
 |     extend      |   json   |    Y     |                  扩展字段，默认传{}                  |
@@ -96,7 +96,7 @@ curl 'https://openapi.guance.com/api/v1/issue/issue_7b1f8986a7b44d7a987976fb5c78
             "view_isuue_url": ""
         },
         "id": 47402,
-        "level": 2,
+        "level": "system_level_2",
         "name": "dcacscsc",
         "resource": "",
         "resourceType": "",

@@ -12,7 +12,7 @@ You can go to [Guance official website](https://www.guance.com/) and **[register
 
 After registration, you can click **Login** through [Guance Official Website](https://www.guance.com/), select the site you registered, enter the login account and password and log in to the Guance studio.
 
-???+ attention
+???+ warning
 
     - Under a single Guance site, only one mobile phone number and one mailbox are supported, and Hong Kong, Macao and Taiwan and foreign mobile phone numbers are not supported for the time being.
     - The accounts of different sites are independent and do not communicate with each other. For more site descriptions, please refer to the document [select registered site](../getting-started/necessary-for-beginners/select-site.md).

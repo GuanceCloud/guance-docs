@@ -70,7 +70,7 @@ ddtrace,env=Testing,host=DESKTOP-7BK497S,operation=flask.do_teardown_appcontext,
 The resulting log data is as follows:
 
 ```
-2021-06-18 10:07:08,786 INFO [__main__] [lt.py:26] [dd.service=Python-App dd.env=Testing dd.version=V1.1 dd.trace_id=16108321602917563239 dd.span_id=12837828046733169079] - Hello, World!
+2021-06-18 10:07:08,786 INFO [__main__] [lt.py:26] [dd.service.name=Python-App dd.env=Testing dd.version=V1.1 dd.trace_id=16108321602917563239 dd.span_id=12837828046733169079] - Hello, World!
 ```
 
 In addition to being specified in the source file, the DDtrace-related configuration can also be implemented by injecting environment variables when starting the application:

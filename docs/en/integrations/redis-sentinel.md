@@ -20,9 +20,6 @@ Redis-sentinel metrics display, including Redis clusters, Slaves, node distribut
 
 ## Configuration {#config}
 
-### Preconditions
-
-- redis-sentinel-exporter >=0.1
 
 ### Download redis-sentinel-exporter metric collector
 
@@ -32,7 +29,7 @@ Download address [https://github.com/lrwh/redis-sentinel-exporter/releases](http
 ### Start redis-sentinel-exporter
 
 ```bash
-java -Xmx64m -jar redis-sentinel-exporter-0.1.jar --spring.redis.sentinel.master=mymaster --spring.redis.sentinel.nodes="127.0.0.1:26379,127.0.0.1:26380,127.0.0.1:26381"
+java -Xmx64m -jar redis-sentinel-exporter-0.2.jar --spring.redis.sentinel.master=mymaster --spring.redis.sentinel.nodes="127.0.0.1:26379,127.0.0.1:26380,127.0.0.1:26381"
 ```
 
 Parameter description spring.redis.sentinel.master: Cluster name spring.redis.sentinel.nodes: Sentry node address
@@ -182,7 +179,7 @@ systemctl restart datakit
 |redis_sentinel_link_pending_commands| sentinel pending command count | Gauge |
 |redis_sentinel_odown_slaves| slave down count | Gauge |
 |redis_sentinel_sdown_slaves| slave master down count | Gauge |
-|redis_sentinel_ok_slaves| 正在运行的slave数 | Gauge |
+|redis_sentinel_ok_slaves|  running slaves | Gauge |
 |redis_sentinel_ping_latency| sentinel ping latency | Gauge |
 |redis_sentinel_last_ok_ping_latency| sentinel ping ok latency  | Gauge |
-
+| redis_sentinel_node_state  | redis node state     | Gauge |
