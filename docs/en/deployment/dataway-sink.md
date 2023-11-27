@@ -6,7 +6,7 @@
 
 ---
 
-## Dataway Sinker Function Introduction {#sink-intro}
+## Dataway Sinker Introduction {#sink-intro}
 
 In the daily data collection process, we may need to upload different data into different workspaces due to the existence of multiple different workspaces. For example, in a common Kubernetes cluster, the data collected may involve different teams or business departments, and we can tap the data with specific attributes to different workspaces to achieve fine-grained collection in common infrastructure scenarios.
 
@@ -80,7 +80,59 @@ sink_dw --> |Sink|openway;
 end
 ```
 
+## Dataway installation {#dw-install}
+
+See [here](dataway.md#install)
+
+## Dataway Settings {#dw-config}
+
+In addition to the general Dataway settings, several additional configurations need to be set up (located in the */usr/local/cloudcare/dataflux/dataway/* directory):
+
+```yaml
+# Set the address to be uploaded by Dataway here, usually Kodo, but it can also be another Dataway
+remote_host: https://kodo.guance.com
+
+# If the upload address is Dataway, set to true here to indicate that Dataway cascade
+cascaded: false
+
+# This token is a random token set on the dataway, we need to fill it in
+# Datakit's datakit.conf configuration. A certain length and format need to be maintained here.
+secret_token: tkn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+# sinker rule settings
+sinker:
+  etcd: # supports etcd
+    urls:
+    - http://localhost:2379
+    dial_timeout: 30s
+    key_space: /dw_sinker
+    username: "dataway"
+    password: "<PASSWORD>"
+
+  #file: # also supports local file mode, which is often used for debugging
+  #  path: /path/to/sinker.json
+```
+
+<!-- markdownlint-disable MD046 -->
+???+ attention
+
+    If you do not set `secret_token`, any request sent by Datakit will go through without causing data problems. However, if Dataway is deployed on the public network, it is recommended to set `secret_token`.
+
+    If etcd does not set a username/password, then set both `username` and `password` to `""` here.
+<!-- markdownlint-enable -->
+
+### Config sinker rules {#setup-sinker-rules}
+
+Dataway Sinker rules are JSON string, there are 2 JSON source:
+
+- Specify a local disk file(like */path/to/sinker.json*), every time we update the JSON file, we **must** restart dataway to reload the JSON.
+- We can push the JSON file to etcd. While sinker JSON host on etcd, we don't have to restart Dataway if the JSON file refreshed, Dataway will be notified if sinker rules updated.
+
+Actually, the JSON from local file or etcd are the same string, we only cover how to manage sinker rules hosted on etcd in the following sections.
+
 ## etcd settings {#etcd-settings}
+
+> All command following are under Linux.
 
 <!-- markdownlint-disable MD046 -->
 === "etcd settings already exist"
@@ -91,10 +143,10 @@ end
 
     ```shell
     # Add a username, where you will be prompted for a password
-    $ etcdctl user add dataway 
+    $ etcdctl user add dataway
 
     # Add the role of sinker
-    $ etcdctl role add sinker 
+    $ etcdctl role add sinker
 
     # Add Dataway to the role
     $ etcdctl user grant-role dataway sinker
@@ -122,6 +174,8 @@ end
 <!-- markdownlint-enable -->
 
 ### Write sinker rules {#prepare-sink-rules}
+
+> For Dataway version 1.3.6, there are convenient commands to manage sinker rules hosted on etcd.
 
 Suppose the *sinker.json* rule is defined as follows:
 
@@ -168,9 +222,64 @@ OK
     ```
 <!-- markdownlint-enable -->
 
-## Dataway installation {#dw-install}
+### Token Specs {#spec-on-secret-token}
 
-See [here](dataway.md#install)
+Since Datakit will detect tokens on Dataway, the `token` (including `secret_token`) set here must meet the following conditions:
+
+> starts with `token_` or `tkn_` and follows a character length of 32.
+
+For tokens that do not meet this condition, Datakit fails to install.
+
+## Datakit settings {#config-dk}
+
+For Datakit, we must setup some configures to enable sinker:
+
+- Config *customer global keys*: Datakit will search among all uploading data for these keys(only string-type fields), and group the upload payload by same `key:value` pair
+
+<!-- markdownlint-disable MD046 -->
+=== "Host Installation"
+
+    See [here](../datakit/datakit-install.md#env-sink)
+
+=== "Kubernetes"
+
+    See [here](../datakit/datakit-daemonset-deploy.md#env-sinker)
+<!-- markdownlint-enable -->
+
+- Configure Global Host Tag and Global Election Tag
+
+In all Datakit uploaded data, these configured global tags (including tag key and tag value) will be brought as the basis for group sending.
+
+<!-- markdownlint-disable MD046 -->
+=== "Host Installation"
+
+    See [here](../datakit/datakit-install.md#common-envs)
+
+=== "Kubernetes"
+
+    See [here](../datakit/datakit-daemonset-deploy.md#env-common)
+<!-- markdownlint-enable -->
+
+### Setup global custom keys {#dk-customer-key}
+
+To enable sinker for Datakit, setup these in *datakit.conf*: 
+
+```toml
+[dataway]
+  global_customer_keys = [
+    # Do not add too may keys here, 2 ~ 3 keys are valid.
+    # Here we add category and class.
+    "category",
+    "class",
+  ]
+
+  # enable Sinker feature
+  enable_sinker = true
+```
+
+Except `global_customer_keys`, Datakit will use global host tag keys and global election tag keys during group by points.
+
+In addition to dial tests, [General Data Classification](../datakit/apis.md#category), [Session Replay](../integrations/rum.md#rum-session-replay) and [Profiling](../integrations/profile.md) and other binary file data. **Do not configure non-string-type keys for `global_customer_keys`**, we just ignore them.
 
 ## Dataway sink command {#dw-sink-command}
 
@@ -181,21 +290,21 @@ $ ./dataway sink --help
 
 Usage of sink:
   -add string
-    	single rule json file
+        single rule json file
   -cfg-file string
-    	configure file (default "/usr/local/cloudcare/dataflux/dataway/dataway.yaml")
+        configure file (default "/usr/local/cloudcare/dataflux/dataway/dataway.yaml")
   -file string
-    	file path of the rule json, only used for command put and get
+        file path of the rule json, only used for command put and get
   -get
-    	get the rule json
+        get the rule json
   -list
-    	list rules
+        list rules
   -log string
-    	log file path (default "/dev/null")
+        log file path (default "/dev/null")
   -put
-    	save the rule json
+        save the rule json
   -token string
-    	rules filtered by token, eg: xx,yy
+        rules filtered by token, eg: xx,yy
 ```
 
 **Specify configuration file**
@@ -311,86 +420,180 @@ Import the file.
 $ dataway sink --put --file sink-put.json
 ```
 
-## Dataway Settings {#dw-config}
-
-In addition to the general Dataway settings, several additional configurations need to be set up (located in the */usr/local/cloudcare/dataflux/dataway/* directory):
-
-```yaml
-# Set the address to be uploaded by Dataway here, usually Kodo, but it can also be another Dataway
-remote_host: https://kodo.guance.com
-
-# If the upload address is Dataway, set to true here to indicate that Dataway cascade
-cascaded: false
-
-# This token is a random token set on the dataway, we need to fill it in
-# Datakit's datakit.conf configuration. A certain length and format need to be maintained here.
-secret_token: tkn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-
-# sinker rule settings
-sinker:
-  etcd: # supports etcd
-    urls:
-    - http://localhost:2379
-    dial_timeout: 30s
-    key_space: /dw_sinker
-    username: "dataway"
-    password: "<PASSWORD>"
-
-  #file: # also supports local file mode, which is often used for debugging
-  #  path: /path/to/sinker.json
-```
+## Config examples {#config-examples}
 
 <!-- markdownlint-disable MD046 -->
-???+ attention
+??? info "dataway.yaml in Kubernetes(expand me)"
 
-    If you do not set `secret_token`, any request sent by Datakit will go through without causing data problems. However, if Dataway is deployed on the public network, it is recommended to set `secret_token`.
+    We can setup a configmap in Dataway Pod yaml:
 
-    If etcd does not set a username/password, then set both `username` and `password` to `""` here.
+
+    ```yaml
+    ---
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      labels:
+        app: deployment-utils-dataway
+      name: dataway
+      namespace: utils
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: deployment-utils-dataway
+      template:
+        metadata:
+          labels:
+            app: deployment-utils-dataway
+          annotations:
+            datakit/logs: |
+              [{"disable": true}]
+            datakit/prom.instances: |
+              [[inputs.prom]]
+                url = "http://$IP:9090/metrics"
+                source = "dataway"
+                measurement_name = "dw"
+                interval = "10s"
+
+                [inputs.prom.tags]
+                  namespace = "$NAMESPACE"
+                  pod_name = "$PODNAME"
+                  node_name = "$NODENAME"
+        spec:
+          affinity:
+            podAffinity: {}
+            podAntiAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                - labelSelector:
+                    matchExpressions:
+                      - key: app
+                        operator: In
+                        values:
+                          - deployment-utils-dataway
+                  topologyKey: kubernetes.io/hostname
+
+          containers:
+          - image: registry.jiagouyun.com/dataway/dataway:1.3.6 # select version here 
+            #imagePullPolicy: IfNotPresent
+            imagePullPolicy: Always
+            name: dataway
+            env:
+            - name: DW_REMOTE_HOST
+              value: "http://kodo.forethought-kodo:9527" # setup kodo server or next cascaded Dataway
+            - name: DW_BIND
+              value: "0.0.0.0:9528"
+            - name: DW_UUID
+              value: "agnt_xxxxx" # setup Dataway UUID
+            - name: DW_TOKEN
+              value: "tkn_oooooooooooooooooooooooooooooooo" # setup system workspace Dataway token
+            - name: DW_PROM_LISTEN
+              value: "0.0.0.0:9090"
+            - name: DW_SECRET_TOKEN
+              value: "tkn_zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+            - name: DW_SINKER_FILE_PATH
+              value: "/usr/local/cloudcare/dataflux/dataway/sinker.json"
+            ports:
+            - containerPort: 9528
+              name: 9528tcp01
+              protocol: TCP
+            volumeMounts:
+              - mountPath: /usr/local/cloudcare/dataflux/dataway/cache
+                name: dataway-cache
+              - mountPath: /usr/local/cloudcare/dataflux/dataway/sinker.json
+                name: sinker
+                subPath: sinker.json
+            resources:
+              limits:
+                cpu: '4'
+                memory: 4Gi
+              requests:
+                cpu: 100m
+                memory: 512Mi
+          # nodeSelector:
+          #   key: string
+          imagePullSecrets:
+          - name: registry-key
+          restartPolicy: Always
+          volumes:
+          - hostPath:
+              path: /root/dataway_cache
+            name: dataway-cache
+          - configMap:
+              name: sinker
+            name: sinker
+    ---
+
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: dataway
+      namespace: utils
+    spec:
+      ports:
+      - name: 9528tcp02
+        port: 9528
+        protocol: TCP
+        targetPort: 9528
+        nodePort: 30928
+      selector:
+        app: deployment-utils-dataway
+      type: NodePort
+
+    ---
+    apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      name: sinker
+      namespace: utils
+    data:
+      sinker.json: |
+        {
+            "strict":true,
+            "rules": [
+                {
+                    "rules": [
+                        "{ project = 'xxxxx'}"
+                    ],
+                    "url": "http://kodo.forethought-kodo:9527?token=tkn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+                },
+                {
+                    "rules": [
+                        "{ project = 'xxxxx'}"
+                    ],
+                    "url": "http://kodo.forethought-kodo:9527?token=tkn_yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"
+                }
+             ]
+        }
+    ```
+
 <!-- markdownlint-enable -->
-
-## Token Specs {#spec-on-secret-token}
-
-Since Datakit will detect tokens on Dataway, the `token` (including `secret_token`) set here must meet the following conditions:
-
-> starts with `token_` or `tkn_` and follows a character length of 32.
-
-For tokens that do not meet this condition, Datakit fails to install.
-
-## Datakit-side settings {#config-dk}
-
-In Datakit, we need to make several settings so that it can group the collected data with specific tags.
-
-- Configure a global custom key list
-
-Datakit looks for fields with these keys (only string-type fields) in the data it collects, and extracts them as a basis for grouping.
 
 <!-- markdownlint-disable MD046 -->
-=== "Host Installation"
+??? info "Ingress for Dataway(expand me)"
 
-    See [here](../datakit/datakit-install.md#env-sink)
+    ```yaml
+    apiVersion: networking.k8s.io/v1
+    kind: Ingress
+    metadata:
+      name: dataway-sinker
+      namespace: utils
+    spec:
+      ingressClassName: nginx
+      rules:
+      - host: datawaysinker-xxxx.com
+        http:
+          paths:
+          - backend:
+              service:
+                name: dataway
+                port:
+                  number: 9528
+            path: /
+            pathType: ImplementationSpecific
+    ```
 
-=== "Kubernetes"
-
-    See [here](../datakit/datakit-daemonset-deploy.md#env-sinker)
 <!-- markdownlint-enable -->
-
-- Configure Global Host Tag and Global Election Tag
-
-In all Datakit uploaded data, these configured global tags (including tag key and tag value) will be brought as the basis for group sending.
-
-<!-- markdownlint-disable MD046 -->
-=== "Host Installation"
-
-    See [here](../datakit/datakit-install.md#common-envs)
-
-=== "Kubernetes"
-
-    See [here](../datakit/datakit-daemonset-deploy.md#env-common)
-<!-- markdownlint-enable -->
-
-## Data range covered by sinker {#coverage}
-
-In addition to dial tests, [General Data Classification](../datakit/apis.md#category), [Session Replay](../integrations/rum.md#rum-session-replay) and [Profiling](../integrations/profile.md) and other binary file data.
 
 ## FAQ {#faq}
 
