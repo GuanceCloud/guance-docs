@@ -130,6 +130,7 @@ nav:
       - 'IBM Db2': db2.md
       - dm_v8.md
       - dongfangtong_ths.md
+      - opengauss.md
 
     - 'Messaging Queue':
       - emqx.md
@@ -167,6 +168,7 @@ nav:
       - 'openai': openai.md
       - external.md
       - zookeeper.md
+      - argocd.md
 
   - CI/CD:
       - 'Jenkins': jenkins.md
@@ -181,6 +183,7 @@ nav:
     - 'Prometheus':
       - 'Exportor': kubernetes-prom.md
       - 'CRD': kubernetes-prometheus-operator-crd.md
+    - 'NPD': npd.md
 
   - APM:
     - Tracing Overview': datakit-tracing.md
@@ -260,7 +263,9 @@ nav:
     - 'Log Process Overview': datakit-logging-how.md
     - 'Log Collection':
       - logging.md
+      - ilogtail.md
       - 'Socket Access Example': logging_socket.md
+      - fluentd.md
     - 'Other Log Access':
       - 'LogStreaming': logstreaming.md
 

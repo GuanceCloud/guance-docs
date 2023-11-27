@@ -39,13 +39,13 @@ On the new pipeline page, you can first **Filter** out the data range you want t
 - Filtering: data types include logs, metrics, RUM, APM, basic objects, custom objects, networks, security check and multiple choices are supported;
 - Pipeline name: Enter a custom Pipeline file name;
 
-???+ attention
+???+ warning
 
     The custom Pipeline file cannot have the same name, but its name can be the same with the official Pipeline's. In this case, DataKit will automatically obtain the custom Pipeline file configuration first. If you manually configure the Pipeline file name in the `.conf` file of the collector, DataKit takes precedence over the manually configured Pipeline file name.
 
 - Set as default Pipeline: Check **Set as default Pipeline**. If the current data type does not match other Pipeline scripts when matching Pipeline processing, the data will be processed according to the rules of the default Pipeline script.
 
-???+ attention
+???+ warning
 
     Only one **Default Pipeline** can be set for each data type. A confirmation box will pop up when there is duplication when creating/importing, asking whether to replace it. It has been checked as the default Pipeline, and there will be a **Default** mark after the name.
 
@@ -60,7 +60,7 @@ According to the selected data type, input the corresponding data, and test it b
 - Click **Add** to add multiple sample data (up to 3 pieces);
 - Click **Start Test** to return multiple test results; If you enter more than one sample data in the same test text box for testing, only one test result will be returned.
 
-???+ attention
+???+ warning
 
     Pipeline created in Guance workspace is stored in the `<datakit installation directory>/Pipeline_remote directory`, and each type of Pipeline file is stored in the corresponding secondary directory, where the files in the primary directory are log Pipeline by default. If the metric `cpu.p` is stored in the `<datakit installation directory >/Pipeline_remote/metric/cpu.p directory`, refer to the doc [Pipeline Category Data Processing](../developers/datakit-pl-global.md).
 
@@ -137,7 +137,7 @@ Note:
 
 In Guance workspace **Management > Text Processing**, click **Batch** to **Batch Export** or **Batch Delete** Pipelines.
 
-???+ attention
+???+ warning
 
     This function is only displayed for workspace owners, administrators and standard members, but not for read-only members.
 
@@ -146,7 +146,7 @@ In Guance workspace **Management > Text Processing**, click **Batch** to **Batch
 
 You can **Import/export Pipeline** in Guance workspace **Management > Text Processing (Pipelines)**, that is, create Pipeline by importing/exporting JSON files.
 
-???+ attention
+???+ warning
 
     The imported JSON file needs to be the configuration JSON file from Guance.
 
@@ -174,7 +174,7 @@ Note:
 
 Automatically generate the pipeline file name with the same name according to the selected log source, and click **Confirm** to create a custom pipeline file.
 
-???+ attention
+???+ warning
 
     DataKit will automatically obtain the official library pipeline file. If the cloned custom pipeline file has the same name as the official pipeline, DataKit will give priority to automatically obtaining the newly built custom pipeline file configuration; If the cloned custom pipeline file has a different name from the official pipeline, the file name of the corresponding pipeline needs to be modified in the pipeline of the corresponding collector.
 

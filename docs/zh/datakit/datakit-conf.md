@@ -19,7 +19,7 @@ DataKit 主配置用来配置 DataKit 自己的运行行为。
 
 ## Datakit 主配置示例 {#maincfg-example}
 
-Datakit 主配置示例如下，我们可以根据该示例来开启各种功能（当前版本 1.18.0）：
+Datakit 主配置示例如下，我们可以根据该示例来开启各种功能（当前版本 1.19.2）：
 
 <!-- markdownlint-disable MD046 -->
 ??? info "*datakit.conf*"
@@ -52,6 +52,9 @@ Datakit 主配置示例如下，我们可以根据该示例来开启各种功能
     # When protect_mode eanbled, we can set radical collect parameters, these may cause Datakit
     # collect data more frequently.
     protect_mode = true
+    
+    # The user name running datakit. Generally for audit purpose. Default is root.
+    datakit_user = "root"
     
     ################################################
     # ulimit: set max open-files limit(Linux only)
@@ -132,8 +135,8 @@ Datakit 主配置示例如下，我们可以根据该示例来开启各种功能
     
       # Start Datakit web server with HTTPS
       [http_api.tls]
-        cert = "path/to/certificate/file"
-        privkey = "path/to/private_key/file"
+        # cert = "path/to/certificate/file"
+        # privkey = "path/to/private_key/file"
     
     ################################################
     # io configures
@@ -146,12 +149,6 @@ Datakit 主配置示例如下，我们可以根据该示例来开启各种功能
       max_cache_count = 1000
       flush_workers   = 0 # default to (cpu_core * 2 + 1)
       flush_interval  = "10s"
-    
-      # We can write these data points into file in line-proto format(truncated at 32MB).
-      output_file = ""
-      # only these input data points write to file. If list empy and output_file set,
-      # all points are write to the file.
-      output_file_inputs = []
     
       # Disk cache on datakit upload failed
       enable_cache = false
@@ -180,6 +177,24 @@ Datakit 主配置示例如下，我们可以根据该示例来开启各种功能
       #  tracing = [
       #    "{ service = re("abc.*") AND some_tag CONTAIN ['def_.*'] }",
       #  ]
+    
+    [recorder]
+      enabled = false
+      #path = "/path/to/point-data/dir"
+      encoding = "v2"  # use protobuf-json format
+      duration = "30m" # record for 30 minutes
+    
+      # only record these inputs, if empty, record all
+      inputs = [
+        #"cpu",
+        #"mem",
+      ]
+    
+      # only record these categoris, if empty, record all
+      category = [
+        #"logging",
+        #"object",
+      ]
     
     ################################################
     # Dataway configure
@@ -210,6 +225,11 @@ Datakit 主配置示例如下，我们可以根据该示例来开启各种功能
       #  - v1: line-protocol
       #  - v2: protobuf
       content_encoding = "v1"
+    
+      # Enable GZip to upload point data.
+      #
+      # do NOT disable gzip or your get large network payload.
+      gzip = true
     
       max_raw_body_size = 10485760 # max body size(before gizp) in bytes
     
@@ -288,7 +308,7 @@ Datakit 主配置示例如下，我们可以根据该示例来开启各种功能
       path = "/datakit"
     
       # set max CPU usage(%, max 100.0, no matter how many CPU cores here)
-      cpu_max = 30.0
+      cpu_max = 20.0
     
       # set max memory usage(MB)
       mem_max_mb = 4096
@@ -532,6 +552,7 @@ $ systemctl status datakit
 
     - 资源限制只在[宿主机安装](datakit-install.md)的时候会默认开启
     - 只支持 CPU 使用率和内存使用量（mem+swap）控制，且只支持 Linux 和 windows ([:octicons-tag-24: Version-1.15.0](changelog.md#cl-1.15.0)) 操作系统。
+    - CPU 使用率控制目前不支持这些 windows 操作系统： Windows 7, Windows Server 2008 R2, Windows Server 2008, Windows Vista, Windows Server 2003 和 Windows XP。
 
 ???+ tip
 
