@@ -266,6 +266,7 @@ nav:
       - ilogtail.md
       - 'Socket Access Example': logging_socket.md
       - fluentd.md
+      - logstash.md
     - 'Other Log Access':
       - 'LogStreaming': logstreaming.md
 
