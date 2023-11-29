@@ -282,14 +282,12 @@ Suppose, the variable `host` has the value `"my_server"`, then the embedded DQL 
 O::HOST:(host, host_ip, os, datakit_ver) { host = 'my_server' }
 ```
 
-???+ attention
+???+ warning
 
     - Embedded DQL queries should be placed at the beginning of the template
     - Query result names (`dql_data` here) follow general programming language naming requirements and can start with any English character and contain only strings of English, numbers, and underscores, and emoji is **NOT** recommended.
     - Query result names should **NOT** be duplicated with any existing template variables or template functions, or unexpected problems may occur.
     - If a function is used on the field in DQL (e.g., `O::HOST:( last(host) )`), it is recommended to use `AS` to give an alias to the field for further use (e.g., `O::HOST:( last(host) AS last_host )`).
-
-3. If you use a function for a field in your DQL (e.g. `O::HOST:( last(host) )`), it is recommended to use `AS` to alias the field for subsequent use (e.g. `O::HOST:( last(host) AS last_host )`)
 
 ### More about DQL
 

@@ -123,7 +123,7 @@
 事件产生时间：{{ date | to_datetime('America/Chicago') }}
 ```
 
-???+ attention
+???+ warning
 
     如果需要在使用模板函数之前对模板变量进行运算，请不要忘记**添加括号**，如：
 
@@ -282,7 +282,7 @@ DQL("O::HOST:(host, host_ip, os, datakit_ver) { host = ? }",  host)
 O::HOST:(host, host_ip, os, datakit_ver) { host = 'my_server' }
 ```
 
-???+ attention
+???+ warning
 
     - 内嵌 DQL 查询应当放在模板开头
     - 查询结果名（这里是`dql_data`）遵循一般编程语言的命名要求，可以为任意英文开头，且仅包含英文、数字、下划线的字符串，**不建议**使用 emoji。
