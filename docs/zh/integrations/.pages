@@ -285,6 +285,7 @@ nav:
       - ilogtail.md
       - 'Socket 接入示例': logging_socket.md
       - fluentd.md
+      - logstash.md
     - '其它日志接入':
       - 'LogStreaming': logstreaming.md
 
