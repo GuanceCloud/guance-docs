@@ -48,6 +48,22 @@ ACL SETUSER username on +@dangerous
 ACL SETUSER username on +ping
 ```
 
+- 授权统计 hotkey 信息，进入 `redis-cli` 命令行：
+
+```sql
+CONFIG SET maxmemory-policy allkeys-lfu
+```
+
+- 远程采集 hotkey & `bigkey` 需要安装 redis-cli （本机采集时，redis-server 已经包含了 redis-cli）：
+
+```shell
+# ubuntu 
+apt-get install redis-tools
+
+# centos
+yum install -y  redis
+```
+
 ### 采集器配置 {#input-config}
 
 <!-- markdownlint-disable MD046 -->
@@ -74,6 +90,26 @@ ACL SETUSER username on +ping
     
       ## @param interval - number - optional - default: 15
       interval = "15s"
+    
+      ## @param hotkey - boolean - optional - default: false
+      ## If you collet hotkey, set this to true
+      # hotkey = false
+    
+      ## @param bigkey - boolean - optional - default: false
+      ## If you collet bigkey, set this to true
+      # bigkey = false
+    
+      ## @param key_interval - number - optional - default: 5m
+      ## Interval of collet hotkey & bigkey
+      # key_interval = "5m"
+    
+      ## @param key_timeout - number - optional - default: 5m
+      ## Timeout of collet hotkey & bigkey
+      # key_timeout = "5m"
+    
+      ## @param key_scan_sleep - string - optional - default: "0.1"
+      ## Mean sleep 0.1 sec per 100 SCAN commands
+      # key_scan_sleep = "0.1"
     
       ## @param keys - list of strings - optional
       ## The length is 1 for strings.
@@ -179,27 +215,8 @@ ACL SETUSER username on +ping
 
 
 
-### `redis_bigkey`
 
 
-
-- 标签
-
-
-| Tag | Description |
-|  ----  | --------|
-|`db_name`|DB name.|
-|`host`|Hostname|
-|`key`|Monitor key|
-|`server`|Server addr|
-|`service_name`|Service name|
-
-- 字段列表
-
-
-| Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
-|`value_length`|Key length|int|-|
 
 
 
@@ -592,6 +609,59 @@ ACL SETUSER username on +ping
 <!-- markdownlint-disable MD024 -->
 
 
+
+
+### `redis_bigkey`
+
+
+
+- 标签
+
+
+| Tag | Description |
+|  ----  | --------|
+|`db_name`|DB name.|
+|`host`|Hostname.|
+|`key`|Key name.|
+|`key_type`|Key type.|
+|`server`|Server addr.|
+|`service_name`|Service name.|
+
+- 字段列表
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`keys_sampled`|Sampled keys in the key space.|int|-|
+|`value_length`|Key length.|int|-|
+
+
+
+
+
+
+### `redis_hotkey`
+
+
+
+- 标签
+
+
+| Tag | Description |
+|  ----  | --------|
+|`db_name`|DB name.|
+|`host`|Hostname.|
+|`key`|Key name.|
+|`server`|Server addr.|
+|`service_name`|Service name.|
+
+- 字段列表
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`key_count`|Key count times.|int|-|
+|`keys_sampled`|Sampled keys in the key space.|int|-|
 
 
 
