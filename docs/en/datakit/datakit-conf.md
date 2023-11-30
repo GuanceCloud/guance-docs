@@ -17,7 +17,7 @@ The DataKit master configuration is used to configure the running behavior of th
 
 ## Datakit Main Configure Sample {#maincfg-example}
 
-Datakit main configure is *datakit.conf*, here is the exmaple sample(1.19.2):
+Datakit main configure is *datakit.conf*, here is the exmaple sample(1.20.0):
 
 ??? info "datakit.conf"
 
@@ -130,6 +130,9 @@ Datakit main configure is *datakit.conf*, here is the exmaple sample(1.19.2):
       # If the list empty, all app's requests accepted.
       rum_app_id_white_list = []
     
+      # only these domains enable CORS. If list empty, all domains are enabled.
+      allowed_cors_origins = []
+    
       # Start Datakit web server with HTTPS
       [http_api.tls]
         # cert = "path/to/certificate/file"
@@ -209,7 +212,7 @@ Datakit main configure is *datakit.conf*, here is the exmaple sample(1.19.2):
       max_retry_count = 4
     
       # The interval between two retry operation, valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h"
-      retry_delay = "200ms"
+      retry_delay = "1s"
     
       # HTTP Proxy(IP:Port)
       http_proxy = ""

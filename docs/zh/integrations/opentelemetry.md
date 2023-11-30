@@ -56,6 +56,9 @@ OTEL 提供与 vendor 无关的实现，根据用户的需要将观测类数据�
       ## compatible ddtrace: It is possible to compatible OTEL Trace with DDTrace trace
       # compatible_ddtrace=false
     
+      ## delete trace message
+      # del_message = true
+    
       ## Ignore tracing resources map like service:[resources...].
       ## The service name is the full service name in current application.
       ## The resource list is regular expressions uses to block resource names.
@@ -135,6 +138,7 @@ OTEL 提供与 vendor 无关的实现，根据用户的需要将观测类数据�
     | ----------------------------------- | ----------- | -------------------------------------------------------------------------------------------------------- |
     | `ENV_INPUT_OTEL_IGNORE_KEYS`        | JSON string | `["block1", "block2"]`                                                                                   |
     | `ENV_INPUT_OTEL_KEEP_RARE_RESOURCE` | bool        | true                                                                                                     |
+    | `ENV_INPUT_OTEL_DEL_MESSAGE`        | bool        | true                                                                                                     |
     | `ENV_INPUT_OTEL_OMIT_ERR_STATUS`    | JSON string | `["404", "403", "400"]`                                                                                  |
     | `ENV_INPUT_OTEL_CLOSE_RESOURCE`     | JSON string | `{"service1":["resource1"], "service2":["resource2"], "service3":["resource3"]}`                         |
     | `ENV_INPUT_OTEL_SAMPLER`            | float       | 0.3                                                                                                      |
