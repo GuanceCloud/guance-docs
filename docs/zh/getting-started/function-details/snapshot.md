@@ -157,17 +157,13 @@
 
 ### 数据脱敏 {#sensitive}
 
-您可以针对快照内的字段值内容进行脱敏配置，配置规则为正则语法。输入脱敏字段与正则表达式，点击预览，正则匹配到的内容在当前快照将以 `*` 显示。
+您可以针对快照内的字段值内容进行脱敏配置。输入脱敏字段与正则表达式，点击预览，正则匹配到的内容在当前快照将以 `*` 显示。
+
+- 脱敏字段：支持多选；
+- 正则表达式：通过正则语法实现脱敏；此处更多操作可参考[数据访问](../../logs/logdata-access.md#config)。
 
 <img src="../../img/snapshot-mask.png" width="60%" >
 
-
-<div class="grid cards" markdown>
-
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 点击查看正则表达式更多操作说明</font>](../../management/regex.md#diy)
-
-
-</div>
 
 <!--
 **注意**：  
@@ -224,6 +220,7 @@
 
 <img src="../../img/snapshot-preview-page.png" width="70%" >
 
+**注意**：此处的预览与您在真实环境下分享快照所有流程完全一致。例如，若在前置的[配置步骤](#share)中设置了 IP 白名单这一访问限制，白名单之外的 IP 也无法查看预览快照。
 
 ### 分享快照管理 {#view}
 
