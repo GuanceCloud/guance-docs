@@ -4,7 +4,7 @@ Guance enables you to export dashboards into reports, which are regularly pushed
 
 Enter **Scenes > Regular Report**:
 
-<img src="../img/report-9.png" width="60%" >
+<img src="../img/report-9.png" width="40%" >
 
 Or **Scenes > Dashboards > Regular Report**:
 
@@ -16,13 +16,13 @@ On the current page, you can view information such as the name of the timed repo
 
 ## Create Report
 
-![](img/report-3.png)
+<img src="../img/report-3.png" width="70%" >
 
 :material-numeric-1-circle: **Basic Info**:
 
-![](img/report-4.png)
+<img src="../img/report-4.png" width="60%" >
 
-| Field      | Description               |
+| <div style="width: 150px"> Field </div>     | Description               |
 | ----------- | ---------------- |
 | Dashboard      | Select the relevant dashboard for which you want to send timed reports.               |
 | Modify View Variable      | You can choose to customize and modify the view variables of the dashboard in the timed report.<br/>:warning: <br/><li>The modification here only affects the report, and will not affect the original default value configuration of the dashboard;<br/><li>If there are no view variables in the dashboard, the button will not be displayed to you.                 |
@@ -30,7 +30,7 @@ On the current page, you can view information such as the name of the timed repo
 
 :material-numeric-2-circle: **Timing Plan**：
 
-![](img/report-5.png)
+<img src="../img/report-5.png" width="60%" >
 
 | <div style="width: 80px"> Field </div>     | Description               |
 | ----------- | ---------------- |
@@ -40,7 +40,9 @@ On the current page, you can view information such as the name of the timed repo
 
 :material-numeric-3-circle: **Email Notification**：
 
-![](img/report-6.png)
+Currently, there are four types of notifications supported: DingTalk Robot, WeChat Work Robot, Feishu Robot and Email Group.
+
+<img src="../img/report-6.png" width="60%" >
 
 | Field      | Description               |
 | ----------- | ---------------- |
@@ -48,9 +50,6 @@ On the current page, you can view information such as the name of the timed repo
 | Title      | That is, the name of the current timing report displayed in the message.               |
 | Message      | That is, what the current timing report displays in the message.               |
 
-After you click **Confirm**, you can view the newly created report in the report list:
-
-![](img/report-7.png)
 
 ## Report List
 
