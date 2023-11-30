@@ -2,6 +2,7 @@
 # 专有名词
 ################################################################
 Aerospike
+Proxied
 Akka
 Aliyun
 Ansible
@@ -79,6 +80,7 @@ PromQL
 Prometheus
 Promtail
 Protobuf
+Proxied
 PushGateway
 Pyroscope
 Pythond
@@ -111,10 +113,12 @@ clidriver
 configfile
 containerd
 datagram
+diskcache
 dnssec
 eBPF
 ebpftrace
 fsyncs
+filesystems
 gRPC
 guance
 jemalloc
@@ -158,14 +162,16 @@ DCGM
 DNAT
 EMQX
 JDBC
+MITM
 NVMe
 OTEL
 OTLP
 RUM
 SAAS
 SNMP
-XDCR
 Seata
+XDCR
+mitm
 
 ################################################################
 # 合成词

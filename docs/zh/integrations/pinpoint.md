@@ -48,6 +48,9 @@ Datakit 内置的 Pinpoint Agent 用于接收，运算，分析 Pinpoint Tracing
       ## to data center and do not consider samplers and filters.
       # keep_rare_resource = false
     
+      ## delete trace message
+      # del_message = true
+    
       ## Ignore tracing resources map like service:[resources...].
       ## The service name is the full service name in current application.
       ## The resource list is regular expressions uses to block resource names.
@@ -101,8 +104,9 @@ Datakit 内置的 Pinpoint Agent 用于接收，运算，分析 Pinpoint Tracing
     | --------------------------------------- | ----------- | -------------------------------------------------------------------------------- |
     | `ENV_INPUT_PINPOINT_ADDRESS`            | string      | "127.0.0.1:9991"                                                                 |
     | `ENV_INPUT_PINPOINT_KEEP_RARE_RESOURCE` | bool        | true                                                                             |
+    | `ENV_INPUT_PINPOINT_DEL_MESSAGE`        | bool        | true                                                                             |
     | `ENV_INPUT_PINPOINT_CLOSE_RESOURCE`     | JSON string | `{"service1":["resource1"], "service2":["resource2"], "service3":["resource3"]}` |
-    | `ENV_INPUT_PINPOINT_SAMPLER`            | float       | 0.3                                                                              |
+    | `ENV_INPUT_PINPOINT_SAMPLER`            | string      | "0.3"                                                                            |
     | `ENV_INPUT_PINPOINT_TAGS`               | JSON string | `{"k1":"v1", "k2":"v2", "k3":"v3"}`                                              |
     | `ENV_INPUT_PINPOINT_STORAGE`            | JSON string | `{"storage":"./pinpoint_storage", "capacity": 5120}`                             |
 
@@ -114,13 +118,13 @@ Datakit 内置的 Pinpoint Agent 用于接收，运算，分析 Pinpoint Tracing
 
 <!-- markdownlint-enable -->
 
-### Pinpoint Collector 配置 {#collector-config}
+### Pinpoint Agent 配置 {#agent-config}
 
-- 下载所需的 Pinpoint APM Collector
+- 下载所需的 Pinpoint APM Agent
 
-Pinpoint 支持实现了多语言的 APM Collector 本文档使用 JAVA Collector 进行配置。[下载](https://github.com/pinpoint-apm/pinpoint/releases){:target="_blank"} JAVA APM Collector。
+Pinpoint 支持实现了多语言的 APM Collector 本文档使用 JAVA Agent 进行配置。[下载](https://github.com/pinpoint-apm/pinpoint/releases){:target="_blank"} JAVA APM Collector。
 
-- 配置 Pinpoint APM Collector，打开 */path_to_pinpoint_collector/pinpoint-root.config* 配置相应的多服务端口
+- 配置 Pinpoint APM Collector，打开 */path_to_pinpoint_agent/pinpoint-root.config* 配置相应的多服务端口
 
     - 配置 `profiler.transport.module = GRPC`
     - 配置 `profiler.transport.grpc.agent.collector.port = 9991`   （即 Datakit Pinpoint Agent 中配置的端口）
@@ -128,7 +132,7 @@ Pinpoint 支持实现了多语言的 APM Collector 本文档使用 JAVA Collecto
     - 配置 `profiler.transport.grpc.stat.collector.port = 9991`    （即 Datakit Pinpoint Agent 中配置的端口）
     - 配置 `profiler.transport.grpc.span.collector.port = 9991`    （即 Datakit Pinpoint Agent 中配置的端口）
 
-- 启动 Pinpoint APM Collector 启动命令
+- 启动 Pinpoint APM Agent 启动命令
 
 ```shell
 $ java -javaagent:/path_to_pinpoint/pinpoint-bootstrap.jar \
@@ -156,6 +160,21 @@ Pinpoint APM 链路数据较为复杂：
   ![Pinpoint](https://static.guance.com/images/datakit/datakit-pinpoint.png){ width="600" }
   <figcaption>Pinpoint</figcaption>
 </figure>
+
+### PinPointV2 {#pinpointv2}
+
+`DataKit 1.19.0` 版本重新优化后更改 `source` 为 `PinPointV2`。 新版本的链路数据重新梳理 `SpanChunk` 和 `Span` 的关系、`Event` 和 `Span` 的关系、`Span` 与 `Span` 的关系。
+以及 `Event` 中 `startElapsed` 和 `endElapsed` 时间对齐问题。
+
+主要的逻辑点：
+
+- 缓存 `serviceType` 服务表，并写到文件中，防止 DataKit 重启而丢失数据。
+- `Span` 中的 `parentSpanId` 不为 -1，则缓存。如 `parentSpanId:-1`，则根据 `spanEvent` 中的 `nextSpanId` 从缓存中取出 `Span` 拼接到一个链路中。
+- 缓存所有 `SpanChunk` 中的 `event`，直到接收到主 `Span` 才从缓存中全部取出，追加到链路中。
+- 按顺序累加当前 `Event` 中 `startElapsed` 作为下一个 `Event` 的起始时间。
+- 按照 `Depth` 字段判断当前 `Event` 的父子级关系。
+- 遇到数据库查询会将 `sql` 语句替换当前的 '资源' 名称。
+
 
 ## 链路字段 {#tracing}
 
@@ -202,6 +221,63 @@ Pinpoint APM 链路数据较为复杂：
 |`span_id`|Span id|string|-|
 |`start`|start time of span.|int|usec|
 |`trace_id`|Trace id|string|-|
+
+
+
+
+
+
+
+
+## 指标字段 {#metrics}
+
+
+
+
+
+
+
+
+
+### `pinpoint-metric`
+
+
+
+- 标签
+
+
+| Tag | Description |
+|  ----  | --------|
+|`agentVersion`|Pinpoint 版本|
+|`agent_id`|服务 Agent ID|
+|`container`|是否为容器|
+|`hostname`|指标说明|
+|`ip`|agent ip|
+|`pid`|服务 pid|
+|`ports`|开启的端口|
+
+- 指标列表
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`GcNewCount`|Jvm Gc NewCount|int|count|
+|`GcNewTime`|Jvm Gc NewTime|int|msec|
+|`JvmCpuLoad`|Jvm CPU load|int|percent|
+|`JvmGcOldCount`|Jvm Gc Old Count|int|count|
+|`JvmGcOldTime`|Jvm Gc Old Time|int|msec|
+|`JvmMemoryHeapMax`|Jvm Memory Heap Max|int|B|
+|`JvmMemoryHeapUsed`|Jvm Memory Heap Used|int|B|
+|`JvmMemoryNonHeapMax`|Jvm Memory NonHeap Max|int|B|
+|`JvmMemoryNonHeapUsed`|Jvm Memory NonHeap Used|int|B|
+|`PoolCodeCacheUsed`|Jvm Pool Code Cache Used|float|B|
+|`PoolMetaspaceUsed`|Jvm Pool meta space used|float|count|
+|`PoolNewGenUsed`|Jvm Pool New GenUsed|float|B|
+|`PoolOldGenUsed`|Duration of Jvm garbage collection actions|float|B|
+|`PoolPermGenUsed`|The maximum file descriptor count|float|count|
+|`PoolSurvivorSpaceUsed`|Jvm Pool Survivor SpaceUsed|float|B|
+|`SystemCpuLoad`|system CPU load|int|percent|
+
 
 
 

@@ -252,7 +252,7 @@ GO
 |`reads`|Number of reads issued on the file.|int|count|
 |`rg_read_stall_ms`|Does not apply to:: SQL Server 2008 through SQL Server 2012 (11.x).Total IO latency introduced by IO resource governance for reads|int|ms|
 |`rg_write_stall_ms`|Does not apply to:: SQL Server 2008 through SQL Server 2012 (11.x).Total IO latency introduced by IO resource governance for writes. Is not nullable.|int|ms|
-|`write_bytes`|Number of writes made on this file|int|B|
+|`write_bytes`|Total number of bytes written to the file|int|B|
 |`write_latency_ms`|Total time, in milliseconds, that users waited for writes to be completed on the file|int|ms|
 |`writes`|Number of writes issued on the file.|int|count|
 
