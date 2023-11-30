@@ -21,7 +21,12 @@
 
 :material-numeric-3-circle: Hover 至特定工作空间卡片上，点击 :material-dots-vertical: 可为当前工作空间设置别名；还可退出或解散当前工作空间。
 
-**注意**：仅工作空间拥有者才能解散当前工作空间，空间一经解散，数据将无法恢复，请谨慎操作。
+???+ warning "解散工作空间需注意"
+
+    1. 仅工作空间拥有者才能解散当前工作空间，空间一经解散，数据将无法恢复，请谨慎操作。
+    2. 解散后，该工作空间将自动与费用中心解绑并删除。
+
+    <img src="../img/space-risk.png" width="50%" >
 
 ![](img/space-1.gif)
 
@@ -35,6 +40,12 @@
 <div class="grid cards" markdown>
 
 - [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **何为作战室？**</font>](../management/settings/key-metrics.md)
+
+</div>
+
+
+<div class="grid cards" markdown>
+
 - [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **如何理解 demo 空间**</font>](../management/space-demo.md)
 
 </div>

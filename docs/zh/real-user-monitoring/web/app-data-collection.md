@@ -17,7 +17,7 @@
 | long_task | 对于浏览器中的任何阻塞主线程超过 50ms 的任务，都会生成一条长任务记录。 |
 | action | 跟踪用户页面浏览过程中所有的用户交互记录。 |
 
-<img src="../../img/rumcollection1.png" width="70%" >
+<img src="../../img/rumcollection1.png" width="40%" >
 
 ## 全局属性
 

@@ -17,7 +17,7 @@
 
 在链路查看器搜索栏，支持[多种搜索方式和筛选方式](../getting-started/function-details/explorer-search.md)。
 
-???+ attention
+???+ warning
 
     当您切换查看**服务**或**链路**查看器时，观测云默认为您保留当前的筛选条件和时间范围。
     
