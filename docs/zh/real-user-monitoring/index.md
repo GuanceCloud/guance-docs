@@ -69,7 +69,7 @@ DataKit 安装完成后，**开启 [RUM 采集器](../integrations/rum.md)**，�
 
 - 配置完成后，回到**应用列表**。您可以点击 :material-dots-horizontal: ，对该条应用进行编辑或删除。
 
-???+ attention
+???+ warning "注意事项"
 
     - 应用 ID 一经更改，需要同步更新 SDK 中的配置信息；   
     - SDK 更新成功后，新的分析视图和查看器列表仅展示最新 `app_id` 关联数据，旧的应用 ID 对应数据将不会做显示；   

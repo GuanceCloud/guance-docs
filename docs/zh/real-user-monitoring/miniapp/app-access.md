@@ -32,7 +32,7 @@
 
 登录观测云控制台，进入**用户访问监测**页面，点击左上角 **[新建应用](../index.md#create)**，即可开始创建一个新的应用。
 
-![](../img/6.rum_miniapp.gif)
+![](../img/6.rum_miniapp.png)
 
 ## 使用方法
 
@@ -96,7 +96,7 @@
 | `allowedTracingOrigins`        | Array   | 否       | `[]`      | 【新增】允许注入 `ddtrace` 采集器所需 header 头部的所有请求列表。可以是请求的 origin，也可以是正则，origin:`协议（包括：//），域名（或IP地址）[和端口号]`。*例如：`["https://api.example.com", /https:\\/\\/.*\\.my-api-domain\\.com/]`* |
 | `isIntakeUrl`                 | Function | 否       | `function(url) {return false}`     | 自定义方法根据请求资源 url 判断是否需要采集对应资源数据，默认都采集。返回：`false` 表示要采集，`true` 表示不需要采集。<br>:warning: <br>1. 该参数方法返回结果必须为 Boolean 类型，否则认为是无效参数。<br>2. 版本要求为 2.1.10 及以上。 |
 
-## 注意事项
+## 注意
 
 1. `datakitOrigin` 所对应的 DataKit 域名必须在小程序管理后台加上 request 白名单。
 1. 因为目前微信小程序请求资源 API `wx.request`、`wx.downloadFile` 返回数据中 `profile` 字段目前 ios 系统不支持返回，所以会导致收集的资源信息中和 timing 相关的数据收集不全。目前暂无解决方案：[request](https://developers.weixin.qq.com/miniprogram/dev/api/network/request/wx.request.html)、[downloadFile](https://developers.weixin.qq.com/miniprogram/dev/api/network/download/wx.downloadFile.html)、[API 支持情况](https://developers.weixin.qq.com/community/develop/doc/000ecaa8b580c80601cac8e6f56000?highLine=%2520request%2520profile)。
