@@ -164,7 +164,7 @@ curl http://localhost:54322/stop
 
 登录观测云工作空间，可以看到采集的 `SERVICE_A` 和 `SERVICE_B` 链路数据。
 
-???+ attention
+???+ warning
 
     应用性能采样是基于链路（Trace）的，如果有 100 个 trace ，设置采样率为 5%，则随机采集其中的 5%，也就是随机上报 5 个 trace 及下的所有 Span 到观测云工作空间。
     

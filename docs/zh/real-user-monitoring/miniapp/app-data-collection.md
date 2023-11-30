@@ -73,12 +73,12 @@
 | `province` | string | 省 |
 | `city` | string | 城市 |
 
-### 平台&库版本属性
+### 平台 & 库版本属性
 
 | 字段 | 类型 | 描述 |
 | --- | --- | --- |
-| `platform` | string | 小程序所在的app平台，如微信小程序的platform就是wechat |
-| `platform_version` | string | 小程序所在的app平台的版本 |
+| `platform` | string | 小程序所在的app平台，如微信小程序的 platform 就是 wechat |
+| `platform_version` | string | 小程序所在的 app 平台的版本 |
 | `app_framework_version` | string | 小程序基础版本库 |
 
 ## 自定义属性

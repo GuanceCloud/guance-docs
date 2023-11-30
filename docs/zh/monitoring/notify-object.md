@@ -121,6 +121,8 @@ Content-Type: application/json
 }
 ```
 
+**注意**：在 Webhook 对外同步事件信息时，会同步追加工作空间[属性声明](../management/attribute-claims.md)。
+
 > Webhook 自定义通知发送内容的类型仅支持使用 JSON 格式，各字段的详情可参考 [事件产生](../events/index.md#fields)。
 >
 > 有关 Webhook 自定义更详细的实践文档，可参考 [观测云 Webhook 自定义告警通知集成](https://func.guance.com/doc/practice-guance-alert-webhook-integration/)。

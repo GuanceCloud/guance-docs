@@ -233,31 +233,52 @@ Timing-Allow-Origin: *
 
 - [<font color="coral"> :octicons-arrow-right-24: &nbsp; GlobalEventHandlers.onerror</font>](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onerror)
 
-<br/>
+</div>
+
+
+<div class="grid cards" markdown>
 
 - [<font color="coral"> :octicons-arrow-right-24: &nbsp; Cross-Origin Resource Sharing (CORS)</font>](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
 
-<br/>
+</div>
+
+
+<div class="grid cards" markdown>
 
 - [<font color="coral"> :octicons-arrow-right-24: &nbsp; The Script element</font>](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script)
 
-<br/>
+</div>
+
+
+<div class="grid cards" markdown>
 
 - [<font color="coral"> :octicons-arrow-right-24: &nbsp; CORS settings attributes</font>](https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_settings_attributes)
 
-<br/>
+</div>
+
+
+<div class="grid cards" markdown>
 
 - [<font color="coral"> :octicons-arrow-right-24: &nbsp; Coping_with_CORS</font>](https://developer.mozilla.org/en-US/docs/Web/API/Resource_Timing_API/Using_the_Resource_Timing_API#Coping_with_CORS)
 
-<br/>
+</div>
+
+
+<div class="grid cards" markdown>
 
 - [<font color="coral"> :octicons-arrow-right-24: &nbsp; Resource Timing Standard; W3C Editor's Draft</font>](https://w3c.github.io/resource-timing/)
 
-<br/>
+</div>
+
+
+<div class="grid cards" markdown>
 
 - [<font color="coral"> :octicons-arrow-right-24: &nbsp; Resource Timing practical tips; Steve Souders</font>](http://www.stevesouders.com/blog/2014/08/21/resource-timing-practical-tips/)
 
-<br/>
+</div>
+
+
+<div class="grid cards" markdown>
 
 - [<font color="coral"> :octicons-arrow-right-24: &nbsp; Measuring network performance with Resource Timing API</font>](http://googledevelopers.blogspot.ca/2013/12/measuring-network-performance-with.html)
 
