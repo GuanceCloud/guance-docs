@@ -19,7 +19,7 @@ DataKit 主配置用来配置 DataKit 自己的运行行为。
 
 ## Datakit 主配置示例 {#maincfg-example}
 
-Datakit 主配置示例如下，我们可以根据该示例来开启各种功能（当前版本 1.19.2）：
+Datakit 主配置示例如下，我们可以根据该示例来开启各种功能（当前版本 1.20.0）：
 
 <!-- markdownlint-disable MD046 -->
 ??? info "*datakit.conf*"
@@ -133,6 +133,9 @@ Datakit 主配置示例如下，我们可以根据该示例来开启各种功能
       # If the list empty, all app's requests accepted.
       rum_app_id_white_list = []
     
+      # only these domains enable CORS. If list empty, all domains are enabled.
+      allowed_cors_origins = []
+    
       # Start Datakit web server with HTTPS
       [http_api.tls]
         # cert = "path/to/certificate/file"
@@ -212,7 +215,7 @@ Datakit 主配置示例如下，我们可以根据该示例来开启各种功能
       max_retry_count = 4
     
       # The interval between two retry operation, valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h"
-      retry_delay = "200ms"
+      retry_delay = "1s"
     
       # HTTP Proxy(IP:Port)
       http_proxy = ""
