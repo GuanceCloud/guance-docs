@@ -64,7 +64,7 @@ monitor:
       enable_k8s_metric = true
       enable_pod_metric = false
       enable_k8s_event = true
-      enable_k8s_node_local = false
+      enable_k8s_node_local = true
       extract_k8s_label_as_tags = false
     
       ## Auto-Discovery of PrometheusMonitoring Annotations/CRDs
@@ -122,8 +122,8 @@ monitor:
     | `ENV_INPUT_CONTAINER_ENABLE_CONTAINER_METRIC`                                 | 开启容器指标采集                                                                                                                                                                                         | true                                                                                                    | `"true"`/`"false"`                                                               |
     | `ENV_INPUT_CONTAINER_ENABLE_K8S_METRIC`                                       | 开启 k8s 指标采集                                                                                                                                                                                        | true                                                                                                    | `"true"`/`"false"`                                                               |
     | `ENV_INPUT_CONTAINER_ENABLE_POD_METRIC`                                       | 是否开启 Pod 指标采集（CPU 和内存使用情况），需要安装[kubernetes-metrics-server](https://github.com/kubernetes-sigs/metrics-server){:target="_blank"}                                                    | false                                                                                                   | `"true"`/`"false"`                                                               |
-    | `ENV_INPUT_CONTAINER_ENABLE_K8S_NODE_LOCAL`                                   | 是否开启分 Node 采集模式，由部署在各个 Node 的 Datakit 独立采集当前 Node 的资源。[:octicons-tag-24: Version-1.19.0](../datakit/changelog.md#cl-1.19.0) 需要额外的 RABC 权限，见[此处](#rbac-nodes-stats) | false                                                                                                   | `"true"`/`"false"`                                                               |
-    | `ENV_INPUT_CONTAINER_EXTRACT_K8S_LABEL_AS_TAGS`                               | 是否追加 pod/node label 到采集的指标 tag 中。如果 label 的 key 有 dot 字符，会将其变为横线                                                                                                               | false                                                                                                   | `"true"`/`"false"`                                                               |
+    | `ENV_INPUT_CONTAINER_ENABLE_K8S_NODE_LOCAL`                                   | 是否开启分 Node 采集模式，由部署在各个 Node 的 Datakit 独立采集当前 Node 的资源。[:octicons-tag-24: Version-1.19.0](../datakit/changelog.md#cl-1.19.0) 需要额外的 RABC 权限，见[此处](#rbac-nodes-stats) | true                                                                                                    | `"true"`/`"false"`                                                               |
+    | `ENV_INPUT_CONTAINER_EXTRACT_K8S_LABEL_AS_TAGS`                               | 是否追加资源的 labels 到采集的 tag 中。只有 Pod 指标、对象和 Node 对象会添加，另外容器日志也会添加其所属 Pod 的 labels。如果 label 的 key 有 dot 字符，会将其变为横线                                    | false                                                                                                   | `"true"`/`"false"`                                                               |
     | `ENV_INPUT_CONTAINER_ENABLE_AUTO_DISCOVERY_OF_PROMETHEUS_POD_ANNOTATIONS`     | 是否开启自动发现 Prometheuse Pod Annotations 并采集指标                                                                                                                                                  | false                                                                                                   | `"true"`/`"false"`                                                               |
     | `ENV_INPUT_CONTAINER_ENABLE_AUTO_DISCOVERY_OF_PROMETHEUS_SERVICE_ANNOTATIONS` | 是否开启自动发现 Prometheuse Service Annotations 并采集指标                                                                                                                                              | false                                                                                                   | `"true"`/`"false"`                                                               |
     | `ENV_INPUT_CONTAINER_ENABLE_AUTO_DISCOVERY_OF_PROMETHEUS_POD_MONITORS`        | 是否开启自动发现 Prometheuse PodMonitor CRD 并采集指标，详见[Prometheus-Operator CRD 文档](kubernetes-prometheus-operator-crd.md#config)                                                                 | false                                                                                                   | `"true"`/`"false"`                                                               |
@@ -553,6 +553,9 @@ The metric of the Kubernetes Pod.
 | ---- |---- | :---:    | :----: |
 |`cpu_usage`|The sum of the cpu usage of all containers in this Pod.|float|percent|
 |`cpu_usage_base100`|The normalized cpu usage, with a maximum of 100%. (Experimental)|float|percent|
+|`ephemeral_storage_available_bytes`|The storage space available (bytes) for the filesystem.|int|B|
+|`ephemeral_storage_capacity_bytes`|The total capacity (bytes) of the filesystems underlying storage.|int|B|
+|`ephemeral_storage_used_bytes`|The bytes used for a specific task on the filesystem.|int|B|
 |`mem_capacity`|The total memory in the host machine.|int|B|
 |`mem_limit`|The sum of the memory limit of all containers in this Pod.|int|B|
 |`mem_usage`|The sum of the memory usage of all containers in this Pod.|int|B|
@@ -561,6 +564,8 @@ The metric of the Kubernetes Pod.
 |`memory_capacity`|The total memory in the host machine (Deprecated use `mem_capacity`).|int|B|
 |`memory_usage_bytes`|The sum of the memory usage of all containers in this Pod (Deprecated use `mem_usage`).|int|B|
 |`memory_used_percent`|The percentage usage of the memory (refer from `mem_used_percent`|float|percent|
+|`network_bytes_rcvd`|Cumulative count of bytes received.|int|B|
+|`network_bytes_sent`|Cumulative count of bytes transmitted.|int|B|
 |`ready`|Describes whether the pod is ready to serve requests.|int|count|
 
 
@@ -1285,7 +1290,7 @@ metadata:
 rules:
 - apiGroups: [""]
   resources: ["nodes", "nodes/stats"]
-  verbs: ["get", "list"]
+  verbs: ["get", "list", "watch"]
 ```
 
 此外，Datakit Pod 还需要开启 `hostNetwork: true` 配置项。
