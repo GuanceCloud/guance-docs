@@ -42,7 +42,7 @@
 
     点击 :fontawesome-solid-gear: 可对显示列进行设置：
 
-    ![](img/field-2.png)
+    <img src="../img/field-2.png" width="60%" >
 
 === "编辑"
 
