@@ -4,28 +4,64 @@ icon: zy/scene
 # Scenes
 ---
 
-The scene takes charts as the main body, and supports a series of functional operations such as custom editing and filtering to visually reproduce the details of data insight. It mainly includes three functions: [dashboards](./dashboard.md), [notes](./note.md) and [explorers](./explorer/index.md). 
+The scene takes charts as the main body, supporting a range of custom editing and filtering operations to visually reproduce data insights in detail.
  
-As you can see, Guance has offered over 100 data monitoring view templates, of which users can import templates to create dashboards and viewers, and make custom editing configurations; Or choose a custom creation method to build a data insight scenario through a series of settings. At the same time, in order to keep abnormal data analysis, notes support users to import charts and text documents to trace back, locate and solve data problems. 
+As you can see, Guance has offered [over 100 data monitoring view templates](./built-in-view/index.md), which can be imported by users to create dashboards and explorers, and can be customized and edited. Alternatively, users can choose to create their own custom templates by configuring a series of settings to build data insight scenes.
+
+<div class="grid cards" markdown>
+
+-   [<font color=coral> :material-billboard:{ .lg .middle } __Dashboards__</font>](dashboard.md) 
+
+    ---
+
+    You can create multiple dashboards to build data insight scenes. The dashboard supports adding various visualization charts to display data, helping users intuitively track, analyze, and display key performance metrics and monitor overall operations.
+
+    <br/>
+
+-   [<font color=coral> :fontawesome-regular-rectangle-list:{ .lg .middle } __Service Management__</font>](service-manag.md)</font>
+
+    ---
+
+    You can access and view all key information related to services within the current workspace through a single entry point on the service management page.
+
+    <br/>
 
 
-## Dashboard
+-   [<font color=coral> :material-database-export:{ .lg .middle } __Regular Reports__</font>](report.md)
 
-Under Scene, you can create multiple [dashboards](dashboard.md) to build data insight scenarios. Adding multiple visual charts for data presentation is supported in the dashboard to help users visually track, analyze and display key performance metrics and monitor the overall operational status.
+    ---
 
-![](img/dashboard.png)
+    You can export dashboards as reports and send them to relevant personnel via email on a scheduled basis, with summary data based on different time dimensions such as daily, weekly, monthly, etc.
 
-## Notes
+    <br/>
 
-Under the scene, you can create multiple [notes](note.md) for summary report, support inserting real-time visual charts for data analysis, support inserting text documents for description, combine charts and documents for data analysis and summary report; support sharing notes with all members of the workspace, and keep abnormal data analysis to help backtrack, locate and solve problems.
+-   [<font color=coral> :material-note-edit-outline:{ .lg .middle } __Notes__</font>](note.md)
 
-![](img/1.notebook_2.png)
+    ---
 
-## Explorers
+    You can create multiple notes and combine them with charts and documents for data analysis and summary reports. You can share notes with all members of the workspace, keep track of data analysis of abnormal cases, and help trace, locate and solve problems.
 
-Under the scene, you can quickly build multiple custom log [explorers](explorer/index.md), support customizing log viewing needs with space members, support exporting the finished explorer to share with others, and share the explorer template.
+    <br/>
 
-![](img/2.scene_1.png)
+-   [<font color=coral> :material-clipboard-text-search:{ .lg .middle } __Explorers__</font>](explorer/index.md)
 
-## Inner View
-The [inner view](built-in-in-view/index.md) is a view template recorded in the Guance platform, including both [system view](./built-in-view/) and user view, you can apply the system view directly to the scenario or customize it as a new built-in view.
+    ---
+
+    You can quickly build multiple custom explorers. It supports customizing data viewing requirements with workspace members and can also export completed explorers to share with others, sharing viewer templates.
+
+    <br/>
+
+
+    </div>
+
+
+
+## More Reading
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **View Variable**</font>](./view-variable.md)
+
+</div>
+
+
