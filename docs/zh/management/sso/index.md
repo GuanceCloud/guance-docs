@@ -112,13 +112,13 @@
     2. `id_token` 的签名算法：目前只支持 `HS256`；
     3. `code` 换取 `token` 身份验证方式：
 
-    - 默认支持：`client_secret_basic`
+        - 默认支持：`client_secret_basic`
 
-    - 自定义方式支持: `client_secret_post`、`client_secret_basic`、`none`
+        - 自定义方式支持: `client_secret_post`、`client_secret_basic`、`none`
 
     4. `scope` 范围：默认为：openid profile email phone
 
-    - 自定义方式：必须有 `openid`，其他可自定义
+        - 自定义方式：必须有 `openid`，其他可自定义
 
     **注意**：虽然可以自定义，但返回结果中一定要包含 `email` 信息，可选返回 `phone_number` 信息。
 
