@@ -137,7 +137,7 @@ Select the appropriate installation package based on the operating system and Or
 apt-get install -y libaio-dev libaio1
 ```
 
-## Configuration {#config}
+## Configuration {#input-config}
 
 === "Host Installation"
 
@@ -147,40 +147,54 @@ apt-get install -y libaio-dev libaio1
         
     [[inputs.external]]
       daemon = true
-      name   = 'oracle'
+      name   = "oracle"
       cmd    = "/usr/local/datakit/externals/oracle"
     
       ## Set true to enable election
       election = true
     
-      ## The "--inputs" line below should not be modified.
+      ## Modify below if necessary.
+      ## The password use environment variable named "ENV_INPUT_ORACLE_PASSWORD".
       args = [
-        '--interval'        , '1m'                        ,
-        '--host'            , '<your-oracle-host>'        ,
-        '--port'            , '1521'                      ,
-        '--username'        , '<oracle-user-name>'        ,
-        '--password'        , '<oracle-password>'         ,
-        '--service-name'    , '<oracle-service-name>'     ,
-        '--slow-query-time' , '0s'                        ,
+        "--interval"        , "1m"                           ,
+        "--host"            , "<your-oracle-host>"           ,
+        "--port"            , "1521"                         ,
+        "--username"        , "<oracle-user-name>"           ,
+        "--service-name"    , "<oracle-service-name>"        ,
+        "--slow-query-time" , "0s"                           ,
+        "--log"             , "/var/log/datakit/oracle.log"  ,
       ]
       envs = [
-        'LD_LIBRARY_PATH=/opt/oracle/instantclient:$LD_LIBRARY_PATH',
+        "ENV_INPUT_ORACLE_PASSWORD=<oracle-password>",
+        "LD_LIBRARY_PATH=/opt/oracle/instantclient:$LD_LIBRARY_PATH",
       ]
     
       [inputs.external.tags]
         # some_tag = "some_value"
         # more_tag = "some_other_value"
     
+      ## Run a custom SQL query and collect corresponding metrics.
+      # [[inputs.external.custom_queries]]
+      #   sql = '''
+      #     SELECT
+      #       GROUP_ID, METRIC_NAME, VALUE
+      #     FROM GV$SYSMETRIC
+      #   '''
+      #   metric = "oracle_custom"
+      #   tags = ["GROUP_ID", "METRIC_NAME"]
+      #   fields = ["VALUE"]
+    
       #############################
-      # Parameter Description (Marked with * is mandatory field)
+      # Parameter Description (Marked with * is required field)
       #############################
-      # *--interval         : Collect interval (Default is 1m)
-      # *--host             : Oracle instance address (IP)
-      # *--port             : Oracle listen port (Default is 1521)
-      # *--username         : Oracle username
-      # *--password         : Oracle password
-      # *--service-name     : Oracle service name
-      # *--slow-query-time  : Oracle slow query time threshold defined. If larger than this, the executed sql will be reported.
+      # *--interval                   : Collect interval (Default is 1m).
+      # *--host                       : Oracle instance address (IP).
+      # *--port                       : Oracle listen port (Default is 1521).
+      # *--username                   : Oracle username.
+      # *--service-name               : Oracle service name.
+      # *--slow-query-time            : Oracle slow query time threshold defined. If larger than this, the executed sql will be reported.
+      # *--log                        : Collector log path.
+      # *ENV_INPUT_ORACLE_PASSWORD    : Oracle password.
     
     ```
     
@@ -189,6 +203,18 @@ apt-get install -y libaio-dev libaio1
 === "Kubernetes"
 
     The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+
+???+ tip
+
+    The configuration above would shows in the process list(including password). If want to hide the password, can use the environment variable `ENV_INPUT_ORACLE_PASSWORD`, like below:
+
+    ```toml
+    envs = [
+      "ENV_INPUT_ORACLE_PASSWORD=<YOUR-SAFE-PASSWORD>"
+    ] 
+    ```
+
+    The environment variable has highest priority, which means if existed that environment variable, the value in the environment variable will always treated as the password.
 
 ## Measurements {#measurements}
 
@@ -291,6 +317,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`logical_reads`|Logical reads per second|float|count|
 |`logons`|Number of logon attempts|float|count|
 |`memory_sorts_ratio`|Memory sorts ratio|float|percent|
+|`pga_over_allocation_count`|Over-allocating PGA memory count|float|count|
 |`physical_reads`|Physical reads per second|float|count|
 |`physical_reads_direct`|Physical reads direct per second|float|count|
 |`physical_writes`|Physical writes per second|float|count|
@@ -308,9 +335,9 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
-## Long Running Queries {#slow}
+## Long running queries {#slow}
 
-Datakit could reports the SQLs, those executed time exceeded the threshold time defined by user, to Guance Cloud, displays in the `Logs` side bar, the source name is `oracle_logging`.
+Datakit could reports the SQLs, those executed time exceeded the threshold time defined by user, to Guance Cloud, displays in the `Logs` side bar, the source name is `oracle_log`.
 
 This function is disabled by default, user could enabling it by modify Datakit's Oracle configuraion like followings:
 
@@ -333,11 +360,17 @@ Change the string value after `--slow-query-time` from `0s` to the threshold tim
     - If the string value after `--slow-query-time` is `0s` or empty or less than 1 millsecond, this function is disabled, which is also the default state.
     - The SQL would not display here when NOT executed completed.
 
+## Custom Query {#custom}
+
+Support custom query collects. Guide and example is `custom_queries` in the [Configuration](oracle.md#input-config) above.
+
 ## FAQ {#faq}
 
 ### :material-chat-question: How to view the running log of Oracle Collector? {#faq-logging}
 
-Because the Oracle collector is an external collector, its logs are stored separately in *[Datakit-install-path]/externals/oracle.log*.
+Because the Oracle collector is an external collector, its logs by default are stored separately in *[Datakit-install-path]/externals/oracle.log*.
+
+In addition, the log path could modified by using `--log` parameter in configuration file.
 
 ### :material-chat-question: After Oracle collection is configured, why is there no data displayed in monitor? {#faq-no-data}
 
