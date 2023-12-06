@@ -4,6 +4,8 @@
 
 **注意**：仅 Owner、Administrator、自定义角色可查看该功能。
 
+![](img/label-7.png)
+
 ## 新建标签
 
 <img src="../img/label.png" width="50%" >
@@ -46,7 +48,7 @@
 
     :material-numeric-2-circle-outline: 在标签筛选，您可以查看当前页面仪表板所关联的所有标签。
 
-    <img src="../img/label-3.png" width="60%" >
+    <img src="../img/label-3.png" width="50%" >
 
 === "基础设施 > 主机"
 

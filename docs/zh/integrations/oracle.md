@@ -157,6 +157,7 @@ apt-get install -y libaio-dev libaio1
 ### 采集器配置 {#input-config}
 
 <!-- markdownlint-disable MD046 -->
+
 === "主机安装"
 
     进入 DataKit 安装目录下的 `conf.d/db` 目录，复制 `oracle.conf.sample` 并命名为 `oracle.conf`。示例如下：
@@ -165,40 +166,54 @@ apt-get install -y libaio-dev libaio1
         
     [[inputs.external]]
       daemon = true
-      name   = 'oracle'
+      name   = "oracle"
       cmd    = "/usr/local/datakit/externals/oracle"
     
       ## Set true to enable election
       election = true
     
-      ## The "--inputs" line below should not be modified.
+      ## Modify below if necessary.
+      ## The password use environment variable named "ENV_INPUT_ORACLE_PASSWORD".
       args = [
-        '--interval'        , '1m'                        ,
-        '--host'            , '<your-oracle-host>'        ,
-        '--port'            , '1521'                      ,
-        '--username'        , '<oracle-user-name>'        ,
-        '--password'        , '<oracle-password>'         ,
-        '--service-name'    , '<oracle-service-name>'     ,
-        '--slow-query-time' , '0s'                        ,
+        "--interval"        , "1m"                           ,
+        "--host"            , "<your-oracle-host>"           ,
+        "--port"            , "1521"                         ,
+        "--username"        , "<oracle-user-name>"           ,
+        "--service-name"    , "<oracle-service-name>"        ,
+        "--slow-query-time" , "0s"                           ,
+        "--log"             , "/var/log/datakit/oracle.log"  ,
       ]
       envs = [
-        'LD_LIBRARY_PATH=/opt/oracle/instantclient:$LD_LIBRARY_PATH',
+        "ENV_INPUT_ORACLE_PASSWORD=<oracle-password>",
+        "LD_LIBRARY_PATH=/opt/oracle/instantclient:$LD_LIBRARY_PATH",
       ]
     
       [inputs.external.tags]
         # some_tag = "some_value"
         # more_tag = "some_other_value"
     
+      ## Run a custom SQL query and collect corresponding metrics.
+      # [[inputs.external.custom_queries]]
+      #   sql = '''
+      #     SELECT
+      #       GROUP_ID, METRIC_NAME, VALUE
+      #     FROM GV$SYSMETRIC
+      #   '''
+      #   metric = "oracle_custom"
+      #   tags = ["GROUP_ID", "METRIC_NAME"]
+      #   fields = ["VALUE"]
+    
       #############################
-      # Parameter Description (Marked with * is mandatory field)
+      # Parameter Description (Marked with * is required field)
       #############################
-      # *--interval         : Collect interval (Default is 1m)
-      # *--host             : Oracle instance address (IP)
-      # *--port             : Oracle listen port (Default is 1521)
-      # *--username         : Oracle username
-      # *--password         : Oracle password
-      # *--service-name     : Oracle service name
-      # *--slow-query-time  : Oracle slow query time threshold defined. If larger than this, the executed sql will be reported.
+      # *--interval                   : Collect interval (Default is 1m).
+      # *--host                       : Oracle instance address (IP).
+      # *--port                       : Oracle listen port (Default is 1521).
+      # *--username                   : Oracle username.
+      # *--service-name               : Oracle service name.
+      # *--slow-query-time            : Oracle slow query time threshold defined. If larger than this, the executed sql will be reported.
+      # *--log                        : Collector log path.
+      # *ENV_INPUT_ORACLE_PASSWORD    : Oracle password.
     
     ```
     
@@ -207,6 +222,19 @@ apt-get install -y libaio-dev libaio1
 === "Kubernetes"
 
     目前可以通过 [ConfigMap 方式注入采集器配置](../datakit/datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+
+???+ tip
+
+    上述配置会以命令行形式展示在进程列表中（包括密码），如果想隐藏密码，可以通过将密码写进环境变量 `ENV_INPUT_ORACLE_PASSWORD` 形式实现，示例：
+
+    ```toml
+    envs = [
+      "ENV_INPUT_ORACLE_PASSWORD=<YOUR-SAFE-PASSWORD>"
+    ] 
+    ```
+
+    该环境变量在读取密码时有最高优先级，即只要出现该环境变量，那密码就以该环境变量中的值为准。
+
 <!-- markdownlint-enable -->
 
 ## 指标 {#metric}
@@ -310,6 +338,7 @@ apt-get install -y libaio-dev libaio1
 |`logical_reads`|Logical reads per second|float|count|
 |`logons`|Number of logon attempts|float|count|
 |`memory_sorts_ratio`|Memory sorts ratio|float|percent|
+|`pga_over_allocation_count`|Over-allocating PGA memory count|float|count|
 |`physical_reads`|Physical reads per second|float|count|
 |`physical_reads_direct`|Physical reads direct per second|float|count|
 |`physical_writes`|Physical writes per second|float|count|
@@ -329,7 +358,7 @@ apt-get install -y libaio-dev libaio1
 
 ## 慢查询支持 {#slow}
 
-Datakit 可以将执行超过用户自定义时间的 SQL 语句报告给观测云，在日志中显示，来源名是 `oracle_logging`。
+Datakit 可以将执行超过用户自定义时间的 SQL 语句报告给观测云，在日志中显示，来源名是 `oracle_log`。
 
 该功能默认情况下是关闭的，用户可以在 Oracle 的配置文件中将其打开，方法如下：
 
@@ -352,12 +381,20 @@ Datakit 可以将执行超过用户自定义时间的 SQL 语句报告给观测�
     - 如果值是 `0s` 或空或小于 1 毫秒，则不会开启 Oracle 采集器的慢查询功能，即默认状态。
     - 没有执行完成的 SQL 语句不会被查询到。
 
+## 自定义查询支持 {#custom}
+
+<!-- markdownlint-disable MD051 -->
+支持自定义查询数据采集。具体用法与例子见上面 [采集器配置](oracle.md#input-config) 里面的 `custom_queries`。
+<!-- markdownlint-enable -->
+
 ## FAQ {#faq}
 
 <!-- markdownlint-disable MD013 -->
 ### :material-chat-question: 如何查看 Oracle 采集器的运行日志？ {#faq-logging}
 
-由于 Oracle 采集器是外部采集器，其日志是单独存放在 *[Datakit 安装目录]/externals/oracle.log* 中。
+由于 Oracle 采集器是外部采集器，其日志是默认单独存放在 *[Datakit 安装目录]/externals/oracle.log* 中。
+
+另外，可以在配置文件中通过 `--log` 参数来指定日志文件位置。
 
 ### :material-chat-question: 配置好 Oracle 采集之后，为何 monitor 中无数据显示？ {#faq-no-data}
 
