@@ -41,6 +41,22 @@ ACL SETUSER username on +@dangerous
 ACL SETUSER username on +ping
 ```
 
+- goes to the rediss-cli command line, authorization statistics hotkey information
+
+```sql
+CONFIG SET maxmemory-policy allkeys-lfu
+```
+
+- collect hotkey & `bigkey` remote, need install redis-cli (collect local need not install it)
+
+```shell
+# ubuntu 
+apt-get install redis-tools
+
+# centos
+yum install -y  redis
+```
+
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
@@ -65,6 +81,26 @@ ACL SETUSER username on +ping
     
       ## @param interval - number - optional - default: 15
       interval = "15s"
+    
+      ## @param hotkey - boolean - optional - default: false
+      ## If you collet hotkey, set this to true
+      # hotkey = false
+    
+      ## @param bigkey - boolean - optional - default: false
+      ## If you collet bigkey, set this to true
+      # bigkey = false
+    
+      ## @param key_interval - number - optional - default: 5m
+      ## Interval of collet hotkey & bigkey
+      # key_interval = "5m"
+    
+      ## @param key_timeout - number - optional - default: 5m
+      ## Timeout of collet hotkey & bigkey
+      # key_timeout = "5m"
+    
+      ## @param key_scan_sleep - string - optional - default: "0.1"
+      ## Mean sleep 0.1 sec per 100 SCAN commands
+      # key_scan_sleep = "0.1"
     
       ## @param keys - list of strings - optional
       ## The length is 1 for strings.
@@ -168,27 +204,9 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
-#### `redis_bigkey`
 
 
 
-- tag
-
-
-| Tag | Description |
-|  ----  | --------|
-|`db_name`|DB name.|
-|`host`|Hostname|
-|`key`|Monitor key|
-|`server`|Server addr|
-|`service_name`|Service name|
-
-- feld list
-
-
-| Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
-|`value_length`|Key length|int|-| 
 
 
 
@@ -577,6 +595,57 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
+
+#### `redis_bigkey`
+
+
+
+- tag
+
+
+| Tag | Description |
+|  ----  | --------|
+|`db_name`|DB name.|
+|`host`|Hostname.|
+|`key`|Key name.|
+|`key_type`|Key type.|
+|`server`|Server addr.|
+|`service_name`|Service name.|
+
+- field list
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`keys_sampled`|Sampled keys in the key space.|int|-|
+|`value_length`|Key length.|int|-| 
+
+
+
+
+
+#### `redis_hotkey`
+
+
+
+- tag
+
+
+| Tag | Description |
+|  ----  | --------|
+|`db_name`|DB name.|
+|`host`|Hostname.|
+|`key`|Key name.|
+|`server`|Server addr.|
+|`service_name`|Service name.|
+
+- field list
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`key_count`|Key count times.|int|-|
+|`keys_sampled`|Sampled keys in the key space.|int|-| 
 
 
 

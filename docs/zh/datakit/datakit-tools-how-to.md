@@ -30,7 +30,7 @@ DQL used to query data. If no option specified, query interactively. Other avail
 
 ## 数据录制和回放 {#record-and-replay}
 
-[:octicons-tag-24: Version-1.18.0](changelog.md#cl-1.18.0)
+[:octicons-tag-24: Version-1.19.0](changelog.md#cl-1.19.0)
 
 数据导入主要用于录入已有的采集数据，再做演示或测试的时候，可以不用额外采集。
 
@@ -71,6 +71,12 @@ DQL used to query data. If no option specified, query interactively. Other avail
 
 12 directories, 59 files
 ```
+
+<!-- markdownlint-disable MD046 -->
+???+ attention
+
+    数据录制完成后，记得关闭该功能（`enable = false`），否则每次 Datakit 启动都会启动录制，可能会消耗大量磁盘。
+<!-- markdownlint-enable -->
 
 ### 数据回放 {#do-replay}
 

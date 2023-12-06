@@ -44,6 +44,9 @@ The Jaeger Agent embedded in Datakit is used to receive, calculate and analyze J
       ## to data center and do not consider samplers and filters.
       # keep_rare_resource = false
     
+      ## delete trace message
+      # del_message = true
+    
       ## Ignore tracing resources map like service:[resources...].
       ## The service name is the full service name in current application.
       ## The resource list is regular expressions uses to block resource names.
@@ -95,6 +98,7 @@ The Jaeger Agent embedded in Datakit is used to receive, calculate and analyze J
     | `ENV_INPUT_JAEGER_HTTP_ENDPOINT`      | string      | "/apis/traces"                                                                   |
     | `ENV_INPUT_JAEGER_UDP_ENDPOINT`       | string      | "127.0.0.1:6831"                                                                 |
     | `ENV_INPUT_JAEGER_IGNORE_TAGS`        | JSON string | `["block1", "block2"]`                                                           |
+    | `ENV_INPUT_JAEGER_DEL_MESSAGE`        | bool        | true                                                                             |
     | `ENV_INPUT_JAEGER_KEEP_RARE_RESOURCE` | bool        | true                                                                             |
     | `ENV_INPUT_JAEGER_CLOSE_RESOURCE`     | JSON string | `{"service1":["resource1"], "service2":["resource2"], "service3":["resource3"]}` |
     | `ENV_INPUT_JAEGER_SAMPLER`            | float       | 0.3                                                                              |

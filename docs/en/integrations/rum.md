@@ -96,6 +96,8 @@ It is recommended that RUM be deployed separately on the public network, not wit
       ## upload_workers set the count of session replay uploading workers.
       ## send_timeout specify the http timeout when uploading session replay data to dataway.
       ## send_retry_count set the max retry count when sending every session replay request.
+      ## filter_rules set the the filtering rules that matched session replay data will be dropped, 
+      ## all rules are of relationship OR, that is to day, the data match any one of them will be dropped.
       # [inputs.rum.session_replay]
       #   cache_path = "/usr/local/datakit/cache/session_replay"
       #   cache_capacity_mb = 20480
@@ -103,6 +105,10 @@ It is recommended that RUM be deployed separately on the public network, not wit
       #   upload_workers = 16
       #   send_timeout = "75s"
       #   send_retry_count = 3
+      #   filter_rules = [
+      #       "{ service = 'xxx' or version IN [ 'v1', 'v2'] }",
+      #       "{ app_id = 'yyy' and env = 'production' }"
+      #   ]
     
     ```
 

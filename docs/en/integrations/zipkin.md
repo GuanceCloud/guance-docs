@@ -35,6 +35,9 @@ The Zipkin Agent embedded in Datakit is used to receive, calculate and analyze t
       ## to data center and do not consider samplers and filters.
       # keep_rare_resource = false
     
+      ## delete trace message
+      # del_message = true
+    
       ## Ignore tracing resources map like service:[resources...].
       ## The service name is the full service name in current application.
       ## The resource list is regular expressions uses to block resource names.
@@ -86,6 +89,7 @@ The Zipkin Agent embedded in Datakit is used to receive, calculate and analyze t
     | `ENV_INPUT_ZIPKIN_PATH_V2`            | string      | "/api/v2/spans"                                                                  |
     | `ENV_INPUT_ZIPKIN_IGNORE_TAGS`        | JSON string | `["block1", "block2"]`                                                           |
     | `ENV_INPUT_ZIPKIN_KEEP_RARE_RESOURCE` | bool        | true                                                                             |
+    | `ENV_INPUT_ZIPKIN_DEL_MESSAGE`        | bool        | true                                                                             |
     | `ENV_INPUT_ZIPKIN_CLOSE_RESOURCE`     | JSON string | `{"service1":["resource1"], "service2":["resource2"], "service3":["resource3"]}` |
     | `ENV_INPUT_ZIPKIN_SAMPLER`            | float       | 0.3                                                                              |
     | `ENV_INPUT_ZIPKIN_TAGS`               | JSON string | `{"k1":"v1", "k2":"v2", "k3":"v3"}`                                              |
