@@ -151,6 +151,7 @@ nav:
       - apache.md
       - resin.md
       - dongfangtong_tweb.md
+      - apisix.md
 
     - 'Java':
       - 'JVM': jvm.md
