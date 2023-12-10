@@ -30,10 +30,10 @@ icon: zy/release-notes
         - 新增数据脱敏规则，支持配置多个字段并应用多个正则表达式；
         - 支持配置全部【索引】和【角色】；
         - 新增脱敏预览，以便判断规则是否能满足需求。
-    - 快照 > [分享快照](../getting-started/function-details/snapshot.md#share)：
-        - 分享链接有效时间新增 1、3、7天，默认选中 1 天；
-        - 数据脱敏：支持配置多个字段并应用多个正则表达式；
-        - 支持预览快照，您可以提前查看所有已配置的页面效果。
+- 快照 > [分享快照](../getting-started/function-details/snapshot.md#share)：
+    - 分享链接有效时间新增 1、3、7天，默认选中 1 天；
+    - 数据脱敏：支持配置多个字段并应用多个正则表达式；
+    - 支持预览快照，您可以提前查看所有已配置的页面效果。
 - RUM：【新建应用】页面布局调整，优化使用体验。
 - 聚类分析：
     - [RUM > Error 查看器](../real-user-monitoring/explorer/error.md#analysis) & [APM > 错误追踪](../application-performance-monitoring/error.md#analysis)：聚类分析模式下调整为 `drain()` 算法聚合逻辑；新增输入框可修改聚类字段，默认为 `error_message`，最多可输入3个字段，也可根据需要自定义聚类字段。
