@@ -2,9 +2,9 @@
 ---
 
 
-自定义对象数据上报需要先安装并连通 DataKit 和 DataFlux Func ，再通过 DataFlux Func 上报数据到 DataKit，最终 DataKit 上报数据到观测云工作空间。
+自定义对象数据上报需要先安装并连通 DataKit 和 DataFlux Func，再通过 DataFlux Func 上报数据到 DataKit，最终 DataKit 上报数据到观测云工作空间。
 
-![](../img/自定义对象.png)
+![](../img/object.png)
 
 ## 安装 DataKit
 
@@ -66,9 +66,9 @@ DataFlux Func 和 DataKit 连通以后，可以在 DataFlux Func 中撰写函数
 
 下面的示例主要以阿里云产品为例，说明如何通过 DataFlux Func 上报自定义对象数据。
 
-前提条件：已经完成 DataKit 和 DataFlux Func 安装及连通。
+**前提条件**：已经完成 DataKit 和 DataFlux Func 安装及连通。
 
-1、在浏览器输入 `http://服务器IP地址:8088`，输入账号和密码，可在初始化时配置，默认为`admin/admin`。
+1、在浏览器输入 `http://服务器IP地址:8088`，输入账号和密码，可在初始化时配置，默认为 `admin/admin`。
 
 ![](../img/3.object_more_api_function_4.png)
 
