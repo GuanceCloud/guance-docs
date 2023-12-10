@@ -75,7 +75,7 @@
 - 开启自动刷新时：  
     - 支持选择自动刷新时间，包含 5s/10s/30s/1m/5m/30m/1h；默认选中 30s；  
     - 支持点击 :octicons-sync-24: 手动刷新。
-- 停止自动刷新时，支持点击 :octicons-sync-24: 手动刷新；
+- 停止自动刷新时，支持点击 :octicons-sync-24: 手动刷新。
 
 
 ![](img/dashboard-refresh.gif)
