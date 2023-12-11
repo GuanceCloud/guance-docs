@@ -1,9 +1,10 @@
 ---
 title: '阿里云 KafKa'
-summary: '阿里云 Kafka 的展示指标包括消息吞吐量、延迟、并发连接数和可靠性，这些指标反映了 Kafka 在处理大规模消息传递和实时数据流时的性能表现和可靠性保证。'
+summary: '阿里云 KafKa 包括实例磁盘使用率、实例何topic 消息生产量、消息生产次数、消息消费量、消息消费次数等，这些指标反映了 Kafka 在处理大规模消息传递和实时数据流时的可靠性保证。
+'
 __int_icon: 'icon/aliyun_kafka'
 dashboard:
-  - desc: '阿里云 Kafka 社区版内置视图'
+  - desc: '阿里云 Kafka 内置视图'
     path: 'dashboard/zh/aliyun_kafka/'
 monitor:
   - desc: '阿里云 KafKa 监控器'
@@ -15,7 +16,7 @@ monitor:
 # 阿里云 **KafKa**
 <!-- markdownlint-enable -->
 
-阿里云 `KafKa` 包括消息吞吐量、延迟、并发连接数和可靠性，这些指标反映了 Kafka 在处理大规模消息传递和实时数据流时的性能表现和可靠性保证
+阿里云 `KafKa` 包括实例磁盘使用率、实例何topic 消息生产量、消息生产次数、消息消费量、消息消费次数等，这些指标反映了 Kafka 在处理大规模消息传递和实时数据流时的可靠性保证。
 
 
 ## 配置 {#config}
@@ -52,16 +53,21 @@ monitor:
 3. 在观测云平台，「指标」查看是否有对应监控数据
 
 ## 指标 {#metric}
-配置好阿里云-云监控,默认的指标集如下, 可以通过配置的方式采集更多的指标 [阿里云云监控指标详情](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
+配置好阿里云-云监控,默认的指标集如下, 可以通过配置的方式采集更多的指标 [阿里云云监控指标详情](https://cms.console.aliyun.com/metric-meta/acs_kafka/kafka?spm=a2c4g.11186623.0.0.2524166d7ZAGWy){:target="_blank"}
 
 | Metric Id                | Metric Name      | Dimensions        | Statistics      | Unit     |
 | ---- | ---- | ---- | ---- | ---- |
-| instance_disk_capacity_Maximum | 实例最大磁盘容量 | userId,instanceId | Average,Maximum | KBytes/s |
-| instance_message_input | 输入消息 | userId,instanceId | Average,Maximum | messages |
-| instance_message_num_inp | 输入消息数量 | userId,instanceId | Average,Maximum | messages |
-| instance_message_output | 输出消息    | userId,instanceId | Average,Maximum | messages |
-| instance_reqs_input | 输入请求       | userId,instanceId | Average,Maximum | Count   |
-| instance_reqs_output | 输出请求   | userId,instanceId | Average,Maximum | Count |
+| instance_disk_capacity_Maximum | V2实例磁盘使用率 | userId,instanceId | Maximum | % |
+| instance_message_input | 实例消息生产量 | userId,instanceId | Value | bytes/s |
+| instance_message_num_input | 实例消息生产条数 | userId,instanceId | Value | countSecond |
+| instance_message_output | 实例消息消费量    | userId,instanceId | Value | bytes/s |
+| instance_reqs_input | 实例消息发送次数       | userId,instanceId | Value | countSecond   |
+| instance_reqs_output | 实例消息消费次数   | userId,instanceId | Value | countSecond |
+| topic_message_input | topic消息生产量 | userId,instanceId | Value | bytes/s |
+| topic_message_num_input | topic消息生产条数 | userId,instanceId | Value | countSecond |
+| topic_message_output | topic消息消费量 | userId,instanceId | Value | bytes/s |
+| topic_reqs_input | topic消息发送次数 | userId,instanceId | Value | countSecond |
+| topic_reqs_output | topic消息消费次数 | userId,instanceId | Value | countSecond |
 
 
 

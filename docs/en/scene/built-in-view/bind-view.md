@@ -1,7 +1,6 @@
 # Bind Inner Dashboards
 ---
 
-## Overview
 
 Guance supports custom binding of inner dashboards (user views) to explorers. By associating binding of inner dashboards with link services, applications, log sources, projects or other custom fields, explorers that match the field values can view the newly bound inner dashboards via the side-sliding detail page.
 

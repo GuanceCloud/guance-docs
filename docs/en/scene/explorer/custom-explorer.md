@@ -1,17 +1,19 @@
 # Build a Custom Log Explorer
 ---
 
-Log explorer is an important tool for log observation, supporting us to quickly locate the problem by searching and filtering. Based on the original log observation viewer, Guance supports creating a custom log viewer at the scene.
+Log explorer is an important tool for log observation, supporting us to quickly locate the problem by searching and filtering. Based on the original log observation explorer, Guance supports creating a custom log explorer at the scene.
 
-The custom explorer applies a new unified layout, responsive configuration mode and more scientific data association configuration. The following will take the Redis log custom explorer as an example, in which you can experience the following operations.
+The custom explorer applies a new unified layout, responsive configuration mode and more scientific data association configuration. The following will *take the Redis log custom explorer as an example*, in which you can experience the following operations:
 
 - Multiple custom chart display settings
 - Customizable shortcut filter fields
 - Customize the list to display columns by default
 - Bind the inner dashboard for viewing associations
 
-## Start creating a custom explorer for the logs
+## Start Creating
+
 ### Create a new Redis log explorer
+
 Go to **Scene > Explorer** page, click **New Explorer** to create a new custom explorer. As shown in the following figure.
 
 Note: If after setting the index in **Log > Index**, it supports to select different indexes corresponding to the log content in the custom explorer. For more details, please refer to the document [log index](../../logs/multi-index.md).
