@@ -93,13 +93,13 @@ Output event content:
 - Monitor: monitor001 (Alarm policy: Team001)
 ```
 
-### Dimension Tags with dashs `-`
+### Fields containing special characters such as -, @, etc.
 
-In some cases, the deimension tag key may contains a dash `-`, e.g. `host-name`.
+In some cases, the deimension tag key may contains special characters such as `-`, `@`, etc., e.g., `host-name`, `@level`.
 
-According the syntax, the template engine will parse `host-name` as "`host` minus `name`", resulting in error to render properly.
+According to the template syntax, such field names can't be used as normal variable names, resulting in rendering failure.
 
-In this case, `df_event['host-name']` can be used instead of `host-name`, e.g.: `{{ df_event['host-name'] }}`
+In this case, `{{ df_event['host-name'] }}`, `{{ df_event['@level'] }}` can be used instead of `{{ host-name }}`, `{{ @level }}`.
 
 ## Template Functions
 
@@ -287,7 +287,8 @@ O::HOST:(host, host_ip, os, datakit_ver) { host = 'my_server' }
     - Embedded DQL queries should be placed at the beginning of the template
     - Query result names (`dql_data` here) follow general programming language naming requirements and can start with any English character and contain only strings of English, numbers, and underscores, and emoji is **NOT** recommended.
     - Query result names should **NOT** be duplicated with any existing template variables or template functions, or unexpected problems may occur.
-    - If a function is used on the field in DQL (e.g., `O::HOST:( last(host) )`), it is recommended to use `AS` to give an alias to the field for further use (e.g., `O::HOST:( last(host) AS last_host )`).
+    - If a function is used on the field in DQL, it is recommended to use `AS` to give an alias to the field for further use (e.g., `O::HOST:( last(host) AS last_host )`).
+    - If the field names in DQL contain special characters, as with template variables, they should be rendered using `{{ dql_data['host-name'] }}`, `{{ dql_data['@level'] }}`.
 
 ### More about DQL
 
