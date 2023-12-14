@@ -40,7 +40,7 @@ JAVA 线程异步常见的实现方式有：
     ...
 ```
 
-关于 DDTrace sdk 使用方式参考文档[`ddtrace-api`使用指南](/best-practices/insight/ddtrace-skill-api.md)
+关于 DDTrace sdk 使用方式参考文档[`ddtrace-api`使用指南](/best-practices/insight/ddtrace-skill-api/)
 
 ## Logback 配置
 
