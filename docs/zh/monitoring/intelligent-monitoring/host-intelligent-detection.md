@@ -15,17 +15,17 @@
 
 ### 步骤一：检测配置 {#config}
 
-![image](../img/intelligent-detection03.png)
+![](../img/intelligent-detection03.png)
 
 1）**监控器名称**：支持编辑监控器名称。
 
 2）**检测频率**：检测规则的执行频率，固定 30 分钟。
 
-3）**请选择要监控的主机范围**：配置数据里对应的的字符串类型（keyword）字段都可以作为筛选项进行选择，通过多个筛选项的组合，限定检测的主机范围。
+3）**请选择要监控的主机范围**：通过筛选组合，限定检测的主机范围。
 
 ### 步骤二：事件通知
 
-![image](../img/intelligent-detection07.png)
+![](../img/intelligent-detection07.png)
 
 4）**事件内容**：提供预置的事件通知模版，满足触发条件时发送事件通知内容，同时，支持输入 Markdown 格式文本信息补充事件描述，支持预览效果，支持使用预置的 [关联链接](link-description.md)，支持使用预置的 [模板变量](../event-template.md)。
 
@@ -37,7 +37,10 @@
 
 6）**告警策略**：监控满足触发条件后，立即发送告警消息给指定的通知对象。告警策略中包含需要通知的事件等级、通知对象、以及告警聚合。
 
-**注意**：智能监控触发的事件等级为【重要】。
+???+ warning
+
+    智能监控触发的事件等级为【重要】。
+
 
 ## 监控器列表
 
@@ -69,7 +72,7 @@
 
 1. 分析报告
 
-![image](../img/intelligent-detection10.png)
+![](../img/intelligent-detection10.png)
 
 * 事件内容：显示查看监控器配置的事件内容
 * 异常总结：显示查看当前异常主机名标签、异常分析报告详情、异常值时序图显示异常趋势
@@ -78,13 +81,13 @@
 
 **注意**：存在多个区间异常时，**异常总结 > 异常趋势图**及**异常分析**仪表板默认展示第一段异常区间的异常情况分析，可以点击【异常趋势图】进行切换，切换后异常分析仪表板同步联动。
 
-2. [扩展字段](../../events/event-details.md#event-extension)
+2. [扩展字段](../../events/event-explorer/event-details.md#extension)
 
-3. [告警通知](../../events/event-details.md#alarm)
+3. [告警通知](../../events/event-explorer/event-details.md#alarm)
 
-4. [历史记录](../../events/event-details.md#history)
+4. [历史记录](../../events/event-explorer/event-details.md#history)
 
-5. [关联事件](../../events/event-details.md#relevance)
+5. [关联事件](../../events/event-explorer/event-details.md#relevance)
 
 
 

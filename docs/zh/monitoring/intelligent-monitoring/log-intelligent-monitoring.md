@@ -78,8 +78,10 @@
 
 **注意**：存在多个区间异常时，**异常总结 > 异常值分布图**及**异常分析**仪表板默认展示第一段异常区间的异常情况分析，可以点击【异常值分布图】进行切换，切换后异常分析仪表板同步联动。
 
-2. [告警通知](../../events/event-details.md#alarm)
+2. [扩展字段](../../events/event-explorer/event-details.md#extension)
 
-3. [历史记录](../../events/event-details.md#history)
+3. [告警通知](../../events/event-explorer/event-details.md#alarm)
 
-4. [关联事件](../../events/event-details.md#relevance)
+4. [历史记录](../../events/event-explorer/event-details.md#history)
+
+5. [关联事件](../../events/event-explorer/event-details.md#relevance)
