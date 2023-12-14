@@ -62,7 +62,7 @@
 
 ![](img/2.dashboard_2.png)
 
-### 时间控件
+### 时间控件 
 
 观测云支持通过[时间控件](../getting-started/function-details/explorer-search.md#time)控制当前仪表板的数据展示范围，用户可以手动输入时间范围，或快速选择当前仪表板的内置时间范围，或通过自定义设置时间范围。
 
@@ -89,13 +89,13 @@
 
 ![](img/2.dashboard_3.png)
 
-#### 新建 Issue
+#### 新建 Issue 
 
 您可以将当前仪表板内观测到的异常现象创建为 Issue。
  
 > 更多相关操作，可参考[如何在视图级别手动创建 Issue](../exception/issue.md#dashboards)。关于 Issue 更多相关信息，可参考[异常追踪](../exception/index.md)。
 
-#### 保存快照
+#### 保存快照 
 
 在仪表板用快捷键 `(Windows: Ctrl+K / Mac OS: Cmd+K)` 快速保存快照，即可为当前仪表板保存快照，或者选择在**设置**按钮点击**保存快照**进行保存。
 
