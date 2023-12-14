@@ -6,6 +6,57 @@ icon: zy/release-notes
 
 本文档记录观测云每次上线发布的更新内容说明，包括 DataKit、观测云最佳实践、观测云集成文档和观测云。
 
+
+## 2023 年 12 月 14 日
+
+### 观测云更新
+
+- 监控：
+    - 新增[智能监控](../monitoring/intelligent-monitoring/index.md)：
+        - [主机智能检测](../monitoring/intelligent-monitoring/host-intelligent-detection.md)：支持 CPU 的突增/突降/区间上升，内存的突增/突降/区间上升检测；
+        - [日志智能检测](../monitoring/intelligent-monitoring/log-intelligent-monitoring.md)：支持日志数量的突增/突降，错误日志的突增检测；
+        - [应用智能检测](../monitoring/intelligent-monitoring/application-intelligent-detection.md)：支持请求数量突增/突降，错误请求数量突增，请求延迟的突增/突降/区间上升检测。
+    - [突变检测](../monitoring/monitor/mutation-detection.md)：新增触发规则前提条件，当检测值满足该条件时进行突变检测规则，提升监控精准度。
+- 事件：
+    - 新增[智能监控](../events/inte-monitoring-event.md)事件查看器：可查看智能监控产生的全部事件信息。
+- 日志：
+    - [数据访问](../logs/logdata-access.md)新增【仅显示跟我相关规则】配置：开启后仅显示影响当前账号数据查询的访问规则。
+    - [日志 > 查看器](../logs/explorer.md)：新增数据访问规则限制提示。
+- 基础设施 > [容器](../infrastructure/contrainer.md)：
+    - 新增 Kubernetes 分析看板：容器对象分析看板，帮助您从不同维度了解 Kubernetes 中的各基础设施情况。
+    - 查看器新增容器分组：对容器进行分组管理。
+- 指标：
+    - [查看器](../metrics/explorer.md)：
+        - 表格图新增【查询工具】模式：返回结果与**快捷入口 > 查询工具**保持一致；若添加多个查询，默认返回第一条查询结果；该模式下支持最多导出 1000 条查询记录。
+        - 新增查询条件【复制】功能，优化页面体验。
+        - 查询组件优化：简单查询的【by 分组】支持自由拖动调整顺序。
+- 付费计划与账单：
+    - 新增[数据转发使用分析](../billing/commercial.md)列表：查看当前工作空间所有数据转发规则的转发数量。若转发规则是到观测云备份日志的模块，会显示对应的保存策略。同时，支持时间控件筛选所需的数据转发情况列表，方便快速查看历史日志的备份整体情况。
+- 查看器：
+    - 调整所有查看器，分析模式下隐藏趋势图显示。
+- SSO：
+    - 优化 SSO 用户工作空间列出逻辑，修复因无访问权限自动退出登录的问题。
+
+
+### 观测云部署版更新
+
+- 管理后台调整：
+    - 新增[告警通知独立发送](../deployment/setting.md)配置：开启此配置后，告警策略选择【告警不聚合】选项时，每条事件都会发送一份告警通知，帮助您高效管理告警通知。
+    - 新增[事件链接免登查看](../deployment/setting.md)配置：开启此配置后，所有工作空间发送的告警通知内置的事件关联链接都可以免登访问。若关闭该配置，则历史发送的免登链接都会失效，保障数据安全。
+    - 优化【定时报告】：支持查询范围自定义配置，上限由 30 天调整为 360 天，满足您所需定时报告的拓展需求。
+
+### 新增/更新集成
+
+- 新增 [APISIX](../integrations/apisix.md)
+- 更新 [阿里云 KafKa](../integrations/aliyun_kafka.md)
+- 更新 [达梦](../integrations/dm_v8.md)
+
+### 更新最佳实践
+
+- [异常追踪与 JIRA 实现双向联动最佳实践](../best-practices/insight/im_jira.md) 修复 404 链接
+- [Trace 在多线程异步体系下传递最佳实践](../best-practices/insight/trace_thread/.md) 修复 404 链接
+
+
 ## 2023 年 11 月 30 日
 
 ### 观测云更新
