@@ -121,30 +121,37 @@
 ![](img/logdatasnapshot.png)
 
 
-## 列表操作
+## 列表操作 {#list}
 
-<div class="grid" markdown>
+:material-numeric-1-circle-outline: 查看
 
-=== "查看"
+规则配置完成后，可查看该条规则是否脱敏以及关联的角色数量与角色对应成员数量.
 
-    规则配置完成后，可查看该条规则是否脱敏以及关联的角色数量与角色对应成员数量.
+![](img/logdata_2.png)
 
-    ![](img/logdata_2.png)
+若当前规则配置了脱敏字段和正则表达式，Hover 还可直接在列表显示对应规则内配置的脱敏字段和正则表达式以及正则表达式的启用、禁用状态：
 
-    若当前规则配置了脱敏字段和正则表达式，Hover 还可直接在列表显示对应规则内配置的脱敏字段和正则表达式以及正则表达式的启用、禁用状态：
+![](img/data-7.png)
 
-    ![](img/data-7.png)
+【仅显示跟我相关的规则】：
 
-=== "修改"
+- 默认“关闭”，即显示所有数据访问规则列表；
 
-    点击规则右侧**修改**图标，可修改规则下的索引、筛选条件及授权角色等设置：
+- 设置【仅显示跟我相关的规则】，仅显示与当前账号角色关联的数据访问规则。
 
-    ![](img/logdata_1.png)
+![](img/log-acc01.png)
 
-=== "删除"
+:material-numeric-2-circle-outline: 修改
 
-    点击规则右侧 :fontawesome-regular-trash-can: 图标，点击**确认**，即可删除该条规则：
+点击规则右侧**修改**图标，可修改规则下的索引、筛选条件及授权角色等设置：
+
+![](img/logdata_1.png)
+
+:material-numeric-3-circle-outline: 删除
+
+点击规则右侧 :fontawesome-regular-trash-can: 图标，点击**确认**，即可删除该条规则：
   
-    ![](img/logdata_3.png)
+![](img/logdata_3.png)
 
-</div>
+
+
