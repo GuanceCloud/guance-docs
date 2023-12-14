@@ -106,7 +106,7 @@ DataWay 是观测云的数据网关，采集器上报数据到观测云都需要
 
 ???+ note "注意事项"
 
-    - 只能在 Linux 系统上运行
+    - Dataway 只能在 Linux 系统上运行（目前只发布了 Linux arm64/amd64 二进制）
     - 主机安装时，Dataway 安装路径为 */usr/local/cloudcare/dataflux/dataway*
     - Kubernetes 下默认设置了 4000m/4Gi 的资源限制，可根据实际情况做调整。最低要求为 100m/512Mi
 <!-- markdownlint-enable -->
@@ -175,7 +175,7 @@ Kubernetes 重启对应的 Pod 即可。
 | Env                  | 是否必需 | 说明                                                                                               | 取值 |
 | ---                  | ---      | ---                                                                                                | ---  |
 | DW_BIND              | N        | Dataway HTTP API 绑定地址，默认 `0.0.0.0:9528`                                                     |      |
-| DW_CASCADED          | N        | Dataway 是否级联                                                                                   | "on" |
+| DW_CASCADED          | N        | Dataway 是否级联                                                                                   | `on` |
 | DW_ETCD_HOST         | N        | etcd 地址，目前仅支持指定单个地址，如 `http://1.2.3.4:2379`                                        |      |
 | DW_ETCD_PASSWORD     | N        | etcd 密码                                                                                          |      |
 | DW_ETCD_USERNAME     | N        | etcd 用户名                                                                                        |      |
@@ -209,7 +209,7 @@ Dataway 在 Kubernetes 环境中运行时，支持如下环境变量。
 | DW_BIND                     | N        | Dataway HTTP API 绑定地址，默认 `0.0.0.0:9528`                                                     |      |
 | DW_API_LIMIT                | N        | Dataway API 限流设置，如设置为 1000，则每个具体的 API 在 1s 以内只允许请求 1000 次，默认 100K      |      |
 | DW_HEARTBEAT                | N        | Dataway 跟中心的心跳间隔，默认 60s                                                                 |      |
-| DW_MAX_HTTP_BODY_BYTES      | N        | Dataway API 允许的最大 HTTP Body（单位字节），默认 64MB                                            |      |
+| DW_MAX_HTTP_BODY_BYTES      | N        | Dataway API 允许的最大 HTTP Body（**单位字节**），默认 64MB                                        |      |
 | DW_TLS_INSECURE_SKIP_VERIFY | N        | 忽略 HTTPS/TLS 证书错误                                                                            | `on` |
 | DW_HTTP_CLIENT_TRACE        | N        | Dataway 自己作为 HTTP 客户端，可以开启一些相关的指标收集，这些指标最终会在其 Prometheus 指标中输出 | `on` |
 
@@ -235,7 +235,7 @@ Dataway 在 Kubernetes 环境中运行时，支持如下环境变量。
 
 | Env                         | 是否必需 | 说明                                                                     | 取值 |
 | ---                         | ---      | ---                                                                      | ---  |
-| DW_CASCADED                 | N        | Dataway 是否级联                                                         | "on" |
+| DW_CASCADED                 | N        | Dataway 是否级联                                                         | `on` |
 | DW_SINKER_ETCD_URLS         | N        | etcd 地址列表，以 `,` 分割，如 `http://1.2.3.4:2379,http://1.2.3.4:2380` |      |
 | DW_SINKER_ETCD_DIAL_TIMEOUT | N        | etcd 连接超时，默认 30s                                                  |      |
 | DW_SINKER_ETCD_KEY_SPACE    | N        | Sinker 配置所在的 etcd key 名称（默认 `/dw_sinker`）                     |      |
@@ -255,16 +255,16 @@ Dataway 在 Kubernetes 环境中运行时，支持如下环境变量。
 | ---              | ---      | ---                                              | ---  |
 | DW_PROM_URL      | N        | Prometheus 指标的 URL Path（默认 `/metrics`）    |      |
 | DW_PROM_LISTEN   | N        | Prometheus 指标暴露地址（默认 `localhost:9090`） |      |
-| DW_PROM_DISABLED | N        | 禁用 Prometheus 指标暴露                         | "on" |
+| DW_PROM_DISABLED | N        | 禁用 Prometheus 指标暴露                         | `on` |
 
 #### 磁盘缓存设置 {#env-diskcache}
 
 | Env                          | 是否必需 | 说明                                               | 取值                               |
 | ---                          | ---      | ---                                                | ---                                |
 | DW_DISKCACHE_DIR             | N        | 设置缓存目录，**该目录一般外挂存储**               | *path/to/your/cache*               |
-| DW_DISKCACHE_DISABLE         | N        | 禁用磁盘缓存，**如果不禁用缓存，需删除该环境变量** | "on"                               |
-| DW_DISKCACHE_CLEAN_INTERVAL  | N        | 缓存清理间隔（默认 30s）                           | Duration 字符串                    |
-| DW_DISKCACHE_EXPIRE_DURATION | N        | 缓存过期时间（默认 24h）                           | Duration 字符串，如 `72h` 表示三天 |
+| DW_DISKCACHE_DISABLE         | N        | 禁用磁盘缓存，**如果不禁用缓存，需删除该环境变量** | `on`                               |
+| DW_DISKCACHE_CLEAN_INTERVAL  | N        | 缓存清理间隔，默认 30s                             | Duration 字符串                    |
+| DW_DISKCACHE_EXPIRE_DURATION | N        | 缓存过期时间，默认 168h（7d）                      | Duration 字符串，如 `72h` 表示三天 |
 
 ## Dataway API 列表 {#apis}
 
@@ -319,7 +319,7 @@ Dataway 在 Kubernetes 环境中运行时，支持如下环境变量。
 <!-- markdownlint-disable MD046 -->
 ???+ attention "HTTP client 指标采集"
 
-    如果要采集 Dataway HTTP 请求 Kodo（或者下一跳 Dataway）的指标，需要手动开启 `http_client_trace` 配置。也可以在安装阶段，指定 `DW_HTTP_CLIENT_TRACE=on`。
+    如果要采集 Dataway HTTP 请求 Kodo（或者下一跳 Dataway）的指标，需要手动开启 `http_client_trace` 配置。或者指定环境变量 `DW_HTTP_CLIENT_TRACE=on`。
 
 === "主机部署"
 
@@ -329,18 +329,16 @@ Dataway 在 Kubernetes 环境中运行时，支持如下环境变量。
     [[inputs.prom]]
       ## Exporter URLs.
       urls = [ "http://localhost:9090/metrics", ]
-
       source = "dataway"
-
       election = true
-
-      ## dataway 指标集固定为 dw，不要更改
-      measurement_name = "dw"
+      measurement_name = "dw" # dataway 指标集固定为 dw，不要更改
+    [inputs.prom.tags]
+      service = "dataway"
     ```
 
 === "Kubernetes"
 
-    如果集群中有部署 Datakit（需 [Datakit 1.14.2](../datakit/changelog.md#cl-1.14.2) 以上版本），那么可以在 Dataway 中开启 Prometheus 指标暴露：
+    如果集群中有部署 Datakit（需 [Datakit 1.14.2](../datakit/changelog.md#cl-1.14.2) 以上版本），那么可以在 Dataway 中开启 Prometheus 指标暴露（Dataway 默认 POD yaml 已经自带）：
 
     ```yaml
     annotations: # 以下 annotation 默认已添加
@@ -349,12 +347,12 @@ Dataway 在 Kubernetes 环境中运行时，支持如下环境变量。
            url = "http://$IP:9090/metrics" # 此处端口（默认 9090）视情况而定
            source = "dataway"
            measurement_name = "dw" # 固定为该指标集
-           interval = "30s"
+           interval = "10s"
+           disable_instance_tag = true
 
-           [inputs.prom.tags]
-             namespace = "$NAMESPACE"
-             pod_name = "$PODNAME"
-             node_name = "$NODENAME"
+         [inputs.prom.tags]
+           service = "dataway"
+           instance = "$PODNAME"
 
     ...
     env:
@@ -372,7 +370,7 @@ Dataway 在 Kubernetes 环境中运行时，支持如下环境变量。
 
 以下是 Dataway 暴露的指标，通过请求 `http://localhost:9090/metrics` 即可获取这些指标，可通过如下命令实时查看（3s）某个具体的指标：
 
-> 某些指标如果查询不到，可能是相关业务模块尚未运行所致。
+> 某些指标如果查询不到，可能是相关业务模块尚未运行所致。某些新的指标只在最新版本中存在，此处不再一一标明各个指标的版本信息，以 `/metrics` 接口返回的指标列表为准。
 
 ```shell
 watch -n 3 'curl -s http://localhost:9090/metrics | grep -a <METRIC-NAME>'
@@ -380,48 +378,156 @@ watch -n 3 'curl -s http://localhost:9090/metrics | grep -a <METRIC-NAME>'
 
 |TYPE|NAME|LABELS|HELP|
 |---|---|---|---|
+|COUNTER|`dataway_http_api_body_too_large_dropped_total`|`api,method`|API request too large dropped|
+|COUNTER|`dataway_http_api_with_inner_token`|`api,method`|API request with inner token|
 |COUNTER|`dataway_http_api_dropped_total`|`api,method`|API request dropped when sinker rule match failed|
 |COUNTER|`dataway_http_api_signed_total`|`api,method`|API signature count|
+|SUMMARY|`dataway_http_api_cached_bytes`|`api,cache_type,method,reason`|API cached body bytes|
 |SUMMARY|`dataway_http_api_reusable_body_read_bytes`|`api,method`|API re-read body on forking request|
 |COUNTER|`dataway_http_api_forked_total`|`api,method,token`|API request forked total|
-|GAUGE|`dataway_http_info`|`cascaded,docker,http_client_trace,listen,release_date,remote,secret,token,version`|Dataway API basic info|
+|GAUGE|`dataway_http_info`|`cascaded,docker,http_client_trace,listen,max_body,release_date,remote,version`|Dataway API basic info|
 |GAUGE|`dataway_cpu_usage`|`N/A`|Dataway CPU usage(%)|
 |GAUGE|`dataway_open_files`|`N/A`|Dataway open files|
 |GAUGE|`dataway_cpu_cores`|`N/A`|Dataway CPU cores|
-|COUNTER|`dataway_process_ctx_switch_total`|`N/A`|Dataway process context switch count(Linux only)|
-|COUNTER|`dataway_process_io_count_total`|`N/A`|Dataway process IO count count|
-|COUNTER|`dataway_process_io_bytes_total`|`N/A`|Dataway process IO bytes count|
+|COUNTER|`dataway_process_ctx_switch_total`|`type`|Dataway process context switch count(Linux only)|
+|COUNTER|`dataway_process_io_count_total`|`type`|Dataway process IO count count|
+|COUNTER|`dataway_process_io_bytes_total`|`type`|Dataway process IO bytes count|
 |GAUGE|`dataway_last_heartbeat_time`|`N/A`|Dataway last heartbeat with Kodo timestamp|
 |SUMMARY|`dataway_http_api_dropped_expired_cache`|`api,method`|Dropped expired cache data|
 |SUMMARY|`dataway_http_api_elapsed_seconds`|`api,method,status`|API request latency|
 |SUMMARY|`dataway_http_api_req_size_bytes`|`api,method,status`|API request size|
 |COUNTER|`dataway_http_api_total`|`api,method,status`|API request count|
+|SUMMARY|`dataway_httpcli_got_first_resp_byte_cost_seconds`|`server`|Got first response byte cost|
 |COUNTER|`dataway_httpcli_tcp_conn_total`|`server,remote,type`|HTTP TCP connection count|
 |COUNTER|`dataway_httpcli_conn_reused_from_idle_total`|`server`|HTTP connection reused from idle count|
 |SUMMARY|`dataway_httpcli_conn_idle_time_seconds`|`server`|HTTP connection idle time|
 |SUMMARY|`dataway_httpcli_dns_cost_seconds`|`server`|HTTP DNS cost|
 |SUMMARY|`dataway_httpcli_tls_handshake_seconds`|`server`|HTTP TLS handshake cost|
 |SUMMARY|`dataway_httpcli_http_connect_cost_seconds`|`server`|HTTP connect cost|
-|SUMMARY|`dataway_httpcli_got_first_resp_byte_cost_seconds`|`server`|Got first response byte cost|
 |COUNTER|`dataway_sinker_pull_total`|`event,source`|Sinker pulled or pushed counter|
 |GAUGE|`dataway_sinker_rule_error`|`error`|Rule errors|
-|GAUGE|`dataway_sinker_rule_last_applied_time`|`source`|Rule last applied time(Unix timestamp)|
+|GAUGE|`dataway_sinker_rule_last_applied_time`|`source`|Rule last appliied time(Unix timestamp)|
 |SUMMARY|`dataway_sinker_rule_cost_seconds`|`N/A`|Rule cost time seconds|
-|COUNTER|`diskcache_put_total`|`N/A`|cache Put() count|
-|COUNTER|`diskcache_put_bytes_total`|`N/A`|cache Put() bytes count|
-|COUNTER|`diskcache_get_total`|`N/A`|cache Get() count|
-|COUNTER|`diskcache_wakeup_total`|`N/A`|wakeup count on sleeping write file|
-|COUNTER|`diskcache_get_bytes_total`|`N/A`|cache Get() bytes count|
-|GAUGE|`diskcache_capacity`|`N/A`|current capacity(in bytes)|
-|GAUGE|`diskcache_max_data`|`N/A`|max data to Put(in bytes), default 0|
-|GAUGE|`diskcache_batch_size`|`N/A`|data file size(in bytes)|
-|GAUGE|`diskcache_size`|`N/A`|current cache size(in bytes)|
-|GAUGE|`diskcache_open_time`|`N/A`|current cache Open time in unix timestamp(second)|
-|GAUGE|`diskcache_last_close_time`|`N/A`|current cache last Close time in unix timestamp(second)|
-|GAUGE|`diskcache_datafiles`|`N/A`|current un-read data files|
-|SUMMARY|`diskcache_get_latency`|`N/A`|Get() time cost(micro-second)|
-|SUMMARY|`diskcache_put_latency`|`N/A`|Put() time cost(micro-second)|
-|COUNTER|`diskcache_dropped_bytes_total`|`N/A`|dropped bytes during Put() when capacity reached.|
-|COUNTER|`diskcache_dropped_total`|`N/A`|dropped files during Put() when capacity reached.|
-|COUNTER|`diskcache_rotate_total`|`N/A`|cache rotate count, mean file rotate from data to data.0000xxx|
-|COUNTER|`diskcache_remove_total`|`N/A`|removed file count, if some file read EOF, remove it from un-read list|
+|COUNTER|`diskcache_put_bytes_total`|`path`|Cache Put() bytes count|
+|COUNTER|`diskcache_get_total`|`path`|Cache Get() count|
+|COUNTER|`diskcache_wakeup_total`|`path`|Wakeup count on sleeping write file|
+|COUNTER|`diskcache_seek_back_total`|`path`|Seek back when Get() got any error|
+|COUNTER|`diskcache_get_bytes_total`|`path`|Cache Get() bytes count|
+|GAUGE|`diskcache_capacity`|`path`|Current capacity(in bytes)|
+|GAUGE|`diskcache_max_data`|`path`|Max data to Put(in bytes), default 0|
+|GAUGE|`diskcache_batch_size`|`path`|Data file size(in bytes)|
+|GAUGE|`diskcache_size`|`path`|Current cache size(in bytes)|
+|GAUGE|`diskcache_open_time`|`no_fallback_on_error,no_lock,no_pos,no_sync,path`|Current cache Open time in unix timestamp(second)|
+|GAUGE|`diskcache_last_close_time`|`path`|Current cache last Close time in unix timestamp(second)|
+|GAUGE|`diskcache_datafiles`|`path`|Current un-read data files|
+|SUMMARY|`diskcache_get_latency`|`path`|Get() time cost(micro-second)|
+|SUMMARY|`diskcache_put_latency`|`path`|Put() time cost(micro-second)|
+|COUNTER|`diskcache_dropped_bytes_total`|`path`|Dropped bytes during Put() when capacity reached.|
+|COUNTER|`diskcache_dropped_total`|`path,reason`|Dropped files during Put() when capacity reached.|
+|COUNTER|`diskcache_rotate_total`|`path`|Cache rotate count, mean file rotate from data to data.0000xxx|
+|COUNTER|`diskcache_remove_total`|`path`|Removed file count, if some file read EOF, remove it from un-read list|
+|COUNTER|`diskcache_put_total`|`path`|Cache Put() count|
+
+### Dataway 自身日志采集和处理 {#logging}
+
+Dataway 自身 Log 分为两类，一个是 gin 日志，一个是自身程序日志，通过如下 Pipeline 可将其分离出来：
+
+```python
+# Pipeline for dataway logging
+
+# Testing sample loggin
+'''
+2023-12-14T11:27:06.744+0800	DEBUG	apis	apis/api_upload_profile.go:272	save profile file to disk [ok] /v1/upload/profiling?token=****************a4e3db8481c345a94fe5a
+[GIN] 2021/10/25 - 06:48:07 | 200 |   30.890624ms |  114.215.200.73 | POST     "/v1/write/logging?token=tkn_5c862a11111111111111111111111111"
+'''
+
+add_pattern("TOKEN", "tkn_\\w+")
+add_pattern("GINTIME", "%{YEAR}/%{MONTHNUM}/%{MONTHDAY}%{SPACE}-%{SPACE}%{HOUR}:%{MINUTE}:%{SECOND}")
+grok(_,"\\[GIN\\]%{SPACE}%{GINTIME:timestamp}%{SPACE}\\|%{SPACE}%{NUMBER:dataway_code}%{SPACE}\\|%{SPACE}%{NOTSPACE:cost_time}%{SPACE}\\|%{SPACE}%{NOTSPACE:client_ip}%{SPACE}\\|%{SPACE}%{NOTSPACE:method}%{SPACE}%{GREEDYDATA:http_url}")
+
+# gin logging
+if cost_time != nil {
+  if http_url != nil  {
+    grok(http_url, "%{TOKEN:token}")
+    cover(token, [5, 15])
+    replace(message, "tkn_\\w{0,5}\\w{6}", "****************$4")
+    replace(http_url, "tkn_\\w{0,5}\\w{6}", "****************$4")
+  }
+
+  group_between(dataway_code, [200,299], "info", status)
+  group_between(dataway_code, [300,399], "notice", status)
+  group_between(dataway_code, [400,499], "warning", status)
+  group_between(dataway_code, [500,599], "error", status)
+
+  if sample(0.1) { # drop 90% debug log
+    drop()
+    exit()
+  } else {
+    set_tag(sample_rate, "0.1")
+  }
+
+  parse_duration(cost_time)
+  duration_precision(cost_time, "ns", "ms")
+  
+  set_measurement('gin', true)
+  set_tag(service,"dataway")
+  exit()
+}
+
+# app logging
+if cost_time == nil {
+  grok(_,"%{TIMESTAMP_ISO8601:timestamp}%{SPACE}%{NOTSPACE:status}%{SPACE}%{NOTSPACE:module}%{SPACE}%{NOTSPACE:code}%{SPACE}%{GREEDYDATA:msg}")
+  if level == nil {
+    grok(message,"Error%{SPACE}%{DATA:errormsg}")
+    if errormsg != nil {
+      add_key(status,"error")
+      drop_key(errormsg)
+    }
+  }
+  lowercase(level)
+
+  # if debug level enabled, drop most of them
+  if status == 'debug' {
+    if sample(0.1) { # drop 90% debug log
+      drop()
+      exit()
+    } else {
+      set_tag(sample_rate, "0.1")
+    }
+  }
+  
+  group_in(status, ["error", "panic", "dpanic", "fatal","err","fat"], "error", status) # mark them as 'error'
+  
+  if msg != nil {
+    grok(msg, "%{TOKEN:token}")
+    cover(token, [5, 15])
+    replace(message, "tkn_\\w{0,5}\\w{6}", "****************$4")
+    replace(msg, "tkn_\\w{0,5}\\w{6}", "****************$4")
+  }
+  
+  set_measurement("dataway-log", true)
+  set_tag(service,"dataway")
+}
+```
+
+## FAQ {#faq}
+
+### 请求体太大问题 {#too-large-request-body}
+
+[:octicons-tag-24: Version-1.3.7](dataway-changelog.md#cl-1.3.7)
+
+Dataway 对请求体大小有默认设置（默认 64MB），但请求体太大时，客户端会收到一个 HTTP 413 报错（`Request Entity Too Large`），如果请求体在合理范围内，可以适当放大该数值（单位字节）：
+
+- 设置环境变量 `DW_MAX_HTTP_BODY_BYTES`
+- 在 *dataway.yaml* 中设置 `max_http_body_bytes`
+
+如果运行期间出现太大的请求包，在指标和日志中都有体现：
+
+- 指标 `dataway_http_too_large_dropped_total` 暴露了丢弃的大请求个数
+- 搜索 Dataway 日志 `cat log | grep 'drop too large request'`，日志会输出 HTTP 请求的 Header 详情，便于进一步了解客户端情况
+
+<!-- markdownlint-disable MD046 -->
+???+ attention
+
+    在磁盘缓存模块，也有一个最大的数据块写入限制（默认 64MB）。如果增加最大请求体配置，也要一并调整该配置（[ENV_DISKCACHE_MAX_DATA_SIZE](https://github.com/GuanceCloud/cliutils/tree/main/diskcache#%E9%80%9A%E8%BF%87-env-%E6%8E%A7%E5%88%B6%E7%BC%93%E5%AD%98-option){:target="_blank"}），以确保大请求能正确写入磁盘缓存。
+<!-- markdownlint-enable -->
