@@ -39,6 +39,9 @@ The collector collects the data of network dialing test results, and all the dat
       # The number of the workers.
       workers = 6
     
+      # Collect related metric when job execution time error interval is larger than task_exec_time_interval
+      task_exec_time_interval = "5s"
+     
       # Stop the task when the task failed to send data to dataway over max_send_fail_count.
       max_send_fail_count = 16
     
@@ -109,6 +112,7 @@ All of the following data collections are appended with a global tag named `host
 |  ----  | --------|
 |`city`|The name of the city|
 |`country`|The name of the country|
+|`datakit_version`|The DataKit version|
 |`dest_ip`|The IP address of the destination|
 |`internal`|The boolean value, true for domestic and false for overseas|
 |`isp`|ISP, such as `chinamobile`, `chinaunicom`, `chinatelecom`|
@@ -151,6 +155,7 @@ All of the following data collections are appended with a global tag named `host
 |  ----  | --------|
 |`city`|The name of the city|
 |`country`|The name of the country|
+|`datakit_version`|The DataKit version|
 |`dest_host`|The name of the host to be monitored|
 |`dest_ip`|The IP address|
 |`dest_port`|The port of the TCP connection|
@@ -186,6 +191,7 @@ All of the following data collections are appended with a global tag named `host
 |  ----  | --------|
 |`city`|The name of the city|
 |`country`|The name of the country|
+|`datakit_version`|The DataKit version|
 |`dest_host`|The name of the host to be monitored|
 |`internal`|The boolean value, true for domestic and false for overseas|
 |`isp`|ISP, such as `chinamobile`, `chinaunicom`, `chinatelecom`|
@@ -228,6 +234,7 @@ All of the following data collections are appended with a global tag named `host
 |  ----  | --------|
 |`city`|The name of the city|
 |`country`|The name of the country|
+|`datakit_version`|The DataKit version|
 |`internal`|The boolean value, true for domestic and false for overseas|
 |`isp`|ISP, such as `chinamobile`, `chinaunicom`, `chinatelecom`|
 |`name`|The name of the task|

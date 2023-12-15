@@ -141,6 +141,7 @@ monitor:
     | `ENV_INPUT_CONTAINER_LOGGING_MIN_FLUSH_INTERVAL`                              | 日志采集的最小上传间隔，如果在此期间没有新数据，将清空和上传缓存数据，避免堆积                                                                                                                           | "5s"                                                                                                    | `"10s"`                                                                          |
     | `ENV_INPUT_CONTAINER_LOGGING_MAX_MULTILINE_LIFE_DURATION`                     | 日志采集的单次多行最大生命周期，此周期结束将清空和上传现存的多行数据，避免堆积                                                                                                                           | "3s"                                                                                                    | `"5s"`                                                                           |
     | `ENV_INPUT_CONTAINER_LOGGING_REMOVE_ANSI_ESCAPE_CODES`                        | 日志采集删除包含的颜色字符，详见[日志特殊字符处理说明](logging.md#ansi-decode)                                                                                                                           | false                                                                                                   | `"true"`/`"false"`                                                               |
+    | `ENV_INPUT_CONTAINER_LOGGING_FORCE_FLUSH_LIMIT`                               | 日志采集上传限制，如果连续 N 次都采集为空，会将现有的数据上传，避免数据积攒占用内存。                                                                                                                    | 5                                                                                                       | `10`                                                                             |
     | `ENV_INPUT_CONTAINER_TAGS`                                                    | 添加额外 tags                                                                                                                                                                                            | 无                                                                                                      | `"tag1=value1,tag2=value2"`       以英文逗号分割的多个"key=value"                |
     | `ENV_INPUT_CONTAINER_PROMETHEUS_MONITORING_MATCHES_CONFIG`                    | 已弃用                                                                                                                                                                                                   | 无                                                                                                      |                                                                                  |
 
@@ -249,6 +250,8 @@ The metric of containers, only supported Running status.
 
 | Tag | Description |
 |  ----  | --------|
+|`aws_ecs_cluster_name`|Cluster name of the AWS ECS.|
+|`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`container_id`|Container ID|
 |`container_name`|Container name from k8s (label `io.kubernetes.container.name`). If empty then use $container_runtime_name.|
 |`container_runtime`|Container runtime (this container from Docker/Containerd/cri-o).|
@@ -266,6 +269,9 @@ The metric of containers, only supported Running status.
 |`pod_uid`|The pod uid of the container (label `io.kubernetes.pod.uid`).|
 |`state`|Container status (only Running).|
 |`statefulset`|The name of the StatefulSet which the object belongs to.|
+|`task_arn`|The task arn of the AWS Fargate.|
+|`task_family`|The task family of the AWS fargate.|
+|`task_version`|The task version of the AWS fargate.|
 
 - 指标列表
 
@@ -339,6 +345,7 @@ The metric of the Kubernetes CronJob.
 
 | Tag | Description |
 |  ----  | --------|
+|`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`cronjob`|Name must be unique within a namespace.|
 |`namespace`|Namespace defines the space within each name must be unique.|
 |`uid`|The UID of CronJob.|
@@ -368,6 +375,7 @@ The metric of the Kubernetes DaemonSet.
 
 | Tag | Description |
 |  ----  | --------|
+|`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`daemonset`|Name must be unique within a namespace.|
 |`namespace`|Namespace defines the space within each name must be unique.|
 |`uid`|The UID of DaemonSet.|
@@ -403,6 +411,7 @@ The metric of the Kubernetes Deployment.
 
 | Tag | Description |
 |  ----  | --------|
+|`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`deployment`|Name must be unique within a namespace.|
 |`namespace`|Namespace defines the space within each name must be unique.|
 |`uid`|The UID of Deployment.|
@@ -439,6 +448,7 @@ The metric of the Kubernetes Endpoints.
 
 | Tag | Description |
 |  ----  | --------|
+|`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`endpoint`|Name must be unique within a namespace.|
 |`namespace`|Namespace defines the space within each name must be unique.|
 |`uid`|The UID of Endpoint.|
@@ -469,6 +479,7 @@ The metric of the Kubernetes Job.
 
 | Tag | Description |
 |  ----  | --------|
+|`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`job`|Name must be unique within a namespace.|
 |`namespace`|Namespace defines the space within each name must be unique.|
 |`uid`|The UID of Job.|
@@ -502,6 +513,7 @@ The metric of the Kubernetes Node.
 
 | Tag | Description |
 |  ----  | --------|
+|`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`node`|Name must be unique within a namespace|
 |`uid`|The UID of Node.|
 
@@ -537,6 +549,7 @@ The metric of the Kubernetes Pod.
 
 | Tag | Description |
 |  ----  | --------|
+|`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`daemonset`|The name of the DaemonSet which the object belongs to.|
 |`deployment`|The name of the Deployment which the object belongs to.|
 |`namespace`|Namespace defines the space within each name must be unique.|
@@ -585,6 +598,7 @@ The metric of the Kubernetes ReplicaSet.
 
 | Tag | Description |
 |  ----  | --------|
+|`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`namespace`|Namespace defines the space within each name must be unique.|
 |`replica_set_name`|Name must be unique within a namespace. (Deprecated)|
 |`replicaset_name`|Name must be unique within a namespace.|
@@ -619,6 +633,7 @@ The metric of the Kubernetes Service.
 
 | Tag | Description |
 |  ----  | --------|
+|`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`namespace`|Namespace defines the space within each name must be unique.|
 |`service`|Name must be unique within a namespace.|
 |`uid`|The UID of Service|
@@ -648,6 +663,7 @@ The metric of the Kubernetes StatefulSet.
 
 | Tag | Description |
 |  ----  | --------|
+|`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`namespace`|Namespace defines the space within each name must be unique.|
 |`statefulset`|Name must be unique within a namespace.|
 |`uid`|The UID of StatefulSet.|
@@ -690,6 +706,8 @@ The object of containers, only supported Running status.
 
 | Tag | Description |
 |  ----  | --------|
+|`aws_ecs_cluster_name`|Cluster name of the AWS ECS.|
+|`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`container_id`|Container ID|
 |`container_name`|Container name from k8s (label `io.kubernetes.container.name`). If empty then use $container_runtime_name.|
 |`container_runtime`|Container runtime (this container from Docker/Containerd/cri-o).|
@@ -709,6 +727,9 @@ The object of containers, only supported Running status.
 |`state`|The state of the Container (only Running).|
 |`statefulset`|The name of the StatefulSet which the object belongs to.|
 |`status`|The status of the container，example `Up 5 hours`.|
+|`task_arn`|The task arn of the AWS Fargate.|
+|`task_family`|The task family of the AWS fargate.|
+|`task_version`|The task version of the AWS fargate.|
 
 - 指标列表
 
@@ -755,6 +776,7 @@ The object of the Kubernetes CronJob.
 
 | Tag | Description |
 |  ----  | --------|
+|`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`cron_job_name`|Name must be unique within a namespace.|
 |`name`|The UID of CronJob.|
 |`namespace`|Namespace defines the space within each name must be unique.|
@@ -789,6 +811,7 @@ The object of the Kubernetes DaemonSet.
 
 | Tag | Description |
 |  ----  | --------|
+|`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`daemonset_name`|Name must be unique within a namespace.|
 |`name`|The UID of DaemonSet.|
 |`namespace`|Namespace defines the space within each name must be unique.|
@@ -827,6 +850,7 @@ The object of the Kubernetes Deployment.
 
 | Tag | Description |
 |  ----  | --------|
+|`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`deployment_name`|Name must be unique within a namespace.|
 |`name`|The UID of Deployment.|
 |`namespace`|Namespace defines the space within each name must be unique.|
@@ -882,6 +906,7 @@ The object of the Kubernetes Job.
 
 | Tag | Description |
 |  ----  | --------|
+|`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`job_name`|Name must be unique within a namespace.|
 |`name`|The UID of Job.|
 |`namespace`|Namespace defines the space within each name must be unique.|
@@ -920,6 +945,7 @@ The object of the Kubernetes Node.
 
 | Tag | Description |
 |  ----  | --------|
+|`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`internal_ip`|Node internal IP|
 |`name`|The UID of Node.|
 |`namespace`|Namespace defines the space within each name must be unique.|
@@ -957,6 +983,7 @@ The object of the Kubernetes Pod.
 
 | Tag | Description |
 |  ----  | --------|
+|`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`daemonset`|The name of the DaemonSet which the object belongs to.|
 |`deployment`|The name of the Deployment which the object belongs to.|
 |`name`|The UID of Pod.|
@@ -1011,6 +1038,7 @@ The object of the Kubernetes ReplicaSet.
 
 | Tag | Description |
 |  ----  | --------|
+|`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`deployment`|The name of the Deployment which the object belongs to.|
 |`name`|The UID of ReplicaSet.|
 |`namespace`|Namespace defines the space within each name must be unique.|
@@ -1051,6 +1079,7 @@ The object of the Kubernetes Service.
 
 | Tag | Description |
 |  ----  | --------|
+|`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`name`|The UID of Service|
 |`namespace`|Namespace defines the space within each name must be unique.|
 |`service_name`|Name must be unique within a namespace.|
@@ -1088,6 +1117,7 @@ The object of the Kubernetes StatefulSet.
 
 | Tag | Description |
 |  ----  | --------|
+|`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`name`|The UID of StatefulSet.|
 |`namespace`|Namespace defines the space within each name must be unique.|
 |`statefulset_name`|Name must be unique within a namespace.|
