@@ -43,7 +43,7 @@
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
     start-bitstransfer  -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1;
-    powershell .install.ps1;
+    powershell ./.install.ps1;
     ```
 <!-- markdownlint-enable -->
 
@@ -67,7 +67,7 @@
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
     start-bitstransfer  -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1;
-    powershell .install.ps1;
+    powershell ./.install.ps1;
     ```
 
 <!-- markdownlint-enable -->
@@ -107,7 +107,7 @@ $env:DK_DATAWAY="https://openway.guance.com?token=<TOKEN>";
 Set-ExecutionPolicy Bypass -scope Process -Force;
 Import-Module bitstransfer;
 start-bitstransfer  -source https://static.guance.com/datakit/install-1.2.3.ps1 -destination .install.ps1;
-powershell .install.ps1;
+powershell ./.install.ps1;
 ```
 
 ## 额外支持的安装变量 {#extra-envs}
@@ -130,7 +130,7 @@ powershell .install.ps1;
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
     start-bitstransfer  -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1;
-    powershell .install.ps1;
+    powershell ./.install.ps1;
     ```
 <!-- markdownlint-enable -->
 
@@ -322,7 +322,7 @@ NAME1="value1" NAME2="value2"
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
     start-bitstransfer  -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1;
-    powershell .install.ps1;
+    powershell ./.install.ps1;
     ```
 <!-- markdownlint-enable -->
 

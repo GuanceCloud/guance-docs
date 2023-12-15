@@ -2,7 +2,6 @@
 # 专有名词
 ################################################################
 Aerospike
-Proxied
 Akka
 Aliyun
 Ansible
@@ -34,6 +33,7 @@ Distro
 Dubbo
 Dubbox
 ElasticSearch
+Fargate
 Fastjson
 Filebeat
 Flink
@@ -81,6 +81,7 @@ Prometheus
 Promtail
 Protobuf
 Proxied
+Proxied
 PushGateway
 Pyroscope
 Pythond
@@ -117,8 +118,9 @@ diskcache
 dnssec
 eBPF
 ebpftrace
-fsyncs
+fargate
 filesystems
+fsyncs
 gRPC
 guance
 jemalloc
@@ -128,6 +130,7 @@ kubelet
 libc
 logfwd
 logfwdserver
+logstreaming
 macOS
 mcache
 mysqld
