@@ -41,7 +41,7 @@ Ansible `install.yaml` file configuration example:
   gather_facts: no
   tasks:
   - name: install
-    win_shell: Remove-Item -ErrorAction SilentlyContinue Env:DK_*; $env:DK_DATAWAY="https://openway.guance.com?token=<TOKEN>"; Set-ExecutionPolicy Bypass -scope Process -Force; Import-Module bitstransfer; start-bitstransfer  -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1; powershell .install.ps1;
+    win_shell: Remove-Item -ErrorAction SilentlyContinue Env:DK_*; $env:DK_DATAWAY="https://openway.guance.com?token=<TOKEN>"; Set-ExecutionPolicy Bypass -scope Process -Force; Import-Module bitstransfer; start-bitstransfer  -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1; powershell ./.install.ps1;
     async: 120
     poll: 10
 ```
