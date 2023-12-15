@@ -331,8 +331,6 @@ func foo() {
 |`duration`|Duration of span|int|μs|
 |`message`|Origin content of span|string|-|
 |`parent_id`|Parent span ID of current span|string|-|
-|`pid`|Application process id. Available in DDTrace, OpenTelemetry. Optional.|string|-|
-|`priority`|Optional.|int|-|
 |`resource`|Resource name produce current span|string|-|
 |`span_id`|Span id|string|-|
 |`start`|start time of span.|int|usec|

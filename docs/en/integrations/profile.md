@@ -33,6 +33,24 @@ At present, DataKit collects profiling data in two ways:
       ## set true to enable election, pull mode only
       election = true
     
+      ## the max allowed size of http request body (of MB), 32MB by default.
+      body_size_limit_mb = 32 # MB
+    
+      ## io_config is used to control profiling uploading behavior.
+      ## cache_path set the disk directory where temporarily cache profiling data.
+      ## cache_capacity_mb specify the max storage space (in MiB) that profiling cache can use.
+      ## clear_cache_on_start set whether we should clear all previous profiling cache on restarting Datakit.
+      ## upload_workers set the count of profiling uploading workers.
+      ## send_timeout specify the http timeout when uploading profiling data to dataway.
+      ## send_retry_count set the max retry count when sending every profiling request.
+      # [inputs.profile.io_config]
+      #   cache_path = "/usr/local/datakit/cache/profile_inputs"  # C:\Program Files\datakit\cache\profile_inputs by default on Windows
+      #   cache_capacity_mb = 10240  # 10240MB
+      #   clear_cache_on_start = false
+      #   upload_workers = 8
+      #   send_timeout = "75s"
+      #   send_retry_count = 4
+    
     ## go pprof config
     ## collect profiling data in pull mode
     #[[inputs.profile.go]]
@@ -129,8 +147,6 @@ For all of the following data collections, a global tag named `host` is appended
 |`duration`|Duration of span|int|μs|
 |`message`|Origin content of span|string|-|
 |`parent_id`|Parent span ID of current span|string|-|
-|`pid`|Application process id. Available in DDTrace, OpenTelemetry. Optional.|string|-|
-|`priority`|Optional.|int|-|
 |`resource`|Resource name produce current span|string|-|
 |`span_id`|Span id|string|-|
 |`start`|start time of span.|int|usec|
