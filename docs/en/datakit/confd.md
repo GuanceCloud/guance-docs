@@ -88,7 +88,7 @@ When the configuration center data changes, datakit can automatically change the
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
     start-bitstransfer  -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1;
-    powershell .install.ps1;
+    powershell ./.install.ps1;
     ```
     
     The two environment variables are formatted as:

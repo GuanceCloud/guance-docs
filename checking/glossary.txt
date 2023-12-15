@@ -130,6 +130,7 @@ kubelet
 libc
 logfwd
 logfwdserver
+logstreaming
 macOS
 mcache
 mysqld

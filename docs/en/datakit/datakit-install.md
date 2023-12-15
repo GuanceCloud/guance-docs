@@ -42,7 +42,7 @@ Log in to the workspace, click "Integration" on the left and select "Datakit" at
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
     start-bitstransfer  -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1;
-    powershell .install.ps1; 
+    powershell ./.install.ps1; 
     ```
 
 ### Install DataKit lite {#lite-install}
@@ -64,7 +64,7 @@ You can specify the environment variable `DK_LITE` to install DataKit lite ([:oc
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
     start-bitstransfer  -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1;
-    powershell .install.ps1;
+    powershell ./.install.ps1;
     ```
 
 DataKit lite only contains collectors as below: 
@@ -102,7 +102,7 @@ $env:DK_DATAWAY="https://openway.guance.com?token=<TOKEN>";
 Set-ExecutionPolicy Bypass -scope Process -Force;
 Import-Module bitstransfer;
 start-bitstransfer  -source https://static.guance.com/datakit/install-1.2.3.ps1 -destination .install.ps1;
-powershell .install.ps1;
+powershell ./.install.ps1;
 ```
 
 ## Additional Supported Installation Variable {#extra-envs}
@@ -124,7 +124,7 @@ If you need to define some DataKit configuration during the installation phase, 
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
     start-bitstransfer  -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1;
-    powershell .install.ps1;
+    powershell ./.install.ps1;
     ```
 ---
 
@@ -294,7 +294,7 @@ The environment variables supported by the installation script are as follows (s
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
     start-bitstransfer  -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1;
-    powershell .install.ps1;
+    powershell ./.install.ps1;
     ```
 <!-- markdownlint-enable -->
 
