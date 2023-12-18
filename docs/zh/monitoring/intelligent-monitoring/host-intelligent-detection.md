@@ -74,6 +74,8 @@
 
 ![](../img/intelligent-detection10.png)
 
+![](../img/intelligent-detection13.png)
+
 * 事件内容：显示查看监控器配置的事件内容
 * 异常总结：显示查看当前异常主机名标签、异常分析报告详情、异常值时序图显示异常趋势
 * 异常分析：异常分析仪表板，可查看主机的异常进程、CPU 使用率等基础信息
@@ -88,7 +90,4 @@
 4. [历史记录](../../events/event-explorer/event-details.md#history)
 
 5. [关联事件](../../events/event-explorer/event-details.md#relevance)
-
-
-
 
