@@ -90,4 +90,3 @@
 4. [历史记录](../../events/event-explorer/event-details.md#history)
 
 5. [关联事件](../../events/event-explorer/event-details.md#relevance)
-
