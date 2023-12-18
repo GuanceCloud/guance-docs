@@ -70,7 +70,7 @@
 
 1. 分析报告
 
-![image](../img/intelligent-detection08.png)
+![](../img/intelligent-detection08.png)
 
 * 异常总结：可查看当前异常日志标签、异常分析报告详情、及错误请求数分布情况
 
