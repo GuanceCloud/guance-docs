@@ -98,7 +98,7 @@ Datakit 支持 `etcd-v3` `consul` `redis` `zookeeper` `aws secrets manager` `nac
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
     start-bitstransfer  -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1;
-    powershell .install.ps1;
+    powershell ./.install.ps1;
     ```
 
     两种环境变量的设置格式为：
