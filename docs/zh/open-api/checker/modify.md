@@ -52,6 +52,10 @@
 | jsonScript.checkerOpt.diffMode | string |  | 高级检测中突变检测的,差值模式,枚举值, value, percent<br>例子: value <br>可选值: ['value', 'percent'] <br> |
 | jsonScript.checkerOpt.direction | string |  | 高级检测中突变检测,区间检测的触发条件方向<br>例子: up <br>可选值: ['up', 'down', 'both'] <br> |
 | jsonScript.checkerOpt.eps | float |  | 距离参数，取值范围：0 ~ 3.0<br>例子: 0.5 <br> |
+| jsonScript.checkerOpt.threshold | json |  | 突变检测的触发前提条件设置<br>允许为空: False <br> |
+| jsonScript.checkerOpt.threshold.status | boolean | Y | 突变检测, 触发前提条件是否开启,<br>例子: True <br> |
+| jsonScript.checkerOpt.threshold.operator | string | Y | 突变检测, 触发前提条件操作符<br>例子:  <br> |
+| jsonScript.checkerOpt.threshold.value | float | Y | 突变检测, 触发前提条件检测值<br>例子: 90 <br>允许为空: True <br> |
 
 ## 参数补充说明
 
