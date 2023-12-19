@@ -2,7 +2,7 @@
 
 ---
 
-<br />**GET /api/v1/self_built_checker/list**
+<br />**ET /api/v1/self_built_checker/list**
 
 ## 概述
 分页列出当前工作空间的自建巡检列表
