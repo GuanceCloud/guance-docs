@@ -14,7 +14,7 @@
 
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
-| indexes | array | Y | 索引名称<br>例子: [] <br>允许为空: False <br> |
+| indexes | array | Y | 索引uuid, ["*"]表示全部<br>例子: ['*'] <br>允许为空: False <br> |
 | roleUUIDs | array | Y | 角色的列表<br>例子: [] <br>允许为空: False <br> |
 | conditions | string | Y | 筛选搜索<br>例子: search <br>允许为空: False <br> |
 | extend | json |  | 前端自定义扩展字段<br>例子: xxx <br>允许为空: False <br> |
@@ -33,7 +33,7 @@
 
 | 参数名           | type | 说明                                                 |
 | ---------------- | ---- | ---------------------------------------------------- |
-| indexes       | array | 索引名称列表 |
+| indexes       | array | 索引uuid列表 |
 | roleUUIDS             | array | 角色UUID列表                                                 |
 | conditions       | string  |  dql删选格式条件     |
 | extend |  dict  |  N | 前端自定义扩展字段 |
@@ -48,7 +48,7 @@ curl 'https://openapi.guance.com/api/v1/logging_query_rule/add' \
 -H 'Accept: application/json, text/plain, */*' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
---data-raw $'{"roleUUIDs":["role_44dbdc6ad4b848f0a570072c10d9e29a"],"indexes":["rp60"],"extend":{"container_id":["eefdb964e3eb5e822f12e5663449bebb37738daed0841c6c9cec44f11d073f05"]},"logic":"and","conditions":"`container_id` IN [\'eefdb964e3eb5e822f12e5663449bebb37738daed0841c6c9cec44f11d073f05\']"}' \
+--data-raw $'{"roleUUIDs":["role_44dbdc6ad4b848f0a570072c10d9e29a"],"indexes":["default"],"extend":{"container_id":["eefdb964e3eb5e822f12e5663449bebb37738daed0841c6c9cec44f11d073f05"]},"logic":"and","conditions":"`container_id` IN [\'eefdb964e3eb5e822f12e5663449bebb37738daed0841c6c9cec44f11d073f05\']"}' \
 --compressed
 ```
 
