@@ -50,9 +50,11 @@
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 监控器列表操作</font>](../monitor/index.md#list)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 监控器列表操作</font>](../monitor/index.md#list)
+
 
 </div>
+
 
 ### 查看事件
 
@@ -68,7 +70,7 @@
 
 * 点击右上角的**导出**按钮，支持选择**导出 JSON 文件**与**导出 PDF 文件**，从而获取当前事件所对应的所有关键数据。
 
-1. 分析报告
+:material-numeric-1-circle-outline: 分析报告
 
 ![](../img/intelligent-detection08.png)
 
@@ -78,10 +80,10 @@
 
 **注意**：存在多个区间异常时，**异常总结 > 异常值分布图**及**异常分析**仪表板默认展示第一段异常区间的异常情况分析，可以点击【异常值分布图】进行切换，切换后异常分析仪表板同步联动。
 
-2. [扩展字段](../../events/event-explorer/event-details.md#extension)
+:material-numeric-2-circle-outline: [扩展字段](../../events/event-explorer/event-details.md#extension)
 
-3. [告警通知](../../events/event-explorer/event-details.md#alarm)
+:material-numeric-3-circle-outline: [告警通知](../../events/event-explorer/event-details.md#alarm)
 
-4. [历史记录](../../events/event-explorer/event-details.md#history)
+:material-numeric-4-circle-outline: [历史记录](../../events/event-explorer/event-details.md#history)
 
-5. [关联事件](../../events/event-explorer/event-details.md#relevance)
+:material-numeric-5-circle-outline: [关联事件](../../events/event-explorer/event-details.md#relevance)
