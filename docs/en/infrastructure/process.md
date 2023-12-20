@@ -1,58 +1,50 @@
 # Process
 ---
 
-## Introduction
-
-Process data collection will be reported to the Guance console after being successfully reported. In the "Process" of "Infrastructure", you can view all process data information in the current workspace **for the last 10 minutes**.
+Process data collection will be reported to the Guance console after being successfully reported. In the **Infrastructure > Process**, you can view all process data information in the current workspace **for the last 10 minutes**.
 
 ## Query and Analysis
 
-Enter the "Process" explorer, and Guance supports you to query process data by searching keywords, adding label filters and sorting.
+Enter the Process explorer, and Guance supports you to query process data by searching keywords, adding label filters and sorting.
 
-#### Time control
+- Time Widget: The process list supports viewing the process data collected **in the last ten minutes**, and it can be refreshed to the current time range by the "Play" button to retrieve the data list again. Click the time range to view the process playback:
 
-The process list supports viewing the process data collected **in the last ten minutes**, and it can be refreshed to the current time range by the "Play" button to retrieve the data list again. Click the time range to view the process playback:
-
-- After dragging, the refresh is paused and the time is displayed as "start time-end time"; The query time range is 5 minutes;
-- After dragging, the query is historical process data;
-- After dragging, click the "Play" button or refresh the page to return to viewing the progress "in the last 10 minutes".
+    - After dragging, the refresh is paused and the time is displayed as "start time-end time"; The query time range is 5 minutes;
+    
+    - After dragging, the query is historical process data;
+    
+    - After dragging, click the "Play" button or refresh the page to return to viewing the progress "in the last 10 minutes".
 
 ![](img/8.process.png)
 
-#### Search and Filter
+- [Search and Filter](../getting-started/function-details/explorer-search.md): You can use various search methods such as keyword search and wildcard search. You can also filter values by `tags/attributes`, including forward and reverse filtering, fuzzy and reverse fuzzy matching, existence and non-existence.
 
-In the ovserver search bar, it supports keyword search, wildcard search, association search, JSON search and other search methods, and it also supports value filtering through `tag/attribute`, including forward filtering, reverse filtering, fuzzy matching, reverse fuzzy matching, existence and nonexistence and other filtering methods. For more searches and filters, refer to the document [search and filter for the explorer](../getting-started/necessary-for-beginners/explorer-search.md).
+- [Quick Filter](../getting-started/function-details/explorer-search.md#quick-filter): Edit in the quick filter to add new filtering fields and then you can select them for quick filtering.
 
-#### Quick Filter
+- [Columns](../getting-started/function-details/explorer-search.md#columns): On the host object list page, you can customize the display columns by adding, editing, deleting and dragging the display columns.
 
-The explorer shortcut filter supports editing "shortcut filter" and adding new filter fields. After adding, you can select their field values for quick filtering. For more shortcut filters, please refer to the document [shortcut filters](../getting-started/necessary-for-beginners/explorer-search.md#quick-filter).
+- Sorting: Hover to the list menu and click :fontawesome-solid-sort: sort to sort based on the selected label.
 
-#### Custom Display Columns
-
-On the process list page, Guance displays PID, user, host and other information for you by default. You can customize to add, edit, delete and drag display columns through Display Columns. When the mouse hovers over the explorer display column, click the「 :material-cog: settings」button, which supports ascending, descending, moving columns to the left, moving columns to the right, adding columns to the left, adding columns to the right, replacing columns, adding to shortcut filtering, adding to analysis (grouping aggregation analysis), removing columns and other operations. See the documentation [display column description](../getting-started/necessary-for-beginners/explorer-search.md#columns) for more custom display columns.
-
-#### Sorting
-
-Hover the mouse to the list menu and click “ :fontawesome-solid-sort: sort” to sort based on the selected label.
-
-#### Analysis Mode
-
-In the analysis bar of infrastructure process explorer, multi-dimensional analysis and statistics based on **1-3 tags** are supported to reflect the distribution characteristics of data in different dimensions, and various data chart analysis methods are supported, including ranking list, pie chart and rectangular tree chart. For more details, please refer to the document [analysis Mode for the explorer](../getting-started/necessary-for-beginners/explorer-search.md#analysis).
+- [Analysis Mode](../getting-started/function-details/explorer-search.md#analysis): You can perform multidimensional analysis and statistics based on <u>1-3 tags</u> to reflect the distribution characteristics of data in different dimensions. It supports various data chart analysis methods, including toplist, pie charts and treemaps.
 
 ![](img/4.jichusheshi_3.png)
 
-#### Data Export
+- Data Export: The :material-cog: icon in the upper right corner of the explorer supports exporting the current object list data to CSV files or dashboards and notes.
 
-The " :material-cog: settings" icon in the upper right corner of the explorer (next to "display column") supports exporting the current object list data to CSV files or scene dashboards and notes.
+    - Export to CSV File: Save current list as CSV file locally.
 
-- Export to CSV File: Save current list as CSV file locally.
+    - Export to Dashboard: Save the current list as Visual Chart to the specified Dashboard.
+    
+    - Export to Notes: Save the current list as Visual Chart to specify Notes.
 
-- Export to Dashboard: Save the current list as "Visual Chart" to the specified "Dashboard".
-- Export to Notes: Save the current list as "Visual Chart" to specify "Notes".
+
+If you need to export a certain data, open the details page of that data, and click on the :material-tray-arrow-up: icon in the top right corner.
+
+![](img/process-0809.png)
 
 ## Process Details page
 
-Click on the process name in the process list, and you can draw out the details page to view the detailed information of the process object, including the object to which the process belongs, Label attribute, other extended attributes, and associated metrics, logs, hosts and networks.
+Click on the process name in the process list, and you can draw out the details page to view the detailed information of the process object, including the object to which the process belongs, labels, attributes and associated metrics, logs, hosts and networks.
 
 ![](img/8.process_3.png)
 
@@ -60,86 +52,81 @@ Click on the process name in the process list, and you can draw out the details 
 
 ### Association Analysis
 
-Guance supports correlation analysis of each process. In the process details page, you can not only understand the basic information of the process, but also associate the **metrics, logs, hosts and networks of the corresponding process in one stop, so as to monitor the running of the process faster and more comprehensively**.
+Guance supports correlation analysis for each process. On the process details page, in addition to the basic information of the process, you can also have a one-stop understanding of <u>the corresponding process metrics, logs, hosts, networks, etc., to monitor the process operation more quickly and comprehensively</u>.
 
-#### Association Host Query
+#### Host Query
 
-By clicking the Host tab on the Process Details page, you can also query data about the hosts associated with the process.
+By clicking the Host tab on the Process Details page, you can query data about the hosts associated with the process.
 
 ![](img/9.process_6.png)
 
-- "Filter field value", that is, add the field to the explorer to view all the data related to the field.
-- "Reverse filter field value", that is, add this field to the explorer to view other data besides this field.
-- "Add to display column", that is, add the field to the explorer list for viewing.
-- "Copy", that is, copy the field to the clipboard. 
-- "View related logs", that is, view all logs related to this host.
-- "View dependent containers", that is, view all containers associated with this host.
-- "View related processes", that is, view all processes related to this host.
-- "View related links", that is, view all links related to this host.
-- "View related inspection", that is, view all inspection data related to this host.
 
-#### Association Metrics / Logs / Hosts
+| Operate | Description |
+| --- | --- |
+| Filter field value | Add the field to the explorer to view all the data related to the field. |
+| Reverse filter field value | Add this field to the explorer to view other data besides this field. |
+| Add to display column | Add the field to the explorer list for viewing. |
+| Copy | Copy the field to the clipboard.  |
+| View related logs/containers/processes/links/inspection | view all logs/containers/processes/links/inspection related to this host. |
 
-At the bottom of the Details page, switch the Content tab to allow you to:
+
+#### Association Metrics/Logs/Hosts
+
+At the bottom of the details page, you can switch content tabs:
 
 ![](img/9.process_5.png)
 
-- View CPU utilization, memory utilization, number of open files of the process through "metrics".
-- View all logs related to this process **in the last 1 hour** through log.
-- View the basic information of relevant hosts and the metric data of the host **in the last 24 hours** through "Host".
-
-
+<div class="grid" markdown>
 
 === "Metrics"
 
-    On the Process Details page, Guance enables you to monitor the performance status of the process **in the last 24 hours** in real time through the "Process" of the Details page, including CPU utilization, memory utilization and number of open files.
-    Note: The collection of process metric data does not automatically start by default. It is necessary to manually configure the process collector to start the collection of process metrics. Please refer to the document [process](../datakit/host_processes.md). After the process metric data is collected, the metrics in the following figure will display the data.
+    You can monitor the performance status of processes in the last 24 hours, including CPU usage, memory usage, and number of open files.
 
-=== "Log"
+    **Note**: Process metric data is not collected automatically by default. You need to manually configure the process collector to enable the collection of process metrics. Once process metric collection is enabled, the metrics shown in the following figure will display data.
 
-    Through "Log" at the bottom of the details page, you can view the logs and the number of logs related to the process **in the last 1 hour** , and perform keyword search, multi-label filtering and time sorting on these related logs.
-    - If you need to view more detailed log information, you can click the log content to jump to the corresponding log details page, or click "Jump" to "Log" to view all logs related to the host.
-    - If you need to view more log fields or more complete log contents, you can customize and adjust "Maximum Display Rows" and "Display Columns" through "Display Columns" in the associated log explorer.
-    **Note: For a smoother user query experience, Guance immediately saves the user's browsing settings in the "Log" by default (including "Maximum Display Rows" and "Display Columns"), so that the "Association Log" is consistent with the "Log". However, the custom adjustments made in the Association Log are not saved after exiting the page.**
+    > See [Process](../datakit/host_processes.md) for instructions on how to enable process metric collection. 
 
+=== "Logs"
+
+    You can view the logs and log count related to the process in the last 1 hour, and perform keyword searches, multi-tag filtering and time sorting on these logs.
+
+    - To view more detailed log information: You can click on the log content to jump to the corresponding log details page, or click on **Logs** to view all logs related to the host;
+
+    - To view more log fields or complete log content: You can customize the "Maximum Displayed Rows" and "Displayed Columns" through the associated log explorer **Columns**.
+
+    **Note**: For a smoother user query experience, Guance automatically saves the user's browsing settings in **Logs** (including "Maximum Displayed Rows" and "Displayed Columns"), to keep the **Associated Logs** consistent with **Logs**. However, any custom adjustments made in **Associated Logs** are not saved after exiting the page.
 
 === "Host"
 
-    Guance enables you to view the basic information of related hosts (related field: host) and the status of performance metrics **within the selected time component** through the "host" at the bottom of the details page.
-    Note: To view related hosts in process details, you need to match the field "host", otherwise you cannot view the page of related hosts in process details.
-    - Attribute view: It includes the basic information of the host and the integrated operation. If the collection of cloud hosts is started, the information of cloud suppliers can also be viewed.
-    - Metric view: You can view the CPU, memory and other performance metric views of related hosts within the default 24 hours. Click "Open this view" to the inner dashbpoard, and the host view can be customized by cloning and saved as a user view. The user view can be viewed on the process details page through binding. For more configuration details, please refer to [binding inner dashboard](../scene/built-in-view/bind-view.md).
+    You can view the basic information of the associated hosts (with the `host` field) and the performance metric status within the selected time range in the time component.
+
+    ???+ warning "`host`"
+
+        To view the associated hosts in the process details, the `host` field must be matched. Otherwise, the pages of the associated hosts cannot be viewed in the process details.
+
+        - Attribute view: Includes basic information and integration status of the host. If the collection of cloud hosts is enabled, you can also view information from the cloud provider;
+
+        - Metric view: You can view the performance metric view of the associated hosts, such as CPU and memory, in the default 24-hour period. Click **Open this view** to go to the [Built-in Views](../scene/built-in-view/bind-view.md), where you can customize and save the host view as a user view, which can be viewed by binding it in the process details page.
+
+</div>
 
 ![](img/8.process_1.png)
 
-#### Custom Inner Dashboards
+#### Bind Inner Views
 
-Guance supports custom binding of inner dashboards to explorers. With the binding function of inner dashboards, you can customize the related contents of process objects and create binding relationships. For more configuration details, see[binding inner dashboards](https://preprod-docs.cloudcare.cn/management/built-in-view/bind-view/).
+Guance supports custom binding of inner dashboards to explorers. With the binding function of inner views, you can customize the related contents of process objects and create binding relationships. 
 
-**Note:** Before binding a built-in view, you need to confirm that the view variable in the bound built-in view has fields related to the process, such as `process_id`.
+**Note:** Before [binding a inner view](../scene/built-in-view/bind-view.md), you need to confirm that the view variable in the bound inner view has fields related to the process, such as `process_id`.
 
-
+<!--
 
 ### Process Network
 
-Process network supports viewing network traffic in two different dimensions: host and process service. It also supports viewing network traffic and data connections between source host/source process services and destinations based on IP/port, Through visual real-time display, it helps enterprises to know the network running status of business systems in real time, quickly analyze, track and locate problems and faults, and prevent or avoid business problems caused by network performance degradation or interruption.
-
-After successful process network data collection, you will report to the Guance console. In "Network" on the "Infrastructure"-"Process" details page, you can view network data based on host or process services.
-
-Note:
-
-- Currently only Linux systems are supported, and other distributions except CentOS 7.6 + and Ubuntu 16.04 require a Linux kernel version higher than 4.0. 0.
-- Host/process service network traffic data is saved for the last 48 hours by default, and the free version is saved for the last 24 hours by default;
-- Click to enter "Network" on the Process Details page. The time control obtains the data of the last 15 minutes by default and does not support automatic refresh. You need to manually click Refresh to obtain new data;
-- At present, it supports network performance monitoring based on TCP and UDP protocols. With incoming and outgoing, it is divided into 6 combination choices:
-   - incoming + 不区分协议
-   - incoming + tcp protocol
-   - incoming + udp protocol
-   - outgoing + 不区分协议
-   - outgoing + tcp protocol
-   - outgoing + udp protocol
+Network support is available for viewing network traffic between hosts, Pods, Deployments, and Services. After successful collection of network data, the process network data will be reported to the Guance console. In the **Infrastructure > Processes > Network**, you can view network data based on host or process services.
+ 
 
 #### Parameter Description
+
 | Parameter | Description | Statistical Method |
 | --- | --- | --- |
 | IP/Port | The target is aggregated based on IP+ port and returns up to 100 pieces of data. | Collected by IP/Port Packet |
@@ -183,3 +170,4 @@ Guance supports viewing network flow data on the process details page, which is 
 
 ![](img/9.network_2.png)
 
+-->

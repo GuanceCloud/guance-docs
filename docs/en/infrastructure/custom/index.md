@@ -70,7 +70,7 @@ Click on the edit button to add personal-level filters. Adding them will not aff
 
 ## Details Page
 
-After custom data is reported, click on the name in the custom list to bring up the details page and view the detailed information, including the name, category, attribute tags, etc.
+After custom data is reported, click on the name in the custom list to bring up the details page and view the detailed information, including the name, category, attributes, etc.
 
 ![](../img/11.custom_4.png)
 
@@ -84,9 +84,10 @@ By clicking on the tab `Host` on the custom details page, you can do the followi
 
 - View related logs/containers/processes/links/inspection: view all logs related to corresponding data.
 
+<!-- 
 
 ![](../img/11.custom_5.png)
-
+-->
 ### Customize Inner Views
 
 Guance supports setting up binding or deleting inner views (user views) to the details page of custom infrastructure. After binding the inner views, the bound views can be viewed in the details of the custom.

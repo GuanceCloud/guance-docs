@@ -10,13 +10,12 @@
 - 基于标签、字段、文本（包含日志文本）对事件进行关键词搜索、标签筛选、字段筛选、关联搜索等；  
 - 查看当前告警事件信息，包括该事件的检测维度、告警开始的时间、告警持续的时间，以及最近 6 小时的事件发生趋势。
 
-**注意**：未恢复事件查询为最近 24 小时数据，支持手动刷新。
 
 ## 数据状态
 
 在未恢复事件查看器，基于监控器的触发条件配置会产生 **未恢复（df_status != ok）**、**紧急（critical）**、**重要（error）**、**警告（warning）**、**无数据（nodata）** 的状态统计，您也可以参考 [阈值检测](../monitoring/monitor/threshold-detection.md) 配置一个监控器，并为监控器设定触发条件。
 
-> 更多详情，可参考 [事件等级说明](../monitoring/monitor/event-level-description.md)。
+> 更多详情，可参考 [事件等级说明](../../monitoring/monitor/event-level-description.md)。
 
 ## 事件信息
 
@@ -48,53 +47,38 @@
 
 ## 查询与分析
 
-在未恢复事件查看器中，支持通过刷新时间范围、搜索关键字，筛选等方式查询事件数据，帮助您快速在所有事件中定位到特定时间范围、功能模块、行为触发的事件。
-
 ![](../img/5.event_6.png)
 
-### 时间控件
+- 时间控件：未恢复事件查看器默认查询最近 48 小时数据，您也可以自定义数据展示的[时间范围](../../getting-started/function-details/explorer-search.md#time)。
 
-未恢复事件查看器默认查询最近 48 小时数据，您也可以自定义数据展示的[时间范围](../getting-started/function-details/explorer-search.md#time)。
+- 搜索与筛选：在未恢复事件查看器搜索栏，支持[多种搜索方式和筛选方式](../../getting-started/function-details/explorer-search.md)。
 
-### 搜索与筛选
+- 快捷筛选：通过列表左侧的快捷筛选，支持编辑[快捷筛选](../../getting-started/function-details/explorer-search.md#quick-filter)，添加新的筛选字段。
 
-在未恢复事件查看器搜索栏，支持[多种搜索方式和筛选方式](../getting-started/function-details/explorer-search.md)。
+    - **注意**：在未恢复事件查看器不支持自定义添加筛选字段。
 
-### 快捷筛选
+- 保存快照：在事件查看器左上角，点击**查看历史快照**，即可直接保存当前事件的快照数据，通过[快照](../../getting-started/function-details/snapshot.md)功能，您可以快速复现即时拷贝的数据副本信息，将数据恢复到某一时间点和某一数据展示逻辑。
 
-通过列表左侧的快捷筛选，支持编辑[快捷筛选](../getting-started/function-details/explorer-search.md#quick-filter)，添加新的筛选字段。
+- 筛选历史：观测云支持在[筛选历史](../../getting-started/function-details/explorer-search.md#filter-history)保存查看器 `key:value` 的搜索条件历史，应用于当前工作空间不同的查看器。
 
-**注意**：在未恢复事件查看器不支持自定义添加筛选字段。
-
-### 保存快照
-
-在事件查看器左上角，点击**查看历史快照**，即可直接保存当前事件的快照数据，通过[快照](../getting-started/function-details/snapshot.md)功能，您可以快速复现即时拷贝的数据副本信息，将数据恢复到某一时间点和某一数据展示逻辑。
-
-### 筛选历史
-
-观测云支持在[筛选历史](../getting-started/function-details/explorer-search.md#filter-history)保存查看器 `key:value` 的搜索条件历史，应用于当前工作空间不同的查看器。
-
+- 导出：可将未恢复事件导出为 CSV 文件。
 
 ### 显示偏好
 
 您可选择未恢复时间列表的显示样式，支持两种选项：标准、扩展。
 
-选择标准时：可见当前事件的事件标题、检测维度及事件内容；
+:material-numeric-1-circle-outline: 选择标准时：可见当前事件的事件标题、检测维度及事件内容；
 
 ![](../img/event-1-1.png)
 
-选择扩展时：还可打开所有未恢复事件的检测结果值[历史趋势](#exception)：
+:material-numeric-2-circle-outline: 选择扩展时：还可打开所有未恢复事件的检测结果值[历史趋势](#exception)。
 
 ![](../img/event.png)
 
 
-### 导出
-
-观测云支持将未恢复事件导出为 CSV 文件。
-
 ### Issue & 新建 Issue {#issue}
 
-您可以针对当前未恢复事件[创建 Issue](../exception/issue.md#event)，并通知相关成员来追踪处理。
+您可以针对当前未恢复事件[创建 Issue](../../exception/issue.md#event)，并通知相关成员来追踪处理。
  
 ![](../img/event-2.png)
 
@@ -106,11 +90,11 @@
 
 ### 恢复事件 {#recover}
 
-恢复事件是指事件状态为正常的事件（`df_sub_status = ok`）。您可以在 [监控器](../monitoring/monitor/index.md) 配置触发条件时设置事件恢复规则，或者手动恢复事件。
+即事件状态为正常的事件（`df_sub_status = ok`）。您可以在[监控器](../../monitoring/monitor/index.md)配置触发条件时设置事件恢复规则，或者手动恢复事件。
 
 恢复事件包括<u>恢复、无数据恢复、无数据视为恢复、手动恢复</u>四种场景，见下表：
 
-| **名称**       | df_status | **说明**                                                     |
+| 名称       | `df_status` | 说明                                                    |
 | :------------- | :-------- | :----------------------------------------------------------- |
 | 恢复           | ok        | 若之前检测过程中触发过“紧急”“重要”“警告”这 3 种异常事件，根据前端配置的 N 次检测做判断，检测次数内无“紧急”“重要”“警告”事件产生，则视为恢复，并产生正常恢复事件。 |
 | 无数据恢复     | ok        | 若之前检测过程中因为数据停止上报触发无数据异常事件，新的数据重新上报后则判断为恢复产生无数据恢复事件。 |
@@ -121,18 +105,18 @@
 
 ![](../img/5.event_4.png)
 
-<!--
 
-点击**已恢复**，事件被手动恢复到正常，同时会产生一条恢复的事件，在事件列表的该事件中可查看到对应的操作者。
+## 更多阅读
 
-![](img/5.event_5.png)
--->
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 事件详情</font>](event-details.md)
+
+</div>
 
 
+<div class="grid cards" markdown>
 
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 查看器的强大之处</font>](../../getting-started/function-details/explorer-search.md)
 
-## 事件详情页
-
-在未恢复事件查看器，点击任意事件，就可以侧滑打开查看事件详情，包括基础属性、扩展字段、告警通知、状态&趋势、历史记录、关联事件和关联 SLO。在事件详情页，支持跳转到当前事件关联的监控器和导出事件的关键信息到 PDF 或者 JSON 文件。
-
-> 更多详情，可参考 [事件详情](event-details.md)。 
+</div>
