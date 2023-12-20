@@ -1,5 +1,13 @@
 # 版本历史
 
+## 1.76.149（2023 年 12 月 20 日）
+
+pubrepo.guance.com/dataflux/1.76.149:launcher-c15108e-1703085794
+
+### 私有部署版更新
+
+- 后台管理平台英文语言支持
+
 ## 1.76.148（2023 年 12 月 19 日）
 
 pubrepo.guance.com/dataflux/1.76.148:launcher-696a3e0-1702992814
