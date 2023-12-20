@@ -60,7 +60,7 @@ DataKit 支持手动更新和自动更新两种方式。
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
     start-bitstransfer  -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1;
-    powershell .install.ps1;
+    powershell ./.install.ps1;
     ```
 <!-- markdownlint-enable -->
 
@@ -276,7 +276,7 @@ $ curl -X POST 'http://127.0.0.1:9542/v1/datakit/upgrade'
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
     start-bitstransfer  -source https://static.guance.com/datakit/install-1.2.3.ps1 -destination .install.ps1;
-    powershell .install.ps1;
+    powershell ./.install.ps1;
     ```
 <!-- markdownlint-enable -->
 
