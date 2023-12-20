@@ -190,6 +190,7 @@ nav:
       - 'Exporter': kubernetes-prom.md
       - 'CRD': kubernetes-prometheus-operator-crd.md
     - 'NPD': npd.md
+    - kubecost.md
 
   - 应用性能监测（APM）:
     - 'Tracing 综述': datakit-tracing.md

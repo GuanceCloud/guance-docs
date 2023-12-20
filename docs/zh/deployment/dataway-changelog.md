@@ -1,6 +1,16 @@
 
 ## 更新历史 {#changelog}
 
+### 1.3.7(2023/12/14) {#cl-1.3.7}
+
+- 新增更多指标暴露
+- 优化磁盘缓存清理策略，采集尽快消费原则：
+    - 避免存储超限导致数据主动丢弃
+    - 同时尽早将缓存的数据发送上去
+- 增加超大请求丢弃相关的客观性（[指标/日志](dataway.md#too-large-request-body)）
+- 调整 [Dataway 自身 POD yaml](https://static.guance.com/dataway/dataway.yaml)，完善其指标和日志采集
+---
+
 ### 1.3.6(2023/10/24) {#cl-1.3.6}
 
 - 新增 Dataway `sink` [管理命令](./dataway-sink.md#dw-sink-command)
