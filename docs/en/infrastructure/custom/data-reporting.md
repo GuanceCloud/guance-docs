@@ -14,7 +14,7 @@ In the Guance workspace, click **Integration > DataKit** in turn, select the Dat
 
 Open the command line terminal tool, log in to the host, and execute the copied installation command. After the installation is complete, it will prompt `Install Success`.
 
-> See [Getting Started with DataKit.](../../datakit/datakit-service-how-to.md)
+> See [Getting Started with DataKit](../../datakit/datakit-service-how-to.md).
 
 ## Install DataFlux Func
 
