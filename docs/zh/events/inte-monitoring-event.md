@@ -16,37 +16,23 @@
 
 ![](img/inte-monitoring-event01.png)
 
-### 时间控件
+- 时间控件：所有事件查看器默认展示最近 15 分钟的数据，您也可以自定义数据展示的[时间范围](../getting-started/function-details/explorer-search.md#time)。
 
-所有事件查看器默认展示最近 15 分钟的数据，您也可以自定义数据展示的[时间范围](../getting-started/function-details/explorer-search.md#time)。
+- [搜索与筛选](../getting-started/function-details/explorer-search.md)
 
-### 搜索与筛选
+- 在智能监控事件查看器分析栏，支持基于标签字段进行多维度分析，以反映不同分析维度下的聚合事件统计，点击聚合事件可查看[聚合事件详情](event-details.md)。
 
-在智能监控事件查看器搜索栏，支持[多种搜索方式和筛选方式](../getting-started/function-details/explorer-search.md)。
+- 可编辑左侧的[快捷筛选](../getting-started/function-details/explorer-search.md#quick-filter)或添加新的筛选字段。
 
-### 分析模式
+- 筛选历史：观测云支持在[筛选历史](../getting-started/function-details/explorer-search.md#filter-history)保存查看器 `key:value` 的搜索条件历史，应用于当前工作空间不同的查看器。
 
-在智能监控事件查看器分析栏，支持基于标签字段进行多维度分析，以反映不同分析维度下的聚合事件统计，点击聚合事件可查看[聚合事件详情](event-details.md)。
+- 事件导出：在智能监控事件查看器中，点击**导出**可导出当前事件查看器的数据到 CSV、仪表板和笔记。
 
-### 快捷筛选
-
-通过列表左侧的快捷筛选，支持编辑[快捷筛选](../getting-started/function-details/explorer-search.md#quick-filter)，添加新的筛选字段。
-
-### 筛选历史
-
-观测云支持在[筛选历史](../getting-started/function-details/explorer-search.md#filter-history)保存查看器 `key:value` 的搜索条件历史，应用于当前工作空间不同的查看器。
-
-### 事件导出
-
-在智能监控事件查看器中，点击**导出**可导出当前事件查看器的数据到 CSV、仪表板和笔记。
-
-### 保存快照
-
-在智能监控事件查看器左上角，点击**查看历史快照**，即可直接保存当前事件的快照数据，通过[快照](../getting-started/function-details/snapshot.md)功能，您可以快速复现即时拷贝的数据副本信息，将数据恢复到某一时间点和某一数据展示逻辑。
+- 保存快照：在智能监控事件查看器左上角，点击**查看历史快照**，即可直接保存当前事件的快照数据，通过[快照](../getting-started/function-details/snapshot.md)功能，您可以快速复现即时拷贝的数据副本信息，将数据恢复到某一时间点和某一数据展示逻辑。
 
 ## 事件详情页
 
 在智能监控事件查看器，点击任意事件，即可侧滑打开查看事件详情，包括分析报告、告警通知、历史记录、关联事件等信息。在事件详情页，支持跳转到当前事件关联的监控器和导出事件的关键信息到 PDF 或者 JSON 文件。
 
-> 更多详情可参考文档 [智能监控](../monitoring/intelligent-monitoring/index.md)。 
+> 更多详情，可参考 [智能监控](../monitoring/intelligent-monitoring/index.md)。 
 
