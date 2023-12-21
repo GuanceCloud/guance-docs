@@ -432,7 +432,7 @@ connection				:keep-alive
 
 可以看到已经生成了trace 相关信息： `traceparent`、`b3`。
 
-这里发现日志里面也生成了`traceId`和`spanId`,关于日志如何关联`trace`，参考文档 [日志关联](../integrations/java/#logging)。
+这里发现日志里面也生成了`traceId`和`spanId`,关于日志如何关联`trace`，参考文档 [日志关联](/integrations/java/#logging)。
 
 
 ## 应用数据直推观测云
