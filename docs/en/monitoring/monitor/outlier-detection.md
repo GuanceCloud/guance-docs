@@ -1,25 +1,22 @@
 # Outlier Detection
 ---
 
-## Overview
+To detect outliers in the metrics/statistical data of the detection objects within a specific group, an algorithm is used. If there is a significant inconsistency beyond a certain threshold, it will trigger an abnormal event for outlier detection, which can be used for subsequent alert tracking.
 
-The algorithm detects whether there is outlier deviation in the index/statistical data of the detected object under a specific grouping. If there is more than a certain degree of inconsistency, abnormal events of outlier detection will be generated for subsequent alarm tracking.
+## Use Cases
 
-## Application Scene
+Users can configure suitable distance parameters based on the characteristics of indicator data to trigger emergency events. For example, you can monitor individual host memory usage rates that deviate significantly from other hosts.
 
-Users can configure appropriate distance parameters according to the characteristics of index data to trigger emergency events. For example, you can monitor the memory usage of individual hosts far from that of other hosts.
+## Setup
 
-## Rule Description
 
-In "Monitor", click "+ New Monitor", select "Outlier Detection", and enter the outlier detection rule configuration page.
-
-### Step 1. Detect the Configuration
+### Step 1: Detection Configuration
 
 ![](../img/monitor34.png)
 
-1）**Detection frequency:** The execution frequency of detection rules automatically matches the detection interval selected by users.
+:material-numeric-1-circle-outline: **Detection Frequency:** The execution frequency of detection rules automatically matches the detection interval selected by users.
 
-2）**Detection interval:** The time range of detection index query when each task is executed. You can choose 15m, 30m, 1h, 4h, 12h and 1d
+:material-numeric-2-circle-outline: **Detection Interval:** The time range of detection index query when each task is executed. You can choose 15m, 30m, 1h, 4h, 12h and 1d.
 
 | Detection Interval (Drop-down Option) | Default Detection Frequency | 
 | --- | --- | 
@@ -30,69 +27,65 @@ In "Monitor", click "+ New Monitor", select "Outlier Detection", and enter the o
 | 12h | 1h |
 | 1d | 1h |
 
-3）**Detection Metrics:** Monitoring metric Data.
+:material-numeric-3-circle-outline: **Detection Metrics:** Monitoring metric Data.
 
 | Field | Description |
 | --- | --- |
-| Data Type | At present, only "metric" data is supported |
-| Measurement | Measurement where the current detection metric is located |
-| Metric | The metric where the current detection metric is located |
-| Aggregation algorithm | Contain Avg by (average), Min by (minimum), Max by (maximum), Sum by (sum), Last (Last), First by (first), Count by (data points), Count_distinct by (non-duplicate data points), p50 (median), p75 (75%), p90 (90%), p99 (99%)|
-| Filter condition | The corresponding string type (keyword) fields in the check configuration data can be selected as the check dimension. At present, the check dimension supports selecting up to three fields. Through the combination of fields of multiple detection dimensions, a certain detection object can be determined, and the guance will judge whether the statistical index corresponding to a detection object meets the threshold of trigger conditions, and if it meets the conditions, an event will be generated. (For example, if the instrumentation dimensions "host" and "host_ip" are selected, the instrumentation object can be {host: host1, host_ip: 127.0.0.1}） |
-| Detection dimension | Metric-based labels filter the data of detecting metrics, limit the range of detected data, support adding one or more labels to filter, and support fuzzy matching and fuzzy mismatching screening conditions. |
-| Alias | Custom metrics name |
-| Query mode | Support simple query and expression query, refer to [query](../../scene/visual-chart/chart-query.md) |
+| Data Type | At present, only "metric" data is supported. |
+| Measurements | Measurement where the current detection metric is located. |
+| Metrics | The metric where the current detection metric is located. |
+| Aggregation Algorithm | Contain Avg by (average), Min by (minimum), Max by (maximum), Sum by (sum), Last (Last), First by (first), Count by (data points), Count_distinct by (non-duplicate data points), p50 (median), p75 (75%), p90 (90%), p99 (99%).  |
+| Filtering | The corresponding string type (keyword) fields in the check configuration data can be selected as the check dimension. At present, the check dimension supports selecting up to three fields. Through the combination of fields of multiple detection dimensions, a certain detection object can be determined, and the guance will judge whether the statistical index corresponding to a detection object meets the threshold of trigger conditions, and if it meets the conditions, an event will be generated. *(For example, if the instrumentation dimensions `host` and `host_ip` are selected, the instrumentation object can be `{host: host1, host_ip: 127.0.0.1}`.)* |
+| Detection Dimension | Metric-based labels filter the data of detecting metrics, limit the range of detected data, support adding one or more labels to filter, and support fuzzy matching and fuzzy mismatching screening conditions. |
+| Alias | Custom metrics name. |
+| Query Mode | Support simple query and expression query, refer to [query](../../scene/visual-chart/chart-query.md). |
 
-4）**Trigger condition:** Set the trigger condition of alarm level.
+:material-numeric-4-circle-outline: **Trigger Condition:** Set the trigger condition of alert level; You can configure any of the following trigger conditions: Critical, OK, No Data, or Information.
+
+
 
 ![](../img/monitor53.png)
 
 Configure the trigger condition and severity. When the query result is multiple values, an event will be generated if any value meets the trigger condition.
 
-- **紧急（红色）：** Using DBSCAN algorithm, users can configure appropriate distance parameters according to the characteristics of metric data to trigger emergency events. Distance parameter, which indicates the maximum distance between one sample and the other, and is not the maximum limit of the distance between points in the cluster. (float, default=0. 5)
+| Level | Description |
+| --- | --- |
+| Critical (red) | Use the DBSCAN algorithm to configure the appropriate distance parameter based on the metrics data characteristics to trigger a critical event. The distance parameter represents the maximum distance between two samples, which are considered adjacent, and is not the maximum limit of distance within a cluster. (float, default=0.5) <br />:warning: You can choose to configure any floating point value between range(0-3.0). If not configured, the default distance parameter is 0.5. A larger distance setting will result in fewer outlier points detected, while a smaller distance value may detect a large number of outliers. Setting a distance value too large can result in no outliers being detected. Therefore, it is necessary to set the appropriate distance parameter based on different data characteristics. |
+| OK (green) | Users can configure the number of consecutive normal detections required after a critical abnormal event is triggered to generate an OK event. This is used to determine if the abnormal event has returned to OK. It is recommended to configure this. |
+| Information (blue) | An information event is triggered when the normal detection result does not meet any of the conditions for triggering critical, error, warning, OK, or no-data events. This indicates that there are no abnormalities in the detection result. |
+| No Data (gray) | When there is no data for the detection metric, users can configure whether to trigger an event, trigger a no-data event, or trigger a recovery event based on the configured conditions. |
 
-???+ attention
-
-    You can optionally configure any floating-point value between range (0-3.0), If it is not configured, the default distance parameter is 0.5. The larger the distance setting, the less outliers will be obtained. If the distance value is too small, many outliers may be detected. If the distance value is too large, no outliers may be detected. Therefore, it is necessary to set appropriate distance parameters according to different data characteristics.
-
-- **Normal (green):** The user can configure the number of times. If the detection index triggers an "emergency" abnormal event, and then N consecutive tests are normal, the "normal" event will be generated. Used to determine whether abnormal events return to normal, it is recommended to configure.
-
-- **Information (blue):** Normal detection results also generate events. If the detection metrics do not meet any trigger conditions of "emergency", "error", "warning", "normal" and "no data", it means that there is no abnormality in the detection results, and the "information" event is triggered at this time.
-
-- **No data (gray):** When the detection metric has no data, the user can configure: no event, no data event, recovery event, and corresponding event under configuration conditions.
-
-### Step 2. Event Notification
+### Step 2: Event Notification
 
 ![](../img/monitor15.png)
 
-5）**Event title:** Set the event name of the alarm trigger condition, and support the use of preset template variables. For details, refer to [template variables](../event-template.md).
+:material-numeric-5-circle-outline: **Event Title:** Set the event name of the alert trigger condition; support the use of [preset template variables](../event-template.md).
 
-???+ attention
+**Note**: In the latest version, the Monitor Name will be automatically generated based on the Event Title input. In older monitors, there may be inconsistencies between the Monitor Name and the Event Title. To enjoy a better user experience, please synchronize to the latest version as soon as possible. One-click replacement with event title is supported.
 
-    In the latest version, "Monitor Name" will be generated synchronously after entering "Event Title". There may be inconsistencies between "Monitor Name" and "Event Title" in the old monitor. In order to give you a better experience, please synchronize to the latest as soon as possible. Support one-click replacement for event headers.
+:material-numeric-6-circle-outline: **Event Content**: The content of the event notification sent when the trigger conditions are met. Support inputting text in Markdown format, previewing effects, the use of preset [associated links](link-description.md) and the use of preset [template variables](../event-template.md).
 
-6）**Event content:** Event notification content sent when triggering conditions are met, support input of markdown format text information, support preview effect, support use of preset template variables, refer to [template variables](../event-template.md).
+**Note**: Different alert notification objects support different Markdown syntax. For example, WeCom does not support unordered lists.
 
-???+ attention
+:material-numeric-7-circle-outline: **Alert Strategy**: After the monitoring meets the trigger conditions, immediately send an alert message to the specified notification targets. The [Alert Strategy](../alert-setting.md) includes the event level that needs to be notified, the notification targets and the mute alerting period.
 
-    Different alarm notification objects support different markdown syntax. For example, enterprise WeChat does not support unordered list.
+:material-numeric-8-circle-outline: **Synchronously create Issue**: If abnormal events occur under this monitor, an issue for anomaly tracking will be created synchronously and delivered to the channel for anomaly tracking. You can go to [Incident](../../exception/index.md) > Your selected [Channel](../../exception/channel.md) to view it.
 
-7）**Alarm policy:** Send an alarm message to the specified notification object immediately after the monitoring meets the trigger condition. The alarm policy includes the event level to be notified, the notification object, and the alarm silence period. For details, refer to [alarm strategy](../alert-setting.md).
-
-### Step 3. Association
+### Step 3: Association
 
 ![](../img/monitor13.png)
 
-8）**Associated dashboards:** Each monitor supports associated dashboards, that is, dashboards that can customize quick jumps through the "Associated Dashboards" function (dashboards associated with monitors support quick jumps to view monitoring views).
+:material-numeric-9-circle-outline: **Associate Dashboard**: Every monitor supports associating with a dashboard for quick navigation and viewing.
 
-## Example
+### Example
+
 Take host memory metric outlier detection as an example.
 
-Configure the monitor to generate an alarm when the maximum distance parameter between two adjacent samples is greater than 1.2:
+Configure the monitor to generate an alert when the maximum distance parameter between two adjacent samples is greater than 1.2:
 
 ![](../img/monitor35.png)
 
-The event details page shows that the host datakit-internal memory outlier exceeds the configured distance parameter, resulting in an emergency alarm event:
+The event details page shows that the host datakit-internal memory outlier exceeds the configured distance parameter, resulting in an emergency alert event:
 
 ![](../img/monitor36.png)
 

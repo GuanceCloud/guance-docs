@@ -19,11 +19,11 @@ icon: zy/monitoring
 
     <br/>
 
--   [<font color=coral> :material-eye-check:{ .lg .middle } __智能巡检__</font>](./bot-obs/index.md)
+-   [<font color=coral> :material-eye-check:{ .lg .middle } __智能监控__</font>](./intelligent-monitoring/index.md)
 
     ---
 
-    基于观测云的智能检测算法，支持自动检测基础设施和应用程序问题，预见基础设施和应用程序的潜在问题，评估问题对系统运行的影响等级，从而确定排障工作的优先级，减少不确定性。
+    智能监控可以快速定位异常节点，适用于业务类指标和波动性强的指标。它通过分析场景构建对多维指标做关键维度的定位，并围绕微服务中服务的调用和资源依赖，快速定位分析异常。
 
     <br/>
 

@@ -1,4 +1,4 @@
-# Internal Principle of Monitor
+# Internal Principles of Monitor
 ---
 
 Due to the limitation of network and system, there are some special treatments in the execution of monitor detection.
@@ -139,7 +139,7 @@ Therefore, "no data events" and "no data recovery events" always appear in pairs
 
 ### The Time Indicated by the Event not Matching the Time When the Event Occurred
 
-Event details, alarm notice, will be marked with a time, such as: `00:15:00`。
+Event details, alert notice, will be marked with a time, such as: `00:15:00`.
 
 The marked time here is the monitor's "detection trigger time", that is, the time expressed by Crontab expression, which must be a regular detection frequency multiple.
 

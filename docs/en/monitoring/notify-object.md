@@ -14,7 +14,7 @@ Enter "Management"-"Notification Object Management", click "New Notification Obj
 
 Enter "Management"-"Notification Object Management", click "New Notification Object", select "Nailing Robot", and enter configuration information, including custom notification object name, key and Webhook address.
 
-???+ attention
+???+ warning
 
     The nail robot alarm notification is sent every minute, not immediately after it is generated, and there will be a delay of about one minute.
 
@@ -79,7 +79,7 @@ Your ECS has the following issues:
 
 The requests sent will vary according to the type of request configured:
 
-1）When `bodyType` is not specified or `text`, the request details are as follows:
+:material-numeric-1-circle-outline: When `bodyType` is not specified or `text`, the request details are as follows:
 
 ```http
 POST http://my-system/accept-webhook
@@ -94,7 +94,7 @@ Your ECS has the following issues:
 
 Where 1st is the event header `df_title`, 2nd is a blank line, and everything thereafter is the event content`df_message`。
 
-2）When `bodyType` is `json`, the request details are as follows:
+:material-numeric-2-circle-outline: When `bodyType` is `json`, the request details are as follows:
 
 ```http
 POST http://my-system/accept-webhook
@@ -133,7 +133,7 @@ For more detailed practice documentation on Webhook customization, please refer 
 
 Enter "Management"-"Notification Object Management", click "New Notification Object", select "Mail Group", and enter the required information. Mail groups can add more than one member at a time.
 
-???+ attention
+???+ warning
 
     - Members need to be invited to join the workspace in "Management"-"Member Management" before they can be selected.
     - Mail group alert notifications are sent every minute combined, not immediately after they are generated, with a delay of about one minute.
@@ -144,7 +144,7 @@ Enter "Management"-"Notification Object Management", click "New Notification Obj
 
 Enter "Management"-"Notification Object Management", click "New Notification Object", select "SMS", and enter the required information. SMS groups can add more than one member at a time.
 
-???+ attention
+???+ warning
 
     - Members need to be invited to join the workspace in "Management"-"Member Management" before they can be selected.
     - SMS group alerts are sent every minute combined, not immediately after generation, with a delay of about one minute.
