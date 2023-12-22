@@ -6,7 +6,7 @@ icon: zy/events
 
 Guance supports a one-stop view and audit of all event data. You can monitor and query events triggered by all sources in real-time, and also quickly identify anomalies and efficiently analyze abnormal data by aggregating related events and matching associated events.
 
-![](img/4.event_3.gif)
+![](img/4.event_3.png)
 
 ## Where are events from?
 

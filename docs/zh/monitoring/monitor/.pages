@@ -15,6 +15,6 @@ nav:
   - '可用性数据检测': usability-detection.md
   - '网络数据检测': network-detection.md
   - '外部事件检测': third-party-event-detection.md 
-  - '运算符说明': operator-description.md
-  - '真值表说明': table-description.md
-  - '事件等级说明': event-level-description.md
+  - '运算符': operator-description.md
+  - '真值表': table-description.md
+  - '事件等级': event-level-description.md
