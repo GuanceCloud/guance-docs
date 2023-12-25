@@ -21,7 +21,7 @@ Guance supports custom creation of new SLO tasks through the SLO module of "Moni
 
 ![](img/7.slo_2.png)
 
-???+ attention
+???+ warning
 
     Once the SLO configuration is saved, the SLO name, target, and detection period cannot be changed.
 
