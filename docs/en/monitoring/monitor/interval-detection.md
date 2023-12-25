@@ -1,25 +1,24 @@
 # Interval Detection
 ---
 
-## Overview
 
-Anomaly detection is done for the metric data within the selected detection interval time range. When the proportion of abrupt change abnormal data points exceeds the set percentage, abnormal events of interval detection are generated. Most of them are used to monitor data/metrics with stable trends.
+For the selected detection interval time range, abnormal detection is performed on the indicator data. When the percentage of mutated abnormal data points exceeds the set percentage, an interval detection abnormal event is generated. It is commonly used for monitoring stable trends in data/metrics.
 
-##  Application Scene
+## Use Case
 
-Data/metrics applied to monitor trend stability. For example, when the data points with abnormal cpu utilization rate of the host exceed 10% in the last day, abnormal events will be generated.
+It is applied to monitoring stable trends in data/metrics. For example, when the percentage of abnormal data points with a sudden mutation in host CPU usage rate exceeds 10% in the past 1 day, an abnormal event is generated.
 
-## Rule Description
+## Setup
 
 In "Monitor", click "+ New Monitor", select "Interval Detection", and enter the Interval Detection Rule Configuration page.
 
-### Step 1. Detect the Configuration
+### Step 1: Detection Configuration
 
 ![](../img/monitor19.png)
 
-1）**Detection frequency:** The execution frequency of detection rules automatically matches the detection interval selected by users.
+:material-numeric-1-circle-outline: **Detection Frequency:** The execution frequency of detection rules automatically matches the detection interval selected by users.
 
-2）**Detection interval:** The time range of detection index query when each task is executed. You can choose 15m, 30m, 1h, 4h, 12h and 1d
+:material-numeric-2-circle-outline: **Detection Interval:** The time range of detection index query when each task is executed. You can choose 15m, 30m, 1h, 4h, 12h and 1d.
 
 | Detection Interval (Drop-down Option) | Detection Frequency | 
 | --- | --- | 
@@ -30,74 +29,66 @@ In "Monitor", click "+ New Monitor", select "Interval Detection", and enter the 
 | 12h | 1h |
 | 1d | 1h |
 
-3）**Detection metrics:** Monitoring metric Data.
+:material-numeric-3-circle-outline: **Detection Metrics:** Monitoring metric Data.
 
 | Field | Description |
 | --- | --- |
-| Data type | Only "metric" data is supported at present |
-| Measurement | Measurement where the current detection metric is located |
+| Data Type | Only metric data is supported at present |
+| Measurements | Measurement where the current detection metric is located |
 | Metrics | Metrics for current detection |
 | Aggregation Algorithm | Contains Avg by (average), Min by (minimum), Max by (maximum), Sum by (sum), Last (Last), First by (first), Count by (data points), Count_distinct by (non-duplicate data points), p50 (median), p75 (75%), p90 (90%), p99 (99%) |
-| Detection dimension | The corresponding string type (keyword) fields in the configuration data can be selected as detection dimensions. At present, the detection dimensions support selecting up to three fields. Through the combination of fields of multiple detection dimensions, a certain detection object can be determined, and Guance will judge whether the statistical metric corresponding to a detection object meets the threshold of trigger conditions, and if it meets the conditions, an event will be generated. (For example, if the instrumentation dimensions "host" and "host_ip" are selected, the instrumentation object can be{host: host1, host_ip: 127.0.0.1}） |
-| Filtering criteria | Metric-based labels filter the data of detecting metrics, limit the range of detected data, support adding one or more labels to filter, and support fuzzy matching and fuzzy mismatching screening conditions. |
-| Alias | Custom metrics Name |
-| Query mode | Support simple query and expression query, refer to [query](../../scene/visual-chart/chart-query.md) |
+| Detection Dimension | The corresponding string type (keyword) fields in the configuration data can be selected as detection dimensions. At present, the detection dimensions support selecting up to three fields. Through the combination of fields of multiple detection dimensions, a certain detection object can be determined, and Guance will judge whether the statistical metric corresponding to a detection object meets the threshold of trigger conditions, and if it meets the conditions, an event will be generated. *(For example, if the instrumentation dimensions `host` and `host_ip` are selected, the instrumentation object can be `{host: host1, host_ip: 127.0.0.1}`.)* |
+| Filtering | Metric-based labels filter the data of detecting metrics, limit the range of detected data; support adding one or more labels to filter; support fuzzy matching and fuzzy mismatching screening conditions. |
+| Alias | Custom metrics name |
+| Query Mode | Support simple query and expression query; see [query](../../scene/visual-chart/chart-query.md) |
 
 
-4）**Trigger condition:** Set the trigger condition of alarm level. Support three forms of data comparison: upward (data rise), downward (data fall), upward or downward.
+:material-numeric-4-circle-outline: **Trigger Condition:** Set trigger conditions for alert levels: You can configure any of the following trigger conditions: Critical, Error, Warning, No Data, or Information. Set the trigger condition of alert level. Support three forms of data comparison: upward (data rise), downward (data fall), upward or downward.
 
 ![](../img/monitor52.png)
 
 Configure the trigger condition and severity. When the query result is multiple values, an event will be generated if any value meets the trigger condition.
 
-- Event level details refer to [event level description](event-level-description.md) 
+> See [Event Levels](event-level-description.md). 
 
-**01、Alarm Levels Emergency (Red), Important (Orange), Warning (Yellow) Based on Configuration Condition Judgment Operator.**
+I. Alert levels: Critical (red), Important (orange), Warning (yellow): Based on the configured conditions using [operators](operator-description.md). 
 
-- Operator details refer to [operator description](operator-description.md) 
-
-**02、 Alarm level is normal (green). Information (blue) is based on the number of detections configured. Description is as follows:**
+II. Alert levels: OK (green), Information (blue): Based on the configured number of detections, as explained below:
 
 - One test is performed for each test task, if "test frequency = 5 minutes", then one test = 5 minutes
 - You can customize the number of tests, such as "Test frequency = 5 minutes", then 3 tests = 15 minutes
 
-**a-Normal (green):** After the detection rules take effect, emergency, important and warning abnormal events are generated, and within the configured custom detection times, the data detection results return to normal, then a recovery alarm event is generated.
+| Level | Description |
+| --- | --- |
+| OK | After the detection rule takes effect, if the result of an urgent, important, or warning abnormal event returns to normal within the configured number of custom detections, a recovery alert event is generated. <br/>:warning: Recovery alert events are not affected by [Mute Alerting](../alert-setting.md). If no detection count is set for recovery alert events, the alert event will not recover and will always appear in the Events > Unrecovered Events List. |
+| Information | Events are generated even for normal detection results. |
 
-???+ attention
-   
-    Recovery alarm events are not restricted by [alarm silence](../alert-setting.md). If the recovery alarm event detection number is not set, the alarm event will not recover and will always appear in Events-Unrecovered Event List.
+III. Alert level: No Data (gray): The no data state supports three configuration strategies: Trigger No-Data Event, Trigger Recovery Event, and Untrigger Event.
 
-**b-Message (blue):** Normal test results also generate events.
 
-**03、No Data (Gray):** No Data status supports three configurations: "Trigger No Data Event", "Trigger Recovery Event" and "Don't Trigger Event", and requires manual configuration of no data processing strategy.
-
-After the detection rule comes into effect, there is no data detected for the first time and there is no data continuously, and no data alarm event is generated; If there is data detected and the data report is broken within the configured self-defined detection time range, an alarm event without data will be generated.
-
-### Step 2. Event notification
+### Step 2: Event Notification
 
 ![](../img/monitor15.png)
 
-5）**Event title:** Set the event name of the alarm trigger condition, and support the use of preset template variables. For details, refer to [template variables](../event-template.md).
+:material-numeric-5-circle-outline: **Event Title:** Set the event name for the alert trigger conditions, support the use of [preset template variables](../event-template.md).
 
-???+ attention
-    
-    In the latest version, "Monitor Name" will be generated synchronously after entering "Event Title". There may be inconsistencies between "Monitor Name" and "Event Title" in the old monitor. In order to give you a better experience, please synchronize to the latest as soon as possible. Support one-click replacement for event headers.
+**Note**: In the latest version, the Monitor Name will be automatically generated based on the Event Title input. In older monitors, there may be inconsistencies between the Monitor Name and the Event Title. To enjoy a better user experience, please synchronize to the latest version as soon as possible. One-click replacement with event title is supported.
 
-6）**Event content:** Event notification content sent when triggering conditions are met, support input of markdown format text information, support preview effect, support use of preset template variables, refer to [template variables](../event-template.md)。
+:material-numeric-6-circle-outline: **Event Content**: The content of the event notification sent when the trigger conditions are met. Support inputting text in Markdown format, previewing effects, the use of preset [associated links](link-description.md) and the use of preset [template variables](../event-template.md).
 
-???+ attention
-    
-    Different alarm notification objects support different markdown syntax. For example, enterprise WeChat does not support unordered list.
+**Note**: Different alert notification objects support different Markdown syntax. For example, WeCom does not support unordered lists.
 
-7）**Alarm policy:** Send an alarm message to the specified notification object immediately after the monitoring meets the trigger condition. The alarm policy includes the event level to be notified, the notification object, and the alarm silence period. For details, refer to [alarm policy](../alert-setting.md).
+:material-numeric-7-circle-outline: **Alert Strategy**: After the monitoring meets the trigger conditions, immediately send an alert message to the specified notification targets. The [Alert Strategy](../alert-setting.md) includes the event level that needs to be notified, the notification targets and the mute alerting period.
 
-### Step 3. Associate
+:material-numeric-8-circle-outline: **Synchronously create Issue**: If abnormal events occur under this monitor, an issue for anomaly tracking will be created synchronously and delivered to the channel for anomaly tracking. You can go to [Incident](../../exception/index.md) > Your selected [Channel](../../exception/channel.md) to view it.
+
+### Step 3: Association
 
 ![](../img/monitor13.png)
 
-8）**Associated dashboards:** Each monitor supports associated dashboards, that is, dashboards that can customize quick jumps through the "Associated Dashboards" function (dashboards associated with monitors support quick jumps to view monitoring views).
+:material-numeric-9-circle-outline: **Associate Dashboard**: Every monitor supports associating with a dashboard for quick navigation and viewing.
 
-## Example
+### Example
 
 When the data points with abnormal cpu utilization rate exceed 10% in the last hour, abnormal events will occur.
 
