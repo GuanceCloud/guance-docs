@@ -190,7 +190,7 @@ android{
 
 | **方法名** | **类型** | **必须** | **含义** | **注意** |
 | --- | --- | --- | --- | --- |
-| metricsUrl | String | 是 | Datakit 安装地址 | datakit 安装地址 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529，。注意：安装 SDK 设备需能访问这地址 |
+| metricsUrl | String | 是 | Datakit 安装地址 | datakit 安装地址 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529，注意：安装 SDK 设备需能访问这地址 |
 | setDebug | String | 否 | 是否开启调试模式 | 默认为 `false`，开启后方可打印 SDK 运行日志 |
 | setEnv | EnvType | 否 | 设置采集环境 | 默认为 `EnvType.PROD` |
 | setEnv | String | 否 | 设置采集环境 | 默认为 `prod` |
@@ -1550,7 +1550,8 @@ FTExt {
 	//...
     autoUploadMap = true
     autoUploadNativeDebugSymbol = true
-    datakitDCAUrl = 'https://datakit.url:9531'//datakit 安装地址，默认 9531 
+	datakitUrl = 'https://datakit.url'
+    datawayToken = 'dataway_token'
     appId = "appid_xxxxx"// appid
     env = 'common'
 
@@ -1558,14 +1559,16 @@ FTExt {
         prodTest {
             autoUploadMap = false
             autoUploadNativeDebugSymbol = false
-            datakitDCAUrl = 'https://datakit.test.url:9531'
+            datakitUrl = 'https://datakit.url'
+    		datawayToken = 'dataway_token'
             appId = "appid_prodTest"
             env = "gray"
         }
         prodPublish {
             autoUploadMap = true
             autoUploadNativeDebugSymbol = true
-            datakitDCAUrl = 'https://datakit.publish.url:9531'
+            datakitUrl = 'https://datakit.url'
+    		datawayToken = 'dataway_token'
             appId = "appid_prodPublish"
             env = "prod"
         }
@@ -1575,6 +1578,8 @@ FTExt {
 ```
 ### 手动上传
 需要开发者将符号文件自行打包成 `zip` 文件，然后自行上传至 `datakit` ，推荐使用 `zip` 命令行进行打包，避免将一些系统隐藏文件打入 `zip` 包中，符号上传请参考 [sourcemap 上传](../../integrations/rum.md#sourcemap)
+
+> Unity Native Symbol 文件请参考[官方文档](https://docs.unity3d.com/Manual/android-symbols.html#public-symbols)
 
 ## 权限配置说明
 
