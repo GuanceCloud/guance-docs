@@ -2,7 +2,11 @@
 ---
 ## 前置条件
 
-- 安装 DataKit（[DataKit 安装文档](../../datakit/datakit-install.md)）
+**注意**：若您开通了 [RUM Headless](../../dataflux-func/headless.md) 服务，前置条件已自动帮您配置完成，直接接入应用即可。
+
+- 安装 [DataKit](../../datakit/datakit-install.md)；  
+- 配置 [RUM 采集器](../../integrations/rum.md)；
+- DataKit 配置为[公网可访问，并且安装 IP 地理信息库](../../datakit/datakit-tools-how-to.md#install-ipdb)。
 
 ## 应用接入 {#integration}
 当前 C# 版本暂时支持 Windows 和 Linux 平台。登录观测云控制台，进入「用户访问监测」页面，点击左上角「新建应用」，即可开始创建一个新的应用。
