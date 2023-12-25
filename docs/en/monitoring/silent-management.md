@@ -19,7 +19,7 @@ Click "New Silence Rule", and you can configure the monitor, intelligent patrol,
 
 ![](img/monitor30.png)
 
-???+ attention
+???+ warning
 
     Silence range is required, label is not required. Silence will only take effect if the conditions of "Silence Range" and "Label" are met at the same time. Examples are as follows:
 

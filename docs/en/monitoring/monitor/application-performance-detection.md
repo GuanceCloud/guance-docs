@@ -1,113 +1,110 @@
-# Application Performance Metrics Detection
+# APM Metrics Detection
 ---
 
-## Overview
+APM Metrics Detection is used to monitor the metric data of APM within the workspace. By setting threshold ranges, alerts can be triggered when the metrics reach the threshold. 
 
-"Application Performance Metrics Detection" is used to monitor the metric data of "Application Performance Monitoring" in the workspace. By setting the threshold range, an alarm is triggered when the metric reaches the threshold. Guance supports setting alarms and customizing alarm levels for individual metrics.
+## Use Cases
 
-## Application Scene
+- Support monitoring the metric data of all/single services in APM;
+- Support counting the number of links that meet the conditions within a specified time period, and trigger an exception event when the custom threshold is exceeded.
 
-- Support to monitor the metric data of all/single services in "Application Performance Monitoring", and support all selection or single selection.
-- Support statistics of the number of eligible links within the specified time, and trigger abnormal events when exceeding the custom threshold.
+## Setup
 
-## Rule Description
-
-### Step 1. Detect the configuration
+### Step 1: Detection Configuration
 
 ![](../img/monitor17.png)
 
-1）**Detection frequency:** The execution frequency of detection rules, including 1m/5m/15/30m/1h/6h (5m is selected by default).
+:material-numeric-1-circle-outline: **Detection Frequency:** The execution frequency of detection rules, including 1m/5m/15/30m/1h/6h (5m is selected by default).
 
-2）**Detection interval:** The time range of detection metric query when each task is executed. The optional detection interval will be different due to the influence of detection frequency. (support user-defined)
+:material-numeric-2-circle-outline: **Detection Interval:** The time range of detection metric query when each task is executed. The optional detection interval will be different due to the influence of detection frequency. 
 
-| Detection Frequency | Detection Interval (Drop-down Option) | Custom Interval Limit |
-| --- | --- | --- |
-| 1m | 1m/5m/15m/30m/1h/3h | <=3h |
-| 5m | 5m/15m/30m/1h/3h | <=3h |
-| 15m | 15m/30m/1h/3h/6h | <=6h |
-| 30m | 30m/1h/3h/6h | <=6h |
-| 1h | 1h/3h/6h/12h/24h | <=24h |
-| 6h | 6h/12h/24h | <=24h |
-
-3）**Detection Metrics:** Set the metrics of detection data. Supports setting metric data within a certain time range in the list of all/single services in the workspace.
-
-**Service Metrics**
-
-| Field | Description |
+| Detection Frequency | Detection Interval (Drop-down Option) |
 | --- | --- |
-| Service | It supports monitoring the metric data of all/single services in "Application Performance Monitoring" in the current workspace, and supports all selection or single selection. |
-| Metrics | Specific detection metrics, support setting a single metric, including request number, error request number, request error rate, average request number per second, average response time, P50 response time, P75 response time, P90 response time, P99 response time, etc. |
-| Filter Condition | Based on the metric label, the data of detection metric is screened and the detection data range is limited. Support to add one or more label filters, and support fuzzy matching and fuzzy mismatching filters.|
-| Detection Dimension | The corresponding string type (keyword) fields in the configuration data can be selected as detection dimensions. At present, the detection dimensions support selecting up to three fields. Through the combination of fields of multiple detection dimensions, a certain detection object can be determined, and Guance will judge whether the statistical metric corresponding to a detection object meets the threshold of trigger conditions, and if it meets the conditions, an event will be generated. (For example, if the detect dimensions "host" and "host_ip" are selected, the detect object can be {host: host1, host_ip: 127.0.0.1}） |
+| 1m | 1m/5m/15m/30m/1h/3h |
+| 5m | 5m/15m/30m/1h/3h |
+| 15m | 15m/30m/1h/3h/6h |
+| 30m | 30m/1h/3h/6h |
+| 1h | 1h/3h/6h/12h/24h |
+| 6h | 6h/12h/24h |
 
-**Link Statistics**
+:material-numeric-3-circle-outline: **Detection Metrics:** Set the metrics of detection data. Setting metric data within a certain time range in the list of all/single services in the workspace is supported.
 
-Count the number of links that meet the conditions within the specified time, and trigger abnormal events when exceeding the custom threshold. Can be used for service link exception error notification.
+- **Service Metrics**
+
+| <div style="width: 150px">Field</div> | Description |
+| --- | --- |
+| Service | Support monitoring of metric data for all/individual services in the current workspace, with the option to select all or select individually.|
+| Metrics | The specific metrics for monitoring include the number of requests, number of error requests, error request rate, average requests per second, average response time, P50 response time, P75 response time, P90 response time, P99 response time, etc. |
+| Filtering | Based on labels for metrics, the data can be filtered to limit the range of monitoring. It supports adding one or multiple label filters, with support for fuzzy matching and fuzzy non-matching conditions.  |
+| Detection Dimension | The string type (keyword) fields in the configuration data can all be selected as dimensions for monitoring. Currently, up to three fields can be selected as monitoring dimensions. Through the combination of multiple monitoring dimensions, a specific monitoring object can be determined. Guance will determine whether the statistical metrics for a certain monitoring object meet the threshold of the triggering conditions. If the conditions are met, an event will be generated.<br/><br/>*For example, by selecting the monitoring dimensions `host` and `host_ip`, the monitoring object can be `{host: host1, host_ip: 127.0.0.1}`.* |
+
+- **Link Statistics**
+
+Count the number of links that meet the conditions within the specified time, and trigger abnormal events when exceeding the custom threshold. It can be used for service link exception error notification.
 
 ![](../img/6.monitor14.2.png)
 
-| Field | Description |
+| <div style="width: 150px">Field</div> | Description |
 | --- | --- |
 | Source | The data source of the current detection metric is supported by selecting all (`*`) or specifying a single data source |
-| Filter Condition | Through the label filter link span, the range of detected data is limited, and one or more label filters are supported. |
-| Aggregation Algorithm | “*” is selected by default, and the corresponding function is count. If other fields are selected, the function automatically changes to Count distinct |
-| Detection Dimension | The corresponding string type (keyword) fields in the configuration data can be selected as detection dimensions. At present, the detection dimensions support selecting up to three fields. Through the combination of fields of multiple detection dimensions, a certain detection object can be determined, and Guance will judge whether the statistical index corresponding to a detection object meets the threshold of trigger conditions, and if it meets the conditions, an event will be generated. (For example, if the detect dimensions "host" and "host_ip" are selected, the detect object can be {host: host1, host_ip: 127.0.0.1}） |
+| Filtering | Through the label filter link span, the range of detected data is limited, and one or more label filters are supported. |
+| Aggregation Algorithm | “*” is selected by default, and the corresponding function is count. If other fields are selected, the function automatically changes to Count distinct. |
+| Detection Dimension | The string type (keyword) fields in the configuration data can all be selected as dimensions for monitoring. Currently, up to three fields can be selected as monitoring dimensions. Through the combination of multiple monitoring dimensions, a specific monitoring object can be determined. Guance will determine whether the statistical metrics for a certain monitoring object meet the threshold of the triggering conditions. If the conditions are met, an event will be generated.<br/><br/>*For example, by selecting the monitoring dimensions `host` and `host_ip`, the monitoring object can be `{host: host1, host_ip: 127.0.0.1}`.*  |
 
-4）**Trigger condition:** Set the trigger condition of alarm level.
+:material-numeric-4-circle-outline: **Trigger Condition**: Set trigger conditions for alert levels; You can configure any of the following trigger conditions: Critical, Error, Warning, No Data, or Information.
 
-![](../img/monitor16.png)
 
-Configure the trigger condition and severity. When the query result is multiple values, an event will be generated if any value meets the trigger condition.
+Configure trigger conditions and severity. When there are multiple values in the query result, an event is generated if any value meets the trigger conditions.
 
-- For more event level details, refer to [event level description](event-level-description.md) 
+> See [Event Levels](event-level-description.md). 
 
-**01, Alarm levels Emergency (Red), Important (Orange), Warning (Yellow) based on configuration condition judgment operator.**
+I. Alert levels: Critical (red), Important (orange), Warning (yellow): Based on the configured conditions using [operators](operator-description.md).
 
-- Operator details refer to [operator description](operator-description.md) 
 
-**02, Alarm level is Normal (green). Information (blue) is based on the number of detections configured. Description is as follows:**
+II. Alert levels: OK (green), Information (blue): Based on the configured number of detections, as explained below:
 
-- One test is performed for each test task, if "test frequency = 5 minutes", then one test = 5 minutes
-- You can customize the number of tests, such as "Test frequency = 5 minutes", then 3 tests = 15 minutes
+- Each execution of a detection task counts as 1 detection. For example, with a detection frequency of 5 minutes, 1 detection equals 5 minutes.
+- You can customize the number of detections. For example, with a detection frequency of 5 minutes, 3 detections equal 15 minutes.  
 
-**a-Normal (green):** After the detection rules take effect, emergency, important and warning abnormal events are generated, and within the configured custom detection times, the data detection results return to normal, then a recovery alarm event is generated.
 
-???+ attention
+| Level | Description |
+| --- | --- |
+| OK | After the detection rule takes effect, if the result of an urgent, important, or warning abnormal event returns to normal within the configured number of custom detections, a recovery alert event is generated. <br/>:warning: Recovery alert events are not affected by [Mute Alerting](../alert-setting.md). If no detection count is set for recovery alert events, the alert event will not recover and will always appear in the Events > Unrecovered Events List. |
+| Information | Events are generated even for normal detection results. |
 
-    Recovery alarm events are not restricted by [alarm silence](../alert-setting.md). If the recovery alarm event detection number is not set, the alarm event will not recover and will always appear in Events-Unrecovered Event List.
 
-**b-Message (blue):** Normal test results also generate events.
 
-**03, alarm level without data (gray):** No data status supports three configurations: "trigger no data event", "trigger recovery event" and "do not trigger event", and needs to manually configure no data processing strategy.
 
-After the detection rule comes into effect, there is no data detected for the first time and there is no data continuously, and no data alarm event is generated; If there is data detected and the data report is broken within the configured self-defined detection time range, an alarm event without data will be generated.
+III. Alert level: No Data (gray): The no data state supports three configuration strategies: Trigger No-Data Event, Trigger Recovery Event, and Untrigger Event.
 
-### Step 2. Event Notification
+### Step 2: Event Notification
 
-![](../img/monitor15.png)
+![](../img/8.monitor_1.png)
 
-5）**Event title:** Set the event name of the alarm trigger condition, and support the use of preset template variables. For details, refer to [template variables](../event-template.md).
+:material-numeric-5-circle-outline: **Event Title**: Set the event name for the alert trigger conditions, support the use of [preset template variables](../event-template.md).
 
-???+ attention
+**Note**: In the latest version, the Monitor Name will be automatically generated based on the Event Title input. In older monitors, there may be inconsistencies between the Monitor Name and the Event Title. To enjoy a better user experience, please synchronize to the latest version as soon as possible. One-click replacement with event title is supported.
 
-    In the latest version, "Monitor Name" will be generated synchronously after entering "Event Title". There may be inconsistencies between "Monitor Name" and "Event Title" in the old monitor. In order to give you a better experience, please synchronize to the latest as soon as possible. Support one-click replacement for event headers.
+:material-numeric-6-circle-outline: **Event Content**: The content of the event notification sent when the trigger conditions are met. Support inputting text in Markdown format, previewing effects, the use of preset [associated links](link-description.md) and the use of preset [template variables](../event-template.md).
 
-6）**Event content:** Event notification content sent when triggering conditions are met, support input of markdown format text information, support preview effect, support use of preset template variables, refer to [template variables](../event-template.md).
+**Note**: Different alert notification targets support different Markdown syntax. For example, WeCom does not support unordered lists.
 
-???+ attention
+**No Data Notification Configuration**: Support customizing the content of the no data notification. If not configured, the official default notification template will be automatically used.
 
-    Different alarm notification objects support different markdown syntax. For example, enterprise WeChat does not support unordered list.
+![](../img/8.monitor_2.png)
 
-7）**Alarm policy:** Send an alarm message to the specified notification object immediately after the monitoring meets the trigger condition. The alarm policy includes the event level to be notified, the notification object, and the alarm silence period. For details, refer to [alarm policy](../alert-setting.md).
+:material-numeric-7-circle-outline: **Alert Strategy**: After the monitoring meets the trigger conditions, immediately send an alert message to the specified notification targets. The [Alert Strategy](../alert-setting.md) includes the event level that needs to be notified, the notification targets and the mute alerting period.
 
-### Step 3. Association
+:material-numeric-8-circle-outline: **Synchronously create Issue**: If abnormal events occur under this monitor, an issue for anomaly tracking will be created synchronously and delivered to the channel for anomaly tracking. You can go to [Incident](../../exception/index.md) > Your selected [Channel](../../exception/channel.md) to view it.
 
-![](../img/monitor13.png)
+### Step 3: Association
 
-8）**Associated dashboards:** Each monitor supports associated dashboards, that is, dashboards that can customize quick jumps through the "Associated Dashboards" function (dashboards associated with monitors support quick jumps to view monitoring views).
+![](../img/5.monitor_4.png)
 
-## Example
+:material-numeric-9-circle-outline: **Associate Dashboard**: Every monitor supports associating with a dashboard for quick navigation and viewing.
 
-The following figure shows that the configuration detects that the response time of the link service P90 is too high.
+### Example
+
+The following image shows the configuration of monitoring the P90 response time of a detection chain service:
 
 ![](../img/example01.png)
