@@ -243,7 +243,7 @@ Please update the referenced script set in DataFlux Func's script marketplace, y
 
 **5. During the upgrade inspection process, it was found that there was no change in the corresponding script set in the Startup**
 
-Please delete the corresponding script set first, then click the upgrade button to configure the corresponding Observability Cloud API key to complete the upgrade.
+Please delete the corresponding script set first, then click the upgrade button to configure the corresponding Guance API key to complete the upgrade.
 
 **6. How to determine if the inspection is effective after it is enabled**
 
