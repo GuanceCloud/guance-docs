@@ -16,7 +16,7 @@
 | `df_check_range_end`                             | Integer        | 检测范围结束时间。Unix 时间戳，单位为秒                                                                                     |
 | `df_status`                                      | String(Enum)   | 事件状态，可能的值为：<br>紧急 `critical`<br>重要 `error`<br>警告 `warning`<br>正常 `ok`<br>无数据 `nodata`                 |
 | `df_event_id`                                    | String         | 事件唯一 ID                                                                                                                 |
-| `df_event_url`                                   | String         | 事件详情页 URL                                                                                                              |
+| `df_event_link`                                  | String         | 事件详情页链接地址                                                                                                          |
 | `df_dimension_tags`                              | String         | 事件维度。用于标识检测对象<br>如：`{"host":"web-001"}`                                                                      |
 | `df_monitor_id`                                  | String         | 告警策略 ID<br>_如果对检测有疑问，可以将此 ID 发送给我们_                                                                   |
 | `df_monitor_name`                                | String         | 告警策略名称                                                                                                                |
