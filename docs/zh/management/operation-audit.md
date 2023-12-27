@@ -30,20 +30,20 @@
 
 | 字段名	      | 类型      | 是否必须	      | 说明      |
 | ----------- | ---------------- | ----------- | ---------------- |
-| date	      | Integrate      | 必须	      | 产⽣时间，Unix 时间戳，单位 ms      |
-| df_date_range		      | Integrate      | 必须	      | 时间范围，单位 s     |
-| df_source	      | String      | 必须	      | 数据来源，操作事件取值 audit      |
-| df_status		      | String      | 必须	      | 状态，操作事件默认取 info      |
-| df_origin	      | String      | 必须	      | 操作来源，用于记录当前操作是从哪个来源入口产生。参考值如下：<br /><li>front: 前端用户操作 <br /><li>openapi: 通过 OpenAPI 操作<br /><li>manage: 通过管理后台操作<br /><li>inner: 通过内部可信任系统操作      |
-| df_menu	      | String      | 必须	      | 用户访问的菜单路径，例如：日志-查看器      |
-| df_event_id		      | String      | 必须	      | 事件唯一 ID      |
-| df_title		      | String      | 必须	      | 标题      |
-| df_message	      | String      | 必须	      | 描述      |
-| df_user_id		      | String      | 必须	      | 用户 ID      |
-| df_user_name		      | String      | 必须	      | 用户姓名      |
-| df_user_email	      | String      | 必须	      | 用户邮箱，对应【成员管理】的 id、name、email      |
-| df_user_team		      | String      | 必须	      | 用户当下所属团队      |
-| df_role_scope		      | String      | 必须	      | 用户当下所拥有的角色范围      |
+| `date`	      | Integrate      | 必须	      | 产⽣时间，Unix 时间戳，单位 ms      |
+| `df_date_range`		      | Integrate      | 必须	      | 时间范围，单位 s     |
+| `df_source`	      | String      | 必须	      | 数据来源，操作事件取值 audit      |
+| `df_status`		      | String      | 必须	      | 状态，操作事件默认取 info      |
+| `df_origin`	      | String      | 必须	      | 操作来源，用于记录当前操作是从哪个来源入口产生。参考值如下：<br /><li>front: 前端用户操作 <br /><li>openapi: 通过 OpenAPI 操作<br /><li>manage: 通过管理后台操作<br /><li>inner: 通过内部可信任系统操作      |
+| `df_menu`	      | String      | 必须	      | 用户访问的菜单路径，例如：日志-查看器      |
+| `df_event_id`		      | String      | 必须	      | 事件唯一 ID      |
+| `df_title`		      | String      | 必须	      | 标题      |
+| `df_message`	      | String      | 必须	      | 描述      |
+| `df_user_id`		      | String      | 必须	      | 用户 ID      |
+| `df_user_name`		      | String      | 必须	      | 用户姓名      |
+| `df_user_email`	      | String      | 必须	      | 用户邮箱，对应【成员管理】的 id、name、email      |
+| `df_user_team`		      | String      | 必须	      | 用户当下所属团队      |
+| `df_role_scope`		      | String      | 必须	      | 用户当下所拥有的角色范围      |
 
 
 ## 分组聚合

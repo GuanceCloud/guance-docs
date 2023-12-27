@@ -75,17 +75,10 @@ icon: zy/management
 
 ### SSO 账号登录 {#sso}
 
-除了通过注册观测云账号登录以外，还支持企业用户通过 SSO 单点登录的方式登录到观测云，进入工作空间后，点击左侧**账号 > 账号管理**，可对 SSO 账号进行修改。
+除了通过注册观测云账号登录以外，还支持企业用户通过 [SSO 单点登录](../management/sso/index.md)的方式登录到观测云。
 
-- 支持修改头像、用户名；
+通过 SSO 登录的账号，默认使用 SSO 配置的登录保持时间，在账号管理修改后，使用修改后的登录保持时间。
 
-- 支持修改 [登录保持时间](#login-hold-time)。
-
-???+ warning "SSO 相关"
-
-    通过 SSO 登录的账号，默认使用 SSO 配置的登录保持时间，在账号管理修改后，使用修改后的登录保持时间。
-    
-    > 更多 SSO 配置详情，可参考 [SSO 管理](../management/sso/index.md)。
 
 ## 账户安全相关
 
@@ -153,7 +146,6 @@ icon: zy/management
 
 - [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 点击管理您的工作空间系统通知</font>](./system-notification.md)
 
-<br/>
 
 </div>
 

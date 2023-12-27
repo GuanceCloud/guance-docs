@@ -2,7 +2,6 @@ nav:
   - index.md
   - 'Monitors': monitor
   - 'Intelligent Monitoring': intelligent-monitoring
-  - 'Intelligent Inspection': bot-obs
   - 'SLO': slo.md
   - 'Mute Management': silent-management.md
   - 'Alert Strategies': alert-setting.md
