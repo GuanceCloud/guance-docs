@@ -83,16 +83,17 @@ When setting role permissions for workspace members, if the granted role permiss
 
 In the Guance Commercial Plan workspace, enter **Management > Member Management**, select the member that needs to be promoted to Administrator, click the **Edit** button on the right and select **Role** as Administrator in the pop-up dialog box, and click Confirm.
 
-**Note**: Guance only allows Owner and Administrator gives Administrator permission to the current workspace member.
+**Note**: Guance only supports assigning Administrator permissions to current workspace members with the Owner and Administrator roles. Only users with the Owner role can approve Administrator permissions in the Billing Center.
 
 ![](img/11.role_upgrade_1.png)
 
-Prompt for permission verification:
 
-- If the current workspace Owner is not the Administrator of the Guance Billing Center or the Administrator promotes the right for members, it is necessary to notify the Administrator of the Guance Billing Center to [log in to the Billing Center](https://boss.guance.com/) for operation; Or you can view the members that need to be authorized in **Member Management** and click **Billing Center** to operate.
+- If the current workspace Owner is not the Administrator of the Guance Billing Center or the Administrator promotes the right for members, it is necessary to notify the Administrator of the Guance Billing Center to [log in to the Billing Center](https://bill.guance.one/) for operation; Or you can view the members that need to be authorized in **Member Management** and click **Billing Center** to operate.
 - If the current workspace Owner is the administrator of the Guance Billing Center, then you can directly click **Jump to the Billing Center for Review** without logging in for operation;
 
 ![](img/11.role_upgrade_2.png)
+
+<!-- 
 
 In the message center of the Guance Billing Center, click **Accept**.
 
@@ -110,8 +111,16 @@ Returning to **Member Management**, you can see that the workspace member is alr
 
 ![](img/11.role_upgrade_6.png)
 
+-->
+
+**Note**: Only users with the Owner role and Administrator permissions approved as members of the current workspace can perform the review.
+
+![](img/4.member_admin_1.png)
+
 ## Permission List
 
-Guance supports setting permissions for custom roles in the workspace to meet the permission requirements of different users. For more details, please refer to the doc [Permission List](role-list.md).
+Guance supports setting permissions for custom roles in the workspace to meet the permission requirements of different users. 
 
-> Presently you can only set permissions for functional operations within the workspace.
+> For more details, see [Permission List](role-list.md).
+
+**Note**: Presently you can only set permissions for functional operations within the workspace.

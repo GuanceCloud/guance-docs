@@ -1,77 +1,77 @@
-# Ticket Management
+# Tickets
 ---
 
-In view of the problems encountered in Guance, users can consult and make suggestions by submitting tickets, and the official will make timely processing and feedback. Issues include but are not limited to confusion in the process of using products, product functional requirements and consultation related to purchase and cost.
+To address any issues encountered in Guance, you can seek advice and guidance by submitting a ticket. This includes difficulties in resolving problems during usage, inquiries about purchases and costs, and suggestions for requirements and improvements to Guance. Once a ticket is received, the official team will promptly handle and provide feedback.
 
-The ticket system is based on the personal account level, and you can view all the tickets in **Help > Ticket Management** submitted by yourself without distinguishing the workspace.
+The ticket system is **based on the workspace level**, so submitted tickets will not disappear due to the addition or removal of a member. In the ticket list, you can view all the tickets within the current workspace and understand the problems encountered and the feedback given.
 
-## Submit Tickets
+Guance provides 5x8 hours of ticket service. Once the customer support team receives a ticket, they will handle it as soon as possible.
 
-On the **Ticket Management** page, you can directly click **Submit**, select the type of ticket and enter the title and description of the ticket to create it. Uploading attachments is supported.
+Click on the **Help > Tickets** in the lower-left corner to access the ticket management portal:
+
+<img src="../img/ticket-entry.png" width="50%">
+
+## Submit a Ticket
+
+On the ticket management page, you can directly click on **Submit Ticket**, select the type of ticket, and enter the title and description of the ticket to create it. Attachments can also be uploaded.
 
 ![](img/1.work_order_1.png)
 
-### Ticket Type
+### Ticket Types
 
-Ticket types include **Unbind MFA, Change Owner Account, Purchase Consultation, Documentation, Requirements, BUG Feedback, Usage Problem and Others**.
+The ticket types include **MFA Unbinding**, **Owner Account Change**, **Purchase Consultation**, **Help Documentation**, **Requirement Suggestion**, **Bug Report**, **Usage Problem**, and **Other**. You can select the corresponding type based on the ticket issue for faster assignment and resolution.
 
-> When the ticket type is **Change Owner Account**, you need to download the application form first, fill in the information as required, stamp the official seal of the company and upload the attachment. Please note: Incomplete application information will not be accepted.
+<img src="../img/ticket-type.png" width="50%">
 
-![](img/1.work_order_3.png)
+**Notes**:
 
-> When the job type is **Unbind MFA**, it needs to be verified by mailbox.
+- When the ticket type is Owner Account Change, you need to download the application form, fill in the required information, stamp it with the company seal, and upload it as an attachment. Incomplete application information will not be accepted.
 
-![](img/1.work_order_2.png)
+<img src="../img/1.work_order_3.png" width="50%">
 
-### Ticket Status
+- When the ticket type is MFA Unbinding, email verification is required.
 
-Job status includes **Pending, In Process, Completed** and **Cancelled**.   
+<img src="../img/1.work_order_2.png" width="50%">
 
-- Pending: Default status after a ticket is submitted. In this status, users can cancel the ticket.  
-- In Process: Indicating that the ticket has been consulted and is in process.  
-- Completed: The ticket has been marked as completed and cannot be reopened or replied to the message.  
-- Cancelled: The ticket that was manually cancelled by the user which cannot be reopened and the message can no longer be answered.
+### Ticket Status {#state}
 
-### Attachment
+| Ticket Status | Description |
+| --- | --- |
+| Allocating | The status of the ticket after it is submitted by the user. |
+| Pending | The status of the ticket after it is accepted by the ticket handler. |
+| Feedback | The status of the ticket after the ticket handler sends a message, excluding the fixed automatic reply. When the user provides further feedback, the ticket will be changed to Waiting for Feedback. |
+| Closed | The status of the ticket after 48 hours of feedback. The ticket submitter can manually close the ticket at any time. |
+| Cancled | The ticket can be canceled when it is in Waiting for Assignment status. |
 
-Users can upload attachments for ticket problems. Attachments support the format of .png, .gif, .jpg, .jpeg, .bmp, .doc, .docx, .pdf, .xlsx, .xls, .txt, .zip and .rar. A single attachment cannot exceed 8M, and up to 5 attachments can be uploaded at a time.
+### Attachments
+
+You can upload attachments according to the needs of the ticket issue. Attachments support the following formats: `.png`, `.gif`, `.jpg`, `.jpeg`, `.bmp`, `.doc`, `.docx`, `.pdf`, `.xlsx`, `.xls`, `.txt`, `.zip`, and `.rar`. Each attachment cannot exceed 8MB, and up to 5 attachments can be uploaded at a time.
 
 ## Ticket List
 
-All tickets submitted by individuals are displayed here, and the status of each ticket can be clearly seen. Users can filter based on Ticket Type/Ticket Status and text search based on Ticket Number/Ticket Title.
+All tickets submitted by members within the current workspace will be displayed in the **All Tickets** list, allowing you to clearly see the status of each ticket.
 
-![](img/1.work_order_6.png)
+![](img/ticketforall.png)
+
+In **My Tickets**, you can view a summary of the tickets you have submitted **across all workspaces**.
+
+**Note**: If you exit Workspace A or Workspace A is dissolved, the tickets from Workspace A will not be displayed in **My Tickets**.
+
+![](img/ticketformine.png)
+
+You can filter the tickets based on ticket type or status. In the search box, you can enter the ticket number or title to quickly locate a ticket.
+
+![](img/ticketformine-op.png)
 
 ## Ticket Details
 
-You can click any tickets to view the details of the ticket. Both parties can communicate and reply on line and upload attachments in the communication process.
-   
-## Ticket Processing
+Clicking on any ticket allows you to view detailed information such as the status, type, submitter, and associated workspace. On the details page, you can communicate with Guance and upload attachments.
 
-Guance provides users with 5*8 hours of ticket service time, and customer service personnel will deal with ticket problems for you as soon as possible. More details can be found in the [Service Support Plan](https://www.guance.com/support).
+- For tickets in Waiting for Assignment status, users can revoke the ticket. After revocation, the ticket will be closed and the status will be set as Canceled, and no further messages can be replied to.
 
-<!-- 
+<img src="../img/1.work_order_7.png" width="70%">
 
-## 工单管理后台（内部使用）
+- For tickets with Feedback Received status, users can close the ticket. The status will be set as Closed. Once a ticket is closed, it cannot be reopened, and no further messages can be replied to.
 
-### 工单列表
+<img src="../img/1.work_order_8.png" width="70%">
 
-【工单列表】中你可以看到所有平台提交上来的工单，观测云提交上来的工单，系统将自动转发给一个管理员账号（简称：账号A），后面由账号A 选择直接处理或转发给其他处理人。（下图为费用中心提交的工单列表，仅作参考，观测云提交的工单状态仅有四种【待受理】【处理中】【已完成】【已取消】）
-
-![](img/1.work_order_mng_1.png)
-
-### 我的工单
-
-【我的工单】中可以查看分配给自己的工单列表。
-
-- 待受理：支持【处理】【标记完成】【转发】三个操作，点击处理后工单自动变为 “处理中”；转发给他人后，该工单将会在【我的工单】中消失。
-- 处理中：支持回复用户消息、传送附件。
-- 已完成/已取消：支持查看工单详情以及沟通记录，不支持再回复消息
-
-![](img/1.work_order_mng_2.png)
-
-### 工单处理人
-
-【工单处理人列表】中可以查看当前可分配的处理人有哪些，均由管理员进行创建，可以指定处理人的 “所属角色”。
-
--->
