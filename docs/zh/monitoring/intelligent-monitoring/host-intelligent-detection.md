@@ -7,7 +7,7 @@
 
 ## 应用场景
 
-智能检测适用于对稳定性和可靠性要求较高的业务主机的监控，支持对产生的异常事件提供分析报告。
+适用于对稳定性和可靠性要求较高的业务主机的监控，支持对产生的异常事件提供分析报告。
 
 ## 新建规则
 
@@ -37,9 +37,7 @@
 
 6）**告警策略**：监控满足触发条件后，立即发送告警消息给指定的通知对象。告警策略中包含需要通知的事件等级、通知对象、以及告警聚合。
 
-???+ warning
-
-    智能监控触发的事件等级为【重要】。
+**注意**：智能监控触发的事件等级为【重要】。
 
 
 ## 监控器列表
@@ -52,13 +50,13 @@
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 监控器列表操作</font>](../monitor/index.md#list)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 监控器列表操作</font>](../monitor/index.md#list)
 
 </div>
 
 ### 查看事件
 
-监控器会获取最近 30 分钟的检测对象主机的 CPU 、内存使用情况，识别出现异常情况时，会生成相应的事件，在**事件 > 智能监控**列表可查看对应异常事件。
+监控器会获取最近 30 分钟的检测对象主机的 CPU、内存使用情况，识别出现异常情况时，会生成相应的事件，在**事件 > 智能监控**列表可查看对应异常事件。
 
 ![image](../img/intelligent-detection04.png)
 
@@ -70,7 +68,7 @@
 
 * 点击右上角的**导出**按钮，支持选择**导出 JSON 文件**与**导出 PDF 文件**，从而获取当前事件所对应的所有关键数据。
 
-1. 分析报告
+:material-numeric-1-circle-outline: 分析报告
 
 ![](../img/intelligent-detection10.png)
 
@@ -83,10 +81,10 @@
 
 **注意**：存在多个区间异常时，**异常总结 > 异常趋势图**及**异常分析**仪表板默认展示第一段异常区间的异常情况分析，可以点击【异常趋势图】进行切换，切换后异常分析仪表板同步联动。
 
-2. [扩展字段](../../events/event-explorer/event-details.md#extension)
+:material-numeric-2-circle-outline: [扩展字段](../../events/event-explorer/event-details.md#extension)
 
-3. [告警通知](../../events/event-explorer/event-details.md#alarm)
+:material-numeric-3-circle-outline: [告警通知](../../events/event-explorer/event-details.md#alarm)
 
-4. [历史记录](../../events/event-explorer/event-details.md#history)
+:material-numeric-4-circle-outline: [历史记录](../../events/event-explorer/event-details.md#history)
 
-5. [关联事件](../../events/event-explorer/event-details.md#relevance)
+:material-numeric-5-circle-outline: [关联事件](../../events/event-explorer/event-details.md#relevance)

@@ -17,8 +17,12 @@
 | type | string |  | 触发规则类型, 默认为`custom`<br>允许为空: True <br> |
 | name | string | Y | 告警策略名<br>允许为空: False <br> |
 | alertOpt | json |  | 告警设置<br>允许为空: False <br> |
-| alertOpt.silentTimeout | integer |  | 告警设置<br>允许为空: False <br> |
 | alertOpt.alertTarget | array |  | 触发动作<br>允许为空: False <br> |
+| alertOpt.silentTimeout | integer |  | 告警设置<br>允许为空: False <br> |
+| alertOpt.aggInterval | integer | Y | 告警聚合间隔，单位秒, 0代表不聚合<br>允许为空: False <br>$minValue: 0 <br>$maxValue: 1800 <br> |
+| alertOpt.aggFields | array |  | 聚合字段列表，保持空列表[]表示「聚合规则：全部」,  df_monitor_checker_id：监控器/智能巡检/SLO,   df_dimension_tags：检测维度,   df_label：标签,  CLUSTER：智能聚合<br>例子: ['CLUSTER'] <br>允许为空: False <br> |
+| alertOpt.aggLabels | array |  | 按标签聚合时的标签值列表，需要在aggFields中指定有df_label才会生效<br>允许为空: False <br> |
+| alertOpt.aggClusterFields | array |  | 智能聚合时的字段列表，需要在aggFields中指定有CLUSTER才会生效, 可选值 "df_title"：标题, "df_message"：内容<br>例子: ['df_title'] <br>允许为空: False <br> |
 
 ## 参数补充说明
 
@@ -33,6 +37,10 @@
 | type   | string | 必选 | 检查器类型 |
 | alertOpt  | Dict | 必选 | 告警设置|
 | alertOpt[#].silentTimeout | integer | | 沉默超时时间-时间戳|
+| alertOpt[#].aggInterval | integer | | 告警聚合间隔，单位秒, 0代表不聚合, 范围[0,1800]|
+| alertOpt[#].aggFields | array | | 聚合字段列表，保持空列表[]表示「聚合规则：全部」,  df_monitor_checker_id：监控器/智能巡检/SLO,   df_dimension_tags：检测维度,   df_label：标签,  CLUSTER：智能聚合|
+| alertOpt[#].aggLabels | array | | 按标签聚合时的标签值列表，需要在aggFields中指定有df_label才会生效|
+| alertOpt[#].aggClusterFields | array | | 智能聚合时的字段列表，需要在aggFields中指定有CLUSTER才会生效, 可选值 "df_title"：标题, "df_message"：内容|
 | alertOpt[#].alertTarget       | Array[Dict] | | 告警动作|
 
 

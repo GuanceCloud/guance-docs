@@ -8,7 +8,7 @@
 
 多适用于 IT 监控场景下的代码异常或任务调度检测等。例如监控日志的错误数突增。
 
-## 规则说明
+## 新建
 
 点击**智能监控器 > 新建智能监控 > 日志智能检测**，进入日志智能检测配置页面。
 
@@ -28,7 +28,7 @@
 
 ![image](../img/intelligent-detection07.png)
 
-5）**事件内容**：提供预置的事件通知模版，满足触发条件时发送事件通知内容，同时，支持输入 Markdown 格式文本信息补充事件描述，支持预览效果，支持使用预置的 [关联链接](link-description.md) ，支持使用预置的 [模板变量](../event-template.md)。
+5）**事件内容**：提供预置的事件通知模版，满足触发条件时发送事件通知内容，同时，支持输入 Markdown 格式文本信息补充事件描述，支持预览效果，支持使用预置的 [关联链接](link-description.md)和[模板变量](../event-template.md)。
 
 **注意**：不同告警通知对象支持的 Markdown 语法不同，例如：企业微信不支持无序列表。
 
@@ -50,9 +50,11 @@
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 监控器列表操作</font>](../monitor/index.md#list)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 监控器列表操作</font>](../monitor/index.md#list)
+
 
 </div>
+
 
 ### 查看事件
 
@@ -68,7 +70,7 @@
 
 * 点击右上角的**导出**按钮，支持选择**导出 JSON 文件**与**导出 PDF 文件**，从而获取当前事件所对应的所有关键数据。
 
-1. 分析报告
+:material-numeric-1-circle-outline: 分析报告
 
 ![](../img/intelligent-detection08.png)
 
@@ -78,10 +80,10 @@
 
 **注意**：存在多个区间异常时，**异常总结 > 异常值分布图**及**异常分析**仪表板默认展示第一段异常区间的异常情况分析，可以点击【异常值分布图】进行切换，切换后异常分析仪表板同步联动。
 
-2. [扩展字段](../../events/event-explorer/event-details.md#extension)
+:material-numeric-2-circle-outline: [扩展字段](../../events/event-explorer/event-details.md#extension)
 
-3. [告警通知](../../events/event-explorer/event-details.md#alarm)
+:material-numeric-3-circle-outline: [告警通知](../../events/event-explorer/event-details.md#alarm)
 
-4. [历史记录](../../events/event-explorer/event-details.md#history)
+:material-numeric-4-circle-outline: [历史记录](../../events/event-explorer/event-details.md#history)
 
-5. [关联事件](../../events/event-explorer/event-details.md#relevance)
+:material-numeric-5-circle-outline: [关联事件](../../events/event-explorer/event-details.md#relevance)
