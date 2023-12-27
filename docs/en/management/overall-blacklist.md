@@ -6,7 +6,8 @@ Guance supports filtering out different types of qualified data by setting black
 ## Preconditions
 
 - [Install DataKit](../datakit/datakit-install.md)
-- DataKit version requires to be equal to or higher than 1.4.7.
+- If you need to configure other data besides logs, the DataKit version must be higher than 1.4.7.
+
 
 ## Create
 

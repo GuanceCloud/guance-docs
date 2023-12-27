@@ -1,6 +1,6 @@
 # Invite Members
 
-In the current space, the Owner, Administrator and custom roles with Member Management permission are able to invite registered users of Guance to become new members of the workspace.
+In the current workspace, the Owner, Administrator and custom roles with Member Management permission are able to invite registered users of Guance to become new members of the workspace.
 
 ## Invitation Methods
 
@@ -13,7 +13,7 @@ You can invite members through the following two methods:
 Go to **Management > Member Management > Invite Members**. In the current window, enter the email address of the invited member and press Enter. Click **Confirm** to send the invitation notification to the invited member for the current workspace. Once the member completes the authentication, they can access.
 
 - Support inviting multiple members at the same time.  
-- Support selecting one or more roles to set permissions for new members. You can also create custom roles for members through [Role Management](role-management.md).
+- Support selecting one or more roles to set permissions for new members. You can also create custom roles for members through [Roles](role-management.md).
 
 ### :material-numeric-2-circle: Navigation Quick Access {#navigation}
 

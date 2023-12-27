@@ -8,7 +8,7 @@
 ## 前提条件
 
 - [安装 DataKit](../datakit/datakit-install.md)；    
-- 除日志以外的其他数据，DataKit 版本要求 >= 1.4.7。
+- 如需配置除日志以外的其他数据，DataKit 版本要求高于1.4.7。
 
 ## 新建黑名单
 
