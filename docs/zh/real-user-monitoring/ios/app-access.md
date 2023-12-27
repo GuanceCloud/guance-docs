@@ -229,7 +229,7 @@
 | **属性** | **类型** | **必须** | **含义** | 注意 |
 | --- | --- | --- | --- | --- |
 | appid | NSString | 是 | 用户访问监测应用 ID 唯一标识 | 对应设置 RUM `appid`，才会开启`RUM`的采集功能，[获取 appid 方法](#iOS-integration) |
-| samplerate | int | 否 | 采样采集率 | 采样率，取值范围 [0,100]，0 表示不采集，100 表示全采集，默认值为 100。作用域为同一 session_id 下所有 View，Action，LongTask，Error 数据 |
+| samplerate | int | 否 | 采样率 | 取值范围 [0,100]，0 表示不采集，100 表示全采集，默认值为 100。作用域为同一 session_id 下所有 View，Action，LongTask，Error 数据 |
 | enableTrackAppCrash | BOOL | 否 | 设置是否需要采集崩溃日志 | 默认 `NO` |
 | enableTrackAppANR | BOOL | 否 | 采集ANR卡顿无响应事件 | 默认`NO` |
 | enableTrackAppFreeze | BOOL | 否 | 采集UI卡顿事件 | 默认`NO` |
@@ -268,7 +268,7 @@
 
 | 属性 | **类型** | **必须** | **含义** | 注意 |
 | --- | --- | --- | --- | --- |
-| samplerate | int | 否 | 采样采集率 | 采样率，取值范围 [0,100]，0 表示不采集，100 表示全采集，默认值为 100。 |
+| samplerate | int | 否 | 采样率 | 取值范围 [0,100]，0 表示不采集，100 表示全采集，默认值为 100。 |
 | enableCustomLog | BOOL | 否 | 是否上传自定义 log | 默认`NO` |
 | printCustomLogToConsole | BOOL | 否 | 设置是否将自定义日志输出到控制台 | 默认`NO`<br>自定义日志[输出格式](#printCustomLogToConsole) |
 | logLevelFilter | NSArray | 否 | 设置要采集的自定义 log 的状态数组 | 默认全采集 |
@@ -300,7 +300,7 @@
 
 | 属性 | 类型 | 必须 | 含义 | 注意 |
 | --- | --- | --- | --- | --- |
-| samplerate | int | 否 | 采样采集率 | 采样率，取值范围 [0,100]，0 表示不采集，100 表示全采集，默认值为 100。 |
+| samplerate | int | 否 | 采样率 | 取值范围 [0,100]，0 表示不采集，100 表示全采集，默认值为 100。 |
 | networkTraceType | FTNetworkTraceType | 否 | 设置链路追踪的类型 | 默认为 `DDTrace`，目前支持 `Zipkin` , `Jaeger`, `DDTrace`，`Skywalking` (8.0+)，`TraceParent` (W3C)，如果接入 OpenTelemetry 选择对应链路类型时，请注意查阅支持类型及 agent 相关配置 |
 | enableLinkRumData | BOOL | 否 | 是否与 RUM 数据关联 | 默认`NO` |
 | enableAutoTrace | BOOL | 否 | 设置是否开启自动 http trace | 默认`NO`，目前只支持 NSURLSession |
@@ -1462,7 +1462,7 @@ rumConfig.globalContext = @{@"dynamic_tag":dynamicTag};
 
 详细细节请见 [SDK Demo](https://github.com/GuanceDemo/guance-app-demo/tree/master/src/ios/demo)。
 
-## 崩溃日志符号化
+## 崩溃日志符号化 {#source_map}
 
 ### 上传符号表
 

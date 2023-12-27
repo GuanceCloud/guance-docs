@@ -450,7 +450,17 @@ void httpClientGetHttp() async {
  FTMobileFlutter.unbindUser();
 ```
 
-## FAQ
+
+## Publish Package 相关配置
+### Android
+* [Android R8/Prograd 配置](../android/app-access.md#r8_proguard)
+* [Android 符号文件上传](../android/app-access.md#source_map)
+
+### iOS
+* [iOS 符号文件上传](../ios/app-access.md#source_map)
+
+
+## 常见问题
 
 - [iOS 相关](../ios/app-access.md#FAQ)
 - [Android 相关](../android/app-access.md#FAQ)
