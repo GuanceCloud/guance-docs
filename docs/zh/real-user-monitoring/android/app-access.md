@@ -1527,21 +1527,23 @@ android{
 	FTSdk.setEnableAccessAndroidID(false)
 	```
 
-## R8 / Proguard 混淆配置
+## R8 / Proguard 混淆配置 {#r8_proguard}
 
 ```java
 -dontwarn com.ft.sdk.**
 
+### ft-sdk 库
 -keep class com.ft.sdk.**{*;}
 
+### ft-native 库
 -keep class ftnative.*{*;}
 
-### 防止获取时 ActionName 被混淆###
+### 防止 Action 获取时 action_name 中类名被混淆###
 -keepnames class * extends android.view.View
 -keepnames class * extends android.view.MenuItem
 ```
 
-## 符号文件上传
+## 符号文件上传 {#source_map}
 ### plugin 上传
 `ft-plugin` 版本需要 `1.3.0` 以上版本支持最新的符号文件上传规则，支持 `productFlavor` 多版本区分管理，plugin 会在 `gradle task assembleRelease` 之后执行上传符号文件，详细配置可以参考 [SDK Demo](#setup)
 
