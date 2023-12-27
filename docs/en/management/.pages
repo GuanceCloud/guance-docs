@@ -21,7 +21,6 @@ nav:
   - 'Data Masking': data-mask.md
   - 'Data Scanner': data-scanner.md
   - 'Space Management': space-management.md
-  - 'Demo Space': space-demo.md
   - 'SSO Management': sso
   - 'MFA': mfa-management.md
   - 'Help': 
