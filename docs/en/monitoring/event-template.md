@@ -1,4 +1,4 @@
-# Event Alert Template
+# Event Alert Templates
 ---
 
 
@@ -16,8 +16,8 @@ The syntax used for rendering variables is `{{ Field Name }}` and available even
 | `df_check_range_end`                             | Integer        | Check range end Unix timestamp in seconds                                                                                                                                                                  |
 | `df_status`                                      | String(Enum)   | Event status, the possible values are:<br>critical`critical`<br>error`error`<br>warning`warning`<br>ok`ok`<br>notata`nodata`                                                                               |
 | `df_event_id`                                    | String         | Event unique ID                                                                                                                                                                                            |
-| `df_event_url`                                   | String         | Event detail page URL                                                                                                                                                                                      |
-| `df_dimension_tags`                              | String         | Event dimension tags. used to identify the checked targets<br>for example:`{"host":"web-001"}`                                                                                                             |
+| `df_event_link`                                  | String         | Event detail page link address                                                                                                                                                                             |
+| `df_dimension_tags`                              | String         | Event dimension tags. used to identify the checked targets<br>for example:`{`host`:"web-001"}`                                                                                                             |
 | `df_monitor_id`                                  | String         | Alarm policy ID<br>_If you have any questions about the monitor, please send this ID to us_                                                                                                                |
 | `df_monitor_name`                                | String         | Alarm policy name                                                                                                                                                                                          |
 | `df_monitor_checker_id`                          | String         | Monitor ID<br>_If you have any questions about the monitor, please send this ID to us_                                                                                                                     |
@@ -80,7 +80,7 @@ Then, once an `error` event is occured, the rendered output is shown blow:
 Output event name:
 
 ```
-Monitor monitor001 found a fault with {"region":"hangzhou","host":"web-001"}
+Monitor monitor001 found a fault with {"region":"hangzhou",`host`:"web-001"}
 ```
 
 Output event content:
@@ -93,7 +93,7 @@ Output event content:
 - Monitor: monitor001 (Alarm policy: Team001)
 ```
 
-### Fields containing special characters such as -, @, etc.
+### Fields Containing Special Characters
 
 In some cases, the deimension tag key may contains special characters such as `-`, `@`, etc., e.g., `host-name`, `@level`.
 
@@ -123,7 +123,7 @@ If the template function needs to pass parameters, then the syntax is shown belo
 Event time: {{ date | to_datetime('America/Chicago') }}
 ```
 
-???+ attention
+???+ warning
 
     When you need to perform operations on variables before applying template functions, Please **DON'T FORGET** to add the brackets, such as:
 
@@ -241,7 +241,7 @@ Host OS：{{ dql_data.os }}
 
 And then `{{ dql_data.os }}` can be used in the template to output it's `os` field value.
 
-### Passing parameters to Embedded DQL
+### Passing Parameters to Embedded DQL
 
 Sometimes the DQL statement to be performed needs passing parameters.
 

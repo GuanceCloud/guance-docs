@@ -28,17 +28,19 @@
 **1.source 字段说明
 
 黑名单的过滤条件生成时 会根据 type 类型, 对参数 source 字段的 key 进行替换
-object: class
-object_history: class
-logging: source
-custom_object: class
-keyevent: source
-tracing: service
-rum: app_id
-network: source
-security: category
-profiling: service
-metric: measurement
+|  type        |   生成过滤条件时,source字段对应的key  |
+|---------------|----------|
+| object    |  class  |
+| logging    |  source  |
+| custom_object    |  class  |
+| keyevent    |  source  |
+| tracing    |  service  |
+| rum    |  app_id  |
+| network    |  source  |
+| security    |  category  |
+| profiling    |  service  |
+| metric    |  measurement  |
+
 
 **2.filters 数组元素字段说明
 

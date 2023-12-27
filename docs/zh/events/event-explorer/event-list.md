@@ -12,40 +12,37 @@
 
 ## 查询与分析
 
-在所有事件查看器中，支持通过选择时间范围、搜索关键字，筛选等方式查询事件数据，帮助您快速在所有事件中定位到特定时间范围、功能模块、行为触发的事件。
-
 ![](../img/5.event_7.gif)
 
-### 时间控件
+- 时间控件：所有事件查看器默认展示最近 15 分钟的数据，您也可以自定义数据展示的[时间范围](../../getting-started/function-details/explorer-search.md#time)。
 
-所有事件查看器默认展示最近 15 分钟的数据，您也可以自定义数据展示的[时间范围](../getting-started/function-details/explorer-search.md#time)。
+- 搜索与筛选：在所有事件查看器搜索栏，支持[多种搜索方式和筛选方式](../../getting-started/function-details/explorer-search.md)。
 
-### 搜索与筛选
+- 分析模式：可基于标签字段进行多维度分析，以反映不同分析维度下的聚合事件统计，点击聚合事件可查看[聚合事件详情](event-details.md)。
 
-在所有事件查看器搜索栏，支持[多种搜索方式和筛选方式](../getting-started/function-details/explorer-search.md)。
+- 快捷筛选：通过列表左侧的快捷筛选，可编辑[快捷筛选](../../getting-started/function-details/explorer-search.md#quick-filter)，添加新的筛选字段。
 
-### 分析模式
+- 筛选历史：观测云支持在[筛选历史](../../getting-started/function-details/explorer-search.md#filter-history)保存查看器 `key:value` 的搜索条件历史，应用于当前工作空间不同的查看器。
 
-在所有事件查看器分析栏，支持基于标签字段进行多维度分析，以反映不同分析维度下的聚合事件统计，点击聚合事件可查看[聚合事件详情](event-details.md)。
+- 新建监控器：您可以在当前查看器通过该入口直接跳转至[监控器新建页面](../../monitoring/monitor/index.md#new)，为事件快速设置异常检测规则。
 
-### 快捷筛选
+<img src="../../img/explorer-monitor.png" width="60%" >
 
-通过列表左侧的快捷筛选，支持编辑[快捷筛选](../getting-started/function-details/explorer-search.md#quick-filter)，添加新的筛选字段。
+- 事件导出：在所有事件查看器中，点击 :fontawesome-solid-gear: 可导出当前事件查看器的数据到 CSV、仪表板和笔记。
 
-### 筛选历史
+- 保存快照：在所有事件查看器左上角，点击**查看历史快照**，即可直接保存当前事件的快照数据，通过[快照](../../getting-started/function-details/snapshot.md)功能，您可以快速复现即时拷贝的数据副本信息，将数据恢复到某一时间点和某一数据展示逻辑。
 
-观测云支持在[筛选历史](../getting-started/function-details/explorer-search.md#filter-history)保存查看器 `key:value` 的搜索条件历史，应用于当前工作空间不同的查看器。
+## 更多阅读
 
-### 事件导出
+<div class="grid cards" markdown>
 
-在所有事件查看器中，点击**导出**可导出当前事件查看器的数据到 CSV、仪表板和笔记。
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 事件详情</font>](event-details.md)
 
-### 保存快照
+</div>
 
-在所有事件查看器左上角，点击**查看历史快照**，即可直接保存当前事件的快照数据，通过[快照](../getting-started/function-details/snapshot.md)功能，您可以快速复现即时拷贝的数据副本信息，将数据恢复到某一时间点和某一数据展示逻辑。
 
-## 事件详情页
+<div class="grid cards" markdown>
 
-在所有事件查看器，点击任意事件，即可侧滑打开查看事件详情，包括基础属性、扩展字段、告警通知、历史记录、关联事件和关联 SLO。在事件详情页，支持跳转到当前事件关联的监控器和导出事件的关键信息到 PDF 或者 JSON 文件。
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 查看器的强大之处</font>](../../getting-started/function-details/explorer-search.md)
 
-> 更多详情可参考文档 [事件详情](event-details.md)。 
+</div>

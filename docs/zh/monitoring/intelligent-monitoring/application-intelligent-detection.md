@@ -9,7 +9,7 @@
 
 **应用智能检测**用于监控应用程序服务是否出现异常或中断，确保服务平稳运行状态。
 
-## 规则说明
+## 新建
 
 点击**智能监控 > 新建智能监控 > 应用智能检测**，进入规则的配置页面。
 
@@ -27,7 +27,7 @@
 
 ![image](../img/intelligent-detection07.png)
 
-4）**事件内容**：满足触发条件时发送的事件通知内容，支持输入 Markdown 格式文本信息，支持预览效果，支持使用预置的 [关联链接](link-description.md)，支持使用预置的 [模板变量](../event-template.md)。
+4）**事件内容**：满足触发条件时发送的事件通知内容，支持输入 Markdown 格式文本信息，支持预览效果，支持使用预置的[关联链接](link-description.md)和[模板变量](../event-template.md)。
 
 **注意**：不同告警通知对象支持的 Markdown 语法不同，例如：企业微信不支持无序列表。
 
@@ -49,13 +49,13 @@
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 监控器列表操作</font>](../monitor/index.md#list)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 监控器列表操作</font>](../monitor/index.md#list)
 
 </div>
 
 ### 查看事件
 
-监控器会获取最近 30 分钟的检测应用程序服务对象指标信息，识别出现异常情况时，会生成相应的事件，在**事件 > 智能监控**列表可查看对应异常事件。
+监控器会获取最近 30 分钟的检测应用程序服务对象指标信息，识别出现异常情况时，会生成相应的事件，在[**事件 > 智能监控**](../../events/inte-monitoring-event.md)列表可查看对应异常事件。
 
 ![image](../img/intelligent-detection04.png)
 
@@ -67,7 +67,7 @@
 
 * 点击右上角的**导出**按钮，支持选择**导出 JSON 文件**与**导出 PDF 文件**，从而获取当前事件所对应的所有关键数据。
 
-1. 分析报告
+:material-numeric-1-circle-outline: 分析报告
 
 ![](../img/intelligent-detection11.png)
 
@@ -75,17 +75,15 @@
 
 * 异常总结：显示查看当前异常应用程序服务标签、异常分析报告详情、异常值分布情况统计
 
-* 资源分析：对请求数的监控，可查看资源请求数排行（ TOP 10 ）、资源错误请求数排行（ TOP 10 ）、资源每秒请求数排行（ TOP 10 ）等信息
+* 资源分析：对请求数的监控，可查看资源请求数排行（TOP 10）、资源错误请求数排行（TOP 10）、资源每秒请求数排行（TOP 10）等信息
 
-???+ warning
+**注意**：存在多个区间异常时，**异常分析**仪表板默认展示第一段异常区间的异常情况，可以点击【异常值分布图】进行切换，切换后异常分析仪表板同步联动。
 
-    存在多个区间异常时，**异常分析**仪表板默认展示第一段异常区间的异常情况分析，可以点击【异常值分布图】进行切换，切换后异常分析仪表板同步联动。
+:material-numeric-2-circle-outline: [扩展字段](../../events/event-explorer/event-details.md#extension)
 
-2. [扩展字段](../../events/event-explorer/event-details.md#扩展字段extension)
+:material-numeric-3-circle-outline: [告警通知](../../events/event-explorer/event-details.md#alarm)
 
-3. [告警通知](../../events/event-explorer/event-details.md#alarm)
-
-4. [关联事件](../../events/event-explorer/event-details.md#relevance)
+:material-numeric-4-circle-outline: [关联事件](../../events/event-explorer/event-details.md#relevance)
 
 
 

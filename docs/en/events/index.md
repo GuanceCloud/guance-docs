@@ -4,35 +4,35 @@ icon: zy/events
 # Events
 ---
 
-## Overview
+Guance supports a one-stop view and audit of all event data. You can monitor and query events triggered by all sources in real-time, and also quickly identify anomalies and efficiently analyze abnormal data by aggregating related events and matching associated events.
 
-Guance supports one-stop viewing and auditing of all event data, and supports real-time monitoring, unified query, unrecovered event statistics and data export of events triggered by all sources. You can quickly locate exceptions and efficiently analyze exception data by aggregating related events and matching related events.
+![](img/4.event_3.png)
 
-![](img/4.event_3.gif)
+## Where are events from?
 
-## Event Source
+- All alert events triggered based on the configured [Monitor](../monitor/monitor/index.md);
+- Based on the configuration, all alert events triggered by [Intelligent Monitoring](../monitoring/intelligent-monitoring/index.md);
+- All alert events triggered based on the configured [Auto Detection](../monitoring/bot-obs/index.md);
+- All alert events triggered based on configured [SLO](../monitoring/slo.md);
+- [Audit](../management/operation-audit.md) events based on system operations;
+- Support for writing custom events through the OpenAPI of events. For more details, see [Creating Event API](../open-api/keyevent/create.md).
 
-- All alarm events triggered based on the configured [Monitor](../monitor/monitor/index.md)
-- All Alarm events triggered based on the configured [Auto Detection](../monitoring/bot-obs/index.md)
-- All alarm events triggered based on configured [SLO](../monitoring/slo.md)
-- Audit events based on system operations. For more details, refer to [Operational Audit](../management/operation-audit.md)
-- Support for writing custom events through the OpenAPI of events. For more details, please refer to [Creating Event API](../open-api/keyevent/create.md)
-
-## Usage Scenarios
+## Use Cases
 
 - Unified event management
 - Event visualization query and analysis
 - Associated event query
 
-## Function Introduction
+## Features
 
-- [Unrecovered event explorer](unrecovered-events.md)：Support to view all unrecovered events that have been continuously triggered in the workspace in the last 48 hours, including all events with abnormal current status (df_status! = ok). You can quickly view and solve fault problems based on the details of unrecovered events;
-- [Event explorer](event-list.md)：Including all events triggered by all event sources, for example, each alarm record that triggers the "monitor" detection rule is an event data. You can query and analyze events by selecting time range, searching and filtering, grouping aggregation, etc.;
-- [Export event JSON file](event-details.md)：Support exporting the JSON file of the current event in the event details page to obtain all the key data corresponding to the current event;
-- [Monitor configuration trigger event](../monitoring/monitor/index.md)：Support to generate different events for management and analysis based on the trigger conditions of configuration monitors.
+|                   <font color=coral size=3>:fontawesome-regular-circle-down: &nbsp;**Learn more**</font>                         |                                                              |
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
+| [Unrecovered Events](unrecovered-events.md){ .md-button .md-button--primary } | [All Events](event-list.md){ .md-button .md-button--primary } |
+| [Intelligent Monitoring](inte-monitoring-event.md){ .md-button .md-button--primary } | [Events Triggered by Monitors](../monitoring/monitor/index.md){ .md-button .md-button--primary } |
 
 
 ## Field Description
+
 | Fields                 | Description                                                  |
 | :--------------------- | :----------------------------------------------------------- |
 | `date` / `timestamp`   | Generation time                                              |
@@ -42,23 +42,22 @@ Guance supports one-stop viewing and auditing of all event data, and supports re
 | `df_issue_start_time`  | The time of the first failure of the current round           |
 | `df_issue_duration`    | The duration of this round of failures (from `df_issue_start_time` to this event) |
 | `df_source`            | Event source, including monitor, user, system, custom, audit |
-| `df_status`            | Event status, including ok, info, warning, error, critical, nodata, nodata_ok, nodata_as_ok, manual_ok |
-| `df_sub_status`        | Event status details. e.g. <br/>ok：Events recover from warning, error, critical, and other failure states<br/>nodata_ok：Event returns to normal from nodata state<br/>nodata_as_ok：Event nodata status is regarded as returning to normal<br/>manual_ok：Events of user active recovery |
+| `df_status`            | Event status, including `ok`, `info`, `warning`, `error`, `critical`, `nodata`, `nodata_ok`, `nodata_as_ok`, `manual_ok` |
+| `df_sub_status`        | Event status details. e.g. <br/>`ok`：Events recover from warning, error, critical, and other failure states<br/>`nodata_ok`：Event returns to normal from nodata state<br/>`nodata_as_ok`：Event nodata status is regarded as returning to normal<br/>`manual_ok`：Events of user active recovery |
 | `df_event_id`          | Event ID                                                     |
-| `df_event_url`         | Event URL                                                    |
 | `df_title`             | Event title                                                  |
 | `df_message`           | Event message                                                |
 
 
-- When df_source = monitor, the following additional fields exist:
+- When `df_source = monitor`, the following additional fields exist:
 
 | Fields                         | Description                                                  |
 | :----------------------------- | :----------------------------------------------------------- |
 | `df_dimension_tags`            | Event detection dimension tags, e.g.  `{"host":"web01"}`     |
-| `df_monitor_id`                | Alarm policy ID                                              |
-| `df_monitor_name`              | Alarm policy name                                            |
-| `df_monitor_type`              | Monitor Type. e.g.<br/>custom：Events generated by self-built monitoring<br/>slo：SLO event<br/>bot_obs：Auto detection event |
-| `df_monitor_checker`           | Monitor checker  type. e.g. `custom_metric/custom_logcustom_apm/…` |
+| `df_monitor_id`                | alert policy ID                                              |
+| `df_monitor_name`              | alert policy name                                            |
+| `df_monitor_type`              | Monitor Type. e.g.<br/>`custom`：Events generated by self-built monitoring<br/>`slo`：SLO event<br/>`bot_obs`：Auto detection event |
+| `df_monitor_checker`           | Monitor checker type. e.g. `custom_metric/custom_logcustom_apm/…` |
 | `df_monitor_checker_sub`       | Monitor checker stage. e.g. `nodata/check`                   |
 | `df_monitor_checker_id`        | Monitor cherker ID                                           |
 | `df_monitor_checker_name`      | Monitor checker name                                         |
@@ -92,4 +91,6 @@ Guance supports one-stop viewing and auditing of all event data, and supports re
 
 ## Event Storage Policy
 
-Guance provides three data storage time choices for event data: 14 days, 30 days and 60 days. If you choose the data storage time of 30 days, events generated from different sources will be stored in 30 days. You can adjust as required in "Administration"-"Basic Settings"-"Change Data Storage Policy". See the document [Data Storage Policy](../billing/billing-method/data-storage.md) for more data storage policies.
+Guance provides three data storage time choices for event data: 14 days, 30 days and 60 days. If you choose the data storage time of 30 days, events generated from different sources will be stored in 30 days. You can adjust as required in **Management > Settings > Change Data Storage Strategy**.
+
+> See [Data Storage Strategy](../billing/billing-method/data-storage.md) for more data storage policies.

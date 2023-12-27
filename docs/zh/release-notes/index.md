@@ -24,7 +24,7 @@ icon: zy/release-notes
 - 日志：
     - [数据访问](../logs/logdata-access.md)新增【仅显示跟我相关规则】配置：开启后仅显示影响当前账号数据查询的访问规则。
     - [日志 > 查看器](../logs/explorer.md)：新增数据访问规则限制提示。
-- 基础设施 > [容器 > Kubernetes](../infrastructure/contrainer.md#analyse)：
+- 基础设施 > [容器 > Kubernetes](../infrastructure/container.md#analyse)：
     - 新增 Kubernetes 分析看板：容器对象分析看板，帮助您从不同维度了解 Kubernetes 中的各基础设施情况。
     - 容器 > 查看器：页面 UI 优化。
 - 指标：
@@ -524,7 +524,7 @@ AWS：
 - **日志 > 索引**：新增[日志易数据绑定配置入口](../logs/multi-index.md#rizhiyi)。
 - 仪表板/内置视图支持[根因分析和下钻分析](../scene/visual-chart/index.md#analysis)。
 - **管理 > 角色管理**：支持[克隆已有用户角色](../management/role-management.md#operations)减少操作步骤，快速增减权限并创建角色。
-- **基础设施 > 容器**：新增 [Daemonset 对象数据](../infrastructure/contrainer.md#daemonsets)显示，可拖拽改变对象分类显示顺序。
+- **基础设施 > 容器**：新增 [Daemonset 对象数据](../infrastructure/container.md#daemonsets)显示，可拖拽改变对象分类显示顺序。
 - **基础设施 > 容器**：Deployments、Pods 支持直接关联 kubernetes 事件日志，在详情页可直接查看具体日志信息。
 - 新增[异常追踪 OpenAPI 接口](../open-api/channel/add)。
 - **管理 > 成员管理**列表、**监控 > 通知对象管理 > 邮件组**、**异常追踪** > 查看成员、所有选择通知对象处均支持按成员昵称进行检索。

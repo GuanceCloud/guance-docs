@@ -1,4 +1,4 @@
-# 事件等级说明
+# 事件等级
 ---
 
 | 名称 | <div style="width: 150px"> 对应 `df_status` 取值 </div> | 说明 |
