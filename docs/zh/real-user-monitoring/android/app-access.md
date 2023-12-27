@@ -244,7 +244,7 @@ android{
 | **方法名** | **类型** | **必须** | **含义** | **注意** |
 | --- | --- | --- | --- | --- |
 | setRumAppId | String | 是 | 设置`Rum AppId` | 对应设置 RUM `appid`，才会开启`RUM`的采集功能，[获取 appid 方法](#android-integration) |
-| setSampleRate | Boolean | 否 | 设置采集率 | 采集率的值范围为>= 0、<= 1，默认值为 1 |
+| setSampleRate | Boolean | 否 | 设置采集率 | 采样率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。作用域为同一 session_id 下所有 View，Action，LongTask，Error 数据 |
 | setEnableTrackAppCrash | Boolean | 否 | 是否上报 App 崩溃日志 | 默认为 `false`，开启后会在错误分析中显示错误堆栈数据。<br> [关于崩溃日志中混淆内容转换的问题](#retrace-log) |
 | setExtraMonitorTypeWithError | Array| 否 | 设置辅助监控信息 | 添加附加监控数据到 `Rum` 崩溃数据中，`ErrorMonitorType.BATTERY` 为电池余量，`ErrorMonitorType.MEMORY` 为内存用量，`ErrorMonitorType.CPU` 为 CPU 占有率 |
 | setDeviceMetricsMonitorType | Array | 否 | 设置 View 监控信息 | 在 View 周期中，添加监控数据，`DeviceMetricsMonitorType.BATTERY` 监控当前页的最高输出电流输出情况，`DeviceMetricsMonitorType.MEMORY` 监控当前应用使用内存情况，`DeviceMetricsMonitorType.CPU` 监控 CPU 跳动次数 ，`DeviceMetricsMonitorType.FPS` 监控屏幕帧率。监控周期，`DetectFrequency.DEFAULT` 500 毫秒，`DetectFrequency.FREQUENT` 100毫秒，`DetectFrequency.RARE` 1 秒 |
@@ -383,7 +383,7 @@ android{
 
 | **方法名** | **类型** | **必须** | **含义** | **注意** |
 | --- | --- | --- | --- | --- |
-| setSampleRate | Boolean | 否 | 设置采集率 | 采集率的值范围为>= 0、<= 1，默认值为 1 |
+| setSampleRate | Boolean | 否 | 设置采集率 | 采样率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。 |
 | setEnableConsoleLog | Boolean | 否 | 是否上报控制台日志 | 日志等级对应关系<br>Log.v -> ok;<br>Log.i、Log.d -> info;<br>Log.e -> error;<br>Log.w -> warning，<br> `prefix` 为控制前缀过滤参数，默认不设置过滤 |
 | setEnableLinkRUMData | Boolean | 否 | 是否与 RUM 数据关联 | 默认为 `false` |
 | setLogCacheDiscardStrategy| LogCacheDiscard | 否 | 设置频繁日志丢弃规则 | 默认为 `LogCacheDiscard.DISCARD`，`DISCARD` 为丢弃追加数据，`DISCARD_OLDEST` 丢弃老数据 |
@@ -415,7 +415,7 @@ android{
 
 | **方法名** | **类型** | **必须** | **含义** | **注意** |
 | --- | --- | --- | --- | --- |
-| setSampleRate | Boolean | 否 | 设置采集率 | 采集率的值范围为>= 0、<= 1，默认值为 1 |
+| setSampleRate | Boolean | 否 | 设置采集率 | 采样率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。 |
 | setTraceType | TraceType | 否 | 设置链路追踪的类型 | 默认为 `DDTrace`，目前支持 `Zipkin` , `Jaeger`, `DDTrace`，`Skywalking` (8.0+)，`TraceParent` (W3C)，如果接入 OpenTelemetry 选择对应链路类型时，请注意查阅支持类型及 agent 相关配置 |
 | setEnableLinkRUMData | Boolean | 否 | 是否与 RUM 数据关联 | 默认为 `false` |
 | setEnableAutoTrace | Boolean | 否 | 设置是否开启自动 http trace | 目前只支持 OKhttp 的自动追踪，默认为 `false` |
@@ -1527,23 +1527,25 @@ android{
 	FTSdk.setEnableAccessAndroidID(false)
 	```
 
-## R8 / Proguard 混淆配置
+## R8 / Proguard 混淆配置 {#r8_proguard}
 
 ```java
 -dontwarn com.ft.sdk.**
 
+### ft-sdk 库
 -keep class com.ft.sdk.**{*;}
 
+### ft-native 库
 -keep class ftnative.*{*;}
 
-### 防止获取时 ActionName 被混淆###
+### 防止 Action 获取时 action_name 中类名被混淆###
 -keepnames class * extends android.view.View
 -keepnames class * extends android.view.MenuItem
 ```
 
-## 符号文件上传
+## 符号文件上传 {#source_map}
 ### plugin 上传
-`ft-plugin` 版本需要 `1.1.2` 以上版本支持符号文件上传，支持 `productFlavor` 多版本区分管理，plugin 会在 `gradle task assembleRelease` 之后执行上传符号文件，详细配置可以参考 [SDK Demo](#setup)
+`ft-plugin` 版本需要 `1.3.0` 以上版本支持最新的符号文件上传规则，支持 `productFlavor` 多版本区分管理，plugin 会在 `gradle task assembleRelease` 之后执行上传符号文件，详细配置可以参考 [SDK Demo](#setup)
 
 ``` groovy
 FTExt {
