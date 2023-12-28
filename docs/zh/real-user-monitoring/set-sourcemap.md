@@ -3,9 +3,7 @@
 
 ## 简介
 
-Sourcemap（源代码映射）用于将生产环境中的压缩代码映射回原始的源代码。
-
-RUM 支持这种源代码文件信息的映射，方法是将对应符号表文件进行 zip 压缩打包、上传，这样就可以对上报的 error 指标集数据自动进行转换，并追加 error_stack_source 字段至该指标集中。
+Sourcemap（源代码映射）用于将生产环境中的压缩代码映射回原始的源代码。RUM 支持这种源代码文件信息的映射，方法是将对应符号表文件进行 zip 压缩打包、上传，这样就可以对上报的 error 指标集数据自动进行转换。
 
 
 ## Zip 包打包说明
@@ -14,7 +12,7 @@ RUM 支持这种源代码文件信息的映射，方法是将对应符号表文�
 <!-- markdownlint-disable MD046 -->
 === "Web"
 
-    将 js 文件经 webpack 混淆和压缩后生成的 *.map* 文件进行 zip 压缩打包，再拷贝到 *<DataKit 安装目录\>/data/rum/web* 目录下，必须要保证该压缩包解压后的文件路径与 `error_stack` 中 URL 的路径一致。 假设如下 `error_stack`：
+    将 js 文件经 webpack 混淆和压缩后生成的 *.map* 文件进行 zip 压缩打包，必须要保证该压缩包解压后的文件路径与 `error_stack` 中 URL 的路径一致。 假设如下 `error_stack`：
 
     ```
     ReferenceError
@@ -44,11 +42,11 @@ RUM 支持这种源代码文件信息的映射，方法是将对应符号表文�
 
 === "小程序"
 
-    同 Web 的打包方式基本保持一致，但需注意要将打包好的 `.zip` 文件拷贝到 *<DataKit 安装目录\>/data/rum/miniapp* 目录下而不是 *<DataKit 安装目录\>/data/rum/web*。
+    同 Web 的打包方式基本保持一致。
 
 === "Android"
 
-    Android 目前存在两种 `sourcemap` 文件，一种是 Java 字节码经 `R8`/`Proguard` 压缩混淆后产生的 mapping 文件，另一种为 C/C++ 原生代码编译时未清除符号表和调试信息的（unstripped） `.so` 文件，如果你的安卓应用同时包含这两种 `sourcemap` 文件， 打包时需要把这两种文件都打包进 zip 包中，之后再把 zip 包拷贝到 *<DataKit 安装目录\>/data/rum/android* 目录下，zip 包解压后的目录结构类似：
+    Android 目前存在两种 `sourcemap` 文件，一种是 Java 字节码经 `R8`/`Proguard` 压缩混淆后产生的 mapping 文件，另一种为 C/C++ 原生代码编译时未清除符号表和调试信息的（unstripped） `.so` 文件，如果你的安卓应用同时包含这两种 `sourcemap` 文件， 打包时需要把这两种文件都打包进 zip 包中。zip 包解压后的目录结构类似：
     
     ```
     <app_id>-<env>-<version>/
@@ -176,7 +174,8 @@ RUM 支持这种源代码文件信息的映射，方法是将对应符号表文�
 
 ---
 
-您可以使用 **source-map-visualization** 和**来源映射可视化**等来源映射可视化工具，验证文件可用性。
+您可以使用 **(source-map-visualization)[https://evanw.github.io/source-map-visualization/]**等来源映射可视化工具，验证文件可用性。
+
 
 ## 文件上传和删除
 
@@ -195,4 +194,6 @@ RUM 支持这种源代码文件信息的映射，方法是将对应符号表文�
     - 上传同名文件会出现覆盖提示，请注意。
 
 
+另外，支持 Datakit 采集器配置 Sourcemap 转换。
 
+> 更多详情，可了解[Sourcemap 转换](../integrations/rum.md#sourcemap)。
