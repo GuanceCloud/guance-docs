@@ -108,7 +108,7 @@ rum.setConfig({
 | ------------------------ | ------------ | :------- | ------------------------------------------------------------ |
 | androidAppId             | string       | 是       | appId，监测中申请                                            |
 | iOSAppId                 | string       | 是       | appId，监测中申请                                            |
-| samplerate               | number       | 否       | 采样率，（采集率的值范围为>= 0、<= 1，默认值为 1）           |
+| samplerate               | number       | 否       | 采样率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。作用域为同一 session_id 下所有 View，Action，LongTask，Error 数据        |
 | enableNativeUserAction   | boolean      | 否       | 是否进行 `Native Action` 追踪，`Button` 点击事件，纯 `uni-app` 应用建议关闭，默认为 `false`，Android 云打包不支持 |
 | enableNativeUserResource | boolean      | 否       | 是否进行 `Native Resource` 自动追踪，纯 `uni-app` 应用建议关闭，默认为 `false` ，Android 云打包不支持|
 | enableNativeUserView     | boolean      | 否       | 是否进行 `Native View` 自动追踪，纯 `uni-app` 应用建议关闭，，默认为 `false` |
@@ -130,7 +130,7 @@ logger.setConfig({
 
 | 参数名称          | 参数类型      | 必须 | 参数说明                                                     |
 | :---------------- | :------------ | :--- | :----------------------------------------------------------- |
-| samplerate        | number        | 否   | 采样率                                                       |
+| samplerate        | number        | 否   | 采样率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。                                                       |
 | enableLinkRumData | boolean       | 否   | 是否与 RUM 关联                                              |
 | enableCustomLog   | boolean       | 否   | 是否开启自定义日志                                           |
 | discardStrategy   | string        | 否   | 日志丢弃策略：`discard`丢弃新数据（默认）、`discardOldest`丢弃旧数据 |
@@ -148,7 +148,7 @@ tracer.setConfig({
 
 | 参数名称              | 参数类型 | 必须 | 参数说明                                                     |
 | --------------------- | -------- | -------- | ------------------------------------------------------------ |
-| samplerate            | double   | 否       | 采样率，采集率的值范围为>= 0、<= 1，默认值为 1               |
+| samplerate            | double   | 否       | 采样率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。              |
 | traceType             | string   | 否       | 链路类型：`ddTrace`（默认）、`zipkinMultiHeader`、`zipkinSingleHeader`、`traceparent`、`skywalking`、`jaeger` |
 | enableLinkRUMData     | boolean  | 否       | 是否与 `RUM` 数据关联，默认`false`                           |
 | enableNativeAutoTrace | boolean  | 否       | 是否开启原生网络自动追踪 iOS `NSURLSession` ,Android `OKhttp`，默认`false`, 纯 `uni-app` 应用建议关闭, Android 云打包不支持 |
