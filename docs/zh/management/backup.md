@@ -332,7 +332,7 @@
 
 :material-numeric-3-circle-outline: 点击规则右侧 :material-text-search: 、编辑、 :fontawesome-regular-trash-can: 按钮，即可进行相应操作。
 
-**注意**：规则删除后已转发的数据不会被删除，但不再产生新的转发数据。
+**注意**：1. 编辑模式下，**访问类型**和**地区**不支持调整；选择**观测云**存储的规则，编辑和查看内容一致；2. 规则删除后已转发的数据不会被删除，但不再产生新的转发数据。
 
 :material-numeric-4-circle-outline: 您可以选中多个规则进行批量操作。
 
