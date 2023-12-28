@@ -20,13 +20,15 @@ ddtrace 支持几种传播协议，不同的传播协议的 traceId 的参数名
 就 java 而言，ddtrace 支持两种传播协议：
 
 - Datadog ：默认传播协议
-- B3 ：B3 传播是标头“b3”和以“x-b3-”开头的标头的规范。这些标头用于跨服务边界的跟踪上下文传播。
+- B3 ：B3 传播是标头“b3”和以“x-b3-”开头的标头的规范。这些标头用于跨服务边界的跟踪上下文传播。B3有两种方式，分别是
+    - B3SINGLE（B3_SINGLE_HEADER），对应 header 的 key 为 `b3`
+    - B3（B3MULTI），对应 header 的 key 为 `x-b3-`
 
 ## 使用 Datadog 传播器实现自定义 traceId
 
 ### 开启 Datadog 传播器
 
-```
+```shell
 -Ddd.propagation.style.extract=Datadog
 -Ddd.propagation.style.inject=Datadog
 ```
@@ -119,9 +121,9 @@ B3 有两种编码：Single Header 和 Multiple Header。
 
 ### 开启 B3 传播器
 
-```
--Ddd.propagation.style.extract=B3
--Ddd.propagation.style.inject=B3
+```shell
+-Ddd.propagation.style.extract=B3SINGLE
+-Ddd.propagation.style.inject=B3SINGLE
 ```
 
 ### 机制源码介绍
@@ -302,15 +304,15 @@ b3=6001828a33d570a9-5e6fbaad91daef5c-1
 
 - System Property :
 
-```
--Ddd.propagation.style.inject=Datadog,B3
--Ddd.propagation.style.extract=Datadog,B3
+```shell
+-Ddd.propagation.style.inject=Datadog,B3SINGLE
+-Ddd.propagation.style.extract=Datadog,B3SINGLE
 ```
 
 - Environment Variable:
 
-```
-DD_PROPAGATION_STYLE_INJECT=Datadog,B3
-DD_PROPAGATION_STYLE_EXTRACT=Datadog,B3
+```shell
+DD_PROPAGATION_STYLE_INJECT=Datadog,B3SINGLE
+DD_PROPAGATION_STYLE_EXTRACT=Datadog,B3SINGLE
 ```
 
