@@ -13,8 +13,11 @@ icon: zy/release-notes
 - 监控：
     - 新增[用户访问智能检测](../monitoring/intelligent-monitoring/rum-intelligent-detection.md)：支持网站/ APP 的性能异常、错误分析,相关检测指标有 LCP、FID、CLS 等;
     - [基础设施存活检测 V2](../monitoring/monitor/infrastructure-detection.md)：新增基础设施存活 V2 版本，优化检测逻辑，解决 V1 和进程检测相关的若干触发问题。
+<!-- 
 - 用户访问监测 （RUM）：
+    - 新增[公网 DataWay](../real-user-monitoring/web/app-access.md)的方式接收 RUM 数据，无需安装采集器; Web 类型应用支持在控制台中直接上传 SourceMap，可以基于不同的版本和环境上传多个文件。
     - [错误查看器 > 错误详情](../real-user-monitoring/explorer/error.md#sourcemap)：新增**格式化**错误信息页面，展示Sourcemap 文件解析后的错误信息，支持切换查看格式化和原始格式的错误信息。若未配置 Sourcemap 文件或上传后未匹配，则只显示原始格式错误信息。
+-->
 - 应用性能监测 （APM）：
     - 优化[服务拓扑图](../application-performance-monitoring/service-map.md#map)：调整查看上下游、节点、服务名等展示样式；
     - 优化[服务详情](../application-performance-monitoring/service-catalog.md)：绑定性能视图仪表板展示当前服务性能指标，同样支持自定义同名用户视图覆盖更新，支持下钻分析；
@@ -37,7 +40,7 @@ icon: zy/release-notes
 
 ### 新增集成
 
-- 新增集成 Kubecost(../integrations/kubecost.md)
+- 新增集成 [Kubecost](../integrations/kubecost.md)
 
 
 ### 更新最佳实践
