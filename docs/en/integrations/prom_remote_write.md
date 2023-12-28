@@ -16,9 +16,9 @@ Turn on the Prometheus Remote Write feature and add the following configuration 
 remote_write:
  - url: "http://<datakit-ip>:9529/prom_remote_write"
 
-# If want add some tag
+# If want add some tag, ( __source will not in tag, only show in Datakit expose metrics)
 # remote_write:
-# - url: "http://<datakit-ip>:9529/prom_remote_write?host=1.2.3.4&foo=bar" 
+# - url: "http://<datakit-ip>:9529/prom_remote_write?host=1.2.3.4&foo=bar&__source=<your_source>" 
 ```
 
 ## Configuration {#config}
@@ -75,17 +75,17 @@ remote_write:
       # basic_username = ""
       # basic_password = ""
     
-      ## If both black list and white list, all list will cancel.
-      ## tags to ignore (black list)
+      ## If both blacklist and whitelist, all list will cancel.
+      ## tags to ignore (blacklist)
       # tags_ignore = ["xxxx"]
     
-      ## tags to ignore with regex (black list)
+      ## tags to ignore with regex (blacklist)
       # tags_ignore_regex = ["xxxx"]
     
-      ## tags white list
+      ## tags whitelist
       # tags_only = ["xxxx"]
     
-      ## tags white list with regex
+      ## tags whitelist with regex
       # tags_only_regex = ["xxxx"]
     
       ## Indicate whether tags_rename overwrites existing key if tag with the new key name already exists.

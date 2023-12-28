@@ -38,6 +38,10 @@ eBPF 采集器，采集主机网络 TCP、UDP 连接信息，Bash 执行日志�
     - 数据类别： `Tracing`
     - 用于跟踪应用网络请求调用关系，基于 `ebpf-net` 的 `httpflow` 数据和 eBPF 探针实现；
 
+- `bpf-netlog`:
+    - 数据类别： `Logging`, `Network`
+    - 该插件实现 `ebpf-net` 的 `netflow/httpflow`
+
 ## 配置 {#config}
 
 ### 前置条件 {#requirements}
@@ -153,9 +157,14 @@ setenforce 0
       ##     add two tags "dst_nat_ip" and "dst_nat_port" to the network flow data
       ## - "ebpf-trace":
       ##     param trace_server must be set simultaneously.
+      ## - "bpf-netlog":
+      ##     contains L4-network log (bpf_net_l4_log), L7-network log (bpf_net_l7_log), 
+      ##              L4-network(netflow), L7-network(httpflow, dnsflow) collection
       enabled_plugins = [
         "ebpf-net",
       ]
+    
+    
     
       ## If you enable the ebpf-net plugin, you can configure:
       ##  - "httpflow" (* enabled by default)
@@ -166,6 +175,14 @@ setenforce 0
         # "httpflow-tls"
       ]
     
+      ## netlog blacklist
+      ##
+      # netlog_blacklist = "ip_saddr=='127.0.0.1' || ip_daddr=='127.0.0.1'"
+    
+      ## bpf-netlog plugin collection metric only
+      ##
+      # netlog_metric_only = false
+      
       ## eBPF trace generation server center address.
       trace_server = ""
     
@@ -247,22 +264,115 @@ setenforce 0
 
 通过以下环境变量可以调整 Kubernetes 中 eBPF 采集配置：
 
-| 环境变量名                         | 对应的配置参数项    | 参数示例                                           | 描述                                                                             |
-| :--------------------------------- | ------------------- | -------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `ENV_INPUT_EBPF_ENABLED_PLUGINS`   | `enabled_plugins`   | `ebpf-net,ebpf-trace`                              | 开启 `ebpf-net` 网络跟踪功能，并在此基础上开启链路功能                             |
-| `ENV_INPUT_EBPF_L7NET_ENABLED`     | `l7net_enabled`     | `httpflow`                                         | 开启 http 协议数据采集                                                           |
-| `ENV_INPUT_EBPF_IPV6_DISABLED`     | `ipv6_disabled`     | `false`                                            | 系统是否不支持 IPv6                                                              |
-| `ENV_INPUT_EBPF_EPHEMERAL_PORT`    | `ephemeral_port`    | `32768`                                            | 临时端口开始位置                                                                 |
-| `ENV_INPUT_EBPF_INTERVAL`          | `interval`          | `60s`                                              | 数据聚合周期                                                                     |
-| `ENV_INPUT_EBPF_TRACE_SERVER`      | `trace_server`      | `<datakit ip>:<datakit port>`                      | DataKit 的地址，需要开启 DataKit `ebpftrace` 采集器用于接收 eBPF 链路数据          |
-| `ENV_INPUT_EBPF_TRACE_ALL_PROCESS` | `trace_all_process` | `false`                                            | 对系统内的所有进程进行跟踪                                                       |
-| `ENV_INPUT_EBPF_TRACE_NAME_BLACKLIST` | `trace_name_blacklist` | `datakit,datakit-ebpf`                             | 指定进程名的进程将被**禁止采集**链路数据，示例中的进程已被硬编码禁止采集 |
-| `ENV_INPUT_EBPF_TRACE_ENV_BLACKLIST` | `trace_env_blacklist` | `datakit,datakit-ebpf`                             | 包含任意一个指定环境变量名的进程将被**禁止采集**链路数据 |
-| `ENV_INPUT_EBPF_TRACE_ENV_LIST`      | `trace_env_list`      | `DK_BPFTRACE_SERVICE,DD_SERVICE,OTEL_SERVICE_NAME` | 含有任意指定环境变量的进程的链路数据将被跟踪和上报                               |
-| `ENV_INPUT_EBPF_TRACE_NAME_LIST`     | `trace_name_list`     | `chrome,firefox`                                   | 进程名在指定集合内的的进程将被跟踪和上报                                         |
-| `ENV_INPUT_EBPF_CONV_TO_DDTRACE`   | `conv_to_ddtrace`   | `false`                                            | 将所有的应用侧链路 id 转换为 10 进制表示的字符串，兼容用途，非必要不使用         |
+| 环境变量名                            | 对应的配置参数项       | 参数示例                                           | 描述                                                                      |
+| :------------------------------------ | ---------------------- | -------------------------------------------------- | ------------------------------------------------------------------------- |
+| `ENV_INPUT_EBPF_ENABLED_PLUGINS`      | `enabled_plugins`      | `ebpf-net,ebpf-trace`                              | 开启 `ebpf-net` 网络跟踪功能，并在此基础上开启链路功能                    |
+| `ENV_INPUT_EBPF_L7NET_ENABLED`        | `l7net_enabled`        | `httpflow`                                         | 开启 http 协议数据采集                                                    |
+| `ENV_INPUT_EBPF_IPV6_DISABLED`        | `ipv6_disabled`        | `false`                                            | 系统是否不支持 IPv6                                                       |
+| `ENV_INPUT_EBPF_EPHEMERAL_PORT`       | `ephemeral_port`       | `32768`                                            | 临时端口开始位置                                                          |
+| `ENV_INPUT_EBPF_INTERVAL`             | `interval`             | `60s`                                              | 数据聚合周期                                                              |
+| `ENV_INPUT_EBPF_TRACE_SERVER`         | `trace_server`         | `<datakit ip>:<datakit port>`                      | DataKit 的地址，需要开启 DataKit `ebpftrace` 采集器用于接收 eBPF 链路数据 |
+| `ENV_INPUT_EBPF_TRACE_ALL_PROCESS`    | `trace_all_process`    | `false`                                            | 对系统内的所有进程进行跟踪                                                |
+| `ENV_INPUT_EBPF_TRACE_NAME_BLACKLIST` | `trace_name_blacklist` | `datakit,datakit-ebpf`                             | 指定进程名的进程将被**禁止采集**链路数据，示例中的进程已被硬编码禁止采集  |
+| `ENV_INPUT_EBPF_TRACE_ENV_BLACKLIST`  | `trace_env_blacklist`  | `datakit,datakit-ebpf`                             | 包含任意一个指定环境变量名的进程将被**禁止采集**链路数据                  |
+| `ENV_INPUT_EBPF_TRACE_ENV_LIST`       | `trace_env_list`       | `DK_BPFTRACE_SERVICE,DD_SERVICE,OTEL_SERVICE_NAME` | 含有任意指定环境变量的进程的链路数据将被跟踪和上报                        |
+| `ENV_INPUT_EBPF_TRACE_NAME_LIST`      | `trace_name_list`      | `chrome,firefox`                                   | 进程名在指定集合内的的进程将被跟踪和上报                                  |
+| `ENV_INPUT_EBPF_CONV_TO_DDTRACE`      | `conv_to_ddtrace`      | `false`                                            | 将所有的应用侧链路 id 转换为 10 进制表示的字符串，兼容用途，非必要不使用  |
+| `ENV_NETLOG_BLACKLIST`                | `netlog_blacklist`     | `ip_saddr=='127.0.0.1' \|\| ip_daddr=='127.0.0.1'` | 用于实现在抓包之后的数据包的过滤                                          |
+| `ENV_NETLOG_METRIC_ONLY`              | `netlog_metric_only`   | `false`                                            | 除了网络流数据外，同时开启网络日志功能                                    |
 
 <!-- markdownlint-enable -->
+
+### `netlog` 插件的黑名单功能
+
+过滤器规则示例：
+
+单条规则：
+
+以下规则过滤 ip 为 `1.1.1.1` 且端口为 80 的网络数据。(运算符后允许换行)
+
+```py
+(ip_saddr == "1.1.1.1" || ip_saddr == "1.1.1.1") &&
+     (src_port == 80 || dst_port == 80)
+```
+
+多条规则：
+
+规则间使用 `;` 或 `\n` 分隔，满足任意一条规则就进行数据过滤
+
+```py
+udp
+ip_saddr == "1.1.1.1" && (src_port == 80 || dst_port == 80);
+ip_saddr == "10.10.0.1" && (src_port == 80 || dst_port == 80)
+
+ipnet_contains("127.0.0.0/8", ip_saddr); ipv6
+```
+
+可用于过滤的数据：
+
+该过滤器用于对网络数据进行过滤，可比较的数据如下：
+
+| key 名        | 类型 | 描述                                     |
+| ------------- | ---- | ---------------------------------------- |
+| `tcp`         | bool | 是否为 `TCP` 协议                        |
+| `udp`         | bool | 是否为 `UDP` 协议                        |
+| `ipv4`        | bool | 是否为 `IPv4` 协议                       |
+| `ipv6`        | bool | 是否为 `IPv6` 协议                       |
+| `src_port`    | int  | 源端口（以被观测网卡/主机/容器为参考系） |
+| `dst_port`    | int  | 目标端口                                 |
+| `ip_saddr`    | str  | 源 `IPv4` 网络地址                       |
+| `ip_saddr`    | str  | 目标 `IPv4` 网络地址                     |
+| `ip6_saddr`   | str  | 源 `IPv6` 网络地址                       |
+| `ip6_daddr`   | str  | 目标 `IPv6` 网络地址                     |
+| `k8s_src_pod` | str  | 源 `pod` 名                              |
+| `k8s_dst_pod` | str  | 目标 `pod` 名                            |
+
+运算符：
+
+运算符从高往低：
+
+| 优先级 | Op     | 名称               | 结合方向 |
+| ------ | ------ | ------------------ | -------- |
+| 1      | `()`   | 圆括号             | 左       |
+| 2      | `！`   | 逻辑非，一元运算符 | 右       |
+| 3      | `!=`   | 不等于             | 左       |
+| 3      | `>=`   | 大于等于           | 左       |
+| 3      | `>`    | 大于               | 左       |
+| 3      | `==`   | 等于               | 左       |
+| 3      | `<=`   | 小于等于           | 左       |
+| 3      | `<`    | 小于               | 左       |
+| 4      | `&&`   | 逻辑与             | 左       |
+| 4      | `\|\|` | 逻辑或             | 左       |
+
+函数：
+
+1. **ipnet_contains**
+
+    函数签名： `fn ipnet_contains(ipnet: str, ipaddr: str) bool`
+
+    描述： 判断地址是否在指定的网段内
+
+    示例：
+
+    ```py
+    ipnet_contains("127.0.0.0/8", ip_saddr)
+    ```
+
+    如果 `ip_saddr` 值为 "127.0.0.1"，则该规则返回 `true`，该 TCP 连接数据包/ UDP 数据包将被过滤。
+
+2. **has_prefix**
+
+    函数签名： `fn has_prefix(s: str, prefix: str) bool`
+
+    描述： 指定字段是否包含某一前缀
+
+    示例：
+
+    ```py
+    has_prefix(k8s_src_pod, "datakit-") || has_prefix(k8s_dst_pod, "datakit-")
+    ```
+
+    如果 pod 名为 `datakit-kfez321`，该规则返回 `true`。
 
 ## 指标 {#metric}
 
