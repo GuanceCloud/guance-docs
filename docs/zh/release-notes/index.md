@@ -37,7 +37,7 @@ icon: zy/release-notes
 
 ### 新增集成
 
-- 新增集成 Kubecost(/integrations/kubecost.md)
+- 新增集成 Kubecost(../integrations/kubecost.md)
 
 
 ### 更新最佳实践
