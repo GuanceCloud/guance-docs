@@ -265,6 +265,7 @@ The count of the Kubernetes resource.
 | Tag | Description |
 |  ----  | --------|
 |`namespace`|namespace|
+|`node_name`|NodeName is a request to schedule this pod onto a specific node (only supported Pod).|
 
 - Metrics
 
@@ -499,6 +500,7 @@ The metric of the Kubernetes Pod.
 |`namespace`|Namespace defines the space within each name must be unique.|
 |`node_name`|NodeName is a request to schedule this pod onto a specific node.|
 |`pod`|Name must be unique within a namespace.|
+|`pod_name`|Renamed from 'pod'.|
 |`statefulset`|The name of the StatefulSet which the object belongs to.|
 |`uid`|The UID of pod.|
 
@@ -509,6 +511,7 @@ The metric of the Kubernetes Pod.
 | ---- |---- | :---:    | :----: |
 |`cpu_usage`|The sum of the cpu usage of all containers in this Pod.|float|percent|
 |`cpu_usage_base100`|The normalized cpu usage, with a maximum of 100%. (Experimental)|float|percent|
+|`cpu_usage_millicores`|Total CPU usage (sum of all cores) averaged over the sample window.|int|ms|
 |`ephemeral_storage_available_bytes`|The storage space available (bytes) for the filesystem.|int|B|
 |`ephemeral_storage_capacity_bytes`|The total capacity (bytes) of the filesystems underlying storage.|int|B|
 |`ephemeral_storage_used_bytes`|The bytes used for a specific task on the filesystem.|int|B|
@@ -888,7 +891,6 @@ The object of the Kubernetes Node.
 |`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`internal_ip`|Node internal IP|
 |`name`|The UID of Node.|
-|`namespace`|Namespace defines the space within each name must be unique.|
 |`node_name`|Name must be unique within a namespace.|
 |`role`|Node role. (master/node)|
 |`status`|NodePhase is the recently observed lifecycle phase of the node. (Pending/Running/Terminated)|
