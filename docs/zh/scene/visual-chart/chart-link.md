@@ -35,13 +35,13 @@
 
 | 图表类型 | <div style="width: 130px">变量</div> | 说明 |
 | --- | --- | --- |
-| 时序图、概览图、饼图、柱状图、排行榜、仪表板、漏斗分析 | #{Value} | 当前图表查询返回的数据值变量。假设当前图表查询 `M::cpu:(AVG(load5s))` 查询结果为`a`，则：<br />值变量：`&query=#{Value}` 等同为 `&query=a` |
-| 散点图 | #{Value.X} | 当前图表查询返回的 X 轴数据值变量。假设当前图表查询为：<br />`M::cpu:(AVG(load5s))`<br />查询结果为：X=abc，则：<br />值变量：`&query=#{Value.X} `等同为 `&query=X:abc` |
-|  | #{Value.Y} | 当前图表查询返回的 Y 轴数据值变量。<br />假设当前图表查询为：<br />`M::backuplog:(AVG(lru_add_cache_success_count))`<br />查询结果为：Y=dca，则：<br />值变量 `&query=Y:#{Value.Y}` 等同为 `&query=Y:dca` |
+| 时序图、概览图、饼图、柱状图、排行榜、仪表板、漏斗分析 | #{Value} | 当前图表查询返回的数据值变量。假设当前图表查询 `M::cpu:(AVG(load5s))` 查询结果为：AVG(load5s)=a，则：<br />值变量：`&query=#{Value}` 等同为 `&query=AVG(load5s):a` |
+| 散点图 | #{Value.X} | 当前图表查询返回的 X 轴数据值变量。假设当前图表查询为：<br />`M::cpu:(AVG(load5s))`<br />查询结果为：X:AVG(load5s)=abc，则：<br />值变量：`&query=#{Value.X} `等同为 `&query=X:abc` |
+|  | #{Value.Y} | 当前图表查询返回的 Y 轴数据值变量。<br />假设当前图表查询为：<br />`M::backuplog:(AVG(lru_add_cache_success_count))`<br />查询结果为：Y:AVG(lru_add_cache_success_count)=dca，则：<br />值变量 `&query=Y:#{Value.Y}` 等同为 `&query=Y:dca` |
 | 气泡图 | #{Value.X} | 当前图表查询返回的 X 轴数据值变量。假设当前图表查询为：<br />`T::RE(.*):(FIRST(duration)) BY service`<br />查询结果为：X:first(duration)=98，则：<br />值变量：`&query=X:#{Value.X} `等同为 `&query=X:98` |
 |  | #{Value.Y} | 当前图表查询返回的 Y 轴数据值变量。<br />假设当前图表查询为：<br />`T::RE(.*):(LAST(duration)) BY service`<br />查询结果为：Y:last(duration)=8500，则：<br />值变量 `&query=Y:#{Value.Y}` 等同为 `&query=Y:8500` |
 |  | #{Value.Size} | 当前图表查询返回的 Size 数据值变量。<br />假设当前图表查询为：<br />`T::RE(.*):(MAX(duration)) BY service`<br />查询结果为：Size:Max(duration)=1773，则：<br />值变量 `&query=Size:#{Value.Size}` 等同为 `&query=Size:1773` |
-| 表格图 | #{Value.column_name} | 当前图表选中的列值变量，name 可替换为任意列变量名。<br />假设当前图表查询为：<br />`M::cpu:(*)`<br />查询结果为：usage_user=6.47%，则：<br />值变量` &query=#{Value.usage_user}  `等同为 `&query=usage_user:6.47%` |
+| 表格图 | #{Value.column_name} | 当前图表选中的列值变量，name 可替换为任意列变量名。<br />假设当前图表查询为：<br />`L::RE(.*):(COUNT(*)) { index = default }`<br />查询结果为：count(*)=40813，则：<br />值变量` &query=#{Value.count(*)} `等同为 `&query=count(*):40813` |
 | 矩形树图、中国地图、世界地图、蜂窝图 | #{Value.metric_name} | 当前图表选中的查询数据值变量，name 可替换为任意列变量名。<br />假设当前图表查询为：<br />`L::RE(.*):(MAX(response_time)) { index = default } BY country`<br />查询结果为：max(response_time)=16692，则：<br />值变量` &query=#{Value.max(response_time)}  `等同为 `&query=max(response_time):16692` |
 
 
