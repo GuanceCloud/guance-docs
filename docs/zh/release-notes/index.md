@@ -6,6 +6,46 @@ icon: zy/release-notes
 
 本文档记录观测云每次上线发布的更新内容说明，包括 DataKit、观测云最佳实践、观测云集成文档和观测云。
 
+## 2023 年 12 月 28 日
+
+### 观测云更新
+
+- 监控：
+    - 新增[用户访问智能检测](../monitoring/intelligent-monitoring/rum-intelligent-detection.md)：支持网站/ APP 的性能异常、错误分析,相关检测指标有 LCP、FID、CLS 等;
+    - [基础设施存活检测 V2](../monitoring/monitor/infrastructure-detection.md)：新增基础设施存活 V2 版本，优化检测逻辑，解决 V1 和进程检测相关的若干触发问题。
+- 用户访问监测 （RUM）：
+    - 新增[公网 DataWay](../real-user-monitoring/web/app-access.md)的方式接收 RUM 数据，无需安装采集器; Web 类型应用支持在控制台中直接上传 SourceMap，可以基于不同的版本和环境上传多个文件。
+    - [错误查看器 > 错误详情](../real-user-monitoring/explorer/error.md#sourcemap)：新增**格式化**错误信息页面，展示Sourcemap 文件解析后的错误信息，支持切换查看格式化和原始格式的错误信息。若未配置 Sourcemap 文件或上传后未匹配，则只显示原始格式错误信息。
+- 应用性能监测 （APM）：
+    - 优化[服务拓扑图](../application-performance-monitoring/service-map.md#map)：调整查看上下游、节点、服务名等展示样式；
+    - 优化[服务详情](../application-performance-monitoring/service-catalog.md)：绑定性能视图仪表板展示当前服务性能指标，同样支持自定义同名用户视图覆盖更新，支持下钻分析；
+    - 优化[链路详情](../application-performance-monitoring/explorer.md#flame)火焰图、瀑布图展示：火焰图新增执行时间和执行占比显示；瀑布图支持相对时间和绝对时间切换展示。
+- 图表优化：
+    - **时序表格图**新增[显示列](../scene/visual-chart/table-chart.md#set)配置：支持用户设置查询数据显示列，同时支持用户自定义手输列名；支持用户在编辑模式下手动调整列宽，保存后可根据列宽展示列表信息；支持拖拽调整显示列顺序；
+    - 图表链接新增[值变量](../scene/visual-chart/chart-link.md#variate)做链接跳转使用。
+- 仪表板：
+    - 仪表板新增[主页仪表板](../scene/dashboard.md#dashboard)：支持工作空间配置主页仪表板；
+- 基础设施：
+    - 主机查看器新增[仅显示在线主机](../infrastructure/host.md#online)开关过滤：获取主机在线列表逻辑优化，支持选择是否仅列出最近 10 分钟有数据上报的主机列表。
+
+
+### 观测云部署版更新
+
+- 管理后台：
+    - 支持外部平台嵌套观测云页面，可使用 URL 里的参数设置隐藏左侧和头部菜单栏、支持隐藏悬浮操作；
+    - 支持外部平台通过 iframe 嵌套观测云仪表板或查看器页面。
+
+
+### 新增集成
+
+- 新增集成 Kubecost(/integrations/kubecost.md)
+
+
+### 更新最佳实践
+
+- 《ddtrace 常见参数用法》新增传播器参数用法
+- 《使用 extract + TextMapAdapter 实现了自定义 traceId》b3 传播器参数优化
+
 
 ## 2023 年 12 月 14 日
 

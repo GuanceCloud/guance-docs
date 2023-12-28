@@ -8,7 +8,7 @@ nav:
   - '离群检测': outlier-detection.md
   - '日志检测': log-detection.md
   - '进程异常检测': processes-detection.md
-  - '基础设施存活检测': infrastructure-detection.md
+  - '基础设施存活检测 V2': infrastructure-detection.md
   - '应用性能指标检测': application-performance-detection.md
   - '用户访问指标检测': real-user-detection.md
   - '安全巡检异常检测': security_checker.md
