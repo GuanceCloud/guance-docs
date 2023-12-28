@@ -1,3 +1,15 @@
+---
+title     : 'Redis'
+summary   : 'Collect Redis metrics and logs'
+__int_icon      : 'icon/redis'
+dashboard :
+  - desc  : 'Redis'
+    path  : 'dashboard/en/redis'
+monitor:
+  - desc: 'Redis'
+    path: 'monitor/en/redis'
+---
+
 <!-- markdownlint-disable MD025 -->
 # Redis
 <!-- markdownlint-enable -->
@@ -56,6 +68,8 @@ apt-get install redis-tools
 # centos
 yum install -y  redis
 ```
+
+### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
@@ -173,7 +187,7 @@ yum install -y  redis
     If it is Alibaba Cloud Redis and the corresponding username and PASSWORD are set, the `<PASSWORD>` should be set to `your-user:your-password`, such as `datakit:Pa55W0rd`.
 <!-- markdownlint-enable -->
 
-### Log Collection {#redis-logging}
+### Log Collection Configuration {#logging-config}
 
 To collect Redis logs, you need to open the log file `redis.config` output configuration in Redis:
 
@@ -183,11 +197,13 @@ To collect Redis logs, you need to open the log file `redis.config` output confi
     files = ["/var/log/redis/*.log"]
 ```
 
+<!-- markdownlint-disable MD046 -->
 ???+ attention
 
     When configuring log collection, you need to install the DataKit on the same host as the Redis service, or otherwise mount the log on the DataKit machine.
     
     In K8s, Redis logs can be exposed to stdout, and DataKit can automatically find its corresponding log.
+<!-- markdownlint-enable -->
 
 ## Metrics {#metric}
 
@@ -212,7 +228,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
-#### `redis_client`
+### `redis_client`
 
 
 
@@ -256,7 +272,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
-#### `redis_cluster`
+### `redis_cluster`
 
 
 
@@ -313,7 +329,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
-#### `redis_command_stat`
+### `redis_command_stat`
 
 
 
@@ -342,7 +358,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
-#### `redis_db`
+### `redis_db`
 
 
 
@@ -369,7 +385,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
-#### `redis_info`
+### `redis_info`
 
 
 
@@ -590,13 +606,12 @@ For all of the following data collections, a global tag named `host` is appended
 
 ## Logging {#logging}
 
-[:octicons-tag-24: Version-1.4.6](../datakit/changelog.md#cl-1.4.6)
+<!-- markdownlint-disable MD024 -->
 
 
 
 
-
-#### `redis_bigkey`
+### `redis_bigkey`
 
 
 
@@ -624,7 +639,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
-#### `redis_hotkey`
+### `redis_hotkey`
 
 
 
@@ -671,7 +686,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
-#### `redis_latency`
+### `redis_latency`
 
 
 
@@ -697,7 +712,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
-#### `redis_slowlog`
+### `redis_slowlog`
 
 Redis 慢查询命令历史，这里我们将其以日志的形式采集
 

@@ -161,21 +161,21 @@ After using `adjust_timezone` will get:
 
 Function prototype: `fn agg_create(bucket: str, on_interval: str = "60s", on_count: int = 0, keep_value: bool = false, const_tags: map[string]string = nil, category: str = "M")`
 
-Function description: Create an aggregation measurement, set the time or number of times through `on_interval` or `on_count` as the aggregation period, upload the aggregated data after the aggregation is completed, and choose whether to keep the last aggregated data
+Function description: Create an aggregation measurement, set the time or number of times through `on_interval` or `on_count` as the aggregation period, upload the aggregated data after the aggregation is completed, and choose whether to keep the last aggregated data. This function does not work with central Pipeline.
 
 Function parameters:
 
 - `bucket`: String type, as an aggregated field, if the bucket has already been created, the function will not perform any operations.
 - `on_interval`：The default value is `60s`, which takes time as the aggregation period, and the unit is `s`, and the parameter takes effect when the value is greater than `0`; it cannot be combined with `on_count` less than or equal to 0.
-- `on_count`: The default value is `0`, the number of processed points is used as the aggregation period, and the parameter takes effect when the value is greater than `0`
-- `keep_value`: The default value is `false`
-- `const_tags`: Custom tags, empty by default
+- `on_count`: The default value is `0`, the number of processed points is used as the aggregation period, and the parameter takes effect when the value is greater than `0`.
+- `keep_value`: The default value is `false`.
+- `const_tags`: Custom tags, empty by default.
 - `category`: Data category for aggregated data, optional parameter, the default value is "M", indicating the indicator category data.
 
 示例：
 
 ```python
-agg_create("cpu_agg_info", interval = 60)
+agg_create("cpu_agg_info", on_interval = "30s")
 ```
 
 
@@ -185,7 +185,7 @@ agg_create("cpu_agg_info", interval = 60)
 
 Function prototype: `fn agg_metric(bucket: str, new_field: str, agg_fn: str, agg_by: []string, agg_field: str, category: str = "M")`
 
-Function description: According to the field name in the input data, the value is automatically taken as the label of the aggregated data, and the aggregated data is stored in the corresponding bucket.
+Function description: According to the field name in the input data, the value is automatically taken as the label of the aggregated data, and the aggregated data is stored in the corresponding bucket. This function does not work with central Pipeline.
 
 Function parameters:
 
@@ -200,40 +200,32 @@ Example:
 
 Take `logging` category data as an example:
 
-multiple logs：
-```
-1
-```
+Multiple inputs in a row:
 
-```
-2
-```
-
-```
-3
-```
+- Sample log one: `{"a": 1}`
+- Sample log two: `{"a": 2}`
 
 script:
 
 ```python
-agg_create("cpu_agg_info", interval=10, const_tags={"tag1":"value_user_define_tag"})
+agg_create("cpu_agg_info", on_interval="10s", const_tags={"tag1":"value_user_define_tag"})
 
 set_tag("tag1", "value1")
 
-field1 = _
+field1 = load_json(_)
 
-cast(field1, "int")
+field1 = field1["a"]
 
 agg_metric("cpu_agg_info", "agg_field_1", "sum", ["tag1", "host"], "field1")
 ```
 
 metric output:
 
-```
+```json
 {
     "host": "your_hostname",
     "tag1": "value1",
-    "agg_field_1": 6,
+    "agg_field_1": 3
 }
 ```
 
@@ -428,7 +420,7 @@ cover(abc, [2, 4])
 
 Function prototype: `fn create_point(name, tags, fields, ts = 0, category = "M", after_use = "")`
 
-Function description: Create new data and output
+Function description: Create new data and output. This function does not work with central Pipeline.
 
 Function parameters:
 
@@ -1357,7 +1349,7 @@ add_key(match_2, match('''\w+\s[,\w]+''', test_2))
 
 Function prototype: `fn mquery_refer_table(table_name: str, keys: list, values: list)`
 
-Function description: Query the external reference table by specifying multiple keys, and append all columns of the first row of the query result to field.
+Function description: Query the external reference table by specifying multiple keys, and append all columns of the first row of the query result to field. This function does not work with central Pipeline.
 
 Function parameters:
 
@@ -1596,7 +1588,7 @@ The field mapping relationship between point name and various types of data stor
 
 Function prototype: `fn query_refer_table(table_name: str, key: str, value)`
 
-Function description: Query the external reference table through the specified key, and append all the columns of the first row of the query result to field.
+Function description: Query the external reference table through the specified key, and append all the columns of the first row of the query result to field. This function does not work with central Pipeline.
 
 Function parameters:
 
