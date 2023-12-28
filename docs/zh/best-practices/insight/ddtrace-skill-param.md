@@ -2,9 +2,7 @@
 
 ---
 
-???+ attention
-
-    **当前案例使用 ddtrace 版本 `1.14.0-guance`（最新版本）进行测试**
+> _作者： 刘锐_
 
 ## 前置条件
 
@@ -12,7 +10,7 @@
 - 准备 Shell
 
   ```shell
-  java -javaagent:D:/ddtrace/dd-java-agent-0.114.0.jar \
+  java -javaagent:D:/ddtrace/dd-java-agent-1.21.1-guance.jar \
   -Ddd.service.name=ddtrace-server \
   -Ddd.agent.port=9529 \
   -jar springboot-ddtrace-server.jar
@@ -221,10 +219,47 @@ export DD_TRACE_SPAN_ATTRIBUTE_SCHEMA=v1
 
 ![image.png](../images/ddtrace-param-8.jpg)
 
+### 传播器配置
 
+ddtrace支持以下几种传播器，传播器类型不区分大小写。
+
+- Datadog ：默认传播器
+- B3 ：B3 传播是标头“b3”和以“x-b3-”开头的标头的规范。这些标头用于跨服务边界的跟踪上下文传播。B3有两种方式，分别是
+    - B3SINGLE（B3_SINGLE_HEADER），对应 header 的 key 为 `b3`
+    - B3（B3MULTI），对应 header 的 key 为 `x-b3-`
+- haystack
+- tracecontext
+- xray
+
+
+```shell
+-Ddd.trace.propagation.style=B3SINGLE
+```
+
+或者配置环境变量
+
+```shell
+DD_TRACE_PROPAGATION_STYLE=B3SINGLE
+```
+
+
+ddtrace 1.9.0 之前使用
+
+```shell
+-Ddd.propagation.style.extract=Datadog
+-Ddd.propagation.style.inject=Datadog
+```
+或
+```shell
+-Ddd.propagation.style=Datadog
+```
+
+***注意： 可以配置多个传播器，多个传播器之间使用`,`分割，传播器类型不区分大小写。***
+
+关于传播器更多资料可以参考[链路传播（Propagate）机制及使用场景](https://juejin.cn/post/7254125867177443365)
 
 ## 参考文档
 
-<[demo 源码地址](https://github.com/lrwh/observable-demo/tree/main/springboot-ddtrace-server)>
+[demo 源码地址](https://github.com/lrwh/observable-demo/tree/main/springboot-ddtrace-server)
 
-<[ddtrace 启动参数](../../../../datakit/ddtrace-java#start-options)>
+[ddtrace 启动参数](/datakit/ddtrace-java#start-options)
