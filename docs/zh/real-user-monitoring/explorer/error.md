@@ -48,7 +48,7 @@
 
 错误分布图将近似度高的错误进行聚合统计，并按照查看器选择的时间范围，自动选取相应的时间间隔展示错误的分布趋势，帮助您直观的查看频繁发生错误的时间点或者时间范围，快速定位错误问题。
 
-### 错误详情
+### 错误详情 {#error}
 
 在错误详情，您可以查看到错误的具体内容。
 
@@ -58,15 +58,25 @@
 
 观测云为应用程序提供 Sourcemap 功能，支持还原混淆后的代码，方便错误排查时定位源码，帮助用户更快解决问题。
 
-> 您可以通过查看文档 [Sourcemap 转换](../../integrations/rum.md#sourcemap) 进行配置，配置完成后，即可以在错误详情中查看解析后的代码和原始的代码。
+> 您可以通过 RUM [Sourcemap 配置](../set-sourcemap.md) 或 [Datakit 采集器 Sourcemap 转换](../../integrations/rum.md#sourcemap)进行配置，配置完成后，即可以在错误详情中查看解析后的代码和原始的代码。
+
+**注意**：当前仅支持 Web 类型的应用在 RUM 进行 Sourcemap 配置。
 
 ##### 解析代码示例
+
+在 RUM 配置 Sourcemap 转换，解析代码示例：
 
 ![](../img/1.rum_error_4.png)
 
 ##### 原始代码示例
 
 ![](../img/1.rum_error_5.png)
+
+使用 Datakit 采集器配置 Sourcemap 转换，解析代码示例：
+
+![](../img/sourcemap_02.png)
+
+**注意**：若用户同时在 RUM 和 Datakit 采集器同时配置了 Sourcemap，展示 RUM 配置的解析格式。
 
 ### 扩展字段
 
