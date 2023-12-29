@@ -5,7 +5,7 @@ nav:
   - '服务': 
     - '服务列表': service.md
     - '服务拓扑图': service-map.md
-    - '服务清单': service-catalog.md
+    - '服务详情': service-catalog.md
   - '概览': overview.md
   - '链路查看器': explorer.md
   - '错误追踪': error.md
