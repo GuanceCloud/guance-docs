@@ -16,6 +16,12 @@
 
 登录观测云控制台，进入**用户访问监测**页面，点击左上角 **[新建应用](../index.md#create)**，即可开始创建一个新的应用。
 
+- 观测云提供**公网 DataWay**直接接收 RUM 数据，无需安装 DataKit 采集器。配置 `site` 和 `clientToken` 参数即可。
+
+![](../img/android_01.png)
+
+- 观测云同时支持**本地环境部署**接收 RUM 数据，该方式需满足前置条件。
+
 ![](../img/6.rum_android_1.png)
 
 
@@ -190,7 +196,9 @@ android{
 
 | **方法名** | **类型** | **必须** | **含义** | **注意** |
 | --- | --- | --- | --- | --- |
-| metricsUrl | String | 是 | Datakit 安装地址 | datakit 安装地址 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529，注意：安装 SDK 设备需能访问这地址 |
+| datakitUrl | String | 是 | Datakit 访问地址 | datakit 访问 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529，注意：安装 SDK 设备需能访问这地址.注意：datakit 和 dataway 配置两者二选一|
+| datawayUrl | String | 是 | 公网 Dataway 访问地址 | dataway 访问 URL 地址，例子：http://10.0.0.1:9528，端口默认 9528，注意：安装 SDK 设备需能访问这地址.注意：datakit 和 dataway 配置两者二选一 |
+| clientToken | String | 是 | 认证 token | 需要与 datawayUrl 同时配置  |
 | setDebug | String | 否 | 是否开启调试模式 | 默认为 `false`，开启后方可打印 SDK 运行日志 |
 | setEnv | EnvType | 否 | 设置采集环境 | 默认为 `EnvType.PROD` |
 | setEnv | String | 否 | 设置采集环境 | 默认为 `prod` |

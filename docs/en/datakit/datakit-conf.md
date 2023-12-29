@@ -17,7 +17,7 @@ The DataKit master configuration is used to configure the running behavior of th
 
 ## Datakit Main Configure Sample {#maincfg-example}
 
-Datakit main configure is *datakit.conf*, here is the exmaple sample(1.21.1):
+Datakit main configure is *datakit.conf*, here is the exmaple sample(1.22.0):
 
 ??? info "datakit.conf"
 
