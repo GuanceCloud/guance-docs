@@ -6,12 +6,12 @@ icon: zy/events
 
 Guance supports a one-stop view and audit of all event data. You can monitor and query events triggered by all sources in real-time, and also quickly identify anomalies and efficiently analyze abnormal data by aggregating related events and matching associated events.
 
-![](img/4.event_3.gif)
+![](img/4.event_3.png)
 
 ## Where are events from?
 
 - All alert events triggered based on the configured [Monitor](../monitor/monitor/index.md);
-- Based on the configuration, all alert events triggered by [Intelligent Monitoring](../monitoring/intelligent-monitoring/index.md);  
+- Based on the configuration, all alert events triggered by [Intelligent Monitoring](../monitoring/intelligent-monitoring/index.md);
 - All alert events triggered based on the configured [Auto Detection](../monitoring/bot-obs/index.md);
 - All alert events triggered based on configured [SLO](../monitoring/slo.md);
 - [Audit](../management/operation-audit.md) events based on system operations;
@@ -26,7 +26,7 @@ Guance supports a one-stop view and audit of all event data. You can monitor and
 ## Features
 
 |                   <font color=coral size=3>:fontawesome-regular-circle-down: &nbsp;**Learn more**</font>                         |                                                              |
-| :----------------------------------------------------------: | :----------------------------------------------------------: | 
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
 | [Unrecovered Events](unrecovered-events.md){ .md-button .md-button--primary } | [All Events](event-list.md){ .md-button .md-button--primary } |
 | [Intelligent Monitoring](inte-monitoring-event.md){ .md-button .md-button--primary } | [Events Triggered by Monitors](../monitoring/monitor/index.md){ .md-button .md-button--primary } |
 
@@ -45,7 +45,6 @@ Guance supports a one-stop view and audit of all event data. You can monitor and
 | `df_status`            | Event status, including `ok`, `info`, `warning`, `error`, `critical`, `nodata`, `nodata_ok`, `nodata_as_ok`, `manual_ok` |
 | `df_sub_status`        | Event status details. e.g. <br/>`ok`：Events recover from warning, error, critical, and other failure states<br/>`nodata_ok`：Event returns to normal from nodata state<br/>`nodata_as_ok`：Event nodata status is regarded as returning to normal<br/>`manual_ok`：Events of user active recovery |
 | `df_event_id`          | Event ID                                                     |
-| `df_event_url`         | Event URL                                                    |
 | `df_title`             | Event title                                                  |
 | `df_message`           | Event message                                                |
 
@@ -92,6 +91,6 @@ Guance supports a one-stop view and audit of all event data. You can monitor and
 
 ## Event Storage Policy
 
-Guance provides three data storage time choices for event data: 14 days, 30 days and 60 days. If you choose the data storage time of 30 days, events generated from different sources will be stored in 30 days. You can adjust as required in **Management > Settings > Change Data Storage Strategy**. 
+Guance provides three data storage time choices for event data: 14 days, 30 days and 60 days. If you choose the data storage time of 30 days, events generated from different sources will be stored in 30 days. You can adjust as required in **Management > Settings > Change Data Storage Strategy**.
 
 > See [Data Storage Strategy](../billing/billing-method/data-storage.md) for more data storage policies.

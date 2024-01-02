@@ -2,7 +2,11 @@
 ---
 ## 前置条件
 
-- 安装 DataKit（[DataKit 安装文档](../../datakit/datakit-install.md)）
+**注意**：若您开通了 [RUM Headless](../../dataflux-func/headless.md) 服务，前置条件已自动帮您配置完成，直接接入应用即可。
+
+- 安装 [DataKit](../../datakit/datakit-install.md)；  
+- 配置 [RUM 采集器](../../integrations/rum.md)；
+- DataKit 配置为[公网可访问，并且安装 IP 地理信息库](../../datakit/datakit-tools-how-to.md#install-ipdb)。
 
 ## 应用接入 {#integration}
 当前 Unity 版本暂时支持 Android 和 iOS 平台。登录观测云控制台，进入「用户访问监测」页面，点击左上角「新建应用」，即可开始创建一个新的应用。
@@ -87,7 +91,7 @@ FTUnityBridge.InitRUMConfig(new RUMConfig()
 | --- | --- | --- | --- |
 | androidAppId | string | 是 | 对应设置 RUM `appid`，才会开启`RUM`的采集功能，[获取 appid 方法](#integration) |
 | iOSAppId | string | 是 | 对应设置 RUM `appid`，才会开启`RUM`的采集功能，[获取 appid 方法](#integration) |
-| sampleRate | float | 否 | 采集率的值范围为>= 0、<= 1，默认值为 1 |
+| sampleRate | float | 否 | 采样率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。作用域为同一 session_id 下所有 View，Action，LongTask，Error 数据  |
 | globalContext | dictionary | 否 | 添加标签数据，用于用户监测数据源区分，如果需要使用追踪功能，则参数 `key` 为 `track_id` ,`value` 为任意数值。添加规则请查阅 [此处](#key-conflict) |
 | enableNativeUserAction | bool | 否 |  是否开启 Native Action 收集，默认 false |
 | enableNativeUserView | bool | 否 |  是否开启 Native View 收集，默认 false |
@@ -108,7 +112,7 @@ FTUnityBridge.InitLogConfig(new LogConfig
 
 | **字段** | **类型** | **必须** | **说明** |
 | --- | --- | --- | --- |
-| sampleRate | float | 否 | 采集率的值范围为>= 0、<= 1，默认值为 1 |
+| sampleRate | float | 否 | 采样率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。 |
 | globalContext | dictionary | 否 | 添加标签数据，添加规则请查阅 [此处](#key-conflict)  |
 | logLevelFilters | array | 否 | 设置等级日志过滤，`ok`，`info`，`warning`，`error`，`critical`，默认不过滤 |
 | enableCustomLog | bool | 否 | 是否上传自定义日志 ，默认为 `false` |
@@ -128,7 +132,7 @@ FTUnityBridge.InitTraceConfig(new TraceConfig
 
 | **字段** | **类型** | **必须** | **说明** |
 | --- | --- | --- | --- |
-| sampleRate | float | 否 | 采集率的值范围为>= 0、<= 1，默认值为 1 |
+| sampleRate | float | 否 |采样率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。 |
 | traceType | enum | 否 | 默认为 `ddtrace`，目前支持 `zipkin` , `jaeger`, `ddtrace`，`skywalking` (8.0+)，`traceParent` (W3C)，如果接入 OpenTelemetry 选择对应链路类型时，请注意查阅支持类型及 agent 相关配置  |
 | enableLinkRUMData | bool | 否 | 是否与 RUM 数据关联，默认为 `false` |
 
@@ -491,8 +495,19 @@ public static void DeInit()
 FTUnityBridge.DeInit()
 ```
 
+## Publish Package 相关配置
+### Android
+* [Android R8/Prograd 配置](../android/app-access.md#r8_proguard)
+* [Android 符号文件上传](../android/app-access.md#source_map)
+
+### iOS
+* [iOS 符号文件上传](../ios/app-access.md#source_map)
+
 
 ## 常见问题 {#FAQ}
 ### 添加局变量避免冲突字段 {#key-conflict}
 
 为了避免自定义字段与 SDK 数据冲突，建议标签命名添加 **项目缩写** 的前缀，例如 `df_tag_name`，项目中使用 `key` 值可[查询源码](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java)。SDK 全局变量中出现与 RUM、Log 相同变量时，RUM、Log 会覆盖 SDK 中的全局变量。
+
+
+

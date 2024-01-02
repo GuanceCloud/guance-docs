@@ -1266,17 +1266,19 @@ For more details, please see [SDK Demo](https://github.com/GuanceDemo/guance-app
 #### Method 1: Script integration into the Xcode project's Target
 
 1. XCode add custom Run Script Phase：` Build Phases -> + -> New Run Script Phase`
-2. Copy the script into the build-phase run script of the Xcode project, where you need to set parameters such as < app_id >, < dea_address >, < env >, < version > (the default configured version format of the script is ` CFBundleShortVersionString `).
-3. [Script](https://github.com/GuanceDemo/guance-app-demo/tree/master/src/ios/demo/FTdSYMUploader.sh)
+2. Copy the script into the build-phase run script of the Xcode project, where you need to set parameters such as < app_id >, < datakit_address >, < env >, <dataway_token>,< version > (the default configured version format of the script is ` CFBundleShortVersionString `).
+3. [Script](https://github.com/GuanceCloud/datakit-ios/blob/develop/FTdSYMUploader.sh)
 
 ```sh
 #Parameters that need to be configured
 #＜app_id＞
 FT_APP_ID="YOUR_APP_ID"
-#＜dea_address＞
-FT_DEA_ADDRESS="YOUR_DEA_ADDRESS"
+# <datakit_address>
+FT_DATAKIT_ADDRESS="YOUR_DATAKIT_ADDRESS"
 # ＜env＞ environment field. value：prod/gray/pre/common/local。Need to be consistent with SDK settings
 FT_ENV="common"
+# <dataway_token> The token for dataway in the datakit.conf configuration file
+FT_TOKEN="YOUR_DATAWAY_TOKEN"
 #
 #＜version＞ The version format of the script default configuration is: CFBundleShortVersionString, if you modify the default version format, please set this variable. Note: You need to make sure that what you fill in here is consistent with what you set in the SDK.
 # FT_VERSION=""
@@ -1307,7 +1309,8 @@ Configure the preset macros in the .xcconfig file.
 
 SDK_APP_ID = app_id_common
 SDK_ENV = common
-SDK_DEA_ADDRESS = http:\$()\xxxxxxxx:9531 
+SDK_DATAKIT_ADDRESS = http:\$()\xxxxxxxx:9529
+SDK_DATAWAY_TOKEN = token
 ```
 
 3. Configuring a custom build environment
@@ -1326,11 +1329,13 @@ SDK_DEA_ADDRESS = http:\$()\xxxxxxxx:9531
 ```sh
 #Parameters that need to be configured
 #＜app_id＞
-FT_APP_ID=SDK_APP_ID
+FT_APP_ID=${SDK_APP_ID}
 #＜dea_address＞
-FT_DEA_ADDRESS=SDK_DEA_ADDRESS
+FT_DATAKIT_ADDRESS=${SDK_DATAKIT_ADDRESS}
 # ＜env＞ environment field. value：prod/gray/pre/common/local。Need to be consistent with SDK settings
-FT_ENV=SDK_ENV
+FT_ENV=${SDK_ENV}
+# The token for dataway in the datakit.conf configuration file
+FT_TOKEN=${SDK_DATAWAY_TOKEN}
 ```
 
 **In a document for a project** 
@@ -1359,7 +1364,7 @@ For more details, please see [SDK Demo](https://github.com/GuanceDemo/guance-app
 
 Find the .dSYM file in a folder, enter the basic application information, the parent directory path of the .dSYM file, and the output file directory at the command line.
 
-`sh FTdSYMUpload.sh <dea_address> <app_id> <version> <env> <dSYMBOL_src_dir> <dSYMBOL_dest_dir>`
+`sh FTdSYMUpload.sh <datakit_address> <app_id> <version> <env> <dataway_token> <dSYMBOL_src_dir> <dSYMBOL_dest_dir>`
 
 #### Method 3: Manual upload
 

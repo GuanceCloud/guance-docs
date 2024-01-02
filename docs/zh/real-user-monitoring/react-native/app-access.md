@@ -3,7 +3,11 @@
 
 ## 前置条件
 
-- 安装 [DataKit](../../datakit/datakit-install.md)。
+**注意**：若您开通了 [RUM Headless](../../dataflux-func/headless.md) 服务，前置条件已自动帮您配置完成，直接接入应用即可。
+
+- 安装 [DataKit](../../datakit/datakit-install.md)；  
+- 配置 [RUM 采集器](../../integrations/rum.md)；
+- DataKit 配置为[公网可访问，并且安装 IP 地理信息库](../../datakit/datakit-tools-how-to.md#install-ipdb)。
 
 ## 应用接入
 
@@ -43,7 +47,7 @@ npm install @cloudcare/react-native-mobile
 
 现在在您的代码中，您可以使用：
 
-```json
+```typescript
 import {
   FTMobileReactNative,
   FTReactNativeLog,
@@ -106,7 +110,7 @@ FTReactNativeRUM.setConfig(rumConfig);
 | --- | --- | --- | --- |
 | androidAppId | string | 是 | app_id，应用访问监测控制台申请 |
 | iOSAppId | string | 是 | app_id，应用访问监测控制台申请 |
-| sampleRate | number | 否 | 采样率，（采集率的值范围为>= 0、<= 1，默认值为 1） |
+| sampleRate | number | 否 | 采样率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。作用域为同一 session_id 下所有 View，Action，LongTask，Error 数据|
 | enableAutoTrackUserAction | boolean | 否 | 是否自动采集 `React Native` 控件点击事件，开启后可配合  `accessibilityLabel`设置actionName |
 | enableAutoTrackError | boolean | 否 | 是否自动采集 `React Native` Error |
 | enableNativeUserAction | boolean | 否 | 是否进行 `Native Action` 追踪，`Button` 点击事件，纯 `React Native` 应用建议关闭，默认为 `false` |
@@ -130,7 +134,7 @@ FTReactNativeLog.logConfig(logConfig);
 
 | 字段 | 类型 | 必须 | 说明 |
 | --- | --- | --- | --- |
-| sampleRate | number | 否 | 采样率，采集率的值范围为>= 0、<= 1，默认值为 1 |
+| sampleRate | number | 否 | 采样率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。   |
 | enableLinkRumData | boolean | 否 | 是否与 `RUM` 关联 |
 | enableCustomLog | boolean | 否 | 是否开启自定义日志 |
 | discardStrategy | enum FTLogCacheDiscard | 否 | 日志丢弃策略，默认`FTLogCacheDiscard.discard` |
@@ -149,7 +153,7 @@ FTReactNativeLog.logConfig(logConfig);
 
 | 字段 | 类型 | 必须 | 说明 |
 | --- | --- | --- | --- |
-| sampleRate | number | 否 | 采样率，采集率的值范围为>= 0、<= 1，默认值为 1 |
+| sampleRate | number | 否 | 采样率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。  |
 | traceType | enum TraceType | 否 | 链路类型，默认`TraceType.ddTrace` |
 | enableLinkRUMData | boolean | 否 | 是否与 `RUM` 数据关联，默认`false` |
 | enableNativeAutoTrace | boolean | 否 | 是否开启原生网络网络自动追踪 iOS NSURLSession ,Android OKhttp(由于 `React Native`的网络请求在 iOS、Android 端是使用系统 API 实现的，所以开启 `enableNativeAutoTrace` 后，所有 `React Native` 数据能够一并追踪。） |
@@ -410,6 +414,16 @@ AsyncStorage.setItem("track_id",valueString,(error)=>{
 
 - 特殊 key : track_id (在 RUM 中配置，用于追踪功能) ；  
 - 当用户通过 globalContext 添加自定义标签与 SDK 自有标签相同时，SDK 的标签会覆盖用户设置的，建议标签命名添加项目缩写的前缀，例如 `df_tag_name`。项目中使用 `key` 值可[查询源码](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java)。
+
+
+## Publish Package 相关配置
+### Android
+* [Android R8/Prograd 配置](../android/app-access.md#r8_proguard)
+* [Android 符号文件上传](../android/app-access.md#source_map)
+
+### iOS
+* [iOS 符号文件上传](../ios/app-access.md#source_map)
+
 
 ## 常见问题
 

@@ -1,71 +1,80 @@
-# Infrastructure Survival Detection
+# Infrastructure Active Detection
 ---
 
-## Overview
+Based on infrastructure data, you can set up survival conditions in infrastructure survival detection settings to monitor the operational status and stability of the infrastructure.
 
-"Infrastructure Survival Detection" is used to monitor the running status of infrastructure, and infrastructure objects support selection: host, container, Pod, Deployment and Node.
-
-## Application Scene
+## Use Cases
 
 Monitor whether there is abnormal interruption in long-term survival infrastructure, and support monitoring the running status of host, container, Pod, Deployment and Node.
 
-## Rule Description
+## Setup
 
-In "Monitor", click "+ New Monitor", select "Infrastructure Survival Monitoring", and enter the configuration page of detection rules.
+Click on **Monitor > Create > Infrastructure Active Detection** to enter the configuration page for the rule.
 
-### Step 1. Detect the Configuration
+### Step 1: Detection Configuration
 
 ![](../img/monitor18.png)
 
-1）**Detection frequency:** The execution frequency of detection rules, including "5 minutes/10 minutes/15 minutes/30 minutes/1 hour", and 5 minutes is selected by default.
+:material-numeric-1-circle-outline: **Detection Frequency:** The execution frequency of detection rules, including "5 minutes/10 minutes/15 minutes/30 minutes/1 hour", and 5 minutes is selected by default.
 
-2）**Detection index:** Monitoring metric data.
+:material-numeric-2-circle-outline: **Detection Metrics:** Monitoring metric data.
 
-| Field | Description |
-| --- | --- |
-| Object types | Contain "Host", "Container", "Pod", "Deployment" and "Node" |
-| Filter | Drop-down is only for filtering without search function.<br>The name tag of the default detection object is put in the first place. |
-| Switch | It only exists when the type is host. After opening, the filter box is grayed out and invalid. |
+<div class="grid" markdown>
 
-3）**Trigger condition:** Set the trigger condition of alarm level.
+=== "Objects"
+
+    <img src="../../img/insfra-2.png" width="60%" >
+
+    - Types: include host, container, Pod, Deployment, Node;
+    - Filter: drop-down to view related fields; by default, the object's name Tag is in the first position;
+    - Detect all hosts: only available when the type is host, when enabled, the filtering box is greyed out.
+
+=== "Metrics"
+
+    <img src="../../img/insfra-2.png" width="60%" >
+
+    - Types: include host, container, Pod, Deployment, Node;
+    - Metrics: list all measurements in the current workspace and their corresponding metric fields; you can also choose to manually input custom measurements and metrics;
+    - Filter: drop-down to view related fields; by default, the object's name Tag is in the first position;
+    - Detect all hosts: only available when the type is host, when enabled, the filtering box is greyed out.
+
+</div>
+
+:material-numeric-3-circle-outline: **Trigger Condition:** Set the trigger condition of alert level.
 
 ![](../img/monitor56.png)
 
-- Message (blue): Normal test results also generate events.
-- meet the condition trigger event no data event
-- If there is no abnormal event within the detection times, a normal event will be generated
+- Information (Blue): Normal detection results also generate events;
+- Events triggered by meeting conditions without data events;
+- If no abnormal events are generated within the detection times, normal events are generated.
 
-???+ attention
+**Note**: The monitor can't query any data of the detected infrastucture tyep, and there may be anomalies in data reporting.
 
-    The monitor can't query any data of the detected object, and there may be anomalies in data reporting.
-
-### Step 2. Event Notification
+### Step 2: Event Notification
 
 ![](../img/monitor15.png)
 
-4）**Event title:** Set the event name of the alarm trigger condition, and support the use of preset template variables. For details, refer to [template variables](../event-template.md).
+:material-numeric-4-circle-outline: **Event Title:** Set the event name of the alert trigger condition, and support the use of preset [template variables](../event-template.md).
 
-???+ attention
-    
-    In the latest version, "Monitor Name" will be generated synchronously after entering "Event Title". There may be inconsistencies between "Monitor Name" and "Event Title" in the old monitor. In order to give you a better experience, please synchronize to the latest as soon as possible. Support one-click replacement for event headers.
+**Note**: In the latest version, the Monitor Name will be automatically generated based on the Event Title input. In older monitors, there may be inconsistencies between the Monitor Name and the Event Title. To enjoy a better user experience, please synchronize to the latest version as soon as possible. One-click replacement with event title is supported.
 
-5）**Event content:** Event notification content sent when triggering conditions are met, It supports input of markdown format text information and preview effect, support use of preset template variables, refer to [template variables](../event-template.md).
+:material-numeric-5-circle-outline: **Event Content:** Event notification content sent when triggering conditions are met, It supports input of markdown format text information and preview effect, support use of preset template variables, refer to [template variables](../event-template.md).
 
-???+ attention
-    
-    Different alarm notification objects support different markdown syntax. For example, enterprise WeChat does not support unordered list.
+**Note**: Different alert notification objects support different Markdown syntax. For example, WeCom does not support unordered lists.
 
-6）**Alarm strategy:** Send an alarm message to the specified notification object immediately after the monitoring meets the trigger condition. The alarm policy includes the event level to be notified, the notification object, and the alarm silence period. For details, refer to [alarm strategy](../alert-setting.md).
+:material-numeric-6-circle-outline: **Alert Strategy:** Send an alert message to the specified notification targets immediately after the monitoring meets the trigger condition. The [Alert Strategy](../alert-setting.md) includes the event level to be notified, the notification targets and the mute alerting period.
 
-### Step 3. Associate
+:material-numeric-7-circle-outline: **Synchronously create Issue**: If abnormal events occur under this monitor, an issue for anomaly tracking will be created synchronously and delivered to the channel for anomaly tracking. You can go to [Incident](../../exception/index.md) > Your selected [Channel](../../exception/channel.md) to view it.
+
+### Step 3: Association
 
 ![](../img/monitor13.png)
 
-8）**Associated dashboards:** Each monitor supports associated dashboards, that is, dashboards that can customize quick jumps through the "Associated Dashboards" function (dashboards associated with monitors support quick jumps to view monitoring views).
+:material-numeric-8-circle-outline: **Associate Dashboard**: Every monitor supports associating with a dashboard for quick navigation and viewing.
 
-## Example
+### Example
 
-Assuming that your host needs to run 24 hours and can't go down, you can configure the host survival alarm, and trigger the alarm if there is no data for 10 consecutive minutes.
+Assuming that your host needs to run 24 hours and can't go down, you can configure the host survival alert, and trigger the alert if there is no data for 10 consecutive minutes.
 
 ![](../img/example02.png)
 
