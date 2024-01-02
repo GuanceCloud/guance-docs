@@ -1,12 +1,14 @@
 # 版本历史
 
+## 77.150（2023 年 12 月 28 日）
+
 pubrepo.guance.com/dataflux/1.77.150:launcher-e2e6b96-1704173035
 
-## 私有部署版更新
+### 私有部署版更新
 
 - 针对自动化任务队列，实施优化策略：将所有 Func worker 的队列分散到不同的 Deployment 中，以提升系统的分布式处理能力和效率。
 
-## 观测云更新
+### 观测云更新
 
 - 监控：
     - 新增用户访问智能检测：支持网站/ APP 的性能异常、错误分析,相关检测指标有 LCP、FID、CLS 等;
@@ -23,40 +25,35 @@ pubrepo.guance.com/dataflux/1.77.150:launcher-e2e6b96-1704173035
 - 基础设施：
     - 主机查看器新增仅显示在线主机开关过滤：获取主机在线列表逻辑优化，支持选择是否仅列出最近 10 分钟有数据上报的主机列表。
 
-## 观测云部署版更新
+### 观测云部署版更新
 
 - 支持外部平台嵌套观测云页面，可使用 URL 里的参数设置隐藏左侧和头部菜单栏、支持隐藏悬浮操作；
 - 支持外部平台通过 iframe 嵌套观测云仪表板或查看器页面。
 
-## DataKit 更新
+### DataKit 更新
 
-### 新增功能
+- 新增功能
+    - 新增 OceanBase 自定义 SQL 采集
+    - 新增 Promremote 黑名单/白名单
+    - Kubernetes 资源数量采集添加 node_name tag（仅支持 Pod 资源）
+    - Kubernetes Pod 指标新增 cpu_limit_millicores/mem_limit/mem_used_percent_base_limit 字段
+    - eBPF 采集器新增 bpf-netlog 插件
+- 问题修复
+    - 修复 external 采集器僵尸进程问题
+    - 修复容器日志 tags 冲突问题
+    - 数据 record 功能支持环境变量开启
+    - 修复虚拟网卡信息获取失败问题
+    - 修复 Pipeline Refer table 和 ipdb 功能失效问题
+- 功能优化
+    - 优化 DDTrace 和 OTEL 字段提取白名单功能
+    - 优化 SQLServer 采集器的 sqlserver_lock_dead 指标获取 SQL
+    - 优化 PostgreSQL 采集器的连接库
+    - 优化 ElasticSearch 采集器的配置文件，设置 local 默认为 false
+    - K8s 安装时增加更多 ENV 配置项
+    - 优化 Datakit 自身指标暴露
+    - 更新部分采集器集成文档
 
-- 新增 OceanBase 自定义 SQL 采集
-- 新增 Promremote 黑名单/白名单
-- Kubernetes 资源数量采集添加 node_name tag（仅支持 Pod 资源）
-- Kubernetes Pod 指标新增 cpu_limit_millicores/mem_limit/mem_used_percent_base_limit 字段
-- eBPF 采集器新增 bpf-netlog 插件
-
-### 问题修复
-
-- 修复 external 采集器僵尸进程问题
-- 修复容器日志 tags 冲突问题
-- 数据 record 功能支持环境变量开启
-- 修复虚拟网卡信息获取失败问题
-- 修复 Pipeline Refer table 和 ipdb 功能失效问题
-
-### 功能优化
-
-- 优化 DDTrace 和 OTEL 字段提取白名单功能
-- 优化 SQLServer 采集器的 sqlserver_lock_dead 指标获取 SQL
-- 优化 PostgreSQL 采集器的连接库
-- 优化 ElasticSearch 采集器的配置文件，设置 local 默认为 false
-- K8s 安装时增加更多 ENV 配置项
-- 优化 Datakit 自身指标暴露
-- 更新部分采集器集成文档
-
-## 集成更新
+### 集成更新
 
 - 新增集成 Kubecost
 
