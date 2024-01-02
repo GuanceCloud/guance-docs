@@ -1,101 +1,97 @@
-# Alarm Strategy
+# Alert Strategy Management
+
 ---
 
-## Overview
+Guance supports the management of alert strategies for monitoring results by sending alert notifications, allowing you to timely understand abnormal data, discover and solve problems.
 
-Guance supports the alarm policy management of the detection results of the monitor. By sending alarm notification emails or group message notifications, you can know the abnormal data monitored in time, find problems and solve problems.
+???+ warning "Default Alert Strategy"
 
-Note:
+    - When creating a monitor, you must select an alert strategy, with **Default** selected by default;
+    - When an alert strategy is deleted, monitors under the deleted strategy will automatically be categorized under **Default**.
 
-- When each monitor is created, an alarm policy must be selected, and "Default" is selected by default;
-- When an alarm policy is deleted, the monitor under the deleted alarm policy will be automatically classified under "Default".
 
-## New Alarm Policy
+## Create {#create}
 
-In Guance workspace "Monitoring"-"Alarm Policy Management", click "New Alarm Policy" to add a new alarm policy. You can configure alarm objects and alarm silences for alarm policies.
+In Guance Workspace, go to **Monitoring > Alert Strategy Management**, and click on **Create** to add a new alert strategy. You can configure alert targets and alert aggregation for the strategy.
 
-![](img/monitor2.png)
+![img/monitor2.png](img/monitor2.png)
 
-1）**Name:** Name of the alert policy.
+### Alert Name
 
-2）**Event Notification Level:** Including information, urgent, important, warning, no data, recovery, no data recovery, no data as recovery. By default, all abnormal event alarm notifications are sent. If necessary, you can customize the event notification level through the list.
+The name of the current alert strategy.
 
-- Event Level Details refer to [event level description](monitor/event-level-description.md) 
+### Notification Configuration
 
-### Notification Object
+:material-numeric-1-circle-outline: Event Severity: Includes <u>Critical, Important, Warning, No Data, Information</u>. Based on the selected event severity, Guance supports associate [Alert Aggregation](#pattern) for alert notifications.
 
-3）**Alarm Notification Object:** Alarm Notification supports selecting different notification types and sending alarm notifications to multiple objects. Guance supports various notification types, including "Space Member", "Mail Group", "Nail Robot", "Enterprise WeChat Robot", "Flying Book Robot" and "Webhook Custom".
+> For more details on event severity, see [Event Severity](monitor/event-level-description.md).
 
-- Space members: mail notifications, by adding notification objects in "Management"-"Member Management", refer to the "Alarm Sample" in this document.
-- Mail Group: Mail Notification, a mail group can add more than one space member, through the "Management"-[Notification Object Management](notify-object.md), add notification objects.
-- Dingding robot, enterprise WeChat robot, flying book robot: group notification, add notification object in "Management"-[Notification Object Management](notify-object.md), add notification objects.
-- Webhook customization: user-defined, add notification objects in "Management"-[Notification Object Management](notify-object.md), add notification objects.
-- SMS: SMS notification, a SMS group can be added to multiple space members by adding notification objects in "Management"-「[[Notification Object Management](notify-object.md). The free version of Guance has no SMS notification, while other versions have SMS notification of 0.1 yuan/article, which is charged on a daily basis and has no free quota.
+:material-numeric-2-circle-outline: Notification Targets: You can configure notification targets for individual severity levels. Multiple targets can be selected.
 
-???+ attention
+The object types are as follows:
 
-    - Mail, Dingding, WeChat, Feishu and SMS alarm notifications are all combined and sent every minute, not immediately after generation, and there will be a delay of about one minute;
-    - The alarm notifications received by email, Dingding, WeChat and Feishu include Guance Jump Link". Click to jump directly to the corresponding Guance event details. The time range is 15 minutes ahead of the current time, that is, the event at 18:45:00. After clicking the link, jump to the event details page, and the time range is fixed at 4.20 18:30 ~ 4.20 18:45
-
-### Alarm Silence
-
-4）**Alarm silence:** If the same event is not very urgent, but the alarm notification frequency is high, the alarm notification frequency can be reduced by setting alarm silence.
-
-???+ attention
-
-    Events will continue to be generated after the alarm is silenced, but the alarm notification will not be sent again, and the generated events will be stored in the event management
-
-## Alarm Policy List
-
-In the "Alarm Policy" list, all alarm policies in the current workspace are saved. Support to view alarm policy name, associated monitor, alarm silence time and operation.
-
-![](img/monitor12.png)
-
-### Query
-
-The alarm policy list supports searching based on the alarm policy name.
-
-### Association Monitor
-Show the number of monitors under the alarm policy. Click the number to jump to the monitor to view the monitor details under the alarm policy.
-
-### Operation instructions
-
-| **Operation** | **Instructions** |
+| Object Type | Description |
 | --- | --- |
-| Alarm configuration | Click the button to modify the current alarm policy |
-| Delete | When an alarm policy is deleted, the monitor under the deleted alarm policy will be automatically classified under Default |
+| Workspace Member | Email notification, by adding notification targets in Management > [Member Management](../management/member-management.md). |
+| Team | Email notification, a team can add multiple workspace members as notification targets by going to Management > [Member Management](../management/member-management.md) > Team Management. |
+| Mailing Group | Email notification, a mailing group can add multiple teams as notification targets by going to Monitoring > [Notification Targets](notify-object.md). |
+| DingTalk Robot, WeChat Robot, Lark Robot | Group notification, by adding notification targets in Monitoring > [Notification Targets](notify-object.md). |
+| Webhook | User-defined, by adding notification targets in Monitoring > [Notification Targets](notify-object.md). |
+| SMS | SMS notification, a SMS group can add multiple workspace members as notification targets by going to Monitoring > [Notification Targets](notify-object.md). SMS notification is not available in the Trial version of Guance. In other versions, SMS notification costs 0.1 yuan per message and is billed daily with no free quota. |
 
-## Alarm Example
+**Note**:
 
-### 1.Create Monitor
+- Recovery Notification: When a previously sent alert event is recovered, Guance will send a recovery notification to the corresponding notification targets. For example, if an `Critical` notification is sent to a group for a specific event, when the status starts to recover, a recovery notification will be sent to the group.
 
-n "Monitoring", create a new monitor, click "+ New Monitor", and select the corresponding detection rules (such as threshold detection) to start configuring detection rules. Refer to [threshold detection](monitor/threshold-detection.md).
+- Notification Delay: Alert notifications are not sent immediately after generation and may be delayed by up to 1 minute due to data storage issues.
 
-![](img/monitor10.png)
+### Mute Alerting
 
-### 2.Configure Alarm Object
+If the same event is not very urgent but the frequency of alert notifications is high, you can reduce the frequency of alert notifications by setting the time interval for repeated alert notifications.
 
-- Add an alarm object
+**Note**: After setting repeated alert notifications, events will continue to occur, but alert notifications will no longer be sent. The generated data will be stored in [Event](../events/index.md).
 
-In "Management", enter "Member Management", and click "Add Member". After successful addition, the object that can be used for alarm notification. Refer to [alarm notification object](notify-object.md).
+<img src="../img/alert-2.png" width="60%" >
 
-- Configure alarm objects
+### Alert Aggregation {#pattern}
 
-In "Monitor", select the specified alarm policy for "Alarm Configuration", select relevant notification objects and alarm silence, and click "OK".
+:material-numeric-1-circle-outline: No Aggregation: Default configuration; in this mode, alert events will be aggregated every 20 seconds and sent as a single notification to the corresponding notification targets.
 
-![](img/monitor3.png)
+:material-numeric-2-circle-outline: Rule-based Aggregation: In this mode, you can choose from the following four aggregation rules and send alert notifications based on the aggregation period:
 
-### 3.Alarm Notification
+<img src="../img/alert.png" width="70%" >
 
-After configuring the alarm object, you can receive the alarm notification.
+| <div style="width: 150px"> Aggregation Rule </div> | Description |
+| --- | --- |
+| All | Based on the severity dimension configured in the alert strategy, alert notifications will be generated within the selected aggregation period. |
+| Monitors / Smart Check / SLO | Based on the unique ID of the monitor, smart check detection rule, or SLO, alert notifications will be generated within the selected aggregation period. |
+| Detection Dimension | Based on the detection dimension, such as `host`, alert notifications will be generated within the selected aggregation period. |
+| Tags | By associate [global labels](../management/field-management.md) with [monitors](./monitor/index.md#tags), alert notifications will be generated within the selected aggregation period based on the tags; multiple tags can be selected.<br />:warning: If an event has multiple tag values, the alert notification will be sent based on the tag order configured on the page, and the relationship between multiple tag values is OR. |
 
-![](img/1-alert-1129.png)
+:material-numeric-3-circle-outline: Intelligent Aggregation: In this mode, events generated within the aggregation period will be clustered and grouped based on the selected "Title" or "Content", and one alert notification will be generated for each group.
 
-???+ attention
+<img src="../img/alert-3.png" width="70%" >
 
-    Click "Go to Guance to View" in the notification content, and you can view the details of abnormal events through Guance APP. Downloading the Guance APP can help you receive the alarm notification of events on your mobile device. For more details, please go to [mobile](../mobile/index.md).
+- Aggregation Period: In rule-based aggregation mode, you can manually set a time range (1-30 minutes) within which newly generated events will be aggregated and sent as a single alert notification. If the aggregation period is exceeded, newly generated events will be aggregated into a new alert notification.
 
+<img src="../img/alert-1.png" width="70%" >
 
-### 4.Alarm Event
+## Strategy List
 
-In "Monitor", click "View Related Events" to view the corresponding alarm event list in "Events". Refer to [event management](../events/explorer.md).
+The list contains all the alert strategies in the current workspace. You can view the strategy name, associated monitors, alert aggregation and perform other related operations.
+
+![img/monitor12.png](img/monitor12.png)
+
+- Search: The alert strategy list supports searching based on the alert strategy name. 
+
+- Batch Operations: You can select and delete specific alert strategies in batches. 
+
+- Associated Monitors: Show the number of monitors under the alert strategy. Clicking on the number will navigate to the monitor to view the details of the monitors under the alert strategy. 
+
+- Alert Aggregation: Display the current alert strategy's aggregation mode. 
+
+- Alert Configuration: Click :material-bell-cog: to edit the current alert strategy. 
+
+- Delete: When an alert strategy is deleted, monitors under the alert strategy will be automatically categorized under Default.
+    
+    - You can also click :material-crop-square: next to the name to select specific charts for batch deletion. 

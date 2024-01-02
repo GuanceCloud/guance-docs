@@ -12,22 +12,22 @@ icon: zy/events
 ## 事件来源
 
 - 基于配置的 [监控器](../monitoring/monitor/index.md) 触发的全部告警事件；
-- 基于配置的 [智能监控](../monitoring/intelligent-monitoring/index.md) 触发的全部告警事件；  
-- 基于配置的 [智能巡检](../monitoring/bot-obs/index.md) 触发的全部告警事件；  
-- 基于配置的 [SLO](../monitoring/slo.md) 触发的全部告警事件；  
-- 基于系统操作触发的[审计事件](../management/settings/operation-audit.md)；  
+- 基于配置的 [智能监控](../monitoring/intelligent-monitoring/index.md) 触发的全部告警事件；
+- 基于配置的 [智能巡检](../monitoring/bot-obs/index.md) 触发的全部告警事件；
+- 基于配置的 [SLO](../monitoring/slo.md) 触发的全部告警事件；
+- 基于系统操作触发的[审计事件](../management/settings/operation-audit.md)；
 - 支持通过事件的 [OpenAPI 写入自定义事件](../open-api/keyevent/create.md)。
 
-## 应用场景 
+## 应用场景
 
 - 事件统一管理
 - 事件可视化查询与分析
 - 关联事件查询
 
-## 功能介绍 
+## 功能介绍
 
 |                   <font color=coral size=3>:fontawesome-regular-circle-down: &nbsp;**了解更多**</font>                         |                                                              |
-| :----------------------------------------------------------: | :----------------------------------------------------------: | 
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
 | [未恢复事件查看器](unrecovered-events.md){ .md-button .md-button--primary } | [所有事件查看器](event-list.md){ .md-button .md-button--primary } |
 | [智能监控](inte-monitoring-event.md){ .md-button .md-button--primary } | [监控器配置触发事件](../monitoring/monitor/index.md){ .md-button .md-button--primary } |
 
@@ -53,7 +53,6 @@ icon: zy/events
 | `df_status`            | 事件状态。包括 ok, info, warning, error, critical, nodata, nodata_ok, nodata_as_ok, manual_ok |
 | `df_sub_status`        | 事件细节状态（作为`df_status`的补充）                        |
 | `df_event_id`          | 事件唯一 ID                                                  |
-| `df_event_url`         | 事件跳转 URL                                                 |
 | `df_title`             | 标题                                                         |
 | `df_message`           | 描述                                                         |
 
@@ -98,7 +97,7 @@ icon: zy/events
 | `df_user_email` | 创建者用户邮箱                   |
 | {其他字段}      | 根据用户操作而产生事件的其他字段 |
 
-## 事件存储策略 
+## 事件存储策略
 
 观测云为事件数据提供 14 天、30 天、60 天三种数据存储时长选择，若您选择 30 天的数据存储时长，不同来源产生的事件统一按照 30 天进行存储。您可以按照需求在**管理 > 基本设置 > 变更数据存储策略**中调整。
 

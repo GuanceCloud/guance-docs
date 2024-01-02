@@ -16,6 +16,12 @@
 
 登录观测云控制台，进入**用户访问监测**页面，点击左上角 **[新建应用](../index.md#create)**，即可开始创建一个新的应用。
 
+- 观测云提供**公网 DataWay**直接接收 RUM 数据，无需安装 DataKit 采集器。配置 `site` 和 `clientToken` 参数即可。
+
+![](../img/android_01.png)
+
+- 观测云同时支持**本地环境部署**接收 RUM 数据，该方式需满足前置条件。
+
 ![](../img/6.rum_android_1.png)
 
 
@@ -190,7 +196,9 @@ android{
 
 | **方法名** | **类型** | **必须** | **含义** | **注意** |
 | --- | --- | --- | --- | --- |
-| metricsUrl | String | 是 | Datakit 安装地址 | datakit 安装地址 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529，。注意：安装 SDK 设备需能访问这地址 |
+| datakitUrl | String | 是 | Datakit 访问地址 | datakit 访问 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529，注意：安装 SDK 设备需能访问这地址.注意：datakit 和 dataway 配置两者二选一|
+| datawayUrl | String | 是 | 公网 Dataway 访问地址 | dataway 访问 URL 地址，例子：http://10.0.0.1:9528，端口默认 9528，注意：安装 SDK 设备需能访问这地址.注意：datakit 和 dataway 配置两者二选一 |
+| clientToken | String | 是 | 认证 token | 需要与 datawayUrl 同时配置  |
 | setDebug | String | 否 | 是否开启调试模式 | 默认为 `false`，开启后方可打印 SDK 运行日志 |
 | setEnv | EnvType | 否 | 设置采集环境 | 默认为 `EnvType.PROD` |
 | setEnv | String | 否 | 设置采集环境 | 默认为 `prod` |
@@ -244,7 +252,7 @@ android{
 | **方法名** | **类型** | **必须** | **含义** | **注意** |
 | --- | --- | --- | --- | --- |
 | setRumAppId | String | 是 | 设置`Rum AppId` | 对应设置 RUM `appid`，才会开启`RUM`的采集功能，[获取 appid 方法](#android-integration) |
-| setSampleRate | Boolean | 否 | 设置采集率 | 采集率的值范围为>= 0、<= 1，默认值为 1 |
+| setSampleRate | Boolean | 否 | 设置采集率 | 采样率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。作用域为同一 session_id 下所有 View，Action，LongTask，Error 数据 |
 | setEnableTrackAppCrash | Boolean | 否 | 是否上报 App 崩溃日志 | 默认为 `false`，开启后会在错误分析中显示错误堆栈数据。<br> [关于崩溃日志中混淆内容转换的问题](#retrace-log) |
 | setExtraMonitorTypeWithError | Array| 否 | 设置辅助监控信息 | 添加附加监控数据到 `Rum` 崩溃数据中，`ErrorMonitorType.BATTERY` 为电池余量，`ErrorMonitorType.MEMORY` 为内存用量，`ErrorMonitorType.CPU` 为 CPU 占有率 |
 | setDeviceMetricsMonitorType | Array | 否 | 设置 View 监控信息 | 在 View 周期中，添加监控数据，`DeviceMetricsMonitorType.BATTERY` 监控当前页的最高输出电流输出情况，`DeviceMetricsMonitorType.MEMORY` 监控当前应用使用内存情况，`DeviceMetricsMonitorType.CPU` 监控 CPU 跳动次数 ，`DeviceMetricsMonitorType.FPS` 监控屏幕帧率。监控周期，`DetectFrequency.DEFAULT` 500 毫秒，`DetectFrequency.FREQUENT` 100毫秒，`DetectFrequency.RARE` 1 秒 |
@@ -383,7 +391,7 @@ android{
 
 | **方法名** | **类型** | **必须** | **含义** | **注意** |
 | --- | --- | --- | --- | --- |
-| setSampleRate | Boolean | 否 | 设置采集率 | 采集率的值范围为>= 0、<= 1，默认值为 1 |
+| setSampleRate | Boolean | 否 | 设置采集率 | 采样率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。 |
 | setEnableConsoleLog | Boolean | 否 | 是否上报控制台日志 | 日志等级对应关系<br>Log.v -> ok;<br>Log.i、Log.d -> info;<br>Log.e -> error;<br>Log.w -> warning，<br> `prefix` 为控制前缀过滤参数，默认不设置过滤 |
 | setEnableLinkRUMData | Boolean | 否 | 是否与 RUM 数据关联 | 默认为 `false` |
 | setLogCacheDiscardStrategy| LogCacheDiscard | 否 | 设置频繁日志丢弃规则 | 默认为 `LogCacheDiscard.DISCARD`，`DISCARD` 为丢弃追加数据，`DISCARD_OLDEST` 丢弃老数据 |
@@ -415,7 +423,7 @@ android{
 
 | **方法名** | **类型** | **必须** | **含义** | **注意** |
 | --- | --- | --- | --- | --- |
-| setSampleRate | Boolean | 否 | 设置采集率 | 采集率的值范围为>= 0、<= 1，默认值为 1 |
+| setSampleRate | Boolean | 否 | 设置采集率 | 采样率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。 |
 | setTraceType | TraceType | 否 | 设置链路追踪的类型 | 默认为 `DDTrace`，目前支持 `Zipkin` , `Jaeger`, `DDTrace`，`Skywalking` (8.0+)，`TraceParent` (W3C)，如果接入 OpenTelemetry 选择对应链路类型时，请注意查阅支持类型及 agent 相关配置 |
 | setEnableLinkRUMData | Boolean | 否 | 是否与 RUM 数据关联 | 默认为 `false` |
 | setEnableAutoTrace | Boolean | 否 | 设置是否开启自动 http trace | 目前只支持 OKhttp 的自动追踪，默认为 `false` |
@@ -1527,30 +1535,33 @@ android{
 	FTSdk.setEnableAccessAndroidID(false)
 	```
 
-## R8 / Proguard 混淆配置
+## R8 / Proguard 混淆配置 {#r8_proguard}
 
 ```java
 -dontwarn com.ft.sdk.**
 
+### ft-sdk 库
 -keep class com.ft.sdk.**{*;}
 
+### ft-native 库
 -keep class ftnative.*{*;}
 
-### 防止获取时 ActionName 被混淆###
+### 防止 Action 获取时 action_name 中类名被混淆###
 -keepnames class * extends android.view.View
 -keepnames class * extends android.view.MenuItem
 ```
 
-## 符号文件上传
+## 符号文件上传 {#source_map}
 ### plugin 上传
-`ft-plugin` 版本需要 `1.1.2` 以上版本支持符号文件上传，支持 `productFlavor` 多版本区分管理，plugin 会在 `gradle task assembleRelease` 之后执行上传符号文件，详细配置可以参考 [SDK Demo](#setup)
+`ft-plugin` 版本需要 `1.3.0` 以上版本支持最新的符号文件上传规则，支持 `productFlavor` 多版本区分管理，plugin 会在 `gradle task assembleRelease` 之后执行上传符号文件，详细配置可以参考 [SDK Demo](#setup)
 
 ``` groovy
 FTExt {
 	//...
     autoUploadMap = true
     autoUploadNativeDebugSymbol = true
-    datakitDCAUrl = 'https://datakit.url:9531'//datakit 安装地址，默认 9531 
+	datakitUrl = 'https://datakit.url'
+    datawayToken = 'dataway_token'
     appId = "appid_xxxxx"// appid
     env = 'common'
 
@@ -1558,14 +1569,16 @@ FTExt {
         prodTest {
             autoUploadMap = false
             autoUploadNativeDebugSymbol = false
-            datakitDCAUrl = 'https://datakit.test.url:9531'
+            datakitUrl = 'https://datakit.url'
+    		datawayToken = 'dataway_token'
             appId = "appid_prodTest"
             env = "gray"
         }
         prodPublish {
             autoUploadMap = true
             autoUploadNativeDebugSymbol = true
-            datakitDCAUrl = 'https://datakit.publish.url:9531'
+            datakitUrl = 'https://datakit.url'
+    		datawayToken = 'dataway_token'
             appId = "appid_prodPublish"
             env = "prod"
         }
@@ -1575,6 +1588,8 @@ FTExt {
 ```
 ### 手动上传
 需要开发者将符号文件自行打包成 `zip` 文件，然后自行上传至 `datakit` ，推荐使用 `zip` 命令行进行打包，避免将一些系统隐藏文件打入 `zip` 包中，符号上传请参考 [sourcemap 上传](../../integrations/rum.md#sourcemap)
+
+> Unity Native Symbol 文件请参考[官方文档](https://docs.unity3d.com/Manual/android-symbols.html#public-symbols)
 
 ## 权限配置说明
 
