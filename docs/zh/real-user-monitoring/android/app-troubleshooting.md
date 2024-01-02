@@ -149,7 +149,7 @@ buildscript {
 Plugin AOP ASM 写入是在 `OkHttpClient.build()` 调用时自动写入 `FTTraceInterceptor` ,`FTResourceInterceptor`,`FTResourceEventListener.FTFactory`，如果在 SDK 初始化之前，会导致加载空配置，因而丢失 Resource 相关数据。
 
 #### 使用 Interceptor 或 EventListener 对数据进行了二次处理
-Plugin AOP ASM 插入之后，会在原工程代码基础上，会在 `OkHttpClient.Builder()` 加入 `addInterceptor`，分别加入 `FTTraceInterceptor` 和 `FTResourceInterceptor`,其中会使用 http 请求中 body contentLength 参与唯一 id 计算，`Resource` 数据各个阶段数据通过这个 id 进行上下文串联，所以如果集成方在使用 `Okhttp` 时，也加入 `addInterceptor` 并对数据进行二次处理使其发生大小改变，从而导致 id 各阶段计算不一致，导致数据丢失。这个问题可以通过自定义 `addInterceptor` 位置顺序，让 SDK 方法第一时间去计算 id，可以解决这个问题。详细见 [ManualActivity](https://github.com/GuanceDemo/guance-app-demo/blob/a57679eb287ba961f6607ca47048312e91635492/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt#L72) 中 `OKHttp` 自定义 `EventListener` 和 `Interceptor` 的例子。
+Plugin AOP ASM 插入之后，会在原工程代码基础上，会在 `OkHttpClient.Builder()` 加入 `addInterceptor`，分别加入 `FTTraceInterceptor` 和 `FTResourceInterceptor`,其中会使用 http 请求中 body contentLength 参与唯一 id 计算，`Resource` 数据各个阶段数据通过这个 id 进行上下文串联，所以如果集成方在使用 `Okhttp` 时，也加入 `addInterceptor` 并对数据进行二次处理使其发生大小改变，从而导致 id 各阶段计算不一致，导致数据丢失。这个问题可以通过自定义 `addInterceptor` 位置顺序，让 SDK 方法第一时间去计算 id，可以解决这个问题。详细见 [ManualActivity](https://github.com/GuanceDemo/guance-app-demo/blob/a57679eb287ba961f6607ca47048312e91635492/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt#L72) 中 `OKHttp` 自定义 `EventListener` 和 `Interceptor` 的例子。为了避免重复设置，自定义方式需要关闭 `FTRUMConfig`的`enableTraceUserResource` ，`FTTraceConfig`的 `enableAutoTrace` 配置。
 
 ## 数据丢失某个字段信息
 ### 用户数据字段
