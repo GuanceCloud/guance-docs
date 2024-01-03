@@ -1,4 +1,5 @@
 # macOS 应用接入
+
 ---
 
 观测云应用监测能够通过收集各个 macOS 应用的指标数据，以可视化的方式分析各个 macOS 应用端的性能。
@@ -91,7 +92,9 @@
     int main(int argc, const char * argv[]) {
         @autoreleasepool {
             // Setup code that might create autoreleased objects goes here.
-            FTSDKConfig *config = [[FTSDKConfig alloc]initWithMetricsUrl:@"YOUR_ACCESS_SERVER_URL"];
+            FTSDKConfig *config = [[FTSDKConfig alloc]initWithDatakitUrl:datakitUrl];
+            // 使用公网 DataWay 部署
+            //FTSDKConfig *config = [[FTSDKConfig alloc]initWithDatawayUrl:datawayUrl clientToken:clientToken];
             config.enableSDKDebugLog = YES;
             [FTSDKAgent startWithConfigOptions:config];
         }
@@ -109,7 +112,9 @@
     let delegate = AppDelegate()
     NSApplication.shared.delegate = delegate
     // 初始化 SDK 
-    let config = FTSDKConfig.init(metricsUrl: "YOUR_ACCESS_SERVER_URL")
+    let config = FTSDKConfig.init(datakitUrl: datakitUrl)
+    // 使用公网 DataWay 部署
+    //let config = FTSDKConfig(datawayUrl: datawayUrl, clientToken: clientToken)
     config.enableSDKDebugLog = true
     FTSDKAgent.start(withConfigOptions: config)
     
@@ -117,13 +122,15 @@
     
     ```
 
-| **属性**          | **类型**     | **必须** | **含义**                  | 注意                                                         |
-| ----------------- | ------------ | -------- | ------------------------- | ------------------------------------------------------------ |
-| metricsUrl        | NSString     | 是       | datakit 安装地址 URL 地址 | 例子：http://datakit.url:[port]。注意：安装 SDK 设备需能访问这地址 |
-| enableSDKDebugLog | BOOL         | 否       | 设置是否允许打印日志      | 默认 `NO`                                                    |
-| env               | NSString     | 否       | 设置采集环境              | 默认 `prod`，支持自定义，也可根据提供的 `FTEnv` 枚举通过 `-setEnvWithType:` 方法设置<br/>`FTEnv`<br/>`FTEnvProd`： prod<br/>`FTEnvGray`： gray<br/>`FTEnvPre` ：pre <br/>`FTEnvCommon` ：common <br/>`FTEnvLocal`： local |
-| service           | NSString     | 否       | 设置所属业务或服务的名称  | 影响 Log 和 RUM 中 service 字段数据。默认：`df_rum_macos`    |
-| globalContext     | NSDictionary | 否       | 添加自定义标签            | 添加规则请查阅[此处](#user-global-context)                   |
+| **属性**          | **类型**     | **必须** | **含义**                 | 注意                                                         |
+| ----------------- | ------------ | -------- | ------------------------ | ------------------------------------------------------------ |
+| datakitUrl        | NSString     | 是       | Datakit 访问地址         | datakit 访问 URL 地址，例子：[http://10.0.0.1:9529](http://10.0.0.1:9529/)，端口默认 9529，注意：安装 SDK 设备需能访问这地址.注意：datakit 和 dataway 配置两者二选一 |
+| datawayUrl        | NSString     | 是       | 公网 Dataway 访问地址    | dataway 访问 URL 地址，例子：[http://10.0.0.1:9528](http://10.0.0.1:9528/)，端口默认 9528，注意：安装 SDK 设备需能访问这地址.注意：datakit 和 dataway 配置两者二选一 |
+| clientToken       | NSString     | 是       | 认证 token               | 需要与 datawayUrl 同时使用                                   |
+| enableSDKDebugLog | BOOL         | 否       | 设置是否允许打印日志     | 默认 `NO`                                                    |
+| env               | NSString     | 否       | 设置采集环境             | 默认 `prod`，支持自定义，也可根据提供的 `FTEnv` 枚举通过 `-setEnvWithType:` 方法设置<br/>`FTEnv`<br/>`FTEnvProd`： prod<br/>`FTEnvGray`： gray<br/>`FTEnvPre` ：pre <br/>`FTEnvCommon` ：common <br/>`FTEnvLocal`： local |
+| service           | NSString     | 否       | 设置所属业务或服务的名称 | 影响 Log 和 RUM 中 service 字段数据。默认：`df_rum_macos`    |
+| globalContext     | NSDictionary | 否       | 添加自定义标签           | 添加规则请查阅[此处](#user-global-context)                   |
 
 ### RUM 配置 {#rum-config}
 
@@ -167,6 +174,7 @@
 | enableTraceUserView      | BOOL                       | 否       | 设置是否追踪用户 View 操作   | 默认 `NO`                                                    |
 | enableTraceUserAction    | BOOL                       | 否       | 设置是否追踪用户 Action 操作 | 默认 `NO`                                                    |
 | enableTraceUserResource  | BOOL                       | 否       | 设置是否追踪用户网络请求     | 默认`NO`，仅作用于 native http                               |
+| resourceUrlHandler | FTResourceUrlHandler | 否 | 自定义采集 resource 规则 | 默认不过滤。 返回：NO 表示要采集，YES 表示不需要采集。 |
 | errorMonitorType         | FTErrorMonitorType         | 否       | 错误事件监控补充类型         | 在采集的崩溃数据中添加监控的信息。<br/>`FTErrorMonitorType`<br/>`FTErrorMonitorAll`：开启所有监控： 电池、内存、CPU 使用率<br/>`FTErrorMonitorBattery`：电池电量<br/>`FTErrorMonitorMemory`：内存总量、内存使用率<br/>`FTErrorMonitorCpu`：Cpu 使用率 |
 | monitorFrequency         | FTMonitorFrequency         | 否       | 视图的性能监控采样周期       | 配置 `monitorFrequency` 来设置 **View** 监控项信息的采样周期。<br/>`FTMonitorFrequency`<br/>`FTMonitorFrequencyDefault`：500ms (默认)<br/>`FTMonitorFrequencyFrequent`：100ms<br/>`FTMonitorFrequencyRare`：1000ms |
 | deviceMetricsMonitorType | FTDeviceMetricsMonitorType | 否       | 视图的性能监控类型           | 在采集的  **View** 数据中添加对应监控项信息。<br/>`FTDeviceMetricsMonitorType`<br/>`FTDeviceMetricsMonitorAll`：开启所有监控项:内存、CPU、FPS<br/>`FTDeviceMetricsMonitorMemory`：平均内存、最高内存<br/>`FTDeviceMetricsMonitorCpu`：CPU 跳动最大、平均数 |
@@ -694,52 +702,6 @@
     //第四步：add resource 如果没有时间数据 metrics 传 nil
     FTGlobalRumManager.shared().addResource(withKey: resource.key, metrics: metricsModel, content: contentModel)
     ```
-
-#### Resource url 过滤
-
-当开启自动采集后，内部会进行处理不采集 SDK 的数据上报地址。您也可以通过 Open API 设置过滤条件，采集您需要的网络地址。
-
-##### 使用方法
-
-=== "Objective-C"
-
-    ````objective-c
-    //  FTSDKAgent.h
-    //  
-    /// 自动埋点功能中，过滤不需要进行采集的地址，一般用于排除非业务相关的一些请求
-    /// - Parameter handler: 判断是否采集回调，返回 YES 采集， NO 过滤掉
-    - (void)isIntakeUrl:(BOOL(^)(NSURL *url))handler;
-    ````
-
-=== "Swift"
-
-    ````swift
-    //  FTSDKAgent
-    
-    /// 自动埋点功能中，过滤不需要进行采集的地址，一般用于排除非业务相关的一些请求
-    /// - Parameter handler: 判断是否采集回调，返回 YES 采集， NO 过滤掉
-    open func isIntakeUrl(_ handler: @escaping (URL) -> Bool)
-    ````
-
-##### 代码示例
-
-=== "Objective-C"
-
-    ```objective-c
-    [[FTSDKAgent sharedInstance] isIntakeUrl:^BOOL(NSURL * _Nonnull url) {
-        // 您的采集判断逻辑
-        return YES;//return NO; (YES 采集，NO 不采集)
-    }];
-    ```
-
-=== "Swift"
-
-    ````swift
-     FTSDKAgent.sharedInstance().isIntakeUrl {  url in
-        // 您的采集判断逻辑
-        return true //return false (true 采集，false 不采集)
-     } 
-    ````
 
 ## Logger 日志打印 {#user-logger}
 
