@@ -14,7 +14,7 @@
 
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
-| type | string |  | 监控器类型, 默认trigger, smartMonitor 为智能监控<br>允许为空: False <br>例子: smartMonitor <br>可选值: ['smartMonitor', 'trigger'] <br> |
+| type | string |  | 监控器类型, 默认trigger, trigger:普通监控器, (outer_event_checker:普通监控器中的外部事件检测), smartMonitor 为智能监控<br>允许为空: False <br>例子: smartMonitor <br> |
 | extend | json |  | 额外信息<br>允许为空: True <br> |
 | monitorUUID | string | Y | 分组id<br>允许为空: True <br> |
 | dashboardUUID | string |  | 关联仪表板id<br>允许为空: False <br> |
@@ -36,10 +36,10 @@
 | jsonScript.checkerOpt.diffMode | string |  | 高级检测中突变检测的,差值模式,枚举值, value, percent<br>例子: value <br>可选值: ['value', 'percent'] <br> |
 | jsonScript.checkerOpt.direction | string |  | 高级检测中突变检测,区间检测的触发条件方向<br>例子: up <br>可选值: ['up', 'down', 'both'] <br> |
 | jsonScript.checkerOpt.eps | float |  | 距离参数，取值范围：0 ~ 3.0<br>例子: 0.5 <br> |
-| jsonScript.checkerOpt.threshold | json |  | 突变检测的触发前提条件设置<br>允许为空: False <br> |
-| jsonScript.checkerOpt.threshold.status | boolean | Y | 突变检测, 触发前提条件是否开启,<br>例子: True <br> |
-| jsonScript.checkerOpt.threshold.operator | string | Y | 突变检测, 触发前提条件操作符<br>例子:  <br> |
-| jsonScript.checkerOpt.threshold.value | float | Y | 突变检测, 触发前提条件检测值<br>例子: 90 <br>允许为空: True <br> |
+| jsonScript.checkerOpt.threshold | json |  | 高级检测中突变检测的触发前提条件设置<br>允许为空: False <br> |
+| jsonScript.checkerOpt.threshold.status | boolean | Y | 高级检测中突变检测, 触发前提条件是否开启,<br>例子: True <br> |
+| jsonScript.checkerOpt.threshold.operator | string | Y | 高级检测中突变检测, 触发前提条件操作符<br>例子:  <br> |
+| jsonScript.checkerOpt.threshold.value | float | Y | 高级检测中突变检测, 触发前提条件检测值<br>例子: 90 <br>允许为空: True <br> |
 
 ## 参数补充说明
 
@@ -49,20 +49,26 @@
 *jsonScript 参数说明*
 
 **1. 检查类型`jsonScript.type` 说明**
-
 |key|说明|
 |---|----|
-|simpleCheck| 简单检查|
-|seniorCheck| 高级检查|
-|loggingCheck| 日志检查|
-|mutationsCheck| 突变检查|
-|waterLevelCheck| 水位检查|
-|rangeCheck| 区间检查|
-|securityCheck| 安全巡检|
-|apmCheck| APM检查|
-|rumCheck| RUM检查|
-|processCheck| 进程检查|
-|cloudDialCheck| 云拨测异常检查|
+|simpleCheck| 阈值检测|
+|seniorMutationsCheck| 突变检测|
+|seniorRangeCheck| 区间检测|
+|outlierCheck| 离群检测|
+|loggingCheck| 日志检测|
+|processCheck| 进程异常检测|
+|objectSurvivalCheck| 基础设施存活检测|
+|objectSurvivalV2Check| 基础设施存活检测V2, 只支持doris空间|
+|apmCheck| 应用性能指标检测|
+|rumCheck| 用户访问指标检测|
+|securityCheck| 安全巡检异常检测|
+|cloudDialCheck| 可用性数据检测|
+|networkCheck| 网络数据检测|
+|OuterEventChecker| 外部事件检测|
+|smartHostCheck| 智能监控, 主机智能检测|
+|smartLogCheck| 智能监控, 日志智能检测|
+|smartApmCheck| 智能监控, 应用智能检测|
+|smartRumCheck| 智能监控, 用户访问智能检测|
 
 
 **2. **触发条件比较操作符说明(`checkerOpt`.`rules` 中的参数说明)**
