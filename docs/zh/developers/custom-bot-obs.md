@@ -136,6 +136,9 @@ GUANCE_NODE = 'aws'
 # 下略。..
 ~~~
 
+> 关于 `GUANCE_NODE` 可选值，可参考 [可用的观测云节点](https://func.guance.com/doc/ui-guide-development-module-guance-node/)
+
+<!-- 
 `GUANCE_NODE`可选值如下：
 
 | 观测云节点         | `GUANCE_NODE`取值 |
@@ -144,6 +147,8 @@ GUANCE_NODE = 'aws'
 | 中国区 2（宁夏）   | `aws`             |
 | 中国区 3（张家口） | `cn3`             |
 | 海外区 1（俄勒冈） | `us1`             |
+-->
+
 
 #### 事件部分
 
