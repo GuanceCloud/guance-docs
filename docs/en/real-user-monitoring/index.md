@@ -1,53 +1,149 @@
 ---
 icon: zy/real-user-monitoring
 ---
-# Real User Monitoring
+# RUM
+
 ---
 
-## Overview
+## Why do we need RUM?
 
-Guance supports collecting user access data of Web, Android, iOS, Miniapp and third-party frameworks, which can help you quickly monitor users' usage behavior and problems. By viewing and analyzing the user access data, you can quickly understand the user access environment, trace the user operation path, decompose the response time of user operation and understand the application performance metrics of a series of call chains caused by user operation.
+In the era of cloud-native, improving user experience has become a new topic of concern for enterprises. Enterprises not only need to observe comprehensive and real data to ensure the stability and reliability of their systems, but also need to quickly monitor user behavior and the problems they encounter.
 
-## Precondition
+Therefore, Guance provides RUM to fully track every user visit, understand the real needs behind each request, and efficiently optimize product performance.
 
-To enable the Real User Monitoring, Firstly it needs to deploy a public network DataKit as an Agent, through this Agent，the client users access data will be reported to the Guance workspace. For the specific datakit installation method and configuration method, see [datakit Installation Document](../datakit/datakit-install.md).
+## Where does the data come from?
 
-After the DataKit installation is completed, enable the [RUM Collector](. /datakit/rum.md), and access the application configuration, and then start collecting the relevant data accessed by users.
-
-You can click the following link to view the corresponding application access configuration:
-
-|               Application Access Configuration               |                                                              |                                                              |
-| :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| [Web Application Access](web/app-access.md){ .md-button .md-button--primary } | [Android Application Access](android/app-access.md){ .md-button .md-button--primary } | [iOS Application Access](ios/app-access.md){ .md-button .md-button--primary } |
-| [Miniapp Application Access](miniapp/app-access.md){ .md-button .md-button--primary } | [React Native Application Access](react-native/app-access.md){ .md-button .md-button--primary } | [Flutter Application Access](flutter/app-access.md){ .md-button .md-button--primary } |
-
-
-
-## Deployment Architecture
+Guance RUM collects RUM data from Web, Android, iOS, mini program and third-party frameworks through RUM Headless automated deployment. You can view and analyze RUM data in real time, understand the user access environment, trace user operation paths, and analyze operation response times. You can also learn about the application performance indicators of a series of call chains caused by user operations, achieve end-to-end comprehensive monitoring, and efficiently improve application performance and user experience.
 
 ![](img/rum-arch_1.png)
 
-## Usage Scenarios
+## How to enable RUM?
 
-- Deep insight into user access and improve user experience: comprehensively analyze user access behavior through Session, View, Resource, Action, Long Task and Error explorers, and know the running status of applications in real time;
+To enable the RUM function, **you need to first deploy a public DataKit as an Agent**, and the RUM data from the client is reported to the Guance workspace through this Agent.
 
-- Data association analysis: automatically associate logs, traces, network requests, access errors, etc. through rich tag functions, and quickly locate application problems;
-- Error tracking: support the association of error traces, locate the upstream and downstream span of error traces, and quickly discover performance problems; Through Sourcemap conversion, restore the confused code, facilitate the location of the source code during error troubleshooting, and solve the problem faster.
+> For specific DataKit installation and configuration methods, see [DataKit Installation](../datakit/datakit-install.md).
 
-## Function Introduction
+After DataKit is installed, **enable [RUM Collector](../integrations/rum.md)**, and configure the application access to start collecting relevant RUM data.
 
-- [Web Monitoring](web/app-analysis.md): multi-dimensional scenario analysis, including page performance, resource loading, JS errors and other scenarios; The explorer supports quick retrieval and filtering of data such as pages, resources and JS errors, etc.
-- [Android Monitoring](android/app-analysis.md): multi-dimensional scenario analysis, including page performance, resource loading and other scenarios; The explorer supports quick retrieval and filtering of data such as pages, resources, crashes and jamming, etc.
-- [iOS Monitoring](ios/app-analysis.md): multi-dimensional scenario analysis, including page performance, resource loading and other scenarios; The explorer supports quick retrieval and filtering of data such as pages, resources, crashes and jamming, etc.
-- [Miniapp Monitoring](miniapp/app-analysis.md): multi-dimensional scenario analysis, including page performance, resource loading, request loading, JS error and other scenarios; The explorer supports quick retrieval and filtered viewing of data such as pages, resources, requests, JS errors, etc.
-- [Explorer](explorer.md): understand the impact of each user session, page performance, resources, long tasks, errors in operation and delays on users, and comprehensively understand and improve the running status and usage of applications through search, filtering and association analysis, so as to improve the user experience.
-- [Self Tracking](self-tracking.md): supports real-time monitoring of tracks based on custom ID tracks. Through the preset tracking track, centrally filter user access data and accurately query the user behavior, access experience, resource request, error report, etc., so as to discover loopholes, anomalies and risks in time.
-- [User Access Metrics Detection](../monitoring/monitor/real-user-detection.md): Support for timely discovery and resolution of performance issues for different applications by configuring user access monitors.
+## Setup {#create}
 
-## Data Storage Policy
+Log in to the Guance console, go to **RUM > Applications > Create**.
 
-Guance provides users with three data storage time choices of 3 days, 7 days and 14 days to access data, which can be adjusted in "Management"-"Basic Settings"-"Change Data Storage Policy" as required. For more data storage policies, please refer to the document [Data Storage Policies](https://preprod-docs.cloudcare.cn/billing/billing-method/data-storage/).
+![](img/rum-0522.png)
 
-## Data Billing Rules
+1. Enter the **Application Name** and **Application ID**.
+    
+    - Application Name: Used to identify the name of the current RUM application.
+    
+    - Application ID: The unique identifier of the application in the current workspace, corresponding to the field: `app_id`. This field only supports alphanumeric characters and underscores, with a maximum of 48 characters.
 
-Guance supports on-demand purchasing and pay-as-you-go billing. Real User Monitoring billing counts the number of PVs generated by all page views in a day under the current space, and uses gradient billing mode.  For more billing rules, please refer to the document [billing method](../billing/billing-method/index.md).
+2. Select the **Application Type**, which currently supports five types: **Web, Miniapp, Android, iOS and macOS**.
+
+3. SDK Configuration
+
+You can click on the following links to view the corresponding application access configuration:
+
+| <font color=coral>**Application Access**</font> |  |  |
+| :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
+| [Web](web/app-access.md){ .md-button } | [Android](android/app-access.md){ .md-button } | [iOS](ios/app-access.md){ .md-button } |
+| [Miniapp](miniapp/app-access.md){ .md-button } | [React Native](react-native/app-access.md){ .md-button } | [Flutter](flutter/app-access.md){ .md-button } |
+| [UniApp](uni-app/app-access.md){ .md-button } | [macOS](macos/app-access.md){ .md-button } | [C++](cpp/app-access.md){ .md-button } |
+
+???+ warning "Notes"
+
+    - Once the Application ID is changed, the configuration information in the SDK needs to be updated accordingly.
+    - After the SDK is successfully updated, the new analysis views and explorer lists only display the latest `app_id` associated data, and the data corresponding to the old Application ID will not be displayed.
+    - Please promptly change the user access indicator monitoring to the latest Application ID configuration or create a new one based on the new Application ID.
+    - The old Application ID data can be viewed and analyzed through the user access built-in views, custom dashboards, or DQL tools.
+    - If you do not add associated analysis dashboards when configuring custom applications, you will not be able to jump to the analysis dashboards.
+
+<!--
+For the relevant configuration instructions for selecting custom application types:
+
+- Select the **macOS** application type to view the corresponding application access instructions on the right.
+- In the **Analysis Dashboard** column, you can customize the selection of built-in views as the associated analysis dashboard for this application.
+- The default custom application type <u>does not have an analysis dashboard</u> and needs to be manually configured. You can bind multiple built-in views at the same time.
+
+| Operation | Description |
+| --- | --- |
+| Filter dropdown | Single selection, supports fuzzy matching search, range: built-in views. |
+| Jump | Click to jump and open the analysis dashboard, and pass the current application ID to the view variable. |
+| Delete | Click to delete the added associated analysis dashboard. |
+
+
+- After the configuration is completed, go back to the **Application List**. You can click :material-dots-horizontal: to edit or delete the application.
+
+
+- You can further view detailed information about the current user access application by clicking **[Analysis Dashboard](https://www.notion.so/app-analysis.md)** or **[Explorer](https://www.notion.so/explorer/index.md)**.
+-->
+
+## What is Session Replay?
+
+The basic concept of Guance RUM revolves around user operations and user sessions. Based on the various access behaviors performed by users in the application, Guance can capture user sessions of Web, mini apps, Android, iOS, and custom applications.
+
+With the help of powerful API extension capabilities provided by modern browsers, Guance Session Replay can capture real-time user operation data, replay user operation paths. In this way, errors can be effectively reproduced, located, and resolved.
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Session Replay Configuration Instructions</font>](./session-replay/index.md)
+
+</div>
+
+## Visualize RUM data
+
+### Analysis Dashboard {#panel}
+
+**RUM > Analysis Dashboard** covers various analysis scenarios for different ports, and displays multiple metrics data from three aspects: performance, resources and errors. You can understand the real front-end experience of users through key performance indicators, quickly locate problems encountered by users when accessing the application, and improve user access performance.
+
+![](img/panel-rum.gif)
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Analysis Dashboard to View Multidimensional Data</font>](./app-analysis.md)
+
+
+</div>
+
+### Explorers {#explorer}
+
+After the application is accessed and data collection is completed, in addition to the analysis dashboard mentioned above, you can further understand each user session, page performance, errors, and other related data in the explorer, and comprehensively understand and improve the running status and usage of the application through a series of settings.
+
+![](img/explorer-rum.gif)
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: Explore Powerful Uses of Explorers</font>](./explorer/index.md)
+
+
+</div>
+
+## Self-built Error Tracking
+
+Guance RUM can set up custom tracking tasks to monitor the tracking trajectory in real time, locate abnormal root causes quickly and accurately based on comprehensive tracking information. It can also ensure that the context on the link is fully transmitted in different environments to avoid the occurrence of broken links caused by context loss, and discover vulnerabilities, exceptions, and risks in a timely manner. It can also create concise and codeless end-to-end tests through browser plug-ins.
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: Configure Self-built Tracking</font>](./self-tracking.md)
+
+
+</div>
+
+## Use Metrics to Segment Data
+
+Facing a large volume of raw data, the generated metrics function of Guance RUM can help Dev & Ops and business departments reduce the difficulty of multidimensional analysis. It generates new metric data based on existing data in the current space, binds it to custom dashboards, and performs regular statistics based on metric dimensions.
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Customize Generated Metrics</font>](./generate-metrics.md)
+
+</div>
+
+## Data Storage and Billing
+
+Guance provides three options for the storage duration of RUM data: <u>3 days, 7 days, and 14 days</u>. You can adjust it according to your needs in **Management > Basic Settings > Change Data Storage Strategy**.
+
+> For more information on data storage strategies, see [Data Storage Strategies](../billing/billing-method/data-storage.md).
+
+Based on the <u>pay-as-you-go, pay-per-use</u> billing method, the billing of RUM statistics the number of page views generated by all pages in the workspace within a day, using a gradient billing mode.
+
+> For more billing rules, see [Billing Methods](../billing/billing-method/index.md#pv).

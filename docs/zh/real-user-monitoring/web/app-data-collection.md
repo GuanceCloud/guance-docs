@@ -145,7 +145,7 @@
 | `load_event` | number（ns） | 事件加载时间<br>计算方式：loadEventEnd - loadEventStart |
 | `first_paint_time` | number（ns） | 首次渲染时间<br>计算方式：responseEnd - fetchStart |
 | `resource_load_time` | number（ns） | 资源加载时间<br>计算方式：loadEventStart - domContentLoadedEventEnd |
-| `time_to_interactive` | number（ns） | 首次可交互时间<br>计算方式：domInteratice - requestStart |
+| `time_to_interactive` | number（ns） | 首次可交互时间<br>计算方式：domInteractive - fetchStart |
 | `dom` | number（ns） | DOM 解析耗时<br>计算方式：domComplete - domInteractive |
 | `dom_ready` | number（ns） | DOM Ready时间<br>计算方式：domContentLoadedEventEnd - navigationStart |
 | `time_spent` | number（ns） | 页面停留时间 |

@@ -66,29 +66,22 @@ When the mouse clicks on the property field, it supports "Filter Field Value", "
 
 In the Synthetic Tests Explorer, select TCP to view the data results of all configured TCP tasks.
 
-![](img/4.dailtesting_explorer_4.png)
 
 In the Synthetic Tests Explorer list, click the task data you want to view the corresponding task data details, and you can view the data details such as attributes, test performance, response details and route tracking results.
 
-![](img/4.dailtesting_explorer_5.png)
 
 ## ICMP
 
 In the Synthetic Tests Explorer, select ICMP to view the data results of all configured ICMP tasks.
 
-![](img/4.dailtesting_explorer_7.png)
 
 In the Synthetic Tests Explorer list, click the monitoring data you want to view to view the corresponding monitoring data details, and you can view the data details such as attributes and response details.
 
-![](img/4.dailtesting_explorer_8.png)
 
 ## WEBSOCKET
 
 In the Synthetic Tests Explorer, select "WEBSOCKET" to view the data results of all configured WEBSOCKET tasks.
 
-![](img/4.dailtesting_explorer_9.png)
-
 In the Synthetic Tests Explorer list, click the task data you want to view the corresponding task data details. You can view the data details such as attributes, sending messages, response details, response headers and response contents.
 
-![](img/4.dailtesting_explorer_10.png)
 

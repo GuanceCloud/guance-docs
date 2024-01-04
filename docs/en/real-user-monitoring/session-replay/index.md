@@ -1,55 +1,69 @@
 # Session Replay
 ---
 
-## Overview
+## What is Session Replay?
 
-Session replay is the reconstruction demonstration of user experience website, which generates video records by capturing clicks, mouse movements and page scrolling, and deeply understands the user's operation experience; Combined with user access performance data, it helps users to locate errors, reproduce and solve problems.
+Session Replay captures user interaction data of a web application by leveraging powerful APIs provided by modern browsers. It generates video recordings to replay and gain deeper insight into the user's experience at that time. Combined with RUM performance data, Session Replay is beneficial for error localization, reproduction, and resolution, as well as timely identification of defects in usage patterns and design of web applications.
+
+## Session Replay Record
+
+Session Replay Record is part of the RUM SDK. Record obtains snapshots of the browser's DOM and CSS by tracking and recording events that occur on the web page (e.g., DOM modifications, mouse movements, clicks, and input events) along with their timestamps. It then reconstructs the web page in the cloud and replays the recorded events in the view at the appropriate time.
+
+Session Replay Record supports all browsers supported by the RUM Browser SDK, except for IE11.
+
+Session Replay Record functionality is integrated within the RUM SDK, so there is no need to introduce additional packages or external plugins.
 
 ## Collector Configuration
 
-Before using session playback, you need to [install Datakit](../../datakit/datakit-install.md) and then turn on the [RUM collector](../../datakit/rum.md) session playback parameter `session_replay_endpoints`.
+Before using Session Replay, you need to [install Datakit](../../datakit/datakit-install.md) and then enable the corresponding parameter `session_replay_endpoints` for [RUM collector](../../integrations/rum.md).
 
-> Note: The session playback feature needs to be upgraded to version 1.5.5 and above of DataKit.
+**Note**: Session Replay functionality requires upgrading DataKit version to 1.5.5 or higher.
 
-## Access Configuration
+## Integration Configuration
 
-After the RUM collector is turned on, you can turn on the [session playback](replay.md) function while [configuring web application access](../web/app-access.md).
+After enabling the RUM collector, you can enable the [Session Replay](replay.md) feature when [configuring web application integration](../web/app-access.md).
 
-> Note: The session playback function needs to be upgraded to SDK version `3.0` and above, and can be configured according to the document [how to access session replay](replay.md).
+**Note**: Session Replay functionality requires upgrading SDK version to `3.0` or higher.
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; How to integrate Session Replay</font>](replay.md)
+
+</div>
 
 ## How to View Session Replay
 
-After the session replay configuration is complete, you can view the session replay on the RUM session explorer list and on the all RUM explorer details page.
+After completing the Session Replay configuration, you can view it in **RUM > Session Explorer** as well as in the details page of all user access monitors.
 
-### View Playback in the Session Explorer List
+### View Replay in Session Explorer
 
-In the session explorer list, if session replay has been configured for the current session, prompt the **Play** button in the explorer list, and click to view the session replay of the session.
+In the Session Explorer list, a **Play** button is displayed next to each session. Clicking on it allows you to view the replay.
 
 ![](../img/16.session_replay_1.png)
 
-### View the Playback on the Details Page
+### View Replay in the Details Page
 
-- On the Session, View, Error explorer details page, click **Replay** in the upper right corner to view the operational replay of the current user session.
-- In the **Source** section of the View, Error, Resource, Action, Long Task explorer details page, you can view the action replay of the current user session.
-    - More: Click the **More** button to support **View Session Details**, **Filter Current Session ID** and **Copy Session ID**
-    - Play: Click the **Play** button to view the session replay
+- In the Session, View, Error Explorer details page, you can view the replay of the user's session by clicking on **View Replay** in the top right corner.
+- In the Source section of the View, Error, Resource, Action, Long Task Explorer details page, you can view the replay of the user's session.
+    - More: Clicking on the **More** button supports **View Session Details**, **Filter the current Session ID**, **Copy Session ID**
+    - Play: Clicking on the **Play** button allows you to view the session replay.
 
 ![](../img/16.session_replay_8.png)
 
-## View Session Playback Effect
+## View Session Replay Effects
 
-On the session playback page, you can view the whole session process of the user, including the visited page, operation record and error data, and click to play the user's operation process.
+On the Session Replay page, you can view the entire process of the user's session, including the visited pages, operation records, and error data that occurred. Clicking on them allows you to play back the user's actions.
 
-In the left list, you can:
+In the left panel, you can:
 
-- Sharing link: Click on the **Sharing link** icon to copy the sharing link and share it with other team members for viewing and analysis
-- View Details: Click the **View Details** icon to display the corresponding details page
-- Fold the left list: Click the **<** icon to fold the left list and view the session replay
+- Share Link: Click on :octicons-share-android-16: to copy the share link and share it with other team members for viewing and analysis.
+- View Details: Click on :material-text-search: to show the corresponding details page in a sliding manner.
+- Collapse Left Panel: Click on :fontawesome-solid-angle-left: to collapse the left panel and view the session replay.
 
 At the bottom of the player, you can:
 
-- Skip inactive: it is turned on by default, and when it is turned on, it skips non-operation fragments exceeding 1 minute.
-- Double-speed playback: support to select 1x, 1.5 x, 2x and 4x double-speed viewing.
-- Full-screen play: Click the **Full-screen** play button to enlarge the full screen to view session playback.
+- Skip Inactive: Enabled by default, skipping inactive segments longer than 1 minute.
+- Playback Speed: Support selecting 1x, 1.5x, 2x, 4x playback speed for viewing.
+- Full Screen Playback: Clicking on the full screen playback button enlarges the view for session replay.
 
 ![](../img/16.session_replay_9.1.png)

@@ -45,7 +45,7 @@ In **Data Source**, select the data type, add one or more filtering rules in **F
 | `in / not in`       | Numeric List       | Whether the specified field is in a list, and multi-type cluttering is supported in the list.           | `1,2,"foo",3.5`   |
 | `match / not match` | Regular expression list | Whether the specified field matches the regular in the list, which only supports string types. | `"foo.*","bar.*"` |
 
-Note: Data types support string, integer and floating point types.
+**Note**: Data types support string, integer and floating point types.
 
 ![](img/5.blacklist_1.2.png)
 
@@ -71,35 +71,30 @@ After setting the blacklist, you can check whether the blacklist is effective ac
 
 ## Related Operations
 
+![](img/5.blacklist_3.png)
+
 ### Edit
 
-On the right side of the blacklist, click **Edit** to edit the created data filtering rules. In the following example, when the blacklist is set, the log for **All Sources** satisfies ` status ` as `ok or info`, or `host` as `hz-dataflux-saas-daily-01`, or `service` does not contain the word `kodo`, i.e. data satisfying any of these three matching rules is filtered and no longer reported to the workspace.
+On the right side of the blacklist, click **Edit** to edit the created data filtering rules. In the following example, when the blacklist is set, the log for **All Sources** satisfies `status` as `ok or info`, or `host` as `hz-dataflux-saas-daily-01`, or `service` does not contain the word `kodo`, i.e. data satisfying any of these three matching rules is filtered and no longer reported to the workspace.
 
-![](img/5.blacklist_3.png)
 
 ### Delete
 
 On the right side of the blacklist, click **Delete** to delete the existing filtering rules. After the filtering rules are deleted, the data will be reported to the workspace normally.
 
-![](img/5.blacklist_5.png)
 
 ### Batch
 
 In the Guance workspace **Manage > Blacklist**, click **Batch** to **Batch Export** or **Batch Delete** blacklist.
 
-???- attention
+**Note**: This function is only displayed for workspace Owner, Administrators and Standard members.
 
-    This function is only displayed for workspace owners, administrators and standard members, and read-only members are not displayed.
-
-![](img/3.black_1.png)
 
 ### Import/Export
 
 Support **Import/Export Blacklist** in **Manage > Blacklist** of Guance workspace, that is, create blacklist by importing/exporting JSON files.
 
-???- attention
-
-    The imported JSON file needs to be the configuration JSON file from Guance.
+**Note**: The imported JSON file needs to be the configuration JSON file from Guance.
 
 ## Notes
 

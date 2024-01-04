@@ -35,7 +35,7 @@ In Guance workspace **Admin > Member Management > SSO Management > User SSO**, s
 | Role Authorization | Grant roles to first-time SSO accounts. Roles of non-first-time member accounts are not affected.<br/>:warning: If [role mapping](#saml-mapping) is enabled in the workspace, the roles assigned in the mapping rules will take precedence for member logins.<br/>For role permissions, see [Roles](../role-management.md). |
 | [Session Time](#login-hold-time) | Set the idle login session time and the maximum login session time for SSO members. After the settings, the login session will become invalid upon timeout. |
 
-### Obtain the Entity ID and Assertion URL
+### Obtain the Entity ID and Assertion URL {#obtain}
 
 After completing the information above, click **Confirm** to obtain the **Entity ID** and **Assertion URL**. After completing the corresponding SAML configuration according to the requirements of the identity provider, you can obtain them.
 
@@ -217,7 +217,7 @@ In Guance workspace **Management > Member Management > SSO Management > Role Map
 ### Search/Edit/Delete Mapping
 
 - Search & Filter: Support search of mapping roles based on role, attribute field, and attribute value; You can also filter by selecting specific identity providers;
-- Edit: Support modifying the configured mapping roles. At this time, users who have not mapped to Guance roles when logging in with SAML will be stripped of all roles and will not be allowed to log in to the Guance console;
+- Edit: Support editing the configured mapping roles. At this time, users who have not mapped to Guance roles when logging in with SAML will be stripped of all roles and will not be allowed to log in to the Guance console;
 - Delete: Support directly deleting or selecting and deleting the configured mapping roles. At this time, users who have not mapped to Guance roles when logging in with SAML will be stripped of all roles and will not be allowed to log in to the Guance console.
 
 ![](../img/5.sso_mapping_10.1.png)
@@ -246,12 +246,12 @@ You can directly log in to the corresponding workspace of Guance by entering the
 
 ### SSO Account Management {#account}
 
-After logging into the workspace with an SSO account, click **Account > Account Management** on the left side to modify the SSO account.
+After logging into the workspace with an SSO account, click **Account > Account Management** on the left side to edit the SSO account.
 
-- Support modifying avatar and username;
-- Support modifying login holding time.
+- Support editing avatar and username;
+- Support editing login holding time.
 
-**Note**: By default, the account logged in using SSO uses the login holding time configured by SSO. After modification in account management, the modified login holding time will be used. For more details, please see [Account Login Holding Time](https://www.notion.so/account-management.md#login-hold-time).
+**Note**: By default, the account logged in using SSO uses the login holding time configured by SSO. After modification in account management, the modified login holding time will be used. For more details, please see [Account Login Session Time](https://www.notion.so/account-management.md#login-hold-time).
 
 ## Email Notifications
 
@@ -263,4 +263,4 @@ Enabling, configuring or deleting SSO will generate audit events.
 
 In the Guance workspace, click **Management > Settings > Security > Audit Logs**, and click **View** to view all audit events of the current workspace.
 
-<img src="../img/5.sso_mapping_13.png" width="60%" >
+<img src="../img/5.sso_mapping_13.png" width="80%" >
