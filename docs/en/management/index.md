@@ -3,9 +3,12 @@ icon: zy/management
 ---
 # Workspace Management
 ---
-Guance will introduce you to this path **at the personal account level**: registering, logging into your account and entering your workspace > focusing on your account security > setting up your workspace apperance.
 
-## Workspace Related
+The workspace is the basic operational unit for Guance. Within the Guance workspace, you can use the diverse functions provided by the Guance. **Workspace management** refers to the settings, management, and operations performed on the current workspace. After joining a workspace and being assigned permissions, you can manage the basic information of the workspace, member permissions, SSO, data permissions, API Key, notification targets, built-in views, chart and snapshot sharing, etc.
+
+The following sections will guide you from the **personal account level** on how to register and log in to your account, ensure the security of your account, and customize the appearance of your workspace.
+
+## Workspace
 
 ### Create Workspace {#create}
 
@@ -15,13 +18,6 @@ Before entering the Guance workspace, be sure that you have [registered a Guance
 
 <img src="img/0712-login.png" width="70%" >
 
-<!--
-
-> For more registration details, see [Register Commercial Plan](../billing/commercial-register.md).
-
-
-After finishing steps above, you will join a workspace the system created by default, in which you obtain the **Owner** permission. 
--->
 
 You can create one or more workspaces from the following two entrances:
 
@@ -79,27 +75,11 @@ If you need to set the menu, you can go to **Management > Advanced Settings > [F
 
 #### SSO Account {#sso}
 
-In addition to logging in by registering a Guance account, enterprise users are supported to log in to the Guance through SSO. After entering the workspace, click **Account > Account Management** on the left to modify the SSO account. 
+In addition to logging in by registering a Guance account, enterprise users are supported to log in to the Guance through [SSO](../management/sso/index.md).
 
-Here you can:    
+For accounts logged in through SSO, the login session configured by SSO is used by default. After account management is modified, the modified login session is used.
 
-- modify avatar and user name;  
-- modify [login session](#login-hold-time).
 
-???+ warning "SSO"
-
-    For accounts logged in through SSO, the login session configured by SSO is used by default. After account management is modified, the modified login session is used.
-    
-    > For more details, see [SSO Management](../management/sso/index.md).
-
-<!--
-
-### Switch Workspace   
-
-If you belong to multiple Guance workspaces, you can jump to the page by clicking the upper-left workspace name of the studio to toggle between them.  
-
-![](img/1-workspaceinfo.png)
--->
 
 ## Security  
 
@@ -162,15 +142,6 @@ Considering that the data in a workspace is sometimes reported based on a specif
 
 <img src="img/zone-1.png" width="60%" >
 
-<!--
-
-Time zone in Guance is `(UTC+08: 00) Beijing` by default. You can modify it according to your current time zone. After modification, all time displays in the platform will be affected. Please be careful.
-
-> You can also quickly modify the time zone according to [time widget](../getting-started/function-details/explorer-search.md#time).
-
-Note: If you select **Follow Browser Time** when modifying the time zone, it means that the time zone display of Guance can be automatically adjusted.
-
--->
 
 ### System Notification
 

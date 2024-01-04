@@ -1,10 +1,10 @@
-# Sensitive Data Scanner
+# Data Scanner
 
 In the process of using Guance products, many sensitive data such as network device addresses, Token, API keys, and personal privacy will inevitably be generated. In order to avoid information leakage and cause security risks, Guance provides the function of Sensitive Data Scanner, which realizes custom information shielding by creating desensitization rules for data.
 
-## New rules
+## Setup
 
-Into **Management > Sensitive Data Scanner**, you can customize the [**New rule**](#custom), or create directly from the [**Templates**](#official).
+Into **Management > Data Scanner**, you can customize [**New rules**](#custom), or create directly from the [**Templates**](#official).
 
 ![](img/scan-3.png)
 
@@ -42,7 +42,7 @@ III. Sensitive data processing:
 
     iv. MD5 encryption: Any data can be encrypted into a fixed-length string, which is irreversible after replacement.
      
-??? info "Features of MD5 Encryption"
+??? abstract "Features of MD5 Encryption"
 
     - Fixed length: No matter how long the string is, the length after encryption is the same, which is 32 bits.
     - Highly discrete: Any changes to the original data, even small changes, will lead to huge differences in the calculation results.

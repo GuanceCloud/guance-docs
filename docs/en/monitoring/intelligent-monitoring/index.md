@@ -9,7 +9,7 @@ Monitoring is configured using detection rules such as [Host Detection](host-int
 
 The intelligent monitoring tool in the workspace can be accessed and managed through the **Intelligent Monitoring** feature of the cloud platform.
 
-![image](../img/intelligent-detection01.png)
+![](../img/intelligent-detection01.png)
 
 ## Setup {#new}
 
@@ -25,7 +25,7 @@ Currently, Guance supports three types of intelligent detection rules, each cove
 | --- | --- | --- |
 | Host Detection | Metrics(M)  | Automatically detect host anomalies using intelligent algorithms, including CPU and memory anomalies. |
 | Logs Detection | Logs(L) | Automatically detect anomalies in logs using intelligent algorithms, including log count and error log count. |
-| Application Detection | Traces(T)  | Automatically detect anomalies in applications using intelligent algorithms, including request count, error request count, and request latency. |
+| Application Detection](application-intelligent-detection.md) | Traces(T)  | Automatically detect anomalies in applications using intelligent algorithms, including request count, error request count, and request latency. |
 
 
 |                   <font color=coral size=3>:fontawesome-regular-circle-down: &nbsp;**Learn More**</font>                         |                                                              |                                                              |

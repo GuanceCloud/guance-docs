@@ -1,69 +1,75 @@
 # Troubleshooting
 ---
 
-## How to determine successful initialization of the RUM SDK
+## How to determine if RUM SDK initialization is successful
 
-1.Open the browser studio
+I. Open the browser console:
 
-![](../img/dev-tools.jpg)
+<img src="../../img/dev-tools.jpg" width="60%" >
 
-2.Check whether the object `DATAFLUX_RUM` exists
+II. Check if the object `DATAFLUX_RUM` exists:
 
-exist:
+Exists:
 
 ![](../img/console.jpg)
 
-not exist:
+Does not exist:
 
-![](../img/console-2.jpg)
+![](../img/console-II.jpg)
 
-3.Execute `DATAFLUX_RUM.getInternalContext()` to check whether the object was initialized successfully
+III. Execute `DATAFLUX_RUM.getInternalContext()` to check if the object is initialized successfully:
 
-![](../img/console-1.jpg)
+![](../img/console-I.jpg)
 
-If the initialization is successful, the object information such as `session`, `application`, `view` corresponding to the current application page can be obtained.
+If initialization is successful, you can obtain information about the current application page, such as `session`, `application`, `view` and other objects.
 
-## Initialization failed
+## Initialization failure
 
-1. If accessing by CDN, determine whether the current application is an `https` site.
-2. Make sure the [configuration](../web/app-access.md#config) is correct (including the format and name of the configuration parameters).
+I. If you are using the CDN method, make sure that the current application is an `https` site.
+II. Check the [configuration](app-access.md#config) for correctness (including the format and names of configuration parameters).
 
-## Initialization successful, but data is not reported or reported data is incomplete
+## Successful initialization, but no data is reported or incomplete data is reported
 
-1. Check the browser version information to determine whether the data corresponding to [browser support list](browser-support.md) is supported.
-2. Check the initialization location of the RUM Browser SDK and consider initializing **as early as possible** in your application code.
+I. Check the browser version information to determine if the corresponding data is supported according to the [browser support list](browser-support.md).
+II. Check the initialization position of the RUM browser SDK and consider performing the initialization operation as early as possible in the application code.
 
-## XHR/FETCH request is not associated with APM link
+## XHR/FETCH requests are not associated with APM traces
 
-Check that the `allowedTracingOrigins` configuration in the initialization configuration is turned on and that the format is correct. (**If configured in a regular way, make sure that the array is not configured with a string, but with a regular expression.**)
+Check if the `allowedTracingOrigins` configuration in the initialization is enabled and verify that the format is correct. (**If configured using regular expressions, make sure that the items in the array are regular expressions and not strings**)
 
-Correct
- ```js
-datafluxRum.init({
-    applicationId: '<DATAFLUX_APPLICATION_ID>',
-    datakitOrigin: '<DATAKIT ORIGIN>',
-    env: 'production',
-    version: '1.0.0',
-    trackInteractions: true,
-    allowedTracingOrigins: [/https:\\/\\/.*\\.my-api-domain\\.com/] // Regular can't have quotation marks
-})
+Correct:
+
 ```
-Incorrect
- ```js
 datafluxRum.init({
-    applicationId: '<DATAFLUX_APPLICATION_ID>',
-    datakitOrigin: '<DATAKIT ORIGIN>',
-    env: 'production',
-    version: '1.0.0',
-    trackInteractions: true,
-    allowedTracingOrigins: ["/https:\\/\\/.*\\.my-api-domain\\.com/"]
+   applicationId: '<DATAFLUX_APPLICATION_ID>',
+   datakitOrigin: '<DATAKIT ORIGIN>',
+   env: 'production',
+   version: 'I.0.0',
+   trackInteractions: true,
+   allowedTracingOrigins: [/https:\\\\/\\\\/.*\\\\.my-api-domain\\\\.com/] // The regular expression should not be in quotes
 })
+
 ```
 
-## How to confirm APM and front-end XHR/FETCH association successfully
+Incorrect:
 
-1. Open the browser studio
-2. Confirm whether the Request Headers of the XHR/FETCH request contains the corresponding [request header keyword](../../application-performance-monitoring/collection/connect-web-app.md) information, as shown in the following figure for ddtrace-related Request Headers.
-   
+```
+datafluxRum.init({
+   applicationId: '<DATAFLUX_APPLICATION_ID>',
+   datakitOrigin: '<DATAKIT ORIGIN>',
+   env: 'production',
+   version: 'I.0.0',
+   trackInteractions: true,
+   allowedTracingOrigins: ["/https:\\\\/\\\\/.*\\\\.my-api-domain\\\\.com/"]
+})
+
+```
+
+## How to confirm the successful association of APM and frontend XHR/FETCH
+
+I. Open the browser console.
+II. Confirm if the Request Headers of XHR/FETCH requests contain the corresponding [header keywords](https://www.notion.so/application-performance-monitoring/collection/connect-web-app.md) information. The following image shows the ddtrace-related request headers:
+
 ![](../img/console-4.jpg)
-   
+
+---
