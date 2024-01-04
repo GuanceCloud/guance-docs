@@ -8,8 +8,9 @@ nav:
   - 'Flutter Monitoring': flutter
   - 'UniApp Monitoring': uni-app
   - 'macOS Monitoring': macos
-  - 'Explorer': explorer
+  - 'Explorers': explorer
+  - 'Analysis Dashboard': app-analysis.md
   - 'Session Replay': session-replay
   - 'Generate Metrics': generate-metrics.md
-  - 'Self Tracking': self-tracking.md
-
+  - 'Tracking': self-tracking.md
+  - 'Source Map': set-sourcemap.md

@@ -14,7 +14,7 @@ nav:
   - 'Blacklist': overall-blacklist.md
   - 'Pipelines': overall-pipeline.md 
   - 'Data Forward': backup.md
-  - 'Regular Expression Templates': regex.md
+  - 'Regular Expressions': regex.md
   - 'Audit': operation-audit.md
   - 'Sharing': share-management.md
   - 'Data Authorization': data-authorization.md

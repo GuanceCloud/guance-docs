@@ -1,6 +1,6 @@
 nav:
   - index.md
-  - 'HTTP Request Task': http.md
-  - 'ICMP Request Task': icmp.md
-  - 'TCP Request Task': tcp.md
-  - 'WEBSOCKET Request Task': websocket.md
+  - 'HTTP Tests': http.md
+  - 'ICMP Tests': icmp.md
+  - 'TCP Tests': tcp.md
+  - 'WEBSOCKET Tests': websocket.md

@@ -31,7 +31,6 @@ Session Replay Record 功能集成在 RUM SDK 中, 所以不需要额外引入�
 
 - [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 如何接入会话重放</font>](replay.md)
 
-<br/>
 
 </div>
 

@@ -1,5 +1,5 @@
 nav:
   - index.md
-  - 'How to Access Session Replay': replay.md
-  - 'FAQ': faq.md
+  - 'Access to Session Replay': replay.md
+  - 'Troubleshooting': faq.md
 
