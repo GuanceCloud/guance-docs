@@ -1,22 +1,26 @@
 nav:
   - index.md
   - 'Settings': settings 
+  - 'Attribute Claims': attribute-claims.md
+  - 'Fields': field-management.md
+  - 'Global Labels': global-label.md
   - 'Member Management': 
     - member-management.md
     - 'Invite Members': invite-member.md
-    - 'Roles': role-management.md
+  - 'Roles': 
+    - role-management.md
     - 'Permission List': role-list.md
-  - 'Space Management': space-management.md
-  - 'Pipelines': overall-pipeline.md
-  - 'Field Management': field-management.md
-  - 'Global Labels': global-label.md 
-  - 'Blacklist': overall-blacklist.md
-  - 'Data Forward': backup.md
-  - 'Data Rights Management': data-authorization.md
-  - 'Sensitive Data Scanner': data-scanner.md
   - 'API Key': api-key
+  - 'Blacklist': overall-blacklist.md
+  - 'Pipelines': overall-pipeline.md 
+  - 'Data Forward': backup.md
+  - 'Regular Expressions': regex.md
+  - 'Audit': operation-audit.md
   - 'Sharing': share-management.md
-  - 'Demo Space': space-demo.md
+  - 'Data Authorization': data-authorization.md
+  - 'Data Masking': data-mask.md
+  - 'Data Scanner': data-scanner.md
+  - 'Space Management': space-management.md
   - 'SSO Management': sso
   - 'MFA': mfa-management.md
   - 'Help': 
