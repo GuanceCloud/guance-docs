@@ -27,7 +27,6 @@ On the Self-built Node Management page, you can view and manage existing self-bu
 ![](img/image_1.png)
 
 
-![](img/image_2.png)
 
 ## Install Node
 

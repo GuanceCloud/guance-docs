@@ -1,28 +1,20 @@
 # Action
 ---
 
-## Overview
 
-Action explorer supports viewing the user's action interactions during the use of the application, including action type, page action details, action time spent, etc.
+You can view the user's interaction during the use of the application, including the type of operation, details of the page operation, and the time it takes to perform the operation.
 
-In the Action explorer, you can:
+In the Action Explorer, you can:
 
-- Track the action events of each user access, including action type, action name, action time, etc..
-- Combined with associated resource requests, resource errors, logs, and other data, comprehensively analyze the performance of user accessing business applications, and help quickly identify and optimize application code issues.
+- Track every user's action event, including the type of operation, the name of the operation, and the time it takes to perform the operation.
+- Combine associated data such as resource requests, resource errors, logs, etc., to comprehensively analyze the performance of user access to the business application, helping to quickly discover and optimize the code issues of the application program.
 
-## Precondition
 
-Guance supports collecting errors, resources, requests, performance metrics, etc. by means of introducing SDK scripts. For details, you can refer to [Rum Collector Configuration](... /... /datakit/rum.md).
+## Details Page
 
-## Action Explorer
+Click on the data details page you want to view in the list, and you can view the performance details of user access operation events, including source, extended fields, performance details, associated links, associated errors, associated logs, etc.
 
-In the explorer of Real User Monitoring, you can switch to the "Action explorer" to query and analyze the action behavior of user access, you can quickly view the action type, action content, action time and so on when users access.
-
-![](../img/1.rum_action_1.png)
-
-## Action Detail
-
-Click on the data you need to view in the list, in the row out details page, you can view the performance details of the operation events accessed by users, including properties, performance details, associated traces, associated errors, associated logs, etc., and support viewing performance details by filtering and searching. For more details page introduction, please refer to the document [View Explorer Details Page](view.md).
+> For more details page introduction, see [Options in Details Page](view.md).
 
 ![](../img/1.rum_action_2.png)
 

@@ -17,7 +17,7 @@ In Guance, you can quickly create monitors from templates such as hosts, Docker,
 
 #### Detection Rules {#detect}
 
-Currently, Observation Cloud supports 13 types of monitoring detection rules, covering different data ranges.
+Currently, Guance supports 13 types of monitoring detection rules, covering different data ranges.
 
 | Rule Name | Data Range | Description |
 | --- | --- | --- |
@@ -52,7 +52,7 @@ Guance provides a variety of ready-to-use monitoring [templates](../monitor/temp
 
 **Note**: Repeatedly creating monitors from templates will result in duplicate monitors in the monitor list. Guance supports detecting duplicate monitors. You can choose "Yes" in the pop-up prompt to create all monitors in the template library normally, or choose "No" to create only unique monitors.
 
-<img src="../img/image_8.png" width="60%" >
+<img src="../../img/image_8.png" width="60%" >
 
 
 ### Custom Templates
@@ -116,7 +116,7 @@ In monitors, you can create monitors by importing monitor configuration JSON fil
 
 Guance supports adding labels to monitors. You can select existing labels or directly enter them manually and press Enter to create new labels. These labels will also be attached to the events triggered by monitor detection.
 
-<img src="../img/tag-02.png" width="60%" >
+<img src="../../img/tag-02.png" width="60%" >
 
 The added labels will be directly displayed in the list after saving. You can use the Filter > Tags to quickly find the monitors included in the corresponding labels.
 
@@ -147,17 +147,6 @@ Alert Strategy allows you to create meaningful monitor combinations when setting
 - Each monitor must select an alert strategy when creating a monitor, and **Default** is selected by default;
 - When a specific alert strategy is deleted, the monitors under the deleted alert strategy will be automatically categorized under **Default**.
 
-<!--
-### 新建告警策略
-
-在观测云工作空间**监控 > 告警策略管理**，点击**新建告警策略**即可添加新的告警策略。可以为[告警策略](../alert-setting.md)配置告警对象和告警沉默。
-
-<img src="../img/monitor2.png" width="60%" >
-
-### 配置监视器告警策略
-
-创建告警策略以后，可以为监视器选择告警策略。在观测云工作空间**监控 > 监控器**，点击**新建监控器**，即可在创建监控器时选择告警策略。
--->
 
 > See [ How to create and manage alert strategies](../alert-setting.md).
 
@@ -177,4 +166,4 @@ Click the :material-text-search: view button next to the Last Updated time in th
 
 Click Recover This Version in the previous version of the monitor. In the pop-up dialog box, confirm the recovery to revert to the previous version of the monitor configuration for editing and saving.
 
-<img src="../img/8.monitor_recover_1.2.png" width="60%" >
+<img src="../../img/8.monitor_recover_1.2.png" width="60%" >

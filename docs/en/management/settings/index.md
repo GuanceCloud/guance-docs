@@ -1,108 +1,147 @@
 # Settings
 
-After joining the workspace and being assigned permissions, you can see a series of settings **about the current workspace**.
- 
-![](img/3.space_management_6.png)
+After joining the workspace and being assigned permissions, you can see a series of settings about the current workspace.
 
-## Remark
+<img src="../img/3.space_management_6.png" width="90%" >
 
-In **Management > Settings > Basic Information**, set the remark information to be viewed.
+## Basic Information
 
-![](img/3.space_management_7.1.png)
 
-After setting up, you can view the remark in the upper left workspace.
+### Workspace Language {#language}
 
-![](img/3.space_management_7.png)
+<img src="../img/space-language.png" width="50%" >
 
-Click on the workspace name to view all workspaces and their remarks, and click **Edit** to add or modify the notes.
+In the workspace, you can modify the workspace language. Currently, there are two options: Chinese and English.
 
-![](img/3.space_management_7.2.png)
+This configuration affects templates such as events, alerting, and SMS within the workspace. After switching, the above templates will default to using the language template that was switched to.
 
-## Replace Token
+<img src="../img/space-language-correct.png" width="60%" >
 
-Guance supports the current workspace owner and administrator to copy/change the Token in the space, and customize the expiration time of the current Token. 
+**Note**:
 
-Enter **Replace Token**, select the expiration time and confirm **Replace**. Then Guance will automatically generate a new Token and the old Token will expire within the specified time.
+- The workspace language here is different from the **display language** of your space page: Guance will use the default display language of the system console based on your local browser history login or the local browser language as the default display language when you log in to the workspace. For example, if your browser is set to use Chinese, the workspace console will default to displaying Chinese.
+- Only the workspace Owner and Administrators have permission to modify the workspace language.
 
-Note:
+### Remarks {#remark}
 
-- Changing Token triggers **Action Events** and **Notifications**. See [Audit](../../management/operation-audit.md) and [System Notification](../../management/system-notification.md) for more information.  
-- After replaced, the original Token will expire within the specified time. The failure time includes: immediate failure, 10 minutes, 6 hours, 12 hours and 24 hours.<br/>
-> Immediate invalidation is generally used for Token leakage. After it is selected, the original Token will stop data reporting immediately. If anomaly detection is set, events and alarm notifications cannot be triggered until the original Token is modified into a newly generated Token in `datakit.conf` of DataKit collector. See [Getting Started with DataKit](../../datakit/datakit-conf.md) for more information.
+Guance supports setting remarks for the current workspace to help users obtain clearer information about the workspace name, etc.
 
-![](img/datakit.png)
+In **Management > Settings > Basic Information**, set the remarks to be viewed.
 
-## Configure Migration {#export-import}
+<img src="../img/3.space_management_7.1.png" width="70%" >
 
-Owners and administrators can import and export configuration files of dashboards, custom explorers and monitors in the current workspace.   
-Enter **Configuration Migration** and select **Export** or **Import**.
+After the settings are completed, you can view the remarks in the upper-left corner of the workspace.
 
-When importing, if there are dashboards, explorers and monitors with duplicate names in the current workspace, the user can choose whether to **Skip**, **Still Create** and **Cancel** according to your actual needs.
+<img src="../img/3.space_management_7.png" width="60%" >
 
-- Skip: **only create files with non-duplicate name**.  
-- Still Create: Create the corresponding dashboard, explorers and monitor according to the imported file name.  
-- Cancel: Cancel this file import operation, that is, no file import.
+Click on the workspace name to view all workspaces and their remarks. Click the **Edit** button next to the remarks to add or modify the content.
 
-> **Note**: The current workspace supports importing JSON configurations for dashboards, custom explorers and monitors from other workspaces.
+<img src="../img/3.space_management_7.2.png" width="70%" >
 
-![](img/5.input_rename_1.png)
+### Change Token {#token}
+
+Guance supports the Owner and Administrators of the current space to copy/change the Token in the workspace and customize the expiration time of the current Token. Go to **Management > Basic Settings > Change Token**, select the expiration time, and confirm **Change**. Guance will automatically generate a new Token, and the old Token will expire within the specified time.
+
+???+ warning "The effect of change Token"
+
+    - Changing the Token will trigger [**Operation Audit**](../settings/operation-audit.md) and [**Notification**](../system-notification.md);
+    
+    - After changing the Token, the old Token will expire within the specified time. The expiration time includes: immediate, 10 minutes, 6 hours, 12 hours, 24 hours. Immediate expiration is generally used for Token leaks. After selecting immediate expiration, the old Token will immediately stop data reporting. If anomaly detection is set up, events and alarm notifications cannot be triggered until the old Token in the `datakit.conf` of DataKit collector is modified to the newly generated Token.
+    
+    > For the storage directory of the `datakit.conf` file, see [Getting Started with DataKit](../datakit/datakit-conf.md).
+
+
+### Migration {#export-import}
+
+Guance supports Owners and Administrators to import and export JSON configuration files of dashboards, custom explorers, and monitors in the workspace with one click. Go to **Management > Settings**, and choose Export or Import in **Migration**.
+
+During the import process, if there are duplicate names for dashboards, explorers, or monitors in the current workspace, a prompt will appear indicating that the imported file has duplicate names. You can choose whether to **Skip**, **Still Create**, or **Cancel** based on your actual needs.
+
+- Skip: Only create files that are not duplicate names;
+- Still Create: Create corresponding dashboards, explorers, and monitors based on the imported file names;
+- Cancel: Cancel the file import operation, no files will be imported.
+
+**Note**: JSON configuration files of dashboards, explorers, and monitors in other workspaces can be imported in compressed format.
+
 
 ### Advanced Settings
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Key Metrics</font>](key-metrics.md#)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: Key Metrics</font>](../settings/key-metrics.md)
 
 <br/>
 
 </div>
-
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Feature Menu</font>](customized-menu.md#)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: Customized Menu</font>](../settings/customized-menu.md)
 
 <br/>
 
 </div>
 
-### IP White List
+<div class="grid cards" markdown>
 
-IP whitelist is used to restrict visiting users. After opening the IP whitelist, only the IP sources in the whitelist can log in normally, and requests from other sources will be denied access.
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: Workspace Time Zone</font>](../index.md#workspace)
 
-> IP whitelist can only be set by administrators and owners, and owners are not restricted by IP whitelist access.
+<br/>
 
-IP white list writing specification is as follows:
+</div>
 
-- Multiple IP lines need to be broken. Only one IP or network segment can be filled in each line, and up to 1000 IP lines can be added
-- Specified IP address: **192.168.0.1**, indicating that access to the IP address of 192.168.0.1 is allowed.
-- Specified IP segment: **192.168.0.0/24**, indicating that IP address access from 192.168.0.1 to 192.168.0.255 is allowed.
-- All IP addresses: **0.0.0.0/0**.
+## Security
 
-![](img/6.space_ip_1.png)
+### Invitation Approval
 
-### Change Data Storage Policy
+After enabling the switch, after the notification for [inviting members](../invite-member.md) is sent, the invited members need to be approved by the current workspace Owner and Administrators before they can join the workspace. If not enabled, the invited members can directly enter the workspace.
 
-Guance supports **Owners only** to change the data storage policy in the space, enter **Management > Basic Settings**, click **Change**, select the required data storage time, and click **Confirm** to change the data storage time in the current workspace. See [Data Storage Policy](../../billing/billing-method/data-storage.md) for more information.
+### MFA Security Authentication
+
+After enabling, all members of the workspace must complete [MFA binding and authentication](../mfa-management.md) to enter the workspace.
+
+### IP Whitelist {#ip}
+
+Guance supports configuring an IP whitelist for the workspace to restrict visiting users. After enabling the IP whitelist, only IP sources in the whitelist can log in normally, and other source requests will be denied access.
+
+Only Administrators and Owners can set the IP whitelist, and the **Owner** is not subject to IP whitelist access restrictions.
+
+The IP whitelist is written as follows:
+
+- Multiple IPs need to be separated by line breaks, and only one IP or subnet is allowed per line, with a maximum of 1000 IPs;
+- Specify an IP address: 192.168.0.1, which means allowing the IP address 192.168.0.1 to access;
+- Specify an IP range: 192.168.0.0/24, which means allowing the IP addresses from 192.168.0.1 to 192.168.0.255 to access;
+- All IP addresses: 0.0.0.0/0.
+
+<img src="../img/6.space_ip_1.png" width="60%" >
+
+## Risky Operations
+
+### Change Data Storage Strategy
+
+Guance supports Owners to change the data storage strategy in the workspace. Go to **Management > Settings**, click **Change**, select your desired data storage duration, and click **Confirm** to change the data storage duration in the current workspace.
+
+> For more information, refer to [Data Storage strategy](../../billing/billing-method/data-storage.md).
+
+<img src="../img/strategy-0815.png" width="60%" >
 
 ### Delete Measurement
 
-<div class="grid cards" markdown>
+Guance supports Owners and Administrators to delete Measurements in the workspace. Go to **Management > Settings**, click **Delete**, enter the query, and select the Measurement name (supports fuzzy matching). Click **Confirm** to enter the delete queue and wait for deletion.
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Delete Metric Data</font>](../../metrics/collection.md#delete)
+**Note**:
 
-<br/>
+- Only the workspace Owner and Administrators are allowed to perform this operation;
+- Once the Measurement is deleted, it cannot be recovered, so please proceed with caution;
+- When deleting a Measurement, system notification events will be generated, such as when a user creates a task to delete a Measurement, when a task to delete a Measurement is executed successfully, and when a task to delete a Measurement fails.
 
-</div>
+<img src="../img/11.metric_1.png" width="60%" >
 
-### Delete Custom Object
+### Delete Custom Objects
 
-Owners and administrators can delete specified custom object categories and all custom objects, click **Delete** and select the method of deleting custom objects to delete corresponding object data.
+Guance supports Owners and Administrators to delete specified custom object categories and all custom objects. Go to **Management > Settings**, click **Delete**, and select the method to delete the corresponding object data.
 
-- Specify custom object classification: Only the data under the selected object classification will be deleted, and the index will not be deleted.  
+- Specify custom object category: Only delete the data under the selected object category without deleting the index;
 - All custom objects: Delete all custom object data and indexes.
 
-![](img/7.custom_cloud_3.png)
-
-
-
+<img src="../img/7.custom_cloud_3.png" width="60%" >
