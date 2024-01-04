@@ -392,7 +392,7 @@ android{
 | **方法名** | **类型** | **必须** | **含义** | **注意** |
 | --- | --- | --- | --- | --- |
 | setSampleRate | Boolean | 否 | 设置采集率 | 采样率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。 |
-| setEnableConsoleLog | Boolean | 否 | 是否上报控制台日志 | 日志等级对应关系<br>Log.v -> ok;<br>Log.i、Log.d -> info;<br>Log.e -> error;<br>Log.w -> warning，<br> `prefix` 为控制前缀过滤参数，默认不设置过滤 |
+| setEnableConsoleLog | Boolean | 否 | 是否上报控制台日志 | 日志等级对应关系<br>Log.v -> ok;<br>Log.i、Log.d -> info;<br>Log.e -> error;<br>Log.w -> warning，<br> `prefix` 为控制前缀过滤参数，默认不设置过滤。注意：Android 控制台量是很大，为了避免响应应用性能，减少不必要的资源浪费，建议使用 `prefix` 过滤出有价值的日志 |
 | setEnableLinkRUMData | Boolean | 否 | 是否与 RUM 数据关联 | 默认为 `false` |
 | setLogCacheDiscardStrategy| LogCacheDiscard | 否 | 设置频繁日志丢弃规则 | 默认为 `LogCacheDiscard.DISCARD`，`DISCARD` 为丢弃追加数据，`DISCARD_OLDEST` 丢弃老数据 |
 | setEnableCustomLog | Boolean| 否 | 是否上传自定义日志 | 默认为 `false` |
