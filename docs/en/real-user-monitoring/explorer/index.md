@@ -1,49 +1,46 @@
 # Explorer
 ---
 
-## Overview
+The RUM Explorer can help you view and analyze detailed information about user access to your application.
 
-The Real User Monitoring explorer helps you view and analyze the details of users accessing applications. Open "Real User Monitoring" in the Guance workspace, clicking on any application and then you can know the impact of each user's session, page performance, resources, long tasks, errors in operation and delays on users through the "Explorer", which helps you to fully understand and improve the running status and usage of the application through search, filtering and correlation analysis, and improve the user experience.
+In the **RUM > Explorers**, you can learn about the impact of each user session, page performance, resources, long tasks, errors in operations, and delays on users. It helps you gain a comprehensive understanding of the running status and usage of your application through search, filtering, and correlation analysis.
 
-Guance Real User Monitoring explorer include Session, View, Resource, Action, Long Task and Error.
+The following types of explorers are available in the RUM in Guance:
 
-| Explorer Type | Overview |
+| <div style="width: 110px">Explorer Type</div> | Overview |
 | --- | --- |
-| Session | View a series of details of user access, including user access time, access page path, access operands, access path, error messages, and so on |
-| View | Viewing the user's access environment, tracing the user's operation path, decomposing the response time of the user's operation, and understanding the performance metrics of a series of call chains of the back-end application caused by the user's operation |
-| Resource | View the information of various resources loaded on the web page, including status code, request method, resource address, loading time, and so on |
-| Action | View the user's operation interaction during using the application, including operation type, page operation details, operation time, and so on |
-| Long Task | View long tasks that block the main thread for more than 50ms during the use of the application, including page address, task time consumption, and so on. |
-| Error | View the front-end errors issued by the browser during the user's use of the application, including error types, error contents, and so on |
+| [Session](session.md) | View a series of details about user access, including access time, access page path, number of access operations, access path and error messages encountered. |
+| [View](view.md) | View user access environment, trace user operation paths, break down response times for user operations and understand the performance metrics of a series of backend application invocation chains caused by user operations. |
+| [Resource](resource.md) | View various resource information loaded on web pages, including status codes, request methods, resource addresses and loading times. |
+| [Action](resource.md) | View user interaction during application usage, including operation types, page operation details and operation times. |
+| [Long Task](long-task.md) | View long tasks that block the main thread for more than 50ms during application usage, including page addresses and task times. |
+| [Error](error.md) | View front-end errors issued by browsers during application usage, including error types and error contents. |
 
-## Explorer Description
+## Precondition
 
-In the explorer, Guance supports querying and analyzing user access data by selecting time range, searching keywords, filtering and so on.
+Guance collects errors, resources, requests and performance metrics by introducing SDK scripts.
 
-### Time Control
+> For specific operation methods, see [Rum Collector Configuration](../../integrations/rum.md).
 
-Guance explorer displays the data of the last 15 minutes by default, and you can select the time range of data display through the "Time Control" in the upper right corner. See the documentation [Time Control Description](../../getting-started/necessities-for-beginners/explorer-search.md # time) for more details.
+## Options
 
-### Search and Filter
+In the explorer, Guance supports querying and analyzing RUM data through time range selection, keyword search, filtering, and other methods.
 
-In the explorer search bar, it supports keyword search, wildcard search, correlation search, JSON search and other search methods, and supports value filtering through ` tags/attributes `, including forward filtering, reverse filtering, fuzzy matching, reverse fuzzy matching, existence and nonexistence and other filtering methods. For more searches and filters, refer to the document [Searching and Filtering](../../getting-started/necessary-for-beginners/explorer-search.md).
+- [Time Widget](../../getting-started/function-details/explorer-search.md#time): By default, the explorer displays data for the last 15 minutes.
 
-### Analysis Mode
+- [Search and Filter](../../getting-started/function-details/explorer-search.md): The explorer search bar supports multiple search and filtering methods.
 
-In the explorer analysis column, multi-dimensional analysis and statistics based on **1-3 tags ** are supported to reflect the distribution characteristics and trends of data in different dimensions and at different times. Guance supports a variety of data chart analysis methods, including time sequence chart, ranking list, pie chart and rectangular tree chart. For more details, please refer to the document [analysis Mode](../../getting-started/necessary-for-beginners/explorer-search.md # analysis).
+- [Analysis Mode](../../getting-started/function-details/explorer-search.md#analysis): In the explorer Analysis Bar, you can perform multidimensional analysis and statistics based on 1-3 tags, and support multiple data chart analysis methods.
 
-### User Access Data DistributionChart
+- [Quick Filter](../../getting-started/function-details/explorer-search.md#quick-filter): Editing and adding filter fields are supported.
 
-In the data distribution chart of the explorer, according to the selected time range statistics, the corresponding time interval is automatically selected to show the distribution trend of user access quantity at each time point; If the data is filtered, the distribution trend after filtering will be displayed synchronously, which will help you intuitively view the user access data at different time points.
+- [Columns](../../getting-started/function-details/explorer-search.md#columns): You can customize the display columns by adding, editing, deleting and dragging the display columns.
 
-### Quick Filter
+### Data Distribution Chart
 
-In the explorer quick filter, support editing "quick filter" and adding new filter fields. After adding, you can select their field values for quick filtering. For more shortcut filters, refer to the document [Quick Filter](../../getting-started/necessities-for-beginners/explorer-search.md # quick-filter).
+In the explorer's data distribution chart, you can automatically select the corresponding time interval to display the distribution trend of the number of user accesses at each time point based on the selected time range. If you filter the data, the filtered distribution trend will be displayed synchronously, helping you intuitively view RUM data at different time points.
 
-### Custom Display Column
 
-When viewing the list, you can customize to add, edit, delete and drag display columns through Display Columns. When the mouse is placed on the display column of the explorer, click the "Settings" button to support ascending, descending, moving columns to the left, moving columns to the right, adding columns to the left, adding columns to the right, replacing columns, adding to shortcut filtering, adding to grouping, removing columns and other operations. For more custom display columns, refer to the documentation [Display Column Description](../../getting-started/necessities-for-beginners/explorer-search.md # columns).
+### Error Data Prompt
 
-### Error Data Alert
-
-The status of users accessing data can be divided into two types: warning and info. If the data type accessed by users is warning, that is, the data has errors, the data list in the explorer is prompted :warning: , which helps you quickly identify the performance problems when users access, including network problems, page loading errors, page DOM parsing errors, etc.
+RUM data is classified as `warning` and `info`. If the RUM data is of the warning type, indicating that there is an error in the data, a :warning: prompt will be displayed in front of the data list in the explorer, helping you quickly identify performance issues that occur during user access, including network issues, page loading errors, and page DOM parsing errors.

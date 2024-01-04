@@ -4,7 +4,7 @@ Global labels refer to labels that can be directly called within the Guance work
 
 **Note**: Only owners, administrators and custom roles with the permission can view this feature.
 
-## Add Labels
+## Setup
 
 <img src="../img/label.png" width="50%" >
 
@@ -27,7 +27,7 @@ The created labels can be viewed in the **Management > Global Labels** list page
 ![](img/label-1.png)
 
 
-## Use Case
+## Use Cases
 
 <div class="grid" markdown>
 

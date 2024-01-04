@@ -12,7 +12,6 @@ nav:
       - 'Changelog': dataway-changelog.md
       - 'Dataway Install and Usage': dataway.md
       - 'Sink': dataway-sink.md
-  - 'Change Log': changelog.md
   - 'Product Usage':
     - "How to Start": how-to-start.md
     - "Upgrade Commercial Version": upgrade-version.md

@@ -16,7 +16,7 @@ Guance has powerful anomaly monitoring capabilities, providing a series of monit
     
     *<font size=2>(formerly known as "Built-in Detection Library")</font>*
     
-    Used to configure data metric detection and trigger alert events in real time. You can use Observation Cloud's out-of-the-box [monitoring templates](./monitor/template.md), or you can customize [new monitors](./monitor/index.md#rules) and set corresponding [detection rules](./monitor/index.md#detect).
+    Used to configure data metric detection and trigger alert events in real time. You can use Guance's out-of-the-box [monitoring templates](./monitor/template.md), or you can customize [new monitors](./monitor/index.md#rules) and set corresponding [detection rules](./monitor/index.md#detect).
     
     <br/>
     
@@ -32,7 +32,7 @@ Guance has powerful anomaly monitoring capabilities, providing a series of monit
     
     ---
     
-    Observation Cloud SLO monitoring focuses on various DevOps metrics to test whether system services meet target availability. It not only helps users monitor the quality of services provided by service providers, but also protects service providers from SLA violations.
+    Guance SLO monitoring focuses on various DevOps metrics to test whether system services meet target availability. It not only helps users monitor the quality of services provided by service providers, but also protects service providers from SLA violations.
     
     <br/>
     
