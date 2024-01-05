@@ -16,11 +16,11 @@ AWS CloudTrail is a service used to track, log, and monitor activity in an AWS a
 ## Start Intelligent Inspection
 
 
-In the self-built DataFlux Func, you can install the "Observation Cloud Self-built Inspection (AWS CloudTrail Exception Event Inspection)" through the "Script Market" and follow the prompts to configure the Observation Cloud API Key to enable it.
+In the self-built DataFlux Func, you can install the "Guance Self-built Inspection (AWS CloudTrail Exception Event Inspection)" through the "Script Market" and follow the prompts to configure the Guance API Key to enable it.
 
-In the DataFlux Func Script Market, select the desired inspection scenario and click on install. Configure the Observation Cloud API Key and [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/). Finally, select deploy to start the script.
+In the DataFlux Func Script Market, select the desired inspection scenario and click on install. Configure the Guance API Key and [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/). Finally, select deploy to start the script.
 
-> Note: First, you need to configure the CloudTrail log collection in CloudWatch Logs on AWS. Then, enable the "Observation Cloud Integration (AWS-CloudWatchLogs)" in Func.
+> Note: First, you need to configure the CloudTrail log collection in CloudWatch Logs on AWS. Then, enable the "Guance Integration (AWS-CloudWatchLogs)" in Func.
 >
 
 ![image](../img/create_checker.png)
@@ -33,7 +33,7 @@ Once the deployment of the startup script is successful, it will automatically c
 
 ## Configs Intelligent Inspection
 
-To configure the inspection conditions you want to filter in the Observation Cloud Studio Monitoring - Intelligent Inspection module's automatically created startup script, you can refer to the following two configuration methods:
+To configure the inspection conditions you want to filter in the Guance Studio Monitoring - Intelligent Inspection module's automatically created startup script, you can refer to the following two configuration methods:
 
 ### Configure Intelligent Inspection in Guance
 
@@ -77,7 +77,7 @@ You can refer to the following configuration:
 
 ## View Events
 
-The Intelligent Inspection module, based on the Observation Cloud inspection algorithm, searches for AWS CloudTrail exception events. When an exception event is detected, the Intelligent Inspection generates corresponding events. You can view the related events by clicking the **View Related Events** button in the right-side action menu of the Intelligent Inspection list.
+The Intelligent Inspection module, based on the Guance inspection algorithm, searches for AWS CloudTrail exception events. When an exception event is detected, the Intelligent Inspection generates corresponding events. You can view the related events by clicking the **View Related Events** button in the right-side action menu of the Intelligent Inspection list.
 
 ![image](../img/aws_ak_errorlog04.png)
 
@@ -148,7 +148,7 @@ Please update the referenced script set in the DataFlux Func Script Market. You 
 
 **5.During the upgrade of the inspection script, there are no changes in the corresponding script set in the Startup？**
 
-Please delete the corresponding script set first, then click the upgrade button to configure the corresponding Observation Cloud API key to complete the upgrade.
+Please delete the corresponding script set first, then click the upgrade button to configure the corresponding Guance API key to complete the upgrade.
 
 **6.How to determine if the inspection is effective after enabling it?**
 

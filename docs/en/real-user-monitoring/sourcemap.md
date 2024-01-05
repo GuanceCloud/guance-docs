@@ -1,8 +1,6 @@
 # Sourcemap Upload
 ---
 
-## Overview
-
 When the application is released in the production environment, in order to prevent code leakage and other security issues, the file will be converted and compressed in the packaging process. The above measures not only ensure the code security, but also cause the collected error stack information to be confused, which makes it impossible to directly locate the problem, and brings inconvenience to the subsequent Bug troubleshooting.
 
 Guance provides sourcemap function for Web applications, supports restoring confused code, facilitates locating source code during error troubleshooting, and helps users solve problems faster.

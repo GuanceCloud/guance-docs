@@ -109,9 +109,10 @@ DDTrace 是 DataDog 开源的 APM 产品，Datakit 内嵌的 DDTrace Agent 用�
       ## NOTE: DO NOT EDIT.
       endpoints = ["/v0.3/traces", "/v0.4/traces", "/v0.5/traces"]
     
-      ## ignore_tags will work as a blacklist to prevent tags send to data center.
-      ## Every value in this list is a valid string of regular expression.
-      # ignore_tags = ["block1", "block2"]
+      ## customer_tags will work as a whitelist to prevent tags send to data center.
+      ## All . will replace to _ ,like this :
+      ## "project.name" to send to GuanCe center is "project_name"
+      # customer_tags = ["sink_project", "custom_dd_tag"]
     
       ## Keep rare tracing resources list switch.
       ## If some resources are rare enough(not presend in 1 hour), those resource will always send
@@ -177,7 +178,7 @@ DDTrace 是 DataDog 开源的 APM 产品，Datakit 内嵌的 DDTrace Agent 用�
     | 环境变量名                             | 类型        | 示例                                                                             |
     | -------------------------------------- | ----------- | -------------------------------------------------------------------------------- |
     | `ENV_INPUT_DDTRACE_ENDPOINTS`          | JSON string | `["/v0.3/traces", "/v0.4/traces", "/v0.5/traces"]`                               |
-    | `ENV_INPUT_DDTRACE_IGNORE_TAGS`        | JSON string | `["block1", "block2"]`                                                           |
+    | `ENV_INPUT_DDTRACE_CUSTOMER_TAGS`      | JSON string | `["sink_project", "custom_dd_tag"]`                                              |
     | `ENV_INPUT_DDTRACE_KEEP_RARE_RESOURCE` | bool        | true                                                                             |
     | `ENV_INPUT_DDTRACE_COMPATIBLE_OTEL`    | bool        | true                                                                             |
     | `ENV_INPUT_DDTRACE_DEL_MESSAGE`        | bool        | true                                                                             |
@@ -187,6 +188,61 @@ DDTrace 是 DataDog 开源的 APM 产品，Datakit 内嵌的 DDTrace Agent 用�
     | `ENV_INPUT_DDTRACE_TAGS`               | JSON string | `{"k1":"v1", "k2":"v2", "k3":"v3"}`                                              |
     | `ENV_INPUT_DDTRACE_THREADS`            | JSON string | `{"buffer":1000, "threads":100}`                                                 |
     | `ENV_INPUT_DDTRACE_STORAGE`            | JSON string | `{"storage":"./ddtrace_storage", "capacity": 5120}`                              |
+
+
+### 注入 Pod 和 Node 信息 {#add-pod-node-info}
+
+当应用在 Kubernetes 等容器环境部署时，我们可以在在最终的 Span 数据上追加 Pod/Node 信息，通过修改应用的 Yaml 即可，下面是一个 Kubernetes Deployment 的 yaml 示例：
+
+```yaml
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app
+spec:
+  selector:
+    matchLabels:
+      app: my-app
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: my-app
+        service: my-service
+    spec:
+      containers:
+        - name: my-app
+          image: my-app:v0.0.1
+          env:
+            - name: POD_NAME    # <------
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            - name: DD_SERVICE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.labels['service']
+            - name: DD_TAGS
+              value: pod_name:$(POD_NAME),host:$(NODE_NAME)
+```
+
+注意，此处要先定义 `POD_NAME` 和 `NODE_NAME`，然后再将它们嵌入到到 DDTrace 专用的环境变量中。
+
+应用启动后，进入对应的 Pod，我们可以验证 ENV 是否生效：
+
+```shell
+$ env | grep DD_
+...
+```
+
+一旦注入成功，在最终的 Span 数据中，我们就能看到该 Span 所处的 Pod 以及 Node 名称。
+
+---
 
 ???+ attention
 
@@ -264,31 +320,38 @@ DD_TAGS="project:your_project_name,env=test,version=v1" ddtrace-run python app.p
 
 ### 固定提取 tag {#add-tags}
 
-从 DataKit 版本 [1.21.0](../datakit/changelog.md#cl-1.21.0) 开始，不在将 Span.Mate 中全部都提前到一级标签中，而是选择性提取，以下是可能会提取出的标签列表：
+从 DataKit 版本 [1.21.0](../datakit/changelog.md#cl-1.21.0) 开始，黑名单功能废弃，并且不在将 Span.Mate 中全部都提前到一级标签中，而是选择性提取。
 
-| Mete               | tag               | 说明          |
-|:-------------------|:------------------|:------------|
-| http.url           | http_url          | HTTP 请求完整路径 |
-| http.hostname      | http_hostname     | hostname    |
-| http.route         | http_route        | 路由          |
-| http.status_code   | http_status_code  | 状态码         |
-| http.method        | http_method       | 请求方法        |
-| http.client_ip     | http_client_ip    | 客户端 IP      |
-| sampling.priority  | sampling_priority | 采样          |
-| span.kind          | span_kind         | span 类型     |
-| error              | error             | 是否错误        |
-| dd.version         | dd_version        | agent 版本    |
-| error.message      | error_message     | 错误信息        |
-| error.stack        | error_stack       | 堆栈信息        |
-| error_type         | error_type        | 错误类型        |
-| system.pid         | pid               | pid         |
-| error.msg          | error_message     | 错误信息        |
-| project            | project           | project     |
-| version            | version           | 版本          |
-| env                | env               | 环境          |
-| _dd.base_service   | _dd_base_service  | 上级服务        |
+以下是可能会提取出的标签列表：
+
+| Mete              | tag               | 说明             |
+|:------------------|:------------------|:---------------|
+| http.url          | http_url          | HTTP 请求完整路径    |
+| http.hostname     | http_hostname     | hostname       |
+| http.route        | http_route        | 路由             |
+| http.status_code  | http_status_code  | 状态码            |
+| http.method       | http_method       | 请求方法           |
+| http.client_ip    | http_client_ip    | 客户端 IP         |
+| sampling.priority | sampling_priority | 采样             |
+| span.kind         | span_kind         | span 类型        |
+| error             | error             | 是否错误           |
+| dd.version        | dd_version        | agent 版本       |
+| error.message     | error_message     | 错误信息           |
+| error.stack       | error_stack       | 堆栈信息           |
+| error_type        | error_type        | 错误类型           |
+| system.pid        | pid               | pid            |
+| error.msg         | error_message     | 错误信息           |
+| project           | project           | project        |
+| version           | version           | 版本             |
+| env               | env               | 环境             |
+| host              | host              | tag 中的主机名      |
+| pod_name          | pod_name          | tag 中的 pod 名称  |
+| _dd.base_service  | _dd_base_service  | 上级服务           |
 
 在观测云中的链路界面，不在列表中的标签也可以进行筛选。
+
+从 DataKit 版本 [1.22.0](../datakit/changelog.md#cl-1.22.0) 恢复白名单功能，如果有必须要提取到一级标签列表中的标签，可以在 `customer_tags` 中配置。
+配置的白名单标签如果是原生的 `message.meta` 中，会使用 `.` 作为分隔符，采集器会进行转换将 `.` 替换成 `_` 。
 
 ## 链路字段 {#tracing}
 
