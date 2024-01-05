@@ -1,88 +1,119 @@
 # SLO
 ---
 
-## Overview
+In the context of the cloud era, major service providers have released Service Level Agreements (SLAs) to ensure the quality of the services provided and clarify rights and responsibilities. Guance SLO monitoring is **based on various DevOps metrics to test whether the availability of the system services meets the target requirements**. This not only helps users monitor the quality of services provided by service providers, but also protects service providers from the impact of SLA violations.
 
-Under the background of cloud era, all major service providers have issued relevant service level agreements (SLA) to ensure the quality of services provided and clarify their rights and responsibilities. Guance SLO monitoring is to test whether the availability of system services meets the target needs around various metrics of DevOps, which can not only help users monitor the service quality provided by service providers, but also protect service providers from SLA violations.
+## Concepts
 
-## Nouns Explanation 
-
-**SLA（Service-Level Agreement）**: That is, service level agreement, which refers to a service commitment made by the system service Provider to the Customer. Guance supports SLA scoring of service quality of service providers and monitors the service compliance rate in real time.
-
-**SLI（Service Level Metric）**: A measurement metric that is chosen to measure the stability of the system. The Guance SLI supports setting one or more measurement metrics based on the monitor.
-
-**SLO（Service Level Objective）:** The smallest unit of SLA scoring processing in Guance, and is the target of SLI cumulative success number in a time window. We often convert SLO into error budget, which is used to calculate the number of tolerable errors, and the time of abnormal events in each detection cycle will be deducted from the fault-tolerant time. (As shown in the following figure: Assuming that the SLO detection period is 5 minutes, according to the superposition, the coverage time of abnormal events is 3 minutes, and the deduction amount is 3 minutes)
+| Term | Description |
+| --- | --- |
+| SLA | Service-Level Agreement, which refers to the commitment of system service providers (Providers) to customers (Customers). You can rate the service quality SLA of service providers and monitor the compliance rate of the service in real time. |
+| SLI | Service Level Indicator, which refers to the measurement indicator used to measure system stability. Guance SLI supports setting one or more measurement indicators based on monitors. |
+| SLO | Service Level Objective, the smallest unit for handling SLA rating in Guance, is the target for the cumulative number of successful SLIs within a time window. We often convert SLO into an error budget to calculate the acceptable number of errors, and the time of abnormal events that occur in each detection period will be deducted from the fault-tolerant duration. (As shown in the figure below: assuming the SLO detection period is 5 minutes, according to the superposition, the coverage time of abnormal events is 3 minutes, and the deduction limit is 3 minutes). |
 
 ![](img/image_4.png)
 
-## New SLO
+## Setup
 
-Guance supports custom creation of new SLO tasks through the SLO module of "Monitor".
+Guance supports creating new SLO tasks through the SLO module of the monitor.
 
 ![](img/7.slo_2.png)
 
-???+ warning
+- Name: SLO task name. Support up to 64 characters. 
 
-    Once the SLO configuration is saved, the SLO name, target, and detection period cannot be changed.
+- Target: SLO target percentage (0-100%), support selecting two targets, including Target and Minimum target: 
 
-| **Field** | **Description** |
-| --- | --- |
-| Name | SLO task name. Supports up to 64 character input. |
-| Goal | Percentage of SLO goals (0-100%), which supports the selection of two goals, including "goal" and "minimum goal",<br><li>Goal: SLO Percentage < Goal Percentage and > = Minimum Goal Percentage is identified as **unhealthy** SLA<br><li>Minimum target: When the SLO percentage is less than the minimum target percentage, it is considered as **substandard ** SLA |
-| SLI | An metric to measure the stability of a system. Support user-defined addition of one or more monitors as measurement metrics |
-| Exception Notification Object | Alarm notification object, support space members, mail groups, enterprise WeChat robots, Dingding robots, flying book robots, SMS and other notification methods. For details, please refer to [alarm settings](alert-setting.md) |
-| Notice Silence | If the same event is not very urgent, but the alarm notification frequency is high, the notification frequency can be reduced by setting the notification silence. **Note: Events will continue to be generated after notification silence is set, but notifications will not be sent again, and generated events will be stored in event management** |
-| Detection frequency | SLO detection frequency, that is, to monitor whether abnormal events occur in the monitor of SLO task with a certain time range as a period. At present, it supports two detection frequencies: 5 minutes and 10 minutes. |
-| Description | Descriptive information, up to 256 characters. |
+    - Target: When the SLO percentage is less than the target percentage and greater than or equal to the minimum target percentage, it is considered as an <u>unhealthy</u> SLA. 
+    - Minimum target: When the SLO percentage is less than the minimum target percentage, it is considered as an <u>unqualified</u> SLA. 
+
+- SLI: The normal running time of the monitor will be used as the indicator to measure the system stability. You can customize adding one or more monitors as measurement indicators. 
+
+- Exception Notice Receiver: Alert notification objects under [alerting strategies](alert-setting.md), supporting notification methods such as space members, email groups, WeCom, DingTalk and Lark bots and SMS. 
+
+- Mute Notification: If an event is not very urgent but the alert notification frequency is high, you can reduce the notification frequency by setting mute notification.
+    - **Note**: After muting notification is set, events will continue to occur, but notifications will not be sent, and the generated events will be stored in [Event](../events/index.md). 
+
+- Detection Frequency: SLO detection frequency, that is, within a certain time range as a cycle, monitor whether there are abnormal events in the monitors in the SLO task. Currently, two detection frequencies of 5 minutes and 10 minutes are supported. 
+
+- Description: Descriptive information, support up to 256 characters. 
+
+**Note**: Once the SLO configuration is saved, the SLO name, target and detection period cannot be changed.
 
 ## SLO List
 
-In the "Monitor"-"SLO" of the workspace, you can view the task compliance rate, target service level, etc. of existing SLO monitoring tasks, edit tasks, view related events and export dashboards.
+In the **Monitor > SLO** of the workspace, you can view the compliance rate of existing SLO monitoring tasks, the target service level, etc., and also edit tasks, view related events, and export dashboards.
 
-### Query
+![](img/5.slo_1.png)
 
-The SLO list supports searching based on the SLO name in the search box.
+### List Fields
 
-![](img/monitor6.png)
-
-### List Field
-| **Field** | **Description** |
+| Field | Description |
 | --- | --- |
-| Monitor | The number of monitors associated with the SLI, a measure of service performance |
-| Examination cycle | The measurement period of the metric. Recent 7 days by default|
-| Compliance rate | The percentage of the total time to meet the system abnormality in a given assessment period (compliance rate = system abnormality time/assessment period * 100%)<li>When the percentage < target percentage, and > = minimum target percentage, it is identified as **unhealthy** SLA, which is shown as yellow compliance rate <li>Minimum target: When the percentage is less than the minimum target percentage, it is identified as **non-compliance** SLA, which is displayed as red compliance rate
- |
-| Remaining quota | The remaining fault-tolerant time of the current SLO (assuming that the target SLO is set to 95%, that is, there is a fault-tolerant rate of 5%, and the last 7 days are the cycle by default, that is, the default remaining quota = 7 days * 5% = 21 minutes) is displayed as<li> green: remaining fault-tolerant time > = 0<li>red: remaining fault-tolerant time > 0 |
-| Objectives | Target percentage of service availability set when creating SLO task |
+| Monitor | The number of monitors associated with SLIs, which measures the performance of services. |
+| Compliance Rate | The percentage of time without abnormal system time in the given assessment period (compliance rate = time without abnormal system time / assessment period * 100%):<br><li>When the minimum target percentage <= percentage < target percentage, it is considered as an unhealthy SLA, and the compliance rate is displayed in yellow; <br><li>When percentage < minimum target percentage, it is considered as an unqualified SLA, and the compliance rate is displayed in red. |  |
+| Downtime | The time of monitor exceptions/used quota. |
+| Remaining Quota | The remaining fault-tolerant duration of the current SLO (assuming the target SLO is set to 95%, that is, there is a 5% fault-tolerant rate, and the default period is the last 7 days, that is, the default remaining quota = 7 days * 5% = 21 minutes), displayed as:<br><li>Green: The remaining fault-tolerant duration is >= 0;<br><li>Red: The remaining fault-tolerant duration is < 0. |  
+| Target | The target percentage of service availability set when creating the SLO task. |
 
+### Options
 
-### Operating Instructions
+- Search Bar: In the SLO list, you can search based on the SLO name. 
 
-| **Operation** | **Description** |
-| --- | --- |
-| Edit | Guance supports re-editing of existing SLO tasks, but does not support modification of SLO name, target and detection period |
-| Delete | Guance supports deletion of existing SLO tasks<br>**Note**: Deletion of an SLO task may invalidate its associated Dashboard SLO data |
-| View related events | The alarm events triggered by the SLO task will be uniformly stored under the corresponding "SLO" task, and all the unrecovered events triggered by the SLO task can be directly jumped through the "View Related Events" operation |
-| Export to dashboard | Guance supports exporting SLO as view to dashboard |
+- Batch Operation: Click :material-crop-square: next to the Name to batch Enable, Disable, or Delete specific SLOs. 
 
+- Enable/Disable: Guance supports enabling/disabling existing SLOs. Newly created SLOs are enabled by default. You can disable SLOs or restart disabled SLOs. 
+
+- Edit: Guance supports re-editing existing SLO tasks, but does not support modifying the SLO name, target, and detection period. 
+
+- Delete: Guance supports deleting existing SLO tasks. 
+
+    - **Note**: Once an SLO task is deleted, the SLO data associated with its dashboard may become invalid. 
+
+- View Related Events: Alert events triggered by SLO tasks are stored under the corresponding SLO task. By clicking View Related Events, you can directly jump to all unrecovered events triggered by this SLO task. 
+
+- Export to Dashboard: Support exporting SLO monitoring tasks as views to Dashboards for synchronous SLO monitoring on the dashboards.
+    
+    - **Note**: The time range of the SLO view in the dashboard defaults to the same as that of the dashboard, while the SLO list defaults to calculating the compliance rate for the last 7 days. 
 
 ## SLO Details
 
-Guance enables you to view SLO details, including SLO compliance rates and SLI exception records, by clicking on the SLO task.
-![](img/image_6.png)
+Guance supports viewing SLO details by clicking on an SLO task, including SLO compliance rate and SLI exception records.
 
-| **Field** | **Description** |
+![img/image_6.png](img/image_6.png)
+
+| Field | Description |
 | --- | --- |
-| SLA in the past 7 days | Get the compliance rate of nearly 7 days according to the current visit time |
-| Annual SLA | Get the compliance rate of this year (natural year) according to the current visit time |
-| SLA in recent year | Get the compliance rate of the last year (natural year) according to the current visit time |
-| SLI Exception Record | Based on the abnormal event triggered by the monitor under the current SLO task |
+| SLA in the Past 7 Days | Obtains the compliance rate of the past 7 days based on the current access time. |
+| SLA for the Whole Year | Obtains the compliance rate for this year (calendar year) based on the current access time. |
+| SLA in the Past Year | Obtains the compliance rate for the past year (calendar year) based on the current access time. |
+| SLI Exception Records | Exception events triggered by the monitors under the current SLO task. |
 
+???- abstract "Obtaining SLOs by DQL Expressions"
 
-## Export to Dashboard
+    The query for obtaining exception time is as follows:
 
-In the SLO list, you support exporting SLO monitoring tasks as views to the dashboard to help you synchronize SLO monitoring on the dashboard.
+    `slo_cost` represents the **deducted number of minutes**, and the values are added together to obtain **the exception time**. `slo_id` needs to be replaced:
 
-???+ attention
-    
-    The time range of the SLO view in the dashboard is consistent with that of the dashboard by default, while the SLO list calculates the last 7-day SLO compliance rate by default.
+    ```
+    M::`slo`:(sum(`slo_cost`)) { `slo_id` = 'monitor_c36bb56f274b4242866fe7259f1859c0' }
+    ```
+
+    If you want to query the SLO value for 7 days, the DQL expression is as follows:
+
+    ```
+    eval((10080-A)/10080 *100, A="M::`slo`:(sum(`slo_cost`)) { `slo_id` = 'monitor_c36bb56f274b4242866fe7259f1859c0'}")
+    ```
+
+    <u>Example:</u>
+
+    In the figure below, the SLO value of the exception time in the past 7 days of the SLO task is `80.496%`.
+
+    <img src="../img/slo-1.png" width="60%" >
+
+    Go to **Quick Entry > Query Tool**, select **DQL Query**, enter the query statement for the SLO value of the 7-day period, and the query result is consistent with the value in the above figure.
+
+    <img src="../img/slo-2.png" width="60%" >
+
+    :warning: When using the **Query Tool > DQL Query**, ensure that the time range in the upper right corner is consistent with the time range for obtaining the SLO value; `slo_id` can be viewed in the **Events > Event Details** page:
+
+    <img src="../img/slo-3.png" width="60%" >

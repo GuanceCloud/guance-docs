@@ -21,7 +21,6 @@ nav:
   - '敏感数据脱敏': data-mask.md
   - '敏感数据扫描': data-scanner.md
   - '空间管理': space-management.md
-  - 'Demo 空间': space-demo.md
   - 'SSO 管理': sso
   - 'MFA 管理': mfa-management.md
   - '支持中心':  

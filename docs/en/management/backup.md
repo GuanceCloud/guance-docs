@@ -1,4 +1,4 @@
-# Backup Log
+# Data Forward
 ---
 
 ???- quote "Release Notes"
@@ -365,7 +365,7 @@ Under **Index**, you can view Guance historical backup logs and SLS Query Logsto
 
 > For specific operations of Explorer, see [The Power of the Explorer](../getting-started/function-details/explorer-search.md).
 
-## More Reading
+## More Readings
 
 <div class="grid cards" markdown>
 

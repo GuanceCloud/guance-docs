@@ -6,12 +6,19 @@
     "dictionaryDefinitions": [
         {
             "name": "glossary",
-            "path": "checking/glossary.txt",
+            "path": "checking/glossary.txt", // glossary of global
+            "addWords": true
+        },
+
+        {
+            "name": "glossary.datakit",
+            "path": "checking/glossary.datakit.txt",
             "addWords": true
         }
     ],
     "dictionaries": [
-        "glossary"
+        "glossary",
+				"glossary.datakit"
     ],
 
     "languageSettings": [

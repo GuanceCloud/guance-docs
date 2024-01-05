@@ -139,6 +139,7 @@ nginx
 nsec
 nullable
 pprof
+promremote
 replicasets
 rwlock
 schedulability

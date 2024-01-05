@@ -309,7 +309,7 @@ eval(A/B, alias='页面错误率',A="R::view:(count(`view_name`)) {`view_error_c
 
 5）**事件标题**：设置告警触发条件的事件名称，支持使用预置的[模板变量](../event-template.md)。
 
-6）**事件内容**：满足触发条件时发送的事件通知内容，支持输入 Markdown 格式文本信息，支持预览效果，支持使用预置的[关联链接](link-description.md)，支持使用预置的[模板变量](../event-template.md)。
+6）**事件内容**：满足触发条件时发送的事件通知内容。支持输入 Markdown 格式文本信息并预览效果，支持使用关联链接、[模板变量](../event-template.md)。
 
 ???+ warning
 

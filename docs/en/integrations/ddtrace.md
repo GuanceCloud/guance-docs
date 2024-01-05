@@ -96,9 +96,10 @@ DDTrace Agent embedded in Datakit is used to receive, calculate and analyze Data
       ## NOTE: DO NOT EDIT.
       endpoints = ["/v0.3/traces", "/v0.4/traces", "/v0.5/traces"]
     
-      ## ignore_tags will work as a blacklist to prevent tags send to data center.
-      ## Every value in this list is a valid string of regular expression.
-      # ignore_tags = ["block1", "block2"]
+      ## customer_tags will work as a whitelist to prevent tags send to data center.
+      ## All . will replace to _ ,like this :
+      ## "project.name" to send to GuanCe center is "project_name"
+      # customer_tags = ["sink_project", "custom_dd_tag"]
     
       ## Keep rare tracing resources list switch.
       ## If some resources are rare enough(not presend in 1 hour), those resource will always send
@@ -164,7 +165,7 @@ DDTrace Agent embedded in Datakit is used to receive, calculate and analyze Data
     | Envrionment Variable Name              | Type        | Example                                                                          |
     | -------------------------------------- | ----------- | -------------------------------------------------------------------------------- |
     | `ENV_INPUT_DDTRACE_ENDPOINTS`          | JSON string | `["/v0.3/traces", "/v0.4/traces", "/v0.5/traces"]`                               |
-    | `ENV_INPUT_DDTRACE_IGNORE_TAGS`        | JSON string | `["block1", "block2"]`                                                           |
+    | `ENV_INPUT_DDTRACE_CUSTOMER_TAGS`      | JSON string | `["sink_project", "custom_dd_tag"]`                                              |
     | `ENV_INPUT_DDTRACE_COMPATIBLE_OTEL`    | bool        | true                                                                             |    
     | `ENV_INPUT_DDTRACE_DEL_MESSAGE`        | bool        | true                                                                             | 
     | `ENV_INPUT_DDTRACE_KEEP_RARE_RESOURCE` | bool        | true                                                                             |
@@ -174,6 +175,60 @@ DDTrace Agent embedded in Datakit is used to receive, calculate and analyze Data
     | `ENV_INPUT_DDTRACE_TAGS`               | JSON string | `{"k1":"v1", "k2":"v2", "k3":"v3"}`                                              |
     | `ENV_INPUT_DDTRACE_THREADS`            | JSON string | `{"buffer":1000, "threads":100}`                                                 |
     | `ENV_INPUT_DDTRACE_STORAGE`            | JSON string | `{"storage":"./ddtrace_storage", "capacity": 5120}`                              |
+
+### Add Pod and Node tags {#add-pod-node-info}
+
+When your service deployed on Kubernetes, we can add Pod/Node tags to Span, edit your Pod yaml, here is a Deployment yaml example:
+
+```yaml
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app
+spec:
+  selector:
+    matchLabels:
+      app: my-app
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: my-app
+        service: my-service
+    spec:
+      containers:
+        - name: my-app
+          image: my-app:v0.0.1
+          env:
+            - name: POD_NAME    # <------
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            - name: DD_SERVICE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.labels['service']
+            - name: DD_TAGS
+              value: pod_name:$(POD_NAME),host:$(NODE_NAME)
+```
+
+Here we must define `POD_NAME` and `NODE_NAME` before reference them in dedicated environment keys of DDTrace:
+
+After your Pod started, enter the Pod, we can check if environment applied:
+
+```shell
+$ env | grep DD_
+...
+```
+
+Once environment set, the Pod/Node name will attached to related Span tags.
+
+---
 
 ???+ attention
 
@@ -254,29 +309,35 @@ DD_TAGS="project:your_project_name,env=test,version=v1" ddtrace-run python app.p
 
 Starting from DataKit version [1.21.0](../datakit/changelog.md#cl-1.21.0), do not include All in Span.Mate are advanced to the first level label and only select following list labels:
 
-| Mete              | GuanCe tag        | doc           | 
-|:------------------|:------------------|:--------------|
-| http.url          | http_url          | HTTP url      |
-| http.hostname     | http_hostname     | hostname      |
-| http.route        | http_route        | route         |
-| http.status_code  | http_status_code  | status code   |
-| http.method       | http_method       | method        |
-| http.client_ip    | http_client_ip    | client IP     |
-| sampling.priority | sampling_priority | sample        |
-| span.kind         | span_kind         | span kind     |
-| error             | error             | is error      |
-| dd.version        | dd_version        | agent version |
-| error.message     | error_message     | error message |
-| error.stack       | error_stack       | error stack   |
-| error_type        | error_type        | error trye    |
-| system.pid        | pid               | pid           |
-| error.msg         | error_message     | error message |
-| project           | project           | project       |
-| version           | version           | version       |
-| env               | env               | env           |
-| _dd.base_service  | _dd_base_service  | base service  |
+| Mete              | GuanCe tag        | doc                   | 
+|:------------------|:------------------|:----------------------|
+| http.url          | http_url          | HTTP url              |
+| http.hostname     | http_hostname     | hostname              |
+| http.route        | http_route        | route                 |
+| http.status_code  | http_status_code  | status code           |
+| http.method       | http_method       | method                |
+| http.client_ip    | http_client_ip    | client IP             |
+| sampling.priority | sampling_priority | sample                |
+| span.kind         | span_kind         | span kind             |
+| error             | error             | is error              |
+| dd.version        | dd_version        | agent version         |
+| error.message     | error_message     | error message         |
+| error.stack       | error_stack       | error stack           |
+| error_type        | error_type        | error trye            |
+| system.pid        | pid               | pid                   |
+| error.msg         | error_message     | error message         |
+| project           | project           | project               |
+| version           | version           | version               |
+| env               | env               | env                   |
+| host              | host              | host from dd.tags     |
+| pod_name          | pod_name          | pod_name from dd.tags |
+| _dd.base_service  | _dd_base_service  | base service          |
 
 In the link interface of the observation cloud, tags that are not in the list can also be filtered.
+
+Restore whitelist functionality from DataKit version [1.22.0](../datakit/changelog.md#cl-1.22.0). If there are labels that must be extracted from the first level label list, they can be found in the `customer_tags`.
+
+If the configured whitelist label is in the native `message.meta`, Will convert to replace `.` with `_`.
 
 ## Measurements {#measurements}
 

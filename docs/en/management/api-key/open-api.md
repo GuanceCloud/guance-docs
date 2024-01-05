@@ -2,7 +2,9 @@
 ---
 
 
-Guance supports obtaining and updating the data of Guance workspace by calling the Open API interface. For a detailed list of APIs, please see [Guance OpenAPI Doc Library](../../open-api/index.md).
+Guance supports obtaining and updating the data of Guance workspace by calling the Open API interface. 
+
+> For a detailed list of APIs, see [Guance OpenAPI Doc Library](../../open-api/index.md).
 
 
 ## Authentication Method
