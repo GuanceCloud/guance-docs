@@ -3,7 +3,7 @@
 
 智能监控对于业务分析、用户行为的分析、以及出现故障的根因分析能力，提供了一套快速定位异常节点的机制。适用于业务类指标、波动性比较强的指标。通过分析场景构建对多维指标做关键维度的定位；在定位到业务的维度范围后，围绕着微服务中服务的调用，服务的资源依赖，快速定位分析异常。
 
-通过[主机智能检测](host-intelligent-detection.md)、[日志智能检测](log-intelligent-monitoring.md)、[应用智能检测](application-intelligent-detection.md)等检测规则配置监控。设置检测范围和通知人，基于智能检测算法，识别异常数据并预测未来走势。
+通过[主机智能检测](host-intelligent-detection.md)、[日志智能检测](log-intelligent-monitoring.md)、[应用智能检测](application-intelligent-detection.md)、[用户访问智能检测](rum-intelligent-detection.md)等检测规则配置监控。设置检测范围和通知人，基于智能检测算法，识别异常数据并预测未来走势。
 
 **注意**：区别于传统的监控模式，智能监控无需配置检测阈值及触发规则，只需设定检测范围及通知人即可一键开启监控，通过智能算法识别定位异常，支持异常区间的分析与报告。
 

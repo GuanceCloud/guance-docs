@@ -174,7 +174,7 @@ Sourcemap（源代码映射）用于将生产环境中的压缩代码映射回�
 
 ---
 
-您可以使用 [**source-map-visualization**](https://evanw.github.io/source-map-visualization/) 等来源映射可视化工具，验证文件可用性。
+您可以使用 **[source-map-visualization](https://evanw.github.io/source-map-visualization/)**等来源映射可视化工具，验证文件可用性。
 
 
 ## 文件上传和删除
@@ -194,6 +194,6 @@ Sourcemap（源代码映射）用于将生产环境中的压缩代码映射回�
     - 上传同名文件会出现覆盖提示，请注意。
 
 
-另外，支持 Datakit 采集器配置 Sourcemap 转换。
+另外，支持 Datakit 采集器配置 Source Map 转换。
 
-> 更多详情，可了解[Sourcemap 转换](../integrations/rum.md#sourcemap)。
+> 更多详情，可了解[Sourcemap 转换](../../integrations/rum.md#sourcemap)。
