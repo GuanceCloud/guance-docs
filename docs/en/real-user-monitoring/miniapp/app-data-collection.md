@@ -117,7 +117,6 @@ In addition to global properties, you can also build scenarios and configure eve
 | **Fields**        | **Type** | **Description**                                        |
 | :-------------- | :------- | :---------------------------------------------- |
 | `view_id`       | string   | Unique ID for each page view.                      |
-| `is_active`     | boolean  | Judge whether the user is still active. |
 | `view_referrer` | string   | The URL of the previous web page from which a link to the currently requested page was followed.                            |
 | `view_name`     | string   | View URL                                        |
 
@@ -132,6 +131,7 @@ In addition to global properties, you can also build scenarios and configure eve
 | `onshow_to_onready` | number（ns） | Page onshow time to onready time consuming |
 | `onready` | number（ns） | Page onready time |
 | `setdata_duration` | number（ns） | Total time spent on page set_data (sum of time spent on all setedates under one view_id) |
+| `is_active`     | boolean  | Judge whether the user is still active. |
 
 #### Statistical Metrics
 
