@@ -110,7 +110,6 @@ In addition to global properties, you can also build scenarios and configure eve
 | **Fields**        | **Type** | **Description**                                        |
 | :-------------- | :------- | :---------------------------------------------- |
 | `view_id`       | string   | Unique ID for each page view.                      |
-| `is_active`     | boolean  | Judge whether the user is still active. |
 | `view_referrer` | string   | The URL of the previous web page from which a link to the currently requested page was followed.                            |
 | `view_name`     | string   | View name                                        |
 
@@ -120,6 +119,7 @@ In addition to global properties, you can also build scenarios and configure eve
 | --- | --- | --- |
 | <del>`loading_time`</del> | number（ns） | <del>Page loading time</del> |
 | `time_spent` | number（ns） | Page dwell time |
+| `is_active`     | boolean  | Judge whether the user is still active. |
 
 #### Statistical Metrics
 

@@ -121,7 +121,6 @@
 | 字段            | 类型 | 描述                                                    |
 | :------------------ | :------- | :----------------------------------------------------------- |
 | `view_id`           | string   | 每次访问页面时产生的唯一 ID                                  |
-| `is_active`         | boolean  | 判断用户是否还在活跃状态，参考值: true & false              |
 | `view_loading_type` | string   | 页面加载类型， 参考值：`initial_load` | `route_change` `route_change`为 SPA 页面加载模式 |
 | `view_referrer`     | string   | 页面来源                                                     |
 | `view_url`          | string   | 页面 URL                                                     |
@@ -149,6 +148,7 @@
 | `dom` | number（ns） | DOM 解析耗时<br>计算方式：domComplete - domInteractive |
 | `dom_ready` | number（ns） | DOM Ready时间<br>计算方式：domContentLoadedEventEnd - navigationStart |
 | `time_spent` | number（ns） | 页面停留时间 |
+| `is_active`     | boolean  | 判断用户是否还在活跃状态，参考值: true & false |
 
 #### 统计指标
 
