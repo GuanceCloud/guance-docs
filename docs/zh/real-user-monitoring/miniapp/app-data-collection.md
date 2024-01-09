@@ -120,7 +120,6 @@
 | 字段        | 类型 | 描述                                            |
 | --------------- | -------- | --------------------------------------------------- |
 | `view_id`       | string   | 每次访问页面时产生的唯一 ID                          |
-| `is_active`     | boolean  | 判断用户是否还在活跃状态，参考值: true & false |
 | `view_referrer` | string   | 页面来源                                            |
 | `view_name`     | string   | 页面 URL                                             |
 
@@ -135,6 +134,7 @@
 | `onshow_to_onready` | number（ns） | 页面 onshow 时间到 onready 耗时 |
 | `onready` | number（ns） | 页面 onready 时间 |
 | `setdata_duration` | number（ns） | 页面 `set_data` 总耗时（一个 `view_id` 下所有 setedate 的耗时总和） |
+| `is_active`     | boolean  | 判断用户是否还在活跃状态，参考值: true & false |
 
 #### 统计指标
 
@@ -154,7 +154,6 @@
 | 字段        | 类型 | 描述                                            |
 | --------------- | -------- | --------------------------------------------------- |
 | `view_id`       | string   | 每次访问页面时产生的唯一 ID                          |
-| `is_active`     | boolean  | 判断用户是否还在活跃状态，参考值: true & false |
 | `view_referrer` | string   | 页面来源                                            |
 | `view_name`     | string   | 页面 URL                                             |
 
