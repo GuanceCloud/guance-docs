@@ -1,5 +1,19 @@
+---
+title     : 'Jenkins'
+summary   : 'Collect Jenkins metrics and logs'
+__int_icon      : 'icon/jenkins'
+dashboard :
+  - desc  : 'Jenkins'
+    path  : 'dashboard/en/jenkins'
+monitor   :
+  - desc  : 'Jenkins'
+    path  : 'monitor/en/jenkins'
+---
 
+<!-- markdownlint-disable MD025 -->
 # Jenkins
+<!-- markdownlint-enable -->
+
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
@@ -8,7 +22,9 @@
 
 The Jenkins collector monitors Jenkins through plugin `Metrics` data collection, including but not limited to the number of tasks, system cpu usage, `jvm cpu` usage, and so on
 
-## Preconditions {#requirements}
+## Configuration {#config}
+
+### Preconditions {#requirements}
 
 - JenKins version >= `2.332.1`; Already tested version:
     - [x] 2.332.1
@@ -17,8 +33,7 @@ The Jenkins collector monitors Jenkins through plugin `Metrics` data collection,
 - Download the `Metric` plug-in, [management plug-in page](https://www.jenkins.io/doc/book/managing/plugins/){:target="_blank"},[Metric plug-in page](https://plugins.jenkins.io/metrics/){:target="_blank"}
 - Generate `Metric Access keys` on the JenKins administration page `your_manage_host/configure`
 
-## Configuration {#config}
-
+<!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
     Go to the `conf.d/jenkins` directory under the DataKit installation directory, copy `jenkins.conf.sample` and name it `jenkins.conf`. Examples are as follows:
@@ -35,8 +50,14 @@ The Jenkins collector monitors Jenkins through plugin `Metrics` data collection,
       ## Metric Access Key ,generate in your-jenkins-host:/configure,required
       key = ""
     
+      # ##(optional) collection interval, default is 30s
+      # interval = "30s"
+    
       ## Set response_timeout
       # response_timeout = "5s"
+    
+      ## Set true to enable election
+      # election = true
     
       ## Optional TLS Config
       # tls_ca = "/xx/ca.pem"
@@ -72,8 +93,9 @@ The Jenkins collector monitors Jenkins through plugin `Metrics` data collection,
 === "Kubernetes"
 
     The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+<!-- markdownlint-enable -->
 
-## Jenkins CI Visibility {#ci-visibility}
+### Jenkins CI Visibility {#ci-visibility}
 
 The Jenkins collector can realize CI visualization by receiving the CI Event from the Jenkins datadog plugin.
 
@@ -87,7 +109,7 @@ Jenkins CI Visibility opening method:
 
 After configuration, Jenkins can send CI events to Datakit through Datadog Plugin.
 
-## Measurements {#measurements}
+## Metric {#metric}
 
 For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit).
 You can specify additional labels for collected metrics in the configuration by `[inputs.jenkins.tags]`:
@@ -156,27 +178,27 @@ You can specify additional tags for the Jenkins CI Event in the configuration by
 
 | Tag | Description |
 |  ----  | --------|
-|`author_email`|作者邮箱|
-|`ci_status`|CI 状态|
-|`commit_sha`|触发 Pipeline 的最近一次 commit 的哈希值|
-|`object_kind`|Event 类型，此处为 Pipeline|
-|`operation_name`|操作名称|
-|`pipeline_name`|Pipeline 名称|
-|`pipeline_url`|Pipeline 的 URL|
-|`ref`|涉及的分支|
-|`repository_url`|仓库 URL|
-|`resource`|项目名|
+|`author_email`|Author's email|
+|`ci_status`|CI status|
+|`commit_sha`|The hash value of the most recent commit that triggered the Pipeline|
+|`object_kind`|Event type,here is Pipeline|
+|`operation_name`|Operation name|
+|`pipeline_name`|Pipeline name|
+|`pipeline_url`|Pipeline URL|
+|`ref`|Branches involved|
+|`repository_url`|Repository URL|
+|`resource`|Project name|
 
 - metric list
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`commit_message`|触发该 Pipeline 的代码的最近一次提交附带的 message|string|-|
-|`created_at`|Pipeline 创建的毫秒时间戳|int|msec|
-|`duration`|Pipeline 持续时长（微秒）|int|μs|
-|`finished_at`|Pipeline 结束的毫秒时间戳|int|msec|
-|`message`|该 Pipeline 的 ID，与 `pipeline_id` 相同|string|-|
+|`commit_message`|The message accompanying the most recent commit of the code that triggered the Pipeline|string|-|
+|`created_at`|The millisecond timestamp when Pipeline created|int|msec|
+|`duration`|Pipeline duration(μs)|int|μs|
+|`finished_at`|The millisecond timestamp when Pipeline finished|int|msec|
+|`message`|Pipeline id,same as `pipeline_id`|string|-|
 |`pipeline_id`|Pipeline id|string|-|
 
 
@@ -188,37 +210,37 @@ You can specify additional tags for the Jenkins CI Event in the configuration by
 
 | Tag | Description |
 |  ----  | --------|
-|`build_commit_sha`|build 对应的 commit 的哈希值|
-|`build_failure_reason`|build 失败的原因|
-|`build_name`|build 的名称|
-|`build_repo_name`|build 对应的仓库名|
-|`build_stage`|build 的阶段|
-|`build_status`|build 的状态|
-|`object_kind`|Event 类型，此处为 Job|
-|`project_name`|项目名|
-|`sha`|build 对应的 commit 的哈希值|
-|`user_email`|作者邮箱|
+|`build_commit_sha`|The hash value of the commit corresponding to Build|
+|`build_failure_reason`|Reason for Build failure|
+|`build_name`|Build name|
+|`build_repo_name`|The repository name corresponding to build|
+|`build_stage`|Build stage|
+|`build_status`|Build status|
+|`object_kind`|Event type,here is Job|
+|`project_name`|Project name|
+|`sha`|The hash value of the commit corresponding to Build|
+|`user_email`|Author's email|
 
 - metric list
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`build_commit_message`|触发该 build 的最近一次 commit 的 message|string|-|
-|`build_duration`|build 持续时长（微秒）|int|μs|
-|`build_finished_at`|build 结束的毫秒时间戳|int|msec|
-|`build_id`|build id|string|-|
-|`build_started_at`|build 开始的毫秒时间戳|int|msec|
-|`message`|build 对应的 job name|string|-|
-|`pipeline_id`|build 对应的 Pipeline id|string|-|
-|`runner_id`|build 对应的 runner id|string|-|
+|`build_commit_message`|The message of the latest commit that triggered this Build|string|-|
+|`build_duration`|Build duration(μs)|int|μs|
+|`build_finished_at`|The millisecond timestamp when Build finished|int|msec|
+|`build_id`|Build id|string|-|
+|`build_started_at`|The millisecond timestamp when Build started|int|msec|
+|`message`|The job name corresponding to Build|string|-|
+|`pipeline_id`|Pipeline id corresponding to Build|string|-|
+|`runner_id`|Runner id corresponding to Build|string|-|
 
 
 
 
 ## Log Collection {#logging}
 
-To collect the JenKins log, open `files` in JenKins.conf and write to the absolute path of the JenKins log file. For example:
+To collect the JenKins log, open `files` in *jenkins.conf* and write to the absolute path of the JenKins log file. For example:
 
 ```toml
     [[inputs.JenKins]]
@@ -232,12 +254,12 @@ When log collection is turned on, a log with a log `source` of `jenkins` is gene
 
 >Note: DataKit must be installed on the host where JenKins is located to collect JenKins logs.
 
-## Log Pipeline Feature Cut Field Description {#pipeline}
+### Log Pipeline Feature Cut Field Description {#pipeline}
 
 - JenKins Universal Log Cutting
 
 Example of common log text:
-```
+```log
 2021-05-18 03:08:58.053+0000 [id=32] INFO jenkins.InitReactorRunner$1#onAttained: Started all plugins
 ```
 

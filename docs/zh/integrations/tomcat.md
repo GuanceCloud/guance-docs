@@ -26,14 +26,16 @@ monitor   :
 
 ## 配置 {#config}
 
-## 前置条件 {#requrements}
+### 前置条件 {#requrements}
 
-- 已测试的版本：
+- 已测试的 Tomcat 版本：
 
     - [x] 11.0.0
     - [x] 10.1.10
     - [x] 9.0.76
     - [x] 8.5.90
+
+### 配置 {#config-ddtrace}
 
 - 下载 `dd-java-agent.jar` 包，参见 [这里](ddtrace.md){:target="_blank"};
 
@@ -99,7 +101,7 @@ export CATALINA_OPTS="-javaagent:dd-java-agent.jar \
 
 
 
-### `tomcat` {#measurements-tomcat}
+### `tomcat`
 
 - 标签
 
@@ -172,7 +174,7 @@ export CATALINA_OPTS="-javaagent:dd-java-agent.jar \
 
 日志示例：
 
-``` log
+```log
 0:0:0:0:0:0:0:1 - admin [24/Feb/2015:15:57:10 +0530] "GET /manager/images/tomcat.gif HTTP/1.1" 200 2066
 ```
 
@@ -194,7 +196,7 @@ export CATALINA_OPTS="-javaagent:dd-java-agent.jar \
 
 日志示例：
 
-``` log
+```log
 06-Sep-2021 22:33:30.513 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Xmx256m
 ```
 
@@ -355,7 +357,7 @@ Tomcat started.
 
 
 
-### `tomcat_global_request_processor` {#measurements-not-tomcat}
+### `tomcat_global_request_processor`
 
 - 标签
 
@@ -382,7 +384,7 @@ Tomcat started.
 
 
 
-### `tomcat_jsp_monitor` {#measurements-not-tomcat}
+### `tomcat_jsp_monitor`
 
 - 标签
 
@@ -409,7 +411,7 @@ Tomcat started.
 
 
 
-### `tomcat_thread_pool` {#measurements-not-tomcat}
+### `tomcat_thread_pool`
 
 - 标签
 
@@ -434,7 +436,7 @@ Tomcat started.
 
 
 
-### `tomcat_servlet` {#measurements-not-tomcat}
+### `tomcat_servlet`
 
 - 标签
 
@@ -462,7 +464,7 @@ Tomcat started.
 
 
 
-### `tomcat_cache` {#measurements-not-tomcat}
+### `tomcat_cache`
 
 - 标签
 
