@@ -135,10 +135,10 @@ http {
 
 | Tag | Description |
 |  ----  | --------|
-|`host`|host name which installed nginx|
-|`nginx_port`|nginx server port|
-|`nginx_server`|nginx server host|
-|`nginx_version`|nginx version, exist when using vts|
+|`host`|Host name which installed nginx|
+|`nginx_port`|Nginx server port|
+|`nginx_server`|Nginx server host|
+|`nginx_version`|Nginx version, exist when using vts|
 
 - 指标列表
 
@@ -152,7 +152,7 @@ http {
 |`connection_requests`|The total number of requests client connections|int|count|
 |`connection_waiting`|The total number of waiting client connections|int|count|
 |`connection_writing`|The total number of writing client connections|int|count|
-|`load_timestamp`|nginx process load time in milliseconds, exist when using vts|int|msec|
+|`load_timestamp`|Nginx process load time in milliseconds, exist when using vts|int|msec|
 
 
 

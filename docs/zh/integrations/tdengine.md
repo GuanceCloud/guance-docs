@@ -26,6 +26,8 @@ TDengine 采集器需要的连接 `taos_adapter` 才可以正常工作，taosAda
 
 ## 配置  {#config}
 
+### 采集器配置 {#input-config}
+
 <!-- markdownlint-disable MD046 -->
 === "主机安装"
 
@@ -79,64 +81,64 @@ TDengine 采集器需要的连接 `taos_adapter` 才可以正常工作，taosAda
 
 | Tag | Description |
 |  ----  | --------|
-|`client_ip`|请求端 IP|
-|`cluster_name`|集群名称|
-|`database_name`|数据库名称|
-|`dnode_ep`|数据节点名称，一般情况下与 end_point 等价|
-|`end_point`|远端地址名称，一般命名规则是(host:port)|
-|`first_ep`|first endpoint|
-|`host`|主机名|
-|`version`|version|
-|`vgroup_id`|虚拟组 ID|
+|`client_ip`|Client IP|
+|`cluster_name`|Cluster name|
+|`database_name`|Database name|
+|`dnode_ep`|Data node name, generally equivalent to `end_point`|
+|`end_point`|Remote address name, the general naming rule is (host:port)|
+|`first_ep`|First endpoint|
+|`host`|Host name|
+|`version`|Version|
+|`vgroup_id`|VGroup ID|
 
 - 指标列表
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`client_ip_count`|客户端 IP 请求次数统计|float|count|
-|`cpu_cores`|每个数据节点的 CPU 总核数|float|count|
-|`cpu_engine`|每个数据节点的 CPU 使用率|float|percent|
-|`cpu_percent`|adapter 占用 CPU 使用率|float|percent|
-|`cpu_system`|数据节点的 CPU 系统使用率|float|count|
-|`database_count`|数据库总个数|float|count|
-|`disk_percent`|数据节点磁盘使用率|float|percent|
-|`disk_total`|数据节点磁盘总量|float|GB|
-|`disk_used`|数据节点的磁盘使用量|float|GB|
-|`dnodes_alive`|集群中数据节点存活个数|float|count|
-|`dnodes_total`|集群中数据节点(dnode) 的总个数|float|count|
-|`expire_time`|企业版到期时间|int|s|
-|`io_read_taosd`|平均每秒 IO read 的数据大小|float|MB|
-|`io_write_taosd`|平均每秒 IO write 的数据大小|float|MB|
-|`master_uptime`|从 dnode 当选为 master 的时间|float|s|
-|`mem_engine`|TDEngine 占用内存量|float|MB|
-|`mem_engine_percent`|`taosd` 占用内存率|float|percent|
-|`mem_percent`|adapter 占用 MEM 使用率|float|percent|
-|`mem_system`|数据节点系统占用总内存量|float|MB|
-|`mem_total`|数据节点总内存量|float|GB|
-|`mnodes_alive`|数据库管理节点存活个数|float|count|
-|`mnodes_total`|数据库管理节点(`mnode`)个数|float|count|
-|`net_in`|入口网络的 IO 速率|float|KB|
-|`net_out`|出口网络的 IO 速率|float|KB|
-|`req_http`|通过 http 请求的总数|float|count|
-|`req_http_rate`|http 请求速率|float|count|
-|`req_insert_batch_rate`|请求插入数据批次速率|float|count|
-|`req_insert_rate`|请求插入数据的速率|float|count|
-|`req_select`|查询数量|float|count|
-|`req_select_rate`|查询速率|float|count|
-|`request_in_flight`|正在梳理的请求数量|float|count|
-|`status_code`|请求返回的状态码|float|count|
-|`table_count`|数据库中的表总数|float|count|
-|`tables_count`|数据库中每个 database 中表数量的指标|float|count|
-|`timeseries_total`|企业版总测点数|float|count|
-|`timeseries_used`|企业版已使用测点数|float|count|
-|`total_req_count`|adapter 总请求量|float|count|
-|`vgroups_alive`|数据库中虚拟节点组总存活数|float|count|
-|`vgroups_total`|数据库中虚拟节点组总数|float|count|
-|`vnodes`|单个数据节点中包括虚拟节点组的数量|float|count|
-|`vnodes_alive`|数据库中虚拟节点总存活数|float|count|
-|`vnodes_num`|每个数据节点的虚拟节点总数|float|count|
-|`vnodes_total`|数据库中虚拟节点总数|float|count|
+|`client_ip_count`|Client IP request statistics|float|count|
+|`cpu_cores`|Total number of CPU cores per data node|float|count|
+|`cpu_engine`|CPU usage per data node|float|percent|
+|`cpu_percent`|Adapter occupies CPU usage|float|percent|
+|`cpu_system`|CPU system usage of data nodes|float|count|
+|`database_count`|Total number of databases|float|count|
+|`disk_percent`|Data node disk usage percentage|float|percent|
+|`disk_total`|Total disk size of data nodes|float|GB|
+|`disk_used`|Disk usage of data nodes|float|GB|
+|`dnodes_alive`|Total number of dnodes in ready state|float|count|
+|`dnodes_total`|Total number of dnodes(data nodes) in cluster|float|count|
+|`expire_time`|Time until grants expire in seconds|int|s|
+|`io_read_taosd`|Average data size of IO reads per second|float|MB|
+|`io_write_taosd`|Average data size of IO writes per second|float|MB|
+|`master_uptime`|Seconds of master's uptime|float|s|
+|`mem_engine`|Memory usage of tdengine|float|MB|
+|`mem_engine_percent`|`taosd` memory usage percentage|float|percent|
+|`mem_percent`|Adapter memory usage|float|percent|
+|`mem_system`|Available memory on the server|float|MB|
+|`mem_total`|Total memory of server|float|GB|
+|`mnodes_alive`|Total number of mnodes in ready state|float|count|
+|`mnodes_total`|Total number of mnodes(management nodes) in cluster|float|count|
+|`net_in`|IO rate of the ingress network|float|KB|
+|`net_out`|IO rate of egress network|float|KB|
+|`req_http`|Total number of requests via HTTP|float|count|
+|`req_http_rate`|HTTP request rate|float|count|
+|`req_insert_batch_rate`|Number of batch insertions divided by monitor interval|float|count|
+|`req_insert_rate`|Number of insert queries received per dnode divided by monitor interval|float|count|
+|`req_select`|Number of select queries received per dnode|float|count|
+|`req_select_rate`|Number of select queries received per dnode divided by monitor interval|float|count|
+|`request_in_flight`|Number of requests being sorted|float|count|
+|`status_code`|Status code returned by the request|float|count|
+|`table_count`|Total number of tables in the database|float|count|
+|`tables_count`|Number of tables per vgroup|float|count|
+|`timeseries_total`|Total time series|float|count|
+|`timeseries_used`|Time series used|float|count|
+|`total_req_count`|Total adapter requests|float|count|
+|`vgroups_alive`|Total number of vgroups in ready state|float|count|
+|`vgroups_total`|Total number of vgroups in cluster|float|count|
+|`vnodes`|The number of virtual node groups contained in a single data node|float|count|
+|`vnodes_alive`|Total number of vnode in ready state|float|count|
+|`vnodes_num`|Total number of virtual nodes per data node|float|count|
+|`vnodes_total`|Total number of vnode in cluster|float|count|
 
 
 

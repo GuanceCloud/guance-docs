@@ -1,5 +1,19 @@
+---
+title     : 'OceanBase'
+summary   : 'Collect OceanBase metrics'
+__int_icon      : 'icon/oceanbase'
+dashboard :
+  - desc  : 'OceanBase'
+    path  : 'dashboard/en/oceanbase'
+monitor   :
+  - desc  : 'N/A'
+    path  : '-'
+---
 
+<!-- markdownlint-disable MD025 -->
 # OceanBase
+<!-- markdownlint-enable -->
+
 ---
 
 :fontawesome-brands-linux:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
@@ -12,7 +26,9 @@ Already tested version:
 
 - [x] OceanBase Enterprise 3.2.4
 
-## Precondition {#reqirement}
+## Configuration {#config}
+
+### Precondition {#reqirement}
 
 - Create a monitoring account
 
@@ -111,7 +127,7 @@ After installation, add the installed path `/u01/obclient/lib` to `LD_LIBRARY_PA
 apt-get install -y libaio-dev libaio1
 ```
 
-## Configuration {#config}
+### Collector Configuration {#input-config}
 
 === "Host Installation"
 
@@ -198,7 +214,7 @@ apt-get install -y libaio-dev libaio1
 
     The environment variable has highest priority, which means if existed that environment variable, the value in the environment variable will always treated as the password.
 
-## Measurements {#measurements}
+## Metric {#metric}
 
 For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.external.tags]`:
 
@@ -219,9 +235,9 @@ For all of the following data collections, a global tag named `host` is appended
 | Tag | Description |
 |  ----  | --------|
 |`host`|Host name.|
-|`ob_host_name`|实例所在的 Server 地址。|
-|`ob_version`|数据库实例的版本。|
-|`oceanbase_server`|数据库实例的地址（含端口）。|
+|`ob_host_name`|Server address where the instance is located.|
+|`ob_version`|The version of the database instance.|
+|`oceanbase_server`|The address of the database instance (including port).|
 |`oceanbase_service`|OceanBase service name.|
 
 - metric list
@@ -229,21 +245,21 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`ob_concurrent_limit_sql_count`|被限流的 SQL 个数。|int|count|
-|`ob_database_status`|数据库的状态。1: 正常 (active) 。|int|count|
-|`ob_lock_count`|数据库行锁的个数。|int|count|
-|`ob_lock_max_ctime`|数据库最大加锁耗时。单位：秒。|int|s|
-|`ob_mem_sum_count`|所有租户使用中的内存单元个数。|int|count|
-|`ob_mem_sum_used`|所有租户当前使用的内存数值。单位：Byte。|int|B|
-|`ob_memstore_active_rate`|所有服务器上所有租户的 Memtable 的内存活跃率。|float|percent|
-|`ob_plancache_avg_hit_rate`|所有 Server 上 plan_cache 的平均命中率。|float|percent|
-|`ob_plancache_mem_used_rate`|所有 Server 上 plan_cache 的总体内存使用率。（已经使用的内存/持有的内存）|float|percent|
-|`ob_plancache_sum_plan_num`|所有 Server 上 plan 的总数。|int|count|
-|`ob_ps_hit_rate`|PS(Prepared Statement) Cache 的命中率。|float|percent|
-|`ob_session_avg_wait_time`|所有服务器上所有 Session 的当前或者上一次等待事件的平均等待耗时。单位为微秒。|float|μs|
-|`ob_workarea_global_mem_bound`|auto 模式下，全局最大可用内存大小。|int|B|
-|`ob_workarea_max_auto_workarea_size`|预计最大可用内存大小，表示当前 workarea 情况下，auto 管理的最大内存大小。|int|B|
-|`ob_workarea_mem_target`|当前 workarea 可用内存的目标大小。|int|B|
+|`ob_concurrent_limit_sql_count`|Number of throttled SQL.|int|count|
+|`ob_database_status`|The status of the database. 1: Normal (active).|int|count|
+|`ob_lock_count`|The number of database row locks.|int|count|
+|`ob_lock_max_ctime`|Maximum database lock time (seconds).|int|s|
+|`ob_mem_sum_count`|The number of memory units in use by all tenants.|int|count|
+|`ob_mem_sum_used`|The memory value currently used by all tenants.|int|B|
+|`ob_memstore_active_rate`|Memory activity rate of Memtable for all tenants on all servers.|float|percent|
+|`ob_plancache_avg_hit_rate`|The average hit rate of plan_cache across all servers.|float|percent|
+|`ob_plancache_mem_used_rate`|Overall memory usage of plan_cache across all servers (memory used divided by memory held).|float|percent|
+|`ob_plancache_sum_plan_num`|The total number of plans on all servers.|int|count|
+|`ob_ps_hit_rate`|PS (Prepared Statement) Cache hit rate.|float|percent|
+|`ob_session_avg_wait_time`|The average waiting time of the current or last wait event for all Sessions on all servers.|float|μs|
+|`ob_workarea_global_mem_bound`|In auto mode, the global maximum available memory size.|int|B|
+|`ob_workarea_max_auto_workarea_size`|The maximum memory size managed by auto under the current workarea.|int|B|
+|`ob_workarea_mem_target`|The target size of the memory available to the current workarea.|int|B|
 
 
 
@@ -255,7 +271,7 @@ For all of the following data collections, a global tag named `host` is appended
 | Tag | Description |
 |  ----  | --------|
 |`host`|Hostname.|
-|`oceanbase_server`|数据库实例的地址（含端口）。|
+|`oceanbase_server`|The address of the database instance (including port).|
 |`oceanbase_service`|OceanBase service name.|
 
 - metric list

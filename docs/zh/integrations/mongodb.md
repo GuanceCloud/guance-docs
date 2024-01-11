@@ -76,6 +76,25 @@ $ mongo
       ## Gathering interval
       interval = "10s"
     
+      ## Specify one single Mongodb server. These server related fields will be ignored when the 'servers' field is not empty.
+      ## connection_format is a string in the standard connection format (mongodb://) or SRV connection format (mongodb+srv://).
+      connection_format = "mongodb://"
+    
+      ## The host and port. 
+      host_port = "127.0.0.1:27017"
+    
+      ## Username
+      username = "datakit"
+    
+      ## Password
+      password = "<PASS>"
+    
+      ## The authentication database to use.
+      # default_db = "admin"
+    
+      ## A query string that specifies connection specific options as <name>=<value> pairs.
+      # query_string = "authSource=admin&authMechanism=SCRAM-SHA-256"
+    
       ## A list of Mongodb servers URL
       ## Note: must escape special characters in password before connect to Mongodb server, otherwise parse will failed.
       ## Form: "mongodb://[user ":" pass "@"] host [ ":" port]"
@@ -83,7 +102,7 @@ $ mongo
       ## mongodb://user:pswd@localhost:27017/?authMechanism=SCRAM-SHA-256&authSource=admin
       ## mongodb://user:pswd@127.0.0.1:27017,
       ## mongodb://10.10.3.33:18832,
-      servers = ["mongodb://127.0.0.1:27017"]
+      # servers = ["mongodb://127.0.0.1:27017"]
     
       ## When true, collect replica set stats
       gather_replica_set_stats = false

@@ -22,7 +22,6 @@ monitor   :
 
 SQL Server 采集器采集 SQL Server `waitstats`、`database_io` 等相关指标
 
-
 ## 配置 {#config}
 
 ### 前置条件 {#requrements}
@@ -53,9 +52,16 @@ CREATE LOGIN [guance] WITH PASSWORD = N'yourpassword';
 GO
 ```
 
+<!-- markdownlint-disable MD046 -->
+???+ attention "注意事项"
+
+    注意，执行上述操作需要相应权限的帐号，否则可能会导致用户创建失败或者授权失败。
+
+    - 自建的 SQL Server 需要具备 WITH GRANT OPTION、CREATE ANY LOGIN、CREATE ANY USER、ALTER ANY LOGIN 权限的用户，也可以直接使用具有 sysadmin 角色的用户或者 local 用户授权。
+    - RDS for SQL Server 则需要使用高权限账号进行授权。
+
 ### 采集器配置 {#input-config}
 
-<!-- markdownlint-disable MD046 -->
 === "主机安装"
 
     进入 DataKit 安装目录下的 `conf.d/db` 目录，复制 `sqlserver.conf.sample` 并命名为 `sqlserver.conf`。示例如下：
@@ -69,6 +75,9 @@ GO
       ## your sqlserver user,password
       user = ""
       password = ""
+    
+      ## Instance name. If not specified, a connection to the default instance is made.
+      instance_name = ""
     
       ## (optional) collection interval, default is 10s
       interval = "10s"
@@ -117,7 +126,7 @@ GO
     目前可以通过 [ConfigMap 方式注入采集器配置](../datakit/datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
 <!-- markdownlint-enable -->
 
-#### 日志采集配置 {#logging-config}
+### 日志采集配置 {#logging-config}
 
 <!-- markdownlint-disable MD046 -->
 ???+ attention
@@ -544,7 +553,7 @@ SQL Server 通用日志文本示例：
 切割后的字段列表如下：
 
 | 字段名   | 字段值                | 说明                                          |
-| ---      | ---                   | ---                                           |
+| -------- | --------------------- | --------------------------------------------- |
 | `msg`    | `spid...`             | 日志内容                                      |
 | `time`   | `1622169967780000000` | 纳秒时间戳（作为行协议时间）                  |
 | `origin` | `spid10s`             | 源                                            |

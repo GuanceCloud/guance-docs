@@ -1,4 +1,19 @@
+---
+title     : 'Pythond'
+summary   : 'Collect data via Python extension'
+__int_icon      : 'icon/pythond'
+dashboard :
+  - desc  : 'N/A'
+    path  : '-'
+monitor   :
+  - desc  : 'N/A'
+    path  : '-'
+---
+
+<!-- markdownlint-disable MD025 -->
 # Developing Custom Collector with Python
+<!-- markdownlint-enable -->
+
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
@@ -7,7 +22,7 @@
 
 pythond is a complete set of scenes for firing user-defined python collection scripts at regular intervals.
 
-## Preconditions {#reqirement}
+## Configuration {#config}
 
 ### Python Environment {#req-python}
 
@@ -270,7 +285,7 @@ class Demo(DataKitFramework):
             )
 ```
 
-## Configuration {#config}
+### Collector Configuration {#config}
 
 Go to the `conf.d/pythond` directory under the DataKit installation directory, copy `pythond.conf.sample` and name it `pythond.conf`. Examples are as follows:
 
@@ -290,7 +305,7 @@ Go to the `conf.d/pythond` directory under the DataKit installation directory, c
   dirs = []
 ```
 
-## Git Support {#git}
+### Git Support {#git}
 
 Support the use of git repo. Once git repo is enabled, the path filled in args in conf is relative to the path of `gitrepos` . For example, args will fill in `mytest` in the following case:
 
