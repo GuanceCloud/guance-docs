@@ -49,7 +49,6 @@ DataKit will convert the reported data into the format of Guance link data accor
 
 ## More References
 
-- Quick Start: [Open Distributed Application Performance Watch (APM)](../../getting-started/basic-introduction/apm-observable/)
 
 - Best Practices: [Distributed Link Tracing (apm) Best Practices](../../best-practices/monitoring/apm/)
 
