@@ -148,7 +148,7 @@ tracer.setConfig({
 
 | 参数名称              | 参数类型 | 必须 | 参数说明                                                     |
 | --------------------- | -------- | -------- | ------------------------------------------------------------ |
-| samplerate            | double   | 否       | 采样率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。              |
+| samplerate            | number   | 否       | 采样率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。              |
 | traceType             | string   | 否       | 链路类型：`ddTrace`（默认）、`zipkinMultiHeader`、`zipkinSingleHeader`、`traceparent`、`skywalking`、`jaeger` |
 | enableLinkRUMData     | boolean  | 否       | 是否与 `RUM` 数据关联，默认`false`                           |
 | enableNativeAutoTrace | boolean  | 否       | 是否开启原生网络自动追踪 iOS `NSURLSession` ,Android `OKhttp`，默认`false`, 纯 `uni-app` 应用建议关闭, Android 云打包不支持 |
