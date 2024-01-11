@@ -70,7 +70,7 @@ FTUnityBridge.Install(new SDKConfig
 
 | **字段** | **类型** | **必须** | **说明** |
 | --- | --- | --- | --- |
-| serverUrl | string | 是 | datakit 安装地址 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529。注意：安装 SDK 设备需能访问这地址 |
+| serverUrl | string | 是 | datakit 访问 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529。注意：安装 SDK 设备需能访问这地址 |
 | env | string | 否 | 环境，默认`prod`.prod：线上环境；gray：灰度环境；pre：预发布环境；common：日常环境；local：本地环境，支持自定义 |
 | debug | bool | 否 | 是否开启调试模式 |
 | globalContext | dictionary | 否 | 添加 SDK 全局属性，添加规则请查阅[此处](#key-conflict)|

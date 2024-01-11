@@ -682,11 +682,11 @@ android{
 	    /**
 	     * 添加错误信息
 	     *
-	     * @param log
-	     * @param message
-	     * @param errorType
-	     * @param state
-	     * @param property
+	     * @param log       日志
+	     * @param message   消息
+	     * @param errorType 错误类型
+	     * @param state     程序运行状态
+		 * @param property  附加属性
 	     */
 	    public void addError(String log, String message, ErrorType errorType, AppState state, HashMap<String, Object> property)
 
@@ -702,6 +702,55 @@ android{
 	     */
 	    public void addError(String log, String message, long dateline, ErrorType errorType,
 	                         AppState state, HashMap<String, Object> property)
+
+		
+		/**
+	     * 添加错误信息
+	     *
+	     * @param log       日志
+	     * @param message   消息
+	     * @param errorType 错误类型
+	     * @param state     程序运行状态
+	     */
+	    public void addError(String log, String message, String errorType, AppState state)
+
+
+	     /**
+	     * 添加错误
+	     *
+	     * @param log       日志
+	     * @param message   消息
+	     * @param errorType 错误类型
+	     * @param state     程序运行状态
+	     * @param dateline  发生时间，纳秒
+	     */
+	    public void addError(String log, String message, long dateline, String errorType, AppState state)
+
+	    /**
+	     * 添加错误信息
+	     *
+	     * @param log       日志
+	     * @param message   消息
+	     * @param errorType 错误类型
+	     * @param state     程序运行状态
+	     * @param property  附加属性
+	     */
+	    public void addError(String log, String message, String errorType, AppState state, HashMap<String, Object> property)
+
+
+	    /**
+	     * 添加错误
+	     *
+	     * @param log       日志
+	     * @param message   消息
+	     * @param errorType 错误类型
+	     * @param state     程序运行状态
+	     * @param dateline  发生时间，纳秒
+		 * @param property  附加属性
+	     */
+	    public void addError(String log, String message, long dateline, String errorType,
+	                         AppState state, HashMap<String, Object> property)
+
 
 	```
 
@@ -732,11 +781,11 @@ android{
 		 /**
 	     * 添加错误信息
 	     *
-	     * @param log
-	     * @param message
-	     * @param errorType
-	     * @param state
-	     * @param property
+	     * @param log       日志
+	     * @param message   消息
+	     * @param errorType 错误类型
+	     * @param state     程序运行状态
+		 * @param property  附加属性
 	     */
 		fun addError(log: String, message: String, errorType: ErrorType, state: AppState, property: HashMap<String, Any>)
 
@@ -748,8 +797,54 @@ android{
 	     * @param errorType 错误类型
 	     * @param state     程序运行状态
 	     * @param dateline  发生时间，纳秒
+		 * @param property  附加属性
 	     */
 		fun addError(log: String, message: String, dateline: Long, errorType: ErrorType,state: AppState, property: HashMap<String, Any>)
+
+
+			/**
+	     * 添加错误信息
+	     *
+	     * @param log       日志
+	     * @param message   消息
+	     * @param errorType 错误类型
+	     * @param state     程序运行状态
+	     */
+		fun addError(log: String, message: String, errorType: String, state: AppState)
+
+		 /**
+	     * 添加错误
+	     *
+	     * @param log       日志
+	     * @param message   消息
+	     * @param errorType 错误类型
+	     * @param state     程序运行状态
+	     * @param dateline  发生时间，纳秒
+	     */
+		fun addError(log: String, message: String, dateline: Long, errorType: String, state: AppState)
+
+		 /**
+	     * 添加错误信息
+	     *
+	     * @param log       日志
+	     * @param message   消息
+	     * @param errorType 错误类型
+	     * @param state     程序运行状态
+		 * @param property  附加属性
+	     */
+		fun addError(log: String, message: String, errorType: String, state: AppState, property: HashMap<String, Any>)
+
+		 /**
+	     * 添加错误
+	     *
+	     * @param log       日志
+	     * @param message   消息
+	     * @param errorType 错误类型
+	     * @param state     程序运行状态
+	     * @param dateline  发生时间，纳秒
+		 * @param property  附加属性
+	     */
+		fun addError(log: String, message: String, dateline: Long, errorType: String,state: AppState, property: HashMap<String, Any>)
 
 	```
 
