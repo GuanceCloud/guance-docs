@@ -71,6 +71,11 @@
 
 在日志查看器搜索栏，支持[多种搜索方式和筛选方式](../getting-started/function-details/explorer-search.md)。
 
+输入搜索或筛选条件后，可查看查询的预览效果。您可以复制该条件，直接用于图表或查询工具。
+
+<img src="../img/bar-preview.png" width="60%" >
+
+
 ### DQL 搜索 {#dql}
 
 **前提**：DQL 搜索功能目前仅支持日志查看器使用。
