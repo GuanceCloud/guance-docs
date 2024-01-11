@@ -82,9 +82,11 @@
 
 > 更多 DQL 语法，可参考 [DQL 定义](../dql/define.md)。
 
-### 快捷筛选
+### 快捷筛选 {#filter}
 
 在日志查看器快捷筛选，支持编辑[快捷筛选](../getting-started/function-details/explorer-search.md#quick-filter)，添加新的筛选字段。
+
+**注意**：若快捷筛选的列出值受采样影响，显示采样率，并支持用户临时关闭采样。
 
 ### 自定义显示列
 
@@ -233,9 +235,13 @@ curl '<Endpoint>/api/v1/df/query_data?search_after=\[1680226330509,8572,"L_16802
 
 ![](img/17.explorer_5.png)
 
-### 日志内容
+### 日志内容 {#content}
 
-日志内容根据 `message` 类型自动显示 JSON 和文本两种查看模式。若日志没有 `message` 字段，则不显示日志内容部分，日志内容支持展开收起，默认为展开状态，收起后仅显示 1 行的高度。
+- 日志内容根据 `message` 类型自动显示 JSON 和文本两种查看模式。若日志没有 `message` 字段，则不显示日志内容部分，日志内容支持展开收起，默认为展开状态，收起后仅显示 1 行的高度；
+
+- 对于 `source = bpf_net_l4_log` 的日志，自动显示 JSON 和报文两种查看模式。报文模式显示客户端、服务端、时间等相关信息，支持切换查看绝对时间/相对时间，默认显示绝对时间，切换后该配置会保存至本地浏览器。
+
+![](img/explorer_001.png)
 
 ### 扩展字段
 
@@ -248,7 +254,6 @@ curl '<Endpoint>/api/v1/df/query_data?search_after=\[1680226330509,8572,"L_16802
 :material-numeric-3-circle-outline: 当鼠标选中扩展字段，点击前面的下拉图标，显示**筛选字段值**、**反向筛选字段值**、**添加到显示列**和**复制**的小图标进行快速筛选查看。
 
 ![](img/17.explorer_4.png)
-
 
 ### 关联分析
 
@@ -329,6 +334,7 @@ curl '<Endpoint>/api/v1/df/query_data?search_after=\[1680226330509,8572,"L_16802
     
     ![](img/7.host_network_2.png)
     
+
     **匹配字段**
     
     在详情页中查看相关网络，需要匹配对应的关联字段，即在数据采集的时候需要配置对应的字段标签，否则无法在详情页中匹配查看关联的网络视图。
@@ -351,6 +357,22 @@ curl '<Endpoint>/api/v1/df/query_data?search_after=\[1680226330509,8572,"L_16802
     | namespace、deployment      |
     | deployment_name            |
     | deployment                 |
+
+    ???+ abstract "BPF 日志"
+     
+        对于 `source = bpf_net_l4_log` 和 `source:bpf_net_l7_log` 的日志，支持查看**关联网络**（关联字段：`host`）。
+        
+        通过 `inner_traceid` 和 `l7_trace_id` 关联网络日志：
+     
+        - `inner_traceid` 字段，关联同一网卡的 4 层和 7 层网络；
+
+        - `l7_trace_id` 字段，关联跨网卡的 4 层和 7 层网络。
+    
+        关联的网络视图：
+
+        :material-numeric-1-circle-outline: `pod` 匹配 `src_k8s_pod_name`字段，显示 pod 内置视图。
+
+        :material-numeric-2-circle-outline: `deployment` 匹配 `src_k8s_deployment_name` 字段，显示 deployment 内置视图。
 
     - Service：匹配字段如下，支持点击右侧的**复制**按钮复制关联字段及其值。
 
