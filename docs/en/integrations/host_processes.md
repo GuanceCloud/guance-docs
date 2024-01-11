@@ -115,29 +115,29 @@ For all of the following data collections, a global tag named `host` is appended
 
 ### `host_processes`
 
-采集进程指标数据，包括 CPU/内存使用率等
+Collect process metrics, including CPU/memory usage, etc.
 
 - tag
 
 
 | Tag | Description |
 |  ----  | --------|
-|`host`|主机名|
-|`pid`|进程 ID|
-|`process_name`|进程名|
-|`username`|用户名|
+|`host`|Host name|
+|`pid`|Process ID|
+|`process_name`|Process name|
+|`username`|Username|
 
 - field list
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`cpu_usage`|CPU 使用占比，进程自启动以来所占 CPU 百分比，该值相对会比较稳定（跟 `top` 的瞬时百分比不同）|float|percent|
-|`cpu_usage_top`|CPU 使用占比，一个采集周期内的进程的 CPU 使用率均值|float|percent|
-|`mem_used_percent`|内存使用占比|float|percent|
-|`open_files`|打开文件个数(仅支持 Linux, 且需开启 `enable_open_files` 选项)|int|count|
-|`rss`|Resident Set Size （常驻内存大小）|int|B|
-|`threads`|线程数|int|count| 
+|`cpu_usage`|CPU usage, the percentage of CPU occupied by the process since it was started. This value will be more stable (different from the instantaneous percentage of `top`)|float|percent|
+|`cpu_usage_top`|CPU usage, the average CPU usage of the process within a collection cycle|float|percent|
+|`mem_used_percent`|Memory usage percentage|float|percent|
+|`open_files`|Number of open files (only supports Linux)|int|count|
+|`rss`|Resident Set Size (resident memory size)|int|B|
+|`threads`|Total number of threads|int|count| 
 
 
 
@@ -158,38 +158,38 @@ For all of the following data collections, a global tag named `host` is appended
 
 ### `host_processes`
 
-采集进程对象的数据，包括进程名，进程命令等
+Collect data on process objects, including process names, process commands, etc.
 
 - tag
 
 
 | Tag | Description |
 |  ----  | --------|
-|`host`|主机名|
-|`listen_ports`|进程正在监听的端口。对应配置文件的 `enable_listen_ports`，默认为 false，不携带此字段|
-|`name`|name 字段，由 `[host-name]_[pid]` 组成|
-|`process_name`|进程名|
-|`state`|进程状态，暂不支持 Windows|
-|`username`|用户名|
+|`host`|Host name|
+|`listen_ports`|The port the process is listening onW|
+|`name`|Name field, consisting of `[host-name]_[pid]`|
+|`process_name`|Process name|
+|`state`|Process status, currently not supported on Windows|
+|`username`|Username|
 
 - field list
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`cmdline`|进程的命令行参数|string|-|
-|`cpu_usage`|CPU 使用占比（%*100），进程自启动以来所占 CPU 百分比，该值相对会比较稳定（跟 `top` 的瞬时百分比不同）|float|percent|
-|`cpu_usage_top`|CPU 使用占比（%*100）, 一个采集周期内的进程的 CPU 使用率均值|float|percent|
-|`mem_used_percent`|内存使用占比（%*100）|float|percent|
-|`message`|进程详细信息|string|-|
-|`open_files`|打开的文件个数(仅支持 Linux, 且需开启 `enable_open_files` 选项)|int|count|
-|`pid`|进程 ID|int|-|
-|`rss`|Resident Set Size （常驻内存大小）|int|B|
-|`start_time`|进程启动时间|int|msec|
-|`started_duration`|进程启动时长|int|sec|
-|`state_zombie`|是否是僵尸进程|bool|-|
-|`threads`|线程数|int|count|
-|`work_directory`|工作目录(仅支持 Linux)|string|-| 
+|`cmdline`|Command line parameters for the process|string|-|
+|`cpu_usage`|CPU usage, the percentage of CPU occupied by the process since it was started. This value will be more stable (different from the instantaneous percentage of `top`)|float|percent|
+|`cpu_usage_top`|CPU usage, the average CPU usage of the process within a collection cycle|float|percent|
+|`mem_used_percent`|Memory usage percentage|float|percent|
+|`message`|Process details|string|-|
+|`open_files`|Number of open files (only supports Linux, and the `enable_open_files` option needs to be turned on)|int|count|
+|`pid`|Process ID|int|-|
+|`rss`|Resident Set Size (resident memory size)|int|B|
+|`start_time`|process start time|int|msec|
+|`started_duration`|Process startup time|int|sec|
+|`state_zombie`|Whether it is a zombie process|bool|-|
+|`threads`|Total number of threads|int|count|
+|`work_directory`|Working directory (Linux only)|string|-| 
 
 
 

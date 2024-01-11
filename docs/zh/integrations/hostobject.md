@@ -132,16 +132,16 @@ Datakit 默认开启云同步，目前支持阿里云/腾讯云/AWS/华为云/�
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cpu_usage`|CPU usage|float|percent|
-|`datakit_ver`|collector version|string|-|
-|`disk_used_percent`|disk usage|float|percent|
-|`diskio_read_bytes_per_sec`|disk read rate|int|B/S|
-|`diskio_write_bytes_per_sec`|disk write rate|int|B/S|
-|`load`|system load|float|-|
-|`logging_level`|log level|string|-|
-|`mem_used_percent`|memory usage|float|percent|
+|`datakit_ver`|Collector version|string|-|
+|`disk_used_percent`|Disk usage|float|percent|
+|`diskio_read_bytes_per_sec`|Disk read rate|int|B/S|
+|`diskio_write_bytes_per_sec`|Disk write rate|int|B/S|
+|`load`|System load|float|-|
+|`logging_level`|Log level|string|-|
+|`mem_used_percent`|Memory usage|float|percent|
 |`message`|Summary of all host information|string|-|
-|`net_recv_bytes_per_sec`|network receive rate|int|B/S|
-|`net_send_bytes_per_sec`|network send rate|int|B/S|
+|`net_recv_bytes_per_sec`|Network receive rate|int|B/S|
+|`net_send_bytes_per_sec`|Network send rate|int|B/S|
 |`start_time`|Host startup time (Unix timestamp)|int|ms|
 
 

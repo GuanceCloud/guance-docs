@@ -79,7 +79,7 @@ monitor   :
 | Tag | Description |
 |  ----  | --------|
 |`app_pool`|IIS app pool|
-|`host`|host name|
+|`host`|Host name|
 
 - 指标列表
 
@@ -103,7 +103,7 @@ monitor   :
 
 | Tag | Description |
 |  ----  | --------|
-|`host`|host name|
+|`host`|Host name|
 |`website`|IIS web site|
 
 - 指标列表
