@@ -1,7 +1,6 @@
 # 错误追踪
 ---
 
-## 简介
 
 观测云提供应用性能监测错误数据分析查看器，您可以在**应用性能监测**的**错误追踪**，快速查看链路中的类似错误的产生历史趋势及其分布情况，帮助快速定位性能问题。
 
@@ -11,13 +10,13 @@
 
 - [聚类分析](#analysis)：用于<u>快速查看最频繁发生</u>的需要被解决的链路错误
 
-> 观测云查看器提供强大的查询和分析功能，更多详情可参考文档 [查看器说明](../getting-started/function-details/explorer-search.md)。
+> 观测云查看器提供强大的查询和分析功能，可参考 [查看器说明](../getting-started/function-details/explorer-search.md)。
 
 ## 所有错误 {#errors}
 
 在观测云工作空间**应用性能监测 > 错误追踪**，选择**所有错误**列表，即可查看和分析所有链路的错误数据。
 
-<font color=coral>**注意：**</font>所有错误的数据统计的是基于错误状态 `status=error`，且含有错误类型 `error_type` 字段的 Span。
+**注意：**所有错误的数据统计的是基于错误状态 `status=error`，且含有错误类型 `error_type` 字段的 Span。
 
 ![](img/1.apm_error_12.png)
 
