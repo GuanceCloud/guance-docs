@@ -1,5 +1,19 @@
+---
+title     : 'Promtail'
+summary   : 'Collect log data reported by Promtail'
+__int_icon      : 'icon/promtail'
+dashboard :
+  - desc  : 'N/A'
+    path  : '-'
+monitor   :
+  - desc  : 'N/A'
+    path  : '-'
+---
 
+<!-- markdownlint-disable MD025 -->
 # Promtail Data Access
+<!-- markdownlint-enable -->
+
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
@@ -18,19 +32,24 @@ Already tested version:
 - [x] 1.0.0
 - [x] 0.1.0
 
+### Collector Configuration {#input-config}
+
 Go to the `conf.d/log` directory under the DataKit installation directory, copy `promtail.conf.sample` and name it `promtail.conf`. Examples are as follows:
 
-```toml
-
-[inputs.promtail]
-  #  以 legacy 版本接口处理请求时设置为 true，对应 loki 的 API 为 /api/prom/push。
-  legacy = false
-
-  [inputs.promtail.tags]
-    # some_tag = "some_value"
-    # more_tag = "some_other_value"
- 
-```
+    ```toml
+        
+    [inputs.promtail]
+      ##  When processing requests with the legacy version interface,
+      ##  setting it to true corresponds to the Loki API endpoint /api/prom/push.
+      #
+      legacy = false
+    
+      [inputs.promtail.tags]
+        # some_tag = "some_value"
+        # more_tag = "some_other_value"
+    
+    ```
+    After configuration, [Restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 ### API Version {#API version}
 
@@ -84,3 +103,7 @@ scrape_configs:
           job: varlogs
           __path__: /var/log/*log
 ```
+
+## Logging {#logging}
+
+The logs delivered by Promtail shall prevail.
