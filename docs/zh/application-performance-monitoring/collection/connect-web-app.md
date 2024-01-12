@@ -2,11 +2,10 @@
 
 ---
 
-## 简介
 
-APM 通过 `DDTrace`、`Zipkin`、`Skywalking`、`Jaeger`、`Opentelemetry` 采集器能够跟踪一个 Web 端应用程序完整的前端到后端的请求数据
+APM 通过 `DDTrace`、`Zipkin`、`Skywalking`、`Jaeger`、`Opentelemetry` 采集器能够跟踪一个 Web 端应用程序完整的前端到后端的请求数据。
 
-使用来自前端的 RUM 数据，以及注入到后端的 `trace_id`，可以快速的定位调用堆栈。
+使用来自前端的 RUM 数据以及注入到后端的 `trace_id`，可以快速定位调用堆栈。
 
 ## 前置条件
 
@@ -37,12 +36,12 @@ def after_request(response):
  ....
 ```
 
-<font color=coral>**注意：**</font>目标服务器需要使用的是 HTTP 服务。
+**注意：**目标服务器需要使用的是 HTTP 服务。
 
 ### 前端 RUM 设置步骤
 
-:material-numeric-1-circle: 在前端应用中[引入 RUM SDK](../../real-user-monitoring/web/app-access.md)；  
-:material-numeric-2-circle: 在初始化配置中添加 `allowedTracingOrigins` 参数，配置允许跟踪的前端请求 origin 白名单，可以是字符串数组，也可以是正则表达式。*（origin 的定义：`<scheme> "://" <hostname> [ ":" <port> ]`。）*
+1. 在前端应用中[引入 RUM SDK](../../real-user-monitoring/web/app-access.md)；  
+2. 在初始化配置中添加 `allowedTracingOrigins` 参数，配置允许跟踪的前端请求 origin 白名单，可以是字符串数组，也可以是正则表达式。*（origin 的定义：`<scheme> "://" <hostname> [ ":" <port> ]`）*
 
 *示例：*
 
