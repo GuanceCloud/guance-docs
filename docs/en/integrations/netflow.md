@@ -1,5 +1,18 @@
+---
+title     : 'NetFlow'
+summary   : 'NetFlow collector can be used to visualize and monitor NetFlow-enabled device.'
+__int_icon      : 'icon/netflow'
+dashboard :
+  - desc  : 'NetFlow'
+    path  : 'dashboard/zh/netflow'
+monitor   :
+  - desc  : 'NetFlow'
+    path  : 'monitor/zh/netflow'
+---
 
+<!-- markdownlint-disable MD025 -->
 # NetFlow
+<!-- markdownlint-enable -->
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
@@ -25,6 +38,7 @@ The following protocols are currently supported by Datakit:
 
 - NetFlow enabled device. Enabling method different between devices, refering to official guide is recommended. For example: [Enabling NetFlow on Cisco ASA](https://www.petenetlive.com/KB/Article/0000055){:target="_blank"}
 
+<!-- markdownlint-disable MD046 -->
 === "Host installation"
 
     Go to the `conf.d/netflow` directory under the DataKit installation directory, copy `netflow.conf.sample` and name it `netflow.conf`. Examples are as follows:
@@ -62,9 +76,9 @@ The following protocols are currently supported by Datakit:
 === "Kubernetes"
 
     The collector can now be turned on by [configMap injection collector configuration](datakit-daemonset-deploy.md#configmap-setting).
+<!-- markdownlint-enable -->
 
-
-## Data structure {#structure}
+## Log {#logging}
 
 Following is example of a log:
 
@@ -189,9 +203,9 @@ Explain as followings:
 |  ----:  | :----  |
 | ip | The IP address of the neighboring router |
 
-## Measurement {#measurements}
+## Metric {#metric}
 
-For all of the following data collections, a global tag named  `host` is appended by default (the tag value is the host name of the DataKit); other tags can be specified in the configuration through `[inputs.netflow.tags]`:
+For all the following data collections, a global tag named  `host` is appended by default (the tag value is the host name of the DataKit); other tags can be specified in the configuration through `[inputs.netflow.tags]`:
 
 ``` toml
  [inputs.netflow.tags]

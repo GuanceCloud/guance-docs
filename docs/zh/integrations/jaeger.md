@@ -304,7 +304,7 @@ func foo() {
 }
 ```
 
-## 链路字段 {#tracing}
+## 指标 {#metric}
 
 
 

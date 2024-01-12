@@ -1,5 +1,19 @@
+---
+title     : 'Host Object'
+summary   : 'Collect Basic Host Information'
+__int_icon      : 'icon/hostobject'
+dashboard :
+  - desc  : 'N/A'
+    path  : '-'
+monitor   :
+  - desc  : 'N/A'
+    path  : '-'
+---
 
+<!-- markdownlint-disable MD025 -->
 # Host Object
+<!-- markdownlint-enable -->
+
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
@@ -8,16 +22,14 @@
 
 Hostobject is used to collect basic host information, such as hardware model, basic resource consumption and so on.
 
-## Preconditions {#requirements}
-
-None
-
 ## Configuration {#config}
+
+In general, the host object is turned on by default and does not need to be configured.
+
+<!-- markdownlint-disable MD046 -->
 
 === "Host Installation"
 
-    In general, the host object is turned on by default and does not need to be configured.
-    
     Go to the `conf.d/host` directory under the DataKit installation directory, copy `hostobject.conf.sample` and name it `hostobject.conf`. Examples are as follows:
     
     ```toml
@@ -74,7 +86,9 @@ None
     | `ENV_INPUT_HOSTOBJECT_EXTRA_DEVICE`                        | `extra_device`                  | Additional device                            | `"/nfsdata"` separated by English commas                      |
     | `ENV_CLOUD_PROVIDER`                                 | `tags`                          | Designate cloud service provider                                                       | `aliyun/aws/tencent/hwcloud/azure`                                                                         |
 
-## Turn on Cloud Synchronization {#cloudinfo}
+<!-- markdownlint-enable -->
+
+### Turn on Cloud Synchronization {#cloudinfo}
 
 Datakit turns on cloud synchronization by default, and currently supports Alibaba Cloud/Tencent Cloud/AWS/Huawei Cloud/Microsoft Cloud. You can specify the cloud vendor explicitly by setting the cloud_provider tag, or you can detect it automatically by Datakit:
 
@@ -86,7 +100,7 @@ Datakit turns on cloud synchronization by default, and currently supports Alibab
 
 You can turn off cloud synchronization by configuring `disable_cloud_provider_sync = true` in the hostobject configuration file.
 
-## Measurements {#measurements}
+## Object {#object}
 
 For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.hostobject.tags]`:
 
@@ -118,19 +132,17 @@ For all of the following data collections, a global tag named `host` is appended
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cpu_usage`|CPU usage|float|percent|
-|`datakit_ver`|collector version|string|-|
-|`disk_used_percent`|disk usage|float|percent|
-|`diskio_read_bytes_per_sec`|disk read rate|int|B/S|
-|`diskio_write_bytes_per_sec`|disk write rate|int|B/S|
-|`load`|system load|float|-|
-|`logging_level`|log level|string|-|
-|`mem_used_percent`|memory usage|float|percent|
+|`datakit_ver`|Collector version|string|-|
+|`disk_used_percent`|Disk usage|float|percent|
+|`diskio_read_bytes_per_sec`|Disk read rate|int|B/S|
+|`diskio_write_bytes_per_sec`|Disk write rate|int|B/S|
+|`load`|System load|float|-|
+|`logging_level`|Log level|string|-|
+|`mem_used_percent`|Memory usage|float|percent|
 |`message`|Summary of all host information|string|-|
-|`net_recv_bytes_per_sec`|network receive rate|int|B/S|
-|`net_send_bytes_per_sec`|network send rate|int|B/S|
+|`net_recv_bytes_per_sec`|Network receive rate|int|B/S|
+|`net_send_bytes_per_sec`|Network send rate|int|B/S|
 |`start_time`|Host startup time (Unix timestamp)|int|ms|
-
-
 
 
 
@@ -150,7 +162,6 @@ If cloud synchronization is turned on, the following additional fields will be a
 | `private_ip`            | Instance private network IP    | string |
 | `zone_id`               | Instance Zone ID   | string |
 | `region`                | Instance Region ID | string |
-
 
 ### `message` Metric Field Structure {#message-struct}
 
@@ -237,12 +248,15 @@ The basic structure of the `message` field is as follows:
 | `elected`   | Election status | string |
 | `namespace` | Election space | string |
 
-
 #### `host.conntrack` {#host-conntrack}
+
+<!-- markdownlint-disable MD046 -->
 
 ???+ attention
 
     `conntrack` 仅 Linux 平台支持
+
+<!-- markdownlint-enable -->
 
 | Field Name                | Description                                           | Type  |
 | ---                   | ---                                            | :---: |
@@ -259,9 +273,13 @@ The basic structure of the `message` field is as follows:
 
 #### `host.filefd` {#host-filefd}
 
+<!-- markdownlint-disable MD046 -->
+
 ???+ attention
 
     `filefd` Linux platform only
+
+<!-- markdownlint-enable -->
 
 | Field Name         | Description                                                 | Type  |
 | ---            | ---                                                  | :---: |

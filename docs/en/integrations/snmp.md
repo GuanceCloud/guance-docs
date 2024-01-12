@@ -1,5 +1,19 @@
+---
+title     : 'SNMP'
+summary   : 'Collect metrics and object data from SNMP devices'
+__int_icon      : 'icon/snmp'
+dashboard :
+  - desc  : 'N/A'
+    path  : '-'
+monitor   :
+  - desc  : 'N/A'
+    path  : '-'
+---
 
+<!-- markdownlint-disable MD025 -->
 # SNMP
+<!-- markdownlint-enable -->
+
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
@@ -35,7 +49,9 @@ If you choose v1/v2c version, you need to provide `community string`, AKA `commu
 
 If you choose v3 version, you need to provide `username`, `authentication algorithm/password`, `encryption algorithm/password`, `context`, etc. Each device is different and should be filled in as same as configuration in SNMP device.
 
-## Configure Collector {#config-input}
+## Configuration {#config}
+
+### Input Configuration {#config-input}
 
 === "Host Installation"
 
@@ -256,7 +272,7 @@ As shown above, a device with `sysobjectid` of `1.3.6.1.4.1.9.1.1745` is defined
 
     The folder `conf.d/snmp/profiles` requires the SNMP collector to run once before it appears.
 
-## Measurements {#measurements}
+## Metric {#metric}
 
 All of the following data collections are appended by default with the name `host` (the value is the name of the SNMP device), or other labels can be specified in the configuration by `[inputs.snmp.tags]`:
 
@@ -271,7 +287,6 @@ All of the following data collections are appended by default with the name `hos
 
     All the following measurements and their metrics contain only some common fields, some device-specific fields, and some additional fields will be added according to different configurations and device models.
 
-### Metrics {#metrics}
 
 
 
@@ -280,8 +295,7 @@ All of the following data collections are appended by default with the name `hos
 
 
 
-
-#### `snmp_metric`
+### `snmp_metric`
 
 SNMP device metric data.
 
@@ -374,14 +388,13 @@ SNMP device metric data.
 
 
 
-
-### Object {#objects}
-
+## Object {#objects}
 
 
 
 
-#### `snmp_object`
+
+### `snmp_object`
 
 SNMP device object data.
 

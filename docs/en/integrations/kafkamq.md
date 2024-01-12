@@ -44,7 +44,7 @@ Copy configuration files and modify
       #[inputs.kafkamq.skywalking]
         ## Required！send to datakit skywalking input.
         #dk_endpoint="http://localhost:9529"
-    
+        #thread = 8 
         #topics = [
         #  "skywalking-metrics",
         #  "skywalking-profilings",
@@ -59,13 +59,16 @@ Copy configuration files and modify
       #[inputs.kafkamq.jaeger]
         ## Required！ ipv6 is "[::1]:9529"
         #dk_endpoint="http://localhost:9529"
-    
+        #thread = 8 
+        #source: agent,otel,others...
+        #source = "agent"
         ## Required！ topics
         #topics=["jaeger-spans","jaeger-my-spans"]
     
       ## user custom message with PL script.
       #[inputs.kafkamq.custom]
         #spilt_json_body = true
+        #thread = 8 
         ## spilt_topic_map determines whether to enable log splitting for specific topic based on the values in the spilt_topic_map[topic].
         #[inputs.kafkamq.custom.spilt_topic_map]
         #  "log_topic"=true
@@ -97,7 +100,7 @@ Copy configuration files and modify
         #metric_api="/otel/v1/metric"
         #trace_topics=["trace1","trace2"]
         #metric_topics=["otel-metric","otel-metric1"]
-    
+        #thread = 8 
     
       ## todo: add other input-mq
     
@@ -112,6 +115,14 @@ Notes on configuration files:
 1. `kafka_version`: The version length is 3, such as 1.0.0, 1.2.1, and so on.
 2. `offsets`: note: Newest or Oldest.
 3. `SASL`: If security authentication is enabled, please configure the user and password correctly.
+4. Starting from v1.23.0, it supports multi-threaded mode.
+
+### Consumer group mode {#consumer_group}
+
+The Kafka consumer group mode is a pattern in which multiple consumers collectively consume messages.
+In this mode, multiple consumers can form a consumer group, and each consumer can independently consume messages, but the same message will only be processed by one consumer within the group.
+This mode helps to achieve message load balancing, improve message processing throughput, and reliability.
+When a consumer within the group fails or goes offline, Kafka will automatically reassign the messages from that consumer to other consumers for processing, thereby achieving fault tolerance and high availability.
 
 ## SkyWalking {#kafkamq-SkyWalking}
 The kafka plugin will send `traces`, `JVM metrics`, `logging`, `Instance Properties`, and `profiled snapshots` to the kafka cluster by default.
@@ -325,6 +336,8 @@ When the amount of messages is large and the consumption capacity of one datakit
 
 ## Troubleshooting {#some_problems}
 
+### :material-chat-question: how to test Pipeline script {#test_Pipeline}
+
 Script test command to see if cutting is correct:
 
 ```shell
@@ -334,6 +347,16 @@ datakit pipeline -P metric.p -T '{"time": 1666492218,"dimensions":{"bk_biz_id": 
 We can setup [recorder](../datakit/datakit-tools-how-to.md#enable-recorder) in *datakit.conf* to check if data ok.
 
 Connection failure may be a version problem: Please fill in the kafka version correctly in the configuration file.
+
+### :material-chat-question: How to handle the situation of message backlog in Kafka {#message_backlog}
+
+1. Enable multi threaded mode to increase consumption capacity.
+2. If performance reaches a bottleneck, then expand physical memory and CPU.
+3. Increase the write capacity of the backend.
+4. Remove any network bandwidth restrictions.
+5. Increase the number of collectors and expand the number of message partitions to allow more consumers to consume.
+6. If the above solutions still cannot solve the problem, you can use [bug-report](../datakit/why-no-data/#bug-report) to collect runtime metrics for analysis.
+
 
 Other issues:
 

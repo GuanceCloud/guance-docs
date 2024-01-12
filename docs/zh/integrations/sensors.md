@@ -87,10 +87,10 @@ monitor   :
 
 | Tag | Description |
 |  ----  | --------|
-|`adapter`|device adapter|
-|`chip`|chip id|
-|`feature`|gathering target|
-|`hostname`|host name|
+|`adapter`|Device adapter|
+|`chip`|Chip id|
+|`feature`|Gathering target|
+|`hostname`|Host name|
 
 - 指标列表
 
