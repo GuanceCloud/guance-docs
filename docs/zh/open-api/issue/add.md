@@ -31,7 +31,7 @@
 |     参数名      | 参数类型 | 是否必填 |                  参数说明                   |
 |:---------------:|:--------:|:--------:|:-------------------------------------------:|
 |      name       |  string  |    Y     |                issue标题名称                |
-|      level      | integer  |    Y     |        issue等级 [0, 1, 2, 3] 3:未知        |
+|      level      | string  |     Y     |        issue等级 对应配置等级uuid       |
 |   decription    |  string  |    Y     |                issue描述信息                |
 | attachmentUuids |  array   |    N     |              附件上传列表uuid               |
 |     extend      |   json   |    Y     |                  扩展字段，默认传{}                  |
@@ -58,7 +58,7 @@
 curl 'https://openapi.guance.com/api/v1/issue/add' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
---data-raw '{"name":"dcacscsc","level":2,"description":"<span>cdscascas</span>","extend":{"channels":[{"type":"#","uuid":"chan_d5054276d1a74b518bf1b16f59c26e95"}],"view_isuue_url":"/exceptions/exceptionsTracking?leftActiveKey=ExceptionsTracking&activeName=ExceptionsTracking&w=wksp_ed134a6485c8484dbd0e58ce9a9c6115&classic=exceptions_tracing&issueName=SYS&activeChannel=%7BdefaultChannelUUID%7D&sourceType=exceptions_tracing&__docid=%7BissueUUID%7D"},"attachmentUuids":[]}'\
+--data-raw '{"name":"dcacscsc","level":"system_level_2","description":"<span>cdscascas</span>","extend":{"channels":[{"type":"#","uuid":"chan_d5054276d1a74b518bf1b16f59c26e95"}],"view_isuue_url":"/exceptions/exceptionsTracking?leftActiveKey=ExceptionsTracking&activeName=ExceptionsTracking&w=wksp_ed134a6485c8484dbd0e58ce9a9c6115&classic=exceptions_tracing&issueName=SYS&activeChannel=%7BdefaultChannelUUID%7D&sourceType=exceptions_tracing&__docid=%7BissueUUID%7D"},"attachmentUuids":[]}'\
 --compressed
 ```
 
@@ -92,7 +92,7 @@ curl 'https://openapi.guance.com/api/v1/issue/add' \
             "view_isuue_url": ""
         },
         "id": 47402,
-        "level": 2,
+        "level": "system_level_2",
         "name": "dcacscsc",
         "resource": "",
         "resourceType": "",

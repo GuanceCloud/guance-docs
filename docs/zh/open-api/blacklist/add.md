@@ -15,7 +15,7 @@
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
 | type | string | Y | 黑名单类型,枚举值类型有('object', 'custom_object', 'logging', 'keyevent', 'tracing', 'rum', 'network', 'security', 'profiling', 'metric')<br>允许为空: False <br> |
-| source | string | Y | 数据来源<br>允许为空: True <br>$maxCharacterLength: 128 <br> |
+| source | string | Y | 数据来源, type 字段为 logging支持全部来源,  tracing支持全部服务, 此时source为 re(`.*`)<br>允许为空: True <br>允许空字符串: False <br>$maxCharacterLength: 128 <br> |
 | filters | array | Y | 过滤条件<br>允许为空: True <br> |
 
 
@@ -25,24 +25,41 @@
 
 --------------
 
-**1.filters 数组元素字段说明
+**1.source 字段说明
+
+黑名单的过滤条件生成时 会根据 type 类型, 对参数 source 字段的 key 进行替换
+|  type        |   生成过滤条件时,source字段对应的key  |
+|---------------|----------|
+| object    |  class  |
+| logging    |  source  |
+| custom_object    |  class  |
+| keyevent    |  source  |
+| tracing    |  service  |
+| rum    |  app_id  |
+| network    |  source  |
+| security    |  category  |
+| profiling    |  service  |
+| metric    |  measurement  |
+
+
+**2.filters 数组元素字段说明
 
 |  参数名        |   type  | 必选  |          说明          |
 |---------------|----------|----|------------------------|
 | name    |  string  |  N | 筛选条件名 |
-| operation |  string  |  N | 进行对操作比如in、contain |
+| operation |  string  |  N | 进行对操作比如in、not_in、match、not_match|
 | condition    |  string  |  N | dql格式的过滤条件 |
 | values    |  array  |  N | 查询条件具体数值 |
 
-**2. operation 说明**
+**3. operation 说明**
+参考 行协议过滤器https://docs.guance.com/datakit/datakit-filter/
 
 |key|说明|
 |---|----|
-|in|等于|
-|not in|不等于|
-|contain|正则匹配|
-|not contain|正则不匹配|
-
+|in|指定的字段在列表中|
+|not_in|指定的字段不在列表中|
+|match|正则匹配|
+|not_match|正则不匹配|
 
 
 **filters 示例如下
@@ -60,7 +77,7 @@
                    "value":[
                        "a*"
                    ],
-                   "operation":"contain",
+                   "operation":"match",
                    "condition":"and"
                }
            ]
