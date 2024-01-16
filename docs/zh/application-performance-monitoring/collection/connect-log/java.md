@@ -3,9 +3,10 @@
 
 `Java` 应用日志关联链路数据需经过如下步骤：
 
-- 应用中开启日志；  
-- Datakit 开启[链路数据采集](../../../integrations/ddtrace.md)，并配置日志切割的 [Pipeline 脚本](../../../datakit/pipeline.md)，启动 Datakit；  
-- 启动 `Java` 应用。
+1. 应用中开启日志；  
+2. Datakit 开启[链路数据采集](../../../integrations/ddtrace.md)，并配置日志切割的 [Pipeline 脚本](../../../management/overall-pipeline.md)，启动 Datakit；  
+3. 启动 `Java` 应用。
+
 ## 日志 maven 导入
 
 ```
@@ -34,7 +35,9 @@
     </root>
 ```
 
-## datakit logging.conf 配置 微服务示例 路径找运维挂载日志卷
+## datakit logging.conf 配置
+
+微服务示例，路径找运维挂载日志卷：
 
 ```
 [[inputs.logging]]
@@ -157,7 +160,7 @@ json(_, `@timestamp`, time)
 default_time(time)
 ```
 
-经过 Pipeline 脚本切割处理后数据如下，通过 `trace_id`, `span_id` 等字段信息，日志数据即和链路数据关联起来。
+经过 Pipeline 脚本切割处理后数据如下，通过 `trace_id`，`span_id` 等字段信息，日志数据即和链路数据关联起来。
 
 ```
 {

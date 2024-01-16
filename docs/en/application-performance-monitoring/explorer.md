@@ -1,233 +1,317 @@
-# Link Explorer
+# Traces
+
 ---
 
-## Introduction
+In the Guance console, you can view all related data in **APM > Trace**. You can search, filter, export trace data, view trace details, and perform a comprehensive analysis of trace performance through flame graphs, Span lists, etc. Both synchronous and asynchronous calls can clearly track the data details of each trace.
 
-In the Guance Console, you can view all link data in the "Link" of "Application Performance Monitoring". You can search, filter, export link data, view link details, and analyze link performance through flame diagram and span list, and you can clearly track the data details of each link performance, whether it is synchronous or asynchronous call.
+## Trace List
 
-## Link List
+Guance provides three types of trace viewing lists, which are **All Spans**, **Entry Spans**, and **All Traces**.
 
+A Span represents a logical unit of work in a distributed system within a given time period, and multiple Spans constitute a trace trajectory (trace).
 
- Guance provides three link viewing lists, namely "All Span”, “All Top Spans” and “all Trace”. Spans represent logical units of work in a distributed system within a given time period, and multiple spans will form a link trace.
+<div class="grid" markdown>
 
-=== "All Span"
+=== "All Spans"
 
-    It displays all Span data collected in the currently selected time range.
+    Display all collected Span data within the currently selected time range.
     
-    ![](img/3.apm_3.png)
+    ![](img/4.apm_1.png)
 
-=== "All top-level Span"
+=== "Entry Spans"
 
-    Filter displays all Span data entered for the first time in the currently selected time range.
+    Filter and display all Span data that first entered within the currently selected time range.
     
-    ![](img/3.apm_4.png)
+    ![](img/4.apm_2.png)
 
-=== "All Trace"
+=== "All Traces"
 
-    It filters and displays all Trace data containing the initial top-level Span in the currently selected time range.
-    
-    ![](img/3.apm_5.png)
+    Filter and display all Trace data containing the initial top-level Span within the currently selected time range.
 
-## Link Query and Analysis
+    ![](img/4.apm_3.png)
 
-### Time Control
+</div>
 
-The link explorer displays the data for the last 15 minutes by default, and you can select the time range of data display through the Time Control in the upper right corner. See the documentation [time control description](../getting-started/necessary-for-beginners/explorer-search.md#time).
+## Query and Analysis
 
-### Search and Filter
+- Time widget: The Trace explorer defaults to showing data from the last 15 minutes. You can customize the [time range](../getting-started/function-details/explorer-search.md#time) for data display.
 
-In the link explorer search bar, it supports keyword search, wildcard search, association search and other search methods, and it also supports value screening through `tag/attribute`, including forward screening, reverse screening, fuzzy matching, reverse fuzzy matching, existence and nonexistence and other screening methods. For more searching and filtering, refer to the document [searching and filtering for the explorer](../getting-started/necessary-for-beginners/explorer-search.md).
+- In the Trace explorer search bar, it supports [various search and filtering methods](../getting-started/function-details/explorer-search.md).
 
-**Note: When you switch to view the Service or Link explorer, Guance reserves the current filter criteria and time range for you by default.**
+    - **Note:** When you switch to view **service** or **trace** explorer, Guance defaults to retain your current filter conditions and time range.
 
-### Analysis Mode
+- Analysis Mode: In the Trace explorer [analysis bar](../getting-started/function-details/explorer-search.md#analysis), you can perform multi-dimensional analysis statistics based on <u>1-3 tags</u> and support multiple data chart analysis methods.
 
-In the analysis bar of link explorer, multi-dimensional analysis and statistics based on **1-3 tags** are supported to reflect the distribution characteristics and trends of data in different dimensions and at different times. Guance supports a variety of data chart analysis methods, including time sequence chart, ranking list, pie chart and rectangular tree chart. For more details, please refer to the document [analysis Mode for the explorer](../getting-started/necessary-for-beginners/explorer-search.md#analysis).
+- Quick Filter: Supports editing [quick filters](../getting-started/function-details/explorer-search.md#quick-filter), adding new filter fields.
 
-### Quick Filter
+- Filter History: Guance supports saving the explorer `key:value` search condition history in the [filter history](../getting-started/function-details/explorer-search.md#filter-history) and applying it to different explorers in the current workspace.
 
-Shortcut Filter in Link Explorer, support editing "Shortcut Filter" and add new filter fields. After adding, you can select their field values for quick filtering. For more shortcut filters, please refer to the document [shortcut filters](../getting-started/necessary-for-beginners/explorer-search.md#quick-filter).
-
-### Filter History
-
-Guance supports saving the search condition history of explorer `key:value` in "filter history", which is applied to different explorers in the current workspace. See the documentation [filter history](../getting-started/necessary-for-beginners/explorer-search.md#filter-history).
+- Custom [display columns](../getting-started/function-details/explorer-search.md#columns): In the trace list, the default view is **time**, **trace ID**, **service**, **resource**, and **duration**, which can be customized to add, edit, delete, and drag display columns.
 
 ### Chart Statistics
 
-Chart statistics in the link explorer supports viewing the "number of requests", "number of wrong requests" and "response time" of different states of the link within the selected time range, and it also supports synchronizing display of chart statistics through filtering.
+In the trace explorer chart statistics, you can check the **Requests**, **Error Requests**, **Response Time** of different statuses of the trace within the selected time range, and you can filter the synchronous display chart statistics.
 
-- Number of requests/number of erroneous requests: According to the selected time range, it is divided into 60 time points, and the "number of requests" and "number of erroneous requests" of the link are statistically displayed by histogram.
-- Response time: According to the selected time range, it is divided into 60 time points, and four response metrics are statistically displayed by line chart, which are "average response time per second", "P75 response time", "P90 response time" and "P99 response time".
+- Requests/Error Requests: Divide into 60 time points according to the selected time range, and use a histogram to statistically display requests and error requests for the trace.
+- Response time: Divide into 60 time points according to the selected time range, and use a line graph to statistically display four response metrics, namely the average response time per second, P75 response time, P90 response time and P99 response time.
 
-### Custom Display Columns
+### Data Export
 
-In Link Explorer, "Time", "Link ID", "Service", "Resource" and "Duration" are viewed by default, and display columns can be added, edited, deleted and dragged by custom through "Display Columns". When the mouse hovers over the explorer display column, click the "Settings" button to support ascending, descending, moving columns to the left, moving columns to the right, adding columns to the left, adding columns to the right, replacing columns, adding to shortcut filtering, adding to grouping and removing columns and other operations. See the documentation [display column description](../getting-started/necessary-for-beginners/explorer-search.md#columns) for more custom display columns.
+In the trace explorer, after filtering out the desired Trace data for viewing and analysis, you can export it to a CSV file or scenario dashboard and notes.
 
-### Link Data Export
+If you need to export a piece of data, open the details page of this piece of data, and click the :material-tray-arrow-up: icon in the upper right corner.
 
-In Link Explorer, you can filter out the desired link data for export and then view and analyze it, supporting export to CSV files or scene dashboards and notes.
+### Save as a Snapshot
 
-### Save Snapshot
-
- Guance supports "viewing historical snapshots" to directly save the snapshot data of the current explorer. Through the snapshot function, you can quickly reproduce the instantly copied data copy information and restore the data to a certain time point and a certain data display logic. See the documentation [snapshot](../management/snapshot.md).
+Guance supports **viewing historical snapshots** to directly save the snapshot data of the current explorer. Through the [snapshot](../getting-started/function-details/snapshot.md) function, you can quickly reproduce instant copies of data and restore data to a certain point in time and a certain data display logic.
 
 ![](img/3.apm_6.gif)
 
-##  Link Details {#detail}
+## Trace Details {#detail}
 
-In the link explorer, you can click on any link to view the corresponding link details, including the current link occurrence time, duration, http method, http url, http status code, TraceId, flame diagram, Span list, service invocation relationship and associated log, host, metric and network.
+In the trace explorer, you can view the corresponding trace details by clicking on any trace, including the time, duration, HTTP method, HTTP URL, HTTP status code, TraceId, Flame, Span list, service call relationship and associated logs, hosts, metrics, networks, etc.
 
 ![](img/9.apm_explorer_6.1.png)
 
-### Flame Graph
+If the current trace belongs to a front-end application (such as: browser), you can view the request time distribution in the trace details, including the request time proportions of Queueing (queue), First Byte (first packet), Download (download).
 
-Flame graph can clearly show the flow and execution time of each span in the whole link. You can view the corresponding service list and response time on the right side of the flame graph. Click on the span of the flame graph, and view the corresponding Json content in "Link Details", which supports mouse scroll zooming to view specific span information. For more information on the application of flame graphs, please refer to the document [using flame graphs to analyze link performance](../getting-started/function-details/trace-glame-graph.md).
+???+ warning
 
-=== "Flame graph link description"
+    The RUM SDK must be 2.2.10 and above to see this part of the data display. If there is a cross-domain situation, the header configuration needs to be adjusted.
+
+    > For more details, see [Web Application Access](../real-user-monitoring/web/app-access.md#header).
+
+![](img/11.apm_browse_1.png)
+
+### Flame {#flame}
+
+The flame graph can clearly show the flow and execution time of each Span in the entire trace. You can view the corresponding service list and response time on the right side of the flame graph. Click on the Span in the flame graph, in the **Trace Details Page** you can view the corresponding Json content, you can view specific Span information by zooming in and out with the mouse wheel.
+
+> For more details on the application of the flame graph, see [Skillfully Use Flame Graph to Analyze Trace Performance](../best-practices/monitoring/trace-glame-graph.md).
+
+<div class="grid" markdown>
+
+=== "Flame Graph Trace Explanation"
 
     ![](img/13.apm_flame.png)
-    
-    As can be seen from the flame graph above, this call link contains two services, namely cloudcare and mysql. The link starts with the POST request that initiates the cloudcare service, then executes the `ActionResource.executeAction`, and finally executes the mysql statement. During the whole process of executing `ActionResource.executeAction`, the mysql statement is executed several times. The execution time of cloudcare and mysql is calculated as follows:
-    
-    - cloudcare service execution time = D1+D2+D3+D4+D5+D6+D7+D8+D9+D10+D11
-    - mysql service execution time = span2+span3+......+span11
-    
+
+    From the flame graph above, it can be seen that this call trace includes two services, namely <u>CloudCare and Mysql</u>. The trace starts with the POST request initiated by the CloudCare service, then executes `ActionResource.executeAction`, and finally executes the Mysql statement. During the entire process of executing `ActionResource.executeAction`, the Mysql statement is executed multiple times. The execution time of CloudCare and Mysql is calculated as follows:
+
+    - Execution time of CloudCare service = D1+D2+D3+D4+D5+D6+D7+D8+D9+D10+D11
+    - Execution time of Mysql service = span2+span3+......+span11
+
     ![](img/span_2.png)
-    
-    Please refer to the span list for details of specific executed statements and execution time.
 
-=== "Instructions for calculation of execution time proportion"
+    The details of the specific execution statement and execution time can be referred to the Span list.
 
-    The proportion of service execution time in the flame graph refers to the proportion of each service in the total time of calling the link this time. The following figure is an example. The calling link includes two services, namely cloudcare and mysql, and the execution time accounts for 42.37% and 57.63% respectively. The cloudcare service has 2 spans and the mysql service has 10 spans.
-    
-    - How to calculate the proportion of mysql service execution time: sum all span execution time/total length of current link call.
-    
-    Description of calculation method: There are 10 spans in mysql service in the following figure. You can click on each span to get the execution time of the current span. As can be seen from the figure, the execution time of the span is 5.08 ms, and then in the same way, get the execution time of the remaining 9 spans and add them up.
-    
+=== "Calculation of Execution Time Proportion"
+
+    The service execution time proportion in the flame graph refers to the ratio of each service to the total time in this call trace. Below is an example, this call trace contains two services, namely CloudCare and Mysql, the execution time proportions are 42.37% and 57.63% respectively. The CloudCare service has 2 Spans, and the Mysql service has 10 Spans.
+
+    - Calculation method of Mysql service execution time proportion: the total execution time of all spans / the total duration of the current call trace.
+
+    Calculation method explanation: The Mysql service in the figure below has a total of 10 Span quantities. You can click on each Span to get the execution time of the current Span. From the figure, you can see that the execution time of this Span is 5.08ms, and then in the same way, get the remaining 9 The execution time of a Span is added.
+
     ![](img/13.apm_flame_0.1.png)
-    
-    - How to calculate cloudcare service execution time ratio: (total current link calling time-mysql service execution time)/total current link calling time
-    
-    Description of calculation method: cloudcare service runs through the whole calling link in the following figure. Except for the execution time of mysql service, the remaining time is the execution time of cloudcare service (see the execution time in the red line). Percentage of execution time can also be directly through the span list to view the execution time and percentage of execution time of each span.
-    
+
+    - Calculation method of CloudCare service execution time proportion: (current call trace total duration-mysql service execution time)/current call trace total duration
+
+    Calculation method explanation: The CloudCare service in the figure below runs through the entire current call trace. Except for the execution time of the mysql service, the remaining time is the execution time of the CloudCare service (see the execution time of the marked red line part). The execution time proportion can also be directly viewed through the Span list to view the execution time and execution time proportion of each Span.
+
     ![](img/13.apm_flame.png)
 
-=== "Asynchronous call"
+=== "Asynchronous Call"
 
-    In the flame graph, whether the service is called synchronously or asynchronously, the data details of each link performance can be clearly tracked. For example, you can clearly see which requests are made asynchronously through the flame graph, when they started, when they ended, and how much time they took in total.
-    
+    In the flame graph, whether the service is a synchronous or asynchronous call, each trace performance data detail can be clearly tracked. For example, through the flame graph, you can clearly see which requests are performed asynchronously, the start time, end tim and total time spent.
+
     ![](img/9.apm_explorer_19.2.png)
+
+</div>
 
 ### Span List
 
-The list shows all the spans in the link and their total number of spans, including "resource name", "number of spans", "duration", "execution time" and "percentage of execution time". It supports search span, click on any span, view the corresponding JSON content in "Link Details" and switch to the flame map to display span synchronously. If there is an error, display an error prompt before the span.
+Display the total Span quantity and its list in this trace, including **Resource**, **Span Quantity**, **Duration**, **Execution Time** and **Proportion**.
+
+You can search for Span. Click on any Span. In **Trace Details**, you can view the corresponding JSON content. Switch to the flame graph to synchronously display Span. If there are errors, error prompts will be displayed before Span.
 
 ![](img/9.apm_explorer_18.png)
 
-### Service Call Relationship
+#### Waterfall Chart {#waterfall}
 
-Service call relationship is used to view the call relationship between various services and supports viewing related service call relationship through search filtering.
+In the Span list, click :material-chart-waterfall: to view the parent-child relationship between resources.
 
-![](img/9.apm_explorer_9.png)
+The waterfall chart displays Span data in order of start time. The left side list displays Span data and shows the execution time proportion of each resource. The right side displays the waterfall chart in order of time.
 
-### Shortcut Instructions {#icon}
+You can also search for Span in the 🔍 bar. The fuzzy search results of the resource (`resource`) field will be highlighted.
 
-- Full screen view/Restore default size: You can click the full screen view icon in the upper right corner of Link Details ![](img/9.apm_explorer_13.png), expand horizontally to view the link flame diagram; click the Restore Default Size icon ![](img/9.apm_explorer_13.1.png) to restore the details page;
-- Expand/Retract mini-map: You can click the Expand/retract mini-map icon on the left side of link details ![](img/9.apm_explorer_14.png) to quickly view the flame map by selecting intervals, dragging and scrolling on the mini-map;
-- View global Trace: You can click on the left side of Link Details to view the global Trace icon![](img/9.apm_explorer_15.png), view the global link in the flame graph;
-- Double-click Span: Zoom in and display the Span in the middle of the flame graph, and you can quickly locate and view its context-related Span;
-- Click on the service name: highlight the corresponding Span, click on the service name again, and restore the default all-selected Span. You can quickly filter and view the Span corresponding to the service by clicking on the service name.
+![](img/0710-span.gif)
+
+### Service Map {#call}
+
+The service map is used to view the relationship between various "services-resources", and supports viewing related service map through the `service`, `resource` field search and filter.
+
+![](img/9.apm_explorer_9.gif)
+
+### Options {#icon}
+
+| Options      | Description                          |
+| ----------- | ------------------------------------ |
+| Full screen view/Restore default size      | You can click the full-screen view icon in the upper right corner of the trace detail :material-arrow-expand-all: to expand and view the trace flame graph horizontally; click the restore default size icon :material-arrow-collapse-all: to restore the detail page.                          |
+| Expand/Collapse Minimap      | You can click the expand/collapse minimap icon on the left side of the trace detail :material-format-indent-increase: to quickly view the flame graph by selecting the interval, dragging, and scrolling on the minimap.                          |
+| View Global Trace      | You can click the view global Trace icon on the left side of the trace detail :material-arrow-expand: to view the global trace in the flame graph.                          |
+| Double-click Span      | In the flame graph, enlarge the Span in the middle to quickly locate and view its associated Span in the context.                          |
+| Click on the service name      | Highlight the corresponding Span, click the service name again, and restore the default full selection Span. You can filter and view the Span corresponding to the service by clicking the service name.                          |
 
 ![](img/10.changelog_apm.gif)
 
-### Extended Attributes
+### Attributes
 
-On the link details page, you can view the related field properties of the current link in "Extended Properties". Click on the field to quickly filter through "Filter Field Value", "Reverse Filter Field Value", "Add to Display Column" and "Copy".
+:material-numeric-1-circle-outline: In the search bar, you can quickly search and locate by entering the field name or value;
 
-- "Filter field value", that is, add the field to the explorer to view all the data related to the field
-- "Reverse filter field value", that is, add this field to the explorer to view other data besides this field
-- "Add to display column", that is, add the field to the explorer list for viewing
-- "Copy", that is, copy the field to the clipboard 
+:material-numeric-2-circle-outline: After checking the field alias, you can view it after the field name; you can choose as needed.
 
-![](img/9.apm_explorer_7.png)
+:material-numeric-3-circle-outline: In the trace detail page, you can view the related field properties of the current trace in **Extended Attributes**:
 
-Click "Filter Field Value" to filter and view the list of links related to this field in link explorer.
+| Field      | Attribute                          |
+| ----------- | ------------------------------------ |
+| Filter       | That is, add this field to the explorer to view all data related to this field. You can filter and view the trace list related to this field in the trace explorer. See Figure 1.                          |
+| Reverse filter     | That is, add this field to the explorer to view other data except this field.                          |
+| Add to display column      | That is, add this field to the explorer list for viewing.                          |
+| Copy      | That is, copy this field to the clipboard.                          |
+
+![](img/extension.png)
+
+???- abstract "Some fields do not support filter aggregation and related logic"
+
+    Guance has some fields that use full-text indexing. These fields do not support you to do filter aggregation and related logic. The range of full-text index fields is as follows:
+
+    | Category      | Field                  |
+    | ----------- | ------------------ |
+    | Infrastructure, Custom Infrastructure Type      | `message `                 |
+    | Logs, Backup Logs      | `message`                  |
+    | Security Check     | `message` / `title`                  |
+    | Network      | `message`                  |
+    | Traces      | `error_message` / `error_stack`                  |
+    | Events      | `message` / `title` / `df_message` / `df_title`                  |
+    | RUM Error      | `error_message` / `error_stack`                  |
+    | RUM Long Task      | `long_task_message` / `long_task_stack`                  |
+
+<font size=2>*Figure one*</font>
 
 ![](img/9.apm_explorer_8.png)
 
 ### Error Details
 
-On the Link Details page, if there is an error link, you can view the relevant error details. For more error link analysis, refer to the document [error tracing](../application-performance-monitoring/error.md).
+On the trace detail page, if there is an error trace, you can view the related error details.
+
+> For more error trace analysis, see [Error Tracking](../application-performance-monitoring/error.md).
 
 ![](img/6.apm_error.png)
 
-### Association Analysis
+### Associated Analysis
 
-=== "Associated User Access Experience"
+<div class="grid" markdown>
 
-    On the link details page, you can view the associated real user access experience data (associated field: trace_id) through the "related view" at the top of the page, which helps you to view the user access corresponding to application performance.
-    
-    ![](img/9.apm_explorer_19.1.png)
+=== "Associated Logs"
 
-=== "Association Log"
+    In the trace details page, you can view the logs associated with the current trace (associated field: `trace_id`) through **Logs**. You can perform keyword search and multi-label filtering on the logs. The log content is displayed by default according to the **maximum display rows** and **display columns** settings of the log explorer. You can customize the display columns. If you need to view more detailed log content, you can click on the log content to jump to the log details page, or click the jump button to open on the log page.
 
-    On the link details page, you can view the log based on the current link association (association field: trace_id) through log. Association log supports you to search for keywords and filter multiple tags on logs; log contents are displayed according to the configuration of "Maximum Display Rows" and "Display Columns" in log explorer by default, and you can customize display columns. If you need to view more detailed log contents, you can click log contents to jump to log details page, or click jump button to log page to open.
-    
     ![](img/3.apm_7.png)
-    
-    If you are an administrator or above, you can customize the associated fields. You can click the setting button on the right side of the associated field, select the field to be associated in the pop-up dialog box, support manual input, drag sequence and other operations and at last confirm to complete the configuration.
-    
-    Note: The association log custom field and the service list association analysis configuration custom field influence each other. If the custom field is configured in the service list, it will be displayed synchronously here. For more details, please refer to the document [service catalog association analysis](service-catalog.md#analysis).
-    
+
+    If you are an administrator or above, you can customize the associated fields. Click the settings button on the right side of the associated field, select the fields you need to associate in the pop-up dialog box, support manual input, drag and drop order and other operations, confirm to complete the configuration.
+
+    ???+ warning
+
+        The associated log custom field and service list association analysis configuration custom field affect each other. If a custom field is configured in the service list, it will be synchronized here.
+
+        > For more details, please refer to [Service List Association Analysis](service-catalog.md#analysis).
+
     ![](img/3.apm_8.png)
+
 
 === "Code Hotspots"
 
-    When the application uses the ddtrace collector to enable APM link tracing and Profile performance tracing data collection at the same time, Guance provides Span-level correlation view analysis. On the link details page, you can click "Code Hotspots" at the bottom of the flame diagram to view the code hotspots associated with the current link, including execution time, method and execution time ratio.
-    
+    After the application is using the ddtrace collector to turn on APM traces and Profile performance tracking data collection at the same time, Guance provides Span level associated viewing analysis. On the trace details page, you can click on **Code Hotspots** under the flame graph to view the code hotspots associated with the current trace, including execution time consumption, methods, and execution time proportion.
+
     ![](img/9.apm_explorer_11.png)
-    
-    Click "View Profile Details" to support jumping to the Profile Details page to view more associated codes, which helps you quickly find and locate problems.
-    
+
+    Clicking **View Profile Details** can jump to the Profile details page to view more associated code.
+
     ![](img/9.apm_explorer_12.png)
+
 
 === "Associated Host"
 
-    On the Link Details page, you can view the metrics view and the properties view of the associated host (associated field: host) through host.
-    
-    - Metric view: You can view the performance metric status of related hosts **from 30 minutes before the end of the link to 30 minutes** after the end of the link, including the CPU, memory and other performance metric views of related hosts.
-    
+    In the trace details page, you can view the metric view and attribute view of the related host (associated field: `host`) through **Host**.
+
+    - Metric View: You can view the performance metric status of the related host **within 30 minutes before the end of the trace to 30 minutes after the end of the trace**, including the performance metric view of the related host's CPU, memory, etc.
+
     ![](img/3.apm_9.png)
-    
-    - Attribute view: it helps you to trace back the real situation of host objects when the link is generated, and supports viewing **the latest object data generated by relevant hosts in the corresponding time**, including the basic information of hosts and the operation of integration. If you start the collection of cloud hosts, you can also view the information of cloud suppliers.
-    
-    Note: Guance holds the historical data of the last 48 hours of host objects by default. If the host history data corresponding to the current link time is not found, you will not be able to view the attribute view of the associated host.
-    
+
+    - Attribute View: Helps you to trace back the real situation of the host when the trace is generated, support to view **the latest data generated within the corresponding time** of the related host, including the basic information of the host, integrated operating situation. If you turn on the collection of cloud hosts, you can also view the information of the cloud manufacturer.
+
+    **Note:** Guance defaults to save the host's recent 48 hours of historical data. If the host's historical data corresponding to the current trace time is not found, you will not be able to view the attribute view of the associated host.
+
     ![](img/3.apm_10.png)
 
-=== "Association Container"
 
-    On the Link Details page, you can view the metrics view and property view of the relevant container (associated field: container_name) through the Container.
-    
-    - Metric view: It supports viewing the performance metric status of related containers**from 30 minutes before the end of the link to 30 minutes after the end of the link**, including the performance metric views of container CPU and memory.
-    
-    - Attribute view: It helps you trace back the real situation of container objects when links are generated, and supports **viewing the latest object data generated by relevant containers in the corresponding time**, including the basic information and attribute information of containers.
+=== "Associated Container"
+
+    In the trace details page, you can view the metric view and attribute view of the related container (associated field: `container_name`) through **Container**.
+
+    - Metric View: Support viewing the performance metric status of the related container **within 30 minutes before the end of the trace to 30 minutes after the end of the trace**, including the performance metric view of the container CPU, memory, etc.
+
+    - Attribute View: Help you to trace back the real situation of the container object when the trace is generated, supports viewing **the latest object data generated within the corresponding time** of the related container, including the basic information of the container, attribute information.
+
 
 === "Associated Pod"
 
-    On the Link Details page, you can use "Pod" to view the properties view and metrics view of the related Pod (associated field: pod_name).
-    
-    - Metric view: It supports viewing the performance metric status of related container pod **from 30 minutes before the end of the link to 30 minutes after the end of the link**, including the performance metric views of container CPU and memory.
-    
-    - Attribute view: It helps you to trace back the real situation of container pod object when link is generated, and supports **viewing the latest object data generated by relevant container pod in corresponding time**, including basic information and attribute information of container.
+    In the trace details page, you can view the attribute view and metric view of the related Pod (associated field: `pod_name`) through **Pod**.
+
+    - Metric View: Support viewing the performance metric status of the related container Pod **within 30 minutes before the end of the trace to 30 minutes after the end of the trace**, including the performance metric view of the container CPU, memory, etc.
+
+    - Attribute View: Help you trace back the real situation of the container Pod object when the trace is generated, supports viewing **the latest object data generated within the corresponding time** of the related container Pod, including the container's basic information, attribute information.
+
 
 === "Associated Network"
 
-    On the Link Details page, you can view the data connectivity of the associated host (associated field: host), Pod (associated field: pod_name), and Deployment (associated field: deployment_name) networks through Network. For more details, refer to the documentation [network](../infrastructure/network.md).
-    
-    Note:
-    
-    - If the associated fields of host, Pod and Deployment are configured at the same time, the data of Pod network will be displayed first when entering the details page, followed by the data of Deployment network;
-    - If the associated fields of Pod and Deployment are not configured, the network data is not displayed.
-    
-    ![](img/12.network_detail_2.png)
+    Guance supports you to view [network](../infrastructure/network.md) data connection situation within 48 hours through the **Network** below the details page. Including Host, Pod, Deployment and Service.
+
+    ![](img/7.host_network_2.png)
+
+    <font color=coral>Matching Fields:</font>
+
+    To view the related network in the details page, you need to match the corresponding associated fields, that is, you need to configure the corresponding field tags when collecting data, otherwise you can not match and view the associated network view in the details page.
+
+    - Host: Match field `host`, support clicking the **Copy** button on the right to copy the associated field and its value.
+    - Pod: Match fields as follows, support clicking the **Copy** button on the right to copy the associated field and its value.
+
+    | **Matching Field Priority**  |
+    | ------------------- |
+    | namespace, pod_name |
+    | namespace, pod      |
+    | pod_name            |
+    | pod                 |
+
+    - Deployment: Match fields as follows, support clicking the **Copy** button on the right to copy the associated field and its value.
+
+    | **Matching Field Priority**  |
+    | ------------------- |
+    | namespace, deployment_name |
+    | namespace, deployment      |
+    | deployment_name            |
+    | deployment                 |
+
+    - Service: Match fields as follows, support clicking the **Copy** button on the right to copy the associated field and its value.
+
+    |   **Matching Field Priority**  |
+    |   ------------------- |
+    | namespace, service_name |
+    | namespace, service      |
+
+    ???+ warning
+
+        - If the associated fields of Host, Pod, Deployment, Service are queried at the same time, the network data is displayed in this order when entering the details page;
+        - If the associated field is not queried, it is displayed in gray at the end, clicking prompts **No matching network view**.
+
+</div>
