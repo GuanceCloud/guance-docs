@@ -1,12 +1,9 @@
 nav:
   - index.md
   - 'Data Collection': collection
-  - 'Generate Metrics': generate-metrics.md
-  - 'Service': 
-    - 'Service List': service.md
-    - 'Service Map': service-map.md
-    - 'Service Catalog': service-catalog.md
   - 'Overview': overview.md
-  - 'Link Explorer': explorer.md
-  - 'Error Tracing': error.md
-  - 'Profile': profile.md
+  - 'Traces': explorer.md
+  - 'Error Tracking': error.md
+  - 'Profiing': profile.md
+  - 'Generate Metrics': generate-metrics.md
+  - 'FAQ': faq.md
