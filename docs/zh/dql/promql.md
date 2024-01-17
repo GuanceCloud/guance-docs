@@ -4,7 +4,7 @@
 
 [PromQL](https://prometheus.io/docs/prometheus/latest/querying/basics/) 是 [Prometheus 监控系统](https://prometheus.io/) 的查询语言，语法简洁又功能强大。PromQL 的语法跟一般的 SQL 语言很不一样，初学者往往需要花费几个小时阅读 [官方 PromQL 文档](https://prometheus.io/docs/prometheus/latest/querying/basics/) 才能理解它的工作原理。
 
-这里请跟随我们的思路，一起快速理解 PormQL 的设计精髓并掌握 PormQL 的用法。
+这里请跟随我们的思路，一起快速理解 PromQL 的设计精髓并掌握 PromQL 的用法。
 
 ## 用 PromQL 选择时间序列
 

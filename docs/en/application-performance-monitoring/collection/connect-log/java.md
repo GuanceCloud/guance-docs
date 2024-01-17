@@ -1,11 +1,12 @@
-# Java Log Association Link Data
+# Associated with Java
 ---
 
-The `Java` application log associates link data through the following steps:
+The `Java` application log associates trace data through the following steps:
 
-- Open log in application
-- Datakit starts link data collection (see [link](../../../datakit/ddtrace.md)）and configures the Pipeline script for log cutting (see [link](../../../datakit/pipeline.md)) and then start Datakit
-- Start the `Java` application
+1. Open log in application;
+2. Datakit starts [trace data collection](../../../integrations/ddtrace.md) and configures the [Pipeline script](../../../management/overall-pipeline.md) for log cutting and then start Datakit;
+3. Start the `Java` application.
+
 ## Log Maven Import
 
 ```
@@ -34,7 +35,9 @@ The `Java` application log associates link data through the following steps:
     </root>
 ```
 
-## Datakit Logging.conf Configuration; Microservice Example; for Path, Find Devops to Mount Log vVolumes
+## Datakit Logging.conf Config
+
+Microservice Example: for Path, find Devops to mount Log volumes.
 
 ```
 [[inputs.logging]]
@@ -137,7 +140,7 @@ The collected log format is as follows:
 {"@timestamp":"2021-06-24T14:17:53.563+08:00","@version":1,"message":"<=> invoke action [CheckModule@saveDfBillToDbSchedule] take time : 72ms ","logger_name":"com.cloudcare.web.container.interceptor.LoggerInterceptor","thread_name":"qtp454424866-39","level":"DEBUG","level_value":10000,"HOSTNAME":"LAPTOP-IA9RA81K","request_host":"127.0.0.1:8106","action_name":"CheckModule@saveDfBillToDbSchedule","request_id":"60d423840fe1874814490456","request_remote_host":"192.168.241.1","response_error_code":"Worker.NotFound","dd.service":"billing","dd.env":"staging","dd.span_id":"5577585360079661786","dd.trace_id":"6724368348029357447","dd.version":"1.0","tags":["operation"]}
 ```
 
-Log data also needs to be cut and converted before it can be associated with link data, which can be realized by configuring Pipeline script as follows:
+Log data also needs to be cut and converted before it can be associated with trace data, which can be realized by configuring Pipeline script as follows:
 
 ```
 json(_, message)
@@ -157,7 +160,7 @@ json(_, `@timestamp`, time)
 default_time(time)
 ```
 
-The data cut by the Pipeline script is as follows, and the log data is associated with the link data through field information such as `trace_id` and `span_id`.
+The data cut by the Pipeline script is as follows, and the log data is associated with the trace data through field information such as `trace_id` and `span_id`.
 
 ```
 {
