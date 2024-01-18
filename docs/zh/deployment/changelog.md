@@ -2,11 +2,11 @@
 
 ## 1.78.152（2024 年 01 月 17 日）
 
-pubrepo.jiagouyun.com/dataflux/1.78.152:launcher-bc10e4f-1705468616
+pubrepo.guance.com/dataflux/1.78.152:launcher-bc10e4f-1705468616
 
 ### 私有部署版更新
 
-- 部署工具 Launcher 提供中英文语言切换
+- 部署工具 Launcher 支持中英文语言切换
 
 
 ## 1.78.151（2024 年 01 月 11 日）
