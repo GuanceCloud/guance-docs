@@ -9,6 +9,7 @@
 ## 前置条件
 
 - 开启 [DataKit ddtrace 采集器](/integrations/ddtrace/)
+
 - 准备 Shell
 
   ```shell

@@ -1,7 +1,6 @@
 # SourceMap 配置
 ---
 
-## 简介
 
 Sourcemap（源代码映射）用于将生产环境中的压缩代码映射回原始的源代码。RUM 支持这种源代码文件信息的映射，方法是将对应符号表文件进行 zip 压缩打包、上传，这样就可以对上报的 error 指标集数据自动进行转换。
 
@@ -181,11 +180,11 @@ Sourcemap（源代码映射）用于将生产环境中的压缩代码映射回�
 
 配置打包完成后，用户可直接在前台页面进行文件上传和删除操作。
 
-![](img/sourcemap_01.png)
+<img src="../../img/sourcemap_01.png" width="60%" >
 
 在 🔍 栏下方，可查看已上传的文件名称及应用类型，您可输入文件名称搜索；点击 :fontawesome-regular-trash-can: 可删除当前文件。
 
-???+ attention "上传须知"
+???+ warning "上传须知"
 
     - 文件大小不能超过 500M；
     - 文件格式必须为 `.zip`；
@@ -196,4 +195,4 @@ Sourcemap（源代码映射）用于将生产环境中的压缩代码映射回�
 
 另外，支持 Datakit 采集器配置 Source Map 转换。
 
-> 更多详情，可了解[Sourcemap 转换](../../integrations/rum.md#sourcemap)。
+> 更多详情，可查看 [Sourcemap 转换](../../integrations/rum.md#sourcemap)。

@@ -7,18 +7,19 @@
 
 由于现在我们正在构建更复杂的 Web 应用，您的开发工作流可能会涉及使用各种工具。例如:
 
-- 模板语言和 HTML 预处理器:[Pug](https://pugjs.org/)、[Nunjucks](https://mozilla.github.io/nunjucks/)、[Markdown](https://daringFreball.net/projects/markdown/)。
+- 模板语言和 HTML 预处理器：[Pug](https://pugjs.org/)、[Nunjucks](https://mozilla.github.io/nunjucks/)、[Markdown](https://daringFreball.net/projects/markdown/)。
 
-- CSS 预处理器:[SCSS](https://sass-lang.com/)、[LESS](https://lesscss.org/)、[PostCSS](https://postcss.org/)。
+- CSS 预处理器：[SCSS](https://sass-lang.com/)、[LESS](https://lesscss.org/)、[PostCSS](https://postcss.org/)。
 
-- JavaScript 框架:Angular、React、Vue、Svelte。
+- JavaScript 框架：Angular、React、Vue、Svelte。
 
-- JavaScript 元框架:[Next.js](https://nextjs.org/)、[Nuxt](https://nuxt.com/)、[Astro](https://astro.build/)。
+- JavaScript 元框架：[Next.js](https://nextjs.org/)、[Nuxt](https://nuxt.com/)、[Astro](https://astro.build/)。
 
-- 高级编程语言:[TypeScript](https://www.typescriptlang.org/)、[Dart](https://dart.dev/tools/dart2js)、
+- 高级编程语言：[TypeScript](https://www.typescriptlang.org/)、[Dart](https://dart.dev/tools/dart2js)、
 [CoffeeScript](https://coffeescript.org/)。
 
 - 等等。
+
 
 ![](../img/sourcemap_05.png)
 
