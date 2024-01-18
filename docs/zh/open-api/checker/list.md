@@ -2,7 +2,7 @@
 
 ---
 
-<br />**GET /api/v1/monitor/check/list**
+<br />**GET /api/v1/checker/list**
 
 ## 概述
 分页列出监控器列表
@@ -30,7 +30,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/monitor/check/list?pageIndex=1&pageSize=2' \
+curl 'https://openapi.guance.com/api/v1/checker/list?pageIndex=1&pageSize=2' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed 
 ```
