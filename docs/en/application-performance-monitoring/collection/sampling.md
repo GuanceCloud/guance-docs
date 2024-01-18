@@ -1,20 +1,21 @@
-# How to Configure Application Performance Monitoring Sampling
+# How to Configure APM Sampling
 ---
 
-## Introduction
+Guance APM supports the analysis and management of trace data collected by collectors that comply with the Opentracing protocol. By default, APM data is collected in full, i.e., data is generated with each call. If not limited, the large amount of data collected will take up too much data storage. You can save data storage and reduce costs by setting up a sampling method to collect APM data.
 
-The "application performance monitoring" function of Guance supports the analysis and management of link data collected by collectors conforming to the Opentracing protocol. Application performance data is collected in a full-scale way by default, that is, data will be generated every time it is called. If it is not limited, the collected data will be large and occupy too much data storage. You can collect application performance data by setting sampling method, thus saving data storage and reducing cost.
+Here's how to configure APM data at a sampling rate of 5%, *using the [DDtrace collector](../../datakit/ddtrace.md) as an example*.
 
-Here's how to configure application performance data at a sampling rate of 5%, using the [DDtrace collector](../../datakit/ddtrace.md) as an example.
 ## Preconditions
 
-- [Register for Guance](https://auth.guance.com/login/pwd)
-- [Install DataKit ](../../datakit/datakit-install.md) 
-- [Open DDtrace collector](../../datakit/ddtrace.md) 
+- [Register for Guance](https://auth.guance.com/login/pwd);
+- [Install DataKit](../../datakit/datakit-install.md); 
+- [Open DDtrace collector](../../datakit/ddtrace.md). 
 
 ## Sampling Settings
 
-Before you start collecting application performance data, you need to configure ddtrace according to different languages. The following is an example of a Webserver Flask application commonly used in Python to show how to sample application performance data. In the example, `SERVICE_A` provides the HTTP service and calls the `SERVICE_B` HTTP service. 
+Before you start collecting APM data, you need to configure ddtrace according to different languages. 
+
+The following is an example of a Webserver Flask application commonly used in Python to show how to sample APM data. In the example, `SERVICE_A` provides the HTTP service and calls the `SERVICE_B` HTTP service. 
 
 ### Step 1: Install the ddtrace runtime environment
 
@@ -30,15 +31,15 @@ pip install flask
 
 ### Step 3: Configure Sampling
 
-???+ Note "Sampling configuration description"
+???+ abstract "Sampling Configuration"
 
-    Create `SERVICE_A` and `SERVICE_B` , configure sampling 5% for `SERVICE_A` , and `SERVICE_B` is collected by default.
+    Create `SERVICE_A` and `SERVICE_B`, configure sampling 5% for `SERVICE_A`, and `SERVICE_B` is collected by default.
 
 When creating, you need to reference ddtrace and set service name, service name mapping relationship, project name, environment name and version number related information through environment variable, and to configure DataKit trace API service address (the specific address is 9529 depending on DataKit address).
 
-Refer to the documentation [Python Flask complete sample](../../integrations/apm/ddtrace-python.md).
+> See [Python Flask Complete Sample](../../integrations/apm/ddtrace-python.md).
 
-#### 1.SERVICE_A
+#### 1. SERVICE_A
 
 ```python
 # -*- encoding: utf8 -*-
@@ -88,13 +89,13 @@ if __name__ == '__main__':
 
 ```
 
-Example:
+*Example:*
 
 ![](../img/sampler.png)
 
 
 
-#### 2.SERVICE_B
+#### 2. SERVICE_B
 
 ```python
 # -*- encoding: utf8 -*-
@@ -160,19 +161,26 @@ curl http://localhost:54322/stop
 
 ### Step 5: View the effect in the Guance Workspace
 
-Log in to the Guance workspace, and you can see the collected `SERVICE_A` and `SERVICE_B` link data.
+Log in to the Guance workspace, and you can see the collected `SERVICE_A` and `SERVICE_B` trace data.
 
-???+ attention
+???+ warning
 
     Application performance sampling is based on trace. If there are 100 traces and the sampling rate is set to 5%, 5% of them will be randomly collected, that is, 5 traces and all Spans under them will be randomly reported to the Guance workspace.
     
-    In this example, `SERVICE_A` provides the HTTP service and calls `SERVICE_B` the HTTP service, that is, service A calls service B as a link, assuming there are 100 links, i.e. five of them are reported randomly.
+    In this example, `SERVICE_A` provides the HTTP service and calls `SERVICE_B` the HTTP service, that is, service A calls service B as a trace, assuming there are 100 traces, i.e. five of them are reported randomly.
 
 ![](../img/sample_explor.png)
 
-## More References
+## More Readings
 
-The above is to configure the sampling rate of application performance monitoring through the client. In addition to the above methods, you can also configure the sampling rate directly through datakit, just turn on the sampling in the configuration of application performance collector. For more instructions on sampling, please refer to [Datakit samplers](../../datakit/datakit-tracing.md#samplers).
+- The above is the sampling rate of APM configured through the client. In addition to the above methods, you can also directly configure the sampling rate through DataKit, just turn on the sampling in the application performance collector configuration.
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; Datakit Samplers</font>](../../integrations/datakit-tracing.md#samplers)
+
+
+</div>
 
 ```python
   ## Sampler config uses to set global sampling strategy.
@@ -181,4 +189,12 @@ The above is to configure the sampling rate of application performance monitorin
     sampling_rate = 1.0
 ```
 
-After setting the application performance sampling, it is possible to miss important links. You can configure filters to ensure that critical links are reported. For example, if you configure `keep_rare_resource = true`, the links judged to be rare will be directly reported to Guance. For more information on filters, see [Datakit filters](../../datakit/datakit-tracing.md#filters).
+- After setting the application performance sampling, you might miss important APM datas. You can ensure the key APM datas are reported by configuring filters, such as setting `keep_rare_resource = true`, then the APM datas that are judged to be rare will be reported directly to Guance.
+
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; Datakit Filters</font>](../../integrations/datakit-tracing.md#filters)
+
+
+</div>

@@ -1,12 +1,12 @@
-# Python Log Association Link Data
+# Associated with Python
 ---
 
 
-The `Python` application log associates link data through the following steps:
+The `Python` application log associates trace data through the following steps:
 
-- Open log and link functions in application
-- Datakit starts collecting link data (see [link](../../../datakit/ddtrace.md)) and configuring the `Pipeline` script for log cutting (see [link](../../../datakit/pipeline.md)), start Datakit
-- Start the Python application
+1. Open log and link functions in application
+2. Datakit starts [collecting trace data](../../../integrations/ddtrace.md) and configuring the [Pipeline script](../../../management/overall-pipeline.md) for log cutting, start Datakit
+3. Start the Python application.
 
 ## Application Open Log and Link
 
@@ -54,7 +54,7 @@ ddtrace-run python log_connect_trace.py
 
 After accessing http://127.0.0.1:10001/a through the browser, the corresponding link and log data can be generated.
 
-The link data received by Datakit will be converted into the following protocol format and stored uniformly:
+The trace data received by Datakit will be converted into the following protocol format and stored uniformly:
 
 ```
 ddtrace,env=Testing,host=DESKTOP-7BK497S,http_method=GET,http_status_code=200,operation=flask.request,service=Python-App,span_type=entry,status=ok,type=web,version=V1.1 duration=5367i,message="{\"name\":\"flask.request\",\"service\":\"Python-App\",\"resource\":\"GET /a\",\"type\":\"web\",\"start\":1623982028783232000,\"duration\":5367000,\"meta\":{\"env\":\"Testing\",\"flask.endpoint\":\"index\",\"flask.url_rule\":\"/a\",\"flask.version\":\"1.1.2\",\"http.method\":\"GET\",\"http.status_code\":\"200\",\"http.url\":\"http://127.0.0.1:10001/a\",\"runtime-id\":\"dc06b9410fff47b78bef654495b54fa0\",\"version\":\"V1.1\"},\"metrics\":{\"_dd.agent_psr\":1,\"_dd.measured\":1,\"_dd.tracer_kr\":1,\"_sampling_priority_v1\":1,\"system.pid\":188},\"span_id\":18269734886327436313,\"trace_id\":16108321602917563239,\"parent_id\":0,\"error\":0}",parent_id="0",pid="188",resource="GET /a",span_id="18269734886327436313",start=1623982028783232i,trace_id="16108321602917563239" 1623982028783232000
@@ -87,7 +87,7 @@ ddtrace-run python log_connect_trace.py
 
 ## Configure the Pipeline Script
 
-Log data also needs to be cut and converted before it can be associated with link data, which can be realized by configuring Pipeline script as follows:
+Log data also needs to be cut and converted before it can be associated with trace data, which can be realized by configuring Pipeline script as follows:
 
 ```shell
 grok(_, "%{TIMESTAMP_ISO8601:time}%{SPACE}%{WORD:level}%{SPACE}%{NOTSPACE}%{SPACE}%{NOTSPACE}%{SPACE}\\[%{GREEDYDATA:trace}\\]%{SPACE}-%{SPACE}%{GREEDYDATA:message}")
@@ -99,7 +99,7 @@ drop_key(trace)
 default_time(time)
 ```
 
-The data cut by the Pipeline script is as follows, and the log data is associated with the link data through field information such as `trace_id` and `span_id`.
+The data cut by the Pipeline script is as follows, and the log data is associated with the trace data through field information such as `trace_id` and `span_id`.
 
 ```json
 {

@@ -4,9 +4,9 @@
 
 `Python` 应用日志关联链路数据需经过如下步骤：
 
-- 应用中开启日志与链路功能；  
-- Datakit 开启[链路数据采集](../../../integrations/ddtrace.md)，并配置日志切割的 [`Pipeline` 脚本](../../../datakit/pipeline.md)，启动 Datakit；  
-- 启动 Python 应用。
+1. 应用中开启日志与链路功能；  
+2. Datakit 开启[链路数据采集](../../../integrations/ddtrace.md)，并配置日志切割的 [`Pipeline` 脚本](../../../datakit/pipeline.md)，启动 Datakit；  
+3. 启动 Python 应用。
 
 ## 应用开启日志与链路
 
