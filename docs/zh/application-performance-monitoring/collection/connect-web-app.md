@@ -20,7 +20,7 @@ APM 通过 `DDTrace`、`Zipkin`、`Skywalking`、`Jaeger`、`Opentelemetry` 采�
 - zipkin: `X-B3-TraceId`、`X-B3-SpanId`、`X-B3-ParentSpanId`、`X-B3-Sampled`、`X-B3-Flags`。
 - zipkin_single_header: `b3`。
 - w3c_traceparent: `traceparent`。
-- opentelemetry: 该类型支持 `zipkin_single_header`,`w3c_traceparent`,`zipkin`、`jaeger`三种类型的配置方式，根据在 rum sdk 中配置的 traceType 类型 添加对应的 header。
+- opentelemetry: 该类型支持 `zipkin_single_header`, `w3c_traceparent`, `zipkin`, `jaeger` 三种类型的配置方式，根据在 RUM SDK 中配置的 traceType 类添加对应的 header。
 
 *Python 示例：*
 
