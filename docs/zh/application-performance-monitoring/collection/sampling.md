@@ -34,7 +34,7 @@ pip install flask
 
 ???+ abstract "采样配置说明"
 
-    创建 `SERVICE_A` 和 `SERVICE_B` ，为`SERVICE_A` 配置采样 5%，`SERVICE_B` 按照默认采集。
+    创建 `SERVICE_A` 和 `SERVICE_B`，为 `SERVICE_A` 配置采样 5%，`SERVICE_B` 按照默认采集。
 
 在创建时，需要引用 DDtrace 并设置服务名、服务名映射关系并且通过环境变量设置项目名、环境名、版本号相关信息，并且配置 DataKit trace API 服务地址（具体地址视 DataKit 地址而定端口号为 9529）。
 

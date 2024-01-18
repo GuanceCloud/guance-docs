@@ -1,4 +1,4 @@
-# 链路查看器
+# 链路
 ---
 
 
@@ -33,40 +33,29 @@ Span 表示给定时间段内分布式系统中的逻辑工作单元，多个 Sp
 
 </div>
 
-## 链路查询和分析
+## 查询与分析
 
-### 时间控件
+- 时间控件：链路查看器默认展示最近 15 分钟的数据，您也可以自定义数据展示的[时间范围](../getting-started/function-details/explorer-search.md#time)。
 
-链路查看器默认展示最近 15 分钟的数据，您也可以自定义数据展示的[时间范围](../getting-started/function-details/explorer-search.md#time)。
+- 在链路查看器搜索栏，支持[多种搜索方式和筛选方式](../getting-started/function-details/explorer-search.md)。
 
-### 搜索与筛选
+    - **注意：**当您切换查看**服务**或**链路**查看器时，观测云默认为您保留当前的筛选条件和时间范围。
 
-在链路查看器搜索栏，支持[多种搜索方式和筛选方式](../getting-started/function-details/explorer-search.md)。
+- 分析模式：在链路查看器[分析栏](../getting-started/function-details/explorer-search.md#analysis)，您可以基于 <u>1-3 个标签</u>进行多维度分析统计，并支持多种数据图表分析方式。
 
-**注意：**当您切换查看**服务**或**链路**查看器时，观测云默认为您保留当前的筛选条件和时间范围。
+- 快捷筛选：支持编辑[快捷筛选](../getting-started/function-details/explorer-search.md#quick-filter)，添加新的筛选字段。
 
-### 分析模式
+- 筛选历史：观测云支持在[筛选历史](../getting-started/function-details/explorer-search.md#filter-history)保存查看器 `key:value` 的搜索条件历史，应用于当前工作空间不同的查看器。
 
-在链路查看器[分析栏](../getting-started/function-details/explorer-search.md#analysis)，您可以基于 <u>1-3 个标签</u>进行多维度分析统计，并支持多种数据图表分析方式。
-
-### 快捷筛选
-
-在链路查看器快捷筛选，支持编辑[快捷筛选](../getting-started/function-details/explorer-search.md#quick-filter)，添加新的筛选字段。
-
-### 筛选历史
-
-观测云支持在[筛选历史](../getting-started/function-details/explorer-search.md#filter-history)保存查看器 `key:value` 的搜索条件历史，应用于当前工作空间不同的查看器。
+- 自定义[显示列](../getting-started/function-details/explorer-search.md#columns)：在链路列表，默认查看**时间**、**链路 ID**、**服务**、**资源**以及**持续时间**，可自定义添加、编辑、删除、拖动显示列。
 
 ### 图表统计
 
 在链路查看器图表统计，您可以查看所选时间范围内链路不同状态的**请求数**、**Error 请求数**、**响应时间**，您可以通过筛选同步展示图表统计。
 
-- 请求数/Error 请求数：根据所选时间范围划分为 60 个时间点，用柱状图统计展示链路的**请求数**以及 **Error 请求数**。
-- 响应时间：根据所选时间范围划分为 60 个时间点，用折线图统计展示四个响应指标，分别为**每秒平均响应时间**、**P75 响应时间**、**P90 响应时间**以及**P99 响应时间**
+- 请求数/Error 请求数：根据所选时间范围划分为 60 个时间点，用柱状图统计展示链路的请求数以及 Error 请求数。
+- 响应时间：根据所选时间范围划分为 60 个时间点，用折线图统计展示四个响应指标，分别为每秒平均响应时间、P75 响应时间、P90 响应时间以及P99 响应时间。
 
-### 自定义显示列
-
-在链路列表，默认查看**时间**、**链路 ID**、**服务**、**资源**以及**持续时间**，可通过 **[显示列](../getting-started/function-details/explorer-search.md#columns)** 自定义添加、编辑、删除、拖动显示列。
 
 ### 链路数据导出
 
@@ -92,7 +81,7 @@ Span 表示给定时间段内分布式系统中的逻辑工作单元，多个 Sp
 
     用户访问监测 SDK 必须是 2.2.10 以及上才可以看到这部分数据显示，如存在跨域情况需要调整 header 配置。
     
-    > 更多详情可参考文档 [Web 应用接入](../real-user-monitoring/web/app-access.md#header)。
+    > 更多详情，可参考 [Web 应用接入](../real-user-monitoring/web/app-access.md#header)。
 
 ![](img/11.apm_browse_1.png)
 
@@ -100,7 +89,9 @@ Span 表示给定时间段内分布式系统中的逻辑工作单元，多个 Sp
 
 火焰图可清晰展示整条链路中每个 Span 的流转和执行时间。你可以在火焰图右侧查看对应的服务列表及响应时间。点击火焰图的 Span，在**链路详情**可查看对应的 Json 内容，通过鼠标滚轴缩放可查看具体 Span 信息。
 
-> 更多火焰图的应用详情,可参考[巧用火焰图分析链路性能](../best-practices/monitoring/trace-glame-graph.md)。
+> 更多火焰图的应用详情，可参考 [巧用火焰图分析链路性能](../best-practices/monitoring/trace-glame-graph.md)。
+
+<div class="grid" markdown>
 
 === "火焰图链路说明"
 
@@ -119,7 +110,7 @@ Span 表示给定时间段内分布式系统中的逻辑工作单元，多个 Sp
 
     火焰图中的服务执行时间占比是指这一次调用链路各个服务占总时间的比率。以下图为例，此次调用链路包含了两个服务，分别为 CloudCare 和 Mysql，执行时间占比分别为 42.37% 和 57.63%。CloudCare 服务有 2 个 Span，Mysql 服务有 10 个 Span。
     
-    - Mysql 服务执行时间占比计算方式：所有span执行时间相加／当前调用链路总时长。
+    - Mysql 服务执行时间占比计算方式：所有 span 执行时间相加／当前调用链路总时长。
     
     计算方式说明：下图中 Mysql 服务总共有10个 Span 数量，可以点击每一个 Span 来获取当前 Span 的执行时间，从图中可以看出，该 Span 的执行时间为 5.08ms，然后以同样的方式，获取剩余 9 个 Span 的执行时间并相加。
     
@@ -136,6 +127,8 @@ Span 表示给定时间段内分布式系统中的逻辑工作单元，多个 Sp
     在火焰图中，无论服务是同步还是异步的调用，都能够清晰追踪每一个链路性能的数据细节。如通过火焰图可以清晰查看哪几条请求是异步进行的，开始时间、结束时间以及总计花费时间。
     
     ![](img/9.apm_explorer_19.2.png)
+
+</div>
 
 ### Span 列表
 
@@ -191,7 +184,7 @@ Span 表示给定时间段内分布式系统中的逻辑工作单元，多个 Sp
 
 ![](img/extension.png)
 
-???- info "部分字段不支持筛选聚合等相关逻辑"
+???- abstract "部分字段不支持筛选聚合等相关逻辑"
 
     观测云存在部分字段采用全文索引，这部分字段不支持您做筛选聚合等相关逻辑。全文索引字段范围如下：
 
@@ -215,17 +208,14 @@ Span 表示给定时间段内分布式系统中的逻辑工作单元，多个 Sp
 
 在链路详情页，若存在错误链路，即可查看相关的错误详情。
 
-> 更多错误链路分析，可参考文档 [错误追踪](../application-performance-monitoring/error.md)。
+> 更多错误链路分析，可参考 [错误追踪](../application-performance-monitoring/error.md)。
 
 ![](img/6.apm_error.png)
 
 ### 关联分析
 
-=== "关联用户访问体验"
+<div class="grid" markdown>
 
-    在链路详情页，您可以通过页面上方的**相关 View** 查看关联的真实用户访问体验数据（关联字段：`trace_id`），帮助您查看应用性能对应的用户访问情况。
-    
-    ![](img/9.apm_explorer_19.1.png)
 
 === "关联日志"
 
@@ -239,7 +229,7 @@ Span 表示给定时间段内分布式系统中的逻辑工作单元，多个 Sp
     
         关联日志自定义字段和服务清单关联分析配置自定义字段相互影响，若在服务清单配置了自定义字段，此处同步展示。
     
-        > 更多详情可参考文档 [服务清单关联分析](service-catalog.md#analysis)。
+        > 更多详情，可参考 [服务清单关联分析](service-catalog.md#analysis)。
     
     ![](img/3.apm_8.png)
 
@@ -271,7 +261,7 @@ Span 表示给定时间段内分布式系统中的逻辑工作单元，多个 Sp
 
     在链路详情页，您可以通过**容器**，查看相关容器的指标视图和属性视图（关联字段：`container_name`）。
     
-    - 指标视图：支持查看相关容器<u>在该链路结束前30分钟到链路结束后 30 分钟</u>的性能指标状态，包括容器 CPU、内存等性能指标视图。
+    - 指标视图：支持查看相关容器<u>在该链路结束前 30 分钟到链路结束后 30 分钟</u>的性能指标状态，包括容器 CPU、内存等性能指标视图。
     
     - 属性视图：帮助您回溯链路产生时容器对象的真实情况，支持查看相关容器<u>在对应时间内产生的最新的一条对象数据</u>，包括容器的基本信息、属性信息。
 
@@ -324,3 +314,5 @@ Span 表示给定时间段内分布式系统中的逻辑工作单元，多个 Sp
 
         - 若同时查询到 Host、Pod、Deployment、Service 的关联字段，进入详情页时则按照此顺序显示网络数据；
         - 若未查询到关联字段，则排在末端显示为灰色，点击提示**未匹配到网络视图**。
+
+</div>
