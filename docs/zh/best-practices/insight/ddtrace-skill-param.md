@@ -6,7 +6,8 @@
 
 ## 前置条件
 
-- 开启 [DataKit ddtrace 采集器](../../integrations/ddtrace.md)
+- 开启 [DataKit ddtrace 采集器](/integrations/ddtrace/)
+
 - 准备 Shell
 
   ```shell
@@ -76,7 +77,6 @@ ddtrace 提供两种添加 tag 方式，效果一样。但还是推荐使用 dd.
 
 ![image.png](../images/ddtrace-skill-5.png)
 
-> **注意：**如果自定义 tag 包含了 [tag 关键字](../../../datakit/ddtrace#tags)，则会当成标签显示。
 
 ### 显示数据库实例名称
 
@@ -262,4 +262,4 @@ ddtrace 1.9.0 之前使用
 
 [demo 源码地址](https://github.com/lrwh/observable-demo/tree/main/springboot-ddtrace-server)
 
-[ddtrace 启动参数](/datakit/ddtrace-java#start-options)
+[ddtrace 启动参数](/integrations/ddtrace-java/#start-options)

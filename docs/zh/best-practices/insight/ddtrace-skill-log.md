@@ -8,7 +8,7 @@
 
 ## 前置条件
 
-- 开启 [DataKit ddtrace 采集器](../../integrations/ddtrace.md)
+- 开启 [DataKit ddtrace 采集器](/integrations/ddtrace/)
 - 准备 Shell
 
   ```shell
@@ -172,7 +172,7 @@ default_time(time,"Asia/Shanghai")
 
 ![image.png](../images/ddtrace-skill-11.png)
 
-> 观测云也支持其他的日志方式采集，比如 socket，更多日志采集可参考：[日志](../../../best-practices/cloud-native/k8s-logs.md)
+> 观测云也支持其他的日志方式采集，比如 socket，更多日志采集可参考：[日志](/best-practices/cloud-native/k8s-logs/)
 
 ### 3 效果展示
 
@@ -184,4 +184,4 @@ default_time(time,"Asia/Shanghai")
 
 <[demo 源码地址](https://github.com/lrwh/observable-demo/tree/main/springboot-ddtrace-server)>
 
-<[ddtrace 启动参数](../../../../datakit/ddtrace-java#start-options)>
+[ddtrace 启动参数](/integrations/ddtrace-java/#start-options)
