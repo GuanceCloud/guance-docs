@@ -8,7 +8,7 @@
 
 ## 前置条件
 
-- 开启 [DataKit ddtrace 采集器](../../../datakit/ddtrace.md)
+- 开启 [DataKit ddtrace 采集器](/integrations/ddtrace/)
 - 准备 Shell
 
   ```shell
@@ -169,7 +169,7 @@ customer_tags = ["username", "job"]
 
 ### 自定义 traceId
 
-请参考最佳实践文档：<[使用 extract + TextMapAdapter 实现了自定义 traceId](../../../best-practices/monitoring/ddtrace-custom-traceId.md)>
+请参考最佳实践文档：<[使用 extract + TextMapAdapter 实现了自定义 traceId](/best-practices/monitoring/ddtrace-custom-traceId/)>
 
 ### 自定义 span
 
@@ -233,4 +233,4 @@ span.setTag(Tags.ERROR, true);
 
 <[demo 源码地址](https://github.com/lrwh/observable-demo/tree/main/springboot-ddtrace-server)>
 
-<[ddtrace 启动参数](../../../../datakit/ddtrace-java#start-options)>
+[ddtrace 启动参数](/integrations/ddtrace-java/#start-options)

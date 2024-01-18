@@ -8,7 +8,7 @@
 
 ## 前置条件
 
-- 开启 [DataKit ddtrace 采集器](../../../datakit/ddtrace.md)
+- 开启 [DataKit ddtrace 采集器](/integrations/ddtrace/)
 - 准备 Shell
 
   ```shell
@@ -66,4 +66,4 @@ done
 
 <[demo 源码地址](https://github.com/lrwh/observable-demo/tree/main/springboot-ddtrace-server)>
 
-<[ddtrace 启动参数](../../../../datakit/ddtrace-java#start-options)>
+<[ddtrace 启动参数](/integrations/ddtrace-java/#start-options)>
