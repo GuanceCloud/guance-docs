@@ -19,12 +19,14 @@ nav:
   - '日志 - 数据转发': log-backup-cfg
   - '日志 - 数据访问': logging-query-rule
   - '用户访问监测 - 应用': rum-cfg-set
+  - '用户访问监测 - SourceMap': rum-sourcemap
   - '可用性监测 - 拨测任务': dialing-task
   - '可用性监测 - 自建节点管理': dialing-region
   - '监控 - 监控器': checker
   - '监控 - 智能巡检': self-built-checker
   - '监控 - 静默配置': mute
   - '监控 - 告警策略': monitor
+  - '监控 - 告警策略 - 自定义通知日期': monitor-notice-date
   - '监控 - 通知对象管理': notify-object
   - '管理 - 成员管理': workspace-member
   - '管理 - 成员管理 - 团队管理': member-group
