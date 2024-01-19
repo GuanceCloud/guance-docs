@@ -2,7 +2,7 @@
 
 ## 1.78.152（2024 年 01 月 17 日）
 
-pubrepo.guance.com/dataflux/1.78.152:launcher-bc10e4f-1705468616
+pubrepo.guance.com/dataflux/1.78.152:launcher-60b3def-1705468616
 
 ### 私有部署版更新
 
