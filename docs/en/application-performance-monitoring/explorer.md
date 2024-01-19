@@ -81,7 +81,7 @@ If the current trace belongs to a front-end application (such as: browser), you 
 
     > For more details, see [Web Application Access](../real-user-monitoring/web/app-access.md#header).
 
-![](img/11.apm_browse_1.png)
+<img src="../img/11.apm_browse_1.png" width="70%" >
 
 ### Flame {#flame}
 

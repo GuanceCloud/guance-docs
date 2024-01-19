@@ -3,8 +3,8 @@ title     : 'Nacos'
 summary   : 'Collect Nacos related index information'
 __int_icon: 'icon/nacos'
 dashboard :
-  - desc  : 'Nacos Monitoring View'
-    path  : 'dashboard/zh/nacos'
+  - desc  : 'Nacos'
+    path  : 'dashboard/en/nacos'
 monitor   :
   - desc  : 'No'
     path  : '-'
@@ -109,34 +109,34 @@ Description of main parameters
 |http_server_requests_seconds_sum| http server requests sum (by url、func、code) |
 | `nacos_timer_seconds_sum`| Nacos config notify duration |
 | `nacos_timer_seconds_count`| Nacos config notify count |
-| `nacos_monitor` {name='longPolling'}| Nacos config long poll |
-| `nacos_monitor` {name='configCount'}| Nacos config count |
-| `nacos_monitor` {name='dumpTask'}| Nacos config dump task count |
-| `nacos_monitor` {name='notifyTask'}| Nacos config  notify task count|
-| `nacos_monitor` {name='getConfig'}| Nacos config get  count |
-| `nacos_monitor` {name='publish'}| Nacos config publish count |
-| `nacos_monitor` {name='ipCount'}| Nacos naming ip count |
-| `nacos_monitor` {name='domCount'}| Nacos naming domain count (1.x version) |
-| `nacos_monitor` {name='serviceCount'}| Nacos naming domain count (2.x version) |
-| `nacos_monitor` {name='failedPush'}| Nacos naming  push failed|
-| `nacos_monitor` {name='avgPushCost'}| Nacos naming push cost by avg |
-| `nacos_monitor` {name='leaderStatus'}| Nacos naming leader status |
-| `nacos_monitor` {name='maxPushCost'}| Nacos naming max push cost time |
-| `nacos_monitor` {name='mysqlhealthCheck'}| Nacos naming mysql health check time |
-| `nacos_monitor` {name='httpHealthCheck'}| Nacos naming http health check time  |
-| `nacos_monitor` {name='tcpHealthCheck'}| Nacos naming tcp health check time  |
+| `nacos_monitor {name='longPolling'}`| Nacos config long poll |
+| `nacos_monitor {name='configCount'}`| Nacos config count |
+| `nacos_monitor {name='dumpTask'}`| Nacos config dump task count |
+| `nacos_monitor {name='notifyTask'}`| Nacos config  notify task count|
+| `nacos_monitor {name='getConfig'}`| Nacos config get  count |
+| `nacos_monitor {name='publish'}`| Nacos config publish count |
+| `nacos_monitor {name='ipCount'}`| Nacos naming ip count |
+| `nacos_monitor {name='domCount'}`| Nacos naming domain count (1.x version) |
+| `nacos_monitor {name='serviceCount'}`| Nacos naming domain count (2.x version) |
+| `nacos_monitor {name='failedPush'}`| Nacos naming  push failed|
+| `nacos_monitor {name='avgPushCost'}`| Nacos naming push cost by avg |
+| `nacos_monitor {name='leaderStatus'}`| Nacos naming leader status |
+| `nacos_monitor {name='maxPushCost'}`| Nacos naming max push cost time |
+| `nacos_monitor {name='mysqlhealthCheck'}`| Nacos naming mysql health check time |
+| `nacos_monitor {name='httpHealthCheck'}`| Nacos naming http health check time  |
+| `nacos_monitor {name='tcpHealthCheck'}`| Nacos naming tcp health check time  |
 
 ### Nacos exception Metric
 
 |Metric| Description |
 | --- | --- |
-| `nacos_exception_total` {name='db'}| db exception count |
-| `nacos_exception_total` {name='configNotify'}| Nacos config notify exception count |
-| `nacos_exception_total` {name='unhealth'}| Nacos config server unHealth count |
-| `nacos_exception_total` {name='disk'}| Nacos naming disk write error count |
-| `nacos_exception_total` {name='leaderSendBeatFailed'}| Nacos naming leader send beat error count |
-| `nacos_exception_total` {name='illegalArgument'}| illegal argument count |
-| `nacos_exception_total` {name='nacos'}| Nacos Request response internal error exception (read write failure, no permission, parameter error) |
+| `nacos_exception_total {name='db'}`| db exception count |
+| `nacos_exception_total {name='configNotify'}`| Nacos config notify exception count |
+| `nacos_exception_total {name='unhealth'}`| Nacos config server unHealth count |
+| `nacos_exception_total {name='disk'}`| Nacos naming disk write error count |
+| `nacos_exception_total {name='leaderSendBeatFailed'}`| Nacos naming leader send beat error count |
+| `nacos_exception_total {name='illegalArgument'}`| illegal argument count |
+| `nacos_exception_total {name='nacos'}`| Nacos Request response internal error exception (read write failure, no permission, parameter error) |
 
 
 For more Nacos metrics, refer to [Nacos Official Website - Monitoring](https://nacos.io/zh-cn/docs/monitor-guide.html)
