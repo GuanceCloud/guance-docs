@@ -66,6 +66,7 @@ nav:
       - 'Simple Queue Service': aws_sqs.md
       - 'S3': aws_s3.md
       - 'Timestream': aws_timestream.md
+      - 'RabbitMQ': aws_mq_rabbitmq.md
 
     - Tencent:
       - 'CDB': tencent_cdb.md

@@ -83,7 +83,7 @@ Span 表示给定时间段内分布式系统中的逻辑工作单元，多个 Sp
     
     > 更多详情，可参考 [Web 应用接入](../real-user-monitoring/web/app-access.md#header)。
 
-![](img/11.apm_browse_1.png)
+<img src="../img/11.apm_browse_1.png" width="70%" >
 
 ### 火焰图 {#flame}
 

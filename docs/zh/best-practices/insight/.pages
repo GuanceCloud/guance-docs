@@ -27,6 +27,7 @@ nav:
     - 'ddtrace 采样': ddtrace-skill-sampling.md
     - 'ddtrace-api 使用指南': ddtrace-skill-api.md
     - 'ddtrace log 关联': ddtrace-skill-log.md
+    - tracing_method.md
     - 'OpenTelemetry Java SDK': opentelemetry-sdk.md
     - 'trace_thread.md'
 
