@@ -64,12 +64,45 @@
 需要修改kodo、kodo-x等应用服务的配置让转储配置生效
 
 * 修改forethought-kodo命名空间下名称为kodo、kodo-x、kodo-inner的configmap资源。添加以下内容
-![configmap-1](img/backuplog-configmap-1.jpg)
+
+  公有云存储桶配置
+```yaml
+backup_log:
+  ${store_type}:
+    ak: "LTAI5tMxxxxxxxxFroj"
+    sk: "6MpS1gxxxxxxxxxxxxxxxxUoH6"
+    region: "cn-northwest-1"
+    bucket: "guance-backuplog"
+  guance:
+    store_type: "obs" 
+
+1. ${store_type}在oss、s3、obs中选择一项,分别对应阿里云、AWS、华为云存储桶服务
+2. guance.store_type 决定实际使用哪个厂商的存储服务，该值应与${store_type}相同
+3. 当${store_type}为s3时，多一个配置项:partition。如果是AWS国内，该值为aws-cn，国外AWS则为aws
+``` 
+  私有云存储桶配置
+```yaml
+backup_log:
+  ${store_type}:
+    ak: "LTAI5tMxxxxxxxxFroj"
+    sk: "6MpS1gxxxxxxxxxxxxxxxxUoH6"
+    endpoint: "xxxxx"
+    bucket: "guance-backuplog"
+  guance:
+    store_type: "obs"
+
+1. ${store_type}在oss、s3、obs中选择一项,分别对应阿里云、AWS、华为云存储桶服务
+2. guance.store_type 决定实际使用哪个厂商的存储服务，该值应与${store_type}相同
+3. 私有存储服务多了一个配置项:endpoint。值为提供存储桶的endpoint信息
+```
+
 * 修改完成后，重启kodo、kodo-x、kodo-inner、kodo-x-backuplog服务
 ???+ warning "注意"
      kodo-x-backuplog服务在集群里为Statefulset类型，该服务需要开启数据持久化，并且每个pod都使用独立的PVC，可以与下图中的配置进行对比
 ![statefulset-1](img/backuplog-statefulset-1.jpg)
 ![pvc-1](img/backuplog-pvc-1.jpg)
+
+
 ### 步骤三：数据转发配置
 当上述步骤都完成后需要登录到观测云中，进行数据转发的配置，配置完成后，可以参考 [数据转发](../management/backup.md) 进行验证
 ![config-1](img/config-1.jpg)
