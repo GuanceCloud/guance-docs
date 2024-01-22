@@ -8,10 +8,10 @@
 
 - 开启 [DataKit ddtrace 采集器](/integrations/ddtrace/)
 
-- 准备 Shell
+- 启动命令
 
   ```shell
-  java -javaagent:D:/ddtrace/dd-java-agent-1.21.1-guance.jar \
+  java -javaagent:D:/ddtrace/dd-java-agent-guance.jar \
   -Ddd.service.name=ddtrace-server \
   -Ddd.agent.port=9529 \
   -jar springboot-ddtrace-server.jar
@@ -256,10 +256,64 @@ ddtrace 1.9.0 之前使用
 
 ***注意： 可以配置多个传播器，多个传播器之间使用`,`分割，传播器类型不区分大小写。***
 
-关于传播器更多资料可以参考[链路传播（Propagate）机制及使用场景](https://juejin.cn/post/7254125867177443365)
+关于传播器更多资料可以参考[链路传播（Propagate）机制及使用场景](https://juejin.cn/post/7254125867177443365){:target="_blank"}
+
+
+### Response 返回 TraceId :loudspeaker:
+
+此项不需要额外配置，在请求响应完成后， 追加 key 为 `guance_trace_id` 的 header。
+
+![Img](../images/ddtrace-param-response.png)
+
+:heavy_check_mark: version >= 1.25.1-guance
+
+### Header Tags :loudspeaker:
+
+把请求和响应中所有的 header 添加到链路 tag 上，请求 header 的 tag 名称为`request_header`，响应结果 header 的 tag 名称为 `response_header`。需要通过以下两种方式进行开启，二选一：
+
+- 启动命令
+
+`-Ddd.trace.headers.enabled`：默认值为 `false`，即不开启。
+
+- 环境变量
+
+`DD_TRACE_HEADERS_ENABLED`
+
+![Img](../images/ddtrace-param-request-header.png)
+
+:point_right: 目前支持 Servlet3 和 Netty4
+
+:heavy_check_mark: version >= 1.25.2-guance
+
+### Request body Tag :loudspeaker:
+
+把请求体添加到链路 tag 上，目前只支持 `POST` 请求，且 `Context-Type` 为 `application/json` 或 `application/json;charset=UTF-8`
+- 启动命令
+
+`-Ddd.trace.request.body.enabled`：默认值为 `false`，即不开启。
+
+- 环境变量
+
+`DD_TRACE_REQUEST_BODY_ENABLED`
+
+如执行以下请求
+
+> curl -X POST -H 'Content-Type: application/json' -d '{"username":"joy","age":18}' http://localhost:8090/jsonStr
+
+![Img](../images/ddtrace-param-request-body.png)
+
+
+:point_right: 目前支持 Servlet3
+
+:heavy_check_mark: version >= 1.25.2-guance
+
 
 ## 参考文档
 
-[demo 源码地址](https://github.com/lrwh/observable-demo/tree/main/springboot-ddtrace-server)
+[demo 源码地址](https://github.com/lrwh/observable-demo/tree/main/springboot-ddtrace-server){:target="_blank"}
 
-[ddtrace 启动参数](/integrations/ddtrace-java/#start-options)
+[ddtrace 启动参数](/integrations/ddtrace-java/#start-options){:target="_blank"}
+
+[ddtrace issue](https://github.com/GuanceCloud/dd-trace-java/issues){:target="_blank"}
+
+[ddtrace 扩展功能](/integrations/ddtrace-ext-java/):loudspeaker:
