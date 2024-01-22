@@ -104,6 +104,7 @@ datafluxLogs.init({
 | `sampleRate`          | Number   | 否           | `100`      | 指标数据收集百分比：`100` 表示全收集，`0` 表示不收集            |
 | `forwardErrorsToLogs` | Boolean  | 否           | `true`     | 设置为 `false` 表示停止采集 console.error、 js、以及网络错误上报到观测云日志数据中 |
 | `silentMultipleInit`  | Boolean  | 否           | `false`    | 不允许有多个日志对象被初始化                                 |
+| `forwardConsoleLogs`             | 字符串/数组 |  |  | 需要采集浏览器 console 日志类型，可选值：`error`, `log`, `info`, `warn`, `error`             |
 
 
 ## 使用
