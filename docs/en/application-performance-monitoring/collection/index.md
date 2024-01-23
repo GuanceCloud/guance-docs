@@ -16,7 +16,7 @@ Before collecting data, you need to:
 
 Or you can directly click the link below to view the corresponding collector configuration:
 
-|                          Collector Configuration                          |                                                              |                                                              |                                                              |                                                              |
+|                          Collectors                        |                                                              |                                                              |                                                              |                                                              |
 | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
 | [DDTrace](../../integrations/ddtrace.md){ .md-button .md-button--primary } | [Skywalking](../../integrations/skywalking.md){ .md-button .md-button--primary } | [OpenTelemetry](../../integrations/opentelemetry.md){ .md-button .md-button--primary } | [Zipkin](../../integrations/zipkin.md){ .md-button .md-button--primary } | [Jaeger](../../integrations/jaeger.md){ .md-button .md-button--primary } |
 
