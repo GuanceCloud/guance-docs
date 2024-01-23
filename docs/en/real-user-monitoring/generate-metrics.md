@@ -52,26 +52,14 @@ Go to **RUM > Generate metrics** page and click on **Create**.
 
 ## Options
 
-All added rules will be displayed on the **Generate Metrics** page, and users can perform the following operations:
+All added rules will be displayed on the **Generate Metrics** interface, and users can perform the following options:
 
-![](img/4.rum_metrics_2.png)
+![](img/4.rum_metrics_2.gif)
 
-### Edit
 
-You can view all created generation metric rules and edit them.
 
-**Note**: Since the data source and aggregation expressions of generation metric rules determine the data type, some rules do not support editing and modification.
 
-![](img/4.rum_metrics_3.png)
-
-### Enable/Disable
-
-You can modify the rule status. When an metric generation rule is disabled, the corresponding data will not be written to the measurement. It will resume writing after being enabled.
-
-### Delete
-
-You can delete unnecessary rules. After a rule is deleted, the measurement will not be deleted, but data writing will stop.
-
+<!--
 ### View Metrics
 
 ### View in Metric Analysis
@@ -99,3 +87,5 @@ After generating the metrics, you can use them in **Scenes > Dashboards > Create
 After generating the metrics, you can use them in **Shortcuts > [Query](../dql/query.md)** to query and analyze metric data.
 
 ![](img/4.rum_metrics_5.png)
+
+-->
