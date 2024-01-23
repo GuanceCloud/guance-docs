@@ -10,9 +10,10 @@ In the View explorer, you can:
 
 ## Explorer
 
+![](../img/12.rum_explorer_2.png)
+
 In the View explorer, you can quickly view the page address, page load type, page load time, and user duration during user access.
 
-![](../img/12.rum_explorer_2.png)
 
 ## Details Page
 
@@ -28,7 +29,7 @@ In the **Source** section, you can view the session details for the current View
 
 ### Performance
 
-The **Performance** page helps you view the front-end page performance when users access a specific application. This includes page load time, content rendering time, interaction time, input delay, etc. In the example below, the LCP (Largest Contentful Paint) metric is 8.4 seconds, while the recommended time is within 2.5 seconds, indicating that the page is slow to load and needs optimization.
+The **Performance** page helps you view the front-end page performance when users access a specific application. This includes page load time, content rendering time, interaction time, input delay, etc. In the example below, the CLS (Cumulative Layout Shift) metric is 0.0006 seconds, indicating that the page is excellent.
 
 ![](../img/12.rum_explorer_2.2.png)
 
@@ -43,7 +44,7 @@ Attributes define the nature and characteristics of data objects, and define the
 
 :material-numeric-3-circle-outline: On the link details page, you can view the related field attributes of the current link in the **Attributes** section:
 
-| Operation | Description |
+| <div style="width: 110px">Options</div> | Description |
 | --- | --- |
 | Filter | Add the field to the explorer to view all data related to the field. |
 | Reverse Filter  | Add the field to the explorer to view data other than the field. |
@@ -83,6 +84,6 @@ Through the **Logs** section at the bottom of the details page, you can view the
 
 ![](../img/4.rum_view_7.png)
 
-### Bind View
+### Bind Views
 
 Guance supports binding or deleting inner views (user views) to the details page. Click on [**Bind View**](../../scene/inner-view/bind-view.md) to add a new view to the current details page.

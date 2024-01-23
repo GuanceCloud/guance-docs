@@ -6,7 +6,7 @@
 
 ![](../img/web-pic.png)
 
-???+ abstract "名词解释"
+???+ abstract "Web 应用名词解释"
 
     LCP、FID、CLS 是谷歌网站核心指标，用来衡量网站的载入速度、互动性和页面稳定性。
 
