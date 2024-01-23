@@ -45,9 +45,9 @@ You can click on the following links to view the corresponding application acces
 
 | <font color=coral>**Application Access**</font> |  |  |
 | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| [Web](web/app-access.md){ .md-button } | [Android](android/app-access.md){ .md-button } | [iOS](ios/app-access.md){ .md-button } |
-| [Miniapp](miniapp/app-access.md){ .md-button } | [React Native](react-native/app-access.md){ .md-button } | [Flutter](flutter/app-access.md){ .md-button } |
-| [UniApp](uni-app/app-access.md){ .md-button } | [macOS](macos/app-access.md){ .md-button } | [C++](cpp/app-access.md){ .md-button } |
+| [Web](web/app-access.md){ .md-button .md-button--primary } | [Android](android/app-access.md){ .md-button .md-button--primary } | [iOS](ios/app-access.md){ .md-button .md-button--primary } |
+| [Miniapp](miniapp/app-access.md){ .md-button .md-button--primary } | [React Native](react-native/app-access.md){ .md-button .md-button--primary } | [Flutter](flutter/app-access.md){ .md-button .md-button--primary } |
+| [UniApp](uni-app/app-access.md){ .md-button .md-button--primary } | [macOS](macos/app-access.md){ .md-button .md-button--primary } | [C++](cpp/app-access.md){ .md-button .md-button--primary } |
 
 ???+ warning "Notes"
 
@@ -95,7 +95,7 @@ With the help of powerful API extension capabilities provided by modern browsers
 
 **RUM > Analysis Dashboard** covers various analysis scenarios for different ports, and displays multiple metrics data from three aspects: performance, resources and errors. You can understand the real front-end experience of users through key performance indicators, quickly locate problems encountered by users when accessing the application, and improve user access performance.
 
-![](img/panel-rum.gif)
+![](img/panel-rum.png)
 
 <div class="grid cards" markdown>
 
@@ -112,7 +112,7 @@ After the application is accessed and data collection is completed, in addition 
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: Explore Powerful Uses of Explorers</font>](./explorer/index.md)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Explore Powerful Uses of Explorers</font>](./explorer/index.md)
 
 
 </div>
@@ -123,7 +123,7 @@ Guance RUM can set up custom tracking tasks to monitor the tracking trajectory i
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: Configure Self-built Tracking</font>](./self-tracking.md)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Configure Self-built Tracking</font>](./self-tracking.md)
 
 
 </div>
