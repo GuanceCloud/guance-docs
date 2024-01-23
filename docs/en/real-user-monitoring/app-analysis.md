@@ -7,14 +7,25 @@ For different ports, Guance provides visual application analysis and built-in mo
 
 In the **Analysis Dashboard**, you can view various analysis scenarios within the Web, mobile (Android/iOS), and mini program ports, including an **Overview**, **Performance Analysis**, **Resource Analysis**, and **Error Analysis**.
 
-???+ abstract "macOS"
+???+ abstract "Explanation of Web Application Terms"
 
-    In the **macOS** section, up to five views are displayed by default. You can also use the search bar to locate:
+    LCP, FID, CLS are Google's core web vitals, used to measure the loading speed, interactivity, and stability of a website.
 
-    - Enter the Application ID: List the views bound under the current Application ID;
-    - Enter the View Name: List all matching bound views.
+    | Metrics | Description | Target Value |
+    | --- | --- | --- |
+    | LCP(Largest Contentful Paint) | Calculate how long it takes to load the largest content element within the visible range of the webpage | Less than 2.5s |
+    | FID(First Input Delay) | Calculate the delay time when the user first interacts with the webpage | Less than 100ms |
+    | CLS(Cumulative Layout Shift) | Calculate whether the content of the webpage will move due to dynamic loading when the webpage is loaded, 0 means no change. | Less than 0.1 |
 
-    ![](img/board.png)
+
+**macOS:**
+
+In the **macOS** section, up to five views are displayed by default. You can also use the search bar to locate:
+
+- Enter the Application ID: List the views bound under the current Application ID;
+- Enter the View Name: List all matching bound views.
+
+![](img/board.png)
 
 
 ### Overview
