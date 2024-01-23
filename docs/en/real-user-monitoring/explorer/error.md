@@ -12,14 +12,17 @@ In the Error Explorer, you can:
 
 ### All Errors
 
+![](../img/12.rum_explorer_6.png)
+
 In the Error Explorer, you can quickly view the page address, code error type, error content and more when the user accesses the page.
 
 - Load failed: indicate an error without a response, the SDK adds Load failed by default.
 - Network request failed: indicate an error in the response.
 
-![](../img/12.rum_explorer_6.png)
 
 ### Patterns {#analysis}
+
+![](../img/error0725.png)
 
 If you want to view errors with a high frequency of occurrence, you can go to **Explorers > Error** and select the **Patterns** list.
 
@@ -27,7 +30,7 @@ Pattern calculates and analyzes the similarity of all error chain data based on 
 
 By default, it aggregates based on the `error_message` field, but you can customize the clustering field and enter up to 3 fields.
 
-![](../img/error0725.png)
+![](../img/error-message.png)
 
 - In the Patterns list, you can click on any error to view all associated errors. Clicking on a chain takes you to the detail page for analysis.
 - In the Patterns page, you can click on the sorting icon :octicons-triangle-up-16: & :octicons-triangle-down-16: to sort the document count in ascending/descending order (default is descending).
@@ -50,29 +53,33 @@ It aggregates and counts errors with high similarity and automatically selects t
 
 Youu can view the specific content of the error.
 
-### Sourcemap Conversion
+#### Sourcemap Conversion
 
 When an application is deployed in a production environment, to prevent code leakage and other security issues, files are typically transformed, compressed, and obfuscated during the packaging process. While these measures ensure code security, they also make the collected error stack information obfuscated, making it difficult to directly locate issues and inconveniencing subsequent bug troubleshooting.
 
 Guance provides Sourcemap functionality for applications, supporting the restoration of obfuscated code, making it easier to locate the source code during error troubleshooting and help users solve problems faster.
 
-You can configure Sourcemap through RUM [Sourcemap Configuration](../set-sourcemap.md) or [Datakit Collector Sourcemap Conversion](../../integrations/rum.md#sourcemap). After configuration, you can view the parsed code and original code in the error details.
+You can configure Sourcemap through RUM [Sourcemap Configuration](../sourcemap/set-sourcemap.md) or [Datakit Collector Sourcemap Conversion](../../integrations/rum.md#sourcemap). After configuration, you can view the parsed code and original code in the error details.
 
 **Note**: Currently, only Web applications support Sourcemap configuration in RUM.
 
-### Parsed Code Example
+##### Parsed Code
 
 Sourcemap conversion and parsed code example in RUM configuration:
 
 ![](../img/1.rum_error_4.png)
 
-### Original Code Example
+##### Original Code
 
 ![](../img/1.rum_error_5.png)
 
+
+<!--
 Sourcemap conversion and parsed code example using Datakit Collector configuration:
 
 ![](../img/sourcemap_02.png)
+-->
+
 
 **Note**: If both RUM and Datakit Collector have Sourcemap configured, the parsed format of RUM configuration is displayed.
 
@@ -82,7 +89,7 @@ Sourcemap conversion and parsed code example using Datakit Collector configurati
 :material-numeric-2-circle-outline: After selecting the field alias, you can view it after the field name. You can choose as needed.
 :material-numeric-3-circle-outline: On the chain detail page, you can view the relevant field properties of the current chain in the **Attributes** section:
 
-| Options | Description |
+| <div style="width: 110px">Options</div> | Description |
 | --- | --- |
 | Filter  | Add this field to the explorer to view all data related to this field. You can filter and view the chain list related to this field in the chain explorer.  |
 | Reverse Filter | Add this field to the explorer to view other data except for this field. |
