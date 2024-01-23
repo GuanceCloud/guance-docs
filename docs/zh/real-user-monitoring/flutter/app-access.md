@@ -87,7 +87,9 @@ void main() async {
 
 | **字段** | **类型** | **必须** | **说明** |
 | --- | --- | --- | --- |
-| serverUrl | String | 是 | datakit 安装地址 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529。<br/>:warning: 安装 SDK 设备需能访问该地址。 |
+| datakitUrl | String | 是 | datakit 访问 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529。<br/>:warning: 安装 SDK 设备需能访问该地址。注意：datakit 和 dataway 配置两者二选一|
+| datawayUrl | String | 是 | dataway 访问 URL 地址，例子：http://10.0.0.1:9528，端口默认 9528，注意：安装 SDK 设备需能访问这地址。注意：datakit 和 dataway 配置两者二选一 |
+| clientToken | String | 是 | 认证 token, 需要与 datawayUrl 同时配置  |
 | debug | bool | 否 | 设置是否允许打印日志，默认 `false` |
 | envType | enum EnvType | 否 | 环境，默认 `EnvType.prod` |
 | env | String | 否 | 环境，默认 `prod`，任意字符，建议使用单个单词，例如 `test` 等|

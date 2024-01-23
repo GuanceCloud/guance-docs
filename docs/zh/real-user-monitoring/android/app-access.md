@@ -262,6 +262,7 @@ android{
 | setEnableTraceUserView | Boolean | 否 | 是否自动追踪用户页面操作 | 默认为 `false` |
 | setEnableTraceUserResource | Boolean | 否 | 是否自动追动用户网络请求 | 仅支持 `Okhttp`，默认为 `false` |
 | setResourceUrlHandler | callback| 否 | 设置需要过滤的 Resource 条件| 默认不过滤 |
+| setOkHttpEventListenerHandler | callback| 否 | ASM 设置全局 Okhttp EventListener| 默认不设置 |
 | addGlobalContext | Dictionary | 否 | 添加自定义标签 | 添加标签数据，用于用户监测数据源区分，如果需要使用追踪功能，则参数 `key` 为 `track_id` ,`value` 为任意数值，添加规则注意事项请查阅[此处](#key-conflict) |
 
 
@@ -682,11 +683,11 @@ android{
 	    /**
 	     * 添加错误信息
 	     *
-	     * @param log
-	     * @param message
-	     * @param errorType
-	     * @param state
-	     * @param property
+	     * @param log       日志
+	     * @param message   消息
+	     * @param errorType 错误类型
+	     * @param state     程序运行状态
+		 * @param property  附加属性
 	     */
 	    public void addError(String log, String message, ErrorType errorType, AppState state, HashMap<String, Object> property)
 
@@ -702,6 +703,55 @@ android{
 	     */
 	    public void addError(String log, String message, long dateline, ErrorType errorType,
 	                         AppState state, HashMap<String, Object> property)
+
+		
+		/**
+	     * 添加错误信息
+	     *
+	     * @param log       日志
+	     * @param message   消息
+	     * @param errorType 错误类型
+	     * @param state     程序运行状态
+	     */
+	    public void addError(String log, String message, String errorType, AppState state)
+
+
+	     /**
+	     * 添加错误
+	     *
+	     * @param log       日志
+	     * @param message   消息
+	     * @param errorType 错误类型
+	     * @param state     程序运行状态
+	     * @param dateline  发生时间，纳秒
+	     */
+	    public void addError(String log, String message, long dateline, String errorType, AppState state)
+
+	    /**
+	     * 添加错误信息
+	     *
+	     * @param log       日志
+	     * @param message   消息
+	     * @param errorType 错误类型
+	     * @param state     程序运行状态
+	     * @param property  附加属性
+	     */
+	    public void addError(String log, String message, String errorType, AppState state, HashMap<String, Object> property)
+
+
+	    /**
+	     * 添加错误
+	     *
+	     * @param log       日志
+	     * @param message   消息
+	     * @param errorType 错误类型
+	     * @param state     程序运行状态
+	     * @param dateline  发生时间，纳秒
+		 * @param property  附加属性
+	     */
+	    public void addError(String log, String message, long dateline, String errorType,
+	                         AppState state, HashMap<String, Object> property)
+
 
 	```
 
@@ -732,11 +782,11 @@ android{
 		 /**
 	     * 添加错误信息
 	     *
-	     * @param log
-	     * @param message
-	     * @param errorType
-	     * @param state
-	     * @param property
+	     * @param log       日志
+	     * @param message   消息
+	     * @param errorType 错误类型
+	     * @param state     程序运行状态
+		 * @param property  附加属性
 	     */
 		fun addError(log: String, message: String, errorType: ErrorType, state: AppState, property: HashMap<String, Any>)
 
@@ -748,8 +798,54 @@ android{
 	     * @param errorType 错误类型
 	     * @param state     程序运行状态
 	     * @param dateline  发生时间，纳秒
+		 * @param property  附加属性
 	     */
 		fun addError(log: String, message: String, dateline: Long, errorType: ErrorType,state: AppState, property: HashMap<String, Any>)
+
+
+			/**
+	     * 添加错误信息
+	     *
+	     * @param log       日志
+	     * @param message   消息
+	     * @param errorType 错误类型
+	     * @param state     程序运行状态
+	     */
+		fun addError(log: String, message: String, errorType: String, state: AppState)
+
+		 /**
+	     * 添加错误
+	     *
+	     * @param log       日志
+	     * @param message   消息
+	     * @param errorType 错误类型
+	     * @param state     程序运行状态
+	     * @param dateline  发生时间，纳秒
+	     */
+		fun addError(log: String, message: String, dateline: Long, errorType: String, state: AppState)
+
+		 /**
+	     * 添加错误信息
+	     *
+	     * @param log       日志
+	     * @param message   消息
+	     * @param errorType 错误类型
+	     * @param state     程序运行状态
+		 * @param property  附加属性
+	     */
+		fun addError(log: String, message: String, errorType: String, state: AppState, property: HashMap<String, Any>)
+
+		 /**
+	     * 添加错误
+	     *
+	     * @param log       日志
+	     * @param message   消息
+	     * @param errorType 错误类型
+	     * @param state     程序运行状态
+	     * @param dateline  发生时间，纳秒
+		 * @param property  附加属性
+	     */
+		fun addError(log: String, message: String, dateline: Long, errorType: String,state: AppState, property: HashMap<String, Any>)
 
 	```
 
@@ -1260,58 +1356,55 @@ android{
 
 ## 通过 OKHttp Interceptor 自定义 Resource 和 TraceHeader {#okhttp_resource_trace_interceptor_custom}
 
-关闭 `FTRUMConfig`的`enableTraceUserResource` ，`FTTraceConfig`的 `enableAutoTrace` 配置
+ `FTRUMConfig`的`enableTraceUserResource` ，`FTTraceConfig`的 `enableAutoTrace` 配置，同时开启，优先加载自定义 `Interceptor` 配置
+ >1.4.1 之前的版本，需要关闭 `FTRUMConfig`的`enableTraceUserResource` ，`FTTraceConfig`的 `enableAutoTrace`
 
 === "Java"
 
 	```java
-	OkHttpClient client = new OkHttpClient.Builder()
-	                               .addInterceptor(new FTTraceInterceptor(new FTTraceInterceptor.HeaderHandler() {
-	                                    @Override
-	                                    public HashMap<String, String> getTraceHeader(Request request) {
-	                                        HashMap<String, String> map = new HashMap<>();
-	                                        map.put("custom_header","custom_value");
-	                                        return map;
-	                                   }
-	                             }))
-                                .addInterceptor(new FTResourceInterceptor(new FTResourceInterceptor.ContentHandlerHelper() {
-                                    @Override
-                                    public void onRequest(Request request, HashMap<String, Object> extraData) {
-                                        String contentType = request.header("Content-Type");
-                                        extraData.put("df_request_header", request.headers().toString());
-                                        if ("application/json".equals(contentType) ||
-                                                "application/x-www-form-urlencoded".equals(contentType) ||
-                                                "application/xml".equals(contentType)) {
-                                            extraData.put("df_request_body", request.body());
-                                        }
-
-                                    }
-
-                                    @Override
-                                    public void onResponse(Response response, HashMap<String, Object> extraData) throws IOException {
-                                        String contentType = response.header("Content-Type");
-                                        extraData.put("df_response_header", response.headers().toString());
-                                        if ("application/json".equals(contentType) ||
-                                                "application/xml".equals(contentType)) {
-                                            //copy 读取部分 body，避免大数据消费
-                                            ResponseBody body = response.peekBody(33554432);
-                                            extraData.put("df_response_body", body.string());
-                                        }
-                                    }
-
-                                    @Override
-                                    public void onException(Exception e, HashMap<String, Object> extraData) {
-
-                                    }
-                                }))
-                                .eventListenerFactory(new FTResourceEventListener.FTFactory())
-                                .build();
+	 new OkHttpClient.Builder()
+	        .addInterceptor(new FTTraceInterceptor(new FTTraceInterceptor.HeaderHandler() {
+	               @Override
+	               public HashMap<String, String> getTraceHeader(Request request) {
+	                   HashMap<String, String> map = new HashMap<>();
+	                   map.put("custom_header","custom_value");
+	                   return map;
+	              }
+	        }))
+           .addInterceptor(new FTResourceInterceptor(new FTResourceInterceptor.ContentHandlerHelper() {
+               @Override
+               public void onRequest(Request request, HashMap<String, Object> extraData) {
+                   String contentType = request.header("Content-Type");
+                   extraData.put("df_request_header", request.headers().toString());
+                   if ("application/json".equals(contentType) ||
+                           "application/x-www-form-urlencoded".equals(contentType) ||
+                           "application/xml".equals(contentType)) {
+                       extraData.put("df_request_body", request.body());
+                
+            
+               @Override
+               public void onResponse(Response response, HashMap<String, Object> extraData) throws IOException {
+                   String contentType = response.header("Content-Type");
+                   extraData.put("df_response_header", response.headers().toString());
+                   if ("application/json".equals(contentType) ||
+                           "application/xml".equals(contentType)) {
+                       //copy 读取部分 body，避免大数据消费
+                       ResponseBody body = response.peekBody(33554432);
+                       extraData.put("df_response_body", body.string());
+                   }
+            
+               @Override
+               public void onException(Exception e, HashMap<String, Object> extraData)
+               }
+           }))
+           .eventListenerFactory(new FTResourceEventListener.FTFactory())
+           .build();
 	```
 	
 === "Kotlin"
 
 	```kotlin
-	val client = OkHttpClient.Builder()
+	OkHttpClient.Builder()
     .addInterceptor(FTTraceInterceptor(object : FTTraceInterceptor.HeaderHandler {
         override fun getTraceHeader(request: Request): HashMap<String, String> {
             val map = HashMap<String, String>()
@@ -1627,10 +1720,15 @@ FTExt {
 
 为了避免自定义字段与 SDK 数据冲突，建议标签命名添加 **项目缩写** 的前缀，例如 `df_tag_name`，项目中使用 `key` 值可[查询源码](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java)。SDK 全局变量中出现与 RUM、Log 相同变量时，RUM、Log 会覆盖 SDK 中的全局变量。
 
+### SDK 兼容性
+
+* [可运行环境](app-troubleshooting.md#runnable)
+* [可兼容环境](app-troubleshooting.md#compatible) 
+
 ### 应对市场隐私审核 {#adpot-to-privacy-audits}
 #### 隐私声明
 [前往查看](https://docs.guance.com/agreements/app-sdk-privacy-policy/)
-#### SDK AndroidID 配置
+#### 方式 1: SDK AndroidID 配置
 SDK 为更好关联相同用户数据，会使用 Android ID。如果需要在应用市场上架，需要通过如下方式对应市场隐私审核。
 
 === "Java"
@@ -1673,7 +1771,7 @@ SDK 为更好关联相同用户数据，会使用 Android ID。如果需要在�
 	//用户同意隐私协议后再开启
 	FTSdk.setEnableAccessAndroidID(true);
 	```
-#### 延迟初始化 SDK
+#### 方式 2：延迟初始化 SDK
 如果需要在应用中延迟加载 SDK，建议使用如下方式初始化。
 
 === "Java"
@@ -1739,7 +1837,7 @@ SDK 为更好关联相同用户数据，会使用 Android ID。如果需要在�
 	```
 
 ### 无法使用 ft-plugin 情况下如何接入 SDK {#manual-set}
-观测云使用的 Androig Grale Plugin Transformation 实现的代码注入，从而实现数据自动收集。但是由于一些兼容性问题，可能存在无法使用 `ft-plugin` 的问题。受影响包括 **RUM** `Action`，`Resource`，和 `android.util.Log` ，Java 与 Kotlin`println` **控制台日志自动抓取**，以及符号文件的自动上传。
+观测云使用的 Androig Grale Plugin Transformation 实现的代码注入，从而实现数据自动收集。但是由于一些兼容性问题，可能存在无法使用 `ft-plugin` 的问题。受影响包括 **RUM** `Action`，`Resource`，和 `android.util.Log` ，Java 与 Kotlin `println` **控制台日志自动抓取**，以及符号文件的自动上传。
 
 目前针对这种情况，我们有另外一种集成方案，应对方案如下：
 
@@ -1773,7 +1871,7 @@ SDK 为更好关联相同用户数据，会使用 Android ID。如果需要在�
 	    }
 	```
 
-* 按键等事件需要在触发处自行添加，例如，Button onClick 事件为例，源码示例参考[ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt)：
+* 按键等事件需要在触发处自行添加，例如，Button onClick 事件为例，源码示例参考 [ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt)：
 
 === "Java"
 
@@ -1795,7 +1893,7 @@ SDK 为更好关联相同用户数据，会使用 Android ID。如果需要在�
 		}
 	```
 
-* `OKhttp` 通过 `addInterceptor` ，`eventListener` 方式接入 `Resource`，`Trace`，示例如下，源码示例参考[ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt)：
+* `OKhttp` 通过 `addInterceptor` ，`eventListener` 方式接入 `Resource`，`Trace`，示例如下，源码示例参考 [ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt)：
 
 === "Java"
 
@@ -1817,7 +1915,7 @@ SDK 为更好关联相同用户数据，会使用 Android ID。如果需要在�
 	val client = builder.build()
 	```
 
-* 其他网络框架需要自行实现使用 `FTRUMGlobalManager` 中 `startResource` ,`stopResource`,`addResource`, `FTTraceManager.getTraceHeader` 。具体实现方式，请参考源码示例[ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt)
+* 其他网络框架需要自行实现使用 `FTRUMGlobalManager` 中 `startResource` ,`stopResource`,`addResource`, `FTTraceManager.getTraceHeader` 。具体实现方式，请参考源码示例 [ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt)
 
 
 

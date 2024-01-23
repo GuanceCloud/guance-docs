@@ -1,15 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>基础设施</title>
-    <g id="页面-1" stroke="none" stroke-width="1">
-        <g id="切图" transform="translate(-81.000000, -306.000000)">
-            <g id="编组-5" transform="translate(61.000000, 32.000000)">
-                <g id="编组" transform="translate(20.000000, 274.000000)">
-                    <polygon id="路径" points="4.44878462 8.5 7.89756924 10.5 7.89756924 14.5 4.44878462 16.5 1 14.5 1 10.5"></polygon>
-                    <path d="M12.9823135,8.5 L16.4310981,10.5 L16.4310981,14.5 L12.9823135,16.5 L9.53352884,14.5 L9.53352884,10.5 L12.9823135,8.5 Z M12.982,10.812 L11.533,11.652 L11.533,13.347 L12.982,14.187 L14.431,13.347 L14.431,11.652 L12.982,10.812 Z" id="路径"></path>
-                    <polygon id="ji" points="8.71554904 1 12.1643337 3 12.1643337 7 8.71554904 9 5.26676442 7 5.26676442 3"></polygon>
-                </g>
-            </g>
-        </g>
-    </g>
-</svg>
+version https://git-lfs.github.com/spec/v1
+oid sha256:e6f524f82fcc2c66cf714a405bafa61cfbedb763b693f563d478d876f9a89ec2
+size 1106
