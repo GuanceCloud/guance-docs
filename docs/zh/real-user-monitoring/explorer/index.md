@@ -23,33 +23,22 @@
 
 > 具体的操作方式，可参考 [Rum 采集器配置](../../integrations/rum.md)。
 
-## 相关操作
+## 查询与分析
 
-在查看器中，观测云支持通过选择时间范围、搜索关键字，筛选等方式查询和分析用户访问数据。
+- **[时间控件](../../getting-started/function-details/explorer-search.md#time)**：默认展示最近 15 分钟的数据。
 
-### 时间控件
+- 在查看器搜索栏，支持[多种搜索方式和筛选方式](../../getting-started/function-details/explorer-search.md)。
 
-观测云查看器默认展示最近 15 分钟的数据，通过右上角的 **[时间控件](../../getting-started/function-details/explorer-search.md#time)**，您可以选择数据展示的时间范围。
+- 在查看器[分析栏](../../getting-started/function-details/explorer-search.md#analysis)，您可以基于 1-3 个标签进行多维度分析统计，并支持多种数据图表分析方式。
 
-### 搜索和筛选
+- 在链路查看器[快捷筛选](../../getting-started/function-details/explorer-search.md#quick-filter)，您可以编辑、添加筛选字段。
 
-在查看器搜索栏，支持[多种搜索方式和筛选方式](../../getting-started/function-details/explorer-search.md)。
-
-### 分析模式
-
-在查看器[分析栏](../../getting-started/function-details/explorer-search.md#analysis)，您可以基于 1-3 个标签进行多维度分析统计，并支持多种数据图表分析方式。
+- 可通过[显示列](../../getting-started/function-details/explorer-search.md#columns)自定义添加、编辑、删除、拖动显示列。
 
 ### 用户访问数据分布图
 
 在查看器的数据分布图，您可以根据选择的时间范围统计，自动选取相应的时间间隔展示每个时间点上的用户访问数量分布趋势；若对数据进行了筛选过滤，将同步展示筛选后分布趋势，帮助您直观地查看不同时间点的用户访问数据。
 
-### 快捷筛选
-
-在链路查看器[快捷筛选](../../getting-started/function-details/explorer-search.md#quick-filter)，您可以编辑、添加筛选字段。
-
-### 自定义显示列
-
-可通过[显示列](../../getting-started/function-details/explorer-search.md#columns)自定义添加、编辑、删除、拖动显示列。
 
 ### 错误数据提示
 

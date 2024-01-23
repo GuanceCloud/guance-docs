@@ -1,6 +1,7 @@
 # Action
 ---
 
+![](../img/1.rum_action_2.png)
 
 You can view the user's interaction during the use of the application, including the type of operation, details of the page operation, and the time it takes to perform the operation.
 
@@ -16,5 +17,4 @@ Click on the data details page you want to view in the list, and you can view th
 
 > For more details page introduction, see [Options in Details Page](view.md).
 
-![](../img/1.rum_action_2.png)
 

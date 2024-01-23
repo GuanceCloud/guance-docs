@@ -1,6 +1,8 @@
 # Resource
 ---
 
+![](../img/1.rum_resource_2.png)
+
 You can view various information about the resources loaded on the web page, including status codes, request methods, resource addresses and loading time.
 
 In the Resource Explorer, you can:
@@ -14,5 +16,5 @@ You can view the performance details of the resources accessed by users, includi
 
 > For more details page introduction, see [Options in Details Page](view.md).
 
-![](../img/1.rum_resource_2.png)
+
 

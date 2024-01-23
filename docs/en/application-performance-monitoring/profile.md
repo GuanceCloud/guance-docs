@@ -1,6 +1,8 @@
 # Profiling
 ---
 
+![](img/3.apm_11.png)
+
 Profiling supports automatically obtaining the usage of CPU, memory and I/O during the operation of the application, and real-time display of the invocation relationship and execution efficiency of each method, class, and thread through the flame graph, to help optimize code performance.
 
 In the Profiling explorer, you can:
@@ -15,13 +17,12 @@ In the Profiling explorer, you can:
 
 ## Query and Analysis
 
-After the Profiling data is reported to the guance workspace, you can understand your program code performance through the Profiling real-time data explorer. Support for querying and analyzing Profiling data, including search and filtering, quick filtering, adding display columns, data export, etc.
+After the Profiling data is reported to the guance workspace, you can understand your program code performance through the Profiling real-time data explorer. Querying and analyzing Profiling data is supported, including search and filtering, quick filtering, adding display columns, data export, etc.
 
 > For more details, see [Explorer Description](../getting-started/function-details/explorer-search.md).
 
 **Note**: Profiling data is saved by default for 7 days.
 
-![](img/3.apm_11.png)
 
 ## Performance Analysis {#analysis}
 
@@ -37,7 +38,7 @@ Profiling uses flame graphs to analyze the usage of CPU, memory, or IO at the co
 
     ![](img/6.profile_9.png)
 
-    | Category           | Description                                                  |
+    | Category          | Description                                                  |
     | -----------------  | ------------------------------------------------------------ |
     | CPU Time           | The running time of each method on the CPU.                  |
     | Wall Time          | The time each method takes, including the time running on the CPU, waiting for I/O, and any other things happening during the function run. |
@@ -52,7 +53,7 @@ Profiling uses flame graphs to analyze the usage of CPU, memory, or IO at the co
 
 === "Java"
 
-    ![](img/6.profile_2.png)
+    <img src="../img/6.profile_2.png" width="80%" >
 
     | Category                  | Description                                                  |
     | ------------------------  | ------------------------------------------------------------ |
@@ -77,15 +78,15 @@ Profiling uses flame graphs to analyze the usage of CPU, memory, or IO at the co
 
 #### Options {#operate}
 
-- Search: You can use the selection box on the right side of the **Type** to enter keywords for fuzzy search, and the selection box will list the matched methods. You can directly select the method you need to view.
-- Copy: You can copy and view method details in **Dimensions** by hovering the mouse.
-- Click to select: **Dimensions** are selected by default, and you can click to select one or more methods and their related flame graph information. Click the method again to restore all selections.
+1. Search: Use the selection box on the right side of the **Type** to enter keywords for fuzzy search, and the selection box will list the matched methods. You can directly select the method you need to view.
+2. Copy: Copy and view method details in **Dimensions** by hovering the mouse.
+3. Click to select: **Dimensions** are selected by default, and you can click to select one or more methods and their related flame graph information. Click the method again to restore all selections.
 
-![](img/10.changelog_profile.gif)
+![](img/10.changelog_profile.png)
 
 ### Running Information
 
-On the Profiling detail page, click to view **Running Information** to view some information and tag attributes during the corresponding programming language runtime. You can add label information to the explorer list for filtering, and copy label content for query search.
+Click to view **Runtime Info** to view some information and tag attributes during the corresponding programming language runtime. You can add label information to the explorer list for filtering, and copy label content for query search.
 
 ![](img/6.profile_5.png)
 

@@ -1,6 +1,8 @@
 # Long Task
 ---
 
+![](../img/1.rum_longtask_2.png)
+
 You can view long tasks that block the main thread for more than 50ms while the user is using the application. This includes the page address and task duration.
 
 In the Long Task Explorer, you can:
@@ -15,5 +17,5 @@ Click on the data you need to view in the list, in the row out details page, you
 
 > For more details page introduction, see [Options in Details Page](view.md).
 
-![](../img/1.rum_longtask_2.png)
+
 

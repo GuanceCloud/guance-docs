@@ -34,9 +34,9 @@ icon: zy/application-performance-monitoring
 
 - :material-format-list-text: __[服务相关](../scene/service-manag.md)__：查看服务清单、性能指标及服务间的调用关系拓扑图
 - :fontawesome-solid-globe: __[概览](overview.md)__：查看在线服务数量、P90 服务响应耗时、服务最大影响耗时等指标
-- :material-vector-line: __[链路](explorer.md)__：基于火焰图等对采集上报的所有链路数据进行查询和分析
+- :material-vector-line: __[链路](explorer.md)__：基于火焰图等工具对采集上报的所有链路数据进行查询和分析
 - :material-weather-lightning-rainy: __[错误追踪](error.md)__：支持查看链路中类似错误的产生历史趋势及其分布情况，快速定位错误
-- :fontawesome-solid-code-compare: __[Profiling](profile.md)__：查看应用程序运行过程中各指标的使用情况，实时展示调用关系和执行效率，帮助优化代码性能
+- :fontawesome-solid-code-compare: __[Profiling](profile.md)__：查看应用运行指标，实时展示调用关系和效率，优化代码性能。
 - :material-cloud-search: __[应用性能指标检测](../monitoring/monitor/application-performance-detection.md)__：通过配置应用性能监控器，及时发现异常链路数据
 
 </div>
