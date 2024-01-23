@@ -56,7 +56,7 @@ Enter the **APM > Generate Metrics** page,
 
 All added rules will be displayed on the **Generate Metrics** interface, and users can perform the following options:
 
-![](img/3.apm_metrics_1.png)
+![](img/3.apm_metrics_1.gif)
 
 
 **Notes:**

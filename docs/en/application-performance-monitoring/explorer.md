@@ -65,7 +65,7 @@ If you need to export a piece of data, open the details page of this piece of da
 
 Guance supports **viewing historical snapshots** to directly save the snapshot data of the current explorer. Through the [snapshot](../getting-started/function-details/snapshot.md) function, you can quickly reproduce instant copies of data and restore data to a certain point in time and a certain data display logic.
 
-![](img/3.apm_6.gif)
+![](img/3.apm_6.png)
 
 ## Trace Details {#detail}
 
@@ -87,7 +87,9 @@ If the current trace belongs to a front-end application (such as: browser), you 
 
 The flame graph can clearly show the flow and execution time of each Span in the entire trace. You can view the corresponding service list and response time on the right side of the flame graph. Click on the Span in the flame graph, in the **Trace Details Page** you can view the corresponding Json content, you can view specific Span information by zooming in and out with the mouse wheel.
 
-> For more details on the application of the flame graph, see [Skillfully Use Flame Graph to Analyze Trace Performance](../best-practices/monitoring/trace-glame-graph.md).
+> For more details on the application of the flame graph, see [Use Flame Graph to Analyze Trace Performance](../best-practices/monitoring/trace-glame-graph.md).
+
+<!--
 
 <div class="grid" markdown>
 
@@ -95,28 +97,28 @@ The flame graph can clearly show the flow and execution time of each Span in the
 
     ![](img/13.apm_flame.png)
 
-    From the flame graph above, it can be seen that this call trace includes two services, namely <u>CloudCare and Mysql</u>. The trace starts with the POST request initiated by the CloudCare service, then executes `ActionResource.executeAction`, and finally executes the Mysql statement. During the entire process of executing `ActionResource.executeAction`, the Mysql statement is executed multiple times. The execution time of CloudCare and Mysql is calculated as follows:
+    From the flame graph above, it can be seen that this call trace includes two services, namely `kodo` and `redis`. The trace starts with the POST request initiated by the `kodo` service, then executes `ActionResource.executeAction`, and finally executes the Mysql statement. During the entire process of executing `ActionResource.executeAction`, the Mysql statement is executed multiple times. The execution time of `kodo` and `redis` is calculated as follows:
 
-    - Execution time of CloudCare service = D1+D2+D3+D4+D5+D6+D7+D8+D9+D10+D11
-    - Execution time of Mysql service = span2+span3+......+span11
+    - Execution time of `kodo` service = D1+D2+D3+D4+D5+D6+D7+D8+D9+D10+D11
+    - Execution time of `redis` service = span2+span3+......+span11
 
     ![](img/span_2.png)
 
     The details of the specific execution statement and execution time can be referred to the Span list.
 
-=== "Calculation of Execution Time Proportion"
+=== "Calculation of Execution Time(%)"
 
-    The service execution time proportion in the flame graph refers to the ratio of each service to the total time in this call trace. Below is an example, this call trace contains two services, namely CloudCare and Mysql, the execution time proportions are 42.37% and 57.63% respectively. The CloudCare service has 2 Spans, and the Mysql service has 10 Spans.
+    The service execution time(%) in the flame graph refers to the ratio of each service to the total time in this call trace. Below is an example, this call trace contains two services, namely `kodo` and `redis`, the execution time(%)s are 26.1% and 73.9% respectively. The `kodo` service has 2 Spans, and the `redis` service has 1 Span.
 
-    - Calculation method of Mysql service execution time proportion: the total execution time of all spans / the total duration of the current call trace.
+    - Calculation method of `redis` service execution time(%): the total execution time of all spans / the total duration of the current call trace.
 
-    Calculation method explanation: The Mysql service in the figure below has a total of 10 Span quantities. You can click on each Span to get the execution time of the current Span. From the figure, you can see that the execution time of this Span is 5.08ms, and then in the same way, get the remaining 9 The execution time of a Span is added.
+    Calculation method explanation: The `redis` service in the figure below has a total of 10 Span quantities. You can click on each Span to get the execution time of the current Span. From the figure, you can see that the execution time of this Span is 5.08ms, and then in the same way, get the remaining 9 The execution time of a Span is added.
 
     ![](img/13.apm_flame_0.1.png)
 
-    - Calculation method of CloudCare service execution time proportion: (current call trace total duration-mysql service execution time)/current call trace total duration
+    - Calculation method of `kodo` service execution time(%): (current call trace total duration-`redis` service execution time)/current call trace total duration
 
-    Calculation method explanation: The CloudCare service in the figure below runs through the entire current call trace. Except for the execution time of the mysql service, the remaining time is the execution time of the CloudCare service (see the execution time of the marked red line part). The execution time proportion can also be directly viewed through the Span list to view the execution time and execution time proportion of each Span.
+    Calculation method explanation: The `kodo` service in the figure below runs through the entire current call trace. Except for the execution time of the `redis` service, the remaining time is the execution time of the `kodo` service (see the execution time of the marked red line part). The execution time(%) can also be directly viewed through the Span list to view the execution time and execution time(%) of each Span.
 
     ![](img/13.apm_flame.png)
 
@@ -127,6 +129,8 @@ The flame graph can clearly show the flow and execution time of each Span in the
     ![](img/9.apm_explorer_19.2.png)
 
 </div>
+
+-->
 
 ### Span List
 
@@ -140,7 +144,7 @@ You can search for Span. Click on any Span. In **Trace Details**, you can view t
 
 In the Span list, click :material-chart-waterfall: to view the parent-child relationship between resources.
 
-The waterfall chart displays Span data in order of start time. The left side list displays Span data and shows the execution time proportion of each resource. The right side displays the waterfall chart in order of time.
+The waterfall chart displays Span data in order of start time. The left side list displays Span data and shows the execution time(%) of each resource. The right side displays the waterfall chart in order of time.
 
 You can also search for Span in the 🔍 bar. The fuzzy search results of the resource (`resource`) field will be highlighted.
 
@@ -156,9 +160,9 @@ The service map is used to view the relationship between various "services-resou
 
 | Options      | Description                          |
 | ----------- | ------------------------------------ |
-| Full screen view/Restore default size      | You can click the full-screen view icon in the upper right corner of the trace detail :material-arrow-expand-all: to expand and view the trace flame graph horizontally; click the restore default size icon :material-arrow-collapse-all: to restore the detail page.                          |
-| Expand/Collapse Minimap      | You can click the expand/collapse minimap icon on the left side of the trace detail :material-format-indent-increase: to quickly view the flame graph by selecting the interval, dragging, and scrolling on the minimap.                          |
-| View Global Trace      | You can click the view global Trace icon on the left side of the trace detail :material-arrow-expand: to view the global trace in the flame graph.                          |
+| Full screen/Restore default size      | Click the full-screen view icon in the upper right corner of the trace detail :material-arrow-expand-all: to expand and view the trace flame graph horizontally; click the restore default size icon :material-arrow-collapse-all: to restore the detail page.                          |
+| Expand/Collapse Minimap      | Click the expand/collapse minimap icon on the left side of the trace detail :material-format-indent-increase: to quickly view the flame graph by selecting the interval, dragging, and scrolling on the minimap.                          |
+| View Global Trace      | Click the view global Trace icon on the left side of the trace detail :material-arrow-expand: to view the global trace in the flame graph.                          |
 | Double-click Span      | In the flame graph, enlarge the Span in the middle to quickly locate and view its associated Span in the context.                          |
 | Click on the service name      | Highlight the corresponding Span, click the service name again, and restore the default full selection Span. You can filter and view the Span corresponding to the service by clicking the service name.                          |
 
@@ -170,14 +174,14 @@ The service map is used to view the relationship between various "services-resou
 
 :material-numeric-2-circle-outline: After checking the field alias, you can view it after the field name; you can choose as needed.
 
-:material-numeric-3-circle-outline: In the trace detail page, you can view the related field properties of the current trace in **Extended Attributes**:
+:material-numeric-3-circle-outline: You can view the related fields of the current trace in **Extended Attributes**:
 
 | Field      | Attribute                          |
 | ----------- | ------------------------------------ |
-| Filter       | That is, add this field to the explorer to view all data related to this field. You can filter and view the trace list related to this field in the trace explorer. See Figure 1.                          |
-| Reverse filter     | That is, add this field to the explorer to view other data except this field.                          |
-| Add to display column      | That is, add this field to the explorer list for viewing.                          |
-| Copy      | That is, copy this field to the clipboard.                          |
+| Filter       | Add this field to the explorer to view all data related to this field. You can filter and view the trace list related to this field in the trace explorer. *See Figure 1.*                          |
+| Reverse filter     | Add this field to the explorer to view other data except this field.                          |
+| Add to display column      | Add this field to the explorer list for viewing.                          |
+| Copy      | Copy this field to the clipboard.                          |
 
 ![](img/extension.png)
 
@@ -200,6 +204,7 @@ The service map is used to view the relationship between various "services-resou
 
 ![](img/9.apm_explorer_8.png)
 
+<!--
 ### Error Details
 
 On the trace detail page, if there is an error trace, you can view the related error details.
@@ -207,6 +212,7 @@ On the trace detail page, if there is an error trace, you can view the related e
 > For more error trace analysis, see [Error Tracking](../application-performance-monitoring/error.md).
 
 ![](img/6.apm_error.png)
+-->
 
 ### Associated Analysis
 
@@ -214,24 +220,24 @@ On the trace detail page, if there is an error trace, you can view the related e
 
 === "Associated Logs"
 
-    In the trace details page, you can view the logs associated with the current trace (associated field: `trace_id`) through **Logs**. You can perform keyword search and multi-label filtering on the logs. The log content is displayed by default according to the **maximum display rows** and **display columns** settings of the log explorer. You can customize the display columns. If you need to view more detailed log content, you can click on the log content to jump to the log details page, or click the jump button to open on the log page.
+    You can view the logs associated with the current trace (associated field: `trace_id`) through **Logs**. If you need to view more detailed log content, you can click on the log content to jump to the log details page, or click the jump button to open on the log page.
 
     ![](img/3.apm_7.png)
 
-    If you are an administrator or above, you can customize the associated fields. Click the settings button on the right side of the associated field, select the fields you need to associate in the pop-up dialog box, support manual input, drag and drop order and other operations, confirm to complete the configuration.
+    If you are an administrator or above, you can customize the associated fields. Click the column button and select the fields you need to associate.
 
     ???+ warning
 
         The associated log custom field and service list association analysis configuration custom field affect each other. If a custom field is configured in the service list, it will be synchronized here.
 
-        > For more details, please refer to [Service List Association Analysis](service-catalog.md#analysis).
+        > For more details, see [Service List Association](service-catalog.md#analysis).
 
     ![](img/3.apm_8.png)
 
 
 === "Code Hotspots"
 
-    After the application is using the ddtrace collector to turn on APM traces and Profile performance tracking data collection at the same time, Guance provides Span level associated viewing analysis. On the trace details page, you can click on **Code Hotspots** under the flame graph to view the code hotspots associated with the current trace, including execution time consumption, methods, and execution time proportion.
+    After the application is using the ddtrace collector to turn on APM traces and Profile performance tracking data collection at the same time, Guance provides Span level associated viewing analysis. On the trace details page, you can click on **Code Hotspots** under the flame graph to view the code hotspots associated with the current trace, including execution time consumption, methods, and execution time(%).
 
     ![](img/9.apm_explorer_11.png)
 
@@ -275,43 +281,44 @@ On the trace detail page, if there is an error trace, you can view the related e
 
 === "Associated Network"
 
-    Guance supports you to view [network](../infrastructure/network.md) data connection situation within 48 hours through the **Network** below the details page. Including Host, Pod, Deployment and Service.
+    Guance enables you to view [network map and overview data](../infrastructure/network.md) within 48 hours from dimensions of Host, Pod, Deployment and Service.
 
     ![](img/7.host_network_2.png)
 
-    <font color=coral>Matching Fields:</font>
+    **Matching Fields:**
 
     To view the related network in the details page, you need to match the corresponding associated fields, that is, you need to configure the corresponding field tags when collecting data, otherwise you can not match and view the associated network view in the details page.
 
-    - Host: Match field `host`, support clicking the **Copy** button on the right to copy the associated field and its value.
-    - Pod: Match fields as follows, support clicking the **Copy** button on the right to copy the associated field and its value.
+    - Host: Match field `host`.
+    
+    - Pod: 
 
-    | **Matching Field Priority**  |
+    | **Priority of Matching Fields**  |
     | ------------------- |
-    | namespace, pod_name |
-    | namespace, pod      |
-    | pod_name            |
-    | pod                 |
+    | `namespace`, `pod_name` |
+    | `namespace`, `pod`      |
+    | `pod_name`            |
+    | `pod`                 |
 
-    - Deployment: Match fields as follows, support clicking the **Copy** button on the right to copy the associated field and its value.
+    - Deployment: 
 
-    | **Matching Field Priority**  |
+    | **Priority of Matching Fields**  |
     | ------------------- |
-    | namespace, deployment_name |
-    | namespace, deployment      |
-    | deployment_name            |
-    | deployment                 |
+    | `namespace`, `deployment_name` |
+    | `namespace`, `deployment`      |
+    | `deployment_name`            |
+    | `deployment`                 |
 
-    - Service: Match fields as follows, support clicking the **Copy** button on the right to copy the associated field and its value.
+    - Service: 
 
-    |   **Matching Field Priority**  |
+    |   **Priority of Matching Fields**  |
     |   ------------------- |
-    | namespace, service_name |
-    | namespace, service      |
+    | `namespace`, `service_name` |
+    | `namespace`, `service`      |
 
-    ???+ warning
+    Notes:
 
-        - If the associated fields of Host, Pod, Deployment, Service are queried at the same time, the network data is displayed in this order when entering the details page;
-        - If the associated field is not queried, it is displayed in gray at the end, clicking prompts **No matching network view**.
+    - If the associated fields of Host, Pod, Deployment, Service are queried at the same time, the network data is displayed in this order when entering the details page;
+    - If the associated field is not queried, it is displayed in gray at the end, clicking prompts **No matching network view**.
 
 </div>

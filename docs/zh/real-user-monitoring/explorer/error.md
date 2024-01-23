@@ -58,7 +58,7 @@
 
 观测云为应用程序提供 Sourcemap 功能，支持还原混淆后的代码，方便错误排查时定位源码，帮助用户更快解决问题。
 
-> 您可以通过 RUM [Sourcemap 配置](../set-sourcemap.md) 或 [Datakit 采集器 Sourcemap 转换](../../integrations/rum.md#sourcemap)进行配置，配置完成后，即可以在错误详情中查看解析后的代码和原始的代码。
+> 您可以通过 RUM [Sourcemap 配置](../sourcemap/set-sourcemap.md) 或 [Datakit 采集器 Sourcemap 转换](../../integrations/rum.md#sourcemap)进行配置，配置完成后，即可以在错误详情中查看解析后的代码和原始的代码。
 
 **注意**：当前仅支持 Web 类型的应用在 RUM 进行 Sourcemap 配置。
 

@@ -179,9 +179,12 @@ You can use tools such as [**source-map-visualization**](https://evanw.github.io
 
 After the configuration is completed, users can directly upload and delete files on the front-end page.
 
+<!--
+
 ![](img/sourcemap_01.png)
 
 Below the 🔍 bar, you can view the names of the uploaded files and the application types. You can enter the file name to search, and click on :fontawesome-regular-trash-can: to delete the current file.
+-->
 
 ???+ warning "Upload Notice"
 

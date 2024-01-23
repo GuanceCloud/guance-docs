@@ -11,6 +11,8 @@ In the Session explorer, you can:
 
 ## Explorer
 
+![](../img/12.rum_explorer_1.png)
+
 In the Session explorer, you can view the session duration, session type (real user visit "user"), page visit count, operation count, error count, the initial page visited by the user, and the last page viewed by the user.
 
 ???- quote "Definition of session duration"
@@ -19,7 +21,6 @@ In the Session explorer, you can view the session duration, session type (real u
 
     **Note**: The session will be reset after 15 minutes of inactivity.
 
-![](../img/12.rum_explorer_1.png)
 
 ## Details Page
 
@@ -27,6 +28,18 @@ Click on the data details page in the list to view the current application's att
 
 ![](../img/12.rum_explorer_1.1.png)
 
+
+### Attribute Filtering
+
+When you hover on the field, it supports quick filtering and viewing through the following operations:
+
+
+| <div style="width: 110px">Options</div> | Description |
+| --- | --- |
+| Filter  | Add this field to the explorer to view all data related to this field. You can filter and view the chain list related to this field in the chain explorer.  |
+| Reverse Filter | Add this field to the explorer to view other data except for this field. |
+| Add to Columns | Add this field to the explorer list for viewing. |
+| Copy | Copy this field to the clipboard. |
 
 ![](../img/12.rum_explorer_1.4.png)
 
@@ -66,6 +79,6 @@ Session details include session duration, visit type, service type and visit det
 
 ### Bind Views
 
-Guance supports setting bound or deleting inner views (user views) to the details page. Click on [**Bind View**](../../scene/inner-view/bind-view.md) to add a new view to the current details page.
+Guance supports setting bound or deleting user views to the details page. Click to [add a new view](../../scene/inner-view/bind-view.md) to the current details page.
 
 ![](../img/1.rum_session_11.png)
