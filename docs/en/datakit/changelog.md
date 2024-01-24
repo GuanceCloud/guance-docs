@@ -1,6 +1,31 @@
 # Changelog
 ---
 
+### New Features {#cl-1.24.0-new}
+
+- Added [Host Health Check collector](../integrations/host_healthcheck.md) (#2061)
+
+### Bug Fixes {#cl-1.24.0-fix}
+
+- Fixed a crash issue in Windows Event collector (#2087)
+- Fixed issues with data recording functionality and improved [related documentation](datakit-daemonset-deploy.md#env-recorder) (#2092)
+- Fixed an issue with DDTrace multi-trace propagation (#2093)
+- Fixed truncation issue in Socket log collection (#2095)
+- Fixed residual main configuration file during Datakit upgrade (#2096)
+- Fixed script overwrite issue during update (#2085)
+
+### Feature Enhancements {#cl-1.24.0-opt}
+
+- Optimized resource limitation functionality during non-root-user Linux host installation (#2011)
+- Improved matching performance for sink and blacklist, significantly reducing memory consumption (*10X*) (#2077)
+- Log Streaming add [support for FireLens](../integrations/logstreaming.md#firelens) (#2090)
+- Added `log_read_lines` field in Log Forward log collection (#2098)
+- Optimized handling of tag `cluster_name_k8s` in K8s (#2099)
+- Added restart count metric (`restarts`) in K8s Pod metric
+- Optimized measurement `kubernetes` by adding container statistics
+- Optimized Kubelet metric collection
+
+---
 
 ## 1.23.1(2024/01/12) {#cl-1.23.1}
 
@@ -54,6 +79,7 @@ This release is an iteration release, with the following updates:
 - Added `node_name` tag to Kubernetes resource count collection (only supported for Pod resources)(#2057)
 - Added `cpu_limit_millicores/mem_limit/mem_used_percent_base_limit` fields to Kubernetes Pod metrics
 - Added `bpf-netlog` plugin to eBPF collector(#2017)
+- Add environments configure for recorder under Kubernetes
 
 ### Bug Fixes {#cl-1.22.0-fix}
 
