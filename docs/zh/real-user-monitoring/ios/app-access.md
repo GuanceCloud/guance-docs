@@ -317,7 +317,7 @@
 
 ## RUM 用户数据追踪 {#rum}
 
-在 SDK 初始化 [RUM 配置](https://docs.guance.com/real-user-monitoring/react-native/app-access/#rum-config) 时可开启自动采集  **View**、 **Action** 、 **Error** 、**LongTask** 、**Resource**  外， SDK 也提供了自定义采集的 API ，用户自定义采集 RUM 相关数据，需要使用  `FTExternalDataManager` 单例，示例如下：
+`FTRUMConfig` 配置 `enableTraceUserAction`, `enableTraceUserView`, `enableTraceUserResource` 来实现自动获取数据的效果或手动使用 `FTExternalDataManager` 来实现添加这些数据，示例如下：
 
 ### View
 
@@ -985,7 +985,7 @@
 
 `{K=V,...,Kn=Vn}`：自定义属性。
 
-## Trace 网络链接追踪
+## Trace 网络链路追踪
 
 可以 `FTTraceConfig` 配置开启自动模式，也支持用户自定义添加 Trace 相关数据。自定义添加相关 API 如下：
 
@@ -1028,13 +1028,22 @@
     }
     ```
 
-## 通过设置 URLSession Delegate 自定义采集 RUM Resource
+## 通过转发 URLSession Delegate 自定义采集 Network
 
 **注意：该方法不适用于 Swift URLSession async/await APIs**
 
-需要关闭 `FTRUMConfig` 的 `enableTraceUserResource` ，`FTTraceConfig` 的 `enableAutoTrace` 配置。
+SDK 提供了一个类 `FTURLSessionDelegate`，需要您将 URLSession 的 delegate 转发给 `FTURLSessionDelegate`，以帮助 SDK 采集 Network 的相关数据。
 
-SDK 提供了一个类 `FTURLSessionDelegate`，需要您将 URLSession 的 delegate 转发给 `FTURLSessionDelegate`，以帮助 SDK 采集 resource 的相关数据。
+采集 Network 的相关数据在 SDK 中分为 `RUM-Resource` 和 `网络链路追踪`。
+
+**RUM-Resource**：
+
+* 可以开启  `FTRUMConfig` 的 `enableTraceUserResource` ，自动采集逻辑会忽略当前 `URLSession` 发起的请求；
+* 支持添加自定义属性。
+
+**网络链路追踪**：
+
+* 可以开启  `FTTraceConfig` 的 `enableAutoTrace` 。当设置自定义链路追踪时自动追踪逻辑会忽略当前 `URLSession` 发起的请求。
 
 下面提供了三种方法，来满足用户的不同场景。
 
@@ -1051,6 +1060,17 @@ SDK 提供了一个类 `FTURLSessionDelegate`，需要您将 URLSession 的 dele
                     NSString *body = [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding];
                     return @{@"df_requestbody":body};
                 };
+    // 拦截 Request 返回修改后的 Request，可用于自定义链路追踪
+    delegate.requestInterceptor = ^NSURLRequest * _Nonnull(NSURLRequest * _Nonnull request) {
+                NSDictionary *traceHeader = [[FTExternalDataManager sharedManager] getTraceHeaderWithUrl:request.URL];
+                NSMutableURLRequest *newRequest = [request mutableCopy];
+                if(traceHeader){
+                    for (NSString *key in traceHeader.allKeys) {
+                        [newRequest setValue:traceHeader[key] forHTTPHeaderField:key];
+                    }
+                }
+                return newRequest;
+            };            
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:delegate delegateQueue:nil];
     ```
 
@@ -1070,6 +1090,16 @@ SDK 提供了一个类 `FTURLSessionDelegate`，需要您将 URLSession 的 dele
                 }
                 return extraData
             }
+    // 拦截 Request 返回修改后的 Request，可用于自定义链路追踪        
+    delegate.requestInterceptor = { request in
+                var mutableRequest = request
+                if let traceHeader = FTExternalDataManager.shared().getTraceHeader(with: request.url!){
+                    for (key,value) in traceHeader {
+                        mutableRequest.setValue(value as? String, forHTTPHeaderField: key as! String)
+                    }
+                }
+                return mutableRequest
+            }        
     let session =  URLSession.init(configuration: URLSessionConfiguration.default, delegate:delegate 
     , delegateQueue: nil)
     ```
@@ -1094,6 +1124,17 @@ SDK 提供了一个类 `FTURLSessionDelegate`，需要您将 URLSession 的 dele
             NSString *body = [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding];
             return @{@"df_requestbody":body};
         };
+            // 拦截 Request 返回修改后的 Request，可用于自定义链路追踪
+           self.requestInterceptor = ^NSURLRequest * _Nonnull(NSURLRequest * _Nonnull request) {
+                NSDictionary *traceHeader = [[FTExternalDataManager sharedManager] getTraceHeaderWithUrl:request.URL];
+                NSMutableURLRequest *newRequest = [request mutableCopy];
+                if(traceHeader){
+                    for (NSString *key in traceHeader.allKeys) {
+                        [newRequest setValue:traceHeader[key] forHTTPHeaderField:key];
+                    }
+                }
+                return newRequest;
+            }; 
         }
         return self;
     }
@@ -1130,6 +1171,16 @@ SDK 提供了一个类 `FTURLSessionDelegate`，需要您将 URLSession 的 dele
                     extraData["df_error"] = error.localizedDescription
                 }
                 return extraData
+            }
+            // 拦截 Request 返回修改后的 Request，可用于自定义链路追踪
+            requestInterceptor = { request in
+                var mutableRequest = request
+                if let traceHeader = FTExternalDataManager.shared().getTraceHeader(with: request.url!){
+                    for (key,value) in traceHeader {
+                        mutableRequest.setValue(value as? String, forHTTPHeaderField: key as! String)
+                    }
+                }
+                return mutableRequest
             }
         }
         }
@@ -1172,6 +1223,17 @@ SDK 提供了一个类 `FTURLSessionDelegate`，需要您将 URLSession 的 dele
                     NSString *body = [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding];
                     return @{@"df_requestbody":body};
                 };
+                // 拦截 Request 返回修改后的 Request，可用于自定义链路追踪
+            _ftURLSessionDelegate.requestInterceptor = ^NSURLRequest * _Nonnull(NSURLRequest * _Nonnull request) {
+                NSDictionary *traceHeader = [[FTExternalDataManager sharedManager] getTraceHeaderWithUrl:request.URL];
+                NSMutableURLRequest *newRequest = [request mutableCopy];
+                if(traceHeader){
+                    for (NSString *key in traceHeader.allKeys) {
+                        [newRequest setValue:traceHeader[key] forHTTPHeaderField:key];
+                    }
+                }
+                return newRequest;
+            }; 
         }
         return _ftURLSessionDelegate;
     }
@@ -1210,6 +1272,16 @@ SDK 提供了一个类 `FTURLSessionDelegate`，需要您将 URLSession 的 dele
                     extraData["df_error"] = error.localizedDescription
                 }
                 return extraData
+            }
+            // 拦截 Request 返回修改后的 Request，可用于自定义链路追踪
+            ftURLSessionDelegate.requestInterceptor = { request in
+                var mutableRequest = request
+                if let traceHeader = FTExternalDataManager.shared().getTraceHeader(with: request.url!){
+                    for (key,value) in traceHeader {
+                        mutableRequest.setValue(value as? String, forHTTPHeaderField: key as! String)
+                    }
+                }
+                return mutableRequest
             }
         }
         // 下面方法一定要实现
