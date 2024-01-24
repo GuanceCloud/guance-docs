@@ -17,7 +17,7 @@ The DataKit master configuration is used to configure the running behavior of th
 
 ## Datakit Main Configure Sample {#maincfg-example}
 
-Datakit main configure is *datakit.conf*, here is the exmaple sample(1.23.1):
+Datakit main configure is *datakit.conf*, here is the exmaple sample(1.24.0):
 
 ??? info "datakit.conf"
 
@@ -543,6 +543,7 @@ $ systemctl status datakit
     - resource restriction will only be turned on by default during [host installation](datakit-install.md).
     - resource limit only supports CPU usage and memory usage (mem + swap) controls, and only supports Linux and Windows ([:octicons-tag-24: Version-1.15.0](changelog.md#cl-1.15.0)) operating systems.
     - CPU usage controls is not supported in these windows systems: Windows 7, Windows Server 2008 R2, Windows Server 2008, Windows Vista, Windows Server 2003 and Windows XP.
+    - When adjusting resource limit as a non-root user, it is essential to reinstall the service.
 
 ???+ tip
 
