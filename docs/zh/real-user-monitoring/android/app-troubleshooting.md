@@ -144,17 +144,21 @@ buildscript {
 * 确认正确调用 `FTSdk.shutDown `，这个方法会释放 SDK 数据处理对象，包括缓存的数据。
 
 ### Resource 数据丢失 {#resource_missing}
-####OkHttpClient.build() 在 SDK 初始化之前
+#### OkHttpClient.build() 在 SDK 初始化之前
 Plugin AOP ASM 写入是在 `OkHttpClient.build()` 调用时自动写入 `FTTraceInterceptor` ,`FTResourceInterceptor`,`FTResourceEventListener.FTFactory`，如果在 SDK 初始化之前，会导致加载空配置，因而丢失 Resource 相关数据。
 
 #### 使用 Interceptor 或 EventListener 对数据进行了二次处理 
 Plugin AOP ASM 插入之后，会在原工程代码基础上，会在 `OkHttpClient.Builder()` 加入 `addInterceptor`，分别加入 `FTTraceInterceptor` 和 `FTResourceInterceptor`,其中会使用 http 请求中 body contentLength 参与唯一 id 计算，`Resource` 数据各个阶段数据通过这个 id 进行上下文串联，所以如果集成方在使用 `Okhttp` 时，也加入 `addInterceptor` 并对数据进行二次处理使其发生大小改变，从而导致 id 各阶段计算不一致，导致数据丢失。
 
 **处理方式：**
-* **ft-sdk:1.4.0-beta01 以前的版本**
-通过 [自定义](https://github.com/GuanceDemo/guance-app-demo/blob/a57679eb287ba961f6607ca47048312e91635492/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt#L72) `addInterceptor` 位置顺序，让 SDK 方法第一时间去计算 id，可以解决这个问题。为了避免重复设置，自定义方式需要关闭 `FTRUMConfig`的`enableTraceUserResource` ，`FTTraceConfig`的 `enableAutoTrace` 配置。
-* **ft-sdk:1.4.1-beta01 之后的版本**
-SDK 自行适配兼容这个问题
+
+* **ft-sdk < 1.4.1**
+
+	通过 [自定义](https://github.com/GuanceDemo/guance-app-demo/blob/a57679eb287ba961f6607ca47048312e91635492/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt#L72) `addInterceptor` 位置顺序，让 SDK 方法第一时间去计算 id，可以解决这个问题。为了避免重复设置，自定义方式需要关闭 `FTRUMConfig`的`enableTraceUserResource` ，`FTTraceConfig`的 `enableAutoTrace` 配置。
+
+* **ft-sdk >= 1.4.1** 
+
+	SDK 自行适配兼容这个问题
 
 ## 数据丢失某个字段信息
 ### 用户数据字段
@@ -179,7 +183,11 @@ SDK 自行适配兼容这个问题
 Plugin AOP ASM 插入之后，会在原工程代码基础上，会在 `OkHttpClient.Builder()` 加入 `eventListenerFactory` ，这会覆盖原来的 `eventListener` 或 `eventListenerFactory`。
 
 **处理方式：**
-* **ft-sdk:1.4.0-beta01 以前的版本**
-关闭自动 Plugin AOP 自动设置 `FTRUMConfig setEnableTraceUserResource(false)`，同时自定义一个 [CustomEventListenerFactory](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/custom/okhttp/CustomEventListenerFactory.kt) 并继承 `FTResourceEventListener.FTFactory`，使用[自定义](https://github.com/GuanceDemo/guance-app-demo/blob/a57679eb287ba961f6607ca47048312e91635492/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt#L72)方式进行接入。
-* **ft-sdk:1.4.1-beta01 之后的版本**
-自定义一个 [CustomEventListenerFactory](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/custom/okhttp/CustomEventListenerFactory.kt) 并继承 `FTResourceEventListener.FTFactory`，通过设置 `FTRUMConfig.setOkHttpEventListenerHandler` 对 ASM 写入的 `eventListenerFactory` 进行自定义。
+
+* **ft-sdk < 1.4.1**
+
+	关闭自动 Plugin AOP 自动设置 `FTRUMConfig setEnableTraceUserResource(false)`，同时自定义一个 [CustomEventListenerFactory](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/custom/okhttp/CustomEventListenerFactory.kt) 并继承 `FTResourceEventListener.FTFactory`，使用[自定义](https://github.com/GuanceDemo/guance-app-demo/blob/a57679eb287ba961f6607ca47048312e91635492/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt#L72)方式进行接入。
+
+* **ft-sdk >= 1.4.1**
+
+	自定义一个 [CustomEventListenerFactory](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/custom/okhttp/CustomEventListenerFactory.kt) 并继承 `FTResourceEventListener.FTFactory`，通过设置 `FTRUMConfig.setOkHttpEventListenerHandler` 对 ASM 写入的 `eventListenerFactory` 进行自定义。
