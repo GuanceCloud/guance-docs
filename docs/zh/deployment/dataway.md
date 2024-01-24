@@ -397,14 +397,17 @@ watch -n 3 'curl -s http://localhost:9090/metrics | grep -a <METRIC-NAME>'
 |SUMMARY|`dataway_http_api_elapsed_seconds`|`api,method,status`|API request latency|
 |SUMMARY|`dataway_http_api_req_size_bytes`|`api,method,status`|API request size|
 |COUNTER|`dataway_http_api_total`|`api,method,status`|API request count|
+|SUMMARY|`dataway_httpcli_http_connect_cost_seconds`|`server`|HTTP connect cost|
 |SUMMARY|`dataway_httpcli_got_first_resp_byte_cost_seconds`|`server`|Got first response byte cost|
 |COUNTER|`dataway_httpcli_tcp_conn_total`|`server,remote,type`|HTTP TCP connection count|
 |COUNTER|`dataway_httpcli_conn_reused_from_idle_total`|`server`|HTTP connection reused from idle count|
 |SUMMARY|`dataway_httpcli_conn_idle_time_seconds`|`server`|HTTP connection idle time|
 |SUMMARY|`dataway_httpcli_dns_cost_seconds`|`server`|HTTP DNS cost|
 |SUMMARY|`dataway_httpcli_tls_handshake_seconds`|`server`|HTTP TLS handshake cost|
-|SUMMARY|`dataway_httpcli_http_connect_cost_seconds`|`server`|HTTP connect cost|
 |COUNTER|`dataway_sinker_pull_total`|`event,source`|Sinker pulled or pushed counter|
+|GAUGE|`dataway_sinker_rule_cache_miss`|`N/A`|Sinker rule cache miss|
+|GAUGE|`dataway_sinker_rule_cache_hit`|`N/A`|Sinker rule cache hit|
+|GAUGE|`dataway_sinker_rule_cache_size`|`N/A`|Sinker rule cache size|
 |GAUGE|`dataway_sinker_rule_error`|`error`|Rule errors|
 |GAUGE|`dataway_sinker_rule_last_applied_time`|`source`|Rule last appliied time(Unix timestamp)|
 |SUMMARY|`dataway_sinker_rule_cost_seconds`|`N/A`|Rule cost time seconds|
