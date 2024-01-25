@@ -1729,7 +1729,7 @@ Ignore ASM insertion by adding `@IngoreAOP` to Plugin AOP override method
 ## FAQ {#FAQ}
 ### Adding Bureau Variables to Avoid Conflicting Fields {#key-conflict}
 
-To avoid conflicts between custom fields and SDK data, it is recommended that the tag naming add the prefix of the project abbreviation, for example `df_tag_name`, and the `key` value can be used in the project [query source](https://github.com/DataFlux-cn/datakit-android/blob/dev/ft- sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java). If the same variables as RUM and Log appear in the SDK global variables, RUM and Log will overwrite the global variables in the SDK.
+To avoid conflicts between custom fields and SDK data, it is recommended that the tag naming add the prefix of the project abbreviation, for example `df_tag_name`, and the `key` value can be used in the project [query source](https://github.com/DataFlux-cn/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java). If the same variables as RUM and Log appear in the SDK global variables, RUM and Log will overwrite the global variables in the SDK.
 
 ### SDK Compatibility
 
