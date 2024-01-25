@@ -7,7 +7,7 @@
 
 【自建节点管理】报 `Name or service not known`。
 
-<img src="img/selfnode-01.png" alt="selfnode-01.png" style="zoom:67%;" />
+![](img/selfnode-01.png)
 
 ### 错误原因 {#error-cause}
 
@@ -20,7 +20,7 @@
 
 访问 Launcher 服务，点击右上角 `修改应用配置`
 
-<img src="img/selfnode-02.png" alt="selfnode-02.png" style="zoom:40%;" />
+![](img/selfnode-02.png)
 
 
 #### 2. 添加参数 {#step-two}
@@ -39,7 +39,7 @@ DialingServer:
 
 勾选修改配置后自动重启相关服务
 
-<img src="img/selfnode-03.png" alt="selfnode-03.png" style="zoom:50%;" />
+![](img/selfnode-03.png)
 
 
 
