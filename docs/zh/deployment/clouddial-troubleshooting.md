@@ -1,17 +1,61 @@
 
-# 可用性监测查看无数据
+# 可用性监测故障排查
 
-## 概述
+## 拨测自建节点管理 Name or service not known {#service-not-known}
 
-本文将介绍如何排查**可用性监测**中查看器无数据的问题。以下是一个基本的流程图。
+### 问题概述 {#overview}
+
+【自建节点管理】报 `Name or service not known`。
+
+<img src="img/selfnode-01.png" alt="selfnode-01.png" style="zoom:67%;" />
+
+### 错误原因 {#error-cause}
+
+- 由于有些云供应商负载均衡问题，服务无法访问自身的 ingress 的域名
+
+### 操作步骤 {#steps}
+
+
+#### 1. 打开 Launcher 修改应用配置 {#step-one}
+
+访问 Launcher 服务，点击右上角 `修改应用配置`
+
+<img src="img/selfnode-02.png" alt="selfnode-02.png" style="zoom:40%;" />
+
+
+#### 2. 添加参数 {#step-two}
+
+修改「命名空间：forethought-core」- 「core」添加 `internal_server` 参数：
+
+```yaml
+# 云拨测服务
+
+DialingServer:
+   ...
+   internal_server: http://dialtesting.utils:9538
+```
+
+#### 3. 修改配置后自动重启相关服务 {#step-three}
+
+勾选修改配置后自动重启相关服务
+
+<img src="img/selfnode-03.png" alt="selfnode-03.png" style="zoom:50%;" />
+
+
+
+## 可用性监测查看器无数据 {#no-data}
+
+### 问题概述 {#overview}
+
+本章节将介绍如何排查可用性监测中查看器无数据的问题。
 
 ### 流程图
 
 ![](img/boce-no-data_1.png)
 
-## 排查思路
+### 排查思路
 
-### 步骤一：校验配置
+#### 步骤一：校验配置
 
 1、首先查看配置文件是否正确
 
@@ -90,11 +134,11 @@ select * from main_config;
 
 > 确认数据网关地址，是否跟示例的格式完全一致。**token={}** 无需修改。
 
-### 步骤二：确认通信
+#### 步骤二：确认通信
 
 在**拨测节点**机器上使用 `ping` 命令确认跟拨测中心和 DataWay 是否能够进行通信。
 
-### 步骤三：查看数据是否上报
+#### 步骤三：查看数据是否上报
 
 在拨测节点机器中执行以下命令，查看是否上报
 
@@ -126,7 +170,7 @@ sudo datakit monitor -M In
 
 ```
 
-### 步骤四：查看日志
+#### 步骤四：查看日志
 
 使用如下命令，查看拨测节点中的 `DataKit` 的日志进一步确定问题。
 
