@@ -1,8 +1,8 @@
 # 版本历史
 
-## 1.78.152（2024 年 01 月 17 日）
+## 1.78.153（2024 年 01 月 17 日）
 
-pubrepo.guance.com/dataflux/1.78.152:launcher-0c616d8-1705468616
+pubrepo.guance.com/dataflux/1.78.153:launcher-54a571c-1706259428
 
 ### 私有部署版更新
 
