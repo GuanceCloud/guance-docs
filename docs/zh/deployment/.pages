@@ -61,6 +61,7 @@ nav:
       - "配置 Keycloak 单点登录映射规则":  keycloak-rule.md
       - "Azure AD 单点登录（部署版）":  azure-ad-pass.md
       - "自定义映射": custom-mapping.md
+      - "LDAP 单点登录": ldap.md
     - '管理后台手册': 
       - "工作空间管理": space.md
       - "用户管理": user.md
