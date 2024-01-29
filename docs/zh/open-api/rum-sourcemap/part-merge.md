@@ -2,7 +2,7 @@
 
 ---
 
-<br />**POST /api/v1/rum_sourcemap/part_meage**
+<br />**POST /api/v1/rum_sourcemap/part_merge**
 
 ## 概述
 

@@ -31,7 +31,7 @@
 | crontabDuration | int |  | 结束时间减去开始时间, 正整数,单位为 s<br>例子: 3600 <br>允许为空: False <br> |
 | repeatExpireTime | string |  | 重复结束时间 %Y/%m/%d %H:%M:%S<br>例子:  <br>允许为空: False <br>允许空字符串: True <br> |
 | timezone | str | Y | 静默规则时区<br>例子: Asia/shanghai <br>允许为空: False <br> |
-| type | str | Y | 静默规则类型<br>例子: custom <br>允许为空: False <br>可选值: ['checker', 'monitor', 'tag', 'custom'] <br> |
+| type | str | Y | 静默规则类型<br>例子: custom <br>允许为空: False <br>可选值: ['checker', 'alertPolicy', 'tag', 'custom'] <br> |
 
 ## 参数补充说明
 
