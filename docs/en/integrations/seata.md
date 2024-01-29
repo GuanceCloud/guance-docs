@@ -3,8 +3,8 @@ title     : 'Seata'
 summary   : 'Collect information about Seata-related metrics'
 __int_icon: 'icon/seata'
 dashboard :
-  - desc  : 'Seata Monitoring View'
-    path  : 'dashboard/zh/seata'
+  - desc  : 'Seata'
+    path  : 'dashboard/en/seata'
 monitor   :
   - desc  : 'No'
     path  : '-'
