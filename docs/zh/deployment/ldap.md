@@ -91,6 +91,41 @@ LDAPClientSet:
     exterId: uid
 ```
 
+不开启 SSL 的情况下，内网访问 LDAP 服务配置示例：
+
+```
+# LDAP 客户端配置(配置主体参考: https://ldap3.readthedocs.io/en/latest/server.html)
+LDAPClientSet:
+  # 是否启用 LDAP, 默认不启用
+  enable: true
+  # server 的参数格式遵循 https://ldap3.readthedocs.io/en/latest/server.html
+  server:
+    # LDAP 服务器域名，可以是域名 或者 ldap://xxx 或者 ldaps://xxx
+    # 本地开发地址 绑定hosts： 172.16.211.111 openldap-server
+    host: "<域名 、 协议+域名+端口>"
+    # 指定是否必须读取服务器架构和服务器特定信息（默认为 SCHEMA）。可选值说明 https://ldap3.readthedocs.io/en/latest/server.html#server-object
+    get_info: "ALL"
+  # 基础 DN信息
+  baseDN: "<基础DN>"
+  # 客户端建立连接时帮的的DN
+  bindDN: "<客户端建立连接时帮的的DN>"
+  # 与 bindDN 对应的密码
+  bindPassword: "<与 bindDN 对应的密码>"
+  # 搜索账号所用到的属性
+  searchAttribute: cn
+  # 如果账号属性与下表不一致，则需要调整
+  mapping:
+    # 认证服务中，登录账号的用户名字段名，必填，如果值不存在，则取 email
+    username: cn
+    # 认证服务中，登录账号的邮箱字段名，必填
+    email: mail
+    # 认证服务中，登录账号的手机号字段名，选填
+    mobile: mobile
+    # 认证服务中，登录账号的唯一标识字段名， 必填
+    exterId: cn
+```
+
+
 ## 使用 LDAP 单点登录至观测云
 
 ![](img/ldap-1.png)
