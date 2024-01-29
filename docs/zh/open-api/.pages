@@ -43,6 +43,5 @@ nav:
   - 'DQL数据查询': query-data
   - '日志聚类查询': logmine
   - 'Func 函数': outer-function
-  - '外部事件监控器': outer-event-checker-webhook
   - '监控 - SLO': slo
   - '账单分析': billing

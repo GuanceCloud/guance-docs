@@ -57,6 +57,7 @@
 *jsonScript 参数说明*
 
 **1. 检查类型`jsonScript.type` 说明**
+
 |key|说明|
 |---|----|
 |simpleCheck| 阈值检测|
