@@ -1,6 +1,34 @@
 # 更新日志
 ---
 
+## 1.24.0(2024/01/24) {#cl-1.24.0}
+
+### 新增功能 {#cl-1.24.0-new}
+
+- 新增主机 [Health Check 采集器](../integrations/host_healthcheck.md)（#2061）
+
+### 问题修复 {#cl-1.24.0-fix}
+
+- 修复 Windows Event 采集可能导致的崩溃问题（#2087）
+- 修复数据录制功能问题并完善[相关文档](datakit-daemonset-deploy.md#env-recorder)（#2092）
+- 修复 DDTrace 多链路传播串联问题（#2093）
+- 修复 Socket 日志采集截断问题（#2095）
+- 修复 Datakit 升级时主配置文件残留问题（#2096）
+- 修复更新脚本覆盖问题（#2085）
+
+### 功能优化 {#cl-1.24.0-opt}
+
+- 优化主机安装中，Linux 非 root 安装时资源限制功能（#2011）
+- 优化分流和黑名单匹配性能，大幅度（*10X*）减少内存消耗（#2077）
+- Log Streaming 采集[支持 FireLens](../integrations/logstreaming.md#firelens) 类型（#2090）
+- Log Forward 采集日志中增加字段 `log_read_lines`（#2098）
+- 优化 K8s 中对 tag `cluster_name_k8s` 的处理（#2099）
+- K8s Pod 时序指标中增加重启次数（`restarts`）指标
+- 优化时序指标集 `kubernetes`，增加容器统计数
+- 优化 Kubelet 指标采集逻辑
+
+---
+
 ## 1.23.1(2024/01/12) {#cl-1.23.1}
 
 本次发布属于 Hotfix 发布，修复如下问题：
@@ -50,6 +78,7 @@
 - Kubernetes 资源数量采集添加 `node_name` tag（仅支持 Pod 资源）（#2057）
 - Kubernetes Pod 指标新增 `cpu_limit_millicores/mem_limit/mem_used_percent_base_limit` 字段
 - eBPF 采集器新增 `bpf-netlog` 插件 (#2017)
+- Kubernetes 中数据录制功能支持通过环境变量配置
 
 ### 问题修复 {#cl-1.22.0-fix}
 

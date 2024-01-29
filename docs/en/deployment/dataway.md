@@ -356,48 +356,55 @@ watch -n 3 'curl -s http://localhost:9090/metrics | grep -a <METRIC-NAME>'
 
 |TYPE|NAME|LABELS|HELP|
 |---|---|---|---|
+|COUNTER|`dataway_http_api_body_too_large_dropped_total`|`api,method`|API request too large dropped|
+|COUNTER|`dataway_http_api_with_inner_token`|`api,method`|API request with inner token|
 |COUNTER|`dataway_http_api_dropped_total`|`api,method`|API request dropped when sinker rule match failed|
 |COUNTER|`dataway_http_api_signed_total`|`api,method`|API signature count|
+|SUMMARY|`dataway_http_api_cached_bytes`|`api,cache_type,method,reason`|API cached body bytes|
 |SUMMARY|`dataway_http_api_reusable_body_read_bytes`|`api,method`|API re-read body on forking request|
 |COUNTER|`dataway_http_api_forked_total`|`api,method,token`|API request forked total|
-|GAUGE|`dataway_http_info`|`cascaded,docker,http_client_trace,listen,release_date,remote,secret,token,version`|Dataway API basic info|
+|GAUGE|`dataway_http_info`|`cascaded,docker,http_client_trace,listen,max_body,release_date,remote,version`|Dataway API basic info|
 |GAUGE|`dataway_cpu_usage`|`N/A`|Dataway CPU usage(%)|
 |GAUGE|`dataway_open_files`|`N/A`|Dataway open files|
 |GAUGE|`dataway_cpu_cores`|`N/A`|Dataway CPU cores|
-|COUNTER|`dataway_process_ctx_switch_total`|`N/A`|Dataway process context switch count(Linux only)|
-|COUNTER|`dataway_process_io_count_total`|`N/A`|Dataway process IO count count|
-|COUNTER|`dataway_process_io_bytes_total`|`N/A`|Dataway process IO bytes count|
+|COUNTER|`dataway_process_ctx_switch_total`|`type`|Dataway process context switch count(Linux only)|
+|COUNTER|`dataway_process_io_count_total`|`type`|Dataway process IO count count|
+|COUNTER|`dataway_process_io_bytes_total`|`type`|Dataway process IO bytes count|
 |GAUGE|`dataway_last_heartbeat_time`|`N/A`|Dataway last heartbeat with Kodo timestamp|
 |SUMMARY|`dataway_http_api_dropped_expired_cache`|`api,method`|Dropped expired cache data|
 |SUMMARY|`dataway_http_api_elapsed_seconds`|`api,method,status`|API request latency|
 |SUMMARY|`dataway_http_api_req_size_bytes`|`api,method,status`|API request size|
 |COUNTER|`dataway_http_api_total`|`api,method,status`|API request count|
+|SUMMARY|`dataway_httpcli_http_connect_cost_seconds`|`server`|HTTP connect cost|
+|SUMMARY|`dataway_httpcli_got_first_resp_byte_cost_seconds`|`server`|Got first response byte cost|
 |COUNTER|`dataway_httpcli_tcp_conn_total`|`server,remote,type`|HTTP TCP connection count|
 |COUNTER|`dataway_httpcli_conn_reused_from_idle_total`|`server`|HTTP connection reused from idle count|
 |SUMMARY|`dataway_httpcli_conn_idle_time_seconds`|`server`|HTTP connection idle time|
 |SUMMARY|`dataway_httpcli_dns_cost_seconds`|`server`|HTTP DNS cost|
 |SUMMARY|`dataway_httpcli_tls_handshake_seconds`|`server`|HTTP TLS handshake cost|
-|SUMMARY|`dataway_httpcli_http_connect_cost_seconds`|`server`|HTTP connect cost|
-|SUMMARY|`dataway_httpcli_got_first_resp_byte_cost_seconds`|`server`|Got first response byte cost|
 |COUNTER|`dataway_sinker_pull_total`|`event,source`|Sinker pulled or pushed counter|
+|GAUGE|`dataway_sinker_rule_cache_miss`|`N/A`|Sinker rule cache miss|
+|GAUGE|`dataway_sinker_rule_cache_hit`|`N/A`|Sinker rule cache hit|
+|GAUGE|`dataway_sinker_rule_cache_size`|`N/A`|Sinker rule cache size|
 |GAUGE|`dataway_sinker_rule_error`|`error`|Rule errors|
-|GAUGE|`dataway_sinker_rule_last_applied_time`|`source`|Rule last applied time(Unix timestamp)|
+|GAUGE|`dataway_sinker_rule_last_applied_time`|`source`|Rule last appliied time(Unix timestamp)|
 |SUMMARY|`dataway_sinker_rule_cost_seconds`|`N/A`|Rule cost time seconds|
-|COUNTER|`diskcache_put_total`|`N/A`|cache Put() count|
-|COUNTER|`diskcache_put_bytes_total`|`N/A`|cache Put() bytes count|
-|COUNTER|`diskcache_get_total`|`N/A`|cache Get() count|
-|COUNTER|`diskcache_wakeup_total`|`N/A`|wakeup count on sleeping write file|
-|COUNTER|`diskcache_get_bytes_total`|`N/A`|cache Get() bytes count|
-|GAUGE|`diskcache_capacity`|`N/A`|current capacity(in bytes)|
-|GAUGE|`diskcache_max_data`|`N/A`|max data to Put(in bytes), default 0|
-|GAUGE|`diskcache_batch_size`|`N/A`|data file size(in bytes)|
-|GAUGE|`diskcache_size`|`N/A`|current cache size(in bytes)|
-|GAUGE|`diskcache_open_time`|`N/A`|current cache Open time in unix timestamp(second)|
-|GAUGE|`diskcache_last_close_time`|`N/A`|current cache last Close time in unix timestamp(second)|
-|GAUGE|`diskcache_datafiles`|`N/A`|current un-read data files|
-|SUMMARY|`diskcache_get_latency`|`N/A`|Get() time cost(micro-second)|
-|SUMMARY|`diskcache_put_latency`|`N/A`|Put() time cost(micro-second)|
-|COUNTER|`diskcache_dropped_bytes_total`|`N/A`|dropped bytes during Put() when capacity reached.|
-|COUNTER|`diskcache_dropped_total`|`N/A`|dropped files during Put() when capacity reached.|
-|COUNTER|`diskcache_rotate_total`|`N/A`|cache rotate count, mean file rotate from data to data.0000xxx|
-|COUNTER|`diskcache_remove_total`|`N/A`|removed file count, if some file read EOF, remove it from un-read list|
+|COUNTER|`diskcache_put_bytes_total`|`path`|Cache Put() bytes count|
+|COUNTER|`diskcache_get_total`|`path`|Cache Get() count|
+|COUNTER|`diskcache_wakeup_total`|`path`|Wakeup count on sleeping write file|
+|COUNTER|`diskcache_seek_back_total`|`path`|Seek back when Get() got any error|
+|COUNTER|`diskcache_get_bytes_total`|`path`|Cache Get() bytes count|
+|GAUGE|`diskcache_capacity`|`path`|Current capacity(in bytes)|
+|GAUGE|`diskcache_max_data`|`path`|Max data to Put(in bytes), default 0|
+|GAUGE|`diskcache_batch_size`|`path`|Data file size(in bytes)|
+|GAUGE|`diskcache_size`|`path`|Current cache size(in bytes)|
+|GAUGE|`diskcache_open_time`|`no_fallback_on_error,no_lock,no_pos,no_sync,path`|Current cache Open time in unix timestamp(second)|
+|GAUGE|`diskcache_last_close_time`|`path`|Current cache last Close time in unix timestamp(second)|
+|GAUGE|`diskcache_datafiles`|`path`|Current un-read data files|
+|SUMMARY|`diskcache_get_latency`|`path`|Get() time cost(micro-second)|
+|SUMMARY|`diskcache_put_latency`|`path`|Put() time cost(micro-second)|
+|COUNTER|`diskcache_dropped_bytes_total`|`path`|Dropped bytes during Put() when capacity reached.|
+|COUNTER|`diskcache_dropped_total`|`path,reason`|Dropped files during Put() when capacity reached.|
+|COUNTER|`diskcache_rotate_total`|`path`|Cache rotate count, mean file rotate from data to data.0000xxx|
+|COUNTER|`diskcache_remove_total`|`path`|Removed file count, if some file read EOF, remove it from un-read list|
+|COUNTER|`diskcache_put_total`|`path`|Cache Put() count|

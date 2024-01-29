@@ -176,7 +176,7 @@ android{
 	class DemoApplication : Application() {
 	    override fun onCreate() {
 	        val config = FTSDKConfig
-	            .builder(DATAKIT_URL)//Datakit 安装地址
+	            .builder(DATAKIT_URL)//Datakit 访问地址
 	            .setDebug(true);
 
 	        FTSdk.install(config)
@@ -199,7 +199,7 @@ android{
 | datakitUrl | String | 是 | Datakit 访问地址 | datakit 访问 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529，注意：安装 SDK 设备需能访问这地址.注意：datakit 和 dataway 配置两者二选一|
 | datawayUrl | String | 是 | 公网 Dataway 访问地址 | dataway 访问 URL 地址，例子：http://10.0.0.1:9528，端口默认 9528，注意：安装 SDK 设备需能访问这地址.注意：datakit 和 dataway 配置两者二选一 |
 | clientToken | String | 是 | 认证 token | 需要与 datawayUrl 同时配置  |
-| setDebug | String | 否 | 是否开启调试模式 | 默认为 `false`，开启后方可打印 SDK 运行日志 |
+| setDebug | Boolean | 否 | 是否开启调试模式 | 默认为 `false`，开启后方可打印 SDK 运行日志 |
 | setEnv | EnvType | 否 | 设置采集环境 | 默认为 `EnvType.PROD` |
 | setEnv | String | 否 | 设置采集环境 | 默认为 `prod` |
 | setOnlySupportMainProcess | Boolean | 否 | 是否只支持在主进程运行 | 默认为 `true` ，如果需要在其他进程中执行需要将该字段设置为 `false` |
@@ -670,7 +670,7 @@ android{
 
 
 	     /**
-	     * 添加错误
+	     * 添加错误信息
 	     *
 	     * @param log       日志
 	     * @param message   消息
@@ -693,7 +693,7 @@ android{
 
 
 	    /**
-	     * 添加错误
+	     * 添加错误信息
 	     *
 	     * @param log       日志
 	     * @param message   消息
@@ -717,7 +717,7 @@ android{
 
 
 	     /**
-	     * 添加错误
+	     * 添加错误信息
 	     *
 	     * @param log       日志
 	     * @param message   消息
@@ -740,14 +740,14 @@ android{
 
 
 	    /**
-	     * 添加错误
+	     * 添加错误信息
 	     *
 	     * @param log       日志
 	     * @param message   消息
 	     * @param errorType 错误类型
 	     * @param state     程序运行状态
 	     * @param dateline  发生时间，纳秒
-		 * @param property  附加属性
+	     * @param property  附加属性
 	     */
 	    public void addError(String log, String message, long dateline, String errorType,
 	                         AppState state, HashMap<String, Object> property)
@@ -769,7 +769,7 @@ android{
 		fun addError(log: String, message: String, errorType: ErrorType, state: AppState)
 
 		 /**
-	     * 添加错误
+	     * 添加错误信息
 	     *
 	     * @param log       日志
 	     * @param message   消息
@@ -786,19 +786,19 @@ android{
 	     * @param message   消息
 	     * @param errorType 错误类型
 	     * @param state     程序运行状态
-		 * @param property  附加属性
+	     * @param property  附加属性
 	     */
 		fun addError(log: String, message: String, errorType: ErrorType, state: AppState, property: HashMap<String, Any>)
 
 		 /**
-	     * 添加错误
+	     * 添加错误信息
 	     *
 	     * @param log       日志
 	     * @param message   消息
 	     * @param errorType 错误类型
 	     * @param state     程序运行状态
 	     * @param dateline  发生时间，纳秒
-		 * @param property  附加属性
+	     * @param property  附加属性
 	     */
 		fun addError(log: String, message: String, dateline: Long, errorType: ErrorType,state: AppState, property: HashMap<String, Any>)
 
@@ -814,7 +814,7 @@ android{
 		fun addError(log: String, message: String, errorType: String, state: AppState)
 
 		 /**
-	     * 添加错误
+	     * 添加错误信息
 	     *
 	     * @param log       日志
 	     * @param message   消息
@@ -836,7 +836,7 @@ android{
 		fun addError(log: String, message: String, errorType: String, state: AppState, property: HashMap<String, Any>)
 
 		 /**
-	     * 添加错误
+	     * 添加错误信息
 	     *
 	     * @param log       日志
 	     * @param message   消息
@@ -1141,27 +1141,27 @@ android{
 
 	```
 
-| **方法名** | **含义** | **必须** | **说明** |
+| **方法名** | **必须** | **含义** |**说明** |
 | --- | --- | --- | --- |
-| NetStatusBean.fetchStartTime | 请求开始时间 | 否 | |
-| NetStatusBean.tcpStartTime | tcp 连接时间 | 否 |  |
-| NetStatusBean.tcpEndTime | tcp 结束时间 | 否 |  |
-| NetStatusBean.dnsStartTime | dns 开始时间 | 否 |  |
-| NetStatusBean.dnsEndTime | dns 结束时间 | 否 |  |
-| NetStatusBean.responseStartTime | 响应开始时间 | 否 |  |
-| NetStatusBean.responseEndTime | 响应结束时间 | 否 |  |
-| NetStatusBean.sslStartTime | ssl 开始时间 | 否 |  |
-| NetStatusBean.sslEndTime | ssl 结束时间 | 否 |  |
-| NetStatusBean.property| 附加属性 | 否 |  |
-| ResourceParams.url | url 地址 | 是 |  |
-| ResourceParams.requestHeader | 请求头参数 | 否 |  |
-| ResourceParams.responseHeader | 响应头参数 | 否 |  |
-| ResourceParams.responseConnection | 响应  connection | 否 |  |
-| ResourceParams.responseContentType | 响应  ContentType | 否 |  |
-| ResourceParams.responseContentEncoding | 响应  ContentEncoding | 否 |  |
-| ResourceParams.resourceMethod | 请求方法 | 否 |  GET,POST 等 |
-| ResourceParams.responseBody | 返回 body 内容 | 否 |  |
-| ResourceParams.property| 附加属性 | 否 |  |
+| NetStatusBean.fetchStartTime | 否 | 请求开始时间 | |
+| NetStatusBean.tcpStartTime | 否 | tcp 连接时间 |  |
+| NetStatusBean.tcpEndTime | 否 | tcp 结束时间 |  |
+| NetStatusBean.dnsStartTime | 否 | dns 开始时间 |  |
+| NetStatusBean.dnsEndTime | 否 |  dns 结束时间 | |
+| NetStatusBean.responseStartTime | 否 | 响应开始时间 |  |
+| NetStatusBean.responseEndTime | 否 | 响应结束时间 |  |
+| NetStatusBean.sslStartTime | 否 | ssl 开始时间 |  |
+| NetStatusBean.sslEndTime | 否 |  ssl 结束时间 | |
+| NetStatusBean.property| 否 |  附加属性 | |
+| ResourceParams.url | 是 |  url 地址 | |
+| ResourceParams.requestHeader | 否 | 请求头参数 |  |
+| ResourceParams.responseHeader | 否 | 响应头参数 |  |
+| ResourceParams.responseConnection | 否 |  响应  connection | |
+| ResourceParams.responseContentType | 否 |  响应  ContentType | |
+| ResourceParams.responseContentEncoding | 否 | 响应  ContentEncoding |  |
+| ResourceParams.resourceMethod | 否 | 请求方法 |  GET,POST 等 |
+| ResourceParams.responseBody | 否 |  返回 body 内容 | |
+| ResourceParams.property| 否 | 附加属性 |  |
 
 ## Logger 日志打印 {#log} 
 使用 `FTLogger` 进行日志输出
@@ -1357,7 +1357,7 @@ android{
 ## 通过 OKHttp Interceptor 自定义 Resource 和 TraceHeader {#okhttp_resource_trace_interceptor_custom}
 
  `FTRUMConfig`的`enableTraceUserResource` ，`FTTraceConfig`的 `enableAutoTrace` 配置，同时开启，优先加载自定义 `Interceptor` 配置
- >1.4.1 之前的版本，需要关闭 `FTRUMConfig`的`enableTraceUserResource` ，`FTTraceConfig`的 `enableAutoTrace`
+ >ft-sdk < 1.4.1，需要关闭 `FTRUMConfig`的`enableTraceUserResource` ，`FTTraceConfig`的 `enableAutoTrace`
 
 === "Java"
 
@@ -1653,7 +1653,7 @@ FTExt {
 	//...
     autoUploadMap = true
     autoUploadNativeDebugSymbol = true
-	datakitUrl = 'https://datakit.url'
+    datakitUrl = 'https://datakit.url'
     datawayToken = 'dataway_token'
     appId = "appid_xxxxx"// appid
     env = 'common'

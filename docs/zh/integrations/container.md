@@ -319,13 +319,14 @@ The count of the Kubernetes resource.
 | Tag | Description |
 |  ----  | --------|
 |`namespace`|namespace|
-|`node_name`|NodeName is a request to schedule this pod onto a specific node (only supported Pod).|
+|`node_name`|NodeName is a request to schedule this pod onto a specific node (only supported Pod and Container).|
 
 - 指标列表
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
+|`container`|Container count|int|-|
 |`cronjob`|CronJob count|int|-|
 |`daemonset`|Service count|int|-|
 |`deployment`|Deployment count|int|-|
@@ -587,6 +588,7 @@ The metric of the Kubernetes Pod.
 |`network_bytes_rcvd`|Cumulative count of bytes received.|int|B|
 |`network_bytes_sent`|Cumulative count of bytes transmitted.|int|B|
 |`ready`|Describes whether the pod is ready to serve requests.|int|count|
+|`restarts`|The number of times the container has been restarted.|int|count|
 
 
 
@@ -1024,7 +1026,6 @@ The object of the Kubernetes Pod.
 |`memory_used_percent`|The percentage usage of the memory (refer from `mem_used_percent`|float|percent|
 |`message`|Object details|string|-|
 |`ready`|Describes whether the pod is ready to serve requests.|int|count|
-|`restart`|The number of times the container has been restarted. (Deprecated, use restarts)|int|count|
 |`restarts`|The number of times the container has been restarted.|int|count|
 
 
