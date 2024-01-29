@@ -57,6 +57,7 @@ nav:
       - 'DynamoDB': aws_dynamodb.md
       - 'DynamoDB(DAX)': aws_dynamodb_DAX.md
       - 'EC2': aws_ec2.md
+      - 'ECS': aws_ecs.md
       - 'ELB': aws_elb.md
       - 'EventBridge': aws_eventbridge.md
       - 'Lambda': aws_lambda.md
