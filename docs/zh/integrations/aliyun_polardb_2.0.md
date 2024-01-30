@@ -1,7 +1,7 @@
 ---
 title: '阿里云 PolarDB 分布式 2.0'
 summary: '阿里云 PolarDB 分布式 2.0 展示计算层和存储节点的指标，包括CPU利用率、连接使用率、磁盘使用量、磁盘使用率、内存利用率、网络带宽等。'
-__int_icon: 'icon/aliyun_polardb_2.0'
+__int_icon: 'icon/aliyun_polardb'
 dashboard:
   - desc: '阿里云 PolarDB 分布式 2.0 内置视图'
     path: 'dashboard/zh/aliyun_polardb_2.0/'
