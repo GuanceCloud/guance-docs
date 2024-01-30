@@ -5,7 +5,7 @@ summary: '阿里云 MongoDB 副本集指标展示，包括 CPU 使用率、内�
 阿里云 MongoDB 分片集群指标展示，包括 CPU 使用率、内存使用率、磁盘使用率、数据占用磁盘空间量、日志占用磁盘空间、每秒语句执行次数、请求数、连接数、网络流量、复制延迟、QPS 等。
 
 阿里云 MongoDB 单节点实例指标展示，包括 CPU 使用率、内存使用率、磁盘使用率、数据占用磁盘空间量、每秒语句执行次数、请求数、连接数、网络流量、QPS 等。'
-__int_icon: 'icon/aliyun_mongodb_replicaset'
+__int_icon: 'icon/aliyun_mongodb'
 
 dashboard:
   - desc: '阿里云 MongoDB 副本集内置视图'
