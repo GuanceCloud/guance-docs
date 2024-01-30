@@ -66,7 +66,23 @@
     end
     ```
     
+    **[将代码库下载到本地使用](https://guides.cocoapods.org/using/the-podfile.html#using-the-files-from-a-folder-local-to-the-machine)**
+    
+    ```
+    use_modular_headers!
+    //主工程
+    target 'yourProjectName' do
+    pod 'FTMobileSDK', :path => '[folder_path]' 
+    end
+    //Widget Extension
+    target 'yourWidgetExtensionName' do
+    pod 'FTMobileSDK/Extension', :path => '[folder_path]'
+    end
+    ```
+    folder_path: `FTMobileSDK.podspec` 所在文件夹的路径。
+    
     2.在 `Podfile` 目录下执行 `pod install` 安装 SDK。
+    
 
 === "Carthage" 
 
@@ -94,7 +110,7 @@
     
     `FTMobileAgent`：添加到主项目 Target
     
-    `FTMobileExtension`：添加到 Widget Extension Target
+    `FTMobileExtension`：添加到小组件 Widget Extension Target
     
     3.在 `TARGETS`  -> `Build Setting` ->  `Other Linker Flags`  添加  `-ObjC`。
     
