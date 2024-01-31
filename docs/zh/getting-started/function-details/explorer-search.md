@@ -392,7 +392,7 @@ key:(value1 AND * OR value3)        // 等同于 key:(value1 OR value3)
 
 除了预设的时间范围以外，您可以在时间控件点击**自定义时间**选择时间范围，包括日期和具体的时间，点击**应用**，即可按照自定义的时间范围进行数据筛选。
 
-???+ attention 
+???+ warning 
 
     - 自定义时间范围的开始和结束时间需按照 `时:分:秒` 的格式输入，如 `15:01:09`；  
     - 自定义时间范围的开始时间不能晚于结束时间；  
@@ -404,7 +404,7 @@ key:(value1 AND * OR value3)        // 等同于 key:(value1 OR value3)
 
 除了时间控件提供的时间范围选择以外，观测云还支持在浏览器的 URL 中直接修改当前工作空间查看器的 `time` 参数的时间范围进行数据查询，支持秒、分、时、天 4 种单位，如 time=30s、time=20m、time=6h、time=2d 等，如下图所示在浏览器修改 `time=2h` ，查看器展示最近 2 小时的数据。
 
-???+ attention 
+???+ warning 
 
     - 每种单位只能独立使用，不可组合；  
     - 当选择或者在浏览器输入的时间范围大于等于 1d ，查看器自动停止播放模式。
@@ -428,11 +428,11 @@ key:(value1 AND * OR value3)        // 等同于 key:(value1 OR value3)
 进入**时间控件 > 时区设置**，在**修改时区**窗口：
 
 - 默认显示 “浏览器时间”，即本地浏览器检测到的时间；      
-- 在拥有者或管理员设置 “[工作空间时区](../../management/account-management.md#workspace)” 后，成员可选择配置好的工作空间时区。
+- 在拥有者或管理员设置 “[工作空间时区](../../management/index.md#workspace)” 后，成员可选择配置好的工作空间时区。
 
 ![](../img/zone.png)
 
-???+ attention
+???+ warning 
 
     - 仅当前工作空间的 Owner 及 Administrator 拥有**工作空间时区**配置权限；  
 
@@ -470,6 +470,13 @@ key:(value1 AND * OR value3)        // 等同于 key:(value1 OR value3)
 
 ![](../img/7.log_column_4.png)
 
+### 时间列 {#time-column}
+
+若查看器存在时间列，您可以在显示列配置下直接勾选：
+
+<img src="../../img/time_column.png" width="60%" >
+
+
 ### 添加显示列
 
 在查看器显示列，支持输入字段进行匹配搜索，默认选中搜索到的第一个字段，支持通过键盘上下切换键（↑ ↓ ）选择添加显示列。
@@ -506,7 +513,7 @@ key:(value1 AND * OR value3)        // 等同于 key:(value1 OR value3)
 
 您可以对当前展示的数据进行搜索和筛选、选择时间范围、增加查看列等操作，然后点击查看器左上角的快照小图标，点击**保存快照**即可保存当前查看器所展示的数据内容。
 
-> 更多快照使用详情，可参考文档 [快照](./snapshot.md)。
+> 更多快照使用详情，可参考 [快照](./snapshot.md)。
 
 <img src="../../img/6.snapshot_1.png" width="60%" >
 
