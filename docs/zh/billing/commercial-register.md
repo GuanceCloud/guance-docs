@@ -17,7 +17,7 @@
 
     - 不同站点的账号和数据相互独立，无法互相共享和迁移数据，请谨慎选择。
     - 注册商业版的同时，您可以根据所选择的站点，设置对应的结算方式，后续也可按需修改。<br/>
-    > 更多详情可参考文档 [费用结算方式](../billing/billing-account/index.md)。
+    > 更多详情，可参考 [费用结算方式](../billing/billing-account/index.md)。
 
 | 站点    | 登录地址 URL    |  运营商 |
 | ----------------- | ---------------- | ------------------ |
@@ -93,11 +93,13 @@
 
 若您在注册时选择 [AWS 账号结算](./billing-account/aws-account.md#register)，工作空间内产生的所有费用会直接从您的 AWS 账户中进行结算。
 
-您可以在**选择开通方式**，点击 **[前往亚马逊云市场订阅](../billing/billing-account/aws-account.md#subscribe)**，在 AWS 订阅观测云并开通 AWS 账号结算。
-
+填入工作空间名称，选择工作空间语言与风格，点击注册，即可完成账号开通。
 
 ![](img/1.register_aws.png)
 
+在弹出的窗口，点击 **[前往亚马逊云市场（中国区域）订阅](../billing/billing-account/aws-account.md#subscribe)**，订阅完成后点击**确定**即可开通成功观测云商业版。
+
+![](img/aws-market.png)
 
 #### 华为云账号结算 {#huawei-cloud}
 
