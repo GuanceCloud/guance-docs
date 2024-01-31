@@ -33,7 +33,7 @@ LDAP(Lightweight Directory Access Protocol) 是一种用于处理各种目录服
 
 ## 配置详情
 
-在观测云 Launcher > config.yaml 中添加如下配置，需注意调整配置变量值：
+在观测云 Launcher 命名空间：forethought-core > core 中添加如下配置，需注意调整配置变量值：
 
 
 ```
