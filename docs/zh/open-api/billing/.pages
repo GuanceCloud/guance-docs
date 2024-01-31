@@ -1,3 +1,4 @@
 nav:
   - '获取空间账单各个计费项消费累计': billsummary.md
   - '获取空间账单对应周期账单信息': billdetail.md
+  - '获取当前账户余额': billbalance.md

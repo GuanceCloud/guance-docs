@@ -1,6 +1,6 @@
 nav:
   - '获取成员列表': list.md
   - '邀请一个/多个成员': batch-invitation.md
-  - '添加一个/多个成员': batch-add.md
+  - '添加一个/多个成员(部署版)': batch-add.md
   - '删除一个/多个成员': batch-delete.md
   - '修改一个/多个成员': batch-modify.md
