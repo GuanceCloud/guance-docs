@@ -22,11 +22,36 @@
 
 
 
+## 请求例子
+```shell
+curl 'https://openapi.guance.com/api/v1/slo/batch_set_disable' \
+-H 'Content-Type: application/json' \
+-H 'DF-API-KEY: <DF-API-KEY>' \
+--data '{
+  "isDisable": false,
+  "sloUUIDs": [
+    "monitor_3953537fddac4227a669e4712bd95181",
+    "monitor_0d001b9cf7f34f879177ddc5e4c4b3a9"
+  ]
+}'
+```
+
+
 
 
 ## 响应
 ```shell
- 
+{
+    "code": 200,
+    "content": [
+        "slo_1",
+        "slo_2"
+    ],
+    "errorCode": "",
+    "message": "",
+    "success": true,
+    "traceId": "TRACE-EBF6D62D-E134-494C-B664-85B3AF0AE7ED"
+} 
 ```
 
 

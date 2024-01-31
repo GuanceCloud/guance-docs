@@ -47,11 +47,92 @@
 
 
 
+## 请求例子
+```shell
+curl 'https://openapi.guance.com/api/v1/slo/add' \
+-H 'Content-Type: application/json' \
+-H 'DF-API-KEY:  <DF-API-KEY>' \
+--data '{
+  "name": "slo-test8",
+  "interval": "5m",
+  "goal": 90.0,
+  "minGoal": 85.0,
+  "sliUUIDs": [
+    "rul_47e2befd33fa4ece8ae65866feeb897f"
+  ],
+  "alertOpt": {
+    "silentTimeout": 900,
+    "alertTarget": [
+      "notify_7887598b08ca4f42909342d9950af234"
+    ]
+  },
+  "describe": "这是一个例子"
+}'
+```
+
+
 
 
 ## 响应
 ```shell
- 
+{
+    "code": 200,
+    "content": {
+        "alertOpt": {
+            "alertTarget": [
+                {
+                    "status": [
+                        "critical",
+                        "error",
+                        "warning"
+                    ],
+                    "to": [
+                        "notify_7887598b08ca4f42909342d9950af234"
+                    ]
+                }
+            ],
+            "silentTimeout": 900
+        },
+        "config": {
+            "checkRange": 604800,
+            "describe": "这是一个例子",
+            "goal": 90.0,
+            "interval": "5m",
+            "minGoal": 85.0,
+            "sli_infos": [
+                {
+                    "id": "rul_47e2befd33fa4ece8ae65866feeb897f",
+                    "name": "易触发监控器",
+                    "status": 0
+                }
+            ]
+        },
+        "createAt": 1706610143,
+        "creator": "wsak_26258e3c085242f580f3d094b071d649",
+        "declaration": {
+            "b": [
+                "asfawfgajfasfafgafwba",
+                "asfgahjfaf"
+            ],
+            "business": "aaa",
+            "organization": "6540c09e4243b300077a9675"
+        },
+        "deleteAt": -1,
+        "id": null,
+        "name": "slo-test8",
+        "score": 0,
+        "status": 0,
+        "type": "slo",
+        "updateAt": 1706610143,
+        "updator": "wsak_26258e3c085242f580f3d094b071d649",
+        "uuid": "monitor_3b7557f9bdf749139fee94a7ecb4da12",
+        "workspaceUUID": "wksp_4b57c7bab38e4a2d9630f675dc20015d"
+    },
+    "errorCode": "",
+    "message": "",
+    "success": true,
+    "traceId": "TRACE-BD252435-E31A-4A25-8E5F-5C5BF98A1865"
+} 
 ```
 
 

@@ -22,11 +22,28 @@
 
 
 
+## 请求例子
+```shell
+curl 'https://openapi.guance.com/api/v1/slo/monitor_3b7557f9bdf749139fee94a7ecb4da12/delete' \
+-H 'Content-Type: application/json' \
+-H 'DF-API-KEY: <DF-API-KEY>' \
+```
+
+
 
 
 ## 响应
 ```shell
- 
+{
+    "code": 200,
+    "content": [
+        "slo-test8"
+    ],
+    "errorCode": "",
+    "message": "",
+    "success": true,
+    "traceId": "TRACE-08DB4F4E-CDF4-4193-8809-E6980421084B"
+} 
 ```
 
 

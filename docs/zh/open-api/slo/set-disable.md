@@ -28,11 +28,31 @@
 
 
 
+## 请求例子
+```shell
+curl 'https://openapi.guance.com/api/v1/slo/monitor_3b7557f9bdf749139fee94a7ecb4da12/set_disable' \
+-H 'Content-Type: application/json' \
+-H 'DF-API-KEY: <DF-API-KEY>' \
+--data '{
+  "isDisable": false
+}'
+```
+
+
 
 
 ## 响应
 ```shell
- 
+{
+    "code": 200,
+    "content": [
+        "slo-test8"
+    ],
+    "errorCode": "",
+    "message": "",
+    "success": true,
+    "traceId": "TRACE-219C5FF9-00E7-4072-9233-0D9FB49F9A10"
+} 
 ```
 
 
