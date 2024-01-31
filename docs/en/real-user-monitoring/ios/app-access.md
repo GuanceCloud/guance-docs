@@ -65,6 +65,21 @@ Login to Guance Console, enter "Real User Monitoring" page, click "New Applicati
     end
     ```
     
+    **[Download the code repository for local use](https://guides.cocoapods.org/using/the-podfile.html#using-the-files-from-a-folder-local-to-the-machine)**
+    
+    ```
+    use_modular_headers!
+    //Main Project Target
+    target 'yourProjectName' do
+    pod 'FTMobileSDK', :path => '[folder_path]' 
+    end
+    //Widget Extension
+    target 'yourWidgetExtensionName' do
+    pod 'FTMobileSDK/Extension', :path => '[folder_path]'
+    end
+    ```
+    folder_path: Path to the folder where 'FTMobileSDK.podspec' is located.
+    
     2.Run `pod install` in the `Podfile` directory to install the SDK.
 
 === "Carthage" 
