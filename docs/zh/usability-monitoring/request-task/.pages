@@ -1,6 +1,6 @@
 nav:
   - index.md
-  - '创建 HTTP 拨测任务': http.md
-  - '创建 ICMP 拨测任务': icmp.md
-  - '创建 TCP 拨测任务': tcp.md
-  - '创建 WEBSOCKET 拨测任务': websocket.md
+  - 'HTTP': http.md
+  - 'ICMP': icmp.md
+  - 'TCP': tcp.md
+  - 'WEBSOCKET': websocket.md
