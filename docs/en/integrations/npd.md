@@ -32,6 +32,12 @@ monitor   :
 - [x] Installed [DataKit](../datakit/datakit-daemonset-deploy.md)
 - [x] Installed [Prometheus Operator](kubernetes-prometheus-operator-crd.md)
 
+### DataKit 开启 `ServiceMonitor`
+
+[Automatically Discover the Service Exposure Metrics Interface](kubernetes-prom.md#auto-discovery-metrics-with-prometheus)
+
+Collect `NPD` indicator information through the `ServiceMonitor` method below.
+
 ### Installed NPD
 
 
@@ -76,9 +82,6 @@ metadata:
   namespace: kube-system
   labels:
     app: node-problem-detector
-  annotations:
-    prometheus.io/scrape: "true"
-    prometheus.io/port: "20257"
 spec:
   selector:
     app: node-problem-detector
@@ -86,10 +89,11 @@ spec:
     - protocol: TCP
       port: 20257
       targetPort: 20257
+      name: metrics
 
 ```
 
-- Created `npd-server-metrics.yaml`
+- Created `npd-server-monitor.yaml`
 
 ```yaml
 apiVersion: monitoring.coreos.com/v1
@@ -103,13 +107,11 @@ spec:
   selector:
     matchLabels:
       app: node-problem-detector
-  namespaceSelector:
-    matchNames:
-    - kube-system
   endpoints:
-    - path: /metrics
-      port: "20257"
-npd-server-metrics.yaml
+  - port: metrics
+    params:
+      measurement:
+        - node-problem-detector
 ```
 
 - Run
