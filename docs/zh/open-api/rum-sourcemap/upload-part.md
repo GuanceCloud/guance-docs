@@ -9,13 +9,6 @@
 
 
 
-## Form 请求参数
-
-| 参数名        | 类型     | 必选   | 说明              |
-|:-----------|:-------|:-----|:----------------|
-| uploadId | string | Y | 分片上传事件Id<br>允许为空: False <br> |
-| chunkIndex | integer | Y | 分片ID<br>允许为空: False <br>允许空字符串: False <br> |
-
 ## 参数补充说明
 
 
