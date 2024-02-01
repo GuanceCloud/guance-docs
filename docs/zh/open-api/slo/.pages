@@ -1,0 +1,9 @@
+nav:
+  - '创建一个 SLO': add.md
+  - '获取某个 SLO 详情': get.md
+  - '列出工作空间下 SLO': list.md
+  - '修改某个 SLO': modify.md
+  - '删除某个 SLO': delete.md
+  - '批量删除 SLO': batch-delete.md
+  - '禁用/启用某个 SLO': set-disable.md
+  - '批量禁用/启用 SLO': batch-set-disable.md

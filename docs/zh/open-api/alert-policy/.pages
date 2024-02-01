@@ -1,6 +1,6 @@
 nav:
   - '获取告警策略列表': list.md
-  - '创建一个告警策略': create.md
+  - '创建一个告警策略': add.md
   - '获取一个告警策略': get.md
   - '修改一个告警策略': modify.md
   - '删除一个告警策略': delete.md

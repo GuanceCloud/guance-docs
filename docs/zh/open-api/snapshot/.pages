@@ -1,6 +1,5 @@
 nav:
   - '获取快照列表': list.md
-  - '创建一个快照': generate.md
   - '分享一个快照': share.md
   - '删除一个快照': delete.md
   - '取消快照/图表分享': cancel-share.md

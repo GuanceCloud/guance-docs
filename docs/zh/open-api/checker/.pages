@@ -1,4 +1,5 @@
 nav:
+  - '【外部事件监控器】事件接受': receive.md
   - '获取监控器列表': list.md
   - '创建一个监控器': create.md
   - '导出一个/多个监控器': export.md
