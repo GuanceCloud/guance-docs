@@ -54,7 +54,7 @@ FTWrapper.Install(@"
 | **字段** | **类型** | **必须** | **说明** |
 | --- | --- | --- | --- |
 | serverUrl | string | 是 | datakit 安装地址 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529。注意：安装 SDK 设备需能访问这地址 |
-| envType | enum | 否 | 环境，默认`prod` |
+| envType | enum | 否 | 环境配置，默认`prod` |
 | appVersion | enum | 否 | windows 会默认获取，linux 系统需要自行赋值 |
 | enableFileDBCache | bool | 否 | 是否开启本地数据库，默认为 false|
 | globalContext | dictionary | 否 | 添加 SDK 全局属性，添加规则请查阅[此处](#key-conflict)|
