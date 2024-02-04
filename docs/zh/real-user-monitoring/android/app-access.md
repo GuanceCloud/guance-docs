@@ -200,8 +200,8 @@ android{
 | datawayUrl | String | 是 | 公网 Dataway 访问地址 | dataway 访问 URL 地址，例子：http://10.0.0.1:9528，端口默认 9528，注意：安装 SDK 设备需能访问这地址.注意：datakit 和 dataway 配置两者二选一 |
 | clientToken | String | 是 | 认证 token | 需要与 datawayUrl 同时配置  |
 | setDebug | Boolean | 否 | 是否开启调试模式 | 默认为 `false`，开启后方可打印 SDK 运行日志 |
-| setEnv | EnvType | 否 | 设置采集环境 | 默认为 `EnvType.PROD` |
-| setEnv | String | 否 | 设置采集环境 | 默认为 `prod` |
+| setEnv | EnvType | 否 | 设置采集环境 | 环境配置,默认为 `EnvType.PROD`， |
+| setEnv | String | 否 | 设置采集环境 | 环境配置，默认为 `prod`。注意: String 或 EnvType 类型只需配置一个|
 | setOnlySupportMainProcess | Boolean | 否 | 是否只支持在主进程运行 | 默认为 `true` ，如果需要在其他进程中执行需要将该字段设置为 `false` |
 | setEnableAccessAndroidID | Boolean | 否 | 开启获取 `Android ID` | 默认，为 `true`，设置为 `false`，则 `device_uuid` 字段数据将不进行采集,市场隐私审核相关[查看这里](#adpot-to-privacy-audits) |
 | addGlobalContext | Dictionary | 否 | 添加 SDK 全局属性 | 添加规则请查阅[此处](#key-conflict) |
