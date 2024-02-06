@@ -2,7 +2,7 @@
 
 ---
 
-<br />**GET /api/v1/monitor/notice/date/\{notice_date_uuid\}/get**
+<br />**GET /api/v1/notice/date/\{notice_date_uuid\}/get**
 
 ## 概述
 告警策略-自定义通知日期 获取
@@ -25,7 +25,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/monitor/notice/date/ndate_302cd65724974557aa25f45dade30f00/get' \
+curl 'https://openapi.guance.com/api/v1/notice/date/ndate_302cd65724974557aa25f45dade30f00/get' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
@@ -41,8 +41,8 @@ curl 'https://openapi.guance.com/api/v1/monitor/notice/date/ndate_302cd657249745
         "createAt": 1705566710,
         "creator": "wsak_72b16919b18c411496b6dd06fc9ccc72",
         "dates": [
-            "2025.01.01",
-            "2025.10.01"
+            "2025/01/01",
+            "2025/10/01"
         ],
         "declaration": {
             "asd": [

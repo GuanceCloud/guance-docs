@@ -2,7 +2,7 @@
 
 ---
 
-<br />**GET /api/v1/monitor/notice/date/list**
+<br />**GET /api/v1/notice/date/list**
 
 ## 概述
 告警策略-自定义通知日期 列出
@@ -26,7 +26,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/monitor/notice/date/list?pageIndex=1&pageSize=10' \
+curl 'https://openapi.guance.com/api/v1/notice/date/list?pageIndex=1&pageSize=10' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
@@ -44,8 +44,8 @@ curl 'https://openapi.guance.com/api/v1/monitor/notice/date/list?pageIndex=1&pag
                 "createAt": 1705567043,
                 "creator": "wsak_72b16919b18c411496b6dd06fc9ccc72",
                 "dates": [
-                    "2024.01.01",
-                    "2024.05.01"
+                    "2024/01/01",
+                    "2024/05/01"
                 ],
                 "deleteAt": -1,
                 "id": 5,

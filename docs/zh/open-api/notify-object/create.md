@@ -14,7 +14,7 @@
 
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
-| type | string | Y | 触发规则类型, 默认为`trigger`<br>允许为空: True <br>可选值: ['dingTalkRobot', 'HTTPRequest', 'wechatRobot', 'mailGroup', 'feishuRobot', 'sms', 'sampleHTTPRequest'] <br> |
+| type | string | Y | 触发规则类型, 默认为`trigger`<br>允许为空: True <br>可选值: ['dingTalkRobot', 'HTTPRequest', 'wechatRobot', 'mailGroup', 'feishuRobot', 'sms', 'simpleHTTPRequest'] <br> |
 | name | string | Y | 通知对象名字<br>允许为空: False <br> |
 | optSet | json |  | 告警设置<br>允许为空: False <br> |
 
@@ -64,7 +64,7 @@
  | :------- | :----- | :------- | :----------- |
  | to  | Array | 必须    | 手机号码列表 |
 
-**7. `type`=`sampleHTTPRequest` 时，optSet的参数 **
+**7. `type`=`simpleHTTPRequest` 时，optSet的参数 **
 
 | key      | 类型   | 是否必须 | 说明  |
 | :------- | :----- | :------- | :----------- |

@@ -1,8 +1,8 @@
-# 取消一个分片上传事件
+# 合并各分片生成文件
 
 ---
 
-<br />**POST /api/v1/rum_sourcemap/upload_cancel**
+<br />**POST /api/v1/rum_sourcemap/part_merge**
 
 ## 概述
 
@@ -14,6 +14,7 @@
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
 | uploadId | string | Y | 分片上传事件Id<br>允许为空: False <br> |
+| chunkIndexs | array |  | 分片列表<br>允许为空: False <br>允许空字符串: False <br> |
 
 ## 参数补充说明
 
@@ -23,7 +24,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/rum_sourcemap/upload_cancel' \
+curl 'https://openapi.guance.com/api/v1/rum_sourcemap/part_merge' \
 -H 'Content-Type: application/json' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --data-raw $'{\n  "uploadId": "65ef45944fac157005cb73de48e81f161Lfv5UOs"\n}' \
@@ -37,11 +38,11 @@ curl 'https://openapi.guance.com/api/v1/rum_sourcemap/upload_cancel' \
 ```shell
 {
     "code": 200,
-    "content": true,
+    "content": {},
     "errorCode": "",
     "message": "",
     "success": true,
-    "traceId": "TRACE-3277AFBD-99D0-4532-ACE0-3ED677CC5E1E"
+    "traceId": "TRACE-4CC300F8-2407-42C3-B8D2-1C706CE38DF8"
 } 
 ```
 

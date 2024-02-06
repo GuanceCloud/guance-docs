@@ -25,7 +25,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/self_built_checker/disable' \
+curl 'https://openapi.guance.com/api/v1/self_built_checker/disable' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"ruleUUIDs":["rul_8abfbf9a9a5a487aa4ba0cf90bf9d635","rul_8f2b0c759f3c47cc86e0e4ca042ca35a"]}' \

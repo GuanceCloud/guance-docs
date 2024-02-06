@@ -38,7 +38,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/api/v1/log_backup_cfg/lgbp_4eb51e43647a4a7c8bbac69bec088275/get' \
+curl 'https://openapi.guance.com/api/v1/log_backup_cfg/lgbp_4eb51e43647a4a7c8bbac69bec088275/get' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
