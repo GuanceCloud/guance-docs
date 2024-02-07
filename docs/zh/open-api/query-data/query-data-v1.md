@@ -82,7 +82,7 @@ maxPointCount > interval > density > dql语句中的控制参数
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/df/query_data' \
+curl 'https://openapi.guance.com/api/v1/df/query_data_v1' \
 -H 'Content-Type: application/json' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --data-raw $'{"queries":[{"qtype":"dql","query":{"q":"L::re(`.*`):(`*`){ `index` IN [\'default\'] }","limit":50,"orderby":[{"time":"desc"}],"_funcList":[],"funcList":[],"disableMultipleField":false,"align_time":false,"offset":0,"search_after":[],"cursor_time":1697700766999,"timeRange":[1697699866000,1697700766999],"tz":"Asia/Shanghai"}}]}' \
