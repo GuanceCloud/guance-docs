@@ -1,5 +1,13 @@
 # 版本历史
 
+## 1.79.155（2024 年 02 月 07 日）
+
+pubrepo.guance.com/dataflux/1.79.155:launcher-f137200-1707312493
+
+### 观测云更新
+
+- 修复一些小 Bug
+
 ## 1.79.154（2024 年 01 月 31 日）
 
 pubrepo.guance.com/dataflux/1.79.154:launcher-26c05a5-1707056114
