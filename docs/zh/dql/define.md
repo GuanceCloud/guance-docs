@@ -324,21 +324,21 @@ DataFlux 数据特点均有时间属性，故将时间的表达用单独的子�
 
 `ORDER BY` 子句会对结果进行排序，类似 MySQL 中的 `ORDER BY`。
 
-<font color=coral>**注意：**</font>时序数据，只支持对 time 字段排序。
+<font color=coral>**注意：**</font> 1.「指标数据」只支持对 time 字段排序; 2. 当查询中 by 了分组，order-by 将不生效，请使用 sorder-by 排序。
 
 ```python
-# 获取不同主机的CPU 最大使用率，按照时间逆序
-M::cpu:(max('usage_total')) by host order by time desc
+# 获取所有的主机CPU 使用率，按照时间逆序
+M::cpu:(`usage_total`) order by time desc
 ```
 
 ```python
-# 获取不同主机下，处理请求响应时间，按照响应时间升序
-L::`*`:(max('response_time') as m1) by host order by m1 asc
+# 获取所有日志数据，按照响应时间升序
+L::`*`:(`*`) order by response_time asc
 ```
 
 ### sorder-by-clause 语句
 
-`SORDER BY` 子句会对分组进行排。
+`SORDER BY` 子句会对分组进行排序。
 
 ```python
 # 获取不同主机的 CPU 最大使用率，按照主机名逆序
