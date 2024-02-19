@@ -66,7 +66,23 @@
     end
     ```
     
+    **[将代码库下载到本地使用](https://guides.cocoapods.org/using/the-podfile.html#using-the-files-from-a-folder-local-to-the-machine)**
+    
+    ```
+    use_modular_headers!
+    //主工程
+    target 'yourProjectName' do
+    pod 'FTMobileSDK', :path => '[folder_path]' 
+    end
+    //Widget Extension
+    target 'yourWidgetExtensionName' do
+    pod 'FTMobileSDK/Extension', :path => '[folder_path]'
+    end
+    ```
+    folder_path: `FTMobileSDK.podspec` 所在文件夹的路径。
+    
     2.在 `Podfile` 目录下执行 `pod install` 安装 SDK。
+    
 
 === "Carthage" 
 
@@ -94,7 +110,7 @@
     
     `FTMobileAgent`：添加到主项目 Target
     
-    `FTMobileExtension`：添加到 Widget Extension Target
+    `FTMobileExtension`：添加到小组件 Widget Extension Target
     
     3.在 `TARGETS`  -> `Build Setting` ->  `Other Linker Flags`  添加  `-ObjC`。
     
@@ -159,10 +175,10 @@
     ```objective-c
     -(BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
         // SDK FTMobileConfig 设置
-          // 本地环境部署
-          //FTMobileConfig *config = [[FTMobileConfig alloc]initWithDatakitUrl:datakitUrl];
-          // 使用公网 DataWay 部署
-         FTMobileConfig *config = [[FTMobileConfig alloc]initWithDatawayUrl:datawayUrl clientToken:clientToken];
+         // 本地环境部署
+         //FTMobileConfig *config = [[FTMobileConfig alloc]initWithDatakitUrl:datakitUrl];
+         // 使用公网 DataWay 部署
+        FTMobileConfig *config = [[FTMobileConfig alloc]initWithDatawayUrl:datawayUrl clientToken:clientToken];
         config.enableSDKDebugLog = YES;
         //启动 SDK
         [FTMobileAgent startWithConfigOptions:config];
@@ -1152,7 +1168,6 @@ SDK 提供了一个类 `FTURLSessionDelegate`，需要您将 URLSession 的 dele
     ```swift
     class InheritHttpEngine:FTURLSessionDelegate {
         var session:URLSession?
-        /// HttpEngine 初始化，当 apiHostUrl 为空 或 token 为"" 则初始化失败
         override init(){
             session = nil
             super.init()
@@ -1757,19 +1772,19 @@ XCode Release 编译默认会生成 dSYM 文件，而 Debug 编译默认不会�
 
     ![](../img/xcode_find_dsym2.png)
    
-3. 找到发布的归档包，右键点击对应归档包，选择Show in Finder操作
+3. 找到发布的归档包，右键点击对应归档包，选择 `Show in Finder`操作
 
     ![](../img/xcode_find_dsym3.png)
 
    
 
-4. 右键选择定位到的归档文件，选择显示包内容操作 
+4. 右键选择定位到的归档文件，选择 `显示包内容` 操作 
 
     ![](../img/xcode_find_dsym4.png)
 
    
 
-5. 选择dSYMs目录，目录内即为下载到的 dSYM 文件
+5. 选择 `dSYMs` 目录，目录内即为下载到的 dSYM 文件
 
     ![](../img/xcode_find_dsym5.png)
 

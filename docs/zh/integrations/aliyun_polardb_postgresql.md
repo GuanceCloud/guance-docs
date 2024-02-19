@@ -1,7 +1,7 @@
 ---
 title: '阿里云 PolarDB PostgreSQL'
 summary: '阿里云 PolarDB PostgreSQL 指标展示，包括 CPU 使用率、内存使用率、网络流量、连接数、 IOPS、 TPS、 数据盘大小等。'
-__int_icon: 'icon/aliyun_polardb_postgresql'
+__int_icon: 'icon/aliyun_polardb'
 dashboard:
   - desc: '阿里云 PolarDB PostgreSQL 内置视图'
     path: 'dashboard/zh/aliyun_polardb_postgresql/'

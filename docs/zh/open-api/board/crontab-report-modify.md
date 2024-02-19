@@ -53,6 +53,14 @@
 | timezone            | string  | 时区                                         |
 | notifyType            | string  | 通知类型,枚举值(email,dingTalkRobot,wecharRobot, feishuRobot)                                         |
 
+- extend扩展字段说明
+
+| 参数名           | type | 说明                                                 |
+| ---------------- | ---- | ---------------------------------------------------- |
+| shareConfig       | json | 定时报告分享配置 |    ｜
+| shareConfig.shareMethod  | string | 定时报告分享配置  public or encipher 公开和加密 默认公开                           |
+| shareConfig.password     | string | 定时报告分享密码  加密分享密码                         |
+
 
 
 

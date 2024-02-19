@@ -1,7 +1,7 @@
 ---
 title: '阿里云 AnalyticDB PostgreSQL'
 summary: '阿里云 AnalyticDB PostgreSQL 指标展示，包括cpu、内存、磁盘、协调节点、实例查询等。'
-__int_icon: 'icon/aliyun_analyticdb_postgresql/'
+__int_icon: 'icon/aliyun_analyticdb_postgresql'
 dashboard:
   - desc: '阿里云 AnalyticDB PostgreSQL 内置视图'
     path: 'dashboard/zh/aliyun_analyticdb_postgresql/'

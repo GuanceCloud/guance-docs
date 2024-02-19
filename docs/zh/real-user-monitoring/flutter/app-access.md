@@ -91,8 +91,8 @@ void main() async {
 | datawayUrl | String | 是 | dataway 访问 URL 地址，例子：http://10.0.0.1:9528，端口默认 9528，注意：安装 SDK 设备需能访问这地址。注意：datakit 和 dataway 配置两者二选一 |
 | clientToken | String | 是 | 认证 token, 需要与 datawayUrl 同时配置  |
 | debug | bool | 否 | 设置是否允许打印日志，默认 `false` |
-| envType | enum EnvType | 否 | 环境，默认 `EnvType.prod` |
-| env | String | 否 | 环境，默认 `prod`，任意字符，建议使用单个单词，例如 `test` 等|
+| env | String | 否 | 环境配置，默认 `prod`，任意字符，建议使用单个单词，例如 `test` 等|
+| envType | enum EnvType | 否 | 环境配置，默认 `EnvType.prod`。注：env 与 envType 只需配置一个 |
 | serviceName | String | 否 | 服务名 |
 
 ### RUM 配置 {#rum-config}

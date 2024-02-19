@@ -30,6 +30,12 @@ monitor   :
 - [x] 安装 [DataKit](../datakit/datakit-daemonset-deploy.md)
 - [x] 安装 [Prometheus Operator](kubernetes-prometheus-operator-crd.md)
 
+### DataKit 开启 `ServiceMonitor`
+
+[自动发现 Pod/Service 的 Prometheus 指标](kubernetes-prom.md#auto-discovery-metrics-with-prometheus)
+
+以下通过`ServiceMonitor`方式采集 `NPD` 指标信息
+
 ### 安装 NPD
 
 可以[安装文档](https://github.com/kubernetes/node-problem-detector#installation)，这里采用 `yaml` 的方式进行安装。
@@ -72,9 +78,6 @@ metadata:
   namespace: kube-system
   labels:
     app: node-problem-detector
-  annotations:
-    prometheus.io/scrape: "true"
-    prometheus.io/port: "20257"
 spec:
   selector:
     app: node-problem-detector
@@ -82,10 +85,11 @@ spec:
     - protocol: TCP
       port: 20257
       targetPort: 20257
+      name: metrics
 
 ```
 
-- 创建 `npd-server-metrics.yaml`
+- 创建 `npd-server-monitor.yaml`
 
 ```yaml
 apiVersion: monitoring.coreos.com/v1
@@ -99,12 +103,11 @@ spec:
   selector:
     matchLabels:
       app: node-problem-detector
-  namespaceSelector:
-    matchNames:
-    - kube-system
   endpoints:
-    - path: /metrics
-      port: "20257"
+  - port: metrics
+    params:
+      measurement:
+        - node-problem-detector
 ```
 
 - 执行
@@ -114,7 +117,7 @@ kubectl apply -f rbac.yaml
 kubectl apply -f node-problem-detector-config.yaml
 kubectl apply -f node-problem-detector.yaml
 kubectl apply -f npd-service.yaml
-kubectl apply -f npd-server-metrics.yaml
+kubectl apply -f npd-server-monitor.yaml
 ```
 
 ## 指标

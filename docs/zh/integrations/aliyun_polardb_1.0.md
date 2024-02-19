@@ -1,7 +1,7 @@
 ---
 title: '阿里云 PolarDB 分布式1.0'
 summary: '阿里云 PolarDB 分布式1.0展示指标包括CPU利用率、内存利用率、网络带宽和磁盘IOPS。'
-__int_icon: 'icon/aliyun_polardb_1.0'
+__int_icon: 'icon/aliyun_polardb'
 dashboard:
   - desc: '阿里云 PolarDB 分布式1.0 内置视图'
     path: 'dashboard/zh/aliyun_polardb_1.0/'

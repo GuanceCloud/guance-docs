@@ -2,7 +2,7 @@
 
 ---
 
-<br />**POST /api/v1/monitor/check/create**
+<br />**POST /api/v1/checker/add**
 
 ## 概述
 创建一个监控器
@@ -25,6 +25,9 @@
 | jsonScript.message | string | Y | event内容<br>例子: status: {{status}}, title:`{{title}}` <br>允许为空: False <br> |
 | jsonScript.every | string |  | 检查频率<br>例子: 1m <br>允许为空: False <br> |
 | jsonScript.interval | integer |  | 查询区间，即一次查询的时间范围时差<br>例子: 60 <br>允许为空: False <br> |
+| jsonScript.range | integer |  | 针对高级检测,突变检测的range参数,单位s<br>例子: 3600 <br>允许为空: False <br> |
+| jsonScript.range_2 | integer |  | 针对高级检测,突变检测的range_2参数,单位s,特殊说明 (-1代表环比,  0代表使用 periodBefore字段)<br>例子: 600 <br>允许为空: False <br> |
+| jsonScript.periodBefore | integer |  | 针对高级检测,突变检测的(昨日/一小时前)参数,单位s<br>例子: 600 <br>允许为空: False <br> |
 | jsonScript.recoverNeedPeriodCount | integer |  | 指定异常在几个检查周期之后生成恢复事件<br>例子: 60 <br>允许为空: False <br> |
 | jsonScript.noDataInterval | integer |  | 多长时间内无数据则产生无数据事件<br>例子: 60 <br>允许为空: False <br> |
 | jsonScript.checkFuncs | array |  | 检查函数信息列表<br>例子: [{'funcId': 'xxx', 'kwargs': {}}] <br>允许为空: False <br> |
@@ -40,6 +43,11 @@
 | jsonScript.checkerOpt.threshold.status | boolean | Y | 高级检测中突变检测, 触发前提条件是否开启,<br>例子: True <br> |
 | jsonScript.checkerOpt.threshold.operator | string | Y | 高级检测中突变检测, 触发前提条件操作符<br>例子:  <br> |
 | jsonScript.checkerOpt.threshold.value | float | Y | 高级检测中突变检测, 触发前提条件检测值<br>例子: 90 <br>允许为空: True <br> |
+| jsonScript.channels | array |  | 频道UUID列表<br>例子: ['名称1', '名称2'] <br>允许为空: False <br> |
+| jsonScript.atAccounts | array |  | 正常检测下被@的账号UUID列表<br>例子: ['xx1', 'xx2'] <br>允许为空: False <br> |
+| jsonScript.atNoDataAccounts | array |  | 无数据情况下被@的账号UUID列表<br>例子: ['xx1', 'xx2'] <br>允许为空: False <br> |
+| jsonScript.subUri | string |  | 表示Webhook地址的地址后缀<br>例子: datakit/push <br>允许为空: False <br> |
+| jsonScript.disableCheckEndTime | boolean |  | 是否禁用结束时间限制, https://confluence.jiagouyun.com/pages/viewpage.action?pageId=177405958<br>例子: True <br>允许为空: False <br> |
 
 ## 参数补充说明
 
@@ -49,6 +57,7 @@
 *jsonScript 参数说明*
 
 **1. 检查类型`jsonScript.type` 说明**
+
 |key|说明|
 |---|----|
 |simpleCheck| 阈值检测|
@@ -127,12 +136,54 @@
 
 --------------
 
+**5.突变检查 seniorMutationsCheck 参数说明**
+
+|  参数名        |   type  | 必选  |          说明          |
+|---------------|----------|----|------------------------|
+| jsonScript.range          |  integer  |  N | 检测指标的 Result 时间段1                  |
+| jsonScript.range_2         |  integer  |  N | 检测指标的 Result 时间段2, 特殊说明: (-1代表环比,  0代表使用 periodBefore字段)           |
+| jsonScript.periodBefore         |  integer  |  N | jsonScript.range_2 为 0 时, 该字段表示(昨日/一小时前)      |
+| jsonScript.checkerOpt.diffMode        |  string  |  N | 突变检测的,差值模式( 差值: value, 差值百分比: percent  |
+| jsonScript.checkerOpt.threshold.status        |  boolean  |  N | 突变检测的触发前提条件设置, 开启/关闭  |
+| jsonScript.checkerOpt.threshold.operator        |  string  |  N | 突变检测的触发前提条件设置, 操作符  |
+| jsonScript.checkerOpt.threshold.value        |  float  |  N | 突变检测的触发前提条件设置, 检测值 |
+
+--------------
+
+**6. 字段 disableCheckEndTime 说明**
+上报数据观测云对其处理逻辑包含 追加写入、更新覆盖 两种模式，根据这两种数据的特性，监控需要做检测的区别对待。此区别对应范围包含监控器、智能监控、智能巡检所有模块。
+所有覆盖更新机制的数据类型配置监控器检测时，为了避免因为监控器执行 delay 1 分钟导致更新模式的数据在固定的时间范围内有逃逸现象，此类监控器类型的检测区间不指定结束时间。
+涉及监控器类型：阈值检测、突变检测、区间检测、离群检测、进程异常检测、基础设施存活检测、用户访问指标检测（个别指标，详见下面表格）
+| 数据类型 | Namespace | 写入模式 |
+| ---- | ---- | ---- |
+| 指标 | M | 追加 |
+| 事件 | E | 追加 |
+| 未恢复事件 | UE | 覆盖 |
+| 基础设施-对象 | O | 覆盖 |
+| 基础设施-自定义对象 | CO | 覆盖 |
+| 基础设施-对象历史 | OH | 追加 |
+| 基础设施-自定义对象历史 | COH | 追加 |
+| 日志 / 可用性监测 / CI 可视化 | L | 追加 |
+| 应用性能监测-链路 | T | 追加 |
+| 应用性能监测-Profile | P | 追加 |
+| 用户访问监测-Session | R::session | 覆盖 |
+| 用户访问监测-View | R::view | 覆盖 |
+| 用户访问监测-Resource | R::resource | 追加 |
+| 用户访问监测-Long Task | R::long_task | 追加 |
+| 用户访问监测-Action | R::action | 追加 |
+| 用户访问监测-Error | R::error | 追加 |
+| 安全巡检 | S |  |
+
+所有 写入模式为 覆盖 的 需要指定 disableCheckEndTime 为 true
+
+--------------
+
 
 
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/monitor/check/create' \
+curl 'https://openapi.guance.com/api/v1/checker/add' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"extend": {"querylist": [{"datasource": "dataflux", "qtype": "dql", "uuid": "60ede817-567d-4d74-ad53-09b1165755b3", "query": {"code": "Result", "type": "simple", "namespace": "metric", "dataSource": "aliyun-bss-sync", "field": "EffectiveCashCoupons", "fieldType": "integer", "alias": "", "fieldFunc": "last", "groupByTime": "", "groupBy": ["account"], "q": "M::`aliyun-bss-sync`:(LAST(`EffectiveCashCoupons`)) BY `account`", "funcList": []}}], "funcName": "", "rules": [{"status": "critical", "conditions": [{"alias": "Result", "operator": "&gt;=", "operands": ["7"]}], "conditionLogic": "and"}, {"status": "error", "conditions": [{"alias": "Result", "operator": "&gt;=", "operands": ["6"]}], "conditionLogic": "and"}, {"status": "warning", "conditions": [{"alias": "Result", "operator": "&gt;=", "operands": ["5"]}], "conditionLogic": "and"}], "noDataInterval": 4, "recoverNeedPeriodCount": 3}, "jsonScript": {"name": "ee", "title": "hhhh", "message": "adfsgdsad", "type": "simpleCheck", "every": "1m", "groupBy": ["account"], "interval": 300, "targets": [{"dql": "M::`aliyun-bss-sync`:(LAST(`EffectiveCashCoupons`)) BY `account`", "alias": "Result"}], "checkerOpt": {"rules": [{"status": "critical", "conditions": [{"alias": "Result", "operator": ">=", "operands": ["7"]}], "conditionLogic": "and"}, {"status": "error", "conditions": [{"alias": "Result", "operator": ">=", "operands": ["6"]}], "conditionLogic": "and"}, {"status": "warning", "conditions": [{"alias": "Result", "operator": ">=", "operands": ["5"]}], "conditionLogic": "and"}]}, "noDataInterval": 4, "recoverNeedPeriodCount": 3}, "monitorUUID": "monitor_3f5e5d2108f74e07b8fb1e7459aae2b8"}' \

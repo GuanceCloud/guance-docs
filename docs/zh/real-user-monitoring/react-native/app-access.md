@@ -72,7 +72,7 @@ import {
 
 ```typescript
 let config: FTMobileConfig = {
-    serverUrl: Config.SERVER_URL,
+    datakitUrl: Config.SERVER_URL,
     debug: true,
   };
 FTMobileReactNative.sdkConfig(config)
@@ -80,10 +80,12 @@ FTMobileReactNative.sdkConfig(config)
 
 | 字段 | 类型 | 必须 | 说明 |
 | --- | --- | --- | --- |
-| serverUrl | string | 是 | datakit 访问 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529。注意：安装 SDK 设备需能访问这地址 |
+| datakitUrl | string | 是 | datakit 访问 URL 地址，例子：[http://10.0.0.1:9529](http://10.0.0.1:9529/)，端口默认 9529，注意：安装 SDK 设备需能访问这地址.注意：datakit 和 dataway 配置两者二选一 |
+| datawayUrl | string | 是 | dataway 访问 URL 地址，例子：[http://10.0.0.1:9528](http://10.0.0.1:9528/)，端口默认 9528，注意：安装 SDK 设备需能访问这地址.注意：datakit 和 dataway 配置两者二选一 |
+| clientToken | string | 是 | 认证 token，需要与 datawayUrl 同时使用 |
 | debug | boolean | 否 | 设置是否允许打印日志，默认`false` |
-| env | string | 否 | 环境，默认`prod`，任意字符，建议使用单个单词，例如 `test` 等 |
-| envType | enum EnvType | 否 | 环境，默认`EnvType.prod` |
+| env | string | 否 | 环境配置，默认`prod`，任意字符，建议使用单个单词，例如 `test` 等 |
+| envType | enum EnvType | 否 | 环境配置，默认`EnvType.prod`。注：env 与 envType 只需配置一个|
 | service | string | 否 | 设置所属业务或服务的名称，影响 Log 和 RUM 中 service 字段数据。默认：`df_rum_ios`、`df_rum_android` |
 | globalContext | NSDictionary | 否 | [添加自定义标签](#user-global-context ) |
 
