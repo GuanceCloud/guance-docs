@@ -52,6 +52,9 @@ DQL数据查询
 |  query.limit  | integer  |   | 分页大小 |
 |  query.offset  | integer  |   | 分页偏移量 |
 |  query.orderby  | array  |   | 排序列表，`{fieldName:method}` , 注意指标集查询的排序只支持 fieldName=time; method in ["desc", "asc"];注意指标集查询的排序只支持 fieldName=time|
+|  query.sorderby  | array  |   | 排序列表，sorderby 的 column 是一个表达式，支持所有返回单个值的聚合函数min max last avg p90 p95 count, `{fieldName:method}`,结构和orderby一致 |
+|  query.order_by  | array  |   | 排序列表，结构为[{"column": "field", "order": "DESC"}], doris引擎兼容字段|
+|  query.sorder_by  | array  |   | 排序列表，结构为[{"column": "field", "order": "DESC"}], doris引擎兼容字段|
 |  query.density  | string  |   | 响应的点密度, 优先级小于 autoDensity 且大于 dql语句中设置的密度 |
 |  query.interval  | integer  |   | 单位是秒，时间分片间隔，用于计算响应点数；计算出的点数小于等于density=high时的点数，则有效，否则无效|
 |  query.search_after  | array  |   | 分页查询标记。相同参数上次请求响应结果中的 search_after 值作为本次请求的参数。|

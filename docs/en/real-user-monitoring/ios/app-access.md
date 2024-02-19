@@ -65,6 +65,21 @@ Login to Guance Console, enter "Real User Monitoring" page, click "New Applicati
     end
     ```
     
+    **[Download the code repository for local use](https://guides.cocoapods.org/using/the-podfile.html#using-the-files-from-a-folder-local-to-the-machine)**
+    
+    ```
+    use_modular_headers!
+    //Main Project Target
+    target 'yourProjectName' do
+    pod 'FTMobileSDK', :path => '[folder_path]' 
+    end
+    //Widget Extension
+    target 'yourWidgetExtensionName' do
+    pod 'FTMobileSDK/Extension', :path => '[folder_path]'
+    end
+    ```
+    folder_path: Path to the folder where 'FTMobileSDK.podspec' is located.
+    
     2.Run `pod install` in the `Podfile` directory to install the SDK.
 
 === "Carthage" 
@@ -155,8 +170,12 @@ Login to Guance Console, enter "Real User Monitoring" page, click "New Applicati
 
     ```objective-c
     -(BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
-        FTMobileConfig *config = [[FTMobileConfig alloc]initWithMetricsUrl:@"Your App metricsUrl"];
+         // Use Datakit Address
+         //FTMobileConfig *config = [[FTMobileConfig alloc]initWithDatakitUrl:datakitUrl];
+         // Use DataWay Address
+        FTMobileConfig *config = [[FTMobileConfig alloc]initWithDatawayUrl:datawayUrl clientToken:clientToken];
         config.enableSDKDebugLog = YES;
+        //Start SDK
         [FTMobileAgent startWithConfigOptions:config];
         
        //...
@@ -168,7 +187,10 @@ Login to Guance Console, enter "Real User Monitoring" page, click "New Applicati
 
     ```swift
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-         let config = FTMobileConfig(metricsUrl: url)
+           // Use Datakit Address
+           //let config = FTMobileConfig(datakitUrl: url)
+           // Use DataWay Address
+         let config = FTMobileConfig(datawayUrl: datawayUrl, clientToken: clientToken)
          config.enableSDKDebugLog = true
          FTMobileAgent.start(withConfigOptions: config)
          //...
@@ -179,7 +201,9 @@ Login to Guance Console, enter "Real User Monitoring" page, click "New Applicati
 
 | **Fields** | **Type** | **Required** | **Meaning** | Attention |
 | --- | --- | --- | --- | --- |
-| metricsUrl | NSString | Yes | Datakit installation address | The url of the datakit installation address, example: http://10.0.0.1:9529, port 9529. Datakit url address needs to be accessible by the device where the SDK is installed |
+| datakitUrl | NSString | Yes | Datakit Address | The url of the Datakit address, example: http://10.0.0.1:9529, port 9529. Datakit url address needs to be accessible by the device where the SDK is installed. |
+| datawayUrl | NSString | Yes | Dataway Address | The url of the Dataway address，example：http://10.0.0.1:9528，port 9528，Note: The installed SDK device must be able to access this address. Note: choose either DataKit or DataWay configuration, not both. |
+| clientToken | NSString | Yes | Authentication token | It needs to be configured simultaneously with the datawayUrl |
 | enableSDKDebugLog | BOOL | No | Whether to turn on debug mode | Default is `NO`, enable to print SDK run log |
 | env | NSString | No | Set the acquisition environment | Default `prod`, support for custom. It can also be set using the `-setEnvWithType:` method based on the 'FTEnv' enumeration.<br/>`FTEnv`<br/>`FTEnvProd`： prod<br/>`FTEnvGray`： gray<br/>`FTEnvPre` ：pre <br/>`FTEnvCommon` ：common <br/>`FTEnvLocal`： local |
 | service | NSString | No | Set Service Name | Impact the service field data in Log and RUM, which is set to `df_rum_ios` by default. |
@@ -232,6 +256,7 @@ Login to Guance Console, enter "Real User Monitoring" page, click "New Applicati
 | enableTraceUserView | BOOL | No | Set whether to track user View actions | Default `NO` |
 | enableTraceUserAction | BOOL | No | Set whether to track user Action actions | Default `NO` |
 | enableTraceUserResource | BOOL | No | Set whether to track user network requests | Default `NO` |
+| resourceUrlHandler | FTResourceUrlHandler | No | Configure Reousrce filter | No filtering by default. Return :NO for no filtering and YES for filtering. |
 | errorMonitorType | FTErrorMonitorType | No | Error Event Monitoring Supplementary Type                    | Add monitoring information to the collected crash data.<br/>`FTErrorMonitorType`<br/>`FTErrorMonitorAll`：all<br/>`FTErrorMonitorBattery`：battery power<br/>`FTErrorMonitorMemory`：total memory, memory usage<br/>`FTErrorMonitorCpu`：CPU usage |
 | deviceMetricsMonitorType | FTDeviceMetricsMonitorType | No | The performance monitoring type of the view | Add the monitoring item information to the collected **View** data。<br/>`FTDeviceMetricsMonitorType`<br/>`FTDeviceMetricsMonitorAll`:all<br/>`FTDeviceMetricsMonitorMemory`:average memory, maximum memory<br/>`FTDeviceMetricsMonitorCpu`：The maximum and average number of CPU ticks<br/>`FTDeviceMetricsMonitorFps`：fps minimum frame rate, average frame rate |
 | monitorFrequency | FTMonitorFrequency | No | View's Performance Monitoring Sampling Period | Configure 'monitorFrequency' to set the sampling period for **View** monitor information.<br/>`FTMonitorFrequency`<br/>`FTMonitorFrequencyDefault`：500ms (default)<br/>`FTMonitorFrequencyFrequent`：100ms<br/>`FTMonitorFrequencyRare`：1000ms |
@@ -777,50 +802,6 @@ You can configure `FTRUMConfig` to enable automatic mode or add it manually. Rum
     FTExternalDataManager.shared().addResource(withKey: resource.key, metrics: metricsModel, content: contentModel)
     ```
 
-#### Resource url filter
-
-When the automatic collection is enabled, the internal processing will not collect the data reporting address of the SDK. You can also set filter conditions through the Open API to collect the network addresses you need.
-
-##### Method
-
-=== "Objective-C"
-
-    ```objective-c
-    //  FTMobileAgent.h
-    
-    /// Determine whether the URL is collected
-    - (void)isIntakeUrl:(BOOL(^)(NSURL *url))handler;
-    ```
-
-=== "Swift"
-
-    ```swift
-    //  FTMobileAgent
-    
-    /// Determine whether the URL is collected
-    open func isIntakeUrl(_ handler: @escaping (URL) -> Bool)
-    ```
-
-##### Code Example
-
-=== "Objective-C"
-
-    ````objective-c
-    [[FTMobileAgent sharedInstance] isIntakeUrl:^BOOL(NSURL * _Nonnull url{
-            // Your collection judgment logic
-            return YES;//return NO; (YES collect，NO do not collect)
-     }];
-    ````
-
-=== "Swift"
-
-    ````swift
-    FTMobileAgent.sharedInstance().isIntakeUrl {  url in
-            // Your collection judgment logic
-            return true //return false (true collect，false do not collect)
-     } 
-    ````
-
 ## Logging {#user-logger}
 
 ### Method
@@ -1057,6 +1038,276 @@ You can `FTTraceConfig` configuration to turn on automatic mode, or manually add
             //your code
          }
          task.resume()
+    }
+    ```
+
+##  Custom tracing Network by forwarding URLSession Delegate
+
+**Note: This method does not work with Swift URLSession async/await APIs**
+
+SDK provides a class `FTURLSessionDelegate` that requires you to forward the URLSession delegate to `FTURLSessionDelegate` to help the SDK collect data about the Network.
+
+The related data of collecting Network is divided into `RUM-Resource` and `Network link Tracing` in SDK.
+
+**RUM-Resource**：
+
+* `enableTraceUserResource` of `FTRUMConfig` can be enabled. The auto-tracking logic ignores the current `URLSession'`request;
+* Support for adding custom properties.
+
+**Network link Tracing**：
+
+* `enableAutoTrace` of `FTTraceConfig` can be enabled. When setting up custom link tracking, the auto-tracking logic will ignore the current `URLSession` request.
+
+Here are three usage examples to suit different user scenarios:
+
+### Method 1
+
+Set the URLSession delegate to an instance of `FTURLSessionDelegate`.
+
+=== "Objective-C"
+
+    ```objective-c
+    id<NSURLSessionDelegate> delegate = [[FTURLSessionDelegate alloc]init];
+    // To add custom RUM resource properties, it is recommended that the tag name be prefixed with the project abbreviation, such as' df_tag_name '.
+    delegate.provider = ^NSDictionary * _Nullable(NSURLRequest *request, NSURLResponse *response, NSData *data, NSError *error) {
+                    NSString *body = [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding];
+                    return @{@"df_requestbody":body};
+                };
+    // Provide a block to modify a URL request.Can be used for custom link tracing.
+    delegate.requestInterceptor = ^NSURLRequest * _Nonnull(NSURLRequest * _Nonnull request) {
+                NSDictionary *traceHeader = [[FTExternalDataManager sharedManager] getTraceHeaderWithUrl:request.URL];
+                NSMutableURLRequest *newRequest = [request mutableCopy];
+                if(traceHeader){
+                    for (NSString *key in traceHeader.allKeys) {
+                        [newRequest setValue:traceHeader[key] forHTTPHeaderField:key];
+                    }
+                }
+                return newRequest;
+            };            
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:delegate delegateQueue:nil];
+    ```
+
+
+=== "Swift"
+
+    ```swift
+    let delegate = FTURLSessionDelegate.init()
+    // To add custom RUM resource properties, it is recommended that the tag name be prefixed with the project abbreviation, such as' df_tag_name '.
+    delegate.provider = { request,response,data,error in
+                var extraData:Dictionary<String, Any> = Dictionary()
+                if let data = data,let requestBody = String(data: data, encoding: .utf8) {
+                    extraData["df_requestBody"] = requestBody
+                }
+                if let error = error {
+                    extraData["df_error"] = error.localizedDescription
+                }
+                return extraData
+            }
+    // Provide a block to modify a URL request.Can be used for custom link tracing.
+    delegate.requestInterceptor = { request in
+                var mutableRequest = request
+                if let traceHeader = FTExternalDataManager.shared().getTraceHeader(with: request.url!){
+                    for (key,value) in traceHeader {
+                        mutableRequest.setValue(value as? String, forHTTPHeaderField: key as! String)
+                    }
+                }
+                return mutableRequest
+            }        
+    let session =  URLSession.init(configuration: URLSessionConfiguration.default, delegate:delegate 
+    , delegateQueue: nil)
+    ```
+
+### Method 2
+
+Set the URLSession delegate to be a subclass of `FTURLSessionDelegate`.
+
+=== "Objective-C"
+
+    ```objective-c
+    @interface InstrumentationInheritClass:FTURLSessionDelegate
+    @property (nonatomic, strong) NSURLSession *session;
+    @end
+    @implementation InstrumentationInheritClass
+    -(instancetype)init{
+        self = [super init];
+        if(self){
+            _session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:self delegateQueue:nil];
+            // To add custom RUM resource properties, it is recommended that the tag name be prefixed with the project abbreviation, such as' df_tag_name '.
+            self.provider = ^NSDictionary * _Nullable(NSURLRequest *request, NSURLResponse *response, NSData *data, NSError *error) {
+            NSString *body = [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding];
+            return @{@"df_requestbody":body};
+        };
+            // Provide a block to modify a URL request.Can be used for custom link tracing.
+           self.requestInterceptor = ^NSURLRequest * _Nonnull(NSURLRequest * _Nonnull request) {
+                NSDictionary *traceHeader = [[FTExternalDataManager sharedManager] getTraceHeaderWithUrl:request.URL];
+                NSMutableURLRequest *newRequest = [request mutableCopy];
+                if(traceHeader){
+                    for (NSString *key in traceHeader.allKeys) {
+                        [newRequest setValue:traceHeader[key] forHTTPHeaderField:key];
+                    }
+                }
+                return newRequest;
+            }; 
+        }
+        return self;
+    }
+    -(void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didFinishCollectingMetrics:(NSURLSessionTaskMetrics *)metrics{
+        // must call super
+        [super URLSession:session task:task didFinishCollectingMetrics:metrics];
+        // Your own logic
+        // ......
+    }
+    @end
+    ```
+
+=== "Swift"
+
+    ```swift
+    class InheritHttpEngine:FTURLSessionDelegate {
+        var session:URLSession?
+        override init(){
+            session = nil
+            super.init()
+            let configuration = URLSessionConfiguration.default
+            configuration.timeoutIntervalForRequest = 30
+            session = URLSession.init(configuration: configuration, delegate:self, delegateQueue: nil)
+            override init() {
+            super.init()
+            // To add custom RUM resource properties, it is recommended that the tag name be prefixed with the project abbreviation, such as' df_tag_name '.
+            provider = { request,response,data,error in
+                var extraData:Dictionary<String, Any> = Dictionary()
+                if let data = data,let requestBody = String(data: data, encoding: .utf8) {
+                    extraData["df_requestBody"] = requestBody
+                }
+                if let error = error {
+                    extraData["df_error"] = error.localizedDescription
+                }
+                return extraData
+            }
+            //Provide a block to modify a URL request .Can be used for custom link tracing.
+            requestInterceptor = { request in
+                var mutableRequest = request
+                if let traceHeader = FTExternalDataManager.shared().getTraceHeader(with: request.url!){
+                    for (key,value) in traceHeader {
+                        mutableRequest.setValue(value as? String, forHTTPHeaderField: key as! String)
+                    }
+                }
+                return mutableRequest
+            }
+        }
+        }
+    
+        override func urlSession(_ session: URLSession, task: URLSessionTask, didFinishCollecting metrics: URLSessionTaskMetrics) {
+            // must call super
+            super.urlSession(session, task: task, didFinishCollecting: metrics)
+            // Your own logic
+            // ......
+        }
+    }
+    ```
+
+### Method 3
+
+Make URLSession delegate object implementing ` FTURLSessionDelegateProviding ` agreement, Declare a `FTftURLSessionDelegate` property (readwrite) called `ftURLSessionDelegate` and implement the `get` method for `ftURLSessionDelegate`.
+
+The class implementing `FTURLSessionDelegateProviding` must ensure that following method calls are forwarded to `ftURLSessionDelegate`:
+
+`-URLSession:dataTask:didReceiveData:`
+
+`-URLSession:task:didCompleteWithError:`
+
+`-URLSession:task:didFinishCollectingMetrics:`
+
+=== "Objective-C"
+
+    ```objective-c
+    @interface InstrumentationPropertyClass:NSObject<NSURLSessionDataDelegate,FTURLSessionDelegateProviding>
+    @property (nonatomic, strong) FTURLSessionDelegate *ftURLSessionDelegate;
+    @end
+    @implementation InstrumentationPropertyClass
+    
+    - (nonnull FTURLSessionDelegate *)ftURLSessionDelegate {
+        if(!_ftURLSessionDelegate){
+            _ftURLSessionDelegate = [[FTURLSessionDelegate alloc]init];
+            //To add custom RUM resource properties, it is recommended that the tag name be prefixed with the project abbreviation, such as' df_tag_name '.
+            _ftURLSessionDelegate.provider =  ^NSDictionary * _Nullable(NSURLRequest *request, NSURLResponse *response, NSData *data, NSError *error) {
+                    NSString *body = [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding];
+                    return @{@"df_requestbody":body};
+                };
+                // Tells the `ftURLSessionDelegate` to modify a URL request.Can be used for custom link tracing.
+            _ftURLSessionDelegate.requestInterceptor = ^NSURLRequest * _Nonnull(NSURLRequest * _Nonnull request) {
+                NSDictionary *traceHeader = [[FTExternalDataManager sharedManager] getTraceHeaderWithUrl:request.URL];
+                NSMutableURLRequest *newRequest = [request mutableCopy];
+                if(traceHeader){
+                    for (NSString *key in traceHeader.allKeys) {
+                        [newRequest setValue:traceHeader[key] forHTTPHeaderField:key];
+                    }
+                }
+                return newRequest;
+            }; 
+        }
+        return _ftURLSessionDelegate;
+    }
+    // The following methods must be implemented
+    - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data{
+        [self.ftURLSessionDelegate URLSession:session dataTask:dataTask didReceiveData:data];
+    }
+    - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error{
+        [self.ftURLSessionDelegate URLSession:session task:task didCompleteWithError:error];
+    }
+    -(void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didFinishCollectingMetrics:(NSURLSessionTaskMetrics *)metrics{
+        [self.ftURLSessionDelegate URLSession:session task:task didFinishCollectingMetrics:metrics];
+    }
+    @end
+    ```
+
+=== "Swift"
+
+    ```swift
+    class HttpEngine:NSObject,URLSessionDataDelegate,FTURLSessionDelegateProviding {
+        var ftURLSessionDelegate: FTURLSessionDelegate = FTURLSessionDelegate()
+        var session:URLSession?
+    
+        override init(){
+            session = nil
+            super.init()
+            let configuration = URLSessionConfiguration.default
+            configuration.timeoutIntervalForRequest = 30
+            session = URLSession.init(configuration: configuration, delegate:self, delegateQueue: nil)
+            // To add custom RUM resource properties, it is recommended that the tag name be prefixed with the project abbreviation, such as' df_tag_name '.
+            ftURLSessionDelegate.provider = { request,response,data,error in
+                var extraData:Dictionary<String, Any> = Dictionary()
+                if let data = data,let requestBody = String(data: data, encoding: .utf8) {
+                    extraData["df_requestBody"] = requestBody
+                }
+                if let error = error {
+                    extraData["df_error"] = error.localizedDescription
+                }
+                return extraData
+            }
+            // Tells the `ftURLSessionDelegate` to modify a URL request.Can be used for custom link tracing.
+            ftURLSessionDelegate.requestInterceptor = { request in
+                var mutableRequest = request
+                if let traceHeader = FTExternalDataManager.shared().getTraceHeader(with: request.url!){
+                    for (key,value) in traceHeader {
+                        mutableRequest.setValue(value as? String, forHTTPHeaderField: key as! String)
+                    }
+                }
+                return mutableRequest
+            }
+        }
+        // The following methods must be implemented
+        func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
+            ftURLSessionDelegate.urlSession(session, dataTask: dataTask, didReceive: data)
+        }
+        
+        func urlSession(_ session: URLSession, task: URLSessionTask, didFinishCollecting metrics: URLSessionTaskMetrics) {
+            ftURLSessionDelegate.urlSession(session, task: task, didFinishCollecting: metrics)
+        }
+        
+        func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+            ftURLSessionDelegate.urlSession(session, task: task, didCompleteWithError: error)
+        }
     }
     ```
 
@@ -1522,19 +1773,19 @@ When you upload your bitcode App to the App Store, check the generation of the d
 
    ![](../img/xcode_find_dsym2.png)
    
-3. Find the published archive package, right-click on the corresponding archive package, and select Show in Finder operation
+3. Find the published archive package, right-click on the corresponding archive package, and select `Show in Finder` operation
 
    ![](../img/xcode_find_dsym3.png)
    
    
    
-4. Right-click on the located archive file and select the Show Package Contents action 
+4. Right-click on the located archive file and select the `Show Package Contents` action 
 
    ![](../img/xcode_find_dsym4.png)
    
    
    
-5. Select the dSYMs directory, which contains the downloaded dSYM files
+4. Select the `dSYMs` directory, which contains the downloaded dSYM files
 
    ![](../img/xcode_find_dsym5.png)
 

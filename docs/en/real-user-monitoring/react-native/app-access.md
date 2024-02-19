@@ -72,7 +72,9 @@ FTMobileReactNative.sdkConfig(config)
 
 | **Fields** | **Type** | **Required** | **Description** |
 | --- | --- | --- | --- |
-| serverUrl | string | Yes | The url of the datakit installation address, example: http://10.0.0.1:9529, port 9529. Datakit url address needs to be accessible by the device where the SDK is installed                                       |
+| datakitUrl | string | Yes | The url of the Datakit address, example: http://10.0.0.1:9529, port 9529. Datakit url address needs to be accessible by the device where the SDK is installed. |
+| datawayUrl | string | Yes | The url of the Dataway address，example：http://10.0.0.1:9528，port 9528，Note: The installed SDK device must be able to access this address. Note: choose either DataKit or DataWay configuration, not both. |
+| clientToken | string | Yes | Authentication token.It needs to be configured simultaneously with the datawayUrl. |
 | debug         | boolean      | No           | Set whether to allow printing of logs, default `false`       |
 | env | String       | No           | Request `HTTP` request header `X-Datakit-UUID` Data collection side will be configured automatically if the user does not set |
 | envType       | enum EnvType | No           | Environment, default `prod`                                  |

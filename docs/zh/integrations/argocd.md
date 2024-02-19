@@ -31,6 +31,12 @@ Argo CD 通过 Prometheus 协议暴露指标，通过这些指标可用于监控
 
 ### Metric
 
+#### DataKit 开启 `ServiceMonitor`
+
+[自动发现 Pod/Service 的 Prometheus 指标](kubernetes-prom.md#auto-discovery-metrics-with-prometheus)
+
+以下通过`ServiceMonitor`方式采集 `ArgoCD` 指标信息
+
 #### 安装 Prometheus Operator
 
 ```shell
@@ -59,6 +65,10 @@ spec:
       app.kubernetes.io/name: argocd-metrics
   endpoints:
   - port: metrics
+    params:
+      measurement:
+        - argocd-application-controller
+
 ```
 
 - 创建 `argocd-server-metrics.yaml`
@@ -77,6 +87,9 @@ spec:
       app.kubernetes.io/name: argocd-server-metrics
   endpoints:
   - port: metrics
+    params:
+      measurement:
+        - argocd-server
 ```
 
 - 创建 `argocd-repo-server.yaml`
@@ -95,6 +108,9 @@ spec:
       app.kubernetes.io/name: argocd-repo-server
   endpoints:
   - port: metrics
+    params:
+      measurement:
+        - argocd-repo-server
 ```
 
 - 创建 `argocd-applicationset-controller.yaml`
@@ -113,6 +129,9 @@ spec:
       app.kubernetes.io/name: argocd-applicationset-controller
   endpoints:
   - port: metrics
+    params:
+      measurement: 
+        - argocd-applicationset-controller
 ```
 
 - 执行

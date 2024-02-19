@@ -3,8 +3,8 @@ title     : 'Resin'
 summary   : 'Resin Performance metrics display, including startup time, heap memory, non heap memory, classes, threads, etc.'
 __int_icon: 'icon/resin'
 dashboard :
-  - desc  : 'Resin Monitoring View'
-    path  : 'dashboard/zh/resin'
+  - desc  : 'Resin'
+    path  : 'dashboard/en/resin'
 monitor   :
   - desc  : 'No'
     path  : '-'

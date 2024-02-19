@@ -2,7 +2,7 @@
 
 ---
 
-<br />**POST /api/v1/monitor/check/delete**
+<br />**POST /api/v1/checker/delete**
 
 ## 概述
 删除一个/多个监控器
@@ -24,7 +24,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/monitor/check/delete' \
+curl 'https://openapi.guance.com/api/v1/checker/delete' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"ruleUUIDs": ["rul_692741d674ac4aea9980979721591b35", "rul_79f1adceb3c8418d943f38767d05f981"]}' \
