@@ -4,7 +4,7 @@
 
 APM Detection is based on intelligent detection algorithms that intelligently identify abnormal situations such as a sudden increase or decrease in the number of application requests, a sudden increase in the number of error requests, and a sudden increase, decrease or interval rise in request latency. It automatically performs anomaly analysis based on application service anomaly metrics.
 
-## Use Cases
+## Use Case
 
 APM Detection is used to monitor whether application services experience anomalies or interruptions and ensure smooth operation of the services.
 
@@ -18,26 +18,34 @@ Click on **Intelligent Monitoring > Create > APM Detection** to enter the rule c
 
 :material-numeric-1-circle-outline: **Monitor Name**: Edit the name of the monitor.
 
-:material-numeric-2-circle-outline: **Detection Frequency**: The execution frequency of the detection rule, fixed at 30 minutes.
-
-:material-numeric-3-circle-outline: **Filter**: Filter the data of the detection metrics based on metric tags to limit the range of data to be detected. Adding one or more tag filters is supported.
+:material-numeric-2-circle-outline: **Filter**: Filter the data of the detection metrics based on metric tags to limit the range of data to be detected. Adding one or more tag filters is supported.
 
 ### Step 2: Event Notification
 
 ![image](../img/intelligent-detection07.png)
 
-:material-numeric-4-circle-outline: **Event Content**: The content of the event notification sent when the trigger condition is met. Support input in Markdown format, preview of the effect, use of preset [associated links](link-description.md) and use of preset [template variables](../event-template.md).
+:material-numeric-3-circle-outline: **Event Content**: The content of the event notification sent when the trigger condition is met. Support input in Markdown format, preview of the effect, use of preset [associated links](link-description.md) and use of preset [template variables](../event-template.md).
 
 **Note**: Different notification objects support different Markdown syntax. For example, WeChat Work does not support unordered lists.
 
-:material-numeric-5-circle-outline: **Synchronously create Issue**: If an abnormal event occurs under this monitor, an issue for anomaly tracking will be created synchronously and delivered to the channel for anomaly tracking. You can go to [Incident](../../exception/index.md) >  Your selected [Channel](../../exception/channel.md) to view it.
+:material-numeric-4-circle-outline: **Realted Issues**: After turning on the association, if an exception event is generated under this monitor, an Issue will be created synchronously. Choose the level of the Issue and the target channel to be delivered. The generated Issue can be viewed in [Incident](../../exception/index.md) >  Your selected [Channel](../../exception/channel.md).
+
+After the event is restored, the Issue can be closed synchronously.
+
+![](../img/issue-create.png)
 
 ### Step 3: Alert Configuration
 
-:material-numeric-6-circle-outline: **Alert Strategy**: After the monitoring meets the trigger conditions, immediately send an alert message to the specified notification object.
+![](../img/policy-create.png)
+
+:material-numeric-5-circle-outline: **Alert Strategy**: After the monitoring meets the trigger conditions, immediately send an alert message to the specified notification object.
 
 **Note**: The event level triggered by intelligent monitoring is "error".
 
+
+
+
+<!--
 ## Monitor List
 
 After creating a detection rule, you can view and manage the it in the Intelligent Monitoring list.
@@ -51,14 +59,15 @@ After creating a detection rule, you can view and manage the it in the Intellige
 - [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Monitor List Operations</font>](../monitor/index.md#list)
 
 </div>
+-->
 
-### View Events
+## View Events
 
 The monitor will obtain the metric information of the detected application service objects in the last 30 minutes. When an abnormal situation is identified, the corresponding event will be generated, and you can view the corresponding abnormal events in the **[Events > Intelligent Monitoring](../../events/inte-monitoring-event.md)** list.
 
 ![image](../img/intelligent-detection04.png)
 
-#### Event Details Page
+### Event Details Page
 
 Click on Event to view the details page of the intelligent monitoring event, including event status, abnormal occurrence time, abnormal name, analysis report, alert notification, history records and associated events.
 
@@ -70,7 +79,7 @@ Click on Event to view the details page of the intelligent monitoring event, inc
 
 ![](../img/intelligent-detection11.png)
 
-![](../img/intelligent-detection12.png)
+
 
 * Abnormal Analysis: Display the current abnormal application service tags, details of the abnormal analysis report, and statistics on the distribution of abnormal values.
 
