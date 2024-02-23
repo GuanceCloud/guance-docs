@@ -34,7 +34,7 @@
 
 ### 索引数据上报说明
 
-在下图中，索引新建成功后，`source` 为 `datakit` 的日志数据上报时，会匹配流入第一个索引 `index.d`。
+在下图中，索引新建成功后，`source` 为 `tcp_dial_testing` 的日志数据上报时，会匹配流入第一个索引 `tcp_dial_testing`。
 
 ![](img/5.log_6.png)
 
