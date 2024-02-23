@@ -2,16 +2,19 @@
 ---
 
 
-## Operation Scene
-Alibaba Cloud IDaaS (Cloud Shield) is a provider of identification and access management solutions. Guance supports federated authentication based on SAML 2.0 (Security Assertion Markup Language 2.0), an open standard used by many authentication providers (IdP). You can integrate Cloud Shield with Guance through SAML 2.0-based federation authentication, so that the Cloud Shield account automatically logs in (single sign-on) to the Guance platform to access the corresponding workspace resources, without having to create a separate Guance account for the enterprise/team.
+## Use Case
 
-## Operational Steps
 
-### 1. Alibaba Cloud IDaaS Creates Applications
+IDaaS (Alibaba Cloud IDentity as a Service) is a provider of identification and access management solutions. Guance supports federated authentication based on SAML 2.0 (Security Assertion Markup Language 2.0), an open standard used by many identity authentication providers (IdP). You can integrate IDaaS with Guance through SAML 2.0-based federation authentication, so that IDaaS account automatically logs in to the Guance platform to access the corresponding workspace resources, without having to create a separate Guance account for the enterprise/team.
 
-Note: Before creating the application, you need to register your account and create your organization at [IDaaS platform (cloud shield)](https://yundun.console.aliyun.com/).
+## Setup
 
-#### 1) Open and enter the IDaaS console, enter "Add Applications-Standard Protocol" and select Create SSO Applications for SAML 2.0. (Take the guance application as an example here)
+**Note**: Before creating the application, you need to register your account and create your organization at [IDaaS](https://yundun.console.aliyun.com/).
+
+:material-numeric-1-circle: Create Applications
+
+
+#### 1) Enter the IDaaS console > Add Applications-Standard Protocol" and select Create SSO Applications for SAML 2.0. (Take the guance application as an example here)
 
 ![](../img/06_aliyun_01.png)<br />![](../img/06_aliyun_02.png)
 
