@@ -235,7 +235,7 @@ Timing-Allow-Origin: *
 
 ### 识别搜索引擎机器人 {#bot}
 
-进行网页活动时需区分真实用户活动和合成活动。可使用以下示例脚本来过滤具有机器人的会话：
+进行网页活动时需区分真实用户活动和搜索引擎。可使用以下示例脚本来过滤具有机器人的会话：
 
 ```
 // regex patterns to identify known bot instances:
