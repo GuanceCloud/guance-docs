@@ -1,4 +1,4 @@
-# Dashboards and Data Linking
+# Dashboards 
 ---
 
 ## Why are dashboards necessary?
@@ -19,7 +19,7 @@ Guance dashboard function has built-in dashboard templates with various types, p
 
 === "Method:material-numeric-1-circle-outline: Create from **Dashboards**"
     
-    Enter **Scenes > Dashboards > Create**, select or search the view template you want in **System View**, and click **Confirm** to successfully add it.
+    Enter **Scenes > Dashboards > Create**, select or search the view template you want in **System View**, and click **Confirm**.
 
     ![](../img/dashboard-1.png)
 
@@ -33,7 +33,7 @@ Guance dashboard function has built-in dashboard templates with various types, p
 
 === "Method:material-numeric-2-circle-outline: Clone from **Inner View**"
 
-    Enter **Scenes > Inner View**, select or search the view template you want in **System View**, preview and click **Clone** to successfully add it.
+    Enter **Scenes > Inner View**, select or search the view template you want in **System View**, preview and click **Clone**.
 
     ![](../img/dashboard-1.gif)
 

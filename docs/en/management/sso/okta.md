@@ -1,45 +1,133 @@
-# Okta SSO
+# Okta
 ---
 
-## Operation Scene
+Okta is a provider of identity recognition and access management solutions.
 
-Okta is a provider of identification and access management solutions. Guance supports federated identity based on SAML 2.0 (Security Assertion Markup Language 2.0), an open standard used by many identity providers (IdP). You can integrate Okta with Guance through SAML 2.0-based federation identity, enabling Okta accounts to automatically log on (single sign on) to Guance platform to access corresponding workspace resources, without having to create a separate Guance account for the enterprise/team.
+## Setup
 
-## Operational Steps
+### 1、Create an Okta Application
 
-### 1.Create an Okta Application
-Note: Before creating an application, you need to register your account and create your organization at [Okta website](https://www.okta.com/)<br />1）Open the Okta Web site and log in, click the user in the upper right corner, and select "Your Org" in the drop-down list.<br />![](../img/04_okta_01.png)<br />2）On the Okta organization page, click "Application" in the right menu, and click "Create App Integration" on the open page.<br />![](../img/04_okta_02.png)<br />3）Select "SAML 2.0" to create a new Application.<br />![](../img/04_okta_03.png)
+**Note**: Before creating an application, you need to register an account on the [Okta website](https://www.okta.com/) and create your organization.
 
+1）Open the Okta website and log in, click on the user in the top right corner, and select **Your Org** from the dropdown list.
 
-### 2.Configure SAML for Okta Application
-Note: This step maps the Okta application attributes to those of Guance, and establishes a trust relationship between Okta and Guance so that they trust each other. <br />1）In the "General Settings" of the newly created application, enter the application name, such as "okta", and then click "next". <br />![](../img/04_okta_04.png)<br />2）In the "SAML Settings" section of the "Configure SAML", fill in the assertion address and Entity ID.
+![](../img/04_okta_01.png)
 
-- Single sign on URL: assertion address, for example: [https://auth.guance.com/saml/assertion](https://auth.guance.com/saml/assertion/)
-- Audience URI (SP Entity ID)：Entity ID, for example: [https://auth.guance.com/saml/metadata.xml](https://auth.guance.com/saml/metadata.xml)
+2）On the Okta organization page, click **Application** in the right menu, then click **Create App Integration** on the page that opens.
 
-**Note: This configuration is only used to obtain the metadata document for the next step. After SSO is enabled in Guance, the correct "Entity ID" and "Assertion Address" are obtained and replaced again.** Refer to doc [**new SSO**](../../management/sso/index.md)**.**<br />![](../img/04_okta_05.png)<br />3）In the "Attribute Statements (optional)" section of "Configure SAML", fill in Name and Value.
+![](../img/04_okta_02.png)
 
-- Name: the field defined by Guance, which needs to be filled with "Email" for associating the user mailbox of the identity provider (that is, the identity provider maps the mailbox of the logged-in user to Email);
-- Value: Fill in according to the actual email format of the identity provider, where Okta can fill in "user.email".
+3）Select **SAML 2.0** and create a new application.
 
-Note: This section is required. If you do not fill it, you will be prompted that you cannot log in when SSO. <br />![](../img/04_okta_06.png)<br />4）In "Feedback", select the following options and click "Finish" to complete the SAML configuration.<br />![](../img/04_okta_07.png)
+![](../img/04_okta_03.png)
 
-### 3.Get the Okta Metadata Document
-Note: This step obtains the metadata document for creating identity providers in Guance.<br />1）On "Sign On", click "Identity Provider metadata" to view Identity Provider metadata.<br />![](../img/04_okta_08.png)<br />2）Right-click on the view page to save to local.<br />Note: The metadata document is an xml file, such as "metadata.xml". <br />![](../img/04_okta_09.png)
+### 2、Configure SAML for Okta Application {#step2}
 
-### 4.Configure the Okta User
-Note: In this step, the authorized user email account of the identity provider is configured to be created in Guance, and the configured Okta user email account can be used to log in to Guance platform.<br />1）In "Assignments"-"Assign", select "Assign to People".<br />![](../img/04_okta_10.png)<br />2）Select the user who needs a single sign-on to Guance, such as "jd@qq.com", and click "Assign".<br />![](../img/04_okta_11.png)<br />3）Click "Save and Go Back" to complete the user configuration.<br />![](../img/04_okta_12.png)<br />4）Return to "Assignments" to view the Okta users who are configured to authorize.<br />![](../img/04_okta_13.png)
+**Note**: This step maps the Okta application attributes to the attributes of the Guance Cloud, establishing a trust relationship between Okta and Guance Cloud.
 
+1）In the **General Settings** of the newly created application, enter the application name, such as “okta”, then click **Next**.
 
-### 5.Enable SSO in Guance and replace SAML Assertion Address in Okta
+![](../img/04_okta_04.png)
 
-1） Enable SSO and click Enable in Guance workspace "Management"-"SSO Management". Refer to the doc [new SSO](../../management/sso/index.md).<br />**Note: For account security reasons, only one SSO is configured in Guance support workspace. If you have previously configured SAML 2.0, we will regard your last updated SAML 2.0 configuration as the final single sign-on authentication entry by default.**<br />![](../img/04_okta_14.png)<br />2）Upload the "metadata document" of the identity provider, configure the "mailbox domain name", and select "access role" to obtain the "entity ID" and "assertion address" of the identity provider, and support directly copying the "login address" for login. <br />**Note: When SSO login is enabled, "mailbox domain name" needs to be added for mailbox domain name mapping between Guance and identity provider (user mailbox domain name needs to be consistent with mailbox domain name added in Guance) to realize single sign-on.**<br />![](../img/04_okta_15.png)<br />3）Return the SAML assertion address and Entity ID for updating Okta, see [step 2.2)](#j217u)。<br />**Note: When configuring single sign-on in Guance, the assertion address configured in the identity provider SAML must be consistent with that in Guance to implement single sign-on.**
+2）In the **SAML Settings** section of **Configure SAML**, fill in the Assertion Address and Entity ID.
 
+- Single sign on URL: Assertion address, e.g., https://auth.guance.com/saml/assertion;
+- Audience URI (SP Entity ID): Entity ID, e.g., https://auth.guance.com/saml/metadata.xml.
 
-### 6.SSO to Guance Using Okta Account
+**Note**: This configuration is only for obtaining the metadata document in the next step. You need to replace it with the correct **Entity ID** and **Assertion Address** after enabling SSO single sign-on in Guance Cloud.
 
-1）After the SSO configuration is completed, log in through [Guance official website](https://www.dataflux.cn/) or [Guance studio](https://auth.dataflux.cn/loginpsw), and select "Single Sign-on" on the login page.<br />![](../img/04_okta_16.png)<br />2）Enter the email address where the SSO is being created and click "Get login address". <br />![](../img/04_okta_17.png)<br />3）Click the link to open the enterprise account login page.<br />![](../img/04_okta_18.png)<br />4）Enter the enterprise common mailbox and password. <br />![](../img/04_okta_19.png)<br />5）Log in to the workspace corresponding to Guance.<br />Note: If multiple workspaces are configured with the same identity provider SSO at the same time, users can click the workspace option in the upper left corner of Guance to switch between different workspaces to view data.<br />![](../img/04_okta_20.png)
+![](../img/04_okta_05.png)
 
+3）In the **Attribute Statements (optional)** section of **Configure SAML**, fill in Name and Value.
 
----
+- Name: The field defined by Guance Cloud, fill in **Email** to associate the user's email with the identity provider (i.e., the identity provider maps the user's email to Email);
+- Value: Fill in according to the actual email format of the identity provider. Here, Okta can fill in **user.email**.
 
+**Note**: This section is mandatory. If not filled in, you will be prompted that you cannot log in when using SSO single sign-on.
+
+![](../img/04_okta_06.png)
+
+4）In **Feedback**, select the following options, click **Finish** to complete the SAML configuration.
+
+![](../img/04_okta_07.png)
+
+### 3、Obtain Okta Metadata Document {#step3}
+
+**Note**: This step can obtain the metadata document of the identity provider created in Guance Cloud.
+
+1）In **Sign On**, click **Identity Provider metadata** to view the identity provider metadata.
+
+![](../img/04_okta_08.png)
+
+2）Right-click on the view page and save it locally.
+
+**Note**: The metadata document is an xml file, such as "metadata.xml".
+
+![](../img/04_okta_09.png)
+
+### 4、Enable SSO Single Sign-On in Guance Cloud
+
+1）Enable SSO single sign-on, go to Guance Cloud workspace **Management > Member Management > SSO Management**, click **Enable**.
+
+> Refer to the document Create SSO.
+> 
+
+**Note**: For account security considerations, Guance Cloud supports configuring only one SSO for a workspace. If you have previously configured SAML 2.0, we will by default consider your last updated SAML 2.0 configuration as the final single sign-on verification entrance.
+
+![](../img/1.sso_enable.png)
+
+2）Upload the **metadata document** downloaded in [Step 3](https://www.notion.so/cafafe07ff0a4249ae0eacab241cb504?pvs=21), configure the **domain (the suffix domain of the email)**, select the **role**, and you can obtain the **Entity ID** and **Assertion Address** of this identity provider. Supports directly copying the **login address** to log in.
+
+**Note**: The domain name is used for email domain mapping between Guance Cloud and the identity provider to achieve single sign-on, that is, the suffix domain of the user's email must be consistent with the domain name added in Guance Cloud.
+
+![](../img/1.sso_enable_2.png)
+
+### 5、Replace SAML Assertion Address in Okta
+
+1）Return to Okta and update the **Entity ID** and **Assertion Address** in [Step 2](https://www.notion.so/cafafe07ff0a4249ae0eacab241cb504?pvs=21).
+
+**Note**: When configuring single sign-on in Guance Cloud, the Assertion Address configured in the identity provider's SAML must be consistent with that in Guance Cloud in order to achieve single sign-on.
+
+### 6. Configure Okta Users
+
+**Note**: This step configures the authorized user email accounts of the identity provider created in Guance Cloud. You can log in to the Guance Cloud platform with the configured Okta user email account.
+
+1）In **Assignments > Assign**, select **Assign to People**.
+
+![](../img/04_okta_10.png)
+
+2）Select the user who needs to single sign-on to Guance Cloud, such as “jd@qq.com”, and click **Assign**.
+
+![../img/04_okta_11.png](../img/04_okta_11.png)
+
+3）Click **Save and Go Back** to complete user configuration.
+
+![../img/04_okta_12.png](../img/04_okta_12.png)
+
+4）Return to **Assignments**, you can view the configured Okta users.
+
+![../img/04_okta_13.png](../img/04_okta_13.png)
+
+### 7、Use Okta Account to Single Sign-On to Guance Cloud
+
+1）After the SSO configuration is completed, log in through the [Guance Cloud official website](https://www.dataflux.cn/) or the [Guance Cloud console](https://auth.dataflux.cn/loginpsw), and select **Single Sign-On** on the login page.
+
+![../img/04_okta_16.png](../img/04_okta_16.png)
+
+2）Enter the email address used to create the SSO and click **Get Login Address**.
+
+![../img/04_okta_17.png](../img/04_okta_17.png)
+
+3）Click the **link** to open the corporate account login page.
+
+![../img/04_okta_18.png](../img/04_okta_18.png)
+
+4）Enter the corporate common email and password.
+
+![../img/04_okta_19.png](../img/04_okta_19.png)
+
+5）Log in to the corresponding workspace of Guance Cloud.
+
+**Note**: If multiple workspaces are configured with the same identity provider's SSO single sign-on at the same time, the user can click on the workspace option in the upper left corner of Guance Cloud to switch different workspaces to view data after single sign-on to the workspace through SSO.
+
+![../img/04_okta_20.png](../img/04_okta_20.png)

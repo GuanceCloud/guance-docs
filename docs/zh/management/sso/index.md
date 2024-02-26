@@ -192,11 +192,6 @@
 
 ![](../img/1.5.sso_mapping_9.png)
 
-|              <font color=coral size=3>:fontawesome-regular-circle-down: &nbsp;**配置示例**</font>                         |                                                              |                                                              |
-| :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| [Azure AD](azure-ad.md){ .md-button .md-button--primary } | [Authing](authing.md){ .md-button .md-button--primary } | [Okta](okta.md){ .md-button .md-button--primary } |
-| [阿里云 IDaaS](aliyun-idaas.md){ .md-button .md-button--primary } | [Keycloak](keycloak.md){ .md-button .md-button--primary } |  |
-
 
 ## 角色映射 {#saml-mapping}
 
@@ -276,3 +271,13 @@ SSO 账号进入工作空间后，点击左侧**账号 > 账号管理**，可对
 
 ![](../img/5.sso_mapping_12.png)
 -->
+
+## 单点登录示例
+
+将外部平台与观测云进行集成，从而实现外部平台的帐户自动登录（单一登录）到观测云平台并访问对应工作空间资源，不必为企业/团队单独创建观测云账号。
+
+
+|              <font color=coral size=3>:fontawesome-regular-circle-down: &nbsp;**配置示例**</font>                         |                                                              |                                                              |
+| :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
+| [Azure AD](azure-ad.md){ .md-button .md-button--primary } | [Authing](authing.md){ .md-button .md-button--primary } | [Okta](okta.md){ .md-button .md-button--primary } |
+| [阿里云 IDaaS](aliyun-idaas.md){ .md-button .md-button--primary } | [Keycloak](keycloak.md){ .md-button .md-button--primary } |  |
