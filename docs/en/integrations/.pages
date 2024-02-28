@@ -172,6 +172,7 @@ nav:
       - external.md
       - zookeeper.md
       - argocd.md
+      - langchain.md
 
   - CI/CD:
       - 'Jenkins': jenkins.md
