@@ -176,6 +176,7 @@ nav:
       - '飞书与异常追踪联动': feishu_im.md
       - external.md
       - argocd.md
+      - langchain.md
 
   - CI/CD:
       - 'Jenkins': jenkins.md
