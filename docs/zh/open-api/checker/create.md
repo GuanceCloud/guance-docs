@@ -24,11 +24,12 @@
 | jsonScript.title | string | Y | 生成event的标题<br>例子: 监控器: `{{monitor_name}}` 检查器:`{{monitor_checker_name}}` 触发值:`{{M1}}` <br>允许为空: False <br> |
 | jsonScript.message | string | Y | event内容<br>例子: status: {{status}}, title:`{{title}}` <br>允许为空: False <br> |
 | jsonScript.every | string |  | 检查频率<br>例子: 1m <br>允许为空: False <br> |
+| jsonScript.customCrontab | string |  | 自定义检测频率<br>例子: 0 */12 * * * <br>允许为空: False <br> |
 | jsonScript.interval | integer |  | 查询区间，即一次查询的时间范围时差<br>例子: 60 <br>允许为空: False <br> |
 | jsonScript.range | integer |  | 针对高级检测,突变检测的range参数,单位s<br>例子: 3600 <br>允许为空: False <br> |
 | jsonScript.range_2 | integer |  | 针对高级检测,突变检测的range_2参数,单位s,特殊说明 (-1代表环比,  0代表使用 periodBefore字段)<br>例子: 600 <br>允许为空: False <br> |
 | jsonScript.periodBefore | integer |  | 针对高级检测,突变检测的(昨日/一小时前)参数,单位s<br>例子: 600 <br>允许为空: False <br> |
-| jsonScript.recoverNeedPeriodCount | integer |  | 指定异常在几个检查周期之后生成恢复事件<br>例子: 60 <br>允许为空: False <br> |
+| jsonScript.recoverNeedPeriodCount | integer |  | 指定异常在几个检查周期之后生成恢复事件, 如果 检测频率为 自定义customCrontab, 该字段表示为时间长度, 单位s, 否则,表示几个检测频率<br>例子: 60 <br>允许为空: False <br> |
 | jsonScript.noDataInterval | integer |  | 多长时间内无数据则产生无数据事件<br>例子: 60 <br>允许为空: False <br> |
 | jsonScript.checkFuncs | array |  | 检查函数信息列表<br>例子: [{'funcId': 'xxx', 'kwargs': {}}] <br>允许为空: False <br> |
 | jsonScript.groupBy | array |  | 触发维度<br>例子: ['性别'] <br>允许为空: False <br> |
@@ -43,6 +44,8 @@
 | jsonScript.checkerOpt.threshold.status | boolean | Y | 高级检测中突变检测, 触发前提条件是否开启,<br>例子: True <br> |
 | jsonScript.checkerOpt.threshold.operator | string | Y | 高级检测中突变检测, 触发前提条件操作符<br>例子:  <br> |
 | jsonScript.checkerOpt.threshold.value | float | Y | 高级检测中突变检测, 触发前提条件检测值<br>例子: 90 <br>允许为空: True <br> |
+| jsonScript.checkerOpt.combineExpr | string |  | 组合监控, 组合方式<br>例子: A && B <br>允许空字符串: False <br> |
+| jsonScript.checkerOpt.ignoreNodata | boolean |  | 组合监控, 是否忽略无数据结果（true 表示需要忽略）,<br>例子: True <br> |
 | jsonScript.channels | array |  | 频道UUID列表<br>例子: ['名称1', '名称2'] <br>允许为空: False <br> |
 | jsonScript.atAccounts | array |  | 正常检测下被@的账号UUID列表<br>例子: ['xx1', 'xx2'] <br>允许为空: False <br> |
 | jsonScript.atNoDataAccounts | array |  | 无数据情况下被@的账号UUID列表<br>例子: ['xx1', 'xx2'] <br>允许为空: False <br> |
@@ -78,7 +81,7 @@
 |smartLogCheck| 智能监控, 日志智能检测|
 |smartApmCheck| 智能监控, 应用智能检测|
 |smartRumCheck| 智能监控, 用户访问智能检测|
-
+|combinedCheck| 组合监控|
 
 **2. **触发条件比较操作符说明(`checkerOpt`.`rules` 中的参数说明)**
 
@@ -109,11 +112,13 @@
 | type          |  string  |  Y | 规则类型   |
 | every         |  string  |  Y | 检查频率, 单位是 (1m/1h/1d)  |
 | interval      |  integer |  Y | 数据时间范围的时差，即time_range的时差, 单位：秒  |
-| recoverNeedPeriodCount |  integer |  Y | 超过指定检查周期次数之后生成恢复事件 |
+| customCrontab         |  string  |  N | 自定义检查频率的crontab  |
+| recoverNeedPeriodCount |  integer |  Y | 超过指定检查周期次数之后生成恢复事件,如果 检测频率为 自定义customCrontab, 该字段表示为时间长度, 单位s, 否则,表示几个检测频率 |
 | noDataInterval|  integer | N |  多长时间内无数据则产生无数据事件
 | targets       |  array   |  Y | 简单检查中的检查目标列表|
 | targets[*].dql|  string  |  Y | DQL查询语句|
 | targets[*].alias| string |  Y | 别名|
+| targets[*].monitorCheckerId| string |  Y | 组合监控, 监控器 ID（rul_xxxxx）|
 | checkerOpt    |  json    |  N | 检查配置,可选 |
 | checkerOpt.rules|  array |  Y | 检查规则列表 |
 
@@ -122,7 +127,6 @@
 
 **4.高级检查 `jsonScript.type` in （`seniorCheck`）参数信息**
 
-
 |  参数名        |   type  | 必选  |          说明          |
 |---------------|----------|----|------------------------|
 | name          |  string  |  Y | 规则名                  |
@@ -130,6 +134,7 @@
 | message       |  string  |  Y | 事件内容                |
 | type          |  string  |  Y | 规则类型  |
 | every         |  string  |  Y | 检查频率, 单位是 (1m/1h/1d)  |
+| customCrontab         |  string  |  N |自定义检查频率的crontab  |
 | checkFuncs    |  array   |  Y | 高级检查函数列表, 注意它有且仅有一个元素|
 | checkFuncs[#].funcId |  string    |  Y | 函数ID, 可通过`【外部函数】列出`接口获取 funcTags=`monitorType|custom`的自定义检查函数列表|
 | checkFuncs[#].kwargs |  json    |  N | 该高级函数所需的参数数据 |
@@ -150,10 +155,21 @@
 
 --------------
 
-**6. 字段 disableCheckEndTime 说明**
+**6.组合监控 相关字段 参数说明**
+
+|  参数名        |   type  | 必选  |          说明          |
+|---------------|----------|----|------------------------|
+| jsonScript.checkerOpt.combineExpr        |  string  |  Y | 组合方式，如：A && B  |
+| jsonScript.checkerOpt.ignoreNodata        |  boolean  |  N | 是否忽略无数据结果（true 表示需要忽略）  |
+
+--------------
+
+**7. 字段 disableCheckEndTime 说明**
+
 上报数据观测云对其处理逻辑包含 追加写入、更新覆盖 两种模式，根据这两种数据的特性，监控需要做检测的区别对待。此区别对应范围包含监控器、智能监控、智能巡检所有模块。
 所有覆盖更新机制的数据类型配置监控器检测时，为了避免因为监控器执行 delay 1 分钟导致更新模式的数据在固定的时间范围内有逃逸现象，此类监控器类型的检测区间不指定结束时间。
 涉及监控器类型：阈值检测、突变检测、区间检测、离群检测、进程异常检测、基础设施存活检测、用户访问指标检测（个别指标，详见下面表格）
+
 | 数据类型 | Namespace | 写入模式 |
 | ---- | ---- | ---- |
 | 指标 | M | 追加 |

@@ -16,8 +16,8 @@
 |:-----------|:-------|:-----|:----------------|
 | checkers | array | Y | 规则配置列表<br>允许为空: False <br> |
 | type | string |  | 智能监控导入传参 smartMonitor<br>允许为空: False <br>允许空字符串: False <br>可选值: ['smartMonitor'] <br> |
-| skipRepeatNameCheck | boolean |  | 是否跳过重名检测, false进行重名检测, true为跳过重名检测<br>例子: read <br>允许为空: False <br> |
-| skipRepeatNameCreate | boolean |  | true同名跳过创建, 不同名的直接创建, false创建所有导入信息<br>例子: read <br>允许为空: False <br> |
+| skipRepeatNameCheck | boolean |  | 是否跳过重名检测, false进行重名检测, true为跳过重名检测<br>例子: False <br>允许为空: False <br> |
+| skipRepeatNameCreate | boolean |  | true同名跳过创建, 不同名的直接创建, false创建所有导入信息<br>例子: False <br>允许为空: False <br> |
 
 ## 参数补充说明
 
@@ -31,8 +31,8 @@
 | 参数名 | type| 必传 | 说明|
 | :---- | :-- | :--- | :------- |
 | checker   | array | 必传 | 规则配置列表|
-| skipRepeatNameCheck   | boolean | 必传 | 是否跳过重名检测 |
-| skipRepeatNameCreate  | boolean | 必传 | 同名是否跳过创建|
+| skipRepeatNameCheck   | boolean | 必传 | 是否跳过重名检测, 如不跳过（false）：同名检测不通过则返回同名监控器名称列表 |
+| skipRepeatNameCreate  | boolean | 必传 | 同名是否跳过创建，如不跳过（false）：则会创建相同名称的监控器|
 
 
 
