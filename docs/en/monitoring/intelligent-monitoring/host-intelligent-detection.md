@@ -2,7 +2,7 @@
 ---
 
 
-Host Detection is based on intelligent detection algorithms, which regularly perform intelligent detection on the CPU and memory of the host. By analyzing the root causes of CPU and memory abnormalities, it determines whether the host has abnormal situations such as sudden increase/decrease or interval rise, and monitors the running status and stability of the host.
+Host detection is based on intelligent detection algorithms, which regularly perform intelligent detection on the CPU and memory of the host. By analyzing the root causes of CPU and memory abnormalities, it determines whether the host has abnormal situations such as sudden increase/decrease or interval rise, and monitors the running status and stability of the host.
 
 
 ## Use Cases

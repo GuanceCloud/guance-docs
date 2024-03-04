@@ -2,16 +2,15 @@
 ---
 
 
-## Operation Scene
+Keycloak is a cloud-based identity and access management service launched by RedHat, which can help enterprises manage internal and external resources.
 
-Keycloak is a cloud-based identity and access management service launched by RedHat, which can help enterprises manage internal and external resources. Guance supports federated authentication based on SAML 2.0 (Security Assertion Markup Language 2.0), an open standard used by many identity providers. You can integrate Keycloak with Guance through SAML 2.0-based federation authentication, enabling the Keycloak account to automatically log on (single sign-on) to Guance platform to access the corresponding workspace resources, without having to create a separate Guance account for the enterprise/team.
-
-This article uses the built Keycloak server to demonstrate how to implement SSO login of Keycloak users to Guance management studio.
-
+This article uses the built Keycloak server to demonstrate how to use the SAML 2.0 protocol to implement Keycloak user SSO login to the Guance console.
 
 ## Preconditions
 
-The Keycloak server has been set up and can be logged in to the Keycloak server for configuration. If there is no Keycloak environment, you can refer to the following steps to build it.
+The Keycloak server has been set up and can be logged in to the Keycloak server for configuration. 
+
+If there is no Keycloak environment, you can refer to the following steps to build it:
 
 ```
 sudo yum update         #update
@@ -33,11 +32,30 @@ nohup bin/standalone.sh -b 0.0.0.0 &     #Go back to the bin directory and hang 
 
 After the Keycloak environment is built, enter `https://IP address:8443/auth` in the browser, and click "Administration Console" to open the Keycloak management studio.<br />![](../img/05_keycloak_01.png)
 
-## Operational Steps
 
-### 1.Create Keycloak realm
+## Concepts
 
-Note: Keycloak itself has a Master domain (Master), so we need to create a new domain (similar to a workspace). <br />1）In the Keycloak administrative console, click "Master"-"Add realm".<br />![](../img/05_keycloak_02.png)<br />2）On the "Add realm" page, enter a domain Name at "Name", such as "gcy", and click "Create" to Create a new domain.<br />![](../img/05_keycloak_03.png)
+Here are the basic concept explanations during the KeyCloak configuration process:
+
+
+| Fields      | Description                          |
+| ----------- | ------------------------------------ |
+| Realm      | Similar to a workspace, used to manage users, credentials, roles and user groups. Realms are isolated from each other.                          |
+| Clients | Clients are applications or services that can request Keycloak to authenticate users. |
+| Users      | User accounts that are able to log into the system. Login email and Credentials need to be configured.                          |
+| Credentials | Credentials to verify a user's identity; be used to set the login password for a user account.  |
+| Authentication      | The process of recognizing and verifying a user.                          |
+| Authorization | The process of granting access permissions to a user. |
+| Roles      | Used to identify the type of a user's identity, such as an administrator, regular user, etc.                          |
+| User role mapping | The mapping relationship between users and roles, a user can be associated with multiple roles. |
+| Groups | Manage user groups, support mapping roles to groups. |
+
+
+## Setup
+
+### 1. Create Keycloak realm
+
+Note: Keycloak itself has a Master domain, so we need to create a new domain (similar to a workspace). <br />1）In the Keycloak administrative console, click "Master"-"Add realm".<br />![](../img/05_keycloak_02.png)<br />2）On the "Add realm" page, enter a domain Name at "Name", such as "gcy", and click "Create" to Create a new domain.<br />![](../img/05_keycloak_03.png)
 
 
 ### 2.Create a Client and Configure SAML

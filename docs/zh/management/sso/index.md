@@ -168,7 +168,7 @@
 
 您可针对单个 IDP 配置采用启用、禁用操作：
 
-- 启用后，SSO 登录的用户账号将被剥夺其当前所在工作空间中的角色，并根据身份提供商提供的**属性字段**和**属性值**，匹配角色映射规则动态分配角色。若未匹配到角色映射规则，则用户账号将被剥夺所有角色，且不允许登录访问观测云工作空间。；
+- 启用后，SSO 登录的用户账号将被剥夺其当前所在工作空间中的角色，并根据身份提供商提供的**属性字段**和**属性值**，匹配角色映射规则动态分配角色。若未匹配到角色映射规则，则用户账号将被剥夺所有角色，且不允许登录访问观测云工作空间；
 - 禁用后，SSO 登录用户将继续拥有之前分配给他们账号的角色，该角色不受身份提供商侧断言更改影响。
 
 ![](../img/saml.png)
@@ -191,11 +191,6 @@
 启用 SSO 以后，若企业成员通过 SSO 单点登录到观测云，即可在 **SSO 登录**查看所有登录过的成员数量，点击成员数字，可查看具体被授权单点登录成员名单。
 
 ![](../img/1.5.sso_mapping_9.png)
-
-|              <font color=coral size=3>:fontawesome-regular-circle-down: &nbsp;**配置示例**</font>                         |                                                              |                                                              |
-| :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| [Azure AD](azure-ad.md){ .md-button .md-button--primary } | [Authing](authing.md){ .md-button .md-button--primary } | [Okta](okta.md){ .md-button .md-button--primary } |
-| [阿里云 IDaaS](aliyun-idaas.md){ .md-button .md-button--primary } | [Keycloak](keycloak.md){ .md-button .md-button--primary } |  |
 
 
 ## 角色映射 {#saml-mapping}
@@ -276,3 +271,13 @@ SSO 账号进入工作空间后，点击左侧**账号 > 账号管理**，可对
 
 ![](../img/5.sso_mapping_12.png)
 -->
+
+## 单点登录示例
+
+将外部平台与观测云进行集成，从而实现外部平台的帐户自动登录（单一登录）到观测云平台并访问对应工作空间资源，不必为企业/团队单独创建观测云账号。
+
+
+|              <font color=coral size=3>:fontawesome-regular-circle-down: &nbsp;**配置示例**</font>                         |                                                              |                                                              |
+| :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
+| [Azure AD](azure-ad.md){ .md-button .md-button--primary } | [Authing](authing.md){ .md-button .md-button--primary } | [Okta](okta.md){ .md-button .md-button--primary } |
+| [阿里云 IDaaS](aliyun-idaas.md){ .md-button .md-button--primary } | [Keycloak](keycloak.md){ .md-button .md-button--primary } |  |
