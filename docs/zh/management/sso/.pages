@@ -1,6 +1,6 @@
 nav:
   - index.md
-  - 'SSO 配置常见问题': configuration-faq.md
+  - '配置常见问题': configuration-faq.md
   - 'Azure AD': azure-ad.md
   - 'Authing': authing.md
   - 'Okta': okta.md
