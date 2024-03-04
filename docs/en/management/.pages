@@ -20,7 +20,7 @@ nav:
   - 'Data Authorization': data-authorization.md
   - 'Data Masking': data-mask.md
   - 'Data Scanner': data-scanner.md
-  - 'Space Management': space-management.md
+  - 'Workspaces': space-management.md
   - 'SSO Management': sso
   - 'MFA': mfa-management.md
   - 'Help': 

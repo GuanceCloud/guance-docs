@@ -73,6 +73,7 @@ spec:
 ```
 
 - Created `argocd-server-metrics.yaml`
+
 ```yaml
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
