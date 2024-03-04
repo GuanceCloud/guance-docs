@@ -55,7 +55,7 @@ Here are the basic concept explanations during the KeyCloak configuration proces
 
 ### 1. Create Keycloak realm
 
-Note: Keycloak itself has a Master domain (Master), so we need to create a new domain (similar to a workspace). <br />1）In the Keycloak administrative console, click "Master"-"Add realm".<br />![](../img/05_keycloak_02.png)<br />2）On the "Add realm" page, enter a domain Name at "Name", such as "gcy", and click "Create" to Create a new domain.<br />![](../img/05_keycloak_03.png)
+Note: Keycloak itself has a Master domain, so we need to create a new domain (similar to a workspace). <br />1）In the Keycloak administrative console, click "Master"-"Add realm".<br />![](../img/05_keycloak_02.png)<br />2）On the "Add realm" page, enter a domain Name at "Name", such as "gcy", and click "Create" to Create a new domain.<br />![](../img/05_keycloak_03.png)
 
 
 ### 2.Create a Client and Configure SAML
