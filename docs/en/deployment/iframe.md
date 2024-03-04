@@ -1,8 +1,8 @@
-# External platform nested observation cloud page
+# Page nesting through iframe
 
 # # Overview
 
-This document describes how private deployment users can nest observation cloud pages to external platforms through iframe
+This document describes how private deployment users can nest Guance pages to external platforms through iframe
 
 # # Configure external platform accessibility
 
