@@ -1,7 +1,16 @@
 # 可视化图表
 ---
 
-观测云内置20余种标准的可视化图表：包括 [时序图](timeseries-chart.md)、[概览图](overview-chart.md)、[表格图](table-chart.md)、[矩形树图](treemap.md)、[漏斗图](funnel-chart.md)、[饼图](pie-chart.md)、[柱状图](bar-chart.md)、[直方图](histogram.md)、[SLO](slo-chart.md)、[排行榜](leaderboard.md)、[仪表盘](dashboard.md)、[散点图](scatter-plot.md)、[气泡图](bubble-chart.md)、[中国地图](china-map.md)、[世界地图](world-map.md)、[蜂窝图](cellular-map.md)、[文本](text.md)、[图片](picture.md)、[视频](video.md)、[命令面板](command-panel.md)、[IFrame](iframe.md)、[日志流图](log-stream.md)、[对象列表图](object-list.md)、[告警统计图](alert-statistics.md) 等，可快速根据不同业务需求快速创建不同的仪表板，同时结合视图变量等功能，能实现特定图表数据全局联动效果，满足对数据个性化、全面的展示需求。
+观测云配备了 20 余种标准化的可视化图表，您可以轻松根据业务需求定制仪表板。同时，利用视图变量等高级功能，可实现图表间的数据联动，确保数据展示的个性化与专业度。
+
+
+|                   <font color=coral size=3>:fontawesome-regular-circle-down: &nbsp;**图表详情**</font>                 |                |                |   |   |
+| :-------------------: | :--------------------: | :--------------------: | :--------------------: | :--------------------: |
+| [时序图](timeseries-chart.md){ .md-button .md-button--primary } | [概览图](overview-chart.md){ .md-button .md-button--primary } | [表格图](table-chart.md){ .md-button .md-button--primary } |[矩形树图](treemap.md){ .md-button .md-button--primary } |[漏斗图](funnel-chart.md){ .md-button .md-button--primary } |
+| [饼图](pie-chart.md){ .md-button .md-button--primary } | [柱状图](bar-chart.md){ .md-button .md-button--primary } | [直方图](histogram.md){ .md-button .md-button--primary } |[SLO](slo-chart.md){ .md-button .md-button--primary } |[排行榜](leaderboard.md){ .md-button .md-button--primary } |
+| [仪表盘](dashboard.md){ .md-button .md-button--primary } | [散点图](scatter-plot.md){ .md-button .md-button--primary } | [气泡图](bubble-chart.md){ .md-button .md-button--primary } |[中国地图](china-map.md){ .md-button .md-button--primary } |[世界地图](world-map.md){ .md-button .md-button--primary } |
+| [蜂窝图](cellular-map.md){ .md-button .md-button--primary } | [桑基图](sankey.md){ .md-button .md-button--primary } | [文本](text.md){ .md-button .md-button--primary } |[图片](picture.md){ .md-button .md-button--primary } |[视频](video.md){ .md-button .md-button--primary } |
+| [命令面板](command-panel.md){ .md-button .md-button--primary } | [IFrame](iframe.md){ .md-button .md-button--primary } | [日志流图](log-stream.md){ .md-button .md-button--primary } |[对象列表图](object-list.md){ .md-button .md-button--primary } |[告警统计图](alert-statistics.md){ .md-button .md-button--primary } |
 
 ## 添加图表
 
@@ -17,7 +26,7 @@
 
 ![](../img/variables_1.png)
 
-> 该图表联动显示功能适用于[时序图](timeseries-chart.md)、[概览图](overview-chart.md)、[表格图](table-chart.md)、[矩形树图](treemap.md)、[漏斗图](funnel-chart.md)、[饼图](pie-chart.md)、[柱状图](bar-chart.md)、[直方图](histogram.md)、[SLO](slo-chart.md)、[排行榜](leaderboard.md)、[仪表盘](dashboard.md)、[散点图](scatter-plot.md)、[气泡图](bubble-chart.md)、[中国地图](china-map.md)、[世界地图](world-map.md)、[蜂窝图](cellular-map.md)、[命令面板](command-panel.md)、[IFrame](iframe.md)、[日志流图](log-stream.md)、[对象列表图](object-list.md)、[告警统计图](alert-statistics.md)。
+> 该图表联动显示功能适用于[时序图](timeseries-chart.md)、[概览图](overview-chart.md)、[表格图](table-chart.md)、[矩形树图](treemap.md)、[漏斗图](funnel-chart.md)、[饼图](pie-chart.md)、[柱状图](bar-chart.md)、[直方图](histogram.md)、[SLO](slo-chart.md)、[排行榜](leaderboard.md)、[仪表盘](dashboard.md)、[散点图](scatter-plot.md)、[气泡图](bubble-chart.md)、[中国地图](china-map.md)、[世界地图](world-map.md)、[蜂窝图](cellular-map.md)、[桑基图](sankey.md)、[命令面板](command-panel.md)、[IFrame](iframe.md)、[日志流图](log-stream.md)、[对象列表图](object-list.md)、[告警统计图](alert-statistics.md)。
 
 
 ## 相关设置

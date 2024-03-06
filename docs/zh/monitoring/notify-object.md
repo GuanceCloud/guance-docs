@@ -187,7 +187,7 @@ Content-Type: application/json
 
 ### 6、新建简单 HTTP 请求 {#http}
 
-选择**简单 HTTP 请求**，输入所需信息：
+选择**简单 HTTP 请求**，输入所需信息，当产生的事件触发告警时，服务会向自定义的 Webhook 地址发送事件所有的告警通知。
 
 <img src="../img/http.png" width="70%" >
 
