@@ -22,12 +22,14 @@ monitor   :
 
 ---
 
-Mem collector is used to collect system memory information, some general metrics such as total memory, used memory and so on. 
+Mem collector is used to collect system memory information, some general metrics such as total memory, used memory and so on.
 
 
 ## Configuration {#config}
 
 After successfully installing and starting DataKit, the Mem collector will be enabled by default without the need for manual activation.
+
+### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
 
@@ -50,12 +52,29 @@ After successfully installing and starting DataKit, the Mem collector will be en
 
 === "Kubernetes"
 
-    Support modifying configuration parameters as environment variables:
+    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
+
+    Can also be turned on by environment variables, (needs to be added as the default collector in ENV_DEFAULT_ENABLED_INPUTS):
     
-    | Environment Variable Name               | Corresponding Configuration Parameter Item | Parameter Example                                                     |
-    | :---                     | ---              | ---                                                          |
-    | `ENV_INPUT_MEM_TAGS`     | `tags`           | `tag1=value1,tag2=value2`; If there is a tag with the same name in the configuration file, it will be overwritten. |
-    | `ENV_INPUT_MEM_INTERVAL` | `interval`       | `10s`                                                        |
+    - **ENV_INPUT_MEM_INTERVAL**
+    
+        Collect interval
+    
+        **Type**: TimeDuration
+    
+        **ConfField**: `interval`
+    
+        **Default**: 10s
+    
+    - **ENV_INPUT_MEM_TAGS**
+    
+        Customize tags. If there is a tag with the same name in the configuration file, it will be overwritten
+    
+        **Type**: Map
+    
+        **ConfField**: `tags`
+    
+        **Example**: tag1=value1,tag2=value2
 
 <!-- markdownlint-enable -->
 

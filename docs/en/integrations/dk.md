@@ -1,4 +1,21 @@
+---
+title: 'DataKit own metrics collection'
+summary: 'Collect DataKit's own operational metrics'
+__int_icon: 'icon/dk'
+dashboard:
+  - desc: 'DataKit dashboard'
+    path: 'dashboard/en/dk'
+  - desc: 'DataKit dial test built-in dashboard'
+    path: 'dashboard/en/dialtesting'
+
+monitor:
+  - desc: 'N/A'
+    path: '-'
+---
+
+<!-- markdownlint-disable MD025 -->
 # DataKit Metrics
+<!-- markdownlint-enable -->
 
 ---
 
@@ -13,10 +30,11 @@ This Input used to collect Datakit exported metrics, such as runtime/CPU/memory 
 After Datakit startup, it will expose a lot of [Prometheus metrics](datakit-metrics.md), and the input `dk` can scrap
 these metrics.
 
-<!-- markdownlint-disable MD046 -->
-=== "*dk.conf*"
+### Collector Configuration {#input-config}
 
-    
+<!-- markdownlint-disable MD046 -->
+=== "Host Installation"
+
     Go to the `conf.d/host` directory under the DataKit installation directory, copy `dk.conf.sample` and name it `dk.conf`. Examples are as follows:
 
     ```toml
@@ -69,19 +87,46 @@ these metrics.
     
     ```
 
-    After configuration, [restart DataKit]().
+    After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    Kubernetes supports modifying configuration parameters in the form of environment variables:
+    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
 
-    | Environment Name                  | Description                                                            | Examples                                                                               |
-    | :---                              | ---                                                                    | ---                                                                                    |
-    | `ENV_INPUT_DK_ENABLE_ALL_METRICS` | Enable all metrics, this may collect more than 300+ metrics on Datakit | `on/yes/`                                                                              |
-    | `ENV_INPUT_DK_ADD_METRICS`        | Add extra metrics (JSON array)                                         | `["datakit_io_.*", "datakit_pipeline_.*"]`, Available metrics list [here](../datakit/datakit-metrics.md) |
-    | `ENV_INPUT_DK_ONLY_METRICS`       | **Only** enalbe specified metrics(JSON array)                          | `["datakit_io_.*", "datakit_pipeline_.*"]`                                             |
+    Can also be turned on by environment variables, (needs to be added as the default collector in ENV_DEFAULT_ENABLED_INPUTS):
+    
+    - **ENV_INPUT_DK_ENABLE_ALL_METRICS**
+    
+        Collect all metrics, any string
+    
+        **Type**: Boolean
+    
+        **ConfField**: `none`
+    
+        **Example**: any_string
+    
+    - **ENV_INPUT_DK_ADD_METRICS**
+    
+        Additional metrics, Available metrics list [here](../datakit/datakit-metrics.md)
+    
+        **Type**: JSON
+    
+        **ConfField**: `none`
+    
+        **Example**: ["datakit_io_.*", "datakit_pipeline_.*"]
+    
+    - **ENV_INPUT_DK_ONLY_METRICS**
+    
+        Only enable metrics
+    
+        **Type**: JSON
+    
+        **ConfField**: `none`
+    
+        **Example**: ["datakit_io_.*", "datakit_pipeline_.*"]
+
 <!-- markdownlint-enable -->
 
-## Measurements {#metric}
+## Metric {#metric}
 
 Datakit exported Prometheus metrics, see [here](../datakit/datakit-metrics.md) for full metric list.

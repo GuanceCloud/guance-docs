@@ -74,9 +74,9 @@ monitor   :
 
 | Tag | Description |
 |  ----  | --------|
-|`file_ownership`|file ownership.|
-|`file_system`|file system type.|
-|`host_directory`|the start Dir.|
+|`file_ownership`|File ownership.|
+|`file_system`|File system type.|
+|`host_directory`|The start Dir.|
 |`mount_point`|Mount point.|
 
 - 指标列表

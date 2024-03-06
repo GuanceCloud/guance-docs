@@ -160,7 +160,7 @@ Jenkins CI Visibility 开启方法：
 |`queue_pending`|Number of times a Job has been Pending in a Queue|float|count|
 |`queue_size`|The number of jobs that are in the Jenkins build queue.|float|count|
 |`queue_stuck`|he number of jobs that are in the Jenkins build queue and currently in the blocked state|float|count|
-|`system_cpu_load`|The system load on the Jenkins controller as reported by the JVM’s Operating System JMX bean|float|percent|
+|`system_cpu_load`|The system load on the Jenkins controller as reported by the JVM Operating System JMX bean|float|percent|
 |`vm_blocked_count`|The number of threads in the Jenkins JVM that are currently blocked waiting for a monitor lock.|float|count|
 |`vm_count`|The total number of threads in the Jenkins JVM. This is the sum of: vm.blocked.count, vm.new.count, vm.runnable.count, vm.terminated.count, vm.timed_waiting.count and vm.waiting.count|float|count|
 |`vm_cpu_load`|The rate of CPU time usage by the JVM per unit time on the Jenkins controller. This is equivalent to the number of CPU cores being used by the Jenkins JVM.|float|percent|

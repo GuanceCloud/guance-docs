@@ -6,6 +6,34 @@ icon: zy/release-notes
 
 本文档记录观测云每次上线发布的更新内容说明。
 
+## 2024 年 3 月 6 日
+
+### 观测云更新
+
+- 监控
+    - 监控器 > 检测频率：新增 **[Crontab 自定义输入](../monitoring/monitor/detection-frequency.md)**，满足仅需在特定的时间段执行检测的需求；
+    - 突变检测：新增【最近 1 分钟】、【最近 5 分钟】的检测区间；
+    - 静默管理：选择静默范围时“事件属性”为非必填项，可根据需要自行配置更细颗粒度的匹配规则。
+- DataFlux Func：新增 [Function 外部函数](../dql/dql-out-func.md)。允许第三方用户充分利用 Function 的本地缓存和本地文件管理服务接口编写函数，在工作空间内执行数据分析查询。
+- APM > [链路](../application-performance-monitoring/explorer.md)：
+    - Title 区域 UI 显示优化；
+    - 针对火焰图、瀑布图、Span 列表超过 1 万的 Span 结果，支持通过**偏移**设置查看未展示 Span；
+    - 新增 **Error Span** 筛选入口；支持输入 Span 对应的资源名称或 Span ID 进行搜索匹配。
+- 场景
+    - 图表：新增[桑基图](../scene/visual-chart/sankey.md)；
+    - 视图变量：新增**选中**按钮，勾选后默认全选当前所有值，可按需再反选。
+- 账号管理：新增[注销](../management/index.md#cancel)入口。
+- 查看器：
+    - UI 显示优化；
+    - 筛选新增正则匹配 / 反向正则匹配模式；
+    - Wildcard 筛选和搜索支持左 * 匹配。
+- 事件 > 详情页：【告警通知】tab 页 UI 显示优化。
+
+
+### 观测云部署版更新
+
+- 新增[登录方式选择](../deployment/setting.md#login-method)，对登录方式进行统一管理；
+- 针对本地账号和单点登录账号新增[删除](../deployment/user.md#delete)操作。
 
 ## 2024 年 1 月 31 日
 
