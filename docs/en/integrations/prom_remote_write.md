@@ -26,7 +26,7 @@ Monitor Prometheus Remote Write data and report it to Guance Cloud.
 
 ### Preconditions {#requirements}
 
-Turn on the Prometheus Remote Write feature and add the following configuration in prometheus.yml:
+Turn on the Prometheus Remote Write feature and add the following configuration in Prometheus.yml:
 
 ```yml
 remote_write:
@@ -38,7 +38,7 @@ remote_write:
 ```
 
 ### Collector Configuration {#input-config}
-
+<!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
     Go to the `conf.d/prom` directory under the DataKit installation directory, copy `prom_remote_write.conf.sample` and name it `prom_remote_write.conf`. Examples are as follows:
@@ -130,7 +130,7 @@ remote_write:
 === "Kubernetes"
 
     The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
-
+<!-- markdownlint-enable -->
 ### Add, Ignore and Rename Tags {#tag-ops}
 
 We can label the collected metrics by configuring `tags`, as follows:
@@ -215,7 +215,7 @@ Parameter description:
 
 Output sample:
 
-```
+```not-set
 ================= Line Protocol Points ==================
 
  prometheus,instance=localhost:9090,job=prometheus,monitor=codelab-monitor target_scrapes_sample_out_of_order_total=0 1634548272855000000
@@ -258,15 +258,16 @@ Total time series: 155
 Total line protocol points: 487
 Total measurements: 6 (prometheus, promhttp, up, scrape, go, node)
 ```
-
+<!-- markdownlint-disable MD007 -->
 Output description:
 
 - Line Protocol Points: Generated line protocol points
 
 - Summary: Summary results
 
-- - Total time series: Number of timelines
+  - - Total time series: Number of timelines
 
-- - Total line protocol points: Line protocol points
+  - - Total line protocol points: Line protocol points
 
-- - Total measurements: The number of measurements and their names.
+  - - Total measurements: The number of measurements and their names.
+<!-- markdownlint-enable -->

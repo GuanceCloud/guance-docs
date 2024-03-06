@@ -24,8 +24,8 @@ Redis indicator collector, which collects the following data:
 
 - Turn on AOF data persistence and collect relevant metrics
 - RDB data persistence metrics
-- Slowlog monitoring metrics
-- bigkey scan monitoring
+- Slow Log monitoring metrics
+- Big Key scan monitoring
 - Master-slave replication
 
 ## Configuration {#config}
@@ -45,7 +45,7 @@ When collecting data under the master-slave architecture, please configure the h
 
 Create Monitor User (**optional**)
 
-redis6.0+ goes to the rediss-cli command line, create the user and authorize
+redis6.0+ goes to the `redis-cli` command line, create the user and authorize
 
 ```sql
 ACL SETUSER username >password
@@ -53,7 +53,7 @@ ACL SETUSER username on +@dangerous
 ACL SETUSER username on +ping
 ```
 
-- goes to the rediss-cli command line, authorization statistics hotkey information
+- goes to the `redis-cli` command line, authorization statistics hotkey information
 
 ```sql
 CONFIG SET maxmemory-policy allkeys-lfu
@@ -82,7 +82,8 @@ yum install -y  redis
       host = "localhost"
       port = 6379
       # unix_socket_path = "/var/run/redis/redis.sock"
-      # 配置多个 db，配置了 dbs，db 也会放入采集列表。dbs=[] 或者不配置则会采集 Redis 中所有非空的 db
+      ## Configure multiple dbs and configure dbs, and the dbs will also be placed in the collection list.
+      ## dbs=[] or not configured, all non-empty dbs in Redis will be collected
       # dbs=[]
       # username = "<USERNAME>"
       # password = "<PASSWORD>"
@@ -206,7 +207,7 @@ To collect Redis logs, you need to open the log file `redis.config` output confi
 <!-- markdownlint-enable -->
 
 ## Metrics {#metric}
-
+<!-- markdownlint-disable MD009 -->
 For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.redis.tags]`:
 
 ``` toml
@@ -243,7 +244,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`server`|Server addr|
 |`service_name`|Service name|
 
-- feld list
+- field list
 
 
 | Metric | Description | Type | Unit |
@@ -285,7 +286,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`server_addr`|Server addr|
 |`service_name`|Service name|
 
-- feld list
+- field list
 
 
 | Metric | Description | Type | Unit |
@@ -343,7 +344,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`server`|Server addr|
 |`service_name`|Service name|
 
-- feld list
+- field list
 
 
 | Metric | Description | Type | Unit |
@@ -372,7 +373,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`server`|Server addr.|
 |`service_name`|Service name.|
 
-- feld list
+- field list
 
 
 | Metric | Description | Type | Unit |
@@ -402,7 +403,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`server`|Server addr.|
 |`service_name`|Service name.|
 
-- feld list
+- field list
 
 
 | Metric | Description | Type | Unit |
@@ -736,12 +737,12 @@ Redis 慢查询命令历史，这里我们将其以日志的形式采集
 |`slowlog_micros`|Cost time|int|μs| 
 
 
-
+<!-- markdownlint-enable -->
 ### Logging Pipeline {#pipeline}
 
 The original log is:
 
-```
+```log
 122:M 14 May 2019 19:11:40.164 * Background saving terminated with success
 ```
 

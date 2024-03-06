@@ -22,6 +22,8 @@ monitor   :
 
 ## 配置 {#config}
 
+### 前置条件 {#requirements}
+
 采集器默认开启采样，采样率默认值为 `0.1` 即 `10%` 的链路采样。
 
 如果数据量在 1e6 span/min，目前需要至少提供 4C 的 cpu 资源和 4G 的 mem 资源。
@@ -141,14 +143,49 @@ monitor   :
           targetPort: 9529
     ```
 
-通过以下环境变量可以调整 Kubernetes 中 ebpftrace 采集配置：
+    通过以下环境变量可以调整 Kubernetes 中 ebpftrace 采集配置：
 
-| 环境变量名                             | 对应的配置参数项   | 参数示例                          | 描述                                   |
-| :------------------------------------- | ------------------ | --------------------------------- | -------------------------------------- |
-| `ENV_INPUT_EBPFTRACE_USE_APP_TRACE_ID` | `use_app_trace_id` | `true`                            | 使用应用侧 trace id 替代 eBPF trace id |
-| `ENV_INPUT_EBPFTRACE_WINDOW`           | `window`           | `20s`                             | 链路 span 的链接时间窗口               |
-| `ENV_INPUT_EBPFTRACE_SAMPLING_RATE`    | `sampling_rate`    | `0.1`                             | 链路采样率                             |
-| `ENV_INPUT_EBPFTRACE_SQLITE_PATH`      | `sqlite_path`      | `/usr/local/datakit/ebpf_spandb/` | SQLite 数据库文件存放路径              |
+    - **ENV_INPUT_EBPFTRACE_SQLITE_PATH**
+    
+        SQLite 数据库文件存放路径
+    
+        **Type**: String
+    
+        **ConfField**: `sqlite_path`
+    
+        **Example**: `/usr/local/datakit/ebpf_spandb/`
+    
+    - **ENV_INPUT_EBPFTRACE_USE_APP_TRACE_ID**
+    
+        使用应用侧 trace id 替代 eBPF trace id
+    
+        **Type**: Boolean
+    
+        **ConfField**: `use_app_trace_id`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_EBPFTRACE_WINDOW**
+    
+        链路 span 的链接时间窗口
+    
+        **Type**: TimeDuration
+    
+        **ConfField**: `window`
+    
+        **Default**: 20s
+    
+    - **ENV_INPUT_EBPFTRACE_SAMPLING_RATE**
+    
+        链路采样率
+    
+        **Type**: Float
+    
+        **ConfField**: `sampling_rate`
+    
+        **Example**: 0.1
+
+<!-- markdownlint-enable -->
 
 ## 指标 {#metric}
 

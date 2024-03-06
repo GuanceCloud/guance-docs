@@ -4,7 +4,7 @@ summary   : 'Collect Gitlab metrics and logs'
 __int_icon      : 'icon/gitlab'
 dashboard :
   - desc  : 'GitLab'
-    path  : 'dashboard/zh/gitlab'
+    path  : 'dashboard/en/gitlab'
 monitor   :
   - desc  : 'N/A'
     path  : '-'
@@ -23,6 +23,8 @@ monitor   :
 Collect GitLab operation data and report it to Guance Cloud in the form of metrics.
 
 ## Configuration {#config}
+
+### Collector Configuration {#input-config}
 
 First, you need to open the data collection function of GitLab service and set the white list. See the following sections for specific operations.
 
@@ -73,7 +75,7 @@ After the GitLab setup is complete, configure the DataKit. Note that the data co
 
 ### GitLab Turns on Data Collection {#enable-prom}
 
-GitLab needs to turn on the promtheus data collection function as follows (taking English page as an example):
+GitLab needs to turn on the Prometheus data collection function as follows (taking English page as an example):
 
 - Log in to your GitLab page as an administrator account
 - Go to `Admin Area` > `Settings` > `Metrics and profiling`
@@ -91,21 +93,21 @@ It is not enough to turn on the data collection function. GitLab is very strict 
 
 See [official configuration doc](https://docs.gitlab.com/ee/administration/monitoring/ip_whitelist.html){:target="_blank"}.
 
-### Turn on Gitlab CI Visualization {#ci-visible}
+### Turn on GitLab CI Visualization {#ci-visible}
 
-Ensure that the current Datakit version (1.2. 13 and later) supports Gitlab CI visualization.
+Ensure that the current Datakit version (1.2. 13 and later) supports GitLab CI visualization.
 
-Gitlab CI visualization can be achieved by configuring Gitlab Webhook. The opening steps are as follows:
+GitLab CI visualization can be achieved by configuring GitLab Webhook. The opening steps are as follows:
 
-- In gitlab go to `Settings` > `Webhooks`, configure the URL to http://Datakit_IP:PORT/v1/gitlab, Trigger configure Job events and Pipeline events, and click Add webhook to confirm the addition;
+- In GitLab go to `Settings` > `Webhooks`, configure the URL to http://Datakit_IP:PORT/v1/gitlab, Trigger configure Job events and Pipeline events, and click Add webhook to confirm the addition;
 
-- You can Test whether the Webhook is configured correctly by clicking the Test button, and Datakit should return a status code of 200 when it receives the Webhook. After proper configuration, Datakit can successfully collect CI information of Gitlab.
+- You can Test whether the Webhook is configured correctly by clicking the Test button, and Datakit should return a status code of 200 when it receives the Webhook. After proper configuration, Datakit can successfully collect CI information of GitLab.
 
 After Datakit receives the Webhook Event, it logs the data to the data center.
 
 Note: Additional configuration of Gitlab is required if Gitlab data is sent to Datakit on the local network, see [allow requests to the local network](https://docs.gitlab.com/ee/security/webhooks.html){:target="_blank"}.
 
-In addition, Gitlab CI function does not participate in collector election, and users only need to configure the URL of Gitlab Webhook as the URL of one of Datakit; If you only need Gitlab CI visualization and do not need Gitlab metrics collection, you can turn off metrics collection by configuring `enable_collect = false`.
+In addition, GitLab CI function does not participate in collector election, and users only need to configure the URL of GitLab Webhook as the URL of one of Datakit; If you only need GitLab CI visualization and do not need GitLab metrics collection, you can turn off metrics collection by configuring `enable_collect = false`.
 
 ## Metric {#metric}
 
@@ -129,7 +131,7 @@ You can specify additional tags for **Gitlab CI data** in the configuration by `
   # ...
 ```
 
-Note: To ensure that Gitlab CI functions properly, the extra tags specified for Gitlab CI data do not overwrite tags already in its data (see below for a list of Gitlab CI tags).
+Note: To ensure that GitLab CI functions properly, the extra tags specified for GitLab CI data do not overwrite tags already in its data (see below for a list of GitLab CI tags).
 
 
 
@@ -137,17 +139,17 @@ Note: To ensure that Gitlab CI functions properly, the extra tags specified for 
 
 ### `gitlab`
 
-GitLab 运行指标
+GitLab runtime metrics
 
 - tag
 
 
 | Tag | Description |
 |  ----  | --------|
-|`action`|行为|
-|`controller`|管理|
-|`feature_category`|类型特征|
-|`storage`|存储|
+|`action`|Action|
+|`controller`|Controller|
+|`feature_category`|Feature category|
+|`storage`|Storage|
 
 - metric list
 
@@ -179,7 +181,7 @@ GitLab 运行指标
 
 ### `gitlab_base`
 
-GitLab 编程语言层面指标
+GitLab programming language level metrics
 
 - tag
 
@@ -200,7 +202,7 @@ NA
 
 ### `gitlab_http`
 
-GitLab HTTP 相关指标
+GitLab HTTP metrics
 
 - tag
 
@@ -223,72 +225,72 @@ GitLab HTTP 相关指标
 
 ### `gitlab_pipeline`
 
-GitLab Pipeline Event 相关指标
+GitLab Pipeline event metrics
 
 - tag
 
 
 | Tag | Description |
 |  ----  | --------|
-|`author_email`|作者邮箱|
-|`ci_status`|CI 状态|
-|`commit_sha`|触发 Pipeline 的最近一次 commit 的哈希值|
-|`object_kind`|Event 类型，此处为 Pipeline|
-|`operation_name`|操作名称|
-|`pipeline_name`|Pipeline 名称|
-|`pipeline_source`|Pipeline 触发的来源|
-|`pipeline_url`|Pipeline 的 URL|
-|`ref`|涉及的分支|
-|`repository_url`|仓库 URL|
-|`resource`|项目名|
+|`author_email`|Author email|
+|`ci_status`|CI type|
+|`commit_sha`|The commit SHA of the most recent commit of the code that triggered the Pipeline|
+|`object_kind`|Event type, in this case Pipeline|
+|`operation_name`|Operation name|
+|`pipeline_name`|Pipeline name|
+|`pipeline_source`|Sources of Pipeline triggers|
+|`pipeline_url`|Pipeline URL|
+|`ref`|Branches involved|
+|`repository_url`|Repository URL|
+|`resource`|Project name|
 
 - metric list
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`commit_message`|触发该 Pipeline 的代码的最近一次提交附带的 message|string|-|
-|`created_at`|Pipeline 创建的毫秒时间戳|int|msec|
-|`duration`|Pipeline 持续时长（微秒）|int|μs|
-|`finished_at`|Pipeline 结束的毫秒时间戳|int|msec|
-|`message`|触发该 Pipeline 的代码的最近一次提交附带的 message，与 commit_message 相同|string|-|
+|`commit_message`|The message attached to the most recent commit of the code that triggered the Pipeline.|string|-|
+|`created_at`|Millisecond timestamp of Pipeline creation|int|msec|
+|`duration`|Pipeline duration (microseconds)|int|μs|
+|`finished_at`|Millisecond timestamp of the end of the Pipeline|int|msec|
+|`message`|The message attached to the most recent commit of the code that triggered the Pipeline. Same as commit_message|string|-|
 |`pipeline_id`|Pipeline id|string|-|
 
 
 
 ### `gitlab_job`
 
-GitLab Job Event 相关指标
+GitLab Job Event metrics
 
 - tag
 
 
 | Tag | Description |
 |  ----  | --------|
-|`build_commit_sha`|build 对应的 commit 的哈希值|
-|`build_failure_reason`|build 失败的原因|
-|`build_name`|build 的名称|
-|`build_repo_name`|build 对应的仓库名|
-|`build_stage`|build 的阶段|
-|`build_status`|build 的状态|
-|`object_kind`|Event 类型，此处为 Job|
-|`project_name`|项目名|
-|`sha`|build 对应的 commit 的哈希值|
-|`user_email`|作者邮箱|
+|`build_commit_sha`|The commit SHA corresponding to build|
+|`build_failure_reason`|Build failure reason|
+|`build_name`|Build name|
+|`build_repo_name`|Repository name corresponding to build|
+|`build_stage`|Build stage|
+|`build_status`|Build status|
+|`object_kind`|Event type, in this case Job|
+|`project_name`|Project name|
+|`sha`|The commit SHA corresponding to build|
+|`user_email`|User email|
 
 - metric list
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`build_commit_message`|触发该 build 的最近一次 commit 的 message|string|-|
-|`build_duration`|build 持续时长（微秒）|int|μs|
-|`build_finished_at`|build 结束的毫秒时间戳|int|msec|
+|`build_commit_message`|The message attached to the most recent commit of the code that triggered the build|string|-|
+|`build_duration`|Build duration (microseconds)|int|μs|
+|`build_finished_at`|Millisecond timestamp of the end of build|int|msec|
 |`build_id`|build id|string|-|
-|`build_started_at`|build 开始的毫秒时间戳|int|msec|
-|`message`|触发该 build 的最近一次 commit 的 message，与 build_commit_message 相同|string|-|
-|`pipeline_id`|build 对应的 Pipeline id|string|-|
-|`project_id`|build 对应的项目 id|string|-|
-|`runner_id`|build 对应的 runner id|string|-|
+|`build_started_at`|Millisecond timestamp of the start of build|int|msec|
+|`message`|The message attached to the most recent commit of the code that triggered the build. Same as build_commit_message|string|-|
+|`pipeline_id`|Pipeline id for build|string|-|
+|`project_id`|Project id for build|string|-|
+|`runner_id`|Runner id for build|string|-|
 
 
