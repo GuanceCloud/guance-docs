@@ -28,8 +28,8 @@ This API is used to report various `category` of data to DataKit, and the parame
 | `global_election_tags`    | string | N               | -             | Giving any value (such as `true`) to append global-election tags（[:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)）                                                              |
 | `ignore_global_host_tags` | string | false           | no            | Giving any value (such as `true`) is considered to ignore the global tag on DataKit（[:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)）。`ignore_global_tags` would be abandoned. |
 | `input`                   | string | N               | `datakit`     | Data source name                                                                                                                                                                          |
-| `loose`                   | bool   | N               | true          | Loose mode, for some invalid POST(json or lineprotocol), DataKit would try to auto-fix them ([:octicons-tag-24: Version-1.5.9](changelog.md#cl-1.5.9)).                                   |
-| `strict`                  | bool   | N               | false         | Strict mode, for some invalid POST(json or lineprotocol), DataKit would reject them and showing why([:octicons-tag-24: Version-1.5.9](changelog.md#cl-1.5.9)).                            |
+| `loose`                   | bool   | N               | true          | Loose mode, for some invalid POST(JSON or lineprotocol), DataKit would try to auto-fix them ([:octicons-tag-24: Version-1.5.9](changelog.md#cl-1.5.9)).                                   |
+| `strict`                  | bool   | N               | false         | Strict mode, for some invalid POST(JSON or lineprotocol), DataKit would reject them and showing why([:octicons-tag-24: Version-1.5.9](changelog.md#cl-1.5.9)).                            |
 | `precision`               | string | N               | `n`           | Data accuracy (supporting `n/u/ms/s/m/h`)                                                                                                                                                 |
 | `source`                  | string | N               | no            | Specify this field only for logging support (that is, `category` is `logging`). If you do not specify `source`, the uploaded log data would not be cut by Pipeline.                       |
 | `version`                 | string | N               | no            | The version number of the current collector                                                                                                                                               |
@@ -53,7 +53,7 @@ In DataKit, the main data types are as follows (listed in alphabetical order acc
 | S             | security      | /v1/write/security      | Security check data    |
 | T             | tracing       | /v1/write/tracing       | APM(tracing) data      |
 
-不同的数据类型，其处理方式不一样，在观测云的用法也不尽相同。在 Datait 的配置和使用过程中，有时候会穿插使用某个类型的不同形式（比如在 sinker 配置中用简写，在 API 请求中则用其 URL 表示）
+不同的数据类型，其处理方式不一样，在观测云的用法也不尽相同。在 DataKit 的配置和使用过程中，有时候会穿插使用某个类型的不同形式（比如在 sinker 配置中用简写，在 API 请求中则用其 URL 表示）
 
 ### JSON Body Examples {#api-json-example}
 
@@ -99,10 +99,10 @@ To facilitate line protocol processing, all data upload APIs support body in JSO
 
 Notes:
 
-- If it is a json body, mark  `Content-Type: application/json` on the request header, otherwise it would be treated as a normal line protocol.
+- If it is a JSON body, mark  `Content-Type: application/json` on the request header, otherwise it would be treated as a normal line protocol.
 - For now, `any-basic-type` refers to `int/float/bool/string` in the popular sense, regardless of the differences between different programming languages.
 - As for the field of numeric type, in JSON, because numeric value does not distinguish float/int, it is difficult to judge whether it is int or float for `{"a" : 123}` JSON at present. Based on this, API treats numeric value and translates it into float type uniformly. This approach may cause type conflicts on storage (for example, line protocol body is used before, and JSON body is used later).
-  - In the line protocol, int/float is clearly identified, such as `123i` for int and  `123` for float.
+    - In the line protocol, int/float is clearly identified, such as `123i` for int and  `123` for float.
 - Compared with the line protocol body, the performance of JSON body is poor, which is about 7 ~ 8 times different. On the premise of the same amount of data, a rough Benchmark comparison:
 
 ```shell
@@ -161,7 +161,7 @@ slb,name=zzz,tag2=b f1=1i,f2=1.2,f3="abc",message="xxx" 1620723870000000000
 
 ### Custom Object Data Sample {#api-custom-object-example}
 
-Custom objects are almost identical to objects, except that the latter are collected autonomously by DataKit, and the former are objects created by users through the datakit API.
+Custom objects are almost identical to objects, except that the latter are collected autonomously by DataKit, and the former are objects created by users through the DataKit API.
 
 ```http
 POST /v1/write/custom_object?precision=n&input=my-sample-logger&ignore_global_tags=123 HTTP/1.1
@@ -332,7 +332,7 @@ Content-Type: application/json
 
 ## `/v1/object/labels` | `POST` {#api-object-labels}
 
-Creat or update the `labels` of objects:
+Create or update the `labels` of objects:
 
 `request body` description
 
@@ -501,7 +501,7 @@ Content-Type: application/json
         "post_url":"",
         "cur_status":"",
         "frequency":"",
-        "enable_traceroute":true,//true代表勾选，tcp，icmp才有用
+        "enable_traceroute":true,//true 代表勾选，tcp，icmp 才有用
         "success_when_logic":"",
         "SuccessWhen":[]*HTTPSuccess ,
         "tags":map[string]string ,
@@ -675,6 +675,203 @@ Example of failing return:
 ## `/metrics` | `GET` {#api-metrics}
 
 Get Datakit Prometheus metrics.
+
+## `/v1/global/host/tags` | `GET` {#api-global-host-tags-get}
+
+Get global-host-tags.
+
+Example of request:
+
+``` shell
+curl 127.0.0.1:9529/v1/global/host/tags
+```
+
+Example of successful return:
+
+``` json
+status_code: 200
+Response: {
+    "host-tags": {
+        "h": "h",
+        "host": "host-name"
+    }
+}
+```
+
+## `/v1/global/host/tags` | `POST` {#api-global-host-tags-post}
+
+Create or update global-host-tags.
+
+Example of request:
+
+``` shell
+curl -X POST "127.0.0.1:9529/v1/global/host/tags?tag1=v1&tag2=v2"
+```
+
+Example of successful return:
+
+``` json
+status_code: 200
+Response: {
+    "dataway-tags": {
+        "e": "e",
+        "h": "h",
+        "tag1": "v1",
+        "tag2": "v2",
+        "host": "host-name"
+    },
+    "election-tags": {
+        "e": "e"
+    },
+    "host-tags": {
+        "h": "h",
+        "tag1": "v1",
+        "tag2": "v2",
+        "host": "host-name"
+    }
+}
+```
+
+Then, if in host mode, the modified content will be save to `datakit.conf`.
+
+## `/v1/global/host/tags` | `DELETE` {#api-global-host-tags-delete}
+
+Delete some global-host-tags.
+
+Example of request:
+
+``` shell
+curl -X DELETE "127.0.0.1:9529/v1/global/host/tags?tags=tag1,tag3"
+```
+
+Example of successful return:
+
+``` json
+status_code: 200
+Response: {
+    "dataway-tags": {
+        "e": "e",
+        "h": "h",
+        "host": "host-name"
+    },
+    "election-tags": {
+        "e": "e"
+    },
+    "host-tags": {
+        "h": "h",
+        "host": "host-name"
+    }
+}
+```
+
+Then, if in host mode, the modified content will be save to `datakit.conf`.
+
+## `/v1/global/election/tags` | `GET` {#api-global-election-tags-get}
+
+Get global-election-tags.
+
+Example of request:
+
+``` shell
+curl 127.0.0.1:9529/v1/global/election/tags
+```
+
+Example of successful return:
+
+``` json
+status_code: 200
+Response: {
+    "election-tags": {
+        "e": "e"
+    }
+}
+```
+
+## `/v1/global/election/tags` | `POST` {#api-global-election-tags-post}
+
+Create or update global-election-tags.
+
+Example of request:
+
+``` shell
+curl -X POST "127.0.0.1:9529/v1/global/election/tags?tag1=v1&tag2=v2"
+```
+
+Example of successful return:
+
+``` json
+status_code: 200
+Response: {
+    "dataway-tags": {
+        "e": "e",
+        "h": "h",
+        "tag1": "v1",
+        "tag2": "v2",
+        "host": "host-name"
+    },
+    "election-tags": {
+        "tag1": "v1",
+        "tag2": "v2",
+        "e": "e"
+    },
+    "host-tags": {
+        "h": "h",
+        "host": "host-name"
+    }
+}
+```
+
+Then, if in host mode, the modified content will be save to `datakit.conf`.
+
+When `global-election-enable = false` Will failing return:
+
+``` json
+status_code: 500
+Response: {
+    "message": "Can't use this command when global-election is false."
+}
+```
+
+## `/v1/global/election/tags` | `DELETE` {#api-global-election-tags-delete}
+
+Delete some global-election-tags.
+
+Example of request:
+
+``` shell
+curl -X DELETE "127.0.0.1:9529/v1/global/election/tags?tags=tag1,tag3"
+```
+
+Example of successful return:
+
+``` json
+status_code: 200
+Response: {
+    "dataway-tags": {
+        "e": "e",
+        "h": "h",
+        "host": "host-name"
+    },
+    "election-tags": {
+        "e": "e"
+    },
+    "host-tags": {
+        "h": "h",
+        "host": "host-name"
+    }
+}
+```
+
+Then, if in host mode, the modified content will be save to `datakit.conf`.
+
+When `global-election-enable = false` Will failing return:
+
+``` json
+status_code: 500
+Response: {
+    "message": "Can't use this command when global-election is false."
+}
+```
 
 ## DataKit Data Structure Constraint {#lineproto-limitation}
 

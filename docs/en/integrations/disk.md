@@ -22,7 +22,7 @@ monitor   :
 
 ---
 
-Disk collector is used to collect disk information, such as disk storage space, inodes usage, etc.
+Disk collector is used to collect disk information, such as disk storage space, inode usage, etc.
 
 ## Configuration {#config}
 
@@ -30,13 +30,12 @@ After successfully installing and starting DataKit, the disk collector will be e
 
 <!-- markdownlint-disable MD046 -->
 
+### Collector Configuration {#input-config}
 
 === "Host Installation"
 
     Go to the `conf.d/host` directory under the DataKit installation directory, copy `disk.conf.sample` and name it `disk.conf`. Examples are as follows:
 
-
-​    
     ```toml
         
     [[inputs.disk]]
@@ -75,15 +74,59 @@ After successfully installing and starting DataKit, the disk collector will be e
 
 === "Kubernetes"
 
-    Supports modifying configuration parameters as environment variables:
+    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
+
+    Can also be turned on by environment variables, (needs to be added as the default collector in ENV_DEFAULT_ENABLED_INPUTS):
     
-    | Environment Variable Name                            | Corresponding Configuration Parameter Item       | Parameter Example                                                                                 |
-    | ---                                   | ---                    | ---                                                                                      |
-    | `ENV_INPUT_DISK_EXCLUDE_DEVICE`       | `exclude_device`       | `"/dev/loop0","/dev/loop1"`, separated by English commas                      |
-    | `ENV_INPUT_DISK_EXTRA_DEVICE`         | `extra_device`         | `"/nfsdata"`， separated by English commas                        |
-    | `ENV_INPUT_DISK_TAGS`                 | `tags`                 | `tag1=value1,tag2=value2`; If there is a tag with the same name in the configuration file, it will be overwritten                             |
-    | `ENV_INPUT_DISK_ONLY_PHYSICAL_DEVICE` | `only_physical_device` | Ignore non-physical disks (such as network disk, NFS, etc., only collect local hard disk/CD ROM/USB disk, etc.) and give a string value at will|
-    | `ENV_INPUT_DISK_INTERVAL`             | `interval`             | `10s`                                                                                    |
+    - **ENV_INPUT_DISK_INTERVAL**
+    
+        Collect interval
+    
+        **Type**: TimeDuration
+    
+        **ConfField**: `interval`
+    
+        **Default**: 10s
+    
+    - **ENV_INPUT_DISK_EXTRA_DEVICE**
+    
+        Additional device prefix. (By default, collect all devices with dev as the prefix)
+    
+        **Type**: List
+    
+        **ConfField**: `extra_device`
+    
+        **Example**: `/nfsdata,other_data`
+    
+    - **ENV_INPUT_DISK_EXCLUDE_DEVICE**
+    
+        Excluded device prefix. (By default, collect all devices with dev as the prefix)
+    
+        **Type**: List
+    
+        **ConfField**: `exclude_device`
+    
+        **Example**: /dev/loop0,/dev/loop1
+    
+    - **ENV_INPUT_DISK_ONLY_PHYSICAL_DEVICE**
+    
+        Physical devices only (e.g. hard disks, cd-rom drives, USB keys), and ignore all others (e.g. memory partitions such as /dev/shm)
+    
+        **Type**: Boolean
+    
+        **ConfField**: `only_physical_device`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_DISK_TAGS**
+    
+        Customize tags. If there is a tag with the same name in the configuration file, it will be overwritten
+    
+        **Type**: Map
+    
+        **ConfField**: `tags`
+    
+        **Example**: tag1=value1,tag2=value2
 
 <!-- markdownlint-enable -->
 

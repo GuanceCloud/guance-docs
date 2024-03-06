@@ -56,6 +56,8 @@ Allow from [YOUR_IP]
 sudo apachectl restart
 ```
 
+### Collector Configuration {#input-config}
+
 <!-- markdownlint-disable MD046 -->
 === "Host installation"
 
@@ -111,9 +113,9 @@ For all of the following data collections, a global tag named  `host` is appende
 
 
 
-### `apache` {#apache}
+### `apache`
 
-采集到的指标，受 Apache 安装环境影响。具体以 `http://<your-apache-server>/server-status?auto` 页面展示的为准。
+The collected metrics are affected by the environment in which Apache is installed. The metrics shown on the `http://<your-apache-server>/server-status?auto` page will prevail.
 
 - tag
 
@@ -152,8 +154,6 @@ For all of the following data collections, a global tag named  `host` is appende
 |`uptime`|The amount of time the server has been running|int|s|
 |`waiting_for_connection`|The number of workers that can immediately process an incoming request|int|count|
 
- 
-
 ## Log Collection {#logging}
 
 To collect the Apache log, open  `files` in apache.conf and write to the absolute path of the Apache log file. For example:
@@ -180,9 +180,9 @@ When log collection is turned on, logs with `apache` log (`source`) will be gene
 
 - Apache Error Log Cutting
 
-Error Log Text Example 
+Error Log Text Example
 
-```
+```log
 [Tue May 19 18:39:45.272121 2021] [access_compat:error] [pid 9802] [client ::1:50547] AH01797: client denied by server configuration: /Library/WebServer/Documents/server-status
 ```
 
@@ -199,7 +199,7 @@ The list of cut fields is as follows:
 
 Example of access log text:
 
-``` 
+```log
 127.0.0.1 - - [17/May/2021:14:51:09 +0800] "GET /server-status?auto HTTP/1.1" 200 917
 ```
 

@@ -26,7 +26,7 @@ monitor   :
 
 成功安装 DataKit 并启动后，会默认开启 DiskIO 采集器，无需手动开启。
 
-### 前置条件 {#requests}
+### 前置条件 {#requirement}
 
 对于部分旧版本 Windows 操作系统，如若遇到 Datakit 报错： **"The system cannot find the file specified."**
 
@@ -90,16 +90,69 @@ $ diskperf -Y
 
 === "Kubernetes"
 
-    支持以环境变量的方式修改配置参数：
+    可通过 [ConfigMap 方式注入采集器配置](../datakit/datakit-daemonset-deploy.md#configmap-setting) 或 [配置 ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) 开启采集器。
 
-    | 环境变量名                            | 对应的配置参数项     | 参数示例                                                     |
-    | :---                                  | ---                  | ---                                                          |
-    | `ENV_INPUT_DISKIO_SKIP_SERIAL_NUMBER` | `skip_serial_number` | `true`/`false`                                               |
-    | `ENV_INPUT_DISKIO_TAGS`               | `tags`               | `tag1=value1,tag2=value2` 如果配置文件中有同名 tag，会覆盖它 |
-    | `ENV_INPUT_DISKIO_INTERVAL`           | `interval`           | `10s`                                                        |
-    | `ENV_INPUT_DISKIO_DEVICES`            | `devices`            | `'''^sdb\d*'''`                                              |
-    | `ENV_INPUT_DISKIO_DEVICE_TAGS`        | `device_tags`        | `"ID_FS_TYPE", "ID_FS_USAGE"` 以英文逗号隔开                 |
-    | `ENV_INPUT_DISKIO_NAME_TEMPLATES`     | `name_templates`     | `"$ID_FS_LABEL", "$DM_VG_NAME/$DM_LV_NAME"` 以英文逗号隔开   |
+    也支持以环境变量的方式修改配置参数（需要在 ENV_DEFAULT_ENABLED_INPUTS 中加为默认采集器）：
+
+    - **ENV_INPUT_DISKIO_INTERVAL**
+    
+        采集器重复间隔时长
+    
+        **Type**: TimeDuration
+    
+        **ConfField**: `interval`
+    
+        **Default**: 10s
+    
+    - **ENV_INPUT_DISKIO_DEVICES**
+    
+        使用正则表达式设置接口将收集这些预期的设备
+    
+        **Type**: List
+    
+        **ConfField**: `devices`
+    
+        **Example**: `^sda\d,^sdb\d,vd.*`
+    
+    - **ENV_INPUT_DISKIO_DEVICE_TAGS**
+    
+        设备附加标签
+    
+        **Type**: List
+    
+        **ConfField**: `device_tags`
+    
+        **Example**: ID_FS_TYPE,ID_FS_USAGE
+    
+    - **ENV_INPUT_DISKIO_NAME_TEMPLATES**
+    
+        使用与 device_ tags 相同的元数据源
+    
+        **Type**: List
+    
+        **ConfField**: `name_templates`
+    
+        **Example**: $ID_FS_LABEL,$DM_VG_NAME/$DM_LV_NAME
+    
+    - **ENV_INPUT_DISKIO_SKIP_SERIAL_NUMBER**
+    
+        不需要磁盘序列号
+    
+        **Type**: Boolean
+    
+        **ConfField**: `skip_serial_number`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_DISKIO_TAGS**
+    
+        自定义标签。如果配置文件有同名标签，将会覆盖它
+    
+        **Type**: Map
+    
+        **ConfField**: `tags`
+    
+        **Example**: tag1=value1,tag2=value2
 
 <!-- markdownlint-enable -->
 
