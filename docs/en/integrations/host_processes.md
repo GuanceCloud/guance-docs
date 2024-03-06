@@ -35,11 +35,11 @@ The process collector can monitor various running processes in the system, acqui
 ### Preconditions {#requirements}
 
 - The process collector does not collect process metrics by default. To collect metrics-related data, set `open_metric` to `true` in `host_processes.conf`. For example:
-                              
+
 ```toml
 [[inputs.host_processes]]
-	...
-	 open_metric = true
+    ...
+     open_metric = true
 ```
 
 ### Collector Configuration {#input-config}
@@ -82,16 +82,69 @@ The process collector can monitor various running processes in the system, acqui
 
 === "Kubernetes"
 
-    It supports modifying configuration parameters as environment variables (effective only when the DataKit is running in K8s daemonset mode, which is not supported for host-deployed DataKits):
+    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
+
+    Can also be turned on by environment variables, (needs to be added as the default collector in ENV_DEFAULT_ENABLED_INPUTS):
     
-    | Environment Variable Name                              | Corresponding Configuration Parameter Item | Parameter Example                                                     |
-    | :---                                    | ---              | ---                                                          |
-    | `ENV_INPUT_HOST_PROCESSES_OPEN_METRIC`  | `open_metric`    | `true`/`false`                                               |
-    | `ENV_INPUT_HOST_PROCESSES_TAGS`         | `tags`           | `tag1=value1,tag2=value2`, If there is a tag with the same name in the configuration file, it will be overwritten |
-    | `ENV_INPUT_HOST_PROCESSES_PROCESS_NAME` | `process_name`   | `".*datakit.*", "guance"`, separated by English commas                     |
-    | `ENV_INPUT_HOST_PROCESSES_MIN_RUN_TIME` | `min_run_time`   | `"10m"`                                                      |
-    | `ENV_INPUT_HOST_PROCESSES_ENABLE_LISTEN_PORTS` | `enable_listen_ports`   | `true`/`false`                                                     |
-    | `ENV_INPUT_HOST_PROCESSES_ENABLE_OPEN_FILES` | `enable_open_files`   |`true`/`false`                                                      |
+    - **ENV_INPUT_HOST_PROCESSES_OPEN_METRIC**
+    
+        Enable process metric collecting
+    
+        **Type**: Boolean
+    
+        **ConfField**: `open_metric`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_HOST_PROCESSES_PROCESS_NAME**
+    
+        Whitelist of process
+    
+        **Type**: List
+    
+        **ConfField**: `process_name`
+    
+        **Example**: .*datakit.*,guance
+    
+    - **ENV_INPUT_HOST_PROCESSES_MIN_RUN_TIME**
+    
+        Process minimal run time
+    
+        **Type**: TimeDuration
+    
+        **ConfField**: `min_run_time`
+    
+        **Default**: 10m
+    
+    - **ENV_INPUT_HOST_PROCESSES_ENABLE_LISTEN_PORTS**
+    
+        Enable listen ports tag
+    
+        **Type**: Boolean
+    
+        **ConfField**: `enable_listen_ports`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_HOST_PROCESSES_ENABLE_OPEN_FILES**
+    
+        Enable open files field
+    
+        **Type**: Boolean
+    
+        **ConfField**: `enable_open_files`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_HOST_PROCESSES_TAGS**
+    
+        Customize tags. If there is a tag with the same name in the configuration file, it will be overwritten
+    
+        **Type**: Map
+    
+        **ConfField**: `tags`
+    
+        **Example**: tag1=value1,tag2=value2
 
 <!-- markdownlint-enable -->
 
@@ -137,7 +190,7 @@ Collect process metrics, including CPU/memory usage, etc.
 |`mem_used_percent`|Memory usage percentage|float|percent|
 |`open_files`|Number of open files (only supports Linux)|int|count|
 |`rss`|Resident Set Size (resident memory size)|int|B|
-|`threads`|Total number of threads|int|count| 
+|`threads`|Total number of threads|int|count|
 
 
 
@@ -189,7 +242,7 @@ Collect data on process objects, including process names, process commands, etc.
 |`started_duration`|Process startup time|int|sec|
 |`state_zombie`|Whether it is a zombie process|bool|-|
 |`threads`|Total number of threads|int|count|
-|`work_directory`|Working directory (Linux only)|string|-| 
+|`work_directory`|Working directory (Linux only)|string|-|
 
 
 

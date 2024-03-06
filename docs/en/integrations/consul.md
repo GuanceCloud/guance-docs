@@ -1,5 +1,18 @@
+---
+title     : 'Consul'
+summary   : 'Collect metrics of Consul'
+__int_icon      : 'icon/consul'
+dashboard :
+  - desc  : 'Consul'
+    path  : 'dashboard/en/consul'
+monitor   :
+  - desc  : 'Consul'
+    path  : 'monitor/en/consul'
+---
 
+<!-- markdownlint-disable MD025 -->
 # Consul
+<!-- markdownlint-enable -->
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
@@ -8,27 +21,32 @@
 
 Consul collector is used to collect metric data related to Consul, and currently it only supports data in Prometheus format.
 
-## Preconditions {#requirements}
+## Configuration {#config}
+
+### Preconditions {#requirements}
 
 - Installing consul-exporter
-  - Download consul_exporter package
+    - Download consul_exporter package
 
-    ```shell
-    sudo wget https://github.com/prometheus/consul_exporter/releases/download/v0.7.1/consul_exporter-0.7.1.linux-amd64.tar.gz
-    ```
-  - Unzip consul_exporter package
+      ```shell
+      sudo wget https://github.com/prometheus/consul_exporter/releases/download/v0.7.1/consul_exporter-0.7.1.linux-amd64.tar.gz
+      ```
 
-    ```shell
-    sudo tar -zxvf consul_exporter-0.7.1.linux-amd64.tar.gz  
-    ```
-  - Go to the consul_exporter-0.7.1.linux-amd64 directory and run the consul_exporter script
+    - Unzip consul_exporter package
 
-    ```shell
-    ./consul_exporter     
-    ```
+      ```shell
+      sudo tar -zxvf consul_exporter-0.7.1.linux-amd64.tar.gz  
+      ```
 
-## Configuration {#input-config}
+    - Go to the consul_exporter-0.7.1.linux-amd64 directory and run the consul_exporter script
 
+      ```shell
+      ./consul_exporter     
+      ```
+
+### Collector Configuration {#input-config}
+
+<!-- markdownlint-disable MD046 -->
 === "host installation"
 
     Go to the `conf.d/consul` directory under the DataKit installation directory, copy `consul.conf.sample` and name it `consul.conf`. Examples are as follows:
@@ -56,7 +74,9 @@ Consul collector is used to collect metric data related to Consul, and currently
 
     The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 
-## Measurements {#measurements}
+<!-- markdownlint-enable -->
+
+## Metric {#metric}
 
 
 
@@ -150,7 +170,7 @@ The configuration is as follows:
 
 Original log:
 
-```
+```log
 Sep 18 19:30:23 derrick-ThinkPad-X230 consul[11803]: 2021-09-18T19:30:23.522+0800 [INFO]  agent.server.connect: initialized primary datacenter CA with provider: provider=consul
 ```
 

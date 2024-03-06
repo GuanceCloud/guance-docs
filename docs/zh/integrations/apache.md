@@ -57,6 +57,8 @@ $ sudo apachectl restart
 ...
 ```
 
+### 采集器配置 {#input-config}
+
 <!-- markdownlint-disable MD046 -->
 === "主机安装"
 
@@ -115,7 +117,7 @@ $ sudo apachectl restart
 
 ### `apache` {#apache}
 
-采集到的指标，受 Apache 安装环境影响。具体以 `http://<your-apache-server>/server-status?auto` 页面展示的为准。
+The collected metrics are affected by the environment in which Apache is installed. The metrics shown on the `http://<your-apache-server>/server-status?auto` page will prevail.
 
 - 标签
 
