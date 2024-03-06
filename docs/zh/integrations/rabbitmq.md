@@ -48,7 +48,7 @@ RabbitMQ 采集器是通过插件 `rabbitmq-management` 采集数据监控 Rabbi
 - 开启 `REST API plug-ins`
 
     ```shell
-    sudo rabbitmq-plugins enable rabbitmq-management
+    sudo rabbitmq-plugins enable rabbitmq_management
     ```
 
 - 创建 user，比如：
@@ -270,10 +270,10 @@ RabbitMQ 采集器是通过插件 `rabbitmq-management` 采集数据监控 Rabbi
 |`disk_free`|Current free disk space|int|B|
 |`disk_free_alarm`|Does the node have disk alarm|bool|-|
 |`fd_used`|Used file descriptors|int|-|
-|`io_read_avg_time`|avg wall time (milliseconds) for each disk read operation in the last statistics interval|float|ms|
-|`io_seek_avg_time`|average wall time (milliseconds) for each seek operation in the last statistics interval|float|ms|
-|`io_sync_avg_time`|average wall time (milliseconds) for each fsync() operation in the last statistics interval|float|ms|
-|`io_write_avg_time`|avg wall time (milliseconds) for each disk write operation in the last statistics interval|float|ms|
+|`io_read_avg_time`|Average wall time (milliseconds) for each disk read operation in the last statistics interval|float|ms|
+|`io_seek_avg_time`|Average wall time (milliseconds) for each seek operation in the last statistics interval|float|ms|
+|`io_sync_avg_time`|Average wall time (milliseconds) for each fsync() operation in the last statistics interval|float|ms|
+|`io_write_avg_time`|Average wall time (milliseconds) for each disk write operation in the last statistics interval|float|ms|
 |`mem_alarm`|Does the node have mem alarm|bool|-|
 |`mem_limit`|Memory usage high watermark in bytes|int|B|
 |`mem_used`|Memory used in bytes|int|B|

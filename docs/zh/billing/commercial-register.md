@@ -1,7 +1,7 @@
 # 注册商业版
 ---
 
-在 [观测云官网](https://www.guance.com/) ，点击 **[免费注册](https://auth.guance.com/businessRegister)**，填写相关信息后即可成为观测云用户。
+在[观测云官网](https://www.guance.com/)，点击**[免费注册](https://auth.guance.com/businessRegister)**，填写相关信息后即可成为观测云用户。
 
 ## 第一步：基本信息 {#info}
 
@@ -15,8 +15,10 @@
 
 ???+ warning "站点相关"
 
-    - 不同站点的账号和数据相互独立，无法互相共享和迁移数据，请谨慎选择。
-    - 注册商业版的同时，您可以根据所选择的站点，设置对应的结算方式，后续也可按需修改。<br/>
+    - 不同站点的账号和数据相互独立，无法互相共享和迁移数据，请谨慎选择；
+
+    - 注册商业版的同时，您可以根据所选择的站点，设置对应的结算方式，后续也可按需修改。
+
     > 更多详情，可参考 [费用结算方式](../billing/billing-account/index.md)。
 
 | 站点    | 登录地址 URL    |  运营商 |
@@ -24,18 +26,24 @@
 | 中国区1（杭州）   | [https://auth.guance.com/](https://auth.guance.com/login/pwd) |阿里云（中国杭州） |
 | 中国区2（宁夏）   | [https://aws-auth.guance.com/](https://aws-auth.guance.com/login/pwd) |AWS（中国宁夏） |
 | 中国区4（广州）   | [https://cn4-auth.guance.com/](https://cn4-auth.guance.com/login/pwd) | 华为云（中国广州） |
+| 中国区5（世纪互联）   | [https://cn5-auth.guance.com/](https://cn4-auth.guance.com/login/pwd) |  |
+| 中国区6（香港）   | [https://cn6-auth.guance.com/](https://cn4-auth.guance.com/login/pwd) | 阿里云（国际站） |
 | 海外区1（俄勒冈） | [https://us1-auth.guance.com/](https://us1-auth.guance.com/) | AWS（美国俄勒冈） |
+| 欧洲区1（法兰克福）   | [https://eu1-auth.guance.com/](https://cn4-auth.guance.com/login/pwd) | AWS（法兰克福） |
+| 亚太区1（新加坡）   | [https://ap1-auth.guance.com/](https://cn4-auth.guance.com/login/pwd) | AWS（新加坡） |
 
 
 ## 第二步：企业信息 {#corporate}
 
-在**企业信息**页面，输入企业名称，阅读并同意相关协议后，点击**下一步**。
+在**企业信息**页面，输入企业名称，阅读并同意相关协议后，点击**注册**。
 
 ![](img/11.account_center_4.png)
 
 点击**更多信息**，您可<u>按需填写</u>其他企业相关信息。
 
 ![](img/0628.png)
+
+完成第二步，即成功创建了观测云账号。接下来的[第三步](#methods)将继续指导您开通工作空间。
 
 ## 第三步：选择开通方式 {#methods}
 
@@ -74,7 +82,9 @@
 
 若您在注册时选择[阿里云账号结算](./billing-account/aliyun-account.md)，工作空间内产生的所有费用会直接从您的阿里云账户中进行结算。
 
-您可以在**选择开通方式**，填写工作空间名称，选择工作空间语言，点击 **[前往阿里云免费开通观测云服务](https://market.aliyun.com/products/56838014/cmgj00053362.html)** 获取并填写 **[账号 ID](../billing/billing-account/aliyun-account.md#uid)、[商品实例 ID](../billing/billing-account/aliyun-account.md#entity-id)**，点击**确定**即可完成注册。
+填写工作空间名称，选择工作空间语言，点击 **[前往阿里云免费开通观测云服务](https://market.aliyun.com/products/56838014/cmgj00053362.html)** 获取并填写 **[账号 ID](../billing/billing-account/aliyun-account.md#uid)、[商品实例 ID](../billing/billing-account/aliyun-account.md#entity-id)**，点击**确定**即可完成注册。
+
+![](img/1.register_aliyun.png)
 
 ???+ warning "阿里云用户也可以通过以下方式直接开通观测云："
     
@@ -86,7 +96,6 @@
     
     > 更多详情步骤可参考文档 [阿里云市场开通观测云专属版](commercial-aliyun-sls.md) 、[观测云商业版和观测云专属版的区别](../billing/faq.md#_5)。
 
-![](img/1.register_aliyun.png)
 
 
 #### AWS 账号结算 {#aws}
@@ -105,13 +114,13 @@
 
 若您在注册时选择[华为云账号结算](./billing-account/huawei-account.md)，工作空间内产生的所有费用会直接从您的华为云账户中进行结算。
 
-您可以在**选择开通方式**，点击 **[前往华为云云商店免费开通](../billing/billing-account/huawei-account.md#market)**，在华为云云商店订阅观测云并开通华为云账号结算。
+点击**[前往华为云免费开通](../billing/billing-account/huawei-account.md#market)**，在华为云云商店订阅观测云并开通华为云账号结算。
 
 ![](img/1.register_guance-1.png)
 
 您也可以通过以下方式直接开通观测云：
     
-直接前往 [华为云云商店](https://marketplace.huaweicloud.com/contents/8990a122-f456-43a4-892c-a458be31e336#productid=OFFI845592654693900288)，购买观测云 SaaS 版，并直接通过免登注册开通观测云。
+直接前往[华为云云商店](https://marketplace.huaweicloud.com/contents/8990a122-f456-43a4-892c-a458be31e336#productid=OFFI845592654693900288)，购买观测云 SaaS 版，并直接通过免登注册开通观测云。
 
 ### 同步创建费用中心账号 {#sync}
 
@@ -141,11 +150,11 @@
 
 ![](img/4.register_language_3.png)
 
-
+<!--
 ## 开始使用观测云 {#start}
 
 首次注册进入工作空间，可观看观测云介绍小视频，或者您可以点击**从安装 DataKit 开始**即可安装配置第一个 DataKit。
 
 ![](img/1-free-start-1109.png)
 
-
+-->
