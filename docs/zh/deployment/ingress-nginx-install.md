@@ -7,7 +7,7 @@ Nginx Ingress 是 Kubernetes Ingress 的一种实现。它通过 watch Kubernete
 
 ## 前提条件
 
-- 已部署 Kubernetes 集群，未部署可参考 [Kubernetes 部署](http://127.0.0.1:8000/deployment/infra-kubernetes/)
+- 已部署 Kubernetes 集群，未部署可参考 [Kubernetes 部署](infra-kubernetes.md)
 - （可选）已部署 Helm 工具，未部署可参考 [Helm 安装](helm-install.md) 
 
 ## 基础信息及兼容
