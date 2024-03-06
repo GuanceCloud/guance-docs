@@ -7,7 +7,7 @@
 
 ## 在 AWS 云市场订阅观测云 {#subscribe}
 
-点击进入 [AWS 云市场](https://awsmarketplace.amazonaws.cn/marketplace/pp/prodview-ywkat3beera5k) 观测云商品页，点击**继续订阅**。
+点击进入 [AWS 云市场](https://awsmarketplace.amazonaws.cn/marketplace/pp/prodview-4rki5nfjxktmy) 观测云商品页，点击**继续订阅**。
 
 ![](img/8.space_4.png)
 
