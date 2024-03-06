@@ -79,32 +79,150 @@ See  [https://www.nvidia.com/Download/index.aspx]( https://www.nvidia.com/Downlo
 
     ???+ attention
 
-        1. Datakit can remotely collect GPU server indicators through SSH (when remote collection is enabled, the local configuration will be invalid).
+        1. DataKit can remotely collect GPU server indicators through SSH (when remote collection is enabled, the local configuration will be invalid).
         1. The number of `remote_addrs` configured can be more than the number of `remote_users` `remote_passwords` `remote_rsa_paths`.If not enough, it will match the first value.
         1. Can be collected through `remote_addrs`+`remote_users`+`remote_passwords`.
         1. It can also be collected through `remote_addrs`+`remote_users`+`remote_rsa_paths`. (`remote_passwords` will be invalid after configuring the RSA public key).
-        1. After turning on remote collection, elections must be turned on. (Prevent multiple Datakits from uploading duplicate data).
+        1. After turning on remote collection, elections must be turned on. (Prevent multiple DataKit from uploading duplicate data).
         1. For security reasons, you can change the SSH port number or create a dedicated account for GPU remote collection.
 
     After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    Supports modifying configuration parameters as environment variables (effective only when the DataKit is running in K8s daemonset mode, which is not supported for host-deployed DataKit):
+    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
 
-    | Environment Variable Name               | Corresponding Configuration Parameter Item         | Parameter Example                                                    |
-    | :-----------------------------          | ---                      | ---                                                          |
-    | `ENV_INPUT_GPUSMI_TAGS`                 | `tags`                   | `tag1=value1,tag2=value2` If there is a tag with the same name in the configuration file, it will be overwritten. |
-    | `ENV_INPUT_GPUSMI_INTERVAL`             | `interval`               | `10s`                                                        |
-    | `ENV_INPUT_GPUSMI_BIN_PATHS`            | `bin_paths`              | `["/usr/bin/nvidia-smi"]`                                    |
-    | `ENV_INPUT_GPUSMI_TIMEOUT`              | `timeout`                | `"5s"`                                                       |
-    | `ENV_INPUT_GPUSMI_PROCESS_INFO_MAX_LEN` | `process_info_max_len`   | `10`                                                         |
-    | `ENV_INPUT_GPUSMI_DROP_WARNING_DELAY`   | `gpu_drop_warning_delay` | `"300s"`                                                     |
-    | `ENV_INPUT_GPUSMI_ENVS`                 | `envs`                   | `["LD_LIBRARY_PATH=/usr/local/corex/lib/:$LD_LIBRARY_PATH"]` |
-    | `ENV_INPUT_GPUSMI_REMOTE_ADDRS`         | `remote_addrs`           | `["192.168.1.1:22"]`                                         |
-    | `ENV_INPUT_GPUSMI_REMOTE_USERS`         | `remote_users`           | `["remote_login_name"]`                                      |
-    | `ENV_INPUT_GPUSMI_REMOTE_RSA_PATHS`     | `remote_rsa_paths`       | `["/home/your_name/.ssh/id_rsa"]`                            |
-    | `ENV_INPUT_GPUSMI_REMOTE_COMMAND`       | `remote_command`         | `"nvidia-smi -x -q"`          
+    Can also be turned on by environment variables, (needs to be added as the default collector in ENV_DEFAULT_ENABLED_INPUTS):
+    
+    - **ENV_INPUT_GPUSMI_INTERVAL**
+    
+        Collect interval
+    
+        **Type**: TimeDuration
+    
+        **ConfField**: `interval`
+    
+        **Default**: 10s
+    
+    - **ENV_INPUT_GPUSMI_TIMEOUT**
+    
+        Timeout
+    
+        **Type**: TimeDuration
+    
+        **ConfField**: `timeout`
+    
+        **Default**: 5s
+    
+    - **ENV_INPUT_GPUSMI_BIN_PATH**
+    
+        The binPath
+    
+        **Type**: JSON
+    
+        **ConfField**: `bin_path`
+    
+        **Example**: `["/usr/bin/nvidia-smi"]`
+    
+    - **ENV_INPUT_GPUSMI_PROCESS_INFO_MAX_LEN**
+    
+        Maximum number of GPU processes that consume the most resources
+    
+        **Type**: Int
+    
+        **ConfField**: `process_info_max_len`
+    
+        **Default**: 10
+    
+    - **ENV_INPUT_GPUSMI_DROP_WARNING_DELAY**
+    
+        GPU card drop warning delay
+    
+        **Type**: TimeDuration
+    
+        **ConfField**: `gpu_drop_warning_delay`
+    
+        **Default**: 5m
+    
+    - **ENV_INPUT_GPUSMI_ENVS**
+    
+        The envs of LD_LIBRARY_PATH
+    
+        **Type**: JSON
+    
+        **ConfField**: `envs`
+    
+        **Example**: ["LD_LIBRARY_PATH=/usr/local/corex/lib/:$LD_LIBRARY_PATH"]
+    
+    - **ENV_INPUT_GPUSMI_REMOTE_ADDRS**
+    
+        If use remote GPU servers
+    
+        **Type**: JSON
+    
+        **ConfField**: `remote_addrs`
+    
+        **Example**: ["192.168.1.1:22","192.168.1.2:22"]
+    
+    - **ENV_INPUT_GPUSMI_REMOTE_USERS**
+    
+        Remote login name
+    
+        **Type**: JSON
+    
+        **ConfField**: `remote_users`
+    
+        **Example**: ["user_1","user_2"]
+    
+    - **ENV_INPUT_GPUSMI_REMOTE_PASSWORDS**
+    
+        Remote password
+    
+        **Type**: JSON
+    
+        **ConfField**: `remote_passwords`
+    
+        **Example**: ["pass_1","pass_2"]
+    
+    - **ENV_INPUT_GPUSMI_REMOTE_RSA_PATHS**
+    
+        Remote rsa paths
+    
+        **Type**: JSON
+    
+        **ConfField**: `remote_rsa_paths`
+    
+        **Example**: ["/home/your_name/.ssh/id_rsa"]
+    
+    - **ENV_INPUT_GPUSMI_REMOTE_COMMAND**
+    
+        Remote command
+    
+        **Type**: String
+    
+        **ConfField**: `remote_command`
+    
+        **Example**: "`nvidia-smi -x -q`"
+    
+    - **ENV_INPUT_GPUSMI_ELECTION**
+    
+        Enable election
+    
+        **Type**: Boolean
+    
+        **ConfField**: `election`
+    
+        **Default**: true
+    
+    - **ENV_INPUT_GPUSMI_TAGS**
+    
+        Customize tags. If there is a tag with the same name in the configuration file, it will be overwritten
+    
+        **Type**: Map
+    
+        **ConfField**: `tags`
+    
+        **Example**: tag1=value1,tag2=value2
 
 <!-- markdownlint-enable -->
 
@@ -123,7 +241,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 ### `gpu_smi`
 
--  Tags
+- Tags
 
 
 | Tag | Description |
@@ -293,18 +411,18 @@ After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#mana
 
 ### DCGM Metrics {#dcgm-metric}
 
-| Metrics | Description | Data Type |
-| --- | --- | --- |
-|  DCGM_FI_DEV_DEC_UTIL                |  gauge, Decoder utilization (in %).                                | int |
-|  DCGM_FI_DEV_ENC_UTIL                |  gauge, Encoder utilization (in %).                                | int |
-|  DCGM_FI_DEV_FB_FREE                 |  gauge, Framebuffer memory free (in MiB).                          | int |
-|  DCGM_FI_DEV_FB_USED                 |  gauge, Framebuffer memory used (in MiB).                          | int |
-|  DCGM_FI_DEV_GPU_TEMP                |  gauge, GPU temperature (in C).                                    | int |
-|  DCGM_FI_DEV_GPU_UTIL                |  gauge, GPU utilization (in %).                                    | int |
-|  DCGM_FI_DEV_MEM_CLOCK               |  gauge, Memory clock frequency (in MHz).                           | int |
-|  DCGM_FI_DEV_MEM_COPY_UTIL           |  gauge, Memory utilization (in %).                                 | int |
-|  DCGM_FI_DEV_NVLINK_BANDWIDTH_TOTAL  |  counter, Total number of NVLink bandwidth counters for all lanes. | int |
-|  DCGM_FI_DEV_PCIE_REPLAY_COUNTER     |  counter, Total number of PCIe retries.                            | int |
-|  DCGM_FI_DEV_SM_CLOCK                |  gauge, SM clock frequency (in MHz).                               | int |
-|  DCGM_FI_DEV_VGPU_LICENSE_STATUS     |  gauge, vGPU License status                                        | int |
-|  DCGM_FI_DEV_XID_ERRORS              |  gauge, Value of the last XID error encountered.                   | int |
+| Metrics | Description                                                       | Data Type |
+| --- |-------------------------------------------------------------------| --- |
+|  DCGM_FI_DEV_DEC_UTIL                | gauge, Decoder utilization (in %).                                | int |
+|  DCGM_FI_DEV_ENC_UTIL                | gauge, Encoder utilization (in %).                                | int |
+|  DCGM_FI_DEV_FB_FREE                 | gauge, Frame buffer memory free (in MiB).                         | int |
+|  DCGM_FI_DEV_FB_USED                 | gauge, Frame buffer memory used (in MiB).                         | int |
+|  DCGM_FI_DEV_GPU_TEMP                | gauge, GPU temperature (in C).                                    | int |
+|  DCGM_FI_DEV_GPU_UTIL                | gauge, GPU utilization (in %).                                    | int |
+|  DCGM_FI_DEV_MEM_CLOCK               | gauge, Memory clock frequency (in MHz).                           | int |
+|  DCGM_FI_DEV_MEM_COPY_UTIL           | gauge, Memory utilization (in %).                                 | int |
+|  DCGM_FI_DEV_NVLINK_BANDWIDTH_TOTAL  | counter, Total number of NVLink bandwidth counters for all lanes. | int |
+|  DCGM_FI_DEV_PCIE_REPLAY_COUNTER     | counter, Total number of PCIe retries.                            | int |
+|  DCGM_FI_DEV_SM_CLOCK                | gauge, SM clock frequency (in MHz).                               | int |
+|  DCGM_FI_DEV_VGPU_LICENSE_STATUS     | gauge, vGPU License status                                        | int |
+|  DCGM_FI_DEV_XID_ERRORS              | gauge, Value of the last XID error encountered.                   | int |

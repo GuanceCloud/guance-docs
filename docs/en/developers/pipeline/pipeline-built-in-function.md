@@ -4,10 +4,10 @@
 Function parameter description:
 
 - In function arguments, the anonymous argument (`_`) refers to the original input text data
-- json path, expressed directly as `x.y.z`, without any other modifications. For example, `{"a":{"first":2.3, "second":2, "third":"abc", "forth":true}, "age":47}`, where the json path is `a.thrid` to indicate that the data to be manipulated is `abc`
+- JSON path, expressed directly as `x.y.z`, without any other modifications. For example, `{"a":{"first":2.3, "second":2, "third":"abc", "forth":true}, "age":47}`, where the JSON path is `a.thrid` to indicate that the data to be manipulated is `abc`
 - The relative order of all function arguments is fixed, and the engine will check it concretely
 - All of the `key` parameters mentioned below refer to the `key` generated after the initial extraction (via `grok()` or `json()`)
-- The path of the json to be processed, supports the writing of identifiers, and cannot use strings. If you are generating new keys, you need to use strings
+- The path of the JSON to be processed, supports the writing of identifiers, and cannot use strings. If you are generating new keys, you need to use strings
 
 ## Function List {#function-list}
 
@@ -924,6 +924,7 @@ Function parameters:
 - `input`：The text to be extracted can be the original text (`_`) or a `key` after the initial extraction
 - `pattern`: grok expression, the data type of the specified key is supported in the expression: bool, float, int, string (corresponding to Pipeline's str, can also be written as str), the default is string
 - `trim_space`: Delete the leading and trailing blank characters in the extracted characters, the default value is true
+
 ```python
 grok(_, pattern)    #Use the entered text directly as raw data
 grok(key, pattern)  # For a key that has been extracted before, do grok again
@@ -1310,7 +1311,7 @@ json(_, first) lowercase(first)
 
 # result
 {
-		"first": "hello"
+    "first": "hello"
 }
 ```
 
@@ -1707,6 +1708,7 @@ Function prototype: `fn sample(p)`
 Function description: Choose to collect/discard data with probability p.
 
 Function parameters:
+
 - `p`: the probability that the sample function returns true, the value range is [0, 1]
 
 Example:
