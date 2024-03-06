@@ -2,7 +2,7 @@
 
 ## 1.79.155（2024 年 02 月 07 日）
 
-pubrepo.guance.com/dataflux/1.79.155:launcher-f137200-1707312493
+pubrepo.guance.com/dataflux/1.79.155:launcher-df4a338-1707312493
 
 ### 观测云更新
 
