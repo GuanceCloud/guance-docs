@@ -9,8 +9,8 @@
 - [x] 采集链路信息
 - [x] 采集日志信息
 - [x] 采集 RUM 信息
-- [x] 回话重放
-    即用户访问前端的一系列过程的回话录制信息，包括点击某个按钮、操作界面、停留时间等，有助于客户真是意图、操作复现
+- [x] 会话重放
+    即用户访问前端的一系列过程的会话录制信息，包括点击某个按钮、操作界面、停留时间等，有助于客户真是意图、操作复现
 
 
 ## 版本信息
@@ -210,15 +210,15 @@ mvn clean package
 
 ### 安装 DataKit
 
-参考 [DataKit 安装文档](/datakit/datakit-install.md)
+参考 [DataKit 安装文档](/datakit/datakit-install/)
 
 ### DataKit 开启 DDTrace 采集器
 
-**DDTrace 采集器**用于采集应用链路信息，参考[DDTrace 采集器](/integrations/ddtrace.md)接入文档。
+**DDTrace 采集器**用于采集应用链路信息，参考[DDTrace 采集器](/integrations/ddtrace/)接入文档。
 
 ### DataKit 开启 Log 采集器
 
-**Log 采集器**用于采集日志信息，参考[Log 采集器](/integrations/logging.md)接入文档。
+**Log 采集器**用于采集日志信息，参考[Log 采集器](/integrations/logging/)接入文档。
 
 需要调整以下信息
 
@@ -255,11 +255,11 @@ default_time(time,"Asia/Shanghai")
 
 ### DataKit 开启 StatsD 采集器
 
-**StatsD 采集器**用于采集指标信息，参考[StatsD 采集器](/integrations/statsd.md)接入文档。
+**StatsD 采集器**用于采集指标信息，参考[StatsD 采集器](/integrations/statsd/)接入文档。
 
 ### DataKit 开启 RUM 采集器
 
-**RUM 采集器**: RUM（Real User Monitor）采集器用于收集网页端或移动端上报的用户访问监测数据。参考[RUM 采集器](/integrations/rum.md)接入文档。
+**RUM 采集器**: RUM（Real User Monitor）采集器用于收集网页端或移动端上报的用户访问监测数据。参考[RUM 采集器](/integrations/rum/)接入文档。
 
 ### 重启 DataKit
 
@@ -387,6 +387,6 @@ Tomcat 启动完成后，自动解压 `war`应用，进入到`/webapps/ruoyi-adm
 ![Img](../images/tomcat_ruoyi_7.png)
 
 
-### 回话重放
+### 会话重放
 
 ![Img](../images/tomcat_ruoyi_8.png)

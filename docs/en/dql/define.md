@@ -248,16 +248,16 @@ The `BY` clause is used to categorize and aggregate the results. Similar to `GRO
 
 The `ORDER BY` clause sorts the results, similar to the `ORDER BY` in MySQL.
 
-⚠️ Time series data, only time field sorting is supported.
+⚠️ 1. "Metric Data" only time field sorting is supported.; 2. When grouping is by in the query, order-by will not take effect. Please use sorder-by sort.
 
 ```python
-# Get the maximum CPU utilization of different hosts, in reverse order of time.
-M::cpu:(max('usage_total')) by host order by time desc
+# Get the CPU utilization of different hosts, in reverse order of time.
+M::cpu:(`usage_total`) order by time desc
 ```
 
 ```python
-# Obtain the response time of processing requests under different hosts, in ascending order of response time.
-L::`*`:(max('response_time') as m1) by host order by m1 asc
+# Get all log data, in ascending order of response time.
+L::`*`:(`*`) order by response_time asc
 ```
 
 ### sorder-by-clause statement

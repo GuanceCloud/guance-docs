@@ -18,9 +18,9 @@ import logging
 from flask import Flask
 from ddtrace import tracer
 
-os.environ["DD_SERVICE"] = "Python-App"    # 设置服务名
-os.environ["DD_ENV"] = "Testing"          # 设置环境名
-os.environ["DD_VERSION"] = "V1.1"         # 设置版本号
+os.environ["DD_SERVICE"] = "SERVICE_A"  # 设置服务名
+os.environ["DD_ENV"] = "test"  # 设置环境名
+os.environ["DD_VERSION"] = "v1"  # 设置版本号
 os.environ["DD_LOGS_INJECTION"] = "true"  # 开启log注入
 
 # 设置datakit接收链路数据ip地址与端口
@@ -31,14 +31,21 @@ tracer.configure(
 
 log = logging.getLogger(__name__)
 log.level = logging.INFO
+stream_handler = logging.StreamHandler()
+formatter = logging.Formatter('%(asctime)s %(levelname)s %(filename)s %(dd.service)s %(dd.trace_id)s %(funcName)s:%(lineno)s %(message)s')
+stream_handler.setFormatter(formatter)
+log.addHandler(stream_handler)
+
 
 app = Flask(__name__)
 
-@app.route('/a',  methods=['GET'])
+
+@app.route('/a', methods=['GET'])
 def index():
     # 打印一条log日志
     log.info('Hello, World!')
     return "abcdefg", 200
+
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=10001, debug=True)

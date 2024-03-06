@@ -29,6 +29,7 @@ nav:
     - 'ddtrace log 关联': ddtrace-skill-log.md
     - tracing_method.md
     - 'OpenTelemetry Java SDK': opentelemetry-sdk.md
+    - opentelemetry-params-for-java.md
     - 'trace_thread.md'
 
   - '场景 (Scene)': 

@@ -142,7 +142,7 @@ void main() async {
     );
     runApp(MyApp());
   };
-}
+
 ```
 
 ##### 动态使用
@@ -214,7 +214,15 @@ await FTTracer().setConfig(
 ## RUM 用户数据追踪
 
 ### Action {#action}
-
+#### 使用方法
+```dart
+  /// 添加 action
+  /// [actionName] action 名称
+  /// [actionType] action 类型
+  /// [property] 附加属性参数(可选)
+  Future<void> startAction(String actionName, String actionType, {Map<String, String>? property})
+```
+#### 代码示例
 ```dart
 FTRUMManager().startAction("action name", "action type");
 ```
@@ -268,8 +276,7 @@ class MyApp extends StatelessWidget {
 }
 
 //此处“页面名称”为 NoRouteNamePage
-Navigator.of(context).push(
-          FTMaterialPageRoute(builder: (context) => new NoRouteNamePage()
+Navigator.of(context).push(FTMaterialPageRoute(builder: (context) => new NoRouteNamePage()
 ```
 
 * 以上两种方法同时在一个项目中混合使用
@@ -298,16 +305,35 @@ class _HomeState extends State<HomeRoute> {
 
 ```
 #### 自定义 View
+##### 使用方法
 
 ```dart
-FTRUMManager().createView("Current Page Name",100000000)
+
+  /// view 创建,这个方法需要在 [starView] 之前被调用，目前 flutter route 中未有
+  /// [viewName] 界面名称
+  /// [duration]
+  Future<void> createView(String viewName, int duration)
+
+  /// view 开始
+  /// [viewName] 界面名称
+  /// [viewReferer] 前一个界面名称
+  /// [property] 附加属性参数(可选)
+  Future<void> starView(String viewName, {Map<String, String>? property})
+
+  /// view 结束
+  /// [property] 附加属性参数(可选)
+  Future<void> stopView({Map<String, String>? property})
+
+```
+
+##### 代码示例
+```dart
+FTRUMManager().createView("Current Page Name", 100000000)
 
 FTRUMManager().starView("Current Page Name");
          
 FTRUMManager().stopView();
 ```
-
-
 ### Error {#error}
 #### 自动采集
 ```dart
@@ -334,7 +360,21 @@ void main() async {
  
 ```
 #### 自定义 Error
-``` 
+##### 使用方法
+
+```dart
+  ///添加自定义错误
+  /// [stack] 堆栈日志
+  /// [message] 错误信息
+  /// [appState] 应用状态
+  /// [errorType] 自定义 errorType
+  /// [property] 附加属性参数(可选)
+  Future<void> addCustomError(String stack, String message, {Map<String, String>? property, String? errorType}) 
+```
+
+##### 代码示例
+
+```dart 
  ///自定义 error
  FTRUMManager().addCustomError("error stack", "error message");
 ```
@@ -345,6 +385,38 @@ void main() async {
 通过[配置](#rum-config) `FTRUMManager().setConfig` 开启 `enableUserResource`来实现。
 
 #### 自定义 Resource
+##### 使用方法
+
+```dart
+  ///开始资源请求
+  /// [key] 唯一 id
+  /// [property] 附加属性参数(可选)
+  Future<void> startResource(String key, {Map<String, String>? property})
+
+  ///结束资源请求
+  /// [key] 唯一 id
+  /// [property] 附加属性参数(可选)
+  Future<void> stopResource(String key, {Map<String, String>? property})
+
+  /// 发送资源数据指标
+  /// [key] 唯一 id
+  /// [url] 请求地址
+  /// [httpMethod] 请求方法
+  /// [requestHeader] 请求头参数
+  /// [responseHeader] 返回头参数
+  /// [responseBody] 返回内容
+  /// [resourceStatus] 返回状态码
+  Future<void> addResource(
+      {required String key,
+      required String url,
+      required String httpMethod,
+      required Map<String, dynamic> requestHeader,
+      Map<String, dynamic>? responseHeader,
+      String? responseBody = "",
+      int? resourceStatus})
+```
+
+##### 代码示例
 
 ```dart
 /// 使用 httpClient  
@@ -390,7 +462,18 @@ void httpClientGetHttp(String url) async {
 > 使用 http 库与 dio 库，可参考 [example](https://github.com/GuanceCloud/datakit-flutter/tree/dev/example/lib)。
 
 ## Logger 日志打印 
+### 自定义日志
+#### 使用方法
+```dart
 
+  ///输出日志
+  ///[content] 日志内容
+  ///[status] 日志状态
+  ///[property] 附加属性参数(可选)
+  Future<void> logging(String content, FTLogStatus status, {Map<String, String>? property})
+
+```
+#### 代码示例
 ```dart
 FTLogger().logging("info log content", FTLogStatus.info);
 ```
@@ -407,6 +490,19 @@ FTLogger().logging("info log content", FTLogStatus.info);
 
 
 ## Tracer 网络链路追踪
+### 自动采集
+通过[配置](#trace-config) `FTTracer().setConfig` 开启 `enableAutoTrace`来实现。
+
+### 自定义 Tracer
+#### 使用方法
+```dart
+  /// 获取 trace http 请求头数据
+  /// [key] 唯一 id
+  /// [url] 请求地址
+  ///
+  Future<Map<String, String>> getTraceHeader(String url, {String? key})
+```
+#### 代码示例
 
 ```dart
 /// 使用 httpClient    
@@ -445,13 +541,28 @@ void httpClientGetHttp() async {
 > 使用 http 库与 dio 库，可参考 [example](https://github.com/GuanceCloud/datakit-flutter/tree/dev/example/lib)。
 
 ## 用户信息绑定与解绑
+### FTMobileFlutter
+#### 使用方法
+```dart
+  ///绑定用户
+  ///
+  ///[userid] 用户 id
+  ///[userName] 用户名
+  ///[userEmail] 用户邮箱
+  ///[userExt] 扩展数据
+  static Future<void> bindRUMUserData(String userId,
+      {String? userName, String? userEmail, Map<String, String>? ext})
 
+  ///解绑用户
+  static Future<void> unbindRUMUserData()
+
+```
+#### 代码示例
 ```dart
  FTMobileFlutter.bindUser("flutterUser");
 
  FTMobileFlutter.unbindUser();
 ```
-
 
 ## Publish Package 相关配置
 ### Android
