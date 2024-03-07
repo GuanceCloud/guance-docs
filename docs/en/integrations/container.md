@@ -212,6 +212,26 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **Default**: false
     
+    - **ENV_INPUT_CONTAINER_ENV_INPUT_CONTAINER_EXTRACT_K8S_LABEL_AS_TAGS_V2**
+    
+        Append the labels of the resource to the tag of the non-metric (like object and logging) data. Label keys should be specified, if there is only one key and it is an empty string (e.g. [""]), all labels will be added to the tag. The container will inherit the Pod labels. If the key of the label has the dot character, it will be changed to a horizontal line
+    
+        **Type**: JSON
+    
+        **ConfField**: `env_input_container_extract_k8s_label_as_tags_v2`
+    
+        **Example**: ["app","name"]
+    
+    - **ENV_INPUT_CONTAINER_ENV_INPUT_CONTAINER_EXTRACT_K8S_LABEL_AS_TAGS_V2_FOR_METRIC**
+    
+        Append the labels of the resource to the tag of the metric data. Label keys should be specified, if there is only one key and it is an empty string (e.g. [""]), all labels will be added to the tag. The container will inherit the Pod labels. If the key of the label has the dot character, it will be changed to a horizontal line
+    
+        **Type**: JSON
+    
+        **ConfField**: `env_input_container_extract_k8s_label_as_tags_v2_for_metric`
+    
+        **Example**: ["app","name"]
+    
     - **ENV_INPUT_CONTAINER_ENABLE_AUTO_DISCOVERY_OF_PROMETHEUS_POD_ANNOTATIONS**
     
         Whether to turn on Prometheus Pod Annotations and collect metrics automatically
@@ -1728,7 +1748,9 @@ Containers will add Customer Labels of the Pods they belong to.
 
 ## FAQ {#faq}
 
-### NODE_LOCAL mode requires new RBAC permissions {#rbac-nodes-stats}
+<!-- markdownlint-disable MD013 -->
+### :material-chat-question: NODE_LOCAL Mode Requires New RBAC Permissions {#rbac-nodes-stats}
+<!-- markdownlint-enable -->
 
 The `ENV_INPUT_CONTAINER_ENABLE_K8S_NODE_LOCAL` mode is only recommended for DaemonSet deployment and requires access to kubelet, so the `nodes/stats` permission needs to be added to RBAC. For example:
 
@@ -1744,6 +1766,23 @@ rules:
 ```
 
 In addition, the Datakit Pod needs to have the `hostNetwork: true` configuration item enabled.
+
+<!-- markdownlint-disable MD013 -->
+### :material-chat-question: Collect PersistentVolumes and PersistentVolumeClaims Requires New Permissions {#rbac-pv-pvc}
+<!-- markdownlint-enable -->
+
+Datakit version 1.25.0[:octicons-tag-24: Version-1.25.0](../datakit/changelog.md#cl-1.25.0) supported the collection of object data for Kubernetes PersistentVolume and PersistentVolumeClaim, which require new RBAC permissions, as described below:
+
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: datakit
+rules:
+- apiGroups: [""]
+  resources: ["persistentvolumes", "persistentvolumeclaims"]
+  verbs: ["get", "list", "watch"]
+```
 
 <!-- markdownlint-disable MD013 -->
 ### Kubernetes YAML Sensitive Field Mask {#yaml-secret}
