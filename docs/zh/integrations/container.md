@@ -209,6 +209,26 @@ monitor:
     
         **Default**: false
     
+    - **ENV_INPUT_CONTAINER_ENV_INPUT_CONTAINER_EXTRACT_K8S_LABEL_AS_TAGS_V2**
+    
+        追加资源的 labels 到数据（不包括指标数据）的 tag 中。需指定 label keys，如果只有一个 key 且为空字符串（例如 [""]），会添加所有 labels 到 tag。容器会继承 Pod labels。如果 label 的 key 有 dot 字符，会将其变为横线
+    
+        **Type**: JSON
+    
+        **ConfField**: `env_input_container_extract_k8s_label_as_tags_v2`
+    
+        **Example**: ["app","name"]
+    
+    - **ENV_INPUT_CONTAINER_ENV_INPUT_CONTAINER_EXTRACT_K8S_LABEL_AS_TAGS_V2_FOR_METRIC**
+    
+        追加资源的 labels 到指标数据的 tag 中。需指定 label keys，如果只有一个 key 且为空字符串（例如 [""]），会添加所有 labels 到 tag。容器会继承 Pod labels。如果 label 的 key 有 dot 字符，会将其变为横线
+    
+        **Type**: JSON
+    
+        **ConfField**: `env_input_container_extract_k8s_label_as_tags_v2_for_metric`
+    
+        **Example**: ["app","name"]
+    
     - **ENV_INPUT_CONTAINER_ENABLE_AUTO_DISCOVERY_OF_PROMETHEUS_POD_ANNOTATIONS**
     
         是否开启自动发现 Prometheus Pod Annotations 并采集指标
@@ -1738,7 +1758,9 @@ Dataway Sink [详见文档](../deployment/dataway-sink.md)。
 
 ## FAQ {#faq}
 
+<!-- markdownlint-disable MD013 -->
 ### :material-chat-question: NODE_LOCAL 需要新的权限 {#rbac-nodes-stats}
+<!-- markdownlint-enable -->
 
 `ENV_INPUT_CONTAINER_ENABLE_K8S_NODE_LOCAL` 模式只推荐 DaemonSet 部署时使用，该模式需要访问 kubelet，所以需要在 RBAC 添加 `nodes/stats` 权限。例如：
 
@@ -1754,6 +1776,23 @@ rules:
 ```
 
 此外，Datakit Pod 还需要开启 `hostNetwork: true` 配置项。
+
+<!-- markdownlint-disable MD013 -->
+### :material-chat-question: 采集 PersistentVolumes 和 PersistentVolumeClaims 需要新的权限 {#rbac-pv-pvc}
+<!-- markdownlint-enable -->
+
+Datakit 在 1.25.0[:octicons-tag-24: Version-1.25.0](../datakit/changelog.md#cl-1.25.0) 版本支持采集 Kubernetes PersistentVolume 和 PersistentVolumeClaim 的对象数据，采集这两种资源需要新的 RBAC 权限，详细见下：
+
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: datakit
+rules:
+- apiGroups: [""]
+  resources: ["persistentvolumes", "persistentvolumeclaims"]
+  verbs: ["get", "list", "watch"]
+```
 
 <!-- markdownlint-disable MD013 -->
 ### :material-chat-question: Kubernetes YAML 敏感字段屏蔽 {#yaml-secret}
