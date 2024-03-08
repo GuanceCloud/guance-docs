@@ -118,6 +118,7 @@ nav:
       - clickhousev1.md
       - couchbase.md
       - couchdb.md
+      - neo4j.md
       - oracle.md
       - 'OceanBase': oceanbase.md
       - sqlserver.md
