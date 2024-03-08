@@ -103,6 +103,7 @@ nav:
     - netstat.md
     - socket.md
     - hostdir.md
+    - host_healthcheck.md
     - ssh.md
     - gpu_smi.md
     - Windows 相关:
