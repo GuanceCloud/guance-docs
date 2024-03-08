@@ -1,16 +1,32 @@
+---
+title     : 'PostgreSQL'
+summary   : 'Collect PostgreSQL metrics'
+__int_icon      : 'icon/postgresql'
+dashboard :
+  - desc  : 'PostgrepSQL'
+    path  : 'dashboard/en/postgresql'
+monitor   :
+  - desc  : 'N/A'
+    path  : '-'
+---
 
+<!-- markdownlint-disable MD025 -->
 # PostgreSQL
+<!-- markdownlint-enable -->
+
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 
 ---
 
-Postgresql collector can collect the running status index from Postgresql instance, and collect the index to Guance Cloud to help monitor and analyze various abnormal situations of Postgresql.
+PostgreSQL collector can collect the running status index from PostgreSQL instance, and collect the index to Guance Cloud to help monitor and analyze various abnormal situations of PostgreSQL.
 
-## Preconditions {#reqirement}
+## Configuration {#config}
 
-- Postgresql version >= 9.0
+### Preconditions {#reqirement}
+
+- PostgreSQL version >= 9.0
 - Create user
 
 ```sql
@@ -24,86 +40,94 @@ create user datakit with password '<PASSWORD>';
 grant SELECT ON pg_stat_database to datakit;
 ```
 
-## Configuration {#config}
+### Collector Configuration {#input-config}
 
-Go to the `conf.d/db` directory under the DataKit installation directory, copy `postgresql.conf.sample` and name it `postgresql.conf`. Examples are as follows:
+<!-- markdownlint-disable MD046 -->
+=== "Host Installation"
 
-```toml
+    Go to the `conf.d/db` directory under the DataKit installation directory, copy `postgresql.conf.sample` and name it `postgresql.conf`. Examples are as follows:
 
-[[inputs.postgresql]]
-  ## Server address
-  # URI format
-  # postgres://[datakit[:PASSWORD]]@localhost[/dbname]?sslmode=[disable|verify-ca|verify-full]
-  # or simple string
-  # host=localhost user=pqgotest password=... sslmode=... dbname=app_production
+    ```toml
+        
+    [[inputs.postgresql]]
+      ## Server address
+      # URI format
+      # postgres://[datakit[:PASSWORD]]@localhost[/dbname]?sslmode=[disable|verify-ca|verify-full]
+      # or simple string
+      # host=localhost user=pqgotest password=... sslmode=... dbname=app_production
+    
+      address = "postgres://datakit:PASSWORD@localhost?sslmode=disable"
+    
+      ## Ignore databases which are gathered. Do not use with 'databases' option.
+      #
+      # ignored_databases = ["db1"]
+    
+      ## Specify the list of the databases to be gathered. Do not use with the 'ignored_databases' option.
+      #
+      # databases = ["db1"]
+    
+      ## Specify the name used as the "server" tag.
+      #
+      # outputaddress = "db01"
+    
+      ## Collect interval
+      # Time unit: "ns", "us" (or "µs"), "ms", "s", "m", "h"
+      #
+      interval = "10s"
+    
+      ## Relations config
+      # The list of relations/tables can be specified to track per-relation metrics. To collect relation
+      # relation_name refer to the name of a relation, either relation_name or relation_regex must be set.
+      # relation_regex is a regex rule, only takes effect when relation_name is not set.
+      # schemas used for filtering, ignore this field when it is empty
+      # relkind can be a list of the following options:
+      #   r(ordinary table), i(index), S(sequence), t(TOAST table), p(partitioned table),
+      #   m(materialized view), c(composite type), f(foreign table)
+      #
+      # [[inputs.postgresql.relations]]
+      # relation_name = "<TABLE_NAME>"
+      # relation_regex = "<TABLE_PATTERN>"
+      # schemas = ["public"]
+      # relkind = ["r", "p"]
+    
+      ## Set true to enable election
+      election = true
+    
+      ## Run a custom SQL query and collect corresponding metrics.
+      #
+      # [[inputs.postgresql.custom_queries]]
+      #   sql = '''
+      #     select datname,numbackends,blks_read
+      #     from pg_stat_database
+      #     limit 10
+      #   '''
+      #   metric = "postgresql_custom_stat"
+      #   tags = ["datname" ]
+      #   fields = ["numbackends", "blks_read"]
+    
+      ## Log collection
+      #
+      # [inputs.postgresql.log]
+      # files = []
+      # pipeline = "postgresql.p"
+    
+      ## Custom tags
+      #
+      [inputs.postgresql.tags]
+      # some_tag = "some_value"
+      # more_tag = "some_other_value"
+      # ...
+    
+    ```
 
-  address = "postgres://datakit:PASSWORD@localhost?sslmode=disable"
+    After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
-  ## Ignore databases which are gathered. Do not use with 'databases' option.
-  #
-  # ignored_databases = ["db1"]
+=== "Kubernetes"
 
-  ## Specify the list of the databases to be gathered. Do not use with the 'ignored_databases' option.
-  #
-  # databases = ["db1"]
+    The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+<!-- markdownlint-enable -->
 
-  ## Specify the name used as the "server" tag.
-  #
-  # outputaddress = "db01"
-
-  ## Collect interval
-  # Time unit: "ns", "us" (or "µs"), "ms", "s", "m", "h"
-  #
-  interval = "10s"
-
-  ## Relations config
-  # The list of relations/tables can be specified to track per-relation metrics. To collect relation
-  # relation_name refer to the name of a relation, either relation_name or relation_regex must be set.
-  # relation_regex is a regex rule, only takes effect when relation_name is not set.
-  # schemas used for filtering, ignore this field when it is empty
-  # relkind can be a list of the following options:
-  #   r(ordinary table), i(index), S(sequence), t(TOAST table), p(partitioned table),
-  #   m(materialized view), c(composite type), f(foreign table)
-  #
-  # [[inputs.postgresql.relations]]
-  # relation_name = "<TABLE_NAME>"
-  # relation_regex = "<TABLE_PATTERN>"
-  # schemas = ["public"]
-  # relkind = ["r", "p"]
-
-  ## Set true to enable election
-  election = true
-
-  ## Run a custom SQL query and collect corresponding metrics.
-  #
-  # [[inputs.postgresql.custom_queries]]
-  #   sql = '''
-  #     select datname,numbackends,blks_read
-  #     from pg_stat_database
-  #     limit 10
-  #   '''
-  #   metric = "postgresql_custom_stat"
-  #   tags = ["datname" ]
-  #   fields = ["numbackends", "blks_read"]
-
-  ## Log collection
-  #
-  # [inputs.postgresql.log]
-  # files = []
-  # pipeline = "postgresql.p"
-
-  ## Custom tags
-  #
-  [inputs.postgresql.tags]
-  # some_tag = "some_value"
-  # more_tag = "some_other_value"
-  # ...
-
-```
-
-After setting it, restart the DataKit.
-
-## Measurements {#measurements}
+## Metric {#metric}
 
 For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or it can be named by `[[inputs.postgresql.tags]]` alternative host in the configuration.
 
@@ -420,9 +444,9 @@ For all of the following data collections, a global tag named `host` is appended
 
 ## Log Collection {#logging}
 
-- Postgresql logs are output to `stderr` by default. To open file logs, configure them in postgresql's configuration file `/etc/postgresql/<VERSION>/main/postgresql.conf` as follows:
+- PostgreSQL logs are output to `stderr` by default. To open file logs, configure them in postgresql's configuration file `/etc/postgresql/<VERSION>/main/postgresql.conf` as follows:
 
-```
+```toml
 logging_collector = on    # Enable log writing to files
 
 log_directory = 'pg_log'  # Set the file storage directory, absolute path or relative path (relative PGDATA)
@@ -440,9 +464,9 @@ log_file_mode = 0644
 
 For more configuration, please refer to the [doc](https://www.postgresql.org/docs/11/runtime-config-logging.html){:target="_blank"}。
 
-- The Postgresql collector does not have log collection enabled by default. You can open `files` in `conf.d/db/postgresql.conf`  and write to the absolute path of the Postgresql log file. For example:
+- The PostgreSQL collector does not have log collection enabled by default. You can open `files` in `conf.d/db/postgresql.conf`  and write to the absolute path of the PostgreSQL log file. For example:
 
-```
+```toml
 [[inputs.postgresql]]
 
   ...
@@ -457,28 +481,37 @@ When log collection is turned on, a log with a log `source` of `postgresql` is g
 
 - Log collection only supports logs on hosts where DataKit is installed.
 
-## Log Pipeline Cut {#pipeline}
+### Log Pipeline Cut {#pipeline}
 
 The original log is
 
-```
+``` log
 2021-05-31 15:23:45.110 CST [74305] test [pgAdmin 4 - DB:postgres] postgres [127.0.0.1] 60b48f01.12241 LOG:  statement:
-		SELECT psd.*, 2^31 - age(datfrozenxid) as wraparound, pg_database_size(psd.datname) as pg_database_size
-		FROM pg_stat_database psd
-		JOIN pg_database pd ON psd.datname = pd.datname
-		WHERE psd.datname not ilike 'template%'   AND psd.datname not ilike 'rdsadmin'
-		AND psd.datname not ilike 'azure_maintenance'   AND psd.datname not ilike 'postgres'
+        SELECT psd.*, 2^31 - age(datfrozenxid) as wraparound, pg_database_size(psd.datname) as pg_database_size
+        FROM pg_stat_database psd
+        JOIN pg_database pd ON psd.datname = pd.datname
+        WHERE psd.datname not ilike 'template%'   AND psd.datname not ilike 'rdsadmin'
+        AND psd.datname not ilike 'azure_maintenance'   AND psd.datname not ilike 'postgres'
 ```
 
 Description of the cut field:
 
-| Field name           | Field Value                  | Description                                                      |
-| ---              | ---                     | ---                                                       |
-| application_name | pgAdmin 4 - DB:postgres | The name of the application connecting to the current database                                |
-| db_name          | test                    | Database accessed                                              |
-| process_id       | 74305                   | The client process ID of the current connection                                    |
-| remote_host      | 127.0.0.1               | Address of the client                                              |
-| session_id       | 60b48f01.12241          | ID of the current session                                              |
-| user             | postgres                | Current Access User Name                                            |
-| status           | LOG                     | Current log level (LOG,ERROR,FATAL,PANIC,WARNING,NOTICE,INFO) |
-| time             | 1622445825110000000     | Log generation time                                              |
+| Field name         | Field Value               | Description                                                    |
+| ------------------ | ------------------------- | -------------------------------------------------------------- |
+| `application_name` | `pgAdmin 4 - DB:postgres` | The name of the application connecting to the current database |
+| `db_name`          | `test`                    | Database accessed                                              |
+| `process_id`       | `74305`                   | The client process ID of the current connection                |
+| `remote_host`      | `127.0.0.1`               | Address of the client                                          |
+| `session_id`       | `60b48f01.12241`          | ID of the current session                                      |
+| `user`             | `postgres`                | Current Access User Name                                       |
+| `status`           | `LOG`                     | Current log level (LOG,ERROR,FATAL,PANIC,WARNING,NOTICE,INFO)  |
+| `time`             | `1622445825110000000`     | Log generation time                                            |
+
+## FAQ {#faq}
+
+<!-- markdownlint-disable MD013 -->
+### :material-chat-question: Missing metrics `postgresql_lock`, `postgresql_stat`, `postgresql_index`, `postgresql_size`, `postgresql_statio` {#faq-missing-relation-metrics}
+
+To report these metrics, the `relations` field in the configuration file needs to be enabled. If some of these metrics are partially missing, it may be because there is no data for the relevant metrics.
+
+<!-- markdownlint-enable -->
