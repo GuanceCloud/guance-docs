@@ -97,6 +97,7 @@ nav:
     - netstat.md
     - socket.md
     - hostdir.md
+    - host_healthcheck.md
     - ssh.md
     - gpu_smi.md
     - About Windows:
@@ -111,6 +112,7 @@ nav:
       - clickhousev1.md
       - couchbase.md
       - couchdb.md
+      - neo4j.md
       - oracle.md
       - 'OceanBase': oceanbase.md
       - sqlserver.md
