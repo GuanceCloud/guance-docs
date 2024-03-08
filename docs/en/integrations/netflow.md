@@ -4,10 +4,10 @@ summary   : 'NetFlow collector can be used to visualize and monitor NetFlow-enab
 __int_icon      : 'icon/netflow'
 dashboard :
   - desc  : 'NetFlow'
-    path  : 'dashboard/zh/netflow'
+    path  : 'dashboard/en/netflow'
 monitor   :
   - desc  : 'NetFlow'
-    path  : 'monitor/zh/netflow'
+    path  : 'monitor/en/netflow'
 ---
 
 <!-- markdownlint-disable MD025 -->
@@ -23,7 +23,7 @@ NetFlow Collector can be used to visualize and monitor Netflow-enabled devices a
 
 ## What is NetFlow {#what}
 
-NetFlow is the most widely used traffic data statistics standard, developed by Cisco to monitor and record all traffic downstream and upstream flow. Netflow analyzes the traffic data it collects to provide visbility into flows and traffic volumes, and to track where traffic is coming from, where it is going, and what traffic is being generated at any given time. The logged information can be used for usage monitoring, anomaly detection, and a variety of other network management tasks.
+NetFlow is the most widely used traffic data statistics standard, developed by Cisco to monitor and record all traffic downstream and upstream flow. Netflow analyzes the traffic data it collects to provide visibility into flows and traffic volumes, and to track where traffic is coming from, where it is going, and what traffic is being generated at any given time. The logged information can be used for usage monitoring, anomaly detection, and a variety of other network management tasks.
 
 The following protocols are currently supported by Datakit:
 
@@ -36,7 +36,9 @@ The following protocols are currently supported by Datakit:
 
 ### Preconditions {#requirements}
 
-- NetFlow enabled device. Enabling method different between devices, refering to official guide is recommended. For example: [Enabling NetFlow on Cisco ASA](https://www.petenetlive.com/KB/Article/0000055){:target="_blank"}
+- NetFlow enabled device. Enabling method different between devices, referring to official guide is recommended. For example: [Enabling NetFlow on Cisco ASA](https://www.petenetlive.com/KB/Article/0000055){:target="_blank"}
+
+### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
 === "Host installation"
@@ -141,8 +143,8 @@ Explain as followings:
 | direction       | Flow direction            |
 | start           | Flow start time           |
 | end             | Flow end time             |
-| bytes           | Transfered bytes          |
-| packets         | Transfered packets        |
+| bytes           | Transferred bytes          |
+| packets         | Transferred packets        |
 | ether_type      | Ethernet type (IPv4/IPv6) |
 | ip_protocol     | IP Protocol (TCP/UDP)     |
 | device          | Device node               |
@@ -250,4 +252,4 @@ Using `source` field in the config file, default is `default`.
 |`status`|The status of the logging, only supported `info/emerg/alert/critical/error/warning/debug/OK/unknown`.|string|-|
 |`type`|Flow type.|string|-|
 
- 
+

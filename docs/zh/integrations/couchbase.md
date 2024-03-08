@@ -50,6 +50,8 @@ Couchbase 采集器支持远程采集，可以运行在多种操作系统中。
     - 采集数据需要用到 `8091` `9102` `18091` `19102` 几个端口，远程采集的时候，被采集服务器这些端口需要打开。
 <!-- markdownlint-enable -->
 
+### 采集器配置 {#input-config}
+
 <!-- markdownlint-disable MD046 -->
 === "主机安装"
 
@@ -107,26 +109,149 @@ Couchbase 采集器支持远程采集，可以运行在多种操作系统中。
 
 === "Kubernetes"
 
-    支持以环境变量的方式修改配置参数（只在 Datakit 以 K8s DaemonSet 方式运行时生效，主机部署的 Datakit 不支持此功能）：
+    可通过 [ConfigMap 方式注入采集器配置](../datakit/datakit-daemonset-deploy.md#configmap-setting) 或 [配置 ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) 开启采集器。
 
-    | 环境变量名                            | 对应的配置参数项  | 参数示例                                                     |
-    | :-----------------------------        | ---               | ---                                                          |
-    | `ENV_INPUT_COUCHBASE_INTERVAL`        | `interval`        | `"30s"` (`"10s"` ~ `"60s"`)                                  |
-    | `ENV_INPUT_COUCHBASE_TIMEOUT`         | `timeout`         | `"5s"`  (`"5s"` ~ `"30s"`)                                   |
-    | `ENV_INPUT_COUCHBASE_SCHEME`          | `scheme`          | `"http"` or `"https"`                                        |
-    | `ENV_INPUT_COUCHBASE_HOST`            | `host`            | `"127.0.0.1"`                                                |
-    | `ENV_INPUT_COUCHBASE_PORT`            | `port`            | `8091` or `18091`                                            |
-    | `ENV_INPUT_COUCHBASE_ADDITIONAL_PORT` | `additional_port` | `9102` or `19102`                                            |
-    | `ENV_INPUT_COUCHBASE_USER`            | `user`            | `"Administrator"`                                            |
-    | `ENV_INPUT_COUCHBASE_PASSWORD`        | `password`        | `"123456"`                                                   |
-    | `ENV_INPUT_COUCHBASE_TLS_OPEN`        | `tls_open`        | `true` or `false`                                            |
-    | `ENV_INPUT_COUCHBASE_TLS_CA`          | `tls_ca`          | `""`                                                         |
-    | `ENV_INPUT_COUCHBASE_TLS_CERT`        | `tls_cert`        | `"/var/cb/clientcertfiles/travel-sample.pem"`                |
-    | `ENV_INPUT_COUCHBASE_TLS_KEY`         | `tls_key`         | `"/var/cb/clientcertfiles/travel-sample.key"`                |
-    | `ENV_INPUT_COUCHBASE_TAGS`            | `tags`            | `tag1=value1,tag2=value2` 如果配置文件中有同名 tag，会覆盖它 |
-    | `ENV_INPUT_COUCHBASE_ELECTION`        | `election`        | `true` or `false`                                            |
+    也支持以环境变量的方式修改配置参数（需要在 ENV_DEFAULT_ENABLED_INPUTS 中加为默认采集器）：
 
-    也可以通过 [ConfigMap 方式注入采集器配置](../datakit/datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+    - **ENV_INPUT_COUCHBASE_INTERVAL**
+    
+        采集器重复间隔时长
+    
+        **Type**: TimeDuration
+    
+        **ConfField**: `interval`
+    
+        **Default**: 30s
+    
+    - **ENV_INPUT_COUCHBASE_TIMEOUT**
+    
+        超时时长
+    
+        **Type**: TimeDuration
+    
+        **ConfField**: `timeout`
+    
+        **Default**: 5s
+    
+    - **ENV_INPUT_COUCHBASE_SCHEME**
+    
+        网络协议
+    
+        **Type**: String
+    
+        **ConfField**: `scheme`
+    
+        **Example**: http or https
+    
+    - **ENV_INPUT_COUCHBASE_HOST**
+    
+        服务器网址
+    
+        **Type**: String
+    
+        **ConfField**: `host`
+    
+        **Example**: 127.0.0.1
+    
+    - **ENV_INPUT_COUCHBASE_PORT**
+    
+        端口号，https 用 18091
+    
+        **Type**: Int
+    
+        **ConfField**: `port`
+    
+        **Example**: 8091 or 18091
+    
+    - **ENV_INPUT_COUCHBASE_ADDITIONAL_PORT**
+    
+        附加的端口号，https 用 19102
+    
+        **Type**: Int
+    
+        **ConfField**: `additional_port`
+    
+        **Example**: 9102 or 19102
+    
+    - **ENV_INPUT_COUCHBASE_USER**
+    
+        登录名
+    
+        **Type**: String
+    
+        **ConfField**: `user`
+    
+        **Example**: Administrator
+    
+    - **ENV_INPUT_COUCHBASE_PASSWORD**
+    
+        登录密码
+    
+        **Type**: String
+    
+        **ConfField**: `password`
+    
+        **Example**: 123456
+    
+    - **ENV_INPUT_COUCHBASE_TLS_OPEN**
+    
+        TLS open
+    
+        **Type**: Boolean
+    
+        **ConfField**: `tls_open`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_COUCHBASE_TLS_CA**
+    
+        TLS configuration
+    
+        **Type**: String
+    
+        **ConfField**: `tls_ca`
+    
+        **Example**: /opt/ca.crt
+    
+    - **ENV_INPUT_COUCHBASE_TLS_CERT**
+    
+        TLS configuration
+    
+        **Type**: String
+    
+        **ConfField**: `tls_cert`
+    
+        **Example**: /opt/peer.crt
+    
+    - **ENV_INPUT_COUCHBASE_TLS_KEY**
+    
+        TLS configuration
+    
+        **Type**: String
+    
+        **ConfField**: `tls_key`
+    
+        **Example**: /opt/peer.key
+    
+    - **ENV_INPUT_COUCHBASE_ELECTION**
+    
+        开启选举
+    
+        **Type**: Boolean
+    
+        **ConfField**: `election`
+    
+        **Default**: true
+    
+    - **ENV_INPUT_COUCHBASE_TAGS**
+    
+        自定义标签。如果配置文件有同名标签，将会覆盖它
+    
+        **Type**: Map
+    
+        **ConfField**: `tags`
+    
+        **Example**: tag1=value1,tag2=value2
 
 <!-- markdownlint-enable -->
 

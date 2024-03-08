@@ -32,7 +32,7 @@ IPMI enables the operation and maintenance system to obtain the operation health
 
 - Install the `ipmitool` Toolkit
 
-DataKit collects IPMI data through the [ipmitool][1]  tool, so it needs to be installed on the machine. It can be installed by the following command:
+DataKit collects IPMI data through the [`ipmitool`][1]  tool, so it needs to be installed on the machine. It can be installed by the following command:
 
 ```shell
 # CentOS
@@ -55,7 +55,7 @@ modprobe ipmi_devintf
 After successful installation, you can see the information output by ipmi server by running the following command:
 
 ```shell
-ipmitool -I lanplus -H <IP地址> -U <用户名> -P <密码> sdr elist
+ipmitool -I lanplus -H <IP 地址> -U <用户名> -P <密码> sdr elist
 
 SEL              | 72h | ns  |  7.1 | No Reading
 Intrusion        | 73h | ok  |  7.1 | 
@@ -184,35 +184,214 @@ Temp             | 0Fh | ok  |  3.2 | 45 degrees C
 
 === "Kubernetes"
 
-    Modification of configuration parameters as environment variables is supported in Kubernetes (effective only when the DataKit is running in K8s daemonset mode, which is not supported on host-deployed DataKits):
+    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
+
+    Can also be turned on by environment variables, (needs to be added as the default collector in ENV_DEFAULT_ENABLED_INPUTS):
     
-    | Environment Variable Name                          | Corresponding Configuration Parameter Item     | Parameter Example                                                     |
-    | :------------------------           | ---                  | ---                                                          |
-    | `ENV_INPUT_IPMI_TAGS`               | `tags`               | `tag1=value1,tag2=value2`; If there is a tag with the same name in the configuration file, it will be overwritten |
-    | `ENV_INPUT_IPMI_INTERVAL`           | `interval`           | `10s`                                                        |
-    | `ENV_INPUT_IPMI_TIMEOUT`            | `timeout`            | `5s`                                                         |
-    | `ENV_INPUT_IPMI_DEOP_WARNING_DELAY` | `drop_warning_delay` | `300s`                                                       |
-    | `ENV_INPUT_IPMI_BIN_PATH`           | `bin_path`           | `"/usr/bin/ipmitool"`                                        |
-    | `ENV_INPUT_IPMI_ENVS`               | `envs`               | `["LD_LIBRARY_PATH=XXXX:$LD_LIBRARY_PATH"]`                  |
-    | `ENV_INPUT_IPMI_SERVERS`            | `ipmi_servers`       | `["192.168.1.1"]`                                            |
-    | `ENV_INPUT_IPMI_INTERFACES`         | `ipmi_interfaces`    | `["lanplus"]`                                                |
-    | `ENV_INPUT_IPMI_USERS`              | `ipmi_users`         | `["root"]`                                                   |
-    | `ENV_INPUT_IPMI_PASSWORDS`          | `ipmi_passwords`     | `["calvin"]`                                                 |
-    | `ENV_INPUT_IPMI_HEX_KEYS`           | `hex_keys`           | `["50415353574F5244"]`                                       |
-    | `ENV_INPUT_IPMI_METRIC_VERSIONS`    | `metric_versions`    | `[2]`                                                        |
-    | `ENV_INPUT_IPMI_REGEXP_CURRENT`     | `regexp_current`     | `["current"]`                                                |
-    | `ENV_INPUT_IPMI_REGEXP_VOLTAGE`     | `regexp_voltage`     | `["voltage"]`                                                |
-    | `ENV_INPUT_IPMI_REGEXP_POWER`       | `regexp_power`       | `["pwr","power"]`                                            |
-    | `ENV_INPUT_IPMI_REGEXP_TEMP`        | `regexp_temp`        | `["temp"]`                                                   |
-    | `ENV_INPUT_IPMI_REGEXP_FAN_SPEED`   | `regexp_fan_speed`   | `["fan"]`                                                    |
-    | `ENV_INPUT_IPMI_REGEXP_USAGE`       | `regexp_usage`       | `["usage"]`                                                  |
-    | `ENV_INPUT_IPMI_REGEXP_COUNT`       | `regexp_count`       | `[]`                                                         |
-    | `ENV_INPUT_IPMI_REGEXP_STATUS`      | `regexp_status`      | `["fan"]`                                                    |
+    - **ENV_INPUT_IPMI_INTERVAL**
+    
+        Collect interval
+    
+        **Type**: TimeDuration
+    
+        **ConfField**: `interval`
+    
+        **Default**: 10s
+    
+    - **ENV_INPUT_IPMI_TIMEOUT**
+    
+        Timeout
+    
+        **Type**: TimeDuration
+    
+        **ConfField**: `timeout`
+    
+        **Default**: 5s
+    
+    - **ENV_INPUT_IPMI_DROP_WARNING_DELAY**
+    
+        Ipmi server drop warning delay
+    
+        **Type**: TimeDuration
+    
+        **ConfField**: `drop_warning_delay`
+    
+        **Default**: 5m
+    
+    - **ENV_INPUT_IPMI_BIN_PATH**
+    
+        The binPath of `ipmitool`
+    
+        **Type**: String
+    
+        **ConfField**: `bin_path`
+    
+        **Example**: `/usr/bin/ipmitool`
+    
+    - **ENV_INPUT_IPMI_ENVS**
+    
+        The envs of LD_LIBRARY_PATH
+    
+        **Type**: JSON
+    
+        **ConfField**: `envs`
+    
+        **Example**: ["LD_LIBRARY_PATH=XXXX:$LD_LIBRARY_PATH"]
+    
+    - **ENV_INPUT_IPMI_SERVERS**
+    
+        IPMI servers URL
+    
+        **Type**: JSON
+    
+        **ConfField**: `ipmi_servers`
+    
+        **Example**: ["192.168.1.1","192.168.1.2"]
+    
+    - **ENV_INPUT_IPMI_INTERFACES**
+    
+        The interfaces of IPMI servers
+    
+        **Type**: JSON
+    
+        **ConfField**: `ipmi_interfaces`
+    
+        **Example**: ["`lanplus`"]
+    
+    - **ENV_INPUT_IPMI_USERS**
+    
+        User name
+    
+        **Type**: JSON
+    
+        **ConfField**: `ipmi_users`
+    
+        **Example**: ["root"]
+    
+    - **ENV_INPUT_IPMI_PASSWORDS**
+    
+        Password
+    
+        **Type**: JSON
+    
+        **ConfField**: `ipmi_passwords`
+    
+        **Example**: ["Calvin"]
+    
+    - **ENV_INPUT_IPMI_HEX_KEYS**
+    
+        Provide the hex key for the IMPI connection
+    
+        **Type**: JSON
+    
+        **ConfField**: `hex_keys`
+    
+        **Example**: ["50415353574F5244"]
+    
+    - **ENV_INPUT_IPMI_METRIC_VERSIONS**
+    
+        Metric versions
+    
+        **Type**: JSON
+    
+        **ConfField**: `metric_versions`
+    
+        **Example**: [2] or [3]
+    
+    - **ENV_INPUT_IPMI_REGEXP_CURRENT**
+    
+        Regexp of current
+    
+        **Type**: JSON
+    
+        **ConfField**: `regexp_current`
+    
+        **Example**: ["current"]
+    
+    - **ENV_INPUT_IPMI_REGEXP_VOLTAGE**
+    
+        Regexp of voltage
+    
+        **Type**: JSON
+    
+        **ConfField**: `regexp_voltage`
+    
+        **Example**: ["voltage"]
+    
+    - **ENV_INPUT_IPMI_REGEXP_POWER**
+    
+        Regexp of power
+    
+        **Type**: JSON
+    
+        **ConfField**: `regexp_power`
+    
+        **Example**: ["pwr","power"]
+    
+    - **ENV_INPUT_IPMI_REGEXP_TEMP**
+    
+        Regexp of temperature
+    
+        **Type**: JSON
+    
+        **ConfField**: `regexp_temp`
+    
+        **Example**: ["temp"]
+    
+    - **ENV_INPUT_IPMI_REGEXP_FAN_SPEED**
+    
+        Regexp of fan speed
+    
+        **Type**: JSON
+    
+        **ConfField**: `regexp_fan_speed`
+    
+        **Example**: ["fan"]
+    
+    - **ENV_INPUT_IPMI_REGEXP_USAGE**
+    
+        Regexp of usage
+    
+        **Type**: JSON
+    
+        **ConfField**: `regexp_usage`
+    
+        **Example**: ["usage"]
+    
+    - **ENV_INPUT_IPMI_REGEXP_COUNT**
+    
+        Regexp of count metrics
+    
+        **Type**: JSON
+    
+        **ConfField**: `regexp_count`
+    
+        **Example**: []
+    
+    - **ENV_INPUT_IPMI_REGEXP_STATUS**
+    
+        Regexp of status metrics
+    
+        **Type**: JSON
+    
+        **ConfField**: `regexp_status`
+    
+        **Example**: ["fan"]
+    
+    - **ENV_INPUT_IPMI_TAGS**
+    
+        Customize tags. If there is a tag with the same name in the configuration file, it will be overwritten
+    
+        **Type**: Map
+    
+        **ConfField**: `tags`
+    
+        **Example**: tag1=value1,tag2=value2
 
 ???+ tip "Configuration"
 
     - The keywords for each parameter classification are all in lowercase
-    - Refer to ipmitool -I The data returned by the command, then the keywords are reasonably configured
+    - Refer to `ipmitool -I ...` The data returned by the command, then the keywords are reasonably configured
 <!-- markdownlint-enable -->
 
 <!--
@@ -253,7 +432,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
--  Tag
+- Tag
 
 
 | Tag | Description |
