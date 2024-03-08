@@ -2,7 +2,7 @@
 
 ## 1.80.156（2024 年 03 月 06 日）
 
-pubrepo.guance.com/dataflux/1.80.156:launcher-fa5dafa-1709822017
+pubrepo.guance.com/dataflux/1.80.156:launcher-cb3b5f9-1709822017
 
 ### 观测云部署版更新
 
