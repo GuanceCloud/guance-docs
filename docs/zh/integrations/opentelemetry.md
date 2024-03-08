@@ -131,24 +131,129 @@ OTEL 提供与 vendor 无关的实现，根据用户的需要将观测类数据�
 
 === "Kubernetes"
 
-    目前可以通过 [ConfigMap 方式注入采集器配置](../datakit/datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+    可通过 [ConfigMap 方式注入采集器配置](../datakit/datakit-daemonset-deploy.md#configmap-setting) 或 [配置 ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) 开启采集器。
 
-    在 Kubernetes 中支持的环境变量如下表：
+    也支持以环境变量的方式修改配置参数（需要在 ENV_DEFAULT_ENABLED_INPUTS 中加为默认采集器）：
 
-    | 环境变量名                          | 类型        | 示例                                                                                                     |
-    | ----------------------------------- | ----------- | -------------------------------------------------------------------------------------------------------- |
-    | `ENV_INPUT_OTEL_CUSTOMER_TAGS`      | JSON string | `["sink_project", "custom.tag"]`                                                                         |
-    | `ENV_INPUT_OTEL_KEEP_RARE_RESOURCE` | bool        | true                                                                                                     |
-    | `ENV_INPUT_OTEL_DEL_MESSAGE`        | bool        | true                                                                                                     |
-    | `ENV_INPUT_OTEL_OMIT_ERR_STATUS`    | JSON string | `["404", "403", "400"]`                                                                                  |
-    | `ENV_INPUT_OTEL_CLOSE_RESOURCE`     | JSON string | `{"service1":["resource1"], "service2":["resource2"], "service3":["resource3"]}`                         |
-    | `ENV_INPUT_OTEL_SAMPLER`            | float       | 0.3                                                                                                      |
-    | `ENV_INPUT_OTEL_TAGS`               | JSON string | `{"k1":"v1", "k2":"v2", "k3":"v3"}`                                                                      |
-    | `ENV_INPUT_OTEL_THREADS`            | JSON string | `{"buffer":1000, "threads":100}`                                                                         |
-    | `ENV_INPUT_OTEL_STORAGE`            | JSON string | `{"storage":"./otel_storage", "capacity": 5120}`                                                         |
-    | `ENV_INPUT_OTEL_HTTP`               | JSON string | `{"enable":true, "http_status_ok": 200, "trace_api": "/otel/v1/trace", "metric_api": "/otel/v1/metric"}` |
-    | `ENV_INPUT_OTEL_GRPC`               | JSON string | `{"trace_enable": true, "metric_enable": true, "addr": "127.0.0.1:4317"}`                                |
-    | `ENV_INPUT_OTEL_EXPECTED_HEADERS`   | JSON string | `{"ex_version": "1.2.3", "ex_name": "env_resource_name"}`                                                |
+    - **ENV_INPUT_OTEL_CUSTOMER_TAGS**
+    
+        标签白名单
+    
+        **Type**: JSON
+    
+        **ConfField**: `customer_tags`
+    
+        **Example**: `["sink_project", "custom.tag"]`
+    
+    - **ENV_INPUT_OTEL_KEEP_RARE_RESOURCE**
+    
+        保持稀有跟踪资源列表
+    
+        **Type**: Boolean
+    
+        **ConfField**: `keep_rare_resource`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_OTEL_DEL_MESSAGE**
+    
+        删除 trace 消息
+    
+        **Type**: Boolean
+    
+        **ConfField**: `del_message`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_OTEL_OMIT_ERR_STATUS**
+    
+        错误状态白名单
+    
+        **Type**: JSON
+    
+        **ConfField**: `omit_err_status`
+    
+        **Example**: ["404", "403", "400"]
+    
+    - **ENV_INPUT_OTEL_CLOSE_RESOURCE**
+    
+        忽略指定服务器的 tracing（正则匹配）
+    
+        **Type**: JSON
+    
+        **ConfField**: `close_resource`
+    
+        **Example**: {"service1":["resource1","other"],"service2":["resource2","other"]}
+    
+    - **ENV_INPUT_OTEL_SAMPLER**
+    
+        全局采样率
+    
+        **Type**: Float
+    
+        **ConfField**: `sampler`
+    
+        **Example**: 0.3
+    
+    - **ENV_INPUT_OTEL_THREADS**
+    
+        线程和缓存的数量
+    
+        **Type**: JSON
+    
+        **ConfField**: `threads`
+    
+        **Example**: {"buffer":1000, "threads":100}
+    
+    - **ENV_INPUT_OTEL_STORAGE**
+    
+        本地缓存路径和大小（MB）
+    
+        **Type**: JSON
+    
+        **ConfField**: `storage`
+    
+        **Example**: `{"storage":"./otel_storage", "capacity": 5120}`
+    
+    - **ENV_INPUT_OTEL_HTTP**
+    
+        代理 HTTP 配置
+    
+        **Type**: JSON
+    
+        **ConfField**: `http`
+    
+        **Example**: `{"enable":true, "http_status_ok": 200, "trace_api": "/otel/v1/trace", "metric_api": "/otel/v1/metric"}`
+    
+    - **ENV_INPUT_OTEL_GRPC**
+    
+        代理 GRPC 配置
+    
+        **Type**: JSON
+    
+        **ConfField**: `grpc`
+    
+        **Example**: {"trace_enable": true, "metric_enable": true, "addr": "127.0.0.1:4317"}
+    
+    - **ENV_INPUT_OTEL_EXPECTED_HEADERS**
+    
+        配置使用客户端的 HTTP 头
+    
+        **Type**: JSON
+    
+        **ConfField**: `expected_headers`
+    
+        **Example**: {"ex_version": "1.2.3", "ex_name": "env_resource_name"}
+    
+    - **ENV_INPUT_OTEL_TAGS**
+    
+        自定义标签。如果配置文件有同名标签，将会覆盖它
+    
+        **Type**: JSON
+    
+        **ConfField**: `tags`
+    
+        **Example**: {"k1":"v1", "k2":"v2", "k3":"v3"}
 
 <!-- markdownlint-enable -->
 
@@ -312,46 +417,46 @@ OpenTelemetry Java Agent 从应用程序中通过 JMX 协议获取 MBean 的指�
 
 | Tag | Description |
 |  ----  | --------|
-|`action`|gc 动作|
-|`area`|堆/非堆|
-|`cause`|gc 原因|
-|`container.id`|容器 ID|
-|`description`|指标说明|
-|`exception`|异常信息|
-|`gc`|gc 类型|
-|`host`|主机名|
-|`http.flavor`|HTTP 版本|
-|`http.method`|HTTP 请求类型|
-|`http.route`|HTTP 请求路由|
-|`http.scheme`|http/https|
-|`http.target`|HTTP 请求目标|
-|`id`|jvm 类型|
-|`instrumentation_name`|指标名|
-|`level`|日志级别|
-|`main-application-class`|main 方法入口|
-|`method`|HTTP 请求类型|
-|`name`|线程池名称|
-|`net.protocol.name`|网络协议名称|
-|`net.protocol.version`|网络协议版本|
-|`os.description`|操作系统版本信息|
-|`os.type`|操作系统类型|
-|`outcome`|http 结果|
-|`path`|磁盘路径|
-|`pool`|jvm 池类型|
-|`process.command_line`|进程启动命令|
-|`process.executable.path`|可执行文件路径|
-|`process.runtime.description`|进程运行时说明|
-|`process.runtime.name`|jvm 池类型|
-|`process.runtime.version`|jvm 池类型|
-|`service.name`|服务名称|
-|`spanProcessorType`|span 处理器类型|
-|`state`|线程状态|
-|`status`|HTTP 状态码|
-|`telemetry.auto.version`|代码版本|
-|`telemetry.sdk.language`|语言|
-|`telemetry.sdk.name`|SDK 名称|
-|`telemetry.sdk.version`|SDK 版本|
-|`uri`|http 请求路径|
+|`action`|GC Action|
+|`area`|Heap or not|
+|`cause`|GC Cause|
+|`container.id`|Container ID|
+|`description`|Metric Description|
+|`exception`|Exception Information|
+|`gc`|GC Type|
+|`host`|Host Name|
+|`http.flavor`|HTTP Version|
+|`http.method`|HTTP Method|
+|`http.route`|HTTP Request Route|
+|`http.scheme`|HTTP/HTTPS|
+|`http.target`|HTTP Target|
+|`id`|JVM Type|
+|`instrumentation_name`|Metric Name|
+|`level`|Log Level|
+|`main-application-class`|Main Entry Point|
+|`method`|HTTP Type|
+|`name`|Thread Pool Name|
+|`net.protocol.name`|Net Protocol Name|
+|`net.protocol.version`|Net Protocol Version|
+|`os.description`|OS Version|
+|`os.type`|OS Type|
+|`outcome`|HTTP Outcome|
+|`path`|Disk Path|
+|`pool`|JVM Pool Type|
+|`process.command_line`|Process Command Line|
+|`process.executable.path`|Executable File Path|
+|`process.runtime.description`|Process Runtime Description|
+|`process.runtime.name`|JVM Pool Runtime Name|
+|`process.runtime.version`|JVM Pool Runtime Version|
+|`service.name`|Service Name|
+|`spanProcessorType`|Span Processor Type|
+|`state`|Thread State|
+|`status`|HTTP Status Code|
+|`telemetry.auto.version`|Version|
+|`telemetry.sdk.language`|Language|
+|`telemetry.sdk.name`|SDK Name|
+|`telemetry.sdk.version`|SDK Version|
+|`uri`|HTTP Request URI|
 
 - 指标列表
 

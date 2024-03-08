@@ -11,7 +11,7 @@ monitor   :
 ---
 
 <!-- markdownlint-disable MD025 -->
-# Windows 事件
+# Windows Event
 <!-- markdownlint-enable -->
 
 ---

@@ -7,7 +7,7 @@ This article will introduce how to open the Commercial Plan of Guance and use AW
 
 ## Subscribe to Guance in AWS Marketplace {#subscribe}
 
-Enter Guance commercial page in [AWS Marketplace](https://partners.amazonaws.com/partners/0018a00001lR2WSAA0/%E4%B8%8A%E6%B5%B7%E9%A9%BB%E4%BA%91%E4%BF%A1%E6%81%AF%E7%A7%91%E6%8A%80%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8) and click **Continue Subscription**.
+Enter Guance commercial page in [AWS Marketplace](https://awsmarketplace.amazonaws.cn/marketplace/pp/prodview-4rki5nfjxktmy) and click **Continue Subscription**.
 
 ![](img/8.space_4.png)
 

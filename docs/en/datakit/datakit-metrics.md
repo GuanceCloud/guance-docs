@@ -8,7 +8,7 @@ Foe better self-observability, Datakit has exported many Prometheus metrics amon
 
 Since Datakit [Version 1.5.9](changelog.md#cl-1.5.9), we can visit `http://localhost:9529/metrics` to see these metrics(Different release may got some new or renamed metrics).
 
-We have used these metrics in [Datakit monitor](datakit-monitor.md), and we can *playing* these metrics with some tricks like this(refresh CPU usage of Datakit): 
+We have used these metrics in [Datakit monitor](datakit-monitor.md), and we can *playing* these metrics with some tricks like this(refresh CPU usage of Datakit):
 
 ```shell
 # play CPU usage of Datakit on every 3 seconds
@@ -19,7 +19,7 @@ $ watch -n 3 'curl -s http://localhost:9529/metrics | grep -a datakit_cpu_usage'
 datakit_cpu_usage 4.9920266849857144
 ```
 
-We can also playing other metrics too(change the `grep` string), all available metrics list below(current Datakit version is 1.24.0):
+We can also playing other metrics too(change the `grep` string), all available metrics list below(current Datakit version is 1.25.0):
 
 <!-- we can run `make show_metrics` go export all these metrics -->
 |TYPE|NAME|LABELS|HELP|
@@ -41,6 +41,7 @@ We can also playing other metrics too(change the `grep` string), all available m
 |SUMMARY|`datakit_http_api_elapsed_seconds`|`api,method,status`|API request cost|
 |SUMMARY|`datakit_http_api_req_size_bytes`|`api,method,status`|API request body size|
 |COUNTER|`datakit_http_api_total`|`api,method,status`|API request counter|
+|GAUGE|`datakit_http_api_global_tags_last_updated`|`api,method,status`|Global tag updated timestamp|
 |COUNTER|`datakit_httpcli_tcp_conn_total`|`from,remote,type`|HTTP TCP connection count|
 |COUNTER|`datakit_httpcli_conn_reused_from_idle_total`|`from`|HTTP connection reused from idle count|
 |SUMMARY|`datakit_httpcli_conn_idle_time_seconds`|`from`|HTTP connection idle time|

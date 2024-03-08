@@ -30,13 +30,14 @@ Installing smartmontools
 
 - Linux: `sudo apt install smartmontools -y`
 
-	If the solid state drive is nvme compliant, it is recommended to install nvme-cli for more nvme information: `sudo apt install nvme-cli -y`
+  If the solid state drive is nvme compliant, it is recommended to install nvme-cli for more nvme information: `sudo apt install nvme-cli -y`
 
 - MacOS: `brew install smartmontools -y`
 - WinOS: download [Windows version](https://www.smartmontools.org/wiki/Download#InstalltheWindowspackage){:target="_blank"}
 
 ### Collector Configuration {#input-config}
 
+<!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
     Go to the `conf.d/smart` directory under the DataKit installation directory, copy `smart.conf.sample` and name it `smart.conf`. Examples are as follows:
@@ -91,6 +92,7 @@ Installing smartmontools
 === "Kubernetes"
 
     The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+<!-- markdownlint-enable -->
 
 ## Metric {#metric}
 
