@@ -184,30 +184,209 @@ Temp             | 0Fh | ok  |  3.2 | 45 degrees C
 
 === "Kubernetes"
 
-    Kubernetes 中支持以环境变量的方式修改配置参数（只在 DataKit 以 K8s DaemonSet 方式运行时生效，主机部署的 DataKit 不支持此功能）：
+    可通过 [ConfigMap 方式注入采集器配置](../datakit/datakit-daemonset-deploy.md#configmap-setting) 或 [配置 ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) 开启采集器。
 
-    | 环境变量名                          | 对应的配置参数项     | 参数示例                                                     |
-    | :------------------------           | ---                  | ---                                                          |
-    | `ENV_INPUT_IPMI_TAGS`               | `tags`               | `tag1=value1,tag2=value2` 如果配置文件中有同名 tag，会覆盖它 |
-    | `ENV_INPUT_IPMI_INTERVAL`           | `interval`           | `10s`                                                        |
-    | `ENV_INPUT_IPMI_TIMEOUT`            | `timeout`            | `5s`                                                         |
-    | `ENV_INPUT_IPMI_DEOP_WARNING_DELAY` | `drop_warning_delay` | `300s`                                                       |
-    | `ENV_INPUT_IPMI_BIN_PATH`           | `bin_path`           | `"/usr/bin/ipmitool"`                                        |
-    | `ENV_INPUT_IPMI_ENVS`               | `envs`               | `["LD_LIBRARY_PATH=XXXX:$LD_LIBRARY_PATH"]`                  |
-    | `ENV_INPUT_IPMI_SERVERS`            | `ipmi_servers`       | `["192.168.1.1"]`                                            |
-    | `ENV_INPUT_IPMI_INTERFACES`         | `ipmi_interfaces`    | `["lanplus"]`                                                |
-    | `ENV_INPUT_IPMI_USERS`              | `ipmi_users`         | `["root"]`                                                   |
-    | `ENV_INPUT_IPMI_PASSWORDS`          | `ipmi_passwords`     | `["calvin"]`                                                 |
-    | `ENV_INPUT_IPMI_HEX_KEYS`           | `hex_keys`           | `["50415353574F5244"]`                                       |
-    | `ENV_INPUT_IPMI_METRIC_VERSIONS`    | `metric_versions`    | `[2]`                                                        |
-    | `ENV_INPUT_IPMI_REGEXP_CURRENT`     | `regexp_current`     | `["current"]`                                                |
-    | `ENV_INPUT_IPMI_REGEXP_VOLTAGE`     | `regexp_voltage`     | `["voltage"]`                                                |
-    | `ENV_INPUT_IPMI_REGEXP_POWER`       | `regexp_power`       | `["pwr","power"]`                                            |
-    | `ENV_INPUT_IPMI_REGEXP_TEMP`        | `regexp_temp`        | `["temp"]`                                                   |
-    | `ENV_INPUT_IPMI_REGEXP_FAN_SPEED`   | `regexp_fan_speed`   | `["fan"]`                                                    |
-    | `ENV_INPUT_IPMI_REGEXP_USAGE`       | `regexp_usage`       | `["usage"]`                                                  |
-    | `ENV_INPUT_IPMI_REGEXP_COUNT`       | `regexp_count`       | `[]`                                                         |
-    | `ENV_INPUT_IPMI_REGEXP_STATUS`      | `regexp_status`      | `["fan"]`                                                    |
+    也支持以环境变量的方式修改配置参数（需要在 ENV_DEFAULT_ENABLED_INPUTS 中加为默认采集器）：
+
+    - **ENV_INPUT_IPMI_INTERVAL**
+    
+        采集器重复间隔时长
+    
+        **Type**: TimeDuration
+    
+        **ConfField**: `interval`
+    
+        **Default**: 10s
+    
+    - **ENV_INPUT_IPMI_TIMEOUT**
+    
+        超时时长
+    
+        **Type**: TimeDuration
+    
+        **ConfField**: `timeout`
+    
+        **Default**: 5s
+    
+    - **ENV_INPUT_IPMI_DROP_WARNING_DELAY**
+    
+        退服告警延迟
+    
+        **Type**: TimeDuration
+    
+        **ConfField**: `drop_warning_delay`
+    
+        **Default**: 5m
+    
+    - **ENV_INPUT_IPMI_BIN_PATH**
+    
+        执行文件路径
+    
+        **Type**: String
+    
+        **ConfField**: `bin_path`
+    
+        **Example**: `/usr/bin/ipmitool`
+    
+    - **ENV_INPUT_IPMI_ENVS**
+    
+        执行依赖库的路径
+    
+        **Type**: JSON
+    
+        **ConfField**: `envs`
+    
+        **Example**: ["LD_LIBRARY_PATH=XXXX:$LD_LIBRARY_PATH"]
+    
+    - **ENV_INPUT_IPMI_SERVERS**
+    
+        IPMI 服务器 URL
+    
+        **Type**: JSON
+    
+        **ConfField**: `ipmi_servers`
+    
+        **Example**: ["192.168.1.1","192.168.1.2"]
+    
+    - **ENV_INPUT_IPMI_INTERFACES**
+    
+        IPMI 服务器接口协议
+    
+        **Type**: JSON
+    
+        **ConfField**: `ipmi_interfaces`
+    
+        **Example**: ["`lanplus`"]
+    
+    - **ENV_INPUT_IPMI_USERS**
+    
+        登录名
+    
+        **Type**: JSON
+    
+        **ConfField**: `ipmi_users`
+    
+        **Example**: ["root"]
+    
+    - **ENV_INPUT_IPMI_PASSWORDS**
+    
+        登录密码
+    
+        **Type**: JSON
+    
+        **ConfField**: `ipmi_passwords`
+    
+        **Example**: ["Calvin"]
+    
+    - **ENV_INPUT_IPMI_HEX_KEYS**
+    
+        十六进制连接秘钥
+    
+        **Type**: JSON
+    
+        **ConfField**: `hex_keys`
+    
+        **Example**: ["50415353574F5244"]
+    
+    - **ENV_INPUT_IPMI_METRIC_VERSIONS**
+    
+        指标版本
+    
+        **Type**: JSON
+    
+        **ConfField**: `metric_versions`
+    
+        **Example**: [2] or [3]
+    
+    - **ENV_INPUT_IPMI_REGEXP_CURRENT**
+    
+        电流指标正则
+    
+        **Type**: JSON
+    
+        **ConfField**: `regexp_current`
+    
+        **Example**: ["current"]
+    
+    - **ENV_INPUT_IPMI_REGEXP_VOLTAGE**
+    
+        电压指标正则
+    
+        **Type**: JSON
+    
+        **ConfField**: `regexp_voltage`
+    
+        **Example**: ["voltage"]
+    
+    - **ENV_INPUT_IPMI_REGEXP_POWER**
+    
+        功率指标正则
+    
+        **Type**: JSON
+    
+        **ConfField**: `regexp_power`
+    
+        **Example**: ["pwr","power"]
+    
+    - **ENV_INPUT_IPMI_REGEXP_TEMP**
+    
+        温度电流指标正则
+    
+        **Type**: JSON
+    
+        **ConfField**: `regexp_temp`
+    
+        **Example**: ["temp"]
+    
+    - **ENV_INPUT_IPMI_REGEXP_FAN_SPEED**
+    
+        风扇转速指标正则
+    
+        **Type**: JSON
+    
+        **ConfField**: `regexp_fan_speed`
+    
+        **Example**: ["fan"]
+    
+    - **ENV_INPUT_IPMI_REGEXP_USAGE**
+    
+        使用率指标正则
+    
+        **Type**: JSON
+    
+        **ConfField**: `regexp_usage`
+    
+        **Example**: ["usage"]
+    
+    - **ENV_INPUT_IPMI_REGEXP_COUNT**
+    
+        统计指标正则
+    
+        **Type**: JSON
+    
+        **ConfField**: `regexp_count`
+    
+        **Example**: []
+    
+    - **ENV_INPUT_IPMI_REGEXP_STATUS**
+    
+        状态指标正则
+    
+        **Type**: JSON
+    
+        **ConfField**: `regexp_status`
+    
+        **Example**: ["fan"]
+    
+    - **ENV_INPUT_IPMI_TAGS**
+    
+        自定义标签。如果配置文件有同名标签，将会覆盖它
+    
+        **Type**: Map
+    
+        **ConfField**: `tags`
+    
+        **Example**: tag1=value1,tag2=value2
 
 ???+ tip "配置提示"
 
