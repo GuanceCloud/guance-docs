@@ -1,5 +1,62 @@
 # 版本历史
 
+## 1.80.156（2024 年 03 月 06 日）
+
+pubrepo.guance.com/dataflux/1.80.156:launcher-cb3b5f9-1709822017
+
+### 观测云部署版更新
+
+- 新增登录方式选择，对登录方式进行统一管理；
+- 增强部署时自动生成的 MySQL 业务数据库账号密码的强度；
+- 针对本地账号和单点登录账号新增删除操作。
+
+### 观测云更新
+
+- 监控
+    - 监控器 > 检测频率：新增 Crontab 自定义输入，满足仅需在特定的时间段执行检测的需求；
+    - 突变检测：新增【最近 1 分钟】、【最近 5 分钟】的检测区间；
+    - 静默管理：选择静默范围时“事件属性”为非必填项，可根据需要自行配置更细颗粒度的匹配规则。
+- DataFlux Func：新增 Function 外部函数。允许第三方用户充分利用 Function 的本地缓存和本地文件管理服务接口编写函数，在工作空间内执行数据分析查询。
+- APM > 链路：
+    - Title 区域 UI 显示优化；
+    - 针对火焰图、瀑布图、Span 列表超过 1 万的 Span 结果，支持通过偏移设置查看未展示 Span；
+    - 新增 Error Span 筛选入口；支持输入 Span 对应的资源名称或 Span ID 进行搜索匹配。
+- 场景
+    - 图表：新增桑基图；
+    - 视图变量：新增选中按钮，勾选后默认全选当前所有值，可按需再反选。
+    - 账号管理：新增注销入口。
+- 查看器：
+    - UI 显示优化；
+    - 筛选新增正则匹配 / 反向正则匹配模式；
+    - Wildcard 筛选和搜索支持左 * 匹配。
+- 事件 > 详情页：【告警通知】tab 页 UI 显示优化。
+
+### DataKit 更新
+
+- 新增功能
+    - Datakit API 新增动态更新 Global Tag 的相关接口
+    - 新增 Kubernetes PersistentVolume / PersistentVolumeClaim 资源的对象采集
+    - 新增 Kubernetes dfpv（pv 使用率）指标和对象采集，需要添加额外的 RBAC
+- 问题修复
+    - 修复 SkyWalking RUM root-span 问题
+    - 修复 Windows Event 采集不全问题
+    - 修复 Pinpoint 采集中缺失 host 字段问题
+    - 修复 RabbitMQ 指标采集问题
+    - 修复 OpenTelemetry 老版本兼容性问题
+    - 修复 Containerd 日志的分行解析错误
+- 功能优化
+    - StatsD 采集 count 类数据时，默认将其转换成浮点
+    - 容器采集器支持 Docker 1.24+ 以上版本
+    - 优化 SQLServer 采集器
+    - 优化 Health Check 采集器
+    - 日志采集的默认时间取值
+    - 新增使用环境变量 ENV_INPUT_CONTAINER_DISABLE_COLLECT_KUBE_JOB 关闭对 Kubernetes Job 资源的采集
+    - 更新采集器内置视图：
+    - ssh
+    - etcd
+
+更多详情可参考帮助文档：https://docs.guance.com/release-notes/
+
 ## 1.79.155（2024 年 02 月 07 日）
 
 pubrepo.guance.com/dataflux/1.79.155:launcher-df4a338-1707312493
