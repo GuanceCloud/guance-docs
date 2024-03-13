@@ -10,13 +10,13 @@ icon: zy/release-notes
 
 ### 观测云更新
 
-- 监控 > 监控器：监控器类型【[组合检测](../monitoring/monitor/composite-detection.md)】上线支持将多个监控器的结果通过表达式组合成一个监控器，最终基于组合后的结果进行告警。
+- 监控 > 监控器：监控器类型【[组合检测](../monitoring/monitor/composite-detection.md)】上线。支持将多个监控器的结果通过表达式组合成一个监控器，最终基于组合后的结果进行告警。
+- 场景 > 服务：支持[跨工作空间 Servicemap 查询](../scene/service-manag.md#servicemap)。
 
 ### 观测云部署版更新
 
 - 管理 > 基本信息：新增 “已用 DK 数量” 显示；
 - 管理 > 用户：新增[分组](../deployment/user.md#team)页面，基于组可配置关联工作空间及角色，用户可通过组获得对应工作空间的访问权限。
-- 索引合并逻辑下线。
 
 
 
