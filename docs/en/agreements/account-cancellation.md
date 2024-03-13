@@ -26,7 +26,7 @@ From the moment you submit an account cancellation application, Guance will chec
 
 1. Customer self-check
 
-Before you submit an account cancellation application, please check whether you meet the account cancellation conditions stipulated in Article 2 of these terms, otherwise your account cancellation procedure may be terminated due to not meeting the cancellation conditions.
+Before you submit an account cancellation application, please check whether you meet the account cancellation conditions stipulated in Article 1 of these terms, otherwise your account cancellation procedure may be terminated due to not meeting the cancellation conditions.
 
 2. Cancellation Method
 
