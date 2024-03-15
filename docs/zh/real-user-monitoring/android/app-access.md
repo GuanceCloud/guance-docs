@@ -206,6 +206,10 @@ android{
 | setEnableAccessAndroidID | Boolean | 否 | 开启获取 `Android ID` | 默认，为 `true`，设置为 `false`，则 `device_uuid` 字段数据将不进行采集,市场隐私审核相关[查看这里](#adpot-to-privacy-audits) |
 | addGlobalContext | Dictionary | 否 | 添加 SDK 全局属性 | 添加规则请查阅[此处](#key-conflict) |
 | setServiceName | String | 否 | 设置服务名 | 影响 Log 和 RUM 中 service 字段数据，默认为 `df_rum_android` |
+| setAutoSync | Boolean | 否 | 是否开启自动同步，默认为 `true` |  |
+| setSyncPageSize | enum | 否 | 设置同步请求条目数，`SyncPageSize.MINI` 5 条，`SyncPageSize.MEDIUM` 10 条，`SyncPageSize.LARGE` 50 条 |  |
+| setCustomSyncPageSize | enum | 否 | 设置同步请求条目数，范围 [5,）,注意设置过大会占用大量资源 |  |
+| setSyncSleepTime | Int | 否 | 设置同步间歇时间，范围 [0,100] |  |
 
 
 ### RUM 配置 {#rum-config}
@@ -399,6 +403,7 @@ android{
 | setEnableCustomLog | Boolean| 否 | 是否上传自定义日志 | 默认为 `false` |
 | setLogLevelFilters | Array | 否 | 设置日志等级过滤 | 设置等级日志过滤，默认不设置 |
 | addGlobalContext | Dictionary | 否 | 添加 log 全局属性 | 添加规则请查阅[此处](#key-conflict) |
+| setLogCacheLimitCount | Int | 否 | 获取最大日志条目数量限制 [1000,)，日志越大，代表磁盘缓存压力越大，默认 5000 |  |
 
 ### Trace 配置 {#trace-config}
 
