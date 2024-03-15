@@ -113,6 +113,12 @@ buildscript {
 ```
 >**建议 Release 版本发布时，关闭这个配置**
 
+## SDK 内部日志转化为缓存文件
+```kotlin
+val cacheFile = File(filesDir, "LogCache.log")
+LogUtils.registerInnerLogCacheToFile(cacheFile)
+```
+
 ## SDK 正常运行但是没有数据
 * [排查 Datakit](../../datakit/why-no-data.md) 是否正常运行
 
