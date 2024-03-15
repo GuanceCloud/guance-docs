@@ -209,7 +209,7 @@ android{
 | setAutoSync | Boolean | 否 | 是否开启自动同步，默认为 `true` |  |
 | setSyncPageSize | enum | 否 | 设置同步请求条目数，`SyncPageSize.MINI` 5 条，`SyncPageSize.MEDIUM` 10 条，`SyncPageSize.LARGE` 50 条 |  |
 | setCustomSyncPageSize | enum | 否 | 设置同步请求条目数，范围 [5,）,注意设置过大会占用大量资源 |  |
-| setSyncSleepTime | int | 否 | 设置同步间歇时间，范围 [0,100] |  |
+| setSyncSleepTime | Int | 否 | 设置同步间歇时间，范围 [0,100] |  |
 
 
 ### RUM 配置 {#rum-config}
