@@ -38,7 +38,7 @@
 
 ## 请求例子
 ```shell
-curl https://openapi.guance.com/api/v1/slo/monitor_3b7557f9bdf749139fee94a7ecb4da12/modify' \
+curl 'https://openapi.guance.com/api/v1/slo/monitor_3b7557f9bdf749139fee94a7ecb4da12/modify' \
 -H 'DF-API-KEY:  <DF-API-KEY>' \
 -H 'Content-Type: application/json' \
 --data '{
