@@ -67,7 +67,7 @@ curl 'https://openapi.guance.com/api/v1/alert_policy/list?pageIndex=1&pageSize=1
                 "name": "jj_modify",
                 "refCountInfo": {},
                 "ruleCount": 0,
-                "ruleTimezone": "Asia/shanghai",
+                "ruleTimezone": "Asia/Shanghai",
                 "score": 0,
                 "status": 0,
                 "updateAt": 1706152340,

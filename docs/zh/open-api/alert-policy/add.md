@@ -15,9 +15,9 @@
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
 | name | string | Y | 告警策略名<br>允许为空: False <br> |
-| ruleTimezone | str | Y | 告警策略 时区<br>例子: Asia/shanghai <br>允许为空: False <br> |
+| ruleTimezone | str | Y | 告警策略 时区<br>例子: Asia/Shanghai <br>允许为空: False <br> |
 | alertOpt | json |  | 告警设置<br>允许为空: False <br> |
-| alertOpt.alertTarget | array |  | 触发动作, 注意触发时间的, 参数处理<br>例子: [{'name': '通知配置1', 'targets': [{'to': ['acnt_37ca16a6bf54413090d5e8396fc859cd'], 'status': 'critical'}], 'crontabDuration': 600, 'crontab': '0 9 * * 0,1,2,3,4'}, {'name': '通知配置2', 'targets': [{'status': 'error', 'to': ['group_b85d201fd5244be6842e0d20d35c37dd']}], 'customDates': ['2024/02/10', '2024/03/10', '2024/03/15'], 'customStartTime': '09:30:10', 'crontabDuration': 600}] <br>允许为空: False <br> |
+| alertOpt.alertTarget | array |  | 触发动作, 注意触发时间的, 参数处理<br>例子: [{'name': '通知配置1', 'targets': [{'to': ['acnt_37ca16a6bf54413090d5e8396fc859cd'], 'status': 'critical'}], 'crontabDuration': 600, 'crontab': '0 9 * * 0,1,2,3,4'}, {'name': '通知配置2', 'targets': [{'status': 'error', 'to': ['group_b85d201fd5244be6842e0d20d35c37dd']}], 'customDateUUIDs': ['ndate_0b020405d122444489db5391b3fa2443'], 'customStartTime': '09:30:10', 'customDuration': 600}] <br>允许为空: False <br> |
 | alertOpt.silentTimeout | integer | Y | 告警设置<br>允许为空: False <br> |
 | alertOpt.aggInterval | integer | Y | 告警聚合间隔，单位秒, 0代表不聚合<br>允许为空: False <br>$minValue: 0 <br>$maxValue: 1800 <br> |
 | alertOpt.aggFields | array |  | 聚合字段列表，保持空列表[]表示「聚合规则：全部」,  df_monitor_checker_id：监控器/智能巡检/SLO,   df_dimension_tags：检测维度,   df_label：标签,  CLUSTER：智能聚合<br>例子: ['CLUSTER'] <br>允许为空: False <br> |
@@ -53,13 +53,14 @@
 | name | string |  | 配置名称 |
 | targets | Array[dict] | 必须 | 通知对象配置 |
 | crontab | String |  | 选择重复时间段时，开始 Crontab（Crontab 语法） |
-| crontabDuration | integer |  | 选择重复时间/自定义时间段时，从 Crontab 开始/自定义开始时间，持续时间（秒) |
-| customDates | Array[String] |  | 选择自定义时间时，日期列表 , 日期格式规则为：YYYY/MM/DD|
+| crontabDuration | integer |  | 选择重复时间，从 Crontab 开始，持续时间（秒) |
+| customDateUUIDs | Array[String] |  | 选择自定义时间时，自定义通知日期的UUID列表 , 例: ['ndate_bc5389181aa3458a8932fecc12fd6232', 'ndate_a356e662714d47edbe5b3109e3abd608'], 自定义通知日期参考(监控 - 告警策略 - 自定义通知日期, 接口)|
 | customStartTime | String |  | 选择自定义时间时，每日开始时间，格式为：HH:mm:ss |
+| customDuration | integer |  | 选择自定义时间段时，从 customStartTime 自定义开始时间，持续时间（秒) |
 
 如果 选择 重复时间段, crontab, crontabDuration 字段为必传参数
-如果 选择 自定义时间段, customDates, crontabDuration, customStartTime 字段为必传参数
-如果 选择 其他时刻, crontab, crontabDuration, customDates, customStartTime, 都不需要传
+如果 选择 自定义时间段, customDateUUIDs, customDuration, customStartTime 字段为必传参数
+如果 选择 其他时刻, crontab, crontabDuration, customDateUUIDs, customStartTime, customDuration 都不需要传
 注意: 每个告警策略会存在一个其他时刻的通知规则, 为兜底的通知对象, 示例:  alertOpt.alertTarget.targets 列表中最后一个值只会存在 status, to 字段 [{"status":"critical","to":["acnt_37ca16a6bf54413090d5e8396fc859cd"]}]
 
 **3. 通知对象字段 `alertOpt.alertTarget.targets` 说明**
@@ -78,7 +79,7 @@ targets 为list, 内部元素为dict, 内部字段说明如下
 curl 'https://openapi.guance.com/api/v1/alert_policy/add' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
---data-raw '{"name":"jj_test","ruleTimezone":"Asia/shanghai","alertOpt":{"alertTarget":[{"name":"通知配置1","targets":[{"status":"critical","to":["acnt_37ca16a6bf54413090d5e8396fc859cd"]}],"crontabDuration":600,"crontab":"0 9 * * 0,1,2,3,4"},{"name":"通知配置2","targets":[{"status":"error","to":["group_b85d201fd5244be6842e0d20d35c37dd"]}],"customDates":["2024/02/10","2024/03/10","2024/03/15"],"customStartTime":"09:30:10","crontabDuration":600},{"targets":[{"status":"warning","to":["notify_9fddc9eb5eb24b8cb1323a8417e0299e"]}]}],"silentTimeout":21600,"aggInterval":120,"aggFields":["df_monitor_checker_id"]}}' \
+--data-raw '{"name":"jj_test","ruleTimezone":"Asia/Shanghai","alertOpt":{"alertTarget":[{"name":"通知配置1","targets":[{"status":"critical","to":["acnt_37ca16a6bf54413090d5e8396fc859cd"]}],"crontabDuration":600,"crontab":"0 9 * * 0,1,2,3,4"},{"name":"通知配置2","targets":[{"status":"error","to":["group_b85d201fd5244be6842e0d20d35c37dd"]}],"customDateUUIDs":["ndate_0b020405d122444489db5391b3fa2443"],"customStartTime":"09:30:10","customDuration":600},{"targets":[{"status":"warning","to":["notify_9fddc9eb5eb24b8cb1323a8417e0299e"]}]}],"silentTimeout":21600,"aggInterval":120,"aggFields":["df_monitor_checker_id"]}}' \
 --compressed
 ```
 
@@ -110,11 +111,9 @@ curl 'https://openapi.guance.com/api/v1/alert_policy/add' \
                     ]
                 },
                 {
-                    "crontabDuration": 600,
-                    "customDates": [
-                        "2024/02/10",
-                        "2024/03/10",
-                        "2024/03/15"
+                    "customDuration": 600,
+                    "customDateUUIDs": [
+                        "ndate_0b020405d122444489db5391b3fa2443"
                     ],
                     "customStartTime": "09:30:10",
                     "name": "通知配置2",
@@ -146,7 +145,7 @@ curl 'https://openapi.guance.com/api/v1/alert_policy/add' \
         "deleteAt": -1,
         "id": null,
         "name": "jj_test",
-        "ruleTimezone": "Asia/shanghai",
+        "ruleTimezone": "Asia/Shanghai",
         "score": 0,
         "status": 0,
         "updateAt": 1706152082,
