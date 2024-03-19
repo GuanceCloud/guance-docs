@@ -22,12 +22,15 @@
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
 | extend | json |  | 额外信息<br>允许为空: True <br> |
-| monitorUUID | string | Y | 分组id<br>允许为空: False <br> |
+| monitorUUID | string |  | 分组id<br>允许为空: False <br>允许空字符串: True <br> |
+| alertPolicyUUIDs | array |  | 告警策略UUID<br>允许为空: False <br> |
 | dashboardUUID | string |  | 关联仪表板id<br>允许为空: False <br> |
+| tags | array |  | 用于筛选的标签名称<br>允许为空: False <br>例子: ['xx', 'yy'] <br> |
+| secret | string |  | Webhook地址的中段唯一标识secret<br>允许为空: False <br>例子: secret_xxxxx <br> |
 | jsonScript | json |  | 规则配置<br>允许为空: False <br> |
 | jsonScript.type | string | Y | 检查方法类型<br>例子: simpleCheck <br>允许为空: False <br> |
 | jsonScript.windowDql | string |  | window dql<br>允许为空: False <br> |
-| jsonScript.title | string | Y | 生成event的标题<br>例子: 监视器: `{{monitor_name}}` 检查器:`{{monitor_checker_name}}` 触发值:`{{M1}}` <br>允许为空: False <br>允许空字符串: True <br> |
+| jsonScript.title | string | Y | 生成event的标题<br>例子: 监视器: `{{monitor_name}}` 检查器:`{{monitor_checker_name}}` 触发值:`{{M1}}` <br>允许为空: False <br>允许空字符串: True <br>最大长度: 256 <br> |
 | jsonScript.message | string |  | event内容<br>例子: status: {{status}}, title:`{{title}}` <br>允许为空: False <br>允许空字符串: True <br> |
 | jsonScript.recoverTitle | string |  | 输出恢复事件标题模板<br>例子: 监视器: `{{monitor_name}}` 检查器:`{{monitor_checker_name}}` 触发值:`{{M1}}` <br>允许为空: False <br>允许空字符串: True <br> |
 | jsonScript.recoverMessage | string |  | 输出恢复事件信息模板<br>例子: status: {{status}}, title:`{{title}}` <br>允许为空: False <br>允许空字符串: True <br> |
@@ -73,10 +76,10 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/checker/rul_0cc7449fdfc5496ba4e687d57d1af99e/modify' \
+curl 'https://openapi.guance.com/api/v1/checker/rul_xxxxxx/modify' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
---data-raw '{"extend":{"querylist":[{"datasource":"dataflux","qtype":"dql","query":{"code":"Result","type":"simple","namespace":"metric","dataSource":"conntrack","field":"entries","fieldType":"integer","alias":"","fieldFunc":"avg","groupByTime":"","groupBy":["host"],"q":"M::`conntrack`:(AVG(`entries`)) BY `host`","funcList":[]},"uuid":"253d080f-5d07-48c5-8b8a-13b0b6b3f538"}],"funcName":"","rules":[{"conditionLogic":"and","conditions":[{"alias":"Result","operands":["1200"],"operator":">="}],"status":"critical"}]},"jsonScript":{"title":"触发紧急事件33","message":"","noDataTitle":"","noDataMessage":"","type":"simpleCheck","every":"5m","groupBy":["host"],"interval":300,"targets":[{"dql":"M::`conntrack`:(AVG(`entries`)) BY `host`","alias":"Result"}],"checkerOpt":{"rules":[{"conditionLogic":"and","conditions":[{"alias":"Result","operands":["1200"],"operator":">="}],"status":"critical"}],"infoEvent":false},"recoverNeedPeriodCount":2},"monitorUUID":"monitor_042705ea48124c3aa9ad6e4410b91a07"}' \
+--data-raw '{"extend":{"querylist":[{"datasource":"dataflux","qtype":"dql","query":{"code":"Result","type":"simple","namespace":"metric","dataSource":"ssh","field":"ssh_check","fieldType":"float","alias":"","fieldFunc":"count","groupByTime":"","groupBy":["host"],"q":"M::`ssh`:(count(`ssh_check`)) BY `host`","funcList":[]},"uuid":"aada629a-672e-46f9-9503-8fd61065c382"}],"funcName":"","rules":[{"conditionLogic":"and","conditions":[{"alias":"Result","operands":["90"],"operator":">="}],"status":"critical"},{"conditionLogic":"and","conditions":[{"alias":"Result","operands":["0"],"operator":">="}],"status":"error"}],"issueLevelUUID":"system_level_3","isNeedCreateIssue":false,"needRecoverIssue":false},"jsonScript":{"title":"主机 {{ host }} SSH 服务异常","message":">等级：{{status}}  \n>主机：{{host}}  \n>内容：主机 SSH 状态 {{ Result |  to_fixed(2) }}%  \n>建议：检查主机 SSH 服务状态","noDataTitle":"","noDataMessage":"","type":"simpleCheck","every":"1m","groupBy":["host"],"interval":300,"targets":[{"dql":"M::`ssh`:(count(`ssh_check`)) BY `host`","alias":"Result","qtype":"dql"}],"checkerOpt":{"rules":[{"conditionLogic":"and","conditions":[{"alias":"Result","operands":["90"],"operator":">="}],"status":"critical"},{"conditionLogic":"and","conditions":[{"alias":"Result","operands":["0"],"operator":">="}],"status":"error"}],"infoEvent":false},"recoverNeedPeriodCount":2,"channels":[],"atAccounts":[],"atNoDataAccounts":[],"disableCheckEndTime":false},"alertPolicyUUIDs":["altpl_cb3f68c1562940e3991c4af73e5c96b9"],"tags":["本地测试组合检测"]}' \
 --compressed 
 ```
 
@@ -88,15 +91,27 @@ curl 'https://openapi.guance.com/api/v1/checker/rul_0cc7449fdfc5496ba4e687d57d1a
 {
     "code": 200,
     "content": {
-        "createAt": 1677566939,
-        "creator": "acnt_37ca16a6bf54413090d5e8396fc859cd",
+        "createAt": 1710827935,
+        "createdWay": "manual",
+        "creator": "acnt_e52a5a7b6418464cb2acbeaa199e7fd1",
         "crontabInfo": {
-            "crontab": "*/5 * * * *",
-            "id": "cron-hxebFHurzmOT"
+            "crontab": "*/1 * * * *",
+            "id": "cron-pwiThsuE9gtQ"
+        },
+        "declaration": {
+            "b": [
+                "asfawfgajfasfafgafwba",
+                "asfgahjfaf"
+            ],
+            "business": "aaa",
+            "organization": "64fe7b4062f74d0007b46676"
         },
         "deleteAt": -1,
         "extend": {
             "funcName": "",
+            "isNeedCreateIssue": false,
+            "issueLevelUUID": "system_level_3",
+            "needRecoverIssue": false,
             "querylist": [
                 {
                     "datasource": "dataflux",
@@ -104,20 +119,20 @@ curl 'https://openapi.guance.com/api/v1/checker/rul_0cc7449fdfc5496ba4e687d57d1a
                     "query": {
                         "alias": "",
                         "code": "Result",
-                        "dataSource": "conntrack",
-                        "field": "entries",
-                        "fieldFunc": "avg",
-                        "fieldType": "integer",
+                        "dataSource": "ssh",
+                        "field": "ssh_check",
+                        "fieldFunc": "count",
+                        "fieldType": "float",
                         "funcList": [],
                         "groupBy": [
                             "host"
                         ],
                         "groupByTime": "",
                         "namespace": "metric",
-                        "q": "M::`conntrack`:(AVG(`entries`)) BY `host`",
+                        "q": "M::`ssh`:(count(`ssh_check`)) BY `host`",
                         "type": "simple"
                     },
-                    "uuid": "253d080f-5d07-48c5-8b8a-13b0b6b3f538"
+                    "uuid": "aada629a-672e-46f9-9503-8fd61065c382"
                 }
             ],
             "rules": [
@@ -127,17 +142,34 @@ curl 'https://openapi.guance.com/api/v1/checker/rul_0cc7449fdfc5496ba4e687d57d1a
                         {
                             "alias": "Result",
                             "operands": [
-                                "1200"
+                                "90"
                             ],
                             "operator": ">="
                         }
                     ],
                     "status": "critical"
+                },
+                {
+                    "conditionLogic": "and",
+                    "conditions": [
+                        {
+                            "alias": "Result",
+                            "operands": [
+                                "0"
+                            ],
+                            "operator": ">="
+                        }
+                    ],
+                    "status": "error"
                 }
             ]
         },
-        "id": 175,
+        "id": 1118,
+        "isLocked": 0,
         "jsonScript": {
+            "atAccounts": [],
+            "atNoDataAccounts": [],
+            "channels": [],
             "checkerOpt": {
                 "infoEvent": false,
                 "rules": [
@@ -147,48 +179,69 @@ curl 'https://openapi.guance.com/api/v1/checker/rul_0cc7449fdfc5496ba4e687d57d1a
                             {
                                 "alias": "Result",
                                 "operands": [
-                                    "1200"
+                                    "90"
                                 ],
                                 "operator": ">="
                             }
                         ],
                         "status": "critical"
+                    },
+                    {
+                        "conditionLogic": "and",
+                        "conditions": [
+                            {
+                                "alias": "Result",
+                                "operands": [
+                                    "0"
+                                ],
+                                "operator": ">="
+                            }
+                        ],
+                        "status": "error"
                     }
                 ]
             },
-            "every": "5m",
+            "disableCheckEndTime": false,
+            "every": "1m",
             "groupBy": [
                 "host"
             ],
             "interval": 300,
-            "message": "",
-            "name": "触发紧急事件33",
+            "message": ">等级：{{status}}  \n>主机：{{host}}  \n>内容：主机 SSH 状态 {{ Result |  to_fixed(2) }}%  \n>建议：检查主机 SSH 服务状态",
+            "name": "主机 {{ host }} SSH 服务异常",
             "noDataMessage": "",
             "noDataTitle": "",
             "recoverNeedPeriodCount": 2,
             "targets": [
                 {
                     "alias": "Result",
-                    "dql": "M::`conntrack`:(AVG(`entries`)) BY `host`"
+                    "dql": "M::`ssh`:(count(`ssh_check`)) BY `host`",
+                    "qtype": "dql"
                 }
             ],
-            "title": "触发紧急事件33",
+            "title": "主机 {{ host }} SSH 服务异常",
             "type": "simpleCheck"
         },
-        "monitorName": "默认",
-        "monitorUUID": "monitor_042705ea48124c3aa9ad6e4410b91a07",
+        "monitorUUID": "monitor_f83dd203f3c24fe7b605e0eb09852a63",
         "refKey": "",
+        "secret": "",
         "status": 0,
+        "tagInfo": [
+            {
+                "id": "tag_27ff715fe6f44650a1dfdbedb8cf84b2",
+                "name": "本地测试组合检测"
+            }
+        ],
         "type": "trigger",
-        "updateAt": 1677668937,
-        "updator": "wsak_ecdec9f27d6c482a997c218b2fb351a0",
-        "uuid": "rul_0cc7449fdfc5496ba4e687d57d1af99e",
-        "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
+        "updateAt": 1710831784,
+        "updator": "wsak_a2d55c91bc134aaaa8d68e30cee8a53c",
+        "uuid": "rul_8e33996045754736aeecd34b6a5f846a",
+        "workspaceUUID": "wksp_4b57c7bab38e4a2d9630f675dc20015d"
     },
     "errorCode": "",
     "message": "",
     "success": true,
-    "traceId": "TRACE-195D447B-014A-46E3-B503-4E015BD059C4"
+    "traceId": "TRACE-FF2C1DA3-1EE2-4802-A857-D37BCFB0C562"
 } 
 ```
 

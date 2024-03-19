@@ -37,7 +37,7 @@
 | repeatCrontabSet.week | string |  | 周<br>例子: 1,3 <br>允许为空: False <br> |
 | crontabDuration | int |  | 结束时间减去开始时间, 正整数,单位为 s<br>例子: 3600 <br>允许为空: False <br> |
 | repeatExpireTime | string |  | 重复结束时间 %Y/%m/%d %H:%M:%S<br>例子:  <br>允许为空: False <br>允许空字符串: True <br> |
-| timezone | str | Y | 静默规则时区<br>例子: Asia/shanghai <br>允许为空: False <br> |
+| timezone | str | Y | 静默规则时区<br>例子: Asia/Shanghai <br>允许为空: False <br> |
 | type | str | Y | 静默规则类型<br>例子: custom <br>允许为空: False <br>可选值: ['checker', 'alertPolicy', 'tag', 'custom'] <br> |
 
 ## 参数补充说明
@@ -60,7 +60,7 @@
 | startTime        | str  | 静默开始时间  %Y/%m/%d %H:%M:%S                 |
 | endTime          | str  | 静默结束时间  %Y/%m/%d %H:%M:%S                 |
 | repeatExpireTime | str  | 重复静默的过期时间 %Y/%m/%d %H:%M:%S             |
-| timezone         | str  | 对应任务时区默认 Asia/shanghai              |
+| timezone         | str  | 对应任务时区默认 Asia/Shanghai              |
 | type             | str  | 对应静默规则类型 checker:monitor:tag:custom |
 | repeatExpire     | int  | 重复静默的过期时间 （2023-08-24下架）                |
 | start            | int  | 静默开始时间  （2023-08-24下架）                  |

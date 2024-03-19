@@ -22,7 +22,7 @@
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
 | name | string |  | 监控器名字<br>允许为空: False <br> |
-| ruleTimezone | str | Y | 告警策略 时区<br>例子: Asia/shanghai <br>允许为空: False <br> |
+| ruleTimezone | str | Y | 告警策略 时区<br>例子: Asia/Shanghai <br>允许为空: False <br> |
 | alertOpt | json |  | 告警设置<br>允许为空: False <br> |
 | alertOpt.silentTimeout | integer | Y | 告警设置<br>允许为空: False <br> |
 | alertOpt.alertTarget | array |  | 触发动作, 注意触发时间的, 参数处理<br>例子: [{'name': '通知配置1', 'targets': [{'to': ['acnt_37ca16a6bf54413090d5e8396fc859cd'], 'status': 'critical'}], 'crontabDuration': 600, 'crontab': '0 9 * * 0,1,2,3,4'}, {'name': '通知配置2', 'targets': [{'status': 'error', 'to': ['group_b85d201fd5244be6842e0d20d35c37dd']}], 'customDateUUIDs': ['ndate_0b020405d122444489db5391b3fa2443'], 'customStartTime': '09:30:10', 'customDuration': 600}] <br>允许为空: False <br> |
@@ -42,7 +42,7 @@
 curl 'https://openapi.guance.com/api/v1/alert_policy/altpl_a293c3584b8143778d4fed7a54315c11/modify' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
---data-raw '{"name":"jj_modify","ruleTimezone":"Asia/shanghai","alertOpt":{"alertTarget":[{"targets":[{"status":"warning","to":["notify_9fddc9eb5eb24b8cb1323a8417e0299e"]}]}],"silentTimeout":21600,"aggInterval":120,"aggFields":["df_monitor_checker_id"]}}' \
+--data-raw '{"name":"jj_modify","ruleTimezone":"Asia/Shanghai","alertOpt":{"alertTarget":[{"targets":[{"status":"warning","to":["notify_9fddc9eb5eb24b8cb1323a8417e0299e"]}]}],"silentTimeout":21600,"aggInterval":120,"aggFields":["df_monitor_checker_id"]}}' \
 --compressed
 ```
 
@@ -79,7 +79,7 @@ curl 'https://openapi.guance.com/api/v1/alert_policy/altpl_a293c3584b8143778d4fe
         "deleteAt": -1,
         "id": 4100,
         "name": "jj_modify",
-        "ruleTimezone": "Asia/shanghai",
+        "ruleTimezone": "Asia/Shanghai",
         "score": 0,
         "status": 0,
         "updateAt": 1706152339.7920609,

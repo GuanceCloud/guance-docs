@@ -14,7 +14,8 @@
 
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
-| monitorUUID | commaArray |  | 告警策略UUID<br>允许为空: False <br> |
+| monitorUUID | commaArray |  | 告警分组UUID<br>允许为空: False <br> |
+| alertPolicyUUID | commaArray |  | 告警策略UUID<br>允许为空: False <br> |
 | checkerUUID | commaArray |  | 自建巡检UUID<br>允许为空: False <br> |
 | refKey | commaArray |  | refKey，多值以英文逗号分割<br>允许为空: False <br> |
 | search | string |  | 搜索自建巡检名<br>允许为空: False <br> |
@@ -40,7 +41,85 @@ curl 'https://openapi.guance.com/api/v1/self_built_checker/list?refKey=zyAy2l9v,
 
 ## 响应
 ```shell
-{} 
+{
+    "code": 200,
+    "content": {
+        "data": [
+            {
+                "alertPolicyInfos": [
+                    {
+                        "name": "0131",
+                        "uuid": "altpl_4a2747627adf4f3ebc886f71f0bc6e62"
+                    },
+                    {
+                        "name": "xxx的告警策略-自定义测试",
+                        "uuid": "altpl_ac988631d29247e8851b15a8b51153b8"
+                    },
+                    {
+                        "name": "ll-告警策略-勿动",
+                        "uuid": "altpl_dd6910be2bf14862a855533680a6d400"
+                    }
+                ],
+                "createAt": 1706174074,
+                "createdWay": "manual",
+                "creator": "wsak_d5a57c1c38c9456fbfbec19c7fc6bd0f",
+                "crontabInfo": {},
+                "deleteAt": -1,
+                "extend": {},
+                "id": 663,
+                "isLocked": 0,
+                "jsonScript": {
+                    "callKwargs": {},
+                    "name": "SSL证书过期时间巡检",
+                    "refFuncInfo": {
+                        "args": [
+                            "name"
+                        ],
+                        "category": "general",
+                        "definition": "run(name='')",
+                        "description": "zh-CN: SSL 证书有效期巡检\n    title: SSL 证书有效期巡检\n    doc: |\n        参数：\n            无需配置，默认整个工作空间\nen:\n    title: SSL Check\n    doc: |\n        Parameters:\n            No configuration is required by default for the entire workspace",
+                        "funcId": "guance_monitor_user_example_obs__ssl.run",
+                        "kwargs": {
+                            "name": {
+                                "default": ""
+                            }
+                        }
+                    },
+                    "title": "SSL证书过期时间巡检",
+                    "type": "selfBuiltCheck"
+                },
+                "monitorName": "",
+                "monitorUUID": "",
+                "refKey": "d519e0bd69d1e0d17de7c536fc58babe",
+                "secret": "",
+                "status": 0,
+                "type": "self_built_trigger",
+                "updateAt": 1710760853,
+                "updator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
+                "uuid": "rul_062c120c9e764e6c9de7e9a3d2617f2e",
+                "workspaceUUID": "wksp_4b57c7bab38e4a2d9630f675dc20015d"
+            }
+        ],
+        "declaration": {
+            "b": [
+                "asfawfgajfasfafgafwba",
+                "asfgahjfaf"
+            ],
+            "business": "aaa",
+            "organization": "64fe7b4062f74d0007b46676"
+        }
+    },
+    "errorCode": "",
+    "message": "",
+    "pageInfo": {
+        "count": 1,
+        "pageIndex": 1,
+        "pageSize": 100,
+        "totalCount": 1
+    },
+    "success": true,
+    "traceId": "TRACE-506E20FA-553F-4FBC-9ACD-E1A400ACB790"
+} 
 ```
 
 
