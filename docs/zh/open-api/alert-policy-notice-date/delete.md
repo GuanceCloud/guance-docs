@@ -15,6 +15,7 @@
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
 | noticeDatesUUIDs | array | Y | 告警策略-自定义通知日期的UUID<br>允许为空: False <br> |
+| skipRefCheck | boolean |  | 是否跳过(告警策略)关联关系检测, 默认False, 进行检测,<br>允许为空: False <br> |
 
 ## 参数补充说明
 

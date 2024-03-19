@@ -35,7 +35,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1//channel/chan_d2744f4559f84d53891f749f07f7144b/subscribe' \
+curl 'https://openapi.guance.com/api/v1/channel/chan_d2744f4559f84d53891f749f07f7144b/subscribe' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Accept: application/json, text/plain, */*' \
 -H 'Accept-Language: zh' \
