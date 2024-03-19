@@ -28,6 +28,7 @@ nav:
   - '监控 - 告警策略': alert-policy
   - '监控 - 告警策略 - 自定义通知日期': alert-policy-notice-date
   - '监控 - 通知对象管理': notify-object
+  - '管理 - 成员管理 - 角色权限': permission
   - '管理 - 成员管理': workspace-member
   - '管理 - 成员管理 - 团队管理': member-group
   - '管理 - 成员管理 - 角色管理': role
