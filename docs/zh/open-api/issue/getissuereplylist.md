@@ -32,8 +32,8 @@
 
 ## 请求例子
 ```shell
-curl 'http://127.0.0.1:5000/api/v1/issue/reply/issue_db6629a4e2cd4f92a95dae0d6d5b44ec/list?ordering=-createAt' \
--H 'DF-API-KEY: 1TfqACVBz0WKXLajZIlw9475RshmOQ6t' \
+curl 'https://openapi.guance.com/api/v1/issue/reply/issue_db6629a4e2cd4f92a95dae0d6d5b44ec/list?ordering=-createAt' \
+-H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
 

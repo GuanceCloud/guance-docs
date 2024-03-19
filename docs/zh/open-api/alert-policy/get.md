@@ -66,7 +66,7 @@ curl 'https://openapi.guance.com/api/v1/alert_policy/altpl_a293c3584b8143778d4fe
         "notifyObjectName": {
             "notify_9fddc9eb5eb24b8cb1323a8417e0299e": "金磊测试无密钥"
         },
-        "ruleTimezone": "Asia/shanghai",
+        "ruleTimezone": "Asia/Shanghai",
         "score": 0,
         "status": 0,
         "updateAt": 1706152340,

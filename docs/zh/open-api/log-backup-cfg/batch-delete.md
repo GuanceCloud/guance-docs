@@ -24,7 +24,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/log_index_cfg/batch_delete' \
+curl 'https://openapi.guance.com/api/v1/log_backup_cfg/batch_delete' \
 -H 'Accept: application/json, text/plain, */*' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
