@@ -63,7 +63,10 @@ monitor   :
     disable_cloud_provider_sync = false
     
     ## Enable put cloud provider region/zone_id information into global election tags, (default to true).
-    # enable_cloud_host_tags_Global_election = true
+    # enable_cloud_host_tags_global_election = true
+    
+    ## Enable put cloud provider region/zone_id information into global host tags, (default to true).
+    # enable_cloud_host_tags_global_host = true
     
     [inputs.hostobject.tags] # (optional) custom tags
     # cloud_provider = "aliyun" # aliyun/tencent/aws/hwcloud/azure, probe automatically if not set
@@ -130,6 +133,26 @@ monitor   :
         **ConfField**: `extra_device`
     
         **Example**: `/nfsdata,other`
+    
+    - **ENV_ENV_INPUT_HOSTOBJECT_CLOUD_META_AS_ELECTION_TAGS**
+    
+        将云服务商 region/zone_id 信息放入全局选举标签
+    
+        **Type**: Boolean
+    
+        **ConfField**: `enable_cloud_host_tags_global_election`
+    
+        **Default**: true
+    
+    - **ENV_ENV_INPUT_HOSTOBJECT_CLOUD_META_AS_HOST_TAGS**
+    
+        将云服务商 region/zone_id 信息放入全局主机标签
+    
+        **Type**: Boolean
+    
+        **ConfField**: `enable_cloud_host_tags_global_host`
+    
+        **Default**: true
     
     - **ENV_INPUT_HOSTOBJECT_TAGS**
     
@@ -201,6 +224,8 @@ Datakit 默认开启云同步，目前支持阿里云/腾讯云/AWS/华为云/�
 |`disk_used_percent`|Disk usage|float|percent|
 |`diskio_read_bytes_per_sec`|Disk read rate|int|B/S|
 |`diskio_write_bytes_per_sec`|Disk write rate|int|B/S|
+|`dk_upgrader`|Upgrade's host and port|string|-|
+|`is_docker`|Docker mode|int|-|
 |`load`|System load|float|-|
 |`logging_level`|Log level|string|-|
 |`mem_used_percent`|Memory usage|float|percent|

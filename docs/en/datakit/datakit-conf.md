@@ -19,7 +19,7 @@ The DataKit master configuration is used to configure the running behavior of th
 
 ## Datakit Main Configure Sample {#maincfg-example}
 
-Datakit main configure is `datakit.conf`, here is the example sample(1.25.0):
+Datakit main configure is `datakit.conf`, here is the example sample(1.26.0):
 
 <!-- markdownlint-disable MD046 -->
 ??? info "`datakit.conf`"
@@ -74,6 +74,16 @@ Datakit main configure is `datakit.conf`, here is the example sample(1.25.0):
       # DCA client white list(raw IP or CIDR ip format)
       # Example: [ "1.2.3.4", "192.168.1.0/24" ]
       white_list = []
+    
+    ################################################
+    # Upgrader 
+    ################################################
+    [dk_upgrader]
+      # host address
+      host = "0.0.0.0"
+    
+      # port number
+      port = 9542 
     
     ################################################
     # Pipeline
