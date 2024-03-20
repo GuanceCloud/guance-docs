@@ -94,7 +94,7 @@ nav:
       - net.md
       - host_processes.md
       - hostobject.md
-		- Network:
+    - Network:
       - netstat.md
       - socket.md
       - eBPF:
