@@ -20,7 +20,6 @@ icon: zy/open-api
 |-------|-----------|--------------------------------|
 | SaaS 部署 | 中国区1（杭州）  | https://openapi.guance.com     |
 | SaaS 部署 | 中国区2（宁夏）  | https://aws-openapi.guance.com |
-| SaaS 部署 | 中国区3（张家口）  | https://cn3-openapi.guance.com |
 | SaaS 部署 | 中国区4（广州）  | https://cn4-openapi.guance.com |
 | SaaS 部署 | 中国区5（世纪互联）  | https://cn5-openapi.guance.com |
 | SaaS 部署 | 中国区6（香港）  | https://cn6-openapi.guance.one |
@@ -35,7 +34,7 @@ icon: zy/open-api
 | 参数名        | 类型      | 说明                                                                 |
 |:-----------|:--------|:-------------------------------------------------------------------|
 | Content-Type | string  | application/json                                                   |
-| DF-API-KEY | string  | 调用者标识, 获取方式见[API Key 管理](../management/api-key/open-api.md)|
+| DF-API-KEY | string  | 调用者标识, 获取方式见[API Key 管理](../management/api-key/)|
 
 
 ## 认证方式
