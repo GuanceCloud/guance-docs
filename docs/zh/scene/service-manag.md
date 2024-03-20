@@ -161,11 +161,11 @@
 
 ![](img/service-7.gif)
 
-##### 跨工作空间 Servicemap 查询 {#servicemap}
+##### 跨工作空间 Service Map 查询 {#servicemap}
 
 **前提**：所有商业版工作空间归属于同一个[组织 ID](../management/attribute-claims.md)，即 `organization` 相同。
 
-若同一个 Trace 数据存在分流情况，数据会归属于不同的工作空间，此时无法在同一个工作空间查看完整的链路数据。而跨工作空间 Servicemap 查询可保证数据查询的连贯性，直接在当前工作空间点击按钮即可查看当前服务的上下游调用拓扑。
+若同一个 Trace 数据存在分流情况，数据会归属于不同的工作空间，此时无法在同一个工作空间查看完整的链路数据。而跨工作空间 Service Map 查询可保证数据查询的连贯性，直接在当前工作空间点击按钮即可查看当前服务的上下游调用拓扑。
 
 ![](img/servicemap.png)
 

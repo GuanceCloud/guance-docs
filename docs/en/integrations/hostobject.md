@@ -65,7 +65,10 @@ In general, the host object is turned on by default and does not need to be conf
     disable_cloud_provider_sync = false
     
     ## Enable put cloud provider region/zone_id information into global election tags, (default to true).
-    # enable_cloud_host_tags_Global_election = true
+    # enable_cloud_host_tags_global_election = true
+    
+    ## Enable put cloud provider region/zone_id information into global host tags, (default to true).
+    # enable_cloud_host_tags_global_host = true
     
     [inputs.hostobject.tags] # (optional) custom tags
     # cloud_provider = "aliyun" # aliyun/tencent/aws/hwcloud/azure, probe automatically if not set
@@ -132,6 +135,26 @@ In general, the host object is turned on by default and does not need to be conf
         **ConfField**: `extra_device`
     
         **Example**: `/nfsdata,other`
+    
+    - **ENV_ENV_INPUT_HOSTOBJECT_CLOUD_META_AS_ELECTION_TAGS**
+    
+        Enable put cloud provider region/zone_id information into global election tags
+    
+        **Type**: Boolean
+    
+        **ConfField**: `enable_cloud_host_tags_global_election`
+    
+        **Default**: true
+    
+    - **ENV_ENV_INPUT_HOSTOBJECT_CLOUD_META_AS_HOST_TAGS**
+    
+        Enable put cloud provider region/zone_id information into global host tags
+    
+        **Type**: Boolean
+    
+        **ConfField**: `enable_cloud_host_tags_global_host`
+    
+        **Default**: true
     
     - **ENV_INPUT_HOSTOBJECT_TAGS**
     
@@ -203,6 +226,8 @@ For all of the following data collections, a global tag named `host` is appended
 |`disk_used_percent`|Disk usage|float|percent|
 |`diskio_read_bytes_per_sec`|Disk read rate|int|B/S|
 |`diskio_write_bytes_per_sec`|Disk write rate|int|B/S|
+|`dk_upgrader`|Upgrade's host and port|string|-|
+|`is_docker`|Docker mode|int|-|
 |`load`|System load|float|-|
 |`logging_level`|Log level|string|-|
 |`mem_used_percent`|Memory usage|float|percent|
