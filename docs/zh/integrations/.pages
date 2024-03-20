@@ -99,9 +99,13 @@ nav:
       - net.md
       - host_processes.md
       - hostobject.md
+		- 网络:
+		  - 'Socket': socket.md
+      - netstat.md
+      - eBPF:
+        - ebpf.md
+        - 'eBPF Tracing': ebpftrace.md
     - chrony.md
-    - netstat.md
-    - socket.md
     - hostdir.md
     - host_healthcheck.md
     - ssh.md
@@ -149,7 +153,6 @@ nav:
       - nsq.md
       - rabbitmq.md
       - rocketmq.md
-
 
     - 'Web 服务器':
       - 'Nginx': nginx.md
@@ -314,9 +317,6 @@ nav:
     - 'Scheck': sec-checker.md
 
   - '其它采集器':
-    - eBPF:
-      - ebpf.md
-      - 'eBPF Tracing': ebpftrace.md
     - Sensors: sensors.md
     - smart.md
     - ipmi.md
