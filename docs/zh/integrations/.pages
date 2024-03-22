@@ -87,6 +87,10 @@ nav:
       - 'Redis': tencent_redis_mem.md
       - 'Tdsql-C': tencent_tdsql_c_mysql.md
 
+    - 火山云:
+      - 'ECS': volcengine_ecs.md
+      - 'Mysql': volcengine_mysql.md
+
   - 主机:
     - 默认采集:
       - 'DataKit': dk.md
