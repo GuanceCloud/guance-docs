@@ -23,7 +23,7 @@
 
 ## 请求例子
 ```shell
-curl 'http://127.0.0.1:5000/api/v1/workspace/declaration/modify' \
+curl 'https://openapi.guance.com/api/v1/workspace/declaration/modify' \
   -H 'Accept: application/json, text/plain, */*' \
   -H 'Content-Type: application/json;charset=UTF-8' \
   -H 'DF-API-KEY: <DF-API-KEY>' \

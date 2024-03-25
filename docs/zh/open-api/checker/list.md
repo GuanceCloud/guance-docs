@@ -15,7 +15,8 @@
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
 | type | string |  | 列出监控器,列出智能监控传参为 smartMonitor<br>允许为空: False <br>允许空字符串: False <br>可选值: ['smartMonitor'] <br> |
-| monitorUUID | commaArray |  | 监控器UUID<br>允许为空: False <br> |
+| monitorUUID | commaArray |  | 监视器分组UUID<br>允许为空: False <br> |
+| alertPolicyUUID | commaArray |  | 告警策略UUID<br>允许为空: False <br> |
 | checkerUUID | commaArray |  | 检查项UUID列表<br>允许为空: False <br> |
 | sloUUID | string |  | SLO的UUID<br>允许为空: False <br> |
 | search | string |  | 搜索规则名<br>允许为空: False <br> |
