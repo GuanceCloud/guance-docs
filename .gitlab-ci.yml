@@ -99,7 +99,7 @@ buildBasis:
     - cloudcare-multiarch
 
 buildRTMStatic:
-  stage: build-static
+  stage: deploy
   script:
     # 分离镜像内容构建与多架构镜像打包，节省打包时间
     - docker build 
