@@ -107,6 +107,8 @@ buildRTMStatic:
       -f ./Dockerfile.pre-rtm-build
       -t registry.jiagouyun.com/cloudcare-front/$REPOSITORY:pre-rtm-build .
     - docker push registry.jiagouyun.com/cloudcare-front/$REPOSITORY:pre-rtm-build
+  tags:
+    - cloudcare-multiarch
 
 buildRTM:
   stage: deploy
