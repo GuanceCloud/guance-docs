@@ -111,7 +111,8 @@ buildRTM:
     # 分离镜像内容构建与多架构镜像打包，节省打包时间
     - docker build 
       -f ./Dockerfile.pre-rtm-build
-      -t registry.jiagouyun.com/cloudcare-front/$REPOSITORY:pre-rtm-build . --push
+      -t registry.jiagouyun.com/cloudcare-front/$REPOSITORY:pre-rtm-build .
+    - docker push registry.jiagouyun.com/cloudcare-front/$REPOSITORY:pre-rtm-build
 
     - docker buildx build 
       --platform linux/arm64,linux/amd64 
