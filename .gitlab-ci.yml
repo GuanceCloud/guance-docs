@@ -107,16 +107,15 @@ buildRTM:
     - VDIR=${V[0]}.${V[1]}.${V[2]}
     - REPO=dataflux/$VDIR
     - TAG=${PROJECT}-${V[3]}-${V[4]}
-    
+
+    # 分离镜像内容构建与多架构镜像打包，节省打包时间
+    - docker build 
+      -f ./Dockerfile.pre-rtm-build
+      -t registry.jiagouyun.com/cloudcare-front/$REPOSITORY:pre-rtm-build . --push
+
     - docker buildx build 
-      --build-arg release_env="rtm"
-      --build-arg GUANCE_HELPS_OSS_AK_ID="${GUANCE_HELPS_OSS_AK_ID}"
-      --build-arg GUANCE_HELPS_OSS_AK_SECRET="${GUANCE_HELPS_OSS_AK_SECRET}"
-      --build-arg GUANCE_HELPS_CDN_AK_ID="${GUANCE_HELPS_CDN_AK_ID}"
-      --build-arg GUANCE_HELPS_CDN_AK_SECRET="${GUANCE_HELPS_CDN_AK_SECRET}"
-      --build-arg GUANCE_HELPS_OSS_BUCKET="${GUANCE_HELPS_OSS_BUCKET}"
-      --build-arg GUANCE_HELPS_OSS_ENDPOINT="${GUANCE_HELPS_OSS_ENDPOINT}"
       --platform linux/arm64,linux/amd64 
+      -f ./Dockerfile.rtm-build
       -t pubrepo.jiagouyun.com/$REPO:$TAG . --push
   tags:
     - cloudcare-multiarch 

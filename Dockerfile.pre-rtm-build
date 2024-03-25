@@ -1,0 +1,33 @@
+FROM registry.jiagouyun.com/basis/mkdocs:2.6 as build
+
+RUN mkdir /dataflux-doc
+WORKDIR /dataflux-doc
+COPY ./ /dataflux-doc
+
+RUN \
+    echo "pre RTM Build ..."; \
+    cp -r -f overrides-deploy/* overrides/; \
+    enFileArg=mkdocs.en.yml; \
+    zhFileArg=mkdocs.zh.yml; \
+
+    mkdocs build -f ${enFileArg}; \
+    mkdocs build -f ${zhFileArg}; \
+
+    # 禁止任何爬虫爬取部署版的文档，防止干扰 SaaS 的文档中心 \
+    echo "User-agent: *" > site/zh/Robots.txt; \
+    echo "Disallow: /" >> site/zh/Robots.txt; \
+
+    echo "User-agent: *" > site/en/Robots.txt; \
+    echo "Disallow: /" >> site/en/Robots.txt; \
+
+# build static site
+FROM nginx:1.18.0
+
+RUN mkdir /etc/nginx/ssl
+RUN mkdir /dataflux-doc
+RUN mkdir /dataflux-doc/en
+
+WORKDIR /dataflux-doc
+
+COPY --from=build /dataflux-doc/site/zh /dataflux-doc
+COPY --from=build /dataflux-doc/site/en /dataflux-doc/en
