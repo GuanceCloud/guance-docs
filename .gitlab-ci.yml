@@ -125,7 +125,7 @@ buildRTM:
       -f ./Dockerfile.rtm-build
       -t pubrepo.jiagouyun.com/$REPO:$TAG . --push
   tags:
-    - cloudcare-multiarch 
+    - cloudcare-multiarch
 
 buildUOSRTM:
   stage: deploy

@@ -18,7 +18,7 @@ RUN \
     echo "Disallow: /" >> site/zh/Robots.txt; \
 
     echo "User-agent: *" > site/en/Robots.txt; \
-    echo "Disallow: /" >> site/en/Robots.txt; \
+    echo "Disallow: /" >> site/en/Robots.txt;
 
 # build static site
 FROM nginx:1.18.0
