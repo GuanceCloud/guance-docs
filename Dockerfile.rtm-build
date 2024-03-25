@@ -1,0 +1,10 @@
+# build static site
+FROM nginx:1.18.0
+
+RUN mkdir /etc/nginx/ssl
+RUN mkdir /dataflux-doc
+RUN mkdir /dataflux-doc/en
+
+WORKDIR /dataflux-doc
+
+COPY --from=registry.jiagouyun.com/cloudcare-front/dataflux-doc:pre-rtm-build /dataflux-doc /dataflux-doc
