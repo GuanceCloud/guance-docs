@@ -171,7 +171,7 @@ monitor:
     
     - **ENV_INPUT_CONTAINER_ENABLE_POD_METRIC**
     
-        是否开启 Pod 指标采集（CPU 和内存使用情况），需要安装[Kubernetes-metrics-server](https://github.com/kubernetes-sigs/metrics-server){:target="_blank"}
+        是否开启 Pod 指标采集（CPU 和内存使用情况）
     
         **Type**: Boolean
     
@@ -938,8 +938,7 @@ The metric of the Kubernetes ReplicaSet.
 |  ----  | --------|
 |`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`namespace`|Namespace defines the space within each name must be unique.|
-|`replica_set_name`|Name must be unique within a namespace. (Deprecated)|
-|`replicaset_name`|Name must be unique within a namespace.|
+|`replicaset`|Name must be unique within a namespace.|
 |`uid`|The UID of ReplicaSet.|
 
 - 指标列表
@@ -1477,7 +1476,6 @@ The object of the Kubernetes ReplicaSet.
 |`deployment`|The name of the Deployment which the object belongs to.|
 |`name`|The UID of ReplicaSet.|
 |`namespace`|Namespace defines the space within each name must be unique.|
-|`replica_set_name`|Name must be unique within a namespace. (Deprecated)|
 |`replicaset_name`|Name must be unique within a namespace.|
 |`statefulset`|The name of the StatefulSet which the object belongs to.|
 |`uid`|The UID of ReplicaSet.|

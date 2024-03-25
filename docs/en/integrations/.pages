@@ -82,6 +82,10 @@ nav:
       - 'Redis': tencent_redis_mem.md
       - 'Tdsql-C': tencent_tdsql_c_mysql.md
 
+    - Volcengine:
+      - 'ECS': volcengine_ecs.md
+      - 'Mysql': volcengine_mysql.md
+
   - Host:
     - Default Collection:
       - 'DataKit': dk.md 
@@ -94,8 +98,12 @@ nav:
       - net.md
       - host_processes.md
       - hostobject.md
-    - netstat.md
-    - socket.md
+    - Network:
+      - netstat.md
+      - socket.md
+      - eBPF:
+        - ebpf.md
+        - 'eBPF Tracing': ebpftrace.md
     - hostdir.md
     - host_healthcheck.md
     - ssh.md
@@ -112,6 +120,7 @@ nav:
       - clickhousev1.md
       - couchbase.md
       - couchdb.md
+      - doris.md
       - neo4j.md
       - oracle.md
       - 'OceanBase': oceanbase.md
@@ -294,7 +303,6 @@ nav:
     - 'Scheck': sec-checker.md
 
   - 'Other Collectors':
-    - eBPF: ebpf.md
     - Sensors: sensors.md
     - smart.md
     - ipmi.md

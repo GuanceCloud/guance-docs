@@ -140,6 +140,7 @@ nsec
 nullable
 pprof
 promremote
+quantile
 replicasets
 rwlock
 schedulability

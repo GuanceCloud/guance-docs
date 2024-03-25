@@ -19,7 +19,7 @@ DataKit 主配置用来配置 DataKit 自己的运行行为。
 
 ## Datakit 主配置示例 {#maincfg-example}
 
-Datakit 主配置示例如下，我们可以根据该示例来开启各种功能（当前版本 1.25.0）：
+Datakit 主配置示例如下，我们可以根据该示例来开启各种功能（当前版本 1.26.0）：
 
 <!-- markdownlint-disable MD046 -->
 ??? info "*datakit.conf*"
@@ -74,6 +74,16 @@ Datakit 主配置示例如下，我们可以根据该示例来开启各种功能
       # DCA client white list(raw IP or CIDR ip format)
       # Example: [ "1.2.3.4", "192.168.1.0/24" ]
       white_list = []
+    
+    ################################################
+    # Upgrader 
+    ################################################
+    [dk_upgrader]
+      # host address
+      host = "0.0.0.0"
+    
+      # port number
+      port = 9542 
     
     ################################################
     # Pipeline

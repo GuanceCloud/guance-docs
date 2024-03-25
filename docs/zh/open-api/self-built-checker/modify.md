@@ -15,6 +15,7 @@
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
 | monitorUUID | string |  | 告警策略UUID<br>允许空字符串: True <br> |
+| alertPolicyUUIDs | array |  | 告警策略 uuid 列表<br>允许为空: False <br> |
 | ruleUUID | string |  | 自建巡检的UUID<br>例子: rul_xxxxx <br>允许为空: False <br> |
 | refKey | string |  | 自建巡检的关联key<br>例子: xxx <br>允许为空: False <br> |
 | title | string |  | 关联函数标题<br>例子: ref-xxx <br>允许为空: False <br> |
