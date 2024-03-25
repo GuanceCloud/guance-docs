@@ -98,32 +98,32 @@ buildBasis:
   tags:
     - cloudcare-multiarch
 
+buildRTMStatic:
+  stage: build-static
+  script:
+    # 分离镜像内容构建与多架构镜像打包，节省打包时间
+    - docker build 
+      -f ./Dockerfile.pre-rtm-build
+      -t registry.jiagouyun.com/cloudcare-front/$REPOSITORY:pre-rtm-build .
+    - docker push registry.jiagouyun.com/cloudcare-front/$REPOSITORY:pre-rtm-build
+
+
 buildRTM:
   stage: deploy
   only:
     - /\d+\.\d+\.\d+-\w+-\d+-prod/
+  needs:
+    - buildRTMStatic
   script:
     - V=(${CI_COMMIT_REF_NAME//[\.-]/ })
     - VDIR=${V[0]}.${V[1]}.${V[2]}
     - REPO=dataflux/$VDIR
     - TAG=${PROJECT}-${V[3]}-${V[4]}
 
-    build1:
-      stage: build
-      script:
-        # 分离镜像内容构建与多架构镜像打包，节省打包时间
-        - docker build 
-          -f ./Dockerfile.pre-rtm-build
-          -t registry.jiagouyun.com/cloudcare-front/$REPOSITORY:pre-rtm-build .
-        - docker push registry.jiagouyun.com/cloudcare-front/$REPOSITORY:pre-rtm-build
-
-    build2:
-      stage: build
-      script:
-        - docker buildx build 
-          --platform linux/arm64,linux/amd64 
-          -f ./Dockerfile.rtm-build
-          -t pubrepo.jiagouyun.com/$REPO:$TAG . --push
+    - docker buildx build 
+      --platform linux/arm64,linux/amd64
+      -f ./Dockerfile.rtm-build
+      -t pubrepo.jiagouyun.com/$REPO:$TAG . --push
   tags:
     - cloudcare-multiarch 
 
