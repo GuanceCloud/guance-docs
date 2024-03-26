@@ -82,6 +82,10 @@ nav:
       - 'Redis': tencent_redis_mem.md
       - 'Tdsql-C': tencent_tdsql_c_mysql.md
 
+    - Volcengine:
+      - 'ECS': volcengine_ecs.md
+      - 'Mysql': volcengine_mysql.md
+
   - Host:
     - Default Collection:
       - 'DataKit': dk.md 

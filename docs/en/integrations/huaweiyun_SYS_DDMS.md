@@ -1,5 +1,5 @@
 ---
-title: 'huaweiyun SYS.DDMS Monitoring View'
+title: 'Huawei Cloud SYS.DDMS Monitoring View'
 summary: 'The Huawei Cloud SYS.DDMS monitoring view displays indicators including message throughput, latency, concurrent connections, and reliability, which reflect the performance and reliability assurance of DDMS in handling large-scale message delivery and real-time data flow.'
 __int_icon: 'icon/huaweiyun_SYS_DDMS'
 dashboard:
@@ -14,10 +14,10 @@ monitor:
 ---
 
 <!-- markdownlint-disable MD025 -->
-# huaweiyun SYS.DDMS
+# Huawei Cloud `SYS.DDMS`
 <!-- markdownlint-enable -->
 
-The Huawei Cloud SYS.DDMS monitoring view displays indicators including message throughput, latency, concurrent connections, and reliability, which reflect the performance and reliability assurance of DDMS in handling large-scale message delivery and real-time data flow
+The Huawei Cloud `SYS.DDMS` monitoring view displays indicators including message throughput, latency, concurrent connections, and reliability, which reflect the performance and reliability assurance of `DDMS` in handling large-scale message delivery and real-time data flow
 
 ## Config {#config}
 
@@ -30,11 +30,11 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 
 ### Installation script
 
-> Tip：Please prepare Huaweiyun AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
+> Tip：Please prepare Huawei Cloud AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data SYS.DDMS, install the corresponding data collection script: "Observation Cloud Integration (huaweiyun SYS.DDMS)" (ID: `startup__guance_huaweicloud_ddm`).
+To synchronize the monitoring data `SYS.DDMS`, install the corresponding data collection script: "Observation Cloud Integration (Huawei Cloud `SYS.DDMS`)" (ID: `startup__guance_huaweicloud_ddm`).
 
-Click 【Install】 and enter the corresponding parameters: Huaweiyun AK, Huaweiyun account name.
+Click 【Install】 and enter the corresponding parameters: Huawei Cloud AK, Huawei Cloud account name.
 
 Click [Deploy Startup Scripts], the system will automatically create the `Startup` script set and automatically configure the corresponding startup scripts.
 
@@ -63,7 +63,7 @@ After configuring Huawei Cloud Cloud Monitoring, the default indicator set is as
 
 ## Objects {#object}
 
-The collected Huaweiyun SYS.DDMS object data structure can be viewed from "Infrastructure / Custom".
+The collected Huawei Cloud `SYS.DDMS` object data structure can be viewed from "Infrastructure / Custom".
 
 ```json
 [
