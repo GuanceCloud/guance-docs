@@ -5,7 +5,7 @@
 
     === "ft-sdk"
 
-        **V 1.4.3**：
+        **1.4.3**：
         ``` markdown
         1. 支持 Dataway 与 Datakit 的地址上传
         2. 支持发送 Action，View，Resource，LongTask，Error 类型的 RUM 数据。
@@ -20,7 +20,7 @@
         [更多日志](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-sdk/CHANGELOG.md)
 
     === "ft-native"
-        **V 1.4.3**：
+        **1.1.0**：
         ``` markdown
         1. 支持捕获 ANR Crash
         2. 支持捕获 C/C++ Native Crash
