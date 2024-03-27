@@ -1,6 +1,61 @@
 # Android 应用接入
 ---
 
+???- quote "更新日志"
+
+    === "ft-sdk"
+
+        **1.4.3**：
+        ``` markdown
+        1. 支持 Dataway 与 Datakit 的地址上传
+        2. 支持发送 Action，View，Resource，LongTask，Error 类型的 RUM 数据。
+          - View，Action 页面跳转，控件点击操作自动采集，需要使用 ft-plugin
+          - Resource，自动采集，仅支持 Okhttp，并需要使用 ft-plugin
+          - Error 中的 Native Crash 和 ANR 需要使用 ft-native
+        3. 支持发送 Log 数据，控制台自动写入，需要使用 ft-plugin
+        4. 链路 http header propagation，仅支持 Okhttp，并需要使用 ft-plugin
+        5. 支持数据同步参数配置，请求条目数据，同步间歇时间，以及日志缓存条目数。
+        6. 支持 SDK 内部日志转化为文件
+        ```
+        [更多日志](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-sdk/CHANGELOG.md)
+
+    === "ft-native"
+        **1.1.0**：
+        ``` markdown
+        1. 支持捕获 ANR Crash
+        2. 支持捕获 C/C++ Native Crash
+        3. 支持崩溃时采集应用运行状态
+        4. 支持 ANR 和 Native Crash 触发回调用
+        ```
+        [更多日志](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-native/CHANGELOG.md)
+
+    === "ft-plguin ( AGP 8.0+ )"
+        **1.3.0**：
+        ``` markdown
+        1. 支持 datakit source map 自动上传，支持 native symbol 的上传
+        2. 支持捕获 Application 冷热启动，Activity 页面跳转，View、ListView、Dialog、Tab 点击事件。
+        3. 支持 Webview Js 监听方法的写入
+        4. 支持 Okhttp Trace 和 Resource 数据自动写入
+        5. 支持 Gradle 8.0,AGP 8.0 
+        6. 支持 IgnoreAOP 忽略标记
+        7. 支持兼容阿里云热修复框架
+        ```
+        [更多日志](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-plugin/CHANGELOG.md)
+   
+    === "ft-plugin-legacy ( AGP 7.4.2 Below )"
+        **1.1.6**：
+        ``` markdown
+        1. 支持 datakit source map 自动上传，支持 native symbol 的上传
+        2. 支持捕获 Application 冷热启动，Activity 页面跳转，View、ListView、Dialog、Tab 点击事件。
+        3. 支持 Webview Js 监听方法的写入
+        4. 支持 Okhttp Trace 和 Resource 数据自动写入
+        5. 支持 AGP 7.4.2 以下的版本
+        6. 支持 IgnoreAOP 忽略标记
+        7. 支持兼容阿里云热修复框架
+        ```
+        [更多日志](https://github.com/GuanceCloud/datakit-android/blob/plugin_legacy_support/ft-plugin/CHANGELOG.md)
+
+
 
 观测云应用监测能够通过收集各个 Android 应用的指标数据，以可视化的方式分析各个 Android 应用端的性能。
 
