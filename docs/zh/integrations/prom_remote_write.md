@@ -26,6 +26,8 @@ monitor   :
 
 ### 前置条件 {#requirements}
 
+注意，对于 `vmalert` 的一些早期版本，需要在采集器的配置文件中打开设置 `default_content_encoding = "snappy"`。
+
 开启 Prometheus Remote Write 功能，在 *prometheus.yml* 添加如下配置：
 
 ```yml
@@ -52,6 +54,11 @@ remote_write:
     
       ## accepted methods
       methods = ["PUT", "POST"]
+      
+      ## If the data is decoded incorrectly, you need to set the default HTTP body encoding;
+      ## this usually occurs when the sender does not correctly pass the encoding in the HTTP header.
+      #
+      # default_content_encoding = "snappy"
     
       ## Part of the request to consume.  Available options are "body" and "query".
       # data_source = "body"
