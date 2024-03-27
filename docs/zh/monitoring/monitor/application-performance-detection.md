@@ -86,6 +86,7 @@
 1）**事件标题**：设置告警触发条件的事件名称，支持使用预置的[模板变量](../event-template.md)。
 
 **注意**：最新版本中监控器名称将由事件标题输入后同步生成。旧的监控器中可能存在监控器名称和事件标题不一致的情况，为了给您更好的使用体验，请尽快同步至最新。
+ 
 
 2）**事件内容**：满足触发条件时发送的事件通知内容。支持输入 Markdown 格式文本信息并预览效果，支持使用关联链接、[模板变量](../event-template.md)。
 
@@ -101,6 +102,45 @@
 在事件恢复后，可以同步关闭 Issue。
 
 ![](../img/issue-create.png)
+
+#### 事件内容自定义高级配置 {#advanced-settings}
+
+观测云支持在事件内容中通过高级配置添加关联日志或错误堆栈：
+
+![](../img/advanced-settings.png)
+
+- 添加关联日志：
+
+查询：
+
+```
+{% set dql_data = DQL("L::RE(`.*`):(`message`) { `index` = 'default' } LIMIT 1") %}
+```
+
+关联日志：
+
+```
+{{ dql_data.message | limit_lines(10) }}
+```
+
+- 添加关联错误堆栈
+  
+查询：
+
+```
+{% set dql_data = DQL("T::re(`.*`):(`error_message`,`error_stack`){ (`source` NOT IN ['service_map', 'tracing_stat', 'service_list_1m', 'service_list_1d', 'service_list_1h', 'profile']) AND (`error_stack` = exists()) } LIMIT 1") %}
+```
+
+关联错误堆栈：
+
+```
+{{ dql_data.error_message | limit_lines(10) }}
+
+{{ dql_data.error_stack | limit_lines(10) }}
+```
+
+
+
 
 ### 步骤三：告警配置
 
