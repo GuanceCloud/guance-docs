@@ -25,7 +25,7 @@
 
 ![](img/10.aliyun_market_1.png)
 
-## 开通观测云商业版
+## 开通观测云商业版 {#all-steps}
 
 在**云市场 > 已购买的服务**可以查看到开通订阅的观测云实例，点击该实例右侧的**免登**直接前往观测云。
 
@@ -50,9 +50,13 @@
 
     <img src="../img/17.process_1.png" width="60%" >
 
-### 注册观测云商业版 {#register}
+### 没有费用中心账号 {#register}
 
 若还未有费用中心账号，点击下一步，即可自动跳转至注册页面，[完成注册流程](./commercial-register.md)后，<u>获取观测云账号和费用中心账号</u>。
+
+1. 填写[**基本信息**](./commercial-register.md#info)；
+2. 填写[**企业信息**](./commercial-register.md#corporate)；
+3. 选择开通方式：输入工作空间名称，选择工作空间语言与工作空间风格，输入[**账号 ID**](../billing/billing-account/aliyun-account.md#uid)、[**商品实例 ID**](../billing/billing-account/aliyun-account.md#entity-id)，点击**开通**即可完成注册。
 
 ![](img/10.aliyun_market_3.png)
 
@@ -62,13 +66,15 @@
 
 ![](img/15.aliyun_register_1.png)
 
+**注意**：此处页面右上角的站点与费用中心绑定流程无关，仅影响后续[创建工作空间](#create-workspace)时的站点，且后续无法在创建的页面无法更改站点。
+
 #### :material-numeric-1-circle: 绑定费用中心账号
 
 输入费用中心账号的用户名，通过邮箱验证进行绑定；
 
 <img src="../img/10.market_aliyun_1.png" width="60%" >
 
-#### 绑定工作空间
+#### :material-numeric-2-circle: 绑定工作空间
 
 ##### 绑定已有工作空间
 
@@ -82,13 +88,16 @@
 
 点击**确定**，显示开通成功。
 
+<!--
 ![](img/15.aliyun_register_7.png)
-
+-->
 :material-numeric-2-circle-outline: 如果您在该观测云费用中心账号下还未有可绑定的工作空间，选择[立即创建工作空间](#create-workspace)即可。
+
+![](img/no-workspace.png)
 
 ##### 创建工作空间 {#create-workspace}
 
-:material-numeric-1-circle-outline: 如果您已经注册过观测云账号，但还未创建工作空间，进入**创建工作空间 > 有观测云账号**。
+:material-numeric-1-circle-outline: 如果您已经注册过观测云账号，且还需要创建工作空间，进入**创建工作空间 > 有观测云账号**。
 
 <img src="../img/1-1-commercial-aliyun.png" width="65%" >
 
@@ -96,7 +105,7 @@
 
 <img src="../img/15.aliyun_register_5.png" width="65%" >
 
-工作空间创建成功后，自动回到**绑定观测云工作空间**页面，显示**已选择**。
+工作空间创建成功后，自动回到**绑定观测云工作空间**页面，显示**已绑定**。
 
 <img src="../img/15.aliyun_register_6.png" width="65%" >
 
@@ -104,13 +113,13 @@
 
 :material-numeric-2-circle-outline: 如果您之前未使用过观测云服务，请先注册观测云账号并创建工作空间。进入**创建工作空间 > 无观测云账号**。
 
-![](img/1-2-commercial-aliyun.png)
+<img src="../img/1-2-commercial-aliyun.png" width="65%" >
 
 点击**注册观测云账号**，输入相关信息，通过邮箱验证进行注册。
 
-![](img/15.aliyun_register_3.png)
+<img src="../img/15.aliyun_register_3.png" width="65%" >
 
-工作空间创建成功后，自动回到**绑定观测云工作空间**页面，显示**已选择**。
+工作空间创建成功后，自动回到**绑定观测云工作空间**页面，显示**已绑定**。
 
 ## 开通成功
 
