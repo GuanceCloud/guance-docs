@@ -87,6 +87,8 @@ RUN \
         # 禁止任何爬虫爬取部署版的文档，防止干扰 SaaS 的文档中心 \
         echo "User-agent: *" > site/zh/Robots.txt; \
         echo "Disallow: /" >> site/zh/Robots.txt; \
+        echo "User-agent: *" > site/en/Robots.txt; \
+        echo "Disallow: /" >> site/en/Robots.txt; \
     fi;
 
 RUN \

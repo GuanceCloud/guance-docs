@@ -76,9 +76,9 @@ backup_log:
   guance:
     store_type: "obs" 
 
-1. ${store_type}在oss、s3、obs中选择一项,分别对应阿里云、AWS、华为云存储桶服务
+1. ${store_type} 在 oss、s3、obs 中选择一项，分别对应阿里云、AWS、华为云存储桶服务
 2. guance.store_type 决定实际使用哪个厂商的存储服务，该值应与${store_type}相同
-3. 当${store_type}为s3时，多一个配置项:partition。如果是AWS国内，该值为aws-cn，国外AWS则为aws
+3. 当${store_type}为 s3 时，多一个配置项：partition。如果是 AWS 国内，该值为aws-cn，国外 AWS 则为 aws
 ``` 
   私有云存储桶配置
 ```yaml
@@ -91,9 +91,9 @@ backup_log:
   guance:
     store_type: "obs"
 
-1. ${store_type}在oss、s3、obs中选择一项,分别对应阿里云、AWS、华为云存储桶服务
+1. ${store_type} 在 oss、s3、obs、minio 中选择一项,分别对应阿里云、AWS、华为云存储桶以及 minio 存储服务
 2. guance.store_type 决定实际使用哪个厂商的存储服务，该值应与${store_type}相同
-3. 私有存储服务多了一个配置项:endpoint。值为提供存储桶的endpoint信息
+3. 私有存储服务多了一个配置项：endpoint，值为提供存储桶服务的 endpoint 信息
 ```
 
 * 修改完成后，重启kodo、kodo-x、kodo-inner、kodo-x-backuplog服务
