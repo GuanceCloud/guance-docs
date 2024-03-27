@@ -74,17 +74,17 @@ curl 'https://openapi.guance.com/api/v1/workspace/create' \
     "code": 200,
     "content": {
         "accountInfo": [
-            "acnt_6f2fd4c0766d11ebb56ef2b2c21faf74"
+            "acnt_xxxxxx"
         ],
         "akInfo": {
-            "keyId": "wsak_fb0d6f7f2a3447b8871ad9119e4faac5",
-            "keySk": "RTkIO2q1WdHLzt8achfAXiZPvl0KrJu4",
+            "keyId": "wsak_xxxxxx",
+            "keySk": "xxxxxxxxxxx",
             "name": "test_ak"
         },
         "makeResourceExceptionCode": "",
         "ownerInfo": {
-            "accountUUID": "acnt_6f2fd4c0766d11ebb56ef2b2c21faf74",
-            "email": "88@qq.com",
+            "accountUUID": "acnt_xxxxxxxxxx",
+            "email": "xxxxx@qq.com",
             "name": "测试"
         },
         "wsInfo": {
