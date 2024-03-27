@@ -161,7 +161,7 @@
 
 ![](img/service-7.gif)
 
-##### 跨工作空间 Service Map 查询 {#servicemap}
+##### Service Map 查询 {#servicemap}
 
 **前提**：所有商业版工作空间归属于同一个[组织 ID](../management/attribute-claims.md)，即 `organization` 相同。
 
