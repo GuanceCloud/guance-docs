@@ -77,6 +77,16 @@ yum install -y  redis
     [[inputs.redis]]
       host = "localhost"
       port = 6379
+    
+      ## If tls_open = true, redis-cli version must up 6.0+
+      ## Otherwise, bigkey and hotkey will not be collect
+      ## TLS configuration.
+      tls_open = false
+      # tls_ca = "/opt/ca.crt"
+      # tls_cert = "/opt/peer.crt"
+      # tls_key = "/opt/peer.key"
+      # insecure_skip_verify = false
+    
       # unix_socket_path = "/var/run/redis/redis.sock"
       ## Configure multiple dbs and configure dbs, and the dbs will also be placed in the collection list.
       ## dbs=[] or not configured, all non-empty dbs in Redis will be collected
