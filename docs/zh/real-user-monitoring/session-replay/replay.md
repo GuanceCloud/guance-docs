@@ -3,7 +3,7 @@
 
 ## 开启 Session Replay
 
-通过您之前的 SDK 引入方式，替换 NPM 包为 `> 3.0.0` 版本、或者替换原来的 CDN 链接为 `https://static.guance.com/browser-sdk/v3/dataflux-rum.js。` SDK 初始化 `init()` 之后并不会自动采集 Session Replay Record 数据，需要执行 `startSessionReplayRecording` 开启数据的采集，这对于一些只采集特定情况 Session Replay Record 数据很有用，比如：
+通过您之前的 SDK 引入方式，替换 NPM 包为 `> 3.0.0` 版本、或者替换原来的 CDN 链接为 `https://static.guance.com/browser-sdk/v3/dataflux-rum.js`。SDK 初始化 `init()` 之后并不会自动采集 Session Replay Record 数据，需要执行 `startSessionReplayRecording` 开启数据的采集，这对于一些只采集特定情况 Session Replay Record 数据很有用，比如：
 
 ```js
  // 只采集用户登录之后的操作数据
@@ -102,7 +102,7 @@ Session Replay 不是视频，而是基于 DOM 快照重建的 iframe。因此�
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Session Repaly 如何保证您的数据安全？</font>](../../security/index.md#session-replay)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Session Replay 如何保证您的数据安全？</font>](../../security/index.md#session-replay)
 
 <br/>
 
