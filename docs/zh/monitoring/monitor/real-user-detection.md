@@ -330,7 +330,7 @@ eval(A/B, alias='页面错误率',A="R::view:(count(`view_name`)) {`view_error_c
 
 #### 事件内容自定义高级配置 {#advanced-settings}
 
-观测云支持在事件内容中通过高级配置添加关联日志或错误堆栈：
+观测云支持在事件内容中通过高级配置添加关联日志或错误堆栈，以便查看异常情况发生时的上下文数据情况：
 
 ![](../img/advanced-settings.png)
 
@@ -338,11 +338,15 @@ eval(A/B, alias='页面错误率',A="R::view:(count(`view_name`)) {`view_error_c
 
 查询：
 
+如：获取一条索引为 `default` 的日志 `message`：
+
 ```
 {% set dql_data = DQL("L::RE(`.*`):(`message`) { `index` = 'default' } LIMIT 1") %}
 ```
 
 关联日志：
+
+
 
 ```
 {{ dql_data.message | limit_lines(10) }}
