@@ -73,7 +73,7 @@ SELECT name from class where name = ?
 
 > 更多详情，可参考 [SDK 数据拦截以及数据修改](./before-send.md)。
 
-#### Session Repaly 隐私设置 {#session-replay}
+#### Session Replay 隐私设置 {#session-replay}
 
 Session Replay 提供隐私控制，以确保任何公司都不会暴露敏感数据或个人数据。并且数据是加密存储的。
 Session Replay 的默认隐私选项旨在保护最终用户隐私并防止敏感的组织信息被收集。
@@ -104,7 +104,7 @@ datafluxRum.startSessionReplayRecording();
 
 :material-numeric-1-circle-outline: Mask user input mode：屏蔽大多数表单字段，例如输入、文本区域和复选框值，同时按原样记录所有其他文本。输入被替换为三个星号 (***)，文本区域被保留空间的 x 字符混淆。
 
-**注意**：默认情况下，mask-user-input 是启用会话重放时的隐私设置。
+**注意**：默认情况下，`mask-user-input` 是启用会话重放时的隐私设置。
 
 :material-numeric-2-circle-outline: Mask mode：屏蔽所有 HTML 文本、用户输入、图像和链接。应用程序上的文本被替换为 X，将页面呈现为线框。
 

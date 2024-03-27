@@ -7,10 +7,10 @@
 
 
 ## 简介 {#intro}
-|      |     |
-| ---------- | ------- |
-| **部署方式**    | Kubernetes 容器部署    |
-| **Redis 版本** | 5.0.7 |       
+|      |                                                                                                                          |
+| ---------- |--------------------------------------------------------------------------------------------------------------------------|
+| **部署方式**    | Kubernetes 容器部署                                                                                                          |
+| **Redis 版本** | 6.0.20                                                                                                                   |       
 | **部署前提条件** | 已部署 [Kubernetes](infra-kubernetes.md#kubernetes-install) <br> 已部署 [Kubernetes Storage](infra-kubernetes.md#kube-storage) |
 
 ## 部署默认配置信息
@@ -37,6 +37,7 @@
       redis.conf: |
         requirepass viFRKZiZkoPmXnyF
         appendonly yes
+        timeout 300
 
     ---
     apiVersion: apps/v1
@@ -60,7 +61,7 @@
                 - redis-server
                 - /usr/local/etc/redis/redis.conf
               name: redis
-              image: pubrepo.guance.com/googleimages/redis:5.0.7
+              image: pubrepo.guance.com/googleimages/redis:6.0.20
               imagePullPolicy: IfNotPresent
               ports:
                 - containerPort: 6379

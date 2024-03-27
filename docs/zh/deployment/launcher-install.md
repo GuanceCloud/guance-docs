@@ -127,11 +127,14 @@
 
 ### 3.3 时序引擎配置
 
+=== "GuanceDB"
+     - 输入 GuanceDB 的 insert 和 select
+     ![](img/launcher-guancedb.png)
+
 === "InfluxDB"
      - InfluxDB 链接地址必须使用内网地址
      - 账号必须使用管理员账号，因为需要使用此账号去初始化 DB 以及 RP 待信息
-
-![](img/launcher-tdengine.png)
+     ![](img/launcher-influxdb.png)
 
 
 

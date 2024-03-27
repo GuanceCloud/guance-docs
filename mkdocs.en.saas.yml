@@ -1,5 +1,6 @@
 INHERIT: mkdocs.en.yml
 
+site_name: Guance Docs
 plugins:
   glightbox:
     touchNavigation: true
