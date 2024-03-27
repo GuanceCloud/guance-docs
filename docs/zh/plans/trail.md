@@ -53,7 +53,7 @@
 在[观测云官网](https://www.guance.com/)，点击[**免费开始**](https://auth.guance.com/businessRegister)，填写相关信息后即可成为观测云用户。
 
 1. 填写[**基本信息**](./commercial-register.md#info)；
-2. 填写[**企业信息**](./commercial-register.md#corporate)
+2. 填写[**企业信息**](./commercial-register.md#corporate)；
 3. 在**选择开通方式**，点击当前页面右上角切换到**开通体验版工作空间**。
 
 ![](img/switch.png)

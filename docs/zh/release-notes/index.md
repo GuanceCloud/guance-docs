@@ -13,7 +13,7 @@ icon: zy/release-notes
 
 - 监控：
     - 告警策略管理：每条通知规则（包含默认通知和自定义通知）配置新增[支持升级通知条件](../monitoring/alert-setting.md#upgrade)。
-    - 监控器 > 事件内容：新增自定义高级配置，支持添加关联日志和错误堆栈；
+    - 监控器 > 事件内容：新增[自定义高级配置](../monitoring/monitor/threshold-detection.md#advanced-settings)，支持添加关联日志和错误堆栈；
     - 主机智能监控：将当前突变展示更改为基于周期以预测的方式进行异常告警，趋势图会展示当前指标及置信区间上下界，超出置信区间的异常会标红展示。
 - 场景 > 图表：新增[拓扑图](../scene/visual-chart/topology-map.md)。
 - APM > 链路详情页 > [服务调用关系](../application-performance-monitoring/explorer.md#call)：调整为服务拓扑展示，并展示服务与服务之间的调用次数。
