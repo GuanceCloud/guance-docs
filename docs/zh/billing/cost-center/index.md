@@ -1,7 +1,6 @@
 # 费用中心
 ---
 
-## 简介
 
 观测云费用中心是观测云商业版的费用结算管理平台，具有独立账号体系，通过绑定观测云的工作空间，获取工作空间的账单，实现工作空间级别的统一费用管理。
 
@@ -22,9 +21,9 @@
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :material-text-account: __账户充值__</font>](../cost-center/account-wallet/index.md)：支持现金充值、购买代金券充值、购买储值卡充值。
+- [<font color="coral"> :material-text-account: __账户充值__</font>](../cost-center/account-wallet/index.md)：支持现金充值、购买代金券充值、购买预购卡充值。
 - [<font color="coral"> :fontawesome-solid-headphones: __提交工单__</font>](../cost-center/support-center.md)：在费用中心的支持中心，用户可以提交和管理工单，观测云客服收到工单后会及时联系用户解决问题。
-- [<font color="coral"> :material-page-layout-header-footer: __账单管理__</font>](../cost-center/billing-management.md)：用于管理费用中心的账单信息，包括月账单、消费明细、收支明细、代金券明细、储值卡明细。
+- [<font color="coral"> :material-page-layout-header-footer: __账单管理__</font>](../cost-center/billing-management.md)：用于管理费用中心的账单信息，包括月账单、消费明细、收支明细、代金券明细、预购卡明细。
 - [<font color="coral"> :material-typewriter: __发票管理__</font>](../cost-center/invoice-management.md)：用于管理费用中心的发票信息，使用前需要先进行实名认证，认证完成后可以管理发票信息和寄送信息，支持为已生成的月账单索取发票。      
 - [<font color="coral"> :octicons-person-fill-16: __账户管理__</font>](../cost-center/account-management.md)：用于管理费用中心的账户信息，包括账户资料变更、密码修改、实名认证以及云账号管理。
 - [<font color="coral"> :fontawesome-solid-photo-film: __更换费用结算方式__</font>](../billing-account/index.md)：一个费用中心账户可绑定多个观测云工作空间，在工作空间管理，支持查看当前费用中心账户绑定的所有工作空间。
