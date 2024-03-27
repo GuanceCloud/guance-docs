@@ -1,5 +1,6 @@
 INHERIT: mkdocs.zh.yml
 
+site_name: 观测云文档
 plugins:
   glightbox:
     touchNavigation: true
