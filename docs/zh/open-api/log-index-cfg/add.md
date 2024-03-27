@@ -16,7 +16,7 @@
 |:-----------|:-------|:-----|:----------------|
 | name | string | Y | 索引名字<br>例子: xxx <br>允许为空: False <br>最大长度: 256 <br> |
 | extend | json |  | 前端自定义数据<br>允许为空: True <br> |
-| duration | string |  | 数据保留时长<br>允许为空: False <br>可选值: ['3d', '7d', '14d', '30d', '60d'] <br> |
+| duration | string |  | 数据保留时长<br>允许为空: False <br> |
 
 ## 参数补充说明
 

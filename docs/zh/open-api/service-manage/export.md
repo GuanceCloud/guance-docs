@@ -97,8 +97,8 @@ curl 'https://openapi.guance.com/api/v1/service_manage/export?originStr=0' \
                     },
                     {
                         "mobiles": [
-                            "17621725786",
-                            "17621724231"
+                            "xxxxxxx5786",
+                            "xxxxxxx4231"
                         ],
                         "name": "zhuyun",
                         "type": "mobile"
