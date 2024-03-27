@@ -9,7 +9,7 @@ icon: zy/billing
 
 - 公有云提供的体验版、商业版，均采用<font color=coral>**按量付费**</font>的计费方式，在核心功能上并无差异。
 
-    - [体验版的可接入数据量规模](trail.md#trail-vs-commercial)存在限制，<u>商业版用户支持接入更大规模的数据量，及更灵活的数据存储时效</u>。
+    - [体验版的可接入数据量规模](../plans/trail.md#trail-vs-commercial)存在限制，<u>商业版用户支持接入更大规模的数据量，及更灵活的数据存储时效</u>。
 
 - 私有云部署版，也提供了社区版（即体验版）、商业版。
 
@@ -22,9 +22,9 @@ icon: zy/billing
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 公有云商业版</font>](commercial.md)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 公有云商业版</font>](../plans/commercial.md)
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 公有云体验版</font>](trail.md)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 公有云体验版</font>](../plans/trail.md)
 
 - [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 私有云部署版</font>](../deployment/deployment-description.md#_4)
 

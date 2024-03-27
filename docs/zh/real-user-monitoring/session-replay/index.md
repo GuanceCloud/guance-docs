@@ -23,7 +23,7 @@ Session Replay Record 功能集成在 RUM SDK 中, 所以不需要额外引入�
 
 ## 接入配置
 
-开启 RUM 采集器以后，您可以在 [配置 Web 应用接入](../web/app-access.md) 时，开启 [会话重放](replay.md) 功能。
+开启 RUM 采集器以后，您可以在 [配置 Web 应用接入](../web/app-access.md) 时，开启[会话重放](replay.md)功能。
 
 **注意**：会话重放功能需要升级 SDK 版本至 `3.0` 及以上。
 
@@ -34,19 +34,20 @@ Session Replay Record 功能集成在 RUM SDK 中, 所以不需要额外引入�
 
 </div>
 
-## 如何查看会话重放
+## 查看会话重放
 
 会话重放配置完成后，您可以在用户访问监测的 Session 查看器列表以及所有用户访问监测查看器详情页查看会话重放。
 
-**注意**：Session Replay 保存时间固定时长 14 天。
 
-### 在 Session 查看器列表查看重放
+**注意**：Session Replay 的数据保存策略与 RUM 的联动一致，即 RUM 数据保存 3 天，Session Replay 的数据也保存 3 天；若修改 RUM 的数据保存策略，则 Session Replay 的保存时长随之一并调整。
+
+### 在 Session 查看器列表查看
 
 在 Session 查看器列表，列表提示**播放**按钮，点击即可查看。
 
 ![](../img/16.session_replay_1.png)
 
-### 在详情页查看重放
+### 在详情页查看
 
 - 在 Session、View、Error 查看器详情页，通过点击右上角的**查看重放**，即可查看当前用户会话的操作重放。
 - 在 View、Error、Resource、Action、Long Task 查看器详情页的**来源**部分，即可查看当前用户会话的操作重放。

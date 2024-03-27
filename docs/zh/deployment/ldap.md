@@ -147,3 +147,10 @@ LDAPClientSet:
 - [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **使用 Microsoft Entra ID 进行 LDAP 身份验证**</font>](https://learn.microsoft.com/en-us/entra/architecture/auth-ldap)
 
 </div>
+
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **单点登录成功后如何赋权？**</font>](./setting.md#mapping)
+
+</div>
