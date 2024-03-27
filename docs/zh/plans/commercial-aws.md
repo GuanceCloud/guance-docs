@@ -7,7 +7,7 @@
 
 ## 在 AWS 云市场订阅观测云 {#subscribe}
 
-点击进入 [AWS 云市场](https://awsmarketplace.amazonaws.cn/marketplace/pp/prodview-4rki5nfjxktmy) 观测云商品页，点击**继续订阅**。
+点击进入 [AWS 云市场](https://awsmarketplace.amazonaws.cn/marketplace/pp/prodview-4rki5nfjxktmy?locale=zh)观测云商品页，点击**继续订阅**。
 
 ![](img/8.space_4.png)
 
@@ -34,8 +34,11 @@
 
 整体流程参考如下：
 
-![](img/17.process_1.jpg)
+![](img/17.process_1.png)
 
+> 具体配置步骤，可参考 [注册观测云商业版](./commercial-aliyun.md#register)
+
+<!--
 ### 注册观测云商业版
 
 若还未有观测云账号，可以点击**立即注册观测云商业版**，进入账号注册流程。
@@ -68,7 +71,7 @@
 
     ![](img/15.aws_market_register_7.png)
 
-    您可以使用刚才注册的账号登录到 [观测云费用中心](https://boss.guance.com/#/signin) ，在**工作空间管理**查看已开通的结算方式。
+    您可以使用刚才注册的账号登录到 [观测云费用中心](https://boss.guance.com/#/signin)，在**工作空间管理**查看已开通的结算方式。
 
     ![](img/15.aws_market_register_10.png)
 
@@ -153,3 +156,4 @@
 ![](img/1-free-start-1109.png)
 
 
+-->
