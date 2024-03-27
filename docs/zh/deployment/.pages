@@ -75,6 +75,7 @@ nav:
       - '配置邮件服务': configuration-mail.md
       - '切换域名': switch-domain.md
       - '切换日志引擎': switch-logengine.md
+      - '切换时序引擎': switch-metricengine.md
       - '个性化配置优化': launcher-fix-cfg.md
       - '切换拨测中心': change-boce-center.md
       - '华为云更改 OpenSearch 磁盘类型': hw-change-disk-type.md

@@ -43,6 +43,45 @@
 
 ![](../img/issue-create.png)
 
+#### 事件内容自定义高级配置 {#advanced-settings}
+
+观测云支持在事件内容中通过高级配置添加关联日志或错误堆栈：
+
+![](../img/advanced-settings.png)
+
+- 添加关联日志：
+
+查询：
+
+```
+{% set dql_data = DQL("L::RE(`.*`):(`message`) { `index` = 'default' } LIMIT 1") %}
+```
+
+关联日志：
+
+```
+{{ dql_data.message | limit_lines(10) }}
+```
+
+- 添加关联错误堆栈
+  
+查询：
+
+```
+{% set dql_data = DQL("T::re(`.*`):(`error_message`,`error_stack`){ (`source` NOT IN ['service_map', 'tracing_stat', 'service_list_1m', 'service_list_1d', 'service_list_1h', 'profile']) AND (`error_stack` = exists()) } LIMIT 1") %}
+```
+
+关联错误堆栈：
+
+```
+{{ dql_data.error_message | limit_lines(10) }}
+
+{{ dql_data.error_stack | limit_lines(10) }}
+```
+
+
+
+
 ### 步骤三：告警配置
 
 ![](../img/policy-create-1.png)

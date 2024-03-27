@@ -72,7 +72,7 @@ kubectl get nodes
 
 2.3.2 修改containerd数据目录
 
-containerd默认的数据目录在/ 下，在Kubernetes 1.16及之后的版本中，默认的根目录使用阈值到达80%后，节点上的pod就会被驱逐，为了避免pod被驱逐，我们需要切换containerd数据目录到数据盘上。
+containerd默认的数据目录在/ 下，在Kubernetes 1.16及之后的版本中，默认的根目录使用阈值到达85%后，节点上的pod就会被驱逐，为了避免pod被驱逐，我们需要切换containerd数据目录到数据盘上。
 ```shell
 # 待节点都Ready后，修改containerd的数据目录
 vim /etc/containerd/config.toml
@@ -234,8 +234,7 @@ sealos run imagesId
 > 注：openebs的安装是可选的，使用本地存储，性能优于nfs
 
 
-
-##### 2.8 创建middleware namespace
+###### 2.8 创建middleware namespace
 
 2.8.1 创建middleware namespace
 
@@ -292,7 +291,7 @@ FLUSH PRIVILEGES;
 2.10.1 安装Redis
 
 ```shell
-sealos load -i redis_5.0.7.tar.gz
+sealos load -i redis_6.0.20.tar.gz
 sealos run imagesId
 
 # 连接信息

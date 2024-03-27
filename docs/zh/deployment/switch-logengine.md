@@ -2,7 +2,7 @@
 
 ## 简介
 
-本文将介绍观测云切换日志引擎，支持 6 种不同的引擎，包含原版开源的 Elasticsearch、原版开源的 OpenSearch、AWS 云上的托管 OpenSearch、华为云上的托管 Elasticsearch、aliyun 上的托管 Elasticsearch 日志增强版、aliyun 上的托管 Elasticsearch。次操作适用于 POC 切换生产日志引擎。
+本文将介绍观测云切换日志引擎，支持 6 种不同的引擎，包含原版开源的 Elasticsearch、原版开源的 OpenSearch、AWS 云上的托管 OpenSearch、华为云上的托管 Elasticsearch、aliyun 上的托管 Elasticsearch 日志增强版、aliyun 上的托管 Elasticsearch。此操作适用于 POC 切换生产日志引擎。
 
 ## 前提条件
 
