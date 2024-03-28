@@ -29,7 +29,7 @@
         ```
         [更多日志](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-native/CHANGELOG.md)
 
-    === "ft-plguin ( AGP 8.0+ )"
+    === "ft-plguin ( AGP >=7.4.2 )"
         **1.3.0**：
         ``` markdown
         1. 支持 datakit source map 自动上传，支持 native symbol 的上传
@@ -42,7 +42,7 @@
         ```
         [更多日志](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-plugin/CHANGELOG.md)
    
-    === "ft-plugin-legacy ( AGP 7.4.2 Below )"
+    === "ft-plugin-legacy ( AGP <=7.4.2 )"
         **1.1.6**：
         ``` markdown
         1. 支持 datakit source map 自动上传，支持 native symbol 的上传
@@ -262,9 +262,9 @@ android{
 | addGlobalContext | Dictionary | 否 | 添加 SDK 全局属性 | 添加规则请查阅[此处](#key-conflict) |
 | setServiceName | String | 否 | 设置服务名 | 影响 Log 和 RUM 中 service 字段数据，默认为 `df_rum_android` |
 | setAutoSync | Boolean | 否 | 是否开启自动同步，默认为 `true` |  |
-| setSyncPageSize | enum | 否 | 设置同步请求条目数，`SyncPageSize.MINI` 5 条，`SyncPageSize.MEDIUM` 10 条，`SyncPageSize.LARGE` 50 条 |  |
-| setCustomSyncPageSize | enum | 否 | 设置同步请求条目数，范围 [5,）,注意设置过大会占用大量资源 |  |
-| setSyncSleepTime | Int | 否 | 设置同步间歇时间，范围 [0,100] |  |
+| setSyncPageSize | enum | 否 | 设置同步请求条目数，`SyncPageSize.MINI` 5 条，`SyncPageSize.MEDIUM` 10 条，`SyncPageSize.LARGE` 50 条，默认 `SyncPageSize.MEDIUM` |  |
+| setCustomSyncPageSize | enum | 否 | 设置同步请求条目数，范围 [5,)，注意请求条目数越大，代表数据同步占用更大的计算资源 |  |
+| setSyncSleepTime | Int | 否 | 设置同步间歇时间，范围 [0,100]，默认不设置 |  |
 
 
 ### RUM 配置 {#rum-config}
