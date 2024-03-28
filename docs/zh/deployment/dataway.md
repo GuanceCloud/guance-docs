@@ -296,7 +296,119 @@ Dataway 在 Kubernetes 环境中运行时，支持如下环境变量。
 
 ### `POST /v1/query/raw` {#v1-query-raw}
 
-- API 说明：处理 Datakit 端发起的 DQL 查询请求
+处理 DQL 查询请求，简单示例如下：
+
+``` text
+POST /v1/query/raw?token=<workspace-token> HTTP/1.1
+Content-Type: application/json
+
+{
+    "token": "workspace-token",
+    "queries": [
+        {
+            "query": "M::cpu LIMIT 1"
+        }
+    ],
+    "echo_explain": <true/false>
+}
+```
+
+返回示例：
+
+```json
+{
+  "content": [
+    {
+      "series": [
+        {
+          "name": "cpu",
+          "columns": [
+            "time",
+            "usage_iowait",
+            "usage_total",
+            "usage_user",
+            "usage_guest",
+            "usage_system",
+            "usage_steal",
+            "usage_guest_nice",
+            "usage_irq",
+            "load5s",
+            "usage_idle",
+            "usage_nice",
+            "usage_softirq",
+            "global_tag1",
+            "global_tag2",
+            "host",
+            "cpu"
+          ],
+          "values": [
+            [
+              1709782208662,
+              0,
+              7.421875,
+              3.359375,
+              0,
+              4.0625,
+              0,
+              0,
+              0,
+              1,
+              92.578125,
+              0,
+              0,
+              null,
+              null,
+              "WIN-JCHUL92N9IP",
+              "cpu-total"
+            ]
+          ]
+        }
+      ],
+      "points": null,
+      "cost": "24.558375ms",
+      "is_running": false,
+      "async_id": "",
+      "query_parse": {
+        "namespace": "metric",
+        "sources": {
+          "cpu": "exact"
+        },
+        "fields": {},
+        "funcs": {}
+      },
+      "index_name": "",
+      "index_store_type": "",
+      "query_type": "guancedb",
+      "complete": false,
+      "index_names": "",
+      "scan_completed": false,
+      "scan_index": "",
+      "next_cursor_time": -1,
+      "sample": 1,
+      "interval": 0,
+      "window": 0
+    }
+  ]
+}
+```
+
+返回结果说明：
+
+- 真实的数据位于里层的 `series` 字段中
+- `name` 表示指标集名字（此处查询的是 CPU 指标，如果是日志类数据，则没有该字段）
+- `columns` 表示返回的结果列名称
+- `values` 中即 `columns` 中对应的列结果
+
+---
+
+<!-- markdownlint-disable MD046 -->
+???+ info
+
+    - URL 请求参数中的 token 可以和 JSON body 中的 token 不同。前者用于验证查询请求是否合法，后者用于确定目标数据所在的工作空间。
+    - `queries` 字段可以带多个查询，每个查询可以携带额外字段，具体字段列表，参见[这里](../datakit/apis.md#api-raw-query)
+<!-- markdownlint-enable -->
+
+---
 
 ### `POST /v1/workspace` {#v1-workspace}
 
