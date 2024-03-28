@@ -265,6 +265,7 @@ guance-storage 进程内状态不多，内存中主要是保存的一些查询 c
        ```shell
        wget https://static.guance.com/guancedb/deb/guance-select-amd64-v1.5.17.deb && dpkg -i guance-select-amd64-v1.5.17.deb
        ```
+
      - Centos（arm64）
 
        ```shell
@@ -329,6 +330,7 @@ guance-storage 进程内状态不多，内存中主要是保存的一些查询 c
        ```shell
        wget https://static.guance.com/guancedb/deb/guance-insert-amd64-v1.5.17.deb && dpkg -i guance-insert-amd64-v1.5.17.deb
        ```
+
      - Centos（arm64）
 
        ```shell
