@@ -1,6 +1,16 @@
 # iOS 应用接入
 
 ---
+???- quote "更新日志"
+
+    **1.4.11**
+    1. 新增支持数据同步参数配置，请求条目数据，同步间歇时间，以及日志缓存条目数
+    2. 新增内部日志转文件方法
+    3. 日志关联 RUM 数据获取错误修复
+    4. 耗时操作优化
+    5. 修复 WebView jsBridge 时产生的崩溃，对 WebView 引用改为弱引用
+    
+    [更多日志](https://github.com/GuanceCloud/datakit-ios/blob/develop/CHANGELOG.md)
 
 观测云应用监测能够通过收集各个 iOS 应用的指标数据，以可视化的方式分析各个 iOS 应用端的性能。
 
@@ -30,59 +40,69 @@
 
     1.配置 `Podfile` 文件。
     
-    **使用 Dynamic Library**
+    * 使用 Dynamic Library
     
-    ```
-    platform :ios, '10.0' 
-    use_frameworks!
-    def shared_pods
-    pod 'FTMobileSDK', '[latest_version]'
-    # 如果需要采集 widget Extension 数据
-    pod 'FTMobileSDK/Extension', '[latest_version]'
-    end
+      ```
+      platform :ios, '10.0' 
+      use_frameworks!
+      def shared_pods
+      pod 'FTMobileSDK', '[latest_version]'
+      # 如果需要采集 widget Extension 数据
+      pod 'FTMobileSDK/Extension', '[latest_version]'
+      end
     
-    //主工程
-    target 'yourProjectName' do
-    shared_pods
-    end
+      //主工程
+      target 'yourProjectName' do
+      shared_pods
+      end
     
-    //Widget Extension
-    target 'yourWidgetExtensionName' do
-    shared_pods
-    end
-    ```
+      //Widget Extension
+      target 'yourWidgetExtensionName' do
+      shared_pods
+      end
+      ```
     
-    **使用 Static Library**
+    * 使用 Static Library
     
-    ```
-    use_modular_headers!
-    //主工程
-    target 'yourProjectName' do
-    pod 'FTMobileSDK', '[latest_version]'
-    end
-    //Widget Extension
-    target 'yourWidgetExtensionName' do
-    pod 'FTMobileSDK/Extension', '[latest_version]'
-    end
-    ```
+      ```
+      use_modular_headers!
+      //主工程
+      target 'yourProjectName' do
+      pod 'FTMobileSDK', '[latest_version]'
+      end
+      //Widget Extension
+      target 'yourWidgetExtensionName' do
+      pod 'FTMobileSDK/Extension', '[latest_version]'
+      end
+      ```
     
-    **[将代码库下载到本地使用](https://guides.cocoapods.org/using/the-podfile.html#using-the-files-from-a-folder-local-to-the-machine)**
-    
-    ```
-    use_modular_headers!
-    //主工程
-    target 'yourProjectName' do
-    pod 'FTMobileSDK', :path => '[folder_path]' 
-    end
-    //Widget Extension
-    target 'yourWidgetExtensionName' do
-    pod 'FTMobileSDK/Extension', :path => '[folder_path]'
-    end
-    ```
-    folder_path: `FTMobileSDK.podspec` 所在文件夹的路径。
+    * [将代码库下载到本地使用](https://guides.cocoapods.org/using/the-podfile.html#using-the-files-from-a-folder-local-to-the-machine)
+      **`Podfile` 文件**
+      ```
+      use_modular_headers!
+      //主工程
+      target 'yourProjectName' do
+      pod 'FTMobileSDK', :path => '[folder_path]' 
+      end
+      //Widget Extension
+      target 'yourWidgetExtensionName' do
+      pod 'FTMobileSDK/Extension', :path => '[folder_path]'
+      end
+      ```
+      `folder_path`: `FTMobileSDK.podspec` 所在文件夹的路径。
+      **`FTMobileSDK.podspec` 文件**
+      修改 `FTMobileSDK.podspec` 文件中的 `s.version`  和 `s.source` 。
+      `s.version` ：修改为指定版本，建议与`FTMobileSDK/FTMobileAgent/Core/FTMobileAgentVersion.h`中`SDK_VERSION`一致。
+      `s.source`：tag => s.version
+      ```
+      Pod::Spec.new do |s|
+      s.name         = "FTMobileSDK"
+      s.version      = "[latest_version]"  
+      s.source       = { :git => "https://github.com/GuanceCloud/datakit-ios.git", :tag => s.version }
+      ```
     
     2.在 `Podfile` 目录下执行 `pod install` 安装 SDK。
-    
+
 
 === "Carthage" 
 
@@ -214,6 +234,9 @@
 | service | NSString | 否 | 设置所属业务或服务的名称 | 影响 Log 和 RUM 中 service 字段数据。默认：`df_rum_ios` |
 | globalContext | NSDictionary |     否 | 添加自定义标签 | 添加规则请查阅[此处](#user-global-context) |
 | groupIdentifiers | NSArray | 否 | 需要采集的 Widget Extensions 对应的 AppGroups Identifier 数组 | 若开启 Widget Extensions 数据采集，则必须设置 [App Groups](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_security_application-groups)，并将 Identifier 配置到该属性中 |
+| autoSync | BOOL | 否 | 是否开启自动同步 | 默认 `YES` |
+| syncPageSize | int | 否 | 设置同步请求条目数 | 范围 [5,）<br>注意：设置过大会占用大量资源 |
+| syncSleepTime | int | 否 | 设置同步间歇时间 | 范围 [0,100] |
 
 ### RUM 配置 {#rum-config}
 
@@ -301,6 +324,7 @@
 | enableLinkRumData | BOOL | 否 | 是否与 RUM 数据关联 | 默认`NO` |
 | discardType | FTLogCacheDiscard | 否 | 设置频繁日志丢弃规则 | 默认 `FTDiscard` <br>`FTLogCacheDiscard`:<br>`FTDiscard`：默认，当日志数据数量大于最大值（5000）时，丢弃追加数据<br>`FTDiscardOldest`：当日志数据大于最大值时,丢弃老数据 |
 | globalContext | NSDictionary |     否 | 添加自定义标签 | 添加规则请查阅[此处](#user-global-context) |
+| logCacheLimitCount | int | 否 | 获取最大日志条目数量 | 限制 [1000,)，默认 5000 |
 
 ### Trace 配置 {#trace-config}
 
@@ -1440,6 +1464,41 @@ SDK 提供了一个类 `FTURLSessionDelegate`，需要您将 URLSession 的 dele
     ```swift
     //如果动态改变 SDK 配置，需要先关闭，以避免错误数据的产生
     FTMobileAgent.sharedInstance().shutDown()
+    ```
+
+## 主动同步数据
+
+使用 `FTMobileAgent` 主动同步数据。
+
+### 使用方法
+
+=== "Objective-C"
+
+    ```objective-c
+    ///  主动同步数据
+    - (void)flushSyncData;
+    ```
+
+=== "Swift"
+
+    ```swift
+    /// 主动同步数据
+    func flushSyncData()
+    ```
+
+### 代码示例
+
+=== "Objective-C"
+
+    ```objective-c
+    [[FTMobileAgent sharedInstance] flushSyncData];
+    ```  
+
+=== "Swift"
+
+    ```swift
+    //如果动态改变 SDK 配置，需要先关闭，以避免错误数据的产生
+    FTMobileAgent.sharedInstance().flushSyncData()
     ```
 
 ## 添加自定义标签 {#user-global-context}
