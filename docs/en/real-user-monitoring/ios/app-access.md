@@ -29,56 +29,68 @@ Login to Guance Console, enter "Real User Monitoring" page, click "New Applicati
 
     1.Configure the `Podfile` file.
     
-    **Use Dynamic Library**
-     
-    ```
-    platform :ios, '10.0' 
-    use_frameworks!
-    def shared_pods
-    pod 'FTMobileSDK', '[latest_version]'
-    # If you need to collect widget Extension data
-    pod 'FTMobileSDK/Extension', '[latest_version]'
-    end
-    //Main Project Target
-    target 'yourProjectName' do
-    shared_pods
-    end
+    * Use Dynamic Library
+    
+      ```
+      platform :ios, '10.0' 
+      use_frameworks!
+      def shared_pods
+      pod 'FTMobileSDK', '[latest_version]'
+      # If you need to collect widget Extension data
+      pod 'FTMobileSDK/Extension', '[latest_version]'
+      end
+      //Main Project Target
+      target 'yourProjectName' do
+      shared_pods
+      end
           
-    //Widget Extension
-    target 'yourWidgetExtensionName' do
-    # If you need to collect widget Extension data
-    shared_pods
-    end
-    ```
+      //Widget Extension
+      target 'yourWidgetExtensionName' do
+      # If you need to collect widget Extension data
+      shared_pods
+      end
+      ```
     
-    **Use Static Library**
+    * Use Static Library
     
-    ```
-    use_modular_headers!
-    //Main Project Target
-    target 'yourProjectName' do
-    pod 'FTMobileSDK', '[latest_version]'
-    end
-    //Widget Extension
-    target 'yourWidgetExtensionName' do
-    pod 'FTMobileSDK/Extension', '[latest_version]'
-    end
-    ```
+      ```
+      use_modular_headers!
+      //Main Project Target
+      target 'yourProjectName' do
+      pod 'FTMobileSDK', '[latest_version]'
+      end
+      //Widget Extension
+      target 'yourWidgetExtensionName' do
+      pod 'FTMobileSDK/Extension', '[latest_version]'
+      end
+      ```
     
-    **[Download the code repository for local use](https://guides.cocoapods.org/using/the-podfile.html#using-the-files-from-a-folder-local-to-the-machine)**
+    * [Download the code repository for local use](https://guides.cocoapods.org/using/the-podfile.html#using-the-files-from-a-folder-local-to-the-machine)
+      **`Podfile` file**
+      ```
+      use_modular_headers!
+      //Main Project Target
+      target 'yourProjectName' do
+      pod 'FTMobileSDK', :path => '[folder_path]' 
+      end
+      //Widget Extension
+      target 'yourWidgetExtensionName' do
+      pod 'FTMobileSDK/Extension', :path => '[folder_path]'
+      end
+      ```
     
-    ```
-    use_modular_headers!
-    //Main Project Target
-    target 'yourProjectName' do
-    pod 'FTMobileSDK', :path => '[folder_path]' 
-    end
-    //Widget Extension
-    target 'yourWidgetExtensionName' do
-    pod 'FTMobileSDK/Extension', :path => '[folder_path]'
-    end
-    ```
-    folder_path: Path to the folder where 'FTMobileSDK.podspec' is located.
+      `folder_path`：Path to the folder where 'FTMobileSDK.podspec' is located.
+      
+      **`FTMobileSDK.podspec` file**
+      Modify `s.version` and `s.source` in the 'FTMobileSDK.podspec' file.
+      `s.version` ：This parameter is recommended to be consistent with `SDK_VERSION` in `FTMobileSDK/FTMobileAgent/Core/FTMobileAgentVersion.h`.
+      `s.source`：tag => s.version
+      ```
+      Pod::Spec.new do |s|
+      s.name         = "FTMobileSDK"
+      s.version      = "[latest_version]"  
+      s.source       = { :git => "https://github.com/GuanceCloud/datakit-ios.git", :tag => s.version }
+      ```
     
     2.Run `pod install` in the `Podfile` directory to install the SDK.
 
