@@ -617,6 +617,31 @@ $ cat <path/to/dataway/log> | grep dropped
 for API /v1/write/logging with X-Global-Tags <some-X-Global-Tags...> dropped
 ```
 
+### Datakit 请求被丢弃排查 {#dk-http-406}
+
+[:octicons-tag-24: Version-1.3.9](dataway-changelog.md#cl-1.3.9)
+
+当 Datakit 请求被 Dataway 丢弃时，Dataway 会返回对应的 HTTP 错误，在 Datakit 日志中，会有类似如下报错：
+
+```not-set
+post 3641 to http://dataway-ip:9528/v1/write/metric failed(HTTP: 406 Not Acceptable):
+{"error_code":"dataway.sinkRulesNotMatched","message":"X-Global-Tags: `host=my-host',
+URL: `/v1/write/metric'"}, data dropped
+```
+
+此错误标明，请求 `/v1/write/metric` 因自身的 X-Global-Tags 不满足 Dataway 上的所有规则而被丢弃。
+
+同时，在 Datakit monitor（`datakit monitor -V`） 右下角的 `DataWay APIs` 面板中，列 `Status` 会有 `Not Acceptable` 输出，它标明对应的 Dataway API 请求被丢弃。
+
+查看 Datakit 自身指标，也能看到对应指标：
+
+```shell
+$ curl -s http://localhost:9529/metrics | grep datakit_io_dataway_api_latency_seconds_count
+
+datakit_io_dataway_api_latency_seconds_count{api="/v1/datakit/pull",status="Not Acceptable"} 50
+datakit_io_dataway_api_latency_seconds_count{api="/v1/write/metric",status="Not Acceptable"} 301
+```
+
 ### Datakit 报错 403 {#dk-403}
 
 如果 Dataway 上 sinker 配置有误，导致所有 Datakit 请求都使用 `secret_token`，而这个 token 中心（Kodo）是不认可的，故报告 403 错误 `kodo.tokenNotFound`。
