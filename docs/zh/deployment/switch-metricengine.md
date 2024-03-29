@@ -19,9 +19,26 @@
 
 ## 切换步骤
 
+### 备份表
+
+```SQL
+
+CREATE TABLE `main_workspace_bak` LIKE `main_workspace`;
+ 
+
+INSERT INTO  `main_workspace_bak` SELECT * FROM `main_workspace`;
+
+
+CREATE TABLE `main_influx_db_bak` LIKE `main_influx_db`;
+ 
+
+INSERT INTO  `main_influx_db_bak` SELECT * FROM `main_influx_db`;
+
+```
+
 ### 插入 GuanceDB 信息
 
-- 登录观测云 df_core 数据库，执行以下语句（*需要修改变量*）：
+- 登录观测云 df_core 数据库，执行以下语句：
 
   ```sql
   INSERT INTO `main_influx_instance` (`uuid`, `host`, `authorization`, `configJSON`,`dbcount`, `user`, `pwd`, `dbType`, `priority`, `status`, `creator`, `updator`, `createAt`, `deleteAt`, `updateAt`)
