@@ -120,6 +120,7 @@ View 的采集：设置 `FTRumConfig` 的配置项`enableTraceUserView = YES` �
 找到 **op = RUM;**  **source = resource;** 的数据，在 **tags** 中包含`span_id` 与 `trace_id` 即表明 Trace 功能正常开启。
 
 ## 数据丢失
+
 ### 丢失部份数据
 * 如果丢失 RUM 某一个 Session 数据或 Log，Trace 中的几条数据时，首先需要排除是否在 [FTRUMConfig](app-access.md#rum-config), [FTLoggerConfig](app-access.md#log-config), [FTTraceConfig](app-access.md#trace-config) 设置了 `sampleRate <  1` 。
 * 如果丢失 RUM 中 Resource 事件或 Action 事件（launch action 除外），需要检查是否开启 View 的自动采集或者有使用 Open API 手动采集。 Resource 事件或 Action 事件是与 View 进行绑定的，需要确保在 View 被采集的情况下才能正常采集。
@@ -131,4 +132,28 @@ View 的采集：设置 `FTRumConfig` 的配置项`enableTraceUserView = YES` �
 
 SDK 支持 iOS 9 及以上，RUM Resource 事件中的性能指标，需要使用系统支持 iOS 10 及以上的 API 进行采集 ，所以如果用户设备使用的系统是iOS 10以下，采集的 Resource 事件会缺失性能指标部分。
 
- 
+## WebView
+
+### **[xxViewController retain]: message sent to deallocated instance xxx **
+
+**影响版本：SDK 版本小于等于 1.4.10 **
+
+**原因**：当您在使用 WebView 时，对 WebView 添加了观察者，在观察者即将释放前 WebView 未移除该观察者。由于 SDK 内部对 WebView 进行了强引用，WebView 未被释放，后续观察的 KeyPath 变化时会通知观察者，而观察者已释放，就会出现 `EXC_BAD_ACCESS` 错误。
+
+**修复建议**：
+
+* 升级 SDK 版本
+
+* 或在观察者即将释放前移除该观察者。
+
+  ```objective-c
+  - (void)createWebView{
+    [self.webView.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
+  }
+  -(void)dealloc{
+      [self.webView.scrollView removeObserver:self forKeyPath:@"contentSize"]
+  }
+  ```
+
+
+

@@ -282,7 +282,7 @@ Velero 是一个开源工具，可以安全地备份和还原，执行灾难恢�
 
 #### 离线安装（可选） CLI {#install-download-cli}
 
- === "Amd"
+=== "Amd"
 
     ```shell
     tar -xvf velero-v1.13.0-linux-amd64.tar.gz && mv velero-v1.13.0-linux-amd64/velero /bin
