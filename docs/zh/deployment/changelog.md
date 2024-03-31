@@ -1,5 +1,44 @@
 # 版本历史
 
+## 1.82.158（2024 年 03 月 27 日）
+
+pubrepo.guance.com/dataflux/1.82.158:launcher-c90f955-1711689089
+
+### 观测云部署版更新
+
+- 安全更新
+- 数据保存策略：支持工作空间拥有者配置数据保存策略，且支持自定义输入保存时长。应用场景：
+    - 指标管理 > 指标集；
+    - 日志 > 索引 > 新建。
+- 用户：支持[通过邮箱账号](../deployment/user.md#via-email)邀请成员。
+
+### 观测云更新
+
+- 监控：
+    - 告警策略管理：每条通知规则（包含默认通知和自定义通知）配置新增[支持升级通知条件](../monitoring/alert-setting.md#upgrade)。
+    - 监控器 > 事件内容：新增[自定义高级配置](../monitoring/monitor/threshold-detection.md#advanced-settings)，支持添加关联日志和错误堆栈；
+    - 主机智能监控：将当前突变展示更改为基于周期以预测的方式进行异常告警，趋势图会展示当前指标及置信区间上下界，超出置信区间的异常会标红展示。
+- 场景 > 图表：新增[拓扑图](../scene/visual-chart/topology-map.md)。
+- APM > 链路详情页 > [服务调用关系](../application-performance-monitoring/explorer.md#call)：调整为服务拓扑展示，并展示服务与服务之间的调用次数。
+- 数据保存策略：Session Reply 的数据保存策略与 RUM 的保存策略保持联动一致，即 RUM 数据保存 3 天，Session Reply 的数据也保存 3 天。
+- 查看器：
+    - 事件查看器 > 基础属性：新增检测指标是否显示配置，缓存到本地，全局适配；
+    - APM > 错误追踪 > 聚类分析 > 详情页：支持创建异常追踪 Issue；
+    - RUM > Error > 聚类分析 > 详情页：支持创建异常追踪 Issue；
+    - RUM > View > 详情页：
+        - 性能：新增【所有条目】选项，列出当前 View 下所有关联数据；
+        - Fetch/XHR：点击数据行，支持打开对应链路详情页或 Resource 详情页。
+    - 时间控件：获取 “当前时间” 时，精确到毫秒。
+- 管理 > [工单管理](../management/work-order-management.md)：
+    - 新增评星和评价；
+    - 已反馈的工单需要调整为 7 天内无客户反馈则自动关单；
+    - 支持工单列表导出；
+    - 状态为【已完成】【已撤销】的工单可以进行重启操作；
+    - 账号注销后其下提交的未关闭状态工单支持自动关闭处理。
+- 云市场开通流程整体优化。
+
+更多详情可参考帮助文档：https://docs.guance.com/release-notes/
+
 ## 1.81.157（2024 年 03 月 13 日）
 
 pubrepo.guance.com/dataflux/1.81.157:launcher-14a874c-1710947837
