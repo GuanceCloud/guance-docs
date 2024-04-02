@@ -146,7 +146,7 @@
 
 ![](img/dashboard003.png)
 
-## 仪表板列表相关操作
+## 列表相关操作
 
 ### 批量操作
 
@@ -154,7 +154,7 @@
 
 ![](img/dashboard-1.gif)
 
-### 设置【主页仪表板】 {#home-dashboard}
+### 设置主页仪表板 {#home-dashboard}
 
 点击仪表板 :material-dots-vertical: 按钮，您可以设置工作空间级别的【主页仪表板】，设置完成后，后续用户访问该空间时默认显示主页仪表板。
 
