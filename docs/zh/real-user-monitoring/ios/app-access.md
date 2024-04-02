@@ -224,19 +224,19 @@
     }
     ```
 
-| 属性 | **类型** | **必须** | **含义** | 注意 |
-| --- | --- | --- | --- | --- |
-| datakitUrl | NSString | 是 | Datakit 访问地址 | datakit 访问 URL 地址，例子：[http://10.0.0.1:9529](http://10.0.0.1:9529/)，端口默认 9529，注意：安装 SDK 设备需能访问这地址.注意：datakit 和 dataway 配置两者二选一 |
-| datawayUrl | NSString | 是 | 公网 Dataway 访问地址 | dataway 访问 URL 地址，例子：[http://10.0.0.1:9528](http://10.0.0.1:9528/)，端口默认 9528，注意：安装 SDK 设备需能访问这地址.注意：datakit 和 dataway 配置两者二选一 |
-| clientToken | NSString | 是 | 认证 token                                                   | 需要与 datawayUrl 同时使用 |
-| enableSDKDebugLog | BOOL | 否 | 设置是否允许打印日志 | 默认 `NO` |
-| env | NSString | 否 | 设置采集环境 | 默认 `prod`，支持自定义，也可根据提供的 `FTEnv` 枚举通过 `-setEnvWithType:` 方法设置<br>`FTEnv`<br>`FTEnvProd`： prod<br>`FTEnvGray`： gray<br>`FTEnvPre` ：pre <br>`FTEnvCommon` ：common <br>`FTEnvLocal`： local |
-| service | NSString | 否 | 设置所属业务或服务的名称 | 影响 Log 和 RUM 中 service 字段数据。默认：`df_rum_ios` |
-| globalContext | NSDictionary |     否 | 添加自定义标签 | 添加规则请查阅[此处](#user-global-context) |
-| groupIdentifiers | NSArray | 否 | 需要采集的 Widget Extensions 对应的 AppGroups Identifier 数组 | 若开启 Widget Extensions 数据采集，则必须设置 [App Groups](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_security_application-groups)，并将 Identifier 配置到该属性中 |
-| autoSync | BOOL | 否 | 是否开启自动同步 | 默认 `YES` |
-| syncPageSize | int | 否 | 设置同步请求条目数 | 范围 [5,）<br>注意：设置过大会占用大量资源 |
-| syncSleepTime | int | 否 | 设置同步间歇时间 | 范围 [0,100] |
+| 属性 | **类型** | **必须** | **含义** |
+| --- | --- | --- | --- |
+| datakitUrl | NSString | 是 | Datakit 访问地址，例子：[http://10.0.0.1:9529](http://10.0.0.1:9529/)，端口默认 9529，注意：安装 SDK 设备需能访问这地址.注意：datakit 和 dataway 配置两者二选一 |
+| datawayUrl | NSString | 是 | 公网 Dataway 访问地址，例子：[http://10.0.0.1:9528](http://10.0.0.1:9528/)，端口默认 9528，注意：安装 SDK 设备需能访问这地址.注意：datakit 和 dataway 配置两者二选一 |
+| clientToken | NSString | 是 | 认证 token，需要与 datawayUrl 同时使用                               |
+| enableSDKDebugLog | BOOL | 否 | 设置是否允许打印日志。默认 `NO` |
+| env | NSString | 否 | 设置采集环境。默认 `prod`，支持自定义，也可根据提供的 `FTEnv` 枚举通过 `-setEnvWithType:` 方法设置 |
+| service | NSString | 否 | 设置所属业务或服务的名称。影响 Log 和 RUM 中 service 字段数据。默认：`df_rum_ios` |
+| globalContext | NSDictionary |     否 | 添加自定义标签。添加规则请查阅[此处](#user-global-context) |
+| groupIdentifiers | NSArray | 否 | 需要采集的 Widget Extensions 对应的 AppGroups Identifier 数组。若开启 Widget Extensions 数据采集，则必须设置 [App Groups](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_security_application-groups)，并将 Identifier 配置到该属性中 |
+| autoSync | BOOL | 否 | 是否开启自动同步。默认 `YES` |
+| syncPageSize | int | 否 | 设置同步请求条目数。范围 [5,）注意：请求条目数越大，代表数据同步占用更大的计算资源 |
+| syncSleepTime | int | 否 | 设置同步间歇时间。范围 [0,100]，默认不设置 |
 
 ### RUM 配置 {#rum-config}
 
@@ -274,21 +274,21 @@
         FTMobileAgent.sharedInstance().startRum(withConfigOptions: rumConfig)
     ```
 
-| **属性** | **类型** | **必须** | **含义** | 注意 |
-| --- | --- | --- | --- | --- |
-| appid | NSString | 是 | 用户访问监测应用 ID 唯一标识 | 对应设置 RUM `appid`，才会开启`RUM`的采集功能，[获取 appid 方法](#iOS-integration) |
-| samplerate | int | 否 | 采样率 | 取值范围 [0,100]，0 表示不采集，100 表示全采集，默认值为 100。作用域为同一 session_id 下所有 View，Action，LongTask，Error 数据 |
-| enableTrackAppCrash | BOOL | 否 | 设置是否需要采集崩溃日志 | 默认 `NO` |
-| enableTrackAppANR | BOOL | 否 | 采集ANR卡顿无响应事件 | 默认`NO` |
-| enableTrackAppFreeze | BOOL | 否 | 采集UI卡顿事件 | 默认`NO` |
-| enableTraceUserView | BOOL | 否 | 设置是否追踪用户 View 操作 | 默认`NO` |
-| enableTraceUserAction | BOOL | 否 | 设置是否追踪用户 Action 操作 | 默认`NO` |
-| enableTraceUserResource | BOOL | 否 | 设置是否追踪用户网络请求 | 默认`NO`，仅作用于 native http <br>注意：<br>不支持采集使用 **Swift URLSession async/await APIs** 和 `[NSURLSession sharedSession]`发起的请求. |
-| resourceUrlHandler | FTResourceUrlHandler | 否 | 自定义采集 resource 规则 | 默认不过滤。 返回：NO 表示要采集，YES 表示不需要采集。 |
-| errorMonitorType | FTErrorMonitorType | 否 | 错误事件监控补充类型 | 在采集的崩溃数据中添加监控的信息。<br>`FTErrorMonitorType`<br>`FTErrorMonitorAll`：开启所有监控： 电池、内存、CPU 使用率<br>`FTErrorMonitorBattery`：电池电量<br>`FTErrorMonitorMemory`：内存总量、内存使用率<br>`FTErrorMonitorCpu`：Cpu 使用率 |
-| deviceMetricsMonitorType | FTDeviceMetricsMonitorType | 否 | 视图的性能监控类型 | 在采集的  **View** 数据中添加对应监控项信息。<br>`FTDeviceMetricsMonitorType`<br>`FTDeviceMetricsMonitorAll`：开启所有监控项:内存、CPU、FPS<br>`FTDeviceMetricsMonitorMemory`：平均内存、最高内存<br>`FTDeviceMetricsMonitorCpu`：CPU 跳动最大、平均数<br>`FTDeviceMetricsMonitorFps`：Fps 最低帧率、平均帧率 |
-| monitorFrequency | FTMonitorFrequency | 否 | 视图的性能监控采样周期 | 配置 `monitorFrequency` 来设置 **View** 监控项信息的采样周期。<br>`FTMonitorFrequency`<br>`FTMonitorFrequencyDefault`：500ms (默认)<br>`FTMonitorFrequencyFrequent`：100ms<br>`FTMonitorFrequencyRare`：1000ms |
-| globalContext | NSDictionary |     否 | 添加自定义标签 | 添加规则请查阅[此处](#user-global-context) |
+| **属性** | **类型** | **必须** | **含义** |
+| --- | --- | --- | --- |
+| appid | NSString | 是 | 用户访问监测应用 ID 唯一标识。对应设置 RUM `appid`，才会开启`RUM`的采集功能，[获取 appid 方法](#iOS-integration) |
+| samplerate | int | 否 | 采样率。取值范围 [0,100]，0 表示不采集，100 表示全采集，默认值为 100。作用域为同一 session_id 下所有 View，Action，LongTask，Error 数据 |
+| enableTrackAppCrash | BOOL | 否 | 设置是否需要采集崩溃日志。默认 `NO` |
+| enableTrackAppANR | BOOL | 否 | 采集ANR卡顿无响应事件。默认`NO` |
+| enableTrackAppFreeze | BOOL | 否 | 采集UI卡顿事件。默认`NO` |
+| enableTraceUserView | BOOL | 否 | 设置是否追踪用户 View 操作。默认`NO` |
+| enableTraceUserAction | BOOL | 否 | 设置是否追踪用户 Action 操作。默认`NO` |
+| enableTraceUserResource | BOOL | 否 | 设置是否追踪用户网络请求。默认`NO`，仅作用于 native http <br/>注意：不支持采集使用 **Swift URLSession async/await APIs** 和 `[NSURLSession sharedSession]`发起的请求. |
+| resourceUrlHandler | FTResourceUrlHandler | 否 | 自定义采集 resource 规则。默认不过滤。 返回：NO 表示要采集，YES 表示不需要采集。 |
+| errorMonitorType | FTErrorMonitorType | 否 | 错误事件监控补充类型。在采集的崩溃数据中添加监控的信息。`FTErrorMonitorBattery`为电池余量，`FTErrorMonitorMemory`为内存用量，`FTErrorMonitorCpu`为 CPU 占有率 。 |
+| deviceMetricsMonitorType | FTDeviceMetricsMonitorType | 否 | 视图的性能监控类型。在采集的  **View** 数据中添加对应监控项信息。`FTDeviceMetricsMonitorMemory`监控当前应用使用内存情况，`FTDeviceMetricsMonitorCpu`监控 CPU 跳动次数，`FTDeviceMetricsMonitorFps`监控屏幕帧率。 |
+| monitorFrequency | FTMonitorFrequency | 否 | 视图的性能监控采样周期。配置 `monitorFrequency` 来设置 **View** 监控项信息的采样周期。`FTMonitorFrequencyDefault`500ms (默认)，`FTMonitorFrequencyFrequent`100ms，`FTMonitorFrequencyRare`1000ms。 |
+| globalContext | NSDictionary | 否 | 添加自定义标签。添加规则请查阅[此处](#user-global-context) |
 
 ### Log 配置 {#log-config}
 
@@ -315,16 +315,16 @@
         FTMobileAgent.sharedInstance().startLogger(withConfigOptions: loggerConfig)
     ```
 
-| 属性 | **类型** | **必须** | **含义** | 注意 |
-| --- | --- | --- | --- | --- |
-| samplerate | int | 否 | 采样率 | 取值范围 [0,100]，0 表示不采集，100 表示全采集，默认值为 100。 |
-| enableCustomLog | BOOL | 否 | 是否上传自定义 log | 默认`NO` |
-| printCustomLogToConsole | BOOL | 否 | 设置是否将自定义日志输出到控制台 | 默认`NO`<br>自定义日志[输出格式](#printCustomLogToConsole) |
-| logLevelFilter | NSArray | 否 | 设置要采集的自定义 log 的状态数组 | 默认全采集 |
-| enableLinkRumData | BOOL | 否 | 是否与 RUM 数据关联 | 默认`NO` |
-| discardType | FTLogCacheDiscard | 否 | 设置频繁日志丢弃规则 | 默认 `FTDiscard` <br>`FTLogCacheDiscard`:<br>`FTDiscard`：默认，当日志数据数量大于最大值（5000）时，丢弃追加数据<br>`FTDiscardOldest`：当日志数据大于最大值时,丢弃老数据 |
-| globalContext | NSDictionary |     否 | 添加自定义标签 | 添加规则请查阅[此处](#user-global-context) |
-| logCacheLimitCount | int | 否 | 获取最大日志条目数量 | 限制 [1000,)，默认 5000 |
+| 属性 | **类型** | **必须** | **含义** |
+| --- | --- | --- | --- |
+| samplerate | int | 否 | 采样率。取值范围 [0,100]，0 表示不采集，100 表示全采集，默认值为 100。 |
+| enableCustomLog | BOOL | 否 | 是否上传自定义 log。默认`NO` |
+| printCustomLogToConsole | BOOL | 否 | 设置是否将自定义日志输出到控制台。默认`NO`，自定义日志[输出格式](#printCustomLogToConsole) |
+| logLevelFilter | NSArray | 否 | 设置要采集的自定义 log 的状态数组。默认全采集 |
+| enableLinkRumData | BOOL | 否 | 是否与 RUM 数据关联。默认`NO` |
+| discardType | FTLogCacheDiscard | 否 | 设置频繁日志丢弃规则。默认 `FTDiscard` <br/>`FTDiscard`当日志数据数量大于最大值（5000）时，丢弃追加数据。`FTDiscardOldest`当日志数据大于最大值时,丢弃老数据。 |
+| globalContext | NSDictionary |     否 | 添加自定义标签。添加规则请查阅[此处](#user-global-context) |
+| logCacheLimitCount | int | 否 | 获取最大日志条目数量。限制 [1000,)，默认 5000 |
 
 ### Trace 配置 {#trace-config}
 
@@ -348,12 +348,12 @@
        FTMobileAgent.sharedInstance().startTrace(withConfigOptions: traceConfig)
     ```
 
-| 属性 | 类型 | 必须 | 含义 | 注意 |
-| --- | --- | --- | --- | --- |
-| samplerate | int | 否 | 采样率 | 取值范围 [0,100]，0 表示不采集，100 表示全采集，默认值为 100。 |
-| networkTraceType | FTNetworkTraceType | 否 | 设置链路追踪的类型 | 默认为 `DDTrace`，目前支持 `Zipkin` , `Jaeger`, `DDTrace`，`Skywalking` (8.0+)，`TraceParent` (W3C)，如果接入 OpenTelemetry 选择对应链路类型时，请注意查阅支持类型及 agent 相关配置 |
-| enableLinkRumData | BOOL | 否 | 是否与 RUM 数据关联 | 默认`NO` |
-| enableAutoTrace | BOOL | 否 | 设置是否开启自动 http trace | 默认`NO`，目前只支持 NSURLSession |
+| 属性 | 类型 | 必须 | 含义 |
+| --- | --- | --- | --- |
+| samplerate | int | 否 | 采样率。取值范围 [0,100]，0 表示不采集，100 表示全采集，默认值为 100。 |
+| networkTraceType | FTNetworkTraceType | 否 | 设置链路追踪的类型。默认为 `DDTrace`，目前支持 `Zipkin` , `Jaeger`, `DDTrace`，`Skywalking` (8.0+)，`TraceParent` (W3C)，如果接入 OpenTelemetry 选择对应链路类型时，请注意查阅支持类型及 agent 相关配置 |
+| enableLinkRumData | BOOL | 否 | 是否与 RUM 数据关联。默认`NO` |
+| enableAutoTrace | BOOL | 否 | 设置是否开启自动 http trace。默认`NO`，目前只支持 NSURLSession |
 
 ## RUM 用户数据追踪 {#rum}
 
