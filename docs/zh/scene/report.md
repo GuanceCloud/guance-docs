@@ -54,9 +54,6 @@
 :material-numeric-2-circle-outline: 标题：即当前定时报告在邮件中显示的名称。               
 :material-numeric-3-circle-outline: 内容：即当前定时报告在邮件中显示的内容。               
 
-点击确定后，您可以在定时报告列表中查看新建的报告：
-
-![](img/report-7.png)
 
 4、**分享方式**：
 

@@ -74,19 +74,21 @@ You can manage the service inventory list by following these actions:
 
     - Repository Configuration & Documentation: Hover over the corresponding icon, and clicking will automatically redirect to the associated repository or documentation.
 
-- In **Operate**:
+- In **Options**:
 
     - Hover over the avatar icon to view the creator, creation time, updater, and update time of the service.
 
     - Click the :material-dots-vertical: button to edit or delete the current service.
 
-- Click the :octicons-star-24: button to bookmark the current service.
+    - Click the :octicons-star-24: button to bookmark the current service.
 
-- Click the :material-tray-arrow-up: button to export the current page as a JSON file.
+    - Click the :material-tray-arrow-up: button to export the current page as a JSON file.
 
-- You can save the current page data as a snapshot.
+    - You can save the current page data as a snapshot.
 
-**Note**: Due to the merging of Application Performance Monitoring > Services and Scenes > Services, the historical list snapshot of services is not listed here. If you need to view it, please go to the snapshot section of the shortcut entrance. Only newly created snapshot information is displayed here. For more details, see [Snapshot](../getting-started/function-details/snapshot.md).
+        **Note**: Due to the merging of Application Performance Monitoring > Services and Scenes > Services, the historical list snapshot of services is not listed here. If you need to view it, please go to the snapshot section of the shortcut entrance. Only newly created snapshot information is displayed here. 
+        
+        For more details, see [Snapshot](../getting-started/function-details/snapshot.md).
 
 ### Performance {#performance}
 
@@ -161,6 +163,15 @@ In the map, you can perform the following operations:
 
 ![](img/service-7.gif)
 
+
+##### Service Map Query {#servicemap}
+
+Prerequisite: All Commercial Plan workspaces belong to the same [organization ID](../management/attribute-claims.md), that is, `organization` is the same.
+
+If the same Trace data has a shunt situation, the data will belong to different workspaces, and it is impossible to view the complete link data in the same workspace. However, the cross-workspace Service Map query can ensure the continuity of data queries. You can view the upstream and downstream call topology of the current service by clicking the button directly in the current workspace.
+
+![](img/servicemap.png)
+
 ## List Details {#details}
 
 In each service inventory list, click on a service to access its details page. Click on the tabs at the top of the page to access the analytics dashboard, resource call, logs, traces, error tracking, and event explorer, to query all relevant information for the associated service.
@@ -202,7 +213,7 @@ On the Upstream and Downstream Topology tab, you can:
 2. On the card, you can view the average request rate, P99 response time, error request rate (number of requests), and associated monitors for each resource.
 3. Click on the card to view related logs, user access, and events; if the resource is associated with a monitor, you can navigate to the corresponding monitor to view the monitor configuration and related events.
 
-### Related Explorer
+### Related Explorers
 
 |                   <font color=coral size=3>:fontawesome-regular-circle-down: &nbsp;**Form more information about Explorer, click here:**</font>                         |                                                              |
 | :----------------------------------------------------------: | :----------------------------------------------------------: | 

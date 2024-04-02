@@ -17,9 +17,13 @@ In the dashboard, if you have not added a view variable, the **Add View Variable
 
 2. [Variable Queries](#query): The current view variable uses different query methods, including DQL queries, PromQL queries, UI queries and custom queries. 
 
-3. Default Value: The initial variables of the current view in the dashboard. It supports previewing all variables of the current view and selecting the initial variables to be displayed by default in the dashboard. If the default value is empty, the latest field data will be displayed in the dashboard.
+3. Default Value: The initial variable of the current view variable in the dashboard. You can view all the variables of the current view variable in the drop-down box, and select the initial variable to view by default in the dashboard. If the default value is empty, the latest field data is displayed on the dashboard.
 
-    - **Note**: The default value list displays a maximum of 50 variables and supports searching for more.
+    - *: The condition is null;
+    - All values: The result value obtained from the view variable query statement is used as the variable parameter; The drop-down box displays up to 50 variables.
+    - Custom: Enter the value directly in the selection bar and press enter to create. You can search in the selection bar to find your target variable.
+
+    Click **Selected** to select all values in the current list.
 
 4. Variable Name: The name of the variable to which the current set of view variables belongs. When adding a chart in the dashboard, it needs to be referenced in the chart query using the format: #{variable name}. 
 
@@ -262,11 +266,11 @@ R::view:(distinct(`version`)) {app_id = `#{appid}` and env = `#{env}`  and sdk_n
 | match（re）、not match（re）<br>wildcard、not wildcard | Fuzzy match, multiple selection is supported. | R::view:(distinct(`env`)) {`app_id` = re(`#{appid}`)} |
 
 
-## Add Object Mapping
+## Add Mapping
 
-For infrastructure object data, you can set field mapping, which is only used for display and will not affect the original field data.
+For infrastructure data, you can set field mapping, which is only used for display and will not affect the original field data.
 
-Choose the data source, object classfication, and two attribute fields that need to be mapped. As shown in the figure below: map `container_id` to display as `container_name`.
+Choose the data source, classfication, and two attribute fields that need to be mapped. As shown in the figure below: map `container_id` to display as `container_name`.
 
 ![](img/variable001.png)
 

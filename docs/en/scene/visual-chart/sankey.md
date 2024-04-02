@@ -1,31 +1,30 @@
-# 桑基图
+# Sankey Diagram
 
-桑基图是一种特殊的流程图，用于显示数据或能量的流动。例如，它可以显示用户从一个页面到另一个页面的流量，或者在一个系统中不同部分之间的能量转移。通过桑基图，您能快速理解数据的流动和分布情况。
+A Sankey diagram is a special type of flow diagram used to display the flow of data or energy. For example, it can show the flow of users from one page to another, or the energy transfer between different parts of a system. With a Sankey diagram, you can quickly understand the flow and distribution of data.
 
 ![](../img/sankey.png)
 
-## 图表查询
+## Chart Query
 
-- 大小：针对指标、日志、事件等数据进行查询。
+- Data: Query data such as metrics, logs, events, etc.
+- Node: Two options are displayed by default, you can select them from the drop-down list or enter to create custom; Up to 4 nodes can be added; You can drag to adjust the order of the nodes.
 
-- 节点：默认展示两个选项，您可下拉选择或回车自定义创建；最多可添加 4 个节点；您可拖动调整节点顺序。
-
-### Basic Settings
+## Basic Settings
 
 | Options | Description |
 | --- | --- |
-| Chart Title | Set the title for the chart, after setting, it will be displayed on the top left of the chart, and it supports hiding |他们的
-| 描述 | 为图表添加描述信息，设置后图表标题后方会出现【i】的提示，不设置则不显示。 |
-| 单位 | **:material-numeric-1-box: 默认单位显示**：<br /><li>若查询的数据为指标数据，且您在[指标管理](../../metrics/dictionary.md)中为指标设置了单位，则默认按照指标的单位进行进位显示；<br /><li>若您在**指标管理**内无相关单位配置，则按照 [千分位](chart-query.md#thousand) 逗号间隔的数值进位方式显示。<br />**:material-numeric-2-box: 配置单位后**：<br />优先使用您自定义配置的单位进行进位显示，指标类数据支持针对数值提供两种选项：<br /><br />**科学计数说明**<br /><u>默认进位</u>：单位为万、百万，如10000 展示为 1 万，1000000 展示为 1 百万。保留两位小数点；<br /><u>短级差制</u>：单位为 K, M, B。即以 thousand、million、billion、trillion 等依次表示中文语境下的千、百万、十亿、万亿等。如 1000 为 1 k，10000 为 10 k，1000000 为 1 million；保留两位小数点。|
-| 颜色 | 可为图表设置字体颜色和背景颜色。 |
-| 数据格式 | 您可以选择【小数位数】以及【千分位分隔符】。<br /><li>千位分隔符默认开启，关闭后将显示原始值，无分隔符。更多详情，可参考 [数据千分位格式](../visual-chart/chart-query.md#thousand)。 |
+| Chart Title | Set the title for the chart, after setting, it will be displayed on the top left of the chart, and it supports hiding |
+| Description | Add a description to the chart, after setting, an "i" prompt will appear behind the chart title, if not set, it will not display. |
+| Unit | **:material-numeric-1-box: Default unit display:**：<br /><li>If the queried data is metric data, and you have set units for the metrics in [Metric Management](../../metrics/dictionary.md), it will be displayed in the units of the metrics by default;<br /><li>If there is no relevant unit configuration in Metric Management, it will be displayed in [thousandths](chart-query.md#thousand) comma-separated value carry-over method.<br />**:material-numeric-2-box: After configuring the unit:**：<br />It will prefer to display the unit you have custom configured, metric data supports two options for numerical values:<br /><br />Scientific Counting Explanation<br /><u>Default carry-over</u>: Units are in ten thousand, million, such as 10000 displayed as 1 ten thousand, 1000000 displayed as 1 million. Keep two decimal places;<br /><u>Short difference system</u>: Units are in K, M, B. That is, in Chinese context, it represents thousand, million, billion, trillion and so on. For example, 1000 is 1k, 10000 is 10k, 1000000 is 1 million; Keep two decimal places.|
+| Color | You can set the font color and background color for the chart. |
+| Data Format | You can choose the "Decimal Places" and "Thousand Separators".<br /><li>Thousands separator is turned on by default, if turned off, it will display the original value, without separators. For more details, see [Data Thousand Format](../visual-chart/chart-query.md#thousand). |
 
-## 高级配置
+## Advanced Settings
 
-| 选项 | 说明 |
+| Options | Description |
 | --- | --- |
-| 锁定时间 | 即固定当前图表查询数据的时间范围，不受全局时间组件的限制。设置成功后的图表右上角会出现用户设定的时间，如【xx分钟】、【xx小时】、【xx天】。 |
-| 时间分片 | 开启时间分片后，会先对原始数据按照一定的时间间隔进行分段聚合，再对聚合后数据集进行第二次聚合得到结果值，默认关闭。<br /><br />若时间分片关闭，无时间间隔选项；若时间分片开启，时间间隔选项如下：<br /><li>自动对齐：开启后，将按选择的时间范围和聚合时间间隔动态的调整查询，根据计算的时间间隔就近向上取整。<br /> &nbsp; &nbsp; &nbsp;系统预设了多种时间间隔：1毫秒、10毫秒、50毫秒、100毫秒、500毫秒、1秒、5秒、15秒、30秒、1分钟、5分钟，10分钟、30分钟、1小时，6小时，12小时、1天、1周、1月；<br /><li>自定义时间间隔：当选择【锁定时间】时，根据锁定时间的长短，自动匹配不同的可选时间间隔查询显示数据。（*例如：时间间隔选择 1 分钟，那么实际将按照 1 分钟的时间间隔发起查询*）<br /><br /><br />更多详情，可参考 [时间分片说明](chart-query.md#time-slicing)。 |
-| 字段映射 | 配合视图变量的对象映射功能，默认为关闭，若在视图变量已配置对象映射：<br /><li>开启字段映射时，图表显示查询的**分组字段**和对应的**映射字段**，未指定映射的分组字段不显示；<br /><li>关闭字段映射时，图表正常显示，不显示映射的字段。<br /> |
-| 空间授权 | 被授权的工作空间列表，选择后即可通过图表查询并展示该工作空间数据。 |
-| 数据采样 | 仅针对 Doris 日志数据引擎的工作空间；开启后，会对除“指标”外的其他数据进行采样查询，采样率不固定，会根据数据量大小动态调整。 |
+| Lock Time | That is, fix the time range of the current chart query data, not subject to the restrictions of the global time component. After successful setting, the user-defined time, such as "xx minutes", "xx hours", "xx days", will appear in the upper right corner of the chart. |
+| Time Slicing | After turning on time slicing, the original data will be segmented and aggregated at certain intervals, and then the aggregated data set will be aggregated again to get the result value, which is turned off by default.<br /><br />If time slicing is turned off, there is no time interval option; If time slicing is turned on, the time interval options are as follows:<br /><li>Auto Alignment: After turning on, it will dynamically adjust the query according to the selected time range and aggregation time interval, and round up the calculated time interval.<br />  The system has preset a variety of time intervals: 1 millisecond, 10 milliseconds, 50 milliseconds, 100 milliseconds, 500 milliseconds, 1 second, 5 seconds, 15 seconds, 30 seconds, 1 minute, 5 minutes, 10 minutes, 30 minutes, 1 hour, 6 hours, 12 hours, 1 day, 1 week, 1 month;<br /><li>Custom Time Interval: When selecting "Lock Time", according to the length of the locked time, automatically match different optional time interval queries to display data. (For example: If the time interval is selected as 1 minute, then it will actually query at 1 minute intervals)<br /><br /><br />For more details, see [Time Slicing Explanation](chart-query.md#time-slicing). |
+| Field Mapping | Cooperate with the object mapping function of the view variable, default is off, if object mapping is configured in view variable:<br /><li>When field mapping is turned on, the chart displays the grouped field and corresponding mapped field queried, and the grouped fields that have not specified mapping do not display;<br /><li>When field mapping is turned off, the chart displays normally, and does not display mapped fields.<br /> |
+| Data Authorize | The list of authorized workspaces, after selection, can query and display the data of this workspace through the chart. |
+| Data Sampling | Only for Doris log data engine workspace; After turning on, it will sample query data other than "metrics", the sampling rate is not fixed, and will be dynamically adjusted according to the size of the data. |
