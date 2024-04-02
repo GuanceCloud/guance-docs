@@ -55,7 +55,7 @@ markdown_extensions:
       custom_icons:
         - overrides/.icons
 
-copyright: '&copy; 2013-2023 上海观测未来信息技术有限公司 <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=31011502019735" target="_blank">沪公网安备 31011502019735号</a> | <a href="https://beian.miit.gov.cn/" target="_blank">沪ICP备 13034243号-30</a>'
+copyright: '&copy; 2013-2024 上海观测未来信息技术有限公司 <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=31011502019735" target="_blank">沪公网安备 31011502019735号</a> | <a href="https://beian.miit.gov.cn/" target="_blank">沪ICP备 13034243号-30</a>'
 
 extra:
   generator: false
