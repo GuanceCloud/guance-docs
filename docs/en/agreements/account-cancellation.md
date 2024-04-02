@@ -7,7 +7,7 @@
 - The association between the account and workspace will be cleared and cannot be retrieved (even if you use the same email, phone to re-register and use Guance)
 - Unresolved tickets submitted by the account will be closed within 7 working days
 
-The Guance account cancellation terms (hereinafter referred to as "these terms") constrain your voluntary cancellation of your Guance (domestic domain: www.guance.com ; overseas Domain: www.guance.one ) account and related matters.
+The Guance account cancellation terms (hereinafter referred to as "these terms") constrain your voluntary cancellation of your Guance (domestic domain: www.guance.com ; overseas domain: www.guance.one ) account and related matters.
 
 Please read, understand, and agree to all the contents of these terms before submitting an account cancellation application. If you have any questions, please contact Guance customer service.
 
