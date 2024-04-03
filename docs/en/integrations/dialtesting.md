@@ -23,6 +23,16 @@ The collector collects the data of network dialing test results, and all the dat
 
 ## Configuration {#config}
 
+### Environment Variables {#env}
+
+By default, the dialtesting service can dial up any network, which may pose certain security risks. If you need to prohibit to connect to certain network, you can restrict it by setting the following environmental variables:
+
+
+|  Environment variable name     |  Parameter example | Description |
+| :----------------------------- | ------------------ | ------------ |
+| `ENV_INPUT_DIALTESTING_DISABLE_INTERNAL_NETWORK_TASK`      |  `true`             | Enable or disable internal network dialing test. Default is `false`|
+| `ENV_INPUT_DIALTESTING_DISABLED_INTERNAL_NETWORK_CIDR_LIST`      |  `["192.168.0.0/16"]`             | List of network CIDRs that prohibit testing, which supports multiple entries. If left empty, all private networks will be disabled. |
+
 ### Private Test Node Deployment {#private-deploy}
 
 <!-- markdownlint-disable MD046 -->
@@ -65,6 +75,12 @@ The collector collects the data of network dialing test results, and all the dat
     
       # The max number of job chan. Default 1000.
       max_job_chan_number = 1000
+    
+      # Disable internal network task.
+      disable_internal_network_task = true
+    
+      # Disable internal network cidr list.
+      disabled_internal_network_cidr_list = []
     
       # Custom tags.
       [inputs.dialtesting.tags]
