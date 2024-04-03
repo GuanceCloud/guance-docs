@@ -219,6 +219,8 @@ For all of the following data collections, a global tag named `host` is appended
 
 ### `kafka_controller`
 
+In Kafka cluster mode, a unique controller node will be elected, and only the controller node will receive valid metrics.
+
 - tag
 
 
@@ -572,6 +574,8 @@ For all of the following data collections, a global tag named `host` is appended
 
 ### `kafka_replica_manager`
 
+
+
 - tag
 
 
@@ -617,6 +621,8 @@ For all of the following data collections, a global tag named `host` is appended
 
 ### `kafka_purgatory`
 
+
+
 - tag
 
 
@@ -649,6 +655,8 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 ### `kafka_request`
+
+
 
 - tag
 
@@ -754,6 +762,8 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 ### `kafka_topics`
+
+
 
 - tag
 
@@ -898,6 +908,8 @@ For all of the following data collections, a global tag named `host` is appended
 
 ### `kafka_topic`
 
+
+
 - tag
 
 
@@ -951,6 +963,8 @@ For all of the following data collections, a global tag named `host` is appended
 
 ### `kafka_partition`
 
+
+
 - tag
 
 
@@ -974,6 +988,8 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 ### `kafka_zookeeper`
+
+
 
 - tag
 
@@ -1003,6 +1019,8 @@ For all of the following data collections, a global tag named `host` is appended
 
 ### `kafka_network`
 
+
+
 - tag
 
 
@@ -1025,6 +1043,8 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 ### `kafka_log`
+
+
 
 - tag
 
@@ -1049,6 +1069,8 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 ### `kafka_consumer`
+
+This metrics needs to be collected on the Consumer instance
 
 - tag
 
@@ -1135,6 +1157,8 @@ For all of the following data collections, a global tag named `host` is appended
 
 ### `kafka_producer`
 
+This metrics needs to be collected on the Producer instance
+
 - tag
 
 
@@ -1210,6 +1234,8 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 ### `kafka_connect`
+
+This metrics needs to be collected on the Connect instance
 
 - tag
 

@@ -80,14 +80,14 @@ remote_write:
       # measurement_name_filter = ["kubernetes", "container"]
     
       ## metric name prefix
-      # prefix will be added to metric name
+      ## prefix will be added to metric name
       # measurement_prefix = "prefix_"
     
       ## metric name
-      # metric name will be divided by "_" by default.
-      # metric is named by the first divided field, the remaining field is used as the current metric name
-      # metric name will not be divided if measurement_name is configured
-      # measurement_prefix will be added to the start of measurement_name
+      ## metric name will be divided by "_" by default.
+      ## metric is named by the first divided field, the remaining field is used as the current metric name
+      ## metric name will not be divided if measurement_name is configured
+      ## measurement_prefix will be added to the start of measurement_name
       # measurement_name = "prom_remote_write"
     
       ## max body size in bytes, default set to 500MB
@@ -125,6 +125,18 @@ remote_write:
       [inputs.prom_remote_write.http_header_tags]
       # HTTP_HEADER = "TAG_NAME"
     
+      ## Customize measurement set name.
+      ## Treat those metrics with prefix as one set.
+      ## Prioritier over 'measurement_name' configuration.
+      ## Must measurement_name = ""
+      [[inputs.prom_remote_write.measurements]]
+        prefix = "etcd_network_"
+        name = "etcd_network"
+        
+      [[inputs.prom_remote_write.measurements]]
+        prefix = "etcd_server_"
+        name = "etcd_server"
+    
       ## custom tags
       [inputs.prom_remote_write.tags]
       # some_tag = "some_value"
@@ -136,7 +148,7 @@ remote_write:
 
 === "Kubernetes"
 
-    The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
 <!-- markdownlint-enable -->
 ### Add, Ignore and Rename Tags {#tag-ops}
 
@@ -195,40 +207,6 @@ In addition, when the renamed tag key is the same as the existing tag key: You c
 ## Metric {#metric}
 
 The standard set is based on the measurements sent by Prometheus.
-
-## Configuring Prometheus Remote Write {#remote-write-relabel}
-
-When using Prometheus to push metrics to Datakit via remote write, an excessive number of metrics may lead to a surge in data on storage. In such cases, we can utilize Prometheus's own relabeling feature to select specific metrics.
-
-To configure `remote_write` to another service and only send a specified list of metrics in Prometheus, we need to set up the `remote_write` section in the Prometheus configuration file (usually `prometheus.yml`) and specify the `match[]` parameter to define the metrics to be sent.
-
-Here is a configuration example showing how to send a specific list of metrics to a remote write endpoint:
-
-```yaml
-remote_write:
-  - url: "http://remote-write-service:9090/api/v1/write"
-    headers:
-      "Authorization": "Bearer <your_token>"
-    write_relabel_configs:
-      - source_labels: ["__name__"]
-        regex: "my_metric|another_metric|yet_another_metric"
-        action: keep
-```
-
-In this configuration:
-
-- `url`: The URL of the remote write service.
-- `headers`: Optional HTTP headers, such as a Bearer token for authentication.
-- `write_relabel_configs`: A list for relabeling and filtering the metrics to be sent.
-    - `source_labels`: Specifies the source labels used for matching and relabeling.
-    - `regex`: A regular expression to match the metric names to be retained.
-    - `action`: Specifies whether to keep (`keep`) or drop (`drop`) the metrics that match the regular expression.
-
-In the example above, only metrics with names matching `my_metric`, `another_metric`, or `yet_another_metric` will be sent to the remote write endpoint. All other metrics will be ignored.
-
-Please ensure to replace `<your_token>` with the actual authentication token, and adjust the URL and metric names according to your needs.
-
-Finally, reload or restart the Prometheus service to apply the changes.
 
 ## Command Line Debug Measurements {#debug}
 
