@@ -81,14 +81,14 @@ remote_write:
       # measurement_name_filter = ["kubernetes", "container"]
     
       ## metric name prefix
-      # prefix will be added to metric name
+      ## prefix will be added to metric name
       # measurement_prefix = "prefix_"
     
       ## metric name
-      # metric name will be divided by "_" by default.
-      # metric is named by the first divided field, the remaining field is used as the current metric name
-      # metric name will not be divided if measurement_name is configured
-      # measurement_prefix will be added to the start of measurement_name
+      ## metric name will be divided by "_" by default.
+      ## metric is named by the first divided field, the remaining field is used as the current metric name
+      ## metric name will not be divided if measurement_name is configured
+      ## measurement_prefix will be added to the start of measurement_name
       # measurement_name = "prom_remote_write"
     
       ## max body size in bytes, default set to 500MB
@@ -126,6 +126,18 @@ remote_write:
       [inputs.prom_remote_write.http_header_tags]
       # HTTP_HEADER = "TAG_NAME"
     
+      ## Customize measurement set name.
+      ## Treat those metrics with prefix as one set.
+      ## Prioritier over 'measurement_name' configuration.
+      ## Must measurement_name = ""
+      [[inputs.prom_remote_write.measurements]]
+        prefix = "etcd_network_"
+        name = "etcd_network"
+        
+      [[inputs.prom_remote_write.measurements]]
+        prefix = "etcd_server_"
+        name = "etcd_server"
+    
       ## custom tags
       [inputs.prom_remote_write.tags]
       # some_tag = "some_value"
@@ -137,7 +149,7 @@ remote_write:
 
 === "Kubernetes"
 
-    目前可以通过 [ConfigMap 方式注入采集器配置](../datakit/datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+    可通过 [ConfigMap 方式注入采集器配置](../datakit/datakit-daemonset-deploy.md#configmap-setting) 或 [配置 ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) 开启采集器。
 <!-- markdownlint-enable -->
 
 ### tags 的处理 {#tag-ops}
@@ -197,44 +209,6 @@ remote_write:
 ## 指标 {#metric}
 
 指标集以 Prometheus 发送过来的指标集为准。
-
-## 配置 Prometheus Remote Write 指标过滤 {#remote-write-relabel}
-
-当使用 Prometheus 以 remote write 方式往 Datakit 推送指标时，如果指标太多，可能导致
-存储中的数据暴增。此时我们可以通过 Prometheus 自身的 relabel 功能来选取特定的指标。
-
-在 Prometheus 中，要配置 `remote_write` 到另一个服务，并且只发送指定的指标列表，我们需要在
-Prometheus 的配置文件（通常是 `prometheus.yml`）中设置 `remote_write` 部分，并指定 `match[]`
-参数来定义要发送的指标。
-
-以下是一个配置示例，它展示了如何将特定的指标列表发送到远程写入端点：
-
-```yaml
-remote_write:
-  - url: "http://remote-write-service:9090/api/v1/write"
-    headers:
-      "Authorization": "Bearer <your_token>"
-    write_relabel_configs:
-      - source_labels: ["__name__"]
-        regex: "my_metric|another_metric|yet_another_metric"
-        action: keep
-```
-
-在这个配置中：
-
-- `url`: 远程写入服务的 URL
-- `headers`: 可选的 HTTP 头部，例如用于身份验证的 Bearer 令牌
-- `write_relabel_configs`: 一个列表，用于重新标记和过滤要发送的指标
-    - `source_labels`: 指定用于匹配和重新标记的源标签
-    - `regex`: 一个正则表达式，用于匹配要保留的指标名称
-    - `action`: 指定匹配正则表达式的指标是被保留（`keep`）还是被丢弃（`drop`）
-
-在上面的示例中，只有名称匹配 `my_metric`、`another_metric` 或 `yet_another_metric` 的指标
-会被发送到远程写入端点。其他所有指标都会被忽略。
-
-请确保替换 `<your_token>` 为实际的认证令牌，以及根据需求调整 URL 和指标名称。
-
-最后，重新加载或重启 Prometheus 服务以应用更改。
 
 ## 命令行调试指标集 {#debug}
 
