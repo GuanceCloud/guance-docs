@@ -219,6 +219,8 @@ java -jar </path/to/jolokia-jvm-agent.jar> --host 127.0.0.1 --port=8080 start <K
 
 ### `kafka_controller`
 
+In Kafka cluster mode, a unique controller node will be elected, and only the controller node will receive valid metrics.
+
 - 标签
 
 
@@ -572,6 +574,8 @@ java -jar </path/to/jolokia-jvm-agent.jar> --host 127.0.0.1 --port=8080 start <K
 
 ### `kafka_replica_manager`
 
+
+
 - 标签
 
 
@@ -617,6 +621,8 @@ java -jar </path/to/jolokia-jvm-agent.jar> --host 127.0.0.1 --port=8080 start <K
 
 ### `kafka_purgatory`
 
+
+
 - 标签
 
 
@@ -649,6 +655,8 @@ java -jar </path/to/jolokia-jvm-agent.jar> --host 127.0.0.1 --port=8080 start <K
 
 
 ### `kafka_request`
+
+
 
 - 标签
 
@@ -754,6 +762,8 @@ java -jar </path/to/jolokia-jvm-agent.jar> --host 127.0.0.1 --port=8080 start <K
 
 
 ### `kafka_topics`
+
+
 
 - 标签
 
@@ -898,6 +908,8 @@ java -jar </path/to/jolokia-jvm-agent.jar> --host 127.0.0.1 --port=8080 start <K
 
 ### `kafka_topic`
 
+
+
 - 标签
 
 
@@ -951,6 +963,8 @@ java -jar </path/to/jolokia-jvm-agent.jar> --host 127.0.0.1 --port=8080 start <K
 
 ### `kafka_partition`
 
+
+
 - 标签
 
 
@@ -974,6 +988,8 @@ java -jar </path/to/jolokia-jvm-agent.jar> --host 127.0.0.1 --port=8080 start <K
 
 
 ### `kafka_zookeeper`
+
+
 
 - 标签
 
@@ -1003,6 +1019,8 @@ java -jar </path/to/jolokia-jvm-agent.jar> --host 127.0.0.1 --port=8080 start <K
 
 ### `kafka_network`
 
+
+
 - 标签
 
 
@@ -1025,6 +1043,8 @@ java -jar </path/to/jolokia-jvm-agent.jar> --host 127.0.0.1 --port=8080 start <K
 
 
 ### `kafka_log`
+
+
 
 - 标签
 
@@ -1049,6 +1069,8 @@ java -jar </path/to/jolokia-jvm-agent.jar> --host 127.0.0.1 --port=8080 start <K
 
 
 ### `kafka_consumer`
+
+This metrics needs to be collected on the Consumer instance
 
 - 标签
 
@@ -1135,6 +1157,8 @@ java -jar </path/to/jolokia-jvm-agent.jar> --host 127.0.0.1 --port=8080 start <K
 
 ### `kafka_producer`
 
+This metrics needs to be collected on the Producer instance
+
 - 标签
 
 
@@ -1210,6 +1234,8 @@ java -jar </path/to/jolokia-jvm-agent.jar> --host 127.0.0.1 --port=8080 start <K
 
 
 ### `kafka_connect`
+
+This metrics needs to be collected on the Connect instance
 
 - 标签
 
