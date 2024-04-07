@@ -46,10 +46,14 @@
             "Sid": "VisualEditor0",
             "Effect": "Allow",
             "Action": "s3:*",
-            "Resource": "arn:aws:s3:::bucket-name"
+            "Resource": [
+                "arn:aws:s3:::bucket-name",
+                "arn:aws:s3:::bucket-name/*"
+            ]
         }
     ]
 }
+
 ```
 ![createpolicy-1](img/aws-createpolicy-1.jpg)
 * 创建存储用户
@@ -60,6 +64,35 @@
 ![createak-1](img/aws-createak-1.jpg)
 ![createak-2](img/aws-createak-2.jpg)
 
+#### MinIO
+* 创建存储桶
+![](img/minio-bucket-1.png)
+![](img/minio-bucket-2.png)
+* 创建策略
+![](img/minio-policy-1.png)
+![](img/minio-policy-2.png)
+```yaml
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:*"
+            ],
+            "Resource": [
+                "arn:aws:s3:::bucketname",
+                "arn:aws:s3:::bucketname/*"
+            ]
+        }
+    ]
+}
+```
+* 创建用户并保存用户ak、sk，后续配置到服务中
+![](img/minio-user-1.png)
+![](img/minio-user-2.png)
+![](img/minio-user-3.png)
+![](img/minio-user-4.png)
 ### 步骤二：修改服务配置
 需要修改kodo、kodo-x等应用服务的配置让转储配置生效
 

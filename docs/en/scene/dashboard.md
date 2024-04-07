@@ -146,6 +146,14 @@ In the dashboard list, you can bulk delete or export specific dashboards.
 
 ![](img/dashboard-1.gif)
 
+### Homepage Dashboard {#home-dashboard}
+
+Click on the dashboard :material-dots-vertical: button, you can set up the **workspace-level** Homepage Dashboard. After setup, subsequent users accessing this workspace will default to the Homepage Dashboard.
+
+![](img/dash_01.png)
+
+**Note**: Only supports setting the "Public" visible dashboard as the Homepage Dashboard, and once set, the visibility range cannot be modified.
+
 ### Modify/Export/Delete
 
 Click the button :material-dots-vertical: and you can change the name for the dashboard, export the dashboard to a JSON file and delete dashboard.

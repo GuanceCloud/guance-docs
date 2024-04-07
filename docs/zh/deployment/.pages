@@ -32,6 +32,7 @@ nav:
           - "Kubernetes": infra-kubernetes.md
           - "MySQL": infra-mysql.md
           - "日志引擎": infra-logengine.md
+          - "Doris": infra-doris.md
           - "OpenSearch 高可用": ha-opensearch.md
           - "时序引擎": infra-metric.md
           - "Redis": infra-redis.md

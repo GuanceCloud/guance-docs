@@ -17,7 +17,7 @@ icon: zy/release-notes
     - 主机智能监控：将当前突变展示更改为基于周期以预测的方式进行异常告警，趋势图会展示当前指标及置信区间上下界，超出置信区间的异常会标红展示。
 - 场景 > 图表：新增[拓扑图](../scene/visual-chart/topology-map.md)。
 - APM > 链路详情页 > [服务调用关系](../application-performance-monitoring/explorer.md#call)：调整为服务拓扑展示，并展示服务与服务之间的调用次数。
-- 数据保存策略：Session Reply 的数据保存策略与 RUM 的保存策略保持联动一致，即 RUM 数据保存 3 天，Session Reply 的数据也保存 3 天。
+- 数据保存策略：Session Replay 的数据保存策略与 RUM 的保存策略保持联动一致，即 RUM 数据保存 3 天，Session Replay 的数据也保存 3 天。
 - 查看器：
     - 事件查看器 > 基础属性：新增检测指标是否显示配置，缓存到本地，全局适配；
     - APM > 错误追踪 > 聚类分析 > 详情页：支持创建异常追踪 Issue；

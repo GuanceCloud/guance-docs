@@ -98,7 +98,15 @@ $ curl 'http://127.0.0.1:5000/api/v1/inner/es/init_subsequent' -X 'POST'  -H 'Co
 kubectl scale -n forethought-kodo deploy kodo-x --replicas 3
 ```
 
-### 步骤六：验证
+### 步骤六：清空 redis 缓存
+
+登录 redis 数据库：
+
+```shell
+flushall
+```
+
+### 步骤七：验证
 
 请登录观测云控制台仔细查看基础设施和日志功能。
 
