@@ -2119,7 +2119,7 @@ pubrepo.guance.com/dataflux/1.42.95:launcher-8478e83-1654839989
     - 基于观测云，使用 SkyWalking 实现 RUM、APM 和日志联动分析
 - 监控最佳实践
     - OpenTelemetry 可观测建设
-    - OpenTelemetry to Jeager 、Grafana、ELK
+    - OpenTelemetry to Jaeger 、Grafana、ELK
     - OpenTelemetry to Grafana
     - OpenTelemetry to 观测云
 - 观测云小妙招
