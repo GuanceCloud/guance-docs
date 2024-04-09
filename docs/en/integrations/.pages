@@ -85,6 +85,8 @@ nav:
     - Volcengine:
       - 'ECS': volcengine_ecs.md
       - 'Mysql': volcengine_mysql.md
+      - 'MongoDB  Replica Set': volcengine_mongodb_replica_set.md
+      - 'MongoDB Sharded Cluster': volcengine_mongodb_sharded_cluster.md
 
   - Host:
     - Default Collection:
