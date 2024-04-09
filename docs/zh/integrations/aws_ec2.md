@@ -11,6 +11,9 @@ monitor:
   - desc: 'AWS EC2 监控器'
     path: 'monitor/zh/aws_ec2'
 
+cloudCollector:
+  - desc: '云采集器'
+    path: 'cloud-collector/zh/aws_ec2'
 ---
 
 
