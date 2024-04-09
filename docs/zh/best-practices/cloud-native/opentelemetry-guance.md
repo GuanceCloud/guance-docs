@@ -4,7 +4,7 @@
 
 前面两篇我们分别演示并介绍了如何基于 OpenTelemetry 进行可观测。
 
-[OpenTelemetry to Jeager 、Grafana、ELK](./opentelemetry-elk.md)
+[OpenTelemetry to Jaeger 、Grafana、ELK](./opentelemetry-elk.md)
 
 作为经典的可观测架构，将不同类型的数据存储在不同的平台，比如log 存放在ELK，trace 存放在 Jaeger这类的APM，metric 保存在 prometheus 并通过grafana进行视图展示。
 
