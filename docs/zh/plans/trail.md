@@ -82,9 +82,28 @@
 - 注册[观测云控制台](https://console.guance.com/)账号，已有体验版工作空间；
 - 同步创建[观测云费用中心](https://boss.guance.com/)账号，对接后续费用结算功能。
 
-### 进入升级页面
+### 进入升级页面 {#upgrade-entry}
 
-登录控制台**付费计划与账单**，点击**升级**，进入**套餐升级**页面：
+:material-numeric-1-circle: 在工作空间导航栏，点击**立即升级**：
+
+<img src="../img/upgrade-plan.png" width="50%" >
+
+如果您是当前工作空间的 Owner，点击后可直接进入升级页面：
+
+![](img/upgrade-plan-1.png)
+
+其他成员则需要联系工作空间的 Owner 进行升级。如果您拥有[观测云费用中心](https://boss.guance.com/)账号，还可以直接进入费用中心绑定该空间，从而实现版本的升级。
+
+![](img/upgrade-plan-2.png)
+
+???- abstract "什么是费用中心账号？"
+
+    费用中心是观测云的支付结算平台，用户需要注册该平台的账号才能进行账户充值、支付结算、账单管理等操作。
+
+    更多详情，可参考 [费用中心](../billing/cost-center/index.md)。
+
+
+:material-numeric-2-circle: 进入导航栏 > **付费计划与账单**，点击**升级**，进入**套餐升级**页面：
 
 ![](img/9.upgrade_1.png)
 
@@ -93,6 +112,7 @@
 > 更多版本计费逻辑，可参考 [计费方式](../billing/billing-method/index.md)。
 
 ![](img/9.upgrade_2.png)
+
 
 ### 绑定费用中心账号
 
