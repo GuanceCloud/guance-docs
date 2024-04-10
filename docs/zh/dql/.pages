@@ -4,7 +4,8 @@ nav:
   - 'DQL 定义': define.md
   - 'DQL 函数': funcs.md
   - 'DQL 外层函数': out-funcs.md
-  - '高级函数': advanced-funcs
   - 'DQL VS 其它查询语言':
     - dql-vs-others.md
     - 'PromQL 快速上手': promql.md
+  - '高级函数': advanced-funcs
+  - 'Rollup 函数': rollup-func.md
