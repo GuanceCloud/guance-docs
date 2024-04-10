@@ -40,7 +40,7 @@
 | jsonScript.periodBefore | integer |  | 针对高级检测,突变检测的(昨日/一小时前)参数,单位s<br>例子: 600 <br>允许为空: False <br> |
 | jsonScript.recoverNeedPeriodCount | integer |  | 指定异常在几个检查周期之后生成恢复事件,如果 检测频率为 自定义customCrontab, 该字段表示为时间长度, 单位s, 否则,表示几个检测频率<br>例子: 60 <br>允许为空: False <br> |
 | jsonScript.noDataInterval | integer |  | 多长时间内无数据则产生无数据事件<br>例子: 60 <br>允许为空: False <br> |
-| jsonScript.noDataAction | string |  | 无数据处理操作<br>允许为空: False <br>可选值: ['none', 'noData', 'recover'] <br> |
+| jsonScript.noDataAction | string |  | 无数据处理操作<br>允许为空: False <br>可选值: ['none', 'checkAs0', 'noDataEvent', 'criticalEvent', 'errorEvent', 'warningEvent', 'okEvent', 'noData', 'recover'] <br> |
 | jsonScript.checkFuncs | array |  | 检查函数信息列表<br>例子: [{'funcId': 'xxx', 'kwargs': {}}] <br>允许为空: False <br> |
 | jsonScript.groupBy | array |  | 触发维度<br>例子: ['性别'] <br>允许为空: False <br> |
 | jsonScript.targets | array |  | 检查目标<br>例子: [{'dql': 'M::`士兵信息`:(AVG(`潜力值`))  [::auto] by `性别`', 'alias': 'M1'}] <br>允许为空: False <br> |
@@ -201,6 +201,23 @@
 | 安全巡检 | S |  |
 
 所有 写入模式为 覆盖 的 需要指定 disableCheckEndTime 为 true
+
+--------------
+
+**8.`jsonScript.noDataAction`参数信息 **
+
+|  参数名        |   说明  |
+|---------------|----------|
+| none          |  无动作（即与[关闭无数据相关处理]相同）  |
+| checkAs0      |  查询结果视为0                       |
+| noDataEvent   |  触发恢复事件(noData)                |
+| criticalEvent |  触发紧急事件(crtical)               |
+| errorEvent    |  触发重要事件(error)                 |
+| warningEvent  |  触发警告事件(warning)               |
+| okEvent       |  触发恢复事件(ok)                    |
+| noData        |  产生无数据事件, 该参数于 2024-04-10 日下架,  其功能逻辑等同于`noDataEvent`，可直接替换为`noDataEvent`  |
+| recover       |  触发恢复事件, 该参数于 2024-04-10 日下架,  其功能逻辑等同于`okEvent`，可直接替换为`okEvent`  |
+
 
 --------------
 

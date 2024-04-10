@@ -1,4 +1,4 @@
-# 【离线token】作废token
+# 【免登录Token】作废token
 
 ---
 

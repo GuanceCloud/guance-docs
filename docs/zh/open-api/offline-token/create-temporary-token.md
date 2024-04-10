@@ -1,4 +1,4 @@
-# 【离线token】生成访问token
+# 【免登录Token】生成token
 
 ---
 
