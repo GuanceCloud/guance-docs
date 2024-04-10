@@ -167,14 +167,15 @@ icon: zy/management
 
 <img src="img/zone-1.png" width="60%" >
 
-### 系统通知
+### 系统通知 {#system-notice}
 
-<div class="grid cards" markdown>
+![](img/system-notice.png)
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 点击管理您的工作空间系统通知</font>](./system-notification.md)
+当前账号下的工作空间若存在包括数据转发规则、云账号可用状态、告警规则、数据使用上线等配置的异常状态，您可以在导航栏 > **系统通知**统一进行查看。
 
+点击上方的订阅按钮，当有新消息时，观测云会发送相关邮件至您的邮箱。
 
-</div>
+<img src="img/system-notice-1.png" width="60%" >
 
 ### 高性能模式
 
@@ -211,6 +212,8 @@ icon: zy/management
     ![](img/08_color_03.png)
 
 </div>
+
+
 
 
 ## 更多阅读
