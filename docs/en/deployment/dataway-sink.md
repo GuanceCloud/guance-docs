@@ -277,9 +277,41 @@ To enable sinker for Datakit, setup these in *datakit.conf*:
   enable_sinker = true
 ```
 
-Except `global_customer_keys`, Datakit will use global host tag keys and global election tag keys during group by points.
-
 In addition to dial tests, [General Data Classification](../datakit/apis.md#category), [Session Replay](../integrations/rum.md#rum-session-replay) and [Profiling](../integrations/profile.md) and other binary file data. **Do not configure non-string-type keys for `global_customer_keys`**, we just ignore them.
+
+#### Impact of Global Tags on Sink {#dk-global-tags-on-sink}
+
+In addition to `global_customer_keys` affecting the sinking markers, the [Global Tags](../datakit/datakit-conf.md#set-global-tag) configured in Datakit (including global election tags and global host tags) also influence the sinking markers. This means that if the data points contain fields that appear in the global tags (and the value types of these fields must be string), they will be taken into account for sinking. Assume the global election tag is configured as follows:
+
+```toml
+# datakit.conf
+[election.tags]
+    cluster = "my-cluster"
+```
+
+For the following data point:
+
+```not-set
+pi,cluster=cluster_A,app=math,other_tag=other_value value=3.14 1712796013000000000
+```
+
+Since the global election tag includes `cluster` (regardless of the value configured for this tag), and the data point itself also has a `cluster` tag, the final `X-Global-Tags` will include the key-value pair `cluster=cluster_A`:
+
+```not-set
+X-Global-Tags: cluster=cluster_A
+```
+
+If `global_customer_keys` also configures the `app` key, then the final sharding Header will be (the order of the key-value pairs is not important):
+
+```not-set
+X-Global-Tags: cluster=cluster_A,app=math
+```
+
+<!-- markdownlint-disable MD046 -->
+???+ note
+
+    The example here intentionally sets the value of `cluster` in the *datakit.conf* different from the value of the `cluster` field in the data point, mainly to emphasize the impact of the tag key here. It can be understood that once a data point contains a global tag key that meets the condition, **its effect is equivalent to this global tag key being added to `global_customer_keys`**.
+<!-- markdownlint-enable -->
 
 ## Dataway sink command {#dw-sink-command}
 
@@ -709,3 +741,17 @@ Datakit has several built-in custom keys that are not typically present in the c
     ]
 }
 ```
+
+<!-- markdownlint-disable MD046 -->
+???+ attention
+
+    Even if a URL (`__dataway_api`) matches multiple sinking rules, some API requests will **only be routed once**. The following API URLs are subject to this behavior:
+
+    - `/v1/election`: Election request
+    - `/v1/election/heartbeat`: Election heartbeat request
+    - `/v1/datakit/pull`: Pulling central configuration for Pipelines and blacklists
+    - `/v1/query/raw`: DQL query
+    - `/v1/workspace`: Retrieve workspace information
+    - `/v1/object/labels`: Update/delete object data
+    - `/v1/check/token`: Check workspace Token information
+<!-- markdownlint-enable -->
