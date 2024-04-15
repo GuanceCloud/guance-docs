@@ -220,10 +220,15 @@ android{
 
 	    @Override
 	    public void onCreate() {
-	        FTSDKConfig config = FTSDKConfig.builder(DATAKIT_URL)//Datakit 安装地址
-	                .setDebug(true);
+			 //本地环境部署、Datakit 部署
+	        FTSDKConfig config = FTSDKConfig.builder(datakitUrl);
+
+			//使用公网 DataWay
+			FTSDKConfig config = FTSDKConfig.builder(datawayUrl, clientToken);
 
 	        FTSdk.install(config);
+
+		
 
 	        // ...
 	    }
@@ -235,8 +240,14 @@ android{
 	```kotlin
 	class DemoApplication : Application() {
 	    override fun onCreate() {
+			 //本地环境部署、Datakit 部署
 	        val config = FTSDKConfig
-	            .builder(DATAKIT_URL)//Datakit 访问地址
+	            .builder(datakitUrl)
+	            .setDebug(true);
+
+			//使用公网 DataWay
+			val config = FTSDKConfig
+	            .builder(datawayUrl, clientToken)
 	            .setDebug(true);
 
 	        FTSdk.install(config)
@@ -256,8 +267,8 @@ android{
 
 | **方法名** | **类型** | **必须** | **含义** |
 | --- | --- | --- | --- | 
-| datakitUrl | String | 是 | Datakit 访问 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529，注意：安装 SDK 设备需能访问这地址。注意：datakit 和 dataway 配置两者二选一|
-| datawayUrl | String | 是 | 公网 Dataway 访问 URL 地址，例子：http://10.0.0.1:9528，端口默认 9528，注意：安装 SDK 设备需能访问这地址。注意：datakit 和 dataway 配置两者二选一 |
+| datakitUrl | String | 是 | Datakit 访问 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529，注意：安装 SDK 设备需能访问这地址。**注意：datakit 和 dataway 配置两者二选一**|
+| datawayUrl | String | 是 | 公网 Dataway 访问 URL 地址，例子：http://10.0.0.1:9528，端口默认 9528，注意：安装 SDK 设备需能访问这地址。**注意：datakit 和 dataway 配置两者二选一** |
 | clientToken | String | 是 | 认证 token，需要与 datawayUrl 同时配置  |
 | setDebug | Boolean | 否 | 是否开启调试模式 。默认为 `false`，开启后方可打印 SDK 运行日志 |
 | setEnv | EnvType | 否 | 设置采集环境, 默认为 `EnvType.PROD`， |

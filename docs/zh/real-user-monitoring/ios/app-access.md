@@ -195,7 +195,7 @@
     ```objective-c
     -(BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
         // SDK FTMobileConfig 设置
-         // 本地环境部署
+         // 本地环境部署、Datakit 部署
          //FTMobileConfig *config = [[FTMobileConfig alloc]initWithDatakitUrl:datakitUrl];
          // 使用公网 DataWay 部署
         FTMobileConfig *config = [[FTMobileConfig alloc]initWithDatawayUrl:datawayUrl clientToken:clientToken];
@@ -213,7 +213,7 @@
     ```swift
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
          // SDK FTMobileConfig 设置
-           // 本地环境部署
+           // 本地环境部署、Datakit 部署
            //let config = FTMobileConfig(datakitUrl: url)
            // 使用公网 DataWay 部署
          let config = FTMobileConfig(datawayUrl: datawayUrl, clientToken: clientToken)
