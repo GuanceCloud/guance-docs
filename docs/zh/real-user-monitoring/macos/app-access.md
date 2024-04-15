@@ -124,8 +124,8 @@
 
 | **属性**          | **类型**     | **必须** | **含义**                 | 注意                                                         |
 | ----------------- | ------------ | -------- | ------------------------ | ------------------------------------------------------------ |
-| datakitUrl        | NSString     | 是       | Datakit 访问地址         | datakit 访问 URL 地址，例子：[http://10.0.0.1:9529](http://10.0.0.1:9529/)，端口默认 9529，注意：安装 SDK 设备需能访问这地址.注意：datakit 和 dataway 配置两者二选一 |
-| datawayUrl        | NSString     | 是       | 公网 Dataway 访问地址    | dataway 访问 URL 地址，例子：[http://10.0.0.1:9528](http://10.0.0.1:9528/)，端口默认 9528，注意：安装 SDK 设备需能访问这地址.注意：datakit 和 dataway 配置两者二选一 |
+| datakitUrl        | NSString     | 是       | Datakit 访问地址         | datakit 访问 URL 地址，例子：[http://10.0.0.1:9529](http://10.0.0.1:9529/)，端口默认 9529，注意：安装 SDK 设备需能访问这地址.**注意：datakit 和 dataway 配置两者二选一** |
+| datawayUrl        | NSString     | 是       | 公网 Dataway 访问地址    | dataway 访问 URL 地址，例子：[http://10.0.0.1:9528](http://10.0.0.1:9528/)，端口默认 9528，注意：安装 SDK 设备需能访问这地址.**注意：datakit 和 dataway 配置两者二选一** |
 | clientToken       | NSString     | 是       | 认证 token               | 需要与 datawayUrl 同时使用                                   |
 | enableSDKDebugLog | BOOL         | 否       | 设置是否允许打印日志     | 默认 `NO`                                                    |
 | env               | NSString     | 否       | 设置采集环境             | 默认 `prod`，支持自定义，也可根据提供的 `FTEnv` 枚举通过 `-setEnvWithType:` 方法设置<br/>`FTEnv`<br/>`FTEnvProd`： prod<br/>`FTEnvGray`： gray<br/>`FTEnvPre` ：pre <br/>`FTEnvCommon` ：common <br/>`FTEnvLocal`： local |
